@@ -6,7 +6,7 @@
 //	Copyright 2009 GreenTongue Software. All rights reserved.
 //
 
-#import "FishLampCocoa.h"
+#import "FishLampCore.h"
 #import "FLActionDescription.h"
 #import "FLProgressViewControllerProtocol.h"
 #import "FLAsyncAction.h"

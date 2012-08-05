@@ -5,7 +5,7 @@
 //	Created by Mike Fullerton on 9/12/09.
 //	Copyright 2009 GreenTongue Software, LLC. All rights reserved.
 //
-#import "FishLampCocoa.h"
+#import "FishLampCore.h"
 
 #import "FLUnitTestCase.h"
 #import "FLUnitTestManager.h"

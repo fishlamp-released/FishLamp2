@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "FishLampCocoa.h"
+#import "FishLampCore.h"
 #import "FLTrackerSink.h"
 
 @interface FLLoggerTrackerSink : FLTrackerSink

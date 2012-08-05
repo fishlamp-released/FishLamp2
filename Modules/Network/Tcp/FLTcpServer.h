@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "FishLampCocoa.h"
+#import "FishLampCore.h"
 
 typedef enum {
 	SERVER_STATE_IDLE,

@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "FishLampCocoa.h"
+#import "FishLampCore.h"
 
 @interface FLSimpleTask : NSObject {
 	id	_target;

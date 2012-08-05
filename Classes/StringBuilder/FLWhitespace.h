@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "FishLampCocoa.h"
+#import "FishLampCore.h"
 
 /// FLWhitespaceDefaultEOL is the default EOL (\\n)
 

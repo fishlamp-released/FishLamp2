@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "FishLampCocoa.h"
+#import "FishLampCore.h"
 
 @interface NSData (Base64Encoding)
 

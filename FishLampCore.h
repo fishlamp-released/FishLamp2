@@ -7,8 +7,22 @@
 //
 
 // Prerequisites
-#import "FLCoreDependencies.h"
+#import <Foundation/Foundation.h>
+#import <Availability.h>
+
 #import "FLCoreFlags.h"
+
+#if IOS
+    #import <UIKit/UIKit.h>
+    #import <CoreGraphics/CoreGraphics.h>
+    #import <MobileCoreServices/MobileCoreServices.h>
+    #import <ImageIO/ImageIO.h>
+#else
+    #import <Cocoa/Cocoa.h>
+    #import <AppKit/AppKit.h>
+    #import <CoreServices/CoreServices.h>
+#endif
+
 #import "FLCoreObjC.h"
 
 // Array
@@ -65,3 +79,13 @@
 // Source Count: 18
 // Total: 45
 
+
+#import "FLGeometry.h"
+#import "FLCocoaCompatibility.h"
+
+
+#if TEST
+#import "FLUnitTest.h"
+#endif
+
+#import "FLTracker.h"

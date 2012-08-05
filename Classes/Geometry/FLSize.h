@@ -5,7 +5,7 @@
 //  Created by Mike Fullerton on 5/12/12.
 //  Copyright (c) 2012 GreenTongue Software. All rights reserved.
 //
-#import "FishLampCocoa.h"
+#import "FishLampCore.h"
 
 #if IOS
     #define FLSize                   CGSize

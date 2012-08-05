@@ -6,7 +6,7 @@
 //	Copyright 2011 GreenTongue Software. All rights reserved.
 //
 
-#import "FishLampCocoa.h"
+#import "FishLampCore.h"
 #import "FLCallbackObject.h"
 
 @interface FLFunctor : FLCallbackObject {

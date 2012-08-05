@@ -7,7 +7,7 @@
 //
 
 #import "FLSqliteDatabase.h"
-#import "FishLampCocoa.h"
+#import "FishLampCore.h"
 
 #if TEST
 

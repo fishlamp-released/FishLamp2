@@ -30,7 +30,7 @@
 
 #if IOS
 	self.responseHandler = [FLHttpImageDownloadNetworkResponseHandler instance];
-	self.input = [FLCachedImage cachedImage];
+	self.operationInput = [FLCachedImage cachedImage];
 #endif
 	
 	[self setPictureSize:FLFacebookLoadUserPictureOperationInputSizeNormal];
@@ -64,7 +64,7 @@
 //	if((self = [super initWithURL:[NSURL URLWithString:[FLFacebookMgr buildURL:encodedToken user:userId object:@"picture" params:@"type", sizeStr, nil]]]))
 //	{	
 //		self.userId = userId;
-//		self.input = [FLCachedImage cachedImageWithUrlString:self.URL.absoluteString];
+//		self.operationInput = [FLCachedImage cachedImageWithUrlString:self.URL.absoluteString];
 //		self.cacheBehavior	= FLHttpOperationCacheBehaviorAll;
 //	}
 //	
@@ -75,7 +75,7 @@
 - (void) willPerformOperation
 {
 #if IOS
-	[self.input setUrl:self.URL.absoluteString];
+	[((FLCachedImage*)self.operationInput) setUrl:self.URL.absoluteString];
 #endif
     [super willPerformOperation];
 }

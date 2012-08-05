@@ -24,7 +24,7 @@
 }
 
 - (void) willPerformOperation {
-	[self.input setUrl:self.URL.absoluteString];
+	[((FLCachedImage*)self.input) setUrl:self.URL.absoluteString];
     
     [super willPerformOperation];
 }

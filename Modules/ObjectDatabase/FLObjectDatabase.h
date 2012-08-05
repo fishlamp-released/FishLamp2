@@ -5,7 +5,7 @@
 //	Created by Mike Fullerton on 6/22/09.
 //	Copyright 2009 Greentongue Software. All rights reserved.
 //
-#import "FishLampCocoa.h"
+#import "FishLampCore.h"
 
 #import "FLSqliteDatabase.h"
 #import "FLSqliteTable.h"

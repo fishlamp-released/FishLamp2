@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "FishLampCocoa.h"
+#import "FishLampCore.h"
 
 typedef void (^FLMutableURLRequestCallback)(NSMutableURLRequest* request);
 typedef void (^FLURLRequestCallback)(NSURLRequest* request);

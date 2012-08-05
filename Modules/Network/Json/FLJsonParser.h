@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "FishLampCocoa.h"
+#import "FishLampCore.h"
 
 #define FLJsonParserErrorDomain @"FLJsonParserErrorDomain"
 #define FLJsonParserParseFailedErrorCode 1 

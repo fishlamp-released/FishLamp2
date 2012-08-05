@@ -6,7 +6,7 @@
 //	Copyright 2009 Greentongue Software. All rights reserved.
 //
 #import <Foundation/Foundation.h>
-#import "FishLampCocoa.h"
+#import "FishLampCore.h"
 #import "FLSize.h"
 #import "FLPoint.h"
 #import "FLEdgeInsets.h"

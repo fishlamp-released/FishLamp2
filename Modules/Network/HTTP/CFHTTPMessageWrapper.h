@@ -5,7 +5,7 @@
 //  Created by Mike Fullerton on 10/22/11.
 //  Copyright (c) 2011 GreenTongue Software, LLC. All rights reserved.
 //
-#import "FishLampCocoa.h"
+#import "FishLampCore.h"
 
 #import <Foundation/Foundation.h>
 

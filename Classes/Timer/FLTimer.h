@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "FishLampCocoa.h"
+#import "FishLampCore.h"
 #import "FLCallbackObject.h"
 #import "FLWeakReference.h" 
 #import "FLCallback.h"

@@ -6,7 +6,7 @@
  *  Copyright 2011 GreenTongue Software, LLC. All rights reserved.
  *
  */
-#import "FishLampCocoa.h"
+#import "FishLampCore.h"
 #import <objc/runtime.h>
 
 // this are in the runtime, but not declared.

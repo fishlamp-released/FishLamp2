@@ -9,7 +9,7 @@
 /** 
 	Abstraction for SqlDatabase that doesn't take a dependency on the rest of FishLamp.
 */
-#import "FishLampCocoa.h"
+#import "FishLampCore.h"
 
 #import <Foundation/Foundation.h>
 

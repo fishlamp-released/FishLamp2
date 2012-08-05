@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "FishLampCocoa.h"
+#import "FishLampCore.h"
 #import "FLArrangeable.h"
 #import "FLRect.h"
 

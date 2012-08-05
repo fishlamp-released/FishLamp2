@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "FishLampCocoa.h"
+#import "FishLampCore.h"
 #import "FLCocoaCompatibility.h"
 
 @interface NSValue (FLCompatibility)

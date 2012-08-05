@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "FishLampCocoa.h"
+#import "FishLampCore.h"
 
 // this protocol just gets around the compiler warning when using
 // the dynamic object as a dictionary.

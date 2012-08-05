@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "FishLampCocoa.h"
+#import "FishLampCore.h"
 #import "FLBaseXmlParser.h"
 #import "FLObjectInflatorState.h"
 

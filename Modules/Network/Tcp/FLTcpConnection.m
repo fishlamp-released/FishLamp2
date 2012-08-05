@@ -298,8 +298,10 @@ static void WriteStreamClientCallBack(CFWriteStreamRef readStream, CFStreamEvent
     uint8_t* readPtr = bytes;
     NSUInteger readTotal = 0;
     while(maxLength > 0 && CFReadStreamHasBytesAvailable(_readStream)) {   
-        
+
+#if DEBUG
         FLAssert(readPtr + maxLength <= lastBytePtr, @"buffer overrun!!!! Warning warning warning!!!!");
+#endif
 
         NSInteger result = CFReadStreamRead(_readStream, readPtr, maxLength);
         

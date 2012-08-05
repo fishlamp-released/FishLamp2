@@ -5,7 +5,7 @@
 //  Created by Mike Fullerton on 6/1/12.
 //  Copyright (c) 2012 GreenTongue Software, LLC. All rights reserved.
 //
-#import "FishLampCocoa.h"
+#import "FishLampCore.h"
 
 #import "FLNetworkConnectionObserver.h"
 #import "FLProgressViewControllerProtocol.h"

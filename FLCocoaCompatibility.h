@@ -1,6 +1,6 @@
 
 #import <Foundation/Foundation.h>
-#import "FishLampCocoa.h"
+#import "FishLampCore.h"
 
 // These are macros that define CocoaX for compatibility between iOS and Mac
 // for some common actions. Note that more specific code will still need to 

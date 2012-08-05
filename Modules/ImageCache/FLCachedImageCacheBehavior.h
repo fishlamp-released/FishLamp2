@@ -11,7 +11,7 @@
 #import "FLCachedObjectHandler.h"
 #import "FLCachedImage.h"
 #import "FLInMemoryDataCache.h"
-#import "FishLampCocoa.h"
+#import "FishLampCore.h"
 
 @interface FLCachedImageCacheBehavior : NSObject<FLCachedObjectHandler> {
 @private

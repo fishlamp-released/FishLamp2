@@ -19,7 +19,7 @@
     weak reference (not the object pointed to) is changed or set to nil, e.g. the delegate selector 
     is only performed when the object pointed to is deleted.
 */
-#import "FishLampCocoa.h"
+#import "FishLampCore.h"
 
 @interface FLWeakReference : NSObject {
 @private

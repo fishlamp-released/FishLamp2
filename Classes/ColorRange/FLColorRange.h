@@ -7,7 +7,7 @@
 // Copywrite (C) 2012 GreenTongue Software, LLC. All rights reserved.
 //
 // [/Generated]
-#import "FishLampCocoa.h"
+#import "FishLampCore.h"
 
 #import "FLColorRange.h"
 #import "FLColor_t.h"

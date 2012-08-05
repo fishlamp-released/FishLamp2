@@ -5,7 +5,7 @@
 //	Created by Mike Fullerton on 2/13/10.
 //	Copyright 2010 GreenTongue Software. All rights reserved.
 //
-#import "FishLampCocoa.h"
+#import "FishLampCore.h"
 #import "FLRect.h"
 
 typedef enum {

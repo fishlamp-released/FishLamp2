@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #import "FLInMemoryDataCache.h"
-#import "FishLampCocoa.h"
+#import "FishLampCore.h"
 
 @protocol FLCachedObjectHandler <NSObject>
 - (BOOL) willSaveObjectToDatabaseCache:(id) object;

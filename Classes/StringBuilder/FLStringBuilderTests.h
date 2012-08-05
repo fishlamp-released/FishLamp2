@@ -7,7 +7,7 @@
 //
 
 #import "FLStringBuilder.h"
-#import "FishLampCocoa.h"
+#import "FishLampCore.h"
 
 @interface FLStringBuilder (UnitTests)
 

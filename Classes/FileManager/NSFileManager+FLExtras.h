@@ -6,7 +6,7 @@
 //	Copyright 2009 Greentongue Software. All rights reserved.
 //
 
-#import "FishLampCocoa.h"
+#import "FishLampCore.h"
 
 typedef void (^FLFileManagerVisitor)(NSString* filePath, BOOL* stop);
 

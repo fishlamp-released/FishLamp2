@@ -6,7 +6,7 @@
 */
 
 #if 0
-#import "FishLampCocoa.h"
+#import "FishLampCore.h"
 
 #import <Foundation/Foundation.h>
 #import <SystemConfiguration/SystemConfiguration.h>
