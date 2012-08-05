@@ -47,7 +47,7 @@ typedef void (^FLEditControllerValidatorBlock)(FLEditController* editController,
    
 // validation
 
-@property (readonly, assign, nonatomic) BOOL isValid;
+@property (readonly, assign, nonatomic, getter=isValid) BOOL valid;
 
 - (void) updateValidity;
 

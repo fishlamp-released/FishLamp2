@@ -27,6 +27,7 @@
     #define FLRectGetMidY               CGRectGetMidY
     #define FLRectInsetWithEdgeInsets   UIEdgeInsetsInsetRect
     #define FLRectEqualToRect           CGRectEqualToRect
+    #define FLEqualRects                CGRectEqualToRect
     
 #else
     #if DEBUG
@@ -42,6 +43,8 @@
     #define FLRectIntegral              NSIntegralRect
     #define FLRectGetMidX               NSMidX
     #define FLRectGetMidY               NSMidY
+    #define FLEqualRects                NSEqualRects
+    #define FLRectEqualToRect           NSEqualRects
     
 #endif
 

@@ -27,6 +27,9 @@ static void * const kArrangeableObjectKey = (void*)&kArrangeableObjectKey;
 }
 
 @synthesize arrangeableState;
+@dynamic arrangeableInsets;
+@dynamic arrangeableFillMode;
+@dynamic arrangeableWeight;
 FLSynthesizeStructProperty(arrangeableInsets, setFrameInsets, FLEdgeInsets, _arrangeableState);
 FLSynthesizeStructProperty(arrangeableFillMode, setFrameFillBehavior, FLArrangeableFillMode, _arrangeableState);
 FLSynthesizeStructProperty(arrangeableWeight, setFrameWeight, FLArrangeableWeight, _arrangeableState);
