@@ -1,4 +1,4 @@
 #!/bin/bash
 
-Headers -f "FishLampiOSAll.h" -p "FishLampiOS" -i "FishLampCocoa.h,FishLampiOSCore.h"
+Headers -f "FishLampiOSAll.h" -p "FishLampiOS" -i "FishLampCore.h,FishLampiOSCore.h"
 

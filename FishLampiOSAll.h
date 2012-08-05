@@ -7,7 +7,7 @@
 //
 
 // Prerequisites
-#import "FishLampCocoa.h"
+#import "FishLampCore.h"
 #import "FishLampiOSCore.h"
 
 // Controls

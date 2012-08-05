@@ -40,8 +40,6 @@ FLSingletonProperty(FLThemeManager);
 
 - (void) setThemeWithFileName:(NSString*) themeName;
 
-- (NSString*) themePathForName:(NSString*) name;
-
 - (void) setDefaultTheme;
 
 @end

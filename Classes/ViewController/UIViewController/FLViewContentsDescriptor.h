@@ -97,8 +97,8 @@ typedef enum {
 
 - (CGFloat) contentViewInsetTop; // topItem + statusBarInset (if any)
 - (CGFloat) contentViewInsetRight;
-- (CGFloat) contentViewInsetTop;
 - (CGFloat) contentViewInsetBottom;
+- (CGFloat) contentViewInsetLeft;
 
 - (UIEdgeInsets) contentViewInsets;
 

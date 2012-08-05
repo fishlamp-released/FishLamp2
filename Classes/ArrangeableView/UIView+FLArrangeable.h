@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "FishLampCocoa.h"
+#import "FishLampCore.h"
 #import "FLArrangeable.h"
 #import "NSObject+FLArrangeable.h"
 

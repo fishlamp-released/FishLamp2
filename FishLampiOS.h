@@ -6,8 +6,122 @@
 //  Copyright (c) 2012 GreenTongue Software. All rights reserved.
 //
 
-#import "FishLampCocoa.h"
-#import "FishLampiOSCore.h"
+
+#import <Foundation/Foundation.h>
+//#import <CoreGraphics/CoreGraphics.h>
+#import <QuartzCore/QuartzCore.h>
+#import <UIKit/UIKit.h>
+#import <MobileCoreServices/MobileCoreServices.h>
+
+#import <AssetsLibrary/AssetsLibrary.h>
+#import <ImageIO/ImageIO.h>
+#import <AVFoundation/AVFoundation.h>
+#import <MediaPlayer/MediaPlayer.h>
+#import <CoreLocation/CoreLocation.h>
+#import <MapKit/MapKit.h>
+#import <CoreText/CoreText.h>
+
+#import "FishLampCore.h"
+
+// From Core
+#import "FLGeometry.h"
+#import "FLRect.h"
+#import "FLPoint.h"
+#import "FLSize.h"
+#import "FLEdgeInsets.h"
+
+#import "CocoaColor+FLExtras.h"
+#import "CocoaColor+FLMoreColors.h"
+
+#import "FLColor_t.h"
+
+// iOS
+
+// Application
+#import "FLApplication.h"
+#import "FLApplicationDelegate.h"
+#import "FLLibraryManager.h"
+
+// Debug
+#import "FLMobileDebug.h"
+
+// Debug/MemoryMonitor
+#import "FLMemoryMonitor.h"
+
+// Frames
+#import "FLFrame.h"
+#import "FLFrame.h"
+
+// Keyboard
+#import "FLKeyboardManager.h"
+
+// PresentationBehavior
+#import "FLModalPresentationBehavior.h"
+#import "FLNormalPresentationBehavior.h"
+#import "FLPresentationBehavior.h"
+#import "UIViewController+FLPresentationBehavior.h"
+
+// SdkAdditions/UIApplicationAdditions
+#import "UIApplication+FLExtras.h"
+
+// SdkAdditions/UIDeviceAdditions
+#import "FLOrientationUtilities.h"
+#import "UIDevice+FLExtras.h"
+
+// SdkAdditions/UIImageAdditions
+#import "FLImageUtilities.h"
+#import "UIImage+FLColorize.h"
+
+// SdkAdditions/UIViewAdditions
+#import "UIImageView+FLViewGeometry.h"
+#import "UILabel+FLExtras.h"
+#import "UIScrollView+FLExtras.h"
+#import "UITableView+FLExtras.h"
+#import "UIToolbar+FLExtras.h"
+#import "UIView+FLViewGeometry.h"
+#import "UIView+FLViewRotation.h"
+#import "UIView+ViewAnimation.h"
+
+// SdkAdditions/UIViewControllerAdditions
+#import "FLViewContentsDescriptor.h"
+#import "FLViewControllerTransitionAnimation.h"
+#import "UIViewController+FLExtras.h"
+
+// Themes
+#import "NSObject+FLTheme.h"
+
+// Touches
+#import "FLExternalTouchViewCloser.h"
+#import "FLTouch.h"
+#import "FLTouchHandler.h"
+
+// UncaughtExceptionHandler
+#import "FLUncaughtExceptionHandler.h"
+
+// ViewController
+#import "FLNavigationController.h"
+#import "FLViewController.h"
+#import "FLViewControllerStack.h"
+
+// Arrangement
+#import "FLArrangement.h"
+#import "UIView+FLArrangeable.h"
+
+// ViewLayouts
+#import "FLArrangeable.h"
+#import "FLCenterJustifiedColumnArrangement.h"
+#import "FLFillInBoundsArrangement.h"
+#import "FLHorizontalGridArrangement.h"
+#import "FLLeftJustifiedColumnArrangement.h"
+#import "FLRightJustifiedColumnArrangement.h"
+#import "FLSingleColumnRowArrangement.h"
+#import "FLSingleRowColumnArrangement.h"
+#import "FLVerticalGridArrangement.h"
+
+// Widgets
+#import "FLWidget+Touches.h"
+#import "FLWidget.h"
+#import "FLWidgetView.h"
 
 #import "FLTheme.h"
 
