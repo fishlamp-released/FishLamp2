@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<theme>
+	<themeName>darkTheme</themeName>
+	<!-- <views> <view className="FLAlertViewController"> <gradient name="FLGradientNameLightLightGray"/> </view>
+
+ </views> 
+	<alerts>
+		<buttonStyle>
+			<gradients>
+				<normal name="FLGradientNameGray"/>
+				<highlighted name="FLGradientNameDarkGray"/>
+			</gradients>
+		</buttonStyle>
+	</alerts>
+	<appFont>
+		<fontName>FLFontNameDefault</fontName>
+	</appFont>-->
+	<defaultGradientName>DarkGray</defaultGradientName>
+</theme>

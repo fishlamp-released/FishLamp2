@@ -1,0 +1,37 @@
+//
+//	FLModalPopoverController.h
+//	FishLamp
+//
+//	Created by Mike Fullerton on 11/23/10.
+//	Copyright 2010 GreenTongue Software. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import "FLModalShield.h"
+#import "FLCallbackObject.h"
+#import "FLCallback.h"
+
+@interface FLModalPopoverController : UIPopoverController<UIPopoverControllerDelegate> {
+	BOOL _isModal;
+	FLModalShield* _shield;
+	FLCallback _wasDismissedCallback;
+}
+@property (readwrite, assign, nonatomic) FLCallback wasDismissedCallback;
+
+@property (readonly, assign, nonatomic,getter=isModal) BOOL modal;
+
+- (id) initWithContentViewController:(UIViewController*) controller isModal:(BOOL) isModal;
+
+- (UINavigationController*) navigationController; // if content controller is a FLNavigationControllerViewController, return it's rootNavigationController; 
+
++ (FLModalPopoverController*) presentViewController:(UIViewController*) contentController
+	inViewController:(UIViewController*) inViewController
+	permittedArrowDirections:(UIPopoverArrowDirection)arrowDirections
+	fromRect:(CGRect) rect
+	animated:(BOOL) animated
+	isModal:(BOOL) isModal;
+
++ (FLModalPopoverController*) modalPopoverControllerForViewController:(UIViewController*) controller;
+	
+@end
+
