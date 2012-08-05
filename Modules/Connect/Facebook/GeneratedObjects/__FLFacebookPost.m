@@ -1,0 +1,349 @@
+// [Generated]
+//
+// This file was generated at 6/18/12 2:04 PM by Whittle ( http://whittle.greentongue.com/ ). DO NOT MODIFY!!
+//
+// __FLFacebookPost.m
+// Project: FishLamp Connect
+// Schema: Facebook
+//
+// Copywrite (C) 2012 GreenTongue Software, LLC. All rights reserved.
+//
+
+#import "FLFacebookPost.h"
+#import "FLFacebookNamedObject.h"
+#import "FLFacebookNamedObjectList.h"
+#import "FLFacebookPrivacy.h"
+#import "FLFacebookCommentList.h"
+#import "FLObjectDescriber.h"
+#import "FLObjectInflator.h"
+#import "FLSqliteTable.h"
+#import "FLFacebookAction.h"
+#import "FLFacebookProperty.h"
+
+@implementation FLFacebookPost
+
+
+@synthesize actions = __actions;
+@synthesize application = __application;
+@synthesize caption = __caption;
+@synthesize comments = __comments;
+@synthesize created_time = __created_time;
+@synthesize description = __description;
+@synthesize from = __from;
+@synthesize icon = __icon;
+@synthesize likes = __likes;
+@synthesize link = __link;
+@synthesize message = __message;
+@synthesize object_id = __object_id;
+@synthesize picture = __picture;
+@synthesize privacy = __privacy;
+@synthesize properties = __properties;
+@synthesize source = __source;
+@synthesize to = __to;
+@synthesize type = __type;
+@synthesize updated_time = __updated_time;
+
++ (NSString*) actionsKey
+{
+    return @"actions";
+}
+
++ (NSString*) applicationKey
+{
+    return @"application";
+}
+
++ (NSString*) captionKey
+{
+    return @"caption";
+}
+
++ (NSString*) commentsKey
+{
+    return @"comments";
+}
+
++ (NSString*) created_timeKey
+{
+    return @"created_time";
+}
+
++ (NSString*) descriptionKey
+{
+    return @"description";
+}
+
++ (NSString*) fromKey
+{
+    return @"from";
+}
+
++ (NSString*) iconKey
+{
+    return @"icon";
+}
+
++ (NSString*) likesKey
+{
+    return @"likes";
+}
+
++ (NSString*) linkKey
+{
+    return @"link";
+}
+
++ (NSString*) messageKey
+{
+    return @"message";
+}
+
++ (NSString*) object_idKey
+{
+    return @"object_id";
+}
+
++ (NSString*) pictureKey
+{
+    return @"picture";
+}
+
++ (NSString*) privacyKey
+{
+    return @"privacy";
+}
+
++ (NSString*) propertiesKey
+{
+    return @"properties";
+}
+
++ (NSString*) sourceKey
+{
+    return @"source";
+}
+
++ (NSString*) toKey
+{
+    return @"to";
+}
+
++ (NSString*) typeKey
+{
+    return @"type";
+}
+
++ (NSString*) updated_timeKey
+{
+    return @"updated_time";
+}
+
+- (void) copySelfTo:(id) object
+{
+    [super copySelfTo:object];
+    ((FLFacebookPost*)object).description = FLCopyOrRetainObject(__description);
+    ((FLFacebookPost*)object).comments = FLCopyOrRetainObject(__comments);
+    ((FLFacebookPost*)object).caption = FLCopyOrRetainObject(__caption);
+    ((FLFacebookPost*)object).message = FLCopyOrRetainObject(__message);
+    ((FLFacebookPost*)object).actions = FLCopyOrRetainObject(__actions);
+    ((FLFacebookPost*)object).created_time = FLCopyOrRetainObject(__created_time);
+    ((FLFacebookPost*)object).picture = FLCopyOrRetainObject(__picture);
+    ((FLFacebookPost*)object).from = FLCopyOrRetainObject(__from);
+    ((FLFacebookPost*)object).link = FLCopyOrRetainObject(__link);
+    ((FLFacebookPost*)object).source = FLCopyOrRetainObject(__source);
+    ((FLFacebookPost*)object).application = FLCopyOrRetainObject(__application);
+    ((FLFacebookPost*)object).likes = FLCopyOrRetainObject(__likes);
+    ((FLFacebookPost*)object).type = FLCopyOrRetainObject(__type);
+    ((FLFacebookPost*)object).icon = FLCopyOrRetainObject(__icon);
+    ((FLFacebookPost*)object).updated_time = FLCopyOrRetainObject(__updated_time);
+    ((FLFacebookPost*)object).properties = FLCopyOrRetainObject(__properties);
+    ((FLFacebookPost*)object).object_id = FLCopyOrRetainObject(__object_id);
+    ((FLFacebookPost*)object).privacy = FLCopyOrRetainObject(__privacy);
+    ((FLFacebookPost*)object).to = FLCopyOrRetainObject(__to);
+}
+
+- (id) copyWithZone:(NSZone*) zone
+{
+    id outObject = [[[self class] alloc] init];
+    [self copySelfTo:outObject];
+    return outObject;
+}
+
+- (void) dealloc
+{
+    FLRelease(__object_id);
+    FLRelease(__from);
+    FLRelease(__to);
+    FLRelease(__message);
+    FLRelease(__picture);
+    FLRelease(__link);
+    FLRelease(__caption);
+    FLRelease(__description);
+    FLRelease(__source);
+    FLRelease(__icon);
+    FLRelease(__properties);
+    FLRelease(__application);
+    FLRelease(__privacy);
+    FLRelease(__comments);
+    FLRelease(__likes);
+    FLRelease(__actions);
+    FLRelease(__type);
+    FLRelease(__updated_time);
+    FLRelease(__created_time);
+    FLSuperDealloc();
+}
+
+- (void) encodeWithCoder:(NSCoder*) aCoder
+{
+    if(__object_id) [aCoder encodeObject:__object_id forKey:@"__object_id"];
+    if(__from) [aCoder encodeObject:__from forKey:@"__from"];
+    if(__to) [aCoder encodeObject:__to forKey:@"__to"];
+    if(__message) [aCoder encodeObject:__message forKey:@"__message"];
+    if(__picture) [aCoder encodeObject:__picture forKey:@"__picture"];
+    if(__link) [aCoder encodeObject:__link forKey:@"__link"];
+    if(__caption) [aCoder encodeObject:__caption forKey:@"__caption"];
+    if(__description) [aCoder encodeObject:__description forKey:@"__description"];
+    if(__source) [aCoder encodeObject:__source forKey:@"__source"];
+    if(__icon) [aCoder encodeObject:__icon forKey:@"__icon"];
+    if(__properties) [aCoder encodeObject:__properties forKey:@"__properties"];
+    if(__application) [aCoder encodeObject:__application forKey:@"__application"];
+    if(__privacy) [aCoder encodeObject:__privacy forKey:@"__privacy"];
+    if(__comments) [aCoder encodeObject:__comments forKey:@"__comments"];
+    if(__likes) [aCoder encodeObject:__likes forKey:@"__likes"];
+    if(__actions) [aCoder encodeObject:__actions forKey:@"__actions"];
+    if(__type) [aCoder encodeObject:__type forKey:@"__type"];
+    if(__updated_time) [aCoder encodeObject:__updated_time forKey:@"__updated_time"];
+    if(__created_time) [aCoder encodeObject:__created_time forKey:@"__created_time"];
+    [super encodeWithCoder:aCoder];
+}
+
++ (FLFacebookPost*) facebookPost
+{
+    return FLReturnAutoreleased([[FLFacebookPost alloc] init]);
+}
+
+- (id) init
+{
+    if((self = [super init]))
+    {
+    }
+    return self;
+}
+
+- (id) initWithCoder:(NSCoder*) aDecoder
+{
+    if((self = [super initWithCoder:aDecoder]))
+    {
+        __object_id = FLReturnRetained([aDecoder decodeObjectForKey:@"__object_id"]);
+        __from = FLReturnRetained([aDecoder decodeObjectForKey:@"__from"]);
+        __to = FLReturnRetained([aDecoder decodeObjectForKey:@"__to"]);
+        __message = FLReturnRetained([aDecoder decodeObjectForKey:@"__message"]);
+        __picture = FLReturnRetained([aDecoder decodeObjectForKey:@"__picture"]);
+        __link = FLReturnRetained([aDecoder decodeObjectForKey:@"__link"]);
+        __caption = FLReturnRetained([aDecoder decodeObjectForKey:@"__caption"]);
+        __description = FLReturnRetained([aDecoder decodeObjectForKey:@"__description"]);
+        __source = FLReturnRetained([aDecoder decodeObjectForKey:@"__source"]);
+        __icon = FLReturnRetained([aDecoder decodeObjectForKey:@"__icon"]);
+        __properties = [[aDecoder decodeObjectForKey:@"__properties"] mutableCopy];
+        __application = FLReturnRetained([aDecoder decodeObjectForKey:@"__application"]);
+        __privacy = FLReturnRetained([aDecoder decodeObjectForKey:@"__privacy"]);
+        __comments = FLReturnRetained([aDecoder decodeObjectForKey:@"__comments"]);
+        __likes = FLReturnRetained([aDecoder decodeObjectForKey:@"__likes"]);
+        __actions = [[aDecoder decodeObjectForKey:@"__actions"] mutableCopy];
+        __type = FLReturnRetained([aDecoder decodeObjectForKey:@"__type"]);
+        __updated_time = FLReturnRetained([aDecoder decodeObjectForKey:@"__updated_time"]);
+        __created_time = FLReturnRetained([aDecoder decodeObjectForKey:@"__created_time"]);
+    }
+    return self;
+}
+
++ (FLObjectDescriber*) sharedObjectDescriber
+{
+    static FLObjectDescriber* s_describer = nil;
+    static dispatch_once_t pred = 0;
+    dispatch_once(&pred, ^{
+        s_describer = [[super sharedObjectDescriber] copy];
+        if(!s_describer)
+        {
+            s_describer = [[FLObjectDescriber alloc] init];
+        }
+        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"object_id" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"object_id"];
+        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"from" propertyClass:[FLFacebookNamedObject class] propertyType:FLDataTypeObject] forPropertyName:@"from"];
+        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"to" propertyClass:[FLFacebookNamedObjectList class] propertyType:FLDataTypeObject] forPropertyName:@"to"];
+        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"message" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"message"];
+        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"picture" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"picture"];
+        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"link" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"link"];
+        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"caption" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"caption"];
+        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"description" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"description"];
+        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"source" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"source"];
+        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"icon" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"icon"];
+        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"properties" propertyClass:[NSMutableArray class] propertyType:FLDataTypeObject arrayTypes:[NSArray arrayWithObjects:[FLPropertyDescription propertyDescription:@"property" propertyClass:[FLFacebookProperty class] propertyType:FLDataTypeObject arrayTypes:nil], nil] isUnboundedArray:NO] forPropertyName:@"properties"];
+        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"application" propertyClass:[FLFacebookNamedObject class] propertyType:FLDataTypeObject] forPropertyName:@"application"];
+        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"privacy" propertyClass:[FLFacebookPrivacy class] propertyType:FLDataTypeObject] forPropertyName:@"privacy"];
+        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"comments" propertyClass:[FLFacebookCommentList class] propertyType:FLDataTypeObject] forPropertyName:@"comments"];
+        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"likes" propertyClass:[FLFacebookNamedObjectList class] propertyType:FLDataTypeObject] forPropertyName:@"likes"];
+        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"actions" propertyClass:[NSMutableArray class] propertyType:FLDataTypeObject arrayTypes:[NSArray arrayWithObjects:[FLPropertyDescription propertyDescription:@"action" propertyClass:[FLFacebookAction class] propertyType:FLDataTypeObject arrayTypes:nil], nil] isUnboundedArray:NO] forPropertyName:@"actions"];
+        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"type" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"type"];
+        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"updated_time" propertyClass:[NSDate class] propertyType:FLDataTypeDate] forPropertyName:@"updated_time"];
+        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"created_time" propertyClass:[NSDate class] propertyType:FLDataTypeDate] forPropertyName:@"created_time"];
+    });
+    return s_describer;
+}
+
++ (FLObjectInflator*) sharedObjectInflator
+{
+    static FLObjectInflator* s_inflator = nil;
+    static dispatch_once_t pred = 0;
+    dispatch_once(&pred, ^{
+        s_inflator = [[FLObjectInflator alloc] initWithObjectDescriber:[[self class] sharedObjectDescriber]];
+    });
+    return s_inflator;
+}
+
++ (FLSqliteTable*) sharedSqliteTable
+{
+    static FLSqliteTable* s_table = nil;
+    static dispatch_once_t pred = 0;
+    dispatch_once(&pred, ^{
+        FLSqliteTable* superTable = [super sharedSqliteTable];
+        if(superTable)
+        {
+            s_table = [superTable copy];
+            s_table.tableName = [self sqliteTableName];
+        }
+        else
+        {
+            s_table = [[FLSqliteTable alloc] initWithTableName:[self sqliteTableName]];
+        }
+        [s_table addColumn:[FLSqliteColumn sqliteColumnWithColumnName:@"object_id" columnType:FLSqliteTypeText columnConstraints:nil]];
+        [s_table addColumn:[FLSqliteColumn sqliteColumnWithColumnName:@"from" columnType:FLSqliteTypeObject columnConstraints:nil]];
+        [s_table addColumn:[FLSqliteColumn sqliteColumnWithColumnName:@"to" columnType:FLSqliteTypeObject columnConstraints:nil]];
+        [s_table addColumn:[FLSqliteColumn sqliteColumnWithColumnName:@"message" columnType:FLSqliteTypeText columnConstraints:nil]];
+        [s_table addColumn:[FLSqliteColumn sqliteColumnWithColumnName:@"picture" columnType:FLSqliteTypeText columnConstraints:nil]];
+        [s_table addColumn:[FLSqliteColumn sqliteColumnWithColumnName:@"link" columnType:FLSqliteTypeText columnConstraints:nil]];
+        [s_table addColumn:[FLSqliteColumn sqliteColumnWithColumnName:@"caption" columnType:FLSqliteTypeText columnConstraints:nil]];
+        [s_table addColumn:[FLSqliteColumn sqliteColumnWithColumnName:@"description" columnType:FLSqliteTypeText columnConstraints:nil]];
+        [s_table addColumn:[FLSqliteColumn sqliteColumnWithColumnName:@"source" columnType:FLSqliteTypeText columnConstraints:nil]];
+        [s_table addColumn:[FLSqliteColumn sqliteColumnWithColumnName:@"icon" columnType:FLSqliteTypeText columnConstraints:nil]];
+        [s_table addColumn:[FLSqliteColumn sqliteColumnWithColumnName:@"properties" columnType:FLSqliteTypeObject columnConstraints:nil]];
+        [s_table addColumn:[FLSqliteColumn sqliteColumnWithColumnName:@"application" columnType:FLSqliteTypeObject columnConstraints:nil]];
+        [s_table addColumn:[FLSqliteColumn sqliteColumnWithColumnName:@"privacy" columnType:FLSqliteTypeObject columnConstraints:nil]];
+        [s_table addColumn:[FLSqliteColumn sqliteColumnWithColumnName:@"comments" columnType:FLSqliteTypeObject columnConstraints:nil]];
+        [s_table addColumn:[FLSqliteColumn sqliteColumnWithColumnName:@"likes" columnType:FLSqliteTypeObject columnConstraints:nil]];
+        [s_table addColumn:[FLSqliteColumn sqliteColumnWithColumnName:@"actions" columnType:FLSqliteTypeObject columnConstraints:nil]];
+        [s_table addColumn:[FLSqliteColumn sqliteColumnWithColumnName:@"type" columnType:FLSqliteTypeText columnConstraints:nil]];
+        [s_table addIndex:[FLSqliteIndex sqliteIndex:@"type" indexProperties:FLSqliteColumnIndexPropertyNone]];
+        [s_table addColumn:[FLSqliteColumn sqliteColumnWithColumnName:@"updated_time" columnType:FLSqliteTypeDate columnConstraints:nil]];
+        [s_table addIndex:[FLSqliteIndex sqliteIndex:@"updated_time" indexProperties:FLSqliteColumnIndexPropertyNone]];
+        [s_table addColumn:[FLSqliteColumn sqliteColumnWithColumnName:@"created_time" columnType:FLSqliteTypeDate columnConstraints:nil]];
+        [s_table addIndex:[FLSqliteIndex sqliteIndex:@"created_time" indexProperties:FLSqliteColumnIndexPropertyNone]];
+    });
+    return s_table;
+}
+
+@end
+
+@implementation FLFacebookPost (ValueProperties) 
+@end
+
+// [/Generated]

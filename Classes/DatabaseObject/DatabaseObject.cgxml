@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project projectName="FishLamp">
+<organization name="GreenTongue Software, LLC"/>    
+	<generatorOptions>
+     	<typePrefix>FL</typePrefix>
+    </generatorOptions>
+    <objects>
+        <object typeName="FLDatabaseObject" protocols="NSCopying, NSCoding">
+            <properties>
+                <property type="string" name="uid">
+                    <storageOptions isPrimaryKey="YES"/>
+                </property>
+            </properties>
+        </object>
+        <object typeName="FLSavedThemeInfo" superclass="FLDatabaseObject" protocols="NSCopying, NSCoding">
+            <properties>
+                <property type="NSString" name="name"/>
+                <property type="NSString" name="className"/>
+                <property type="int" name="fontSize"/>
+            </properties>
+        </object>
+
+    </objects>
+</project>
