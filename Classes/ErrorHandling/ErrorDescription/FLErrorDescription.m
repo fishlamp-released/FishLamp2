@@ -1,0 +1,46 @@
+//
+//	FLErrorDescription.m
+//	FishLamp
+//
+//	Created by Mike Fullerton on 4/22/11.
+//	Copyright 2011 GreenTongue Software. All rights reserved.
+//
+
+#import "FLErrorDescription.h"
+
+
+@implementation FLErrorDescription
+
+@synthesize title = _title;
+@synthesize description = _description;
+@synthesize error = _error;
+
+- (id) initWithTitle:(NSString*) title description:(NSString*) description
+{
+	if((self = [super init]))
+	{
+		self.title = title;
+		self.description = description;
+	}
+	return self;
+}
+
++ (FLErrorDescription*) errorDescription
+{
+	
+    return FLReturnAutoreleased([[FLErrorDescription alloc] init]);
+}
++ (FLErrorDescription*) errorDescriptionWithTitle:(NSString*) title description:(NSString*) description
+{
+	return FLReturnAutoreleased([[FLErrorDescription alloc] initWithTitle:title description:description]);
+}
+
+- (void) dealloc
+{
+	FLRelease(_error);
+	FLRelease(_title);
+	FLRelease(_description);
+	FLSuperDealloc();
+}
+
+@end

@@ -1,0 +1,14 @@
+//
+//  FishLampiOS.xcconfig
+//  FishLampiOS
+//
+//  Created by Mike Fullerton on 7/10/12.
+//  Copyright (c) 2012 GreenTongue Software. All rights reserved.
+//
+
+#include "XcodeConfigs/LibFishLampCoreShared.xcconfig"
+
+ARCHS = armv7 armv7s
+SDKROOT = iphoneos
+SUPPORTED_PLATFORMS = iphonesimulator iphoneos
+CLANG_ENABLE_OBJC_ARC = YES

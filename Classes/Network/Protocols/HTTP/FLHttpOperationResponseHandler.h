@@ -1,0 +1,17 @@
+//
+//	FLHttpOperationBehavior.h
+//	FishLampMobileLib
+//
+//	Created by Mike Fullerton on 11/13/10.
+//	Copyright 2010 Greentongue Software. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import "FishLampCore.h"
+#import "FLHttpOperation.h"
+#import "FLHttpConnection.h"
+
+@interface FLHttpOperationResponseHandler : NSObject<FLHttpOperationResponseHandler> {
+}
+
+@end

@@ -1,0 +1,38 @@
+//
+//  FLUnitTestObserver.m
+//  FishLampFrameworks
+//
+//  Created by Mike Fullerton on 8/25/12.
+//  Copyright (c) 2012 Mike Fullerton. All rights reserved.
+//
+
+//#import "FLUnitTestObserver.h"
+//
+//@implementation FLUnitTestObserver
+//
+//+ (id<FLUnitTestObserver>) unitTestObserver {
+//    return FLReturnAutoreleased([[FLUnitTestObserver alloc] init]);
+//}
+//
+//@synthesize discovered = _discovered;
+//@synthesize willFilter = _willFilter;
+//@synthesize willAllow = _willAllow;
+//@synthesize observeStart = _observeStart;
+//@synthesize observeFinish = _observeFinish;
+//@synthesize observeResult = _observeResult;
+//@synthesize observeAllResults = _observeAllResults;
+//
+//#if FL_NO_ARC
+//- (void) dealloc {
+//    FLRelease(_willFilter);
+//    FLRelease(_discovered);
+//    FLRelease(_willAllow);
+//    FLRelease(_observeStart);
+//    FLRelease(_observeFinish);
+//    FLRelease(_observeResult);
+//    FLRelease(_observeAllResults);
+//    FLSuperDealloc();
+//}
+//#endif
+//
+//@end
