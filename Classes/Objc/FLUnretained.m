@@ -11,8 +11,6 @@
 
 @implementation FLUnretained
 
-@synthesize notifier = _notifier;
-
 //- (void) setToNil:(FLDeletedObjectReference*) sender {
 //    FLAssert_v(sender.deletedObject == _object, @"message sent to wrong unretained?");
 //    self.object = nil;
@@ -21,6 +19,10 @@
 
 - (id) object {
     return _weakRef.object;
+}
+
+- (FLSimpleNotifier*) notifier {
+    return _weakRef;
 }
 
 #if FL_NO_ARC

@@ -16,9 +16,10 @@
     NSTimeInterval _timestamp;
     NSTimeInterval _timeoutInterval;
 //    BOOL _idle;
-    BOOL _timedout;
-    NSTimer* _timeoutTimer;
+    BOOL _timedOut;
+    NSTimer* _timer;
     FLFinisher* _finisher;
+    __unsafe_unretained NSThread* _thread;
 }
 @property (readonly, assign) NSTimeInterval timeoutInterval;
 @property (readonly, assign) NSTimeInterval timestamp;

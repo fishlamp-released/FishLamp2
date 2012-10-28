@@ -21,7 +21,6 @@
     FLMutableHttpResponse* _response;
     FLHttpRequest* _request;
     FLReadStream* _readStream;
-    FLByteBuffer* _readBuffer; 
 }
 
 - (id) initWithHttpRequest:(FLHttpRequest*) request;

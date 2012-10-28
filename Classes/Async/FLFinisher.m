@@ -25,7 +25,7 @@
 @synthesize finished = _finished;
 @synthesize expectedFinishCount = _expectedFinishCount;
 @synthesize finishCount = _finishCount;
-@synthesize didRunSynchronously = didRunSynchronously;
+@synthesize didRunSynchronously = _didRunSynchronously;
 @synthesize asyncResult = _asyncResult;
 @synthesize error = _error;
 

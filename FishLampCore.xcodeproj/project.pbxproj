@@ -663,64 +663,52 @@
 		27B7E16C163CB4E100E9C6EB /* NSObject+SBJson.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7DAFF163CB4E000E9C6EB /* NSObject+SBJson.h */; };
 		27B7E16D163CB4E100E9C6EB /* NSObject+SBJson.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7DB00163CB4E000E9C6EB /* NSObject+SBJson.m */; };
 		27B7E16E163CB4E100E9C6EB /* NSObject+SBJson.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7DB00163CB4E000E9C6EB /* NSObject+SBJson.m */; };
-		27B7E170163CB4E100E9C6EB /* NSObject+SBJson.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7DB00163CB4E000E9C6EB /* NSObject+SBJson.m */; };
 		27B7E171163CB4E100E9C6EB /* SBJson.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7DB01163CB4E000E9C6EB /* SBJson.h */; };
 		27B7E173163CB4E100E9C6EB /* SBJson.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7DB01163CB4E000E9C6EB /* SBJson.h */; };
 		27B7E174163CB4E100E9C6EB /* SBJsonParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7DB02163CB4E000E9C6EB /* SBJsonParser.h */; };
 		27B7E176163CB4E100E9C6EB /* SBJsonParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7DB02163CB4E000E9C6EB /* SBJsonParser.h */; };
 		27B7E177163CB4E100E9C6EB /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7DB03163CB4E000E9C6EB /* SBJsonParser.m */; };
 		27B7E178163CB4E100E9C6EB /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7DB03163CB4E000E9C6EB /* SBJsonParser.m */; };
-		27B7E17A163CB4E100E9C6EB /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7DB03163CB4E000E9C6EB /* SBJsonParser.m */; };
 		27B7E17B163CB4E100E9C6EB /* SBJsonStreamParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7DB04163CB4E000E9C6EB /* SBJsonStreamParser.h */; };
 		27B7E17D163CB4E100E9C6EB /* SBJsonStreamParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7DB04163CB4E000E9C6EB /* SBJsonStreamParser.h */; };
 		27B7E17E163CB4E100E9C6EB /* SBJsonStreamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7DB05163CB4E000E9C6EB /* SBJsonStreamParser.m */; };
 		27B7E17F163CB4E100E9C6EB /* SBJsonStreamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7DB05163CB4E000E9C6EB /* SBJsonStreamParser.m */; };
-		27B7E181163CB4E100E9C6EB /* SBJsonStreamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7DB05163CB4E000E9C6EB /* SBJsonStreamParser.m */; };
 		27B7E182163CB4E100E9C6EB /* SBJsonStreamParserAccumulator.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7DB06163CB4E000E9C6EB /* SBJsonStreamParserAccumulator.h */; };
 		27B7E184163CB4E100E9C6EB /* SBJsonStreamParserAccumulator.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7DB06163CB4E000E9C6EB /* SBJsonStreamParserAccumulator.h */; };
 		27B7E185163CB4E100E9C6EB /* SBJsonStreamParserAccumulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7DB07163CB4E000E9C6EB /* SBJsonStreamParserAccumulator.m */; };
 		27B7E186163CB4E100E9C6EB /* SBJsonStreamParserAccumulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7DB07163CB4E000E9C6EB /* SBJsonStreamParserAccumulator.m */; };
-		27B7E188163CB4E100E9C6EB /* SBJsonStreamParserAccumulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7DB07163CB4E000E9C6EB /* SBJsonStreamParserAccumulator.m */; };
 		27B7E189163CB4E100E9C6EB /* SBJsonStreamParserAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7DB08163CB4E000E9C6EB /* SBJsonStreamParserAdapter.h */; };
 		27B7E18B163CB4E100E9C6EB /* SBJsonStreamParserAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7DB08163CB4E000E9C6EB /* SBJsonStreamParserAdapter.h */; };
 		27B7E18C163CB4E100E9C6EB /* SBJsonStreamParserAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7DB09163CB4E000E9C6EB /* SBJsonStreamParserAdapter.m */; };
 		27B7E18D163CB4E100E9C6EB /* SBJsonStreamParserAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7DB09163CB4E000E9C6EB /* SBJsonStreamParserAdapter.m */; };
-		27B7E18F163CB4E100E9C6EB /* SBJsonStreamParserAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7DB09163CB4E000E9C6EB /* SBJsonStreamParserAdapter.m */; };
 		27B7E190163CB4E100E9C6EB /* SBJsonStreamParserState.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7DB0A163CB4E000E9C6EB /* SBJsonStreamParserState.h */; };
 		27B7E192163CB4E100E9C6EB /* SBJsonStreamParserState.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7DB0A163CB4E000E9C6EB /* SBJsonStreamParserState.h */; };
 		27B7E193163CB4E100E9C6EB /* SBJsonStreamParserState.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7DB0B163CB4E000E9C6EB /* SBJsonStreamParserState.m */; };
 		27B7E194163CB4E100E9C6EB /* SBJsonStreamParserState.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7DB0B163CB4E000E9C6EB /* SBJsonStreamParserState.m */; };
-		27B7E196163CB4E100E9C6EB /* SBJsonStreamParserState.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7DB0B163CB4E000E9C6EB /* SBJsonStreamParserState.m */; };
 		27B7E197163CB4E100E9C6EB /* SBJsonStreamWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7DB0C163CB4E000E9C6EB /* SBJsonStreamWriter.h */; };
 		27B7E199163CB4E100E9C6EB /* SBJsonStreamWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7DB0C163CB4E000E9C6EB /* SBJsonStreamWriter.h */; };
 		27B7E19A163CB4E100E9C6EB /* SBJsonStreamWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7DB0D163CB4E000E9C6EB /* SBJsonStreamWriter.m */; };
 		27B7E19B163CB4E100E9C6EB /* SBJsonStreamWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7DB0D163CB4E000E9C6EB /* SBJsonStreamWriter.m */; };
-		27B7E19D163CB4E100E9C6EB /* SBJsonStreamWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7DB0D163CB4E000E9C6EB /* SBJsonStreamWriter.m */; };
 		27B7E19E163CB4E100E9C6EB /* SBJsonStreamWriterAccumulator.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7DB0E163CB4E000E9C6EB /* SBJsonStreamWriterAccumulator.h */; };
 		27B7E1A0163CB4E100E9C6EB /* SBJsonStreamWriterAccumulator.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7DB0E163CB4E000E9C6EB /* SBJsonStreamWriterAccumulator.h */; };
 		27B7E1A1163CB4E100E9C6EB /* SBJsonStreamWriterAccumulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7DB0F163CB4E000E9C6EB /* SBJsonStreamWriterAccumulator.m */; };
 		27B7E1A2163CB4E100E9C6EB /* SBJsonStreamWriterAccumulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7DB0F163CB4E000E9C6EB /* SBJsonStreamWriterAccumulator.m */; };
-		27B7E1A4163CB4E100E9C6EB /* SBJsonStreamWriterAccumulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7DB0F163CB4E000E9C6EB /* SBJsonStreamWriterAccumulator.m */; };
 		27B7E1A5163CB4E100E9C6EB /* SBJsonStreamWriterState.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7DB10163CB4E000E9C6EB /* SBJsonStreamWriterState.h */; };
 		27B7E1A7163CB4E100E9C6EB /* SBJsonStreamWriterState.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7DB10163CB4E000E9C6EB /* SBJsonStreamWriterState.h */; };
 		27B7E1A8163CB4E100E9C6EB /* SBJsonStreamWriterState.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7DB11163CB4E000E9C6EB /* SBJsonStreamWriterState.m */; };
 		27B7E1A9163CB4E100E9C6EB /* SBJsonStreamWriterState.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7DB11163CB4E000E9C6EB /* SBJsonStreamWriterState.m */; };
-		27B7E1AB163CB4E100E9C6EB /* SBJsonStreamWriterState.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7DB11163CB4E000E9C6EB /* SBJsonStreamWriterState.m */; };
 		27B7E1AC163CB4E100E9C6EB /* SBJsonTokeniser.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7DB12163CB4E000E9C6EB /* SBJsonTokeniser.h */; };
 		27B7E1AE163CB4E100E9C6EB /* SBJsonTokeniser.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7DB12163CB4E000E9C6EB /* SBJsonTokeniser.h */; };
 		27B7E1AF163CB4E100E9C6EB /* SBJsonTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7DB13163CB4E000E9C6EB /* SBJsonTokeniser.m */; };
 		27B7E1B0163CB4E100E9C6EB /* SBJsonTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7DB13163CB4E000E9C6EB /* SBJsonTokeniser.m */; };
-		27B7E1B2163CB4E100E9C6EB /* SBJsonTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7DB13163CB4E000E9C6EB /* SBJsonTokeniser.m */; };
 		27B7E1B3163CB4E100E9C6EB /* SBJsonUTF8Stream.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7DB14163CB4E000E9C6EB /* SBJsonUTF8Stream.h */; };
 		27B7E1B5163CB4E100E9C6EB /* SBJsonUTF8Stream.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7DB14163CB4E000E9C6EB /* SBJsonUTF8Stream.h */; };
 		27B7E1B6163CB4E100E9C6EB /* SBJsonUTF8Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7DB15163CB4E000E9C6EB /* SBJsonUTF8Stream.m */; };
 		27B7E1B7163CB4E100E9C6EB /* SBJsonUTF8Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7DB15163CB4E000E9C6EB /* SBJsonUTF8Stream.m */; };
-		27B7E1B9163CB4E100E9C6EB /* SBJsonUTF8Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7DB15163CB4E000E9C6EB /* SBJsonUTF8Stream.m */; };
 		27B7E1BA163CB4E100E9C6EB /* SBJsonWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7DB16163CB4E000E9C6EB /* SBJsonWriter.h */; };
 		27B7E1BC163CB4E100E9C6EB /* SBJsonWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7DB16163CB4E000E9C6EB /* SBJsonWriter.h */; };
 		27B7E1BD163CB4E100E9C6EB /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7DB17163CB4E000E9C6EB /* SBJsonWriter.m */; };
 		27B7E1BE163CB4E100E9C6EB /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7DB17163CB4E000E9C6EB /* SBJsonWriter.m */; };
-		27B7E1C0163CB4E100E9C6EB /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7DB17163CB4E000E9C6EB /* SBJsonWriter.m */; };
 		27B7E1C1163CB4E100E9C6EB /* NSData+RSHexDump.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7DB19163CB4E000E9C6EB /* NSData+RSHexDump.h */; };
 		27B7E1C3163CB4E100E9C6EB /* NSData+RSHexDump.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7DB19163CB4E000E9C6EB /* NSData+RSHexDump.h */; };
 		27B7E1C4163CB4E100E9C6EB /* NSData+RSHexDump.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7DB1A163CB4E000E9C6EB /* NSData+RSHexDump.m */; };
@@ -778,8 +766,6 @@
 		27B7E20D163CB4E200E9C6EB /* FLTempFileMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7DB33163CB4E000E9C6EB /* FLTempFileMgr.m */; };
 		27B7E20E163CB4E200E9C6EB /* FishLampCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7DB34163CB4E000E9C6EB /* FishLampCore.h */; };
 		27B7E210163CB4E200E9C6EB /* FishLampCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7DB34163CB4E000E9C6EB /* FishLampCore.h */; };
-		27B7E211163CB4E200E9C6EB /* FishLampFoundation-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27B7DB35163CB4E000E9C6EB /* FishLampFoundation-Prefix.pch */; };
-		27B7E213163CB4E200E9C6EB /* FishLampFoundation-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27B7DB35163CB4E000E9C6EB /* FishLampFoundation-Prefix.pch */; };
 		27B7E214163CB4E200E9C6EB /* FLCoreFlags.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7DB37163CB4E000E9C6EB /* FLCoreFlags.h */; };
 		27B7E216163CB4E200E9C6EB /* FLCoreFlags.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7DB37163CB4E000E9C6EB /* FLCoreFlags.h */; };
 		27B7E217163CB4E200E9C6EB /* FLFrameworkModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7DB38163CB4E000E9C6EB /* FLFrameworkModule.h */; };
@@ -2318,6 +2304,8 @@
 		27B7EA82163CB4E400E9C6EB /* FLVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7DDF1163CB4E000E9C6EB /* FLVersion.m */; };
 		27B7EA83163CB4E400E9C6EB /* FLVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7DDF1163CB4E000E9C6EB /* FLVersion.m */; };
 		27B7EA85163CB4E400E9C6EB /* FLVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7DDF1163CB4E000E9C6EB /* FLVersion.m */; };
+		27E5A790163CCDA900B8D029 /* FishLampCore-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27E5A78F163CCDA900B8D029 /* FishLampCore-Prefix.pch */; };
+		27E5A791163CCDA900B8D029 /* FishLampCore-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27E5A78F163CCDA900B8D029 /* FishLampCore-Prefix.pch */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2707,7 +2695,6 @@
 		27B7DB32163CB4E000E9C6EB /* FLTempFileMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLTempFileMgr.h; sourceTree = "<group>"; };
 		27B7DB33163CB4E000E9C6EB /* FLTempFileMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLTempFileMgr.m; sourceTree = "<group>"; };
 		27B7DB34163CB4E000E9C6EB /* FishLampCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishLampCore.h; sourceTree = "<group>"; };
-		27B7DB35163CB4E000E9C6EB /* FishLampFoundation-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FishLampFoundation-Prefix.pch"; sourceTree = "<group>"; };
 		27B7DB37163CB4E000E9C6EB /* FLCoreFlags.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCoreFlags.h; sourceTree = "<group>"; };
 		27B7DB38163CB4E000E9C6EB /* FLFrameworkModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLFrameworkModule.h; sourceTree = "<group>"; };
 		27B7DB39163CB4E000E9C6EB /* FLFrameworkModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLFrameworkModule.m; sourceTree = "<group>"; };
@@ -3340,6 +3327,7 @@
 		27B7DDEE163CB4E000E9C6EB /* NSString+GUID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+GUID.m"; sourceTree = "<group>"; };
 		27B7DDF0163CB4E000E9C6EB /* FLVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLVersion.h; sourceTree = "<group>"; };
 		27B7DDF1163CB4E000E9C6EB /* FLVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLVersion.m; sourceTree = "<group>"; };
+		27E5A78F163CCDA900B8D029 /* FishLampCore-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FishLampCore-Prefix.pch"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -3426,6 +3414,7 @@
 		27A43A7115CDCC1B001CB13E = {
 			isa = PBXGroup;
 			children = (
+				27E5A78F163CCDA900B8D029 /* FishLampCore-Prefix.pch */,
 				27B7D9C7163CB4E000E9C6EB /* Classes */,
 				272DF91315D1C1BB009592E5 /* XCodeConfigs */,
 				27A43A7E15CDCC1B001CB13E /* Frameworks */,
@@ -3476,7 +3465,6 @@
 				27B7DAF7163CB4E000E9C6EB /* External */,
 				27B7DB22163CB4E000E9C6EB /* Files */,
 				27B7DB34163CB4E000E9C6EB /* FishLampCore.h */,
-				27B7DB35163CB4E000E9C6EB /* FishLampFoundation-Prefix.pch */,
 				27B7DB36163CB4E000E9C6EB /* Framework */,
 				27B7DB3A163CB4E000E9C6EB /* generate-header.sh */,
 				27B7DB3B163CB4E000E9C6EB /* Logging */,
@@ -5587,7 +5575,6 @@
 				27B7E202163CB4E200E9C6EB /* FLTempFolder.h in Headers */,
 				27B7E209163CB4E200E9C6EB /* FLTempFileMgr.h in Headers */,
 				27B7E210163CB4E200E9C6EB /* FishLampCore.h in Headers */,
-				27B7E213163CB4E200E9C6EB /* FishLampFoundation-Prefix.pch in Headers */,
 				27B7E216163CB4E200E9C6EB /* FLCoreFlags.h in Headers */,
 				27B7E219163CB4E200E9C6EB /* FLFrameworkModule.h in Headers */,
 				27B7E220163CB4E200E9C6EB /* FLLogFile.h in Headers */,
@@ -5922,6 +5909,7 @@
 				27B7EA73163CB4E400E9C6EB /* FLGuid.h in Headers */,
 				27B7EA7A163CB4E400E9C6EB /* NSString+GUID.h in Headers */,
 				27B7EA81163CB4E400E9C6EB /* FLVersion.h in Headers */,
+				27E5A791163CCDA900B8D029 /* FishLampCore-Prefix.pch in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6086,7 +6074,6 @@
 				27B7E200163CB4E200E9C6EB /* FLTempFolder.h in Headers */,
 				27B7E207163CB4E200E9C6EB /* FLTempFileMgr.h in Headers */,
 				27B7E20E163CB4E200E9C6EB /* FishLampCore.h in Headers */,
-				27B7E211163CB4E200E9C6EB /* FishLampFoundation-Prefix.pch in Headers */,
 				27B7E214163CB4E200E9C6EB /* FLCoreFlags.h in Headers */,
 				27B7E217163CB4E200E9C6EB /* FLFrameworkModule.h in Headers */,
 				27B7E21E163CB4E200E9C6EB /* FLLogFile.h in Headers */,
@@ -6421,6 +6408,7 @@
 				27B7EA71163CB4E400E9C6EB /* FLGuid.h in Headers */,
 				27B7EA78163CB4E400E9C6EB /* NSString+GUID.h in Headers */,
 				27B7EA7F163CB4E400E9C6EB /* FLVersion.h in Headers */,
+				27E5A790163CCDA900B8D029 /* FishLampCore-Prefix.pch in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6636,18 +6624,6 @@
 				27B7E15B163CB4E100E9C6EB /* FLFileComparer.m in Sources */,
 				27B7E15F163CB4E100E9C6EB /* Base64Transcoder.c in Sources */,
 				27B7E169163CB4E100E9C6EB /* ISO8601DateFormatter.m in Sources */,
-				27B7E170163CB4E100E9C6EB /* NSObject+SBJson.m in Sources */,
-				27B7E17A163CB4E100E9C6EB /* SBJsonParser.m in Sources */,
-				27B7E181163CB4E100E9C6EB /* SBJsonStreamParser.m in Sources */,
-				27B7E188163CB4E100E9C6EB /* SBJsonStreamParserAccumulator.m in Sources */,
-				27B7E18F163CB4E100E9C6EB /* SBJsonStreamParserAdapter.m in Sources */,
-				27B7E196163CB4E100E9C6EB /* SBJsonStreamParserState.m in Sources */,
-				27B7E19D163CB4E100E9C6EB /* SBJsonStreamWriter.m in Sources */,
-				27B7E1A4163CB4E100E9C6EB /* SBJsonStreamWriterAccumulator.m in Sources */,
-				27B7E1AB163CB4E100E9C6EB /* SBJsonStreamWriterState.m in Sources */,
-				27B7E1B2163CB4E100E9C6EB /* SBJsonTokeniser.m in Sources */,
-				27B7E1B9163CB4E100E9C6EB /* SBJsonUTF8Stream.m in Sources */,
-				27B7E1C0163CB4E100E9C6EB /* SBJsonWriter.m in Sources */,
 				27B7E1C7163CB4E100E9C6EB /* NSData+RSHexDump.m in Sources */,
 				27B7E1CE163CB4E100E9C6EB /* FLImage+Alpha.m in Sources */,
 				27B7E1D5163CB4E100E9C6EB /* FLImage+Resize.m in Sources */,
@@ -7863,7 +7839,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 27048EF2161CB5E700C38ADA /* LibFishLampCoreMac32.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 			};
 			name = Debug;
 		};
@@ -7871,7 +7846,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 27048EF2161CB5E700C38ADA /* LibFishLampCoreMac32.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 			};
 			name = Release;
 		};
@@ -7879,7 +7853,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 27048EF2161CB5E700C38ADA /* LibFishLampCoreMac32.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 			};
 			name = Test;
 		};

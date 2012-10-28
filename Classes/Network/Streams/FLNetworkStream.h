@@ -48,7 +48,7 @@
 
 @interface FLNetworkStream : NSObject<FLNetworkStream> {
 @private
-    __unsafe_unretained id delegate;
+    __unsafe_unretained id _delegate;
     __unsafe_unretained NSThread* _thread;
     CFRunLoopRef _runLoop;
     BOOL _isOpen;

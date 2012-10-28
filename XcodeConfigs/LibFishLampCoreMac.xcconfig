@@ -8,7 +8,7 @@
 
 #include "XcodeConfigs/LibFishLampCoreShared.xcconfig"
 
-ARCHS = $(ARCHS_STANDARD_32_64_BIT)
+ARCHS = $(ARCHS_STANDARD_64_BIT)
 SUPPORTED_PLATFORMS = macosx
 SDKROOT = macosx
 CLANG_ENABLE_OBJC_ARC = YES

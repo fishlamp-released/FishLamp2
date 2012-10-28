@@ -12,7 +12,6 @@
 @property (readwrite, strong) FLHttpResponse* httpResponse;
 @property (readwrite, strong) FLHttpRequest* httpRequest;
 @property (readwrite, strong) FLReadStream* readStream;
-@property (readwrite, strong) FLByteBuffer* buffer;
 @end
 
 @interface FLHttpResponse (Utils)
@@ -100,7 +99,6 @@
 @synthesize httpResponse = _response;
 @synthesize httpRequest = _request;
 @synthesize readStream = _readStream;
-@synthesize buffer = _buffer;
 
 - (id) initWithHttpRequest:(FLHttpRequest*) request {
     self = [super init];
@@ -122,7 +120,6 @@
     }
     
 #if FL_NO_ARC
-    [_readBuffer release];
     [_request release];
     [_response release];
     [_readStream release];
