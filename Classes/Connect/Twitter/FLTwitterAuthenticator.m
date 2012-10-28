@@ -1,0 +1,98 @@
+//
+//  FLTwitterAuthenticator.m
+//  FishLamp
+//
+//  Created by Mike Fullerton on 6/8/11.
+//  Copyright 2011 GreenTongue Software, LLC. All rights reserved.
+//
+
+#import "FLTwitterAuthenticator.h"
+#import "FLTwitterLoginWebViewController.h"
+#import "FLNavigationControllerViewController.h"
+
+@implementation FLTwitterAuthenticator
+
+@synthesize viewController = _viewController;
+
++ (FLTwitterAuthenticator*) twitterAuthenticator
+{
+    return FLReturnAutoreleased([[FLTwitterAuthenticator alloc] init]);
+}
+
+- (void) cleanup
+{
+    FLAutorelease(_delegate);
+    _delegate = nil;
+    
+    FLAutorelease(_viewController);
+    _viewController = nil;
+    
+    FLReleaseWithNil(_userGuid);
+}
+
+- (void) dealloc
+{
+    [self cleanup];
+    FLSuperDealloc();
+}
+
+- (void) OAuthAuthorizationViewController:(FLOAuthAuthorizationViewController*) controller didAuthenticate:(FLOAuthSession*) session
+{
+    [[FLTwitterMgr instance] didAuthenticateForUserGuid:_userGuid session:session ];
+
+    [_delegate twitterAuthenticator:self dismissAuthenticationViewController:controller];
+    [_delegate twitterAuthenticator:self didAuthenticateUser:_userGuid];
+
+    [self cleanup];
+    FLAutorelease(self);
+}
+
+- (void) OAuthAuthorizationViewController:(FLOAuthAuthorizationViewController*) controller authenticationDidFail:(NSError*) error
+{
+// TODO: display error???
+    [_delegate twitterAuthenticator:self dismissAuthenticationViewController:controller];
+    [_delegate twitterAuthenticator:self didFail:error];
+
+    [self cleanup];
+    FLAutorelease(self);
+}
+
+- (void) webViewControllerUserDidCancel:(FLWebViewController*) controller
+{
+    [_delegate twitterAuthenticator:self dismissAuthenticationViewController:(FLOAuthAuthorizationViewController*) controller];
+    [_delegate twitterAuthenticatorWasCancelled:self];
+
+    [self cleanup];
+    FLAutorelease(self);
+}
+
+- (void) beginAuthenticatingInViewController:(FLViewController*) viewController 
+                                    userGuid:(NSString*) userGuid 
+                                    delegate:(id<FLTwitterAuthenticatorDelegate>) delegate
+{
+    FLAssignObject(_delegate, delegate);
+    FLAssignObject(_userGuid, userGuid);
+    FLAssignObject(_viewController, viewController);
+    
+	if([[FLTwitterMgr instance] needsAuthorizationForUserGuid:userGuid])
+	{
+        FLRetain(self);
+        
+        [[FLTwitterMgr instance] clearTwitterCookies];
+        
+        FLTwitterLoginWebViewController* controller = [FLTwitterLoginWebViewController webViewController:FLWebViewControllerButtonModeCanCancel | 
+            (DeviceIsPad() ? FLWebViewControllerButtonModeNavigationButtonsOnTop : FLWebViewControllerButtonModeNavigationButtonsOnBottom)];
+		
+        [delegate twitterAuthenticator:self presentAuthenticationViewController:controller];
+		
+		[controller beginAuthorizingApp:[FLTwitterMgr instance] delegate:self];
+	}
+	else
+	{
+        [delegate twitterAuthenticator:self didAuthenticateUser:_userGuid];
+    }
+
+
+}
+
+@end

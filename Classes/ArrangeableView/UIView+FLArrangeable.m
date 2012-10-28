@@ -1,0 +1,102 @@
+//
+//  UIView+FLArrangement.m
+//  FishLampiOS
+//
+//  Created by Mike Fullerton on 7/19/12.
+//  Copyright (c) 2012 GreenTongue Software. All rights reserved.
+//
+
+#import "UIView+FLArrangeable.h"
+
+#import "FLArrangeable.h"
+
+@implementation UIView (FLArrangeableContainer)
+FLSynthesizeAssociatedProperty(retain_nonatomic, arrangement, setArrangement, FLArrangement*);
+@end
+
+@implementation UIView (FLArrangeable)
+
+// these are actually defined in NSObject+FLArrangeable.h/.m
+
+@dynamic innerInsets;
+@dynamic arrangeableGrowMode;
+@dynamic arrangeableWeight;
+@dynamic arrangeableState;
+
+- (FLRect) arrangeableFrame {
+    return self.frame;
+}
+
+- (void) setArrangeableFrame:(FLRect) frame {
+    self.frame = frame;
+}
+
+@end
+
+
+@implementation UIView (FLArrangeableUtils)
+
+- (id) lastSubviewByWeight:(FLArrangeableWeight) weight {
+    return [NSObject lastSubframeByWeight:weight subframes:self.subviews];
+}
+
+- (void) layoutSubviewsWithArrangement:(FLArrangement*) arrangement
+                        adjustViewSize:(BOOL) adjustSize {
+    NSArray* subviews = self.subviews;
+    if(arrangement) {
+        FLRect bounds = self.bounds;
+        bounds.size = [arrangement performArrangement:subviews inBounds:bounds];
+        if(adjustSize) {
+            self.bounds = bounds;
+        }
+    }
+
+    for(id subview in subviews) {
+        [subview layoutSubviewsWithArrangement:[subview arrangement]
+                                  adjustViewSize:YES];
+    }
+}
+
+- (void) insertSubview:(UIView*) view
+  withArrangeableWeight:(FLArrangeableWeight) weight {
+    UIView* subview = [self lastSubviewByWeight:weight];
+    if(subview) {
+        [self insertSubview:view aboveSubview:subview];
+    }
+    else {
+        [self addSubview:view];
+    }
+}
+
+
+
+- (void) calculateArrangementSize:(FLSize*) outSize
+                           inSize:(FLSize) inSize
+                         fillMode:(FLArrangeableGrowMode) fillMode {
+}
+
+
+- (NSArray*) arrangeables {
+    return self.subviews;
+}
+
+@end
+
+@implementation UIView (FLMiscUtils)
+
+- (FLRect) layoutBounds {
+
+// TODO this isn't right.
+    return FLEdgeInsetsInsetRect(self.bounds, self.innerInsets);
+}
+
+-(void) visitSubviews:(void (^)(id view)) visitor {
+	for(UIView* view in self.subviews) {
+		if(!view.isHidden) {
+			[view visitSubviews:visitor];
+			visitor(view);
+		}
+	}
+}
+
+@end

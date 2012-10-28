@@ -1,0 +1,9 @@
+//
+// Prefix header for all source files of the 'FishLampiOS' target in the 'FishLampiOS' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+    #define FL_DATABASE_DEBUG DEBUG
+    #import "FishLampiOS.h"
+#endif
