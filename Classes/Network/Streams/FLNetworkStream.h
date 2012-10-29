@@ -10,6 +10,9 @@
 
 #import "FLByteBuffer.h"
 
+@protocol FLReadStream;
+@protocol FLWriteStream;
+
 #define kRunLoopMode kCFRunLoopDefaultMode
 
 @protocol FLNetworkStream <NSObject>
@@ -17,8 +20,12 @@
 @property (readonly, assign) BOOL isOpen;
 @property (readonly, assign) BOOL isRunning;
 @property (readonly, strong) NSError* error;
+
 - (void) openStream;
 - (void) closeStream;
+
+- (id<FLReadStream>) readStream;
+- (id<FLWriteStream>) writeStream;
 @end
 
 @protocol FLReadStream <FLNetworkStream>
@@ -46,6 +53,27 @@
 - (void) sendBytes:(const uint8_t*) bytes length:(unsigned long) length;
 @end
 
+@protocol FLNetworkStreamDelegate <NSObject>
+@optional
+
+- (void) networkStreamDidOpen:(id<FLNetworkStream>) networkStream;
+- (void) networkStreamDidClose:(id<FLNetworkStream>) networkStream;
+
+// got error
+- (void) networkStreamEncounteredError:(id<FLNetworkStream>) networkStream;
+
+@end
+
+@protocol FLReadStreamDelegate <NSObject>
+- (void) readStreamHasBytesAvailable:(id<FLReadStream>) networkStream;
+- (void) readStreamDidReadBytes:(id<FLReadStream>) stream;
+@end
+
+@protocol FLWriteStreamDelegate <NSObject>
+- (void) writeStreamCanAcceptBytes:(id<FLWriteStream>) networkStream;
+- (void) writeStreamDidWriteBytes:(id<FLWriteStream>) stream;
+@end
+
 @interface FLNetworkStream : NSObject<FLNetworkStream> {
 @private
     __unsafe_unretained id _delegate;
@@ -62,24 +90,3 @@
 @end
 
 
-@protocol FLNetworkStreamDelegate <NSObject>
-@optional
-
-- (void) networkStreamDidOpen:(id<FLNetworkStream>) networkStream;
-- (void) networkStreamDidClose:(id<FLNetworkStream>) networkStream;
-
-// got error
-- (void) networkStreamEncounteredError:(id<FLNetworkStream>) networkStream;
-
-@end
-
-
-@protocol FLReadStreamDelegate <NSObject>
-- (void) readStreamHasBytesAvailable:(id<FLReadStream>) networkStream;
-- (void) readStreamDidReadBytes:(id<FLReadStream>) stream;
-@end
-
-@protocol FLWriteStreamDelegate <NSObject>
-- (void) writeStreamCanAcceptBytes:(id<FLWriteStream>) networkStream;
-- (void) writeStreamDidWriteBytes:(id<FLWriteStream>) stream;
-@end

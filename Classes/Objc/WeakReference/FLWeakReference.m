@@ -136,13 +136,13 @@
 - (void) b_testWeakRefDeleteNotification {
 
 
-    FLFinisher* notifier = [FLFinisher finisher];
+    FLWorkFinisher* notifier = [FLWorkFinisher finisher];
   
     // Note need to run the test on a thread because the associated objects
     // are autoreleased in the thread and running the test in the main
     // loop causes a deadlock.
   
-    [FLAsyncQueue addWorkerBlock:^(id<FLFinisher> finisher){
+    [FLAsyncQueue addWorkerBlock:^(FLFinisher finisher){
         __block BOOL wasDeleted = NO;
     
         FLWeakRefTestObject* obj = [[FLWeakRefTestObject alloc] initWithBlock:^(id sender){

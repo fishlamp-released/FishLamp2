@@ -10,6 +10,7 @@
 #import "FLGlobalNetworkActivityIndicator.h"
 #import "FLReachableNetwork.h"
 #import "FLNetworkStream.h"
+
 const FLNetworkConnectionByteCount FLNetworkConnectionByteCountZero = {0, 0, 0};
 
 //typedef enum {
@@ -23,8 +24,8 @@ const FLNetworkConnectionByteCount FLNetworkConnectionByteCountZero = {0, 0, 0};
 
 @interface FLNetworkConnection ()
 @property (readwrite, assign) NSThread* thread;
-@property (readwrite, strong) id networkStream;
-@property (readwrite, strong) id<FLFinisher> finisher;
+@property (readwrite, strong) id<FLNetworkStream> networkStream;
+@property (readwrite, strong) FLFinisher finisher;
 @property (readwrite, strong) FLTimeoutTimer* timeoutTimer;
 @property (readwrite, assign) FLNetworkConnectionByteCount writeByteCount;
 @property (readwrite, assign) FLNetworkConnectionByteCount readByteCount;
@@ -127,31 +128,36 @@ const FLNetworkConnectionByteCount FLNetworkConnectionByteCountZero = {0, 0, 0};
     [self postObservation:@selector(networkConnectionConnecting:)];
 }
 
-- (void) closeConnectionWithError:(NSError*) error {
+- (void) closeConnection {
     [self.timeoutTimer requestCancel];
     
     [self.networkStream setDelegate:nil];
     [self.networkStream closeStream];
     self.networkStream = nil;
     self.thread = nil;
-    id<FLResult> result = nil;
-    
-    if(error) {
-        result = [FLResult resultWithError:error];
-    }
-    
-    [self.finisher setFinishedWithResult:result];
+}
+
+- (void) setFinishedWithError:(NSError*) error {
+    [self closeConnection];
+    [self.finisher setFinishedWithError:error];
     self.finisher = nil;
 }
 
-- (void) startWorking:(id<FLFinisher>) finisher {
+- (void) setFinished {
+    [self closeConnection];
+    [self.finisher setFinished];
+    self.finisher = nil;
+}
+
+- (void) startWorking:(FLFinisher) finisher {
    @try {
         if(self.networkStream) {
-            [self closeConnectionWithError:nil];
+            [self setFinished];
         }
        
         self.finisher = finisher;
         self.networkStream = [self createNetworkStream];
+        [self.networkStream setDelegate:self];
     
         if(![self checkReachability]) {
             NSError* error = [NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorNotConnectedToInternet localizedDescription:NSLocalizedString(@"Not Connected to Network", nil)];
@@ -166,35 +172,35 @@ const FLNetworkConnectionByteCount FLNetworkConnectionByteCountZero = {0, 0, 0};
         [self.networkStream openStream];
     }
     @catch(NSException* ex) {
-        [self closeConnectionWithError:ex.error];
+        [self setFinishedWithError:ex.error];
     }
 }
 
-- (id<FLResultPromise>) start:(FLCompletionBlock) completion {
-    FLFinisher* finisher = [FLFinisher finisher:completion];
+- (FLPromisedResult) start:(FLResultBlock) completion {
+    FLWorkFinisher* finisher = [FLWorkFinisher finisher:completion];
     [self startWorking:finisher];
     return finisher;
 }
 
-- (id<FLResult>) runSynchronously {
+- (FLResult) runSynchronously {
     return [[self start:nil] waitForResult];
 }
 
 
-//- (id<FLResultPromise>) openConnection:(FLCompletionBlock) completionBlock {
-//    FLFinisher* finisher = [FLFinisher finisher:completionBlock];
+//- (FLPromisedResult) openConnection:(FLResultBlock) completionBlock {
+//    FLWorkFinisher* finisher = [FLWorkFinisher finisher:completionBlock];
 //    [self startWorking:finisher];
 //    return finisher;
 //}
 
 - (void) networkStreamDidClose:(id<FLNetworkStream>) networkStream {
     [self postObservation:@selector(networkConnectionFinished:)];
-    [self closeConnectionWithError:nil];
+    [self setFinished];
 }
 
 - (void) cancelConnection {
     [self.networkStream closeStream];
-    [self closeConnectionWithError:[NSError cancelError]];
+    [self setFinishedWithError:[NSError cancelError]];
 }
 
 - (void) networkStreamEncounteredError:(id<FLNetworkStream>) networkStream {
@@ -213,7 +219,7 @@ const FLNetworkConnectionByteCount FLNetworkConnectionByteCountZero = {0, 0, 0};
     }];
 
     if(!ignoreError) {
-        [self closeConnectionWithError:error];
+        [self setFinishedWithError:error];
     }
 }
 
@@ -274,7 +280,7 @@ const FLNetworkConnectionByteCount FLNetworkConnectionByteCountZero = {0, 0, 0};
 //    }
 //}
 
-//- (void) startWorking:(id<FLFinisher>) finisher {
+//- (void) startWorking:(FLFinisher) finisher {
 //
 //// TODO: We could define our own thread and run them all on the same thread.
 //// We should investigate the perf of this.

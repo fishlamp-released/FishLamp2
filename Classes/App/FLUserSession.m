@@ -319,7 +319,7 @@ FLSynthesizeSingleton(FLUserSession);
             action.progressController = [[self class] createVersionUpgradeProgressViewController:_upgradeTaskList];
             [action.progressController setTitle:[NSString stringWithFormat:(NSLocalizedString(@"Updating to Version: %@", nil)), [NSFileManager appVersion]]];
 
-            [action startAction:^(id<FLResult> result){
+            [action startAction:^(FLResult result){
                 if(action.didSucceed) {
                     [self finishUpgradeTasks];
                 }

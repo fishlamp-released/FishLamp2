@@ -11,7 +11,7 @@
 #import "FLErrorDomain.h"
 #import "NSError+FLExtras.h"
 
-extern NSString* const FLErrorCodeLocationKey;
+extern NSString* const FLErrorStackTraceKey;
 extern NSString* const FLErrorCommentKey;
 extern NSString* const FLErrorReasonKey;
 extern NSString* const FLErrorDomainKey;
@@ -23,9 +23,13 @@ extern NSString* const FLErrorDomainKey;
 
 @property (readwrite, strong, nonatomic) NSString* reason;
 @property (readwrite, strong, nonatomic) NSString* comment;
+@property (readwrite, strong, nonatomic) FLErrorDomain* errorDomain;
 @property (readwrite, strong, nonatomic) FLStackTrace* stackTrace;
 
-@property (readonly, strong, nonatomic) NSMutableDictionary* mutableUserInfo;
+@property (readwrite, copy, nonatomic) NSDictionary* userInfo;
+
+- (void) setObject:(id) object forKey:(id) key;
+- (id) objectForKey:(id) key;
 
 - (id) initWithError:(NSError*) error;
 - (id) initWithError:(NSError*) error  stackTrace:(FLStackTrace*) stackTrace;

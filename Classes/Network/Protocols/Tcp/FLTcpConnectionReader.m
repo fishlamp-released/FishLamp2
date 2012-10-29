@@ -8,6 +8,7 @@
 
 #import "FLTcpConnectionReader.h"
 #import "FLTcpConnection_Internal.h"
+#import "FLReadStream.h"
 
 @implementation FLTcpConnectionReader
 
@@ -21,10 +22,14 @@
     return self;
 }
 
+- (FLReadStream*) readStream {
+    return self.connection.networkStream.readStream;
+}
+
 - (NSUInteger) readAvailableBytes:(void*) bytes 
                         maxLength:(NSUInteger) maxLength {
 
-    return [_connection.networkStream readAvailableBytes:bytes maxLength:maxLength];
+    return [self.readStream readAvailableBytes:bytes maxLength:maxLength];
 }
 
 - (NSUInteger) readAvailableData:(NSMutableData*) mutableData
@@ -38,18 +43,18 @@
 - (void) readBytes:(void*) bytes
     numBytesToRead:(NSUInteger) amount  {
 
-    [_connection.networkStream readBytes:bytes numBytesToRead:amount];
+    [self.readStream readBytes:bytes numBytesToRead:amount];
 }
 
 - (NSData*) readAvailableData:(NSUInteger) maxLength {
     NSMutableData* data = [NSMutableData dataWithCapacity:maxLength];
-    data.length = [_connection.networkStream readAvailableBytes:data.mutableBytes maxLength:maxLength];
+    data.length = [self.readStream readAvailableBytes:data.mutableBytes maxLength:maxLength];
     return data;
 }
 
 - (NSData*) readData:(NSUInteger) amountToRead {
     NSMutableData* data = [NSMutableData dataWithCapacity:amountToRead];
-    [_connection.networkStream readBytes:data.mutableBytes numBytesToRead:amountToRead];
+    [self.readStream readBytes:data.mutableBytes numBytesToRead:amountToRead];
     data.length = amountToRead;
     return data;
 }

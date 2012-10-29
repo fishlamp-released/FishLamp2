@@ -51,6 +51,11 @@
     return [self initWithExpectedCount:1];
 }
 
+- (NSString*) description {
+    return [NSString stringWithFormat:@"%@ { testName: %@, passed: %@, error: %@ }", [super description], self.testName, self.passed ? @"YES" : @"NO", [_error description]];
+}
+
+
 @end
 
 @implementation FLCountedTestResult 

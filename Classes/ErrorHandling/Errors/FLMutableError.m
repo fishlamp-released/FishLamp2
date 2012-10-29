@@ -7,17 +7,20 @@
 //
 
 #import "FLMutableError.h"
+#import "FLProperties.h"
 
 @interface FLMutableError ()
 @end
 
+
 @implementation FLMutableError
 
-@synthesize mutableUserInfo = _mutableUserInfo;
+@synthesize userInfo = _mutableUserInfo;
 
-@dynamic reason;
-@dynamic comment;
-@dynamic stackTrace;
+FLSynthesizeDictionaryProperty(reason, setReason, NSString*, FLErrorReasonKey, _mutableUserInfo)
+FLSynthesizeDictionaryProperty(comment, setComment, NSString*, FLErrorCommentKey, _mutableUserInfo)
+FLSynthesizeDictionaryProperty(stackTrace, setStackTrace, FLStackTrace*, FLErrorStackTraceKey, _mutableUserInfo)
+FLSynthesizeDictionaryProperty(errorDomain, setErrorDomain, FLErrorDomain*, FLErrorDomainKey, _mutableUserInfo)
 
 //- (NSString*) description {
 //    return _FLAssembleFailureReason(self.domain, self.reason, self.comment, self.stackTrace);
@@ -34,10 +37,10 @@
     FLAssignObject(_mutableUserInfo, FLReturnAutoreleased([userInfo mutableCopy]));
 }
 
-- (id)initWithDomain:(NSString *)domain code:(NSInteger)code userInfo:(NSDictionary *)dict {
-    _mutableUserInfo = [dict mutableCopy];
-    self = [super initWithDomain:domain code:code userInfo:_mutableUserInfo];
+- (id)initWithDomain:(NSString *)domain code:(NSInteger)code userInfo:(NSDictionary *) userInfo {
+    self = [super initWithDomain:domain code:code userInfo:nil];
     if(self) {
+        self.userInfo = userInfo;
     }
     
     return self;
@@ -55,35 +58,20 @@
     return self;
 }
 
-
 + (id) mutableErrorWithError:(NSError*) error {
     return FLReturnAutoreleased([[[self class] alloc] initWithError:error]);
 }
 
 + (id) mutableErrorWithError:(NSError*) error stackTrace:(FLStackTrace*) stackTrace {
     return FLReturnAutoreleased([[[self class] alloc] initWithError:error stackTrace:stackTrace]);
-
 }
 
-- (void) setComment:(NSString*) comment {
-    FLAssert_v(self.userInfo == self.mutableUserInfo, @"user info was changed");
-
-    [self.mutableUserInfo setObject: [comment stringWithRemovingQuotes] forKey:FLErrorCommentKey];
+- (void) setObject:(id) object forKey:(id) key {
+   [_mutableUserInfo setObject:object forKey:key];
 }
 
-- (void) setReason:(NSString*) reason {
-    FLAssert_v(self.userInfo == self.mutableUserInfo, @"user info was changed");
-    [self.mutableUserInfo setObject: [reason stringWithRemovingQuotes] forKey:FLErrorReasonKey];
-}
-
-- (void) setCodeLocation:(FLStackTrace*) stackTrace {
-    FLAssert_v(self.userInfo == self.mutableUserInfo, @"user info was changed");
-    [self.mutableUserInfo setObject:stackTrace forKey:FLErrorCodeLocationKey];
-}
-
-- (void) setErrorDomain:(FLErrorDomain*) domain {
-    FLAssert_v(self.userInfo == self.mutableUserInfo, @"user info was changed");
-    [self.mutableUserInfo setObject:domain forKey:FLErrorDomainKey];
+- (id) objectForKey:(id) key {
+    return [_mutableUserInfo objectForKey:key];
 }
 
 - (id)mutableCopyWithZone:(NSZone *)zone {

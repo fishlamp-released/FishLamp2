@@ -234,7 +234,7 @@ static void (*originalDealloc)(id,SEL);
     __block __weak id test = nil;
 #endif    
     
-    id work = [FLAsyncQueue addWorkerBlock:^(id<FLFinisher> finisher){
+    FLPromisedResult result = [FLAsyncQueue addWorkerBlock:^(FLFinisher finisher){
         FLDeleteNotifier* notifier = [[FLDeleteNotifier alloc] initWithBlock:^(id sender){
             objectDeleted = YES;
         }];
@@ -250,7 +250,6 @@ static void (*originalDealloc)(id,SEL);
 #if FL_ARC
         FLAssertIsNil_(test);
 #endif        
-        [finisher setFinished];
     }];
     
     
@@ -258,13 +257,13 @@ static void (*originalDealloc)(id,SEL);
     FLAssertIsNil_(test);
 #endif    
     
-    [work waitForResult];
+    [result waitForResult];
     
     FLAssertIsTrue_(objectDeleted);
     FLAssertIsTrue_(notified);
 }
 
-//- (void) testNotify:(FLFinisher*) finisher {
+//- (void) testNotify:(FLWorkFinisher*) finisher {
 //
 //    NSMutableString* str = [[NSMutableString alloc] initWithString:@"hello world"];
 //    

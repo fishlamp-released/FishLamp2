@@ -1,26 +1,27 @@
 //
-//  FLFinisher.m
+//  FLWorkFinisher.m
 //  FishLamp
 //
 //  Created by Mike Fullerton on 10/18/12.
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import "FLFinisher.h"
+#import "FLWorkFinisher.h"
 #import "FLTimeoutTimer.h"
+#import "FLResultObjects.h"
 
-@interface FLFinisher ()
-@property (readwrite, strong) id<FLResult> result;
+@interface FLWorkFinisher ()
+@property (readwrite, strong) FLResult result;
 @property (readwrite, assign) BOOL isFinished;
 @property (readwrite, strong) FLTimeoutTimer* timer;
 @end
 
-@implementation FLFinisher
+@implementation FLWorkFinisher
 @synthesize timer = _timer;
 @synthesize isFinished = _finished;
 @synthesize result = _result;
 
-- (id) initWithCompletionBlock:(FLCompletionBlock) completion{
+- (id) initWithCompletionBlock:(FLResultBlock) completion{
     
     self = [super init];
     if(self) {
@@ -29,7 +30,7 @@
     return self;
 }
 
-+ (id) finisher:(FLCompletionBlock) completion {
++ (id) finisher:(FLResultBlock) completion {
     return FLReturnAutoreleased([[[self class] alloc] initWithCompletionBlock:completion]);
 }
 
@@ -56,11 +57,38 @@
     return self.isFinished;
 }
 
-- (void) setFinished {
-    [self setFinishedWithResult:nil];
+- (void) setFinishedWithSuccess:(BOOL) success {
+    if(success) {
+        [self setFinishedWithResult:[FLSuccessfullResult instance]];
+    }
+    else {
+        [self setFinishedWithResult:[FLFailedResult instance]];
+    }
 }
 
-- (void) setFinishedWithResult:(id<FLResult>) result {
+- (void) setFinished {
+    [self setFinishedWithResult:[FLSuccessfullResult instance]];
+}
+
+- (void) setFinishedWithError:(NSError*) error {
+    if(error) {
+        [self setFinishedWithResult:[FLErrorResult errorResult:error]];
+    }
+    else {
+        [self setFinishedWithResult:[FLFailedResult instance]];
+    }
+}
+
+- (void) setFinishedWithOutput:(id) output {
+    if(output) {
+        [self setFinishedWithResult:[FLOutputResult outputResult:output]];
+    }
+    else {
+        [self setFinishedWithResult:[FLSuccessfullResult instance]];
+    }
+}
+
+- (void) setFinishedWithResult:(FLResult) result {
     FLAssert_v(_finished == NO, @"already finished");
 
     if(self.timer) {
@@ -74,7 +102,7 @@
     self.isFinished = YES;
 }
 
-- (id<FLResult>) waitForResult {
+- (FLResult) waitForResult {
 // this may not work in all cases - e.g. some iOS apis expect to be called in the main thread
 // and this will cause endless blocking, unfortunately. I've seen this is the AssetLibrary sdk.
     while(!self.isFinished) {
@@ -84,7 +112,7 @@
     return self.result;
 }
 
-- (id<FLResult>) waitForResultWithCondition:(FLConditionalBlock) checkCondition {
+- (FLResult) waitForResultWithCondition:(FLConditionalBlock) checkCondition {
     
     BOOL condition = NO;
     if(checkCondition) {
@@ -104,9 +132,9 @@
     return self.result;
 }
 
-- (id<FLResult>) waitForResultWithTimeout:(NSTimeInterval) timeout {
+- (FLResult) waitForResultWithTimeout:(NSTimeInterval) timeout {
     self.timer = [FLTimeoutTimer timeoutTimer:timeout];
-    [self.timer start:^(id<FLResult> result) {
+    [self.timer start:^(FLResult result) {
         [self setFinishedWithResult:result];
     }];
     return [self waitForResult];
@@ -124,7 +152,10 @@
     
     __block BOOL fired = NO;
     
-    FLFinisher* finisher = [FLFinisher finisher:^(id<FLResult> result){ fired = YES; }];
+    FLWorkFinisher* finisher = [FLWorkFinisher finisher:^(FLResult result) { 
+        fired = YES; 
+    }];
+    
     FLAssert_(!finisher.isFinished);
     FLAssert_(fired == NO);
     [finisher setFinished];
@@ -136,7 +167,7 @@
     
     __block BOOL fired = NO;
     
-    FLFinisher* finisher = [FLFinisher finisher:^(id<FLResult> result){ fired = YES; }];
+    FLWorkFinisher* finisher = [FLWorkFinisher finisher:^(FLResult result){ fired = YES; }];
     FLAssert_(!finisher.isFinished);
     FLAssert_(fired == NO);
     [finisher setFinished];
@@ -158,7 +189,7 @@
 
     FLLog(@"async self test");
     
-    FLFinisher* finisher = [FLFinisher finisher];
+    FLWorkFinisher* finisher = [FLWorkFinisher finisher];
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
         [NSThread sleepForTimeInterval:0.25];

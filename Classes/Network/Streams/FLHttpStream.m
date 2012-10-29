@@ -263,14 +263,14 @@
 
 @implementation FLReadStream (Http)
 - (FLHttpMessage*) readResponseHeaders {
-    CFHTTPMessageRef ref = (CFHTTPMessageRef)CFReadStreamCopyProperty(self.readStream, kCFStreamPropertyHTTPResponseHeader);
+    CFHTTPMessageRef ref = (CFHTTPMessageRef)CFReadStreamCopyProperty(self.streamRef, kCFStreamPropertyHTTPResponseHeader);
     FLHttpMessage* message = [FLHttpMessage httpMessageWithHttpMessageRef:ref];
     CFRelease(ref);
     return message;
 }
 
 - (unsigned long) bytesWritten {
-    CFTypeRef number = CFReadStreamCopyProperty(self.readStream, kCFStreamPropertyHTTPRequestBytesWrittenCount);
+    CFTypeRef number = CFReadStreamCopyProperty(self.streamRef, kCFStreamPropertyHTTPRequestBytesWrittenCount);
     unsigned long value = [((__bridge_fl NSNumber*) number) unsignedLongValue];
     CFRelease(number);
     return value;

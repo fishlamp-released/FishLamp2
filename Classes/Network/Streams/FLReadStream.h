@@ -10,11 +10,11 @@
 
 @interface FLReadStream : FLNetworkStream<FLReadStream>  {
 @private
-    CFReadStreamRef _readStream;
+    CFReadStreamRef _streamRef;
     BOOL _open;
     BOOL _reading;
 }
-@property (readonly, assign, nonatomic) CFReadStreamRef readStream;
+@property (readonly, assign, nonatomic) CFReadStreamRef streamRef;
 
 - (id) initWithReadStream:(CFReadStreamRef) writeStream;
 

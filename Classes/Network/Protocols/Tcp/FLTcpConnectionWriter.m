@@ -22,11 +22,11 @@
 }
 
 - (void) sendBytes:(const uint8_t*) bytes length:(NSUInteger) length {
-    [_connection.networkStream sendBytes:bytes length:length];
+    [_connection.networkStream.writeStream sendBytes:bytes length:length];
 }
 
 - (void) sendData:(NSData*) data {
-    [_connection.networkStream sendBytes:data.bytes length:data.length];
+    [_connection.networkStream.writeStream sendBytes:data.bytes length:data.length];
 }
 
 

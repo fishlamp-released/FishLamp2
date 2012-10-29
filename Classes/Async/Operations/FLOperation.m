@@ -7,7 +7,6 @@
 //
 
 #import "FLOperation.h"
-
 #import "FLTraceOff.h"
 
 @interface FLOperation ()
@@ -184,7 +183,7 @@
 
 }
 
-- (id<FLResult>) runSynchronously {
+- (void) runSynchronouslySelf {
 
     @try {
         [self setMoreBusy];
@@ -224,21 +223,26 @@
         [self setLessBusy];
         self.isFinished = YES;
     }
-    
+}
+
+- (FLResult) runSynchronously {
+    return [[self start:nil] waitForResult];
+}
+
+- (void) startWorking:(FLFinisher) finisher {
+
+    [self runSynchronouslySelf];
+
     if(self.didSucceed) {
-        return [FLResult result:self.operationOutput];
+        [finisher setFinishedWithOutput:self.operationOutput];
     }
     else {
-        return [FLResult resultWithError:self.error];
+        [finisher setFinishedWithError:self.error];
     }
 }
 
-- (void) startWorking:(id<FLFinisher>) finisher {
-    [finisher setFinishedWithResult:[self runSynchronously]];
-}
-
-- (id<FLResultPromise>) start:(FLCompletionBlock) completion {
-    FLFinisher* finisher = [FLFinisher finisher:completion];
+- (FLPromisedResult) start:(FLResultBlock) completion {
+    FLWorkFinisher* finisher = [FLWorkFinisher finisher:completion];
     [self startWorking:finisher];
     return finisher;
 }

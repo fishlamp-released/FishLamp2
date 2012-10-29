@@ -36,7 +36,7 @@
 	FLSuperDealloc();
 }
 
-- (void) startWorking:(id<FLFinisher>) finisher {
+- (void) startWorking:(FLFinisher) finisher {
 	[self.httpRequest setHeader:@"SOAPAction" data:[NSString stringWithFormat:@"\"%@\"", self.soapActionHeader]];
 	[self.httpRequest setUtf8Content:[_soap buildStringWithNoWhitespace]];
     [super startWorking:finisher];

@@ -7,8 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+
 #import "FLObjcRuntime.h"
-@protocol FLUnitTestDiscovery <NSObject>
+
+@protocol FLTestFinder <NSObject>
 - (void) addPossibleUnitTestClass:(FLRuntimeInfo) info;
 - (void) addPossibleTestMethod:(FLRuntimeInfo) info;
 @end

@@ -19,17 +19,17 @@ static void WriteStreamClientCallBack(CFWriteStreamRef readStream, CFStreamEvent
 
 @implementation FLWriteStream
 
-@synthesize writeStream = _writeStream;
+@synthesize streamRef = _streamRef;
 
-- (id) initWithWriteStream:(CFWriteStreamRef) writeStream {
+- (id) initWithWriteStream:(CFWriteStreamRef) streamRef {
     
-    FLAssertIsNotNil_(writeStream);
+    FLAssertIsNotNil_(streamRef);
     
     self = [super init];
     if(self) {
-        _writeStream = writeStream;
-        CFRetain(_writeStream);
-        if(_writeStream) {
+        _streamRef = streamRef;
+        CFRetain(_streamRef);
+        if(_streamRef) {
             CFOptionFlags flags =
                     kCFStreamEventOpenCompleted | 
                     kCFStreamEventCanAcceptBytes |
@@ -37,26 +37,26 @@ static void WriteStreamClientCallBack(CFWriteStreamRef readStream, CFStreamEvent
                     kCFStreamEventErrorOccurred;
 
             CFStreamClientContext ctxt = {0, (__bridge_fl void*) self, NULL, NULL, NULL};
-            CFWriteStreamSetClient(_writeStream, flags, WriteStreamClientCallBack, &ctxt);
+            CFWriteStreamSetClient(_streamRef, flags, WriteStreamClientCallBack, &ctxt);
         }
     }
 
     return self;
 }
 
-+ (id) writeStream:(CFWriteStreamRef) writeStream {
-    return FLReturnAutoreleased([[[self class] alloc] initWithWriteStream:writeStream]);
++ (id) writeStream:(CFWriteStreamRef) streamRef {
+    return FLReturnAutoreleased([[[self class] alloc] initWithWriteStream:streamRef]);
 }
 
 - (void) dealloc {
-    if(_writeStream) {
+    if(_streamRef) {
         if(self.isRunning) {
             [self closeStream];
         }
     
-        CFWriteStreamSetClient(_writeStream, kCFStreamEventNone, NULL, NULL);
-        CFRelease(_writeStream);
-        _writeStream = nil;
+        CFWriteStreamSetClient(_streamRef, kCFStreamEventNone, NULL, NULL);
+        CFRelease(_streamRef);
+        _streamRef = nil;
     }
     
 #if FL_NO_ARC
@@ -65,7 +65,7 @@ static void WriteStreamClientCallBack(CFWriteStreamRef readStream, CFStreamEvent
 }
 
 - (void) openStream {
-    CFWriteStreamRef stream = self.writeStream;
+    CFWriteStreamRef stream = self.streamRef;
     if(stream) {
         [super openStream];
         CFWriteStreamScheduleWithRunLoop(stream, self.runLoop, kRunLoopMode);
@@ -74,7 +74,7 @@ static void WriteStreamClientCallBack(CFWriteStreamRef readStream, CFStreamEvent
 }
 
 - (void) closeStream {
-    CFWriteStreamRef stream = self.writeStream;
+    CFWriteStreamRef stream = self.streamRef;
     if(stream && self.isRunning) {
         CFWriteStreamUnscheduleFromRunLoop(stream, self.runLoop, kRunLoopMode);
         CFWriteStreamClose(stream);
@@ -83,7 +83,7 @@ static void WriteStreamClientCallBack(CFWriteStreamRef readStream, CFStreamEvent
 }
 
 - (NSError*) error {
-    CFErrorRef error = CFWriteStreamCopyError(self.writeStream);
+    CFErrorRef error = CFWriteStreamCopyError(self.streamRef);
     
 #if FL_ARC
     return (__bridge_transfer NSError*) error;
@@ -96,11 +96,11 @@ static void WriteStreamClientCallBack(CFWriteStreamRef readStream, CFStreamEvent
 
     FLAssert_v([NSThread currentThread] == self.thread, @"tcp operation on wrong thread");
  
-    FLAssertIsNotNil_(self.writeStream);
+    FLAssertIsNotNil_(self.streamRef);
 
     const uint8_t *buffer = bytes;
     while(length > 0) {
-        CFIndex amt = CFWriteStreamWrite( self.writeStream, buffer, length);
+        CFIndex amt = CFWriteStreamWrite( self.streamRef, buffer, length);
         if(amt <= 0) {   
             FLThrowErrorCode_v((NSString*) kCFErrorDomainCFNetwork, kCFURLErrorBadServerResponse, NSLocalizedString(@"writing networkbytes failed: %d", result));
         }
@@ -117,10 +117,18 @@ static void WriteStreamClientCallBack(CFWriteStreamRef readStream, CFStreamEvent
 }
 
 - (unsigned long) bytesWritten {
-    CFTypeRef number = CFWriteStreamCopyProperty(self.writeStream, kCFStreamPropertyDataWritten);
+    CFTypeRef number = CFWriteStreamCopyProperty(self.streamRef, kCFStreamPropertyDataWritten);
     unsigned long value = [((__bridge_fl NSNumber*) number) unsignedLongValue];
     CFRelease(number);
     return value;
+}
+
+- (id<FLReadStream>) readStream {
+    return nil;
+}
+
+- (id<FLWriteStream>) writeStream {
+    return self;
 }
 
 @end

@@ -150,5 +150,14 @@
     return error;
 }
 
+- (id<FLReadStream>) readStream {
+    return nil;
+}
+
+- (id<FLReadStream>) writeStream {
+    return nil;
+}
+
+
 @end
 

@@ -95,7 +95,7 @@
 
     FLAssertIsNotNil_v(self.networkConnection, nil);
     
-    id<FLResult> result = [self.networkConnection runSynchronously];
+    FLResult result = [self.networkConnection runSynchronously];
     if(result.didSucceed) {
         [self handleAsyncResultFromConnection:result.output];
     }

@@ -12,7 +12,7 @@
 #import "FLDebug.h"
 #import "FLMutableError.h"
 #import "FLErrorDomain.h"
-NSString* const FLErrorCodeLocationKey = @"com.fishlamp.error.stackTrace";
+NSString* const FLErrorStackTraceKey = @"com.fishlamp.error.stackTrace";
 NSString* const FLErrorCommentKey = @"com.fishlamp.error.comment";;
 NSString* const FLErrorReasonKey = @"com.fishlamp.error.reason";
 NSString* const FLErrorDomainKey = @"com.fishlamp.error.domain";
@@ -73,7 +73,7 @@ NSString* const FLErrorDomainKey = @"com.fishlamp.error.domain";
 
 
 - (FLStackTrace*) stackTrace {
-    return [self.userInfo objectForKey:FLErrorCodeLocationKey];
+    return [self.userInfo objectForKey:FLErrorStackTraceKey];
 }
 
 - (NSString*) reason {
@@ -109,7 +109,7 @@ NSString* makeDescriptionString(NSString* reason, NSString* comment) {
 //    const FLDictionaryEntry objects[] = {
 //        { reason, NSLocalizedFailureReasonErrorKey },
 //        { comment, FLErrorCommentKey },
-//        { stackTrace, FLErrorCodeLocationKey },
+//        { stackTrace, FLErrorStackTraceKey },
 //        { makeDescriptionString(reason, comment), NSLocalizedDescriptionKey },
 //        FLDictionaryEntryNil
 //    };
@@ -130,7 +130,7 @@ NSString* makeDescriptionString(NSString* reason, NSString* comment) {
         { FLGetErrorDomain(domainStringOrObject), FLErrorDomainKey },
         { reason, NSLocalizedFailureReasonErrorKey },
         { comment, FLErrorCommentKey },
-        { stackTrace, FLErrorCodeLocationKey },
+        { stackTrace, FLErrorStackTraceKey },
         { makeDescriptionString(reason, comment), NSLocalizedDescriptionKey },
          FLDictionaryEntryNil
     };

@@ -137,5 +137,13 @@ static void HostResolutionCallback(CFHostRef theHost, CFHostInfoType typeInfo, c
     self.isOpen = NO;
 }
 
+- (id<FLReadStream>) readStream {
+    return nil;
+}
+
+- (id<FLWriteStream>) writeStream {
+    return nil;
+}
+
 
 @end

@@ -8,6 +8,8 @@
 
 #import "FLFifoQueue.h"
 #import "NSObject+FLSelectorPerforming.h"
+#import "FLWorkFinisher.h"
+#import "FLFallible.h"
 
 @interface FLAsyncQueue ()
 + (dispatch_queue_t) dispatchQueue;
@@ -19,14 +21,14 @@
     return dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
 }
 
-+ (id) addWorkerBlock:(FLWorkerBlock) block {
++ (FLPromisedResult) addWorkerBlock:(FLWorkerBlock) block {
     return [self addWorkerBlock:block completion:nil];
 }
 
-+ (id) addWorkerBlock:(FLWorkerBlock) block
-                completion:(FLCompletionBlock) completion {
++ (FLPromisedResult) addWorkerBlock:(FLWorkerBlock) block
+                completion:(FLResultBlock) completion {
     
-    FLFinisher* finisher = [FLFinisher finisher:completion];
+    FLWorkFinisher* finisher = [FLWorkFinisher finisher:completion];
 
     block = FLCopyBlock(block);
 
@@ -40,7 +42,7 @@
             }
         }
         @catch(NSException* ex) {
-            [finisher setFinishedWithResult:[FLAsyncResult resultWithError:ex.error]];
+            [finisher setFinishedWithError:ex.error];
         }
         
     });
@@ -48,22 +50,21 @@
     return finisher;
 }
 
-+ (id) addWorker:(id<FLWorker>) aWorker {
++ (FLPromisedResult) addWorker:(id<FLWorker>) aWorker {
     return [self addWorker:aWorker];
 }
 
-+ (id) addWorker:(id<FLWorker>) aWorker
-                 completion:(FLCompletionBlock) completion {
++ (FLPromisedResult) addWorker:(id<FLWorker>) aWorker
+                 completion:(FLResultBlock) completion {
     
-    FLFinisher* finisher = [FLFinisher finisher:completion];
+    FLWorkFinisher* finisher = [FLWorkFinisher finisher:completion];
 
     dispatch_async([self dispatchQueue],  ^{
         @try {
             [aWorker startWorking:finisher];
         }
         @catch(NSException* ex) {
-            [((id)aWorker) performIfRespondsToSelector:@selector(handleAsyncWorkerError:) withObject:ex.error];
-            [finisher setFinishedWithResult:[FLAsyncResult resultWithError:ex.error]];
+            [finisher setFinishedWithError:ex.error];
         }
     });
 
@@ -104,13 +105,13 @@ FLSynthesizeSingleton(FLFifoQueue);
 #endif
 }
 
-//+ (id) addWorkerBlock:(FLWorkerBlock) block {
+//+ (FLPromisedResult) addWorkerBlock:(FLWorkerBlock) block {
 //    return [FLFifoQueue addWorkerBlock:block completion:nil];
 //}
 //
-//+ (id) addWorkerBlock:(FLWorkerBlock) block completion:(dispatch_block_t) completion {
+//+ (FLPromisedResult) addWorkerBlock:(FLWorkerBlock) block completion:(dispatch_block_t) completion {
 //    block = FLCopyBlock(block);
-//    FLFinisher* finisher = [FLFinisher finisher:completion];
+//    FLFallible finisher = [FLWorkFinisher finisher:completion];
 //    
 //    dispatch_async([FLFifoQueue instance].queue, ^{
 //        @try {
@@ -129,10 +130,10 @@ FLSynthesizeSingleton(FLFifoQueue);
 //    return finisher;
 //}
 //
-//+ (id) addWorker:(id<FLWorker>) aWorker
-//                 completion:(FLCompletionBlock) completion {
+//+ (FLPromisedResult) addWorker:(id<FLWorker>) aWorker
+//                 completion:(FLResultBlock) completion {
 // 
-//    FLFinisher* finisher = [FLFinisher finisher:completion];
+//    FLFallible finisher = [FLWorkFinisher finisher:completion];
 //
 //    dispatch_async([FLFifoQueue instance].queue, ^{
 //        @try {
@@ -142,7 +143,7 @@ FLSynthesizeSingleton(FLFifoQueue);
 ////            [finisher waitForResult];
 //        }
 //        @catch(NSException* ex) {
-//            [((id)aWorker) performIfRespondsToSelector:@selector(handleAsyncWorkerError:) withObject:ex.error];
+//            [((FLPromisedResult)aWorker) performIfRespondsToSelector:@selector(handleAsyncWorkerError:) withObject:ex.error];
 //            [finisher setFinished];
 //        }
 //    });

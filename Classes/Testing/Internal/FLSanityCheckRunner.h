@@ -6,10 +6,10 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import "FLWorker.h"
-#import "FLUnitTestDiscovery.h"
+#import "FLSimpleWorker.h"
+#import "FLTestFinder.h"
 
-@interface FLSanityCheckRunner : NSObject<FLWorker, FLUnitTestDiscovery> {
+@interface FLSanityCheckRunner : FLSimpleWorker<FLTestFinder> {
 @private
     NSMutableSet* _sanityTests;
 }

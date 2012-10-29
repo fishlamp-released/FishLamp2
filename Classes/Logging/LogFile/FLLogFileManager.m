@@ -33,7 +33,7 @@ FLSynthesizeSingleton(FLLogFileManager);
     if(_logFile) {
         FLLogFile* closeMe = _logFile;
 
-        [FLFifoQueue addWorkerBlock:^(id<FLFinisher> finisher){
+        [FLFifoQueue addWorkerBlock:^(FLFinisher finisher){
             [closeMe closeLogFile];
             
             [finisher setFinished];
@@ -178,7 +178,7 @@ FLSynthesizeSingleton(FLLogFileManager);
 
 - (void) logString:(NSString*) string {
 
-    [FLFifoQueue addWorkerBlock:^(id<FLFinisher> finisher){
+    [FLFifoQueue addWorkerBlock:^(FLFinisher finisher){
         if(!_logFile) {
             [self _openLogFile];
         }

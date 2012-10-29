@@ -8,24 +8,23 @@
 
 #import "FLByteBuffer.h"
 
-
-#define DeadBeaf ((uint32_t*)(self.content + self.capacity))
-
 #define FLAssertDeadBeaf_v() \
-            FLAssert_v((*DeadBeaf) == 0xDEADBEAF, @"buffer overrun detected");
+            FLAssert_v((*_deadBeafPtr) == 0xDEADBEAF, @"buffer overrun detected");
 
 @implementation FLByteBuffer
 
 @synthesize length = _contentLength;
 
-- (BOOL) checkDeadBeaf {
-    return *DeadBeaf == 0xDEADBEAF;
-}
-
 - (id) init {
     self = [super init];
     if(self) {
-       *DeadBeaf = 0xDEADBEAF;
+
+#if DEBUG
+        _deadBeafPtr = ((uint32_t*)(self.content + self.capacity));
+        *(_deadBeafPtr) = 0xDEADBEAF;
+#endif        
+       
+       _contentLength = 0;
     }
     
     return self;
@@ -48,9 +47,9 @@
 }
 
 - (void) incrementContentLength:(NSUInteger) byAmount {
-    _contentLength += byAmount;
     FLAssertDeadBeaf_v();
-    FLAssert_v(_contentLength < self.capacity, @"buffer overrun");
+    _contentLength += byAmount;
+    FLConfirm_v(_contentLength < self.capacity, @"buffer overrun");
 }
 
 - (uint8_t*) content {
@@ -93,7 +92,7 @@ FLAssertDefaultInitNotCalled_();
 - (id) initWithCapacity:(NSUInteger) capacity {
     self = [super init];
     if(self) {
-        _capacity = capacity - FLByteBufferDeadBeafSize;
+        _capacity = capacity + FLByteBufferDeadBeafSize;
         _buffer = malloc(capacity);
     }
     

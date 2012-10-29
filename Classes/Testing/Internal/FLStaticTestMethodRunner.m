@@ -31,7 +31,7 @@
 - (BOOL) runTestWithFinisher:(FLSelectorInfo*) info {
     __block BOOL wasRun = NO;
     
-    FLFinisher* notifier = [FLFinisher finisher:^(id<FLResult> result){
+    FLWorkFinisher* notifier = [FLWorkFinisher finisher:^(FLResult result){
         wasRun = YES;
     }];
 
@@ -102,7 +102,7 @@
     return passed;
 }
 
-- (void) startWorking:(id<FLFinisher>) finisher {
+- (void) startWorking:(FLFinisher) finisher {
 //    FLAssert_([self runBatchOfMethods:_sanityChecks haltOnFail:YES]);
 //    FLAssert_([self runBatchOfMethods:_finishSanityChecks haltOnFail:YES]);
 //    FLAssert_([self runBatchOfMethods:_selfTests haltOnFail:NO]);

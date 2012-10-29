@@ -98,7 +98,7 @@
 }
 
 - (void) _readAvailableBytes {
-   [self.networkStream readAvailableBytesWithBlock:^(BOOL* stop) {
+   [self.networkStream.readStream readAvailableBytesWithBlock:^(BOOL* stop) {
         *stop = YES;
         
         for(FLTcpRequest* request in _requests) {

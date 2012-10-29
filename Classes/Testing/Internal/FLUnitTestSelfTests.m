@@ -21,9 +21,12 @@
 - (id) init {
     self = [super init];
     if(self) {
-        [self.results setTestResultForSelector:@selector(basicTest)];
     }
     return self;
+}
+
+- (void) testsWillRun {
+    [self.results setTestResultForSelector:@selector(basicTest)];
 }
 
 - (void) basicTest {

@@ -8,21 +8,21 @@
 
 #import "FishLampCore.h"
 #import "FLWorker.h"
-#import "FLFinisher.h"
+#import "FLWorkFinisher.h"
 #import "FLCollectionIterator.h"
+#import "FLSimpleWorker.h"
 
 @class FLBot;
 
-@protocol FLBot <FLWorkerErrorDelegate, FLWorker>
+@protocol FLBot <FLWorker, FLRunnable, FLFallible>
 @property (readonly, assign) id superbot;
 
-// by default set to self.
-@property (readwrite, assign) id<FLWorkerErrorDelegate> errorDelegate;
+@property (readwrite, assign) id<FLFallibleDelegate> fallibleDelegate;
 @end
 
 typedef void (^FLBotVisitor)(id bot, BOOL* stop);
 
-@interface FLBot : NSObject<FLBot> {
+@interface FLBot : FLSimpleWorker<FLBot> {
 @private
     __unsafe_unretained id _superbot;
     __unsafe_unretained id _errorDelegate;
@@ -32,10 +32,10 @@ typedef void (^FLBotVisitor)(id bot, BOOL* stop);
 
 + (id) bot;
 
-- (id<FLResult>) runBot:(FLCompletionBlock) completion;
+- (FLResult) runBot:(FLResultBlock) completion;
 
-+ (id<FLResult>) start:(id<FLWorker>) worker
-                           completion:(FLCompletionBlock) completion;
++ (FLResult) start:(id<FLWorker>) worker
+                           completion:(FLResultBlock) completion;
 
 - (BOOL) visitWorkers:(FLBotVisitor) visitor;
 - (BOOL) visitWorkersInReverse:(FLBotVisitor) visitor;
@@ -50,7 +50,7 @@ typedef void (^FLBotVisitor)(id bot, BOOL* stop);
 @end
 
 @interface FLBot (Yuck)
-- (void) runBlockWithFinisher:(FLFinisher*) finisher
+- (void) runBlockWithFinisher:(FLFinisher) finisher
                         block:(void (^)()) block;
 @end
 

@@ -24,7 +24,7 @@
     return [self create];
 }
 
-- (void) startWorking:(id<FLFinisher>) finisher {
+- (void) startWorking:(FLFinisher) finisher {
     
     [_classList sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         

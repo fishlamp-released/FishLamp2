@@ -1,5 +1,5 @@
 //
-//  FLFinisher.h
+//  FLWorkFinisher.h
 //  FishLamp
 //
 //  Created by Mike Fullerton on 10/18/12.
@@ -8,29 +8,30 @@
 
 #import <Foundation/Foundation.h>
 
-#import "FLWorker.h"
-@class FLTimeoutTimer;
+#import "FLResult.h"
 
-@interface FLFinisher : NSObject<FLFinisher, FLResultPromise> {
-@private
-    FLTimeoutTimer* _timer;
-    BOOL _finished;
-    FLCompletionBlock _completionBlock;
-    id<FLResult> _result;
-}
+@protocol FLFinisher <NSObject>
 
-- (id) initWithCompletionBlock:(FLCompletionBlock) completion;
-+ (id) finisher:(FLCompletionBlock) completion;
-+ (id) finisher;
+@property (readonly, assign) BOOL isFinished;
+
+// this is nil until setFinished isCalled
+@property (readonly, strong) FLResult result;
+
+// send successfull result with no payload
+- (void) setFinished;
+
+// send a either successful or failed result
+- (void) setFinishedWithSuccess:(BOOL) success;
+
+// send a successfull result with object payload (nil object is ok)
+- (void) setFinishedWithOutput:(id) output;
+
+// send a failed result with an error payload (nil error is ok)
+- (void) setFinishedWithError:(NSError*) error;
+
+// send your own result object.
+- (void) setFinishedWithResult:(FLResult) result;
 
 @end
 
-//@protocol FLAsyncMessage <NSObject>
-//- (BOOL) objectWillHandleAsyncMessage:(id) object finisher:(FLFinisher*) finisher;
-//@end
-//
-//@protocol FLAsyncMessageSender <NSObject>
-//- (BOOL) sendAsyncMessage:(id<FLAsyncMessage>) message
-//          completion:(FLCompletionBlock) completion;
-//@end
-
+typedef id<FLFinisher> FLFinisher;

@@ -15,7 +15,7 @@
     __unsafe_unretained FLTcpConnection* _connection;
 }
 
-@property (readonly, assign, nonatomic) FLTcpConnection* connection;
+@property (readonly, assign) FLTcpConnection* connection;
 
 // these read as much as they can an return immediately.
 

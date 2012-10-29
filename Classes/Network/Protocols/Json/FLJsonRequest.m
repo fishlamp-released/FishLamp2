@@ -28,7 +28,7 @@
 	FLSuperDealloc();
 }
 
-- (void) startWorking:(id<FLFinisher>) finisher {
+- (void) startWorking:(FLFinisher) finisher {
     NSData* content = [[_json buildStringWithNoWhitespace] dataUsingEncoding:NSUTF8StringEncoding];
 	[self.httpRequest setContentWithData:content typeContentHeader:@"application/json; charset=utf-8"];
 	[super startWorking:finisher];

@@ -296,7 +296,7 @@
     [self postObservation:@selector(operationQueue:operationWasCancelled:) withObject:operation];
 }
 
-- (void) startWorking:(id<FLFinisher>) finisher {
+- (void) startWorking:(FLFinisher) finisher {
 
     for(FLOperation* operation in self.operations.forwardIterator) {
         [operation runSynchronously];
@@ -308,13 +308,13 @@
     [finisher setFinished];
 }
 
-- (id<FLResultPromise>) start:(FLCompletionBlock) completion {
-    FLFinisher* finisher = [FLFinisher finisher:completion];
+- (FLPromisedResult) start:(FLResultBlock) completion {
+    FLWorkFinisher* finisher = [FLWorkFinisher finisher:completion];
     [self startWorking:finisher];
     return finisher;
 }
 
-- (id<FLResult>) runSynchronously {
+- (FLResult) runSynchronously {
     return [[self start:nil] waitForResult];
 }
 

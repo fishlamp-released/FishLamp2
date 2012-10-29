@@ -10,7 +10,7 @@
 #import "FLBitFlags.h"
 #import "FLObservable.h"
 #import "FLWorker.h"
-#import "FLFinisher.h"
+#import "FLWorkFinisher.h"
 #import "FLTimeoutTimer.h"
 
 #import "FLNetworkStream.h"
@@ -28,7 +28,7 @@ extern const FLNetworkConnectionByteCount FLNetworkConnectionByteCountZero;
 @interface FLNetworkConnection : FLObservable<FLNetworkStreamDelegate, FLWorker, FLRunnable> {
 @private
     __unsafe_unretained NSThread* _thread;
-    id<FLFinisher> _finisher;
+    FLFinisher _finisher;
     id<FLNetworkStream> _networkStream;
     FLTimeoutTimer* _timeoutTimer;
     FLNetworkConnectionByteCount _writeByteCount;
@@ -41,7 +41,7 @@ extern const FLNetworkConnectionByteCount FLNetworkConnectionByteCountZero;
 
 - (void) cancelConnection; // can be called from any thread.
 
-@property (readonly, strong) id networkStream;
+@property (readonly, strong) id<FLNetworkStream> networkStream;
 - (id<FLNetworkStream>) createNetworkStream;
 
 - (void) touchTimestamp;

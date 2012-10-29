@@ -8,18 +8,21 @@
 
 #import <Foundation/Foundation.h>
 #import "FishLampCore.h"
-#import "FLFinisher.h"
+#import "FLWorkFinisher.h"
 #import "FLWorker.h"
+#import "FLResult.h"
+#import "FLPromisedResult.h"
+#import "FLBlockWorker.h"
 
 @interface FLAsyncQueue : NSObject
 
-+ (id) addWorkerBlock:(FLWorkerBlock) block;
++ (FLPromisedResult) addWorkerBlock:(FLWorkerBlock) completion;
 
-+ (id) addWorkerBlock:(FLWorkerBlock) block
-     completion:(FLCompletionBlock) completion;
++ (FLPromisedResult) addWorkerBlock:(FLWorkerBlock) block
+           completion:(FLResultBlock) completion;
 
-+ (id) addWorker:(id<FLWorker>) aWorker
-      completion:(FLCompletionBlock) completion;
++ (FLPromisedResult) addWorker:(id<FLWorker>) aWorker
+      completion:(FLResultBlock) completion;
 @end
 
 

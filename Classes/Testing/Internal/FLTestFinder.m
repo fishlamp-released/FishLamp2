@@ -6,5 +6,5 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import "FLUnitTestDiscovery.h"
+#import "FLTestFinder.h"
 

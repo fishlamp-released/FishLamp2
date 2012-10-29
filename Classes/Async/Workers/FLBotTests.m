@@ -16,7 +16,7 @@
 @end
 
 @implementation FLTestBot
-- (void) startWorking:(id<FLFinisher>) finisher {
+- (void) startWorking:(FLFinisher) finisher {
     [finisher setFinished];
 }
 @end
@@ -31,7 +31,7 @@
     __block BOOL passed = NO;
 
     id finisher = [FLBot start:[FLTestBot bot] 
-        completion:^(id<FLResult> result){
+        completion:^(FLResult result){
         passed = YES;
     }];
 
@@ -44,13 +44,13 @@
 
 - (void) testMainThreadCompletion {
     
-//    FLWorkerBot* worker = [FLWorkerBot workerBot:^(FLFinisher* completion) {
+//    FLWorkerBot* worker = [FLWorkerBot workerBot:^(FLFinisher completion) {
 //        UTLog(@"main thread bot");
 //        FLAssert_([NSThread isMainThread]);
 //        [completion setFinished];
 //    }];
 //    
-//    id<FLResult> result = [FLForegroundBot start:worker completion: ^(id<FLResult> result) {
+//    FLResult result = [FLForegroundBot start:worker completion: ^(FLResult result) {
 //        FLAssert_([NSThread isMainThread]);
 //    }];
 //    
@@ -65,7 +65,7 @@
 
 //    FLBot* bot = [FLForegroundBot bot];
 //    
-//    [bot addAsyncWorker:[FLWorkerBot workerBot:^(FLFinisher* completion) {
+//    [bot addAsyncWorker:[FLWorkerBot workerBot:^(FLFinisher completion) {
 //        FLAssert_([NSThread isMainThread]);
 //        FLLog(@"hi from main thread");
 //        [completion setFinished];
@@ -80,7 +80,7 @@
 
 //    FLBot* bot = [FLBackgroundBot bot];
 //    
-//    [bot addAsyncWorker:[FLWorkerBot workerBot:^(FLFinisher* completion) {
+//    [bot addAsyncWorker:[FLWorkerBot workerBot:^(FLFinisher completion) {
 //        FLAssert_(![NSThread isMainThread]);
 //        FLLog(@"hi from bg thread");
 //        [completion setFinished];
@@ -95,17 +95,17 @@
 
 //
 //- (void) testBackgroundInForeground {
-//    [[bot addAsyncWorker:[FLBackgroundBot bot]] addAsyncWorker:[FLWorkerBot workerBot:^(FLFinisher* completion) {
+//    [[bot addAsyncWorker:[FLBackgroundBot bot]] addAsyncWorker:[FLWorkerBot workerBot:^(FLFinisher completion) {
 //        UTLog(@"background bot");
 //        [completion setFinished];
 //    }]];
 //
-//    [[bot addAsyncWorker:[FLBackgroundBot bot]] addAsyncWorker:[FLWorkerBot workerBot:^(FLFinisher* completion) {
+//    [[bot addAsyncWorker:[FLBackgroundBot bot]] addAsyncWorker:[FLWorkerBot workerBot:^(FLFinisher completion) {
 //        UTLog(@"another background bot");
 //        [completion setFinished];
 //    }]];
 //
-//    [[bot addAsyncWorker:[FLForegroundBot bot]] addAsyncWorker:[FLWorkerBot workerBot:^(FLFinisher* completion) {
+//    [[bot addAsyncWorker:[FLForegroundBot bot]] addAsyncWorker:[FLWorkerBot workerBot:^(FLFinisher completion) {
 //        UTLog(@"foreground bot");
 //        
 //        [completion setFinished];

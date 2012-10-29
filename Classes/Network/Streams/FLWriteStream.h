@@ -10,13 +10,13 @@
 
 @interface FLWriteStream : FLNetworkStream<FLWriteStream> {
 @private
- 	CFWriteStreamRef _writeStream;
+ 	CFWriteStreamRef _streamRef;
     BOOL _open;
 }
-@property (readonly, assign) CFWriteStreamRef writeStream;
+@property (readonly, assign) CFWriteStreamRef streamRef;
 
-- (id) initWithWriteStream:(CFWriteStreamRef) writeStream;
-+ (id) writeStream:(CFWriteStreamRef) writeStream;
+- (id) initWithWriteStream:(CFWriteStreamRef) streamRef;
++ (id) writeStream:(CFWriteStreamRef) streamRef;
 
 @end
 

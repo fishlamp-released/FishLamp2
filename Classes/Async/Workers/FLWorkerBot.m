@@ -9,7 +9,7 @@
 #import "FLWorkerBot.h"
 
 //@interface FLWorkerBot ()
-//@property (readwrite, copy, nonatomic) FLCompletionBlock block;
+//@property (readwrite, copy, nonatomic) FLResultBlock block;
 //@end
 //
 //@implementation FLWorkerBot
@@ -36,7 +36,7 @@
 //}
 //#endif
 //
-//- (void) startWorking:(id<FLFinisher>) finisher {
+//- (void) startWorking:(FLFinisher) finisher {
 //    if(_block) {
 //        _block(finisher);
 //    }

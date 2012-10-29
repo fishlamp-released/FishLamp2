@@ -9,7 +9,7 @@
 #import "FLTimeoutTimer.h"
 
 @interface FLTimeoutTimer ()
-@property (readwrite, strong) id<FLFinisher> finisher;
+@property (readwrite, strong) FLFinisher finisher;
 @property (readwrite, assign) NSTimeInterval timeoutInterval;
 @property (readwrite, strong) NSTimer* timer;
 @property (readwrite, assign) NSTimeInterval timestamp;
@@ -64,7 +64,7 @@
         self.timedOut = YES;
         [self postObservation:@selector(timeoutTimerDidTimeout:)];
         
-        [self.finisher setFinishedWithResult:[FLResult resultWithError:[NSError timeoutError]]];
+        [self.finisher setFinishedWithError:[NSError timeoutError]];
         [self requestCancel];
     }
     
@@ -91,7 +91,7 @@
     self.timer = nil;
 }    
     
-- (void) startWorking:(id<FLFinisher>) finisher {
+- (void) startWorking:(FLFinisher) finisher {
     [self killTimer];
 
 // TODO: this .25 for progress. It could be closer to 1 second if
@@ -106,16 +106,16 @@
     [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSDefaultRunLoopMode];
 }
 
-- (id<FLResultPromise>) start:(FLCompletionBlock) completion {
+- (FLPromisedResult) start:(FLResultBlock) completion {
     FLAssertIsNotNil_v(self.finisher, @"already started");
     
-    FLFinisher* finisher = [FLFinisher finisher:completion];
+    FLWorkFinisher* finisher = [FLWorkFinisher finisher:completion];
     self.finisher = finisher;
     [self startWorking:finisher];
     return finisher;
 }
 
-- (id<FLResult>) runSynchronously {
+- (FLResult) runSynchronously {
     return [[self start:nil] waitForResult];
 }
 

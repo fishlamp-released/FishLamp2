@@ -88,7 +88,7 @@
 }
 
 - (id) testResultForSelector:(SEL) selector {
-    return [self testResultForKey:[_results objectForKey:NSStringFromSelector(selector)]];
+    return [self testResultForKey:NSStringFromSelector(selector)];
 }
 
 - (id) testResultForNumber:(int) number {
@@ -106,7 +106,7 @@
 
 - (BOOL) allTestsPassed {
     @synchronized(self) {
-        for(id result in _results) {
+        for(id result in _results.objectEnumerator) {
             if(![result passed]) {
                 return NO;
             }
@@ -114,6 +114,10 @@
     }
     
     return YES;
+}
+
+- (NSString*) description {
+    return [NSString stringWithFormat:@"%@ %@", [super description], [_results description]];
 }
 
 //- (void) addTestResult:(FLTestResult*) result {

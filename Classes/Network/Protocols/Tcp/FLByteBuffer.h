@@ -7,12 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
-
 #define FLByteBufferDeadBeafSize 4
 
 @interface FLByteBuffer : NSObject {
 @private
     NSUInteger _contentLength;
+#if DEBUG
+    uint32_t* _deadBeafPtr;
+#endif
+    
 }
 
 + (FLByteBuffer*) byteBuffer;
@@ -36,8 +39,6 @@
 - (NSUInteger) appendBytes:(const void*) bytes length:(NSUInteger) length;
 
 - (NSUInteger) appendData:(NSData*) data;
-
-- (BOOL) checkDeadBeaf;
 
 @end
 
@@ -65,8 +66,8 @@
             - (uint8_t*) content { \
                 return (uint8_t*) _buffer; \
             } \
-            - (NSUInteger) bufferLength { \
-                return __SIZE__; \
+            - (NSUInteger) capacity { \
+                return __SIZE__ ; \
             } \
             @end
 

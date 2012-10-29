@@ -9,7 +9,7 @@
 #import "FLSanityCheckRunner.h"
 
 #import "FLWeakReference.h"
-#import "FLFinisher.h"
+#import "FLWorkFinisher.h"
 #import "FLFifoQueue.h"
 
 @implementation FLSanityCheckRunner
@@ -33,7 +33,7 @@
     return [self create];
 }
 
-- (void) startWorking:(id<FLFinisher>) finisher {
+- (void) startWorking:(FLFinisher) finisher {
     
     NSMutableArray* tests = FLReturnAutoreleased([[_sanityTests allObjects] mutableCopy]);
     

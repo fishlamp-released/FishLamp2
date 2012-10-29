@@ -8,7 +8,7 @@
 
 #import "FLObservable.h"
 
-#import "FLFinisher.h"
+#import "FLWorkFinisher.h"
 #import "FLWorker.h"
 
 @interface FLTimeoutTimer : FLObservable<FLWorker, FLRunnable> {
@@ -18,7 +18,7 @@
 //    BOOL _idle;
     BOOL _timedOut;
     NSTimer* _timer;
-    id<FLFinisher> _finisher;
+    FLFinisher _finisher;
     __unsafe_unretained NSThread* _thread;
 }
 @property (readonly, assign) NSTimeInterval timeoutInterval;
