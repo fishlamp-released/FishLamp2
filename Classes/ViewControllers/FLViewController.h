@@ -16,7 +16,7 @@
 #import "FLBackgroundTaskMgr.h"
 #import "FLViewContentsDescriptor.h"
 #import "UIViewController+FLExtras.h"
-#import "FLFinisher.h"
+#import "FLWorkFinisher.h"
 
 @class FLAction;
 
@@ -99,11 +99,11 @@
 
 @property (readonly, strong, nonatomic) FLOperationContext* operationContext;
 
-- (id<FLResultPromise>) startOperation:(FLOperation*) operation
-             completion:(FLCompletionBlock) completion;
+- (FLPromisedResult) startOperation:(FLOperation*) operation
+             completion:(FLResultBlock) completion;
 
-- (id<FLResultPromise>) startAction:(FLAction*) action
-             completion:(FLCompletionBlock) completion;
+- (FLPromisedResult) startAction:(FLAction*) action
+             completion:(FLResultBlock) completion;
 
 
 @end

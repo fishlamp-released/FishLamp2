@@ -96,7 +96,7 @@
     FLAction* loader = [self.dataModel childrenLoaderForGallery:self.galleryContainer
         startingIndex:startingIndex];
     
-    [self startAction:loader completion:^(id<FLResult> result){
+    [self startAction:loader completion:^(FLResult result){
         if(loader.didSucceed) {
             [self addOrReplaceCellDataRefs:loader.loadChildrenResult];
         }
@@ -126,7 +126,7 @@
 
     FLAction* loader = [self.dataModel galleryLoaderWithGalleryID:self.galleryID];
     
-    [self startAction:loader completion: ^(id<FLResult> result) {
+    [self startAction:loader completion: ^(FLResult result) {
         [self setFinishedRefreshing];
         if(loader.didSucceed) {
             self.galleryContainer = loader.loadGalleryResult;

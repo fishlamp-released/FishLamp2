@@ -71,7 +71,7 @@
 
     [action addOperation:operation];
 
-	[viewController startAction:action completion: ^(id<FLResult> result) {
+	[viewController startAction:action completion: ^(FLResult result) {
         [self _didCompleteLoad:action]; 
         }];
 

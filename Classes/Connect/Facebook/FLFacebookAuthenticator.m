@@ -68,7 +68,7 @@
     
     [action addOperation:operation];
 
-	[self.viewController startAction:action completion:^(id<FLResult> result){
+	[self.viewController startAction:action completion:^(FLResult result){
         if([action didSucceed]) {
             [_delegate facebookAuthenticator:self authenticationDidComplete:[FLFacebookMgr instance].session];
         }
@@ -152,7 +152,7 @@
                                                                   presentationBehavior:[FLModalPresentationBehavior instance]]];
 
         [action actionDescription].actionType = FLActionDescriptionTypeAuthenticate;
-		[viewController startAction:action completion: ^(id<FLResult> result) {
+		[viewController startAction:action completion: ^(FLResult result) {
             [self _didCompleteFacebookAction:action];
             }];
     }

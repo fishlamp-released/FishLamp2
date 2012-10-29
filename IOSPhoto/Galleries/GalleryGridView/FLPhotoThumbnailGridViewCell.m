@@ -82,7 +82,7 @@
                                                               sizeInView:self.frame.size
                                                                 sizeHint:FLGalleryImageSizeHintThumbnail];
     
-    [controller startAction:loader completion: ^(id<FLResult> result) {
+    [controller startAction:loader completion: ^(FLResult result) {
         
 //            [self setVisibleViewWithViewID:FLCellViewIDSecond withBlock:^(FLFinishedAnimationBlock finished) {
 //                [self _showThumbnail:loader.imageResult 
