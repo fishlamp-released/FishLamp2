@@ -15,10 +15,10 @@
 @interface FLBot ()
 // optional overrides
 // 
-//- (FLFinisher*) runBotWithFinisher:(FLFinisher*) finisher;
+//- (id<FLFinisher>) runBotWithFinisher:(id<FLFinisher>) finisher;
 
 - (void) runWorkers:(id<FLCollectionIterator>) iterator
-       withFinisher:(FLFinisher*) finisher;
+       withFinisher:(id<FLFinisher>) finisher;
 
 @property (readwrite, assign) id superbot;
 @end
@@ -37,7 +37,7 @@
     return self;
 }
 
-- (FLFinisher*) runBot:(FLCompletionBlock) completion {
+- (id<FLFinisher>) runBot:(FLCompletionBlock) completion {
 
     FLFinisher* finisher = [FLFinisher finisher:completion];
     @try {
@@ -50,7 +50,7 @@
     return finisher;
 }
 
-+ (id<FLAsyncResult>) startWorker:(id<FLAsyncWorker>) worker
++ (id<FLResult>) start:(id<FLWorker>) worker
                            completion:(FLCompletionBlock) completion {
     FLBot* host = [[self class] bot];
     [host addAsyncWorker:worker];
@@ -58,9 +58,9 @@
 }
 
 
-- (void) asyncWorker:(id<FLAsyncWorker>) worker
+- (void) asyncWorker:(id<FLWorker>) worker
         encounteredError:(NSError*) error
-            finisher:(id<FLAsyncFinisher>) finisher {
+            finisher:(id<FLFinisher>) finisher {
    
     if(!finisher.isFinished) {
    
@@ -98,7 +98,7 @@
 - (BOOL) handleAsyncWorkerError:(NSError*) error {
     
     __block BOOL handledError = NO;
-    [self asyncWorker:self encounteredError:error finisher:[FLFinisher finisher:^(id<FLAsyncResult> result){
+    [self asyncWorker:self encounteredError:error finisher:[FLFinisher finisher:^(id<FLResult> result){
         handledError = YES;
     }]];
     return handledError;
@@ -111,11 +111,11 @@
 
 - (void) runNextWorker:(id<FLCollectionIterator>) iterator
            inThread:(NSThread*) thread
-       withFinisher:(FLFinisher*) finisher {
+       withFinisher:(id<FLFinisher>) finisher {
 
     id bot = iterator.nextObject;
     if(bot) {
-        [bot runBot:^(id<FLAsyncResult> result){
+        [bot runBot:^(id<FLResult> result){
             if([NSThread currentThread] == thread) {
                 [self runNextWorker:iterator inThread:thread withFinisher:finisher];
             }
@@ -132,7 +132,7 @@
 }
 
 - (void) runWorkers:(id<FLCollectionIterator>) iterator
-    withFinisher:(FLFinisher*) finisher {
+    withFinisher:(id<FLFinisher>) finisher {
 
     if(!iterator) {
         [finisher setFinished];
@@ -142,7 +142,7 @@
     [self runNextWorker:iterator inThread:[NSThread currentThread] withFinisher:finisher];
 }
 
-- (void) startWorking:(FLFinisher*) finisher {
+- (void) startWorking:(id<FLFinisher>) finisher {
     [self runWorkers:[_workers forwardIterator] withFinisher:finisher];
 }
 
@@ -158,7 +158,7 @@
 #endif
 }
 
-- (void) addAsyncWorker:(id<FLAsyncWorker>) worker {
+- (void) addAsyncWorker:(id<FLWorker>) worker {
     if(!_workers) {
         _workers = [[NSMutableArray alloc] init];
     }
@@ -171,7 +171,7 @@
     [_workers addObject:worker];
 }
 
-- (void) removeWorker:(id<FLAsyncWorker>) worker {
+- (void) removeWorker:(id<FLWorker>) worker {
     if([worker respondsToSelector:@selector(setSuperbot:)]) {
         FLAssert_v([((id)worker) superbot] == self, @"removing from wrong bot");
         [((id)worker) setSuperbot:nil];
@@ -240,7 +240,7 @@
 
 @implementation FLBackgroundBot
 
-- (void) finishRunning:(FLFinisher*) finisher onThread:(NSThread*) thread {
+- (void) finishRunning:(id<FLFinisher>) finisher onThread:(NSThread*) thread {
     if([NSThread currentThread] == thread) {
         [finisher setFinished];
     }
@@ -252,9 +252,9 @@
     }
 }
 
-- (void) _startWorking:(FLFinisher*) finisher onThread:(NSThread*) onThread {
+- (void) _startWorking:(id<FLFinisher>) finisher onThread:(NSThread*) onThread {
     
-    FLFinisher* newFinisher = [FLFinisher finisher:^(id<FLAsyncResult> result){
+    FLFinisher* newFinisher = [FLFinisher finisher:^(id<FLResult> result){
         [self finishRunning:finisher onThread:onThread];
     }];
     
@@ -266,7 +266,7 @@
     }
 }
 
-- (void) startWorking:(FLFinisher*) finisher {
+- (void) startWorking:(id<FLFinisher>) finisher {
 
     NSThread* startThread = [NSThread currentThread];
 
@@ -284,7 +284,7 @@
 
 @implementation FLForegroundBot
 
-- (void) finishRunning:(FLFinisher*) completion {
+- (void) finishRunning:(id<FLFinisher>) completion {
     if([NSThread isMainThread]) {
         [completion setFinished];
     }
@@ -293,9 +293,9 @@
     }
 }
 
-- (void) _startWorking:(FLFinisher*) finisher {
+- (void) _startWorking:(id<FLFinisher>) finisher {
    
-    FLFinisher* foregroundFinisher = [FLFinisher finisher:^(id<FLAsyncResult> result){
+    FLFinisher* foregroundFinisher = [FLFinisher finisher:^(id<FLResult> result){
             [self finishRunning:finisher]; }];
     @try {
         [super startWorking:foregroundFinisher];
@@ -305,7 +305,7 @@
     }
 }
 
-- (void) startWorking:(FLFinisher*) finisher {
+- (void) startWorking:(id<FLFinisher>) finisher {
     [self performSelectorOnMainThread:@selector(_startWorking:) withObject:finisher waitUntilDone:NO];
 }
 

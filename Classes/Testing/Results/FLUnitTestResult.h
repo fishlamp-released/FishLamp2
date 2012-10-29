@@ -6,10 +6,10 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import "FLTestResultList.h"
+#import "FLTestResultCollection.h"
 @class FLUnitTest;
 
-@interface FLUnitTestResult : FLTestResultList {
+@interface FLUnitTestResult : FLTestResultCollection {
 @private
     FLUnitTest* _unitTest;
 }

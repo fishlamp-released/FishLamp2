@@ -95,15 +95,13 @@
 
     FLAssertIsNotNil_v(self.networkConnection, nil);
     
-    FLFinisher* finisher = [self.networkConnection openConnection:^(id<FLAsyncResult> result){
-        if(result.error) {
-            self.error = result.error;
-        }
-        else {
-            [self handleAsyncResultFromConnection:result.asyncResult];
-        }
-    }];
-    [finisher waitUntilFinished];
+    id<FLResult> result = [self.networkConnection runSynchronously];
+    if(result.didSucceed) {
+        [self handleAsyncResultFromConnection:result.output];
+    }
+    else {
+        self.error = result.error;
+    }
 }
 
 @end

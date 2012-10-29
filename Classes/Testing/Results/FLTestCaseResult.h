@@ -9,15 +9,13 @@
 #import <Foundation/Foundation.h>
 
 #import "FLTestResult.h"
-@class FLTestCase;
 
-@interface FLTestCaseResult : NSObject<FLTestResult> {
+@interface FLTestCaseResult : FLTestResult {
 @private
-    BOOL _didRun;
-    BOOL _didPass;
-    NSError* _error;
     FLTestCase* _testCase;
 }
++ (FLTestCaseResult*) testCaseResult:(FLTestCase*) forTest;
+
 @property (readonly, strong) FLTestCase* testCase;
-@property (readonly, strong, nonatomic) NSError* error;
 @end
+

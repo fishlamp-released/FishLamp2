@@ -49,12 +49,18 @@
 }
 
 - (void) runSelf {
+
+    NSMutableArray* array = [NSMutableArray array];
     NSArray* workers = [self findTestWorkers];
-    for(id<FLAsyncWorker> worker in workers) {
-        FLFinisher* finisher = [FLFinisher finisher];
-        [worker startWorking:finisher];
-        [finisher waitUntilFinished];
+    for(id<FLWorker, FLRunnable> worker in workers) {
+        
+        id<FLResult> result = [worker runSynchronously];
+        if(result) {
+            [array addObject:result];
+        }
     }
+    
+    self.operationOutput = array;
 }
 
 @end

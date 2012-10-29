@@ -10,13 +10,13 @@
 #import "FLCancellable.h"
 #import "FLPredicate.h"
 #import "FLAbortException.h"
-#import "FLAsyncWorker.h"
+#import "FLWorker.h"
 
 @class FLOperation;
 
 typedef void (^FLRunOperationBlock)(FLOperation* operation);
 
-@interface FLOperation : FLObservable<FLAsyncWorker, FLCancellable> {
+@interface FLOperation : FLObservable<FLWorker, FLRunnable, FLCancellable> {
 @private
 	id _operationInput;
     id _operationOutput;
@@ -86,10 +86,6 @@ typedef void (^FLRunOperationBlock)(FLOperation* operation);
 - (void) resetRunStateIfNeeded;
 - (void) setMoreBusy;
 - (void) setLessBusy;
-
-/// @brief this operation run in current thread.
-/// @return YES if succeeded.
-- (BOOL) runSynchronously;
 
 /*
     optional overrides

@@ -7,8 +7,5 @@
 //
 
 #include "XcodeConfigs/LibFishLampCoreShared.xcconfig"
+#include "../XcodeConfigs/FishLampTargetSettings/FLTargetSettingsMac32.xcconfig"
 
-ARCHS = $(ARCHS_STANDARD_32_BIT)
-SUPPORTED_PLATFORMS = macosx
-SDKROOT = macosx
-CLANG_ENABLE_OBJC_ARC = NO

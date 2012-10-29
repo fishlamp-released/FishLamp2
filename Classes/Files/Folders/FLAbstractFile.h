@@ -11,7 +11,7 @@
 
 @class FLFolder;
 
-@protocol FLAbstractFile <FLStorableObject, NSCopying> 
+@protocol FLAbstractFile <FLStorableObject, NSCopying, FLWeaklyReferenced> 
 @property (readwrite, retain, nonatomic) NSString* fileName;
 @property (readwrite, retain, nonatomic) FLFolder* folder;
 @property (readonly, retain, nonatomic) NSString* filePath;

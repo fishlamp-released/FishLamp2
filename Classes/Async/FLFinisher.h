@@ -8,28 +8,20 @@
 
 #import <Foundation/Foundation.h>
 
-#import "FLAsyncWorker.h"
-#import "FLSimpleNotifier.h"
+#import "FLWorker.h"
+@class FLTimeoutTimer;
 
-
-@interface FLFinisher : FLSimpleNotifier<FLAsyncResult, FLAsyncFinisher> {
+@interface FLFinisher : NSObject<FLFinisher, FLResultPromise> {
 @private
-    FLCompletionBlock _completionBlock;
+    FLTimeoutTimer* _timer;
     BOOL _finished;
-    NSUInteger _finishCount;
-    NSUInteger _expectedFinishCount;
-    BOOL _didRunSynchronously;
-    id _asyncResult;
-    NSError* _error;
+    FLCompletionBlock _completionBlock;
+    id<FLResult> _result;
 }
 
 - (id) initWithCompletionBlock:(FLCompletionBlock) completion;
 + (id) finisher:(FLCompletionBlock) completion;
 + (id) finisher;
-
-- (void) setFinishedWithObject:(id) object;
-- (void) setFinishedWithError:(NSError*) error;
-
 
 @end
 

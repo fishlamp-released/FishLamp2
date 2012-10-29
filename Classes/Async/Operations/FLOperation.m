@@ -184,7 +184,7 @@
 
 }
 
-- (BOOL) runSynchronously {
+- (id<FLResult>) runSynchronously {
 
     @try {
         [self setMoreBusy];
@@ -225,12 +225,22 @@
         self.isFinished = YES;
     }
     
-    return self.didSucceed;
+    if(self.didSucceed) {
+        return [FLResult result:self.operationOutput];
+    }
+    else {
+        return [FLResult resultWithError:self.error];
+    }
 }
 
-- (void) startWorking:(id<FLAsyncFinisher>) finisher {
-    [self runSynchronously];
-    [finisher setFinished];
+- (void) startWorking:(id<FLFinisher>) finisher {
+    [finisher setFinishedWithResult:[self runSynchronously]];
+}
+
+- (id<FLResultPromise>) start:(FLCompletionBlock) completion {
+    FLFinisher* finisher = [FLFinisher finisher:completion];
+    [self startWorking:finisher];
+    return finisher;
 }
 
 - (void) _resetState {

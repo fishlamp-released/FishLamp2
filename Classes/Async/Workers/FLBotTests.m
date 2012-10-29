@@ -16,7 +16,7 @@
 @end
 
 @implementation FLTestBot
-- (void) startWorking:(FLFinisher*) finisher {
+- (void) startWorking:(id<FLFinisher>) finisher {
     [finisher setFinished];
 }
 @end
@@ -30,13 +30,14 @@
 
     __block BOOL passed = NO;
 
-    FLFinisher* finisher = [FLBot startWorker:[FLTestBot bot] completion:^(id<FLAsyncResult> result){
+    id finisher = [FLBot start:[FLTestBot bot] 
+        completion:^(id<FLResult> result){
         passed = YES;
     }];
 
-    [finisher waitUntilFinished];
+    [finisher waitForResult];
 
-    FLAssert_(finisher.isFinished);
+    FLAssert_([finisher isFinished]);
 
     FLAssert_(passed == YES);
 }
@@ -49,11 +50,11 @@
 //        [completion setFinished];
 //    }];
 //    
-//    id<FLAsyncResult> result = [FLForegroundBot startWorker:worker completion: ^(id<FLAsyncResult> result) {
+//    id<FLResult> result = [FLForegroundBot start:worker completion: ^(id<FLResult> result) {
 //        FLAssert_([NSThread isMainThread]);
 //    }];
 //    
-//    [result waitUntilFinished];
+//    [result waitForResult];
 //
 //    FLAssert_(result.isFinished);
 //    
@@ -72,7 +73,7 @@
 //    
 //    [[bot runBot:^{
 //        FLAssert_([NSThread isMainThread]);
-//    }] waitUntilFinished];
+//    }] waitForResult];
 }
 
 - (void) testBackground {
@@ -87,7 +88,7 @@
 //    
 //    [[bot runBot:^{
 //        FLAssert_([NSThread isMainThread]);
-//    }] waitUntilFinished];
+//    }] waitForResult];
 
 
 }
@@ -112,7 +113,7 @@
 //    
 //    [[bot runBot:^{
 //        UTLog(@"finished in main thread");
-//    }] waitUntilFinished];
+//    }] waitForResult];
 //}
 
 @end

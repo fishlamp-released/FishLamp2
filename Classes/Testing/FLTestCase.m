@@ -177,10 +177,6 @@ FLTestCaseFlagPair s_flagPairs[] = {
     return result;
 }
 
-- (FLTestCaseResult*) testCaseResult {
-    return [FLTestCaseResult testCaseResult:self];
-}
-
 - (void) runSelf {
     
     FLSelectorInfo* info = [FLSelectorInfo selectorInfoWithClass:[_target class] selector:_testCaseSelector];
@@ -199,7 +195,9 @@ FLTestCaseFlagPair s_flagPairs[] = {
     }
     @catch(NSException* ex) {
         self.error = ex.error;
-        FLLog(@"FAIL: %@", [ex.error description])
+        FLLog(@"FAIL: %@", [ex.error description]);
+        
+        @throw;
     }
     
 }

@@ -17,15 +17,14 @@
 #import "FLOperationQueue.h"
 
 @interface FLUnitTest ()
-@property (readwrite, strong) NSMutableArray* resultsArray;
+@property (readwrite, strong) FLTestResultCollection* results;
 @property (readonly, strong) NSArray* testCases;
 @end
 
 @implementation FLUnitTest
 
-@synthesize resultsArray = _results;
 @synthesize testCases = _testCases;
-@synthesize verifier = _verifier;
+@synthesize results = _results;
 
 + (FLUnitTest*) unitTest {
     return FLReturnAutoreleased([[[self class] alloc] init]);
@@ -35,7 +34,6 @@
     self = [super init];
     if(self) {
         _testCases = [[NSMutableArray alloc] init];
-        _verifier = [[FLTestVerifier alloc] init];
     }
     
     return self;
@@ -60,8 +58,6 @@
         if([selector argumentCount] == 2) {
             FLTestCase* testCase = [FLTestCase testCase:self selector:selector.selector];
             [_testCases addObject:testCase];
-        
-            [self.verifier addExpectedResult:testCase];
         }
         else {
             FLLog(@"Skipping test case %@ (expecting zero arguments but found %d)", [selector prettyString], [selector argumentCount] - 2);
@@ -76,7 +72,7 @@
 
 #if FL_NO_ARC
 - (void) dealloc {
-    [_verifier release];
+    [_results release];
     [_testCases release];
     [_results release];
     [super dealloc];
@@ -88,18 +84,22 @@
 }
 
 - (void) runSelf {
-    @try {
-        [_testCases sortUsingSelector:@selector(compare:)];
-        for(FLTestCase* testCase in _testCases) {
-            [self runSubOperation:testCase];
-            [self.verifier addHandledResult:testCase];
-        }
-
-        FLConfirm_v([self.verifier checkResults], @"test didn't pass verifier results");
-    }
-    @catch(NSException* ex) {
+    [_testCases sortUsingSelector:@selector(compare:)];
     
+    self.results = [FLTestResultCollection create];
+    
+    for(FLTestCase* testCase in _testCases) {
+        @try {
+            [self.results setTestResult:[FLTestCaseResult testCaseResult:testCase] forKey:testCase.testCaseName];
+            [self runSubOperation:testCase];
+            [[self.results testResultForKey:testCase.testCaseName] setPassed];
+        }
+        @catch(NSException* ex) {
+            [[self.results testResultForKey:testCase.testCaseName] setError:ex.error];
+        }
     }
+    
+    FLConfirmIsYes_v([self.results allTestsPassed], @"tests failed");
 }
 
 @end

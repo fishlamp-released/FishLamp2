@@ -24,7 +24,7 @@ const FLNetworkConnectionByteCount FLNetworkConnectionByteCountZero = {0, 0, 0};
 @interface FLNetworkConnection ()
 @property (readwrite, assign) NSThread* thread;
 @property (readwrite, strong) id networkStream;
-@property (readwrite, strong) FLFinisher* finisher;
+@property (readwrite, strong) id<FLFinisher> finisher;
 @property (readwrite, strong) FLTimeoutTimer* timeoutTimer;
 @property (readwrite, assign) FLNetworkConnectionByteCount writeByteCount;
 @property (readwrite, assign) FLNetworkConnectionByteCount readByteCount;
@@ -127,22 +127,27 @@ const FLNetworkConnectionByteCount FLNetworkConnectionByteCountZero = {0, 0, 0};
     [self postObservation:@selector(networkConnectionConnecting:)];
 }
 
-- (void) _closeConnection:(id) result {
+- (void) closeConnectionWithError:(NSError*) error {
     [self.timeoutTimer requestCancel];
     
     [self.networkStream setDelegate:nil];
     [self.networkStream closeStream];
     self.networkStream = nil;
     self.thread = nil;
+    id<FLResult> result = nil;
+    
+    if(error) {
+        result = [FLResult resultWithError:error];
+    }
     
     [self.finisher setFinishedWithResult:result];
     self.finisher = nil;
 }
 
-- (void) startWorking:(FLFinisher*) finisher {
+- (void) startWorking:(id<FLFinisher>) finisher {
    @try {
         if(self.networkStream) {
-            [self _closeConnection:nil];
+            [self closeConnectionWithError:nil];
         }
        
         self.finisher = finisher;
@@ -161,24 +166,35 @@ const FLNetworkConnectionByteCount FLNetworkConnectionByteCountZero = {0, 0, 0};
         [self.networkStream openStream];
     }
     @catch(NSException* ex) {
-        [self _closeConnection:ex.error];
+        [self closeConnectionWithError:ex.error];
     }
 }
 
-- (FLFinisher*) openConnection:(FLCompletionBlock) completionBlock {
-    FLFinisher* finisher = [FLFinisher finisher:completionBlock];
+- (id<FLResultPromise>) start:(FLCompletionBlock) completion {
+    FLFinisher* finisher = [FLFinisher finisher:completion];
     [self startWorking:finisher];
     return finisher;
 }
 
+- (id<FLResult>) runSynchronously {
+    return [[self start:nil] waitForResult];
+}
+
+
+//- (id<FLResultPromise>) openConnection:(FLCompletionBlock) completionBlock {
+//    FLFinisher* finisher = [FLFinisher finisher:completionBlock];
+//    [self startWorking:finisher];
+//    return finisher;
+//}
+
 - (void) networkStreamDidClose:(id<FLNetworkStream>) networkStream {
     [self postObservation:@selector(networkConnectionFinished:)];
-    [self _closeConnection:nil];
+    [self closeConnectionWithError:nil];
 }
 
 - (void) cancelConnection {
     [self.networkStream closeStream];
-    [self _closeConnection:[NSError cancelError]];
+    [self closeConnectionWithError:[NSError cancelError]];
 }
 
 - (void) networkStreamEncounteredError:(id<FLNetworkStream>) networkStream {
@@ -197,7 +213,7 @@ const FLNetworkConnectionByteCount FLNetworkConnectionByteCountZero = {0, 0, 0};
     }];
 
     if(!ignoreError) {
-        [self _closeConnection:error];
+        [self closeConnectionWithError:error];
     }
 }
 
@@ -258,7 +274,7 @@ const FLNetworkConnectionByteCount FLNetworkConnectionByteCountZero = {0, 0, 0};
 //    }
 //}
 
-//- (void) startWorking:(FLFinisher*) finisher {
+//- (void) startWorking:(id<FLFinisher>) finisher {
 //
 //// TODO: We could define our own thread and run them all on the same thread.
 //// We should investigate the perf of this.

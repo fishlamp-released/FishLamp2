@@ -9,7 +9,4 @@
 #import "FLTestCase.h"
 #import "FLTestCaseResult.h"
 
-@interface FLTestCaseResult ()
-+ (FLTestCaseResult*) testCaseResult:(FLTestCase*) forTest;
-@end
 

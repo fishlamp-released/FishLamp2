@@ -23,18 +23,16 @@
 - (BOOL) isDomain:(NSString*) domain;
 
 // Network errors 
-
 // TODO move these
-
-+ (NSError*) cancelError;
-
-@property (readonly, nonatomic, assign) BOOL isCancelError;
-
-@property (readonly, nonatomic) BOOL didTimeout;
 @property (readonly, nonatomic) BOOL didLoseNetwork;
 @property (readonly, nonatomic) BOOL isNotConnectedToInternetError;
-
 @end
+
+@interface NSError (FLCancel)
++ (NSError*) cancelError;
+@property (readonly, nonatomic, assign) BOOL isCancelError;
+@end
+
 
 /** 
     To throw an error, see FLExceptions.h
@@ -47,26 +45,12 @@
 @property (readonly, strong, nonatomic) FLErrorDomain* errorDomain;
 @property (readonly, strong, nonatomic) FLStackTrace* stackTrace;
 
-//- (id) initWithDomain:(NSString*) domain
-//                 code:(NSInteger) code
-//             userInfo:(NSDictionary *)dict
-//               reason:(NSString*) reasonOrNil
-//              comment:(NSString*) commentOrNil
-//         stackTrace:(FLStackTrace*) stackTrace;
-
 - (id) initWithDomain:(id) domainStringOrObject
                        code:(NSInteger) code
                    userInfo:(NSDictionary *)dict
                      reason:(NSString*) reason
                     comment:(NSString*) comment
                  stackTrace:(FLStackTrace*) stackTrace;
-
-//+ (NSError*) errorWithDomain:(NSString*) domain
-//                        code:(NSInteger)code
-//                    userInfo:(NSDictionary *)dict
-//                      reason:(NSString*) reasonOrNil
-//                     comment:(NSString*) commentOrNil
-//                  stackTrace:(FLStackTrace*) stackTrace;
 
 + (NSError*) errorWithDomain:(id) domainStringOrObject
                               code:(NSInteger)code

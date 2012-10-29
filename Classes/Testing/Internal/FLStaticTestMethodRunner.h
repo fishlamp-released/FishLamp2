@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import "FLAsyncWorker.h"
+#import "FLWorker.h"
 
-@interface FLStaticTestMethodRunner : NSObject<FLAsyncWorker> {
+@interface FLStaticTestMethodRunner : NSObject<FLWorker> {
 @private
     NSMutableArray* _list;
 }

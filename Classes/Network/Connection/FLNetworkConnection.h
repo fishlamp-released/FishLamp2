@@ -9,7 +9,7 @@
 #import "FLNetworkConnectionObserver.h"
 #import "FLBitFlags.h"
 #import "FLObservable.h"
-#import "FLAsyncWorker.h"
+#import "FLWorker.h"
 #import "FLFinisher.h"
 #import "FLTimeoutTimer.h"
 
@@ -25,10 +25,10 @@ typedef struct {
 
 extern const FLNetworkConnectionByteCount FLNetworkConnectionByteCountZero;
 
-@interface FLNetworkConnection : FLObservable<FLNetworkStreamDelegate, FLAsyncWorker> {
+@interface FLNetworkConnection : FLObservable<FLNetworkStreamDelegate, FLWorker, FLRunnable> {
 @private
     __unsafe_unretained NSThread* _thread;
-    FLFinisher* _finisher;
+    id<FLFinisher> _finisher;
     id<FLNetworkStream> _networkStream;
     FLTimeoutTimer* _timeoutTimer;
     FLNetworkConnectionByteCount _writeByteCount;
@@ -39,7 +39,6 @@ extern const FLNetworkConnectionByteCount FLNetworkConnectionByteCountZero;
 @property (readonly, assign) FLNetworkConnectionByteCount readByteCount;
 @property (readonly, assign) NSThread* thread;
 
-- (FLFinisher*) openConnection:(FLCompletionBlock) completionBlock; // open in current runloop/thread. 
 - (void) cancelConnection; // can be called from any thread.
 
 @property (readonly, strong) id networkStream;

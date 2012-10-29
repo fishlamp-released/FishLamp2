@@ -6,10 +6,10 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import "FLAsyncWorker.h"
+#import "FLWorker.h"
 #import "FLUnitTestDiscovery.h"
 
-@interface FLUnitTestSubclassRunner : NSObject<FLAsyncWorker, FLUnitTestDiscovery> {
+@interface FLUnitTestSubclassRunner : NSObject<FLWorker, FLUnitTestDiscovery> {
 @private
     NSMutableArray* _classList;
 }

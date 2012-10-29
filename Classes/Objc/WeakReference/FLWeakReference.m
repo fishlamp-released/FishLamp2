@@ -14,6 +14,7 @@
 @end
 
 @implementation FLWeakReference
+
 @synthesize hash = _hash;
 @synthesize object_ref = _object;
 
@@ -21,7 +22,7 @@
     return self.object_ref;
 }
 
-- (void) setObject:(id) object {
+- (void) setObject:(FLWeaklyReferencedObject) object {
 
     id prev = self.object_ref;
     if(prev) {
@@ -32,11 +33,11 @@
     self.object_ref = object;
     
     if(object) {
-        [object addDeallocNotifier:self];
+        [((id)object) addDeallocNotifier:self];
     }
 }
 
-- (id) initWithObject:(id) object {
+- (id) initWithObject:(FLWeaklyReferencedObject) object {
     self = [super init];
 	if(self) {
         self.object = object;
@@ -53,7 +54,7 @@
     self.object_ref = nil;
 }
 
-+ (id) weakReference:(id) object {
++ (id) weakReference:(FLWeaklyReferencedObject) object {
 	return FLReturnAutoreleased([[[self class] alloc] initWithObject:object]);
 }
 
@@ -81,7 +82,7 @@
 #import "FLCallback.h"
 #import "FLFifoQueue.h"
 
-@interface FLWeakRefTestObject : FLCallback {
+@interface FLWeakRefTestObject : FLCallback<FLWeaklyReferenced> {
 @private
 }
 
@@ -89,11 +90,18 @@
 
 @implementation FLWeakRefTestObject
 - (void) dealloc {
+    
     [self invoke:nil];
 #if FL_NO_ARC
+    FLSendDeallocNotification();
     [super dealloc];
 #endif
 }
+
+- (BOOL) willSendDeallocNotification {
+    return YES;
+}
+
 @end
 
 @interface FLCriticalWeakRefTest : FLSanityCheck {
@@ -104,30 +112,25 @@
 
 @implementation FLCriticalWeakRefTest
 
-#if FL_NO_ARC
-- (void) testWeakRef {
-    FLAssertFailed_v(@"weak ref not supported without ARC for now");
-}
-
-#else
 - (void) a_testWeakRefDelete {
-
-    
-
     __block BOOL wasDeleted = NO;
 
     FLWeakRefTestObject* obj = [[FLWeakRefTestObject alloc] initWithBlock:^(id sender){
         wasDeleted = YES;
     }];
-    
+
+#if FL_ARC    
     __weak id test = obj;
+#endif
     
     FLManuallyRelease(&obj);
 
     FLAssertIsTrue_(wasDeleted);
     FLAssertIsNil_(obj);
+
+#if FL_ARC    
     FLAssertIsNil_(test);
-//    FLAssertIsNil_(weakRef.object);
+#endif
 }
 
 - (void) b_testWeakRefDeleteNotification {
@@ -139,13 +142,16 @@
     // are autoreleased in the thread and running the test in the main
     // loop causes a deadlock.
   
-    [FLAsyncQueue addBlock:^{
+    [FLAsyncQueue addWorkerBlock:^(id<FLFinisher> finisher){
         __block BOOL wasDeleted = NO;
     
         FLWeakRefTestObject* obj = [[FLWeakRefTestObject alloc] initWithBlock:^(id sender){
             wasDeleted = YES;
         }];
+
+#if FL_ARC    
         __weak id test = obj;
+#endif
         
         FLWeakReference* ref = [FLWeakReference weakReference:obj];
         [ref addNotifierWithBlock:^(id sender) {
@@ -162,10 +168,16 @@
 
         FLAssertIsTrue_(wasDeleted);
         FLAssertIsNil_(obj);
+
+#if FL_ARC    
         FLAssertIsNil_(test);
+#endif
+        [finisher setFinished];
+
     }];
     
-    [notifier waitUntilFinished];
+    
+    [notifier waitForResult];
     
 //    FLAssertIsNil_(weakRef.object);
 }
@@ -174,7 +186,7 @@
 
 @end
 
-#endif
+
 
 
 

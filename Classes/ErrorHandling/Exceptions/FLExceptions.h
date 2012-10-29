@@ -18,12 +18,8 @@
 #define __INCLUDE_STACK_TRACE__ YES
 #endif
 
-NS_INLINE
-void FLThrow(NSException* ex) {
-    if(ex) {
-        @throw ex;
-    }
-}
+
+#define FLThrow(__EX__) [__EX__ raise] 
 
 #define FLThrowException_(__EX__) \
             FLThrow([self willThrowException:__EX__])

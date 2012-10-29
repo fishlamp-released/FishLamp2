@@ -36,7 +36,7 @@
 //}
 //#endif
 //
-//- (void) startWorking:(FLFinisher*) finisher {
+//- (void) startWorking:(id<FLFinisher>) finisher {
 //    if(_block) {
 //        _block(finisher);
 //    }

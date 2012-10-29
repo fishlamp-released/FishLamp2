@@ -43,6 +43,7 @@ FLSynthesizeSingleton(FLTempFileMgr);
 }
 
 - (void) dealloc {
+    FLSendDeallocNotification();
     [[FLUserSession instance] removeObserver:self];
     FLRelease(_folder);
     FLSuperDealloc();

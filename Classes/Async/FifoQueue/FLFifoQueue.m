@@ -19,11 +19,11 @@
     return dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
 }
 
-+ (FLFinisher*) addBlock:(dispatch_block_t) block {
-    return [self addBlock:block completion:nil];
++ (id) addWorkerBlock:(FLWorkerBlock) block {
+    return [self addWorkerBlock:block completion:nil];
 }
 
-+ (FLFinisher*) addBlock:(dispatch_block_t) block
++ (id) addWorkerBlock:(FLWorkerBlock) block
                 completion:(FLCompletionBlock) completion {
     
     FLFinisher* finisher = [FLFinisher finisher:completion];
@@ -33,13 +33,14 @@
     dispatch_async([self dispatchQueue], ^{
         @try {
             if(block) {
-                block();
+                block(finisher);
             }
-
-            [finisher setFinished];
+            else {
+                [finisher setFinished];
+            }
         }
         @catch(NSException* ex) {
-            [finisher setFinishedWithError:ex.error];
+            [finisher setFinishedWithResult:[FLAsyncResult resultWithError:ex.error]];
         }
         
     });
@@ -47,11 +48,11 @@
     return finisher;
 }
 
-+ (FLFinisher*) addWorker:(id<FLAsyncWorker>) aWorker {
++ (id) addWorker:(id<FLWorker>) aWorker {
     return [self addWorker:aWorker];
 }
 
-+ (FLFinisher*) addWorker:(id<FLAsyncWorker>) aWorker
++ (id) addWorker:(id<FLWorker>) aWorker
                  completion:(FLCompletionBlock) completion {
     
     FLFinisher* finisher = [FLFinisher finisher:completion];
@@ -62,7 +63,7 @@
         }
         @catch(NSException* ex) {
             [((id)aWorker) performIfRespondsToSelector:@selector(handleAsyncWorkerError:) withObject:ex.error];
-            [finisher setFinishedWithError:ex.error];
+            [finisher setFinishedWithResult:[FLAsyncResult resultWithError:ex.error]];
         }
     });
 
@@ -103,11 +104,11 @@ FLSynthesizeSingleton(FLFifoQueue);
 #endif
 }
 
-//+ (FLFinisher*) addBlock:(FLAsyncWorkerBlock) block {
-//    return [FLFifoQueue addBlock:block completion:nil];
+//+ (id) addWorkerBlock:(FLWorkerBlock) block {
+//    return [FLFifoQueue addWorkerBlock:block completion:nil];
 //}
 //
-//+ (FLFinisher*) addBlock:(FLAsyncWorkerBlock) block completion:(dispatch_block_t) completion {
+//+ (id) addWorkerBlock:(FLWorkerBlock) block completion:(dispatch_block_t) completion {
 //    block = FLCopyBlock(block);
 //    FLFinisher* finisher = [FLFinisher finisher:completion];
 //    
@@ -128,7 +129,7 @@ FLSynthesizeSingleton(FLFifoQueue);
 //    return finisher;
 //}
 //
-//+ (FLFinisher*) addWorker:(id<FLAsyncWorker>) aWorker
+//+ (id) addWorker:(id<FLWorker>) aWorker
 //                 completion:(FLCompletionBlock) completion {
 // 
 //    FLFinisher* finisher = [FLFinisher finisher:completion];
@@ -138,7 +139,7 @@ FLSynthesizeSingleton(FLFifoQueue);
 //            [aWorker startWorking:finisher];
 //
 ////            // since it's a FIFO thread, we'll have to block the queue until we're done.
-////            [finisher waitUntilFinished];
+////            [finisher waitForResult];
 //        }
 //        @catch(NSException* ex) {
 //            [((id)aWorker) performIfRespondsToSelector:@selector(handleAsyncWorkerError:) withObject:ex.error];

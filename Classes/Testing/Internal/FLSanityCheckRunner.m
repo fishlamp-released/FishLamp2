@@ -33,7 +33,7 @@
     return [self create];
 }
 
-- (void) startWorking:(FLFinisher*) finisher {
+- (void) startWorking:(id<FLFinisher>) finisher {
     
     NSMutableArray* tests = FLReturnAutoreleased([[_sanityTests allObjects] mutableCopy]);
     

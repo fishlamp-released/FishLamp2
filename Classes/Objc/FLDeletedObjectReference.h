@@ -11,6 +11,10 @@
 @interface FLDeletedObjectReference : NSObject {
 @private
     __unsafe_unretained id _deletedObject;
+    
+#if DEBUG
+    NSString* _debugInfo;
+#endif
 }
 
 - (id) initWithObject:(id) object;

@@ -7,17 +7,17 @@
 //
 
 #import "FishLampCore.h"
-#import "FLAsyncWorker.h"
+#import "FLWorker.h"
 #import "FLFinisher.h"
 #import "FLCollectionIterator.h"
 
 @class FLBot;
 
-@protocol FLBot <FLAsyncWorkerErrorDelegate, FLAsyncWorker>
+@protocol FLBot <FLWorkerErrorDelegate, FLWorker>
 @property (readonly, assign) id superbot;
 
 // by default set to self.
-@property (readwrite, assign) id<FLAsyncWorkerErrorDelegate> errorDelegate;
+@property (readwrite, assign) id<FLWorkerErrorDelegate> errorDelegate;
 @end
 
 typedef void (^FLBotVisitor)(id bot, BOOL* stop);
@@ -32,19 +32,19 @@ typedef void (^FLBotVisitor)(id bot, BOOL* stop);
 
 + (id) bot;
 
-- (id<FLAsyncResult>) runBot:(FLCompletionBlock) completion;
+- (id<FLResult>) runBot:(FLCompletionBlock) completion;
 
-+ (id<FLAsyncResult>) startWorker:(id<FLAsyncWorker>) worker
++ (id<FLResult>) start:(id<FLWorker>) worker
                            completion:(FLCompletionBlock) completion;
 
 - (BOOL) visitWorkers:(FLBotVisitor) visitor;
 - (BOOL) visitWorkersInReverse:(FLBotVisitor) visitor;
 
-- (void) addAsyncWorker:(id<FLAsyncWorker>) worker;
+- (void) addAsyncWorker:(id<FLWorker>) worker;
 - (void) addAsyncWorkerWithBlock:(dispatch_block_t) block;
 - (void) addAsyncWorkers:(NSArray*) workers;
 
-- (void) removeWorker:(id<FLAsyncWorker>) worker;
+- (void) removeWorker:(id<FLWorker>) worker;
 - (void) removeAllworkers;
 
 @end

@@ -10,7 +10,7 @@
 #import "FLTestCase.h"
 #import "FLUnitTestResult.h"
 #import "FLFinisher.h"
-#import "FLTestVerifier.h"
+#import "FLTestResultCollection.h"
 #import "FLOperation.h"
 
 @class FLOperationQueue;
@@ -35,15 +35,13 @@
 */
 @interface FLUnitTest : FLOperation {
 @private
-    NSMutableArray* _results;
     NSMutableArray* _testCases;
-    FLTestVerifier* _verifier;
+    FLTestResultCollection* _results;
 }
 
 + (NSInteger) unitTestPriority;
 
-@property (readonly, strong) FLTestVerifier* verifier;
-@property (readonly, strong) FLUnitTestResult* unitTestResult;
+@property (readonly, strong) FLTestResultCollection* results;
 
 + (FLUnitTest*) unitTest;
 

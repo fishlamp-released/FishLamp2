@@ -39,10 +39,7 @@ NSString* const FLErrorDomainKey = @"com.fishlamp.error.domain";
 
 // TODO(move these network errors into a NSError category in the network code)
 
-- (BOOL) didTimeout {
-	return	FLStringsAreEqual(NSURLErrorDomain, self.domain) && 
-			self.code == NSURLErrorTimedOut; 
-}
+
 
 - (BOOL) didLoseNetwork {
 	return	FLStringsAreEqual(NSURLErrorDomain, self.domain) &&
@@ -50,13 +47,18 @@ NSString* const FLErrorDomainKey = @"com.fishlamp.error.domain";
 			(self.code == NSURLErrorNotConnectedToInternet));
 }
 
-+ (NSError*) cancelError {
 
-    FLReturnStaticObjectFromBlock(^{
-        return [NSError errorWithDomain:FLFrameworkErrorDomainName
+- (BOOL) isNotConnectedToInternetError {
+	return FLStringsAreEqual(NSURLErrorDomain, self.domain) && self.code == NSURLErrorNotConnectedToInternet;
+}
+
+@end
+
+@implementation NSError (FLCancelError)
++ (NSError*) cancelError {
+    return [NSError errorWithDomain:FLFrameworkErrorDomainName
                                    code:FLCancelErrorCode
                    localizedDescription:NSLocalizedString(@"Cancelled", @"used in cancel error localized description")];
-    });
 
 }
 
@@ -65,13 +67,10 @@ NSString* const FLErrorDomainKey = @"com.fishlamp.error.domain";
 			self.code == FLCancelErrorCode; 
 }
 
-- (BOOL) isNotConnectedToInternetError {
-	return FLStringsAreEqual(NSURLErrorDomain, self.domain) && self.code == NSURLErrorNotConnectedToInternet;
-}
-
 @end
 
 @implementation NSError (FLErrorDomain)
+
 
 - (FLStackTrace*) stackTrace {
     return [self.userInfo objectForKey:FLErrorCodeLocationKey];

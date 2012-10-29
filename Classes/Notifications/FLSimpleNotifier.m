@@ -65,7 +65,7 @@
 - (BOOL) visit:(void (^)(id object, BOOL* stop)) visitor {
 
     BOOL stop = NO;
-    for(NSValue* value in _notifiers) {
+    for(FLSimpleNotifier* value in _notifiers) {
         @try {
             visitor(value, &stop);
         }

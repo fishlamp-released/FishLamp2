@@ -21,6 +21,8 @@
 - (void) addNotifier:(FLSimpleNotifier*) notifier;
 - (void) removeNotifier:(FLSimpleNotifier*) notifier;
 
+- (void) sendDeallocNotification;
+
 @end
 
 
@@ -50,13 +52,23 @@ FLSynthesizeAssociatedProperty(retain_nonatomic, _deallocNotifier, _setDeallocNo
     [[self deallocNotifier] addNotifier:notifier];
 }
 
-- (void) addDeallocNotifierBlock:(FLDeallocNotifierBlock) block {
+- (void) addDeallocNotifierWithBlock:(FLDeallocNotifierBlock) block {
     [self addDeallocNotifier:[FLBlockNotifier blockNotifier:block]];
 }
 
 - (void) addDeallocListener:(id) target action:(SEL) action {
     [self addDeallocNotifier:[FLCallbackNotifier callbackNotifier:target action:action]];
 }
+
+- (void) sendDeallocNotification {
+    @synchronized(self) {
+        FLDeallocNotifier* notifier = [self _deallocNotifier];
+        if(notifier) {
+            [notifier sendDeallocNotification];
+        }
+    }
+}
+
 
 @end
 
@@ -130,11 +142,32 @@ static void (*originalDealloc)(id,SEL);
     }
 }
 
-- (void) dealloc {
-    for(FLSimpleNotifier* notifier in _notifiers) {
-//        [[notifier deallocNotifier] _removeNotifier:_notifierDied];
-        [notifier sendNotification:_deletedObjectReference];
+- (void) sendDeallocNotification {
+    NSSet* notifiers = nil;
+    FLDeletedObjectReference* ref = nil;
+    @synchronized(self) {
+        notifiers = _notifiers;
+        _notifiers = nil;
+        FLAutorelease(notifiers);
+
+        ref = _deletedObjectReference;
+        _deletedObjectReference = nil;
+        FLAutorelease(ref);
     }
+    
+    if(notifiers) {
+//        [notifiers performBlockOnMainThread: ^{
+            for(FLSimpleNotifier* notifier in notifiers) {
+        //        [[notifier deallocNotifier] _removeNotifier:_notifierDied];
+                [notifier sendNotification:ref];
+            }
+//        }];
+    }
+}
+
+- (void) dealloc {
+    
+    [self sendDeallocNotification];
 
 #if FL_NO_ARC
     [_notifiers release];
@@ -192,71 +225,44 @@ static void (*originalDealloc)(id,SEL);
     FLAssert_(notifier == [str deallocNotifier]);
 }
 
+- (void) testDeletNotification {
+
+    __block BOOL objectDeleted = NO;
+    __block BOOL notified = NO;
+
 #if FL_ARC
-- (void) testDeletNotification {
-
-    __block BOOL objectDeleted = NO;
-    __block BOOL notified = NO;
-
     __block __weak id test = nil;
+#endif    
     
-    FLFinisher* finisher = [FLFinisher finisher];
-
-    [FLAsyncQueue addBlock:^{
-        CFTypeRef ptr = (__bridge_retained CFTypeRef) [[FLDeleteNotifier alloc] initWithBlock:^(id sender){
-            objectDeleted = YES;
-        }];
-        
-        test = (__bridge id) ptr;
-        
-        [((__bridge id) ptr) addDeallocNotifierBlock:^(FLDeletedObjectReference* ref){
-            notified = YES;
-            
-            [finisher setFinished];
-        }];
-
-        CFRelease(ptr);
-        
-        FLAssertIsNil_(test);
-    }];
-    
-    
-    FLAssertIsNil_(test);
-    
-    [finisher waitUntilFinished];
-    
-    FLAssertIsTrue_(objectDeleted);
-    FLAssertIsTrue_(notified);
-}
-#else 
-- (void) testDeletNotification {
-
-    __block BOOL objectDeleted = NO;
-    __block BOOL notified = NO;
-
-    FLFinisher* finisher = [FLFinisher finisher];
-
-    [FLAsyncQueue addBlock:^{
+    id work = [FLAsyncQueue addWorkerBlock:^(id<FLFinisher> finisher){
         FLDeleteNotifier* notifier = [[FLDeleteNotifier alloc] initWithBlock:^(id sender){
             objectDeleted = YES;
         }];
         
-        [notifier addDeallocNotifierBlock:^(FLDeletedObjectReference* ref){
+        [notifier addDeallocNotifierWithBlock:^(FLDeletedObjectReference* ref){
             notified = YES;
-            
             [finisher setFinished];
         }];
 
-        FLReleaseWithNil(notifier);
+        FLManuallyRelease(&notifier);
+        FLAssertIsNil_(notifier);
+          
+#if FL_ARC
+        FLAssertIsNil_(test);
+#endif        
+        [finisher setFinished];
     }];
-        
-    [finisher waitUntilFinished];
+    
+    
+#if FL_ARC
+    FLAssertIsNil_(test);
+#endif    
+    
+    [work waitForResult];
     
     FLAssertIsTrue_(objectDeleted);
     FLAssertIsTrue_(notified);
 }
-
-#endif
 
 //- (void) testNotify:(FLFinisher*) finisher {
 //

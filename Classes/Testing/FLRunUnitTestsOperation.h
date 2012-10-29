@@ -7,11 +7,12 @@
 //
 
 #import "FLOperation.h"
+#import "FLTestResultCollection.h"
 
 @interface FLRunUnitTestsOperation : FLOperation {
 @private
-    FLTestVerifier* testVerifier;
     NSMutableArray* _workers;
+    NSMutableArray* _results;
 }
 
 + (id) unitTestRunner;

@@ -59,6 +59,9 @@ FLSynthesizeStructProperty(networkRequired, setNetworkRequired, BOOL, _actionFla
 //    return self;
 //}
 
+- (BOOL) willSendDeallocNotification {
+    return YES;
+}
 
 - (id) init {
 //    self = [super initWithRunner:[FLOperationQueueRunner instance]];
@@ -214,9 +217,9 @@ TODO("MF: fix activity updater");
 }
 
 - (void) dealloc {
+    FLSendDeallocNotification();
 	[self closeNotification];
     [_operations removeObserver:self];
-
 #if FL_NO_ARC
     [_operations release];
     FLRelease(_progressCallback);
@@ -359,21 +362,21 @@ TODO("MF: fix activity updater");
     [self.operations cancelAllOperations];
 }
 
-- (FLFinisher*) startAction:(FLCompletionBlock) completion {
+- (id<FLResultPromise>) startAction:(FLCompletionBlock) completion {
     return [self startActionInContext:nil starting:nil completion:completion ];
 }
 
-- (FLFinisher*) startAction:(dispatch_block_t) starting
+- (id<FLResultPromise>) startAction:(dispatch_block_t) starting
                  completion:(FLCompletionBlock) completion {
     return [self startActionInContext:nil starting:starting completion:completion];
 }
 
-- (FLFinisher*) startActionInContext:(FLOperationContext*) context
+- (id<FLResultPromise>) startActionInContext:(FLOperationContext*) context
                           completion:(FLCompletionBlock) completion {
     return [self startActionInContext:context starting:nil completion:completion];
 }
 
-- (FLFinisher*) startActionInContext:(FLOperationContext*) context
+- (id<FLResultPromise>) startActionInContext:(FLOperationContext*) context
                             starting:(dispatch_block_t) starting
                           completion:(FLCompletionBlock) completion {
 
@@ -381,37 +384,39 @@ TODO("MF: fix activity updater");
     
     starting = FLCopyBlock(starting);
     
-    FLFinisher* finisher = [FLFinisher finisher:completion];
+    FLFinisher* actionFinisher = [FLFinisher finisher:completion];
     
     FLOperationQueueRunner* runner = [FLOperationQueueRunner operationQueueRunner:self.operations];
     if(context) {
         [context addOperation:runner];
     }
     
-    dispatch_block_t finishActionInMainThread = ^{
+    FLWorkerBlock finishActionInMainThread = ^(id<FLFinisher> finisher){
         [self actionFinished];
 
         if(context) {
             [context removeOperation:runner];
         }
 
+        [actionFinisher setFinished];
         [finisher setFinished];
     };
 
-    dispatch_block_t startActionInMainThread = ^{
+    FLWorkerBlock startActionInMainThread = ^(id<FLFinisher> finisher){
         if(starting) {
             starting();
         }
         [self actionStarted];
-        [FLAsyncQueue addWorker:runner completion: ^(id<FLAsyncResult> result) {
-            [FLForegroundQueue addBlock:finishActionInMainThread]; }];
-
+        [FLAsyncQueue addWorker:runner completion: ^(id<FLResult> result) {
+            [FLForegroundQueue addWorkerBlock:finishActionInMainThread]; }];
+        
+        [finisher setFinished];
     };
     
 
-    [FLForegroundQueue addBlock:startActionInMainThread];
+    [FLForegroundQueue addWorkerBlock:startActionInMainThread];
 
-    return finisher;
+    return actionFinisher;
 }
 
 - (id) firstOperation {
@@ -438,12 +443,25 @@ TODO("MF: fix activity updater");
 - (void) runOneAction {
     FLAction* action = [FLAction action];
 
+    [self.results setTestResult:[FLCountedTestResult countedTestResult:3] forKey:@"counter"];
+    
     [action.operations addOperationWithBlock:^(FLOperation* block) {
         FLAssert_(![NSThread isMainThread]);
+        
+        [[self.results testResultForKey:@"counter"] setPassed];
     }];
 
-    [[action startAction:^{ FLAssert_([NSThread isMainThread]); }
-             completion:^(id<FLAsyncResult> result){ FLAssert_([NSThread isMainThread]); }] waitUntilFinished];
+    id<FLResultPromise> actionFinisher = [action startAction:^{ 
+                    FLAssert_([NSThread isMainThread]); 
+                    [[self.results testResultForKey:@"counter"] setPassed];
+                    
+                }
+                completion:^(id<FLResult> result) { 
+                    FLAssert_([NSThread isMainThread]); 
+                    [[self.results testResultForKey:@"counter"] setPassed];
+                }]; 
+
+    [actionFinisher waitForResult];
  }
 
 - (void) testBasicScheduling {
@@ -451,9 +469,10 @@ TODO("MF: fix activity updater");
 }
 
 - (void) testBackgroundThreadStart {
-    [[FLAsyncQueue addBlock:^{
+    [[FLAsyncQueue addWorkerBlock:^(id<FLFinisher> finisher){
         [self runOneAction];
-    }] waitUntilFinished];
+        [finisher setFinished];
+    }] waitForResult];
 }
 
 @end

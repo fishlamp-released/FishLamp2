@@ -44,7 +44,7 @@ FLSynthesizeSingleton(FLTracker);
            eventType:(FLTrackerSinkEventMask) eventType
                block:(void (^)(FLTracker* tracker, id<FLTrackerSink> sink)) block {
 
-    [FLFifoQueue addBlock:^{
+    [FLFifoQueue addWorkerBlock:^(id<FLFinisher> finisher){
         if( !_disabled && 
             FLTestBits(_subscribedEvents, eventType) &&
             FLTestBits(_trackLevel, trackLevel)) {
@@ -56,6 +56,7 @@ FLSynthesizeSingleton(FLTracker);
                 }
             }
         }
+        [finisher setFinished];
     }];
 }
 

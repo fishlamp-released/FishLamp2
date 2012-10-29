@@ -7,8 +7,4 @@
 //
 
 #include "XcodeConfigs/LibFishLampCoreShared.xcconfig"
-
-ARCHS = armv7 armv7s
-SDKROOT = iphoneos
-SUPPORTED_PLATFORMS = iphonesimulator iphoneos
-CLANG_ENABLE_OBJC_ARC = YES
+#include "../XcodeConfigs/FishLampTargetSettings/FLTargetSettingsiOS.xcconfig"

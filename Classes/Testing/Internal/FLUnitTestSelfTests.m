@@ -21,13 +21,13 @@
 - (id) init {
     self = [super init];
     if(self) {
-        [self.verifier addExpectedSelector:@selector(basicTest)];
+        [self.results setTestResultForSelector:@selector(basicTest)];
     }
     return self;
 }
 
 - (void) basicTest {
-    [self.verifier addHandledSelector:_cmd];
+    [[self.results testResultForSelector:_cmd] setPassed];
 }
 
 //- (void) basicTestWithFinisher {

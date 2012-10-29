@@ -9,7 +9,7 @@
 #import "FLTimeoutTimer.h"
 
 @interface FLTimeoutTimer ()
-@property (readwrite, strong) FLFinisher* finisher;
+@property (readwrite, strong) id<FLFinisher> finisher;
 @property (readwrite, assign) NSTimeInterval timeoutInterval;
 @property (readwrite, strong) NSTimer* timer;
 @property (readwrite, assign) NSTimeInterval timestamp;
@@ -64,7 +64,7 @@
         self.timedOut = YES;
         [self postObservation:@selector(timeoutTimerDidTimeout:)];
         
-        [self.finisher setFinished];
+        [self.finisher setFinishedWithResult:[FLResult resultWithError:[NSError timeoutError]]];
         [self requestCancel];
     }
     
@@ -82,9 +82,17 @@
 //        [self connectionGotTimerEvent];
 //    }
 }
+
+- (void) killTimer {
+    NSTimer* timer = self.timer;
+    if(timer) {
+        [timer invalidate];
+    }
+    self.timer = nil;
+}    
     
-- (void) startWorking:(FLFinisher*) finisher {
-    [self requestCancel];
+- (void) startWorking:(id<FLFinisher>) finisher {
+    [self killTimer];
 
 // TODO: this .25 for progress. It could be closer to 1 second if
 // we don't need to report progress. We should be able to set this per
@@ -98,10 +106,17 @@
     [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSDefaultRunLoopMode];
 }
 
-- (FLFinisher*) startTimer:(FLCompletionBlock) completionBlock {
-    self.finisher = [FLFinisher finisher:completionBlock];
-    [self startWorking:self.finisher];
-    return self.finisher;
+- (id<FLResultPromise>) start:(FLCompletionBlock) completion {
+    FLAssertIsNotNil_v(self.finisher, @"already started");
+    
+    FLFinisher* finisher = [FLFinisher finisher:completion];
+    self.finisher = finisher;
+    [self startWorking:finisher];
+    return finisher;
+}
+
+- (id<FLResult>) runSynchronously {
+    return [[self start:nil] waitForResult];
 }
 
 - (void) dealloc  {
@@ -117,11 +132,8 @@
 
 - (void) requestCancel {
     @synchronized(self) {
-        NSTimer* timer = self.timer;
-        if(timer) {
-            [timer invalidate];
-        }
-        self.timer = nil;
+        [self killTimer];
+        self.finisher = nil;
     }
 }
 
@@ -154,4 +166,19 @@
 #endif
 
 
+@end
+
+
+@implementation NSError (FLTimeoutError)
+
++ (NSError*) timeoutError {
+    return [NSError errorWithDomain:FLFrameworkErrorDomainName
+                                   code:FLCancelErrorCode
+                   localizedDescription:NSLocalizedString(@"Cancelled", @"used in cancel error localized description")];
+}
+
+- (BOOL) isTimeoutError {
+	return	FLStringsAreEqual(NSURLErrorDomain, self.domain) && 
+			self.code == NSURLErrorTimedOut; 
+}
 @end

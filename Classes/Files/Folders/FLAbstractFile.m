@@ -19,6 +19,10 @@
 	return YES;
 }
 
+- (BOOL) willSendDeallocNotification {
+    return YES;
+}
+
 - (BOOL) canDeleteFromStorage
 {
 	return YES;
@@ -106,8 +110,8 @@
 	}
 }
 
-- (void) dealloc
-{
+- (void) dealloc {
+    FLSendDeallocNotification();
 	FLRelease(_fileName);
 	FLRelease(_folder);
 	FLSuperDealloc();

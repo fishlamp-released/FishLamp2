@@ -8,9 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "FLTestCaseResult.h"
 #import "FLOperation.h"
-#import "FLTestVerifier.h"
 
 #define FLTestCaseFlagOffString                 @"_off"
 
@@ -30,7 +28,6 @@ typedef void (^FLTestBlock)();
 }
 
 @property (readonly, strong, nonatomic) NSString* testCaseName;
-@property (readonly, strong, nonatomic) FLTestCaseResult* testCaseResult;
 
 // construction
 - (id) initWithTarget:(id) target selector:(SEL) selector;

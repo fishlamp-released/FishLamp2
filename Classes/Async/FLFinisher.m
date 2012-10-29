@@ -7,34 +7,24 @@
 //
 
 #import "FLFinisher.h"
+#import "FLTimeoutTimer.h"
 
 @interface FLFinisher ()
-@property (readwrite, copy) FLCompletionBlock completionBlock;
-@property (readwrite, assign, getter=isFinished) BOOL finished;
-@property (readonly, assign, nonatomic) NSUInteger finishCount;
-// TODO: rid of this?
-@property (readwrite, assign) NSUInteger expectedFinishCount;
-@property (readwrite, strong) id asyncResult;
-@property (readwrite, strong) NSError* error;
-
+@property (readwrite, strong) id<FLResult> result;
+@property (readwrite, assign) BOOL isFinished;
+@property (readwrite, strong) FLTimeoutTimer* timer;
 @end
 
 @implementation FLFinisher
-
-@synthesize completionBlock = _completionBlock;
-@synthesize finished = _finished;
-@synthesize expectedFinishCount = _expectedFinishCount;
-@synthesize finishCount = _finishCount;
-@synthesize didRunSynchronously = _didRunSynchronously;
-@synthesize asyncResult = _asyncResult;
-@synthesize error = _error;
+@synthesize timer = _timer;
+@synthesize isFinished = _finished;
+@synthesize result = _result;
 
 - (id) initWithCompletionBlock:(FLCompletionBlock) completion{
     
     self = [super init];
     if(self) {
-        self.completionBlock = completion;
-        _expectedFinishCount = 1;
+        _completionBlock = FLCopyBlock(completion);
      }
     return self;
 }
@@ -43,53 +33,58 @@
     return FLReturnAutoreleased([[[self class] alloc] initWithCompletionBlock:completion]);
 }
 
-#if FL_NO_ARC
 - (void) dealloc {
-    [_error release];
-    [_asyncResult release];
-    [_completionBlock release];
+    if(_timer) {
+        [_timer requestCancel];
+    }
+    
+#if FL_NO_ARC
+    [_timer release];
+    [_result release];
+    if(_completionBlock) {
+        [_completionBlock release];
+    }
     [super dealloc];
-}
 #endif
+}
 
 + (id) finisher {
     return FLReturnAutoreleased([[[self class] alloc] initWithCompletionBlock:nil]);
 }
 
+- (BOOL) hasResult {
+    return self.isFinished;
+}
+
 - (void) setFinished {
-     @synchronized(self) {
-        FLAssert_v(_finishCount < _expectedFinishCount, @"setFinished called too many times");
-        if(++_finishCount == _expectedFinishCount) {
-            [self sendNotification:self];
-            
-            if(self.completionBlock) {
-                self.completionBlock(self);
-                self.completionBlock = nil;
-            }
-            self.finished = YES;
-        }
+    [self setFinishedWithResult:nil];
+}
+
+- (void) setFinishedWithResult:(id<FLResult>) result {
+    FLAssert_v(_finished == NO, @"already finished");
+
+    if(self.timer) {
+        [self.timer requestCancel];
     }
+
+    self.result = result;
+    if(_completionBlock) {
+        _completionBlock(_result);
+    }
+    self.isFinished = YES;
 }
 
-- (void) setFinishedWithObject:(id) object {
-    self.asyncResult = object;
+- (id<FLResult>) waitForResult {
+// this may not work in all cases - e.g. some iOS apis expect to be called in the main thread
+// and this will cause endless blocking, unfortunately. I've seen this is the AssetLibrary sdk.
+    while(!self.isFinished) {
+        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate date]];
+    }
+
+    return self.result;
 }
 
-- (void) setFinishedWithResult:(id) result {
-    self.asyncResult = result;
-    [self setFinished];
-}
-
-- (void) setFinishedWithError:(NSError*) error {
-    self.error = error;
-    [self setFinished];
-}
-
-- (void) waitUntilFinished {
-    [self waitUntilFinishedWhileCondition:nil];
-}
-
-- (void) waitUntilFinishedWhileCondition:(FLConditionalBlock) checkCondition {
+- (id<FLResult>) waitForResultWithCondition:(FLConditionalBlock) checkCondition {
     
     BOOL condition = NO;
     if(checkCondition) {
@@ -106,33 +101,16 @@
             checkCondition(&condition);
         }
     }
+    return self.result;
 }
 
-//+ (FLFinisher*) performBlockInBackground:(dispatch_block_t) block;
-//+ (FLFinisher*) performBlockInBackground:(dispatch_block_t) block
-//                              completion:(FLCompletionBlock) completion;
-
-//+ (FLFinisher*) performBlockInBackground:(dispatch_block_t) block {
-//    return [FLFinisher performBlockInBackground:block completion:nil];
-//}
-//
-//+ (FLFinisher*) performBlockInBackground:(dispatch_block_t) block
-//                          completion:(FLCompletionBlock) completion {
-//    
-//    FLFinisher* finisher = [FLFinisher finisher:completion];
-//
-//    block = FLCopyBlock(block);
-//
-//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-//        if(block) {
-//            block();
-//        }
-//        
-//        [finisher setFinished];
-//    });
-//
-//    return finisher;
-//}
+- (id<FLResult>) waitForResultWithTimeout:(NSTimeInterval) timeout {
+    self.timer = [FLTimeoutTimer timeoutTimer:timeout];
+    [self.timer start:^(id<FLResult> result) {
+        [self setFinishedWithResult:result];
+    }];
+    return [self waitForResult];
+}
 
 @end
 
@@ -146,42 +124,34 @@
     
     __block BOOL fired = NO;
     
-    FLFinisher* notifier = [FLFinisher finisher:^(id<FLAsyncResult> result){ fired = YES; }];
-    
-    FLAssertIsNotNil_(notifier.completionBlock);
-    FLAssert_(notifier.expectedFinishCount == 1);
-    FLAssert_(notifier.finishCount == 0);
-    
-    [notifier setFinished];
-    FLAssert_(notifier.finishCount == 1);
-    FLAssert_(notifier.isFinished);
+    FLFinisher* finisher = [FLFinisher finisher:^(id<FLResult> result){ fired = YES; }];
+    FLAssert_(!finisher.isFinished);
+    FLAssert_(fired == NO);
+    [finisher setFinished];
+    FLAssert_(finisher.isFinished);
     FLAssert_(fired == YES);
-    FLAssertIsNil_(notifier.completionBlock);
 }
 
 - (void) testDoubleCount {
     
     __block BOOL fired = NO;
     
-    FLFinisher* notifier = [FLFinisher finisher:^(id<FLAsyncResult> result){ fired = YES; }];
-    
-    FLAssertIsNotNil_(notifier.completionBlock);
-    FLAssert_(notifier.expectedFinishCount == 1);
-    FLAssert_(notifier.finishCount == 0);
-    
-    notifier.expectedFinishCount = 2;
-    FLAssert_(notifier.expectedFinishCount == 2);
-    
-    [notifier setFinished];
-    FLAssert_(notifier.finishCount == 1);
+    FLFinisher* finisher = [FLFinisher finisher:^(id<FLResult> result){ fired = YES; }];
+    FLAssert_(!finisher.isFinished);
     FLAssert_(fired == NO);
-    FLAssert_(!notifier.isFinished);
+    [finisher setFinished];
+    FLAssert_(finisher.isFinished);
 
-    [notifier setFinished];
-    FLAssert_(notifier.finishCount == 2);
-    FLAssert_(notifier.isFinished);
-    FLAssert_(fired == YES);
-    FLAssertIsNil_(notifier.completionBlock);
+    BOOL gotError = NO;
+    @try {
+        [finisher setFinished];
+        
+    }
+    @catch(NSException* expected) {
+        gotError = YES;
+    }
+    
+    FLAssert_v(gotError == YES, @"expecting an error");
 }
 
 - (void) testBasicAsyncTest {
@@ -196,7 +166,7 @@
         [finisher setFinished];
         });
     
-    [finisher waitUntilFinished];
+    [finisher waitForResult];
     FLAssert_(finisher.isFinished);
 }
 

@@ -16,9 +16,28 @@
     self = [super init];
     if(self) {
         _deletedObject = object;
+        
+#if DEBUG
+// note that it this point the object hasn't been deleted yet.
+        _debugInfo = [[NSString alloc] initWithFormat:@"%@: %@", NSStringFromClass([_deletedObject class]), [_deletedObject description]];
+#endif        
     }
     return self;
 }
+
+#if DEBUG
+- (NSString*) description {
+    return _debugInfo;
+}
+
+#if FL_NO_ARC
+- (void) dealloc {
+    [_debugInfo release];
+    [super dealloc];
+}
+
+#endif
+#endif
 
 + (FLDeletedObjectReference*) deletedObjectReference:(id) object {
     return FLReturnAutoreleased([[FLDeletedObjectReference alloc] initWithObject:object]);

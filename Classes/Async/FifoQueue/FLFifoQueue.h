@@ -9,17 +9,17 @@
 #import <Foundation/Foundation.h>
 #import "FishLampCore.h"
 #import "FLFinisher.h"
-#import "FLAsyncWorker.h"
+#import "FLWorker.h"
 
 @interface FLAsyncQueue : NSObject
 
-+ (FLFinisher*) addBlock:(dispatch_block_t) block;
++ (id) addWorkerBlock:(FLWorkerBlock) block;
 
-+ (FLFinisher*) addBlock:(dispatch_block_t) block
-                completion:(FLCompletionBlock) completion;
++ (id) addWorkerBlock:(FLWorkerBlock) block
+     completion:(FLCompletionBlock) completion;
 
-+ (FLFinisher*) addWorker:(id<FLAsyncWorker>) aWorker
-                 completion:(FLCompletionBlock) completion;
++ (id) addWorker:(id<FLWorker>) aWorker
+      completion:(FLCompletionBlock) completion;
 @end
 
 
