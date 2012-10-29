@@ -21,7 +21,7 @@
     [action actionDescription].actionItemName = NSLocalizedString(@"Profile Photo", nil);
     [action addOperation:[FLDownloadImageOperation networkOperationWithURLString:url]];
 
-	[viewController startAction:action completion: ^(id<FLAsyncResult> result) {
+	[viewController startAction:action completion: ^(id<FLResult> result) {
         if([action didSucceed]) {
             self.foregroundThumbnail =
                 [[action lastOperation] imageOutput];

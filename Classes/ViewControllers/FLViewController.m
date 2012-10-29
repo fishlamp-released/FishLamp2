@@ -453,13 +453,13 @@ static FLViewController* s_presentingModalViewController = nil;
     return FLNavigationControllerAnimationDefault;
 }
 
-- (FLFinisher*) startAction:(FLAction*) action
+- (id<FLResultPromise>) startAction:(FLAction*) action
              completion:(FLCompletionBlock) completion {
     
     return [action startActionInContext:self.operationContext completion:completion];
 }
 
-- (FLFinisher*) startOperation:(FLOperation*) operation
+- (id<FLResultPromise>) startOperation:(FLOperation*) operation
              completion:(FLCompletionBlock) completion {
     
     [self.operationContext addOperation:operation];

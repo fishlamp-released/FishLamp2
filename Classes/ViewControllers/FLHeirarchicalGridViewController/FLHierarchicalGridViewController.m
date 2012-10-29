@@ -78,7 +78,7 @@
     loader.progressController = [FLProgressViewOwner progressViewOwner: [[UIApplication visibleViewController] addActivityIndicatorView:UIActivityIndicatorViewStyleWhite]];
     [loader.progressController showProgress];
     
-    [self startAction:loader completion: ^(id<FLAsyncResult> result) {
+    [self startAction:loader completion: ^(id<FLResult> result) {
     
         if(loader.didSucceed) {
             [self mergeCellDataRefs:loader.loadChildrenResult];
@@ -113,7 +113,7 @@
         loader.progressController = [FLProgressViewOwner progressViewOwner: [[UIApplication visibleViewController] addActivityIndicatorView:UIActivityIndicatorViewStyleWhite]];
         [loader.progressController showProgress];
         
-        [self startAction:loader completion: ^(id<FLAsyncResult> result) {
+        [self startAction:loader completion: ^(id<FLResult> result) {
         
             if(loader.didSucceed) {
                 self.parentDataRef = loader.result;

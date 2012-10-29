@@ -51,7 +51,7 @@
               
     FLAction* loader = [self.dataModel.galleryDataModel userLoaderWithUserID:[galleryItem ownerID]];
  
-    [self startAction:loader completion: ^(id<FLAsyncResult> result) {
+    [self startAction:loader completion: ^(id<FLResult> result) {
         if(loader.didSucceed) {
             id user = loader.userResult;
         

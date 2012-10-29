@@ -405,10 +405,6 @@
 		276CE91415E54C91000A5CE6 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		276CE91515E54C91000A5CE6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		276CE92615E54D45000A5CE6 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
-		279A9E85163CC29E0025D8E2 /* LibsDebug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = LibsDebug.xcconfig; path = ../../XcodeConfigs/LibsDebug.xcconfig; sourceTree = "<group>"; };
-		279A9E86163CC29E0025D8E2 /* LibsRelease.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = LibsRelease.xcconfig; path = ../../XcodeConfigs/LibsRelease.xcconfig; sourceTree = "<group>"; };
-		279A9E87163CC29E0025D8E2 /* LibsTestDebug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = LibsTestDebug.xcconfig; path = ../../XcodeConfigs/LibsTestDebug.xcconfig; sourceTree = "<group>"; };
-		279A9E88163CC29E0025D8E2 /* LibsTestRelease.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = LibsTestRelease.xcconfig; path = ../../XcodeConfigs/LibsTestRelease.xcconfig; sourceTree = "<group>"; };
 		279A9E95163CC4090025D8E2 /* FLAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAlert.h; sourceTree = "<group>"; };
 		279A9E96163CC4090025D8E2 /* FLAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAlert.m; sourceTree = "<group>"; };
 		279A9E97163CC4090025D8E2 /* FLAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAlertView.h; sourceTree = "<group>"; };
@@ -1141,7 +1137,12 @@
 		27A43A8215CDCC1B001CB13E /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		27A43A8415CDCC1B001CB13E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		27A43AA415CDCC73001CB13E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		27A43AB415CDCC89001CB13E /* libFishLampiOSiOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libFishLampiOSiOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		27A43AB415CDCC89001CB13E /* libFishLampiOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libFishLampiOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		27E5A83A163D929500B8D029 /* FLProjectSettingsDebug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FLProjectSettingsDebug.xcconfig; sourceTree = "<group>"; };
+		27E5A83B163D929500B8D029 /* FLProjectSettingsRelease.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FLProjectSettingsRelease.xcconfig; sourceTree = "<group>"; };
+		27E5A83C163D929500B8D029 /* FLProjectSettingsTest.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FLProjectSettingsTest.xcconfig; sourceTree = "<group>"; };
+		27E5A83D163D929500B8D029 /* FLProjectSettingsTestDebug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FLProjectSettingsTestDebug.xcconfig; sourceTree = "<group>"; };
+		27E5A8D6163DAE8A00B8D029 /* FishLampiOS-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FishLampiOS-Prefix.pch"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1159,10 +1160,7 @@
 		272DF91315D1C1BB009592E5 /* XCodeConfigs */ = {
 			isa = PBXGroup;
 			children = (
-				279A9E85163CC29E0025D8E2 /* LibsDebug.xcconfig */,
-				279A9E86163CC29E0025D8E2 /* LibsRelease.xcconfig */,
-				279A9E87163CC29E0025D8E2 /* LibsTestDebug.xcconfig */,
-				279A9E88163CC29E0025D8E2 /* LibsTestRelease.xcconfig */,
+				27E5A839163D929500B8D029 /* FishLampProjectSettings */,
 				272DF91615D1C1BB009592E5 /* LibFishLampiOS.xcconfig */,
 			);
 			path = XCodeConfigs;
@@ -2751,6 +2749,7 @@
 		27A43A7115CDCC1B001CB13E = {
 			isa = PBXGroup;
 			children = (
+				27E5A8D6163DAE8A00B8D029 /* FishLampiOS-Prefix.pch */,
 				279AA274163CC4230025D8E2 /* IOSPhoto */,
 				279A9E93163CC4090025D8E2 /* Classes */,
 				272DF91315D1C1BB009592E5 /* XCodeConfigs */,
@@ -2762,7 +2761,7 @@
 		27A43A7D15CDCC1B001CB13E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				27A43AB415CDCC89001CB13E /* libFishLampiOSiOS.a */,
+				27A43AB415CDCC89001CB13E /* libFishLampiOS.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2785,6 +2784,18 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		27E5A839163D929500B8D029 /* FishLampProjectSettings */ = {
+			isa = PBXGroup;
+			children = (
+				27E5A83A163D929500B8D029 /* FLProjectSettingsDebug.xcconfig */,
+				27E5A83B163D929500B8D029 /* FLProjectSettingsRelease.xcconfig */,
+				27E5A83C163D929500B8D029 /* FLProjectSettingsTest.xcconfig */,
+				27E5A83D163D929500B8D029 /* FLProjectSettingsTestDebug.xcconfig */,
+			);
+			name = FishLampProjectSettings;
+			path = ../../XcodeConfigs/FishLampProjectSettings;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2802,7 +2813,7 @@
 			);
 			name = FishLampiOS;
 			productName = FishLampiOS;
-			productReference = 27A43AB415CDCC89001CB13E /* libFishLampiOSiOS.a */;
+			productReference = 27A43AB415CDCC89001CB13E /* libFishLampiOS.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -3197,16 +3208,9 @@
 /* Begin XCBuildConfiguration section */
 		27732FD815E55C8A00C19668 /* Test */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 279A9E88163CC29E0025D8E2 /* LibsTestRelease.xcconfig */;
+			baseConfigurationReference = 27E5A83C163D929500B8D029 /* FLProjectSettingsTest.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
-				CLANG_CXX_LIBRARY = "compiler-default";
 				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_VERSION = "";
-				SDKROOT = iphoneos;
 			};
 			name = Test;
 		};
@@ -3215,13 +3219,6 @@
 			baseConfigurationReference = 272DF91615D1C1BB009592E5 /* LibFishLampiOS.xcconfig */;
 			buildSettings = {
 				DSTROOT = /tmp/FishLampiOS.dst;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../Classes/iOS/Modules/TestFlightTrackerSink/TestFlightSDK1.0\"",
-					"\"$(SRCROOT)/FishLampiOS/TestFlightTrackerSink/TestFlightSDK1.0\"",
-				);
-				PRODUCT_NAME = FishLampiOSiOS;
 				SKIP_INSTALL = YES;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -3229,32 +3226,17 @@
 		};
 		27A43A8B15CDCC1B001CB13E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 279A9E85163CC29E0025D8E2 /* LibsDebug.xcconfig */;
+			baseConfigurationReference = 27E5A83B163D929500B8D029 /* FLProjectSettingsRelease.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
-				CLANG_CXX_LIBRARY = "compiler-default";
 				COPY_PHASE_STRIP = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_VERSION = "";
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
 		27A43A8C15CDCC1B001CB13E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 279A9E86163CC29E0025D8E2 /* LibsRelease.xcconfig */;
+			baseConfigurationReference = 27E5A83B163D929500B8D029 /* FLProjectSettingsRelease.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
-				CLANG_CXX_LIBRARY = "compiler-default";
 				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_VERSION = "";
-				SDKROOT = iphoneos;
 			};
 			name = Release;
 		};
@@ -3263,13 +3245,6 @@
 			baseConfigurationReference = 272DF91615D1C1BB009592E5 /* LibFishLampiOS.xcconfig */;
 			buildSettings = {
 				DSTROOT = /tmp/FishLampiOS.dst;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../Classes/iOS/Modules/TestFlightTrackerSink/TestFlightSDK1.0\"",
-					"\"$(SRCROOT)/FishLampiOS/TestFlightTrackerSink/TestFlightSDK1.0\"",
-				);
-				PRODUCT_NAME = FishLampiOSiOS;
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -3279,13 +3254,6 @@
 			baseConfigurationReference = 272DF91615D1C1BB009592E5 /* LibFishLampiOS.xcconfig */;
 			buildSettings = {
 				DSTROOT = /tmp/FishLampiOS.dst;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../Classes/iOS/Modules/TestFlightTrackerSink/TestFlightSDK1.0\"",
-					"\"$(SRCROOT)/FishLampiOS/TestFlightTrackerSink/TestFlightSDK1.0\"",
-				);
-				PRODUCT_NAME = FishLampiOSiOS;
 				SKIP_INSTALL = YES;
 				VALIDATE_PRODUCT = YES;
 			};

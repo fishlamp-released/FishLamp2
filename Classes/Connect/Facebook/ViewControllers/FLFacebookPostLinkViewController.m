@@ -128,7 +128,7 @@
 
     [action addOperation:operation];
             
-    [self startAction:action completion: ^(id<FLAsyncResult> result) {
+    [self startAction:action completion: ^(id<FLResult> result) {
         if(action.didSucceed) {
             [_postLinkDelegate facebookPostLinkViewControllerDidPostLink:self];
         }

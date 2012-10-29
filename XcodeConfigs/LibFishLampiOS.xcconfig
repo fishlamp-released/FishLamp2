@@ -5,12 +5,9 @@
 //  Created by Mike Fullerton on 7/10/12.
 //  Copyright (c) 2012 GreenTongue Software. All rights reserved.
 //
+#include "../XcodeConfigs/FishLampTargetSettings/FLTargetSettingsiOS.xcconfig"
 
 HEADER_SEARCH_PATHS = $(inherited) $(Classes/**) $(FISHLAMP_CORE_SEARCH_PATH)
 GCC_PRECOMPILE_PREFIX_HEADER = YES
 GCC_PREFIX_HEADER = FishLampiOS-Prefix.pch
 
-ARCHS = armv7 armv7s
-SDKROOT = iphoneos
-SUPPORTED_PLATFORMS = iphonesimulator iphoneos
-CLANG_ENABLE_OBJC_ARC = YES

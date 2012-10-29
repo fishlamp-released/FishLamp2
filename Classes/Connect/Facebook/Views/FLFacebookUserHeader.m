@@ -83,7 +83,7 @@
         return operation;
     }];
 
-	[viewController startAction: action completion: ^(id<FLAsyncResult> result) {
+	[viewController startAction: action completion: ^(id<FLResult> result) {
         [self _didCompleteLoad:action]; 
         }];
 
