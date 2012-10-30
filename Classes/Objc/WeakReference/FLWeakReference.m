@@ -80,7 +80,7 @@
 
 #if TEST
 #import "FLCallback.h"
-#import "FLFifoQueue.h"
+#import "FLDispatchQueues.h"
 
 @interface FLWeakRefTestObject : FLCallback<FLWeaklyReferenced> {
 @private
@@ -142,7 +142,7 @@
     // are autoreleased in the thread and running the test in the main
     // loop causes a deadlock.
   
-    [FLAsyncQueue addWorkerBlock:^(FLFinisher finisher){
+    [[FLDispatchQueue instance] dispatchBlock:^{
         __block BOOL wasDeleted = NO;
     
         FLWeakRefTestObject* obj = [[FLWeakRefTestObject alloc] initWithBlock:^(id sender){
@@ -172,8 +172,6 @@
 #if FL_ARC    
         FLAssertIsNil_(test);
 #endif
-        [finisher setFinished];
-
     }];
     
     

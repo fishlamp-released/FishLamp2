@@ -7,7 +7,7 @@
 //
 
 #import "FLLogFileManager.h"
-#import "FLFifoQueue.h"
+#import "FLDispatchQueues.h"
 #import "NSFileManager+FLExtras.h"
 
 @interface FLLogFileManager ()
@@ -33,12 +33,9 @@ FLSynthesizeSingleton(FLLogFileManager);
     if(_logFile) {
         FLLogFile* closeMe = _logFile;
 
-        [FLFifoQueue addWorkerBlock:^(FLFinisher finisher){
+        [[FLFifoQueue instance] dispatchBlock:^{
             [closeMe closeLogFile];
-            
-            [finisher setFinished];
         }];
-
 
         FLReleaseWithNil(_logFile);
     }
@@ -178,14 +175,12 @@ FLSynthesizeSingleton(FLLogFileManager);
 
 - (void) logString:(NSString*) string {
 
-    [FLFifoQueue addWorkerBlock:^(FLFinisher finisher){
+    [[FLFifoQueue instance] dispatchBlock:^{
         if(!_logFile) {
             [self _openLogFile];
         }
         
         [self.logFile logString:_stringFormatter(string)];
-        
-        [finisher setFinished];
     }];
 }
 

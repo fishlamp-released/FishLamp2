@@ -8,8 +8,8 @@
 
 #import "FLRunUnitTestsOperation.h"
 
-#import "FLBot.h"
-#import "FLFifoQueue.h"
+#import "FLJob.h"
+#import "FLDispatchQueues.h"
 #import "FLSanityCheckRunner.h"
 #import "FLUnitTestSubclassRunner.h"
 #import "FLStaticTestMethodRunner.h"

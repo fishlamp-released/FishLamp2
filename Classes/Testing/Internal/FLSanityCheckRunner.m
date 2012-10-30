@@ -10,7 +10,7 @@
 
 #import "FLWeakReference.h"
 #import "FLWorkFinisher.h"
-#import "FLFifoQueue.h"
+#import "FLDispatchQueues.h"
 
 @implementation FLSanityCheckRunner
 

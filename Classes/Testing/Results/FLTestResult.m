@@ -52,7 +52,8 @@
 }
 
 - (NSString*) description {
-    return [NSString stringWithFormat:@"%@ { testName: %@, passed: %@, error: %@ }", [super description], self.testName, self.passed ? @"YES" : @"NO", [_error description]];
+    return [NSString stringWithFormat:@"%@ { testName: %@, passed: %@, error: %@ }", [super description], self.testName, self.passed ? @"YES" : [NSString stringWithFormat:@"NO (%d of %d)", (int)_count, (int)_expectedCount], 
+            [_error description]];
 }
 
 
@@ -65,7 +66,5 @@
 + (FLCountedTestResult*) countedTestResult:(NSUInteger) expectedCount {
     return FLReturnAutoreleased([[[self class] alloc] initWithExpectedCount:expectedCount]);
 }
-
-
 
 @end

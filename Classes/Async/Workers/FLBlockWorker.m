@@ -9,21 +9,21 @@
 #import "FLBlockWorker.h"
 
 @interface FLBlockWorker ()
-@property (readwrite, copy) FLWorkerBlock asyncWorkerBlock;
+@property (readwrite, copy) FLAsyncBlock asyncWorkerBlock;
 @end
 
 @implementation FLBlockWorker
 
 @synthesize asyncWorkerBlock = _workerBlock;
 
-- (id) initWithWorkerBlock:(FLWorkerBlock) block {
+- (id) initWithWorkerBlock:(FLAsyncBlock) block {
     self = [super init];
     if(self) {
         self.asyncWorkerBlock = block;
     }
     return self;
 }
-+ (id) blockWorker:(FLWorkerBlock) block {
++ (id) blockWorker:(FLAsyncBlock) block {
     return FLReturnAutoreleased([[[self class] alloc] initWithWorkerBlock:block]);
 }
 

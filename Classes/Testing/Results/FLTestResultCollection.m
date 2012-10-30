@@ -105,15 +105,17 @@
 }
 
 - (BOOL) allTestsPassed {
+    BOOL passed = YES;
     @synchronized(self) {
         for(id result in _results.objectEnumerator) {
             if(![result passed]) {
-                return NO;
+                FLLog(@"FAIL: %@", [result description]);
+                passed = NO;
             }
         }
     }
     
-    return YES;
+    return passed;
 }
 
 - (NSString*) description {

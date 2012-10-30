@@ -195,7 +195,7 @@ static void (*originalDealloc)(id,SEL);
 }
 @end
 
-#import "FLFifoQueue.h"
+#import "FLDispatchQueues.h"
 
 @interface FLDeallocNotifierSanityCheck : FLSanityCheck
 @end
@@ -234,7 +234,7 @@ static void (*originalDealloc)(id,SEL);
     __block __weak id test = nil;
 #endif    
     
-    FLPromisedResult result = [FLAsyncQueue addWorkerBlock:^(FLFinisher finisher){
+    FLPromisedResult result = [[FLDispatchQueue instance] dispatchAsyncBlock:^(FLFinisher finisher){
         FLDeleteNotifier* notifier = [[FLDeleteNotifier alloc] initWithBlock:^(id sender){
             objectDeleted = YES;
         }];

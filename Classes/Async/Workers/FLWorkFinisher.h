@@ -11,6 +11,7 @@
 #import "FLFinisher.h"
 #import "FLPromisedResult.h"
 #import "FLWorker.h"
+
 @class FLTimeoutTimer;
 
 @interface FLWorkFinisher : NSObject<FLFinisher, FLPromisedResult> {

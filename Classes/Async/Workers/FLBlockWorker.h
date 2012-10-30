@@ -10,13 +10,11 @@
 
 #import "FLSimpleWorker.h"
 
-typedef void (^FLWorkerBlock)(FLFinisher finisher);
-
 @interface FLBlockWorker : FLSimpleWorker {
 @private
-    FLWorkerBlock _workerBlock;
+    FLAsyncBlock _workerBlock;
 }
-- (id) initWithWorkerBlock:(FLWorkerBlock) block;
-+ (id) blockWorker:(FLWorkerBlock) block;
+- (id) initWithWorkerBlock:(FLAsyncBlock) block;
++ (id) blockWorker:(FLAsyncBlock) block;
 
 @end

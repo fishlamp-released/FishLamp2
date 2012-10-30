@@ -21,7 +21,7 @@
 @synthesize isFinished = _finished;
 @synthesize result = _result;
 
-- (id) initWithCompletionBlock:(FLResultBlock) completion{
+- (id) initWithCompletionBlock:(FLResultBlock) completion {
     
     self = [super init];
     if(self) {

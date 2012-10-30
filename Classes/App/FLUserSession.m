@@ -17,7 +17,7 @@
 #import "NSString+Guid.h"
 #import "FLLengthyTaskOperation.h"
 #import "FLAction.h"
-#import "FLBot.h"
+#import "FLJob.h"
 #import "FLBackgroundTaskMgr.h"
 
 @interface FLUserSession ()

@@ -8,6 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+//@protocol FLSingleton <NSObject>
+//+ (id) instance;
+//+ (void) createInstance;
+//+ (void) releaseInstance;
+//@end
+
 /// FLSingletonProperty is a macro for defining a singleton object.
 /// @param __class The type of the class (for example MyClass). 
 #define FLSingletonProperty(__class) + (__class*)instance; \

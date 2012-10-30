@@ -15,7 +15,14 @@
 
 - (FLPromisedResult) start:(FLResultBlock) completion {
     FLWorkFinisher* finisher = [FLWorkFinisher finisher:completion];
-    [self startWorking:finisher];
+    @try {
+        [self startWorking:finisher];
+    }
+    @catch(NSException* ex) {
+        if(!FLTryHandlingErrorForObject(ex.error, self)) {
+            @throw;
+        }
+    }
     return finisher;
 }
 
