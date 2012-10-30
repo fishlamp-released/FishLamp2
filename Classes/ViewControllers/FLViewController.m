@@ -16,8 +16,8 @@
 #import "FLReachableNetwork.h"
 #import "FLBackgroundTaskMgr.h"
 #import "FLGradientView.h"
-#import "FLBot.h"
-#import "FLFifoQueue.h"
+#import "FLJob.h"
+#import "FLDispatchQueues.h"
 
 // TODO: there is a lot of coupling and old crusty code in here.
 
@@ -464,7 +464,7 @@ static FLViewController* s_presentingModalViewController = nil;
     
     [self.operationContext addOperation:operation];
 
-    return [FLAsyncQueue addWorker:operation completion:completion];
+    return [[FLDispatchQueue instance] dispatchWorker:operation completion:completion];
 }
 
 @end
