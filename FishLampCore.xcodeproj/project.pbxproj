@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		27048D10161CB58600C38ADA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27A43A7F15CDCC1B001CB13E /* Cocoa.framework */; };
+		270EA4DE1640C5D200329E35 /* FishLampCore-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 270EA4DD1640C5D200329E35 /* FishLampCore-Prefix.pch */; };
+		270EA4DF1640C5D200329E35 /* FishLampCore-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 270EA4DD1640C5D200329E35 /* FishLampCore-Prefix.pch */; };
+		270EA4E11640C5E300329E35 /* FishLamp-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 270EA4E01640C5E300329E35 /* FishLamp-Prefix.pch */; };
+		270EA4E21640C5E300329E35 /* FishLamp-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 270EA4E01640C5E300329E35 /* FishLamp-Prefix.pch */; };
 		27A43AB515CDCC89001CB13E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27A43AA415CDCC73001CB13E /* Foundation.framework */; };
 		27A43AC515CDCCCB001CB13E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27A43A7F15CDCC1B001CB13E /* Cocoa.framework */; };
 		27B7DDF2163CB4E100E9C6EB /* FLApplicationDataModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7D9CA163CB4E000E9C6EB /* FLApplicationDataModel.h */; };
@@ -2093,8 +2097,6 @@
 		27B7EA82163CB4E400E9C6EB /* FLVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7DDF1163CB4E000E9C6EB /* FLVersion.m */; };
 		27B7EA83163CB4E400E9C6EB /* FLVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7DDF1163CB4E000E9C6EB /* FLVersion.m */; };
 		27B7EA85163CB4E400E9C6EB /* FLVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7DDF1163CB4E000E9C6EB /* FLVersion.m */; };
-		27E5A790163CCDA900B8D029 /* FishLampCore-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27E5A78F163CCDA900B8D029 /* FishLampCore-Prefix.pch */; };
-		27E5A791163CCDA900B8D029 /* FishLampCore-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27E5A78F163CCDA900B8D029 /* FishLampCore-Prefix.pch */; };
 		27E5A9EA163EFD8B00B8D029 /* FLAction.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E5A985163EFD8B00B8D029 /* FLAction.h */; };
 		27E5A9EB163EFD8B00B8D029 /* FLAction.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E5A985163EFD8B00B8D029 /* FLAction.h */; };
 		27E5A9EC163EFD8B00B8D029 /* FLAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E5A986163EFD8B00B8D029 /* FLAction.m */; };
@@ -2330,6 +2332,8 @@
 		270D02E215E9B1FE00ED5FB0 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
 		270D02E315E9B1FF00ED5FB0 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
 		270DFDC815E99BAC00ED5FB0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		270EA4DD1640C5D200329E35 /* FishLampCore-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FishLampCore-Prefix.pch"; sourceTree = "<group>"; };
+		270EA4E01640C5E300329E35 /* FishLamp-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "FishLamp-Prefix.pch"; path = "../FishLamp-Prefix.pch"; sourceTree = "<group>"; };
 		272DF91515D1C1BB009592E5 /* TargetMac.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = TargetMac.xcconfig; sourceTree = "<group>"; };
 		272DF91615D1C1BB009592E5 /* TargetiOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = TargetiOS.xcconfig; sourceTree = "<group>"; };
 		276CE8EE15E54B2F000A5CE6 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
@@ -3219,7 +3223,6 @@
 		27B7DDEE163CB4E000E9C6EB /* NSString+GUID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+GUID.m"; sourceTree = "<group>"; };
 		27B7DDF0163CB4E000E9C6EB /* FLVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLVersion.h; sourceTree = "<group>"; };
 		27B7DDF1163CB4E000E9C6EB /* FLVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLVersion.m; sourceTree = "<group>"; };
-		27E5A78F163CCDA900B8D029 /* FishLampCore-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FishLampCore-Prefix.pch"; sourceTree = "<group>"; };
 		27E5A985163EFD8B00B8D029 /* FLAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAction.h; sourceTree = "<group>"; };
 		27E5A986163EFD8B00B8D029 /* FLAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAction.m; sourceTree = "<group>"; };
 		27E5A987163EFD8B00B8D029 /* FLActionDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLActionDescription.h; sourceTree = "<group>"; };
@@ -3392,8 +3395,9 @@
 		27A43A7115CDCC1B001CB13E = {
 			isa = PBXGroup;
 			children = (
+				270EA4E01640C5E300329E35 /* FishLamp-Prefix.pch */,
+				270EA4DD1640C5D200329E35 /* FishLampCore-Prefix.pch */,
 				27EAE1591640BA56007F87E1 /* FishLampProjectSettings */,
-				27E5A78F163CCDA900B8D029 /* FishLampCore-Prefix.pch */,
 				27B7D9C7163CB4E000E9C6EB /* Classes */,
 				272DF91315D1C1BB009592E5 /* XCodeConfigs */,
 				27A43A7E15CDCC1B001CB13E /* Frameworks */,
@@ -5861,7 +5865,6 @@
 				27B7EA73163CB4E400E9C6EB /* FLGuid.h in Headers */,
 				27B7EA7A163CB4E400E9C6EB /* NSString+GUID.h in Headers */,
 				27B7EA81163CB4E400E9C6EB /* FLVersion.h in Headers */,
-				27E5A791163CCDA900B8D029 /* FishLampCore-Prefix.pch in Headers */,
 				27E5A9EB163EFD8B00B8D029 /* FLAction.h in Headers */,
 				27E5A9F0163EFD8B00B8D029 /* FLActionDescription.h in Headers */,
 				27E5A9F5163EFD8B00B8D029 /* FLErrorDescriber.h in Headers */,
@@ -5908,6 +5911,8 @@
 				27E5AAEE163F4E5C00B8D029 /* FLDispatcher.h in Headers */,
 				27E5AAF916403F8E00B8D029 /* FLHttpTests.h in Headers */,
 				27E5AB0116406F4300B8D029 /* FLCoreFoundation.h in Headers */,
+				270EA4DF1640C5D200329E35 /* FishLampCore-Prefix.pch in Headers */,
+				270EA4E21640C5E300329E35 /* FishLamp-Prefix.pch in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6367,7 +6372,6 @@
 				27B7EA71163CB4E400E9C6EB /* FLGuid.h in Headers */,
 				27B7EA78163CB4E400E9C6EB /* NSString+GUID.h in Headers */,
 				27B7EA7F163CB4E400E9C6EB /* FLVersion.h in Headers */,
-				27E5A790163CCDA900B8D029 /* FishLampCore-Prefix.pch in Headers */,
 				27E5A9EA163EFD8B00B8D029 /* FLAction.h in Headers */,
 				27E5A9EF163EFD8B00B8D029 /* FLActionDescription.h in Headers */,
 				27E5A9F4163EFD8B00B8D029 /* FLErrorDescriber.h in Headers */,
@@ -6414,6 +6418,8 @@
 				27E5AAED163F4E5C00B8D029 /* FLDispatcher.h in Headers */,
 				27E5AAF816403F8E00B8D029 /* FLHttpTests.h in Headers */,
 				27E5AB0016406F4300B8D029 /* FLCoreFoundation.h in Headers */,
+				270EA4DE1640C5D200329E35 /* FishLampCore-Prefix.pch in Headers */,
+				270EA4E11640C5E300329E35 /* FishLamp-Prefix.pch in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
