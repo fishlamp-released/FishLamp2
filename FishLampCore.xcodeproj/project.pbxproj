@@ -2319,7 +2319,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		27048EF0161CB58600C38ADA /* libFishLampCoreMac32.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libFishLampCoreMac32.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		27048EF0161CB58600C38ADA /* lib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = lib.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		27048EF2161CB5E700C38ADA /* LibFishLampCoreMac32.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = LibFishLampCoreMac32.xcconfig; path = XcodeConfigs/LibFishLampCoreMac32.xcconfig; sourceTree = SOURCE_ROOT; };
 		270D02DC15E9B1F500ED5FB0 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/AppKit.framework; sourceTree = DEVELOPER_DIR; };
 		270D02DD15E9B1F600ED5FB0 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
@@ -2357,8 +2357,8 @@
 		27A43A8215CDCC1B001CB13E /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		27A43A8415CDCC1B001CB13E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		27A43AA415CDCC73001CB13E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		27A43AB415CDCC89001CB13E /* libFishLampCoreiOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libFishLampCoreiOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		27A43AC415CDCCCB001CB13E /* libFishLampCoreMac.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libFishLampCoreMac.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		27A43AB415CDCC89001CB13E /* libFishLampCoreiOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libFishLampCoreiOS.a; path = lib.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		27A43AC415CDCCCB001CB13E /* libFishLampCoreMac.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libFishLampCoreMac.a; path = lib.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		27B7D9CA163CB4E000E9C6EB /* FLApplicationDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLApplicationDataModel.h; sourceTree = "<group>"; };
 		27B7D9CB163CB4E000E9C6EB /* FLApplicationDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLApplicationDataModel.m; sourceTree = "<group>"; };
 		27B7D9CC163CB4E000E9C6EB /* FLUserSessionDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLUserSessionDataModel.h; sourceTree = "<group>"; };
@@ -3407,7 +3407,7 @@
 			children = (
 				27A43AB415CDCC89001CB13E /* libFishLampCoreiOS.a */,
 				27A43AC415CDCCCB001CB13E /* libFishLampCoreMac.a */,
-				27048EF0161CB58600C38ADA /* libFishLampCoreMac32.a */,
+				27048EF0161CB58600C38ADA /* lib.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -6436,7 +6436,7 @@
 			);
 			name = FishLampCoreMac32;
 			productName = FishLampCocoaApp;
-			productReference = 27048EF0161CB58600C38ADA /* libFishLampCoreMac32.a */;
+			productReference = 27048EF0161CB58600C38ADA /* lib.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		27A43AB315CDCC89001CB13E /* FishLampCoreiOS */ = {

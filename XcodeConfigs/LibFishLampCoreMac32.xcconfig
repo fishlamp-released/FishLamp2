@@ -7,5 +7,5 @@
 //
 
 #include "XcodeConfigs/LibFishLampCoreShared.xcconfig"
-#include "../XcodeConfigs/FishLampTargetSettings/FLTargetSettingsMac32.xcconfig"
+#include "FishLampXcodeConfigs/FishLampTargetSettings/FLTargetSettingsMac32.xcconfig"
 
