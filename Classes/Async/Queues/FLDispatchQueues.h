@@ -6,8 +6,6 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
-
 #import "FishLampCore.h"
 #import "FLDispatcher.h"
 #import "FLSingletonProperty.h"
