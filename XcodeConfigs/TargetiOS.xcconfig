@@ -6,5 +6,5 @@
 //  Copyright (c) 2012 GreenTongue Software. All rights reserved.
 //
 
-#include "XcodeConfigs/LibFishLampCoreShared.xcconfig"
-#include "FishLampXcodeConfigs/FishLampTargetSettings/FLTargetSettingsiOS.xcconfig"
+#include "XcodeConfigs/TargetShared.xcconfig"
+#include "FishLampXcodeConfigs/FishLampTargetSettings/FishLampTargetSettingsiOS.xcconfig"
