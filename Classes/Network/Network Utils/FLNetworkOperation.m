@@ -66,7 +66,7 @@
 - (void) dealloc {
     [_networkConnection removeObserver:self];
 
-#if FL_NO_ARC
+#if FL_MRC
     FLRelease(_networkConnection);
 	FLSuperDealloc();
 #endif

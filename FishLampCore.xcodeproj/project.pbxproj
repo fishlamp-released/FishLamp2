@@ -1527,8 +1527,8 @@
 		27B7E75D163CB4E300E9C6EB /* FLSimpleNotifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7DCE0163CB4E000E9C6EB /* FLSimpleNotifier.m */; };
 		27B7E75E163CB4E300E9C6EB /* FLCompilerWarnings.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7DCE2163CB4E000E9C6EB /* FLCompilerWarnings.h */; };
 		27B7E760163CB4E300E9C6EB /* FLCompilerWarnings.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7DCE2163CB4E000E9C6EB /* FLCompilerWarnings.h */; };
-		27B7E761163CB4E300E9C6EB /* FLCoreObjC.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7DCE3163CB4E000E9C6EB /* FLCoreObjC.h */; };
-		27B7E763163CB4E300E9C6EB /* FLCoreObjC.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7DCE3163CB4E000E9C6EB /* FLCoreObjC.h */; };
+		27B7E761163CB4E300E9C6EB /* FLObjc.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7DCE3163CB4E000E9C6EB /* FLObjc.h */; };
+		27B7E763163CB4E300E9C6EB /* FLObjc.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7DCE3163CB4E000E9C6EB /* FLObjc.h */; };
 		27B7E764163CB4E300E9C6EB /* FLDeletedObjectReference.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7DCE4163CB4E000E9C6EB /* FLDeletedObjectReference.h */; };
 		27B7E766163CB4E300E9C6EB /* FLDeletedObjectReference.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7DCE4163CB4E000E9C6EB /* FLDeletedObjectReference.h */; };
 		27B7E767163CB4E300E9C6EB /* FLDeletedObjectReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7DCE5163CB4E000E9C6EB /* FLDeletedObjectReference.m */; };
@@ -2297,6 +2297,13 @@
 		27E5AADA163F460800B8D029 /* FLDispatchQueues.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E5AAD5163F460800B8D029 /* FLDispatchQueues.m */; };
 		27E5AAED163F4E5C00B8D029 /* FLDispatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E5AAEC163F4E5700B8D029 /* FLDispatcher.h */; };
 		27E5AAEE163F4E5C00B8D029 /* FLDispatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E5AAEC163F4E5700B8D029 /* FLDispatcher.h */; };
+		27E5AAF816403F8E00B8D029 /* FLHttpTests.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E5AAF616403F8E00B8D029 /* FLHttpTests.h */; };
+		27E5AAF916403F8E00B8D029 /* FLHttpTests.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E5AAF616403F8E00B8D029 /* FLHttpTests.h */; };
+		27E5AAFA16403F8E00B8D029 /* FLHttpTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E5AAF716403F8E00B8D029 /* FLHttpTests.m */; };
+		27E5AAFB16403F8E00B8D029 /* FLHttpTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E5AAF716403F8E00B8D029 /* FLHttpTests.m */; };
+		27E5AAFC16403F8E00B8D029 /* FLHttpTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E5AAF716403F8E00B8D029 /* FLHttpTests.m */; };
+		27E5AB0016406F4300B8D029 /* FLCoreFoundation.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E5AAFF16406F4000B8D029 /* FLCoreFoundation.h */; };
+		27E5AB0116406F4300B8D029 /* FLCoreFoundation.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E5AAFF16406F4000B8D029 /* FLCoreFoundation.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -2977,7 +2984,7 @@
 		27B7DCDF163CB4E000E9C6EB /* FLSimpleNotifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLSimpleNotifier.h; sourceTree = "<group>"; };
 		27B7DCE0163CB4E000E9C6EB /* FLSimpleNotifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLSimpleNotifier.m; sourceTree = "<group>"; };
 		27B7DCE2163CB4E000E9C6EB /* FLCompilerWarnings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCompilerWarnings.h; sourceTree = "<group>"; };
-		27B7DCE3163CB4E000E9C6EB /* FLCoreObjC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCoreObjC.h; sourceTree = "<group>"; };
+		27B7DCE3163CB4E000E9C6EB /* FLObjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLObjc.h; sourceTree = "<group>"; };
 		27B7DCE4163CB4E000E9C6EB /* FLDeletedObjectReference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLDeletedObjectReference.h; sourceTree = "<group>"; };
 		27B7DCE5163CB4E000E9C6EB /* FLDeletedObjectReference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLDeletedObjectReference.m; sourceTree = "<group>"; };
 		27B7DCE6163CB4E000E9C6EB /* FLObjcRuntime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLObjcRuntime.h; sourceTree = "<group>"; };
@@ -3299,6 +3306,11 @@
 		27E5AAD4163F460800B8D029 /* FLDispatchQueues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLDispatchQueues.h; sourceTree = "<group>"; };
 		27E5AAD5163F460800B8D029 /* FLDispatchQueues.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLDispatchQueues.m; sourceTree = "<group>"; };
 		27E5AAEC163F4E5700B8D029 /* FLDispatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLDispatcher.h; sourceTree = "<group>"; };
+		27E5AAF616403F8E00B8D029 /* FLHttpTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLHttpTests.h; sourceTree = "<group>"; };
+		27E5AAF716403F8E00B8D029 /* FLHttpTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLHttpTests.m; sourceTree = "<group>"; };
+		27E5AAFD16404DE800B8D029 /* FLObjcARC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FLObjcARC.h; sourceTree = "<group>"; };
+		27E5AAFE16404DEA00B8D029 /* FLObjcMRC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FLObjcMRC.h; sourceTree = "<group>"; };
+		27E5AAFF16406F4000B8D029 /* FLCoreFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCoreFoundation.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -4303,6 +4315,8 @@
 				27B7DBCA163CB4E000E9C6EB /* FLWebServiceManager.m */,
 				27B7DBCB163CB4E000E9C6EB /* NSURLRequest+HTTP.h */,
 				27B7DBCC163CB4E000E9C6EB /* NSURLRequest+HTTP.m */,
+				27E5AAF616403F8E00B8D029 /* FLHttpTests.h */,
+				27E5AAF716403F8E00B8D029 /* FLHttpTests.m */,
 			);
 			path = HTTP;
 			sourceTree = "<group>";
@@ -4676,8 +4690,11 @@
 		27B7DCE1163CB4E000E9C6EB /* Objc */ = {
 			isa = PBXGroup;
 			children = (
+				27E5AAFF16406F4000B8D029 /* FLCoreFoundation.h */,
 				27B7DCE2163CB4E000E9C6EB /* FLCompilerWarnings.h */,
-				27B7DCE3163CB4E000E9C6EB /* FLCoreObjC.h */,
+				27B7DCE3163CB4E000E9C6EB /* FLObjc.h */,
+				27E5AAFD16404DE800B8D029 /* FLObjcARC.h */,
+				27E5AAFE16404DEA00B8D029 /* FLObjcMRC.h */,
 				27B7DCE4163CB4E000E9C6EB /* FLDeletedObjectReference.h */,
 				27B7DCE5163CB4E000E9C6EB /* FLDeletedObjectReference.m */,
 				27B7DCE6163CB4E000E9C6EB /* FLObjcRuntime.h */,
@@ -5716,7 +5733,7 @@
 				27B7E752163CB4E300E9C6EB /* FLDeallocNotifier.h in Headers */,
 				27B7E759163CB4E300E9C6EB /* FLSimpleNotifier.h in Headers */,
 				27B7E760163CB4E300E9C6EB /* FLCompilerWarnings.h in Headers */,
-				27B7E763163CB4E300E9C6EB /* FLCoreObjC.h in Headers */,
+				27B7E763163CB4E300E9C6EB /* FLObjc.h in Headers */,
 				27B7E766163CB4E300E9C6EB /* FLDeletedObjectReference.h in Headers */,
 				27B7E76D163CB4E300E9C6EB /* FLObjcRuntime.h in Headers */,
 				27B7E774163CB4E300E9C6EB /* FLObjcUnitTests.h in Headers */,
@@ -5891,6 +5908,8 @@
 				27E5AACC163F026C00B8D029 /* FLResultObjects.h in Headers */,
 				27E5AAD7163F460800B8D029 /* FLDispatchQueues.h in Headers */,
 				27E5AAEE163F4E5C00B8D029 /* FLDispatcher.h in Headers */,
+				27E5AAF916403F8E00B8D029 /* FLHttpTests.h in Headers */,
+				27E5AB0116406F4300B8D029 /* FLCoreFoundation.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6220,7 +6239,7 @@
 				27B7E750163CB4E300E9C6EB /* FLDeallocNotifier.h in Headers */,
 				27B7E757163CB4E300E9C6EB /* FLSimpleNotifier.h in Headers */,
 				27B7E75E163CB4E300E9C6EB /* FLCompilerWarnings.h in Headers */,
-				27B7E761163CB4E300E9C6EB /* FLCoreObjC.h in Headers */,
+				27B7E761163CB4E300E9C6EB /* FLObjc.h in Headers */,
 				27B7E764163CB4E300E9C6EB /* FLDeletedObjectReference.h in Headers */,
 				27B7E76B163CB4E300E9C6EB /* FLObjcRuntime.h in Headers */,
 				27B7E772163CB4E300E9C6EB /* FLObjcUnitTests.h in Headers */,
@@ -6395,6 +6414,8 @@
 				27E5AACB163F026C00B8D029 /* FLResultObjects.h in Headers */,
 				27E5AAD6163F460800B8D029 /* FLDispatchQueues.h in Headers */,
 				27E5AAED163F4E5C00B8D029 /* FLDispatcher.h in Headers */,
+				27E5AAF816403F8E00B8D029 /* FLHttpTests.h in Headers */,
+				27E5AB0016406F4300B8D029 /* FLCoreFoundation.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6909,6 +6930,7 @@
 				27E5AACF163F026C00B8D029 /* FLResultObjects.m in Sources */,
 				27E5AAD3163F04A300B8D029 /* FLFallible.m in Sources */,
 				27E5AADA163F460800B8D029 /* FLDispatchQueues.m in Sources */,
+				27E5AAFC16403F8E00B8D029 /* FLHttpTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7351,6 +7373,7 @@
 				27E5AACD163F026C00B8D029 /* FLResultObjects.m in Sources */,
 				27E5AAD1163F04A300B8D029 /* FLFallible.m in Sources */,
 				27E5AAD8163F460800B8D029 /* FLDispatchQueues.m in Sources */,
+				27E5AAFA16403F8E00B8D029 /* FLHttpTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7793,6 +7816,7 @@
 				27E5AACE163F026C00B8D029 /* FLResultObjects.m in Sources */,
 				27E5AAD2163F04A300B8D029 /* FLFallible.m in Sources */,
 				27E5AAD9163F460800B8D029 /* FLDispatchQueues.m in Sources */,
+				27E5AAFB16403F8E00B8D029 /* FLHttpTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

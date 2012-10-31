@@ -9,17 +9,19 @@
 #import <Foundation/Foundation.h>
 
 #import "FLByteBuffer.h"
+#import "FLCoreFoundation.h"
 
 @protocol FLReadStream;
 @protocol FLWriteStream;
 
-#define kRunLoopMode kCFRunLoopDefaultMode
+#define kRunLoopMode NSDefaultRunLoopMode
 
 @protocol FLNetworkStream <NSObject>
 @property (readwrite, assign) id delegate;
 @property (readonly, assign) BOOL isOpen;
 @property (readonly, assign) BOOL isRunning;
 @property (readonly, strong) NSError* error;
+@property (readonly, strong) id output;
 
 - (void) openStream;
 - (void) closeStream;
@@ -34,17 +36,19 @@
 /** this repeatedly calls readblock until there is no more available bytes, or the STOP is set to YES */
 - (void) readAvailableBytesWithBlock:(void (^)(BOOL* stop)) readblock;
 
-- (void) readBytes:(void*) bytes
-    numBytesToRead:(NSUInteger) amount;
+- (NSInteger) appendBytesToMutableData:(NSMutableData*) data;
 
-- (NSUInteger) readAvailableBytes:(void*) bytes 
-                        maxLength:(NSUInteger) maxLength;
-
-- (void) readAvailableBytesWithByteBuffer:(FLByteBuffer*) buffer;
-
-/** chunk size depends on what your doing... */
-- (NSUInteger) appendAvailableBytesToData:(NSMutableData*) data 
-                                chunkSize:(NSUInteger) chunkSize;
+//- (void) readBytes:(void*) bytes
+//    numBytesToRead:(NSUInteger) amount;
+//
+//- (NSUInteger) readAvailableBytes:(void*) bytes 
+//                        maxLength:(NSUInteger) maxLength;
+//
+//- (void) readAvailableBytesWithByteBuffer:(FLByteBuffer*) buffer;
+//
+///** chunk size depends on what your doing... */
+//- (NSUInteger) appendAvailableBytesToData:(NSMutableData*) data 
+//                                chunkSize:(NSUInteger) chunkSize;
 @end
 
 @protocol FLWriteStream <FLNetworkStream>
@@ -85,8 +89,9 @@
 @property (readonly, assign) CFRunLoopRef runLoop;
 
 - (void) forwardStreamEventToDelegate:(CFStreamEventType) eventType;
-+ (NSError *) errorFromStreamError:(CFStreamError)streamError;
 
 @end
+
+
 
 

@@ -29,40 +29,48 @@
 - (NSUInteger) readAvailableBytes:(void*) bytes 
                         maxLength:(NSUInteger) maxLength {
 
-    return [self.readStream readAvailableBytes:bytes maxLength:maxLength];
+//    return [self.readStream readAvailableBytes:bytes maxLength:maxLength];
+
+return 0;
 }
 
 - (NSUInteger) readAvailableData:(NSMutableData*) mutableData
                     maxLength:(NSUInteger) maxLength {
 
-    NSData* data = [self readAvailableData:maxLength];
-    [mutableData appendData:data];
-    return data.length;
+//    NSData* data = [self readAvailableData:maxLength];
+//    [mutableData appendData:data];
+//    return data.length;
+
+return 0;
 }
 
 - (void) readBytes:(void*) bytes
     numBytesToRead:(NSUInteger) amount  {
 
-    [self.readStream readBytes:bytes numBytesToRead:amount];
+//    [self.readStream readBytes:bytes numBytesToRead:amount];
 }
 
 - (NSData*) readAvailableData:(NSUInteger) maxLength {
-    NSMutableData* data = [NSMutableData dataWithCapacity:maxLength];
-    data.length = [self.readStream readAvailableBytes:data.mutableBytes maxLength:maxLength];
-    return data;
+//    NSMutableData* data = [NSMutableData dataWithCapacity:maxLength];
+//    data.length = [self.readStream readAvailableBytes:data.mutableBytes maxLength:maxLength];
+//    return data;
+
+return nil;
 }
 
 - (NSData*) readData:(NSUInteger) amountToRead {
-    NSMutableData* data = [NSMutableData dataWithCapacity:amountToRead];
-    [self.readStream readBytes:data.mutableBytes numBytesToRead:amountToRead];
-    data.length = amountToRead;
-    return data;
+//    NSMutableData* data = [NSMutableData dataWithCapacity:amountToRead];
+//    [self.readStream readBytes:data.mutableBytes numBytesToRead:amountToRead];
+//    data.length = amountToRead;
+//    return data;
+
+return nil;
 }
 
-- (void) readData:(NSMutableData*) bytes
-    numBytesToRead:(NSUInteger) numBytesToRead {
-    [bytes appendData:[self readData:numBytesToRead]];
-}
+//- (void) readData:(NSMutableData*) bytes
+////    numBytesToRead:(NSUInteger) numBytesToRead {
+////    [bytes appendData:[self readData:numBytesToRead]];
+//}
 
 
 @end

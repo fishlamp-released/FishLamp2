@@ -12,7 +12,7 @@
 #import "FLResult.h"
 
 @protocol FLRunnable <NSObject>
-- (FLPromisedResult) start:(FLResultBlock) completion;
+- (id<FLPromisedResult>) start:(FLResultBlock) completion;
 - (FLResult) runSynchronously;
 @end
 

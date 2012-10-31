@@ -57,7 +57,7 @@ NSString* const FLXMLDocTypeXHtml1_1 = @"html PUBLIC \"-//W3C//DTD XHTML 1.1//EN
 	return [input rangeOfString:@"<br/>"].length > 0;
 }
 
-#if FL_NO_ARC
+#if FL_MRC
 - (void) dealloc {
     [_htmlElement release];
     [_headElement release];

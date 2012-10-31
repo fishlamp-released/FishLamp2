@@ -64,7 +64,7 @@
 
     [self postObservation:@selector(observerableWasDestroyed:)];
 
-#if FL_NO_ARC
+#if FL_MRC
     [_observers release];
     [super dealloc];
 #endif
@@ -137,7 +137,7 @@
     return [_observer hash];
 }
 
-#if FL_NO_ARC
+#if FL_MRC
 - (void) dealloc {
     [_observer release];
     [_observing release];
@@ -171,7 +171,7 @@
 //- (void) dealloc {
 //    [self postObservation:@selector(observerableWasDestroyed:)];
 //
-//#if FL_NO_ARC
+//#if FL_MRC
 //    [_observers release];
 //    [super dealloc];
 //#endif

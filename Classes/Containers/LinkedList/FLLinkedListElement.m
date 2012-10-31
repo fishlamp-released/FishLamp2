@@ -16,7 +16,7 @@
 @synthesize previousObjectInLinkedList = _previousObjectInLinkedList;
 @synthesize linkedList = _linkedList;
 
-#if FL_NO_ARC
+#if FL_MRC
 - (void) dealloc {
     FLRelease(_nextObjectInLinkedList);
     FLRelease(_previousObjectInLinkedList);

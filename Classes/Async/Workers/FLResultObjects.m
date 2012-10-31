@@ -64,7 +64,7 @@ FLSynthesizeSingleton(FLFailedResult);
     return FLReturnAutoreleased([[[self class] alloc] initWithError:error]);
 }
 
-#if FL_NO_ARC
+#if FL_MRC
 - (void) dealloc {
     [_error release];
     [super dealloc];
@@ -92,7 +92,7 @@ FLSynthesizeSingleton(FLFailedResult);
 }
 
 @synthesize output = _output;
-#if FL_NO_ARC
+#if FL_MRC
 - (void) dealloc {
     [_output release];
     [super dealloc];

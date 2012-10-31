@@ -41,7 +41,7 @@ static void * const s_queue_key = (void*)&s_queue_key;
     return FLReturnAutoreleased([[[self class] alloc] initWithCompletionBlock:completion queue:queue]);
 }
 
-#if FL_NO_ARC
+#if FL_MRC
 - (void) dealloc {
     [_queue release];
     [super dealloc];
@@ -69,7 +69,7 @@ FLSynthesizeSingleton(FLDispatchQueue);
 - (id) init {
     self = [super init];
     if(self) {
-        dispatch_queue_set_specific([self dispatchQueue], s_queue_key, (__bridge void*) self, nil);
+        dispatch_queue_set_specific([self dispatchQueue], s_queue_key, FLBridge(void*, self), nil);
     }
 
     return self;
@@ -79,28 +79,28 @@ FLSynthesizeSingleton(FLDispatchQueue);
     dispatch_queue_set_specific([self dispatchQueue], s_queue_key, nil, nil);
 
 
-#if FL_NO_ARC
+#if FL_MRC
     [super dealloc];
 #endif
 }
 
 + (FLDispatchQueue*) currentQueue {
-    return (__bridge FLDispatchQueue*) dispatch_queue_get_specific(dispatch_get_current_queue(), s_queue_key);
+    return FLBridge(FLDispatchQueue*, dispatch_queue_get_specific(dispatch_get_current_queue(), s_queue_key));
 }
 
 - (dispatch_queue_t) dispatchQueue {
     return dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
 }
 
-- (FLPromisedResult) dispatchAsyncBlock:(FLAsyncBlock) block {
+- (id<FLPromisedResult>) dispatchAsyncBlock:(FLAsyncBlock) block {
     return [self dispatchAsyncBlock:block completion:nil];
 }
 
-- (FLPromisedResult) dispatchBlock:(void (^)()) block {
+- (id<FLPromisedResult>) dispatchBlock:(void (^)()) block {
     return [self dispatchBlock:block completion:nil];
 }
 
-- (FLPromisedResult) dispatchBlock:(void (^)()) block
+- (id<FLPromisedResult>) dispatchBlock:(void (^)()) block
                         completion:(FLResultBlock) completion {
     
     FLWorkFinisher* finisher = [FLDispatchFinisher dispatchFinisher:completion queue:self];
@@ -122,7 +122,7 @@ FLSynthesizeSingleton(FLDispatchQueue);
     return finisher;
 }
 
-- (FLPromisedResult) dispatchAsyncBlock:(FLAsyncBlock) block
+- (id<FLPromisedResult>) dispatchAsyncBlock:(FLAsyncBlock) block
                         completion:(FLResultBlock) completion {
     
     FLWorkFinisher* finisher = [FLDispatchFinisher dispatchFinisher:completion queue:self];
@@ -147,11 +147,11 @@ FLSynthesizeSingleton(FLDispatchQueue);
     return finisher;
 }
 
-- (FLPromisedResult) dispatchWorker:(id<FLWorker>) aWorker {
+- (id<FLPromisedResult>) dispatchWorker:(id<FLWorker>) aWorker {
     return [self dispatchWorker:aWorker completion:nil];
 }
 
-- (FLPromisedResult) dispatchWorker:(id<FLWorker>) aWorker
+- (id<FLPromisedResult>) dispatchWorker:(id<FLWorker>) aWorker
                     completion:(FLResultBlock) completion {
     
     FLWorkFinisher* finisher = [FLDispatchFinisher dispatchFinisher:completion queue:self];
@@ -230,7 +230,7 @@ FLSynthesizeSingleton(FLFifoQueue);
 - (void) dealloc {
       dispatch_release(_fifo_queue);
     
-#if FL_NO_ARC
+#if FL_MRC
     [super dealloc];
 #endif
 }

@@ -29,7 +29,7 @@
 }
 
 - (void) dealloc {
-#if FL_NO_ARC
+#if FL_MRC
     [_queue release];
     [super dealloc];
 #endif

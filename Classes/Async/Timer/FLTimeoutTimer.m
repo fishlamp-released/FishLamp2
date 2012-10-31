@@ -9,7 +9,7 @@
 #import "FLTimeoutTimer.h"
 
 @interface FLTimeoutTimer ()
-@property (readwrite, strong) FLFinisher finisher;
+@property (readwrite, strong) id<FLFinisher> finisher;
 @property (readwrite, assign) NSTimeInterval timeoutInterval;
 @property (readwrite, strong) NSTimer* timer;
 @property (readwrite, assign) NSTimeInterval timestamp;
@@ -91,7 +91,7 @@
     self.timer = nil;
 }    
     
-- (void) startWorking:(FLFinisher) finisher {
+- (void) startWorking:(id<FLFinisher>) finisher {
     [self killTimer];
 
 // TODO: this .25 for progress. It could be closer to 1 second if
@@ -106,7 +106,7 @@
     [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSDefaultRunLoopMode];
 }
 
-- (FLPromisedResult) start:(FLResultBlock) completion {
+- (id<FLPromisedResult>) start:(FLResultBlock) completion {
     FLAssertIsNotNil_v(self.finisher, @"already started");
     
     FLWorkFinisher* finisher = [FLWorkFinisher finisher:completion];
@@ -124,7 +124,7 @@
         [_timer invalidate];
     }
 
-#if FL_NO_ARC
+#if FL_MRC
     [_timer release];
     [super dealloc];
 #endif

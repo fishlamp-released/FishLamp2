@@ -7,7 +7,7 @@
 //
 
 #import "NSString+URL.h"
-
+#import "FLCoreFoundation.h"
 
 @implementation NSString (URL)
 
@@ -106,21 +106,22 @@
 
 - (NSString *) urlEncodeString:(NSStringEncoding)encoding
 {
-	return FLReturnAutoreleased((__bridge_transfer_fl NSString *) CFURLCreateStringByAddingPercentEscapes(
+	return FLBridgeTransferFromCFRefCopy(CFURLCreateStringByAddingPercentEscapes(
 			kCFAllocatorDefault, 
-			(__bridge_fl CFStringRef)self,
+			FLBridgeToCFRef(self),
 			NULL, // escape all
-			(CFStringRef)@";/?:@&=$+{}<>,'\"",
+			FLBridgeToCFRef(@";/?:@&=$+{}<>,'\""),
 			CFStringConvertNSStringEncodingToEncoding(encoding)));
 }  
 
-- (NSString *) urlDecodeString:(NSStringEncoding)encoding
-{
-	return FLReturnAutoreleased((__bridge_transfer_fl NSString *) CFURLCreateStringByReplacingPercentEscapesUsingEncoding(
-		kCFAllocatorDefault, 
-		(__bridge_fl CFStringRef)self,
-		CFSTR(""), 
-		CFStringConvertNSStringEncodingToEncoding(encoding)) );
+- (NSString *) urlDecodeString:(NSStringEncoding)encoding {
+
+	return FLBridgeTransferFromCFRefCopy(
+                CFURLCreateStringByReplacingPercentEscapesUsingEncoding(
+                    kCFAllocatorDefault, 
+                    FLBridgeToCFRef(self),
+                    CFSTR(""), 
+                    CFStringConvertNSStringEncodingToEncoding(encoding)));
 }
 
 @end

@@ -473,7 +473,11 @@
 - (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state 
                                   objects:(id __unsafe_unretained [])buffer 
                                     count:(NSUInteger)len {
-	id currentObject;
+
+// this is a little skanky either setting the state to NSIntegerMax for done or a
+// valid pointer... 	
+    
+    id currentObject;
 	if (state->state == 0) {
 		// Set the starting point. _startOfListObject is assumed to be our
 		// object's instance variable that points to the start of the list.
@@ -484,7 +488,7 @@
 	}	
 	else {
 		// Subsequent iterations, get the current progress out of state->state
-		currentObject = (__bridge_fl id) ((void*) state->state);
+		currentObject = FLBridge(id, (void*)state->state);
 	}
 	    
 	// Accumulate nodes from the list until we reach the object's
@@ -496,7 +500,7 @@
 		batchCount++;
 	}
 
-	state->state = currentObject == nil ? NSIntegerMax : (unsigned long) (__bridge_fl void*)currentObject;
+	state->state = currentObject == nil ? NSIntegerMax : (unsigned long) FLBridge(void*, currentObject);
 	state->itemsPtr = buffer;
 	state->mutationsPtr = (unsigned long*) &_mutatationCount;
 
@@ -849,7 +853,7 @@ int main()
     return FLReturnAutoreleased([[FLLinkedListMutableEnumerator alloc] initWithLinkedList:list]);
 }
 
-#if FL_NO_ARC 
+#if FL_MRC 
 - (void) dealloc {
     FLRelease(_next);
     FLRelease(_current);
@@ -896,13 +900,13 @@ int main()
 	}
 
 	state->itemsPtr = buffer;
-	state->mutationsPtr = (__bridge_fl void*) self;
+	state->mutationsPtr = FLBridge(void*, self);
     
 	// Accumulate nodes from the list until we reach the object's
 	// _endOfListPlusOneObject
 	if(self.current) {
         self.next = [self.current nextObjectInLinkedList];
-        state->state = (unsigned long) (__bridge_fl void*)self.current;
+        state->state = (unsigned long) FLBridge(void*, self.current);
         return 1;
     }
     

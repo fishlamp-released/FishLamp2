@@ -84,7 +84,7 @@
     return stop;
 }
 
-#if FL_NO_ARC
+#if FL_MRC
 - (void) dealloc {
     [_notifiers release];
     [super dealloc];
@@ -181,7 +181,7 @@
     self.disabled = YES;
 }
 
-//#if FL_NO_ARC
+//#if FL_MRC
 //- (void) dealloc {
 //    [_target release];
 //    [super dealloc];
@@ -195,7 +195,7 @@
 
 @synthesize block = _block;
 
-- (id) initWithBlock:(FLBlockNotifierBlock) block {
+- (id) initWithNotifierBlock:(FLBlockNotifierBlock) block {
     self = [super init];
     if(self) {
         self.block = block;
@@ -204,7 +204,7 @@
 }
 
 + (id) blockNotifier:(FLBlockNotifierBlock) block {
-    return FLReturnAutoreleased([[[self class] alloc] initWithBlock:block]);
+    return FLReturnAutoreleased([[[self class] alloc] initWithNotifierBlock:block]);
 }
 
 - (void) receiveNotification:(id) sender {
@@ -213,7 +213,7 @@
     }
 }
 
-#if FL_NO_ARC
+#if FL_MRC
 - (void) dealloc {
     [_block release];
     [super dealloc];

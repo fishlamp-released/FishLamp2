@@ -8,12 +8,21 @@
 
 #import "FLReadStream.h"
 
+#if DEBUG
+CFIndex _FLReadStreamRead(CFReadStreamRef stream, UInt8 *buffer, CFIndex bufferLength) {
+    memset(buffer, bufferLength, 0); 
+    return CFReadStreamRead(stream, buffer, bufferLength); 
+}
+#define CFReadStreamRead _FLReadStreamRead
+#endif
+
 @interface FLReadStream()
 @property (readwrite, assign) BOOL reading;
 @end
 
 static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventType eventType, void *clientCallBackInfo) {
-    FLReadStream* connection = (__bridge_fl FLReadStream*) clientCallBackInfo;
+    FLReadStream* connection = FLBridge(FLReadStream*, clientCallBackInfo);
+    
     FLCConfirmIsNotNil_(connection);
     [connection forwardStreamEventToDelegate:eventType];
 }
@@ -23,6 +32,9 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
 @synthesize reading = _reading;
 
 - (id) initWithReadStream:(CFReadStreamRef) streamRef {
+    if(!streamRef) {
+        return nil;
+    }
     self = [super init];
     if(self) {
         _streamRef = streamRef;
@@ -35,7 +47,7 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
                     kCFStreamEventEndEncountered | 
                     kCFStreamEventErrorOccurred;
 
-            CFStreamClientContext ctxt = {0, (__bridge_fl void*) self, NULL, NULL, NULL};
+            CFStreamClientContext ctxt = {0, FLBridge(void*, self), NULL, NULL, NULL};
             CFReadStreamSetClient(_streamRef, flags, ReadStreamClientCallBack, &ctxt);
         }
     }
@@ -47,127 +59,195 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
 }
 
 - (void) dealloc {
-    if(_streamRef) {
-        if(self.isRunning) {
-            [self closeStream];
-        }
+    FLAssertIsNotNil_(_streamRef);
 
-        CFReadStreamSetClient(_streamRef, kCFStreamEventNone, NULL, NULL);
-        CFRelease(_streamRef);
-        _streamRef = nil;
+    if(self.isRunning) {
+        [self closeStream];
     }
+
+    CFReadStreamSetClient(_streamRef, kCFStreamEventNone, NULL, NULL);
+    FLReleaseCFRef(_streamRef);
     
-#if FL_NO_ARC
+#if FL_MRC
     [super dealloc];
 #endif
 }
 - (void) openStream {
-    CFReadStreamRef stream = self.streamRef;
-    if(stream) {
-        [super openStream];
-        CFReadStreamScheduleWithRunLoop(stream, self.runLoop, kRunLoopMode);
-        CFReadStreamOpen(stream);
-    }
+    FLAssertNotNil_(_streamRef);
+    [super openStream];
+    CFReadStreamScheduleWithRunLoop(_streamRef, self.runLoop, FLBridgeToCFRef(kRunLoopMode));
+    CFReadStreamOpen(_streamRef);
 }
 
 - (void) closeStream {
-    CFReadStreamRef stream = self.streamRef;
-    if(stream && self.isRunning) {
-        CFReadStreamUnscheduleFromRunLoop(stream, self.runLoop, kRunLoopMode);
-        CFReadStreamClose(stream);
+    FLAssertNotNil_(_streamRef);
+    if(self.isRunning) {
+        CFReadStreamUnscheduleFromRunLoop(_streamRef, self.runLoop, FLBridgeToCFRef(kRunLoopMode));
+        CFReadStreamClose(_streamRef);
         [super closeStream];
     }
     
 }
 
 - (NSError*) error {
-    CFErrorRef error = nil; // CFWriteStreamCopyError(self.writeStream);
-    
-#if FL_ARC
-    return (__bridge_transfer NSError*) error;
-#else 
-    return [NSMakeCollectable(error) autorelease];
-#endif
-}
-
-NS_INLINE
-NSInteger CheckReadResult(NSInteger result) {
-    if(result <= 0) {
-// TODO: this isn't the right error to throw probably.
-            FLCThrowErrorCode_v((NSString*) kCFErrorDomainCFNetwork, kCFURLErrorBadServerResponse, NSLocalizedString(@"Read networkbytes failed: %d", result));
-    }
-    return result;
+    return FLBridgeTransferFromCFRefCopy(CFReadStreamCopyError(self.streamRef));
 }
 
 - (BOOL) hasBytesAvailable {
     return CFReadStreamHasBytesAvailable(self.streamRef);
 }
 
+- (void) checkErrorFromBadResult:(NSInteger) badResult {
+    FLThrowIfError_(self.error);
+    FLThrowErrorCode_v((NSString*) kCFErrorDomainCFNetwork, 
+                            kCFURLErrorBadServerResponse, 
+                            NSLocalizedString(@"Read networkbytes failed: %d", badResult));
+    
+}
+
 - (void) readAvailableBytesWithByteBuffer:(FLByteBuffer*) buffer {
-    FLAssertIsNotNil_(self.streamRef);
     FLAssert_v([NSThread currentThread] == self.thread, @"tcp operation on wrong thread");
+    FLAssertNotNil_(_streamRef);
 
     while(!buffer.isFull && CFReadStreamHasBytesAvailable(self.streamRef)) {
-        NSInteger result = CheckReadResult(CFReadStreamRead(self.streamRef, buffer.unusedContent, buffer.unusedContentLength));
-        [buffer incrementContentLength:result];
+    
+        NSInteger bytesRead = CFReadStreamRead(_streamRef, buffer.unusedContent, buffer.unusedContentLength);
+        if(bytesRead > 0) {
+            [buffer incrementContentLength:bytesRead];
+            continue;
+        }
+       
+        if(bytesRead == 0) {
+            // CFReadStreamHasBytesAvailable lied. 
+            break;
+        }
+        
+        [self checkErrorFromBadResult:bytesRead];        
     }
 }
 
 - (NSUInteger) readAvailableBytes:(void*) bytes 
                         maxLength:(NSUInteger) maxLength {
     
-    FLAssertIsNotNil_(self.streamRef);
-
     FLAssert_v([NSThread currentThread] == self.thread, @"tcp operation on wrong thread");
+    FLAssertNotNil_(_streamRef);
+    
 
 #if DEBUG   
     uint8_t* lastBytePtr = bytes + maxLength;
 #endif
-
     uint8_t* readPtr = bytes;
     NSUInteger readTotal = 0;
-    while(maxLength > 0 && CFReadStreamHasBytesAvailable(self.streamRef)) {
+    while(maxLength > 0 && CFReadStreamHasBytesAvailable(_streamRef)) {
 
 #if DEBUG
         FLAssert_v(readPtr + maxLength <= lastBytePtr, @"buffer overrun!!!! Warning warning warning!!!!");
 #endif
-
-        NSInteger result = CheckReadResult(CFReadStreamRead(self.streamRef, readPtr, maxLength));
-        readPtr += result;
-        maxLength -= result;
-        readTotal += result;
+        NSInteger bytesRead = CFReadStreamRead(_streamRef, readPtr, maxLength);
+        if(bytesRead > 0) {
+            readPtr += bytesRead;
+            maxLength -= bytesRead;
+            readTotal += bytesRead;
+            continue;
+        }
+       
+        if(bytesRead == 0) {
+            // CFReadStreamHasBytesAvailable lied. 
+            break;
+        }
+        
+        [self checkErrorFromBadResult:bytesRead];
     }
 
     return readTotal;
 }
 
-- (NSUInteger) appendAvailableBytesToData:(NSMutableData*) data 
-                                chunkSize:(NSUInteger) chunkSize {
+//- (NSData*) readAvailableBytes {
+//
+//    NSMutableData* data = [NSMutableData data];
+//    return data;
+//}
 
-    NSUInteger amountRead = 0;
+#define kBufferSize 1024 
+
+- (NSInteger) appendBytesToMutableData:(NSMutableData*) data {
+    FLAssert_v([NSThread currentThread] == self.thread, @"tcp operation on wrong thread");
+    FLAssertNotNil_(_streamRef);
     
-    while(CFReadStreamHasBytesAvailable(self.streamRef)) {
-
-        NSUInteger prevLength = data.length;
-        [data increaseLengthBy:chunkSize];
+    CFIndex bytesRead = 0;
+    
+    uint8_t buffer[kBufferSize];
         
-        NSInteger result = CheckReadResult(
-                                CFReadStreamRead(   self.streamRef, 
-                                                    data.mutableBytes + prevLength, 
-                                                    chunkSize));
+    while(CFReadStreamHasBytesAvailable(_streamRef)) {
 
-        [data setLength:prevLength + result];
-        amountRead += result;
+        bytesRead = CFReadStreamRead(self.streamRef, buffer, kBufferSize);
+        
+        if(bytesRead > 0) {
+            [data appendBytes:buffer length:bytesRead];
+            continue;
+        }
+        
+        if(bytesRead == 0) {
+            // CFReadStreamHasBytesAvailable lied. 
+            break;
+        }
+        
+        [self checkErrorFromBadResult:bytesRead];
     }
     
-    [self.delegate performIfRespondsToSelector:@selector(readStreamDidReadBytes:) withObject:self];
+    if(bytesRead > 0) {
+        [self.delegate performIfRespondsToSelector:@selector(readStreamDidReadBytes:) withObject:self];
+    }
 
-    return amountRead;
+    return bytesRead;
 }
+
+//- (NSUInteger) appendAvailableBytesToData:(NSMutableData*) data 
+//                                chunkSize:(NSUInteger) chunkSize {
+//
+//    FLAssert_v([NSThread currentThread] == self.thread, @"tcp operation on wrong thread");
+//    FLAssertNotNil_(_streamRef);
+//    
+//    NSUInteger amountRead = 0;
+//    while(CFReadStreamHasBytesAvailable(_streamRef)) {
+//
+//        NSUInteger prevLength = data.length;
+//        [data increaseLengthBy:chunkSize];
+//        
+//        bytesRead = CFReadStreamRead(self.streamRef, data.mutableBytes, chunkSize);
+//        if(bytesRead == 0) {
+//            break;
+//        }
+//        
+//        if(bytesRead > 0) {
+//            [data appendBytes:buffer length:bytesRead];
+//            [data setLength:prevLength + result];
+//        }
+//        if(bytesRead == 0) {
+//            break;
+//        }
+//        
+//        if(bytesRead > 0) {
+//            [data appendBytes:buffer length:bytesRead];
+//        }
+//        else {
+//             FLCThrowErrorCode_v((NSString*) kCFErrorDomainCFNetwork, kCFURLErrorBadServerResponse, NSLocalizedString(@"Read networkbytes failed: %d", result));
+//        }
+//        
+//        amountRead += result;
+//    }
+//    
+//    [self.delegate performIfRespondsToSelector:@selector(readStreamDidReadBytes:) withObject:self];
+//
+//    return amountRead;
+//
+//return 0;
+//}
 
 - (void) readBytes:(void*) bytes
     numBytesToRead:(NSUInteger) amount  {
 
+FIXME("readbytes");
     FLAssertFailed_v(@"this is broken");
 
     FLAssert_v([NSThread currentThread] == self.thread, @"tcp operation on wrong thread");
@@ -196,7 +276,8 @@ NSInteger CheckReadResult(NSInteger result) {
 
 - (void) readAvailableBytesWithBlock:(void (^)(BOOL* stop)) readblock {
 
-    FLAssertIsNotNil_(self.streamRef);
+    FLAssert_v([NSThread currentThread] == self.thread, @"tcp operation on wrong thread");
+    FLAssertNotNil_(_streamRef);
 
     if(readblock) {
         if(!self.reading){
@@ -204,7 +285,7 @@ NSInteger CheckReadResult(NSInteger result) {
                 self.reading = YES;
                 
                 BOOL stop = NO;
-                while(!stop && CFReadStreamHasBytesAvailable(_streamRef)) {
+                while(!stop) {
                     readblock(&stop);
                 }
             }
@@ -216,10 +297,10 @@ NSInteger CheckReadResult(NSInteger result) {
 }
 
 - (unsigned long) bytesRead {
-    CFTypeRef number = CFReadStreamCopyProperty(self.streamRef, kCFStreamPropertyDataWritten);
-    unsigned long value = [((__bridge_fl NSNumber*) number) unsignedLongValue];
-    CFRelease(number);
-    return value;
+    NSNumber* number = FLBridgeTransferFromCFRefCopy(
+        CFReadStreamCopyProperty(self.streamRef, kCFStreamPropertyDataWritten));
+
+    return [number unsignedLongValue];
 }
 
 - (id<FLReadStream>) readStream {

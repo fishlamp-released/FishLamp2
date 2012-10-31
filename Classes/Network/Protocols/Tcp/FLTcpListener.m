@@ -9,7 +9,6 @@
 
 #import "FLTcpListener.h"
 #import "FLTcpConnection.h"
-
 #import <sys/socket.h>
 #import <arpa/inet.h>
 
@@ -85,7 +84,7 @@
     return self;
 }
 
-#if FL_NO_ARC 
+#if FL_MRC 
 - (void) dealloc {
     FLRelease(_connections);
     FLSuperDealloc();
@@ -163,10 +162,13 @@ void FLTcpServerAcceptCallBack(
     const void *data,
     void *info)
 {
-    FLTcpListener* server = (__bridge_fl FLTcpListener*) info;
+// this is skanky - where is this coming from? Am I sending this in somewhere?
+    CFSocketNativeHandle nativeSocket = *((CFSocketNativeHandle *) data);
+
+    FLTcpListener* server = FLBridge(FLTcpListener*, info);
     [server _handleNewConnection:socket 
-        addressData:(__bridge_fl NSData*) address
-        nativeSocket:*(CFSocketNativeHandle *) data];
+        addressData:FLBridgeFromCFRef(address)
+        nativeSocket:nativeSocket];
 }
 
 - (void) startListening
@@ -176,7 +178,7 @@ void FLTcpServerAcceptCallBack(
     
     CFSocketContext context;
     memset(&context, sizeof(CFSocketContext), 0);    
-    context.info = (__bridge_fl void*) self;
+    context.info = FLBridge(void*, self);
 
 	_socket = CFSocketCreate(kCFAllocatorDefault, 
         PF_INET, 
@@ -213,7 +215,7 @@ void FLTcpServerAcceptCallBack(
 	address.sin_port = htons(_port); 
     
     NSData *addressData = [NSData dataWithBytes: &address length: sizeof(address)];
-    if (CFSocketSetAddress(_socket, (__bridge_fl CFDataRef) addressData) != kCFSocketSuccess) {
+    if (CFSocketSetAddress(_socket, FLBridgeToCFRef(addressData)) != kCFSocketSuccess) {
 //        fprintf(stderr, "CFSocketSetAddress() failed\n");
 //        CFRelease(TCPServer);
 //        return EXIT_FAILURE;

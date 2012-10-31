@@ -38,7 +38,7 @@
     return FLReturnAutoreleased([[[self class] alloc] init]);
 }
 
-#if FL_NO_ARC
+#if FL_MRC
 - (void) dealloc {
     [_tokens release];
     [_header release];

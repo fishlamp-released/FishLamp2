@@ -88,7 +88,7 @@ static void (*originalDealloc)(id,SEL);
     if (getenv("NSZombieEnabled")) {
         NSLog(@"### WARNING ### Work-around for associate releasing used--zombies are around!");
 
-#if FL_NO_ARC
+#if FL_MRC
         Method m=class_getInstanceMethod(NSObject.class,@selector(dealloc));
         originalDealloc=(__typeof__(originalDealloc))method_getImplementation(m);
         method_setImplementation(m,[self instanceMethodForSelector:@selector(replacement__dealloc)]);
@@ -169,7 +169,7 @@ static void (*originalDealloc)(id,SEL);
     
     [self sendDeallocNotification];
 
-#if FL_NO_ARC
+#if FL_MRC
     [_notifiers release];
     [_deletedObjectReference release];
 //    [_notifierDied release];
@@ -189,7 +189,7 @@ static void (*originalDealloc)(id,SEL);
 @implementation FLDeleteNotifier
 - (void) dealloc {
     [self invoke:nil];
-#if FL_NO_ARC
+#if FL_MRC
     [super dealloc];
 #endif
 }
@@ -234,7 +234,7 @@ static void (*originalDealloc)(id,SEL);
     __block __weak id test = nil;
 #endif    
     
-    FLPromisedResult result = [[FLDispatchQueue instance] dispatchAsyncBlock:^(FLFinisher finisher){
+    id<FLPromisedResult> result = [[FLDispatchQueue instance] dispatchAsyncBlock:^(id<FLFinisher> finisher){
         FLDeleteNotifier* notifier = [[FLDeleteNotifier alloc] initWithBlock:^(id sender){
             objectDeleted = YES;
         }];

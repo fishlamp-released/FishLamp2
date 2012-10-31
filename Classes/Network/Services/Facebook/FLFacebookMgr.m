@@ -75,16 +75,15 @@ FLSynthesizeSingleton(FLFacebookMgr);
 		}
 #endif
 
-// TODO: will this leak???
-		NSString* escaped_value = (__bridge_transfer_fl NSString*)CFURLCreateStringByAddingPercentEscapes(
-									NULL, /* allocator */
-									(__bridge_fl CFStringRef)[params objectForKey:key],
-									NULL, /* charactersToLeaveUnescaped */
-									(__bridge_fl CFStringRef)@"!*'();:@&=+$,/?%#[]",
-									kCFStringEncodingUTF8);
+		NSString* escaped_value = FLBridgeTransferFromCFRefCopy(
+                                        CFURLCreateStringByAddingPercentEscapes(
+                                            NULL, /* allocator */
+                                            FLBridgeToCFRef([params objectForKey:key]),
+                                            NULL, /* charactersToLeaveUnescaped */
+                                            FLBridgeToCFRef(@"!*'();:@&=+$,/?%#[]"),
+                                            kCFStringEncodingUTF8));
 
 		[pairs addObject:[NSString stringWithFormat:@"%@=%@", key, escaped_value]];
-		FLRelease(escaped_value);
 	}
   
 	NSString* query = [pairs componentsJoinedByString:@"&"];

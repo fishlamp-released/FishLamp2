@@ -218,7 +218,7 @@ TODO("MF: fix activity updater");
     FLSendDeallocNotification();
 	[self closeNotification];
     [_operations removeObserver:self];
-#if FL_NO_ARC
+#if FL_MRC
     [_operations release];
     FLRelease(_progressCallback);
     FLRelease(_willShowNotificationCallback);
@@ -360,21 +360,21 @@ TODO("MF: fix activity updater");
     [self.operations cancelAllOperations];
 }
 
-- (FLPromisedResult) startAction:(FLResultBlock) completion {
+- (id<FLPromisedResult>) startAction:(FLResultBlock) completion {
     return [self startActionInContext:nil starting:nil completion:completion ];
 }
 
-- (FLPromisedResult) startAction:(dispatch_block_t) starting
+- (id<FLPromisedResult>) startAction:(dispatch_block_t) starting
                  completion:(FLResultBlock) completion {
     return [self startActionInContext:nil starting:starting completion:completion];
 }
 
-- (FLPromisedResult) startActionInContext:(FLOperationContext*) context
+- (id<FLPromisedResult>) startActionInContext:(FLOperationContext*) context
                           completion:(FLResultBlock) completion {
     return [self startActionInContext:context starting:nil completion:completion];
 }
 
-- (FLPromisedResult) startActionInContext:(FLOperationContext*) context
+- (id<FLPromisedResult>) startActionInContext:(FLOperationContext*) context
                                  starting:(dispatch_block_t) starting
                                completion:(FLResultBlock) completion {
 
@@ -385,7 +385,7 @@ TODO("MF: fix activity updater");
     
     FLWorkFinisher* actionFinisher = [FLWorkFinisher finisher:completion];
     
-    [[FLForegroundQueue instance] dispatchAsyncBlock:^(FLFinisher finisher) { 
+    [[FLForegroundQueue instance] dispatchAsyncBlock:^(id<FLFinisher> finisher) { 
         if(starting) {
             starting();
         }
@@ -480,7 +480,7 @@ TODO("MF: fix activity updater");
         [[self.results testResultForKey:@"counter"] setPassed];
     }];
 
-    FLPromisedResult actionFinisher = [action startAction:^{ 
+    id<FLPromisedResult> actionFinisher = [action startAction:^{ 
                     FLAssert_([NSThread isMainThread]); 
                     [[self.results testResultForKey:@"counter"] setPassed];
                     

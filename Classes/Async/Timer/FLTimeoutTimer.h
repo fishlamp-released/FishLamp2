@@ -18,7 +18,7 @@
 //    BOOL _idle;
     BOOL _timedOut;
     NSTimer* _timer;
-    FLFinisher _finisher;
+    id<FLFinisher> _finisher;
     __unsafe_unretained NSThread* _thread;
 }
 @property (readonly, assign) NSTimeInterval timeoutInterval;

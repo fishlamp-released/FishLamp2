@@ -52,7 +52,7 @@
     self.sqlString = @"";
 }
 
-#if FL_NO_ARC 
+#if FL_MRC 
 - (void) dealloc {
     FLRelease(_delimiter);
     FLRelease(_dataToBind);

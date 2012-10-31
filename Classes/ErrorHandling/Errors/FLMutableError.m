@@ -26,7 +26,7 @@ FLSynthesizeDictionaryProperty(errorDomain, setErrorDomain, FLErrorDomain*, FLEr
 //    return _FLAssembleFailureReason(self.domain, self.reason, self.comment, self.stackTrace);
 //}
 
-#if FL_NO_ARC 
+#if FL_MRC 
 - (void) dealloc {
     FLRelease(_mutableUserInfo);
     FLSuperDealloc();

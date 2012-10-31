@@ -22,7 +22,7 @@
     return self;
 }
 
-#if FL_NO_ARC
+#if FL_MRC
 - (void) dealloc {
     [_sanityTests release];
     [super dealloc];
@@ -33,7 +33,7 @@
     return [self create];
 }
 
-- (void) startWorking:(FLFinisher) finisher {
+- (void) startWorking:(id<FLFinisher>) finisher {
     
     NSMutableArray* tests = FLReturnAutoreleased([[_sanityTests allObjects] mutableCopy]);
     

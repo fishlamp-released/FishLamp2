@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "FLCoreFlags.h"
-#import "FLCoreObjC.h"
+#import "FLObjc.h"
 #import "FLStringUtils.h"
 #import "FLCompilerWarnings.h"
 #import "NSException+NSError.h"

@@ -29,7 +29,7 @@
     return !self.error && _count == _expectedCount;
 }
 
-#if FL_NO_ARC
+#if FL_MRC
 - (void) dealloc {
     [_testName release];
     [_error release];

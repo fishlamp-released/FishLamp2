@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #include <libkern/OSAtomic.h>
 #import "FLCoreFlags.h"
-#import "FLCoreObjC.h"
+#import "FLObjc.h"
 #import "FLAtomic.h"
 
 // WARNING: don't import anything here. This file is imported by FishLamp.  This is imported by everything.

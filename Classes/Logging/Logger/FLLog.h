@@ -7,7 +7,7 @@
 //
 #import <Foundation/Foundation.h>
 #import "FLCoreFlags.h"
-#import "FLCoreObjC.h"
+#import "FLObjc.h"
 #import "FLDebug.h"
 #import "FLPrintf.h"
 #import "FLLogSink.h"

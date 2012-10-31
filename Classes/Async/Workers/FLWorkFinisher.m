@@ -39,7 +39,7 @@
         [_timer requestCancel];
     }
     
-#if FL_NO_ARC
+#if FL_MRC
     [_timer release];
     [_result release];
     if(_completionBlock) {

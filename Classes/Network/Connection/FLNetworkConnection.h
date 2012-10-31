@@ -28,7 +28,7 @@ extern const FLNetworkConnectionByteCount FLNetworkConnectionByteCountZero;
 @interface FLNetworkConnection : FLObservable<FLNetworkStreamDelegate, FLWorker, FLRunnable> {
 @private
     __unsafe_unretained NSThread* _thread;
-    FLFinisher _finisher;
+    id<FLFinisher> _finisher;
     id<FLNetworkStream> _networkStream;
     FLTimeoutTimer* _timeoutTimer;
     FLNetworkConnectionByteCount _writeByteCount;

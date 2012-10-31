@@ -22,7 +22,7 @@
 	return FLReturnAutoreleased([[FLRetainedObject alloc] initWithObject:object]);
 }
 
-#if FL_NO_ARC
+#if FL_MRC
 - (void) dealloc {
     FLRelease(_object);
 	FLSuperDealloc();

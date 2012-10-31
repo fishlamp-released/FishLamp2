@@ -60,7 +60,7 @@
 }
 
 - (void) dealloc {
-#if FL_NO_ARC
+#if FL_MRC
     FLRelease(_writer);
     FLRelease(_reader);
     FLRelease(_remoteHost);

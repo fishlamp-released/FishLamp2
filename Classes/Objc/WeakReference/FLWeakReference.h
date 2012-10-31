@@ -77,7 +77,7 @@
 
 #define FLSendDeallocNotification() [self sendDeallocNotification];
 
-#if FL_NO_ARC
+#if FL_MRC
 typedef id<FLWeaklyReferenced> FLWeaklyReferencedObject;
 #else
 typedef id FLWeaklyReferencedObject;

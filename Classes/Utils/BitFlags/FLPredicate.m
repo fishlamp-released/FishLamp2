@@ -51,7 +51,7 @@
     return [FLYesPredicate yesPredicate:self];
 }
 
-#if FL_NO_ARC
+#if FL_MRC
 - (void) dealloc {
     [_lhs release];
     [_rhs release];
@@ -153,7 +153,7 @@
     return FLReturnAutoreleased([[[self class] alloc] initWithDecider:decider]);
 }
 
-#if FL_NO_ARC
+#if FL_MRC
 - (void) dealloc {
     [_decider release];
     [super dealloc];

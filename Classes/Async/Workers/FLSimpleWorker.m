@@ -10,10 +10,10 @@
 
 @implementation FLSimpleWorker
 
-- (void) startWorking:(FLFinisher) finisher {
+- (void) startWorking:(id<FLFinisher>) finisher {
 }
 
-- (FLPromisedResult) start:(FLResultBlock) completion {
+- (id<FLPromisedResult>) start:(FLResultBlock) completion {
     FLWorkFinisher* finisher = [FLWorkFinisher finisher:completion];
     @try {
         [self startWorking:finisher];

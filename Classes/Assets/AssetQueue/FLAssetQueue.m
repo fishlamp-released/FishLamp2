@@ -510,7 +510,9 @@ FLAssertDefaultInitNotCalled_v(nil);
 	
 	state->state = state->state + range.length;
 	state->itemsPtr = stackbuf;
-	state->mutationsPtr = (__bridge_fl void*) self;
+    
+// TODO: add a real mutationsPtr here.    
+	state->mutationsPtr = FLBridge(void*, self);
 
 	return range.length;
 }

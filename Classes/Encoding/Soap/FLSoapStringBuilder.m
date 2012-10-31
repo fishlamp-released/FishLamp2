@@ -32,7 +32,7 @@
 	return self;
 }
 
-#if FL_NO_ARC
+#if FL_MRC
 - (void) dealloc {
     [_envelopeElement release];
     [_bodyElement release];

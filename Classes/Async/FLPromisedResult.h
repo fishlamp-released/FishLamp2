@@ -20,4 +20,3 @@ typedef void (^FLConditionalBlock)(BOOL* condition);
 - (FLResult) waitForResultWithTimeout:(NSTimeInterval) timeout;
 @end
 
-typedef id<FLPromisedResult> FLPromisedResult;

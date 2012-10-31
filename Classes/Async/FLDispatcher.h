@@ -16,19 +16,19 @@
 
 @protocol FLDispatcher <NSObject>
 
-- (FLPromisedResult) dispatchBlock:(void (^)()) block;
+- (id<FLPromisedResult>) dispatchBlock:(void (^)()) block;
 
-- (FLPromisedResult) dispatchBlock:(void (^)()) block 
+- (id<FLPromisedResult>) dispatchBlock:(void (^)()) block 
                         completion:(FLResultBlock) completion;
 
-- (FLPromisedResult) dispatchAsyncBlock:(FLAsyncBlock) completion;
+- (id<FLPromisedResult>) dispatchAsyncBlock:(FLAsyncBlock) completion;
 
-- (FLPromisedResult) dispatchAsyncBlock:(FLAsyncBlock) block 
+- (id<FLPromisedResult>) dispatchAsyncBlock:(FLAsyncBlock) block 
                              completion:(FLResultBlock) completion;
 
-- (FLPromisedResult) dispatchWorker:(id<FLWorker>) aWorker;
+- (id<FLPromisedResult>) dispatchWorker:(id<FLWorker>) aWorker;
 
-- (FLPromisedResult) dispatchWorker:(id<FLWorker>) aWorker
+- (id<FLPromisedResult>) dispatchWorker:(id<FLWorker>) aWorker
                          completion:(FLResultBlock) completion;
 
 @end

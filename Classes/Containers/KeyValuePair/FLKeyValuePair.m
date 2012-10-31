@@ -23,7 +23,7 @@
 	return FLReturnAutoreleased([[FLKeyValuePair alloc] initWithKey:key value:value]);
 }
 
-#if FL_NO_ARC
+#if FL_MRC
 - (void) dealloc {
     FLRelease(_key);
     FLRelease(_value);

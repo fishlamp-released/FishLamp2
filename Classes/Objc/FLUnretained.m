@@ -25,7 +25,7 @@
     return _weakRef;
 }
 
-#if FL_NO_ARC
+#if FL_MRC
 - (void) dealloc {
     [_weakRef release];
     [super dealloc];

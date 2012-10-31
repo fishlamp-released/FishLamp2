@@ -47,7 +47,7 @@ static FLGuid* s_emptyGuid = nil;
 	return FLReturnAutoreleased([[FLGuid alloc] initWithGuidString:aGuidString]);
 }
 
-#if FL_NO_ARC
+#if FL_MRC
 - (void) dealloc {
     FLRelease(_guid);
     FLSuperDealloc();

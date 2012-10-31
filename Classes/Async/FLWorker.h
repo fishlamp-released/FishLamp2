@@ -15,7 +15,7 @@
 #import "FLRunnable.h"
 
 @protocol FLWorker <NSObject>
-- (void) startWorking:(FLFinisher) finisher;
+- (void) startWorking:(id<FLFinisher>) finisher;
 @end
 
 

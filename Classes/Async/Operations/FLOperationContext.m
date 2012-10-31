@@ -27,7 +27,7 @@
         [context removeObserver:self];
     }
 
-#if FL_NO_ARC
+#if FL_MRC
     [_contexts release];
     [super dealloc];
 #endif

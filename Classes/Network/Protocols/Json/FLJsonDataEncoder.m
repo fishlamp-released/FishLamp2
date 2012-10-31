@@ -177,7 +177,7 @@ FLSynthesizeSingleton(FLJsonDataEncoder);
 				} 
 				else 
 				{
-					CFStringAppendCharacters((__bridge_fl CFMutableStringRef)json, &c, 1);
+					CFStringAppendCharacters(FLBridge(CFMutableStringRef, json), &c, 1);
 				}
 				break;
 				

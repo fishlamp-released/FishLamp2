@@ -30,7 +30,7 @@
     return FLReturnAutoreleased([[[self class] alloc] initWithTestCase:test]);
 }
 
-#if FL_NO_ARC
+#if FL_MRC
 - (void) dealloc {
     [_testCase release];
     [super dealloc];

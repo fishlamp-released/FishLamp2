@@ -7,6 +7,7 @@
 //
 
 #import "FLHttpStream.h"
+#import "FLCoreFoundation.h"
 
 @interface FLHttpStream ()
 @property (readwrite, strong) FLHttpResponse* httpResponse;
@@ -61,34 +62,42 @@
 
 - (FLReadStream*) createReadStreamForRequestWithURL:(NSURL*) atURL {
 
-    CFReadStreamRef ref = nil;
-
     if(!atURL) {
         atURL = self.requestURL;
     }
 
-    FLHttpMessage* message = [self messageForRequest:atURL];
+    CFReadStreamRef ref = nil;
+    @try {
     
-    if(FLStringIsNotEmpty(self.postBodyFilePath)) {
-        NSInputStream* inputStream = [NSInputStream inputStreamWithFileAtPath:self.postBodyFilePath];
-
-        ref =   CFReadStreamCreateForStreamedHTTPRequest(kCFAllocatorDefault,
-                                message.messageRef,
-                                (__bridge_fl CFReadStreamRef) inputStream);
-    }
-    else {
-        if(self.postData) {
-            message.bodyData = self.postData;
+        FLHttpMessage* message = [self messageForRequest:atURL];
+        if(!message) {
+            return nil;
         }
-        
-        ref = CFReadStreamCreateForHTTPRequest(
-            kCFAllocatorDefault,
-            message.messageRef);
+
+        if(FLStringIsNotEmpty(self.postBodyFilePath)) {
+            NSInputStream* inputStream = [NSInputStream inputStreamWithFileAtPath:self.postBodyFilePath];
+
+            ref =   CFReadStreamCreateForStreamedHTTPRequest(kCFAllocatorDefault,
+                                    message.messageRef,
+                                    FLBridge(CFReadStreamRef, inputStream));
+        }
+        else {
+            if(self.postData) {
+                message.bodyData = self.postData;
+            }
+            
+            ref = CFReadStreamCreateForHTTPRequest(kCFAllocatorDefault, message.messageRef);
+        }
+
+        return [FLReadStream readStream:ref];
     }
-    FLReadStream* readStream = [FLReadStream readStream:ref];
+    @finally {
+        if(ref) {
+            CFRelease(ref);
+        }
+    }
     
-    CFRelease(ref);
-    return readStream;
+    return nil;
 }
 
 
@@ -113,13 +122,17 @@
     return FLReturnAutoreleased([[[self class] alloc] initWithHttpRequest:request]);
 }
 
+- (id) output {
+    return self.httpResponse;
+}
+
 - (void) dealloc  {
     if(_readStream) {
         _readStream.delegate = nil;
         [_readStream closeStream];
     }
     
-#if FL_NO_ARC
+#if FL_MRC
     [_request release];
     [_response release];
     [_readStream release];
@@ -205,10 +218,7 @@
 
 - (void) readStreamHasBytesAvailable:(id<FLNetworkStream>) networkStream {
     [self readResponseHeadersIfNeeded];
-
-    [self.readStream readAvailableBytesWithBlock:^(BOOL* stop) {
-        [self.readStream appendAvailableBytesToData:_response.mutableResponseData chunkSize:1024];
-    }];
+    [self.readStream appendBytesToMutableData:_response.mutableResponseData];
 }
 
 - (void) networkStreamDidOpen:(id<FLNetworkStream>) networkStream {
@@ -263,17 +273,23 @@
 
 @implementation FLReadStream (Http)
 - (FLHttpMessage*) readResponseHeaders {
-    CFHTTPMessageRef ref = (CFHTTPMessageRef)CFReadStreamCopyProperty(self.streamRef, kCFStreamPropertyHTTPResponseHeader);
-    FLHttpMessage* message = [FLHttpMessage httpMessageWithHttpMessageRef:ref];
-    CFRelease(ref);
-    return message;
+    
+    CFHTTPMessageRef ref = (CFHTTPMessageRef)CFReadStreamCopyProperty(_streamRef, kCFStreamPropertyHTTPResponseHeader);
+    @try {
+        return [FLHttpMessage httpMessageWithHttpMessageRef:ref];
+    }
+    @finally {
+        if(ref) {
+            CFRelease(ref);
+        }
+    }
 }
 
 - (unsigned long) bytesWritten {
-    CFTypeRef number = CFReadStreamCopyProperty(self.streamRef, kCFStreamPropertyHTTPRequestBytesWrittenCount);
-    unsigned long value = [((__bridge_fl NSNumber*) number) unsignedLongValue];
-    CFRelease(number);
-    return value;
+    NSNumber* number = FLBridgeTransferFromCFRefCopy(
+        CFReadStreamCopyProperty(_streamRef, kCFStreamPropertyHTTPRequestBytesWrittenCount));
+    
+    return number.unsignedLongValue;
 }
 
 

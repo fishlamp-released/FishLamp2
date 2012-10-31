@@ -99,15 +99,15 @@ typedef void (^FLActionBlock)(FLAction* action);
 + (void) setActionErrorDelegate:(id<FLActionErrorDelegate>) delegate;
 + (void) setGlobalFailedCallback:(id) target action:(SEL) action;
 
-- (FLPromisedResult) startAction:(FLResultBlock) completion;
+- (id<FLPromisedResult>) startAction:(FLResultBlock) completion;
 
-- (FLPromisedResult) startActionInContext:(FLOperationContext*) context
+- (id<FLPromisedResult>) startActionInContext:(FLOperationContext*) context
                           completion:(FLResultBlock) completion;
 
-- (FLPromisedResult) startAction:(dispatch_block_t) starting
+- (id<FLPromisedResult>) startAction:(dispatch_block_t) starting
                  completion:(FLResultBlock) completion;
 
-- (FLPromisedResult) startActionInContext:(FLOperationContext*) context
+- (id<FLPromisedResult>) startActionInContext:(FLOperationContext*) context
                             starting:(dispatch_block_t) starting
                           completion:(FLResultBlock) completion;
 

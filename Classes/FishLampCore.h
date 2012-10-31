@@ -18,9 +18,7 @@
 #error FISHLAMP_TARGET not defined
 #endif
 
-#import "FLCoreFlags.h"
-#import "FLCompilerWarnings.h"
-#import "FLCoreObjC.h"
+#import "FLObjc.h"
 
 #if IOS
     #import <UIKit/UIKit.h>

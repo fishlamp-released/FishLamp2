@@ -37,7 +37,7 @@
     return FLReturnAutoreleased([[[self class] alloc] initWithHttpRequest:httpRequest]);
 }
 
-#if FL_NO_ARC
+#if FL_MRC
 - (void) dealloc {
     [_httpRequest release];
     [super dealloc];

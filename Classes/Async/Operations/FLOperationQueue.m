@@ -46,7 +46,7 @@
     for(FLOperation* operation in list) {
         [operation removeObserver:self];
     }
-#if FL_NO_ARC 
+#if FL_MRC 
     [list release];
     [super dealloc];
 #endif
@@ -296,7 +296,7 @@
     [self postObservation:@selector(operationQueue:operationWasCancelled:) withObject:operation];
 }
 
-- (void) startWorking:(FLFinisher) finisher {
+- (void) startWorking:(id<FLFinisher>) finisher {
 
     for(FLOperation* operation in self.operations.forwardIterator) {
         [operation runSynchronously];
@@ -308,7 +308,7 @@
     [finisher setFinished];
 }
 
-- (FLPromisedResult) start:(FLResultBlock) completion {
+- (id<FLPromisedResult>) start:(FLResultBlock) completion {
     FLWorkFinisher* finisher = [FLWorkFinisher finisher:completion];
     [self startWorking:finisher];
     return finisher;

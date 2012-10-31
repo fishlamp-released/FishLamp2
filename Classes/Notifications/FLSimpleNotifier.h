@@ -76,7 +76,7 @@ typedef void (^FLBlockNotifierBlock)(id sender);
 
 @property (readwrite, copy) FLBlockNotifierBlock block;
 
-- (id) initWithBlock:(FLBlockNotifierBlock) block;
+- (id) initWithNotifierBlock:(FLBlockNotifierBlock) block;
 
 + (id) blockNotifier:(FLBlockNotifierBlock) block;
 

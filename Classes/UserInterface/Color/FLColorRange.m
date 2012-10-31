@@ -41,7 +41,7 @@
     return FLReturnAutoreleased([[[self class] alloc] initWithStartColor:startColor endColor:endColor]);
 }
 
-#if FL_NO_ARC
+#if FL_MRC
 - (void) dealloc
 {
 	FLRelease(_startColor);

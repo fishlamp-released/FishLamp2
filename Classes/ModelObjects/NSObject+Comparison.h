@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "FLCoreFlags.h"
-#import "FLCoreObjC.h"
+#import "FLObjc.h"
 
 /// @category NSObject(FLComparison)
 ///  An extension to NSObject to help with copying objects

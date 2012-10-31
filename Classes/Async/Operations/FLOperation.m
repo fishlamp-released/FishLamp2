@@ -112,7 +112,7 @@
 }
 
 
-#if FL_NO_ARC
+#if FL_MRC
 - (void) dealloc {
     [_error release];
     [_operationInput release];;
@@ -229,7 +229,7 @@
     return [[self start:nil] waitForResult];
 }
 
-- (void) startWorking:(FLFinisher) finisher {
+- (void) startWorking:(id<FLFinisher>) finisher {
 
     [self runSynchronouslySelf];
 
@@ -241,7 +241,7 @@
     }
 }
 
-- (FLPromisedResult) start:(FLResultBlock) completion {
+- (id<FLPromisedResult>) start:(FLResultBlock) completion {
     FLWorkFinisher* finisher = [FLWorkFinisher finisher:completion];
     [self startWorking:finisher];
     return finisher;
@@ -346,7 +346,7 @@
 //    return FLReturnAutoreleased([[[self class] alloc] initWithBlock:block]);
 //}
 //
-//#if FL_NO_ARC
+//#if FL_MRC
 //- (void) dealloc {
 //    [_block release];
 //    [super dealloc];

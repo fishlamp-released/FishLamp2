@@ -7,7 +7,7 @@
 //
 #import <Foundation/Foundation.h>
 #import "FLCoreFlags.h"
-#import "FLCoreObjC.h"
+#import "FLObjc.h"
 #import "FLCompilerWarnings.h"
 
 #import "FLExceptions.h"
@@ -80,3 +80,23 @@ id _FLAssertConformsToProtocol(id object, Protocol* proto) {
 #define FLAssertConformsToProtocol(__OBJ__, __PROTOCOL__) __OBJ__
 
 #endif
+
+
+#define FLAssertNotNil_         FLAssertIsNotNil_
+#define FLAssertNotNil_v        FLAssertIsNotNil_v
+#define FLAssertNil_            FLAssertIsNil_
+#define FLAssertNil_v           FLAssertIsNil_v
+#define FLCAssertNotNil_         FLCAssertIsNotNil_
+#define FLCAssertNotNil_v        FLCAssertIsNotNil_v
+#define FLCAssertNil_            FLCAssertIsNil_
+#define FLCAssertNil_v           FLCAssertIsNil_v
+
+
+#define FLConfirmNotNil_         FLConfirmIsNotNil_
+#define FLConfirmNotNil_v        FLConfirmIsNotNil_v
+#define FLConfirmNil_            FLConfirmIsNil_
+#define FLConfirmNil_v           FLConfirmIsNil_v
+#define FLCConfirmNotNil_         FLCConfirmIsNotNil_
+#define FLCConfirmNotNil_v        FLCConfirmIsNotNil_v
+#define FLCConfirmNil_            FLCConfirmIsNil_
+#define FLCConfirmNil_v           FLCConfirmIsNil_v

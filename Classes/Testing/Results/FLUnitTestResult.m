@@ -18,7 +18,7 @@
 
 @synthesize unitTest = _unitTest;
 
-#if FL_NO_ARC
+#if FL_MRC
 - (void) dealloc {
     [_unitTest release];
     [super dealloc];

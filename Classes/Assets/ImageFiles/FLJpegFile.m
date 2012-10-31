@@ -10,6 +10,7 @@
 
 #import "FLJpegFile.h"
 #import "NSFileManager+FLExtras.h"
+#import "FLCoreFoundation.h"
 
 @interface FLJpegFile ()
 @property (readwrite, retain, nonatomic) NSDictionary* properties;
@@ -178,55 +179,43 @@ static NSDictionary* s_destinationProperties = nil;
     
     CGImageDestinationRef imageDestRef = nil;
     CGImageSourceRef imageSourceRef = nil;
-    @try
-    {
+    @try {
         NSData* jpgData = self.jpegData;
         FLAssertIsNotNil_v(jpgData, nil);
         FLAssert_v(jpgData.length > 0, @"image is of size zero");
     
-        imageDestRef = CGImageDestinationCreateWithURL((__bridge_fl CFURLRef)url, kUTTypeJPEG, 1, nil /* always nil */);
+        imageDestRef = CGImageDestinationCreateWithURL(FLBridgeToCFRef(url), kUTTypeJPEG, 1, nil /* always nil */);
+        FLConfirmIsNotNil_(imageDestRef);
 
-        CGImageDestinationSetProperties(imageDestRef, (__bridge_fl CFDictionaryRef) s_destinationProperties);
+        CGImageDestinationSetProperties(imageDestRef, FLBridgeToCFRef(s_destinationProperties));
 
-        imageSourceRef = CGImageSourceCreateWithData((__bridge_fl CFDataRef) jpgData, nil);
-        FLAssertIsNotNil_v(imageSourceRef, nil);
+        imageSourceRef = CGImageSourceCreateWithData(FLBridgeToCFRef(jpgData), nil);
+        FLConfirmIsNotNil_(imageSourceRef);
         
-        CGImageDestinationAddImageFromSource(imageDestRef, imageSourceRef, 0, (__bridge_fl CFDictionaryRef) self.properties);
+        CGImageDestinationAddImageFromSource(imageDestRef, imageSourceRef, 0, FLBridgeToCFRef(self.properties));
         
-        if(!CGImageDestinationFinalize(imageDestRef))
-        {
-            FLDebugLog(@"image finalize failed");
+        if(!CGImageDestinationFinalize(imageDestRef)){
+             FLDebugLog(@"wth - image finalize failed");
         } 
     }
-    @finally
-    {
-        if(imageSourceRef)
-        {
-            CFRelease(imageSourceRef);
-        }
-        if(imageDestRef)
-        {
-            CFRelease(imageDestRef);
-        }
-        
+    @finally {
+        FLReleaseCFRef(imageSourceRef);
+        FLReleaseCFRef(imageDestRef);
         FLReleaseWithNil(url);
     }
 }
 
-- (void) writeImageToStorage
-{
+- (void) writeImageToStorage {
     FLAssertStringIsNotEmpty_v(self.filePath, nil);
 
     NSURL* url = [[NSURL alloc] initFileURLWithPath:self.filePath];
     FLAssertIsNotNil_v(url, nil);
     
     CGImageDestinationRef imageSourceRef = nil;
-    @try
-    {
+    @try {
         FLImage* image = self.image;
         FLAssertIsNotNil_v(image, nil);
 
-        
 #if IOS        
         CGImageRef imageRef = image.CGImage;
 #else
@@ -241,72 +230,62 @@ static NSDictionary* s_destinationProperties = nil;
         
         FLAssertIsNotNil_v(imageRef, nil);
     
-        imageSourceRef = CGImageDestinationCreateWithURL((__bridge_fl CFURLRef)url, kUTTypeJPEG, 1, nil /* always nil */);
+        imageSourceRef = CGImageDestinationCreateWithURL(FLBridgeToCFRef(url), kUTTypeJPEG, 1, nil /* always nil */);
         
-        CGImageDestinationSetProperties(imageSourceRef, (__bridge_fl CFDictionaryRef) s_destinationProperties);
+        CGImageDestinationSetProperties(imageSourceRef, FLBridgeToCFRef(s_destinationProperties));
         
-        CGImageDestinationAddImage(imageSourceRef, imageRef,  (__bridge_fl CFDictionaryRef) self.properties);
+        CGImageDestinationAddImage(imageSourceRef, imageRef, FLBridgeToCFRef(self.properties));
 
-        if(!CGImageDestinationFinalize(imageSourceRef))
-        {
+        if(!CGImageDestinationFinalize(imageSourceRef)) {
             FLDebugLog(@"Writing image failed");
         
 // TODO: there must be a wait to get an error code or something?? wtf.        
         }
     }
-    @finally
-    {
-        if(imageSourceRef)
-        {		
+    @finally {
+        if(imageSourceRef) {		
             CFRelease(imageSourceRef);
         }
         FLRelease(url);
     }
 }
 
-- (void) writeToStorage
-{
+- (void) writeToStorage {
 	[self _throwIfNotConfigured];
 	
-	if(!_image && !_jpegData)
-	{
+	if(!_image && !_jpegData) {
 		FLThrowError_([NSError errorWithDomain:FLFrameworkErrorDomainName code:FLErrorNoDataToSave
 			userInfo:[NSDictionary dictionaryWithObject:@"No image data to save" forKey:NSLocalizedDescriptionKey]]);
  
 	}
-	if(_jpegData)
-	{
+	
+    if(_jpegData) {
 		[self writeJpegToStorage];
 	}
-	else
-	{
+	else {
         [self writeImageToStorage];
     }
 
 #if DEBUG	
-	if(![[NSFileManager defaultManager] fileExistsAtPath:self.filePath])
-	{
+	if(![[NSFileManager defaultManager] fileExistsAtPath:self.filePath]) {
 		FLDebugLog(@"Saving image file Failed:%@", self.filePath);
 	}
 #endif
 }
 
-- (NSDictionary*) properties
-{
-	if(!_properties)
-	{
+- (NSDictionary*) properties {
+	if(!_properties) {
 		[self _throwIfNotConfigured];
 
 		NSURL* url = [[NSURL alloc] initFileURLWithPath:[self.folder pathForFile:self.fileName]];
 		CGImageSourceRef imageSourceRef = nil;
 		@try
 		{
-			imageSourceRef = CGImageSourceCreateWithURL((__bridge_fl CFURLRef) url, nil);
+			imageSourceRef = CGImageSourceCreateWithURL(FLBridgeToCFRef(url), nil);
 			if(imageSourceRef)
 			{
-				NSDictionary* properties = (__bridge_transfer_fl NSDictionary*)	CGImageSourceCopyPropertiesAtIndex(imageSourceRef, 0, nil);
-				self.properties = properties;
-				FLReleaseWithNil(properties);
+				self.properties = FLBridgeTransferFromCFRefCopy(
+                    CGImageSourceCopyPropertiesAtIndex(imageSourceRef, 0, nil));
 			}
 		}
 		@finally

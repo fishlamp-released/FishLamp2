@@ -50,7 +50,7 @@ NSString* const FLReachabilityChangedNotification = @"FLReachabilityChangedNotif
 		_reachabilityRef = nil;
         memset(&_context, 0, sizeof(SCNetworkReachabilityContext));
         
-        _context.info = (__bridge_fl void*) self;
+        _context.info = FLBridge(void*,self);
         
         _monitoredFlags = kSCNetworkReachabilityFlagsReachable;
 	}
@@ -96,7 +96,7 @@ NSString* const FLReachabilityChangedNotification = @"FLReachabilityChangedNotif
 }
 
 static void ReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReachabilityFlags flags, void* info) {
-	[((__bridge_fl id) info) onReachabilityCallback:target flags:flags];
+	[FLBridge(id, info) onReachabilityCallback:target flags:flags];
 }
 
 - (BOOL) testCurrentFlags:(SCNetworkReachabilityFlags) mask {

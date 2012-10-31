@@ -12,7 +12,7 @@
 #import <UIKit/UIKit.h>
 #endif
 
-static NSString* s_defaultUserAgent = nil;
+static NSString* s_defaultUserAgent = @"FishLamp3;";
 
 @interface FLHttpRequest ()
 @property (readwrite, assign, nonatomic) unsigned long long postLength;

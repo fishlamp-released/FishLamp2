@@ -30,7 +30,7 @@
     _selector = selector;
 }
 
-#if FL_NO_ARC
+#if FL_MRC
 - (void) dealloc {
     [_selectorString release];
     [super dealloc];

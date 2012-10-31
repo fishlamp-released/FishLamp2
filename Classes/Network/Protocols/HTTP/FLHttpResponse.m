@@ -53,7 +53,7 @@
     return FLReturnAutoreleased([[[self class] alloc] initWithRequestURL:requestURL redirectedFrom:redirectedFrom]);
 }
 
-#if FL_NO_ARC
+#if FL_MRC
 - (void) dealloc  {
     [_redirectedFrom release];
     [_requestURL release];
@@ -112,6 +112,14 @@
     response.mutableResponseData = FLReturnAutoreleased([self.mutableResponseData mutableCopy]);
     response.responseStatusLine = self.responseStatusLine;
     return response;
+}
+
+- (NSString*) description {
+//    NSMutableString* string = [self headers]
+    
+    NSString* responseStr = FLReturnAutoreleased([[NSString alloc] initWithData:self.responseData encoding:NSUTF8StringEncoding]);
+    
+    return [NSMutableString stringWithFormat:@"%@ {\n%@\n}", [super description], responseStr];
 }
 
 @end

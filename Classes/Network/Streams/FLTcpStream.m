@@ -46,7 +46,7 @@
     FLAssert_v(self.remotePort != 0, @"remote port can't be zero");
     FLAssertStringIsNotEmpty_(self.remoteHost);
    
-    CFHostRef host = CFHostCreateWithName(NULL, (__bridge_fl CFStringRef) self.remoteHost);
+    CFHostRef host = CFHostCreateWithName(NULL, FLBridgeToCFRef(self.remoteHost));
     if (host != NULL)  {
         CFStreamCreatePairWithSocketToCFHost(NULL, host, self.remotePort, &readStream, &writeStream);
         
@@ -82,7 +82,7 @@
     self.delegate = nil;
     [self closeStream];
 
-#if FL_NO_ARC
+#if FL_MRC
     [_remoteHost release];
     [_writeStream release];
     [_readStream release];

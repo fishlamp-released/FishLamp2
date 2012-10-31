@@ -11,14 +11,13 @@
 #import "FLBlockWorker.h"
 #import "FLDispatchQueues.h"
 
-#if 0
 
 #if TEST 
 @interface FLTestBot : FLJob
 @end
 
 @implementation FLTestBot
-- (void) startWorking:(FLFinisher) finisher {
+- (void) startWorking:(id<FLFinisher>) finisher {
     [finisher setFinished];
 }
 @end
@@ -30,12 +29,11 @@
 
 - (void) testBasicCompletion {
 
-    FLJob* job = [FLJob job];
-    [job addWorker:[FLBlockWorker blockWorker:^(FLFinisher finisher){
+    FLJob* job = [FLJob jobWithAsyncBlock:^(id<FLFinisher> finisher){
         [finisher setFinishedWithOutput:@"hello world"];
-    }]];
+    }];
 
-    FLPromisedResult promisedResult = [[FLBackgroundQueue instance] dispatchWorker:job completion:^(FLResult result) {
+    id<FLPromisedResult> promisedResult = [[FLBackgroundQueue instance] dispatchWorker:job completion:^(FLResult result) {
         FLAssertObjectsAreEqual_(@"hello world", result.output);
     }];
 
@@ -48,29 +46,29 @@
 }
 
 - (void) testMainThreadCompletion {
-    
-//    FLWorkerBot* worker = [FLWorkerBot workerBot:^(FLFinisher completion) {
-//        UTLog(@"main thread job");
-//        FLAssert_([NSThread isMainThread]);
-//        [completion setFinished];
-//    }];
-//    
-//    FLResult result = [FLForegroundJob start:worker completion: ^(FLResult result) {
-//        FLAssert_([NSThread isMainThread]);
-//    }];
-//    
-//    [result waitForResult];
-//
-//    FLAssert_(result.isFinished);
-//    
-//    [finisher setFinished];
+ 
+    FLJob* job = [FLForegroundJob jobWithAsyncBlock:^(id<FLFinisher> finisher){
+        FLAssert_([NSThread isMainThread]);
+        [finisher setFinishedWithOutput:@"hello world"];
+    }];
+
+    id<FLPromisedResult> promisedResult = [[FLBackgroundQueue instance] dispatchWorker:job completion:^(FLResult result) {
+        FLAssert_(![NSThread isMainThread]);
+        FLAssertObjectsAreEqual_(@"hello world", result.output);
+    }];
+
+    [promisedResult waitForResult];
+
+    FLAssert_([promisedResult hasResult]);
+
+    FLAssertObjectsAreEqual_(@"hello world", promisedResult.result.output);
 }
 
 - (void) testMainThread {
 
 //    FLJob* job = [FLForegroundJob job];
 //    
-//    [job addWorker:[FLWorkerBot workerBot:^(FLFinisher completion) {
+//    [job addWorker:[FLWorkerBot workerBot:^(id<FLFinisher> completion) {
 //        FLAssert_([NSThread isMainThread]);
 //        FLLog(@"hi from main thread");
 //        [completion setFinished];
@@ -85,7 +83,7 @@
 
 //    FLJob* job = [FLBackgroundJob job];
 //    
-//    [job addWorker:[FLWorkerBot workerBot:^(FLFinisher completion) {
+//    [job addWorker:[FLWorkerBot workerBot:^(id<FLFinisher> completion) {
 //        FLAssert_(![NSThread isMainThread]);
 //        FLLog(@"hi from bg thread");
 //        [completion setFinished];
@@ -100,17 +98,17 @@
 
 //
 //- (void) testBackgroundInForeground {
-//    [[job addWorker:[FLBackgroundJob job]] addWorker:[FLWorkerBot workerBot:^(FLFinisher completion) {
+//    [[job addWorker:[FLBackgroundJob job]] addWorker:[FLWorkerBot workerBot:^(id<FLFinisher> completion) {
 //        UTLog(@"background job");
 //        [completion setFinished];
 //    }]];
 //
-//    [[job addWorker:[FLBackgroundJob job]] addWorker:[FLWorkerBot workerBot:^(FLFinisher completion) {
+//    [[job addWorker:[FLBackgroundJob job]] addWorker:[FLWorkerBot workerBot:^(id<FLFinisher> completion) {
 //        UTLog(@"another background job");
 //        [completion setFinished];
 //    }]];
 //
-//    [[job addWorker:[FLForegroundJob job]] addWorker:[FLWorkerBot workerBot:^(FLFinisher completion) {
+//    [[job addWorker:[FLForegroundJob job]] addWorker:[FLWorkerBot workerBot:^(id<FLFinisher> completion) {
 //        UTLog(@"foreground job");
 //        
 //        [completion setFinished];
@@ -124,4 +122,3 @@
 @end
 #endif
 
-#endif

@@ -76,7 +76,7 @@
     return self.object;
 }
 
-#if FL_NO_ARC
+#if FL_MRC
 - (void) dealloc {
     [_array release];
     [_object release];
@@ -96,7 +96,7 @@
 	
 	state->state = _index;
 	state->itemsPtr = stackbuf;
-	state->mutationsPtr = (__bridge_fl void*) self;
+	state->mutationsPtr = FLBridge(void*, self); // mutations are allowed, see this is essentially a no-op
 
 	return 1;
 }
@@ -174,7 +174,7 @@
 //    return next;
 //}
 //
-//#if FL_NO_ARC
+//#if FL_MRC
 //- (void) dealloc {
 //    [_iterator release];
 //    [_block release];

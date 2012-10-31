@@ -14,6 +14,7 @@
     #import <CoreServices/CoreServices.h>
 #endif
 
+#import "FLCoreFoundation.h"
 #include <netdb.h>
 
 @interface FLNetworkHost ()
@@ -49,7 +50,7 @@
         FLAssertStringIsNotEmpty_v(name, nil);
         
         self.hostName = name;
-        _hostRef = CFHostCreateWithName(nil, (__bridge_fl CFStringRef) name );
+        _hostRef = CFHostCreateWithName(nil, FLBridgeToCFRef(name) );
         [self _failIfInvalidHost];
     }
     
@@ -60,7 +61,7 @@
     self = [super init];
     if(self) {
         self.addressData = address;
-        _hostRef = CFHostCreateWithAddress(NULL, (__bridge_fl CFDataRef) address);
+        _hostRef = CFHostCreateWithAddress(NULL, FLBridgeToCFRef(address));
         [self _failIfInvalidHost];
     }
     
@@ -88,7 +89,7 @@
         }
         
         if(self.addressData) {
-            _hostRef = CFHostCreateWithAddress(NULL, (__bridge_fl CFDataRef) self.addressData);
+            _hostRef = CFHostCreateWithAddress(NULL, FLBridgeToCFRef(self.addressData));
         }
         
         [self _failIfInvalidHost];
@@ -114,7 +115,7 @@
     FLAssertIsNotNil_v(_hostRef, nil);
     
     if(!_resolvedAddresses && _hostRef) {
-        NSArray* result = (__bridge_fl NSArray *) CFHostGetAddressing(_hostRef, (Boolean*) &_resolved);
+        NSArray* result = FLBridgeFromCFRef(CFHostGetAddressing(_hostRef, (Boolean*) &_resolved));
         if (_resolved ) {
             self.resolvedAddresses  = result;
         }
@@ -159,7 +160,7 @@
     FLAssertIsNotNil_v(_hostRef, nil);
     
     if(!_resolvedHostNames && _hostRef) {
-        NSArray* result = (__bridge_fl NSArray *) CFHostGetNames(_hostRef, (Boolean*) &_resolved);
+        NSArray* result = FLBridgeFromCFRef(CFHostGetNames(_hostRef, (Boolean*) &_resolved));
         if (_resolved) {
             self.resolvedHostNames = result;
         }

@@ -7,15 +7,15 @@
 //
 
 #import "NSString+GUID.h"
-
+#import "FLCoreFoundation.h"
 
 @implementation NSString (GUID)
 
 + (NSString*) guidString {
 	CFUUIDRef uuid = CFUUIDCreate(kCFAllocatorDefault);
-	NSString* str = (__bridge_transfer_fl NSString*) CFUUIDCreateString(kCFAllocatorDefault, uuid);
+	NSString* str = FLBridgeTransferFromCFRef(CFUUIDCreateString(kCFAllocatorDefault, uuid));
 	CFRelease(uuid);
-	return FLReturnAutoreleased(str);
+	return str;
 }
 
 + (NSString*) zeroGuidString {
@@ -26,7 +26,7 @@
 		@synchronized(self) {
 			if(!s_zero_guid) {
 				CFUUIDRef uuid = CFUUIDCreateWithBytes(kCFAllocatorDefault, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-				s_zero_guid = (__bridge_fl NSString*) CFUUIDCreateString(kCFAllocatorDefault, uuid);
+				s_zero_guid = FLBridgeTransferFromCFRef(CFUUIDCreateString(kCFAllocatorDefault, uuid));
 				CFRelease(uuid);
 			}
 		}

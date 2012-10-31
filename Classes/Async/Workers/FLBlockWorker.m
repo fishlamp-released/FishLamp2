@@ -27,14 +27,14 @@
     return FLReturnAutoreleased([[[self class] alloc] initWithWorkerBlock:block]);
 }
 
-#if FL_NO_ARC
+#if FL_MRC
 - (void) dealloc {
     [_workerBlock release];
     [super dealloc];
 }
 #endif
 
-- (void) startWorking:(FLFinisher) finisher {
+- (void) startWorking:(id<FLFinisher>) finisher {
     if(_workerBlock) {
         _workerBlock(finisher);
     }

@@ -19,24 +19,24 @@
 
 // these read as much as they can an return immediately.
 
-- (NSUInteger) readAvailableBytes:(void*) bytes
-                        maxLength:(NSUInteger) maxLength;
-
-- (NSUInteger) readAvailableData:(NSMutableData*) bytes
-                        maxLength:(NSUInteger) maxLength;
-
-- (NSData*) readAvailableData:(NSUInteger) maxLength;
-
-/// @brief this blocks until read.
-/// note that it will throw an exception if the connection times out
-/// or something else terminates the connection.
-
-- (void) readBytes:(void*) bytes 
-    numBytesToRead:(NSUInteger) numBytesToRead;
-
-- (void) readData:(NSMutableData*) data
-    numBytesToRead:(NSUInteger) numBytesToRead;
-
-- (NSData*) readData:(NSUInteger) amountToRead;
+//- (NSUInteger) readAvailableBytes:(void*) bytes
+//                        maxLength:(NSUInteger) maxLength;
+//
+//- (NSUInteger) readAvailableData:(NSMutableData*) bytes
+//                        maxLength:(NSUInteger) maxLength;
+//
+//- (NSData*) readAvailableData:(NSUInteger) maxLength;
+//
+///// @brief this blocks until read.
+///// note that it will throw an exception if the connection times out
+///// or something else terminates the connection.
+//
+//- (void) readBytes:(void*) bytes 
+//    numBytesToRead:(NSUInteger) numBytesToRead;
+//
+//- (void) readData:(NSMutableData*) data
+//    numBytesToRead:(NSUInteger) numBytesToRead;
+//
+//- (NSData*) readData:(NSUInteger) amountToRead;
 
 @end

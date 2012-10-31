@@ -24,7 +24,7 @@
     return FLReturnAutoreleased([[FLLinkedListObjectContainer alloc] initWithObject:object]);
 }
 
-#if FL_NO_ARC
+#if FL_MRC
 - (void) dealloc {
     FLRelease(_key);
     FLRelease(_object);

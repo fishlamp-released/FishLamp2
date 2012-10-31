@@ -11,7 +11,7 @@
 
 #import <Foundation/Foundation.h>
 #import "FLCoreFlags.h"
-#import "FLCoreObjC.h"
+#import "FLObjc.h"
 
 @interface NSArray (FLExtras)
 

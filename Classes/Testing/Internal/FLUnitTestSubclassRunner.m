@@ -24,7 +24,7 @@
     return [self create];
 }
 
-- (void) startWorking:(FLFinisher) finisher {
+- (void) startWorking:(id<FLFinisher>) finisher {
     
     [_classList sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         
@@ -46,7 +46,7 @@
     [finisher setFinished];
 }
 
-#if FL_NO_ARC
+#if FL_MRC
 - (void) dealloc {
     [_classList release];
     [super dealloc];

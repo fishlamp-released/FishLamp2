@@ -563,7 +563,8 @@
 
 @implementation NSNumber (FLDatabaseIterator)
 - (void) bindToStatement:(FLDatabaseIterator*) statement parameterIndex:(int) parameterIndex {
-	switch(CFNumberGetType((__bridge_fl CFNumberRef) self)) {
+	
+    switch(CFNumberGetType(FLBridge(CFNumberRef, self))) {
 		case kCFNumberCGFloatType: 
 		case kCFNumberDoubleType:
 		case kCFNumberFloatType:

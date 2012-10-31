@@ -92,7 +92,7 @@
 - (void) dealloc {
     
     [self invoke:nil];
-#if FL_NO_ARC
+#if FL_MRC
     FLSendDeallocNotification();
     [super dealloc];
 #endif

@@ -34,6 +34,4 @@
 
 @end
 
-typedef id<FLFinisher> FLFinisher;
-
-typedef void (^FLAsyncBlock)(FLFinisher finisher);
+typedef void (^FLAsyncBlock)(id<FLFinisher> finisher);

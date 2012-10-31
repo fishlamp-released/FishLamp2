@@ -72,7 +72,7 @@
 				userInfo:nil 
 				repeats:NO];
 			
-		[[NSRunLoop mainRunLoop] addTimer:_nextOperationTimer forMode:NSRunLoopCommonModes];
+		[[NSRunLoop mainRunLoop] addTimer:_nextOperationTimer forMode:NSDefaultRunLoopMode];
 	}
 }
 

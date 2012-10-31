@@ -9,12 +9,9 @@
 #import "FLNetworkHostResolver.h"
 #import "FLNetworkStream.h"
 
-#define kRunLoopMode kCFRunLoopDefaultMode
-
 @interface FLNetworkHostResolver ()
 @property (readwrite, retain, nonatomic) FLNetworkHost* networkHost;
 @end
-
 
 @interface FLNetworkHostResolverStream : NSObject<FLNetworkStream> {
 @private
@@ -44,7 +41,7 @@
     return [FLNetworkHostResolverStream create];
 }
 
-#if FL_NO_ARC
+#if FL_MRC
 - (void) dealloc {
     FLRelease(_networkHost);
     FLSuperDealloc();
@@ -67,6 +64,9 @@
     return _connecting;
 }
 
+- (id) output {
+    return self.networkHost;
+}
 - (void) resolutionCallback:(CFHostRef) theHost
                    typeInfo:(CFHostInfoType) typeInfo
                       error:(const CFStreamError*) error {
@@ -84,7 +84,7 @@
 }
 
 static void HostResolutionCallback(CFHostRef theHost, CFHostInfoType typeInfo, const CFStreamError *error, void *info) {
-    FLNetworkHostResolverStream* resolver = (__bridge_fl FLNetworkHostResolverStream *) info;
+    FLNetworkHostResolverStream* resolver = FLBridgeToObject(info);
     FLCAssertIsKindOfClass_v(resolver, FLNetworkHostResolverStream, nil);
     [resolver resolutionCallback:theHost typeInfo:typeInfo error:error];
 }
@@ -97,7 +97,7 @@ static void HostResolutionCallback(CFHostRef theHost, CFHostInfoType typeInfo, c
 
 - (void) openStream {
     
-    CFHostClientContext context = { 0, (__bridge_fl void *) self, NULL, NULL, NULL };
+    CFHostClientContext context = { 0, FLBridge(void*, self), NULL, NULL, NULL };
     CFStreamError       streamError = { 0, 0 };
     NSError *           error = nil;
 
@@ -112,7 +112,7 @@ static void HostResolutionCallback(CFHostRef theHost, CFHostInfoType typeInfo, c
     if (error == nil) {
         self.isOpen = YES;
 
-        CFHostScheduleWithRunLoop(host, CFRunLoopGetCurrent(), kRunLoopMode);
+        CFHostScheduleWithRunLoop(host, CFRunLoopGetCurrent(), FLBridgeToCFRef(kRunLoopMode));
         success = CFHostStartInfoResolution(host, self.networkHost.hostInfoType, &streamError);
         if ( ! success ) {
             error = [FLNetworkConnection errorFromStreamError:streamError];
@@ -131,7 +131,7 @@ static void HostResolutionCallback(CFHostRef theHost, CFHostInfoType typeInfo, c
     CFHostRef host = self.networkHost.hostRef;
     if(self.isOpen && host) {
         /*BOOL success = */ CFHostSetClient(host, NULL, NULL);
-        CFHostUnscheduleFromRunLoop(host, CFRunLoopGetCurrent(), kRunLoopMode);
+        CFHostUnscheduleFromRunLoop(host, CFRunLoopGetCurrent(), FLBridgeToCFRef(kRunLoopMode));
         CFHostCancelInfoResolution(host, self.networkHost.hostInfoType);
     }
     self.isOpen = NO;
