@@ -204,7 +204,7 @@ static FLViewController* s_presentingModalViewController = nil;
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	[_operationContext removeObserver:self];
     
-#if FL_NO_ARC
+#if FL_MRC
     [_didAppearCallbacks release];
 	[_operationContext release];
     [super dealloc];
@@ -453,13 +453,13 @@ static FLViewController* s_presentingModalViewController = nil;
     return FLNavigationControllerAnimationDefault;
 }
 
-- (FLPromisedResult) startAction:(FLAction*) action
+- (id<FLPromisedResult>) startAction:(FLAction*) action
              completion:(FLResultBlock) completion {
     
     return [action startActionInContext:self.operationContext completion:completion];
 }
 
-- (FLPromisedResult) startOperation:(FLOperation*) operation
+- (id<FLPromisedResult>) startOperation:(FLOperation*) operation
              completion:(FLResultBlock) completion {
     
     [self.operationContext addOperation:operation];

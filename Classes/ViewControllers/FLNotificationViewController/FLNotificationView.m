@@ -61,7 +61,7 @@
     [super setFrame:frame];
 }
 
-#if FL_NO_ARC
+#if FL_MRC
 - (void) dealloc
 {
     FLRelease(_gradient);

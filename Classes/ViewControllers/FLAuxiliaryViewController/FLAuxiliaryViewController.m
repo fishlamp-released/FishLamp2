@@ -174,7 +174,7 @@ FLSynthesizeAssociatedProperty(assign_nonatomic, _auxiliaryViewController, setAu
                         
 - (void) dealloc {   
     _dragController.delegate = nil;
-#if FL_NO_ARC 
+#if FL_MRC 
     FLRelease(_createViewController);
     FLRelease(_addTouchableViewsCallback);
     FLRelease(_draggableButton);

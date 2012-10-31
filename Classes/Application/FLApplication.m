@@ -52,7 +52,7 @@
 - (void) dealloc {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 
-#if FL_NO_ARC
+#if FL_MRC
     [_operationContextManager release];
     FLRelease(_eventInterceptors);
 	FLSuperDealloc();

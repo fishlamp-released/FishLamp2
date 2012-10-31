@@ -98,7 +98,7 @@
     
     _picker.delegate = nil;
 
-#if FL_NO_ARC
+#if FL_MRC
 	[_locationManager release];
     [_overlayView release];
     [_picker release];

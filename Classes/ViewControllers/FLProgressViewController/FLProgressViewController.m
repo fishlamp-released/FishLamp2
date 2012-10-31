@@ -71,7 +71,7 @@
     return self;
 }
 
-#if FL_NO_ARC
+#if FL_MRC
 - (void) dealloc {
     FLAssert_v([NSThread currentThread] == [NSThread mainThread], @"Not on main thread");
 
@@ -274,7 +274,7 @@
 - (void) dealloc  {
     FLAssert_v([NSThread currentThread] == [NSThread mainThread], @"Not on main thread");
     [_progressView removeFromSuperview];
-#if FL_NO_ARC    
+#if FL_MRC    
     FLRelease(_onShowProgress);
     FLRelease(_onHideProgress);
     FLRelease(_progressView);

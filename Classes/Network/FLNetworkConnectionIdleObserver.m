@@ -106,7 +106,7 @@
 - (void) dealloc {
     [self hideWarning];
 
-#if FL_NO_ARC 
+#if FL_MRC 
     FLRelease(_onFormatWarningString);
     FLRelease(_onCreateAlert);
     FLRelease(_alertViewController);

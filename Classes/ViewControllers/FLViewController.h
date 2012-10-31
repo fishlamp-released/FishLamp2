@@ -99,10 +99,10 @@
 
 @property (readonly, strong, nonatomic) FLOperationContext* operationContext;
 
-- (FLPromisedResult) startOperation:(FLOperation*) operation
+- (id<FLPromisedResult>) startOperation:(FLOperation*) operation
              completion:(FLResultBlock) completion;
 
-- (FLPromisedResult) startAction:(FLAction*) action
+- (id<FLPromisedResult>) startAction:(FLAction*) action
              completion:(FLResultBlock) completion;
 
 

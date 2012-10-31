@@ -42,7 +42,7 @@
 - (void) dealloc {
     _picker.delegate = nil;
 
-#if FL_NO_ARC
+#if FL_MRC
 #if USE_POPOVERS
     [_popoverController release];
 #endif

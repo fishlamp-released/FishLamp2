@@ -138,7 +138,7 @@
     return _messageLabel.text;
 }
 
-#if FL_NO_ARC 
+#if FL_MRC 
 - (void) dealloc {
     FLRelease(_buttonBox);
     FLRelease(_triangleShapeWidget);

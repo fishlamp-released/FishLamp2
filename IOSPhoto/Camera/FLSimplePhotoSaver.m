@@ -56,7 +56,7 @@
 }
 
 
-#if FL_NO_ARC
+#if FL_MRC
 - (void) dealloc {
     [_savedImageAsset release];
     [_simplePhoto release];

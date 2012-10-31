@@ -42,7 +42,7 @@
 }
 
 
-#if FL_NO_ARC
+#if FL_MRC
 - (void) dealloc {
     [_assetURL release];
     [_image release];

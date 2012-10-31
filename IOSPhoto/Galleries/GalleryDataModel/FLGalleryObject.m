@@ -40,7 +40,7 @@
     return FLReturnAutoreleased([[[self class] alloc] initWithObjectID:objectID]);
 }
 
-#if FL_NO_ARC
+#if FL_MRC
 - (void) dealloc {
     FLRelease(_dataRefKey);
     FLRelease(_title);

@@ -40,7 +40,7 @@
     return [FLGradientWidget gradientWidgetWithFrame:CGRectZero];
 }
 
-#if FL_NO_ARC
+#if FL_MRC
 - (void) dealloc {
     FLRelease(_gradientColors);
     FLSuperDealloc();
