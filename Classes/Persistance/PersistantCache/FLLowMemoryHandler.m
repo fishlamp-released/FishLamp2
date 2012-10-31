@@ -15,7 +15,7 @@
 
 @implementation FLLowMemoryHandler
 
-NSString* FLReleaseObjectsCachedInMemoryNotification = @"FLReleaseObjectsCachedInMemoryNotification";
+NSString* release_ObjectsCachedInMemoryNotification = @"release_ObjectsCachedInMemoryNotification";
 
 static FLLowMemoryHandler* s_handler = nil;
 
@@ -59,14 +59,14 @@ static FLLowMemoryHandler* s_handler = nil;
 - (void) dealloc
 {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
-	FLSuperDealloc();
+	mrc_super_dealloc_();
 }
 
 - (void) broadcastReleaseMessage
 {
 #if IOS
 	[[NSNotificationCenter defaultCenter] postNotification:
-		[NSNotification notificationWithName:FLReleaseObjectsCachedInMemoryNotification object:[UIApplication sharedApplication]]];
+		[NSNotification notificationWithName:release_ObjectsCachedInMemoryNotification object:[UIApplication sharedApplication]]];
 #endif
 }
 
@@ -75,7 +75,7 @@ static FLLowMemoryHandler* s_handler = nil;
 #if IOS
 		[[NSNotificationCenter defaultCenter] addObserver:observer
 			selector:action 
-			name: FLReleaseObjectsCachedInMemoryNotification
+			name: release_ObjectsCachedInMemoryNotification
 			object: [UIApplication sharedApplication]]; 
 #endif		  
 }
@@ -89,7 +89,7 @@ static FLLowMemoryHandler* s_handler = nil;
 
 + (void) setDefaultHandler:(FLLowMemoryHandler*) handler
 {
-	FLAssignObject(s_handler, handler);
+	FLRetainObject_(s_handler, handler);
 }
 
 + (id) defaultHandler

@@ -50,7 +50,7 @@
 
 + (FLAssetQueueState*) assetQueueState
 {
-    return FLReturnAutoreleased([[FLAssetQueueState alloc] init]);
+    return autorelease_([[FLAssetQueueState alloc] init]);
 }
 
 - (void) copySelfTo:(id) object
@@ -72,12 +72,12 @@
 
 - (void) dealloc
 {
-    FLRelease(__queueUID);
-    FLRelease(__sortOrder);
-    FLRelease(__totalAssetsAdded);
-    FLRelease(__firstQueuePosition);
-    FLRelease(__lastQueuePosition);
-    FLSuperDealloc();
+    mrc_release_(__queueUID);
+    mrc_release_(__sortOrder);
+    mrc_release_(__totalAssetsAdded);
+    mrc_release_(__firstQueuePosition);
+    mrc_release_(__lastQueuePosition);
+    mrc_super_dealloc_();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder
@@ -101,11 +101,11 @@
 {
     if((self = [super init]))
     {
-        __queueUID = FLReturnRetained([aDecoder decodeObjectForKey:@"__queueUID"]);
-        __sortOrder = FLReturnRetained([aDecoder decodeObjectForKey:@"__sortOrder"]);
-        __totalAssetsAdded = FLReturnRetained([aDecoder decodeObjectForKey:@"__totalAssetsAdded"]);
-        __firstQueuePosition = FLReturnRetained([aDecoder decodeObjectForKey:@"__firstQueuePosition"]);
-        __lastQueuePosition = FLReturnRetained([aDecoder decodeObjectForKey:@"__lastQueuePosition"]);
+        __queueUID = retain_([aDecoder decodeObjectForKey:@"__queueUID"]);
+        __sortOrder = retain_([aDecoder decodeObjectForKey:@"__sortOrder"]);
+        __totalAssetsAdded = retain_([aDecoder decodeObjectForKey:@"__totalAssetsAdded"]);
+        __firstQueuePosition = retain_([aDecoder decodeObjectForKey:@"__firstQueuePosition"]);
+        __lastQueuePosition = retain_([aDecoder decodeObjectForKey:@"__lastQueuePosition"]);
     }
     return self;
 }

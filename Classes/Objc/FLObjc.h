@@ -22,28 +22,11 @@
 #undef FL_ARC 
 #undef FL_MRC
 
-#if __has_feature(objc_arc)
-#define FL_ARC 1
-#undef  FL_MRC
-
 #import "FLObjcARC.h"
-#else
-#define FL_MRC 1
-#undef  FL_ARC
-
 #import "FLObjcMRC.h"
-#endif
-
-#define FLBridgeToObject(__PTR__) \
-            FLBridge(id, __PTR__)
-
-#define FLBridgeToPointer(__OBJ__) \
-            FLBridge(void*, __PTR__)
-
+#import "FLCoreFoundation.h"
 
 @interface NSObject (FLCreateInstance)
 + (id) create;
 @end
-
-
 

@@ -50,7 +50,7 @@ NSString* const FLReachabilityChangedNotification = @"FLReachabilityChangedNotif
 		_reachabilityRef = nil;
         memset(&_context, 0, sizeof(SCNetworkReachabilityContext));
         
-        _context.info = FLBridge(void*,self);
+        _context.info = bridge_(void*,self);
         
         _monitoredFlags = kSCNetworkReachabilityFlagsReachable;
 	}
@@ -61,7 +61,7 @@ NSString* const FLReachabilityChangedNotification = @"FLReachabilityChangedNotif
 - (void) dealloc {
     [self stopMonitoring];
     self.reachability = nil;
-    FLSuperDealloc();
+    mrc_super_dealloc_();
 }
 
 - (void) setReachablility:(SCNetworkReachabilityRef) reachability {
@@ -96,7 +96,7 @@ NSString* const FLReachabilityChangedNotification = @"FLReachabilityChangedNotif
 }
 
 static void ReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReachabilityFlags flags, void* info) {
-	[FLBridge(id, info) onReachabilityCallback:target flags:flags];
+	[bridge_(id, info) onReachabilityCallback:target flags:flags];
 }
 
 - (BOOL) testCurrentFlags:(SCNetworkReachabilityFlags) mask {
@@ -191,7 +191,7 @@ static void ReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReach
 			hostName = [hostName substringFromIndex:range.location + 2];
 		}
         
-        FLAssignObject(_hostName, hostName);
+        FLRetainObject_(_hostName, hostName);
 
 //#if DEBUG		   
 //		  FLDebugLog(FLDebugReachability, @"Set reachability for host: %@", hostName);
@@ -204,12 +204,12 @@ static void ReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReach
 }
 
 + (FLReachableHost*) reachableHost:(NSString*) hostName {
-    return FLReturnAutoreleased([[FLReachableHost alloc] initWithHostName:hostName]);
+    return autorelease_([[FLReachableHost alloc] initWithHostName:hostName]);
 }
 
 - (void) dealloc {
-    FLRelease(_hostName);
-    FLSuperDealloc();
+    mrc_release_(_hostName);
+    mrc_super_dealloc_();
 }
 
 - (NSString*) description {

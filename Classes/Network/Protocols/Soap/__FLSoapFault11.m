@@ -60,11 +60,11 @@
 
 - (void) dealloc
 {
-    FLRelease(__faultcode);
-    FLRelease(__faultstring);
-    FLRelease(__faultactor);
-    FLRelease(__detail);
-    FLSuperDealloc();
+    mrc_release_(__faultcode);
+    mrc_release_(__faultstring);
+    mrc_release_(__faultactor);
+    mrc_release_(__detail);
+    mrc_super_dealloc_();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder
@@ -87,10 +87,10 @@
 {
     if((self = [super init]))
     {
-        __faultcode = FLReturnRetained([aDecoder decodeObjectForKey:@"__faultcode"]);
-        __faultstring = FLReturnRetained([aDecoder decodeObjectForKey:@"__faultstring"]);
-        __faultactor = FLReturnRetained([aDecoder decodeObjectForKey:@"__faultactor"]);
-        __detail = FLReturnRetained([aDecoder decodeObjectForKey:@"__detail"]);
+        __faultcode = retain_([aDecoder decodeObjectForKey:@"__faultcode"]);
+        __faultstring = retain_([aDecoder decodeObjectForKey:@"__faultstring"]);
+        __faultactor = retain_([aDecoder decodeObjectForKey:@"__faultactor"]);
+        __detail = retain_([aDecoder decodeObjectForKey:@"__detail"]);
     }
     return self;
 }
@@ -148,7 +148,7 @@
 
 + (FLSoapFault11*) soapFault11
 {
-    return FLReturnAutoreleased([[FLSoapFault11 alloc] init]);
+    return autorelease_([[FLSoapFault11 alloc] init]);
 }
 
 @end

@@ -18,19 +18,19 @@
 
 - (id) initWithOAuthApp:(FLOAuthApp*) app {
 	if((self = [super initWithURL:[NSURL URLWithString:app.requestTokenUrl]]))  {
-		_app = FLReturnRetained(app);
+		_app = retain_(app);
 	}
 	
 	return self;
 }
 
 + (FLOAuthRequestTokenNetworkOperation*) OAuthRequestTokenNetworkOperation:(FLOAuthApp*) app {
-	return FLReturnAutoreleased([[FLOAuthRequestTokenNetworkOperation alloc] initWithOAuthApp:app]);
+	return autorelease_([[FLOAuthRequestTokenNetworkOperation alloc] initWithOAuthApp:app]);
 }
 
 - (void) dealloc {
-	FLRelease(_app);
-	FLSuperDealloc();
+	mrc_release_(_app);
+	mrc_super_dealloc_();
 }
 
 - (void) networkConnection:(FLNetworkConnection*) connection
@@ -52,7 +52,7 @@
     if(self.didSucceed) {
         NSData* data = self.httpResponse.responseData;
 #if DEBUG
-        NSString* responseStr = FLReturnAutoreleased([[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+        NSString* responseStr = autorelease_([[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
         FLDebugLog(@"FL OAuthRequestToken response: %@", responseStr);
 #endif	
         FLOAuthAuthencationData* response = [FLOAuthAuthencationData oAuthAuthencationData];

@@ -36,18 +36,18 @@ FLSynthesizeSingleton(FLApplicationDataModel);
 
 
 + (FLApplicationDataModel*) applicationDataModel {
-    return FLReturnAutoreleased([[[self class] alloc] init]);
+    return autorelease_([[[self class] alloc] init]);
 }
 
 - (void) dealloc {
 	[_database closeDatabase];
-	FLRelease(_database);
-	FLSuperDealloc();
+	mrc_release_(_database);
+	mrc_super_dealloc_();
 }
 
 - (void) closeDatabase {
 	[_database closeDatabase];
-	FLReleaseWithNil(_database);
+	FLReleaseWithNil_(_database);
 }
 
 - (BOOL) isOpen {
@@ -76,8 +76,8 @@ FLSynthesizeSingleton(FLApplicationDataModel);
     
 #endif
     
-    FLObjectDatabase* database = [[FLObjectDatabase alloc] initWithName:@"session.sqlite" directory:directory];
-    FLAutorelease(database);
+    FLObjectDatabase* database = autorelease_([[FLObjectDatabase alloc] initWithName:@"session.sqlite" directory:directory]);
+
 	if([database openDatabase:FLDatabaseOpenFlagsDefault]) {
         [database upgradeDatabase:nil tableUpgraded:nil];
 	}
@@ -124,7 +124,7 @@ BOOL FLIsValidUser(FLUserLogin* userLogin) {
 				userLogin.password = password;
 				// ok if pw not loaded.
 			}
-			FLReleaseWithNil(password);
+			FLReleaseWithNil_(password);
 		}
 	}
 }
@@ -223,7 +223,7 @@ BOOL FLIsValidUser(FLUserLogin* userLogin) {
 	
     NSArray* users = nil;
     [self.database loadAllObjectsForTypeWithTable:[FLUserLogin sharedDatabaseTable] outObjects:&users];
-    FLAutorelease(users);
+    mrc_autorelease_(users);
     
     if(users)
     {   

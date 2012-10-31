@@ -116,7 +116,7 @@
 
 
 + (id) unretainedObserver:(id) observer isObserving:(id) observedObject {
-    return FLReturnAutoreleased([[[self class] alloc] initWithObserver:observer isObserving:observedObject]);
+    return autorelease_([[[self class] alloc] initWithObserver:observer isObserving:observedObject]);
 }
 
 - (void) receiveObservation:(SEL) sel fromObservable:(id) observable withObject:(id) object {

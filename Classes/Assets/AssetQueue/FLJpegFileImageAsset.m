@@ -82,11 +82,11 @@ static float s_thumbnailSize = 0.0;
 }
 
 - (void) dealloc {
-	FLReleaseWithNil(_folder);
-	FLReleaseWithNil(_fullScreenImageFile);
-	FLReleaseWithNil(_originalImageFile);
-	FLReleaseWithNil(_thumbnailImageFile);
-	FLSuperDealloc();
+	FLReleaseWithNil_(_folder);
+	FLReleaseWithNil_(_fullScreenImageFile);
+	FLReleaseWithNil_(_originalImageFile);
+	FLReleaseWithNil_(_thumbnailImageFile);
+	mrc_super_dealloc_();
 }
 
 - (id<FLStorableImage>) original
@@ -174,7 +174,7 @@ static float s_thumbnailSize = 0.0;
 //	
 //	self.thumbnail.image = thumb;
 //	
-//	FLReleaseWithNil(thumb);
+//	FLReleaseWithNil_(thumb);
 }
 
 
@@ -201,9 +201,9 @@ static float s_thumbnailSize = 0.0;
 
 - (void) releaseFiles
 {
-	FLReleaseWithNil(_thumbnailImageFile);
-	FLReleaseWithNil(_originalImageFile);
-	FLReleaseWithNil(_fullScreenImageFile);
+	FLReleaseWithNil_(_thumbnailImageFile);
+	FLReleaseWithNil_(_originalImageFile);
+	FLReleaseWithNil_(_fullScreenImageFile);
 }
 
 
@@ -268,10 +268,10 @@ static float s_thumbnailSize = 0.0;
 		[_fullScreenImageFile deleteFromStorage];
 	}
 	
-//	FLReleaseWithNil(_dataFile);
-	FLReleaseWithNil(_thumbnailImageFile);
-	FLReleaseWithNil(_originalImageFile);
-	FLReleaseWithNil(_fullScreenImageFile);
+//	FLReleaseWithNil_(_dataFile);
+	FLReleaseWithNil_(_thumbnailImageFile);
+	FLReleaseWithNil_(_originalImageFile);
+	FLReleaseWithNil_(_fullScreenImageFile);
 }
 
 - (FLImage*) thumbnailImage {

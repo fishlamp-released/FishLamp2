@@ -46,9 +46,9 @@
 
 - (void) dealloc
 {
-    FLRelease(__category);
-    FLRelease(__likes);
-    FLSuperDealloc();
+    mrc_release_(__category);
+    mrc_release_(__likes);
+    mrc_super_dealloc_();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder
@@ -60,7 +60,7 @@
 
 + (FLFacebookPage*) facebookPage
 {
-    return FLReturnAutoreleased([[FLFacebookPage alloc] init]);
+    return autorelease_([[FLFacebookPage alloc] init]);
 }
 
 - (id) init
@@ -75,8 +75,8 @@
 {
     if((self = [super initWithCoder:aDecoder]))
     {
-        __category = FLReturnRetained([aDecoder decodeObjectForKey:@"__category"]);
-        __likes = FLReturnRetained([aDecoder decodeObjectForKey:@"__likes"]);
+        __category = retain_([aDecoder decodeObjectForKey:@"__category"]);
+        __likes = retain_([aDecoder decodeObjectForKey:@"__likes"]);
     }
     return self;
 }

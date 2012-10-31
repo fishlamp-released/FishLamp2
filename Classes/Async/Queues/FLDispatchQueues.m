@@ -38,7 +38,7 @@ static void * const s_queue_key = (void*)&s_queue_key;
 }
 
 + (id) dispatchFinisher:(FLResultBlock) completion queue:(FLDispatchQueue*) queue {
-    return FLReturnAutoreleased([[[self class] alloc] initWithCompletionBlock:completion queue:queue]);
+    return autorelease_([[[self class] alloc] initWithCompletionBlock:completion queue:queue]);
 }
 
 #if FL_MRC
@@ -69,7 +69,7 @@ FLSynthesizeSingleton(FLDispatchQueue);
 - (id) init {
     self = [super init];
     if(self) {
-        dispatch_queue_set_specific([self dispatchQueue], s_queue_key, FLBridge(void*, self), nil);
+        dispatch_queue_set_specific([self dispatchQueue], s_queue_key, bridge_(void*, self), nil);
     }
 
     return self;
@@ -85,7 +85,7 @@ FLSynthesizeSingleton(FLDispatchQueue);
 }
 
 + (FLDispatchQueue*) currentQueue {
-    return FLBridge(FLDispatchQueue*, dispatch_queue_get_specific(dispatch_get_current_queue(), s_queue_key));
+    return bridge_(FLDispatchQueue*, dispatch_queue_get_specific(dispatch_get_current_queue(), s_queue_key));
 }
 
 - (dispatch_queue_t) dispatchQueue {

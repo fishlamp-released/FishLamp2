@@ -31,7 +31,7 @@
 }
 
 + (id) finisher:(FLResultBlock) completion {
-    return FLReturnAutoreleased([[[self class] alloc] initWithCompletionBlock:completion]);
+    return autorelease_([[[self class] alloc] initWithCompletionBlock:completion]);
 }
 
 - (void) dealloc {
@@ -50,7 +50,7 @@
 }
 
 + (id) finisher {
-    return FLReturnAutoreleased([[[self class] alloc] initWithCompletionBlock:nil]);
+    return autorelease_([[[self class] alloc] initWithCompletionBlock:nil]);
 }
 
 - (BOOL) hasResult {

@@ -29,7 +29,7 @@ FLSynthesizeSingleton(FLHttpImageDownloadNetworkResponseHandler);
         FLJpegFile* imageFile = [[FLJpegFile alloc] init];
         imageFile.jpegData = data;
         photo.imageFile = imageFile;
-        FLReleaseWithNil(imageFile);
+        FLReleaseWithNil_(imageFile);
         
         operation.output = photo;
     }

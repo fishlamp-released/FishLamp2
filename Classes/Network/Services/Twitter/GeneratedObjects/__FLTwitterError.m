@@ -46,9 +46,9 @@
 
 - (void) dealloc
 {
-    FLRelease(__error);
-    FLRelease(__request);
-    FLSuperDealloc();
+    mrc_release_(__error);
+    mrc_release_(__request);
+    mrc_super_dealloc_();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder
@@ -69,8 +69,8 @@
 {
     if((self = [super init]))
     {
-        __error = FLReturnRetained([aDecoder decodeObjectForKey:@"__error"]);
-        __request = FLReturnRetained([aDecoder decodeObjectForKey:@"__request"]);
+        __error = retain_([aDecoder decodeObjectForKey:@"__error"]);
+        __request = retain_([aDecoder decodeObjectForKey:@"__request"]);
     }
     return self;
 }
@@ -124,7 +124,7 @@
 
 + (FLTwitterError*) twitterError
 {
-    return FLReturnAutoreleased([[FLTwitterError alloc] init]);
+    return autorelease_([[FLTwitterError alloc] init]);
 }
 
 @end

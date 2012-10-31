@@ -32,14 +32,14 @@
 
 + (FLApplicationDataVersion*) applicationDataVersion
 {
-    return FLReturnAutoreleased([[FLApplicationDataVersion alloc] init]);
+    return autorelease_([[FLApplicationDataVersion alloc] init]);
 }
 
 - (void) dealloc
 {
-    FLRelease(__userGuid);
-    FLRelease(__versionString);
-    FLSuperDealloc();
+    mrc_release_(__userGuid);
+    mrc_release_(__versionString);
+    mrc_super_dealloc_();
 }
 
 - (id) init

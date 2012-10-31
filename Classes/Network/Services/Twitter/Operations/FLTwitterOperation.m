@@ -18,8 +18,8 @@
 
 - (void) dealloc
 {
-	FLRelease(_session);
-	FLSuperDealloc();
+	mrc_release_(_session);
+	mrc_super_dealloc_();
 }
 
 - (BOOL) willAddParametersToRequestContent:(FLOAuthAuthorizationHeader*) signature

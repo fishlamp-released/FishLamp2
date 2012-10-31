@@ -20,14 +20,14 @@
 }
 
 + (FLKeyValuePair*) keyValuePair:(id) key value:(id) value {
-	return FLReturnAutoreleased([[FLKeyValuePair alloc] initWithKey:key value:value]);
+	return autorelease_([[FLKeyValuePair alloc] initWithKey:key value:value]);
 }
 
 #if FL_MRC
 - (void) dealloc {
-    FLRelease(_key);
-    FLRelease(_value);
-	FLSuperDealloc();
+    mrc_release_(_key);
+    mrc_release_(_value);
+	mrc_super_dealloc_();
 }
 #endif
 

@@ -37,7 +37,7 @@ NSString* const FLXMLDocTypeXHtml1_1 = @"html PUBLIC \"-//W3C//DTD XHTML 1.1//EN
 }
 
 + (FLHtmlStringBuilder*) htmlStringBuilder:(NSString*) docType {
-    return FLReturnAutoreleased([[FLHtmlStringBuilder alloc] initWithDocType:docType]);
+    return autorelease_([[FLHtmlStringBuilder alloc] initWithDocType:docType]);
 }
 
 -(void) addDocTypeDeclaration:(NSString*) declaration {

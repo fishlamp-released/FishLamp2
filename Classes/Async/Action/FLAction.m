@@ -90,15 +90,15 @@ FLSynthesizeStructProperty(networkRequired, setNetworkRequired, BOOL, _actionFla
 }
 
 + (id) action {
-	return FLReturnAutoreleased([[[self class] alloc] init]);
+	return autorelease_([[[self class] alloc] init]);
 }
 
 + (id) actionWithActionType:(NSString*) actionType {
-	return FLReturnAutoreleased([[[self class] alloc] initWithActionType:actionType]);
+	return autorelease_([[[self class] alloc] initWithActionType:actionType]);
 }
 
 + (id) actionWithActionType:(NSString*) actionType actionItemName:(NSString*) actionItemName {
-	return FLReturnAutoreleased([[[self class] alloc] initWithActionType:actionType actionItemName:actionItemName]);
+	return autorelease_([[[self class] alloc] initWithActionType:actionType actionItemName:actionItemName]);
 }
 
 + (void) setGlobalFailedCallback:(id) target action:(SEL) action {
@@ -118,7 +118,7 @@ FLSynthesizeStructProperty(networkRequired, setNetworkRequired, BOOL, _actionFla
         }];
     }
 
-	FLReleaseWithNil(_errorNotification);
+	FLReleaseWithNil_(_errorNotification);
 }
 
 + (void) setDisplayErrorForActionCallback:(FLCallback_t) callback {
@@ -220,11 +220,11 @@ TODO("MF: fix activity updater");
     [_operations removeObserver:self];
 #if FL_MRC
     [_operations release];
-    FLRelease(_progressCallback);
-    FLRelease(_willShowNotificationCallback);
-	FLRelease(_progress);
-	FLRelease(_actionDescription);
-	FLSuperDealloc();
+    mrc_release_(_progressCallback);
+    mrc_release_(_willShowNotificationCallback);
+	mrc_release_(_progress);
+	mrc_release_(_actionDescription);
+	mrc_super_dealloc_();
 #endif
 }
 

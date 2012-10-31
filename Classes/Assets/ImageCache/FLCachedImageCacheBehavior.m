@@ -57,14 +57,14 @@
 
 + (FLCachedImageCacheBehavior*) cachedImageCacheBehavior:(NSUInteger) capacity 
 {
-	return FLReturnAutoreleased([[FLCachedImageCacheBehavior alloc] initWithCapacity:capacity]);
+	return autorelease_([[FLCachedImageCacheBehavior alloc] initWithCapacity:capacity]);
 }
 
 - (void) dealloc
 {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
-	FLRelease(_memoryCache);
-	FLSuperDealloc();
+	mrc_release_(_memoryCache);
+	mrc_super_dealloc_();
 }
 
 - (BOOL) willSaveObjectToDatabaseCache:(FLCachedImage*) cachedImage
@@ -205,7 +205,7 @@
 	}
 	@finally
 	{
-		FLReleaseWithNil(imageFile);
+		FLReleaseWithNil_(imageFile);
 	}
 	return YES;
 }

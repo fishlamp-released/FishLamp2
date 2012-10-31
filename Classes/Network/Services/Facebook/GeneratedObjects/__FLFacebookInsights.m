@@ -47,9 +47,9 @@
 
 - (void) dealloc
 {
-    FLRelease(__period);
-    FLRelease(__values);
-    FLSuperDealloc();
+    mrc_release_(__period);
+    mrc_release_(__values);
+    mrc_super_dealloc_();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder
@@ -61,7 +61,7 @@
 
 + (FLFacebookInsights*) facebookInsights
 {
-    return FLReturnAutoreleased([[FLFacebookInsights alloc] init]);
+    return autorelease_([[FLFacebookInsights alloc] init]);
 }
 
 - (id) init
@@ -76,7 +76,7 @@
 {
     if((self = [super initWithCoder:aDecoder]))
     {
-        __period = FLReturnRetained([aDecoder decodeObjectForKey:@"__period"]);
+        __period = retain_([aDecoder decodeObjectForKey:@"__period"]);
         __values = [[aDecoder decodeObjectForKey:@"__values"] mutableCopy];
     }
     return self;

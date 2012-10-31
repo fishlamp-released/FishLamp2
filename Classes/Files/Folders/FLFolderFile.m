@@ -24,9 +24,9 @@
 }
 
 - (void) dealloc {
-	FLRelease(_fileName);
-	FLRelease(_folder);
-	FLSuperDealloc();
+	mrc_release_(_fileName);
+	mrc_release_(_folder);
+	mrc_super_dealloc_();
 }
 
 - (NSString*) filePath {

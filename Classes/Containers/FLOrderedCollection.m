@@ -24,11 +24,11 @@
 
 #if FL_MRC
 - (void) dealloc {
-    FLRelease(_objectDictionary);
-    FLRelease(_objectArray);
-    FLRelease(_indexes);
-    FLRelease(_keys);
-	FLSuperDealloc();
+    mrc_release_(_objectDictionary);
+    mrc_release_(_objectArray);
+    mrc_release_(_indexes);
+    mrc_release_(_keys);
+	mrc_super_dealloc_();
 }
 #endif
 
@@ -37,11 +37,11 @@
 }
 
 + (FLOrderedCollection*) orderedCollection {
-	return FLReturnAutoreleased([[FLOrderedCollection alloc] init]);
+	return autorelease_([[FLOrderedCollection alloc] init]);
 }
 
 + (FLOrderedCollection*) orderedCollectionWithCapacity:(NSUInteger) capacity {
-	return FLReturnAutoreleased([[FLOrderedCollection alloc] initWithCapacity:capacity]);
+	return autorelease_([[FLOrderedCollection alloc] initWithCapacity:capacity]);
 }
 
 - (NSString*) description {

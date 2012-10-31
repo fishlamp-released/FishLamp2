@@ -39,13 +39,13 @@
 
 + (FLDatabaseObject*) databaseObject
 {
-    return FLReturnAutoreleased([[FLDatabaseObject alloc] init]);
+    return autorelease_([[FLDatabaseObject alloc] init]);
 }
 
 - (void) dealloc
 {
-    FLRelease(__uid);
-    FLSuperDealloc();
+    mrc_release_(__uid);
+    mrc_super_dealloc_();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder
@@ -65,7 +65,7 @@
 {
     if((self = [super init]))
     {
-        __uid = FLReturnRetained([aDecoder decodeObjectForKey:@"__uid"]);
+        __uid = retain_([aDecoder decodeObjectForKey:@"__uid"]);
     }
     return self;
 }

@@ -83,19 +83,19 @@
 
 
 + (id) job {
-    return FLReturnAutoreleased([[[self class] alloc] init]);
+    return autorelease_([[[self class] alloc] init]);
 }
 
 + (id) job:(id<FLWorker>) worker {
-    return FLReturnAutoreleased([[[self class] alloc] initWithWorker:worker]);
+    return autorelease_([[[self class] alloc] initWithWorker:worker]);
 }
 
 + (id) jobWithBlock:(dispatch_block_t) block {
-    return FLReturnAutoreleased([[[self class] alloc] initWithBlock:block]);
+    return autorelease_([[[self class] alloc] initWithBlock:block]);
 }
 
 + (id) jobWithAsyncBlock:(FLAsyncBlock) block {
-    return FLReturnAutoreleased([[[self class] alloc] initWithAsyncBlock:block]);
+    return autorelease_([[[self class] alloc] initWithAsyncBlock:block]);
 }
 
 

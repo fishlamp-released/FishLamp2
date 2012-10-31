@@ -20,8 +20,8 @@
 
 - (void) dealloc
 {
-	FLRelease(_assetUID);
-	FLSuperDealloc();
+	mrc_release_(_assetUID);
+	mrc_super_dealloc_();
 }
 
 - (NSURL*) assetURL

@@ -67,12 +67,12 @@
 
 - (void) dealloc
 {
-    FLRelease(__value);
-    FLRelease(__friends);
-    FLRelease(__networks);
-    FLRelease(__deny);
-    FLRelease(__description);
-    FLSuperDealloc();
+    mrc_release_(__value);
+    mrc_release_(__friends);
+    mrc_release_(__networks);
+    mrc_release_(__deny);
+    mrc_release_(__description);
+    mrc_super_dealloc_();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder
@@ -86,7 +86,7 @@
 
 + (FLFacebookPrivacy*) facebookPrivacy
 {
-    return FLReturnAutoreleased([[FLFacebookPrivacy alloc] init]);
+    return autorelease_([[FLFacebookPrivacy alloc] init]);
 }
 
 - (id) init
@@ -101,11 +101,11 @@
 {
     if((self = [super init]))
     {
-        __value = FLReturnRetained([aDecoder decodeObjectForKey:@"__value"]);
-        __friends = FLReturnRetained([aDecoder decodeObjectForKey:@"__friends"]);
-        __networks = FLReturnRetained([aDecoder decodeObjectForKey:@"__networks"]);
-        __deny = FLReturnRetained([aDecoder decodeObjectForKey:@"__deny"]);
-        __description = FLReturnRetained([aDecoder decodeObjectForKey:@"__description"]);
+        __value = retain_([aDecoder decodeObjectForKey:@"__value"]);
+        __friends = retain_([aDecoder decodeObjectForKey:@"__friends"]);
+        __networks = retain_([aDecoder decodeObjectForKey:@"__networks"]);
+        __deny = retain_([aDecoder decodeObjectForKey:@"__deny"]);
+        __description = retain_([aDecoder decodeObjectForKey:@"__description"]);
     }
     return self;
 }

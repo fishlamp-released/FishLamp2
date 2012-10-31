@@ -51,7 +51,7 @@
 }
 
 + (id) unretained:(id) object {
-	return FLReturnAutoreleased([[[self class] alloc] initWithObject:object]);
+	return autorelease_([[[self class] alloc] initWithObject:object]);
 }
 
 - (void)forwardInvocation:(NSInvocation *)invocation {
@@ -140,7 +140,7 @@
 //    NSString* str = [[NSString alloc] initWithFormat:@"hello %@", @"world"];
 //    
 //    id unretained = [str unretained];
-//    FLReleaseWithNil(str);
+//    FLReleaseWithNil_(str);
 //    
 //    FLAsyncRunner* runner = [FLAsyncRunner asyncRunner];
 //    [runner waitForCondition:^(BOOL* metCondition){

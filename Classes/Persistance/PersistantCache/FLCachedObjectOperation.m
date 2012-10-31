@@ -34,13 +34,13 @@ FLSynthesizeStructProperty(shouldRunIfLoadedFromCache, setShouldRunIfLoadedFromC
 }
 
 + (id) cachedObjectOperation:(FLOperation*) subOperation {
-    return FLReturnAutoreleased([[[self class] alloc] initWithSubOperation:subOperation]);
+    return autorelease_([[[self class] alloc] initWithSubOperation:subOperation]);
 }
 
 - (void) dealloc {
-	FLRelease(_cache);
-	FLRelease(_subOperation);
-	FLSuperDealloc();
+	mrc_release_(_cache);
+	mrc_release_(_subOperation);
+	mrc_super_dealloc_();
 }
 
 - (void) setWasLoadedFromCacheCallback:(id) target action:(SEL) action {

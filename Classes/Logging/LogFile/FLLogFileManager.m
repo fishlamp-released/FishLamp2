@@ -37,10 +37,10 @@ FLSynthesizeSingleton(FLLogFileManager);
             [closeMe closeLogFile];
         }];
 
-        FLReleaseWithNil(_logFile);
+        FLReleaseWithNil_(_logFile);
     }
 
-    FLReleaseWithNil(_userName);
+    FLReleaseWithNil_(_userName);
 }
 
 // TODO: decouple this 
@@ -105,12 +105,12 @@ FLSynthesizeSingleton(FLLogFileManager);
 - (void) dealloc {
     [self _close];
 
-    FLRelease(_appLogsFolder);
-    FLRelease(_appName);
-    FLRelease(_stringFormatter);
+    mrc_release_(_appLogsFolder);
+    mrc_release_(_appName);
+    mrc_release_(_stringFormatter);
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    FLSuperDealloc();
+    mrc_super_dealloc_();
 }
 
 
@@ -132,7 +132,7 @@ FLSynthesizeSingleton(FLLogFileManager);
         else if(modDate > newest && 
                 modDate > (now - _reuseIfNewerThanSeconds)) {
                 
-            FLAssignObject(outFilePath, fileName);
+            FLRetainObject_(outFilePath, fileName);
             newest = modDate;
         }
     

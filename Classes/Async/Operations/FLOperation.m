@@ -39,7 +39,7 @@
 }
 
 + (id) operation:(FLRunOperationBlock) callback {
-    return FLReturnAutoreleased([[[self class] alloc] initWithRunBlock:callback]);
+    return autorelease_([[[self class] alloc] initWithRunBlock:callback]);
 }
 
 //- (FLOperationType) operationType {
@@ -64,7 +64,7 @@
 }
 
 + (id) operationWithInput:(id) input {
-    return FLReturnAutoreleased([[[self class] alloc] initWithInput:input]);
+    return autorelease_([[[self class] alloc] initWithInput:input]);
 }
 
 - (NSError*) error  {
@@ -72,7 +72,7 @@
     NSError* error = nil;
     @synchronized(self) {
         if(!_error && self.wasCancelled) {
-            FLAssignObject(_error, [NSError cancelError]);
+            FLRetainObject_(_error, [NSError cancelError]);
         }
         error = _error;
     }
@@ -82,7 +82,7 @@
 - (void) setError:(NSError*) error  {
     
     @synchronized(self) {
-        FLAssignObject(_error, error);
+        FLRetainObject_(_error, error);
         
         if(_error) {
             self.didFail = YES;
@@ -108,7 +108,7 @@
 }
 
 + (id) operation {
-	return FLReturnAutoreleased([[[self class] alloc] init]);
+	return autorelease_([[[self class] alloc] init]);
 }
 
 
@@ -117,9 +117,9 @@
     [_error release];
     [_operationInput release];;
     [_operationOutput release];
-    FLRelease(_runBlock);
-    FLRelease(_operationId);
-	FLRelease(_predicate);
+    mrc_release_(_runBlock);
+    mrc_release_(_operationId);
+	mrc_release_(_predicate);
     [super dealloc];
 }
 #endif
@@ -343,7 +343,7 @@
 //}
 //
 //+ (id) operationObserver:(FLOperationObserverBlock) block {
-//    return FLReturnAutoreleased([[[self class] alloc] initWithBlock:block]);
+//    return autorelease_([[[self class] alloc] initWithBlock:block]);
 //}
 //
 //#if FL_MRC

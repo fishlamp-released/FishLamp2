@@ -18,7 +18,7 @@
 		FLAssertIsNotNil_(database);
 		FLAssertIsNotNil_(input);
 		self.input = input;
-		_database = FLReturnRetained(database);
+		_database = retain_(database);
 	}
 	return self;
 } 
@@ -31,14 +31,14 @@
 		self.output = outputObject;
 	}
 	@finally {
-		FLReleaseWithNil(outputObject);
+		FLReleaseWithNil_(outputObject);
 	}
 
 }
 
 - (void) dealloc {
-	FLRelease(_database);
-	FLSuperDealloc();
+	mrc_release_(_database);
+	mrc_super_dealloc_();
 }
 
 @end

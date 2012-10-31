@@ -21,14 +21,14 @@
 }
 
 + (FLLinkedListObjectContainer*) linkedListObjectContainer:(id) object {
-    return FLReturnAutoreleased([[FLLinkedListObjectContainer alloc] initWithObject:object]);
+    return autorelease_([[FLLinkedListObjectContainer alloc] initWithObject:object]);
 }
 
 #if FL_MRC
 - (void) dealloc {
-    FLRelease(_key);
-    FLRelease(_object);
-	FLSuperDealloc();
+    mrc_release_(_key);
+    mrc_release_(_object);
+	mrc_super_dealloc_();
 }
 #endif
 

@@ -36,16 +36,16 @@
 }
 
 + (FLObjectInflatorState*) objectInflatorState:(id) object key:(id) key {
-    return FLReturnAutoreleased([[FLObjectInflatorState alloc] initWithObject:object key:key]);
+    return autorelease_([[FLObjectInflatorState alloc] initWithObject:object key:key]);
 }
 
 - (void) dealloc {
-    FLRelease(_parseInfo);
-	FLRelease(_describer);
-	FLRelease(_object);
-	FLRelease(_key);
-	FLRelease(_data);
-	FLSuperDealloc();
+    mrc_release_(_parseInfo);
+	mrc_release_(_describer);
+	mrc_release_(_object);
+	mrc_release_(_key);
+	mrc_release_(_data);
+	mrc_super_dealloc_();
 }
 
 @end

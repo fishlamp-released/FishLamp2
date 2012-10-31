@@ -124,7 +124,7 @@ static void (*originalDealloc)(id,SEL);
 }
 
 + (id) deallocNotifier:(id) object {
-    return FLReturnAutoreleased([[FLDeallocNotifier alloc] initWithObject:object]);
+    return autorelease_([[FLDeallocNotifier alloc] initWithObject:object]);
 }
 
 - (void) addNotifier:(FLSimpleNotifier*) notifier {
@@ -146,13 +146,11 @@ static void (*originalDealloc)(id,SEL);
     NSSet* notifiers = nil;
     FLDeletedObjectReference* ref = nil;
     @synchronized(self) {
-        notifiers = _notifiers;
+        notifiers = autorelease_(_notifiers);
         _notifiers = nil;
-        FLAutorelease(notifiers);
 
-        ref = _deletedObjectReference;
+        ref = autorelease_(_deletedObjectReference);
         _deletedObjectReference = nil;
-        FLAutorelease(ref);
     }
     
     if(notifiers) {
@@ -268,7 +266,7 @@ static void (*originalDealloc)(id,SEL);
 //    NSMutableString* str = [[NSMutableString alloc] initWithString:@"hello world"];
 //    
 //    [str addDeallocListener:self action:@selector(didDelete:)];
-//    FLReleaseWithNil(str);
+//    FLReleaseWithNil_(str);
 //
 //    self.finisher = finisher;
 //}

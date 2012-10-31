@@ -65,7 +65,7 @@ extern void debug_print_history(id object, FLDebugTrackerState* state);
 #define FLSynthesizeDebugTracker() \
 - (id)retain { debug_retain(self, &_trackerState); return self; } \
 - (oneway void)release { debug_release(self, &_trackerState); } \
-- (id)autorelease { debug_autorelease(self, &_trackerState); return FLAutorelease(super); } \
+- (id)autorelease { debug_autorelease(self, &_trackerState); return mrc_autorelease_(super); } \
 - (void) logHistory { debug_print_history(self, &_trackerState); }
 
 #else

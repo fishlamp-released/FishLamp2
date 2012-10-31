@@ -22,14 +22,14 @@
 }
 
 + (FLLogFile*) logFile:(NSString*) path {
-    return FLReturnAutoreleased([[[self class] alloc] initWithPath:path]);
+    return autorelease_([[[self class] alloc] initWithPath:path]);
 }
 
 - (void) dealloc {
     [self closeLogFile];
 
-    FLRelease(_filePath);
-    FLSuperDealloc();
+    mrc_release_(_filePath);
+    mrc_super_dealloc_();
 }
 
 - (void) openLogFile {
@@ -46,12 +46,11 @@
                 [empty writeToFile:_filePath atomically:NO encoding:NSUTF8StringEncoding error:&error ];
 
                 if(error) {
-                    FLThrowError_(FLReturnAutoreleased(error));
+                    FLThrowError_(autorelease_(error));
                 }
             }
 
-            _fileHandle = [NSFileHandle fileHandleForWritingAtPath:_filePath];
-            FLRetain(_fileHandle);
+            _fileHandle = retain_([NSFileHandle fileHandleForWritingAtPath:_filePath]);
         }
         @catch(NSException* ex) {
             FLLog(@"Log open failed: %@", [ex description]);
@@ -72,7 +71,7 @@
             FLLog(@"Log close failed: %@", [ex description]);
         }
         
-        FLReleaseWithNil(_fileHandle);
+        FLReleaseWithNil_(_fileHandle);
     }
 }
 

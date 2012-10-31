@@ -46,9 +46,9 @@
 
 - (void) dealloc
 {
-    FLRelease(__link);
-    FLRelease(__name);
-    FLSuperDealloc();
+    mrc_release_(__link);
+    mrc_release_(__name);
+    mrc_super_dealloc_();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder
@@ -59,7 +59,7 @@
 
 + (FLFacebookAction*) facebookAction
 {
-    return FLReturnAutoreleased([[FLFacebookAction alloc] init]);
+    return autorelease_([[FLFacebookAction alloc] init]);
 }
 
 - (id) init
@@ -74,8 +74,8 @@
 {
     if((self = [super init]))
     {
-        __link = FLReturnRetained([aDecoder decodeObjectForKey:@"__link"]);
-        __name = FLReturnRetained([aDecoder decodeObjectForKey:@"__name"]);
+        __link = retain_([aDecoder decodeObjectForKey:@"__link"]);
+        __name = retain_([aDecoder decodeObjectForKey:@"__name"]);
     }
     return self;
 }

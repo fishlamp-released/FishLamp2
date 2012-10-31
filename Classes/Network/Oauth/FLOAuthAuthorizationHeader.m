@@ -51,8 +51,8 @@ extern void FLDebugCompareHeaders(NSString* lhs, NSString* rhs);
 
 #if FL_MRC
 - (void) dealloc {
-	FLRelease(_parameters);
-	FLSuperDealloc();
+	mrc_release_(_parameters);
+	mrc_super_dealloc_();
 }
 #endif
 
@@ -132,7 +132,7 @@ extern void FLDebugCompareHeaders(NSString* lhs, NSString* rhs);
 		&theResultLength);
 		
 	NSData *theData = [NSData dataWithBytes:base64Result length:theResultLength];
-	NSString *base64EncodedResult = FLReturnAutoreleased([[NSString alloc] initWithData:theData encoding:NSASCIIStringEncoding]);
+	NSString *base64EncodedResult = autorelease_([[NSString alloc] initWithData:theData encoding:NSASCIIStringEncoding]);
 	
 	return base64EncodedResult;
 }

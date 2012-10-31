@@ -34,7 +34,7 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 #endif
     [self purgeCache];
-    FLSuperDealloc();
+    mrc_super_dealloc_();
 }
 
 - (void) cacheObject:(id) object {
@@ -66,9 +66,7 @@
     
     NSMutableArray* cache = [_cache objectForKey:cacheKey];
     if(cache && cache.count) {
-        object = [cache lastObject];
-        FLRetain(object);
-        FLAutorelease(object);
+        object = autorelease_(retain_([cache lastObject]));
         [cache removeLastObject];
 
         [object wasUncachedFromCache:self];
@@ -83,7 +81,7 @@
         }
     }
     
-    FLReleaseWithNil(_cache);
+    FLReleaseWithNil_(_cache);
 }
 
 @end

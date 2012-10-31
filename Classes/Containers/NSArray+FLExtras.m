@@ -19,13 +19,21 @@
 }
 
 
-+ (NSArray*) arrayOfLinesFromFile:(NSString*) path encoding:(NSStringEncoding)encoding error:(NSError **)error {
++ (NSArray*) arrayOfLinesFromFile:(NSString*) path 
+                         encoding:(NSStringEncoding)encoding 
+                            error:(NSError **)error {
     
     NSError* err = nil;
     NSString* file = [NSString stringWithContentsOfFile:path encoding:encoding error:&err];
-    if(err && error) {
-        *error = err;
-        FLRetain(*error);
+    
+    if(err) {
+        if(error) {
+            *error = err;
+        }
+        else {
+            mrc_release_(err);
+        }
+    
         return nil;
     }
 
@@ -41,12 +49,17 @@
 
     NSError* err = nil;
     NSString* file = [NSString stringWithContentsOfFile:path encoding:encoding error:&err];
-    if(err && error) {
-        *error = err;
-        FLRetain(*error);
+    if(err) {
+        if(error) {
+            *error = err;
+        }
+        else {
+            mrc_release_(err);
+        }
+    
         return nil;
     }
-
+    
     NSMutableArray* lines = [NSMutableArray array];
     [file enumerateLinesUsingBlock:^(NSString* string, BOOL* stop) {
         
@@ -134,8 +147,7 @@
 	FLAssert_v(toIndex < (NSUInteger)self.count, @"bad from idx");
 
 	if(fromIndex != toIndex) {
-		id object = [self objectAtIndex:fromIndex];
-		FLRetain(object);
+		id object = autorelease_(retain_([self objectAtIndex:fromIndex]));
         
         [self removeObjectAtIndex:fromIndex];
 		
@@ -145,8 +157,6 @@
 		else {
 			[self insertObject:object atIndex:toIndex];
 		}
-		
-        FLRelease(object);
 	}
 	
 }
@@ -160,9 +170,8 @@
 }
 
 - (id) dequeueLastObject {
-	id object = [self lastObject];
-	FLRetain(FLReturnAutoreleased(object));
-	[self removeLastObject];
+    id object = autorelease_(retain_([self lastObject]));
+    [self removeLastObject];
 	return object;
 }
 
@@ -171,8 +180,7 @@
 }
 
 - (id) popFirstObject {
-	id object = [self objectAtIndex:0];
-	FLRetain(FLReturnAutoreleased(object));
+	id object = autorelease_(retain_([self objectAtIndex:0]));
     [self removeObjectAtIndex:0];
 	return object;
 }

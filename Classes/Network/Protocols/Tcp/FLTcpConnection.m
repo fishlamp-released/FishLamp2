@@ -52,22 +52,22 @@
 }
 
 + (FLTcpConnection*) tcpConnection {
-    return FLReturnAutoreleased([[[self class] alloc] init]); 
+    return autorelease_([[[self class] alloc] init]); 
 }
 
 + (FLTcpConnection*) tcpConnection:(NSString*) remoteHost remotePort:(int32_t) remotePort {
-    return FLReturnAutoreleased([[[self class] alloc] initWithRemoteHost:remoteHost remotePort:remotePort]);
+    return autorelease_([[[self class] alloc] initWithRemoteHost:remoteHost remotePort:remotePort]);
 }
 
 - (void) dealloc {
 #if FL_MRC
-    FLRelease(_writer);
-    FLRelease(_reader);
-    FLRelease(_remoteHost);
-    FLRelease(_additions);
-    FLRelease(_requests);
-    FLRelease(_blockingObject);
-    FLSuperDealloc();
+    mrc_release_(_writer);
+    mrc_release_(_reader);
+    mrc_release_(_remoteHost);
+    mrc_release_(_additions);
+    mrc_release_(_requests);
+    mrc_release_(_blockingObject);
+    mrc_super_dealloc_();
 #endif
 }
 
@@ -77,12 +77,12 @@
 
 - (void) blockRequestsWithObject:(id) object {
     FLAssert_v(_blockingObject == nil, @"alreadying blocking with an object");
-    FLAssignObject(_blockingObject, object);
+    FLRetainObject_(_blockingObject, object);
 }
 
 - (void) unblockRequestsWithObject:(id) object {
     FLAssert_v(object == _blockingObject, @"trying to unblock with wrong object");
-    FLReleaseWithNil(_blockingObject);
+    FLReleaseWithNil_(_blockingObject);
 }
 
 - (void) _writeAvailableBytes {
@@ -158,7 +158,7 @@
 - (void) networkStreamDidClose:(id<FLNetworkStream>)networkStream {
     [super networkStreamDidClose:networkStream];
     
-    FLReleaseWithNil(_blockingObject);
+    FLReleaseWithNil_(_blockingObject);
   
 
 }

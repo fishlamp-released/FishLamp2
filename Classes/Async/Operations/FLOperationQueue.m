@@ -36,11 +36,11 @@
 }
 
 + (FLOperationQueue*) operationQueue {
-    return FLReturnAutoreleased([[[self class] alloc] init]);
+    return autorelease_([[[self class] alloc] init]);
 }
 
 - (void) dealloc {
-    NSArray* list = FLReturnRetained(_operations);
+    NSArray* list = retain_(_operations);
     _operations = nil;
 
     for(FLOperation* operation in list) {
@@ -259,7 +259,7 @@
         }
     }
     @finally {
-        FLRelease(notifyList);
+        mrc_release_(notifyList);
     }
 }
 
@@ -335,7 +335,7 @@
 }
 
 + (id) operationQueueRunner:(FLOperationQueue*) queue {
-    return FLReturnAutoreleased([[[self class] alloc] initWithOperationQueue:queue]);
+    return autorelease_([[[self class] alloc] initWithOperationQueue:queue]);
 }
 
 - (void) requestCancel {

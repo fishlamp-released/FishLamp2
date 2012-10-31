@@ -12,7 +12,7 @@
 
 + (FLHorizontalGridArrangement*) horizontalCellLayout
 {
-    return FLReturnAutoreleased([[[self class] alloc] init]);
+    return autorelease_([[[self class] alloc] init]);
 }
 
 //- (FLSize) performArrangement:(NSArray*) views 

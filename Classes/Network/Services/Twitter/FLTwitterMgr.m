@@ -39,8 +39,8 @@ FLSynthesizeSingleton(FLTwitterMgr);
 
 - (void) dealloc
 {
-	FLRelease(_sessions);
-	FLSuperDealloc();
+	mrc_release_(_sessions);
+	mrc_super_dealloc_();
 }
 
 - (void) clearTwitterCookies

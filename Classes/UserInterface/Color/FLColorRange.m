@@ -38,15 +38,15 @@
 
 + (FLColorRange*) colorRange:(FLColor*) startColor
     endColor:(FLColor*) endColor {
-    return FLReturnAutoreleased([[[self class] alloc] initWithStartColor:startColor endColor:endColor]);
+    return autorelease_([[[self class] alloc] initWithStartColor:startColor endColor:endColor]);
 }
 
 #if FL_MRC
 - (void) dealloc
 {
-	FLRelease(_startColor);
-	FLRelease(_endColor);
-	FLSuperDealloc();
+	mrc_release_(_startColor);
+	mrc_release_(_endColor);
+	mrc_super_dealloc_();
 }
 #endif
 
@@ -71,7 +71,7 @@
 
 + (FLMutableColorRange*) colorRange
 {
-	return FLReturnAutoreleased([[FLMutableColorRange alloc] init]);
+	return autorelease_([[FLMutableColorRange alloc] init]);
 }
 @end
 

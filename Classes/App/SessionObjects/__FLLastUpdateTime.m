@@ -46,9 +46,9 @@
 
 - (void) dealloc
 {
-    FLRelease(__lastUpdateId);
-    FLRelease(__lastUpdate);
-    FLSuperDealloc();
+    mrc_release_(__lastUpdateId);
+    mrc_release_(__lastUpdate);
+    mrc_super_dealloc_();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder
@@ -69,15 +69,15 @@
 {
     if((self = [super init]))
     {
-        __lastUpdateId = FLReturnRetained([aDecoder decodeObjectForKey:@"__lastUpdateId"]);
-        __lastUpdate = FLReturnRetained([aDecoder decodeObjectForKey:@"__lastUpdate"]);
+        __lastUpdateId = retain_([aDecoder decodeObjectForKey:@"__lastUpdateId"]);
+        __lastUpdate = retain_([aDecoder decodeObjectForKey:@"__lastUpdate"]);
     }
     return self;
 }
 
 + (FLLastUpdateTime*) lastUpdateTime
 {
-    return FLReturnAutoreleased([[FLLastUpdateTime alloc] init]);
+    return autorelease_([[FLLastUpdateTime alloc] init]);
 }
 
 + (FLObjectDescriber*) sharedObjectDescriber

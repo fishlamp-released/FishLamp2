@@ -72,8 +72,7 @@ FLTestCaseFlagPair s_flagPairs[] = {
 
     NSString* theString = string;
     if(lookForFlags) {
-        NSMutableString* newString = [string mutableCopy] ;
-        FLAutorelease(newString);
+        NSMutableString* newString = autorelease_([string mutableCopy]);
 
         for(int i = 0; i < (sizeof(s_flagPairs) / sizeof(FLTestCaseFlagPair)); i++) {
             
@@ -100,7 +99,7 @@ FLTestCaseFlagPair s_flagPairs[] = {
     }
 
 
-    FLAssignObject(_testCaseName, theString);
+    FLRetainObject_(_testCaseName, theString);
 }
 
 - (id) initWithName:(NSString*) name testBlock:(FLTestBlock) block {
@@ -124,11 +123,11 @@ FLTestCaseFlagPair s_flagPairs[] = {
 }
 
 + (FLTestCase*) testCase:(id) target selector:(SEL) selector {
-    return FLReturnAutoreleased([[FLTestCase alloc] initWithTarget:target selector:selector]);
+    return autorelease_([[FLTestCase alloc] initWithTarget:target selector:selector]);
 }
 
 + (FLTestCase*) testCase:(NSString*) name testBlock:(FLTestBlock) block {
-    return FLReturnAutoreleased([[FLTestCase alloc] initWithName:name testBlock:block]);
+    return autorelease_([[FLTestCase alloc] initWithName:name testBlock:block]);
 }
 
 - (void) setTestCaseSelector:(SEL) sel {
@@ -150,10 +149,10 @@ FLTestCaseFlagPair s_flagPairs[] = {
 #if FL_MRC
 - (void) dealloc {
  
-//    FLRelease(_testCompletionBlock);
-    FLRelease(_testCaseName);
-    FLRelease(_testCaseBlock);
-    FLSuperDealloc();
+//    mrc_release_(_testCompletionBlock);
+    mrc_release_(_testCaseName);
+    mrc_release_(_testCaseBlock);
+    mrc_super_dealloc_();
 }
 #endif
 

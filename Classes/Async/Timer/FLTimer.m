@@ -64,8 +64,8 @@
 - (void) dealloc
 {
 	[self stopTimer];
-	FLRelease(_target);
-	FLSuperDealloc();
+	mrc_release_(_target);
+	mrc_super_dealloc_();
 }
 
 @end
@@ -86,7 +86,7 @@ FLSynthesizeStructProperty(logEvents, setLogEvents, BOOL, _timerFlags);
 	if(_timer)
 	{
 		[_timer stopTimer];
-		FLReleaseWithNil(_timer);
+		FLReleaseWithNil_(_timer);
 		_timeoutCallback.target = nil;
 		_timeoutCallback.action = nil;
 	}
@@ -213,7 +213,7 @@ FLSynthesizeStructProperty(logEvents, setLogEvents, BOOL, _timerFlags);
 //		[_delegate timer:self describeTimedObjectToBuilder:builder];
 //	}
 //	
-//	FLReleaseWithNil(dateFormatter);
+//	FLReleaseWithNil_(dateFormatter);
 //#endif
 //}
 
@@ -237,7 +237,7 @@ FLSynthesizeStructProperty(logEvents, setLogEvents, BOOL, _timerFlags);
 - (void) dealloc
 {	
 	[self _killTimer];
-	FLSuperDealloc();
+	mrc_super_dealloc_();
 }
 
 - (void) updateTimeStamp 

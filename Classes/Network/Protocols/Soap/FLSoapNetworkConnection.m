@@ -30,10 +30,10 @@
 }
 
 - (void) dealloc {
-	FLRelease(_apiNamespace);
-	FLRelease(_soapActionHeader);
-	FLRelease(_soap);
-	FLSuperDealloc();
+	mrc_release_(_apiNamespace);
+	mrc_release_(_soapActionHeader);
+	mrc_release_(_soap);
+	mrc_super_dealloc_();
 }
 
 - (void) startWorking:(id<FLFinisher>) finisher {
@@ -54,7 +54,7 @@
 + (FLSoapNetworkConnection*) soapRequest:(NSURL*) url 
 	soapActionHeader:(NSString*) soapActionHeader
 	soapApiNamespace:(NSString*) apiNamespace {
-	return FLReturnAutoreleased([[FLSoapNetworkConnection alloc] initWithURL:url soapActionHeader:soapActionHeader soapApiNamespace:apiNamespace]);
+	return autorelease_([[FLSoapNetworkConnection alloc] initWithURL:url soapActionHeader:soapActionHeader soapApiNamespace:apiNamespace]);
 }
 
 @end

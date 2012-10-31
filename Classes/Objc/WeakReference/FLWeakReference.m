@@ -55,11 +55,11 @@
 }
 
 + (id) weakReference:(FLWeaklyReferencedObject) object {
-	return FLReturnAutoreleased([[[self class] alloc] initWithObject:object]);
+	return autorelease_([[[self class] alloc] initWithObject:object]);
 }
 
 + (id) weakReference {
-	return FLReturnAutoreleased([[[self class] alloc] init]);
+	return autorelease_([[[self class] alloc] init]);
 }
 
 - (NSString*) description {

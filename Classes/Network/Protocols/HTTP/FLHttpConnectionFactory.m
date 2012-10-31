@@ -15,7 +15,7 @@ FLSynthesizeSingleton(FLHttpConnectionFactory);
 
 - (FLHttpConnection*) networkOperationCreateNetworkRequest:(FLHttpOperation*) operation
 {
-	FLHttpConnection* request = FLReturnAutoreleased([[FLHttpConnection alloc] initWithHttpRequest:
+	FLHttpConnection* request = autorelease_([[FLHttpConnection alloc] initWithHttpRequest:
         [FLHttpRequest httpRequestWithURL:operation.URL requestMethod:operation.requestType]] );
 	return request;
 }

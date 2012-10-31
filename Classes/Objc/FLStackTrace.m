@@ -99,12 +99,12 @@ FLStackTrace_t _FLStackTraceMake(const char* filePath, const char* function, int
 }
 
 + (FLStackTrace*) stackTrace:(FLStackTrace_t) stackTrace {
-    return FLReturnAutoreleased([[FLStackTrace alloc] initWithStackTrace:stackTrace]);
+    return autorelease_([[FLStackTrace alloc] initWithStackTrace:stackTrace]);
 }
 
 - (void) dealloc {
     FLStackTraceFree(&_stackTrace);
-    FLSuperDealloc();
+    mrc_super_dealloc_();
 }
 
 - (const char*) stackEntryAtIndex:(int) idx {

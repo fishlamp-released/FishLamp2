@@ -19,7 +19,7 @@
 }
 
 + (FLLengthyTaskOperation*) lengthyTaskOperation:(FLLengthyTask*) task   {
-	return FLReturnAutoreleased([[FLLengthyTaskOperation alloc] initWithLengthyTask:task]);
+	return autorelease_([[FLLengthyTaskOperation alloc] initWithLengthyTask:task]);
 }
 
 - (void) requestCancel {

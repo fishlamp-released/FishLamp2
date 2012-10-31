@@ -68,7 +68,7 @@ NSString* FLUserLoginErrorDomain = @"FLUserLoginErrorDomain";
 		}
 	}
 
-	FLReleaseWithNil(guids);
+	FLReleaseWithNil_(guids);
 
 }
 #endif
@@ -125,7 +125,7 @@ static NSString* LegacyKeys[] = {
 			  
 					if(FLStringIsNotEmpty(userName))
 					{
-						NSMutableDictionary* userItems = FLReturnRetained([outDictionary objectForKey:userName]);
+						NSMutableDictionary* userItems = retain_([outDictionary objectForKey:userName]);
 						if(!userItems)
 						{
 							userItems = [[NSMutableDictionary alloc] init];
@@ -138,7 +138,7 @@ static NSString* LegacyKeys[] = {
 						{
 							[userItems setObject:data forKey:item];
 						}
-						FLReleaseWithNil(userItems);
+						FLReleaseWithNil_(userItems);
 					}
 				}
 			}
@@ -207,7 +207,7 @@ static NSString* LegacyKeys[] = {
 	login.email = [defaults	 stringForKey:KEY([FLUserLogin emailKey], login)];
 	login.userGuid = [defaults stringForKey:KEY([FLUserLogin userGuidKey], login)];
 	login.authTokenLastUpdateTime = [defaults doubleForKey:KEY([FLUserLogin authTokenLastUpdateTimeKey], login)];
-	login.userData = FLReturnAutoreleased([[defaults dictionaryForKey:KEY([FLUserLogin userDataKey], login)] mutableCopy] );
+	login.userData = autorelease_([[defaults dictionaryForKey:KEY([FLUserLogin userDataKey], login)] mutableCopy] );
 	if(FLStringIsNotEmpty(login.userGuid))
 	{
 		if(error) 
@@ -233,7 +233,7 @@ static NSString* LegacyKeys[] = {
 	{
 		if(internalError.code == FLUserLoginErrorGuidNotFound)
 		{
-			FLReleaseWithNil(internalError);
+			FLReleaseWithNil_(internalError);
 			ok = YES;
 		}
 		
@@ -252,7 +252,7 @@ static NSString* LegacyKeys[] = {
 	ok = YES;
 
 Exit:	   
-	FLReleaseWithNil(password);
+	FLReleaseWithNil_(password);
 	
 	if(internalError)
 	{
@@ -271,11 +271,11 @@ Exit:
 		{
 			if(error)
 			{
-				*error = FLReturnRetained(internalError);
+				*error = retain_(internalError);
 			}
 		}
 	
-		FLReleaseWithNil(internalError);
+		FLReleaseWithNil_(internalError);
 	}
 	   
 																																																													   
@@ -367,10 +367,10 @@ Exit:
 	
 	if(error)
 	{
-		*error = FLReturnRetained(internalError);
+		*error = retain_(internalError);
 	}
 	
-	FLReleaseWithNil(internalError);
+	FLReleaseWithNil_(internalError);
 							
 	return NO;
 }
@@ -393,8 +393,8 @@ Exit:
     FLAssertIsNotNil_(keys);
     FLAssertIsNotNil_(userDefaultData);
     
-    FLReleaseWithNil(keys);
-	FLReleaseWithNil(userDefaultData);
+    FLReleaseWithNil_(keys);
+	FLReleaseWithNil_(userDefaultData);
 }
 
 @end

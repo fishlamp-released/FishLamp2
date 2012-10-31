@@ -202,31 +202,31 @@
 
 - (void) dealloc
 {
-    FLRelease(__first_name);
-    FLRelease(__last_name);
-    FLRelease(__gender);
-    FLRelease(__locale);
-    FLRelease(__link);
-    FLRelease(__username);
-    FLRelease(__third_party_id);
-    FLRelease(__timezone);
-    FLRelease(__updated_time);
-    FLRelease(__verified);
-    FLRelease(__about);
-    FLRelease(__bio);
-    FLRelease(__birthday);
-    FLRelease(__education);
-    FLRelease(__hometown);
-    FLRelease(__interested_in);
-    FLRelease(__location);
-    FLRelease(__political);
-    FLRelease(__quotes);
-    FLRelease(__relationship_status);
-    FLRelease(__religion);
-    FLRelease(__significant_other);
-    FLRelease(__website);
-    FLRelease(__work);
-    FLSuperDealloc();
+    mrc_release_(__first_name);
+    mrc_release_(__last_name);
+    mrc_release_(__gender);
+    mrc_release_(__locale);
+    mrc_release_(__link);
+    mrc_release_(__username);
+    mrc_release_(__third_party_id);
+    mrc_release_(__timezone);
+    mrc_release_(__updated_time);
+    mrc_release_(__verified);
+    mrc_release_(__about);
+    mrc_release_(__bio);
+    mrc_release_(__birthday);
+    mrc_release_(__education);
+    mrc_release_(__hometown);
+    mrc_release_(__interested_in);
+    mrc_release_(__location);
+    mrc_release_(__political);
+    mrc_release_(__quotes);
+    mrc_release_(__relationship_status);
+    mrc_release_(__religion);
+    mrc_release_(__significant_other);
+    mrc_release_(__website);
+    mrc_release_(__work);
+    mrc_super_dealloc_();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder
@@ -260,7 +260,7 @@
 
 + (FLFacebookUser*) facebookUser
 {
-    return FLReturnAutoreleased([[FLFacebookUser alloc] init]);
+    return autorelease_([[FLFacebookUser alloc] init]);
 }
 
 - (id) init
@@ -275,29 +275,29 @@
 {
     if((self = [super initWithCoder:aDecoder]))
     {
-        __first_name = FLReturnRetained([aDecoder decodeObjectForKey:@"__first_name"]);
-        __last_name = FLReturnRetained([aDecoder decodeObjectForKey:@"__last_name"]);
-        __gender = FLReturnRetained([aDecoder decodeObjectForKey:@"__gender"]);
-        __locale = FLReturnRetained([aDecoder decodeObjectForKey:@"__locale"]);
-        __link = FLReturnRetained([aDecoder decodeObjectForKey:@"__link"]);
-        __username = FLReturnRetained([aDecoder decodeObjectForKey:@"__username"]);
-        __third_party_id = FLReturnRetained([aDecoder decodeObjectForKey:@"__third_party_id"]);
-        __timezone = FLReturnRetained([aDecoder decodeObjectForKey:@"__timezone"]);
-        __updated_time = FLReturnRetained([aDecoder decodeObjectForKey:@"__updated_time"]);
-        __verified = FLReturnRetained([aDecoder decodeObjectForKey:@"__verified"]);
-        __about = FLReturnRetained([aDecoder decodeObjectForKey:@"__about"]);
-        __bio = FLReturnRetained([aDecoder decodeObjectForKey:@"__bio"]);
-        __birthday = FLReturnRetained([aDecoder decodeObjectForKey:@"__birthday"]);
-        __education = FLReturnRetained([aDecoder decodeObjectForKey:@"__education"]);
-        __hometown = FLReturnRetained([aDecoder decodeObjectForKey:@"__hometown"]);
-        __interested_in = FLReturnRetained([aDecoder decodeObjectForKey:@"__interested_in"]);
-        __location = FLReturnRetained([aDecoder decodeObjectForKey:@"__location"]);
-        __political = FLReturnRetained([aDecoder decodeObjectForKey:@"__political"]);
-        __quotes = FLReturnRetained([aDecoder decodeObjectForKey:@"__quotes"]);
-        __relationship_status = FLReturnRetained([aDecoder decodeObjectForKey:@"__relationship_status"]);
-        __religion = FLReturnRetained([aDecoder decodeObjectForKey:@"__religion"]);
-        __significant_other = FLReturnRetained([aDecoder decodeObjectForKey:@"__significant_other"]);
-        __website = FLReturnRetained([aDecoder decodeObjectForKey:@"__website"]);
+        __first_name = retain_([aDecoder decodeObjectForKey:@"__first_name"]);
+        __last_name = retain_([aDecoder decodeObjectForKey:@"__last_name"]);
+        __gender = retain_([aDecoder decodeObjectForKey:@"__gender"]);
+        __locale = retain_([aDecoder decodeObjectForKey:@"__locale"]);
+        __link = retain_([aDecoder decodeObjectForKey:@"__link"]);
+        __username = retain_([aDecoder decodeObjectForKey:@"__username"]);
+        __third_party_id = retain_([aDecoder decodeObjectForKey:@"__third_party_id"]);
+        __timezone = retain_([aDecoder decodeObjectForKey:@"__timezone"]);
+        __updated_time = retain_([aDecoder decodeObjectForKey:@"__updated_time"]);
+        __verified = retain_([aDecoder decodeObjectForKey:@"__verified"]);
+        __about = retain_([aDecoder decodeObjectForKey:@"__about"]);
+        __bio = retain_([aDecoder decodeObjectForKey:@"__bio"]);
+        __birthday = retain_([aDecoder decodeObjectForKey:@"__birthday"]);
+        __education = retain_([aDecoder decodeObjectForKey:@"__education"]);
+        __hometown = retain_([aDecoder decodeObjectForKey:@"__hometown"]);
+        __interested_in = retain_([aDecoder decodeObjectForKey:@"__interested_in"]);
+        __location = retain_([aDecoder decodeObjectForKey:@"__location"]);
+        __political = retain_([aDecoder decodeObjectForKey:@"__political"]);
+        __quotes = retain_([aDecoder decodeObjectForKey:@"__quotes"]);
+        __relationship_status = retain_([aDecoder decodeObjectForKey:@"__relationship_status"]);
+        __religion = retain_([aDecoder decodeObjectForKey:@"__religion"]);
+        __significant_other = retain_([aDecoder decodeObjectForKey:@"__significant_other"]);
+        __website = retain_([aDecoder decodeObjectForKey:@"__website"]);
         __work = [[aDecoder decodeObjectForKey:@"__work"] mutableCopy];
     }
     return self;

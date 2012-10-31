@@ -6,43 +6,21 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#if FL_MRC
+#if !__has_feature(objc_arc)
+#define FL_MRC 1
 
-NS_INLINE
-void _FLAssignObject(id* a, id b)
-{
-    if(a && (*a != b)) 
-    { 
-        [*a release]; 
-        *a = [b retain]; 
-    }
-}
-NS_INLINE
-void _FLCopyObject(id* a, id b)
-{
-    if(a && (*a != b)) 
-    { 
-        [*a release]; 
-        *a = [b copy]; 
-    }
-}
-//    NS_INLINE
-//    void FLManuallyRelease(id* p)
-//    {
-//        if(p && *p) {
-//        // this generates clang warning but this is correct, maybe there's a way to craft the code or a pragma to get rid of the warning
-//            [*p release];
-//            *p = nil;
-//        }
-//    }
+// object memory management
+#define retain_(__OBJ__)                    [__OBJ__ retain]
+#define mrc_retain_(__OBJ__)                [__OBJ__ retain]
+#define autorelease_(__OBJ__)               [__OBJ__ autorelease]
+#define mrc_autorelease_(__OBJ__)           [__OBJ__ autorelease]
+#define mrc_release_(__OBJ__)               [__OBJ__ release]
+#define mrc_super_dealloc_()                [super dealloc]
+#define bridge_(__TO__, __FROM__)           ((__TO__) __FROM__)
+#define bridge_transfer_(__TO__, __FROM__)  [((__TO__) __FROM__) retain]
+#define bridge_retain_(__TO__, __FROM__)    ((__TO__) [__FROM__ retain])
 
-#define FLRetain(__v)               [__v retain]
-#define FLReturnRetained(__v)       [__v retain]
-#define FLRelease(__v)              [__v release]
-#define FLReturnAutoreleased(__v)   [__v autorelease]
-#define FLAutorelease(__v)          [__v autorelease]
-#define FLSuperDealloc()            [super dealloc]
-#define FLCopyBlock(__BLOCK__)      FLReturnAutoreleased([__BLOCK__ copy])
+// mrc utils
 
 NS_INLINE
 void FLManuallyRelease(id* obj) {
@@ -51,36 +29,36 @@ void FLManuallyRelease(id* obj) {
         *obj = nil;
     }
 }
-typedef void (^__BLOCK)() ;
+
 NS_INLINE
-void _FLReleaseBlockWithNil(__BLOCK* block) {
+void _FLRetainObject(id* a, id b) {
+    if(a && (*a != b)) { 
+        [*a release]; 
+        *a = [b retain]; 
+    }
+}
+
+NS_INLINE
+void _FLCopyObject(id* a, id b) {
+    if(a && (*a != b)) { 
+        [*a release]; 
+        *a = [b copy]; 
+    }
+}
+
+NS_INLINE
+void _FLReleaseBlockWithNil_(dispatch_block_t* block) {
     if(block && *block) {
         [*block release];
         *block = nil;
     }
 }
 
-#define FLReleaseWithNil(__OBJ__)   FLManuallyRelease(&(__OBJ__))
-
-#define FLReleaseBlockWithNil(b)    _FLReleaseBlockWithNil((__BLOCK*) &(b))
-
-#define FLAssignObject(a,b)         _FLAssignObject((id*) &a, (id) b)
-#define FLCopyObject(a,b)           _FLCopyObject((id*) &a, (id) b)
-
-#define FLBridge(__TO_TYPE__, __FROM_REFERENCE__) \
-            ((__TO_TYPE__) __FROM_REFERENCE__)
-            
-#define FLBridgeTransfer(__TO_TYPE__, __FROM_REFERENCE__) \
-            [((__TO_TYPE__) __FROM_REFERENCE__) retain]
-
-#define FLBridgeRetain(__TO_TYPE__, __FROM_REFERENCE__) \
-            ((__TO_TYPE__) [__FROM_REFERENCE__ retain])
-
-#define FLBridgeTransferAutoreleased(__TO_TYPE__, __FROM_REFERENCE__) \
-            [[((__TO_TYPE__) __FROM_REFERENCE__) retain] autorelease]
-
-#define FLBridgeObject(__FROM_REFERENCE__) \
-            [[((id) __FROM_REFERENCE__) retain] autorelease]
+#define FLReleaseWithNil_(__OBJ__)      FLManuallyRelease(&(__OBJ__))
+#define FLReleaseBlockWithNil_(b)       _FLReleaseBlockWithNil_((dispatch_block_t*) &(b))
+#define FLRetainObject_(a,b)            _FLRetainObject((id*) &a, (id) b)
+#define FLCopyObject_(a,b)              _FLCopyObject((id*) &a, (id) b)
+#define FLCopyBlock(__BLOCK__)          autorelease_([__BLOCK__ copy])
 
 
 

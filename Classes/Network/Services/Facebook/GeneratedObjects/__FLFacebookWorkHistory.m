@@ -68,12 +68,12 @@
 
 - (void) dealloc
 {
-    FLRelease(__employer);
-    FLRelease(__location);
-    FLRelease(__position);
-    FLRelease(__start_date);
-    FLRelease(__end_date);
-    FLSuperDealloc();
+    mrc_release_(__employer);
+    mrc_release_(__location);
+    mrc_release_(__position);
+    mrc_release_(__start_date);
+    mrc_release_(__end_date);
+    mrc_super_dealloc_();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder
@@ -88,7 +88,7 @@
 
 + (FLFacebookWorkHistory*) facebookWorkHistory
 {
-    return FLReturnAutoreleased([[FLFacebookWorkHistory alloc] init]);
+    return autorelease_([[FLFacebookWorkHistory alloc] init]);
 }
 
 - (id) init
@@ -103,11 +103,11 @@
 {
     if((self = [super initWithCoder:aDecoder]))
     {
-        __employer = FLReturnRetained([aDecoder decodeObjectForKey:@"__employer"]);
-        __location = FLReturnRetained([aDecoder decodeObjectForKey:@"__location"]);
-        __position = FLReturnRetained([aDecoder decodeObjectForKey:@"__position"]);
-        __start_date = FLReturnRetained([aDecoder decodeObjectForKey:@"__start_date"]);
-        __end_date = FLReturnRetained([aDecoder decodeObjectForKey:@"__end_date"]);
+        __employer = retain_([aDecoder decodeObjectForKey:@"__employer"]);
+        __location = retain_([aDecoder decodeObjectForKey:@"__location"]);
+        __position = retain_([aDecoder decodeObjectForKey:@"__position"]);
+        __start_date = retain_([aDecoder decodeObjectForKey:@"__start_date"]);
+        __end_date = retain_([aDecoder decodeObjectForKey:@"__end_date"]);
     }
     return self;
 }

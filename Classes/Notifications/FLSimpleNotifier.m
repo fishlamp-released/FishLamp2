@@ -27,7 +27,7 @@
 }
 
 + (id) simpleNotifier {
-    return FLReturnAutoreleased([[[self class] alloc] init]);
+    return autorelease_([[[self class] alloc] init]);
 }
 
 - (void) addNotifier:(FLSimpleNotifier*) notifier {
@@ -172,7 +172,7 @@
 }
 
 + (id) callbackNotifier:(id) target action:(SEL) action {
-    return FLReturnAutoreleased([[[self class] alloc] initWithTarget:target action:action]);
+    return autorelease_([[[self class] alloc] initWithTarget:target action:action]);
 }
 
 - (void) removeTargetAndDisable {
@@ -204,7 +204,7 @@
 }
 
 + (id) blockNotifier:(FLBlockNotifierBlock) block {
-    return FLReturnAutoreleased([[[self class] alloc] initWithNotifierBlock:block]);
+    return autorelease_([[[self class] alloc] initWithNotifierBlock:block]);
 }
 
 - (void) receiveNotification:(id) sender {

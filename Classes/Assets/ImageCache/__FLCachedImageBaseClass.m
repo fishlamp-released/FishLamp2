@@ -62,7 +62,7 @@
 
 + (FLCachedImageBaseClass*) cachedImageBaseClass
 {
-    return FLReturnAutoreleased([[FLCachedImageBaseClass alloc] init]);
+    return autorelease_([[FLCachedImageBaseClass alloc] init]);
 }
 
 - (void) copySelfTo:(id) object
@@ -86,14 +86,14 @@
 
 - (void) dealloc
 {
-    FLRelease(__fileName);
-    FLRelease(__url);
-    FLRelease(__imageId);
-    FLRelease(__photoUrl);
-    FLRelease(__host);
-    FLRelease(__imageVersion);
-    FLRelease(__canCacheInMemory);
-    FLSuperDealloc();
+    mrc_release_(__fileName);
+    mrc_release_(__url);
+    mrc_release_(__imageId);
+    mrc_release_(__photoUrl);
+    mrc_release_(__host);
+    mrc_release_(__imageVersion);
+    mrc_release_(__canCacheInMemory);
+    mrc_super_dealloc_();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder
@@ -119,13 +119,13 @@
 {
     if((self = [super init]))
     {
-        __fileName = FLReturnRetained([aDecoder decodeObjectForKey:@"__fileName"]);
-        __url = FLReturnRetained([aDecoder decodeObjectForKey:@"__url"]);
-        __imageId = FLReturnRetained([aDecoder decodeObjectForKey:@"__imageId"]);
-        __photoUrl = FLReturnRetained([aDecoder decodeObjectForKey:@"__photoUrl"]);
-        __host = FLReturnRetained([aDecoder decodeObjectForKey:@"__host"]);
-        __imageVersion = FLReturnRetained([aDecoder decodeObjectForKey:@"__imageVersion"]);
-        __canCacheInMemory = FLReturnRetained([aDecoder decodeObjectForKey:@"__canCacheInMemory"]);
+        __fileName = retain_([aDecoder decodeObjectForKey:@"__fileName"]);
+        __url = retain_([aDecoder decodeObjectForKey:@"__url"]);
+        __imageId = retain_([aDecoder decodeObjectForKey:@"__imageId"]);
+        __photoUrl = retain_([aDecoder decodeObjectForKey:@"__photoUrl"]);
+        __host = retain_([aDecoder decodeObjectForKey:@"__host"]);
+        __imageVersion = retain_([aDecoder decodeObjectForKey:@"__imageVersion"]);
+        __canCacheInMemory = retain_([aDecoder decodeObjectForKey:@"__canCacheInMemory"]);
     }
     return self;
 }

@@ -27,7 +27,7 @@
 @synthesize results = _results;
 
 + (FLUnitTest*) unitTest {
-    return FLReturnAutoreleased([[[self class] alloc] init]);
+    return autorelease_([[[self class] alloc] init]);
 }
 
 - (id) init {

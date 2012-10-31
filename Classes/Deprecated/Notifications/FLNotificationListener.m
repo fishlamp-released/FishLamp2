@@ -29,12 +29,12 @@
 
 + (id) notificationListener
 {
-    return FLReturnAutoreleased([[[self class] alloc] init]);
+    return autorelease_([[[self class] alloc] init]);
 }
 
 + (id) notificationListener:(id) target action:(SEL) action
 {
-    return FLReturnAutoreleased([[[self class] alloc] initWithTarget:target action:action]);
+    return autorelease_([[[self class] alloc] initWithTarget:target action:action]);
 }
 
 - (void) didReceiveEvent:(NSNotification*) notification
@@ -66,7 +66,7 @@
 - (void) dealloc 
 {
     [self removeAllObservers];
-    FLSuperDealloc();
+    mrc_super_dealloc_();
 }
 
 

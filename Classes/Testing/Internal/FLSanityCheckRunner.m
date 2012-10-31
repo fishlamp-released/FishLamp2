@@ -35,7 +35,7 @@
 
 - (void) startWorking:(id<FLFinisher>) finisher {
     
-    NSMutableArray* tests = FLReturnAutoreleased([[_sanityTests allObjects] mutableCopy]);
+    NSMutableArray* tests = autorelease_([[_sanityTests allObjects] mutableCopy]);
     
     [tests sortedArrayUsingSelector:@selector(compare:)];
     

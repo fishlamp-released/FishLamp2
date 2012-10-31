@@ -112,9 +112,9 @@
 
 - (void) dealloc {
     FLSendDeallocNotification();
-	FLRelease(_fileName);
-	FLRelease(_folder);
-	FLSuperDealloc();
+	mrc_release_(_fileName);
+	mrc_release_(_folder);
+	mrc_super_dealloc_();
 }
 
 - (NSString*) filePath
@@ -134,7 +134,7 @@
 			userInfo:[NSDictionary dictionaryWithObject:@"Image file is missing - can't create read stream for upload" forKey:NSLocalizedFailureReasonErrorKey]]);
 	}
 
-	return FLReturnAutoreleased([[NSInputStream alloc] initWithFileAtPath:myPath]);
+	return autorelease_([[NSInputStream alloc] initWithFileAtPath:myPath]);
 }
 
 - (unsigned long long) sizeInStorage

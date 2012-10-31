@@ -53,8 +53,7 @@
         id object = nil;
         @synchronized(self) {
             if(_queue.count > 0) {
-                object = [_queue firstObject];
-                FLRetain(FLReturnAutoreleased(object));
+                object = autorelease_(retain_([_queue firstObject]));
                 [_queue removeObjectAtIndex:0];
             }
         }

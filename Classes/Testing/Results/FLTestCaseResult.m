@@ -27,7 +27,7 @@
 
 
 + (FLTestCaseResult*) testCaseResult:(FLTestCase*) test {
-    return FLReturnAutoreleased([[[self class] alloc] initWithTestCase:test]);
+    return autorelease_([[[self class] alloc] initWithTestCase:test]);
 }
 
 #if FL_MRC

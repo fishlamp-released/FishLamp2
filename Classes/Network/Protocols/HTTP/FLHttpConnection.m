@@ -34,7 +34,7 @@
 }
 
 + (id) httpConnection:(FLHttpRequest*) httpRequest {
-    return FLReturnAutoreleased([[[self class] alloc] initWithHttpRequest:httpRequest]);
+    return autorelease_([[[self class] alloc] initWithHttpRequest:httpRequest]);
 }
 
 #if FL_MRC

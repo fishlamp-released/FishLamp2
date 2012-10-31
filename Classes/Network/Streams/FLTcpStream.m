@@ -32,7 +32,7 @@
 }
 
 + (id) tcpStream:(NSString*) remoteHost  remotePort:(int32_t) remotePort {
-    return FLReturnAutoreleased([[[self class] alloc] initWithRemoteHost:remoteHost remotePort:remotePort]);
+    return autorelease_([[[self class] alloc] initWithRemoteHost:remoteHost remotePort:remotePort]);
 }
 
 - (void) openStream {
@@ -46,7 +46,7 @@
     FLAssert_v(self.remotePort != 0, @"remote port can't be zero");
     FLAssertStringIsNotEmpty_(self.remoteHost);
    
-    CFHostRef host = CFHostCreateWithName(NULL, FLBridgeToCFRef(self.remoteHost));
+    CFHostRef host = CFHostCreateWithName(NULL, bridge_(void*,self.remoteHost));
     if (host != NULL)  {
         CFStreamCreatePairWithSocketToCFHost(NULL, host, self.remotePort, &readStream, &writeStream);
         

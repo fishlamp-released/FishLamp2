@@ -21,15 +21,15 @@ FLSynthesizeStructProperty(isPrimaryKey, setPrimaryKey, BOOL, _state);
 @synthesize decodedColumnName = _decodedColumnName;
 
 - (void) setColumnName:(NSString*) columnName {
-	FLAssignObject(_name, FLDatabaseNameEncode(columnName));
-	FLAssignObject(_decodedColumnName, FLDatabaseNameDecode(columnName));
+	FLRetainObject_(_name, FLDatabaseNameEncode(columnName));
+	FLRetainObject_(_decodedColumnName, FLDatabaseNameDecode(columnName));
 }
 
 - (void) dealloc {
-	FLRelease(_decodedColumnName);
-	FLRelease(_constraints);
-	FLRelease(_name);
-	FLSuperDealloc();
+	mrc_release_(_decodedColumnName);
+	mrc_release_(_constraints);
+	mrc_release_(_name);
+	mrc_super_dealloc_();
 }
 
 - (BOOL) hasPrimaryKeyConstraint {
@@ -46,7 +46,7 @@ FLSynthesizeStructProperty(isPrimaryKey, setPrimaryKey, BOOL, _state);
 	columnType:(FLDatabaseType) columnType  
 	columnConstraints:(NSArray*) constraints {
 	if((self = [super init])) {
-		FLAssignObject(_constraints, constraints);
+		FLRetainObject_(_constraints, constraints);
 		_state.isPrimaryKey = self.hasPrimaryKeyConstraint;
 		_state.isIndexed = _state.isPrimaryKey;
 		self.columnName = name;
@@ -56,12 +56,12 @@ FLSynthesizeStructProperty(isPrimaryKey, setPrimaryKey, BOOL, _state);
 }
 
 - (id) copyWithZone:(NSZone *)zone {
-	FLDatabaseColumn* column = [[FLDatabaseColumn alloc] initWithColumnName:self.columnName columnType:self.columnType columnConstraints:FLReturnAutoreleased([self.columnConstraints copy])];
+	FLDatabaseColumn* column = [[FLDatabaseColumn alloc] initWithColumnName:self.columnName columnType:self.columnType columnConstraints:autorelease_([self.columnConstraints copy])];
 	return column;
 }
 
 + (FLDatabaseColumn*) databaseColumnWithName:(NSString*) name columnType:(FLDatabaseType) columnType  columnConstraints:(NSArray*) columnConstraints {
-	return FLReturnAutoreleased([[FLDatabaseColumn alloc] initWithColumnName:name columnType:columnType columnConstraints:columnConstraints]);
+	return autorelease_([[FLDatabaseColumn alloc] initWithColumnName:name columnType:columnType columnConstraints:columnConstraints]);
 }
 
 NSString* _FLSqlConflictActionString(FLDatabaseOnConflictAction action) {

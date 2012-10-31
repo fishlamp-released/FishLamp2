@@ -18,12 +18,12 @@
 @synthesize error = _error;
 
 + (FLJsonParser*) jsonParser {
-    return FLReturnAutoreleased([[FLJsonParser alloc] init]);
+    return autorelease_([[FLJsonParser alloc] init]);
 }
 
 - (void) dealloc {
-    FLRelease(_error);
-    FLSuperDealloc();
+    mrc_release_(_error);
+    mrc_super_dealloc_();
 }
 
 - (NSError* )parseJsonData:(NSData *)data rootObject:(id) rootObject {
@@ -47,13 +47,13 @@
         {
             FLObjectBuilder* builder = [[FLObjectBuilder alloc] init];
             [builder buildObjectsFromDictionary:outObject withRootObject:rootObject];
-            FLRelease(builder);
+            mrc_release_(builder);
             
             outObject = rootObject;
         }
     }    
     
-    FLRelease(parser);
+    mrc_release_(parser);
     return outObject;
 #endif
     

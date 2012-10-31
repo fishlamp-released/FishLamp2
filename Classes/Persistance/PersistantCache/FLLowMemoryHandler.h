@@ -7,7 +7,7 @@
 //
 #import "FishLampCore.h"
 
-extern NSString* FLReleaseObjectsCachedInMemoryNotification;
+extern NSString* release_ObjectsCachedInMemoryNotification;
 
 @interface FLLowMemoryHandler : NSObject {
 	BOOL _broadcasting;

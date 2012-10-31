@@ -34,7 +34,7 @@
 }
 
 + (FLNetworkHostResolver*) networkHostResolver:(FLNetworkHost*) host {
-    return FLReturnAutoreleased([[FLNetworkHostResolver alloc] initWithNetworkHost:host]);
+    return autorelease_([[FLNetworkHostResolver alloc] initWithNetworkHost:host]);
 }
 
 - (id<FLNetworkStream>) createNetworkStream {
@@ -43,8 +43,8 @@
 
 #if FL_MRC
 - (void) dealloc {
-    FLRelease(_networkHost);
-    FLSuperDealloc();
+    mrc_release_(_networkHost);
+    mrc_super_dealloc_();
 }
 #endif
 
@@ -84,7 +84,7 @@
 }
 
 static void HostResolutionCallback(CFHostRef theHost, CFHostInfoType typeInfo, const CFStreamError *error, void *info) {
-    FLNetworkHostResolverStream* resolver = FLBridgeToObject(info);
+    FLNetworkHostResolverStream* resolver = bridge_(id, info);
     FLCAssertIsKindOfClass_v(resolver, FLNetworkHostResolverStream, nil);
     [resolver resolutionCallback:theHost typeInfo:typeInfo error:error];
 }
@@ -97,7 +97,7 @@ static void HostResolutionCallback(CFHostRef theHost, CFHostInfoType typeInfo, c
 
 - (void) openStream {
     
-    CFHostClientContext context = { 0, FLBridge(void*, self), NULL, NULL, NULL };
+    CFHostClientContext context = { 0, bridge_(void*, self), NULL, NULL, NULL };
     CFStreamError       streamError = { 0, 0 };
     NSError *           error = nil;
 
@@ -112,7 +112,7 @@ static void HostResolutionCallback(CFHostRef theHost, CFHostInfoType typeInfo, c
     if (error == nil) {
         self.isOpen = YES;
 
-        CFHostScheduleWithRunLoop(host, CFRunLoopGetCurrent(), FLBridgeToCFRef(kRunLoopMode));
+        CFHostScheduleWithRunLoop(host, CFRunLoopGetCurrent(), bridge_(void*,kRunLoopMode));
         success = CFHostStartInfoResolution(host, self.networkHost.hostInfoType, &streamError);
         if ( ! success ) {
             error = [FLNetworkConnection errorFromStreamError:streamError];
@@ -131,7 +131,7 @@ static void HostResolutionCallback(CFHostRef theHost, CFHostInfoType typeInfo, c
     CFHostRef host = self.networkHost.hostRef;
     if(self.isOpen && host) {
         /*BOOL success = */ CFHostSetClient(host, NULL, NULL);
-        CFHostUnscheduleFromRunLoop(host, CFRunLoopGetCurrent(), FLBridgeToCFRef(kRunLoopMode));
+        CFHostUnscheduleFromRunLoop(host, CFRunLoopGetCurrent(), bridge_(void*,kRunLoopMode));
         CFHostCancelInfoResolution(host, self.networkHost.hostInfoType);
     }
     self.isOpen = NO;

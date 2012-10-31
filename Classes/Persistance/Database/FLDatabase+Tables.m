@@ -182,7 +182,7 @@
         [result addObject:row];
     }];
         
-    *outRows = FLReturnRetained(result);
+    *outRows = retain_(result);
 }
 
 @end

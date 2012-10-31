@@ -28,18 +28,18 @@ FLSynthesizeCachedObjectHandlerProperty(FLCachedImage);
 
 + (FLCachedImage*) cachedImageWithUrlString:(NSString*) url
 {
-	return FLReturnAutoreleased([[FLCachedImage alloc] initWithUrlString:url]);
+	return autorelease_([[FLCachedImage alloc] initWithUrlString:url]);
 }
 
 + (FLCachedImage*) cachedImage
 {
-	return FLReturnAutoreleased([[FLCachedImage alloc] init]);
+	return autorelease_([[FLCachedImage alloc] init]);
 }
 
 - (void) dealloc
 {
-	FLReleaseWithNil(_imageFile);
-	FLSuperDealloc();
+	FLReleaseWithNil_(_imageFile);
+	mrc_super_dealloc_();
 }
 
 - (void) setUrl:(NSString*) inValue 
@@ -52,7 +52,7 @@ FLSynthesizeCachedObjectHandlerProperty(FLCachedImage);
 	self.imageId = [NSString stringWithFormat:@"%@%@", url.host, url.path];
 	self.photoUrl = url.path;
 
-	FLReleaseWithNil(url);
+	FLReleaseWithNil_(url);
 }
 
 - (void) copySelfTo:(id) object
@@ -61,7 +61,7 @@ FLSynthesizeCachedObjectHandlerProperty(FLCachedImage);
 	
 	FLJpegFile* file = [[self imageFile] copy];
 	[object setImageFile:file];
-	FLRelease(file);
+	mrc_release_(file);
 }
 
 

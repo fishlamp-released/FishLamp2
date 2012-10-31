@@ -38,9 +38,9 @@
 
 - (void) dealloc
 {
-	FLRelease(_username);
-	FLRelease(_imageSize);
-	FLSuperDealloc();
+	mrc_release_(_username);
+	mrc_release_(_imageSize);
+	mrc_super_dealloc_();
 }
 
 - (NSURL*) createURL

@@ -40,7 +40,7 @@
 }
 
 + (id) networkOperation {
-	return FLReturnAutoreleased([[[self class] alloc] init]);
+	return autorelease_([[[self class] alloc] init]);
 }
 
 - (id) initWithNetworkConnection:(FLNetworkConnection*) connection {
@@ -52,7 +52,7 @@
 }
 
 + (id) networkOperationWithConnection:(FLNetworkConnection*) connection {
-    return FLReturnAutoreleased([[[self class] alloc] initWithNetworkConnection:connection]);
+    return autorelease_([[[self class] alloc] initWithNetworkConnection:connection]);
 }
 
 
@@ -67,8 +67,8 @@
     [_networkConnection removeObserver:self];
 
 #if FL_MRC
-    FLRelease(_networkConnection);
-	FLSuperDealloc();
+    mrc_release_(_networkConnection);
+	mrc_super_dealloc_();
 #endif
 }
 

@@ -18,7 +18,6 @@
     FLAssertIsTrue_(error.isCancelError);
     
     FLMutableError* mutableError = [FLMutableError mutableErrorWithError:error];
-    FLAutorelease(mutableError);
     
     FLAssertObjectsAreEqual_(mutableError, error);
     

@@ -50,11 +50,11 @@ FLSynthesizeAssociatedProperty(retain_nonatomic, _error, setError, NSError*);
                             reason:(NSString *)reason
                           userInfo:(NSDictionary *)userInfo
                              error:(NSError*)error {
-	return FLReturnAutoreleased([[[self class] alloc] initWithName:name reason:reason userInfo:userInfo error:error]);
+	return autorelease_([[[self class] alloc] initWithName:name reason:reason userInfo:userInfo error:error]);
 }
 
 + (NSException*) exceptionWithError:(NSError*)error {
-	return FLReturnAutoreleased([[[self class] alloc] initWithName:nil reason:nil userInfo:nil error:error]);
+	return autorelease_([[[self class] alloc] initWithName:nil reason:nil userInfo:nil error:error]);
 }
 
 + (FLExceptionHook) exceptionHook {

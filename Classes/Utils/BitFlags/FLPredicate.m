@@ -64,7 +64,7 @@
 @implementation FLAndPredicate
 
 + (id) andPredicate:(id<FLPredicate>) lhs rhs:(id<FLPredicate>) rhs {
-    return FLReturnAutoreleased([[[self class] alloc] initWithLhs:lhs rhs:rhs]);
+    return autorelease_([[[self class] alloc] initWithLhs:lhs rhs:rhs]);
 }
 
 - (BOOL) isSatisfiedByObject:(id) object {
@@ -76,7 +76,7 @@
 @implementation FLOrPredicate
 
 + (id) orPredicate:(id<FLPredicate>) lhs rhs:(id<FLPredicate>) rhs  {
-    return FLReturnAutoreleased([[[self class] alloc] initWithLhs:lhs rhs:rhs]);
+    return autorelease_([[[self class] alloc] initWithLhs:lhs rhs:rhs]);
 }
 
 - (BOOL) isSatisfiedByObject:(id) object {
@@ -88,7 +88,7 @@
 @implementation FLNoPredicate
 
 + (id) noPredicate:(id<FLPredicate>) predicate {
-    return FLReturnAutoreleased([[[self class] alloc] initWithLhs:predicate rhs:nil]);
+    return autorelease_([[[self class] alloc] initWithLhs:predicate rhs:nil]);
 }
 
 - (BOOL) isSatisfiedByObject:(id) object {
@@ -100,7 +100,7 @@
 @implementation FLYesPredicate
 
 + (id) yesPredicate:(id<FLPredicate>) predicate {
-    return FLReturnAutoreleased([[[self class] alloc] initWithLhs:predicate rhs:nil]);
+    return autorelease_([[[self class] alloc] initWithLhs:predicate rhs:nil]);
 }
 
 - (BOOL) isSatisfiedByObject:(id) object {
@@ -112,7 +112,7 @@
 @implementation FLNoDecision
 
 + (id) noDecision {
-    return FLReturnAutoreleased([[[self class] alloc] init]);
+    return autorelease_([[[self class] alloc] init]);
 }
 
 - (BOOL) isSatisfiedByObject:(id) object {
@@ -124,7 +124,7 @@
 @implementation FLYesDecision
 
 + (id) yesDecision {
-    return FLReturnAutoreleased([[[self class] alloc] init]);
+    return autorelease_([[[self class] alloc] init]);
 }
 
 - (BOOL) isSatisfiedByObject:(id) object {
@@ -150,7 +150,7 @@
 }
 
 + (id) decision:(FLPredicateDeciderBlock) decider {
-    return FLReturnAutoreleased([[[self class] alloc] initWithDecider:decider]);
+    return autorelease_([[[self class] alloc] initWithDecider:decider]);
 }
 
 #if FL_MRC

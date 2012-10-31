@@ -32,7 +32,7 @@
             error = [NSError errorWithDomain:NSXMLParserErrorDomain code:error.code localizedDescription:errorStr];
         }
         
-        FLAssignObject(_error, error);
+        FLRetainObject_(_error, error);
         [_parser abortParsing];
     }
 }
@@ -48,10 +48,10 @@
 - (void) dealloc
 {
 	_parser.delegate = nil;
-	FLRelease(_parser);
-	FLRelease(_error);
-	FLRelease(_dataDecoder);
-	FLSuperDealloc();
+	mrc_release_(_parser);
+	mrc_release_(_error);
+	mrc_release_(_dataDecoder);
+	mrc_super_dealloc_();
 }
 
 - (id<FLDataDecoder>) onCreateDataDecoder {
@@ -85,7 +85,7 @@
     	
 	if(self.error)
 	{
-		FLThrowError_(FLReturnAutoreleased(FLReturnRetained(self.error)));
+		FLThrowError_(autorelease_(retain_(self.error)));
 	}
 }
 

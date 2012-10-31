@@ -30,7 +30,7 @@
 	NSString* name = [[NSString alloc] initWithFormat:@"%@.sqlite", [NSFileManager appName]];
 	if((self = [self initWithName:name directory:directory])) {
 	}
-	FLReleaseWithNil(name);
+	FLReleaseWithNil_(name);
 	return self;
 }
 
@@ -93,7 +93,7 @@
 #endif
 		if(newObject) {
 			if(outputObject) {
-				*outputObject = FLReturnRetained(newObject);
+				*outputObject = retain_(newObject);
 			}
 		
 			return;
@@ -142,7 +142,7 @@
 		}
 		didFinish:^{
 			if(outObjects) {
-				*outObjects = FLReturnRetained(results);
+				*outObjects = retain_(results);
 			}
 		}
 		];
@@ -177,7 +177,7 @@
 		}
 		didFinish:^{
 			if(outObjects) {
-				*outObjects = FLReturnRetained(results);
+				*outObjects = retain_(results);
 			}
 		}
 		];
@@ -213,7 +213,7 @@
 ////            }
 ////        }
 ////        @finally {
-////            FLRelease(output);
+////            mrc_release_(output);
 ////        }
 ////    }
 ////    withEventHandler:handler

@@ -26,11 +26,11 @@
 }
 
 - (void) dealloc {
-	FLRelease(_properties);
-	FLRelease(_defaultNetworkRequestFactory);
-	FLRelease(_defaultResponseHandler);
-	FLRelease(_authenticator);
-	FLSuperDealloc();
+	mrc_release_(_properties);
+	mrc_release_(_defaultNetworkRequestFactory);
+	mrc_release_(_defaultResponseHandler);
+	mrc_release_(_authenticator);
+	mrc_super_dealloc_();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder {

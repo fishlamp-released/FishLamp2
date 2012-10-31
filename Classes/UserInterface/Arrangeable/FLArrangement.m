@@ -18,7 +18,7 @@
 @synthesize frameSetter = _frameSetter;
 
 + (id) arrangement {
-	return FLReturnAutoreleased([[[self class] alloc] init]);
+	return autorelease_([[[self class] alloc] init]);
 }
 
 - (id) init {
@@ -32,9 +32,9 @@
 
 #if DEBUG
 - (void) dealloc {
-    FLRelease(_frameSetter);
-    FLRelease(_onWillArrange);
-    FLSuperDealloc();
+    mrc_release_(_frameSetter);
+    mrc_release_(_onWillArrange);
+    mrc_super_dealloc_();
 }
 #endif
 

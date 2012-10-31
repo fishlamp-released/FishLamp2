@@ -38,8 +38,8 @@
 
 - (void) dealloc
 {	
-	FLRelease(_pictureSize);
-	FLSuperDealloc();
+	mrc_release_(_pictureSize);
+	mrc_super_dealloc_();
 }
 
 //- (id) initWithAccessToken:(NSString*) encodedToken userId:(NSString*) userId  size:(FLFacebookPictureSize) size
@@ -90,7 +90,7 @@
 
 //+ (FLFacebookLoadUserPictureOperation*) facebookLoadUserPicture:(NSString*) encodedToken userId:(NSString*) userId  size:(FLFacebookPictureSize) size
 //{
-//	return FLReturnAutoreleased([[FLFacebookLoadUserPictureOperation alloc] initWithAccessToken:encodedToken userId:userId size:size]);
+//	return autorelease_([[FLFacebookLoadUserPictureOperation alloc] initWithAccessToken:encodedToken userId:userId size:size]);
 //}
 
 

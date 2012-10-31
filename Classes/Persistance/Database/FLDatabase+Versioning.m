@@ -39,12 +39,12 @@ static NSString* kHistory = nil;
 
 - (void) initializeVersioning {
 
-    kVersionId = FLReturnRetained(FLDatabaseNameEncode(@"version_id"));
-    kVersion = FLReturnRetained(FLDatabaseNameEncode(@"version"));
-    kHistory = FLReturnRetained(FLDatabaseNameEncode(@"history"));
-    kName = FLReturnRetained(FLDatabaseNameEncode(@"name"));
-    kEntry = FLReturnRetained(FLDatabaseNameEncode(@"entry"));
-    kWrittenDate = FLReturnRetained(FLDatabaseNameEncode(@"written_date"));
+    kVersionId = retain_(FLDatabaseNameEncode(@"version_id"));
+    kVersion = retain_(FLDatabaseNameEncode(@"version"));
+    kHistory = retain_(FLDatabaseNameEncode(@"history"));
+    kName = retain_(FLDatabaseNameEncode(@"name"));
+    kEntry = retain_(FLDatabaseNameEncode(@"entry"));
+    kWrittenDate = retain_(FLDatabaseNameEncode(@"written_date"));
 
     FLDatabaseTable* historyTable = [FLDatabaseTable databaseTableWithTableName:kHistory];
     
@@ -94,7 +94,7 @@ static NSString* kHistory = nil;
 static NSString* s_version;
 
 + (void) setCurrentRuntimeVersion:(NSString*) version {
-    FLAssignObject(s_version, version);
+    FLRetainObject_(s_version, version);
 }
 
 + (NSString*) currentRuntimeVersion {
@@ -390,8 +390,7 @@ NSString* FLLegacyDecodeString(NSString* string) {
 
 		@synchronized(self) {
 			@try {
-                
-                FLRetain(table);
+                mrc_autorelease_(retain_(table));
                 
                 // use a transaction to protect data from failures
 				[self exec:@"BEGIN TRANSACTION"];
@@ -425,9 +424,7 @@ NSString* FLLegacyDecodeString(NSString* string) {
 				[self exec:@"ROLLBACK"];
                 @throw;
 			}
-            @finally {
-                FLRelease(table);
-            }
+            
 		}
 	}
 

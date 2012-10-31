@@ -152,13 +152,13 @@ static FLReachability* s_default = nil;
 {
 	[self stopNotifer];
 
-	FLReleaseWithNil(_hostName);
+	FLReleaseWithNil_(_hostName);
 	if(_reachabilityRef!= NULL)
 	{
 		CFRelease(_reachabilityRef);
 		_reachabilityRef = nil;
 	}
-	FLSuperDealloc();
+	mrc_super_dealloc_();
 }
 
 + (void) initialize
@@ -384,7 +384,7 @@ static void ReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReach
 
 + (FLReachability*) reachabilityWithHostName: (NSString*) hostName
 {
-	FLReachability* retVal = FLReturnAutoreleased([[FLReachability alloc] init]);
+	FLReachability* retVal = autorelease_([[FLReachability alloc] init]);
 	retVal.reachabilityRef = ;
 	retVal.hostName = hostName;
 	retVal.isWifiRef = NO;

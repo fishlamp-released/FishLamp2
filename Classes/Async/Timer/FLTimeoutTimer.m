@@ -38,7 +38,7 @@
 }
 
 + (FLTimeoutTimer*) timeoutTimer:(NSTimeInterval) timeoutInterval {
-    return FLReturnAutoreleased([[[self class] alloc] initWithTimeoutInterval:timeoutInterval]);
+    return autorelease_([[[self class] alloc] initWithTimeoutInterval:timeoutInterval]);
 }
 
 + (FLTimeoutTimer*) timeoutTimer {

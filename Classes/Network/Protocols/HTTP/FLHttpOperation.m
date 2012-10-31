@@ -33,7 +33,7 @@
 
 - (void) setServerContext:(FLNetworkServerContext *) context {
 	
-    FLAssignObject(_serverDefaults, context);
+    FLRetainObject_(_serverDefaults, context);
 	
     self.networkRequestFactory = context.defaultNetworkRequestFactory;
 	self.responseHandler = context.defaultNetworkOperationResponseHandler;
@@ -41,7 +41,7 @@
 }
 
 - (void) setAuthenticator:(id<FLHttpOperationAuthenticator>) authenticator {
-    FLAssignObject(_authenticator, authenticator);
+    FLRetainObject_(_authenticator, authenticator);
     if(_authenticator) {
         [_authenticator setDefaultSecurityForOperation:self];
     }
@@ -129,15 +129,15 @@
 }
 
 + (id) networkOperationWithURLString:(NSString*) url {
-	return FLReturnAutoreleased([[[self class] alloc] initWithURL:[NSURL URLWithString:url]]);
+	return autorelease_([[[self class] alloc] initWithURL:[NSURL URLWithString:url]]);
 }
 
 + (id) networkOperationWithURL:(NSURL*) url {
-	return FLReturnAutoreleased([[[self class] alloc] initWithURL:url]);
+	return autorelease_([[[self class] alloc] initWithURL:url]);
 }
 
 + (id) networkOperationWithServerContext:(FLNetworkServerContext*) context {
-	return FLReturnAutoreleased([[[self class] alloc] initWithServerContext:context]);
+	return autorelease_([[[self class] alloc] initWithServerContext:context]);
 }
 
 - (id) setRequestWillPost {
@@ -150,14 +150,14 @@
 }
 
 - (void) dealloc {
-    FLRelease(_securityCredentials);
-    FLRelease(_authenticator);
-    FLRelease(_requestType);
-	FLRelease(_serverDefaults);
-	FLRelease(_requestFactory);
-	FLRelease(_url);
-	FLRelease(_responseHandler);
-	FLSuperDealloc();
+    mrc_release_(_securityCredentials);
+    mrc_release_(_authenticator);
+    mrc_release_(_requestType);
+	mrc_release_(_serverDefaults);
+	mrc_release_(_requestFactory);
+	mrc_release_(_url);
+	mrc_release_(_responseHandler);
+	mrc_super_dealloc_();
 }
     
 - (FLHttpConnection*) createNetworkConnection {
@@ -240,7 +240,7 @@
 //}
 
 /*
-FLRelease(_securityCredentials);
+mrc_release_(_securityCredentials);
 	
         if(self.authenticator ) {
             [self.authenticator setDefaultSecurityForOperation:self];

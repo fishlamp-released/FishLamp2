@@ -49,15 +49,15 @@ id FLCopyOrRetainObject(id src)
 {	
 	if([src conformsToProtocol:@protocol(NSMutableCopying)])
 	{
-		return FLReturnAutoreleased([src mutableCopy]);
+		return autorelease_([src mutableCopy]);
 	}
 	else if([src conformsToProtocol:@protocol(NSCopying)])
 	{
-		return FLReturnAutoreleased([src copy]);
+		return autorelease_([src copy]);
 	}
 	else
 	{
-		return FLReturnAutoreleased(FLReturnRetained(src));
+		return autorelease_(retain_(src));
 	}
 	
 	return nil;

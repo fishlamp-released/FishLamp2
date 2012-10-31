@@ -103,17 +103,17 @@
 
 - (void) dealloc
 {
-    FLRelease(__description);
-    FLRelease(__from);
-    FLRelease(__location);
-    FLRelease(__link);
-    FLRelease(__cover_photo);
-    FLRelease(__privacy);
-    FLRelease(__count);
-    FLRelease(__type);
-    FLRelease(__created_time);
-    FLRelease(__updated_time);
-    FLSuperDealloc();
+    mrc_release_(__description);
+    mrc_release_(__from);
+    mrc_release_(__location);
+    mrc_release_(__link);
+    mrc_release_(__cover_photo);
+    mrc_release_(__privacy);
+    mrc_release_(__count);
+    mrc_release_(__type);
+    mrc_release_(__created_time);
+    mrc_release_(__updated_time);
+    mrc_super_dealloc_();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder
@@ -133,7 +133,7 @@
 
 + (FLFacebookAlbum*) facebookAlbum
 {
-    return FLReturnAutoreleased([[FLFacebookAlbum alloc] init]);
+    return autorelease_([[FLFacebookAlbum alloc] init]);
 }
 
 - (id) init
@@ -148,16 +148,16 @@
 {
     if((self = [super initWithCoder:aDecoder]))
     {
-        __description = FLReturnRetained([aDecoder decodeObjectForKey:@"__description"]);
-        __from = FLReturnRetained([aDecoder decodeObjectForKey:@"__from"]);
-        __location = FLReturnRetained([aDecoder decodeObjectForKey:@"__location"]);
-        __link = FLReturnRetained([aDecoder decodeObjectForKey:@"__link"]);
-        __cover_photo = FLReturnRetained([aDecoder decodeObjectForKey:@"__cover_photo"]);
-        __privacy = FLReturnRetained([aDecoder decodeObjectForKey:@"__privacy"]);
-        __count = FLReturnRetained([aDecoder decodeObjectForKey:@"__count"]);
-        __type = FLReturnRetained([aDecoder decodeObjectForKey:@"__type"]);
-        __created_time = FLReturnRetained([aDecoder decodeObjectForKey:@"__created_time"]);
-        __updated_time = FLReturnRetained([aDecoder decodeObjectForKey:@"__updated_time"]);
+        __description = retain_([aDecoder decodeObjectForKey:@"__description"]);
+        __from = retain_([aDecoder decodeObjectForKey:@"__from"]);
+        __location = retain_([aDecoder decodeObjectForKey:@"__location"]);
+        __link = retain_([aDecoder decodeObjectForKey:@"__link"]);
+        __cover_photo = retain_([aDecoder decodeObjectForKey:@"__cover_photo"]);
+        __privacy = retain_([aDecoder decodeObjectForKey:@"__privacy"]);
+        __count = retain_([aDecoder decodeObjectForKey:@"__count"]);
+        __type = retain_([aDecoder decodeObjectForKey:@"__type"]);
+        __created_time = retain_([aDecoder decodeObjectForKey:@"__created_time"]);
+        __updated_time = retain_([aDecoder decodeObjectForKey:@"__updated_time"]);
     }
     return self;
 }

@@ -180,28 +180,28 @@
 
 - (void) dealloc
 {
-    FLRelease(__queueUID);
-    FLRelease(__assetUID);
-    FLRelease(__assetURL);
-    FLRelease(__assetType);
-    FLRelease(__positionInQueue);
-    FLRelease(__assetState);
-    FLRelease(__queuedDate);
-    FLRelease(__createdDate);
-    FLRelease(__modifiedDate);
-    FLRelease(__uploadedAssetURL);
-    FLRelease(__uploadedAssetId);
-    FLRelease(__uploadDestinationId);
-    FLRelease(__uploadDestinationName);
-    FLRelease(__uploadDestinationURL);
-    FLRelease(__assetSize);
-    FLRelease(__assetName);
-    FLRelease(__assetDescription);
-    FLRelease(__assetFileName);
-    FLRelease(__copyright);
-    FLRelease(__keywords);
-    FLRelease(__assetObject);
-    FLSuperDealloc();
+    mrc_release_(__queueUID);
+    mrc_release_(__assetUID);
+    mrc_release_(__assetURL);
+    mrc_release_(__assetType);
+    mrc_release_(__positionInQueue);
+    mrc_release_(__assetState);
+    mrc_release_(__queuedDate);
+    mrc_release_(__createdDate);
+    mrc_release_(__modifiedDate);
+    mrc_release_(__uploadedAssetURL);
+    mrc_release_(__uploadedAssetId);
+    mrc_release_(__uploadDestinationId);
+    mrc_release_(__uploadDestinationName);
+    mrc_release_(__uploadDestinationURL);
+    mrc_release_(__assetSize);
+    mrc_release_(__assetName);
+    mrc_release_(__assetDescription);
+    mrc_release_(__assetFileName);
+    mrc_release_(__copyright);
+    mrc_release_(__keywords);
+    mrc_release_(__assetObject);
+    mrc_super_dealloc_();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder
@@ -241,34 +241,34 @@
 {
     if((self = [super init]))
     {
-        __queueUID = FLReturnRetained([aDecoder decodeObjectForKey:@"__queueUID"]);
-        __assetUID = FLReturnRetained([aDecoder decodeObjectForKey:@"__assetUID"]);
-        __assetURL = FLReturnRetained([aDecoder decodeObjectForKey:@"__assetURL"]);
-        __assetType = FLReturnRetained([aDecoder decodeObjectForKey:@"__assetType"]);
-        __positionInQueue = FLReturnRetained([aDecoder decodeObjectForKey:@"__positionInQueue"]);
-        __assetState = FLReturnRetained([aDecoder decodeObjectForKey:@"__assetState"]);
-        __queuedDate = FLReturnRetained([aDecoder decodeObjectForKey:@"__queuedDate"]);
-        __createdDate = FLReturnRetained([aDecoder decodeObjectForKey:@"__createdDate"]);
-        __modifiedDate = FLReturnRetained([aDecoder decodeObjectForKey:@"__modifiedDate"]);
-        __uploadedAssetURL = FLReturnRetained([aDecoder decodeObjectForKey:@"__uploadedAssetURL"]);
-        __uploadedAssetId = FLReturnRetained([aDecoder decodeObjectForKey:@"__uploadedAssetId"]);
-        __uploadDestinationId = FLReturnRetained([aDecoder decodeObjectForKey:@"__uploadDestinationId"]);
-        __uploadDestinationName = FLReturnRetained([aDecoder decodeObjectForKey:@"__uploadDestinationName"]);
-        __uploadDestinationURL = FLReturnRetained([aDecoder decodeObjectForKey:@"__uploadDestinationURL"]);
-        __assetSize = FLReturnRetained([aDecoder decodeObjectForKey:@"__assetSize"]);
-        __assetName = FLReturnRetained([aDecoder decodeObjectForKey:@"__assetName"]);
-        __assetDescription = FLReturnRetained([aDecoder decodeObjectForKey:@"__assetDescription"]);
-        __assetFileName = FLReturnRetained([aDecoder decodeObjectForKey:@"__assetFileName"]);
-        __copyright = FLReturnRetained([aDecoder decodeObjectForKey:@"__copyright"]);
+        __queueUID = retain_([aDecoder decodeObjectForKey:@"__queueUID"]);
+        __assetUID = retain_([aDecoder decodeObjectForKey:@"__assetUID"]);
+        __assetURL = retain_([aDecoder decodeObjectForKey:@"__assetURL"]);
+        __assetType = retain_([aDecoder decodeObjectForKey:@"__assetType"]);
+        __positionInQueue = retain_([aDecoder decodeObjectForKey:@"__positionInQueue"]);
+        __assetState = retain_([aDecoder decodeObjectForKey:@"__assetState"]);
+        __queuedDate = retain_([aDecoder decodeObjectForKey:@"__queuedDate"]);
+        __createdDate = retain_([aDecoder decodeObjectForKey:@"__createdDate"]);
+        __modifiedDate = retain_([aDecoder decodeObjectForKey:@"__modifiedDate"]);
+        __uploadedAssetURL = retain_([aDecoder decodeObjectForKey:@"__uploadedAssetURL"]);
+        __uploadedAssetId = retain_([aDecoder decodeObjectForKey:@"__uploadedAssetId"]);
+        __uploadDestinationId = retain_([aDecoder decodeObjectForKey:@"__uploadDestinationId"]);
+        __uploadDestinationName = retain_([aDecoder decodeObjectForKey:@"__uploadDestinationName"]);
+        __uploadDestinationURL = retain_([aDecoder decodeObjectForKey:@"__uploadDestinationURL"]);
+        __assetSize = retain_([aDecoder decodeObjectForKey:@"__assetSize"]);
+        __assetName = retain_([aDecoder decodeObjectForKey:@"__assetName"]);
+        __assetDescription = retain_([aDecoder decodeObjectForKey:@"__assetDescription"]);
+        __assetFileName = retain_([aDecoder decodeObjectForKey:@"__assetFileName"]);
+        __copyright = retain_([aDecoder decodeObjectForKey:@"__copyright"]);
         __keywords = [[aDecoder decodeObjectForKey:@"__keywords"] mutableCopy];
-        __assetObject = FLReturnRetained([aDecoder decodeObjectForKey:@"__assetObject"]);
+        __assetObject = retain_([aDecoder decodeObjectForKey:@"__assetObject"]);
     }
     return self;
 }
 
 + (FLQueuedAsset*) queuedAsset
 {
-    return FLReturnAutoreleased([[FLQueuedAsset alloc] init]);
+    return autorelease_([[FLQueuedAsset alloc] init]);
 }
 
 + (FLObjectDescriber*) sharedObjectDescriber

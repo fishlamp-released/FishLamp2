@@ -24,8 +24,8 @@
 
 - (void) dealloc
 {
-	FLRelease(_json);
-	FLSuperDealloc();
+	mrc_release_(_json);
+	mrc_super_dealloc_();
 }
 
 - (void) startWorking:(id<FLFinisher>) finisher {

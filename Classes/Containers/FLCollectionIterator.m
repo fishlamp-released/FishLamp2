@@ -48,7 +48,7 @@
 }
 
 + (id) arrayIterator:(NSArray*) array {
-    return FLReturnAutoreleased([[[self class] alloc] initWithArray:array]);
+    return autorelease_([[[self class] alloc] initWithArray:array]);
 }
 
 - (id) init {
@@ -96,7 +96,7 @@
 	
 	state->state = _index;
 	state->itemsPtr = stackbuf;
-	state->mutationsPtr = FLBridge(void*, self); // mutations are allowed, see this is essentially a no-op
+	state->mutationsPtr = bridge_(void*, self); // mutations are allowed, see this is essentially a no-op
 
 	return 1;
 }
@@ -163,7 +163,7 @@
 //}
 //
 //+ (id) iteratorTranslator:(id<FLCollectionIterator>) iterator translator:(FLTranslatorBlock) translator {
-//    return FLReturnAutoreleased([[[self class] alloc] initWithIterator:iterator translator:translator]);
+//    return autorelease_([[[self class] alloc] initWithIterator:iterator translator:translator]);
 //}
 //
 //- (id) nextObject {

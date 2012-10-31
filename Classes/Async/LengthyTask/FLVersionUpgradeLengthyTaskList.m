@@ -17,8 +17,8 @@
 {
 	if((self = [super init]))
 	{
-		_fromVersion = FLReturnRetained(fromVersion);
-		_toVersion = FLReturnRetained(toVersion);
+		_fromVersion = retain_(fromVersion);
+		_toVersion = retain_(toVersion);
 	}
 	
 	return self;
@@ -26,14 +26,14 @@
 
 - (void) dealloc
 {
-    FLRelease(_fromVersion);
-    FLRelease(_toVersion);
-    FLSuperDealloc();
+    mrc_release_(_fromVersion);
+    mrc_release_(_toVersion);
+    mrc_super_dealloc_();
 }
 
 + (FLVersionUpgradeLengthyTaskList*) versionUpgradeLengthyTaskList:(NSString*) fromVersion toVersion:(NSString*) toVersion
 {
-	return FLReturnAutoreleased([[FLVersionUpgradeLengthyTaskList alloc] initWithFromVersion:fromVersion toVersion:toVersion]);
+	return autorelease_([[FLVersionUpgradeLengthyTaskList alloc] initWithFromVersion:fromVersion toVersion:toVersion]);
 }
 
 @end

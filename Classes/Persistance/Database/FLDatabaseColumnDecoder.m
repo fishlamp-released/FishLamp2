@@ -120,7 +120,7 @@ id FLLegacyDatabaseColumnDecoder(FLDatabase* database,
                 FLCConfirmIsKindOfClass_(object, NSString);
                 NSData* newData = nil;
                 [NSData base64DecodeString:object outData:&newData];
-                object = FLReturnAutoreleased(newData);
+                object = autorelease_(newData);
 
 #if TRACE
                 FLDebugLog(@"converted base64encoded object");

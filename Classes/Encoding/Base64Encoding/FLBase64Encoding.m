@@ -92,14 +92,14 @@
 {
 	NSData* data = nil;
 	[self base64Decode:&data];
-	return FLReturnAutoreleased(data);
+	return autorelease_(data);
 }
 
 - (NSData*) base64Encode
 {
 	NSData* data = nil;
 	[self base64Encode:&data];
-	return FLReturnAutoreleased(data);
+	return autorelease_(data);
 }
 
 
@@ -124,7 +124,7 @@
 	}
 	@finally
 	{
-		FLReleaseWithNil(encoded);
+		FLReleaseWithNil_(encoded);
 	}
 }
 
@@ -148,7 +148,7 @@
 	}
 	@finally
 	{
-		FLReleaseWithNil(tempData);
+		FLReleaseWithNil_(tempData);
 	}
 }
 
@@ -174,7 +174,7 @@
 	}
 	@finally
 	{
-		FLReleaseWithNil(decodedData);
+		FLReleaseWithNil_(decodedData);
 	}
 }
  

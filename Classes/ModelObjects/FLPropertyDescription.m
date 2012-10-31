@@ -77,7 +77,7 @@ FLSynthesizeStructProperty(isUnboundedArrayItem, setUnboundedArrayItem, BOOL, _f
                                  propertyClass:(Class) aClass
                                   propertyType:(FLDataTypeID) dataType {
 
-	return FLReturnAutoreleased([[FLPropertyDescription alloc] initWithPropertyName:name propertyClass:aClass propertyType:dataType arrayTypes:nil isUnboundedArray:NO]);
+	return autorelease_([[FLPropertyDescription alloc] initWithPropertyName:name propertyClass:aClass propertyType:dataType arrayTypes:nil isUnboundedArray:NO]);
 }
 
 
@@ -87,7 +87,7 @@ FLSynthesizeStructProperty(isUnboundedArrayItem, setUnboundedArrayItem, BOOL, _f
                                     arrayTypes:(NSArray*) arrayTypes
                               isUnboundedArray:(BOOL) isUnboundedArray {
 
-	return FLReturnAutoreleased([[FLPropertyDescription alloc] initWithPropertyName:name propertyClass:aClass propertyType:dataType arrayTypes:arrayTypes isUnboundedArray:isUnboundedArray]);
+	return autorelease_([[FLPropertyDescription alloc] initWithPropertyName:name propertyClass:aClass propertyType:dataType arrayTypes:arrayTypes isUnboundedArray:isUnboundedArray]);
 }
 
 + (FLPropertyDescription*) propertyDescription:(NSString*) name
@@ -95,13 +95,13 @@ FLSynthesizeStructProperty(isUnboundedArrayItem, setUnboundedArrayItem, BOOL, _f
                                   propertyType:(FLDataTypeID) dataType
                                     arrayTypes:(NSArray*) arrayTypes {
 
-	return FLReturnAutoreleased([[FLPropertyDescription alloc] initWithPropertyName:name propertyClass:aClass propertyType:dataType arrayTypes:arrayTypes isUnboundedArray:NO]);
+	return autorelease_([[FLPropertyDescription alloc] initWithPropertyName:name propertyClass:aClass propertyType:dataType arrayTypes:arrayTypes isUnboundedArray:NO]);
 }
 
 - (void) dealloc {
-	FLRelease(_arrayTypes);
-	FLRelease(_name);
-	FLSuperDealloc();
+	mrc_release_(_arrayTypes);
+	mrc_release_(_name);
+	mrc_super_dealloc_();
 }
 
 - (BOOL) isArray {

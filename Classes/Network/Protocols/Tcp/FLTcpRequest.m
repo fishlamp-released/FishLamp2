@@ -30,7 +30,7 @@
 }
 
 + (FLTcpRequest*) tcpNetworkRequest {
-    return FLReturnAutoreleased([[[self class] alloc] init]);
+    return autorelease_([[[self class] alloc] init]);
 }
 
 

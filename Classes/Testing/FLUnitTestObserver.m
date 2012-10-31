@@ -11,7 +11,7 @@
 //@implementation FLUnitTestObserver
 //
 //+ (id<FLUnitTestObserver>) unitTestObserver {
-//    return FLReturnAutoreleased([[FLUnitTestObserver alloc] init]);
+//    return autorelease_([[FLUnitTestObserver alloc] init]);
 //}
 //
 //@synthesize discovered = _discovered;
@@ -24,14 +24,14 @@
 //
 //#if FL_MRC
 //- (void) dealloc {
-//    FLRelease(_willFilter);
-//    FLRelease(_discovered);
-//    FLRelease(_willAllow);
-//    FLRelease(_observeStart);
-//    FLRelease(_observeFinish);
-//    FLRelease(_observeResult);
-//    FLRelease(_observeAllResults);
-//    FLSuperDealloc();
+//    mrc_release_(_willFilter);
+//    mrc_release_(_discovered);
+//    mrc_release_(_willAllow);
+//    mrc_release_(_observeStart);
+//    mrc_release_(_observeFinish);
+//    mrc_release_(_observeResult);
+//    mrc_release_(_observeAllResults);
+//    mrc_super_dealloc_();
 //}
 //#endif
 //

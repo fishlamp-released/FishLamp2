@@ -51,8 +51,8 @@
 
 - (void) dealloc
 {
-	FLRelease(_unboundedArrays);
-	FLSuperDealloc();
+	mrc_release_(_unboundedArrays);
+	mrc_super_dealloc_();
 }
 
 - (void) addUnboundedArraySetter:(NSString*) name arrayPropertyName:(NSString*) arrayName

@@ -46,9 +46,9 @@
 
 -(void) dealloc
 {
-	FLReleaseWithNil(_outputData);
-	FLReleaseWithNil(_outputImage);
-	FLSuperDealloc();
+	FLReleaseWithNil_(_outputData);
+	FLReleaseWithNil_(_outputImage);
+	mrc_super_dealloc_();
 }
 @end
 
@@ -125,7 +125,7 @@
 
 	//pop the context to get back to the default
 	UIGraphicsEndImageContext();
-	*outImage = FLReturnRetained(newImage);
+	*outImage = retain_(newImage);
 #else 
     FLAssertIsImplemented_v(nil);
 #endif
@@ -163,7 +163,7 @@
         }); 
     }
     @finally {
-    	FLReleaseWithNil(newImage);
+    	FLReleaseWithNil_(newImage);
 	};
 }
 
@@ -181,9 +181,9 @@
 	[self shrinkImagePrivate:shrinkData];
 #endif	
 
-	*outImage = FLReturnRetained(shrinkData.outputImage);
+	*outImage = retain_(shrinkData.outputImage);
 
-	FLReleaseWithNil(shrinkData);
+	FLReleaseWithNil_(shrinkData);
 }
 
 - (void) convertToJpegPrivate:(FLImageOperationData*) imageData
@@ -213,8 +213,8 @@
 	[self convertToJpegPrivate:imageData];
 #endif	
 
-	*outData = FLReturnRetained(imageData.outputData);
-	FLReleaseWithNil(imageData);
+	*outData = retain_(imageData.outputData);
+	FLReleaseWithNil_(imageData);
 }
 
 - (void) rotate:(CGFloat) degrees
@@ -243,7 +243,7 @@
 		CGRectMake(-self.size.width / 2, -self.size.height / 2, self.size.width, self.size.height), // center the image on center point, set above
 		[self CGImage]);
 
-	*outImage = FLReturnRetained(UIGraphicsGetImageFromCurrentImageContext());
+	*outImage = retain_(UIGraphicsGetImageFromCurrentImageContext());
 	UIGraphicsEndImageContext();
 #else 
     FLAssertIsImplemented_v(nil);
@@ -280,7 +280,7 @@
 		CGRectMake(-self.size.width / 2, -self.size.height / 2, self.size.width, self.size.height), 
 		[self CGImage]);
 
-	*outImage = FLReturnRetained(UIGraphicsGetImageFromCurrentImageContext());
+	*outImage = retain_(UIGraphicsGetImageFromCurrentImageContext());
 	UIGraphicsEndImageContext();
 #else
     FLAssertIsImplemented_v(nil);
@@ -340,9 +340,9 @@ static void FLAddRoundedRectToPath(CGContextRef context, FLRect rect, float oval
                 CGContextDrawImage(context, CGRectMake(0, 0, w, h), img.CGImage);
          
                 imageMasked = CGBitmapContextCreateImage(context);
-                FLRelease(img);
+                mrc_release_(img);
          
-                newImage = FLReturnRetained([FLImage imageWithCGImage:imageMasked]);
+                newImage = retain_([FLImage imageWithCGImage:imageMasked]);
             });
         }
         @finally {
@@ -352,7 +352,7 @@ static void FLAddRoundedRectToPath(CGContextRef context, FLRect rect, float oval
 		};
     }
  
-	return FLReturnAutoreleased(newImage);
+	return autorelease_(newImage);
 }
 //CGContextSetBlendMode(ctx, kCGBlendModeMultiply);
 

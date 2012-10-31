@@ -24,7 +24,7 @@ NSString* const FLErrorDomainKey = @"com.fishlamp.error.domain";
                         code:(NSInteger) code
         localizedDescription:(NSString*) localizedDescription {
 
-    return FLReturnAutoreleased([[NSError alloc] initWithDomain:domain
+    return autorelease_([[NSError alloc] initWithDomain:domain
                                                            code:code
                                                        userInfo:[NSDictionary dictionaryWithObject:localizedDescription forKey:NSLocalizedDescriptionKey]]);
 }
@@ -147,7 +147,7 @@ NSString* makeDescriptionString(NSString* reason, NSString* comment) {
                        comment:(NSString*) commentOrNil
                   stackTrace:(FLStackTrace*) stackTrace {
 
-    return FLReturnAutoreleased([[[self class] alloc] initWithDomain:domain
+    return autorelease_([[[self class] alloc] initWithDomain:domain
                                                                     code:code
                                                                  userInfo:dict
                                                                    reason:reasonOrNil
@@ -163,7 +163,7 @@ NSString* makeDescriptionString(NSString* reason, NSString* comment) {
 //                         comment:(NSString*) comment
 //                    stackTrace:(FLStackTrace*) stackTrace {
 //    
-//    return FLReturnAutoreleased([[[self class] alloc] initWithDomain:domain
+//    return autorelease_([[[self class] alloc] initWithDomain:domain
 //                                                                code:code
 //                                                            userInfo:dict
 //                                                              reason:reason

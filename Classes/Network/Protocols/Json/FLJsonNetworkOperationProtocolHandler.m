@@ -15,7 +15,7 @@
 FLSynthesizeSingleton(FLJsonNetworkOperationProtocolHandler);
 
 + (FLJsonNetworkOperationProtocolHandler*) jsonNetworkOperationProtocolHandler {
-	return FLReturnAutoreleased([[FLJsonNetworkOperationProtocolHandler alloc] init]);
+	return autorelease_([[FLJsonNetworkOperationProtocolHandler alloc] init]);
 }
 
 - (void) operationDidRun:(FLHttpOperation*) operation {

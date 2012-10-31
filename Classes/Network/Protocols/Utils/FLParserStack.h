@@ -34,7 +34,7 @@ extern void FLParserStackFree(FLParserStack** stack);
 NS_INLINE
 void FLParserStackSetNodeObject(FLParserStackNode* node, id object)
 {
-	FLAssignObject((node->object), object);
+	FLRetainObject_((node->object), object);
 }
 
 NS_INLINE
@@ -44,8 +44,8 @@ void FLParserStackPush(FLParserStack* stack, id key, id object) {
 	}
 
 	++stack->top;
-	stack->stack[stack->top].key = FLReturnRetained(key);
-	stack->stack[stack->top].object = FLReturnRetained(object);
+	stack->stack[stack->top].key = retain_(key);
+	stack->stack[stack->top].object = retain_(object);
 }
 
 NS_INLINE
@@ -53,8 +53,8 @@ BOOL FLParserStackPop(FLParserStack* stack)
 {
 	if(stack->top >= 0)
 	{
-		FLReleaseWithNil((stack->stack[stack->top].key));
-		FLReleaseWithNil((stack->stack[stack->top].object));
+		FLReleaseWithNil_((stack->stack[stack->top].key));
+		FLReleaseWithNil_((stack->stack[stack->top].object));
 		--stack->top;
 		return YES;
 	}

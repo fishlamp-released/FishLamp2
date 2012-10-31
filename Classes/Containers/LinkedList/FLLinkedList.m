@@ -57,7 +57,7 @@
 }
 
 + (FLLinkedList*) linkedList {
-    return FLReturnAutoreleased([[FLLinkedList alloc] init]);
+    return autorelease_([[FLLinkedList alloc] init]);
 }
 
 - (void) dealloc {
@@ -65,7 +65,7 @@
         [self removeAllObjects];
     }
 
-    FLSuperDealloc();
+    mrc_super_dealloc_();
 }
 
 - (NSEnumerator*) mutableEnumerator {
@@ -289,7 +289,7 @@
 - (id) removeObject:(id) object {
 
     if([object linkedList] == self) {
-        FLRetain(FLReturnAutoreleased(object));
+        mrc_autorelease_(retain_(object));
     
         [self _removeObject:object];
         [object setLinkedList:nil];
@@ -313,10 +313,9 @@
 
 - (id) moveObjectToHead:(id) object {
 
-    FLRetain(object);
+    mrc_autorelease_(retain_(object));
 	[self _removeObject:object];
 	[self _insertObject:object beforeObject:self.firstObject];
-    FLRelease(object);
     
 #if HARDCORE_CHECKING_ACTION
 	[self check];
@@ -327,10 +326,9 @@
 
 - (id) moveObjectToTail:(id) object {
 
-    FLRetain(object);
+    mrc_autorelease_(retain_(object));
 	[self _removeObject:object];
 	[self _insertObject:object afterObject:self.lastObject];
-    FLRelease(object);
     
 #if HARDCORE_CHECKING_ACTION
 	[self check];
@@ -341,10 +339,9 @@
 
 - (id) moveObject:(id) object afterObject:(id) afterObject {
 
-    FLRetain(object);
+    mrc_autorelease_(retain_(object));
 	[self _removeObject:object];
 	[self _insertObject:object afterObject:afterObject];
-    FLRelease(object);
 
 #if HARDCORE_CHECKING_ACTION
 	[self check];
@@ -355,10 +352,9 @@
 
 - (id) moveObject:(id) object beforeObject:(id) beforeObject {
 
-    FLRetain(object);
+    mrc_autorelease_(retain_(object));
 	[self _removeObject:object];
 	[self _insertObject:object beforeObject:beforeObject];
-    FLRelease(object);
 	 
 #if HARDCORE_CHECKING_ACTION
 	[self check];
@@ -376,9 +372,8 @@
 
     ++_mutatationCount;
     
-    FLRetain(firstObject);
-    FLRetain(secondObject);
-
+    mrc_autorelease_(retain_(firstObject));
+    mrc_autorelease_(retain_(secondObject));
     
     id firstObjectNext = [firstObject nextObjectInLinkedList];
     id secondObjectNext = [secondObject nextObjectInLinkedList];
@@ -407,9 +402,6 @@
             [self moveObject:firstObject afterObject:secondObjectPrev];
         }
     }
-    
-    FLRelease(firstObject);
-    FLRelease(secondObject);
 }
 
 - (void) removeAllObjects {
@@ -419,14 +411,11 @@
     id walker = self.firstObject;
 	while(walker) {
         
-        id objectToRemove = walker;
-        FLRetain(objectToRemove);
-		walker = [walker nextObjectInLinkedList];
+        id objectToRemove = autorelease_(retain_(walker));
+        walker = [walker nextObjectInLinkedList];
 		
         [self _removeObject:objectToRemove];
         [objectToRemove setLinkedList:nil];
-        FLRelease(objectToRemove);
-    
         --_count;
     }
     
@@ -448,10 +437,9 @@
 - (void) addObjectsFromList:(FLLinkedList*) list {
 
     for(id<FLLinkedListElement> element in self.mutableEnumerator) {
-        FLRetain(element);
+        mrc_autorelease_(retain_(element));
         [list removeObject:element];
         [self addObject:element];
-        FLRelease(element);
     }
 }
 
@@ -488,7 +476,7 @@
 	}	
 	else {
 		// Subsequent iterations, get the current progress out of state->state
-		currentObject = FLBridge(id, (void*)state->state);
+		currentObject = bridge_(id, (void*)state->state);
 	}
 	    
 	// Accumulate nodes from the list until we reach the object's
@@ -500,7 +488,7 @@
 		batchCount++;
 	}
 
-	state->state = currentObject == nil ? NSIntegerMax : (unsigned long) FLBridge(void*, currentObject);
+	state->state = currentObject == nil ? NSIntegerMax : (unsigned long) bridge_(void*, currentObject);
 	state->itemsPtr = buffer;
 	state->mutationsPtr = (unsigned long*) &_mutatationCount;
 
@@ -850,15 +838,15 @@ int main()
 }
 
 + (FLLinkedListMutableEnumerator*) linkedListMutableEnumerator:(FLLinkedList*) list {
-    return FLReturnAutoreleased([[FLLinkedListMutableEnumerator alloc] initWithLinkedList:list]);
+    return autorelease_([[FLLinkedListMutableEnumerator alloc] initWithLinkedList:list]);
 }
 
 #if FL_MRC 
 - (void) dealloc {
-    FLRelease(_next);
-    FLRelease(_current);
-    FLRelease(_list);
-    FLSuperDealloc();
+    mrc_release_(_next);
+    mrc_release_(_current);
+    mrc_release_(_list);
+    mrc_super_dealloc_();
 }
 #endif
 
@@ -900,13 +888,13 @@ int main()
 	}
 
 	state->itemsPtr = buffer;
-	state->mutationsPtr = FLBridge(void*, self);
+	state->mutationsPtr = bridge_(void*, self);
     
 	// Accumulate nodes from the list until we reach the object's
 	// _endOfListPlusOneObject
 	if(self.current) {
         self.next = [self.current nextObjectInLinkedList];
-        state->state = (unsigned long) FLBridge(void*, self.current);
+        state->state = (unsigned long) bridge_(void*, self.current);
         return 1;
     }
     

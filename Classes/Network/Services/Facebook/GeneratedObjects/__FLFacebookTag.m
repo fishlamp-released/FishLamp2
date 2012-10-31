@@ -39,15 +39,15 @@
 
 - (void) dealloc
 {
-    FLRelease(__user);
-    FLRelease(__x);
-    FLRelease(__y);
-    FLSuperDealloc();
+    mrc_release_(__user);
+    mrc_release_(__x);
+    mrc_release_(__y);
+    mrc_super_dealloc_();
 }
 
 + (FLFacebookTag*) facebookTag
 {
-    return FLReturnAutoreleased([[FLFacebookTag alloc] init]);
+    return autorelease_([[FLFacebookTag alloc] init]);
 }
 
 - (id) init

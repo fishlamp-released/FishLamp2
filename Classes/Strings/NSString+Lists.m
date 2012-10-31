@@ -85,7 +85,7 @@
 						[[NSString alloc] initWithString:
 							[value substringWithRange:NSMakeRange(i, y - i)]];
 					[newArray addObject:str];
-					FLRelease(str);
+					mrc_release_(str);
 					i = y;
 					break;
 				}
@@ -95,7 +95,7 @@
 						[[NSString alloc] initWithString:
 							[value substringWithRange:NSMakeRange(i, y - i + 1)]];
 					[newArray addObject:str];
-					FLRelease(str);
+					mrc_release_(str);
 					i = y;
 					
 				}
@@ -121,7 +121,7 @@
 	{
 		if(FLStringsAreEqual(word, item))
 		{
-			return FLReturnAutoreleased(FLReturnRetained(self));
+			return autorelease_(retain_(self));
 		}
 	}
 	if(self.length)
@@ -129,7 +129,7 @@
 		return [self stringByAppendingFormat:@" %@", word];
 	}
    
-	return FLReturnAutoreleased(FLReturnRetained(word));
+	return autorelease_(retain_(word));
 }
 
 - (NSString*) stringByRemovingUniqueWord:(NSString*) word

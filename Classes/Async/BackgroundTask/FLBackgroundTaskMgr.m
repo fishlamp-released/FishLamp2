@@ -87,10 +87,10 @@ FIXME("operation context");
 
     [[FLUserSession instance] removeObserver:self];
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
-    FLRelease(_sequenceQueue);
-	FLRelease(_operations);
-	FLRelease(_queue);
-	FLSuperDealloc();
+    mrc_release_(_sequenceQueue);
+	mrc_release_(_operations);
+	mrc_release_(_queue);
+	mrc_super_dealloc_();
 }
 
 - (void) addBackgroundTask:(id<FLBackgroundTask>) task
@@ -343,7 +343,7 @@ FIXME("operation context");
 
 - (void) beginCancellingAllTasks:(FLObjectBlock) finishedBlock
 {
-    [self _checkCancelState:FLReturnAutoreleased([finishedBlock copy])];
+    [self _checkCancelState:autorelease_([finishedBlock copy])];
 }
 
 - (void) resetAllTasks

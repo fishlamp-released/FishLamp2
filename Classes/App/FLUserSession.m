@@ -68,7 +68,7 @@ FLSynthesizeSingleton(FLUserSession);
         _state.upgrading = NO;
     }
     
-    FLReleaseWithNil(_upgradeTaskList);
+    FLReleaseWithNil_(_upgradeTaskList);
 }
 
 - (void) _appWillBecomeActive:(id) sender {
@@ -141,21 +141,21 @@ FLSynthesizeSingleton(FLUserSession);
  
 - (void) deleteSessionData 
 {
-	FLReleaseWithNil(_login);
-	FLReleaseWithNil(_documentsFolder);
-	FLReleaseWithNil(_cacheFolder);
-	FLReleaseWithNil(_photoFolder);
-	FLReleaseWithNil(_photoCacheFolder);
-	FLReleaseWithNil(_tempFolder);
-	FLReleaseWithNil(_logFolder);
+	FLReleaseWithNil_(_login);
+	FLReleaseWithNil_(_documentsFolder);
+	FLReleaseWithNil_(_cacheFolder);
+	FLReleaseWithNil_(_photoFolder);
+	FLReleaseWithNil_(_photoCacheFolder);
+	FLReleaseWithNil_(_tempFolder);
+	FLReleaseWithNil_(_logFolder);
 
-	FLReleaseWithNil(_cacheDatabase);
-	FLReleaseWithNil(_documentsDatabase);
+	FLReleaseWithNil_(_cacheDatabase);
+	FLReleaseWithNil_(_documentsDatabase);
 } 
  
 - (void) closeSession
 {
-	FLReleaseWithNil(_upgradeTaskList);
+	FLReleaseWithNil_(_upgradeTaskList);
 	
 	if(self.isSessionOpen) {
 		[[FLLowMemoryHandler defaultHandler] broadcastReleaseMessage];
@@ -198,7 +198,7 @@ FLSynthesizeSingleton(FLUserSession);
 
     if([[FLBackgroundTaskMgr instance] isExecutingBackgroundTask]) {
 
-        finishedLogout = FLReturnAutoreleased([finishedLogout copy]);
+        finishedLogout = autorelease_([finishedLogout copy]);
 
         id<FLProgressViewController> progress = [[self class] createUserLoggingOutProgressViewController];
         [progress setTitle:NSLocalizedString(@"Logging Out…", nil)];
@@ -343,13 +343,13 @@ FLSynthesizeSingleton(FLUserSession);
 
 	[self closeSession];
 
-	FLAssignObject(_login, userLogin);
+	FLRetainObject_(_login, userLogin);
 
 	if(self.userLogin)
 	{
 		FLAssert_v(FLStringIsNotEmpty(userLogin.userName), @"invalid userLogin");
 	
-		FLReleaseBlockWithNil(_openCallback);
+		FLReleaseBlockWithNil_(_openCallback);
 		_openCallback = [wasOpenedBlock copy];
 		_state.willOpen = YES;
 		_state.isOpening = NO;
@@ -384,7 +384,7 @@ FLSynthesizeSingleton(FLUserSession);
 		version.versionString = [NSFileManager appVersion];
 		[[FLApplicationDataModel instance].database saveObject:version];
 
-		FLReleaseWithNil(_upgradeTaskList);
+		FLReleaseWithNil_(_upgradeTaskList);
 		_state.upgrading = NO;
 
         [self finishOpeningSession];
@@ -401,7 +401,7 @@ FLSynthesizeSingleton(FLUserSession);
 
 	if(_openCallback) {
 		_openCallback(self.userLogin);
-		FLReleaseBlockWithNil(_openCallback);
+		FLReleaseBlockWithNil_(_openCallback);
 	}
 }
 
@@ -417,11 +417,11 @@ FLSynthesizeSingleton(FLUserSession);
    
 - (void) dealloc
 {
-	FLRelease(_openCallback);
+	mrc_release_(_openCallback);
 
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	[self closeSession];
-	FLSuperDealloc();
+	mrc_super_dealloc_();
 }
 
 - (FLUserLogin*) loadDefaultUser

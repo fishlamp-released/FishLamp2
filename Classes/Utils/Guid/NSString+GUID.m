@@ -13,7 +13,7 @@
 
 + (NSString*) guidString {
 	CFUUIDRef uuid = CFUUIDCreate(kCFAllocatorDefault);
-	NSString* str = FLBridgeTransferFromCFRef(CFUUIDCreateString(kCFAllocatorDefault, uuid));
+	NSString* str = autorelease_(bridge_transfer_(NSString*, CFUUIDCreateString(kCFAllocatorDefault, uuid)));
 	CFRelease(uuid);
 	return str;
 }
@@ -26,7 +26,7 @@
 		@synchronized(self) {
 			if(!s_zero_guid) {
 				CFUUIDRef uuid = CFUUIDCreateWithBytes(kCFAllocatorDefault, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-				s_zero_guid = FLBridgeTransferFromCFRef(CFUUIDCreateString(kCFAllocatorDefault, uuid));
+				s_zero_guid = bridge_transfer_(NSString*, CFUUIDCreateString(kCFAllocatorDefault, uuid));
 				CFRelease(uuid);
 			}
 		}

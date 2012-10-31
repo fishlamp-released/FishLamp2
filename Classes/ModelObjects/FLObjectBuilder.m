@@ -29,7 +29,7 @@
 	{			
 		if([arrayItem isKindOfClass:[NSDictionary class]])
 		{
-			id newObject = FLReturnAutoreleased([[arrayItemDesc.propertyClass alloc] init]);
+			id newObject = autorelease_([[arrayItemDesc.propertyClass alloc] init]);
 			[newArray addObject:newObject];
 			[self buildObject:newObject fromDictionary:arrayItem withObjectDescriber:[[newObject class] sharedObjectDescriber]];
 		}
@@ -69,7 +69,7 @@
 				{
 					FLAssert_v(property.propertyType == FLDataTypeObject, @"not an object?");
 				
-					id newObject = FLReturnAutoreleased([[property.propertyClass alloc] init]);
+					id newObject = autorelease_([[property.propertyClass alloc] init]);
 					[object setValue:newObject forKey:key];
 					[self buildObject:newObject fromDictionary:value withObjectDescriber:[[newObject class] sharedObjectDescriber]];
 				}

@@ -559,7 +559,7 @@ const char *getPropertyType(objc_property_t property) {
 
 @implementation NSObject (FLCreateInstance)
 + (id) create {
-    return FLReturnAutoreleased([[[self class] alloc] init]);
+    return autorelease_([[[self class] alloc] init]);
 }
 @end
 

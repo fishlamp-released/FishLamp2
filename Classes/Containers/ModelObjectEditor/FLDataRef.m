@@ -12,7 +12,7 @@
 @implementation NSObject (FLDataRef)
 
 - (id) dataRefKey {
-    return [NSValue valueWithPointer:FLBridge(void*, self)];
+    return [NSValue valueWithPointer:bridge_(void*, self)];
 }
 
 - (id) dataRefValue {
@@ -48,14 +48,14 @@
 
 + (FLDictionaryDataRef*) dictionaryDataRef:(id) key
                                 dictionary:(NSDictionary*) dictionary {
-    return FLReturnAutoreleased([[[self class] alloc] initWithDataRefKey:key dictionary:dictionary]);
+    return autorelease_([[[self class] alloc] initWithDataRefKey:key dictionary:dictionary]);
 }
 
 #if FL_MRC
 - (void) dealloc {
-    FLRelease(_key);
-    FLRelease(_dictionary);
-    FLSuperDealloc();
+    mrc_release_(_key);
+    mrc_release_(_dictionary);
+    mrc_super_dealloc_();
 }
 #endif
 
@@ -87,14 +87,14 @@
 
 + (FLMutableDictionaryDataRef*) dictionaryDataRef:(id) key
                                 dictionary:(NSMutableDictionary*) dictionary {
-    return FLReturnAutoreleased([[[self class] alloc] initWithDataRefKey:key dictionary:dictionary]);
+    return autorelease_([[[self class] alloc] initWithDataRefKey:key dictionary:dictionary]);
 }
 
 #if FL_MRC
 - (void) dealloc {
-    FLRelease(_key);
-    FLRelease(_dictionary);
-    FLSuperDealloc();
+    mrc_release_(_key);
+    mrc_release_(_dictionary);
+    mrc_super_dealloc_();
 }
 #endif
 

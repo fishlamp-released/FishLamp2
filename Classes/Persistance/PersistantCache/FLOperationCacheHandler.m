@@ -35,7 +35,7 @@ FLSynthesizeStructProperty(wasLoadedFromCache, setWasLoadedFromCache, BOOL, _net
 + (FLOperationCacheHandler*) operationCacheHandler:(FLObjectDatabase*) database
     behavior:(FLHttpOperationCacheBehavior) behavior
 {
-    return FLReturnAutoreleased([[FLOperationCacheHandler alloc] initWithDatabase:database behavior:behavior]);
+    return autorelease_([[FLOperationCacheHandler alloc] initWithDatabase:database behavior:behavior]);
 }
 
 - (void) saveOperationOutputToCache:(FLOperation*) operation
@@ -112,12 +112,12 @@ FLSynthesizeStructProperty(wasLoadedFromCache, setWasLoadedFromCache, BOOL, _net
 
 - (void) dealloc
 {
-    FLReleaseBlockWithNil(_loadFromCacheCallback);
-    FLReleaseBlockWithNil(_saveToCacheCallback);
-    FLReleaseBlockWithNil(_wasLoadedFromCacheCallback);
-    FLReleaseBlockWithNil(_wasLoadedFromCacheMainThreadCallback);
-    FLRelease(_database);
-	FLSuperDealloc();
+    FLReleaseBlockWithNil_(_loadFromCacheCallback);
+    FLReleaseBlockWithNil_(_saveToCacheCallback);
+    FLReleaseBlockWithNil_(_wasLoadedFromCacheCallback);
+    FLReleaseBlockWithNil_(_wasLoadedFromCacheMainThreadCallback);
+    mrc_release_(_database);
+	mrc_super_dealloc_();
 }
 
 - (void) willFinishSelf:(FLOperation*) operation {

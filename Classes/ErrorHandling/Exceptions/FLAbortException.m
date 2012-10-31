@@ -13,7 +13,7 @@
 
 @implementation FLAbortException
 + (FLAbortException*) abortException {
-    return FLReturnAutoreleased([[[self class] alloc] initWithName:@"abort" reason:@"abort" userInfo:nil error:[NSError abortError]]);
+    return autorelease_([[[self class] alloc] initWithName:@"abort" reason:@"abort" userInfo:nil error:[NSError abortError]]);
 }
 + (void) raise {
     FLThrowException_([FLAbortException abortException]);

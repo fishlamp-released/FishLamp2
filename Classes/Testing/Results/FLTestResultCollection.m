@@ -158,7 +158,7 @@
 //#endif
 //
 //+ (FLTestResultCollection*) testResultList {
-//    return FLReturnAutoreleased([[FLTestResultCollection alloc] init]);
+//    return autorelease_([[FLTestResultCollection alloc] init]);
 //}
 //
 //- (void) addTestResult:(id<FLTestResult>) result {

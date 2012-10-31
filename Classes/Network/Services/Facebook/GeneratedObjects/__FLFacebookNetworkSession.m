@@ -67,12 +67,12 @@
 
 - (void) dealloc
 {
-    FLRelease(__userId);
-    FLRelease(__appId);
-    FLRelease(__access_token);
-    FLRelease(__expiration_date);
-    FLRelease(__permissions);
-    FLSuperDealloc();
+    mrc_release_(__userId);
+    mrc_release_(__appId);
+    mrc_release_(__access_token);
+    mrc_release_(__expiration_date);
+    mrc_release_(__permissions);
+    mrc_super_dealloc_();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder
@@ -86,7 +86,7 @@
 
 + (FLFacebookNetworkSession*) facebookNetworkSession
 {
-    return FLReturnAutoreleased([[FLFacebookNetworkSession alloc] init]);
+    return autorelease_([[FLFacebookNetworkSession alloc] init]);
 }
 
 - (id) init
@@ -101,10 +101,10 @@
 {
     if((self = [super init]))
     {
-        __userId = FLReturnRetained([aDecoder decodeObjectForKey:@"__userId"]);
-        __appId = FLReturnRetained([aDecoder decodeObjectForKey:@"__appId"]);
-        __access_token = FLReturnRetained([aDecoder decodeObjectForKey:@"__access_token"]);
-        __expiration_date = FLReturnRetained([aDecoder decodeObjectForKey:@"__expiration_date"]);
+        __userId = retain_([aDecoder decodeObjectForKey:@"__userId"]);
+        __appId = retain_([aDecoder decodeObjectForKey:@"__appId"]);
+        __access_token = retain_([aDecoder decodeObjectForKey:@"__access_token"]);
+        __expiration_date = retain_([aDecoder decodeObjectForKey:@"__expiration_date"]);
         __permissions = [[aDecoder decodeObjectForKey:@"__permissions"] mutableCopy];
     }
     return self;

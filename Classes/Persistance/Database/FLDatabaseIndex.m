@@ -18,7 +18,7 @@
 {
 	if((self = [super init]))
 	{
-		_columnName = FLDatabaseNameEncode(FLReturnRetained(columnName));
+		_columnName = FLDatabaseNameEncode(retain_(columnName));
 		_indexMask = indexProperties;
 	}
 	
@@ -27,13 +27,13 @@
 
 - (void) dealloc
 {
-	FLRelease(_columnName);
-	FLSuperDealloc();
+	mrc_release_(_columnName);
+	mrc_super_dealloc_();
 }
 
 + (FLDatabaseIndex*) databaseIndex:(NSString*) columnName indexProperties:(FLDatabaseColumnIndexProperties) indexProperties
 {
-	return FLReturnAutoreleased([[FLDatabaseIndex alloc] initWithColumnName:columnName indexProperties:indexProperties]);
+	return autorelease_([[FLDatabaseIndex alloc] initWithColumnName:columnName indexProperties:indexProperties]);
 }
 
 - (id) copyWithZone:(NSZone *)zone

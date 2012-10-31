@@ -18,7 +18,7 @@
 
 + (id) lengthyTask
 {
-	return FLReturnAutoreleased([[[self class] alloc] init]);
+	return autorelease_([[[self class] alloc] init]);
 }
 
 @synthesize taskName = _name;
@@ -43,7 +43,7 @@
 }
 
 - (void) setTaskName:(NSString*) name {
-	FLAssignObject(_name, name);
+	FLRetainObject_(_name, name);
 	[_delegate lengthyTaskDidChangeName:self];
 }
 
@@ -104,8 +104,8 @@
 
 
 - (void) dealloc {
-	FLRelease(_name);
-	FLSuperDealloc();
+	mrc_release_(_name);
+	mrc_super_dealloc_();
 }
 
 

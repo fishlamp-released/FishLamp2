@@ -27,8 +27,8 @@ FLSynthesizeSingleton(FLAssetFactory);
 
 #if FL_MRC
 - (void) dealloc {
-    FLRelease(_factoryBlocks);
-    FLSuperDealloc();
+    mrc_release_(_factoryBlocks);
+    mrc_super_dealloc_();
 }
 #endif
 
@@ -45,7 +45,7 @@ FLSynthesizeSingleton(FLAssetFactory);
     if(prefixLocation.location > 0) {
         Class aClass = [_factoryBlocks objectForKey:[urlString substringToIndex:prefixLocation.location]];
         if(aClass) {
-            return FLReturnAutoreleased([[aClass alloc] initWithQueuedAsset:queuedAsset]);
+            return autorelease_([[aClass alloc] initWithQueuedAsset:queuedAsset]);
         }
     }
 

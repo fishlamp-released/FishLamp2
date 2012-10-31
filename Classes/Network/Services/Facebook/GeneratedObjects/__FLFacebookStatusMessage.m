@@ -54,10 +54,10 @@
 
 - (void) dealloc
 {
-    FLRelease(__from);
-    FLRelease(__message);
-    FLRelease(__updated_time);
-    FLSuperDealloc();
+    mrc_release_(__from);
+    mrc_release_(__message);
+    mrc_release_(__updated_time);
+    mrc_super_dealloc_();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder
@@ -70,7 +70,7 @@
 
 + (FLFacebookStatusMessage*) facebookStatusMessage
 {
-    return FLReturnAutoreleased([[FLFacebookStatusMessage alloc] init]);
+    return autorelease_([[FLFacebookStatusMessage alloc] init]);
 }
 
 - (id) init
@@ -85,9 +85,9 @@
 {
     if((self = [super initWithCoder:aDecoder]))
     {
-        __from = FLReturnRetained([aDecoder decodeObjectForKey:@"__from"]);
-        __message = FLReturnRetained([aDecoder decodeObjectForKey:@"__message"]);
-        __updated_time = FLReturnRetained([aDecoder decodeObjectForKey:@"__updated_time"]);
+        __from = retain_([aDecoder decodeObjectForKey:@"__from"]);
+        __message = retain_([aDecoder decodeObjectForKey:@"__message"]);
+        __updated_time = retain_([aDecoder decodeObjectForKey:@"__updated_time"]);
     }
     return self;
 }

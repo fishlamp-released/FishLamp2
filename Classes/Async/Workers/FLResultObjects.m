@@ -61,7 +61,7 @@ FLSynthesizeSingleton(FLFailedResult);
 }
 
 + (id) errorResult:(NSError*) error {
-    return FLReturnAutoreleased([[[self class] alloc] initWithError:error]);
+    return autorelease_([[[self class] alloc] initWithError:error]);
 }
 
 #if FL_MRC
@@ -88,7 +88,7 @@ FLSynthesizeSingleton(FLFailedResult);
 }
 
 + (id) outputResult:(id) output {
-    return FLReturnAutoreleased([[[self class] alloc] initWithOutput:output]);
+    return autorelease_([[[self class] alloc] initWithOutput:output]);
 }
 
 @synthesize output = _output;

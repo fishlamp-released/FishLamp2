@@ -40,13 +40,13 @@
 
 + (FLCacheBehavior*) sharedCacheBehavior:(NSUInteger) capacity
 {
-	return FLReturnAutoreleased([[FLCacheBehavior alloc] initWithCapacity:capacity]);
+	return autorelease_([[FLCacheBehavior alloc] initWithCapacity:capacity]);
 }
 
 - (void) dealloc
 {
-	FLRelease(_cache);
-	FLSuperDealloc();
+	mrc_release_(_cache);
+	mrc_super_dealloc_();
 }
 
 - (BOOL) willSaveObjectToDatabaseCache:(id) object

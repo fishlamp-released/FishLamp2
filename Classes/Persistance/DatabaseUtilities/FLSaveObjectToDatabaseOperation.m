@@ -16,15 +16,15 @@
 		self.input = input;
 		FLAssertIsNotNil_(database);
 		FLAssertIsNotNil_(input);
-		_database = FLReturnRetained(database);
+		_database = retain_(database);
 	}
 	return self;
 } 
 
 #if FL_MRC
 - (void) dealloc {
-	FLRelease(_database);
-	FLSuperDealloc();
+	mrc_release_(_database);
+	mrc_super_dealloc_();
 }
 #endif
 

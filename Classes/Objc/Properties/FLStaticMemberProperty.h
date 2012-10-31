@@ -15,12 +15,12 @@
 #define FLReturnStaticObjectFromBlock(__CREATE_BLOCK) \
         static dispatch_once_t pred; \
         static id s_static_object = nil; \
-        dispatch_once(&pred, ^{ s_static_object = __CREATE_BLOCK(); FLRetain(s_static_object); }); \
+        dispatch_once(&pred, ^{ s_static_object = retain_(__CREATE_BLOCK()); }); \
         return s_static_object
 
 /// return a object from a selector called only once.
 #define FLReturnStaticObjectFromSelector(TARGET, ACTION) \
         static dispatch_once_t pred; \
         static id s_static_object = nil; \
-        dispatch_once(&pred, ^{ s_static_object = [TARGET performSelector:ACTION]; FLRetain(s_static_object); }); \
+        dispatch_once(&pred, ^{ s_static_object = retain_([TARGET performSelector:ACTION]); }); \
         return s_static_object

@@ -8,61 +8,25 @@
 
 #import <Foundation/Foundation.h>
 
-#if FL_ARC
-
-    #define FLBridgeTransferFromCFRef(__TYPE_REF__) \
-                ((__bridge_transfer id) __TYPE_REF__)
-
-    #define FLBridgeTransferFromCFRefCopy(__TYPE_REF__) \
-                ((__bridge_transfer id) __TYPE_REF__)
-
-    #define FLBridgeFromCFRef(__TYPE_REF__) \
-                ((__bridge id) __TYPE_REF__)
-                                
-    #define FLBridgeRetainFromCFRef(__TYPE_REF__) \
-                ((__bridge_retain id) __TYPE_REF__)
-    
-    #define FLBridgeTransferToCFRef( __OBJ__) \
-                ((__bridge_transfer CFTypeRef) __OBJ__)
-
-    #define FLBridgeToCFRef(__OBJ__) \
-                ((__bridge CFTypeRef) __OBJ__)
-
-    #define FLBridgeRetainedToCFRef(__OBJ__) \
-                ((__bridge_retained CFTypeRef) __OBJ__)
-
-
-#else 
-
-    #define FLBridgeTransferFromCFRef(__TYPE_REF__) \
-                ((id) __TYPE_REF__)
-                
-    #define FLBridgeTransferFromCFRefCopy(__TYPE_REF__) \
-                [((id) __TYPE_REF__) autorelease]
-
-    #define FLBridgeFromCFRef(__TYPE_REF__) \
-                ((id) __TYPE_REF__)
-                                
-    #define FLBridgeRetainFromCFRef(__TYPE_REF__) \
-                [((id) __TYPE_REF__) retain]
-    
-    #define FLBridgeTransferToCFRef(__OBJ__) \
-                ((CFTypeRef) __OBJ__)
-
-    #define FLBridgeToCFRef(__OBJ__) \
-                ((CFTypeRef) __OBJ__)
-
-    #define FLBridgeRetainedToCFRef(__OBJ__) \
-                ((CFTypeRef) [__OBJ__ retain])
-
-#endif
+   
 
 NS_INLINE 
-void _FLReleaseCFRef(CFTypeRef* ref) {
+void _release_CFRef(CFTypeRef* ref) {
     if(ref && *ref) {
         CFRelease(*ref);
         *ref = nil;
     }
 }
 
-#define FLReleaseCFRef(__REF__) _FLReleaseCFRef((CFTypeRef*) &(__REF__))
+#define FLReleaseCRef_(__REF__) _release_CFRef((CFTypeRef*) &(__REF__))
+
+//#define FLBridgeTransferToCFString( __OBJ__) \
+//            bridge_transfer_(CFStringRef, __OBJ__)
+//
+//#define FLBridgeToCFString(__OBJ__) \
+//            bridge_(CFStringRef, __OBJ__)
+//
+//#define FLBridgeRetainToCFString(__OBJ__) \
+//            bridge_retain_(CFStringRef, __OBJ__)
+            
+            

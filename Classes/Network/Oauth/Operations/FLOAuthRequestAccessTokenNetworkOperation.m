@@ -52,21 +52,21 @@
 
 - (id) initWithOAuthApp:(FLOAuthApp*) app authData:(FLOAuthAuthencationData*) data {
 	if((self = [super initWithURL:[NSURL URLWithString:app.accessTokenUrl]])) {
-		_app = FLReturnRetained(app);
-		_authData = FLReturnRetained(data);
+		_app = retain_(app);
+		_authData = retain_(data);
 	}
 	
 	return self;
 }
 
 + (FLOAuthRequestAccessTokenNetworkOperation*) OAuthRequestAccessTokenNetworkOperation:(FLOAuthApp*) app authData:(FLOAuthAuthencationData*) data {
-	return FLReturnAutoreleased([[FLOAuthRequestAccessTokenNetworkOperation alloc] initWithOAuthApp:app authData:data]);
+	return autorelease_([[FLOAuthRequestAccessTokenNetworkOperation alloc] initWithOAuthApp:app authData:data]);
 }
 
 - (void) dealloc  {
-	FLRelease(_app);
-	FLRelease(_authData);
-	FLSuperDealloc();
+	mrc_release_(_app);
+	mrc_release_(_authData);
+	mrc_super_dealloc_();
 }
 
 - (void) runSelf {

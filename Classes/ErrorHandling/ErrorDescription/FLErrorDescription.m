@@ -28,19 +28,19 @@
 + (FLErrorDescription*) errorDescription
 {
 	
-    return FLReturnAutoreleased([[FLErrorDescription alloc] init]);
+    return autorelease_([[FLErrorDescription alloc] init]);
 }
 + (FLErrorDescription*) errorDescriptionWithTitle:(NSString*) title description:(NSString*) description
 {
-	return FLReturnAutoreleased([[FLErrorDescription alloc] initWithTitle:title description:description]);
+	return autorelease_([[FLErrorDescription alloc] initWithTitle:title description:description]);
 }
 
 - (void) dealloc
 {
-	FLRelease(_error);
-	FLRelease(_title);
-	FLRelease(_description);
-	FLSuperDealloc();
+	mrc_release_(_error);
+	mrc_release_(_title);
+	mrc_release_(_description);
+	mrc_super_dealloc_();
 }
 
 @end

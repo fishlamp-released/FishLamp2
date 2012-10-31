@@ -26,8 +26,8 @@
     if(self) {
         _line = line;
         _column = column;
-        FLAssignObject(_fileName, file);
-        FLAssignObject(_hint, hint);
+        FLRetainObject_(_fileName, file);
+        FLRetainObject_(_hint, hint);
     }
     
     return self;
@@ -35,15 +35,15 @@
 
 #if FL_MRC
 - (void) dealloc {
-    FLRelease(_fileName);
-    FLRelease(_hint);
-    FLSuperDealloc();
+    mrc_release_(_fileName);
+    mrc_release_(_hint);
+    mrc_super_dealloc_();
 }
 
 #endif
 
 + (FLParseInfo*) parseInfo:(NSString*) hint file:(NSString*) fileName line:(NSUInteger) line column:(NSUInteger) column {
-    return FLReturnAutoreleased([[FLParseInfo alloc] initWithHint:hint file:fileName line:line column:column]); 
+    return autorelease_([[FLParseInfo alloc] initWithHint:hint file:fileName line:line column:column]); 
 }
 
 - (NSString*) description {

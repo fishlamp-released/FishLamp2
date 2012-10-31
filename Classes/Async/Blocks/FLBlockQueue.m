@@ -19,8 +19,8 @@
 
 #if FL_MRC
 - (void) dealloc {
-    FLRelease(_queue);
-	FLSuperDealloc();
+    mrc_release_(_queue);
+	mrc_super_dealloc_();
 }
 #endif
 
@@ -29,7 +29,7 @@
         _queue = [[NSMutableArray alloc] init];
     }
 
-    [_queue addObject:FLReturnAutoreleased([block copy])];
+    [_queue addObject:autorelease_([block copy])];
 }
 
 - (void) executeBlocks:(id) sender {
@@ -43,7 +43,7 @@
 }
 
 + (FLBlockQueue*) blockQueue {
-    return FLReturnAutoreleased([[FLBlockQueue alloc] init]);
+    return autorelease_([[FLBlockQueue alloc] init]);
 }
 
 @end

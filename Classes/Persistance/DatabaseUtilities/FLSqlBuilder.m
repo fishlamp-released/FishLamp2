@@ -22,7 +22,7 @@
 }
 
 - (void) setSqlString:(NSString*) string {
-    FLRelease(_sql);
+    mrc_release_(_sql);
     _sql = [string mutableCopy];
     
     if(FLStringIsEmpty(_sql) || [_sql characterAtIndex:_sql.length - 1] == ' ' ) {
@@ -43,21 +43,21 @@
 }
 
 + (FLSqlBuilder*) sqlBuilder {
-    return FLReturnAutoreleased([[FLSqlBuilder alloc] init]);
+    return autorelease_([[FLSqlBuilder alloc] init]);
 }
 
 - (void) setFinishedPreparing {
-    FLReleaseWithNil(_delimiter);
-    FLReleaseWithNil(_dataToBind);
+    FLReleaseWithNil_(_delimiter);
+    FLReleaseWithNil_(_dataToBind);
     self.sqlString = @"";
 }
 
 #if FL_MRC 
 - (void) dealloc {
-    FLRelease(_delimiter);
-    FLRelease(_dataToBind);
-    FLRelease(_sql);
-    FLSuperDealloc();
+    mrc_release_(_delimiter);
+    mrc_release_(_dataToBind);
+    mrc_release_(_sql);
+    mrc_super_dealloc_();
 }
 #endif
 
@@ -108,7 +108,7 @@
 	NSString *string = [[NSString alloc] initWithFormat:format arguments:va];
 	va_end(va);
 	[self appendString:string];
-    FLRelease(string);
+    mrc_release_(string);
 }
 
 - (void) appendString:(NSString*) string andString:(NSString*) andString {
@@ -123,7 +123,7 @@
                   withinParens:(BOOL) withinParens
       prefixDelimiterWithSpace:(BOOL) prefixDelimiterWithSpace {
 
-    FLAssignObject(_delimiter, delimiter);
+    FLRetainObject_(_delimiter, delimiter);
     _insertPrefixDelimiterSpace = prefixDelimiterWithSpace;
     if(withinParens) {
         [self openParen];
@@ -135,7 +135,7 @@
 
 
 - (void) closeList {
-    FLReleaseWithNil(_delimiter);
+    FLReleaseWithNil_(_delimiter);
     _inList = NO;
     _listCount = 0;
     if(_closeParens) {

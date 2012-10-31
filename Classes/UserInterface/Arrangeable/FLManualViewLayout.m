@@ -24,10 +24,10 @@
 
 #if FL_MRC
 - (void) dealloc {
-    FLRelease(_onLayout);
-    FLRelease(_views);
-    FLRelease(_frames);
-    FLSuperDealloc();
+    mrc_release_(_onLayout);
+    mrc_release_(_views);
+    mrc_release_(_frames);
+    mrc_super_dealloc_();
 }
 #endif
 

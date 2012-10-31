@@ -22,14 +22,14 @@
 
 + (id) facebookOperation
 {
-	return FLReturnAutoreleased([[[self class] alloc] init]);
+	return autorelease_([[[self class] alloc] init]);
 }	
 
 - (void) dealloc
 {
-	FLRelease(_userId);
-	FLRelease(_object);
-	FLSuperDealloc();
+	mrc_release_(_userId);
+	mrc_release_(_object);
+	mrc_super_dealloc_();
 }
 
 - (void) didInit
@@ -86,7 +86,7 @@
         {
             FLObjectBuilder* builder = [[FLObjectBuilder alloc] init];
             [builder buildObjectsFromDictionary:response withRootObject:self.operationOutput];
-            FLRelease(builder);
+            mrc_release_(builder);
         }
     }
 }

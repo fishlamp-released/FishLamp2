@@ -62,7 +62,7 @@
 #define FLSynthesizeCachedObjectHandlerProperty(__class__) \
 	static id<FLCacheBehavior> __memberName(__class__) = nil;\
 	+ (void) setSharedCacheBehavior:(id<FLCacheBehavior>) behavior {\
-		FLAssignObject(__memberName(__class__), behavior); \
+		FLRetainObject_(__memberName(__class__), behavior); \
 	} \
 	+ (id<FLCacheBehavior>) sharedCacheBehavior { \
 		return __memberName(__class__); \

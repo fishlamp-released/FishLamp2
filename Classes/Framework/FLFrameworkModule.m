@@ -23,7 +23,7 @@
     if(![s_modules containsObject:[self class]]) {
         id module = [[[self class] alloc] init];
         [module initializeModule];
-        FLRelease(module);
+        mrc_release_(module);
     }
 }
 

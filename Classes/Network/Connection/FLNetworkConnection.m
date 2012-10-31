@@ -72,7 +72,7 @@ const FLNetworkConnectionByteCount FLNetworkConnectionByteCountZero = {0, 0, 0};
     [_timeoutTimer release];
     [_finisher release];
     [_networkStream release];
-    FLSuperDealloc();
+    mrc_super_dealloc_();
 #endif
 }
 
@@ -273,14 +273,14 @@ const FLNetworkConnectionByteCount FLNetworkConnectionByteCountZero = {0, 0, 0};
 //
 //- (void) blockUntilFinished {
 //    @try {
-//        FLRetain(self);
+//        mrc_retain_(self);
 //    
 //        while([self waitOnceForRunLoop]) {
 //        }
 //    }
 //    @finally {
 //        [self _closeSelf];
-//        FLRelease(self);
+//        mrc_release_(self);
 //    }
 //}
 

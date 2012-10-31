@@ -20,7 +20,7 @@
 }
 
 - (void) dealloc {	
-	FLSuperDealloc();
+	mrc_super_dealloc_();
 }
 
 - (void) runSelf {

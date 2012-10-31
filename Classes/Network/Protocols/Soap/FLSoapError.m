@@ -23,7 +23,7 @@
 	{
 	}
 	
-	FLReleaseWithNil(userInfo); 
+	FLReleaseWithNil_(userInfo); 
 	
 	return self;
 }

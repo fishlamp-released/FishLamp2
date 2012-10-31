@@ -28,7 +28,7 @@ static void * const kArrangeableObjectKey = (void*)&kArrangeableObjectKey;
 
 @implementation FLArrangeableObjectState
 + (FLArrangeableObjectState*) arrangebleObjectState {
-    return FLReturnAutoreleased([[[self class] alloc] init]);   
+    return autorelease_([[[self class] alloc] init]);   
 }
 
 @synthesize arrangeableState = _arrangeableState;

@@ -48,9 +48,9 @@
 
 - (void) dealloc
 {
-    FLRelease(__paging);
-    FLRelease(__data);
-    FLSuperDealloc();
+    mrc_release_(__paging);
+    mrc_release_(__data);
+    mrc_super_dealloc_();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder
@@ -61,7 +61,7 @@
 
 + (FLFacebookFetchStatusListResponse*) facebookFetchStatusListResponse
 {
-    return FLReturnAutoreleased([[FLFacebookFetchStatusListResponse alloc] init]);
+    return autorelease_([[FLFacebookFetchStatusListResponse alloc] init]);
 }
 
 - (id) init
@@ -76,7 +76,7 @@
 {
     if((self = [super init]))
     {
-        __paging = FLReturnRetained([aDecoder decodeObjectForKey:@"__paging"]);
+        __paging = retain_([aDecoder decodeObjectForKey:@"__paging"]);
         __data = [[aDecoder decodeObjectForKey:@"__data"] mutableCopy];
     }
     return self;

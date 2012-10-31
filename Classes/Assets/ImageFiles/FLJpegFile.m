@@ -80,24 +80,24 @@ FLSynthesizeStructProperty(exclusiveMode, setExclusiveMode, BOOL, _jpegFlags);
 
 - (void) setImage:(FLImage*) image
 {
-	FLAssignObject(_image, image);
+	FLRetainObject_(_image, image);
 	_dimensions = _image ? _image.size : FLSizeZero;
 }
 
 - (void) releaseImage
 {
-	FLReleaseWithNil(_image);
-	FLReleaseWithNil(_jpegData);
+	FLReleaseWithNil_(_image);
+	FLReleaseWithNil_(_jpegData);
 }
 
 - (void) releaseJpegData
 {
-	FLReleaseWithNil(_jpegData);
+	FLReleaseWithNil_(_jpegData);
 }
 
 - (void) releaseImageOnly
 {
-	FLReleaseWithNil(_image);
+	FLReleaseWithNil_(_image);
 }
 
 - (FLImage*) image
@@ -110,7 +110,7 @@ FLSynthesizeStructProperty(exclusiveMode, setExclusiveMode, BOOL, _jpegFlags);
 	
 	if(_jpegFlags.exclusiveMode)
 	{
-		FLReleaseWithNil(_jpegData);
+		FLReleaseWithNil_(_jpegData);
 	}
 	   
 	return _image;
@@ -118,10 +118,10 @@ FLSynthesizeStructProperty(exclusiveMode, setExclusiveMode, BOOL, _jpegFlags);
 
 - (void) dealloc
 {
-	FLReleaseWithNil(_image);
-	FLReleaseWithNil(_jpegData);
-	FLReleaseWithNil(_properties);
-	FLSuperDealloc();
+	FLReleaseWithNil_(_image);
+	FLReleaseWithNil_(_jpegData);
+	FLReleaseWithNil_(_properties);
+	mrc_super_dealloc_();
 }
 
 - (BOOL) hasImage
@@ -133,11 +133,11 @@ FLSynthesizeStructProperty(exclusiveMode, setExclusiveMode, BOOL, _jpegFlags);
 {
 	[self _throwIfNotConfigured];
 	
-	FLReleaseWithNil(_jpegData);
-	FLReleaseWithNil(_image);
+	FLReleaseWithNil_(_jpegData);
+	FLReleaseWithNil_(_image);
 	_dimensions = FLSizeZero;
 	
-	FLAssignObject(
+	FLRetainObject_(
         _jpegData, [self.folder readDataFromFile:self.fileName]);
 	
 	FLAssertIsNotNil_v(_jpegData, nil);
@@ -145,8 +145,8 @@ FLSynthesizeStructProperty(exclusiveMode, setExclusiveMode, BOOL, _jpegFlags);
 
 - (void) setJpegData:(NSData*) data
 {
-	FLAssignObject(_jpegData, data);
-	FLReleaseWithNil(_image);
+	FLRetainObject_(_jpegData, data);
+	FLReleaseWithNil_(_image);
 	_dimensions = FLSizeZero;
 }
 
@@ -184,24 +184,24 @@ static NSDictionary* s_destinationProperties = nil;
         FLAssertIsNotNil_v(jpgData, nil);
         FLAssert_v(jpgData.length > 0, @"image is of size zero");
     
-        imageDestRef = CGImageDestinationCreateWithURL(FLBridgeToCFRef(url), kUTTypeJPEG, 1, nil /* always nil */);
+        imageDestRef = CGImageDestinationCreateWithURL(bridge_(void*,url), kUTTypeJPEG, 1, nil /* always nil */);
         FLConfirmIsNotNil_(imageDestRef);
 
-        CGImageDestinationSetProperties(imageDestRef, FLBridgeToCFRef(s_destinationProperties));
+        CGImageDestinationSetProperties(imageDestRef, bridge_(void*,s_destinationProperties));
 
-        imageSourceRef = CGImageSourceCreateWithData(FLBridgeToCFRef(jpgData), nil);
+        imageSourceRef = CGImageSourceCreateWithData(bridge_(void*,jpgData), nil);
         FLConfirmIsNotNil_(imageSourceRef);
         
-        CGImageDestinationAddImageFromSource(imageDestRef, imageSourceRef, 0, FLBridgeToCFRef(self.properties));
+        CGImageDestinationAddImageFromSource(imageDestRef, imageSourceRef, 0, bridge_(void*,self.properties));
         
         if(!CGImageDestinationFinalize(imageDestRef)){
              FLDebugLog(@"wth - image finalize failed");
         } 
     }
     @finally {
-        FLReleaseCFRef(imageSourceRef);
-        FLReleaseCFRef(imageDestRef);
-        FLReleaseWithNil(url);
+        FLReleaseCRef_(imageSourceRef);
+        FLReleaseCRef_(imageDestRef);
+        FLReleaseWithNil_(url);
     }
 }
 
@@ -230,11 +230,11 @@ static NSDictionary* s_destinationProperties = nil;
         
         FLAssertIsNotNil_v(imageRef, nil);
     
-        imageSourceRef = CGImageDestinationCreateWithURL(FLBridgeToCFRef(url), kUTTypeJPEG, 1, nil /* always nil */);
+        imageSourceRef = CGImageDestinationCreateWithURL(bridge_(void*,url), kUTTypeJPEG, 1, nil /* always nil */);
         
-        CGImageDestinationSetProperties(imageSourceRef, FLBridgeToCFRef(s_destinationProperties));
+        CGImageDestinationSetProperties(imageSourceRef, bridge_(void*,s_destinationProperties));
         
-        CGImageDestinationAddImage(imageSourceRef, imageRef, FLBridgeToCFRef(self.properties));
+        CGImageDestinationAddImage(imageSourceRef, imageRef, bridge_(void*,self.properties));
 
         if(!CGImageDestinationFinalize(imageSourceRef)) {
             FLDebugLog(@"Writing image failed");
@@ -246,7 +246,7 @@ static NSDictionary* s_destinationProperties = nil;
         if(imageSourceRef) {		
             CFRelease(imageSourceRef);
         }
-        FLRelease(url);
+        mrc_release_(url);
     }
 }
 
@@ -281,11 +281,12 @@ static NSDictionary* s_destinationProperties = nil;
 		CGImageSourceRef imageSourceRef = nil;
 		@try
 		{
-			imageSourceRef = CGImageSourceCreateWithURL(FLBridgeToCFRef(url), nil);
+			imageSourceRef = CGImageSourceCreateWithURL(bridge_(void*,url), nil);
 			if(imageSourceRef)
 			{
-				self.properties = FLBridgeTransferFromCFRefCopy(
-                    CGImageSourceCopyPropertiesAtIndex(imageSourceRef, 0, nil));
+				self.properties = 
+                    autorelease_(bridge_(NSDictionary*,
+                        CGImageSourceCopyPropertiesAtIndex(imageSourceRef, 0, nil)));
 			}
 		}
 		@finally
@@ -295,7 +296,7 @@ static NSDictionary* s_destinationProperties = nil;
 				CFRelease(imageSourceRef);
 			}
 		
-			FLReleaseWithNil(url);
+			FLReleaseWithNil_(url);
 		}
 	}
 
@@ -354,9 +355,9 @@ static NSDictionary* s_destinationProperties = nil;
 
 - (void) setImage:(FLImage*) image exifData:(NSDictionary*) exif
 {
-	FLReleaseWithNil(_jpegData);
+	FLReleaseWithNil_(_jpegData);
 	[self setImage:image];
-	FLAssignObject(_properties, exif);
+	FLRetainObject_(_properties, exif);
 }
 
 - (void) beginLoadingRepresentation:(FLErrorCallback) completionBlock

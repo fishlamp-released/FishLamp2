@@ -89,15 +89,15 @@
 
 - (void) dealloc
 {
-    FLRelease(__from);
-    FLRelease(__link);
-    FLRelease(__caption);
-    FLRelease(__description);
-    FLRelease(__icon);
-    FLRelease(__picture);
-    FLRelease(__message);
-    FLRelease(__created_time);
-    FLSuperDealloc();
+    mrc_release_(__from);
+    mrc_release_(__link);
+    mrc_release_(__caption);
+    mrc_release_(__description);
+    mrc_release_(__icon);
+    mrc_release_(__picture);
+    mrc_release_(__message);
+    mrc_release_(__created_time);
+    mrc_super_dealloc_();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder
@@ -115,7 +115,7 @@
 
 + (FLFacebookLink*) facebookLink
 {
-    return FLReturnAutoreleased([[FLFacebookLink alloc] init]);
+    return autorelease_([[FLFacebookLink alloc] init]);
 }
 
 - (id) init
@@ -130,14 +130,14 @@
 {
     if((self = [super initWithCoder:aDecoder]))
     {
-        __from = FLReturnRetained([aDecoder decodeObjectForKey:@"__from"]);
-        __link = FLReturnRetained([aDecoder decodeObjectForKey:@"__link"]);
-        __caption = FLReturnRetained([aDecoder decodeObjectForKey:@"__caption"]);
-        __description = FLReturnRetained([aDecoder decodeObjectForKey:@"__description"]);
-        __icon = FLReturnRetained([aDecoder decodeObjectForKey:@"__icon"]);
-        __picture = FLReturnRetained([aDecoder decodeObjectForKey:@"__picture"]);
-        __message = FLReturnRetained([aDecoder decodeObjectForKey:@"__message"]);
-        __created_time = FLReturnRetained([aDecoder decodeObjectForKey:@"__created_time"]);
+        __from = retain_([aDecoder decodeObjectForKey:@"__from"]);
+        __link = retain_([aDecoder decodeObjectForKey:@"__link"]);
+        __caption = retain_([aDecoder decodeObjectForKey:@"__caption"]);
+        __description = retain_([aDecoder decodeObjectForKey:@"__description"]);
+        __icon = retain_([aDecoder decodeObjectForKey:@"__icon"]);
+        __picture = retain_([aDecoder decodeObjectForKey:@"__picture"]);
+        __message = retain_([aDecoder decodeObjectForKey:@"__message"]);
+        __created_time = retain_([aDecoder decodeObjectForKey:@"__created_time"]);
     }
     return self;
 }

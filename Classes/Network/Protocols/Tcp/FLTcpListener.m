@@ -86,8 +86,8 @@
 
 #if FL_MRC 
 - (void) dealloc {
-    FLRelease(_connections);
-    FLSuperDealloc();
+    mrc_release_(_connections);
+    mrc_super_dealloc_();
 }
 #endif
 
@@ -165,9 +165,9 @@ void FLTcpServerAcceptCallBack(
 // this is skanky - where is this coming from? Am I sending this in somewhere?
     CFSocketNativeHandle nativeSocket = *((CFSocketNativeHandle *) data);
 
-    FLTcpListener* server = FLBridge(FLTcpListener*, info);
+    FLTcpListener* server = bridge_(FLTcpListener*, info);
     [server _handleNewConnection:socket 
-        addressData:FLBridgeFromCFRef(address)
+        addressData:bridge_(id, address)
         nativeSocket:nativeSocket];
 }
 
@@ -178,7 +178,7 @@ void FLTcpServerAcceptCallBack(
     
     CFSocketContext context;
     memset(&context, sizeof(CFSocketContext), 0);    
-    context.info = FLBridge(void*, self);
+    context.info = bridge_(void*, self);
 
 	_socket = CFSocketCreate(kCFAllocatorDefault, 
         PF_INET, 
@@ -215,7 +215,7 @@ void FLTcpServerAcceptCallBack(
 	address.sin_port = htons(_port); 
     
     NSData *addressData = [NSData dataWithBytes: &address length: sizeof(address)];
-    if (CFSocketSetAddress(_socket, FLBridgeToCFRef(addressData)) != kCFSocketSuccess) {
+    if (CFSocketSetAddress(_socket, bridge_(void*,addressData)) != kCFSocketSuccess) {
 //        fprintf(stderr, "CFSocketSetAddress() failed\n");
 //        CFRelease(TCPServer);
 //        return EXIT_FAILURE;

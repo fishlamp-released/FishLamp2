@@ -28,17 +28,21 @@ NSString *FLKeychainErrorDomain = @"FLKeychainErrorDomain";
 
 		// Set up a query dictionary with the base query attributes: item type (generic), username, and service
 
-		NSArray *keys = [[NSArray alloc] initWithObjects: (__bridge_fl id) kSecClass, (__bridge_fl id) kSecAttrAccount, (__bridge_fl id) kSecAttrService, nil];
+		NSArray *keys = [[NSArray alloc] initWithObjects: 
+                         bridge_(id, kSecClass), 
+                         bridge_(id, kSecAttrAccount), 
+                         bridge_(id, kSecAttrService), 
+                         nil];
         
         
-		NSArray *objects = [[NSArray alloc] initWithObjects: (__bridge_fl id) kSecClassGenericPassword, username, serviceName, nil];
+		NSArray *objects = [[NSArray alloc] initWithObjects: bridge_(id, kSecClassGenericPassword), username, serviceName, nil];
 
 		NSMutableDictionary *query = [[NSMutableDictionary alloc] initWithObjects: objects forKeys: keys];
 
-		FLReleaseWithNil(keys);
-		FLReleaseWithNil(objects);
+		FLReleaseWithNil_(keys);
+		FLReleaseWithNil_(objects);
 
-		FLAutorelease(query);
+		mrc_autorelease_(query);
 
 		// First do a query for attributes, in case we already have a Keychain item with no password data set.
 		// One likely way such an incorrect item could have come about is due to the previous (incorrect)
@@ -46,14 +50,14 @@ NSString *FLKeychainErrorDomain = @"FLKeychainErrorDomain";
 
 		NSMutableDictionary *attributeQuery = [query mutableCopy];
 
-		[attributeQuery setObject: (id) kCFBooleanTrue forKey:(__bridge_fl id) kSecReturnAttributes];
+		[attributeQuery setObject: bridge_(id, kCFBooleanTrue) forKey:bridge_(id, kSecReturnAttributes)];
 
 		CFTypeRef attributeResult = NULL;
 
-		OSStatus status = SecItemCopyMatching((__bridge_fl CFDictionaryRef) attributeQuery, &attributeResult);
+		OSStatus status = SecItemCopyMatching(bridge_(CFDictionaryRef, attributeQuery), &attributeResult);
 		// we only care about status, so delete the returned data.
-		FLReleaseWithNil(attributeResult);
-		FLReleaseWithNil(attributeQuery);
+		FLReleaseWithNil_(attributeResult);
+		FLReleaseWithNil_(attributeQuery);
 
 		if (status != noErr) 
 		{
@@ -75,12 +79,13 @@ NSString *FLKeychainErrorDomain = @"FLKeychainErrorDomain";
 
 		CFTypeRef resultData = nil;
 		NSMutableDictionary *passwordQuery = [query mutableCopy];
-		[passwordQuery setObject: (__bridge_fl id) kCFBooleanTrue forKey: (__bridge_fl id) kSecReturnData];
+		[passwordQuery setObject: bridge_(id, kCFBooleanTrue) forKey: bridge_(id, kSecReturnData)];
 
-		status = SecItemCopyMatching((__bridge_fl CFDictionaryRef) passwordQuery, &resultData);
+		status = SecItemCopyMatching(bridge_(CFDictionaryRef, passwordQuery), &resultData);
 
-		FLAutorelease(resultData);
-		FLReleaseWithNil(passwordQuery);
+		mrc_autorelease_(resultData);
+
+		FLReleaseWithNil_(passwordQuery);
 
 		if (status != noErr) 
 		{
@@ -109,11 +114,9 @@ NSString *FLKeychainErrorDomain = @"FLKeychainErrorDomain";
 			return NO;
 		}
 
-		if (resultData) 
-		{
-			if(outPassword)
-			{
-				*outPassword = [[NSString alloc] initWithData: (__bridge_fl NSData*) resultData encoding: NSUTF8StringEncoding];
+		if (resultData)  {
+			if(outPassword) {
+				*outPassword = [[NSString alloc] initWithData: bridge_(NSData*, resultData) encoding: NSUTF8StringEncoding];
 			}
 		}
 		else 
@@ -167,14 +170,14 @@ NSString *FLKeychainErrorDomain = @"FLKeychainErrorDomain";
 			{
 				if(error)
 				{
-					*error = FLReturnRetained(err);
+					*error = retain_(err);
 				}
-				FLReleaseWithNil(err);
+				FLReleaseWithNil_(err);
 				return NO;
 			}
 			
-			FLReleaseWithNil(err);
-			FLReleaseWithNil(existingPassword); // just in case
+			FLReleaseWithNil_(err);
+			FLReleaseWithNil_(existingPassword); // just in case
 		}
 		
 		OSStatus status = noErr;
@@ -190,44 +193,45 @@ NSString *FLKeychainErrorDomain = @"FLKeychainErrorDomain";
 			{
 				//Only update if we're allowed to update existing.	If not, simply do nothing.
 				
-				NSArray *keys = [[NSArray alloc]initWithObjects: (__bridge_fl NSString *) kSecClass,
+				NSArray *keys = [[NSArray alloc]initWithObjects: bridge_(id, kSecClass),
 								  kSecAttrService, 
 								  kSecAttrLabel, 
 								  kSecAttrAccount, 
 								  nil];
 				
-				NSArray *objects = [[NSArray alloc] initWithObjects: (__bridge_fl NSString *) kSecClassGenericPassword, 
+				NSArray *objects = [[NSArray alloc] initWithObjects: bridge_(id, kSecClassGenericPassword), 
 									 serviceName,
 									 serviceName,
 									 username,
 									 nil];
 				
 				NSDictionary *query = [[NSDictionary alloc] initWithObjects: objects forKeys: keys];			
-				FLReleaseWithNil(keys);
-				FLReleaseWithNil(objects);
+				FLReleaseWithNil_(keys);
+				FLReleaseWithNil_(objects);
 				
-                NSDictionary* update = [NSDictionary dictionaryWithObject: [password dataUsingEncoding: NSUTF8StringEncoding] forKey: (__bridge_fl NSString *) kSecValueData];
+                NSDictionary* update = [NSDictionary dictionaryWithObject: 
+                    [password dataUsingEncoding: NSUTF8StringEncoding] forKey: bridge_(id,kSecValueData)];
 				
-				status = SecItemUpdate((__bridge_fl  CFDictionaryRef) query, (__bridge_fl CFDictionaryRef) update);
+				status = SecItemUpdate(bridge_(CFDictionaryRef,query), bridge_(CFDictionaryRef, update));
 
-				FLReleaseWithNil(query);
+				FLReleaseWithNil_(query);
 			}
 			
-			FLReleaseWithNil(existingPassword);
+			FLReleaseWithNil_(existingPassword);
 		}
 		else 
 		{
 			// No existing entry (or an existing, improperly entered, and therefore now
 			// deleted, entry).	 Create a new entry.
 			
-			NSArray *keys = [[NSArray alloc] initWithObjects: (__bridge_fl NSString *) kSecClass, 
+			NSArray *keys = [[NSArray alloc] initWithObjects: bridge_(id, kSecClass), 
 							  kSecAttrService, 
 							  kSecAttrLabel, 
 							  kSecAttrAccount, 
 							  kSecValueData, 
 							  nil];
 			
-			NSArray *objects = [[NSArray alloc] initWithObjects: (__bridge_fl NSString *) kSecClassGenericPassword, 
+			NSArray *objects = [[NSArray alloc] initWithObjects: bridge_(id, kSecClassGenericPassword), 
 								 serviceName,
 								 serviceName,
 								 username,
@@ -235,12 +239,12 @@ NSString *FLKeychainErrorDomain = @"FLKeychainErrorDomain";
 								 nil];
 			
 			NSDictionary *query = [[NSDictionary alloc] initWithObjects: objects forKeys: keys];			
-			FLReleaseWithNil(keys);
-			FLReleaseWithNil(objects);
+			FLReleaseWithNil_(keys);
+			FLReleaseWithNil_(objects);
 			
-			status = SecItemAdd((__bridge_fl CFDictionaryRef) query, NULL);
+			status = SecItemAdd(bridge_(CFDictionaryRef, query), NULL);
 			
-			FLReleaseWithNil(query);
+			FLReleaseWithNil_(query);
 		}
 		
 		if (status != noErr) 
@@ -270,16 +274,16 @@ NSString *FLKeychainErrorDomain = @"FLKeychainErrorDomain";
 		FLAssertStringIsNotEmpty_(username);
 		FLAssertStringIsNotEmpty_(serviceName);
 		
-		NSArray *keys = [[NSArray alloc] initWithObjects: (__bridge_fl NSString *) kSecClass, kSecAttrAccount, kSecAttrService, kSecReturnAttributes, nil];
-		NSArray *objects = [[NSArray alloc] initWithObjects: (__bridge_fl NSString *) kSecClassGenericPassword, username, serviceName, kCFBooleanTrue, nil];
+		NSArray *keys = [[NSArray alloc] initWithObjects: bridge_(id, kSecClass), kSecAttrAccount, kSecAttrService, kSecReturnAttributes, nil];
+		NSArray *objects = [[NSArray alloc] initWithObjects: bridge_(id, kSecClassGenericPassword), username, serviceName, kCFBooleanTrue, nil];
 		
 		NSDictionary *query = [[NSDictionary alloc] initWithObjects: objects forKeys: keys];
-		FLReleaseWithNil(keys);
-		FLReleaseWithNil(objects);
+		FLReleaseWithNil_(keys);
+		FLReleaseWithNil_(objects);
 		
-		OSStatus status = SecItemDelete((__bridge_fl CFDictionaryRef) query);
+		OSStatus status = SecItemDelete(bridge_(CFDictionaryRef, query));
 		
-		FLReleaseWithNil(query);
+		FLReleaseWithNil_(query);
 		
 		if (status != noErr) 
 		{

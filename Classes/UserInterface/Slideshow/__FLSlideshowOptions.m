@@ -81,14 +81,14 @@
 
 - (void) dealloc
 {
-    FLRelease(__speed);
-    FLRelease(__repeat);
-    FLRelease(__autoStart);
-    FLRelease(__autoShowCaptions);
-    FLRelease(__random);
-    FLRelease(__playMusic);
-    FLRelease(__mediaItemList);
-    FLSuperDealloc();
+    mrc_release_(__speed);
+    mrc_release_(__repeat);
+    mrc_release_(__autoStart);
+    mrc_release_(__autoShowCaptions);
+    mrc_release_(__random);
+    mrc_release_(__playMusic);
+    mrc_release_(__mediaItemList);
+    mrc_super_dealloc_();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder
@@ -115,12 +115,12 @@
 {
     if((self = [super initWithCoder:aDecoder]))
     {
-        __speed = FLReturnRetained([aDecoder decodeObjectForKey:@"__speed"]);
-        __repeat = FLReturnRetained([aDecoder decodeObjectForKey:@"__repeat"]);
-        __autoStart = FLReturnRetained([aDecoder decodeObjectForKey:@"__autoStart"]);
-        __autoShowCaptions = FLReturnRetained([aDecoder decodeObjectForKey:@"__autoShowCaptions"]);
-        __random = FLReturnRetained([aDecoder decodeObjectForKey:@"__random"]);
-        __playMusic = FLReturnRetained([aDecoder decodeObjectForKey:@"__playMusic"]);
+        __speed = retain_([aDecoder decodeObjectForKey:@"__speed"]);
+        __repeat = retain_([aDecoder decodeObjectForKey:@"__repeat"]);
+        __autoStart = retain_([aDecoder decodeObjectForKey:@"__autoStart"]);
+        __autoShowCaptions = retain_([aDecoder decodeObjectForKey:@"__autoShowCaptions"]);
+        __random = retain_([aDecoder decodeObjectForKey:@"__random"]);
+        __playMusic = retain_([aDecoder decodeObjectForKey:@"__playMusic"]);
         __mediaItemList = [[aDecoder decodeObjectForKey:@"__mediaItemList"] mutableCopy];
     }
     return self;
@@ -185,7 +185,7 @@
 
 + (FLSlideshowOptions*) slideshowOptions
 {
-    return FLReturnAutoreleased([[FLSlideshowOptions alloc] init]);
+    return autorelease_([[FLSlideshowOptions alloc] init]);
 }
 
 @end

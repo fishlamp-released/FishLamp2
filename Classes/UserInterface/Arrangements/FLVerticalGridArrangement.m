@@ -36,16 +36,16 @@
 }
 
 + (FLVerticalGridArrangement*) verticalGridArrangement {
-    return FLReturnAutoreleased([[[self class] alloc] init]);
+    return autorelease_([[[self class] alloc] init]);
 }
 
 + (FLVerticalGridArrangement*) verticalGridArrangement:(CGFloat) cellHeight {
-    return FLReturnAutoreleased([[[self class] alloc] initWithCellHeight:cellHeight]);
+    return autorelease_([[[self class] alloc] initWithCellHeight:cellHeight]);
 }
 
 + (FLVerticalGridArrangement*) verticalGridArrangement:(CGFloat) cellHeight 
                                          columnCount:(NSUInteger) columnCount {
-    return FLReturnAutoreleased([[[self class] alloc] initWithCellHeight:cellHeight columnCount:columnCount]);
+    return autorelease_([[[self class] alloc] initWithCellHeight:cellHeight columnCount:columnCount]);
 }
 
 - (FLSize) layoutArrangeableObjects:(NSArray*) objects

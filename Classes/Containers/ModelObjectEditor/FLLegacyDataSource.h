@@ -47,7 +47,7 @@ typedef struct {
 NS_INLINE
 NSString* FLKeyPathStringMake(NSString* dataSourceKey, NSString* dataKey) {
 	return FLStringIsEmpty(dataSourceKey) ? 
-		FLReturnAutoreleased(FLReturnRetained(dataKey)) :
+		autorelease_(retain_(dataKey)) :
 		[NSString stringWithFormat:@"%@.%@", dataSourceKey, dataKey];
 }
 

@@ -33,14 +33,14 @@
 
 - (void) dealloc
 {
-    FLRelease(__input);
-    FLRelease(__output);
-    FLSuperDealloc();
+    mrc_release_(__input);
+    mrc_release_(__output);
+    mrc_super_dealloc_();
 }
 
 + (FLFacebookUpdateStatusOperation*) facebookUpdateStatusOperation
 {
-    return FLReturnAutoreleased([[FLFacebookUpdateStatusOperation alloc] init]);
+    return autorelease_([[FLFacebookUpdateStatusOperation alloc] init]);
 }
 
 - (id) init

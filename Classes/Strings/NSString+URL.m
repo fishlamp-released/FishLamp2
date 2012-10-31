@@ -15,7 +15,7 @@
 {
 	if(firstParameter)
 	{
-		NSMutableString* outUrl = FLReturnAutoreleased([url mutableCopy]);
+		NSMutableString* outUrl = autorelease_([url mutableCopy]);
 		BOOL isFirst = YES;
 		NSString* key = firstParameter;
 		id obj = nil;
@@ -53,7 +53,7 @@
 
 - (NSString*) appendURLParameters:(NSString*) firstParameter, ...  
 {
-	NSMutableString* outUrl = FLReturnAutoreleased([self mutableCopy]);
+	NSMutableString* outUrl = autorelease_([self mutableCopy]);
 	BOOL isFirst = YES;
 	NSString* key = firstParameter;
 	id obj = nil;
@@ -90,7 +90,7 @@
 + (NSDictionary*) parseURLParams:(NSString *)query
 {
 	NSArray *pairs = [query componentsSeparatedByString:@"&"];
-	NSMutableDictionary *params = FLReturnAutoreleased([[NSMutableDictionary alloc] init]);
+	NSMutableDictionary *params = autorelease_([[NSMutableDictionary alloc] init]);
 	
 	for (NSString *pair in pairs) 
 	{
@@ -106,22 +106,22 @@
 
 - (NSString *) urlEncodeString:(NSStringEncoding)encoding
 {
-	return FLBridgeTransferFromCFRefCopy(CFURLCreateStringByAddingPercentEscapes(
+	return autorelease_(bridge_transfer_(NSString*,CFURLCreateStringByAddingPercentEscapes(
 			kCFAllocatorDefault, 
-			FLBridgeToCFRef(self),
+			bridge_(void*,self),
 			NULL, // escape all
-			FLBridgeToCFRef(@";/?:@&=$+{}<>,'\""),
-			CFStringConvertNSStringEncodingToEncoding(encoding)));
+			bridge_(void*,@";/?:@&=$+{}<>,'\""),
+			CFStringConvertNSStringEncodingToEncoding(encoding))));
 }  
 
 - (NSString *) urlDecodeString:(NSStringEncoding)encoding {
 
-	return FLBridgeTransferFromCFRefCopy(
+	return autorelease_(bridge_transfer_(NSString*,
                 CFURLCreateStringByReplacingPercentEscapesUsingEncoding(
                     kCFAllocatorDefault, 
-                    FLBridgeToCFRef(self),
+                    bridge_(void*,self),
                     CFSTR(""), 
-                    CFStringConvertNSStringEncodingToEncoding(encoding)));
+                    CFStringConvertNSStringEncodingToEncoding(encoding))));
 }
 
 @end

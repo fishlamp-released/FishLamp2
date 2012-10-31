@@ -47,9 +47,9 @@
 
 - (void) dealloc
 {
-    FLRelease(__count);
-    FLRelease(__data);
-    FLSuperDealloc();
+    mrc_release_(__count);
+    mrc_release_(__data);
+    mrc_super_dealloc_();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder
@@ -60,7 +60,7 @@
 
 + (FLFacebookLikeList*) facebookLikeList
 {
-    return FLReturnAutoreleased([[FLFacebookLikeList alloc] init]);
+    return autorelease_([[FLFacebookLikeList alloc] init]);
 }
 
 - (id) init
@@ -75,7 +75,7 @@
 {
     if((self = [super init]))
     {
-        __count = FLReturnRetained([aDecoder decodeObjectForKey:@"__count"]);
+        __count = retain_([aDecoder decodeObjectForKey:@"__count"]);
         __data = [[aDecoder decodeObjectForKey:@"__data"] mutableCopy];
     }
     return self;

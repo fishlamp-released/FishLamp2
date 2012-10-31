@@ -24,19 +24,19 @@
 }
 
 + (FLWhitespace*) whitespace {
-    return FLReturnAutoreleased([[[self class] alloc] init]);
+    return autorelease_([[[self class] alloc] init]);
 }
 
 - (void) dealloc {
     for(int i = 0; i < 100; i++) {
         if(_cachedTabs[i]) {
-            FLRelease(_cachedTabs[i]);
+            mrc_release_(_cachedTabs[i]);
         }
     }
-    FLRelease(_eolString);
-    FLRelease(_tabString);
+    mrc_release_(_eolString);
+    mrc_release_(_tabString);
     
-    FLSuperDealloc();
+    mrc_super_dealloc_();
 }
 
 - (NSString*) tabStringForScope:(NSUInteger) indent {
@@ -44,8 +44,10 @@
     if(indent > 0 && _tabString && _tabString.length && indent < 100) {
     
         if(!_cachedTabs[indent]) {
-            _cachedTabs[indent] = [@"" stringByPaddingToLength:(indent * _tabString.length) withString:_tabString startingAtIndex:0];
-            FLRetain(_cachedTabs[indent]);
+        
+            NSString* string = [@"" stringByPaddingToLength:(indent * _tabString.length) withString:_tabString startingAtIndex:0];
+            
+            _cachedTabs[indent] = retain_(string);
         }
         return _cachedTabs[indent];
     }

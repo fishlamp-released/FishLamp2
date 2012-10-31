@@ -34,14 +34,14 @@
 			id newObject = [self valueForKey:key];
 			if(!newObject)
 			{
-				newObject = FLReturnAutoreleased([[desc.propertyClass alloc] init]);
+				newObject = autorelease_([[desc.propertyClass alloc] init]);
 				[self setValue:newObject forKey:key];
 			}
 		
 			FLAssertIsNotNil_(newObject);
 			if(outObject)
 			{
-				*outObject = FLReturnRetained(newObject);
+				*outObject = retain_(newObject);
 			}
 			
 			return YES;
@@ -51,7 +51,7 @@
 	FLDebugLog(@"Warning: unable to open object: %@.%@.%@", NSStringFromClass([parentObject class]), parentKey, key);
 	if(outObject)
 	{
-		*outObject = FLReturnRetained([NSNull null]);
+		*outObject = retain_([NSNull null]);
 	}
 	
 	return NO;
@@ -122,18 +122,18 @@
 
 					FLAssertIsNotNil_(obj);
 					[self addObject:obj];
-					FLRelease(obj);
+					mrc_release_(obj);
 					
 					if(outObject)
 					{
-						*outObject = FLReturnRetained(obj);
+						*outObject = retain_(obj);
 					}
 				}
 				else
 				{
 					if(outObject)
 					{
-						*outObject = FLReturnRetained(self);
+						*outObject = retain_(self);
 					}
 				}
 				
@@ -146,7 +146,7 @@
 	
 	if(outObject)
 	{
-		*outObject = FLReturnRetained([NSNull null]);
+		*outObject = retain_([NSNull null]);
 	}
 	
 	return NO;
@@ -171,7 +171,7 @@
 	
 	if(outObject)
 	{
-		*outObject = FLReturnRetained(self);
+		*outObject = retain_(self);
 	}
 	
 	FLDebugLog(@"opening data for NSNull failed by design");

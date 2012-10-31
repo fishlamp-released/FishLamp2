@@ -88,15 +88,15 @@
 
 - (void) dealloc
 {
-    FLRelease(__userGuid);
-    FLRelease(__userName);
-    FLRelease(__password);
-    FLRelease(__isAuthenticated);
-    FLRelease(__authToken);
-    FLRelease(__email);
-    FLRelease(__authTokenLastUpdateTime);
-    FLRelease(__userValue);
-    FLSuperDealloc();
+    mrc_release_(__userGuid);
+    mrc_release_(__userName);
+    mrc_release_(__password);
+    mrc_release_(__isAuthenticated);
+    mrc_release_(__authToken);
+    mrc_release_(__email);
+    mrc_release_(__authTokenLastUpdateTime);
+    mrc_release_(__userValue);
+    mrc_super_dealloc_();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder
@@ -123,14 +123,14 @@
 {
     if((self = [super init]))
     {
-        __userGuid = FLReturnRetained([aDecoder decodeObjectForKey:@"__userGuid"]);
-        __userName = FLReturnRetained([aDecoder decodeObjectForKey:@"__userName"]);
-        __password = FLReturnRetained([aDecoder decodeObjectForKey:@"__password"]);
-        __isAuthenticated = FLReturnRetained([aDecoder decodeObjectForKey:@"__isAuthenticated"]);
-        __authToken = FLReturnRetained([aDecoder decodeObjectForKey:@"__authToken"]);
-        __email = FLReturnRetained([aDecoder decodeObjectForKey:@"__email"]);
-        __authTokenLastUpdateTime = FLReturnRetained([aDecoder decodeObjectForKey:@"__authTokenLastUpdateTime"]);
-        __userValue = FLReturnRetained([aDecoder decodeObjectForKey:@"__userValue"]);
+        __userGuid = retain_([aDecoder decodeObjectForKey:@"__userGuid"]);
+        __userName = retain_([aDecoder decodeObjectForKey:@"__userName"]);
+        __password = retain_([aDecoder decodeObjectForKey:@"__password"]);
+        __isAuthenticated = retain_([aDecoder decodeObjectForKey:@"__isAuthenticated"]);
+        __authToken = retain_([aDecoder decodeObjectForKey:@"__authToken"]);
+        __email = retain_([aDecoder decodeObjectForKey:@"__email"]);
+        __authTokenLastUpdateTime = retain_([aDecoder decodeObjectForKey:@"__authTokenLastUpdateTime"]);
+        __userValue = retain_([aDecoder decodeObjectForKey:@"__userValue"]);
     }
     return self;
 }
@@ -197,7 +197,7 @@
 
 + (FLUserLogin*) userLogin
 {
-    return FLReturnAutoreleased([[FLUserLogin alloc] init]);
+    return autorelease_([[FLUserLogin alloc] init]);
 }
 
 @end

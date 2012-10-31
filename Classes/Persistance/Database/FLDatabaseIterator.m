@@ -48,7 +48,7 @@
 }
 
 + (id) databaseIterator:(FLDatabase*) database  table:(FLDatabaseTable*) table {
-	return FLReturnAutoreleased([[[self class] alloc] initWithDatabase:database table:table]);
+	return autorelease_([[[self class] alloc] initWithDatabase:database table:table]);
 }
 
 - (void) prepareStatement{
@@ -78,17 +78,17 @@
 		_statement = nil;
 	}
 	
-	FLReleaseWithNil(_lastRow);
-    FLReleaseWithNil(_database);
-    FLReleaseWithNil(_table);
+	FLReleaseWithNil_(_lastRow);
+    FLReleaseWithNil_(_database);
+    FLReleaseWithNil_(_table);
 }
 
 - (void) dealloc {
-    FLRelease(_database);
-    FLRelease(_table);
-	FLRelease(_lastRow);
+    mrc_release_(_database);
+    mrc_release_(_table);
+	mrc_release_(_lastRow);
 	FLAssertIsNil_(_statement);
-	FLSuperDealloc();
+	mrc_super_dealloc_();
 }
 
 - (void) buildRow {
@@ -151,10 +151,10 @@
 				}
 			}
 			
-			FLAssignObject(_lastRow, row);
+			FLRetainObject_(_lastRow, row);
 		}
 		@finally {
-			FLReleaseWithNil(row);
+			FLReleaseWithNil_(row);
 		}
 	}
 }
@@ -178,7 +178,7 @@
             }
         
 			FLAssertIsNotNil_(_database);
-			FLReleaseWithNil(_lastRow);
+			FLReleaseWithNil_(_lastRow);
 			
 			_stepValue = sqlite3_step(_statement);
 			switch(_stepValue) {
@@ -225,7 +225,7 @@
 	NSString* outString = nil;
 	const char* cstr = (const char*) sqlite3_column_text(_statement, col);
 	if(cstr) {
-		outString = FLReturnAutoreleased([[NSString alloc] initWithUTF8String:cstr]);
+		outString = autorelease_([[NSString alloc] initWithUTF8String:cstr]);
 	}
 	
 	return outString;
@@ -439,7 +439,7 @@
 //	
 //	NSMutableArray* objects = [[NSMutableArray alloc] initWithCapacity:table.columns.count];
 //	
-//	NSMutableString* sql = FLReturnAutoreleased([sqlStatement mutableCopy]);
+//	NSMutableString* sql = autorelease_([sqlStatement mutableCopy]);
 //	
 //	for(FLDatabaseColumn* col in table.columns.objectEnumerator) {
 //		if(col.isPrimaryKey) {
@@ -492,7 +492,7 @@
 //		}
 //	}
 //
-//	FLRelease(objects);
+//	mrc_release_(objects);
 //    
 //    // return NO if nothing to bind against. May or may not be an error, depending on context.
 //    return hasBoundData;
@@ -545,7 +545,7 @@
                 
 //                if(behavior && ![behavior didLoadObjectFromDatabaseCache:newObject]) {
 //                    [_objectDatabase deleteObject:newObject];
-//                    FLReleaseWithNil(newObject);
+//                    FLReleaseWithNil_(newObject);
 //                }
 //                
                 if(newObject) {
@@ -553,7 +553,7 @@
                 }
             }
             @finally {
-                FLRelease(newObject);
+                mrc_release_(newObject);
             }
         }
         didFinish:didFinishBlock];
@@ -564,7 +564,7 @@
 @implementation NSNumber (FLDatabaseIterator)
 - (void) bindToStatement:(FLDatabaseIterator*) statement parameterIndex:(int) parameterIndex {
 	
-    switch(CFNumberGetType(FLBridge(CFNumberRef, self))) {
+    switch(CFNumberGetType(bridge_(CFNumberRef, self))) {
 		case kCFNumberCGFloatType: 
 		case kCFNumberDoubleType:
 		case kCFNumberFloatType:

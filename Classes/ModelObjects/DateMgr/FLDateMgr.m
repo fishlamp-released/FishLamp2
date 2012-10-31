@@ -28,8 +28,8 @@ FLSynthesizeSingleton(FLDateMgr);
 
 - (void) dealloc
 {
-	FLRelease(_formatter);
-	FLSuperDealloc();
+	mrc_release_(_formatter);
+	mrc_super_dealloc_();
 }
 
 - (NSDate*) ISO8601StringToDate:(NSString*) string
@@ -39,7 +39,7 @@ FLSynthesizeSingleton(FLDateMgr);
 
 - (NSDate*) ISO3339StringToDate:(NSString*) string
 {
-//			    NSDateFormatter* rfc3339DateFormatter = FLReturnAutoreleased([[NSDateFormatter alloc] init]);
+//			    NSDateFormatter* rfc3339DateFormatter = autorelease_([[NSDateFormatter alloc] init]);
 //
 //				[rfc3339DateFormatter setLocale:[[[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"])];
 //				[rfc3339DateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZ"];

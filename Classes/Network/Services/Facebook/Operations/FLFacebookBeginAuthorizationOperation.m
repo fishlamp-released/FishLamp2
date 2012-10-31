@@ -19,7 +19,7 @@
 }
 
 + (id) facebookBeginAuthorizationOperation:(NSArray*) permissions {
-	return FLReturnAutoreleased([[FLFacebookBeginAuthorizationOperation alloc] initWithPermissions:permissions]);
+	return autorelease_([[FLFacebookBeginAuthorizationOperation alloc] initWithPermissions:permissions]);
 }
 
 

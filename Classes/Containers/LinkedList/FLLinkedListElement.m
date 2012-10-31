@@ -18,9 +18,9 @@
 
 #if FL_MRC
 - (void) dealloc {
-    FLRelease(_nextObjectInLinkedList);
-    FLRelease(_previousObjectInLinkedList);
-	FLSuperDealloc();
+    mrc_release_(_nextObjectInLinkedList);
+    mrc_release_(_previousObjectInLinkedList);
+	mrc_super_dealloc_();
 }
 #endif
 

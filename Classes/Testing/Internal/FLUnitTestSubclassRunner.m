@@ -39,7 +39,7 @@
     }];
     
     for(Class aClass in _classList) {
-        FLUnitTest* test = FLReturnAutoreleased([[[aClass class] alloc] init]);
+        FLUnitTest* test = autorelease_([[[aClass class] alloc] init]);
         [test discoverTestCases];
         [test runSynchronously];
     }

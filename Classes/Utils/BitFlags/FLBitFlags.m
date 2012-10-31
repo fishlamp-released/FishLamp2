@@ -40,7 +40,7 @@ NSString* FLBitFlagsDescription(FLBitFlags_t flags) {
 //}
 //
 //+ (FLBitFlags*) bitFlags:(FLBitFlags_t) flags {
-//    return FLReturnAutoreleased([[FLBitFlags alloc] initWithFlags:flags]);
+//    return autorelease_([[FLBitFlags alloc] initWithFlags:flags]);
 //}
 //
 //- (FLBitMask_t) testMask:(FLBitMask_t) mask {

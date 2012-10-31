@@ -35,27 +35,27 @@
 	
 	if(array) {
 		if(outputObject && array.count == 1) {
-			*outputObject = FLReturnRetained([array objectAtIndex:0]);
+			*outputObject = retain_([array objectAtIndex:0]);
 		}
 		else if(array.count > 1) {
-			FLRelease(array);
+			mrc_release_(array);
 			FLThrowErrorCode_v(FLObjectDatabaseErrorDomain, FLDatabaseErrorTooManyObjectsReturned,
                              ([NSString stringWithFormat:@"Too many objects returned for input object of type: %@", NSStringFromClass([inputObject class])]));
 		}
-		FLRelease(array);
+		mrc_release_(array);
 	}
 }
 
 - (id) loadObject:(id) inputObject {
 	id output = nil;
 	[self loadObject:inputObject outputObject:&output];
-	return FLReturnAutoreleased(output);
+	return autorelease_(output);
 }
 
 - (NSArray*) selectObjectsMatchingInputObject:(id) inputObject {
 	NSArray* array = nil;
 	[self selectObjectsMatchingInputObject:inputObject resultColumnNames:nil resultObjects:&array];
-	return FLReturnAutoreleased(array);
+	return autorelease_(array);
 }
 
 - (NSArray*) selectObjectsMatchingInputObject:(id) inputObject
@@ -63,7 +63,7 @@
 	NSArray* array = nil;
 	[self selectObjectsMatchingInputObject:inputObject resultColumnNames:resultColumnNames resultObjects:&array];
 
-	return FLReturnAutoreleased(array);
+	return autorelease_(array);
 }
 
 - (void) selectObjectsMatchingInputObject:(id) inputObject 
@@ -108,7 +108,7 @@
 		}
 		didFinish:^{
 			if(outObjects) {
-				*outObjects = FLReturnRetained(results);
+				*outObjects = retain_(results);
 			}
 		}
 	];
@@ -176,7 +176,7 @@
 		}
 		didFinish:^{
 			if(outObjects) {
-				*outObjects = FLReturnRetained(results);
+				*outObjects = retain_(results);
 			}
 		}
 	];
@@ -248,7 +248,7 @@
 }
 
 + (id) readObjectFromDatabase:(FLDatabase*) database withSearchValue:(id) value forKey:(id) key {
-    id objectInput = FLReturnAutoreleased([[[self class] alloc] init]);
+    id objectInput = autorelease_([[[self class] alloc] init]);
     
     if(objectInput) {
         [objectInput setValue:value forKey:key];

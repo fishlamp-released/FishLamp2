@@ -6,18 +6,28 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#if FL_ARC
-#define FLAutorelease(__v) 
-#define FLReturnAutoreleased(__v)   __v
-#define FLReturnRetained(__v)       __v
-#define FLRetain(__v) 
-#define FLRelease(__v) 
-#define FLSuperDealloc()
-#define FLReleaseBlockWithNil(b)    b = nil
-#define FLReleaseWithNil(b)         b = nil
-#define FLAssignObject(a,b)         a = b
-#define FLCopyObject(a,b)           a = [b copy]
-#define FLCopyBlock(__BLOCK__)      [__BLOCK__ copy]
+#if __has_feature(objc_arc)
+#define FL_ARC 1
+
+// object memory management
+#define mrc_autorelease_(__OBJ__)    
+#define mrc_retain_(__OBJ__) 
+#define mrc_release_(__OBJ__) 
+#define mrc_super_dealloc_()
+
+#define retain_(__OBJ__)                        __OBJ__
+#define autorelease_(__OBJ__)                   __OBJ__
+
+#define bridge_(__TO__, __FROM__)               ((__bridge __TO__) __FROM__)
+#define bridge_transfer_(__TO__, __FROM__)      ((__bridge_transfer __TO__) __FROM__)
+#define bridge_retain_(__TO__, __FROM__)        ((__bridge_retained __TO__) __FROM__)
+
+// arc utils
+#define FLReleaseBlockWithNil_(b)               b = nil
+#define FLReleaseWithNil_(b)                    b = nil
+#define FLRetainObject_(a,b)                    a = b
+#define FLCopyObject_(a,b)                      a = [b copy]
+#define FLCopyBlock(__BLOCK__)                  [__BLOCK__ copy]
 
 NS_INLINE
 void FLManuallyRelease(id* obj) {
@@ -27,21 +37,6 @@ void FLManuallyRelease(id* obj) {
     }
 }
 
-#define FLBridge(__TO_TYPE__, __FROM_REFERENCE__) \
-            ((__bridge __TO_TYPE__) __FROM_REFERENCE__)
-            
-#define FLBridgeTransfer(__TO_TYPE__, __FROM_REFERENCE__) \
-            ((__bridge_transfer __TO_TYPE__) __FROM_REFERENCE__)
-
-#define FLBridgeRetain(__TO_TYPE__, __FROM_REFERENCE__) \
-            ((__bridge_retained __TO_TYPE__) __FROM_REFERENCE__)
-
-#define FLBridgeTransferAutoreleased(__TO_TYPE__, __FROM_REFERENCE__) \
-            FLBridgeTransfer(__CAST_TO, __FROM_REFERENCE__)
-
-#define FLBridgeObject(__FROM_REFERENCE__) \
-            FLBridgeTransferAutoreleased(id, __FROM_REFERENCE__)
-
-
-
 #endif
+
+

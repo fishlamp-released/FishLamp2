@@ -74,13 +74,13 @@
 
 - (void) dealloc
 {
-    FLRelease(__userGuid);
-    FLRelease(__appName);
-    FLRelease(__oauth_token);
-    FLRelease(__oauth_token_secret);
-    FLRelease(__user_id);
-    FLRelease(__screen_name);
-    FLSuperDealloc();
+    mrc_release_(__userGuid);
+    mrc_release_(__appName);
+    mrc_release_(__oauth_token);
+    mrc_release_(__oauth_token_secret);
+    mrc_release_(__user_id);
+    mrc_release_(__screen_name);
+    mrc_super_dealloc_();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder
@@ -105,19 +105,19 @@
 {
     if((self = [super init]))
     {
-        __userGuid = FLReturnRetained([aDecoder decodeObjectForKey:@"__userGuid"]);
-        __appName = FLReturnRetained([aDecoder decodeObjectForKey:@"__appName"]);
-        __oauth_token = FLReturnRetained([aDecoder decodeObjectForKey:@"__oauth_token"]);
-        __oauth_token_secret = FLReturnRetained([aDecoder decodeObjectForKey:@"__oauth_token_secret"]);
-        __user_id = FLReturnRetained([aDecoder decodeObjectForKey:@"__user_id"]);
-        __screen_name = FLReturnRetained([aDecoder decodeObjectForKey:@"__screen_name"]);
+        __userGuid = retain_([aDecoder decodeObjectForKey:@"__userGuid"]);
+        __appName = retain_([aDecoder decodeObjectForKey:@"__appName"]);
+        __oauth_token = retain_([aDecoder decodeObjectForKey:@"__oauth_token"]);
+        __oauth_token_secret = retain_([aDecoder decodeObjectForKey:@"__oauth_token_secret"]);
+        __user_id = retain_([aDecoder decodeObjectForKey:@"__user_id"]);
+        __screen_name = retain_([aDecoder decodeObjectForKey:@"__screen_name"]);
     }
     return self;
 }
 
 + (FLOAuthSession*) oAuthSession
 {
-    return FLReturnAutoreleased([[FLOAuthSession alloc] init]);
+    return autorelease_([[FLOAuthSession alloc] init]);
 }
 
 + (FLObjectDescriber*) sharedObjectDescriber

@@ -58,7 +58,7 @@
             // <Foundation/NSKeyValueCoding.h>
 			id inflator = [self objectInflator];
 			
-			id object = FLReturnRetained([inflator valueForKey:state.key forObject:self]);
+			id object = retain_([inflator valueForKey:state.key forObject:self]);
 			if(!object) {
 				FLAssertIsNotNil_(prop.propertyClass);
 
@@ -75,7 +75,7 @@
 		
 			state.object = object;
             
-			FLRelease(object);
+			mrc_release_(object);
 		}
 		
 		return YES;
@@ -88,14 +88,14 @@
     NSError* error = nil;
     NSData* data = [NSData dataWithContentsOfFile:path options:NSDataReadingUncached error:&error];
     if(error) {
-        FLThrowError_(FLReturnAutoreleased(error));
+        FLThrowError_(autorelease_(error));
     }
 
     FLXmlParser* parser = [FLXmlParser xmlParser:data];
     parser.fileName = path;
     parser.saveParsePositions = YES;
     
-    id obj = FLReturnAutoreleased([[[self class] alloc] init]);
+    id obj = autorelease_([[[self class] alloc] init]);
     [parser buildObjects:obj];
     return obj;
 }
@@ -181,7 +181,7 @@
 // NOTE: removing it breaks the parsing, so whatever, but it still seems weird.
                     state.object = obj;
 
-					FLRelease(obj);
+					mrc_release_(obj);
 				}
 				return YES;
 			}
@@ -232,7 +232,7 @@
             }];
 		}
         @finally {
-			FLRelease(string);
+			mrc_release_(string);
 		}
 	}
 }
@@ -248,7 +248,7 @@
 			[self addElement:elementName value:string];
 		}
 		@finally {
-			FLRelease(string);
+			mrc_release_(string);
 		}
 	}
 }

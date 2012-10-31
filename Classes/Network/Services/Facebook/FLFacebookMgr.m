@@ -32,11 +32,11 @@ FLSynthesizeSingleton(FLFacebookMgr);
 
 - (void) dealloc
 {
-    FLRelease(_permissions);
-	FLRelease(_encodedToken);
-	FLRelease(_appId);
-	FLRelease(_session);
-	FLSuperDealloc();
+    mrc_release_(_permissions);
+	mrc_release_(_encodedToken);
+	mrc_release_(_appId);
+	mrc_release_(_session);
+	mrc_super_dealloc_();
 }
 
 // from facebook demo app
@@ -75,13 +75,13 @@ FLSynthesizeSingleton(FLFacebookMgr);
 		}
 #endif
 
-		NSString* escaped_value = FLBridgeTransferFromCFRefCopy(
+		NSString* escaped_value = autorelease_(bridge_transfer_(NSString*,
                                         CFURLCreateStringByAddingPercentEscapes(
                                             NULL, /* allocator */
-                                            FLBridgeToCFRef([params objectForKey:key]),
+                                            bridge_(void*,[params objectForKey:key]),
                                             NULL, /* charactersToLeaveUnescaped */
-                                            FLBridgeToCFRef(@"!*'();:@&=+$,/?%#[]"),
-                                            kCFStringEncodingUTF8));
+                                            bridge_(void*,@"!*'();:@&=+$,/?%#[]"),
+                                            kCFStringEncodingUTF8)));
 
 		[pairs addObject:[NSString stringWithFormat:@"%@=%@", key, escaped_value]];
 	}
@@ -137,8 +137,8 @@ FLSynthesizeSingleton(FLFacebookMgr);
 	FLFacebookNetworkSession* input = [FLFacebookNetworkSession facebookNetworkSession];
 	input.appId = self.appId;
 	[[FLUserSession instance].documentsDatabase deleteObject:input];
-	FLReleaseWithNil(_session);
-    FLReleaseWithNil(_encodedToken);
+	FLReleaseWithNil_(_session);
+    FLReleaseWithNil_(_encodedToken);
     
     [self clearFacebookCookies];
 
@@ -151,12 +151,12 @@ FLSynthesizeSingleton(FLFacebookMgr);
 		FLFacebookNetworkSession* input = [FLFacebookNetworkSession facebookNetworkSession];
 		input.appId = self.appId;
 		
-		FLAssignObject(_session, [[FLUserSession instance].documentsDatabase loadObject:input]);
+		FLRetainObject_(_session, [[FLUserSession instance].documentsDatabase loadObject:input]);
 		
 		if(_session && FLStringIsEmpty(_session.userId))
 		{
 			[[FLUserSession instance].documentsDatabase deleteObject:_session];
-			FLReleaseWithNil(_session);
+			FLReleaseWithNil_(_session);
 		}
 	}
 	
@@ -207,7 +207,7 @@ FLSynthesizeSingleton(FLFacebookMgr);
 
 - (void) setSession:(FLFacebookNetworkSession*) session
 {
-	FLAssignObject(_session, session);
+	FLRetainObject_(_session, session);
 
 	self.encodedToken = nil;
 	
@@ -226,7 +226,7 @@ FLSynthesizeSingleton(FLFacebookMgr);
 + (NSDictionary*)parseURLParams:(NSString *)query
 {
 	NSArray *pairs = [query componentsSeparatedByString:@"&"];
-	NSMutableDictionary *params = FLReturnAutoreleased([[NSMutableDictionary alloc] init]);
+	NSMutableDictionary *params = autorelease_([[NSMutableDictionary alloc] init]);
 	
 	for (NSString *pair in pairs) 
 	{
@@ -244,7 +244,7 @@ FLSynthesizeSingleton(FLFacebookMgr);
 {
 	if(!_encodedToken)
 	{
-		_encodedToken =  FLReturnRetained([self.session.access_token urlEncodeString:NSUTF8StringEncoding]);
+		_encodedToken =  retain_([self.session.access_token urlEncodeString:NSUTF8StringEncoding]);
 	}
 	return _encodedToken;
 }

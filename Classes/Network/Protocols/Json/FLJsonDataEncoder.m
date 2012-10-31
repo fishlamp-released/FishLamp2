@@ -54,7 +54,7 @@ FLSynthesizeSingleton(FLJsonDataEncoder);
 		case FLDataTypeFloat:
 		case FLDataTypeDouble:
 			FLAssert_v([data isKindOfClass:[NSNumber class]], @"expecting a NSNumber here");
-			*outString = FLReturnRetained([_numberFormatter stringFromNumber:data]);
+			*outString = retain_([_numberFormatter stringFromNumber:data]);
 		break;
 		
 		case FLDataTypeBool:
@@ -177,7 +177,7 @@ FLSynthesizeSingleton(FLJsonDataEncoder);
 				} 
 				else 
 				{
-					CFStringAppendCharacters(FLBridge(CFMutableStringRef, json), &c, 1);
+					CFStringAppendCharacters(bridge_(CFMutableStringRef, json), &c, 1);
 				}
 				break;
 				

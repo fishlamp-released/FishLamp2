@@ -45,8 +45,8 @@ FLSynthesizeSingleton(FLTempFileMgr);
 - (void) dealloc {
     FLSendDeallocNotification();
     [[FLUserSession instance] removeObserver:self];
-    FLRelease(_folder);
-    FLSuperDealloc();
+    mrc_release_(_folder);
+    mrc_super_dealloc_();
 }
 
 - (void) addFile:(id<FLAbstractFile>) file {
@@ -76,8 +76,8 @@ FLSynthesizeSingleton(FLTempFileMgr);
 
 - (void) setFolder:(FLFolder *)folder {
     @synchronized(self) {
-        FLAssignObject(_folder, folder);
-        FLReleaseWithNil(_files);
+        FLRetainObject_(_folder, folder);
+        FLReleaseWithNil_(_files);
     }
 }
 
@@ -111,7 +111,7 @@ FLSynthesizeSingleton(FLTempFileMgr);
         [self _removeNilFiles];
     
         if(purgeComplete) {
-            purgeComplete = FLReturnAutoreleased([purgeComplete copy]);
+            purgeComplete = autorelease_([purgeComplete copy]);
         }
         
         dispatch_async(

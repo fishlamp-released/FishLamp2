@@ -46,9 +46,9 @@
 
 - (void) dealloc
 {
-    FLRelease(__type);
-    FLRelease(__pictureSize);
-    FLSuperDealloc();
+    mrc_release_(__type);
+    mrc_release_(__pictureSize);
+    mrc_super_dealloc_();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder
@@ -59,7 +59,7 @@
 
 + (FLFacebookLoadUserPictureOperationInput*) facebookLoadUserPictureOperationInput
 {
-    return FLReturnAutoreleased([[FLFacebookLoadUserPictureOperationInput alloc] init]);
+    return autorelease_([[FLFacebookLoadUserPictureOperationInput alloc] init]);
 }
 
 - (id) init
@@ -74,8 +74,8 @@
 {
     if((self = [super init]))
     {
-        __type = FLReturnRetained([aDecoder decodeObjectForKey:@"__type"]);
-        __pictureSize = FLReturnRetained([aDecoder decodeObjectForKey:@"__pictureSize"]);
+        __type = retain_([aDecoder decodeObjectForKey:@"__type"]);
+        __pictureSize = retain_([aDecoder decodeObjectForKey:@"__pictureSize"]);
     }
     return self;
 }

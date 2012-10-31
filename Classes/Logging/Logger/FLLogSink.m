@@ -40,7 +40,7 @@ void FLConnectLoggerToExceptions() {
 }
 
 + (FLLogSink*) logSink:(FLLogSinkOutputFlags) outputFlags {
-    return FLReturnAutoreleased([[[self class] alloc] initWithLogSinkOutputFlags:outputFlags]);
+    return autorelease_([[[self class] alloc] initWithLogSinkOutputFlags:outputFlags]);
 }
 
 - (void) openEntry {

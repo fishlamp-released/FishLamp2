@@ -62,14 +62,14 @@ FLSynthesizeSingleton(FLSoapNetworkOperationResponseHandler);
 			
 	//			  [soapFault inflateWithFaucet:soapParser];
 			
-				error = FLReturnAutoreleased([[NSError alloc] initWithSoapFault:soapFault]);
+				error = autorelease_([[NSError alloc] initWithSoapFault:soapFault]);
 				
 				FLDebugLog(@"Got Soap Fault:\n%@", [soapFault description]);
 			}
 			@finally
 			{
-				FLRelease(soapParser);
-				FLRelease(soapFault);
+				mrc_release_(soapParser);
+				mrc_release_(soapFault);
 			}
 		}
 	}
@@ -83,7 +83,7 @@ FLSynthesizeSingleton(FLSoapNetworkOperationResponseHandler);
 		[soapParser buildObjects:object];
 	}
 	@finally {
-		FLRelease(soapParser);
+		mrc_release_(soapParser);
 	}
 }
 

@@ -68,15 +68,15 @@
 
 - (void) dealloc
 {
-    FLRelease(__appId);
-    FLRelease(__apiKey);
-    FLRelease(__consumerKey);
-    FLRelease(__consumerSecret);
-    FLRelease(__requestTokenUrl);
-    FLRelease(__accessTokenUrl);
-    FLRelease(__authorizeUrl);
-    FLRelease(__callback);
-    FLSuperDealloc();
+    mrc_release_(__appId);
+    mrc_release_(__apiKey);
+    mrc_release_(__consumerKey);
+    mrc_release_(__consumerSecret);
+    mrc_release_(__requestTokenUrl);
+    mrc_release_(__accessTokenUrl);
+    mrc_release_(__authorizeUrl);
+    mrc_release_(__callback);
+    mrc_super_dealloc_();
 }
 
 - (id) init
@@ -89,7 +89,7 @@
 
 + (FLOAuthApp*) oAuthApp
 {
-    return FLReturnAutoreleased([[FLOAuthApp alloc] init]);
+    return autorelease_([[FLOAuthApp alloc] init]);
 }
 
 + (FLObjectDescriber*) sharedObjectDescriber

@@ -16,7 +16,7 @@ static NSString* s_defaultUserAgent = nil;
 
 + (void) setDefaultUserAgent:(NSString*) userAgent
 {
-	FLAssignObject(s_defaultUserAgent, userAgent);
+	FLRetainObject_(s_defaultUserAgent, userAgent);
 }
 
 + (NSString*) defaultUserAgent
@@ -51,7 +51,7 @@ static NSString* s_defaultUserAgent = nil;
     [builder appendLine:@"Body:"];
 	
 	NSData* data = [self HTTPBody];
-	NSString* stringData = FLReturnAutoreleased([[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+	NSString* stringData = autorelease_([[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
 	if(stringData) {
         [builder appendIndentedBlock:^{
             [builder appendLine:stringData];
@@ -114,7 +114,7 @@ static NSString* s_defaultUserAgent = nil;
 {
 	NSString* contentLength = [[NSString alloc] initWithFormat:@"%llu", length];
 	[self setHeader:@"Content-Length" data:contentLength];
-	FLReleaseWithNil(contentLength);
+	FLReleaseWithNil_(contentLength);
 }
 
 - (void) setContentWithData:(NSData*) content
@@ -139,13 +139,11 @@ static NSString* s_defaultUserAgent = nil;
 {
 	unsigned long long fileSize = 0;
 	NSError* err = 0;
-	if([NSFileManager getFileSize:path outSize:&fileSize outError:&err])
-	{
-		FLAutorelease(err);
-		FLThrowError_(err);
+	if([NSFileManager getFileSize:path outSize:&fileSize outError:&err]) {
+		FLThrowError_(autorelease_(err));
 	}
 
-	NSInputStream* stream = FLReturnAutoreleased([[NSInputStream alloc] initWithFileAtPath:path]);
+	NSInputStream* stream = autorelease_([[NSInputStream alloc] initWithFileAtPath:path]);
 	[self setContentWithInputStream:stream
         typeContentHeader:typeContentHeader 
 		inputSize:fileSize];

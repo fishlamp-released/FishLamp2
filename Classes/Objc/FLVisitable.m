@@ -131,13 +131,13 @@
         @synchronized(self) {
             iterationList = self.iterationList;
             if(!iterationList && _children) {
-                iterationList = FLReturnAutoreleased([_children copy]);
+                iterationList = autorelease_([_children copy]);
                 self.iterationList = iterationList;
             }
         }
     }
     
-    return FLReturnAutoreleased(FLReturnRetained(iterationList));
+    return autorelease_(retain_(iterationList));
 }
 
 - (BOOL) visit:(void (^)(id object, BOOL* stop)) visitor {

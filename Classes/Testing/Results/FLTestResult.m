@@ -64,7 +64,7 @@
 @dynamic expectedCount;
 
 + (FLCountedTestResult*) countedTestResult:(NSUInteger) expectedCount {
-    return FLReturnAutoreleased([[[self class] alloc] initWithExpectedCount:expectedCount]);
+    return autorelease_([[[self class] alloc] initWithExpectedCount:expectedCount]);
 }
 
 @end

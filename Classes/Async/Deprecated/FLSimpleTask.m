@@ -19,7 +19,7 @@
 #if ! FL_ARC
 	[_target performSelectorOnMainThread:@selector(release) withObject:nil waitUntilDone:NO];
 #endif    
-	FLSuperDealloc();
+	mrc_super_dealloc_();
 }
 
 - (void) _performInForeground
@@ -32,7 +32,7 @@
         });
     }
     @finally {
-        FLReleaseWithNil(_target);
+        FLReleaseWithNil_(_target);
     }
 }
 
@@ -51,7 +51,7 @@
 	backgroundAction:(SEL) backgroundAction 
 	foregroundAction:(SEL) foregroundAction
 {
-	_target = FLReturnRetained(target);
+	_target = retain_(target);
 	_backgroundAction = backgroundAction;
 	_foregroundAction = foregroundAction;
 

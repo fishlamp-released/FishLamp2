@@ -27,7 +27,7 @@ static NSString* s_defaultUserAgent = @"FishLamp3;";
 @synthesize requestHeaders = _requestHeaders;
 
 + (void) setDefaultUserAgent:(NSString*) userAgent {
-    FLAssignObject(s_defaultUserAgent, userAgent);
+    FLRetainObject_(s_defaultUserAgent, userAgent);
 }
 
 - (id) initWithURL:(NSURL*) url  {
@@ -36,8 +36,8 @@ static NSString* s_defaultUserAgent = @"FishLamp3;";
 
 -(id) initWithURL:(NSURL*) url requestMethod:(NSString*) requestMethod {
     if((self = [super init])) {
-        _url = FLReturnRetained(url);
-        _requestMethod = FLReturnRetained(requestMethod);
+        _url = retain_(url);
+        _requestMethod = retain_(requestMethod);
         _requestHeaders = [[NSMutableDictionary alloc] init];
         
         [self setDefaultUserAgentHeader];
@@ -55,24 +55,24 @@ static NSString* s_defaultUserAgent = @"FishLamp3;";
 }
 
 + (id) httpRequestWithURL:(NSURL*) url {
-    return FLReturnAutoreleased([[[self class] alloc] initWithURL:url]);
+    return autorelease_([[[self class] alloc] initWithURL:url]);
 }
 
 + (id) httpRequestWithURL:(NSURL*) url requestMethod:(NSString*) requestMethod {
-    return FLReturnAutoreleased([[[self class] alloc] initWithURL:url requestMethod:requestMethod]);
+    return autorelease_([[[self class] alloc] initWithURL:url requestMethod:requestMethod]);
 }
 
 - (void) dealloc  {
-    FLRelease(_postData);
-    FLRelease(_requestMethod);
-    FLRelease(_url);
-    FLRelease(_postBodyFilePath);
-    FLRelease(_requestHeaders);
-    FLSuperDealloc();
+    mrc_release_(_postData);
+    mrc_release_(_requestMethod);
+    mrc_release_(_url);
+    mrc_release_(_postBodyFilePath);
+    mrc_release_(_requestHeaders);
+    mrc_super_dealloc_();
 }
 
 - (void) appendPostData:(NSData*) data {
-    FLAssignObject(_postData, data);
+    FLRetainObject_(_postData, data);
 }
 
 - (void) addRequestHeader:(NSString*) headerName value:(NSString*) value {
@@ -87,7 +87,7 @@ static NSString* s_defaultUserAgent = @"FishLamp3;";
         
         if(err)
         {
-           FLThrowError_(FLReturnAutoreleased(err));
+           FLThrowError_(autorelease_(err));
         }
     }
     else if (_postData)
@@ -166,7 +166,7 @@ static NSString* s_defaultUserAgent = @"FishLamp3;";
 -(void) setContentLengthHeader:(unsigned long long) length {
 	NSString* contentLength = [[NSString alloc] initWithFormat:@"%llu", length];
 	[self setHeader:@"Content-Length" data:contentLength];
-	FLReleaseWithNil(contentLength);
+	FLReleaseWithNil_(contentLength);
 }
 
 - (void) setContentWithData:(NSData*) content

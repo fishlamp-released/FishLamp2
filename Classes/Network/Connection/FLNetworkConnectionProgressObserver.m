@@ -32,23 +32,23 @@
     [self performBlockOnMainThread:^{
         if(_progress) {
             [_progress hideProgress];
-            FLReleaseWithNil(_progress);
+            FLReleaseWithNil_(_progress);
         }
     }];
 }
 
 + (FLNetworkConnectionProgressObserver*) networkConnectionProgressObserver {
-    return FLReturnAutoreleased([[[self class] alloc] init]);   
+    return autorelease_([[[self class] alloc] init]);   
 }
 
 #if FL_MRC
 - (void) dealloc {
-    FLRelease(_onCreateProgress);
+    mrc_release_(_onCreateProgress);
     if(_progress) {
         [_progress hideProgress];
-        FLRelease(_progress);
+        mrc_release_(_progress);
     }
-    FLSuperDealloc();   
+    mrc_super_dealloc_();   
 }
 #endif
 

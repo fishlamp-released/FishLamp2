@@ -85,8 +85,8 @@
 - (void)dealloc 
 {
 	[self cancel];
-	FLReleaseWithNil(_operations);
-	FLSuperDealloc();
+	FLReleaseWithNil_(_operations);
+	mrc_super_dealloc_();
 }
 
 @end

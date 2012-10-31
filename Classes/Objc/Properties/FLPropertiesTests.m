@@ -23,7 +23,7 @@
 //CFRelease(ptr);
 
 + (void) addTestCasesToSanityChecks:(NSMutableArray*) array {
-//    [array addObject:FLReturnAutoreleased([FLCriticalWeakRefTest new])];
+//    [array addObject:autorelease_([FLCriticalWeakRefTest new])];
 }
 
 @end

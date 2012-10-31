@@ -32,8 +32,8 @@
 - (void) setTableName:(NSString*) tableName {
     FLAssertStringIsNotEmpty_(tableName);
 	
-    FLAssignObject(_tableName, FLDatabaseNameEncode(tableName));
-	FLAssignObject(_decodedTableName, FLDatabaseNameDecode(_tableName));
+    FLRetainObject_(_tableName, FLDatabaseNameEncode(tableName));
+	FLRetainObject_(_decodedTableName, FLDatabaseNameDecode(_tableName));
     _tableClass = NSClassFromString(_decodedTableName);
 }
 
@@ -47,7 +47,7 @@
 }
 
 + (FLDatabaseTable*) databaseTableWithTableName:(NSString*) tableName {
-	return FLReturnAutoreleased([[FLDatabaseTable alloc] initWithTableName:tableName]);
+	return autorelease_([[FLDatabaseTable alloc] initWithTableName:tableName]);
 }
 
 - (NSArray*) primaryKeyColumns {
@@ -83,13 +83,13 @@
 }
 
 - (void) dealloc {
-    FLRelease(_primaryKeyColumns);
-    FLRelease(_indexedColumns);
-	FLRelease(_decodedTableName);
-	FLRelease(_indexes);
-	FLRelease(_tableName);
-	FLRelease(_columns);
-	FLSuperDealloc();
+    mrc_release_(_primaryKeyColumns);
+    mrc_release_(_indexedColumns);
+	mrc_release_(_decodedTableName);
+	mrc_release_(_indexes);
+	mrc_release_(_tableName);
+	mrc_release_(_columns);
+	mrc_super_dealloc_();
 }
 
 - (void) addIndex:(FLDatabaseIndex*) databaseIndex {
@@ -108,7 +108,7 @@
 	
 	[[self.columns objectForKey:databaseIndex.columnName] setIndexed:YES];
     
-    FLReleaseWithNil(_indexedColumns);
+    FLReleaseWithNil_(_indexedColumns);
 }
 
 - (NSArray*) indexesForColumn:(NSString*) columnName {	
@@ -211,7 +211,7 @@
 }
 
 - (id) databaseTableWithClass:(Class) aClass {
-	return FLReturnAutoreleased([[FLDatabaseTable alloc] initWithClass:aClass]);
+	return autorelease_([[FLDatabaseTable alloc] initWithClass:aClass]);
 }
 
 - (id) copyWithZone:(NSZone *)zone {

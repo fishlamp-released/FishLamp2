@@ -49,11 +49,11 @@ FLSynthesizeSingleton(FLSoapDataEncoder);
 		case FLDataTypeDouble:
 		case FLDataTypeBool:
 			FLAssert_v([data isKindOfClass:[NSNumber class]], @"expecting a NSNumber here");
-			*outString = FLReturnRetained([_numberFormatter stringFromNumber:data]);
+			*outString = retain_([_numberFormatter stringFromNumber:data]);
 		break;
 		
 		case FLDataTypeString:
-			*outString = FLReturnRetained([data xmlEncode]);
+			*outString = retain_([data xmlEncode]);
 		break;
 		
 		case FLDataTypeData:
@@ -63,19 +63,19 @@ FLSynthesizeSingleton(FLSoapDataEncoder);
 		break;
 		
 		case FLDataTypeDate:
-			*outString = FLReturnRetained([[FLDateMgr instance] ISO8601DateToString:(NSDate*) data]); 
+			*outString = retain_([[FLDateMgr instance] ISO8601DateToString:(NSDate*) data]); 
 		break;
 	
         case FLDataTypePoint:
-            *outString = FLReturnRetained(NSStringFromFLPoint([data FLPointValue]));
+            *outString = retain_(NSStringFromFLPoint([data FLPointValue]));
             break;
             
         case FLDataTypeRect:
-            *outString = FLReturnRetained(NSStringFromFLRect([data FLRectValue]));
+            *outString = retain_(NSStringFromFLRect([data FLRectValue]));
             break;
 
         case FLDataTypeSize:
-            *outString = FLReturnRetained(NSStringFromFLSize([data FLSizeValue]));
+            *outString = retain_(NSStringFromFLSize([data FLSizeValue]));
             break;
 
         case FLDataTypeValue:
@@ -84,11 +84,11 @@ FLSynthesizeSingleton(FLSoapDataEncoder);
             break;
     
         case FLDataTypeColor:
-            *outString = FLReturnRetained([data toRgbString]);
+            *outString = retain_([data toRgbString]);
         break;
      
         case FLDataTypeURL:
-            *outString = FLReturnRetained([data absoluteString]); 
+            *outString = retain_([data absoluteString]); 
         break;
     }
 } 
@@ -115,7 +115,7 @@ FLSynthesizeSingleton(FLSoapDataEncoder);
 		case FLDataTypeDouble: {
 			NSNumber* number = [_numberFormatter numberFromString:encodedDataString];
 			if(number) {
-				*outDecodedObject = FLReturnRetained(number);
+				*outDecodedObject = retain_(number);
 			}
 		}
 		break;
@@ -129,31 +129,31 @@ FLSynthesizeSingleton(FLSoapDataEncoder);
 		break;
 		
 		case FLDataTypeDate:
-			*outDecodedObject = FLReturnRetained([[FLDateMgr instance] ISO8601StringToDate:encodedDataString]);
+			*outDecodedObject = retain_([[FLDateMgr instance] ISO8601StringToDate:encodedDataString]);
 		break;
 	
 		case FLDataTypeString:
-			*outDecodedObject = FLReturnRetained([encodedDataString xmlDecode]);
+			*outDecodedObject = retain_([encodedDataString xmlDecode]);
 		break;
         
         case FLDataTypeColor:
-            *outDecodedObject = FLReturnRetained([FLColor colorWithRgbString:encodedDataString]);
+            *outDecodedObject = retain_([FLColor colorWithRgbString:encodedDataString]);
         break;
 	
         case FLDataTypePoint:
-            *outDecodedObject = FLReturnRetained([NSValue valueWithFLPoint:FLPointFromString(encodedDataString)]);
+            *outDecodedObject = retain_([NSValue valueWithFLPoint:FLPointFromString(encodedDataString)]);
             break;
             
         case FLDataTypeRect:
-            *outDecodedObject = FLReturnRetained([NSValue valueWithFLRect:FLRectFromString(encodedDataString)]);
+            *outDecodedObject = retain_([NSValue valueWithFLRect:FLRectFromString(encodedDataString)]);
             break;
         
         case FLDataTypeSize:
-            *outDecodedObject = FLReturnRetained([NSValue valueWithFLSize:FLSizeFromString(encodedDataString)]);
+            *outDecodedObject = retain_([NSValue valueWithFLSize:FLSizeFromString(encodedDataString)]);
             break;
         
         case FLDataTypeURL:
-            *outDecodedObject = FLReturnRetained([[NSURL alloc] initWithString:encodedDataString]);
+            *outDecodedObject = retain_([[NSURL alloc] initWithString:encodedDataString]);
             break;
         
         case FLDataTypeValue:

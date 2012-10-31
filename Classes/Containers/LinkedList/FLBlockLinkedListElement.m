@@ -13,13 +13,13 @@
 @synthesize block = _block; 
 
 + (FLBlockLinkedListElement*) blockLinkedListElement {
-    return FLReturnAutoreleased([[[self class] alloc] init]);   
+    return autorelease_([[[self class] alloc] init]);   
 }
 
 #if FL_MRC 
 - (void) dealloc {
-    FLRelease(_block);
-    FLSuperDealloc();
+    mrc_release_(_block);
+    mrc_super_dealloc_();
 }
 #endif
 

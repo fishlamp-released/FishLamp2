@@ -31,7 +31,7 @@
 }
 
 + (FLByteBuffer*) byteBuffer {
-    return FLReturnAutoreleased([[[self class] alloc] init]);
+    return autorelease_([[[self class] alloc] init]);
 }
 
 - (BOOL) isFull {
@@ -108,7 +108,7 @@ FLAssertDefaultInitNotCalled_();
 }
 
 + (FLByteBuffer*) byteBuffer:(NSUInteger) length {
-    return FLReturnAutoreleased([[FLAllocatedByteBuffer alloc] initWithCapacity:length]);
+    return autorelease_([[FLAllocatedByteBuffer alloc] initWithCapacity:length]);
 }
 
 - (void) dealloc {
@@ -116,7 +116,7 @@ FLAssertDefaultInitNotCalled_();
         free(_buffer);
         _buffer = nil;
     }
-    FLSuperDealloc();
+    mrc_super_dealloc_();
 }
 
 @end

@@ -30,7 +30,7 @@
         }   
         
         _message = CFHTTPMessageCreateRequest(kCFAllocatorDefault, 
-            FLBridgeToCFRef(requestMethod), FLBridgeToCFRef(url), kCFHTTPVersion1_1);
+            bridge_(void*,requestMethod), bridge_(void*,url), kCFHTTPVersion1_1);
     }
     return self;
 }
@@ -40,33 +40,33 @@
 }
 
 - (NSData*) bodyData {
-    return FLBridgeTransferFromCFRefCopy(CFHTTPMessageCopyBody(_message));
+    return autorelease_(bridge_transfer_(NSData*,CFHTTPMessageCopyBody(_message)));
 }
 
 - (void) setBodyData:(NSData*) bodyData {
-    CFHTTPMessageSetBody(_message, FLBridgeToCFRef(bodyData));
+    CFHTTPMessageSetBody(_message, bridge_(void*,bodyData));
 }
 
 - (void) setHeader:(NSString*) header value:(NSString*) value {
-    CFHTTPMessageSetHeaderFieldValue(_message, FLBridgeToCFRef(header), FLBridgeToCFRef(value));
+    CFHTTPMessageSetHeaderFieldValue(_message, bridge_(void*,header), bridge_(void*,value));
 }
 
 - (NSString*) valueForHeader:(NSString*) header {
-    return FLBridgeTransferFromCFRefCopy(
-                CFHTTPMessageCopyHeaderFieldValue(_message, FLBridgeToCFRef(header)));
+    return autorelease_(bridge_transfer_(NSString*,
+                CFHTTPMessageCopyHeaderFieldValue(_message, bridge_(void*,header))));
 }
 
 - (NSString*) httpVersion {
-    return FLBridgeTransferFromCFRefCopy(CFHTTPMessageCopyVersion(_message));
+    return autorelease_(bridge_transfer_(NSString*,CFHTTPMessageCopyVersion(_message)));
 }
 
 - (NSDictionary*) allHeaders {
-    return FLBridgeTransferFromCFRefCopy(CFHTTPMessageCopyAllHeaderFields(_message));
+    return autorelease_(bridge_transfer_(NSDictionary*,CFHTTPMessageCopyAllHeaderFields(_message)));
 }
 
 - (void) dealloc {
-    FLReleaseCFRef(_message);
-    FLSuperDealloc();
+    FLReleaseCRef_(_message);
+    mrc_super_dealloc_();
 }
 
 - (id) initWithHttpMessageRef:(CFHTTPMessageRef) ref {
@@ -81,11 +81,11 @@
 } 
 
 + (id) httpMessageWithHttpMessageRef:(CFHTTPMessageRef) ref {
-    return FLReturnAutoreleased([[[self class] alloc] initWithHttpMessageRef:ref]);
+    return autorelease_([[[self class] alloc] initWithHttpMessageRef:ref]);
 }
 
 + (id) httpMessageWithURL:(NSURL*) url requestMethod:(NSString*) requestMethodOrNil {
-    return FLReturnAutoreleased([[[self class] alloc] initWithURL:url requestMethod:requestMethodOrNil]);
+    return autorelease_([[[self class] alloc] initWithURL:url requestMethod:requestMethodOrNil]);
 }
 
 - (id)copyWithZone:(NSZone *)zone {
@@ -101,11 +101,11 @@
 }
 
 - (NSURL*) requestURL {
-    return FLBridgeTransferFromCFRefCopy(CFHTTPMessageCopyRequestURL(_message));
+    return autorelease_(bridge_transfer_(NSURL*,CFHTTPMessageCopyRequestURL(_message)));
 }
 
 - (NSString*) requestMethod {
-    return FLBridgeTransferFromCFRefCopy(CFHTTPMessageCopyRequestMethod(_message));
+    return autorelease_(bridge_transfer_(NSString*,CFHTTPMessageCopyRequestMethod(_message)));
 }
 
 - (NSInteger) responseStatusCode {
@@ -113,7 +113,7 @@
 }
 
 - (NSString*) responseStatusLine {
-    return FLBridgeTransferFromCFRefCopy(CFHTTPMessageCopyResponseStatusLine(_message));
+    return autorelease_(bridge_transfer_(NSString*,CFHTTPMessageCopyResponseStatusLine(_message)));
 }
 
 - (void) setHeaders:(NSDictionary*) headers {

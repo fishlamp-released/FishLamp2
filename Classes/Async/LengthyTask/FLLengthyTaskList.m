@@ -87,8 +87,8 @@
 }
 
 - (void) dealloc {
-	FLRelease(_taskList);
-	FLSuperDealloc();
+	mrc_release_(_taskList);
+	mrc_super_dealloc_();
 }
 
 - (void) addLengthyTask:(FLLengthyTask*) task {

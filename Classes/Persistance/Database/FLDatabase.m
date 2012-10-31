@@ -80,15 +80,15 @@ static FLDatabaseColumnDecoder s_decoder = nil;
 #endif
 
 	FLAssertIsNil_v(_database, nil);
-	FLRelease(_filePath);
-	FLSuperDealloc();
+	mrc_release_(_filePath);
+	mrc_super_dealloc_();
 }
 
 - (void) deleteOnDisk {
 	NSError* error = nil;
 	[[NSFileManager defaultManager] removeItemAtPath:[self filePath] error:&error];
     if(error) {
-        FLThrowError_(FLReturnAutoreleased(error));
+        FLThrowError_(autorelease_(error));
     }
 }
 
@@ -101,7 +101,7 @@ static FLDatabaseColumnDecoder s_decoder = nil;
 	NSError* error = nil;
 	[NSFileManager getFileSize:self.filePath outSize:&size outError:&error];
     if(error){
-        FLThrowError_(FLReturnAutoreleased(error));
+        FLThrowError_(autorelease_(error));
     }
 
 	return size;
@@ -192,7 +192,7 @@ static FLDatabaseColumnDecoder s_decoder = nil;
 		}
 		
 		_database = nil;
-        FLReleaseWithNil(_tables);
+        FLReleaseWithNil_(_tables);
 	}
 }
 
@@ -249,8 +249,8 @@ static FLDatabaseColumnDecoder s_decoder = nil;
 - (void) beginAsyncBlock:(void(^)(FLDatabase*)) asyncBlock
               errorBlock:(void(^)(FLDatabase*, NSError*)) errorBlock
 {
-    asyncBlock = FLReturnAutoreleased([asyncBlock copy]);
-    errorBlock = FLReturnAutoreleased([errorBlock copy]);
+    asyncBlock = autorelease_([asyncBlock copy]);
+    errorBlock = autorelease_([errorBlock copy]);
 
     dispatch_async(
         dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), 

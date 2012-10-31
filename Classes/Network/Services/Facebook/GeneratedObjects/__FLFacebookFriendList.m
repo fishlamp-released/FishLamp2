@@ -40,8 +40,8 @@
 
 - (void) dealloc
 {
-    FLRelease(__friends);
-    FLSuperDealloc();
+    mrc_release_(__friends);
+    mrc_super_dealloc_();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder
@@ -52,7 +52,7 @@
 
 + (FLFacebookFriendList*) facebookFriendList
 {
-    return FLReturnAutoreleased([[FLFacebookFriendList alloc] init]);
+    return autorelease_([[FLFacebookFriendList alloc] init]);
 }
 
 - (id) init

@@ -24,7 +24,7 @@
     return self;
 }
 + (id) blockWorker:(FLAsyncBlock) block {
-    return FLReturnAutoreleased([[[self class] alloc] initWithWorkerBlock:block]);
+    return autorelease_([[[self class] alloc] initWithWorkerBlock:block]);
 }
 
 #if FL_MRC

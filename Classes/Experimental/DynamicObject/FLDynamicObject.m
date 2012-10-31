@@ -47,11 +47,11 @@
 }
 
 + (id) dynamicObject:(NSMutableDictionary*) dictionary {
-    return FLReturnAutoreleased([[[self class] alloc] initWithDictionary:dictionary]);
+    return autorelease_([[[self class] alloc] initWithDictionary:dictionary]);
 }
 
 + (id) dynamicObject {
-    return FLReturnAutoreleased([[[self class] alloc] init]);
+    return autorelease_([[[self class] alloc] init]);
 }
 
 - (id) init {
@@ -67,8 +67,8 @@
 //}
 
 - (void) dealloc {
-    FLRelease(_dataDictionary);
-    FLSuperDealloc();
+    mrc_release_(_dataDictionary);
+    mrc_super_dealloc_();
 }   
 
 //- (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state objects:(id __unsafe_unretained [])buffer count:(NSUInteger)len {

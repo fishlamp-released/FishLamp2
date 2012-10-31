@@ -21,7 +21,7 @@
 			[outArray addObject:name];
 		}
 	}
-	FLRelease(rows);
+	mrc_release_(rows);
 	
 	return outArray;
 }
@@ -38,7 +38,7 @@
 	for(NSDictionary* row in rows) {
 		[info setObject:row forKey:[row objectForKey:@"name"]];
 	}
-	FLRelease(rows);
+	mrc_release_(rows);
 	
 	return info;
 }
@@ -46,13 +46,13 @@
 - (NSArray*) indexesForTableNamed:(NSString*) tableName {
 	NSArray* rows = nil; 
 	[self runQueryWithString:[NSString stringWithFormat:@"PRAGMA index_list(%@)", tableName] outRows:&rows];
-	return FLReturnAutoreleased(rows);
+	return autorelease_(rows);
 }
 
 - (NSArray*) detailsForIndexedNamed:(NSString*) indexName {
 	NSArray* rows = nil; 
 	[self runQueryWithString:[NSString stringWithFormat:@"PRAGMA index_info(%@)", indexName] outRows:&rows];
-	return FLReturnAutoreleased(rows);
+	return autorelease_(rows);
 }
 
 - (NSUInteger) tableCount {

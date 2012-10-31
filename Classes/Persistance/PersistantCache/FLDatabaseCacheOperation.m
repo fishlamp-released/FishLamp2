@@ -21,7 +21,7 @@
 		FLAssertIsNotNil_v(cache, nil);
 		FLAssertIsNotNil_v(object, nil);
 		
-		_cache = FLReturnRetained(cache);
+		_cache = retain_(cache);
 		self.input = object;
 		self.operation = operation;
 	}
@@ -58,14 +58,14 @@
 		}
 	}
 	@finally {
-		FLReleaseWithNil(output);
+		FLReleaseWithNil_(output);
 	}
 }
 
 - (void) dealloc
 {
-	FLRelease(_cache);
-	FLSuperDealloc();
+	mrc_release_(_cache);
+	mrc_super_dealloc_();
 }
 
 @end

@@ -37,21 +37,15 @@
 @synthesize resolvedAddressStrings = _resolvedAddressStrings;
 @synthesize resolvedHostNames = _resolvedHostNames;
 
-- (void) _failIfInvalidHost {
-    if(!_hostRef) {
-        FLAutorelease(self);
-        FLConfirmIsNotNil_(_hostRef);
-    }
-}
-
 - (id) initWithName:(NSString*) name {
     self = [super init];
     if(self) {
-        FLAssertStringIsNotEmpty_v(name, nil);
-        
+        FLAssertStringIsNotEmpty_(name);
+        _hostRef = CFHostCreateWithName(nil, bridge_(CFStringRef, name));
+        if(!_hostRef) {
+            return nil;
+        }
         self.hostName = name;
-        _hostRef = CFHostCreateWithName(nil, FLBridgeToCFRef(name) );
-        [self _failIfInvalidHost];
     }
     
     return self;
@@ -60,9 +54,11 @@
 - (id) initWithAddress:(NSData*) address {
     self = [super init];
     if(self) {
+        _hostRef = CFHostCreateWithAddress(NULL, bridge_(CFDataRef, address));
+        if(!_hostRef) {
+            return nil;
+        }
         self.addressData = address;
-        _hostRef = CFHostCreateWithAddress(NULL, FLBridgeToCFRef(address));
-        [self _failIfInvalidHost];
     }
     
     return self;
@@ -83,39 +79,48 @@
         template.ai_flags = AI_NUMERICHOST | AI_NUMERICSERV;
         int err = getaddrinfo([addressString UTF8String], NULL, &template, &result);
 
+        NSData* data = nil;
+
         if (err == 0) {
-            self.addressData = [NSData dataWithBytes:result->ai_addr length:result->ai_addrlen];
+            data = [NSData dataWithBytes:result->ai_addr length:result->ai_addrlen];
+        }
+        
+        if(result) {
             freeaddrinfo(result);
         }
         
-        if(self.addressData) {
-            _hostRef = CFHostCreateWithAddress(NULL, FLBridgeToCFRef(self.addressData));
+        if(data) {
+            _hostRef = CFHostCreateWithAddress(NULL, bridge_(CFDataRef, data));
         }
         
-        [self _failIfInvalidHost];
-
+        if(!_hostRef) {
+            return nil;
+        }
+        
+        self.addressData = data;
+        
     }
     
     return self;
 }
 
 + (FLNetworkHost*) networkHostWithName:(NSString*) name {
-    return FLReturnAutoreleased([[FLNetworkHost alloc] initWithName:name]);
+    return autorelease_([[FLNetworkHost alloc] initWithName:name]);
 }
 
 + (FLNetworkHost*) networkHostWithAddress:(NSData*) data {
-    return FLReturnAutoreleased([[FLNetworkHost alloc] initWithAddress:data]);
+    return autorelease_([[FLNetworkHost alloc] initWithAddress:data]);
 }
 
 + (FLNetworkHost*) networkHostWithAddressString:(NSString*) addressString {
-    return FLReturnAutoreleased([[FLNetworkHost alloc] initWithAddressString:addressString]);
+    return autorelease_([[FLNetworkHost alloc] initWithAddressString:addressString]);
 }
 
 - (NSArray *) resolvedAddresses {
     FLAssertIsNotNil_v(_hostRef, nil);
     
     if(!_resolvedAddresses && _hostRef) {
-        NSArray* result = FLBridgeFromCFRef(CFHostGetAddressing(_hostRef, (Boolean*) &_resolved));
+        NSArray* result = bridge_(id, CFHostGetAddressing(_hostRef, (Boolean*) &_resolved));
         if (_resolved ) {
             self.resolvedAddresses  = result;
         }
@@ -160,7 +165,7 @@
     FLAssertIsNotNil_v(_hostRef, nil);
     
     if(!_resolvedHostNames && _hostRef) {
-        NSArray* result = FLBridgeFromCFRef(CFHostGetNames(_hostRef, (Boolean*) &_resolved));
+        NSArray* result = bridge_(id, CFHostGetNames(_hostRef, (Boolean*) &_resolved));
         if (_resolved) {
             self.resolvedHostNames = result;
         }
@@ -179,12 +184,12 @@
         CFRelease(_hostRef);
     }
     
-    FLRelease(_resolvedHostNames);
-    FLRelease(_resolvedAddressStrings);
-    FLRelease(_resolvedAddresses);
-    FLRelease(_hostHame);
-    FLRelease(_addressData);
-    FLSuperDealloc();
+    mrc_release_(_resolvedHostNames);
+    mrc_release_(_resolvedAddressStrings);
+    mrc_release_(_resolvedAddresses);
+    mrc_release_(_hostHame);
+    mrc_release_(_addressData);
+    mrc_super_dealloc_();
 }
 
 @end

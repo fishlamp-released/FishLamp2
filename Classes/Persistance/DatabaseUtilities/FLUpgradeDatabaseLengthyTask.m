@@ -15,19 +15,19 @@
 
 - (id) initWithDatabase:(FLDatabase*) database {
 	if((self = [super init])) {
-		_database = FLReturnRetained(database);
+		_database = retain_(database);
 	}
 
 	return self;
 }
 
 + (FLUpgradeDatabaseLengthyTask*) upgradeDatabaseLengthyTask:(FLDatabase*) database {
-	return FLReturnAutoreleased([[FLUpgradeDatabaseLengthyTask alloc] initWithDatabase:database]);
+	return autorelease_([[FLUpgradeDatabaseLengthyTask alloc] initWithDatabase:database]);
 }
 
 - (void) dealloc {
-	FLRelease(_database);
-	FLSuperDealloc();
+	mrc_release_(_database);
+	mrc_super_dealloc_();
 }
 
 - (NSUInteger) calculateTotalStepCount {

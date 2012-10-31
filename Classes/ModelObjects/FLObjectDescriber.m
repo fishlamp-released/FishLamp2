@@ -46,8 +46,8 @@
 }
 
 - (void) dealloc {
-	FLRelease(_properties);
-	FLSuperDealloc();
+	mrc_release_(_properties);
+	mrc_super_dealloc_();
 }
 
 - (id) copyWithZone:(NSZone *)zone {

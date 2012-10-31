@@ -36,21 +36,21 @@ static FLGuid* s_emptyGuid = nil;
 }
 
 + (FLGuid*) guid { 	
-    return FLReturnAutoreleased([[FLGuid alloc] init]);
+    return autorelease_([[FLGuid alloc] init]);
 }
 
 + (FLGuid*) guidWithNewGuid {
-	return FLReturnAutoreleased([[FLGuid alloc] initWithNewGuid]);
+	return autorelease_([[FLGuid alloc] initWithNewGuid]);
 }
 
 + (FLGuid*) guidWithString:(NSString*) aGuidString {
-	return FLReturnAutoreleased([[FLGuid alloc] initWithGuidString:aGuidString]);
+	return autorelease_([[FLGuid alloc] initWithGuidString:aGuidString]);
 }
 
 #if FL_MRC
 - (void) dealloc {
-    FLRelease(_guid);
-    FLSuperDealloc();
+    mrc_release_(_guid);
+    mrc_super_dealloc_();
 }
 #endif
 

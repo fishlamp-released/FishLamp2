@@ -88,15 +88,15 @@
 
 - (void) dealloc
 {
-    FLRelease(__owner);
-    FLRelease(__description);
-    FLRelease(__start_time);
-    FLRelease(__end_time);
-    FLRelease(__location);
-    FLRelease(__venue);
-    FLRelease(__privacy);
-    FLRelease(__updated_time);
-    FLSuperDealloc();
+    mrc_release_(__owner);
+    mrc_release_(__description);
+    mrc_release_(__start_time);
+    mrc_release_(__end_time);
+    mrc_release_(__location);
+    mrc_release_(__venue);
+    mrc_release_(__privacy);
+    mrc_release_(__updated_time);
+    mrc_super_dealloc_();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder
@@ -114,7 +114,7 @@
 
 + (FLFacebookEvent*) facebookEvent
 {
-    return FLReturnAutoreleased([[FLFacebookEvent alloc] init]);
+    return autorelease_([[FLFacebookEvent alloc] init]);
 }
 
 - (id) init
@@ -129,14 +129,14 @@
 {
     if((self = [super initWithCoder:aDecoder]))
     {
-        __owner = FLReturnRetained([aDecoder decodeObjectForKey:@"__owner"]);
-        __description = FLReturnRetained([aDecoder decodeObjectForKey:@"__description"]);
-        __start_time = FLReturnRetained([aDecoder decodeObjectForKey:@"__start_time"]);
-        __end_time = FLReturnRetained([aDecoder decodeObjectForKey:@"__end_time"]);
-        __location = FLReturnRetained([aDecoder decodeObjectForKey:@"__location"]);
-        __venue = FLReturnRetained([aDecoder decodeObjectForKey:@"__venue"]);
-        __privacy = FLReturnRetained([aDecoder decodeObjectForKey:@"__privacy"]);
-        __updated_time = FLReturnRetained([aDecoder decodeObjectForKey:@"__updated_time"]);
+        __owner = retain_([aDecoder decodeObjectForKey:@"__owner"]);
+        __description = retain_([aDecoder decodeObjectForKey:@"__description"]);
+        __start_time = retain_([aDecoder decodeObjectForKey:@"__start_time"]);
+        __end_time = retain_([aDecoder decodeObjectForKey:@"__end_time"]);
+        __location = retain_([aDecoder decodeObjectForKey:@"__location"]);
+        __venue = retain_([aDecoder decodeObjectForKey:@"__venue"]);
+        __privacy = retain_([aDecoder decodeObjectForKey:@"__privacy"]);
+        __updated_time = retain_([aDecoder decodeObjectForKey:@"__updated_time"]);
     }
     return self;
 }
