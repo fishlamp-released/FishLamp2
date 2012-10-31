@@ -5,7 +5,9 @@
 //  Created by Mike Fullerton on 7/10/12.
 //  Copyright (c) 2012 GreenTongue Software. All rights reserved.
 //
-#include "FishLampXcodeConfigs/FishLampTargetSettings/FLTargetSettingsiOS.xcconfig"
+FISHLAMP = ..
+#include "FishLampXcodeConfigs/FishLampPaths.xcconfig"
+#include "FishLampXcodeConfigs/FishLampTargetSettingsiOS.xcconfig"
 
 HEADER_SEARCH_PATHS = $(inherited) $(Classes/**) $(FISHLAMP_CORE_SEARCH_PATH)
 GCC_PRECOMPILE_PREFIX_HEADER = YES
