@@ -20,7 +20,7 @@
 
 + (FLUpdateStatusViewController*) updateStatusViewController
 {
-	return FLReturnAutoreleased([[FLUpdateStatusViewController alloc] init]);
+	return autorelease_([[FLUpdateStatusViewController alloc] init]);
 }
 
 - (void) _settingsPressed:(id) sender 
@@ -50,15 +50,15 @@
 
 - (void) dealloc
 {
-	FLRelease(_textEditingBar);
-	FLRelease(_editingBar);
-	FLSuperDealloc();
+	mrc_release_(_textEditingBar);
+	mrc_release_(_editingBar);
+	mrc_super_dealloc_();
 }
 
 - (void) viewDidUnload
 {	
-	FLReleaseWithNil(_editingBar);
-	FLReleaseWithNil(_textEditingBar);
+	FLReleaseWithNil_(_editingBar);
+	FLReleaseWithNil_(_textEditingBar);
     [super viewDidUnload];
 }
 

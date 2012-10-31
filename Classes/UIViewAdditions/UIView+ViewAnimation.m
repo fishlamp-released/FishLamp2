@@ -51,13 +51,11 @@
 {
 	[UIView setAnimationDelegate:nil];
 
-	FLAutorelease(FLReturnRetained(self));
+	mrc_autorelease_(retain_(self));
 	
-	if(context)
-	{
-		FLViewAnimationFinishedBlock finishedBlock = (__bridge_fl FLViewAnimationFinishedBlock) context;
+	if(context) {
+		FLViewAnimationFinishedBlock finishedBlock = autorelease_(bridge_(FLViewAnimationFinishedBlock, context));
 		finishedBlock(self);
-		FLRelease(finishedBlock);
 	}
 	
 	[self removeFromSuperview];
@@ -65,7 +63,7 @@
 
 - (void) removeFromSuperviewWithAnimationType:(FLViewAnimationType) type duration:(CGFloat) duration finishedBlock:(FLViewAnimationFinishedBlock) finishedBlock
 {
-	[UIView beginAnimations:@"viewout" context:(__bridge_fl void *)(finishedBlock ? [finishedBlock copy] : nil)];
+	[UIView beginAnimations:@"viewout" context:bridge_(void*, (finishedBlock ? [finishedBlock copy] : nil))];
 	[UIView setAnimationDelegate:self];
 	[UIView setAnimationDidStopSelector:@selector(_doneHiding:finished:context:)];
 	[UIView setAnimationDuration:duration];
@@ -86,13 +84,12 @@
 - (void) _doneAnimating:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context
 {
 	[UIView setAnimationDelegate:nil];
-	FLAutorelease(FLReturnRetained(self));
-	
-	if(context)
-	{
-		FLViewAnimationFinishedBlock finishedBlock = (__bridge_fl FLViewAnimationFinishedBlock) context;
+	mrc_autorelease_(retain_(self));
+
+	if(context) {
+		FLViewAnimationFinishedBlock finishedBlock = bridge_(FLViewAnimationFinishedBlock, context);
 		finishedBlock(self);
-		FLRelease(finishedBlock);
+		mrc_release_(finishedBlock);
 	}
 
 }
@@ -108,7 +105,7 @@
 		self.frame = [self _getOffscreenFrameForPosition:type];
 	}
 	
-	[UIView beginAnimations:@"viewin" context:(__bridge_fl void *)(finishedBlock ? [finishedBlock copy] : nil)];
+	[UIView beginAnimations:@"viewin" context:bridge_(void*, (finishedBlock ? [finishedBlock copy] : nil))];
 	[UIView setAnimationDuration:duration];
 	[UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
 	[UIView setAnimationDelegate:self];
@@ -136,7 +133,7 @@
 - (void) _doneFading:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context
 {
 	[UIView setAnimationDelegate:nil];
-	FLViewAnimationFadePayload* payload = (__bridge_fl FLViewAnimationFadePayload*) context;
+	FLViewAnimationFadePayload* payload = bridge_(FLViewAnimationFadePayload*, context);
 	self.hidden = payload.hidden;
 	self.alpha = payload.alpha;
 	
@@ -145,14 +142,14 @@
 	   payload.finishedBlock(self); 
 	}
 	
-	FLRelease(payload);
+	mrc_release_(payload);
 }
 
 + (void) _doneFadingBatch:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context
 {
 	[UIView setAnimationDelegate:nil];
 	
-	FLBatchAnimationPayload* batchPayload = (__bridge_fl FLBatchAnimationPayload*) context;
+	FLBatchAnimationPayload* batchPayload = bridge_(FLBatchAnimationPayload*, context);
 	
 	for(FLViewAnimationFadePayload* payload in batchPayload.payloadArray)
 	{
@@ -165,7 +162,7 @@
 	   batchPayload.finishedBlock(batchPayload.payloadArray); 
 	}
 
-	FLRelease(batchPayload);
+	mrc_release_(batchPayload);
 }
 
 
@@ -178,7 +175,7 @@
 		self.alpha = 0.0;
 	}
    
-	[UIView beginAnimations:@"viewin" context:(__bridge_fl void *)(payload)];
+	[UIView beginAnimations:@"viewin" context:bridge_(void*,payload)];
 		//context:(target && action) ? [[FLCallbackObject alloc] initWithContainedTarget:[FLRetainedObject retainedObject:target] action:action] : nil];
 	[UIView setAnimationDuration:duration];
 	[UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
@@ -227,7 +224,7 @@
 		}
 		view.hidden = NO;
 	}
-	[UIView beginAnimations:@"viewin" context:(__bridge_fl void *)([[FLBatchAnimationPayload alloc] initWithPayloadArray:payloads finishedBlock:finishedBlock])];
+	[UIView beginAnimations:@"viewin" context:bridge_(void*,[[FLBatchAnimationPayload alloc] initWithPayloadArray:payloads finishedBlock:finishedBlock])];
 	[UIView setAnimationDuration:duration];
 	[UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
 	[UIView setAnimationDelegate:self];
@@ -264,14 +261,14 @@
 }
 
 + (FLViewAnimationFadePayload*) viewAnimationFadePayload:(UIView*) view alpha:(CGFloat) alpha hidden:(BOOL) hidden finishedBlock:(FLViewAnimationFinishedBlock) finishedBlock {
-	return FLReturnAutoreleased([[FLViewAnimationFadePayload alloc] initWithView:view alpha:alpha hidden:hidden finishedBlock:finishedBlock]);
+	return autorelease_([[FLViewAnimationFadePayload alloc] initWithView:view alpha:alpha hidden:hidden finishedBlock:finishedBlock]);
 }
 
 - (void) dealloc
 {
-	FLRelease(_block);
-	FLRelease(_view);
-	FLSuperDealloc();
+	mrc_release_(_block);
+	mrc_release_(_view);
+	mrc_super_dealloc_();
 }
 
 @end
@@ -292,9 +289,9 @@
 
 - (void) dealloc
 {
-	FLRelease(_payloadArray);
-	FLRelease(_finishedBlock);
-	FLSuperDealloc();
+	mrc_release_(_payloadArray);
+	mrc_release_(_finishedBlock);
+	mrc_super_dealloc_();
 }
 
 @end

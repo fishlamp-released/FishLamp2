@@ -19,9 +19,9 @@
 
 - (void) dealloc
 {
-    FLRelease(_title);
-    FLRelease(_viewController);
-    FLSuperDealloc();
+    mrc_release_(_title);
+    mrc_release_(_viewController);
+    mrc_super_dealloc_();
 }
 
 - (id) initWithViewControllerClass:(Class) viewControllerClass
@@ -49,12 +49,12 @@
 
 + (FLViewControllerPlaceholder*) viewControllerPlaceholder:(NSString*) title viewControllerClass:(Class) viewControllerClass
 {
-    return FLReturnAutoreleased([[FLViewControllerPlaceholder alloc] initWithViewControllerClass:viewControllerClass title:title]);
+    return autorelease_([[FLViewControllerPlaceholder alloc] initWithViewControllerClass:viewControllerClass title:title]);
 }
 
 + (FLViewControllerPlaceholder*) viewControllerPlaceholder:(NSString*) title viewControllerFactory:(FLCallback_t) factory
 {
-    return FLReturnAutoreleased([[FLViewControllerPlaceholder alloc] initWithViewControllerFactory:factory title:title]);
+    return autorelease_([[FLViewControllerPlaceholder alloc] initWithViewControllerFactory:factory title:title]);
 }
 
 - (void) purgeViewController
@@ -71,9 +71,9 @@
 
     if(self.autoPurgeHiddenViewController)
     {
-        FLAutorelease(FLReturnRetained(_viewController));
+        mrc_autorelease_(retain_(_viewController));
         [_viewController removeFromParentViewController];
-        FLReleaseWithNil(_viewController);
+        FLReleaseWithNil_(_viewController);
     }
 }
 
@@ -196,10 +196,10 @@
 
 - (void) dealloc
 {	
-    FLRelease(_arrangement);
-	FLRelease(_viewControllers);
+    mrc_release_(_arrangement);
+	mrc_release_(_viewControllers);
 
-	FLSuperDealloc();
+	mrc_super_dealloc_();
 }
 
 - (NSUInteger) viewControllerCount

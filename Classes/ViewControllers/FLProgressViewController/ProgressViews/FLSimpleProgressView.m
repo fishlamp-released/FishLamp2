@@ -85,9 +85,9 @@
 
 #if FL_MRC
 - (void) dealloc {
-    FLRelease(_textLabel);
-    FLRelease(_spinner);
-    FLSuperDealloc();
+    mrc_release_(_textLabel);
+    mrc_release_(_spinner);
+    mrc_super_dealloc_();
 }
 #endif
 

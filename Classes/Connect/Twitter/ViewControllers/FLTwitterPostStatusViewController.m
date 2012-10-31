@@ -43,15 +43,15 @@
 
 + (FLTwitterPostStatusViewController*) twitterPostStatusViewController:(FLTwitterStatusUpdate*) update  userGuid:(NSString*) userGuid
 {
-	return FLReturnAutoreleased([[FLTwitterPostStatusViewController alloc] initWithStatusUpdate:update userGuid:userGuid]);
+	return autorelease_([[FLTwitterPostStatusViewController alloc] initWithStatusUpdate:update userGuid:userGuid]);
 }
 
 - (void) dealloc
 {
-    FLRelease(_headerView);
-	FLRelease(_userGuid);
-	FLRelease(_statusUpdate);
-	FLSuperDealloc();
+    mrc_release_(_headerView);
+	mrc_release_(_userGuid);
+	mrc_release_(_statusUpdate);
+	mrc_super_dealloc_();
 }
 
 - (void) twitterAuthenticator:(FLTwitterAuthenticator*) authenticator 
@@ -68,14 +68,14 @@
 
 - (void) setStatusUpdate:(FLTwitterStatusUpdate *)statusUpdate
 {
-    FLAssignObject(_statusUpdate, statusUpdate);
+    FLRetainObject_(_statusUpdate, statusUpdate);
     self.text = _statusUpdate.status;
 }
 
 - (void) viewDidUnload
 {
     [super viewDidUnload];
-    FLReleaseWithNil(_headerView);
+    FLReleaseWithNil_(_headerView);
 }
 
 - (void) presentTextIsTooLongMessage

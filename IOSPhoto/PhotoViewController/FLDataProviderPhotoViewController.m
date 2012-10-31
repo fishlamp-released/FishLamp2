@@ -19,7 +19,7 @@
 {
     if((self = [super init]))
     {
-        _dataProvider = FLReturnRetained(dataModel);
+        _dataProvider = retain_(dataModel);
         self.photoViewControllerDelegate = _dataProvider;
     }
     
@@ -28,8 +28,8 @@
 
 - (void) dealloc
 {
-    FLRelease(_dataProvider);
-    FLSuperDealloc();
+    mrc_release_(_dataProvider);
+    mrc_super_dealloc_();
 }
 
 - (void) closeSelf:(id) sender
@@ -44,7 +44,7 @@
 
     [super createTopToolbar];
 
-    self.topToolbar = FLReturnAutoreleased([[FLDeprecatedButtonbarToolbar alloc] initWithFrame:CGRectMake(0,20,self.view.frame.size.width, 44) buttonbarView:self.buttonbar]);
+    self.topToolbar = autorelease_([[FLDeprecatedButtonbarToolbar alloc] initWithFrame:CGRectMake(0,20,self.view.frame.size.width, 44) buttonbarView:self.buttonbar]);
     [self.view addSubview:self.topToolbar];
     
 }

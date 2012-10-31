@@ -45,9 +45,9 @@
 
 - (void) dealloc
 {
-	FLRelease(_firstTouch);
-	FLRelease(_lastTouch);
-	FLSuperDealloc();
+	mrc_release_(_firstTouch);
+	mrc_release_(_lastTouch);
+	mrc_super_dealloc_();
 }
 
 @end
@@ -133,9 +133,9 @@ FLSynthesizeStructProperty(canScrollTiles, setCanScrollTiles, BOOL, _tilingScrol
 	[self addSubview:view];
 	if(outView)
 	{
-		*outView = FLReturnRetained(view);
+		*outView = retain_(view);
 	}
-	FLRelease(view);
+	mrc_release_(view);
 }
 
 - (void) _removeTiledViewAtIndex:(NSUInteger) which
@@ -159,7 +159,7 @@ FLSynthesizeStructProperty(canScrollTiles, setCanScrollTiles, BOOL, _tilingScrol
 	UIView* newView = nil;
 	[self createTiledView:&newView];
 	[_tiledViews addObject:newView];
-	FLRelease(newView);
+	mrc_release_(newView);
 	[self updateTiledArrangement];
 }
 
@@ -183,7 +183,7 @@ FLSynthesizeStructProperty(canScrollTiles, setCanScrollTiles, BOOL, _tilingScrol
 		[view removeFromSuperview];
 	}
 	
-	FLReleaseWithNil(_tiledViews);
+	FLReleaseWithNil_(_tiledViews);
 }
 
 - (void) dealloc
@@ -192,9 +192,9 @@ FLSynthesizeStructProperty(canScrollTiles, setCanScrollTiles, BOOL, _tilingScrol
 	
 	[[FLLowMemoryHandler defaultHandler] removeObserver:self];
 	[self tearDown];
-	FLRelease(_scrollQueue);
-	FLRelease(_currentScroll);
-	FLSuperDealloc();
+	mrc_release_(_scrollQueue);
+	mrc_release_(_currentScroll);
+	mrc_super_dealloc_();
 }
 
 - (NSUInteger) firstNextViewIndex
@@ -354,7 +354,7 @@ FLSynthesizeStructProperty(canScrollTiles, setCanScrollTiles, BOOL, _tilingScrol
 	if(_touchCount <= 0)
 	{
 		_touchCount = 0;
-		FLRelease(_currentScroll);
+		mrc_release_(_currentScroll);
 		_currentScroll = [[FLScrollSnapshot alloc] initWithFirstTouch:[FLTouch touchWithUITouch:[touches anyObject]]];
 		_tilingScrollViewFlags.scrollInProgress = NO;
 		_tilingScrollViewFlags.disableScroll = NO;
@@ -396,7 +396,7 @@ FLSynthesizeStructProperty(canScrollTiles, setCanScrollTiles, BOOL, _tilingScrol
 	{
 		_currentScroll.lastTouch = [FLTouch touchWithUITouch:[touches anyObject]];
 		[self updateScroll:_currentScroll];
-		FLReleaseWithNil(_currentScroll);
+		FLReleaseWithNil_(_currentScroll);
 	}
 }
 
@@ -460,7 +460,7 @@ FLSynthesizeStructProperty(canScrollTiles, setCanScrollTiles, BOOL, _tilingScrol
 		UIView* newView = nil;
 		[self createTiledView:&newView];
 		[_tiledViews addObject:newView];
-		FLRelease(newView);
+		mrc_release_(newView);
 	}
 	
 	[self updateTiledArrangement];
@@ -483,7 +483,7 @@ FLSynthesizeStructProperty(canScrollTiles, setCanScrollTiles, BOOL, _tilingScrol
 		UIView* view = nil;
 		[self createTiledView:&view];
 		[_tiledViews addObject:view];
-		FLRelease(view);
+		mrc_release_(view);
 	}
 	
 	[self updateTiledArrangement];
@@ -583,7 +583,7 @@ FLSynthesizeStructProperty(canScrollTiles, setCanScrollTiles, BOOL, _tilingScrol
 	UIView* newView = nil;
 	[self createTiledView:&newView];
 	[_tiledViews addObject:newView];
-	FLRelease(newView);
+	mrc_release_(newView);
 	
 	[self updateTiledArrangement];
 	
@@ -607,7 +607,7 @@ FLSynthesizeStructProperty(canScrollTiles, setCanScrollTiles, BOOL, _tilingScrol
 	UIView* newView = nil;
 	[self createTiledView:&newView];
 	[_tiledViews insertObject:newView atIndex:0];
-	FLRelease(newView);
+	mrc_release_(newView);
 
 	[self updateTiledArrangement];
 

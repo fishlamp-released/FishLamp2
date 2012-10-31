@@ -61,7 +61,7 @@ FLSynthesizeStructProperty(notificationViewStyle, setNotificationViewStyle, FLOl
 
 - (void) setValueLabelText:(NSString*) text
 {
-	FLAssignObject(_text, text);
+	FLRetainObject_(_text, text);
 	_notificationViewFlags.textNeedsUpdate = YES;
 }
 
@@ -72,7 +72,7 @@ FLSynthesizeStructProperty(notificationViewStyle, setNotificationViewStyle, FLOl
 
 - (void) setTitle:(NSString*) text
 {
-	FLAssignObject(_title, text);
+	FLRetainObject_(_title, text);
 	_titleLabel.text = text;
 }
 
@@ -150,15 +150,15 @@ FLSynthesizeStructProperty(notificationViewStyle, setNotificationViewStyle, FLOl
 
 - (void) releaseViews
 {
-	FLReleaseWithNil(_roundRectView);
-	FLReleaseWithNil(_titleLabel);
-	FLReleaseWithNil(_closeButton);
-	FLReleaseWithNil(_iconView);
-	FLReleaseWithNil(_htmlView);
-	FLReleaseWithNil(_textView);
-	FLReleaseWithNil(_timeLabel);
-	FLReleaseWithNil(_closeBoxX);
-	FLReleaseWithNil(_closeBoxImageView);
+	FLReleaseWithNil_(_roundRectView);
+	FLReleaseWithNil_(_titleLabel);
+	FLReleaseWithNil_(_closeButton);
+	FLReleaseWithNil_(_iconView);
+	FLReleaseWithNil_(_htmlView);
+	FLReleaseWithNil_(_textView);
+	FLReleaseWithNil_(_timeLabel);
+	FLReleaseWithNil_(_closeBoxX);
+	FLReleaseWithNil_(_closeBoxImageView);
 }
 
 - (void) removeViews
@@ -182,15 +182,15 @@ FLSynthesizeStructProperty(notificationViewStyle, setNotificationViewStyle, FLOl
 
 	[self cancelTimer];
 	
-    FLRelease(_text);
-	FLRelease(_textColor);
-	FLRelease(_title);
-	FLRelease(_oldBackgroundColor);
-	FLRelease(_oldTextColor);
+    mrc_release_(_text);
+	mrc_release_(_textColor);
+	mrc_release_(_title);
+	mrc_release_(_oldBackgroundColor);
+	mrc_release_(_oldTextColor);
 	
 	[self releaseViews];
 	
-	FLSuperDealloc();
+	mrc_super_dealloc_();
 }
 
 - (void) notifyWasTouched
@@ -215,7 +215,7 @@ FLSynthesizeStructProperty(notificationViewStyle, setNotificationViewStyle, FLOl
 	if(self.dismissStyle == FLOldNotificationViewDismissStyleTapAnywhere)
 	{
 		_roundRectView.fillColor = _oldBackgroundColor;
-		FLReleaseWithNil(_oldBackgroundColor);
+		FLReleaseWithNil_(_oldBackgroundColor);
 		[_roundRectView setNeedsDisplay];
 		_closeBoxImageView.alpha = 1.0;
 	}
@@ -230,12 +230,12 @@ FLSynthesizeStructProperty(notificationViewStyle, setNotificationViewStyle, FLOl
 
 - (void) onStartClose:(id) sender
 {
-	FLReleaseWithNil(_oldBackgroundColor);
-	FLReleaseWithNil(_oldTextColor);
+	FLReleaseWithNil_(_oldBackgroundColor);
+	FLReleaseWithNil_(_oldTextColor);
 
 	if(self.dismissStyle == FLOldNotificationViewDismissStyleTapAnywhere)
 	{
-		_oldBackgroundColor = FLReturnRetained(self.backgroundColor);
+		_oldBackgroundColor = retain_(self.backgroundColor);
 		_closeBoxImageView.alpha = .3;
 		_roundRectView.fillColor = [UIColor iPhoneBlueColor];
 		[_roundRectView setNeedsDisplay];
@@ -250,7 +250,7 @@ FLSynthesizeStructProperty(notificationViewStyle, setNotificationViewStyle, FLOl
 	if(!s_image)
 	{
 		s_image = [UIImage imageNamed:@"close-box-white-fill.png"];
-        FLRetain(s_image);
+        mrc_retain_(s_image);
 	}
 	
 	return s_image;
@@ -380,7 +380,7 @@ FLSynthesizeStructProperty(notificationViewStyle, setNotificationViewStyle, FLOl
 	if(self.dismissStyle != FLOldNotificationViewDismissStyleNone)
 	{
 		_closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        FLRetain(_closeButton);
+        mrc_retain_(_closeButton);
         
 		_closeButton.backgroundColor = [UIColor clearColor];
 		[_closeButton addTarget:self action:@selector(onStartClose:) forControlEvents:UIControlEventTouchDown];

@@ -39,7 +39,7 @@
 			name:ALAssetsLibraryChangedNotification
 			object:nil];
 		
-		_assetQueue = FLReturnRetained(queue);
+		_assetQueue = retain_(queue);
         
         self.viewContentsDescriptor = [FLViewContentsDescriptor descriptorWithTopStatusAndToolbar];
     }
@@ -50,14 +50,14 @@
 - (void) dealloc
 {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
-	FLRelease(_locationManager);
-	FLRelease(_processedAssets);
-	FLRelease(_chosenAssets);
-	FLRelease(_disabledAssets);
-	FLRelease(_assetQueue);
-	FLRelease(_emptyCellImage);
-	FLRelease(_groups);
-	FLSuperDealloc();
+	mrc_release_(_locationManager);
+	mrc_release_(_processedAssets);
+	mrc_release_(_chosenAssets);
+	mrc_release_(_disabledAssets);
+	mrc_release_(_assetQueue);
+	mrc_release_(_emptyCellImage);
+	mrc_release_(_groups);
+	mrc_super_dealloc_();
 }
 
 - (BOOL) canAddAsset:(NSString *) url
@@ -74,7 +74,7 @@
     {
         FLAssetsLibraryImageAsset* gt_asset = [[FLAssetsLibraryImageAsset alloc] initWithALAsset:asset];
         [self.chosenAssets setObject:gt_asset forKey:gt_asset.assetURL];
-        FLRelease(gt_asset); 
+        mrc_release_(gt_asset); 
     }
 }
 
@@ -146,7 +146,7 @@
 	if(_spinner)
 	{
 		[_spinner removeFromSuperview];
-		FLReleaseWithNil(_spinner);
+		FLReleaseWithNil_(_spinner);
 	}
 }
 
@@ -190,7 +190,7 @@
 	if(_emptyMessage)
 	{
 		[_emptyMessage removeFromSuperview];
-		FLReleaseWithNil(_emptyMessage);
+		FLReleaseWithNil_(_emptyMessage);
 	}
 }
 

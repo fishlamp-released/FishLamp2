@@ -55,8 +55,8 @@
 
 - (void)dealloc 
 {
-	FLReleaseWithNil(_slider);
-	FLSuperDealloc();
+	FLReleaseWithNil_(_slider);
+	mrc_super_dealloc_();
 }
 
 - (void) updateValue:(BOOL) animated
@@ -106,7 +106,7 @@
 
 + (FLSliderValueCell*) sliderCell:(NSString*) labelOrNil
 {
-	FLSliderValueCell* cell = FLReturnAutoreleased([[FLSliderValueCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NSStringFromClass([self class])]);
+	FLSliderValueCell* cell = autorelease_([[FLSliderValueCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NSStringFromClass([self class])]);
 	if(FLStringIsNotEmpty(labelOrNil)) {
 		cell.textLabelText = labelOrNil;
 	}

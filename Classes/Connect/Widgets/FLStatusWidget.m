@@ -72,14 +72,14 @@
 
 - (void) dealloc
 {
-	FLRelease(_rightColumn);
-	FLRelease(_nameAndPostDateWidget);
-	FLRelease(_gradient);
-	FLRelease(_thumbnail);
-	FLRelease(_userName);
-	FLRelease(_message);
-	FLRelease(_postedTime);
-	FLSuperDealloc();
+	mrc_release_(_rightColumn);
+	mrc_release_(_nameAndPostDateWidget);
+	mrc_release_(_gradient);
+	mrc_release_(_thumbnail);
+	mrc_release_(_userName);
+	mrc_release_(_message);
+	mrc_release_(_postedTime);
+	mrc_super_dealloc_();
 }
 
 - (void) layoutWidgets

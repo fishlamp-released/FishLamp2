@@ -59,7 +59,7 @@
 
 + (FLUserFeedbackViewController*) userFeedbackViewController:(NSString*) emailAddress buttonTitleArray:(NSArray*) buttonTitleArray
 {
-   FLUserFeedbackViewController* controller = FLReturnAutoreleased([[FLUserFeedbackViewController alloc] init]);
+   FLUserFeedbackViewController* controller = autorelease_([[FLUserFeedbackViewController alloc] init]);
    controller.emailAddress = emailAddress;
    controller.stringArray = buttonTitleArray;
    return controller; 
@@ -67,15 +67,15 @@
 
 - (void) dealloc
 {
-	FLReleaseWithNil(_stringArray);
-	FLReleaseWithNil(_emailAddress);
-	FLSuperDealloc();
+	FLReleaseWithNil_(_stringArray);
+	FLReleaseWithNil_(_emailAddress);
+	mrc_super_dealloc_();
 }
 
 - (void) onButtonClicked:(FLLegacyButton*) button
 {
 // TODO: this is hack. We're presenting this from a modal view controller, so we can't nest these.
-    FLAutorelease(FLReturnRetain(self));
+    mrc_autorelease_(FLReturnRetain(self));
 
     [[FLViewController presentingModalViewController] dismissModalViewControllerAnimated:NO]; // this will dismiss us and our parents.
 
@@ -103,7 +103,7 @@
 	
 	[email composeEmail:(FLViewController*) [UIApplication visibleViewController]];
 	
-	FLReleaseWithNil(email);
+	FLReleaseWithNil_(email);
 
 }
 

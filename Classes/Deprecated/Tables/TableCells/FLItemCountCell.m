@@ -70,12 +70,12 @@
 - (void) dealloc
 {
 	[NSObject cancelPreviousPerformRequestsWithTarget:self];
-	FLReleaseWithNil(_itemName);
-	FLReleaseWithNil(_label);
-	FLReleaseWithNil(_spinner);
-	FLReleaseWithNil(_bottomLabel);
+	FLReleaseWithNil_(_itemName);
+	FLReleaseWithNil_(_label);
+	FLReleaseWithNil_(_spinner);
+	FLReleaseWithNil_(_bottomLabel);
 	
-	FLSuperDealloc();
+	mrc_super_dealloc_();
 }
 
 - (void) updateText
@@ -115,7 +115,7 @@
 {
     if(!FLStringsAreEqual(actionItemName, _itemName))
 	{
-        FLAssignObject(_itemName, actionItemName);
+        FLRetainObject_(_itemName, actionItemName);
 		[self updateText];
 	}
 }
@@ -167,7 +167,7 @@
 - (void) stopSpinner
 {
 	[_spinner removeFromSuperview];
-	FLReleaseWithNil(_spinner);
+	FLReleaseWithNil_(_spinner);
 }
 
 @end

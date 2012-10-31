@@ -127,7 +127,7 @@
     {
         s_image = [UIImage imageNamed:@"back.png"];
         s_image = [s_image colorizeImage:[UIColor gray85Color] blendMode:kCGBlendModeOverlay];
-        FLRetain(s_image);
+        mrc_retain_(s_image);
     }
     
     return s_image;
@@ -195,22 +195,22 @@
 
 + (FLMenuItemView*) menuItemView:(NSString*) title target:(id) target action:(SEL) action
 {
-    return FLReturnAutoreleased([[FLMenuItemView alloc] initWithTitle:title target:target action:action]);
+    return autorelease_([[FLMenuItemView alloc] initWithTitle:title target:target action:action]);
 }
 
 + (FLMenuItemView*) menuItemView:(NSString*) title submenu:(id) submenu
 {
-    return FLReturnAutoreleased([[FLMenuItemView alloc] initWithTitle:title submenu:submenu]);
+    return autorelease_([[FLMenuItemView alloc] initWithTitle:title submenu:submenu]);
 }
 
 - (void) dealloc
 {   
-    FLRelease(_userData);
-    FLRelease(_disclosureView);
-    FLRelease(_subMenu);
-    FLRelease(_label);
-    FLRelease(_imageView);
-    FLSuperDealloc();
+    mrc_release_(_userData);
+    mrc_release_(_disclosureView);
+    mrc_release_(_subMenu);
+    mrc_release_(_label);
+    mrc_release_(_imageView);
+    mrc_super_dealloc_();
 }
 
 - (void) setDisabled:(BOOL) disabled
@@ -235,7 +235,7 @@
 
 - (void) setSubMenu:(id) subMenu
 {
-    FLAssignObject(_subMenu, subMenu);
+    FLRetainObject_(_subMenu, subMenu);
     _disclosureView.hidden =  _subMenu == nil;
     
     [self setNeedsLayout];

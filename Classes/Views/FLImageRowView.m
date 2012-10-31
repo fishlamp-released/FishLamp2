@@ -32,14 +32,14 @@
 	{
 		if(!_images[i])
 		{
-			_images[i] = FLReturnRetained(image);
+			_images[i] = retain_(image);
 		}
 	}
 }
 
 - (void) setImage:(UIImage*) image atIndex:(NSUInteger) idx
 {
-	FLAssignObject(_images[idx], image);
+	FLRetainObject_(_images[idx], image);
 	[self setNeedsDisplay];
 }
 
@@ -49,7 +49,7 @@
 	{
 		if(_images[i])
 		{
-			FLReleaseWithNil(_images[i]);
+			FLReleaseWithNil_(_images[i]);
 		}
 	}	
  }
@@ -58,7 +58,7 @@
 {
 	[self clearImages];
 	
-	FLSuperDealloc();
+	mrc_super_dealloc_();
 }
  
 - (void)drawRect:(FLRect)rect

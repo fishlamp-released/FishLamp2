@@ -29,22 +29,22 @@
 
 - (void) dealloc 
 {
-	FLRelease(_builder);
-	FLRelease(_masterExif);
-	FLRelease(_extras);
-	FLRelease(_overrides);
-	FLSuperDealloc();
+	mrc_release_(_builder);
+	mrc_release_(_masterExif);
+	mrc_release_(_extras);
+	mrc_release_(_overrides);
+	mrc_super_dealloc_();
 }
 
 - (void) setMasterExif:(NSDictionary*) dict
 {
-	FLRelease(_masterExif);
+	mrc_release_(_masterExif);
 	_masterExif = [dict mutableCopy];
 }
 
 - (void) _addTiffData:(FLTableViewLayoutBuilder*) builder dataSourceManager:(FLLegacyDataSource*) dataSourceManager exifDictionary:(NSDictionary*) exifDict
 {
-	[dataSourceManager setDataSource:FLReturnAutoreleased([exifDict mutableCopy]) forKey:(NSString*)kCGImagePropertyTIFFDictionary];
+	[dataSourceManager setDataSource:autorelease_([exifDict mutableCopy]) forKey:(NSString*)kCGImagePropertyTIFFDictionary];
 	
 	if([exifDict objectForKey:(NSString*)kCGImagePropertyTIFFMake])
 	{
@@ -128,7 +128,7 @@
 
 - (void) _addExifExifData:(FLTableViewLayoutBuilder*) builder dataSourceManager:(FLLegacyDataSource*) dataSourceManager exifDictionary:(NSDictionary*) exifDict
 {
-	[dataSourceManager setDataSource:FLReturnAutoreleased([exifDict mutableCopy]) forKey:(NSString*)kCGImagePropertyExifDictionary];
+	[dataSourceManager setDataSource:autorelease_([exifDict mutableCopy]) forKey:(NSString*)kCGImagePropertyExifDictionary];
 
 	if( [exifDict objectForKey:(NSString*)kCGImagePropertyExifDateTimeOriginal])
 	{
@@ -203,11 +203,11 @@
 {
 	if(self.masterExif)
 	{
-		FLMasterPhotoExif* exif = FLReturnAutoreleased([[FLMasterPhotoExif alloc] initWithDictionary:self.masterExif]);
+		FLMasterPhotoExif* exif = autorelease_([[FLMasterPhotoExif alloc] initWithDictionary:self.masterExif]);
 		
 		FLPhotoMapViewController* controller = [[FLPhotoMapViewController alloc] init];
 		[row.viewController.navigationController pushViewController:controller animated:YES];
-		FLRelease(controller);
+		mrc_release_(controller);
 	
 		[controller addPin:NSLocalizedString(@"Photo", @"Exif - name of pin when showing on map") coordinate:exif.gpsExif.coordinate];
 	}

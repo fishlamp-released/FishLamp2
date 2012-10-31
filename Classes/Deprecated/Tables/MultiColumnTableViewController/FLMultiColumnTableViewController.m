@@ -128,7 +128,7 @@
 	FLMultiColumnTableViewCell* cell = (FLMultiColumnTableViewCell*) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 	if(!cell)
 	{
-		cell = FLReturnAutoreleased([[FLMultiColumnTableViewCell alloc] initWithReuseIdentifier:CellIdentifier]);
+		cell = autorelease_([[FLMultiColumnTableViewCell alloc] initWithReuseIdentifier:CellIdentifier]);
 		cell.selectionStyle = UITableViewCellSelectionStyleNone;
 		
 		for(NSUInteger i = 0; i < MAX(_maxLandscapeColumns, _maxPortaitColumns); i++)
@@ -173,7 +173,7 @@
 //	  {
 //		  [cell.widget touchesEnded:touches withEvent:event];
 //	  }
-//	  FLRelease(visibleCells);
+//	  mrc_release_(visibleCells);
 //}
 //
 //- (void) tableView:(UITableView*) tableView touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event

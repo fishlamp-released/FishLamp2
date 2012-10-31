@@ -20,11 +20,11 @@
 
 - (void) dealloc
 {	
-	FLRelease(_group);
-	FLRelease(_checkedValue);
-//	  FLRelease(_checkMark);
-	FLRelease(_subLabel);
-	FLSuperDealloc();
+	mrc_release_(_group);
+	mrc_release_(_checkedValue);
+//	  mrc_release_(_checkMark);
+	mrc_release_(_subLabel);
+	mrc_super_dealloc_();
 }
 
 - (void) initSubLabel
@@ -55,7 +55,7 @@
 
 + (id) checkMarkedTableCell:(NSString*) labelOrNil checked:(BOOL) checked checkedValue:(id) checkedValue
 {
-	FLCheckMarkTableViewCell* cell = FLReturnAutoreleased([[[self class] alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"FLCheckMarkedTableCell"]);
+	FLCheckMarkTableViewCell* cell = autorelease_([[[self class] alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"FLCheckMarkedTableCell"]);
 	if(FLStringIsNotEmpty(labelOrNil))
 	{
 		cell.textLabelText = labelOrNil;
@@ -177,8 +177,8 @@
 
 - (void) dealloc
 {
-	FLRelease(_color);
-	FLSuperDealloc();
+	mrc_release_(_color);
+	mrc_super_dealloc_();
 }
 @end
 
@@ -193,7 +193,7 @@
 
 + (id) onOffCheckMarkTableViewCell:(NSString*) labelOrNil
 {
-	FLOnOffCheckMarkTableViewCell* cell = FLReturnAutoreleased([[[self class] alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"FLCheckMarkedTableCell"]);
+	FLOnOffCheckMarkTableViewCell* cell = autorelease_([[[self class] alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"FLCheckMarkedTableCell"]);
 	if(FLStringIsNotEmpty(labelOrNil))
 	{
 		cell.textLabelText = labelOrNil;
@@ -237,8 +237,8 @@
 
 - (void) dealloc
 {
-    FLRelease(_check);
-    FLSuperDealloc();
+    mrc_release_(_check);
+    mrc_super_dealloc_();
 }
 
 #define kTextLeft 60.0f

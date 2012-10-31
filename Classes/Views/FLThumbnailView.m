@@ -33,10 +33,10 @@
 
 - (void) dealloc
 {
-	FLRelease(_disabledView);
-	FLRelease(_image);
-	FLRelease(_backgroundImage);
-	FLSuperDealloc();
+	mrc_release_(_disabledView);
+	mrc_release_(_image);
+	mrc_release_(_backgroundImage);
+	mrc_super_dealloc_();
 }
 
 - (FLSize)sizeThatFits:(FLSize)size
@@ -71,13 +71,13 @@
 
 - (void) setForegroundImage:(UIImage*) image
  {
-	FLAssignObject(_image, image);
+	FLRetainObject_(_image, image);
     [self updateImage];
 }
 
 - (void) setBackgroundImage:(UIImage *) image
 {
-	FLAssignObject(_backgroundImage, image);
+	FLRetainObject_(_backgroundImage, image);
     [self updateImage];
 }
 
@@ -101,7 +101,7 @@
 		if(_enabled && _disabledView)
 		{
 			[_disabledView removeFromSuperview];
-			FLReleaseWithNil(_disabledView);
+			FLReleaseWithNil_(_disabledView);
 		}
 		else if(!_enabled && !_disabledView)
 		{

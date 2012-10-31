@@ -44,7 +44,7 @@ FLAssertDefaultInitNotCalled_()
 
 + (id) webViewController:(FLWebViewControllerButtonMode) buttonMode
 {
-    return FLReturnAutoreleased([[[self class] alloc] initWithButtonMode:buttonMode]);
+    return autorelease_([[[self class] alloc] initWithButtonMode:buttonMode]);
 }
 
 - (void) loadView
@@ -55,7 +55,7 @@ FLAssertDefaultInitNotCalled_()
 	}
 	else
 	{
-		UIView* parentView = FLReturnAutoreleased([[UIView alloc] initWithFrame:CGRectMake(0,0,320,480)]);
+		UIView* parentView = autorelease_([[UIView alloc] initWithFrame:CGRectMake(0,0,320,480)]);
 		parentView.autoresizingMask = UIViewAutoresizingFlexibleEverything;
 		parentView.autoresizesSubviews = YES;
 		parentView.backgroundColor = [UIColor whiteColor];
@@ -104,32 +104,32 @@ FLAssertDefaultInitNotCalled_()
 
 - (void) cleanupWebViewController
 {
-	FLReleaseWithNil(_bottomToolbar);
-	FLReleaseWithNil(_reloadButton);
-	FLReleaseWithNil(_backButton);
-	FLReleaseWithNil(_forwardButton);
+	FLReleaseWithNil_(_bottomToolbar);
+	FLReleaseWithNil_(_reloadButton);
+	FLReleaseWithNil_(_backButton);
+	FLReleaseWithNil_(_forwardButton);
     _webView.delegate = nil;
 	[_webView stopLoading];
     if(_progress)
     {
         [_progress hideProgress];
-        FLReleaseWithNil(_webView);
+        FLReleaseWithNil_(_webView);
     }
-	FLReleaseWithNil(_progress);
-	FLReleaseWithNil(_actionButton);
+	FLReleaseWithNil_(_progress);
+	FLReleaseWithNil_(_actionButton);
 }
 
 - (void) removeActionButton
 {
-	NSMutableArray* items = FLReturnAutoreleased([[_bottomToolbar items] mutableCopy]);
+	NSMutableArray* items = autorelease_([[_bottomToolbar items] mutableCopy]);
 	[items removeObject:_actionButton];
 	_bottomToolbar.items = items;
 }
 
 - (void) dealloc {
-	FLRelease(_startURL);
+	mrc_release_(_startURL);
 	[self cleanupWebViewController];
-	FLSuperDealloc();
+	mrc_super_dealloc_();
 }
 
 - (BOOL) openURLInSafari:(NSURL*) url
@@ -181,7 +181,7 @@ FLAssertDefaultInitNotCalled_()
 			outValue = [self shouldNavigateToLink:request.URL];
             if(outValue && self.openLinksInNewViewController)
             {
-                FLWebViewController* controller = FLReturnAutoreleased([[[self class] alloc] initWithButtonMode:self.buttonMode]);
+                FLWebViewController* controller = autorelease_([[[self class] alloc] initWithButtonMode:self.buttonMode]);
                 controller.openLinksInNewViewController = self.openLinksInNewViewController;
                 controller.openHttpLinksInSafari = self.openHttpLinksInSafari;
                 controller.autoSetTitle = YES; // TODO: no other way, maybe have delegate set this?
@@ -203,7 +203,7 @@ FLAssertDefaultInitNotCalled_()
 	if(_progress)
 	{
         [_progress hideProgress];
-		FLReleaseWithNil(_progress);
+		FLReleaseWithNil_(_progress);
 	}
 }
 
@@ -256,7 +256,7 @@ FLAssertDefaultInitNotCalled_()
 //		[alert setTextWithError:error];
 //	}
 //	[self.view addSubview:alert];
-//	FLReleaseWithNil(alert);
+//	FLReleaseWithNil_(alert);
 }
 
 - (IBAction) buttonClickBack:(id) sender
@@ -293,7 +293,7 @@ FLAssertDefaultInitNotCalled_()
 {
 	if(![self _openURLInSafariIfNeeded:url])
 	{
-		FLAssignObject(_startURL, url);
+		FLRetainObject_(_startURL, url);
 	
 		[_webView loadRequest:[self createURLRequestForURL:url]];
 	}

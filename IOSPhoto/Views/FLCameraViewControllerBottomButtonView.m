@@ -65,9 +65,9 @@
 	if(_leftButton != button)
 	{
 		[_leftButton removeFromSuperview];
-		FLReleaseWithNil(_leftButton);
+		FLReleaseWithNil_(_leftButton);
 	}
-	_leftButton = FLReturnRetained(button);
+	_leftButton = retain_(button);
 	
 	[self addSubview:_leftButton];
 }
@@ -77,9 +77,9 @@
 	if(_rightButton != button)
 	{
 		[_rightButton removeFromSuperview];
-		FLReleaseWithNil(_rightButton);
+		FLReleaseWithNil_(_rightButton);
 	}
-	_rightButton = FLReturnRetained(button);
+	_rightButton = retain_(button);
 	
 	[self addSubview:_rightButton];
 }
@@ -89,20 +89,20 @@
 	if(_centerButton != button)
 	{
 		[_centerButton removeFromSuperview];
-		FLReleaseWithNil(_centerButton);
+		FLReleaseWithNil_(_centerButton);
 	}
-	_centerButton = FLReturnRetained(button);
+	_centerButton = retain_(button);
 	
 	[self addSubview:_centerButton];
 }
 
 - (void) dealloc
 {
-	FLReleaseWithNil(_leftButton);
-	FLReleaseWithNil(_rightButton);
-	FLReleaseWithNil(_centerButton);
+	FLReleaseWithNil_(_leftButton);
+	FLReleaseWithNil_(_rightButton);
+	FLReleaseWithNil_(_centerButton);
 	
-	FLSuperDealloc();
+	mrc_super_dealloc_();
 }
 
 - (void) layoutSubviews

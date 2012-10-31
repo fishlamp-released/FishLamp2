@@ -41,8 +41,8 @@
 
 - (void) dealloc
 {
-	FLRelease(_countView);
-	FLSuperDealloc();
+	mrc_release_(_countView);
+	mrc_super_dealloc_();
 }
 
 - (void) setCount:(NSInteger) count

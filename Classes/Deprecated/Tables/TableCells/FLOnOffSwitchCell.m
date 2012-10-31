@@ -46,7 +46,7 @@
 
 + (FLOnOffSwitchCell*) onOffSwitchTableViewCell:(NSString*) titleOrNil
 {
-	FLOnOffSwitchCell* cell = FLReturnAutoreleased([[[self class] alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NSStringFromClass([self class])]);
+	FLOnOffSwitchCell* cell = autorelease_([[[self class] alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NSStringFromClass([self class])]);
 	if(FLStringIsNotEmpty(titleOrNil))
 	{
 		cell.textLabelText = titleOrNil;
@@ -65,8 +65,8 @@
 
 - (void)dealloc 
 {
-	FLRelease(_switch); 
-	FLSuperDealloc();
+	mrc_release_(_switch); 
+	mrc_super_dealloc_();
 }
 
 - (void) updateControlFromDataSource:(BOOL) animated

@@ -78,10 +78,10 @@
 
 - (void) dealloc
 {
-	FLRelease(_thumnailImage);
-	FLRelease(_fullScreenImage);
-	FLRelease(_originalImage);
-	FLSuperDealloc();
+	mrc_release_(_thumnailImage);
+	mrc_release_(_fullScreenImage);
+	mrc_release_(_originalImage);
+	mrc_super_dealloc_();
 }
 
 - (NSURL*) assetURL
@@ -188,9 +188,9 @@
 - (id)copyWithZone:(NSZone *)zone
 {
 	FLAssetsLibraryImageAsset* asset = [[FLAssetsLibraryImageAsset alloc] init];
-	asset.original = FLReturnAutoreleased([self.original copyWithZone:nil]);
-	asset.thumbnail = FLReturnAutoreleased([self.thumbnail copyWithZone:nil]);
-	asset.fullScreen = FLReturnAutoreleased([self.fullScreen copyWithZone:nil]);
+	asset.original = autorelease_([self.original copyWithZone:nil]);
+	asset.thumbnail = autorelease_([self.thumbnail copyWithZone:nil]);
+	asset.fullScreen = autorelease_([self.fullScreen copyWithZone:nil]);
 	asset.assetUID = self.assetUID;
 	return asset;
 }
@@ -220,17 +220,17 @@
 ////		}
 ////		else if([self.assetURL hasPrefix:@"assets-library"])
 ////		{
-////			self.assetObject = FLReturnAutoreleased([[FLAssetsLibraryImageAsset alloc] initWithAssetURL:[NSURL URLWithString:self.assetURL]]);
+////			self.assetObject = autorelease_([[FLAssetsLibraryImageAsset alloc] initWithAssetURL:[NSURL URLWithString:self.assetURL]]);
 ////		}
 //
 ////#import "FLJpegFileImageAsset.h"
 ////		if([self.assetURL hasPrefix:@"file:"])
 ////		{
-////			self.assetObject = FLReturnAutoreleased([[FLJpegFileImageAsset alloc] initWithFolder:[FLUserSession instance].photoFolder assetUID:self.assetUID]);
+////			self.assetObject = autorelease_([[FLJpegFileImageAsset alloc] initWithFolder:[FLUserSession instance].photoFolder assetUID:self.assetUID]);
 ////		}
 ////		else if([self.assetURL hasPrefix:@"assets-library"])
 ////		{
-////			self.assetObject = FLReturnAutoreleased();
+////			self.assetObject = autorelease_();
 ////		}
 
 - (id) initWithQueuedAsset:(FLQueuedAsset*) queuedAsset {

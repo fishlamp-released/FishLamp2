@@ -17,11 +17,11 @@
 {
     if((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]))
     {
-        self.arrangement = FLReturnAutoreleased([[FLSingleColumnRowArrangement alloc] init]);
+        self.arrangement = autorelease_([[FLSingleColumnRowArrangement alloc] init]);
         
         for(int i = 0; i < 500; i++)
         {
-//            FLLabelGridCell* cell = FLReturnAutoreleased([[FLLabelGridCell alloc] init]);
+//            FLLabelGridCell* cell = autorelease_([[FLLabelGridCell alloc] init]);
 //            cell.text = [NSString stringWithFormat:@"Line #%d", i];
 //            [self.cellManager addCell:cell];
         }

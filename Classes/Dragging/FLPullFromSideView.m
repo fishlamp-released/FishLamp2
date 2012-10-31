@@ -27,7 +27,7 @@
 
 - (void) dealloc
 {
-    FLSuperDealloc();
+    mrc_super_dealloc_();
 }
 
 - (void) finishTouching:(FLPoint) touch delta:(FLPoint) delta

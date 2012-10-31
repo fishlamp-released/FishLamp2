@@ -26,7 +26,7 @@
 {
 	if((self = [super init]))
 	{
-		_link = FLReturnRetained(fbLink);
+		_link = retain_(fbLink);
 		self.title = NSLocalizedString(@"Post Link on Facebook", nil);
 		self.saveButtonTitle = NSLocalizedString(@"Share", nil);
         self.maxSize = 500;
@@ -36,25 +36,25 @@
 
 + (FLFacebookPostLinkViewController*) facebookPostLinkViewController:(FLFacebookLink*) fbLink
 {
-	return FLReturnAutoreleased([[FLFacebookPostLinkViewController alloc] initWithLink:fbLink]);
+	return autorelease_([[FLFacebookPostLinkViewController alloc] initWithLink:fbLink]);
 }
 
 + (FLFacebookPostLinkViewController*) facebookPostLinkViewController
 {
-	return FLReturnAutoreleased([[FLFacebookPostLinkViewController alloc] init]);
+	return autorelease_([[FLFacebookPostLinkViewController alloc] init]);
 }	
 
 - (void) dealloc
 {
-    FLRelease(_linkLabel);
-	FLRelease(_headerView);
-	FLSuperDealloc();
+    mrc_release_(_linkLabel);
+	mrc_release_(_headerView);
+	mrc_super_dealloc_();
 }
 
 - (void) viewDidUnload
 {   
-    FLReleaseWithNil(_linkLabel);
-	FLReleaseWithNil(_headerView);
+    FLReleaseWithNil_(_linkLabel);
+	FLReleaseWithNil_(_headerView);
 	[super viewDidUnload];
 }
 

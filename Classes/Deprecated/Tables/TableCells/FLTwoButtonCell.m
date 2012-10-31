@@ -20,10 +20,10 @@
 	if(_leftButton)
 	{
 		[_leftButton removeFromSuperview];
-		FLReleaseWithNil(_leftButton);
+		FLReleaseWithNil_(_leftButton);
 	}
 	
-	_leftButton = FLReturnRetained(leftButton);
+	_leftButton = retain_(leftButton);
 	[self addSubview:_leftButton];
 	[self setNeedsLayout];
 }
@@ -33,10 +33,10 @@
 	if(_rightButton)
 	{
 		[_rightButton removeFromSuperview];
-		FLReleaseWithNil(_rightButton);
+		FLReleaseWithNil_(_rightButton);
 	}
 	
-	_rightButton = FLReturnRetained(rightButton);
+	_rightButton = retain_(rightButton);
 	[self addSubview:_rightButton];
 	[self setNeedsLayout];
 }
@@ -82,14 +82,14 @@
 }
 - (void)dealloc 
 {
-	FLRelease(_leftButton);
-	FLRelease(_rightButton);	
-	FLSuperDealloc();
+	mrc_release_(_leftButton);
+	mrc_release_(_rightButton);	
+	mrc_super_dealloc_();
 }
 
 + (FLTwoButtonCell*) twoButtonCell
 {
-	return FLReturnAutoreleased([[FLTwoButtonCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"FLTwoButtonCell"]);
+	return autorelease_([[FLTwoButtonCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"FLTwoButtonCell"]);
 }	
 
 + (FLTwoButtonCell*) twoButtonCell:(FLLegacyButton*) leftButton

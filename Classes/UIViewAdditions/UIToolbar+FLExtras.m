@@ -32,10 +32,10 @@
 //			  [items replaceObjectAtIndex:i withObject:customItem];
 //			  if(outNewItem)
 //			  {
-//				  *outNewItem = FLReturnRetained(customItem);
+//				  *outNewItem = retain_(customItem);
 //			  }
 //	 
-//			  FLReleaseWithNil(customItem);
+//			  FLReleaseWithNil_(customItem);
 //			  
 //			  break;
 //		  }
@@ -43,7 +43,7 @@
 //
 //	[self setItems:items animated:animated];
 //
-//	  FLReleaseWithNil(items);
+//	  FLReleaseWithNil_(items);
 //	 
 //	  return foundIt;
 //}
@@ -88,7 +88,7 @@
 		}
 	}
 	
-	FLReleaseWithNil(items);
+	FLReleaseWithNil_(items);
 	
 	return foundIt;
 }
@@ -99,17 +99,17 @@
 
 + (UIBarButtonItem*) flexibleSpaceBarButtonItem
 {
-	return FLReturnAutoreleased([[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil]);
+	return autorelease_([[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil]);
 }
 
 + (UIBarButtonItem*) imageButtonBarButtonItem:(UIImage*) image target:(id) target action:(SEL) action
 {
-	return FLReturnAutoreleased([[UIBarButtonItem alloc] initWithImage:image style:UIBarButtonItemStylePlain target:target	action:action] );
+	return autorelease_([[UIBarButtonItem alloc] initWithImage:image style:UIBarButtonItemStylePlain target:target	action:action] );
 }
 
 + (UIBarButtonItem*) fixedSpaceBarButtonItem:(CGFloat) width
 {
-	UIBarButtonItem* item = FLReturnAutoreleased([[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil]);
+	UIBarButtonItem* item = autorelease_([[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil]);
 	item.width = width;
 	return item;
 }

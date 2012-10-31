@@ -121,11 +121,11 @@
 
 - (void) dealloc
 {
-	FLRelease(_disabledImage);
-	FLRelease(_image);
-	FLRelease(_titleLabel);
-	FLRelease(_imageView);
-	FLSuperDealloc();
+	mrc_release_(_disabledImage);
+	mrc_release_(_image);
+	mrc_release_(_titleLabel);
+	mrc_release_(_imageView);
+	mrc_super_dealloc_();
 }
 
 - (BOOL) isTranslucent
@@ -185,7 +185,7 @@
 			if(!_disabledImage)
 			{
 				_disabledImage = [_image imageTintedWithColor:[UIColor grayColor] fraction:0];
-                FLRetain(_disabledImage);
+                mrc_retain_(_disabledImage);
 			}
 			_imageView.image = _disabledImage;
 		}
@@ -247,8 +247,8 @@
 
 - (void) setImage:(UIImage*) image
 {
-	FLReleaseWithNil(_disabledImage);
-	FLAssignObject(_image, image);
+	FLReleaseWithNil_(_disabledImage);
+	FLRetainObject_(_image, image);
 	self.imageView.image = _image;
 	[self.imageView resizeToImageSize];
 	[self setNeedsLayout];
@@ -331,7 +331,7 @@
 
 - (void) _sendEvent:(id) sender
 {
-    FLAutorelease(FLReturnRetained(self));
+    mrc_autorelease_(retain_(self));
 
 	self.highlighted = NO;
 	FLInvokeCallback(_buttonWasPressedCallback, self);

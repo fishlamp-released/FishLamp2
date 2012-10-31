@@ -53,10 +53,10 @@
 
 - (void) dealloc
 {
-    FLRelease(__name);
-    FLRelease(__className);
-    FLRelease(__fontSize);
-    FLSuperDealloc();
+    mrc_release_(__name);
+    mrc_release_(__className);
+    mrc_release_(__fontSize);
+    mrc_super_dealloc_();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder
@@ -79,16 +79,16 @@
 {
     if((self = [super initWithCoder:aDecoder]))
     {
-        __name = FLReturnRetained([aDecoder decodeObjectForKey:@"__name"]);
-        __className = FLReturnRetained([aDecoder decodeObjectForKey:@"__className"]);
-        __fontSize = FLReturnRetained([aDecoder decodeObjectForKey:@"__fontSize"]);
+        __name = retain_([aDecoder decodeObjectForKey:@"__name"]);
+        __className = retain_([aDecoder decodeObjectForKey:@"__className"]);
+        __fontSize = retain_([aDecoder decodeObjectForKey:@"__fontSize"]);
     }
     return self;
 }
 
 + (FLSavedThemeInfo*) savedThemeInfo
 {
-    return FLReturnAutoreleased([[FLSavedThemeInfo alloc] init]);
+    return autorelease_([[FLSavedThemeInfo alloc] init]);
 }
 
 + (FLObjectDescriber*) sharedObjectDescriber

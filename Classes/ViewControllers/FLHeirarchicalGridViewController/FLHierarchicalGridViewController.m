@@ -36,7 +36,7 @@
 }
 
 + (FLHierarchicalGridViewController*) hierarchicalGridViewController {
-    return FLReturnAutoreleased([[[self class] alloc] init]);
+    return autorelease_([[[self class] alloc] init]);
 }
 
 - (void) willBecomeChildOfHierarchicalViewController:(FLHierarchicalGridViewController*) controller {
@@ -62,7 +62,7 @@
 - (void) viewDidLoad {
     [super viewDidLoad];
     
-//    FLGradientView* gradient = FLReturnAutoreleased([[FLGradientView alloc] initWithFrame:self.view.bounds]);
+//    FLGradientView* gradient = autorelease_([[FLGradientView alloc] initWithFrame:self.view.bounds]);
 //    gradient.autoresizingMask = UIViewAutoresizingFlexibleEverything;
 //    gradient.alpha = 0.4;
 //    [self.view insertSubview:gradient belowSubview:self.scrollView];
@@ -97,7 +97,7 @@
 }
 
 - (void) setParentDataObject:(id) object {
-    FLAssignObject(_parentDataRef, object);
+    FLRetainObject_(_parentDataRef, object);
     [self willUpdateTitle];
 }
 
@@ -147,7 +147,7 @@
 }
 
 - (UIViewController*) createViewControllerForSelectedCell:(FLGridCell *)cell {
-    FLHierarchicalGridViewController* controller = FLReturnAutoreleased([[[self class] alloc] init]);
+    FLHierarchicalGridViewController* controller = autorelease_([[[self class] alloc] init]);
     controller.dataModel = [self dataModelForCell:cell];
     controller.parentDataRef = cell.cellDataRef;
     controller.dismissHandler = self.dismissHandler;
@@ -160,8 +160,8 @@
 }
 
 - (void) dealloc {
-    FLRelease(_parentDataRef);
-    FLSuperDealloc();
+    mrc_release_(_parentDataRef);
+    mrc_super_dealloc_();
 }
 
 - (id<FLViewControllerTransitionAnimation>) createOpenAnimationForCell:(FLGridCell*) cell {

@@ -24,7 +24,7 @@
 
 + (FLExternalTouchViewCloser*) externalTouchViewCloser
 {
-    return FLReturnAutoreleased([[FLExternalTouchViewCloser alloc] init]);
+    return autorelease_([[FLExternalTouchViewCloser alloc] init]);
 }
 
 - (void) beginWatchingTouchesForView:(UIView*) view
@@ -55,9 +55,9 @@
         [[FLApplication sharedApplication] removeEventInterceptor:self];
     }
 
-    FLRelease(_views);
-    FLRelease(_passThroughViews);
-    FLSuperDealloc();
+    mrc_release_(_views);
+    mrc_release_(_passThroughViews);
+    mrc_super_dealloc_();
 }
 
 - (void) addPrimaryView:(UIView*) view

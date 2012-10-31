@@ -65,10 +65,10 @@
 
 - (void) dealloc
 {
-    FLRelease(_notificationView);
-	FLRelease(_assets);
-	FLRelease(_group);
-	FLSuperDealloc();
+    mrc_release_(_notificationView);
+	mrc_release_(_assets);
+	mrc_release_(_group);
+	mrc_super_dealloc_();
 }
 
 - (void) _hideNotification
@@ -76,7 +76,7 @@
     if(_notificationView)
     {
         [_notificationView removeFromSuperviewWithAnimationType:FLViewAnimationTypeSlideFromTop duration:0.3f finishedBlock:nil];
-        FLReleaseWithNil(_notificationView);
+        FLReleaseWithNil_(_notificationView);
     }
 }
 
@@ -94,7 +94,7 @@
     _notificationView.layer.borderColor = [UIColor darkGrayColor].CGColor;
     _notificationView.layer.borderWidth = 1.0f;
     
-    UILabel* label = FLReturnAutoreleased([[UILabel alloc] initWithFrame:_notificationView.bounds]);
+    UILabel* label = autorelease_([[UILabel alloc] initWithFrame:_notificationView.bounds]);
     label.autoresizingMask = UIViewAutoresizingFlexibleEverything;
     label.font = [UIFont boldSystemFontOfSize:[UIFont buttonFontSize]];
     label.textColor = [UIColor amberColor ];
@@ -134,7 +134,7 @@
 
 + (FLAssetsLibraryPhotoBrowserController*) assetsLibraryPhotoBrowserController:(FLAssetQueue*) assetsQueue  withGroup:(ALAssetsGroup*) group
 {
-	return FLReturnAutoreleased([[FLAssetsLibraryPhotoBrowserController alloc] initWithAssetQueue:assetsQueue withGroup:group]);
+	return autorelease_([[FLAssetsLibraryPhotoBrowserController alloc] initWithAssetQueue:assetsQueue withGroup:group]);
 }
 
 - (NSUInteger) numberOfDataItems

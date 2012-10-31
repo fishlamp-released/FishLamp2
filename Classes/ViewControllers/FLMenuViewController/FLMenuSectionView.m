@@ -42,8 +42,8 @@
 
 - (void) dealloc
 {
-    FLRelease(_header);
-    FLSuperDealloc();
+    mrc_release_(_header);
+    mrc_super_dealloc_();
 }
 
 //- (FLSize) layoutSubviewsWithArrangement

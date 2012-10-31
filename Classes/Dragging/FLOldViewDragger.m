@@ -25,8 +25,8 @@
 - (void) dealloc
 {
     [[FLApplication sharedApplication] removeEventInterceptor:self];
-    FLRelease(_item);
-    FLSuperDealloc();
+    mrc_release_(_item);
+    mrc_super_dealloc_();
 }
 
 - (BOOL) isWatchingTouches
@@ -36,7 +36,7 @@
 
 + (FLOldViewDragger*) viewDragger
 {
-    return FLReturnAutoreleased([[FLOldViewDragger alloc] init]);
+    return autorelease_([[FLOldViewDragger alloc] init]);
 }
 
 - (void) beginWatchingTouchesForDraggableItem:(id<FLDraggableItem>) item
@@ -45,7 +45,7 @@
 
     FLAssertIsNotNil_(item.touchableView);
     FLAssertIsNotNil_(item.touchableView.window);
-    _item = FLReturnRetained(item);
+    _item = retain_(item);
 
    [[FLApplication sharedApplication] addEventInterceptor:self];
 }
@@ -53,7 +53,7 @@
 - (void) stopWatchingTouches
 {
     [[FLApplication sharedApplication] removeEventInterceptor:self];
-    FLReleaseWithNil(_item);
+    FLReleaseWithNil_(_item);
 }
 
 - (FLPoint) pointInView:(FLPoint) windowCoordinatePoint

@@ -70,9 +70,9 @@
 
 - (void) dealloc {
     [self removeAllToolbarItems];
-    FLRelease(_items);
-    FLRelease(_itemArrangement);
-    FLSuperDealloc();
+    mrc_release_(_items);
+    mrc_release_(_itemArrangement);
+    mrc_super_dealloc_();
 }
 
 - (void) updateSizeInBounds:(FLRect) bounds {
@@ -133,7 +133,7 @@
 - (void) addEmptyItem:(FLSize) size {
     FLToolbarItem* item = [[FLToolbarItem alloc] initWithFrame:FLRectMakeWithSize(size)];
     [self addToolbarItem:item];
-    FLRelease(item);
+    mrc_release_(item);
 }
 
 @end

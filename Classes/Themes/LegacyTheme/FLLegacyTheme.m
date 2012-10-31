@@ -33,8 +33,8 @@
 //
 //- (void) dealloc
 //{
-//	FLRelease(_name);
-//	FLSuperDealloc();
+//	mrc_release_(_name);
+//	mrc_super_dealloc_();
 //}
 //
 //

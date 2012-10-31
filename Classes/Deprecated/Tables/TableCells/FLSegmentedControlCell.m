@@ -40,13 +40,13 @@
 
 + (FLSegmentedControlCell*) segmentedControlCell:(UISegmentedControlStyle) style items:(NSArray*) items
 {
-	return FLReturnAutoreleased([[FLSegmentedControlCell alloc] initWithSegmentedControlStyle:style items:items]);
+	return autorelease_([[FLSegmentedControlCell alloc] initWithSegmentedControlStyle:style items:items]);
 }
 
 - (void) dealloc
 {
-	FLRelease(_control);
-	FLSuperDealloc();
+	mrc_release_(_control);
+	mrc_super_dealloc_();
 }
 
 - (void) enabledStateDidChange

@@ -72,11 +72,11 @@
 
 - (void) dealloc
 {	
-	FLRelease(_thumbnailBar);
-	FLRelease(_previousButton);
-	FLRelease(_nextButton);
-	FLRelease(_thumbnailBarItem);
-	FLSuperDealloc();
+	mrc_release_(_thumbnailBar);
+	mrc_release_(_previousButton);
+	mrc_release_(_nextButton);
+	mrc_release_(_thumbnailBarItem);
+	mrc_super_dealloc_();
 }
 
 #define ButtonSize 40

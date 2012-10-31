@@ -47,7 +47,7 @@
 		self.autoresizingMask = UIViewAutoresizingNone;
 		self.backgroundColor = [UIColor clearColor];
 	
-		self.roundRectView = FLReturnAutoreleased([[FLRoundRectView alloc] initWithFrame:self.bounds]);
+		self.roundRectView = autorelease_([[FLRoundRectView alloc] initWithFrame:self.bounds]);
 		self.roundRectView.autoresizesSubviews = YES;
 		[self addSubview:self.roundRectView];
 
@@ -55,16 +55,16 @@
 		[_gradientView setColorRange:[FLColorRange colorRange:[UIColor darkGrayColor] endColor:[UIColor blackColor]] forControlState:UIControlStateNormal];
 		[self.roundRectView addWidget:_gradientView];
 		
-		self.titleLabel = FLReturnAutoreleased([[UILabel alloc] initWithFrame:CGRectZero]);
-		self.secondaryTextLabel = FLReturnAutoreleased([[UILabel alloc] initWithFrame:CGRectZero]);
-		self.progressBarLabel = FLReturnAutoreleased([[UILabel alloc] initWithFrame:CGRectZero]);
-		self.progressBar = FLReturnAutoreleased([[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault]);
-		self.progressBarSpinner = FLReturnAutoreleased([[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite]);
+		self.titleLabel = autorelease_([[UILabel alloc] initWithFrame:CGRectZero]);
+		self.secondaryTextLabel = autorelease_([[UILabel alloc] initWithFrame:CGRectZero]);
+		self.progressBarLabel = autorelease_([[UILabel alloc] initWithFrame:CGRectZero]);
+		self.progressBar = autorelease_([[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault]);
+		self.progressBarSpinner = autorelease_([[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite]);
 		self.progressBarSpinner.hidesWhenStopped = YES;
 		
-		self.button = FLReturnAutoreleased([[FLSmallButtonDeprecated alloc] initWithColor:FLGradientButtonBlack title:NSLocalizedString(@"Cancel", @"progress cancel button") target:nil action:nil]);
+		self.button = autorelease_([[FLSmallButtonDeprecated alloc] initWithColor:FLGradientButtonBlack title:NSLocalizedString(@"Cancel", @"progress cancel button") target:nil action:nil]);
 		
-		UIActivityIndicatorView* spinner = FLReturnAutoreleased([[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite]);
+		UIActivityIndicatorView* spinner = autorelease_([[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite]);
 		[self.button addSubview:spinner];
 		
 		spinner.frame = FLRectSetOrigin(spinner.frame, 14, 6);
@@ -94,13 +94,13 @@
 
 - (void) dealloc
 {
-	FLRelease(_gradientView);
-	FLSuperDealloc();
+	mrc_release_(_gradientView);
+	mrc_super_dealloc_();
 }
 
 + (FLModalProgressView*) modalProgressView
 {
-	return FLReturnAutoreleased([[FLModalProgressView alloc] initWithFrame:CGRectMake(0,0,400,150)]);
+	return autorelease_([[FLModalProgressView alloc] initWithFrame:CGRectMake(0,0,400,150)]);
 }
 
 - (void) layoutSubviews

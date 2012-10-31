@@ -38,7 +38,7 @@
 //        [UIColor gray25Color];
 		[self addSubview:_progressView];
 		
-		self.progressBarSpinner = FLReturnAutoreleased([[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite]);
+		self.progressBarSpinner = autorelease_([[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite]);
 		[self.progressBarSpinner startAnimating];
 		[self addSubview:self.progressBarSpinner];
 		
@@ -48,7 +48,7 @@
 		titleLabel.backgroundColor = [UIColor clearColor];
 		self.titleLabel = titleLabel;
 		[self addSubview:titleLabel];
-		FLRelease(titleLabel);
+		mrc_release_(titleLabel);
 	}
 	
 	return self;
@@ -61,14 +61,14 @@
 
 + (FLTinyProgressView*) tinyProgressView
 {
-	return FLReturnAutoreleased([[FLTinyProgressView alloc] init]);
+	return autorelease_([[FLTinyProgressView alloc] init]);
 }
 
 - (void) dealloc
 {
-	FLRelease(_backgroundView);
-	FLRelease(_progressView);
-	FLSuperDealloc();
+	mrc_release_(_backgroundView);
+	mrc_release_(_progressView);
+	mrc_super_dealloc_();
 }	
 
 - (void) _updateProgressFrame

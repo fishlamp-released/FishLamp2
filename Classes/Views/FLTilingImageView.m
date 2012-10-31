@@ -14,8 +14,8 @@
 @synthesize tiledImage = _image;
 
 - (void) dealloc {
-	FLRelease(_image);
-	FLSuperDealloc();
+	mrc_release_(_image);
+	mrc_super_dealloc_();
 }
 
 - (void)drawRect:(FLRect)rect {

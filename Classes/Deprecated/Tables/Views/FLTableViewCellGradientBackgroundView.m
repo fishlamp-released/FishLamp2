@@ -42,7 +42,7 @@
 
 - (void) dealloc
 {
-	FLRelease(_arrowColor);
-	FLSuperDealloc();
+	mrc_release_(_arrowColor);
+	mrc_super_dealloc_();
 }
 @end

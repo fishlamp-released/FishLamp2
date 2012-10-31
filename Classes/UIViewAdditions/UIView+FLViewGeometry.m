@@ -11,7 +11,7 @@
 @implementation UIView (FLViewGeometry)
 
 + (id) viewWithFrame:(FLRect) frame {
-    return FLReturnAutoreleased([[[self class] alloc] initWithFrame:frame]);
+    return autorelease_([[[self class] alloc] initWithFrame:frame]);
 }
 
 - (void) moveBy:(FLPoint) delta {

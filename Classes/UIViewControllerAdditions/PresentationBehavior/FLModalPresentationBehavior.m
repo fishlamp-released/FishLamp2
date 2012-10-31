@@ -27,8 +27,8 @@ FLSynthesizeSingleton(FLModalPresentationBehavior);
 
 - (void) dealloc
 {
-    FLRelease(_shieldViewController);
-    FLSuperDealloc();
+    mrc_release_(_shieldViewController);
+    mrc_super_dealloc_();
 }
     
 - (BOOL) canAutoDismissDontUseThis
@@ -38,7 +38,7 @@ FLSynthesizeSingleton(FLModalPresentationBehavior);
 
 - (UIViewController*) createShieldViewController
 {
-    return FLReturnAutoreleased([[FLModalShieldViewController alloc] init]);
+    return autorelease_([[FLModalShieldViewController alloc] init]);
 }
 
 - (void) willPresentViewController:(UIViewController*) viewController
@@ -48,7 +48,7 @@ FLSynthesizeSingleton(FLModalPresentationBehavior);
 
     if(!_shieldViewController) {
         _shieldViewController = [self createShieldViewController];
-        FLRetain(_shieldViewController);
+        mrc_retain_(_shieldViewController);
         [parentViewController addChildViewController:_shieldViewController];
         [parentViewController.view addSubview:_shieldViewController.view];
         _shieldViewController.view.frame = parentViewController.view.frame;
@@ -75,15 +75,15 @@ FLSynthesizeSingleton(FLModalPresentationBehavior);
 
     FLAssert_v([NSThread currentThread] == [NSThread mainThread], @"not in main thread");
 
-    FLRetain(viewController);
+    mrc_retain_(viewController);
     [[viewController view] removeFromSuperview];
     [viewController removeFromParentViewController];
-    FLAutorelease(viewController);
+    mrc_autorelease_(viewController);
 
     if([_shieldViewController view].subviews.count == 0) {
         [[_shieldViewController view] removeFromSuperview];
         [_shieldViewController removeFromParentViewController];
-        FLReleaseWithNil(_shieldViewController);
+        FLReleaseWithNil_(_shieldViewController);
     }
 }
 

@@ -83,7 +83,7 @@ FLSynthesizeStructProperty(saveChangesImmediately, setSaveChangesImmediately, BO
 
 - (UIScrollView*) createScrollView
 {
-    FLTableView* tableView = FLReturnAutoreleased([[FLTableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain]);
+    FLTableView* tableView = autorelease_([[FLTableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain]);
     tableView.autoresizingMask = UIViewAutoresizingFlexibleEverything;
     tableView.autoresizesSubviews = YES;
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -109,7 +109,7 @@ FLSynthesizeStructProperty(saveChangesImmediately, setSaveChangesImmediately, BO
 
 - (void) _createTableLayout
 {
-	FLReleaseWithNil(_layout);
+	FLReleaseWithNil_(_layout);
 	FLPerformBlockInAutoreleasePool(^{
         _layout = [[FLTableViewLayout alloc] initWithCellDataSouce:self];
         [self doUpdateDataSourceManager:self.dataSourceManager];
@@ -276,15 +276,15 @@ FLSynthesizeStructProperty(saveChangesImmediately, setSaveChangesImmediately, BO
 
 - (void) cleanUpEditableObjectView
 {
-	FLReleaseWithNil(_tabBar);
-	FLReleaseWithNil(_bottomToolbar);
-	FLReleaseWithNil(_topToolbar);
-	FLReleaseWithNil(_imageView);
+	FLReleaseWithNil_(_tabBar);
+	FLReleaseWithNil_(_bottomToolbar);
+	FLReleaseWithNil_(_topToolbar);
+	FLReleaseWithNil_(_imageView);
 
 	FLTableViewLayout* layout = _layout;
 	_layout = nil;
 	[layout prepareForDestruction];
-	FLRelease(layout);
+	mrc_release_(layout);
 }
 
 - (NSString*) helpFileName
@@ -309,11 +309,11 @@ FLSynthesizeStructProperty(saveChangesImmediately, setSaveChangesImmediately, BO
 - (void)dealloc 
 {	
 	[self shutDown];
-	FLRelease(_cancelButtonTitle);
-	FLRelease(_saveButtonTitle);
-	FLRelease(_dataSourceManager);
-	FLRelease(_backgroundImage);
-	FLSuperDealloc();
+	mrc_release_(_cancelButtonTitle);
+	mrc_release_(_saveButtonTitle);
+	mrc_release_(_dataSourceManager);
+	mrc_release_(_backgroundImage);
+	mrc_super_dealloc_();
 }
 
 - (void) showBackgroundImage:(BOOL) show animated:(BOOL) animated
@@ -325,7 +325,7 @@ FLSynthesizeStructProperty(saveChangesImmediately, setSaveChangesImmediately, BO
 			if(_imageView)
 			{
 				[_imageView removeFromSuperview];
-				FLRelease(_imageView);
+				mrc_release_(_imageView);
 			}
 
 			_imageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
@@ -349,13 +349,13 @@ FLSynthesizeStructProperty(saveChangesImmediately, setSaveChangesImmediately, BO
 			{
 				[_imageView removeFromSuperview];
 			}
-			FLReleaseWithNil(_imageView);
+			FLReleaseWithNil_(_imageView);
 		}
 	}
 	else
 	{
 		[_imageView removeFromSuperview];
-		FLReleaseWithNil(_imageView);
+		FLReleaseWithNil_(_imageView);
 	}
 }
 
@@ -433,7 +433,7 @@ FLSynthesizeStructProperty(saveChangesImmediately, setSaveChangesImmediately, BO
 	FLHtmlHelpViewController* helpView = [[FLHtmlHelpViewController alloc] initWithButtonMode:FLWebViewControllerButtonModeNone];
 	helpView.fileName = self.helpFileName;
 	[self.navigationController pushViewController:helpView animated:YES];
-	FLReleaseWithNil(helpView);
+	FLReleaseWithNil_(helpView);
 }
 
 - (id) objectForKey:(id) key
@@ -615,7 +615,7 @@ FLSynthesizeStructProperty(saveChangesImmediately, setSaveChangesImmediately, BO
 
 - (void) onCancelComplete
 {
-	FLAutorelease(FLReturnRetained(self));
+	mrc_autorelease_(retain_(self));
     [self dismissViewControllerAnimated:YES];
     
 //	FLInvokeCallback(self.dismissEvent, self);
@@ -917,7 +917,7 @@ FLSynthesizeStructProperty(saveChangesImmediately, setSaveChangesImmediately, BO
 //		view.title = NSLocalizedString(@"Unable to save changes.", nil);
 //		view.text = NSLocalizedString(@"Please try again when you have a network connection.", nil);
 //		[view showNotification];
-//		FLReleaseWithNil(view);
+//		FLReleaseWithNil_(view);
 	}
 	else if([self willBeginSavingChanges])
 	{
@@ -960,7 +960,7 @@ FLSynthesizeStructProperty(saveChangesImmediately, setSaveChangesImmediately, BO
 //	view.shouldAutoCloseAfterDelay = YES;
 //	
 //	[view showNotification];
-//	FLReleaseWithNil(view);
+//	FLReleaseWithNil_(view);
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
@@ -1054,20 +1054,20 @@ FLSynthesizeStructProperty(saveChangesImmediately, setSaveChangesImmediately, BO
 //	  forKey:(id) key 
 //	  saveToDataSource:(FLLegacyDataSource*) saveToDataSourceManager
 //{
-//	  FLAssignObject(_saveKey, key);
-//	  FLAssignObject(_saveToDataSourceManager, saveToDataSourceManager);
+//	  FLRetainObject_(_saveKey, key);
+//	  FLRetainObject_(_saveToDataSourceManager, saveToDataSourceManager);
 //	  
 //	  if([data conformsToProtocol:@protocol(NSMutableCopying)])
 //	  {
-//		  [self.dataSourceManager setDataSource:FLReturnAutoreleased([data mutableCopy]) forKey:key];
+//		  [self.dataSourceManager setDataSource:autorelease_([data mutableCopy]) forKey:key];
 //	  }
 //	  else if([data conformsToProtocol:@protocol(NSCopying)])
 //	  {
-//		  [self.dataSourceManager setDataSource:FLReturnAutoreleased([data copy]) forKey:key];
+//		  [self.dataSourceManager setDataSource:autorelease_([data copy]) forKey:key];
 //	  }
 //	  else
 //	  {
-//		  [self.dataSourceManager setDataSource:FLReturnAutoreleased([data copy]) forKey:key];
+//		  [self.dataSourceManager setDataSource:autorelease_([data copy]) forKey:key];
 //	  }
 //}
 
@@ -1082,7 +1082,7 @@ FLSynthesizeStructProperty(saveChangesImmediately, setSaveChangesImmediately, BO
 		view.autoLayoutMode = FLContentModeMake(FLContentModeHorizontalCentered, FLContentModeVerticalTop);
 #endif        
 		[view showNotification];
-		FLReleaseWithNil(view);
+		FLReleaseWithNil_(view);
 	}
 	
 	[super networkDidBecomeUnavailable];

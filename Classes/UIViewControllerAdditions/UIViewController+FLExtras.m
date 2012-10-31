@@ -111,7 +111,7 @@ FLSynthesizeAssociatedProperty(retain_nonatomic, transitionAnimation, setTransit
 - (void) willDismissViewControllerAnimated:(BOOL) animated {
     FLAssert_v([NSThread currentThread] == [NSThread mainThread], @"Not on main thread");
 
-    FLAutorelease(FLReturnRetained(self));
+    mrc_autorelease_(retain_(self));
 
     [[self presentationBehavior] willDismissViewController:self 
         fromParentViewController:self.parentViewController];
@@ -226,7 +226,7 @@ FLSynthesizeAssociatedProperty(retain_nonatomic, transitionAnimation, setTransit
 - (UIActivityIndicatorView*) addActivityIndicatorView:(UIActivityIndicatorViewStyle) style {
     FLAssert_v([NSThread currentThread] == [NSThread mainThread], @"Not on main thread");
 
-    UIActivityIndicatorView* spinner = FLReturnAutoreleased([[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:style]);
+    UIActivityIndicatorView* spinner = autorelease_([[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:style]);
     UIView* superview = self.view;
     spinner.frameOptimizedForLocation = FLRectCenterRectInRect(superview.bounds, spinner.frame);
     [spinner startAnimating];

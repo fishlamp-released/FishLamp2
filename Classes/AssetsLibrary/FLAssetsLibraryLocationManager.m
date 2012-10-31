@@ -29,15 +29,15 @@
     {
         _locationManager.delegate = nil;
         [_locationManager stopUpdatingLocation];
-        FLReleaseWithNil(_locationManager);
+        FLReleaseWithNil_(_locationManager);
     }
 }
 
 - (void) dealloc
 {
     [self _releaseLocationManager];
-    FLRelease(_callback);
-    FLSuperDealloc();
+    mrc_release_(_callback);
+    mrc_super_dealloc_();
 }
 
 
@@ -49,7 +49,7 @@
     }
     
     [self _releaseLocationManager];
-    FLReleaseBlockWithNil(_callback);
+    FLReleaseBlockWithNil_(_callback);
 }
 
 - (BOOL) isCheckingPermissions
@@ -103,7 +103,7 @@
 - (void) cancelPermissionsCheck
 {
     [self _releaseLocationManager];
-    FLReleaseBlockWithNil(_callback);
+    FLReleaseBlockWithNil_(_callback);
 }
 
 @end

@@ -43,37 +43,37 @@
 
 + (FLAlertButtonCallback*) alertButtonCallback:(NSString*) buttonTitle blockCallback:(dispatch_block_t) blockCallback
 {
-	return FLReturnAutoreleased([[FLAlertButtonCallback alloc] initWithTitle:buttonTitle blockCallback:blockCallback]);
+	return autorelease_([[FLAlertButtonCallback alloc] initWithTitle:buttonTitle blockCallback:blockCallback]);
 }
 
 + (FLAlertButtonCallback*) alertButtonCallback:(NSString*) buttonTitle target:(id) target action:(SEL) action
 {
-	return FLReturnAutoreleased([[FLAlertButtonCallback alloc] initWithTitle:buttonTitle target:target action:action]);
+	return autorelease_([[FLAlertButtonCallback alloc] initWithTitle:buttonTitle target:target action:action]);
 }
 
 + (FLAlertButtonCallback*) alertButtonCallback:(NSString*) buttonTitle
 {
-	return FLReturnAutoreleased([[FLAlertButtonCallback alloc] initWithTitle:buttonTitle target:nil action:nil]);
+	return autorelease_([[FLAlertButtonCallback alloc] initWithTitle:buttonTitle target:nil action:nil]);
 }
 
 - (void) releaseCallbacks
 {
-    FLReleaseBlockWithNil(_blockCallback);
-    FLReleaseWithNil(_callback);
+    FLReleaseBlockWithNil_(_blockCallback);
+    FLReleaseWithNil_(_callback);
 }
 
 - (void) dealloc
 {
-    FLRelease(_blockCallback);
-	FLRelease(_buttonTitle);
-	FLRelease(_callback);
-	FLSuperDealloc();
+    mrc_release_(_blockCallback);
+	mrc_release_(_buttonTitle);
+	mrc_release_(_callback);
+	mrc_super_dealloc_();
 }
 
 + (FLAlertButtonCallback*) cancelButtonCallback
 {
     FLReturnStaticObjectFromBlock( ^{ 
-        return FLReturnAutoreleased([[FLAlertButtonCallback alloc] initWithTitle:NSLocalizedString(@"Cancel", nil) target:nil action:nil]); });
+        return autorelease_([[FLAlertButtonCallback alloc] initWithTitle:NSLocalizedString(@"Cancel", nil) target:nil action:nil]); });
 
 }
 

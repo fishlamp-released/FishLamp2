@@ -25,7 +25,7 @@ FLSynthesizeStructProperty(isHidden, setHidden, BOOL, _flags);
 
 + (FLTouchableString*) touchableString
 {
-    return FLReturnAutoreleased([[FLTouchableString alloc] init]);
+    return autorelease_([[FLTouchableString alloc] init]);
 }
 
 - (id) init
@@ -66,12 +66,12 @@ FLSynthesizeStructProperty(isHidden, setHidden, BOOL, _flags);
 
 - (void) dealloc 
 {   
-    FLRelease(_runFrames);
-    FLRelease(_color);
-    FLRelease(_highlightedColor);
-    FLRelease(_text);
-    FLRelease(_font);
-    FLSuperDealloc();
+    mrc_release_(_runFrames);
+    mrc_release_(_color);
+    mrc_release_(_highlightedColor);
+    mrc_release_(_text);
+    mrc_release_(_font);
+    mrc_super_dealloc_();
 }
 
 - (NSAttributedString*) attributedString
@@ -79,15 +79,15 @@ FLSynthesizeStructProperty(isHidden, setHidden, BOOL, _flags);
     NSRange range = NSMakeRange(0, self.text.length);
 
     NSMutableAttributedString* string =
-        FLReturnAutoreleased([[NSMutableAttributedString alloc] initWithString:self.text]);
+        autorelease_([[NSMutableAttributedString alloc] initWithString:self.text]);
     
-    CTFontRef fontRef = CTFontCreateWithName((__bridge_fl CFStringRef)self.textFont.fontName, self.textFont.pointSize, NULL);
+    CTFontRef fontRef = CTFontCreateWithName(bridge_(CFStringRef, self.textFont.fontName), self.textFont.pointSize, NULL);
     FLAssertIsNotNil_(fontRef);
     
     if(fontRef)
     {
         [string addAttribute:(NSString*) kCTFontAttributeName
-            value:(__bridge_fl id) fontRef 
+            value:bridge_(id, fontRef) 
             range:range];
 
         CFRelease(fontRef);

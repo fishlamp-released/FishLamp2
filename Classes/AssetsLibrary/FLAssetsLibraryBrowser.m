@@ -19,7 +19,7 @@
 {
 	if((self = [super initWithNibName:nil bundle:nil]))
 	{
-		_queue = FLReturnRetained(queue);
+		_queue = retain_(queue);
 		_disabledAssets = [[NSMutableSet alloc] init];	
 		_chosenAssets = [[NSMutableDictionary alloc] init];
 		_processedAssets = [[NSMutableDictionary alloc] init];
@@ -38,18 +38,18 @@
 
 - (void) dealloc
 {
-    FLRelease(_locationManager);
-	FLRelease(_groups);
-	FLRelease(_processedAssets);
-	FLRelease(_chosenAssets);
-	FLRelease(_disabledAssets);
-	FLRelease(_queue);
-	FLSuperDealloc();
+    mrc_release_(_locationManager);
+	mrc_release_(_groups);
+	mrc_release_(_processedAssets);
+	mrc_release_(_chosenAssets);
+	mrc_release_(_disabledAssets);
+	mrc_release_(_queue);
+	mrc_super_dealloc_();
 }
 
 + (FLAssetsLibraryBrowser*) assetsLibraryBrowser:(FLAssetQueue*) queue
 {
-	return FLReturnAutoreleased([[FLAssetsLibraryBrowser alloc] initWithAssetQueue:queue]);
+	return autorelease_([[FLAssetsLibraryBrowser alloc] initWithAssetQueue:queue]);
 }
 
 
@@ -59,8 +59,8 @@
 	FLAssertIsNotNil_v(tabBar, nil);
 
 	tabBar.items = [NSArray arrayWithObjects:
-			FLReturnAutoreleased([[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"All Photos", nil) image:[UIImage imageNamed:@"image.png"] tag: 0]),
-			FLReturnAutoreleased([[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"Albums", nil) image:[UIImage imageNamed:@"images.png"] tag: 1]),
+			autorelease_([[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"All Photos", nil) image:[UIImage imageNamed:@"image.png"] tag: 0]),
+			autorelease_([[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"Albums", nil) image:[UIImage imageNamed:@"images.png"] tag: 1]),
 			nil];	
 }
 
@@ -86,12 +86,12 @@
 	switch(idx)
 	{
 		case 0:
-			controller = FLReturnAutoreleased([[FLAssetsLibraryAllAssetsBrowser alloc] initWithAssetQueue:_queue]);
+			controller = autorelease_([[FLAssetsLibraryAllAssetsBrowser alloc] initWithAssetQueue:_queue]);
 			[self _setupViewController:controller];
 		break;
 
 		case 1:
-			controller = FLReturnAutoreleased([[FLAssetsLibraryGroupBrowser alloc] initWithAssetQueue:_queue]);
+			controller = autorelease_([[FLAssetsLibraryGroupBrowser alloc] initWithAssetQueue:_queue]);
 			[self _setupViewController:controller];
 		break;
 	}

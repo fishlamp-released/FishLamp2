@@ -19,17 +19,17 @@
 
 - (void) dealloc
 {   
-    FLRelease(_galleryID);
-    FLRelease(_galleryContainer);
-    FLSuperDealloc();
+    mrc_release_(_galleryID);
+    mrc_release_(_galleryContainer);
+    mrc_super_dealloc_();
 }
 
 - (void) setGalleryID:(id) galleryID
 {
     if(_galleryID != galleryID)
     {
-        FLAssignObject(_galleryID, galleryID);
-        FLReleaseWithNil(_galleryContainer);
+        FLRetainObject_(_galleryID, galleryID);
+        FLReleaseWithNil_(_galleryContainer);
     }
 }
 
@@ -37,8 +37,8 @@
 {
     if(_galleryContainer != galleryContainer)
     {   
-        FLAssignObject(_galleryContainer, galleryContainer);
-        FLAssignObject(_galleryID, [_galleryContainer dataRefKey]);
+        FLRetainObject_(_galleryContainer, galleryContainer);
+        FLRetainObject_(_galleryID, [_galleryContainer dataRefKey]);
         [self setTitleWithGalleryContainer];
     }
 }

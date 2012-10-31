@@ -36,7 +36,7 @@ FLSynthesizeStructProperty(dragWatcherIsRunning, setDragWatcherIsRunning, BOOL, 
 
 + (id) dragController
 {
-    return FLReturnAutoreleased([[[self class] alloc] init]);
+    return autorelease_([[[self class] alloc] init]);
 }
 
 - (void) startDragWatcher
@@ -63,11 +63,11 @@ FLSynthesizeStructProperty(dragWatcherIsRunning, setDragWatcherIsRunning, BOOL, 
 {
     [self stopDragWatcher];
     
-    FLRelease(_secondaryViews);
-    FLRelease(_touchableView);
-    FLRelease(_dragDestinations);
-    FLRelease(_draggableObjects);
-    FLSuperDealloc();
+    mrc_release_(_secondaryViews);
+    mrc_release_(_touchableView);
+    mrc_release_(_dragDestinations);
+    mrc_release_(_draggableObjects);
+    mrc_super_dealloc_();
 }
 
 - (void) addSecondaryTouchableView:(UIView*) view
@@ -184,7 +184,7 @@ FLSynthesizeStructProperty(dragWatcherIsRunning, setDragWatcherIsRunning, BOOL, 
 {
     if(amount.x != 0.0f || amount.y != 0.0f)
     {
-        animationFinished = FLReturnAutoreleased([animationFinished copy]);
+        animationFinished = autorelease_([animationFinished copy]);
         [self _didBeginTouching];
         
         [UIView animateWithDuration:duration
@@ -615,12 +615,12 @@ float FLMinDistanceToRectFromRect(FLRect lhs, FLRect rhs)
 
 + (FLDragControllerDragDestination*) dragDestination
 {
-    return FLReturnAutoreleased([[[self class] alloc] init]);
+    return autorelease_([[[self class] alloc] init]);
 }
 
 + (FLDragControllerDragDestination*) dragDestination:(FLCallback_t) callback
 {
-    return FLReturnAutoreleased([[[self class] alloc] initWithSetFrameCallback:callback]);
+    return autorelease_([[[self class] alloc] initWithSetFrameCallback:callback]);
 }
 
 - (void) dragControllerUpdateFrame:(FLDragController*) manager

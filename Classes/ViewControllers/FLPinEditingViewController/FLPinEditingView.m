@@ -155,7 +155,7 @@
 	else if(!_checkingNewPinMode)
 	{
 		_titleLabel.text = NSLocalizedString(@"Confirm New PIN", nil);
-		_pinToCheck = FLReturnRetained(self.pin);
+		_pinToCheck = retain_(self.pin);
 		_checkingNewPinMode = YES;
 		
 		[self performSelector:@selector(_clear) withObject:nil afterDelay:0.3];
@@ -251,7 +251,7 @@
    
 	for(int i = 0; i < 4; i++)
 	{
-		UILabel* label = FLReturnAutoreleased([[UILabel alloc] initWithFrame:CGRectMake(0,0,kLabelSize,kLabelSize)]);
+		UILabel* label = autorelease_([[UILabel alloc] initWithFrame:CGRectMake(0,0,kLabelSize,kLabelSize)]);
 		label.font = [UIFont boldSystemFontOfSize:[UIFont buttonFontSize]];
 		label.textAlignment = UITextAlignmentCenter;
 		label.backgroundColor = [UIColor gray85Color];
@@ -282,19 +282,19 @@
 #if FL_MRC
 - (void) dealloc
 {
-	FLRelease(_errorLabel);
-	FLRelease(_pinToCheck);
-	FLRelease(_titleLabel);
-    FLRelease(_numberLabels);
-	FLRelease(_buttons);
-	FLSuperDealloc();
+	mrc_release_(_errorLabel);
+	mrc_release_(_pinToCheck);
+	mrc_release_(_titleLabel);
+    mrc_release_(_numberLabels);
+	mrc_release_(_buttons);
+	mrc_super_dealloc_();
 }
 #endif
 
 - (void) setPinCheckMode:(NSString*) pinToCheck maxAttempts:(NSUInteger) maxAttempts
 {
 	_titleLabel.text = NSLocalizedString(@"Enter PIN", nil);
-	FLAssignObject(_pinToCheck, pinToCheck);
+	FLRetainObject_(_pinToCheck, pinToCheck);
 	_maxAttempts = maxAttempts;
 	_pinCheckMode = YES;
 	[self setNeedsLayout];

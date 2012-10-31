@@ -38,7 +38,7 @@ static FLViewController* s_presentingModalViewController = nil;
 @synthesize disableBackgroundTasks = _disableBackgroundTasks; 
 
 + (id) viewController {
-	return FLReturnAutoreleased([[[self class] alloc] init]);
+	return autorelease_([[[self class] alloc] init]);
 }
 
 - (void) _networkReachabilityDidChange:(NSNotification*) notification {
@@ -118,7 +118,7 @@ static FLViewController* s_presentingModalViewController = nil;
 - (UIView*) createView {
     FLAssert_v([NSThread currentThread] == [NSThread mainThread], @"Not on main thread");
 
-	UIView* view = FLReturnAutoreleased([[UIView alloc] initWithFrame:CGRectMake(0,0,0,0)]);
+	UIView* view = autorelease_([[UIView alloc] initWithFrame:CGRectMake(0,0,0,0)]);
 	view.backgroundColor = [UIColor blackColor];
 	view.autoresizingMask = UIViewAutoresizingFlexibleEverything;
 	view.autoresizesSubviews = YES;
@@ -289,7 +289,7 @@ static FLViewController* s_presentingModalViewController = nil;
 			[cb invoke:self];
 		}
 		
-		FLRelease(callbacks);
+		mrc_release_(callbacks);
 	}
 
 #if TRACE
@@ -403,7 +403,7 @@ static FLViewController* s_presentingModalViewController = nil;
 	FLAssert_v([FLViewController presentingModalViewController] == self, @"dismissing with wrong view controller");
 	
 	FLAssertIsNotNil_(self.modalViewController); 
-	FLAutorelease(FLReturnRetain(self.modalViewController));
+	mrc_autorelease_(FLReturnRetain(self.modalViewController));
 	
 	[super dismissModalViewControllerAnimated:animated];
 	[self.modalViewController wasDismissedFromModalPresentation:self];

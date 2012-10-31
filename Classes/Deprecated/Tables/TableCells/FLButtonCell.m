@@ -36,10 +36,10 @@
 	if(_button)
 	{
 		[_button removeFromSuperview];
-		FLReleaseWithNil(_button);
+		FLReleaseWithNil_(_button);
 	}
 	
-	_button = FLReturnRetained(button);
+	_button = retain_(button);
 	[self addSubview:_button];
 }
 
@@ -82,13 +82,13 @@
 
 - (void) dealloc
 {
-	FLRelease(_button);
-	FLSuperDealloc();
+	mrc_release_(_button);
+	mrc_super_dealloc_();
 }
 
 + (FLButtonCell*) buttonCell:(FLLegacyButton*) button buttonMode :(FLButtonCellButtonMode) buttonMode
 {
-	return FLReturnAutoreleased([[FLButtonCell alloc] initWithButton:button buttonMode:buttonMode]);
+	return autorelease_([[FLButtonCell alloc] initWithButton:button buttonMode:buttonMode]);
 }
 
 @end

@@ -16,7 +16,7 @@
 @implementation FLModalShieldViewController
 
 - (UIView*) createView {
-    _shieldView = FLReturnAutoreleased([[FLFingerprintView alloc] initWithFrame:CGRectZero]);
+    _shieldView = autorelease_([[FLFingerprintView alloc] initWithFrame:CGRectZero]);
     _shieldView.autoresizesSubviews = YES;
     _shieldView.autoresizingMask = UIViewAutoresizingFlexibleEverything;
     return _shieldView;
@@ -29,12 +29,12 @@
 
 - (void) viewWillUnload {
     [super viewWillUnload];
-    FLReleaseWithNil(_shieldView);
+    FLReleaseWithNil_(_shieldView);
 }   
 
 - (void) dealloc {
-    FLRelease(_shieldView);
-    FLSuperDealloc();
+    mrc_release_(_shieldView);
+    mrc_super_dealloc_();
 }
 
 @end

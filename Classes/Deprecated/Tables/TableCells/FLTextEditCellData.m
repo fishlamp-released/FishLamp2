@@ -16,9 +16,9 @@
 
 - (void) dealloc
 {
-	FLRelease(_callback);
-	FLRelease(_traits);
-	FLSuperDealloc();
+	mrc_release_(_callback);
+	mrc_release_(_traits);
+	mrc_super_dealloc_();
 }
 
 - (id) init
@@ -32,7 +32,7 @@
 
 + (FLTextEditCellData*) textEditCellData
 {
-	return FLReturnAutoreleased([[FLTextEditCellData alloc] init]);
+	return autorelease_([[FLTextEditCellData alloc] init]);
 }
 
 

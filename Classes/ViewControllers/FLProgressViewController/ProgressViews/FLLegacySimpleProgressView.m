@@ -93,20 +93,20 @@ FLSynthesizeStructProperty(maximizeWidth, setMaximizeWidth, BOOL, _style);
 
 - (void) releaseViews
 {
-	FLReleaseWithNil(_progressBar);
-	FLReleaseWithNil(_spinner);
-	FLReleaseWithNil(_textLabel);
-	FLReleaseWithNil(_dragBar);
-	FLReleaseWithNil(_progressBarTextLabel);
-	FLReleaseWithNil(_progressBarSpinner);
+	FLReleaseWithNil_(_progressBar);
+	FLReleaseWithNil_(_spinner);
+	FLReleaseWithNil_(_textLabel);
+	FLReleaseWithNil_(_dragBar);
+	FLReleaseWithNil_(_progressBarTextLabel);
+	FLReleaseWithNil_(_progressBarSpinner);
 }
 
 - (void)dealloc 
 {	
-	FLRelease(_roundRectView);
+	mrc_release_(_roundRectView);
 	
 	[self releaseViews];
-	FLSuperDealloc();
+	mrc_super_dealloc_();
 }
 
 #define DragBarWidth 20
@@ -285,8 +285,8 @@ FLSynthesizeStructProperty(maximizeWidth, setMaximizeWidth, BOOL, _style);
 		[_dragBar addSubview:view1];
 		[_dragBar addSubview:view2];
 		
-		FLReleaseWithNil(view1);
-		FLReleaseWithNil(view2);
+		FLReleaseWithNil_(view1);
+		FLReleaseWithNil_(view2);
 
 		[self addSubview:_dragBar];
 	}
@@ -483,7 +483,7 @@ FLSynthesizeStructProperty(maximizeWidth, setMaximizeWidth, BOOL, _style);
 	canDrag:(BOOL) canDrag
 	maximizeWidth:(BOOL) maximizeWidth
 {
-	FLLegacySimpleProgressView* outView = FLReturnAutoreleased([[FLLegacySimpleProgressView alloc] initWithFrame:CGRectZero]);
+	FLLegacySimpleProgressView* outView = autorelease_([[FLLegacySimpleProgressView alloc] initWithFrame:CGRectZero]);
 	[outView _resetStyle:[outView _createStyle:NO 
 		hasProgressBar:hasProgressBar 
 			hasSecondaryText:hasSecondaryText canDrag:canDrag maximizeWidth:maximizeWidth]];
@@ -495,7 +495,7 @@ FLSynthesizeStructProperty(maximizeWidth, setMaximizeWidth, BOOL, _style);
 	canDrag:(BOOL) canDrag
 	maximizeWidth:(BOOL) maximizeWidth
 {
-	FLLegacySimpleProgressView* outView = FLReturnAutoreleased([[FLLegacySimpleProgressView alloc] initWithFrame:CGRectZero]);
+	FLLegacySimpleProgressView* outView = autorelease_([[FLLegacySimpleProgressView alloc] initWithFrame:CGRectZero]);
 	[outView _resetStyle:[outView _createStyle:YES hasProgressBar:hasProgressBar 
 		hasSecondaryText:hasSecondaryText canDrag:canDrag maximizeWidth:maximizeWidth]];
 	return outView;
@@ -620,7 +620,7 @@ FLSynthesizeStructProperty(maximizeWidth, setMaximizeWidth, BOOL, _style);
 			if(_progressBarSpinner)
 			{
 				[_progressBarSpinner removeFromSuperview];
-				FLReleaseWithNil(_progressBarSpinner);
+				FLReleaseWithNil_(_progressBarSpinner);
 			}
 		}
 

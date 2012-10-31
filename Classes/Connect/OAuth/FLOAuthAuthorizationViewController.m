@@ -32,21 +32,21 @@
 
 + (FLOAuthAuthorizationViewController*) OAuthAuthorizationViewController
 {
-	return FLReturnAutoreleased([[[self class] alloc] init]);
+	return autorelease_([[[self class] alloc] init]);
 }
 
 - (void) dealloc
 {
-	FLRelease(_authData);
-	FLRelease(_app);
-	FLSuperDealloc();
+	mrc_release_(_authData);
+	mrc_release_(_app);
+	mrc_super_dealloc_();
 }
 
 - (void) _didCompleteAction:(FLAction*) action
 {
 	if(action.didSucceed)
 	{
-		_authData = FLReturnRetained([[action lastOperation] operationOutput]);
+		_authData = retain_([[action lastOperation] operationOutput]);
 		
 		NSString* authorizeUrl = [NSString stringWithFormat:@"%@?oauth_token=%@",
 			_app.authorizeUrl,
@@ -61,7 +61,7 @@
     self.OAuthAuthorizationViewControllerDelegate = delegate;
 	self.openLinksInNewViewController = YES;
 
-	FLAssignObject(_app, app);
+	FLRetainObject_(_app, app);
 
 	FLAction* action = [FLAction action];
     [action addOperation:[FLOAuthRequestTokenNetworkOperation OAuthRequestTokenNetworkOperation:app]];

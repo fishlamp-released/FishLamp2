@@ -77,7 +77,7 @@
             [_contentView removeFromSuperview];
         }
     
-		FLAssignObject(_contentView, view);
+		FLRetainObject_(_contentView, view);
 		[_containerView addSubview:_contentView];
         
         [self setNeedsLayout];
@@ -203,11 +203,11 @@
 
 - (void) dealloc
 {	
-	FLRelease(_lineGradient);
-	FLRelease(_topGradient);
-	FLRelease(_containerView);
-	FLRelease(_contentView);
-	FLSuperDealloc();
+	mrc_release_(_lineGradient);
+	mrc_release_(_topGradient);
+	mrc_release_(_containerView);
+	mrc_release_(_contentView);
+	mrc_super_dealloc_();
 }
 
 

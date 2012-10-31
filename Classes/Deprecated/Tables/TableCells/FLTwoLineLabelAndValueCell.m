@@ -29,7 +29,7 @@
 
 + (FLTwoLineLabelAndValueCell*) twoLineLabelAndValueCell
 {
-	return FLReturnAutoreleased([[FLTwoLineLabelAndValueCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NSStringFromClass([self class])]);
+	return autorelease_([[FLTwoLineLabelAndValueCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NSStringFromClass([self class])]);
 }
 
 + (FLTwoLineLabelAndValueCell*) twoLineLabelAndValueCell:(NSString*) label

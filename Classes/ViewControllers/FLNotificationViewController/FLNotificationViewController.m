@@ -115,7 +115,7 @@ FLSynthesizeSingleton(FLActionErrorNotificationHandler);
 /*
 - (void) showNotification:(FLOldUserNotificationView*) notification
 {
-	FLAutorelease(FLReturnRetain(notification));
+	mrc_autorelease_(FLReturnRetain(notification));
 	FLViewController* controller = (FLViewController*) [self defaultViewController];
 #if VIEW_AUTOLAYOUT
 	notification.viewDelegate = controller;
@@ -134,6 +134,6 @@ FLSynthesizeSingleton(FLActionErrorNotificationHandler);
 
 - (id<FLDisplayedNotification>) createNotificationWithType:(FLDisplayedNotificationType) type
 {
-	return FLReturnAutoreleased([[FLOldUserNotificationView alloc] initWithType:type]);
+	return autorelease_([[FLOldUserNotificationView alloc] initWithType:type]);
 }
 */

@@ -120,16 +120,16 @@
 }
 
 + (FLEditableItemView*) editableItemView {
-    return FLReturnAutoreleased([[[self class] alloc] init]);
+    return autorelease_([[[self class] alloc] init]);
 }
 
 #if FL_MRC
 - (void) dealloc {
-    FLRelease(_label);
-    FLRelease(_value);
-    FLRelease(_onValidate);
-    FLRelease(_onChanged);
-    FLSuperDealloc();
+    mrc_release_(_label);
+    mrc_release_(_value);
+    mrc_release_(_onValidate);
+    mrc_release_(_onChanged);
+    mrc_super_dealloc_();
 }
 #endif
 

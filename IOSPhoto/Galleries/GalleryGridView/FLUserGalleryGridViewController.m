@@ -24,14 +24,14 @@
 
 - (void) viewDidUnload
 {
-    FLReleaseWithNil(_topToolbar);
+    FLReleaseWithNil_(_topToolbar);
     [super viewDidUnload];
 }
 
 - (void) dealloc
 {
-    FLRelease(_topToolbar);
-    FLSuperDealloc();
+    mrc_release_(_topToolbar);
+    mrc_super_dealloc_();
 }
 
 - (void) closeSelf:(id) sender

@@ -47,8 +47,8 @@
 
 - (void) dealloc
 {
-	FLRelease(_exifBuilder);
-	FLSuperDealloc();
+	mrc_release_(_exifBuilder);
+	mrc_super_dealloc_();
 }
 
 @end

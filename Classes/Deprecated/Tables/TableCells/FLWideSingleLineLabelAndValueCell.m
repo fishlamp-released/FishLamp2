@@ -55,7 +55,7 @@
 
 + (FLWideSingleLineLabelAndValueCell*) wideSingleLineLabelAndValueCell
 {
-	return FLReturnAutoreleased([[FLWideSingleLineLabelAndValueCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"FLWideSingleLineLabelAndValueCell"]);
+	return autorelease_([[FLWideSingleLineLabelAndValueCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"FLWideSingleLineLabelAndValueCell"]);
 }
 
 

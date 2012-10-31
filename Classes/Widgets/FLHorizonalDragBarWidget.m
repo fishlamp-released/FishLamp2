@@ -30,13 +30,13 @@
 
 + (FLHorizonalDragBarWidget*) horizonalDragBarWidget:(FLHorizontalDragBarWidgetStyle)style
 {
-    return FLReturnAutoreleased([[FLHorizonalDragBarWidget alloc] initWithStyle:style]);
+    return autorelease_([[FLHorizonalDragBarWidget alloc] initWithStyle:style]);
 }
 
 - (void) dealloc
 {
-    FLRelease(_lineColor);
-    FLSuperDealloc();
+    mrc_release_(_lineColor);
+    mrc_super_dealloc_();
 }
 
 - (void) drawSelf:(FLRect) rect

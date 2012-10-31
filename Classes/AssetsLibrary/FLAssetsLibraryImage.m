@@ -33,7 +33,7 @@
 
 	if((self = [super init]))
 	{
-		_asset = FLReturnRetained(asset);
+		_asset = retain_(asset);
 		_imageSize = imageSize;
 	}	 
 	return self;
@@ -46,7 +46,7 @@
 
 	if((self = [super init]))
 	{
-		_assetURL = FLReturnRetained(assetURL);
+		_assetURL = retain_(assetURL);
 		_imageSize = imageSize;
 	}	 
 	return self;
@@ -68,18 +68,18 @@
 
 - (void) dealloc
 {
-	FLRelease(_asset);
-	FLRelease(_assetURL);
-	FLRelease(_properties);
-	FLRelease(_image);
-	FLSuperDealloc();
+	mrc_release_(_asset);
+	mrc_release_(_assetURL);
+	mrc_release_(_properties);
+	mrc_release_(_image);
+	mrc_super_dealloc_();
 }
 
 - (NSURL*) assetURL
 {
 	if(!_assetURL && _asset)
 	{
-		_assetURL = FLReturnRetained(self.asset.defaultRepresentation.url);
+		_assetURL = retain_(self.asset.defaultRepresentation.url);
 	}
 	
 	return _assetURL;
@@ -91,7 +91,7 @@
 
 	if(!_properties)
 	{
-		_properties = FLReturnRetained(self.asset.defaultRepresentation.metadata);
+		_properties = retain_(self.asset.defaultRepresentation.metadata);
 	}
 	
 	return _properties;
@@ -100,8 +100,8 @@
 - (void) setImage:(UIImage*) image 
          exifData:(NSDictionary*) exif
 {
-    FLAssignObject(_image, image);
-	FLAssignObject(_properties, exif);
+    FLRetainObject_(_image, image);
+	FLRetainObject_(_properties, exif);
 }
 
 - (void) setImageRef:(CGImageRef) imageRef 
@@ -110,7 +110,7 @@
 {
 	UIImage* image = [[UIImage alloc] initWithCGImage:imageRef scale:scale orientation:orientation];
 	[self setImage:image exifData:nil];
-	FLReleaseWithNil(image);
+	FLReleaseWithNil_(image);
 }
 
 - (BOOL) canWriteToStorage
@@ -134,7 +134,7 @@
     }
     else
     {
-        finishedLoadingBlock = FLReturnAutoreleased([finishedLoadingBlock copy]);
+        finishedLoadingBlock = autorelease_([finishedLoadingBlock copy]);
 
         [[FLAssetsLibrary instance] assetForURL:self.assetURL
             resultBlock:^(ALAsset *asset) {
@@ -174,7 +174,7 @@
         case FLAssetsLibraryImageSizeThumbnail: {
             UIImage* image = [[UIImage alloc] initWithCGImage:self.asset.thumbnail];
             [self setImage:image exifData:nil];
-            FLReleaseWithNil(image);
+            FLReleaseWithNil_(image);
             }
             break;
     }
@@ -192,7 +192,7 @@
     }
     else
     {
-        completionBlock = FLReturnAutoreleased([completionBlock copy]);
+        completionBlock = autorelease_([completionBlock copy]);
     
         [self beginLoadingRepresentation:^(NSError* error) {
             if(!error)
@@ -212,7 +212,7 @@
 {
 	if(self.imageSize == FLAssetsLibraryImageSizeOriginal && !_asset)
 	{
-		completionBlock = FLReturnAutoreleased([completionBlock copy]);
+		completionBlock = autorelease_([completionBlock copy]);
     
        	[[FLAssetsLibrary instance] writeImageToSavedPhotosAlbum:self.image.CGImage 
 				orientation:(ALAssetOrientation) self.image.imageOrientation
@@ -266,7 +266,7 @@
 			case FLAssetsLibraryImageSizeThumbnail: {
 				UIImage* image = [[UIImage alloc] initWithCGImage:self.asset.thumbnail];
 				[self setImage:image exifData:nil];
-				FLReleaseWithNil(image);
+				FLReleaseWithNil_(image);
 				}
 				break;
 		}
@@ -285,7 +285,7 @@
 			[[FLAssetsLibrary instance] writeImageToSavedPhotosAlbum:self.image.CGImage 
 				orientation:(ALAssetOrientation) self.image.imageOrientation
 				completionBlock: ^(NSURL *assetURL, NSError *blockError){
-					error = FLReturnAutoreleased(FLReturnRetained(blockError));
+					error = autorelease_(retain_(blockError));
 					self.assetURL = assetURL;
 					[lock signal];
 					}];
@@ -295,7 +295,7 @@
 		@finally
 		{
 			[lock unlock];
-			FLReleaseWithNil(lock);
+			FLReleaseWithNil_(lock);
 		}
 		
 		if(error)
@@ -313,10 +313,10 @@
 	NSInputStream* stream = [[FLAssetsLibraryInputStream alloc] initWithAssetRepresentation:self.asset.defaultRepresentation];
 	if(outStream)
 	{
-		*outStream = FLReturnRetained(stream);
+		*outStream = retain_(stream);
 	}
 	
-	FLReleaseWithNil(stream);
+	FLReleaseWithNil_(stream);
 	
 	return self.asset.defaultRepresentation.size;
 */
@@ -347,7 +347,7 @@
 		[self readFromStorage];
 	}
 	
-	FLJpegFile* tempFile = FLReturnAutoreleased([[FLJpegFile alloc] initWithImage:self.image exifData:self.properties folder:folder fileName:fileName]);
+	FLJpegFile* tempFile = autorelease_([[FLJpegFile alloc] initWithImage:self.image exifData:self.properties folder:folder fileName:fileName]);
     [[FLTempFileMgr instance] addFile:tempFile];
 	[tempFile writeToStorage];
     return tempFile;
@@ -361,7 +361,7 @@
 		[self readFromStorage];
 	}
 	
-	FLJpegFile* toFile = FLReturnAutoreleased([[FLJpegFile alloc] initWithImage:self.image exifData:self.properties folder:folder fileName:fileName]);
+	FLJpegFile* toFile = autorelease_([[FLJpegFile alloc] initWithImage:self.image exifData:self.properties folder:folder fileName:fileName]);
 	[toFile writeToStorage];
 	
 	return toFile;
@@ -374,7 +374,7 @@
 
 - (void) releaseImage
 {
-	FLReleaseWithNil(_image);
+	FLReleaseWithNil_(_image);
 }
 
 - (FLSize) imageDimensions
@@ -421,7 +421,7 @@
 {
 	if(self = [super init])
 	{
-		_assetRepresentation = FLReturnRetained(representation);
+		_assetRepresentation = retain_(representation);
 		_status = NSStreamStatusNotOpen;
 		_delegate = self;
 	}
@@ -480,7 +480,7 @@
 
 - (void)open
 {
-	FLReleaseWithNil(_error);
+	FLReleaseWithNil_(_error);
 	_status = NSStreamStatusOpen;
 	_bytesSent = 0;
 	_assetSize = _assetRepresentation.size;

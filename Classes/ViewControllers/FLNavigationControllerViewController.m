@@ -18,7 +18,7 @@
 {
 	if((self = [super init]))
 	{
-		_rootViewController = FLReturnRetained(viewController);
+		_rootViewController = retain_(viewController);
 	    _navigationController = [[FLNavigationController alloc] initWithRootViewController:_rootViewController];
         _navigationController.wantsFullScreenLayout = YES;
         
@@ -32,19 +32,19 @@
 
 + (FLNavigationControllerViewController*) navigationControllerViewController:(UIViewController*) rootNavigationController
 {
-	return FLReturnAutoreleased([[FLNavigationControllerViewController alloc] initWithRootViewController:rootNavigationController]);
+	return autorelease_([[FLNavigationControllerViewController alloc] initWithRootViewController:rootNavigationController]);
 }
 
 - (void) dealloc
 {
-	FLRelease(_rootViewController);
-	FLRelease(_navigationController);
-	FLSuperDealloc();
+	mrc_release_(_rootViewController);
+	mrc_release_(_navigationController);
+	mrc_super_dealloc_();
 }
 
 - (void) loadView
 {
-	self.view = FLReturnAutoreleased([[UIView alloc] initWithFrame:CGRectMake(0,0,320,640)]);
+	self.view = autorelease_([[UIView alloc] initWithFrame:CGRectMake(0,0,320,640)]);
 }
 
 - (void) viewDidLoad

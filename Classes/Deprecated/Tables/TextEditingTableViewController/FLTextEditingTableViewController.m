@@ -50,16 +50,16 @@ FLSynthesizeStructProperty(keyboardWillShowInView, setKeyboardWillShowInView, BO
 
 - (void) _cleanupTextEditingTableViewController
 {
-	FLReleaseWithNil(_intermediateScrollView);
-	FLReleaseWithNil(_currentCell);
-	FLReleaseWithNil(_textEditBar);
+	FLReleaseWithNil_(_intermediateScrollView);
+	FLReleaseWithNil_(_currentCell);
+	FLReleaseWithNil_(_textEditBar);
 	
 	for(FLTextEditCell* cell in _textEditCells)
 	{
 		cell.textEditingCellDelegate = nil;
 	}
 	
-	FLReleaseWithNil(_textEditCells);
+	FLReleaseWithNil_(_textEditCells);
 }
 
 - (void) dealloc
@@ -73,9 +73,9 @@ FLSynthesizeStructProperty(keyboardWillShowInView, setKeyboardWillShowInView, BO
 //	{
 //		[_textEditBar removeFromSuperview];
 //	}
-	FLReleaseWithNil(_textEditBar);
+	FLReleaseWithNil_(_textEditBar);
 	[self _cleanupTextEditingTableViewController];
-	FLSuperDealloc();
+	mrc_super_dealloc_();
 }
 
 - (void) updateContentInsets
@@ -129,15 +129,15 @@ FLSynthesizeStructProperty(keyboardWillShowInView, setKeyboardWillShowInView, BO
 	self.tableView.autoresizingMask = UIViewAutoresizingFlexibleEverything;
 	_intermediateScrollView.backgroundColor = self.tableView.backgroundColor;
 	self.tableView.backgroundView = nil; 
-    // FLReturnAutoreleased([[FLGradientView alloc] initWithFrame:self.view.bounds]);
+    // autorelease_([[FLGradientView alloc] initWithFrame:self.view.bounds]);
 	UITableView* tableView = self.tableView;
 	[tableView.superview insertSubview:_intermediateScrollView belowSubview:tableView];
-	FLRetain(tableView);
+	mrc_retain_(tableView);
 	[tableView removeFromSuperview];
 	tableView.frame = FLRectSetOrigin(self.tableView.frame, 0,0);
 	tableView.contentInset = UIEdgeInsetsZero;
 	[_intermediateScrollView addSubview:tableView];
-	FLRelease(tableView);
+	mrc_release_(tableView);
 }
 
 - (void) tableViewDidLayoutSubviews:(UITableView*) tableView
@@ -519,7 +519,7 @@ FLSynthesizeStructProperty(keyboardWillShowInView, setKeyboardWillShowInView, BO
 	{
 		[_textEditBar removeFromSuperview];
 	}
-	FLReleaseWithNil(_textEditBar);
+	FLReleaseWithNil_(_textEditBar);
 
 	[FLTextEditCell setGlobalEditingMode:NO];
 	[self removeAdjustmentsForKeyboard];

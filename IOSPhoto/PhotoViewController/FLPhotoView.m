@@ -142,7 +142,7 @@ FLSynthesizeStructProperty(didShowError, setDidShowError, BOOL, _photoViewFlags)
 	if(_spinner)
 	{
 		[_spinner removeFromSuperview];
-		FLReleaseWithNil(_spinner);
+		FLReleaseWithNil_(_spinner);
 	}
 }
 
@@ -158,12 +158,12 @@ FLSynthesizeStructProperty(didShowError, setDidShowError, BOOL, _photoViewFlags)
  
 	[self stopSpinner];
  
-	FLRelease(_scrollView);
-	FLRelease(_imageView);
-	FLRelease(_spinner);
-	FLRelease(_detailsView);
-	FLRelease(_errorView);
-	FLSuperDealloc();
+	mrc_release_(_scrollView);
+	mrc_release_(_imageView);
+	mrc_release_(_spinner);
+	mrc_release_(_detailsView);
+	mrc_release_(_errorView);
+	mrc_super_dealloc_();
 }
 
 - (UIImage*) image

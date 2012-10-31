@@ -38,14 +38,14 @@
 
 - (void) dealloc
 {
-	FLRelease(_progressBarLabel);
-	FLRelease(_progressBar);
-	FLRelease(_progressBarSpinner);
-	FLRelease(_titleLabel);
-	FLRelease(_secondaryTextLabel);
-	FLRelease(_button);
-	FLRelease(_roundRectView);
-	FLSuperDealloc();
+	mrc_release_(_progressBarLabel);
+	mrc_release_(_progressBar);
+	mrc_release_(_progressBarSpinner);
+	mrc_release_(_titleLabel);
+	mrc_release_(_secondaryTextLabel);
+	mrc_release_(_button);
+	mrc_release_(_roundRectView);
+	mrc_super_dealloc_();
 }
 
 - (void) layoutSubviews
@@ -80,7 +80,7 @@
 
 - (void) setButton:(FLLegacyButton*) button
 {
-	FLAssignObject(_button, button);
+	FLRetainObject_(_button, button);
     [_button setCallback:self action:@selector(buttonPressed:)];
 }
 

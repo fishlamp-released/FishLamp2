@@ -68,14 +68,14 @@ typedef enum {
 }
 + (FLButtonbarViewContainer*) buttonbarViewContainer:(UIView*) view key:(NSString*) key
 {
-	return FLReturnAutoreleased([[FLButtonbarViewContainer alloc] initWithView:view key:key]);
+	return autorelease_([[FLButtonbarViewContainer alloc] initWithView:view key:key]);
 }
 
 - (void) dealloc
 {
-	FLRelease(_view);
-	FLRelease(_key);
-	FLSuperDealloc();
+	mrc_release_(_view);
+	mrc_release_(_key);
+	mrc_super_dealloc_();
 }
 
 @end
@@ -121,10 +121,10 @@ FLSynthesizeStructProperty(automaticallyShowBackButton, setAutomaticallyShowBack
 
 - (void) dealloc
 {
-	FLRelease(_leftViews);
-	FLRelease(_rightViews);
-	FLRelease(_label);
-	FLSuperDealloc();
+	mrc_release_(_leftViews);
+	mrc_release_(_rightViews);
+	mrc_release_(_label);
+	mrc_super_dealloc_();
 }
 
 - (FLRect) rectForButtonWithKey:(NSString*) key forDisplayInView:(UIView*) view
@@ -341,14 +341,14 @@ FLSynthesizeStructProperty(automaticallyShowBackButton, setAutomaticallyShowBack
 	FLButtonbarViewContainer* viewContainer = [self _viewContainerForKey:key array:_leftViews];
 	if(viewContainer)
 	{
-		[_leftViews removeObject:FLReturnAutoreleased(FLReturnRetained(viewContainer))];
+		[_leftViews removeObject:autorelease_(retain_(viewContainer))];
 	}
 	else
 	{
 		viewContainer = [self _viewContainerForKey:key array:_rightViews];
 		if(viewContainer)
 		{
-			[_rightViews removeObject:FLReturnAutoreleased(FLReturnRetained(viewContainer))];
+			[_rightViews removeObject:autorelease_(retain_(viewContainer))];
 		}
 	}
 	
@@ -779,12 +779,12 @@ FLSynthesizeStructProperty(automaticallyShowBackButton, setAutomaticallyShowBack
     gradient.autoresizingMask = UIViewAutoresizingFlexibleEverything;
     gradient.alpha = 0.6f;
     [self insertSubview:gradient atIndex:0];
-    FLRelease(gradient);
+    mrc_release_(gradient);
 }
 
 + (void) createTopToolbarForViewController:(UIViewController*) viewController
 {
-    FLDeprecatedButtonbarView* toolbar = FLReturnAutoreleased([[FLDeprecatedButtonbarView alloc] initWithFrame:CGRectMake(0,0,viewController.view.frame.size.width, 44)]);
+    FLDeprecatedButtonbarView* toolbar = autorelease_([[FLDeprecatedButtonbarView alloc] initWithFrame:CGRectMake(0,0,viewController.view.frame.size.width, 44)]);
     toolbar.title = viewController.title;
     [toolbar addBackgroundGradientView];
     viewController.topBarView = toolbar;

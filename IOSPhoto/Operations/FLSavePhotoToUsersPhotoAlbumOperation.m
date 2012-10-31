@@ -25,15 +25,15 @@
 + (FLSaveImageToUsersPhotoAlbumOperation*) saveImageToUserPhotoAlbumOperation:(UIImage*) image 
                                                                    properties:(NSDictionary*) properties
 {
-    return FLReturnAutoreleased([[[self class] alloc] initWithImageInput:image properties:properties]);
+    return autorelease_([[[self class] alloc] initWithImageInput:image properties:properties]);
 }
 
 - (void) dealloc
 {
-	FLRelease(_properties);
-	FLRelease(_lock);
-	FLRelease(_assetsLibrary);
-	FLSuperDealloc();
+	mrc_release_(_properties);
+	mrc_release_(_lock);
+	mrc_release_(_assetsLibrary);
+	mrc_super_dealloc_();
 }
 
 - (void) _doneSaving:(NSError*) error
@@ -92,7 +92,7 @@
 - (void) setImageInput:(UIImage*) image properties:(NSDictionary*) properties
 {
 	self.input = image;
-	_properties = FLReturnRetained(properties);
+	_properties = retain_(properties);
 }
 
 @end

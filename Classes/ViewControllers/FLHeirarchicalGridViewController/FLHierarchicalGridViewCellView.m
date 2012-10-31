@@ -76,12 +76,12 @@
 }
 
 - (void) dealloc {
-    FLRelease(_selectedGradient);
-    FLRelease(_disclosureWidget);
-    FLRelease(_gradient1);
-    FLRelease(_gradient2);
-    FLRelease(_label);
-    FLSuperDealloc();
+    mrc_release_(_selectedGradient);
+    mrc_release_(_disclosureWidget);
+    mrc_release_(_gradient1);
+    mrc_release_(_gradient2);
+    mrc_release_(_label);
+    mrc_super_dealloc_();
 }
 
 #define kButtonWidth 44.0f

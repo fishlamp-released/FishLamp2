@@ -28,20 +28,20 @@ FLSynthesizeStructProperty(imageContentMode, setImageContentMode, FLWidgetImageC
 
 + (FLImageFrameWidget*) imageFrameWidget:(FLRect) frame
 {
-	return FLReturnAutoreleased([[FLImageFrameWidget alloc] initWithFrame:frame]);
+	return autorelease_([[FLImageFrameWidget alloc] initWithFrame:frame]);
 }
 
 - (void) setFrameColor:(UIColor*) color
 {
-	FLAssignObject(_frameColor, color);
+	FLRetainObject_(_frameColor, color);
 	[self setNeedsDisplay];
 }
 
 - (void) dealloc
 {
-	FLRelease(_frameColor);
-	FLRelease(_imageWidget);
-	FLSuperDealloc();
+	mrc_release_(_frameColor);
+	mrc_release_(_imageWidget);
+	mrc_super_dealloc_();
 }	
 
 - (BOOL) showFrame
@@ -72,7 +72,7 @@ FLSynthesizeStructProperty(imageContentMode, setImageContentMode, FLWidgetImageC
 - (void) setImageWidget:(FLImageWidget*) imageWidget
 {
 	[_imageWidget removeFromParent];
-	FLAssignObject(_imageWidget, imageWidget);
+	FLRetainObject_(_imageWidget, imageWidget);
 	_imageWidget.imageContentMode = FLWidgetImageContentModeScaleToFill;
 	[self addWidget:_imageWidget];
 	[self setNeedsLayout];

@@ -64,9 +64,9 @@
 #if FL_MRC
 - (void) dealloc
 {
-    FLRelease(_gradient);
-    FLRelease(_titleLabel);
-    FLSuperDealloc();
+    mrc_release_(_gradient);
+    mrc_release_(_titleLabel);
+    mrc_super_dealloc_();
 }
 #endif
 

@@ -28,7 +28,7 @@
 
 - (NSAttributedString*) buildAttributedString
 {
-    NSMutableAttributedString* outString = FLReturnAutoreleased([[NSMutableAttributedString alloc] init]);
+    NSMutableAttributedString* outString = autorelease_([[NSMutableAttributedString alloc] init]);
     for(FLTouchableString* string in _strings.forwardObjectEnumerator)
     {
         if(FLStringIsEmpty(string.text) || string.isHidden)
@@ -49,8 +49,8 @@
         CFRelease(_frameRef);
     }
 
-    FLRelease(_strings);
-    FLSuperDealloc();
+    mrc_release_(_strings);
+    mrc_super_dealloc_();
 }
 
 - (FLTouchableString*) attributedStringForIndex:(NSUInteger) index
@@ -137,7 +137,7 @@
                 runBounds = CGRectApplyAffineTransform(runBounds, CGAffineTransformMakeScale(1, -1));
                 runBounds = FLRectMoveVertically(runBounds, (bounds.size.height - offset));
 
-                NSDictionary* attributes = (__bridge_fl NSDictionary*)CTRunGetAttributes(run);
+                NSDictionary* attributes = bridge_(NSDictionary*, CTRunGetAttributes(run));
                 FLTouchableString* string = [attributes objectForKey:@"attr_str"];
                 if(string)
                 {
@@ -173,7 +173,7 @@
     
     CGPathAddRect(path, NULL, bounds);
 
-    framesetter = CTFramesetterCreateWithAttributedString((__bridge_fl CFAttributedStringRef) string);
+    framesetter = CTFramesetterCreateWithAttributedString(bridge_(CFAttributedStringRef, string));
     if(!framesetter) goto done;
    
     // Create the frame and draw it into the graphics context

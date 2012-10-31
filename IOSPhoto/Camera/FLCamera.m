@@ -27,11 +27,11 @@
 
 - (void) dealloc
 {
-	FLRelease(_error);
+	mrc_release_(_error);
 	
 	FLAssert_v(_session == nil, @"must call stop before deleting camera"); 
 	
-	FLSuperDealloc();
+	mrc_super_dealloc_();
 }
 
 //- (AVCaptureDevice*) findDevice
@@ -60,7 +60,7 @@
 	{
         if(error)
         {
-            FLThrowError_(FLReturnAutoreleased(err));
+            FLThrowError_(autorelease_(err));
         }
 
 	
@@ -68,7 +68,7 @@
 	}
 	@finally
 	{
-		FLReleaseWithNil(input);
+		FLReleaseWithNil_(input);
 	}
 }
 
@@ -78,7 +78,7 @@
 
 - (void) onError:(NSNotification*) sender
 {
-	FLAssignObject(_error, [sender.userInfo objectForKey:AVCaptureSessionErrorKey]);
+	FLRetainObject_(_error, [sender.userInfo objectForKey:AVCaptureSessionErrorKey]);
 
 	FLLog(@"Error: %@", [[sender.userInfo objectForKey:AVCaptureSessionErrorKey] description]);
 }
@@ -119,7 +119,7 @@
 //
 //- (UIView *) previewWithBounds: (FLRect) bounds
 //{
-//	UIView *view = FLReturnAutoreleased([[UIView alloc] initWithFrame:bounds]);
+//	UIView *view = autorelease_([[UIView alloc] initWithFrame:bounds]);
 //	
 //	AVCaptureVideoPreviewLayer *preview = [AVCaptureVideoPreviewLayer layerWithSession: self.session];
 //	preview.frame = bounds;
@@ -150,7 +150,7 @@
 	}
 	        if(err)
         {
-           FLThrowError_(FLReturnAutoreleased(err));
+           FLThrowError_(autorelease_(err));
         }
 
 }
@@ -169,7 +169,7 @@
 		}
 		        if(err)
         {
-           FLThrowError_(FLReturnAutoreleased(err));
+           FLThrowError_(autorelease_(err));
         }
 
 	}
@@ -197,7 +197,7 @@
 			// throw
 		}
 		
-		FLReleaseWithNil(_error);
+		FLReleaseWithNil_(_error);
 		
    
 //		  dispatch_async(
@@ -232,7 +232,7 @@
 {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	_device = nil;
-	FLReleaseWithNil(_session);
+	FLReleaseWithNil_(_session);
 }
 
 - (void) stop:(FLCameraStartedBlock) stoppedBlock
@@ -244,7 +244,7 @@
 		[_previewLayer removeFromSuperlayer];
 		[deleteSessionPool drain];
 		
-		FLReleaseWithNil(_error);
+		FLReleaseWithNil_(_error);
 		
 //		  dispatch_async(
 //			  dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), 
@@ -253,7 +253,7 @@
 				@try
 				{
 					[_session stopRunning];
-					FLReleaseWithNil(_previewLayer);
+					FLReleaseWithNil_(_previewLayer);
 					[self _cleanupCamera];
 				
 					if(stoppedBlock)

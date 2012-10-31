@@ -52,11 +52,11 @@
 
 - (void) dealloc
 {
-	FLRelease(_highlightedFillColor);
-	FLRelease(_highlightedBorderColor);
-	FLRelease(_fillColor);
-	FLRelease(_borderColor);
-	FLSuperDealloc();
+	mrc_release_(_highlightedFillColor);
+	mrc_release_(_highlightedBorderColor);
+	mrc_release_(_fillColor);
+	mrc_release_(_borderColor);
+	mrc_super_dealloc_();
 }
 
 - (void) setDefaults
@@ -81,25 +81,25 @@
 
 - (void) setFillColor:(UIColor*) color
 {
-	FLAssignObject(_fillColor, color);
+	FLRetainObject_(_fillColor, color);
 	[self _update];
 }
 
 - (void) setHighlightedFillColor:(UIColor*) color
 {
-	FLAssignObject(_highlightedFillColor, color);
+	FLRetainObject_(_highlightedFillColor, color);
     [self _update];
 }
 
 - (void) setHighlightedBorderColor:(UIColor*) color
 {
-	FLAssignObject(_highlightedBorderColor, color);
+	FLRetainObject_(_highlightedBorderColor, color);
     [self _update];
 }
 
 - (void) setBorderColor:(UIColor*) color
 {
-	FLAssignObject(_borderColor, color);
+	FLRetainObject_(_borderColor, color);
     [self _update];
 }
 

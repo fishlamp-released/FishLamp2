@@ -219,9 +219,9 @@ FLSynthesizeSingleton(FLFloatingViewEventReceiver);
 
 - (void) dealloc
 {
-	FLRelease(_popupStack);
+	mrc_release_(_popupStack);
 	[[FLApplication sharedApplication] removeEventInterceptor:self];
-	FLSuperDealloc();
+	mrc_super_dealloc_();
 }
 
 @end 
@@ -258,7 +258,7 @@ FLSynthesizeStructProperty(contentViewIsModal, setContentViewIsModal, BOOL, _sta
 
 - (void) setChildFloatingViewController:(FLFloatingViewController *)childFloatingViewController
 {
-    FLAssignObject(_childPopover, childFloatingViewController);
+    FLRetainObject_(_childPopover, childFloatingViewController);
     if(childFloatingViewController.parentFloatingViewController != self)
     {
         childFloatingViewController.parentFloatingViewController = self;
@@ -335,7 +335,7 @@ FLSynthesizeStructProperty(contentViewIsModal, setContentViewIsModal, BOOL, _sta
     {
         [_childPopover setParentPopover:nil];
         [_childPopover dismissViewControllerAnimated:YES];
-        FLReleaseWithNil(_childPopover);
+        FLReleaseWithNil_(_childPopover);
     }
 }
 
@@ -347,7 +347,7 @@ FLSynthesizeStructProperty(contentViewIsModal, setContentViewIsModal, BOOL, _sta
         {
             [self dismissChild];
         }
-        FLAssignObject(_childPopover, child);
+        FLRetainObject_(_childPopover, child);
         [_childPopover setParentPopover:self];
     }
 }   
@@ -357,9 +357,9 @@ FLSynthesizeStructProperty(contentViewIsModal, setContentViewIsModal, BOOL, _sta
 	[[FLFloatingViewEventReceiver instance] removePopupViewController:self];
     [[FLBackgroundTaskMgr instance] removeObserver:self];
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
-    FLRelease(_childPopover);
-	FLRelease(_contentViewController);
-	FLSuperDealloc();
+    mrc_release_(_childPopover);
+	mrc_release_(_contentViewController);
+	mrc_super_dealloc_();
 }
 
 - (BOOL) backgroundTaskMgrCanBeginBackgroundTasks:(FLBackgroundTaskMgr*) mgr
@@ -370,7 +370,7 @@ FLSynthesizeStructProperty(contentViewIsModal, setContentViewIsModal, BOOL, _sta
 
 - (void)dismissViewControllerAnimated:(BOOL)animated
 {
-	FLAutorelease(FLReturnRetain(self));
+	mrc_autorelease_(FLReturnRetain(self));
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	[[FLFloatingViewEventReceiver instance] removePopupViewController:self];
     [[FLBackgroundTaskMgr instance] removeObserver:self];
@@ -397,7 +397,7 @@ FLSynthesizeStructProperty(contentViewIsModal, setContentViewIsModal, BOOL, _sta
 
 - (void) loadView
 {
-    self.view = FLReturnAutoreleased([[FLFloatingView alloc] initWithFrame:CGRectMake(0,0,200,200)]);
+    self.view = autorelease_([[FLFloatingView alloc] initWithFrame:CGRectMake(0,0,200,200)]);
 }
 
 - (void) viewDidLoad
@@ -419,7 +419,7 @@ FLSynthesizeStructProperty(contentViewIsModal, setContentViewIsModal, BOOL, _sta
         }
     }
     
-    FLAssignObject(_contentViewController, viewController);
+    FLRetainObject_(_contentViewController, viewController);
     [self addChildViewController:_contentViewController];
 
     if(self.isViewLoaded)
@@ -676,7 +676,7 @@ FLSynthesizeAssociatedProperty(retain_nonatomic, contentSizeForViewInFloatingVie
                                        fromPositionProvider:(id) provider
                                                withBehavior:(id<FLPresentationBehavior>) behavior
                                               withAnimation:(id<FLViewControllerTransitionAnimation>) animation {
-    FLFloatingViewController* floatingViewController = FLReturnAutoreleased( [[FLFloatingViewController alloc] initWithArrowDirection:arrowDirection fromPositionProvider:provider]);
+    FLFloatingViewController* floatingViewController = autorelease_( [[FLFloatingViewController alloc] initWithArrowDirection:arrowDirection fromPositionProvider:provider]);
 
     floatingViewController.contentViewController = controller;
     

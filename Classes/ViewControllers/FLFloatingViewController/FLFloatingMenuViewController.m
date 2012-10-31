@@ -40,9 +40,9 @@ FLAssertDefaultInitNotCalled_();
 
 - (void) dealloc
 {
-    FLRelease(_parentController);
-    FLRelease(_subMenu);
-    FLSuperDealloc();
+    mrc_release_(_parentController);
+    mrc_release_(_subMenu);
+    mrc_super_dealloc_();
 }
 
 - (void) showFromView:(UIView*) view
@@ -68,7 +68,7 @@ FLAssertDefaultInitNotCalled_();
 
 + (FLFloatingMenuViewController*) menuViewController:(NSString*) title
 {
-	return FLReturnAutoreleased([[FLFloatingMenuViewController alloc] initWithTitle:title]);
+	return autorelease_([[FLFloatingMenuViewController alloc] initWithTitle:title]);
 }
 
 //- (void) menuViewDidResize:(FLMenuView*) view
@@ -82,7 +82,7 @@ FLAssertDefaultInitNotCalled_();
 
 - (void) setParentController:(FLFloatingMenuViewController*) controller
 {
-    FLAssignObject(_parentController, controller);
+    FLRetainObject_(_parentController, controller);
 }
 
 - (void) _dimissSubmenu
@@ -92,7 +92,7 @@ FLAssertDefaultInitNotCalled_();
         [_subMenu setParentController:nil];
         self.floatingViewController.childFloatingViewController = nil;
         [_subMenu.floatingViewController dismissViewControllerAnimated:YES];
-        FLReleaseWithNil(_subMenu);
+        FLReleaseWithNil_(_subMenu);
     }
 }
 
@@ -102,7 +102,7 @@ FLAssertDefaultInitNotCalled_();
     {
         [self _dimissSubmenu];
         
-        FLAssignObject(_subMenu, menuItem.subMenu);
+        FLRetainObject_(_subMenu, menuItem.subMenu);
         
         if(menuItem.subMenu)
         {
@@ -142,12 +142,12 @@ FLAssertDefaultInitNotCalled_();
 
 - (void) menuItemViewFinishedSelectAnimation:(FLMenuItemView*) menuItem
 {
-    FLAutorelease(FLReturnRetained(self));
+    mrc_autorelease_(retain_(self));
     
     if(_parentController)
     {
         [_parentController dismissViewControllerAnimated:YES];
-        FLReleaseWithNil(_parentController);
+        FLReleaseWithNil_(_parentController);
     }
     else
     {

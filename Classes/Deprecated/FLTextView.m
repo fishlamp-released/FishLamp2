@@ -37,8 +37,8 @@
 
 - (void) dealloc
 {
-	FLRelease(_textDescriptor);
-	FLSuperDealloc();
+	mrc_release_(_textDescriptor);
+	mrc_super_dealloc_();
 }
 
 - (void) _update
@@ -52,12 +52,12 @@
 
 - (FLTextDescriptor*) textDescriptor
 {
-	return FLReturnAutoreleased([_textDescriptor copy]);
+	return autorelease_([_textDescriptor copy]);
 }
 
 - (void) setTextDescriptor:(FLTextDescriptor*) textDescriptor
 {
-	FLCopyObject(_textDescriptor, textDescriptor);
+	FLCopyObject_(_textDescriptor, textDescriptor);
     [self _update];
 }
 
@@ -146,7 +146,7 @@
 
 - (void) insertStringAtSelection:(NSString*) string
 {
-	NSMutableString* text = FLReturnAutoreleased([self.text mutableCopy]);
+	NSMutableString* text = autorelease_([self.text mutableCopy]);
 	NSRange selection = self.selectedRange;
 	[text insertString:string atIndex:selection.location];
 	self.text = text;

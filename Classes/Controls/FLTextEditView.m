@@ -116,13 +116,13 @@
 	NSInteger remaining = _maxSize - newText.length;
 	if(remaining == -1 && _remaining == 0)
 	{
-		FLAssignObject(_countdownColor, _countdownView.textColor);
+		FLRetainObject_(_countdownColor, _countdownView.textColor);
 		_countdownView.textColor = [UIColor fireEngineRed];
 	}
 	else if(remaining == 0 && _remaining == -1)
 	{
 		_countdownView.textColor = _countdownColor;
-		FLReleaseWithNil(_countdownColor);
+		FLReleaseWithNil_(_countdownColor);
 	}
 
 	_remaining = remaining;
@@ -147,11 +147,11 @@
 
 - (void) dealloc
 {
-	FLRelease(_countdownView);
-	FLRelease(_roundRectView);
+	mrc_release_(_countdownView);
+	mrc_release_(_roundRectView);
 	_textView.delegate = nil;
-    FLRelease(_textView);
-	FLSuperDealloc();
+    mrc_release_(_textView);
+	mrc_super_dealloc_();
 }
 
 #define kInset 5.0f

@@ -41,9 +41,9 @@
 }
 
 - (void) dealloc {
-    FLRelease(_roundRect);
-    FLRelease(_backgroundGradient);
-    FLSuperDealloc();
+    mrc_release_(_roundRect);
+    mrc_release_(_backgroundGradient);
+    mrc_super_dealloc_();
 }
 
 //- (void) setContentView:(UIView*) contentView {
@@ -51,7 +51,7 @@
 //        [_contentView removeFromSuperview];
 //    }
 //    
-//    FLAssignObject(_contentView, contentView);
+//    FLRetainObject_(_contentView, contentView);
 //    if(_contentView) {
 //        [self addSubview:_contentView];
 //        [self setNeedsLayout];

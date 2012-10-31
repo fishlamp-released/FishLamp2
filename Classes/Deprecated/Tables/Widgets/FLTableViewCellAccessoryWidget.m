@@ -36,10 +36,10 @@
 
 - (void) dealloc
 {
-    FLRelease(_selectedColor);
-	FLRelease(_highlightedColor);
-	FLRelease(_color);
-	FLSuperDealloc();
+    mrc_release_(_selectedColor);
+	mrc_release_(_highlightedColor);
+	mrc_release_(_color);
+	mrc_super_dealloc_();
 }
 
 - (void) setType:(UITableViewCellAccessoryType) type
@@ -57,7 +57,7 @@
 		s_image = [UIImage imageNamed:@"check.png"];
 		s_image = [s_image colorizeImage:[UIColor whiteColor] blendMode:kCGBlendModeLighten];
 		s_image = [s_image colorizeImage:FLRgbColor(171,197,225, 1.0) blendMode:kCGBlendModeMultiply]; // TODO: hard coded color from dark them
-		FLRetain(s_image);
+		mrc_retain_(s_image);
 //		  s_image = [s_image colorizeImage:[UIColor lightGrayColor] blendMode:kCGBlendModeOverlay ];
 	}
 	

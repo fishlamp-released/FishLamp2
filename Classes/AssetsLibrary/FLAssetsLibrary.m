@@ -163,8 +163,8 @@ NSError* DisplayDiagnosticError(NSError* error)
         return;
     }
     
-	doneBlock = FLReturnAutoreleased([doneBlock copy]);
-	shouldCancel = FLReturnAutoreleased([shouldCancel copy]);
+	doneBlock = autorelease_([doneBlock copy]);
+	shouldCancel = autorelease_([shouldCancel copy]);
 	
 	dispatch_async(
        dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0),
@@ -217,8 +217,8 @@ NSError* DisplayDiagnosticError(NSError* error)
     }
     else    
     {
-        doneBlock = FLReturnAutoreleased([doneBlock copy]);
-        shouldCancel = FLReturnAutoreleased([shouldCancel copy]);
+        doneBlock = autorelease_([doneBlock copy]);
+        shouldCancel = autorelease_([shouldCancel copy]);
         
         dispatch_async(
                        dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0),
@@ -336,8 +336,8 @@ NSError* DisplayDiagnosticError(NSError* error)
     }
     else 
     {
-        doneBlock = FLReturnAutoreleased([doneBlock copy]);
-        shouldCancel = FLReturnAutoreleased([shouldCancel copy]);
+        doneBlock = autorelease_([doneBlock copy]);
+        shouldCancel = autorelease_([shouldCancel copy]);
         
         [self beginLoadingGroupOfGroupType:groupType 
             doneBlock:^(NSArray* groups, NSError* error) {
@@ -365,8 +365,8 @@ NSError* DisplayDiagnosticError(NSError* error)
     }
     else 
     {
-        doneBlock = FLReturnAutoreleased([doneBlock copy]);
-        shouldCancel = FLReturnAutoreleased([shouldCancel copy]);
+        doneBlock = autorelease_([doneBlock copy]);
+        shouldCancel = autorelease_([shouldCancel copy]);
         
         [self beginLoadingGroupOfGroupType:groupType 
             doneBlock:^(NSArray* groups, NSError* error) {
@@ -397,7 +397,7 @@ NSError* DisplayDiagnosticError(NSError* error)
     
         FLAssetsLibraryImageAsset* gt_asset = [[FLAssetsLibraryImageAsset alloc] initWithALAsset:asset];
         [array addObject:gt_asset];
-		FLRelease(gt_asset);
+		mrc_release_(gt_asset);
     }
 }
 
@@ -448,8 +448,8 @@ NSError* DisplayDiagnosticError(NSError* error)
     }
     else 
     {
-        doneBlock = FLReturnAutoreleased([doneBlock copy]);
-        shouldCancel = FLReturnAutoreleased([shouldCancel copy]);
+        doneBlock = autorelease_([doneBlock copy]);
+        shouldCancel = autorelease_([shouldCancel copy]);
 
         [self beginLoadingGroups:^(NSArray* groups, NSError* error) {
                 if(!error)
@@ -491,8 +491,8 @@ NSError* DisplayDiagnosticError(NSError* error)
             NSMutableSet* membership = [NSMutableSet set];
             NSMutableArray* assets = [NSMutableArray array];
 
-            doneBlock = FLReturnAutoreleased([doneBlock copy]);
-            shouldCancel = FLReturnAutoreleased([shouldCancel copy]);
+            doneBlock = autorelease_([doneBlock copy]);
+            shouldCancel = autorelease_([shouldCancel copy]);
             
             [self _beginLoadingAssetsForGroups:groups 
                                            idx:0 
@@ -519,7 +519,7 @@ NSError* DisplayDiagnosticError(NSError* error)
 //				[_assets replaceObjectAtIndex:idx withObject:result];
 //			}
 //		}];
-//	FLReleaseWithNil(indexes);
+//	FLReleaseWithNil_(indexes);
 //}
 
 

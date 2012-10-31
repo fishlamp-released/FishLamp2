@@ -52,14 +52,14 @@
 		
 		[self addSubview:_gradientView];
 		
-		self.titleLabel = FLReturnAutoreleased([[UILabel alloc] initWithFrame:CGRectZero]);
-		self.progressBarLabel = FLReturnAutoreleased([[UILabel alloc] initWithFrame:CGRectZero]);
+		self.titleLabel = autorelease_([[UILabel alloc] initWithFrame:CGRectZero]);
+		self.progressBarLabel = autorelease_([[UILabel alloc] initWithFrame:CGRectZero]);
 		
-		self.progressBar = FLReturnAutoreleased([[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault]);
-		self.progressBarSpinner = FLReturnAutoreleased([[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite]);
+		self.progressBar = autorelease_([[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault]);
+		self.progressBarSpinner = autorelease_([[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite]);
 		self.progressBarSpinner.hidesWhenStopped = YES;
 		
-		self.button = FLReturnAutoreleased([[FLToolbarButtonDeprecated alloc] initWithColor:FLGradientButtonBlack title:NSLocalizedString(@"Cancel", nil) target:nil action:nil]);
+		self.button = autorelease_([[FLToolbarButtonDeprecated alloc] initWithColor:FLGradientButtonBlack title:NSLocalizedString(@"Cancel", nil) target:nil action:nil]);
 		
 		[self _configureLabel:self.titleLabel];
 		[self _configureLabel:self.progressBarLabel];
@@ -84,13 +84,13 @@
 
 - (void) dealloc
 {
-	FLRelease(_gradientView);
-	FLSuperDealloc();
+	mrc_release_(_gradientView);
+	mrc_super_dealloc_();
 }
 
 + (FLSmallProgressView*) smallProgressView
 {
-	return FLReturnAutoreleased([[FLSmallProgressView alloc] initWithFrame:CGRectZero]);
+	return autorelease_([[FLSmallProgressView alloc] initWithFrame:CGRectZero]);
 }
 
 - (void) layoutSubviews

@@ -28,7 +28,7 @@
 
 + (FLTextEditViewController*) textEditViewController
 {
-	return FLReturnAutoreleased([[FLTextEditViewController alloc] initWithNibName:nil bundle:nil]);
+	return autorelease_([[FLTextEditViewController alloc] initWithNibName:nil bundle:nil]);
 }
 
 - (NSInteger) maxSize
@@ -52,7 +52,7 @@
 
 - (void) setText:(NSString*) text
 {
-    FLAssignObject(_text, text);
+    FLRetainObject_(_text, text);
     
     if(_textEditView)
     {
@@ -62,11 +62,11 @@
 
 - (void) dealloc
 {
-    FLRelease(_placeholderText);
-    FLRelease(_text);
+    mrc_release_(_placeholderText);
+    mrc_release_(_text);
     _textEditView.delegate = nil;
-	FLRelease(_textEditView);
-	FLSuperDealloc();
+	mrc_release_(_textEditView);
+	mrc_super_dealloc_();
 }
 
 - (void) dismissViewControllerAnimated:(BOOL)animated 
@@ -149,14 +149,14 @@
     }
     else
     {
-        FLAssignObject(_text, text);
+        FLRetainObject_(_text, text);
         [self updateSaveButtonState];
     }
 }
 
 - (void) textEditView:(FLTextEditView*) textEditView textDidChange:(NSString*) text
 {
-    FLAssignObject(_text, text);
+    FLRetainObject_(_text, text);
 	[self updateSaveButtonState];
 }
 
@@ -165,7 +165,7 @@
     [super viewDidUnload];
    
     _textEditView.delegate = nil;
-	FLReleaseWithNil(_textEditView);
+	FLReleaseWithNil_(_textEditView);
 }
 
 - (NSString*) placeholderText
@@ -175,7 +175,7 @@
 
 - (void) setPlaceholderText:(NSString *)placeholderText
 {
-    FLAssignObject(_placeholderText, placeholderText);
+    FLRetainObject_(_placeholderText, placeholderText);
     if(_textEditView)
     {
         _textEditView.placeholderText = placeholderText;

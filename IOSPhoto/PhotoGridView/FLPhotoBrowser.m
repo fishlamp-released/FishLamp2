@@ -23,7 +23,7 @@
  
 - (void) createTopToolbar {
     FLAsyncThumbnailToolBar* toolbar = [[FLAsyncThumbnailToolBar alloc] initWithFrame:CGRectMake(0,20,self.view.frame.size.width, 44)];
-    FLAutorelease(toolbar);
+    mrc_autorelease_(toolbar);
 
      [self addButtonsToTopToolbar:toolbar];
      

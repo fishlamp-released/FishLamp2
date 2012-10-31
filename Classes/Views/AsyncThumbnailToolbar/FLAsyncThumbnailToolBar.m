@@ -26,7 +26,7 @@
         self.autoresizesSubviews = NO;
         
         _thumbnailButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        FLRetain(_thumbnailButton);
+        mrc_retain_(_thumbnailButton);
         
         _thumbnailButton.enabled = YES;
         _thumbnailButton.showsTouchWhenHighlighted = YES;
@@ -70,7 +70,7 @@
 
         [self addSubview:_titleLabel];
         
-        UIView* view = FLReturnAutoreleased([[UIView alloc] initWithFrame:self.bounds]);
+        UIView* view = autorelease_([[UIView alloc] initWithFrame:self.bounds]);
         view.backgroundColor = [UIColor blackColor];
         view.alpha = 0.5f;
         self.backgroundView = view;
@@ -85,12 +85,12 @@
 
 - (void) dealloc
 {
-    FLRelease(_titleLabel);
-    FLRelease(_backgroundView);
-    FLRelease(_spinner);
-    FLRelease(_thumbnailButton);
-    FLRelease(_buttons);
-    FLSuperDealloc();
+    mrc_release_(_titleLabel);
+    mrc_release_(_backgroundView);
+    mrc_release_(_spinner);
+    mrc_release_(_thumbnailButton);
+    mrc_release_(_buttons);
+    mrc_super_dealloc_();
 }
 
 #define kButtonSpace 20.0f
@@ -155,7 +155,7 @@
         [_backgroundView removeFromSuperview];
     }
 
-    FLAssignObject(_backgroundView, view);
+    FLRetainObject_(_backgroundView, view);
     
     if(_backgroundView)
     {

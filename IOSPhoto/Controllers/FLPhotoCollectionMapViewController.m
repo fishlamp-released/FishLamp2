@@ -17,9 +17,9 @@
 @synthesize thumbnail = _thumbnail;
 - (void) dealloc
 {
-	FLRelease(_thumbnail);
-	FLRelease(_photo);
-	FLSuperDealloc();
+	mrc_release_(_thumbnail);
+	mrc_release_(_photo);
+	mrc_super_dealloc_();
 }
 @end
 
@@ -41,7 +41,7 @@
 	annotation.subtitle = FLPrettyStringForCoordinate(coordinate);
 	annotation.thumbnail = thumbnail;
 	[self.mapView addAnnotation:annotation];
-	FLRelease(annotation);
+	mrc_release_(annotation);
 	
 	self.title = [NSString stringWithFormat:(NSLocalizedString(@"%d Photos", nil)), self.mapView.annotations.count];
 	
@@ -94,7 +94,7 @@
 	{
 		_progressView.progress = 1.0;
 		[_progressView performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:0.3f];
-		FLReleaseWithNil(_progressView);
+		FLReleaseWithNil_(_progressView);
 		
 		[self.mapView zoomToFitMapAnnotationsAnimated:YES];
 		
@@ -109,8 +109,8 @@
 
 - (void) dealloc
 {	
-	FLRelease(_progressView);
-	FLSuperDealloc();
+	mrc_release_(_progressView);
+	mrc_super_dealloc_();
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -156,7 +156,7 @@
 
 - (MKAnnotationView *) mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>) annotation
 {
-	MKPinAnnotationView *annView= FLReturnAutoreleased([[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"currentloc"]);
+	MKPinAnnotationView *annView= autorelease_([[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"currentloc"]);
 	annView.pinColor = MKPinAnnotationColorGreen;
 	annView.animatesDrop=YES;
 	annView.canShowCallout = YES;

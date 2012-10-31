@@ -7,6 +7,7 @@
 //
 
 #import "FLDrawingUtils.h"
+#import "FLCoreFoundation.h"
 
 void FLDrawLinearGradient(CGContextRef context, 
     FLRect rect, 
@@ -16,9 +17,9 @@ void FLDrawLinearGradient(CGContextRef context,
 	CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
 	CGFloat locations[] = { 0.0, 1.0 };
 	
-	NSArray *colors = [NSArray arrayWithObjects:(__bridge_fl id)startColor, (__bridge_fl id)endColor, nil];
+	NSArray *colors = [NSArray arrayWithObjects:bridge_(id, startColor), bridge_(id, endColor), nil];
 	
-	CGGradientRef gradient = CGGradientCreateWithColors(colorSpace, (__bridge_fl CFArrayRef) colors, locations);
+	CGGradientRef gradient = CGGradientCreateWithColors(colorSpace, bridge_(CFArrayRef, colors), locations);
 	
 	FLPoint startPoint = CGPointMake(CGRectGetMidX(rect), CGRectGetMinY(rect));
 	FLPoint endPoint = CGPointMake(CGRectGetMidX(rect), CGRectGetMaxY(rect));

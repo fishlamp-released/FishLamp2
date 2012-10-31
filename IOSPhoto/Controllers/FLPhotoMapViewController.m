@@ -32,9 +32,9 @@
 
 - (void) dealloc
 {	
-	FLRelease(_mapView);
-	FLRelease(_mapSwitcher);
-	FLSuperDealloc();
+	mrc_release_(_mapView);
+	mrc_release_(_mapSwitcher);
+	mrc_super_dealloc_();
 }
 
 - (void) _resetZoom:(id) zoom
@@ -89,7 +89,7 @@
 
 - (MKAnnotationView *) mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>) annotation
 {
-	MKPinAnnotationView *annView= FLReturnAutoreleased([[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"currentloc"]);
+	MKPinAnnotationView *annView= autorelease_([[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"currentloc"]);
 	annView.pinColor = MKPinAnnotationColorGreen;
 	annView.animatesDrop=YES;
 	annView.canShowCallout = YES;
@@ -117,7 +117,7 @@
 	annotation.title = name;
 	annotation.subtitle = FLPrettyStringForCoordinate(coordinate);
 	[self.mapView addAnnotation:annotation];
-	FLRelease(annotation);
+	mrc_release_(annotation);
 	
 	self.title = name;
 	

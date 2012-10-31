@@ -13,7 +13,7 @@
 @implementation FLErrorAlert
 
 + (FLErrorAlert*) errorAlertViewController {
-    return FLReturnAutoreleased([[[self class] alloc] init]);
+    return autorelease_([[[self class] alloc] init]);
 }
 
 - (void) viewDidLoad {
@@ -36,7 +36,7 @@
     textDescriptor.shadowOffset = FLSizeMake(0,1);
     label.textDescriptor = textDescriptor;
 
-    FLRelease(label);
+    mrc_release_(label);
 }
 
 @end

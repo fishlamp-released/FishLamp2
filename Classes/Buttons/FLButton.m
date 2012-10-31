@@ -113,25 +113,25 @@
 }
 
 + (FLButton*) button {
-    return FLReturnAutoreleased([[[self class] alloc] initWithFrame:CGRectZero]);
+    return autorelease_([[[self class] alloc] initWithFrame:CGRectZero]);
 }
 
 + (FLButton*) buttonWithTitle:(NSString*) title {
-    return FLReturnAutoreleased([[[self class] alloc] initWithTitle:title]);
+    return autorelease_([[[self class] alloc] initWithTitle:title]);
 }
 
 + (FLButton*) buttonWithTitle:(NSString*) title
                       onPress:(FLButtonPress) onPress {
-    return FLReturnAutoreleased([[[self class] alloc] initWithTitle:title onPress:onPress]);
+    return autorelease_([[[self class] alloc] initWithTitle:title onPress:onPress]);
 }
 
 - (void) dealloc {
-    FLRelease(_stylizer);
-    FLRelease(_colorizer);
-    FLRelease(_onPress);
-    FLRelease(_shapeWidget);
-	FLRelease(_backgroundWidget);
-	FLSuperDealloc();
+    mrc_release_(_stylizer);
+    mrc_release_(_colorizer);
+    mrc_release_(_onPress);
+    mrc_release_(_shapeWidget);
+	mrc_release_(_backgroundWidget);
+	mrc_super_dealloc_();
 }
 
 - (void) layoutSubviews {
@@ -150,7 +150,7 @@
 	if(_backgroundWidget) {
 		[_backgroundWidget removeFromParent];
 	}
-	FLAssignObject(_backgroundWidget, widget);
+	FLRetainObject_(_backgroundWidget, widget);
 	_backgroundWidget.contentMode = FLContentModeFill;
 
 	[self.shapeWidget addWidget:_backgroundWidget];
@@ -161,7 +161,7 @@
 	if(_backgroundWidget) {
 		[_backgroundWidget removeFromParent];
 	}
-	FLAssignObject(_shapeWidget, widget);
+	FLRetainObject_(_shapeWidget, widget);
 	_shapeWidget.contentMode = FLContentModeFill;
     [self addWidget:_shapeWidget];
     
@@ -217,7 +217,7 @@
 
 - (void) setButtonColors:(FLButtonColorizer) colorizer {
     
-    FLCopyObject(_colorizer, colorizer);
+    FLCopyObject_(_colorizer, colorizer);
     [self setNeedsLayout];
 }
 

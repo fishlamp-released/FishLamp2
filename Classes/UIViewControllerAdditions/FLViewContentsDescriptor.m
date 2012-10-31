@@ -72,22 +72,22 @@ FLSynthesizeStructProperty(bottomItem, setBottomItem, FLViewContentItem, _flags)
 + (id) viewContentsDescriptorWithTop:(FLViewContentItem) top
     bottom:(FLViewContentItem) bottom
       hasStatusBar:(BOOL) hasStatusBar {
-    return FLReturnAutoreleased([[[self class] alloc] initWithTop:top bottom:bottom hasStatusBar:hasStatusBar]);
+    return autorelease_([[[self class] alloc] initWithTop:top bottom:bottom hasStatusBar:hasStatusBar]);
 }
 
 + (id) viewContentsDescriptorWithTop:(FLViewContentItem) top
     bottom:(FLViewContentItem) bottom
       hasStatusBar:(BOOL) hasStatusBar
     padding:(UIEdgeInsets) padding {
-    return FLReturnAutoreleased([[[self class] alloc] initWithTop:top bottom:bottom hasStatusBar:hasStatusBar padding:padding]);
+    return autorelease_([[[self class] alloc] initWithTop:top bottom:bottom hasStatusBar:hasStatusBar padding:padding]);
 }
 
 + (id) viewContentsDescriptorWithViewContentsDescriptor:(FLViewContentsDescriptor*) original {
-    return FLReturnAutoreleased([[[self class] alloc] initWithViewContentsDescriptor:original]);
+    return autorelease_([[[self class] alloc] initWithViewContentsDescriptor:original]);
 }
 
 + (id) viewContentsDescriptor {
-    return FLReturnAutoreleased([[[self class] alloc] init]);
+    return autorelease_([[[self class] alloc] init]);
 }
 
 + (FLViewContentsDescriptor*) emptyDescriptor {
@@ -168,7 +168,7 @@ FLSynthesizeStructProperty(bottomItem, setBottomItem, FLViewContentItem, _flags)
 @implementation FLMutableViewContentsDescriptor
 
 + (FLMutableViewContentsDescriptor*) mutableViewContentsDescriptor {
-    return FLReturnAutoreleased([[FLMutableViewContentsDescriptor alloc] init]);
+    return autorelease_([[FLMutableViewContentsDescriptor alloc] init]);
 }
 
 @dynamic topItem;

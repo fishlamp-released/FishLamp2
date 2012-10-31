@@ -30,7 +30,7 @@
 		[_subview removeFromSuperview];
 	}
 
-	_subview = FLReturnRetained(view);
+	_subview = retain_(view);
 	if(_subview)
 	{
 		[self addSubview:_subview];
@@ -46,8 +46,8 @@
 
 - (void) dealloc
 {
-	FLRelease(_subview);
-	FLSuperDealloc();
+	mrc_release_(_subview);
+	mrc_super_dealloc_();
 }
 
 @end

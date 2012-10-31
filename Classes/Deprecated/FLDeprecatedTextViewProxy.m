@@ -24,8 +24,8 @@
 - (void) dealloc
 {
 	[_proxiedView removeFromSuperview];
-	FLRelease(_proxiedView);
-	FLSuperDealloc();
+	mrc_release_(_proxiedView);
+	mrc_super_dealloc_();
 }
 
 - (NSString*) text

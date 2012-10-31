@@ -42,12 +42,12 @@ FLSynthesizeStructProperty(isLoading, setIsLoading, BOOL, _simpleHtmlFlags);
 
 - (void) dealloc
 {
-	FLRelease(_lastDocument);
+	mrc_release_(_lastDocument);
 	self.delegate = nil;
 	self.simpleHtmlViewDelegate = nil;
 	[self stopLoading];
-	FLRelease(_spinner);
-	FLSuperDealloc();
+	mrc_release_(_spinner);
+	mrc_super_dealloc_();
 }
 
 - (void) startSpinner:(UIActivityIndicatorViewStyle) spinnerStyle
@@ -107,7 +107,7 @@ FLSynthesizeStructProperty(isLoading, setIsLoading, BOOL, _simpleHtmlFlags);
 		}
 		else
 		{
-			FLAssignObject(_lastDocument, document);
+			FLRetainObject_(_lastDocument, document);
 			[self loadHTMLString:document baseURL:nil];
 		}
 	}

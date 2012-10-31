@@ -66,9 +66,9 @@
 
 - (void) dealloc
 {
-    FLRelease(_label);
-    FLRelease(_gradientView);
-    FLSuperDealloc();
+    mrc_release_(_label);
+    mrc_release_(_gradientView);
+    mrc_super_dealloc_();
 }
 @end
 

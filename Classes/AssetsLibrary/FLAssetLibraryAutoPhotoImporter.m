@@ -23,18 +23,18 @@
 
 - (void) _clearData
 {
-    FLReleaseWithNil(_assetQueue);
-    FLReleaseWithNil(_importedDate);
-    FLReleaseWithNil(_importedAssets);
-    FLReleaseWithNil(_error);
-    FLReleaseWithNil(_startDate);
+    FLReleaseWithNil_(_assetQueue);
+    FLReleaseWithNil_(_importedDate);
+    FLReleaseWithNil_(_importedAssets);
+    FLReleaseWithNil_(_error);
+    FLReleaseWithNil_(_startDate);
     _cancelled = NO;
 }
 
 - (void) dealloc
 {
     [self _clearData];
-    FLSuperDealloc();
+    mrc_super_dealloc_();
 }
 
 - (void) cancelImport
@@ -59,12 +59,12 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
         @try {
             [_assetQueue batchAddAssets:_importedAssets];
-            FLAssignObject(_importedDate, [NSDate date]);
+            FLRetainObject_(_importedDate, [NSDate date]);
             [_delegate assetLibraryAutoPhotoImporter:self saveLastImportDate:_importedDate];
         }
         @catch(NSException* ex) {
-            FLReleaseWithNil(_importedAssets);
-            FLAssignObject(_error, ex.error);
+            FLReleaseWithNil_(_importedAssets);
+            FLRetainObject_(_error, ex.error);
         }
         [self performBlockOnMainThread:^{ [self _handleFinished:completedBlock]; }];
     });
@@ -96,13 +96,13 @@
 {
     FLAssert_v(_delegate != nil, @"a delegate is required.");
 
-    completedBlock = FLReturnAutoreleased([completedBlock copy]);
+    completedBlock = autorelease_([completedBlock copy]);
     
     [self _clearData];
     
-    FLAssignObject(_importedAssets, [NSMutableArray array]);
-    FLAssignObject(_assetQueue, [_delegate assetLibraryAutoPhotoImporterGetAssetQueue:self]);
-    FLAssignObject(_startDate, [_delegate assetLibraryAutoPhotoImporterGetLastImportDate:self]);
+    FLRetainObject_(_importedAssets, [NSMutableArray array]);
+    FLRetainObject_(_assetQueue, [_delegate assetLibraryAutoPhotoImporterGetAssetQueue:self]);
+    FLRetainObject_(_startDate, [_delegate assetLibraryAutoPhotoImporterGetLastImportDate:self]);
     
     FLAssertIsNotNil_v(_assetQueue, nil);
     FLAssertIsNotNil_v(_startDate, nil);
@@ -129,7 +129,7 @@
                 FLLog(@"Importer got error: %@", [error description]);
 #endif                
             
-                FLAssignObject(_error, error);
+                FLRetainObject_(_error, error);
                 [self performBlockOnMainThread:^{ [self _handleFinished:completedBlock]; }];
             }
             else
@@ -158,7 +158,7 @@
                FLLog(@"found asset to add: %@", newAsset.assetURL);
 #endif                           
                [_importedAssets addObject:newAsset];
-               FLRelease(imageAsset);
+               mrc_release_(imageAsset);
            }
         }];
 }

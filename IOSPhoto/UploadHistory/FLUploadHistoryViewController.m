@@ -17,8 +17,8 @@
 {
 	if((self = [super init]))
 	{
-		_assetQueue = FLReturnRetained(queue);
-		_database = FLReturnRetained(database);
+		_assetQueue = retain_(queue);
+		_database = retain_(database);
 		_doneBlock = [doneBlock copy];
 		
 		self.title = NSLocalizedString(@"Upload History", nil);
@@ -28,16 +28,16 @@
 
 + (FLUploadHistoryViewController*) uploadHistoryViewController:(FLAssetQueue*) queue inDatabase:(FLObjectDatabase*) database doneBlock:(dispatch_block_t) doneBlock
 {
-	return FLReturnAutoreleased([[FLUploadHistoryViewController alloc] initWithAssetQueue:queue inDatabase:database doneBlock:doneBlock]);
+	return autorelease_([[FLUploadHistoryViewController alloc] initWithAssetQueue:queue inDatabase:database doneBlock:doneBlock]);
 }
 
 - (void) dealloc
 {
-	FLRelease(_doneBlock);
-	FLRelease(_database);
-	FLRelease(_uploadedAssets);
-	FLRelease(_assetQueue);
-	FLSuperDealloc();
+	mrc_release_(_doneBlock);
+	mrc_release_(_database);
+	mrc_release_(_uploadedAssets);
+	mrc_release_(_assetQueue);
+	mrc_super_dealloc_();
 }
 
 - (void) _done:(id) sender
@@ -45,7 +45,7 @@
 	if(_doneBlock)
 	{
 		_doneBlock();
-		FLReleaseBlockWithNil(_doneBlock);
+		FLReleaseBlockWithNil_(_doneBlock);
 	}
 }
 
@@ -73,7 +73,7 @@
 	
 	if(!cell)
 	{
-		cell = FLReturnAutoreleased([[FLTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:s_id]);
+		cell = autorelease_([[FLTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:s_id]);
 		widget = [FLUploadHistoryListWidget widgetWithFrame:CGRectZero];
 		cell.widget = widget;
 	}
@@ -89,13 +89,13 @@
 
 - (void) beginRefreshing:(BOOL) userRequestedRefresh
 {
-	FLReleaseWithNil(_uploadedAssets);
+	FLReleaseWithNil_(_uploadedAssets);
 	
 	NSArray* assets = nil;
 	[_database loadAllObjectsForTypeWithClass:[FLUploadedAsset class] outObjects:&assets];
 	
 	_uploadedAssets = [assets mutableCopy];
-	FLRelease(assets);
+	mrc_release_(assets);
 	
 	[_uploadedAssets sortUsingComparator:^(id lhs, id rhs) { return [[rhs uploadedAssetUID] compare:[lhs uploadedAssetUID]]; }];
 	

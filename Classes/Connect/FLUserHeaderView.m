@@ -55,11 +55,11 @@
 
 - (void) dealloc
 {
-	FLRelease(_logo);
-	FLRelease(_spinner);
-	FLRelease(_thumbnail);
-	FLRelease(_nameLabel);
-	FLSuperDealloc();
+	mrc_release_(_logo);
+	mrc_release_(_spinner);
+	mrc_release_(_thumbnail);
+	mrc_release_(_nameLabel);
+	mrc_super_dealloc_();
 }
 
 - (void) layoutSubviews
@@ -126,7 +126,7 @@
 	if(_spinner)
 	{
 		[_spinner removeFromSuperview];
-		FLReleaseWithNil(_spinner);
+		FLReleaseWithNil_(_spinner);
 	}
 }
 

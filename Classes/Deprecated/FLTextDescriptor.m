@@ -51,21 +51,21 @@
 
 - (void) dealloc
 {
-	FLRelease(_enabledColor);
-	FLRelease(_enabledShadowColor);
-	FLRelease(_disabledColor);
-	FLRelease(_disabledShadowColor);
-	FLRelease(_highlightedColor);
-	FLRelease(_highlightedShadowColor);
-	FLRelease(_selectedColor);
-	FLRelease(_selectedShadowColor);
-	FLRelease(_font);
-	FLSuperDealloc();
+	mrc_release_(_enabledColor);
+	mrc_release_(_enabledShadowColor);
+	mrc_release_(_disabledColor);
+	mrc_release_(_disabledShadowColor);
+	mrc_release_(_highlightedColor);
+	mrc_release_(_highlightedShadowColor);
+	mrc_release_(_selectedColor);
+	mrc_release_(_selectedShadowColor);
+	mrc_release_(_font);
+	mrc_super_dealloc_();
 }
 
 + (FLTextDescriptor*) textDescriptor
 {
-	return FLReturnAutoreleased([[FLTextDescriptor alloc] init]);
+	return autorelease_([[FLTextDescriptor alloc] init]);
 }
 
 + (FLTextDescriptor*) textDescriptor:(UIFont*) font
@@ -79,7 +79,7 @@
 	selectedShadowColor:(UIColor*) selectedShadowColor
 	shadowOffset:(FLSize) shadowOffset
 {
-	return FLReturnAutoreleased([[FLTextDescriptor alloc] initWithFont:font
+	return autorelease_([[FLTextDescriptor alloc] initWithFont:font
 		enabledColor:enabledColor
 		enabledShadowColor:enabledShadowColor
 		disabledColor:disabledColor

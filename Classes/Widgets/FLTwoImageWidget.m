@@ -33,9 +33,9 @@
 
 - (void) dealloc
 {
-	FLRelease(_topImageWidget);
-	FLRelease(_bottomImageWidget);
-	FLSuperDealloc();
+	mrc_release_(_topImageWidget);
+	mrc_release_(_bottomImageWidget);
+	mrc_super_dealloc_();
 }
 
 - (void) releaseImages

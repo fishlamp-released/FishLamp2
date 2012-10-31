@@ -26,7 +26,7 @@ FLSynthesizeStructProperty(trimWhiteSpace, setTrimWhiteSpace, BOOL, _baseFlags);
 
 - (UIView*) createValueLabel
 {
-	FLLabel* label = FLReturnAutoreleased([[FLLabel alloc] initWithFrame:CGRectZero]);
+	FLLabel* label = autorelease_([[FLLabel alloc] initWithFrame:CGRectZero]);
 	label.backgroundColor = [UIColor clearColor];
 	label.lineBreakMode = UILineBreakModeTailTruncation; 
 	label.textAlignment = UITextAlignmentLeft; 
@@ -76,9 +76,9 @@ FLSynthesizeStructProperty(trimWhiteSpace, setTrimWhiteSpace, BOOL, _baseFlags);
 
 - (void) dealloc
 {
-	FLRelease(_spinner);
-	FLRelease(_value);
-	FLSuperDealloc();
+	mrc_release_(_spinner);
+	mrc_release_(_value);
+	mrc_super_dealloc_();
 }
 
 - (void) startSpinnerInValueCell
@@ -140,7 +140,7 @@ FLSynthesizeStructProperty(trimWhiteSpace, setTrimWhiteSpace, BOOL, _baseFlags);
 	if(_spinner)
 	{
 		[_spinner removeFromSuperview];
-		FLReleaseWithNil(_spinner);
+		FLReleaseWithNil_(_spinner);
 		
 		_value.view.hidden = NO;
 	}

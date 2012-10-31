@@ -60,11 +60,11 @@
 
 - (void) dealloc
 {
-    FLRelease(__normalColor);
-    FLRelease(__selectedColor);
-    FLRelease(__highlightedColor);
-    FLRelease(__disabledColor);
-    FLSuperDealloc();
+    mrc_release_(__normalColor);
+    mrc_release_(__selectedColor);
+    mrc_release_(__highlightedColor);
+    mrc_release_(__disabledColor);
+    mrc_super_dealloc_();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder
@@ -87,10 +87,10 @@
 {
     if((self = [super init]))
     {
-        __normalColor = FLReturnRetained([aDecoder decodeObjectForKey:@"__normalColor"]);
-        __selectedColor = FLReturnRetained([aDecoder decodeObjectForKey:@"__selectedColor"]);
-        __highlightedColor = FLReturnRetained([aDecoder decodeObjectForKey:@"__highlightedColor"]);
-        __disabledColor = FLReturnRetained([aDecoder decodeObjectForKey:@"__disabledColor"]);
+        __normalColor = retain_([aDecoder decodeObjectForKey:@"__normalColor"]);
+        __selectedColor = retain_([aDecoder decodeObjectForKey:@"__selectedColor"]);
+        __highlightedColor = retain_([aDecoder decodeObjectForKey:@"__highlightedColor"]);
+        __disabledColor = retain_([aDecoder decodeObjectForKey:@"__disabledColor"]);
     }
     return self;
 }
@@ -148,7 +148,7 @@
 
 + (FLViewColors*) viewColors
 {
-    return FLReturnAutoreleased([[FLViewColors alloc] init]);
+    return autorelease_([[FLViewColors alloc] init]);
 }
 
 @end

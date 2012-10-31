@@ -40,7 +40,7 @@
 - (id) initWithRootViewController:(UIViewController*) rootViewController {
     if((self = [super init])) {
         _viewControllers = [[NSMutableArray alloc] init];
-        FLAssignObject(_rootViewController, rootViewController);
+        FLRetainObject_(_rootViewController, rootViewController);
         [self _addViewController:_rootViewController];
     }
     
@@ -48,13 +48,13 @@
 }
 
 + (FLViewControllerStack*) viewControllerStack:(UIViewController*) rootViewController {
-    return FLReturnAutoreleased([[FLViewControllerStack alloc] initWithRootViewController:rootViewController]);
+    return autorelease_([[FLViewControllerStack alloc] initWithRootViewController:rootViewController]);
 }
 
 - (void) dealloc {
-    FLRelease(_rootViewController);
-    FLRelease(_viewControllers);
-    FLSuperDealloc();
+    mrc_release_(_rootViewController);
+    mrc_release_(_viewControllers);
+    mrc_super_dealloc_();
 }
 
 - (void) viewDidLayoutSubviews {

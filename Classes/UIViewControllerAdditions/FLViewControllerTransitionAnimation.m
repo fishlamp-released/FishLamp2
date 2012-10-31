@@ -15,7 +15,7 @@
 
 + (id) viewControllerTransitionAnimation
 {
-    return FLReturnAutoreleased([[[self class] alloc] init]);
+    return autorelease_([[[self class] alloc] init]);
 }
 
 - (void) beginShowAnimationForViewController:(UIViewController*) viewController
@@ -37,8 +37,8 @@
 #if FL_MRC
 - (void) dealloc
 {
-    FLRelease(_callback);
-    FLSuperDealloc();
+    mrc_release_(_callback);
+    mrc_super_dealloc_();
 }
 #endif
 
@@ -264,16 +264,16 @@ FLSynthesizeSingleton(FLCrossFadeAnimation);
     {
         self.callback(_viewController, _parent);
     }
-    FLReleaseWithNil(_viewController);
-    FLReleaseWithNil(_parent);
+    FLReleaseWithNil_(_viewController);
+    FLReleaseWithNil_(_parent);
 }
 
 - (void) dealloc
 {
-    FLReleaseWithNil(_viewController);
-    FLReleaseWithNil(_parent);
+    FLReleaseWithNil_(_viewController);
+    FLReleaseWithNil_(_parent);
 
-    FLSuperDealloc();
+    mrc_super_dealloc_();
 }
 
 - (void) beginShowAnimationForViewController:(UIViewController*) viewController
@@ -282,8 +282,8 @@ FLSynthesizeSingleton(FLCrossFadeAnimation);
 {
     self.callback = finishedBlock;
 
-    FLAssignObject(_viewController, viewController);
-    FLAssignObject(_parent, parentViewController);
+    FLRetainObject_(_viewController, viewController);
+    FLRetainObject_(_parent, parentViewController);
 
 	CALayer *viewLayer = viewController.view.layer;
 	CAKeyframeAnimation* popInAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform.scale"];
@@ -311,8 +311,8 @@ FLSynthesizeSingleton(FLCrossFadeAnimation);
     finishedBlock: (FLViewControllerAnimationBlock) finishedBlock
 {
     self.callback = finishedBlock;
-    FLAssignObject(_viewController, viewController);
-    FLAssignObject(_parent, parentViewController);
+    FLRetainObject_(_viewController, viewController);
+    FLRetainObject_(_parent, parentViewController);
 
 	CALayer *viewLayer = viewController.view.layer;
 	CAKeyframeAnimation* popInAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform.scale"];

@@ -12,11 +12,11 @@
 @implementation FLGalleryThumbnailGridViewCell
 
 + (FLGalleryThumbnailGridViewCell*) galleryThumbnailGridViewCell:(id) dataRef {
-    return FLReturnAutoreleased([[FLGalleryThumbnailGridViewCell alloc] initWithDataRef:dataRef]);
+    return autorelease_([[FLGalleryThumbnailGridViewCell alloc] initWithDataRef:dataRef]);
 }
 
 - (UIView*) createPrimaryView {
-    return FLReturnAutoreleased([[FLGalleryThumbnailGridViewCellView alloc] initWithFrame:CGRectZero]);
+    return autorelease_([[FLGalleryThumbnailGridViewCellView alloc] initWithFrame:CGRectZero]);
 }
 
 @end

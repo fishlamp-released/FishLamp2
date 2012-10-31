@@ -38,8 +38,8 @@
 //
 //#if FL_MRC
 //- (void) dealloc {
-//    FLRelease(_observers);
-//    FLSuperDealloc();
+//    mrc_release_(_observers);
+//    mrc_super_dealloc_();
 //}
 //#endif
 //

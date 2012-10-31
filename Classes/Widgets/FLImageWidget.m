@@ -28,24 +28,24 @@
 
 - (void) clear
 {
-	FLReleaseWithNil(_image);
+	FLReleaseWithNil_(_image);
 	[self setNeedsDisplay];
 }
 
 + (FLImageWidget*) imageWidgetWithFrame:(FLRect) frame
 {
-	return FLReturnAutoreleased([[FLImageWidget alloc] initWithFrame:frame]);
+	return autorelease_([[FLImageWidget alloc] initWithFrame:frame]);
 }
 
 - (void) dealloc
 {
-	FLRelease(_image);
-	FLSuperDealloc();
+	mrc_release_(_image);
+	mrc_super_dealloc_();
 }
 
 - (void) setImage:(UIImage *) image
 {
-	FLAssignObject(_image, image);
+	FLRetainObject_(_image, image);
 	[self setNeedsDisplay];
 }
 

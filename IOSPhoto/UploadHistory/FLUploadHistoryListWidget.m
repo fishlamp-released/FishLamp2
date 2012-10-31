@@ -90,7 +90,7 @@
 
 - (void) setUploadedAsset:(FLUploadedAsset*) asset count:(NSUInteger) count total:(NSUInteger) total
 {
-	FLAssignObject(_uploadedAsset, asset);
+	FLRetainObject_(_uploadedAsset, asset);
 	
 	_thumbnail.foregroundThumbnail = asset.thumbnail;
 	_assetName.text = asset.assetName;
@@ -109,17 +109,17 @@
 
 - (void) dealloc
 {
-	FLRelease(_leftColumn);
-	FLRelease(_centerColumn);
-	FLRelease(_rightColumn);
-	FLRelease(_countLabel);
-	FLRelease(_uploadedAsset);
-	FLRelease(_gradient);
-	FLRelease(_thumbnail);
-	FLRelease(_assetName);
-	FLRelease(_assetDestinationName);
-	FLRelease(_uploadDate);
-	FLSuperDealloc();
+	mrc_release_(_leftColumn);
+	mrc_release_(_centerColumn);
+	mrc_release_(_rightColumn);
+	mrc_release_(_countLabel);
+	mrc_release_(_uploadedAsset);
+	mrc_release_(_gradient);
+	mrc_release_(_thumbnail);
+	mrc_release_(_assetName);
+	mrc_release_(_assetDestinationName);
+	mrc_release_(_uploadDate);
+	mrc_super_dealloc_();
 }
 
 @end

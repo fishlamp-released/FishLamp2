@@ -18,7 +18,7 @@
 {
 	if((self = [super init]))
 	{
-		_dataKey = FLReturnRetained(dataKeyPath);
+		_dataKey = retain_(dataKeyPath);
 		_rows = [[NSMutableArray alloc] init];
 	}
 
@@ -27,7 +27,7 @@
 
 + (FLCheckMarkGroup*) checkMarkTableCellGroup:(NSString*) dataKeyPath
 {
-	return FLReturnAutoreleased([[FLCheckMarkGroup alloc] initWithDataKeyPath:dataKeyPath]);
+	return autorelease_([[FLCheckMarkGroup alloc] initWithDataKeyPath:dataKeyPath]);
 }
 
 - (FLCheckMarkTableViewCell*) cellAtIndex:(NSUInteger) idx
@@ -98,9 +98,9 @@
 
 - (void) dealloc
 {
-	FLRelease(_rows);
-	FLRelease(_dataKey);
-	FLSuperDealloc();
+	mrc_release_(_rows);
+	mrc_release_(_dataKey);
+	mrc_super_dealloc_();
 }
 
 @end

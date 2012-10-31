@@ -13,8 +13,8 @@
 @synthesize gradient = _gradientWidget;
 
 - (void) dealloc {
-	FLRelease(_gradientWidget);
-	FLSuperDealloc();
+	mrc_release_(_gradientWidget);
+	mrc_super_dealloc_();
 }
 
 - (void) applyTheme:(FLTheme*) theme {

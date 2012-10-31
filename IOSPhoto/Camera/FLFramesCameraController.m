@@ -22,8 +22,8 @@
 
 - (void) dealloc
 {
-	FLRelease(_camera);
-	FLSuperDealloc();
+	mrc_release_(_camera);
+	mrc_super_dealloc_();
 }
 
 
@@ -48,7 +48,7 @@
 			 //				   {
 			 //					   [FLStillCamera setExifDataInBuffer:buffer exif:newBufferExif];
 			 //				   }
-			 //				   FLRelease(newBufferExif);
+			 //				   mrc_release_(newBufferExif);
 			 //			   }
 			 
 			 //				 [FLStillCamera convertToData:buffer outData:&imageData];
@@ -66,7 +66,7 @@
 			 //						 NSMutableDictionary* locDict = [[NSMutableDictionary alloc] init];
 			 //						 FLAddLocationToGpsExif(locDict, lastLocation);		 
 			 //						 [masterExif setObject:locDict forKey:(NSString*)kCGImagePropertyGPSDictionary];
-			 //						 FLRelease(locDict);
+			 //						 mrc_release_(locDict);
 			 //					 }
 			 //					 
 			 //					 NSString* nowString = FLGpsDateFormattedForExif([NSDate date]);
@@ -77,13 +77,13 @@
 			 //					 [tiff setObject:[UIDevice currentDevice].platformString forKey:(NSString*) kCGImagePropertyTIFFModel];
 			 //					 [tiff setObject:[UIDevice currentDevice].systemVersion forKey:(NSString*) kCGImagePropertyTIFFSoftware];
 			 //					 [masterExif setObject:tiff forKey:(NSString*) kCGImagePropertyTIFFDictionary];
-			 //					 FLRelease(tiff);
+			 //					 mrc_release_(tiff);
 			 //					 
 			 //					 NSMutableDictionary* exif = [[NSMutableDictionary alloc] init];
 			 //					 [exif setObject:nowString forKey:(NSString*) kCGImagePropertyExifDateTimeOriginal];
 			 //					 [exif setObject:nowString forKey:(NSString*) kCGImagePropertyExifDateTimeDigitized];
 			 //					 [masterExif setObject:exif forKey:(NSString*)kCGImagePropertyExifDictionary];
-			 //					 FLRelease(exif);
+			 //					 mrc_release_(exif);
 			 //					 
 			 //					 // writing iptc doesn't work.	  
 			 //					 // appears to be a bug.
@@ -91,7 +91,7 @@
 			 //					 //				   [iptc setObject:[NSFileManager appName] forKey:(NSString*)kCGImagePropertyIPTCOriginatingProgram];
 			 //					 //				   [iptc setObject:[NSFileManager appVersion] forKey:(NSString*)kCGImagePropertyIPTCProgramVersion];
 			 //					 //				   [masterExif setObject:iptc forKey:(NSString*) kCGImagePropertyIPTCDictionary];
-			 //					 //				   FLReleaseWithNil(iptc);
+			 //					 //				   FLReleaseWithNil_(iptc);
 			 //					 
 			 //					 photo.original.properties = masterExif;
 			 //					 
@@ -102,9 +102,9 @@
 			 //				 {
 			 //					 // TODO: handle error
 			 //				 }
-			 //				 FLRelease(masterExif);
-			 //				 FLRelease(photo);
-			 //				 FLRelease(imageData);
+			 //				 mrc_release_(masterExif);
+			 //				 mrc_release_(photo);
+			 //				 mrc_release_(imageData);
 		 }
 		 
 		 dispatch_async(

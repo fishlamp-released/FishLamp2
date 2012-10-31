@@ -23,19 +23,19 @@
         self.wantsApplyTheme = YES;
 
 		_stringList = [stringList copy];
-		_initialSelection = FLReturnRetained(selectedString);
+		_initialSelection = retain_(selectedString);
 	}
 	return self;
 }
 
 + (FLStringChooserViewController*) stringChooserViewController:(NSArray*) stringList selectedString:(NSString*) selectedString
 {
-	return FLReturnAutoreleased([[FLStringChooserViewController alloc] initWithStringList:stringList selectedString:selectedString]);
+	return autorelease_([[FLStringChooserViewController alloc] initWithStringList:stringList selectedString:selectedString]);
 }
 
 - (UIScrollView*) createScrollView
 {
-    FLTableView* tableView = FLReturnAutoreleased([[FLTableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain]);
+    FLTableView* tableView = autorelease_([[FLTableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain]);
     tableView.backgroundColor = [UIColor clearColor];
     tableView.autoresizingMask = UIViewAutoresizingFlexibleEverything;
     tableView.autoresizesSubviews = YES;
@@ -54,7 +54,7 @@
 	}
 	else
 	{
-		FLGradientView* view = FLReturnAutoreleased([[FLGradientView alloc] initWithFrame:CGRectMake(0,0,320,480)]);		
+		FLGradientView* view = autorelease_([[FLGradientView alloc] initWithFrame:CGRectMake(0,0,320,480)]);		
 		view.autoresizingMask = UIViewAutoresizingFlexibleEverything;
 		view.autoresizesSubviews = YES;
 		self.view = view;
@@ -83,20 +83,20 @@
 
 - (void) viewDidUnload
 {
-    FLReleaseWithNil(_toolbar);
-    FLReleaseWithNil(_chooseButton);
+    FLReleaseWithNil_(_toolbar);
+    FLReleaseWithNil_(_chooseButton);
     [super viewDidUnload];
 }
 
 - (void) dealloc
 {	
-	FLRelease(_chosenCallback);
-	FLRelease(_chosenString);
-	FLRelease(_toolbar);
-	FLRelease(_stringList);
-	FLRelease(_initialSelection);
-	FLRelease(_chooseButton);
-	FLSuperDealloc();
+	mrc_release_(_chosenCallback);
+	mrc_release_(_chosenString);
+	mrc_release_(_toolbar);
+	mrc_release_(_stringList);
+	mrc_release_(_initialSelection);
+	mrc_release_(_chooseButton);
+	mrc_super_dealloc_();
 }
 
 #if VIEW_AUTOLAYOUT
@@ -128,7 +128,7 @@
 
 - (IBAction) chooseButtonWasPressed:(id) sender
 {
-	FLAssignObject(_chosenString, [_stringList objectAtIndex:[self.tableView indexPathForSelectedRow].row]);
+	FLRetainObject_(_chosenString, [_stringList objectAtIndex:[self.tableView indexPathForSelectedRow].row]);
 	[_chosenCallback invoke:self];
 }
 
@@ -145,7 +145,7 @@
 	
 	if(!cell)
 	{
-		cell = FLReturnAutoreleased([[FLSimpleTextItemTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:s_id]);
+		cell = autorelease_([[FLSimpleTextItemTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:s_id]);
 //		  cell.themeAction = @selector(applyThemeToStringChooserViewControllerCell:);
 //		  [cell applyTheme];
 	}

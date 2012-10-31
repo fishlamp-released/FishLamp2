@@ -67,16 +67,16 @@
 }
 
 + (id) alertViewController:(NSString*) title {
-    return FLReturnAutoreleased([[[self class] alloc] initWithTitle:title]);
+    return autorelease_([[[self class] alloc] initWithTitle:title]);
 }
 
 + (id) alertViewController:(NSString*) title
                    message:(NSString*) message {
-    return FLReturnAutoreleased([[[self class] alloc] initWithTitle:title message:message]);
+    return autorelease_([[[self class] alloc] initWithTitle:title message:message]);
 }
 
 - (UIView*) createAutoPositionedViewWithFrame:(FLRect) frame {
-    return FLReturnAutoreleased([[FLDialogShapeView alloc] initWithFrame:frame]);
+    return autorelease_([[FLDialogShapeView alloc] initWithFrame:frame]);
 }
 
 - (void) applyTheme:(FLTheme*) theme  {
@@ -85,7 +85,7 @@
 }
 
 + (id) alertViewController {
-    return FLReturnAutoreleased([[[self class] alloc] init]);
+    return autorelease_([[[self class] alloc] init]);
 }
 
 - (void) setMessage:(NSString*) message {

@@ -36,8 +36,8 @@
 
 - (void) dealloc
 {
-	FLRelease(_posts);
-	FLSuperDealloc();
+	mrc_release_(_posts);
+	mrc_super_dealloc_();
 }
 
 - (void) viewDidLoad
@@ -72,7 +72,7 @@
 	
 	if(!cell)
 	{
-		cell = FLReturnAutoreleased([[FLTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:s_id]);
+		cell = autorelease_([[FLTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:s_id]);
 		FLFacebookStatusTableCellWidget* widget = [FLFacebookStatusTableCellWidget widgetWithFrame:CGRectZero];
 		cell.widget = widget;
 		

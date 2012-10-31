@@ -68,8 +68,8 @@ FLSynthesizeStructProperty(animateOnShow, setAnimateOnShow, BOOL, _flags);
 
 - (void) dealloc
 {	
-	FLRelease(_tabBar);
-	FLSuperDealloc();
+	mrc_release_(_tabBar);
+	mrc_super_dealloc_();
 }
 
 - (UITabBar*) tabBar
@@ -177,7 +177,7 @@ FLSynthesizeStructProperty(animateOnShow, setAnimateOnShow, BOOL, _flags);
 - (void) updateBadge:(NSString*) badge forTabBarItem:(UITabBarItem*) item
 {
 // hand waving required to set badge on unselected item.
-	NSArray* items = FLReturnAutoreleased(FLReturnRetained(self.items));
+	NSArray* items = autorelease_(retain_(self.items));
 	UITabBarItem* selectedItem = self.selectedItem;
 	self.items = nil;
 	if(FLStringIsNotEmpty(badge))

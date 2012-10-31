@@ -71,7 +71,7 @@ FLSynthesizeSingleton(FLKeyboardManager);
 
 - (void) dealloc{
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
-	FLSuperDealloc();
+	mrc_super_dealloc_();
 }
 
 - (void) startWatchingKeyboard {

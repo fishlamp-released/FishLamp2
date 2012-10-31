@@ -24,13 +24,13 @@
 
 - (void) dealloc
 {
-	FLRelease(_frames);
-	FLSuperDealloc();
+	mrc_release_(_frames);
+	mrc_super_dealloc_();
 }
 
 - (void) _addOutput
 {
-	AVCaptureVideoDataOutput* captureOutput = FLReturnAutoreleased([[AVCaptureVideoDataOutput alloc] init]);
+	AVCaptureVideoDataOutput* captureOutput = autorelease_([[AVCaptureVideoDataOutput alloc] init]);
 	
 	NSDictionary *settings = [NSDictionary dictionaryWithObject:[NSNumber numberWithUnsignedInt:kCVPixelFormatType_32BGRA] forKey:(NSString *)kCVPixelBufferPixelFormatTypeKey];
 	[captureOutput setVideoSettings:settings];
@@ -77,10 +77,10 @@
 			{
 				_capturing = NO;
 				_block(self, nil);
-				FLRelease(_block);
+				mrc_release_(_block);
 				_block = nil;
 				
-				FLReleaseWithNil(_frames);
+				FLReleaseWithNil_(_frames);
 			}
 			
 			FLDrainPool(&pool);
@@ -98,7 +98,7 @@
 	_frameCount = count;
 	_nextFrame = [NSDate timeIntervalSinceReferenceDate];
 	_interval = interval;
-	_block = FLReturnRetained(block);
+	_block = retain_(block);
 	_capturing = YES;
 }
 

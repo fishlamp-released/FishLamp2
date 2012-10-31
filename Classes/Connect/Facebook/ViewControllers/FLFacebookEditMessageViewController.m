@@ -17,7 +17,7 @@
 
 + (FLFacebookEditMessageViewController*) facebookEditMessageViewController
 {
-	return FLReturnAutoreleased([[FLFacebookEditMessageViewController alloc] init]);
+	return autorelease_([[FLFacebookEditMessageViewController alloc] init]);
 }
 
 

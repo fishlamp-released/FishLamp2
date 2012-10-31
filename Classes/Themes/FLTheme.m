@@ -20,8 +20,8 @@
 @synthesize alertViewThemeApplicator = _alertStyleHandler;
 
 - (void) dealloc {
-    FLRelease(_alertStyleHandler);
-    FLSuperDealloc();
+    mrc_release_(_alertStyleHandler);
+    mrc_super_dealloc_();
 }
 
 + (FLTheme*) currentTheme {
@@ -31,7 +31,7 @@
 }
 
 + (void) setCurrentTheme:(FLTheme*) theme {
-//    FLAssignObject(s_theme, theme);
+//    FLRetainObject_(s_theme, theme);
 //    [s_theme wasSetToCurrentTheme];
 }
 

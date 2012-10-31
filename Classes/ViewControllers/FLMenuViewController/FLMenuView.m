@@ -112,9 +112,9 @@
 }
 
 - (void) dealloc {
-    FLRelease(_menuItems);
-    FLRelease(_titleView);
-    FLSuperDealloc();
+    mrc_release_(_menuItems);
+    mrc_release_(_titleView);
+    mrc_super_dealloc_();
 }
 
 //- (FLSize) layoutSubviewsWithArrangement

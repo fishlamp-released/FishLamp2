@@ -83,11 +83,11 @@ FLSynthesizeAssociatedProperty(assign_nonatomic, _auxiliaryViewController, setAu
 
 + (id) auxiliaryViewController:(FLAuxiliaryViewControllerPinnedSide) side
     behavior:(id<FLAuxiliaryViewControllerBehavior>) behavior {
-    return FLReturnAutoreleased([[[self class] alloc] initWithPinnedSide:side behavior:behavior]);
+    return autorelease_([[[self class] alloc] initWithPinnedSide:side behavior:behavior]);
 }
 
 - (void) setParentViewController:(UIViewController*) viewController {
-    FLAssignObject(_parentViewController, viewController);
+    FLRetainObject_(_parentViewController, viewController);
     
     [self addTouchableViews];
     [_behavior didAddTouchableView:self];
@@ -175,14 +175,14 @@ FLSynthesizeAssociatedProperty(assign_nonatomic, _auxiliaryViewController, setAu
 - (void) dealloc {   
     _dragController.delegate = nil;
 #if FL_MRC 
-    FLRelease(_createViewController);
-    FLRelease(_addTouchableViewsCallback);
-    FLRelease(_draggableButton);
-    FLRelease(_dragController);
-    FLRelease(_behavior);
-    FLRelease(_viewController);
-    FLRelease(_containerView);
-    FLSuperDealloc();
+    mrc_release_(_createViewController);
+    mrc_release_(_addTouchableViewsCallback);
+    mrc_release_(_draggableButton);
+    mrc_release_(_dragController);
+    mrc_release_(_behavior);
+    mrc_release_(_viewController);
+    mrc_release_(_containerView);
+    mrc_super_dealloc_();
 #endif
 }
 
@@ -290,7 +290,7 @@ FLSynthesizeAssociatedProperty(assign_nonatomic, _auxiliaryViewController, setAu
 
 - (void) setViewController:(UIViewController*) viewController  {   
     FLAssertIsNotNil_(viewController);
-    FLAssignObject(_viewController, viewController);
+    FLRetainObject_(_viewController, viewController);
 
     viewController.auxiliaryViewController = self;
 
@@ -301,7 +301,7 @@ FLSynthesizeAssociatedProperty(assign_nonatomic, _auxiliaryViewController, setAu
     if(_containerView)
     {
         [_containerView removeFromSuperview];
-        FLRelease(_containerView);
+        mrc_release_(_containerView);
     }
         
     _containerView = [[FLAuxiliaryView alloc] initWithFrame:frame];
@@ -319,12 +319,12 @@ FLSynthesizeAssociatedProperty(assign_nonatomic, _auxiliaryViewController, setAu
     [_dragController removeDragResponder:_parentViewController.view];
 
     [_containerView removeFromSuperview];
-    FLReleaseWithNil(_containerView);
+    FLReleaseWithNil_(_containerView);
 
     [_viewController.view removeFromSuperview];
     [_viewController removeFromParentViewController];
     self.viewController.auxiliaryViewController = nil;
-    FLReleaseWithNil(_viewController);
+    FLReleaseWithNil_(_viewController);
 }
 
 - (void) hideViewControllerAnimated:(BOOL) animated {

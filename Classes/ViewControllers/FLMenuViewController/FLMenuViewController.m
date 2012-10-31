@@ -37,14 +37,14 @@
 
 + (FLMenuViewController*) menuViewController:(NSString*) title
 {
-    return FLReturnAutoreleased([[FLMenuViewController alloc] initWithTitle:title]);
+    return autorelease_([[FLMenuViewController alloc] initWithTitle:title]);
 }
 
 - (void) dealloc
 {
     [_menuView clearDelegates];
-    FLRelease(_menuView);
-    FLSuperDealloc();
+    mrc_release_(_menuView);
+    mrc_super_dealloc_();
 }
 
 - (void) updateLayout

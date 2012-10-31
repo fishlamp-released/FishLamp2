@@ -26,10 +26,10 @@
 }
 
 - (void) dealloc {	
-    FLRelease(_fileURL);
-	FLRelease(_fileName);
-	FLRelease(_gradientView);
-	FLSuperDealloc();
+    mrc_release_(_fileURL);
+	mrc_release_(_fileName);
+	mrc_release_(_gradientView);
+	mrc_super_dealloc_();
 }
 
 - (BOOL) currentDocumentIsFile {
@@ -62,8 +62,8 @@
 }
 
 - (void) setFileName:(NSString*) string {
-    FLReleaseWithNil(_fileURL);
-	FLAssignObject(_fileName, [self fullyQualifiedNameForFileName:string]);
+    FLReleaseWithNil_(_fileURL);
+	FLRetainObject_(_fileName, [self fullyQualifiedNameForFileName:string]);
     
     NSString* basePath = [[NSBundle mainBundle] bundlePath];
 	
@@ -74,7 +74,7 @@
 //		fileName = [NSString stringWithFormat:@"%@#%@", fileName, anchorNameOrNil];
 //	}
 	
-    FLAssignObject(_fileURL, [NSURL URLWithString:_fileName relativeToURL:baseURL]);
+    FLRetainObject_(_fileURL, [NSURL URLWithString:_fileName relativeToURL:baseURL]);
 	
     if(self.isViewLoaded) {
         [self beginLoadingURL:_fileURL];

@@ -34,7 +34,7 @@
     {
         [_openButton removeFromSuperview];
     }
-    FLAssignObject(_openButton, button);
+    FLRetainObject_(_openButton, button);
     [self addSubview:_openButton];
     
     [self setNeedsLayout];
@@ -46,7 +46,7 @@
     {
         [_closeButton removeFromSuperview];
     }
-    FLAssignObject(_closeButton, button);
+    FLRetainObject_(_closeButton, button);
     [self addSubview:_closeButton];
     _closeButton.hidden = YES;
     
@@ -211,11 +211,11 @@
 
 - (void) dealloc
 {
-    FLRelease(_openBackgroundWidget);
-//    FLRelease(_dragBar);
-    FLRelease(_openButton);
-    FLRelease(_closeButton);
-    FLSuperDealloc();
+    mrc_release_(_openBackgroundWidget);
+//    mrc_release_(_dragBar);
+    mrc_release_(_openButton);
+    mrc_release_(_closeButton);
+    mrc_super_dealloc_();
 }
 
 - (BOOL) auxiliaryViewControllerTapWillToggle:(FLAuxiliaryViewController*) controller

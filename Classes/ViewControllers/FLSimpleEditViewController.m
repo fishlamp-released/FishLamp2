@@ -124,10 +124,10 @@
 
 - (void) dealloc
 {
-	FLRelease(_contentView);
-	FLRelease(_saveButton);
-	FLRelease(_cancelButton);
-	FLSuperDealloc();
+	mrc_release_(_contentView);
+	mrc_release_(_saveButton);
+	mrc_release_(_cancelButton);
+	mrc_super_dealloc_();
 }
 
 - (NSString*) saveButtonTitle
@@ -137,7 +137,7 @@
 
 - (void) setSaveButtonTitle:(NSString*) title
 {
-    FLAssignObject(_saveButtonTitle, title);
+    FLRetainObject_(_saveButtonTitle, title);
     if(_saveButton)
     {
         _saveButton.title = title;
@@ -154,7 +154,7 @@
 
 - (void) setCancelButtonTitle:(NSString*) title
 {
-    FLAssignObject(_cancelButtonTitle, title);
+    FLRetainObject_(_cancelButtonTitle, title);
     if(_cancelButton)
     {
         _cancelButton.title = title;
@@ -169,9 +169,9 @@
 {
     [super viewDidUnload];
     
-    FLReleaseWithNil(_contentView);
-    FLReleaseWithNil(_saveButton);
-    FLReleaseWithNil(_cancelButton);
+    FLReleaseWithNil_(_contentView);
+    FLReleaseWithNil_(_saveButton);
+    FLReleaseWithNil_(_cancelButton);
 }
 
 
@@ -221,7 +221,7 @@
 }
 
 - (UIView*) createBackgroundView {
-	FLGradientView* view = FLReturnAutoreleased([[FLGradientView alloc] initWithFrame:CGRectMake(0,0,320,480)]);
+	FLGradientView* view = autorelease_([[FLGradientView alloc] initWithFrame:CGRectMake(0,0,320,480)]);
     return view;
 }
 

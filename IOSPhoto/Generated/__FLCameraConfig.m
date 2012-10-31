@@ -74,7 +74,7 @@
 
 + (FLCameraConfig*) cameraConfig
 {
-    return FLReturnAutoreleased([[FLCameraConfig alloc] init]);
+    return autorelease_([[FLCameraConfig alloc] init]);
 }
 
 - (void) copySelfTo:(id) object
@@ -100,16 +100,16 @@
 
 - (void) dealloc
 {
-    FLRelease(__captureDevicePosition);
-    FLRelease(__captureFlashMode);
-    FLRelease(__captureTorchMode);
-    FLRelease(__captureFocusMode);
-    FLRelease(__captureWhiteBalanceMode);
-    FLRelease(__showGuidelines);
-    FLRelease(__showStabityTracker);
-    FLRelease(__showZoom);
-    FLRelease(__foo);
-    FLSuperDealloc();
+    mrc_release_(__captureDevicePosition);
+    mrc_release_(__captureFlashMode);
+    mrc_release_(__captureTorchMode);
+    mrc_release_(__captureFocusMode);
+    mrc_release_(__captureWhiteBalanceMode);
+    mrc_release_(__showGuidelines);
+    mrc_release_(__showStabityTracker);
+    mrc_release_(__showZoom);
+    mrc_release_(__foo);
+    mrc_super_dealloc_();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder
@@ -137,15 +137,15 @@
 {
     if((self = [super init]))
     {
-        __captureDevicePosition = FLReturnRetained([aDecoder decodeObjectForKey:@"__captureDevicePosition"]);
-        __captureFlashMode = FLReturnRetained([aDecoder decodeObjectForKey:@"__captureFlashMode"]);
-        __captureTorchMode = FLReturnRetained([aDecoder decodeObjectForKey:@"__captureTorchMode"]);
-        __captureFocusMode = FLReturnRetained([aDecoder decodeObjectForKey:@"__captureFocusMode"]);
-        __captureWhiteBalanceMode = FLReturnRetained([aDecoder decodeObjectForKey:@"__captureWhiteBalanceMode"]);
-        __showGuidelines = FLReturnRetained([aDecoder decodeObjectForKey:@"__showGuidelines"]);
-        __showStabityTracker = FLReturnRetained([aDecoder decodeObjectForKey:@"__showStabityTracker"]);
-        __showZoom = FLReturnRetained([aDecoder decodeObjectForKey:@"__showZoom"]);
-        __foo = FLReturnRetained([aDecoder decodeObjectForKey:@"__foo"]);
+        __captureDevicePosition = retain_([aDecoder decodeObjectForKey:@"__captureDevicePosition"]);
+        __captureFlashMode = retain_([aDecoder decodeObjectForKey:@"__captureFlashMode"]);
+        __captureTorchMode = retain_([aDecoder decodeObjectForKey:@"__captureTorchMode"]);
+        __captureFocusMode = retain_([aDecoder decodeObjectForKey:@"__captureFocusMode"]);
+        __captureWhiteBalanceMode = retain_([aDecoder decodeObjectForKey:@"__captureWhiteBalanceMode"]);
+        __showGuidelines = retain_([aDecoder decodeObjectForKey:@"__showGuidelines"]);
+        __showStabityTracker = retain_([aDecoder decodeObjectForKey:@"__showStabityTracker"]);
+        __showZoom = retain_([aDecoder decodeObjectForKey:@"__showZoom"]);
+        __foo = retain_([aDecoder decodeObjectForKey:@"__foo"]);
     }
     return self;
 }

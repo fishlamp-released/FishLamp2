@@ -13,7 +13,7 @@
 @implementation FLPhotoThumbnailGridViewCell 
 
 + (FLPhotoThumbnailGridViewCell*) thumbnailGalleryGridViewCell:(id) obj {
-    return FLReturnAutoreleased([[FLPhotoThumbnailGridViewCell alloc] initWithDataRef:obj]);
+    return autorelease_([[FLPhotoThumbnailGridViewCell alloc] initWithDataRef:obj]);
 }
 
 - (Class) viewClassForCellState:(FLGridCellState) state {

@@ -35,8 +35,8 @@
 
 - (void) dealloc
 {
-	FLRelease(_exif);
-	FLSuperDealloc();
+	mrc_release_(_exif);
+	mrc_super_dealloc_();
 }
 
 @end
@@ -44,12 +44,12 @@
 @implementation FLMasterPhotoExif
 - (FLGpsExif*) gpsExif
 {
-	return FLReturnAutoreleased([[FLGpsExif alloc] initWithDictionary:[self.exifDictionary objectForKey:(NSString*)kCGImagePropertyGPSDictionary]]);
+	return autorelease_([[FLGpsExif alloc] initWithDictionary:[self.exifDictionary objectForKey:(NSString*)kCGImagePropertyGPSDictionary]]);
 }
 
 - (void) setGpsExif:(FLGpsExif*) gpsExif
 {
-	[self.exifDictionary setObject:FLReturnAutoreleased([gpsExif.exifDictionary mutableCopy]) forKey:(NSString*)kCGImagePropertyGPSDictionary];
+	[self.exifDictionary setObject:autorelease_([gpsExif.exifDictionary mutableCopy]) forKey:(NSString*)kCGImagePropertyGPSDictionary];
 }
 
 + (FLGpsExif*) gpsExifOnlyIfHasGpsCoordinates:(NSDictionary*) masterGps
@@ -57,7 +57,7 @@
 	NSDictionary* gps = [masterGps objectForKey:(NSString*)kCGImagePropertyGPSDictionary];
 	NSNumber* lat = [gps objectForKey:(NSString*)kCGImagePropertyGPSLatitude];
 	NSNumber* lng = [gps objectForKey:(NSString*)kCGImagePropertyGPSLongitude];
-	return lat && lng ? FLReturnAutoreleased([[FLGpsExif alloc] initWithDictionary:gps]) : nil;
+	return lat && lng ? autorelease_([[FLGpsExif alloc] initWithDictionary:gps]) : nil;
 }
 
 @end
@@ -70,7 +70,7 @@
 
 + (FLGpsExif*) gpsExif
 {
-	return FLReturnAutoreleased([[FLGpsExif alloc] init]);
+	return autorelease_([[FLGpsExif alloc] init]);
 }
 
 - (CLLocationCoordinate2D) coordinate
@@ -170,11 +170,11 @@
             {
                 s_exifFormatters = [[NSMutableArray alloc] init];
                 
-                [s_exifFormatters addObject:FLReturnAutoreleased([[NSDateFormatter alloc] init])
+                [s_exifFormatters addObject:autorelease_([[NSDateFormatter alloc] init])
                             configureObject:^(id date) {
                                 [date setDateFormat:@"yyyy-MM-dd HH:mm:ss"]; // @"yyyy:mm:dd HH:MM:SS"];            
                             }];
-                [s_exifFormatters addObject:FLReturnAutoreleased([[NSDateFormatter alloc] init])
+                [s_exifFormatters addObject:autorelease_([[NSDateFormatter alloc] init])
                             configureObject:^(id date) {
                                 [date setDateFormat:@"yyyy:MM:dd HH:mm:ss"]; // @"yyyy:mm:dd HH:MM:SS"];            
                             }];

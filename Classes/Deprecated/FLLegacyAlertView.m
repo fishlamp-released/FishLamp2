@@ -84,15 +84,15 @@
 
 - (void) dealloc
 {
-	FLRelease(_userInfo);
-	FLRelease(_items);
-	FLRelease(_clickedCallback);
-	FLSuperDealloc();
+	mrc_release_(_userInfo);
+	mrc_release_(_items);
+	mrc_release_(_clickedCallback);
+	mrc_super_dealloc_();
 }
 
 - (void) setDismissedCallback:(id) targetOrObjectContainer action:(SEL) action
 {
-	FLReleaseWithNil(_clickedCallback);
+	FLReleaseWithNil_(_clickedCallback);
 	_clickedCallback = [[FLCallbackObject alloc] initWithTarget:targetOrObjectContainer action:action];
 }
 

@@ -16,24 +16,24 @@
 
 + (FLTwitterAuthenticator*) twitterAuthenticator
 {
-    return FLReturnAutoreleased([[FLTwitterAuthenticator alloc] init]);
+    return autorelease_([[FLTwitterAuthenticator alloc] init]);
 }
 
 - (void) cleanup
 {
-    FLAutorelease(_delegate);
+    mrc_autorelease_(_delegate);
     _delegate = nil;
     
-    FLAutorelease(_viewController);
+    mrc_autorelease_(_viewController);
     _viewController = nil;
     
-    FLReleaseWithNil(_userGuid);
+    FLReleaseWithNil_(_userGuid);
 }
 
 - (void) dealloc
 {
     [self cleanup];
-    FLSuperDealloc();
+    mrc_super_dealloc_();
 }
 
 - (void) OAuthAuthorizationViewController:(FLOAuthAuthorizationViewController*) controller didAuthenticate:(FLOAuthSession*) session
@@ -44,7 +44,7 @@
     [_delegate twitterAuthenticator:self didAuthenticateUser:_userGuid];
 
     [self cleanup];
-    FLAutorelease(self);
+    mrc_autorelease_(self);
 }
 
 - (void) OAuthAuthorizationViewController:(FLOAuthAuthorizationViewController*) controller authenticationDidFail:(NSError*) error
@@ -54,7 +54,7 @@
     [_delegate twitterAuthenticator:self didFail:error];
 
     [self cleanup];
-    FLAutorelease(self);
+    mrc_autorelease_(self);
 }
 
 - (void) webViewControllerUserDidCancel:(FLWebViewController*) controller
@@ -63,20 +63,20 @@
     [_delegate twitterAuthenticatorWasCancelled:self];
 
     [self cleanup];
-    FLAutorelease(self);
+    mrc_autorelease_(self);
 }
 
 - (void) beginAuthenticatingInViewController:(FLViewController*) viewController 
                                     userGuid:(NSString*) userGuid 
                                     delegate:(id<FLTwitterAuthenticatorDelegate>) delegate
 {
-    FLAssignObject(_delegate, delegate);
-    FLAssignObject(_userGuid, userGuid);
-    FLAssignObject(_viewController, viewController);
+    FLRetainObject_(_delegate, delegate);
+    FLRetainObject_(_userGuid, userGuid);
+    FLRetainObject_(_viewController, viewController);
     
 	if([[FLTwitterMgr instance] needsAuthorizationForUserGuid:userGuid])
 	{
-        FLRetain(self);
+        mrc_retain_(self);
         
         [[FLTwitterMgr instance] clearTwitterCookies];
         

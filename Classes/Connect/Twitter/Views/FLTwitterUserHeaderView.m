@@ -29,8 +29,8 @@
 
 - (void) dealloc
 {
-	FLRelease(_userGuid);
-	FLSuperDealloc();
+	mrc_release_(_userGuid);
+	mrc_super_dealloc_();
 }
 
 - (void) _didCompleteLoad:(FLAction*) action

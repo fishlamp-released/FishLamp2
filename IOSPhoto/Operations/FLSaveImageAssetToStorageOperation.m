@@ -15,7 +15,7 @@
 {
 	if((self = [super init]))
 	{
-		_asset = FLReturnRetained(asset);
+		_asset = retain_(asset);
 		_wantsThumbnail = wantsThumbnail;
 	}
 	
@@ -24,13 +24,13 @@
 
 + (FLSaveImageAssetToStorageOperation*) saveImageAssetToStorageOperation:(id<FLImageAsset>) asset wantsThumbnail:(BOOL) wantsThumbnail
 {
-	return FLReturnAutoreleased([[FLSaveImageAssetToStorageOperation alloc] initWithImageAsset:asset wantsThumbnail:wantsThumbnail]);
+	return autorelease_([[FLSaveImageAssetToStorageOperation alloc] initWithImageAsset:asset wantsThumbnail:wantsThumbnail]);
 }
 
 - (void) dealloc
 {
-	FLRelease(_asset);
-	FLSuperDealloc();
+	mrc_release_(_asset);
+	mrc_super_dealloc_();
 }
 
 - (void) runSelf

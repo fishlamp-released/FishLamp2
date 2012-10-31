@@ -25,7 +25,7 @@
 
 //+ (id) photoGridViewController:(FLGalleryDataModel*) dataModel
 //{
-//    return FLReturnAutoreleased([[[self class] alloc] initWithGalleryDataProvider:dataModel]);
+//    return autorelease_([[[self class] alloc] initWithGalleryDataProvider:dataModel]);
 //}
 
 //- (FLGridCell*) createGridViewCellForGridViewItem:(id) item
@@ -63,13 +63,13 @@
 - (void) viewDidUnload
 {
     [super viewDidUnload];
-//    FLReleaseWithNil(_buttonbarHost);
+//    FLReleaseWithNil_(_buttonbarHost);
 }
 
 - (void) dealloc
 {
-//    FLRelease(_buttonbarHost);
-    FLSuperDealloc();
+//    mrc_release_(_buttonbarHost);
+    mrc_super_dealloc_();
 }
 
 - (void) scrollToGalleryItem:(id<FLGalleryObject>) galleryItem    

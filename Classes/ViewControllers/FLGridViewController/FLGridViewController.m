@@ -61,14 +61,14 @@ FLSynthesizeStructProperty(allowMultipleSelections, setAllowMultipleSelections, 
 }
 
 - (void) dealloc {
-    FLRelease(_selectedObjectIds);
-    FLRelease(_visibleCellCollection);
-    FLRelease(_cellCollection);
-    FLRelease(_arrangement);
-    FLRelease(_objectCache);
-    FLRelease(_dataProvider);
-    FLRelease(_scrollIndicatorView);
-    FLSuperDealloc();
+    mrc_release_(_selectedObjectIds);
+    mrc_release_(_visibleCellCollection);
+    mrc_release_(_cellCollection);
+    mrc_release_(_arrangement);
+    mrc_release_(_objectCache);
+    mrc_release_(_dataProvider);
+    mrc_release_(_scrollIndicatorView);
+    mrc_super_dealloc_();
 }
 
 #if DEBUG
@@ -84,7 +84,7 @@ FLSynthesizeStructProperty(allowMultipleSelections, setAllowMultipleSelections, 
 
     [super viewDidUnload];
     
-    FLReleaseWithNil(_scrollIndicatorView);
+    FLReleaseWithNil_(_scrollIndicatorView);
 }
 
 - (void) createScrollIndicatorView {
@@ -350,9 +350,9 @@ FLSynthesizeStructProperty(allowMultipleSelections, setAllowMultipleSelections, 
 
 - (void) unselectAllCells {
     NSArray* prev = _selectedObjectIds;
-    FLRetain(prev);
-    FLAutorelease(prev);
-    FLAssignObject(_selectedObjectIds, [NSMutableArray array]);
+    mrc_retain_(prev);
+    mrc_autorelease_(prev);
+    FLRetainObject_(_selectedObjectIds, [NSMutableArray array]);
 
     for(id dataRefKey in prev) {
         FLGridCell* cell = [self cellForDataRefKey:dataRefKey];
@@ -395,7 +395,7 @@ FLSynthesizeStructProperty(allowMultipleSelections, setAllowMultipleSelections, 
         [newCollection addObject:cell forKey:dataRefKey];
     }
     
-    FLAssignObject(_cellCollection, newCollection);
+    FLRetainObject_(_cellCollection, newCollection);
     [self reflowCells];
 }
 
@@ -412,7 +412,7 @@ FLSynthesizeStructProperty(allowMultipleSelections, setAllowMultipleSelections, 
         [newCollection addObject:cell forKey:dataRefKey];
     }
     
-    FLAssignObject(_cellCollection, newCollection);
+    FLRetainObject_(_cellCollection, newCollection);
     [self reflowCells];
 }
 

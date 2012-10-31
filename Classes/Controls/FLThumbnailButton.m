@@ -44,7 +44,7 @@ static FLThumbnailButton* s_touchedButton = nil;
 
 + (FLThumbnailButton*) thumbnailButton
 {
-	return FLReturnAutoreleased([[FLThumbnailButton alloc] initWithFrame:CGRectZero]);
+	return autorelease_([[FLThumbnailButton alloc] initWithFrame:CGRectZero]);
 }	
 
 - (void) dealloc
@@ -53,17 +53,17 @@ static FLThumbnailButton* s_touchedButton = nil;
 	{
 		s_touchedButton = nil;
 	}
-	FLRelease(_userData);
-	FLRelease(_callback);
-	FLRelease(_buttonAnimation);
-	FLSuperDealloc();
+	mrc_release_(_userData);
+	mrc_release_(_callback);
+	mrc_release_(_buttonAnimation);
+	mrc_super_dealloc_();
 }
 
 - (void)addTarget:(id)target action:(SEL)action
 {
 	FLCallbackObject* cb = [[FLCallbackObject alloc] initWithTarget:target action:action];
 	self.callback = cb;
-	FLReleaseWithNil(cb);
+	FLReleaseWithNil_(cb);
 	
 	self.userInteractionEnabled = YES;
 	self.exclusiveTouch = YES;
@@ -246,7 +246,7 @@ static SEL s_selectors[AnimationQueueCount];
 	[UIView setAnimationDelegate:nil];
 	[UIView setAnimationDidStopSelector:nil];
 
-	[self doNextAnimation:(__bridge_fl FLThumbnailButton*) context];
+	[self doNextAnimation:bridge_(id, context)];
 }
 
 - (CGFloat) animSliceLen
@@ -263,7 +263,7 @@ static SEL s_selectors[AnimationQueueCount];
 	
 	frame = CGRectInset(frame, 5,5);
 	
-	[UIView beginAnimations:@"in" context:(__bridge_fl void *)(button)];
+	[UIView beginAnimations:@"in" context:bridge_(void*,button)];
 	[UIView setAnimationDelegate:self];
 	[UIView setAnimationDidStopSelector:@selector(animationDone:finished:context:)];
 	[UIView setAnimationDuration:self.animSliceLen];
@@ -274,7 +274,7 @@ static SEL s_selectors[AnimationQueueCount];
 
 - (void) growAnimation:(FLThumbnailButton*) button
 {
-	[UIView beginAnimations:@"out" context:(__bridge_fl void *)(button)];
+	[UIView beginAnimations:@"out" context:bridge_(void*,button)];
 	[UIView setAnimationDelegate:self];
 	[UIView setAnimationDidStopSelector:@selector(animationDone:finished:context:)];
 	[UIView setAnimationDuration:self.animSliceLen];
@@ -285,7 +285,7 @@ static SEL s_selectors[AnimationQueueCount];
 
 - (void) bigGrowAnimation:(FLThumbnailButton*) button
 {
-	[UIView beginAnimations:@"out" context:(__bridge_fl void *)(button)];
+	[UIView beginAnimations:@"out" context:bridge_(void*,button)];
 	[UIView setAnimationDelegate:self];
 	[UIView setAnimationDidStopSelector:@selector(animationDone:finished:context:)];
 	[UIView setAnimationDuration:self.animSliceLen];
@@ -317,7 +317,7 @@ static SEL s_selectors[AnimationQueueCount];
 
 + (FLZoomButtonAnimation*) zoomButtonAnimation:(id<FLButtonAnimationDelegate>) delegate
 {
-	FLZoomButtonAnimation* animation = FLReturnAutoreleased([[FLZoomButtonAnimation alloc] init]);
+	FLZoomButtonAnimation* animation = autorelease_([[FLZoomButtonAnimation alloc] init]);
 	animation.delegate = delegate;
 	return animation;
 }
@@ -329,7 +329,7 @@ static SEL s_selectors[AnimationQueueCount];
 	[UIView setAnimationDelegate:nil];
 	[UIView setAnimationDidStopSelector:nil];
 
-	UIImageView* view = (__bridge_fl UIImageView*) context;
+	UIImageView* view = bridge_(id, context);
 	[view removeFromSuperview];
 	[_button.callback invoke:_button];
 }
@@ -348,7 +348,7 @@ static SEL s_selectors[AnimationQueueCount];
 	zoomView.image = button.foregroundImage;
 	[hostView addSubview:zoomView];
 	
-	[UIView beginAnimations:@"out" context:(__bridge_fl void *)(zoomView)];
+	[UIView beginAnimations:@"out" context:bridge_(void*,zoomView)];
 	[UIView setAnimationDelegate:self];
 	[UIView setAnimationDidStopSelector:@selector(animationDone:finished:context:)];
 	[UIView setAnimationDuration:0.25];

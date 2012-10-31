@@ -34,11 +34,11 @@
 }
 
 + (FLSimplePhoto*) simplePhoto:(UIImage*) image exif:(NSDictionary*) exif assetURL:(NSURL*) assetURL {
-    return FLReturnAutoreleased([[FLSimplePhoto alloc] initWithImage:image exif:exif assetURL:assetURL]);
+    return autorelease_([[FLSimplePhoto alloc] initWithImage:image exif:exif assetURL:assetURL]);
 }
 
 + (FLSimplePhoto*) simplePhoto:(UIImage*) image exif:(NSDictionary*) exif {
-    return FLReturnAutoreleased([[FLSimplePhoto alloc] initWithImage:image exif:exif assetURL:nil]);
+    return autorelease_([[FLSimplePhoto alloc] initWithImage:image exif:exif assetURL:nil]);
 }
 
 

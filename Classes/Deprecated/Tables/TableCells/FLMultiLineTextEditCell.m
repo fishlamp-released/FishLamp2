@@ -34,7 +34,7 @@
 
 + (FLMultiLineTextEditCell*) multiLineTextEditCell:(NSString*) titleLabelOrNil
 {
-	FLMultiLineTextEditCell* cell = FLReturnAutoreleased([[FLMultiLineTextEditCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"FLMultiLineTextEditCell"]);
+	FLMultiLineTextEditCell* cell = autorelease_([[FLMultiLineTextEditCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"FLMultiLineTextEditCell"]);
 	if(FLStringIsNotEmpty(titleLabelOrNil))
 	{
 		cell.textLabelText = titleLabelOrNil;
@@ -189,7 +189,7 @@
 		[_textView resignFirstResponder];
 		[_textView removeFromSuperview];
 		
-		FLAutorelease(_textView);
+		mrc_autorelease_(_textView);
 		_textView = nil;
 		
 		[self addSubview:self.valueLabel.view];
@@ -205,9 +205,9 @@
 
 - (void) dealloc
 {
-	FLRelease(_traits);
-	FLRelease(_textView);
-	FLSuperDealloc();
+	mrc_release_(_traits);
+	mrc_release_(_textView);
+	mrc_super_dealloc_();
 }
 
 - (BOOL) isEditing

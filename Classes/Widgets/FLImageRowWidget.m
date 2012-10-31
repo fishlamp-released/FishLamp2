@@ -23,12 +23,12 @@
 - (void) dealloc
 {
 	[self clearImages];
-	FLSuperDealloc();
+	mrc_super_dealloc_();
 }
 
 - (void) setImage:(UIImage*) image atIndex:(NSUInteger) idx
 {
-	FLAssignObject(_images[idx], image);
+	FLRetainObject_(_images[idx], image);
     [self setNeedsDisplay];
 }
 
@@ -38,7 +38,7 @@
 	{
 		if(_images[i])
 		{
-			FLReleaseWithNil(_images[i]);
+			FLReleaseWithNil_(_images[i]);
 		}
 	}	
 }
@@ -66,7 +66,7 @@
 
 - (void) removeImageAtIndex:(NSUInteger)idx
 {
-	FLReleaseWithNil(_images[idx]);
+	FLReleaseWithNil_(_images[idx]);
 }
 
 

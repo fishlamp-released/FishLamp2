@@ -36,17 +36,17 @@
 
 + (FLTableViewLayoutBuilder*) tableViewLayoutBuilder:(FLTableViewLayout*) tableLayout
 {
-	return FLReturnAutoreleased([[FLTableViewLayoutBuilder alloc] initWithTableLayout:tableLayout]);
+	return autorelease_([[FLTableViewLayoutBuilder alloc] initWithTableLayout:tableLayout]);
 }
 
 - (void) dealloc
 {
-	FLRelease(_tableLayout);
-	FLRelease(_currentSection);
-	FLRelease(_currentCell);
-	FLRelease(_cells);
-	FLRelease(_groups);
-	FLSuperDealloc();
+	mrc_release_(_tableLayout);
+	mrc_release_(_currentSection);
+	mrc_release_(_currentCell);
+	mrc_release_(_cells);
+	mrc_release_(_groups);
+	mrc_super_dealloc_();
 }
 
 - (void) addTab
@@ -66,7 +66,7 @@
 
 - (FLTableViewSection*) addSection:(NSString*) key
 {
-	self.section = FLReturnAutoreleased([[FLTableViewSection alloc] init]);
+	self.section = autorelease_([[FLTableViewSection alloc] init]);
 	[_groups addObject:_currentSection];
 	[[self.tableLayout tabWithIndex:_tab] addSection:_currentSection forKey:key];
 	

@@ -15,8 +15,8 @@
 FLSynthesizeSingleton(FLNetworkActivityIndicator);
 
 - (void) dealloc {
-	FLRelease(_objects);
-	FLSuperDealloc();
+	mrc_release_(_objects);
+	mrc_super_dealloc_();
 }
 
 - (id) init {

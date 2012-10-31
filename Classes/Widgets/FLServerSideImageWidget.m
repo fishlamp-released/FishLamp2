@@ -14,7 +14,7 @@
 
 - (void) startDownloadingImage:(NSString*) url
               inViewController:(UIViewController*) viewController {
-	FLAssignObject(_url, url);
+	FLRetainObject_(_url, url);
 
     FLAction* action = [FLAction action];
     [action actionDescription].actionType = FLActionDescriptionTypeDownload;

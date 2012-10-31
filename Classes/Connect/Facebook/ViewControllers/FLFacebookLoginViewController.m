@@ -66,7 +66,7 @@
 
 - (void) _didFinish:(UIWebView *)webView error:(NSError *)error
 {
-    FLAutorelease(FLReturnRetained(self));
+    mrc_autorelease_(retain_(self));
 
 	if(!error)
 	{

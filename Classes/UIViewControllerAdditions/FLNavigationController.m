@@ -31,7 +31,7 @@ static CGFloat s_prevAlpha;
 //	  if(cb)
 //	  {
 //		  [cb invoke:self];
-//		  FLRelease(cb);
+//		  mrc_release_(cb);
 //	  }
 //	  
 //	  [browser.navigationController setNavigationBarHidden:YES animated:YES]
@@ -64,12 +64,11 @@ static CGFloat s_prevAlpha;
 	finished:(NSNumber *)finished context:(void *)context
 {
 	[UIView setAnimationDelegate:nil];
-	UIViewController* viewController = (__bridge_fl UIViewController*) context;
+	UIViewController* viewController = autorelease_(bridge_(UIViewController*, context));
 	[viewController.view removeFromSuperview];
 	[self pushViewController:viewController animated:NO];
-	FLRelease(viewController);
 
-	[UIView beginAnimations:@"slide" context:(__bridge_fl void *)(FLReturnRetained(viewController))];
+	[UIView beginAnimations:@"slide" context:bridge_(void*,retain_(viewController))];
     [UIView setAnimationDuration:0.15];
 	[UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
 	self.navigationBar.alpha = s_prevAlpha;
@@ -124,7 +123,7 @@ static CGFloat s_prevAlpha;
 			view.frame = FLRectSetTop(parentView.bounds, parentView.bounds.size.height);
 			[parentView addSubview:view];
 			
-			[UIView beginAnimations:@"slide" context:(__bridge_fl void *)(FLReturnRetained(viewController))];
+			[UIView beginAnimations:@"slide" context:bridge_(void*,retain_(viewController))];
 			[UIView setAnimationDelegate:self];
 			[UIView setAnimationDidStopSelector:@selector(doneAnimatingSlideInFromBottom:finished:context:)];
 			[UIView setAnimationDuration:0.25];
@@ -170,10 +169,8 @@ static CGFloat s_prevAlpha;
 - (void) doneAnimatingPopViewController:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context
 {
 	[UIView setAnimationDelegate:nil];
-	UIView* view = (__bridge_fl UIView*) context;
+	UIView* view = autorelease_(bridge_(UIView*, context));
 	[view removeFromSuperview];
-	FLRelease(view);
-			
 }
 
 - (void) popToViewController:(UIViewController*) viewController withAnimation:(FLNavigationControllerAnimation) animation
@@ -190,11 +187,11 @@ static CGFloat s_prevAlpha;
 		{
 			UIViewController* controller = [self topViewController];
 			UIViewController* parent = [self parentControllerForController:controller];
-			UIView* view = FLReturnRetained(controller.view);
+			UIView* view = retain_(controller.view);
 			[self popToViewController:viewController animated:NO];
 			[parent.view addSubview:view];
 			
-			[UIView beginAnimations:@"slide" context:(__bridge_fl void *)(view)];
+			[UIView beginAnimations:@"slide" context:bridge_(void*,view)];
 			[UIView setAnimationDuration:0.3];
 			[UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
 			[UIView setAnimationDelegate:self];
@@ -241,11 +238,11 @@ static CGFloat s_prevAlpha;
 		{
 			UIViewController* controller = [self topViewController];
 			UIViewController* parent = [self parentControllerForController:controller];
-			UIView* view = FLReturnRetained(controller.view);
+			UIView* view = retain_(controller.view);
 			[self popViewControllerAnimated:NO];
 			[parent.view addSubview:view];
 			
-			[UIView beginAnimations:@"slide" context:(__bridge_fl void *)(view)];
+			[UIView beginAnimations:@"slide" context:bridge_(void*,view)];
 			[UIView setAnimationDuration:0.3];
 			[UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
 			[UIView setAnimationDelegate:self];
@@ -404,7 +401,7 @@ static CGFloat s_prevAlpha;
 
 - (UINavigationController*) createContainingNavigationController
 {
-	FLNavigationController* controller = FLReturnAutoreleased([[FLNavigationController alloc] initWithRootViewController:self]);
+	FLNavigationController* controller = autorelease_([[FLNavigationController alloc] initWithRootViewController:self]);
     self.wantsFullScreenLayout = self.wantsFullScreenLayout;
     [controller addChildViewController:self];
     [controller.view addSubview:self.view]; 
@@ -433,7 +430,7 @@ static CGFloat s_prevAlpha;
 
 + (FLNavigationController*) navigationController:(UIViewController*) rootViewController
 {
-	return FLReturnAutoreleased([[FLNavigationController alloc] initWithRootViewController:rootViewController]);
+	return autorelease_([[FLNavigationController alloc] initWithRootViewController:rootViewController]);
 }
 
 - (void) viewDidLoad {
@@ -447,7 +444,7 @@ static CGFloat s_prevAlpha;
 	[item setHidesBackButton:YES animated:NO];
 
 	self.title = nil;
-	item.titleView = FLReturnAutoreleased([[UIView alloc] initWithFrame:CGRectZero]);
+	item.titleView = autorelease_([[UIView alloc] initWithFrame:CGRectZero]);
 	[item setLeftBarButtonItem:nil animated:NO];
 	[item setRightBarButtonItem:nil animated:NO];
 }

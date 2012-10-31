@@ -71,7 +71,7 @@ FIXME("MF: This looks ass slow. Self, try again.")
 	state->itemsPtr = stackbuf;
     
     // TODO should use a real mutations count here.
-	state->mutationsPtr = (__bridge_fl void*) self;
+	state->mutationsPtr = bridge_(void*, self);
 
 	return range.length;
 }

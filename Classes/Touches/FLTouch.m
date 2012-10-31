@@ -41,7 +41,7 @@
 
 + (FLTouch*) touchWithUITouch:(UITouch*) touch
 {
-	return FLReturnAutoreleased([[FLTouch alloc] initWithUITouch:touch]);
+	return autorelease_([[FLTouch alloc] initWithUITouch:touch]);
 }
 
 @end

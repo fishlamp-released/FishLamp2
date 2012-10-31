@@ -48,9 +48,9 @@
 
 - (void) dealloc
 {
-	FLReleaseWithNil(_spinner);
-	FLReleaseWithNil(_thumbnailImageView);
-	FLSuperDealloc();
+	FLReleaseWithNil_(_spinner);
+	FLReleaseWithNil_(_thumbnailImageView);
+	mrc_super_dealloc_();
 }
 
 - (void) startSpinner

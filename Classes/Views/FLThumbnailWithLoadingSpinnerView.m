@@ -42,7 +42,7 @@
 	if(_spinner)
 	{
 		[_spinner removeFromSuperview];
-		FLReleaseWithNil(_spinner);
+		FLReleaseWithNil_(_spinner);
 	}
 }
 

@@ -90,15 +90,15 @@
 
 - (void) dealloc
 {
-    FLRelease(__normalGradientEnum);
-    FLRelease(__selectedGradientEnum);
-    FLRelease(__highlightedGradientEnum);
-    FLRelease(__disabledGradientEnum);
-    FLRelease(__normalGradient);
-    FLRelease(__selectedGradient);
-    FLRelease(__highlightedGradient);
-    FLRelease(__disabledGradient);
-    FLSuperDealloc();
+    mrc_release_(__normalGradientEnum);
+    mrc_release_(__selectedGradientEnum);
+    mrc_release_(__highlightedGradientEnum);
+    mrc_release_(__disabledGradientEnum);
+    mrc_release_(__normalGradient);
+    mrc_release_(__selectedGradient);
+    mrc_release_(__highlightedGradient);
+    mrc_release_(__disabledGradient);
+    mrc_super_dealloc_();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder
@@ -129,14 +129,14 @@
 {
     if((self = [super init]))
     {
-        __normalGradientEnum = FLReturnRetained([aDecoder decodeObjectForKey:@"__normalGradientEnum"]);
-        __selectedGradientEnum = FLReturnRetained([aDecoder decodeObjectForKey:@"__selectedGradientEnum"]);
-        __highlightedGradientEnum = FLReturnRetained([aDecoder decodeObjectForKey:@"__highlightedGradientEnum"]);
-        __disabledGradientEnum = FLReturnRetained([aDecoder decodeObjectForKey:@"__disabledGradientEnum"]);
-        __normalGradient = FLReturnRetained([aDecoder decodeObjectForKey:@"__normalGradient"]);
-        __selectedGradient = FLReturnRetained([aDecoder decodeObjectForKey:@"__selectedGradient"]);
-        __highlightedGradient = FLReturnRetained([aDecoder decodeObjectForKey:@"__highlightedGradient"]);
-        __disabledGradient = FLReturnRetained([aDecoder decodeObjectForKey:@"__disabledGradient"]);
+        __normalGradientEnum = retain_([aDecoder decodeObjectForKey:@"__normalGradientEnum"]);
+        __selectedGradientEnum = retain_([aDecoder decodeObjectForKey:@"__selectedGradientEnum"]);
+        __highlightedGradientEnum = retain_([aDecoder decodeObjectForKey:@"__highlightedGradientEnum"]);
+        __disabledGradientEnum = retain_([aDecoder decodeObjectForKey:@"__disabledGradientEnum"]);
+        __normalGradient = retain_([aDecoder decodeObjectForKey:@"__normalGradient"]);
+        __selectedGradient = retain_([aDecoder decodeObjectForKey:@"__selectedGradient"]);
+        __highlightedGradient = retain_([aDecoder decodeObjectForKey:@"__highlightedGradient"]);
+        __disabledGradient = retain_([aDecoder decodeObjectForKey:@"__disabledGradient"]);
     }
     return self;
 }
@@ -202,7 +202,7 @@
 
 + (FLViewGradients*) viewGradients
 {
-    return FLReturnAutoreleased([[FLViewGradients alloc] init]);
+    return autorelease_([[FLViewGradients alloc] init]);
 }
 
 @end

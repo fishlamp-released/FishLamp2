@@ -104,14 +104,14 @@
 		self.autoresizesSubviews = NO;
 		self.viewContentsDescriptor = FLViewContentsDescriptorMake(FLViewContentItemNone, FLViewContentItemNone);
 			 
-		_leftButton = FLReturnRetained([UIButton buttonWithType:UIButtonTypeRoundedRect]);
+		_leftButton = retain_([UIButton buttonWithType:UIButtonTypeRoundedRect]);
 		[self setCommonTraitsForButtons:_leftButton];
 		[_leftButton setTitle:@"Done" forState:UIControlStateNormal];
 		_leftButton.frame = FLRectSetSize(_leftButton.frame, 60, 36);
 		[_leftButton addTarget:self action:@selector(doneButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
 		[self addSubview:_leftButton];
 		
-		_centerButton = FLReturnRetained([UIButton buttonWithType:UIButtonTypeRoundedRect]);
+		_centerButton = retain_([UIButton buttonWithType:UIButtonTypeRoundedRect]);
 		[self setCommonTraitsForButtons:_centerButton];
 		_centerButton.frame = FLRectSetSize(_centerButton.frame, 160, 54);
 		[_centerButton setImage:[UIImage imageNamed:@"cameraIcon.png"] forState:UIControlStateNormal];
@@ -151,7 +151,7 @@
 		crosshairs.alpha = 0.8;
 		crosshairs.frame = FLRectCenterRectInRect(_focusView.bounds, crosshairs.frame);
 		[_focusView addSubview:crosshairs];
-		FLRelease(crosshairs);
+		mrc_release_(crosshairs);
 		
 //		  _focusView.hidden = YES;
 		[self addSubview:_focusView];
@@ -166,7 +166,7 @@
 		[_spinner stopAnimating];
 		[self addSubview:_spinner];
 		
-		_flipCameraButton = FLReturnRetained([UIButton buttonWithType:UIButtonTypeRoundedRect]);
+		_flipCameraButton = retain_([UIButton buttonWithType:UIButtonTypeRoundedRect]);
 		[self setCommonTraitsForButtons:_flipCameraButton];
 		[_flipCameraButton setImage:[UIImage imageNamed:@"sync.png"] forState:UIControlStateNormal];
 		[_flipCameraButton addTarget:self action:@selector(cameraFlipButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
@@ -174,7 +174,7 @@
 		_flipCameraButton.imageEdgeInsets = UIEdgeInsetsMake(0,-10,0,0);
 		[self addSubview:_flipCameraButton];
 		
-		_flashButton = FLReturnRetained([UIButton buttonWithType:UIButtonTypeRoundedRect]);
+		_flashButton = retain_([UIButton buttonWithType:UIButtonTypeRoundedRect]);
 		[_flashButton setImage:[UIImage imageNamed:@"64-zap.png"] forState:UIControlStateNormal];
 		[_flashButton addTarget:self action:@selector(flashButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
 		[_flashButton setTitle:@"Auto" forState:UIControlStateNormal];
@@ -188,7 +188,7 @@
 		_flashSegmentedControl.alpha = _flashButton.alpha;
 		_flashSegmentedControl.selectedSegmentIndex = 1;
 		_flashSegmentedControl.hidden = YES;
-		FLRelease(items);
+		mrc_release_(items);
 		[self addSubview:_flashSegmentedControl];
 	}
 	return self;
@@ -214,19 +214,19 @@
 
 - (void) dealloc
 {
-	FLReleaseWithNil(_leftButton);
-	FLReleaseWithNil(_rightButton);
-	FLReleaseWithNil(_centerButton);
-	FLReleaseWithNil(_countView);
-	FLReleaseWithNil(_focusView);
-	FLReleaseWithNil(_imageView);
-	FLReleaseWithNil(_shakeyImageView);
-	FLReleaseWithNil(_zoomSlider);
-	FLReleaseWithNil(_flashSegmentedControl);
-	FLReleaseWithNil(_flashButton);
-	FLReleaseWithNil(_flipCameraButton);
-	FLReleaseWithNil(_spinner);
-	FLSuperDealloc();
+	FLReleaseWithNil_(_leftButton);
+	FLReleaseWithNil_(_rightButton);
+	FLReleaseWithNil_(_centerButton);
+	FLReleaseWithNil_(_countView);
+	FLReleaseWithNil_(_focusView);
+	FLReleaseWithNil_(_imageView);
+	FLReleaseWithNil_(_shakeyImageView);
+	FLReleaseWithNil_(_zoomSlider);
+	FLReleaseWithNil_(_flashSegmentedControl);
+	FLReleaseWithNil_(_flashButton);
+	FLReleaseWithNil_(_flipCameraButton);
+	FLReleaseWithNil_(_spinner);
+	mrc_super_dealloc_();
 }	
 
 - (void) setButtonsEnabled:(BOOL) enabled
@@ -314,7 +314,7 @@
 	flashView.backgroundColor = [UIColor whiteColor];
 	flashView.alpha = 1.0;
 	[self addSubview:flashView];
-	FLRelease(flashView);
+	mrc_release_(flashView);
 	
 	[UIView beginAnimations:@"viewin" context:flashView];
 	[UIView setAnimationDuration:0.3];

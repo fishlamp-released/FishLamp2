@@ -27,18 +27,18 @@
 
 - (FLTextDescriptor*) textDescriptor
 {
-	return FLReturnAutoreleased([_textDescriptor copy]);
+	return autorelease_([_textDescriptor copy]);
 }
 
 - (void) setTextDescriptor:(FLTextDescriptor*) textDescriptor
 {
-	FLCopyObject(_textDescriptor, textDescriptor);
+	FLCopyObject_(_textDescriptor, textDescriptor);
     [self _update];
 }
 
 - (void) setPlaceholderTextDescriptor:(FLTextDescriptor*) textDescriptor
 {
-	FLAssignObject(_placeholderTextDescriptor, textDescriptor);
+	FLRetainObject_(_placeholderTextDescriptor, textDescriptor);
 }
 
 - (id) init
@@ -71,9 +71,9 @@
 
 - (void) dealloc
 {
-	FLRelease(_placeholderTextDescriptor);
-	FLRelease(_textDescriptor);
-	FLSuperDealloc();
+	mrc_release_(_placeholderTextDescriptor);
+	mrc_release_(_textDescriptor);
+	mrc_super_dealloc_();
 }
 
 - (void) setHighlighted:(BOOL) highlighted

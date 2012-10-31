@@ -37,7 +37,7 @@
 //- (UIView*) createViewForGridCellState:(FLGridCellState) visibleViewID {
 //    switch(visibleViewID) {
 //        case FLCellViewIDFirst:
-//            return FLReturnAutoreleased([[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite]);
+//            return autorelease_([[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite]);
 //        break;
 //        
 //        case FLCellViewIDSecond:

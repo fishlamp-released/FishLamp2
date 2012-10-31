@@ -41,7 +41,7 @@
         [_containedView removeFromSuperview];
     }
     
-    FLAssignObject(_containedView, view);
+    FLRetainObject_(_containedView, view);
     [self addSubview:view];
     [self setNeedsLayout];
 }
@@ -53,8 +53,8 @@
 
 #if FL_MRC
 - (void) dealloc {
-    FLRelease(_containedView);
-    FLSuperDealloc();
+    mrc_release_(_containedView);
+    mrc_super_dealloc_();
 }
 
 #endif

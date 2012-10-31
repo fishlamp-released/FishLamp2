@@ -24,7 +24,7 @@
 	if((self = [super init]))
 	{
 		self.title = NSLocalizedString(@"Slideshow Options", nil);
-		_options = FLReturnRetained(options);
+		_options = retain_(options);
 		_showButton = showStartNowButton;
 	}
 	return self;
@@ -32,13 +32,13 @@
 
 + (FLSlideshowOptionsViewController*) slideshowOptionsViewController:(FLSlideshowOptions*) options showStartNowButton:(BOOL) showStartNowButton
 {
-	return FLReturnAutoreleased([[FLSlideshowOptionsViewController alloc] initWithSlideshowOptions:options showStartNowButton:showStartNowButton]);
+	return autorelease_([[FLSlideshowOptionsViewController alloc] initWithSlideshowOptions:options showStartNowButton:showStartNowButton]);
 }
 
 - (void) dealloc
 {
-	FLRelease(_options);
-	FLSuperDealloc();
+	mrc_release_(_options);
+	mrc_super_dealloc_();
 }
 
 - (FLSlideshowOptions*) options
@@ -59,7 +59,7 @@
 
 - (void)mediaPicker:(MPMediaPickerController *)mediaPicker didPickMediaItems:(MPMediaItemCollection *)mediaItemCollection
 {
-	NSArray* list = FLReturnAutoreleased([mediaItemCollection.items mutableCopy]);
+	NSArray* list = autorelease_([mediaItemCollection.items mutableCopy]);
 
 	[self.dataSourceManager setObject:list 
 			forKeyPath:[FLSlideshowOptions keyPathWithDataKey:[FLSlideshowOptions mediaItemListKey]] 
@@ -101,7 +101,7 @@
 	controller.allowsPickingMultipleItems = YES;
 //	controller.prompt = @"Choose Music for Slideshow";
 	[self.navigationController pushViewController:controller animated:YES];
-	FLRelease(controller);
+	mrc_release_(controller);
 }
 
 - (void) addOptionsToBuilder:(FLTableViewLayoutBuilder*) builder

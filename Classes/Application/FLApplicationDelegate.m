@@ -30,21 +30,21 @@
 }
 
 - (UIWindow*) createDefaultWindow {
-    UIWindow* window = FLReturnAutoreleased([[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]]);
+    UIWindow* window = autorelease_([[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]]);
     window.backgroundColor = [UIColor blackColor];
     
     return window;
 }
 
 - (void) setRootViewController:(UIViewController*) viewController {
-    FLAssignObject(_rootViewController, viewController);
+    FLRetainObject_(_rootViewController, viewController);
     self.window.rootViewController = self.rootViewController;
 }
 
 - (void) dealloc {
-    FLRelease(_window);
-    FLRelease(_rootViewController);
-    FLSuperDealloc();
+    mrc_release_(_window);
+    mrc_release_(_rootViewController);
+    mrc_super_dealloc_();
 }
 
 - (void) willInitApp {
@@ -103,8 +103,8 @@
 @synthesize navigationController = _navigationController;
 
 - (void)dealloc {
-    FLRelease(_navigationController);
-    FLSuperDealloc();
+    mrc_release_(_navigationController);
+    mrc_super_dealloc_();
 }
 - (void) setRootViewController:(UIViewController*) viewController {
     self.navigationController = [FLNavigationController navigationController:viewController];

@@ -29,8 +29,8 @@
 
 - (void) dealloc
 {
-	FLReleaseWithNil(_operation);
-	FLSuperDealloc();
+	FLReleaseWithNil_(_operation);
+	mrc_super_dealloc_();
 }
 
 @end

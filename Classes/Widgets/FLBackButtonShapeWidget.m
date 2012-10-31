@@ -25,7 +25,7 @@
 
 + (FLBackButtonShapeWidget*) backButtonShapeWidget:(CGFloat) pointSize
 {
-	return FLReturnAutoreleased([[FLBackButtonShapeWidget alloc] initWithPointSize:pointSize]);
+	return autorelease_([[FLBackButtonShapeWidget alloc] initWithPointSize:pointSize]);
 }
 
 -(void) createPathForShapeInRect:(CGMutablePathRef) path rect:(FLRect) rect

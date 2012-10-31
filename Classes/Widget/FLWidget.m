@@ -41,7 +41,7 @@
         _touchHandler.touchableObject = nil;
     }
     
-    FLAssignObject(_touchHandler, touchHandler);
+    FLRetainObject_(_touchHandler, touchHandler);
     _touchHandler.touchableObject = self;
     
     __block id myself = self;
@@ -72,15 +72,15 @@
 }
 
 + (id) widgetWithFrame:(FLRect) frame {
-	return FLReturnAutoreleased([[[self class] alloc] initWithFrame:frame]);
+	return autorelease_([[[self class] alloc] initWithFrame:frame]);
 }
 
 + (id) widget {
-	return FLReturnAutoreleased([[[self class] alloc] init]);
+	return autorelease_([[[self class] alloc] init]);
 }
 
 - (void) setBackgroundColor:(UIColor*) color {
-	FLAssignObject(_backgroundColor, color);
+	FLRetainObject_(_backgroundColor, color);
     [self setNeedsDisplay];
 }
 
@@ -96,7 +96,7 @@
         [widget removeFromParent];
     }
 
-	FLRelease(widgets);
+	mrc_release_(widgets);
 }
 
 - (void) setAlpha:(CGFloat) alpha {
@@ -111,11 +111,11 @@
 	[self removeAllWidgets];
 
     _touchHandler.touchableObject = nil;
-    FLRelease(_arrangement);
-    FLRelease(_touchHandler);
-	FLRelease(_backgroundColor);
-    FLRelease(_userData);
-	FLSuperDealloc();
+    mrc_release_(_arrangement);
+    mrc_release_(_touchHandler);
+	mrc_release_(_backgroundColor);
+    mrc_release_(_userData);
+	mrc_super_dealloc_();
 }
 
 - (void) setNeedsLayout {
@@ -304,7 +304,7 @@
 - (void) removeWidget:(FLWidget*) widget {
 	FLAssert_v(widget.parent == self, @"attempting to remove subwidget from non-owning superwidget");
     if(_widgets && widget.parent == self) {
-        FLAutorelease(FLReturnRetain(widget));
+        mrc_autorelease_(FLReturnRetain(widget));
         [_widgets removeObject:widget];
         widget.parent = nil;
         [self setNeedsDisplay];

@@ -15,7 +15,7 @@
 
 - (void) setImage:(UIImage*) image
 {
-    FLAssignObject(_image, image);
+    FLRetainObject_(_image, image);
     
     if(_imageView)
     {
@@ -25,14 +25,14 @@
 
 - (void) dealloc
 {
-    FLRelease(_imageView);
-    FLSuperDealloc();
+    mrc_release_(_imageView);
+    mrc_super_dealloc_();
 }
 
 - (void) viewDidUnload
 {
     [super viewDidUnload];
-    FLReleaseWithNil(_imageView);
+    FLReleaseWithNil_(_imageView);
 }
 
 - (void) _done:(id) sender

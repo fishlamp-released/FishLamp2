@@ -87,7 +87,7 @@ FLSynthesizeStructProperty(delayShowingButtons, setDelayShowingButtons, BOOL, _e
 			if(!controller.leftButton || controller.leftButtonItemType != UIBarButtonSystemItemCancel)
 			{
 				controller.leftButtonItemType = UIBarButtonSystemItemCancel;
-				controller.leftButton = FLReturnAutoreleased([[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel 
+				controller.leftButton = autorelease_([[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel 
 						target:controller action:@selector(leftButton:)]);
 				[controller.navigationItem setLeftBarButtonItem:controller.leftButton animated:animate];
 			}
@@ -98,7 +98,7 @@ FLSynthesizeStructProperty(delayShowingButtons, setDelayShowingButtons, BOOL, _e
 			if(!controller.leftButton || controller.leftButtonItemType != UIBarButtonSystemItemDone)
 			{
 				controller.leftButtonItemType = UIBarButtonSystemItemDone;
-				controller.leftButton = FLReturnAutoreleased([[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone 
+				controller.leftButton = autorelease_([[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone 
 						target:controller action:@selector(leftButton:)]);
 				[controller.navigationItem setLeftBarButtonItem:controller.leftButton animated:animate];
 			}
@@ -120,7 +120,7 @@ FLSynthesizeStructProperty(delayShowingButtons, setDelayShowingButtons, BOOL, _e
 		if(!controller.rightButton || controller.rightButtonItemType != UIBarButtonSystemItemSave)
 		{
 			controller.rightButtonItemType = UIBarButtonSystemItemSave;
-			controller.rightButton = FLReturnAutoreleased([[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:controller action:@selector(respondToSaveButton:)]);
+			controller.rightButton = autorelease_([[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:controller action:@selector(respondToSaveButton:)]);
 			[controller.navigationItem setRightBarButtonItem:controller.rightButton animated:animate];
 		}
 		
@@ -131,7 +131,7 @@ FLSynthesizeStructProperty(delayShowingButtons, setDelayShowingButtons, BOOL, _e
 		if(!controller.rightButton || controller.rightButtonItemType != UIBarButtonSystemItemEdit)
 		{
 			controller.rightButtonItemType = UIBarButtonSystemItemEdit;
-			controller.rightButton = FLReturnAutoreleased([[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:controller action:@selector(startEditing:)]);
+			controller.rightButton = autorelease_([[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:controller action:@selector(startEditing:)]);
 			[controller.navigationItem setRightBarButtonItem:controller.rightButton animated:animate];
 		}
 		
@@ -173,7 +173,7 @@ FLSynthesizeStructProperty(delayShowingButtons, setDelayShowingButtons, BOOL, _e
 
 + (FLEditObjectViewControllerSaveButtonStrategy*) editObjectViewControllerSaveButtonStrategy:(BOOL) delayShowingButtons
 {
-	return FLReturnAutoreleased([[FLEditObjectViewControllerSaveButtonStrategy alloc] initWithOptions:delayShowingButtons wantsEditButton:NO wantsDoneButton:NO wantsSaveButton:YES]);
+	return autorelease_([[FLEditObjectViewControllerSaveButtonStrategy alloc] initWithOptions:delayShowingButtons wantsEditButton:NO wantsDoneButton:NO wantsSaveButton:YES]);
 }
 
 @end
@@ -182,7 +182,7 @@ FLSynthesizeStructProperty(delayShowingButtons, setDelayShowingButtons, BOOL, _e
 
 + (FLEditObjectViewControllerDoneButtonStrategy*) editObjectViewControllerDoneButtonStrategy:(BOOL) delayShowingButtons
 {
-	return FLReturnAutoreleased([[FLEditObjectViewControllerDoneButtonStrategy alloc] initWithOptions:delayShowingButtons wantsEditButton:NO wantsDoneButton:YES wantsSaveButton:NO]);
+	return autorelease_([[FLEditObjectViewControllerDoneButtonStrategy alloc] initWithOptions:delayShowingButtons wantsEditButton:NO wantsDoneButton:YES wantsSaveButton:NO]);
 }
 
 @end
@@ -193,12 +193,12 @@ FLSynthesizeStructProperty(delayShowingButtons, setDelayShowingButtons, BOOL, _e
 
 + (FLEditObjectViewControllerCancelButtonStrategy*) editObjectViewControllerCancelButtonStrategy
 {
-	return FLReturnAutoreleased([[FLEditObjectViewControllerCancelButtonStrategy alloc] init]);
+	return autorelease_([[FLEditObjectViewControllerCancelButtonStrategy alloc] init]);
 }
 
 + (FLEditObjectViewControllerCancelButtonStrategy*) editObjectViewControllerCancelButtonStrategy:(NSString*) buttonTitle
 {
-	FLEditObjectViewControllerCancelButtonStrategy* strategy = FLReturnAutoreleased([[FLEditObjectViewControllerCancelButtonStrategy alloc] init]);
+	FLEditObjectViewControllerCancelButtonStrategy* strategy = autorelease_([[FLEditObjectViewControllerCancelButtonStrategy alloc] init]);
 	strategy.buttonTitle = buttonTitle;
 	return strategy;
 }
@@ -211,12 +211,12 @@ FLSynthesizeStructProperty(delayShowingButtons, setDelayShowingButtons, BOOL, _e
 		
 		if(FLStringIsEmpty(_buttonTitle))
 		{
-			controller.leftButton = FLReturnAutoreleased([[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel 
+			controller.leftButton = autorelease_([[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel 
 					target:controller action:@selector(leftButton:)]);
 		}
 		else
 		{
-			controller.leftButton = FLReturnAutoreleased([[UIBarButtonItem alloc] initWithTitle:_buttonTitle style:UIBarButtonItemStyleBordered 
+			controller.leftButton = autorelease_([[UIBarButtonItem alloc] initWithTitle:_buttonTitle style:UIBarButtonItemStyleBordered 
 					target:controller action:@selector(leftButton:)]);
 		}
 		
@@ -226,8 +226,8 @@ FLSynthesizeStructProperty(delayShowingButtons, setDelayShowingButtons, BOOL, _e
 
 - (void) dealloc
 {
-	FLRelease(_buttonTitle);
-	FLSuperDealloc();
+	mrc_release_(_buttonTitle);
+	mrc_super_dealloc_();
 }
 
 @end
@@ -239,9 +239,9 @@ FLSynthesizeStructProperty(delayShowingButtons, setDelayShowingButtons, BOOL, _e
 
 - (void) dealloc
 {
-	FLRelease(_saveButtonTitle);
-	FLRelease(_cancelButtonTitle);
-	FLSuperDealloc();
+	mrc_release_(_saveButtonTitle);
+	mrc_release_(_cancelButtonTitle);
+	mrc_super_dealloc_();
 }
 
 - (void) updateSaveAndCancelButtons:(FLEditObjectViewController*) controller animate:(BOOL) animate
@@ -268,7 +268,7 @@ FLSynthesizeStructProperty(delayShowingButtons, setDelayShowingButtons, BOOL, _e
 + (FLEditObjectViewControllerInlineSaveAndCancelButtonStrategy*) editObjectViewControllerInlineSaveAndCancelButtonStrategy:(NSString*) cancelTitle
 	saveButtonTitle:(NSString*) saveTitle
 {
-	FLEditObjectViewControllerInlineSaveAndCancelButtonStrategy* strat = FLReturnAutoreleased([[FLEditObjectViewControllerInlineSaveAndCancelButtonStrategy alloc] init]);
+	FLEditObjectViewControllerInlineSaveAndCancelButtonStrategy* strat = autorelease_([[FLEditObjectViewControllerInlineSaveAndCancelButtonStrategy alloc] init]);
 	strat.saveButtonTitle = saveTitle;
 	strat.cancelButtonTitle = cancelTitle;
 	return strat;

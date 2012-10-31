@@ -22,7 +22,7 @@
 	if((self = [super init]))
 	{
 		self.input = photo;
-		_folder = FLReturnRetained(folder);
+		_folder = retain_(folder);
 		_options = options;
 	}
 	return self;
@@ -32,14 +32,14 @@
 				   folder:(FLFolder*) folder
 			  saveOptions:(FLSaveScaledImagesWithOriginalImageOption) options {
     
-        return FLReturnAutoreleased([[FLSaveScaledImagesWithOriginalImage alloc] initWithPhotoInput:photo folder:folder saveOptions:options]);
+        return autorelease_([[FLSaveScaledImagesWithOriginalImage alloc] initWithPhotoInput:photo folder:folder saveOptions:options]);
 }
 
 
 - (void) dealloc
 {
-	FLReleaseWithNil(_folder);
-	FLSuperDealloc();
+	FLReleaseWithNil_(_folder);
+	mrc_super_dealloc_();
 }
 
 - (void) runSelf

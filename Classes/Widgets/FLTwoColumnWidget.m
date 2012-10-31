@@ -44,8 +44,8 @@
 
 - (void) dealloc
 {
-	FLRelease(_leftColumn);
-	FLRelease(_rightColumn);
-	FLSuperDealloc();
+	mrc_release_(_leftColumn);
+	mrc_release_(_rightColumn);
+	mrc_super_dealloc_();
 }
 @end

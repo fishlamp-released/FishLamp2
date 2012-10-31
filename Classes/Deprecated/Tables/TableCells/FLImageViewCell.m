@@ -40,8 +40,8 @@
 
 - (void) dealloc
 {
-	FLRelease(_imageCellView);
-	FLSuperDealloc();
+	mrc_release_(_imageCellView);
+	mrc_super_dealloc_();
 }
 
 - (void) setNeedsLayout
@@ -59,7 +59,7 @@
 
 + (FLImageViewCell*) imageViewCell:(UIImage*) image
 {
-	return FLReturnAutoreleased([[FLImageViewCell alloc] initWithImage:image]);
+	return autorelease_([[FLImageViewCell alloc] initWithImage:image]);
 }
 
 @end

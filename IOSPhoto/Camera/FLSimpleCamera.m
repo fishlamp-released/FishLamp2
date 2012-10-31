@@ -51,8 +51,8 @@
 
 - (void) dealloc
 {
-    FLRelease(_label);
-    FLSuperDealloc();
+    mrc_release_(_label);
+    mrc_super_dealloc_();
 }
 
 - (BOOL) pointInside:(FLPoint)point withEvent:(UIEvent *)event
@@ -108,7 +108,7 @@
 
 
 - (void) _addLocationOverlay {
-    _overlayView = FLReturnAutoreleased([[FLOverlayCameraView alloc] initWithFrame:CGRectMake(0,50,320,480)]);
+    _overlayView = autorelease_([[FLOverlayCameraView alloc] initWithFrame:CGRectMake(0,50,320,480)]);
     _overlayView.userInteractionEnabled = YES;
     _overlayView.exclusiveTouch = NO;
     _overlayView.multipleTouchEnabled = YES;
@@ -156,7 +156,7 @@
     if(_locationManager) {
         CLLocation* lastLocation = _locationManager.location;
         if(lastLocation && CLLocationCoordinate2DIsValid(lastLocation.coordinate)) {
-            NSMutableDictionary* locDict = FLReturnAutoreleased([[exif objectForKey:(NSString*)kCGImagePropertyGPSDictionary] mutableCopy]);
+            NSMutableDictionary* locDict = autorelease_([[exif objectForKey:(NSString*)kCGImagePropertyGPSDictionary] mutableCopy]);
             
             if(!locDict) {
                 locDict = [NSMutableDictionary dictionary];
@@ -188,7 +188,7 @@
 didFinishPickingMediaWithInfo:(NSDictionary *)info {
 
     NSMutableDictionary* exif = [[info objectForKey:UIImagePickerControllerMediaMetadata] mutableCopy];
-    FLAutorelease(exif);
+    mrc_autorelease_(exif);
     
     if(!exif) {
         exif = [NSMutableDictionary dictionary];
@@ -202,7 +202,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
     //		  [iptc setObject:[NSFileManager appName] forKey:(NSString*)kCGImagePropertyIPTCOriginatingProgram];
     //		  [iptc setObject:[NSFileManager appVersion] forKey:(NSString*)kCGImagePropertyIPTCProgramVersion];
     //		  [exif setObject:iptc forKey:(NSString*) kCGImagePropertyIPTCDictionary];
-    //		  FLReleaseWithNil(iptc);
+    //		  FLReleaseWithNil_(iptc);
                 
     FLSimplePhoto* simplePhoto = [FLSimplePhoto simplePhoto:[info objectForKey:UIImagePickerControllerOriginalImage] exif:exif];
     
@@ -221,7 +221,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
 //    [self _setButtonImage:_overlayView.button];
     
     [_locationManager stopUpdatingLocation];
-    FLReleaseWithNil(_locationManager);
+    FLReleaseWithNil_(_locationManager);
 }
 
 

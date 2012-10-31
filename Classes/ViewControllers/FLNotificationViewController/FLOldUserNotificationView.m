@@ -75,8 +75,8 @@ FLSynthesizeStructProperty(autoDismiss, setAutoDismiss, BOOL, _userNotificationF
 - (void) dealloc
 {
     [[FLApplication sharedApplication] removeEventInterceptor:self];
-	FLRelease(_error);
-	FLSuperDealloc();
+	mrc_release_(_error);
+	mrc_super_dealloc_();
 }
 
 - (void) setIcon:(UIImage*) image
@@ -87,7 +87,7 @@ FLSynthesizeStructProperty(autoDismiss, setAutoDismiss, BOOL, _userNotificationF
 	iconView.frame = FLRectSetSize(iconView.frame, 20,20);
 	
 	self.iconView = iconView;
-	FLReleaseWithNil(iconView);
+	FLReleaseWithNil_(iconView);
 }
 
 - (void) setIconWithColor:(UIImage*) image color:(UIColor*) color blendMode:(CGBlendMode) blendMode
@@ -294,7 +294,7 @@ return NO;
 
 + (FLDeferUserNotificationShow*) deferUserNotificationShow:(FLOldUserNotificationView*) view
 {
-   FLDeferUserNotificationShow* show = FLReturnAutoreleased([[FLDeferUserNotificationShow alloc] init]);
+   FLDeferUserNotificationShow* show = autorelease_([[FLDeferUserNotificationShow alloc] init]);
    show.userInfo = view;
    return show; 
 }

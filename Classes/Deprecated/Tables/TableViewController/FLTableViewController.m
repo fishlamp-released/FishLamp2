@@ -71,7 +71,7 @@
 
 - (UIScrollView*) createScrollView
 {
-	FLTableView* tableView = FLReturnAutoreleased([[FLTableView alloc] initWithFrame:self.view.bounds]);
+	FLTableView* tableView = autorelease_([[FLTableView alloc] initWithFrame:self.view.bounds]);
 	tableView.backgroundColor = self.view.backgroundColor;
 	tableView.autoresizingMask = UIViewAutoresizingFlexibleEverything;
 	tableView.autoresizesSubviews = YES;
@@ -81,7 +81,7 @@
 - (void) dealloc
 {
 	[self cleanupTableViewController];
-	FLSuperDealloc();
+	mrc_super_dealloc_();
 }
 
 - (BOOL) isLastRow:(NSIndexPath *)indexPath

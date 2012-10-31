@@ -16,7 +16,7 @@
 {
 	if((self = [super init]))
 	{
-//		_savedThemeInfo = FLReturnRetained([[FLThemeManager instance] loadSavedThemeInfo]);
+//		_savedThemeInfo = retain_([[FLThemeManager instance] loadSavedThemeInfo]);
 //		[self.dataSourceManager setDataSource:_savedThemeInfo forKey:[FLSavedThemeInfo dataSourceKey]];
 	}
 	return self;
@@ -24,8 +24,8 @@
 
 - (void) dealloc 
 {
-	FLRelease(_savedThemeInfo);
-	FLSuperDealloc();
+	mrc_release_(_savedThemeInfo);
+	mrc_super_dealloc_();
 }
 
 - (BOOL) didChangeDataForKey:(id)key previousValue:(id)previousValue

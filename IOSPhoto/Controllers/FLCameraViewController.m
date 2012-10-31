@@ -82,14 +82,14 @@
 
 - (void) _cleanupCameraController
 {
-	FLReleaseWithNil(_overlay);
+	FLReleaseWithNil_(_overlay);
 }
 
 - (void) startLocationManager
 {
 	if(OSVersionIsAtLeast4_1() && [CLLocationManager locationServicesEnabled])
 	{	
-		FLRelease(_locationManager);
+		mrc_release_(_locationManager);
 		_locationManager =[[CLLocationManager alloc] init];
 		//		 _locationManager.delegate=self;
 		_locationManager.desiredAccuracy=kCLLocationAccuracyBest;
@@ -102,16 +102,16 @@
 {
 	_locationManager.delegate = nil;
 	[_locationManager stopUpdatingLocation];
-	FLRelease(_locationManager);
+	mrc_release_(_locationManager);
 	
-	FLRelease(_cameraViewStrategy);
-	FLRelease(_tookPhotoBlock);
-	FLRelease(_photos);
-	FLRelease(_folder);
-	FLRelease(_cameraConfig);
+	mrc_release_(_cameraViewStrategy);
+	mrc_release_(_tookPhotoBlock);
+	mrc_release_(_photos);
+	mrc_release_(_folder);
+	mrc_release_(_cameraConfig);
 	[self _cleanupCameraController];
 	
-	FLSuperDealloc();
+	mrc_super_dealloc_();
 }
 
 - (void) viewWillAppear:(BOOL)animated

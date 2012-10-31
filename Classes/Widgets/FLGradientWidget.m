@@ -32,7 +32,7 @@
 }
 
 + (FLGradientWidget*) gradientWidgetWithFrame:(FLRect) frame {
-    return FLReturnAutoreleased([[[self class] alloc] initWithFrame:frame]);
+    return autorelease_([[[self class] alloc] initWithFrame:frame]);
 
 }
 
@@ -42,8 +42,8 @@
 
 #if FL_MRC
 - (void) dealloc {
-    FLRelease(_gradientColors);
-    FLSuperDealloc();
+    mrc_release_(_gradientColors);
+    mrc_super_dealloc_();
 }
 #endif
 

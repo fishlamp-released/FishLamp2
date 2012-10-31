@@ -35,15 +35,15 @@
 			_prev, 
 			space, 
 			_next, 
-			FLReturnAutoreleased([[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil]), 
+			autorelease_([[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil]), 
 			_stop, 
 			nil];
 
 		[self setItems:array animated:NO];
 
-		FLReleaseWithNil(array);
+		FLReleaseWithNil_(array);
 
-		FLReleaseWithNil(space);
+		FLReleaseWithNil_(space);
 	}
 	
 	return self;
@@ -51,10 +51,10 @@
 
 - (void) dealloc
 {	
-	FLReleaseWithNil(_next);
-	FLReleaseWithNil(_prev);
-	FLReleaseWithNil(_stop);
-	FLSuperDealloc();
+	FLReleaseWithNil_(_next);
+	FLReleaseWithNil_(_prev);
+	FLReleaseWithNil_(_stop);
+	mrc_super_dealloc_();
 }
 
 - (void) layoutSubviews
@@ -82,7 +82,7 @@
 		}
 		
 		[UIView beginAnimations:@"viewin" context:nil];
-	//	[UIView setAnimationDelegate:FLRetain(self)];
+	//	[UIView setAnimationDelegate:retain_(self)];
 	//	[UIView setAnimationDidStopSelector:callback];
 		[UIView setAnimationDuration:0.2];
 		[UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
@@ -96,7 +96,7 @@
 	if(self.superview)
 	{
 		[UIView beginAnimations:@"viewin" context:nil];
-	//	[UIView setAnimationDelegate:FLRetain(self)];
+	//	[UIView setAnimationDelegate:retain_(self)];
 	//	[UIView setAnimationDidStopSelector:callback];
 		[UIView setAnimationDuration:0.3];
 		[UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];

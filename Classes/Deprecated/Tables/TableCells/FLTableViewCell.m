@@ -53,7 +53,7 @@
         [_accessory removeFromParent];
     }
     
-    FLAssignObject(_accessory, widget);
+    FLRetainObject_(_accessory, widget);
     [self addWidget:_accessory];
 }
 
@@ -69,7 +69,7 @@
 
 + (id) tableViewCell:(NSString *)reuseIdentifier
 {
-	return FLReturnAutoreleased([[[self class] alloc] initWithReuseIdentifier:reuseIdentifier]);
+	return autorelease_([[[self class] alloc] initWithReuseIdentifier:reuseIdentifier]);
 }
 
 - (BOOL) disabled
@@ -115,7 +115,7 @@
 		
 		if(type != UITableViewCellAccessoryNone && !_accessory)
 		{
-			self.accessoryWidget = FLReturnAutoreleased([[FLTableViewCellAccessoryWidget alloc] init]);
+			self.accessoryWidget = autorelease_([[FLTableViewCellAccessoryWidget alloc] init]);
 		}
 
 		if(_accessory)
@@ -147,12 +147,12 @@
 	[_widget teardown];
 	[_accessory teardown];
 	[_sectionWidget teardown];
-	FLRelease(_replacementLabel);
-	FLRelease(_sectionWidget);
-	FLRelease(_background);
-	FLRelease(_accessory);
-	FLRelease(_widget);
-	FLSuperDealloc();
+	mrc_release_(_replacementLabel);
+	mrc_release_(_sectionWidget);
+	mrc_release_(_background);
+	mrc_release_(_accessory);
+	mrc_release_(_widget);
+	mrc_super_dealloc_();
 }
 
 - (void) didMoveToSuperview
@@ -292,7 +292,7 @@
 		[_widget removeFromParent];
 	}
     
-	FLAssignObject(_widget, widget);
+	FLRetainObject_(_widget, widget);
 	[_sectionWidget addWidget:_widget];
 }
 

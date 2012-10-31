@@ -47,10 +47,10 @@
 
 - (void) dealloc
 {
-	FLRelease(_helpText);
-	FLRelease(_rowKey);
-	FLRelease(_dataKeyPath);
-	FLSuperDealloc();
+	mrc_release_(_helpText);
+	mrc_release_(_rowKey);
+	mrc_release_(_dataKeyPath);
+	mrc_super_dealloc_();
 }
 
 - (BOOL) hasDataKey

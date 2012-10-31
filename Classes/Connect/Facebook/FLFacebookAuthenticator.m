@@ -24,22 +24,22 @@
 
 + (FLFacebookAuthenticator*) facebookAuthenticator
 {
-    return FLReturnAutoreleased([[FLFacebookAuthenticator alloc] init]);
+    return autorelease_([[FLFacebookAuthenticator alloc] init]);
 }
 
 - (void) cleanup
 {
-   FLAutorelease(_viewController);
+   mrc_autorelease_(_viewController);
     _viewController = nil;
     
-    FLAutorelease(_delegate);
+    mrc_autorelease_(_delegate);
     _delegate = nil;
 }
 
 - (void) dealloc
 {
     [self cleanup];
-    FLSuperDealloc();
+    mrc_super_dealloc_();
 }
 
 - (void) _beginLoadingUser
@@ -77,7 +77,7 @@
         }
         
         [self cleanup];
-        FLAutorelease(self);
+        mrc_autorelease_(self);
     }];
 }
 
@@ -95,7 +95,7 @@
     [_delegate facebookAuthenticator:self authenticationDidFail:error];
 
     [self cleanup];
-    FLAutorelease(self);
+    mrc_autorelease_(self);
 }
 
 - (void) webViewControllerUserDidCancel:(FLWebViewController*) controller
@@ -104,7 +104,7 @@
     [_delegate facebookAuthenticatorWasCancelled:self];
 
     [self cleanup];
-    FLAutorelease(self);
+    mrc_autorelease_(self);
 }
 
 - (void) _didCompleteFacebookAction:(FLAction*) action 
@@ -117,7 +117,7 @@
 			[FLFacebookMgr instance].session = response.session;
 			[_delegate facebookAuthenticator:self authenticationDidComplete:response.session]; 
             [self cleanup];
-            FLAutorelease(self);
+            mrc_autorelease_(self);
 		}
 		else if(response.redirectURL)
 		{
@@ -134,18 +134,18 @@
 	{
         [_delegate facebookAuthenticator:self authenticationDidFail:action.error];
 	    [self cleanup];
-        FLAutorelease(self);
+        mrc_autorelease_(self);
     }
 }
 
 - (void) beginAuthenticatingInViewController:(FLViewController*) viewController  delegate:(id<FLFacebookAuthenticatorDelegate>) delegate
 {
-    FLAssignObject(_delegate, delegate);
-    FLAssignObject(_viewController, viewController);
+    FLRetainObject_(_delegate, delegate);
+    FLRetainObject_(_viewController, viewController);
     
 	if([[FLFacebookMgr instance] appNeedsAuthorizationForPermissions:[FLFacebookMgr instance].permissions])
 	{
-        FLRetain(self);
+        mrc_retain_(self);
         FLAction* action = [FLAction action];
         [action addOperation:[FLFacebookBeginAuthorizationOperation facebookBeginAuthorizationOperation:[FLFacebookMgr instance].permissions]];
         [action setProgressController:[FLProgressViewController progressViewController:[FLSimpleProgressView class] 

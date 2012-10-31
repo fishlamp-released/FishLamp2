@@ -47,16 +47,16 @@
 
 - (void) dealloc
 {	
-	FLRelease(_likesAndCommentsWidget);
-	FLRelease(_post);
-	FLSuperDealloc();
+	mrc_release_(_likesAndCommentsWidget);
+	mrc_release_(_post);
+	mrc_super_dealloc_();
 }
 
 - (void) setPost:(FLFacebookPost*) post
 {
 	if(_post != post)
 	{
-		FLAssignObject(_post, post);
+		FLRetainObject_(_post, post);
         self.userNameWidget.text = post.from.name;
 		self.messageWidget.text = post.message;
 		self.postedTimeWidget.text = [FLDateFormatter displayFormatterDataToString:post.created_time];

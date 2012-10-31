@@ -53,14 +53,14 @@
 + (id) imageButtonToolbarItemWithImage:(UIImage*) image         
                 onChosenBlock:(FLToolbarViewBlock) onChosenBlock {
 
-    return FLReturnAutoreleased([[FLImageButtonToolbarItem alloc] initWithImage:image onChosenBlock:onChosenBlock]);
+    return autorelease_([[FLImageButtonToolbarItem alloc] initWithImage:image onChosenBlock:onChosenBlock]);
 
 }
 
 + (id) imageButtonToolbarItemWithImageName:(NSString*) imageName         
                 onChosenBlock:(FLToolbarViewBlock) onChosenBlock {
 
-    return FLReturnAutoreleased([[FLImageButtonToolbarItem alloc] initWithImageName:imageName onChosenBlock:onChosenBlock]);
+    return autorelease_([[FLImageButtonToolbarItem alloc] initWithImageName:imageName onChosenBlock:onChosenBlock]);
 
 }
 

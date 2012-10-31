@@ -52,7 +52,7 @@
 
 + (FLSimplePhotoSaver*) simplePhotoSaver:(FLSimplePhoto*) photo
                             saveInFolder:(FLFolder*) folder {
-    return FLReturnAutoreleased([[FLSimplePhotoSaver alloc] initWithSimplePhoto:photo saveInFolder:folder]);
+    return autorelease_([[FLSimplePhotoSaver alloc] initWithSimplePhoto:photo saveInFolder:folder]);
 }
 
 

@@ -30,8 +30,8 @@
 }
 
 - (void) dealloc {
-	FLRelease(_action);
-	FLRelease(_operationContext);
-	FLSuperDealloc();
+	mrc_release_(_action);
+	mrc_release_(_operationContext);
+	mrc_super_dealloc_();
 }
 @end

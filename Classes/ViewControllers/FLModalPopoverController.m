@@ -48,9 +48,9 @@ static NSMutableArray* s_stack = nil;
 
 - (void) dealloc
 {
-	FLRelease(_shield);
+	mrc_release_(_shield);
 	self.delegate = nil;
-	FLSuperDealloc();
+	mrc_super_dealloc_();
 }
 
 - (void) hideShieldView
@@ -58,13 +58,13 @@ static NSMutableArray* s_stack = nil;
 	if(_shield)
 	{
 		[_shield hideShield];
-		FLReleaseWithNil(_shield);
+		FLReleaseWithNil_(_shield);
 	}
 }
 
 - (void)dismissPopoverAnimated:(BOOL)animated
 {
-	FLAutorelease(FLReturnRetained(self));
+	mrc_autorelease_(retain_(self));
 	self.delegate = nil;
 	[self hideShieldView];
 	[s_stack removeObject:self];
@@ -75,7 +75,7 @@ static NSMutableArray* s_stack = nil;
 
 - (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
 {
-	FLAutorelease(FLReturnRetained(self));
+	mrc_autorelease_(retain_(self));
 	self.delegate = nil;
 	[self hideShieldView];
 	[s_stack removeObject:self];
@@ -112,7 +112,7 @@ static NSMutableArray* s_stack = nil;
 	animated:(BOOL) animated
 	isModal:(BOOL) isModal
 {
-	FLModalPopoverController* modalController = FLReturnAutoreleased([[FLModalPopoverController alloc] initWithContentViewController:contentController isModal:isModal]);
+	FLModalPopoverController* modalController = autorelease_([[FLModalPopoverController alloc] initWithContentViewController:contentController isModal:isModal]);
 	if(arrowDirections == 0)
 	{
 		rect = FLRectCenterRectInRect(viewController.view.bounds, CGRectMake(0,0,20,20));

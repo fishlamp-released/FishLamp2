@@ -93,20 +93,20 @@
 
 - (void) dealloc
 {
-	FLRelease(_itemNumber);
-	FLRelease(_processedImage);
-	FLRelease(_selectedImage);
-	FLRelease(_asset);
-	FLRelease(_imageFrame);
-	FLRelease(_thumbnailImageWidget);
-	FLSuperDealloc();
+	mrc_release_(_itemNumber);
+	mrc_release_(_processedImage);
+	mrc_release_(_selectedImage);
+	mrc_release_(_asset);
+	mrc_release_(_imageFrame);
+	mrc_release_(_thumbnailImageWidget);
+	mrc_super_dealloc_();
 }
 
 - (void) setAsset:(id<FLImageAsset>) asset
 {
 	FLAssertIsNotNil_(asset);
 	
-	FLAssignObject(_asset, asset);
+	FLRetainObject_(_asset, asset);
 	
 	[asset.thumbnail readFromStorage];
 	

@@ -30,7 +30,7 @@
 
 + (FLButtonBackgroundWidget*) buttonBackgroundWidget
 {
-	return FLReturnAutoreleased([[FLButtonBackgroundWidget alloc] initWithFrame:CGRectZero]);
+	return autorelease_([[FLButtonBackgroundWidget alloc] initWithFrame:CGRectZero]);
 }
 
 - (CGFloat) alpha
@@ -60,9 +60,9 @@
 
 - (void) dealloc
 {
-	FLRelease(_topGradient);
-	FLRelease(_bottomGradient);
-	FLSuperDealloc();
+	mrc_release_(_topGradient);
+	mrc_release_(_bottomGradient);
+	mrc_super_dealloc_();
 }
 
 @end

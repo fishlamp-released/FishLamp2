@@ -51,10 +51,10 @@ FLSynthesizeSingleton(FLMemoryMonitor)
 		[_timer invalidate];
 	}
 	
-	FLReleaseWithNil(_leftLabel);
-	FLReleaseWithNil(_rightLabel);
+	FLReleaseWithNil_(_leftLabel);
+	FLReleaseWithNil_(_rightLabel);
 
-	FLSuperDealloc();
+	mrc_super_dealloc_();
 }
 
 - (CGFloat) toMegabytes:(vm_size_t) size
@@ -73,7 +73,7 @@ FLSynthesizeSingleton(FLMemoryMonitor)
 
 		NSString* text1 = [[NSString alloc] initWithFormat:@"%0.1fmb", [self toMegabytes:_last]];
 		_leftLabel.text = text1;
-		FLReleaseWithNil(text1);
+		FLReleaseWithNil_(text1);
 		
 		CGFloat highWater = [self toMegabytes:_highWater];
 		NSString* text2 = [[NSString alloc] initWithFormat:@"%0.1fmb", highWater];
@@ -83,7 +83,7 @@ FLSynthesizeSingleton(FLMemoryMonitor)
 		}
 		
 		_rightLabel.text = text2;
-		FLReleaseWithNil(text2);
+		FLReleaseWithNil_(text2);
 		
 		FLRect superviewBounds = superview.bounds;
 		
@@ -178,9 +178,9 @@ FLSynthesizeSingleton(FLMemoryMonitor)
 	{
 		_started = NO;
 		[_leftLabel removeFromSuperview];
-		FLReleaseWithNil(_leftLabel);
+		FLReleaseWithNil_(_leftLabel);
 		[_rightLabel removeFromSuperview];
-		FLReleaseWithNil(_rightLabel);
+		FLReleaseWithNil_(_rightLabel);
 	}
 }
 
@@ -309,7 +309,7 @@ void printProcessorInfo()
 
 void report_memory(void) {
 
-//	FLBytesDataSizeFormatter* formatter = FLReturnAutoreleased([[FLBytesDataSizeFormatter alloc] init]);
+//	FLBytesDataSizeFormatter* formatter = autorelease_([[FLBytesDataSizeFormatter alloc] init]);
 
 	struct task_basic_info info;
 	mach_msg_type_number_t size = sizeof(info);

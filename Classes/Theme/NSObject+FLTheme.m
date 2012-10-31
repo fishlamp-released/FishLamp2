@@ -44,7 +44,7 @@ static void * const kListenerKey = (void*)&kListenerKey;
 - (FLThemeChangeListener*) themeChangeListener {
     FLThemeChangeListener* listener = [self _themeChangelistener];
     if(!listener) {
-        listener = FLReturnAutoreleased([[FLThemeChangeListener alloc] initWithObject:self]);
+        listener = autorelease_([[FLThemeChangeListener alloc] initWithObject:self]);
         self.themeChangeListener = listener;
     }
     return listener;
@@ -138,7 +138,7 @@ static void * const kListenerKey = (void*)&kListenerKey;
 - (void) dealloc {
     _object = nil;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    FLSuperDealloc();
+    mrc_super_dealloc_();
 }
 
 @end

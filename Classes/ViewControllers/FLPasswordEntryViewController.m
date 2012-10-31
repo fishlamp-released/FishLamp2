@@ -17,7 +17,7 @@
 {
 	if((self = [super init]))
 	{
-		_prompt = FLReturnRetained(prompt);
+		_prompt = retain_(prompt);
 		_options = options;
 		[self.dataSourceManager setDefaultDataSource:[NSMutableDictionary dictionary]];
 	}
@@ -26,13 +26,13 @@
 
 + (FLPasswordEntryViewController*) passwordEntryViewController:(NSString*) prompt withOptions:(FLPasswordEntryViewControllerOptionMask) options
 {
-	return FLReturnAutoreleased([[FLPasswordEntryViewController alloc] initWithPrompt:prompt withOptions:options]);
+	return autorelease_([[FLPasswordEntryViewController alloc] initWithPrompt:prompt withOptions:options]);
 }
 
 - (void) dealloc
 {
-	FLRelease(_prompt);
-	FLSuperDealloc();
+	mrc_release_(_prompt);
+	mrc_super_dealloc_();
 }
 
 - (void) willConstructWithTableLayoutBuilder:(FLTableViewLayoutBuilder*) builder

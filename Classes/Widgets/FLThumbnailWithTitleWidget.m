@@ -40,9 +40,9 @@
 
 - (void) dealloc
 {
-	FLRelease(_imageFrame);
-	FLRelease(_label);
-	FLSuperDealloc();
+	mrc_release_(_imageFrame);
+	mrc_release_(_label);
+	mrc_super_dealloc_();
 }
 
 - (void) setTitle:(NSString*) title

@@ -29,14 +29,14 @@
 
 - (void) dealloc
 {
-	FLRelease(_text);
-	FLRelease(_textDescriptor);
-	FLSuperDealloc();
+	mrc_release_(_text);
+	mrc_release_(_textDescriptor);
+	mrc_super_dealloc_();
 }
 
 - (void) setText:(NSString*) text
 {
-	FLAssignObject(_text, text);
+	FLRetainObject_(_text, text);
 	[self setNeedsDisplay];
 }
 
@@ -120,7 +120,7 @@
 
 - (void) setTextDescriptor:(FLTextDescriptor*) textDescriptor
 {
-	FLCopyObject(_textDescriptor, textDescriptor);
+	FLCopyObject_(_textDescriptor, textDescriptor);
     [self setNeedsDisplay];
 }
 

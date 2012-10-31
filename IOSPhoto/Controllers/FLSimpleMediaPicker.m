@@ -137,7 +137,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
                                                                              target:self
                                                                              action:@selector(done:)];
 	viewController.navigationItem.rightBarButtonItem = newItem;
-	FLReleaseWithNil(newItem);
+	FLReleaseWithNil_(newItem);
 }
 
 

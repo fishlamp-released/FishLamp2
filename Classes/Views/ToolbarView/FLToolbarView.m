@@ -49,7 +49,7 @@
     gradient.autoresizingMask = UIViewAutoresizingFlexibleEverything;
     gradient.alpha = 0.6f;
     self.backgroundView = gradient;
-    FLRelease(gradient);
+    mrc_release_(gradient);
 }
 
 - (void) addFramedBlackBackground
@@ -68,16 +68,16 @@
 
 + (FLToolbarView*) toolbarView
 {
-    return FLReturnAutoreleased([[FLToolbarView alloc] init]);
+    return autorelease_([[FLToolbarView alloc] init]);
 }
 
 - (void) dealloc
 {
-    FLRelease(_backgroundView);
-	FLRelease(_leftItems);
-	FLRelease(_centerItems);
-	FLRelease(_rightItems);
-	FLSuperDealloc();
+    mrc_release_(_backgroundView);
+	mrc_release_(_leftItems);
+	mrc_release_(_centerItems);
+	mrc_release_(_rightItems);
+	mrc_super_dealloc_();
 }
 
 - (void) layoutSubviews
@@ -133,7 +133,7 @@
         [_backgroundView removeFromSuperview];
     }
 
-    FLAssignObject(_backgroundView, backgroundView);
+    FLRetainObject_(_backgroundView, backgroundView);
     [self insertSubview:_backgroundView atIndex:0];
     [self setNeedsLayout];
 }

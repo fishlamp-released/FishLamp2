@@ -119,11 +119,11 @@ CGFloat kFrameSize = 0; //5.0f
 
 - (void) dealloc
 {
-	FLRelease(_thumbnailButton);
-	FLRelease(_backgroundThumbnail);
-	FLRelease(_foregroundThumbnail);
-	FLRelease(_scaledForegroundThumbnail);
-	FLSuperDealloc();
+	mrc_release_(_thumbnailButton);
+	mrc_release_(_backgroundThumbnail);
+	mrc_release_(_foregroundThumbnail);
+	mrc_release_(_scaledForegroundThumbnail);
+	mrc_super_dealloc_();
 }
 
 - (BOOL) ownsSenderOfEvent:(id) sender
@@ -138,13 +138,13 @@ CGFloat kFrameSize = 0; //5.0f
 
 - (void) clearThumbnails
 {	
-	FLReleaseWithNil(_backgroundThumbnail);
-	FLReleaseWithNil(_foregroundThumbnail);
+	FLReleaseWithNil_(_backgroundThumbnail);
+	FLReleaseWithNil_(_foregroundThumbnail);
 
 	if(_scaledForegroundThumbnail)
 	{
 		[_scaledForegroundThumbnail removeFromSuperview];
-		FLReleaseWithNil(_scaledForegroundThumbnail);
+		FLReleaseWithNil_(_scaledForegroundThumbnail);
 	}
 
 	[_thumbnailButton clearImages];
@@ -274,7 +274,7 @@ CGFloat kFrameSize = 0; //5.0f
 	if(!_frameViewFlags.showBothThumbnails && _scaledForegroundThumbnail)
 	{
 		[_scaledForegroundThumbnail removeFromSuperview];
-		FLReleaseWithNil(_scaledForegroundThumbnail);
+		FLReleaseWithNil_(_scaledForegroundThumbnail);
 	}	 
 }
 
@@ -294,14 +294,14 @@ CGFloat kFrameSize = 0; //5.0f
 
 - (void) setBackgroundThumbnail:(UIImage*) image
 {
-	FLAssignObject(_backgroundThumbnail, image);
+	FLRetainObject_(_backgroundThumbnail, image);
 	[self _updateLayout];
 	[self setNeedsLayout];	
 }
 
 - (void) setForegroundThumbnail:(UIImage*) image
 {
-	FLAssignObject(_foregroundThumbnail, image);
+	FLRetainObject_(_foregroundThumbnail, image);
 	[self _updateLayout];
 	[self setNeedsLayout];	
 	

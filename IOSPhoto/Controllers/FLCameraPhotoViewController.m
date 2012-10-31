@@ -24,8 +24,8 @@
 	{
         [self createActionContext];
     
-		_folder = FLReturnRetained(folder);
-		_array = FLReturnRetained(array);
+		_folder = retain_(folder);
+		_array = retain_(array);
 		self.title = NSLocalizedString(@"Lightbox", nil);
 		self.photoViewControllerDelegate = self;
 		
@@ -42,7 +42,7 @@
 	FLCameraExifViewController* controller = [[FLCameraExifViewController alloc] init];
 	controller.exifBuilder.masterExif = exif;
 	[self.navigationController pushViewController:controller animated:YES];
-	FLRelease(controller);
+	mrc_release_(controller);
 }
 
 - (void) viewDidLoad
@@ -55,15 +55,15 @@
 		target:self
 		action:@selector(showExif:)];
 	[self.navigationItem setRightBarButtonItem:exifButton];
-	FLRelease(exifButton);
+	mrc_release_(exifButton);
 
 }
 
 - (void) dealloc
 {
-	FLReleaseWithNil(_folder);
-	FLReleaseWithNil(_array);
-	FLSuperDealloc();
+	FLReleaseWithNil_(_folder);
+	FLReleaseWithNil_(_array);
+	mrc_super_dealloc_();
 }
 
 - (IBAction) rotateLeft:(id) sender
@@ -97,7 +97,7 @@
 				cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
 		
 	[alert presentViewControllerAnimated:YES];
-	FLReleaseWithNil(alert);
+	FLReleaseWithNil_(alert);
 }
 
 - (void) photoViewController:(FLPhotoViewController*) photoViewController 
@@ -158,7 +158,7 @@ FLAssertFailed_v(@"incomment and fix this");
 //			  folder:_folder			 
 //			  saveOptions:options];
 //	  [action addOperation:operation];
-//	  FLReleaseWithNil(operation);
+//	  FLReleaseWithNil_(operation);
 	
 	return action;
 }

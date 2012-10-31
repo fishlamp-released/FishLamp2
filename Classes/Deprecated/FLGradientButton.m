@@ -171,9 +171,9 @@ void FLGradientButtonColorLightGray(id button)
 
 - (void) dealloc
 {
-    FLRelease(_shapeWidget);
-	FLRelease(_backgroundWidget);
-	FLSuperDealloc();
+    mrc_release_(_shapeWidget);
+	mrc_release_(_backgroundWidget);
+	mrc_super_dealloc_();
 }
 
 - (void) setHighlighted:(BOOL) highlighted
@@ -219,7 +219,7 @@ void FLGradientButtonColorLightGray(id button)
 		[_backgroundWidget removeFromParent];
 	}
 	widget.contentMode = FLContentModeFill;
-	FLAssignObject(_backgroundWidget, widget);
+	FLRetainObject_(_backgroundWidget, widget);
 	[self.shapeWidget addWidget:_backgroundWidget];
 	[self setNeedsLayout];
 }
@@ -233,7 +233,7 @@ void FLGradientButtonColorLightGray(id button)
 		[_backgroundWidget removeFromParent];
 	}
 	widget.contentMode = FLContentModeFill;
-	FLAssignObject(_shapeWidget, widget);
+	FLRetainObject_(_shapeWidget, widget);
     FLAssertIsNotNil_(self.rootWidget);
 
     [self.rootWidget addWidget:_shapeWidget];
@@ -265,12 +265,12 @@ void FLGradientButtonColorLightGray(id button)
 
 + (FLGradientButton*) gradientButton:(FLButtonColorizerDeprecated) color	title:(NSString*) title target:(id) target action:(SEL) action
 {
-   return FLReturnAutoreleased([[FLGradientButton alloc] initWithColor:color title:title target:target action:action]);
+   return autorelease_([[FLGradientButton alloc] initWithColor:color title:title target:target action:action]);
 }
 
 + (FLGradientButton*) gradientButton:(NSString*) title target:(id) target action:(SEL) action
 {
-   return FLReturnAutoreleased([[FLGradientButton alloc] initWithTitle:title target:target action:action]);
+   return autorelease_([[FLGradientButton alloc] initWithTitle:title target:target action:action]);
 }
 
 @end
@@ -288,12 +288,12 @@ void FLGradientButtonColorLightGray(id button)
 
 + (FLToolbarButtonDeprecated*) toolbarButton:(FLButtonColorizerDeprecated) color title:(NSString*) title target:(id) target action:(SEL) action
 {
-   return FLReturnAutoreleased([[FLToolbarButtonDeprecated alloc] initWithColor:color title:title target:target action:action]);
+   return autorelease_([[FLToolbarButtonDeprecated alloc] initWithColor:color title:title target:target action:action]);
 }
 
 + (FLToolbarButtonDeprecated*) toolbarButton:(NSString*) title target:(id) target action:(SEL) action
 {
-   return FLReturnAutoreleased([[FLToolbarButtonDeprecated alloc] initWithTitle:title target:target action:action]);
+   return autorelease_([[FLToolbarButtonDeprecated alloc] initWithTitle:title target:target action:action]);
 }
 
 - (void) updateImageAndTextViewPositions
@@ -414,12 +414,12 @@ void FLGradientButtonColorLightGray(id button)
 
 + (FLBackButtonDeprecated*) backButton:(FLButtonColorizerDeprecated) color	title:(NSString*) title target:(id) target action:(SEL) action
 {
-	return FLReturnAutoreleased([[FLBackButtonDeprecated alloc] initWithColor:color title:title target:target action:action]);
+	return autorelease_([[FLBackButtonDeprecated alloc] initWithColor:color title:title target:target action:action]);
 }
 
 + (FLBackButtonDeprecated*) backButton:(NSString*) title target:(id) target action:(SEL) action
 {
-	return FLReturnAutoreleased([[FLBackButtonDeprecated alloc] initWithTitle:title target:target action:action]);
+	return autorelease_([[FLBackButtonDeprecated alloc] initWithTitle:title target:target action:action]);
 }
 @end
 
@@ -445,12 +445,12 @@ void FLGradientButtonColorLightGray(id button)
 
 + (FLMenuButtonDeprecated*) menuButton:(FLButtonColorizerDeprecated) color	title:(NSString*) title target:(id) target action:(SEL) action
 {
-	return FLReturnAutoreleased([[FLMenuButtonDeprecated alloc] initWithColor:color title:title target:target action:action]);
+	return autorelease_([[FLMenuButtonDeprecated alloc] initWithColor:color title:title target:target action:action]);
 }
 
 + (FLMenuButtonDeprecated*) menuButton:(NSString*) title target:(id) target action:(SEL) action
 {
-	return FLReturnAutoreleased([[FLMenuButtonDeprecated alloc] initWithTitle:title target:target action:action]);
+	return autorelease_([[FLMenuButtonDeprecated alloc] initWithTitle:title target:target action:action]);
 }
 
 - (void) setImage:(UIImage*) image
@@ -482,11 +482,11 @@ void FLGradientButtonColorLightGray(id button)
 }
 
 + (FLSmallButtonDeprecated*) smallButton:(FLButtonColorizerDeprecated) color title:(NSString*) title target:(id) target action:(SEL) action {
-	return FLReturnAutoreleased([[FLSmallButtonDeprecated alloc] initWithColor:color title:title target:target action:action]);
+	return autorelease_([[FLSmallButtonDeprecated alloc] initWithColor:color title:title target:target action:action]);
 }
 
 + (FLSmallButtonDeprecated*) smallButton:(NSString*) title target:(id) target action:(SEL) action {
-	return FLReturnAutoreleased([[FLSmallButtonDeprecated alloc] initWithTitle:title target:target action:action]);
+	return autorelease_([[FLSmallButtonDeprecated alloc] initWithTitle:title target:target action:action]);
 }
 
 @end
@@ -521,13 +521,13 @@ void FLGradientButtonColorLightGray(id button)
                                image:(UIImage*) image
                               target:(id) target
                               action:(SEL) action {
-	return FLReturnAutoreleased([[FLFatButtonDeprecated alloc] initWithColor:color title:title image:image target:target action:action]);
+	return autorelease_([[FLFatButtonDeprecated alloc] initWithColor:color title:title image:image target:target action:action]);
 }
 
 + (FLFatButtonDeprecated*) fatButton:(NSString*) title
                                image:(UIImage*) image
                               target:(id) target
                               action:(SEL) action {
-	return FLReturnAutoreleased([[FLFatButtonDeprecated alloc] initWithColor:nil title:title image:image target:target action:action]);
+	return autorelease_([[FLFatButtonDeprecated alloc] initWithColor:nil title:title image:image target:target action:action]);
 }
 @end

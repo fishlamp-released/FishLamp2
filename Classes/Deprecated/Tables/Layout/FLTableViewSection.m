@@ -37,10 +37,10 @@
 
 - (void) dealloc
 {
-	FLReleaseWithNil(_title);
-	FLReleaseWithNil(_cells);
-	FLRelease(_headerView);
-	FLSuperDealloc();
+	FLReleaseWithNil_(_title);
+	FLReleaseWithNil_(_cells);
+	mrc_release_(_headerView);
+	mrc_super_dealloc_();
 }
 
 - (NSUInteger) cellCount

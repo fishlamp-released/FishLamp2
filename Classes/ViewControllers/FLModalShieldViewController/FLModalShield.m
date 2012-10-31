@@ -76,17 +76,17 @@
 - (void) hideShield {
 	if(_barShield) {
 		[_barShield removeFromSuperview];
-		FLReleaseWithNil(_barShield);
+		FLReleaseWithNil_(_barShield);
 	}
 	if(_viewShield) {
 		[_viewShield removeFromSuperview];
-		FLReleaseWithNil(_viewShield);
+		FLReleaseWithNil_(_viewShield);
 	}
 }
 
 - (void) dealloc {
 	[self hideShield];
-	FLSuperDealloc();
+	mrc_super_dealloc_();
 }
 
 - (NSArray*) passThroughViewsForPopover {
@@ -110,8 +110,8 @@
 }
 
 - (void)doneRemoving:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context {
-	[((__bridge_fl UIView*) context) removeFromSuperview];
-    FLRelease(((__bridge_fl UIView*) context));
+	UIView* view = autorelease_(bridge_(UIView*, context));
+    [view removeFromSuperview];
 }
 
 - (void) drawAnimationAt:(FLPoint) pt {
@@ -121,10 +121,10 @@
         FLAssertIsNotNil_(s_image);
         
         s_image = [s_image colorizeImage:[UIColor darkGrayColor] blendMode:kCGBlendModeOverlay];
-        FLRetain(s_image);
+        mrc_retain_(s_image);
 	}
 
-	UIImageView* view = FLReturnAutoreleased([[UIImageView alloc] initWithImage:s_image]);
+	UIImageView* view = autorelease_([[UIImageView alloc] initWithImage:s_image]);
 	
 	view.frame = FLRectSetSizeWithSize( view.frame, s_image.size);
 	view.frame = FLRectCenterOnPoint( view.frame, pt);

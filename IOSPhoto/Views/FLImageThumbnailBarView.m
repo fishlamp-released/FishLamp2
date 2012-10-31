@@ -88,9 +88,9 @@
 
 - (void) dealloc
 {
-	FLRelease(_selectedThumbnail);
-	FLRelease(_thumbnails);
-	FLSuperDealloc();
+	mrc_release_(_selectedThumbnail);
+	mrc_release_(_thumbnails);
+	mrc_super_dealloc_();
 }
 
 - (BOOL) hasAllThumbnails
@@ -192,7 +192,7 @@
 			FLThumbnailBarCell* cell = [[FLThumbnailBarCell alloc] init];
 		    [self.rootWidget addWidget:cell];
             [_thumbnails addObject:cell];
-			FLRelease(cell);
+			mrc_release_(cell);
 		}
 	}
 	else if(_thumbnails.count > thumbcount)
@@ -430,9 +430,9 @@
 
 - (void) dealloc
 {
-	FLRelease(_label);
-	FLRelease(_view);
-	FLSuperDealloc();
+	mrc_release_(_label);
+	mrc_release_(_view);
+	mrc_super_dealloc_();
 }
 
 @end

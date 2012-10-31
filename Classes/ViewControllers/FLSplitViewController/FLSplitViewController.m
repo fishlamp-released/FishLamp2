@@ -34,14 +34,14 @@
 + (FLSplitViewController*) splitViewController:(UIViewController*) topViewController
                           bottomViewController:(UIViewController*) bottomViewController {
    
-     return FLReturnAutoreleased([[[self class] alloc] initWithTopViewController:topViewController bottomViewController:bottomViewController]);   
+     return autorelease_([[[self class] alloc] initWithTopViewController:topViewController bottomViewController:bottomViewController]);   
 }
 
 - (void) dealloc {
-    FLRelease(_topViewController);
-    FLRelease(_bottomViewController);
-    FLRelease(_splitterView);
-    FLSuperDealloc();
+    mrc_release_(_topViewController);
+    mrc_release_(_bottomViewController);
+    mrc_release_(_splitterView);
+    mrc_super_dealloc_();
 }
 
 - (void) willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
@@ -97,7 +97,7 @@
 {
     [super viewDidUnload];
 
-    FLReleaseWithNil(_splitterView);
+    FLReleaseWithNil_(_splitterView);
     
     // Release any retained subviews of the main view.
 }

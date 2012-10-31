@@ -55,8 +55,8 @@
 
 - (void) dealloc
 {
-	FLRelease(_highlightedView);
-	FLSuperDealloc();
+	mrc_release_(_highlightedView);
+	mrc_super_dealloc_();
 }
 
 #define Scale 1.2
@@ -124,7 +124,7 @@
 	else
 	{
 		[_highlightedView removeFromSuperview];
-		FLReleaseWithNil(_highlightedView);
+		FLReleaseWithNil_(_highlightedView);
 	}
 }
 

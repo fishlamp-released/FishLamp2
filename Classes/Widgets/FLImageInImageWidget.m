@@ -25,7 +25,7 @@
 
 + (FLImageInImageWidget*) imageInImageWidget:(FLRect) frame
 {
-	return FLReturnAutoreleased([[FLImageInImageWidget alloc] initWithFrame:frame]);
+	return autorelease_([[FLImageInImageWidget alloc] initWithFrame:frame]);
 }
 
 - (void) setTopImageWidget:(FLImageWidget*) widget
@@ -34,15 +34,15 @@
 	{
 		[_topImageWidget removeFromParent];
 	}
-	FLAssignObject(_topImageWidget, widget);
+	FLRetainObject_(_topImageWidget, widget);
 	[self addWidget:widget];
 	[self setNeedsLayout];
 }
 
 - (void) dealloc
 {
-	FLRelease(_topImageWidget);
-	FLSuperDealloc();
+	mrc_release_(_topImageWidget);
+	mrc_super_dealloc_();
 }
 
 - (void) clear

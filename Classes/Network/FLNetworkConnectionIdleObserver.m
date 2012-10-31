@@ -95,7 +95,7 @@
         [self performBlockOnMainThread:^{
             if(_alertViewController) {
                 [_alertViewController dismissViewControllerAnimated:YES];
-                FLReleaseWithNil(_alertViewController);
+                FLReleaseWithNil_(_alertViewController);
             }
         }];
 
@@ -107,10 +107,10 @@
     [self hideWarning];
 
 #if FL_MRC 
-    FLRelease(_onFormatWarningString);
-    FLRelease(_onCreateAlert);
-    FLRelease(_alertViewController);
-    FLSuperDealloc();
+    mrc_release_(_onFormatWarningString);
+    mrc_release_(_onCreateAlert);
+    mrc_release_(_alertViewController);
+    mrc_super_dealloc_();
 #endif
 }
 

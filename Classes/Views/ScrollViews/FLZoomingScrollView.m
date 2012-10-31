@@ -82,9 +82,9 @@ FLSynthesizeStructProperty(animating, setAnimating, BOOL, _zoomingScrollViewFlag
 - (void) dealloc
 {
 	self.zoomingScrollViewDelegate = nil;
-	FLReleaseWithNil(_zoomedView);
-	FLReleaseWithNil(_lastTouch);
-	FLSuperDealloc();
+	FLReleaseWithNil_(_zoomedView);
+	FLReleaseWithNil_(_lastTouch);
+	mrc_super_dealloc_();
 }
 
 - (BOOL) isZoomingScrollViewZooming
@@ -99,7 +99,7 @@ FLSynthesizeStructProperty(animating, setAnimating, BOOL, _zoomingScrollViewFlag
 		if(_zoomedView)
 		{
 			[_zoomedView removeFromSuperview];
-			FLReleaseWithNil(_zoomedView);
+			FLReleaseWithNil_(_zoomedView);
 		}
 		
 		if(zoomedView)
@@ -107,7 +107,7 @@ FLSynthesizeStructProperty(animating, setAnimating, BOOL, _zoomingScrollViewFlag
 			_zoomedView.multipleTouchEnabled = YES;
 			_zoomedView.userInteractionEnabled = YES;
 			
-			_zoomedView = FLReturnRetained(zoomedView);
+			_zoomedView = retain_(zoomedView);
 			[self addSubview:_zoomedView];
 			_zoomedView.transform = CGAffineTransformIdentity;
 			
@@ -271,7 +271,7 @@ FLSynthesizeStructProperty(animating, setAnimating, BOOL, _zoomingScrollViewFlag
 	{
 		FLCallbackObject* cb = (FLCallbackObject*) CFBridgingRelease(context);
 		[cb invoke:self];
-		FLRelease(cb);
+		mrc_release_(cb);
 	}
 
 	
@@ -466,7 +466,7 @@ FLSynthesizeStructProperty(animating, setAnimating, BOOL, _zoomingScrollViewFlag
 		[_zoomingScrollViewDelegate zoomingScrollView:self userTappedView:_zoomedView withTouch:_lastTouch];
 	}
 	
-	FLReleaseWithNil(_lastTouch);
+	FLReleaseWithNil_(_lastTouch);
 }
 
 #define BorderBuffer 0.0f
@@ -642,7 +642,7 @@ FLSynthesizeStructProperty(animating, setAnimating, BOOL, _zoomingScrollViewFlag
 		_zoomingScrollViewFlags.atRightEdge = self.atRightEdge;
 		_zoomingScrollViewFlags.atLeftEdge = self.atLeftEdge;
 		_zoomingScrollViewFlags.inEdgedScrollingMode = NO;
-		FLReleaseWithNil(_touches);
+		FLReleaseWithNil_(_touches);
 		_touches = [[NSMutableArray alloc] init];
 	}
 	
@@ -725,7 +725,7 @@ FLSynthesizeStructProperty(animating, setAnimating, BOOL, _zoomingScrollViewFlag
 			_lastSingleTap = 0; // disable double tap for next tap
 		}
 		
-		FLReleaseWithNil(_touches);
+		FLReleaseWithNil_(_touches);
 	}
 	
 //	  FLLog(@"touches ended: touchCount: %d, inTouches count: %d", _touchCount, touches.count);
@@ -773,7 +773,7 @@ FLSynthesizeStructProperty(animating, setAnimating, BOOL, _zoomingScrollViewFlag
 			}
 			else
 			{
-				FLAssignObject(_lastTouch, touch);
+				FLRetainObject_(_lastTouch, touch);
 				[self performSelector:@selector(_singleTap:) withObject:nil afterDelay:kDoubleTapInterval];
 			}
 			

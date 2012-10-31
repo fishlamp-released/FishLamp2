@@ -22,15 +22,15 @@
 }
 
 - (void) dealloc {
-    FLRelease(_label);
-    FLRelease(_text);
-    FLSuperDealloc();
+    mrc_release_(_label);
+    mrc_release_(_text);
+    mrc_super_dealloc_();
 }
 
 //- (void) cellWillAppearInSuperview:(UIView *)superview  viewController:(FLGridViewController*) viewController  {
 //    _[viewController.objectCache uncacheObject:&_label reuseIdentifier:@"label"
 //        createBlock:^{
-//            UILabel* label = FLReturnAutoreleased([[UILabel alloc] initWithFrame:self.frame]);
+//            UILabel* label = autorelease_([[UILabel alloc] initWithFrame:self.frame]);
 //            label.font = [UIFont systemFontOfSize:[UIFont systemFontSize]];
 //            label.textColor = [UIColor whiteColor];
 //            label.backgroundColor = [UIColor clearColor];

@@ -75,10 +75,10 @@
 - (void) dealloc {
     FLAssert_v([NSThread currentThread] == [NSThread mainThread], @"Not on main thread");
 
-    FLRelease(_progressProxy);
-    FLRelease(_onHideProgress);
-    FLRelease(_onShowProgress);
-    FLSuperDealloc();
+    mrc_release_(_progressProxy);
+    mrc_release_(_onHideProgress);
+    mrc_release_(_onShowProgress);
+    mrc_super_dealloc_();
 }
 #endif
 
@@ -99,7 +99,7 @@
 
 - (UIView*) createView {
     if(_viewClass) {
-        return FLReturnAutoreleased([[_viewClass alloc] initWithFrame:CGRectZero]);
+        return autorelease_([[_viewClass alloc] initWithFrame:CGRectZero]);
     }
     
     return [super createView];
@@ -110,7 +110,7 @@
 }
 
 + (id) progressViewController:(Class) viewClass {
-    return FLReturnAutoreleased([[[self class] alloc] initWithProgressViewClass:viewClass]);
+    return autorelease_([[[self class] alloc] initWithProgressViewClass:viewClass]);
 }
 
 + (id) progressViewController:(Class) viewClass 
@@ -143,7 +143,7 @@
     FLAssertIsNotNil_(_onHideProgress);
     if(_onHideProgress) {
         _onHideProgress(self);
-        FLReleaseWithNil(_onHideProgress);
+        FLReleaseWithNil_(_onHideProgress);
     }
 }
 
@@ -257,28 +257,28 @@
 - (id) initWithView:(UIView*) view {
     self = [self init];
     if(self) {
-        FLAssignObject(_progressView, view);
+        FLRetainObject_(_progressView, view);
     }
     
     return self;
 }
 
 + (FLProgressViewOwner*) progressViewOwner:(UIView*) view {
-    return FLReturnAutoreleased([[FLProgressViewOwner alloc] initWithView:view]);
+    return autorelease_([[FLProgressViewOwner alloc] initWithView:view]);
 }
 
 + (FLProgressViewOwner*) progressViewOwner {
-    return FLReturnAutoreleased([[FLProgressViewOwner alloc] init]);
+    return autorelease_([[FLProgressViewOwner alloc] init]);
 }
 
 - (void) dealloc  {
     FLAssert_v([NSThread currentThread] == [NSThread mainThread], @"Not on main thread");
     [_progressView removeFromSuperview];
 #if FL_MRC    
-    FLRelease(_onShowProgress);
-    FLRelease(_onHideProgress);
-    FLRelease(_progressView);
-    FLSuperDealloc();
+    mrc_release_(_onShowProgress);
+    mrc_release_(_onHideProgress);
+    mrc_release_(_progressView);
+    mrc_super_dealloc_();
 #endif
 }
 

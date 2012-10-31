@@ -20,7 +20,7 @@
 		self.barStyle = UIBarStyleBlack;
 		self.translucent = YES;
         
-        _buttonbar = FLReturnRetained(buttonbarView);
+        _buttonbar = retain_(buttonbarView);
         [self addSubview:_buttonbar];
     }
 
@@ -29,13 +29,13 @@
 
 - (id) initWithFrame:(FLRect) frame
 {
-	return [self initWithFrame:frame buttonbarView:FLReturnAutoreleased([[FLToolbarButtonbarView alloc] initWithFrame:frame])];
+	return [self initWithFrame:frame buttonbarView:autorelease_([[FLToolbarButtonbarView alloc] initWithFrame:frame])];
 }
 
 - (void) dealloc
 {
-	FLRelease(_buttonbar);
-	FLSuperDealloc();
+	mrc_release_(_buttonbar);
+	mrc_super_dealloc_();
 }
 
 - (void) layoutSubviews

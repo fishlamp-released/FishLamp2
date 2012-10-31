@@ -25,14 +25,14 @@
 
 + (FLViewOwner*) viewOwner:(UIView*) view
 {
-	return FLReturnAutoreleased([[FLViewOwner alloc] initWithView:view]);
+	return autorelease_([[FLViewOwner alloc] initWithView:view]);
 }
 
 - (void) dealloc
 {
 	[_view removeFromSuperview];
-	FLReleaseWithNil(_view);
-	FLSuperDealloc();
+	FLReleaseWithNil_(_view);
+	mrc_super_dealloc_();
 }
 
 @end

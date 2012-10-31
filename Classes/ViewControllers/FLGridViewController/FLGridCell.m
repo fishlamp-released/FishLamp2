@@ -60,10 +60,10 @@
         [self.objectCache cacheObject:_view];
     }
 
-    FLRelease(_viewController);
-    FLRelease(_view);
-    FLRelease(_dataRef);
-    FLSuperDealloc();
+    mrc_release_(_viewController);
+    mrc_release_(_view);
+    mrc_release_(_dataRef);
+    mrc_super_dealloc_();
 }
 
 - (UIView*) superview {
@@ -104,18 +104,18 @@
 }
 
 - (UIView*) createViewForGridCellState:(FLGridCellState) state {
-    return FLReturnAutoreleased([[[self viewClassForCellState:state] alloc] initWithFrame:self.frame]);
+    return autorelease_([[[self viewClassForCellState:state] alloc] initWithFrame:self.frame]);
 }
 //
 //- (void) setView:(UIView*) view {
 //    
 //    if(_view) {
 //        [self.objectCache cacheObject:_view];
-//        FLReleaseWithNil(_view);
+//        FLReleaseWithNil_(_view);
 //    }
 //    
 //    if(view) {
-//        FLAssignObject(_view, view);
+//        FLRetainObject_(_view, view);
 //        if(_view.superview != self.superview) {
 //            [self.superview addSubview:view];
 //        }
@@ -185,7 +185,7 @@
                 [self finishChangingVisibleView];
             };
             
-            block(prevView, newView, FLReturnAutoreleased([callback copy]));
+            block(prevView, newView, autorelease_([callback copy]));
         }
         else {
             [self.objectCache cacheObject:prevView];

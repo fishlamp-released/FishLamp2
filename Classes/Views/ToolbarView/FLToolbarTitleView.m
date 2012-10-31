@@ -25,8 +25,8 @@
 }
 
 - (void) dealloc {
-    FLRelease(_textLabel);
-    FLSuperDealloc();
+    mrc_release_(_textLabel);
+    mrc_super_dealloc_();
 }
 
 - (void) setGrayText {
@@ -36,7 +36,7 @@
 }
 
 + (FLToolbarTitleView*) toolbarTitleView {
-    return FLReturnAutoreleased([[FLToolbarTitleView alloc] init]);
+    return autorelease_([[FLToolbarTitleView alloc] init]);
 }
 
 - (void) setSubviewSize:(FLSize) size {

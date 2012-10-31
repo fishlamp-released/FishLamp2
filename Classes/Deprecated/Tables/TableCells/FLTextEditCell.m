@@ -60,11 +60,11 @@ static BOOL s_editingMode;
 - (void) dealloc
 {
 	[self hideWarningLabel];
-	FLRelease(_warningIcon);
-	FLRelease(_warningLabel);
-	FLRelease(_helpTextLabel);
-	FLRelease(_countDownLabel);
-	FLSuperDealloc();
+	mrc_release_(_warningIcon);
+	mrc_release_(_warningLabel);
+	mrc_release_(_helpTextLabel);
+	mrc_release_(_countDownLabel);
+	mrc_super_dealloc_();
 }
 
 - (void) clear
@@ -80,7 +80,7 @@ static BOOL s_editingMode;
 	if(_helpTextLabel)
 	{
 		[_helpTextLabel removeFromSuperview];
-		FLReleaseWithNil(_helpTextLabel);
+		FLReleaseWithNil_(_helpTextLabel);
 	}
 }
 
@@ -190,7 +190,7 @@ static BOOL s_editingMode;
 	if(_countDownLabel)
 	{
 		[_countDownLabel removeFromSuperview];
-		FLReleaseWithNil(_countDownLabel);
+		FLReleaseWithNil_(_countDownLabel);
 	}
 }
 
@@ -221,7 +221,7 @@ static BOOL s_editingMode;
 //	  if(_warningIcon)
 //	  {
 //		  [_warningIcon removeFromSuperview];
-//		  FLReleaseWithNil(_warningIcon);
+//		  FLReleaseWithNil_(_warningIcon);
 //	  }
 }
 
@@ -257,7 +257,7 @@ static BOOL s_editingMode;
 //	  {
 //		  [_viewAnimator removeFromSuperview:_warningLabel];
 //			  
-//		  FLReleaseWithNil(_warningLabel);
+//		  FLReleaseWithNil_(_warningLabel);
 //	  }
 }
 

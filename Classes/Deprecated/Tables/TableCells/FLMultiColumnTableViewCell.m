@@ -28,7 +28,7 @@
 		widget.style = FLMultiColumnWidgetStyleDynamic;
 		widget.resizeColumnsToFit = YES;
 		[super setWidget:widget];
-		FLRelease(widget);
+		mrc_release_(widget);
 	}
 	
 	return self;

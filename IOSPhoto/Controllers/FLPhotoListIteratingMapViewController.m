@@ -14,9 +14,9 @@
 
 - (void) dealloc
 {
-	FLRelease(_prevButton);
-	FLRelease(_nextButton);
-	FLSuperDealloc();
+	mrc_release_(_prevButton);
+	mrc_release_(_nextButton);
+	mrc_super_dealloc_();
 }
 
 - (void) _next:(id) sender
