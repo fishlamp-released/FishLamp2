@@ -19,17 +19,15 @@
 - (id) init {
     self = [super init];
 	if(self) {
-		self.dataEncoder = [FLSoapDataEncoder instance];
-
         [self appendDefaultXmlDeclaration];
         _envelopeElement = [[FLXmlElement alloc] initWithName:@"soap:Envelope"];
         [_envelopeElement setAttribute:@"http://www.w3.org/2001/XMLSchema-instance"  forKey:@"xmlns:xsi"];
         [_envelopeElement setAttribute:@"http://www.w3.org/2001/XMLSchema" forKey:@"xmlns:xsd"];
 		[_envelopeElement setAttribute:@"http://schemas.xmlsoap.org/soap/envelope/"forKey:@"xmlns:soap" ];
-        [self append:_envelopeElement];
+        [self addElement:_envelopeElement];
         
         _bodyElement = [[FLXmlElement alloc] initWithName:@"soap:Body"];
-        [_envelopeElement append:_bodyElement];
+        [_envelopeElement addElement:_bodyElement];
 	}
 	return self;
 }
@@ -63,14 +61,14 @@
 
     FLXmlElement* element = [FLXmlElement xmlElement:functionName];
     [element setAttribute:xmlNamespace forKey:@"xmlns"];
-    [element addObjectAsXML:object];
-    [self append:element];
+    [element addObjectAsXML:object withDataEncoder:[FLSoapDataEncoder instance]];
+    [self addElement:element];
 }
 
 - (void) addSoapParameter:(NSString*) name value:(NSString*) value {
     FLXmlElement* element = [FLXmlElement xmlElement:name];
     [element appendLine:value];
-	[self append:element];
+	[self addElement:element];
 }
 
 - (void) addSoapParameters:(NSDictionary*) parameters {

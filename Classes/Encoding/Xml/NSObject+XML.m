@@ -15,6 +15,7 @@
 @implementation NSObject (XML)
 
 - (void) appendXmlToStringBuilder:(FLXmlStringBuilder*) stringBuilder
+                  withDataEncoder:(id<FLDataEncoder>) dataEncoder
             propertyDescription:(FLPropertyDescription*) description
 {
 	FLObjectDescriber* objectDescriber = [[self class] sharedObjectDescriber];
@@ -23,13 +24,13 @@
 		id object = [self valueForKey:key];
 		if(object) {
             FLXmlElement* element = [FLXmlElement xmlElement:key];
-            [stringBuilder append:element];
+            [stringBuilder addElement:element];
             FLPropertyDescription* desc = [objectDescriber propertyDescriberForPropertyName:key];
             if(desc.propertyType == FLDataTypeObject) {
-                [object appendXmlToStringBuilder:element propertyDescription:desc];
+                [object appendXmlToStringBuilder:element withDataEncoder:dataEncoder propertyDescription:desc];
             }
             else {
-                [element appendElementValueWithObject:object propertyDescription:desc];
+                [element appendElementValueWithObject:object withDataEncoder:dataEncoder propertyDescription:desc];
             }
         }
 	}
@@ -107,6 +108,7 @@
 @implementation NSArray (XML)
 
 - (void) streamSelfToXmlBuilder:(FLXmlStringBuilder*) stringBuilder
+withDataEncoder:(id<FLDataEncoder>) dataEncoder
             propertyDescription:(FLPropertyDescription*) description {
     
 	if(description && self.count) {
@@ -116,8 +118,8 @@
 			FLPropertyDescription* elementDesc = [arrayTypes lastObject];
 			for(id obj in self){
                 FLXmlElement* element = [FLXmlElement xmlElement:elementDesc.propertyName];
-                [element addObjectAsXML:obj propertyDescription:elementDesc];
-                [stringBuilder append:element];
+                [element addObjectAsXML:obj withDataEncoder:dataEncoder propertyDescription:elementDesc];
+                [stringBuilder addElement:element];
 			}
 		}
 		else {
@@ -128,8 +130,8 @@
 					if([obj isKindOfClass:elementDesc.propertyClass]) {
 
                         FLXmlElement* element = [FLXmlElement xmlElement:elementDesc.propertyName];
-                        [element addObjectAsXML:obj propertyDescription:elementDesc];
-                        [stringBuilder append:element];
+                        [element addObjectAsXML:obj withDataEncoder:dataEncoder propertyDescription:elementDesc];
+                        [stringBuilder addElement:element];
 						break;
 					}
 				}
@@ -200,58 +202,54 @@
 
 @implementation FLXmlStringBuilder (NSObjectXML)
 
-- (void) addObjectAsXML:(id) object {
-	[object appendXmlToStringBuilder:self propertyDescription:nil];
+- (void) addObjectAsXML:(id) object 
+        withDataEncoder:(id<FLDataEncoder>) dataEncoder {
+	[object appendXmlToStringBuilder:self withDataEncoder:dataEncoder propertyDescription:nil];
 }
 
 - (void) addObjectAsXML:(id) object
-         propertyDescription:(FLPropertyDescription*) description {
+        withDataEncoder:(id<FLDataEncoder>) dataEncoder
+    propertyDescription:(FLPropertyDescription*) description {
 	
     if(description.propertyType == FLDataTypeObject) {
-		[object appendXmlToStringBuilder:self propertyDescription:description];
+		[object appendXmlToStringBuilder:self withDataEncoder:dataEncoder propertyDescription:description];
 	} 
     else {
-		[self appendElementValueWithObject:object propertyDescription:description];
+		[self appendElementValueWithObject:object withDataEncoder:dataEncoder propertyDescription:description];
 	}
 }
 
 - (void) appendElementValueWithObject:(id) object
+                      withDataEncoder:(id<FLDataEncoder>) dataEncoder
                   propertyDescription:(FLPropertyDescription*) description {
+
+    if(object) {
+        FLConfirmNotNil_v(dataEncoder, @"Xml String builder requires a data encoder");
     
-	if(object) {
 		NSString* string = nil;
-        
-        if(self.dataEncoder) {
-            [self.dataEncoder encodeDataToString:object forType:description.propertyType outEncodedString:&string];
-        }
-        else {
-            string = object;
-            FLConfirm_([string isKindOfClass:[NSString class]]);
-        }
-        
-		
-        @try{
-            [self appendIndentedBlock:^{
-                [self appendLine:string];
-            }];
-		}
-        @finally {
-			mrc_release_(string);
-		}
+        [dataEncoder encodeDataToString:object forType:description.propertyType outEncodedString:&string];
+        FLAssertNotNil_(string);
+        FLConfirm_([string isKindOfClass:[NSString class]]);
+        [self appendIndentedBlock:^{
+            [self appendLine:string];
+        }];
 	}
 }
 
 - (void) addObjectAsXML:(id) object
+        withDataEncoder:(id<FLDataEncoder>) dataEncoder
     propertyDescription:(FLPropertyDescription*) description
-    elementName:(NSString*) elementName
+            elementName:(NSString*) elementName
 {
 	if(object) {
+        FLConfirmNotNil_v(dataEncoder, @"Xml String builder requires a data encoder");
+    
 		NSString* string = nil;
-		[self.dataEncoder encodeDataToString:object forType:description.propertyType outEncodedString:&string];
+		[dataEncoder encodeDataToString:object forType:description.propertyType outEncodedString:&string];
 		@try {
             FLXmlElement* element = [FLXmlElement xmlElement:elementName];
             [element appendString:string];
-            [self append:element];
+            [self addElement:element];
 		}
 		@finally {
 			mrc_release_(string);

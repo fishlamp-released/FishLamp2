@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import "FishLampCore.h"
-#import "FLDataEncoder.h"
 #import "FLStringBuilder.h"
 
 // xml
@@ -20,10 +19,7 @@
 
 @interface FLXmlStringBuilder : FLStringBuilder {
 @private
-	id<FLDataEncoder> _dataEncoder;
 }
-
-@property (readwrite, strong, nonatomic) id<FLDataEncoder> dataEncoder;
 
 + (FLXmlStringBuilder*) xmlStringBuilder;
 
@@ -33,10 +29,7 @@
 
 - (void) appendDefaultXmlDeclaration;  
 
-//- (FLXmlElement*) addElement:(NSString*) openTag closeTag:(NSString*) closeTag;
-//- (FLXmlElement*) addElement:(NSString*) openTag closeTag:(NSString*) closeTag value:(NSString*) value;
-//- (FLXmlElement*) addElement:(NSString*) name;
-//- (FLXmlElement*) addElement:(NSString*) name value:(NSString*) value;
+- (void) addElement:(FLXmlElement*) element;
 
 @end
 

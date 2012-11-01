@@ -15,8 +15,6 @@
 
 @implementation FLXmlStringBuilder
 
-@synthesize dataEncoder = _dataEncoder;
-
 - (id) init {
     self = [super init];
     if(self) {
@@ -46,32 +44,9 @@
     [self appendXmlVersionDeclaration:FLXmlVersion1_0 andEncodingHeader:FLXmlEncodingUtf8 standalone:YES];
 }
 
-//- (FLXmlElement*) addElement:(NSString*) openTag closeTag:(NSString*) closeTag {
-//    FLXmlElement* element = [FLXmlElement xmlElement:openTag closeTag:closeTag];
-//    [self append:element];
-//    return element;
-//}
-//
-//- (FLXmlElement*) addElement:(NSString*) openTag closeTag:(NSString*) closeTag value:(NSString*) value {
-//    FLXmlElement* element = [FLXmlElement xmlElement:openTag closeTag:closeTag];
-//    [element appendLine:value];
-//    [self append:element];
-//    return element;
-//}
-//
-//- (FLXmlElement*) addElement:(NSString*) name {
-//    FLXmlElement* element = [FLXmlElement xmlElement:name];
-//    [self append:element];
-//    return element;
-//}
-//
-//- (FLXmlElement*) addElement:(NSString*) name value:(NSString*) value {
-//    FLXmlElement* element = [FLXmlElement xmlElement:name];
-//    [element appendLine:value];
-//    [self append:element];
-//    return element;
-//}
-
+- (void) addElement:(FLXmlElement*) element {
+    [super addToken:element];
+}
 @end
 
 @implementation FLXmlComment

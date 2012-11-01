@@ -40,6 +40,7 @@
                      state:(FLObjectInflatorState*) state;
 
 - (void) appendXmlToStringBuilder:(FLXmlStringBuilder*) stringBuilder
+                  withDataEncoder:(id<FLDataEncoder>) dataEncoder
               propertyDescription:(FLPropertyDescription*) description;
 
 + (id) objectWithContentsOfFile:(NSString*) path;
@@ -52,16 +53,20 @@
 
 @interface FLXmlStringBuilder (NSObject)
 
-- (void) addObjectAsXML:(id) object;
+- (void) addObjectAsXML:(id) object 
+        withDataEncoder:(id<FLDataEncoder>) dataEncoder;
 
 - (void) addObjectAsXML:(id) object
-         propertyDescription:(FLPropertyDescription*) description;
+        withDataEncoder:(id<FLDataEncoder>) dataEncoder
+    propertyDescription:(FLPropertyDescription*) description;
 
 - (void) addObjectAsXML:(id) object
+        withDataEncoder:(id<FLDataEncoder>) dataEncoder
     propertyDescription:(FLPropertyDescription*) description
             elementName:(NSString*) elementName;
 
 - (void) appendElementValueWithObject:(id) object	
+                      withDataEncoder:(id<FLDataEncoder>) dataEncoder
                   propertyDescription:(FLPropertyDescription*) description;
 
 @end

@@ -58,9 +58,6 @@ typedef void (^FLAppendStringBuilderBlock)(FLStringBuilder* stringBuilder);
 
 - (void) outdent;
 
-/// Append lines from another builder in a new scope
-- (void) append:(FLStringBuilder*) builder;
-
 /// Append a new line with a formatted string.
 - (void) appendLineWithFormat:(NSString*) format, ...;
 
@@ -76,7 +73,7 @@ typedef void (^FLAppendStringBuilderBlock)(FLStringBuilder* stringBuilder);
 
 - (void) pushToken:(id) token;
 
-- (void) appendToken:(id) token;
+- (void) addToken:(id) token;
 
 - (void) insertToken:(id) token beforeToken:(id) token;
 

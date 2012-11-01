@@ -155,16 +155,16 @@
     _cursor = 0;
 }
 
-- (void) appendToken:(id) token {
+- (void) addToken:(id) token {
     [_tokens insertObject:token atIndex:_cursor++];
 }
 
 - (void) append:(FLStringBuilder*) builder {
-    [self appendToken:builder];
+    [self addToken:builder];
 }
 
 - (void) indent {
-    [self appendToken:[FLIndentToken indentToken]];
+    [self addToken:[FLIndentToken indentToken]];
 }
 
 - (void) appendIndentedBlock:(void (^)()) indentedBlock {
@@ -176,21 +176,21 @@
 }
 
 - (void) outdent {
-    [self appendToken:[FLOutdentToken outdentToken]];
+    [self addToken:[FLOutdentToken outdentToken]];
 }
 
 - (void) insertBuilderContents:(FLStringBuilder*) builder {
   	for(id contentItem in builder.tokens) {
-        [self appendToken:contentItem];
+        [self addToken:contentItem];
     }
 }
 
 - (void) appendLine {
-    [self appendToken:[FLEolToken eolToken]];
+    [self addToken:[FLEolToken eolToken]];
 }
 
 - (void) appendString:(NSString*) string {
-    [self appendToken:string];
+    [self addToken:string];
 }
 
 - (void) appendLine:(NSString*) line {

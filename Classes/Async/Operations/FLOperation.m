@@ -227,8 +227,10 @@
     }
 }
 
-- (FLResult) runSynchronously {
-    return [[self start:nil] waitForResult];
+- (id<FLResult>) runSynchronously {
+    FLWorkFinisher* finisher = [FLWorkFinisher finisher];
+    [self startWorking:finisher];
+    return finisher.result;
 }
 
 - (void) startWorking:(id<FLFinisher>) finisher {
