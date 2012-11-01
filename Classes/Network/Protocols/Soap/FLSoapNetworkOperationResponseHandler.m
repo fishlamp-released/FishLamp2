@@ -59,12 +59,8 @@ FLSynthesizeSingleton(FLSoapNetworkOperationResponseHandler);
 			@try
 			{
 				[soapParser buildObjects:soapFault];
-			
-	//			  [soapFault inflateWithFaucet:soapParser];
-			
 				error = autorelease_([[NSError alloc] initWithSoapFault:soapFault]);
-				
-				FLDebugLog(@"Got Soap Fault:\n%@", [soapFault description]);
+				FLDebugLog(@"Got Soap Fault:%@/%@", [soapFault faultcode], [soapFault faultstring]);
 			}
 			@finally
 			{

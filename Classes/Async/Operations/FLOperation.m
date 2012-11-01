@@ -15,6 +15,8 @@
 @property (readwrite, assign) BOOL isFinished;
 @property (readwrite, assign) BOOL didFail;
 @property (readwrite, assign) BOOL wasCancelled;
+@property (readwrite, strong) id input;
+@property (readwrite, strong) id output;
 @end
 
 @implementation FLOperation
@@ -28,8 +30,8 @@
 @synthesize isFinished = _didFinish;
 @synthesize didFail = _didFail;
 @synthesize wasCancelled = _wasCancelled;
-@synthesize operationInput = _operationInput;
-@synthesize operationOutput = _operationOutput;
+@synthesize input = _input;
+@synthesize output = _output;
 
 - (id) initWithRunBlock:(FLRunOperationBlock) callback {
     if((self = [self init])) {
@@ -206,7 +208,7 @@
                 [self runSelf];
             }
             
-            if(self.didSucceed) {
+            if(!self.error) {
                 [self finishSelf];
             }
         }
@@ -322,6 +324,21 @@
     }
 }
 
+- (id) operationOutput {
+    return self.output;
+}
+
+- (void) setOperationOutput:(id) output {
+    self.output = output;
+}
+
+- (id) operationInput {
+    return self.input;
+}
+
+- (void) setOperationInput:(id) input {
+    self.input = input;
+}
 
 @end
 
@@ -372,23 +389,8 @@
 //}
 //@end
 
-
-@implementation FLOperation (Deprecated)
-
-- (id) output {
-    return self.operationOutput;
-}
-
-- (void) setOutput:(id) output {
-    self.operationOutput = output;
-}
-
-- (id) input {
-    return self.operationInput;
-}
-
-- (void) setInput:(id) input {
-    self.operationInput = input;
-}
-
-@end
+//
+//@implementation FLOperation (Deprecated)
+//
+//
+//@end

@@ -28,9 +28,12 @@ NSString* const FLXMLDocTypeXHtml1_1 = @"html PUBLIC \"-//W3C//DTD XHTML 1.1//EN
     self = [super init];
     if(self) {
         [self addDocTypeDeclaration:docType];
-        _htmlElement = [self addElement:@"html"];
-        _headElement = [_htmlElement addElement:@"head"];
-        _bodyElement = [_htmlElement addElement:@"body"];
+        _htmlElement = [FLXmlElement xmlElement:@"html"];
+        _headElement = [FLXmlElement xmlElement:@"head"];
+        _bodyElement = [FLXmlElement xmlElement:@"body"];
+        [_htmlElement append:_headElement];
+        [_htmlElement append:_bodyElement];
+        [self append:_htmlElement];
     }
 
     return self;
@@ -84,17 +87,23 @@ NSString* const FLXMLDocTypeXHtml1_1 = @"html PUBLIC \"-//W3C//DTD XHTML 1.1//EN
 }
 
 - (FLXmlElement*) addBreak {
-    return [self addElement:@"br"];
+    FLXmlElement* element = [FLXmlElement xmlElement:@"br"];
+    [self append:element];
+    return element;
 }
 
 - (FLXmlElement*) addDiv {
-    return [self addElement:@"div"];
+    FLXmlElement* element = [FLXmlElement xmlElement:@"div"];
+    [self append:element];
+    return element;
 }
 
 - (FLXmlElement*) addLink:(NSString*) href link:(NSString*) link text:(NSString*) text {
-    FLXmlElement* element = [self addElement:@"a" value:text];
-	[element setAttribute:link forKey:@"href"];
-    return element;
+    FLXmlElement* element = [FLXmlElement xmlElement:@"a"];
+    [element setAttribute:link forKey:@"href"];
+    [element appendString:text];
+    [self append:element];
+	return element;
 }
 
 

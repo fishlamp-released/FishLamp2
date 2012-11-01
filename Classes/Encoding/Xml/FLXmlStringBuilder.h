@@ -33,10 +33,10 @@
 
 - (void) appendDefaultXmlDeclaration;  
 
-- (FLXmlElement*) addElement:(NSString*) openTag closeTag:(NSString*) closeTag;
-- (FLXmlElement*) addElement:(NSString*) openTag closeTag:(NSString*) closeTag value:(NSString*) value;
-- (FLXmlElement*) addElement:(NSString*) name;
-- (FLXmlElement*) addElement:(NSString*) name value:(NSString*) value;
+//- (FLXmlElement*) addElement:(NSString*) openTag closeTag:(NSString*) closeTag;
+//- (FLXmlElement*) addElement:(NSString*) openTag closeTag:(NSString*) closeTag value:(NSString*) value;
+//- (FLXmlElement*) addElement:(NSString*) name;
+//- (FLXmlElement*) addElement:(NSString*) name value:(NSString*) value;
 
 @end
 

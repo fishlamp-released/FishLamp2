@@ -22,7 +22,8 @@
 	for(NSString* key in objectDescriber.propertyDescribers) {
 		id object = [self valueForKey:key];
 		if(object) {
-            FLXmlElement* element = [stringBuilder addElement:key];
+            FLXmlElement* element = [FLXmlElement xmlElement:key];
+            [stringBuilder append:element];
             FLPropertyDescription* desc = [objectDescriber propertyDescriberForPropertyName:key];
             if(desc.propertyType == FLDataTypeObject) {
                 [object appendXmlToStringBuilder:element propertyDescription:desc];
@@ -114,8 +115,9 @@
 		if(arrayTypes.count == 1) {
 			FLPropertyDescription* elementDesc = [arrayTypes lastObject];
 			for(id obj in self){
-                FLXmlElement* element = [stringBuilder addElement:elementDesc.propertyName];
+                FLXmlElement* element = [FLXmlElement xmlElement:elementDesc.propertyName];
                 [element addObjectAsXML:obj propertyDescription:elementDesc];
+                [stringBuilder append:element];
 			}
 		}
 		else {
@@ -124,8 +126,10 @@
 				
 				for(FLPropertyDescription* elementDesc in arrayTypes) {
 					if([obj isKindOfClass:elementDesc.propertyClass]) {
-                        FLXmlElement* element = [stringBuilder addElement:elementDesc.propertyName];
+
+                        FLXmlElement* element = [FLXmlElement xmlElement:elementDesc.propertyName];
                         [element addObjectAsXML:obj propertyDescription:elementDesc];
+                        [stringBuilder append:element];
 						break;
 					}
 				}
@@ -245,7 +249,9 @@
 		NSString* string = nil;
 		[self.dataEncoder encodeDataToString:object forType:description.propertyType outEncodedString:&string];
 		@try {
-			[self addElement:elementName value:string];
+            FLXmlElement* element = [FLXmlElement xmlElement:elementName];
+            [element appendString:string];
+            [self append:element];
 		}
 		@finally {
 			mrc_release_(string);

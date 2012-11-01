@@ -21,13 +21,15 @@
 	if(self) {
 		self.dataEncoder = [FLSoapDataEncoder instance];
 
-		[self appendDefaultXmlDeclaration];
-        _envelopeElement = [self addElement:@"soap:Envelope"];
+        [self appendDefaultXmlDeclaration];
+        _envelopeElement = [[FLXmlElement alloc] initWithName:@"soap:Envelope"];
         [_envelopeElement setAttribute:@"http://www.w3.org/2001/XMLSchema-instance"  forKey:@"xmlns:xsi"];
         [_envelopeElement setAttribute:@"http://www.w3.org/2001/XMLSchema" forKey:@"xmlns:xsd"];
 		[_envelopeElement setAttribute:@"http://schemas.xmlsoap.org/soap/envelope/"forKey:@"xmlns:soap" ];
-
-        _bodyElement = [self addElement:@"soap:Body"];
+        [self append:_envelopeElement];
+        
+        _bodyElement = [[FLXmlElement alloc] initWithName:@"soap:Body"];
+        [_envelopeElement append:_bodyElement];
 	}
 	return self;
 }
@@ -39,6 +41,13 @@
     [super dealloc];
 }
 #endif
+
+-(void) appendXmlVersionDeclaration:(NSString*) version 
+               andEncodingHeader:(NSString*) encoding
+               standalone:(BOOL) standalone {
+    
+    [self appendFormat:@"<?xml version=\"%@\" encoding=\"%@\"?>", version, encoding];
+}
 
 @end
 
@@ -52,13 +61,16 @@
                       object:(id) object                 
                 xmlNamespace:(NSString*) xmlNamespace {
 
-    FLXmlElement* element = [self addElement:functionName];
+    FLXmlElement* element = [FLXmlElement xmlElement:functionName];
     [element setAttribute:xmlNamespace forKey:@"xmlns"];
     [element addObjectAsXML:object];
+    [self append:element];
 }
 
 - (void) addSoapParameter:(NSString*) name value:(NSString*) value {
-	[self addElement:name value:value];
+    FLXmlElement* element = [FLXmlElement xmlElement:name];
+    [element appendLine:value];
+	[self append:element];
 }
 
 - (void) addSoapParameters:(NSDictionary*) parameters {

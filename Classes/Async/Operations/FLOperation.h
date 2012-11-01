@@ -141,7 +141,10 @@ typedef void (^FLRunOperationBlock)(FLOperation* operation);
 //@end
 
 
-@interface FLOperation (Deprecated)
+@interface FLOperation ()
+
+// deprecated
+
 // input/output
 // Note: we're not using properties here to give us some flexibily with subclasses.
 - (id) output;
