@@ -8,6 +8,6 @@
 
 #import "FLUnitTest.h"
 
-@interface FLUnitTestSelfTests : FLUnitTest
+@interface FLUnitTestSelfTests : FLFrameworkUnitTest
 
 @end

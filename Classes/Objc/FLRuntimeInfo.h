@@ -46,7 +46,7 @@ typedef struct {
 @property (readonly, assign, nonatomic) Class objectClass;
 @property (readonly, assign, nonatomic) Class metaClass;
 
-@property (readonly, assign, nonatomic) NSUInteger argumentCount;
+@property (readonly, assign, nonatomic) uint32_t argumentCount;
 
 + (id) selectorInfoWithClass:(Class) aClass selector:(SEL) selector;
 + (id) selectorInfoWithObject:(id) object selector:(SEL) selector;

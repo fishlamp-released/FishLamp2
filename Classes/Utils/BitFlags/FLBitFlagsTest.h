@@ -10,7 +10,7 @@
 
 #import "FLUnitTest.h"
 
-@interface FLBitFlagTests : FLUnitTest {
+@interface FLBitFlagTests : FLFrameworkUnitTest {
 }
 
 @end

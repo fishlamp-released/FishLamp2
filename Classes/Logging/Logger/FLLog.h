@@ -11,53 +11,28 @@
 #import "FLDebug.h"
 #import "FLPrintf.h"
 #import "FLLogSink.h"
+#import "FLLogger.h"
 
 // WARNING: don't import anything here. This file is imported by FishLamp.  This is imported by everything.
 
-#define NSLog FLCLog
-
 #define FLLogWithType(__TYPE__, __FORMAT__, ...) \
-            FLLogStringToSinksWithType(__TYPE__, FLStringWithFormatOrNil(__FORMAT__, ##__VA_ARGS__))
-
-#define FLCLogWithType(__TYPE__, __FORMAT__, ...) \
-            FLCLogStringToSinksWithType(__TYPE__, FLStringWithFormatOrNil(__FORMAT__, ##__VA_ARGS__))
+            [[FLLogger instance] sendStringToSinks:FLStringWithFormatOrNil(__FORMAT__, ##__VA_ARGS__) logType:__TYPE__ stackTrace:FLCreateStackTrace(NO)];
 
 #define FLLog(__FORMAT__, ...)   \
-           FLLogWithType(FLLogTypeDiagnostic, __FORMAT__, ##__VA_ARGS__)
-
-#define FLCLog(__FORMAT__, ...)   \
-            FLCLogWithType(FLLogTypeDiagnostic, __FORMAT__, ##__VA_ARGS__)
+            [[FLLogger instance] sendStringToSinks:FLStringWithFormatOrNil(__FORMAT__, ##__VA_ARGS__) logType:FLLogTypeLog stackTrace:FLCreateStackTrace(NO)];
 
 #define FLLogError(__FORMAT__, ...) \
            FLLogWithType(FLLogTypeError, __FORMAT__, ##__VA_ARGS__)
-
-#define FLCLogError(__FORMAT__, ...) \
-           FLCLogWithType(FLLogTypeError, __FORMAT__, ##__VA_ARGS__)
 
 //#define FLLogStackTrace() \
 //            FLLog(@"Stack:\n%@", FLStackTrace_tString(@"  "))
 
 #if DEBUG
-//    #define FLDebugFromFile(file, line, __FORMAT__, ...) \
-//        [FLLogger logString:FLStringWithFormatOrNil(__FORMAT__, ##__VA_ARGS__) logType:FLLogTypeDebug file:file line:line]
-
     #define FLDebugLog(__FORMAT__, ...) \
                FLLogWithType(FLLogTypeDebug, __FORMAT__, ##__VA_ARGS__)
 
     #define FLDebugLogIf(__CONDITION__, __FORMAT__, ...) \
                 if(__CONDITION__)FLLogWithType(FLLogTypeDebug, __FORMAT__, ##__VA_ARGS__)
-
-//    #define FLCDebugFromFile(file, line, __FORMAT__, ...) \
-//        [FLLogger logString:FLStringWithFormatOrNil(__FORMAT__, ##__VA_ARGS__) logType:FLLogTypeDebug file:file line:line]
-
-    #define FLCDebugLog(__FORMAT__, ...) \
-                FLCLogWithType(FLLogTypeDebug, __FORMAT__, ##__VA_ARGS__)
-
-    #define FLCDebugLogIf(__CONDITION__, __FORMAT__, ...) \
-                if(__CONDITION__) FLCLogWithType(FLLogTypeDebug, __FORMAT__, ##__VA_ARGS__)
-
-
-
 #else
 
     #define FLDebugLog(__FORMAT__, ...) 
@@ -79,3 +54,11 @@
 //#define debugRect(rect) debug(@"%s x:%.4f, y:%.4f, w:%.4f, h%.4f", #rect, rect.origin.x, rect.origin.y, rect.size.width, rect.size.height)
 //#define debugSize(size) debug(@"%s w:%.4f, h:%.4f", #size, size.width, size.height)
 //#define debugPoint(point) debug(@"%s x:%.4f, y:%.4f", #point, point.x, point.y)
+
+#ifndef FL_DIVERT_NSLOG
+#define FL_DIVERT_NSLOG 1
+#endif
+
+#if FL_DIVERT_NSLOG
+#define NSLog FLLog
+#endif

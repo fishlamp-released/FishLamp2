@@ -115,8 +115,8 @@
 //    return nil;
 //}
 
-- (NSUInteger) argumentCount {
-    return (NSUInteger) [NSObject parameterCountForClassSelector:self.objectClass selector:_selector];
+- (uint32_t) argumentCount {
+    return (uint32_t) [NSObject parameterCountForClassSelector:self.objectClass selector:_selector];
 }
 
 + (NSString*) prettyString:(id) target selector:(SEL) selector {

@@ -8,7 +8,7 @@
 
 #import "FLUnitTest.h"
 
-@interface FLErrorTests : FLUnitTest
+@interface FLErrorTests : FLFrameworkUnitTest
 
 
 @end

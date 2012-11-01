@@ -11,7 +11,7 @@
 
 #if TEST
 
-@interface FLDatabaseTests : FLUnitTest {
+@interface FLDatabaseTests : FLFrameworkUnitTest {
     FLDatabase* _database;
 }
 

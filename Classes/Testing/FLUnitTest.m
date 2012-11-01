@@ -54,13 +54,19 @@
 
     NSArray* methodList = [NSObject methodsForClass:[self class] filter:filter];
     
+//    NSString* myName = NSStringFromClass([self class]);
+    
     for(FLSelectorInfo* selector in methodList) {
-        if([selector argumentCount] == 2) {
-            FLTestCase* testCase = [FLTestCase testCase:self selector:selector.selector];
-            [_testCases addObject:testCase];
-        }
-        else {
-            FLLog(@"Skipping test case %@ (expecting zero arguments but found %d)", [selector prettyString], [selector argumentCount] - 2);
+
+        NSString* testName = selector.prettyString;
+        
+//        [NSString stringWithFormat:@"- [%@ %@]", myName, NSStringFromSelector(selector.selector)];
+
+        FLTestCase* testCase = [FLTestCase testCase:testName target:self selector:selector.selector];
+        [_testCases addObject:testCase];
+
+        if([selector argumentCount] != 2) {
+            [testCase setDisabledWithReason:[NSString stringWithFormat:@"expecting zero arguments but found %d.", [selector argumentCount] - 2]];
         }
     }
     
@@ -72,6 +78,7 @@
 
 #if FL_MRC
 - (void) dealloc {
+    [_testLog]
     [_results release];
     [_testCases release];
     [_results release];
@@ -83,34 +90,100 @@
     return [FLUnitTestResult unitTestResult:self];
 }
 
+- (NSString*) unitTestName {
+    return NSStringFromClass([self class]);
+}
+
++ (FLUnitTestGroup*) unitTestGroup {
+    return [FLUnitTestGroup defaultTestGroup];
+}
+
+//- (void) logString:(NSString*) string
+//           logInfo:(FLLogInfo) logInfo
+//           stackTrace:(FLStackTrace*) stackTrace {
+//
+//    if(_logRedirect) {
+//        [_logRedirect logString:string logInfo:logInfo stackTrace:stackTrace];
+//    }
+//    else {
+//        [super logString:string logInfo:logInfo stackTrace:stackTrace];
+//    }
+//}
+
 - (void) runSelf {
     [_testCases sortUsingSelector:@selector(compare:)];
     
     self.results = [FLTestResultCollection create];
     
     for(FLTestCase* testCase in _testCases) {
-        @try {
-            [self.results setTestResult:[FLTestCaseResult testCaseResult:testCase] forKey:testCase.testCaseName];
-            [self runSubOperation:testCase];
-            [[self.results testResultForKey:testCase.testCaseName] setPassed];
+        if(testCase.isDisabled) {
+            FLLog(@"DISABLED: %@ (%@)", testCase.testCaseName, testCase.disabledReason);
         }
-        @catch(NSException* ex) {
-            [[self.results testResultForKey:testCase.testCaseName] setError:ex.error];
+        else {
+            FLTestCaseResult* result = [FLTestCaseResult testCaseResult:testCase];
+
+            [self.results setTestResult:result forKey:testCase.testCaseName];
+
+            @try {
+                
+                [[FLLogger instance] pushLoggerSink:result];
+                
+                FLLog(@"STARTING %@", testCase.testCaseName);
+
+                [self runSubOperation:testCase];
+                [result setPassed];
+                FLLog(@"PASS!")
+            }
+            @catch(NSException* ex) {
+                [[self.results testResultForKey:testCase.testCaseName] setError:ex.error];
+                FLLog(@"FAIL: %@", [ex.error description]);
+            }
+            @finally {
+                [[FLLogger instance] removeLoggerSink:result];
+            }
+            
+            if(result.passed) {
+                FLLog(@"passed: %@", testCase.testCaseName);
+            }
+            else {
+                [[FLLogger instance] sendEntriesToSinks:result.logEntries];
+            }
         }
     }
     
     FLConfirmIsYes_v([self.results allTestsPassed], @"tests failed");
 }
 
-@end
-
-@implementation FLSanityCheck
-
-+ (NSInteger) unitTestPriority {
-    return FLUnitTestPrioritySanityCheck;
+- (NSString*) description {
+    return [NSString stringWithFormat:@"%@ { group=%@, results:%@ }", [super description], [[[self class] unitTestGroup] description], [self.results description]];
 }
 
 @end
+
+@implementation FLSanityCheck
++ (FLUnitTestGroup*) unitTestGroup {
+    return [FLUnitTestGroup sanityTestGroup];
+}
+@end
+
+@implementation FLFrameworkUnitTest
++ (FLUnitTestGroup*) unitTestGroup {
+    return [FLUnitTestGroup frameworkTestGroup];
+}
+@end
+
+@implementation FLImportantUnitTest
++ (FLUnitTestGroup*) unitTestGroup {
+    return [FLUnitTestGroup importantTestGroup];
+}
+@end
+
+@implementation FLLastUnitTest 
++ (FLUnitTestGroup*) unitTestGroup {
+    return [FLUnitTestGroup lastTestGroup];
+}
+@end
+
 
 
 

@@ -15,6 +15,7 @@
 
 @implementation FLTestCaseResult
 @synthesize testCase = _testCase;
+@synthesize logEntries = _logEntries;
 
 - (id) initWithTestCase:(FLTestCase*) testCase {
     self = [super init];
@@ -32,6 +33,7 @@
 
 #if FL_MRC
 - (void) dealloc {
+    [_logEntries release];
     [_testCase release];
     [super dealloc];
 }
@@ -48,6 +50,18 @@
 
 - (NSString*) testName {
     return self.testCase.testCaseName;
+}
+
+- (void) appendLogEntry:(FLLogEntry*) entry
+                   stop:(BOOL*) stop {
+
+    if(_logEntries) {
+        _logEntries = [[NSMutableArray alloc] init];
+    }
+    
+    [_logEntries addObject:entry];
+    
+    *stop = YES;
 }
 
 @end

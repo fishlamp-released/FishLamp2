@@ -462,7 +462,7 @@ TODO("MF: fix activity updater");
 
 #if TEST
 
-@interface FLActionUnitTests : FLUnitTest
+@interface FLActionUnitTests : FLFrameworkUnitTest
 @end
 
 @implementation FLActionUnitTests

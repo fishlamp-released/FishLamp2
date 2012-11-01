@@ -25,17 +25,20 @@ typedef void (^FLTestBlock)();
     __unsafe_unretained id _target;
     int _selectorType;
     int _sortOrder;
+    NSString* _disabledReason;
 }
+- (void) setDisabledWithReason:(NSString*) reason;
 
+@property (readonly, strong, nonatomic) NSString* disabledReason;
 @property (readonly, strong, nonatomic) NSString* testCaseName;
 
 // construction
-- (id) initWithTarget:(id) target selector:(SEL) selector;
-+ (FLTestCase*) testCase:(id) target selector:(SEL) selector;
+- (id) initWithName:(NSString*) name target:(id) target selector:(SEL) selector;
++ (id) testCase:(NSString*) name target:(id) target selector:(SEL) selector;
 
 // run by block
 - (id) initWithName:(NSString*) name testBlock:(FLTestBlock) block;
-+ (FLTestCase*) testCase:(NSString*) name testBlock:(FLTestBlock) block;
++ (id) testCase:(NSString*) name testBlock:(FLTestBlock) block;
 
 - (NSComparisonResult) compare:(FLTestCase *)other;
 

@@ -1,4 +1,3 @@
-
 //
 //  FLTestResultCollection.m
 //  FishLampFrameworks
@@ -27,24 +26,6 @@
     [super dealloc];
 }
 #endif
-
-//- (void) reset;
-//- (void) clear;
-
-
-//- (void) reset {
-//    @synchronized(self) {
-//        for(id result in _results) {
-//            [result reset];
-//        }
-//    }
-//}
-
-//- (void) clear {
-//    @synchronized(self) {
-//        [_results removeAllObjects];
-//    }
-//}
 
 - (id) setTestResultForSelector:(SEL) selector {
     return [self setTestResultForKey:NSStringFromSelector(selector)];

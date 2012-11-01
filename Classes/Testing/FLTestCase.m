@@ -27,6 +27,7 @@ typedef enum {
 @property (readwrite, copy, nonatomic) FLTestBlock testCaseBlock;
 @property (readwrite, assign, nonatomic) id testCaseTarget;
 @property (readonly, assign, nonatomic) int sortOrder;
+@property (readwrite, strong, nonatomic) NSString* disabledReason;
 @end
 
 typedef enum {
@@ -57,6 +58,12 @@ FLTestCaseFlagPair s_flagPairs[] = {
 @synthesize testCaseBlock = _testCaseBlock;
 //@synthesize selectorType = _selectorType;
 @synthesize sortOrder = _sortOrder;
+@synthesize disabledReason = _disabledReason;
+
+- (void) setDisabledWithReason:(NSString*) reason {
+    self.disabled = YES;
+    self.disabledReason = reason;
+}
 
 - (void) setTestCaseName:(NSString*) string {
     
@@ -85,13 +92,14 @@ FLTestCaseFlagPair s_flagPairs[] = {
                         break;
                 
                     case FLTestCaseFlagDisabled:
+                        self.disabledReason = @"\"_off\" found in test case name";
                         self.disabled = YES;
                         break;
                         
                         
                 }
                 
-                [newString deleteCharactersInRange:range];
+//                [newString deleteCharactersInRange:range];
             }
         }
         
@@ -105,25 +113,25 @@ FLTestCaseFlagPair s_flagPairs[] = {
 - (id) initWithName:(NSString*) name testBlock:(FLTestBlock) block {
     self = [super init];
     if(self) {
-        self.testCaseName = name;
         self.testCaseBlock = block;
+        self.testCaseName = name;
     }
     return self;
 }
 
 
-- (id) initWithTarget:(id) target selector:(SEL) selector {
+- (id) initWithName:(NSString*) name target:(id) target selector:(SEL) selector {
     self = [super init];
     if(self) {
         self.testCaseTarget = target;
         self.testCaseSelector = selector;
-        self.testCaseName = [NSString stringWithFormat:@"[%@ %@]", NSStringFromClass([target class]), NSStringFromSelector(selector)];
+        self.testCaseName = name;
     }
     return self;
 }
 
-+ (FLTestCase*) testCase:(id) target selector:(SEL) selector {
-    return autorelease_([[FLTestCase alloc] initWithTarget:target selector:selector]);
++ (FLTestCase*) testCase:(NSString*) name target:(id) target selector:(SEL) selector {
+    return autorelease_([[FLTestCase alloc] initWithName:name target:target selector:selector]);
 }
 
 + (FLTestCase*) testCase:(NSString*) name testBlock:(FLTestBlock) block {
@@ -148,6 +156,8 @@ FLTestCaseFlagPair s_flagPairs[] = {
 
 #if FL_MRC
 - (void) dealloc {
+ 
+    release_(_disabledReason);
  
 //    mrc_release_(_testCompletionBlock);
     mrc_release_(_testCaseName);
@@ -177,12 +187,6 @@ FLTestCaseFlagPair s_flagPairs[] = {
 }
 
 - (void) runSelf {
-    
-    FLSelectorInfo* info = [FLSelectorInfo selectorInfoWithClass:[_target class] selector:_testCaseSelector];
-    NSString* prettyString = info.prettyString;
-    FLLog(@"STARTING %@", prettyString)
-    
-//    FLLog(@"    test case: ", info.prettyString);
     @try {
         if(_target) {
             [_target performSelectorSafely:_testCaseSelector];
@@ -190,15 +194,11 @@ FLTestCaseFlagPair s_flagPairs[] = {
         else if(_testCaseBlock) {
             _testCaseBlock();
         }
-        FLLog(@"PASS!")
     }
     @catch(NSException* ex) {
         self.error = ex.error;
-        FLLog(@"FAIL: %@", [ex.error description]);
-        
         @throw;
     }
-    
 }
 
 

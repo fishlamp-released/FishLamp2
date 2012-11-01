@@ -379,7 +379,7 @@ Exit:
 
 #if TEST
 
-@interface FLTestUserDefault : FLUnitTest
+@interface FLTestUserDefault : FLFrameworkUnitTest
 @end
 
 @implementation FLTestUserDefault

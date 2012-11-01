@@ -8,6 +8,6 @@
 
 #import "FishLampCore.h"
 
-@interface FLFancyStringTest : FLUnitTest
+@interface FLFancyStringTest : FLFrameworkUnitTest
 
 @end

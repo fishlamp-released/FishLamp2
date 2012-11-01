@@ -22,7 +22,7 @@
 }
 @end
 
-@interface FLJobTests : FLUnitTest
+@interface FLJobTests : FLFrameworkUnitTest
 @end
 
 @implementation FLJobTests

@@ -12,6 +12,28 @@
 		270EA4DF1640C5D200329E35 /* FishLampCore-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 270EA4DD1640C5D200329E35 /* FishLampCore-Prefix.pch */; };
 		270EA4E11640C5E300329E35 /* FishLamp-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 270EA4E01640C5E300329E35 /* FishLamp-Prefix.pch */; };
 		270EA4E21640C5E300329E35 /* FishLamp-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 270EA4E01640C5E300329E35 /* FishLamp-Prefix.pch */; };
+		2725BB7C1642E17800B8EC6E /* FLUnitTestGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = 2725BB7A1642E17800B8EC6E /* FLUnitTestGroup.h */; };
+		2725BB7D1642E17800B8EC6E /* FLUnitTestGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = 2725BB7A1642E17800B8EC6E /* FLUnitTestGroup.h */; };
+		2725BB7E1642E17800B8EC6E /* FLUnitTestGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 2725BB7B1642E17800B8EC6E /* FLUnitTestGroup.m */; };
+		2725BB7F1642E17800B8EC6E /* FLUnitTestGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 2725BB7B1642E17800B8EC6E /* FLUnitTestGroup.m */; };
+		2725BB801642E17800B8EC6E /* FLUnitTestGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 2725BB7B1642E17800B8EC6E /* FLUnitTestGroup.m */; };
+		2725BB991642FDB000B8EC6E /* FLLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 2725BB971642FDB000B8EC6E /* FLLogger.h */; };
+		2725BB9A1642FDB000B8EC6E /* FLLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 2725BB971642FDB000B8EC6E /* FLLogger.h */; };
+		2725BB9B1642FDB000B8EC6E /* FLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 2725BB981642FDB000B8EC6E /* FLLogger.m */; };
+		2725BB9C1642FDB000B8EC6E /* FLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 2725BB981642FDB000B8EC6E /* FLLogger.m */; };
+		2725BB9D1642FDB000B8EC6E /* FLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 2725BB981642FDB000B8EC6E /* FLLogger.m */; };
+		2725BBA11642FE6400B8EC6E /* FLPrintfLogSink.h in Headers */ = {isa = PBXBuildFile; fileRef = 2725BB9F1642FE6300B8EC6E /* FLPrintfLogSink.h */; };
+		2725BBA21642FE6400B8EC6E /* FLPrintfLogSink.h in Headers */ = {isa = PBXBuildFile; fileRef = 2725BB9F1642FE6300B8EC6E /* FLPrintfLogSink.h */; };
+		2725BBA31642FE6400B8EC6E /* FLPrintfLogSink.m in Sources */ = {isa = PBXBuildFile; fileRef = 2725BBA01642FE6400B8EC6E /* FLPrintfLogSink.m */; };
+		2725BBA41642FE6400B8EC6E /* FLPrintfLogSink.m in Sources */ = {isa = PBXBuildFile; fileRef = 2725BBA01642FE6400B8EC6E /* FLPrintfLogSink.m */; };
+		2725BBA51642FE6400B8EC6E /* FLPrintfLogSink.m in Sources */ = {isa = PBXBuildFile; fileRef = 2725BBA01642FE6400B8EC6E /* FLPrintfLogSink.m */; };
+		2725BBA81642FEF300B8EC6E /* FLLogEntry.h in Headers */ = {isa = PBXBuildFile; fileRef = 2725BBA61642FEF200B8EC6E /* FLLogEntry.h */; };
+		2725BBA91642FEF300B8EC6E /* FLLogEntry.h in Headers */ = {isa = PBXBuildFile; fileRef = 2725BBA61642FEF200B8EC6E /* FLLogEntry.h */; };
+		2725BBAA1642FEF300B8EC6E /* FLLogEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 2725BBA71642FEF200B8EC6E /* FLLogEntry.m */; };
+		2725BBAB1642FEF300B8EC6E /* FLLogEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 2725BBA71642FEF200B8EC6E /* FLLogEntry.m */; };
+		2725BBAC1642FEF300B8EC6E /* FLLogEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 2725BBA71642FEF200B8EC6E /* FLLogEntry.m */; };
+		2725BBB51643023300B8EC6E /* FLLogPacket_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 2725BBB41643023300B8EC6E /* FLLogPacket_Internal.h */; };
+		2725BBB61643023300B8EC6E /* FLLogPacket_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 2725BBB41643023300B8EC6E /* FLLogPacket_Internal.h */; };
 		27A43AB515CDCC89001CB13E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27A43AA415CDCC73001CB13E /* Foundation.framework */; };
 		27A43AC515CDCCCB001CB13E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27A43A7F15CDCC1B001CB13E /* Cocoa.framework */; };
 		27B7DDF2163CB4E100E9C6EB /* FLApplicationDataModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7D9CA163CB4E000E9C6EB /* FLApplicationDataModel.h */; };
@@ -2342,6 +2364,15 @@
 		270EA51E1640C87000329E35 /* FishLampTargetSettingsiOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FishLampTargetSettingsiOS.xcconfig; sourceTree = "<group>"; };
 		270EA51F1640C87000329E35 /* FishLampTargetSettingsMac.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FishLampTargetSettingsMac.xcconfig; sourceTree = "<group>"; };
 		270EA5201640C87000329E35 /* FishLampTargetSettingsMac32.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FishLampTargetSettingsMac32.xcconfig; sourceTree = "<group>"; };
+		2725BB7A1642E17800B8EC6E /* FLUnitTestGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLUnitTestGroup.h; sourceTree = "<group>"; };
+		2725BB7B1642E17800B8EC6E /* FLUnitTestGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLUnitTestGroup.m; sourceTree = "<group>"; };
+		2725BB971642FDB000B8EC6E /* FLLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLLogger.h; sourceTree = "<group>"; };
+		2725BB981642FDB000B8EC6E /* FLLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLLogger.m; sourceTree = "<group>"; };
+		2725BB9F1642FE6300B8EC6E /* FLPrintfLogSink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLPrintfLogSink.h; sourceTree = "<group>"; };
+		2725BBA01642FE6400B8EC6E /* FLPrintfLogSink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLPrintfLogSink.m; sourceTree = "<group>"; };
+		2725BBA61642FEF200B8EC6E /* FLLogEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLLogEntry.h; sourceTree = "<group>"; };
+		2725BBA71642FEF200B8EC6E /* FLLogEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLLogEntry.m; sourceTree = "<group>"; };
+		2725BBB41643023300B8EC6E /* FLLogPacket_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLLogPacket_Internal.h; sourceTree = "<group>"; };
 		272DF91515D1C1BB009592E5 /* TargetMac.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = TargetMac.xcconfig; sourceTree = "<group>"; };
 		272DF91615D1C1BB009592E5 /* TargetiOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = TargetiOS.xcconfig; sourceTree = "<group>"; };
 		276CE8EE15E54B2F000A5CE6 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
@@ -4101,6 +4132,13 @@
 				27B7DB49163CB4E000E9C6EB /* FLPrintf.m */,
 				27B7DB4A163CB4E000E9C6EB /* FLTraceOff.h */,
 				27B7DB4B163CB4E000E9C6EB /* FLTraceOn.h */,
+				2725BB971642FDB000B8EC6E /* FLLogger.h */,
+				2725BB981642FDB000B8EC6E /* FLLogger.m */,
+				2725BB9F1642FE6300B8EC6E /* FLPrintfLogSink.h */,
+				2725BBA01642FE6400B8EC6E /* FLPrintfLogSink.m */,
+				2725BBA61642FEF200B8EC6E /* FLLogEntry.h */,
+				2725BBA71642FEF200B8EC6E /* FLLogEntry.m */,
+				2725BBB41643023300B8EC6E /* FLLogPacket_Internal.h */,
 			);
 			path = Logger;
 			sourceTree = "<group>";
@@ -4992,6 +5030,8 @@
 				27B7DD7B163CB4E000E9C6EB /* FLUnitTestObserver.m */,
 				27B7DD7C163CB4E000E9C6EB /* Internal */,
 				27B7DD87163CB4E000E9C6EB /* Results */,
+				2725BB7A1642E17800B8EC6E /* FLUnitTestGroup.h */,
+				2725BB7B1642E17800B8EC6E /* FLUnitTestGroup.m */,
 			);
 			path = Testing;
 			sourceTree = "<group>";
@@ -5922,6 +5962,11 @@
 				27E5AB0116406F4300B8D029 /* FLCoreFoundation.h in Headers */,
 				270EA4DF1640C5D200329E35 /* FishLampCore-Prefix.pch in Headers */,
 				270EA4E21640C5E300329E35 /* FishLamp-Prefix.pch in Headers */,
+				2725BB7D1642E17800B8EC6E /* FLUnitTestGroup.h in Headers */,
+				2725BB9A1642FDB000B8EC6E /* FLLogger.h in Headers */,
+				2725BBA21642FE6400B8EC6E /* FLPrintfLogSink.h in Headers */,
+				2725BBA91642FEF300B8EC6E /* FLLogEntry.h in Headers */,
+				2725BBB61643023300B8EC6E /* FLLogPacket_Internal.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6429,6 +6474,11 @@
 				27E5AB0016406F4300B8D029 /* FLCoreFoundation.h in Headers */,
 				270EA4DE1640C5D200329E35 /* FishLampCore-Prefix.pch in Headers */,
 				270EA4E11640C5E300329E35 /* FishLamp-Prefix.pch in Headers */,
+				2725BB7C1642E17800B8EC6E /* FLUnitTestGroup.h in Headers */,
+				2725BB991642FDB000B8EC6E /* FLLogger.h in Headers */,
+				2725BBA11642FE6400B8EC6E /* FLPrintfLogSink.h in Headers */,
+				2725BBA81642FEF300B8EC6E /* FLLogEntry.h in Headers */,
+				2725BBB51643023300B8EC6E /* FLLogPacket_Internal.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6944,6 +6994,10 @@
 				27E5AAD3163F04A300B8D029 /* FLFallible.m in Sources */,
 				27E5AADA163F460800B8D029 /* FLDispatchQueues.m in Sources */,
 				27E5AAFC16403F8E00B8D029 /* FLHttpTests.m in Sources */,
+				2725BB801642E17800B8EC6E /* FLUnitTestGroup.m in Sources */,
+				2725BB9D1642FDB000B8EC6E /* FLLogger.m in Sources */,
+				2725BBA51642FE6400B8EC6E /* FLPrintfLogSink.m in Sources */,
+				2725BBAC1642FEF300B8EC6E /* FLLogEntry.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7387,6 +7441,10 @@
 				27E5AAD1163F04A300B8D029 /* FLFallible.m in Sources */,
 				27E5AAD8163F460800B8D029 /* FLDispatchQueues.m in Sources */,
 				27E5AAFA16403F8E00B8D029 /* FLHttpTests.m in Sources */,
+				2725BB7E1642E17800B8EC6E /* FLUnitTestGroup.m in Sources */,
+				2725BB9B1642FDB000B8EC6E /* FLLogger.m in Sources */,
+				2725BBA31642FE6400B8EC6E /* FLPrintfLogSink.m in Sources */,
+				2725BBAA1642FEF300B8EC6E /* FLLogEntry.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7830,6 +7888,10 @@
 				27E5AAD2163F04A300B8D029 /* FLFallible.m in Sources */,
 				27E5AAD9163F460800B8D029 /* FLDispatchQueues.m in Sources */,
 				27E5AAFB16403F8E00B8D029 /* FLHttpTests.m in Sources */,
+				2725BB7F1642E17800B8EC6E /* FLUnitTestGroup.m in Sources */,
+				2725BB9C1642FDB000B8EC6E /* FLLogger.m in Sources */,
+				2725BBA41642FE6400B8EC6E /* FLPrintfLogSink.m in Sources */,
+				2725BBAB1642FEF300B8EC6E /* FLLogEntry.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

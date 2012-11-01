@@ -42,7 +42,7 @@
 
 #import "FLUnitTest.h"
 
-@interface FLAsyncTest : FLUnitTest {
+@interface FLAsyncTest : FLFrameworkUnitTest {
 }
 
 @end

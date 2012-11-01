@@ -226,16 +226,16 @@ BOOL FLCompareDicts(NSDictionary* lhsDict, NSDictionary* rhsDict)
 		if(!rhsValue)
 		{
 			equal = NO;
-			FLCDebugLog(@"rhs missing %@/%@", key, lhsValue);
+			FLDebugLog(@"rhs missing %@/%@", key, lhsValue);
 		}
 		else if(!FLStringsAreEqual(lhsValue, rhsValue))
 		{
 			equal = NO;
-			FLCDebugLog(@"value for key %@ are not equal: %@ != %@", key, lhsValue, rhsValue);
+			FLDebugLog(@"value for key %@ are not equal: %@ != %@", key, lhsValue, rhsValue);
 		}
 		else 
 		{
-			FLCDebugLog(@"found %@=%@ in both headers", key, lhsValue);
+			FLDebugLog(@"found %@=%@ in both headers", key, lhsValue);
 		}
 	}
 	
@@ -265,22 +265,22 @@ void FLDebugCompareHeaders(NSString* lhs, NSString* rhs)
 	
 	if(equal)
 	{
-		FLCDebugLog(@"header:\n%@\n==\n%@", lhs, rhs);
+		FLDebugLog(@"header:\n%@\n==\n%@", lhs, rhs);
 	}
 	else
 	{
-		FLCDebugLog(@"header:\n%@\n!=\n%@", lhs, rhs);
+		FLDebugLog(@"header:\n%@\n!=\n%@", lhs, rhs);
 	}
 }
 
 void FLDebugCompareStrings(NSString* lhs, NSString* rhs)
 {
-	FLCDebugLog(@"lhs:\n%@", lhs);
-	FLCDebugLog(@"rhs:\n%@", rhs);
+	FLDebugLog(@"lhs:\n%@", lhs);
+	FLDebugLog(@"rhs:\n%@", rhs);
 
 	if(lhs.length != rhs.length)
 	{
-		FLCDebugLog(@"lhs length: %d != rhs length: %d", lhs.length, rhs.length);
+		FLDebugLog(@"lhs length: %d != rhs length: %d", lhs.length, rhs.length);
 	}
 
 	NSMutableString* str = [NSMutableString string];
@@ -288,13 +288,13 @@ void FLDebugCompareStrings(NSString* lhs, NSString* rhs)
 	{
 		if(i >= (int)lhs.length)
 		{
-			FLCDebugLog(@"lhs ran out of chars");
-			FLCDebugLog(str);
+			FLDebugLog(@"lhs ran out of chars");
+			FLDebugLog(str);
 		}
 		else if(i >= (int)rhs.length)
 		{
-			FLCDebugLog(@"rhs ran out of chars");
-			FLCDebugLog(str);
+			FLDebugLog(@"rhs ran out of chars");
+			FLDebugLog(str);
 		}
 		else if([lhs characterAtIndex:i] == [rhs characterAtIndex:i])
 		{
@@ -302,13 +302,13 @@ void FLDebugCompareStrings(NSString* lhs, NSString* rhs)
 		}
 		else
 		{
-			FLCDebugLog(str);
-			FLCDebugLog(@"%d: %c != %c", i, [lhs characterAtIndex:i], [rhs characterAtIndex:i]); 
+			FLDebugLog(str);
+			FLDebugLog(@"%d: %c != %c", i, [lhs characterAtIndex:i], [rhs characterAtIndex:i]); 
 			return;
 		}
 	}
 	
-	FLCDebugLog(@"%@\n==\n%@", lhs, rhs); 
+	FLDebugLog(@"%@\n==\n%@", lhs, rhs); 
 
 }
 void TestEncoding()
@@ -345,9 +345,9 @@ void TestEncoding()
 //
 //	FLDebugCompareStrings(key, @"8wUi7m5HFQy76nowoCThusfgB+Q=");
 //	
-////	FLCDebugLog(@"Keys are equal: %d", FLStringsAreEqual(@"8wUi7m5HFQy76nowoCThusfgB+Q=", key));
+////	FLDebugLog(@"Keys are equal: %d", FLStringsAreEqual(@"8wUi7m5HFQy76nowoCThusfgB+Q=", key));
 //
-//	FLCDebugLog(key);
+//	FLDebugLog(key);
 //
 //	[sig setParameter:kFLOAuthHeaderSignature value:key];
 //
@@ -384,9 +384,9 @@ void TestEncoding()
 //
 //	FLDebugCompareStrings(key, [@"TV9uaB7Wl4w9uRW4%2BQ6K%2FkEQeYg%3D" urlDecodeString:NSUTF8StringEncoding]);
 //	
-////	FLCDebugLog(@"Keys are equal: %d", FLStringsAreEqual(@"8wUi7m5HFQy76nowoCThusfgB+Q=", key));
+////	FLDebugLog(@"Keys are equal: %d", FLStringsAreEqual(@"8wUi7m5HFQy76nowoCThusfgB+Q=", key));
 //
-//	FLCDebugLog(key);
+//	FLDebugLog(key);
 //
 //	[sig setParameter:kFLOAuthHeaderSignature value:key];
 //
@@ -394,7 +394,7 @@ void TestEncoding()
 //	
 //	NSString* authHeader = [sig buildAuthorizationHeader];
 //	
-//	FLCDebugLog(authHeader);
+//	FLDebugLog(authHeader);
 //	
 ////	NSString* refAuthHeader = @"OAuth oauth_nonce=\"QP70eNmVz8jvdPevU3oJD2AfF7R7odC2XJcn4XlZJqk\", oauth_callback=\"http%3A%2F%2Flocalhost%3A3005%2Fthe_dance%2Fprocess_callback%3Fservice_provider_id%3D11\", oauth_signature_method=\"HMAC-SHA1\", oauth_timestamp=\"1272323042\", oauth_consumer_key=\"GDdmIQH6jhtmLUypg82g\", oauth_signature=\"8wUi7m5HFQy76nowoCThusfgB%2BQ%3D\", oauth_version=\"1.0\"";
 //	

@@ -28,8 +28,8 @@
     
     [_classList sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         
-        NSInteger lhs = [obj1 unitTestPriority];
-        NSInteger rhs = [obj2 unitTestPriority];
+        NSInteger lhs = [[obj1 unitTestGroup] groupPriority];
+        NSInteger rhs = [[obj2 unitTestGroup] groupPriority];
         
         if(lhs == rhs) {
             return [NSStringFromClass(obj1) compare:NSStringFromClass(obj2)];

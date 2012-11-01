@@ -12,6 +12,7 @@
 #import "FLWorkFinisher.h"
 #import "FLTestResultCollection.h"
 #import "FLOperation.h"
+#import "FLUnitTestGroup.h"
 
 @class FLOperationQueue;
 
@@ -24,11 +25,6 @@
 #define FLTestSetupMethodName       @"testsWillRun"
 #define FLTestTeardownMethodName    @"testsDidRun"
 
-#define FLUnitTestPriorityLow           0
-#define FLUnitTestPriorityNormal        1000
-#define FLUnitTestPriorityHigh          2000
-#define FLUnitTestPrioritySanityCheck   3000
-
 /**
     note that subclass with a method in int with the word "test" in it will be run.
     no need to add the test cases yourself, unless you want to add one.
@@ -39,11 +35,11 @@
     FLTestResultCollection* _results;
 }
 
-+ (NSInteger) unitTestPriority;
-
 @property (readonly, strong) FLTestResultCollection* results;
-
+@property (readonly, strong) NSString* unitTestName;
 + (FLUnitTest*) unitTest;
+
++ (FLUnitTestGroup*) unitTestGroup;
 
 //- (void) addTestCase:(FLTestCase*) testCase;
 //- (FLTestCase*) findTestCaseByName:(NSString*) name;
@@ -53,4 +49,13 @@
 @end
 
 @interface FLSanityCheck : FLUnitTest
+@end
+
+@interface FLFrameworkUnitTest : FLUnitTest
+@end
+
+@interface FLImportantUnitTest : FLUnitTest
+@end
+
+@interface FLLastUnitTest : FLUnitTest 
 @end

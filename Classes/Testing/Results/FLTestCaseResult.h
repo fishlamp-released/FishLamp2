@@ -9,13 +9,19 @@
 #import <Foundation/Foundation.h>
 
 #import "FLTestResult.h"
+#import "FLStringBuilder.h"
+#import "FLLogSink.h"
 
-@interface FLTestCaseResult : FLTestResult {
+@interface FLTestCaseResult : FLTestResult<FLLogSink> {
 @private
     FLTestCase* _testCase;
+    NSMutableArray* _logEntries;
 }
+
 + (FLTestCaseResult*) testCaseResult:(FLTestCase*) forTest;
 
 @property (readonly, strong) FLTestCase* testCase;
+@property (readonly, strong) NSArray* logEntries;
+
 @end
 
