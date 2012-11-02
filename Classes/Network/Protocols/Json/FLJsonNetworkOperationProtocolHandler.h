@@ -11,7 +11,7 @@
 
 #import "FLHttpOperation.h"
 
-@interface FLJsonNetworkOperationProtocolHandler : NSObject<FLHttpOperationResponseHandler> {
+@interface FLJsonNetworkOperationProtocolHandler : NSObject<FLHttpOperationDelegate> {
 
 }
 

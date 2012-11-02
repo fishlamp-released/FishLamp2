@@ -15,7 +15,7 @@
 - (void) didInit {
 	[super didInit];
 	
-	self.responseHandler = [FLHttpImageDownloadNetworkResponseHandler instance];
+	self.httpDelegate = [FLHttpImageDownloadNetworkResponseHandler instance];
 	self.input = [FLCachedImage cachedImage];
 }
 

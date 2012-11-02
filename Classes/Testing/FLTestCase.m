@@ -15,12 +15,6 @@
 //#define FLTestCaseFlagVerboseString             @"_debug"
 //#define FLTestCaseFlagExpectingExceptionString  @"_exception"
 
-typedef enum {
-    FLTestSortOrderNormal,
-    FLTestSortOrderFirst,
-    FLTestSortOrderLast
-} FLTestSortOrder;
-
 @interface FLTestCase ()
 @property (readwrite, strong, nonatomic) NSString* testCaseName;
 @property (readwrite, assign, nonatomic) SEL testCaseSelector;
@@ -56,9 +50,9 @@ FLTestCaseFlagPair s_flagPairs[] = {
 @synthesize testCaseTarget = _target;
 @synthesize testCaseSelector = _testCaseSelector;
 @synthesize testCaseBlock = _testCaseBlock;
-//@synthesize selectorType = _selectorType;
 @synthesize sortOrder = _sortOrder;
 @synthesize disabledReason = _disabledReason;
+@synthesize priority = _priority;
 
 - (void) setDisabledWithReason:(NSString*) reason {
     self.disabled = YES;
@@ -113,6 +107,7 @@ FLTestCaseFlagPair s_flagPairs[] = {
 - (id) initWithName:(NSString*) name testBlock:(FLTestBlock) block {
     self = [super init];
     if(self) {
+        self.priority = FLTestCasePriorityNormal; 
         self.testCaseBlock = block;
         self.testCaseName = name;
     }
@@ -123,6 +118,7 @@ FLTestCaseFlagPair s_flagPairs[] = {
 - (id) initWithName:(NSString*) name target:(id) target selector:(SEL) selector {
     self = [super init];
     if(self) {
+        self.priority = FLTestCasePriorityNormal; 
         self.testCaseTarget = target;
         self.testCaseSelector = selector;
         self.testCaseName = name;
@@ -140,17 +136,12 @@ FLTestCaseFlagPair s_flagPairs[] = {
 
 - (void) setTestCaseSelector:(SEL) sel {
     _testCaseSelector = sel;
-//    _selectorType = [NSObject argumentCountForSelector:sel];
-    
-    NSString* selectorName = NSStringFromSelector(sel);
-    
-    _sortOrder = FLTestSortOrderNormal;
 
-    if([selectorName rangeOfString:FLTestSetupMethodName options:NSCaseInsensitiveSearch].length > 0) {
-        _sortOrder = FLTestSortOrderFirst;
+    if(FLSelectorsAreEqual(@selector(setupTests), sel)) {
+        self.priority = FLTestCasePriorityHigh + 1;
     }
-    else if([selectorName rangeOfString:FLTestTeardownMethodName options:NSCaseInsensitiveSearch].length > 0) {
-        _sortOrder = FLTestSortOrderLast;
+    else if(FLSelectorsAreEqual(@selector(teardownTests), sel)) {
+        self.priority = FLTestCasePriorityLow - 1;
     }
 }
 
@@ -168,22 +159,21 @@ FLTestCaseFlagPair s_flagPairs[] = {
 
 - (NSComparisonResult) compare:(FLTestCase *)other {
 
-    int otherSortOrder = other.sortOrder;
+    NSInteger otherPriority = other.priority;
 
-    if(_sortOrder == FLTestSortOrderFirst || otherSortOrder == FLTestSortOrderLast) {
-        return NSOrderedAscending;
-    }
-    
-    if(_sortOrder == FLTestSortOrderLast || otherSortOrder == FLTestSortOrderFirst) {
-        return NSOrderedDescending;
+    if(self.priority == otherPriority) {
+        return (self.priority > otherPriority) ? NSOrderedAscending : NSOrderedDescending;
     }
 
-    NSComparisonResult result = [self.testCaseName compare:other.testCaseName];
-//    if(result == NSOrderedSame) {
-//        return _selectorType > other.selectorType ? NSOrderedAscending : NSOrderedDescending;
+//    if(_sortOrder == FLTestSortOrderFirst || otherSortOrder == FLTestSortOrderLast) {
+//        return NSOrderedAscending;
 //    }
-    
-    return result;
+//    
+//    if(_sortOrder == FLTestSortOrderLast || otherSortOrder == FLTestSortOrderFirst) {
+//        return NSOrderedDescending;
+//    }
+
+    return [self.testCaseName compare:other.testCaseName];
 }
 
 - (void) runSelf {

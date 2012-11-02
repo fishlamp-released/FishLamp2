@@ -55,7 +55,7 @@
 - (void) appendLogEntry:(FLLogEntry*) entry
                    stop:(BOOL*) stop {
 
-    if(_logEntries) {
+    if(!_logEntries) {
         _logEntries = [[NSMutableArray alloc] init];
     }
     

@@ -21,10 +21,6 @@
 
 #define UTLog FLTestLog
 
-
-#define FLTestSetupMethodName       @"testsWillRun"
-#define FLTestTeardownMethodName    @"testsDidRun"
-
 /**
     note that subclass with a method in int with the word "test" in it will be run.
     no need to add the test cases yourself, unless you want to add one.
@@ -33,18 +29,26 @@
 @private
     NSMutableArray* _testCases;
     FLTestResultCollection* _results;
+    
+    SEL _firstTest;
+    SEL _lastTest;
 }
 
 @property (readonly, strong) FLTestResultCollection* results;
 @property (readonly, strong) NSString* unitTestName;
+
 + (FLUnitTest*) unitTest;
 
 + (FLUnitTestGroup*) unitTestGroup;
 
-//- (void) addTestCase:(FLTestCase*) testCase;
-//- (FLTestCase*) findTestCaseByName:(NSString*) name;
+- (void) addTestCase:(FLTestCase*) testCase;
 
-- (void) discoverTestCases;
+- (FLTestCase*) findTestCaseForName:(NSString*) name;
+- (FLTestCase*) findTestCaseForSelector:(SEL) selector;
+
+- (void) setupTests; 
+- (void) teardownTests;
+- (BOOL) willRunTests;
 
 @end
 
@@ -59,3 +63,4 @@
 
 @interface FLLastUnitTest : FLUnitTest 
 @end
+

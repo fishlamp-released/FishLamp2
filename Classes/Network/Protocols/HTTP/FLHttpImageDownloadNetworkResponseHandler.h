@@ -10,7 +10,7 @@
 #import "FishLampCore.h"
 #import "FLHttpOperation.h"
 
-@interface FLHttpImageDownloadNetworkResponseHandler : NSObject<FLHttpOperationResponseHandler> {
+@interface FLHttpImageDownloadNetworkResponseHandler : NSObject<FLHttpOperationDelegate> {
 }
 FLSingletonProperty(FLHttpImageDownloadNetworkResponseHandler);
 @end

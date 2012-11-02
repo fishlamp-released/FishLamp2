@@ -105,8 +105,13 @@
 - (FLResult) waitForResult {
 // this may not work in all cases - e.g. some iOS apis expect to be called in the main thread
 // and this will cause endless blocking, unfortunately. I've seen this is the AssetLibrary sdk.
-    while(!self.isFinished) {
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate date]];
+    @try {
+        while(!self.isFinished) {
+            [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate date]];
+        }
+    }
+    @catch(NSException* ex) {
+        self.result = [FLErrorResult errorResult:ex.error];
     }
 
     return self.result;
@@ -119,16 +124,22 @@
         condition = YES;
         checkCondition(&condition);
     }
-    
-// this may not work in all cases - e.g. some iOS apis expect to be called in the main thread
-// and this will cause endless blocking, unfortunately. I've seen this is the AssetLibrary sdk.
-    while(!self.isFinished || condition) {
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate date]];
 
-        if(checkCondition) {
-            checkCondition(&condition);
+    @try {
+    // this may not work in all cases - e.g. some iOS apis expect to be called in the main thread
+    // and this will cause endless blocking, unfortunately. I've seen this is the AssetLibrary sdk.
+        while(!self.isFinished || condition) {
+            [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate date]];
+
+            if(checkCondition) {
+                checkCondition(&condition);
+            }
         }
     }
+    @catch(NSException* ex) {
+        self.result = [FLErrorResult errorResult:ex.error];
+    }
+
     return self.result;
 }
 

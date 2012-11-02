@@ -7,17 +7,17 @@
 //
 
 #import "FLSoapError.h"
-
-#define KEY @"fault"
+#import "FLFrameworkErrorDomain.h"
 
 @implementation NSError (FLSoapExtras) 
 
 - (id) initWithSoapFault:(FLSoapFault11*) fault
 {
 	NSDictionary* userInfo = [[NSDictionary alloc] initWithObjectsAndKeys:
-		fault, KEY, nil];
+		fault, FLUnderlyingSoapFaultKey, 
+        [NSString stringWithFormat:@"%@:%@", fault.faultcode, fault.faultstring], NSLocalizedDescriptionKey, nil];
 
-	if((self = [self initWithDomain:FLSoapFaultDomain
+	if((self = [self initWithDomain:FLFrameworkErrorDomainName
 							   code:FLSoapFaultError
 						   userInfo:userInfo]))
 	{
@@ -28,14 +28,12 @@
 	return self;
 }
 
-- (BOOL) isSoapError
-{
-	return self.soapFault != nil;
++ (id) errorWithSoapFault:(FLSoapFault11*) fault {
+    return autorelease_([[[self class] alloc] initWithSoapFault:fault]);
 }
 
-- (FLSoapFault11*) soapFault
-{
-	return self.userInfo ? [self.userInfo objectForKey:KEY] : nil;
+- (FLSoapFault11*) soapFault {
+	return self.userInfo ? [self.userInfo objectForKey:FLUnderlyingSoapFaultKey] : nil;
 }
 
 

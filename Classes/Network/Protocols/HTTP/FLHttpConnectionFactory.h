@@ -10,7 +10,7 @@
 #import "FishLampCore.h"
 #import "FLHttpOperation.h"
 
-@interface FLHttpConnectionFactory : NSObject<FLHttpConnectionFactory> {
+@interface FLHttpConnectionFactory : NSObject<FLHttpOperationDelegate> {
 }
 FLSingletonProperty(FLHttpConnectionFactory);
 @end

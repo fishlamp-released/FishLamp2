@@ -17,34 +17,24 @@
 
 @class FLHttpOperation;
 
-@protocol FLHttpConnectionFactory <NSObject>
-- (FLHttpConnection*) networkOperationCreateNetworkRequest:(FLHttpOperation*) operation;
-@end
-
-@protocol FLHttpOperationResponseHandler <NSObject>
-
-- (void) operationDidRun:(FLHttpOperation*) operation;
-
+@protocol FLHttpOperationDelegate <NSObject>
 @optional
-- (void) networkOperation:(FLHttpOperation*) operation
-            shouldRedirect:(BOOL*) redirect
-                     toURL:(NSURL*) url;
-
+- (FLHttpConnection*) httpOperationCreateConnection:(FLHttpOperation*) operation;
+- (void) httpOperationWillRun:(FLHttpOperation*) operation;
+- (void) httpOperationDidRun:(FLHttpOperation*) operation;
 @end
 
 @interface FLHttpOperation : FLNetworkOperation {
 @private	
 	NSURL* _url;
 	id _requestType;
-	id<FLHttpConnectionFactory> _requestFactory;
-	id<FLHttpOperationResponseHandler> _responseHandler;
-	FLNetworkServerContext* _serverDefaults;
-	id<FLHttpOperationAuthenticator> _authenticator;
-  	id _securityCredentials;
     FLHttpResponse* _httpResponse;
+    __unsafe_unretained id<FLHttpOperationDelegate> _httpDelegate;
     BOOL _isSecure;
     BOOL _isAuthenticated;
 }
+
+@property (readwrite, assign) id<FLHttpOperationDelegate> httpDelegate;
 
 @property (readwrite, strong) NSURL* URL;
 @property (readwrite, strong) NSString* URLString; // convienience wrapper for URL
@@ -52,11 +42,6 @@
 @property (readwrite, strong) FLHttpConnection* httpConnection;
 
 @property (readwrite, strong) id requestType; // e.g. POST/GET for HTTP.
-
-// network i/o factories and info.
-@property (readwrite, strong, nonatomic) id<FLHttpConnectionFactory> networkRequestFactory;
-@property (readwrite, strong, nonatomic) id<FLHttpOperationResponseHandler> responseHandler;
-@property (readwrite, strong, nonatomic) FLNetworkServerContext* serverContext;
 
 @property (readonly, strong) FLHttpRequest* httpRequest;
 @property (readonly, strong) FLHttpResponse* httpResponse;
@@ -70,13 +55,10 @@
 
 - (id) setRequestWillPost;
 
-@property (readwrite, strong) id securityCredentials;
-@property (readwrite, strong, nonatomic) id<FLHttpOperationAuthenticator> authenticator;
-
 // these are ignored if operation doesn't have an authenticator.
 @property (readwrite, assign) BOOL isSecure;
 @property (readwrite, assign) BOOL isAuthenticated;
-- (void) authenticateSelf;
+
 @end
 
 @interface FLHttpOperation (OptionalOverrides)
@@ -87,19 +69,6 @@
 
 @end
 
-@interface FLHttpOperation (ExtendedConstruction)
-
-- (id) initWithNetworkConnectionFactory:(id<FLHttpConnectionFactory>) requestFactory 
-	responseHandler:(id<FLHttpOperationResponseHandler>) responseHandler;
-
-- (id) initWithNetworkConnection:(FLHttpConnection*) request 
-	responseHandler:(id<FLHttpOperationResponseHandler>) responseHandler;
-
-- (id) initWithServerContext:(FLNetworkServerContext*) endpoint;
-
-+ (id) networkOperationWithServerContext:(FLNetworkServerContext*) endpoint;
-
-@end
 
 
 

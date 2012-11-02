@@ -12,9 +12,6 @@
 
 @implementation FLNetworkServerContext
 
-@synthesize defaultNetworkRequestFactory = _defaultNetworkRequestFactory;
-@synthesize authenticator = _authenticator;
-@synthesize defaultNetworkOperationResponseHandler = _defaultResponseHandler;
 @synthesize properties = _properties;
 
 - (id) init {
@@ -26,12 +23,11 @@
 }
 
 - (void) dealloc {
-	mrc_release_(_properties);
-	mrc_release_(_defaultNetworkRequestFactory);
-	mrc_release_(_defaultResponseHandler);
-	mrc_release_(_authenticator);
-	mrc_super_dealloc_();
+	release_(_properties);
+	super_dealloc_();
 }
+
+// stubs in case parents call [super ...]
 
 - (void) encodeWithCoder:(NSCoder*) aCoder {
 }

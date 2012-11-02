@@ -6,17 +6,18 @@
 //	Copyright 2009 GreenTongue Software. All rights reserved.
 //
 #import "FishLampCore.h"
-
+#import "FLFrameworkErrorDomain.h"
 #import "FLSoapFault11.h"
+#import "FLErrorDomain.h"
+#import "NSError+FLExtras.h"
 
-#define FLSoapFaultDomain @"FLSoapErrorDomain"
-#define FLSoapFaultError -3000
+#define FLUnderlyingSoapFaultKey @"FLUnderlyingSoapFaultKey"
 
 @interface NSError (FLSoapExtras) 
 
-- (id) initWithSoapFault:(FLSoapFault11*) fault;
+@property (readonly, strong, nonatomic) FLSoapFault11* soapFault;
 
-- (BOOL) isSoapError;
-- (FLSoapFault11*) soapFault;
++ (id) errorWithSoapFault:(FLSoapFault11*) fault;
+- (id) initWithSoapFault:(FLSoapFault11*) fault;
 
 @end

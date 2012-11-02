@@ -18,7 +18,7 @@
 
 - (void) setError:(NSError*) error errorHint:(NSString*) errorHint {
     if(error && !_error) {
-        if([error isDomain:NSXMLParserErrorDomain]) {
+        if([error errorDomainEqualsDomain:NSXMLParserErrorDomain]) {
             
             NSString* name = [FLBaseXmlParser errorStringForCode:error.code];
             

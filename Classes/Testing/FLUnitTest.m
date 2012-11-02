@@ -34,10 +34,21 @@
     self = [super init];
     if(self) {
         _testCases = [[NSMutableArray alloc] init];
+        [self discoverTestCases];
     }
     
     return self;
 }
+
+- (void) addTestCase:(FLTestCase*) testCase {
+
+    if(testCase.testCaseSelector) {
+    
+    }
+
+    [_testCases addObject:testCase];
+}
+
 
 - (void) discoverTestCases {
     FLRuntimeFilterBlock filter = ^(FLRuntimeInfo info, BOOL* passed, BOOL* stop) {
@@ -52,15 +63,31 @@
         }
     };
 
+    SEL ignore_list[] = {
+        @selector(willRunTests),
+        @selector(setupTests),
+        @selector(teardownTests)
+    };
+
     NSArray* methodList = [NSObject methodsForClass:[self class] filter:filter];
     
-//    NSString* myName = NSStringFromClass([self class]);
+    NSString* myName = NSStringFromClass([self class]);
     
     for(FLSelectorInfo* selector in methodList) {
-
-        NSString* testName = selector.prettyString;
         
-//        [NSString stringWithFormat:@"- [%@ %@]", myName, NSStringFromSelector(selector.selector)];
+        BOOL skip = NO;
+        for(int i = 0; i < FLArrayLength(ignore_list, SEL); i++) {
+            if(FLSelectorsAreEqual(selector.selector, ignore_list[i])) {
+                skip = YES;
+                continue;
+            }
+        }
+        
+        if(skip) {
+            continue;
+        }
+        
+        NSString* testName = [NSString stringWithFormat:@"-[%@ %@]", myName, NSStringFromSelector(selector.selector)];
 
         FLTestCase* testCase = [FLTestCase testCase:testName target:self selector:selector.selector];
         [_testCases addObject:testCase];
@@ -98,6 +125,26 @@
     return [FLUnitTestGroup defaultTestGroup];
 }
 
+- (FLTestCase*) findTestCaseForName:(NSString*) name {
+    for(FLTestCase* testCase in _testCases) {
+        if([testCase.testCaseName isEqual:name]) {
+            return testCase;
+        }
+    }
+    
+    return nil;
+}
+- (FLTestCase*) findTestCaseForSelector:(SEL) selector {
+    for(FLTestCase* testCase in _testCases) {
+        if(FLSelectorsAreEqual(testCase.testCaseSelector, selector)) {
+            return testCase;
+        }
+    }
+    
+    return nil;
+}
+
+
 //- (void) logString:(NSString*) string
 //           logInfo:(FLLogInfo) logInfo
 //           stackTrace:(FLStackTrace*) stackTrace {
@@ -110,52 +157,67 @@
 //    }
 //}
 
+- (BOOL) willRunTests {
+    return YES;
+}
+
 - (void) runSelf {
-    [_testCases sortUsingSelector:@selector(compare:)];
+    if([self willRunTests]) {
+        self.results = [FLTestResultCollection create];
+        
+        [self setupTests];
     
-    self.results = [FLTestResultCollection create];
-    
-    for(FLTestCase* testCase in _testCases) {
-        if(testCase.isDisabled) {
-            FLLog(@"DISABLED: %@ (%@)", testCase.testCaseName, testCase.disabledReason);
-        }
-        else {
-            FLTestCaseResult* result = [FLTestCaseResult testCaseResult:testCase];
-
-            [self.results setTestResult:result forKey:testCase.testCaseName];
-
-            @try {
-                
-                [[FLLogger instance] pushLoggerSink:result];
-                
-                FLLog(@"STARTING %@", testCase.testCaseName);
-
-                [self runSubOperation:testCase];
-                [result setPassed];
-                FLLog(@"PASS!")
-            }
-            @catch(NSException* ex) {
-                [[self.results testResultForKey:testCase.testCaseName] setError:ex.error];
-                FLLog(@"FAIL: %@", [ex.error description]);
-            }
-            @finally {
-                [[FLLogger instance] removeLoggerSink:result];
-            }
-            
-            if(result.passed) {
-                FLLog(@"passed: %@", testCase.testCaseName);
+        [_testCases sortUsingSelector:@selector(compare:)];
+        
+        for(FLTestCase* testCase in _testCases) {
+            if(testCase.isDisabled) {
+                FLLog(@"DISABLED: %@ (%@)", testCase.testCaseName, testCase.disabledReason);
             }
             else {
-                [[FLLogger instance] sendEntriesToSinks:result.logEntries];
+                FLTestCaseResult* result = [FLTestCaseResult testCaseResult:testCase];
+
+                [self.results setTestResult:result forKey:testCase.testCaseName];
+
+                @try {
+                    
+                    [[FLLogger instance] pushLoggerSink:result];
+                    
+                    FLLog(@"STARTING %@", testCase.testCaseName);
+
+                    [self runSubOperation:testCase];
+                    [result setPassed];
+                    FLLog(@"PASS!")
+                }
+                @catch(NSException* ex) {
+                    [[self.results testResultForKey:testCase.testCaseName] setError:ex.error];
+                    FLLog(@"FAIL: %@", [ex.error description]);
+                }
+                @finally {
+                    [self teardownTests];
+                    [[FLLogger instance] removeLoggerSink:result];
+                }
+                
+                if(result.passed) {
+                    FLLog(@"passed: %@", testCase.testCaseName);
+                }
+                else {
+                    [[FLLogger instance] sendEntriesToSinks:result.logEntries];
+                }
             }
         }
+        
+        FLConfirmIsYes_v([self.results allTestsPassed], @"tests failed");
     }
-    
-    FLConfirmIsYes_v([self.results allTestsPassed], @"tests failed");
 }
 
 - (NSString*) description {
     return [NSString stringWithFormat:@"%@ { group=%@, results:%@ }", [super description], [[[self class] unitTestGroup] description], [self.results description]];
+}
+
+- (void) setupTests {
+}
+
+- (void) teardownTests {
 }
 
 @end

@@ -36,8 +36,11 @@
 {
 	[super didInit];
 	self.userId = [FLFacebookMgr instance].session.userId;
-	self.serverContext = [FLFacebookMgr instance];
-	self.responseHandler = nil; // [FLJsonNetworkOperationProtocolHandler instance];
+
+    FLAssertFailed_v(@"facebook setup properly?");
+
+//	self.serverContext = [FLFacebookMgr instance];
+//	self.responseHandler = nil; // [FLJsonNetworkOperationProtocolHandler instance];
 }
 
 - (BOOL) willAddParametersToURL {

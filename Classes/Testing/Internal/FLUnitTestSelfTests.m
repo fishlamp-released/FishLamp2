@@ -18,26 +18,12 @@
 
 @implementation FLUnitTestSanityCheck
 
-- (id) init {
-    self = [super init];
-    if(self) {
-    }
-    return self;
-}
-
-- (void) testsWillRun {
-    [self.results setTestResultForSelector:@selector(basicTest)];
+- (void) setupTests {
+    [self.results setTestResultForNumber:1];
 }
 
 - (void) basicTest {
-    [[self.results testResultForSelector:_cmd] setPassed];
+    [[self.results testResultForNumber:1] setPassed];
 }
-
-//- (void) basicTestWithFinisher {
-////    [s_result addHandledSelector:_cmd];
-////    [
-////    [finisher setFinished];
-//}
-
 
 @end

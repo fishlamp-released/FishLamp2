@@ -871,11 +871,6 @@
 		27B7E3A1163CB4E200E9C6EB /* FLHttpOperationAuthenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7DBBE163CB4E000E9C6EB /* FLHttpOperationAuthenticator.m */; };
 		27B7E3A2163CB4E200E9C6EB /* FLHttpOperationAuthenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7DBBE163CB4E000E9C6EB /* FLHttpOperationAuthenticator.m */; };
 		27B7E3A4163CB4E200E9C6EB /* FLHttpOperationAuthenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7DBBE163CB4E000E9C6EB /* FLHttpOperationAuthenticator.m */; };
-		27B7E3A5163CB4E200E9C6EB /* FLHttpOperationResponseHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7DBBF163CB4E000E9C6EB /* FLHttpOperationResponseHandler.h */; };
-		27B7E3A7163CB4E200E9C6EB /* FLHttpOperationResponseHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7DBBF163CB4E000E9C6EB /* FLHttpOperationResponseHandler.h */; };
-		27B7E3A8163CB4E200E9C6EB /* FLHttpOperationResponseHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7DBC0163CB4E000E9C6EB /* FLHttpOperationResponseHandler.m */; };
-		27B7E3A9163CB4E200E9C6EB /* FLHttpOperationResponseHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7DBC0163CB4E000E9C6EB /* FLHttpOperationResponseHandler.m */; };
-		27B7E3AB163CB4E200E9C6EB /* FLHttpOperationResponseHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7DBC0163CB4E000E9C6EB /* FLHttpOperationResponseHandler.m */; };
 		27B7E3AC163CB4E200E9C6EB /* FLHttpRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7DBC1163CB4E000E9C6EB /* FLHttpRequest.h */; };
 		27B7E3AE163CB4E200E9C6EB /* FLHttpRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7DBC1163CB4E000E9C6EB /* FLHttpRequest.h */; };
 		27B7E3AF163CB4E200E9C6EB /* FLHttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7DBC2163CB4E000E9C6EB /* FLHttpRequest.m */; };
@@ -956,11 +951,11 @@
 		27B7E418163CB4E200E9C6EB /* FLSoapNetworkConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7DBE3163CB4E000E9C6EB /* FLSoapNetworkConnection.m */; };
 		27B7E419163CB4E200E9C6EB /* FLSoapNetworkConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7DBE3163CB4E000E9C6EB /* FLSoapNetworkConnection.m */; };
 		27B7E41B163CB4E200E9C6EB /* FLSoapNetworkConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7DBE3163CB4E000E9C6EB /* FLSoapNetworkConnection.m */; };
-		27B7E41C163CB4E200E9C6EB /* FLSoapNetworkOperationResponseHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7DBE4163CB4E000E9C6EB /* FLSoapNetworkOperationResponseHandler.h */; };
-		27B7E41E163CB4E200E9C6EB /* FLSoapNetworkOperationResponseHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7DBE4163CB4E000E9C6EB /* FLSoapNetworkOperationResponseHandler.h */; };
-		27B7E41F163CB4E200E9C6EB /* FLSoapNetworkOperationResponseHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7DBE5163CB4E000E9C6EB /* FLSoapNetworkOperationResponseHandler.m */; };
-		27B7E420163CB4E200E9C6EB /* FLSoapNetworkOperationResponseHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7DBE5163CB4E000E9C6EB /* FLSoapNetworkOperationResponseHandler.m */; };
-		27B7E422163CB4E200E9C6EB /* FLSoapNetworkOperationResponseHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7DBE5163CB4E000E9C6EB /* FLSoapNetworkOperationResponseHandler.m */; };
+		27B7E41C163CB4E200E9C6EB /* FLSoapOperationDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7DBE4163CB4E000E9C6EB /* FLSoapOperationDelegate.h */; };
+		27B7E41E163CB4E200E9C6EB /* FLSoapOperationDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7DBE4163CB4E000E9C6EB /* FLSoapOperationDelegate.h */; };
+		27B7E41F163CB4E200E9C6EB /* FLSoapOperationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7DBE5163CB4E000E9C6EB /* FLSoapOperationDelegate.m */; };
+		27B7E420163CB4E200E9C6EB /* FLSoapOperationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7DBE5163CB4E000E9C6EB /* FLSoapOperationDelegate.m */; };
+		27B7E422163CB4E200E9C6EB /* FLSoapOperationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7DBE5163CB4E000E9C6EB /* FLSoapOperationDelegate.m */; };
 		27B7E423163CB4E200E9C6EB /* FLByteBuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7DBE7163CB4E000E9C6EB /* FLByteBuffer.h */; };
 		27B7E425163CB4E200E9C6EB /* FLByteBuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7DBE7163CB4E000E9C6EB /* FLByteBuffer.h */; };
 		27B7E426163CB4E200E9C6EB /* FLByteBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7DBE8163CB4E000E9C6EB /* FLByteBuffer.m */; };
@@ -2750,8 +2745,6 @@
 		27B7DBBC163CB4E000E9C6EB /* FLHttpOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLHttpOperation.m; sourceTree = "<group>"; };
 		27B7DBBD163CB4E000E9C6EB /* FLHttpOperationAuthenticator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLHttpOperationAuthenticator.h; sourceTree = "<group>"; };
 		27B7DBBE163CB4E000E9C6EB /* FLHttpOperationAuthenticator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLHttpOperationAuthenticator.m; sourceTree = "<group>"; };
-		27B7DBBF163CB4E000E9C6EB /* FLHttpOperationResponseHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLHttpOperationResponseHandler.h; sourceTree = "<group>"; };
-		27B7DBC0163CB4E000E9C6EB /* FLHttpOperationResponseHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLHttpOperationResponseHandler.m; sourceTree = "<group>"; };
 		27B7DBC1163CB4E000E9C6EB /* FLHttpRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLHttpRequest.h; sourceTree = "<group>"; };
 		27B7DBC2163CB4E000E9C6EB /* FLHttpRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLHttpRequest.m; sourceTree = "<group>"; };
 		27B7DBC3163CB4E000E9C6EB /* FLHttpResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLHttpResponse.h; sourceTree = "<group>"; };
@@ -2785,8 +2778,8 @@
 		27B7DBE1163CB4E000E9C6EB /* FLSoapFault11.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLSoapFault11.m; sourceTree = "<group>"; };
 		27B7DBE2163CB4E000E9C6EB /* FLSoapNetworkConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLSoapNetworkConnection.h; sourceTree = "<group>"; };
 		27B7DBE3163CB4E000E9C6EB /* FLSoapNetworkConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLSoapNetworkConnection.m; sourceTree = "<group>"; };
-		27B7DBE4163CB4E000E9C6EB /* FLSoapNetworkOperationResponseHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLSoapNetworkOperationResponseHandler.h; sourceTree = "<group>"; };
-		27B7DBE5163CB4E000E9C6EB /* FLSoapNetworkOperationResponseHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLSoapNetworkOperationResponseHandler.m; sourceTree = "<group>"; };
+		27B7DBE4163CB4E000E9C6EB /* FLSoapOperationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLSoapOperationDelegate.h; sourceTree = "<group>"; };
+		27B7DBE5163CB4E000E9C6EB /* FLSoapOperationDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLSoapOperationDelegate.m; sourceTree = "<group>"; };
 		27B7DBE7163CB4E000E9C6EB /* FLByteBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLByteBuffer.h; sourceTree = "<group>"; };
 		27B7DBE8163CB4E000E9C6EB /* FLByteBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLByteBuffer.m; sourceTree = "<group>"; };
 		27B7DBE9163CB4E000E9C6EB /* FLTcpConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLTcpConnection.h; sourceTree = "<group>"; };
@@ -4362,8 +4355,6 @@
 				27B7DBBC163CB4E000E9C6EB /* FLHttpOperation.m */,
 				27B7DBBD163CB4E000E9C6EB /* FLHttpOperationAuthenticator.h */,
 				27B7DBBE163CB4E000E9C6EB /* FLHttpOperationAuthenticator.m */,
-				27B7DBBF163CB4E000E9C6EB /* FLHttpOperationResponseHandler.h */,
-				27B7DBC0163CB4E000E9C6EB /* FLHttpOperationResponseHandler.m */,
 				27B7DBC1163CB4E000E9C6EB /* FLHttpRequest.h */,
 				27B7DBC2163CB4E000E9C6EB /* FLHttpRequest.m */,
 				27B7DBC3163CB4E000E9C6EB /* FLHttpResponse.h */,
@@ -4413,8 +4404,8 @@
 				27B7DBE1163CB4E000E9C6EB /* FLSoapFault11.m */,
 				27B7DBE2163CB4E000E9C6EB /* FLSoapNetworkConnection.h */,
 				27B7DBE3163CB4E000E9C6EB /* FLSoapNetworkConnection.m */,
-				27B7DBE4163CB4E000E9C6EB /* FLSoapNetworkOperationResponseHandler.h */,
-				27B7DBE5163CB4E000E9C6EB /* FLSoapNetworkOperationResponseHandler.m */,
+				27B7DBE4163CB4E000E9C6EB /* FLSoapOperationDelegate.h */,
+				27B7DBE5163CB4E000E9C6EB /* FLSoapOperationDelegate.m */,
 			);
 			path = Soap;
 			sourceTree = "<group>";
@@ -5644,7 +5635,6 @@
 				27B7E392163CB4E200E9C6EB /* FLHttpMessage.h in Headers */,
 				27B7E399163CB4E200E9C6EB /* FLHttpOperation.h in Headers */,
 				27B7E3A0163CB4E200E9C6EB /* FLHttpOperationAuthenticator.h in Headers */,
-				27B7E3A7163CB4E200E9C6EB /* FLHttpOperationResponseHandler.h in Headers */,
 				27B7E3AE163CB4E200E9C6EB /* FLHttpRequest.h in Headers */,
 				27B7E3B5163CB4E200E9C6EB /* FLHttpResponse.h in Headers */,
 				27B7E3BC163CB4E200E9C6EB /* FLNetworkServerContext.h in Headers */,
@@ -5661,7 +5651,7 @@
 				27B7E409163CB4E200E9C6EB /* FLSoapError.h in Headers */,
 				27B7E410163CB4E200E9C6EB /* FLSoapFault11.h in Headers */,
 				27B7E417163CB4E200E9C6EB /* FLSoapNetworkConnection.h in Headers */,
-				27B7E41E163CB4E200E9C6EB /* FLSoapNetworkOperationResponseHandler.h in Headers */,
+				27B7E41E163CB4E200E9C6EB /* FLSoapOperationDelegate.h in Headers */,
 				27B7E425163CB4E200E9C6EB /* FLByteBuffer.h in Headers */,
 				27B7E42C163CB4E200E9C6EB /* FLTcpConnection.h in Headers */,
 				27B7E433163CB4E200E9C6EB /* FLTcpConnection_Internal.h in Headers */,
@@ -6156,7 +6146,6 @@
 				27B7E390163CB4E200E9C6EB /* FLHttpMessage.h in Headers */,
 				27B7E397163CB4E200E9C6EB /* FLHttpOperation.h in Headers */,
 				27B7E39E163CB4E200E9C6EB /* FLHttpOperationAuthenticator.h in Headers */,
-				27B7E3A5163CB4E200E9C6EB /* FLHttpOperationResponseHandler.h in Headers */,
 				27B7E3AC163CB4E200E9C6EB /* FLHttpRequest.h in Headers */,
 				27B7E3B3163CB4E200E9C6EB /* FLHttpResponse.h in Headers */,
 				27B7E3BA163CB4E200E9C6EB /* FLNetworkServerContext.h in Headers */,
@@ -6173,7 +6162,7 @@
 				27B7E407163CB4E200E9C6EB /* FLSoapError.h in Headers */,
 				27B7E40E163CB4E200E9C6EB /* FLSoapFault11.h in Headers */,
 				27B7E415163CB4E200E9C6EB /* FLSoapNetworkConnection.h in Headers */,
-				27B7E41C163CB4E200E9C6EB /* FLSoapNetworkOperationResponseHandler.h in Headers */,
+				27B7E41C163CB4E200E9C6EB /* FLSoapOperationDelegate.h in Headers */,
 				27B7E423163CB4E200E9C6EB /* FLByteBuffer.h in Headers */,
 				27B7E42A163CB4E200E9C6EB /* FLTcpConnection.h in Headers */,
 				27B7E431163CB4E200E9C6EB /* FLTcpConnection_Internal.h in Headers */,
@@ -6719,7 +6708,6 @@
 				27B7E396163CB4E200E9C6EB /* FLHttpMessage.m in Sources */,
 				27B7E39D163CB4E200E9C6EB /* FLHttpOperation.m in Sources */,
 				27B7E3A4163CB4E200E9C6EB /* FLHttpOperationAuthenticator.m in Sources */,
-				27B7E3AB163CB4E200E9C6EB /* FLHttpOperationResponseHandler.m in Sources */,
 				27B7E3B2163CB4E200E9C6EB /* FLHttpRequest.m in Sources */,
 				27B7E3B9163CB4E200E9C6EB /* FLHttpResponse.m in Sources */,
 				27B7E3C0163CB4E200E9C6EB /* FLNetworkServerContext.m in Sources */,
@@ -6736,7 +6724,7 @@
 				27B7E40D163CB4E200E9C6EB /* FLSoapError.m in Sources */,
 				27B7E414163CB4E200E9C6EB /* FLSoapFault11.m in Sources */,
 				27B7E41B163CB4E200E9C6EB /* FLSoapNetworkConnection.m in Sources */,
-				27B7E422163CB4E200E9C6EB /* FLSoapNetworkOperationResponseHandler.m in Sources */,
+				27B7E422163CB4E200E9C6EB /* FLSoapOperationDelegate.m in Sources */,
 				27B7E429163CB4E200E9C6EB /* FLByteBuffer.m in Sources */,
 				27B7E430163CB4E200E9C6EB /* FLTcpConnection.m in Sources */,
 				27B7E43A163CB4E200E9C6EB /* FLTcpConnectionReader.m in Sources */,
@@ -7166,7 +7154,6 @@
 				27B7E393163CB4E200E9C6EB /* FLHttpMessage.m in Sources */,
 				27B7E39A163CB4E200E9C6EB /* FLHttpOperation.m in Sources */,
 				27B7E3A1163CB4E200E9C6EB /* FLHttpOperationAuthenticator.m in Sources */,
-				27B7E3A8163CB4E200E9C6EB /* FLHttpOperationResponseHandler.m in Sources */,
 				27B7E3AF163CB4E200E9C6EB /* FLHttpRequest.m in Sources */,
 				27B7E3B6163CB4E200E9C6EB /* FLHttpResponse.m in Sources */,
 				27B7E3BD163CB4E200E9C6EB /* FLNetworkServerContext.m in Sources */,
@@ -7183,7 +7170,7 @@
 				27B7E40A163CB4E200E9C6EB /* FLSoapError.m in Sources */,
 				27B7E411163CB4E200E9C6EB /* FLSoapFault11.m in Sources */,
 				27B7E418163CB4E200E9C6EB /* FLSoapNetworkConnection.m in Sources */,
-				27B7E41F163CB4E200E9C6EB /* FLSoapNetworkOperationResponseHandler.m in Sources */,
+				27B7E41F163CB4E200E9C6EB /* FLSoapOperationDelegate.m in Sources */,
 				27B7E426163CB4E200E9C6EB /* FLByteBuffer.m in Sources */,
 				27B7E42D163CB4E200E9C6EB /* FLTcpConnection.m in Sources */,
 				27B7E437163CB4E200E9C6EB /* FLTcpConnectionReader.m in Sources */,
@@ -7613,7 +7600,6 @@
 				27B7E394163CB4E200E9C6EB /* FLHttpMessage.m in Sources */,
 				27B7E39B163CB4E200E9C6EB /* FLHttpOperation.m in Sources */,
 				27B7E3A2163CB4E200E9C6EB /* FLHttpOperationAuthenticator.m in Sources */,
-				27B7E3A9163CB4E200E9C6EB /* FLHttpOperationResponseHandler.m in Sources */,
 				27B7E3B0163CB4E200E9C6EB /* FLHttpRequest.m in Sources */,
 				27B7E3B7163CB4E200E9C6EB /* FLHttpResponse.m in Sources */,
 				27B7E3BE163CB4E200E9C6EB /* FLNetworkServerContext.m in Sources */,
@@ -7630,7 +7616,7 @@
 				27B7E40B163CB4E200E9C6EB /* FLSoapError.m in Sources */,
 				27B7E412163CB4E200E9C6EB /* FLSoapFault11.m in Sources */,
 				27B7E419163CB4E200E9C6EB /* FLSoapNetworkConnection.m in Sources */,
-				27B7E420163CB4E200E9C6EB /* FLSoapNetworkOperationResponseHandler.m in Sources */,
+				27B7E420163CB4E200E9C6EB /* FLSoapOperationDelegate.m in Sources */,
 				27B7E427163CB4E200E9C6EB /* FLByteBuffer.m in Sources */,
 				27B7E42E163CB4E200E9C6EB /* FLTcpConnection.m in Sources */,
 				27B7E438163CB4E200E9C6EB /* FLTcpConnectionReader.m in Sources */,

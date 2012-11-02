@@ -17,20 +17,29 @@
 
 typedef void (^FLTestBlock)();
 
+#define FLTestCasePriorityLow       1
+#define FLTestCasePriorityNormal    (NSIntegerMax / 2)
+#define FLTestCasePriorityHigh      (NSIntegerMax - 1)
+
 @interface FLTestCase : FLOperation {
 @private
+    NSInteger _priority;
     NSString* _testCaseName;
     FLTestBlock _testCaseBlock;
     SEL _testCaseSelector;
     __unsafe_unretained id _target;
-    int _selectorType;
-    int _sortOrder;
     NSString* _disabledReason;
 }
+
 - (void) setDisabledWithReason:(NSString*) reason;
+@property (readwrite, assign, nonatomic) NSInteger priority; 
 
 @property (readonly, strong, nonatomic) NSString* disabledReason;
 @property (readonly, strong, nonatomic) NSString* testCaseName;
+@property (readonly, assign, nonatomic) SEL testCaseSelector;
+@property (readonly, assign, nonatomic) id testCaseTarget;
+@property (readonly, copy, nonatomic) FLTestBlock testCaseBlock;
+
 
 // construction
 - (id) initWithName:(NSString*) name target:(id) target selector:(SEL) selector;

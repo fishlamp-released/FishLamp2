@@ -467,7 +467,7 @@ TODO("MF: fix activity updater");
 
 @implementation FLActionUnitTests
 
-- (void) testsWillRun {
+- (void) setupTests {
    [self.results setTestResult:[FLCountedTestResult countedTestResult:6] forKey:@"counter"];
 }
 

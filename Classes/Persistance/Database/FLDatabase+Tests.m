@@ -15,7 +15,7 @@
 
 @implementation FLDatabaseTests
 
-- (void) testsWillRun {
+- (void) setupTests {
     FLTempFolder* folder = [FLTempFolder tempFolder];
     [folder createIfNeeded];
     
@@ -24,7 +24,7 @@
     FLAssert_v(_database.isOpen, @"database is not open");
 }
 
-- (void) testsDidRun {
+- (void) teardownTests {
 
     [_database closeDatabase];
     [_database deleteOnDisk];

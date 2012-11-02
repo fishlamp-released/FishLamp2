@@ -40,7 +40,6 @@
     
     for(Class aClass in _classList) {
         FLUnitTest* test = autorelease_([[[aClass class] alloc] init]);
-        [test discoverTestCases];
         [test runSynchronously];
     }
     [finisher setFinished];
@@ -57,7 +56,7 @@
 }
 
 - (void) addPossibleUnitTestClass:(FLRuntimeInfo) info {
-
+//class_conformsToProtocol
     if(!info.isMetaClass) {
         if([NSObject superclass:[FLUnitTest class] hasSubclass:info.class]) {
             [_classList addObject:info.class];

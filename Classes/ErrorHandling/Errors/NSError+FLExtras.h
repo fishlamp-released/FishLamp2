@@ -20,7 +20,7 @@
 
 - (BOOL) isErrorCode:(NSInteger) code domain:(NSString*) domain;
 
-- (BOOL) isDomain:(NSString*) domain;
+- (BOOL) errorDomainEqualsDomain:(NSString*) domain;
 
 // Network errors 
 // TODO move these

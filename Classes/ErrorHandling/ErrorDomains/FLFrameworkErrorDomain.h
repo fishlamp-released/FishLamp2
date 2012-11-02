@@ -28,6 +28,7 @@ enum {
 	FLActionErrorCodeConfigScope,
 	FLActionErrorCodeInvalidContext,
 	FLAuthenticationErrorPasswordIncorrect,
-	FLAuthenticationErrorPasswordIncorrectOffline
+	FLAuthenticationErrorPasswordIncorrectOffline,
+    FLSoapFaultError
 };
 

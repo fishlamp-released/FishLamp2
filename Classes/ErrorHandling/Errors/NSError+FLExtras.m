@@ -33,7 +33,7 @@ NSString* const FLErrorDomainKey = @"com.fishlamp.error.domain";
 	return code == self.code && FLStringsAreEqual(domain, self.domain);
 }
 
-- (BOOL) isDomain:(NSString*) domain {
+- (BOOL) errorDomainEqualsDomain:(NSString*) domain {
 	return FLStringsAreEqual(domain, self.domain);
 }
 
