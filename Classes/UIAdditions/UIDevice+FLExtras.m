@@ -316,7 +316,7 @@ void GetMemoryStats(unsigned long long* totalMemory, unsigned long long* used, u
 			  
 	if (host_statistics(host_port, HOST_VM_INFO, (host_info_t)&vm_stat, &host_size) != KERN_SUCCESS)
 	{
-	   FLCLog(@"Failed to fetch vm statistics");
+	   FLLog(@"Failed to fetch vm statistics");
 	   return;
 	}
  

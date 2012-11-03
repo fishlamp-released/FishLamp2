@@ -20,7 +20,7 @@ FLSynthesizeSingleton(FLAssetsLibrary);
 NSError* DisplayDiagnosticError(NSError* error)
 {
     @try {
-        FLCLog(@"Got Assets Libary error: %@", [error description]);
+        FLLog(@"Got Assets Libary error: %@", [error description]);
 #if ASSETS_LIBRARY_ERROR_ALERT
         if(error) 
         {

@@ -17,7 +17,7 @@ void _FLLogViewHierarchy(UIView* view, int count) {
     NSMutableString* spaces = [NSMutableString string];
     for(int i = 0; i < count; i++) [spaces appendString:@" "];
 
-    FLCLog(@"%@%@", spaces, [view description]);
+    FLLog(@"%@%@", spaces, [view description]);
     for(UIView* subview in view.subviews) {
         _FLLogViewHierarchy(subview, count + 1);
     }
@@ -30,7 +30,7 @@ void FLLogViewHierarchy(UIView* view) {
 void FLLogAllWindows() {
 	NSArray* windows = [UIApplication sharedApplication].windows;
 	
-	FLCLog(@"Logging %d windows", windows.count);
+	FLLog(@"Logging %d windows", windows.count);
 	
 	for(UIWindow* window in windows) {
 		FLLogViewHierarchy(window);

@@ -85,7 +85,7 @@
 		
         [delegate twitterAuthenticator:self presentAuthenticationViewController:controller];
 		
-		[controller beginAuthorizingApp:[FLTwitterMgr instance] delegate:self];
+		[controller beginAuthorizingApp:[FLTwitterMgr instance].oauthInfo delegate:self];
 	}
 	else
 	{

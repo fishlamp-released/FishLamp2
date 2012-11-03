@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import "FLUserSession.h"
+#import "FLPhotoUserSession.h"
 
-@interface FLUserSession (iOS)
+@interface FLPhotoUserSession (iOS)
 
 + (id) createVersionUpgradeProgressViewController:(FLLengthyTask*) lengthyTask;
 + (id) createUserLoggingOutProgressViewController;
