@@ -48,7 +48,7 @@
         [_progress hideProgress];
         mrc_release_(_progress);
     }
-    mrc_super_dealloc_();   
+    super_dealloc_();   
 }
 #endif
 

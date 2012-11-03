@@ -27,7 +27,7 @@
     mrc_release_(_onLayout);
     mrc_release_(_views);
     mrc_release_(_frames);
-    mrc_super_dealloc_();
+    super_dealloc_();
 }
 #endif
 

@@ -29,7 +29,7 @@ FLSynthesizeStructProperty(isPrimaryKey, setPrimaryKey, BOOL, _state);
 	mrc_release_(_decodedColumnName);
 	mrc_release_(_constraints);
 	mrc_release_(_name);
-	mrc_super_dealloc_();
+	super_dealloc_();
 }
 
 - (BOOL) hasPrimaryKeyConstraint {

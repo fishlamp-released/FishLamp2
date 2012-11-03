@@ -9,18 +9,37 @@
 #import "FLObservable.h"
 #import "FLDeallocNotifier.h"
 #import "FLDeletedObjectReference.h"
+#import "FLAnswerable.h"
 
-@implementation NSObject (FLObserver)
-- (void) receiveObservation:(SEL) sel fromObservable:(id) observable withObject:(id) object {
-    [self performIfRespondsToSelector:sel
-                       withObject:observable
-                       withObject:object];
+@interface FLUnretainedObserver : NSObject<FLObserver> {
+@private
+    FLWeakReference* _observer;
+    FLWeakReference* _observing;
 }
 
-- (void) receiveObservation:(SEL) sel fromObservable:(id) observable {
-    [self performIfRespondsToSelector:sel withObject:observable];
-}
+- (id) initWithObserver:(id) observer isObserving:(id) observedObject;
++ (id) unretainedObserver:(id) observer isObserving:(id) observedObject;
 @end
+
+
+//@implementation NSObject (FLObserver)
+//- (void) receiveObservation:(SEL) selector fromObservable:(id) observable withObject:(id) object {
+//    [self performIfRespondsToSelector:selector
+//                       withObject:observable
+//                       withObject:object];
+//}
+//
+//- (void) receiveObservation:(SEL) selector fromObservable:(id) observable {
+//    [self performIfRespondsToSelector:selector withObject:observable];
+//}
+//
+//- (void) receiveObservation:(SEL) selector fromObservable:(id) observable withObject:(id) object1 withObject:(id) object2 {
+//    [self performIfRespondsToSelector:selector
+//                       withObject:observable
+//                       withObject:object1
+//                       withObject:object2];
+//}
+//@end
 
 
 @implementation FLObservable
@@ -70,10 +89,10 @@
 #endif
 }
 
-- (void) postObservation:(SEL) sel {
+- (void) postObservation:(SEL) selector {
     [self visitObservers:^(id observer, BOOL* stop) {
         @try {
-            [observer receiveObservation:sel fromObservable:self];
+            FLPerformSelectorWithObject(observer, selector, self);
         }
         @catch(NSException* ex) {
             FLAssertFailed_v(@"Not allowed to throw exceptions from observer.");
@@ -81,16 +100,56 @@
     }];
 }
 
-- (void) postObservation:(SEL) sel withObject:(id) object {
+- (void) postObservation:(SEL) selector withObject:(id) object {
     [self visitObservers:^(id observer, BOOL* stop) {
         @try {
-            [observer receiveObservation:sel fromObservable:self withObject:object];
+            FLPerformSelectorWithTwoObjects(observer, selector, self, object);
         }
         @catch(NSException* ex) {
             FLAssertFailed_v(@"Not allowed to throw exceptions from observer.");
         }
     }];
 }
+
+
+- (void) postObservation:(SEL) selector withObject:(id) obj1 withObject:(id) obj2 {
+
+    [self visitObservers:^(id observer, BOOL* stop) {
+        @try {
+            FLPerformSelectorWithThreeObjects(observer, selector, self, obj1, obj2);
+        }
+        @catch(NSException* ex) {
+            FLAssertFailed_v(@"Not allowed to throw exceptions from observer.");
+        }
+    }];
+}
+
+- (BOOL) postQuestion:(SEL) selector {
+    FLAnswerable* answer = [FLAnswerable answerable];
+    [self postObservation:selector withObject:answer];
+    
+    return answer.answer;
+}
+
+- (BOOL) postQuestion:(SEL) selector 
+        defaultAnswer:(BOOL) defaultAnswer {
+
+    FLAnswerable* answer = [FLAnswerable answerable:defaultAnswer];
+    [self postObservation:selector withObject:answer];
+    
+    return answer.answer;
+}
+
+- (BOOL) postQuestion:(SEL) selector 
+        defaultAnswer:(BOOL) defaultAnswer 
+           withObject:(id) object {
+
+    FLAnswerable* answer = [FLAnswerable answerable:defaultAnswer];
+    [self postObservation:selector withObject:answer withObject:object];
+    return answer.answer;
+}
+
+
 
 @end
 
@@ -114,19 +173,32 @@
     return self;
 }
 
-
 + (id) unretainedObserver:(id) observer isObserving:(id) observedObject {
     return autorelease_([[[self class] alloc] initWithObserver:observer isObserving:observedObject]);
 }
 
-- (void) receiveObservation:(SEL) sel fromObservable:(id) observable withObject:(id) object {
+- (void) receiveObservation:(SEL) selector fromObservable:(id) observable  {
     id theObject = _observing.object;
-    [theObject receiveObservation:sel fromObservable:observable withObject:object];
+
+    if( !FLPerformSelectorWithObject(theObject, selector, observable)) {
+        FLPerformSelectorWithObject(theObject, @selector(receiveObservation:fromObservable:), observable);
+    }
 }
 
-- (void) receiveObservation:(SEL) sel fromObservable:(id) observable  {
+- (void) receiveObservation:(SEL) selector fromObservable:(id) observable withObject:(id) object {
     id theObject = _observing.object;
-    [theObject receiveObservation:sel fromObservable:observable];
+
+    if( !FLPerformSelectorWithTwoObjects(theObject, selector, observable, object)) {
+        FLPerformSelectorWithTwoObjects(theObject, @selector(receiveObservation:fromObservable:), observable, object);
+    }
+}
+
+- (void) receiveObservation:(SEL) selector fromObservable:(id) observable withObject:(id) object1 withObject:(id) object2 {
+    id theObject = _observing.object;
+
+    if( !FLPerformSelectorWithThreeObjects(theObject, selector, observable, object1, object2)) {
+        FLPerformSelectorWithThreeObjects(theObject, @selector(receiveObservation:fromObservable:), observable, object1, object2);
+    }
 }
 
 - (BOOL) isEqual:(id) object {
@@ -214,10 +286,10 @@
 //    return stop;
 //}
 //
-//- (void) postObservation:(SEL) sel withObject:(id) object{
+//- (void) postObservation:(SEL) selector withObject:(id) object{
 //    [self visitObservers:^(id observer, BOOL *stop) {
 //        @try {
-//            FLPerformSelectorWithObject(observer, sel, object);
+//            FLPerformSelectorWithObject(observer, selector, object);
 //        }
 //        @catch(NSException* ex) {
 //            FLAssertFailed_v(@"Not allowed to throw exceptions from observer.");
@@ -225,10 +297,10 @@
 //    }];
 //}
 //
-//- (void) postObservation:(SEL) sel withObject:(id) object withObject:object2{
+//- (void) postObservation:(SEL) selector withObject:(id) object withObject:object2{
 //    [self visitObservers:^(id observer, BOOL *stop) {
 //        @try {
-//            FLPerformSelectorWithObjectAndObject(observer, sel, object, object2);
+//            FLPerformSelectorWithObjectAndObject(observer, selector, object, object2);
 //        }
 //        @catch(NSException* ex) {
 //            FLAssertFailed_v(@"Not allowed to throw exceptions from observer.");
@@ -241,10 +313,10 @@
 
 //@implementation FLSimpleNotifier (FLObserveable)
 //
-//- (void) postObservation:(SEL) sel withObject:(id) object {
+//- (void) postObservation:(SEL) selector withObject:(id) object {
 //}
 //
-//- (void) postObservation:(SEL) sel {
+//- (void) postObservation:(SEL) selector {
 //}
 //
 //@end

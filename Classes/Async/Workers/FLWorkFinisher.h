@@ -20,6 +20,7 @@
     BOOL _finished;
     FLResultBlock _completionBlock;
     FLResult _result;
+    NSThread* _thread;
 }
 
 - (id) initWithCompletionBlock:(FLResultBlock) completion;

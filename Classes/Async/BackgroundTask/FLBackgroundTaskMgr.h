@@ -10,6 +10,9 @@
 #import "FishLampCore.h"
 #import "FLObservable.h"
 #import "FLOperationQueue.h"
+#import "FLAnswerable.h"
+
+#import "FLAppService.h"
 
 @class FLOperationContext;
 @class FLBackgroundTaskMgr;
@@ -47,7 +50,7 @@
     The API is not thread safe and expects to be called on the main thread.
  */
 
-@interface FLBackgroundTaskMgr : FLObservable {
+@interface FLBackgroundTaskMgr : FLAppService {
 @private
 	NSMutableArray* _queue;
     NSMutableArray* _sequenceQueue;
@@ -68,7 +71,6 @@
 
 @property (readwrite, assign, getter=isEnabled) BOOL enabled;
 
-FLSingletonProperty(FLBackgroundTaskMgr);
 
 /** add task to list. */
 - (void) addBackgroundTask:(id<FLBackgroundTask>) task;
@@ -91,6 +93,11 @@ FLSingletonProperty(FLBackgroundTaskMgr);
 
 @protocol FLBackgroundTaskObserver <FLObserver>
 @optional
-- (BOOL) backgroundTaskMgrCanBeginBackgroundTasks:(FLBackgroundTaskMgr*) mgr;
-- (BOOL) backgroundTaskMgr:(FLBackgroundTaskMgr*) mgr canBeginBackgroundTask:(id<FLBackgroundTask>) task;
+//- (BOOL) backgroundTaskMgrCanBeginBackgroundTasks:(FLBackgroundTaskMgr*) mgr;
+//- (BOOL) backgroundTaskMgr:(FLBackgroundTaskMgr*) mgr canBeginBackgroundTask:(id<FLBackgroundTask>) task;
+//
+//
+- (void) backgroundTaskMgr:(FLBackgroundTaskMgr*) mgr canStart:(id<FLAnswerable>) answer;
+- (void) backgroundTaskMgr:(FLBackgroundTaskMgr*) mgr canStart:(id<FLAnswerable>) answer backgroundTask:(id<FLAnswerable>) answer;
+
 @end

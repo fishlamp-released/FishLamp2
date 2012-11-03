@@ -31,7 +31,7 @@
 //    mrc_release_(_observeFinish);
 //    mrc_release_(_observeResult);
 //    mrc_release_(_observeAllResults);
-//    mrc_super_dealloc_();
+//    super_dealloc_();
 //}
 //#endif
 //

@@ -117,9 +117,8 @@
 	if(!self.URL) {
 		self.URL = [self createURL];
 	}
-
-    [((id)self.httpDelegate) performIfRespondsToSelector:@selector(httpOperationWillRun:) withObject:self];
     
+    FLPerformSelectorWithObject(self.httpDelegate,  @selector(httpOperationWillRun:), self);
     [super runSelf];
 }
 
@@ -132,7 +131,7 @@
 
 - (void) finishSelf {
     [super finishSelf];
-    if(![((id)self.httpDelegate) performIfRespondsToSelector:@selector(httpOperationDidRun:) withObject:self] ) {
+    if(!FLPerformSelectorWithObject(self.httpDelegate,  @selector(httpOperationDidRun:), self)) {
         FLThrowIfError_([self.httpResponse simpleHttpResponseErrorCheck]);
     }
 }

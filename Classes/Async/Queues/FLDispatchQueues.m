@@ -103,7 +103,7 @@ FLSynthesizeSingleton(FLDispatchQueue);
 - (id<FLPromisedResult>) dispatchBlock:(void (^)()) block
                         completion:(FLResultBlock) completion {
     
-    FLWorkFinisher* finisher = [FLDispatchFinisher dispatchFinisher:completion queue:self];
+    FLWorkFinisher* finisher = [FLWorkFinisher finisher:completion];
 
     block = FLCopyBlock(block);
 
@@ -125,7 +125,7 @@ FLSynthesizeSingleton(FLDispatchQueue);
 - (id<FLPromisedResult>) dispatchAsyncBlock:(FLAsyncBlock) block
                         completion:(FLResultBlock) completion {
     
-    FLWorkFinisher* finisher = [FLDispatchFinisher dispatchFinisher:completion queue:self];
+    FLWorkFinisher* finisher = [FLWorkFinisher finisher:completion];
 
     block = FLCopyBlock(block);
 
@@ -152,9 +152,9 @@ FLSynthesizeSingleton(FLDispatchQueue);
 }
 
 - (id<FLPromisedResult>) dispatchWorker:(id<FLWorker>) aWorker
-                    completion:(FLResultBlock) completion {
+                             completion:(FLResultBlock) completion {
     
-    FLWorkFinisher* finisher = [FLDispatchFinisher dispatchFinisher:completion queue:self];
+    FLWorkFinisher* finisher = [FLWorkFinisher finisher:completion];
 
     dispatch_async([self dispatchQueue],  
     ^{

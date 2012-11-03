@@ -46,7 +46,7 @@
 {
 	mrc_release_(_startColor);
 	mrc_release_(_endColor);
-	mrc_super_dealloc_();
+	super_dealloc_();
 }
 #endif
 

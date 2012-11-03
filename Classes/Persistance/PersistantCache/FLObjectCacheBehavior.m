@@ -29,7 +29,7 @@
 - (void) dealloc
 {
 	mrc_release_(_cacheKey);
-	mrc_super_dealloc_();
+	super_dealloc_();
 }
 
 - (id) cacheKeyForObject:(id) object

@@ -20,7 +20,7 @@
 }
 
 - (void) dealloc {	
-	mrc_super_dealloc_();
+	super_dealloc_();
 }
 
 - (void) runSelf {

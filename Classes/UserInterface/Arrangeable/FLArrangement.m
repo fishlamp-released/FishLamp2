@@ -34,7 +34,7 @@
 - (void) dealloc {
     mrc_release_(_frameSetter);
     mrc_release_(_onWillArrange);
-    mrc_super_dealloc_();
+    super_dealloc_();
 }
 #endif
 

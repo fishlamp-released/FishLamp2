@@ -9,34 +9,33 @@
 #import "FLTempFileMgr.h"
 #import "FLFolder.h"
 #import "FLWeakReference.h"
-#import "FLUserSession.h"
 
 #import <dispatch/dispatch.h>
 
 @implementation FLTempFileMgr
 
 @synthesize folder = _folder;
-FLSynthesizeSingleton(FLTempFileMgr);
+//FLSynthesizeSingleton(FLTempFileMgr);
 
-- (void) userSessionDidOpen:(FLUserSession*) userSession {
-    self.folder = [FLUserSession instance].tempFolder;
-
-// TODO: add this back
-//    [[FLTempFileMgr instance] beginPurgeInBackgroundThread:nil];
-
-}
-
-- (void) userSessionDidClose:(FLUserSession*) userSession {
-// TODO: add this back
-//    [[FLTempFileMgr instance] beginPurgeInBackgroundThread:nil];
-
-    self.folder = nil;
-}
+//- (void) userSessionDidOpen:(id<FLUserSession>) userSession {
+//    self.folder = [FLUserSession instance].tempFolder;
+//
+//// TODO: add this back
+////    [[FLTempFileMgr instance] beginPurgeInBackgroundThread:nil];
+//
+//}
+//
+//- (void) userSessionDidClose:(id<FLUserSession>) userSession {
+//// TODO: add this back
+////    [[FLTempFileMgr instance] beginPurgeInBackgroundThread:nil];
+//
+//    self.folder = nil;
+//}
 
 
 - (id) init {
     if((self = [super init])) {
-        [[FLUserSession instance] addObserver:self];
+//        [[FLUserSession instance] addObserver:self];
     }
     
     return self;
@@ -44,9 +43,9 @@ FLSynthesizeSingleton(FLTempFileMgr);
 
 - (void) dealloc {
     FLSendDeallocNotification();
-    [[FLUserSession instance] removeObserver:self];
+//    [[FLUserSession instance] removeObserver:self];
     mrc_release_(_folder);
-    mrc_super_dealloc_();
+    super_dealloc_();
 }
 
 - (void) addFile:(id<FLAbstractFile>) file {

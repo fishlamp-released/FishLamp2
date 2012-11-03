@@ -7,6 +7,7 @@
 //
 
 #import "FLUserSession.h"
+#import "FLUserSession.h"
 #import "FLFolder.h"
 #import "FLLowMemoryHandler.h"
 #import "FLUpgradeDatabaseLengthyTask.h"
@@ -23,26 +24,45 @@
 @interface FLUserSession ()
 - (BOOL) _beginOpeningSession;
 - (void) finishUpgradeTasks;
+- (void) registerForEvents;
 @property (readonly, retain, nonatomic) FLVersionUpgradeLengthyTaskList* upgradeTaskList;
+@property (readwrite, strong) id<FLFinisher> openFinisher;
+@property (readwrite, strong) FLUserLogin* userLogin; 
+@property (readwrite, strong) FLBackgroundTaskMgr* backgroundTasks;
 @end
 
 @implementation FLUserSession
 
-FLSynthesizeSingleton(FLUserSession);
+//FLSynthesizeSingleton(FLUserSession);
 
+@synthesize openFinisher = _openFinisher;
 @synthesize userLogin = _login;
 @synthesize cacheDatabase = _cacheDatabase;
 @synthesize documentsDatabase = _documentsDatabase;
-
+@synthesize backgroundTasks = _backgroundTasks;
 @synthesize documentsFolder = _documentsFolder;
 @synthesize cacheFolder = _cacheFolder;
 @synthesize photoFolder = _photoFolder;
 @synthesize photoCacheFolder = _photoCacheFolder;
 @synthesize tempFolder = _tempFolder;
 @synthesize logFolder = _logFolder;
-
 @synthesize upgradeTaskList = _upgradeTaskList;
+@synthesize userLogin = _userLogin;
 
+- (id) initWithUserLogin:(FLUserLogin*) userLogin {
+    self = [super init];
+    if(self) {
+        [self registerForEvents];
+        self.userLogin = userLogin;
+    }
+}
+
+- (id) init {
+	if((self = [super initWithUserLogin:nil])) {   
+    }
+
+	return self;
+}
 
 - (void) _emptyCache:(id) sender
 {
@@ -53,6 +73,7 @@ FLSynthesizeSingleton(FLUserSession);
         [_cacheDatabase closeDatabase];
         [_cacheDatabase deleteOnDisk];
         [_cacheDatabase openDatabase:FLDatabaseOpenFlagsDefault];
+
 
 #if IOS        
         [NSFileManager addSkipBackupAttributeToFile:_cacheDatabase.filePath];
@@ -76,6 +97,13 @@ FLSynthesizeSingleton(FLUserSession);
         [self _beginOpeningSession];
     }
 }
+
+#if FL_MRC
+- (void) dealloc {
+    [_backgroundTasks release];
+    [super dealloc];
+}
+#endif
 
 //- (void) _appDidEnterBackground:(id) sender {
 //}
@@ -123,25 +151,17 @@ FLSynthesizeSingleton(FLUserSession);
 #endif
 }
 
-- (id) init
-{
-	if((self = [super init]))
-	{
-    }
-
-	return self;
-}
 
 
-
-- (BOOL) isSessionOpen
-{
+- (BOOL) isSessionOpen {
 	return _state.open;
 }	 
  
-- (void) deleteSessionData 
-{
-	FLReleaseWithNil_(_login);
+- (void) deleteSessionData  {
+    [self removeAppService:self.backgroundTasks];
+    self.backgroundTasks = nil;
+
+    FLReleaseWithNil_(_login);
 	FLReleaseWithNil_(_documentsFolder);
 	FLReleaseWithNil_(_cacheFolder);
 	FLReleaseWithNil_(_photoFolder);
@@ -162,6 +182,9 @@ FLSynthesizeSingleton(FLUserSession);
 	}
 	 
 	@try {
+        _login.isAuthenticatedValue = NO;
+        [[FLApplicationDataModel instance] saveUserLogin:_login];
+    
 		[_cacheDatabase closeDatabase];
 		[_documentsDatabase closeDatabase];
 
@@ -181,44 +204,22 @@ FLSynthesizeSingleton(FLUserSession);
     }
 }
 
-- (void) setUserLoggedOut {
-    [[FLBackgroundTaskMgr instance] resetAllTasks];
+- (void) closeSelf:(id<FLFinisher>) finisher {
 
-	_login.isAuthenticatedValue = NO;
-	[[FLApplicationDataModel instance] saveUserLogin:_login];
-    [self postObservation:@selector(userSessionUserDidLogout:)];
-	[self closeSession];
-}
+    [self postObservation:@selector(userSessionWillClose:)];
 
-- (void) _beginLoggingOut {
-    [[FLUserSession instance] setUserLoggedOut];
-}
-
-- (void) beginLoggingOutUser:(void (^)()) finishedLogout {
-
-    if([[FLBackgroundTaskMgr instance] isExecutingBackgroundTask]) {
-
-        finishedLogout = autorelease_([finishedLogout copy]);
-
-        id<FLProgressViewController> progress = [[self class] createUserLoggingOutProgressViewController];
-        [progress setTitle:NSLocalizedString(@"Logging Out…", nil)];
+    id<FLProgressViewController> progress = nil;
     
-        [[FLBackgroundTaskMgr instance] beginCancellingAllTasks:^(id backgroundTaskMgr) {
-            
-            [self setUserLoggedOut];
-            [progress hideProgress];
-            if(finishedLogout) {
-                finishedLogout();
-            }
+    if([self.backgroundTasks isExecutingBackgroundTask]) {
+        progress = [[self class] createUserLoggingOutProgressViewController];
+        [progress setTitle:NSLocalizedString(@"Logging Out…", nil)];
+    }
 
-        } ];
-    }
-    else {
-        [self setUserLoggedOut];
-        if(finishedLogout) {
-            finishedLogout();
-        }
-    }
+    [self.backgroundTasks beginClosingService:^(id<FLResult> backgroundTaskMgr) {
+        [self closeSession];
+        [progress hideProgress];
+        [finisher setFinished];
+    }];
 }
 
 - (void) _initSessionObjectsIfNeeded {
@@ -279,6 +280,21 @@ FLSynthesizeSingleton(FLUserSession);
 	}
 }
 
+- (void) finishOpeningSession {
+	_state.open = YES;
+	_state.willOpen = NO;
+	_state.isOpening = NO;
+
+    self.backgroundTasks = [FLBackgroundTaskMgr create];
+    [self addAppService:_backgroundTasks];
+
+    [self.backgroundTasks startOpeningService:^(id<FLResult> result) {
+        [self postObservation:@selector(userSessionDidOpen:)];
+
+        [self.openFinisher setFinished];
+        self.openFinisher = nil;
+    }];
+}
 
 - (BOOL) _beginOpeningSession
 {
@@ -336,46 +352,26 @@ FLSynthesizeSingleton(FLUserSession);
 	return NO;
 }
 
-- (void) beginOpeningSession:(FLUserLogin*) userLogin
-              wasOpenedBlock:(FLSessionOpenedBlock) wasOpenedBlock
-{
+- (void) openSelf:(id<FLFinisher>) finisher {
 	FLAssertIsNotNil_v(wasOpenedBlock, nil);
 
 	[self closeSession];
 
-	FLRetainObject_(_login, userLogin);
+    [self postObservation:@selector(userSessionWillOpen:)];
 
-	if(self.userLogin)
-	{
-		FLAssert_v(FLStringIsNotEmpty(userLogin.userName), @"invalid userLogin");
-	
-		FLReleaseBlockWithNil_(_openCallback);
-		_openCallback = [wasOpenedBlock copy];
-		_state.willOpen = YES;
-		_state.isOpening = NO;
-		_state.open = NO;
-		_state.upgrading = NO;
-		[self _beginOpeningSession];
-	}
-	else
-	{
-		if(wasOpenedBlock)
-		{
-			wasOpenedBlock(nil);
-		}
-	}
+    FLAssert_v(FLStringIsNotEmpty(userLogin.userName), @"invalid userLogin");
+        
+    self.openFinisher = finisher;
+    
+    _state.willOpen = YES;
+    _state.isOpening = NO;
+    _state.open = NO;
+    _state.upgrading = NO;
+    [self _beginOpeningSession];
 }
 
-- (void) beginOpeningSessionWithDefaultUser:(FLSessionOpenedBlock) userLoginCompleted {
-
-    [self beginOpeningSession:[self loadDefaultUser]
-               wasOpenedBlock:userLoginCompleted];
-}
-
-- (void) finishUpgradeTasks
-{	
-	if(_state.upgrading)
-	{
+- (void) finishUpgradeTasks {	
+	if(_state.upgrading) {
 		FLAssertIsNotNil_v(self.userLogin, nil);
 		FLAssert_v(_upgradeTaskList != nil, @"not upgrading");
 		
@@ -391,41 +387,22 @@ FLSynthesizeSingleton(FLUserSession);
 	}
 }
 
-- (void) finishOpeningSession
-{
-	_state.open = YES;
-	_state.willOpen = NO;
-	_state.isOpening = NO;
-
-    [self postObservation:@selector(userSessionDidOpen:)];
-
-	if(_openCallback) {
-		_openCallback(self.userLogin);
-		FLReleaseBlockWithNil_(_openCallback);
-	}
-}
-
-- (BOOL) isAuthenticated
-{
+- (BOOL) isAuthenticated {
 	return _login.isAuthenticatedValue;
 }
 
-- (FLUserLogin*) loadLastUserLogin
-{
-	return [[FLApplicationDataModel instance] loadLastUserLogin];
-}
-   
-- (void) dealloc
-{
-	mrc_release_(_openCallback);
-
+- (void) dealloc {
+	release_(_openFinisher);
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	[self closeSession];
-	mrc_super_dealloc_();
+	super_dealloc_();
 }
 
-- (FLUserLogin*) loadDefaultUser
-{
++ (FLUserLogin*) loadLastUserLogin {
+	return [[FLApplicationDataModel instance] loadLastUserLogin];
+}
+
++ (FLUserLogin*) loadDefaultUser {
 	FLUserLogin* login = [[FLApplicationDataModel instance] loadUserLoginWithGuid:[NSString zeroGuidString]];
     if(!login)
     {
@@ -440,5 +417,4 @@ FLSynthesizeSingleton(FLUserSession);
 }
 
 @end
-
 

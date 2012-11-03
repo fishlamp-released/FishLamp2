@@ -34,7 +34,7 @@
 - (void) dealloc  {
     mrc_release_(_startPath);
     mrc_release_(_visitorBlock);
-    mrc_super_dealloc_();
+    super_dealloc_();
 }
 
 + (FLVisitFilesInFolderLengthyTask*) visitFilesInFolderLengthyTask:(NSString*) taskName 

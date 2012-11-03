@@ -57,7 +57,7 @@
     mrc_release_(__from);
     mrc_release_(__message);
     mrc_release_(__updated_time);
-    mrc_super_dealloc_();
+    super_dealloc_();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder

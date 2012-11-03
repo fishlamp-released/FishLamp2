@@ -196,7 +196,7 @@
 	[[FLLowMemoryHandler defaultHandler] removeObserver:self];
 	mrc_release_(_objects);
 	mrc_release_(_list);
-	mrc_super_dealloc_();
+	super_dealloc_();
 }
 
 

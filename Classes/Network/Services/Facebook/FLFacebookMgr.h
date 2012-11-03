@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #import "FacebookEnums.h"
+#import "FLAppService.h"
 
 #define FLFacebookErrorKey @"fb_error"
 #define FLFacebookErrorDomain @"FLFacebookErrorDomain"
@@ -30,10 +31,11 @@ typedef enum {
 #import "FLFacebookOperation.h"
 #import "FLAction.h"
 #import "FLFacebookAuthenticationResponse.h"
+#import "FLUserService.h"
 
 @protocol FLFacebookManagerDelegate;
 
-@interface FLFacebookMgr : FLNetworkServerContext {
+@interface FLFacebookMgr : NSObject<FLUserService> {
 @private
 	FLFacebookNetworkSession* _session; // 
 	NSString* _appId;

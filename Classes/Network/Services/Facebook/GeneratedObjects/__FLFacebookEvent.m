@@ -96,7 +96,7 @@
     mrc_release_(__venue);
     mrc_release_(__privacy);
     mrc_release_(__updated_time);
-    mrc_super_dealloc_();
+    super_dealloc_();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder

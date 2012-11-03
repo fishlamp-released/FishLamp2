@@ -40,7 +40,7 @@
 	mrc_release_(_error);
 	mrc_release_(_title);
 	mrc_release_(_description);
-	mrc_super_dealloc_();
+	super_dealloc_();
 }
 
 @end

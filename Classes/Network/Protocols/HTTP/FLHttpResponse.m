@@ -60,7 +60,7 @@
     mrc_release_(_responseStatusLine);
     mrc_release_(_responseHeaders);
     mrc_release_(_data);
-    mrc_super_dealloc_();
+    super_dealloc_();
 }
 #endif
 

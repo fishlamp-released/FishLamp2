@@ -15,9 +15,9 @@
 
 @implementation FLUserPreferences
 
-- (id) init
+- (id) initWithFolder:(FLFolder*) folder
 {
-	if((self = [super initWithFolder:[FLUserSession instance].documentsFolder fileName:kFileName]))
+	if((self = [super initWithFolder:folder fileName:kFileName]))
 	{
 	}
 	
@@ -26,7 +26,7 @@
 
 - (id) initWithCoder:(NSCoder*) aDecoder
 {
-	if((self = [super initWithFolder:[FLUserSession instance].documentsFolder fileName:kFileName]))
+	if((self = [super init]))
 	{
 	}
 	

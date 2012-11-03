@@ -46,7 +46,7 @@
 - (void) dealloc
 {
 	mrc_release_(_cache);
-	mrc_super_dealloc_();
+	super_dealloc_();
 }
 
 - (BOOL) willSaveObjectToDatabaseCache:(id) object

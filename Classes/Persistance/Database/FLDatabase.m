@@ -81,7 +81,7 @@ static FLDatabaseColumnDecoder s_decoder = nil;
 
 	FLAssertIsNil_v(_database, nil);
 	mrc_release_(_filePath);
-	mrc_super_dealloc_();
+	super_dealloc_();
 }
 
 - (void) deleteOnDisk {

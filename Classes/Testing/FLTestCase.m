@@ -153,7 +153,7 @@ FLTestCaseFlagPair s_flagPairs[] = {
 //    mrc_release_(_testCompletionBlock);
     mrc_release_(_testCaseName);
     mrc_release_(_testCaseBlock);
-    mrc_super_dealloc_();
+    super_dealloc_();
 }
 #endif
 
@@ -178,11 +178,10 @@ FLTestCaseFlagPair s_flagPairs[] = {
 
 - (void) runSelf {
     @try {
-        if(_target) {
-            [_target performSelectorSafely:_testCaseSelector];
-        }
-        else if(_testCaseBlock) {
-            _testCaseBlock();
+        if(!FLPerformSelector(_target, _testCaseSelector)) {
+            if(_testCaseBlock) {
+                _testCaseBlock();
+            }
         }
     }
     @catch(NSException* ex) {

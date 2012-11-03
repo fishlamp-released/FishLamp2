@@ -54,7 +54,7 @@
     mrc_release_(_fileName);
 	mrc_release_(_parseState);
 	mrc_release_(_data);
-	mrc_super_dealloc_();
+	super_dealloc_();
 }
 
 - (id<FLDataDecoder>) onCreateDataDecoder {

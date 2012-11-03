@@ -189,7 +189,7 @@
     mrc_release_(_resolvedAddresses);
     mrc_release_(_hostHame);
     mrc_release_(_addressData);
-    mrc_super_dealloc_();
+    super_dealloc_();
 }
 
 @end

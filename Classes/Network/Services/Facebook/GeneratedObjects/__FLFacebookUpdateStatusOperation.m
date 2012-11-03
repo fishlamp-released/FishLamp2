@@ -35,7 +35,7 @@
 {
     mrc_release_(__input);
     mrc_release_(__output);
-    mrc_super_dealloc_();
+    super_dealloc_();
 }
 
 + (FLFacebookUpdateStatusOperation*) facebookUpdateStatusOperation

@@ -66,7 +66,7 @@
 - (void) dealloc 
 {
     [self removeAllObservers];
-    mrc_super_dealloc_();
+    super_dealloc_();
 }
 
 

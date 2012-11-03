@@ -49,7 +49,7 @@
 {
     mrc_release_(__session);
     mrc_release_(__redirectURL);
-    mrc_super_dealloc_();
+    super_dealloc_();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder

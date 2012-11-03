@@ -14,19 +14,22 @@
 @property (readwrite, strong) FLResult result;
 @property (readwrite, assign) BOOL isFinished;
 @property (readwrite, strong) FLTimeoutTimer* timer;
+@property (readwrite, strong) NSThread* thread;
 @end
 
 @implementation FLWorkFinisher
 @synthesize timer = _timer;
 @synthesize isFinished = _finished;
 @synthesize result = _result;
+@synthesize thread = _thread;
 
 - (id) initWithCompletionBlock:(FLResultBlock) completion {
     
     self = [super init];
     if(self) {
         _completionBlock = FLCopyBlock(completion);
-     }
+        self.thread = [NSThread currentThread];
+    }
     return self;
 }
 
@@ -40,6 +43,7 @@
     }
     
 #if FL_MRC
+    [_thread release];
     [_timer release];
     [_result release];
     if(_completionBlock) {
@@ -55,6 +59,9 @@
 
 - (BOOL) hasResult {
     return self.isFinished;
+}
+
+- (void) setWillExecuteFinishedBlockOnCurrentThread {
 }
 
 - (void) setFinishedWithSuccess:(BOOL) success {
@@ -96,10 +103,20 @@
     }
 
     self.result = result;
-    if(_completionBlock) {
-        _completionBlock(_result);
-    }
     self.isFinished = YES;
+
+    if(!self.thread || self.thread == [NSThread currentThread]) {
+        if(_completionBlock) {
+            _completionBlock(_result);
+        }
+        else {
+            [self performBlockOnThread:self.thread block:^{
+                if(_completionBlock) {
+                    _completionBlock(_result);
+                }
+            }];
+        }
+    }
 }
 
 - (FLResult) waitForResult {

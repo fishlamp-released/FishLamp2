@@ -90,7 +90,7 @@
     mrc_release_(__icon);
     mrc_release_(__source);
     mrc_release_(__tags);
-    mrc_super_dealloc_();
+    super_dealloc_();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder

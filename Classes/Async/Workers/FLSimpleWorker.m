@@ -8,13 +8,34 @@
 
 #import "FLSimpleWorker.h"
 
+@interface FLSimpleWorker ()
+@property (readwrite, assign) id parentWorker;
+@end
+
 @implementation FLSimpleWorker
+@synthesize parentWorker = _parentWorker;
+@synthesize fallibleDelegate = _errorDelegate;
+
+- (void) didMoveToParentWorker:(id<FLWorkerParent>) parent {
+    
+#if DEBUG
+    if(parent) {
+        FLAssertNil_v(self.parentWorker, @"job already has parentWorker");
+    }
+    else {
+        FLAssertNotNil_v(self.parentWorker, @"job has no parent");
+    }
+#endif
+
+    self.parentWorker = parent;
+}
 
 - (void) startWorking:(id<FLFinisher>) finisher {
 }
 
 - (id<FLPromisedResult>) start:(FLResultBlock) completion {
     FLWorkFinisher* finisher = [FLWorkFinisher finisher:completion];
+    
     @try {
         [self startWorking:finisher];
     }
@@ -30,5 +51,36 @@
     return [[self start:nil] waitForResult];
 }
 
+- (BOOL) tryHandlingError:(NSError*) error  {
+
+    id walker = self.parentWorker;
+    while(walker) {
+
+        if(FLTryHandlingErrorForObject(error, walker)) {
+            return YES;
+        }
+
+        if([walker respondsToSelector:@selector(parentWorker)]) {
+            walker = [walker parentWorker];
+        }
+        else {
+            walker = nil;
+        }
+    }
+    
+    return NO;
+}
+
+- (void) willAddWorker:(id<FLWorker>) worker {
+   if([worker respondsToSelector:@selector(didMoveToParentWorker:)]) {
+        [worker didMoveToParentWorker:self];
+    }
+}
+
+- (void) willRemoveWorker:(id<FLWorker>) worker {
+   if([worker respondsToSelector:@selector(didMoveToParentWorker:)]) {
+        [worker didMoveToParentWorker:nil];
+    }
+}
 
 @end

@@ -72,7 +72,7 @@
     mrc_release_(__access_token);
     mrc_release_(__expiration_date);
     mrc_release_(__permissions);
-    mrc_super_dealloc_();
+    super_dealloc_();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder

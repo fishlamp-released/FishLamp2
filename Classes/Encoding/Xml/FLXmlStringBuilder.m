@@ -29,7 +29,7 @@
 #if FL_MRC 
 - (void) dealloc {
     mrc_release_(_dataEncoder);
-    mrc_super_dealloc_();
+    super_dealloc_();
 }
 #endif
 

@@ -36,7 +36,7 @@
     mrc_release_(_eolString);
     mrc_release_(_tabString);
     
-    mrc_super_dealloc_();
+    super_dealloc_();
 }
 
 - (NSString*) tabStringForScope:(NSUInteger) indent {

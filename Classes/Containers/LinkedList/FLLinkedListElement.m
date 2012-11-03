@@ -20,7 +20,7 @@
 - (void) dealloc {
     mrc_release_(_nextObjectInLinkedList);
     mrc_release_(_previousObjectInLinkedList);
-	mrc_super_dealloc_();
+	super_dealloc_();
 }
 #endif
 

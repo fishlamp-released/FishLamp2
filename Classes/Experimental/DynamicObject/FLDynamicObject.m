@@ -68,7 +68,7 @@
 
 - (void) dealloc {
     mrc_release_(_dataDictionary);
-    mrc_super_dealloc_();
+    super_dealloc_();
 }   
 
 //- (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state objects:(id __unsafe_unretained [])buffer count:(NSUInteger)len {

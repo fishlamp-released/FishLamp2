@@ -67,7 +67,7 @@
     mrc_release_(_additions);
     mrc_release_(_requests);
     mrc_release_(_blockingObject);
-    mrc_super_dealloc_();
+    super_dealloc_();
 #endif
 }
 

@@ -205,11 +205,11 @@
             [_response setResponseHeadersWithHttpMessage:message];
             
             if(!_response.redirectedFrom) {
-                [self.delegate performIfRespondsToSelector:@selector(networkStreamDidOpen:) withObject:self];
+                FLPerformSelectorWithObject(self.delegate, @selector(networkStreamDidOpen:), self);
             }
             
-            [self.delegate performIfRespondsToSelector:@selector(writeStreamDidWriteBytes:) withObject:self];
-            [self.delegate performIfRespondsToSelector:@selector(readStreamDidReadBytes:) withObject:self];
+            FLPerformSelectorWithObject(self.delegate, @selector(writeStreamDidWriteBytes:) , self);
+            FLPerformSelectorWithObject(self.delegate, @selector(readStreamDidReadBytes:) , self);
         }
     }
 
@@ -248,12 +248,12 @@
     }
     
     if(!redirect) {
-        [self.delegate performIfRespondsToSelector:@selector(networkStreamDidClose:) withObject:self];
+        FLPerformSelectorWithObject(self.delegate, @selector(networkStreamDidClose:) , self);
     }
 }
 
 - (void) networkStreamEncounteredError:(id<FLNetworkStream>) networkStream {
-    [self.delegate performIfRespondsToSelector:@selector(networkStreamEncounteredError:) withObject:self];
+    FLPerformSelectorWithObject(self.delegate, @selector(networkStreamEncounteredError:) , self);
 }
 
 
@@ -265,7 +265,7 @@
 }
 
 - (void) readStreamDidReadBytes:(id<FLNetworkStream>) stream{
-    [self.delegate performIfRespondsToSelector:@selector(readStreamDidReadBytes:) withObject:self];
+    FLPerformSelectorWithObject(self.delegate, @selector(readStreamDidReadBytes:) , self);
 }
 
 

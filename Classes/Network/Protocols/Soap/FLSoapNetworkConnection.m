@@ -33,7 +33,7 @@
 	mrc_release_(_apiNamespace);
 	mrc_release_(_soapActionHeader);
 	mrc_release_(_soap);
-	mrc_super_dealloc_();
+	super_dealloc_();
 }
 
 - (void) startWorking:(id<FLFinisher>) finisher {

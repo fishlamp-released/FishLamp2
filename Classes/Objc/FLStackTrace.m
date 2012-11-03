@@ -104,7 +104,7 @@ FLStackTrace_t _FLStackTraceMake(const char* filePath, const char* function, int
 
 - (void) dealloc {
     FLStackTraceFree(&_stackTrace);
-    mrc_super_dealloc_();
+    super_dealloc_();
 }
 
 - (const char*) stackEntryAtIndex:(int) idx {

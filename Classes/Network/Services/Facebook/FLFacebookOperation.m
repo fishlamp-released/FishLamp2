@@ -29,7 +29,7 @@
 {
 	mrc_release_(_userId);
 	mrc_release_(_object);
-	mrc_super_dealloc_();
+	super_dealloc_();
 }
 
 - (void) didInit

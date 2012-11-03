@@ -14,31 +14,77 @@
 #import "FLSoapFault11.h"
 #import "FLSoapStringBuilder.h"
 
-@implementation FLSoapOperationDelegate 
 
-@synthesize authenticator = _authenticator;
+@interface FLSoapServerInfo()
+@property (readwrite, strong) NSDictionary* serverInfo;
+@end
+
+@implementation FLSoapServerInfo
+
+@synthesize serverInfo = _soapServerInfo;
+
+- (id) initWithDictionary:(NSDictionary*) dictionary {
+    self = [super init];
+    if(self) {  
+        self.serverInfo = dictionary;
+    }
+    return self;
+}
+
++ (FLSoapServerInfo*) soapServerInfo:(NSDictionary*) dictionary {
+    return autorelease_([[[self class] alloc] initWithDictionary:dictionary]);
+}
 
 #if FL_MRC
 - (void) dealloc {
+    [_serverInfo release];
+    [super dealloc];
+}
+#endif
+
+- (NSURL*) serverURL {
+    return [_soapServerInfo objectForKey:FLNetworkServerPropertyKeyUrl];
+}
+
+- (NSString*) soapNamespace {
+    return [_soapServerInfo objectForKey:FLNetworkServerPropertyKeyTargetNamespace];
+}
+
+- (NSString*) soapActionHeaderForOperationName:(NSString*) operationName {
+    FLAssertStringIsNotEmpty_v(operationName, nil);
+	return [_soapServerInfo objectForKey:operationName];
+}
+
+@end
+
+
+@implementation FLSoapOperationDelegate 
+
+@synthesize authenticator = _authenticator;
+@synthesize soapServerInfo = _soapServerInfo;
+
+#if FL_MRC
+- (void) dealloc {
+    [_soapServerInfo release];
+    [_soapNamespace release];
     [_authenticator release];
     [super dealloc];
 }
 #endif
 
+
 - (FLHttpConnection*) httpOperationCreateConnection:(FLHttpOperation*) operation {
 	
-    NSDictionary* info = operation.serverContext.properties;
-
-	operation.URL = [NSURL URLWithString:[info objectForKey:FLNetworkServerPropertyKeyUrl]]; 
-
+    FLAssertStringIsNotEmpty_(self.soapServerInfo.serverURL.absoluteString);
+    FLAssertStringIsNotEmpty_(self.soapServerInfo.soapNamespace);
 	NSString* functionName = operation.operationName;
-	FLAssertStringIsNotEmpty_v(functionName, nil);
-	
-	NSString* namespace = [info objectForKey:FLNetworkServerPropertyKeyTargetNamespace];
-	
-	FLSoapNetworkConnection* connection = [FLSoapNetworkConnection soapRequest: operation.URL
-								soapActionHeader: [info objectForKey:functionName]
-								soapApiNamespace: namespace];
+	operation.URL = self.soapServerInfo.serverURL;
+	NSString* namespace = self.soapServerInfo.soapNamespace;
+    NSString* header = [self.soapServerInfo soapActionHeaderForOperationName:functionName];
+   
+	FLSoapNetworkConnection* connection = [FLSoapNetworkConnection soapRequest:operation.URL
+                                                              soapActionHeader:header 
+                                                              soapApiNamespace:namespace];
 	
 	[connection.soap.body addObjectAsFunction:functionName object:operation.input xmlNamespace:namespace];
 	

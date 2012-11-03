@@ -156,7 +156,7 @@ NSString* FLActionDescriptionItemNameNone = nil;
 	mrc_release_(_itemName);
 	mrc_release_(_actionWords);
 	mrc_release_(_itemNameInProgress);
-	mrc_super_dealloc_();
+	super_dealloc_();
 }
 
 - (NSString*) title

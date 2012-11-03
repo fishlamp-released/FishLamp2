@@ -9,7 +9,6 @@
 #import "FLJpegFileImageAsset.h"
 #import "FLImageUtilities.h"
 #import "FLImage+Resize.h"
-#import "FLUserSession.h"
 #import "FLQueuedAsset.h"
 
 @interface FLJpegFileImageAsset ()
@@ -58,8 +57,8 @@ static float s_thumbnailSize = 0.0;
 	return self;
 }
 
-- (id) initWithQueuedAsset:(FLQueuedAsset*) queuedAsset {
-    return [self initWithFolder:[FLUserSession instance].photoFolder assetUID:queuedAsset.assetUID];
+- (id) initWithQueuedAsset:(FLQueuedAsset*) queuedAsset inFolder:(FLFolder*) folder {
+    return [self initWithFolder:folder assetUID:queuedAsset.assetUID];
 }
 
 - (id) initWithJpegData:(NSData*) jpeg
@@ -86,7 +85,7 @@ static float s_thumbnailSize = 0.0;
 	FLReleaseWithNil_(_fullScreenImageFile);
 	FLReleaseWithNil_(_originalImageFile);
 	FLReleaseWithNil_(_thumbnailImageFile);
-	mrc_super_dealloc_();
+	super_dealloc_();
 }
 
 - (id<FLStorableImage>) original

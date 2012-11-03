@@ -44,7 +44,7 @@
 #if FL_MRC
 - (void) dealloc {
     mrc_release_(_networkHost);
-    mrc_super_dealloc_();
+    super_dealloc_();
 }
 #endif
 
@@ -76,10 +76,10 @@
     
     if ( (error == NULL) || ( (error->domain == 0) && (error->error == 0) ) ) {
         self.networkHost.resolved = YES;
-        [self.delegate performIfRespondsToSelector:@selector(networkStreamDidClose:) withObject:self];
+        FLPerformSelectorWithObject(self.delegate,  @selector(networkStreamDidClose:), self);
     }
     else {
-        [self.delegate performIfRespondsToSelector:@selector(networkStreamEncounteredError:) withObject:self];
+        FLPerformSelectorWithObject(self.delegate,  @selector(networkStreamEncounteredError:), self);
     }
 }
 
@@ -120,10 +120,10 @@ static void HostResolutionCallback(CFHostRef theHost, CFHostInfoType typeInfo, c
     }
     
     if(error) {
-        [self.delegate performIfRespondsToSelector:@selector(networkStreamEncounteredError:) withObject:self];
+        FLPerformSelectorWithObject(self.delegate,  @selector(networkStreamEncounteredError:), self);
     }
     else {
-        [self.delegate performIfRespondsToSelector:@selector(networkStreamDidOpen:) withObject:self];
+        FLPerformSelectorWithObject(self.delegate,  @selector(networkStreamDidOpen:), self);
     }
 }
 

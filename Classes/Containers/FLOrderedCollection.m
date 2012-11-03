@@ -28,7 +28,7 @@
     mrc_release_(_objectArray);
     mrc_release_(_indexes);
     mrc_release_(_keys);
-	mrc_super_dealloc_();
+	super_dealloc_();
 }
 #endif
 

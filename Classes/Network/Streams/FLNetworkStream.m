@@ -70,12 +70,12 @@
     switch (eventType)  {
         case kCFStreamEventOpenCompleted:
             self.isOpen = YES;
-            [self.delegate performIfRespondsToSelector:@selector(networkStreamDidOpen:) withObject:self];
+            FLPerformSelectorWithObject(self.delegate, @selector(networkStreamDidOpen:), self);
             break;
 
         case kCFStreamEventEndEncountered:
             self.isOpen = NO;
-            [self.delegate performIfRespondsToSelector:@selector(networkStreamDidClose:)  withObject:self];
+            FLPerformSelectorWithObject(self.delegate, @selector(networkStreamDidClose:) , self);
             break;
         
         case kCFStreamEventNone:
@@ -83,15 +83,15 @@
             break;
         
         case kCFStreamEventHasBytesAvailable:
-            [self.delegate performIfRespondsToSelector:@selector(readStreamHasBytesAvailable:) withObject:self];
+            FLPerformSelectorWithObject(self.delegate, @selector(readStreamHasBytesAvailable:), self);
             break;
 
         case kCFStreamEventErrorOccurred:
-            [self.delegate performIfRespondsToSelector:@selector(networkStreamEncounteredError:) withObject:self];
+            FLPerformSelectorWithObject(self.delegate, @selector(networkStreamEncounteredError:), self);
             break;
             
         case kCFStreamEventCanAcceptBytes:
-            [self.delegate performIfRespondsToSelector:@selector(writeStreamCanAcceptBytes:) withObject:self];
+            FLPerformSelectorWithObject(self.delegate, @selector(writeStreamCanAcceptBytes:), self);
             break;
     }
 }

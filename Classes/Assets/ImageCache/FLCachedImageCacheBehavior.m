@@ -41,10 +41,12 @@
 	if((self = [super init])) {
 		_memoryCache = [[FLInMemoryDataCache alloc] initWithCapacity:capacity];
 
-		[[NSNotificationCenter defaultCenter] addObserver:self 
-				selector:@selector(_doClearCache:) 
-				name:FLUserSessionEmptyCacheNotification
-				object:[FLCacheManager instance]];
+
+FIXME("attach to user sessions....");
+//		[[NSNotificationCenter defaultCenter] addObserver:self 
+//				selector:@selector(_doClearCache:) 
+//				name:FLUserSessionEmptyCacheNotification
+//				object:[FLCacheManager instance]];
 
 #if DEBUG
 		_warnOnMainThreadLoad = YES;
@@ -64,7 +66,7 @@
 {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	mrc_release_(_memoryCache);
-	mrc_super_dealloc_();
+	super_dealloc_();
 }
 
 - (BOOL) willSaveObjectToDatabaseCache:(FLCachedImage*) cachedImage

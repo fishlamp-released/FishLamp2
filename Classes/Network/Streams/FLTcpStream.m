@@ -63,7 +63,7 @@
         }
         else {
             [self closeStream];
-            [self.delegate performIfRespondsToSelector:@selector(networkStreamDidClose:) withObject:self];
+            FLPerformSelectorWithObject(self.delegate, @selector(networkStreamDidClose:), self);
         }
 
         CFRelease(host);
@@ -119,36 +119,36 @@
 
 - (void) networkStreamDidClose:(id<FLNetworkStream>) networkStream {
     [self closeStream];
-    [self.delegate performIfRespondsToSelector:@selector(networkStreamDidClose:) withObject:self];
+    FLPerformSelectorWithObject(self.delegate, @selector(networkStreamDidClose:), self);
 }
 
 - (void) networkStreamDidOpen:(id<FLNetworkStream>) networkStream {
     if(self.isOpen) {
-        [self.delegate performIfRespondsToSelector:@selector(networkStreamDidOpen:) withObject:self];
+        FLPerformSelectorWithObject(self.delegate, @selector(networkStreamDidOpen:), self);
     }
 }
 
 - (void) readStreamHasBytesAvailable:(id<FLNetworkStream>) networkStream {
-    [self.delegate performIfRespondsToSelector:@selector(readStreamHasBytesAvailable:) withObject:self];
+    FLPerformSelectorWithObject(self.delegate, @selector(readStreamHasBytesAvailable:), self);
 }
 
 - (void) networkStreamEncounteredError:(id<FLNetworkStream>) networkStream {
-    [self.delegate performIfRespondsToSelector:@selector(networkStreamEncounteredError:) withObject:self];
+    FLPerformSelectorWithObject(self.delegate, @selector(networkStreamEncounteredError:), self);
     
 }
 
 - (void) writeStreamCanAcceptBytes:(id<FLNetworkStream>) networkStream {
-    [self.delegate performIfRespondsToSelector:@selector(writeStreamCanAcceptBytes:) withObject:self];
+    FLPerformSelectorWithObject(self.delegate, @selector(writeStreamCanAcceptBytes:), self);
     
 }
 
 - (void) writeStreamDidWriteBytes:(id<FLNetworkStream>) stream {
-    [self.delegate performIfRespondsToSelector:@selector(writeStreamDidWriteBytes:) withObject:self];
+    FLPerformSelectorWithObject(self.delegate, @selector(writeStreamDidWriteBytes:), self);
     
 }
 
 - (void) readStreamDidReadBytes:(id<FLNetworkStream>) stream{
-    [self.delegate performIfRespondsToSelector:@selector(readStreamDidReadBytes:) withObject:self];
+    FLPerformSelectorWithObject(self.delegate, @selector(readStreamDidReadBytes:), self);
     
 }
 

@@ -10,76 +10,62 @@
 
 @interface NSObject (FLSelectorPerforming)
 
-/** 
-    the "Safely" performs will throw exception if selector returns an object.
-    This is because ARC thinks these are a leak.
-    Selector cannot be nil.
- **/
-
-
-- (void) performSelectorSafely:(SEL)aSelector;
-
-- (void) performSelectorSafely:(SEL)aSelector withObject:(id)object;
-
-- (void) performSelectorSafely:(SEL)aSelector withObject:(id)object1 withObject:(id)object2;
-
-/**
-    these perform "Safely" and in addition return false if the object doesn't respond to the Selector.
-    Selector cannot be nil.
- */
-
-- (BOOL) performIfRespondsToSelector:(SEL) selector;
-
-- (BOOL) performIfRespondsToSelector:(SEL) selector
-              withObject:(id) object;
-
-- (BOOL) performIfRespondsToSelector:(SEL) selector
+- (void) performSelector:(SEL) selector
               withObject:(id) object1
-              withObject:(id) object2;
-
-+ (BOOL) performIfRespondsToSelector:(SEL) selector;
-
-+ (BOOL) performIfRespondsToSelector:(SEL) selector
-              withObject:(id) object;
-
-+ (BOOL) performIfRespondsToSelector:(SEL) selector
-              withObject:(id) object1
-              withObject:(id) object2;
-
-
-// class methods
-
-// these use the default requirement
-//+ (BOOL) performSelector:(SEL) selector
-//                onTarget:(id) target;
-//
-//+ (BOOL) performSelector:(SEL) selector
-//                onTarget:(id) target
-//              withObject:(id) object;
-//
-//+ (BOOL) performSelector:(SEL) selector
-//                onTarget:(id) target
-//              withObject:(id) object1
-//              withObject:(id) object2;
-
-// your own requirement.
-
-//+ (BOOL) performSelector:(SEL) selector
-//                onTarget:(id) target
-//        withRequirements:(FLPerformSelectorRequirement) requirement;
-//
-//+ (BOOL) performSelector:(SEL) selector
-//                onTarget:(id) target
-//         withRequirements:(FLPerformSelectorRequirement) requirement
-//              withObject:(id) object;
-//
-//+ (BOOL) performSelector:(SEL) selector
-//                onTarget:(id) target
-//         withRequirements:(FLPerformSelectorRequirement) requirement
-//              withObject:(id) object1
-//              withObject:(id) object2;
-
+              withObject:(id) object2 
+              withObject:(id) object3;
+              
 @end
 
+NS_INLINE
+BOOL FLPerformSelector(id target, SEL selector) {
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Warc-performSelector-leaks"
 
+    if(target && selector && [target respondsToSelector:selector]) {
+        [target performSelector:selector];
+        return YES;
+    }
+
+#pragma GCC diagnostic pop    
+    return NO;
+} 
+
+NS_INLINE
+BOOL FLPerformSelectorWithObject(id target, SEL selector, id withObject) {
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Warc-performSelector-leaks"
+
+    if(target && selector && [target respondsToSelector:selector]) {
+        [target performSelector:selector withObject:withObject];
+        return YES;
+    }
+
+#pragma GCC diagnostic pop    
+    return NO;
+} 
+
+NS_INLINE
+BOOL FLPerformSelectorWithTwoObjects(id target, SEL selector, id withObject1, id withObject2) {
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Warc-performSelector-leaks"
+
+    if(target && selector && [target respondsToSelector:selector]) {
+        [target performSelector:selector withObject:withObject1 withObject:withObject2];
+        return YES;
+    }
+
+#pragma GCC diagnostic pop    
+    return NO;
+} 
+
+extern
+BOOL FLPerformSelectorWithThreeObjects(id target, SEL selector, id withObject1, id withObject2, id withObject3);
+
+#define FLPerformSelector0 FLPerformSelector
+#define FLPerformSelector1 FLPerformSelectorWithObject
+#define FLPerformSelector2 FLPerformSelectorWithTwoObjects
+#define FLPerformSelector3 FLPerformSelectorWithThreeObjects

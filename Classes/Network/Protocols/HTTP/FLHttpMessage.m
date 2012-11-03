@@ -66,7 +66,7 @@
 
 - (void) dealloc {
     FLReleaseCRef_(_message);
-    mrc_super_dealloc_();
+    super_dealloc_();
 }
 
 - (id) initWithHttpMessageRef:(CFHTTPMessageRef) ref {

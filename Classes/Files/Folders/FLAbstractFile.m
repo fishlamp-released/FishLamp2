@@ -114,7 +114,7 @@
     FLSendDeallocNotification();
 	mrc_release_(_fileName);
 	mrc_release_(_folder);
-	mrc_super_dealloc_();
+	super_dealloc_();
 }
 
 - (NSString*) filePath

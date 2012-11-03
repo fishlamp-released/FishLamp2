@@ -48,7 +48,7 @@ unichar ISO8601DefaultTimeSeparatorCharacter = DEFAULT_TIME_SEPARATOR;
 }
 - (void) dealloc {
 	mrc_release_(defaultTimeZone);
-	mrc_super_dealloc_();
+	super_dealloc_();
 }
 
 @synthesize defaultTimeZone;

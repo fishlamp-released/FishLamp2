@@ -226,7 +226,7 @@
     mrc_release_(__significant_other);
     mrc_release_(__website);
     mrc_release_(__work);
-    mrc_super_dealloc_();
+    super_dealloc_();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder

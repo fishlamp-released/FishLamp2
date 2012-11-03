@@ -59,7 +59,7 @@ static FLLowMemoryHandler* s_handler = nil;
 - (void) dealloc
 {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
-	mrc_super_dealloc_();
+	super_dealloc_();
 }
 
 - (void) broadcastReleaseMessage

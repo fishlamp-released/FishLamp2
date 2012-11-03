@@ -116,7 +116,7 @@ FLAssertDefaultInitNotCalled_();
         free(_buffer);
         _buffer = nil;
     }
-    mrc_super_dealloc_();
+    super_dealloc_();
 }
 
 @end

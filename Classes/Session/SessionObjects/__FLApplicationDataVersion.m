@@ -39,7 +39,7 @@
 {
     mrc_release_(__userGuid);
     mrc_release_(__versionString);
-    mrc_super_dealloc_();
+    super_dealloc_();
 }
 
 - (id) init

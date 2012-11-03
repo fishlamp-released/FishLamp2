@@ -73,7 +73,7 @@
     mrc_release_(__position);
     mrc_release_(__start_date);
     mrc_release_(__end_date);
-    mrc_super_dealloc_();
+    super_dealloc_();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder

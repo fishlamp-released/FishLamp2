@@ -35,7 +35,7 @@
     mrc_release_(_name);
     mrc_release_(_object);
     mrc_release_(_userInfo);
-    mrc_super_dealloc_();
+    super_dealloc_();
 }
 #endif
 

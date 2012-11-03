@@ -65,7 +65,7 @@
         [self removeAllObjects];
     }
 
-    mrc_super_dealloc_();
+    super_dealloc_();
 }
 
 - (NSEnumerator*) mutableEnumerator {
@@ -846,7 +846,7 @@ int main()
     mrc_release_(_next);
     mrc_release_(_current);
     mrc_release_(_list);
-    mrc_super_dealloc_();
+    super_dealloc_();
 }
 #endif
 

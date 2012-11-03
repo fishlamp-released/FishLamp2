@@ -196,7 +196,7 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
     }
     
     if(bytesRead > 0) {
-        [self.delegate performIfRespondsToSelector:@selector(readStreamDidReadBytes:) withObject:self];
+        FLPerformSelectorWithObject(self.delegate, @selector(readStreamDidReadBytes:), self);
     }
 
     return bytesRead;
@@ -237,7 +237,7 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
 //        amountRead += result;
 //    }
 //    
-//    [self.delegate performIfRespondsToSelector:@selector(readStreamDidReadBytes:) withObject:self];
+//    FLPerformSelectorWithObject(self.delegate, @selector(readStreamDidReadBytes:), self);
 //
 //    return amountRead;
 //

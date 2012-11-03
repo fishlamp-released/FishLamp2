@@ -80,7 +80,7 @@
     mrc_release_(__oauth_token_secret);
     mrc_release_(__user_id);
     mrc_release_(__screen_name);
-    mrc_super_dealloc_();
+    super_dealloc_();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder

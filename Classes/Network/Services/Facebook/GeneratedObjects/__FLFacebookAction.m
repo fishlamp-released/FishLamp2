@@ -48,7 +48,7 @@
 {
     mrc_release_(__link);
     mrc_release_(__name);
-    mrc_super_dealloc_();
+    super_dealloc_();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder

@@ -2,39 +2,44 @@
 //
 // This file was generated at 5/31/12 5:54 PM by Whittle ( http://whittle.greentongue.com/ ). DO NOT MODIFY!!
 //
-// __FLLastUpdateTime.m
+// __FLApplicationSession.m
 // Project: FishLamp
 // Schema: FLGeneratedCoreObject
 //
 // Copywrite (C) 2012 GreenTongue Software, LLC. All rights reserved.
 //
 
-#import "FLLastUpdateTime.h"
+#import "FLApplicationSession.h"
 #import "FLObjectDescriber.h"
 #import "FLObjectInflator.h"
 #import "FLDatabaseTable.h"
 
-@implementation FLLastUpdateTime
+@implementation FLApplicationSession
 
 
-@synthesize lastUpdate = __lastUpdate;
-@synthesize lastUpdateId = __lastUpdateId;
+@synthesize sessionId = __sessionId;
+@synthesize userGuid = __userGuid;
 
-+ (NSString*) lastUpdateIdKey
++ (NSString*) sessionIdKey
 {
-    return @"lastUpdateId";
+    return @"sessionId";
 }
 
-+ (NSString*) lastUpdateKey
++ (NSString*) userGuidKey
 {
-    return @"lastUpdate";
+    return @"userGuid";
+}
+
++ (FLApplicationSession*) applicationSession
+{
+    return autorelease_([[FLApplicationSession alloc] init]);
 }
 
 - (void) copySelfTo:(id) object
 {
     [super copySelfTo:object];
-    ((FLLastUpdateTime*)object).lastUpdateId = FLCopyOrRetainObject(__lastUpdateId);
-    ((FLLastUpdateTime*)object).lastUpdate = FLCopyOrRetainObject(__lastUpdate);
+    ((FLApplicationSession*)object).sessionId = FLCopyOrRetainObject(__sessionId);
+    ((FLApplicationSession*)object).userGuid = FLCopyOrRetainObject(__userGuid);
 }
 
 - (id) copyWithZone:(NSZone*) zone
@@ -46,15 +51,15 @@
 
 - (void) dealloc
 {
-    mrc_release_(__lastUpdateId);
-    mrc_release_(__lastUpdate);
-    mrc_super_dealloc_();
+    mrc_release_(__sessionId);
+    mrc_release_(__userGuid);
+    super_dealloc_();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder
 {
-    if(__lastUpdateId) [aCoder encodeObject:__lastUpdateId forKey:@"__lastUpdateId"];
-    if(__lastUpdate) [aCoder encodeObject:__lastUpdate forKey:@"__lastUpdate"];
+    if(__sessionId) [aCoder encodeObject:__sessionId forKey:@"__sessionId"];
+    if(__userGuid) [aCoder encodeObject:__userGuid forKey:@"__userGuid"];
 }
 
 - (id) init
@@ -69,15 +74,10 @@
 {
     if((self = [super init]))
     {
-        __lastUpdateId = retain_([aDecoder decodeObjectForKey:@"__lastUpdateId"]);
-        __lastUpdate = retain_([aDecoder decodeObjectForKey:@"__lastUpdate"]);
+        __sessionId = retain_([aDecoder decodeObjectForKey:@"__sessionId"]);
+        __userGuid = retain_([aDecoder decodeObjectForKey:@"__userGuid"]);
     }
     return self;
-}
-
-+ (FLLastUpdateTime*) lastUpdateTime
-{
-    return autorelease_([[FLLastUpdateTime alloc] init]);
 }
 
 + (FLObjectDescriber*) sharedObjectDescriber
@@ -90,8 +90,8 @@
         {
             s_describer = [[FLObjectDescriber alloc] init];
         }
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"lastUpdateId" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"lastUpdateId"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"lastUpdate" propertyClass:[NSDate class] propertyType:FLDataTypeDate] forPropertyName:@"lastUpdate"];
+        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"sessionId" propertyClass:[NSNumber class] propertyType:FLDataTypeInteger] forPropertyName:@"sessionId"];
+        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"userGuid" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"userGuid"];
     });
     return s_describer;
 }
@@ -121,15 +121,25 @@
         {
             s_table = [[FLDatabaseTable alloc] initWithTableName:[self databaseTableName]];
         }
-        [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"lastUpdateId" columnType:FLDatabaseTypeText columnConstraints:[NSArray arrayWithObject:[FLDatabaseColumn primaryKeyConstraint]]]];
-        [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"lastUpdate" columnType:FLDatabaseTypeDate columnConstraints:nil]];
+        [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"sessionId" columnType:FLDatabaseTypeInteger columnConstraints:[NSArray arrayWithObject:[FLDatabaseColumn primaryKeyConstraint]]]];
+        [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"userGuid" columnType:FLDatabaseTypeText columnConstraints:nil]];
     });
     return s_table;
 }
 
 @end
 
-@implementation FLLastUpdateTime (ValueProperties) 
+@implementation FLApplicationSession (ValueProperties) 
+
+- (int) sessionIdValue
+{
+    return [self.sessionId intValue];
+}
+
+- (void) setSessionIdValue:(int) value
+{
+    self.sessionId = [NSNumber numberWithInt:value];
+}
 @end
 
 // [/Generated]

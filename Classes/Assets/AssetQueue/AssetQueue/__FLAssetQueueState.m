@@ -77,7 +77,7 @@
     mrc_release_(__totalAssetsAdded);
     mrc_release_(__firstQueuePosition);
     mrc_release_(__lastQueuePosition);
-    mrc_super_dealloc_();
+    super_dealloc_();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder

@@ -65,7 +65,7 @@
 {
 	[self stopTimer];
 	mrc_release_(_target);
-	mrc_super_dealloc_();
+	super_dealloc_();
 }
 
 @end
@@ -237,7 +237,7 @@ FLSynthesizeStructProperty(logEvents, setLogEvents, BOOL, _timerFlags);
 - (void) dealloc
 {	
 	[self _killTimer];
-	mrc_super_dealloc_();
+	super_dealloc_();
 }
 
 - (void) updateTimeStamp 

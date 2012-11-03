@@ -40,7 +40,7 @@
 {
 	mrc_release_(_username);
 	mrc_release_(_imageSize);
-	mrc_super_dealloc_();
+	super_dealloc_();
 }
 
 - (NSURL*) createURL

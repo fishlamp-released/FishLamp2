@@ -48,7 +48,7 @@
 {
 	FLReleaseWithNil_(_outputData);
 	FLReleaseWithNil_(_outputImage);
-	mrc_super_dealloc_();
+	super_dealloc_();
 }
 @end
 

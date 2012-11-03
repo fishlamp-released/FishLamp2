@@ -88,7 +88,7 @@
     mrc_release_(_table);
 	mrc_release_(_lastRow);
 	FLAssertIsNil_(_statement);
-	mrc_super_dealloc_();
+	super_dealloc_();
 }
 
 - (void) buildRow {

@@ -34,7 +34,7 @@
 {
     mrc_release_(__value);
     mrc_release_(__end_time);
-    mrc_super_dealloc_();
+    super_dealloc_();
 }
 
 + (FLFacebookInsight*) facebookInsight

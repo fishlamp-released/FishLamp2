@@ -8,8 +8,6 @@
 
 #import "FLAssetQueue.h"
 #import "FLUploadedAsset.h"
-
-#import "FLUserSession.h"
 #import "NSObject+Blocks.h"
 #import "NSString+GUID.h"
 #import "FLDatabase.h"
@@ -48,12 +46,12 @@ FLAssertDefaultInitNotCalled_v(nil);
 - (void) dealloc
 {
     [self unload];
-	mrc_release_(_state);
-	mrc_release_(_queueUID);
-	mrc_release_(_queue);
-	mrc_release_(_database);
-    mrc_release_(_locks);
-	mrc_super_dealloc_();
+	release_(_state);
+	release_(_queueUID);
+	release_(_queue);
+	release_(_database);
+    release_(_locks);
+	super_dealloc_();
 }
 
 - (void) setDatabase:(FLObjectDatabase*) database
@@ -76,28 +74,25 @@ FLAssertDefaultInitNotCalled_v(nil);
 	}
 }
 
-- (NSUInteger) count
-{
-    if(_queue)
-    {
+- (NSUInteger) count {
+    FLAssertNotNil_(self.database);
+
+    if(_queue) {
         return _queue.count;
     }
     
-    return	[[FLUserSession instance].documentsDatabase rowCountForTable:[[self queueClass] sharedDatabaseTable]];
+    return	[self.database rowCountForTable:[[self queueClass] sharedDatabaseTable]];
 }
 
-- (unsigned long) totalAssetsAdded
-{
+- (unsigned long) totalAssetsAdded {
 	return _state.totalAssetsAddedValue;
 }
 
-- (FLAssetQueueSortOrder) sortOrder
-{
+- (FLAssetQueueSortOrder) sortOrder {
 	return _state.sortOrderValue;
 }
 
-- (BOOL) isLoaded
-{
+- (BOOL) isLoaded {
 	return _queue != nil;
 }
 
@@ -604,7 +599,7 @@ FLAssertDefaultInitNotCalled_v(nil);
     mrc_release_(_queue);
     mrc_release_(_assetQueue);
     mrc_release_(_error);
-    mrc_super_dealloc_();
+    super_dealloc_();
 }
 
 - (void) cancelLoading
@@ -777,7 +772,7 @@ FLAssertDefaultInitNotCalled_v(nil);
 - (void) dealloc
 {
     [self releaseLock];
-    mrc_super_dealloc_();
+    super_dealloc_();
 }
 
 - (void) clearQueueReference

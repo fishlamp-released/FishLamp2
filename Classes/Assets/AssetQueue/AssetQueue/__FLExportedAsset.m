@@ -56,7 +56,7 @@
     mrc_release_(__originalID);
     mrc_release_(__assetURL);
     mrc_release_(__exportedDate);
-    mrc_super_dealloc_();
+    super_dealloc_();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder

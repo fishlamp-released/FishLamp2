@@ -93,7 +93,7 @@
     mrc_release_(__host);
     mrc_release_(__imageVersion);
     mrc_release_(__canCacheInMemory);
-    mrc_super_dealloc_();
+    super_dealloc_();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder

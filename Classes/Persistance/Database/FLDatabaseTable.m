@@ -89,7 +89,7 @@
 	mrc_release_(_indexes);
 	mrc_release_(_tableName);
 	mrc_release_(_columns);
-	mrc_super_dealloc_();
+	super_dealloc_();
 }
 
 - (void) addIndex:(FLDatabaseIndex*) databaseIndex {

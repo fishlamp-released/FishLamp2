@@ -64,7 +64,7 @@
     mrc_release_(__faultstring);
     mrc_release_(__faultactor);
     mrc_release_(__detail);
-    mrc_super_dealloc_();
+    super_dealloc_();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder

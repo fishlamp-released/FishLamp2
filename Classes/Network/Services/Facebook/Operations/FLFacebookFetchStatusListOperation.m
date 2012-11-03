@@ -8,7 +8,6 @@
 
 #import "FLFacebookFetchStatusListOperation.h"
 #import "FLFacebookFetchStatusListResponse.h"
-#import "FLUserSession.h"
 
 @implementation FLFacebookFetchStatusListOperation
 

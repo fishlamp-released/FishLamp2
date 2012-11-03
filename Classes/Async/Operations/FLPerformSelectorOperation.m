@@ -23,10 +23,7 @@
 }
 
 - (void) runSelf {
-    if(_target) {
-        [_target performSelectorSafely:_action withObject:self];
-    }
-
+    FLPerformSelector1(_target, _action, self);
 }
 
 - (void) setCallback:(id) target action:(SEL) action {

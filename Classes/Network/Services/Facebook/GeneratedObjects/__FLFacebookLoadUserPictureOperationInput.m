@@ -48,7 +48,7 @@
 {
     mrc_release_(__type);
     mrc_release_(__pictureSize);
-    mrc_super_dealloc_();
+    super_dealloc_();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder

@@ -7,6 +7,71 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		270203F41644421A005D26B1 /* FLAnswerable.h in Headers */ = {isa = PBXBuildFile; fileRef = 270203F21644421A005D26B1 /* FLAnswerable.h */; };
+		270203F51644421A005D26B1 /* FLAnswerable.h in Headers */ = {isa = PBXBuildFile; fileRef = 270203F21644421A005D26B1 /* FLAnswerable.h */; };
+		270203F61644421A005D26B1 /* FLAnswerable.m in Sources */ = {isa = PBXBuildFile; fileRef = 270203F31644421A005D26B1 /* FLAnswerable.m */; };
+		270203F71644421A005D26B1 /* FLAnswerable.m in Sources */ = {isa = PBXBuildFile; fileRef = 270203F31644421A005D26B1 /* FLAnswerable.m */; };
+		270203F81644421A005D26B1 /* FLAnswerable.m in Sources */ = {isa = PBXBuildFile; fileRef = 270203F31644421A005D26B1 /* FLAnswerable.m */; };
+		27020432164466BB005D26B1 /* FLAppService.h in Headers */ = {isa = PBXBuildFile; fileRef = 27020417164466BA005D26B1 /* FLAppService.h */; };
+		27020433164466BB005D26B1 /* FLAppService.h in Headers */ = {isa = PBXBuildFile; fileRef = 27020417164466BA005D26B1 /* FLAppService.h */; };
+		27020434164466BB005D26B1 /* FLAppService.m in Sources */ = {isa = PBXBuildFile; fileRef = 27020418164466BA005D26B1 /* FLAppService.m */; };
+		27020435164466BB005D26B1 /* FLAppService.m in Sources */ = {isa = PBXBuildFile; fileRef = 27020418164466BA005D26B1 /* FLAppService.m */; };
+		27020436164466BB005D26B1 /* FLAppService.m in Sources */ = {isa = PBXBuildFile; fileRef = 27020418164466BA005D26B1 /* FLAppService.m */; };
+		27020441164466BB005D26B1 /* FLUserSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 2702041F164466BB005D26B1 /* FLUserSession.h */; };
+		27020442164466BB005D26B1 /* FLUserSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 2702041F164466BB005D26B1 /* FLUserSession.h */; };
+		27020443164466BB005D26B1 /* FLUserSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 27020420164466BB005D26B1 /* FLUserSession.m */; };
+		27020444164466BB005D26B1 /* FLUserSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 27020420164466BB005D26B1 /* FLUserSession.m */; };
+		27020445164466BB005D26B1 /* FLUserSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 27020420164466BB005D26B1 /* FLUserSession.m */; };
+		27020446164466BB005D26B1 /* __FLApplicationDataVersion.h in Headers */ = {isa = PBXBuildFile; fileRef = 27020422164466BB005D26B1 /* __FLApplicationDataVersion.h */; };
+		27020447164466BB005D26B1 /* __FLApplicationDataVersion.h in Headers */ = {isa = PBXBuildFile; fileRef = 27020422164466BB005D26B1 /* __FLApplicationDataVersion.h */; };
+		27020448164466BB005D26B1 /* __FLApplicationDataVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 27020423164466BB005D26B1 /* __FLApplicationDataVersion.m */; };
+		27020449164466BB005D26B1 /* __FLApplicationDataVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 27020423164466BB005D26B1 /* __FLApplicationDataVersion.m */; };
+		2702044A164466BB005D26B1 /* __FLApplicationDataVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 27020423164466BB005D26B1 /* __FLApplicationDataVersion.m */; };
+		2702044B164466BB005D26B1 /* __FLApplicationSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 27020424164466BB005D26B1 /* __FLApplicationSession.h */; };
+		2702044C164466BB005D26B1 /* __FLApplicationSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 27020424164466BB005D26B1 /* __FLApplicationSession.h */; };
+		2702044D164466BB005D26B1 /* __FLApplicationSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 27020425164466BB005D26B1 /* __FLApplicationSession.m */; };
+		2702044E164466BB005D26B1 /* __FLApplicationSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 27020425164466BB005D26B1 /* __FLApplicationSession.m */; };
+		2702044F164466BB005D26B1 /* __FLApplicationSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 27020425164466BB005D26B1 /* __FLApplicationSession.m */; };
+		27020450164466BB005D26B1 /* __FLLastUpdateTime.h in Headers */ = {isa = PBXBuildFile; fileRef = 27020426164466BB005D26B1 /* __FLLastUpdateTime.h */; };
+		27020451164466BB005D26B1 /* __FLLastUpdateTime.h in Headers */ = {isa = PBXBuildFile; fileRef = 27020426164466BB005D26B1 /* __FLLastUpdateTime.h */; };
+		27020452164466BB005D26B1 /* __FLLastUpdateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 27020427164466BB005D26B1 /* __FLLastUpdateTime.m */; };
+		27020453164466BB005D26B1 /* __FLLastUpdateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 27020427164466BB005D26B1 /* __FLLastUpdateTime.m */; };
+		27020454164466BB005D26B1 /* __FLLastUpdateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 27020427164466BB005D26B1 /* __FLLastUpdateTime.m */; };
+		27020455164466BB005D26B1 /* __FLUserLogin.h in Headers */ = {isa = PBXBuildFile; fileRef = 27020428164466BB005D26B1 /* __FLUserLogin.h */; };
+		27020456164466BB005D26B1 /* __FLUserLogin.h in Headers */ = {isa = PBXBuildFile; fileRef = 27020428164466BB005D26B1 /* __FLUserLogin.h */; };
+		27020457164466BB005D26B1 /* __FLUserLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 27020429164466BB005D26B1 /* __FLUserLogin.m */; };
+		27020458164466BB005D26B1 /* __FLUserLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 27020429164466BB005D26B1 /* __FLUserLogin.m */; };
+		27020459164466BB005D26B1 /* __FLUserLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 27020429164466BB005D26B1 /* __FLUserLogin.m */; };
+		2702045A164466BB005D26B1 /* FLApplicationDataVersion.h in Headers */ = {isa = PBXBuildFile; fileRef = 2702042A164466BB005D26B1 /* FLApplicationDataVersion.h */; };
+		2702045B164466BB005D26B1 /* FLApplicationDataVersion.h in Headers */ = {isa = PBXBuildFile; fileRef = 2702042A164466BB005D26B1 /* FLApplicationDataVersion.h */; };
+		2702045C164466BB005D26B1 /* FLApplicationDataVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 2702042B164466BB005D26B1 /* FLApplicationDataVersion.m */; };
+		2702045D164466BB005D26B1 /* FLApplicationDataVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 2702042B164466BB005D26B1 /* FLApplicationDataVersion.m */; };
+		2702045E164466BB005D26B1 /* FLApplicationDataVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 2702042B164466BB005D26B1 /* FLApplicationDataVersion.m */; };
+		2702045F164466BB005D26B1 /* FLApplicationSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 2702042C164466BB005D26B1 /* FLApplicationSession.h */; };
+		27020460164466BB005D26B1 /* FLApplicationSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 2702042C164466BB005D26B1 /* FLApplicationSession.h */; };
+		27020461164466BB005D26B1 /* FLApplicationSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 2702042D164466BB005D26B1 /* FLApplicationSession.m */; };
+		27020462164466BB005D26B1 /* FLApplicationSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 2702042D164466BB005D26B1 /* FLApplicationSession.m */; };
+		27020463164466BB005D26B1 /* FLApplicationSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 2702042D164466BB005D26B1 /* FLApplicationSession.m */; };
+		27020464164466BB005D26B1 /* FLLastUpdateTime.h in Headers */ = {isa = PBXBuildFile; fileRef = 2702042E164466BB005D26B1 /* FLLastUpdateTime.h */; };
+		27020465164466BB005D26B1 /* FLLastUpdateTime.h in Headers */ = {isa = PBXBuildFile; fileRef = 2702042E164466BB005D26B1 /* FLLastUpdateTime.h */; };
+		27020466164466BB005D26B1 /* FLLastUpdateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 2702042F164466BB005D26B1 /* FLLastUpdateTime.m */; };
+		27020467164466BB005D26B1 /* FLLastUpdateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 2702042F164466BB005D26B1 /* FLLastUpdateTime.m */; };
+		27020468164466BB005D26B1 /* FLLastUpdateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 2702042F164466BB005D26B1 /* FLLastUpdateTime.m */; };
+		27020469164466BB005D26B1 /* FLUserLogin.h in Headers */ = {isa = PBXBuildFile; fileRef = 27020430164466BB005D26B1 /* FLUserLogin.h */; };
+		2702046A164466BB005D26B1 /* FLUserLogin.h in Headers */ = {isa = PBXBuildFile; fileRef = 27020430164466BB005D26B1 /* FLUserLogin.h */; };
+		2702046B164466BB005D26B1 /* FLUserLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 27020431164466BB005D26B1 /* FLUserLogin.m */; };
+		2702046C164466BB005D26B1 /* FLUserLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 27020431164466BB005D26B1 /* FLUserLogin.m */; };
+		2702046D164466BB005D26B1 /* FLUserLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 27020431164466BB005D26B1 /* FLUserLogin.m */; };
+		2702047116446F64005D26B1 /* FLUserService.h in Headers */ = {isa = PBXBuildFile; fileRef = 2702046F16446F64005D26B1 /* FLUserService.h */; };
+		2702047216446F64005D26B1 /* FLUserService.h in Headers */ = {isa = PBXBuildFile; fileRef = 2702046F16446F64005D26B1 /* FLUserService.h */; };
+		2702047316446F64005D26B1 /* FLUserService.m in Sources */ = {isa = PBXBuildFile; fileRef = 2702047016446F64005D26B1 /* FLUserService.m */; };
+		2702047416446F64005D26B1 /* FLUserService.m in Sources */ = {isa = PBXBuildFile; fileRef = 2702047016446F64005D26B1 /* FLUserService.m */; };
+		2702047516446F64005D26B1 /* FLUserService.m in Sources */ = {isa = PBXBuildFile; fileRef = 2702047016446F64005D26B1 /* FLUserService.m */; };
+		2702047816449D9D005D26B1 /* FLWorkerQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 2702047616449D9C005D26B1 /* FLWorkerQueue.h */; };
+		2702047916449D9D005D26B1 /* FLWorkerQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 2702047616449D9C005D26B1 /* FLWorkerQueue.h */; };
+		2702047A16449D9D005D26B1 /* FLWorkerQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 2702047716449D9C005D26B1 /* FLWorkerQueue.m */; };
+		2702047B16449D9D005D26B1 /* FLWorkerQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 2702047716449D9C005D26B1 /* FLWorkerQueue.m */; };
+		2702047C16449D9D005D26B1 /* FLWorkerQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 2702047716449D9C005D26B1 /* FLWorkerQueue.m */; };
 		27048D10161CB58600C38ADA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27A43A7F15CDCC1B001CB13E /* Cocoa.framework */; };
 		270EA4DE1640C5D200329E35 /* FishLampCore-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 270EA4DD1640C5D200329E35 /* FishLampCore-Prefix.pch */; };
 		270EA4DF1640C5D200329E35 /* FishLampCore-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 270EA4DD1640C5D200329E35 /* FishLampCore-Prefix.pch */; };
@@ -51,56 +116,6 @@
 		27B7DE03163CB4E100E9C6EB /* FLApplicationFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7D9CF163CB4E000E9C6EB /* FLApplicationFactory.m */; };
 		27B7DE04163CB4E100E9C6EB /* FLApplicationFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7D9CF163CB4E000E9C6EB /* FLApplicationFactory.m */; };
 		27B7DE06163CB4E100E9C6EB /* FLApplicationFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7D9CF163CB4E000E9C6EB /* FLApplicationFactory.m */; };
-		27B7DE07163CB4E100E9C6EB /* FLUserSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7D9D1163CB4E000E9C6EB /* FLUserSession.h */; };
-		27B7DE09163CB4E100E9C6EB /* FLUserSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7D9D1163CB4E000E9C6EB /* FLUserSession.h */; };
-		27B7DE0A163CB4E100E9C6EB /* FLUserSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7D9D2163CB4E000E9C6EB /* FLUserSession.m */; };
-		27B7DE0B163CB4E100E9C6EB /* FLUserSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7D9D2163CB4E000E9C6EB /* FLUserSession.m */; };
-		27B7DE0D163CB4E100E9C6EB /* FLUserSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7D9D2163CB4E000E9C6EB /* FLUserSession.m */; };
-		27B7DE0E163CB4E100E9C6EB /* __FLApplicationDataVersion.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7D9D4163CB4E000E9C6EB /* __FLApplicationDataVersion.h */; };
-		27B7DE10163CB4E100E9C6EB /* __FLApplicationDataVersion.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7D9D4163CB4E000E9C6EB /* __FLApplicationDataVersion.h */; };
-		27B7DE11163CB4E100E9C6EB /* __FLApplicationDataVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7D9D5163CB4E000E9C6EB /* __FLApplicationDataVersion.m */; };
-		27B7DE12163CB4E100E9C6EB /* __FLApplicationDataVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7D9D5163CB4E000E9C6EB /* __FLApplicationDataVersion.m */; };
-		27B7DE14163CB4E100E9C6EB /* __FLApplicationDataVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7D9D5163CB4E000E9C6EB /* __FLApplicationDataVersion.m */; };
-		27B7DE15163CB4E100E9C6EB /* __FLApplicationSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7D9D6163CB4E000E9C6EB /* __FLApplicationSession.h */; };
-		27B7DE17163CB4E100E9C6EB /* __FLApplicationSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7D9D6163CB4E000E9C6EB /* __FLApplicationSession.h */; };
-		27B7DE18163CB4E100E9C6EB /* __FLApplicationSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7D9D7163CB4E000E9C6EB /* __FLApplicationSession.m */; };
-		27B7DE19163CB4E100E9C6EB /* __FLApplicationSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7D9D7163CB4E000E9C6EB /* __FLApplicationSession.m */; };
-		27B7DE1B163CB4E100E9C6EB /* __FLApplicationSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7D9D7163CB4E000E9C6EB /* __FLApplicationSession.m */; };
-		27B7DE1C163CB4E100E9C6EB /* __FLLastUpdateTime.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7D9D8163CB4E000E9C6EB /* __FLLastUpdateTime.h */; };
-		27B7DE1E163CB4E100E9C6EB /* __FLLastUpdateTime.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7D9D8163CB4E000E9C6EB /* __FLLastUpdateTime.h */; };
-		27B7DE1F163CB4E100E9C6EB /* __FLLastUpdateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7D9D9163CB4E000E9C6EB /* __FLLastUpdateTime.m */; };
-		27B7DE20163CB4E100E9C6EB /* __FLLastUpdateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7D9D9163CB4E000E9C6EB /* __FLLastUpdateTime.m */; };
-		27B7DE22163CB4E100E9C6EB /* __FLLastUpdateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7D9D9163CB4E000E9C6EB /* __FLLastUpdateTime.m */; };
-		27B7DE23163CB4E100E9C6EB /* __FLUserLogin.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7D9DA163CB4E000E9C6EB /* __FLUserLogin.h */; };
-		27B7DE25163CB4E100E9C6EB /* __FLUserLogin.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7D9DA163CB4E000E9C6EB /* __FLUserLogin.h */; };
-		27B7DE26163CB4E100E9C6EB /* __FLUserLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7D9DB163CB4E000E9C6EB /* __FLUserLogin.m */; };
-		27B7DE27163CB4E100E9C6EB /* __FLUserLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7D9DB163CB4E000E9C6EB /* __FLUserLogin.m */; };
-		27B7DE29163CB4E100E9C6EB /* __FLUserLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7D9DB163CB4E000E9C6EB /* __FLUserLogin.m */; };
-		27B7DE2A163CB4E100E9C6EB /* FLApplicationDataVersion.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7D9DC163CB4E000E9C6EB /* FLApplicationDataVersion.h */; };
-		27B7DE2C163CB4E100E9C6EB /* FLApplicationDataVersion.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7D9DC163CB4E000E9C6EB /* FLApplicationDataVersion.h */; };
-		27B7DE2D163CB4E100E9C6EB /* FLApplicationDataVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7D9DD163CB4E000E9C6EB /* FLApplicationDataVersion.m */; };
-		27B7DE2E163CB4E100E9C6EB /* FLApplicationDataVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7D9DD163CB4E000E9C6EB /* FLApplicationDataVersion.m */; };
-		27B7DE30163CB4E100E9C6EB /* FLApplicationDataVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7D9DD163CB4E000E9C6EB /* FLApplicationDataVersion.m */; };
-		27B7DE31163CB4E100E9C6EB /* FLApplicationSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7D9DE163CB4E000E9C6EB /* FLApplicationSession.h */; };
-		27B7DE33163CB4E100E9C6EB /* FLApplicationSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7D9DE163CB4E000E9C6EB /* FLApplicationSession.h */; };
-		27B7DE34163CB4E100E9C6EB /* FLApplicationSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7D9DF163CB4E000E9C6EB /* FLApplicationSession.m */; };
-		27B7DE35163CB4E100E9C6EB /* FLApplicationSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7D9DF163CB4E000E9C6EB /* FLApplicationSession.m */; };
-		27B7DE37163CB4E100E9C6EB /* FLApplicationSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7D9DF163CB4E000E9C6EB /* FLApplicationSession.m */; };
-		27B7DE38163CB4E100E9C6EB /* FLLastUpdateTime.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7D9E0163CB4E000E9C6EB /* FLLastUpdateTime.h */; };
-		27B7DE3A163CB4E100E9C6EB /* FLLastUpdateTime.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7D9E0163CB4E000E9C6EB /* FLLastUpdateTime.h */; };
-		27B7DE3B163CB4E100E9C6EB /* FLLastUpdateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7D9E1163CB4E000E9C6EB /* FLLastUpdateTime.m */; };
-		27B7DE3C163CB4E100E9C6EB /* FLLastUpdateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7D9E1163CB4E000E9C6EB /* FLLastUpdateTime.m */; };
-		27B7DE3E163CB4E100E9C6EB /* FLLastUpdateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7D9E1163CB4E000E9C6EB /* FLLastUpdateTime.m */; };
-		27B7DE3F163CB4E100E9C6EB /* FLUserLogin.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7D9E2163CB4E000E9C6EB /* FLUserLogin.h */; };
-		27B7DE41163CB4E100E9C6EB /* FLUserLogin.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7D9E2163CB4E000E9C6EB /* FLUserLogin.h */; };
-		27B7DE42163CB4E100E9C6EB /* FLUserLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7D9E3163CB4E000E9C6EB /* FLUserLogin.m */; };
-		27B7DE43163CB4E100E9C6EB /* FLUserLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7D9E3163CB4E000E9C6EB /* FLUserLogin.m */; };
-		27B7DE45163CB4E100E9C6EB /* FLUserLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7D9E3163CB4E000E9C6EB /* FLUserLogin.m */; };
-		27B7DE46163CB4E100E9C6EB /* FLUserSessionModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7D9E4163CB4E000E9C6EB /* FLUserSessionModule.h */; };
-		27B7DE48163CB4E100E9C6EB /* FLUserSessionModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7D9E4163CB4E000E9C6EB /* FLUserSessionModule.h */; };
-		27B7DE49163CB4E100E9C6EB /* FLUserSessionModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7D9E5163CB4E000E9C6EB /* FLUserSessionModule.m */; };
-		27B7DE4A163CB4E100E9C6EB /* FLUserSessionModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7D9E5163CB4E000E9C6EB /* FLUserSessionModule.m */; };
-		27B7DE4C163CB4E100E9C6EB /* FLUserSessionModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7D9E5163CB4E000E9C6EB /* FLUserSessionModule.m */; };
 		27B7DE4D163CB4E100E9C6EB /* __FLAssetQueueState.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7D9E9163CB4E000E9C6EB /* __FLAssetQueueState.h */; };
 		27B7DE4F163CB4E100E9C6EB /* __FLAssetQueueState.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7D9E9163CB4E000E9C6EB /* __FLAssetQueueState.h */; };
 		27B7DE50163CB4E100E9C6EB /* __FLAssetQueueState.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B7D9EA163CB4E000E9C6EB /* __FLAssetQueueState.m */; };
@@ -2338,6 +2353,33 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		270203F21644421A005D26B1 /* FLAnswerable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAnswerable.h; sourceTree = "<group>"; };
+		270203F31644421A005D26B1 /* FLAnswerable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAnswerable.m; sourceTree = "<group>"; };
+		27020417164466BA005D26B1 /* FLAppService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAppService.h; sourceTree = "<group>"; };
+		27020418164466BA005D26B1 /* FLAppService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAppService.m; sourceTree = "<group>"; };
+		2702041E164466BB005D26B1 /* FLSessionObjects.cgxml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = FLSessionObjects.cgxml; sourceTree = "<group>"; };
+		2702041F164466BB005D26B1 /* FLUserSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLUserSession.h; sourceTree = "<group>"; };
+		27020420164466BB005D26B1 /* FLUserSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLUserSession.m; sourceTree = "<group>"; };
+		27020422164466BB005D26B1 /* __FLApplicationDataVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __FLApplicationDataVersion.h; sourceTree = "<group>"; };
+		27020423164466BB005D26B1 /* __FLApplicationDataVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = __FLApplicationDataVersion.m; sourceTree = "<group>"; };
+		27020424164466BB005D26B1 /* __FLApplicationSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __FLApplicationSession.h; sourceTree = "<group>"; };
+		27020425164466BB005D26B1 /* __FLApplicationSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = __FLApplicationSession.m; sourceTree = "<group>"; };
+		27020426164466BB005D26B1 /* __FLLastUpdateTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __FLLastUpdateTime.h; sourceTree = "<group>"; };
+		27020427164466BB005D26B1 /* __FLLastUpdateTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = __FLLastUpdateTime.m; sourceTree = "<group>"; };
+		27020428164466BB005D26B1 /* __FLUserLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __FLUserLogin.h; sourceTree = "<group>"; };
+		27020429164466BB005D26B1 /* __FLUserLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = __FLUserLogin.m; sourceTree = "<group>"; };
+		2702042A164466BB005D26B1 /* FLApplicationDataVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLApplicationDataVersion.h; sourceTree = "<group>"; };
+		2702042B164466BB005D26B1 /* FLApplicationDataVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLApplicationDataVersion.m; sourceTree = "<group>"; };
+		2702042C164466BB005D26B1 /* FLApplicationSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLApplicationSession.h; sourceTree = "<group>"; };
+		2702042D164466BB005D26B1 /* FLApplicationSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLApplicationSession.m; sourceTree = "<group>"; };
+		2702042E164466BB005D26B1 /* FLLastUpdateTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLLastUpdateTime.h; sourceTree = "<group>"; };
+		2702042F164466BB005D26B1 /* FLLastUpdateTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLLastUpdateTime.m; sourceTree = "<group>"; };
+		27020430164466BB005D26B1 /* FLUserLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLUserLogin.h; sourceTree = "<group>"; };
+		27020431164466BB005D26B1 /* FLUserLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLUserLogin.m; sourceTree = "<group>"; };
+		2702046F16446F64005D26B1 /* FLUserService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLUserService.h; sourceTree = "<group>"; };
+		2702047016446F64005D26B1 /* FLUserService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLUserService.m; sourceTree = "<group>"; };
+		2702047616449D9C005D26B1 /* FLWorkerQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLWorkerQueue.h; sourceTree = "<group>"; };
+		2702047716449D9C005D26B1 /* FLWorkerQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLWorkerQueue.m; sourceTree = "<group>"; };
 		27048EF0161CB58600C38ADA /* libFishLampCoreMac32.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libFishLampCoreMac32.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		27048EF2161CB5E700C38ADA /* TargetMac32.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = TargetMac32.xcconfig; path = XcodeConfigs/TargetMac32.xcconfig; sourceTree = SOURCE_ROOT; };
 		270D02DC15E9B1F500ED5FB0 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/AppKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -2403,27 +2445,6 @@
 		27B7D9CD163CB4E000E9C6EB /* FLUserSessionDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLUserSessionDataModel.m; sourceTree = "<group>"; };
 		27B7D9CE163CB4E000E9C6EB /* FLApplicationFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLApplicationFactory.h; sourceTree = "<group>"; };
 		27B7D9CF163CB4E000E9C6EB /* FLApplicationFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLApplicationFactory.m; sourceTree = "<group>"; };
-		27B7D9D0163CB4E000E9C6EB /* FLSessionObjects.cgxml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = FLSessionObjects.cgxml; sourceTree = "<group>"; };
-		27B7D9D1163CB4E000E9C6EB /* FLUserSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLUserSession.h; sourceTree = "<group>"; };
-		27B7D9D2163CB4E000E9C6EB /* FLUserSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLUserSession.m; sourceTree = "<group>"; };
-		27B7D9D4163CB4E000E9C6EB /* __FLApplicationDataVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __FLApplicationDataVersion.h; sourceTree = "<group>"; };
-		27B7D9D5163CB4E000E9C6EB /* __FLApplicationDataVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = __FLApplicationDataVersion.m; sourceTree = "<group>"; };
-		27B7D9D6163CB4E000E9C6EB /* __FLApplicationSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __FLApplicationSession.h; sourceTree = "<group>"; };
-		27B7D9D7163CB4E000E9C6EB /* __FLApplicationSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = __FLApplicationSession.m; sourceTree = "<group>"; };
-		27B7D9D8163CB4E000E9C6EB /* __FLLastUpdateTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __FLLastUpdateTime.h; sourceTree = "<group>"; };
-		27B7D9D9163CB4E000E9C6EB /* __FLLastUpdateTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = __FLLastUpdateTime.m; sourceTree = "<group>"; };
-		27B7D9DA163CB4E000E9C6EB /* __FLUserLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __FLUserLogin.h; sourceTree = "<group>"; };
-		27B7D9DB163CB4E000E9C6EB /* __FLUserLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = __FLUserLogin.m; sourceTree = "<group>"; };
-		27B7D9DC163CB4E000E9C6EB /* FLApplicationDataVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLApplicationDataVersion.h; sourceTree = "<group>"; };
-		27B7D9DD163CB4E000E9C6EB /* FLApplicationDataVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLApplicationDataVersion.m; sourceTree = "<group>"; };
-		27B7D9DE163CB4E000E9C6EB /* FLApplicationSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLApplicationSession.h; sourceTree = "<group>"; };
-		27B7D9DF163CB4E000E9C6EB /* FLApplicationSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLApplicationSession.m; sourceTree = "<group>"; };
-		27B7D9E0163CB4E000E9C6EB /* FLLastUpdateTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLLastUpdateTime.h; sourceTree = "<group>"; };
-		27B7D9E1163CB4E000E9C6EB /* FLLastUpdateTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLLastUpdateTime.m; sourceTree = "<group>"; };
-		27B7D9E2163CB4E000E9C6EB /* FLUserLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLUserLogin.h; sourceTree = "<group>"; };
-		27B7D9E3163CB4E000E9C6EB /* FLUserLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLUserLogin.m; sourceTree = "<group>"; };
-		27B7D9E4163CB4E000E9C6EB /* FLUserSessionModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLUserSessionModule.h; sourceTree = "<group>"; };
-		27B7D9E5163CB4E000E9C6EB /* FLUserSessionModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLUserSessionModule.m; sourceTree = "<group>"; };
 		27B7D9E9163CB4E000E9C6EB /* __FLAssetQueueState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __FLAssetQueueState.h; sourceTree = "<group>"; };
 		27B7D9EA163CB4E000E9C6EB /* __FLAssetQueueState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = __FLAssetQueueState.m; sourceTree = "<group>"; };
 		27B7D9EB163CB4E000E9C6EB /* __FLExportedAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __FLExportedAsset.h; sourceTree = "<group>"; };
@@ -3372,6 +3393,51 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		27020416164466BA005D26B1 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				27020417164466BA005D26B1 /* FLAppService.h */,
+				27020418164466BA005D26B1 /* FLAppService.m */,
+				2702046F16446F64005D26B1 /* FLUserService.h */,
+				2702047016446F64005D26B1 /* FLUserService.m */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		27020419164466BA005D26B1 /* Session */ = {
+			isa = PBXGroup;
+			children = (
+				2702041E164466BB005D26B1 /* FLSessionObjects.cgxml */,
+				2702041F164466BB005D26B1 /* FLUserSession.h */,
+				27020420164466BB005D26B1 /* FLUserSession.m */,
+				27020421164466BB005D26B1 /* SessionObjects */,
+			);
+			path = Session;
+			sourceTree = "<group>";
+		};
+		27020421164466BB005D26B1 /* SessionObjects */ = {
+			isa = PBXGroup;
+			children = (
+				27020422164466BB005D26B1 /* __FLApplicationDataVersion.h */,
+				27020423164466BB005D26B1 /* __FLApplicationDataVersion.m */,
+				27020424164466BB005D26B1 /* __FLApplicationSession.h */,
+				27020425164466BB005D26B1 /* __FLApplicationSession.m */,
+				27020426164466BB005D26B1 /* __FLLastUpdateTime.h */,
+				27020427164466BB005D26B1 /* __FLLastUpdateTime.m */,
+				27020428164466BB005D26B1 /* __FLUserLogin.h */,
+				27020429164466BB005D26B1 /* __FLUserLogin.m */,
+				2702042A164466BB005D26B1 /* FLApplicationDataVersion.h */,
+				2702042B164466BB005D26B1 /* FLApplicationDataVersion.m */,
+				2702042C164466BB005D26B1 /* FLApplicationSession.h */,
+				2702042D164466BB005D26B1 /* FLApplicationSession.m */,
+				2702042E164466BB005D26B1 /* FLLastUpdateTime.h */,
+				2702042F164466BB005D26B1 /* FLLastUpdateTime.m */,
+				27020430164466BB005D26B1 /* FLUserLogin.h */,
+				27020431164466BB005D26B1 /* FLUserLogin.m */,
+			);
+			path = SessionObjects;
+			sourceTree = "<group>";
+		};
 		270EA5181640C87000329E35 /* FishLampXcodeConfigs */ = {
 			isa = PBXGroup;
 			children = (
@@ -3480,6 +3546,8 @@
 		27B7D9C7163CB4E000E9C6EB /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				27020416164466BA005D26B1 /* Services */,
+				27020419164466BA005D26B1 /* Session */,
 				27E5A983163EFD8700B8D029 /* Async */,
 				27B7D9C8163CB4E000E9C6EB /* App */,
 				27B7D9E6163CB4E000E9C6EB /* Assets */,
@@ -3515,10 +3583,6 @@
 				27B7D9C9163CB4E000E9C6EB /* DataModel */,
 				27B7D9CE163CB4E000E9C6EB /* FLApplicationFactory.h */,
 				27B7D9CF163CB4E000E9C6EB /* FLApplicationFactory.m */,
-				27B7D9D0163CB4E000E9C6EB /* FLSessionObjects.cgxml */,
-				27B7D9D1163CB4E000E9C6EB /* FLUserSession.h */,
-				27B7D9D2163CB4E000E9C6EB /* FLUserSession.m */,
-				27B7D9D3163CB4E000E9C6EB /* SessionObjects */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -3532,31 +3596,6 @@
 				27B7D9CD163CB4E000E9C6EB /* FLUserSessionDataModel.m */,
 			);
 			path = DataModel;
-			sourceTree = "<group>";
-		};
-		27B7D9D3163CB4E000E9C6EB /* SessionObjects */ = {
-			isa = PBXGroup;
-			children = (
-				27B7D9D4163CB4E000E9C6EB /* __FLApplicationDataVersion.h */,
-				27B7D9D5163CB4E000E9C6EB /* __FLApplicationDataVersion.m */,
-				27B7D9D6163CB4E000E9C6EB /* __FLApplicationSession.h */,
-				27B7D9D7163CB4E000E9C6EB /* __FLApplicationSession.m */,
-				27B7D9D8163CB4E000E9C6EB /* __FLLastUpdateTime.h */,
-				27B7D9D9163CB4E000E9C6EB /* __FLLastUpdateTime.m */,
-				27B7D9DA163CB4E000E9C6EB /* __FLUserLogin.h */,
-				27B7D9DB163CB4E000E9C6EB /* __FLUserLogin.m */,
-				27B7D9DC163CB4E000E9C6EB /* FLApplicationDataVersion.h */,
-				27B7D9DD163CB4E000E9C6EB /* FLApplicationDataVersion.m */,
-				27B7D9DE163CB4E000E9C6EB /* FLApplicationSession.h */,
-				27B7D9DF163CB4E000E9C6EB /* FLApplicationSession.m */,
-				27B7D9E0163CB4E000E9C6EB /* FLLastUpdateTime.h */,
-				27B7D9E1163CB4E000E9C6EB /* FLLastUpdateTime.m */,
-				27B7D9E2163CB4E000E9C6EB /* FLUserLogin.h */,
-				27B7D9E3163CB4E000E9C6EB /* FLUserLogin.m */,
-				27B7D9E4163CB4E000E9C6EB /* FLUserSessionModule.h */,
-				27B7D9E5163CB4E000E9C6EB /* FLUserSessionModule.m */,
-			);
-			path = SessionObjects;
 			sourceTree = "<group>";
 		};
 		27B7D9E6163CB4E000E9C6EB /* Assets */ = {
@@ -4767,6 +4806,8 @@
 				27B7DCF5163CB4E000E9C6EB /* NSObject+FLSelectorPerforming.m */,
 				27B7DCF6163CB4E000E9C6EB /* Properties */,
 				27B7DD01163CB4E000E9C6EB /* WeakReference */,
+				270203F21644421A005D26B1 /* FLAnswerable.h */,
+				270203F31644421A005D26B1 /* FLAnswerable.m */,
 			);
 			path = Objc;
 			sourceTree = "<group>";
@@ -5442,6 +5483,8 @@
 				27E5A9E1163EFD8B00B8D029 /* FLWorkFinisher.m */,
 				27E5AAC9163F026A00B8D029 /* FLResultObjects.h */,
 				27E5AACA163F026B00B8D029 /* FLResultObjects.m */,
+				2702047616449D9C005D26B1 /* FLWorkerQueue.h */,
+				2702047716449D9C005D26B1 /* FLWorkerQueue.m */,
 			);
 			path = Workers;
 			sourceTree = "<group>";
@@ -5456,16 +5499,6 @@
 				27B7DDF4163CB4E100E9C6EB /* FLApplicationDataModel.h in Headers */,
 				27B7DDFB163CB4E100E9C6EB /* FLUserSessionDataModel.h in Headers */,
 				27B7DE02163CB4E100E9C6EB /* FLApplicationFactory.h in Headers */,
-				27B7DE09163CB4E100E9C6EB /* FLUserSession.h in Headers */,
-				27B7DE10163CB4E100E9C6EB /* __FLApplicationDataVersion.h in Headers */,
-				27B7DE17163CB4E100E9C6EB /* __FLApplicationSession.h in Headers */,
-				27B7DE1E163CB4E100E9C6EB /* __FLLastUpdateTime.h in Headers */,
-				27B7DE25163CB4E100E9C6EB /* __FLUserLogin.h in Headers */,
-				27B7DE2C163CB4E100E9C6EB /* FLApplicationDataVersion.h in Headers */,
-				27B7DE33163CB4E100E9C6EB /* FLApplicationSession.h in Headers */,
-				27B7DE3A163CB4E100E9C6EB /* FLLastUpdateTime.h in Headers */,
-				27B7DE41163CB4E100E9C6EB /* FLUserLogin.h in Headers */,
-				27B7DE48163CB4E100E9C6EB /* FLUserSessionModule.h in Headers */,
 				27B7DE4F163CB4E100E9C6EB /* __FLAssetQueueState.h in Headers */,
 				27B7DE56163CB4E100E9C6EB /* __FLExportedAsset.h in Headers */,
 				27B7DE5D163CB4E100E9C6EB /* __FLQueuedAsset.h in Headers */,
@@ -5957,6 +5990,19 @@
 				2725BBA21642FE6400B8EC6E /* FLPrintfLogSink.h in Headers */,
 				2725BBA91642FEF300B8EC6E /* FLLogEntry.h in Headers */,
 				2725BBB61643023300B8EC6E /* FLLogPacket_Internal.h in Headers */,
+				270203F51644421A005D26B1 /* FLAnswerable.h in Headers */,
+				27020433164466BB005D26B1 /* FLAppService.h in Headers */,
+				27020442164466BB005D26B1 /* FLUserSession.h in Headers */,
+				27020447164466BB005D26B1 /* __FLApplicationDataVersion.h in Headers */,
+				2702044C164466BB005D26B1 /* __FLApplicationSession.h in Headers */,
+				27020451164466BB005D26B1 /* __FLLastUpdateTime.h in Headers */,
+				27020456164466BB005D26B1 /* __FLUserLogin.h in Headers */,
+				2702045B164466BB005D26B1 /* FLApplicationDataVersion.h in Headers */,
+				27020460164466BB005D26B1 /* FLApplicationSession.h in Headers */,
+				27020465164466BB005D26B1 /* FLLastUpdateTime.h in Headers */,
+				2702046A164466BB005D26B1 /* FLUserLogin.h in Headers */,
+				2702047216446F64005D26B1 /* FLUserService.h in Headers */,
+				2702047916449D9D005D26B1 /* FLWorkerQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5967,16 +6013,6 @@
 				27B7DDF2163CB4E100E9C6EB /* FLApplicationDataModel.h in Headers */,
 				27B7DDF9163CB4E100E9C6EB /* FLUserSessionDataModel.h in Headers */,
 				27B7DE00163CB4E100E9C6EB /* FLApplicationFactory.h in Headers */,
-				27B7DE07163CB4E100E9C6EB /* FLUserSession.h in Headers */,
-				27B7DE0E163CB4E100E9C6EB /* __FLApplicationDataVersion.h in Headers */,
-				27B7DE15163CB4E100E9C6EB /* __FLApplicationSession.h in Headers */,
-				27B7DE1C163CB4E100E9C6EB /* __FLLastUpdateTime.h in Headers */,
-				27B7DE23163CB4E100E9C6EB /* __FLUserLogin.h in Headers */,
-				27B7DE2A163CB4E100E9C6EB /* FLApplicationDataVersion.h in Headers */,
-				27B7DE31163CB4E100E9C6EB /* FLApplicationSession.h in Headers */,
-				27B7DE38163CB4E100E9C6EB /* FLLastUpdateTime.h in Headers */,
-				27B7DE3F163CB4E100E9C6EB /* FLUserLogin.h in Headers */,
-				27B7DE46163CB4E100E9C6EB /* FLUserSessionModule.h in Headers */,
 				27B7DE4D163CB4E100E9C6EB /* __FLAssetQueueState.h in Headers */,
 				27B7DE54163CB4E100E9C6EB /* __FLExportedAsset.h in Headers */,
 				27B7DE5B163CB4E100E9C6EB /* __FLQueuedAsset.h in Headers */,
@@ -6468,6 +6504,19 @@
 				2725BBA11642FE6400B8EC6E /* FLPrintfLogSink.h in Headers */,
 				2725BBA81642FEF300B8EC6E /* FLLogEntry.h in Headers */,
 				2725BBB51643023300B8EC6E /* FLLogPacket_Internal.h in Headers */,
+				270203F41644421A005D26B1 /* FLAnswerable.h in Headers */,
+				27020432164466BB005D26B1 /* FLAppService.h in Headers */,
+				27020441164466BB005D26B1 /* FLUserSession.h in Headers */,
+				27020446164466BB005D26B1 /* __FLApplicationDataVersion.h in Headers */,
+				2702044B164466BB005D26B1 /* __FLApplicationSession.h in Headers */,
+				27020450164466BB005D26B1 /* __FLLastUpdateTime.h in Headers */,
+				27020455164466BB005D26B1 /* __FLUserLogin.h in Headers */,
+				2702045A164466BB005D26B1 /* FLApplicationDataVersion.h in Headers */,
+				2702045F164466BB005D26B1 /* FLApplicationSession.h in Headers */,
+				27020464164466BB005D26B1 /* FLLastUpdateTime.h in Headers */,
+				27020469164466BB005D26B1 /* FLUserLogin.h in Headers */,
+				2702047116446F64005D26B1 /* FLUserService.h in Headers */,
+				2702047816449D9D005D26B1 /* FLWorkerQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6562,16 +6611,6 @@
 				27B7DDF8163CB4E100E9C6EB /* FLApplicationDataModel.m in Sources */,
 				27B7DDFF163CB4E100E9C6EB /* FLUserSessionDataModel.m in Sources */,
 				27B7DE06163CB4E100E9C6EB /* FLApplicationFactory.m in Sources */,
-				27B7DE0D163CB4E100E9C6EB /* FLUserSession.m in Sources */,
-				27B7DE14163CB4E100E9C6EB /* __FLApplicationDataVersion.m in Sources */,
-				27B7DE1B163CB4E100E9C6EB /* __FLApplicationSession.m in Sources */,
-				27B7DE22163CB4E100E9C6EB /* __FLLastUpdateTime.m in Sources */,
-				27B7DE29163CB4E100E9C6EB /* __FLUserLogin.m in Sources */,
-				27B7DE30163CB4E100E9C6EB /* FLApplicationDataVersion.m in Sources */,
-				27B7DE37163CB4E100E9C6EB /* FLApplicationSession.m in Sources */,
-				27B7DE3E163CB4E100E9C6EB /* FLLastUpdateTime.m in Sources */,
-				27B7DE45163CB4E100E9C6EB /* FLUserLogin.m in Sources */,
-				27B7DE4C163CB4E100E9C6EB /* FLUserSessionModule.m in Sources */,
 				27B7DE53163CB4E100E9C6EB /* __FLAssetQueueState.m in Sources */,
 				27B7DE5A163CB4E100E9C6EB /* __FLExportedAsset.m in Sources */,
 				27B7DE61163CB4E100E9C6EB /* __FLQueuedAsset.m in Sources */,
@@ -6986,6 +7025,19 @@
 				2725BB9D1642FDB000B8EC6E /* FLLogger.m in Sources */,
 				2725BBA51642FE6400B8EC6E /* FLPrintfLogSink.m in Sources */,
 				2725BBAC1642FEF300B8EC6E /* FLLogEntry.m in Sources */,
+				270203F81644421A005D26B1 /* FLAnswerable.m in Sources */,
+				27020436164466BB005D26B1 /* FLAppService.m in Sources */,
+				27020445164466BB005D26B1 /* FLUserSession.m in Sources */,
+				2702044A164466BB005D26B1 /* __FLApplicationDataVersion.m in Sources */,
+				2702044F164466BB005D26B1 /* __FLApplicationSession.m in Sources */,
+				27020454164466BB005D26B1 /* __FLLastUpdateTime.m in Sources */,
+				27020459164466BB005D26B1 /* __FLUserLogin.m in Sources */,
+				2702045E164466BB005D26B1 /* FLApplicationDataVersion.m in Sources */,
+				27020463164466BB005D26B1 /* FLApplicationSession.m in Sources */,
+				27020468164466BB005D26B1 /* FLLastUpdateTime.m in Sources */,
+				2702046D164466BB005D26B1 /* FLUserLogin.m in Sources */,
+				2702047516446F64005D26B1 /* FLUserService.m in Sources */,
+				2702047C16449D9D005D26B1 /* FLWorkerQueue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6996,16 +7048,6 @@
 				27B7DDF5163CB4E100E9C6EB /* FLApplicationDataModel.m in Sources */,
 				27B7DDFC163CB4E100E9C6EB /* FLUserSessionDataModel.m in Sources */,
 				27B7DE03163CB4E100E9C6EB /* FLApplicationFactory.m in Sources */,
-				27B7DE0A163CB4E100E9C6EB /* FLUserSession.m in Sources */,
-				27B7DE11163CB4E100E9C6EB /* __FLApplicationDataVersion.m in Sources */,
-				27B7DE18163CB4E100E9C6EB /* __FLApplicationSession.m in Sources */,
-				27B7DE1F163CB4E100E9C6EB /* __FLLastUpdateTime.m in Sources */,
-				27B7DE26163CB4E100E9C6EB /* __FLUserLogin.m in Sources */,
-				27B7DE2D163CB4E100E9C6EB /* FLApplicationDataVersion.m in Sources */,
-				27B7DE34163CB4E100E9C6EB /* FLApplicationSession.m in Sources */,
-				27B7DE3B163CB4E100E9C6EB /* FLLastUpdateTime.m in Sources */,
-				27B7DE42163CB4E100E9C6EB /* FLUserLogin.m in Sources */,
-				27B7DE49163CB4E100E9C6EB /* FLUserSessionModule.m in Sources */,
 				27B7DE50163CB4E100E9C6EB /* __FLAssetQueueState.m in Sources */,
 				27B7DE57163CB4E100E9C6EB /* __FLExportedAsset.m in Sources */,
 				27B7DE5E163CB4E100E9C6EB /* __FLQueuedAsset.m in Sources */,
@@ -7432,6 +7474,19 @@
 				2725BB9B1642FDB000B8EC6E /* FLLogger.m in Sources */,
 				2725BBA31642FE6400B8EC6E /* FLPrintfLogSink.m in Sources */,
 				2725BBAA1642FEF300B8EC6E /* FLLogEntry.m in Sources */,
+				270203F61644421A005D26B1 /* FLAnswerable.m in Sources */,
+				27020434164466BB005D26B1 /* FLAppService.m in Sources */,
+				27020443164466BB005D26B1 /* FLUserSession.m in Sources */,
+				27020448164466BB005D26B1 /* __FLApplicationDataVersion.m in Sources */,
+				2702044D164466BB005D26B1 /* __FLApplicationSession.m in Sources */,
+				27020452164466BB005D26B1 /* __FLLastUpdateTime.m in Sources */,
+				27020457164466BB005D26B1 /* __FLUserLogin.m in Sources */,
+				2702045C164466BB005D26B1 /* FLApplicationDataVersion.m in Sources */,
+				27020461164466BB005D26B1 /* FLApplicationSession.m in Sources */,
+				27020466164466BB005D26B1 /* FLLastUpdateTime.m in Sources */,
+				2702046B164466BB005D26B1 /* FLUserLogin.m in Sources */,
+				2702047316446F64005D26B1 /* FLUserService.m in Sources */,
+				2702047A16449D9D005D26B1 /* FLWorkerQueue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7442,16 +7497,6 @@
 				27B7DDF6163CB4E100E9C6EB /* FLApplicationDataModel.m in Sources */,
 				27B7DDFD163CB4E100E9C6EB /* FLUserSessionDataModel.m in Sources */,
 				27B7DE04163CB4E100E9C6EB /* FLApplicationFactory.m in Sources */,
-				27B7DE0B163CB4E100E9C6EB /* FLUserSession.m in Sources */,
-				27B7DE12163CB4E100E9C6EB /* __FLApplicationDataVersion.m in Sources */,
-				27B7DE19163CB4E100E9C6EB /* __FLApplicationSession.m in Sources */,
-				27B7DE20163CB4E100E9C6EB /* __FLLastUpdateTime.m in Sources */,
-				27B7DE27163CB4E100E9C6EB /* __FLUserLogin.m in Sources */,
-				27B7DE2E163CB4E100E9C6EB /* FLApplicationDataVersion.m in Sources */,
-				27B7DE35163CB4E100E9C6EB /* FLApplicationSession.m in Sources */,
-				27B7DE3C163CB4E100E9C6EB /* FLLastUpdateTime.m in Sources */,
-				27B7DE43163CB4E100E9C6EB /* FLUserLogin.m in Sources */,
-				27B7DE4A163CB4E100E9C6EB /* FLUserSessionModule.m in Sources */,
 				27B7DE51163CB4E100E9C6EB /* __FLAssetQueueState.m in Sources */,
 				27B7DE58163CB4E100E9C6EB /* __FLExportedAsset.m in Sources */,
 				27B7DE5F163CB4E100E9C6EB /* __FLQueuedAsset.m in Sources */,
@@ -7878,6 +7923,19 @@
 				2725BB9C1642FDB000B8EC6E /* FLLogger.m in Sources */,
 				2725BBA41642FE6400B8EC6E /* FLPrintfLogSink.m in Sources */,
 				2725BBAB1642FEF300B8EC6E /* FLLogEntry.m in Sources */,
+				270203F71644421A005D26B1 /* FLAnswerable.m in Sources */,
+				27020435164466BB005D26B1 /* FLAppService.m in Sources */,
+				27020444164466BB005D26B1 /* FLUserSession.m in Sources */,
+				27020449164466BB005D26B1 /* __FLApplicationDataVersion.m in Sources */,
+				2702044E164466BB005D26B1 /* __FLApplicationSession.m in Sources */,
+				27020453164466BB005D26B1 /* __FLLastUpdateTime.m in Sources */,
+				27020458164466BB005D26B1 /* __FLUserLogin.m in Sources */,
+				2702045D164466BB005D26B1 /* FLApplicationDataVersion.m in Sources */,
+				27020462164466BB005D26B1 /* FLApplicationSession.m in Sources */,
+				27020467164466BB005D26B1 /* FLLastUpdateTime.m in Sources */,
+				2702046C164466BB005D26B1 /* FLUserLogin.m in Sources */,
+				2702047416446F64005D26B1 /* FLUserService.m in Sources */,
+				2702047B16449D9D005D26B1 /* FLWorkerQueue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -34,7 +34,7 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 #endif
     [self purgeCache];
-    mrc_super_dealloc_();
+    super_dealloc_();
 }
 
 - (void) cacheObject:(id) object {

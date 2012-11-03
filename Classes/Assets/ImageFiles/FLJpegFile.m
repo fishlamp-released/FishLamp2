@@ -121,7 +121,7 @@ FLSynthesizeStructProperty(exclusiveMode, setExclusiveMode, BOOL, _jpegFlags);
 	FLReleaseWithNil_(_image);
 	FLReleaseWithNil_(_jpegData);
 	FLReleaseWithNil_(_properties);
-	mrc_super_dealloc_();
+	super_dealloc_();
 }
 
 - (BOOL) hasImage

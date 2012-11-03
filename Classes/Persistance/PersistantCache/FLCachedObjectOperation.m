@@ -40,7 +40,7 @@ FLSynthesizeStructProperty(shouldRunIfLoadedFromCache, setShouldRunIfLoadedFromC
 - (void) dealloc {
 	mrc_release_(_cache);
 	mrc_release_(_subOperation);
-	mrc_super_dealloc_();
+	super_dealloc_();
 }
 
 - (void) setWasLoadedFromCacheCallback:(id) target action:(SEL) action {
@@ -89,7 +89,7 @@ FLSynthesizeStructProperty(shouldRunIfLoadedFromCache, setShouldRunIfLoadedFromC
 }
 
 - (void) didLoadFromCache {
-    [_target performIfRespondsToSelector:_action withObject:self];
+    FLPerformSelector1(_target, _action, self);
 }
 
 - (void) loadFromCache {

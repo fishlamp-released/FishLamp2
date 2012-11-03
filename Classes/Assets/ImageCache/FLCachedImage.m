@@ -39,7 +39,7 @@ FLSynthesizeCachedObjectHandlerProperty(FLCachedImage);
 - (void) dealloc
 {
 	FLReleaseWithNil_(_imageFile);
-	mrc_super_dealloc_();
+	super_dealloc_();
 }
 
 - (void) setUrl:(NSString*) inValue 

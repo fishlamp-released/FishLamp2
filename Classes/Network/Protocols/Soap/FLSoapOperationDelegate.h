@@ -13,12 +13,27 @@
 #import "FLSoapError.h"
 #import "FLHttpOperationAuthenticator.h"
 
+@protocol FLSoapServerInfo <NSObject>
+- (NSString*) soapNamespace;
+- (NSURL*) serverURL;
+- (NSString*) soapActionHeaderForOperationName:(NSString*) operationName;
+@end
+
+@interface FLSoapServerInfo : NSObject<FLSoapServerInfo> {
+@private
+    NSDictionary* _soapServerInfo;
+}
++ (FLSoapServerInfo*) soapServerInfo:(NSDictionary*) dictionary;
+@end
+
 @interface FLSoapOperationDelegate : NSObject<FLHttpOperationDelegate> {
 @private
     id<FLHttpOperationAuthenticator> _authenticator;
+    id<FLSoapServerInfo> _soapServerInfo;
 }
+@property (readwrite, strong) id<FLSoapServerInfo> soapServerInfo;
 @property (readwrite, strong) id<FLHttpOperationAuthenticator> authenticator;
-
 - (void) handleSoapFault:(FLSoapFault11*) fault;
+
 @end
 

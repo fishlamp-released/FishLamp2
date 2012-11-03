@@ -117,7 +117,7 @@ FLSynthesizeStructProperty(wasLoadedFromCache, setWasLoadedFromCache, BOOL, _net
     FLReleaseBlockWithNil_(_wasLoadedFromCacheCallback);
     FLReleaseBlockWithNil_(_wasLoadedFromCacheMainThreadCallback);
     mrc_release_(_database);
-	mrc_super_dealloc_();
+	super_dealloc_();
 }
 
 - (void) willFinishSelf:(FLOperation*) operation {

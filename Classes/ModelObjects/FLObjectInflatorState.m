@@ -45,7 +45,7 @@
 	mrc_release_(_object);
 	mrc_release_(_key);
 	mrc_release_(_data);
-	mrc_super_dealloc_();
+	super_dealloc_();
 }
 
 @end

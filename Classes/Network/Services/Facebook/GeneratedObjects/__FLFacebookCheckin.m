@@ -84,7 +84,7 @@
     mrc_release_(__message);
     mrc_release_(__application);
     mrc_release_(__created_time);
-    mrc_super_dealloc_();
+    super_dealloc_();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder

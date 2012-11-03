@@ -28,7 +28,7 @@
 
 - (id) init;
 
-- (id) initWithQueuedAsset:(FLQueuedAsset*) asset;
+- (id) initWithQueuedAsset:(FLQueuedAsset*) asset inFolder:(FLFolder*) folder;
 
 - (id) initWithFolder:(FLFolder*) folder assetUID:(NSString*) assetUID;
 

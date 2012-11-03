@@ -108,7 +108,7 @@ static void WriteStreamClientCallBack(CFWriteStreamRef readStream,
         buffer += amt;
     }
     
-    [self.delegate performIfRespondsToSelector:@selector(writeStreamDidWriteBytes:) withObject:self];
+    FLPerformSelectorWithObject(self.delegate, @selector(writeStreamDidWriteBytes:), self);
 }
 
 - (void) sendData:(NSData*) data {

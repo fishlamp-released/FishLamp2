@@ -72,7 +72,7 @@
     mrc_release_(__networks);
     mrc_release_(__deny);
     mrc_release_(__description);
-    mrc_super_dealloc_();
+    super_dealloc_();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder

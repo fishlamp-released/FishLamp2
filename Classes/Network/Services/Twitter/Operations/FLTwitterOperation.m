@@ -19,7 +19,7 @@
 - (void) dealloc
 {
 	mrc_release_(_session);
-	mrc_super_dealloc_();
+	super_dealloc_();
 }
 
 - (BOOL) willAddParametersToRequestContent:(FLOAuthAuthorizationHeader*) signature
@@ -65,9 +65,9 @@
 
 	if(oauthHeader) {
         [oauthHeader setParameter:kFLOAuthHeaderToken value:_session.oauth_token];
-        NSString* secret = [NSString stringWithFormat:@"%@&%@", [FLTwitterMgr instance].consumerSecret, _session.oauth_token_secret];
+        NSString* secret = [NSString stringWithFormat:@"%@&%@", [FLTwitterMgr instance].oauthInfo.consumerSecret, _session.oauth_token_secret];
         [connection.httpRequest setOAuthAuthorizationHeader:oauthHeader
-                                                consumerKey:[FLTwitterMgr instance].consumerKey
+                                                consumerKey:[FLTwitterMgr instance].oauthInfo.consumerKey
                                                      secret:secret];
 	}
 }

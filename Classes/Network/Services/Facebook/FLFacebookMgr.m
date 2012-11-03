@@ -8,7 +8,6 @@
 
 #import "FLFacebookMgr.h"
 #import "NSString+URL.h"
-#import "FLUserSession.h"
 
 static NSString* kRedirectURL = @"http://www.facebook.com/connect/login_success.html";
 
@@ -36,7 +35,7 @@ FLSynthesizeSingleton(FLFacebookMgr);
 	mrc_release_(_encodedToken);
 	mrc_release_(_appId);
 	mrc_release_(_session);
-	mrc_super_dealloc_();
+	super_dealloc_();
 }
 
 // from facebook demo app
@@ -132,11 +131,16 @@ FLSynthesizeSingleton(FLFacebookMgr);
 	}
 }
 
+- (FLObjectDatabase*) database {
+    return self.userSession.documentsDatabase;
+}
+
 - (void) logout
 {
 	FLFacebookNetworkSession* input = [FLFacebookNetworkSession facebookNetworkSession];
 	input.appId = self.appId;
-	[[FLUserSession instance].documentsDatabase deleteObject:input];
+
+	[self.database deleteObject:input];
 	FLReleaseWithNil_(_session);
     FLReleaseWithNil_(_encodedToken);
     
@@ -151,11 +155,11 @@ FLSynthesizeSingleton(FLFacebookMgr);
 		FLFacebookNetworkSession* input = [FLFacebookNetworkSession facebookNetworkSession];
 		input.appId = self.appId;
 		
-		FLRetainObject_(_session, [[FLUserSession instance].documentsDatabase loadObject:input]);
+		FLRetainObject_(_session, [self.database loadObject:input]);
 		
 		if(_session && FLStringIsEmpty(_session.userId))
 		{
-			[[FLUserSession instance].documentsDatabase deleteObject:_session];
+			[self.database deleteObject:_session];
 			FLReleaseWithNil_(_session);
 		}
 	}
@@ -219,7 +223,7 @@ FLSynthesizeSingleton(FLFacebookMgr);
 		}
 
 		self.encodedToken = [_session.access_token urlEncodeString:NSUTF8StringEncoding];
-		[[FLUserSession instance].documentsDatabase saveObject:_session];
+		[self.database saveObject:_session];
 	}
 }
 

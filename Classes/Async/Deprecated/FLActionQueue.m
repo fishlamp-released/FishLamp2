@@ -86,7 +86,7 @@
 {
 	[self cancel];
 	FLReleaseWithNil_(_operations);
-	mrc_super_dealloc_();
+	super_dealloc_();
 }
 
 @end

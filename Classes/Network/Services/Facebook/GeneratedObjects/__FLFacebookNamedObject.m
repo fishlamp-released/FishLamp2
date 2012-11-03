@@ -40,7 +40,7 @@
 - (void) dealloc
 {
     mrc_release_(__name);
-    mrc_super_dealloc_();
+    super_dealloc_();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder

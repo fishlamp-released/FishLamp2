@@ -28,7 +28,7 @@
 {
     mrc_release_(_fromVersion);
     mrc_release_(_toVersion);
-    mrc_super_dealloc_();
+    super_dealloc_();
 }
 
 + (FLVersionUpgradeLengthyTaskList*) versionUpgradeLengthyTaskList:(NSString*) fromVersion toVersion:(NSString*) toVersion

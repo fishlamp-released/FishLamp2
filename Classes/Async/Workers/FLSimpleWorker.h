@@ -10,5 +10,10 @@
 
 #import "FLWorker.h"
 
-@interface FLSimpleWorker : NSObject<FLWorker, FLRunnable>
+@interface FLSimpleWorker : NSObject<FLWorkerParent, FLRunnable> {
+@private
+    __unsafe_unretained id _parentWorker;
+    __unsafe_unretained id _errorDelegate;
+}
+
 @end

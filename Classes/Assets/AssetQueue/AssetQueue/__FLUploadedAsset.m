@@ -136,7 +136,7 @@
     mrc_release_(__assetName);
     mrc_release_(__thumbnail);
     mrc_release_(__uploadedDate);
-    mrc_super_dealloc_();
+    super_dealloc_();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder

@@ -28,7 +28,7 @@
 - (void) dealloc {
     mrc_release_(_key);
     mrc_release_(_object);
-	mrc_super_dealloc_();
+	super_dealloc_();
 }
 #endif
 

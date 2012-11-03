@@ -168,7 +168,7 @@
 
 - (void) receiveNotification:(id) sender {
     id target = self.target;
-    [target performSelectorSafely:_action withObject:sender];
+    FLPerformSelector1(target, _action, sender);
 }
 
 + (id) callbackNotifier:(id) target action:(SEL) action {

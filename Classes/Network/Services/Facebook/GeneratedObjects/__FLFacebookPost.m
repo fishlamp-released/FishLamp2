@@ -190,7 +190,7 @@
     mrc_release_(__type);
     mrc_release_(__updated_time);
     mrc_release_(__created_time);
-    mrc_super_dealloc_();
+    super_dealloc_();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder

@@ -56,7 +56,7 @@
     mrc_release_(__text);
     mrc_release_(__name);
     mrc_release_(__href);
-    mrc_super_dealloc_();
+    super_dealloc_();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder

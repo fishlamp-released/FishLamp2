@@ -76,7 +76,7 @@
     mrc_release_(__accessTokenUrl);
     mrc_release_(__authorizeUrl);
     mrc_release_(__callback);
-    mrc_super_dealloc_();
+    super_dealloc_();
 }
 
 - (id) init

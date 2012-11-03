@@ -158,7 +158,7 @@ static FLReachability* s_default = nil;
 		CFRelease(_reachabilityRef);
 		_reachabilityRef = nil;
 	}
-	mrc_super_dealloc_();
+	super_dealloc_();
 }
 
 + (void) initialize

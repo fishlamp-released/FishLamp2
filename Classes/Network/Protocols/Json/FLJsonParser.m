@@ -23,7 +23,7 @@
 
 - (void) dealloc {
     mrc_release_(_error);
-    mrc_super_dealloc_();
+    super_dealloc_();
 }
 
 - (NSError* )parseJsonData:(NSData *)data rootObject:(id) rootObject {

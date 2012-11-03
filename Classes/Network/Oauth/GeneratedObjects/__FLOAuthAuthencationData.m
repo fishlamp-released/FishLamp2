@@ -48,7 +48,7 @@
     mrc_release_(__oauth_callback_confirmed);
     mrc_release_(__oauth_token);
     mrc_release_(__oauth_verifier);
-    mrc_super_dealloc_();
+    super_dealloc_();
 }
 
 - (id) init

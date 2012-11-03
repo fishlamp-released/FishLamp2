@@ -10,14 +10,13 @@
 #import "FishLampCore.h"
 
 #import "FLAbstractFile.h"
+#import "FLAppService.h"
 
-@interface FLTempFileMgr : NSObject {
+@interface FLTempFileMgr : FLAppService {
 @private    
     NSMutableDictionary* _files;
     FLFolder* _folder;
 }
-
-FLSingletonProperty(FLTempFileMgr);
 
 @property (readwrite, strong, nonatomic) FLFolder* folder;
 

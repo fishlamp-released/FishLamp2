@@ -106,7 +106,7 @@
     mrc_release_(__height);
     mrc_release_(__width);
     mrc_release_(__tags);
-    mrc_super_dealloc_();
+    super_dealloc_();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder

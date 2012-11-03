@@ -8,10 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "FLVisitable.h"
 #import "FLWeakReference.h"
-
-@class FLObservers;
 
 @protocol FLObservable <NSObject>
 // observers are __unsafe_unretained
@@ -21,8 +18,14 @@
 - (BOOL) visitObservers:(void (^)(id observer, BOOL* stop)) visitor;
 
 // sends SELF as first object always to observer 
-- (void) postObservation:(SEL) sel;
-- (void) postObservation:(SEL) sel withObject:(id) object;
+- (void) postObservation:(SEL) selector;
+- (void) postObservation:(SEL) selector withObject:(id) object;
+- (void) postObservation:(SEL) selector withObject:(id) object1 withObject:(id) object2;
+
+- (BOOL) postQuestion:(SEL) selector;
+- (BOOL) postQuestion:(SEL) selector defaultAnswer:(BOOL) answer;
+- (BOOL) postQuestion:(SEL) selector defaultAnswer:(BOOL) answer withObject:(id) object;
+
 @end
 
 @interface FLObservable : NSObject<FLObservable> {
@@ -35,20 +38,9 @@
 @protocol FLObserver <NSObject>
 @optional
 - (void) observerableWasDestroyed:(id) observable;
-- (void) receiveObservation:(SEL) sel fromObservable:(id) observable withObject:(id) object;
-- (void) receiveObservation:(SEL) sel fromObservable:(id) observable;
-@end
-
-@interface FLUnretainedObserver : NSObject<FLObserver> {
-@private
-    FLWeakReference* _observer;
-    FLWeakReference* _observing;
-}
-
-- (id) initWithObserver:(id) observer isObserving:(id) observedObject;
-
-+ (id) unretainedObserver:(id) observer isObserving:(id) observedObject;
-
+- (void) receiveObservation:(SEL) selector fromObservable:(id) observable;
+- (void) receiveObservation:(SEL) selector fromObservable:(id) observable withObject:(id) object;
+- (void) receiveObservation:(SEL) selector fromObservable:(id) observable withObject:(id) object1 withObject:(id) object2;
 @end
 
 typedef void (^FLBlockObserverNotifier)(id sender);

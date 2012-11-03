@@ -14,8 +14,18 @@
 #import "FLFallible.h"
 #import "FLRunnable.h"
 
-@protocol FLWorker <NSObject>
+@protocol FLWorkerParent;
+
+@protocol FLWorker <FLFallible>
 - (void) startWorking:(id<FLFinisher>) finisher;
+
+@optional 
+- (void) didMoveToParentWorker:(id<FLWorkerParent>) parent;
+
 @end
 
-
+@protocol FLWorkerParent <FLWorker>
+@property (readonly, assign) id parentWorker;
+- (void) willAddWorker:(id<FLWorker>) worker;
+- (void) willRemoveWorker:(id<FLWorker>) worker;
+@end

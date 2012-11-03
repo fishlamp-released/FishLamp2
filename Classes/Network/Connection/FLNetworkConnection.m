@@ -72,7 +72,7 @@ const FLNetworkConnectionByteCount FLNetworkConnectionByteCountZero = {0, 0, 0};
     [_timeoutTimer release];
     [_finisher release];
     [_networkStream release];
-    mrc_super_dealloc_();
+    super_dealloc_();
 #endif
 }
 

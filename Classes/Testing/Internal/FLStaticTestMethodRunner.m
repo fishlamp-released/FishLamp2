@@ -34,9 +34,8 @@
     FLWorkFinisher* notifier = [FLWorkFinisher finisher:^(FLResult result){
         wasRun = YES;
     }];
-
-    [info.target performSelectorSafely:info.selector
-                            withObject:notifier];
+    
+    FLPerformSelector1(info.target, info.selector, notifier);
 
     if(!wasRun) {
         NSLog(@"Test not run ([finisher setFinished] not called)");
@@ -59,7 +58,7 @@
         switch(selectorArgCount) {
             
             case 2:
-                [info.target performSelectorSafely:info.selector];
+                FLPerformSelector0(info.target, info.selector);
                 passed = YES;
                 break;
             

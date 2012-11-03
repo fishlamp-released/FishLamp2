@@ -42,7 +42,7 @@
     mrc_release_(__user);
     mrc_release_(__x);
     mrc_release_(__y);
-    mrc_super_dealloc_();
+    super_dealloc_();
 }
 
 + (FLFacebookTag*) facebookTag

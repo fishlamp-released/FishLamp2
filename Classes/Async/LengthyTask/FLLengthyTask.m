@@ -105,7 +105,7 @@
 
 - (void) dealloc {
 	mrc_release_(_name);
-	mrc_super_dealloc_();
+	super_dealloc_();
 }
 
 

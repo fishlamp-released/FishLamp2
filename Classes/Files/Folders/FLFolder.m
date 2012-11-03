@@ -59,7 +59,7 @@
 - (void) dealloc
 {
 	FLReleaseWithNil_(_fullPath);
-	mrc_super_dealloc_();
+	super_dealloc_();
 }
 
 - (void) deleteAllFiles:(FLFileVisitorBlock) visitor {

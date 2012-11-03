@@ -8,7 +8,6 @@
 
 #import "FLBackgroundTaskMgr.h"
 #import "FLOperationContext.h"
-#import "FLUserSession.h"
 #import "FLTraceOff.h"
 
 #define kDelay 0.5f
@@ -24,15 +23,17 @@ FLSynthesizeSingleton(FLBackgroundTaskMgr);
 @synthesize operations = _operations;
 @synthesize enabled = _enabled;
 
-- (id) init
-{
+- (id) init {
 	if((self = [super init]))
 	{
-		_queue = [[NSMutableArray alloc] init];
+        _queue = [[NSMutableArray alloc] init];
 		_operations = [[FLOperationQueue alloc] init];
 	    _sequenceQueue = [[NSMutableArray alloc] init];
 
-        [[FLUserSession instance] addObserver:self];
+
+FIXME("attach to user sessions....");
+//        [[FLUserSession instance] addObserver:self];
+        
 
     // start events
         
@@ -85,12 +86,13 @@ FIXME("operation context");
 //    [[FLApplication instance].operationContextManager removeObserver:self];
 #endif
 
-    [[FLUserSession instance] removeObserver:self];
+FIXME("attach to user sessions....");
+//    [[FLUserSession instance] removeObserver:self];
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
     mrc_release_(_sequenceQueue);
 	mrc_release_(_operations);
 	mrc_release_(_queue);
-	mrc_super_dealloc_();
+	super_dealloc_();
 }
 
 - (void) addBackgroundTask:(id<FLBackgroundTask>) task
@@ -117,40 +119,12 @@ FIXME("operation context");
     return NO;
 }
 
-- (BOOL) canBeginTasks
-{
-    if(![FLUserSession instance].isSessionOpen) {
-        return NO;
-    }
-    
-    BOOL stopped = [self visitObservers:^(id observer, BOOL* stop) {
- 
-        if( [observer respondsToSelector:@selector(backgroundTaskMgrCanBeginBackgroundTasks:)] &&
-            ![observer backgroundTaskMgrCanBeginBackgroundTasks:self])
-        {
-
-            FLTrace(@"Delegate: %@ said no to begining tasks", NSStringFromClass([delegate class]));
-            *stop = YES;
-        }
-    }];
-
-    return !stopped;
+- (BOOL) canBeginTasks {
+    return [self postQuestion:@selector(backgroundTaskMgr:canStart:) defaultAnswer:YES];
 }
 
-- (BOOL) canBeginBackgroundTask:(id<FLBackgroundTask>) task
-{
-    BOOL stopped = [self visitObservers:^(id observer, BOOL* stop) {
- 
-        if( [observer respondsToSelector:@selector(backgroundTaskMgr:canBeginBackgroundTask:)] &&
-            ![observer backgroundTaskMgr:self canBeginBackgroundTask:task])
-        {
-            FLTrace(@"Delegate: %@ said no to begining task %@", NSStringFromClass([delegate class]), NSStringFromClass([task class]));
-            *stop = YES;
-        }
-    
-    }];
-    
-    return !stopped;
+- (BOOL) canBeginBackgroundTask:(id<FLBackgroundTask>) task {
+    return [self postQuestion:@selector(backgroundTaskMgr:canStart:backgroundTask:) defaultAnswer:YES withObject:task];
 }
 
 - (void) _handleReadyState
@@ -273,13 +247,9 @@ FIXME("operation context");
     FLTrace(@"got cancel event: new time stamp: %f. event: %@", _timestamp, sender.name);
 }
 
-- (void) scheduleNextBackgroundTask
-{
+- (void) scheduleNextBackgroundTask {
     _timestamp = [NSDate timeIntervalSinceReferenceDate];
-
     FLTrace(@"got start event: new time stamp: %f, event: (called manually)", _timestamp);
-
-
     [self performSelectorOnMainThread:@selector(_handleReadyState) withObject:nil waitUntilDone:NO];
 }
 
@@ -288,16 +258,15 @@ FIXME("operation context");
     [self scheduleNextBackgroundTask];
 }
 
-- (void) userSessionDidOpen:(FLUserSession*) userSession {
+FIXME("attach to user sessions....");
+
+- (void) userSessionDidOpen:(id<FLUserSession>) userSession {
     [self scheduleNextBackgroundTask];
 }
 
-- (void) userSessionDidClose:(FLUserSession*) userSession {
+- (void) userSessionDidClose:(id<FLUserSession>) userSession {
     [self _cancel];
-}
-
-- (void) userSessionUserDidLogout:(FLUserSession*) userSession {
-    [self _cancel];
+    [self resetAllTasks];
 }
 
 - (BOOL) isEnabled {

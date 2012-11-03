@@ -68,7 +68,7 @@ static NSString* s_defaultUserAgent = @"FishLamp3;";
     mrc_release_(_url);
     mrc_release_(_postBodyFilePath);
     mrc_release_(_requestHeaders);
-    mrc_super_dealloc_();
+    super_dealloc_();
 }
 
 - (void) appendPostData:(NSData*) data {

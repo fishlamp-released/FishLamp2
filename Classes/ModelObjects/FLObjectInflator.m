@@ -52,7 +52,7 @@
 - (void) dealloc
 {
 	mrc_release_(_unboundedArrays);
-	mrc_super_dealloc_();
+	super_dealloc_();
 }
 
 - (void) addUnboundedArraySetter:(NSString*) name arrayPropertyName:(NSString*) arrayName

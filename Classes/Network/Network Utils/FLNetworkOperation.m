@@ -68,7 +68,7 @@
 
 #if FL_MRC
     mrc_release_(_networkConnection);
-	mrc_super_dealloc_();
+	super_dealloc_();
 #endif
 }
 

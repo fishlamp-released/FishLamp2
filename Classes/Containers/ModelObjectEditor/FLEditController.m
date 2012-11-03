@@ -63,7 +63,7 @@
 	mrc_release_(_rootContainer);
 	mrc_release_(_observers);
 	mrc_release_(_validators);
-	mrc_super_dealloc_();
+	super_dealloc_();
 }
 
 - (id) objectForPath:(NSString*) path {

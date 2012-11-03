@@ -80,7 +80,7 @@
     mrc_release_(__display_coordinates);
     mrc_release_(__trim_user);
     mrc_release_(__include_entities);
-    mrc_super_dealloc_();
+    super_dealloc_();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder

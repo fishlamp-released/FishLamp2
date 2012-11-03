@@ -88,7 +88,7 @@
     mrc_release_(__random);
     mrc_release_(__playMusic);
     mrc_release_(__mediaItemList);
-    mrc_super_dealloc_();
+    super_dealloc_();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder

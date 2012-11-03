@@ -37,7 +37,7 @@
 - (void) dealloc {
     mrc_release_(_fileName);
     mrc_release_(_hint);
-    mrc_super_dealloc_();
+    super_dealloc_();
 }
 
 #endif

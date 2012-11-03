@@ -47,7 +47,7 @@
 //	[[NSNotificationCenter defaultCenter] removeObserver:self];
 //	[[FLLowMemoryHandler defaultHandler] removeObserver:self];
 //	mrc_release_(_database);
-//	mrc_super_dealloc_();
+//	super_dealloc_();
 //}
 //
 //- (void) loadObjectFromMemoryCache:(id) inputObject outputObject:(id*) outputObject

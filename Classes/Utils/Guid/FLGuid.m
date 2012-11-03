@@ -50,7 +50,7 @@ static FLGuid* s_emptyGuid = nil;
 #if FL_MRC
 - (void) dealloc {
     mrc_release_(_guid);
-    mrc_super_dealloc_();
+    super_dealloc_();
 }
 #endif
 

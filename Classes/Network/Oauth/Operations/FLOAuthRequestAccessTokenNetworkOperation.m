@@ -66,7 +66,7 @@
 - (void) dealloc  {
 	mrc_release_(_app);
 	mrc_release_(_authData);
-	mrc_super_dealloc_();
+	super_dealloc_();
 }
 
 - (void) runSelf {

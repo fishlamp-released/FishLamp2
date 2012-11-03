@@ -13,12 +13,14 @@
 @implementation FLTwitterMgr
 
 FLSynthesizeSingleton(FLTwitterMgr);
+@synthesize oauthInfo = _oathApp;
 
 - (id) init
 {
 	if((self = [super init]))
 	{
 		_sessions = [[NSMutableDictionary alloc] init];
+        _oathApp = [[FLOAuthApp alloc] init];
 	}
 	
 	return self;
@@ -39,8 +41,13 @@ FLSynthesizeSingleton(FLTwitterMgr);
 
 - (void) dealloc
 {
+    release_(_oathApp);
 	mrc_release_(_sessions);
-	mrc_super_dealloc_();
+	super_dealloc_();
+}
+
+- (FLObjectDatabase*) database {
+    return self.userSession.documentsDatabase;
 }
 
 - (void) clearTwitterCookies
@@ -65,7 +72,7 @@ FLSynthesizeSingleton(FLTwitterMgr);
 	FLOAuthSession* input = [FLOAuthSession oAuthSession];
 	input.userGuid = userGuid;
 	input.appName = @"twitter.com";
-	[[FLUserSession instance].documentsDatabase deleteObject:input];
+	[self.database deleteObject:input];
 	[_sessions removeObjectForKey:userGuid];
     [self clearTwitterCookies];
 }
@@ -75,7 +82,7 @@ FLSynthesizeSingleton(FLTwitterMgr);
 	input.userGuid = userGuid;
 	input.appName = @"twitter.com";
 	
-	FLOAuthSession* output = [[FLUserSession instance].documentsDatabase loadObject:input];
+	FLOAuthSession* output = [self.database loadObject:input];
 	if(output)
 	{
 		[_sessions setObject:output forKey:userGuid];
@@ -91,7 +98,7 @@ FLSynthesizeSingleton(FLTwitterMgr);
 	session.userGuid = userGuid;
 	session.appName = @"twitter.com";
 	
-	[[FLUserSession instance].documentsDatabase saveObject:session];
+	[self.database saveObject:session];
 	[_sessions setObject:session forKey:userGuid];
 }
 

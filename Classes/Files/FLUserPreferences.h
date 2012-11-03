@@ -10,8 +10,10 @@
 
 #import "FLFolderFile.h"
 
-@interface FLUserPreferences : FLFolderFile<NSCoding> {
+@interface FLUserPreferences : FLFolderFile {
 }
+
+- (id) initWithFolder:(FLFolder*) folder;
 
 - (void) setDefaults;
 

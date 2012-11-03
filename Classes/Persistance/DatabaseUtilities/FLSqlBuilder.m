@@ -57,7 +57,7 @@
     mrc_release_(_delimiter);
     mrc_release_(_dataToBind);
     mrc_release_(_sql);
-    mrc_super_dealloc_();
+    super_dealloc_();
 }
 #endif
 

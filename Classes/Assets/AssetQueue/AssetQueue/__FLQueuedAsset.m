@@ -201,7 +201,7 @@
     mrc_release_(__copyright);
     mrc_release_(__keywords);
     mrc_release_(__assetObject);
-    mrc_super_dealloc_();
+    super_dealloc_();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder

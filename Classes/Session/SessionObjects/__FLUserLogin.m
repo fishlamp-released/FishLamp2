@@ -96,7 +96,7 @@
     mrc_release_(__email);
     mrc_release_(__authTokenLastUpdateTime);
     mrc_release_(__userValue);
-    mrc_super_dealloc_();
+    super_dealloc_();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder
