@@ -246,7 +246,7 @@ static NSDictionary* s_destinationProperties = nil;
         if(imageSourceRef) {		
             CFRelease(imageSourceRef);
         }
-        mrc_release_(url);
+        release_(url);
     }
 }
 

@@ -51,9 +51,9 @@
 
 - (void) dealloc
 {
-    mrc_release_(_fileName);
-	mrc_release_(_parseState);
-	mrc_release_(_data);
+    release_(_fileName);
+	release_(_parseState);
+	release_(_data);
 	super_dealloc_();
 }
 
@@ -147,7 +147,7 @@
 				}
 				
 				[lastState.object finishParsingFrom:self state:lastState];
-				mrc_release_(inflatedObject);
+				release_(inflatedObject);
 			}
 #if DEBUG	 
 			else

@@ -87,7 +87,7 @@
 }
 
 - (void) dealloc {
-	mrc_release_(_taskList);
+	release_(_taskList);
 	super_dealloc_();
 }
 

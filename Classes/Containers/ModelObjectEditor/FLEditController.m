@@ -60,9 +60,9 @@
 }
 
 - (void) dealloc {
-	mrc_release_(_rootContainer);
-	mrc_release_(_observers);
-	mrc_release_(_validators);
+	release_(_rootContainer);
+	release_(_observers);
+	release_(_validators);
 	super_dealloc_();
 }
 

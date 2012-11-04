@@ -21,7 +21,7 @@
 			[outArray addObject:name];
 		}
 	}
-	mrc_release_(rows);
+	release_(rows);
 	
 	return outArray;
 }
@@ -38,7 +38,7 @@
 	for(NSDictionary* row in rows) {
 		[info setObject:row forKey:[row objectForKey:@"name"]];
 	}
-	mrc_release_(rows);
+	release_(rows);
 	
 	return info;
 }

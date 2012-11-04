@@ -45,7 +45,7 @@
 FIXME("attach to user sessions....");
 //		[[NSNotificationCenter defaultCenter] addObserver:self 
 //				selector:@selector(_doClearCache:) 
-//				name:FLUserSessionEmptyCacheNotification
+//				name:FLCacheManagerEmptyCacheNotification
 //				object:[FLCacheManager instance]];
 
 #if DEBUG
@@ -65,7 +65,7 @@ FIXME("attach to user sessions....");
 - (void) dealloc
 {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
-	mrc_release_(_memoryCache);
+	release_(_memoryCache);
 	super_dealloc_();
 }
 

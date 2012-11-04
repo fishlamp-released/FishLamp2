@@ -86,7 +86,7 @@
 
 #if FL_MRC 
 - (void) dealloc {
-    mrc_release_(_connections);
+    release_(_connections);
     super_dealloc_();
 }
 #endif

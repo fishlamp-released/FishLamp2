@@ -32,6 +32,7 @@
 @synthesize wasCancelled = _wasCancelled;
 @synthesize input = _input;
 @synthesize output = _output;
+@synthesize services = _services;
 
 - (id) initWithRunBlock:(FLRunOperationBlock) callback {
     if((self = [self init])) {
@@ -116,12 +117,13 @@
 
 #if FL_MRC
 - (void) dealloc {
+    [_context release];
     [_error release];
     [_operationInput release];;
     [_operationOutput release];
-    mrc_release_(_runBlock);
-    mrc_release_(_operationId);
-	mrc_release_(_predicate);
+    release_(_runBlock);
+    release_(_operationId);
+	release_(_predicate);
     [super dealloc];
 }
 #endif
@@ -247,7 +249,7 @@
 
 - (id<FLPromisedResult>) start:(FLResultBlock) completion {
     FLWorkFinisher* finisher = [FLWorkFinisher finisher:completion];
-    [self startWorking:finisher];
+    [finisher startWorker:self];
     return finisher;
 }
 

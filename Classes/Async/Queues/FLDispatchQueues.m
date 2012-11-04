@@ -20,7 +20,7 @@ static void * const s_queue_key = (void*)&s_queue_key;
 }
 @property (readwrite, strong) FLDispatchQueue* queue;
 
-- (id) initWithCompletionBlock:(FLResultBlock) completion queue:(FLDispatchQueue*) queue;
+- (id) initWithResultBlock:(FLResultBlock) completion queue:(FLDispatchQueue*) queue;
 + (id) dispatchFinisher:(FLResultBlock) completion queue:(FLDispatchQueue*) queue;
 
 @end
@@ -28,9 +28,9 @@ static void * const s_queue_key = (void*)&s_queue_key;
 @implementation FLDispatchFinisher 
 @synthesize queue = _queue;
 
-- (id) initWithCompletionBlock:(FLResultBlock) completion queue:(FLDispatchQueue*) queue{
+- (id) initWithResultBlock:(FLResultBlock) completion queue:(FLDispatchQueue*) queue{
     
-    self = [super initWithCompletionBlock:completion];
+    self = [super initWithResultBlock:completion];
     if(self) {
         self.queue = queue;
     }
@@ -38,7 +38,7 @@ static void * const s_queue_key = (void*)&s_queue_key;
 }
 
 + (id) dispatchFinisher:(FLResultBlock) completion queue:(FLDispatchQueue*) queue {
-    return autorelease_([[[self class] alloc] initWithCompletionBlock:completion queue:queue]);
+    return autorelease_([[[self class] alloc] initWithResultBlock:completion queue:queue]);
 }
 
 #if FL_MRC
@@ -122,10 +122,14 @@ FLSynthesizeSingleton(FLDispatchQueue);
     return finisher;
 }
 
+- (FLWorkFinisher*) workFinisher:(FLResultBlock) completion {
+    return [FLWorkFinisher finisher:completion];
+}
+
 - (id<FLPromisedResult>) dispatchAsyncBlock:(FLAsyncBlock) block
                         completion:(FLResultBlock) completion {
     
-    FLWorkFinisher* finisher = [FLWorkFinisher finisher:completion];
+    FLWorkFinisher* finisher = [self workFinisher:completion];
 
     block = FLCopyBlock(block);
 
@@ -154,12 +158,12 @@ FLSynthesizeSingleton(FLDispatchQueue);
 - (id<FLPromisedResult>) dispatchWorker:(id<FLWorker>) aWorker
                              completion:(FLResultBlock) completion {
     
-    FLWorkFinisher* finisher = [FLWorkFinisher finisher:completion];
+    FLWorkFinisher* finisher = [self workFinisher:completion];
 
     dispatch_async([self dispatchQueue],  
     ^{
         @try {
-            [aWorker startWorking:finisher];
+            [finisher startWorker:aWorker];
         }
         @catch(NSException* ex) {
             [finisher setFinishedWithError:ex.error];
@@ -185,6 +189,11 @@ FLSynthesizeSingleton(FLHighPriorityQueue);
     return dispatch_get_main_queue();
 }
 FLSynthesizeSingleton(FLForegroundQueue);
+
+- (FLWorkFinisher*) workFinisher:(FLResultBlock) completion {
+    return [FLMainThreadFinisher finisher:completion];
+}
+
 
 @end
 

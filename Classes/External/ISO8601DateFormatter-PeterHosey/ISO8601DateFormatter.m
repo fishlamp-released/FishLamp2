@@ -47,7 +47,7 @@ unichar ISO8601DefaultTimeSeparatorCharacter = DEFAULT_TIME_SEPARATOR;
 	return self;
 }
 - (void) dealloc {
-	mrc_release_(defaultTimeZone);
+	release_(defaultTimeZone);
 	super_dealloc_();
 }
 
@@ -645,7 +645,7 @@ static BOOL is_leap_year(unsigned year);
 
 	NSString *str = [formatter stringForObjectValue:date];
 
-	mrc_release_(formatter);
+	release_(formatter);
 
 	if (includeTime) {
 		int offset = [timeZone secondsFromGMT];
@@ -732,7 +732,7 @@ static BOOL is_leap_year(unsigned year);
 
 		timeString = [formatter stringForObjectValue:self];
 
-		mrc_release_(formatter);
+		release_(formatter);
 	} else
 		timeString = @"";
 

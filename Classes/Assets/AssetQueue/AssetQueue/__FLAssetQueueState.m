@@ -72,11 +72,11 @@
 
 - (void) dealloc
 {
-    mrc_release_(__queueUID);
-    mrc_release_(__sortOrder);
-    mrc_release_(__totalAssetsAdded);
-    mrc_release_(__firstQueuePosition);
-    mrc_release_(__lastQueuePosition);
+    release_(__queueUID);
+    release_(__sortOrder);
+    release_(__totalAssetsAdded);
+    release_(__firstQueuePosition);
+    release_(__lastQueuePosition);
     super_dealloc_();
 }
 

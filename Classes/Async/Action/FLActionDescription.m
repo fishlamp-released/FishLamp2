@@ -151,11 +151,11 @@ NSString* FLActionDescriptionItemNameNone = nil;
 
 - (void) dealloc
 {
-	mrc_release_(_customProgressString);
-	mrc_release_(_actionType);
-	mrc_release_(_itemName);
-	mrc_release_(_actionWords);
-	mrc_release_(_itemNameInProgress);
+	release_(_customProgressString);
+	release_(_actionType);
+	release_(_itemName);
+	release_(_actionWords);
+	release_(_itemNameInProgress);
 	super_dealloc_();
 }
 

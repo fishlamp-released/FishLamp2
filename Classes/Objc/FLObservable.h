@@ -1,5 +1,5 @@
 //
-//  FLObservers.h
+//  FLObservable.h
 //  FishLamp
 //
 //  Created by Mike Fullerton on 9/9/12.
@@ -11,8 +11,9 @@
 #import "FLWeakReference.h"
 
 @protocol FLObservable <NSObject>
-// observers are __unsafe_unretained
-//@property (readonly, strong, nonatomic) NSArray* observers;
+// observable are __unsafe_unretained
+@optional
+
 - (void) addObserver:(id) observer;
 - (void) removeObserver:(id) observer;
 - (BOOL) visitObservers:(void (^)(id observer, BOOL* stop)) visitor;
@@ -33,6 +34,19 @@
     NSMutableArray* _observers;
     FLCallbackNotifier* _removeObserver;
 }
+- (void) addObserver:(id) observer;
+- (void) removeObserver:(id) observer;
+- (BOOL) visitObservers:(void (^)(id observer, BOOL* stop)) visitor;
+
+// sends SELF as first object always to observer 
+- (void) postObservation:(SEL) selector;
+- (void) postObservation:(SEL) selector withObject:(id) object;
+- (void) postObservation:(SEL) selector withObject:(id) object1 withObject:(id) object2;
+
+- (BOOL) postQuestion:(SEL) selector;
+- (BOOL) postQuestion:(SEL) selector defaultAnswer:(BOOL) answer;
+- (BOOL) postQuestion:(SEL) selector defaultAnswer:(BOOL) answer withObject:(id) object;
+
 @end
 
 @protocol FLObserver <NSObject>
@@ -59,13 +73,14 @@ typedef void (^FLBlockObserverNotifierWithObject)(id sender, id object);
 @end
 
 
-//#define FLSynthesizeObserveable(__MEMBER_NAME__) \
-//    - (FLObservers*) observers { \
-//        if(!__MEMBER_NAME__) __MEMBER_NAME__ = [[FLObservers alloc] init]; \
-//        return __MEMBER_NAME__; \
-//    } \
+#define FLSynthesizeObserveable() \
+    FLSynthesizeAssociatedPropertyWithLazyGetter_(retain_atomic, observable, setObservable, FLObservable*, [FLObservable create]); \
+    - (id)forwardingTargetForSelector:(SEL)aSelector { \
+        return self.observable; \
+    }
+    
 //    - (void) addObserver:(id) observer { \
-//        [self.observers addObserver:observer]; \
+//        [self.observable addObserver:observer]; \
 //    } \
 //    - (void) removeObserver:(id) observer { \
 //        if(__MEMBER_NAME__) [__MEMBER_NAME__ removeObserver:observer]; \
@@ -78,7 +93,7 @@ typedef void (^FLBlockObserverNotifierWithObject)(id sender, id object);
 /*
     @interface Foo : NSObject<FLObservable> {
     @private
-        FLObservers* __MEMBER_NAME__;
+        FLObservable* __MEMBER_NAME__;
     }
     @end
     
@@ -87,7 +102,7 @@ typedef void (^FLBlockObserverNotifierWithObject)(id sender, id object);
     
     - (void) anyMethod {
 
-        BOOL wasStopped = [self.observers visitObservers:^(id observer, BOOL* stop) {
+        BOOL wasStopped = [self.observable visitObservers:^(id observer, BOOL* stop) {
             [observer hello];
         };
         

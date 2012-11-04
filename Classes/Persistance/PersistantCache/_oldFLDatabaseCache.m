@@ -34,7 +34,7 @@
 //
 //		[[NSNotificationCenter defaultCenter] addObserver:self 
 //				selector:@selector(_doClearCache:) 
-//				name:FLUserSessionEmptyCacheNotification
+//				name:FLCacheManagerEmptyCacheNotification
 //				object:[FLCacheManager instance]];
 //	
 //	}
@@ -46,7 +46,7 @@
 //{
 //	[[NSNotificationCenter defaultCenter] removeObserver:self];
 //	[[FLLowMemoryHandler defaultHandler] removeObserver:self];
-//	mrc_release_(_database);
+//	release_(_database);
 //	super_dealloc_();
 //}
 //

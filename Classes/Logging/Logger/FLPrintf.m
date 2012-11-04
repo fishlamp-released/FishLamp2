@@ -24,6 +24,6 @@ void FLPrintf(NSString* format, ...) {
         printf("%s", c_str);
     }
     
-    mrc_release_(string);
+    release_(string);
     
 }

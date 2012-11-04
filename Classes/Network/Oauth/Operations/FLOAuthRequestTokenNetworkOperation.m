@@ -29,7 +29,7 @@
 }
 
 - (void) dealloc {
-	mrc_release_(_app);
+	release_(_app);
 	super_dealloc_();
 }
 

@@ -11,6 +11,8 @@
 #import "FLFacebookOperation.h"
 #import "FLFacebookLoadUserPictureOperationInput.h"
 
+#import "FacebookEnums.h"
+
 #define FLFacebookLoadUserPictureOperationInputSizeNormal kFLFacebookPictureSizeFLFacebookPictureSizeNormal
 #define FLFacebookLoadUserPictureOperationInputSizeLarge kFLFacebookPictureSizeFLFacebookPictureSizeLarge
 #define FLFacebookLoadUserPictureOperationInputSizeSquare kFLFacebookPictureSizeFLFacebookPictureSizeSquare

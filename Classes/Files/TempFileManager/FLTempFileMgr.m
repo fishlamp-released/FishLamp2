@@ -44,7 +44,7 @@
 - (void) dealloc {
     FLSendDeallocNotification();
 //    [[FLUserSession instance] removeObserver:self];
-    mrc_release_(_folder);
+    release_(_folder);
     super_dealloc_();
 }
 

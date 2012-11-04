@@ -19,7 +19,7 @@
 
 #if FL_MRC
 - (void) dealloc {
-    mrc_release_(_queue);
+    release_(_queue);
 	super_dealloc_();
 }
 #endif

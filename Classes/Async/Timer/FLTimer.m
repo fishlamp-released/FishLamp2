@@ -64,7 +64,7 @@
 - (void) dealloc
 {
 	[self stopTimer];
-	mrc_release_(_target);
+	release_(_target);
 	super_dealloc_();
 }
 

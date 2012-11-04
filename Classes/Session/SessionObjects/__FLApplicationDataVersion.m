@@ -37,8 +37,8 @@
 
 - (void) dealloc
 {
-    mrc_release_(__userGuid);
-    mrc_release_(__versionString);
+    release_(__userGuid);
+    release_(__versionString);
     super_dealloc_();
 }
 

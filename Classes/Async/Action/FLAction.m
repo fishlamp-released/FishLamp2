@@ -220,10 +220,10 @@ TODO("MF: fix activity updater");
     [_operations removeObserver:self];
 #if FL_MRC
     [_operations release];
-    mrc_release_(_progressCallback);
-    mrc_release_(_willShowNotificationCallback);
-	mrc_release_(_progress);
-	mrc_release_(_actionDescription);
+    release_(_progressCallback);
+    release_(_willShowNotificationCallback);
+	release_(_progress);
+	release_(_actionDescription);
 	super_dealloc_();
 #endif
 }
@@ -383,9 +383,9 @@ TODO("MF: fix activity updater");
         [context addOperation:runner];
     }
     
-    FLWorkFinisher* actionFinisher = [FLWorkFinisher finisher:completion];
+    completion = FLCopyBlock(completion);
     
-    [[FLForegroundQueue instance] dispatchAsyncBlock:^(id<FLFinisher> finisher) { 
+    return [[FLForegroundQueue instance] dispatchAsyncBlock:^(id<FLFinisher> finisher) { 
         if(starting) {
             starting();
         }
@@ -397,10 +397,11 @@ TODO("MF: fix activity updater");
     }
     completion:^(FLResult result) {
         [self actionFinished];
-        [actionFinisher setFinishedWithResult:result];
+        if(completion) {
+            completion(result);
+        }
     }];
     
-    return actionFinisher;
     
 //    FLBackgroundJob* bgJob = [FLBackgroundJob job];
 //    [fgJob addWorker:bgJob];

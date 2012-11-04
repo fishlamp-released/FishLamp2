@@ -86,13 +86,13 @@
 
 - (void) dealloc
 {
-    mrc_release_(__fileName);
-    mrc_release_(__url);
-    mrc_release_(__imageId);
-    mrc_release_(__photoUrl);
-    mrc_release_(__host);
-    mrc_release_(__imageVersion);
-    mrc_release_(__canCacheInMemory);
+    release_(__fileName);
+    release_(__url);
+    release_(__imageId);
+    release_(__photoUrl);
+    release_(__host);
+    release_(__imageVersion);
+    release_(__canCacheInMemory);
     super_dealloc_();
 }
 

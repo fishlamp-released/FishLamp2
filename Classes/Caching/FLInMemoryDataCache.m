@@ -54,7 +54,7 @@
 
 		[[NSNotificationCenter defaultCenter] addObserver:self 
 				selector:@selector(_doClearCache:) 
-				name:FLUserSessionEmptyCacheNotification
+				name:FLCacheManagerEmptyCacheNotification
 				object:[FLCacheManager instance]];
 
 	}
@@ -114,7 +114,7 @@
 			
 			[_list pushObject:newObject];
 			[_objects setObject:newObject forKey:key];
-			mrc_release_(newObject);
+			release_(newObject);
 		}
 
 #if TRACE		
@@ -194,8 +194,8 @@
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 	[[FLLowMemoryHandler defaultHandler] removeObserver:self];
-	mrc_release_(_objects);
-	mrc_release_(_list);
+	release_(_objects);
+	release_(_list);
 	super_dealloc_();
 }
 

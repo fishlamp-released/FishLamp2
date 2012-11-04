@@ -28,7 +28,7 @@ FLSynthesizeDictionaryProperty(errorDomain, setErrorDomain, FLErrorDomain*, FLEr
 
 #if FL_MRC 
 - (void) dealloc {
-    mrc_release_(_mutableUserInfo);
+    release_(_mutableUserInfo);
     super_dealloc_();
 }
 #endif

@@ -123,19 +123,19 @@
 
 - (void) dealloc
 {
-    mrc_release_(__queueUID);
-    mrc_release_(__uploadedAssetUID);
-    mrc_release_(__assetType);
-    mrc_release_(__assetURL);
-    mrc_release_(__assetUID);
-    mrc_release_(__uploadedAssetURL);
-    mrc_release_(__uploadedAssetId);
-    mrc_release_(__uploadDestinationId);
-    mrc_release_(__uploadDestinationName);
-    mrc_release_(__uploadDestinationURL);
-    mrc_release_(__assetName);
-    mrc_release_(__thumbnail);
-    mrc_release_(__uploadedDate);
+    release_(__queueUID);
+    release_(__uploadedAssetUID);
+    release_(__assetType);
+    release_(__assetURL);
+    release_(__assetUID);
+    release_(__uploadedAssetURL);
+    release_(__uploadedAssetId);
+    release_(__uploadDestinationId);
+    release_(__uploadDestinationName);
+    release_(__uploadDestinationURL);
+    release_(__assetName);
+    release_(__thumbnail);
+    release_(__uploadedDate);
     super_dealloc_();
 }
 

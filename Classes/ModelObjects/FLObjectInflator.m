@@ -51,7 +51,7 @@
 
 - (void) dealloc
 {
-	mrc_release_(_unboundedArrays);
+	release_(_unboundedArrays);
 	super_dealloc_();
 }
 

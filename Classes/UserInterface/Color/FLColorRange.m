@@ -44,8 +44,8 @@
 #if FL_MRC
 - (void) dealloc
 {
-	mrc_release_(_startColor);
-	mrc_release_(_endColor);
+	release_(_startColor);
+	release_(_endColor);
 	super_dealloc_();
 }
 #endif

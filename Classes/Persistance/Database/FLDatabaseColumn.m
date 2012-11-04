@@ -26,9 +26,9 @@ FLSynthesizeStructProperty(isPrimaryKey, setPrimaryKey, BOOL, _state);
 }
 
 - (void) dealloc {
-	mrc_release_(_decodedColumnName);
-	mrc_release_(_constraints);
-	mrc_release_(_name);
+	release_(_decodedColumnName);
+	release_(_constraints);
+	release_(_name);
 	super_dealloc_();
 }
 

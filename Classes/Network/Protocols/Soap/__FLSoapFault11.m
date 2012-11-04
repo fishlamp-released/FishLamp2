@@ -60,10 +60,10 @@
 
 - (void) dealloc
 {
-    mrc_release_(__faultcode);
-    mrc_release_(__faultstring);
-    mrc_release_(__faultactor);
-    mrc_release_(__detail);
+    release_(__faultcode);
+    release_(__faultstring);
+    release_(__faultactor);
+    release_(__detail);
     super_dealloc_();
 }
 

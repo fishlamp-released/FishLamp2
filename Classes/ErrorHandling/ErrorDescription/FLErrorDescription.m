@@ -37,9 +37,9 @@
 
 - (void) dealloc
 {
-	mrc_release_(_error);
-	mrc_release_(_title);
-	mrc_release_(_description);
+	release_(_error);
+	release_(_title);
+	release_(_description);
 	super_dealloc_();
 }
 

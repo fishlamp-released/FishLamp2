@@ -26,8 +26,8 @@
 
 - (void) dealloc
 {
-    mrc_release_(_fromVersion);
-    mrc_release_(_toVersion);
+    release_(_fromVersion);
+    release_(_toVersion);
     super_dealloc_();
 }
 

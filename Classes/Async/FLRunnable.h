@@ -13,6 +13,6 @@
 
 @protocol FLRunnable <NSObject>
 - (id<FLPromisedResult>) start:(FLResultBlock) completion;
-- (FLResult) runSynchronously;
+- (id<FLResult>) runSynchronously;
 @end
 

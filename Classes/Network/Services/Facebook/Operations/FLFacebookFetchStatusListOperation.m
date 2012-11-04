@@ -8,16 +8,20 @@
 
 #import "FLFacebookFetchStatusListOperation.h"
 #import "FLFacebookFetchStatusListResponse.h"
+#import "FLUserSession.h"
+#import "FLFacebookMgr.h"
+#import "FLUserDataStorageService.h"
 
 @implementation FLFacebookFetchStatusListOperation
 
-- (void) didInit
-{
-	[super didInit];
-		
-	self.output = [FLFacebookFetchStatusListResponse facebookFetchStatusListResponse];
-	self.object = @"home";
-	self.userId = @"me";
+- (id) initWithURL:(NSURL*) url {
+    self = [super initWithURL:url];
+    if(self) {
+        self.output = [FLFacebookFetchStatusListResponse facebookFetchStatusListResponse];
+        self.object = @"home";
+        self.userId = @"me";
+    }
+    return self;
 }
 
 - (void) runSelf {
@@ -28,7 +32,7 @@
 		
 		NSArray* messages = response.data;
 		
-		[[FLUserSession instance].documentsDatabase batchSaveObjects:messages];
+		[self.facebookService.userDataService.documentsDatabase batchSaveObjects:messages];
 	}
 }
 

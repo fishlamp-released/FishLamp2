@@ -9,97 +9,114 @@
 #import "FLTwitterMgr.h"
 #import "NSString+GUID.h"
 #import "FLUserSession.h"
+#import "FLUserDataStorageService.h"
+
+@interface FLTwitterMgr ()
+@property (readwrite, strong) FLOAuthSession* oauthSession;
+@property (readwrite, strong) FLOAuthApp* oauthInfo;
+
+- (void) didAuthenticateForUserGuid:(NSString*) userGuid 
+                       oauthSession:(FLOAuthSession*) oauthSession;
+
+- (void) loadSessionForUserGuid:(NSString*) userGuid;
+
+
+- (BOOL) needsAuthorizationForUserGuid:(NSString*) userGuid;
+
+- (void) logoutUserWithUserGuid:(NSString*) userGuid;
+
+@end
 
 @implementation FLTwitterMgr
 
-FLSynthesizeSingleton(FLTwitterMgr);
-@synthesize oauthInfo = _oathApp;
+@synthesize oauthInfo = _oauthInfo;
+@synthesize oauthSession = _oauthSession;
 
-- (id) init
-{
-	if((self = [super init]))
-	{
-		_sessions = [[NSMutableDictionary alloc] init];
-        _oathApp = [[FLOAuthApp alloc] init];
+
+- (id) init {
+	if((self = [super init])) {
+         _oauthInfo = [[FLOAuthApp alloc] init];
 	}
 	
 	return self;
 }
 
-- (FLOAuthSession*) sessionForUserGuid:(NSString*) userGuid
-{
-	return [_sessions objectForKey:userGuid];
-}
-
 - (BOOL) needsAuthorizationForUserGuid:(NSString*) userGuid {
-	if(![self sessionForUserGuid:userGuid])
-	{
+	if(!self.oauthSession){
 		[self loadSessionForUserGuid:userGuid];
 	}
-	return [self sessionForUserGuid:userGuid] == nil;
+	return self.oauthSession == nil;
 }
 
-- (void) dealloc
-{
-    release_(_oathApp);
-	mrc_release_(_sessions);
-	super_dealloc_();
+#if FL_MRC
+- (void) dealloc {
+    [_oauthInfo release];
+    [_oauthSession release];
+    super_dealloc_();
 }
+#endif
 
 - (FLObjectDatabase*) database {
-    return self.userSession.documentsDatabase;
+    return self.userDataService.documentsDatabase;
 }
 
-- (void) clearTwitterCookies
-{
++ (void) clearTwitterCookies {
   	NSMutableArray* deleteThese = [NSMutableArray array];
     NSArray* cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies];
-	for (NSHTTPCookie * cookie in cookies) 
-	{
-		if([cookie.domain rangeOfString:@"twitter"].length > 0)
-		{
+	for (NSHTTPCookie * cookie in cookies)  {
+		if([cookie.domain rangeOfString:@"twitter"].length > 0) {
 			[deleteThese addObject:cookie];
 		}
 	}
-	for (NSHTTPCookie * cookie in deleteThese) 
-	{
+	for (NSHTTPCookie * cookie in deleteThese)  {
 		[[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:cookie];
 	}
 }
 
-- (void) logoutUserWithUserGuid:(NSString*) userGuid
-{
+- (void) logoutUserWithUserGuid:(NSString*) userGuid {
 	FLOAuthSession* input = [FLOAuthSession oAuthSession];
 	input.userGuid = userGuid;
 	input.appName = @"twitter.com";
 	[self.database deleteObject:input];
-	[_sessions removeObjectForKey:userGuid];
-    [self clearTwitterCookies];
+    [FLTwitterMgr clearTwitterCookies];
+	self.oauthSession = nil;
 }
 
 - (void) loadSessionForUserGuid:(NSString*) userGuid {
 	FLOAuthSession* input = [FLOAuthSession oAuthSession];
 	input.userGuid = userGuid;
 	input.appName = @"twitter.com";
-	
-	FLOAuthSession* output = [self.database loadObject:input];
-	if(output)
-	{
-		[_sessions setObject:output forKey:userGuid];
-	}
-	else
-	{
-		[_sessions removeObjectForKey:userGuid];
-	}
+	self.oauthSession = [self.database loadObject:input];
 }
 
-- (void) didAuthenticateForUserGuid:(NSString*) userGuid session:(FLOAuthSession*) session
-{
-	session.userGuid = userGuid;
-	session.appName = @"twitter.com";
+- (void) didAuthenticateForUserGuid:(NSString*) userGuid oauthSession:(FLOAuthSession*) oauthSession {
+	oauthSession.userGuid = userGuid;
+	oauthSession.appName = @"twitter.com";
 	
-	[self.database saveObject:session];
-	[_sessions setObject:session forKey:userGuid];
+	[self.database saveObject:oauthSession];
+	self.oauthSession = oauthSession;
 }
 
+- (void) openService {
+
+}
+
+- (void) closeService {
+
+}
+
+- (BOOL) isServiceOpen {
+
+    return NO;
+}
+
+- (BOOL) isServiceAuthenticated {
+    return NO;
+}
+@end
+
+@implementation FLUserSession (FLTwitterMgr) 
+- (FLTwitterMgr*) twitterService {
+    return (FLTwitterMgr*) [self serviceByID:[FLTwitterMgr serviceID]];
+}
 @end

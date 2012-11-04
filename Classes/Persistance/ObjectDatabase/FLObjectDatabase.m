@@ -213,7 +213,7 @@
 ////            }
 ////        }
 ////        @finally {
-////            mrc_release_(output);
+////            release_(output);
 ////        }
 ////    }
 ////    withEventHandler:handler

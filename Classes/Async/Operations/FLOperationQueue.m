@@ -259,7 +259,7 @@
         }
     }
     @finally {
-        mrc_release_(notifyList);
+        release_(notifyList);
     }
 }
 
@@ -310,7 +310,7 @@
 
 - (id<FLPromisedResult>) start:(FLResultBlock) completion {
     FLWorkFinisher* finisher = [FLWorkFinisher finisher:completion];
-    [self startWorking:finisher];
+    [finisher startWorker:self];;
     return finisher;
 }
 

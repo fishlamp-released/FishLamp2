@@ -178,7 +178,7 @@ const FLNetworkConnectionByteCount FLNetworkConnectionByteCountZero = {0, 0, 0};
 
 - (id<FLPromisedResult>) start:(FLResultBlock) completion {
     FLWorkFinisher* finisher = [FLWorkFinisher finisher:completion];
-    [self startWorking:finisher];
+    [finisher startWorker:self];
     return finisher;
 }
 

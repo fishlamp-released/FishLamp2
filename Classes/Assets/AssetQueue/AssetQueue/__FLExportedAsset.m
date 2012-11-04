@@ -53,9 +53,9 @@
 
 - (void) dealloc
 {
-    mrc_release_(__originalID);
-    mrc_release_(__assetURL);
-    mrc_release_(__exportedDate);
+    release_(__originalID);
+    release_(__assetURL);
+    release_(__exportedDate);
     super_dealloc_();
 }
 

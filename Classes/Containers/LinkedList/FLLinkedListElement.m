@@ -18,8 +18,8 @@
 
 #if FL_MRC
 - (void) dealloc {
-    mrc_release_(_nextObjectInLinkedList);
-    mrc_release_(_previousObjectInLinkedList);
+    release_(_nextObjectInLinkedList);
+    release_(_previousObjectInLinkedList);
 	super_dealloc_();
 }
 #endif
@@ -28,7 +28,7 @@
 
 
 @implementation NSObject (FLLinkedList)
-FLSynthesizeAssociatedProperty(assign_nonatomic, linkedList, setLinkedList, FLLinkedList*);
-FLSynthesizeAssociatedProperty(retain_nonatomic, nextObjectInLinkedList, setNextObjectInLinkedList, id);
-FLSynthesizeAssociatedProperty(retain_nonatomic, previousObjectInLinkedList, setPreviousObjectInLinkedList, id);
+FLSynthesizeAssociatedProperty_(assign_nonatomic, linkedList, setLinkedList, FLLinkedList*);
+FLSynthesizeAssociatedProperty_(retain_nonatomic, nextObjectInLinkedList, setNextObjectInLinkedList, id);
+FLSynthesizeAssociatedProperty_(retain_nonatomic, previousObjectInLinkedList, setPreviousObjectInLinkedList, id);
 @end

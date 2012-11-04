@@ -41,7 +41,7 @@ FLSynthesizeSingleton(FLApplicationDataModel);
 
 - (void) dealloc {
 	[_database closeDatabase];
-	mrc_release_(_database);
+	release_(_database);
 	super_dealloc_();
 }
 

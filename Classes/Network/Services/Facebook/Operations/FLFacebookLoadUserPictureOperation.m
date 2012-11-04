@@ -22,23 +22,23 @@
 
 @synthesize pictureSize = _pictureSize;
 
-- (void) didInit
-{
-	[super didInit];
-	
-	self.object = @"picture";
+- (id) initWithURL:(NSURL*) url {
+    self = [super initWithURL:url];
+    if(self) {
+        self.object = @"picture";
 
-#if IOS
-	self.responseHandler = [FLHttpImageDownloadNetworkResponseHandler instance];
-	self.operationInput = [FLCachedImage cachedImage];
-#endif
-	
-	[self setPictureSize:FLFacebookLoadUserPictureOperationInputSizeNormal];
+    #if IOS
+        self.responseHandler = [FLHttpImageDownloadNetworkResponseHandler instance];
+        self.operationInput = [FLCachedImage cachedImage];
+    #endif
+        
+        [self setPictureSize:FLFacebookLoadUserPictureOperationInputSizeNormal];
+    }
+    return self;
 }
 
-- (void) dealloc
-{	
-	mrc_release_(_pictureSize);
+- (void) dealloc {	
+	release_(_pictureSize);
 	super_dealloc_();
 }
 

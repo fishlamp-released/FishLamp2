@@ -23,7 +23,7 @@
 + (id) jobWithBlock:(dispatch_block_t) block;
 + (id) jobWithAsyncBlock:(FLAsyncBlock) block;
 
-- (void) scheduleWorker:(id<FLWorker>) worker finisher:(id<FLFinisher>) finisher;
+- (void) scheduleWorker:(id<FLWorker>) worker finisher:(FLWorkFinisher*) finisher;
 @end
 
 /**

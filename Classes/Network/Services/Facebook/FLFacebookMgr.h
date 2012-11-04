@@ -9,7 +9,8 @@
 #import <Foundation/Foundation.h>
 
 #import "FacebookEnums.h"
-#import "FLAppService.h"
+#import "FLService.h"
+#import "FLUserSession.h"
 
 #define FLFacebookErrorKey @"fb_error"
 #define FLFacebookErrorDomain @"FLFacebookErrorDomain"
@@ -31,19 +32,17 @@ typedef enum {
 #import "FLFacebookOperation.h"
 #import "FLAction.h"
 #import "FLFacebookAuthenticationResponse.h"
-#import "FLUserService.h"
+#import "FLService.h"
 
 @protocol FLFacebookManagerDelegate;
 
-@interface FLFacebookMgr : NSObject<FLUserService> {
+@interface FLFacebookMgr : FLService {
 @private
 	FLFacebookNetworkSession* _session; // 
 	NSString* _appId;
 	NSString* _encodedToken;
     NSArray* _permissions;
 }
-
-FLSingletonProperty(FLFacebookMgr);
 
 @property (readwrite, retain, nonatomic) NSArray* permissions;
 @property (readwrite, retain, nonatomic) NSString* appId;
@@ -55,7 +54,7 @@ FLSingletonProperty(FLFacebookMgr);
 - (BOOL) appNeedsAuthorizationForPermissions:(NSArray*) permissions;
 - (BOOL) appSessionHasExpired;
 
-- (void) clearFacebookCookies;
++ (void) clearFacebookCookies;
 
 + (NSMutableString*) buildURL:(NSString*) authenticationToken
 	user:(NSString*) user
@@ -81,8 +80,10 @@ FLSingletonProperty(FLFacebookMgr);
 
 + (FLFacebookAuthenticationResponse*) authenticationResponseFromURL:(NSURL*) url outError:(NSError**) error;
 
+@end
 
-
+@interface FLUserSession (Facebook)
+@property (readonly, strong) FLFacebookMgr* facebookService;
 @end
 
 

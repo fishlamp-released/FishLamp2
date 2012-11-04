@@ -32,8 +32,8 @@
 }
 
 - (void) dealloc  {
-    mrc_release_(_startPath);
-    mrc_release_(_visitorBlock);
+    release_(_startPath);
+    release_(_visitorBlock);
     super_dealloc_();
 }
 

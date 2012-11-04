@@ -53,7 +53,7 @@
 
 #if FL_MRC
 - (void) dealloc {
-    mrc_release_(_keys);
+    release_(_keys);
     super_dealloc_();
 }
 #endif

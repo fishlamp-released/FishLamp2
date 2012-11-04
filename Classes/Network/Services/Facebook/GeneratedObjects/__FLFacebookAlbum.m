@@ -103,16 +103,16 @@
 
 - (void) dealloc
 {
-    mrc_release_(__description);
-    mrc_release_(__from);
-    mrc_release_(__location);
-    mrc_release_(__link);
-    mrc_release_(__cover_photo);
-    mrc_release_(__privacy);
-    mrc_release_(__count);
-    mrc_release_(__type);
-    mrc_release_(__created_time);
-    mrc_release_(__updated_time);
+    release_(__description);
+    release_(__from);
+    release_(__location);
+    release_(__link);
+    release_(__cover_photo);
+    release_(__privacy);
+    release_(__count);
+    release_(__type);
+    release_(__created_time);
+    release_(__updated_time);
     super_dealloc_();
 }
 

@@ -46,8 +46,8 @@
 
 - (void) dealloc
 {
-    mrc_release_(__lastUpdateId);
-    mrc_release_(__lastUpdate);
+    release_(__lastUpdateId);
+    release_(__lastUpdate);
     super_dealloc_();
 }
 

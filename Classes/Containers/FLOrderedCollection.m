@@ -24,10 +24,10 @@
 
 #if FL_MRC
 - (void) dealloc {
-    mrc_release_(_objectDictionary);
-    mrc_release_(_objectArray);
-    mrc_release_(_indexes);
-    mrc_release_(_keys);
+    release_(_objectDictionary);
+    release_(_objectArray);
+    release_(_indexes);
+    release_(_keys);
 	super_dealloc_();
 }
 #endif

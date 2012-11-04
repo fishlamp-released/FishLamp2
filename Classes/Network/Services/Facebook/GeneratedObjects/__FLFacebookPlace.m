@@ -39,7 +39,7 @@
 
 - (void) dealloc
 {
-    mrc_release_(__location);
+    release_(__location);
     super_dealloc_();
 }
 

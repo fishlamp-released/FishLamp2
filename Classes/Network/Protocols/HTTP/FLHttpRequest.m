@@ -63,11 +63,11 @@ static NSString* s_defaultUserAgent = @"FishLamp3;";
 }
 
 - (void) dealloc  {
-    mrc_release_(_postData);
-    mrc_release_(_requestMethod);
-    mrc_release_(_url);
-    mrc_release_(_postBodyFilePath);
-    mrc_release_(_requestHeaders);
+    release_(_postData);
+    release_(_requestMethod);
+    release_(_url);
+    release_(_postBodyFilePath);
+    release_(_requestHeaders);
     super_dealloc_();
 }
 

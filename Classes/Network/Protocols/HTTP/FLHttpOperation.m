@@ -46,25 +46,20 @@
         [self didInit];
 	}
 	
-	return self;
+	return [self initWithURL:nil];
 }
 
 - (id) initWithURL:(NSURL*) url {
 	if((self = [super init])) {	
-        [self didInit];
 		self.URL = url;
+        [self didInit];
 	}
 	
 	return self;
 }
 
 - (id) initWithURLString:(NSString*) url {
-	if((self = [super init])) {	
-        [self didInit];
-        self.URL = [NSURL URLWithString:url];
-	}
-	
-	return self;
+	return [self initWithURL:[NSURL URLWithString:url]];
 }
 
 + (id) networkOperationWithURLString:(NSString*) url {
@@ -108,16 +103,7 @@
     return self.httpConnection.httpRequest;
 }
 
-- (NSURL*) createURL {
-	return nil;
-}
-
 - (void) runSelf {
-
-	if(!self.URL) {
-		self.URL = [self createURL];
-	}
-    
     FLPerformSelectorWithObject(self.httpDelegate,  @selector(httpOperationWillRun:), self);
     [super runSelf];
 }

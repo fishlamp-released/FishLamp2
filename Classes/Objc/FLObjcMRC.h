@@ -14,7 +14,7 @@
 #define mrc_retain_(__OBJ__)                [__OBJ__ retain]
 #define autorelease_(__OBJ__)               [__OBJ__ autorelease]
 #define mrc_autorelease_(__OBJ__)           [__OBJ__ autorelease]
-#define mrc_release_(__OBJ__)               [__OBJ__ release]
+#define release_(__OBJ__)               [__OBJ__ release]
 #define mrc_super_dealloc_()                [super dealloc]
 #define bridge_(__TO__, __FROM__)           ((__TO__) __FROM__)
 #define bridge_transfer_(__TO__, __FROM__)  [((__TO__) __FROM__) retain]

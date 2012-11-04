@@ -171,25 +171,25 @@
 
 - (void) dealloc
 {
-    mrc_release_(__object_id);
-    mrc_release_(__from);
-    mrc_release_(__to);
-    mrc_release_(__message);
-    mrc_release_(__picture);
-    mrc_release_(__link);
-    mrc_release_(__caption);
-    mrc_release_(__description);
-    mrc_release_(__source);
-    mrc_release_(__icon);
-    mrc_release_(__properties);
-    mrc_release_(__application);
-    mrc_release_(__privacy);
-    mrc_release_(__comments);
-    mrc_release_(__likes);
-    mrc_release_(__actions);
-    mrc_release_(__type);
-    mrc_release_(__updated_time);
-    mrc_release_(__created_time);
+    release_(__object_id);
+    release_(__from);
+    release_(__to);
+    release_(__message);
+    release_(__picture);
+    release_(__link);
+    release_(__caption);
+    release_(__description);
+    release_(__source);
+    release_(__icon);
+    release_(__properties);
+    release_(__application);
+    release_(__privacy);
+    release_(__comments);
+    release_(__likes);
+    release_(__actions);
+    release_(__type);
+    release_(__updated_time);
+    release_(__created_time);
     super_dealloc_();
 }
 

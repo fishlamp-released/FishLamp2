@@ -37,7 +37,7 @@
     FLWorkFinisher* finisher = [FLWorkFinisher finisher:completion];
     
     @try {
-        [self startWorking:finisher];
+        [finisher startWorker:self];;
     }
     @catch(NSException* ex) {
         if(!FLTryHandlingErrorForObject(ex.error, self)) {

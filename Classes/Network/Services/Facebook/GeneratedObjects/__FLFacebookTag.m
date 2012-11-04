@@ -39,9 +39,9 @@
 
 - (void) dealloc
 {
-    mrc_release_(__user);
-    mrc_release_(__x);
-    mrc_release_(__y);
+    release_(__user);
+    release_(__x);
+    release_(__y);
     super_dealloc_();
 }
 

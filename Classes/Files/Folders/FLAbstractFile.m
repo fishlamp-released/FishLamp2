@@ -112,8 +112,8 @@
 
 - (void) dealloc {
     FLSendDeallocNotification();
-	mrc_release_(_fileName);
-	mrc_release_(_folder);
+	release_(_fileName);
+	release_(_folder);
 	super_dealloc_();
 }
 

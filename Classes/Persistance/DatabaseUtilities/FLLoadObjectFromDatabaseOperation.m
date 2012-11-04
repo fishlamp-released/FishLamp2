@@ -37,7 +37,7 @@
 }
 
 - (void) dealloc {
-	mrc_release_(_database);
+	release_(_database);
 	super_dealloc_();
 }
 

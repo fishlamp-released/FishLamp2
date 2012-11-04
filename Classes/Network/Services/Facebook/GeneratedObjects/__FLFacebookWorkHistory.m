@@ -68,11 +68,11 @@
 
 - (void) dealloc
 {
-    mrc_release_(__employer);
-    mrc_release_(__location);
-    mrc_release_(__position);
-    mrc_release_(__start_date);
-    mrc_release_(__end_date);
+    release_(__employer);
+    release_(__location);
+    release_(__position);
+    release_(__start_date);
+    release_(__end_date);
     super_dealloc_();
 }
 

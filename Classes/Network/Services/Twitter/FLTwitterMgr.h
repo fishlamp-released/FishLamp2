@@ -10,28 +10,27 @@
 
 #import "FLOauthApp.h"
 #import "FLOAuthSession.h"
-#import "FLAppService.h"
+#import "FLService.h"
+#import "FLService.h"
+#import "FLUserSession.h"
 
 #define FLTwitterDefaultUserID [NSString zeroGuidString]
 
-@interface FLTwitterMgr : FLUserService {
+@interface FLTwitterMgr : FLService {
 @private
-    FLOAuthApp* _oauth;
-	NSMutableDictionary* _sessions;
+    FLOAuthApp* _oauthInfo;
+	FLOAuthSession* _authSession;
 }
+
 @property (readonly, strong) FLOAuthApp* oauthInfo;
+@property (readonly, strong) FLOAuthSession* oauthSession;
 
-- (FLOAuthSession*) sessionForUserGuid:(NSString*) userGuid;
-
-- (void) loadSessionForUserGuid:(NSString*) userGuid;
-- (BOOL) needsAuthorizationForUserGuid:(NSString*) userGuid;
-- (void) logoutUserWithUserGuid:(NSString*) userGuid;
-- (void) didAuthenticateForUserGuid:(NSString*) userGuid 
-	session:(FLOAuthSession*) session;
-
-- (void) clearTwitterCookies;
-
-FLSingletonProperty(FLTwitterMgr);
-
++ (void) clearTwitterCookies;
 @end
+
+
+@interface FLUserSession (FLTwitterMgr)
+@property (readonly, strong) FLTwitterMgr* twitterService;
+@end
+
 

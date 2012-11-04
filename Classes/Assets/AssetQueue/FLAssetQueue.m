@@ -20,6 +20,7 @@
 @interface FLAssetQueue ()
 - (void) unload;
 
+@property (readwrite, retain, nonatomic) FLObjectDatabase* database;
 @property (readwrite, strong, nonatomic) FLAssetQueueState* state;
 @end
 
@@ -72,6 +73,14 @@ FLAssertDefaultInitNotCalled_v(nil);
 			_state.sortOrder = FLAssetQueueSortOrderOldestFirst;
 		}
 	}
+}
+
+- (void) openService {
+    [self.setDatabase:[self.session storageService].documentsDatabase]]; 
+}
+
+- (void) closeService {
+
 }
 
 - (NSUInteger) count {
@@ -176,7 +185,7 @@ FLAssertDefaultInitNotCalled_v(nil);
 		obj1.positionInQueue = obj2.positionInQueue;
 		obj2.positionInQueue = temp;
 		
-        mrc_release_(temp);
+        release_(temp);
 		
         [_queue exchangeObjectAtIndex:lhs withObjectAtIndex:rhs];
     }
@@ -326,7 +335,7 @@ FLAssertDefaultInitNotCalled_v(nil);
 		}
     }
 
-	mrc_release_(date);
+	release_(date);
     
     [_database batchSaveObjects:assets];
     [_database saveObject:_state];
@@ -346,7 +355,7 @@ FLAssertDefaultInitNotCalled_v(nil);
 
     NSDate* date = [[NSDate alloc] init];
     asset.queuedDate = date;
-    mrc_release_(date);
+    release_(date);
     
     [self saveAsset:asset];
     [_database saveObject:_state];
@@ -596,9 +605,9 @@ FLAssertDefaultInitNotCalled_v(nil);
 
 - (void) dealloc
 {
-    mrc_release_(_queue);
-    mrc_release_(_assetQueue);
-    mrc_release_(_error);
+    release_(_queue);
+    release_(_assetQueue);
+    release_(_error);
     super_dealloc_();
 }
 

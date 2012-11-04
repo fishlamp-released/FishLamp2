@@ -83,12 +83,12 @@
 }
 
 - (void) dealloc {
-    mrc_release_(_primaryKeyColumns);
-    mrc_release_(_indexedColumns);
-	mrc_release_(_decodedTableName);
-	mrc_release_(_indexes);
-	mrc_release_(_tableName);
-	mrc_release_(_columns);
+    release_(_primaryKeyColumns);
+    release_(_indexedColumns);
+	release_(_decodedTableName);
+	release_(_indexes);
+	release_(_tableName);
+	release_(_columns);
 	super_dealloc_();
 }
 

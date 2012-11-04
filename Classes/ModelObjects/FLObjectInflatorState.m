@@ -40,11 +40,11 @@
 }
 
 - (void) dealloc {
-    mrc_release_(_parseInfo);
-	mrc_release_(_describer);
-	mrc_release_(_object);
-	mrc_release_(_key);
-	mrc_release_(_data);
+    release_(_parseInfo);
+	release_(_describer);
+	release_(_object);
+	release_(_key);
+	release_(_data);
 	super_dealloc_();
 }
 

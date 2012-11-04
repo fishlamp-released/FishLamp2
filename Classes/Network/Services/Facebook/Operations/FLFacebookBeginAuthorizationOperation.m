@@ -11,20 +11,21 @@
 
 @implementation FLFacebookBeginAuthorizationOperation
 
-- (id) initWithPermissions:(NSArray*) permissions {
-	if((self = [self initWithURL:[FLFacebookMgr buildOAuthUrl:permissions
-                                                     forAppId:[FLFacebookMgr instance].appId]])) {
-	}
-	return self;
-}
+@synthesize permissions = _permissions;
 
-+ (id) facebookBeginAuthorizationOperation:(NSArray*) permissions {
-	return autorelease_([[FLFacebookBeginAuthorizationOperation alloc] initWithPermissions:permissions]);
+#if FL_MRC
+- (void) dealloc {
+    [_permissions release];
+    [super dealloc];
 }
-
+#endif
 
 - (void) runSelf {
-    [[FLFacebookMgr instance] clearFacebookCookies];
+
+    self.URL = [FLFacebookMgr buildOAuthUrl:self.permissions
+                                   forAppId:self.facebookService.appId];
+
+    [FLFacebookMgr clearFacebookCookies];
 
     [super runSelf];
         if(self.didSucceed) {

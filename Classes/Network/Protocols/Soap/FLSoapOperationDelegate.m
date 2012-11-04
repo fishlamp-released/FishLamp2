@@ -121,7 +121,7 @@
 				FLDebugLog(@"Soap Fault:%@/%@", [soapFault faultcode], [soapFault faultstring]);
 			}
 			@finally {
-				mrc_release_(soapParser);
+				release_(soapParser);
 			}
             return soapFault;
 		}

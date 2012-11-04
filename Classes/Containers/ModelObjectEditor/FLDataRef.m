@@ -53,8 +53,8 @@
 
 #if FL_MRC
 - (void) dealloc {
-    mrc_release_(_key);
-    mrc_release_(_dictionary);
+    release_(_key);
+    release_(_dictionary);
     super_dealloc_();
 }
 #endif
@@ -92,8 +92,8 @@
 
 #if FL_MRC
 - (void) dealloc {
-    mrc_release_(_key);
-    mrc_release_(_dictionary);
+    release_(_key);
+    release_(_dictionary);
     super_dealloc_();
 }
 #endif

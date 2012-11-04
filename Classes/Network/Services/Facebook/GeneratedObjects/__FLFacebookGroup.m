@@ -74,12 +74,12 @@
 
 - (void) dealloc
 {
-    mrc_release_(__owner);
-    mrc_release_(__icon);
-    mrc_release_(__description);
-    mrc_release_(__link);
-    mrc_release_(__privacy);
-    mrc_release_(__updated_time);
+    release_(__owner);
+    release_(__icon);
+    release_(__description);
+    release_(__link);
+    release_(__privacy);
+    release_(__updated_time);
     super_dealloc_();
 }
 

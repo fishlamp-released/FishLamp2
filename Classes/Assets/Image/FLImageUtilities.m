@@ -340,7 +340,7 @@ static void FLAddRoundedRectToPath(CGContextRef context, FLRect rect, float oval
                 CGContextDrawImage(context, CGRectMake(0, 0, w, h), img.CGImage);
          
                 imageMasked = CGBitmapContextCreateImage(context);
-                mrc_release_(img);
+                release_(img);
          
                 newImage = retain_([FLImage imageWithCGImage:imageMasked]);
             });

@@ -47,7 +47,8 @@
 @property (readonly, strong) FLHttpResponse* httpResponse;
 
 // creation
-- (id) initWithURL:(NSURL*) url;
+- (id) initWithURL:(NSURL*) url; // designated 
+
 - (id) initWithURLString:(NSString*) url;
 
 + (id) networkOperationWithURL:(NSURL*) url;
@@ -62,7 +63,6 @@
 @end
 
 @interface FLHttpOperation (OptionalOverrides)
-- (NSURL*) createURL;
 
 // called by all the init methods.
 - (void) didInit;

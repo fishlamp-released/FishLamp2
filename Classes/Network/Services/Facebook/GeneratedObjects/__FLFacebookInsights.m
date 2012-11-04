@@ -47,8 +47,8 @@
 
 - (void) dealloc
 {
-    mrc_release_(__period);
-    mrc_release_(__values);
+    release_(__period);
+    release_(__values);
     super_dealloc_();
 }
 

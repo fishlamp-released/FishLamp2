@@ -54,9 +54,9 @@
 
 - (void) dealloc
 {
-    mrc_release_(__from);
-    mrc_release_(__message);
-    mrc_release_(__updated_time);
+    release_(__from);
+    release_(__message);
+    release_(__updated_time);
     super_dealloc_();
 }
 

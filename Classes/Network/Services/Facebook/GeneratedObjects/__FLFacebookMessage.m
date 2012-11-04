@@ -61,10 +61,10 @@
 
 - (void) dealloc
 {
-    mrc_release_(__from);
-    mrc_release_(__to);
-    mrc_release_(__message);
-    mrc_release_(__created_time);
+    release_(__from);
+    release_(__to);
+    release_(__message);
+    release_(__created_time);
     super_dealloc_();
 }
 

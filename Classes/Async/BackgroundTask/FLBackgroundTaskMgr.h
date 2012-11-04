@@ -12,7 +12,7 @@
 #import "FLOperationQueue.h"
 #import "FLAnswerable.h"
 
-#import "FLAppService.h"
+#import "FLService.h"
 
 @class FLOperationContext;
 @class FLBackgroundTaskMgr;
@@ -50,7 +50,7 @@
     The API is not thread safe and expects to be called on the main thread.
  */
 
-@interface FLBackgroundTaskMgr : FLAppService {
+@interface FLBackgroundTaskMgr : FLService {
 @private
 	NSMutableArray* _queue;
     NSMutableArray* _sequenceQueue;

@@ -843,9 +843,9 @@ int main()
 
 #if FL_MRC 
 - (void) dealloc {
-    mrc_release_(_next);
-    mrc_release_(_current);
-    mrc_release_(_list);
+    release_(_next);
+    release_(_current);
+    release_(_list);
     super_dealloc_();
 }
 #endif

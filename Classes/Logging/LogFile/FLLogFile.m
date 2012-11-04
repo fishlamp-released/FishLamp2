@@ -28,7 +28,7 @@
 - (void) dealloc {
     [self closeLogFile];
 
-    mrc_release_(_filePath);
+    release_(_filePath);
     super_dealloc_();
 }
 

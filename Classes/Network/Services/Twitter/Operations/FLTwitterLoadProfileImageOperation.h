@@ -14,7 +14,7 @@
 #define FLTwitterImageSizeSmall @"mini"
 #define FLTwitterImageSizeLarge @"bigger"
 
-@interface FLTwitterLoadProfileImageOperation : FLHttpOperation {
+@interface FLTwitterLoadProfileImageOperation : FLTwitterOperation {
 @private
 	NSString* _imageSize;
 	NSString* _username;

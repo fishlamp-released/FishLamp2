@@ -99,8 +99,8 @@ FLSynthesizeStructProperty(isUnboundedArrayItem, setUnboundedArrayItem, BOOL, _f
 }
 
 - (void) dealloc {
-	mrc_release_(_arrayTypes);
-	mrc_release_(_name);
+	release_(_arrayTypes);
+	release_(_name);
 	super_dealloc_();
 }
 

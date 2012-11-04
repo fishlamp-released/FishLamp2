@@ -12,15 +12,13 @@
 
 @implementation FLDownloadImageOperation
 
-- (void) didInit {
-	[super didInit];
-	
-	self.httpDelegate = [FLHttpImageDownloadNetworkResponseHandler instance];
-	self.input = [FLCachedImage cachedImage];
-}
-
-- (void) dealloc {	
-	super_dealloc_();
+- (id) initWithURL:(NSURL*) url {
+    self = [super initWithURL:url];
+    if(self) {
+        self.httpDelegate = [FLHttpImageDownloadNetworkResponseHandler instance];
+        self.input = [FLCachedImage cachedImage];
+    }
+    return self;
 }
 
 - (void) runSelf {

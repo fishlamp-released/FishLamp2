@@ -48,9 +48,9 @@
 - (void) dealloc
 {
 	_parser.delegate = nil;
-	mrc_release_(_parser);
-	mrc_release_(_error);
-	mrc_release_(_dataDecoder);
+	release_(_parser);
+	release_(_error);
+	release_(_dataDecoder);
 	super_dealloc_();
 }
 

@@ -43,10 +43,10 @@
 
 #if FL_MRC
 - (void) dealloc {
-    mrc_release_(_onCreateProgress);
+    release_(_onCreateProgress);
     if(_progress) {
         [_progress hideProgress];
-        mrc_release_(_progress);
+        release_(_progress);
     }
     super_dealloc_();   
 }

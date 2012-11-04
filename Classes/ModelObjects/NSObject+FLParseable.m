@@ -35,8 +35,8 @@
 
 #if FL_MRC
 - (void) dealloc {
-    mrc_release_(_fileName);
-    mrc_release_(_hint);
+    release_(_fileName);
+    release_(_hint);
     super_dealloc_();
 }
 
@@ -53,5 +53,5 @@
 @end
 
 @implementation NSObject (FLParseable)
-FLSynthesizeAssociatedProperty(retain_nonatomic, parseInfo, setParseInfo, FLParseInfo*);
+FLSynthesizeAssociatedProperty_(retain_nonatomic, parseInfo, setParseInfo, FLParseInfo*);
 @end

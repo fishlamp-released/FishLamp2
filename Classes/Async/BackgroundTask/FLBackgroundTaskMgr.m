@@ -9,6 +9,7 @@
 #import "FLBackgroundTaskMgr.h"
 #import "FLOperationContext.h"
 #import "FLTraceOff.h"
+#import "FLUserSession.h"
 
 #define kDelay 0.5f
 
@@ -89,9 +90,9 @@ FIXME("operation context");
 FIXME("attach to user sessions....");
 //    [[FLUserSession instance] removeObserver:self];
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
-    mrc_release_(_sequenceQueue);
-	mrc_release_(_operations);
-	mrc_release_(_queue);
+    release_(_sequenceQueue);
+	release_(_operations);
+	release_(_queue);
 	super_dealloc_();
 }
 

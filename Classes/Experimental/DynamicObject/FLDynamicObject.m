@@ -67,7 +67,7 @@
 //}
 
 - (void) dealloc {
-    mrc_release_(_dataDictionary);
+    release_(_dataDictionary);
     super_dealloc_();
 }   
 

@@ -88,14 +88,14 @@
 
 - (void) dealloc
 {
-    mrc_release_(__userGuid);
-    mrc_release_(__userName);
-    mrc_release_(__password);
-    mrc_release_(__isAuthenticated);
-    mrc_release_(__authToken);
-    mrc_release_(__email);
-    mrc_release_(__authTokenLastUpdateTime);
-    mrc_release_(__userValue);
+    release_(__userGuid);
+    release_(__userName);
+    release_(__password);
+    release_(__isAuthenticated);
+    release_(__authToken);
+    release_(__email);
+    release_(__authTokenLastUpdateTime);
+    release_(__userValue);
     super_dealloc_();
 }
 

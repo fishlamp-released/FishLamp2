@@ -46,8 +46,8 @@
 
 - (void) dealloc
 {
-    mrc_release_(__category);
-    mrc_release_(__likes);
+    release_(__category);
+    release_(__likes);
     super_dealloc_();
 }
 

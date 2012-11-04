@@ -39,7 +39,7 @@
 
 - (void) dealloc
 {
-    mrc_release_(__email);
+    release_(__email);
     super_dealloc_();
 }
 

@@ -11,7 +11,7 @@
 @interface FLWorkerQueue : FLSimpleWorker {
 @private
     NSMutableArray* _queue;
-}
+ }
 
 @property (readonly, strong) NSArray* workers;
 

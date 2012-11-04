@@ -22,7 +22,7 @@
 }
 
 - (void) dealloc {
-    mrc_release_(_error);
+    release_(_error);
     super_dealloc_();
 }
 
@@ -47,13 +47,13 @@
         {
             FLObjectBuilder* builder = [[FLObjectBuilder alloc] init];
             [builder buildObjectsFromDictionary:outObject withRootObject:rootObject];
-            mrc_release_(builder);
+            release_(builder);
             
             outObject = rootObject;
         }
     }    
     
-    mrc_release_(parser);
+    release_(parser);
     return outObject;
 #endif
     

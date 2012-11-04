@@ -208,7 +208,7 @@ static void ReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReach
 }
 
 - (void) dealloc {
-    mrc_release_(_hostName);
+    release_(_hostName);
     super_dealloc_();
 }
 

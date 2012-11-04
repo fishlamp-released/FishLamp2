@@ -74,12 +74,12 @@
 
 - (void) dealloc
 {
-    mrc_release_(__userGuid);
-    mrc_release_(__appName);
-    mrc_release_(__oauth_token);
-    mrc_release_(__oauth_token_secret);
-    mrc_release_(__user_id);
-    mrc_release_(__screen_name);
+    release_(__userGuid);
+    release_(__appName);
+    release_(__oauth_token);
+    release_(__oauth_token_secret);
+    release_(__user_id);
+    release_(__screen_name);
     super_dealloc_();
 }
 

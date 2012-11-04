@@ -73,13 +73,16 @@
     [self setWorker:[FLBlockWorker blockWorker:block]];
 }
 
-- (void) scheduleWorker:(id<FLWorker>) worker finisher:(id<FLFinisher>) finisher {
-    [worker startWorking:finisher];
+- (void) scheduleWorker:(id<FLWorker>) worker finisher:(FLWorkFinisher*) finisher {
+    [finisher startWorker:worker];
 }
 
 - (void) startWorking:(id<FLFinisher>) finisher {
     if(_worker) {
-        [self scheduleWorker:_worker finisher:finisher];
+    
+        [self scheduleWorker:_worker finisher:finisher_(^(id<FLResult> result) {
+            [finisher setFinishedWithResult:result];
+        })];
     }
     else {
         [finisher setFinished]; 
@@ -107,13 +110,13 @@
     if(aWorker) {
         [self willAddWorker:aWorker];
     }
-    self._worker = worker;
+    self._worker = aWorker;
 }
 
 @end
 
 @implementation FLBackgroundJob
-- (void) scheduleWorker:(id<FLWorker>) worker finisher:(id<FLFinisher>) finisher {
+- (void) scheduleWorker:(id<FLWorker>) worker finisher:(FLWorkFinisher*) finisher {
     [[FLDispatchQueue instance] dispatchWorker:worker completion:^(id<FLResult> result) {
         [finisher setFinishedWithResult:result];
     }];
@@ -121,7 +124,7 @@
 @end
 
 @implementation FLForegroundJob
-- (void) scheduleWorker:(id<FLWorker>) worker finisher:(id<FLFinisher>) finisher {
+- (void) scheduleWorker:(id<FLWorker>) worker finisher:(FLWorkFinisher*) finisher {
     [[FLForegroundQueue instance] dispatchWorker:worker completion:^(id<FLResult> result) {
         [finisher setFinishedWithResult:result];
     }];

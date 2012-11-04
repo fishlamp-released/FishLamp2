@@ -16,9 +16,6 @@
 #define release_(__OBJ__) 
 #define super_dealloc_()
 
-#define mrc_release_                            release_
-#define mrc_super_dealloc_                      super_dealloc_
-
 #define retain_(__OBJ__)                        __OBJ__
 #define autorelease_(__OBJ__)                   __OBJ__
 

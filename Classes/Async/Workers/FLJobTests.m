@@ -53,7 +53,7 @@
     }];
 
     id<FLPromisedResult> promisedResult = [[FLBackgroundQueue instance] dispatchWorker:job completion:^(FLResult result) {
-        FLAssert_(![NSThread isMainThread]);
+        FLAssert_([NSThread isMainThread]);
         FLAssertObjectsAreEqual_(@"hello world", result.output);
     }];
 

@@ -31,7 +31,7 @@
             *error = err;
         }
         else {
-            mrc_release_(err);
+            release_(err);
         }
     
         return nil;
@@ -54,7 +54,7 @@
             *error = err;
         }
         else {
-            mrc_release_(err);
+            release_(err);
         }
     
         return nil;

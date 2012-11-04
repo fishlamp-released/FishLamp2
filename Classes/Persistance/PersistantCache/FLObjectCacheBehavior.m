@@ -28,7 +28,7 @@
 
 - (void) dealloc
 {
-	mrc_release_(_cacheKey);
+	release_(_cacheKey);
 	super_dealloc_();
 }
 

@@ -9,33 +9,46 @@
 #import "FLWorkFinisher.h"
 #import "FLTimeoutTimer.h"
 #import "FLResultObjects.h"
+#import "FLDispatchQueues.h"
 
 @interface FLWorkFinisher ()
 @property (readwrite, strong) FLResult result;
 @property (readwrite, assign) BOOL isFinished;
 @property (readwrite, strong) FLTimeoutTimer* timer;
-@property (readwrite, strong) NSThread* thread;
 @end
 
 @implementation FLWorkFinisher
 @synthesize timer = _timer;
 @synthesize isFinished = _finished;
 @synthesize result = _result;
-@synthesize thread = _thread;
 
-- (id) initWithCompletionBlock:(FLResultBlock) completion {
+- (id) initWithCompletionBlock:(FLCompletionBlock) completion {
     
     self = [super init];
     if(self) {
         _completionBlock = FLCopyBlock(completion);
-        self.thread = [NSThread currentThread];
+    }
+    return self;
+}
+
+
+- (id) initWithResultBlock:(FLResultBlock) completion {
+    
+    self = [super init];
+    if(self) {
+        _finishBlock = FLCopyBlock(completion);
     }
     return self;
 }
 
 + (id) finisher:(FLResultBlock) completion {
+    return autorelease_([[[self class] alloc] initWithResultBlock:completion]);
+}
+
++ (id) completion:(FLCompletionBlock) completion {
     return autorelease_([[[self class] alloc] initWithCompletionBlock:completion]);
 }
+
 
 - (void) dealloc {
     if(_timer) {
@@ -43,25 +56,29 @@
     }
     
 #if FL_MRC
-    [_thread release];
     [_timer release];
     [_result release];
+
     if(_completionBlock) {
         [_completionBlock release];
+    }
+    if(_finishBlock) {
+        [_finishBlock release];
     }
     [super dealloc];
 #endif
 }
 
 + (id) finisher {
-    return autorelease_([[[self class] alloc] initWithCompletionBlock:nil]);
+    return autorelease_([[[self class] alloc] initWithResultBlock:nil]);
 }
 
 - (BOOL) hasResult {
     return self.isFinished;
 }
 
-- (void) setWillExecuteFinishedBlockOnCurrentThread {
+- (void) startWorker:(id<FLWorker>) worker {
+    [worker startWorking:self];
 }
 
 - (void) setFinishedWithSuccess:(BOOL) success {
@@ -105,17 +122,11 @@
     self.result = result;
     self.isFinished = YES;
 
-    if(!self.thread || self.thread == [NSThread currentThread]) {
-        if(_completionBlock) {
-            _completionBlock(_result);
-        }
-        else {
-            [self performBlockOnThread:self.thread block:^{
-                if(_completionBlock) {
-                    _completionBlock(_result);
-                }
-            }];
-        }
+    if(_finishBlock) {
+        _finishBlock(_result);
+    }
+    else if(_completionBlock) {
+        _completionBlock();
     }
 }
 
@@ -166,6 +177,19 @@
         [self setFinishedWithResult:result];
     }];
     return [self waitForResult];
+}
+
+@end
+
+@implementation FLMainThreadFinisher
+
+- (void) setFinishedWithResult:(FLResult) result {
+    if(![NSThread isMainThread]) {
+        [self performSelectorOnMainThread:@selector(setFinishedWithResult:) withObject:result waitUntilDone:NO];
+    }
+    else {
+        [super setFinishedWithResult:result];
+    }
 }
 
 @end

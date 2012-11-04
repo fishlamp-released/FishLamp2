@@ -111,7 +111,7 @@
     
     FLWorkFinisher* finisher = [FLWorkFinisher finisher:completion];
     self.finisher = finisher;
-    [self startWorking:finisher];
+    [finisher startWorker:self];;
     return finisher;
 }
 

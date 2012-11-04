@@ -89,14 +89,14 @@
 
 - (void) dealloc
 {
-    mrc_release_(__from);
-    mrc_release_(__link);
-    mrc_release_(__caption);
-    mrc_release_(__description);
-    mrc_release_(__icon);
-    mrc_release_(__picture);
-    mrc_release_(__message);
-    mrc_release_(__created_time);
+    release_(__from);
+    release_(__link);
+    release_(__caption);
+    release_(__description);
+    release_(__icon);
+    release_(__picture);
+    release_(__message);
+    release_(__created_time);
     super_dealloc_();
 }
 

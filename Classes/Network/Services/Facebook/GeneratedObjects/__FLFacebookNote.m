@@ -75,12 +75,12 @@
 
 - (void) dealloc
 {
-    mrc_release_(__from);
-    mrc_release_(__subject);
-    mrc_release_(__message);
-    mrc_release_(__icon);
-    mrc_release_(__updated_time);
-    mrc_release_(__created_time);
+    release_(__from);
+    release_(__subject);
+    release_(__message);
+    release_(__icon);
+    release_(__updated_time);
+    release_(__created_time);
     super_dealloc_();
 }
 

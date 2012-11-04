@@ -67,7 +67,7 @@
     [_networkConnection removeObserver:self];
 
 #if FL_MRC
-    mrc_release_(_networkConnection);
+    release_(_networkConnection);
 	super_dealloc_();
 #endif
 }

@@ -38,8 +38,8 @@ FLSynthesizeStructProperty(shouldRunIfLoadedFromCache, setShouldRunIfLoadedFromC
 }
 
 - (void) dealloc {
-	mrc_release_(_cache);
-	mrc_release_(_subOperation);
+	release_(_cache);
+	release_(_subOperation);
 	super_dealloc_();
 }
 

@@ -46,8 +46,8 @@
 
 - (void) dealloc
 {
-    mrc_release_(__type);
-    mrc_release_(__pictureSize);
+    release_(__type);
+    release_(__pictureSize);
     super_dealloc_();
 }
 

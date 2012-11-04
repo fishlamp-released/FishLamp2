@@ -8,6 +8,7 @@
 
 #import "FLFacebookMgr.h"
 #import "NSString+URL.h"
+#import "FLUserDataStorageService.h"
 
 static NSString* kRedirectURL = @"http://www.facebook.com/connect/login_success.html";
 
@@ -17,8 +18,6 @@ static NSString* kRedirectURL = @"http://www.facebook.com/connect/login_success.
 @synthesize appId = _appId;
 @synthesize encodedToken = _encodedToken;
 @synthesize permissions = _permissions;
-
-FLSynthesizeSingleton(FLFacebookMgr);
 
 - (id) init
 {
@@ -31,11 +30,28 @@ FLSynthesizeSingleton(FLFacebookMgr);
 
 - (void) dealloc
 {
-    mrc_release_(_permissions);
-	mrc_release_(_encodedToken);
-	mrc_release_(_appId);
-	mrc_release_(_session);
+    release_(_permissions);
+	release_(_encodedToken);
+	release_(_appId);
+	release_(_session);
 	super_dealloc_();
+}
+
+- (void) openService {
+
+}
+
+- (void) closeService {
+
+}
+
+- (BOOL) isServiceOpen {
+
+    return NO;
+}
+
+- (BOOL) isServiceAuthenticated {
+    return NO;
 }
 
 // from facebook demo app
@@ -114,7 +130,7 @@ FLSynthesizeSingleton(FLFacebookMgr);
 	return [NSURL URLWithString:[FLFacebookMgr serializeURL:URL params:params]];
 }
 
-- (void) clearFacebookCookies
++ (void) clearFacebookCookies
 {
   	NSMutableArray* deleteThese = [NSMutableArray array];
     NSArray* cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies];
@@ -132,7 +148,7 @@ FLSynthesizeSingleton(FLFacebookMgr);
 }
 
 - (FLObjectDatabase*) database {
-    return self.userSession.documentsDatabase;
+    return self.userDataService.documentsDatabase;
 }
 
 - (void) logout
@@ -144,7 +160,7 @@ FLSynthesizeSingleton(FLFacebookMgr);
 	FLReleaseWithNil_(_session);
     FLReleaseWithNil_(_encodedToken);
     
-    [self clearFacebookCookies];
+    [FLFacebookMgr clearFacebookCookies];
 
 }
 
@@ -372,4 +388,9 @@ FLSynthesizeSingleton(FLFacebookMgr);
 
 @end
 
+@implementation FLUserSession (Facebook) 
+- (FLFacebookMgr*) facebookService {
+    return (FLFacebookMgr*) [self serviceByID:[FLFacebookMgr serviceID]];
+}
+@end
 

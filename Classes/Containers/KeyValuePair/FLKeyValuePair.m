@@ -25,8 +25,8 @@
 
 #if FL_MRC
 - (void) dealloc {
-    mrc_release_(_key);
-    mrc_release_(_value);
+    release_(_key);
+    release_(_value);
 	super_dealloc_();
 }
 #endif

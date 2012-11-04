@@ -12,7 +12,7 @@ static FLExceptionHook s_exceptionHook = nil;
 
 @implementation NSException (NSError)
 
-FLSynthesizeAssociatedProperty(retain_nonatomic, _error, setError, NSError*);
+FLSynthesizeAssociatedProperty_(retain_nonatomic, _error, setError, NSError*);
 
 - (NSError*) error {
     NSError* error = [self _error];

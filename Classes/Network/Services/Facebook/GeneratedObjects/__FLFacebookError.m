@@ -60,10 +60,10 @@
 
 - (void) dealloc
 {
-    mrc_release_(__error_reason);
-    mrc_release_(__error);
-    mrc_release_(__error_description);
-    mrc_release_(__externalUrl);
+    release_(__error_reason);
+    release_(__error);
+    release_(__error_description);
+    release_(__externalUrl);
     super_dealloc_();
 }
 

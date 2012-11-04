@@ -46,7 +46,7 @@
 }
 
 - (void) dealloc {
-	mrc_release_(_properties);
+	release_(_properties);
 	super_dealloc_();
 }
 

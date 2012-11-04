@@ -38,11 +38,11 @@
 			*outputObject = retain_([array objectAtIndex:0]);
 		}
 		else if(array.count > 1) {
-			mrc_release_(array);
+			release_(array);
 			FLThrowErrorCode_v(FLObjectDatabaseErrorDomain, FLDatabaseErrorTooManyObjectsReturned,
                              ([NSString stringWithFormat:@"Too many objects returned for input object of type: %@", NSStringFromClass([inputObject class])]));
 		}
-		mrc_release_(array);
+		release_(array);
 	}
 }
 

@@ -88,14 +88,14 @@
 
 - (void) dealloc
 {
-    mrc_release_(__owner);
-    mrc_release_(__description);
-    mrc_release_(__start_time);
-    mrc_release_(__end_time);
-    mrc_release_(__location);
-    mrc_release_(__venue);
-    mrc_release_(__privacy);
-    mrc_release_(__updated_time);
+    release_(__owner);
+    release_(__description);
+    release_(__start_time);
+    release_(__end_time);
+    release_(__location);
+    release_(__venue);
+    release_(__privacy);
+    release_(__updated_time);
     super_dealloc_();
 }
 

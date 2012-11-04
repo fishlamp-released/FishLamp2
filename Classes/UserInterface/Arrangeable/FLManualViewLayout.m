@@ -24,9 +24,9 @@
 
 #if FL_MRC
 - (void) dealloc {
-    mrc_release_(_onLayout);
-    mrc_release_(_views);
-    mrc_release_(_frames);
+    release_(_onLayout);
+    release_(_views);
+    release_(_frames);
     super_dealloc_();
 }
 #endif

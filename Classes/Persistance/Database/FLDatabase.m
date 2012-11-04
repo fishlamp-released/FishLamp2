@@ -80,7 +80,7 @@ static FLDatabaseColumnDecoder s_decoder = nil;
 #endif
 
 	FLAssertIsNil_v(_database, nil);
-	mrc_release_(_filePath);
+	release_(_filePath);
 	super_dealloc_();
 }
 

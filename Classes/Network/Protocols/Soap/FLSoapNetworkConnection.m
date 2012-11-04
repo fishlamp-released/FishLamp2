@@ -30,9 +30,9 @@
 }
 
 - (void) dealloc {
-	mrc_release_(_apiNamespace);
-	mrc_release_(_soapActionHeader);
-	mrc_release_(_soap);
+	release_(_apiNamespace);
+	release_(_soapActionHeader);
+	release_(_soap);
 	super_dealloc_();
 }
 

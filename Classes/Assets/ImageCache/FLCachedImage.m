@@ -61,7 +61,7 @@ FLSynthesizeCachedObjectHandlerProperty(FLCachedImage);
 	
 	FLJpegFile* file = [[self imageFile] copy];
 	[object setImageFile:file];
-	mrc_release_(file);
+	release_(file);
 }
 
 

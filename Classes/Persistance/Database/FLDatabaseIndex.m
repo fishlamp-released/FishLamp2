@@ -27,7 +27,7 @@
 
 - (void) dealloc
 {
-	mrc_release_(_columnName);
+	release_(_columnName);
 	super_dealloc_();
 }
 

@@ -31,7 +31,7 @@ FLSynthesizeSingleton(FLTracker);
 
 #if FL_MRC 
 - (void) dealloc {
-    mrc_release_(_sinks);
+    release_(_sinks);
     super_dealloc_();
 }
 #endif

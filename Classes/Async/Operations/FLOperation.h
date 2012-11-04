@@ -18,6 +18,7 @@ typedef void (^FLRunOperationBlock)(FLOperation* operation);
 
 @interface FLOperation : FLObservable<FLWorker, FLRunnable, FLCancellable> {
 @private
+    id _services;
 	id _operationInput;
     id _operationOutput;
 
@@ -42,6 +43,8 @@ typedef void (^FLRunOperationBlock)(FLOperation* operation);
     BOOL _didFinish;
     BOOL _didFail;
 }
+
+@property (readwrite, strong) id services;
 
 @property (readwrite, strong) id operationInput;
 @property (readwrite, strong) id operationOutput;

@@ -12,21 +12,31 @@
 #import "FLPromisedResult.h"
 #import "FLWorker.h"
 
+typedef void (^FLCompletionBlock)();
+
 @class FLTimeoutTimer;
 
 @interface FLWorkFinisher : NSObject<FLFinisher, FLPromisedResult> {
 @private
     FLTimeoutTimer* _timer;
     BOOL _finished;
-    FLResultBlock _completionBlock;
+    FLResultBlock _finishBlock;
+    FLCompletionBlock _completionBlock;
     FLResult _result;
-    NSThread* _thread;
+//    NSThread* _thread;
 }
 
-- (id) initWithCompletionBlock:(FLResultBlock) completion;
+- (id) initWithResultBlock:(FLResultBlock) resultBlock;
+- (id) initWithCompletionBlock:(FLCompletionBlock) completionBlock;
 + (id) finisher:(FLResultBlock) completion;
++ (id) completion:(FLCompletionBlock) completion;
 + (id) finisher;
 
+- (void) startWorker:(id<FLWorker>) worker;
+
+@end
+
+@interface FLMainThreadFinisher : FLWorkFinisher
 @end
 
 //@protocol FLAsyncMessage <NSObject>
@@ -38,4 +48,5 @@
 //          completion:(FLResultBlock) completion;
 //@end
 
-
+#define finisher_(__BLOCK__) [FLWorkFinisher finisher:__BLOCK__]
+#define completion_(__BLOCK__) [FLWorkFinisher completion:__BLOCK__]

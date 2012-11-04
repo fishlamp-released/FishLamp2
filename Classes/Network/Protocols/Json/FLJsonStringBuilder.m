@@ -14,7 +14,7 @@
 
 -(void)dealloc
 {
-	mrc_release_(_dataEncoder);
+	release_(_dataEncoder);
 	super_dealloc_();
 }
 
@@ -55,7 +55,7 @@
 //		}
 //		@finally
 //		{
-//			mrc_release_(string);
+//			release_(string);
 //		}
 //	}
 //}

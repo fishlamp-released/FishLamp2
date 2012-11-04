@@ -24,13 +24,13 @@
 //
 //#if FL_MRC
 //- (void) dealloc {
-//    mrc_release_(_willFilter);
-//    mrc_release_(_discovered);
-//    mrc_release_(_willAllow);
-//    mrc_release_(_observeStart);
-//    mrc_release_(_observeFinish);
-//    mrc_release_(_observeResult);
-//    mrc_release_(_observeAllResults);
+//    release_(_willFilter);
+//    release_(_discovered);
+//    release_(_willAllow);
+//    release_(_observeStart);
+//    release_(_observeFinish);
+//    release_(_observeResult);
+//    release_(_observeAllResults);
 //    super_dealloc_();
 //}
 //#endif

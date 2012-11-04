@@ -30,11 +30,11 @@
 - (void) dealloc {
     for(int i = 0; i < 100; i++) {
         if(_cachedTabs[i]) {
-            mrc_release_(_cachedTabs[i]);
+            release_(_cachedTabs[i]);
         }
     }
-    mrc_release_(_eolString);
-    mrc_release_(_tabString);
+    release_(_eolString);
+    release_(_tabString);
     
     super_dealloc_();
 }

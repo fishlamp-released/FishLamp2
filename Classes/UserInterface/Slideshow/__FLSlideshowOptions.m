@@ -81,13 +81,13 @@
 
 - (void) dealloc
 {
-    mrc_release_(__speed);
-    mrc_release_(__repeat);
-    mrc_release_(__autoStart);
-    mrc_release_(__autoShowCaptions);
-    mrc_release_(__random);
-    mrc_release_(__playMusic);
-    mrc_release_(__mediaItemList);
+    release_(__speed);
+    release_(__repeat);
+    release_(__autoStart);
+    release_(__autoShowCaptions);
+    release_(__random);
+    release_(__playMusic);
+    release_(__mediaItemList);
     super_dealloc_();
 }
 

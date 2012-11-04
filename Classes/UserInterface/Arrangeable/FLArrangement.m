@@ -32,8 +32,8 @@
 
 #if DEBUG
 - (void) dealloc {
-    mrc_release_(_frameSetter);
-    mrc_release_(_onWillArrange);
+    release_(_frameSetter);
+    release_(_onWillArrange);
     super_dealloc_();
 }
 #endif

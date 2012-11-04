@@ -44,10 +44,10 @@
 
 - (void) dealloc
 {
-    mrc_release_(__oauth_token_secret);
-    mrc_release_(__oauth_callback_confirmed);
-    mrc_release_(__oauth_token);
-    mrc_release_(__oauth_verifier);
+    release_(__oauth_token_secret);
+    release_(__oauth_callback_confirmed);
+    release_(__oauth_token);
+    release_(__oauth_verifier);
     super_dealloc_();
 }
 

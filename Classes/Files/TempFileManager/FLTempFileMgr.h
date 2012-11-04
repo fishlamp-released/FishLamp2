@@ -10,9 +10,9 @@
 #import "FishLampCore.h"
 
 #import "FLAbstractFile.h"
-#import "FLAppService.h"
+#import "FLService.h"
 
-@interface FLTempFileMgr : FLAppService {
+@interface FLTempFileMgr : FLService {
 @private    
     NSMutableDictionary* _files;
     FLFolder* _folder;

@@ -184,11 +184,11 @@
         CFRelease(_hostRef);
     }
     
-    mrc_release_(_resolvedHostNames);
-    mrc_release_(_resolvedAddressStrings);
-    mrc_release_(_resolvedAddresses);
-    mrc_release_(_hostHame);
-    mrc_release_(_addressData);
+    release_(_resolvedHostNames);
+    release_(_resolvedAddressStrings);
+    release_(_resolvedAddresses);
+    release_(_hostHame);
+    release_(_addressData);
     super_dealloc_();
 }
 

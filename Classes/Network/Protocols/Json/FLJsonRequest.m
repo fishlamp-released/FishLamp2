@@ -24,7 +24,7 @@
 
 - (void) dealloc
 {
-	mrc_release_(_json);
+	release_(_json);
 	super_dealloc_();
 }
 

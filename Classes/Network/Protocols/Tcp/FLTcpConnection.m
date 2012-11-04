@@ -61,12 +61,12 @@
 
 - (void) dealloc {
 #if FL_MRC
-    mrc_release_(_writer);
-    mrc_release_(_reader);
-    mrc_release_(_remoteHost);
-    mrc_release_(_additions);
-    mrc_release_(_requests);
-    mrc_release_(_blockingObject);
+    release_(_writer);
+    release_(_reader);
+    release_(_remoteHost);
+    release_(_additions);
+    release_(_requests);
+    release_(_blockingObject);
     super_dealloc_();
 #endif
 }

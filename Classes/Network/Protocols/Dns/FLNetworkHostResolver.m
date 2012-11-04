@@ -43,7 +43,7 @@
 
 #if FL_MRC
 - (void) dealloc {
-    mrc_release_(_networkHost);
+    release_(_networkHost);
     super_dealloc_();
 }
 #endif

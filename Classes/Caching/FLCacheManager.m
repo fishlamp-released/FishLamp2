@@ -9,7 +9,7 @@
 #import "FLCacheManager.h"
 #import "NSNotification+FLExtras.h"
 
-NSString* const FLUserSessionEmptyCacheNotification = @"FLUserSessionEmptyCacheNotification";
+NSString* const FLCacheManagerEmptyCacheNotification = @"FLCacheManagerEmptyCacheNotification";
 
 @implementation FLCacheManager
 
@@ -20,12 +20,12 @@ FLSynthesizeSingleton(FLCacheManager);
 	if(operation)
 	{
 		[[NSNotificationCenter defaultCenter] postNotification:
-			[NSNotification notificationWithName:FLUserSessionEmptyCacheNotification object:[FLCacheManager instance] cancellableOperation:operation]];
+			[NSNotification notificationWithName:FLCacheManagerEmptyCacheNotification object:[FLCacheManager instance] cancellableOperation:operation]];
 	}
 	else
 	{
 		[[NSNotificationCenter defaultCenter] postNotification:
-			[NSNotification notificationWithName:FLUserSessionEmptyCacheNotification object:[FLCacheManager instance]]];
+			[NSNotification notificationWithName:FLCacheManagerEmptyCacheNotification object:[FLCacheManager instance]]];
 	}
 }
 

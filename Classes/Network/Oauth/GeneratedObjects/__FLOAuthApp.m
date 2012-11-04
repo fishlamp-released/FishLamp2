@@ -68,14 +68,14 @@
 
 - (void) dealloc
 {
-    mrc_release_(__appId);
-    mrc_release_(__apiKey);
-    mrc_release_(__consumerKey);
-    mrc_release_(__consumerSecret);
-    mrc_release_(__requestTokenUrl);
-    mrc_release_(__accessTokenUrl);
-    mrc_release_(__authorizeUrl);
-    mrc_release_(__callback);
+    release_(__appId);
+    release_(__apiKey);
+    release_(__consumerKey);
+    release_(__consumerSecret);
+    release_(__requestTokenUrl);
+    release_(__accessTokenUrl);
+    release_(__authorizeUrl);
+    release_(__callback);
     super_dealloc_();
 }
 

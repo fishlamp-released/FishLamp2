@@ -83,13 +83,13 @@
 
 - (void) dealloc
 {
-    mrc_release_(__from);
-    mrc_release_(__updated_time);
-    mrc_release_(__created_time);
-    mrc_release_(__embed_html);
-    mrc_release_(__icon);
-    mrc_release_(__source);
-    mrc_release_(__tags);
+    release_(__from);
+    release_(__updated_time);
+    release_(__created_time);
+    release_(__embed_html);
+    release_(__icon);
+    release_(__source);
+    release_(__tags);
     super_dealloc_();
 }
 

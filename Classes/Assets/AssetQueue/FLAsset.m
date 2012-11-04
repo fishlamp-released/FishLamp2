@@ -20,7 +20,7 @@
 
 - (void) dealloc
 {
-	mrc_release_(_assetUID);
+	release_(_assetUID);
 	super_dealloc_();
 }
 

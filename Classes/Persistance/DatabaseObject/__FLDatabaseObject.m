@@ -44,7 +44,7 @@
 
 - (void) dealloc
 {
-    mrc_release_(__uid);
+    release_(__uid);
     super_dealloc_();
 }
 

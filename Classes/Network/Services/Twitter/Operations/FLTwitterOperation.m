@@ -14,11 +14,11 @@
 
 @implementation FLTwitterOperation
 
-@synthesize twitterSession = _session;
+@synthesize twitterService = _session;
 
 - (void) dealloc
 {
-	mrc_release_(_session);
+	release_(_session);
 	super_dealloc_();
 }
 
@@ -64,10 +64,10 @@
 	[connection.httpRequest setFormUrlEncodedContent:content];
 
 	if(oauthHeader) {
-        [oauthHeader setParameter:kFLOAuthHeaderToken value:_session.oauth_token];
-        NSString* secret = [NSString stringWithFormat:@"%@&%@", [FLTwitterMgr instance].oauthInfo.consumerSecret, _session.oauth_token_secret];
+        [oauthHeader setParameter:kFLOAuthHeaderToken value:self.twitterService.oauthSession.oauth_token];
+        NSString* secret = [NSString stringWithFormat:@"%@&%@", self.twitterService.oauthInfo.consumerSecret, self.twitterService.oauthSession.oauth_token_secret];
         [connection.httpRequest setOAuthAuthorizationHeader:oauthHeader
-                                                consumerKey:[FLTwitterMgr instance].oauthInfo.consumerKey
+                                                consumerKey:self.twitterService.oauthInfo.consumerKey
                                                      secret:secret];
 	}
 }

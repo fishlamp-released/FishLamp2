@@ -40,7 +40,7 @@
 
 - (void) dealloc
 {
-    mrc_release_(__friends);
+    release_(__friends);
     super_dealloc_();
 }
 

@@ -32,9 +32,9 @@
 
 #if FL_MRC
 - (void) dealloc {
-    mrc_release_(_name);
-    mrc_release_(_object);
-    mrc_release_(_userInfo);
+    release_(_name);
+    release_(_object);
+    release_(_userInfo);
     super_dealloc_();
 }
 #endif

@@ -180,27 +180,27 @@
 
 - (void) dealloc
 {
-    mrc_release_(__queueUID);
-    mrc_release_(__assetUID);
-    mrc_release_(__assetURL);
-    mrc_release_(__assetType);
-    mrc_release_(__positionInQueue);
-    mrc_release_(__assetState);
-    mrc_release_(__queuedDate);
-    mrc_release_(__createdDate);
-    mrc_release_(__modifiedDate);
-    mrc_release_(__uploadedAssetURL);
-    mrc_release_(__uploadedAssetId);
-    mrc_release_(__uploadDestinationId);
-    mrc_release_(__uploadDestinationName);
-    mrc_release_(__uploadDestinationURL);
-    mrc_release_(__assetSize);
-    mrc_release_(__assetName);
-    mrc_release_(__assetDescription);
-    mrc_release_(__assetFileName);
-    mrc_release_(__copyright);
-    mrc_release_(__keywords);
-    mrc_release_(__assetObject);
+    release_(__queueUID);
+    release_(__assetUID);
+    release_(__assetURL);
+    release_(__assetType);
+    release_(__positionInQueue);
+    release_(__assetState);
+    release_(__queuedDate);
+    release_(__createdDate);
+    release_(__modifiedDate);
+    release_(__uploadedAssetURL);
+    release_(__uploadedAssetId);
+    release_(__uploadDestinationId);
+    release_(__uploadDestinationName);
+    release_(__uploadDestinationURL);
+    release_(__assetSize);
+    release_(__assetName);
+    release_(__assetDescription);
+    release_(__assetFileName);
+    release_(__copyright);
+    release_(__keywords);
+    release_(__assetObject);
     super_dealloc_();
 }
 

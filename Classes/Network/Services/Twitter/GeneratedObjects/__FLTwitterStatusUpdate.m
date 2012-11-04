@@ -74,12 +74,12 @@
 
 - (void) dealloc
 {
-    mrc_release_(__status);
-    mrc_release_(__in_reply_to_status_id);
-    mrc_release_(__place_id);
-    mrc_release_(__display_coordinates);
-    mrc_release_(__trim_user);
-    mrc_release_(__include_entities);
+    release_(__status);
+    release_(__in_reply_to_status_id);
+    release_(__place_id);
+    release_(__display_coordinates);
+    release_(__trim_user);
+    release_(__include_entities);
     super_dealloc_();
 }
 

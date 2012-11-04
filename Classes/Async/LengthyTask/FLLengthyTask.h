@@ -15,6 +15,7 @@
 
 @interface FLLengthyTask : NSObject<FLCancellable> {
 @private
+    id _services;
     BOOL _wasCancelled;
     BOOL _started;
 	NSString* _name;
@@ -24,10 +25,11 @@
 }
 
 + (id) lengthyTask;
+@property (readwrite, strong) id services;
 
-@property (readwrite, retain, nonatomic) NSString* taskName;
+@property (readwrite, strong) NSString* taskName;
 
-@property (readwrite, assign, nonatomic) id<FLLengthyTaskDelegate> delegate;
+@property (readwrite, strong) id<FLLengthyTaskDelegate> delegate;
 
 - (void) executeTask;
 

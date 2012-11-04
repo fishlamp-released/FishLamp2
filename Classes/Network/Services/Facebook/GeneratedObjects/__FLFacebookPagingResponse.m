@@ -46,8 +46,8 @@
 
 - (void) dealloc
 {
-    mrc_release_(__previous);
-    mrc_release_(__next);
+    release_(__previous);
+    release_(__next);
     super_dealloc_();
 }
 

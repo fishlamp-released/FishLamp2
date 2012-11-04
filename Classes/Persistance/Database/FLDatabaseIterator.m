@@ -84,9 +84,9 @@
 }
 
 - (void) dealloc {
-    mrc_release_(_database);
-    mrc_release_(_table);
-	mrc_release_(_lastRow);
+    release_(_database);
+    release_(_table);
+	release_(_lastRow);
 	FLAssertIsNil_(_statement);
 	super_dealloc_();
 }
@@ -492,7 +492,7 @@
 //		}
 //	}
 //
-//	mrc_release_(objects);
+//	release_(objects);
 //    
 //    // return NO if nothing to bind against. May or may not be an error, depending on context.
 //    return hasBoundData;
@@ -553,7 +553,7 @@
                 }
             }
             @finally {
-                mrc_release_(newObject);
+                release_(newObject);
             }
         }
         didFinish:didFinishBlock];

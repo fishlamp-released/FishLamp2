@@ -22,7 +22,7 @@
 }
 
 - (void) setSqlString:(NSString*) string {
-    mrc_release_(_sql);
+    release_(_sql);
     _sql = [string mutableCopy];
     
     if(FLStringIsEmpty(_sql) || [_sql characterAtIndex:_sql.length - 1] == ' ' ) {
@@ -54,9 +54,9 @@
 
 #if FL_MRC 
 - (void) dealloc {
-    mrc_release_(_delimiter);
-    mrc_release_(_dataToBind);
-    mrc_release_(_sql);
+    release_(_delimiter);
+    release_(_dataToBind);
+    release_(_sql);
     super_dealloc_();
 }
 #endif
@@ -108,7 +108,7 @@
 	NSString *string = [[NSString alloc] initWithFormat:format arguments:va];
 	va_end(va);
 	[self appendString:string];
-    mrc_release_(string);
+    release_(string);
 }
 
 - (void) appendString:(NSString*) string andString:(NSString*) andString {

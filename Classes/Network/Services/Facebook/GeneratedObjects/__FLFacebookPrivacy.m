@@ -67,11 +67,11 @@
 
 - (void) dealloc
 {
-    mrc_release_(__value);
-    mrc_release_(__friends);
-    mrc_release_(__networks);
-    mrc_release_(__deny);
-    mrc_release_(__description);
+    release_(__value);
+    release_(__friends);
+    release_(__networks);
+    release_(__deny);
+    release_(__description);
     super_dealloc_();
 }
 

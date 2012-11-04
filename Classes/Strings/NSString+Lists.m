@@ -85,7 +85,7 @@
 						[[NSString alloc] initWithString:
 							[value substringWithRange:NSMakeRange(i, y - i)]];
 					[newArray addObject:str];
-					mrc_release_(str);
+					release_(str);
 					i = y;
 					break;
 				}
@@ -95,7 +95,7 @@
 						[[NSString alloc] initWithString:
 							[value substringWithRange:NSMakeRange(i, y - i + 1)]];
 					[newArray addObject:str];
-					mrc_release_(str);
+					release_(str);
 					i = y;
 					
 				}

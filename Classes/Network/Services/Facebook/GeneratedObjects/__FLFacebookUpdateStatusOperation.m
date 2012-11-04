@@ -33,8 +33,8 @@
 
 - (void) dealloc
 {
-    mrc_release_(__input);
-    mrc_release_(__output);
+    release_(__input);
+    release_(__output);
     super_dealloc_();
 }
 

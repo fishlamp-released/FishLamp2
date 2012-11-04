@@ -52,7 +52,7 @@ FLSplitKeyPath FLSplitKeyPathFromString(NSString* keyPathString)
 
 - (void) dealloc
 {
-	mrc_release_(_dataSources);
+	release_(_dataSources);
 	super_dealloc_();
 }
 

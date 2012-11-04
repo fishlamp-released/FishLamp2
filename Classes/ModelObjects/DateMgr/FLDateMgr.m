@@ -28,7 +28,7 @@ FLSynthesizeSingleton(FLDateMgr);
 
 - (void) dealloc
 {
-	mrc_release_(_formatter);
+	release_(_formatter);
 	super_dealloc_();
 }
 

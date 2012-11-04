@@ -51,8 +51,8 @@
 
 - (void) dealloc
 {
-    mrc_release_(__sessionId);
-    mrc_release_(__userGuid);
+    release_(__sessionId);
+    release_(__userGuid);
     super_dealloc_();
 }
 

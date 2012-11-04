@@ -67,11 +67,11 @@
 
 - (void) dealloc
 {
-    mrc_release_(__userId);
-    mrc_release_(__appId);
-    mrc_release_(__access_token);
-    mrc_release_(__expiration_date);
-    mrc_release_(__permissions);
+    release_(__userId);
+    release_(__appId);
+    release_(__access_token);
+    release_(__expiration_date);
+    release_(__permissions);
     super_dealloc_();
 }
 

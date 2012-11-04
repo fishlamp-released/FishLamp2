@@ -8,10 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-#import "FLHttpOperation.h"
+#import "FLFacebookOperation.h"
 
-@interface FLFacebookBeginAuthorizationOperation : FLHttpOperation {
+@interface FLFacebookBeginAuthorizationOperation : FLFacebookOperation {
+@private
+    NSArray* _permissions;
 }
-- (id) initWithPermissions:(NSArray*) permissions;
-+ (id) facebookBeginAuthorizationOperation:(NSArray*) permissions;
+
+@property (readwrite, strong) NSArray* permissions;
 @end

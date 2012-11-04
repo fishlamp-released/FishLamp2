@@ -27,7 +27,7 @@ FLSynthesizeSingleton(FLAssetFactory);
 
 #if FL_MRC
 - (void) dealloc {
-    mrc_release_(_factoryBlocks);
+    release_(_factoryBlocks);
     super_dealloc_();
 }
 #endif

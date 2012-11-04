@@ -11,7 +11,7 @@
 
 #import "NSNotification+FLExtras.h"
 
-extern NSString* const FLUserSessionEmptyCacheNotification;
+extern NSString* const FLCacheManagerEmptyCacheNotification;
 
 @interface FLCacheManager : NSObject {
 

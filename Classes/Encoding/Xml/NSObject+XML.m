@@ -77,7 +77,7 @@
 		
 			state.object = object;
             
-			mrc_release_(object);
+			release_(object);
 		}
 		
 		return YES;
@@ -187,7 +187,7 @@ withDataEncoder:(id<FLDataEncoder>) dataEncoder
 // NOTE: removing it breaks the parsing, so whatever, but it still seems weird.
                     state.object = obj;
 
-					mrc_release_(obj);
+					release_(obj);
 				}
 				return YES;
 			}
@@ -252,7 +252,7 @@ withDataEncoder:(id<FLDataEncoder>) dataEncoder
             [self addElement:element];
 		}
 		@finally {
-			mrc_release_(string);
+			release_(string);
 		}
 	}
 }

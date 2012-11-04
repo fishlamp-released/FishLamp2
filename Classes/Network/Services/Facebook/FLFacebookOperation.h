@@ -9,20 +9,23 @@
 #import <Foundation/Foundation.h>
 
 #import "FLHttpOperation.h"
-#import "FLFacebookMgr.h"
 
-@class FLFacebookOperation;
+@class FLFacebookMgr;
 
 @interface FLFacebookOperation : FLHttpOperation {
 @private
-	NSString* _userId;
 	NSString* _object;
+    FLFacebookMgr* _facebookService;
 }
 
-+ (id) facebookOperation;
+@property (readonly, strong) FLFacebookMgr* facebookService;
 
-@property (readwrite, retain, nonatomic) NSString* userId;
-@property (readwrite, retain, nonatomic) NSString* object;
+- (id) initWithFacebookService:(FLFacebookMgr*) facebookService;
+
++ (id) facebookOperation:(FLFacebookMgr*) facebookService;
+
+@property (readwrite, strong) NSString* userId;
+@property (readwrite, strong) NSString* object;
 
 // override points
 - (void) addParametersToURLString:(NSMutableString*) url;

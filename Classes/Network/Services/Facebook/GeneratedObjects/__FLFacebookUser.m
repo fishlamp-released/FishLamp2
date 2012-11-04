@@ -202,30 +202,30 @@
 
 - (void) dealloc
 {
-    mrc_release_(__first_name);
-    mrc_release_(__last_name);
-    mrc_release_(__gender);
-    mrc_release_(__locale);
-    mrc_release_(__link);
-    mrc_release_(__username);
-    mrc_release_(__third_party_id);
-    mrc_release_(__timezone);
-    mrc_release_(__updated_time);
-    mrc_release_(__verified);
-    mrc_release_(__about);
-    mrc_release_(__bio);
-    mrc_release_(__birthday);
-    mrc_release_(__education);
-    mrc_release_(__hometown);
-    mrc_release_(__interested_in);
-    mrc_release_(__location);
-    mrc_release_(__political);
-    mrc_release_(__quotes);
-    mrc_release_(__relationship_status);
-    mrc_release_(__religion);
-    mrc_release_(__significant_other);
-    mrc_release_(__website);
-    mrc_release_(__work);
+    release_(__first_name);
+    release_(__last_name);
+    release_(__gender);
+    release_(__locale);
+    release_(__link);
+    release_(__username);
+    release_(__third_party_id);
+    release_(__timezone);
+    release_(__updated_time);
+    release_(__verified);
+    release_(__about);
+    release_(__bio);
+    release_(__birthday);
+    release_(__education);
+    release_(__hometown);
+    release_(__interested_in);
+    release_(__location);
+    release_(__political);
+    release_(__quotes);
+    release_(__relationship_status);
+    release_(__religion);
+    release_(__significant_other);
+    release_(__website);
+    release_(__work);
     super_dealloc_();
 }
 

@@ -122,7 +122,7 @@
 
 					FLAssertIsNotNil_(obj);
 					[self addObject:obj];
-					mrc_release_(obj);
+					release_(obj);
 					
 					if(outObject)
 					{

@@ -150,9 +150,9 @@ FLTestCaseFlagPair s_flagPairs[] = {
  
     release_(_disabledReason);
  
-//    mrc_release_(_testCompletionBlock);
-    mrc_release_(_testCaseName);
-    mrc_release_(_testCaseBlock);
+//    release_(_testCompletionBlock);
+    release_(_testCaseName);
+    release_(_testCaseBlock);
     super_dealloc_();
 }
 #endif

@@ -14,33 +14,45 @@
 #import "FLObjectDescriber.h"
 #import "FLJsonParser.h"
 #import "FLObjectBuilder.h"
+#import "FLFacebookMgr.h"
+
+@interface FLFacebookOperation ()
+@property (readwrite, strong) FLFacebookMgr* facebookService;
+@end
 
 @implementation FLFacebookOperation
 
 @synthesize userId = _userId;
 @synthesize object = _object;
+@synthesize facebookService = _facebookService;
 
-+ (id) facebookOperation
-{
-	return autorelease_([[[self class] alloc] init]);
-}	
+- (id) initWithFacebookService:(FLFacebookMgr*) facebookService {
+    self = [super initWithURL:nil];
+    if(self) {
+        self.facebookService = facebookService;
 
-- (void) dealloc
-{
-	mrc_release_(_userId);
-	mrc_release_(_object);
-	super_dealloc_();
-}
+        self.userId = self.facebookService.session.userId;
 
-- (void) didInit
-{
-	[super didInit];
-	self.userId = [FLFacebookMgr instance].session.userId;
-
-    FLAssertFailed_v(@"facebook setup properly?");
+    FLAssertFailed_v(@"facebookService setup properly?");
 
 //	self.serverContext = [FLFacebookMgr instance];
 //	self.responseHandler = nil; // [FLJsonNetworkOperationProtocolHandler instance];
+    
+    
+    }
+    return self;
+
+}
+
++ (id) facebookOperation:(FLFacebookMgr*) facebookService {
+	return autorelease_([[[self class] alloc] initWithFacebookService:facebookService]);
+}	
+
+- (void) dealloc {
+    release_(_facebookService);
+	release_(_userId);
+	release_(_object);
+	super_dealloc_();
 }
 
 - (BOOL) willAddParametersToURL {
@@ -66,6 +78,17 @@
 
 
 - (void) runSelf {
+	NSMutableString* url = [FLFacebookMgr buildURL:self.facebookService.encodedToken user:self.userId object:self.object params:nil];
+	
+	if([self willAddParametersToURL]) {
+		[self addParametersToURLString:url];
+	}
+	
+	NSURL* URL = [NSURL URLWithString:url];
+	FLAssertIsNotNil_v(URL, nil);
+    
+    self.URL = URL;
+
     [super runSelf];
     
     if(self.didSucceed) {
@@ -78,7 +101,7 @@
 
         if([response objectForKey:@"error"])
         {
-            FLDebugLog(@"Got facebook error: %@", [response description]);
+            FLDebugLog(@"Got facebookService error: %@", [response description]);
         
             FLThrowErrorCode_v(@"Facebook", 1,
                 @"%@ = \"%@\"",
@@ -89,25 +112,10 @@
         {
             FLObjectBuilder* builder = [[FLObjectBuilder alloc] init];
             [builder buildObjectsFromDictionary:response withRootObject:self.operationOutput];
-            mrc_release_(builder);
+            release_(builder);
         }
     }
 }
-
-- (NSURL*) createURL {
-	NSMutableString* url = [FLFacebookMgr buildURL:[FLFacebookMgr instance].encodedToken user:self.userId object:self.object params:nil];
-	
-	
-	if([self willAddParametersToURL]) {
-		[self addParametersToURLString:url];
-	}
-	
-	NSURL* URL = [NSURL URLWithString:url];
-	FLAssertIsNotNil_v(URL, nil);
-	
-	return URL;
-}
-
 
 @end
 

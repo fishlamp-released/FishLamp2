@@ -10,20 +10,42 @@
 #import <objc/runtime.h>
 
 // prettier and shorter versions of ugly association policy
-enum {
-    assign_nonatomic    = OBJC_ASSOCIATION_ASSIGN,
-    retain_nonatomic    = OBJC_ASSOCIATION_RETAIN_NONATOMIC,
-    retain_atomic       = OBJC_ASSOCIATION_RETAIN,
-    copy_nonatomic      = OBJC_ASSOCIATION_COPY_NONATOMIC,
-    copy_atomic         = OBJC_ASSOCIATION_COPY
-};
+#define    assign_nonatomic    OBJC_ASSOCIATION_ASSIGN
+#define    retain_nonatomic    OBJC_ASSOCIATION_RETAIN_NONATOMIC
+#define    retain_atomic       OBJC_ASSOCIATION_RETAIN
+#define    copy_nonatomic      OBJC_ASSOCIATION_COPY_NONATOMIC
+#define    copy_atomic         OBJC_ASSOCIATION_COPY
 
-#define FLSynthesizeAssociatedProperty(__ASSOCIATION_POLICY__, __GETTER_NAME__, __SETTER_NAME__, __OBJECT_TYPE__) \
-    static void * const s_##__GETTER_NAME__##PropertyKey = (void*)&s_##__GETTER_NAME__##PropertyKey; \
-    - (void) __SETTER_NAME__:(__OBJECT_TYPE__) obj { \
-        objc_setAssociatedObject(self, s_##__GETTER_NAME__##PropertyKey, obj, __ASSOCIATION_POLICY__); \
+#define FLSynthesizeAssociatedObjectKey_(__NAME__) \
+            static void * const __NAME__ = (void*)&__NAME__ 
+
+#define __KEYNAME__(__NAME__) s_##__NAME__##Key
+
+#define FLSynthesizeAssociatedProperty_(__ASSOCIATION_POLICY__, __GETTER__, __SETTER__, __TYPE__) \
+    FLSynthesizeAssociatedObjectKey_(__KEYNAME__(__GETTER__)); \
+    \
+    - (void) __SETTER__:(__TYPE__) obj { \
+        objc_setAssociatedObject(self, __KEYNAME__(__GETTER__), obj, __ASSOCIATION_POLICY__); \
     } \
-    - (__OBJECT_TYPE__) __GETTER_NAME__ { \
-        return (__OBJECT_TYPE__) objc_getAssociatedObject(self, s_##__GETTER_NAME__##PropertyKey); \
+    - (__TYPE__) __GETTER__ { \
+        return (__TYPE__) objc_getAssociatedObject(self, __KEYNAME__(__GETTER__)); \
     }
 
+#define FLSynthesizeAssociatedPropertyWithLazyGetter_(__ASSOCIATION_POLICY__, __GETTER__, __SETTER__, __TYPE__, __CREATER__) \
+    FLSynthesizeAssociatedObjectKey_(__KEYNAME__(__GETTER__)); \
+    - (void) __SETTER__:(__TYPE__) obj { \
+        objc_setAssociatedObject(self, __KEYNAME__(__GETTER__), obj, __ASSOCIATION_POLICY__); \
+    } \
+    - (__TYPE__) __GETTER__ { \
+        __TYPE__ obj = (__TYPE__) objc_getAssociatedObject(self, __KEYNAME__(__GETTER__)); \
+        if(!obj) { \
+            @synchronized(self) { \
+                obj = (__TYPE__) objc_getAssociatedObject(self, __KEYNAME__(__GETTER__)); \
+                if(!obj) { \
+                    obj = __CREATER__; \
+                    objc_setAssociatedObject(self, __KEYNAME__(__GETTER__), obj, __ASSOCIATION_POLICY__); \
+                } \
+            } \
+        } \
+        return obj; \
+    }

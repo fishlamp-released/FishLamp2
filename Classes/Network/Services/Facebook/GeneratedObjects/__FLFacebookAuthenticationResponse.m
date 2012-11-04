@@ -47,8 +47,8 @@
 
 - (void) dealloc
 {
-    mrc_release_(__session);
-    mrc_release_(__redirectURL);
+    release_(__session);
+    release_(__redirectURL);
     super_dealloc_();
 }
 

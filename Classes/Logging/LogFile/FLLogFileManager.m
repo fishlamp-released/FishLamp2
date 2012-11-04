@@ -105,9 +105,9 @@ FLSynthesizeSingleton(FLLogFileManager);
 - (void) dealloc {
     [self _close];
 
-    mrc_release_(_appLogsFolder);
-    mrc_release_(_appName);
-    mrc_release_(_stringFormatter);
+    release_(_appLogsFolder);
+    release_(_appName);
+    release_(_stringFormatter);
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     super_dealloc_();

@@ -57,9 +57,9 @@
 - (void) dealloc  {
     [_redirectedFrom release];
     [_requestURL release];
-    mrc_release_(_responseStatusLine);
-    mrc_release_(_responseHeaders);
-    mrc_release_(_data);
+    release_(_responseStatusLine);
+    release_(_responseHeaders);
+    release_(_data);
     super_dealloc_();
 }
 #endif
