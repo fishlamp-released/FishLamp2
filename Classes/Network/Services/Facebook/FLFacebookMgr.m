@@ -19,40 +19,12 @@ static NSString* kRedirectURL = @"http://www.facebook.com/connect/login_success.
 @synthesize encodedToken = _encodedToken;
 @synthesize permissions = _permissions;
 
-- (id) init
-{
-	if((self = [super init]))
-	{
-	}
-	
-	return self;
-}
-
-- (void) dealloc
-{
-    release_(_permissions);
-	release_(_encodedToken);
-	release_(_appId);
-	release_(_session);
-	super_dealloc_();
-}
-
-- (void) openService {
-
-}
-
-- (void) closeService {
-
-}
-
-- (BOOL) isServiceOpen {
-
-    return NO;
-}
-
-- (BOOL) isServiceAuthenticated {
-    return NO;
-}
+dealloc_(
+    [_permissions release];
+	[_encodedToken release];
+	[_appId release];
+	[_session release];
+)
 
 // from facebook demo app
 + (NSString *)serializeURL:(NSString *)baseUrl
@@ -148,7 +120,7 @@ static NSString* kRedirectURL = @"http://www.facebook.com/connect/login_success.
 }
 
 - (FLObjectDatabase*) database {
-    return self.userDataService.documentsDatabase;
+    return [self.parentService storageService].documentsDatabase;
 }
 
 - (void) logout
@@ -386,11 +358,5 @@ static NSString* kRedirectURL = @"http://www.facebook.com/connect/login_success.
 	return url;
 }
 
-@end
-
-@implementation FLUserSession (Facebook) 
-- (FLFacebookMgr*) facebookService {
-    return (FLFacebookMgr*) [self serviceByID:[FLFacebookMgr serviceID]];
-}
 @end
 

@@ -27,7 +27,7 @@ typedef void (^FLTestBlock)();
     NSString* _testCaseName;
     FLTestBlock _testCaseBlock;
     SEL _testCaseSelector;
-    __unsafe_unretained id _target;
+    __unsafe_unretained id _testCaseTarget;
     NSString* _disabledReason;
 }
 

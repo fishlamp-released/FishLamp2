@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "FishLampCore.h"
 
-
 @interface NSString (URL)
 
 + (NSString*) URLString:(NSString*) url params:(NSString*) firstParameter, ...  NS_REQUIRES_NIL_TERMINATION;

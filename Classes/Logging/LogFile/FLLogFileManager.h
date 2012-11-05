@@ -11,10 +11,11 @@
 
 #import "FLFolder.h"
 #import "FLLogFile.h"
+#import "FLService.h"
 
 typedef NSString* (^FLLogFileStringFormatter)(NSString* string);
 
-@interface FLLogFileManager : NSObject {
+@interface FLLogFileManager : FLService {
 @private
     FLFolder* _appLogsFolder;
     FLLogFile* _logFile;

@@ -20,19 +20,20 @@
 @end
 
 @implementation FLOperation
-@synthesize operationID = _operationId;
-@synthesize tag = _tag;
-@synthesize predicate = _predicate;
-@synthesize runBlock = _runBlock;
-@synthesize disabled = _disabled;
-@synthesize error = _error;
-@synthesize wasStarted = _didStart;
-@synthesize isFinished = _didFinish;
-@synthesize didFail = _didFail;
-@synthesize wasCancelled = _wasCancelled;
-@synthesize input = _input;
-@synthesize output = _output;
-@synthesize services = _services;
+synthesize_(operationID);
+synthesize_(tag);
+synthesize_(predicate);
+synthesize_(runBlock);
+synthesize_(disabled);
+synthesize_(error);
+synthesize_(wasStarted);
+synthesize_(isFinished);
+synthesize_(didFail);
+synthesize_(wasCancelled);
+synthesize_(services);
+
+@synthesize input = _operationInput;
+@synthesize output = _operationOutput;
 
 - (id) initWithRunBlock:(FLRunOperationBlock) callback {
     if((self = [self init])) {
@@ -44,6 +45,15 @@
 + (id) operation:(FLRunOperationBlock) callback {
     return autorelease_([[[self class] alloc] initWithRunBlock:callback]);
 }
+
+dealloc_ (
+    [_error release];
+    [_operationInput release];;
+    [_operationOutput release];
+    [_runBlock release];
+    [_operationID release];
+	[_predicate release];
+)
 
 //- (FLOperationType) operationType {
 //    return FLOperationTypeNormal;
@@ -115,18 +125,6 @@
 }
 
 
-#if FL_MRC
-- (void) dealloc {
-    [_context release];
-    [_error release];
-    [_operationInput release];;
-    [_operationOutput release];
-    release_(_runBlock);
-    release_(_operationId);
-	release_(_predicate);
-    [super dealloc];
-}
-#endif
 
 - (void) cancelSelf {
 }
@@ -353,7 +351,7 @@
 //
 //@implementation FLOperationObserver
 //
-//@synthesize block = _block;
+//synthesize_(block = _block;
 //
 //- (id) initWithBlock:(FLOperationObserverBlock) block {
 //    self = [super init];

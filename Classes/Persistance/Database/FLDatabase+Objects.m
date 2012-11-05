@@ -205,6 +205,8 @@
         
         [statement execute];
     }];
+    
+    FLPerformSelector1(inputObject, @selector(wasRemovedFromDatabase:), self);
 }
 
 - (void) saveObject:(id) object {
@@ -237,10 +239,11 @@
     [statement appendString:SQL_INTO andString:table.tableName];
     [statement appendInsertClauseForObject:object];
     [statement execute];
+    
+    FLPerformSelector1(object, @selector(wasSavedToDatabase:), self);
 }
 
 @end
-
 
 @implementation NSObject (FLDatabase)
 - (void) saveInDatabase:(FLDatabase*) database {

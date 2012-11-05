@@ -10,7 +10,6 @@
 
 #import "FacebookEnums.h"
 #import "FLService.h"
-#import "FLUserSession.h"
 
 #define FLFacebookErrorKey @"fb_error"
 #define FLFacebookErrorDomain @"FLFacebookErrorDomain"
@@ -82,8 +81,7 @@ typedef enum {
 
 @end
 
-@interface FLUserSession (Facebook)
+@protocol FLFacebookMgrService <NSObject>
 @property (readonly, strong) FLFacebookMgr* facebookService;
 @end
-
 

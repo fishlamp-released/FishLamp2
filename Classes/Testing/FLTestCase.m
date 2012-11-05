@@ -20,7 +20,6 @@
 @property (readwrite, assign, nonatomic) SEL testCaseSelector;
 @property (readwrite, copy, nonatomic) FLTestBlock testCaseBlock;
 @property (readwrite, assign, nonatomic) id testCaseTarget;
-@property (readonly, assign, nonatomic) int sortOrder;
 @property (readwrite, strong, nonatomic) NSString* disabledReason;
 @end
 
@@ -45,14 +44,12 @@ FLTestCaseFlagPair s_flagPairs[] = {
 };
 
 @implementation FLTestCase
-
-@synthesize testCaseName = _testCaseName;
-@synthesize testCaseTarget = _target;
-@synthesize testCaseSelector = _testCaseSelector;
-@synthesize testCaseBlock = _testCaseBlock;
-@synthesize sortOrder = _sortOrder;
-@synthesize disabledReason = _disabledReason;
-@synthesize priority = _priority;
+synthesize_(testCaseName);
+synthesize_(testCaseTarget);
+synthesize_(testCaseSelector);
+synthesize_(testCaseBlock);
+synthesize_(disabledReason);
+synthesize_(priority);
 
 - (void) setDisabledWithReason:(NSString*) reason {
     self.disabled = YES;
@@ -178,7 +175,7 @@ FLTestCaseFlagPair s_flagPairs[] = {
 
 - (void) runSelf {
     @try {
-        if(!FLPerformSelector(_target, _testCaseSelector)) {
+        if(!FLPerformSelector(_testCaseTarget, _testCaseSelector)) {
             if(_testCaseBlock) {
                 _testCaseBlock();
             }

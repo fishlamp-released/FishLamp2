@@ -11,7 +11,6 @@
 #import "FLNetworkConnectionObserver.h"
 
 @interface FLNetworkOperation ()
-- (void) createNetworkConnectionIfNeeded;
 @property (readwrite, strong) FLNetworkConnection* connection;
 @end
 
@@ -76,15 +75,12 @@
     return nil;
 }
 
-- (void) createNetworkConnectionIfNeeded {
+- (void) prepareSelf {
+    [super prepareSelf];
 	if(!self.networkConnection) {
 		self.networkConnection = [self createNetworkConnection];
 	}
-}
-
-- (void) prepareSelf {
-    [super prepareSelf];
-    [self createNetworkConnectionIfNeeded];
+    FLConfirmNotNil_v(self.networkConnection, @"the connection is nil");
 }
 
 - (void) handleAsyncResultFromConnection:(id) output {

@@ -11,8 +11,8 @@
 
 @interface FLRunUnitTestsOperation : FLOperation {
 @private
-    NSMutableArray* _workers;
-    NSMutableArray* _results;
+//    NSMutableArray* _workers;
+//    NSMutableArray* _results;
 }
 
 + (id) unitTestRunner;

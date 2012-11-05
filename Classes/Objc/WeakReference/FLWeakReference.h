@@ -20,6 +20,7 @@
 #import "FishLampCore.h"
 #import "FLSimpleNotifier.h"
 #import "FLDeallocNotifier.h"
+#import "FLWeaklyReferenced.h"
 
 // IMPORTANT NOTE for NON-ARC builds:
 //
@@ -69,13 +70,6 @@
 //
 // </LongWindedReason>
 
-
-@protocol FLWeaklyReferenced <NSObject>
-- (BOOL) willSendDeallocNotification;
-// you MUST call FLSendDeallocNotification() in dealloc for NON-ARC builds for weakly reference objects.
-@end
-
-#define FLSendDeallocNotification() [self sendDeallocNotification];
 
 #if FL_MRC
 typedef id<FLWeaklyReferenced> FLWeaklyReferencedObject;

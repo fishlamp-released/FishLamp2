@@ -1,12 +1,12 @@
 //
-//	FLUserSession.m
+//	FLUserLoginService.m
 //	FishLamp
 //
 //	Created by Mike Fullerton on 12/13/09.
 //	Copyright 2009 GreenTongue Software. All rights reserved.
 //
 
-#import "FLUserSession.h"
+#import "FLUserLoginService.h"
 #import "FLLowMemoryHandler.h"
 #import "FLApplicationDataVersion.h"
 #import "FLApplicationDataModel.h"
@@ -16,15 +16,14 @@
 #import "FLUserDataStorageService.h"
 
 
-@interface FLUserSession ()
-@property (readwrite, strong) FLUserLogin* userLogin; 
-@property (readwrite, strong) FLBackgroundTaskMgr* backgroundTasks;
-@property (readwrite, strong) FLUserDataStorageService* dataService;
+@interface FLUserLoginService ()
+@property (readwrite, assign, getter=isAuthenticated) BOOL authenticated;
+@property (readwrite, strong) FLUserLogin* _userLogin;
 @end
 
-@implementation FLUserSession
+@implementation FLUserLoginService
 
-@synthesize userLogin = _login;
+@synthesize _userLogin = _userLogin;
 
 - (id) initWithUserLogin:(FLUserLogin*) userLogin {
     self = [super init];
@@ -39,22 +38,16 @@
 	return [self initWithUserLogin:nil];
 }
 
-- (void) dealloc {
-#if FL_MRC
-    [_userLogin release]'
-    [super dealloc];
-#endif
-}
+dealloc_(
+    [_userLogin release];
+)
 
-- (BOOL) isSessionOpen {
-	return self.dataService != nil;
-}	 
-
-- (void) closeSession {
-	
-    [self postObservation:@selector(userSessionWillClose:)];
-    [super closeSession];
-    [self postObservation:@selector(userSessionDidClose:)];
+- (void) closeService {
+	[super closeService];
+    
+//    [self postObservation:@selector(userSessionWillClose:)];
+//    [super closeSession];
+//    [self postObservation:@selector(userSessionDidClose:)];
 
 //    id<FLProgressViewController> progress = nil;
 //    
@@ -95,13 +88,22 @@
 //    }
 }
 
-- (void) openSession {
-    FLAssert_v(!self.isSessionOpen, @"session already open");
-    FLAssert_v(FLStringIsNotEmpty(self.userLogin.userName), @"invalid userLogin");
+- (void) openService {
+//    FLAssert_v(!self.isSessionOpen, @"session already open");
+//    FLAssert_v(FLStringIsNotEmpty(self.userLogin.userName), @"invalid userLogin");
 
-    [self postObservation:@selector(userSessionWillOpen:)];
-    [super openSession];
-    [self postObservation:@selector(userSessionDidOpen:)];
+//    [self postObservation:@selector(userSessionWillOpen:)];
+    [super openService];
+//    [self postObservation:@selector(userSessionDidOpen:)];
+}
+
+- (FLUserLogin*) userLogin {
+    return self._userLogin;
+}
+
+- (void) setUserLogin:(FLUserLogin*) userLogin {
+    self._userLogin = userLogin;
+    [[FLApplicationDataModel instance] saveUserLogin:self.userLogin];
 }
 
 - (BOOL) isAuthenticated {

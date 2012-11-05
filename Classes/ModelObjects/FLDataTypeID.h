@@ -8,8 +8,12 @@
 
 #import "FishLampCore.h"
 
-typedef enum 
-{
+
+typedef enum  {
+// TODO: convert to Objc runtime types
+// see <objc/runtime.h>
+// FOR EXAMPLE: _C_ID for object.
+
 	FLDataTypeUnknown,
 
 	FLDataTypeChar = kCFNumberCharType,

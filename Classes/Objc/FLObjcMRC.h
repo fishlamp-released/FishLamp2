@@ -8,16 +8,17 @@
 
 #if !__has_feature(objc_arc)
 #define FL_MRC 1
+#import <objc/runtime.h>
 
 // object memory management
 #define retain_(__OBJ__)                    [__OBJ__ retain]
 #define mrc_retain_(__OBJ__)                [__OBJ__ retain]
 #define autorelease_(__OBJ__)               [__OBJ__ autorelease]
 #define mrc_autorelease_(__OBJ__)           [__OBJ__ autorelease]
-#define release_(__OBJ__)               [__OBJ__ release]
-#define mrc_super_dealloc_()                [super dealloc]
+#define release_(__OBJ__)                   [__OBJ__ release]
+#define super_dealloc_()                    [super dealloc]
 #define bridge_(__TO__, __FROM__)           ((__TO__) __FROM__)
-#define bridge_transfer_(__TO__, __FROM__)  [((__TO__) __FROM__) retain]
+#define bridge_transfer_(__TO__, __FROM__)  ((__TO__) __FROM__)
 #define bridge_retain_(__TO__, __FROM__)    ((__TO__) [__FROM__ retain])
 
 // mrc utils
@@ -60,6 +61,14 @@ void _FLReleaseBlockWithNil_(dispatch_block_t* block) {
 #define FLCopyObject_(a,b)              _FLCopyObject((id*) &a, (id) b)
 #define FLCopyBlock(__BLOCK__)          autorelease_([__BLOCK__ copy])
 
+#define release_members_(...) \
+        [self performSelector:sel_getUid("sendDeallocNotification")]; \
+        do { __VA_ARGS__ } while(0); \
+        [super dealloc]; 
 
+#define dealloc_(...) \
+    - (void) dealloc { \
+        release_members_(__VA_ARGS__) \
+    }
 
 #endif

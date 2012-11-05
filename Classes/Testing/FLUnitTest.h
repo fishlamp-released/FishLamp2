@@ -29,9 +29,6 @@
 @private
     NSMutableArray* _testCases;
     FLTestResultCollection* _results;
-    
-    SEL _firstTest;
-    SEL _lastTest;
 }
 
 @property (readonly, strong) FLTestResultCollection* results;

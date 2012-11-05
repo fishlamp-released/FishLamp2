@@ -45,41 +45,31 @@ FLSynthesizeSingleton(FLLogFileManager);
 
 // TODO: decouple this 
    
-- (void) _subscribeToEvents {
-//        [[NSNotificationCenter defaultCenter] addObserver:self
-//                selector:@selector(_sessionDidOpen:) 
-//                name: FLUserSessionOpenedNotification 
-//                object: [FLUserSession instance]];
-//
-//        [[NSNotificationCenter defaultCenter] addObserver:self
-//                selector:@selector(_sessionDidClose:) 
-//                name: FLUserSessionClosedNotification 
-//                object: [FLUserSession instance]];
-}   
-
 - (void) _setUserName {
-//    self.userName = [FLUserSession instance].userLogin.userName;
+//    self.userName = [FLUserLoginService instance].userLogin.userName;
 }
 
 - (FLFolder*) _userLogFolder {
-// return [FLUserSession instance].logFolder;
+// return [FLUserLoginService instance].logFolder;
 
     return nil;
 }
    
-- (void) _sessionDidOpen:(id) sender {
+- (void) openService {
     [self _close];
     [self _setUserName];
+    [super openService];
 }
 
-- (void) _sessionDidClose:(id) sender {
+- (void) closeService {
     [self _close];
+    [self closeService];
 }
 
 - (id) init {
     self = [super init];
     if(self) {
-        [self _subscribeToEvents];
+//        [self _subscribeToEvents];
     
         self.appName = [NSFileManager appName];
         

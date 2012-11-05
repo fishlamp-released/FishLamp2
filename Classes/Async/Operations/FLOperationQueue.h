@@ -89,8 +89,6 @@ typedef id (^FLCreateOperationBlock)();
 @end
 
 @interface FLOperationQueueRunner : FLOperation {
-@private
-    FLOperationQueue* _operations;
 }
 @property (readonly, strong) FLOperationQueue* operations;
 - (id) initWithOperationQueue:(FLOperationQueue*) queue;

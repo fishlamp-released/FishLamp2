@@ -17,19 +17,19 @@
 - (id) init {
     self = [super init];
     if(self) {
-        _queue = [[NSMutableArray alloc] init];
+        _workers = [[NSMutableArray alloc] init];
     }
     return self;
 }
 
 - (void) addWorker:(id<FLWorker>) worker {
     [self willAddWorker:worker];
-    [_queue addObject:worker];
+    [_workers addObject:worker];
 }
 
 #if FL_MRC
 - (void) dealloc {
-    [_queue release];
+    [_workers release];
     [super dealloc];
 }
 #endif
@@ -55,7 +55,7 @@
 }
 
 - (void) startWorking:(id<FLFinisher>) finisher {
-    [self runNextWorker:[_queue forwardIterator] withFinisher:finisher];
+    [self runNextWorker:[_workers forwardIterator] withFinisher:finisher];
 }
 
 //- (void) removeWorker:(id<FLWorker>) worker {

@@ -21,7 +21,6 @@
 	return autorelease_([[[self class] alloc] init]);
 }
 
-@synthesize services = _services;
 @synthesize taskName = _name;
 @synthesize stepCount = _currentStep;
 @synthesize totalStepCount = _totalStepCount;
@@ -105,7 +104,6 @@
 
 #if FL_MRC
 - (void) dealloc {
-    [_services release];
 	release_(_name);
 	super_dealloc_();
 }

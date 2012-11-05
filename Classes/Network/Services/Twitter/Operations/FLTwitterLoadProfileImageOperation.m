@@ -14,7 +14,6 @@
 
 #import "FLTwitterMgr.h"
 #import "FLOperationCacheHandler.h"
-#import "FLUserSession.h"
 #import "FLUserDataStorageService.h"
 
 @implementation FLTwitterLoadProfileImageOperation
@@ -34,7 +33,7 @@
         self.imageSize = FLTwitterImageSizeNormal;
 
         [self addObserver:
-            [FLOperationCacheHandler operationCacheHandler:self.twitterService.userDataService.cacheDatabase
+            [FLOperationCacheHandler operationCacheHandler:[self.services storageService].cacheDatabase
                                               behavior:FLHttpOperationCacheBehaviorAll]];
     }
     

@@ -22,7 +22,6 @@
 - (void) removeNotifier:(FLSimpleNotifier*) notifier;
 
 - (void) sendDeallocNotification;
-
 @end
 
 

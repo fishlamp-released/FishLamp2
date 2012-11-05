@@ -12,24 +12,51 @@
 #import "NSString+GUID.h"
 #import "FLDatabase.h"
 
-@interface FLAssetQueueLoadLock (Internal)
-- (id) initWithAssetQueue:(FLAssetQueue*) queue;
-- (void) clearQueueReference;
-@end
 
 @interface FLAssetQueue ()
-- (void) unload;
+@property (readwrite, strong) FLAssetQueueState* state;
+//@property (readwrite, strong) NSMutableArray* locks;
+@property (readwrite, strong) NSArray* assets;
+@property (readwrite, assign) NSInteger lockCount;
+- (void) lock;
+- (void) unlock;
+@end
 
-@property (readwrite, retain, nonatomic) FLObjectDatabase* database;
-@property (readwrite, strong, nonatomic) FLAssetQueueState* state;
+@interface FLAssetQueueLock : NSObject {
+@private
+    __unsafe_unretained FLAssetQueue* _assetQueue;
+}
+- (id) initWithAssetQueue:(FLAssetQueue*) queue;
++ (id) assetQueueLock:(FLAssetQueue*) queue;
+@end
+
+@implementation FLAssetQueueLock
+
+- (id) initWithAssetQueue:(FLAssetQueue*) queue  {
+    if((self = [super init])) {
+        _assetQueue = queue;
+        [_assetQueue lock];
+    }
+    return self;
+}
+
++ (id) assetQueueLock:(FLAssetQueue*) queue {
+    return autorelease_([[[self class] alloc] initWithAssetQueue:queue]);
+}
+
+- (void) dealloc {
+    [_assetQueue unlock];
+    super_dealloc_();
+}
 @end
 
 @implementation FLAssetQueue
 
-@synthesize queueUID = _queueUID;
-@synthesize database = _database;
-@synthesize assets = _queue;
-@synthesize state = _state;
+synthesize_(lockCount);
+synthesize_(queueUID);
+synthesize_(assets);
+synthesize_(state);
+//synthesize_(locks);
 
 FLAssertDefaultInitNotCalled_v(nil);
 
@@ -44,50 +71,78 @@ FLAssertDefaultInitNotCalled_v(nil);
 	return self;
 }
 
-- (void) dealloc
-{
-    [self unload];
-	release_(_state);
-	release_(_queueUID);
-	release_(_queue);
-	release_(_database);
-    release_(_locks);
-	super_dealloc_();
+- (void) unload {
 }
 
-- (void) setDatabase:(FLObjectDatabase*) database
-{
-    [self unload];
-	FLReleaseWithNil_(_state);
+- (void) dealloc {
     
-	FLRetainObject_(_database, database);
-	if(_database)
-	{
-		FLAssetQueueState* input = [FLAssetQueueState assetQueueState];
-		input.queueUID = _queueUID;
-		self.state = [_database loadObject:input];
-		if(!_state) {
-			_state = retain_(input);
-			_state.firstQueuePositionValue = 0;
-			_state.lastQueuePositionValue = 1;
-			_state.sortOrder = FLAssetQueueSortOrderOldestFirst;
-		}
-	}
+    release_members_(
+        [_state release];
+        [_queueUID release];
+        [_assets release];
+//        [_locks release];
+    )
+}
+
+- (void) unlock {
+    --self.lockCount;
+    if(self.lockCount == 0) {
+        [self unload];
+    }
+}
+
+- (void) lock {
+    ++self.lockCount;
+}
+
+- (FLObjectDatabase*) database {
+    return nil;
 }
 
 - (void) openService {
-    [self.setDatabase:[self.session storageService].documentsDatabase]]; 
+    FLConfirmNotNil_(self.database);
+    
+    self.state = nil;
+    
+    FLAssetQueueState* input = [FLAssetQueueState assetQueueState];
+    input.queueUID = _queueUID;
+    
+    FLAssetQueueState* state = [self.database loadObject:input];
+    if(!state) {
+        state = input;
+        state.firstQueuePositionValue = 0;
+        state.lastQueuePositionValue = 1;
+        state.sortOrder = FLAssetQueueSortOrderOldestFirst;
+    }
+    
+    self.state = state;
+
+    [super openService];
 }
 
 - (void) closeService {
+    if(self.assets)
+    {
+        @synchronized(self) {
+            self.assets = nil;
+            
+//            for(NSValue* value in _locks)
+//            {
+//                [[value nonretainedObjectValue] clearQueueReference];
+//            }
+//            
+//            FLReleaseWithNil_(_locks);
+        }
+    }
 
+    [super closeService];
 }
 
 - (NSUInteger) count {
     FLAssertNotNil_(self.database);
 
-    if(_queue) {
-        return _queue.count;
+    if(_assets) {
+        return _assets.count;
     }
     
     return	[self.database rowCountForTable:[[self queueClass] sharedDatabaseTable]];
@@ -102,24 +157,7 @@ FLAssertDefaultInitNotCalled_v(nil);
 }
 
 - (BOOL) isLoaded {
-	return _queue != nil;
-}
-
-- (void) unload
-{
-    if(_queue)
-    {
-        @synchronized(self) {
-            FLReleaseWithNil_(_queue);
-            
-            for(NSValue* value in _locks)
-            {
-                [[value nonretainedObjectValue] clearQueueReference];
-            }
-            
-            FLReleaseWithNil_(_locks);
-        }
-    }
+	return _assets != nil;
 }
 
 - (void) saveAsset:(FLQueuedAsset*) asset
@@ -137,7 +175,7 @@ FLAssertDefaultInitNotCalled_v(nil);
 {
     FLAssertIsNotNil_v(self.database, nil);
 
-    if(_queue && _queue.count)
+    if(_assets && _assets.count)
     {
         @synchronized(self) {
 
@@ -145,23 +183,23 @@ FLAssertDefaultInitNotCalled_v(nil);
 
             if(sortOrder == FLAssetQueueSortOrderNewestFirst)
             {
-                [_queue sortUsingComparator:^(id obj1, id obj2) { return [[obj2 performSelector:selector] compare:[obj1 performSelector:selector]]; }];
+                [_assets sortUsingComparator:^(id obj1, id obj2) { return [[obj2 performSelector:selector] compare:[obj1 performSelector:selector]]; }];
             }
             else
             {
-                [_queue sortUsingComparator:^(id obj1, id obj2) { return [[obj1 performSelector:selector] compare:[obj2 performSelector:selector]]; }];
+                [_assets sortUsingComparator:^(id obj1, id obj2) { return [[obj1 performSelector:selector] compare:[obj2 performSelector:selector]]; }];
             }
 
             // normalize list and save it.
 
-            int sortId = 0; // _queue.count;
-            for(FLQueuedAsset* photo in _queue) 
+            int sortId = 0; // _assets.count;
+            for(FLQueuedAsset* photo in _assets) 
             {
                 photo.positionInQueueValue = ++sortId;
             }
 
-            _state.firstQueuePosition = [[_queue firstObject] positionInQueue];
-            _state.lastQueuePosition = [[_queue lastObject] positionInQueue];
+            _state.firstQueuePosition = [[_assets firstObject] positionInQueue];
+            _state.lastQueuePosition = [[_assets lastObject] positionInQueue];
         
             [self saveQueueToDatabase];
         }
@@ -175,11 +213,13 @@ FLAssertDefaultInitNotCalled_v(nil);
 {
 	FLQueuedAsset* obj1 = nil;
    	FLQueuedAsset* obj2 = nil;
-	FLAssertIsNotNil_v(self.database, nil);
+
+    FLObjectDatabase* database = self.database;
+	FLAssertIsNotNil_v(database, nil);
 
 	@synchronized(self) {
-		obj1 = [_queue objectAtIndex:lhs];
-		obj2 = [_queue objectAtIndex:rhs];
+		obj1 = [_assets objectAtIndex:lhs];
+		obj2 = [_assets objectAtIndex:rhs];
 
 		NSNumber* temp = retain_(obj1.positionInQueue);
 		obj1.positionInQueue = obj2.positionInQueue;
@@ -187,11 +227,11 @@ FLAssertDefaultInitNotCalled_v(nil);
 		
         release_(temp);
 		
-        [_queue exchangeObjectAtIndex:lhs withObjectAtIndex:rhs];
+        [_assets exchangeObjectAtIndex:lhs withObjectAtIndex:rhs];
     }
 
-    [_database saveObject:obj1];
-    [_database saveObject:obj2];
+    [database saveObject:obj1];
+    [database saveObject:obj2];
 
     [self didChangeAssetQueue];
 } 
@@ -200,7 +240,7 @@ FLAssertDefaultInitNotCalled_v(nil);
 {
 	@synchronized(self) {
 		NSUInteger idx = 0;
-		for(FLQueuedAsset* asset in _queue)
+		for(FLQueuedAsset* asset in _assets)
 		{
 			if([asset.assetUID isEqualToString:aAsset.assetUID])
 			{
@@ -218,11 +258,11 @@ FLAssertDefaultInitNotCalled_v(nil);
 {
 	@synchronized(self) {
 		FLAssert_v(self.isLoaded, @"queue not loaded");
-		FLAssert_v(idx >= 0 && idx < _queue.count, @"bad idx");
+		FLAssert_v(idx >= 0 && idx < _assets.count, @"bad idx");
 		
-		if(idx < _queue.count)
+		if(idx < _assets.count)
 		{
-			return [_queue objectAtIndex:idx];
+			return [_assets objectAtIndex:idx];
 		}
 	}
 	
@@ -234,37 +274,37 @@ FLAssertDefaultInitNotCalled_v(nil);
     FLAssertIsNotNil_v(asset, nil);
     FLAssertIsNotNil_v(asset.assetObject, nil);
 
-    if(_queue)
+    if(_assets)
     {
         @synchronized(self) {
             NSUInteger idx = [self indexOfAsset:asset];
             if(idx != NSNotFound)
             {
-                [_queue removeObjectAtIndex:idx];
+                [_assets removeObjectAtIndex:idx];
             }
         }
     }
 
     asset.queueUID = self.queueUID;
     [asset.assetObject deleteFromAssetStorage];
-    [_database deleteObject:asset];
+    [self.database deleteObject:asset];
     [self didChangeAssetQueue];
 }
 
 - (void) deleteAssetAtIndex:(NSUInteger) idx
 {
     FLAssert_v(self.isLoaded, @"queue not loaded");
-    FLAssert_v(idx >= 0 && idx < _queue.count, @"bad idx");
+    FLAssert_v(idx >= 0 && idx < _assets.count, @"bad idx");
 
     FLQueuedAsset* asset = nil;
 		
 	@synchronized(self) {
-		asset = [_queue objectAtIndex:idx];
-		[_queue removeObjectAtIndex:idx];
+		asset = [_assets objectAtIndex:idx];
+		[_assets removeObjectAtIndex:idx];
     }
 
     [asset.assetObject deleteFromAssetStorage];
-	[_database deleteObject:asset];
+	[self.database deleteObject:asset];
     [self didChangeAssetQueue];
 }
 
@@ -279,15 +319,18 @@ FLAssertDefaultInitNotCalled_v(nil);
     
 		FLAssert_v(self.isLoaded, @"queue not loaded");
         
-        for(int i = _queue.count - 1; i >= 0; i--)
+        FLObjectDatabase* database = self.database;
+        FLAssertIsNotNil_v(database, nil);
+
+        for(int i = _assets.count - 1; i >= 0; i--)
         {
-            FLQueuedAsset* asset = [_queue objectAtIndex:i];
+            FLQueuedAsset* asset = [_assets objectAtIndex:i];
             if( type == FLAssetTypeNone ||
                 type == (FLAssetType) asset.assetTypeValue) 
             {
                 [asset.assetObject deleteFromAssetStorage];
-                [_database deleteObject:asset];
-                [_queue removeObjectAtIndex:i];
+                [database deleteObject:asset];
+                [_assets removeObjectAtIndex:i];
             }
         }
     }    
@@ -303,9 +346,9 @@ FLAssertDefaultInitNotCalled_v(nil);
 			_state.lastQueuePositionValue = _state.lastQueuePositionValue + 1;
 			asset.positionInQueue = _state.lastQueuePosition;
 			
-			if(_queue)
+			if(_assets)
 			{
-				[_queue addObject:asset];
+				[_assets addObject:asset];
 			}
 		break;
 		
@@ -313,9 +356,9 @@ FLAssertDefaultInitNotCalled_v(nil);
 			_state.firstQueuePositionValue = _state.firstQueuePositionValue - 1;
 			asset.positionInQueue = _state.firstQueuePosition;
 			
-			if(_queue)
+			if(_assets)
 			{
-				[_queue insertObject:asset atIndex:0];
+				[_assets insertObject:asset atIndex:0];
 			}
 		break;
 	}
@@ -325,6 +368,9 @@ FLAssertDefaultInitNotCalled_v(nil);
 - (void) batchAddAssets:(NSArray*) assets
 {
     NSDate* date = [[NSDate alloc] init];
+
+    FLObjectDatabase* database = self.database;
+	FLAssertIsNotNil_v(database, nil);
 		
 	@synchronized(self) {
 		for(FLQueuedAsset* asset in assets)
@@ -337,8 +383,8 @@ FLAssertDefaultInitNotCalled_v(nil);
 
 	release_(date);
     
-    [_database batchSaveObjects:assets];
-    [_database saveObject:_state];
+    [database batchSaveObjects:assets];
+    [database saveObject:_state];
     
     [self didChangeAssetQueue];
 }
@@ -356,9 +402,12 @@ FLAssertDefaultInitNotCalled_v(nil);
     NSDate* date = [[NSDate alloc] init];
     asset.queuedDate = date;
     release_(date);
+
+    FLObjectDatabase* database = self.database;
+	FLAssertIsNotNil_v(database, nil);
     
     [self saveAsset:asset];
-    [_database saveObject:_state];
+    [database saveObject:_state];
 
     [self didChangeAssetQueue];
 	
@@ -369,14 +418,16 @@ FLAssertDefaultInitNotCalled_v(nil);
 	return [FLQueuedAsset class];
 }
 
-- (void) beginLoadingFirstAsset:(FLAssetQueueLoadAssetBlock) completionBlock
-{
+- (void) beginLoadingFirstAsset:(FLAssetQueueLoadAssetBlock) completionBlock {
     completionBlock = autorelease_([completionBlock copy]);
+    
+    FLObjectDatabase* database = self.database;
+	FLAssertIsNotNil_v(database, nil);
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), 
     ^{
         FLDatabaseTable* table = [[self queueClass] sharedDatabaseTable];
-        FLDatabaseIterator* statement = [FLDatabaseIterator databaseIterator:_database table:table];
+        FLDatabaseIterator* statement = [FLDatabaseIterator databaseIterator:database table:table];
         
         __block FLQueuedAsset* asset = nil;
         @try 
@@ -430,10 +481,7 @@ FLAssertDefaultInitNotCalled_v(nil);
     });
 }
 
-
-
-- (void) didUploadAsset:(FLQueuedAsset*) asset
-{
+- (void) didUploadAsset:(FLQueuedAsset*) asset {
     FLUploadedAsset* uploadedAsset = [FLUploadedAsset uploadedAsset];
     uploadedAsset.queueUID = asset.queueUID;
     uploadedAsset.assetName = asset.displayName;
@@ -447,7 +495,8 @@ FLAssertDefaultInitNotCalled_v(nil);
     uploadedAsset.uploadedAssetId = asset.uploadedAssetId;
     uploadedAsset.uploadedAssetURL = asset.uploadedAssetURL;
     uploadedAsset.uploadedDate = [NSDate date];
-    [_database	saveObject:uploadedAsset];
+    FLAssertNotNil_(self.database);
+    [self.database	saveObject:uploadedAsset];
     [self deleteAsset:asset];
 }
 
@@ -485,9 +534,9 @@ FLAssertDefaultInitNotCalled_v(nil);
 	FLAssert_v(self.isLoaded, @"queue not loaded");
 
 	@synchronized(self) {
-		FLQueuedAsset* oldAsset = [_queue objectAtIndex:idx];
+		FLQueuedAsset* oldAsset = [_assets objectAtIndex:idx];
 		asset.positionInQueue = oldAsset.positionInQueue;
-		[_queue replaceObjectAtIndex:idx withObject:asset];
+		[_assets replaceObjectAtIndex:idx withObject:asset];
 	}	
 	
     [self saveAsset:asset];
@@ -495,18 +544,18 @@ FLAssertDefaultInitNotCalled_v(nil);
 
 - (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state objects:(__unsafe_unretained id *)stackbuf count:(NSUInteger)len
 {
-	if(state->state >= _queue.count) {
+	if(state->state >= _assets.count) {
 		return 0;
 	}
 	
 	NSRange range = NSMakeRange(state->state, len);
-	if(range.length + range.location >= _queue.count) {
-		range.length -= ((range.length + range.location) - _queue.count);
+	if(range.length + range.location >= _assets.count) {
+		range.length -= ((range.length + range.location) - _assets.count);
 	}
 	
 	__unsafe_unretained id objects[len];
 	
-	[_queue getObjects:objects range:range];
+	[_assets getObjects:objects range:range];
 	
 	for(NSUInteger i = 0; i < range.length; i++) {
 		stackbuf[i] = objects[i];
@@ -521,16 +570,17 @@ FLAssertDefaultInitNotCalled_v(nil);
 	return range.length;
 }
 
-- (void) saveQueueToDatabase
-{
+- (void) saveQueueToDatabase {
+    FLAssertNotNil_(self.database);
+
 	@synchronized(self) {
-        if(_queue)
+        if(_assets)
         {
-            [_database batchSaveObjects:_queue];
+            [self.database batchSaveObjects:_assets];
         }
         if(_state)
         {
-            [_database saveObject:_state];
+            [self.database saveObject:_state];
         }
     }
 	[self didChangeAssetQueue];
@@ -539,80 +589,80 @@ FLAssertDefaultInitNotCalled_v(nil);
 - (void) finishLoadingFromDatabase:(NSMutableArray*) queue
 {
     @synchronized(self) {
-        FLRetainObject_(_queue, queue);
+        FLRetainObject_(_assets, queue);
     }
 }
 
-- (FLAssetQueueLoadLock*) loadLock
-{
+- (id) loadLock {
     FLAssert_v(self.isLoaded, @"can't get a load lock on an unloaded queue");
-
-    if(!_locks)
-    {
-        _locks = [[NSMutableArray alloc] init];
-    }
-
-    FLLog(@"Added lock");
-
-    FLAssetQueueLoadLock* lock = autorelease_([[FLAssetQueueLoadLock alloc] initWithAssetQueue:self]);
-    [_locks addObject:[NSValue valueWithNonretainedObject:lock]];
-    return lock;
+//
+//    if(!_locks)
+//    {
+//        _locks = [[NSMutableArray alloc] init];
+//    }
+//
+//    FLLog(@"Added lock");
+//
+//    FLAssetQueueLoadLock* lock = autorelease_([[FLAssetQueueLoadLock alloc] initWithAssetQueue:self]);
+//    [_locks addObject:[NSValue valueWithNonretainedObject:lock]];
+    return [FLAssetQueueLock assetQueueLock:self];
 }
 
-- (void) releaseLoadLock:(FLAssetQueueLoadLock*) lock
-{
-    for(NSInteger i = _locks.count - 1; i >= 0; i--)
-    {
-        if([[_locks objectAtIndex:i] nonretainedObjectValue] == lock)
-        {
-            [_locks removeObjectAtIndex:i];
-            FLLog(@"released lock");
-        }
-    }
-    
-    if(_locks.count == 0)
-    {
-        [self unload];
-        FLLog(@"unloaded asset queue");
-    }
-}
+//- (void) releaseLoadLock:(FLAssetQueueLoadLock*) lock
+//{
+//    for(NSInteger i = _locks.count - 1; i >= 0; i--)
+//    {
+//        if([[_locks objectAtIndex:i] nonretainedObjectValue] == lock)
+//        {
+//            [_locks removeObjectAtIndex:i];
+//            FLLog(@"released lock");
+//        }
+//    }
+//    
+//    if(_locks.count == 0)
+//    {
+//        [self unload];
+//        FLLog(@"unloaded asset queue");
+//    }
+//}
 
 @end
 
 //#import "FLAssetsLibraryImageAsset.h"
 
+@interface FLAssetQueueLoader ()
+@property (readwrite, strong) FLAssetQueue* assetQueue;
+@property (readwrite, strong) NSMutableArray* assets;
+
+@end
 
 @implementation FLAssetQueueLoader
 
-@synthesize assetQueue = _assetQueue;
-@synthesize error = _error;
 @synthesize wasCancelled = _cancelled;
 
-- (id) initWithAssetQueue:(FLAssetQueue*) queue
-{
-    if((self = [super init]))
-    {
-        _assetQueue = retain_(queue);
+synthesize_(assets)
+synthesize_(assetQueue)
+synthesize_(error);
+
+- (id) initWithAssetQueue:(FLAssetQueue*) queue {
+    if((self = [super init])) {
+        self.assetQueue = queue;
     }
     
     return self;
 }
 
-+ (FLAssetQueueLoader*) assetQueueLoader:(FLAssetQueue*) queue
-{
++ (FLAssetQueueLoader*) assetQueueLoader:(FLAssetQueue*) queue {
     return autorelease_([[FLAssetQueueLoader alloc] initWithAssetQueue:queue]);
 }
 
-- (void) dealloc
-{
-    release_(_queue);
+dealloc_ (
+    release_(_assets);
     release_(_assetQueue);
     release_(_error);
-    super_dealloc_();
-}
+)
 
-- (void) cancelLoading
-{
+- (void) cancelLoading {
     _cancelled = YES;
 }
 
@@ -690,7 +740,7 @@ FLAssertDefaultInitNotCalled_v(nil);
         
         if(!_cancelled && !_error)
         {
-            [_assetQueue finishLoadingFromDatabase:_queue];
+            [_assetQueue finishLoadingFromDatabase:_assets];
         }
         
         if(callback)
@@ -735,7 +785,7 @@ FLAssertDefaultInitNotCalled_v(nil);
         
         if(!queue || queue.count == 0)
         {
-            FLRetainObject_(_queue, [NSMutableArray array]); 
+            self.assets = [NSMutableArray array];
             [self _didFinishLoading:completionBlock];
         }
         else
@@ -748,9 +798,9 @@ FLAssertDefaultInitNotCalled_v(nil);
                 {
                     [newQueue sortUsingComparator:^(id obj1, id obj2) {
                         return [[obj1 positionInQueue] compare:[obj2 positionInQueue]];
-                        }];
-
-                    FLRetainObject_(_queue, newQueue); 
+                    }];
+                    
+                    self.assets = newQueue;
                 }
                 
                 [self _didFinishLoading:completionBlock];
@@ -761,32 +811,3 @@ FLAssertDefaultInitNotCalled_v(nil);
 
 @end
 
-@implementation FLAssetQueueLoadLock
-
-- (id) initWithAssetQueue:(FLAssetQueue*) queue
-{
-    if((self = [super init]))
-    {
-        _assetQueue = queue;
-    }
-    return self;
-}
-
-- (void) releaseLock
-{
-    [_assetQueue releaseLoadLock:self];
-    _assetQueue = nil;
-}
-
-- (void) dealloc
-{
-    [self releaseLock];
-    super_dealloc_();
-}
-
-- (void) clearQueueReference
-{
-    _assetQueue = nil;
-}
-
-@end

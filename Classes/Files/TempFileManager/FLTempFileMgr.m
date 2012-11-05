@@ -15,38 +15,29 @@
 @implementation FLTempFileMgr
 
 @synthesize folder = _folder;
-//FLSynthesizeSingleton(FLTempFileMgr);
 
-//- (void) userSessionDidOpen:(id<FLUserSession>) userSession {
-//    self.folder = [FLUserSession instance].tempFolder;
-//
-//// TODO: add this back
-////    [[FLTempFileMgr instance] beginPurgeInBackgroundThread:nil];
-//
-//}
-//
-//- (void) userSessionDidClose:(id<FLUserSession>) userSession {
-//// TODO: add this back
-////    [[FLTempFileMgr instance] beginPurgeInBackgroundThread:nil];
-//
-//    self.folder = nil;
-//}
+- (void) openService {
+//    self.folder = [self.parentService storageService].tempFolder;
+    [self beginPurgeInBackgroundThread:nil];
+    [super openService];
+}
 
+- (void) closeService {
+    [self beginPurgeInBackgroundThread:nil];
+    self.folder = nil;
+    [self closeService];
+}
 
 - (id) init {
     if((self = [super init])) {
-//        [[FLUserSession instance] addObserver:self];
     }
     
     return self;
 }
 
-- (void) dealloc {
-    FLSendDeallocNotification();
-//    [[FLUserSession instance] removeObserver:self];
-    release_(_folder);
-    super_dealloc_();
-}
+dealloc_(
+    [_folder release];
+)
 
 - (void) addFile:(id<FLAbstractFile>) file {
     @synchronized(self) {

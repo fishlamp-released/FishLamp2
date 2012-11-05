@@ -15,7 +15,6 @@
 @private
 	FLWeakReference* _weakRef;
 	__unsafe_unretained id _deadObject;
-    NSUInteger _hash;
 }
 @property (readonly, strong) FLSimpleNotifier* notifier;
 @property (readwrite, assign) id object;

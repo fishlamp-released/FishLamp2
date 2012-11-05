@@ -87,11 +87,8 @@
 
 - (void) dealloc {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
-	[self closeService];
-#if FL_MRC
-    [_backgroundTasks release];
-    [super dealloc];
-#endif
+
+    super_dealloc_();
 }
 
 //- (void) _appDidEnterBackground:(id) sender {
@@ -185,8 +182,8 @@
 	}
 	 
 	@try {
-//        [self.services userLogin].isAuthenticatedValue = NO;
-//        [[FLApplicationDataModel instance] saveUserLogin:[self.services userLogin]];
+//        [self.parentService userLogin].isAuthenticatedValue = NO;
+//        [[FLApplicationDataModel instance] saveUserLogin:[self.parentService userLogin]];
     
 		[_cacheDatabase closeDatabase];
 		[_documentsDatabase closeDatabase];
@@ -203,6 +200,8 @@
 		_state.willOpen = NO;
 		_state.isOpening = NO;
 		
+        [super closeService];
+        
 //        [self postObservation:@selector(userServiceDidClose:)];
     }
 }
@@ -212,7 +211,7 @@
     NSString* userCacheFolder = [cachePaths objectAtIndex: 0];
 
 	if(!_cacheFolder){
-		_cacheFolder = [[FLFolder alloc] initWithPath:[userCacheFolder stringByAppendingPathComponent:[self.services userLogin].userGuid]];
+		_cacheFolder = [[FLFolder alloc] initWithPath:[userCacheFolder stringByAppendingPathComponent:[self.parentService userLogin].userGuid]];
 		[_cacheFolder createIfNeeded];
 	}
 	if(!_photoCacheFolder) {
@@ -242,7 +241,7 @@
     NSString* userDocumentsFolder = [documentsPaths objectAtIndex: 0];
     
 	if(!_documentsFolder) {
-		_documentsFolder = [[FLFolder alloc] initWithPath:[userDocumentsFolder stringByAppendingPathComponent:[self.services userLogin].userGuid]];
+		_documentsFolder = [[FLFolder alloc] initWithPath:[userDocumentsFolder stringByAppendingPathComponent:[self.parentService userLogin].userGuid]];
 		[_documentsFolder createIfNeeded];
 	}
 	if(!_photoFolder) {
@@ -280,14 +279,14 @@
 
 - (BOOL) _beginOpeningService
 {
-	if([self.services userLogin] && _state.open == NO && !_state.isOpening && _state.willOpen)
+	if([self.parentService userLogin] && _state.open == NO && !_state.isOpening && _state.willOpen)
 	{
 		_state.isOpening = YES;
 
 		[self _initServiceObjectsIfNeeded];
 		
 		FLApplicationDataVersion* input = [FLApplicationDataVersion applicationDataVersion];
-		input.userGuid = [self.services userLogin].userGuid;
+		input.userGuid = [self.parentService userLogin].userGuid;
 		
 		FLApplicationDataVersion* dataVersion = [[FLApplicationDataModel instance].database loadObject:input];
 		
@@ -337,21 +336,23 @@
 
 - (void) openService {
 	[self closeService];
-    FLAssert_v(FLStringIsNotEmpty([self.services userLogin].userName), @"invalid userLogin");
+    FLAssert_v(FLStringIsNotEmpty([self.parentService userLogin].userName), @"invalid userLogin");
     _state.willOpen = YES;
     _state.isOpening = NO;
     _state.open = NO;
     _state.upgrading = NO;
     [self _beginOpeningService];
+    
+    [super openService];
 }
 
 - (void) finishUpgradeTasks {	
 	if(_state.upgrading) {
-		FLAssertIsNotNil_v([self.services userLogin], nil);
+		FLAssertIsNotNil_v([self.parentService userLogin], nil);
 		FLAssert_v(_upgradeTaskList != nil, @"not upgrading");
 		
 		FLApplicationDataVersion* version = [FLApplicationDataVersion applicationDataVersion];
-		version.userGuid = [self.services userLogin].userGuid;
+		version.userGuid = [self.parentService userLogin].userGuid;
 		version.versionString = [NSFileManager appVersion];
 		[[FLApplicationDataModel instance].database saveObject:version];
 
@@ -363,7 +364,7 @@
 }
 
 - (BOOL) isServiceAuthenticated {
-	return [self.services userLogin].isAuthenticatedValue;
+	return [self.parentService userLogin].isAuthenticatedValue;
 }
 
 + (FLUserLogin*) loadLastUserLogin {
@@ -386,14 +387,3 @@
 
 @end
 
-@implementation FLUserSession (FLUserDataStorageService) 
-- (FLUserDataStorageService*) userDataService {
-    return (FLUserDataStorageService*) [self serviceByID:[FLUserDataStorageService serviceID]];
-}
-@end
-
-@implementation FLService (FLUserDataStorageService)
-- (FLUserDataStorageService*) userDataService {
-    return [((id) self) userDataService];
-}
-@end

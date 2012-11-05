@@ -67,3 +67,9 @@ typedef enum {
 - (void) saveInDatabase:(FLDatabase*) database;
 + (id) readObjectFromDatabase:(FLDatabase*) database withSearchValue:(id) value forKey:(id) key;
 @end
+
+@protocol FLOptionalDatabaseEvents <NSObject>
+@optional
+- (void) wasRemovedFromDatabase:(FLDatabase*) database;
+- (void) wasSavedToDatabase:(FLDatabase*) database;
+@end

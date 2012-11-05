@@ -7,6 +7,7 @@
 //
 #import "FLWeakReference.h"
 #import "FLDeallocNotifier.h"
+#import "FLWeaklyReferenced.h"
 
 @interface FLWeakReference ()
 @property (readwrite, weak) id object_ref;

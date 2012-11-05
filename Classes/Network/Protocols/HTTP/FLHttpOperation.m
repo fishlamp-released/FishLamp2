@@ -18,25 +18,9 @@
 @synthesize isAuthenticated = _isAuthenticated;
 @synthesize isSecure = _isSecure;
 @synthesize httpResponse = _httpResponse;
-@synthesize httpDelegate = _httpDelegate;
 
-- (FLHttpConnection*) httpConnection {
-    return (FLHttpConnection*) self.networkConnection;
-}
-
-- (void) setHttpConnection:(FLHttpConnection*) connection {
-    self.networkConnection = connection;
-}
-
-- (NSString*) URLString {
-	return _url.absoluteString;
-}
-
-- (void) setURLString:(NSString*) url {
-	self.URL = [NSURL URLWithString:url];
-	
-	FLAssert_v(FLStringsAreEqual(url, self.URLString), @"setting URL failed");
-}
+//synthesize_(httpDelegate);
+synthesize_(httpAuthenticator);
 
 - (void) didInit {
 }
@@ -58,6 +42,7 @@
 	return self;
 }
 
+
 - (id) initWithURLString:(NSString*) url {
 	return [self initWithURL:[NSURL URLWithString:url]];
 }
@@ -70,6 +55,31 @@
 	return autorelease_([[[self class] alloc] initWithURL:url]);
 }
 
+dealloc_(
+    [_httpAuthenticator release];
+    [_httpResponse release];
+    [_requestType release];
+	[_url release];
+)
+
+- (FLHttpConnection*) httpConnection {
+    return (FLHttpConnection*) self.networkConnection;
+}
+
+- (void) setHttpConnection:(FLHttpConnection*) connection {
+    self.networkConnection = connection;
+}
+
+- (NSString*) URLString {
+	return _url.absoluteString;
+}
+
+- (void) setURLString:(NSString*) url {
+	self.URL = [NSURL URLWithString:url];
+	
+	FLAssert_v(FLStringsAreEqual(url, self.URLString), @"setting URL failed");
+}
+
 - (id) setRequestWillPost {
 	self.requestType = @"POST";
 	if(self.httpConnection) {
@@ -77,34 +87,31 @@
 	}
 	
 	return self;
-}
-
-- (void) dealloc {
-    release_(_httpResponse);
-    release_(_requestType);
-	release_(_url);
-	super_dealloc_();
-}
+} 
     
 - (FLHttpConnection*) createNetworkConnection {
-	FLHttpConnection* connection = nil;
-    
-    if(_httpDelegate && [((id)self.httpDelegate) respondsToSelector:@selector(httpOperationCreateConnection:)]) {
-		connection = [_httpDelegate httpOperationCreateConnection:self];
-	}
-    else {
-        connection = [FLHttpConnection httpConnection:[FLHttpRequest httpRequestWithURL:self.URL]];
-    }
-    
-	return connection;
+    return  [FLHttpConnection httpConnection:[FLHttpRequest httpRequestWithURL:self.URL requestMethod:self.requestType]];
 }
 
 - (FLHttpRequest*) httpRequest {
     return self.httpConnection.httpRequest;
 }
 
+- (void) prepareAuthenticatedConnection:(FLHttpConnection*) connection {
+    FLPerformSelector2(self.httpAuthenticator, @selector(httpOperation:prepareAuthenticatedConnection:), self, connection);
+}
+
+- (void) authenticateSelf {
+    FLPerformSelector1(self.httpAuthenticator, @selector(httpOperationRunAuthentication:), self);
+}
+
+- (void) prepareSelf {
+    [self authenticateSelf];
+    [super prepareSelf];
+}
+
 - (void) runSelf {
-    FLPerformSelectorWithObject(self.httpDelegate,  @selector(httpOperationWillRun:), self);
+    [self prepareAuthenticatedConnection:self.httpConnection];
     [super runSelf];
 }
 
@@ -114,14 +121,6 @@
     FLAssertIsKindOfClass_(httpResponse, FLHttpResponse);
     self.httpResponse = result;
 }
-
-- (void) finishSelf {
-    [super finishSelf];
-    if(!FLPerformSelectorWithObject(self.httpDelegate,  @selector(httpOperationDidRun:), self)) {
-        FLThrowIfError_([self.httpResponse simpleHttpResponseErrorCheck]);
-    }
-}
-
 
 @end
 

@@ -6,54 +6,22 @@
 //  Copyright 2011 GreenTongue Software. All rights reserved.
 //
 
-#import "FLFacebookOperation.h"
-#import "FLJsonNetworkOperationProtocolHandler.h"
 #import "FLStringUtils.h"
 #import "NSString+URL.h"
-#import "FLFacebookFetchStatusListResponse.h"
 #import "FLObjectDescriber.h"
 #import "FLJsonParser.h"
 #import "FLObjectBuilder.h"
 #import "FLFacebookMgr.h"
-
-@interface FLFacebookOperation ()
-@property (readwrite, strong) FLFacebookMgr* facebookService;
-@end
+#import "FLFacebookOperation.h"
 
 @implementation FLFacebookOperation
 
-@synthesize userId = _userId;
-@synthesize object = _object;
-@synthesize facebookService = _facebookService;
+synthesize_(object)
 
-- (id) initWithFacebookService:(FLFacebookMgr*) facebookService {
-    self = [super initWithURL:nil];
-    if(self) {
-        self.facebookService = facebookService;
+dealloc_(
+    [_object release];
+)
 
-        self.userId = self.facebookService.session.userId;
-
-    FLAssertFailed_v(@"facebookService setup properly?");
-
-//	self.serverContext = [FLFacebookMgr instance];
-//	self.responseHandler = nil; // [FLJsonNetworkOperationProtocolHandler instance];
-    
-    
-    }
-    return self;
-
-}
-
-+ (id) facebookOperation:(FLFacebookMgr*) facebookService {
-	return autorelease_([[[self class] alloc] initWithFacebookService:facebookService]);
-}	
-
-- (void) dealloc {
-    release_(_facebookService);
-	release_(_userId);
-	release_(_object);
-	super_dealloc_();
-}
 
 - (BOOL) willAddParametersToURL {
 	return YES;
@@ -78,7 +46,11 @@
 
 
 - (void) runSelf {
-	NSMutableString* url = [FLFacebookMgr buildURL:self.facebookService.encodedToken user:self.userId object:self.object params:nil];
+    FLFacebookMgr* facebook = [self.services facebookService];
+
+    NSString* userID = facebook.session.userId;
+
+	NSMutableString* url = [FLFacebookMgr buildURL:facebook.encodedToken user:userID object:self.object params:nil];
 	
 	if([self willAddParametersToURL]) {
 		[self addParametersToURLString:url];

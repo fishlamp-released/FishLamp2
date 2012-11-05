@@ -105,7 +105,6 @@
 
 #if FL_MRC
 - (void) dealloc {
-    [_testLog]
     [_results release];
     [_testCases release];
     [_results release];

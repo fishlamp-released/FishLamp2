@@ -38,3 +38,10 @@
         if(object) [__DICTIONARY__ setObject:object forKey:__KEY__]; \
         else [__DICTIONARY__ removeObjectForKey:__KEY__]; \
     }
+
+#define synthesize_(__NAME__) @synthesize __NAME__ = _##__NAME__;
+
+//#define synthesize_lazy_atomic_(__NAME__, __TYPE__) @synthesize __NAME__ = _##__NAME__; \
+//                                                FLSynthesizeLazyCreateGetter(__NAME__, __TYPE__)
+                                                
+                                                

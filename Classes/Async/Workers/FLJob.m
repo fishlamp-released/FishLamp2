@@ -92,7 +92,7 @@
 - (void) dealloc {
     self.worker = nil; // so it can nil the parent.
 #if FL_MRC
-    [_queue release];
+//    [_queue release];
     [_worker release];
     [super dealloc];
 #endif

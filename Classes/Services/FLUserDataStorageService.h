@@ -12,7 +12,6 @@
 #import "FLLengthyTask.h"
 #import "FLLengthyTaskList.h"
 #import "FLVersionUpgradeLengthyTaskList.h"
-#import "FLUserSession.h"
 
 @interface FLUserDataStorageService : FLService {
 @private
@@ -53,17 +52,13 @@
 + (id) createUserLoggingOutProgressViewController;
 @end
 
-@interface FLUserSession (FLUserDataStorageService)
-@property (readonly, strong) FLUserDataStorageService* userDataService;
-@end
-
-@interface FLService (FLUserDataStorageService)
-@property (readonly, strong) FLUserDataStorageService* userDataService;
-@end
-
 @protocol FLUserDataServiceObserver <FLObserver>
 @optional
 - (void) userDataService:(FLUserDataStorageService*) userDataService
     appVersionWillChange:(FLVersionUpgradeLengthyTaskList*) taskListToAddTo;
 
+@end
+
+@protocol FLUserDataStorageServiceProtocol <NSObject>
+- (FLUserDataStorageService*) storageService;
 @end

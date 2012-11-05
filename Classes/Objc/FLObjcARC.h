@@ -38,6 +38,9 @@ void FLManuallyRelease(id* obj) {
     }
 }
 
+#define dealloc_(...)    
+#define release_members_(...) 
+
 #endif
 
 

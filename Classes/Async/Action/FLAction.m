@@ -215,17 +215,16 @@ TODO("MF: fix activity updater");
 }
 
 - (void) dealloc {
-    FLSendDeallocNotification();
 	[self closeNotification];
     [_operations removeObserver:self];
-#if FL_MRC
-    [_operations release];
-    release_(_progressCallback);
-    release_(_willShowNotificationCallback);
-	release_(_progress);
-	release_(_actionDescription);
-	super_dealloc_();
-#endif
+
+    release_members_(
+        [_operations release];
+        release_(_progressCallback);
+        release_(_willShowNotificationCallback);
+        release_(_progress);
+        release_(_actionDescription);
+    )
 }
 
 - (NSString*) itemNameInProgress{

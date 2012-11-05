@@ -10,13 +10,14 @@
 #import "FLCancellable.h"
 #import "FLPredicate.h"
 #import "FLAbortException.h"
+#import "FLServiceable.h"
 #import "FLWorker.h"
 
 @class FLOperation;
 
 typedef void (^FLRunOperationBlock)(FLOperation* operation);
 
-@interface FLOperation : FLObservable<FLWorker, FLRunnable, FLCancellable> {
+@interface FLOperation : FLObservable<FLWorker, FLRunnable, FLCancellable, FLServiceable> {
 @private
     id _services;
 	id _operationInput;
@@ -24,7 +25,7 @@ typedef void (^FLRunOperationBlock)(FLOperation* operation);
 
 // id
 	NSInteger _tag;
-	id _operationId;
+	id _operationID;
 
 // optional run block (or override runSelf)
 	FLRunOperationBlock _runBlock;
@@ -39,15 +40,21 @@ typedef void (^FLRunOperationBlock)(FLOperation* operation);
 
 // run state (reset with each run)
     NSError* _error;
-    BOOL _didStart;
-    BOOL _didFinish;
+    BOOL _wasStarted;
+    BOOL _isFinished;
     BOOL _didFail;
 }
 
-@property (readwrite, strong) id services;
-
 @property (readwrite, strong) id operationInput;
 @property (readwrite, strong) id operationOutput;
+
+// input/output
+// Note: we're not using properties here to give us some flexibily with subclasses.
+- (id) output;
+- (void) setOutput:(id) output;
+
+- (id) input;
+- (void) setInput:(id) input;
 
 // TODO: abstract this better;
 //@property (readonly, assign) FLOperationType operationType;
@@ -146,13 +153,5 @@ typedef void (^FLRunOperationBlock)(FLOperation* operation);
 
 @interface FLOperation ()
 
-// deprecated
 
-// input/output
-// Note: we're not using properties here to give us some flexibily with subclasses.
-- (id) output;
-- (void) setOutput:(id) output;
-
-- (id) input;
-- (void) setInput:(id) input;
 @end

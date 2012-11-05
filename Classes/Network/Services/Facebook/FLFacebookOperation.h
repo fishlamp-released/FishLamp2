@@ -15,16 +15,8 @@
 @interface FLFacebookOperation : FLHttpOperation {
 @private
 	NSString* _object;
-    FLFacebookMgr* _facebookService;
 }
 
-@property (readonly, strong) FLFacebookMgr* facebookService;
-
-- (id) initWithFacebookService:(FLFacebookMgr*) facebookService;
-
-+ (id) facebookOperation:(FLFacebookMgr*) facebookService;
-
-@property (readwrite, strong) NSString* userId;
 @property (readwrite, strong) NSString* object;
 
 // override points

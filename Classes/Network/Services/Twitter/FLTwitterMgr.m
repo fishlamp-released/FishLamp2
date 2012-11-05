@@ -8,7 +8,6 @@
 
 #import "FLTwitterMgr.h"
 #import "NSString+GUID.h"
-#import "FLUserSession.h"
 #import "FLUserDataStorageService.h"
 
 @interface FLTwitterMgr ()
@@ -29,9 +28,8 @@
 
 @implementation FLTwitterMgr
 
-@synthesize oauthInfo = _oauthInfo;
-@synthesize oauthSession = _oauthSession;
-
+synthesize_(oauthInfo)
+synthesize_(oauthSession)
 
 - (id) init {
 	if((self = [super init])) {
@@ -48,16 +46,13 @@
 	return self.oauthSession == nil;
 }
 
-#if FL_MRC
-- (void) dealloc {
+dealloc_ (
     [_oauthInfo release];
     [_oauthSession release];
-    super_dealloc_();
-}
-#endif
+)
 
 - (FLObjectDatabase*) database {
-    return self.userDataService.documentsDatabase;
+    return [self.parentService storageService].documentsDatabase;
 }
 
 + (void) clearTwitterCookies {
@@ -97,26 +92,5 @@
 	self.oauthSession = oauthSession;
 }
 
-- (void) openService {
-
-}
-
-- (void) closeService {
-
-}
-
-- (BOOL) isServiceOpen {
-
-    return NO;
-}
-
-- (BOOL) isServiceAuthenticated {
-    return NO;
-}
 @end
 
-@implementation FLUserSession (FLTwitterMgr) 
-- (FLTwitterMgr*) twitterService {
-    return (FLTwitterMgr*) [self serviceByID:[FLTwitterMgr serviceID]];
-}
-@end

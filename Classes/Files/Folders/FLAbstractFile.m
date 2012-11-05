@@ -110,12 +110,12 @@
 	}
 }
 
-- (void) dealloc {
-    FLSendDeallocNotification();
+
+
+dealloc_ (
 	release_(_fileName);
 	release_(_folder);
-	super_dealloc_();
-}
+)
 
 - (NSString*) filePath
 {

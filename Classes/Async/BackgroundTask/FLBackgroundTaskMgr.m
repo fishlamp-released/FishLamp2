@@ -9,7 +9,6 @@
 #import "FLBackgroundTaskMgr.h"
 #import "FLOperationContext.h"
 #import "FLTraceOff.h"
-#import "FLUserSession.h"
 
 #define kDelay 0.5f
 
@@ -33,7 +32,7 @@ FLSynthesizeSingleton(FLBackgroundTaskMgr);
 
 
 FIXME("attach to user sessions....");
-//        [[FLUserSession instance] addObserver:self];
+//        [[FLUserLoginService instance] addObserver:self];
         
 
     // start events
@@ -88,7 +87,7 @@ FIXME("operation context");
 #endif
 
 FIXME("attach to user sessions....");
-//    [[FLUserSession instance] removeObserver:self];
+//    [[FLUserLoginService instance] removeObserver:self];
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
     release_(_sequenceQueue);
 	release_(_operations);
@@ -261,13 +260,15 @@ FIXME("attach to user sessions....");
 
 FIXME("attach to user sessions....");
 
-- (void) userSessionDidOpen:(id<FLUserSession>) userSession {
+- (void) openService {
     [self scheduleNextBackgroundTask];
+    [super openService];
 }
 
-- (void) userSessionDidClose:(id<FLUserSession>) userSession {
+- (void) closeService {
     [self _cancel];
     [self resetAllTasks];
+    [super closeService];
 }
 
 - (BOOL) isEnabled {

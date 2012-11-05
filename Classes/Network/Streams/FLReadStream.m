@@ -86,11 +86,10 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
         CFReadStreamClose(_streamRef);
         [super closeStream];
     }
-    
 }
 
 - (NSError*) error {
-    return autorelease_(bridge_transfer_(NSError*,CFReadStreamCopyError(self.streamRef)));
+    return autorelease_(bridge_transfer_(NSError*, CFReadStreamCopyError(self.streamRef)));
 }
 
 - (BOOL) hasBytesAvailable {

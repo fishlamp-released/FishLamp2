@@ -47,7 +47,7 @@
 }
 
 + (FLUnitTestResult*) unitTestResult:(FLUnitTest*) unitTest {
-    return [[[self class] alloc] initWithUnitTest:unitTest];
+    return autorelease_([[[self class] alloc] initWithUnitTest:unitTest]);
 }
 
 

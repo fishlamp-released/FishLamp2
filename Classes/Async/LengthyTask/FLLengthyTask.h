@@ -12,10 +12,10 @@
 @protocol FLLengthyTaskDelegate;
 
 #import "FLCancellable.h"
+#import "FLServiceable.h"
 
-@interface FLLengthyTask : NSObject<FLCancellable> {
+@interface FLLengthyTask : FLServiceable<FLCancellable> {
 @private
-    id _services;
     BOOL _wasCancelled;
     BOOL _started;
 	NSString* _name;
@@ -25,11 +25,10 @@
 }
 
 + (id) lengthyTask;
-@property (readwrite, strong) id services;
 
-@property (readwrite, strong) NSString* taskName;
+@property (readwrite, strong, nonatomic) NSString* taskName;
 
-@property (readwrite, strong) id<FLLengthyTaskDelegate> delegate;
+@property (readwrite, assign) id<FLLengthyTaskDelegate> delegate;
 
 - (void) executeTask;
 

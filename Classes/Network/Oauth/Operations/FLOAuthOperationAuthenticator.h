@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "FLHttpOperationAuthenticator.h"
+
 
 //@interface FLOAuthOperationAuthenticator : NSObject<FLHttpOperationAuthenticator> {
 //

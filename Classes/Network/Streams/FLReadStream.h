@@ -11,7 +11,6 @@
 @interface FLReadStream : FLNetworkStream<FLReadStream>  {
 @private
     CFReadStreamRef _streamRef;
-    BOOL _open;
     BOOL _reading;
 }
 @property (readonly, assign, nonatomic) CFReadStreamRef streamRef;

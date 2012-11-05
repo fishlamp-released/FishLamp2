@@ -7,7 +7,6 @@
 //
 
 #import "FLDownloadImageOperation.h"
-#import "FLHttpImageDownloadNetworkResponseHandler.h"
 #import "FLCachedImage.h"
 
 @implementation FLDownloadImageOperation
@@ -15,7 +14,6 @@
 - (id) initWithURL:(NSURL*) url {
     self = [super initWithURL:url];
     if(self) {
-        self.httpDelegate = [FLHttpImageDownloadNetworkResponseHandler instance];
         self.input = [FLCachedImage cachedImage];
     }
     return self;
@@ -23,7 +21,27 @@
 
 - (void) runSelf {
 	[((FLCachedImage*)self.input) setUrl:self.URL.absoluteString];
+
     [super runSelf];
+
+    FLThrowIfError_([self.httpResponse simpleHttpResponseErrorCheck]);
+    if(self.didSucceed) {
+    
+        FLCachedImage* photo = [FLCachedImage create];
+        photo.url = self.URLString;
+        
+        NSData* data = self.httpResponse.responseData;
+        if(data && data.length > 0)
+        {
+            // note: folder and file name will be set by image cache.
+            FLJpegFile* imageFile = [[FLJpegFile alloc] init];
+            imageFile.jpegData = data;
+            photo.imageFile = imageFile;
+            FLReleaseWithNil_(imageFile);
+            
+            self.output = photo;
+        }
+    }
 }
 
 - (FLCachedImage*) cachedImageOutput {
@@ -37,6 +55,5 @@
 - (FLImage*) imageOutput {
 	return [self jpegFileOutput].image;
 }
-
 
 @end

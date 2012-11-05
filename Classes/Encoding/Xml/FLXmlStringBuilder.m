@@ -26,13 +26,6 @@
 	return autorelease_([[[self class] alloc] init]);
 }
 
-#if FL_MRC 
-- (void) dealloc {
-    release_(_dataEncoder);
-    super_dealloc_();
-}
-#endif
-
 -(void) appendXmlVersionDeclaration:(NSString*) version 
                andEncodingHeader:(NSString*) encoding
                standalone:(BOOL) standalone {

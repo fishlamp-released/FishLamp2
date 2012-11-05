@@ -6,35 +6,24 @@
 //	Copyright 2009 GreenTongue Software. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "FishLampCore.h"
-
 #import "FLNetworkOperation.h"
 #import "FLHttpConnection.h"
-#import "FLNetworkServerContext.h"
-#import "FLObjectDatabase.h"
-#import "FLHttpOperationAuthenticator.h"
 
-@class FLHttpOperation;
-
-@protocol FLHttpOperationDelegate <NSObject>
-@optional
-- (FLHttpConnection*) httpOperationCreateConnection:(FLHttpOperation*) operation;
-- (void) httpOperationWillRun:(FLHttpOperation*) operation;
-- (void) httpOperationDidRun:(FLHttpOperation*) operation;
-@end
+@protocol FLHttpOperationDelegate;
+@protocol FLHttpOperationAuthenticator;
 
 @interface FLHttpOperation : FLNetworkOperation {
 @private	
 	NSURL* _url;
 	id _requestType;
     FLHttpResponse* _httpResponse;
-    __unsafe_unretained id<FLHttpOperationDelegate> _httpDelegate;
+    id<FLHttpOperationAuthenticator> _httpAuthenticator;
     BOOL _isSecure;
     BOOL _isAuthenticated;
 }
 
-@property (readwrite, assign) id<FLHttpOperationDelegate> httpDelegate;
+@property (readwrite, strong) id<FLHttpOperationAuthenticator> httpAuthenticator;
 
 @property (readwrite, strong) NSURL* URL;
 @property (readwrite, strong) NSString* URLString; // convienience wrapper for URL
@@ -60,6 +49,9 @@
 @property (readwrite, assign) BOOL isSecure;
 @property (readwrite, assign) BOOL isAuthenticated;
 
+- (void) authenticateSelf;
+- (void) prepareAuthenticatedConnection:(FLHttpConnection*) connection;
+
 @end
 
 @interface FLHttpOperation (OptionalOverrides)
@@ -69,8 +61,8 @@
 
 @end
 
-
-
-
-
+@protocol FLHttpOperationAuthenticator <NSObject>
+- (void) httpOperationRunAuthentication:(FLHttpOperation*) operation;
+- (void) httpOperation:(FLHttpOperation*) operation prepareAuthenticatedConnection:(FLHttpConnection*) connection;
+@end
 

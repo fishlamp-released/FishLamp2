@@ -8,39 +8,30 @@
 
 #import "FLUserPreferences.h"
 #import "NSFileManager+FLExtras.h"
-#import "FLUserSession.h"
 
 #define kFileName @"prefs.plist"
 
-
 @implementation FLUserPreferences
 
-- (id) initWithFolder:(FLFolder*) folder
-{
-	if((self = [super initWithFolder:folder fileName:kFileName]))
-	{
+- (id) initWithFolder:(FLFolder*) folder {
+	if((self = [super initWithFolder:folder fileName:kFileName])) {
 	}
 	
 	return self;
 }
 
-- (id) initWithCoder:(NSCoder*) aDecoder
-{
-	if((self = [super init]))
-	{
+- (id) initWithCoder:(NSCoder*) aDecoder {
+	if((self = [super init])) {
 	}
 	
 	return self;
 }
 
-- (void) setDefaults
-{
+- (void) setDefaults {
 }
 
-- (BOOL) readFromFile
-{
-	if(![super readFromFile])
-	{
+- (BOOL) readFromFile {
+	if(![super readFromFile]) {
 		[self setDefaults];
 		return NO;
 	}
@@ -48,8 +39,7 @@
 	return YES;
 }
 
-- (void) encodeWithCoder:(NSCoder*) aCoder
-{
+- (void) encodeWithCoder:(NSCoder*) aCoder {
 }
 
 @end

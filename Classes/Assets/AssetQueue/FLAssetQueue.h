@@ -14,6 +14,7 @@
 #import "FLAssetQueueState.h"
 
 #import "FLImageAsset.h"
+#import "FLService.h"
 
 @class FLAssetQueueLoadLock;
 
@@ -26,22 +27,21 @@ typedef enum
 typedef void (^FLQueuedAssetVisitor)(FLQueuedAsset* asset);
 typedef void (^FLAssetQueueLoadAssetBlock)(id loadedAsset, NSError* error);
 
-@interface FLAssetQueue : NSObject<NSFastEnumeration> {
+@interface FLAssetQueue : FLService<NSFastEnumeration> {
 @private
 	NSString* _queueUID;
-	NSMutableArray* _queue;
-	FLObjectDatabase* _database;
+	NSMutableArray* _assets;
 	FLAssetQueueState* _state;
-    NSMutableArray* _locks;
+    NSInteger _lockCount;
 }
 
-@property (readonly, retain, nonatomic) NSArray* assets;
+@property (readonly, strong) NSArray* assets;
 
-@property (readwrite, retain, nonatomic) FLObjectDatabase* database;
-@property (readonly, retain, nonatomic) NSString* queueUID;
+@property (readonly, strong) FLObjectDatabase* database;
+@property (readonly, strong) NSString* queueUID;
 
-@property (readonly, assign, nonatomic) unsigned long totalAssetsAdded; // lifetime tally
-@property (readonly, assign, nonatomic) NSUInteger count; 
+@property (readonly, assign) unsigned long totalAssetsAdded; // lifetime tally
+@property (readonly, assign) NSUInteger count; 
  
 // default init not allowed. 
  
@@ -63,7 +63,7 @@ typedef void (^FLAssetQueueLoadAssetBlock)(id loadedAsset, NSError* error);
 //- (void) beginLoadingFromDatabase:(FLErrorCallback) completionBlock;
 //- (void) unload;
 - (BOOL) isLoaded;
-- (FLAssetQueueLoadLock*) loadLock;
+- (id) loadLock; //delete the lock to release it.
 
 // these require queue to be loaded
 - (id) assetAtIndex:(NSUInteger) idx;
@@ -84,28 +84,19 @@ typedef void (^FLAssetQueueLoadAssetBlock)(id loadedAsset, NSError* error);
 - (Class) queueClass;
 
 @end
-
-@interface FLAssetQueueLoadLock : NSObject {
-@private
-    FLAssetQueue* _assetQueue;
-}
-
-- (void) releaseLock;
-@end
-
 typedef void (^FLAssetQueueLoaderBlock)(FLAssetQueueLoadLock* loadLock);
 
 @interface FLAssetQueueLoader : NSObject {
 @private
     FLAssetQueue* _assetQueue;
     NSError* _error;
-    NSMutableArray* _queue;
+    NSMutableArray* _assets;
     BOOL _cancelled;
 }
 
-@property (readonly, assign, nonatomic) BOOL wasCancelled;
-@property (readonly, retain, nonatomic) FLAssetQueue* assetQueue;
-@property (readonly, retain, nonatomic) NSError* error;
+@property (readonly, assign) BOOL wasCancelled;
+@property (readonly, strong) FLAssetQueue* assetQueue;
+@property (readonly, strong) NSError* error;
 
 - (id) initWithAssetQueue:(FLAssetQueue*) queue;
 

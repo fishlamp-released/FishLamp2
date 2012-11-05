@@ -15,8 +15,10 @@
 
 - (void) runSelf {
 
+
 	FLFacebookUser* user = [FLFacebookUser facebookUser];
-	user.id = self.userId;
+FIXME(@"load the user id???");
+//	user.id = self.userId;
 	self.operationInput = user;
 	self.operationOutput = [FLFacebookUser facebookUser];
 

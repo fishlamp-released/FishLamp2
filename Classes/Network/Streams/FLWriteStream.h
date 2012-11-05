@@ -11,7 +11,6 @@
 @interface FLWriteStream : FLNetworkStream<FLWriteStream> {
 @private
  	CFWriteStreamRef _streamRef;
-    BOOL _open;
 }
 @property (readonly, assign) CFWriteStreamRef streamRef;
 

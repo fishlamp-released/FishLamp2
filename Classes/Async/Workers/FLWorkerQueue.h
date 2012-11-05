@@ -10,7 +10,7 @@
 
 @interface FLWorkerQueue : FLSimpleWorker {
 @private
-    NSMutableArray* _queue;
+    NSMutableArray* _workers;
  }
 
 @property (readonly, strong) NSArray* workers;
