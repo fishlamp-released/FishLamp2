@@ -54,22 +54,39 @@ dealloc_(
     [_services release];
 )
 
-- (void) addService:(id<FLService>) appService {
-    [appService addObserver:self];
-    [self addObserver:appService];
+- (void) setService:(id<FLService>) service 
+       forID:(id) serviceID {
 
-    [_services setObject:appService forKey:[[appService class] serviceID]];
+    [self removeServiceForID:serviceID];
+
+    FLAssertNotNil_(service);
+
+    [service addObserver:self];
+    [self addObserver:service];
+
+    [_services setObject:service forKey:serviceID];
+    [service wasAddedToService:self];
 }
 
-- (void) removeService:(id<FLService>) appService {
-
-    [appService removeObserver:self];
-    [self removeObserver:appService];
-
-    [_services removeObjectForKey:[[appService class] serviceID]];
+- (void) setService:(id<FLService>) service {
+    [self setService:service forID:[[service class] serviceID]];
 }
 
-- (id<FLService>) serviceByID:(NSString*) serviceName {
+- (void) removeServiceForID:(id) key {
+    id service = [_services objectForKey:key];
+    if(service) {
+        [service wasAddedToService:nil];
+        [service removeObserver:self];
+        [self removeObserver:service];
+        [_services removeObjectForKey:key];
+    }
+}
+
+- (void) removeService:(id<FLService>) service {
+    [self removeServiceForID:[[service class] serviceID]];
+}
+
+- (id) serviceForID:(NSString*) serviceName {
     return [_services objectForKey:serviceName];
 }
 

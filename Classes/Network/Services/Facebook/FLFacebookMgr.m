@@ -12,6 +12,8 @@
 
 static NSString* kRedirectURL = @"http://www.facebook.com/connect/login_success.html";
 
+register_service_(facebookService, FLFacebookMgr);
+
 @implementation FLFacebookMgr
 
 @synthesize session = _session;

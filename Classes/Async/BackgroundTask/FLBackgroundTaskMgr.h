@@ -101,3 +101,5 @@
 - (void) backgroundTaskMgr:(FLBackgroundTaskMgr*) mgr canStart:(id<FLAnswerable>) answer backgroundTask:(id<FLAnswerable>) answer;
 
 @end
+
+declare_service_(backgroundTasks, FLBackgroundTaskMgr);

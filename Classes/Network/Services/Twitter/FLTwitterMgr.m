@@ -10,6 +10,8 @@
 #import "NSString+GUID.h"
 #import "FLUserDataStorageService.h"
 
+register_service_(twitter, FLTwitterMgr);
+
 @interface FLTwitterMgr ()
 @property (readwrite, strong) FLOAuthSession* oauthSession;
 @property (readwrite, strong) FLOAuthApp* oauthInfo;

@@ -13,7 +13,21 @@
 #import "FLLengthyTaskList.h"
 #import "FLVersionUpgradeLengthyTaskList.h"
 
-@interface FLUserDataStorageService : FLService {
+@protocol FLUserDataStorageService <FLService>
+// caching
+@property (readonly, strong) FLObjectDatabase* cacheDatabase;
+@property (readonly, strong) FLObjectDatabase* documentsDatabase;
+
+// folders
+@property (readonly, strong) FLFolder* documentsFolder;
+@property (readonly, strong) FLFolder* cacheFolder;
+@property (readonly, strong) FLFolder* photoFolder;
+@property (readonly, strong) FLFolder* photoCacheFolder;
+@property (readonly, strong) FLFolder* tempFolder;
+@property (readonly, strong) FLFolder* logFolder;
+@end
+
+@interface FLUserDataStorageService : FLService<FLUserDataStorageService> {
 @private
 	FLObjectDatabase* _cacheDatabase;
 	FLObjectDatabase* _documentsDatabase;
@@ -34,17 +48,6 @@
 	FLVersionUpgradeLengthyTaskList* _upgradeTaskList;
 }
 
-// caching
-@property (readonly, strong) FLObjectDatabase* cacheDatabase;
-@property (readonly, strong) FLObjectDatabase* documentsDatabase;
-
-// folders
-@property (readonly, strong) FLFolder* documentsFolder;
-@property (readonly, strong) FLFolder* cacheFolder;
-@property (readonly, strong) FLFolder* photoFolder;
-@property (readonly, strong) FLFolder* photoCacheFolder;
-@property (readonly, strong) FLFolder* tempFolder;
-@property (readonly, strong) FLFolder* logFolder;
 @end
 
 @interface FLUserDataStorageService (PlatformSpecific)
@@ -62,3 +65,5 @@
 @protocol FLUserDataStorageServiceProtocol <NSObject>
 - (FLUserDataStorageService*) storageService;
 @end
+
+declare_service_(storage, FLUserDataStorageService);

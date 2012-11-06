@@ -22,7 +22,6 @@
 #import "FLBackgroundTaskMgr.h"
 #import "FLAction.h"
 
-
 @interface FLUserDataStorageService ()
 - (BOOL) _beginOpeningService;
 - (void) finishUpgradeTasks;

@@ -10,6 +10,12 @@
 
 #import "FacebookEnums.h"
 #import "FLService.h"
+#import "FLNetworkServerContext.h"
+#import "FLFacebookNetworkSession.h"
+#import "FLFacebookAll.h"
+#import "FLFacebookOperation.h"
+#import "FLAction.h"
+#import "FLFacebookAuthenticationResponse.h"
 
 #define FLFacebookErrorKey @"fb_error"
 #define FLFacebookErrorDomain @"FLFacebookErrorDomain"
@@ -25,13 +31,7 @@ typedef enum {
 
 #define FLFacebookPostStatusOnlyPermissions [NSArray arrayWithObjects:kFLFacebookUserWritePermissionPublishStream, kFLFacebookUserWritePermissionOfflineAccess, nil ]
 
-#import "FLNetworkServerContext.h"
-#import "FLFacebookNetworkSession.h"
-#import "FLFacebookAll.h"
-#import "FLFacebookOperation.h"
-#import "FLAction.h"
-#import "FLFacebookAuthenticationResponse.h"
-#import "FLService.h"
+
 
 @protocol FLFacebookManagerDelegate;
 
@@ -81,7 +81,4 @@ typedef enum {
 
 @end
 
-@protocol FLFacebookMgrService <NSObject>
-@property (readonly, strong) FLFacebookMgr* facebookService;
-@end
-
+declare_service_(facebookService, FLFacebookMgr);

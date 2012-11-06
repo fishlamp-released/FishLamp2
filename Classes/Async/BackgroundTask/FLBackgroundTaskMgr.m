@@ -16,6 +16,8 @@
 - (void) _handleReadyState;
 @end
 
+register_service_(backgroundTasks, FLBackgroundTaskMgr);
+
 @implementation FLBackgroundTaskMgr
 
 FLSynthesizeSingleton(FLBackgroundTaskMgr);

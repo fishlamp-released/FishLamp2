@@ -33,13 +33,40 @@
     NSMutableDictionary* _services;
 }
 
-- (void) addService:(id<FLService>) appService;
-- (void) removeService:(id<FLService>) appService;
-- (id<FLService>) serviceByID:(id) serviceID;
+- (void) setService:(id<FLService>) appService 
+       forID:(id) serviceID;
+
+- (void) setService:(id<FLService>) service;
+
+- (void) removeService:(id<FLService>) service;
+
+- (void) removeServiceForID:(id) serviceID;
+
+- (id) serviceForID:(id) serviceID;
 
 @end
 
 // helper for your init methods         
-#define FLSetService(__NAME__, __TYPE__) \
-        __NAME__ = [[__TYPE__ alloc] init]; \
-        [self addService:__NAME__];
+#define FLCreateService_(__TYPE__) \
+        [self setService:autorelease_([[__TYPE__ alloc] init]) forID:[__TYPE__ serviceID]];
+
+#define using_service_(__NAME__, __TYPE__) \
+            @property (readonly, strong) __TYPE__* __NAME__;
+
+#define declare_service_(__NAME__, __TYPE__) \
+    @class __TYPE__; \
+    @protocol __TYPE__##ServiceRegistration <NSObject>  \
+        @property (readonly, strong) __TYPE__* __NAME__; \
+    @end 
+
+#define register_service_(__NAME__, __TYPE__) \
+    @implementation FLParentService (__TYPE__##ServiceRegistration) \
+        - (__TYPE__*) __NAME__ { return [self serviceForID:@#__NAME__]; } \
+    @end \
+    @implementation __TYPE__ (__TYPE__##ServiceRegistration) \
+        + (id) serviceID { return @#__NAME__; } \
+    @end
+
+
+
+    

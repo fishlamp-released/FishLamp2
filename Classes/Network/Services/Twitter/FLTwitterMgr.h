@@ -26,3 +26,5 @@
 + (void) clearTwitterCookies;
 @end
 
+declare_service_(twitter, FLTwitterMgr);
+

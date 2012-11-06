@@ -9,7 +9,12 @@
 #import "FLUserLogin.h"
 #import "FLService.h"
 
-@interface FLUserLoginService : FLService {
+@protocol FLUserLoginService <FLService>
+@property (readwrite, strong) FLUserLogin* userLogin; 
+@property (readonly, assign, getter=isAuthenticated) BOOL authenticated;
+@end
+
+@interface FLUserLoginService : FLService<FLUserLoginService> {
 @private
 	FLUserLogin* _userLogin;
 }
