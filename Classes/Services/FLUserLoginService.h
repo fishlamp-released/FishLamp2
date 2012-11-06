@@ -36,7 +36,7 @@
 
 // app services
 
-@interface FLOperation (ZfUserSession)
+@interface FLOperation (ZFUserSession)
 - (FLUserLogin*) userLogin;
 @end
 
