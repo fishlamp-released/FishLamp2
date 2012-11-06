@@ -17,7 +17,7 @@
 @synthesize folder = _folder;
 
 - (void) openService {
-//    self.folder = [self.parentService storageService].tempFolder;
+//    self.folder = [self.session storageService].tempFolder;
     [self beginPurgeInBackgroundThread:nil];
     [super openService];
 }

@@ -14,7 +14,7 @@ synthesize_(authenticator);
 
 - (void) openService {
     if(!self.authenticator) {
-        self.authenticator = [self.parentService httpAuthenticator];
+        self.authenticator = [self.session httpAuthenticator];
     }
     [super openService];
 }

@@ -9,6 +9,7 @@
 #import "FLFacebookMgr.h"
 #import "NSString+URL.h"
 #import "FLUserDataStorageService.h"
+#import "FLSession.h"
 
 static NSString* kRedirectURL = @"http://www.facebook.com/connect/login_success.html";
 
@@ -16,16 +17,16 @@ register_service_(facebookService, FLFacebookMgr);
 
 @implementation FLFacebookMgr
 
-@synthesize session = _session;
-@synthesize appId = _appId;
-@synthesize encodedToken = _encodedToken;
-@synthesize permissions = _permissions;
+synthesize_(facebookNetworkSession);
+synthesize_(appId);
+synthesize_(encodedToken);
+synthesize_(permissions);
 
 dealloc_(
     [_permissions release];
 	[_encodedToken release];
 	[_appId release];
-	[_session release];
+	[_facebookNetworkSession release];
 )
 
 // from facebook demo app
@@ -122,7 +123,7 @@ dealloc_(
 }
 
 - (FLObjectDatabase*) database {
-    return [self.parentService storageService].documentsDatabase;
+    return [self.session storageService].documentsDatabase;
 }
 
 - (void) logout
@@ -131,7 +132,7 @@ dealloc_(
 	input.appId = self.appId;
 
 	[self.database deleteObject:input];
-	FLReleaseWithNil_(_session);
+	FLReleaseWithNil_(_facebookNetworkSession);
     FLReleaseWithNil_(_encodedToken);
     
     [FLFacebookMgr clearFacebookCookies];
@@ -140,32 +141,32 @@ dealloc_(
 
 - (BOOL) appNeedsAuthorizationForPermissions:(NSArray*) permissions
 {
-	if(!_session) 
+	if(!_facebookNetworkSession) 
 	{
 		FLFacebookNetworkSession* input = [FLFacebookNetworkSession facebookNetworkSession];
 		input.appId = self.appId;
 		
-		FLRetainObject_(_session, [self.database loadObject:input]);
+		FLRetainObject_(_facebookNetworkSession, [self.database loadObject:input]);
 		
-		if(_session && FLStringIsEmpty(_session.userId))
+		if(_facebookNetworkSession && FLStringIsEmpty(_facebookNetworkSession.userId))
 		{
-			[self.database deleteObject:_session];
-			FLReleaseWithNil_(_session);
+			[self.database deleteObject:_facebookNetworkSession];
+			FLReleaseWithNil_(_facebookNetworkSession);
 		}
 	}
 	
-	if(!_session)
+	if(!_facebookNetworkSession)
 	{
     	return YES;
 	}
     
-    if(!FLStringsAreEqual(_session.appId, self.appId))
+    if(!FLStringsAreEqual(_facebookNetworkSession.appId, self.appId))
     {
         return YES;
     }
     
-    if(_session.expiration_date != nil && 
-        (_session.expiration_date.timeIntervalSinceReferenceDate < [NSDate timeIntervalSinceReferenceDate]))
+    if(_facebookNetworkSession.expiration_date != nil && 
+        (_facebookNetworkSession.expiration_date.timeIntervalSinceReferenceDate < [NSDate timeIntervalSinceReferenceDate]))
     {
         return YES;
     }
@@ -173,7 +174,7 @@ dealloc_(
 //	for(NSString* perm in permissions)
 //	{
 //		BOOL foundIt = NO;
-//		for(NSString* authorizedPerm in _session.permissions)
+//		for(NSString* authorizedPerm in _facebookNetworkSession.permissions)
 //		{
 //			if(FLStringsAreEqual(perm, authorizedPerm))
 //			{
@@ -191,29 +192,29 @@ dealloc_(
 	return NO;
 	
 	
-//	return !_session || ([NSDate timeIntervalSinceReferenceDate] > _session.expiration_date.timeIntervalSinceReferenceDate);
+//	return !_facebookNetworkSession || ([NSDate timeIntervalSinceReferenceDate] > _facebookNetworkSession.expiration_date.timeIntervalSinceReferenceDate);
 }
 
 - (BOOL) appSessionHasExpired
 {
-	return ([NSDate timeIntervalSinceReferenceDate] > _session.expiration_date.timeIntervalSinceReferenceDate);
+	return ([NSDate timeIntervalSinceReferenceDate] > _facebookNetworkSession.expiration_date.timeIntervalSinceReferenceDate);
 }
 
-- (void) setSession:(FLFacebookNetworkSession*) session
+- (void) setFacebookNetworkSession:(FLFacebookNetworkSession*) session
 {
-	FLRetainObject_(_session, session);
+	FLRetainObject_(_facebookNetworkSession, session);
 
 	self.encodedToken = nil;
 	
-	if(_session)
+	if(_facebookNetworkSession)
 	{
-		if(FLStringIsEmpty(_session.appId))
+		if(FLStringIsEmpty(_facebookNetworkSession.appId))
 		{
-			_session.appId = self.appId;
+			_facebookNetworkSession.appId = self.appId;
 		}
 
-		self.encodedToken = [_session.access_token urlEncodeString:NSUTF8StringEncoding];
-		[self.database saveObject:_session];
+		self.encodedToken = [_facebookNetworkSession.access_token urlEncodeString:NSUTF8StringEncoding];
+		[self.database saveObject:_facebookNetworkSession];
 	}
 }
 
@@ -238,7 +239,7 @@ dealloc_(
 {
 	if(!_encodedToken)
 	{
-		_encodedToken =  retain_([self.session.access_token urlEncodeString:NSUTF8StringEncoding]);
+		_encodedToken =  retain_([self.facebookNetworkSession.access_token urlEncodeString:NSUTF8StringEncoding]);
 	}
 	return _encodedToken;
 }
@@ -248,9 +249,9 @@ dealloc_(
 	NSString *accessToken = [params valueForKey:@"access_token"];
 	if(FLStringIsNotEmpty(accessToken))
 	{
-		FLFacebookNetworkSession* session = [FLFacebookNetworkSession facebookNetworkSession];
-		session.access_token = accessToken;
-		session.expiration_date = [NSDate distantFuture];
+		FLFacebookNetworkSession* facebookNetworkSession = [FLFacebookNetworkSession facebookNetworkSession];
+		facebookNetworkSession.access_token = accessToken;
+		facebookNetworkSession.expiration_date = [NSDate distantFuture];
 		
 	// We have an access token, so parse the expiration date.
 		NSString *expTime = [params valueForKey:@"expires_in"];
@@ -259,11 +260,11 @@ dealloc_(
 			int expVal = [expTime intValue];
 			if (expVal != 0) 
 			{
-				session.expiration_date = [NSDate dateWithTimeIntervalSinceNow:expVal];
+				facebookNetworkSession.expiration_date = [NSDate dateWithTimeIntervalSinceNow:expVal];
 			}
 		}
 	
-		return session;
+		return facebookNetworkSession;
 	}
 	
 	return nil;
@@ -301,10 +302,10 @@ dealloc_(
 	}
 	
 	NSDictionary *params = [FLFacebookMgr parseURLParams:query];
-	FLFacebookNetworkSession* session = [FLFacebookMgr sessionFromURLParams:params];
-	if(session)
+	FLFacebookNetworkSession* facebookNetworkSession = [FLFacebookMgr sessionFromURLParams:params];
+	if(facebookNetworkSession)
 	{
-		response.session = session;
+		response.session = facebookNetworkSession;
 	}
 	else
 	{

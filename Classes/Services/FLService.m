@@ -7,103 +7,38 @@
 //
 
 #import "FLService.h"
-#import "FLWorkFinisher.h"
-#import "FLCollectionIterator.h"
+#import "FLSession.h"
 
 @interface FLService()
-@property (readwrite, assign) id parentService;
+@property (readwrite, assign) id session;
 @end
 
 @implementation FLService
 
-synthesize_(parentService)
+synthesize_(session)
 synthesize_(isServiceOpen)
 
-- (void) wasAddedToService:(id<FLService>) parent {
-    self.parentService = parent;
+- (void) wasAddedToSession:(FLSession*) session {
+    FLAssert_v([self.session isSessionOpen] == NO, @"adding service to open session");
+    self.session = session;
 }
 
 + (id) serviceID {
-    return NSStringFromClass([self class]);
+    FLAssertFailed_v(@"use register_service_ to set serviceID");
+    return nil;
 }
 
-
 - (void) openService {
+    FLAssertNotNil_v(self.session, @"service not in a session");
+    FLAssert_v([self.session isSessionOpen], @"opening a service in a closed session");
     _isServiceOpen = YES;
 }
 
 - (void) closeService {
+    FLAssertNotNil_v(self.session, @"service not in a session");
     _isServiceOpen = NO;
 }
 
 
 @end
 
-@implementation FLParentService
-
-- (id) init {
-    self = [super init];
-    if(self) {
-        _services = [[NSMutableDictionary alloc] init];
-    }
-    
-    return self;
-}
-
-dealloc_(    
-    [_services release];
-)
-
-- (void) setService:(id<FLService>) service 
-       forID:(id) serviceID {
-
-    [self removeServiceForID:serviceID];
-
-    FLAssertNotNil_(service);
-
-    [service addObserver:self];
-    [self addObserver:service];
-
-    [_services setObject:service forKey:serviceID];
-    [service wasAddedToService:self];
-}
-
-- (void) setService:(id<FLService>) service {
-    [self setService:service forID:[[service class] serviceID]];
-}
-
-- (void) removeServiceForID:(id) key {
-    id service = [_services objectForKey:key];
-    if(service) {
-        [service wasAddedToService:nil];
-        [service removeObserver:self];
-        [self removeObserver:service];
-        [_services removeObjectForKey:key];
-    }
-}
-
-- (void) removeService:(id<FLService>) service {
-    [self removeServiceForID:[[service class] serviceID]];
-}
-
-- (id) serviceForID:(NSString*) serviceName {
-    return [_services objectForKey:serviceName];
-}
-
-- (void) openService {
-    for(id<FLService> service in _services.objectEnumerator) {
-        [service openService];
-    }
-    
-    [super openService];
-}
-
-- (void) closeService {
-    for(id<FLService> service in _services.objectEnumerator) {
-        [service closeService];
-    }
-
-    [super closeService];
-}
-
-@end

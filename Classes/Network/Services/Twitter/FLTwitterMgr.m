@@ -9,6 +9,8 @@
 #import "FLTwitterMgr.h"
 #import "NSString+GUID.h"
 #import "FLUserDataStorageService.h"
+#import "FLSession.h"
+
 
 register_service_(twitter, FLTwitterMgr);
 
@@ -54,7 +56,7 @@ dealloc_ (
 )
 
 - (FLObjectDatabase*) database {
-    return [self.parentService storageService].documentsDatabase;
+    return [self.session storageService].documentsDatabase;
 }
 
 + (void) clearTwitterCookies {

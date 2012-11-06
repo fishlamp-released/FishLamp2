@@ -14,7 +14,9 @@
 #import "NSString+Guid.h"
 #import "FLBackgroundTaskMgr.h"
 #import "FLUserDataStorageService.h"
+#import "FLSession.h"
 
+register_service_(userService, FLUserLoginService);
 
 @interface FLUserLoginService ()
 @property (readwrite, assign, getter=isAuthenticated) BOOL authenticated;
@@ -134,3 +136,9 @@ dealloc_(
 
 @end
 
+
+@implementation FLOperation (ZfUserSession)
+- (FLUserLogin*) userLogin {
+    return [self.services userService].userLogin;
+}
+@end

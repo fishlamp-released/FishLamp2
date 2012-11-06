@@ -48,7 +48,7 @@ dealloc_(
 - (void) runSelf {
     FLFacebookMgr* facebook = [self.services facebookService];
 
-    NSString* userID = facebook.session.userId;
+    NSString* userID = facebook.facebookNetworkSession.userId;
 
 	NSMutableString* url = [FLFacebookMgr buildURL:facebook.encodedToken user:userID object:self.object params:nil];
 	

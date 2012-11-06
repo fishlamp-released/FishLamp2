@@ -37,7 +37,7 @@ typedef enum {
 
 @interface FLFacebookMgr : FLService {
 @private
-	FLFacebookNetworkSession* _session; // 
+	FLFacebookNetworkSession* _facebookNetworkSession; // 
 	NSString* _appId;
 	NSString* _encodedToken;
     NSArray* _permissions;
@@ -45,7 +45,7 @@ typedef enum {
 
 @property (readwrite, retain, nonatomic) NSArray* permissions;
 @property (readwrite, retain, nonatomic) NSString* appId;
-@property (readwrite, retain, nonatomic) FLFacebookNetworkSession* session;
+@property (readwrite, retain, nonatomic) FLFacebookNetworkSession* facebookNetworkSession;
 @property (readwrite, retain, nonatomic) NSString* encodedToken;
 
 - (void) logout;

@@ -8,7 +8,7 @@
                 userInfo:nil \
                 reason:FLStringWithFormatOrNil(@"Condition unexpectedly false: %s", #__CONDITION__) \
                 comment:nil \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLAssert_(__CONDITION__)
@@ -23,7 +23,7 @@
                 userInfo:nil \
                 reason:FLStringWithFormatOrNil(@"Condition unexpectedly false: %s", #__CONDITION__) \
                 comment:nil \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLCAssert_(__CONDITION__)
@@ -38,7 +38,7 @@
                 userInfo:nil \
                 reason:FLStringWithFormatOrNil(@"Condition unexpectedly false: %s", #__CONDITION__) \
                 comment: FLStringWithFormatOrNil(__COMMENT__, ##__VA_ARGS__) \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLAssert_v(__CONDITION__, __COMMENT__, ...)
@@ -53,7 +53,7 @@
                 userInfo:nil \
                 reason:FLStringWithFormatOrNil(@"Condition unexpectedly false: %s", #__CONDITION__) \
                 comment: FLStringWithFormatOrNil(__COMMENT__, ##__VA_ARGS__) \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLCAssert_v(__CONDITION__, __COMMENT__, ...)
@@ -67,7 +67,7 @@
                 userInfo:nil \
                 reason:nil \
                 comment:nil \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLAssertFailed_()
@@ -81,7 +81,7 @@
                 userInfo:nil \
                 reason:nil \
                 comment:nil \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLCAssertFailed_()
@@ -95,7 +95,7 @@
                 userInfo:nil \
                 reason:nil \
                 comment: FLStringWithFormatOrNil(__COMMENT__, ##__VA_ARGS__) \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLAssertFailed_v(__COMMENT__, ...)
@@ -109,7 +109,7 @@
                 userInfo:nil \
                 reason:nil \
                 comment: FLStringWithFormatOrNil(__COMMENT__, ##__VA_ARGS__) \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLCAssertFailed_v(__COMMENT__, ...)
@@ -124,7 +124,7 @@
                 userInfo:nil \
                 reason:FLStringWithFormatOrNil(@"Pointer unexpectedly not nil: %s", #__CONDITION__) \
                 comment:nil \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLAssertIsNil_(__CONDITION__)
@@ -139,7 +139,7 @@
                 userInfo:nil \
                 reason:FLStringWithFormatOrNil(@"Pointer unexpectedly not nil: %s", #__CONDITION__) \
                 comment:nil \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLCAssertIsNil_(__CONDITION__)
@@ -154,7 +154,7 @@
                 userInfo:nil \
                 reason:FLStringWithFormatOrNil(@"Pointer unexpectedly not nil: %s", #__CONDITION__) \
                 comment: FLStringWithFormatOrNil(__COMMENT__, ##__VA_ARGS__) \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLAssertIsNil_v(__CONDITION__, __COMMENT__, ...)
@@ -169,7 +169,7 @@
                 userInfo:nil \
                 reason:FLStringWithFormatOrNil(@"Pointer unexpectedly not nil: %s", #__CONDITION__) \
                 comment: FLStringWithFormatOrNil(__COMMENT__, ##__VA_ARGS__) \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLCAssertIsNil_v(__CONDITION__, __COMMENT__, ...)
@@ -184,7 +184,7 @@
                 userInfo:nil \
                 reason:FLStringWithFormatOrNil(@"Pointer unexpectedly nil: %s", #__CONDITION__) \
                 comment:nil \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLAssertIsNotNil_(__CONDITION__)
@@ -199,7 +199,7 @@
                 userInfo:nil \
                 reason:FLStringWithFormatOrNil(@"Pointer unexpectedly nil: %s", #__CONDITION__) \
                 comment:nil \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLCAssertIsNotNil_(__CONDITION__)
@@ -214,7 +214,7 @@
                 userInfo:nil \
                 reason:FLStringWithFormatOrNil(@"Pointer unexpectedly nil: %s", #__CONDITION__) \
                 comment: FLStringWithFormatOrNil(__COMMENT__, ##__VA_ARGS__) \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLAssertIsNotNil_v(__CONDITION__, __COMMENT__, ...)
@@ -229,7 +229,7 @@
                 userInfo:nil \
                 reason:FLStringWithFormatOrNil(@"Pointer unexpectedly nil: %s", #__CONDITION__) \
                 comment: FLStringWithFormatOrNil(__COMMENT__, ##__VA_ARGS__) \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLCAssertIsNotNil_v(__CONDITION__, __COMMENT__, ...)
@@ -245,7 +245,7 @@
                 userInfo:nil \
                 reason:FLStringWithFormatOrNil(@"String unexpectedly empty: %s", #__STRING__) \
                 comment:nil \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLAssertStringIsNotEmpty_(__STRING__)
@@ -261,7 +261,7 @@
                 userInfo:nil \
                 reason:FLStringWithFormatOrNil(@"String unexpectedly empty: %s", #__STRING__) \
                 comment:nil \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLCAssertStringIsNotEmpty_(__STRING__)
@@ -277,7 +277,7 @@
                 userInfo:nil \
                 reason:FLStringWithFormatOrNil(@"String unexpectedly empty: %s", #__STRING__) \
                 comment: FLStringWithFormatOrNil(__COMMENT__, ##__VA_ARGS__) \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLAssertStringIsNotEmpty_v(__STRING__, __COMMENT__, ...)
@@ -293,7 +293,7 @@
                 userInfo:nil \
                 reason:FLStringWithFormatOrNil(@"String unexpectedly empty: %s", #__STRING__) \
                 comment: FLStringWithFormatOrNil(__COMMENT__, ##__VA_ARGS__) \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLCAssertStringIsNotEmpty_v(__STRING__, __COMMENT__, ...)
@@ -309,7 +309,7 @@
                 userInfo:nil \
                 reason:FLStringWithFormatOrNil(@"String unexpectedly not empty: %s", #__STRING__) \
                 comment:nil \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLAssertStringIsEmpty_(__STRING__)
@@ -325,7 +325,7 @@
                 userInfo:nil \
                 reason:FLStringWithFormatOrNil(@"String unexpectedly not empty: %s", #__STRING__) \
                 comment:nil \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLCAssertStringIsEmpty_(__STRING__)
@@ -341,7 +341,7 @@
                 userInfo:nil \
                 reason:FLStringWithFormatOrNil(@"String unexpectedly not empty: %s", #__STRING__) \
                 comment: FLStringWithFormatOrNil(__COMMENT__, ##__VA_ARGS__) \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLAssertStringIsEmpty_v(__STRING__, __COMMENT__, ...)
@@ -357,7 +357,7 @@
                 userInfo:nil \
                 reason:FLStringWithFormatOrNil(@"String unexpectedly not empty: %s", #__STRING__) \
                 comment: FLStringWithFormatOrNil(__COMMENT__, ##__VA_ARGS__) \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLCAssertStringIsEmpty_v(__STRING__, __COMMENT__, ...)
@@ -373,7 +373,7 @@
                 userInfo:nil \
                 reason:FLStringWithFormatOrNil(@"Condition unexpectedly false: %s", #__BOOL__) \
                 comment:nil \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLAssertIsTrue_(__BOOL__)
@@ -389,7 +389,7 @@
                 userInfo:nil \
                 reason:FLStringWithFormatOrNil(@"Condition unexpectedly false: %s", #__BOOL__) \
                 comment:nil \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLCAssertIsTrue_(__BOOL__)
@@ -405,7 +405,7 @@
                 userInfo:nil \
                 reason:FLStringWithFormatOrNil(@"Condition unexpectedly false: %s", #__BOOL__) \
                 comment: FLStringWithFormatOrNil(__COMMENT__, ##__VA_ARGS__) \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLAssertIsTrue_v(__BOOL__, __COMMENT__, ...)
@@ -421,7 +421,7 @@
                 userInfo:nil \
                 reason:FLStringWithFormatOrNil(@"Condition unexpectedly false: %s", #__BOOL__) \
                 comment: FLStringWithFormatOrNil(__COMMENT__, ##__VA_ARGS__) \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLCAssertIsTrue_v(__BOOL__, __COMMENT__, ...)
@@ -437,7 +437,7 @@
                 userInfo:nil \
                 reason:FLStringWithFormatOrNil(@"Condition unexpectedly true: %s", #__BOOL__) \
                 comment:nil \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLAssertIsFalse_(__BOOL__)
@@ -453,7 +453,7 @@
                 userInfo:nil \
                 reason:FLStringWithFormatOrNil(@"Condition unexpectedly true: %s", #__BOOL__) \
                 comment:nil \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLCAssertIsFalse_(__BOOL__)
@@ -469,7 +469,7 @@
                 userInfo:nil \
                 reason:FLStringWithFormatOrNil(@"Condition unexpectedly true: %s", #__BOOL__) \
                 comment: FLStringWithFormatOrNil(__COMMENT__, ##__VA_ARGS__) \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLAssertIsFalse_v(__BOOL__, __COMMENT__, ...)
@@ -485,7 +485,7 @@
                 userInfo:nil \
                 reason:FLStringWithFormatOrNil(@"Condition unexpectedly true: %s", #__BOOL__) \
                 comment: FLStringWithFormatOrNil(__COMMENT__, ##__VA_ARGS__) \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLCAssertIsFalse_v(__BOOL__, __COMMENT__, ...)
@@ -501,7 +501,7 @@
                 userInfo:nil \
                 reason:FLStringWithFormatOrNil(@"Condition unexpectedly NO: %s", #__BOOL__) \
                 comment:nil \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLAssertIsYes_(__BOOL__)
@@ -517,7 +517,7 @@
                 userInfo:nil \
                 reason:FLStringWithFormatOrNil(@"Condition unexpectedly NO: %s", #__BOOL__) \
                 comment:nil \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLCAssertIsYes_(__BOOL__)
@@ -533,7 +533,7 @@
                 userInfo:nil \
                 reason:FLStringWithFormatOrNil(@"Condition unexpectedly NO: %s", #__BOOL__) \
                 comment: FLStringWithFormatOrNil(__COMMENT__, ##__VA_ARGS__) \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLAssertIsYes_v(__BOOL__, __COMMENT__, ...)
@@ -549,7 +549,7 @@
                 userInfo:nil \
                 reason:FLStringWithFormatOrNil(@"Condition unexpectedly NO: %s", #__BOOL__) \
                 comment: FLStringWithFormatOrNil(__COMMENT__, ##__VA_ARGS__) \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLCAssertIsYes_v(__BOOL__, __COMMENT__, ...)
@@ -565,7 +565,7 @@
                 userInfo:nil \
                 reason:FLStringWithFormatOrNil(@"Condition unexpectedly YES: %s", #__BOOL__) \
                 comment:nil \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLAssertIsNo_(__BOOL__)
@@ -581,7 +581,7 @@
                 userInfo:nil \
                 reason:FLStringWithFormatOrNil(@"Condition unexpectedly YES: %s", #__BOOL__) \
                 comment:nil \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLCAssertIsNo_(__BOOL__)
@@ -597,7 +597,7 @@
                 userInfo:nil \
                 reason:FLStringWithFormatOrNil(@"Condition unexpectedly YES: %s", #__BOOL__) \
                 comment: FLStringWithFormatOrNil(__COMMENT__, ##__VA_ARGS__) \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLAssertIsNo_v(__BOOL__, __COMMENT__, ...)
@@ -613,7 +613,7 @@
                 userInfo:nil \
                 reason:FLStringWithFormatOrNil(@"Condition unexpectedly YES: %s", #__BOOL__) \
                 comment: FLStringWithFormatOrNil(__COMMENT__, ##__VA_ARGS__) \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLCAssertIsNo_v(__BOOL__, __COMMENT__, ...)
@@ -629,7 +629,7 @@
                 userInfo:nil \
                 reason:FLStringWithFormatOrNil(@"%sis unexpectedly not equal to %s", #__LHS__, #__RHS__) \
                 comment:nil \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLAssertAreEqual_(__LHS__, __RHS__)
@@ -645,7 +645,7 @@
                 userInfo:nil \
                 reason:FLStringWithFormatOrNil(@"%sis unexpectedly not equal to %s", #__LHS__, #__RHS__) \
                 comment:nil \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLCAssertAreEqual_(__LHS__, __RHS__)
@@ -661,7 +661,7 @@
                 userInfo:nil \
                 reason:FLStringWithFormatOrNil(@"%sis unexpectedly not equal to %s", #__LHS__, #__RHS__) \
                 comment: FLStringWithFormatOrNil(__COMMENT__, ##__VA_ARGS__) \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLAssertAreEqual_v(__LHS__, __RHS__, __COMMENT__, ...)
@@ -677,7 +677,7 @@
                 userInfo:nil \
                 reason:FLStringWithFormatOrNil(@"%sis unexpectedly not equal to %s", #__LHS__, #__RHS__) \
                 comment: FLStringWithFormatOrNil(__COMMENT__, ##__VA_ARGS__) \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLCAssertAreEqual_v(__LHS__, __RHS__, __COMMENT__, ...)
@@ -693,7 +693,7 @@
                 userInfo:nil \
                 reason:FLStringWithFormatOrNil(@"%sis unexpectedly equal to %s", #__LHS__, #__RHS__) \
                 comment:nil \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLAssertAreNotEqual_(__LHS__, __RHS__)
@@ -709,7 +709,7 @@
                 userInfo:nil \
                 reason:FLStringWithFormatOrNil(@"%sis unexpectedly equal to %s", #__LHS__, #__RHS__) \
                 comment:nil \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLCAssertAreNotEqual_(__LHS__, __RHS__)
@@ -725,7 +725,7 @@
                 userInfo:nil \
                 reason:FLStringWithFormatOrNil(@"%sis unexpectedly equal to %s", #__LHS__, #__RHS__) \
                 comment: FLStringWithFormatOrNil(__COMMENT__, ##__VA_ARGS__) \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLAssertAreNotEqual_v(__LHS__, __RHS__, __COMMENT__, ...)
@@ -741,7 +741,7 @@
                 userInfo:nil \
                 reason:FLStringWithFormatOrNil(@"%sis unexpectedly equal to %s", #__LHS__, #__RHS__) \
                 comment: FLStringWithFormatOrNil(__COMMENT__, ##__VA_ARGS__) \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLCAssertAreNotEqual_v(__LHS__, __RHS__, __COMMENT__, ...)
@@ -757,7 +757,7 @@
                 userInfo:nil \
                 reason:FLStringWithFormatOrNil(@"%sis unexpectedly not equal to %s", #__LHS__, #__RHS__) \
                 comment:nil \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLAssertObjectsAreEqual_(__LHS__, __RHS__)
@@ -773,7 +773,7 @@
                 userInfo:nil \
                 reason:FLStringWithFormatOrNil(@"%sis unexpectedly not equal to %s", #__LHS__, #__RHS__) \
                 comment:nil \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLCAssertObjectsAreEqual_(__LHS__, __RHS__)
@@ -789,7 +789,7 @@
                 userInfo:nil \
                 reason:FLStringWithFormatOrNil(@"%sis unexpectedly not equal to %s", #__LHS__, #__RHS__) \
                 comment: FLStringWithFormatOrNil(__COMMENT__, ##__VA_ARGS__) \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLAssertObjectsAreEqual_v(__LHS__, __RHS__, __COMMENT__, ...)
@@ -805,7 +805,7 @@
                 userInfo:nil \
                 reason:FLStringWithFormatOrNil(@"%sis unexpectedly not equal to %s", #__LHS__, #__RHS__) \
                 comment: FLStringWithFormatOrNil(__COMMENT__, ##__VA_ARGS__) \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLCAssertObjectsAreEqual_v(__LHS__, __RHS__, __COMMENT__, ...)
@@ -821,7 +821,7 @@
                 userInfo:nil \
                 reason:FLStringWithFormatOrNil(@"%sis unexpectedly equal to %s", #__LHS__, #__RHS__) \
                 comment:nil \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLAssertObjectsAreNotEqual_(__LHS__, __RHS__)
@@ -837,7 +837,7 @@
                 userInfo:nil \
                 reason:FLStringWithFormatOrNil(@"%sis unexpectedly equal to %s", #__LHS__, #__RHS__) \
                 comment:nil \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLCAssertObjectsAreNotEqual_(__LHS__, __RHS__)
@@ -853,7 +853,7 @@
                 userInfo:nil \
                 reason:FLStringWithFormatOrNil(@"%sis unexpectedly equal to %s", #__LHS__, #__RHS__) \
                 comment: FLStringWithFormatOrNil(__COMMENT__, ##__VA_ARGS__) \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLAssertObjectsAreNotEqual_v(__LHS__, __RHS__, __COMMENT__, ...)
@@ -869,7 +869,7 @@
                 userInfo:nil \
                 reason:FLStringWithFormatOrNil(@"%sis unexpectedly equal to %s", #__LHS__, #__RHS__) \
                 comment: FLStringWithFormatOrNil(__COMMENT__, ##__VA_ARGS__) \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLCAssertObjectsAreNotEqual_v(__LHS__, __RHS__, __COMMENT__, ...)
@@ -884,7 +884,7 @@
                 userInfo:nil \
                 reason:FLStringWithFormatOrNil(@"%sis unexpectedly not kind of class %s", #__LHS__, #__RHS__) \
                 comment:nil \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLAssertIsKindOfClass_(__LHS__, __RHS__)
@@ -899,7 +899,7 @@
                 userInfo:nil \
                 reason:FLStringWithFormatOrNil(@"%sis unexpectedly not kind of class %s", #__LHS__, #__RHS__) \
                 comment:nil \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLCAssertIsKindOfClass_(__LHS__, __RHS__)
@@ -914,7 +914,7 @@
                 userInfo:nil \
                 reason:FLStringWithFormatOrNil(@"%sis unexpectedly not kind of class %s", #__LHS__, #__RHS__) \
                 comment: FLStringWithFormatOrNil(__COMMENT__, ##__VA_ARGS__) \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLAssertIsKindOfClass_v(__LHS__, __RHS__, __COMMENT__, ...)
@@ -929,7 +929,7 @@
                 userInfo:nil \
                 reason:FLStringWithFormatOrNil(@"%sis unexpectedly not kind of class %s", #__LHS__, #__RHS__) \
                 comment: FLStringWithFormatOrNil(__COMMENT__, ##__VA_ARGS__) \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLCAssertIsKindOfClass_v(__LHS__, __RHS__, __COMMENT__, ...)
@@ -943,7 +943,7 @@
                 userInfo:nil \
                 reason:nil \
                 comment:nil \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLAssertIsImplemented_()
@@ -957,7 +957,7 @@
                 userInfo:nil \
                 reason:nil \
                 comment:nil \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLCAssertIsImplemented_()
@@ -971,7 +971,7 @@
                 userInfo:nil \
                 reason:nil \
                 comment: FLStringWithFormatOrNil(__COMMENT__, ##__VA_ARGS__) \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLAssertIsImplemented_v(__COMMENT__, ...)
@@ -985,7 +985,7 @@
                 userInfo:nil \
                 reason:nil \
                 comment: FLStringWithFormatOrNil(__COMMENT__, ##__VA_ARGS__) \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLCAssertIsImplemented_v(__COMMENT__, ...)
@@ -999,7 +999,7 @@
                 userInfo:nil \
                 reason:nil \
                 comment:nil \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLAssertIsFixed_()
@@ -1013,7 +1013,7 @@
                 userInfo:nil \
                 reason:nil \
                 comment:nil \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLCAssertIsFixed_()
@@ -1027,7 +1027,7 @@
                 userInfo:nil \
                 reason:nil \
                 comment: FLStringWithFormatOrNil(__COMMENT__, ##__VA_ARGS__) \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLAssertIsFixed_v(__COMMENT__, ...)
@@ -1041,7 +1041,7 @@
                 userInfo:nil \
                 reason:nil \
                 comment: FLStringWithFormatOrNil(__COMMENT__, ##__VA_ARGS__) \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLCAssertIsFixed_v(__COMMENT__, ...)
@@ -1055,7 +1055,7 @@
                 userInfo:nil \
                 reason:nil \
                 comment:nil \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLAssertIsBug_()
@@ -1069,7 +1069,7 @@
                 userInfo:nil \
                 reason:nil \
                 comment:nil \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLCAssertIsBug_()
@@ -1083,7 +1083,7 @@
                 userInfo:nil \
                 reason:nil \
                 comment: FLStringWithFormatOrNil(__COMMENT__, ##__VA_ARGS__) \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLAssertIsBug_v(__COMMENT__, ...)
@@ -1097,7 +1097,7 @@
                 userInfo:nil \
                 reason:nil \
                 comment: FLStringWithFormatOrNil(__COMMENT__, ##__VA_ARGS__) \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLCAssertIsBug_v(__COMMENT__, ...)
@@ -1111,7 +1111,7 @@
                 userInfo:nil \
                 reason:nil \
                 comment:nil \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLAssertIsOverridden_()
@@ -1125,7 +1125,7 @@
                 userInfo:nil \
                 reason:nil \
                 comment:nil \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLCAssertIsOverridden_()
@@ -1139,7 +1139,7 @@
                 userInfo:nil \
                 reason:nil \
                 comment: FLStringWithFormatOrNil(__COMMENT__, ##__VA_ARGS__) \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLAssertIsOverridden_v(__COMMENT__, ...)
@@ -1153,7 +1153,7 @@
                 userInfo:nil \
                 reason:nil \
                 comment: FLStringWithFormatOrNil(__COMMENT__, ##__VA_ARGS__) \
-                stackTrace:FLCreateStackTrace(YES)]) \
+                stackTrace:FLCreateStackTrace(YES)]); \
 
 #else
     #define FLCAssertIsOverridden_v(__COMMENT__, ...)

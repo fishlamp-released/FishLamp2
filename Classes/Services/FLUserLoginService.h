@@ -35,3 +35,9 @@
 
 
 // app services
+
+@interface FLOperation (ZfUserSession)
+- (FLUserLogin*) userLogin;
+@end
+
+declare_service_(userService, FLUserLoginService);
