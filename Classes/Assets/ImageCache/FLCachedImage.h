@@ -12,13 +12,16 @@
 #import "FLCachedImageBaseClass.h"
 #import "FLJpegFile.h"
 
+// TODO: store url as NSURL in superclass
 @interface FLCachedImage : FLCachedImageBaseClass {
 @private
 	FLJpegFile* _imageFile;
 }
 
+- (id) initWithURL:(NSURL*) url;
 - (id) initWithUrlString:(NSString*) url;
 
++ (FLCachedImage*) cachedImageWithURL:(NSURL*) url;
 + (FLCachedImage*) cachedImageWithUrlString:(NSString*) url;
 + (FLCachedImage*) cachedImage;
 

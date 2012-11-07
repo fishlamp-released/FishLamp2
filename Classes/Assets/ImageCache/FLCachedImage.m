@@ -16,47 +16,44 @@
 @synthesize imageFile = _imageFile;
 FLSynthesizeCachedObjectHandlerProperty(FLCachedImage);
 
-- (id) initWithUrlString:(NSString*) url
-{
-	if((self = [super init]))
-	{
+- (id) initWithURL:(NSURL*) url {
+    return [self initWithUrlString:[url absoluteString]];
+}
+
+- (id) initWithUrlString:(NSString*) url {
+	if((self = [super init])) {
 		self.url = url;
 	}
 	
 	return self;
 }
 
-+ (FLCachedImage*) cachedImageWithUrlString:(NSString*) url
-{
-	return autorelease_([[FLCachedImage alloc] initWithUrlString:url]);
++ (FLCachedImage*) cachedImageWithUrlString:(NSString*) url {
+	return autorelease_([[[self class] alloc] initWithUrlString:url]);
 }
 
-+ (FLCachedImage*) cachedImage
-{
-	return autorelease_([[FLCachedImage alloc] init]);
++ (FLCachedImage*) cachedImage {
+	return autorelease_([[[self class] alloc] init]);
 }
 
-- (void) dealloc
-{
++ (FLCachedImage*) cachedImageWithURL:(NSURL*) url {
+    return autorelease_([[[self class] alloc] initWithURL:url]);
+}
+
+- (void) dealloc {
 	FLReleaseWithNil_(_imageFile);
 	super_dealloc_();
 }
 
-- (void) setUrl:(NSString*) inValue 
-{ 
+- (void) setUrl:(NSString*) inValue  { 
 	[super setUrl:inValue];
-
-	NSURL* url = [[NSURL alloc] initWithString:inValue];
-
+	NSURL* url = [NSURL URLWithString:inValue];
 	self.host = url.host;
 	self.imageId = [NSString stringWithFormat:@"%@%@", url.host, url.path];
 	self.photoUrl = url.path;
-
-	FLReleaseWithNil_(url);
 }
 
-- (void) copySelfTo:(id) object
-{
+- (void) copySelfTo:(id) object {
 	[super copySelfTo:object];
 	
 	FLJpegFile* file = [[self imageFile] copy];
