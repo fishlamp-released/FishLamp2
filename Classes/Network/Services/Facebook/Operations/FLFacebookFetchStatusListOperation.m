@@ -33,7 +33,7 @@
 		
 		NSArray* messages = response.data;
 		
-		[[self.services storageService].documentsDatabase batchSaveObjects:messages];
+		[[[FLUserDataStorageService serviceFromContext:self.context] documentsDatabase] batchSaveObjects:messages];
 	}
 }
 

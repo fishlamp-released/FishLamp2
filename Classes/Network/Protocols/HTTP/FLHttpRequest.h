@@ -14,7 +14,7 @@
 @private
     NSString* _requestMethod;
     NSMutableDictionary* _requestHeaders;
-    NSURL* _url;
+    NSURL* _requestURL;
     NSString* _postBodyFilePath;
     NSData* _postData;
     unsigned long long _postLength;
@@ -23,24 +23,27 @@
 -(id) initWithURL:(NSURL*) url;
 -(id) initWithURL:(NSURL*) url requestMethod:(NSString*) requestMethod;
 
++ (id) httpRequest;
 + (id) httpRequestWithURL:(NSURL*) url;
 + (id) httpRequestWithURL:(NSURL*) url requestMethod:(NSString*) requestMethod;
 
-/** request */
-@property (readwrite, retain, nonatomic) NSURL* requestURL;
-@property (readwrite, retain, nonatomic) NSDictionary* requestHeaders;
-@property (readwrite, retain, nonatomic) NSString* requestMethod;
-@property (readwrite, retain, nonatomic) NSString* postBodyFilePath;
-@property (readwrite, retain, nonatomic) NSData* postData;
-@property (readonly, assign, nonatomic) unsigned long long postLength;
+/** URL */
+@property (readwrite, strong, nonatomic) NSURL* requestURL;
 
-- (void) addRequestHeader:(NSString*) headerName value:(NSString*) value;
-- (void) appendPostData:(NSData*) data;
+
+/** request method */
+@property (readwrite, strong, nonatomic) NSString* requestMethod;
+
+@property (readonly, assign) BOOL willPostRequest;
 
 /** headers */
+@property (readonly, strong, nonatomic) NSDictionary* requestHeaders;
+
+- (void) setHeaderValue:(NSString*) value forName:(NSString*) headerName;
+
+- (void) removeHeaderForName:(NSString*) headerName;
+
 - (BOOL) hasHeader:(NSString*) header;
-- (void) setHeader:(NSString*)headerName 
-			  data:(NSString*)data;
 
 - (NSString*) postHeader;
 - (void) setHostHeader:(NSString*) host;
@@ -54,6 +57,12 @@
 - (void) setDefaultUserAgentHeader;
 
 /** set content */
+@property (readonly, strong, nonatomic) NSData* postData;
+
+@property (readonly, assign, nonatomic) unsigned long long postLength;
+
+@property (readonly, strong, nonatomic) NSString* postBodyFilePath;
+
 - (void) setFormUrlEncodedContent:(NSString*) content;
  
 - (void) setContentWithData:(NSData*) content
@@ -68,11 +77,7 @@
 
 - (void) setImageContentWithFilePath:(NSString*) filePath;
 
-/** request method */
-- (BOOL) isHTTPPostMethod;
-- (void) setHTTPMethodToPost;
-
-- (void) finalizeHeaders;
+/** default user agent */
 
 + (void) setDefaultUserAgent:(NSString*) userAgent;
 + (NSString*) defaultUserAgent;

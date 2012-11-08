@@ -9,11 +9,11 @@
 #import "FLFacebookMgr.h"
 #import "NSString+URL.h"
 #import "FLUserDataStorageService.h"
-#import "FLSession.h"
+#import "FLContext.h"
 
 static NSString* kRedirectURL = @"http://www.facebook.com/connect/login_success.html";
 
-register_service_(facebookService, FLFacebookMgr);
+service_register_(facebookService, FLFacebookMgr);
 
 @implementation FLFacebookMgr
 
@@ -122,8 +122,8 @@ dealloc_(
 	}
 }
 
-- (FLObjectDatabase*) database {
-    return [self.session storageService].documentsDatabase;
+- (FLDatabase*) database {
+    return [[FLUserDataStorageService serviceFromContext:self.context] documentsDatabase];
 }
 
 - (void) logout

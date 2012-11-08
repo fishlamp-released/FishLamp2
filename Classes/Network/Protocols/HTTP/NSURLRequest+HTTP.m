@@ -62,7 +62,7 @@ static NSString* s_defaultUserAgent = nil;
 		
 }
 
-- (BOOL) isHTTPPostMethod
+- (BOOL) willPostRequest
 {
 	return FLStringsAreEqual([self HTTPMethod], @"POST");
 }

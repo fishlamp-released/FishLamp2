@@ -9,17 +9,12 @@
 #import "FLUserLogin.h"
 #import "FLService.h"
 
-@protocol FLUserLoginService <FLService>
-@property (readwrite, strong) FLUserLogin* userLogin; 
-@property (readonly, assign, getter=isAuthenticated) BOOL authenticated;
-@end
-
-@interface FLUserLoginService : FLService<FLUserLoginService> {
+@interface FLUserLoginService : FLService {
 @private
-	FLUserLogin* _userLogin;
 }
-@property (readwrite, strong) FLUserLogin* userLogin; 
 @property (readonly, assign, getter=isAuthenticated) BOOL authenticated;
+
+- (void) saveUserLogin;
 
 + (FLUserLogin*) loadLastUserLogin;
 + (FLUserLogin*) loadDefaultUser;
@@ -33,11 +28,4 @@
 //- (void) userSessionDidClose:(id<FLUserLoginService>) userSession;
 //@end
 
-
-// app services
-
-@interface FLOperation (ZFUserSession)
-- (FLUserLogin*) userLogin;
-@end
-
-declare_service_(userService, FLUserLoginService);
+service_declare_(userService, FLUserLoginService);

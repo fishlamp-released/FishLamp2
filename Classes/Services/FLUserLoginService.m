@@ -14,41 +14,40 @@
 #import "NSString+Guid.h"
 #import "FLBackgroundTaskMgr.h"
 #import "FLUserDataStorageService.h"
-#import "FLSession.h"
+#import "FLContext.h"
 
-register_service_(userService, FLUserLoginService);
+service_register_(userService, FLUserLoginService);
 
 @interface FLUserLoginService ()
 @property (readwrite, assign, getter=isAuthenticated) BOOL authenticated;
-@property (readwrite, strong) FLUserLogin* _userLogin;
 @end
 
 @implementation FLUserLoginService
 
-@synthesize _userLogin = _userLogin;
+//@synthesize _userLogin = _userLogin;
+//
+//- (id) initWithUserLogin:(FLUserLogin*) userLogin {
+//    self = [super init];
+//    if(self) {
+//        self.userLogin = userLogin;
+//    }
+//    
+//    return self;
+//}
 
-- (id) initWithUserLogin:(FLUserLogin*) userLogin {
-    self = [super init];
-    if(self) {
-        self.userLogin = userLogin;
-    }
-    
-    return self;
-}
+//- (id) init {
+//	return [self initWithUserLogin:nil];
+//}
 
-- (id) init {
-	return [self initWithUserLogin:nil];
-}
-
-dealloc_(
-    [_userLogin release];
-)
+//dealloc_(
+//    [_userLogin release];
+//)
 
 - (void) closeService {
 	[super closeService];
     
 //    [self postObservation:@selector(userSessionWillClose:)];
-//    [super closeSession];
+//    [super closeContext];
 //    [self postObservation:@selector(userSessionDidClose:)];
 
 //    id<FLProgressViewController> progress = nil;
@@ -59,12 +58,12 @@ dealloc_(
 //    }
 //
 //    [self.backgroundTasks beginClosingService:^(id<FLResult> backgroundTaskMgr) {
-//        [self closeSession];
+//        [self closeContext];
 //        [progress hideProgress];
 //        [finisher setFinished];
 //    }];
     
-//	if(self.isSessionOpen) {
+//	if(self.isContextOpen) {
 //		[[FLLowMemoryHandler defaultHandler] broadcastReleaseMessage];
 //	}
 //	 
@@ -91,7 +90,7 @@ dealloc_(
 }
 
 - (void) openService {
-//    FLAssert_v(!self.isSessionOpen, @"session already open");
+//    FLAssert_v(!self.isContextOpen, @"session already open");
 //    FLAssert_v(FLStringIsNotEmpty(self.userLogin.userName), @"invalid userLogin");
 
 //    [self postObservation:@selector(userSessionWillOpen:)];
@@ -99,22 +98,17 @@ dealloc_(
 //    [self postObservation:@selector(userSessionDidOpen:)];
 }
 
-- (FLUserLogin*) userLogin {
-    return self._userLogin;
-}
-
-- (void) setUserLogin:(FLUserLogin*) userLogin {
-    self._userLogin = userLogin;
-    [[FLApplicationDataModel instance] saveUserLogin:self.userLogin];
+- (void) saveUserLogin {
+    [[FLApplicationDataModel instance] saveUserLogin:[self.context userLogin]];
 }
 
 - (BOOL) isAuthenticated {
-	return self.userLogin.isAuthenticatedValue;
+	return [self.context userLogin].isAuthenticatedValue;
 }
 
 - (void) setAuthenticated:(BOOL) authenticated {
-    self.userLogin.isAuthenticatedValue = authenticated;
-    [[FLApplicationDataModel instance] saveUserLogin:self.userLogin];
+    [self.context userLogin].isAuthenticatedValue = authenticated;
+    [[FLApplicationDataModel instance] saveUserLogin:[self.context userLogin]];
 }
 
 + (FLUserLogin*) loadLastUserLogin {
@@ -137,8 +131,4 @@ dealloc_(
 @end
 
 
-@implementation FLOperation (ZFUserSession)
-- (FLUserLogin*) userLogin {
-    return [self.services userService].userLogin;
-}
-@end
+

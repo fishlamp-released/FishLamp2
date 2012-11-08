@@ -7,7 +7,7 @@
 //
 
 #import "FishLampCore.h"
-#import "FLObjectDatabase.h"
+#import "FLDatabase.h"
 #import "FLOperation.h"
 
 @class FLOperationCacheHandler;
@@ -28,7 +28,7 @@ typedef enum {
 
 @interface FLOperationCacheHandler : NSObject<FLOperationObserver> {
 @private
-	FLObjectDatabase* _database;
+	FLDatabase* _database;
 	FLOperationCacheHandlerLoadFromCacheBlock _loadFromCacheCallback;
 	FLOperationCacheHandlerBlock _saveToCacheCallback;
 	FLOperationCacheHandlerBlock _wasLoadedFromCacheCallback;
@@ -40,14 +40,14 @@ typedef enum {
 	} _networkFlags;
 }
 
-- (id) initWithDatabase:(FLObjectDatabase*) database
+- (id) initWithDatabase:(FLDatabase*) database
     behavior:(FLHttpOperationCacheBehavior) behavior;
 
-+ (FLOperationCacheHandler*) operationCacheHandler:(FLObjectDatabase*) database
++ (FLOperationCacheHandler*) operationCacheHandler:(FLDatabase*) database
     behavior:(FLHttpOperationCacheBehavior) behavior;
 
 @property (readwrite, assign, nonatomic) BOOL wasLoadedFromCache;
-@property (readwrite, retain, nonatomic) FLObjectDatabase* database;
+@property (readwrite, retain, nonatomic) FLDatabase* database;
 @property (readwrite, assign, nonatomic) FLHttpOperationCacheBehavior cacheBehavior;
 
 @property (readwrite, copy, nonatomic) FLOperationCacheHandlerLoadFromCacheBlock onLoadFromCache;

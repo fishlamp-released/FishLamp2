@@ -12,7 +12,7 @@
 
 @synthesize operation = _operation;
 
-- (id) initWithObjectAndOperationType:(FLObjectDatabase*) cache
+- (id) initWithObjectAndOperationType:(FLDatabase*) cache
 	object:(id) object 
 	operation:(FLCacheOperationType) operation
 {

@@ -8,35 +8,31 @@
 
 #import <Foundation/Foundation.h>
 #import "FLObservable.h"
-#import "FLServiceable.h"
-
-@class FLSession;
+#import "FLContextual.h"
+#import "FLContext.h"
 
 @protocol FLService <FLObservable>
+
 + (id) serviceID;
 
-@property (readonly, assign) id session;
+@property (readonly, assign) id context;
+- (void) wasAddedToContext:(FLContext*) context;
 
 @property (readonly, assign) BOOL isServiceOpen;
 - (void) openService;
 - (void) closeService;
 
-- (void) wasAddedToSession:(FLSession*) session;
++ (id) serviceFromContext:(id) context;
++ (id) optionalServiceFromContext:(id) context;
+
 @end
 
 @interface FLService : FLObservable<FLService> {
 @private
-    __unsafe_unretained id<FLService> _session;
+    __unsafe_unretained id<FLService> _context;
     BOOL _isServiceOpen;
 }
 @end
 
-#define declare_service_(__NAME__, __TYPE__) \
-    @class __TYPE__; \
-    @protocol __TYPE__##ServiceRegistration <NSObject>  \
-        @property (readonly, strong) __TYPE__* __NAME__; \
-    @end 
-
-
-
-    
+#define synthesize_service_(__NAME__, __TYPE__) \
+    - (__TYPE__*) __NAME__ { return [__TYPE__ serviceFromContext:self]; } 

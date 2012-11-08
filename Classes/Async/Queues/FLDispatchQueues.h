@@ -32,6 +32,9 @@ FLSingletonProperty(FLDispatchQueue);
 @interface FLLowPriorityQueue : FLDispatchQueue
 @end
 
+@interface FLActionQueue : FLDispatchQueue
+@end
+
 @interface FLFifoQueue : FLDispatchQueue {
 @private
     dispatch_queue_t _fifo_queue;

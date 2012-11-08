@@ -26,5 +26,5 @@
 + (void) clearTwitterCookies;
 @end
 
-declare_service_(twitter, FLTwitterMgr);
+service_declare_(twitter, FLTwitterMgr);
 

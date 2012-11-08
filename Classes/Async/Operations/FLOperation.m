@@ -17,6 +17,7 @@
 @property (readwrite, assign) BOOL wasCancelled;
 @property (readwrite, strong) id input;
 @property (readwrite, strong) id output;
+@property (readwrite, assign) id context;
 @end
 
 @implementation FLOperation
@@ -30,10 +31,18 @@ synthesize_(wasStarted);
 synthesize_(isFinished);
 synthesize_(didFail);
 synthesize_(wasCancelled);
-synthesize_(services);
+synthesize_(context);
 
 @synthesize input = _operationInput;
 @synthesize output = _operationOutput;
+
+- (void) removeFromContext:(id) context {
+    self.context = nil;
+}
+
+- (void) addToContext:(id) context {
+    self.context = context;
+}
 
 - (id) initWithRunBlock:(FLRunOperationBlock) callback {
     if((self = [self init])) {
@@ -124,8 +133,6 @@ dealloc_ (
 	return autorelease_([[[self class] alloc] init]);
 }
 
-
-
 - (void) cancelSelf {
 }
 
@@ -151,7 +158,6 @@ dealloc_ (
 
 - (void) runSelf {
 }
-
 
 - (BOOL) willRun {
    return   !self.wasCancelled &&
@@ -181,10 +187,6 @@ dealloc_ (
 
 }
 
-- (void) finishSelf {
-
-}
-
 - (void) runSynchronouslySelf {
 
     @try {
@@ -198,18 +200,16 @@ dealloc_ (
     
         if(self.willRun) {
             self.wasStarted = YES;
-            
             [self prepareSelf];
-            
+        }
+        
+        if(self.willRun) {
+            self.isFinished = YES;
             if(self.runBlock) {
                 self.runBlock(self);
             }
             else {
                 [self runSelf];
-            }
-            
-            if(!self.error) {
-                [self finishSelf];
             }
         }
     }
@@ -288,6 +288,10 @@ dealloc_ (
     
     [self addObserver:operation];
     [operation addObserver:self];
+    
+    if(operation.context == nil) {
+        [operation addToContext:self.context];
+    }
     @try {
         if(block) {
             block();

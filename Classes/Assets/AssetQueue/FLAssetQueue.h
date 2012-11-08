@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #import "FLQueuedAsset.h"
-#import "FLObjectDatabase.h"
+#import "FLDatabase.h"
 #import "FLPerformSelectorOperation.h"
 #import "FLAssetQueueState.h"
 
@@ -37,7 +37,7 @@ typedef void (^FLAssetQueueLoadAssetBlock)(id loadedAsset, NSError* error);
 
 @property (readonly, strong) NSArray* assets;
 
-@property (readonly, strong) FLObjectDatabase* database;
+@property (readonly, strong) FLDatabase* database;
 @property (readonly, strong) NSString* queueUID;
 
 @property (readonly, assign) unsigned long totalAssetsAdded; // lifetime tally

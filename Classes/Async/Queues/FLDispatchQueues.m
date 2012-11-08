@@ -213,6 +213,19 @@ FLSynthesizeSingleton(FLLowPriorityQueue);
 
 @end
 
+@implementation FLActionQueue
+
+- (FLWorkFinisher*) workFinisher:(FLResultBlock) completion {
+    return [FLMainThreadFinisher finisher:completion];
+}
+
+- (dispatch_queue_t) dispatchQueue {
+    return dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
+}
+FLSynthesizeSingleton(FLActionQueue);
+
+@end
+
 @interface FLFifoQueue ()
 @property (readonly, assign) dispatch_queue_t fifo_queue;
 @end

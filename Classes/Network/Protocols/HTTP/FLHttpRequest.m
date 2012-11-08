@@ -16,15 +16,27 @@ static NSString* s_defaultUserAgent = @"FishLamp3;";
 
 @interface FLHttpRequest ()
 @property (readwrite, assign, nonatomic) unsigned long long postLength;
+@property (readwrite, strong, nonatomic) NSDictionary* requestHeaders;
+@property (readwrite, strong, nonatomic) NSData* postData;
+@property (readwrite, strong, nonatomic) NSString* postBodyFilePath;
 @end
 
 @implementation FLHttpRequest
-@synthesize requestMethod = _requestMethod;
-@synthesize requestURL = _url;
-@synthesize postBodyFilePath = _postBodyFilePath;
-@synthesize postLength = _postLength;
-@synthesize postData = _postData;
-@synthesize requestHeaders = _requestHeaders;
+synthesize_(requestMethod);
+synthesize_(requestURL);
+synthesize_(postBodyFilePath);
+synthesize_(postLength);
+synthesize_(postData);
+synthesize_(requestHeaders);
+
+- (void) dealloc  {
+    release_(_postData);
+    release_(_requestMethod);
+    release_(_requestURL);
+    release_(_postBodyFilePath);
+    release_(_requestHeaders);
+    super_dealloc_();
+}
 
 + (void) setDefaultUserAgent:(NSString*) userAgent {
     FLRetainObject_(s_defaultUserAgent, userAgent);
@@ -36,10 +48,13 @@ static NSString* s_defaultUserAgent = @"FishLamp3;";
 
 -(id) initWithURL:(NSURL*) url requestMethod:(NSString*) requestMethod {
     if((self = [super init])) {
-        _url = retain_(url);
-        _requestMethod = retain_(requestMethod);
+        self.requestURL = url;
+        self.requestMethod = requestMethod;
         _requestHeaders = [[NSMutableDictionary alloc] init];
-        
+       
+        if(FLStringIsEmpty(self.requestMethod)) {
+            self.requestMethod = @"GET";
+        }
         [self setDefaultUserAgentHeader];
     }
     
@@ -49,62 +64,73 @@ static NSString* s_defaultUserAgent = @"FishLamp3;";
 - (id)copyWithZone:(NSZone *)zone {
     FLHttpRequest* request = [[FLHttpRequest alloc] initWithURL:self.requestURL requestMethod:self.requestMethod];
     request.requestHeaders = self.requestHeaders;
-    request.postData = self.postData;
+    request.postData = autorelease_([self.postData copy]);
     request.postBodyFilePath = self.postBodyFilePath;
+    request.requestMethod = self.requestMethod;
     return request;
 }
 
 + (id) httpRequestWithURL:(NSURL*) url {
-    return autorelease_([[[self class] alloc] initWithURL:url]);
+    return autorelease_([[[self class] alloc] initWithURL:url requestMethod:@"GET"]);
 }
 
 + (id) httpRequestWithURL:(NSURL*) url requestMethod:(NSString*) requestMethod {
     return autorelease_([[[self class] alloc] initWithURL:url requestMethod:requestMethod]);
 }
 
-- (void) dealloc  {
-    release_(_postData);
-    release_(_requestMethod);
-    release_(_url);
-    release_(_postBodyFilePath);
-    release_(_requestHeaders);
-    super_dealloc_();
++ (id) httpRequest {
+    return [self create];
 }
 
-- (void) appendPostData:(NSData*) data {
-    FLRetainObject_(_postData, data);
-}
 
-- (void) addRequestHeader:(NSString*) headerName value:(NSString*) value {
+- (void) setHeaderValue:(NSString*) value forName:(NSString*) headerName {
+	FLAssertStringIsNotEmpty_v(headerName, nil);
+    FLAssertIsNotNil_v(value, nil);
+
     [_requestHeaders setObject:value forKey:headerName];
 }
 
-- (void) finalizeHeaders {
-    if(FLStringIsNotEmpty(self.postBodyFilePath))
-    {
+- (void) removeHeaderForName:(NSString*) headerName {
+    [_requestHeaders removeObjectForKey:self.postHeader];
+}
+
+- (void) setRequestMethod:(NSString *)requestMethod {
+    FLRetainObject_(_requestMethod, requestMethod);
+    
+    if(self.willPostRequest) {
+        [self setHeaderValue:self.postHeader forName:@"POST"];
+        [self setHeaderValue:[NSString stringWithFormat:@"%qu", _postLength] forName:@"Content-Length"];
+    }
+    else {
+        [self removeHeaderForName:@"POST"];
+        [self removeHeaderForName:@"Content-Length"];
+    }
+}
+
+- (void) setPostData:(NSData*) data {
+    _postLength = 0;
+    FLReleaseWithNil_(_postBodyFilePath);
+    FLRetainObject_(_postData, data);
+    if (_postData) {
+        _postLength = _postData.length;
+        self.requestMethod = @"POST";
+	}
+}
+
+- (void) setPostBodyFilePath:(NSString*) path {
+    _postLength = 0;
+    FLReleaseWithNil_(_postData);
+    
+    FLRetainObject_(_postBodyFilePath, path);
+    if(FLStringIsNotEmpty(_postBodyFilePath)) {
         NSError* err = nil;
         self.postLength = [[[NSFileManager defaultManager] attributesOfItemAtPath:self.postBodyFilePath error:&err] fileSize];
         
-        if(err)
-        {
+        if(err) {
            FLThrowError_(autorelease_(err));
         }
-    }
-    else if (_postData)
-    {
-        _postLength = _postData.length;
-    }
-    
-    if(_postLength> 0)
-    {
-        if ([self.requestMethod isEqualToString:@"GET"] || 
-            [self.requestMethod isEqualToString:@"DELETE"] || 
-            [self.requestMethod isEqualToString:@"HEAD"]) 
-        {
-            self.requestMethod = @"POST";
-		}
-		[self addRequestHeader:@"Content-Length" value:[NSString stringWithFormat:@"%qu", _postLength]];
-    }
+        self.requestMethod = @"POST";
+	}
 }
 
 - (BOOL) hasHeader:(NSString*) header {
@@ -121,26 +147,16 @@ static NSString* s_defaultUserAgent = @"FishLamp3;";
     return s_defaultUserAgent;
 }   
 
-- (BOOL) isHTTPPostMethod {
-	return FLStringsAreEqual(self.requestMethod, @"POST");
+- (BOOL) willPostRequest {
+	return FLStringsAreEqualCaseInsensitive(self.requestMethod, @"POST");
 }
 
 - (void) setUserAgentHeader:(NSString*) userAgent {
-	FLAssertStringIsNotEmpty_v(userAgent, nil);
-
-	[self setHeader:@"User-Agent" data:userAgent];
+	[self setHeaderValue:userAgent forName:@"User-Agent"];
 }
 
 - (void) setDefaultUserAgentHeader {
 	[self setUserAgentHeader:[FLHttpRequest defaultUserAgent]];
-}
-
--(void) setHeader:(NSString*)headerName 
-             data:(NSString*)data {
-	FLAssertStringIsNotEmpty_v(headerName, nil);
-    FLAssertIsNotNil_v(data, nil);
-
-	[self addRequestHeader:headerName value:data];
 }
 
 -(void) setUtf8Content:(NSString*) content {
@@ -160,13 +176,11 @@ static NSString* s_defaultUserAgent = @"FishLamp3;";
 -(void) setContentTypeHeader:(NSString*) contentType {
 	FLAssertStringIsNotEmpty_v(contentType, nil);
     
-	[self setHeader:@"Content-Type" data:contentType];
+	[self setHeaderValue:contentType forName:@"Content-Type"];
 }
 
 -(void) setContentLengthHeader:(unsigned long long) length {
-	NSString* contentLength = [[NSString alloc] initWithFormat:@"%llu", length];
-	[self setHeader:@"Content-Length" data:contentLength];
-	FLReleaseWithNil_(contentLength);
+	[self setHeaderValue:[NSString stringWithFormat:@"%llu", length] forName:@"Content-Length"];
 }
 
 - (void) setContentWithData:(NSData*) content
@@ -174,7 +188,7 @@ static NSString* s_defaultUserAgent = @"FishLamp3;";
     FLAssertIsNotNil_v(content, nil);
 	FLAssertStringIsNotEmpty_v(typeContentHeader, nil);
 
-    [self appendPostData:content];
+    self.postData = content;
 	[self setContentTypeHeader:typeContentHeader];
 	[self setContentLengthHeader:[content length]];
 }
@@ -190,12 +204,7 @@ static NSString* s_defaultUserAgent = @"FishLamp3;";
 
 - (void) setHostHeader:(NSString*) host {
 	FLAssertStringIsNotEmpty_v(host, nil);
-	[self setHeader:@"HOST" data:host];
-}
-
-- (void) setHTTPMethodToPost {
-	self.requestMethod = @"POST";
-    [self addRequestHeader:@"POST" value:self.postHeader];
+	[self setHeaderValue:host forName:@"HOST"];
 }
 
 - (void) setImageContentWithFilePath:(NSString*) filePath {

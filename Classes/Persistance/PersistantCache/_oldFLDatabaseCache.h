@@ -14,7 +14,7 @@
 //	FLObjectDatabase* _database;
 //}
 //
-//@property (readwrite, retain, nonatomic) FLObjectDatabase* database;
+//@property (readwrite, retain, nonatomic) FLDatabase* database;
 //
 //@end
 //

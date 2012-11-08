@@ -33,7 +33,7 @@
         self.imageSize = FLTwitterImageSizeNormal;
 
         [self addObserver:
-            [FLOperationCacheHandler operationCacheHandler:[self.services storageService].cacheDatabase
+            [FLOperationCacheHandler operationCacheHandler:[[FLUserDataStorageService serviceFromContext:self.context] cacheDatabase]
                                               behavior:FLHttpOperationCacheBehaviorAll]];
     }
     

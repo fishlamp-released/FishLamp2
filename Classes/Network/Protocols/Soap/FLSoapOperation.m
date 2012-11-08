@@ -67,7 +67,8 @@ dealloc_ (
     FLThrowError_([NSError errorWithSoapFault:fault]);
 }
 
-- (void) configureSoapRequest {
+- (void) runSelf {
+
     FLAssertStringIsNotEmpty_(self.URL.absoluteString);
     FLAssertStringIsNotEmpty_(self.soapNamespace);
     FLAssertStringIsNotEmpty_(self.operationName);
@@ -75,13 +76,9 @@ dealloc_ (
     FLSoapStringBuilder* soap = [FLSoapStringBuilder stringBuilder];
 	[soap.body addObjectAsFunction:self.operationName object:[self input] xmlNamespace:self.soapNamespace];
 
-	[self.httpConnection.httpRequest setHeader:@"SOAPAction" data:[NSString stringWithFormat:@"\"%@\"", self.soapActionHeader]];
-	[self.httpConnection.httpRequest setUtf8Content:[soap buildStringWithNoWhitespace]];
-}
-
-- (void) runSelf {
-
-    [self configureSoapRequest];
+    self.httpRequest.requestMethod = @"POST";
+	[self.httpRequest setHeaderValue:self.soapActionHeader forName:@"SOAPAction"]; //[NSString stringWithFormat:@"\"%@\"", self.soapActionHeader]];
+	[self.httpRequest setUtf8Content:[soap buildStringWithNoWhitespace]];
 
     [super runSelf];
 
@@ -105,7 +102,7 @@ dealloc_ (
 
 @end
 @implementation FLNetworkServerContext (Soap)
-- (NSURL*) serverURL {
+- (NSString*) serverURL {
     return [self.properties objectForKey:FLNetworkServerPropertyKeyUrl];
 }
 

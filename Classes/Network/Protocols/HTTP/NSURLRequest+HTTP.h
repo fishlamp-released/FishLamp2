@@ -34,7 +34,7 @@ BOOL FLIsHTTPPostRequestMethod(NSString* method)
 - (BOOL) hasHeader:(NSString*) header;
 - (NSString*) postHeader;
 
-- (BOOL) isHTTPPostMethod;
+- (BOOL) willPostRequest;
 @end
 
 @interface NSMutableURLRequest (HTTP)

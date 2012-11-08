@@ -46,7 +46,7 @@ dealloc_(
 
 
 - (void) runSelf {
-    FLFacebookMgr* facebook = [self.services facebookService];
+    FLFacebookMgr* facebook = [FLFacebookMgr serviceFromContext:self.context];
 
     NSString* userID = facebook.facebookNetworkSession.userId;
 

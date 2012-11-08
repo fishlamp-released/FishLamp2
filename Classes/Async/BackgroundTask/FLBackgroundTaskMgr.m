@@ -9,7 +9,7 @@
 #import "FLBackgroundTaskMgr.h"
 #import "FLOperationContext.h"
 #import "FLTraceOff.h"
-#import "FLSession.h"
+#import "FLContext.h"
 
 #define kDelay 0.5f
 
@@ -17,7 +17,7 @@
 - (void) _handleReadyState;
 @end
 
-register_service_(backgroundTaskService, FLBackgroundTaskMgr);
+service_register_(backgroundTaskService, FLBackgroundTaskMgr);
 
 @implementation FLBackgroundTaskMgr
 

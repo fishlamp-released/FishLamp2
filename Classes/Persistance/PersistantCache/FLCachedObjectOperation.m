@@ -8,6 +8,7 @@
 
 #import "FLCachedObjectOperation.h"
 #import "FLPerformSelectorOperation.h"
+#import "FLObjectDatabase.h"
 
 @implementation FLCachedObjectOperation
 @synthesize cache = _cache;
@@ -57,7 +58,7 @@ FLSynthesizeStructProperty(shouldRunIfLoadedFromCache, setShouldRunIfLoadedFromC
 	if(!self.input) {
 		[self setInputObjectForCacheLoading];
 	}
-	return [self.cache loadObjectFromMemoryCache:self.input];
+	return [((FLObjectDatabase*)self.cache) loadObjectFromMemoryCache:self.input];
 }
 
 - (id) loadOutputFromCache {

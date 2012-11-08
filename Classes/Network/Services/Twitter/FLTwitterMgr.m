@@ -9,10 +9,10 @@
 #import "FLTwitterMgr.h"
 #import "NSString+GUID.h"
 #import "FLUserDataStorageService.h"
-#import "FLSession.h"
+#import "FLContext.h"
 
 
-register_service_(twitter, FLTwitterMgr);
+service_register_(twitter, FLTwitterMgr);
 
 @interface FLTwitterMgr ()
 @property (readwrite, strong) FLOAuthSession* oauthSession;
@@ -55,8 +55,8 @@ dealloc_ (
     [_oauthSession release];
 )
 
-- (FLObjectDatabase*) database {
-    return [self.session storageService].documentsDatabase;
+- (FLDatabase*) database {
+    return [[FLUserDataStorageService serviceFromContext:self.context] documentsDatabase];
 }
 
 + (void) clearTwitterCookies {

@@ -16,7 +16,6 @@
 @interface FLHttpOperation : FLNetworkOperation {
 @private	
 	NSURL* _url;
-	id _requestType;
     FLHttpResponse* _httpResponse;
     id<FLHttpOperationAuthenticator> _httpAuthenticator;
     BOOL _isSecure;
@@ -26,11 +25,8 @@
 @property (readwrite, strong) id<FLHttpOperationAuthenticator> httpAuthenticator;
 
 @property (readwrite, strong) NSURL* URL;
-@property (readwrite, strong) NSString* URLString; // convienience wrapper for URL
 
 @property (readwrite, strong) FLHttpConnection* httpConnection;
-
-@property (readwrite, strong) id requestType; // e.g. POST/GET for HTTP.
 
 @property (readonly, strong) FLHttpRequest* httpRequest;
 @property (readonly, strong) FLHttpResponse* httpResponse;
@@ -38,12 +34,8 @@
 // creation
 - (id) initWithURL:(NSURL*) url; // designated 
 
-- (id) initWithURLString:(NSString*) url;
-
 + (id) networkOperationWithURL:(NSURL*) url;
 + (id) networkOperationWithURLString:(NSString*) url;
-
-- (id) setRequestWillPost;
 
 // these are ignored if operation doesn't have an authenticator.
 @property (readwrite, assign) BOOL isSecure;
@@ -66,3 +58,9 @@
 - (void) httpOperation:(FLHttpOperation*) operation prepareAuthenticatedConnection:(FLHttpConnection*) connection;
 @end
 
+#import "FLService.h"
+
+@interface FLHttpOperationAuthenticator : FLService<FLHttpOperationAuthenticator>
+@end
+
+service_declare_(httpAuthenticator, ZFHttpOperationAuthenticator)

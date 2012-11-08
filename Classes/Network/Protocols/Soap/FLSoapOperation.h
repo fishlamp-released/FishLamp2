@@ -11,7 +11,7 @@
 #import "FLSoapFault11.h"
 
 @interface FLNetworkServerContext (Soap)
-- (NSURL*) serverURL;
+- (NSString*) serverURL;
 - (NSString*) soapNamespace;
 - (NSString*) soapActionHeaderForOperationName:(NSString*) operationName;
 @end

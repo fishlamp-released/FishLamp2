@@ -8,7 +8,7 @@
 #import "FishLampCore.h"
 
 #import "FLOperation.h"
-#import "FLObjectDatabase.h"
+#import "FLDatabase.h"
 
 typedef enum 
 {
@@ -25,12 +25,12 @@ typedef enum
 @interface FLDatabaseCacheOperation : FLOperation {
 @private
 	FLCacheOperationType _operation;
-	FLObjectDatabase* _cache;
+	FLDatabase* _cache;
 }
 
 @property (readwrite, assign, nonatomic) FLCacheOperationType operation;
 
-- (id) initWithObjectAndOperationType:(FLObjectDatabase*) cache
+- (id) initWithObjectAndOperationType:(FLDatabase*) cache
 	object:(id) object 
 	operation:(FLCacheOperationType) operation;
 	

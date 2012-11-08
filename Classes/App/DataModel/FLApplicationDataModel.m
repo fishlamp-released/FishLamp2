@@ -16,9 +16,10 @@
 #import "FLKeychain.h"
 #import "NSFileManager+FLExtras.h"
 #import "NSString+GUID.h"
+#import "FLObjectDatabase.h"
 
 @interface FLApplicationDataModel ()
-@property (readwrite, strong) FLObjectDatabase* database;
+@property (readwrite, strong) FLDatabase* database;
 @end
 
 
@@ -51,7 +52,7 @@ FLSynthesizeSingleton(FLApplicationDataModel);
 }
 
 - (BOOL) isOpen {
-    FLObjectDatabase* database = self.database;
+    FLDatabase* database = self.database;
     return database != nil && database.isOpen;
 }
 

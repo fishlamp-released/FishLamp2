@@ -7,7 +7,7 @@
 //
 #import "FishLampCore.h"
 #import "FLOperation.h"
-#import "FLObjectDatabase.h"
+#import "FLDatabase.h"
 #import "FLUserLogin.h"
 
 #define FLUserLoginErrorDomain @"FLUserLoginErrorDomain"
@@ -19,10 +19,10 @@ typedef enum {
 
 @interface FLApplicationDataModel : NSObject {
 @private
-	FLObjectDatabase* _database;
+	FLDatabase* _database;
 }
 
-@property (readonly, strong) FLObjectDatabase* database;
+@property (readonly, strong) FLDatabase* database;
 
 FLSingletonProperty(FLApplicationDataModel);
 

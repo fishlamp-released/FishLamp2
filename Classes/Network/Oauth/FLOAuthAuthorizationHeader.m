@@ -193,7 +193,7 @@ extern void FLDebugCompareHeaders(NSString* lhs, NSString* rhs);
 #if DEBUG
     FLLog(@"%@ = %@", FLOAuthHttpAuthorizationHeader, header);
 #endif
-    [self setHeader:FLOAuthHttpAuthorizationHeader data:header];
+    [self setHeaderValue:header forName:FLOAuthHttpAuthorizationHeader];
 }
 
 @end

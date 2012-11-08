@@ -23,7 +23,7 @@
 - (void) runSelf {
 
     self.URL = [FLFacebookMgr buildOAuthUrl:self.permissions
-                                   forAppId:[self.services facebookService].appId];
+                                   forAppId:[[FLFacebookMgr serviceFromContext:self.context] appId]];
 
     [FLFacebookMgr clearFacebookCookies];
 

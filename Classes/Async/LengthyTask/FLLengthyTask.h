@@ -12,9 +12,9 @@
 @protocol FLLengthyTaskDelegate;
 
 #import "FLCancellable.h"
-#import "FLServiceable.h"
+#import "FLContextual.h"
 
-@interface FLLengthyTask : FLServiceable<FLCancellable> {
+@interface FLLengthyTask : FLContextual<FLCancellable> {
 @private
     BOOL _wasCancelled;
     BOOL _started;

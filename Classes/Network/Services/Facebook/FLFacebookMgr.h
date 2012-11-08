@@ -17,6 +17,7 @@
 #import "FLAction.h"
 #import "FLFacebookAuthenticationResponse.h"
 
+
 #define FLFacebookErrorKey @"fb_error"
 #define FLFacebookErrorDomain @"FLFacebookErrorDomain"
 
@@ -81,4 +82,4 @@ typedef enum {
 
 @end
 
-declare_service_(facebookService, FLFacebookMgr);
+service_declare_(facebookService, FLFacebookMgr);

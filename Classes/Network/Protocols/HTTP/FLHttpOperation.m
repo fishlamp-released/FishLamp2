@@ -13,8 +13,8 @@
 @end
 
 @implementation FLHttpOperation
+
 @synthesize URL = _url;
-@synthesize requestType = _requestType;
 @synthesize isAuthenticated = _isAuthenticated;
 @synthesize isSecure = _isSecure;
 @synthesize httpResponse = _httpResponse;
@@ -42,7 +42,6 @@ synthesize_(httpAuthenticator);
 	return self;
 }
 
-
 - (id) initWithURLString:(NSString*) url {
 	return [self initWithURL:[NSURL URLWithString:url]];
 }
@@ -69,28 +68,9 @@ dealloc_(
 - (void) setHttpConnection:(FLHttpConnection*) connection {
     self.networkConnection = connection;
 }
-
-- (NSString*) URLString {
-	return _url.absoluteString;
-}
-
-- (void) setURLString:(NSString*) url {
-	self.URL = [NSURL URLWithString:url];
-	
-	FLAssert_v(FLStringsAreEqual(url, self.URLString), @"setting URL failed");
-}
-
-- (id) setRequestWillPost {
-	self.requestType = @"POST";
-	if(self.httpConnection) {
-		[((id)self.httpConnection) setHTTPMethodToPost];
-	}
-	
-	return self;
-} 
-    
+ 
 - (FLHttpConnection*) createNetworkConnection {
-    return  [FLHttpConnection httpConnection:[FLHttpRequest httpRequestWithURL:self.URL requestMethod:self.requestType]];
+    return  [FLHttpConnection httpConnection:[FLHttpRequest httpRequestWithURL:self.URL requestMethod:@"GET"]];
 }
 
 - (FLHttpRequest*) httpRequest {
@@ -106,12 +86,21 @@ dealloc_(
 }
 
 - (void) prepareSelf {
-    [self authenticateSelf];
+    if(self.isSecure) {
+
+        if(!self.httpAuthenticator) {
+            self.httpAuthenticator = [FLHttpOperationAuthenticator optionalServiceFromContext:self.context];
+        }
+
+        [self authenticateSelf];
+    }
     [super prepareSelf];
 }
 
 - (void) runSelf {
-    [self prepareAuthenticatedConnection:self.httpConnection];
+    if(self.isSecure) {
+        [self prepareAuthenticatedConnection:self.httpConnection];
+    }
     [super runSelf];
 }
 
@@ -124,4 +113,12 @@ dealloc_(
 
 @end
 
+service_register_(httpAuthenticator, FLHttpOperationAuthenticator)
 
+@implementation FLHttpOperationAuthenticator
+- (void) httpOperationRunAuthentication:(FLHttpOperation*) operation {
+}
+- (void) httpOperation:(FLHttpOperation*) operation prepareAuthenticatedConnection:(FLHttpConnection*) connection {
+}
+
+@end

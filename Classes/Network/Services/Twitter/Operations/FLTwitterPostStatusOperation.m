@@ -12,13 +12,15 @@
 
 @implementation FLTwitterPostStatusOperation
 
-- (void) didInit
-{
-	[self setRequestWillPost];
+- (void) prepareSelf {
+
 #if DEBUG
 	self.URL = [NSURL URLWithString:@"https://api.twitter.com/1/statuses/update.json"];
 #else
 	self.URL = [NSURL URLWithString:@"https://api.twitter.com/1/statuses/update.json"];
 #endif
+    self.httpRequest.requestMethod = @"POST";
+    
+    [super prepareSelf];
 }
 @end

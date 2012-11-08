@@ -54,7 +54,6 @@
 @implementation FLHttpRequest (Utils)
 
 - (FLHttpMessage*) messageForRequest:(NSURL*) atURL {
-    [self finalizeHeaders];
     FLHttpMessage* message = [FLHttpMessage httpMessageWithURL:atURL requestMethod:self.requestMethod];
     [message setHeaders:self.requestHeaders];
     return message;
@@ -197,6 +196,10 @@
     return self.readStream != nil;
 }
 
+- (NSError*) error {
+   return self.readStream.error;
+}
+
 - (void) readResponseHeadersIfNeeded  {
     
     if(!_response.responseHeaders) {
@@ -212,8 +215,6 @@
             FLPerformSelectorWithObject(self.delegate, @selector(readStreamDidReadBytes:) , self);
         }
     }
-
-    
 }
 
 - (void) readStreamHasBytesAvailable:(id<FLNetworkStream>) networkStream {

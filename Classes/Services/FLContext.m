@@ -1,18 +1,19 @@
 //
-//  FLSession.m
+//  FLContext.m
 //  FishLampCore
 //
 //  Created by Mike Fullerton on 11/6/12.
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import "FLSession.h"
+#import "FLContext.h"
+#import "FLService.h"
 
-@interface FLSession ()
-@property (readwrite, assign, getter=isSessionOpen) BOOL sessionOpen;
+@interface FLContext ()
+@property (readwrite, assign, getter=isContextOpen) BOOL sessionOpen;
 @end
 
-@implementation FLSession
+@implementation FLContext
 
 synthesize_(sessionOpen);
 
@@ -40,7 +41,7 @@ dealloc_(
     [self addObserver:service];
 
     [_services setObject:service forKey:serviceID];
-    [service wasAddedToSession:self];
+    [service wasAddedToContext:self];
 }
 
 - (void) registerService:(id<FLService>) service {
@@ -50,7 +51,7 @@ dealloc_(
 - (void) removeServiceForID:(id) key {
     id service = [_services objectForKey:key];
     if(service) {
-        [service wasAddedToSession:nil];
+        [service wasAddedToContext:nil];
         [service removeObserver:self];
         [self removeObserver:service];
         [_services removeObjectForKey:key];
@@ -61,17 +62,15 @@ dealloc_(
     [self removeServiceForID:[[service class] serviceID]];
 }
 
-- (BOOL) serviceIsRegistered:(id) serviceID {
-    return [_services objectForKey:serviceID] != nil;
-}
+//- (BOOL) serviceIsRegistered:(id) serviceID {
+//    return [_services objectForKey:serviceID] != nil;
+//}
 
 - (id) serviceForID:(NSString*) serviceID {
-    FLAssert_v([self serviceIsRegistered:serviceID], @"service not registered in session");
-
     return [_services objectForKey:serviceID];
 }
 
-- (void) openSession {
+- (void) openContext {
     [self postObservation:@selector(sessionWillOpen:)];
 
     self.sessionOpen = YES;
@@ -82,7 +81,7 @@ dealloc_(
     [self postObservation:@selector(sessionDidOpen:)];
 }
 
-- (void) closeSession {
+- (void) closeContext {
     [self postObservation:@selector(sessionWillClose:)];
 
     for(id<FLService> service in _services.objectEnumerator) {
@@ -93,3 +92,5 @@ dealloc_(
 }
 
 @end
+
+

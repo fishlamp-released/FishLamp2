@@ -20,7 +20,7 @@
 FLSynthesizeStructProperty(cacheBehavior, setCacheBehavior, FLHttpOperationCacheBehavior, _networkFlags);
 FLSynthesizeStructProperty(wasLoadedFromCache, setWasLoadedFromCache, BOOL, _networkFlags);
 
-- (id) initWithDatabase:(FLObjectDatabase*) database
+- (id) initWithDatabase:(FLDatabase*) database
     behavior:(FLHttpOperationCacheBehavior) behavior
 {
     self = [super init];
@@ -32,7 +32,7 @@ FLSynthesizeStructProperty(wasLoadedFromCache, setWasLoadedFromCache, BOOL, _net
     return self;
 }
 
-+ (FLOperationCacheHandler*) operationCacheHandler:(FLObjectDatabase*) database
++ (FLOperationCacheHandler*) operationCacheHandler:(FLDatabase*) database
     behavior:(FLHttpOperationCacheBehavior) behavior
 {
     return autorelease_([[FLOperationCacheHandler alloc] initWithDatabase:database behavior:behavior]);

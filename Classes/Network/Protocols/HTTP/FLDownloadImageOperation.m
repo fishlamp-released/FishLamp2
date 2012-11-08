@@ -28,7 +28,7 @@
     if(self.didSucceed) {
     
         FLCachedImage* photo = [FLCachedImage create];
-        photo.url = self.URLString;
+        photo.url = self.URL.absoluteString;
         
         NSData* data = self.httpResponse.responseData;
         if(data && data.length > 0)

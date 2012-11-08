@@ -95,7 +95,7 @@ FLAssertDefaultInitNotCalled_v(nil);
     ++self.lockCount;
 }
 
-- (FLObjectDatabase*) database {
+- (FLDatabase*) database {
     return nil;
 }
 
@@ -214,7 +214,7 @@ FLAssertDefaultInitNotCalled_v(nil);
 	FLQueuedAsset* obj1 = nil;
    	FLQueuedAsset* obj2 = nil;
 
-    FLObjectDatabase* database = self.database;
+    FLDatabase* database = self.database;
 	FLAssertIsNotNil_v(database, nil);
 
 	@synchronized(self) {
@@ -319,7 +319,7 @@ FLAssertDefaultInitNotCalled_v(nil);
     
 		FLAssert_v(self.isLoaded, @"queue not loaded");
         
-        FLObjectDatabase* database = self.database;
+        FLDatabase* database = self.database;
         FLAssertIsNotNil_v(database, nil);
 
         for(int i = _assets.count - 1; i >= 0; i--)
@@ -369,7 +369,7 @@ FLAssertDefaultInitNotCalled_v(nil);
 {
     NSDate* date = [[NSDate alloc] init];
 
-    FLObjectDatabase* database = self.database;
+    FLDatabase* database = self.database;
 	FLAssertIsNotNil_v(database, nil);
 		
 	@synchronized(self) {
@@ -403,7 +403,7 @@ FLAssertDefaultInitNotCalled_v(nil);
     asset.queuedDate = date;
     release_(date);
 
-    FLObjectDatabase* database = self.database;
+    FLDatabase* database = self.database;
 	FLAssertIsNotNil_v(database, nil);
     
     [self saveAsset:asset];
@@ -421,7 +421,7 @@ FLAssertDefaultInitNotCalled_v(nil);
 - (void) beginLoadingFirstAsset:(FLAssetQueueLoadAssetBlock) completionBlock {
     completionBlock = autorelease_([completionBlock copy]);
     
-    FLObjectDatabase* database = self.database;
+    FLDatabase* database = self.database;
 	FLAssertIsNotNil_v(database, nil);
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), 

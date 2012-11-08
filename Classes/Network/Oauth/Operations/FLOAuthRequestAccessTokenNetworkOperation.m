@@ -71,7 +71,6 @@
 
 - (void) runSelf {
 
-	[self.httpConnection.httpRequest setHTTPMethodToPost];
 	
 	FLOAuthAuthorizationHeader* oauthHeader = [FLOAuthAuthorizationHeader authorizationHeader];
 	[oauthHeader setParameter:kFLOAuthHeaderToken value:_authData.oauth_token];
@@ -79,7 +78,8 @@
 
     NSString* secret = [NSString stringWithFormat:@"%@&%@", _app.consumerSecret, _authData.oauth_token_secret];
 
-    [self.httpConnection.httpRequest setOAuthAuthorizationHeader:oauthHeader consumerKey:_app.consumerKey secret:secret];
+	self.httpRequest.requestMethod = @"POST";
+    [self.httpRequest setOAuthAuthorizationHeader:oauthHeader consumerKey:_app.consumerKey secret:secret];
 
 	[super runSelf];
         if(self.didSucceed) {

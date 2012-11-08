@@ -21,7 +21,7 @@
 //	return nil;
 //}
 //
-//- (BOOL) shouldAuthenticateOperation:(FLHttpOperation*) operation
+//- (BOOL) shouldAuthenticateWebService:(FLHttpOperation*) operation
 //{
 //	return YES;
 //}

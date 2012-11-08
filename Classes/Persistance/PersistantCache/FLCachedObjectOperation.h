@@ -11,11 +11,11 @@
 
 #import "FLOperationQueue.h"
 #import "FLPerformSelectorOperation.h"
-#import "FLObjectDatabase.h"
+#import "FLDatabase.h"
 
 @interface FLCachedObjectOperation : FLOperation {
 @private
-	FLObjectDatabase* _cache;
+	FLDatabase* _cache;
 	struct {
 		unsigned int canLoadFromCache:1;
 		unsigned int canSaveToCache:1;
@@ -28,7 +28,7 @@
 	__unsafe_unretained id _target;
     SEL _action;
 }
-@property (readwrite, retain, nonatomic) FLObjectDatabase* cache;
+@property (readwrite, retain, nonatomic) FLDatabase* cache;
 
 @property (readwrite, assign, nonatomic) BOOL canSaveToCache;
 @property (readwrite, assign, nonatomic) BOOL canLoadFromCache;

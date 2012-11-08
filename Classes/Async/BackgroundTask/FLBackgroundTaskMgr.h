@@ -102,4 +102,4 @@
 
 @end
 
-declare_service_(backgroundTaskService, FLBackgroundTaskMgr);
+service_declare_(backgroundTaskService, FLBackgroundTaskMgr);

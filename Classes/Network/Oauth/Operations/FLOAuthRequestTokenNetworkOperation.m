@@ -40,13 +40,12 @@
 }
 
 - (void) runSelf {
-    [self.httpRequest setHTTPMethodToPost];
 	
     FLOAuthAuthorizationHeader* oauthHeader = [FLOAuthAuthorizationHeader authorizationHeader];
     [self.httpRequest setOAuthAuthorizationHeader:oauthHeader
                                       consumerKey:_app.consumerKey
                                            secret:[_app.consumerSecret stringByAppendingString:@"&"]];
-    
+    self.httpRequest.requestMethod = @"POST";
     [super runSelf];
 
     if(self.didSucceed) {

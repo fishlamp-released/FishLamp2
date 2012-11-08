@@ -10,17 +10,16 @@
 #import "FLCancellable.h"
 #import "FLPredicate.h"
 #import "FLAbortException.h"
-#import "FLServiceable.h"
+#import "FLContextual.h"
 #import "FLWorker.h"
 
 @class FLOperation;
 
 typedef void (^FLRunOperationBlock)(FLOperation* operation);
 
-@interface FLOperation : FLObservable<FLWorker, FLRunnable, FLCancellable, FLServiceable> {
+@interface FLOperation : FLObservable<FLWorker, FLRunnable, FLCancellable, FLContextual> {
 @private
-    id _services;
-	id _operationInput;
+    id _operationInput;
     id _operationOutput;
 
 // id
@@ -105,7 +104,6 @@ typedef void (^FLRunOperationBlock)(FLOperation* operation);
 /// Either override run or set the operation's run block.
 - (void) prepareSelf;
 - (void) runSelf;
-- (void) finishSelf;
 
 /// @brief this is called for you to respond to if requestCancel is called
 - (void) cancelSelf;
