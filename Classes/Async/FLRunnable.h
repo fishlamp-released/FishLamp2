@@ -10,9 +10,11 @@
 
 #import "FLPromisedResult.h"
 #import "FLResult.h"
+#import "FLAbortException.h"
 
 @protocol FLRunnable <NSObject>
 - (id<FLPromisedResult>) start:(FLResultBlock) completion;
 - (id<FLResult>) runSynchronously;
 @end
+
 

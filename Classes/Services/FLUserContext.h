@@ -15,5 +15,7 @@
 }
 @property (readwrite, strong) FLUserLogin* userLogin; 
 
+- (void) loadPassword:(FLUserLogin*) password;
+
 @end
 

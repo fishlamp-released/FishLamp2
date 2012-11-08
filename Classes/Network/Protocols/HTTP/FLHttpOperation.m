@@ -7,6 +7,7 @@
 //
 
 #import "FLHttpOperation.h"
+#import "FLTraceOn.h"
 
 @interface FLHttpOperation ()
 @property (readwrite, strong) FLHttpResponse* httpResponse;
@@ -14,13 +15,10 @@
 
 @implementation FLHttpOperation
 
-@synthesize URL = _url;
-@synthesize isAuthenticated = _isAuthenticated;
-@synthesize isSecure = _isSecure;
-@synthesize httpResponse = _httpResponse;
-
-//synthesize_(httpDelegate);
+synthesize_(httpResponse);
+synthesize_(URL);
 synthesize_(httpAuthenticator);
+synthesize_(httpConnectionAuthenticator);
 
 - (void) didInit {
 }
@@ -55,10 +53,10 @@ synthesize_(httpAuthenticator);
 }
 
 dealloc_(
+    [_httpConnectionAuthenticator release];
     [_httpAuthenticator release];
     [_httpResponse release];
-    [_requestType release];
-	[_url release];
+    [_url release];
 )
 
 - (FLHttpConnection*) httpConnection {
@@ -78,29 +76,27 @@ dealloc_(
 }
 
 - (void) prepareAuthenticatedConnection:(FLHttpConnection*) connection {
-    FLPerformSelector2(self.httpAuthenticator, @selector(httpOperation:prepareAuthenticatedConnection:), self, connection);
+
+#if DEBUG
+    if(self.httpConnectionAuthenticator) {
+        FLTrace(@"Adding security token to request in %@", NSStringFromClass([self class]));
+    }
+#endif
+
+    FLPerformSelector2(self.httpConnectionAuthenticator, @selector(authenticateConnection:withContext:), connection, self.context);
 }
 
 - (void) authenticateSelf {
-    FLPerformSelector1(self.httpAuthenticator, @selector(httpOperationRunAuthentication:), self);
+    FLPerformSelector1(self.httpAuthenticator, @selector(authenticateOperation:), self);
 }
 
 - (void) prepareSelf {
-    if(self.isSecure) {
-
-        if(!self.httpAuthenticator) {
-            self.httpAuthenticator = [FLHttpOperationAuthenticator optionalServiceFromContext:self.context];
-        }
-
-        [self authenticateSelf];
-    }
+    [self authenticateSelf];
     [super prepareSelf];
 }
 
 - (void) runSelf {
-    if(self.isSecure) {
-        [self prepareAuthenticatedConnection:self.httpConnection];
-    }
+    [self prepareAuthenticatedConnection:self.httpConnection];
     [super runSelf];
 }
 
@@ -113,12 +109,12 @@ dealloc_(
 
 @end
 
-service_register_(httpAuthenticator, FLHttpOperationAuthenticator)
-
-@implementation FLHttpOperationAuthenticator
-- (void) httpOperationRunAuthentication:(FLHttpOperation*) operation {
-}
-- (void) httpOperation:(FLHttpOperation*) operation prepareAuthenticatedConnection:(FLHttpConnection*) connection {
-}
-
-@end
+//service_register_(httpAuthenticator, FLHttpOperationAuthenticator)
+//
+//@implementation FLHttpOperationAuthenticator
+//- (void) httpOperationRunAuthentication:(FLHttpOperation*) operation {
+//}
+//- (void) httpOperation:(FLHttpOperation*) operation prepareAuthenticatedConnection:(FLHttpConnection*) connection {
+//}
+//
+//@end

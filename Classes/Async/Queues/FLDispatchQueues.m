@@ -103,7 +103,9 @@ FLSynthesizeSingleton(FLDispatchQueue);
 - (id<FLPromisedResult>) dispatchBlock:(void (^)()) block
                         completion:(FLResultBlock) completion {
     
-    FLWorkFinisher* finisher = [FLWorkFinisher finisher:completion];
+    FLAssertNotNil_(block);
+    
+    FLWorkFinisher* finisher = [self workFinisher:completion];
 
     block = FLCopyBlock(block);
 
@@ -128,6 +130,8 @@ FLSynthesizeSingleton(FLDispatchQueue);
 
 - (id<FLPromisedResult>) dispatchAsyncBlock:(FLAsyncBlock) block
                         completion:(FLResultBlock) completion {
+    
+    FLAssertNotNil_(block);
     
     FLWorkFinisher* finisher = [self workFinisher:completion];
 
@@ -157,6 +161,8 @@ FLSynthesizeSingleton(FLDispatchQueue);
 
 - (id<FLPromisedResult>) dispatchWorker:(id<FLWorker>) aWorker
                              completion:(FLResultBlock) completion {
+    
+    FLAssertNotNil_(aWorker);
     
     FLWorkFinisher* finisher = [self workFinisher:completion];
 

@@ -18,7 +18,7 @@
 /// @param __class The type of the class (for example MyClass). 
 #define FLSingletonProperty(__class) + (__class*)instance; \
                                      + (void) createInstance; \
-                                     + (void) releaseInstance
+                                     + (void) releaseInstance;
 
 /// Synthesizes all the boilerplate for declaring a thread safe fast singleton
 #define FLSynthesizeSingleton(__class) \
@@ -36,10 +36,13 @@
         dispatch_once(&s_pred2##__class, ^{ FLReleaseWithNil_(s_instance##__class); s_pred1##__class = 0; }); \
         }
 
+#define singleton_property_ FLSingletonProperty
+#define synthesize_singleton_ FLSynthesizeSingleton
 
+#define _use_macro_(__NAME__) FIXME(please use macro #__NAME__)
 
-
-
+#define singleton_property      _use_macro_(singleton_property_)
+#define synthesize_singleton    _use_macro_(synthesize_singleton_)
 
 //           \
 //    + (id)allocWithZone:(NSZone * const)notUsed { \

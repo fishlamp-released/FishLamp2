@@ -15,5 +15,7 @@ synthesize_(userLogin)
 dealloc_(
     [_userLogin release];
 )
+- (void) loadPassword:(FLUserLogin*) password {
+}
 
 @end

@@ -19,3 +19,11 @@ typedef id<FLResult> FLResult;
 
 typedef void (^FLResultBlock)(FLResult result);
 
+NS_INLINE
+id<FLResult> FLThrowFailedResult(id<FLResult> result) {
+    if(!result ||  !result.didSucceed || result.error) {
+        FLCThrowError_(result.error);
+    }
+    
+    return result;
+}
