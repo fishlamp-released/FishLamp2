@@ -18,8 +18,12 @@
 synthesize_(soapActionHeader);
 synthesize_(soapNamespace);
 synthesize_(operationName);
+synthesize_(outputName);
+synthesize_(outputObject);
 
 dealloc_ (
+    [_outputObject release];
+    [_outputName release];
     [_soapActionHeader release];
     [_operationName release];
     [_soapNamespace release];
@@ -84,6 +88,7 @@ dealloc_ (
 
     if(self.didSucceed) {
         NSData* data = self.httpResponse.responseData;
+        
         FLSoapFault11* fault = [FLSoapOperation checkForSoapFaultInData:data];
         if(fault) {
             [self handleSoapFault:fault];
@@ -91,13 +96,17 @@ dealloc_ (
         
         FLThrowIfError_([self.httpResponse simpleHttpResponseErrorCheck]);
        
-        if(self.output) {
-            [self parseXmlResponse:data object:self.output];
-        }
-        else {
-            self.output = data;
+        if(_outputObject) {
+            [self parseXmlResponse:data object:_outputObject];
         }
     }
+}
+
+- (id) output {
+    if(_outputName && _outputObject) {
+        return [_outputObject valueForKey:_outputName];
+    }
+    return nil;
 }
 
 @end

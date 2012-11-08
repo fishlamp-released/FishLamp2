@@ -112,7 +112,7 @@ FLSynthesizeSingleton(FLDispatchQueue);
     dispatch_async([self dispatchQueue], ^{
         @try {
             if(block) {
-                block(finisher);
+                block();
             }
             [finisher setFinished];
         }

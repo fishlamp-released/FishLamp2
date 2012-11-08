@@ -19,10 +19,15 @@
 
 @interface FLSoapOperation : FLHttpOperation {
 @private
-    NSString* _operationName;
     NSString* _soapNamespace;
     NSString* _soapActionHeader;
+    NSString* _outputName;
+    
+    NSString* _operationName;
+    id _outputObject;
 }
+@property (readwrite, strong) NSString* outputName;
+@property (readwrite, strong) id outputObject;
 
 @property (readwrite, strong) NSString* soapActionHeader;
 @property (readwrite, strong) NSString* soapNamespace;
