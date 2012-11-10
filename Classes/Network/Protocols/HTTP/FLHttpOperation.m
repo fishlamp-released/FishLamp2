@@ -7,7 +7,7 @@
 //
 
 #import "FLHttpOperation.h"
-#import "FLTraceOn.h"
+#import "FLTraceOff.h"
 
 @interface FLHttpOperation ()
 @property (readwrite, strong) FLHttpResponse* httpResponse;
@@ -44,11 +44,7 @@ synthesize_(httpConnectionAuthenticator);
 	return [self initWithURL:[NSURL URLWithString:url]];
 }
 
-+ (id) networkOperationWithURLString:(NSString*) url {
-	return autorelease_([[[self class] alloc] initWithURL:[NSURL URLWithString:url]]);
-}
-
-+ (id) networkOperationWithURL:(NSURL*) url {
++ (id) httpOperationWithURL:(NSURL*) url {
 	return autorelease_([[[self class] alloc] initWithURL:url]);
 }
 

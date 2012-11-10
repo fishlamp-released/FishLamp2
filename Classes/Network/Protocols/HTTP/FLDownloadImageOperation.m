@@ -57,3 +57,20 @@
 }
 
 @end
+
+@implementation FLDownloadImageBytesOperation 
+
+- (void) runSelf {
+	[super runSelf];
+
+    FLThrowIfError_([self.httpResponse simpleHttpResponseErrorCheck]);
+    if(self.didSucceed) {
+        self.output = self.httpResponse.responseData;
+    }
+}
+
+- (NSData*) imageDataOutput {
+    return (NSData*) self.output;
+}
+
+@end

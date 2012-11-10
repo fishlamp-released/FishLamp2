@@ -22,3 +22,10 @@
 - (FLImage*) imageOutput;
 
 @end
+
+@interface FLDownloadImageBytesOperation : FLHttpOperation {
+}
+
+- (NSData*) imageDataOutput;
+
+@end

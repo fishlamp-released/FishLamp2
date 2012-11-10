@@ -35,8 +35,7 @@
 // creation
 - (id) initWithURL:(NSURL*) url; // designated 
 
-+ (id) networkOperationWithURL:(NSURL*) url;
-+ (id) networkOperationWithURLString:(NSString*) url;
++ (id) httpOperationWithURL:(NSURL*) url;
 
 // these are ignored if operation doesn't have an authenticator.
 //@property (readwrite, assign) BOOL isSecure;
