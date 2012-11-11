@@ -36,15 +36,7 @@ synthesize_(networkHost)
 
 dealloc_(
     [_networkHost release];
-    [_error release];
 )
-
-#if FL_MRC
-- (void) dealloc {
-    release_(_networkHost);
-    super_dealloc_();
-}
-#endif
 
 @end
 

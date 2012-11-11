@@ -16,7 +16,7 @@
 
 @interface FLHttpOperation : FLNetworkOperation {
 @private	
-	NSURL* _url;
+	NSURL* _URL;
     FLHttpResponse* _httpResponse;
     id<FLHttpOperationAuthenticator> _httpAuthenticator;
     id<FLHttpConnectionAuthenticator> _httpConnectionAuthenticator;
@@ -61,9 +61,3 @@
 - (void) authenticateConnection:(FLHttpConnection*) connection withContext:(id) context;
 @end
 
-//#import "FLService.h"
-//
-//@interface FLHttpOperationAuthenticator : FLService<FLHttpOperationAuthenticator>
-//@end
-//
-//service_declare_(httpAuthenticator, ZFHttpOperationAuthenticator)

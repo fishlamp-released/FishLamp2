@@ -11,7 +11,6 @@
 #import "NSError+FLNetworkStream.h"
 
 @interface FLNetworkHostResolverStream ()
-@property (readwrite, assign) BOOL isOpen;
 @property (readwrite, strong) NSError* error;
 @end
 

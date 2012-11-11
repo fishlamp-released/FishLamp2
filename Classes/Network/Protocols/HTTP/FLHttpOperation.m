@@ -52,7 +52,7 @@ dealloc_(
     [_httpConnectionAuthenticator release];
     [_httpAuthenticator release];
     [_httpResponse release];
-    [_url release];
+    [_URL release];
 )
 
 - (FLHttpConnection*) httpConnection {
@@ -105,12 +105,3 @@ dealloc_(
 
 @end
 
-//service_register_(httpAuthenticator, FLHttpOperationAuthenticator)
-//
-//@implementation FLHttpOperationAuthenticator
-//- (void) httpOperationRunAuthentication:(FLHttpOperation*) operation {
-//}
-//- (void) httpOperation:(FLHttpOperation*) operation prepareAuthenticatedConnection:(FLHttpConnection*) connection {
-//}
-//
-//@end

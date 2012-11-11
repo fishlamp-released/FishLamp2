@@ -25,8 +25,6 @@
 		27048D10161CB58600C38ADA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27A43A7F15CDCC1B001CB13E /* Cocoa.framework */; };
 		270EA4DE1640C5D200329E35 /* FishLampCore-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 270EA4DD1640C5D200329E35 /* FishLampCore-Prefix.pch */; };
 		270EA4DF1640C5D200329E35 /* FishLampCore-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 270EA4DD1640C5D200329E35 /* FishLampCore-Prefix.pch */; };
-		270EA4E11640C5E300329E35 /* FishLamp-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 270EA4E01640C5E300329E35 /* FishLamp-Prefix.pch */; };
-		270EA4E21640C5E300329E35 /* FishLamp-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 270EA4E01640C5E300329E35 /* FishLamp-Prefix.pch */; };
 		2725BB7C1642E17800B8EC6E /* FLUnitTestGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = 2725BB7A1642E17800B8EC6E /* FLUnitTestGroup.h */; };
 		2725BB7D1642E17800B8EC6E /* FLUnitTestGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = 2725BB7A1642E17800B8EC6E /* FLUnitTestGroup.h */; };
 		2725BB7E1642E17800B8EC6E /* FLUnitTestGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 2725BB7B1642E17800B8EC6E /* FLUnitTestGroup.m */; };
@@ -2378,7 +2376,6 @@
 		270D02E315E9B1FF00ED5FB0 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
 		270DFDC815E99BAC00ED5FB0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		270EA4DD1640C5D200329E35 /* FishLampCore-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FishLampCore-Prefix.pch"; sourceTree = "<group>"; };
-		270EA4E01640C5E300329E35 /* FishLamp-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "FishLamp-Prefix.pch"; path = "../FishLamp-Prefix.pch"; sourceTree = "<group>"; };
 		270EA5191640C87000329E35 /* FishLampPaths.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FishLampPaths.xcconfig; sourceTree = "<group>"; };
 		270EA51A1640C87000329E35 /* FishLampPreprocessorDefines.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FishLampPreprocessorDefines.xcconfig; sourceTree = "<group>"; };
 		270EA51B1640C87000329E35 /* FishLampProjectSettingsDebug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FishLampProjectSettingsDebug.xcconfig; sourceTree = "<group>"; };
@@ -3514,7 +3511,6 @@
 		27A43A7115CDCC1B001CB13E = {
 			isa = PBXGroup;
 			children = (
-				270EA4E01640C5E300329E35 /* FishLamp-Prefix.pch */,
 				270EA4DD1640C5D200329E35 /* FishLampCore-Prefix.pch */,
 				270EA5181640C87000329E35 /* FishLampXcodeConfigs */,
 				27B7D9C7163CB4E000E9C6EB /* Classes */,
@@ -5982,7 +5978,6 @@
 				27E5AAF916403F8E00B8D029 /* FLHttpTests.h in Headers */,
 				27E5AB0116406F4300B8D029 /* FLCoreFoundation.h in Headers */,
 				270EA4DF1640C5D200329E35 /* FishLampCore-Prefix.pch in Headers */,
-				270EA4E21640C5E300329E35 /* FishLamp-Prefix.pch in Headers */,
 				2725BB7D1642E17800B8EC6E /* FLUnitTestGroup.h in Headers */,
 				2725BB9A1642FDB000B8EC6E /* FLLogger.h in Headers */,
 				2725BBA21642FE6400B8EC6E /* FLPrintfLogSink.h in Headers */,
@@ -6498,7 +6493,6 @@
 				27E5AAF816403F8E00B8D029 /* FLHttpTests.h in Headers */,
 				27E5AB0016406F4300B8D029 /* FLCoreFoundation.h in Headers */,
 				270EA4DE1640C5D200329E35 /* FishLampCore-Prefix.pch in Headers */,
-				270EA4E11640C5E300329E35 /* FishLamp-Prefix.pch in Headers */,
 				2725BB7C1642E17800B8EC6E /* FLUnitTestGroup.h in Headers */,
 				2725BB991642FDB000B8EC6E /* FLLogger.h in Headers */,
 				2725BBA11642FE6400B8EC6E /* FLPrintfLogSink.h in Headers */,

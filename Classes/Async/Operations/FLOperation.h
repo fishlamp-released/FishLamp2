@@ -19,6 +19,7 @@ typedef void (^FLRunOperationBlock)(FLOperation* operation);
 
 @interface FLOperation : FLObservable<FLWorker, FLRunnable, FLCancellable, FLContextual> {
 @private
+    __unsafe_unretained id _context;
     id _operationInput;
     id _operationOutput;
 
