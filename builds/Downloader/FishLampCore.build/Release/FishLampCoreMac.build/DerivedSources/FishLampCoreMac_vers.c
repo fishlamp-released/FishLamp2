@@ -1,1 +1,0 @@
- const unsigned char FishLampCoreMacVersionString[] __attribute__ ((used)) = "@(#)PROGRAM:FishLampCoreMac  PROJECT:FishLampCore-" "\n"; const double FishLampCoreMacVersionNumber __attribute__ ((used)) = (double)0.;
