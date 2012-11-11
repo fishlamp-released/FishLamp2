@@ -28,8 +28,8 @@
     [FLFacebookMgr clearFacebookCookies];
 
     [super runSelf];
-        if(self.didSucceed) {
 
+    if(!self.error) {
         NSError* error = nil;
         self.output = [FLFacebookMgr authenticationResponseFromURL:self.httpRequest.requestURL outError:&error];
         if(error) {

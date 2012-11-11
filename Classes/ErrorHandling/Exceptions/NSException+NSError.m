@@ -8,7 +8,7 @@
 
 #import "NSException+NSError.h"
 
-static FLExceptionHook s_exceptionHook = nil;
+//static FLExceptionHook s_exceptionHook = nil;
 
 @implementation NSException (NSError)
 
@@ -27,6 +27,8 @@ FLSynthesizeAssociatedProperty_(retain_nonatomic, _error, setError, NSError*);
            userInfo:(NSDictionary*) inUserInfo
               error:(NSError*)error {
 
+    FLAssertNotNil_(error);
+
     if(error) {
 
         if(FLStringIsEmpty(inName)) {
@@ -37,7 +39,7 @@ FLSynthesizeAssociatedProperty_(retain_nonatomic, _error, setError, NSError*);
             inReason = [error localizedDescription];
         }
         
-        self.error = error;
+        [self setError:error];
     }
     
     return [self initWithName:inName
@@ -57,40 +59,39 @@ FLSynthesizeAssociatedProperty_(retain_nonatomic, _error, setError, NSError*);
 	return autorelease_([[[self class] alloc] initWithName:nil reason:nil userInfo:nil error:error]);
 }
 
-+ (FLExceptionHook) exceptionHook {
-    return s_exceptionHook;
-}
-
-+ (void) setExceptionHook:(FLExceptionHook) hook {
-    s_exceptionHook = hook;
-}
-
-+ (void) willThrowException:(NSException*) exception
-                 fromObject:(id) fromObject {
-
-    if(s_exceptionHook) {
-        s_exceptionHook(exception, fromObject);
-    }
-}
-
-+ (NSException*) invokeExceptionHook:(NSException*) exception fromObject:(id) fromObject {
-    if(s_exceptionHook) {
-        return s_exceptionHook(exception, fromObject);
-    }
-    return exception;
-}
+//+ (FLExceptionHook) exceptionHook {
+//    return s_exceptionHook;
+//}
+//
+//+ (void) setExceptionHook:(FLExceptionHook) hook {
+//    s_exceptionHook = hook;
+//}
+//
+//+ (void) willThrowException:(NSException*) exception {
+//
+//    if(s_exceptionHook) {
+//        s_exceptionHook(exception);
+//    }
+//}
+//
+//+ (NSException*) invokeExceptionHook:(NSException*) exception {
+//    if(s_exceptionHook && exception) {
+//        return s_exceptionHook(exception);
+//    }
+//    return exception;
+//}
 
 @end
 
-@implementation NSObject (ThrowingErrors)
-
-+ (NSException*) willThrowException:(NSException*) exception {
-    return [NSException invokeExceptionHook:exception fromObject:self];
-}
-
-- (NSException*) willThrowException:(NSException*) exception {
-    return [[self class] willThrowException:exception];
-}
-@end
+//@implementation NSObject (ThrowingErrors)
+//
+//+ (NSException*) willThrowException:(NSException*) exception {
+//    return [NSException invokeExceptionHook:exception];
+//}
+//
+//- (NSException*) willThrowException:(NSException*) exception {
+//    return [[self class] willThrowException:exception];
+//}
+//@end
 
 

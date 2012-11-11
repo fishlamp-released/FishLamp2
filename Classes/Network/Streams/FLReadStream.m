@@ -60,11 +60,7 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
 
 - (void) dealloc {
     FLAssertIsNotNil_(_streamRef);
-
-    if(self.isRunning) {
-        [self closeStream];
-    }
-
+    
     CFReadStreamSetClient(_streamRef, kCFStreamEventNone, NULL, NULL);
     FLReleaseCRef_(_streamRef);
     
@@ -72,20 +68,16 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
     [super dealloc];
 #endif
 }
-- (void) openStream {
+- (void) openSelf {
     FLAssertNotNil_(_streamRef);
-    [super openStream];
     CFReadStreamScheduleWithRunLoop(_streamRef, self.runLoop, bridge_(void*,kRunLoopMode));
     CFReadStreamOpen(_streamRef);
 }
 
-- (void) closeStream {
+- (void) closeSelf {
     FLAssertNotNil_(_streamRef);
-    if(self.isRunning) {
-        CFReadStreamUnscheduleFromRunLoop(_streamRef, self.runLoop, bridge_(void*,kRunLoopMode));
-        CFReadStreamClose(_streamRef);
-        [super closeStream];
-    }
+    CFReadStreamUnscheduleFromRunLoop(_streamRef, self.runLoop, bridge_(void*,kRunLoopMode));
+    CFReadStreamClose(_streamRef);
 }
 
 - (NSError*) error {
@@ -110,6 +102,8 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
 
     while(!buffer.isFull && CFReadStreamHasBytesAvailable(self.streamRef)) {
     
+        FLThrowIfCancelled(self);
+
         NSInteger bytesRead = CFReadStreamRead(_streamRef, buffer.unusedContent, buffer.unusedContentLength);
         if(bytesRead > 0) {
             [buffer incrementContentLength:bytesRead];
@@ -138,6 +132,8 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
     uint8_t* readPtr = bytes;
     NSUInteger readTotal = 0;
     while(maxLength > 0 && CFReadStreamHasBytesAvailable(_streamRef)) {
+
+        FLThrowIfCancelled(self);
 
 #if DEBUG
         FLAssert_v(readPtr + maxLength <= lastBytePtr, @"buffer overrun!!!! Warning warning warning!!!!");
@@ -178,6 +174,8 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
     uint8_t buffer[kBufferSize];
         
     while(CFReadStreamHasBytesAvailable(_streamRef)) {
+
+        FLThrowIfCancelled(self);
 
         bytesRead = CFReadStreamRead(self.streamRef, buffer, kBufferSize);
         
@@ -286,6 +284,8 @@ FIXME("readbytes");
                 BOOL stop = NO;
                 while(!stop) {
                     readblock(&stop);
+                    
+                    FLThrowIfCancelled(self);
                 }
             }
             @finally {

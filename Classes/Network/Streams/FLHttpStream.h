@@ -7,9 +7,11 @@
 //
 
 #import "FLNetworkStream.h"
-#import "FLReadStream.h"
 #import "FLHttpRequest.h"
 #import "FLHttpResponse.h"
+#import "FLNetworkStream.h"
+
+@class FLReadStream;
 
 @protocol FLHttpStream <NSObject>
 @property (readonly, strong) FLHttpRequest* httpRequest;

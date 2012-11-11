@@ -58,7 +58,7 @@
 - (void) cancelSelf {
 	[super cancelSelf];
     if(_networkConnection) {
-        [_networkConnection cancelConnection];
+        [_networkConnection requestCancel];
     }
 }
 
@@ -92,7 +92,7 @@
     FLAssertIsNotNil_v(self.networkConnection, nil);
     
     FLResult result = [self.networkConnection runSynchronously];
-    if(result.didSucceed) {
+    if(!result.error) {
         [self handleAsyncResultFromConnection:result.output];
     }
     else {

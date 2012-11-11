@@ -89,6 +89,18 @@ const char *getPropertyType(objc_property_t property) {
     return "@";
 }
 
+void FLSelectorSwizzle(Class c, SEL originalSelector, SEL newSelector) {
+    Method origMethod = class_getInstanceMethod(c, originalSelector);
+    Method newMethod = class_getInstanceMethod(c, newSelector);
+    
+    if(class_addMethod(c, originalSelector, method_getImplementation(newMethod), method_getTypeEncoding(newMethod))) {
+        class_replaceMethod(c, newSelector, method_getImplementation(origMethod), method_getTypeEncoding(origMethod));
+    }
+    else {
+        method_exchangeImplementations(origMethod, newMethod);
+    }
+}
+
 
 //void FLRuntimeVisitEveryMetaClass(void (^visitor)(Class aClass, BOOL* stop)) {
 //

@@ -48,7 +48,7 @@
     self.httpRequest.requestMethod = @"POST";
     [super runSelf];
 
-    if(self.didSucceed) {
+    if(!self.error) {
         NSData* data = self.httpResponse.responseData;
 #if DEBUG
         NSString* responseStr = autorelease_([[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);

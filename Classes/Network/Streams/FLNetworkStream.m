@@ -7,27 +7,29 @@
 //
 
 #import "FLNetworkStream.h"
+#import "FLReadStream.h"
+#import "FLWriteStream.h"
+#import "FLResult.h"
+#import "FLResultObjects.h"
 
 @interface FLNetworkStream ()
 @property (readwrite, assign) NSThread* thread;
 @property (readwrite, assign) CFRunLoopRef runLoop;
 @property (readwrite, assign) BOOL isOpen;
-
+@property (readwrite, assign) BOOL wasCancelled;
 @end
 
 @implementation FLNetworkStream
 
-@synthesize delegate = _delegate;
-@synthesize thread = _thread;
-@synthesize runLoop = _runLoop;
-@synthesize isOpen = _isOpen;
-
-- (BOOL) isRunning {
-    return self.thread != nil;
-}
+synthesize_(runLoop)
+synthesize_(delegate)
+synthesize_(isOpen)
+synthesize_(wasCancelled);
+synthesize_(thread)
 
 - (void) dealloc {
     FLAssert_v(self.thread == nil, @"still running in thread");
+    
     self.delegate = nil;
     
 #if FL_MRC
@@ -36,19 +38,42 @@
 }
 
 - (void) closeStream {
-    self.runLoop = nil;
-    self.thread = nil;
+    if(!_didClose) {
+        _didClose = YES;
+        [self closeSelf];
+        
+        if(self.wasCancelled) {
+            FLPerformSelector2(self.delegate, @selector(networkStreamDidClose:withResult:), self, [FLErrorResult errorResult:[NSError cancelError]]);
+        }
+        else {
+            FLPerformSelector2(self.delegate, @selector(networkStreamDidClose:withResult:), self, self);
+        }
+
+        self.runLoop = nil;
+        self.thread = nil;
+        self.isOpen = NO;
+    }
+}
+
+- (BOOL) didSucceed {
+    return self.error != nil;
 }
 
 - (void) openStream {
     self.runLoop = CFRunLoopGetCurrent();
-    
-    
-//    CFRunLoopAddCommonMode(
-//    NSThrea
-    
     self.thread = [NSThread currentThread];
+    _didClose = NO;
+    self.isOpen = NO;
     
+    [self openSelf];
+}
+
+- (void) openSelf {
+
+}
+
+- (void) closeSelf {
+
 }
 
 - (id) output {
@@ -73,9 +98,9 @@
             FLPerformSelectorWithObject(self.delegate, @selector(networkStreamDidOpen:), self);
             break;
 
+        case kCFStreamEventErrorOccurred:
         case kCFStreamEventEndEncountered:
-            self.isOpen = NO;
-            FLPerformSelectorWithObject(self.delegate, @selector(networkStreamDidClose:) , self);
+            [self closeStream];
             break;
         
         case kCFStreamEventNone:
@@ -84,10 +109,6 @@
         
         case kCFStreamEventHasBytesAvailable:
             FLPerformSelectorWithObject(self.delegate, @selector(readStreamHasBytesAvailable:), self);
-            break;
-
-        case kCFStreamEventErrorOccurred:
-            FLPerformSelectorWithObject(self.delegate, @selector(networkStreamEncounteredError:), self);
             break;
             
         case kCFStreamEventCanAcceptBytes:
@@ -122,64 +143,24 @@
 //    }
 }
 
-- (id<FLReadStream>) readStream {
-    return nil;
-}
-
-- (id<FLReadStream>) writeStream {
-    return nil;
-}
+//- (id<FLReadStream>) readStream {
+//    return nil;
+//}
+//
+//- (id<FLReadStream>) writeStream {
+//    return nil;
+//}
 
 - (id) streamOutput {
     return nil;
 }
 
+- (void) requestCancel {
+    if(!self.wasCancelled) {
+        self.wasCancelled = YES;
+        [self performSelector:@selector(closeStream) onThread:self.thread withObject:nil waitUntilDone:NO];
+    }
+}
+
 
 @end
-
-
-//@interface NSError (FLNetworkStream)
-//+ (NSError*) errorFromStreamError:(CFStreamError) streamError;
-//@end
-
-//@implementation NSError (FLNetworkStream)
-//
-//// TODO: make this better
-//// I snagged this from some sample apple code..
-//+ (NSError*) errorFromStreamError:(CFStreamError) streamError {
-//    // Convert a CFStreamError to a NSError.  This is less than ideal.  I only handle a 
-//    // limited number of error constant, and I can't use a switch statement because 
-//    // some of the kCFStreamErrorDomainXxx values are not a constant.  Wouldn't it be 
-//    // nice if there was a public API to do this mapping <rdar://problem/5845848> 
-//    // or a CFHost API that used CFError <rdar://problem/6016542>.
-//
-//    NSString *      domainStr = nil;
-//    NSDictionary *  userInfo = nil;
-//    NSInteger       code = streamError.error;
-//    
-//    if (streamError.domain == kCFStreamErrorDomainPOSIX) {
-//        domainStr = NSPOSIXErrorDomain;
-//    }
-//    else if (streamError.domain == kCFStreamErrorDomainMacOSStatus) {
-//        domainStr = NSOSStatusErrorDomain;
-//    }
-//    else if (streamError.domain == kCFStreamErrorDomainNetServices) {
-//        domainStr = (__bridge_fl NSString *) kCFErrorDomainCFNetwork;
-//    }
-//    else if (streamError.domain == kCFStreamErrorDomainNetDB) {
-//        domainStr = (__bridge_fl NSString *) kCFErrorDomainCFNetwork;
-//        code = kCFHostErrorUnknown;
-//        userInfo = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInteger:streamError.error], kCFGetAddrInfoFailureKey, nil];
-//    }
-//    else {
-//        // If it's something we don't understand, we just assume it comes from 
-//        // CFNetwork.
-//        domainStr = (__bridge_fl NSString *) kCFErrorDomainCFNetwork;
-//    }
-//
-//    NSError* error = [NSError errorWithDomain:domainStr code:code userInfo:userInfo];
-//    FLAssertIsNotNil_v(error, nil);
-//
-//    return error;
-//}
-//@end

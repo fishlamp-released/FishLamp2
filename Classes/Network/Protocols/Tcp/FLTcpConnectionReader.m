@@ -23,7 +23,7 @@
 }
 
 - (FLReadStream*) readStream {
-    return self.connection.networkStream.readStream;
+    return [((id)self.connection.networkStream) readStream];
 }
 
 - (NSUInteger) readAvailableBytes:(void*) bytes 

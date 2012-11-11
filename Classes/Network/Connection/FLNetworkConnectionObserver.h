@@ -29,9 +29,9 @@
 - (void) networkConnectionDisconnecting:(FLNetworkConnection*) connection;
 - (void) networkConnectionDisconnected:(FLNetworkConnection*) connection;
 
-- (void) networkConnection:(FLNetworkConnection*) connection
-          encounteredError:(NSError*) error
-               ignoreError:(BOOL*) ignoreError; // ignore error is NO by default (which will terminate connection)
+//- (void) networkConnection:(FLNetworkConnection*) connection
+//          encounteredError:(NSError*) error
+//               ignoreError:(BOOL*) ignoreError; // ignore error is NO by default (which will terminate connection)
 
 // only get this after 1 second, then once after activity starts again (idleDuration will be zero in this case)
 - (void) networkConnection:(FLNetworkConnection*) connection

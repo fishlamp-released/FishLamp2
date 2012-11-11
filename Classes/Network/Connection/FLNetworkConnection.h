@@ -25,7 +25,7 @@ typedef struct {
 
 extern const FLNetworkConnectionByteCount FLNetworkConnectionByteCountZero;
 
-@interface FLNetworkConnection : FLObservable<FLNetworkStreamDelegate, FLWorker, FLRunnable> {
+@interface FLNetworkConnection : FLObservable<FLNetworkStreamDelegate, FLWorker, FLRunnable, FLCancellable> {
 @private
     __unsafe_unretained NSThread* _thread;
     id<FLFinisher> _finisher;
@@ -39,8 +39,6 @@ extern const FLNetworkConnectionByteCount FLNetworkConnectionByteCountZero;
 @property (readonly, assign) FLNetworkConnectionByteCount readByteCount;
 @property (readonly, assign) NSThread* thread;
 
-- (void) cancelConnection; // can be called from any thread.
-
 @property (readonly, strong) id<FLNetworkStream> networkStream;
 - (id<FLNetworkStream>) createNetworkStream;
 
@@ -53,8 +51,8 @@ extern const FLNetworkConnectionByteCount FLNetworkConnectionByteCountZero;
 //- (BOOL) retryConnectionIfPossible; // return YES if it will try.
 @end
 
-
-@interface FLNetworkConnection (HACK)
-+ (NSError *) errorFromStreamError:(CFStreamError) streamError;
-@end
-
+//
+//@interface FLNetworkConnection (HACK)
+//+ (NSError *) errorFromStreamError:(CFStreamError) streamError;
+//@end
+//

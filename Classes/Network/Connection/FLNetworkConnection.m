@@ -10,6 +10,8 @@
 #import "FLGlobalNetworkActivityIndicator.h"
 #import "FLReachableNetwork.h"
 #import "FLNetworkStream.h"
+#import "FLReadStream.h"
+#import "FLWriteStream.h"
 
 const FLNetworkConnectionByteCount FLNetworkConnectionByteCountZero = {0, 0, 0};
 
@@ -56,9 +58,10 @@ const FLNetworkConnectionByteCount FLNetworkConnectionByteCountZero = {0, 0, 0};
 }
 
 - (void) dealloc  {
+    FLAssert_(!_networkStream.isOpen);
+
     if(_networkStream) {
         _networkStream.delegate = nil;
-        [_networkStream closeStream];
     }
 
 //    [self visitObservers:^(id observer, BOOL* stop) {
@@ -120,7 +123,7 @@ const FLNetworkConnectionByteCount FLNetworkConnectionByteCountZero = {0, 0, 0};
 
 - (void) closeConnection {
     [self.timeoutTimer requestCancel];
-    if(self.networkStream) {
+    if(self.networkStream && self.networkStream.isOpen) {
         [self.networkStream setDelegate:nil];
         [self.networkStream closeStream];
         self.networkStream = nil;
@@ -129,27 +132,27 @@ const FLNetworkConnectionByteCount FLNetworkConnectionByteCountZero = {0, 0, 0};
     }
 }
 
-- (void) setFinishedWithError:(NSError*) error {
-    [self closeConnection];
-
-    if(self.finisher) {
-        [self postObservation:@selector(networkConnectionFinished:)];
-        [self.finisher setFinishedWithError:error];
-        self.finisher = nil;
-    }
-}
-
-- (void) setFinishedWithOutput:(id) output {
-    [self closeConnection];
-    if(self.finisher) {
-        [self postObservation:@selector(networkConnectionFinished:)];
-        [self.finisher setFinishedWithOutput:output];
-        self.finisher = nil;
-    }
-}
+//- (void) setFinishedWithError:(NSError*) error {
+//    [self closeConnection];
+//
+//    if(self.finisher) {
+//        [self postObservation:@selector(networkConnectionFinished:)];
+//        [self.finisher setFinishedWithError:error];
+//        self.finisher = nil;
+//    }
+//}
+//
+//- (void) setFinishedWithOutput:(id) output {
+//    [self closeConnection];
+//    if(self.finisher) {
+//        [self postObservation:@selector(networkConnectionFinished:)];
+//        [self.finisher setFinishedWithOutput:output];
+//        self.finisher = nil;
+//    }
+//}
 
 - (void) startWorking:(id<FLFinisher>) finisher {
-   @try {
+//   @try {
         FLAssertIsNil_(self.networkStream);
        
         self.finisher = finisher;
@@ -170,10 +173,10 @@ const FLNetworkConnectionByteCount FLNetworkConnectionByteCountZero = {0, 0, 0};
 
         [self postObservation:@selector(networkConnectionStarting:)];
         [self.networkStream openStream];
-    }
-    @catch(NSException* ex) {
-        [self setFinishedWithError:ex.error];
-    }
+//    }
+//    @catch(NSException* ex) {
+//        [self setFinishedWithError:ex.error];
+//    }
 }
 
 - (id<FLPromisedResult>) start:(FLResultBlock) completion {
@@ -186,38 +189,32 @@ const FLNetworkConnectionByteCount FLNetworkConnectionByteCountZero = {0, 0, 0};
     return [[self start:nil] waitForResult];
 }
 
-- (void) networkStreamDidClose:(id<FLNetworkStream>) networkStream {
-
-    if(networkStream.error) {
-        [self setFinishedWithError:networkStream.error];
-    }
-    else {
-        [self setFinishedWithOutput:networkStream.output];
-    }
-}
-
-- (void) cancelConnection {
-    [self setFinishedWithError:[NSError cancelError]];
-}
-
-- (void) networkStreamEncounteredError:(id<FLNetworkStream>) networkStream {
-   
-    NSError* error = networkStream.error;
-   
-    FLDebugLog(@"stream received error: %@", [error localizedDescription]);
+- (void) networkStreamDidClose:(id<FLNetworkStream>) networkStream withResult:(id<FLResult>) result {
+    
     [self touchTimestamp];
 
-    __block BOOL ignoreError = NO;
+#if DEBUG
+    if(result.error) {
+        FLDebugLog(@"stream received error: %@", [result.error localizedDescription]);
+    } 
+#endif
 
-    [self visitObservers:^(id<FLNetworkConnectionObserver> observer, BOOL* stop) {
-        if([observer respondsToSelector:@selector(networkConnection:encounteredError:ignoreError:)]) {
-            [observer networkConnection:self encounteredError:error ignoreError:&ignoreError];
-        }
-    }];
+    [self closeConnection];
 
-    if(!ignoreError) {
-        [self setFinishedWithError:error];
+    if(self.finisher) {
+        [self postObservation:@selector(networkConnectionFinished:)];
+        [self.finisher setFinishedWithResult:result];
+        self.finisher = nil;
     }
+}
+
+- (BOOL) wasCancelled {
+    return [self.networkStream wasCancelled];
+}
+
+- (void) requestCancel {
+    [self.networkStream requestCancel];
+//    [self setFinishedWithError:[NSError cancelError]];
 }
 
 - (void) networkStreamDidWriteBytes:(id<FLWriteStream>) stream {

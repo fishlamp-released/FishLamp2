@@ -86,7 +86,7 @@ dealloc_ (
 
     [super runSelf];
 
-    if(self.didSucceed) {
+    if(!self.error) {
         NSData* data = self.httpResponse.responseData;
         
         FLSoapFault11* fault = [FLSoapOperation checkForSoapFaultInData:data];

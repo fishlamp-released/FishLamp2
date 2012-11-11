@@ -28,11 +28,10 @@
 
     [super runSelf];
 
-	if(self.didSucceed) {
+	if(!self.error) {
+
 		FLFacebookFetchStatusListResponse* response = self.output;
-		
 		NSArray* messages = response.data;
-		
 		[[[FLUserDataStorageService serviceFromContext:self.context] documentsDatabase] batchSaveObjects:messages];
 	}
 }

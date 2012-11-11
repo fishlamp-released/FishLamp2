@@ -32,6 +32,8 @@
 @interface FLObservable : NSObject<FLObservable> {
 @private
     NSMutableArray* _observers;
+    NSArray* _iteratable;
+    
 //    FLCallbackNotifier* _removeObserver;
 }
 - (void) addObserver:(id) observer;
@@ -51,7 +53,6 @@
 
 @protocol FLObserver <NSObject>
 @optional
-- (void) observerableWasDestroyed:(id) observable;
 - (void) receiveObservation:(SEL) selector fromObservable:(id) observable;
 - (void) receiveObservation:(SEL) selector fromObservable:(id) observable withObject:(id) object;
 - (void) receiveObservation:(SEL) selector fromObservable:(id) observable withObject:(id) object1 withObject:(id) object2;

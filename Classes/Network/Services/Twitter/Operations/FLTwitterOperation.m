@@ -77,7 +77,7 @@
     [self configureRequest];
     [super runSelf];
     
-    if(self.didSucceed) {
+    if(!self.error) {
 	
         // this is a hack. In the case of a successfull tweet, it's returning a object containing
         // a bunch of info. In the case of an error, it's returning an error object (FLTwitterError).

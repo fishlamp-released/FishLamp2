@@ -200,7 +200,7 @@ TODO("MF: fix activity updater");
 #endif
 
 - (id) result {
-    if(self.didSucceed) {
+    if(!self.error) {
 //        if(!output) {
             for(FLOperation* operation in self.operations.reverseIterator) {
                 id operationOutput = operation.operationOutput;
@@ -317,7 +317,7 @@ TODO("MF: fix activity updater");
     }
 
     @try {
-        if(self.didSucceed || self.wasCancelled) {
+        if(!self.error || self.wasCancelled) {
             [self closeNotification];
         } else {
             [self willHandleError];

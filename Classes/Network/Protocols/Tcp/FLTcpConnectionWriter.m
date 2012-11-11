@@ -8,6 +8,7 @@
 
 #import "FLTcpConnectionWriter.h"
 #import "FLTcpConnection_Internal.h"
+#import "FLTcpStream.h"
 
 @implementation FLTcpConnectionWriter
 
@@ -22,11 +23,11 @@
 }
 
 - (void) sendBytes:(const uint8_t*) bytes length:(NSUInteger) length {
-    [_connection.networkStream.writeStream sendBytes:bytes length:length];
+    [[((id)_connection.networkStream) writeStream] sendBytes:bytes length:length];
 }
 
 - (void) sendData:(NSData*) data {
-    [_connection.networkStream.writeStream sendBytes:data.bytes length:data.length];
+    [[((id)_connection.networkStream) writeStream] sendBytes:data.bytes length:data.length];
 }
 
 

@@ -98,7 +98,7 @@
 }
 
 - (void) _readAvailableBytes {
-   [self.networkStream.readStream readAvailableBytesWithBlock:^(BOOL* stop) {
+   [[((id)self.networkStream) readStream] readAvailableBytesWithBlock:^(BOOL* stop) {
         *stop = YES;
         
         for(FLTcpRequest* request in _requests) {
@@ -155,8 +155,8 @@
 //}
 
 
-- (void) networkStreamDidClose:(id<FLNetworkStream>)networkStream {
-    [super networkStreamDidClose:networkStream];
+- (void) networkStreamDidClose:(id<FLNetworkStream>)networkStream withResult:(id<FLResult>) result {
+    [super networkStreamDidClose:networkStream withResult:result];
     
     FLReleaseWithNil_(_blockingObject);
   

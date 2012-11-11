@@ -8,6 +8,7 @@
 
 #import "FLHttpStream.h"
 #import "FLCoreFoundation.h"
+#import "FLReadStream.h"
 
 @interface FLHttpStream ()
 @property (readwrite, strong) FLHttpResponse* httpResponse;
@@ -126,11 +127,7 @@
 }
 
 - (void) dealloc  {
-    if(_readStream) {
-        _readStream.delegate = nil;
-        [_readStream closeStream];
-    }
-    
+        
 #if FL_MRC
     [_request release];
     [_response release];
@@ -141,17 +138,16 @@
 
 #define kStreamReadChunkSize 1024
 
-- (void) setNewReadStream:(FLReadStream*) stream {
-    if(self.readStream) {
-        self.readStream.delegate = nil;
-        [self.readStream closeStream];
+- (void) closeReadStream {
+    if(_readStream) {
+        _readStream.delegate = nil;
+        [_readStream closeStream];
+        self.readStream = nil;
     }
-    
-    self.readStream = stream;
-    self.readStream.delegate = self;
 }
-
 - (void) openStreamToURL:(NSURL*) url {
+
+    [self closeReadStream];
     
     FLMutableHttpResponse* newResponse = nil;
     FLHttpResponse* prev = self.httpResponse;
@@ -167,33 +163,21 @@
 
     newResponse.mutableResponseData = [NSMutableData dataWithCapacity:kStreamReadChunkSize]; 
     self.httpResponse = newResponse;
-    
-    [self setNewReadStream:[self.httpRequest createReadStreamForRequestWithURL:url]];
-    
+    self.readStream = [self.httpRequest createReadStreamForRequestWithURL:url];
+    self.readStream.delegate = self;
     [self.readStream openStream];
-    
 }
 
-- (void) openStream {
+- (void) openSelf {
     [self openStreamToURL:self.httpRequest.requestURL];
-    [super openStream];
 }
     
-- (void) closeStream {
-    if(_readStream) {
-        _readStream.delegate = nil;
-        [_readStream closeStream];
-        self.readStream = nil;
-    }
-    [super closeStream];
+- (void) closeSelf {
+    [self closeReadStream];
 }
 
 - (BOOL) isOpen {
     return self.readStream != nil && self.readStream.isOpen;
-}
-
-- (BOOL) isRunning {
-    return self.readStream != nil;
 }
 
 - (NSError*) error {
@@ -226,37 +210,33 @@
     [self readResponseHeadersIfNeeded];
 }
 
-- (void) networkStreamDidClose:(id<FLNetworkStream>) networkStream {
+- (void) networkStreamDidClose:(id<FLNetworkStream>) networkStream withResult:(id<FLResult>) result {
 
-    [self readResponseHeadersIfNeeded];
+    BOOL redirect = NO;
+    if(!result.error) {
+        [self readResponseHeadersIfNeeded];
 
-// FIXME: there was an issue here with progress getting fouled up on redirects.
-//    [self connectionGotTimerEvent];
+    // FIXME: there was an issue here with progress getting fouled up on redirects.
+    //    [self connectionGotTimerEvent];
 
-    [self closeStream];
-            
-    BOOL redirect = _response.wantsRedirect;
-    if(redirect) {
-        NSURL* redirectURL = self.httpResponse.redirectURL;
-
-        if([self.delegate respondsToSelector:@selector(httpStream:shouldRedirect:toURL:)]) {
-            [self.delegate httpStream:self shouldRedirect:&redirect toURL:redirectURL];
-        }
-        
+        redirect = _response.wantsRedirect;
         if(redirect) {
-            [self openStreamToURL:redirectURL];
+            NSURL* redirectURL = self.httpResponse.redirectURL;
+
+            if([self.delegate respondsToSelector:@selector(httpStream:shouldRedirect:toURL:)]) {
+                [self.delegate httpStream:self shouldRedirect:&redirect toURL:redirectURL];
+            }
+            
+            if(redirect) {
+                [self openStreamToURL:redirectURL];
+            }
         }
     }
-    
+
     if(!redirect) {
-        FLPerformSelectorWithObject(self.delegate, @selector(networkStreamDidClose:) , self);
+        [self closeStream];
     }
 }
-
-- (void) networkStreamEncounteredError:(id<FLNetworkStream>) networkStream {
-    FLPerformSelectorWithObject(self.delegate, @selector(networkStreamEncounteredError:) , self);
-}
-
 
 - (void) writeStreamCanAcceptBytes:(id<FLNetworkStream>) networkStream {
     // nah, we're taking care of this with our request

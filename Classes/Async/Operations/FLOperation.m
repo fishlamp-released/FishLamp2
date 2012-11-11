@@ -187,6 +187,11 @@ dealloc_ (
 
 }
 
+- (void) finishSelf {
+
+}
+
+
 - (void) runSynchronouslySelf {
 
     @try {
@@ -204,7 +209,6 @@ dealloc_ (
         }
         
         if(self.willRun) {
-            self.isFinished = YES;
             if(self.runBlock) {
                 self.runBlock(self);
             }
@@ -213,18 +217,21 @@ dealloc_ (
             }
         }
     }
-    @catch(FLAbortException* ex) {
-    
+    @catch(NSException* ex) {
+        self.error = ex.error;
+    }
+
+    @try {
+        [self finishSelf];  
     }
     @catch(NSException* ex) {
         self.error = ex.error;
-        [self postObservation:@selector(operationDidFail:)];
     }
-    @finally {
-        [self postObservation:@selector(operationDidFinish:)];
-        [self setLessBusy];
-        self.isFinished = YES;
-    }
+    
+    [self setLessBusy];
+    self.isFinished = YES;
+    
+    [self postObservation:@selector(operationDidFinish:)];
 }
 
 - (id<FLResult>) runSynchronously {
@@ -237,7 +244,7 @@ dealloc_ (
 
     [self runSynchronouslySelf];
 
-    if(self.didSucceed) {
+    if(!self.error) {
         [finisher setFinishedWithOutput:self.operationOutput];
     }
     else {

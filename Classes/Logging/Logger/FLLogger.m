@@ -9,24 +9,47 @@
 #import "FLLogger.h"
 #import "FLPrintfLogSink.h"
 #import "FLLogPacket_Internal.h"
+#import "FLObjcRuntime.h"
 
-NSException* FLLoggerExceptionHook(NSException* exception, id fromObject) {
-    
-    [[FLLogger instance] sendStringToSinks:[exception reason]
+//NSException* FLLoggerExceptionHook(NSException* exception) {
+//    
+//    [[FLLogger instance] sendStringToSinks:[exception reason]
+//                                   logType:FLLogTypeException
+//                                stackTrace:exception.error.stackTrace];
+//    
+//    return exception;
+//}
+//
+//void FLConnectLoggerToExceptions() {
+//    [NSException setExceptionHook:FLLoggerExceptionHook];
+//}
+
+@implementation NSException (FLLogger)
+
+- (void) raiseAndLog {
+
+    [[FLLogger instance] sendStringToSinks:[self reason]
                                    logType:FLLogTypeException
-                                stackTrace:exception.error.stackTrace];
-    
-    return exception;
+                                stackTrace:self.error.stackTrace];
+
+// call original method.
+    [self raiseAndLog];
 }
 
-void FLConnectLoggerToExceptions() {
-    [NSException setExceptionHook:FLLoggerExceptionHook];
-}
+@end
 
 
 @implementation FLLogger
 
 FLSynthesizeSingleton(FLLogger);
+
++ (void) initialize {
+    static BOOL s_initialized = NO;
+    if(!s_initialized) {
+        s_initialized = YES;
+        FLSelectorSwizzle([NSException class], @selector(raise), @selector(raiseAndLog));
+    }
+}
 
 - (id) init {
     self = [super init];
@@ -35,7 +58,6 @@ FLSynthesizeSingleton(FLLogger);
 #if DEBUG
         [self addLoggerSink:[FLPrintfLogSink logSink:FLLogOutputSimple]];
 #endif
-        FLConnectLoggerToExceptions();
     }
     
     return self;

@@ -82,7 +82,8 @@
     [self.httpRequest setOAuthAuthorizationHeader:oauthHeader consumerKey:_app.consumerKey secret:secret];
 
 	[super runSelf];
-        if(self.didSucceed) {
+    
+    if(!self.error) {
         FLOAuthSession* session = [FLOAuthSession oAuthSession];
         [FLUrlParameterParser parseData:self.httpResponse.responseData 
             intoObject:session 

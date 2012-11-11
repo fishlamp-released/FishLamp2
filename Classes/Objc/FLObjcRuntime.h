@@ -30,6 +30,8 @@ typedef void (^FLRuntimeClassVisitor)(FLRuntimeInfo info, BOOL* stop);
 typedef void (^FLRuntimeSelectorVisitor)(FLRuntimeInfo info, BOOL* stop);
 typedef void (^FLRuntimeFilterBlock)(FLRuntimeInfo info, BOOL* passed, BOOL* stop);
 
+extern
+void FLSelectorSwizzle(Class c, SEL originalSelector, SEL newSelector);
 
 @interface NSObject (FLObjcRuntime)
 

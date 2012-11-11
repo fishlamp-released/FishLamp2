@@ -36,7 +36,7 @@ dealloc_(
 	
     [super runSelf];
     
-    if(self.didSucceed) {
+    if(!self.error) {
         FLJsonParser* parser = [FLJsonParser jsonParser];
         
         if(!self.output) {

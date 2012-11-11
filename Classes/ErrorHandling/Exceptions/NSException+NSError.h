@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-typedef NSException* (*FLExceptionHook)(NSException* exception, id fromObject);
+//typedef NSException* (*FLExceptionHook)(NSException* exception);
 
 @interface NSException (NSError)
 
@@ -26,19 +26,16 @@ typedef NSException* (*FLExceptionHook)(NSException* exception, id fromObject);
 
 + (NSException*) exceptionWithError:(NSError*)error;
 
-
-// don't mess with this
-
-+ (FLExceptionHook) exceptionHook;
-+ (void) setExceptionHook:(FLExceptionHook) hook;
-+ (NSException*) invokeExceptionHook:(NSException*) exception
-                          fromObject:(id) fromObject;
+//+ (FLExceptionHook) exceptionHook;
+//+ (void) setExceptionHook:(FLExceptionHook) hook;
+//
+//+ (NSException*) invokeExceptionHook:(NSException*) exception;
 
 @end
     
-@interface NSObject (ThrowingErrors)
-+ (NSException*) willThrowException:(NSException*) exception;
-- (NSException*) willThrowException:(NSException*) exception;
-@end
+//@interface NSObject (ThrowingErrors)
+//+ (NSException*) willThrowException:(NSException*) exception;
+//- (NSException*) willThrowException:(NSException*) exception;
+//@end
 
 

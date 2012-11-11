@@ -35,53 +35,55 @@
     return autorelease_([[[self class] alloc] initWithRemoteHost:remoteHost remotePort:remotePort]);
 }
 
-- (void) openStream {
+- (void) openSelf {
 
     FLAssertIsNil_(self.readStream);
     FLAssertIsNil_(self.writeStream);
 
     CFReadStreamRef readStream = nil;
     CFWriteStreamRef writeStream = nil;
-   
-    FLAssert_v(self.remotePort != 0, @"remote port can't be zero");
-    FLAssertStringIsNotEmpty_(self.remoteHost);
-   
-    CFHostRef host = CFHostCreateWithName(NULL, bridge_(void*,self.remoteHost));
-    if (host != NULL)  {
-        CFStreamCreatePairWithSocketToCFHost(NULL, host, self.remotePort, &readStream, &writeStream);
+    CFHostRef host = nil;
+    
+    @try {
+        FLAssert_v(self.remotePort != 0, @"remote port can't be zero");
+        FLAssertStringIsNotEmpty_(self.remoteHost);
+       
+        host = CFHostCreateWithName(NULL, bridge_(void*,self.remoteHost));
+        if(!host) {
+            FLThrowError_([NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorCannotFindHost localizedDescription:@"Unable to find to host"]);
+        }
         
-        if(readStream && writeStream) {
-            self.readStream = [FLReadStream readStream:readStream];
-            self.readStream.delegate = self;
-            self.writeStream = [FLWriteStream writeStream:writeStream];
-            self.writeStream.delegate = self;
-            
-            [self.readStream openStream];
-            [self.writeStream openStream];
-            
-            [super openStream];
+        CFStreamCreatePairWithSocketToCFHost(NULL, host, self.remotePort, &readStream, &writeStream);
+        if(!readStream || !writeStream) {
+            FLThrowError_([NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorNetworkConnectionLost localizedDescription:@"Unable to connect to host"]);
         }
-        else {
-            [self closeStream];
-            FLPerformSelectorWithObject(self.delegate, @selector(networkStreamDidClose:), self);
+                
+        self.readStream = [FLReadStream readStream:readStream];
+        self.readStream.delegate = self;
+        self.writeStream = [FLWriteStream writeStream:writeStream];
+        self.writeStream.delegate = self;
+        
+        [self.readStream openStream];
+        [self.writeStream openStream];
+    }
+    @finally {
+        if(host) {
+            CFRelease(host);
         }
-
-        CFRelease(host);
-        host = nil;
-    }
-
-    if(readStream) {
-        CFRelease(readStream);
-    }
-    if(writeStream) {
-        CFRelease(writeStream);
+        if(readStream) {
+            CFRelease(readStream);
+        }
+        if(writeStream) {
+            CFRelease(writeStream);
+        }
     }
 }
 
 - (void) dealloc {
     self.delegate = nil;
-    [self closeStream];
 
+    FLAssert_(!self.isOpen);
+    
 #if FL_MRC
     [_remoteHost release];
     [_writeStream release];
@@ -90,11 +92,7 @@
 #endif
 }
 
-- (BOOL) isRunning {
-    return self.writeStream.isRunning && self.readStream.isRunning;
-}
-
-- (void) closeStream {
+- (void) closeSelf {
     if(_readStream) {
         _readStream.delegate = nil;
         [_readStream closeStream];
@@ -105,7 +103,6 @@
         [_writeStream closeStream];
         self.writeStream = nil;
     }
-    [super closeStream];
 }
 
 - (NSError*) error {
@@ -117,9 +114,8 @@
     return error;
 }
 
-- (void) networkStreamDidClose:(id<FLNetworkStream>) networkStream {
+- (void) networkStreamDidClose:(id<FLNetworkStream>) networkStream withResult:(id<FLResult>) result {
     [self closeStream];
-    FLPerformSelectorWithObject(self.delegate, @selector(networkStreamDidClose:), self);
 }
 
 - (void) networkStreamDidOpen:(id<FLNetworkStream>) networkStream {
@@ -132,10 +128,6 @@
     FLPerformSelectorWithObject(self.delegate, @selector(readStreamHasBytesAvailable:), self);
 }
 
-- (void) networkStreamEncounteredError:(id<FLNetworkStream>) networkStream {
-    FLPerformSelectorWithObject(self.delegate, @selector(networkStreamEncounteredError:), self);
-    
-}
 
 - (void) writeStreamCanAcceptBytes:(id<FLNetworkStream>) networkStream {
     FLPerformSelectorWithObject(self.delegate, @selector(writeStreamCanAcceptBytes:), self);

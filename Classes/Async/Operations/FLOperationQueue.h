@@ -103,7 +103,6 @@ typedef id (^FLCreateOperationBlock)();
 
 - (void) operationQueue:(FLOperationQueue*) queue operationWillRun:(FLOperation*) operation;
 - (void) operationQueue:(FLOperationQueue*) queue operationDidFinish:(FLOperation*) operation;
-- (void) operationQueue:(FLOperationQueue*) queue operationDidFail:(FLOperation*) operation;
 - (void) operationQueue:(FLOperationQueue*) queue operationWasCancelled:(FLOperation*) operation;
 @end
 

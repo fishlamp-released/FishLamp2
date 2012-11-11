@@ -288,10 +288,6 @@
     [self postObservation:@selector(operationQueue:operationDidFinish:) withObject:operation];
 }
 
-- (void) operationDidFail:(FLOperation*) operation {
-    [self postObservation:@selector(operationQueue:operationDidFail:) withObject:operation];
-}
-
 - (void) operationWasCancelled:(FLOperation*) operation {
     [self postObservation:@selector(operationQueue:operationWasCancelled:) withObject:operation];
 }

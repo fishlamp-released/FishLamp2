@@ -54,9 +54,6 @@ static void WriteStreamClientCallBack(CFWriteStreamRef readStream,
 
 - (void) dealloc {
     FLAssertNotNil_(_streamRef);
-    if(self.isRunning) {
-        [self closeStream];
-    }
 
     CFWriteStreamSetClient(_streamRef, kCFStreamEventNone, NULL, NULL);
     CFRelease(_streamRef);
@@ -67,24 +64,17 @@ static void WriteStreamClientCallBack(CFWriteStreamRef readStream,
 #endif    
 }
 
-- (void) openStream {
- 
+- (void) openSelf {
     FLAssertIsNotNil_(_streamRef);
-
-    [super openStream];
     CFWriteStreamScheduleWithRunLoop(_streamRef, self.runLoop, bridge_(void*,kRunLoopMode));
     CFWriteStreamOpen(_streamRef);
 }
 
-- (void) closeStream {
-    FLAssert_v([NSThread currentThread] == self.thread, @"tcp operation on wrong thread");
+- (void) closeSelf {
     FLAssertIsNotNil_(_streamRef);
 
-    if(self.isRunning) {
-        CFWriteStreamUnscheduleFromRunLoop(_streamRef, self.runLoop, bridge_(void*,kRunLoopMode));
-        CFWriteStreamClose(_streamRef);
-        [super closeStream];
-    }
+    CFWriteStreamUnscheduleFromRunLoop(_streamRef, self.runLoop, bridge_(void*,kRunLoopMode));
+    CFWriteStreamClose(_streamRef);
 }
 
 - (NSError*) error {
@@ -121,12 +111,6 @@ static void WriteStreamClientCallBack(CFWriteStreamRef readStream,
     return [number unsignedLongValue];
 }
 
-- (id<FLReadStream>) readStream {
-    return nil;
-}
 
-- (id<FLWriteStream>) writeStream {
-    return self;
-}
 
 @end

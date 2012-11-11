@@ -104,6 +104,7 @@ typedef void (^FLRunOperationBlock)(FLOperation* operation);
 /// Either override run or set the operation's run block.
 - (void) prepareSelf;
 - (void) runSelf;
+- (void) finishSelf;
 
 /// @brief this is called for you to respond to if requestCancel is called
 - (void) cancelSelf;
@@ -117,7 +118,6 @@ typedef void (^FLRunOperationBlock)(FLOperation* operation);
 // these always happen in the thread the operation is running on
 - (void) operationWillRun:(FLOperation*) operation;
 - (void) operationDidFinish:(FLOperation*) operation;
-- (void) operationDidFail:(FLOperation*) operation;
 - (void) operationWasCancelled:(FLOperation*) operation;
 
 - (void) operationBusyStateDidChange:(FLOperation*) operation;

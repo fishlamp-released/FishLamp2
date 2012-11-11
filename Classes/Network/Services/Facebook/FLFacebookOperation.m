@@ -63,7 +63,7 @@ dealloc_(
 
     [super runSelf];
     
-    if(self.didSucceed) {
+    if(!self.error) {
     
         NSData* responseData = self.httpResponse.responseData;
     
