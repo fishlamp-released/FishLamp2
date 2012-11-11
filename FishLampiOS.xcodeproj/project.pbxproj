@@ -392,7 +392,6 @@
 		270EA5491640C9EB00329E35 /* FishLampTargetSettingsiOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FishLampTargetSettingsiOS.xcconfig; sourceTree = "<group>"; };
 		270EA54A1640C9EB00329E35 /* FishLampTargetSettingsMac.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FishLampTargetSettingsMac.xcconfig; sourceTree = "<group>"; };
 		270EA54B1640C9EB00329E35 /* FishLampTargetSettingsMac32.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FishLampTargetSettingsMac32.xcconfig; sourceTree = "<group>"; };
-		270EA5731640CBF800329E35 /* FishLamp-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "FishLamp-Prefix.pch"; path = "../FishLamp-Prefix.pch"; sourceTree = "<group>"; };
 		272DF91615D1C1BB009592E5 /* TargetiOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = TargetiOS.xcconfig; sourceTree = "<group>"; };
 		276CE8EE15E54B2F000A5CE6 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		276CE8EF15E54B30000A5CE6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -2768,7 +2767,6 @@
 		27A43A7115CDCC1B001CB13E = {
 			isa = PBXGroup;
 			children = (
-				270EA5731640CBF800329E35 /* FishLamp-Prefix.pch */,
 				270EA5431640C9EB00329E35 /* FishLampXcodeConfigs */,
 				27E5A8D6163DAE8A00B8D029 /* FishLampiOS-Prefix.pch */,
 				279AA274163CC4230025D8E2 /* IOSPhoto */,
