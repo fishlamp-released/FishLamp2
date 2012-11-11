@@ -8,6 +8,7 @@
 
 #import "FLOperation.h"
 #import "FLTraceOff.h"
+#import "FLWorkFinisher.h"
 
 @interface FLOperation ()
 @property (readwrite, copy, nonatomic) FLRunOperationBlock runBlock;

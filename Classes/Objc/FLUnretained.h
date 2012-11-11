@@ -10,6 +10,7 @@
 
 #import "FishLampCore.h"
 #import "FLSimpleNotifier.h"
+#import "FLWeakReference.h"
 
 @interface FLUnretained : NSProxy {
 @private

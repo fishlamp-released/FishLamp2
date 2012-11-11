@@ -7,8 +7,10 @@
 //
 
 #import "FLUnitTest.h"
+#if TEST
 
 @interface FLErrorTests : FLFrameworkUnitTest
 
 
 @end
+#endif

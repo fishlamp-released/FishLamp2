@@ -10,6 +10,8 @@
 #import "NSError+FLExtras.h"
 #import "FLMutableError.h"
 
+#if TEST
+
 @implementation FLErrorTests
 
 - (void) testMutableErrorCopy {
@@ -24,3 +26,4 @@
 }
 
 @end
+#endif

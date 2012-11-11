@@ -8,6 +8,7 @@
 
 #import "FLStaticTestMethodRunner.h"
 #import "FLObjcRuntime.h"
+#import "FLWorkFinisher.h"
 
 @interface FLStaticTestMethodRunner ()
 @property (readwrite, strong) NSArray* list;

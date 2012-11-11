@@ -181,10 +181,10 @@
 //    FLAssertIsNil_(weakRef.object);
 }
 
-#endif
 
 @end
 
+#endif
 
 
 

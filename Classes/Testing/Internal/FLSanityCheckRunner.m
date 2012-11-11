@@ -11,6 +11,7 @@
 #import "FLWeakReference.h"
 #import "FLWorkFinisher.h"
 #import "FLDispatchQueues.h"
+#import "FLTestCase.h"
 
 @implementation FLSanityCheckRunner
 

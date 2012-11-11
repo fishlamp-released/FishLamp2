@@ -7,6 +7,7 @@
 //
 
 #import "FLSimpleWorker.h"
+#import "FLWorkFinisher.h"
 
 @interface FLSimpleWorker ()
 @property (readwrite, assign) id parentWorker;

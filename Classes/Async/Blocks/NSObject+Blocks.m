@@ -8,6 +8,7 @@
 
 #import "NSObject+Blocks.h"
 #import "NSException+NSError.h"
+#import "FLAbortException.h"
 
 @implementation NSObject (FLBlocks)
 

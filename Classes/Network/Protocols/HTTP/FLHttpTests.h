@@ -6,8 +6,9 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
+#if TEST
 #import "FLUnitTest.h"
-
 @interface FLHttpTests : FLFrameworkUnitTest
 
 @end
+#endif

@@ -10,6 +10,8 @@
 #import "FLWorker.h"
 #import "FLSimpleWorker.h"
 
+@class FLWorkFinisher;
+
 @interface FLJob : FLSimpleWorker {
 @private
     id<FLWorker> _worker;

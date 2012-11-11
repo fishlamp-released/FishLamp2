@@ -214,7 +214,7 @@ synthesize_(priority);
                        infoString:(NSString*) infoStringContainsThisOrNil
                                test:(void (^)()) callback {
 
-    FLFailureType failed = FLFailureTypeNone;
+//    FLFailureType failed = FLFailureTypeNone;
 
 //    BOOL gotReasonString = infoStringContainsThisOrNil == nil;
     

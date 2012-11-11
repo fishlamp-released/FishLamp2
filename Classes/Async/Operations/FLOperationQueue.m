@@ -10,6 +10,7 @@
 #import "FLPerformSelectorOperation.h"
 #import "FLCollectionIterator.h"
 #import "FLJob.h"
+#import "FLWorkFinisher.h"
 
 #if DEBUG
 #define LOG 0

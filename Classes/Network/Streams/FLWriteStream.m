@@ -55,9 +55,11 @@ static void WriteStreamClientCallBack(CFWriteStreamRef readStream,
 - (void) dealloc {
     FLAssertNotNil_(_streamRef);
 
-    CFWriteStreamSetClient(_streamRef, kCFStreamEventNone, NULL, NULL);
-    CFRelease(_streamRef);
-    _streamRef = nil;
+    if(_streamRef) {
+        CFWriteStreamSetClient(_streamRef, kCFStreamEventNone, NULL, NULL);
+        CFRelease(_streamRef);
+        _streamRef = nil;
+    }
     
 #if FL_MRC
     [super dealloc];

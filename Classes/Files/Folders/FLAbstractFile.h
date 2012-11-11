@@ -8,6 +8,7 @@
 #import "FishLampCore.h"
 
 #import "FLStorableObject.h"
+#import "FLWeaklyReferenced.h"
 
 @class FLFolder;
 

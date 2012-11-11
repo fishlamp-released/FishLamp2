@@ -8,6 +8,7 @@
 
 #import "FLSimpleNotifier.h"
 #import "FLDeallocNotifier.h"
+#import "FLAbortException.h"
 
 @implementation FLSimpleNotifier
 

@@ -11,6 +11,7 @@
 #import "FLTestResult.h"
 #import "FLStringBuilder.h"
 #import "FLLogSink.h"
+#import "FLTestCase.h"
 
 @interface FLTestCaseResult : FLTestResult<FLLogSink> {
 @private

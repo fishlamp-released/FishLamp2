@@ -7,7 +7,10 @@
 //
 
 #import "FishLampCore.h"
+#if TEST
+#import "FLUnitTest.h"
 
 @interface FLFancyStringTest : FLFrameworkUnitTest
 
 @end
+#endif

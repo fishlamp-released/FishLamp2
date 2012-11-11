@@ -89,17 +89,4 @@
     }
 }
 
-- (id) initForTesting {
-    self = [super init];
-    if(self) {
-    
-    }
-    
-    return self;
-}
-
-- (void) runSimpleLogFileTest {
-    UTLog(@"hi there");
-}
-
 @end

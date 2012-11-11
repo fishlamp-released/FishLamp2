@@ -100,7 +100,7 @@ dealloc_(
     FLHttpResponse* httpResponse = result;
     FLAssertIsNotNil_(httpResponse);
     FLAssertIsKindOfClass_(httpResponse, FLHttpResponse);
-    self.httpResponse = result;
+    self.httpResponse = httpResponse;
 }
 
 @end

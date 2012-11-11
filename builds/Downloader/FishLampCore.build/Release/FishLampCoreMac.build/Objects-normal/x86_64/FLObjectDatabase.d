@@ -1,0 +1,29 @@
+dependencies: \
+  /Users/mike/Enlistments/Zen/Downloader/FishLamp/Core/Classes/Persistance/ObjectDatabase/FLObjectDatabase.m \
+  /Users/mike/Enlistments/Zen/Downloader/FishLamp/Core/Classes/Persistance/ObjectDatabase/FLObjectDatabase.h \
+  /Users/mike/Enlistments/Zen/Downloader/FishLamp/Core/Classes/Persistance/Database/FLDatabase.h \
+  /Users/mike/Enlistments/Zen/Downloader/FishLamp/Core/Classes/Persistance/Database/FLDatabaseDefines.h \
+  /Users/mike/Enlistments/Zen/Downloader/FishLamp/Core/Classes/Persistance/Database/FLDatabaseIterator.h \
+  /Users/mike/Enlistments/Zen/Downloader/FishLamp/Core/Classes/Persistance/Database/FLDatabaseColumn.h \
+  /Users/mike/Enlistments/Zen/Downloader/FishLamp/Core/Classes/Persistance/Database/FLDatabaseIndex.h \
+  /Users/mike/Enlistments/Zen/Downloader/FishLamp/Core/Classes/Persistance/DatabaseUtilities/FLSqlBuilder.h \
+  /Users/mike/Enlistments/Zen/Downloader/FishLamp/Core/Classes/Persistance/Database/FLDatabaseColumnDecoder.h \
+  /Users/mike/Enlistments/Zen/Downloader/FishLamp/Core/Classes/Persistance/Database/FLDatabaseTable.h \
+  /Users/mike/Enlistments/Zen/Downloader/FishLamp/Core/Classes/Persistance/Database/FLDatabaseErrors.h \
+  /Users/mike/Enlistments/Zen/Downloader/FishLamp/Core/Classes/Persistance/Database/FLDatabase+Introspection.h \
+  /Users/mike/Enlistments/Zen/Downloader/FishLamp/Core/Classes/Persistance/Database/FLDatabase+Objects.h \
+  /Users/mike/Enlistments/Zen/Downloader/FishLamp/Core/Classes/Persistance/Database/FLDatabase+Tables.h \
+  /Users/mike/Enlistments/Zen/Downloader/FishLamp/Core/Classes/Persistance/Database/FLDatabase+Tests.h \
+  /Users/mike/Enlistments/Zen/Downloader/FishLamp/Core/Classes/Persistance/Database/FLDatabase+Versioning.h \
+  /Users/mike/Enlistments/Zen/Downloader/FishLamp/Core/Classes/Files/FileManager/NSFileManager+FLExtras.h \
+  /Users/mike/Enlistments/Zen/Downloader/FishLamp/Core/Classes/Persistance/PersistantCache/FLLowMemoryHandler.h \
+  /Users/mike/Enlistments/Zen/Downloader/FishLamp/Core/Classes/Persistance/PersistantCache/FLCacheBehavior.h \
+  /Users/mike/Enlistments/Zen/Downloader/FishLamp/Core/Classes/Caching/FLInMemoryDataCache.h \
+  /Users/mike/Enlistments/Zen/Downloader/FishLamp/Core/Classes/Containers/LinkedList/FLLinkedList.h \
+  /Users/mike/Enlistments/Zen/Downloader/FishLamp/Core/Classes/Containers/LinkedList/FLLinkedListElement.h \
+  /Users/mike/Enlistments/Zen/Downloader/FishLamp/Core/Classes/Async/Excecutable/FLCancellable.h \
+  /Users/mike/Enlistments/Zen/Downloader/FishLamp/Core/Classes/Caching/FLCacheManager.h \
+  /Users/mike/Enlistments/Zen/Downloader/FishLamp/Core/Classes/Async/Notifications/NSNotification+FLExtras.h \
+  /Users/mike/Enlistments/Zen/Downloader/FishLamp/Core/Classes/Encoding/Base64Encoding/FLBase64Encoding.h \
+  /Users/mike/Enlistments/Zen/Downloader/FishLamp/Core/Classes/Strings/NSString+Lists.h \
+  /Users/mike/Enlistments/Zen/Downloader/FishLamp/Core/Classes/Persistance/Database/FLDatabase_Internal.h

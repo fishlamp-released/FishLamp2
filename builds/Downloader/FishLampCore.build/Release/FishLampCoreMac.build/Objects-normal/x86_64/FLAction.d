@@ -1,0 +1,45 @@
+dependencies: \
+  /Users/mike/Enlistments/Zen/Downloader/FishLamp/Core/Classes/Async/Action/FLAction.m \
+  /Users/mike/Enlistments/Zen/Downloader/FishLamp/Core/Classes/Async/Action/FLAction.h \
+  /Users/mike/Enlistments/Zen/Downloader/FishLamp/Core/Classes/Async/Operations/FLOperationQueue.h \
+  /Users/mike/Enlistments/Zen/Downloader/FishLamp/Core/Classes/Async/Operations/FLOperation.h \
+  /Users/mike/Enlistments/Zen/Downloader/FishLamp/Core/Classes/Objc/FLObservable.h \
+  /Users/mike/Enlistments/Zen/Downloader/FishLamp/Core/Classes/Objc/WeakReference/FLWeakReference.h \
+  /Users/mike/Enlistments/Zen/Downloader/FishLamp/Core/Classes/Notifications/FLSimpleNotifier.h \
+  /Users/mike/Enlistments/Zen/Downloader/FishLamp/Core/Classes/Notifications/FLDeallocNotifier.h \
+  /Users/mike/Enlistments/Zen/Downloader/FishLamp/Core/Classes/Objc/FLDeletedObjectReference.h \
+  /Users/mike/Enlistments/Zen/Downloader/FishLamp/Core/Classes/Objc/WeakReference/FLWeaklyReferenced.h \
+  /Users/mike/Enlistments/Zen/Downloader/FishLamp/Core/Classes/Async/Excecutable/FLCancellable.h \
+  /Users/mike/Enlistments/Zen/Downloader/FishLamp/Core/Classes/Utils/BitFlags/FLPredicate.h \
+  /Users/mike/Enlistments/Zen/Downloader/FishLamp/Core/Classes/ErrorHandling/Exceptions/FLAbortException.h \
+  /Users/mike/Enlistments/Zen/Downloader/FishLamp/Core/Classes/Services/FLContextual.h \
+  /Users/mike/Enlistments/Zen/Downloader/FishLamp/Core/Classes/Async/FLWorker.h \
+  /Users/mike/Enlistments/Zen/Downloader/FishLamp/Core/Classes/Async/FLResult.h \
+  /Users/mike/Enlistments/Zen/Downloader/FishLamp/Core/Classes/Async/FLPromisedResult.h \
+  /Users/mike/Enlistments/Zen/Downloader/FishLamp/Core/Classes/Async/FLFinisher.h \
+  /Users/mike/Enlistments/Zen/Downloader/FishLamp/Core/Classes/Async/FLFallible.h \
+  /Users/mike/Enlistments/Zen/Downloader/FishLamp/Core/Classes/Async/FLRunnable.h \
+  /Users/mike/Enlistments/Zen/Downloader/FishLamp/Core/Classes/Containers/FLCollectionIterator.h \
+  /Users/mike/Enlistments/Zen/Downloader/FishLamp/Core/Classes/Async/Operations/FLOperationContext.h \
+  /Users/mike/Enlistments/Zen/Downloader/FishLamp/Core/Classes/Async/Action/FLActionDescription.h \
+  /Users/mike/Enlistments/Zen/Downloader/FishLamp/Core/Classes/UserInterface/Progress/FLProgressViewControllerProtocol.h \
+  /Users/mike/Enlistments/Zen/Downloader/FishLamp/Core/Classes/UserInterface/Progress/FLProgressViewProtocol.h \
+  /Users/mike/Enlistments/Zen/Downloader/FishLamp/Core/Classes/Async/Action/FLErrorDescriber.h \
+  /Users/mike/Enlistments/Zen/Downloader/FishLamp/Core/Classes/ErrorHandling/ErrorDescription/FLErrorDescription.h \
+  /Users/mike/Enlistments/Zen/Downloader/FishLamp/Core/Classes/Network/Protocols/HTTP/FLHttpOperation.h \
+  /Users/mike/Enlistments/Zen/Downloader/FishLamp/Core/Classes/Network/Network\ Utils/FLNetworkOperation.h \
+  /Users/mike/Enlistments/Zen/Downloader/FishLamp/Core/Classes/Network/Connection/FLNetworkConnection.h \
+  /Users/mike/Enlistments/Zen/Downloader/FishLamp/Core/Classes/Network/Connection/FLNetworkConnectionObserver.h \
+  /Users/mike/Enlistments/Zen/Downloader/FishLamp/Core/Classes/Async/Callback/FLCallback_t.h \
+  /Users/mike/Enlistments/Zen/Downloader/FishLamp/Core/Classes/Async/Workers/FLWorkFinisher.h \
+  /Users/mike/Enlistments/Zen/Downloader/FishLamp/Core/Classes/Async/Timer/FLTimeoutTimer.h \
+  /Users/mike/Enlistments/Zen/Downloader/FishLamp/Core/Classes/Network/Streams/FLNetworkStream.h \
+  /Users/mike/Enlistments/Zen/Downloader/FishLamp/Core/Classes/Network/Protocols/HTTP/FLHttpConnection.h \
+  /Users/mike/Enlistments/Zen/Downloader/FishLamp/Core/Classes/Network/Protocols/HTTP/FLHttpRequest.h \
+  /Users/mike/Enlistments/Zen/Downloader/FishLamp/Core/Classes/Network/Protocols/HTTP/FLHttpMessage.h \
+  /Users/mike/Enlistments/Zen/Downloader/FishLamp/Core/Classes/Network/Protocols/HTTP/FLHttpResponse.h \
+  /Users/mike/Enlistments/Zen/Downloader/FishLamp/Core/Classes/Network/Protocols/Tcp/FLByteBuffer.h \
+  /Users/mike/Enlistments/Zen/Downloader/FishLamp/Core/Classes/Async/Queues/FLDispatchQueues.h \
+  /Users/mike/Enlistments/Zen/Downloader/FishLamp/Core/Classes/Async/FLDispatcher.h \
+  /Users/mike/Enlistments/Zen/Downloader/FishLamp/Core/Classes/Async/Workers/FLBlockWorker.h \
+  /Users/mike/Enlistments/Zen/Downloader/FishLamp/Core/Classes/Async/Workers/FLSimpleWorker.h
