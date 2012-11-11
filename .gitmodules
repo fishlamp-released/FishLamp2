@@ -1,0 +1,3 @@
+[submodule "FishLampCore"]
+	path = FishLampCore
+	url = git@github.com:fishlamp/FishLampCore.git
