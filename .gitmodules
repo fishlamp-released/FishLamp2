@@ -1,0 +1,15 @@
+[submodule "Core"]
+	path = Core
+	url = git@github.com:fishlamp/Core
+[submodule "OSX"]
+	path = OSX
+	url = git@github.com:fishlamp/OSX
+[submodule "iOS"]
+	path = iOS
+	url = git@github.com:fishlamp/iOS
+[submodule "Tools"]
+	path = Tools
+	url = git@github.com:fishlamp/Tools
+[submodule "CommandLineTool"]
+	path = CommandLineTool
+	url = git@github.com:fishlamp/CommandLineTool
