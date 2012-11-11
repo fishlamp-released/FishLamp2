@@ -27,7 +27,7 @@ g_app_name=""
 g_build_path=""
 g_input_file="" 
 
-g_build_root=""
+g_build_root="`pwd`/builds"
 
 function PrintUsage
 {
@@ -59,10 +59,10 @@ do
 		then
 		eval g_input_file="$i"
 		mode=""
-	elif [[ "$mode" == "-o" || "$mode" == "--output-folder" ]]
-		then
-		eval g_build_root="$i"
-		mode=""
+	# elif [[ "$mode" == "-o" || "$mode" == "--output-folder" ]]
+	# 	then
+	# 	eval g_build_root="$i"
+	# 	mode=""
 	elif [[ "$mode" == "--help" || "$mode" == "?" || "$mode" == "-?" ]]
 		then
 		PrintUsage
@@ -80,17 +80,17 @@ if [ "$g_input_file" == "" ]
 	exit 1
 fi
 
-if [ "$g_build_root" == "" ]
-	then
-	
-	if [ "$GT_ENLISTMENTS" == "" ]
-		then
-		echo "GT_ENLISTMENTS environment var not set - needed for default build location"
-		exit 1
-	fi
-	
-	g_build_root="$GT_ENLISTMENTS/Xcode/Builds"
-fi
+# if [ "$g_build_root" == "" ]
+# 	then
+# 	
+# 	if [ "$GT_ENLISTMENTS" == "" ]
+# 		then
+# 		echo "GT_ENLISTMENTS environment var not set - needed for default build location"
+# 		exit 1
+# 	fi
+# 	
+# 	g_build_root="$GT_ENLISTMENTS/Xcode/Builds"
+# fi
 
 # echo $g_input_file
 # echo $g_build_root
@@ -143,9 +143,9 @@ function assert_exists_on_disk() {
 }
 
 assert_exists_on_disk "/usr/libexec/PlistBuddy" "PlistBuddy Tool"
-assert_exists_on_disk "$g_build_root" "Build Root"
+# assert_exists_on_disk "$g_build_root" "Build Root"
 assert_exists_on_disk "$g_input_file" "Input File"
-assert_exists_on_disk "$GT_ENLISTMENTS" "Enlistments Folder"
+# assert_exists_on_disk "$GT_ENLISTMENTS" "Enlistments Folder"
 
 function set_build_path()
 {

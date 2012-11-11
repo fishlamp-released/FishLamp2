@@ -39,8 +39,8 @@ function updateBashProfile() {
 	# clear out everthing between ## START and ## END in profile file
 	# the deelete-this is to actually remove the lines instead of addding a bunch
 	# of empty lines
-	sed -i -e '/## FISHLAMP-START/,/## FISHLAMP-END/ s/.*/delete-this/' "~/.bash_profile" 
-	sed -i -e '/delete-this/d' "~/.bash_profile" 
+	sed -i -e '/## FISHLAMP-START/,/## FISHLAMP-END/ s/.*/delete-this/' ~/.bash_profile 
+	sed -i -e '/delete-this/d' ~/.bash_profile 
 
 	echo '## FISHLAMP-START' >> ~/.bash_profile
 	echo "# written by fishlamp/scripts/install.sh on `date`" >> ~/.bash_profile
@@ -48,8 +48,6 @@ function updateBashProfile() {
 	echo 'export PATH' >> ~/.bash_profile 
 	echo 'echo "We have lift off."' >> ~/.bash_profile
 	echo '## FISHLAMP-END' >> ~/.bash_profile
-	
-	cat ~/.bash_profile
 }
 
 cd install
@@ -59,7 +57,6 @@ echo "# installing:"
 ls
 cp -f * /Developer/FishLamp/
 createLinks
-echo "??"
 updateBashProfile
 
 echo "# done"
