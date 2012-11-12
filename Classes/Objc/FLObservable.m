@@ -10,6 +10,7 @@
 #import "FLDeallocNotifier.h"
 #import "FLDeletedObjectReference.h"
 #import "FLAnswerable.h"
+#import "FLCollectionIterator.h"
 
 @interface FLUnretainedObserver : NSObject<FLObserver> {
 @private
@@ -124,9 +125,9 @@ synthesize_(observers);
 }
 
 - (void) postObservation:(SEL) selector {
-    NSArray* observers = self.iteratable;
-    if(observers) {
-        for(id observer in observers) {
+//    NSArray* observers = self.iteratable;
+//    if(observers) {
+        for(id observer in [_observers forwardIterator]) {
             @try {
                 if( !FLPerformSelector1([observer nonretainedObjectValue], selector, self)) {
                     FLPerformSelector1([observer nonretainedObjectValue], @selector(receiveObservation:fromObservable:), self);
@@ -136,13 +137,13 @@ synthesize_(observers);
                 FLAssertFailed_v(@"Not allowed to throw exceptions from observer.");
             }
         }
-    }
+//    }
 }
 
 - (void) postObservation:(SEL) selector withObject:(id) object {
-    NSArray* observers = self.iteratable;
-    if(observers) {
-        for(id observer in observers) {
+//    NSArray* observers = self.iteratable;
+//    if(observers) {
+        for(id observer in [_observers forwardIterator]) {
             @try {
                 if( !FLPerformSelector2([observer nonretainedObjectValue], selector, self, object)) {
                     FLPerformSelector2([observer nonretainedObjectValue], @selector(receiveObservation:fromObservable:), self, object);
@@ -152,13 +153,13 @@ synthesize_(observers);
                 FLAssertFailed_v(@"Not allowed to throw exceptions from observer.");
             }
         }
-    }
+//    }
 }
 
 - (void) postObservation:(SEL) selector withObject:(id) object1 withObject:(id) object2 {
-    NSArray* observers = self.iteratable;
-    if(observers) {
-        for(id observer in observers) {
+//    NSArray* observers = self.iteratable;
+//    if(observers) {
+        for(id observer in [_observers forwardIterator]) {
             @try {
                 if( !FLPerformSelector3([observer nonretainedObjectValue], selector, self, object1, object2)) {
                     FLPerformSelector3([observer nonretainedObjectValue], @selector(receiveObservation:fromObservable:), self, object1, object2);
@@ -168,7 +169,7 @@ synthesize_(observers);
                 FLAssertFailed_v(@"Not allowed to throw exceptions from observer.");
             }
         }
-    }
+//    }
 }
 
 - (BOOL) postQuestion:(SEL) selector {
