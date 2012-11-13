@@ -6,5 +6,9 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
+
 GCC_PRECOMPILE_PREFIX_HEADER = YES
-GCC_PREFIX_HEADER = MyProject-Prefix.pch
+GCC_PREFIX_HEADER = MyApp-Prefix.pch
+
+
+

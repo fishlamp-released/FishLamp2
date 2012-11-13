@@ -6,6 +6,6 @@
 //
 //
 
-#include "FishLamp/FishLampXcodeConfigs/TargetIncludes/FishLampTargetSettingsiOS.xcconfig"
 #include "SharedTargetSettings.xcconfig"
+#include "../FishLampXcodeConfigs/TargetIncludes/FishLampTargetSettingsiOS.xcconfig"
 
