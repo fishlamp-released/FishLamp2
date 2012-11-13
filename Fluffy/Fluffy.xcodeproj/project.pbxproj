@@ -22,6 +22,8 @@
 		273147DF1652DF2C0027850D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 273147DB1652DF2C0027850D /* main.m */; };
 		2731482A1652E4520027850D /* libFishLampCommandLineToolMac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 273148231652E4340027850D /* libFishLampCommandLineToolMac.a */; };
 		2731482B1652E4520027850D /* libFishLampCoreMac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2731481A1652E4340027850D /* libFishLampCoreMac.a */; };
+		273148301652E8200027850D /* libFishLampCommandLineToolMac32.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 273148251652E4340027850D /* libFishLampCommandLineToolMac32.a */; };
+		273148311652E8200027850D /* libFishLampCoreMac32.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2731481C1652E4340027850D /* libFishLampCoreMac32.a */; };
 		27E5A85C163D931B00B8D029 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270D02DC15E9B1F500ED5FB0 /* AppKit.framework */; };
 		27E5A85D163D931B00B8D029 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270D02DD15E9B1F600ED5FB0 /* Cocoa.framework */; };
 		27E5A85E163D931B00B8D029 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270D02DE15E9B1F800ED5FB0 /* CoreFoundation.framework */; };
@@ -82,6 +84,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = 27A43AC315CDCCCB001CB13E;
 			remoteInfo = FishLampCommandLineToolMac;
+		};
+		2731482C1652E8180027850D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 273148031652E4210027850D /* FishLampCore.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 27048B70161CB58600C38ADA;
+			remoteInfo = FishLampCoreMac32;
+		};
+		2731482E1652E8180027850D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 273148021652E4150027850D /* FishLampCommandLineTool.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 27048B70161CB58600C38ADA;
+			remoteInfo = FishLampCommandLineToolMac32;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -180,6 +196,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				273148301652E8200027850D /* libFishLampCommandLineToolMac32.a in Frameworks */,
+				273148311652E8200027850D /* libFishLampCoreMac32.a in Frameworks */,
 				27E5A85C163D931B00B8D029 /* AppKit.framework in Frameworks */,
 				27E5A85D163D931B00B8D029 /* Cocoa.framework in Frameworks */,
 				27E5A85E163D931B00B8D029 /* CoreFoundation.framework in Frameworks */,
@@ -358,6 +376,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				2731482D1652E8180027850D /* PBXTargetDependency */,
+				2731482F1652E8180027850D /* PBXTargetDependency */,
 			);
 			name = FluffyTool32;
 			productName = Fluffy;
@@ -471,6 +491,16 @@
 			isa = PBXTargetDependency;
 			name = FishLampCommandLineToolMac;
 			targetProxy = 273148281652E4450027850D /* PBXContainerItemProxy */;
+		};
+		2731482D1652E8180027850D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FishLampCoreMac32;
+			targetProxy = 2731482C1652E8180027850D /* PBXContainerItemProxy */;
+		};
+		2731482F1652E8180027850D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FishLampCommandLineToolMac32;
+			targetProxy = 2731482E1652E8180027850D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
