@@ -1,0 +1,12 @@
+//
+//  Fluffy.xcconfig
+//  Fluffy
+//
+//  Created by Mike Fullerton on 6/21/12.
+//  Copyright (c) 2012 GreenTongue Software. All rights reserved.
+//
+
+HEADER_SEARCH_PATHS = $(inherited) $(FISHLAMP_OSX_SEARCH_PATH) FluffyTool/**
+
+
+
