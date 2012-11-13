@@ -1,0 +1,11 @@
+//
+//  Fluffy.xcconfig
+//  Fluffy
+//
+//  Created by Mike Fullerton on 6/21/12.
+//  Copyright (c) 2012 GreenTongue Software. All rights reserved.
+//
+#include "FluffyTool/FluffyTool.xcconfig"
+#include "FishLampXcodeConfigs/FishLampTargetSettingsMac32.xcconfig"
+
+

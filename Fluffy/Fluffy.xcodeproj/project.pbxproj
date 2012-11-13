@@ -1,0 +1,587 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		270D02E415E9B20100ED5FB0 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270D02DC15E9B1F500ED5FB0 /* AppKit.framework */; };
+		270D02E515E9B20100ED5FB0 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270D02DD15E9B1F600ED5FB0 /* Cocoa.framework */; };
+		270D02E615E9B20100ED5FB0 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270D02DE15E9B1F800ED5FB0 /* CoreFoundation.framework */; };
+		270D02E715E9B20100ED5FB0 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270D02DF15E9B1F900ED5FB0 /* CoreServices.framework */; };
+		270D02E815E9B20100ED5FB0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270D02E015E9B1FA00ED5FB0 /* Foundation.framework */; };
+		270D02E915E9B20100ED5FB0 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 270D02E115E9B1FD00ED5FB0 /* libsqlite3.0.dylib */; };
+		270D02EA15E9B20100ED5FB0 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270D02E215E9B1FE00ED5FB0 /* Security.framework */; };
+		270D02EB15E9B20100ED5FB0 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270D02E315E9B1FF00ED5FB0 /* SystemConfiguration.framework */; };
+		270DFDC915E99BAC00ED5FB0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270DFDC815E99BAC00ED5FB0 /* Foundation.framework */; };
+		273147DC1652DF2C0027850D /* FluffyApp.m in Sources */ = {isa = PBXBuildFile; fileRef = 273147DA1652DF2C0027850D /* FluffyApp.m */; };
+		273147DD1652DF2C0027850D /* FluffyApp.m in Sources */ = {isa = PBXBuildFile; fileRef = 273147DA1652DF2C0027850D /* FluffyApp.m */; };
+		273147DE1652DF2C0027850D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 273147DB1652DF2C0027850D /* main.m */; };
+		273147DF1652DF2C0027850D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 273147DB1652DF2C0027850D /* main.m */; };
+		2731482A1652E4520027850D /* libFishLampCommandLineToolMac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 273148231652E4340027850D /* libFishLampCommandLineToolMac.a */; };
+		2731482B1652E4520027850D /* libFishLampCoreMac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2731481A1652E4340027850D /* libFishLampCoreMac.a */; };
+		27E5A85C163D931B00B8D029 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270D02DC15E9B1F500ED5FB0 /* AppKit.framework */; };
+		27E5A85D163D931B00B8D029 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270D02DD15E9B1F600ED5FB0 /* Cocoa.framework */; };
+		27E5A85E163D931B00B8D029 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270D02DE15E9B1F800ED5FB0 /* CoreFoundation.framework */; };
+		27E5A85F163D931B00B8D029 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270D02DF15E9B1F900ED5FB0 /* CoreServices.framework */; };
+		27E5A860163D931B00B8D029 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270D02E015E9B1FA00ED5FB0 /* Foundation.framework */; };
+		27E5A861163D931B00B8D029 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 270D02E115E9B1FD00ED5FB0 /* libsqlite3.0.dylib */; };
+		27E5A862163D931B00B8D029 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270D02E215E9B1FE00ED5FB0 /* Security.framework */; };
+		27E5A863163D931B00B8D029 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270D02E315E9B1FF00ED5FB0 /* SystemConfiguration.framework */; };
+		27E5A864163D931B00B8D029 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270DFDC815E99BAC00ED5FB0 /* Foundation.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		273148171652E4340027850D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 273148031652E4210027850D /* FishLampCore.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 27A43AB415CDCC89001CB13E;
+			remoteInfo = FishLampCoreiOS;
+		};
+		273148191652E4340027850D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 273148031652E4210027850D /* FishLampCore.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 27A43AC415CDCCCB001CB13E;
+			remoteInfo = FishLampCoreMac;
+		};
+		2731481B1652E4340027850D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 273148031652E4210027850D /* FishLampCore.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 27048EF0161CB58600C38ADA;
+			remoteInfo = FishLampCoreMac32;
+		};
+		273148221652E4340027850D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 273148021652E4150027850D /* FishLampCommandLineTool.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 27A43AC415CDCCCB001CB13E;
+			remoteInfo = FishLampCommandLineToolMac;
+		};
+		273148241652E4340027850D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 273148021652E4150027850D /* FishLampCommandLineTool.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 27048EF0161CB58600C38ADA;
+			remoteInfo = FishLampCommandLineToolMac32;
+		};
+		273148261652E4450027850D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 273148031652E4210027850D /* FishLampCore.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 27A43AC315CDCCCB001CB13E;
+			remoteInfo = FishLampCoreMac;
+		};
+		273148281652E4450027850D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 273148021652E4150027850D /* FishLampCommandLineTool.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 27A43AC315CDCCCB001CB13E;
+			remoteInfo = FishLampCommandLineToolMac;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		270DFDC415E99BAC00ED5FB0 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		27E5A865163D931B00B8D029 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		270D02DC15E9B1F500ED5FB0 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/AppKit.framework; sourceTree = DEVELOPER_DIR; };
+		270D02DD15E9B1F600ED5FB0 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
+		270D02DE15E9B1F800ED5FB0 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/CoreFoundation.framework; sourceTree = DEVELOPER_DIR; };
+		270D02DF15E9B1F900ED5FB0 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/CoreServices.framework; sourceTree = DEVELOPER_DIR; };
+		270D02E015E9B1FA00ED5FB0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		270D02E115E9B1FD00ED5FB0 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/usr/lib/libsqlite3.0.dylib; sourceTree = DEVELOPER_DIR; };
+		270D02E215E9B1FE00ED5FB0 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
+		270D02E315E9B1FF00ED5FB0 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
+		270DFDC615E99BAC00ED5FB0 /* fluffy */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = fluffy; sourceTree = BUILT_PRODUCTS_DIR; };
+		270DFDC815E99BAC00ED5FB0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		273147D91652DF2C0027850D /* FluffyApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FluffyApp.h; sourceTree = "<group>"; };
+		273147DA1652DF2C0027850D /* FluffyApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FluffyApp.m; sourceTree = "<group>"; };
+		273147DB1652DF2C0027850D /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		273147E31652DF490027850D /* FluffyTool-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FluffyTool-Prefix.pch"; sourceTree = "<group>"; };
+		273147FB1652E2F80027850D /* FishLampProjectSettingsDebug-3up.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "FishLampProjectSettingsDebug-3up.xcconfig"; sourceTree = "<group>"; };
+		273147FC1652E2F80027850D /* FishLampProjectSettingsRelease-3up.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "FishLampProjectSettingsRelease-3up.xcconfig"; sourceTree = "<group>"; };
+		273147FD1652E2F80027850D /* FishLampProjectSettingsTest-3up.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "FishLampProjectSettingsTest-3up.xcconfig"; sourceTree = "<group>"; };
+		273147FE1652E2F80027850D /* FishLampTargetSettingsiOS-3up.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "FishLampTargetSettingsiOS-3up.xcconfig"; sourceTree = "<group>"; };
+		273147FF1652E2F80027850D /* FishLampTargetSettingsMac-3up.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "FishLampTargetSettingsMac-3up.xcconfig"; sourceTree = "<group>"; };
+		273148001652E2F80027850D /* FishLampTargetSettingsMac32-3up.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "FishLampTargetSettingsMac32-3up.xcconfig"; sourceTree = "<group>"; };
+		273148011652E32C0027850D /* SharedTargetSettings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = SharedTargetSettings.xcconfig; sourceTree = "<group>"; };
+		273148021652E4150027850D /* FishLampCommandLineTool.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FishLampCommandLineTool.xcodeproj; path = ../../CommandLineTool/FishLampCommandLineTool.xcodeproj; sourceTree = "<group>"; };
+		273148031652E4210027850D /* FishLampCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FishLampCore.xcodeproj; path = ../../Core/FishLampCore.xcodeproj; sourceTree = "<group>"; };
+		276CE8EE15E54B2F000A5CE6 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		276CE8EF15E54B30000A5CE6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		276CE8F015E54B31000A5CE6 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		276CE8F115E54B33000A5CE6 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		276CE90015E54BF0000A5CE6 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		276CE90215E54BFE000A5CE6 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		276CE90915E54C89000A5CE6 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		276CE90A15E54C8A000A5CE6 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		276CE90B15E54C8A000A5CE6 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		276CE90C15E54C8B000A5CE6 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		276CE90D15E54C8D000A5CE6 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		276CE90E15E54C8E000A5CE6 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		276CE90F15E54C8E000A5CE6 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		276CE91015E54C8F000A5CE6 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		276CE91115E54C8F000A5CE6 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		276CE91215E54C90000A5CE6 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		276CE91315E54C90000A5CE6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		276CE91415E54C91000A5CE6 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		276CE91515E54C91000A5CE6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		276CE92615E54D45000A5CE6 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		27A43A7F15CDCC1B001CB13E /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		27A43A8215CDCC1B001CB13E /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		27A43A8415CDCC1B001CB13E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		27A43AA415CDCC73001CB13E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		27E5A86A163D931B00B8D029 /* FluffyTool32 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = FluffyTool32; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		270DFDC315E99BAC00ED5FB0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2731482A1652E4520027850D /* libFishLampCommandLineToolMac.a in Frameworks */,
+				2731482B1652E4520027850D /* libFishLampCoreMac.a in Frameworks */,
+				270D02E415E9B20100ED5FB0 /* AppKit.framework in Frameworks */,
+				270D02E515E9B20100ED5FB0 /* Cocoa.framework in Frameworks */,
+				270D02E615E9B20100ED5FB0 /* CoreFoundation.framework in Frameworks */,
+				270D02E715E9B20100ED5FB0 /* CoreServices.framework in Frameworks */,
+				270D02E815E9B20100ED5FB0 /* Foundation.framework in Frameworks */,
+				270D02E915E9B20100ED5FB0 /* libsqlite3.0.dylib in Frameworks */,
+				270D02EA15E9B20100ED5FB0 /* Security.framework in Frameworks */,
+				270D02EB15E9B20100ED5FB0 /* SystemConfiguration.framework in Frameworks */,
+				270DFDC915E99BAC00ED5FB0 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27E5A859163D931B00B8D029 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27E5A85C163D931B00B8D029 /* AppKit.framework in Frameworks */,
+				27E5A85D163D931B00B8D029 /* Cocoa.framework in Frameworks */,
+				27E5A85E163D931B00B8D029 /* CoreFoundation.framework in Frameworks */,
+				27E5A85F163D931B00B8D029 /* CoreServices.framework in Frameworks */,
+				27E5A860163D931B00B8D029 /* Foundation.framework in Frameworks */,
+				27E5A861163D931B00B8D029 /* libsqlite3.0.dylib in Frameworks */,
+				27E5A862163D931B00B8D029 /* Security.framework in Frameworks */,
+				27E5A863163D931B00B8D029 /* SystemConfiguration.framework in Frameworks */,
+				27E5A864163D931B00B8D029 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		273147B51652DAED0027850D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				273148011652E32C0027850D /* SharedTargetSettings.xcconfig */,
+				273147FA1652E2F80027850D /* XcodeConfigs-3up */,
+				273147E31652DF490027850D /* FluffyTool-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		273147D81652DF2C0027850D /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				273147D91652DF2C0027850D /* FluffyApp.h */,
+				273147DA1652DF2C0027850D /* FluffyApp.m */,
+				273147DB1652DF2C0027850D /* main.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		273147FA1652E2F80027850D /* XcodeConfigs-3up */ = {
+			isa = PBXGroup;
+			children = (
+				273147FB1652E2F80027850D /* FishLampProjectSettingsDebug-3up.xcconfig */,
+				273147FC1652E2F80027850D /* FishLampProjectSettingsRelease-3up.xcconfig */,
+				273147FD1652E2F80027850D /* FishLampProjectSettingsTest-3up.xcconfig */,
+				273147FE1652E2F80027850D /* FishLampTargetSettingsiOS-3up.xcconfig */,
+				273147FF1652E2F80027850D /* FishLampTargetSettingsMac-3up.xcconfig */,
+				273148001652E2F80027850D /* FishLampTargetSettingsMac32-3up.xcconfig */,
+			);
+			name = "XcodeConfigs-3up";
+			path = "../../FishLampXcodeConfigs/XcodeConfigs-3up";
+			sourceTree = "<group>";
+		};
+		273148121652E4340027850D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				273148181652E4340027850D /* libFishLampCoreiOS.a */,
+				2731481A1652E4340027850D /* libFishLampCoreMac.a */,
+				2731481C1652E4340027850D /* libFishLampCoreMac32.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2731481E1652E4340027850D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				273148231652E4340027850D /* libFishLampCommandLineToolMac.a */,
+				273148251652E4340027850D /* libFishLampCommandLineToolMac32.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		276CE92815E54E31000A5CE6 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				27A43AA415CDCC73001CB13E /* Foundation.framework */,
+				276CE92615E54D45000A5CE6 /* libsqlite3.0.dylib */,
+				276CE90915E54C89000A5CE6 /* AssetsLibrary.framework */,
+				276CE90A15E54C8A000A5CE6 /* AVFoundation.framework */,
+				276CE90B15E54C8A000A5CE6 /* CFNetwork.framework */,
+				276CE90C15E54C8B000A5CE6 /* CoreLocation.framework */,
+				276CE90D15E54C8D000A5CE6 /* CoreMedia.framework */,
+				276CE90E15E54C8E000A5CE6 /* CoreMotion.framework */,
+				276CE90F15E54C8E000A5CE6 /* CoreText.framework */,
+				276CE91015E54C8F000A5CE6 /* ImageIO.framework */,
+				276CE91115E54C8F000A5CE6 /* MapKit.framework */,
+				276CE91215E54C90000A5CE6 /* MessageUI.framework */,
+				276CE91315E54C90000A5CE6 /* QuartzCore.framework */,
+				276CE91415E54C91000A5CE6 /* SystemConfiguration.framework */,
+				276CE91515E54C91000A5CE6 /* UIKit.framework */,
+				276CE90215E54BFE000A5CE6 /* MobileCoreServices.framework */,
+				276CE90015E54BF0000A5CE6 /* MediaPlayer.framework */,
+				276CE8EE15E54B2F000A5CE6 /* CoreFoundation.framework */,
+				276CE8EF15E54B30000A5CE6 /* CoreGraphics.framework */,
+				276CE8F015E54B31000A5CE6 /* CoreImage.framework */,
+				276CE8F115E54B33000A5CE6 /* Security.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		276CE92915E54E7F000A5CE6 /* OSX */ = {
+			isa = PBXGroup;
+			children = (
+				27A43A8215CDCC1B001CB13E /* AppKit.framework */,
+				27A43A8415CDCC1B001CB13E /* Foundation.framework */,
+				27A43A7F15CDCC1B001CB13E /* Cocoa.framework */,
+			);
+			name = OSX;
+			sourceTree = "<group>";
+		};
+		27A43A7115CDCC1B001CB13E = {
+			isa = PBXGroup;
+			children = (
+				273147D81652DF2C0027850D /* Classes */,
+				273147B51652DAED0027850D /* Supporting Files */,
+				27A43A7E15CDCC1B001CB13E /* Frameworks */,
+				27A43A7D15CDCC1B001CB13E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		27A43A7D15CDCC1B001CB13E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				270DFDC615E99BAC00ED5FB0 /* fluffy */,
+				27E5A86A163D931B00B8D029 /* FluffyTool32 */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		27A43A7E15CDCC1B001CB13E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				273148031652E4210027850D /* FishLampCore.xcodeproj */,
+				273148021652E4150027850D /* FishLampCommandLineTool.xcodeproj */,
+				270D02DC15E9B1F500ED5FB0 /* AppKit.framework */,
+				270D02DD15E9B1F600ED5FB0 /* Cocoa.framework */,
+				270D02DE15E9B1F800ED5FB0 /* CoreFoundation.framework */,
+				270D02DF15E9B1F900ED5FB0 /* CoreServices.framework */,
+				270D02E015E9B1FA00ED5FB0 /* Foundation.framework */,
+				270D02E115E9B1FD00ED5FB0 /* libsqlite3.0.dylib */,
+				270D02E215E9B1FE00ED5FB0 /* Security.framework */,
+				270D02E315E9B1FF00ED5FB0 /* SystemConfiguration.framework */,
+				276CE92915E54E7F000A5CE6 /* OSX */,
+				276CE92815E54E31000A5CE6 /* iOS */,
+				270DFDC815E99BAC00ED5FB0 /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		270DFDC515E99BAC00ED5FB0 /* FluffyTool */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 270DFDD115E99BAC00ED5FB0 /* Build configuration list for PBXNativeTarget "FluffyTool" */;
+			buildPhases = (
+				270DFDC215E99BAC00ED5FB0 /* Sources */,
+				270DFDC315E99BAC00ED5FB0 /* Frameworks */,
+				270DFDC415E99BAC00ED5FB0 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				273148271652E4450027850D /* PBXTargetDependency */,
+				273148291652E4450027850D /* PBXTargetDependency */,
+			);
+			name = FluffyTool;
+			productName = Fluffy;
+			productReference = 270DFDC615E99BAC00ED5FB0 /* fluffy */;
+			productType = "com.apple.product-type.tool";
+		};
+		27E5A851163D931B00B8D029 /* FluffyTool32 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 27E5A866163D931B00B8D029 /* Build configuration list for PBXNativeTarget "FluffyTool32" */;
+			buildPhases = (
+				27E5A856163D931B00B8D029 /* Sources */,
+				27E5A859163D931B00B8D029 /* Frameworks */,
+				27E5A865163D931B00B8D029 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FluffyTool32;
+			productName = Fluffy;
+			productReference = 27E5A86A163D931B00B8D029 /* FluffyTool32 */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		27A43A7315CDCC1B001CB13E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = "Mike Fullerton";
+			};
+			buildConfigurationList = 27A43A7615CDCC1B001CB13E /* Build configuration list for PBXProject "Fluffy" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				English,
+			);
+			mainGroup = 27A43A7115CDCC1B001CB13E;
+			productRefGroup = 27A43A7D15CDCC1B001CB13E /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 2731481E1652E4340027850D /* Products */;
+					ProjectRef = 273148021652E4150027850D /* FishLampCommandLineTool.xcodeproj */;
+				},
+				{
+					ProductGroup = 273148121652E4340027850D /* Products */;
+					ProjectRef = 273148031652E4210027850D /* FishLampCore.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				270DFDC515E99BAC00ED5FB0 /* FluffyTool */,
+				27E5A851163D931B00B8D029 /* FluffyTool32 */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		273148181652E4340027850D /* libFishLampCoreiOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libFishLampCoreiOS.a;
+			remoteRef = 273148171652E4340027850D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2731481A1652E4340027850D /* libFishLampCoreMac.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libFishLampCoreMac.a;
+			remoteRef = 273148191652E4340027850D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2731481C1652E4340027850D /* libFishLampCoreMac32.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libFishLampCoreMac32.a;
+			remoteRef = 2731481B1652E4340027850D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		273148231652E4340027850D /* libFishLampCommandLineToolMac.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libFishLampCommandLineToolMac.a;
+			remoteRef = 273148221652E4340027850D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		273148251652E4340027850D /* libFishLampCommandLineToolMac32.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libFishLampCommandLineToolMac32.a;
+			remoteRef = 273148241652E4340027850D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXSourcesBuildPhase section */
+		270DFDC215E99BAC00ED5FB0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				273147DC1652DF2C0027850D /* FluffyApp.m in Sources */,
+				273147DE1652DF2C0027850D /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27E5A856163D931B00B8D029 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				273147DD1652DF2C0027850D /* FluffyApp.m in Sources */,
+				273147DF1652DF2C0027850D /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		273148271652E4450027850D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FishLampCoreMac;
+			targetProxy = 273148261652E4450027850D /* PBXContainerItemProxy */;
+		};
+		273148291652E4450027850D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FishLampCommandLineToolMac;
+			targetProxy = 273148281652E4450027850D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		270DFDD215E99BAC00ED5FB0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 273147FF1652E2F80027850D /* FishLampTargetSettingsMac-3up.xcconfig */;
+			buildSettings = {
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+			};
+			name = Debug;
+		};
+		270DFDD415E99BAC00ED5FB0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 273147FF1652E2F80027850D /* FishLampTargetSettingsMac-3up.xcconfig */;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		270DFDD515E99BAC00ED5FB0 /* FluffyRelease */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 273147FF1652E2F80027850D /* FishLampTargetSettingsMac-3up.xcconfig */;
+			buildSettings = {
+			};
+			name = FluffyRelease;
+		};
+		27732FD815E55C8A00C19668 /* FluffyRelease */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 273147FD1652E2F80027850D /* FishLampProjectSettingsTest-3up.xcconfig */;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+			};
+			name = FluffyRelease;
+		};
+		27A43A8B15CDCC1B001CB13E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 273147FB1652E2F80027850D /* FishLampProjectSettingsDebug-3up.xcconfig */;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = Debug;
+		};
+		27A43A8C15CDCC1B001CB13E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 273147FC1652E2F80027850D /* FishLampProjectSettingsRelease-3up.xcconfig */;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+			};
+			name = Release;
+		};
+		27E5A867163D931B00B8D029 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 273148001652E2F80027850D /* FishLampTargetSettingsMac32-3up.xcconfig */;
+			buildSettings = {
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				PRODUCT_NAME = FluffyTool32;
+			};
+			name = Debug;
+		};
+		27E5A868163D931B00B8D029 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 273148001652E2F80027850D /* FishLampTargetSettingsMac32-3up.xcconfig */;
+			buildSettings = {
+				PRODUCT_NAME = FluffyTool32;
+			};
+			name = Release;
+		};
+		27E5A869163D931B00B8D029 /* FluffyRelease */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 273148001652E2F80027850D /* FishLampTargetSettingsMac32-3up.xcconfig */;
+			buildSettings = {
+				PRODUCT_NAME = FluffyTool32;
+			};
+			name = FluffyRelease;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		270DFDD115E99BAC00ED5FB0 /* Build configuration list for PBXNativeTarget "FluffyTool" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				270DFDD215E99BAC00ED5FB0 /* Debug */,
+				270DFDD415E99BAC00ED5FB0 /* Release */,
+				270DFDD515E99BAC00ED5FB0 /* FluffyRelease */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		27A43A7615CDCC1B001CB13E /* Build configuration list for PBXProject "Fluffy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27A43A8B15CDCC1B001CB13E /* Debug */,
+				27A43A8C15CDCC1B001CB13E /* Release */,
+				27732FD815E55C8A00C19668 /* FluffyRelease */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		27E5A866163D931B00B8D029 /* Build configuration list for PBXNativeTarget "FluffyTool32" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27E5A867163D931B00B8D029 /* Debug */,
+				27E5A868163D931B00B8D029 /* Release */,
+				27E5A869163D931B00B8D029 /* FluffyRelease */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 27A43A7315CDCC1B001CB13E /* Project object */;
+}
