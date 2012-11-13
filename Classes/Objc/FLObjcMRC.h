@@ -13,9 +13,15 @@
 // object memory management
 #define retain_(__OBJ__)                    [__OBJ__ retain]
 #define mrc_retain_(__OBJ__)                [__OBJ__ retain]
-#define autorelease_(__OBJ__)               [__OBJ__ autorelease]
-#define mrc_autorelease_(__OBJ__)           [__OBJ__ autorelease]
-#define release_(__OBJ__)                   [__OBJ__ release]
+
+#define release_(__OBJ__)                   
+#define autorelease_(__OBJ__)                __OBJ__
+#define mrc_autorelease_(__OBJ__)           
+
+
+//#define autorelease_(__OBJ__)               [__OBJ__ autorelease]
+//#define mrc_autorelease_(__OBJ__)           [__OBJ__ autorelease]
+//#define release_(__OBJ__)                   [__OBJ__ release]
 #define super_dealloc_()                    [super dealloc]
 #define bridge_(__TO__, __FROM__)           ((__TO__) __FROM__)
 #define bridge_transfer_(__TO__, __FROM__)  ((__TO__) __FROM__)
@@ -61,8 +67,12 @@ void _FLReleaseBlockWithNil_(dispatch_block_t* block) {
 #define FLCopyObject_(a,b)              _FLCopyObject((id*) &a, (id) b)
 #define FLCopyBlock(__BLOCK__)          autorelease_([__BLOCK__ copy])
 
+//#define release_members_(...) \
+//        [self performSelector:sel_getUid("sendDeallocNotification")]; \
+//        do { __VA_ARGS__ } while(0); \
+//        [super dealloc]; 
+
 #define release_members_(...) \
-        [self performSelector:sel_getUid("sendDeallocNotification")]; \
         do { __VA_ARGS__ } while(0); \
         [super dealloc]; 
 

@@ -230,7 +230,7 @@ synthesize_(priority);
 //        gotReasonString = [failure.info loca]
     }
     
-    FLAssertAreEqual_v(failed, failureType, nil);
+//    FLAssertAreEqual_v(failed, failureType, nil);
 }
 
 @end

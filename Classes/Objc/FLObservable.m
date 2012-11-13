@@ -58,7 +58,7 @@ synthesize_(observers);
 - (void) addObserver:(id) observer {
     @synchronized(self) {
         if(!self.observers) {
-            self.observers = [[NSMutableArray alloc] init];
+            self.observers = [NSMutableArray array];
         }
    
 //        [observer addDeallocListener:self action:@selector(observerDied:)];
@@ -66,7 +66,7 @@ synthesize_(observers);
  
         [_observers addObject:[NSValue valueWithNonretainedObject:observer]];
                   
-        FLReleaseWithNil_(_iteratable);
+//        FLReleaseWithNil_(_iteratable);
     }
 
 
@@ -75,56 +75,57 @@ synthesize_(observers);
 - (void) removeObserver:(id) observer {
     @synchronized(self) {
         [_observers removeObject:observer];
-        FLReleaseWithNil_(_iteratable);
+//        FLReleaseWithNil_(_iteratable);
     }
 }
 
-- (NSArray*) iteratable {
-    NSArray* iteratable = _iteratable;
-    if(!iteratable) {
-        NSArray* observers = self.observers;
-        if(!observers || observers.count == 0) {
-            return nil;
-        }
-        @synchronized(self) {
-            iteratable = _iteratable;
-            if(!iteratable) {
-                _iteratable = [observers copy];
-                iteratable = _iteratable;
-            }
-        }
-    
-    }
-    
-    return iteratable;
-}
+//- (NSArray*) iteratable {
+//    NSArray* iteratable = _iteratable;
+//    if(!iteratable) {
+//        NSArray* observers = self.observers;
+//        if(!observers || observers.count == 0) {
+//            return nil;
+//        }
+//        @synchronized(self) {
+//            iteratable = _iteratable;
+//            if(!iteratable) {
+//                _iteratable = [observers copy];
+//                iteratable = _iteratable;
+//            }
+//        }
+//    
+//    }
+//    
+//    return iteratable;
+//}
 
 - (BOOL) visitObservers:(void (^)(id observer, BOOL* stop)) visitor {
     
-    NSArray* observers = self.iteratable;
+//    NSArray* observers = self.iteratable;
     BOOL stop = NO;
-    if(observers) {
-        for(id observer in observers) {
+//    if(observers) {
+        for(id observer in [_observers forwardIterator]) {
             visitor([observer nonretainedObjectValue], &stop);
             
             if(stop) {
                 break;
             }
         }
-    }
+//    }
     
     return stop;
 }
 
 - (void) dealloc {
 #if FL_MRC
-    [_iteratable release];
-    [_observers release];
+//    [_observers release];
     [super dealloc];
 #endif
 }
 
 - (void) postObservation:(SEL) selector {
+return;
+
 //    NSArray* observers = self.iteratable;
 //    if(observers) {
         for(id observer in [_observers forwardIterator]) {
@@ -141,6 +142,8 @@ synthesize_(observers);
 }
 
 - (void) postObservation:(SEL) selector withObject:(id) object {
+return;
+
 //    NSArray* observers = self.iteratable;
 //    if(observers) {
         for(id observer in [_observers forwardIterator]) {
@@ -157,6 +160,8 @@ synthesize_(observers);
 }
 
 - (void) postObservation:(SEL) selector withObject:(id) object1 withObject:(id) object2 {
+return;
+
 //    NSArray* observers = self.iteratable;
 //    if(observers) {
         for(id observer in [_observers forwardIterator]) {

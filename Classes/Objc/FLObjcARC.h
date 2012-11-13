@@ -13,11 +13,11 @@
 #define mrc_autorelease_(__OBJ__)    
 #define mrc_retain_(__OBJ__) 
 
-#define release_(__OBJ__) 
-#define super_dealloc_()
 
 #define retain_(__OBJ__)                        __OBJ__
+#define release_(__OBJ__) 
 #define autorelease_(__OBJ__)                   __OBJ__
+#define super_dealloc_()
 
 #define bridge_(__TO__, __FROM__)               ((__bridge __TO__) __FROM__)
 #define bridge_transfer_(__TO__, __FROM__)      ((__bridge_transfer __TO__) __FROM__)

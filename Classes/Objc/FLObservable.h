@@ -32,7 +32,7 @@
 @interface FLObservable : NSObject<FLObservable> {
 @private
     NSMutableArray* _observers;
-    NSArray* _iteratable;
+//    NSArray* _iteratable;
     
 //    FLCallbackNotifier* _removeObserver;
 }

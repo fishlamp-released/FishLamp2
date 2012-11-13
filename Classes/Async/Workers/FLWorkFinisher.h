@@ -21,15 +21,13 @@ typedef void (^FLCompletionBlock)();
     FLTimeoutTimer* _timer;
     BOOL _finished;
     FLResultBlock _finishBlock;
-    FLCompletionBlock _completionBlock;
+//    FLCompletionBlock _completionBlock;
     FLResult _result;
 //    NSThread* _thread;
 }
 
 - (id) initWithResultBlock:(FLResultBlock) resultBlock;
-- (id) initWithCompletionBlock:(FLCompletionBlock) completionBlock;
 + (id) finisher:(FLResultBlock) completion;
-+ (id) completion:(FLCompletionBlock) completion;
 + (id) finisher;
 
 - (void) startWorker:(id<FLWorker>) worker;

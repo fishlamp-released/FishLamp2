@@ -12,6 +12,8 @@
 #import "FLDispatchQueues.h"
 
 @interface FLWorkFinisher ()
+//- (id) initWithCompletionBlock:(FLCompletionBlock) completionBlock;
+//+ (id) completion:(FLCompletionBlock) completion;
 @property (readwrite, strong) FLResult result;
 @property (readwrite, assign) BOOL isFinished;
 @property (readwrite, strong) FLTimeoutTimer* timer;
@@ -22,21 +24,25 @@
 @synthesize isFinished = _finished;
 @synthesize result = _result;
 
-- (id) initWithCompletionBlock:(FLCompletionBlock) completion {
-    
-    self = [super init];
-    if(self) {
-        _completionBlock = FLCopyBlock(completion);
-    }
-    return self;
-}
+//- (id) initWithCompletionBlock:(FLCompletionBlock) completion {
+//    
+//    self = [super init];
+//    if(self) {
+//        if(completion) {
+//            _completionBlock = [completion copy];
+//        }
+//    }
+//    return self;
+//}
 
 
 - (id) initWithResultBlock:(FLResultBlock) completion {
     
     self = [super init];
     if(self) {
-        _finishBlock = FLCopyBlock(completion);
+        if(completion) {
+            _finishBlock = [completion copy];
+        }
     }
     return self;
 }
@@ -45,9 +51,9 @@
     return autorelease_([[[self class] alloc] initWithResultBlock:completion]);
 }
 
-+ (id) completion:(FLCompletionBlock) completion {
-    return autorelease_([[[self class] alloc] initWithCompletionBlock:completion]);
-}
+//+ (id) completion:(FLCompletionBlock) completion {
+//    return autorelease_([[[self class] alloc] initWithCompletionBlock:completion]);
+//}
 
 
 - (void) dealloc {
@@ -59,9 +65,9 @@
     [_timer release];
     [_result release];
 
-    if(_completionBlock) {
-        [_completionBlock release];
-    }
+//    if(_completionBlock) {
+//        [_completionBlock release];
+//    }
     if(_finishBlock) {
         [_finishBlock release];
     }
@@ -125,14 +131,12 @@
     if(_finishBlock) {
         _finishBlock(_result);
     }
-    else if(_completionBlock) {
-        _completionBlock();
-    }
 }
 
 - (FLResult) waitForResult {
 // this may not work in all cases - e.g. some iOS apis expect to be called in the main thread
 // and this will cause endless blocking, unfortunately. I've seen this is the AssetLibrary sdk.
+    mrc_retain_(self);
     @try {
         while(!self.isFinished) {
             [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate date]];
@@ -141,12 +145,14 @@
     @catch(NSException* ex) {
         self.result = [FLErrorResult errorResult:ex.error];
     }
+    mrc_autorelease_(self);
 
     return self.result;
 }
 
 - (FLResult) waitForResultWithCondition:(FLConditionalBlock) checkCondition {
     
+    mrc_retain_(self);
     BOOL condition = NO;
     if(checkCondition) {
         condition = YES;
@@ -167,6 +173,7 @@
     @catch(NSException* ex) {
         self.result = [FLErrorResult errorResult:ex.error];
     }
+    mrc_autorelease_(self);
 
     return self.result;
 }
