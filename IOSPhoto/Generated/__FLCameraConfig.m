@@ -100,16 +100,16 @@
 
 - (void) dealloc
 {
-    mrc_release_(__captureDevicePosition);
-    mrc_release_(__captureFlashMode);
-    mrc_release_(__captureTorchMode);
-    mrc_release_(__captureFocusMode);
-    mrc_release_(__captureWhiteBalanceMode);
-    mrc_release_(__showGuidelines);
-    mrc_release_(__showStabityTracker);
-    mrc_release_(__showZoom);
-    mrc_release_(__foo);
-    mrc_super_dealloc_();
+    release_(__captureDevicePosition);
+    release_(__captureFlashMode);
+    release_(__captureTorchMode);
+    release_(__captureFocusMode);
+    release_(__captureWhiteBalanceMode);
+    release_(__showGuidelines);
+    release_(__showStabityTracker);
+    release_(__showZoom);
+    release_(__foo);
+    super_dealloc_();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder

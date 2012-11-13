@@ -41,8 +41,8 @@
 
 - (void) dealloc
 {
-	mrc_release_(_countView);
-	mrc_super_dealloc_();
+	release_(_countView);
+	super_dealloc_();
 }
 
 - (void) setCount:(NSInteger) count

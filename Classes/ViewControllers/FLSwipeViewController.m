@@ -27,11 +27,11 @@
 }
 
 - (void) dealloc {   
-    mrc_release_(_bottomAuxiliaryViewController);
-    mrc_release_(_scrollView);
-    mrc_release_(_breadCrumbview);
-    mrc_release_(_breadcrumbHost);
-    mrc_super_dealloc_();
+    release_(_bottomAuxiliaryViewController);
+    release_(_scrollView);
+    release_(_breadCrumbview);
+    release_(_breadcrumbHost);
+    super_dealloc_();
 }
 
 - (void) updateLayout {
@@ -111,7 +111,7 @@
     gradientView.autoresizingMask = UIViewAutoresizingFlexibleEverything;
     gradientView.alpha = 0.75f;
     [_breadcrumbHost addSubview:gradientView];
-    mrc_release_(gradientView);
+    release_(gradientView);
 
     _breadCrumbview = [[FLBreadcrumbView alloc] initWithFrame:_breadcrumbHost.bounds];
     _breadCrumbview.autoresizingMask = UIViewAutoresizingFlexibleEverything; 

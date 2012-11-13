@@ -62,11 +62,11 @@
 
 - (void) dealloc
 {
-    mrc_release_(_placeholderText);
-    mrc_release_(_text);
+    release_(_placeholderText);
+    release_(_text);
     _textEditView.delegate = nil;
-	mrc_release_(_textEditView);
-	mrc_super_dealloc_();
+	release_(_textEditView);
+	super_dealloc_();
 }
 
 - (void) dismissViewControllerAnimated:(BOOL)animated 

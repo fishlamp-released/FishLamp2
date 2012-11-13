@@ -53,10 +53,10 @@
 
 - (void) dealloc
 {
-    mrc_release_(__name);
-    mrc_release_(__className);
-    mrc_release_(__fontSize);
-    mrc_super_dealloc_();
+    release_(__name);
+    release_(__className);
+    release_(__fontSize);
+    super_dealloc_();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder

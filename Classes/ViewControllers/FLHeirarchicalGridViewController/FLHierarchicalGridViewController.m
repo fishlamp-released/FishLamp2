@@ -160,8 +160,8 @@
 }
 
 - (void) dealloc {
-    mrc_release_(_parentDataRef);
-    mrc_super_dealloc_();
+    release_(_parentDataRef);
+    super_dealloc_();
 }
 
 - (id<FLViewControllerTransitionAnimation>) createOpenAnimationForCell:(FLGridCell*) cell {

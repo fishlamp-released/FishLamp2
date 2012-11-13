@@ -68,11 +68,11 @@
 
 - (void) dealloc
 {
-	mrc_release_(_asset);
-	mrc_release_(_assetURL);
-	mrc_release_(_properties);
-	mrc_release_(_image);
-	mrc_super_dealloc_();
+	release_(_asset);
+	release_(_assetURL);
+	release_(_properties);
+	release_(_image);
+	super_dealloc_();
 }
 
 - (NSURL*) assetURL

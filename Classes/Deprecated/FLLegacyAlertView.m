@@ -84,10 +84,10 @@
 
 - (void) dealloc
 {
-	mrc_release_(_userInfo);
-	mrc_release_(_items);
-	mrc_release_(_clickedCallback);
-	mrc_super_dealloc_();
+	release_(_userInfo);
+	release_(_items);
+	release_(_clickedCallback);
+	super_dealloc_();
 }
 
 - (void) setDismissedCallback:(id) targetOrObjectContainer action:(SEL) action

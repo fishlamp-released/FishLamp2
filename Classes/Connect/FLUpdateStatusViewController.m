@@ -50,9 +50,9 @@
 
 - (void) dealloc
 {
-	mrc_release_(_textEditingBar);
-	mrc_release_(_editingBar);
-	mrc_super_dealloc_();
+	release_(_textEditingBar);
+	release_(_editingBar);
+	super_dealloc_();
 }
 
 - (void) viewDidUnload

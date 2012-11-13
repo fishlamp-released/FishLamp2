@@ -182,15 +182,15 @@ FLSynthesizeStructProperty(notificationViewStyle, setNotificationViewStyle, FLOl
 
 	[self cancelTimer];
 	
-    mrc_release_(_text);
-	mrc_release_(_textColor);
-	mrc_release_(_title);
-	mrc_release_(_oldBackgroundColor);
-	mrc_release_(_oldTextColor);
+    release_(_text);
+	release_(_textColor);
+	release_(_title);
+	release_(_oldBackgroundColor);
+	release_(_oldTextColor);
 	
 	[self releaseViews];
 	
-	mrc_super_dealloc_();
+	super_dealloc_();
 }
 
 - (void) notifyWasTouched

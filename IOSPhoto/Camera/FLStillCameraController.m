@@ -37,8 +37,8 @@
 
 - (void) dealloc
 {
-	mrc_release_(_camera);
-	mrc_super_dealloc_();
+	release_(_camera);
+	super_dealloc_();
 }
 
 - (void) beginCapture
@@ -64,7 +64,7 @@
 					 NSMutableDictionary* locDict = [[NSMutableDictionary alloc] init];
 					 FLAddLocationToGpsExif(locDict, lastLocation);		 
 					 [masterExif setObject:locDict forKey:(NSString*)kCGImagePropertyGPSDictionary];
-					 mrc_release_(locDict);
+					 release_(locDict);
 				 }
 				 
 				 NSString* nowString = FLGpsDateFormattedForExif([NSDate date]);
@@ -75,13 +75,13 @@
 				 [tiff setObject:[UIDevice currentDevice].platformString forKey:(NSString*) kCGImagePropertyTIFFModel];
 				 [tiff setObject:[UIDevice currentDevice].systemVersion forKey:(NSString*) kCGImagePropertyTIFFSoftware];
 				 [masterExif setObject:tiff forKey:(NSString*) kCGImagePropertyTIFFDictionary];
-				 mrc_release_(tiff);
+				 release_(tiff);
 				 
 				 NSMutableDictionary* exif = [[NSMutableDictionary alloc] init];
 				 [exif setObject:nowString forKey:(NSString*) kCGImagePropertyExifDateTimeOriginal];
 				 [exif setObject:nowString forKey:(NSString*) kCGImagePropertyExifDateTimeDigitized];
 				 [masterExif setObject:exif forKey:(NSString*)kCGImagePropertyExifDictionary];
-				 mrc_release_(exif);
+				 release_(exif);
 				 
 				 // writing iptc doesn't work.	  
 				 // appears to be a bug.
@@ -98,9 +98,9 @@
 			 {
 				 // TODO: handle error
 			 }
-			 mrc_release_(masterExif);
-			 mrc_release_(photo);
-			 mrc_release_(imageData);
+			 release_(masterExif);
+			 release_(photo);
+			 release_(imageData);
 		 }
 		 
 		 dispatch_async(

@@ -52,9 +52,9 @@
 }
 
 - (void) dealloc {
-    mrc_release_(_rootViewController);
-    mrc_release_(_viewControllers);
-    mrc_super_dealloc_();
+    release_(_rootViewController);
+    release_(_viewControllers);
+    super_dealloc_();
 }
 
 - (void) viewDidLayoutSubviews {

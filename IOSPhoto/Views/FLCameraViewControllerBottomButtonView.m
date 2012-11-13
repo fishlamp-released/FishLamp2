@@ -102,7 +102,7 @@
 	FLReleaseWithNil_(_rightButton);
 	FLReleaseWithNil_(_centerButton);
 	
-	mrc_super_dealloc_();
+	super_dealloc_();
 }
 
 - (void) layoutSubviews

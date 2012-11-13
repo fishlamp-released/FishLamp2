@@ -219,9 +219,9 @@ FLSynthesizeSingleton(FLFloatingViewEventReceiver);
 
 - (void) dealloc
 {
-	mrc_release_(_popupStack);
+	release_(_popupStack);
 	[[FLApplication sharedApplication] removeEventInterceptor:self];
-	mrc_super_dealloc_();
+	super_dealloc_();
 }
 
 @end 
@@ -357,9 +357,9 @@ FLSynthesizeStructProperty(contentViewIsModal, setContentViewIsModal, BOOL, _sta
 	[[FLFloatingViewEventReceiver instance] removePopupViewController:self];
     [[FLBackgroundTaskMgr instance] removeObserver:self];
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
-    mrc_release_(_childPopover);
-	mrc_release_(_contentViewController);
-	mrc_super_dealloc_();
+    release_(_childPopover);
+	release_(_contentViewController);
+	super_dealloc_();
 }
 
 - (BOOL) backgroundTaskMgrCanBeginBackgroundTasks:(FLBackgroundTaskMgr*) mgr

@@ -39,7 +39,7 @@
 - (void) dealloc
 {
 	FLReleaseWithNil_(_folder);
-	mrc_super_dealloc_();
+	super_dealloc_();
 }
 
 - (void) runSelf

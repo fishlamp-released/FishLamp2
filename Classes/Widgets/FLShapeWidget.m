@@ -32,9 +32,9 @@
 }
 
 - (void) dealloc {
-	mrc_release_(_borderGradient);
-	mrc_release_(_innerBorderColor);
-	mrc_super_dealloc_();
+	release_(_borderGradient);
+	release_(_innerBorderColor);
+	super_dealloc_();
 }
 
 -(void) createPathForShapeInRect:(CGMutablePathRef) path rect:(FLRect) rect {

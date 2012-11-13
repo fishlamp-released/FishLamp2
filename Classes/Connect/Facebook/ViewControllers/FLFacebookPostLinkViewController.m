@@ -46,9 +46,9 @@
 
 - (void) dealloc
 {
-    mrc_release_(_linkLabel);
-	mrc_release_(_headerView);
-	mrc_super_dealloc_();
+    release_(_linkLabel);
+	release_(_headerView);
+	super_dealloc_();
 }
 
 - (void) viewDidUnload

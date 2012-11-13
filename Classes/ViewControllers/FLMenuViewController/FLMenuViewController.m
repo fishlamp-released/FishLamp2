@@ -43,8 +43,8 @@
 - (void) dealloc
 {
     [_menuView clearDelegates];
-    mrc_release_(_menuView);
-    mrc_super_dealloc_();
+    release_(_menuView);
+    super_dealloc_();
 }
 
 - (void) updateLayout

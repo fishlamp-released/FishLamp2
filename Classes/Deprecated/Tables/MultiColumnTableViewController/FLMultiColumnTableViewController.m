@@ -173,7 +173,7 @@
 //	  {
 //		  [cell.widget touchesEnded:touches withEvent:event];
 //	  }
-//	  mrc_release_(visibleCells);
+//	  release_(visibleCells);
 //}
 //
 //- (void) tableView:(UITableView*) tableView touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event

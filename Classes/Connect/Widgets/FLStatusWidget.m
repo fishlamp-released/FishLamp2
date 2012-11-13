@@ -72,14 +72,14 @@
 
 - (void) dealloc
 {
-	mrc_release_(_rightColumn);
-	mrc_release_(_nameAndPostDateWidget);
-	mrc_release_(_gradient);
-	mrc_release_(_thumbnail);
-	mrc_release_(_userName);
-	mrc_release_(_message);
-	mrc_release_(_postedTime);
-	mrc_super_dealloc_();
+	release_(_rightColumn);
+	release_(_nameAndPostDateWidget);
+	release_(_gradient);
+	release_(_thumbnail);
+	release_(_userName);
+	release_(_message);
+	release_(_postedTime);
+	super_dealloc_();
 }
 
 - (void) layoutWidgets

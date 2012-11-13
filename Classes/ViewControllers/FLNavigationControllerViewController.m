@@ -37,9 +37,9 @@
 
 - (void) dealloc
 {
-	mrc_release_(_rootViewController);
-	mrc_release_(_navigationController);
-	mrc_super_dealloc_();
+	release_(_rootViewController);
+	release_(_navigationController);
+	super_dealloc_();
 }
 
 - (void) loadView

@@ -125,11 +125,11 @@
 
 #if FL_MRC
 - (void) dealloc {
-    mrc_release_(_label);
-    mrc_release_(_value);
-    mrc_release_(_onValidate);
-    mrc_release_(_onChanged);
-    mrc_super_dealloc_();
+    release_(_label);
+    release_(_value);
+    release_(_onValidate);
+    release_(_onChanged);
+    super_dealloc_();
 }
 #endif
 

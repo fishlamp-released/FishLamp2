@@ -33,10 +33,10 @@
 
 - (void) dealloc
 {
-	mrc_release_(_disabledView);
-	mrc_release_(_image);
-	mrc_release_(_backgroundImage);
-	mrc_super_dealloc_();
+	release_(_disabledView);
+	release_(_image);
+	release_(_backgroundImage);
+	super_dealloc_();
 }
 
 - (FLSize)sizeThatFits:(FLSize)size

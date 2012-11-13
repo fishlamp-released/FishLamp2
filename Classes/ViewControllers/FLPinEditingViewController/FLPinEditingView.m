@@ -282,12 +282,12 @@
 #if FL_MRC
 - (void) dealloc
 {
-	mrc_release_(_errorLabel);
-	mrc_release_(_pinToCheck);
-	mrc_release_(_titleLabel);
-    mrc_release_(_numberLabels);
-	mrc_release_(_buttons);
-	mrc_super_dealloc_();
+	release_(_errorLabel);
+	release_(_pinToCheck);
+	release_(_titleLabel);
+    release_(_numberLabels);
+	release_(_buttons);
+	super_dealloc_();
 }
 #endif
 

@@ -151,7 +151,7 @@
 		crosshairs.alpha = 0.8;
 		crosshairs.frame = FLRectCenterRectInRect(_focusView.bounds, crosshairs.frame);
 		[_focusView addSubview:crosshairs];
-		mrc_release_(crosshairs);
+		release_(crosshairs);
 		
 //		  _focusView.hidden = YES;
 		[self addSubview:_focusView];
@@ -188,7 +188,7 @@
 		_flashSegmentedControl.alpha = _flashButton.alpha;
 		_flashSegmentedControl.selectedSegmentIndex = 1;
 		_flashSegmentedControl.hidden = YES;
-		mrc_release_(items);
+		release_(items);
 		[self addSubview:_flashSegmentedControl];
 	}
 	return self;
@@ -226,7 +226,7 @@
 	FLReleaseWithNil_(_flashButton);
 	FLReleaseWithNil_(_flipCameraButton);
 	FLReleaseWithNil_(_spinner);
-	mrc_super_dealloc_();
+	super_dealloc_();
 }	
 
 - (void) setButtonsEnabled:(BOOL) enabled
@@ -314,7 +314,7 @@
 	flashView.backgroundColor = [UIColor whiteColor];
 	flashView.alpha = 1.0;
 	[self addSubview:flashView];
-	mrc_release_(flashView);
+	release_(flashView);
 	
 	[UIView beginAnimations:@"viewin" context:flashView];
 	[UIView setAnimationDuration:0.3];

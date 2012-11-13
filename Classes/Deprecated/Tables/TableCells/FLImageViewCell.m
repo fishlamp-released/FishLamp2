@@ -40,8 +40,8 @@
 
 - (void) dealloc
 {
-	mrc_release_(_imageCellView);
-	mrc_super_dealloc_();
+	release_(_imageCellView);
+	super_dealloc_();
 }
 
 - (void) setNeedsLayout

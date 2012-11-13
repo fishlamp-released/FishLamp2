@@ -284,7 +284,7 @@ FLSynthesizeStructProperty(saveChangesImmediately, setSaveChangesImmediately, BO
 	FLTableViewLayout* layout = _layout;
 	_layout = nil;
 	[layout prepareForDestruction];
-	mrc_release_(layout);
+	release_(layout);
 }
 
 - (NSString*) helpFileName
@@ -309,11 +309,11 @@ FLSynthesizeStructProperty(saveChangesImmediately, setSaveChangesImmediately, BO
 - (void)dealloc 
 {	
 	[self shutDown];
-	mrc_release_(_cancelButtonTitle);
-	mrc_release_(_saveButtonTitle);
-	mrc_release_(_dataSourceManager);
-	mrc_release_(_backgroundImage);
-	mrc_super_dealloc_();
+	release_(_cancelButtonTitle);
+	release_(_saveButtonTitle);
+	release_(_dataSourceManager);
+	release_(_backgroundImage);
+	super_dealloc_();
 }
 
 - (void) showBackgroundImage:(BOOL) show animated:(BOOL) animated
@@ -325,7 +325,7 @@ FLSynthesizeStructProperty(saveChangesImmediately, setSaveChangesImmediately, BO
 			if(_imageView)
 			{
 				[_imageView removeFromSuperview];
-				mrc_release_(_imageView);
+				release_(_imageView);
 			}
 
 			_imageView = [[UIImageView alloc] initWithFrame:self.view.bounds];

@@ -147,11 +147,11 @@
 
 - (void) dealloc
 {
-	mrc_release_(_countdownView);
-	mrc_release_(_roundRectView);
+	release_(_countdownView);
+	release_(_roundRectView);
 	_textView.delegate = nil;
-    mrc_release_(_textView);
-	mrc_super_dealloc_();
+    release_(_textView);
+	super_dealloc_();
 }
 
 #define kInset 5.0f

@@ -147,12 +147,12 @@
 	[_widget teardown];
 	[_accessory teardown];
 	[_sectionWidget teardown];
-	mrc_release_(_replacementLabel);
-	mrc_release_(_sectionWidget);
-	mrc_release_(_background);
-	mrc_release_(_accessory);
-	mrc_release_(_widget);
-	mrc_super_dealloc_();
+	release_(_replacementLabel);
+	release_(_sectionWidget);
+	release_(_background);
+	release_(_accessory);
+	release_(_widget);
+	super_dealloc_();
 }
 
 - (void) didMoveToSuperview

@@ -14,9 +14,9 @@
 
 - (void) dealloc
 {
-	mrc_release_(_prevButton);
-	mrc_release_(_nextButton);
-	mrc_super_dealloc_();
+	release_(_prevButton);
+	release_(_nextButton);
+	super_dealloc_();
 }
 
 - (void) _next:(id) sender

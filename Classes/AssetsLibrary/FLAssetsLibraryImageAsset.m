@@ -78,10 +78,10 @@
 
 - (void) dealloc
 {
-	mrc_release_(_thumnailImage);
-	mrc_release_(_fullScreenImage);
-	mrc_release_(_originalImage);
-	mrc_super_dealloc_();
+	release_(_thumnailImage);
+	release_(_fullScreenImage);
+	release_(_originalImage);
+	super_dealloc_();
 }
 
 - (NSURL*) assetURL

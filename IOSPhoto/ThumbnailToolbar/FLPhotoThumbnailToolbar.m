@@ -72,11 +72,11 @@
 
 - (void) dealloc
 {	
-	mrc_release_(_thumbnailBar);
-	mrc_release_(_previousButton);
-	mrc_release_(_nextButton);
-	mrc_release_(_thumbnailBarItem);
-	mrc_super_dealloc_();
+	release_(_thumbnailBar);
+	release_(_previousButton);
+	release_(_nextButton);
+	release_(_thumbnailBarItem);
+	super_dealloc_();
 }
 
 #define ButtonSize 40

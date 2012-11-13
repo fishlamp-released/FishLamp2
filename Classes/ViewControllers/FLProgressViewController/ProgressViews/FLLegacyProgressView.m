@@ -38,14 +38,14 @@
 
 - (void) dealloc
 {
-	mrc_release_(_progressBarLabel);
-	mrc_release_(_progressBar);
-	mrc_release_(_progressBarSpinner);
-	mrc_release_(_titleLabel);
-	mrc_release_(_secondaryTextLabel);
-	mrc_release_(_button);
-	mrc_release_(_roundRectView);
-	mrc_super_dealloc_();
+	release_(_progressBarLabel);
+	release_(_progressBar);
+	release_(_progressBarSpinner);
+	release_(_titleLabel);
+	release_(_secondaryTextLabel);
+	release_(_button);
+	release_(_roundRectView);
+	super_dealloc_();
 }
 
 - (void) layoutSubviews

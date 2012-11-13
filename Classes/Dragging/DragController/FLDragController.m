@@ -63,11 +63,11 @@ FLSynthesizeStructProperty(dragWatcherIsRunning, setDragWatcherIsRunning, BOOL, 
 {
     [self stopDragWatcher];
     
-    mrc_release_(_secondaryViews);
-    mrc_release_(_touchableView);
-    mrc_release_(_dragDestinations);
-    mrc_release_(_draggableObjects);
-    mrc_super_dealloc_();
+    release_(_secondaryViews);
+    release_(_touchableView);
+    release_(_dragDestinations);
+    release_(_draggableObjects);
+    super_dealloc_();
 }
 
 - (void) addSecondaryTouchableView:(UIView*) view

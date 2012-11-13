@@ -211,11 +211,11 @@
 
 - (void) dealloc
 {
-    mrc_release_(_openBackgroundWidget);
-//    mrc_release_(_dragBar);
-    mrc_release_(_openButton);
-    mrc_release_(_closeButton);
-    mrc_super_dealloc_();
+    release_(_openBackgroundWidget);
+//    release_(_dragBar);
+    release_(_openButton);
+    release_(_closeButton);
+    super_dealloc_();
 }
 
 - (BOOL) auxiliaryViewControllerTapWillToggle:(FLAuxiliaryViewController*) controller

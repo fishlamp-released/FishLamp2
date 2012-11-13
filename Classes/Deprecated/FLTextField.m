@@ -71,9 +71,9 @@
 
 - (void) dealloc
 {
-	mrc_release_(_placeholderTextDescriptor);
-	mrc_release_(_textDescriptor);
-	mrc_super_dealloc_();
+	release_(_placeholderTextDescriptor);
+	release_(_textDescriptor);
+	super_dealloc_();
 }
 
 - (void) setHighlighted:(BOOL) highlighted

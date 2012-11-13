@@ -12,8 +12,6 @@
 #import "FishLampCore.h"
 #import "FLApplicationDataModel.h"
 #import "FLViewControllerStack.h"
-#import "FLUserSession.h"
-#import "FishLamp.h"
 
 #if FLUFFY
 #import "FLRunUnitTestSubclassTests.h"
@@ -42,9 +40,9 @@
 }
 
 - (void) dealloc {
-    mrc_release_(_window);
-    mrc_release_(_rootViewController);
-    mrc_super_dealloc_();
+    release_(_window);
+    release_(_rootViewController);
+    super_dealloc_();
 }
 
 - (void) willInitApp {
@@ -103,8 +101,8 @@
 @synthesize navigationController = _navigationController;
 
 - (void)dealloc {
-    mrc_release_(_navigationController);
-    mrc_super_dealloc_();
+    release_(_navigationController);
+    super_dealloc_();
 }
 - (void) setRootViewController:(UIViewController*) viewController {
     self.navigationController = [FLNavigationController navigationController:viewController];

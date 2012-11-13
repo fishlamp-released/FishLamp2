@@ -51,7 +51,7 @@
 
 #if FL_MRC
 - (void) dealloc {
-    mrc_super_dealloc_();   
+    super_dealloc_();   
 }
 #endif
 

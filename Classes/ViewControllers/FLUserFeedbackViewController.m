@@ -69,7 +69,7 @@
 {
 	FLReleaseWithNil_(_stringArray);
 	FLReleaseWithNil_(_emailAddress);
-	mrc_super_dealloc_();
+	super_dealloc_();
 }
 
 - (void) onButtonClicked:(FLLegacyButton*) button

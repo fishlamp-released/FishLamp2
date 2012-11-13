@@ -90,15 +90,15 @@
 
 - (void) dealloc
 {
-    mrc_release_(__normalGradientEnum);
-    mrc_release_(__selectedGradientEnum);
-    mrc_release_(__highlightedGradientEnum);
-    mrc_release_(__disabledGradientEnum);
-    mrc_release_(__normalGradient);
-    mrc_release_(__selectedGradient);
-    mrc_release_(__highlightedGradient);
-    mrc_release_(__disabledGradient);
-    mrc_super_dealloc_();
+    release_(__normalGradientEnum);
+    release_(__selectedGradientEnum);
+    release_(__highlightedGradientEnum);
+    release_(__disabledGradientEnum);
+    release_(__normalGradient);
+    release_(__selectedGradient);
+    release_(__highlightedGradient);
+    release_(__disabledGradient);
+    super_dealloc_();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder

@@ -10,6 +10,7 @@
 #import "FLUploadHistoryListWidget.h"
 #import "FLGradientButton.h"
 #import "FLTableViewCell.h"
+#import "FLObjectDatabase.h"
 
 @implementation FLUploadHistoryViewController
 
@@ -33,11 +34,11 @@
 
 - (void) dealloc
 {
-	mrc_release_(_doneBlock);
-	mrc_release_(_database);
-	mrc_release_(_uploadedAssets);
-	mrc_release_(_assetQueue);
-	mrc_super_dealloc_();
+	release_(_doneBlock);
+	release_(_database);
+	release_(_uploadedAssets);
+	release_(_assetQueue);
+	super_dealloc_();
 }
 
 - (void) _done:(id) sender
@@ -95,7 +96,7 @@
 	[_database loadAllObjectsForTypeWithClass:[FLUploadedAsset class] outObjects:&assets];
 	
 	_uploadedAssets = [assets mutableCopy];
-	mrc_release_(assets);
+	release_(assets);
 	
 	[_uploadedAssets sortUsingComparator:^(id lhs, id rhs) { return [[rhs uploadedAssetUID] compare:[lhs uploadedAssetUID]]; }];
 	

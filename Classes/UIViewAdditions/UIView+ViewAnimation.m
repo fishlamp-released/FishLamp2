@@ -89,7 +89,7 @@
 	if(context) {
 		FLViewAnimationFinishedBlock finishedBlock = bridge_(FLViewAnimationFinishedBlock, context);
 		finishedBlock(self);
-		mrc_release_(finishedBlock);
+		release_(finishedBlock);
 	}
 
 }
@@ -142,7 +142,7 @@
 	   payload.finishedBlock(self); 
 	}
 	
-	mrc_release_(payload);
+	release_(payload);
 }
 
 + (void) _doneFadingBatch:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context
@@ -162,7 +162,7 @@
 	   batchPayload.finishedBlock(batchPayload.payloadArray); 
 	}
 
-	mrc_release_(batchPayload);
+	release_(batchPayload);
 }
 
 
@@ -266,9 +266,9 @@
 
 - (void) dealloc
 {
-	mrc_release_(_block);
-	mrc_release_(_view);
-	mrc_super_dealloc_();
+	release_(_block);
+	release_(_view);
+	super_dealloc_();
 }
 
 @end
@@ -289,9 +289,9 @@
 
 - (void) dealloc
 {
-	mrc_release_(_payloadArray);
-	mrc_release_(_finishedBlock);
-	mrc_super_dealloc_();
+	release_(_payloadArray);
+	release_(_finishedBlock);
+	super_dealloc_();
 }
 
 @end

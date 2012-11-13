@@ -50,7 +50,7 @@
 {
 	FLReleaseWithNil_(_spinner);
 	FLReleaseWithNil_(_thumbnailImageView);
-	mrc_super_dealloc_();
+	super_dealloc_();
 }
 
 - (void) startSpinner

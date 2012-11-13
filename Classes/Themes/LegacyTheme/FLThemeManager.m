@@ -24,7 +24,7 @@ FLSynthesizeSingleton(FLThemeManager);
 - (void) dealloc
 {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
-	mrc_super_dealloc_();
+	super_dealloc_();
 }
 
 - (FLSavedThemeInfo*) loadSavedThemeInfo
@@ -98,7 +98,7 @@ FLSynthesizeSingleton(FLThemeManager);
 
 - (void) loadThemeList
 {
-    mrc_release_(_themes);
+    release_(_themes);
 
 //    NSArray* paths = [[NSBundle mainBundle] pathsForResourcesOfType:@"flt" inDirectory:nil];
 //    _themes = [[NSMutableArray alloc] initWithCapacity:paths.count];

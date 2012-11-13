@@ -93,13 +93,13 @@
 
 - (void) dealloc
 {
-	mrc_release_(_itemNumber);
-	mrc_release_(_processedImage);
-	mrc_release_(_selectedImage);
-	mrc_release_(_asset);
-	mrc_release_(_imageFrame);
-	mrc_release_(_thumbnailImageWidget);
-	mrc_super_dealloc_();
+	release_(_itemNumber);
+	release_(_processedImage);
+	release_(_selectedImage);
+	release_(_asset);
+	release_(_imageFrame);
+	release_(_thumbnailImageWidget);
+	super_dealloc_();
 }
 
 - (void) setAsset:(id<FLImageAsset>) asset

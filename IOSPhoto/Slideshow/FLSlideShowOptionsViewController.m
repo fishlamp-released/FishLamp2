@@ -37,8 +37,8 @@
 
 - (void) dealloc
 {
-	mrc_release_(_options);
-	mrc_super_dealloc_();
+	release_(_options);
+	super_dealloc_();
 }
 
 - (FLSlideshowOptions*) options
@@ -101,7 +101,7 @@
 	controller.allowsPickingMultipleItems = YES;
 //	controller.prompt = @"Choose Music for Slideshow";
 	[self.navigationController pushViewController:controller animated:YES];
-	mrc_release_(controller);
+	release_(controller);
 }
 
 - (void) addOptionsToBuilder:(FLTableViewLayoutBuilder*) builder

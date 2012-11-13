@@ -36,7 +36,7 @@
     textDescriptor.shadowOffset = FLSizeMake(0,1);
     label.textDescriptor = textDescriptor;
 
-    mrc_release_(label);
+    release_(label);
 }
 
 @end

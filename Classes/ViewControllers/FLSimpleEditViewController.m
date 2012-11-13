@@ -124,10 +124,10 @@
 
 - (void) dealloc
 {
-	mrc_release_(_contentView);
-	mrc_release_(_saveButton);
-	mrc_release_(_cancelButton);
-	mrc_super_dealloc_();
+	release_(_contentView);
+	release_(_saveButton);
+	release_(_cancelButton);
+	super_dealloc_();
 }
 
 - (NSString*) saveButtonTitle

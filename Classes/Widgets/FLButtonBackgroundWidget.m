@@ -60,9 +60,9 @@
 
 - (void) dealloc
 {
-	mrc_release_(_topGradient);
-	mrc_release_(_bottomGradient);
-	mrc_super_dealloc_();
+	release_(_topGradient);
+	release_(_bottomGradient);
+	super_dealloc_();
 }
 
 @end

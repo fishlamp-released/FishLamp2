@@ -26,8 +26,8 @@
 }
 
 - (void) dealloc {
-    mrc_release_(_onSetupButton);
-    mrc_super_dealloc_();
+    release_(_onSetupButton);
+    super_dealloc_();
 }
 
 - (void) layoutSubviews {

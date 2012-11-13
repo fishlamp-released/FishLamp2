@@ -127,9 +127,9 @@ FLAssertDefaultInitNotCalled_()
 }
 
 - (void) dealloc {
-	mrc_release_(_startURL);
+	release_(_startURL);
 	[self cleanupWebViewController];
-	mrc_super_dealloc_();
+	super_dealloc_();
 }
 
 - (BOOL) openURLInSafari:(NSURL*) url

@@ -96,11 +96,11 @@
 
 #if FL_MRC 
 - (void) dealloc {
-    mrc_release_(_titleLabel);
-    mrc_release_(_spinner);
-    mrc_release_(_backgroundWidget);
-    mrc_release_(_progress);
-    mrc_super_dealloc_();
+    release_(_titleLabel);
+    release_(_spinner);
+    release_(_backgroundWidget);
+    release_(_progress);
+    super_dealloc_();
 }
 #endif
 

@@ -96,7 +96,7 @@
         [widget removeFromParent];
     }
 
-	mrc_release_(widgets);
+	release_(widgets);
 }
 
 - (void) setAlpha:(CGFloat) alpha {
@@ -111,11 +111,11 @@
 	[self removeAllWidgets];
 
     _touchHandler.touchableObject = nil;
-    mrc_release_(_arrangement);
-    mrc_release_(_touchHandler);
-	mrc_release_(_backgroundColor);
-    mrc_release_(_userData);
-	mrc_super_dealloc_();
+    release_(_arrangement);
+    release_(_touchHandler);
+	release_(_backgroundColor);
+    release_(_userData);
+	super_dealloc_();
 }
 
 - (void) setNeedsLayout {

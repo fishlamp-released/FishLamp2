@@ -19,9 +19,9 @@
 
 - (void) dealloc
 {
-    mrc_release_(_title);
-    mrc_release_(_viewController);
-    mrc_super_dealloc_();
+    release_(_title);
+    release_(_viewController);
+    super_dealloc_();
 }
 
 - (id) initWithViewControllerClass:(Class) viewControllerClass
@@ -196,10 +196,10 @@
 
 - (void) dealloc
 {	
-    mrc_release_(_arrangement);
-	mrc_release_(_viewControllers);
+    release_(_arrangement);
+	release_(_viewControllers);
 
-	mrc_super_dealloc_();
+	super_dealloc_();
 }
 
 - (NSUInteger) viewControllerCount

@@ -24,8 +24,8 @@
 
 - (void) dealloc
 {
-	mrc_release_(_frames);
-	mrc_super_dealloc_();
+	release_(_frames);
+	super_dealloc_();
 }
 
 - (void) _addOutput
@@ -77,7 +77,7 @@
 			{
 				_capturing = NO;
 				_block(self, nil);
-				mrc_release_(_block);
+				release_(_block);
 				_block = nil;
 				
 				FLReleaseWithNil_(_frames);

@@ -30,10 +30,10 @@
 
 - (void) dealloc
 {
-	mrc_release_(_properties);
-	mrc_release_(_lock);
-	mrc_release_(_assetsLibrary);
-	mrc_super_dealloc_();
+	release_(_properties);
+	release_(_lock);
+	release_(_assetsLibrary);
+	super_dealloc_();
 }
 
 - (void) _doneSaving:(NSError*) error

@@ -61,14 +61,14 @@ FLSynthesizeStructProperty(allowMultipleSelections, setAllowMultipleSelections, 
 }
 
 - (void) dealloc {
-    mrc_release_(_selectedObjectIds);
-    mrc_release_(_visibleCellCollection);
-    mrc_release_(_cellCollection);
-    mrc_release_(_arrangement);
-    mrc_release_(_objectCache);
-    mrc_release_(_dataProvider);
-    mrc_release_(_scrollIndicatorView);
-    mrc_super_dealloc_();
+    release_(_selectedObjectIds);
+    release_(_visibleCellCollection);
+    release_(_cellCollection);
+    release_(_arrangement);
+    release_(_objectCache);
+    release_(_dataProvider);
+    release_(_scrollIndicatorView);
+    super_dealloc_();
 }
 
 #if DEBUG

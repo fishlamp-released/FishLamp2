@@ -48,7 +48,7 @@
 		titleLabel.backgroundColor = [UIColor clearColor];
 		self.titleLabel = titleLabel;
 		[self addSubview:titleLabel];
-		mrc_release_(titleLabel);
+		release_(titleLabel);
 	}
 	
 	return self;
@@ -66,9 +66,9 @@
 
 - (void) dealloc
 {
-	mrc_release_(_backgroundView);
-	mrc_release_(_progressView);
-	mrc_super_dealloc_();
+	release_(_backgroundView);
+	release_(_progressView);
+	super_dealloc_();
 }	
 
 - (void) _updateProgressFrame

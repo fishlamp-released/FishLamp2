@@ -55,11 +55,11 @@
 
 - (void) dealloc
 {
-	mrc_release_(_logo);
-	mrc_release_(_spinner);
-	mrc_release_(_thumbnail);
-	mrc_release_(_nameLabel);
-	mrc_super_dealloc_();
+	release_(_logo);
+	release_(_spinner);
+	release_(_thumbnail);
+	release_(_nameLabel);
+	super_dealloc_();
 }
 
 - (void) layoutSubviews

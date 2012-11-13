@@ -24,7 +24,7 @@
 	
  // output.minFrameDuration = CMTimeMake(1, 15);
 	[self.session addOutput:_output];
-	mrc_release_(_output);
+	release_(_output);
 }
 
 - (void) _configureSession:(AVCaptureSession*) session
@@ -162,8 +162,8 @@
 																						   }																							   
 																					   }
 																				   }];
-															 mrc_release_(library);
-															 mrc_release_(image);
+															 release_(library);
+															 release_(image);
 														 } else if (error) {
 															 id delegate = [self delegate];
 															 if ([delegate respondsToSelector:@selector(captureStillImageFailedWithError:)]) {

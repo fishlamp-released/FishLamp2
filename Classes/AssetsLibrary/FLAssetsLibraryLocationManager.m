@@ -36,8 +36,8 @@
 - (void) dealloc
 {
     [self _releaseLocationManager];
-    mrc_release_(_callback);
-    mrc_super_dealloc_();
+    release_(_callback);
+    super_dealloc_();
 }
 
 

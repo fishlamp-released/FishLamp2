@@ -31,8 +31,8 @@
 
 - (void) dealloc
 {
-	mrc_release_(_prompt);
-	mrc_super_dealloc_();
+	release_(_prompt);
+	super_dealloc_();
 }
 
 - (void) willConstructWithTableLayoutBuilder:(FLTableViewLayoutBuilder*) builder

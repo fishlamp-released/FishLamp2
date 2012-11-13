@@ -25,8 +25,8 @@
 - (void) dealloc
 {
     [[FLApplication sharedApplication] removeEventInterceptor:self];
-    mrc_release_(_item);
-    mrc_super_dealloc_();
+    release_(_item);
+    super_dealloc_();
 }
 
 - (BOOL) isWatchingTouches

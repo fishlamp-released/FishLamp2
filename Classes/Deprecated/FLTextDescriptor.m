@@ -51,16 +51,16 @@
 
 - (void) dealloc
 {
-	mrc_release_(_enabledColor);
-	mrc_release_(_enabledShadowColor);
-	mrc_release_(_disabledColor);
-	mrc_release_(_disabledShadowColor);
-	mrc_release_(_highlightedColor);
-	mrc_release_(_highlightedShadowColor);
-	mrc_release_(_selectedColor);
-	mrc_release_(_selectedShadowColor);
-	mrc_release_(_font);
-	mrc_super_dealloc_();
+	release_(_enabledColor);
+	release_(_enabledShadowColor);
+	release_(_disabledColor);
+	release_(_disabledShadowColor);
+	release_(_highlightedColor);
+	release_(_highlightedShadowColor);
+	release_(_selectedColor);
+	release_(_selectedShadowColor);
+	release_(_font);
+	super_dealloc_();
 }
 
 + (FLTextDescriptor*) textDescriptor

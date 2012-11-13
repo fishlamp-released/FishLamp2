@@ -109,17 +109,17 @@
 
 - (void) dealloc
 {
-	mrc_release_(_leftColumn);
-	mrc_release_(_centerColumn);
-	mrc_release_(_rightColumn);
-	mrc_release_(_countLabel);
-	mrc_release_(_uploadedAsset);
-	mrc_release_(_gradient);
-	mrc_release_(_thumbnail);
-	mrc_release_(_assetName);
-	mrc_release_(_assetDestinationName);
-	mrc_release_(_uploadDate);
-	mrc_super_dealloc_();
+	release_(_leftColumn);
+	release_(_centerColumn);
+	release_(_rightColumn);
+	release_(_countLabel);
+	release_(_uploadedAsset);
+	release_(_gradient);
+	release_(_thumbnail);
+	release_(_assetName);
+	release_(_assetDestinationName);
+	release_(_uploadDate);
+	super_dealloc_();
 }
 
 @end

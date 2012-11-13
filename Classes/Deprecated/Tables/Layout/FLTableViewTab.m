@@ -37,8 +37,8 @@
 
 - (void) dealloc
 {
-	mrc_release_(_sections);
-	mrc_super_dealloc_();
+	release_(_sections);
+	super_dealloc_();
 }
 
 //- (BOOL) hasEditableRows

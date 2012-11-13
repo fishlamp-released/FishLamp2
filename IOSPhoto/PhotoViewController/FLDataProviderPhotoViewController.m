@@ -28,8 +28,8 @@
 
 - (void) dealloc
 {
-    mrc_release_(_dataProvider);
-    mrc_super_dealloc_();
+    release_(_dataProvider);
+    super_dealloc_();
 }
 
 - (void) closeSelf:(id) sender

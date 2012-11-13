@@ -30,8 +30,8 @@ FLAssertDefaultInitNotCalled_();
 
 - (void) dealloc
 {
-	mrc_release_(_tabs);
-	mrc_super_dealloc_();
+	release_(_tabs);
+	super_dealloc_();
 }
 
 - (NSUInteger) tabCount
@@ -43,7 +43,7 @@ FLAssertDefaultInitNotCalled_();
 {
 	FLTableViewTab* tab = [[FLTableViewTab alloc] init];
 	[_tabs addObject:tab];
-	mrc_release_(tab);
+	release_(tab);
 }
 
 - (FLTableViewTab*) tabWithIndex:(NSUInteger) tab

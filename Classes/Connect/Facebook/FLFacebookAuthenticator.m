@@ -39,7 +39,7 @@
 - (void) dealloc
 {
     [self cleanup];
-    mrc_super_dealloc_();
+    super_dealloc_();
 }
 
 - (void) _beginLoadingUser

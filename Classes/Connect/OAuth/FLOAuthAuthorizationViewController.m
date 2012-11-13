@@ -37,9 +37,9 @@
 
 - (void) dealloc
 {
-	mrc_release_(_authData);
-	mrc_release_(_app);
-	mrc_super_dealloc_();
+	release_(_authData);
+	release_(_app);
+	super_dealloc_();
 }
 
 - (void) _didCompleteAction:(FLAction*) action

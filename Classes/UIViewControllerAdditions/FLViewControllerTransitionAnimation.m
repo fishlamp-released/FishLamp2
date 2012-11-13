@@ -37,8 +37,8 @@
 #if FL_MRC
 - (void) dealloc
 {
-    mrc_release_(_callback);
-    mrc_super_dealloc_();
+    release_(_callback);
+    super_dealloc_();
 }
 #endif
 
@@ -273,7 +273,7 @@ FLSynthesizeSingleton(FLCrossFadeAnimation);
     FLReleaseWithNil_(_viewController);
     FLReleaseWithNil_(_parent);
 
-    mrc_super_dealloc_();
+    super_dealloc_();
 }
 
 - (void) beginShowAnimationForViewController:(UIViewController*) viewController

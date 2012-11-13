@@ -66,12 +66,12 @@ FLSynthesizeStructProperty(isHidden, setHidden, BOOL, _flags);
 
 - (void) dealloc 
 {   
-    mrc_release_(_runFrames);
-    mrc_release_(_color);
-    mrc_release_(_highlightedColor);
-    mrc_release_(_text);
-    mrc_release_(_font);
-    mrc_super_dealloc_();
+    release_(_runFrames);
+    release_(_color);
+    release_(_highlightedColor);
+    release_(_text);
+    release_(_font);
+    super_dealloc_();
 }
 
 - (NSAttributedString*) attributedString

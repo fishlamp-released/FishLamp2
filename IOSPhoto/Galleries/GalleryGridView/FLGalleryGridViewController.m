@@ -19,9 +19,9 @@
 
 - (void) dealloc
 {   
-    mrc_release_(_galleryID);
-    mrc_release_(_galleryContainer);
-    mrc_super_dealloc_();
+    release_(_galleryID);
+    release_(_galleryContainer);
+    super_dealloc_();
 }
 
 - (void) setGalleryID:(id) galleryID

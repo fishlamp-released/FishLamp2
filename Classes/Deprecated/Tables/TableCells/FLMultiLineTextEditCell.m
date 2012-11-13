@@ -205,9 +205,9 @@
 
 - (void) dealloc
 {
-	mrc_release_(_traits);
-	mrc_release_(_textView);
-	mrc_super_dealloc_();
+	release_(_traits);
+	release_(_textView);
+	super_dealloc_();
 }
 
 - (BOOL) isEditing

@@ -33,8 +33,8 @@
 }   
 
 - (void) dealloc {
-    mrc_release_(_shieldView);
-    mrc_super_dealloc_();
+    release_(_shieldView);
+    super_dealloc_();
 }
 
 @end

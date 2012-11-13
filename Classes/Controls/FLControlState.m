@@ -38,8 +38,8 @@
 //
 //#if FL_MRC
 //- (void) dealloc {
-//    mrc_release_(_observers);
-//    mrc_super_dealloc_();
+//    release_(_observers);
+//    super_dealloc_();
 //}
 //#endif
 //

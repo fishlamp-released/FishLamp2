@@ -29,8 +29,8 @@
 
 - (void) dealloc
 {
-	mrc_release_(_asset);
-	mrc_super_dealloc_();
+	release_(_asset);
+	super_dealloc_();
 }
 
 - (void) runSelf

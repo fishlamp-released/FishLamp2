@@ -75,7 +75,7 @@ FLSynthesizeStructProperty(keyboardWillShowInView, setKeyboardWillShowInView, BO
 //	}
 	FLReleaseWithNil_(_textEditBar);
 	[self _cleanupTextEditingTableViewController];
-	mrc_super_dealloc_();
+	super_dealloc_();
 }
 
 - (void) updateContentInsets
@@ -137,7 +137,7 @@ FLSynthesizeStructProperty(keyboardWillShowInView, setKeyboardWillShowInView, BO
 	tableView.frame = FLRectSetOrigin(self.tableView.frame, 0,0);
 	tableView.contentInset = UIEdgeInsetsZero;
 	[_intermediateScrollView addSubview:tableView];
-	mrc_release_(tableView);
+	release_(tableView);
 }
 
 - (void) tableViewDidLayoutSubviews:(UITableView*) tableView

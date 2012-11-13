@@ -65,10 +65,10 @@
 
 - (void) dealloc
 {
-    mrc_release_(_notificationView);
-	mrc_release_(_assets);
-	mrc_release_(_group);
-	mrc_super_dealloc_();
+    release_(_notificationView);
+	release_(_assets);
+	release_(_group);
+	super_dealloc_();
 }
 
 - (void) _hideNotification

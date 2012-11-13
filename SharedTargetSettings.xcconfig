@@ -1,0 +1,11 @@
+//
+//  LibFishLampCoreShared.xcconfig
+//  FishLampCore
+//
+//  Created by Mike Fullerton on 10/27/12.
+//  Copyright (c) 2012 Mike Fullerton. All rights reserved.
+//
+
+HEADER_SEARCH_PATHS = $(inherited) $(Classes/**) $(FISHLAMP_CORE_SEARCH_PATH)
+GCC_PRECOMPILE_PREFIX_HEADER = YES
+GCC_PREFIX_HEADER = FishLampiOS-Prefix.pch

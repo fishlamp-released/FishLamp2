@@ -73,9 +73,9 @@ typedef enum {
 
 - (void) dealloc
 {
-	mrc_release_(_view);
-	mrc_release_(_key);
-	mrc_super_dealloc_();
+	release_(_view);
+	release_(_key);
+	super_dealloc_();
 }
 
 @end
@@ -121,10 +121,10 @@ FLSynthesizeStructProperty(automaticallyShowBackButton, setAutomaticallyShowBack
 
 - (void) dealloc
 {
-	mrc_release_(_leftViews);
-	mrc_release_(_rightViews);
-	mrc_release_(_label);
-	mrc_super_dealloc_();
+	release_(_leftViews);
+	release_(_rightViews);
+	release_(_label);
+	super_dealloc_();
 }
 
 - (FLRect) rectForButtonWithKey:(NSString*) key forDisplayInView:(UIView*) view
@@ -779,7 +779,7 @@ FLSynthesizeStructProperty(automaticallyShowBackButton, setAutomaticallyShowBack
     gradient.autoresizingMask = UIViewAutoresizingFlexibleEverything;
     gradient.alpha = 0.6f;
     [self insertSubview:gradient atIndex:0];
-    mrc_release_(gradient);
+    release_(gradient);
 }
 
 + (void) createTopToolbarForViewController:(UIViewController*) viewController

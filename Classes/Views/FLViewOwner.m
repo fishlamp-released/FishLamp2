@@ -32,7 +32,7 @@
 {
 	[_view removeFromSuperview];
 	FLReleaseWithNil_(_view);
-	mrc_super_dealloc_();
+	super_dealloc_();
 }
 
 @end

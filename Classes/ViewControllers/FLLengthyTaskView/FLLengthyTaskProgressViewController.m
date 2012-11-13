@@ -31,8 +31,8 @@
 
 #if FL_MRC 
 - (void) dealloc {
-    mrc_release_(_lengthyTask);
-    mrc_super_dealloc_();
+    release_(_lengthyTask);
+    super_dealloc_();
 }
 
 #endif

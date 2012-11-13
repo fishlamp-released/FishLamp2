@@ -35,8 +35,8 @@
 
 - (void) dealloc
 {
-    mrc_release_(_lineColor);
-    mrc_super_dealloc_();
+    release_(_lineColor);
+    super_dealloc_();
 }
 
 - (void) drawSelf:(FLRect) rect

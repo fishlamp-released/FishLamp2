@@ -36,10 +36,10 @@
 
 - (void) dealloc
 {
-    mrc_release_(_selectedColor);
-	mrc_release_(_highlightedColor);
-	mrc_release_(_color);
-	mrc_super_dealloc_();
+    release_(_selectedColor);
+	release_(_highlightedColor);
+	release_(_color);
+	super_dealloc_();
 }
 
 - (void) setType:(UITableViewCellAccessoryType) type

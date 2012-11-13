@@ -30,8 +30,8 @@
 
 - (void) dealloc
 {
-    mrc_release_(_topToolbar);
-    mrc_super_dealloc_();
+    release_(_topToolbar);
+    super_dealloc_();
 }
 
 - (void) closeSelf:(id) sender

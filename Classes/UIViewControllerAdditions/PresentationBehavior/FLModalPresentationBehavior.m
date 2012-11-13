@@ -27,8 +27,8 @@ FLSynthesizeSingleton(FLModalPresentationBehavior);
 
 - (void) dealloc
 {
-    mrc_release_(_shieldViewController);
-    mrc_super_dealloc_();
+    release_(_shieldViewController);
+    super_dealloc_();
 }
     
 - (BOOL) canAutoDismissDontUseThis

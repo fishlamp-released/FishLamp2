@@ -53,10 +53,10 @@ static FLThumbnailButton* s_touchedButton = nil;
 	{
 		s_touchedButton = nil;
 	}
-	mrc_release_(_userData);
-	mrc_release_(_callback);
-	mrc_release_(_buttonAnimation);
-	mrc_super_dealloc_();
+	release_(_userData);
+	release_(_callback);
+	release_(_buttonAnimation);
+	super_dealloc_();
 }
 
 - (void)addTarget:(id)target action:(SEL)action

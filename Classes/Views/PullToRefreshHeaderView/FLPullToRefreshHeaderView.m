@@ -158,11 +158,11 @@ typedef enum {
 
 - (void) dealloc
 {
-	mrc_release_(_backgroundView);
-	mrc_release_(_statusLabel);
-	mrc_release_(_arrowImage);
-	mrc_release_(_spinner);
-	mrc_super_dealloc_();
+	release_(_backgroundView);
+	release_(_statusLabel);
+	release_(_arrowImage);
+	release_(_spinner);
+	super_dealloc_();
 }
 
 - (void) updateLastUpdateTime:(NSDate*) date
@@ -193,7 +193,7 @@ typedef enum {
 //	_lastUpdatedLabel.text = [NSString stringWithFormat:@"Last Updated: %@", [formatter stringFromDate:[NSDate date]]];
 //	[[NSUserDefaults standardUserDefaults] setObject:_lastUpdatedLabel.text forKey:@"FLRefreshTableView_LastRefresh"];
 //	[[NSUserDefaults standardUserDefaults] synchronize];
-//	mrc_release_(formatter);
+//	release_(formatter);
 //}
 
 - (FLPullToRefreshHeaderViewState) state

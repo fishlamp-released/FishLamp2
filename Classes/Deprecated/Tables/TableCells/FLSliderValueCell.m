@@ -56,7 +56,7 @@
 - (void)dealloc 
 {
 	FLReleaseWithNil_(_slider);
-	mrc_super_dealloc_();
+	super_dealloc_();
 }
 
 - (void) updateValue:(BOOL) animated

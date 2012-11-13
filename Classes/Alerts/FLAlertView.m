@@ -140,11 +140,11 @@
 
 #if FL_MRC 
 - (void) dealloc {
-    mrc_release_(_buttonBox);
-    mrc_release_(_triangleShapeWidget);
-    mrc_release_(_colorBar);
-    mrc_release_(_title);    mrc_release_(_messageLabel);
-    mrc_super_dealloc_();
+    release_(_buttonBox);
+    release_(_triangleShapeWidget);
+    release_(_colorBar);
+    release_(_title);    release_(_messageLabel);
+    super_dealloc_();
 }
 
 #endif
@@ -185,7 +185,7 @@
     
     if(_triangleShapeWidget) {
         [_triangleShapeWidget removeFromParent];
-        mrc_release_(_triangleShapeWidget);
+        release_(_triangleShapeWidget);
     }
     
     _triangleShapeWidget = [[FLTriangleShapeWidget alloc] initWithFrame:CGRectMake(0,0,_triangleSize,_triangleSize)];

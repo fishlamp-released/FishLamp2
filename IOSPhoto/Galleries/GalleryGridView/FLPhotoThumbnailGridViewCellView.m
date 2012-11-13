@@ -68,8 +68,8 @@
 
 - (void) dealloc
 {
-	mrc_release_(_galleryThumbnail);
-    mrc_super_dealloc_();
+	release_(_galleryThumbnail);
+    super_dealloc_();
 }
 
 - (void) wasCachedInCache:(FLObjectCache*) cache

@@ -42,7 +42,7 @@ FLSynthesizeStructProperty(registeredForFocusEvents, setRegisteredForFocusEvents
 {
 	FLCameraPhotoViewController* controller = [[FLCameraPhotoViewController alloc] initWithArrayOfCameraPhotos:self.viewController.photos folder:self.viewController.folder];
 	[self.viewController.navigationController pushViewController:controller animated:animated];
-	mrc_release_(controller);
+	release_(controller);
 }
 
 - (void) dealloc
@@ -51,8 +51,8 @@ FLSynthesizeStructProperty(registeredForFocusEvents, setRegisteredForFocusEvents
 
 	_cameraController.delegate = nil;
 	[_cameraController stopCamera];
-	mrc_release_(_cameraController);
-	mrc_super_dealloc_();
+	release_(_cameraController);
+	super_dealloc_();
 }
 
 - (void) updateFocusRect
@@ -281,7 +281,7 @@ FLSynthesizeStructProperty(registeredForFocusEvents, setRegisteredForFocusEvents
 	{
 		FLFramesCameraController* cameraController = [[FLFramesCameraController alloc] init];
 		self.cameraController = cameraController;
-		mrc_release_(cameraController);
+		release_(cameraController);
 		self.cameraController.delegate = self;
 	}
 	
@@ -298,7 +298,7 @@ FLSynthesizeStructProperty(registeredForFocusEvents, setRegisteredForFocusEvents
 	{
 		FLStillCameraController* cameraController = [[FLStillCameraController alloc] init];
 		self.cameraController = cameraController;
-		mrc_release_(cameraController);
+		release_(cameraController);
 
 		self.cameraController.delegate = self;
 	}

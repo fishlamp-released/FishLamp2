@@ -34,8 +34,8 @@
 
 - (void) dealloc
 {
-	mrc_release_(_buttonbar);
-	mrc_super_dealloc_();
+	release_(_buttonbar);
+	super_dealloc_();
 }
 
 - (void) layoutSubviews

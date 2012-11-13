@@ -58,7 +58,7 @@
 {
 	[self clearImages];
 	
-	mrc_super_dealloc_();
+	super_dealloc_();
 }
  
 - (void)drawRect:(FLRect)rect

@@ -40,9 +40,9 @@ FLAssertDefaultInitNotCalled_();
 
 - (void) dealloc
 {
-    mrc_release_(_parentController);
-    mrc_release_(_subMenu);
-    mrc_super_dealloc_();
+    release_(_parentController);
+    release_(_subMenu);
+    super_dealloc_();
 }
 
 - (void) showFromView:(UIView*) view

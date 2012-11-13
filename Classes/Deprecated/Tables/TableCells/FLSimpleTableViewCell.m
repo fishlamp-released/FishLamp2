@@ -46,8 +46,8 @@
 
 - (void) dealloc
 {
-	mrc_release_(_subview);
-	mrc_super_dealloc_();
+	release_(_subview);
+	super_dealloc_();
 }
 
 @end

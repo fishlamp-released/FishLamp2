@@ -18,10 +18,10 @@
 
 - (void) dealloc
 {
-	mrc_release_(_htmlView);
-	mrc_release_(_configureRequestCallback);
-	mrc_release_(_finishLoadingCallback);
-	mrc_super_dealloc_();
+	release_(_htmlView);
+	release_(_configureRequestCallback);
+	release_(_finishLoadingCallback);
+	super_dealloc_();
 }
 
 - (void)loadView

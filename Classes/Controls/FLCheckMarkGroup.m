@@ -98,9 +98,9 @@
 
 - (void) dealloc
 {
-	mrc_release_(_rows);
-	mrc_release_(_dataKey);
-	mrc_super_dealloc_();
+	release_(_rows);
+	release_(_dataKey);
+	super_dealloc_();
 }
 
 @end

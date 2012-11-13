@@ -60,11 +60,11 @@ static BOOL s_editingMode;
 - (void) dealloc
 {
 	[self hideWarningLabel];
-	mrc_release_(_warningIcon);
-	mrc_release_(_warningLabel);
-	mrc_release_(_helpTextLabel);
-	mrc_release_(_countDownLabel);
-	mrc_super_dealloc_();
+	release_(_warningIcon);
+	release_(_warningLabel);
+	release_(_helpTextLabel);
+	release_(_countDownLabel);
+	super_dealloc_();
 }
 
 - (void) clear

@@ -32,8 +32,8 @@
 
 #if FL_MRC
 - (void) dealloc {
-    mrc_release_(_arrangement);
-    mrc_super_dealloc_();
+    release_(_arrangement);
+    super_dealloc_();
 }
 #endif
 

@@ -38,10 +38,10 @@
 }
 
 - (void) dealloc {
-    mrc_release_(_topViewController);
-    mrc_release_(_bottomViewController);
-    mrc_release_(_splitterView);
-    mrc_super_dealloc_();
+    release_(_topViewController);
+    release_(_bottomViewController);
+    release_(_splitterView);
+    super_dealloc_();
 }
 
 - (void) willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {

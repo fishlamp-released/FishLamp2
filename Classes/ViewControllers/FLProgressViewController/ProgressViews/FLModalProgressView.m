@@ -94,8 +94,8 @@
 
 - (void) dealloc
 {
-	mrc_release_(_gradientView);
-	mrc_super_dealloc_();
+	release_(_gradientView);
+	super_dealloc_();
 }
 
 + (FLModalProgressView*) modalProgressView

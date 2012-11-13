@@ -16,9 +16,9 @@
 
 - (void) dealloc
 {
-	mrc_release_(_callback);
-	mrc_release_(_traits);
-	mrc_super_dealloc_();
+	release_(_callback);
+	release_(_traits);
+	super_dealloc_();
 }
 
 - (id) init

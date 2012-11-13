@@ -47,9 +47,9 @@
 
 - (void) dealloc
 {	
-	mrc_release_(_likesAndCommentsWidget);
-	mrc_release_(_post);
-	mrc_super_dealloc_();
+	release_(_likesAndCommentsWidget);
+	release_(_post);
+	super_dealloc_();
 }
 
 - (void) setPost:(FLFacebookPost*) post

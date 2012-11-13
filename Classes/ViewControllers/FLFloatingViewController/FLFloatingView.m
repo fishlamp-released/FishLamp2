@@ -203,11 +203,11 @@
 
 - (void) dealloc
 {	
-	mrc_release_(_lineGradient);
-	mrc_release_(_topGradient);
-	mrc_release_(_containerView);
-	mrc_release_(_contentView);
-	mrc_super_dealloc_();
+	release_(_lineGradient);
+	release_(_topGradient);
+	release_(_containerView);
+	release_(_contentView);
+	super_dealloc_();
 }
 
 

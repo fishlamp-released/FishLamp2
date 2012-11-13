@@ -397,7 +397,7 @@ NSError* DisplayDiagnosticError(NSError* error)
     
         FLAssetsLibraryImageAsset* gt_asset = [[FLAssetsLibraryImageAsset alloc] initWithALAsset:asset];
         [array addObject:gt_asset];
-		mrc_release_(gt_asset);
+		release_(gt_asset);
     }
 }
 

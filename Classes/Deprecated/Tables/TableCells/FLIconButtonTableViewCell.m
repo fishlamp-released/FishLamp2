@@ -51,7 +51,7 @@
 {
 	FLReleaseWithNil_(_iconImageView);
 	FLReleaseWithNil_(_icon);
-	mrc_super_dealloc_();
+	super_dealloc_();
 }
 
 - (void) layoutSubviews

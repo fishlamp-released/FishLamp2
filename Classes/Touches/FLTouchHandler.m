@@ -32,8 +32,8 @@ static id s_touchedObject = nil;
 - (void) dealloc {
     [self stopInterceptingGlobalTouches];
     
-    mrc_release_(_wasSelectedCallback);
-	mrc_super_dealloc_();
+    release_(_wasSelectedCallback);
+	super_dealloc_();
 }
 
 - (BOOL) gotTouchDown {

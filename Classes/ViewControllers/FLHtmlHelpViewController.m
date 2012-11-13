@@ -26,10 +26,10 @@
 }
 
 - (void) dealloc {	
-    mrc_release_(_fileURL);
-	mrc_release_(_fileName);
-	mrc_release_(_gradientView);
-	mrc_super_dealloc_();
+    release_(_fileURL);
+	release_(_fileName);
+	release_(_gradientView);
+	super_dealloc_();
 }
 
 - (BOOL) currentDocumentIsFile {

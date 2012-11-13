@@ -42,12 +42,12 @@ FLSynthesizeStructProperty(isLoading, setIsLoading, BOOL, _simpleHtmlFlags);
 
 - (void) dealloc
 {
-	mrc_release_(_lastDocument);
+	release_(_lastDocument);
 	self.delegate = nil;
 	self.simpleHtmlViewDelegate = nil;
 	[self stopLoading];
-	mrc_release_(_spinner);
-	mrc_super_dealloc_();
+	release_(_spinner);
+	super_dealloc_();
 }
 
 - (void) startSpinner:(UIActivityIndicatorViewStyle) spinnerStyle

@@ -33,8 +33,8 @@
 //
 //- (void) dealloc
 //{
-//	mrc_release_(_name);
-//	mrc_super_dealloc_();
+//	release_(_name);
+//	super_dealloc_();
 //}
 //
 //

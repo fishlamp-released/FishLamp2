@@ -121,11 +121,11 @@
 
 - (void) dealloc
 {
-	mrc_release_(_disabledImage);
-	mrc_release_(_image);
-	mrc_release_(_titleLabel);
-	mrc_release_(_imageView);
-	mrc_super_dealloc_();
+	release_(_disabledImage);
+	release_(_image);
+	release_(_titleLabel);
+	release_(_imageView);
+	super_dealloc_();
 }
 
 - (BOOL) isTranslucent

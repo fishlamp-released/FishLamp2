@@ -49,8 +49,8 @@
         CFRelease(_frameRef);
     }
 
-    mrc_release_(_strings);
-    mrc_super_dealloc_();
+    release_(_strings);
+    super_dealloc_();
 }
 
 - (FLTouchableString*) attributedStringForIndex:(NSUInteger) index

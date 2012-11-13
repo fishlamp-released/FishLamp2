@@ -60,10 +60,10 @@
         [self.objectCache cacheObject:_view];
     }
 
-    mrc_release_(_viewController);
-    mrc_release_(_view);
-    mrc_release_(_dataRef);
-    mrc_super_dealloc_();
+    release_(_viewController);
+    release_(_view);
+    release_(_dataRef);
+    super_dealloc_();
 }
 
 - (UIView*) superview {

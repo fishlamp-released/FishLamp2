@@ -90,13 +90,13 @@
 
 - (void) dealloc
 {	
-	mrc_release_(_chosenCallback);
-	mrc_release_(_chosenString);
-	mrc_release_(_toolbar);
-	mrc_release_(_stringList);
-	mrc_release_(_initialSelection);
-	mrc_release_(_chooseButton);
-	mrc_super_dealloc_();
+	release_(_chosenCallback);
+	release_(_chosenString);
+	release_(_toolbar);
+	release_(_stringList);
+	release_(_initialSelection);
+	release_(_chooseButton);
+	super_dealloc_();
 }
 
 #if VIEW_AUTOLAYOUT

@@ -289,7 +289,7 @@ static FLViewController* s_presentingModalViewController = nil;
 			[cb invoke:self];
 		}
 		
-		mrc_release_(callbacks);
+		release_(callbacks);
 	}
 
 #if TRACE

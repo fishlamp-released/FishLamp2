@@ -51,8 +51,8 @@
 
 - (void) dealloc
 {
-    mrc_release_(_label);
-    mrc_super_dealloc_();
+    release_(_label);
+    super_dealloc_();
 }
 
 - (BOOL) pointInside:(FLPoint)point withEvent:(UIEvent *)event

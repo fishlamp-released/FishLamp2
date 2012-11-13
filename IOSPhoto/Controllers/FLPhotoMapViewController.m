@@ -32,9 +32,9 @@
 
 - (void) dealloc
 {	
-	mrc_release_(_mapView);
-	mrc_release_(_mapSwitcher);
-	mrc_super_dealloc_();
+	release_(_mapView);
+	release_(_mapSwitcher);
+	super_dealloc_();
 }
 
 - (void) _resetZoom:(id) zoom
@@ -117,7 +117,7 @@
 	annotation.title = name;
 	annotation.subtitle = FLPrettyStringForCoordinate(coordinate);
 	[self.mapView addAnnotation:annotation];
-	mrc_release_(annotation);
+	release_(annotation);
 	
 	self.title = name;
 	

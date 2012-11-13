@@ -171,9 +171,9 @@ void FLGradientButtonColorLightGray(id button)
 
 - (void) dealloc
 {
-    mrc_release_(_shapeWidget);
-	mrc_release_(_backgroundWidget);
-	mrc_super_dealloc_();
+    release_(_shapeWidget);
+	release_(_backgroundWidget);
+	super_dealloc_();
 }
 
 - (void) setHighlighted:(BOOL) highlighted

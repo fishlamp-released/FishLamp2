@@ -42,12 +42,12 @@
 
 #if FL_MRC
 - (void) dealloc {
-    mrc_release_(_dataRefKey);
-    mrc_release_(_title);
-    mrc_release_(_ownerID);
-    mrc_release_(_parentID);
+    release_(_dataRefKey);
+    release_(_title);
+    release_(_ownerID);
+    release_(_parentID);
     [_objectID release];
-    mrc_super_dealloc_();
+    super_dealloc_();
 }
 #endif
 

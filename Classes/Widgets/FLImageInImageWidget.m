@@ -41,8 +41,8 @@
 
 - (void) dealloc
 {
-	mrc_release_(_topImageWidget);
-	mrc_super_dealloc_();
+	release_(_topImageWidget);
+	super_dealloc_();
 }
 
 - (void) clear

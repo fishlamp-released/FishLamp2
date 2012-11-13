@@ -34,7 +34,7 @@
 - (void) dealloc
 {
     [self _clearData];
-    mrc_super_dealloc_();
+    super_dealloc_();
 }
 
 - (void) cancelImport
@@ -158,7 +158,7 @@
                FLLog(@"found asset to add: %@", newAsset.assetURL);
 #endif                           
                [_importedAssets addObject:newAsset];
-               mrc_release_(imageAsset);
+               release_(imageAsset);
            }
         }];
 }

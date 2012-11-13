@@ -53,8 +53,8 @@
 
 #if FL_MRC
 - (void) dealloc {
-    mrc_release_(_containedView);
-    mrc_super_dealloc_();
+    release_(_containedView);
+    super_dealloc_();
 }
 
 #endif

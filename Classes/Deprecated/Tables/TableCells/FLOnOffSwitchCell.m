@@ -65,8 +65,8 @@
 
 - (void)dealloc 
 {
-	mrc_release_(_switch); 
-	mrc_super_dealloc_();
+	release_(_switch); 
+	super_dealloc_();
 }
 
 - (void) updateControlFromDataSource:(BOOL) animated

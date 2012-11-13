@@ -55,8 +55,8 @@
 
 - (void) dealloc
 {
-	mrc_release_(_highlightedView);
-	mrc_super_dealloc_();
+	release_(_highlightedView);
+	super_dealloc_();
 }
 
 #define Scale 1.2

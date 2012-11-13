@@ -29,16 +29,16 @@
 
 - (void) dealloc 
 {
-	mrc_release_(_builder);
-	mrc_release_(_masterExif);
-	mrc_release_(_extras);
-	mrc_release_(_overrides);
-	mrc_super_dealloc_();
+	release_(_builder);
+	release_(_masterExif);
+	release_(_extras);
+	release_(_overrides);
+	super_dealloc_();
 }
 
 - (void) setMasterExif:(NSDictionary*) dict
 {
-	mrc_release_(_masterExif);
+	release_(_masterExif);
 	_masterExif = [dict mutableCopy];
 }
 
@@ -207,7 +207,7 @@
 		
 		FLPhotoMapViewController* controller = [[FLPhotoMapViewController alloc] init];
 		[row.viewController.navigationController pushViewController:controller animated:YES];
-		mrc_release_(controller);
+		release_(controller);
 	
 		[controller addPin:NSLocalizedString(@"Photo", @"Exif - name of pin when showing on map") coordinate:exif.gpsExif.coordinate];
 	}

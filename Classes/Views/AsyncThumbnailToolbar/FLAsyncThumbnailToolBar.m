@@ -85,12 +85,12 @@
 
 - (void) dealloc
 {
-    mrc_release_(_titleLabel);
-    mrc_release_(_backgroundView);
-    mrc_release_(_spinner);
-    mrc_release_(_thumbnailButton);
-    mrc_release_(_buttons);
-    mrc_super_dealloc_();
+    release_(_titleLabel);
+    release_(_backgroundView);
+    release_(_spinner);
+    release_(_thumbnailButton);
+    release_(_buttons);
+    super_dealloc_();
 }
 
 #define kButtonSpace 20.0f

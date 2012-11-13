@@ -55,9 +55,9 @@
         [[FLApplication sharedApplication] removeEventInterceptor:self];
     }
 
-    mrc_release_(_views);
-    mrc_release_(_passThroughViews);
-    mrc_super_dealloc_();
+    release_(_views);
+    release_(_passThroughViews);
+    super_dealloc_();
 }
 
 - (void) addPrimaryView:(UIView*) view

@@ -50,14 +50,14 @@
 - (void) dealloc
 {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
-	mrc_release_(_locationManager);
-	mrc_release_(_processedAssets);
-	mrc_release_(_chosenAssets);
-	mrc_release_(_disabledAssets);
-	mrc_release_(_assetQueue);
-	mrc_release_(_emptyCellImage);
-	mrc_release_(_groups);
-	mrc_super_dealloc_();
+	release_(_locationManager);
+	release_(_processedAssets);
+	release_(_chosenAssets);
+	release_(_disabledAssets);
+	release_(_assetQueue);
+	release_(_emptyCellImage);
+	release_(_groups);
+	super_dealloc_();
 }
 
 - (BOOL) canAddAsset:(NSString *) url
@@ -74,7 +74,7 @@
     {
         FLAssetsLibraryImageAsset* gt_asset = [[FLAssetsLibraryImageAsset alloc] initWithALAsset:asset];
         [self.chosenAssets setObject:gt_asset forKey:gt_asset.assetURL];
-        mrc_release_(gt_asset); 
+        release_(gt_asset); 
     }
 }
 

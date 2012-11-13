@@ -31,7 +31,7 @@ static CGFloat s_prevAlpha;
 //	  if(cb)
 //	  {
 //		  [cb invoke:self];
-//		  mrc_release_(cb);
+//		  release_(cb);
 //	  }
 //	  
 //	  [browser.navigationController setNavigationBarHidden:YES animated:YES]

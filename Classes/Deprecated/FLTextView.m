@@ -37,8 +37,8 @@
 
 - (void) dealloc
 {
-	mrc_release_(_textDescriptor);
-	mrc_super_dealloc_();
+	release_(_textDescriptor);
+	super_dealloc_();
 }
 
 - (void) _update

@@ -20,8 +20,8 @@
 @synthesize alertViewThemeApplicator = _alertStyleHandler;
 
 - (void) dealloc {
-    mrc_release_(_alertStyleHandler);
-    mrc_super_dealloc_();
+    release_(_alertStyleHandler);
+    super_dealloc_();
 }
 
 + (FLTheme*) currentTheme {

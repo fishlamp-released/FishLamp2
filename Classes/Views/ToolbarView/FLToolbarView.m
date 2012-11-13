@@ -49,7 +49,7 @@
     gradient.autoresizingMask = UIViewAutoresizingFlexibleEverything;
     gradient.alpha = 0.6f;
     self.backgroundView = gradient;
-    mrc_release_(gradient);
+    release_(gradient);
 }
 
 - (void) addFramedBlackBackground
@@ -73,11 +73,11 @@
 
 - (void) dealloc
 {
-    mrc_release_(_backgroundView);
-	mrc_release_(_leftItems);
-	mrc_release_(_centerItems);
-	mrc_release_(_rightItems);
-	mrc_super_dealloc_();
+    release_(_backgroundView);
+	release_(_leftItems);
+	release_(_centerItems);
+	release_(_rightItems);
+	super_dealloc_();
 }
 
 - (void) layoutSubviews

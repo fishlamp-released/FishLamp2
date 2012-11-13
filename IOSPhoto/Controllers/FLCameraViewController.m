@@ -89,7 +89,7 @@
 {
 	if(OSVersionIsAtLeast4_1() && [CLLocationManager locationServicesEnabled])
 	{	
-		mrc_release_(_locationManager);
+		release_(_locationManager);
 		_locationManager =[[CLLocationManager alloc] init];
 		//		 _locationManager.delegate=self;
 		_locationManager.desiredAccuracy=kCLLocationAccuracyBest;
@@ -102,16 +102,16 @@
 {
 	_locationManager.delegate = nil;
 	[_locationManager stopUpdatingLocation];
-	mrc_release_(_locationManager);
+	release_(_locationManager);
 	
-	mrc_release_(_cameraViewStrategy);
-	mrc_release_(_tookPhotoBlock);
-	mrc_release_(_photos);
-	mrc_release_(_folder);
-	mrc_release_(_cameraConfig);
+	release_(_cameraViewStrategy);
+	release_(_tookPhotoBlock);
+	release_(_photos);
+	release_(_folder);
+	release_(_cameraConfig);
 	[self _cleanupCameraController];
 	
-	mrc_super_dealloc_();
+	super_dealloc_();
 }
 
 - (void) viewWillAppear:(BOOL)animated

@@ -52,11 +52,11 @@
 
 - (void) dealloc
 {
-	mrc_release_(_highlightedFillColor);
-	mrc_release_(_highlightedBorderColor);
-	mrc_release_(_fillColor);
-	mrc_release_(_borderColor);
-	mrc_super_dealloc_();
+	release_(_highlightedFillColor);
+	release_(_highlightedBorderColor);
+	release_(_fillColor);
+	release_(_borderColor);
+	super_dealloc_();
 }
 
 - (void) setDefaults

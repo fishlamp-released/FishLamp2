@@ -76,9 +76,9 @@ FLSynthesizeStructProperty(trimWhiteSpace, setTrimWhiteSpace, BOOL, _baseFlags);
 
 - (void) dealloc
 {
-	mrc_release_(_spinner);
-	mrc_release_(_value);
-	mrc_super_dealloc_();
+	release_(_spinner);
+	release_(_value);
+	super_dealloc_();
 }
 
 - (void) startSpinnerInValueCell

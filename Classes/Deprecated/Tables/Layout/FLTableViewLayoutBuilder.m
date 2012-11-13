@@ -41,12 +41,12 @@
 
 - (void) dealloc
 {
-	mrc_release_(_tableLayout);
-	mrc_release_(_currentSection);
-	mrc_release_(_currentCell);
-	mrc_release_(_cells);
-	mrc_release_(_groups);
-	mrc_super_dealloc_();
+	release_(_tableLayout);
+	release_(_currentSection);
+	release_(_currentCell);
+	release_(_cells);
+	release_(_groups);
+	super_dealloc_();
 }
 
 - (void) addTab

@@ -68,8 +68,8 @@
 
 - (void) dealloc
 {
-//    mrc_release_(_buttonbarHost);
-    mrc_super_dealloc_();
+//    release_(_buttonbarHost);
+    super_dealloc_();
 }
 
 - (void) scrollToGalleryItem:(id<FLGalleryObject>) galleryItem    

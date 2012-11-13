@@ -39,9 +39,9 @@ FLSynthesizeStructProperty(imageContentMode, setImageContentMode, FLWidgetImageC
 
 - (void) dealloc
 {
-	mrc_release_(_frameColor);
-	mrc_release_(_imageWidget);
-	mrc_super_dealloc_();
+	release_(_frameColor);
+	release_(_imageWidget);
+	super_dealloc_();
 }	
 
 - (BOOL) showFrame

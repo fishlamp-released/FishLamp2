@@ -54,8 +54,8 @@
 
 #if FL_MRC
     [_operationContextManager release];
-    mrc_release_(_eventInterceptors);
-	mrc_super_dealloc_();
+    release_(_eventInterceptors);
+	super_dealloc_();
 #endif
 }
 

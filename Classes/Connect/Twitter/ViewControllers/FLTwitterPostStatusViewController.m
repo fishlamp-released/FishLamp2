@@ -48,10 +48,10 @@
 
 - (void) dealloc
 {
-    mrc_release_(_headerView);
-	mrc_release_(_userGuid);
-	mrc_release_(_statusUpdate);
-	mrc_super_dealloc_();
+    release_(_headerView);
+	release_(_userGuid);
+	release_(_statusUpdate);
+	super_dealloc_();
 }
 
 - (void) twitterAuthenticator:(FLTwitterAuthenticator*) authenticator 

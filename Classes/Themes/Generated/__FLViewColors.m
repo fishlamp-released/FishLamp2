@@ -60,11 +60,11 @@
 
 - (void) dealloc
 {
-    mrc_release_(__normalColor);
-    mrc_release_(__selectedColor);
-    mrc_release_(__highlightedColor);
-    mrc_release_(__disabledColor);
-    mrc_super_dealloc_();
+    release_(__normalColor);
+    release_(__selectedColor);
+    release_(__highlightedColor);
+    release_(__disabledColor);
+    super_dealloc_();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder

@@ -205,12 +205,12 @@
 
 - (void) dealloc
 {   
-    mrc_release_(_userData);
-    mrc_release_(_disclosureView);
-    mrc_release_(_subMenu);
-    mrc_release_(_label);
-    mrc_release_(_imageView);
-    mrc_super_dealloc_();
+    release_(_userData);
+    release_(_disclosureView);
+    release_(_subMenu);
+    release_(_label);
+    release_(_imageView);
+    super_dealloc_();
 }
 
 - (void) setDisabled:(BOOL) disabled

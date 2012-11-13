@@ -24,8 +24,8 @@
 
 - (void) dealloc 
 {
-	mrc_release_(_savedThemeInfo);
-	mrc_super_dealloc_();
+	release_(_savedThemeInfo);
+	super_dealloc_();
 }
 
 - (BOOL) didChangeDataForKey:(id)key previousValue:(id)previousValue

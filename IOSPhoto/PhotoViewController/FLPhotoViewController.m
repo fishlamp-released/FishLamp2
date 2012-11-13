@@ -39,10 +39,10 @@ FLSynthesizeStructProperty(isLoading, setLoading, BOOL, _flags);
 
 - (void) dealloc
 {
-	mrc_release_(_image);
-	mrc_release_(_photo);
-	mrc_release_(_photoView);
-	mrc_super_dealloc_();
+	release_(_image);
+	release_(_photo);
+	release_(_photoView);
+	super_dealloc_();
 }
 
 @end
@@ -170,12 +170,12 @@ FLSynthesizeStructProperty(isFullScreenTapDisabled, setFullScreenTapDisabled, BO
 {   
 	[self stopSlideShowTimer];
     [self cleanupPhotoViewController];
-	mrc_release_(_randomSlideshowIndexes);
-	mrc_release_(_slideshowOptions);
+	release_(_randomSlideshowIndexes);
+	release_(_slideshowOptions);
 	self.photoViewControllerDelegate = nil;
-	mrc_release_(_action);
-	mrc_release_(_thumbnailAction);
-	mrc_super_dealloc_();
+	release_(_action);
+	release_(_thumbnailAction);
+	super_dealloc_();
 }
 
 - (void) photoCountDidChange
@@ -219,7 +219,7 @@ FLSynthesizeStructProperty(isFullScreenTapDisabled, setFullScreenTapDisabled, BO
 		[view addSubview:_scrollView];
 		
 		self.view = view;
-		mrc_release_(view);
+		release_(view);
 	
 	}
 	else
@@ -1620,7 +1620,7 @@ FLSynthesizeStructProperty(isFullScreenTapDisabled, setFullScreenTapDisabled, BO
 
 - (void) populateRandomSlideshowArray
 {
-	mrc_release_(_randomSlideshowIndexes);
+	release_(_randomSlideshowIndexes);
 	_randomSlideshowIndexes = [[NSMutableArray alloc] initWithCapacity:self.photoCount];
 
 	for(NSUInteger i = 0; i < self.photoCount; i++)

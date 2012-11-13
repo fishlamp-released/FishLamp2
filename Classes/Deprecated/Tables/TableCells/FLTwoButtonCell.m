@@ -82,9 +82,9 @@
 }
 - (void)dealloc 
 {
-	mrc_release_(_leftButton);
-	mrc_release_(_rightButton);	
-	mrc_super_dealloc_();
+	release_(_leftButton);
+	release_(_rightButton);	
+	super_dealloc_();
 }
 
 + (FLTwoButtonCell*) twoButtonCell

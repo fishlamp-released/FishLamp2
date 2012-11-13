@@ -36,8 +36,8 @@
 
 - (void) dealloc
 {
-	mrc_release_(_posts);
-	mrc_super_dealloc_();
+	release_(_posts);
+	super_dealloc_();
 }
 
 - (void) viewDidLoad

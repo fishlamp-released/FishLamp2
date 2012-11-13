@@ -45,8 +45,8 @@
 
 - (void) dealloc
 {
-	mrc_release_(_control);
-	mrc_super_dealloc_();
+	release_(_control);
+	super_dealloc_();
 }
 
 - (void) enabledStateDidChange

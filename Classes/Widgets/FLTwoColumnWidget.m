@@ -44,8 +44,8 @@
 
 - (void) dealloc
 {
-	mrc_release_(_leftColumn);
-	mrc_release_(_rightColumn);
-	mrc_super_dealloc_();
+	release_(_leftColumn);
+	release_(_rightColumn);
+	super_dealloc_();
 }
 @end

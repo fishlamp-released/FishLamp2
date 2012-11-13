@@ -22,9 +22,9 @@
 }
 
 - (void) dealloc {
-    mrc_release_(_label);
-    mrc_release_(_text);
-    mrc_super_dealloc_();
+    release_(_label);
+    release_(_text);
+    super_dealloc_();
 }
 
 //- (void) cellWillAppearInSuperview:(UIView *)superview  viewController:(FLGridViewController*) viewController  {

@@ -39,8 +39,8 @@
 {
 	FLReleaseWithNil_(_title);
 	FLReleaseWithNil_(_cells);
-	mrc_release_(_headerView);
-	mrc_super_dealloc_();
+	release_(_headerView);
+	super_dealloc_();
 }
 
 - (NSUInteger) cellCount

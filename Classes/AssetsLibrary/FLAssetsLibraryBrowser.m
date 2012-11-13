@@ -38,13 +38,13 @@
 
 - (void) dealloc
 {
-    mrc_release_(_locationManager);
-	mrc_release_(_groups);
-	mrc_release_(_processedAssets);
-	mrc_release_(_chosenAssets);
-	mrc_release_(_disabledAssets);
-	mrc_release_(_queue);
-	mrc_super_dealloc_();
+    release_(_locationManager);
+	release_(_groups);
+	release_(_processedAssets);
+	release_(_chosenAssets);
+	release_(_disabledAssets);
+	release_(_queue);
+	super_dealloc_();
 }
 
 + (FLAssetsLibraryBrowser*) assetsLibraryBrowser:(FLAssetQueue*) queue

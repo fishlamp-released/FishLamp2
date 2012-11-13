@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "FLUserSession.h"
 
 @protocol FLApplicationDelegate <UIApplicationDelegate>
 - (void) willInitApp;
@@ -15,7 +14,7 @@
 @end
 
 
-@interface FLApplicationDelegate : UIResponder<UIApplicationDelegate, FLUserSessionObserver> {
+@interface FLApplicationDelegate : UIResponder<UIApplicationDelegate> {
 @private
     UIWindow* _window;
     UIViewController* _rootViewController;

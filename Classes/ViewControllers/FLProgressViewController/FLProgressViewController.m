@@ -75,10 +75,10 @@
 - (void) dealloc {
     FLAssert_v([NSThread currentThread] == [NSThread mainThread], @"Not on main thread");
 
-    mrc_release_(_progressProxy);
-    mrc_release_(_onHideProgress);
-    mrc_release_(_onShowProgress);
-    mrc_super_dealloc_();
+    release_(_progressProxy);
+    release_(_onHideProgress);
+    release_(_onShowProgress);
+    super_dealloc_();
 }
 #endif
 
@@ -275,10 +275,10 @@
     FLAssert_v([NSThread currentThread] == [NSThread mainThread], @"Not on main thread");
     [_progressView removeFromSuperview];
 #if FL_MRC    
-    mrc_release_(_onShowProgress);
-    mrc_release_(_onHideProgress);
-    mrc_release_(_progressView);
-    mrc_super_dealloc_();
+    release_(_onShowProgress);
+    release_(_onHideProgress);
+    release_(_progressView);
+    super_dealloc_();
 #endif
 }
 

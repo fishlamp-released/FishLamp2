@@ -158,12 +158,12 @@ FLSynthesizeStructProperty(didShowError, setDidShowError, BOOL, _photoViewFlags)
  
 	[self stopSpinner];
  
-	mrc_release_(_scrollView);
-	mrc_release_(_imageView);
-	mrc_release_(_spinner);
-	mrc_release_(_detailsView);
-	mrc_release_(_errorView);
-	mrc_super_dealloc_();
+	release_(_scrollView);
+	release_(_imageView);
+	release_(_spinner);
+	release_(_detailsView);
+	release_(_errorView);
+	super_dealloc_();
 }
 
 - (UIImage*) image

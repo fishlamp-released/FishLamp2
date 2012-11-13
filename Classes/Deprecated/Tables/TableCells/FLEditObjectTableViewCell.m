@@ -47,10 +47,10 @@
 
 - (void) dealloc
 {
-	mrc_release_(_helpText);
-	mrc_release_(_rowKey);
-	mrc_release_(_dataKeyPath);
-	mrc_super_dealloc_();
+	release_(_helpText);
+	release_(_rowKey);
+	release_(_dataKeyPath);
+	super_dealloc_();
 }
 
 - (BOOL) hasDataKey

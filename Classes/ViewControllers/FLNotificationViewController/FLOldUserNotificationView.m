@@ -75,8 +75,8 @@ FLSynthesizeStructProperty(autoDismiss, setAutoDismiss, BOOL, _userNotificationF
 - (void) dealloc
 {
     [[FLApplication sharedApplication] removeEventInterceptor:self];
-	mrc_release_(_error);
-	mrc_super_dealloc_();
+	release_(_error);
+	super_dealloc_();
 }
 
 - (void) setIcon:(UIImage*) image

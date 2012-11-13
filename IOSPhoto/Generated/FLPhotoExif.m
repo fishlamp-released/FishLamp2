@@ -35,8 +35,8 @@
 
 - (void) dealloc
 {
-	mrc_release_(_exif);
-	mrc_super_dealloc_();
+	release_(_exif);
+	super_dealloc_();
 }
 
 @end

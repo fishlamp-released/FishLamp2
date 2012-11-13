@@ -25,8 +25,8 @@
 }
 
 - (void) dealloc {
-    mrc_release_(_textLabel);
-    mrc_super_dealloc_();
+    release_(_textLabel);
+    super_dealloc_();
 }
 
 - (void) setGrayText {

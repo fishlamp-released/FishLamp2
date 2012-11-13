@@ -119,11 +119,11 @@ CGFloat kFrameSize = 0; //5.0f
 
 - (void) dealloc
 {
-	mrc_release_(_thumbnailButton);
-	mrc_release_(_backgroundThumbnail);
-	mrc_release_(_foregroundThumbnail);
-	mrc_release_(_scaledForegroundThumbnail);
-	mrc_super_dealloc_();
+	release_(_thumbnailButton);
+	release_(_backgroundThumbnail);
+	release_(_foregroundThumbnail);
+	release_(_scaledForegroundThumbnail);
+	super_dealloc_();
 }
 
 - (BOOL) ownsSenderOfEvent:(id) sender

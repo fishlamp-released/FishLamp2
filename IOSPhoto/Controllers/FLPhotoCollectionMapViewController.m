@@ -17,9 +17,9 @@
 @synthesize thumbnail = _thumbnail;
 - (void) dealloc
 {
-	mrc_release_(_thumbnail);
-	mrc_release_(_photo);
-	mrc_super_dealloc_();
+	release_(_thumbnail);
+	release_(_photo);
+	super_dealloc_();
 }
 @end
 
@@ -41,7 +41,7 @@
 	annotation.subtitle = FLPrettyStringForCoordinate(coordinate);
 	annotation.thumbnail = thumbnail;
 	[self.mapView addAnnotation:annotation];
-	mrc_release_(annotation);
+	release_(annotation);
 	
 	self.title = [NSString stringWithFormat:(NSLocalizedString(@"%d Photos", nil)), self.mapView.annotations.count];
 	
@@ -109,8 +109,8 @@
 
 - (void) dealloc
 {	
-	mrc_release_(_progressView);
-	mrc_super_dealloc_();
+	release_(_progressView);
+	super_dealloc_();
 }
 
 - (void) viewWillAppear:(BOOL)animated

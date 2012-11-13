@@ -27,8 +27,8 @@
 
 - (void) dealloc
 {
-	mrc_release_(_userId);
-	mrc_super_dealloc_();
+	release_(_userId);
+	super_dealloc_();
 }
 
 - (void) doBeginLoadingObject

@@ -64,10 +64,10 @@
 
 - (void) dealloc
 {
-    mrc_release_(_blockCallback);
-	mrc_release_(_buttonTitle);
-	mrc_release_(_callback);
-	mrc_super_dealloc_();
+    release_(_blockCallback);
+	release_(_buttonTitle);
+	release_(_callback);
+	super_dealloc_();
 }
 
 + (FLAlertButtonCallback*) cancelButtonCallback

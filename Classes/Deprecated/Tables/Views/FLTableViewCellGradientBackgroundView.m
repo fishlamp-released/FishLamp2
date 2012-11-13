@@ -42,7 +42,7 @@
 
 - (void) dealloc
 {
-	mrc_release_(_arrowColor);
-	mrc_super_dealloc_();
+	release_(_arrowColor);
+	super_dealloc_();
 }
 @end

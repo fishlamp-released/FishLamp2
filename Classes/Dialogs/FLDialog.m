@@ -76,8 +76,8 @@
 
 #if FL_MRC
 - (void) dealloc {
-    mrc_release_(_contentViewController);
-    mrc_super_dealloc_();
+    release_(_contentViewController);
+    super_dealloc_();
 }
 #endif
 

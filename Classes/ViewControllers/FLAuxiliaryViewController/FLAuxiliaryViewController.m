@@ -175,14 +175,14 @@ FLSynthesizeAssociatedProperty(assign_nonatomic, _auxiliaryViewController, setAu
 - (void) dealloc {   
     _dragController.delegate = nil;
 #if FL_MRC 
-    mrc_release_(_createViewController);
-    mrc_release_(_addTouchableViewsCallback);
-    mrc_release_(_draggableButton);
-    mrc_release_(_dragController);
-    mrc_release_(_behavior);
-    mrc_release_(_viewController);
-    mrc_release_(_containerView);
-    mrc_super_dealloc_();
+    release_(_createViewController);
+    release_(_addTouchableViewsCallback);
+    release_(_draggableButton);
+    release_(_dragController);
+    release_(_behavior);
+    release_(_viewController);
+    release_(_containerView);
+    super_dealloc_();
 #endif
 }
 
@@ -301,7 +301,7 @@ FLSynthesizeAssociatedProperty(assign_nonatomic, _auxiliaryViewController, setAu
     if(_containerView)
     {
         [_containerView removeFromSuperview];
-        mrc_release_(_containerView);
+        release_(_containerView);
     }
         
     _containerView = [[FLAuxiliaryView alloc] initWithFrame:frame];

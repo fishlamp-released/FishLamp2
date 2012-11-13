@@ -20,11 +20,11 @@
 
 - (void) dealloc
 {	
-	mrc_release_(_group);
-	mrc_release_(_checkedValue);
-//	  mrc_release_(_checkMark);
-	mrc_release_(_subLabel);
-	mrc_super_dealloc_();
+	release_(_group);
+	release_(_checkedValue);
+//	  release_(_checkMark);
+	release_(_subLabel);
+	super_dealloc_();
 }
 
 - (void) initSubLabel
@@ -177,8 +177,8 @@
 
 - (void) dealloc
 {
-	mrc_release_(_color);
-	mrc_super_dealloc_();
+	release_(_color);
+	super_dealloc_();
 }
 @end
 
@@ -237,8 +237,8 @@
 
 - (void) dealloc
 {
-    mrc_release_(_check);
-    mrc_super_dealloc_();
+    release_(_check);
+    super_dealloc_();
 }
 
 #define kTextLeft 60.0f

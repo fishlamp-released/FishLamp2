@@ -107,10 +107,10 @@
     [self hideWarning];
 
 #if FL_MRC 
-    mrc_release_(_onFormatWarningString);
-    mrc_release_(_onCreateAlert);
-    mrc_release_(_alertViewController);
-    mrc_super_dealloc_();
+    release_(_onFormatWarningString);
+    release_(_onCreateAlert);
+    release_(_alertViewController);
+    super_dealloc_();
 #endif
 }
 

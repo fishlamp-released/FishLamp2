@@ -41,9 +41,9 @@
 }
 
 - (void) dealloc {
-    mrc_release_(_roundRect);
-    mrc_release_(_backgroundGradient);
-    mrc_super_dealloc_();
+    release_(_roundRect);
+    release_(_backgroundGradient);
+    super_dealloc_();
 }
 
 //- (void) setContentView:(UIView*) contentView {

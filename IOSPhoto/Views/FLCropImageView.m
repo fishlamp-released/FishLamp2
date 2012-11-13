@@ -32,8 +32,8 @@
 
 - (void) dealloc
 {
-    mrc_release_(_imageView);
-    mrc_super_dealloc_();
+    release_(_imageView);
+    super_dealloc_();
 }
 
 - (void) setImage:(UIImage*) image

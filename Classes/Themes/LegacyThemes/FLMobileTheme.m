@@ -55,16 +55,16 @@
 //
 //- (void) dealloc
 //{
-//	mrc_release_(_gradientStartColor);
-//	mrc_release_(_gradientEndColor);
-//	mrc_release_(_cellBackgroundColor);
-//	mrc_release_(_valueTextColor);
-//	mrc_release_(_tableHeaderTextColor);
-//	mrc_release_(_titleTextColor);
-//	mrc_release_(_placeholderDescriptor);
-//	mrc_release_(_titleDescriptor);
-//	mrc_release_(_valueDescriptor);
-//	mrc_super_dealloc_();
+//	release_(_gradientStartColor);
+//	release_(_gradientEndColor);
+//	release_(_cellBackgroundColor);
+//	release_(_valueTextColor);
+//	release_(_tableHeaderTextColor);
+//	release_(_titleTextColor);
+//	release_(_placeholderDescriptor);
+//	release_(_titleDescriptor);
+//	release_(_valueDescriptor);
+//	super_dealloc_();
 //}
 //
 //-(CGFloat) calculateActualFontSize;

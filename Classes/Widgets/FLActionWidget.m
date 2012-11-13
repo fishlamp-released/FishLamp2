@@ -30,8 +30,8 @@
 }
 
 - (void) dealloc {
-	mrc_release_(_action);
-	mrc_release_(_operationContext);
-	mrc_super_dealloc_();
+	release_(_action);
+	release_(_operationContext);
+	super_dealloc_();
 }
 @end

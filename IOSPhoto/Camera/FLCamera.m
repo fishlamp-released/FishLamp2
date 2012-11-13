@@ -27,11 +27,11 @@
 
 - (void) dealloc
 {
-	mrc_release_(_error);
+	release_(_error);
 	
 	FLAssert_v(_session == nil, @"must call stop before deleting camera"); 
 	
-	mrc_super_dealloc_();
+	super_dealloc_();
 }
 
 //- (AVCaptureDevice*) findDevice
