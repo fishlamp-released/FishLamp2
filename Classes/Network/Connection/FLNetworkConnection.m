@@ -277,7 +277,7 @@ const FLNetworkConnectionByteCount FLNetworkConnectionByteCountZero = {0, 0, 0};
 //    }
 //    @finally {
 //        [self _closeSelf];
-//        mrc_release_(self);
+//        release_(self);
 //    }
 //}
 

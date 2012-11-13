@@ -6,9 +6,7 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-FISHLAMP = ..
-#include "FishLampXcodeConfigs/FishLampPaths.xcconfig"
+HEADER_SEARCH_PATHS = $(inherited) $(Classes/**) 
 
-HEADER_SEARCH_PATHS = $(inherited) $(Classes/**)
 GCC_PRECOMPILE_PREFIX_HEADER = YES
 GCC_PREFIX_HEADER = FishLampCore-Prefix.pch
