@@ -3436,7 +3436,7 @@
 				273147961652D5080027850D /* FishLampTargetSettingsMac32.xcconfig */,
 			);
 			name = XcodeConfigs;
-			path = ../FishLampXcodeConfigs/XcodeConfigs;
+			path = "../FishLampXcodeConfigs/XcodeConfigs-1down";
 			sourceTree = "<group>";
 		};
 		275812C816498009007BFA23 /* SessionObjects */ = {
