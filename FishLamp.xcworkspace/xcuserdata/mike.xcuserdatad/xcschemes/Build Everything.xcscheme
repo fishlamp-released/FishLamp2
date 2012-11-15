@@ -73,7 +73,7 @@
                BlueprintIdentifier = "27A43AC315CDCCCB001CB13E"
                BuildableName = "libFishLampCommandLineToolMac.a"
                BlueprintName = "FishLampCommandLineToolMac"
-               ReferencedContainer = "container:CommandLineTool/FishLampCommandLineTool.xcodeproj">
+               ReferencedContainer = "container:OSX/CommandLineTool/FishLampCommandLineTool.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -87,7 +87,105 @@
                BlueprintIdentifier = "27048B70161CB58600C38ADA"
                BuildableName = "libFishLampCommandLineToolMac32.a"
                BlueprintName = "FishLampCommandLineToolMac32"
-               ReferencedContainer = "container:CommandLineTool/FishLampCommandLineTool.xcodeproj">
+               ReferencedContainer = "container:OSX/CommandLineTool/FishLampCommandLineTool.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "27E3C5E816532B8900410570"
+               BuildableName = "libFishLampCommandLineToolMacLegacy.a"
+               BlueprintName = "FishLampCommandLineToolMacLegacy"
+               ReferencedContainer = "container:OSX/CommandLineTool/FishLampCommandLineTool.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "273148B9165328400027850D"
+               BuildableName = "libFishLampCoreMacLegacy.a"
+               BlueprintName = "FishLampCoreMacLegacy"
+               ReferencedContainer = "container:Core/FishLampCore.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "27A43AC315CDCCCB001CB13E"
+               BuildableName = "libFishLampCoreTestsMac.a"
+               BlueprintName = "FishLampCoreTestsMac"
+               ReferencedContainer = "container:Core/Tests/FishLampCoreTests.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "27048B70161CB58600C38ADA"
+               BuildableName = "libFishLampCoreTestsMac32.a"
+               BlueprintName = "FishLampCoreTestsMac32"
+               ReferencedContainer = "container:Core/Tests/FishLampCoreTests.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "273148B9165328400027850D"
+               BuildableName = "libFishLampCoreTestsMacLegacy.a"
+               BlueprintName = "FishLampCoreTestsMacLegacy"
+               ReferencedContainer = "container:Core/Tests/FishLampCoreTests.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "27A43AB315CDCC89001CB13E"
+               BuildableName = "libFishLampCoreTestsiOS.a"
+               BlueprintName = "FishLampCoreTestsiOS"
+               ReferencedContainer = "container:Core/Tests/FishLampCoreTests.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "270DFDC515E99BAC00ED5FB0"
+               BuildableName = "FluffyTool"
+               BlueprintName = "FluffyTool"
+               ReferencedContainer = "container:OSX/Fluffy/Fluffy.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -101,7 +199,21 @@
                BlueprintIdentifier = "27E5A851163D931B00B8D029"
                BuildableName = "FluffyTool32"
                BlueprintName = "FluffyTool32"
-               ReferencedContainer = "container:Tools/FishLampTools.xcodeproj">
+               ReferencedContainer = "container:OSX/Fluffy/Fluffy.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "27E3C60316532BF000410570"
+               BuildableName = "FluffyToolLegacy"
+               BlueprintName = "FluffyToolLegacy"
+               ReferencedContainer = "container:OSX/Fluffy/Fluffy.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -113,15 +225,6 @@
       buildConfiguration = "Debug">
       <Testables>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "270DFDC515E99BAC00ED5FB0"
-            BuildableName = "fluffy"
-            BlueprintName = "FluffyTool"
-            ReferencedContainer = "container:Tools/FishLampTools.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </TestAction>
    <LaunchAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
@@ -132,15 +235,6 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "270DFDC515E99BAC00ED5FB0"
-            BuildableName = "fluffy"
-            BlueprintName = "FluffyTool"
-            ReferencedContainer = "container:Tools/FishLampTools.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>

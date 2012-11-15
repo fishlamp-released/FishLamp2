@@ -1,5 +1,5 @@
 //
-//  FishLampTargetSettingsMac32.xcconfig
+//  FishLampTargetMac32.xcconfig
 //  FishLampCore
 //
 //  Created by Mike Fullerton on 11/13/12.
@@ -7,4 +7,4 @@
 //
 
 #include "SharedTargetSettings.xcconfig"
-#include "../FishLamp/FishLampXcodeConfigs/TargetIncludes/FishLampTargetSettingsMac32.xcconfig"
+#include "../../../FishLamp/FishLampXcodeConfigs/TargetIncludes/FishLampTargetMac32.xcconfig"

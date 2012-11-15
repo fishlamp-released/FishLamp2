@@ -5,13 +5,16 @@
       location = "group:FishLampXcodeConfigs">
    </FileRef>
    <FileRef
-      location = "group:CommandLineTool/FishLampCommandLineTool.xcodeproj">
-   </FileRef>
-   <FileRef
       location = "group:Core/FishLampCore.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:Core/Tests/FishLampCoreTests.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:iOS/FishLampiOS.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:OSX/CommandLineTool/FishLampCommandLineTool.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:OSX/Fluffy/Fluffy.xcodeproj">
