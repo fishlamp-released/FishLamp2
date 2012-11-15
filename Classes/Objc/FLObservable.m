@@ -124,7 +124,6 @@ synthesize_(observers);
 }
 
 - (void) postObservation:(SEL) selector {
-return;
 
 //    NSArray* observers = self.iteratable;
 //    if(observers) {
@@ -142,7 +141,6 @@ return;
 }
 
 - (void) postObservation:(SEL) selector withObject:(id) object {
-return;
 
 //    NSArray* observers = self.iteratable;
 //    if(observers) {
@@ -160,7 +158,6 @@ return;
 }
 
 - (void) postObservation:(SEL) selector withObject:(id) object1 withObject:(id) object2 {
-return;
 
 //    NSArray* observers = self.iteratable;
 //    if(observers) {

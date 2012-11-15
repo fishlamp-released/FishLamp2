@@ -6,7 +6,6 @@
 //  Copyright (c) 2012 GreenTongue Software. All rights reserved.
 //
 
-#if TEST
 #import "FLFancyStringTests.h"
 #import "FLUnitTest.h"
 
@@ -29,4 +28,3 @@
 }
 
 @end
-#endif

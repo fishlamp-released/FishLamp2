@@ -43,6 +43,10 @@
             [self.groupName isEqual:[object groupName]];
 }
 
+- (id) copyWithZone:(NSZone*) zone {
+    return retain_(self);
+}
+
 - (NSUInteger)hash {
     return [self.groupName hash];
 }

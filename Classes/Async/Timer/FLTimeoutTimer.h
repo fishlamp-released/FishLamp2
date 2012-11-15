@@ -10,12 +10,22 @@
 
 #import "FLWorkFinisher.h"
 #import "FLWorker.h"
+#import "FLObservable2.h"
 
-@interface FLTimeoutTimer : FLObservable<FLWorker, FLRunnable> {
+extern const NSString* FLTimeoutTimerCheckEvent;
+extern const NSString* FLTimeoutTimerTimeoutEvent;
+
+
+// TODO: this .25 for progress. It could be closer to 1 second if
+// we don't need to report progress. We should be able to set this per
+// connection for sure.        
+extern const NSTimeInterval FLTimeoutTimerDefaultCheckFrequencyInterval;
+
+@interface FLTimeoutTimer : FLObservable2<FLWorker> {
 @private
     NSTimeInterval _timestamp;
     NSTimeInterval _timeoutInterval;
-//    BOOL _idle;
+    NSTimeInterval _checkFrequency;
     BOOL _timedOut;
     NSTimer* _timer;
     id<FLFinisher> _finisher;
@@ -24,12 +34,18 @@
 @property (readonly, assign) NSTimeInterval timeoutInterval;
 @property (readonly, assign) NSTimeInterval timestamp;
 @property (readonly, assign) NSTimeInterval idleDuration;
+@property (readonly, assign) NSTimeInterval checkFrequency;
 
 @property (readonly, assign) BOOL timedOut;
 
 - (id) initWithTimeoutInterval:(NSTimeInterval) interval;
 + (FLTimeoutTimer*) timeoutTimer;
 + (FLTimeoutTimer*) timeoutTimer:(NSTimeInterval) timeoutInterval;
+
+- (id<FLPromisedResult>) startTimerWithFrequency:(NSTimeInterval) checkFrequency
+                                      completion:(FLResultBlock) completion;
+                                      
+- (id<FLPromisedResult>) startTimer:(FLResultBlock) completion;
 
 - (void) requestCancel;
 - (void) touchTimestamp;

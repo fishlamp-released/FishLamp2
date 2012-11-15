@@ -43,5 +43,3 @@ typedef void (^FLDeallocNotifierBlock)(FLDeletedObjectReference* deletedObject);
 - (void) sendDeallocNotification;
 @end
 
-extern 
-void FLSendDeallocNotification(id object);

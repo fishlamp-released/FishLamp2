@@ -14,7 +14,7 @@
 #define FLUnitTestPriorityFramework     3000
 #define FLUnitTestPrioritySanityCheck   4000
 
-@interface FLUnitTestGroup : NSObject {
+@interface FLUnitTestGroup : NSObject<NSCopying> {
 @private
     NSString* _groupName;
     int32_t _groupPriority;

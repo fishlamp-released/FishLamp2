@@ -74,15 +74,14 @@ FLAssertDefaultInitNotCalled_v(nil);
 - (void) unload {
 }
 
-- (void) dealloc {
+dealloc_(
     
-    release_members_(
         [_state release];
         [_queueUID release];
         [_assets release];
 //        [_locks release];
     )
-}
+
 
 - (void) unlock {
     --self.lockCount;

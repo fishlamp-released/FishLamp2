@@ -8,13 +8,6 @@
 
 #import "FLUnitTestSelfTests.h"
 
-@implementation FLUnitTestSelfTests
-
-@end
-
-@interface FLUnitTestSanityCheck : FLSanityCheck
-
-@end
 
 @implementation FLUnitTestSanityCheck
 

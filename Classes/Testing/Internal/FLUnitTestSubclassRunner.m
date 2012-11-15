@@ -9,6 +9,8 @@
 #import "FLUnitTestSubclassRunner.h"
 
 #import "FLUnitTest.h"
+#import "FLUnitTestGroup.h"
+
 
 @implementation FLUnitTestSubclassRunner
 
@@ -24,23 +26,74 @@
     return [self create];
 }
 
+- (void) sortClassList:(NSMutableArray*) classList {
+
+    int i = classList.count - 1;
+    while(i >= 0) {
+        
+        Class bottom = [classList objectAtIndex:i];
+        
+        int newIndex = i;
+        
+        for(int j = i - 1; j >= 0; j--) {
+            Class top = [classList objectAtIndex:j];
+
+            BOOL bottomDependsOnTop = [bottom unitTestClassDependsOnUnitTestClass:top];
+            BOOL topDependsOnBottom = [top unitTestClassDependsOnUnitTestClass:bottom];
+            
+            FLConfirm_v(bottomDependsOnTop == NO || topDependsOnBottom == NO, @"%@ and %@ can't depend on each other", NSStringFromClass(top), NSStringFromClass(bottom));
+            
+            if(topDependsOnBottom) {
+                newIndex = j;
+            }
+        }
+        
+        if(newIndex != i) {
+            [classList removeObjectAtIndex:i];
+            [classList insertObject:bottom atIndex:newIndex];
+        }
+        else {
+            --i;
+        }
+    }
+}
+
 - (void) startWorking:(id<FLFinisher>) finisher {
     
-    [_classList sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-        
-        NSInteger lhs = [[obj1 unitTestGroup] groupPriority];
-        NSInteger rhs = [[obj2 unitTestGroup] groupPriority];
-        
-        if(lhs == rhs) {
-            return [NSStringFromClass(obj1) compare:NSStringFromClass(obj2)];
-        }
-
-        return lhs > rhs ? NSOrderedAscending: NSOrderedDescending;
-    }];
+    NSMutableDictionary* groups = [NSMutableDictionary dictionary];
     
     for(Class aClass in _classList) {
-        FLUnitTest* test = autorelease_([[[aClass class] alloc] init]);
-        [test runSynchronously];
+        FLUnitTestGroup* group = [aClass unitTestGroup];
+        NSMutableArray* groupClassList = [groups objectForKey:group];
+        if(!groupClassList) {
+            groupClassList = [NSMutableArray array];
+            [groups setObject:groupClassList forKey:group];
+        }
+        
+        [groupClassList addObject:aClass];
+    }
+    
+    NSMutableArray* groupList = autorelease_([[groups allKeys] mutableCopy]);
+    [groupList sortUsingComparator:^NSComparisonResult(FLUnitTestGroup* obj1, FLUnitTestGroup* obj2) {
+        
+        if(obj1.groupPriority == obj2.groupPriority) {
+            return NSOrderedSame;
+        }
+    
+        return obj1.groupPriority  > obj2.groupPriority ? NSOrderedAscending : NSOrderedDescending;
+    }]; 
+    
+    for(FLUnitTestGroup* group in groupList) {
+    
+        FLLog(@"\n- GROUP: %@ (priority: %d)", group.groupName, group.groupPriority);
+        
+        NSMutableArray* classList = [groups objectForKey:group];
+        [self sortClassList:classList];
+        
+        for(Class aClass in classList) {
+            FLUnitTest* test = autorelease_([[[aClass class] alloc] init]);
+            [test runSynchronously];
+        }
     }
     [finisher setFinished];
 }

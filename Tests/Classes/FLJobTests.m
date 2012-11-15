@@ -12,7 +12,6 @@
 #import "FLDispatchQueues.h"
 
 
-#if TEST 
 @interface FLTestBot : FLJob
 @end
 
@@ -20,9 +19,6 @@
 - (void) startWorking:(id<FLFinisher>) finisher {
     [finisher setFinished];
 }
-@end
-
-@interface FLJobTests : FLFrameworkUnitTest
 @end
 
 @implementation FLJobTests
@@ -120,5 +116,5 @@
 //}
 
 @end
-#endif
+
 

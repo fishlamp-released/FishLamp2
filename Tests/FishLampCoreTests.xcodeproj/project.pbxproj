@@ -1,0 +1,991 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		27048D10161CB58600C38ADA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27A43A7F15CDCC1B001CB13E /* Cocoa.framework */; };
+		27314A77165328400027850D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27A43A7F15CDCC1B001CB13E /* Cocoa.framework */; };
+		27A43AB515CDCC89001CB13E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27A43AA415CDCC73001CB13E /* Foundation.framework */; };
+		27A43AC515CDCCCB001CB13E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27A43A7F15CDCC1B001CB13E /* Cocoa.framework */; };
+		27E3C73D1654152700410570 /* FLAsyncTests.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E3C7231654152700410570 /* FLAsyncTests.h */; };
+		27E3C73E1654152700410570 /* FLAsyncTests.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E3C7231654152700410570 /* FLAsyncTests.h */; };
+		27E3C73F1654152700410570 /* FLAsyncTests.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E3C7231654152700410570 /* FLAsyncTests.h */; };
+		27E3C7401654152700410570 /* FLAsyncTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3C7241654152700410570 /* FLAsyncTests.m */; };
+		27E3C7411654152700410570 /* FLAsyncTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3C7241654152700410570 /* FLAsyncTests.m */; };
+		27E3C7421654152700410570 /* FLAsyncTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3C7241654152700410570 /* FLAsyncTests.m */; };
+		27E3C7431654152700410570 /* FLAsyncTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3C7241654152700410570 /* FLAsyncTests.m */; };
+		27E3C7441654152700410570 /* FLByteBufferTests.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E3C7251654152700410570 /* FLByteBufferTests.h */; };
+		27E3C7451654152700410570 /* FLByteBufferTests.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E3C7251654152700410570 /* FLByteBufferTests.h */; };
+		27E3C7461654152700410570 /* FLByteBufferTests.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E3C7251654152700410570 /* FLByteBufferTests.h */; };
+		27E3C7471654152700410570 /* FLByteBufferTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3C7261654152700410570 /* FLByteBufferTests.m */; };
+		27E3C7481654152700410570 /* FLByteBufferTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3C7261654152700410570 /* FLByteBufferTests.m */; };
+		27E3C7491654152700410570 /* FLByteBufferTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3C7261654152700410570 /* FLByteBufferTests.m */; };
+		27E3C74A1654152700410570 /* FLByteBufferTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3C7261654152700410570 /* FLByteBufferTests.m */; };
+		27E3C74B1654152700410570 /* FLDnsConnectionTests.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E3C7271654152700410570 /* FLDnsConnectionTests.h */; };
+		27E3C74C1654152700410570 /* FLDnsConnectionTests.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E3C7271654152700410570 /* FLDnsConnectionTests.h */; };
+		27E3C74D1654152700410570 /* FLDnsConnectionTests.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E3C7271654152700410570 /* FLDnsConnectionTests.h */; };
+		27E3C74E1654152700410570 /* FLDnsConnectionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3C7281654152700410570 /* FLDnsConnectionTests.m */; };
+		27E3C74F1654152700410570 /* FLDnsConnectionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3C7281654152700410570 /* FLDnsConnectionTests.m */; };
+		27E3C7501654152700410570 /* FLDnsConnectionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3C7281654152700410570 /* FLDnsConnectionTests.m */; };
+		27E3C7511654152700410570 /* FLDnsConnectionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3C7281654152700410570 /* FLDnsConnectionTests.m */; };
+		27E3C7521654152700410570 /* FLFancyStringTests.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E3C7291654152700410570 /* FLFancyStringTests.h */; };
+		27E3C7531654152700410570 /* FLFancyStringTests.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E3C7291654152700410570 /* FLFancyStringTests.h */; };
+		27E3C7541654152700410570 /* FLFancyStringTests.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E3C7291654152700410570 /* FLFancyStringTests.h */; };
+		27E3C7551654152700410570 /* FLFancyStringTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3C72A1654152700410570 /* FLFancyStringTests.m */; };
+		27E3C7561654152700410570 /* FLFancyStringTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3C72A1654152700410570 /* FLFancyStringTests.m */; };
+		27E3C7571654152700410570 /* FLFancyStringTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3C72A1654152700410570 /* FLFancyStringTests.m */; };
+		27E3C7581654152700410570 /* FLFancyStringTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3C72A1654152700410570 /* FLFancyStringTests.m */; };
+		27E3C7591654152700410570 /* FLHttpTests.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E3C72B1654152700410570 /* FLHttpTests.h */; };
+		27E3C75A1654152700410570 /* FLHttpTests.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E3C72B1654152700410570 /* FLHttpTests.h */; };
+		27E3C75B1654152700410570 /* FLHttpTests.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E3C72B1654152700410570 /* FLHttpTests.h */; };
+		27E3C75C1654152700410570 /* FLHttpTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3C72C1654152700410570 /* FLHttpTests.m */; };
+		27E3C75D1654152700410570 /* FLHttpTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3C72C1654152700410570 /* FLHttpTests.m */; };
+		27E3C75E1654152700410570 /* FLHttpTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3C72C1654152700410570 /* FLHttpTests.m */; };
+		27E3C75F1654152700410570 /* FLHttpTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3C72C1654152700410570 /* FLHttpTests.m */; };
+		27E3C7601654152700410570 /* FLJobTests.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E3C72D1654152700410570 /* FLJobTests.h */; };
+		27E3C7611654152700410570 /* FLJobTests.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E3C72D1654152700410570 /* FLJobTests.h */; };
+		27E3C7621654152700410570 /* FLJobTests.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E3C72D1654152700410570 /* FLJobTests.h */; };
+		27E3C7631654152700410570 /* FLJobTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3C72E1654152700410570 /* FLJobTests.m */; };
+		27E3C7641654152700410570 /* FLJobTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3C72E1654152700410570 /* FLJobTests.m */; };
+		27E3C7651654152700410570 /* FLJobTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3C72E1654152700410570 /* FLJobTests.m */; };
+		27E3C7661654152700410570 /* FLJobTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3C72E1654152700410570 /* FLJobTests.m */; };
+		27E3C7671654152700410570 /* FLNotifierSanityCheck.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E3C72F1654152700410570 /* FLNotifierSanityCheck.h */; };
+		27E3C7681654152700410570 /* FLNotifierSanityCheck.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E3C72F1654152700410570 /* FLNotifierSanityCheck.h */; };
+		27E3C7691654152700410570 /* FLNotifierSanityCheck.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E3C72F1654152700410570 /* FLNotifierSanityCheck.h */; };
+		27E3C76A1654152700410570 /* FLNotifierSanityCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3C7301654152700410570 /* FLNotifierSanityCheck.m */; };
+		27E3C76B1654152700410570 /* FLNotifierSanityCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3C7301654152700410570 /* FLNotifierSanityCheck.m */; };
+		27E3C76C1654152700410570 /* FLNotifierSanityCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3C7301654152700410570 /* FLNotifierSanityCheck.m */; };
+		27E3C76D1654152700410570 /* FLNotifierSanityCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3C7301654152700410570 /* FLNotifierSanityCheck.m */; };
+		27E3C76E1654152700410570 /* FLObjcUnitTests.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E3C7311654152700410570 /* FLObjcUnitTests.h */; };
+		27E3C76F1654152700410570 /* FLObjcUnitTests.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E3C7311654152700410570 /* FLObjcUnitTests.h */; };
+		27E3C7701654152700410570 /* FLObjcUnitTests.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E3C7311654152700410570 /* FLObjcUnitTests.h */; };
+		27E3C7711654152700410570 /* FLObjcUnitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3C7321654152700410570 /* FLObjcUnitTests.m */; };
+		27E3C7721654152700410570 /* FLObjcUnitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3C7321654152700410570 /* FLObjcUnitTests.m */; };
+		27E3C7731654152700410570 /* FLObjcUnitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3C7321654152700410570 /* FLObjcUnitTests.m */; };
+		27E3C7741654152700410570 /* FLObjcUnitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3C7321654152700410570 /* FLObjcUnitTests.m */; };
+		27E3C7751654152700410570 /* FLOperationUnitTest.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E3C7331654152700410570 /* FLOperationUnitTest.h */; };
+		27E3C7761654152700410570 /* FLOperationUnitTest.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E3C7331654152700410570 /* FLOperationUnitTest.h */; };
+		27E3C7771654152700410570 /* FLOperationUnitTest.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E3C7331654152700410570 /* FLOperationUnitTest.h */; };
+		27E3C7781654152700410570 /* FLOperationUnitTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3C7341654152700410570 /* FLOperationUnitTest.m */; };
+		27E3C7791654152700410570 /* FLOperationUnitTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3C7341654152700410570 /* FLOperationUnitTest.m */; };
+		27E3C77A1654152700410570 /* FLOperationUnitTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3C7341654152700410570 /* FLOperationUnitTest.m */; };
+		27E3C77B1654152700410570 /* FLOperationUnitTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3C7341654152700410570 /* FLOperationUnitTest.m */; };
+		27E3C77C1654152700410570 /* FLPropertiesTests.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E3C7351654152700410570 /* FLPropertiesTests.h */; };
+		27E3C77D1654152700410570 /* FLPropertiesTests.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E3C7351654152700410570 /* FLPropertiesTests.h */; };
+		27E3C77E1654152700410570 /* FLPropertiesTests.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E3C7351654152700410570 /* FLPropertiesTests.h */; };
+		27E3C77F1654152700410570 /* FLPropertiesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3C7361654152700410570 /* FLPropertiesTests.m */; };
+		27E3C7801654152700410570 /* FLPropertiesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3C7361654152700410570 /* FLPropertiesTests.m */; };
+		27E3C7811654152700410570 /* FLPropertiesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3C7361654152700410570 /* FLPropertiesTests.m */; };
+		27E3C7821654152700410570 /* FLPropertiesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3C7361654152700410570 /* FLPropertiesTests.m */; };
+		27E3C7831654152700410570 /* FLTcpConnectionTests.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E3C7371654152700410570 /* FLTcpConnectionTests.h */; };
+		27E3C7841654152700410570 /* FLTcpConnectionTests.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E3C7371654152700410570 /* FLTcpConnectionTests.h */; };
+		27E3C7851654152700410570 /* FLTcpConnectionTests.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E3C7371654152700410570 /* FLTcpConnectionTests.h */; };
+		27E3C7861654152700410570 /* FLTcpConnectionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3C7381654152700410570 /* FLTcpConnectionTests.m */; };
+		27E3C7871654152700410570 /* FLTcpConnectionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3C7381654152700410570 /* FLTcpConnectionTests.m */; };
+		27E3C7881654152700410570 /* FLTcpConnectionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3C7381654152700410570 /* FLTcpConnectionTests.m */; };
+		27E3C7891654152700410570 /* FLTcpConnectionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3C7381654152700410570 /* FLTcpConnectionTests.m */; };
+		27E3C78A1654152700410570 /* FLUnitTestSelfTests.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E3C7391654152700410570 /* FLUnitTestSelfTests.h */; };
+		27E3C78B1654152700410570 /* FLUnitTestSelfTests.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E3C7391654152700410570 /* FLUnitTestSelfTests.h */; };
+		27E3C78C1654152700410570 /* FLUnitTestSelfTests.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E3C7391654152700410570 /* FLUnitTestSelfTests.h */; };
+		27E3C78D1654152700410570 /* FLUnitTestSelfTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3C73A1654152700410570 /* FLUnitTestSelfTests.m */; };
+		27E3C78E1654152700410570 /* FLUnitTestSelfTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3C73A1654152700410570 /* FLUnitTestSelfTests.m */; };
+		27E3C78F1654152700410570 /* FLUnitTestSelfTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3C73A1654152700410570 /* FLUnitTestSelfTests.m */; };
+		27E3C7901654152700410570 /* FLUnitTestSelfTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3C73A1654152700410570 /* FLUnitTestSelfTests.m */; };
+		27E3C7911654152700410570 /* FLWeakRefTests.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E3C73B1654152700410570 /* FLWeakRefTests.h */; };
+		27E3C7921654152700410570 /* FLWeakRefTests.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E3C73B1654152700410570 /* FLWeakRefTests.h */; };
+		27E3C7931654152700410570 /* FLWeakRefTests.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E3C73B1654152700410570 /* FLWeakRefTests.h */; };
+		27E3C7941654152700410570 /* FLWeakRefTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3C73C1654152700410570 /* FLWeakRefTests.m */; };
+		27E3C7951654152700410570 /* FLWeakRefTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3C73C1654152700410570 /* FLWeakRefTests.m */; };
+		27E3C7961654152700410570 /* FLWeakRefTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3C73C1654152700410570 /* FLWeakRefTests.m */; };
+		27E3C7971654152700410570 /* FLWeakRefTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3C73C1654152700410570 /* FLWeakRefTests.m */; };
+		27E3C7991654156D00410570 /* FishLampCoreTests-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27E3C7981654156D00410570 /* FishLampCoreTests-Prefix.pch */; };
+		27E3C79A1654156D00410570 /* FishLampCoreTests-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27E3C7981654156D00410570 /* FishLampCoreTests-Prefix.pch */; };
+		27E3C79B1654156D00410570 /* FishLampCoreTests-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27E3C7981654156D00410570 /* FishLampCoreTests-Prefix.pch */; };
+		27E3C80116541A2E00410570 /* FLTimeoutTests.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E3C7FF16541A2E00410570 /* FLTimeoutTests.h */; };
+		27E3C80216541A2E00410570 /* FLTimeoutTests.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E3C7FF16541A2E00410570 /* FLTimeoutTests.h */; };
+		27E3C80316541A2E00410570 /* FLTimeoutTests.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E3C7FF16541A2E00410570 /* FLTimeoutTests.h */; };
+		27E3C80416541A2E00410570 /* FLTimeoutTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3C80016541A2E00410570 /* FLTimeoutTests.m */; };
+		27E3C80516541A2E00410570 /* FLTimeoutTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3C80016541A2E00410570 /* FLTimeoutTests.m */; };
+		27E3C80616541A2E00410570 /* FLTimeoutTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3C80016541A2E00410570 /* FLTimeoutTests.m */; };
+		27E3C80716541A2E00410570 /* FLTimeoutTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3C80016541A2E00410570 /* FLTimeoutTests.m */; };
+		27E3C814165430D200410570 /* FLObservableTests.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E3C812165430D200410570 /* FLObservableTests.h */; };
+		27E3C815165430D200410570 /* FLObservableTests.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E3C812165430D200410570 /* FLObservableTests.h */; };
+		27E3C816165430D200410570 /* FLObservableTests.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E3C812165430D200410570 /* FLObservableTests.h */; };
+		27E3C817165430D200410570 /* FLObservableTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3C813165430D200410570 /* FLObservableTests.m */; };
+		27E3C818165430D200410570 /* FLObservableTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3C813165430D200410570 /* FLObservableTests.m */; };
+		27E3C819165430D200410570 /* FLObservableTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3C813165430D200410570 /* FLObservableTests.m */; };
+		27E3C81A165430D200410570 /* FLObservableTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3C813165430D200410570 /* FLObservableTests.m */; };
+		27E3C81D1654317400410570 /* FLFrameworkSanityChecks.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E3C81B1654317300410570 /* FLFrameworkSanityChecks.h */; };
+		27E3C81E1654317400410570 /* FLFrameworkSanityChecks.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E3C81B1654317300410570 /* FLFrameworkSanityChecks.h */; };
+		27E3C81F1654317400410570 /* FLFrameworkSanityChecks.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E3C81B1654317300410570 /* FLFrameworkSanityChecks.h */; };
+		27E3C8201654317400410570 /* FLFrameworkSanityChecks.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3C81C1654317300410570 /* FLFrameworkSanityChecks.m */; };
+		27E3C8211654317400410570 /* FLFrameworkSanityChecks.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3C81C1654317300410570 /* FLFrameworkSanityChecks.m */; };
+		27E3C8221654317400410570 /* FLFrameworkSanityChecks.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3C81C1654317300410570 /* FLFrameworkSanityChecks.m */; };
+		27E3C8231654317400410570 /* FLFrameworkSanityChecks.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3C81C1654317300410570 /* FLFrameworkSanityChecks.m */; };
+		27E3C8261654494300410570 /* FLDeallocNotifierSanityChecks.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E3C8241654494100410570 /* FLDeallocNotifierSanityChecks.h */; };
+		27E3C8271654494300410570 /* FLDeallocNotifierSanityChecks.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E3C8241654494100410570 /* FLDeallocNotifierSanityChecks.h */; };
+		27E3C8281654494300410570 /* FLDeallocNotifierSanityChecks.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E3C8241654494100410570 /* FLDeallocNotifierSanityChecks.h */; };
+		27E3C8291654494300410570 /* FLDeallocNotifierSanityChecks.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3C8251654494100410570 /* FLDeallocNotifierSanityChecks.m */; };
+		27E3C82A1654494300410570 /* FLDeallocNotifierSanityChecks.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3C8251654494100410570 /* FLDeallocNotifierSanityChecks.m */; };
+		27E3C82B1654494300410570 /* FLDeallocNotifierSanityChecks.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3C8251654494100410570 /* FLDeallocNotifierSanityChecks.m */; };
+		27E3C82C1654494300410570 /* FLDeallocNotifierSanityChecks.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3C8251654494100410570 /* FLDeallocNotifierSanityChecks.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		27E3C7B71654165300410570 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27E3C79C165415B100410570 /* FishLampCore.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 27A43AB415CDCC89001CB13E;
+			remoteInfo = FishLampCoreiOS;
+		};
+		27E3C7B91654165300410570 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27E3C79C165415B100410570 /* FishLampCore.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 27A43AC415CDCCCB001CB13E;
+			remoteInfo = FishLampCoreMac;
+		};
+		27E3C7BB1654165300410570 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27E3C79C165415B100410570 /* FishLampCore.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 27048EF0161CB58600C38ADA;
+			remoteInfo = FishLampCoreMac32;
+		};
+		27E3C7BD1654165300410570 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27E3C79C165415B100410570 /* FishLampCore.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 27314C79165328400027850D;
+			remoteInfo = FishLampCoreMacLegacy;
+		};
+		27E3C7C01654166B00410570 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27E3C79C165415B100410570 /* FishLampCore.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 27A43AC315CDCCCB001CB13E;
+			remoteInfo = FishLampCoreMac;
+		};
+		27E3C7C21654167000410570 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27E3C79C165415B100410570 /* FishLampCore.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 27A43AB315CDCC89001CB13E;
+			remoteInfo = FishLampCoreiOS;
+		};
+		27E3C7C41654167500410570 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27E3C79C165415B100410570 /* FishLampCore.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 27048B70161CB58600C38ADA;
+			remoteInfo = FishLampCoreMac32;
+		};
+		27E3C7C61654167900410570 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27E3C79C165415B100410570 /* FishLampCore.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 273148B9165328400027850D;
+			remoteInfo = FishLampCoreMacLegacy;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		27A43AB215CDCC89001CB13E /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/${PRODUCT_NAME}";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		27048EF0161CB58600C38ADA /* libFishLampCoreTestsMac32.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libFishLampCoreTestsMac32.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		270D02DC15E9B1F500ED5FB0 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/AppKit.framework; sourceTree = DEVELOPER_DIR; };
+		270D02DD15E9B1F600ED5FB0 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
+		270D02DE15E9B1F800ED5FB0 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/CoreFoundation.framework; sourceTree = DEVELOPER_DIR; };
+		270D02DF15E9B1F900ED5FB0 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/CoreServices.framework; sourceTree = DEVELOPER_DIR; };
+		270D02E015E9B1FA00ED5FB0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		270D02E115E9B1FD00ED5FB0 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/usr/lib/libsqlite3.0.dylib; sourceTree = DEVELOPER_DIR; };
+		270D02E215E9B1FE00ED5FB0 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
+		270D02E315E9B1FF00ED5FB0 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
+		270DFDC815E99BAC00ED5FB0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		2731477D1652D4880027850D /* SharedTargetSettings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = SharedTargetSettings.xcconfig; sourceTree = "<group>"; };
+		27314C79165328400027850D /* libFishLampCoreTestsMacLegacy.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libFishLampCoreTestsMacLegacy.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		276CE8EE15E54B2F000A5CE6 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		276CE8EF15E54B30000A5CE6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		276CE8F015E54B31000A5CE6 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		276CE8F115E54B33000A5CE6 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		276CE90015E54BF0000A5CE6 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		276CE90215E54BFE000A5CE6 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		276CE90915E54C89000A5CE6 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		276CE90A15E54C8A000A5CE6 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		276CE90B15E54C8A000A5CE6 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		276CE90C15E54C8B000A5CE6 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		276CE90D15E54C8D000A5CE6 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		276CE90E15E54C8E000A5CE6 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		276CE90F15E54C8E000A5CE6 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		276CE91015E54C8F000A5CE6 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		276CE91115E54C8F000A5CE6 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		276CE91215E54C90000A5CE6 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		276CE91315E54C90000A5CE6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		276CE91415E54C91000A5CE6 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		276CE91515E54C91000A5CE6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		276CE92615E54D45000A5CE6 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		27A43A7F15CDCC1B001CB13E /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		27A43A8215CDCC1B001CB13E /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		27A43A8415CDCC1B001CB13E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		27A43AA415CDCC73001CB13E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		27A43AB415CDCC89001CB13E /* libFishLampCoreTestsiOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libFishLampCoreTestsiOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		27A43AC415CDCCCB001CB13E /* libFishLampCoreTestsMac.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libFishLampCoreTestsMac.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		27E3C71B165414EA00410570 /* FishLampProjectSettingsDebug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FishLampProjectSettingsDebug.xcconfig; sourceTree = "<group>"; };
+		27E3C71C165414EA00410570 /* FishLampProjectSettingsRelease.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FishLampProjectSettingsRelease.xcconfig; sourceTree = "<group>"; };
+		27E3C71D165414EA00410570 /* FishLampProjectSettingsTest.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FishLampProjectSettingsTest.xcconfig; sourceTree = "<group>"; };
+		27E3C71E165414EA00410570 /* FishLampTargetSettingsiOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FishLampTargetSettingsiOS.xcconfig; sourceTree = "<group>"; };
+		27E3C71F165414EA00410570 /* FishLampTargetSettingsMac.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FishLampTargetSettingsMac.xcconfig; sourceTree = "<group>"; };
+		27E3C720165414EA00410570 /* FishLampTargetSettingsMac32.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FishLampTargetSettingsMac32.xcconfig; sourceTree = "<group>"; };
+		27E3C721165414EA00410570 /* FishLampTargetSettingsMacLegacy.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FishLampTargetSettingsMacLegacy.xcconfig; sourceTree = "<group>"; };
+		27E3C7231654152700410570 /* FLAsyncTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAsyncTests.h; sourceTree = "<group>"; };
+		27E3C7241654152700410570 /* FLAsyncTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAsyncTests.m; sourceTree = "<group>"; };
+		27E3C7251654152700410570 /* FLByteBufferTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLByteBufferTests.h; sourceTree = "<group>"; };
+		27E3C7261654152700410570 /* FLByteBufferTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLByteBufferTests.m; sourceTree = "<group>"; };
+		27E3C7271654152700410570 /* FLDnsConnectionTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLDnsConnectionTests.h; sourceTree = "<group>"; };
+		27E3C7281654152700410570 /* FLDnsConnectionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLDnsConnectionTests.m; sourceTree = "<group>"; };
+		27E3C7291654152700410570 /* FLFancyStringTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLFancyStringTests.h; sourceTree = "<group>"; };
+		27E3C72A1654152700410570 /* FLFancyStringTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLFancyStringTests.m; sourceTree = "<group>"; };
+		27E3C72B1654152700410570 /* FLHttpTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLHttpTests.h; sourceTree = "<group>"; };
+		27E3C72C1654152700410570 /* FLHttpTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLHttpTests.m; sourceTree = "<group>"; };
+		27E3C72D1654152700410570 /* FLJobTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLJobTests.h; sourceTree = "<group>"; };
+		27E3C72E1654152700410570 /* FLJobTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLJobTests.m; sourceTree = "<group>"; };
+		27E3C72F1654152700410570 /* FLNotifierSanityCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLNotifierSanityCheck.h; sourceTree = "<group>"; };
+		27E3C7301654152700410570 /* FLNotifierSanityCheck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLNotifierSanityCheck.m; sourceTree = "<group>"; };
+		27E3C7311654152700410570 /* FLObjcUnitTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLObjcUnitTests.h; sourceTree = "<group>"; };
+		27E3C7321654152700410570 /* FLObjcUnitTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLObjcUnitTests.m; sourceTree = "<group>"; };
+		27E3C7331654152700410570 /* FLOperationUnitTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLOperationUnitTest.h; sourceTree = "<group>"; };
+		27E3C7341654152700410570 /* FLOperationUnitTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLOperationUnitTest.m; sourceTree = "<group>"; };
+		27E3C7351654152700410570 /* FLPropertiesTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLPropertiesTests.h; sourceTree = "<group>"; };
+		27E3C7361654152700410570 /* FLPropertiesTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLPropertiesTests.m; sourceTree = "<group>"; };
+		27E3C7371654152700410570 /* FLTcpConnectionTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLTcpConnectionTests.h; sourceTree = "<group>"; };
+		27E3C7381654152700410570 /* FLTcpConnectionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLTcpConnectionTests.m; sourceTree = "<group>"; };
+		27E3C7391654152700410570 /* FLUnitTestSelfTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLUnitTestSelfTests.h; sourceTree = "<group>"; };
+		27E3C73A1654152700410570 /* FLUnitTestSelfTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLUnitTestSelfTests.m; sourceTree = "<group>"; };
+		27E3C73B1654152700410570 /* FLWeakRefTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLWeakRefTests.h; sourceTree = "<group>"; };
+		27E3C73C1654152700410570 /* FLWeakRefTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLWeakRefTests.m; sourceTree = "<group>"; };
+		27E3C7981654156D00410570 /* FishLampCoreTests-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "FishLampCoreTests-Prefix.pch"; path = "Classes/FishLampCoreTests-Prefix.pch"; sourceTree = "<group>"; };
+		27E3C79C165415B100410570 /* FishLampCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FishLampCore.xcodeproj; path = ../FishLampCore.xcodeproj; sourceTree = "<group>"; };
+		27E3C7FF16541A2E00410570 /* FLTimeoutTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLTimeoutTests.h; sourceTree = "<group>"; };
+		27E3C80016541A2E00410570 /* FLTimeoutTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLTimeoutTests.m; sourceTree = "<group>"; };
+		27E3C812165430D200410570 /* FLObservableTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLObservableTests.h; sourceTree = "<group>"; };
+		27E3C813165430D200410570 /* FLObservableTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLObservableTests.m; sourceTree = "<group>"; };
+		27E3C81B1654317300410570 /* FLFrameworkSanityChecks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLFrameworkSanityChecks.h; sourceTree = "<group>"; };
+		27E3C81C1654317300410570 /* FLFrameworkSanityChecks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLFrameworkSanityChecks.m; sourceTree = "<group>"; };
+		27E3C8241654494100410570 /* FLDeallocNotifierSanityChecks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLDeallocNotifierSanityChecks.h; sourceTree = "<group>"; };
+		27E3C8251654494100410570 /* FLDeallocNotifierSanityChecks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLDeallocNotifierSanityChecks.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		27048D0F161CB58600C38ADA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27048D10161CB58600C38ADA /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27314A76165328400027850D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27314A77165328400027850D /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27A43AB115CDCC89001CB13E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27A43AB515CDCC89001CB13E /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27A43AC115CDCCCB001CB13E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27A43AC515CDCCCB001CB13E /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2731477B1652D2D30027850D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				27E3C7981654156D00410570 /* FishLampCoreTests-Prefix.pch */,
+				27E3C71A165414EA00410570 /* XcodeConfigs-3up */,
+				2731477D1652D4880027850D /* SharedTargetSettings.xcconfig */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		276CE92815E54E31000A5CE6 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				27A43AA415CDCC73001CB13E /* Foundation.framework */,
+				276CE92615E54D45000A5CE6 /* libsqlite3.0.dylib */,
+				276CE90915E54C89000A5CE6 /* AssetsLibrary.framework */,
+				276CE90A15E54C8A000A5CE6 /* AVFoundation.framework */,
+				276CE90B15E54C8A000A5CE6 /* CFNetwork.framework */,
+				276CE90C15E54C8B000A5CE6 /* CoreLocation.framework */,
+				276CE90D15E54C8D000A5CE6 /* CoreMedia.framework */,
+				276CE90E15E54C8E000A5CE6 /* CoreMotion.framework */,
+				276CE90F15E54C8E000A5CE6 /* CoreText.framework */,
+				276CE91015E54C8F000A5CE6 /* ImageIO.framework */,
+				276CE91115E54C8F000A5CE6 /* MapKit.framework */,
+				276CE91215E54C90000A5CE6 /* MessageUI.framework */,
+				276CE91315E54C90000A5CE6 /* QuartzCore.framework */,
+				276CE91415E54C91000A5CE6 /* SystemConfiguration.framework */,
+				276CE91515E54C91000A5CE6 /* UIKit.framework */,
+				276CE90215E54BFE000A5CE6 /* MobileCoreServices.framework */,
+				276CE90015E54BF0000A5CE6 /* MediaPlayer.framework */,
+				276CE8EE15E54B2F000A5CE6 /* CoreFoundation.framework */,
+				276CE8EF15E54B30000A5CE6 /* CoreGraphics.framework */,
+				276CE8F015E54B31000A5CE6 /* CoreImage.framework */,
+				276CE8F115E54B33000A5CE6 /* Security.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		276CE92915E54E7F000A5CE6 /* OSX */ = {
+			isa = PBXGroup;
+			children = (
+				27A43A8215CDCC1B001CB13E /* AppKit.framework */,
+				27A43A8415CDCC1B001CB13E /* Foundation.framework */,
+				27A43A7F15CDCC1B001CB13E /* Cocoa.framework */,
+			);
+			name = OSX;
+			sourceTree = "<group>";
+		};
+		27A43A7115CDCC1B001CB13E = {
+			isa = PBXGroup;
+			children = (
+				27E3C7221654152700410570 /* Classes */,
+				2731477B1652D2D30027850D /* Supporting Files */,
+				27A43A7E15CDCC1B001CB13E /* Frameworks */,
+				27A43A7D15CDCC1B001CB13E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		27A43A7D15CDCC1B001CB13E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				27A43AB415CDCC89001CB13E /* libFishLampCoreTestsiOS.a */,
+				27A43AC415CDCCCB001CB13E /* libFishLampCoreTestsMac.a */,
+				27048EF0161CB58600C38ADA /* libFishLampCoreTestsMac32.a */,
+				27314C79165328400027850D /* libFishLampCoreTestsMacLegacy.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		27A43A7E15CDCC1B001CB13E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				27E3C79C165415B100410570 /* FishLampCore.xcodeproj */,
+				270D02DC15E9B1F500ED5FB0 /* AppKit.framework */,
+				270D02DD15E9B1F600ED5FB0 /* Cocoa.framework */,
+				270D02DE15E9B1F800ED5FB0 /* CoreFoundation.framework */,
+				270D02DF15E9B1F900ED5FB0 /* CoreServices.framework */,
+				270D02E015E9B1FA00ED5FB0 /* Foundation.framework */,
+				270D02E115E9B1FD00ED5FB0 /* libsqlite3.0.dylib */,
+				270D02E215E9B1FE00ED5FB0 /* Security.framework */,
+				270D02E315E9B1FF00ED5FB0 /* SystemConfiguration.framework */,
+				276CE92915E54E7F000A5CE6 /* OSX */,
+				276CE92815E54E31000A5CE6 /* iOS */,
+				270DFDC815E99BAC00ED5FB0 /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		27E3C71A165414EA00410570 /* XcodeConfigs-3up */ = {
+			isa = PBXGroup;
+			children = (
+				27E3C71B165414EA00410570 /* FishLampProjectSettingsDebug.xcconfig */,
+				27E3C71C165414EA00410570 /* FishLampProjectSettingsRelease.xcconfig */,
+				27E3C71D165414EA00410570 /* FishLampProjectSettingsTest.xcconfig */,
+				27E3C71E165414EA00410570 /* FishLampTargetSettingsiOS.xcconfig */,
+				27E3C71F165414EA00410570 /* FishLampTargetSettingsMac.xcconfig */,
+				27E3C720165414EA00410570 /* FishLampTargetSettingsMac32.xcconfig */,
+				27E3C721165414EA00410570 /* FishLampTargetSettingsMacLegacy.xcconfig */,
+			);
+			name = "XcodeConfigs-3up";
+			path = "../../FishLampXcodeConfigs/XcodeConfigs-3up";
+			sourceTree = "<group>";
+		};
+		27E3C7221654152700410570 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				27E3C7FE165419C800410570 /* Misc */,
+				27E3C7FD1654198B00410570 /* Network */,
+				27E3C7FC1654198000410570 /* Async */,
+				27E3C7FA1654193F00410570 /* SanityChecks */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		27E3C7B11654165300410570 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				27E3C7B81654165300410570 /* libFishLampCoreiOS.a */,
+				27E3C7BA1654165300410570 /* libFishLampCoreMac.a */,
+				27E3C7BC1654165300410570 /* libFishLampCoreMac32.a */,
+				27E3C7BE1654165300410570 /* libFishLampCoreMacLegacy.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		27E3C7FA1654193F00410570 /* SanityChecks */ = {
+			isa = PBXGroup;
+			children = (
+				27E3C7351654152700410570 /* FLPropertiesTests.h */,
+				27E3C7361654152700410570 /* FLPropertiesTests.m */,
+				27E3C7311654152700410570 /* FLObjcUnitTests.h */,
+				27E3C7321654152700410570 /* FLObjcUnitTests.m */,
+				27E3C7391654152700410570 /* FLUnitTestSelfTests.h */,
+				27E3C73A1654152700410570 /* FLUnitTestSelfTests.m */,
+				27E3C73B1654152700410570 /* FLWeakRefTests.h */,
+				27E3C73C1654152700410570 /* FLWeakRefTests.m */,
+				27E3C72F1654152700410570 /* FLNotifierSanityCheck.h */,
+				27E3C7301654152700410570 /* FLNotifierSanityCheck.m */,
+				27E3C812165430D200410570 /* FLObservableTests.h */,
+				27E3C813165430D200410570 /* FLObservableTests.m */,
+				27E3C81B1654317300410570 /* FLFrameworkSanityChecks.h */,
+				27E3C81C1654317300410570 /* FLFrameworkSanityChecks.m */,
+				27E3C8241654494100410570 /* FLDeallocNotifierSanityChecks.h */,
+				27E3C8251654494100410570 /* FLDeallocNotifierSanityChecks.m */,
+			);
+			name = SanityChecks;
+			sourceTree = "<group>";
+		};
+		27E3C7FC1654198000410570 /* Async */ = {
+			isa = PBXGroup;
+			children = (
+				27E3C72D1654152700410570 /* FLJobTests.h */,
+				27E3C72E1654152700410570 /* FLJobTests.m */,
+				27E3C7331654152700410570 /* FLOperationUnitTest.h */,
+				27E3C7341654152700410570 /* FLOperationUnitTest.m */,
+				27E3C7231654152700410570 /* FLAsyncTests.h */,
+				27E3C7241654152700410570 /* FLAsyncTests.m */,
+				27E3C7FF16541A2E00410570 /* FLTimeoutTests.h */,
+				27E3C80016541A2E00410570 /* FLTimeoutTests.m */,
+			);
+			name = Async;
+			sourceTree = "<group>";
+		};
+		27E3C7FD1654198B00410570 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				27E3C7271654152700410570 /* FLDnsConnectionTests.h */,
+				27E3C7281654152700410570 /* FLDnsConnectionTests.m */,
+				27E3C72B1654152700410570 /* FLHttpTests.h */,
+				27E3C72C1654152700410570 /* FLHttpTests.m */,
+				27E3C7371654152700410570 /* FLTcpConnectionTests.h */,
+				27E3C7381654152700410570 /* FLTcpConnectionTests.m */,
+			);
+			name = Network;
+			sourceTree = "<group>";
+		};
+		27E3C7FE165419C800410570 /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				27E3C7251654152700410570 /* FLByteBufferTests.h */,
+				27E3C7261654152700410570 /* FLByteBufferTests.m */,
+				27E3C7291654152700410570 /* FLFancyStringTests.h */,
+				27E3C72A1654152700410570 /* FLFancyStringTests.m */,
+			);
+			name = Misc;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		27048D11161CB58600C38ADA /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27E3C73E1654152700410570 /* FLAsyncTests.h in Headers */,
+				27E3C7451654152700410570 /* FLByteBufferTests.h in Headers */,
+				27E3C74C1654152700410570 /* FLDnsConnectionTests.h in Headers */,
+				27E3C7531654152700410570 /* FLFancyStringTests.h in Headers */,
+				27E3C75A1654152700410570 /* FLHttpTests.h in Headers */,
+				27E3C7611654152700410570 /* FLJobTests.h in Headers */,
+				27E3C7681654152700410570 /* FLNotifierSanityCheck.h in Headers */,
+				27E3C76F1654152700410570 /* FLObjcUnitTests.h in Headers */,
+				27E3C7761654152700410570 /* FLOperationUnitTest.h in Headers */,
+				27E3C77D1654152700410570 /* FLPropertiesTests.h in Headers */,
+				27E3C7841654152700410570 /* FLTcpConnectionTests.h in Headers */,
+				27E3C78B1654152700410570 /* FLUnitTestSelfTests.h in Headers */,
+				27E3C7921654152700410570 /* FLWeakRefTests.h in Headers */,
+				27E3C79A1654156D00410570 /* FishLampCoreTests-Prefix.pch in Headers */,
+				27E3C80216541A2E00410570 /* FLTimeoutTests.h in Headers */,
+				27E3C815165430D200410570 /* FLObservableTests.h in Headers */,
+				27E3C81E1654317400410570 /* FLFrameworkSanityChecks.h in Headers */,
+				27E3C8271654494300410570 /* FLDeallocNotifierSanityChecks.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27314A78165328400027850D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27E3C73F1654152700410570 /* FLAsyncTests.h in Headers */,
+				27E3C7461654152700410570 /* FLByteBufferTests.h in Headers */,
+				27E3C74D1654152700410570 /* FLDnsConnectionTests.h in Headers */,
+				27E3C7541654152700410570 /* FLFancyStringTests.h in Headers */,
+				27E3C75B1654152700410570 /* FLHttpTests.h in Headers */,
+				27E3C7621654152700410570 /* FLJobTests.h in Headers */,
+				27E3C7691654152700410570 /* FLNotifierSanityCheck.h in Headers */,
+				27E3C7701654152700410570 /* FLObjcUnitTests.h in Headers */,
+				27E3C7771654152700410570 /* FLOperationUnitTest.h in Headers */,
+				27E3C77E1654152700410570 /* FLPropertiesTests.h in Headers */,
+				27E3C7851654152700410570 /* FLTcpConnectionTests.h in Headers */,
+				27E3C78C1654152700410570 /* FLUnitTestSelfTests.h in Headers */,
+				27E3C7931654152700410570 /* FLWeakRefTests.h in Headers */,
+				27E3C79B1654156D00410570 /* FishLampCoreTests-Prefix.pch in Headers */,
+				27E3C80316541A2E00410570 /* FLTimeoutTests.h in Headers */,
+				27E3C816165430D200410570 /* FLObservableTests.h in Headers */,
+				27E3C81F1654317400410570 /* FLFrameworkSanityChecks.h in Headers */,
+				27E3C8281654494300410570 /* FLDeallocNotifierSanityChecks.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27A43AC215CDCCCB001CB13E /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27E3C73D1654152700410570 /* FLAsyncTests.h in Headers */,
+				27E3C7441654152700410570 /* FLByteBufferTests.h in Headers */,
+				27E3C74B1654152700410570 /* FLDnsConnectionTests.h in Headers */,
+				27E3C7521654152700410570 /* FLFancyStringTests.h in Headers */,
+				27E3C7591654152700410570 /* FLHttpTests.h in Headers */,
+				27E3C7601654152700410570 /* FLJobTests.h in Headers */,
+				27E3C7671654152700410570 /* FLNotifierSanityCheck.h in Headers */,
+				27E3C76E1654152700410570 /* FLObjcUnitTests.h in Headers */,
+				27E3C7751654152700410570 /* FLOperationUnitTest.h in Headers */,
+				27E3C77C1654152700410570 /* FLPropertiesTests.h in Headers */,
+				27E3C7831654152700410570 /* FLTcpConnectionTests.h in Headers */,
+				27E3C78A1654152700410570 /* FLUnitTestSelfTests.h in Headers */,
+				27E3C7911654152700410570 /* FLWeakRefTests.h in Headers */,
+				27E3C7991654156D00410570 /* FishLampCoreTests-Prefix.pch in Headers */,
+				27E3C80116541A2E00410570 /* FLTimeoutTests.h in Headers */,
+				27E3C814165430D200410570 /* FLObservableTests.h in Headers */,
+				27E3C81D1654317400410570 /* FLFrameworkSanityChecks.h in Headers */,
+				27E3C8261654494300410570 /* FLDeallocNotifierSanityChecks.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		27048B70161CB58600C38ADA /* FishLampCoreTestsMac32 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 27048EEB161CB58600C38ADA /* Build configuration list for PBXNativeTarget "FishLampCoreTestsMac32" */;
+			buildPhases = (
+				27048B71161CB58600C38ADA /* Sources */,
+				27048D0F161CB58600C38ADA /* Frameworks */,
+				27048D11161CB58600C38ADA /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				27E3C7C51654167500410570 /* PBXTargetDependency */,
+			);
+			name = FishLampCoreTestsMac32;
+			productName = FishLampCocoaApp;
+			productReference = 27048EF0161CB58600C38ADA /* libFishLampCoreTestsMac32.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		273148B9165328400027850D /* FishLampCoreTestsMacLegacy */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 27314C75165328400027850D /* Build configuration list for PBXNativeTarget "FishLampCoreTestsMacLegacy" */;
+			buildPhases = (
+				273148BA165328400027850D /* Sources */,
+				27314A76165328400027850D /* Frameworks */,
+				27314A78165328400027850D /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				27E3C7C71654167900410570 /* PBXTargetDependency */,
+			);
+			name = FishLampCoreTestsMacLegacy;
+			productName = FishLampCommandLine;
+			productReference = 27314C79165328400027850D /* libFishLampCoreTestsMacLegacy.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		27A43AB315CDCC89001CB13E /* FishLampCoreTestsiOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 27A43ABD15CDCC89001CB13E /* Build configuration list for PBXNativeTarget "FishLampCoreTestsiOS" */;
+			buildPhases = (
+				27A43AB015CDCC89001CB13E /* Sources */,
+				27A43AB115CDCC89001CB13E /* Frameworks */,
+				27A43AB215CDCC89001CB13E /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				27E3C7C31654167000410570 /* PBXTargetDependency */,
+			);
+			name = FishLampCoreTestsiOS;
+			productName = FishLampiOS;
+			productReference = 27A43AB415CDCC89001CB13E /* libFishLampCoreTestsiOS.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		27A43AC315CDCCCB001CB13E /* FishLampCoreTestsMac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 27A43ACC15CDCCCB001CB13E /* Build configuration list for PBXNativeTarget "FishLampCoreTestsMac" */;
+			buildPhases = (
+				27A43AC015CDCCCB001CB13E /* Sources */,
+				27A43AC115CDCCCB001CB13E /* Frameworks */,
+				27A43AC215CDCCCB001CB13E /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				27E3C7C11654166B00410570 /* PBXTargetDependency */,
+			);
+			name = FishLampCoreTestsMac;
+			productName = FishLampCommandLine;
+			productReference = 27A43AC415CDCCCB001CB13E /* libFishLampCoreTestsMac.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		27A43A7315CDCC1B001CB13E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = "Mike Fullerton";
+			};
+			buildConfigurationList = 27A43A7615CDCC1B001CB13E /* Build configuration list for PBXProject "FishLampCoreTests" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				English,
+			);
+			mainGroup = 27A43A7115CDCC1B001CB13E;
+			productRefGroup = 27A43A7D15CDCC1B001CB13E /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 27E3C7B11654165300410570 /* Products */;
+					ProjectRef = 27E3C79C165415B100410570 /* FishLampCore.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				27A43AB315CDCC89001CB13E /* FishLampCoreTestsiOS */,
+				27A43AC315CDCCCB001CB13E /* FishLampCoreTestsMac */,
+				27048B70161CB58600C38ADA /* FishLampCoreTestsMac32 */,
+				273148B9165328400027850D /* FishLampCoreTestsMacLegacy */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		27E3C7B81654165300410570 /* libFishLampCoreiOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libFishLampCoreiOS.a;
+			remoteRef = 27E3C7B71654165300410570 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		27E3C7BA1654165300410570 /* libFishLampCoreMac.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libFishLampCoreMac.a;
+			remoteRef = 27E3C7B91654165300410570 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		27E3C7BC1654165300410570 /* libFishLampCoreMac32.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libFishLampCoreMac32.a;
+			remoteRef = 27E3C7BB1654165300410570 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		27E3C7BE1654165300410570 /* libFishLampCoreMacLegacy.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libFishLampCoreMacLegacy.a;
+			remoteRef = 27E3C7BD1654165300410570 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXSourcesBuildPhase section */
+		27048B71161CB58600C38ADA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27E3C7421654152700410570 /* FLAsyncTests.m in Sources */,
+				27E3C7491654152700410570 /* FLByteBufferTests.m in Sources */,
+				27E3C7501654152700410570 /* FLDnsConnectionTests.m in Sources */,
+				27E3C7571654152700410570 /* FLFancyStringTests.m in Sources */,
+				27E3C75E1654152700410570 /* FLHttpTests.m in Sources */,
+				27E3C7651654152700410570 /* FLJobTests.m in Sources */,
+				27E3C76C1654152700410570 /* FLNotifierSanityCheck.m in Sources */,
+				27E3C7731654152700410570 /* FLObjcUnitTests.m in Sources */,
+				27E3C77A1654152700410570 /* FLOperationUnitTest.m in Sources */,
+				27E3C7811654152700410570 /* FLPropertiesTests.m in Sources */,
+				27E3C7881654152700410570 /* FLTcpConnectionTests.m in Sources */,
+				27E3C78F1654152700410570 /* FLUnitTestSelfTests.m in Sources */,
+				27E3C7961654152700410570 /* FLWeakRefTests.m in Sources */,
+				27E3C80616541A2E00410570 /* FLTimeoutTests.m in Sources */,
+				27E3C819165430D200410570 /* FLObservableTests.m in Sources */,
+				27E3C8221654317400410570 /* FLFrameworkSanityChecks.m in Sources */,
+				27E3C82B1654494300410570 /* FLDeallocNotifierSanityChecks.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		273148BA165328400027850D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27E3C7431654152700410570 /* FLAsyncTests.m in Sources */,
+				27E3C74A1654152700410570 /* FLByteBufferTests.m in Sources */,
+				27E3C7511654152700410570 /* FLDnsConnectionTests.m in Sources */,
+				27E3C7581654152700410570 /* FLFancyStringTests.m in Sources */,
+				27E3C75F1654152700410570 /* FLHttpTests.m in Sources */,
+				27E3C7661654152700410570 /* FLJobTests.m in Sources */,
+				27E3C76D1654152700410570 /* FLNotifierSanityCheck.m in Sources */,
+				27E3C7741654152700410570 /* FLObjcUnitTests.m in Sources */,
+				27E3C77B1654152700410570 /* FLOperationUnitTest.m in Sources */,
+				27E3C7821654152700410570 /* FLPropertiesTests.m in Sources */,
+				27E3C7891654152700410570 /* FLTcpConnectionTests.m in Sources */,
+				27E3C7901654152700410570 /* FLUnitTestSelfTests.m in Sources */,
+				27E3C7971654152700410570 /* FLWeakRefTests.m in Sources */,
+				27E3C80716541A2E00410570 /* FLTimeoutTests.m in Sources */,
+				27E3C81A165430D200410570 /* FLObservableTests.m in Sources */,
+				27E3C8231654317400410570 /* FLFrameworkSanityChecks.m in Sources */,
+				27E3C82C1654494300410570 /* FLDeallocNotifierSanityChecks.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27A43AB015CDCC89001CB13E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27E3C7401654152700410570 /* FLAsyncTests.m in Sources */,
+				27E3C7471654152700410570 /* FLByteBufferTests.m in Sources */,
+				27E3C74E1654152700410570 /* FLDnsConnectionTests.m in Sources */,
+				27E3C7551654152700410570 /* FLFancyStringTests.m in Sources */,
+				27E3C75C1654152700410570 /* FLHttpTests.m in Sources */,
+				27E3C7631654152700410570 /* FLJobTests.m in Sources */,
+				27E3C76A1654152700410570 /* FLNotifierSanityCheck.m in Sources */,
+				27E3C7711654152700410570 /* FLObjcUnitTests.m in Sources */,
+				27E3C7781654152700410570 /* FLOperationUnitTest.m in Sources */,
+				27E3C77F1654152700410570 /* FLPropertiesTests.m in Sources */,
+				27E3C7861654152700410570 /* FLTcpConnectionTests.m in Sources */,
+				27E3C78D1654152700410570 /* FLUnitTestSelfTests.m in Sources */,
+				27E3C7941654152700410570 /* FLWeakRefTests.m in Sources */,
+				27E3C80416541A2E00410570 /* FLTimeoutTests.m in Sources */,
+				27E3C817165430D200410570 /* FLObservableTests.m in Sources */,
+				27E3C8201654317400410570 /* FLFrameworkSanityChecks.m in Sources */,
+				27E3C8291654494300410570 /* FLDeallocNotifierSanityChecks.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27A43AC015CDCCCB001CB13E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27E3C7411654152700410570 /* FLAsyncTests.m in Sources */,
+				27E3C7481654152700410570 /* FLByteBufferTests.m in Sources */,
+				27E3C74F1654152700410570 /* FLDnsConnectionTests.m in Sources */,
+				27E3C7561654152700410570 /* FLFancyStringTests.m in Sources */,
+				27E3C75D1654152700410570 /* FLHttpTests.m in Sources */,
+				27E3C7641654152700410570 /* FLJobTests.m in Sources */,
+				27E3C76B1654152700410570 /* FLNotifierSanityCheck.m in Sources */,
+				27E3C7721654152700410570 /* FLObjcUnitTests.m in Sources */,
+				27E3C7791654152700410570 /* FLOperationUnitTest.m in Sources */,
+				27E3C7801654152700410570 /* FLPropertiesTests.m in Sources */,
+				27E3C7871654152700410570 /* FLTcpConnectionTests.m in Sources */,
+				27E3C78E1654152700410570 /* FLUnitTestSelfTests.m in Sources */,
+				27E3C7951654152700410570 /* FLWeakRefTests.m in Sources */,
+				27E3C80516541A2E00410570 /* FLTimeoutTests.m in Sources */,
+				27E3C818165430D200410570 /* FLObservableTests.m in Sources */,
+				27E3C8211654317400410570 /* FLFrameworkSanityChecks.m in Sources */,
+				27E3C82A1654494300410570 /* FLDeallocNotifierSanityChecks.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		27E3C7C11654166B00410570 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FishLampCoreMac;
+			targetProxy = 27E3C7C01654166B00410570 /* PBXContainerItemProxy */;
+		};
+		27E3C7C31654167000410570 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FishLampCoreiOS;
+			targetProxy = 27E3C7C21654167000410570 /* PBXContainerItemProxy */;
+		};
+		27E3C7C51654167500410570 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FishLampCoreMac32;
+			targetProxy = 27E3C7C41654167500410570 /* PBXContainerItemProxy */;
+		};
+		27E3C7C71654167900410570 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FishLampCoreMacLegacy;
+			targetProxy = 27E3C7C61654167900410570 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		27048EEC161CB58600C38ADA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27E3C720165414EA00410570 /* FishLampTargetSettingsMac32.xcconfig */;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		27048EEE161CB58600C38ADA /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27E3C720165414EA00410570 /* FishLampTargetSettingsMac32.xcconfig */;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		27314C76165328400027850D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27E3C721165414EA00410570 /* FishLampTargetSettingsMacLegacy.xcconfig */;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+			};
+			name = Debug;
+		};
+		27314C77165328400027850D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27E3C721165414EA00410570 /* FishLampTargetSettingsMacLegacy.xcconfig */;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+			};
+			name = Release;
+		};
+		27A43A8B15CDCC1B001CB13E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27E3C71B165414EA00410570 /* FishLampProjectSettingsDebug.xcconfig */;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = Debug;
+		};
+		27A43A8C15CDCC1B001CB13E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27E3C71C165414EA00410570 /* FishLampProjectSettingsRelease.xcconfig */;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+			};
+			name = Release;
+		};
+		27A43ABE15CDCC89001CB13E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27E3C71E165414EA00410570 /* FishLampTargetSettingsiOS.xcconfig */;
+			buildSettings = {
+				DSTROOT = /tmp/FishLampiOS.dst;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		27A43ABF15CDCC89001CB13E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27E3C71E165414EA00410570 /* FishLampTargetSettingsiOS.xcconfig */;
+			buildSettings = {
+				DSTROOT = /tmp/FishLampiOS.dst;
+				SKIP_INSTALL = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		27A43ACD15CDCCCB001CB13E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27E3C71F165414EA00410570 /* FishLampTargetSettingsMac.xcconfig */;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+			};
+			name = Debug;
+		};
+		27A43ACE15CDCCCB001CB13E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27E3C71F165414EA00410570 /* FishLampTargetSettingsMac.xcconfig */;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		27048EEB161CB58600C38ADA /* Build configuration list for PBXNativeTarget "FishLampCoreTestsMac32" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27048EEC161CB58600C38ADA /* Debug */,
+				27048EEE161CB58600C38ADA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		27314C75165328400027850D /* Build configuration list for PBXNativeTarget "FishLampCoreTestsMacLegacy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27314C76165328400027850D /* Debug */,
+				27314C77165328400027850D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		27A43A7615CDCC1B001CB13E /* Build configuration list for PBXProject "FishLampCoreTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27A43A8B15CDCC1B001CB13E /* Debug */,
+				27A43A8C15CDCC1B001CB13E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		27A43ABD15CDCC89001CB13E /* Build configuration list for PBXNativeTarget "FishLampCoreTestsiOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27A43ABE15CDCC89001CB13E /* Debug */,
+				27A43ABF15CDCC89001CB13E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		27A43ACC15CDCCCB001CB13E /* Build configuration list for PBXNativeTarget "FishLampCoreTestsMac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27A43ACD15CDCCCB001CB13E /* Debug */,
+				27A43ACE15CDCCCB001CB13E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 27A43A7315CDCC1B001CB13E /* Project object */;
+}

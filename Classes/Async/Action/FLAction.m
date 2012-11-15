@@ -218,13 +218,14 @@ TODO("MF: fix activity updater");
 	[self closeNotification];
     [_operations removeObserver:self];
 
-    release_members_(
-        [_operations release];
-        release_(_progressCallback);
-        release_(_willShowNotificationCallback);
-        release_(_progress);
-        release_(_actionDescription);
-    )
+#if FL_MRC    
+    [_operations release];
+    release_(_progressCallback);
+    release_(_willShowNotificationCallback);
+    release_(_progress);
+    release_(_actionDescription);
+    [super dealloc];
+#endif        
 }
 
 - (NSString*) itemNameInProgress{

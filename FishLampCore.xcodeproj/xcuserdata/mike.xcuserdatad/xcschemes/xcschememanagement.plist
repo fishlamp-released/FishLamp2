@@ -4,20 +4,40 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>CocoaTests.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>20</integer>
+		</dict>
+		<key>FishLampCoreAll.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
 		<key>FishLampCoreMac.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>4</integer>
+			<integer>0</integer>
 		</dict>
 		<key>FishLampCoreMac32.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>6</integer>
+			<integer>1</integer>
+		</dict>
+		<key>FishLampCoreMacLegacy.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+		<key>FishLampCoreTestsMac.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>19</integer>
 		</dict>
 		<key>FishLampCoreiOS.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>1</integer>
+			<integer>16</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
@@ -27,7 +47,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>270D1AC9165460D900E1B451</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>270D1B26165461A900E1B451</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>270DFDC515E99BAC00ED5FB0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>273148B9165328400027850D</key>
 		<dict>
 			<key>primary</key>
 			<true/>

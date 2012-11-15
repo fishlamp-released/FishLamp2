@@ -36,8 +36,6 @@
 
 + (FLUnitTest*) unitTest;
 
-+ (FLUnitTestGroup*) unitTestGroup;
-
 - (void) addTestCase:(FLTestCase*) testCase;
 
 - (FLTestCase*) findTestCaseForName:(NSString*) name;
@@ -46,6 +44,12 @@
 - (void) setupTests; 
 - (void) teardownTests;
 - (BOOL) willRunTests;
+
++ (FLUnitTestGroup*) unitTestGroup;
+
++ (NSArray*) unitTestDependencies;
+
++ (BOOL) unitTestClassDependsOnUnitTestClass:(Class) unitTestClass;
 
 @end
 

@@ -9,7 +9,6 @@
 #import "FLHttpTests.h"
 #import "FLHttpConnection.h"
 
-#if TEST
 @implementation FLHttpTests
 
 - (void) testConnectionToGoogle {
@@ -24,4 +23,3 @@
 }
 
 @end
-#endif

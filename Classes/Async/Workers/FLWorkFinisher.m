@@ -153,20 +153,19 @@
 - (FLResult) waitForResultWithCondition:(FLConditionalBlock) checkCondition {
     
     mrc_retain_(self);
-    BOOL condition = NO;
+    BOOL stop = NO;
     if(checkCondition) {
-        condition = YES;
-        checkCondition(&condition);
+        checkCondition(&stop);
     }
 
     @try {
     // this may not work in all cases - e.g. some iOS apis expect to be called in the main thread
     // and this will cause endless blocking, unfortunately. I've seen this is the AssetLibrary sdk.
-        while(!self.isFinished || condition) {
+        while(!self.isFinished || !stop) {
             [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate date]];
 
             if(checkCondition) {
-                checkCondition(&condition);
+                checkCondition(&stop);
             }
         }
     }
@@ -179,11 +178,12 @@
 }
 
 - (FLResult) waitForResultWithTimeout:(NSTimeInterval) timeout {
-    self.timer = [FLTimeoutTimer timeoutTimer:timeout];
-    [self.timer start:^(FLResult result) {
-        [self setFinishedWithResult:result];
+    NSTimeInterval doneTime = [NSDate timeIntervalSinceReferenceDate] + timeout;
+    return [self waitForResultWithCondition:^(BOOL* stop) {
+        if(doneTime < [NSDate timeIntervalSinceReferenceDate]) {
+            FLThrowError_([NSError timeoutError]);
+        }
     }];
-    return [self waitForResult];
 }
 
 @end
@@ -200,69 +200,5 @@
 }
 
 @end
-
-#if TEST
-@interface FLNotifierSanityCheck : FLSanityCheck
-@end
-
-@implementation FLNotifierSanityCheck
-
-- (void) testSingleCount {
-    
-    __block BOOL fired = NO;
-    
-    FLWorkFinisher* finisher = [FLWorkFinisher finisher:^(FLResult result) { 
-        fired = YES; 
-    }];
-    
-    FLAssert_(!finisher.isFinished);
-    FLAssert_(fired == NO);
-    [finisher setFinished];
-    FLAssert_(finisher.isFinished);
-    FLAssert_(fired == YES);
-}
-
-- (void) testDoubleCount {
-    
-    __block BOOL fired = NO;
-    
-    FLWorkFinisher* finisher = [FLWorkFinisher finisher:^(FLResult result){ fired = YES; }];
-    FLAssert_(!finisher.isFinished);
-    FLAssert_(fired == NO);
-    [finisher setFinished];
-    FLAssert_(finisher.isFinished);
-
-    BOOL gotError = NO;
-    @try {
-        [finisher setFinished];
-        
-    }
-    @catch(NSException* expected) {
-        gotError = YES;
-    }
-    
-    FLAssert_v(gotError == YES, @"expecting an error");
-}
-
-- (void) testBasicAsyncTest {
-
-    FLLog(@"async self test");
-    
-    FLWorkFinisher* finisher = [FLWorkFinisher finisher];
-    
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-        [NSThread sleepForTimeInterval:0.25];
-        FLLog(@"done in thread");
-        [finisher setFinished];
-        });
-    
-    [finisher waitForResult];
-    FLAssert_(finisher.isFinished);
-}
-
-
-@end
-
-#endif
 
 

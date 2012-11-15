@@ -8,17 +8,10 @@
 
 #import "FLFacebookLoadUserPictureOperation.h"
 #import "FLOperationCacheHandler.h"
-
-#if IOS
-#import "FLHttpImageDownloadNetworkResponseHandler.h"
-#endif
-
-#if IOS
+#import "FLDownloadImageOperation.h"
 #import "FLCachedImage.h"
-#endif
 
 @implementation FLFacebookLoadUserPictureOperation
-
 
 @synthesize pictureSize = _pictureSize;
 
@@ -26,12 +19,6 @@
     self = [super initWithURL:url];
     if(self) {
         self.object = @"picture";
-
-    #if IOS
-        self.responseHandler = [FLHttpImageDownloadNetworkResponseHandler instance];
-        self.operationInput = [FLCachedImage cachedImage];
-    #endif
-        
         [self setPictureSize:FLFacebookLoadUserPictureOperationInputSizeNormal];
     }
     return self;
@@ -75,9 +62,13 @@
 
 
 - (void) runSelf {
-#if IOS
-	[((FLCachedImage*)self.operationInput) setUrl:self.URL.absoluteString];
-#endif
+
+FIXME(@"need the behavior but not the operation");
+  
+//        self.responseHandler = [FLHttpImageDownloadNetworkResponseHandler instance];
+//        self.operationInput = [FLCachedImage cachedImage];
+  
+
     [super runSelf];
 }
 

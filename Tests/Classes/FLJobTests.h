@@ -8,3 +8,5 @@
 
 #import "FLUnitTest.h"
 
+@interface FLJobTests : FLFrameworkUnitTest
+@end

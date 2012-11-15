@@ -152,13 +152,18 @@ static void (*originalDealloc)(id,SEL);
         _deletedObjectReference = nil;
     }
     
-    if(notifiers) {
-//        [notifiers performBlockOnMainThread: ^{
-            for(FLSimpleNotifier* notifier in notifiers) {
-        //        [[notifier deallocNotifier] _removeNotifier:_notifierDied];
-                [notifier sendNotification:ref];
-            }
-//        }];
+    @try {
+        if(notifiers) {
+    //        [notifiers performBlockOnMainThread: ^{
+                for(FLSimpleNotifier* notifier in notifiers) {
+            //        [[notifier deallocNotifier] _removeNotifier:_notifierDied];
+                    [notifier sendNotification:ref];
+                }
+    //        }];
+        }
+    }
+    @catch(NSException* ex) {
+        NSLog(@"exception thrown in sendDeallocNotification: %@", ex);
     }
 }
 
@@ -174,108 +179,3 @@ static void (*originalDealloc)(id,SEL);
 #endif
 }
 @end
-
-#if TEST
-
-#import "FLCallback.h"
-
-@interface FLDeleteNotifier : FLCallback {
-}
-@end
-
-@implementation FLDeleteNotifier
-- (void) dealloc {
-    [self invoke:nil];
-#if FL_MRC
-    [super dealloc];
-#endif
-}
-@end
-
-#import "FLDispatchQueues.h"
-
-@interface FLDeallocNotifierSanityCheck : FLSanityCheck
-@end
-
-@implementation FLDeallocNotifierSanityCheck
-
-
-//- (void) testAssociatedObjectsDelete {
-//    s_deleted = NO;
-//    NSMutableString* str = [[NSMutableString alloc] initWithString:@"hello world"];
-//    [str setTestThingy:[FLDeleteObjectThingy new]];
-//    str = nil;
-//    FLAssert_(s_deleted == YES);
-//}
-
-//- (void) didDelete:(id) sender {
-//    [self.finisher setFinished];
-//    self.finisher = nil;
-//}
-
-- (void) testLazyCreate {
-    NSMutableString* str = [NSMutableString string];
-    FLAssertIsNil_([str _deallocNotifier]);
-    id notifier = [str deallocNotifier];
-    FLAssertIsNotNil_(notifier);
-    FLAssert_(notifier == [str _deallocNotifier]);
-    FLAssert_(notifier == [str deallocNotifier]);
-}
-
-- (void) testDeletNotification {
-
-    __block BOOL objectDeleted = NO;
-    __block BOOL notified = NO;
-
-#if FL_ARC
-    __block __weak id test = nil;
-#endif    
-    
-    id<FLPromisedResult> result = [[FLDispatchQueue instance] dispatchAsyncBlock:^(id<FLFinisher> finisher){
-        FLDeleteNotifier* notifier = [[FLDeleteNotifier alloc] initWithBlock:^(id sender){
-            objectDeleted = YES;
-        }];
-        
-        [notifier addDeallocNotifierWithBlock:^(FLDeletedObjectReference* ref){
-            notified = YES;
-            [finisher setFinished];
-        }];
-
-        FLManuallyRelease(&notifier);
-        FLAssertIsNil_(notifier);
-          
-#if FL_ARC
-        FLAssertIsNil_(test);
-#endif        
-    }];
-    
-    
-#if FL_ARC
-    FLAssertIsNil_(test);
-#endif    
-    
-    [result waitForResult];
-    
-    FLAssertIsTrue_(objectDeleted);
-    FLAssertIsTrue_(notified);
-}
-
-//- (void) testNotify:(FLWorkFinisher*) finisher {
-//
-//    NSMutableString* str = [[NSMutableString alloc] initWithString:@"hello world"];
-//    
-//    [str addDeallocListener:self action:@selector(didDelete:)];
-//    FLReleaseWithNil_(str);
-//
-//    self.finisher = finisher;
-//}
-
-
-
-
-
-@end
-
-#endif
-
-

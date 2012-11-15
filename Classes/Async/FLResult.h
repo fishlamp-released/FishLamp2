@@ -20,7 +20,7 @@ typedef id<FLResult> FLResult;
 typedef void (^FLResultBlock)(FLResult result);
 
 NS_INLINE
-id<FLResult> FLThrowResultError(id<FLResult> result) {
+id<FLResult> FLThrowErrorResult(id<FLResult> result) {
     if(!result ||  !result.didSucceed || result.error) {
         FLCThrowError_(result.error);
     }

@@ -10,13 +10,13 @@
 
 #import "FLResult.h"
 
-typedef void (^FLConditionalBlock)(BOOL* condition);
+typedef void (^FLConditionalBlock)(BOOL* stop);
 
 @protocol FLPromisedResult <NSObject>
 @property (readonly, assign) BOOL hasResult;
 @property (readonly, strong) FLResult result;
 - (FLResult) waitForResult;
 - (FLResult) waitForResultWithCondition:(FLConditionalBlock) checkCondition;
-- (FLResult) waitForResultWithTimeout:(NSTimeInterval) timeout;
+//- (FLResult) waitForResultWithTimeout:(NSTimeInterval) timeout;
 @end
 

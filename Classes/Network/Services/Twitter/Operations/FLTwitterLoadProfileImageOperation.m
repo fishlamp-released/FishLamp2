@@ -7,11 +7,6 @@
 //
 
 #import "FLTwitterLoadProfileImageOperation.h"
-
-#if IOS
-#import "FLHttpImageDownloadNetworkResponseHandler.h"
-#endif
-
 #import "FLTwitterMgr.h"
 #import "FLOperationCacheHandler.h"
 #import "FLUserDataStorageService.h"
@@ -24,13 +19,7 @@
 - (id) initWithURL:(NSURL*) url {
     self = [super initWithURL:url];
     if(self) {
-	
-#if IOS
-    // TODO: refactor this
-        self.responseHandler = [FLHttpImageDownloadNetworkResponseHandler instance];
-#endif    
-
-        self.imageSize = FLTwitterImageSizeNormal;
+	    self.imageSize = FLTwitterImageSizeNormal;
 
         [self addObserver:
             [FLOperationCacheHandler operationCacheHandler:[[FLUserDataStorageService serviceFromContext:self.context] cacheDatabase]
@@ -50,6 +39,13 @@
 - (void) runSelf {
     self.URL = [NSURL URLWithString:[NSString stringWithFormat:@"http://api.twitter.com/1/users/profile_image/%@.json?size=%@", _username, _imageSize]];
     FLAssertNotNil_(self.URL);
+    
+FIXME(@"need the behavior but not the operation");
+  
+//        self.responseHandler = [FLHttpImageDownloadNetworkResponseHandler instance];
+//        self.operationInput = [FLCachedImage cachedImage];
+  
+    
     [super runSelf];
 }
 

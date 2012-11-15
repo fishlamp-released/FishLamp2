@@ -8,6 +8,10 @@
 
 #import "FLTimeoutTimer.h"
 
+const NSTimeInterval FLTimeoutTimerDefaultCheckFrequencyInterval = 0.25;
+const NSString* FLTimeoutTimerCheckEvent = @"com.fishlamp.timer.check";
+const NSString* FLTimeoutTimerTimeoutEvent = @"com.fishlamp.timer.timedout";
+
 @interface FLTimeoutTimer ()
 @property (readwrite, strong) id<FLFinisher> finisher;
 @property (readwrite, assign) NSTimeInterval timeoutInterval;
@@ -20,11 +24,11 @@
 @implementation FLTimeoutTimer
 @synthesize timeoutInterval = _timeoutInterval;
 @synthesize timestamp = _timestamp;
-//@synthesize idle = _idle;
 @synthesize thread = _thread;
 @synthesize finisher = _finisher;
 @synthesize timer = _timer;
 @synthesize timedOut = _timedOut;
+synthesize_(checkFrequency);
 
 - (id) initWithTimeoutInterval:(NSTimeInterval) interval {
     self = [super init];
@@ -62,10 +66,16 @@
     
     if(self.isLate && !self.timedOut) {
         self.timedOut = YES;
-        [self postObservation:@selector(timeoutTimerDidTimeout:)];
+        
+        [self postObservationForEvent:FLTimeoutTimerTimeoutEvent];
+        
+//        [self postObservation:@selector(timeoutTimerDidTimeout:)];
         
         [self.finisher setFinishedWithError:[NSError timeoutError]];
         [self requestCancel];
+    }
+    else {
+        [self postObservationForEvent:FLTimeoutTimerCheckEvent];
     }
     
 //    if(FLTestAnyBit(_connectionState, FLNetworkConnectionStateConnecting | FLNetworkConnectionStateConnected)) {
@@ -94,20 +104,26 @@
 - (void) startWorking:(id<FLFinisher>) finisher {
     [self killTimer];
 
-// TODO: this .25 for progress. It could be closer to 1 second if
-// we don't need to report progress. We should be able to set this per
-// connection for sure.        
-    self.timer = [NSTimer timerWithTimeInterval:0.25f
+    NSTimer* timer = [NSTimer timerWithTimeInterval:_checkFrequency
             target:self 
             selector:@selector(_handleTimerEvent:) 
             userInfo:nil 
             repeats:YES];
+    self.timer = timer;
     
-    [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSDefaultRunLoopMode];
+    [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
 }
 
-- (id<FLPromisedResult>) start:(FLResultBlock) completion {
-    FLAssertIsNotNil_v(self.finisher, @"already started");
+- (id<FLPromisedResult>) startTimer:(FLResultBlock) completion {
+    return [self startTimerWithFrequency:FLTimeoutTimerDefaultCheckFrequencyInterval completion:completion];
+}
+
+- (id<FLPromisedResult>) startTimerWithFrequency:(NSTimeInterval) checkFrequency
+                                      completion:(FLResultBlock) completion  {
+                                      
+    FLAssertIsNil_v(self.finisher, @"already started");
+    
+    _checkFrequency = checkFrequency;
     
     FLWorkFinisher* finisher = [FLWorkFinisher finisher:completion];
     self.finisher = finisher;
@@ -115,9 +131,9 @@
     return finisher;
 }
 
-- (FLResult) runSynchronously {
-    return [[self start:nil] waitForResult];
-}
+//- (FLResult) runSynchronously {
+//    return [[self start:nil] waitForResult];
+//}
 
 - (void) dealloc  {
     if(_timer) {
