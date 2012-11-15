@@ -4,27 +4,25 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>FluffyAll.xcscheme</key>
+		<key>FishLampCommandLineToolMac.xcscheme</key>
 		<dict>
-			<key>isShown</key>
-			<true/>
 			<key>orderHint</key>
-			<integer>15</integer>
+			<integer>4</integer>
 		</dict>
-		<key>FluffyTool.xcscheme</key>
+		<key>FishLampCommandLineToolMac32.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>12</integer>
+			<integer>5</integer>
 		</dict>
-		<key>FluffyTool32.xcscheme</key>
+		<key>FishLampCommandLineToolMacLegacy.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>13</integer>
+			<integer>6</integer>
 		</dict>
-		<key>FluffyToolMacLegacy.xcscheme</key>
+		<key>FishLampMacAll.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>14</integer>
+			<integer>7</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
@@ -99,12 +97,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>27E3C60316532BF000410570</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>27E5A851163D931B00B8D029</key>
+		<key>27E3C5E816532B8900410570</key>
 		<dict>
 			<key>primary</key>
 			<true/>

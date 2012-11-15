@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "270DFDC515E99BAC00ED5FB0"
-               BuildableName = "FluffyTool"
-               BlueprintName = "FluffyTool"
-               ReferencedContainer = "container:Fluffy.xcodeproj">
+               BlueprintIdentifier = "27E3C5E816532B8900410570"
+               BuildableName = "libFishLampCommandLineToolMacLegacy.a"
+               BlueprintName = "FishLampCommandLineToolMacLegacy"
+               ReferencedContainer = "container:FishLampCommandLineTool.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -29,15 +29,6 @@
       buildConfiguration = "Debug">
       <Testables>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "270DFDC515E99BAC00ED5FB0"
-            BuildableName = "FluffyTool"
-            BlueprintName = "FluffyTool"
-            ReferencedContainer = "container:Fluffy.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </TestAction>
    <LaunchAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
@@ -48,21 +39,6 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "270DFDC515E99BAC00ED5FB0"
-            BuildableName = "FluffyTool"
-            BlueprintName = "FluffyTool"
-            ReferencedContainer = "container:Fluffy.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
-      <CommandLineArguments>
-         <CommandLineArgument
-            argument = "-b FishLampCoreTestsMac.bundle"
-            isEnabled = "YES">
-         </CommandLineArgument>
-      </CommandLineArguments>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -72,15 +48,6 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "270DFDC515E99BAC00ED5FB0"
-            BuildableName = "FluffyTool"
-            BlueprintName = "FluffyTool"
-            ReferencedContainer = "container:Fluffy.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

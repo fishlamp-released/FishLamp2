@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "270DFDC515E99BAC00ED5FB0"
-               BuildableName = "FluffyTool"
-               BlueprintName = "FluffyTool"
+               BlueprintIdentifier = "27E3C60316532BF000410570"
+               BuildableName = "FluffyToolLegacy"
+               BlueprintName = "FluffyToolLegacy"
                ReferencedContainer = "container:Fluffy.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,9 +32,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "270DFDC515E99BAC00ED5FB0"
-            BuildableName = "FluffyTool"
-            BlueprintName = "FluffyTool"
+            BlueprintIdentifier = "27E3C60316532BF000410570"
+            BuildableName = "FluffyToolLegacy"
+            BlueprintName = "FluffyToolLegacy"
             ReferencedContainer = "container:Fluffy.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -51,18 +51,12 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "270DFDC515E99BAC00ED5FB0"
-            BuildableName = "FluffyTool"
-            BlueprintName = "FluffyTool"
+            BlueprintIdentifier = "27E3C60316532BF000410570"
+            BuildableName = "FluffyToolLegacy"
+            BlueprintName = "FluffyToolLegacy"
             ReferencedContainer = "container:Fluffy.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <CommandLineArguments>
-         <CommandLineArgument
-            argument = "-b FishLampCoreTestsMac.bundle"
-            isEnabled = "YES">
-         </CommandLineArgument>
-      </CommandLineArguments>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -75,9 +69,9 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "270DFDC515E99BAC00ED5FB0"
-            BuildableName = "FluffyTool"
-            BlueprintName = "FluffyTool"
+            BlueprintIdentifier = "27E3C60316532BF000410570"
+            BuildableName = "FluffyToolLegacy"
+            BlueprintName = "FluffyToolLegacy"
             ReferencedContainer = "container:Fluffy.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

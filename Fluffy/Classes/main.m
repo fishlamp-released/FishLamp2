@@ -8,11 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-#import "FluffyApp.h"
+#import "FLFluffyTool.h"
+#import "FLCommandLineParser.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
-        return FLCommandLineToolMain(argc, argv, [FluffyApp class], @"FluffyApp");
+        FLFluffyTool* tool = autorelease_([[FLFluffyTool alloc] init]);
+        return [tool runWithParameters: FLCommandLineArguments(argc, argv)];
     }
 }
 
