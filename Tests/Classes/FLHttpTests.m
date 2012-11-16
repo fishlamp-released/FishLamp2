@@ -14,7 +14,7 @@
 - (void) testConnectionToGoogle {
     FLHttpRequest *request = [FLHttpRequest httpRequestWithURL:[NSURL URLWithString:@"http://www.google.com"]];
     FLHttpConnection* connection = [FLHttpConnection httpConnection:request];
-    id<FLResult> result = [connection runSynchronously];
+    FLFinisher* result = [connection runSynchronously];
     
     FLHttpResponse* response = result.output;
     FLAssertNotNil_(response);

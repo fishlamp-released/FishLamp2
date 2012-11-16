@@ -13,7 +13,7 @@ const NSString* FLTimeoutTimerCheckEvent = @"com.fishlamp.timer.check";
 const NSString* FLTimeoutTimerTimeoutEvent = @"com.fishlamp.timer.timedout";
 
 @interface FLTimeoutTimer ()
-@property (readwrite, strong) id<FLFinisher> finisher;
+@property (readwrite, strong) FLFinisher* finisher;
 @property (readwrite, assign) NSTimeInterval timeoutInterval;
 @property (readwrite, strong) NSTimer* timer;
 @property (readwrite, assign) NSTimeInterval timestamp;
@@ -101,8 +101,10 @@ synthesize_(checkFrequency);
     self.timer = nil;
 }    
     
-- (void) startWorking:(id<FLFinisher>) finisher {
+- (FLFinisher*) startWorking:(FLFinisher*) finisher {
     [self killTimer];
+
+    self.finisher = finisher;
 
     NSTimer* timer = [NSTimer timerWithTimeInterval:_checkFrequency
             target:self 
@@ -112,27 +114,25 @@ synthesize_(checkFrequency);
     self.timer = timer;
     
     [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
+    
+    return finisher;
 }
 
-- (id<FLPromisedResult>) startTimer:(FLResultBlock) completion {
-    return [self startTimerWithFrequency:FLTimeoutTimerDefaultCheckFrequencyInterval completion:completion];
+- (FLFinisher*) startTimer:(FLFinisher*) finisher{
+    return [self startTimerWithFrequency:FLTimeoutTimerDefaultCheckFrequencyInterval finisher:finisher];
 }
 
-- (id<FLPromisedResult>) startTimerWithFrequency:(NSTimeInterval) checkFrequency
-                                      completion:(FLResultBlock) completion  {
+- (FLFinisher*) startTimerWithFrequency:(NSTimeInterval) checkFrequency
+                                      finisher:(FLFinisher*) finisher  {
                                       
     FLAssertIsNil_v(self.finisher, @"already started");
     
     _checkFrequency = checkFrequency;
-    
-    FLWorkFinisher* finisher = [FLWorkFinisher finisher:completion];
-    self.finisher = finisher;
-    [finisher startWorker:self];;
-    return finisher;
+    return [self startWorking:finisher];
 }
 
-//- (FLResult) runSynchronously {
-//    return [[self start:nil] waitForResult];
+//- (FLFinisher*) runSynchronously {
+//    return [[self start:nil] waitUntilFinished];
 //}
 
 - (void) dealloc  {

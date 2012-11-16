@@ -8,27 +8,25 @@
 
 #import <Foundation/Foundation.h>
 
-#import "FLWorkFinisher.h"
+#import "FLFinisher.h"
 #import "FLWorker.h"
-#import "FLResult.h"
-#import "FLPromisedResult.h"
 #import "FLBlockWorker.h"
 
 @protocol FLDispatcher <NSObject>
 
-- (id<FLPromisedResult>) dispatchBlock:(void (^)()) block;
+- (FLFinisher*) dispatchBlock:(void (^)()) block;
 
-- (id<FLPromisedResult>) dispatchBlock:(void (^)()) block 
-                        completion:(FLResultBlock) completion;
+- (FLFinisher*) dispatchBlock:(void (^)()) block 
+                      finisher:(FLFinisher*) finisher;
 
-- (id<FLPromisedResult>) dispatchAsyncBlock:(FLAsyncBlock) completion;
+- (FLFinisher*) dispatchAsyncBlock:(FLAsyncBlock) completion;
 
-- (id<FLPromisedResult>) dispatchAsyncBlock:(FLAsyncBlock) block 
-                             completion:(FLResultBlock) completion;
+- (FLFinisher*) dispatchAsyncBlock:(FLAsyncBlock) block 
+                           finisher:(FLFinisher*) finisher;
 
-- (id<FLPromisedResult>) dispatchWorker:(id<FLWorker>) aWorker;
+- (FLFinisher*) dispatchWorker:(id<FLWorker>) aWorker;
 
-- (id<FLPromisedResult>) dispatchWorker:(id<FLWorker>) aWorker
-                         completion:(FLResultBlock) completion;
+- (FLFinisher*) dispatchWorker:(id<FLWorker>) aWorker
+                       finisher:(FLFinisher*) finisher;
 
 @end

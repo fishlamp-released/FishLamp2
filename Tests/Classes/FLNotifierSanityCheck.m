@@ -19,7 +19,7 @@
     
     __block BOOL fired = NO;
     
-    FLWorkFinisher* finisher = [FLWorkFinisher finisher:^(FLResult result) { 
+    FLFinisher* finisher = [FLFinisher finisherWithBlock:^(FLFinisher* result) { 
         fired = YES; 
     }];
     
@@ -34,7 +34,7 @@
     
     __block BOOL fired = NO;
     
-    FLWorkFinisher* finisher = [FLWorkFinisher finisher:^(FLResult result){ fired = YES; }];
+    FLFinisher* finisher = [FLFinisher finisherWithBlock:^(FLFinisher* result){ fired = YES; }];
     FLAssert_(!finisher.isFinished);
     FLAssert_(fired == NO);
     [finisher setFinished];
@@ -56,7 +56,7 @@
 
     FLLog(@"async self test");
     
-    FLWorkFinisher* finisher = [FLWorkFinisher finisher];
+    FLFinisher* finisher = [FLFinisher finisher];
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
         [NSThread sleepForTimeInterval:0.25];
@@ -64,7 +64,7 @@
         [finisher setFinished];
         });
     
-    [finisher waitForResult];
+    [finisher waitUntilFinished];
     FLAssert_(finisher.isFinished);
 }
 

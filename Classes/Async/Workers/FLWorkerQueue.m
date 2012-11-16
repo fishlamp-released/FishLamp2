@@ -8,7 +8,7 @@
 
 #import "FLWorkerQueue.h"
 #import "FLCollectionIterator.h"
-#import "FLWorkFinisher.h"
+#import "FLFinisher.h"
 
 @implementation FLWorkerQueue
 
@@ -35,27 +35,29 @@
 #endif
 
 - (void) runNextWorker:(id<FLCollectionIterator>) iterator
-          withFinisher:(id<FLFinisher>) queueFinisher {
+          withFinisher:(FLFinisher*) queueFinisher {
 
     id<FLWorker> worker = iterator.nextObject;
     if(worker) {
-        FLWorkFinisher* workerFinisher = [FLWorkFinisher finisher:^(id<FLResult> result) {
+        FLFinisher* finisher = [FLBlockFinisher finisher:^(FLFinisher* result) {
             if(result.didSucceed) {
                 [self runNextWorker:iterator withFinisher:queueFinisher];
             }
             else {
-                [queueFinisher setFinishedWithResult:result];
+            
+                [queueFinisher setFinishedWithFinisher:result];
             }
         }];
-        [worker startWorking:workerFinisher];
+        [worker startWorking:finisher];
     }
     else {
         [queueFinisher setFinished];
     }
 }
 
-- (void) startWorking:(id<FLFinisher>) finisher {
+- (FLFinisher*) startWorking:(FLFinisher*) finisher {
     [self runNextWorker:[_workers forwardIterator] withFinisher:finisher];
+    return finisher;
 }
 
 //- (void) removeWorker:(id<FLWorker>) worker {

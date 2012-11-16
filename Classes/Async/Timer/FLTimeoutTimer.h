@@ -8,7 +8,7 @@
 
 #import "FLObservable.h"
 
-#import "FLWorkFinisher.h"
+#import "FLFinisher.h"
 #import "FLWorker.h"
 #import "FLObservable2.h"
 
@@ -28,7 +28,7 @@ extern const NSTimeInterval FLTimeoutTimerDefaultCheckFrequencyInterval;
     NSTimeInterval _checkFrequency;
     BOOL _timedOut;
     NSTimer* _timer;
-    id<FLFinisher> _finisher;
+    FLFinisher* _finisher;
     __unsafe_unretained NSThread* _thread;
 }
 @property (readonly, assign) NSTimeInterval timeoutInterval;
@@ -42,10 +42,10 @@ extern const NSTimeInterval FLTimeoutTimerDefaultCheckFrequencyInterval;
 + (FLTimeoutTimer*) timeoutTimer;
 + (FLTimeoutTimer*) timeoutTimer:(NSTimeInterval) timeoutInterval;
 
-- (id<FLPromisedResult>) startTimerWithFrequency:(NSTimeInterval) checkFrequency
-                                      completion:(FLResultBlock) completion;
+- (FLFinisher*) startTimerWithFrequency:(NSTimeInterval) checkFrequency
+                                  finisher:(FLFinisher*) finisher;
                                       
-- (id<FLPromisedResult>) startTimer:(FLResultBlock) completion;
+- (FLFinisher*) startTimer:(FLFinisher*) finisher;
 
 - (void) requestCancel;
 - (void) touchTimestamp;

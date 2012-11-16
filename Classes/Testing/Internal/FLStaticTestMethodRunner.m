@@ -8,7 +8,7 @@
 
 #import "FLStaticTestMethodRunner.h"
 #import "FLObjcRuntime.h"
-#import "FLWorkFinisher.h"
+#import "FLFinisher.h"
 
 @interface FLStaticTestMethodRunner ()
 @property (readwrite, strong) NSArray* list;
@@ -32,7 +32,7 @@
 - (BOOL) runTestWithFinisher:(FLSelectorInfo*) info {
     __block BOOL wasRun = NO;
     
-    FLWorkFinisher* notifier = [FLWorkFinisher finisher:^(FLResult result){
+    FLFinisher* notifier = [FLBlockFinisher finisher:^(FLFinisher* result){
         wasRun = YES;
     }];
     
@@ -102,11 +102,12 @@
     return passed;
 }
 
-- (void) startWorking:(id<FLFinisher>) finisher {
+- (FLFinisher*) startWorking:(FLFinisher*) finisher {
 //    FLAssert_([self runBatchOfMethods:_sanityChecks haltOnFail:YES]);
 //    FLAssert_([self runBatchOfMethods:_finishSanityChecks haltOnFail:YES]);
 //    FLAssert_([self runBatchOfMethods:_selfTests haltOnFail:NO]);
     [finisher setFinished];
+    return finisher;
 }
 
 #if FL_NO_ALLOC

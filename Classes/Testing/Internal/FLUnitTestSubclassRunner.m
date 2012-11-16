@@ -11,7 +11,6 @@
 #import "FLUnitTest.h"
 #import "FLUnitTestGroup.h"
 
-
 @implementation FLUnitTestSubclassRunner
 
 - (id) init {
@@ -58,7 +57,7 @@
     }
 }
 
-- (void) startWorking:(id<FLFinisher>) finisher {
+- (FLFinisher*) startWorking:(FLFinisher*) finisher {
     
     NSMutableDictionary* groups = [NSMutableDictionary dictionary];
     
@@ -92,10 +91,14 @@
         
         for(Class aClass in classList) {
             FLUnitTest* test = autorelease_([[[aClass class] alloc] init]);
+            
             [test runSynchronously];
+            
         }
     }
     [finisher setFinished];
+    
+    return finisher;
 }
 
 #if FL_MRC

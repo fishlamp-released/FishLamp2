@@ -8,11 +8,9 @@
 
 #import "FishLampCore.h"
 #import "FLWorker.h"
-#import "FLSimpleWorker.h"
+#import "FLWorker.h"
 
-@class FLWorkFinisher;
-
-@interface FLJob : FLSimpleWorker {
+@interface FLJob : FLWorker {
 @private
     id<FLWorker> _worker;
 }
@@ -25,7 +23,7 @@
 + (id) jobWithBlock:(dispatch_block_t) block;
 + (id) jobWithAsyncBlock:(FLAsyncBlock) block;
 
-- (void) scheduleWorker:(id<FLWorker>) worker finisher:(FLWorkFinisher*) finisher;
+- (void) scheduleWorker:(id<FLWorker>) worker finisher:(FLFinisher*) finisher;
 @end
 
 /**

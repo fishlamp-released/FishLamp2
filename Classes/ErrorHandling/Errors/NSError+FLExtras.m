@@ -20,6 +20,10 @@ NSString* const FLErrorDomainKey = @"com.fishlamp.error.domain";
 
 @implementation NSError (FLExtras)
 
+- (NSError*) error {
+    return self;
+}
+
 + (NSError*) errorWithDomain:(NSString*) domain
                         code:(NSInteger) code
         localizedDescription:(NSString*) localizedDescription {

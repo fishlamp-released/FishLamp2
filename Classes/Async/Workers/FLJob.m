@@ -7,7 +7,7 @@
 //
 #import "FLJob.h"
 #import "NSObject+Blocks.h"
-#import "FLWorkFinisher.h"
+#import "FLFinisher.h"
 #import "FLDispatchQueues.h"
 
 @interface FLJob ()
@@ -61,7 +61,7 @@
 - (void) setWorkerWithBlock:(dispatch_block_t) block {
     block = FLCopyBlock(block);
     
-    [self setWorker:[FLBlockWorker blockWorker:^(id<FLFinisher> finisher) {
+    [self setWorker:[FLBlockWorker blockWorker:^(FLFinisher* finisher) {
         if(block) {
             block();
         }
@@ -73,20 +73,19 @@
     [self setWorker:[FLBlockWorker blockWorker:block]];
 }
 
-- (void) scheduleWorker:(id<FLWorker>) worker finisher:(FLWorkFinisher*) finisher {
-    [finisher startWorker:worker];
+- (void) scheduleWorker:(id<FLWorker>) worker finisher:(FLFinisher*) finisher {
+    [worker startWorking:finisher];
 }
 
-- (void) startWorking:(id<FLFinisher>) finisher {
+- (FLFinisher*) startWorking:(FLFinisher*) finisher {
     if(_worker) {
-    
-        [self scheduleWorker:_worker finisher:finisher_(^(id<FLResult> result) {
-            [finisher setFinishedWithResult:result];
-        })];
+        [self scheduleWorker:_worker finisher:finisher];
     }
     else {
         [finisher setFinished]; 
     }
+    
+    return finisher;
 }
 
 - (void) dealloc {
@@ -116,18 +115,14 @@
 @end
 
 @implementation FLBackgroundJob
-- (void) scheduleWorker:(id<FLWorker>) worker finisher:(FLWorkFinisher*) finisher {
-    [[FLDispatchQueue instance] dispatchWorker:worker completion:^(id<FLResult> result) {
-        [finisher setFinishedWithResult:result];
-    }];
+- (void) scheduleWorker:(id<FLWorker>) worker finisher:(FLFinisher*) finisher {
+    [[FLDispatchQueue instance] dispatchWorker:worker finisher:finisher];
 }
 @end
 
 @implementation FLForegroundJob
-- (void) scheduleWorker:(id<FLWorker>) worker finisher:(FLWorkFinisher*) finisher {
-    [[FLForegroundQueue instance] dispatchWorker:worker completion:^(id<FLResult> result) {
-        [finisher setFinishedWithResult:result];
-    }];
+- (void) scheduleWorker:(id<FLWorker>) worker finisher:(FLFinisher*) finisher {
+    [[FLForegroundQueue instance] dispatchWorker:worker finisher:finisher];
 }
 @end
 

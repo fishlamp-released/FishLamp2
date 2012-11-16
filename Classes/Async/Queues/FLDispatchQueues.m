@@ -9,58 +9,58 @@
 #import "FLDispatchQueues.h"
 
 #import "NSObject+FLSelectorPerforming.h"
-#import "FLWorkFinisher.h"
+#import "FLFinisher.h"
 #import "FLFallible.h"
 
 static void * const s_queue_key = (void*)&s_queue_key;
 
-@interface FLDispatchFinisher : FLWorkFinisher {
-@private
-    FLDispatchQueue* _queue;
-}
-@property (readwrite, strong) FLDispatchQueue* queue;
-
-- (id) initWithResultBlock:(FLResultBlock) completion queue:(FLDispatchQueue*) queue;
-+ (id) dispatchFinisher:(FLResultBlock) completion queue:(FLDispatchQueue*) queue;
-
-@end
-
-@implementation FLDispatchFinisher 
-@synthesize queue = _queue;
-
-- (id) initWithResultBlock:(FLResultBlock) completion queue:(FLDispatchQueue*) queue{
-    
-    self = [super initWithResultBlock:completion];
-    if(self) {
-        self.queue = queue;
-    }
-    return self;
-}
-
-+ (id) dispatchFinisher:(FLResultBlock) completion queue:(FLDispatchQueue*) queue {
-    return autorelease_([[[self class] alloc] initWithResultBlock:completion queue:queue]);
-}
-
-#if FL_MRC
-- (void) dealloc {
-    [_queue release];
-    [super dealloc];
-}
-#endif
-
-- (void) setFinishedWithResult:(FLResult) result {
-    
-    if(!self.queue || self.queue == [FLDispatchQueue currentQueue]) {
-        [super setFinishedWithResult:result];
-    }
-    else {
-        [self.queue dispatchBlock:^{
-            [super setFinishedWithResult:result];
-            }];
-    }
-}
-
-@end
+//@interface FLDispatchFinisher : FLFinisher {
+//@private
+//    FLDispatchQueue* _queue;
+//}
+//@property (readwrite, strong) FLDispatchQueue* queue;
+//
+//- (id) initWithAsyncBlock:(FLAsyncBlock) completion queue:(FLDispatchQueue*) queue;
+//+ (id) dispatchFinisher:(FLAsyncBlock) completion queue:(FLDispatchQueue*) queue;
+//
+//@end
+//
+//@implementation FLDispatchFinisher 
+//@synthesize queue = _queue;
+//
+//- (id) initWithAsyncBlock:(FLAsyncBlock) completion queue:(FLDispatchQueue*) queue{
+//    
+//    self = [super initWithAsyncBlock:completion];
+//    if(self) {
+//        self.queue = queue;
+//    }
+//    return self;
+//}
+//
+//+ (id) dispatchFinisher:(FLAsyncBlock) completion queue:(FLDispatchQueue*) queue {
+//    return autorelease_([[[self class] alloc] initWithAsyncBlock:completion queue:queue]);
+//}
+//
+//#if FL_MRC
+//- (void) dealloc {
+//    [_queue release];
+//    [super dealloc];
+//}
+//#endif
+//
+//- (void) setFinishedWithResult:(FLFinisher*) result {
+//    
+//    if(!self.queue || self.queue == [FLDispatchQueue currentQueue]) {
+//        [super setFinishedWithResult:result];
+//    }
+//    else {
+//        [self.queue dispatchBlock:^{
+//            [super setFinishedWithResult:result];
+//            }];
+//    }
+//}
+//
+//@end
 
 @implementation FLDispatchQueue
 
@@ -84,6 +84,9 @@ FLSynthesizeSingleton(FLDispatchQueue);
 #endif
 }
 
+- (void) rescheduleWorkFinisher:(FLFinisher*) finisher {
+}
+
 + (FLDispatchQueue*) currentQueue {
     return bridge_(FLDispatchQueue*, dispatch_queue_get_specific(dispatch_get_current_queue(), s_queue_key));
 }
@@ -92,20 +95,21 @@ FLSynthesizeSingleton(FLDispatchQueue);
     return dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
 }
 
-- (id<FLPromisedResult>) dispatchAsyncBlock:(FLAsyncBlock) block {
-    return [self dispatchAsyncBlock:block completion:nil];
+- (FLFinisher*) dispatchAsyncBlock:(FLAsyncBlock) block {
+    return [self dispatchAsyncBlock:block finisher:[FLFinisher finisher]];
 }
 
-- (id<FLPromisedResult>) dispatchBlock:(void (^)()) block {
-    return [self dispatchBlock:block completion:nil];
+- (FLFinisher*) dispatchBlock:(void (^)()) block {
+    return [self dispatchBlock:block finisher:[FLFinisher finisher]];
 }
 
-- (id<FLPromisedResult>) dispatchBlock:(void (^)()) block
-                        completion:(FLResultBlock) completion {
+- (FLFinisher*) dispatchBlock:(void (^)()) block
+                        finisher:(FLFinisher*) finisher {
     
     FLAssertNotNil_(block);
+    FLAssertNotNil_(finisher);
     
-    FLWorkFinisher* finisher = [self workFinisher:completion];
+    [self rescheduleWorkFinisher:finisher];
 
     block = FLCopyBlock(block);
 
@@ -124,16 +128,15 @@ FLSynthesizeSingleton(FLDispatchQueue);
     return finisher;
 }
 
-- (FLWorkFinisher*) workFinisher:(FLResultBlock) completion {
-    return [FLWorkFinisher finisher:completion];
-}
 
-- (id<FLPromisedResult>) dispatchAsyncBlock:(FLAsyncBlock) block
-                        completion:(FLResultBlock) completion {
+
+- (FLFinisher*) dispatchAsyncBlock:(FLAsyncBlock) block
+                        finisher:(FLFinisher*) finisher {
     
     FLAssertNotNil_(block);
+    FLAssertNotNil_(finisher);
     
-    FLWorkFinisher* finisher = [self workFinisher:completion];
+    [self rescheduleWorkFinisher:finisher];
 
     block = FLCopyBlock(block);
 
@@ -155,21 +158,22 @@ FLSynthesizeSingleton(FLDispatchQueue);
     return finisher;
 }
 
-- (id<FLPromisedResult>) dispatchWorker:(id<FLWorker>) aWorker {
-    return [self dispatchWorker:aWorker completion:nil];
+- (FLFinisher*) dispatchWorker:(id<FLWorker>) aWorker {
+    return [self dispatchWorker:aWorker finisher:[FLFinisher finisher]];
 }
 
-- (id<FLPromisedResult>) dispatchWorker:(id<FLWorker>) aWorker
-                             completion:(FLResultBlock) completion {
+- (FLFinisher*) dispatchWorker:(id<FLWorker>) aWorker
+                         finisher:(FLFinisher*) finisher {
     
     FLAssertNotNil_(aWorker);
+    FLAssertNotNil_(finisher);
     
-    FLWorkFinisher* finisher = [self workFinisher:completion];
+    [self rescheduleWorkFinisher:finisher];
 
     dispatch_async([self dispatchQueue],  
     ^{
         @try {
-            [finisher startWorker:aWorker];
+            [aWorker startWorking:finisher];
         }
         @catch(NSException* ex) {
             [finisher setFinishedWithError:ex.error];
@@ -190,16 +194,35 @@ FLSynthesizeSingleton(FLHighPriorityQueue);
 
 @end
 
+@implementation FLActionQueue
+
+- (void) rescheduleWorkFinisher:(FLFinisher*) finisher {
+    
+    finisher.notificationScheduler = ^(FLFinisher* theFinisher) {
+        if(![NSThread isMainThread]) {
+            [((id) theFinisher) performSelectorOnMainThread:@selector(setFinished) withObject:nil waitUntilDone:NO];
+        }
+        else {
+            [ theFinisher setFinished];
+        }
+    };
+}
+
+- (dispatch_queue_t) dispatchQueue {
+    return dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
+}
+
+FLSynthesizeSingleton(FLActionQueue);
+
+@end
+
 @implementation FLForegroundQueue
+
 - (dispatch_queue_t) dispatchQueue {
     return dispatch_get_main_queue();
 }
+
 FLSynthesizeSingleton(FLForegroundQueue);
-
-- (FLWorkFinisher*) workFinisher:(FLResultBlock) completion {
-    return [FLMainThreadFinisher finisher:completion];
-}
-
 
 @end
 
@@ -216,19 +239,6 @@ FLSynthesizeSingleton(FLBackgroundQueue);
     return dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0);
 }
 FLSynthesizeSingleton(FLLowPriorityQueue);
-
-@end
-
-@implementation FLActionQueue
-
-- (FLWorkFinisher*) workFinisher:(FLResultBlock) completion {
-    return [FLMainThreadFinisher finisher:completion];
-}
-
-- (dispatch_queue_t) dispatchQueue {
-    return dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
-}
-FLSynthesizeSingleton(FLActionQueue);
 
 @end
 

@@ -57,7 +57,7 @@ service_register_(userService, FLUserLoginService);
 //        [progress setTitle:NSLocalizedString(@"Logging Out…", nil)];
 //    }
 //
-//    [self.backgroundTasks beginClosingService:^(id<FLResult> backgroundTaskMgr) {
+//    [self.backgroundTasks beginClosingService:^(FLFinisher* backgroundTaskMgr) {
 //        [self closeContext];
 //        [progress hideProgress];
 //        [finisher setFinished];

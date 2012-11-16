@@ -312,7 +312,7 @@ TODO("MF: fix activity updater");
     [self showProgress];
 }
 
-- (void) actionFinished {
+- (void) actionFinished:(FLFinisher*) result {
     if(_progress) {
         [_progress hideProgress];
     }
@@ -360,47 +360,54 @@ TODO("MF: fix activity updater");
     [self.operations cancelAllOperations];
 }
 
-- (id<FLPromisedResult>) startAction:(FLResultBlock) completion {
-    return [self startActionInContext:nil starting:nil completion:completion ];
+- (FLFinisher*) runSynchronously {
+    return [self runSynchronouslyWithInput:nil];
 }
 
-- (id<FLPromisedResult>) startAction:(dispatch_block_t) starting
-                 completion:(FLResultBlock) completion {
-    return [self startActionInContext:nil starting:starting completion:completion];
+- (FLFinisher*) runSynchronouslyWithInput:(id) input {
+    FLFinisher* finisher = [FLFinisher finisher];
+    finisher.input = input;
+    return [[self startAction:finisher] waitUntilFinished];
 }
 
-- (id<FLPromisedResult>) startActionInContext:(FLOperationContext*) context
-                          completion:(FLResultBlock) completion {
-    return [self startActionInContext:context starting:nil completion:completion];
+- (FLFinisher*) startAction:(FLFinisher*) finisher {
+    return [self startActionInContext:nil starting:nil finisher:finisher ];
 }
 
-- (id<FLPromisedResult>) startActionInContext:(FLOperationContext*) context
-                                 starting:(dispatch_block_t) starting
-                               completion:(FLResultBlock) completion {
+- (FLFinisher*) startAction:(dispatch_block_t) starting
+                            finisher:(FLFinisher*) finisher {
+    return [self startActionInContext:nil starting:starting finisher:finisher];
+}
+
+- (FLFinisher*) startActionInContext:(FLOperationContext*) context
+                                     finisher:(FLFinisher*) finisher {
+    return [self startActionInContext:context starting:nil finisher:finisher];
+}
+
+- (FLFinisher*) startActionInContext:(FLOperationContext*) context
+                                     starting:(dispatch_block_t) starting
+                                     finisher:(FLFinisher*) finisher {
 
     FLOperationQueueRunner* runner = [FLOperationQueueRunner operationQueueRunner:self.operations];
     if(context) {
         [context addOperation:runner];
     }
     
-    completion = FLCopyBlock(completion);
+    FLFinisher* actionFinisher = [FLTargetFinisher finisherWithTarget:self action:@selector(actionFinished:)];
     
-    return [[FLForegroundQueue instance] dispatchAsyncBlock:^(id<FLFinisher> finisher) { 
+    if(finisher) {
+        [actionFinisher addFinisher:finisher];
+    }
+    
+    return [[FLActionQueue instance] dispatchAsyncBlock:^(FLFinisher* theActionFinisher) { 
         if(starting) {
             starting();
         }
         [self actionStarted]; 
         
-        [[FLHighPriorityQueue instance] dispatchWorker:runner completion:^(FLResult result) {
-            [finisher setFinished];
-        }];
+        [[FLHighPriorityQueue instance] dispatchWorker:runner finisher:theActionFinisher];
     }
-    completion:^(FLResult result) {
-        [self actionFinished];
-        if(completion) {
-            completion(result);
-        }
-    }];
+    finisher:actionFinisher];
     
     
 //    FLBackgroundJob* bgJob = [FLBackgroundJob job];
@@ -416,7 +423,7 @@ TODO("MF: fix activity updater");
 //    
 //    starting = FLCopyBlock(starting);
 //    
-//    FLWorkFinisher* actionFinisher = [FLWorkFinisher finisher:completion];
+//    FLFinisher* actionFinisher = [FLFinisher finisher:completion];
 //    
 //    
 //    FLAsyncBlock finishActionInMainThread = ^(FLFinisher finisher){
@@ -435,7 +442,7 @@ TODO("MF: fix activity updater");
 //            starting();
 //        }
 //        [self actionStarted];
-//        [[FLDispatchQueue instance] dispatchWorker:runner completion: ^(FLResult result) {
+//        [[FLDispatchQueue instance] dispatchWorker:runner completion: ^(FLFinisher* result) {
 //            [[FLForegroundQueue instance] dispatchAsyncBlock:finishActionInMainThread]; }];
 //        
 //        [finisher setFinished];
@@ -461,49 +468,3 @@ TODO("MF: fix activity updater");
 }
 @end
 
-#if TEST
-
-@interface FLActionUnitTests : FLFrameworkUnitTest
-@end
-
-@implementation FLActionUnitTests
-
-- (void) setupTests {
-   [self.results setTestResult:[FLCountedTestResult countedTestResult:6] forKey:@"counter"];
-}
-
-- (void) runOneAction {
-    FLAction* action = [FLAction action];
-
-    [action.operations addOperationWithBlock:^(FLOperation* block) {
-        FLAssert_(![NSThread isMainThread]);
-        
-        [[self.results testResultForKey:@"counter"] setPassed];
-    }];
-
-    id<FLPromisedResult> actionFinisher = [action startAction:^{ 
-                    FLAssert_([NSThread isMainThread]); 
-                    [[self.results testResultForKey:@"counter"] setPassed];
-                    
-                }
-                completion:^(FLResult result) { 
-                    FLAssert_([NSThread isMainThread]); 
-                    [[self.results testResultForKey:@"counter"] setPassed];
-                }]; 
-
-    [actionFinisher waitForResult];
- }
-
-- (void) testBasicScheduling {
-    [self runOneAction];
-}
-
-- (void) testBackgroundThreadStart {
-    [[[FLDispatchQueue instance] dispatchBlock:^{
-        [self runOneAction];
-    }] waitForResult];
-}
-
-@end
-
-#endif

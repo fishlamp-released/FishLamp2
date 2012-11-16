@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import "FLSimpleWorker.h"
+#import "FLWorker.h"
 
-@interface FLWorkerQueue : FLSimpleWorker {
+@interface FLWorkerQueue : FLWorker {
 @private
     NSMutableArray* _workers;
  }

@@ -8,7 +8,7 @@
 
 #import "FLOperation.h"
 #import "FLTraceOff.h"
-#import "FLWorkFinisher.h"
+#import "FLFinisher.h"
 
 @interface FLOperation ()
 @property (readwrite, copy, nonatomic) FLRunOperationBlock runBlock;
@@ -22,6 +22,7 @@
 @end
 
 @implementation FLOperation
+
 synthesize_(operationID);
 synthesize_(tag);
 synthesize_(predicate);
@@ -192,10 +193,13 @@ dealloc_ (
 
 }
 
-
-- (void) runSynchronouslySelf {
+- (FLFinisher*) startWorking:(FLFinisher*) finisher {
 
     @try {
+        if(finisher.input) {
+            self.input = finisher.input;
+        }
+        
         [self setMoreBusy];
        
         [self resetRunStateIfNeeded];
@@ -231,33 +235,35 @@ dealloc_ (
     
     [self setLessBusy];
     self.isFinished = YES;
-    
-    [self postObservation:@selector(operationDidFinish:)];
-}
-
-- (id<FLResult>) runSynchronously {
-    FLWorkFinisher* finisher = [FLWorkFinisher finisher];
-    [self startWorking:finisher];
-    return finisher.result;
-}
-
-- (void) startWorking:(id<FLFinisher>) finisher {
-
-    [self runSynchronouslySelf];
 
     if(!self.error) {
         [finisher setFinishedWithOutput:self.operationOutput];
     }
     else {
         [finisher setFinishedWithError:self.error];
-    }
-}
-
-- (id<FLPromisedResult>) start:(FLResultBlock) completion {
-    FLWorkFinisher* finisher = [FLWorkFinisher finisher:completion];
-    [finisher startWorker:self];
+    }    
+    
+    [self postObservation:@selector(operationDidFinish:)];
+    
     return finisher;
 }
+
+- (FLFinisher*) runSynchronouslyWithInput:(id) input {
+    FLFinisher* finisher = [FLFinisher finisher];
+    finisher.input = input;
+    [self startWorking:finisher];
+    return finisher;
+}
+
+- (FLFinisher*) runSynchronously {
+    return [self runSynchronouslyWithInput:nil];
+}
+
+//- (id<FLPromisedResult>) start:(FLFinisher*) completion {
+////    FLFinisher* finisher = [FLFinisher finisher:completion];
+//    [finisher startWorker:self];
+//    return finisher;
+//}
 
 - (void) _resetState {
     self.error = nil;

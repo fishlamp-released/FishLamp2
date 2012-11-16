@@ -34,13 +34,14 @@
 }
 #endif
 
-- (void) startWorking:(id<FLFinisher>) finisher {
+- (FLFinisher*) startWorking:(FLFinisher*) finisher {
     if(_workerBlock) {
         _workerBlock(finisher);
     }
     else {
         [finisher setFinished];
     }
+    return finisher;
 }
 
 @end

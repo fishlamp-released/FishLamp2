@@ -36,7 +36,7 @@
 //	super_dealloc_();
 //}
 //
-//- (void) startWorking:(id<FLFinisher>) finisher {
+//- (FLFinisher*) startWorking:(FLFinisher*) finisher {
 //    [super startWorking:finisher];
 //}
 //

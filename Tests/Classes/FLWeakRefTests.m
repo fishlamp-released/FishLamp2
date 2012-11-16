@@ -71,7 +71,7 @@
 - (void) b_testWeakRefDeleteNotification {
 
 
-    FLWorkFinisher* notifier = [FLWorkFinisher finisher];
+    FLFinisher* notifier = [FLFinisher finisher];
   
     // Note need to run the test on a thread because the associated objects
     // are autoreleased in the thread and running the test in the main
@@ -110,7 +110,7 @@
     }];
     
     
-    FLThrowErrorResult([notifier waitForResult]);
+    FLThrowErrorResult([notifier waitUntilFinished]);
     
 //    FLAssertIsNil_(weakRef.object);
 }

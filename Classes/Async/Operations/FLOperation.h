@@ -17,7 +17,7 @@
 
 typedef void (^FLRunOperationBlock)(FLOperation* operation);
 
-@interface FLOperation : FLObservable<FLWorker, FLRunnable, FLCancellable, FLContextual> {
+@interface FLOperation : FLObservable<FLWorker, FLCancellable, FLContextual, FLRunnable> {
 @private
     __unsafe_unretained id _context;
     id _operationInput;
@@ -109,7 +109,6 @@ typedef void (^FLRunOperationBlock)(FLOperation* operation);
 
 /// @brief this is called for you to respond to if requestCancel is called
 - (void) cancelSelf;
-
 
 @end
 

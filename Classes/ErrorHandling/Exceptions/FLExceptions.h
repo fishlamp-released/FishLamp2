@@ -22,7 +22,8 @@
 #define FLThrow(__EX__) [__EX__ raise] 
 
 NS_INLINE
-NSException* FLExceptionFromError(NSError* error) {
+NSException* FLErrorExceptionFromObject(id object) {
+    NSError* error = [object error];
     return error != nil ? [NSException exceptionWithError: 
                             [FLMutableError mutableErrorWithError:error stackTrace:FLCreateStackTrace(__INCLUDE_STACK_TRACE__)]] : nil;
 }
@@ -34,10 +35,10 @@ NSException* FLExceptionFromError(NSError* error) {
             FLThrow(__EX__)
 
 #define FLThrowError_(__ERROR__) \
-            FLThrowException_(FLExceptionFromError(__ERROR__)) 
+            FLThrowException_(FLErrorExceptionFromObject(__ERROR__)) 
 
 #define FLCThrowError_(__ERROR__) \
-            FLCThrowException_(FLExceptionFromError(__ERROR__)) 
+            FLCThrowException_(FLErrorExceptionFromObject(__ERROR__)) 
 
 #define FLThrowErrorCode_v(__DOMAIN_OBJECT_OR_STRING__, __CODE__, __FORMAT__, ...) \
             FLThrowException_( \

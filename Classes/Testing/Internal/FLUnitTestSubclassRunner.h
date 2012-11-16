@@ -8,9 +8,9 @@
 
 #import "FLWorker.h"
 #import "FLTestFinder.h"
-#import "FLSimpleWorker.h"
+#import "FLWorker.h"
 
-@interface FLUnitTestSubclassRunner : FLSimpleWorker<FLTestFinder> {
+@interface FLUnitTestSubclassRunner : FLWorker<FLTestFinder> {
 @private
     NSMutableArray* _classList;
 }

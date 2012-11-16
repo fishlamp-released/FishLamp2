@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import "FLSimpleWorker.h"
+#import "FLWorker.h"
 
-@interface FLBlockWorker : FLSimpleWorker {
+@interface FLBlockWorker : FLWorker {
 @private
     FLAsyncBlock _workerBlock;
 }

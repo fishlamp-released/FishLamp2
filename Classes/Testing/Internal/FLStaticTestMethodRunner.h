@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import "FLSimpleWorker.h"
+#import "FLWorker.h"
 
-@interface FLStaticTestMethodRunner : FLSimpleWorker {
+@interface FLStaticTestMethodRunner : FLWorker {
 @private
     NSMutableArray* _list;
 }

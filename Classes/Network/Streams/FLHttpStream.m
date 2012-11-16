@@ -210,7 +210,7 @@
     [self readResponseHeadersIfNeeded];
 }
 
-- (void) networkStreamDidClose:(id<FLNetworkStream>) networkStream withResult:(id<FLResult>) result {
+- (void) networkStreamDidClose:(id<FLNetworkStream>) networkStream withResult:(FLFinisher*) result {
 
     BOOL redirect = NO;
     if(!result.error) {

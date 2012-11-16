@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 
 #import "FLCancellable.h"
-#import "FLResult.h"
 
 #define kRunLoopMode NSDefaultRunLoopMode
 
@@ -25,10 +24,11 @@
 
 @protocol FLNetworkStreamDelegate <NSObject>
 - (void) networkStreamDidOpen:(id<FLNetworkStream>) networkStream;
-- (void) networkStreamDidClose:(id<FLNetworkStream>) networkStream withResult:(id<FLResult>) result;
+- (void) networkStreamDidClose:(id<FLNetworkStream>) networkStream 
+                    withResult:(FLFinisher*) result;
 @end
 
-@interface FLNetworkStream : NSObject<FLNetworkStream, FLResult> {
+@interface FLNetworkStream : NSObject<FLNetworkStream> {
 @private
     __unsafe_unretained id _delegate;
     __unsafe_unretained NSThread* _thread;
@@ -39,6 +39,7 @@
 }
 @property (readonly, assign) NSThread* thread;
 @property (readonly, assign) CFRunLoopRef runLoop;
+@property (readonly, strong) NSError* error;
 
 - (void) forwardStreamEventToDelegate:(CFStreamEventType) eventType;
 

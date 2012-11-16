@@ -10,7 +10,7 @@
 #import "FLBitFlags.h"
 #import "FLObservable.h"
 #import "FLWorker.h"
-#import "FLWorkFinisher.h"
+#import "FLFinisher.h"
 #import "FLTimeoutTimer.h"
 
 #import "FLNetworkStream.h"
@@ -25,10 +25,10 @@ typedef struct {
 
 extern const FLNetworkConnectionByteCount FLNetworkConnectionByteCountZero;
 
-@interface FLNetworkConnection : FLObservable<FLNetworkStreamDelegate, FLWorker, FLRunnable, FLCancellable> {
+@interface FLNetworkConnection : FLObservable<FLNetworkStreamDelegate, FLWorker, FLCancellable, FLRunnable> {
 @private
     __unsafe_unretained NSThread* _thread;
-    id<FLFinisher> _finisher;
+    FLFinisher* _finisher;
     id<FLNetworkStream> _networkStream;
     FLTimeoutTimer* _timeoutTimer;
     FLNetworkConnectionByteCount _writeByteCount;

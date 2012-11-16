@@ -9,7 +9,7 @@
 #import "FLSanityCheckRunner.h"
 
 #import "FLWeakReference.h"
-#import "FLWorkFinisher.h"
+#import "FLFinisher.h"
 #import "FLDispatchQueues.h"
 #import "FLTestCase.h"
 
@@ -34,17 +34,19 @@
     return [self create];
 }
 
-- (void) startWorking:(id<FLFinisher>) finisher {
+- (FLFinisher*) startWorking:(FLFinisher*) finisher {
     
     NSMutableArray* tests = autorelease_([[_sanityTests allObjects] mutableCopy]);
     
     [tests sortedArrayUsingSelector:@selector(compare:)];
     
     for(FLTestCase* test in tests) {
-        [test runSynchronously];
+        FLThrowError_([test runSynchronously]);
     }
     
     [finisher setFinished];
+    
+    return finisher;
 }
 
 - (void) addPossibleTestMethod:(FLRuntimeInfo) info {

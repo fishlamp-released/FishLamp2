@@ -65,7 +65,7 @@
     __block __weak id test = nil;
 #endif    
     
-    id<FLPromisedResult> result = [[FLDispatchQueue instance] dispatchAsyncBlock:^(id<FLFinisher> finisher){
+    id<FLPromisedResult> result = [[FLDispatchQueue instance] dispatchAsyncBlock:^(FLFinisher* finisher){
         FLDeleteNotifier* notifier = [[FLDeleteNotifier alloc] initWithBlock:^(id sender){
             objectDeleted = YES;
         }];
@@ -88,13 +88,13 @@
     FLAssertIsNil_(test);
 #endif    
     
-    [result waitForResult];
+    [result waitUntilFinished];
     
     FLAssertIsTrue_(objectDeleted);
     FLAssertIsTrue_(notified);
 }
 
-//- (void) testNotify:(FLWorkFinisher*) finisher {
+//- (void) testNotify:(FLFinisher*) finisher {
 //
 //    NSMutableString* str = [[NSMutableString alloc] initWithString:@"hello world"];
 //    

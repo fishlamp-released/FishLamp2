@@ -26,6 +26,8 @@
 // TODO move these
 @property (readonly, nonatomic) BOOL didLoseNetwork;
 @property (readonly, nonatomic) BOOL isNotConnectedToInternetError;
+
+- (NSError*) error;
 @end
 
 @interface NSError (FLCancel)

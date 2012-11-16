@@ -10,7 +10,7 @@
 #import "FLPerformSelectorOperation.h"
 #import "FLCollectionIterator.h"
 #import "FLJob.h"
-#import "FLWorkFinisher.h"
+#import "FLFinisher.h"
 
 #if DEBUG
 #define LOG 0
@@ -293,9 +293,10 @@
     [self postObservation:@selector(operationQueue:operationWasCancelled:) withObject:operation];
 }
 
-- (void) startWorking:(id<FLFinisher>) finisher {
+- (FLFinisher*) startWorking:(FLFinisher*) finisher {
 
     for(FLOperation* operation in self.operations.forwardIterator) {
+        
         [operation runSynchronously];
         if(!operation.didSucceed) {
             break;
@@ -303,17 +304,19 @@
     };
 
     [finisher setFinished];
-}
-
-- (id<FLPromisedResult>) start:(FLResultBlock) completion {
-    FLWorkFinisher* finisher = [FLWorkFinisher finisher:completion];
-    [finisher startWorker:self];;
+    
     return finisher;
 }
 
-- (FLResult) runSynchronously {
-    return [[self start:nil] waitForResult];
-}
+//- (id<FLPromisedResult>) start:(FLFinisher*) finisher {
+////    FLFinisher* finisher = [FLFinisher finisher:completion];
+//    [self startWorking:finisher];
+//    return finisher;
+//}
+
+//- (FLFinisher*) runSynchronously {
+//    return [[self start:nil] waitUntilFinished];
+//}
 
 
 @end

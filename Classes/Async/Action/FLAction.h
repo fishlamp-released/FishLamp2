@@ -28,7 +28,7 @@ typedef void (^FLActionBlock)(FLAction* action);
 
 @protocol FLActionErrorDelegate;
 
-@interface FLAction : NSObject<FLCancellable, FLWeaklyReferenced> {
+@interface FLAction : NSObject<FLCancellable, FLWeaklyReferenced, FLRunnable> {
 @private
     FLOperationQueue* _operations;
 
@@ -99,17 +99,17 @@ typedef void (^FLActionBlock)(FLAction* action);
 + (void) setActionErrorDelegate:(id<FLActionErrorDelegate>) delegate;
 + (void) setGlobalFailedCallback:(id) target action:(SEL) action;
 
-- (id<FLPromisedResult>) startAction:(FLResultBlock) completion;
+- (FLFinisher*) startAction:(FLFinisher*) finisher;
 
-- (id<FLPromisedResult>) startActionInContext:(FLOperationContext*) context
-                          completion:(FLResultBlock) completion;
+- (FLFinisher*) startActionInContext:(FLOperationContext*) context
+                          finisher:(FLFinisher*) finisher;
 
-- (id<FLPromisedResult>) startAction:(dispatch_block_t) starting
-                 completion:(FLResultBlock) completion;
+- (FLFinisher*) startAction:(dispatch_block_t) starting
+                 finisher:(FLFinisher*) finisher;
 
-- (id<FLPromisedResult>) startActionInContext:(FLOperationContext*) context
+- (FLFinisher*) startActionInContext:(FLOperationContext*) context
                             starting:(dispatch_block_t) starting
-                          completion:(FLResultBlock) completion;
+                          finisher:(FLFinisher*) finisher;
 
 @end
 

@@ -36,8 +36,8 @@
     FLNetworkHost* host = [FLNetworkHost networkHostWithName:@"google.com"];
     
     FLNetworkHostResolver* resolver = [FLNetworkHostResolver networkHostResolver:host];
-    FLResult resolved = [resolver runSynchronously];
-    FLThrowIfError_(resolved.error);
+    
+    FLThrowIfError_([resolver runSynchronously]);
     
     FLAssertIsTrue_(host.isResolved);
     

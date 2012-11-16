@@ -171,7 +171,7 @@
 //        [progress setTitle:NSLocalizedString(@"Logging Out…", nil)];
 //    }
 
-//    [self.backgroundTasks beginClosingService:^(id<FLResult> backgroundTaskMgr) {
+//    [self.backgroundTasks beginClosingService:^(FLFinisher* backgroundTaskMgr) {
 //        [self closeService];
 //        [progress hideProgress];
 //        [finisher setFinished];
@@ -272,7 +272,7 @@
 //    self.backgroundTasks = [FLBackgroundTaskMgr create];
 //    [self addAppService:_backgroundTasks];
 
-//    [self.backgroundTasks startOpeningService:^(id<FLResult> result) {
+//    [self.backgroundTasks startOpeningService:^(FLFinisher* result) {
 //        [self postObservation:@selector(userServiceDidOpen:)];
 //    }];
 }
@@ -317,14 +317,14 @@
             action.progressController = [[self class] createVersionUpgradeProgressViewController:_upgradeTaskList];
             [action.progressController setTitle:[NSString stringWithFormat:(NSLocalizedString(@"Updating to Version: %@", nil)), [NSFileManager appVersion]]];
 
-            [[action startAction:^(FLResult result){
-                if(action.didSucceed) {
-                    [self finishUpgradeTasks];
-                }
-                else {
-                    // TODO: Ok, now what?
-                }
-            }] waitForResult];
+            if([action runSynchronously].didSucceed) {
+                 [self finishUpgradeTasks];
+            }
+            else {
+                // TODO: Ok, now what?
+            }
+
+            
 		}
 		else {
             [self finishOpeningService];

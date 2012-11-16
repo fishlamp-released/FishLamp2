@@ -9,7 +9,7 @@
 #import "FLLog.h"
 #import "FLTestCase.h"
 #import "FLUnitTestResult.h"
-#import "FLWorkFinisher.h"
+#import "FLFinisher.h"
 #import "FLTestResultCollection.h"
 #import "FLOperation.h"
 #import "FLUnitTestGroup.h"

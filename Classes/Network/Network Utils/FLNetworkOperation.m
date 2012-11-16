@@ -91,12 +91,13 @@
 
     FLAssertIsNotNil_v(self.networkConnection, nil);
     
-    FLResult result = [self.networkConnection runSynchronously];
-    if(!result.error) {
-        [self handleAsyncResultFromConnection:result.output];
+    FLFinisher* finisher = [self.networkConnection runSynchronously];
+    
+    if(!finisher.error) {
+        [self handleAsyncResultFromConnection:finisher.output];
     }
     else {
-        self.error = result.error;
+        self.error = finisher.error;
     }
 }
 

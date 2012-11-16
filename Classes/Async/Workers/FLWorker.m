@@ -1,19 +1,19 @@
 //
-//  FLSimpleWorker.m
+//  FLWorker.m
 //  FishLampCore
 //
 //  Created by Mike Fullerton on 10/29/12.
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import "FLSimpleWorker.h"
-#import "FLWorkFinisher.h"
+#import "FLWorker.h"
+#import "FLFinisher.h"
 
-@interface FLSimpleWorker ()
+@interface FLWorker ()
 @property (readwrite, assign) id parentWorker;
 @end
 
-@implementation FLSimpleWorker
+@implementation FLWorker
 @synthesize parentWorker = _parentWorker;
 @synthesize fallibleDelegate = _errorDelegate;
 
@@ -31,26 +31,27 @@
     self.parentWorker = parent;
 }
 
-- (void) startWorking:(id<FLFinisher>) finisher {
-}
-
-- (id<FLPromisedResult>) start:(FLResultBlock) completion {
-    FLWorkFinisher* finisher = [FLWorkFinisher finisher:completion];
-    
-    @try {
-        [finisher startWorker:self];;
-    }
-    @catch(NSException* ex) {
-        if(!FLTryHandlingErrorForObject(ex.error, self)) {
-            @throw;
-        }
-    }
+- (FLFinisher*) startWorking:(FLFinisher*) finisher {
     return finisher;
 }
 
-- (FLResult) runSynchronously {
-    return [[self start:nil] waitForResult];
-}
+//- (id<FLPromisedResult>) start:(FLFinisher*) finisher {
+////    FLFinisher* finisher = [FLFinisher finisher:completion];
+//    
+//    @try {
+//        [finisher startWorker:self];;
+//    }
+//    @catch(NSException* ex) {
+//        if(!FLTryHandlingErrorForObject(ex.error, self)) {
+//            @throw;
+//        }
+//    }
+//    return finisher;
+//}
+
+//- (FLFinisher*) runSynchronously {
+//    return [[self start:nil] waitUntilFinished];
+//}
 
 - (BOOL) tryHandlingError:(NSError*) error  {
 
@@ -82,6 +83,16 @@
    if([worker respondsToSelector:@selector(didMoveToParentWorker:)]) {
         [worker didMoveToParentWorker:nil];
     }
+}
+
+- (FLFinisher*) runSynchronously {
+    return [self runSynchronouslyWithInput:nil];
+}
+
+- (FLFinisher*) runSynchronouslyWithInput:(id) input {
+    FLFinisher* finisher = [FLFinisher finisher];
+    finisher.input = input;
+    return [[self startWorking:finisher] waitUntilFinished];
 }
 
 @end

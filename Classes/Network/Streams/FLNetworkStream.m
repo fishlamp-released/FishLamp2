@@ -9,8 +9,6 @@
 #import "FLNetworkStream.h"
 #import "FLReadStream.h"
 #import "FLWriteStream.h"
-#import "FLResult.h"
-#import "FLResultObjects.h"
 
 @interface FLNetworkStream ()
 @property (readwrite, assign) NSThread* thread;
