@@ -8,32 +8,34 @@
 
 #import <Foundation/Foundation.h>
 
-#import "FLSimpleWorker.h"
+#import "FLWorker.h"
 #import "FLCommandLineArgument.h"
 #import "FLCommandLineParser.h"
 #import "FLToolTask.h"
 
-@interface FLTool : FLSimpleWorker {
+extern NSString* const FLToolDefaultKey;
+
+@interface FLTool : FLWorker {
 @private
     id<FLCommandLineParser> _parser;
-    NSMutableArray* _tasks;
+    NSMutableDictionary* _tasks;
 }
 
 @property (readonly, strong) NSString* toolName;
 
-@property (readonly, strong) NSArray* tasks;
 @property (readonly, strong) id<FLCommandLineParser> parser;
 
 - (id) initWithCommandLineParser:(id<FLCommandLineParser>) parser;
 
-- (void) addTask:(FLToolTask*) task;
+- (void) setTask:(FLToolTask*) task forKeys:(NSArray*) keys;
+- (FLToolTask*) taskForKey:(NSString*) key;
+
 
 - (int) runWithParameters:(NSArray*) parameters;
 
 - (void) runToolTasksWithArguments:(NSArray*) arguments;
 
-- (FLToolTask*) taskForArgument:(FLCommandLineArgument*) argument;
-- (FLToolTask*) taskForKey:(NSString*) key;
+//- (FLToolTask*) taskForArgument:(FLCommandLineArgument*) argument;
 
 @end
 

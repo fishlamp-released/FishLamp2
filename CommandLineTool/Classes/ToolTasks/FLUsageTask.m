@@ -21,11 +21,12 @@
 }
 
 
-- (void) startWorking:(id<FLFinisher>)finisher {
+- (FLFinisher*) startWorking:(FLFinisher*)finisher {
 
     FLLog(@"Usage for %@", self.parentTool.toolName);
 
     [finisher setFinished];
+    return finisher;
 }
 
 @end

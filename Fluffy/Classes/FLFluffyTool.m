@@ -23,7 +23,7 @@
 - (id) init {
     self = [super initWithCommandLineParser:[FLCommandLineParser create]];
     if(self) {
-        [self addTask:[FLUsageTask toolTask]];
+        [self setTask:[FLUsageTask toolTask] forKeys:nil];
     
     
 //        [self addInputHandler:[FLArgumentHandler argumentHandler:@"-b,--bundle,"
@@ -51,18 +51,18 @@
     NSLog(@"Fluffy is done.");
     
 //    FLSanityCheckRunner* runner = [FLSanityCheckRunner new];
-//    FLWorkFinisher* finisher2 = [runner startTests:^{
+//    FLFinisher* finisher2 = [runner startTests:^{
 //        NSLog(@"done with critical tests");
 //    }];
 //
-//    [finisher2 waitForResult];
+//    [finisher2 waitUntilFinished];
 //    release_(runner);
 //
 
 //
 //    FLForegroundJob* fgBot = [FLForegroundJob job];
 //    [fgBot addWorker:[FLRunUnitTestsOperation unitTestRunner]];
-//    [[fgBot runBot:nil] waitForResult];
+//    [[fgBot runBot:nil] waitUntilFinished];
 }
 
 //- (void) addInputHandlers {

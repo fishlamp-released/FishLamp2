@@ -16,8 +16,11 @@ FLDeclareErrorDomain(FLToolApplicationErrorDomain);
 
 FLSynthesizeErrorDomain(FLToolApplicationErrorDomain, @"com.fishlamp.commandlinetool");
 
+NSString* const FLToolDefaultKey = @"--default-task";
+
 @interface FLTool ()
 @property (readwrite, strong) id<FLCommandLineParser> parser;
+@property (readonly, strong) NSDictionary* tasks;
 @end
 
 @interface FLToolTask (Internal)
@@ -32,7 +35,7 @@ synthesize_(parser);
 - (id) init {
     self = [super init];
     if(self) {
-        _tasks = [[NSMutableArray alloc] init];
+        _tasks = [[NSMutableDictionary alloc] init];
     }
     
     return self;
@@ -43,7 +46,7 @@ synthesize_(parser);
     self = [super init];
     if(self) {
         self.parser = parser;
-        _tasks = [[NSMutableArray alloc] init];
+        _tasks = [[NSMutableDictionary alloc] init];
     }
     
     return self;
@@ -53,6 +56,110 @@ dealloc_(
     [_parser release];
     [_tasks release];
 )
+
+- (FLToolTask*) taskForKey:(NSString*) key {
+    return [_tasks objectForKey:key];
+}
+
+- (NSString*) toolName {
+    return nil;
+}
+
+- (void) setDefaultTask:(FLToolTask*) task {
+    [self setTask:task forKeys:[NSArray arrayWithObject:FLToolDefaultKey]];
+}
+
+- (void) setTask:(FLToolTask*) task forKeys:(NSArray*) keys {
+    
+    FLAssertIsNotNil_(task);
+    FLAssertIsNotNil_(keys);
+    
+    for(NSString* key in keys) {
+        id existing = [_tasks objectForKey:key];
+        FLConfirmIsNil_v(existing, @"task already installed for key: %@", key);
+        [_tasks setObject:task forKey:key];
+    }
+    
+    [self willAddWorker:task];
+}
+
+- (void) runToolTasksWithArguments:(NSArray*) arguments {
+    for(FLCommandLineArgument* arg in arguments) {
+        FLToolTask* task = [_tasks objectForKey:arg.key];
+        FLConfirmIsNotNil_v(task, @"Unknown argument: %@", arg.key);
+        
+//        task.argument = arg;
+//        [task runSynchronously];
+//        FLThrowError(task.error);
+    }
+
+    if(!arguments || arguments.count == 0) {
+        FLToolTask* task = [self taskForKey:FLToolDefaultKey];
+        if(task) {
+//            [task runSynchronously];
+//            FLThrowError(task.error);
+        }
+    }
+}
+
+
+- (int) runWithParameters:(NSArray*) parameters {
+    @try {
+        [FLToolTask setStartDirectory:parameters.firstObject];
+        NSArray* args = [self.parser parseArguments:[parameters subarrayWithRange:NSMakeRange(1, parameters.count - 1)]];
+        [self runToolTasksWithArguments:args];
+    }
+    @catch(NSException* ex) {
+        FLLog(@"Failed: %@", ex.reason);
+        return 1;
+    }
+    
+    return 0;
+}
+
+@end
+
+@implementation FLToolTask (Internal)
+
+static NSString* s_startDirectory;
+
++ (void) setStartDirectory:(NSString*) directory {
+    FLRetainObject_(s_startDirectory, directory);
+}
+
+@end
+
+@implementation FLToolTask (Utils)
+- (NSString*) startDirectory {
+    return s_startDirectory;
+}
+
+- (void) setCurrentDirectory:(NSString*) newDirectory {
+
+// TODO: this returns a BOOL? Check it?
+    [[NSFileManager defaultManager] changeCurrentDirectoryPath:newDirectory];
+}
+
+- (NSString*) currentDirectory {
+    return [[NSFileManager defaultManager] currentDirectoryPath];
+}
+
+- (void) openURL:(NSString *)url inBackground:(BOOL)background {
+    if (background) {
+        NSArray* urls = [NSArray arrayWithObject:[NSURL URLWithString:url]];
+        [[NSWorkspace sharedWorkspace] openURLs:urls withAppBundleIdentifier:nil options:NSWorkspaceLaunchWithoutActivation additionalEventParamDescriptor:nil launchIdentifiers:nil];    
+    }
+    else {
+        [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:url]];
+    }
+}
+
+- (void) openFileInDefaultEditor:(NSString*) path {
+    [[NSWorkspace sharedWorkspace] openFile:path];
+}
+
+@end
+
 
 //- (void) _wait:(FLArgumentHandler*) handler {
 //
@@ -116,45 +223,16 @@ dealloc_(
 //    }
 //}
 
-- (FLToolTask*) taskForArgument:(FLCommandLineArgument*) argument {
-
-    for(FLToolTask* task in _tasks) {
-        if([task hasInputParameter:argument.key]) {
-            return task;
-        }
-    }
-    
-    return nil;
-}
-
-- (FLToolTask*) taskForKey:(NSString*) key {
-
-    for(FLToolTask* task in _tasks) {
-        if([task hasInputParameter:key]) {
-            return task;
-        }
-    }
-    
-    return nil;
-}
-
-- (NSString*) toolName {
-    return nil;
-}
-
-- (void) addTask:(FLToolTask*) task {
-    
-    FLAssertIsNotNil_(task);
-
-#if DEBUG
-    for(NSString* key in task.inputKeys) {
-        FLAssert_v([self taskForKey:key] == nil, @"add duplicated inputParameter");
-    }
-#endif
-
-    [self willAddWorker:task];
-    [_tasks addObject:task];
-}
+//- (FLToolTask*) taskForArgument:(FLCommandLineArgument*) argument {
+//
+//    for(FLToolTask* task in _tasks) {
+//        if([task hasInputParameter:argument.key]) {
+//            return task;
+//        }
+//    }
+//    
+//    return nil;
+//}
 
 //- (NSString*) inputParametersAsString {
 //    NSMutableString* string = [NSMutableString string];
@@ -303,76 +381,3 @@ dealloc_(
 //        FLLog(@"EPIC FAIL: %@", [error description]);
 //    }
 //}
-
-- (void) runToolTasksWithArguments:(NSArray*) arguments {
-    BOOL wasRun = NO;
-
-    if(!wasRun) {
-        for(FLToolTask* task in _tasks) {
-            if(task.inputKeys == nil || task.inputKeys.count == 0) {
-                [task runSynchronously];
-            }
-        }
-    }
-
-}
-
-
-- (int) runWithParameters:(NSArray*) parameters {
-    @try {
-        [FLToolTask setStartDirectory:parameters.firstObject];
-        NSArray* args = [self.parser parseArguments:[parameters subarrayWithRange:NSMakeRange(1, parameters.count - 1)]];
-        [self runToolTasksWithArguments:args];
-    }
-    @catch(NSException* ex) {
-        FLLog(@"Tool Exception: %@", [ex description]);
-        return 1;
-    }
-    
-    return 0;
-}
-
-@end
-
-@implementation FLToolTask (Internal)
-
-static NSString* s_startDirectory;
-
-+ (void) setStartDirectory:(NSString*) directory {
-    FLRetainObject_(s_startDirectory, directory);
-}
-
-@end
-
-@implementation FLToolTask (Utils)
-- (NSString*) startDirectory {
-    return s_startDirectory;
-}
-
-- (void) setCurrentDirectory:(NSString*) newDirectory {
-
-// TODO: this returns a BOOL? Check it?
-    [[NSFileManager defaultManager] changeCurrentDirectoryPath:newDirectory];
-}
-
-- (NSString*) currentDirectory {
-    return [[NSFileManager defaultManager] currentDirectoryPath];
-}
-
-- (void) openURL:(NSString *)url inBackground:(BOOL)background {
-    if (background) {
-        NSArray* urls = [NSArray arrayWithObject:[NSURL URLWithString:url]];
-        [[NSWorkspace sharedWorkspace] openURLs:urls withAppBundleIdentifier:nil options:NSWorkspaceLaunchWithoutActivation additionalEventParamDescriptor:nil launchIdentifiers:nil];    
-    }
-    else {
-        [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:url]];
-    }
-}
-
-- (void) openFileInDefaultEditor:(NSString*) path {
-    [[NSWorkspace sharedWorkspace] openFile:path];
-}
-
-@end
-
-
