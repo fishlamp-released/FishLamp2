@@ -101,7 +101,7 @@
     [operation setInput:_statusUpdate];
     [action addOperation:operation];
         
-	[self startAction:action completion: ^(FLResult result) {
+	[self startAction:action completion: ^(FLFinisher* result) {
         if([action didSucceed])
         {
             [_postDelegate twitterPostStatusViewController:self didPostStatus:_statusUpdate];
