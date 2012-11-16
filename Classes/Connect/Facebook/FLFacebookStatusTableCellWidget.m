@@ -102,7 +102,7 @@
         [operation setPictureSize:FLFacebookLoadUserPictureOperationInputSizeSquare];
         [action addOperation:operation];
         
-		[[FLActionContextManager instance].activeContext startAction:action completion: ^(FLFinisher* result) {
+		[[FLActionContextManager instance].activeContext startAction:action completion: ^(id result) {
             self.thumbnailWidget.foregroundThumbnail =
                 [[[action lastOperationOutput] imageFile] image];
             }]; 

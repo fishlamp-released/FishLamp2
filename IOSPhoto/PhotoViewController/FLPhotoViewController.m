@@ -523,7 +523,7 @@ FLSynthesizeStructProperty(isFullScreenTapDisabled, setFullScreenTapDisabled, BO
         };
 
         ++_busyCount;
-		[self startAction:action completion: ^(FLFinisher* result) {
+		[self startAction:action completion: ^(id result) {
             [self _actionDidComplete:action loadingState:state];
             --_busyCount;
             }];
@@ -1059,7 +1059,7 @@ FLSynthesizeStructProperty(isFullScreenTapDisabled, setFullScreenTapDisabled, BO
             };
 
             ++_busyCount;
-            [self startAction:action completion: ^(FLFinisher* result) { 
+            [self startAction:action completion: ^(id result) { 
                 [self _actionDidComplete:action loadingState:state];
                 --_busyCount;
             }];

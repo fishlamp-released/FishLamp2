@@ -128,7 +128,7 @@
 
     [action addOperation:operation];
             
-    [self startAction:action completion: ^(FLFinisher* result) {
+    [self startAction:action completion: ^(id result) {
         if(action.didSucceed) {
             [_postLinkDelegate facebookPostLinkViewControllerDidPostLink:self];
         }

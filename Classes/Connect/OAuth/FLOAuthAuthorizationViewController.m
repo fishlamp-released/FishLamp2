@@ -68,7 +68,7 @@
     action.progressController = [FLProgressViewController progressViewController:[FLSimpleProgressView class] 
                                                             presentationBehavior:[FLModalPresentationBehavior instance]];
     action.actionDescription.actionType = FLActionDescriptionTypeAuthenticate;
-	[self startAction:action completion: ^(FLFinisher* result) {
+	[self startAction:action completion: ^(id result) {
         [self _didCompleteAction:action];
         }];
 }
@@ -120,7 +120,7 @@
                                                                 presentationBehavior:[FLModalPresentationBehavior instance]];
         action.actionDescription.actionType = FLActionDescriptionTypeAuthenticate;
 
-		[self  startAction:action completion: ^(FLFinisher* result) {
+		[self  startAction:action completion: ^(id result) {
             [self _didFinishAuthenticating:action]; 
             }];
 

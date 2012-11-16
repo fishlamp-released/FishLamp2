@@ -83,7 +83,7 @@
         return operation;
     }];
 
-	[viewController startAction: action completion: ^(FLFinisher* result) {
+	[viewController startAction: action completion: ^(id result) {
         [self _didCompleteLoad:action]; 
         }];
 
