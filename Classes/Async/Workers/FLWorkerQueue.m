@@ -39,13 +39,12 @@
 
     id<FLWorker> worker = iterator.nextObject;
     if(worker) {
-        FLFinisher* finisher = [FLBlockFinisher finisher:^(FLFinisher* result) {
-            if(result.didSucceed) {
-                [self runNextWorker:iterator withFinisher:queueFinisher];
+        FLFinisher* finisher = [FLFinisher finisherWithBlock:^(id result) {
+            if([result isError]) {
+                [queueFinisher setFinishedWithResult:result];
             }
             else {
-            
-                [queueFinisher setFinishedWithFinisher:result];
+                [self runNextWorker:iterator withFinisher:queueFinisher];
             }
         }];
         [worker startWorking:finisher];

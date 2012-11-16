@@ -85,13 +85,11 @@
     }
 }
 
-- (FLFinisher*) runSynchronously {
-    return [self runSynchronouslyWithInput:nil];
+- (id) runSynchronously {
+    return [self runSynchronously:[FLFinisher finisher]];
 }
 
-- (FLFinisher*) runSynchronouslyWithInput:(id) input {
-    FLFinisher* finisher = [FLFinisher finisher];
-    finisher.input = input;
+- (id) runSynchronously:(FLFinisher*) finisher {
     return [[self startWorking:finisher] waitUntilFinished];
 }
 

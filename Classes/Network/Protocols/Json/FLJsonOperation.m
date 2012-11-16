@@ -45,8 +45,8 @@ dealloc_(
         
         self.operationOutput = [parser parseJsonData:self.httpResponse.responseData rootObject:self.output];
 
-        FLThrowIfError_(parser.error);
-        FLThrowIfError_([self.httpResponse simpleHttpResponseErrorCheck]);
+        FLThrowError_(parser.error);
+        FLThrowError_([self.httpResponse simpleHttpResponseErrorCheck]);
     }
 }
 

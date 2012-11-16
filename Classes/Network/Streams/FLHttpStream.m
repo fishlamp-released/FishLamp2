@@ -210,10 +210,10 @@
     [self readResponseHeadersIfNeeded];
 }
 
-- (void) networkStreamDidClose:(id<FLNetworkStream>) networkStream withResult:(FLFinisher*) result {
+- (void) networkStreamDidClose:(id<FLNetworkStream>) networkStream {
 
     BOOL redirect = NO;
-    if(!result.error) {
+    if(!networkStream.error) {
         [self readResponseHeadersIfNeeded];
 
     // FIXME: there was an issue here with progress getting fouled up on redirects.

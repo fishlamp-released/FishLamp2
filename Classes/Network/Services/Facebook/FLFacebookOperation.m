@@ -69,7 +69,7 @@ dealloc_(
     
         FLJsonParser* parser = [FLJsonParser jsonParser];
 		NSDictionary* response = [parser parseJsonData:responseData rootObject:nil];
-        FLThrowIfError_(parser.error);
+        FLThrowError_(parser.error);
 
         if([response objectForKey:@"error"])
         {

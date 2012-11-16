@@ -95,75 +95,122 @@ FLSynthesizeSingleton(FLDispatchQueue);
     return dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
 }
 
-- (FLFinisher*) dispatchAsyncBlock:(FLAsyncBlock) block {
-    return [self dispatchAsyncBlock:block finisher:[FLFinisher finisher]];
++ (FLFinisher*) dispatch:(id<FLWorker>) worker {
+    return [[self instance] dispatch:worker];
 }
 
-- (FLFinisher*) dispatchBlock:(void (^)()) block {
-    return [self dispatchBlock:block finisher:[FLFinisher finisher]];
-}
-
-- (FLFinisher*) dispatchBlock:(void (^)()) block
-                        finisher:(FLFinisher*) finisher {
++ (FLFinisher*) dispatch:(id<FLWorker>) worker
+                finisher:(FLFinisher*) finisher {
     
-    FLAssertNotNil_(block);
-    FLAssertNotNil_(finisher);
-    
-    [self rescheduleWorkFinisher:finisher];
-
-    block = FLCopyBlock(block);
-
-    dispatch_async([self dispatchQueue], ^{
-        @try {
-            if(block) {
-                block();
-            }
-            [finisher setFinished];
-        }
-        @catch(NSException* ex) {
-            [finisher setFinishedWithError:ex.error]; 
-        }
-    });
-
-    return finisher;
+    return [[self instance] dispatch:worker finisher:finisher];
 }
 
+//- (FLFinisher*) dispatchBlock:(void (^)()) block {
+//    return [self dispatchBlock:block finisher:[FLFinisher finisher]];
+//}
+//
+//- (FLFinisher*) dispatchBlock:(void (^)()) block
+//                        finisher:(FLFinisher*) finisher {
+//    
+//    FLAssertNotNil_(block);
+//    FLAssertNotNil_(finisher);
+//    
+//    [self rescheduleWorkFinisher:finisher];
+//
+//    block = FLCopyBlock(block);
+//
+//    dispatch_async([self dispatchQueue], ^{
+//        @try {
+//            if(block) {
+//                block();
+//            }
+//            [finisher setFinished];
+//        }
+//        @catch(NSException* ex) {
+//            [finisher setFinishedWithResult:ex.error]; 
+//        }
+//    });
+//
+//    return finisher;
+//}
+//
+//- (FLFinisher*) dispatchAsyncBlock:(FLAsyncBlock) block {
+//    return [self dispatchAsyncBlock:block finisher:[FLFinisher finisher]];
+//}
+//
+//- (FLFinisher*) dispatchAsyncBlock:(FLAsyncBlock) block
+//                          finisher:(FLFinisher*) finisher {
+//    
+//    FLAssertNotNil_(block);
+//    FLAssertNotNil_(finisher);
+//    
+//    [self rescheduleWorkFinisher:finisher];
+//
+//    block = FLCopyBlock(block);
+//
+//    dispatch_async([self dispatchQueue], ^{
+//        @try {
+//            if(block) {
+//                block(finisher);
+//            }
+//            else {
+//                [finisher setFinished];
+//            }
+//        }
+//        @catch(NSException* ex) {
+//            [finisher setFinishedWithResult:ex.error]; 
+//        }
+//        
+//    });
+//
+//    return finisher;
+//}
+//
+//- (FLFinisher*) dispatchWorker:(id<FLWorker>) aWorker {
+//    return [self dispatchWorker:aWorker finisher:[FLFinisher finisher]];
+//}
+//
+//- (FLFinisher*) dispatchWorker:(id<FLWorker>) aWorker
+//                         finisher:(FLFinisher*) finisher {
+//    
+//    FLAssertNotNil_(aWorker);
+//    FLAssertNotNil_(finisher);
+//    
+//    [self rescheduleWorkFinisher:finisher];
+//
+//    dispatch_async([self dispatchQueue],  
+//    ^{
+//        @try {
+//            [aWorker startWorking:finisher];
+//        }
+//        @catch(NSException* ex) {
+//            [finisher setFinishedWithResult:ex.error];
+//        }
+//    });
+//
+//    return finisher;
+//
+//}
 
-
-- (FLFinisher*) dispatchAsyncBlock:(FLAsyncBlock) block
-                        finisher:(FLFinisher*) finisher {
-    
-    FLAssertNotNil_(block);
-    FLAssertNotNil_(finisher);
-    
-    [self rescheduleWorkFinisher:finisher];
-
-    block = FLCopyBlock(block);
-
-    dispatch_async([self dispatchQueue], ^{
-        @try {
-            if(block) {
-                block(finisher);
-            }
-            else {
-                [finisher setFinished];
-            }
-        }
-        @catch(NSException* ex) {
-            [finisher setFinishedWithError:ex.error]; 
-        }
-        
-    });
-
-    return finisher;
++ (FLFinisher*) dispatchAsyncBlock:(FLAsyncBlock) block {
+    return [self dispatch:[FLAsyncBlockWorker asyncBlockWorker:block]];
 }
 
-- (FLFinisher*) dispatchWorker:(id<FLWorker>) aWorker {
-    return [self dispatchWorker:aWorker finisher:[FLFinisher finisher]];
++ (FLFinisher*) dispatchAsyncBlock:(FLAsyncBlock) block
+                          finisher:(FLFinisher*) finisher {
+    return [self dispatch:[FLAsyncBlockWorker asyncBlockWorker:block] finisher:finisher];
+}                          
+
++ (FLFinisher*) dispatchBlock:(dispatch_block_t) block {
+    return [self dispatch:[FLBlockWorker blockWorker:block]];
 }
 
-- (FLFinisher*) dispatchWorker:(id<FLWorker>) aWorker
-                         finisher:(FLFinisher*) finisher {
+- (FLFinisher*) dispatch:(id<FLWorker>) aWorker {
+    return [self dispatch:aWorker finisher:[FLFinisher finisher]];
+}
+
+- (FLFinisher*) dispatch:(id<FLWorker>) aWorker 
+                finisher:(FLFinisher*) finisher {
     
     FLAssertNotNil_(aWorker);
     FLAssertNotNil_(finisher);
@@ -176,13 +223,14 @@ FLSynthesizeSingleton(FLDispatchQueue);
             [aWorker startWorking:finisher];
         }
         @catch(NSException* ex) {
-            [finisher setFinishedWithError:ex.error];
+            [finisher setFinishedWithResult:ex.error];
         }
     });
 
     return finisher;
-
 }
+
+
 
 @end
 
@@ -198,12 +246,12 @@ FLSynthesizeSingleton(FLHighPriorityQueue);
 
 - (void) rescheduleWorkFinisher:(FLFinisher*) finisher {
     
-    finisher.notificationScheduler = ^(FLFinisher* theFinisher) {
+    finisher.notificationScheduler = ^(dispatch_block_t finishBlock) {
         if(![NSThread isMainThread]) {
-            [((id) theFinisher) performSelectorOnMainThread:@selector(setFinished) withObject:nil waitUntilDone:NO];
+            [self performBlockOnMainThread:finishBlock];
         }
         else {
-            [ theFinisher setFinished];
+            finishBlock();
         }
     };
 }

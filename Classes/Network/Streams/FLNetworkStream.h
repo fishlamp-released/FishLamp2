@@ -15,8 +15,7 @@
 @protocol FLNetworkStream <NSObject, FLCancellable>
 @property (readwrite, assign) id delegate;
 @property (readonly, assign) BOOL isOpen;
-
-@property (readonly, strong) id output;
+@property (readonly, strong) NSError* error;
 
 - (void) openStream;
 - (void) closeStream;
@@ -24,8 +23,7 @@
 
 @protocol FLNetworkStreamDelegate <NSObject>
 - (void) networkStreamDidOpen:(id<FLNetworkStream>) networkStream;
-- (void) networkStreamDidClose:(id<FLNetworkStream>) networkStream 
-                    withResult:(FLFinisher*) result;
+- (void) networkStreamDidClose:(id<FLNetworkStream>) networkStream;
 @end
 
 @interface FLNetworkStream : NSObject<FLNetworkStream> {
@@ -39,7 +37,6 @@
 }
 @property (readonly, assign) NSThread* thread;
 @property (readonly, assign) CFRunLoopRef runLoop;
-@property (readonly, strong) NSError* error;
 
 - (void) forwardStreamEventToDelegate:(CFStreamEventType) eventType;
 

@@ -110,7 +110,7 @@
     }];
     
     
-    FLThrowErrorResult([notifier waitUntilFinished]);
+    FLThrowError_([notifier waitUntilFinished]);
     
 //    FLAssertIsNil_(weakRef.object);
 }

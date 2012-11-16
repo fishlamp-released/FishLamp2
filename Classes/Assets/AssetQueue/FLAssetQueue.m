@@ -58,7 +58,7 @@ synthesize_(assets);
 synthesize_(state);
 //synthesize_(locks);
 
-FLAssertDefaultInitNotCalled_v(nil);
+FLAssertDefaultInitNotCalled_v(@"hello");
 
 - (id) initWithQueueUID:(NSString*) uid
 {
@@ -366,7 +366,7 @@ dealloc_(
 
 - (void) batchAddAssets:(NSArray*) assets
 {
-    NSDate* date = [[NSDate alloc] init];
+    NSDate* date = [NSDate date];
 
     FLDatabase* database = self.database;
 	FLAssertIsNotNil_v(database, nil);
@@ -380,8 +380,7 @@ dealloc_(
 		}
     }
 
-	release_(date);
-    
+	
     [database batchSaveObjects:assets];
     [database saveObject:_state];
     

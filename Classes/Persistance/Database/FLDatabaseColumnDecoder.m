@@ -32,12 +32,12 @@ id FLDefaultDatabaseColumnDecoder( FLDatabase* database,
             
         case FLDatabaseTypeFloat:
         case FLDatabaseTypeInteger: 
-            FLCConfirmIsNotNil_(newObject);
-            FLCAssert_v([newObject isKindOfClass:[NSNumber class]], @"expecting a number here");
+            FLConfirmIsNotNil_(newObject);
+            FLAssert_v([newObject isKindOfClass:[NSNumber class]], @"expecting a number here");
         break;
         
         case FLDatabaseTypeText:{
-            FLCConfirmIsKindOfClass_(inObject, NSString);
+            FLConfirmIsKindOfClass_(inObject, NSString);
             FLObjectDescriber* objectDescriber = [[table classRepresentedByTable] sharedObjectDescriber];
             if(objectDescriber) {
                 FLPropertyDescription* desc = [objectDescriber propertyDescriberForPropertyName:column.decodedColumnName];
@@ -52,12 +52,12 @@ id FLDefaultDatabaseColumnDecoder( FLDatabase* database,
             switch(column.columnType) {
 
                 case FLDatabaseTypeFloat:
-                    FLCConfirmIsKindOfClass_(inObject, NSNumber);
+                    FLConfirmIsKindOfClass_(inObject, NSNumber);
                     newObject = [NSDate dateWithTimeIntervalSinceReferenceDate:[inObject doubleValue]];
                     break;
                     
                 case FLDatabaseTypeInteger:
-                    FLCConfirmIsKindOfClass_(inObject, NSNumber);
+                    FLConfirmIsKindOfClass_(inObject, NSNumber);
                     newObject = [NSDate dateWithTimeIntervalSinceReferenceDate:(NSTimeInterval) [inObject longLongValue]];
                     break;
                     
@@ -66,13 +66,13 @@ id FLDefaultDatabaseColumnDecoder( FLDatabase* database,
                     break;
             }
             
-            FLCConfirmIsNotNil_(newObject);
-            FLCAssert_v([newObject isKindOfClass:[NSDate class]], @"date deserialization failed");
+            FLConfirmIsNotNil_(newObject);
+            FLAssert_v([newObject isKindOfClass:[NSDate class]], @"date deserialization failed");
         break;
 			
         case FLDatabaseTypeBlob:
-            FLCConfirmIsNotNil_(newObject);
-            FLCConfirmIsKindOfClass_(newObject, NSData);
+            FLConfirmIsNotNil_(newObject);
+            FLConfirmIsKindOfClass_(newObject, NSData);
         break;
 			           
         case FLDatabaseTypeObject: {
@@ -80,7 +80,7 @@ id FLDefaultDatabaseColumnDecoder( FLDatabase* database,
             if(objectDescriber) {
                 FLPropertyDescription* desc = [objectDescriber propertyDescriberForPropertyName:column.decodedColumnName];
                 if(desc) {
-                    FLCConfirmIsKindOfClass_(inObject, NSData);
+                    FLConfirmIsKindOfClass_(inObject, NSData);
                     newObject = [desc.propertyClass decodeObjectWithSqliteColumnData:inObject];
                 }
             }
@@ -101,7 +101,7 @@ id FLLegacyDatabaseColumnDecoder(FLDatabase* database,
             
         case FLDatabaseTypeInteger:
             if(column.columnType == FLDatabaseTypeText) {
-                FLCConfirmIsKindOfClass_(object, NSString);
+                FLConfirmIsKindOfClass_(object, NSString);
                 object = [NSNumber numberWithInteger:[object integerValue]];
             }
         break;
@@ -109,7 +109,7 @@ id FLLegacyDatabaseColumnDecoder(FLDatabase* database,
         case FLDatabaseTypeFloat:
         case FLDatabaseTypeDate:
             if(column.columnType == FLDatabaseTypeText) {
-                FLCConfirmIsKindOfClass_(object, NSString);
+                FLConfirmIsKindOfClass_(object, NSString);
                 object = [NSNumber numberWithDouble:[object doubleValue]];
             }
         break;
@@ -117,7 +117,7 @@ id FLLegacyDatabaseColumnDecoder(FLDatabase* database,
         case FLDatabaseTypeObject:
         case FLDatabaseTypeBlob:
             if(column.columnType == FLDatabaseTypeText) {
-                FLCConfirmIsKindOfClass_(object, NSString);
+                FLConfirmIsKindOfClass_(object, NSString);
                 NSData* newData = nil;
                 [NSData base64DecodeString:object outData:&newData];
                 object = autorelease_(newData);

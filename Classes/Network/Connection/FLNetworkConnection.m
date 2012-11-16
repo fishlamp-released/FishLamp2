@@ -134,21 +134,21 @@ const FLNetworkConnectionByteCount FLNetworkConnectionByteCountZero = {0, 0, 0};
     }
 }
 
-//- (void) setFinishedWithError:(NSError*) error {
+//- (void) setFinishedWithResult:(NSError*) error {
 //    [self closeConnection];
 //
 //    if(self.finisher) {
 //        [self postObservation:@selector(networkConnectionFinished:)];
-//        [self.finisher setFinishedWithError:error];
+//        [self.finisher setFinishedWithResult:error];
 //        self.finisher = nil;
 //    }
 //}
 //
-//- (void) setFinishedWithOutput:(id) output {
+//- (void) setFinishedWithResult:(id) output {
 //    [self closeConnection];
 //    if(self.finisher) {
 //        [self postObservation:@selector(networkConnectionFinished:)];
-//        [self.finisher setFinishedWithOutput:output];
+//        [self.finisher setFinishedWithResult:output];
 //        self.finisher = nil;
 //    }
 //}
@@ -181,7 +181,7 @@ const FLNetworkConnectionByteCount FLNetworkConnectionByteCountZero = {0, 0, 0};
         [self.networkStream openStream];
 //    }
 //    @catch(NSException* ex) {
-//        [self setFinishedWithError:ex.error];
+//        [self setFinishedWithResult:ex.error];
 //    }
 
     return finisher;
@@ -197,32 +197,29 @@ const FLNetworkConnectionByteCount FLNetworkConnectionByteCountZero = {0, 0, 0};
 //    return [[self start:nil] waitUntilFinished];
 //}
 
-- (void) networkStreamDidClose:(id<FLNetworkStream>) networkStream withResult:(FLFinisher*) result {
+- (void) networkStreamDidClose:(id<FLNetworkStream>) networkStream {
     
     [self touchTimestamp];
 
 #if DEBUG
-    if(result.error) {
-        FLDebugLog(@"stream received error: %@", [result.error localizedDescription]);
+    if(networkStream.error) {
+        FLDebugLog(@"stream received error: %@", [networkStream.error localizedDescription]);
     } 
 #endif
 
     [self closeConnection];
 
     [self postObservation:@selector(networkConnectionFinished:)];
-    if(result) {
-        [self.finisher setFinished];
-        self.finisher = nil;
-    }
+
+    [self.finisher setFinishedWithResult:networkStream.error];
+    self.finisher = nil;
 }
 
-- (FLFinisher*) runSynchronously {
-    return [self runSynchronouslyWithInput:nil];
+- (id) runSynchronously {
+    return [self runSynchronously:[FLFinisher finisher]];;
 }
 
-- (FLFinisher*) runSynchronouslyWithInput:(id) input {
-    FLFinisher* finisher = [FLFinisher finisher];
-    finisher.input = input;
+- (id) runSynchronously:(FLFinisher*) finisher {
     return [[self startWorking:finisher] waitUntilFinished];
 }
 
@@ -232,7 +229,7 @@ const FLNetworkConnectionByteCount FLNetworkConnectionByteCountZero = {0, 0, 0};
 
 - (void) requestCancel {
     [self.networkStream requestCancel];
-//    [self setFinishedWithError:[NSError cancelError]];
+//    [self setFinishedWithResult:[NSError cancelError]];
 }
 
 - (void) networkStreamDidWriteBytes:(id<FLWriteStream>) stream {

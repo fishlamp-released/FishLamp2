@@ -44,7 +44,7 @@ synthesize_(error)
 
 static void HostResolutionCallback(CFHostRef theHost, CFHostInfoType typeInfo, const CFStreamError *error, void *info) {
     FLNetworkHostResolverStream* resolver = bridge_(id, info);
-    FLCAssertIsKindOfClass_v(resolver, FLNetworkHostResolverStream, nil);
+    FLAssertIsKindOfClass_v(resolver, FLNetworkHostResolverStream, nil);
     [resolver resolutionCallback:theHost typeInfo:typeInfo error:error];
 }
 

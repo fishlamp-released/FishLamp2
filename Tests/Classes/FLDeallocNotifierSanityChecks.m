@@ -65,14 +65,16 @@
     __block __weak id test = nil;
 #endif    
     
-    id<FLPromisedResult> result = [[FLDispatchQueue instance] dispatchAsyncBlock:^(FLFinisher* finisher){
+    FLAsyncBlockDispatcher* dispatcher = [FLAsyncBlockDispatcher dispatcher]
+    dispatcher.block = ^(FLFinisher* finisher) {
+    
         FLDeleteNotifier* notifier = [[FLDeleteNotifier alloc] initWithBlock:^(id sender){
             objectDeleted = YES;
         }];
         
         [notifier addDeallocNotifierWithBlock:^(FLDeletedObjectReference* ref){
             notified = YES;
-            [finisher setFinished];
+            [asyncFinisher setFinished];
         }];
 
         FLManuallyRelease(&notifier);
@@ -81,14 +83,21 @@
 #if FL_ARC
         FLAssertIsNil_(test);
 #endif        
-    }];
+    };
+    dispatcher.finisher
+    
+    FLFinisher* finisher = [FLFinisher finisher];
+    
+    [[FLDispatchQueue instance] dispatchAsyncBlockWithFinisher:finisher 
+            }];
     
     
 #if FL_ARC
     FLAssertIsNil_(test);
 #endif    
     
-    [result waitUntilFinished];
+    id result = [finisher waitUntilFinished];
+    FLAssertNotNil_(result);
     
     FLAssertIsTrue_(objectDeleted);
     FLAssertIsTrue_(notified);

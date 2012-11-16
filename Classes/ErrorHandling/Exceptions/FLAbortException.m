@@ -16,7 +16,7 @@
     return autorelease_([[[self class] alloc] initWithName:@"abort" reason:@"abort" userInfo:nil error:[NSError abortError]]);
 }
 + (void) raise {
-    FLThrowException_([FLAbortException abortException]);
+    @throw [FLAbortException abortException];
 }
 @end
 

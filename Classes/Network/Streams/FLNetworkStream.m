@@ -40,12 +40,7 @@ synthesize_(thread)
         _didClose = YES;
         [self closeSelf];
         
-        if(self.wasCancelled) {
-            FLPerformSelector2(self.delegate, @selector(networkStreamDidClose:withResult:), self, [FLErrorResult errorResult:[NSError cancelError]]);
-        }
-        else {
-            FLPerformSelector2(self.delegate, @selector(networkStreamDidClose:withResult:), self, self);
-        }
+        FLPerformSelector1(self.delegate, @selector(networkStreamDidClose:), self);
 
         self.runLoop = nil;
         self.thread = nil;

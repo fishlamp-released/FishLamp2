@@ -2,7 +2,7 @@
 //  FLBlockWorker.h
 //  FishLampCore
 //
-//  Created by Mike Fullerton on 10/29/12.
+//  Created by Mike Fullerton on 11/16/12.
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
@@ -10,9 +10,11 @@
 
 @interface FLBlockWorker : FLWorker {
 @private
-    FLAsyncBlock _workerBlock;
+    dispatch_block_t _block;
 }
-- (id) initWithWorkerBlock:(FLAsyncBlock) block;
-+ (id) blockWorker:(FLAsyncBlock) block;
-
+- (id) initWithBlock:(dispatch_block_t) block;
++ (id) blockWorker:(dispatch_block_t) block;
 @end
+
+
+#define block_ (__BLOCK__) [FLBlockWorker blockWorker:__BLOCK__]

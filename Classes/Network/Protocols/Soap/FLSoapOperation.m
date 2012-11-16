@@ -94,7 +94,7 @@ dealloc_ (
             [self handleSoapFault:fault];
         }
         
-        FLThrowIfError_([self.httpResponse simpleHttpResponseErrorCheck]);
+        FLThrowError_([self.httpResponse simpleHttpResponseErrorCheck]);
        
         if(_outputObject) {
             [self parseXmlResponse:data object:_outputObject];

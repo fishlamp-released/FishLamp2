@@ -32,7 +32,7 @@
 - (BOOL) runTestWithFinisher:(FLSelectorInfo*) info {
     __block BOOL wasRun = NO;
     
-    FLFinisher* notifier = [FLBlockFinisher finisher:^(FLFinisher* result){
+    FLFinisher* notifier = [FLFinisher finisherWithBlock:^(id result){
         wasRun = YES;
     }];
     

@@ -272,7 +272,7 @@
 //    self.backgroundTasks = [FLBackgroundTaskMgr create];
 //    [self addAppService:_backgroundTasks];
 
-//    [self.backgroundTasks startOpeningService:^(FLFinisher* result) {
+//    [self.backgroundTasks startOpeningService:^(id result) {
 //        [self postObservation:@selector(userServiceDidOpen:)];
 //    }];
 }
@@ -317,13 +317,12 @@
             action.progressController = [[self class] createVersionUpgradeProgressViewController:_upgradeTaskList];
             [action.progressController setTitle:[NSString stringWithFormat:(NSLocalizedString(@"Updating to Version: %@", nil)), [NSFileManager appVersion]]];
 
-            if([action runSynchronously].didSucceed) {
-                 [self finishUpgradeTasks];
-            }
-            else {
+            if([[action runSynchronously] isError]) {
                 // TODO: Ok, now what?
             }
-
+            else {
+                 [self finishUpgradeTasks];
+            }
             
 		}
 		else {

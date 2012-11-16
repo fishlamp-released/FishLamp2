@@ -9,6 +9,7 @@
 #import "NSObject+Blocks.h"
 #import "FLFinisher.h"
 #import "FLDispatchQueues.h"
+#import "FLAsyncBlockWorker.h"
 
 @interface FLJob ()
 @property (readwrite, strong) id<FLWorker> _worker;
@@ -61,7 +62,7 @@
 - (void) setWorkerWithBlock:(dispatch_block_t) block {
     block = FLCopyBlock(block);
     
-    [self setWorker:[FLBlockWorker blockWorker:^(FLFinisher* finisher) {
+    [self setWorker:[FLAsyncBlockWorker asyncBlockWorker:^(FLFinisher* finisher) {
         if(block) {
             block();
         }
@@ -70,7 +71,7 @@
 }
 
 - (void) setWorkerWithAsyncBlock:(FLAsyncBlock) block {
-    [self setWorker:[FLBlockWorker blockWorker:block]];
+    [self setWorker:[FLAsyncBlockWorker asyncBlockWorker:block]];
 }
 
 - (void) scheduleWorker:(id<FLWorker>) worker finisher:(FLFinisher*) finisher {
@@ -116,13 +117,13 @@
 
 @implementation FLBackgroundJob
 - (void) scheduleWorker:(id<FLWorker>) worker finisher:(FLFinisher*) finisher {
-    [[FLDispatchQueue instance] dispatchWorker:worker finisher:finisher];
+    [FLDispatchQueue dispatch:worker finisher:finisher];
 }
 @end
 
 @implementation FLForegroundJob
 - (void) scheduleWorker:(id<FLWorker>) worker finisher:(FLFinisher*) finisher {
-    [[FLForegroundQueue instance] dispatchWorker:worker finisher:finisher];
+    [FLForegroundQueue dispatch:worker finisher:finisher];
 }
 @end
 

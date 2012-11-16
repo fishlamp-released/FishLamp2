@@ -7,6 +7,7 @@
 //
 
 #import "FLActionTests.h"
+#import "FLAction.h"
 
 @implementation FLActionTests
 
@@ -23,17 +24,22 @@
         [[self.results testResultForKey:@"counter"] setPassed];
     }];
 
-    FLRunner* runner = [FLRunner runner:[action startAction:^{ 
-                    FLAssert_([NSThread isMainThread]); 
-                    [[self.results testResultForKey:@"counter"] setPassed];
-                    
-                }
-                finisher:[FLFinisher finisherWithBlock:^(FLFinisher* result) { 
-                    FLAssert_([NSThread isMainThread]); 
-                    [[self.results testResultForKey:@"counter"] setPassed];
-                }]]]; 
-
-    [actionFinisher waitUntilFinished];
+    id result = [action runSynchronously];
+    
+    FLAssertFailed_v(@"fix this");
+//
+//
+//    FLRunner* runner = [FLRunner runner:[action startAction:^{ 
+//                    FLAssert_([NSThread isMainThread]); 
+//                    [[self.results testResultForKey:@"counter"] setPassed];
+//                    
+//                }
+//                finisher:[FLFinisher finisherWithBlock:^(id result) { 
+//                    FLAssert_([NSThread isMainThread]); 
+//                    [[self.results testResultForKey:@"counter"] setPassed];
+//                }]]]; 
+//
+//    [actionFinisher waitUntilFinished];
  }
 
 - (void) testBasicScheduling {
@@ -41,9 +47,10 @@
 }
 
 - (void) testBackgroundThreadStart {
-    [[[FLDispatchQueue instance] dispatchBlock:^{
-        [self runOneAction];
-    }] waitUntilFinished];
+//    [[[FLDispatchQueue instance] dispatchBlock:^{
+//        [self runOneAction];
+//    }] waitUntilFinished];
+    FLAssertFailed_v(@"fix this");
 }
 
 @end

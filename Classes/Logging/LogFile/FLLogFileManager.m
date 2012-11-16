@@ -33,9 +33,9 @@ FLSynthesizeSingleton(FLLogFileManager);
     if(_logFile) {
         FLLogFile* closeMe = _logFile;
 
-        [[FLFifoQueue instance] dispatchBlock:^{
+        [FLFifoQueue dispatch:[FLBlockWorker blockWorker:^{
             [closeMe closeLogFile];
-        }];
+        }]];
 
         FLReleaseWithNil_(_logFile);
     }
@@ -165,13 +165,13 @@ FLSynthesizeSingleton(FLLogFileManager);
 
 - (void) logString:(NSString*) string {
 
-    [[FLFifoQueue instance] dispatchBlock:^{
+    [FLFifoQueue dispatch:[FLBlockWorker blockWorker:^{
         if(!_logFile) {
             [self _openLogFile];
         }
         
         [self.logFile logString:_stringFormatter(string)];
-    }];
+    }]];
 }
 
 - (NSArray*) allUserLogFilePaths {

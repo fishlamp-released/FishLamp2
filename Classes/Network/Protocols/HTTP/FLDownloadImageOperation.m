@@ -24,7 +24,7 @@
 
     [super runSelf];
 
-    FLThrowIfError_([self.httpResponse simpleHttpResponseErrorCheck]);
+    FLThrowError_([self.httpResponse simpleHttpResponseErrorCheck]);
     if(!self.error) {
     
         FLCachedImage* photo = [FLCachedImage create];
@@ -63,7 +63,7 @@
 - (void) runSelf {
 	[super runSelf];
 
-    FLThrowIfError_([self.httpResponse simpleHttpResponseErrorCheck]);
+    FLThrowError_([self.httpResponse simpleHttpResponseErrorCheck]);
     if(!self.error) {
         self.output = self.httpResponse.responseData;
     }

@@ -22,8 +22,8 @@
 @end
 
 @protocol FLRunnable <NSObject>
-- (FLFinisher*) runSynchronously;
-- (FLFinisher*) runSynchronouslyWithInput:(id) input;
+- (id) runSynchronously;
+- (id) runSynchronously:(FLFinisher*) finisher;
 @end
 
 @protocol FLWorkerParent <FLWorker>

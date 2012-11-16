@@ -37,7 +37,7 @@
     
     FLNetworkHostResolver* resolver = [FLNetworkHostResolver networkHostResolver:host];
     
-    FLThrowIfError_([resolver runSynchronously]);
+    FLThrowError_([resolver runSynchronously]);
     
     FLAssertIsTrue_(host.isResolved);
     

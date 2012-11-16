@@ -203,7 +203,7 @@ void FLMergeObjectArrays(NSMutableArray* dest,
 
 void FLMergeObjects(id dest, id src, FLMergeMode mergeMode) {
 	if(dest && src) {
-		FLCAssert_v([dest isKindOfClass:[src class]], @"objects are different classes");
+		FLAssert_v([dest isKindOfClass:[src class]], @"objects are different classes");
 
 		FLObjectDescriber* srcDescriber = [[src class] sharedObjectDescriber];
 		for(NSString* srcPropName in srcDescriber.propertyDescribers) {

@@ -54,10 +54,10 @@
     NSArray* workers = [self findTestWorkers];
     for(id<FLWorker, FLRunnable> worker in workers) {
 
-        FLFinisher* finisher = [worker runSynchronously];
+        id result = [worker runSynchronously];
  
-        if(finisher.output) {
-            [array addObject:finisher.output];
+        if(![result isError]) {
+            [array addObject:result];
         }
     }
     

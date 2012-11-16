@@ -19,7 +19,7 @@
     
     __block BOOL fired = NO;
     
-    FLFinisher* finisher = [FLFinisher finisherWithBlock:^(FLFinisher* result) { 
+    FLFinisher* finisher = [FLBlockFinisher finisherWithBlock:^(id result) { 
         fired = YES; 
     }];
     
@@ -34,7 +34,7 @@
     
     __block BOOL fired = NO;
     
-    FLFinisher* finisher = [FLFinisher finisherWithBlock:^(FLFinisher* result){ fired = YES; }];
+    FLFinisher* finisher = [FLFinisher finisherWithBlock:^(id result){ fired = YES; }];
     FLAssert_(!finisher.isFinished);
     FLAssert_(fired == NO);
     [finisher setFinished];

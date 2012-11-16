@@ -12,7 +12,7 @@
 
 @synthesize object = _object;
 
-FLAssertDefaultInitNotCalled_v(nil);
+FLAssertDefaultInitNotCalled_();
 
 - (id) initWithObject:(id) object {
 	FLAssertIsNotNil_v(object, nil);

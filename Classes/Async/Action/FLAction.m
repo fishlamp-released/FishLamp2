@@ -360,13 +360,11 @@ TODO("MF: fix activity updater");
     [self.operations cancelAllOperations];
 }
 
-- (FLFinisher*) runSynchronously {
-    return [self runSynchronouslyWithInput:nil];
+- (id) runSynchronously {
+    return [self runSynchronously:[FLFinisher finisher]];;
 }
 
-- (FLFinisher*) runSynchronouslyWithInput:(id) input {
-    FLFinisher* finisher = [FLFinisher finisher];
-    finisher.input = input;
+- (id) runSynchronously:(FLFinisher*) finisher {
     return [[self startAction:finisher] waitUntilFinished];
 }
 
@@ -393,21 +391,22 @@ TODO("MF: fix activity updater");
         [context addOperation:runner];
     }
     
-    FLFinisher* actionFinisher = [FLTargetFinisher finisherWithTarget:self action:@selector(actionFinished:)];
+    FLFinisher* actionFinisher = [FLFinisher finisherWithTarget:self action:@selector(actionFinished:)];
     
     if(finisher) {
         [actionFinisher addFinisher:finisher];
     }
     
-    return [[FLActionQueue instance] dispatchAsyncBlock:^(FLFinisher* theActionFinisher) { 
+    FLAsyncBlock asyncBlock = ^(FLFinisher* theActionFinisher) { 
         if(starting) {
             starting();
         }
         [self actionStarted]; 
         
-        [[FLHighPriorityQueue instance] dispatchWorker:runner finisher:theActionFinisher];
-    }
-    finisher:actionFinisher];
+        [FLHighPriorityQueue dispatch:runner finisher:theActionFinisher];
+    };
+    
+    return [FLActionQueue dispatchAsyncBlock:asyncBlock finisher:actionFinisher];
     
     
 //    FLBackgroundJob* bgJob = [FLBackgroundJob job];
@@ -442,7 +441,7 @@ TODO("MF: fix activity updater");
 //            starting();
 //        }
 //        [self actionStarted];
-//        [[FLDispatchQueue instance] dispatchWorker:runner completion: ^(FLFinisher* result) {
+//        [[FLDispatchQueue instance] dispatchWorker:runner completion: ^(id result) {
 //            [[FLForegroundQueue instance] dispatchAsyncBlock:finishActionInMainThread]; }];
 //        
 //        [finisher setFinished];

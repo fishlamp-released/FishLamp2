@@ -18,85 +18,46 @@
 #define __INCLUDE_STACK_TRACE__ YES
 #endif
 
-
-#define FLThrow(__EX__) [__EX__ raise] 
+@protocol FLErrorAwareObject <NSObject>
+@property (readonly, strong) NSError* error;
+@end
 
 NS_INLINE
-NSException* FLErrorExceptionFromObject(id object) {
+id FLThrowError(id object) {
+    if(!object) {
+        return nil;
+    }
     NSError* error = [object error];
-    return error != nil ? [NSException exceptionWithError: 
-                            [FLMutableError mutableErrorWithError:error stackTrace:FLCreateStackTrace(__INCLUDE_STACK_TRACE__)]] : nil;
+    if(!error) { 
+        return object;
+    }
+
+    @throw [NSException exceptionWithError:[FLMutableError mutableErrorWithError:error stackTrace:FLCreateStackTrace(__INCLUDE_STACK_TRACE__)]];
 }
 
-#define FLThrowException_(__EX__) \
-            FLThrow(__EX__)
-
-#define FLCThrowException_(__EX__) \
-            FLThrow(__EX__)
-
 #define FLThrowError_(__ERROR__) \
-            FLThrowException_(FLErrorExceptionFromObject(__ERROR__)) 
-
-#define FLCThrowError_(__ERROR__) \
-            FLCThrowException_(FLErrorExceptionFromObject(__ERROR__)) 
+            FLThrowError(__ERROR__)
 
 #define FLThrowErrorCode_v(__DOMAIN_OBJECT_OR_STRING__, __CODE__, __FORMAT__, ...) \
-            FLThrowException_( \
-                [NSException exceptionWithError: \
+            @throw [NSException exceptionWithError: \
                     [FLMutableError errorWithDomain:__DOMAIN_OBJECT_OR_STRING__ \
                             code:(__CODE__) \
                             userInfo:nil \
                             reason:(FLStringWithFormatOrNil(__FORMAT__, ##__VA_ARGS__)) \
                             comment:nil \
-                            stackTrace:FLCreateStackTrace(__INCLUDE_STACK_TRACE__)]])
-                            
-#define FLCThrowErrorCode_v(__DOMAIN_OBJECT_OR_STRING__, __CODE__, __FORMAT__, ...) \
-            FLCThrowException_( \
-                [NSException exceptionWithError: \
-                    [FLMutableError errorWithDomain:__DOMAIN_OBJECT_OR_STRING__ \
-                            code:(__CODE__) \
-                            userInfo:nil \
-                            reason:(FLStringWithFormatOrNil(__FORMAT__, ##__VA_ARGS__)) \
-                            comment:nil \
-                            stackTrace:FLCreateStackTrace(__INCLUDE_STACK_TRACE__)]])
-
-#define FLThrowIfError_(__ERROR__) \
-            do { \
-                NSError* __ERR = __ERROR__; \
-                if(__ERR) FLThrowError_(__ERR); \
-            } while(0)
-
-#define FLCThrowIfError_(__ERROR__) \
-            do { \
-                NSError* __ERR = __ERROR__; \
-                if(__ERR) FLCThrowError_(__ERR); \
-            } while(0)
+                            stackTrace:FLCreateStackTrace(__INCLUDE_STACK_TRACE__)]]
 
 #define FLThrowFailure_(__DOMAIN_OBJECT_OR_STRING__, __TYPE__, __REASON_OR_NIL__, __COMMENT_OR_NIL__) \
-            FLThrowException_( \
-                [NSException exceptionWithError: \
+            @throw [NSException exceptionWithError: \
                     [FLMutableError errorWithDomain:__DOMAIN_OBJECT_OR_STRING__ \
                             code:(__TYPE__) \
                             userInfo:nil \
                             reason:__REASON_OR_NIL__ \
                             comment:__COMMENT_OR_NIL__ \
-                            stackTrace:FLCreateStackTrace(__INCLUDE_STACK_TRACE__)]])
-
-#define FLCThrowFailure_(__DOMAIN_OBJECT_OR_STRING__, __TYPE__, __REASON_OR_NIL__, __COMMENT_OR_NIL__) \
-            FLCThrowException_( \
-                [NSException exceptionWithError: \
-                    [FLMutableError errorWithDomain:__DOMAIN_OBJECT_OR_STRING__ \
-                            code:(__TYPE__) \
-                            userInfo:nil \
-                            reason:__REASON_OR_NIL__ \
-                            comment:__COMMENT_OR_NIL__ \
-                            stackTrace:FLCreateStackTrace(__INCLUDE_STACK_TRACE__)]])
+                            stackTrace:FLCreateStackTrace(__INCLUDE_STACK_TRACE__)]]
 
 // TODO move this
 #define FLThrowCancelException() \
-    FLThrowErrorCode_v(FLFrameworkErrorDomainName, FLCancelErrorCode, NSLocalizedString(@"Cancelled", nil))
-
-#define FLCThrowCancelException() \
     FLThrowErrorCode_v(FLFrameworkErrorDomainName, FLCancelErrorCode, NSLocalizedString(@"Cancelled", nil))
 
 // deprecate this? Use assertions?
@@ -122,3 +83,5 @@ NSException* FLErrorExceptionFromObject(id object) {
 
 
 
+#define FLCThrowFailure_ FLThrowFailure_
+#define FLCThrowError_ FLThrowError_

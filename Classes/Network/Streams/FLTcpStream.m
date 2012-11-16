@@ -114,7 +114,7 @@
     return error;
 }
 
-- (void) networkStreamDidClose:(id<FLNetworkStream>) networkStream withResult:(FLFinisher*) result {
+- (void) networkStreamDidClose:(id<FLNetworkStream>) networkStream {
     [self closeStream];
 }
 

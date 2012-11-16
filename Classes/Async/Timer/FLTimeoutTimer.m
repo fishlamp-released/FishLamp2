@@ -71,7 +71,7 @@ synthesize_(checkFrequency);
         
 //        [self postObservation:@selector(timeoutTimerDidTimeout:)];
         
-        [self.finisher setFinishedWithError:[NSError timeoutError]];
+        [self.finisher setFinishedWithResult:[NSError timeoutError]];
         [self requestCancel];
     }
     else {

@@ -15,7 +15,7 @@ static void WriteStreamClientCallBack(CFWriteStreamRef readStream,
                                       CFStreamEventType eventType, 
                                       void *clientCallBackInfo){
     FLWriteStream* connection = bridge_(FLWriteStream*, clientCallBackInfo);
-    FLCConfirmIsNotNil_(connection);
+    FLConfirmIsNotNil_(connection);
     [connection forwardStreamEventToDelegate:eventType];
 }
 

@@ -13,10 +13,27 @@
 @interface FLDispatchQueue: NSObject<FLDispatcher> {
 @private
 }
-- (dispatch_queue_t) dispatchQueue;
+
 FLSingletonProperty(FLDispatchQueue);
 
 + (FLDispatchQueue*) currentQueue;
+
+// conveience methods just class [[self instance] dispatch]
+
++ (FLFinisher*) dispatch:(id<FLWorker>) dispatchable;
+
++ (FLFinisher*) dispatch:(id<FLWorker>) dispatchable
+                finisher:(FLFinisher*) finisher;
+
++ (FLFinisher*) dispatchBlock:(dispatch_block_t) block;
+
++ (FLFinisher*) dispatchAsyncBlock:(FLAsyncBlock) block;
+
++ (FLFinisher*) dispatchAsyncBlock:(FLAsyncBlock) block
+                          finisher:(FLFinisher*) finisher;
+
+// override point
+- (dispatch_queue_t) dispatchQueue;
 
 @end
 

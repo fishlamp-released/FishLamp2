@@ -27,18 +27,20 @@
 - (void) testBasicCompletion {
 
     FLJob* job = [FLJob jobWithAsyncBlock:^(FLFinisher* finisher){
-        [finisher setFinishedWithOutput:@"hello world"];
+        [finisher setFinishedWithResult:@"hello world"];
     }];
 
-    id<FLPromisedResult> promisedResult = [[FLBackgroundQueue instance] dispatchWorker:job completion:^(FLFinisher* result) {
-        FLAssertObjectsAreEqual_(@"hello world", result.output);
-    }];
+    FLFinisher* finisher = [[FLBackgroundQueue instance] dispatchWorker:job finisher:[FLFinisher finisherWithBlock:^(id result) {
+        FLAssertObjectsAreEqual_(@"hello world", result);
+    }]];
 
-    [promisedResult waitUntilFinished];
+    id result = [finisher waitUntilFinished];
 
-    FLAssert_([promisedResult hasResult]);
+    FLAssert_(result == finisher.result);
 
-    FLAssertObjectsAreEqual_(@"hello world", promisedResult.result.output);
+    FLAssert_([finisher isFinished]);
+
+    FLAssertObjectsAreEqual_(@"hello world", result);
 
 }
 
@@ -46,19 +48,20 @@
  
     FLJob* job = [FLForegroundJob jobWithAsyncBlock:^(FLFinisher* finisher){
         FLAssert_([NSThread isMainThread]);
-        [finisher setFinishedWithOutput:@"hello world"];
+        [finisher setFinishedWithResult:@"hello world"];
     }];
 
-    id<FLPromisedResult> promisedResult = [[FLBackgroundQueue instance] dispatchWorker:job completion:^(FLFinisher* result) {
+    FLFinisher* finisher = [[FLBackgroundQueue instance] dispatchWorker:job finisher:[FLFinisher finisherWithBlock:^(id result) {
         FLAssert_([NSThread isMainThread]);
-        FLAssertObjectsAreEqual_(@"hello world", result.output);
-    }];
+        FLAssertObjectsAreEqual_(@"hello world", result);
+    }]];
 
-    [promisedResult waitUntilFinished];
+    id result = [finisher waitUntilFinished];
 
-    FLAssert_([promisedResult hasResult]);
+    FLAssert_(result == finisher.result);
+    FLAssert_([finisher isFinished]);
 
-    FLAssertObjectsAreEqual_(@"hello world", promisedResult.result.output);
+    FLAssertObjectsAreEqual_(@"hello world", result);
 }
 
 - (void) testMainThread {

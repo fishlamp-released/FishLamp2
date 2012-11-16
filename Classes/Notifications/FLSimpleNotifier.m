@@ -74,7 +74,7 @@
             stop = YES;
         }
         @catch(NSException* ex) {
-            FLConfirmFailed_v(@"do not throw exceptions from notifiers");
+            FLConfirmationFailure_v(@"do not throw exceptions from notifiers");
         }
         
         if(stop) {

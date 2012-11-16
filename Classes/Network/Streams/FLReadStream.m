@@ -23,7 +23,7 @@ CFIndex _FLReadStreamRead(CFReadStreamRef stream, UInt8 *buffer, CFIndex bufferL
 static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventType eventType, void *clientCallBackInfo) {
     FLReadStream* connection = bridge_(FLReadStream*, clientCallBackInfo);
     
-    FLCConfirmIsNotNil_(connection);
+    FLConfirmIsNotNil_(connection);
     [connection forwardStreamEventToDelegate:eventType];
 }
 
@@ -89,7 +89,7 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
 }
 
 - (void) checkErrorFromBadResult:(NSInteger) badResult {
-    FLThrowIfError_(self.error);
+    FLThrowError_(self.error);
     FLThrowErrorCode_v((NSString*) kCFErrorDomainCFNetwork, 
                             kCFURLErrorBadServerResponse, 
                             NSLocalizedString(@"Read networkbytes failed: %d", badResult));

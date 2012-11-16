@@ -7,3 +7,16 @@
 //
 
 #import "FLExceptions.h"
+
+NS_INLINE
+id FLThrowErrorIfNeeded(id object) {
+    if(!object) {
+        return nil;
+    }
+    NSError* error = [object error];
+    if(!error) { 
+        return error;
+    }
+
+    @throw [NSException exceptionWithError:[FLMutableError mutableErrorWithError:error stackTrace:FLCreateStackTrace(__INCLUDE_STACK_TRACE__)]];
+}

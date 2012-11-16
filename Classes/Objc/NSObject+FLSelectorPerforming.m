@@ -14,7 +14,7 @@
 
 //NS_INLINE
 void FLConfirmNoReturnObject_(id obj) {
-    FLCConfirmIsNil_v(obj, @"selector must return nil (or ARC will leak the object). Selector returned: %@", [obj description]); \
+    FLConfirmIsNil_v(obj, @"selector must return nil (or ARC will leak the object). Selector returned: %@", [obj description]); \
 }
 
 

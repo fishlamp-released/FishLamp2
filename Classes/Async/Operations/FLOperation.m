@@ -196,10 +196,6 @@ dealloc_ (
 - (FLFinisher*) startWorking:(FLFinisher*) finisher {
 
     @try {
-        if(finisher.input) {
-            self.input = finisher.input;
-        }
-        
         [self setMoreBusy];
        
         [self resetRunStateIfNeeded];
@@ -236,28 +232,21 @@ dealloc_ (
     [self setLessBusy];
     self.isFinished = YES;
 
-    if(!self.error) {
-        [finisher setFinishedWithOutput:self.operationOutput];
-    }
-    else {
-        [finisher setFinishedWithError:self.error];
-    }    
+    [finisher setFinishedWithResult:self.error ? self.error : self.output];
     
     [self postObservation:@selector(operationDidFinish:)];
     
     return finisher;
 }
 
-- (FLFinisher*) runSynchronouslyWithInput:(id) input {
-    FLFinisher* finisher = [FLFinisher finisher];
-    finisher.input = input;
-    [self startWorking:finisher];
-    return finisher;
+- (id) runSynchronously {
+    return [self runSynchronously:[FLFinisher finisher]];;
 }
 
-- (FLFinisher*) runSynchronously {
-    return [self runSynchronouslyWithInput:nil];
+- (id) runSynchronously:(FLFinisher*) finisher {
+    return [[self startWorking:finisher] waitUntilFinished];
 }
+
 
 //- (id<FLPromisedResult>) start:(FLFinisher*) completion {
 ////    FLFinisher* finisher = [FLFinisher finisher:completion];

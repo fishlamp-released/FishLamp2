@@ -58,7 +58,7 @@ FLRect FLRectPositionRectInRectVerticallyWithContentMode(
 			break;
             
         case FLContentModeVerticalFit:
-            FLCAssertIsFixed_v(@"vertical fit");
+            FLAssertIsFixed_v(@"vertical fit");
             break;
 	
 	}	
@@ -110,7 +110,7 @@ FLRect FLRectPositionRectInRectHorizontallyWithContentMode(
 			break;
             
         case FLContentModeHorizontalFit:
-            FLCAssertIsFixed_v(@"horizontal fit");
+            FLAssertIsFixed_v(@"horizontal fit");
         break;
 		
 	}

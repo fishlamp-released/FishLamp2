@@ -309,7 +309,7 @@ static void FLAddRoundedRectToPath(CGContextRef context, FLRect rect, float oval
 	CGContextClosePath(context);
 	CGContextRestoreGState(context);
 #else 
-    FLCAssertIsImplemented_();
+    FLAssertIsImplemented_();
 #endif
 }
  

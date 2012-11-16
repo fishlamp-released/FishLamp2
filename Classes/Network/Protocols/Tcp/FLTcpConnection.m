@@ -155,8 +155,8 @@
 //}
 
 
-- (void) networkStreamDidClose:(id<FLNetworkStream>)networkStream withResult:(FLFinisher*) result {
-    [super networkStreamDidClose:networkStream withResult:result];
+- (void) networkStreamDidClose:(id<FLNetworkStream>)networkStream {
+    [super networkStreamDidClose:networkStream];
     FLReleaseWithNil_(_blockingObject);
 }
 

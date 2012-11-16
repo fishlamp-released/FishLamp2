@@ -8,65 +8,46 @@
 
 #import <Foundation/Foundation.h>
 
+#import "FLResult.h"
+
 @class FLFinisher;
 
-typedef void (^FLFinisherNotificationScheduler)(FLFinisher* theFinisher);
-typedef void (^FLAsyncBlock)(FLFinisher* finisher);
-
+typedef void (^FLFinisherNotificationScheduler)(dispatch_block_t finishBlock);
 typedef void (^FLCompletionBlock)();
+typedef void (^FLAsyncBlock)(FLFinisher* finisher);
 
 @interface FLFinisher : NSObject {
 @private
-    BOOL _finished;
     NSMutableArray* _finishers;
     FLFinisherNotificationScheduler _notificationScheduler;
-    
-    NSError* _error;
-    id _input;
-    id _output;
+    id _result;
+    FLResultBlock _finishBlock;
+    __unsafe_unretained id _target;
+    SEL _action;
 }
 
 @property (readwrite, copy) FLFinisherNotificationScheduler notificationScheduler;
 
 // isFinished && error == nil
 @property (readonly, assign) BOOL didSucceed; 
-
 @property (readonly, assign) BOOL isFinished;
-- (void) setFinished;
-- (void) setFinishedWithError:(NSError*) error;
-- (void) setFinishedWithOutput:(id) output;
-- (void) setFinishedWithFinisher:(FLFinisher*) finisher;
+@property (readonly, strong) id result;
 
-@property (readwrite, strong) NSError* error;
-@property (readwrite, strong) id input;
-@property (readwrite, strong) id output;
+- (id) initWithAsyncBlock:(FLResultBlock) resultBlock;
+- (id) initWithTarget:(id) target action:(SEL) action; // myMethod:(FLFinisher*) result;
 
 + (id) finisher;
++ (id) finisherWithBlock:(FLResultBlock) block;
++ (id) finisherWithTarget:(id) target action:(SEL) action;
 
 - (void) addFinisher:(FLFinisher*) finisher;
+
+- (void) setFinished;
+- (void) setFinishedWithResult:(id) result;
 
 // override point
 - (void) didFinish;
 
-- (FLFinisher*) waitUntilFinished;
-
-
-@end
-
-@interface FLBlockFinisher : FLFinisher {
-@private
-    FLAsyncBlock _finishBlock;
-}
-- (id) initWithAsyncBlock:(FLAsyncBlock) resultBlock;
-+ (id) finisher:(FLAsyncBlock) completion;
-@end
-
-@interface FLTargetFinisher : FLFinisher {
-@private
-    __unsafe_unretained id _target;
-    SEL _action;
-}
-- (id) initWithTarget:(id) target action:(SEL) action; // myMethod:(FLFinisher*) result;
-+ (id) finisherWithTarget:(id) target action:(SEL) action;
-
+// blocks in current thread
+- (id) waitUntilFinished;
 @end
