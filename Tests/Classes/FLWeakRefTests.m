@@ -77,7 +77,7 @@
     // are autoreleased in the thread and running the test in the main
     // loop causes a deadlock.
   
-    [[FLDispatchQueue instance] dispatchBlock:^{
+    [FLDispatchQueue dispatchBlock:^{
         __block BOOL wasDeleted = NO;
     
         FLWeakRefTestObject* obj = [[FLWeakRefTestObject alloc] initWithBlock:^(id sender){

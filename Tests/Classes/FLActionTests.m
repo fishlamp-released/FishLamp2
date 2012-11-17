@@ -23,31 +23,30 @@
         
         [[self.results testResultForKey:@"counter"] setPassed];
     }];
-
-    id result = [action runSynchronously];
     
-    FLAssertFailed_v(@"fix this");
-//
-//
-//    FLRunner* runner = [FLRunner runner:[action startAction:^{ 
-//                    FLAssert_([NSThread isMainThread]); 
-//                    [[self.results testResultForKey:@"counter"] setPassed];
-//                    
-//                }
-//                finisher:[FLFinisher finisherWithBlock:^(id result) { 
-//                    FLAssert_([NSThread isMainThread]); 
-//                    [[self.results testResultForKey:@"counter"] setPassed];
-//                }]]]; 
-//
-//    [actionFinisher waitUntilFinished];
- }
+    dispatch_block_t actionStartBlock = ^{ 
+                    FLAssert_([NSThread isMainThread]); 
+                    [[self.results testResultForKey:@"counter"] setPassed];
+                    
+                };
+    
+    FLFinisher* actionFinisher = [FLFinisher finisherWithBlock:^(id result) { 
+                    FLAssert_([NSThread isMainThread]); 
+                    [[self.results testResultForKey:@"counter"] setPassed];
+                }];
+    
+    
+    FLFinisher* finisher = [action startAction:actionStartBlock finisher:actionFinisher]; 
+    FLAssert_(finisher == actionFinisher);
+    FLThrowError_([finisher waitUntilFinished]);
+}
 
 - (void) testBasicScheduling {
     [self runOneAction];
 }
 
 - (void) testBackgroundThreadStart {
-//    [[[FLDispatchQueue instance] dispatchBlock:^{
+//    [[[FLDispatchQueue dispatchBlock:^{
 //        [self runOneAction];
 //    }] waitUntilFinished];
     FLAssertFailed_v(@"fix this");

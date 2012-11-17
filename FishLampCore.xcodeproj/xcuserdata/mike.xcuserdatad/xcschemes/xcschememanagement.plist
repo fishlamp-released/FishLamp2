@@ -4,11 +4,6 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>CocoaTests.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>20</integer>
-		</dict>
 		<key>FishLampCoreAll.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -32,7 +27,7 @@
 		<key>FishLampCoreTestsMac.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>19</integer>
+			<integer>18</integer>
 		</dict>
 		<key>FishLampCoreiOS.xcscheme</key>
 		<dict>

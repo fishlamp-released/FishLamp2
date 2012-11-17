@@ -19,7 +19,7 @@
     
     __block BOOL fired = NO;
     
-    FLFinisher* finisher = [FLBlockFinisher finisherWithBlock:^(id result) { 
+    FLFinisher* finisher = [FLFinisher finisherWithBlock:^(id result) { 
         fired = YES; 
     }];
     

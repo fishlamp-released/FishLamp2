@@ -30,7 +30,7 @@
         [finisher setFinishedWithResult:@"hello world"];
     }];
 
-    FLFinisher* finisher = [[FLBackgroundQueue instance] dispatchWorker:job finisher:[FLFinisher finisherWithBlock:^(id result) {
+    FLFinisher* finisher = [FLBackgroundQueue dispatch:job finisher:[FLFinisher finisherWithBlock:^(id result) {
         FLAssertObjectsAreEqual_(@"hello world", result);
     }]];
 
@@ -51,7 +51,7 @@
         [finisher setFinishedWithResult:@"hello world"];
     }];
 
-    FLFinisher* finisher = [[FLBackgroundQueue instance] dispatchWorker:job finisher:[FLFinisher finisherWithBlock:^(id result) {
+    FLFinisher* finisher = [FLBackgroundQueue dispatch:job finisher:[FLFinisher finisherWithBlock:^(id result) {
         FLAssert_([NSThread isMainThread]);
         FLAssertObjectsAreEqual_(@"hello world", result);
     }]];
