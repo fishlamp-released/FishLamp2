@@ -31,14 +31,14 @@ synthesize_(key);
 }
 
 dealloc_(
-    [_parameters release];
+    [_values release];
 )
 
 - (void) addValue:(NSString*) param {
-    if(!_parameters) {
-        _parameters = [[NSMutableArray alloc] init];
+    if(!_values) {
+        _values = [[NSMutableArray alloc] init];
     }
-    [_parameters addObject:param];
+    [_values addObject:param];
 }
 
 - (NSString*) description {

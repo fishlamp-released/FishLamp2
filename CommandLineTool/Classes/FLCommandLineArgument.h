@@ -10,8 +10,8 @@
 
 @interface FLCommandLineArgument : NSObject {
 @private
-    NSString* _command;
-    NSMutableArray* _parameters;
+    NSString* _key;
+    NSMutableArray* _values;
 }
 
 @property (readonly, strong, nonatomic) NSString* key;
