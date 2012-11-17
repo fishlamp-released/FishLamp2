@@ -126,52 +126,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "27A43AC315CDCCCB001CB13E"
-               BuildableName = "libFishLampCoreTestsMac.a"
+               BlueprintIdentifier = "270D1AC9165460D900E1B451"
+               BuildableName = "FishLampCoreTestsMac.bundle"
                BlueprintName = "FishLampCoreTestsMac"
-               ReferencedContainer = "container:Core/Tests/FishLampCoreTests.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "27048B70161CB58600C38ADA"
-               BuildableName = "libFishLampCoreTestsMac32.a"
-               BlueprintName = "FishLampCoreTestsMac32"
-               ReferencedContainer = "container:Core/Tests/FishLampCoreTests.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "273148B9165328400027850D"
-               BuildableName = "libFishLampCoreTestsMacLegacy.a"
-               BlueprintName = "FishLampCoreTestsMacLegacy"
-               ReferencedContainer = "container:Core/Tests/FishLampCoreTests.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "27A43AB315CDCC89001CB13E"
-               BuildableName = "libFishLampCoreTestsiOS.a"
-               BlueprintName = "FishLampCoreTestsiOS"
-               ReferencedContainer = "container:Core/Tests/FishLampCoreTests.xcodeproj">
+               ReferencedContainer = "container:Core/FishLampCore.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
