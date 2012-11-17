@@ -11,7 +11,7 @@
 #import "FLNetworkModuleiOS.h"
 #import "FLAssetsLibraryModule.h"
 #import "FLBackgroundTaskModuleCore.h"
-#import "FLUserSessionModule.h"
+//#import "FLUserSessionModule.h"
 #import "FLApplicationModule.h"
 #import "FishLamp.h"
 
@@ -22,7 +22,7 @@
     [FLNetworkModuleiOS initializeModule];
     [FLAssetsLibraryModule initializeModule];
     [FLThemeModule initializeModule];
-    [FLUserSessionModule initializeModule];
+//    [FLUserSessionModule initializeModule];
     [FLApplicationModule initializeModule];
 }
 
