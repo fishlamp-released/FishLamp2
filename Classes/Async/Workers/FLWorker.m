@@ -17,7 +17,7 @@
 @synthesize parentWorker = _parentWorker;
 @synthesize fallibleDelegate = _errorDelegate;
 
-- (void) didMoveToParentWorker:(id<FLWorkerParent>) parent {
+- (void) didMoveToParentWorker:(id) parent {
     
 #if DEBUG
     if(parent) {
@@ -31,27 +31,9 @@
     self.parentWorker = parent;
 }
 
-- (FLFinisher*) startWorking:(FLFinisher*) finisher {
-    return finisher;
+- (void) startWorking:(id) asyncTask {
+
 }
-
-//- (id<FLPromisedResult>) start:(FLFinisher*) finisher {
-////    FLFinisher* finisher = [FLFinisher finisher:completion];
-//    
-//    @try {
-//        [finisher startWorker:self];;
-//    }
-//    @catch(NSException* ex) {
-//        if(!FLTryHandlingErrorForObject(ex.error, self)) {
-//            @throw;
-//        }
-//    }
-//    return finisher;
-//}
-
-//- (FLFinisher*) runSynchronously {
-//    return [[self start:nil] waitUntilFinished];
-//}
 
 - (BOOL) tryHandlingError:(NSError*) error  {
 
@@ -86,11 +68,12 @@
 }
 
 - (id) runSynchronously {
-    return [self runSynchronously:[FLFinisher finisher]];
+    return [FLRunner runWorkerSynchronously:self withAsyncTask:[FLFinisher finisher]];
 }
 
-- (id) runSynchronously:(FLFinisher*) finisher {
-    return [[self startWorking:finisher] waitUntilFinished];
+- (id) runSynchronouslyWithAsyncTask:(id) asyncTask {
+    return [FLRunner runWorkerSynchronously:self withAsyncTask:asyncTask];
 }
 
 @end
+

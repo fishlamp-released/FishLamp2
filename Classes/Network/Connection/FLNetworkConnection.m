@@ -15,15 +15,6 @@
 
 const FLNetworkConnectionByteCount FLNetworkConnectionByteCountZero = {0, 0, 0};
 
-//typedef enum {
-//    FLNetworkConnectionStateNone,
-//    FLNetworkConnectionStateConnecting,
-//    FLNetworkConnectionStateConnected,
-//    FLNetworkConnectionStateDisconnecting,
-//    FLNetworkConnectionStateDisconnected
-//} FLNetworkConnectionState;
-
-
 @interface FLNetworkConnection ()
 @property (readwrite, assign) NSThread* thread;
 @property (readwrite, strong) id<FLNetworkStream> networkStream;
@@ -31,6 +22,8 @@ const FLNetworkConnectionByteCount FLNetworkConnectionByteCountZero = {0, 0, 0};
 @property (readwrite, strong) FLTimeoutTimer* timeoutTimer;
 @property (readwrite, assign) FLNetworkConnectionByteCount writeByteCount;
 @property (readwrite, assign) FLNetworkConnectionByteCount readByteCount;
+@property (readwrite, assign) BOOL wasCancelled;
+
 - (void) setTimedOut:(FLTimeoutTimer*) timer;
 @end
 
@@ -44,6 +37,8 @@ const FLNetworkConnectionByteCount FLNetworkConnectionByteCountZero = {0, 0, 0};
 @synthesize thread = _thread;
 @synthesize writeByteCount = _writeByteCount;
 @synthesize readByteCount = _readByteCount;
+
+synthesize_(wasCancelled);
 
 - (id) init {
     if((self = [super init])) {
@@ -109,13 +104,12 @@ const FLNetworkConnectionByteCount FLNetworkConnectionByteCountZero = {0, 0, 0};
 #endif
 }
 
-- (void) touchTimestamp {
-    [self.timeoutTimer touchTimestamp];
+- (void) setTimedOut:(FLTimeoutTimer*) timer {
+     [self.networkStream closeStream:[NSError timeoutError]];
 }
 
-- (void) networkStreamDidOpen:(id<FLNetworkStream>) networkStream {
+- (void) touchTimestamp {
     [self.timeoutTimer touchTimestamp];
-    [self postObservation:@selector(networkConnectionConnected:)];
 }
 
 - (void) networkStreamWillOpen:(id<FLNetworkStream>) networkStream {
@@ -123,113 +117,88 @@ const FLNetworkConnectionByteCount FLNetworkConnectionByteCountZero = {0, 0, 0};
     [self postObservation:@selector(networkConnectionConnecting:)];
 }
 
-- (void) closeConnection {
-    [self.timeoutTimer requestCancel];
-    if(self.networkStream && self.networkStream.isOpen) {
+- (void) networkStreamDidOpen:(id<FLNetworkStream>) networkStream {
+    [self.timeoutTimer touchTimestamp];
+    [self postObservation:@selector(networkConnectionConnected:)];
+}
+
+- (void) networkStreamWillClose:(id<FLNetworkStream>) networkStream withError:(NSError*) error {
+    [self.timeoutTimer touchTimestamp];
+}
+
+- (void) networkStreamDidClose:(id<FLNetworkStream>) networkStream withError:(NSError*) error {
+    [self.timeoutTimer touchTimestamp];
+}
+
+- (id) resultFromStream:(id<FLNetworkStream>) stream {
+    return nil;
+}
+
+- (void) startWorking:(id) asyncTask {
+    FLAssertIsNil_(self.networkStream);
+    [self postObservation:@selector(networkConnectionStarting:)];
+   
+    self.networkStream = [self createNetworkStream];
+    
+    FLAssertIsNotNil_(self.networkStream);
+    
+    [self.networkStream setDelegate:self];
+
+    if(![self checkReachability]) {
+        NSError* error = [NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorNotConnectedToInternet localizedDescription:NSLocalizedString(@"Not Connected to Network", nil)];
+        if(error) {
+            FLThrowError_(error);
+        }
+    }
+
+    self.thread = [NSThread currentThread];
+
+    [self.networkStream openStream:^(id closedStream, NSError* error) {
+        
         [self.networkStream setDelegate:nil];
-        [self.networkStream closeStream];
         self.networkStream = nil;
         self.thread = nil;
         [self postObservation:@selector(networkConnectionDisconnected:)];
-    }
-}
+         
+        [asyncTask addSubFinisher:[FLFinisher finisherWithResultBlock:^(id result) {
+            [self postObservation:@selector(networkConnectionFinished:)];
+        }]];
 
-//- (void) setFinishedWithResult:(NSError*) error {
-//    [self closeConnection];
-//
-//    if(self.finisher) {
-//        [self postObservation:@selector(networkConnectionFinished:)];
-//        [self.finisher setFinishedWithResult:error];
-//        self.finisher = nil;
-//    }
-//}
-//
-//- (void) setFinishedWithResult:(id) output {
-//    [self closeConnection];
-//    if(self.finisher) {
-//        [self postObservation:@selector(networkConnectionFinished:)];
-//        [self.finisher setFinishedWithResult:output];
-//        self.finisher = nil;
-//    }
-//}
-
-- (void) setTimedOut:(FLTimeoutTimer*) timer {
-
-}
-
-- (FLFinisher*) startWorking:(FLFinisher*) finisher {
-//   @try {
-        FLAssertIsNil_(self.networkStream);
-       
-        self.finisher = finisher;
-        self.networkStream = [self createNetworkStream];
-        
-        FLAssertIsNotNil_(self.networkStream);
-        
-        [self.networkStream setDelegate:self];
-    
-        if(![self checkReachability]) {
-            NSError* error = [NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorNotConnectedToInternet localizedDescription:NSLocalizedString(@"Not Connected to Network", nil)];
-            if(error) {
-                FLThrowError_(error);
-            }
+        if(error) {
+            FLDebugLog(@"stream received error: %@", [[closedStream error] localizedDescription]);
+            [asyncTask setFinishedWithResult:error];
+        } 
+        else {
+            [asyncTask setFinishedWithResult:[self resultFromStream:closedStream]];
         }
-    
-        self.thread = [NSThread currentThread];
-
-        [self postObservation:@selector(networkConnectionStarting:)];
-        [self.networkStream openStream];
-//    }
-//    @catch(NSException* ex) {
-//        [self setFinishedWithResult:ex.error];
-//    }
-
-    return finisher;
-}
-
-//- (id<FLPromisedResult>) start:(FLFinisher*) completion {
-////    FLFinisher* finisher = [FLFinisher finisher:completion];
-//    [finisher startWorker:self];
-//    return finisher;
-//}
-
-//- (FLFinisher*) runSynchronously {
-//    return [[self start:nil] waitUntilFinished];
-//}
-
-- (void) networkStreamDidClose:(id<FLNetworkStream>) networkStream {
-    
-    [self touchTimestamp];
-
-#if DEBUG
-    if(networkStream.error) {
-        FLDebugLog(@"stream received error: %@", [networkStream.error localizedDescription]);
-    } 
-#endif
-
-    [self closeConnection];
-
-    [self postObservation:@selector(networkConnectionFinished:)];
-
-    [self.finisher setFinishedWithResult:networkStream.error];
-    self.finisher = nil;
+    }];
 }
 
 - (id) runSynchronously {
-    return [self runSynchronously:[FLFinisher finisher]];;
+    return [self runSynchronouslyWithAsyncTask:[FLFinisher finisher]];;
 }
 
-- (id) runSynchronously:(FLFinisher*) finisher {
-    return [[self startWorking:finisher] waitUntilFinished];
+- (id) runSynchronouslyWithAsyncTask:(id) asyncTask {
+    [self startWorking:asyncTask];
+    [asyncTask waitUntilFinished];
+    return [asyncTask result];
 }
 
-- (BOOL) wasCancelled {
-    return [self.networkStream wasCancelled];
-}
 
 - (void) requestCancel {
-    [self.networkStream requestCancel];
-//    [self setFinishedWithResult:[NSError cancelError]];
+    BOOL shouldCancel = NO;
+    if(!self.wasCancelled) {
+        @synchronized(self) {
+            if(!self.wasCancelled && self.networkStream.isOpen) {
+                shouldCancel = YES;
+                self.wasCancelled = YES;
+            }
+        }
+    }
+
+    if(shouldCancel) {
+        [self.networkStream closeStream:[NSError timeoutError]];
+    }
 }
 
 - (void) networkStreamDidWriteBytes:(id<FLWriteStream>) stream {
@@ -272,59 +241,30 @@ const FLNetworkConnectionByteCount FLNetworkConnectionByteCountZero = {0, 0, 0};
     [self postObservation:@selector(networkConnectionWillSendData:)];
 }
 
+- (void) connectionGotTimerEvent {
+// TODO: ("MF: fix http delegate");
 
-
-//- (BOOL) waitOnceForRunLoop {
-//    if(!self.isFinished) {
-//        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate date]];
-//        return YES;    
-//    }
-//    
-//    return NO;
-//}
+//    if([self.delegate respondsToSelector:@selector(httpConnection:sentBytes:totalSentBytes:totalBytesExpectedToSend:)])
+//    {
+//        unsigned long long bytesSent = _inputStream.bytesSent;
+//        if(bytesSent > self.totalBytesSent)
+//        {
+//            self.lastBytesSent =  bytesSent - self.totalBytesSent;
+//            self.totalBytesSent = bytesSent;
 //
-//- (void) blockUntilFinished {
-//    @try {
-//        mrc_retain_(self);
-//    
-//        while([self waitOnceForRunLoop]) {
-//        }
+//#if TRACE
+//            FLDebugLog(@"bytes this time: %qu, total bytes sent: %qu, expected to send: %qu",  
+//                self.lastBytesSent,
+//                self.totalBytesSent, 
+//                [[_requestQueue lastObject] postLength]);
+//#endif
+//            [self.delegate httpConnection:self 
+//                sentBytes:self.lastBytesSent 
+//                totalSentBytes:self.totalBytesSent 
+//                totalBytesExpectedToSend:[[_requestQueue lastObject] postLength]];
+//       }
 //    }
-//    @finally {
-//        [self _closeSelf];
-//        release_(self);
-//    }
-//}
-
-//- (FLFinisher*) startWorking:(FLFinisher*) finisher {
-//
-//// TODO: We could define our own thread and run them all on the same thread.
-//// We should investigate the perf of this.
-//// Perhaps we should have some sort of scheduler abstraction.
-//
-//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-//        @try {
-//            [self openConnectionOnCurrentThread];
-//            [self blockUntilFinished];
-//        }
-//        @catch(NSException* ex) {
-//            if(!ex.error.isCancelError) {
-//                FLDebugLog(@"Error in network thread: %@", [ex description]);
-//            }
-//        }
-//        @finally {
-//            [self _closeSelf];
-//            self.thread = nil;
-//            
-//            [finisher setFinished];
-//        }
-//    });
-//}
-
-//- (void) connect {
-//    [self openConnectionAsync:nil];
-//    [self blockUntilFinished];
-//}
+}
 
 
 

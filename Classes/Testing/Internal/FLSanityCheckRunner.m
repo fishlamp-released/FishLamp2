@@ -34,7 +34,7 @@
     return [self create];
 }
 
-- (FLFinisher*) startWorking:(FLFinisher*) finisher {
+- (void) startWorking:(id) asyncTask {
     
     NSMutableArray* tests = autorelease_([[_sanityTests allObjects] mutableCopy]);
     
@@ -44,9 +44,9 @@
         FLThrowError_([test runSynchronously]);
     }
     
-    [finisher setFinished];
+    [asyncTask setFinished];
     
-    return finisher;
+
 }
 
 - (void) addPossibleTestMethod:(FLRuntimeInfo) info {

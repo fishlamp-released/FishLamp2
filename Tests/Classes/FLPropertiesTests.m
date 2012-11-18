@@ -15,7 +15,7 @@
 //
 //_weakRef = [FLWeakReference weakReference:(__bridge id) ptr];
 //[_weakRef addNotifierWithBlock:^(id sender) {
-//    [finisher setFinished];
+//    [asyncTask setFinished];
 //}];
 //
 //NSLog(@"This is from the background thread: %@", [_weakRef object]);

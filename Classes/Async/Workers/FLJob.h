@@ -8,7 +8,7 @@
 
 #import "FishLampCore.h"
 #import "FLWorker.h"
-#import "FLWorker.h"
+#import "FLAsyncTask.h"
 
 @interface FLJob : FLWorker {
 @private
@@ -16,12 +16,12 @@
 }
 @property (readwrite, strong) id<FLWorker> worker;
 - (void) setWorkerWithBlock:(dispatch_block_t) block;
-- (void) setWorkerWithAsyncBlock:(FLAsyncBlock) block;
+- (void) setWorkerWithAsyncBlock:(FLAsyncTaskBlock) block;
 
 + (id) job;
 + (id) job:(id<FLWorker>) worker;
 + (id) jobWithBlock:(dispatch_block_t) block;
-+ (id) jobWithAsyncBlock:(FLAsyncBlock) block;
++ (id) jobWithAsyncBlock:(FLAsyncTaskBlock) block;
 
 - (void) scheduleWorker:(id<FLWorker>) worker finisher:(FLFinisher*) finisher;
 @end

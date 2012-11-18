@@ -57,7 +57,7 @@
     }
 }
 
-- (FLFinisher*) startWorking:(FLFinisher*) finisher {
+- (void) startWorking:(id) asyncTask {
     
     NSMutableDictionary* groups = [NSMutableDictionary dictionary];
     
@@ -96,9 +96,9 @@
             
         }
     }
-    [finisher setFinished];
+    [asyncTask setFinished];
     
-    return finisher;
+
 }
 
 #if FL_MRC

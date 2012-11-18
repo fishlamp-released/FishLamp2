@@ -36,7 +36,7 @@
 //	super_dealloc_();
 //}
 //
-//- (FLFinisher*) startWorking:(FLFinisher*) finisher {
+//- (void) startWorking:(id) asyncTask {
 //    [super startWorking:finisher];
 //}
 //

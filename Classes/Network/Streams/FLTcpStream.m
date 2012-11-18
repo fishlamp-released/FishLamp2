@@ -63,8 +63,8 @@
         self.writeStream = [FLWriteStream writeStream:writeStream];
         self.writeStream.delegate = self;
         
-        [self.readStream openStream];
-        [self.writeStream openStream];
+        [self.readStream openStream:nil];
+        [self.writeStream openStream:nil];
     }
     @finally {
         if(host) {
@@ -92,30 +92,25 @@
 #endif
 }
 
-- (void) closeSelf {
+- (void) closeSelf:(NSError*) error {
     if(_readStream) {
         _readStream.delegate = nil;
-        [_readStream closeStream];
+        [_readStream closeStream:error];
         self.readStream = nil;
     }
     if(_writeStream) {
         _writeStream.delegate = nil;
-        [_writeStream closeStream];
+        [_writeStream closeStream:error];
         self.writeStream = nil;
     }
 }
 
 - (NSError*) error {
-    NSError* error = self.writeStream.error;
-    if(!error) {
-        error = self.readStream.error;
-    }
-
-    return error;
+    return [NSError tcpStreamError:[self.readStream error] writeError:[self.writeStream error]];
 }
 
-- (void) networkStreamDidClose:(id<FLNetworkStream>) networkStream {
-    [self closeStream];
+- (void) networkStreamDidClose:(id<FLNetworkStream>) networkStream withError:(NSError*) error {
+    [self closeStream:error ];
 }
 
 - (void) networkStreamDidOpen:(id<FLNetworkStream>) networkStream {
@@ -149,3 +144,60 @@
 }
 
 @end
+
+NSString* const FLTcpStreamWriteErrorKey = @"FLTcpStreamWriteErrorKey";
+NSString* const FLTcpStreamReadErrorKey = @"FLTcpStreamReadErrorKey";
+
+@interface FLTcpStreamError : NSError
+@end
+
+@implementation NSError (FLTcpStream)
+
+- (NSError*) readError {
+    return self;
+}
+
+- (NSError*) writeError {
+    return self;
+}
+
++ (NSError*) tcpStreamError:(NSError*) readError writeError:(NSError*) writeError {
+    if(readError && writeError) {
+// this seems unlikely to happen  - but just in case.    
+        NSMutableDictionary* dict = [NSDictionary dictionaryWithObjectsAndKeys:
+                                     readError, FLTcpStreamReadErrorKey, 
+                                     writeError, FLTcpStreamWriteErrorKey,
+                                     [NSString stringWithFormat:@"readError: %@, writeError %@", [readError localizedDescription], [writeError localizedDescription]], NSLocalizedDescriptionKey, 
+                                     nil];
+    
+        return [FLTcpStreamError errorWithDomain:FLFrameworkErrorDomainName code:FLFrameworkTcpStreamErrorCode userInfo:dict];
+    }
+    if(readError) {
+        return readError;
+    }
+    if(writeError) {
+        return writeError;
+    }
+    
+    return nil;
+}
+
+@end
+
+@implementation FLTcpStreamError
+
+- (NSString*) description {
+    return [NSString stringWithFormat:@"%@ { readError: %@, writeError: %@ }",[super description], [self.readError description], [self.writeError description]];
+}
+
+- (NSError*) readError {
+    return [self.userInfo objectForKey:FLTcpStreamReadErrorKey];
+}
+
+- (NSError*) writeError {
+    return [self.userInfo objectForKey:FLTcpStreamWriteErrorKey];
+}
+
+@end
+
+

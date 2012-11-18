@@ -8,13 +8,11 @@
 
 #import "FLWorker.h"
 
-
 @interface FLAsyncBlockWorker : FLWorker {
 @private
-    FLAsyncBlock _asyncBlock;
+    FLAsyncTaskBlock _asyncBlock;
 }
-- (id) initWithAsyncBlock:(FLAsyncBlock) block;
-+ (id) asyncBlockWorker:(FLAsyncBlock) block;
+- (id) initWithAsyncTaskBlock:(FLAsyncTaskBlock) block;
++ (id) asyncBlockWorker:(FLAsyncTaskBlock) block;
 @end
 
-#define async_block_(__BLOCK__) [FLAsyncBlockWorker asyncBlockWorker:__BLOCK__]

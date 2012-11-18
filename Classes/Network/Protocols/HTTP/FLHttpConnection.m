@@ -15,11 +15,13 @@
 
 @interface FLHttpConnection ()
 @property (readwrite, strong) FLHttpRequest* httpRequest;
+@property (readwrite, strong) FLHttpResponse* httpResponse;
 @end
 
 @implementation FLHttpConnection
 
-@synthesize httpRequest = _httpRequest;
+synthesize_(httpRequest)
+synthesize_(httpResponse)
 
 - (id<FLNetworkStream>) createNetworkStream {
     return [FLHttpStream httpStream:self.httpRequest];
@@ -39,6 +41,7 @@
 
 #if FL_MRC
 - (void) dealloc {
+    [_httpResponse release];
     [_httpRequest release];
     [super dealloc];
 }
@@ -62,6 +65,11 @@
     }];
 }
 
-
+- (void) networkStreamWillClose:(id<FLHttpStream>) networkStream withError:(NSError*) error {
+    if(!error) {
+        self.httpResponse = [networkStream httpResponse];
+    }
+    [super networkStreamWillClose:(id<FLNetworkStream>)networkStream withError:error];
+}
 
 @end

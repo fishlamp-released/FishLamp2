@@ -10,15 +10,15 @@
 
 @implementation FLAsyncBlockWorker
 
-- (id) initWithAsyncBlock:(FLAsyncBlock) block {
+- (id) initWithAsyncTaskBlock:(FLAsyncTaskBlock) block {
     self = [super init];
     if(self) {
         _asyncBlock = [block copy];
     }
     return self;
 }
-+ (id) asyncBlockWorker:(FLAsyncBlock) block {
-    return autorelease_([[[self class] alloc] initWithAsyncBlock:block]);
++ (id) asyncBlockWorker:(FLAsyncTaskBlock) block {
+    return autorelease_([[[self class] alloc] initWithAsyncTaskBlock:block]);
 }
 
 #if FL_MRC
@@ -28,14 +28,14 @@
 }
 #endif
 
-- (FLFinisher*) startWorking:(FLFinisher*) finisher {
+- (void) startWorking:(id) asyncTask {
     if(_asyncBlock) {
-        _asyncBlock(finisher);
+        _asyncBlock(asyncTask);
     }
     else {
-        [finisher setFinished];
+        [asyncTask setFinished];
     }
-    return finisher;
+
 }
 
 @end

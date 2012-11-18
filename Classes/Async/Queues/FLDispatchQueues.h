@@ -27,9 +27,9 @@ FLSingletonProperty(FLDispatchQueue);
 
 + (FLFinisher*) dispatchBlock:(dispatch_block_t) block;
 
-+ (FLFinisher*) dispatchAsyncBlock:(FLAsyncBlock) block;
++ (FLFinisher*) dispatchAsyncBlock:(FLAsyncTaskBlock) block;
 
-+ (FLFinisher*) dispatchAsyncBlock:(FLAsyncBlock) block
++ (FLFinisher*) dispatchAsyncBlock:(FLAsyncTaskBlock) block
                           finisher:(FLFinisher*) finisher;
 
 // override point

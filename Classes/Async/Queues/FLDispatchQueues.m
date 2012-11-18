@@ -20,25 +20,25 @@ static void * const s_queue_key = (void*)&s_queue_key;
 //}
 //@property (readwrite, strong) FLDispatchQueue* queue;
 //
-//- (id) initWithAsyncBlock:(FLAsyncBlock) completion queue:(FLDispatchQueue*) queue;
-//+ (id) dispatchFinisher:(FLAsyncBlock) completion queue:(FLDispatchQueue*) queue;
+//- (id) initWithResultBlock:(FLAsyncTaskBlock) completion queue:(FLDispatchQueue*) queue;
+//+ (id) dispatchFinisher:(FLAsyncTaskBlock) completion queue:(FLDispatchQueue*) queue;
 //
 //@end
 //
 //@implementation FLDispatchFinisher 
 //@synthesize queue = _queue;
 //
-//- (id) initWithAsyncBlock:(FLAsyncBlock) completion queue:(FLDispatchQueue*) queue{
+//- (id) initWithResultBlock:(FLAsyncTaskBlock) completion queue:(FLDispatchQueue*) queue{
 //    
-//    self = [super initWithAsyncBlock:completion];
+//    self = [super initWithResultBlock:completion];
 //    if(self) {
 //        self.queue = queue;
 //    }
 //    return self;
 //}
 //
-//+ (id) dispatchFinisher:(FLAsyncBlock) completion queue:(FLDispatchQueue*) queue {
-//    return autorelease_([[[self class] alloc] initWithAsyncBlock:completion queue:queue]);
+//+ (id) dispatchFinisher:(FLAsyncTaskBlock) completion queue:(FLDispatchQueue*) queue {
+//    return autorelease_([[[self class] alloc] initWithResultBlock:completion queue:queue]);
 //}
 //
 //#if FL_MRC
@@ -124,21 +124,21 @@ FLSynthesizeSingleton(FLDispatchQueue);
 //            if(block) {
 //                block();
 //            }
-//            [finisher setFinished];
+//            [asyncTask setFinished];
 //        }
 //        @catch(NSException* ex) {
 //            [finisher setFinishedWithResult:ex.error]; 
 //        }
 //    });
 //
-//    return finisher;
+//
 //}
 //
-//- (FLFinisher*) dispatchAsyncBlock:(FLAsyncBlock) block {
+//- (FLFinisher*) dispatchAsyncBlock:(FLAsyncTaskBlock) block {
 //    return [self dispatchAsyncBlock:block finisher:[FLFinisher finisher]];
 //}
 //
-//- (FLFinisher*) dispatchAsyncBlock:(FLAsyncBlock) block
+//- (FLFinisher*) dispatchAsyncBlock:(FLAsyncTaskBlock) block
 //                          finisher:(FLFinisher*) finisher {
 //    
 //    FLAssertNotNil_(block);
@@ -154,7 +154,7 @@ FLSynthesizeSingleton(FLDispatchQueue);
 //                block(finisher);
 //            }
 //            else {
-//                [finisher setFinished];
+//                [asyncTask setFinished];
 //            }
 //        }
 //        @catch(NSException* ex) {
@@ -163,7 +163,7 @@ FLSynthesizeSingleton(FLDispatchQueue);
 //        
 //    });
 //
-//    return finisher;
+//
 //}
 //
 //- (FLFinisher*) dispatchWorker:(id<FLWorker>) aWorker {
@@ -188,15 +188,15 @@ FLSynthesizeSingleton(FLDispatchQueue);
 //        }
 //    });
 //
-//    return finisher;
+//
 //
 //}
 
-+ (FLFinisher*) dispatchAsyncBlock:(FLAsyncBlock) block {
++ (FLFinisher*) dispatchAsyncBlock:(FLAsyncTaskBlock) block {
     return [self dispatch:[FLAsyncBlockWorker asyncBlockWorker:block]];
 }
 
-+ (FLFinisher*) dispatchAsyncBlock:(FLAsyncBlock) block
++ (FLFinisher*) dispatchAsyncBlock:(FLAsyncTaskBlock) block
                           finisher:(FLFinisher*) finisher {
     return [self dispatch:[FLAsyncBlockWorker asyncBlockWorker:block] finisher:finisher];
 }                          

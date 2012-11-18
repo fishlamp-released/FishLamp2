@@ -10,44 +10,47 @@
 
 #import "FLResult.h"
 
-@class FLFinisher;
+@protocol FLFinisher <NSObject>
+@property (readonly, strong) id result;
+@property (readonly, assign, getter=isFinished) BOOL finished;
+@property (readonly, assign) BOOL finishedSynchronously;
+
+- (void) setFinished;
+- (void) setFinishedWithResult:(id) result;
+
+// blocks in current thread
+- (void) waitUntilFinished;
+@end
 
 typedef void (^FLFinisherNotificationScheduler)(dispatch_block_t finishBlock);
-typedef void (^FLCompletionBlock)();
-typedef void (^FLAsyncBlock)(FLFinisher* finisher);
 
-@interface FLFinisher : NSObject {
+@interface FLFinisher : NSObject<FLFinisher> {
 @private
-    NSMutableArray* _finishers;
+    NSMutableArray* _subFinishers;
     FLFinisherNotificationScheduler _notificationScheduler;
     id _result;
-    FLResultBlock _finishBlock;
-    __unsafe_unretained id _target;
-    SEL _action;
+    FLResultBlock _resultNotificationBlock;
+    __unsafe_unretained id _resultNotificationTarget;
+    SEL _resultNotificationAction;
+    __unsafe_unretained NSThread* _startThread;
+    BOOL _finishedSynchronously;
 }
 
 @property (readwrite, copy) FLFinisherNotificationScheduler notificationScheduler;
 
 // isFinished && error == nil
-@property (readonly, assign) BOOL didSucceed; 
-@property (readonly, assign) BOOL isFinished;
-@property (readonly, strong) id result;
+//@property (readonly, assign) BOOL didSucceed; 
 
-- (id) initWithAsyncBlock:(FLResultBlock) resultBlock;
+- (id) initWithResultBlock:(FLResultBlock) resultBlock;
 - (id) initWithTarget:(id) target action:(SEL) action; // myMethod:(FLFinisher*) result;
 
 + (id) finisher;
-+ (id) finisherWithBlock:(FLResultBlock) block;
++ (id) finisherWithResultBlock:(FLResultBlock) block;
 + (id) finisherWithTarget:(id) target action:(SEL) action;
 
-- (void) addFinisher:(FLFinisher*) finisher;
-
-- (void) setFinished;
-- (void) setFinishedWithResult:(id) result;
+- (void) addSubFinisher:(FLFinisher*) finisher;
 
 // override point
 - (void) didFinish;
 
-// blocks in current thread
-- (id) waitUntilFinished;
 @end

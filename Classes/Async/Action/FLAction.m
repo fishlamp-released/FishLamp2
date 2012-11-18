@@ -361,11 +361,13 @@ TODO("MF: fix activity updater");
 }
 
 - (id) runSynchronously {
-    return [self runSynchronously:[FLFinisher finisher]];;
+    return [self runSynchronouslyWithAsyncTask:[FLFinisher finisher]];;
 }
 
-- (id) runSynchronously:(FLFinisher*) finisher {
-    return [[self startAction:finisher] waitUntilFinished];
+- (id) runSynchronouslyWithAsyncTask:(id) asyncTask {
+    [self startAction:asyncTask];
+    [asyncTask waitUntilFinished];
+    return [asyncTask result];
 }
 
 - (FLFinisher*) startAction:(FLFinisher*) finisher {
@@ -394,10 +396,10 @@ TODO("MF: fix activity updater");
     FLFinisher* actionFinisher = [FLFinisher finisherWithTarget:self action:@selector(actionFinished:)];
     
     if(finisher) {
-        [actionFinisher addFinisher:finisher];
+        [actionFinisher addSubFinisher:finisher];
     }
     
-    FLAsyncBlock asyncBlock = ^(FLFinisher* theActionFinisher) { 
+    FLAsyncTaskBlock asyncBlock = ^(FLFinisher* theActionFinisher) { 
         if(starting) {
             starting();
         }
@@ -425,7 +427,7 @@ TODO("MF: fix activity updater");
 //    FLFinisher* actionFinisher = [FLFinisher finisher:completion];
 //    
 //    
-//    FLAsyncBlock finishActionInMainThread = ^(FLFinisher finisher){
+//    FLAsyncTaskBlock finishActionInMainThread = ^(FLFinisher finisher){
 //        [self actionFinished];
 //
 //        if(context) {
@@ -433,10 +435,10 @@ TODO("MF: fix activity updater");
 //        }
 //
 //        [actionFinisher setFinished];
-//        [finisher setFinished];
+//        [asyncTask setFinished];
 //    };
 //
-//    FLAsyncBlock startActionInMainThread = ^(FLFinisher finisher){
+//    FLAsyncTaskBlock startActionInMainThread = ^(FLFinisher finisher){
 //        if(starting) {
 //            starting();
 //        }
@@ -444,7 +446,7 @@ TODO("MF: fix activity updater");
 //        [[FLDispatchQueue instance] dispatchWorker:runner completion: ^(id result) {
 //            [[FLForegroundQueue instance] dispatchAsyncBlock:finishActionInMainThread]; }];
 //        
-//        [finisher setFinished];
+//        [asyncTask setFinished];
 //    };
 //    
 //

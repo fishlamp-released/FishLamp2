@@ -138,16 +138,16 @@
 
 #define kStreamReadChunkSize 1024
 
-- (void) closeReadStream {
+- (void) closeReadStream:(NSError*) error {
     if(_readStream) {
         _readStream.delegate = nil;
-        [_readStream closeStream];
+        [_readStream closeStream:error];
         self.readStream = nil;
     }
 }
 - (void) openStreamToURL:(NSURL*) url {
 
-    [self closeReadStream];
+    [self closeReadStream:nil];
     
     FLMutableHttpResponse* newResponse = nil;
     FLHttpResponse* prev = self.httpResponse;
@@ -165,15 +165,15 @@
     self.httpResponse = newResponse;
     self.readStream = [self.httpRequest createReadStreamForRequestWithURL:url];
     self.readStream.delegate = self;
-    [self.readStream openStream];
+    [self.readStream openStream:nil];
 }
 
 - (void) openSelf {
     [self openStreamToURL:self.httpRequest.requestURL];
 }
     
-- (void) closeSelf {
-    [self closeReadStream];
+- (void) closeSelf:(NSError*) error {
+    [self closeReadStream:error];
 }
 
 - (BOOL) isOpen {
@@ -182,6 +182,10 @@
 
 - (NSError*) error {
    return self.readStream.error;
+}
+
+- (id) resultFromStream:(id<FLNetworkStream>) stream {
+    return [((FLHttpStream*) stream) httpResponse];
 }
 
 - (void) readResponseHeadersIfNeeded  {
@@ -210,31 +214,36 @@
     [self readResponseHeadersIfNeeded];
 }
 
-- (void) networkStreamDidClose:(id<FLNetworkStream>) networkStream {
+- (void) networkStreamDidClose:(id<FLNetworkStream>) networkStream withError:(NSError*) error {
 
-    BOOL redirect = NO;
-    if(!networkStream.error) {
-        [self readResponseHeadersIfNeeded];
+    if(error) {
+        [self closeStream:error];
+    }
+    else {
+        BOOL redirect = NO;
+        if(!error) {
+            [self readResponseHeadersIfNeeded];
 
-    // FIXME: there was an issue here with progress getting fouled up on redirects.
-    //    [self connectionGotTimerEvent];
+        // FIXME: there was an issue here with progress getting fouled up on redirects.
+        //    [self connectionGotTimerEvent];
 
-        redirect = _response.wantsRedirect;
-        if(redirect) {
-            NSURL* redirectURL = self.httpResponse.redirectURL;
-
-            if([self.delegate respondsToSelector:@selector(httpStream:shouldRedirect:toURL:)]) {
-                [self.delegate httpStream:self shouldRedirect:&redirect toURL:redirectURL];
-            }
-            
+            redirect = _response.wantsRedirect;
             if(redirect) {
-                [self openStreamToURL:redirectURL];
+                NSURL* redirectURL = self.httpResponse.redirectURL;
+
+                if([self.delegate respondsToSelector:@selector(httpStream:shouldRedirect:toURL:)]) {
+                    [self.delegate httpStream:self shouldRedirect:&redirect toURL:redirectURL];
+                }
+                
+                if(redirect) {
+                    [self openStreamToURL:redirectURL];
+                }
             }
         }
-    }
 
-    if(!redirect) {
-        [self closeStream];
+        if(!redirect) {
+            [self closeStream:nil];
+        }
     }
 }
 

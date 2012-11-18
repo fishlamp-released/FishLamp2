@@ -193,7 +193,7 @@ dealloc_ (
 
 }
 
-- (FLFinisher*) startWorking:(FLFinisher*) finisher {
+- (void) startWorking:(id) asyncTask {
 
     @try {
         [self setMoreBusy];
@@ -232,26 +232,26 @@ dealloc_ (
     [self setLessBusy];
     self.isFinished = YES;
 
-    [finisher setFinishedWithResult:self.error ? self.error : self.output];
+    [asyncTask setFinishedWithResult:self.error ? self.error : self.output];
     
     [self postObservation:@selector(operationDidFinish:)];
     
-    return finisher;
+
 }
 
 - (id) runSynchronously {
-    return [self runSynchronously:[FLFinisher finisher]];;
+    return [FLRunner runWorkerSynchronously:self withAsyncTask:[FLFinisher finisher]];
 }
 
-- (id) runSynchronously:(FLFinisher*) finisher {
-    return [[self startWorking:finisher] waitUntilFinished];
+- (id) runSynchronouslyWithAsyncTask:(id) asyncTask {
+    return [FLRunner runWorkerSynchronously:self withAsyncTask:asyncTask];
 }
 
 
 //- (id<FLPromisedResult>) start:(FLFinisher*) completion {
 ////    FLFinisher* finisher = [FLFinisher finisher:completion];
 //    [finisher startWorker:self];
-//    return finisher;
+//
 //}
 
 - (void) _resetState {

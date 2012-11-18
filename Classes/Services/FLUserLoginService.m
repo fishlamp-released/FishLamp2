@@ -60,7 +60,7 @@ service_register_(userService, FLUserLoginService);
 //    [self.backgroundTasks beginClosingService:^(FLFinisher* backgroundTaskMgr) {
 //        [self closeContext];
 //        [progress hideProgress];
-//        [finisher setFinished];
+//        [asyncTask setFinished];
 //    }];
     
 //	if(self.isContextOpen) {

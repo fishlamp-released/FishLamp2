@@ -39,7 +39,7 @@ synthesize_(error)
         self.networkHost.resolved = YES;
     }
     
-    [self closeStream];
+    [self closeStream:self.error];
 }
 
 static void HostResolutionCallback(CFHostRef theHost, CFHostInfoType typeInfo, const CFStreamError *error, void *info) {
@@ -72,7 +72,7 @@ static void HostResolutionCallback(CFHostRef theHost, CFHostInfoType typeInfo, c
     }
 }
 
-- (void) closeSelf {
+- (void) closeSelf:(NSError*) error {
     CFHostRef host = self.networkHost.hostRef;
     if(host) {
         /*BOOL success = */ CFHostSetClient(host, NULL, NULL);

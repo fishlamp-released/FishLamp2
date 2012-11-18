@@ -29,3 +29,13 @@
 + (id) tcpStream:(NSString*) address remotePort:(int32_t) port;
 
 @end
+
+extern NSString* const FLTcpStreamWriteErrorKey;
+extern NSString* const FLTcpStreamReadErrorKey;
+
+@interface NSError (FLTcpStream)
+@property (readonly, strong, nonatomic) NSError* writeError;
+@property (readonly, strong, nonatomic) NSError* readError;
++ (NSError*) tcpStreamError:(NSError*) readError writeError:(NSError*) writeError;
+@end
+

@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import "FLRunUnitTestsOperation.h"
+#import "FLUnitTestRunner.h"
 
 #import "FLJob.h"
 #import "FLDispatchQueues.h"
@@ -19,6 +19,19 @@
 @end
 
 @implementation FLRunUnitTestsOperation
+
++ (id) unitTestRunnerOperation {
+    return [self create];
+}
+
+- (void) runSelf {
+    FLUnitTestRunner* runner = [FLUnitTestRunner unitTestRunner];
+    self.output = [runner runSynchronously];
+}
+
+@end
+
+@implementation FLUnitTestRunner 
 
 + (id) unitTestRunner {
     return [self create];
@@ -48,8 +61,7 @@
     return workers;
 }
 
-- (void) runSelf {
-
+- (NSArray*) runTestWorkers:(NSArray*) testWorkers {
     NSMutableArray* array = [NSMutableArray array];
     NSArray* workers = [self findTestWorkers];
     for(id<FLWorker, FLRunnable> worker in workers) {
@@ -60,9 +72,16 @@
             [array addObject:result];
         }
     }
-    
-    self.operationOutput = array;
+    return array;
+}
+
+- (void) startWorking:(id) asyncTask {
+    NSArray* testWorkers = [self findTestWorkers];
+    [asyncTask setFinishedWithResult:[self runTestWorkers:testWorkers]];
+}
+
++ (void) runTests {
+    [[FLUnitTestRunner unitTestRunner] runSynchronously];
 }
 
 @end
-

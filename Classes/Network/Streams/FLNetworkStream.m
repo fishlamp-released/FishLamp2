@@ -14,7 +14,7 @@
 @property (readwrite, assign) NSThread* thread;
 @property (readwrite, assign) CFRunLoopRef runLoop;
 @property (readwrite, assign) BOOL isOpen;
-@property (readwrite, assign) BOOL wasCancelled;
+@property (readwrite, copy) FLStreamClosedBlock closeBlock;
 @end
 
 @implementation FLNetworkStream
@@ -22,8 +22,8 @@
 synthesize_(runLoop)
 synthesize_(delegate)
 synthesize_(isOpen)
-synthesize_(wasCancelled);
 synthesize_(thread)
+synthesize_(closeBlock)
 
 - (void) dealloc {
     FLAssert_v(self.thread == nil, @"still running in thread");
@@ -31,46 +31,47 @@ synthesize_(thread)
     self.delegate = nil;
     
 #if FL_MRC
+    [_closeBlock release];
     [super dealloc];
 #endif
 }
 
-- (void) closeStream {
+- (void) closeStream:(NSError*) error {
     if(!_didClose) {
         _didClose = YES;
-        [self closeSelf];
         
-        FLPerformSelector1(self.delegate, @selector(networkStreamDidClose:), self);
+        FLPerformSelector2(self.delegate, @selector(networkStreamWillClose:withError:), self, error);
+
+        [self startClosing:error];
+        
+        FLPerformSelector2(self.delegate, @selector(networkStreamDidClose:withError:), self, error);
 
         self.runLoop = nil;
         self.thread = nil;
         self.isOpen = NO;
+        
+        if(self.closeBlock) {
+            self.closeBlock(self, error);
+            self.closeBlock = nil;
+        }
     }
 }
 
-- (BOOL) didSucceed {
-    return self.error != nil;
-}
-
-- (void) openStream {
+- (void) openStream:(FLStreamClosedBlock) didCloseBlock {
+    self.closeBlock = didCloseBlock;
     self.runLoop = CFRunLoopGetCurrent();
     self.thread = [NSThread currentThread];
     _didClose = NO;
     self.isOpen = NO;
+    FLPerformSelector1(self.delegate, @selector(networkStreamWillOpen:), self);
     
     [self openSelf];
 }
 
 - (void) openSelf {
-
 }
 
-- (void) closeSelf {
-
-}
-
-- (id) output {
-    return nil;
+- (void) closeSelf:(NSError*) error {
 }
 
 - (NSError*) error {
@@ -92,8 +93,11 @@ synthesize_(thread)
             break;
 
         case kCFStreamEventErrorOccurred:
+            [self closeStream:[self error]];
+            break;
+
         case kCFStreamEventEndEncountered:
-            [self closeStream];
+            [self closeStream:nil];
             break;
         
         case kCFStreamEventNone:
@@ -109,51 +113,5 @@ synthesize_(thread)
             break;
     }
 }
-
-
-- (void) connectionGotTimerEvent {
-// TODO: ("MF: fix http delegate");
-
-//    if([self.delegate respondsToSelector:@selector(httpConnection:sentBytes:totalSentBytes:totalBytesExpectedToSend:)])
-//    {
-//        unsigned long long bytesSent = _inputStream.bytesSent;
-//        if(bytesSent > self.totalBytesSent)
-//        {
-//            self.lastBytesSent =  bytesSent - self.totalBytesSent;
-//            self.totalBytesSent = bytesSent;
-//
-//#if TRACE
-//            FLDebugLog(@"bytes this time: %qu, total bytes sent: %qu, expected to send: %qu",  
-//                self.lastBytesSent,
-//                self.totalBytesSent, 
-//                [[_requestQueue lastObject] postLength]);
-//#endif
-//            [self.delegate httpConnection:self 
-//                sentBytes:self.lastBytesSent 
-//                totalSentBytes:self.totalBytesSent 
-//                totalBytesExpectedToSend:[[_requestQueue lastObject] postLength]];
-//       }
-//    }
-}
-
-//- (id<FLReadStream>) readStream {
-//    return nil;
-//}
-//
-//- (id<FLReadStream>) writeStream {
-//    return nil;
-//}
-
-- (id) streamOutput {
-    return nil;
-}
-
-- (void) requestCancel {
-    if(!self.wasCancelled) {
-        self.wasCancelled = YES;
-        [self performSelector:@selector(closeStream) onThread:self.thread withObject:nil waitUntilDone:NO];
-    }
-}
-
 
 @end

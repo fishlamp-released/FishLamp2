@@ -28,12 +28,12 @@
 }
 #endif
 
-- (FLFinisher*) startWorking:(FLFinisher*) finisher {
+- (void) startWorking:(id) asyncTask {
     if(_block) {
         _block();
     }
-    [finisher setFinished];
-    return finisher;
+    [asyncTask setFinished];
+
 }
 
 @end

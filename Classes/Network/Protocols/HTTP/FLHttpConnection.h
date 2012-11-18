@@ -19,8 +19,10 @@
 @interface FLHttpConnection : FLNetworkConnection {
 @private
     FLHttpRequest* _httpRequest;
+    FLHttpResponse* _httpResponse;
 }
 @property (readonly, strong) FLHttpRequest* httpRequest;
+@property (readonly, strong) FLHttpResponse* httpResponse;
 
 - (id) initWithHttpRequest:(FLHttpRequest*) request;
 + (id) httpConnection:(FLHttpRequest*) request;

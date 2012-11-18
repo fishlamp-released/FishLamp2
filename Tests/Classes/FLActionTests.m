@@ -30,7 +30,7 @@
                     
                 };
     
-    FLFinisher* actionFinisher = [FLFinisher finisherWithBlock:^(id result) { 
+    FLFinisher* actionFinisher = [FLFinisher finisherWithResultBlock:^(id result) { 
                     FLAssert_([NSThread isMainThread]); 
                     [[self.results testResultForKey:@"counter"] setPassed];
                 }];
@@ -38,7 +38,8 @@
     
     FLFinisher* finisher = [action startAction:actionStartBlock finisher:actionFinisher]; 
     FLAssert_(finisher == actionFinisher);
-    FLThrowError_([finisher waitUntilFinished]);
+    [finisher waitUntilFinished];
+    FLThrowError_(finisher.result);
 }
 
 - (void) testBasicScheduling {

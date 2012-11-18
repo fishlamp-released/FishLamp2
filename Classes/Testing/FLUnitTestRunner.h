@@ -8,13 +8,22 @@
 
 #import "FLOperation.h"
 #import "FLTestResultCollection.h"
+#import "FLWorker.h"
 
 @interface FLRunUnitTestsOperation : FLOperation {
 @private
-//    NSMutableArray* _workers;
-//    NSMutableArray* _results;
+}
+
++ (id) unitTestRunnerOperation;
+
+@end
+
+@interface FLUnitTestRunner : FLWorker {
 }
 
 + (id) unitTestRunner;
 
++ (void) runTests;
+
 @end
+

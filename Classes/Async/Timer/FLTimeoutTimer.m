@@ -101,10 +101,10 @@ synthesize_(checkFrequency);
     self.timer = nil;
 }    
     
-- (FLFinisher*) startWorking:(FLFinisher*) finisher {
+- (void) startWorking:(id) asyncTask {
     [self killTimer];
 
-    self.finisher = finisher;
+    self.finisher = asyncTask;
 
     NSTimer* timer = [NSTimer timerWithTimeInterval:_checkFrequency
             target:self 
@@ -115,7 +115,7 @@ synthesize_(checkFrequency);
     
     [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
     
-    return finisher;
+
 }
 
 - (FLFinisher*) startTimer:(FLFinisher*) finisher{
@@ -128,7 +128,8 @@ synthesize_(checkFrequency);
     FLAssertIsNil_v(self.finisher, @"already started");
     
     _checkFrequency = checkFrequency;
-    return [self startWorking:finisher];
+    [self startWorking:finisher];
+    return finisher;
 }
 
 //- (FLFinisher*) runSynchronously {

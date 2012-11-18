@@ -12,7 +12,7 @@
 
 FLDeclareErrorDomain(FLFrameworkErrorDomain);
 
-enum {
+typedef enum {
     FLErrorCodeNone,
     FLCancelErrorCode,
     FLAbortErrorCode,
@@ -29,6 +29,8 @@ enum {
 	FLActionErrorCodeInvalidContext,
 	FLAuthenticationErrorPasswordIncorrect,
 	FLAuthenticationErrorPasswordIncorrectOffline,
-    FLSoapFaultError
-};
+
+    FLSoapFaultError,
+    FLFrameworkTcpStreamErrorCode
+} FLFrameworkErrorCode;
 

@@ -32,14 +32,14 @@
 - (BOOL) runTestWithFinisher:(FLSelectorInfo*) info {
     __block BOOL wasRun = NO;
     
-    FLFinisher* notifier = [FLFinisher finisherWithBlock:^(id result){
+    FLFinisher* notifier = [FLFinisher finisherWithResultBlock:^(id result){
         wasRun = YES;
     }];
     
     FLPerformSelector1(info.target, info.selector, notifier);
 
     if(!wasRun) {
-        NSLog(@"Test not run ([finisher setFinished] not called)");
+        NSLog(@"Test not run ([asyncTask setFinished] not called)");
     }
 
     return wasRun;
@@ -102,12 +102,12 @@
     return passed;
 }
 
-- (FLFinisher*) startWorking:(FLFinisher*) finisher {
+- (void) startWorking:(id) asyncTask {
 //    FLAssert_([self runBatchOfMethods:_sanityChecks haltOnFail:YES]);
 //    FLAssert_([self runBatchOfMethods:_finishSanityChecks haltOnFail:YES]);
 //    FLAssert_([self runBatchOfMethods:_selfTests haltOnFail:NO]);
-    [finisher setFinished];
-    return finisher;
+    [asyncTask setFinished];
+
 }
 
 #if FL_NO_ALLOC

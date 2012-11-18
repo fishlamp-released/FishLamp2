@@ -25,23 +25,26 @@
 
 @interface FLFinisher ()
 @property (readwrite, strong) id result;
+@property (readwrite, assign) BOOL finishedSynchronously;
 @end
 
 @implementation FLFinisher
 
 synthesize_(result);
 synthesize_(notificationScheduler)
+synthesize_(finishedSynchronously)
 
-+ (id) finisherWithBlock:(FLResultBlock) completion {
-    return autorelease_([[[self class] alloc] initWithAsyncBlock:completion]);
++ (id) finisherWithResultBlock:(FLResultBlock) completion {
+    return autorelease_([[[self class] alloc] initWithResultBlock:completion]);
 }
 
-- (id) initWithAsyncBlock:(FLResultBlock) completion {
+- (id) initWithResultBlock:(FLResultBlock) completion {
     
     self = [super init];
     if(self) {
         if(completion) {
-            _finishBlock = [completion copy];
+            _startThread = [NSThread currentThread];
+            _resultNotificationBlock = [completion copy];
         }
     }
     return self;
@@ -50,8 +53,9 @@ synthesize_(notificationScheduler)
 - (id) initWithTarget:(id) target action:(SEL) action {
     self = [super init];
     if(self) {
-        _target = target;
-        _action = action;
+        _startThread = [NSThread currentThread];
+        _resultNotificationTarget = target;
+        _resultNotificationAction = action;
     }
     return self;
 }
@@ -60,12 +64,12 @@ synthesize_(notificationScheduler)
     return autorelease_([[[self class] alloc] initWithTarget:target action:action]);
 }
 
-- (void) addFinisher:(FLFinisher*) finisher {
-    if(!_finishers) {
-        _finishers = [[NSMutableArray alloc] init]; 
+- (void) addSubFinisher:(FLFinisher*) finisher {
+    if(!_subFinishers) {
+        _subFinishers = [[NSMutableArray alloc] init]; 
     }
     
-    [_finishers addObject:finisher];
+    [_subFinishers addObject:finisher];
 }
 
 - (BOOL) isFinished {
@@ -73,14 +77,14 @@ synthesize_(notificationScheduler)
 }
 
 dealloc_(
-    if(_finishBlock) {
-        [_finishBlock release];
+    if(_resultNotificationBlock) {
+        [_resultNotificationBlock release];
     }
     if(_notificationScheduler) {
         [_notificationScheduler release];
     }
     [_result release];
-    [_finishers release];
+    [_subFinishers release];
     [super dealloc];
 )
 
@@ -88,44 +92,48 @@ dealloc_(
     return autorelease_([[[self class] alloc] init]);
 }
 
-- (BOOL) didSucceed {
-    return self.isFinished && ![self.result isError];
-}
+//- (BOOL) didSucceed {
+//    return self.isFinished && ![self.result isError];
+//}
 
 - (void) didFinish {
-    if(_finishBlock) {
-        _finishBlock(self.result);
+    if(_resultNotificationBlock) {
+        _resultNotificationBlock(self.result);
     }
-    FLPerformSelector1(_target, _action, self.result);
+    FLPerformSelector1(_resultNotificationTarget, _resultNotificationAction, self.result);
 }
 
 - (void) finalizeFinish {
     [self didFinish];
 
-    if(_finishers) {
-        for(FLFinisher* finisher in _finishers) {
+    if(_subFinishers) {
+        for(FLFinisher* finisher in _subFinishers) {
             [finisher setFinishedWithResult:self.result];
         }
     }
 }
 
 - (void) scheduleFinish {
+    
+    self.finishedSynchronously = ([NSThread currentThread] == _startThread);
+
     if(_notificationScheduler) {
         FLFinisherNotificationScheduler scheduler = _notificationScheduler;
         mrc_retain_(scheduler);
         self.notificationScheduler = nil;
 
-        scheduler(^{ [self finalizeFinish]; });
+        scheduler(^{ 
+            [self finalizeFinish]; 
+        });
 
         release_(scheduler);
     }
     else {
         [self finalizeFinish];
     }
-    
 }
 
-- (id) waitUntilFinished {
+- (void) waitUntilFinished {
 
 // this may not work in all cases - e.g. some iOS apis expect to be called in the main thread
 // and this will cause endless blocking, unfortunately. I've seen this is the AssetLibrary sdk.
@@ -138,8 +146,6 @@ dealloc_(
     @finally {
         mrc_autorelease_(self);
     }
-
-    return self.result;
 }
 
 - (void) setFinished {

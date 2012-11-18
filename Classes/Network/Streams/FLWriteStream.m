@@ -72,7 +72,7 @@ static void WriteStreamClientCallBack(CFWriteStreamRef readStream,
     CFWriteStreamOpen(_streamRef);
 }
 
-- (void) closeSelf {
+- (void) closeSelf:(NSError*) error  {
     FLAssertIsNotNil_(_streamRef);
 
     CFWriteStreamUnscheduleFromRunLoop(_streamRef, self.runLoop, bridge_(void*,kRunLoopMode));

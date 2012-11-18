@@ -293,7 +293,7 @@
     [self postObservation:@selector(operationQueue:operationWasCancelled:) withObject:operation];
 }
 
-- (FLFinisher*) startWorking:(FLFinisher*) finisher {
+- (void) startWorking:(id) asyncTask {
 
     for(FLOperation* operation in self.operations.forwardIterator) {
         
@@ -303,15 +303,15 @@
         }
     };
 
-    [finisher setFinished];
+    [asyncTask setFinished];
     
-    return finisher;
+
 }
 
 //- (id<FLPromisedResult>) start:(FLFinisher*) finisher {
 ////    FLFinisher* finisher = [FLFinisher finisher:completion];
 //    [self startWorking:finisher];
-//    return finisher;
+//
 //}
 
 //- (FLFinisher*) runSynchronously {

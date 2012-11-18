@@ -39,7 +39,7 @@
 
     id<FLWorker> worker = iterator.nextObject;
     if(worker) {
-        FLFinisher* finisher = [FLFinisher finisherWithBlock:^(id result) {
+        FLFinisher* finisher = [FLFinisher finisherWithResultBlock:^(id result) {
             if([result isError]) {
                 [queueFinisher setFinishedWithResult:result];
             }
@@ -54,9 +54,9 @@
     }
 }
 
-- (FLFinisher*) startWorking:(FLFinisher*) finisher {
-    [self runNextWorker:[_workers forwardIterator] withFinisher:finisher];
-    return finisher;
+- (void) startWorking:(id) asyncTask {
+    [self runNextWorker:[_workers forwardIterator] withFinisher:asyncTask];
+
 }
 
 //- (void) removeWorker:(id<FLWorker>) worker {

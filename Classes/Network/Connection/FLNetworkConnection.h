@@ -33,6 +33,7 @@ extern const FLNetworkConnectionByteCount FLNetworkConnectionByteCountZero;
     FLTimeoutTimer* _timeoutTimer;
     FLNetworkConnectionByteCount _writeByteCount;
     FLNetworkConnectionByteCount _readByteCount;
+    BOOL _wasCancelled;
 }
 @property (readonly, strong) FLTimeoutTimer* timeoutTimer;
 @property (readonly, assign) FLNetworkConnectionByteCount writeByteCount;
@@ -43,6 +44,10 @@ extern const FLNetworkConnectionByteCount FLNetworkConnectionByteCountZero;
 - (id<FLNetworkStream>) createNetworkStream;
 
 - (void) touchTimestamp;
+
+
+// override point.
+- (id) resultFromStream:(id<FLNetworkStream>) stream;
 
 /** retry support */
 //    NSUInteger _retryCount;

@@ -67,7 +67,7 @@
 
     FLFinisher* finisher = [FLFinisher finisher];
     
-    FLAsyncBlock asyncBlock = ^(FLFinisher* asyncFinisher) {
+    FLAsyncTaskBlock asyncBlock = ^(FLFinisher* asyncFinisher) {
 
         FLAssert_(finisher == asyncFinisher);
     
@@ -97,7 +97,8 @@
     FLAssertIsNil_(test);
 #endif    
     
-    id result = [finisher waitUntilFinished];
+    [finisher waitUntilFinished];
+    id result = finisher.result;
     FLAssertNotNil_(result);
     
     FLAssertIsTrue_(objectDeleted);

@@ -27,6 +27,15 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
+      <PreActions>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Run Script"
+               scriptText = "/Developer/FishLamp/fluffy $(BUILT_PRODUCTS_DIR)/$(PRODUCT_NAME)">
+            </ActionContent>
+         </ExecutionAction>
+      </PreActions>
       <Testables>
       </Testables>
    </TestAction>
@@ -39,6 +48,24 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
+      <PathRunnable
+         FilePath = "/Developer/FishLamp/fluffy">
+      </PathRunnable>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "270D1AC9165460D900E1B451"
+            BuildableName = "FishLampCoreTestsMac.bundle"
+            BlueprintName = "FishLampCoreTestsMac"
+            ReferencedContainer = "container:FishLampCore.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
+      <CommandLineArguments>
+         <CommandLineArgument
+            argument = "/Developer/FishLamp/fluffy $(BUILT_PRODUCTS_DIR)/$(WRAPPER_NAME)"
+            isEnabled = "YES">
+         </CommandLineArgument>
+      </CommandLineArguments>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>

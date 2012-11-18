@@ -155,8 +155,8 @@
 //}
 
 
-- (void) networkStreamDidClose:(id<FLNetworkStream>)networkStream {
-    [super networkStreamDidClose:networkStream];
+- (void) networkStreamDidClose:(id<FLNetworkStream>)networkStream withError:(NSError*) error  {
+    [super networkStreamDidClose:networkStream withError:error];
     FLReleaseWithNil_(_blockingObject);
 }
 

@@ -9,11 +9,11 @@
 	<key>CFBundleIconFile</key>
 	<string></string>
 	<key>CFBundleIdentifier</key>
-	<string>com.fishlamp.${PRODUCT_NAME:rfc1034identifier}</string>
+	<string>com.fishlamp.fishlampcore.tests</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>${PRODUCT_NAME}</string>
+	<string>FishLampCoreTestsMac</string>
 	<key>CFBundlePackageType</key>
 	<string>BNDL</string>
 	<key>CFBundleShortVersionString</key>
@@ -23,7 +23,7 @@
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2012 Mike Fullerton. All rights reserved.</string>
+	<string>Copyright © 2012 FishLamp. All rights reserved.</string>
 	<key>NSPrincipalClass</key>
 	<string></string>
 </dict>

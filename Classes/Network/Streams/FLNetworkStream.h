@@ -8,22 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
-#import "FLCancellable.h"
-
 #define kRunLoopMode NSDefaultRunLoopMode
 
-@protocol FLNetworkStream <NSObject, FLCancellable>
+typedef void (^FLStreamClosedBlock)(id stream, NSError* error);
+
+@protocol FLNetworkStream <NSObject>
+
 @property (readwrite, assign) id delegate;
 @property (readonly, assign) BOOL isOpen;
-@property (readonly, strong) NSError* error;
 
-- (void) openStream;
-- (void) closeStream;
-@end
+- (void) openStream:(FLStreamClosedBlock) didCloseBlock;
+- (void) closeStream:(NSError*) error;
 
-@protocol FLNetworkStreamDelegate <NSObject>
-- (void) networkStreamDidOpen:(id<FLNetworkStream>) networkStream;
-- (void) networkStreamDidClose:(id<FLNetworkStream>) networkStream;
 @end
 
 @interface FLNetworkStream : NSObject<FLNetworkStream> {
@@ -32,20 +28,27 @@
     __unsafe_unretained NSThread* _thread;
     CFRunLoopRef _runLoop;
     BOOL _isOpen;
-    BOOL _wasCancelled;
     BOOL _didClose;
+    FLStreamClosedBlock _closeBlock;
 }
 @property (readonly, assign) NSThread* thread;
 @property (readonly, assign) CFRunLoopRef runLoop;
+@property (readonly, strong) NSError* error;
 
 - (void) forwardStreamEventToDelegate:(CFStreamEventType) eventType;
 
 - (void) openSelf;
-- (void) closeSelf;
+- (void) closeSelf:(NSError*) error;
+
+- (void) startClosingWithError:(NSError*) error;
 
 @end
 
-
-
+@protocol FLNetworkStreamDelegate <NSObject>
+- (void) networkStreamWillOpen:(id<FLNetworkStream>) networkStream;
+- (void) networkStreamDidOpen:(id<FLNetworkStream>) networkStream;
+- (void) networkStreamWillClose:(id<FLNetworkStream>) networkStream withError:(NSError*) error;
+- (void) networkStreamDidClose:(id<FLNetworkStream>) networkStream withError:(NSError*) error;
+@end
 
 

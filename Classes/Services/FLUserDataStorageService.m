@@ -174,7 +174,7 @@
 //    [self.backgroundTasks beginClosingService:^(FLFinisher* backgroundTaskMgr) {
 //        [self closeService];
 //        [progress hideProgress];
-//        [finisher setFinished];
+//        [asyncTask setFinished];
 //    }];
     
 	if(self.isServiceOpen) {

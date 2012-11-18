@@ -35,7 +35,7 @@
     return self;
 }
 
-- (id) initWithAsyncBlock:(FLAsyncBlock) block {
+- (id) initWithResultBlock:(FLAsyncTaskBlock) block {
     self = [super init];
     if(self) {
         [self setWorkerWithAsyncBlock:block];
@@ -55,22 +55,22 @@
     return autorelease_([[[self class] alloc] initWithBlock:block]);
 }
 
-+ (id) jobWithAsyncBlock:(FLAsyncBlock) block {
-    return autorelease_([[[self class] alloc] initWithAsyncBlock:block]);
++ (id) jobWithAsyncBlock:(FLAsyncTaskBlock) block {
+    return autorelease_([[[self class] alloc] initWithResultBlock:block]);
 }
 
 - (void) setWorkerWithBlock:(dispatch_block_t) block {
     block = FLCopyBlock(block);
     
-    [self setWorker:[FLAsyncBlockWorker asyncBlockWorker:^(FLFinisher* finisher) {
+    [self setWorker:[FLAsyncBlockWorker asyncBlockWorker:^(id asyncTask) {
         if(block) {
             block();
         }
-        [finisher setFinished];
+        [asyncTask setFinished];
     }]];
 }
 
-- (void) setWorkerWithAsyncBlock:(FLAsyncBlock) block {
+- (void) setWorkerWithAsyncBlock:(FLAsyncTaskBlock) block {
     [self setWorker:[FLAsyncBlockWorker asyncBlockWorker:block]];
 }
 
@@ -78,15 +78,15 @@
     [worker startWorking:finisher];
 }
 
-- (FLFinisher*) startWorking:(FLFinisher*) finisher {
+- (void) startWorking:(id) asyncTask {
     if(_worker) {
-        [self scheduleWorker:_worker finisher:finisher];
+        [self scheduleWorker:_worker finisher:asyncTask];
     }
     else {
-        [finisher setFinished]; 
+        [asyncTask setFinished]; 
     }
     
-    return finisher;
+
 }
 
 - (void) dealloc {

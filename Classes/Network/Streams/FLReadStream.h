@@ -25,6 +25,7 @@
 @private
     CFReadStreamRef _streamRef;
     BOOL _reading;
+    NSError* _outsideError;
 }
 
 @property (readonly, assign, nonatomic) CFReadStreamRef streamRef;

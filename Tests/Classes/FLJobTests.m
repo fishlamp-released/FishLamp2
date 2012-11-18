@@ -16,9 +16,9 @@
 @end
 
 @implementation FLTestBot
-- (FLFinisher*) startWorking:(FLFinisher*) finisher {
-    [finisher setFinished];
-    return finisher;
+- (void) startWorking:(id) asyncTask {
+    [asyncTask setFinished];
+
 }
 @end
 
@@ -30,11 +30,12 @@
         [finisher setFinishedWithResult:@"hello world"];
     }];
 
-    FLFinisher* finisher = [FLBackgroundQueue dispatch:job finisher:[FLFinisher finisherWithBlock:^(id result) {
+    FLFinisher* finisher = [FLBackgroundQueue dispatch:job finisher:[FLFinisher finisherWithResultBlock:^(id result) {
         FLAssertObjectsAreEqual_(@"hello world", result);
     }]];
 
-    id result = [finisher waitUntilFinished];
+    [finisher waitUntilFinished];
+    id result = finisher.result; 
 
     FLAssert_(result == finisher.result);
 
@@ -51,12 +52,13 @@
         [finisher setFinishedWithResult:@"hello world"];
     }];
 
-    FLFinisher* finisher = [FLBackgroundQueue dispatch:job finisher:[FLFinisher finisherWithBlock:^(id result) {
+    FLFinisher* finisher = [FLBackgroundQueue dispatch:job finisher:[FLFinisher finisherWithResultBlock:^(id result) {
         FLAssert_([NSThread isMainThread]);
         FLAssertObjectsAreEqual_(@"hello world", result);
     }]];
 
-    id result = [finisher waitUntilFinished];
+    [finisher waitUntilFinished];
+    id result = finisher.result; 
 
     FLAssert_(result == finisher.result);
     FLAssert_([finisher isFinished]);
