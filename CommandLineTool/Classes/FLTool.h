@@ -8,41 +8,53 @@
 
 #import <Foundation/Foundation.h>
 
-#import "FLWorker.h"
 #import "FLCommandLineArgument.h"
 #import "FLCommandLineParser.h"
 #import "FLToolTask.h"
 
 extern NSString* const FLToolDefaultKey;
 
-@interface FLTool : FLWorker {
+@protocol FLToolDelegate;
+
+@interface FLTool : NSObject {
 @private
-    id<FLCommandLineParser> _parser;
+    __unsafe_unretained id<FLToolDelegate> _delegate;
     NSMutableDictionary* _tasks;
+    NSString* _toolName;
+    NSString* _startDirectory;
 }
+FLSingletonProperty(FLTool);
 
-@property (readonly, strong) NSString* toolName;
+@property (readwrite, strong) NSString* toolName;
+@property (readwrite, assign) id<FLToolDelegate> delegate;
+@property (readonly, strong) NSDictionary* tasks;
 
-@property (readonly, strong) id<FLCommandLineParser> parser;
+- (void) setToolTask:(FLToolTask*) task forKeys:(NSArray*) keys;
+- (void) addToolTask:(FLToolTask*) task;
+- (void) setDefaultToolTask:(FLToolTask*) task;
 
-- (id) initWithCommandLineParser:(id<FLCommandLineParser>) parser;
+- (FLToolTask*) toolTaskForKey:(NSString*) key;
 
-- (void) setTask:(FLToolTask*) task forKeys:(NSArray*) keys;
-- (FLToolTask*) taskForKey:(NSString*) key;
+// utils
 
-
-- (int) runWithParameters:(NSArray*) parameters;
-
-- (void) runToolTasksWithArguments:(NSArray*) arguments;
-
-//- (FLToolTask*) taskForArgument:(FLCommandLineArgument*) argument;
-
-@end
-
-@interface FLToolTask (Utils)
-@property (readwrite, strong) NSString* currentDirectory;
 @property (readonly, strong) NSString* startDirectory;
+@property (readwrite, strong) NSString* currentDirectory;
 
 - (void) openURL:(NSString *)url inBackground:(BOOL)background;
 - (void) openFileInDefaultEditor:(NSString*) path;
+
+- (NSError*) runToolWithParameters:(NSArray*) parameters;
+
 @end
+
+@protocol FLToolDelegate <NSObject>
+- (id<FLCommandLineParser>) toolWillRun:(FLTool*) tool;
+
+@optional
+- (void) tool:(FLTool*) tool willRunWithArguments:(NSArray*) commandLineArgumentArray;
+
+- (void) tool:(FLTool*) tool didFinishWithError:(NSError*) error;
+
+@end
+
+extern int FLToolMain(int argc, const char *argv[], Class delegateClass);

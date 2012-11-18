@@ -10,6 +10,8 @@
 #import "NSFileManager+FLExtras.h"
 #import "FLStringUtils.h"
 #import "FLErrorDomain.h"
+#import "FLToolTask_Internal.h"
+
 //FLDeclareErrorDomain(FLToolApplicationErrorDomain);
 
 FLDeclareErrorDomain(FLToolApplicationErrorDomain);
@@ -19,18 +21,16 @@ FLSynthesizeErrorDomain(FLToolApplicationErrorDomain, @"com.fishlamp.commandline
 NSString* const FLToolDefaultKey = @"--default-task";
 
 @interface FLTool ()
-@property (readwrite, strong) id<FLCommandLineParser> parser;
-@property (readonly, strong) NSDictionary* tasks;
-@end
-
-@interface FLToolTask (Internal)
-+ (void) setStartDirectory:(NSString*) directory;
+@property (readwrite, strong) NSString* startDirectory;
 @end
 
 @implementation FLTool
 
-synthesize_(tasks)
-synthesize_(parser);
+synthesize_singleton_(FLTool);
+synthesize_(tasks);
+synthesize_(delegate);
+synthesize_(toolName);
+synthesize_(startDirectory);
 
 - (id) init {
     self = [super init];
@@ -41,35 +41,21 @@ synthesize_(parser);
     return self;
 }
 
-- (id) initWithCommandLineParser:(id<FLCommandLineParser>) parser {
-    
-    self = [super init];
-    if(self) {
-        self.parser = parser;
-        _tasks = [[NSMutableDictionary alloc] init];
-    }
-    
-    return self;
-}
-
 dealloc_(
-    [_parser release];
     [_tasks release];
+    [_toolName release];
+    [_startDirectory release];
 )
 
-- (FLToolTask*) taskForKey:(NSString*) key {
+- (FLToolTask*) toolTaskForKey:(NSString*) key {
     return [_tasks objectForKey:key];
 }
 
-- (NSString*) toolName {
-    return nil;
+- (void) setDefaultToolTask:(FLToolTask*) task {
+    [self setToolTask:task forKeys:[NSArray arrayWithObject:FLToolDefaultKey]];
 }
 
-- (void) setDefaultTask:(FLToolTask*) task {
-    [self setTask:task forKeys:[NSArray arrayWithObject:FLToolDefaultKey]];
-}
-
-- (void) setTask:(FLToolTask*) task forKeys:(NSArray*) keys {
+- (void) setToolTask:(FLToolTask*) task forKeys:(NSArray*) keys {
     
     FLAssertIsNotNil_(task);
     FLAssertIsNotNil_(keys);
@@ -80,58 +66,70 @@ dealloc_(
         [_tasks setObject:task forKey:key];
     }
     
-    [self willAddWorker:task];
+    task.parentTool = self;
+}
+
+- (void) addToolTask:(FLToolTask*) task {
+    [self setToolTask:task forKeys:[task parameterKeys]];
 }
 
 - (void) runToolTasksWithArguments:(NSArray*) arguments {
+
+    FLPerformSelector2(self.delegate, @selector(tool:willRunWithArguments:), self, arguments);
+
     for(FLCommandLineArgument* arg in arguments) {
         FLToolTask* task = [_tasks objectForKey:arg.key];
         FLConfirmIsNotNil_v(task, @"Unknown argument: %@", arg.key);
         
-//        task.argument = arg;
-//        [task runSynchronously];
-//        FLThrowError(task.error);
+        FLToolTaskFinisher* finisher = [FLToolTaskFinisher finisher];
+        finisher.commandLineArgument = arg;
+        
+        [task runSynchronouslyWithAsyncTask:finisher];
+        FLThrowError_(finisher.result);
     }
 
     if(!arguments || arguments.count == 0) {
-        FLToolTask* task = [self taskForKey:FLToolDefaultKey];
+        FLToolTask* task = [self toolTaskForKey:FLToolDefaultKey];
         if(task) {
-//            [task runSynchronously];
-//            FLThrowError(task.error);
+            FLToolTaskFinisher* finisher = [FLToolTaskFinisher finisher];
+            finisher.commandLineArgument = [FLCommandLineArgument commandLineArgument:FLToolDefaultKey];
+            [task runSynchronouslyWithAsyncTask:finisher];
+            FLThrowError_(finisher.result);
         }
     }
 }
 
-
-- (int) runWithParameters:(NSArray*) parameters {
-    @try {
-        [FLToolTask setStartDirectory:parameters.firstObject];
-        NSArray* args = [self.parser parseArguments:[parameters subarrayWithRange:NSMakeRange(1, parameters.count - 1)]];
-        [self runToolTasksWithArguments:args];
-    }
-    @catch(NSException* ex) {
-        FLLog(@"Failed: %@", ex.reason);
-        return 1;
+- (NSArray*) parseArgumentsFromParameters:(NSArray*) parameters withParser:(id<FLCommandLineParser>) parser {
+    if(parser) {
+        return [parser parseArguments:parameters];
     }
     
-    return 0;
+    NSMutableArray* args = [NSMutableArray array];
+    for(NSString* parm in parameters) {
+        [args addObject:[FLCommandLineArgument commandLineArgument:parm]];
+    }
+    return args;
 }
 
-@end
+- (NSError*) runToolWithParameters:(NSArray*) parameters {
 
-@implementation FLToolTask (Internal)
+    @try {
+        id<FLCommandLineParser> parser = [self.delegate toolWillRun:self];
+    
+        NSArray* args = [self parseArgumentsFromParameters:parameters withParser:parser];
 
-static NSString* s_startDirectory;
+        [self runToolTasksWithArguments:args];
 
-+ (void) setStartDirectory:(NSString*) directory {
-    FLRetainObject_(s_startDirectory, directory);
-}
-
-@end
-
-@implementation FLToolTask (Utils)
-- (NSString*) startDirectory {
-    return s_startDirectory;
+        FLPerformSelector2(self.delegate, @selector(tool:didFinishWithError:), self, nil);
+    }
+    @catch(NSException* ex) {
+        
+        FLPerformSelector2(self.delegate, @selector(tool:didFinishWithError:), self, ex.error);
+        FLLog(@"Failed: %@", ex.reason);
+        return ex.error;
+    }
+    
+    return nil;
 }
 
 - (void) setCurrentDirectory:(NSString*) newDirectory {
@@ -159,6 +157,30 @@ static NSString* s_startDirectory;
 }
 
 @end
+
+int FLToolMain(int argc, const char *argv[], Class delegateClass) {
+    
+    @autoreleasepool {
+        NSMutableArray* parameters = [NSMutableArray arrayWithCapacity:argc];
+        for(int i = 0; i < argc; i++) {
+            NSString* parm = [NSString stringWithCString:argv[i] encoding:NSASCIIStringEncoding];
+            if(i == 0) {
+                [FLTool instance].startDirectory = parm;
+            }
+            else {
+                [parameters addObject:parm];
+            }
+        }
+
+        [FLTool instance].delegate = [delegateClass create];
+        if([[FLTool instance] runToolWithParameters:parameters]) {
+            return 1;
+        }
+        
+        return 0;
+    }
+}
+
 
 
 //- (void) _wait:(FLArgumentHandler*) handler {

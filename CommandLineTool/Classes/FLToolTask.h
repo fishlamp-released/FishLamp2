@@ -15,18 +15,20 @@
 
 @interface FLToolTask : FLWorker {
 @private
-    NSMutableArray* _compatibleParameters;
-    FLCommandLineArgument* _argument;
+    __unsafe_unretained FLTool* _parentTool;
 }
 
-+ (id) toolTask;
-
 @property (readonly, assign) FLTool* parentTool;
-@property (readonly, strong) FLCommandLineArgument* argument;
 
 // array of strings of input parameters
 @property (readonly, strong) NSString* helpDescription;
-+ (NSArray*) defaultInputKeys;
+
+- (NSArray*) parameterKeys;
+
++ (id) toolTask;
+
+// utils
+
 
 //// do we own input parameters (this is case insensitive)
 //- (BOOL) hasInputParameter:(NSString*) parm;
@@ -58,6 +60,16 @@
 //- (id<FLPromisedResult>) startTaskWithArgument:(FLCommandLineArgument*) argument 
 //                                           completion:(FLCompletionBlock) completionBlock;
 
+
 @end
 
 
+@interface FLToolTaskFinisher : FLFinisher {
+@private
+    FLCommandLineArgument* _commandLineArgument;
+}
+
+@property (readwrite, strong) FLCommandLineArgument* commandLineArgument;
+
+
+@end

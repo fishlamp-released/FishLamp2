@@ -27,12 +27,3 @@
 
 @end
 
-NSArray* FLCommandLineArguments(int argc, const char * argv[]) {
-    
-    NSMutableArray* inputStrings = [NSMutableArray arrayWithCapacity:argc];
-    for(int i = 0; i < argc; i++) {
-        [inputStrings addObject:[NSString stringWithCString:argv[i] encoding:NSASCIIStringEncoding]];
-    }
-    
-    return inputStrings;
-}

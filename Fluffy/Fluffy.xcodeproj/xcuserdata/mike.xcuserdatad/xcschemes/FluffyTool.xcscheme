@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "270DFDC515E99BAC00ED5FB0"
-               BuildableName = "FluffyTool"
+               BuildableName = "fluffy"
                BlueprintName = "FluffyTool"
                ReferencedContainer = "container:Fluffy.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "270DFDC515E99BAC00ED5FB0"
-            BuildableName = "FluffyTool"
+            BuildableName = "fluffy"
             BlueprintName = "FluffyTool"
             ReferencedContainer = "container:Fluffy.xcodeproj">
          </BuildableReference>
@@ -52,14 +52,14 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "270DFDC515E99BAC00ED5FB0"
-            BuildableName = "FluffyTool"
+            BuildableName = "fluffy"
             BlueprintName = "FluffyTool"
             ReferencedContainer = "container:Fluffy.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "-b FishLampCoreTestsMac.bundle"
+            argument = "FishLampCoreTestsMac.bundle"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
@@ -76,7 +76,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "270DFDC515E99BAC00ED5FB0"
-            BuildableName = "FluffyTool"
+            BuildableName = "fluffy"
             BlueprintName = "FluffyTool"
             ReferencedContainer = "container:Fluffy.xcodeproj">
          </BuildableReference>

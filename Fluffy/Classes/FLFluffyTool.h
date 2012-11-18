@@ -6,12 +6,10 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import "FishLampCore.h"
-#import "FLTool.h"
-#import "FLUnitTest.h"
+//#import "FLTool.h"
 
-@interface FLFluffyTool : FLTool {
-@private
-}
-
-@end
+//@interface FLFluffyTool : NSObject<FLToolDelegate> {
+//@private
+//}
+//
+//@end

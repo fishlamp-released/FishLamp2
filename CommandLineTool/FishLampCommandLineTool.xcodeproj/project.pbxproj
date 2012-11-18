@@ -67,6 +67,9 @@
 		27E3C62E16532E3200410570 /* FishLampCommandLineTool-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27E3C62D16532E3200410570 /* FishLampCommandLineTool-Prefix.pch */; };
 		27E3C62F16532E3200410570 /* FishLampCommandLineTool-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27E3C62D16532E3200410570 /* FishLampCommandLineTool-Prefix.pch */; };
 		27E3C63016532E3200410570 /* FishLampCommandLineTool-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27E3C62D16532E3200410570 /* FishLampCommandLineTool-Prefix.pch */; };
+		27E57740165821D90096029E /* FLToolTask_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E5773F165821D90096029E /* FLToolTask_Internal.h */; };
+		27E57741165821D90096029E /* FLToolTask_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E5773F165821D90096029E /* FLToolTask_Internal.h */; };
+		27E57742165821D90096029E /* FLToolTask_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E5773F165821D90096029E /* FLToolTask_Internal.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -133,6 +136,7 @@
 		27E3C5E616532B6400410570 /* FishLampTargetSettingsMacLegacy.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FishLampTargetSettingsMacLegacy.xcconfig; sourceTree = "<group>"; };
 		27E3C5FC16532B8900410570 /* libFishLampCommandLineToolMacLegacy.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libFishLampCommandLineToolMacLegacy.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		27E3C62D16532E3200410570 /* FishLampCommandLineTool-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FishLampCommandLineTool-Prefix.pch"; sourceTree = "<group>"; };
+		27E5773F165821D90096029E /* FLToolTask_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLToolTask_Internal.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -248,6 +252,7 @@
 				2710AC64165479C9003AFF57 /* FLCommandLineArgument.m */,
 				2710AC6B16547B83003AFF57 /* FLCommandLineParser.h */,
 				2710AC6C16547B83003AFF57 /* FLCommandLineParser.m */,
+				27E5773F165821D90096029E /* FLToolTask_Internal.h */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -322,6 +327,7 @@
 				2710AC66165479C9003AFF57 /* FLCommandLineArgument.h in Headers */,
 				2710AC6E16547B84003AFF57 /* FLCommandLineParser.h in Headers */,
 				2710AC78165493F9003AFF57 /* FLUsageTask.h in Headers */,
+				27E57741165821D90096029E /* FLToolTask_Internal.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,6 +345,7 @@
 				2710AC65165479C9003AFF57 /* FLCommandLineArgument.h in Headers */,
 				2710AC6D16547B84003AFF57 /* FLCommandLineParser.h in Headers */,
 				2710AC77165493F9003AFF57 /* FLUsageTask.h in Headers */,
+				27E57740165821D90096029E /* FLToolTask_Internal.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,6 +363,7 @@
 				2710AC67165479C9003AFF57 /* FLCommandLineArgument.h in Headers */,
 				2710AC6F16547B84003AFF57 /* FLCommandLineParser.h in Headers */,
 				2710AC79165493F9003AFF57 /* FLUsageTask.h in Headers */,
+				27E57742165821D90096029E /* FLToolTask_Internal.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

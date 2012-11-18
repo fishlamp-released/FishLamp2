@@ -99,7 +99,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "270DFDC515E99BAC00ED5FB0"
-               BuildableName = "FluffyTool"
+               BuildableName = "fluffy"
                BlueprintName = "FluffyTool"
                ReferencedContainer = "container:../Fluffy/Fluffy.xcodeproj">
             </BuildableReference>
@@ -127,7 +127,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "27E3C60316532BF000410570"
-               BuildableName = "FluffyToolLegacy"
+               BuildableName = "fluffy"
                BlueprintName = "FluffyToolLegacy"
                ReferencedContainer = "container:../Fluffy/Fluffy.xcodeproj">
             </BuildableReference>

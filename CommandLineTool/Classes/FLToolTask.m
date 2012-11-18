@@ -7,61 +7,18 @@
 //
 
 #import "FLToolTask.h"
+#import "FLToolTask_Internal.h"
 #import "FLTool.h"
-
-@interface FLToolTask ()
-@property (readwrite, strong) FLCommandLineArgument* argument;
-@end
 
 @implementation FLToolTask
 
-synthesize_(argument);
-
-- (id) init {
-    self = [super init];
-    if(self){
-//        _inputKeys = [[NSMutableArray alloc] init];
-//        _compatibleParameters = [[NSMutableArray alloc] init];
-    }
-    return self;
-}
-
-//- (id) initWithInputKeys:(NSString*) spaceDelimitedList {
-//    self = [self init];
-//    if(self) {
-//        [self addInputKeys:spaceDelimitedList];
-//    }
-//    return self;
-//}
+synthesize_(parentTool)
 
 + (id) toolTask {
     return autorelease_([[[self class] alloc] init]);
 }
 
-- (void) willBeginWorkingWithArgument:(FLCommandLineArgument*) argument {
-    self.argument = argument;
-}
-
-//- (id<FLPromisedResult>) startTaskWithArgument:(FLCommandLineArgument*) argument 
-//                                    completion:(FLCompletionBlock) completionBlock {
-//                                           
-//    self.argument = argument;
-//}                                           
-
-dealloc_(
-//    [_inputKeys release];
-//    [_compatibleParameters release];
-    [_argument release];
-    );
- 
-//- (void) addInputKeys:(NSString*) spaceDelimitedList {
-//    NSArray* keys = [spaceDelimitedList componentsSeparatedByString:@" "];
-//    for(NSString* key in keys) {
-//        [self addInputKey:key];
-//    }
-//}
-
-+ (NSArray*) defaultInputKeys {
+- (NSArray*) parameterKeys {
     return nil;
 }
 
@@ -69,9 +26,7 @@ dealloc_(
     return nil;
 }
 
-- (FLTool*) parentTool {
-    return (FLTool*) self.parentWorker;
-}
+
 
 //- (void) addCompatibleParameter:(NSString*) parameter {
 //    
@@ -134,6 +89,14 @@ dealloc_(
 //    return NO;
 //}
 
+
+@end
+
+@implementation FLToolTaskFinisher 
+synthesize_(commandLineArgument)
+dealloc_(
+    [_commandLineArgument release];
+    )
 
 @end
 
