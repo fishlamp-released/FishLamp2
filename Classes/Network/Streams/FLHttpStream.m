@@ -206,45 +206,48 @@
 }
 
 - (void) readStreamHasBytesAvailable:(id<FLNetworkStream>) networkStream {
-    [self readResponseHeadersIfNeeded];
-    [self.readStream appendBytesToMutableData:_response.mutableResponseData];
+    
+    [self queueStreamTask:^(FLNetworkStream* stream) {
+        FLHttpStream* httpStream = (FLHttpStream*) stream;
+        [httpStream readResponseHeadersIfNeeded];
+        [httpStream.readStream appendBytesToMutableData:_response.mutableResponseData];
+    }];
 }
 
 - (void) networkStreamDidOpen:(id<FLNetworkStream>) networkStream {
-    [self readResponseHeadersIfNeeded];
+    [self queueStreamTask:^(FLNetworkStream* stream) {
+        FLHttpStream* httpStream = (FLHttpStream*) stream;
+        [httpStream readResponseHeadersIfNeeded];
+    }];
 }
 
 - (void) networkStreamDidClose:(id<FLNetworkStream>) networkStream withError:(NSError*) error {
 
-    if(error) {
-        [self closeStream:error];
-    }
-    else {
-        BOOL redirect = NO;
-        if(!error) {
-            [self readResponseHeadersIfNeeded];
+    BOOL redirect = NO;
+    
+    if(!error) {
+        [self readResponseHeadersIfNeeded];
 
-        // FIXME: there was an issue here with progress getting fouled up on redirects.
-        //    [self connectionGotTimerEvent];
+    // FIXME: there was an issue here with progress getting fouled up on redirects.
+    //    [self connectionGotTimerEvent];
 
-            redirect = _response.wantsRedirect;
-            if(redirect) {
-                NSURL* redirectURL = self.httpResponse.redirectURL;
+        redirect = _response.wantsRedirect;
+        if(redirect) {
+            NSURL* redirectURL = self.httpResponse.redirectURL;
 
 // FIXME
 //                if([self.delegate respondsToSelector:@selector(httpStream:shouldRedirect:toURL:)]) {
 //                    [self.delegate httpStream:self shouldRedirect:&redirect toURL:redirectURL];
 //                }
-                
-                if(redirect) {
-                    [self openStreamToURL:redirectURL];
-                }
+            
+            if(redirect) {
+                [self openStreamToURL:redirectURL];
             }
         }
+    }
 
-        if(!redirect) {
-            [self closeStream:nil];
-        }
+    if(!redirect) {
+        [self closeStream:nil];
     }
 }
 

@@ -20,8 +20,6 @@ typedef void (^FLStreamClosedBlock)(id stream, NSError* error);
 - (void) openStream:(FLStreamClosedBlock) didCloseBlock;
 - (void) closeStream:(NSError*) error;
 @property (readonly, strong) NSError* error;
-
-@property (readwrite, assign) id<FLNetworkStreamDelegate> delegate;
 @end
 
 @protocol FLNetworkStreamDelegate <FLObservable>
@@ -36,6 +34,9 @@ typedef void (^FLStreamClosedBlock)(id stream, NSError* error);
 - (void) networkStreamDidClose:(id<FLNetworkStream>) networkStream withError:(NSError*) error;
 @end
 
+@class FLNetworkStream;
+typedef void (^FLStreamTask)(FLNetworkStream* stream);
+
 @interface FLNetworkStream : FLObservable<FLNetworkStream, FLNetworkStreamDelegate> {
 @private
     __unsafe_unretained id _delegate;
@@ -47,10 +48,13 @@ typedef void (^FLStreamClosedBlock)(id stream, NSError* error);
     NSMutableArray* _queue;
     BOOL _busy;
 }
+@property (readwrite, assign) id<FLNetworkStreamDelegate> delegate;
 @property (readonly, assign) NSThread* thread;
 @property (readonly, assign) CFRunLoopRef runLoop;
 
 - (void) handleStreamEvent:(CFStreamEventType) eventType;
+- (void) queueStreamTask:(FLStreamTask) task;
+
 @end
 
 //@interface FLStreamTask : NSObject

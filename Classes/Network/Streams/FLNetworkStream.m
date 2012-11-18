@@ -10,7 +10,6 @@
 #import "FLReadStream.h"
 #import "FLWriteStream.h"
 
-typedef void (^FLStreamBlock)(id<FLNetworkStream> stream);
 
 @interface FLNetworkStream ()
 @property (readwrite, assign) NSThread* thread;
@@ -54,7 +53,7 @@ synthesize_(closeBlock)
         
         @try {
             while(_queue.count) {
-                FLStreamBlock block = nil;
+                FLStreamTask block = nil;
                 @synchronized(self) {
                     block = [_queue objectAtIndex:0];
                     mrc_retain_(block);
@@ -75,7 +74,7 @@ synthesize_(closeBlock)
     }
 }
 
-- (void) addStreamTask:(FLStreamBlock) task {
+- (void) queueStreamTask:(FLStreamTask) task {
     @synchronized(self) {
         [_queue addObject:autorelease_([task copy])];
     }
@@ -111,7 +110,7 @@ synthesize_(closeBlock)
 }
 
 - (void) closeStream:(NSError*) error {
-    [self addStreamTask:^(id stream) {
+    [self queueStreamTask:^(id stream) {
         [stream _closeStream:error];
     }];
 }
@@ -122,7 +121,7 @@ synthesize_(closeBlock)
     self.thread = [NSThread currentThread];
     _didClose = NO;
     self.isOpen = NO;
-    [self addStreamTask:^(id<FLNetworkStream> stream) {
+    [self queueStreamTask:^(id<FLNetworkStream> stream) {
         [stream postObservation:@selector(networkStreamWillOpen:)];
         [stream.delegate networkStreamOpenStream:stream];
     }];
