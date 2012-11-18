@@ -140,7 +140,7 @@
 
 - (void) closeReadStream:(NSError*) error {
     if(_readStream) {
-        _readStream.delegate = nil;
+        [_readStream removeObserver:self];
         [_readStream closeStream:error];
         self.readStream = nil;
     }
@@ -164,15 +164,15 @@
     newResponse.mutableResponseData = [NSMutableData dataWithCapacity:kStreamReadChunkSize]; 
     self.httpResponse = newResponse;
     self.readStream = [self.httpRequest createReadStreamForRequestWithURL:url];
-    self.readStream.delegate = self;
+    [self.readStream addObserver:self];
     [self.readStream openStream:nil];
 }
 
-- (void) openSelf {
+- (void) networkStreamOpenStream:(id<FLNetworkStream>) stream {
     [self openStreamToURL:self.httpRequest.requestURL];
 }
-    
-- (void) closeSelf:(NSError*) error {
+
+- (void) networkStreamCloseStream:(id<FLNetworkStream>) stream withError:(NSError*) error {
     [self closeReadStream:error];
 }
 
@@ -196,11 +196,11 @@
             [_response setResponseHeadersWithHttpMessage:message];
             
             if(!_response.redirectedFrom) {
-                FLPerformSelectorWithObject(self.delegate, @selector(networkStreamDidOpen:), self);
+                [self postObservation:@selector(networkStreamDidOpen:)];
             }
             
-            FLPerformSelectorWithObject(self.delegate, @selector(writeStreamDidWriteBytes:) , self);
-            FLPerformSelectorWithObject(self.delegate, @selector(readStreamDidReadBytes:) , self);
+            [self postObservation:@selector(writeStreamDidWriteBytes:)];
+            [self postObservation:@selector(readStreamDidReadBytes:)];
         }
     }
 }
@@ -231,9 +231,10 @@
             if(redirect) {
                 NSURL* redirectURL = self.httpResponse.redirectURL;
 
-                if([self.delegate respondsToSelector:@selector(httpStream:shouldRedirect:toURL:)]) {
-                    [self.delegate httpStream:self shouldRedirect:&redirect toURL:redirectURL];
-                }
+// FIXME
+//                if([self.delegate respondsToSelector:@selector(httpStream:shouldRedirect:toURL:)]) {
+//                    [self.delegate httpStream:self shouldRedirect:&redirect toURL:redirectURL];
+//                }
                 
                 if(redirect) {
                     [self openStreamToURL:redirectURL];
@@ -255,7 +256,7 @@
 }
 
 - (void) readStreamDidReadBytes:(id<FLNetworkStream>) stream{
-    FLPerformSelectorWithObject(self.delegate, @selector(readStreamDidReadBytes:) , self);
+    [self postObservation:@selector(readStreamDidReadBytes:)];
 }
 
 

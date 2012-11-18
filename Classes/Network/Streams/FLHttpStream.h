@@ -30,7 +30,7 @@
 
 @end
 
-@protocol FLHttpStreamDelegate <FLNetworkStream>
+@protocol FLHttpStreamDelegate <FLNetworkStream, FLNetworkStreamDelegate>
 @optional
 - (void) httpStream:(FLHttpStream*) httpStream shouldRedirect:(BOOL*) redirect toURL:(NSURL*) url;
 @end

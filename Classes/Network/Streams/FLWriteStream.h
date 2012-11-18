@@ -21,7 +21,7 @@
 @end
 
 
-@interface FLWriteStream : FLNetworkStream<FLWriteStream> {
+@interface FLWriteStream : FLNetworkStream<FLWriteStream, FLNetworkStreamDelegate> {
 @private
  	CFWriteStreamRef _streamRef;
 }

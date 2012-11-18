@@ -10,7 +10,7 @@
 #import "FLNetworkStream.h"
 #import "FLByteBuffer.h"
 
-@protocol FLReadStream <FLNetworkStream>
+@protocol FLReadStream <NSObject>
 @property (readonly, assign) BOOL hasBytesAvailable;
 @property (readonly, assign) unsigned long bytesRead;
 
@@ -21,13 +21,12 @@
 
 @end
 
-@interface FLReadStream : FLNetworkStream<FLReadStream>  {
+@interface FLReadStream : FLNetworkStream<FLReadStream, FLNetworkStreamDelegate>  {
 @private
     CFReadStreamRef _streamRef;
     BOOL _reading;
-    NSError* _outsideError;
+    NSError* _error;
 }
-
 @property (readonly, assign, nonatomic) CFReadStreamRef streamRef;
 
 - (id) initWithReadStream:(CFReadStreamRef) writeStream;

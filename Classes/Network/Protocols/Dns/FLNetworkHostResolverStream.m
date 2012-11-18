@@ -19,7 +19,8 @@
 synthesize_(error)
 
 - (FLNetworkHost*) networkHost {
-    return [self.delegate networkHost];
+    return nil;
+//    return [self.delegate networkHost];
 }
 
 - (id) output {
@@ -48,7 +49,7 @@ static void HostResolutionCallback(CFHostRef theHost, CFHostInfoType typeInfo, c
     [resolver resolutionCallback:theHost typeInfo:typeInfo error:error];
 }
 
-- (void) openSelf {
+- (void) networkStreamOpenStream:(id<FLNetworkStream>) stream {
     
     CFHostClientContext context = { 0, bridge_(void*, self), NULL, NULL, NULL };
   
@@ -72,7 +73,7 @@ static void HostResolutionCallback(CFHostRef theHost, CFHostInfoType typeInfo, c
     }
 }
 
-- (void) closeSelf:(NSError*) error {
+- (void) networkStreamCloseStream:(id<FLNetworkStream>) stream withError:(NSError*) error {
     CFHostRef host = self.networkHost.hostRef;
     if(host) {
         /*BOOL success = */ CFHostSetClient(host, NULL, NULL);

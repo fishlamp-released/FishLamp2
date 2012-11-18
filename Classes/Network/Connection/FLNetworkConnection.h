@@ -25,7 +25,7 @@ typedef struct {
 
 extern const FLNetworkConnectionByteCount FLNetworkConnectionByteCountZero;
 
-@interface FLNetworkConnection : FLObservable<FLNetworkStreamDelegate, FLWorker, FLCancellable, FLRunnable> {
+@interface FLNetworkConnection : FLObservable<FLNetworkStreamObserver, FLWorker, FLCancellable, FLRunnable> {
 @private
     __unsafe_unretained NSThread* _thread;
     FLFinisher* _finisher;

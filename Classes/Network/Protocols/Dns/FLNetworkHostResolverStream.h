@@ -10,7 +10,7 @@
 
 #import "FLNetworkStream.h"
 
-@interface FLNetworkHostResolverStream : FLNetworkStream {
+@interface FLNetworkHostResolverStream : FLNetworkStream<FLNetworkStreamDelegate> {
 @private
     NSError* _error;
 }

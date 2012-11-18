@@ -58,7 +58,7 @@ synthesize_(wasCancelled);
     FLAssert_(!_networkStream.isOpen);
 
     if(_networkStream) {
-        _networkStream.delegate = nil;
+        [_networkStream removeObserver:self];
     }
 
 //    [self visitObservers:^(id observer, BOOL* stop) {
@@ -142,7 +142,7 @@ synthesize_(wasCancelled);
     
     FLAssertIsNotNil_(self.networkStream);
     
-    [self.networkStream setDelegate:self];
+    [self.networkStream addObserver:self];
 
     if(![self checkReachability]) {
         NSError* error = [NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorNotConnectedToInternet localizedDescription:NSLocalizedString(@"Not Connected to Network", nil)];
@@ -155,7 +155,7 @@ synthesize_(wasCancelled);
 
     [self.networkStream openStream:^(id closedStream, NSError* error) {
         
-        [self.networkStream setDelegate:nil];
+        [self.networkStream removeObserver:nil];
         self.networkStream = nil;
         self.thread = nil;
         [self postObservation:@selector(networkConnectionDisconnected:)];

@@ -59,9 +59,10 @@
         }
                 
         self.readStream = [FLReadStream readStream:readStream];
-        self.readStream.delegate = self;
+        [self.readStream addObserver:self];
+        
         self.writeStream = [FLWriteStream writeStream:writeStream];
-        self.writeStream.delegate = self;
+        [self.writeStream addObserver:self];
         
         [self.readStream openStream:nil];
         [self.writeStream openStream:nil];
@@ -94,12 +95,12 @@
 
 - (void) closeSelf:(NSError*) error {
     if(_readStream) {
-        _readStream.delegate = nil;
+        [_readStream removeObserver:self];
         [_readStream closeStream:error];
         self.readStream = nil;
     }
     if(_writeStream) {
-        _writeStream.delegate = nil;
+        [_writeStream removeObserver:self];
         [_writeStream closeStream:error];
         self.writeStream = nil;
     }

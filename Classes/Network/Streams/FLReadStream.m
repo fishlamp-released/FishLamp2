@@ -18,21 +18,21 @@ CFIndex _FLReadStreamRead(CFReadStreamRef stream, UInt8 *buffer, CFIndex bufferL
 
 @interface FLReadStream()
 @property (readwrite, assign) BOOL reading;
-@property (readwrite, strong) NSError* outsideError;
+@property (readwrite, strong) NSError* error;
 @end
 
 static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventType eventType, void *clientCallBackInfo) {
     FLReadStream* connection = bridge_(FLReadStream*, clientCallBackInfo);
     
     FLConfirmIsNotNil_(connection);
-    [connection forwardStreamEventToDelegate:eventType];
+    [connection handleStreamEvent:eventType];
 }
 
 @implementation FLReadStream 
 @synthesize streamRef = _streamRef;
 @synthesize reading = _reading;
 
-synthesize_(outsideError)
+synthesize_(error)
 
 - (id) initWithReadStream:(CFReadStreamRef) streamRef {
     if(!streamRef) {
@@ -67,26 +67,27 @@ synthesize_(outsideError)
     CFReadStreamSetClient(_streamRef, kCFStreamEventNone, NULL, NULL);
     FLReleaseCRef_(_streamRef);
     
-#if FL_MRC  
-    [_outside error];
+#if FL_MRC
+    [_error error];
     [super dealloc];
 #endif
 }
-- (void) openSelf {
-    self.outsideError = nil;
+
+- (void) networkStreamOpenStream:(id<FLNetworkStream>) stream {
+    self.error = nil;
     FLAssertNotNil_(_streamRef);
     CFReadStreamScheduleWithRunLoop(_streamRef, self.runLoop, bridge_(void*,kRunLoopMode));
     CFReadStreamOpen(_streamRef);
 }
 
-- (void) closeSelf:(NSError*) error {
+- (void) networkStreamCloseStream:(id<FLNetworkStream>) stream withError:(NSError*) error {
     FLAssertNotNil_(_streamRef);
     CFReadStreamUnscheduleFromRunLoop(_streamRef, self.runLoop, bridge_(void*,kRunLoopMode));
     CFReadStreamClose(_streamRef);
-    self.outsideError = nil;
+    self.error = nil;
 }
 
-- (NSError*) error {
+- (NSError*) streamError {
     return autorelease_(bridge_transfer_(NSError*, CFReadStreamCopyError(self.streamRef)));
 }
 
@@ -96,10 +97,10 @@ synthesize_(outsideError)
 
 - (void) throwReadError:(NSInteger) badResult {
     if(CFReadStreamGetStatus(self.streamRef) == kCFStreamStatusError) {
-        FLThrowError_(self.error);
+        FLThrowError_(self.streamError);
     }
-    if(self.outsideError) {
-        FLThrowError_(self.outsideError);
+    if(self.error) {
+        FLThrowError_(self.error);
     }
     if(badResult < 0) {
         FLThrowErrorCode_v((NSString*) kCFErrorDomainCFNetwork, 

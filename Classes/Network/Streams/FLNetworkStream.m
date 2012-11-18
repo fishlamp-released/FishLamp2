@@ -10,6 +10,8 @@
 #import "FLReadStream.h"
 #import "FLWriteStream.h"
 
+typedef void (^FLStreamBlock)(id<FLNetworkStream> stream);
+
 @interface FLNetworkStream ()
 @property (readwrite, assign) NSThread* thread;
 @property (readwrite, assign) CFRunLoopRef runLoop;
@@ -25,27 +27,71 @@ synthesize_(isOpen)
 synthesize_(thread)
 synthesize_(closeBlock)
 
+- (id) init {
+    self = [super init];
+    if(self) {
+        self.delegate = self;
+        _queue = [[NSMutableArray alloc] init];
+    }
+    return self;
+}
+
 - (void) dealloc {
     FLAssert_v(self.thread == nil, @"still running in thread");
     
     self.delegate = nil;
     
 #if FL_MRC
+    [_queue release];
     [_closeBlock release];
     [super dealloc];
 #endif
 }
 
-- (void) closeStream:(NSError*) error {
+- (void) runStreamTasks {
+    if(!_busy) {
+        _busy = YES;
+        
+        @try {
+            while(_queue.count) {
+                FLStreamBlock block = nil;
+                @synchronized(self) {
+                    block = [_queue objectAtIndex:0];
+                    mrc_retain_(block);
+                    
+                    [_queue removeObjectAtIndex:0];
+                }
+                if(block) {
+                    block(self);
+                }
+                release_(block);
+            }
+        }
+        @catch(NSException* ex) {
+        
+        }
+        
+        _busy = NO;
+    }
+}
+
+- (void) addStreamTask:(FLStreamBlock) task {
+    @synchronized(self) {
+        [_queue addObject:autorelease_([task copy])];
+    }
+    [self performSelector:@selector(runStreamTasks) onThread:self.thread withObject:nil waitUntilDone:NO];
+}
+
+- (void) _closeStream:(NSError*) error {
     if(!_didClose) {
         _didClose = YES;
         
-        FLPerformSelector2(self.delegate, @selector(networkStreamWillClose:withError:), self, error);
-
-        [self startClosing:error];
+        [self postObservation:@selector(networkStreamWillClose:withError:) withObject:error];
         
-        FLPerformSelector2(self.delegate, @selector(networkStreamDidClose:withError:), self, error);
-
+        [self.delegate networkStreamCloseStream:self withError:error];
+        
+        [self postObservation:@selector(networkStreamDidClose:withError:) withObject:error];
+        
         self.runLoop = nil;
         self.thread = nil;
         self.isOpen = NO;
@@ -57,28 +103,32 @@ synthesize_(closeBlock)
     }
 }
 
+- (void) networkStreamOpenStream:(id<FLNetworkStream>) stream {
+}
+
+- (void) networkStreamCloseStream:(id<FLNetworkStream>) stream
+                        withError:(NSError*) error {
+}
+
+- (void) closeStream:(NSError*) error {
+    [self addStreamTask:^(id stream) {
+        [stream _closeStream:error];
+    }];
+}
+
 - (void) openStream:(FLStreamClosedBlock) didCloseBlock {
     self.closeBlock = didCloseBlock;
     self.runLoop = CFRunLoopGetCurrent();
     self.thread = [NSThread currentThread];
     _didClose = NO;
     self.isOpen = NO;
-    FLPerformSelector1(self.delegate, @selector(networkStreamWillOpen:), self);
-    
-    [self openSelf];
+    [self addStreamTask:^(id<FLNetworkStream> stream) {
+        [stream postObservation:@selector(networkStreamWillOpen:)];
+        [stream.delegate networkStreamOpenStream:stream];
+    }];
 }
 
-- (void) openSelf {
-}
-
-- (void) closeSelf:(NSError*) error {
-}
-
-- (NSError*) error {
-    return nil;
-}
-
-- (void) forwardStreamEventToDelegate:(CFStreamEventType) eventType {
+- (void) handleStreamEvent:(CFStreamEventType) eventType {
 
     FLAssert_v([NSThread currentThread] == self.thread, @"tcp operation on wrong thread");
 
@@ -89,13 +139,10 @@ synthesize_(closeBlock)
     switch (eventType)  {
         case kCFStreamEventOpenCompleted:
             self.isOpen = YES;
-            FLPerformSelectorWithObject(self.delegate, @selector(networkStreamDidOpen:), self);
+            [self postObservation:@selector(networkStreamDidOpen:)];
             break;
 
         case kCFStreamEventErrorOccurred:
-            [self closeStream:[self error]];
-            break;
-
         case kCFStreamEventEndEncountered:
             [self closeStream:nil];
             break;
@@ -105,13 +152,42 @@ synthesize_(closeBlock)
             break;
         
         case kCFStreamEventHasBytesAvailable:
-            FLPerformSelectorWithObject(self.delegate, @selector(readStreamHasBytesAvailable:), self);
+            [self postObservation:@selector(readStreamHasBytesAvailable:)];
             break;
             
         case kCFStreamEventCanAcceptBytes:
-            FLPerformSelectorWithObject(self.delegate, @selector(writeStreamCanAcceptBytes:), self);
+            [self postObservation:@selector(writeStreamCanAcceptBytes:)];
             break;
     }
+    
+    [self runStreamTasks];
+}
+
+- (NSError*) error {
+    return nil;
 }
 
 @end
+
+//@implementation FLStreamTask
+//
+//+ (id) streamTask {
+//    return autorelease_([[[self class] alloc] init])l
+//}
+//
+//- (void) performStreamTask:(id) stream {
+//}
+//@end
+//
+//@implementation FLStreamOpener
+//- (void) performStreamTask:(id) stream {
+//}
+//@end
+//
+//@implementation FLStreamCloser
+//
+//- (void) performStreamTask:(id) stream {
+//}
+//
+//@end
+
