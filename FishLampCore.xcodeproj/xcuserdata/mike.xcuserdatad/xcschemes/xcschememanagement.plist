@@ -29,6 +29,11 @@
 			<key>orderHint</key>
 			<integer>18</integer>
 		</dict>
+		<key>FishLampCoreTestsMacLib.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>20</integer>
+		</dict>
 		<key>FishLampCoreiOS.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -118,6 +123,11 @@
 			<true/>
 		</dict>
 		<key>27DF867D15CF2D67009DDC8A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>27EF7B34165A9C1E00EB7949</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -51,7 +51,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "27E3C60316532BF000410570"
-            BuildableName = "fluffy"
+            BuildableName = "FluffyToolLegacy"
             BlueprintName = "FluffyToolLegacy"
             ReferencedContainer = "container:../OSX/Fluffy/Fluffy.xcodeproj">
          </BuildableReference>
