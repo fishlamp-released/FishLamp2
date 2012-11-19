@@ -1,5 +1,5 @@
 //
-//  NSError+FLNetworkStream.m
+//  NSError+FLStreamController.m
 //  FishLampCore
 //
 //  Created by Mike Fullerton on 11/10/12.
@@ -8,7 +8,7 @@
 
 #import "NSError+FLNetworkStream.h"
 
-@implementation NSError (FLNetworkStream)
+@implementation NSError (FLStreamController)
 
 // TODO: make this better
 // I snagged this from some sample apple code..

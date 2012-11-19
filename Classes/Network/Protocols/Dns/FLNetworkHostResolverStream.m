@@ -9,22 +9,24 @@
 #import "FLNetworkHostResolverStream.h"
 #import "FLNetworkHost.h"
 #import "NSError+FLNetworkStream.h"
+#import "FLNetworkStream.h"
 
 @interface FLNetworkHostResolverStream ()
-@property (readwrite, strong) NSError* error;
+@property (readwrite, strong) FLNetworkHost* networkHost;
 @end
 
 @implementation FLNetworkHostResolverStream
 
 synthesize_(error)
+synthesize_(networkHost);
 
-- (FLNetworkHost*) networkHost {
-    return nil;
-//    return [self.delegate networkHost];
-}
-
-- (id) output {
-    return self.networkHost;
+- (id) initWithNetworkHost:(FLNetworkHost*) networkHost {
+    self = [super init];
+    if(self) {
+        self.networkHost = networkHost;
+    }
+    
+    return self;
 }
 
 - (void) resolutionCallback:(CFHostRef) theHost
@@ -49,7 +51,7 @@ static void HostResolutionCallback(CFHostRef theHost, CFHostInfoType typeInfo, c
     [resolver resolutionCallback:theHost typeInfo:typeInfo error:error];
 }
 
-- (void) networkStreamOpenStream:(id<FLNetworkStream>) stream {
+- (void) openNetworkStream {
     
     CFHostClientContext context = { 0, bridge_(void*, self), NULL, NULL, NULL };
   
@@ -57,13 +59,13 @@ static void HostResolutionCallback(CFHostRef theHost, CFHostInfoType typeInfo, c
     FLAssertIsNotNil_v(host, nil);
 
     @try {
-        if ( ! CFHostSetClient(host, HostResolutionCallback, &context)) {
+        if (!CFHostSetClient(host, HostResolutionCallback, &context)) {
             FLThrowError_([NSError errorWithDomain:NSPOSIXErrorDomain code:EINVAL userInfo:nil]);
         }
 
-        CFHostScheduleWithRunLoop(host, CFRunLoopGetCurrent(), bridge_(void*,kRunLoopMode));
+        CFHostScheduleWithRunLoop(host, CFRunLoopGetCurrent(), bridge_(void*,NSDefaultRunLoopMode));
         CFStreamError streamError = { 0, 0 };
-        if ( !CFHostStartInfoResolution(host, self.networkHost.hostInfoType, &streamError) ) {
+        if (!CFHostStartInfoResolution(host, self.networkHost.hostInfoType, &streamError) ) {
             FLThrowError_(FLCreateErrorFromStreamError(&streamError));
         }
     }
@@ -73,14 +75,13 @@ static void HostResolutionCallback(CFHostRef theHost, CFHostInfoType typeInfo, c
     }
 }
 
-- (void) networkStreamCloseStream:(id<FLNetworkStream>) stream withError:(NSError*) error {
+- (void) closeNetworkStream {
     CFHostRef host = self.networkHost.hostRef;
     if(host) {
         /*BOOL success = */ CFHostSetClient(host, NULL, NULL);
-        CFHostUnscheduleFromRunLoop(host, CFRunLoopGetCurrent(), bridge_(void*,kRunLoopMode));
+        CFHostUnscheduleFromRunLoop(host, CFRunLoopGetCurrent(), bridge_(void*,NSDefaultRunLoopMode));
         CFHostCancelInfoResolution(host, self.networkHost.hostInfoType);
     }
 }
-
 
 @end

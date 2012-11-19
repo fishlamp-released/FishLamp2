@@ -20,6 +20,7 @@
 @synthesize remoteHost = _remoteHost;
 @synthesize readStream = _readStream;
 @synthesize writeStream = _writeStream;
+synthesize_(error)
 
 - (id) initWithRemoteHost:(NSString*) remoteHost remotePort:(int32_t) remotePort {
     self = [self init];
@@ -35,7 +36,7 @@
     return autorelease_([[[self class] alloc] initWithRemoteHost:remoteHost remotePort:remotePort]);
 }
 
-- (void) openSelf {
+- (void) openNetworkStream {
 
     FLAssertIsNil_(self.readStream);
     FLAssertIsNil_(self.writeStream);
@@ -81,11 +82,11 @@
 }
 
 - (void) dealloc {
-    self.delegate = nil;
 
     FLAssert_(!self.isOpen);
     
 #if FL_MRC
+    [_error release];
     [_remoteHost release];
     [_writeStream release];
     [_readStream release];
@@ -93,15 +94,15 @@
 #endif
 }
 
-- (void) closeSelf:(NSError*) error {
+- (void) closeNetworkStream {
     if(_readStream) {
         [_readStream removeObserver:self];
-        [_readStream closeStream:error];
+        [_readStream closeStream:nil];
         self.readStream = nil;
     }
     if(_writeStream) {
         [_writeStream removeObserver:self];
-        [_writeStream closeStream:error];
+        [_writeStream closeStream:nil];
         self.writeStream = nil;
     }
 }
@@ -110,34 +111,31 @@
     return [NSError tcpStreamError:[self.readStream error] writeError:[self.writeStream error]];
 }
 
-- (void) networkStreamDidClose:(id<FLNetworkStream>) networkStream withError:(NSError*) error {
-    [self closeStream:error ];
+- (void) networkStreamDidClose:(id<FLNetworkStream>) networkStream {
+    [self closeStream:nil];
 }
 
 - (void) networkStreamDidOpen:(id<FLNetworkStream>) networkStream {
     if(self.isOpen) {
-        FLPerformSelectorWithObject(self.delegate, @selector(networkStreamDidOpen:), self);
+        [self postObservation:@selector(networkStreamDidOpen:)];
     }
 }
 
 - (void) readStreamHasBytesAvailable:(id<FLNetworkStream>) networkStream {
-    FLPerformSelectorWithObject(self.delegate, @selector(readStreamHasBytesAvailable:), self);
+    [self postObservation:@selector(readStreamHasBytesAvailable:)];
 }
 
 
 - (void) writeStreamCanAcceptBytes:(id<FLNetworkStream>) networkStream {
-    FLPerformSelectorWithObject(self.delegate, @selector(writeStreamCanAcceptBytes:), self);
-    
+    [self postObservation:@selector(writeStreamCanAcceptBytes:)];
 }
 
 - (void) writeStreamDidWriteBytes:(id<FLNetworkStream>) stream {
-    FLPerformSelectorWithObject(self.delegate, @selector(writeStreamDidWriteBytes:), self);
-    
+    [self postObservation:@selector(writeStreamDidWriteBytes:)];
 }
 
 - (void) readStreamDidReadBytes:(id<FLNetworkStream>) stream{
-    FLPerformSelectorWithObject(self.delegate, @selector(readStreamDidReadBytes:), self);
-    
+    [self postObservation:@selector(readStreamDidReadBytes:)];
 }
 
 - (BOOL) isOpen {

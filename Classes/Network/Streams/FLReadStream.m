@@ -18,7 +18,6 @@ CFIndex _FLReadStreamRead(CFReadStreamRef stream, UInt8 *buffer, CFIndex bufferL
 
 @interface FLReadStream()
 @property (readwrite, assign) BOOL reading;
-@property (readwrite, strong) NSError* error;
 @end
 
 static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventType eventType, void *clientCallBackInfo) {
@@ -73,18 +72,17 @@ synthesize_(error)
 #endif
 }
 
-- (void) networkStreamOpenStream:(id<FLNetworkStream>) stream {
+- (void) openNetworkStream {
     self.error = nil;
     FLAssertNotNil_(_streamRef);
-    CFReadStreamScheduleWithRunLoop(_streamRef, self.runLoop, bridge_(void*,kRunLoopMode));
+    CFReadStreamScheduleWithRunLoop(_streamRef, self.runLoop, bridge_(void*,NSDefaultRunLoopMode));
     CFReadStreamOpen(_streamRef);
 }
 
-- (void) networkStreamCloseStream:(id<FLNetworkStream>) stream withError:(NSError*) error {
+- (void) closeNetworkStream {
     FLAssertNotNil_(_streamRef);
-    CFReadStreamUnscheduleFromRunLoop(_streamRef, self.runLoop, bridge_(void*,kRunLoopMode));
+    CFReadStreamUnscheduleFromRunLoop(_streamRef, self.runLoop, bridge_(void*,NSDefaultRunLoopMode));
     CFReadStreamClose(_streamRef);
-    self.error = nil;
 }
 
 - (NSError*) streamError {
@@ -203,7 +201,7 @@ synthesize_(error)
     }
     
     if(bytesRead > 0) {
-        FLPerformSelectorWithObject(self.delegate, @selector(readStreamDidReadBytes:), self);
+        [self postObservation:@selector(readStreamDidReadBytes:)];
     }
 
     return bytesRead;
@@ -311,16 +309,6 @@ FIXME("readbytes");
 
     return [number unsignedLongValue];
 }
-
-- (id<FLReadStream>) readStream {
-    return self;
-}
-
-- (id<FLReadStream>) writeStream {
-    return nil;
-}
-
-
 
 @end
 

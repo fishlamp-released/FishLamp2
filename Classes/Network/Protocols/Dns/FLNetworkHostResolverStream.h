@@ -8,10 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
-#import "FLNetworkStream.h"
+#import "FLNetworkHost.h"
+#import "FLAbstractNetworkStream.h"
 
-@interface FLNetworkHostResolverStream : FLNetworkStream<FLNetworkStreamDelegate> {
+@interface FLNetworkHostResolverStream : FLAbstractNetworkStream<FLConcreteNetworkStream> {
 @private
     NSError* _error;
+    FLNetworkHost* _networkHost;
+    __unsafe_unretained id<FLNetworkStream> _controller;
 }
+@property (readonly, strong) FLNetworkHost* networkHost;
+
+- (id) initWithNetworkHost:(FLNetworkHost*) networkHost;
+
 @end

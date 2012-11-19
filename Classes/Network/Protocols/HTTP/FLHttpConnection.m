@@ -65,11 +65,11 @@ synthesize_(httpResponse)
     }];
 }
 
-- (void) networkStreamWillClose:(id<FLHttpStream>) networkStream withError:(NSError*) error {
-    if(!error) {
+- (void) networkStreamWillClose:(FLHttpStream*) networkStream {
+    if(!networkStream.error) {
         self.httpResponse = [networkStream httpResponse];
     }
-    [super networkStreamWillClose:(id<FLNetworkStream>)networkStream withError:error];
+    [super networkStreamWillClose:(id<FLNetworkStream>)networkStream];
 }
 
 @end

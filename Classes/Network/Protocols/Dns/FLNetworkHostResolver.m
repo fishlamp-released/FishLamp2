@@ -31,7 +31,7 @@ synthesize_(networkHost)
 }
 
 - (id<FLNetworkStream>) createNetworkStream {
-    return [FLNetworkHostResolverStream create];
+    return autorelease_([[FLNetworkHostResolverStream alloc] initWithNetworkHost:self.networkHost]);
 }
 
 dealloc_(

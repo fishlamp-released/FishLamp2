@@ -122,11 +122,11 @@ synthesize_(wasCancelled);
     [self postObservation:@selector(networkConnectionConnected:)];
 }
 
-- (void) networkStreamWillClose:(id<FLNetworkStream>) networkStream withError:(NSError*) error {
+- (void) networkStreamWillClose:(id<FLNetworkStream>) networkStream {
     [self.timeoutTimer touchTimestamp];
 }
 
-- (void) networkStreamDidClose:(id<FLNetworkStream>) networkStream withError:(NSError*) error {
+- (void) networkStreamDidClose:(id<FLNetworkStream>) networkStream {
     [self.timeoutTimer touchTimestamp];
 }
 
@@ -153,7 +153,7 @@ synthesize_(wasCancelled);
 
     self.thread = [NSThread currentThread];
 
-    [self.networkStream openStream:^(id closedStream, NSError* error) {
+    [self.networkStream openStream:^(id<FLNetworkStream> closedStream) {
         
         [self.networkStream removeObserver:nil];
         self.networkStream = nil;
@@ -164,9 +164,9 @@ synthesize_(wasCancelled);
             [self postObservation:@selector(networkConnectionFinished:)];
         }]];
 
-        if(error) {
+        if([closedStream error]) {
             FLDebugLog(@"stream received error: %@", [[closedStream error] localizedDescription]);
-            [asyncTask setFinishedWithResult:error];
+            [asyncTask setFinishedWithResult:[closedStream error]];
         } 
         else {
             [asyncTask setFinishedWithResult:[self resultFromStream:closedStream]];

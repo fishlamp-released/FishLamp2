@@ -1,9 +1,8 @@
 //
 //  FLStreamController.m
-//  FishLamp
+//  FishLampCore
 //
-//  Created by Mike Fullerton on 10/27/12.
+//  Created by Mike Fullerton on 11/18/12.
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import "FLNetworkStream.h"

@@ -9,6 +9,7 @@
 #import "FLNetworkStream.h"
 #import "FLNetworkStream.h"
 #import "FLByteBuffer.h"
+#import "FLAbstractNetworkStream.h"
 
 @protocol FLReadStream <NSObject>
 @property (readonly, assign) BOOL hasBytesAvailable;
@@ -21,7 +22,7 @@
 
 @end
 
-@interface FLReadStream : FLNetworkStream<FLReadStream, FLNetworkStreamDelegate>  {
+@interface FLReadStream : FLAbstractNetworkStream<FLReadStream, FLConcreteNetworkStream>  {
 @private
     CFReadStreamRef _streamRef;
     BOOL _reading;

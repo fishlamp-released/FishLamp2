@@ -22,6 +22,7 @@ static void WriteStreamClientCallBack(CFWriteStreamRef readStream,
 @implementation FLWriteStream
 
 @synthesize streamRef = _streamRef;
+synthesize_(error);
 
 - (id) initWithWriteStream:(CFWriteStreamRef) streamRef {
     
@@ -62,20 +63,21 @@ static void WriteStreamClientCallBack(CFWriteStreamRef readStream,
     }
     
 #if FL_MRC
+    [_error release];
     [super dealloc];
 #endif    
 }
 
-- (void) networkStreamOpenStream:(id<FLNetworkStream>) stream {
+- (void) openNetworkStream {
     FLAssertIsNotNil_(_streamRef);
-    CFWriteStreamScheduleWithRunLoop(_streamRef, self.runLoop, bridge_(void*,kRunLoopMode));
+    CFWriteStreamScheduleWithRunLoop(_streamRef, self.runLoop, bridge_(void*,NSDefaultRunLoopMode));
     CFWriteStreamOpen(_streamRef);
 }
 
-- (void) networkStreamCloseStream:(id<FLNetworkStream>) stream withError:(NSError*) error  {
+- (void) closeNetworkStream  {
     FLAssertIsNotNil_(_streamRef);
 
-    CFWriteStreamUnscheduleFromRunLoop(_streamRef, self.runLoop, bridge_(void*,kRunLoopMode));
+    CFWriteStreamUnscheduleFromRunLoop(_streamRef, self.runLoop, bridge_(void*,NSDefaultRunLoopMode));
     CFWriteStreamClose(_streamRef);
 }
 
@@ -100,7 +102,7 @@ static void WriteStreamClientCallBack(CFWriteStreamRef readStream,
         buffer += amt;
     }
     
-    FLPerformSelectorWithObject(self.delegate, @selector(writeStreamDidWriteBytes:), self);
+    [self postObservation:@selector(writeStreamDidWriteBytes:)];
 }
 
 - (void) sendData:(NSData*) data {

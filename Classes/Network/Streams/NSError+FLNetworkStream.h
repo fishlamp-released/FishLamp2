@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSError (FLNetworkStream)
+@interface NSError (FLStreamController)
 + (NSError*) errorFromStreamError:(CFStreamError) streamError;
 @end
 

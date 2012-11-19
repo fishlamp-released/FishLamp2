@@ -9,29 +9,30 @@
 #import "FLNetworkStream.h"
 #import "FLHttpRequest.h"
 #import "FLHttpResponse.h"
-#import "FLNetworkStream.h"
+#import "FLAbstractNetworkStream.h"
+#import "FLReadStream.h"
 
-@class FLReadStream;
+@protocol FLHttpStreamDelegate;
 
-@protocol FLHttpStream <NSObject>
-@property (readonly, strong) FLHttpRequest* httpRequest;
-@property (readonly, strong) FLHttpResponse* httpResponse;
-@end
-
-@interface FLHttpStream : FLNetworkStream<FLHttpStream> {
+@interface FLHttpStream : FLAbstractNetworkStream<FLConcreteNetworkStream> {
 @private
+    __unsafe_unretained id<FLHttpStreamDelegate> _delegate;
     FLMutableHttpResponse* _response;
     FLHttpRequest* _request;
     FLReadStream* _readStream;
+    NSError* _error;
 }
+@property (readwrite, assign) id<FLHttpStreamDelegate> delegate;
+
+@property (readonly, strong) FLHttpRequest* httpRequest;
+@property (readonly, strong) FLHttpResponse* httpResponse;
 
 - (id) initWithHttpRequest:(FLHttpRequest*) request;
 + (id) httpStream:(FLHttpRequest*) request;
 
 @end
 
-@protocol FLHttpStreamDelegate <FLNetworkStream, FLNetworkStreamDelegate>
-@optional
+@protocol FLHttpStreamDelegate <NSObject>
 - (void) httpStream:(FLHttpStream*) httpStream shouldRedirect:(BOOL*) redirect toURL:(NSURL*) url;
 @end
 

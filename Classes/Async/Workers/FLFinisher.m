@@ -164,6 +164,8 @@ dealloc_(
     else {
         [self setFinished];
     }
+    
+    FLAssertNotNil_(self.result);
 }
 
 @end
