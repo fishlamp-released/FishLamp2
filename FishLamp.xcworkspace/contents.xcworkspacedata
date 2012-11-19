@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:SampleApps/Posty/Posty.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:OSX/Fluffy/Fluffy.xcodeproj">
    </FileRef>
    <FileRef
@@ -16,20 +19,4 @@
    <FileRef
       location = "group:OSX/CommandLineTool/FishLampCommandLineTool.xcodeproj">
    </FileRef>
-   <Group
-      location = "group:FishLampXcodeConfigs/TargetIncludes"
-      name = "TargetIncludes">
-      <FileRef
-         location = "group:FishLampTargetiOS.xcconfig">
-      </FileRef>
-      <FileRef
-         location = "group:FishLampTargetMac.xcconfig">
-      </FileRef>
-      <FileRef
-         location = "group:FishLampTargetMac32.xcconfig">
-      </FileRef>
-      <FileRef
-         location = "group:FishLampTargetMacLegacy.xcconfig">
-      </FileRef>
-   </Group>
 </Workspace>

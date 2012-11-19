@@ -1,0 +1,10 @@
+//
+// Prefix header for all source files of the 'Posty' target in the 'Posty' project
+//
+
+#ifdef __OBJC__
+
+    #import <Foundation/Foundation.h>
+    #import "FishLampCore.h"
+    #import "FLCommandLineTool.h"
+#endif
