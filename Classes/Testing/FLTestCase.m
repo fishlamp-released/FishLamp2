@@ -210,11 +210,11 @@ synthesize_(priority);
     [self runTestWithExpectedFailure:test checkResults:nil];
 }
 
-+ (void) runTestWithExpectedFailure:(FLFailureType) failureType
++ (void) runTestWithExpectedFailure:(FLAssertionFailure) failureType
                        infoString:(NSString*) infoStringContainsThisOrNil
                                test:(void (^)()) callback {
 
-//    FLFailureType failed = FLFailureTypeNone;
+//    FLAssertionFailure failed = FLAssertionFailureNone;
 
 //    BOOL gotReasonString = infoStringContainsThisOrNil == nil;
     

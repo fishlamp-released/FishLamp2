@@ -143,6 +143,13 @@
 			remoteGlobalIDString = 270D1ACA165460D900E1B451;
 			remoteInfo = FishLampCoreTestsMac;
 		};
+		27A38676165B1B9200DD1BFA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27E3C79C165415B100410570 /* FishLampCore.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 27EF7B35165A9C1E00EB7949;
+			remoteInfo = FishLampCoreTestsMacLib;
+		};
 		27E3C7B71654165300410570 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 27E3C79C165415B100410570 /* FishLampCore.xcodeproj */;
@@ -455,6 +462,7 @@
 				27E3C7BC1654165300410570 /* libFishLampCoreMac32.a */,
 				27E3C7BE1654165300410570 /* libFishLampCoreMacLegacy.a */,
 				27273237165702DB00ABF031 /* FishLampCoreTestsMac.bundle */,
+				27A38677165B1B9200DD1BFA /* FishLampCoreTestsMacLib.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -716,6 +724,13 @@
 			fileType = wrapper.cfbundle;
 			path = FishLampCoreTestsMac.bundle;
 			remoteRef = 27273236165702DB00ABF031 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		27A38677165B1B9200DD1BFA /* FishLampCoreTestsMacLib.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = FishLampCoreTestsMacLib.framework;
+			remoteRef = 27A38676165B1B9200DD1BFA /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		27E3C7B81654165300410570 /* libFishLampCoreiOS.a */ = {
