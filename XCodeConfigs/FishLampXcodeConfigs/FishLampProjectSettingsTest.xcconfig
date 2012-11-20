@@ -6,7 +6,5 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-FISHLAMP = FishLamp
-#include "FishLamp/FishLampXcodeConfigs/ProjectIncludes/FishLampPaths.xcconfig"
-#include "FishLamp/FishLampXcodeConfigs/ProjectIncludes/FishLampSettings.xcconfig"
-#include "FishLamp/FishLampXcodeConfigs/ProjectIncludes/FishLampSettingsTest.xcconfig"
+#include "FishLamp/XcodeConfigs/ProjectIncludes/FishLampSettings.xcconfig"
+#include "FishLamp/XcodeConfigs/ProjectIncludes/FishLampSettingsTest.xcconfig"

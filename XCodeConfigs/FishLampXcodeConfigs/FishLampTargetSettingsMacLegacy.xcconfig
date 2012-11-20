@@ -6,6 +6,6 @@
 //
 //
 
-#include "FishLamp/FishLampXcodeConfigs/TargetIncludes/FishLampTargetMacLegacy.xcconfig"
+#include "FishLamp/XcodeConfigs/TargetIncludes/FishLampTargetMacLegacy.xcconfig"
 #include "SharedTargetSettings.xcconfig"
 
