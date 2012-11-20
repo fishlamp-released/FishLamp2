@@ -59,6 +59,7 @@ dealloc_(
 
 - (void) setDefaultToolTask:(FLToolTask*) task {
     [self setToolTask:task forKeys:[NSArray arrayWithObject:FLToolDefaultKey]];
+    [self setToolTask:task forKeys:task.argumentKeys];
 }
 
 - (void) setToolTask:(FLToolTask*) task forKeys:(NSArray*) keys {

@@ -8,9 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+#import "FLSyncFishLampTool.h"
 #import "FLToolMain.h"
 
 int main(int argc, const char *argv[]) {
-    FLToolMain(argc, argv, nil);
+    FLToolMain(argc, argv, [FLSyncFishLampTool class]);
     return 0;
 }

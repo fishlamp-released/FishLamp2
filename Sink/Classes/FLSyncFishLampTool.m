@@ -14,7 +14,7 @@
 
 - (id<FLCommandLineParser>) toolWillRun:(FLTool*) tool {
     tool.toolName = @"SyncFishLamp";
-    [tool addToolTask:[FLUsageTask toolTask]];
+    [tool setDefaultToolTask:[FLUsageTask toolTask]];
     [tool addToolTask:[FLSyncFolderTask toolTask]];
     return [FLCommandLineParser create];
 }
