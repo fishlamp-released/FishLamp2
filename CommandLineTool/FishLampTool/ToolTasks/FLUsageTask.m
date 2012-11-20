@@ -20,16 +20,12 @@
     return self;
 }
 
-- (NSArray*) parameterKeys {
+- (NSArray*) argumentKeys {
     return [NSArray arrayWithObjects:@"-u", @"--usage", nil];
 }
 
-- (void) startWorking:(id) asyncTask {
-
-    FLLog(@"Usage for %@", self.parentTool.toolName);
-
-    [asyncTask setFinished];
-
+- (void) runWithArgument:(FLCommandLineArgument*) argument inTool:(FLTool*) tool {
+   FLLog(@"Usage for %@", tool.toolName);
 }
 
 @end

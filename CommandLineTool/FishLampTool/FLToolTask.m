@@ -12,13 +12,11 @@
 
 @implementation FLToolTask
 
-synthesize_(parentTool)
-
 + (id) toolTask {
     return autorelease_([[[self class] alloc] init]);
 }
 
-- (NSArray*) parameterKeys {
+- (NSArray*) argumentKeys {
     return nil;
 }
 
@@ -88,15 +86,9 @@ synthesize_(parentTool)
 //    
 //    return NO;
 //}
-
-
-@end
-
-@implementation FLToolTaskFinisher 
-synthesize_(commandLineArgument)
-dealloc_(
-    [_commandLineArgument release];
-    )
+- (void) runWithArgument:(FLCommandLineArgument*) argument inTool:(FLTool*) tool {
+}
 
 @end
+
 

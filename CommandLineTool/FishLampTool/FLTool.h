@@ -6,14 +6,13 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
+#import "FLCore.h"
 #import "FLCommandLineArgument.h"
 #import "FLCommandLineParser.h"
-#import "FLToolTask.h"
 
 extern NSString* const FLToolDefaultKey;
 
+@class FLToolTask;
 @protocol FLToolDelegate;
 
 @interface FLTool : NSObject {
@@ -23,7 +22,8 @@ extern NSString* const FLToolDefaultKey;
     NSString* _toolName;
     NSString* _startDirectory;
 }
-FLSingletonProperty(FLTool);
+
++ (id) tool;
 
 @property (readwrite, strong) NSString* toolName;
 @property (readwrite, assign) id<FLToolDelegate> delegate;
@@ -37,7 +37,7 @@ FLSingletonProperty(FLTool);
 
 // utils
 
-@property (readonly, strong) NSString* startDirectory;
+@property (readwrite, strong) NSString* startDirectory;
 @property (readwrite, strong) NSString* currentDirectory;
 
 - (void) openURL:(NSString *)url inBackground:(BOOL)background;
@@ -57,4 +57,4 @@ FLSingletonProperty(FLTool);
 
 @end
 
-extern int FLToolMain(int argc, const char *argv[], Class delegateClass);
+//extern FLErrorDomain* FLToolApplicationErrorDomain;

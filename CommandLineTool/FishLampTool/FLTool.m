@@ -7,26 +7,28 @@
 //
 
 #import "FLTool.h"
-#import "NSFileManager+FLExtras.h"
 #import "FLStringUtils.h"
 #import "FLErrorDomain.h"
 #import "FLToolTask_Internal.h"
 
-//FLDeclareErrorDomain(FLToolApplicationErrorDomain);
+//@interface FLToolApplicationErrorDomainObject : FLErrorDomain<FLErrorDomainSubclass>
+//@end
+//
+//
+//@implementation FLToolApplicationErrorDomainObject 
+//
+//@end
 
-FLDeclareErrorDomain(FLToolApplicationErrorDomain);
-
-FLSynthesizeErrorDomain(FLToolApplicationErrorDomain, @"com.fishlamp.commandlinetool");
 
 NSString* const FLToolDefaultKey = @"--default-task";
 
 @interface FLTool ()
-@property (readwrite, strong) NSString* startDirectory;
+//@property (readwrite, strong) NSString* startDirectory;
 @end
 
 @implementation FLTool
 
-synthesize_singleton_(FLTool);
+//synthesize_singleton_(FLTool);
 synthesize_(tasks);
 synthesize_(delegate);
 synthesize_(toolName);
@@ -39,6 +41,10 @@ synthesize_(startDirectory);
     }
     
     return self;
+}
+
++ (id) tool {
+    return [self create];
 }
 
 dealloc_(
@@ -65,12 +71,10 @@ dealloc_(
         FLConfirmIsNil_v(existing, @"task already installed for key: %@", key);
         [_tasks setObject:task forKey:key];
     }
-    
-    task.parentTool = self;
 }
 
 - (void) addToolTask:(FLToolTask*) task {
-    [self setToolTask:task forKeys:[task parameterKeys]];
+    [self setToolTask:task forKeys:[task argumentKeys]];
 }
 
 - (void) runToolTasksWithArguments:(NSArray*) arguments {
@@ -79,22 +83,13 @@ dealloc_(
 
     for(FLCommandLineArgument* arg in arguments) {
         FLToolTask* task = [_tasks objectForKey:arg.key];
-        FLConfirmIsNotNil_v(task, @"Unknown argument: %@", arg.key);
-        
-        FLToolTaskFinisher* finisher = [FLToolTaskFinisher finisher];
-        finisher.commandLineArgument = arg;
-        
-        [task runSynchronouslyWithAsyncTask:finisher];
-        FLThrowError_(finisher.result);
+        [task runWithArgument:arg inTool:self];
     }
 
     if(!arguments || arguments.count == 0) {
         FLToolTask* task = [self toolTaskForKey:FLToolDefaultKey];
         if(task) {
-            FLToolTaskFinisher* finisher = [FLToolTaskFinisher finisher];
-            finisher.commandLineArgument = [FLCommandLineArgument commandLineArgument:FLToolDefaultKey];
-            [task runSynchronouslyWithAsyncTask:finisher];
-            FLThrowError_(finisher.result);
+            [task runWithArgument:[FLCommandLineArgument commandLineArgument:FLToolDefaultKey] inTool:self];
         }
     }
 }
@@ -158,28 +153,6 @@ dealloc_(
 
 @end
 
-int FLToolMain(int argc, const char *argv[], Class delegateClass) {
-    
-    @autoreleasepool {
-        NSMutableArray* parameters = [NSMutableArray arrayWithCapacity:argc];
-        for(int i = 0; i < argc; i++) {
-            NSString* parm = [NSString stringWithCString:argv[i] encoding:NSASCIIStringEncoding];
-            if(i == 0) {
-                [FLTool instance].startDirectory = parm;
-            }
-            else {
-                [parameters addObject:parm];
-            }
-        }
-
-        [FLTool instance].delegate = [delegateClass create];
-        if([[FLTool instance] runToolWithParameters:parameters]) {
-            return 1;
-        }
-        
-        return 0;
-    }
-}
 
 
 

@@ -11,7 +11,7 @@
 
 //@implementation FLRunTestsToolTask
 //
-//- (NSArray*) parameterKeys {
+//- (NSArray*) argumentKeys {
 //    return [NSArray arrayWithObjects:@"-b", @"--bundle", nil];
 //}
 //

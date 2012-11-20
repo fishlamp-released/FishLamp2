@@ -9,5 +9,4 @@
 #import "FLToolTask.h"
 
 @interface FLToolTask ()
-@property (readwrite, assign) FLTool* parentTool;
 @end

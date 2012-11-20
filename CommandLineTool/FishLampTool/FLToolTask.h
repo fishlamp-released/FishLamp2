@@ -6,26 +6,21 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
-#import "FLWorker.h"
+#import "FLCore.h"
 #import "FLCommandLineArgument.h"
+#import "FLTool.h"
 
-@class FLTool;
-
-@interface FLToolTask : FLWorker {
+@interface FLToolTask : NSObject {
 @private
-    __unsafe_unretained FLTool* _parentTool;
 }
 
-@property (readonly, assign) FLTool* parentTool;
-
-// array of strings of input parameters
 @property (readonly, strong) NSString* helpDescription;
 
-- (NSArray*) parameterKeys;
+- (NSArray*) argumentKeys;
 
 + (id) toolTask;
+
+- (void) runWithArgument:(FLCommandLineArgument*) argument inTool:(FLTool*) tool;
 
 // utils
 
@@ -63,13 +58,3 @@
 
 @end
 
-
-@interface FLToolTaskFinisher : FLFinisher {
-@private
-    FLCommandLineArgument* _commandLineArgument;
-}
-
-@property (readwrite, strong) FLCommandLineArgument* commandLineArgument;
-
-
-@end
