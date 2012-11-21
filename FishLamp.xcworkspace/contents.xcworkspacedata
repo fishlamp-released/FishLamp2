@@ -17,9 +17,6 @@
       location = "group:iOS/FishLampiOS.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:OSX/CommandLineTool/FishLampCommandLineTool.xcodeproj">
-   </FileRef>
-   <FileRef
       location = "group:OSX/Sink/FishLampSync.xcodeproj">
    </FileRef>
 </Workspace>

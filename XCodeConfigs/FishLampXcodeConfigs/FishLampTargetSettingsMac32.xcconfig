@@ -6,5 +6,5 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#include "FishLamp/XcodeConfigs/TargetIncludes/FishLampTargetMac32.xcconfig"
-#include "SharedTargetSettings.xcconfig"
+#include "XcodeConfigs/TargetIncludes/FishLampTargetMac32.xcconfig"
+#include "XcodeConfigs/SharedTargetSettings.xcconfig"

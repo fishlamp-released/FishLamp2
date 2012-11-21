@@ -5,7 +5,6 @@
 //  Created by Mike Fullerton on 11/13/12.
 //
 //
-
-#include "FishLamp/XcodeConfigs/TargetIncludes/FishLampTargetMacLegacy.xcconfig"
-#include "SharedTargetSettings.xcconfig"
+#include "XcodeConfigs/TargetIncludes/FishLampTargetMacLegacy.xcconfig"
+#include "XcodeConfigs/SharedTargetSettings.xcconfig"
 
