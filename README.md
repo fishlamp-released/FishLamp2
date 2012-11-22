@@ -1,2 +1,4 @@
-FishLampCore
-============
+FishLamp
+========
+
+FishLamp
