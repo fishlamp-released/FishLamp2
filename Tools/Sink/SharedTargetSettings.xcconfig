@@ -1,0 +1,18 @@
+//
+//  LibFishLampCoreShared.xcconfig
+//  FishLampCore
+//
+//  Created by Mike Fullerton on 10/27/12.
+//  Copyright (c) 2012 Mike Fullerton. All rights reserved.
+//
+
+GCC_PRECOMPILE_PREFIX_HEADER = YES
+GCC_PREFIX_HEADER = SyncFishLampTool-Prefix.pch
+
+DEPLOYMENT_POSTPROCESSING = NO
+DEPLOYMENT_LOCATION = YES
+INSTALL_MODE_FLAG = 755
+DSTROOT = ~
+INSTALL_PATH = /Library/Developer/FishLamp
+
+PRODUCT_NAME = FishLampSync

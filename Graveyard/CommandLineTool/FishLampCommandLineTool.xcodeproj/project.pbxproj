@@ -1,0 +1,595 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		27048D10161CB58600C38ADA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27A43A7F15CDCC1B001CB13E /* Cocoa.framework */; };
+		27A386FD165BFB1100DD1BFA /* FLCommandLineArgument.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A386E3165BFB1000DD1BFA /* FLCommandLineArgument.h */; };
+		27A386FE165BFB1100DD1BFA /* FLCommandLineArgument.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A386E3165BFB1000DD1BFA /* FLCommandLineArgument.h */; };
+		27A386FF165BFB1100DD1BFA /* FLCommandLineArgument.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A386E3165BFB1000DD1BFA /* FLCommandLineArgument.h */; };
+		27A38700165BFB1100DD1BFA /* FLCommandLineArgument.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A386E4165BFB1000DD1BFA /* FLCommandLineArgument.m */; };
+		27A38701165BFB1100DD1BFA /* FLCommandLineArgument.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A386E4165BFB1000DD1BFA /* FLCommandLineArgument.m */; };
+		27A38702165BFB1100DD1BFA /* FLCommandLineArgument.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A386E4165BFB1000DD1BFA /* FLCommandLineArgument.m */; };
+		27A38703165BFB1100DD1BFA /* FLCommandLineParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A386E5165BFB1000DD1BFA /* FLCommandLineParser.h */; };
+		27A38704165BFB1100DD1BFA /* FLCommandLineParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A386E5165BFB1000DD1BFA /* FLCommandLineParser.h */; };
+		27A38705165BFB1100DD1BFA /* FLCommandLineParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A386E5165BFB1000DD1BFA /* FLCommandLineParser.h */; };
+		27A38706165BFB1100DD1BFA /* FLCommandLineParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A386E6165BFB1000DD1BFA /* FLCommandLineParser.m */; };
+		27A38707165BFB1100DD1BFA /* FLCommandLineParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A386E6165BFB1000DD1BFA /* FLCommandLineParser.m */; };
+		27A38708165BFB1100DD1BFA /* FLCommandLineParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A386E6165BFB1000DD1BFA /* FLCommandLineParser.m */; };
+		27A38715165BFB1100DD1BFA /* FLShellCommand.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A386EB165BFB1000DD1BFA /* FLShellCommand.h */; };
+		27A38716165BFB1100DD1BFA /* FLShellCommand.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A386EB165BFB1000DD1BFA /* FLShellCommand.h */; };
+		27A38717165BFB1100DD1BFA /* FLShellCommand.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A386EB165BFB1000DD1BFA /* FLShellCommand.h */; };
+		27A38718165BFB1100DD1BFA /* FLShellCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A386EC165BFB1000DD1BFA /* FLShellCommand.m */; };
+		27A38719165BFB1100DD1BFA /* FLShellCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A386EC165BFB1000DD1BFA /* FLShellCommand.m */; };
+		27A3871A165BFB1100DD1BFA /* FLShellCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A386EC165BFB1000DD1BFA /* FLShellCommand.m */; };
+		27A3871B165BFB1100DD1BFA /* FLTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A386ED165BFB1000DD1BFA /* FLTool.h */; };
+		27A3871C165BFB1100DD1BFA /* FLTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A386ED165BFB1000DD1BFA /* FLTool.h */; };
+		27A3871D165BFB1100DD1BFA /* FLTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A386ED165BFB1000DD1BFA /* FLTool.h */; };
+		27A3871E165BFB1100DD1BFA /* FLTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A386EE165BFB1000DD1BFA /* FLTool.m */; };
+		27A3871F165BFB1100DD1BFA /* FLTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A386EE165BFB1000DD1BFA /* FLTool.m */; };
+		27A38720165BFB1100DD1BFA /* FLTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A386EE165BFB1000DD1BFA /* FLTool.m */; };
+		27A38721165BFB1100DD1BFA /* FLToolMain.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A386EF165BFB1000DD1BFA /* FLToolMain.h */; };
+		27A38722165BFB1100DD1BFA /* FLToolMain.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A386EF165BFB1000DD1BFA /* FLToolMain.h */; };
+		27A38723165BFB1100DD1BFA /* FLToolMain.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A386EF165BFB1000DD1BFA /* FLToolMain.h */; };
+		27A38724165BFB1100DD1BFA /* FLToolMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A386F0165BFB1000DD1BFA /* FLToolMain.m */; };
+		27A38725165BFB1100DD1BFA /* FLToolMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A386F0165BFB1000DD1BFA /* FLToolMain.m */; };
+		27A38726165BFB1100DD1BFA /* FLToolMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A386F0165BFB1000DD1BFA /* FLToolMain.m */; };
+		27A38727165BFB1100DD1BFA /* FLToolTask.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A386F1165BFB1000DD1BFA /* FLToolTask.h */; };
+		27A38728165BFB1100DD1BFA /* FLToolTask.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A386F1165BFB1000DD1BFA /* FLToolTask.h */; };
+		27A38729165BFB1100DD1BFA /* FLToolTask.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A386F1165BFB1000DD1BFA /* FLToolTask.h */; };
+		27A3872A165BFB1100DD1BFA /* FLToolTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A386F2165BFB1000DD1BFA /* FLToolTask.m */; };
+		27A3872B165BFB1100DD1BFA /* FLToolTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A386F2165BFB1000DD1BFA /* FLToolTask.m */; };
+		27A3872C165BFB1100DD1BFA /* FLToolTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A386F2165BFB1000DD1BFA /* FLToolTask.m */; };
+		27A3872D165BFB1100DD1BFA /* FLToolTask_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A386F3165BFB1000DD1BFA /* FLToolTask_Internal.h */; };
+		27A3872E165BFB1100DD1BFA /* FLToolTask_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A386F3165BFB1000DD1BFA /* FLToolTask_Internal.h */; };
+		27A3872F165BFB1100DD1BFA /* FLToolTask_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A386F3165BFB1000DD1BFA /* FLToolTask_Internal.h */; };
+		27A38730165BFB1100DD1BFA /* FLUsageTask.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A386F5165BFB1000DD1BFA /* FLUsageTask.h */; };
+		27A38731165BFB1100DD1BFA /* FLUsageTask.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A386F5165BFB1000DD1BFA /* FLUsageTask.h */; };
+		27A38732165BFB1100DD1BFA /* FLUsageTask.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A386F5165BFB1000DD1BFA /* FLUsageTask.h */; };
+		27A38733165BFB1100DD1BFA /* FLUsageTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A386F6165BFB1000DD1BFA /* FLUsageTask.m */; };
+		27A38734165BFB1100DD1BFA /* FLUsageTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A386F6165BFB1000DD1BFA /* FLUsageTask.m */; };
+		27A38735165BFB1100DD1BFA /* FLUsageTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A386F6165BFB1000DD1BFA /* FLUsageTask.m */; };
+		27A43AC515CDCCCB001CB13E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27A43A7F15CDCC1B001CB13E /* Cocoa.framework */; };
+		27E3C5F016532B8900410570 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27A43A7F15CDCC1B001CB13E /* Cocoa.framework */; };
+		27E3C62E16532E3200410570 /* FishLampCommandLineTool-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27E3C62D16532E3200410570 /* FishLampCommandLineTool-Prefix.pch */; };
+		27E3C62F16532E3200410570 /* FishLampCommandLineTool-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27E3C62D16532E3200410570 /* FishLampCommandLineTool-Prefix.pch */; };
+		27E3C63016532E3200410570 /* FishLampCommandLineTool-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27E3C62D16532E3200410570 /* FishLampCommandLineTool-Prefix.pch */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		27048EF0161CB58600C38ADA /* libFishLampCommandLineToolMac32.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libFishLampCommandLineToolMac32.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		270D02DC15E9B1F500ED5FB0 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/AppKit.framework; sourceTree = DEVELOPER_DIR; };
+		270D02DD15E9B1F600ED5FB0 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
+		270D02DE15E9B1F800ED5FB0 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/CoreFoundation.framework; sourceTree = DEVELOPER_DIR; };
+		270D02DF15E9B1F900ED5FB0 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/CoreServices.framework; sourceTree = DEVELOPER_DIR; };
+		270D02E015E9B1FA00ED5FB0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		270D02E115E9B1FD00ED5FB0 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/usr/lib/libsqlite3.0.dylib; sourceTree = DEVELOPER_DIR; };
+		270D02E215E9B1FE00ED5FB0 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
+		270D02E315E9B1FF00ED5FB0 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
+		270DFDC815E99BAC00ED5FB0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		273147A11652D80F0027850D /* SharedTargetSettings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = SharedTargetSettings.xcconfig; sourceTree = "<group>"; };
+		276CE8EE15E54B2F000A5CE6 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		276CE8EF15E54B30000A5CE6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		276CE8F015E54B31000A5CE6 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		276CE8F115E54B33000A5CE6 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		276CE90015E54BF0000A5CE6 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		276CE90215E54BFE000A5CE6 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		276CE90915E54C89000A5CE6 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		276CE90A15E54C8A000A5CE6 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		276CE90B15E54C8A000A5CE6 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		276CE90C15E54C8B000A5CE6 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		276CE90D15E54C8D000A5CE6 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		276CE90E15E54C8E000A5CE6 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		276CE90F15E54C8E000A5CE6 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		276CE91015E54C8F000A5CE6 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		276CE91115E54C8F000A5CE6 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		276CE91215E54C90000A5CE6 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		276CE91315E54C90000A5CE6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		276CE91415E54C91000A5CE6 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		276CE91515E54C91000A5CE6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		276CE92615E54D45000A5CE6 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		27A386E3165BFB1000DD1BFA /* FLCommandLineArgument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCommandLineArgument.h; sourceTree = "<group>"; };
+		27A386E4165BFB1000DD1BFA /* FLCommandLineArgument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLCommandLineArgument.m; sourceTree = "<group>"; };
+		27A386E5165BFB1000DD1BFA /* FLCommandLineParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCommandLineParser.h; sourceTree = "<group>"; };
+		27A386E6165BFB1000DD1BFA /* FLCommandLineParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLCommandLineParser.m; sourceTree = "<group>"; };
+		27A386EB165BFB1000DD1BFA /* FLShellCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLShellCommand.h; sourceTree = "<group>"; };
+		27A386EC165BFB1000DD1BFA /* FLShellCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLShellCommand.m; sourceTree = "<group>"; };
+		27A386ED165BFB1000DD1BFA /* FLTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLTool.h; sourceTree = "<group>"; };
+		27A386EE165BFB1000DD1BFA /* FLTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLTool.m; sourceTree = "<group>"; };
+		27A386EF165BFB1000DD1BFA /* FLToolMain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLToolMain.h; sourceTree = "<group>"; };
+		27A386F0165BFB1000DD1BFA /* FLToolMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLToolMain.m; sourceTree = "<group>"; };
+		27A386F1165BFB1000DD1BFA /* FLToolTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLToolTask.h; sourceTree = "<group>"; };
+		27A386F2165BFB1000DD1BFA /* FLToolTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLToolTask.m; sourceTree = "<group>"; };
+		27A386F3165BFB1000DD1BFA /* FLToolTask_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLToolTask_Internal.h; sourceTree = "<group>"; };
+		27A386F5165BFB1000DD1BFA /* FLUsageTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLUsageTask.h; sourceTree = "<group>"; };
+		27A386F6165BFB1000DD1BFA /* FLUsageTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLUsageTask.m; sourceTree = "<group>"; };
+		27A43A7F15CDCC1B001CB13E /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		27A43A8215CDCC1B001CB13E /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		27A43A8415CDCC1B001CB13E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		27A43AA415CDCC73001CB13E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		27A43AC415CDCCCB001CB13E /* libFishLampCommandLineToolMac.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libFishLampCommandLineToolMac.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		27E3C5E016532B6400410570 /* FishLampProjectSettingsDebug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FishLampProjectSettingsDebug.xcconfig; sourceTree = "<group>"; };
+		27E3C5E116532B6400410570 /* FishLampProjectSettingsRelease.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FishLampProjectSettingsRelease.xcconfig; sourceTree = "<group>"; };
+		27E3C5E216532B6400410570 /* FishLampProjectSettingsTest.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FishLampProjectSettingsTest.xcconfig; sourceTree = "<group>"; };
+		27E3C5E316532B6400410570 /* FishLampTargetSettingsiOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FishLampTargetSettingsiOS.xcconfig; sourceTree = "<group>"; };
+		27E3C5E416532B6400410570 /* FishLampTargetSettingsMac.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FishLampTargetSettingsMac.xcconfig; sourceTree = "<group>"; };
+		27E3C5E516532B6400410570 /* FishLampTargetSettingsMac32.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FishLampTargetSettingsMac32.xcconfig; sourceTree = "<group>"; };
+		27E3C5E616532B6400410570 /* FishLampTargetSettingsMacLegacy.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FishLampTargetSettingsMacLegacy.xcconfig; sourceTree = "<group>"; };
+		27E3C5FC16532B8900410570 /* libFishLampCommandLineToolMacLegacy.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libFishLampCommandLineToolMacLegacy.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		27E3C62D16532E3200410570 /* FishLampCommandLineTool-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FishLampCommandLineTool-Prefix.pch"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		27048D0F161CB58600C38ADA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27048D10161CB58600C38ADA /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27A43AC115CDCCCB001CB13E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27A43AC515CDCCCB001CB13E /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27E3C5EF16532B8900410570 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27E3C5F016532B8900410570 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		273147A21652D83F0027850D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				27E3C62D16532E3200410570 /* FishLampCommandLineTool-Prefix.pch */,
+				27E3C5DF16532B6400410570 /* XcodeConfigs-3up */,
+				273147A11652D80F0027850D /* SharedTargetSettings.xcconfig */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		276CE92815E54E31000A5CE6 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				27A43AA415CDCC73001CB13E /* Foundation.framework */,
+				276CE92615E54D45000A5CE6 /* libsqlite3.0.dylib */,
+				276CE90915E54C89000A5CE6 /* AssetsLibrary.framework */,
+				276CE90A15E54C8A000A5CE6 /* AVFoundation.framework */,
+				276CE90B15E54C8A000A5CE6 /* CFNetwork.framework */,
+				276CE90C15E54C8B000A5CE6 /* CoreLocation.framework */,
+				276CE90D15E54C8D000A5CE6 /* CoreMedia.framework */,
+				276CE90E15E54C8E000A5CE6 /* CoreMotion.framework */,
+				276CE90F15E54C8E000A5CE6 /* CoreText.framework */,
+				276CE91015E54C8F000A5CE6 /* ImageIO.framework */,
+				276CE91115E54C8F000A5CE6 /* MapKit.framework */,
+				276CE91215E54C90000A5CE6 /* MessageUI.framework */,
+				276CE91315E54C90000A5CE6 /* QuartzCore.framework */,
+				276CE91415E54C91000A5CE6 /* SystemConfiguration.framework */,
+				276CE91515E54C91000A5CE6 /* UIKit.framework */,
+				276CE90215E54BFE000A5CE6 /* MobileCoreServices.framework */,
+				276CE90015E54BF0000A5CE6 /* MediaPlayer.framework */,
+				276CE8EE15E54B2F000A5CE6 /* CoreFoundation.framework */,
+				276CE8EF15E54B30000A5CE6 /* CoreGraphics.framework */,
+				276CE8F015E54B31000A5CE6 /* CoreImage.framework */,
+				276CE8F115E54B33000A5CE6 /* Security.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		276CE92915E54E7F000A5CE6 /* OSX */ = {
+			isa = PBXGroup;
+			children = (
+				27A43A8215CDCC1B001CB13E /* AppKit.framework */,
+				27A43A8415CDCC1B001CB13E /* Foundation.framework */,
+				27A43A7F15CDCC1B001CB13E /* Cocoa.framework */,
+			);
+			name = OSX;
+			sourceTree = "<group>";
+		};
+		27A386E0165BFB1000DD1BFA /* FishLampTool */ = {
+			isa = PBXGroup;
+			children = (
+				27A386E3165BFB1000DD1BFA /* FLCommandLineArgument.h */,
+				27A386E4165BFB1000DD1BFA /* FLCommandLineArgument.m */,
+				27A386E5165BFB1000DD1BFA /* FLCommandLineParser.h */,
+				27A386E6165BFB1000DD1BFA /* FLCommandLineParser.m */,
+				27A386EB165BFB1000DD1BFA /* FLShellCommand.h */,
+				27A386EC165BFB1000DD1BFA /* FLShellCommand.m */,
+				27A386ED165BFB1000DD1BFA /* FLTool.h */,
+				27A386EE165BFB1000DD1BFA /* FLTool.m */,
+				27A386EF165BFB1000DD1BFA /* FLToolMain.h */,
+				27A386F0165BFB1000DD1BFA /* FLToolMain.m */,
+				27A386F1165BFB1000DD1BFA /* FLToolTask.h */,
+				27A386F2165BFB1000DD1BFA /* FLToolTask.m */,
+				27A386F3165BFB1000DD1BFA /* FLToolTask_Internal.h */,
+				27A386F4165BFB1000DD1BFA /* ToolTasks */,
+			);
+			path = FishLampTool;
+			sourceTree = "<group>";
+		};
+		27A386F4165BFB1000DD1BFA /* ToolTasks */ = {
+			isa = PBXGroup;
+			children = (
+				27A386F5165BFB1000DD1BFA /* FLUsageTask.h */,
+				27A386F6165BFB1000DD1BFA /* FLUsageTask.m */,
+			);
+			path = ToolTasks;
+			sourceTree = "<group>";
+		};
+		27A43A7115CDCC1B001CB13E = {
+			isa = PBXGroup;
+			children = (
+				27A386E0165BFB1000DD1BFA /* FishLampTool */,
+				273147A21652D83F0027850D /* Supporting Files */,
+				27A43A7E15CDCC1B001CB13E /* Frameworks */,
+				27A43A7D15CDCC1B001CB13E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		27A43A7D15CDCC1B001CB13E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				27A43AC415CDCCCB001CB13E /* libFishLampCommandLineToolMac.a */,
+				27048EF0161CB58600C38ADA /* libFishLampCommandLineToolMac32.a */,
+				27E3C5FC16532B8900410570 /* libFishLampCommandLineToolMacLegacy.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		27A43A7E15CDCC1B001CB13E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				270D02DC15E9B1F500ED5FB0 /* AppKit.framework */,
+				270D02DD15E9B1F600ED5FB0 /* Cocoa.framework */,
+				270D02DE15E9B1F800ED5FB0 /* CoreFoundation.framework */,
+				270D02DF15E9B1F900ED5FB0 /* CoreServices.framework */,
+				270D02E015E9B1FA00ED5FB0 /* Foundation.framework */,
+				270D02E115E9B1FD00ED5FB0 /* libsqlite3.0.dylib */,
+				270D02E215E9B1FE00ED5FB0 /* Security.framework */,
+				270D02E315E9B1FF00ED5FB0 /* SystemConfiguration.framework */,
+				276CE92915E54E7F000A5CE6 /* OSX */,
+				276CE92815E54E31000A5CE6 /* iOS */,
+				270DFDC815E99BAC00ED5FB0 /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		27E3C5DF16532B6400410570 /* XcodeConfigs-3up */ = {
+			isa = PBXGroup;
+			children = (
+				27E3C5E016532B6400410570 /* FishLampProjectSettingsDebug.xcconfig */,
+				27E3C5E116532B6400410570 /* FishLampProjectSettingsRelease.xcconfig */,
+				27E3C5E216532B6400410570 /* FishLampProjectSettingsTest.xcconfig */,
+				27E3C5E316532B6400410570 /* FishLampTargetSettingsiOS.xcconfig */,
+				27E3C5E416532B6400410570 /* FishLampTargetSettingsMac.xcconfig */,
+				27E3C5E516532B6400410570 /* FishLampTargetSettingsMac32.xcconfig */,
+				27E3C5E616532B6400410570 /* FishLampTargetSettingsMacLegacy.xcconfig */,
+			);
+			name = "XcodeConfigs-3up";
+			path = "../../FishLampXcodeConfigs/XcodeConfigs-3up";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		27048D11161CB58600C38ADA /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27E3C62F16532E3200410570 /* FishLampCommandLineTool-Prefix.pch in Headers */,
+				27A386FE165BFB1100DD1BFA /* FLCommandLineArgument.h in Headers */,
+				27A38704165BFB1100DD1BFA /* FLCommandLineParser.h in Headers */,
+				27A38716165BFB1100DD1BFA /* FLShellCommand.h in Headers */,
+				27A3871C165BFB1100DD1BFA /* FLTool.h in Headers */,
+				27A38722165BFB1100DD1BFA /* FLToolMain.h in Headers */,
+				27A38728165BFB1100DD1BFA /* FLToolTask.h in Headers */,
+				27A3872E165BFB1100DD1BFA /* FLToolTask_Internal.h in Headers */,
+				27A38731165BFB1100DD1BFA /* FLUsageTask.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27A43AC215CDCCCB001CB13E /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27E3C62E16532E3200410570 /* FishLampCommandLineTool-Prefix.pch in Headers */,
+				27A386FD165BFB1100DD1BFA /* FLCommandLineArgument.h in Headers */,
+				27A38703165BFB1100DD1BFA /* FLCommandLineParser.h in Headers */,
+				27A38715165BFB1100DD1BFA /* FLShellCommand.h in Headers */,
+				27A3871B165BFB1100DD1BFA /* FLTool.h in Headers */,
+				27A38721165BFB1100DD1BFA /* FLToolMain.h in Headers */,
+				27A38727165BFB1100DD1BFA /* FLToolTask.h in Headers */,
+				27A3872D165BFB1100DD1BFA /* FLToolTask_Internal.h in Headers */,
+				27A38730165BFB1100DD1BFA /* FLUsageTask.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27E3C5F116532B8900410570 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27E3C63016532E3200410570 /* FishLampCommandLineTool-Prefix.pch in Headers */,
+				27A386FF165BFB1100DD1BFA /* FLCommandLineArgument.h in Headers */,
+				27A38705165BFB1100DD1BFA /* FLCommandLineParser.h in Headers */,
+				27A38717165BFB1100DD1BFA /* FLShellCommand.h in Headers */,
+				27A3871D165BFB1100DD1BFA /* FLTool.h in Headers */,
+				27A38723165BFB1100DD1BFA /* FLToolMain.h in Headers */,
+				27A38729165BFB1100DD1BFA /* FLToolTask.h in Headers */,
+				27A3872F165BFB1100DD1BFA /* FLToolTask_Internal.h in Headers */,
+				27A38732165BFB1100DD1BFA /* FLUsageTask.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		27048B70161CB58600C38ADA /* FishLampCommandLineToolMac32 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 27048EEB161CB58600C38ADA /* Build configuration list for PBXNativeTarget "FishLampCommandLineToolMac32" */;
+			buildPhases = (
+				27048B71161CB58600C38ADA /* Sources */,
+				27048D0F161CB58600C38ADA /* Frameworks */,
+				27048D11161CB58600C38ADA /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FishLampCommandLineToolMac32;
+			productName = FishLampCocoaApp;
+			productReference = 27048EF0161CB58600C38ADA /* libFishLampCommandLineToolMac32.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		27A43AC315CDCCCB001CB13E /* FishLampCommandLineToolMac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 27A43ACC15CDCCCB001CB13E /* Build configuration list for PBXNativeTarget "FishLampCommandLineToolMac" */;
+			buildPhases = (
+				27A43AC015CDCCCB001CB13E /* Sources */,
+				27A43AC115CDCCCB001CB13E /* Frameworks */,
+				27A43AC215CDCCCB001CB13E /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FishLampCommandLineToolMac;
+			productName = FishLampCommandLine;
+			productReference = 27A43AC415CDCCCB001CB13E /* libFishLampCommandLineToolMac.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		27E3C5E816532B8900410570 /* FishLampCommandLineToolMacLegacy */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 27E3C5F816532B8900410570 /* Build configuration list for PBXNativeTarget "FishLampCommandLineToolMacLegacy" */;
+			buildPhases = (
+				27E3C5E916532B8900410570 /* Sources */,
+				27E3C5EF16532B8900410570 /* Frameworks */,
+				27E3C5F116532B8900410570 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FishLampCommandLineToolMacLegacy;
+			productName = FishLampCommandLine;
+			productReference = 27E3C5FC16532B8900410570 /* libFishLampCommandLineToolMacLegacy.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		27A43A7315CDCC1B001CB13E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = "Mike Fullerton";
+			};
+			buildConfigurationList = 27A43A7615CDCC1B001CB13E /* Build configuration list for PBXProject "FishLampCommandLineTool" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				English,
+			);
+			mainGroup = 27A43A7115CDCC1B001CB13E;
+			productRefGroup = 27A43A7D15CDCC1B001CB13E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				27A43AC315CDCCCB001CB13E /* FishLampCommandLineToolMac */,
+				27048B70161CB58600C38ADA /* FishLampCommandLineToolMac32 */,
+				27E3C5E816532B8900410570 /* FishLampCommandLineToolMacLegacy */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		27048B71161CB58600C38ADA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27A38701165BFB1100DD1BFA /* FLCommandLineArgument.m in Sources */,
+				27A38707165BFB1100DD1BFA /* FLCommandLineParser.m in Sources */,
+				27A38719165BFB1100DD1BFA /* FLShellCommand.m in Sources */,
+				27A3871F165BFB1100DD1BFA /* FLTool.m in Sources */,
+				27A38725165BFB1100DD1BFA /* FLToolMain.m in Sources */,
+				27A3872B165BFB1100DD1BFA /* FLToolTask.m in Sources */,
+				27A38734165BFB1100DD1BFA /* FLUsageTask.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27A43AC015CDCCCB001CB13E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27A38700165BFB1100DD1BFA /* FLCommandLineArgument.m in Sources */,
+				27A38706165BFB1100DD1BFA /* FLCommandLineParser.m in Sources */,
+				27A38718165BFB1100DD1BFA /* FLShellCommand.m in Sources */,
+				27A3871E165BFB1100DD1BFA /* FLTool.m in Sources */,
+				27A38724165BFB1100DD1BFA /* FLToolMain.m in Sources */,
+				27A3872A165BFB1100DD1BFA /* FLToolTask.m in Sources */,
+				27A38733165BFB1100DD1BFA /* FLUsageTask.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27E3C5E916532B8900410570 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27A38702165BFB1100DD1BFA /* FLCommandLineArgument.m in Sources */,
+				27A38708165BFB1100DD1BFA /* FLCommandLineParser.m in Sources */,
+				27A3871A165BFB1100DD1BFA /* FLShellCommand.m in Sources */,
+				27A38720165BFB1100DD1BFA /* FLTool.m in Sources */,
+				27A38726165BFB1100DD1BFA /* FLToolMain.m in Sources */,
+				27A3872C165BFB1100DD1BFA /* FLToolTask.m in Sources */,
+				27A38735165BFB1100DD1BFA /* FLUsageTask.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		27048EEC161CB58600C38ADA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27E3C5E516532B6400410570 /* FishLampTargetSettingsMac32.xcconfig */;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		27048EEE161CB58600C38ADA /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27E3C5E516532B6400410570 /* FishLampTargetSettingsMac32.xcconfig */;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		27048EEF161CB58600C38ADA /* Test */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27E3C5E516532B6400410570 /* FishLampTargetSettingsMac32.xcconfig */;
+			buildSettings = {
+			};
+			name = Test;
+		};
+		27732FD815E55C8A00C19668 /* Test */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27E3C5E216532B6400410570 /* FishLampProjectSettingsTest.xcconfig */;
+			buildSettings = {
+			};
+			name = Test;
+		};
+		27732FDA15E55C8A00C19668 /* Test */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27E3C5E416532B6400410570 /* FishLampTargetSettingsMac.xcconfig */;
+			buildSettings = {
+			};
+			name = Test;
+		};
+		27A43A8B15CDCC1B001CB13E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27E3C5E016532B6400410570 /* FishLampProjectSettingsDebug.xcconfig */;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		27A43A8C15CDCC1B001CB13E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27E3C5E116532B6400410570 /* FishLampProjectSettingsRelease.xcconfig */;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		27A43ACD15CDCCCB001CB13E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27E3C5E416532B6400410570 /* FishLampTargetSettingsMac.xcconfig */;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		27A43ACE15CDCCCB001CB13E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27E3C5E416532B6400410570 /* FishLampTargetSettingsMac.xcconfig */;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		27E3C5F916532B8900410570 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27E3C5E616532B6400410570 /* FishLampTargetSettingsMacLegacy.xcconfig */;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		27E3C5FA16532B8900410570 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27E3C5E616532B6400410570 /* FishLampTargetSettingsMacLegacy.xcconfig */;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		27E3C5FB16532B8900410570 /* Test */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27E3C5E616532B6400410570 /* FishLampTargetSettingsMacLegacy.xcconfig */;
+			buildSettings = {
+			};
+			name = Test;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		27048EEB161CB58600C38ADA /* Build configuration list for PBXNativeTarget "FishLampCommandLineToolMac32" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27048EEC161CB58600C38ADA /* Debug */,
+				27048EEE161CB58600C38ADA /* Release */,
+				27048EEF161CB58600C38ADA /* Test */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		27A43A7615CDCC1B001CB13E /* Build configuration list for PBXProject "FishLampCommandLineTool" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27A43A8B15CDCC1B001CB13E /* Debug */,
+				27A43A8C15CDCC1B001CB13E /* Release */,
+				27732FD815E55C8A00C19668 /* Test */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		27A43ACC15CDCCCB001CB13E /* Build configuration list for PBXNativeTarget "FishLampCommandLineToolMac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27A43ACD15CDCCCB001CB13E /* Debug */,
+				27A43ACE15CDCCCB001CB13E /* Release */,
+				27732FDA15E55C8A00C19668 /* Test */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		27E3C5F816532B8900410570 /* Build configuration list for PBXNativeTarget "FishLampCommandLineToolMacLegacy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27E3C5F916532B8900410570 /* Debug */,
+				27E3C5FA16532B8900410570 /* Release */,
+				27E3C5FB16532B8900410570 /* Test */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 27A43A7315CDCC1B001CB13E /* Project object */;
+}

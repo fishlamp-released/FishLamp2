@@ -1,0 +1,11 @@
+//
+//  FishLampTargetMac.xcconfig
+//  
+//
+//  Created by Mike Fullerton on 11/13/12.
+//
+//
+
+#include "XcodeConfigs/TargetIncludes/FishLampTargetMac.xcconfig"
+#include "XcodeConfigs/SharedTargetSettings.xcconfig"
+

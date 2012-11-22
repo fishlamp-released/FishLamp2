@@ -1,0 +1,8 @@
+
+FISHLAMP = ../FishLamp
+
+#include "../FishLamp/XcodeConfigs/FishLampPaths.xcconfig"
+#include "../FishLamp/XcodeConfigs/FishLampReleaseSettings.xcconfig"
+#include "../FishLamp/XcodeConfigs/FishLampDebugSettings.xcconfig"
+#include "../FishLamp/XcodeConfigs/FishLampTestSettings.xcconfig"
+

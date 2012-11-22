@@ -1,0 +1,933 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		270D02E415E9B20100ED5FB0 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270D02DC15E9B1F500ED5FB0 /* AppKit.framework */; };
+		270D02E515E9B20100ED5FB0 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270D02DD15E9B1F600ED5FB0 /* Cocoa.framework */; };
+		270D02E615E9B20100ED5FB0 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270D02DE15E9B1F800ED5FB0 /* CoreFoundation.framework */; };
+		270D02E715E9B20100ED5FB0 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270D02DF15E9B1F900ED5FB0 /* CoreServices.framework */; };
+		270D02E815E9B20100ED5FB0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270D02E015E9B1FA00ED5FB0 /* Foundation.framework */; };
+		270D02EA15E9B20100ED5FB0 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270D02E215E9B1FE00ED5FB0 /* Security.framework */; };
+		270D02EB15E9B20100ED5FB0 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270D02E315E9B1FF00ED5FB0 /* SystemConfiguration.framework */; };
+		270DFDC915E99BAC00ED5FB0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270DFDC815E99BAC00ED5FB0 /* Foundation.framework */; };
+		2710AC4C16546D27003AFF57 /* FLFluffyTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 2710AC4A16546D27003AFF57 /* FLFluffyTool.m */; };
+		2710AC4D16546D27003AFF57 /* FLFluffyTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 2710AC4A16546D27003AFF57 /* FLFluffyTool.m */; };
+		2710AC801655A830003AFF57 /* FLRunTestsToolTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 2710AC7E1655A830003AFF57 /* FLRunTestsToolTask.m */; };
+		2710AC811655A830003AFF57 /* FLRunTestsToolTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 2710AC7E1655A830003AFF57 /* FLRunTestsToolTask.m */; };
+		273147DE1652DF2C0027850D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 273147DB1652DF2C0027850D /* main.m */; };
+		273147DF1652DF2C0027850D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 273147DB1652DF2C0027850D /* main.m */; };
+		27E3C60816532BF000410570 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 273147DB1652DF2C0027850D /* main.m */; };
+		27E3C60B16532BF000410570 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270D02DC15E9B1F500ED5FB0 /* AppKit.framework */; };
+		27E3C60C16532BF000410570 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270D02DD15E9B1F600ED5FB0 /* Cocoa.framework */; };
+		27E3C60D16532BF000410570 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270D02DE15E9B1F800ED5FB0 /* CoreFoundation.framework */; };
+		27E3C60E16532BF000410570 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270D02DF15E9B1F900ED5FB0 /* CoreServices.framework */; };
+		27E3C60F16532BF000410570 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270D02E015E9B1FA00ED5FB0 /* Foundation.framework */; };
+		27E3C61016532BF000410570 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 270D02E115E9B1FD00ED5FB0 /* libsqlite3.0.dylib */; };
+		27E3C61116532BF000410570 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270D02E215E9B1FE00ED5FB0 /* Security.framework */; };
+		27E3C61216532BF000410570 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270D02E315E9B1FF00ED5FB0 /* SystemConfiguration.framework */; };
+		27E3C61316532BF000410570 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270DFDC815E99BAC00ED5FB0 /* Foundation.framework */; };
+		27E5A85C163D931B00B8D029 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270D02DC15E9B1F500ED5FB0 /* AppKit.framework */; };
+		27E5A85D163D931B00B8D029 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270D02DD15E9B1F600ED5FB0 /* Cocoa.framework */; };
+		27E5A85E163D931B00B8D029 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270D02DE15E9B1F800ED5FB0 /* CoreFoundation.framework */; };
+		27E5A85F163D931B00B8D029 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270D02DF15E9B1F900ED5FB0 /* CoreServices.framework */; };
+		27E5A860163D931B00B8D029 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270D02E015E9B1FA00ED5FB0 /* Foundation.framework */; };
+		27E5A861163D931B00B8D029 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 270D02E115E9B1FD00ED5FB0 /* libsqlite3.0.dylib */; };
+		27E5A862163D931B00B8D029 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270D02E215E9B1FE00ED5FB0 /* Security.framework */; };
+		27E5A863163D931B00B8D029 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270D02E315E9B1FF00ED5FB0 /* SystemConfiguration.framework */; };
+		27E5A864163D931B00B8D029 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270DFDC815E99BAC00ED5FB0 /* Foundation.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		270DFDC415E99BAC00ED5FB0 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		27E3C61416532BF000410570 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		27E5A865163D931B00B8D029 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		270D02DC15E9B1F500ED5FB0 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/AppKit.framework; sourceTree = DEVELOPER_DIR; };
+		270D02DD15E9B1F600ED5FB0 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
+		270D02DE15E9B1F800ED5FB0 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/CoreFoundation.framework; sourceTree = DEVELOPER_DIR; };
+		270D02DF15E9B1F900ED5FB0 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/CoreServices.framework; sourceTree = DEVELOPER_DIR; };
+		270D02E015E9B1FA00ED5FB0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		270D02E115E9B1FD00ED5FB0 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/usr/lib/libsqlite3.0.dylib; sourceTree = DEVELOPER_DIR; };
+		270D02E215E9B1FE00ED5FB0 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
+		270D02E315E9B1FF00ED5FB0 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
+		270DFDC615E99BAC00ED5FB0 /* fluffy */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = fluffy; sourceTree = BUILT_PRODUCTS_DIR; };
+		270DFDC815E99BAC00ED5FB0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		2710AC4916546D27003AFF57 /* FLFluffyTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLFluffyTool.h; sourceTree = "<group>"; };
+		2710AC4A16546D27003AFF57 /* FLFluffyTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLFluffyTool.m; sourceTree = "<group>"; };
+		2710AC7D1655A830003AFF57 /* FLRunTestsToolTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLRunTestsToolTask.h; sourceTree = "<group>"; };
+		2710AC7E1655A830003AFF57 /* FLRunTestsToolTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLRunTestsToolTask.m; sourceTree = "<group>"; };
+		273147DB1652DF2C0027850D /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		273147E31652DF490027850D /* FluffyTool-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FluffyTool-Prefix.pch"; sourceTree = "<group>"; };
+		27574357165AE03500EBBD2C /* _FLAtomic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = _FLAtomic.h; sourceTree = "<group>"; };
+		27574358165AE03500EBBD2C /* FLAssertionFailureErrorDomain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLAssertionFailureErrorDomain.h; sourceTree = "<group>"; };
+		27574359165AE03500EBBD2C /* FLAssertionFailureErrorDomain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLAssertionFailureErrorDomain.m; sourceTree = "<group>"; };
+		2757435A165AE03500EBBD2C /* FLFrameworkErrorDomain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLFrameworkErrorDomain.h; sourceTree = "<group>"; };
+		2757435B165AE03500EBBD2C /* FLFrameworkErrorDomain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLFrameworkErrorDomain.m; sourceTree = "<group>"; };
+		2757435D165AE03500EBBD2C /* FLAbortException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLAbortException.h; sourceTree = "<group>"; };
+		2757435E165AE03500EBBD2C /* FLAbortException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLAbortException.m; sourceTree = "<group>"; };
+		2757435F165AE03500EBBD2C /* FLExceptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLExceptions.h; sourceTree = "<group>"; };
+		27574360165AE03500EBBD2C /* FLExceptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLExceptions.m; sourceTree = "<group>"; };
+		27574361165AE03500EBBD2C /* NSException+NSError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = "NSException+NSError.h"; sourceTree = "<group>"; };
+		27574362165AE03500EBBD2C /* NSException+NSError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = "NSException+NSError.m"; sourceTree = "<group>"; };
+		27574364165AE03500EBBD2C /* FLAssertions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLAssertions.h; sourceTree = "<group>"; };
+		27574365165AE03500EBBD2C /* FLAssertions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLAssertions.m; sourceTree = "<group>"; };
+		27574366165AE03500EBBD2C /* FlAtomic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FlAtomic.h; sourceTree = "<group>"; };
+		27574367165AE03500EBBD2C /* FLBitFlags.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLBitFlags.h; sourceTree = "<group>"; };
+		27574368165AE03500EBBD2C /* FLBitFlags.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLBitFlags.m; sourceTree = "<group>"; };
+		27574369165AE03500EBBD2C /* FLCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLCallback.h; sourceTree = "<group>"; };
+		2757436A165AE03500EBBD2C /* FLCallback.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLCallback.m; sourceTree = "<group>"; };
+		2757436B165AE03500EBBD2C /* FLCallback_t.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLCallback_t.h; sourceTree = "<group>"; };
+		2757436C165AE03500EBBD2C /* FLCallback_t.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLCallback_t.m; sourceTree = "<group>"; };
+		2757436D165AE03500EBBD2C /* FLCocoaCompatibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLCocoaCompatibility.h; sourceTree = "<group>"; };
+		2757436E165AE03500EBBD2C /* FLCompilerWarnings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLCompilerWarnings.h; sourceTree = "<group>"; };
+		2757436F165AE03500EBBD2C /* FLConfirmations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLConfirmations.h; sourceTree = "<group>"; };
+		27574370165AE03500EBBD2C /* FLCoreFlags.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLCoreFlags.h; sourceTree = "<group>"; };
+		27574371165AE03500EBBD2C /* FLCoreFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLCoreFoundation.h; sourceTree = "<group>"; };
+		27574372165AE03500EBBD2C /* FLDeallocNotifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLDeallocNotifier.h; sourceTree = "<group>"; };
+		27574373165AE03500EBBD2C /* FLDeallocNotifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLDeallocNotifier.m; sourceTree = "<group>"; };
+		27574374165AE03500EBBD2C /* FLDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLDebug.h; sourceTree = "<group>"; };
+		27574375165AE03500EBBD2C /* FLDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLDebug.m; sourceTree = "<group>"; };
+		27574376165AE03500EBBD2C /* FLDeletedObjectReference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLDeletedObjectReference.h; sourceTree = "<group>"; };
+		27574377165AE03500EBBD2C /* FLDeletedObjectReference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLDeletedObjectReference.m; sourceTree = "<group>"; };
+		27574378165AE03500EBBD2C /* FLErrorDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLErrorDescription.h; sourceTree = "<group>"; };
+		27574379165AE03500EBBD2C /* FLErrorDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLErrorDescription.m; sourceTree = "<group>"; };
+		2757437A165AE03500EBBD2C /* FLErrorDomain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLErrorDomain.h; sourceTree = "<group>"; };
+		2757437B165AE03500EBBD2C /* FLErrorDomain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLErrorDomain.m; sourceTree = "<group>"; };
+		2757437C165AE03500EBBD2C /* FLFrameworkModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLFrameworkModule.h; sourceTree = "<group>"; };
+		2757437D165AE03500EBBD2C /* FLFrameworkModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLFrameworkModule.m; sourceTree = "<group>"; };
+		2757437E165AE03500EBBD2C /* FLMutableError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLMutableError.h; sourceTree = "<group>"; };
+		2757437F165AE03500EBBD2C /* FLMutableError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLMutableError.m; sourceTree = "<group>"; };
+		27574380165AE03500EBBD2C /* FLObjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLObjc.h; sourceTree = "<group>"; };
+		27574381165AE03500EBBD2C /* FLObjcARC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLObjcARC.h; sourceTree = "<group>"; };
+		27574382165AE03500EBBD2C /* FLObjcMRC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLObjcMRC.h; sourceTree = "<group>"; };
+		27574383165AE03500EBBD2C /* FLObjcRuntime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLObjcRuntime.h; sourceTree = "<group>"; };
+		27574384165AE03500EBBD2C /* FLObjcRuntime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLObjcRuntime.m; sourceTree = "<group>"; };
+		27574385165AE03500EBBD2C /* FLOSVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLOSVersion.h; sourceTree = "<group>"; };
+		27574386165AE03500EBBD2C /* FLOSVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLOSVersion.m; sourceTree = "<group>"; };
+		27574387165AE03500EBBD2C /* FLRuntimeInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLRuntimeInfo.h; sourceTree = "<group>"; };
+		27574388165AE03500EBBD2C /* FLRuntimeInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLRuntimeInfo.m; sourceTree = "<group>"; };
+		27574389165AE03500EBBD2C /* FLStackTrace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLStackTrace.h; sourceTree = "<group>"; };
+		2757438A165AE03500EBBD2C /* FLStackTrace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLStackTrace.m; sourceTree = "<group>"; };
+		2757438B165AE03500EBBD2C /* FLStringUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLStringUtils.h; sourceTree = "<group>"; };
+		2757438C165AE03500EBBD2C /* FLStringUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLStringUtils.m; sourceTree = "<group>"; };
+		2757438D165AE03500EBBD2C /* FLStringUtilsInlineMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLStringUtilsInlineMethods.h; sourceTree = "<group>"; };
+		2757438E165AE03500EBBD2C /* FLVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLVersion.h; sourceTree = "<group>"; };
+		2757438F165AE03500EBBD2C /* FLVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLVersion.m; sourceTree = "<group>"; };
+		27574390165AE03500EBBD2C /* FLWeaklyReferenced.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLWeaklyReferenced.h; sourceTree = "<group>"; };
+		27574391165AE03500EBBD2C /* FLWeakReference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLWeakReference.h; sourceTree = "<group>"; };
+		27574392165AE03500EBBD2C /* FLWeakReference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLWeakReference.m; sourceTree = "<group>"; };
+		27574393165AE03500EBBD2C /* FLLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLLog.h; sourceTree = "<group>"; };
+		27574394165AE03500EBBD2C /* FLLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLLog.m; sourceTree = "<group>"; };
+		27574395165AE03500EBBD2C /* FLLogEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLLogEntry.h; sourceTree = "<group>"; };
+		27574396165AE03500EBBD2C /* FLLogEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLLogEntry.m; sourceTree = "<group>"; };
+		27574397165AE03500EBBD2C /* FLLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLLogger.h; sourceTree = "<group>"; };
+		27574398165AE03500EBBD2C /* FLLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLLogger.m; sourceTree = "<group>"; };
+		27574399165AE03500EBBD2C /* FLLogPacket_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLLogPacket_Internal.h; sourceTree = "<group>"; };
+		2757439A165AE03500EBBD2C /* FLLogSink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLLogSink.h; sourceTree = "<group>"; };
+		2757439B165AE03500EBBD2C /* FLLogSink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLLogSink.m; sourceTree = "<group>"; };
+		2757439C165AE03500EBBD2C /* FLPrintf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLPrintf.h; sourceTree = "<group>"; };
+		2757439D165AE03500EBBD2C /* FLPrintf.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLPrintf.m; sourceTree = "<group>"; };
+		2757439E165AE03500EBBD2C /* FLPrintfLogSink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLPrintfLogSink.h; sourceTree = "<group>"; };
+		2757439F165AE03500EBBD2C /* FLPrintfLogSink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLPrintfLogSink.m; sourceTree = "<group>"; };
+		275743A0165AE03500EBBD2C /* FLTraceOff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLTraceOff.h; sourceTree = "<group>"; };
+		275743A1165AE03500EBBD2C /* FLTraceOn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLTraceOn.h; sourceTree = "<group>"; };
+		275743A3165AE03500EBBD2C /* NSArray+FLExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = "NSArray+FLExtras.h"; sourceTree = "<group>"; };
+		275743A4165AE03500EBBD2C /* NSArray+FLExtras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = "NSArray+FLExtras.m"; sourceTree = "<group>"; };
+		275743A5165AE03500EBBD2C /* NSDate+FLAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = "NSDate+FLAdditions.h"; sourceTree = "<group>"; };
+		275743A6165AE03500EBBD2C /* NSDate+FLAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = "NSDate+FLAdditions.m"; sourceTree = "<group>"; };
+		275743A7165AE03500EBBD2C /* NSDictionary+FLAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = "NSDictionary+FLAdditions.h"; sourceTree = "<group>"; };
+		275743A8165AE03500EBBD2C /* NSDictionary+FLAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = "NSDictionary+FLAdditions.m"; sourceTree = "<group>"; };
+		275743A9165AE03500EBBD2C /* NSError+FLExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = "NSError+FLExtras.h"; sourceTree = "<group>"; };
+		275743AA165AE03500EBBD2C /* NSError+FLExtras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = "NSError+FLExtras.m"; sourceTree = "<group>"; };
+		275743AB165AE03500EBBD2C /* NSObject+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = "NSObject+Blocks.h"; sourceTree = "<group>"; };
+		275743AC165AE03500EBBD2C /* NSObject+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = "NSObject+Blocks.m"; sourceTree = "<group>"; };
+		275743AD165AE03500EBBD2C /* NSObject+FLSelectorPerforming.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = "NSObject+FLSelectorPerforming.h"; sourceTree = "<group>"; };
+		275743AE165AE03500EBBD2C /* NSObject+FLSelectorPerforming.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = "NSObject+FLSelectorPerforming.m"; sourceTree = "<group>"; };
+		275743AF165AE03500EBBD2C /* NSString+Lists.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = "NSString+Lists.h"; sourceTree = "<group>"; };
+		275743B0165AE03500EBBD2C /* NSString+Lists.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = "NSString+Lists.m"; sourceTree = "<group>"; };
+		275743B1165AE03500EBBD2C /* NSValue+FLCocoaCompatibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = "NSValue+FLCocoaCompatibility.h"; sourceTree = "<group>"; };
+		275743B2165AE03500EBBD2C /* NSValue+FLCocoaCompatibility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = "NSValue+FLCocoaCompatibility.m"; sourceTree = "<group>"; };
+		275743B4165AE03500EBBD2C /* FLAssociatedProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLAssociatedProperty.h; sourceTree = "<group>"; };
+		275743B5165AE03500EBBD2C /* FLAtomicProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLAtomicProperties.h; sourceTree = "<group>"; };
+		275743B6165AE03500EBBD2C /* FLBitFlagsProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLBitFlagsProperty.h; sourceTree = "<group>"; };
+		275743B7165AE03500EBBD2C /* FLDefaultProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLDefaultProperty.h; sourceTree = "<group>"; };
+		275743B8165AE03500EBBD2C /* FLProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLProperties.h; sourceTree = "<group>"; };
+		275743B9165AE03500EBBD2C /* FLSingletonProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLSingletonProperty.h; sourceTree = "<group>"; };
+		275743BA165AE03500EBBD2C /* FLStaticMemberProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLStaticMemberProperty.h; sourceTree = "<group>"; };
+		275743BB165AE03500EBBD2C /* FLStructFlagsProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLStructFlagsProperty.h; sourceTree = "<group>"; };
+		275743BE165AE04300EBBD2C /* FLTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLTestCase.h; sourceTree = "<group>"; };
+		275743BF165AE04300EBBD2C /* FLTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLTestCase.m; sourceTree = "<group>"; };
+		275743C0165AE04300EBBD2C /* FLUnitTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLUnitTest.h; sourceTree = "<group>"; };
+		275743C1165AE04300EBBD2C /* FLUnitTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLUnitTest.m; sourceTree = "<group>"; };
+		275743C2165AE04300EBBD2C /* FLUnitTestGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLUnitTestGroup.h; sourceTree = "<group>"; };
+		275743C3165AE04300EBBD2C /* FLUnitTestGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLUnitTestGroup.m; sourceTree = "<group>"; };
+		275743C4165AE04300EBBD2C /* FLUnitTestObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLUnitTestObserver.h; sourceTree = "<group>"; };
+		275743C5165AE04300EBBD2C /* FLUnitTestObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLUnitTestObserver.m; sourceTree = "<group>"; };
+		275743C6165AE04300EBBD2C /* FLUnitTestRunner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLUnitTestRunner.h; sourceTree = "<group>"; };
+		275743C7165AE04300EBBD2C /* FLUnitTestRunner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLUnitTestRunner.m; sourceTree = "<group>"; };
+		275743C8165AE04300EBBD2C /* FLSanityCheckRunner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLSanityCheckRunner.h; sourceTree = "<group>"; };
+		275743C9165AE04300EBBD2C /* FLSanityCheckRunner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLSanityCheckRunner.m; sourceTree = "<group>"; };
+		275743CA165AE04300EBBD2C /* FLStaticTestMethodRunner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLStaticTestMethodRunner.h; sourceTree = "<group>"; };
+		275743CB165AE04300EBBD2C /* FLStaticTestMethodRunner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLStaticTestMethodRunner.m; sourceTree = "<group>"; };
+		275743CC165AE04300EBBD2C /* FLTestFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLTestFinder.h; sourceTree = "<group>"; };
+		275743CD165AE04300EBBD2C /* FLTestFinder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLTestFinder.m; sourceTree = "<group>"; };
+		275743CE165AE04300EBBD2C /* FLUnitTestSubclassRunner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLUnitTestSubclassRunner.h; sourceTree = "<group>"; };
+		275743CF165AE04300EBBD2C /* FLUnitTestSubclassRunner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLUnitTestSubclassRunner.m; sourceTree = "<group>"; };
+		275743D1165AE04300EBBD2C /* FLTestCaseResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLTestCaseResult.h; sourceTree = "<group>"; };
+		275743D2165AE04300EBBD2C /* FLTestCaseResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLTestCaseResult.m; sourceTree = "<group>"; };
+		275743D3165AE04300EBBD2C /* FLTestCaseResult_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLTestCaseResult_Internal.h; sourceTree = "<group>"; };
+		275743D4165AE04300EBBD2C /* FLTestResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLTestResult.h; sourceTree = "<group>"; };
+		275743D5165AE04300EBBD2C /* FLTestResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLTestResult.m; sourceTree = "<group>"; };
+		275743D6165AE04300EBBD2C /* FLTestResultCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLTestResultCollection.h; sourceTree = "<group>"; };
+		275743D7165AE04300EBBD2C /* FLTestResultCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLTestResultCollection.m; sourceTree = "<group>"; };
+		275743D8165AE04300EBBD2C /* FLUnitTestResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLUnitTestResult.h; sourceTree = "<group>"; };
+		275743D9165AE04300EBBD2C /* FLUnitTestResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLUnitTestResult.m; sourceTree = "<group>"; };
+		275743DA165AE04300EBBD2C /* FLUnitTestResult_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLUnitTestResult_Internal.h; sourceTree = "<group>"; };
+		275743DD165AE06B00EBBD2C /* FLAsyncBlockWorker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLAsyncBlockWorker.h; sourceTree = "<group>"; };
+		275743DE165AE06B00EBBD2C /* FLAsyncBlockWorker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLAsyncBlockWorker.m; sourceTree = "<group>"; };
+		275743DF165AE06B00EBBD2C /* FLAsyncTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLAsyncTask.h; sourceTree = "<group>"; };
+		275743E0165AE06B00EBBD2C /* FLAsyncTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLAsyncTask.m; sourceTree = "<group>"; };
+		275743E1165AE06B00EBBD2C /* FLBlockWorker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLBlockWorker.h; sourceTree = "<group>"; };
+		275743E2165AE06B00EBBD2C /* FLBlockWorker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLBlockWorker.m; sourceTree = "<group>"; };
+		275743E3165AE06B00EBBD2C /* FLDispatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLDispatcher.h; sourceTree = "<group>"; };
+		275743E4165AE06B00EBBD2C /* FLDispatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLDispatcher.m; sourceTree = "<group>"; };
+		275743E5165AE06B00EBBD2C /* FLFallible.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLFallible.h; sourceTree = "<group>"; };
+		275743E6165AE06B00EBBD2C /* FLFallible.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLFallible.m; sourceTree = "<group>"; };
+		275743E7165AE06B00EBBD2C /* FLFinisher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLFinisher.h; sourceTree = "<group>"; };
+		275743E8165AE06B00EBBD2C /* FLFinisher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLFinisher.m; sourceTree = "<group>"; };
+		275743E9165AE06B00EBBD2C /* FLJob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLJob.h; sourceTree = "<group>"; };
+		275743EA165AE06B00EBBD2C /* FLJob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLJob.m; sourceTree = "<group>"; };
+		275743EB165AE06B00EBBD2C /* FLResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLResult.h; sourceTree = "<group>"; };
+		275743EC165AE06B00EBBD2C /* FLResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLResult.m; sourceTree = "<group>"; };
+		275743ED165AE06B00EBBD2C /* FLRunnable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLRunnable.h; sourceTree = "<group>"; };
+		275743EE165AE06B00EBBD2C /* FLRunnable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLRunnable.m; sourceTree = "<group>"; };
+		275743EF165AE06B00EBBD2C /* FLWorker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLWorker.h; sourceTree = "<group>"; };
+		275743F0165AE06B00EBBD2C /* FLWorker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLWorker.m; sourceTree = "<group>"; };
+		275743F1165AE06B00EBBD2C /* FLWorkerQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLWorkerQueue.h; sourceTree = "<group>"; };
+		275743F2165AE06B00EBBD2C /* FLWorkerQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = FLWorkerQueue.m; sourceTree = "<group>"; };
+		275743F5165AE1D000EBBD2C /* FishLampProjectSettingsDebug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FishLampProjectSettingsDebug.xcconfig; sourceTree = "<group>"; };
+		275743F6165AE1D000EBBD2C /* FishLampProjectSettingsRelease.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FishLampProjectSettingsRelease.xcconfig; sourceTree = "<group>"; };
+		275743F7165AE1D000EBBD2C /* FishLampProjectSettingsTest.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FishLampProjectSettingsTest.xcconfig; sourceTree = "<group>"; };
+		275743F8165AE1D000EBBD2C /* FishLampTargetSettingsiOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FishLampTargetSettingsiOS.xcconfig; sourceTree = "<group>"; };
+		275743F9165AE1D000EBBD2C /* FishLampTargetSettingsMac.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FishLampTargetSettingsMac.xcconfig; sourceTree = "<group>"; };
+		275743FA165AE1D000EBBD2C /* FishLampTargetSettingsMac32.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FishLampTargetSettingsMac32.xcconfig; sourceTree = "<group>"; };
+		275743FB165AE1D000EBBD2C /* FishLampTargetSettingsMacLegacy.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FishLampTargetSettingsMacLegacy.xcconfig; sourceTree = "<group>"; };
+		276CE8EE15E54B2F000A5CE6 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		276CE8EF15E54B30000A5CE6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		276CE8F015E54B31000A5CE6 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		276CE8F115E54B33000A5CE6 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		276CE90015E54BF0000A5CE6 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		276CE90215E54BFE000A5CE6 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		276CE90915E54C89000A5CE6 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		276CE90A15E54C8A000A5CE6 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		276CE90B15E54C8A000A5CE6 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		276CE90C15E54C8B000A5CE6 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		276CE90D15E54C8D000A5CE6 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		276CE90E15E54C8E000A5CE6 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		276CE90F15E54C8E000A5CE6 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		276CE91015E54C8F000A5CE6 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		276CE91115E54C8F000A5CE6 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		276CE91215E54C90000A5CE6 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		276CE91315E54C90000A5CE6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		276CE91415E54C91000A5CE6 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		276CE91515E54C91000A5CE6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		276CE92615E54D45000A5CE6 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		27A43A7F15CDCC1B001CB13E /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		27A43A8215CDCC1B001CB13E /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		27A43A8415CDCC1B001CB13E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		27A43AA415CDCC73001CB13E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		27E3C61916532BF000410570 /* fluffy */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = fluffy; sourceTree = BUILT_PRODUCTS_DIR; };
+		27E5A86A163D931B00B8D029 /* FluffyTool32 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = FluffyTool32; sourceTree = BUILT_PRODUCTS_DIR; };
+		27EC89841658458E004724CA /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		27EC89881658458E004724CA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		27EC89891658458E004724CA /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		27EC898A1658458E004724CA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		27EF8D97165ABDED00EB7949 /* FishLampSync.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = FishLampSync.sh; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		270DFDC315E99BAC00ED5FB0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				270D02E415E9B20100ED5FB0 /* AppKit.framework in Frameworks */,
+				270D02E515E9B20100ED5FB0 /* Cocoa.framework in Frameworks */,
+				270D02E615E9B20100ED5FB0 /* CoreFoundation.framework in Frameworks */,
+				270D02E715E9B20100ED5FB0 /* CoreServices.framework in Frameworks */,
+				270D02E815E9B20100ED5FB0 /* Foundation.framework in Frameworks */,
+				270D02EA15E9B20100ED5FB0 /* Security.framework in Frameworks */,
+				270D02EB15E9B20100ED5FB0 /* SystemConfiguration.framework in Frameworks */,
+				270DFDC915E99BAC00ED5FB0 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27E3C60916532BF000410570 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27E3C60B16532BF000410570 /* AppKit.framework in Frameworks */,
+				27E3C60C16532BF000410570 /* Cocoa.framework in Frameworks */,
+				27E3C60D16532BF000410570 /* CoreFoundation.framework in Frameworks */,
+				27E3C60E16532BF000410570 /* CoreServices.framework in Frameworks */,
+				27E3C60F16532BF000410570 /* Foundation.framework in Frameworks */,
+				27E3C61016532BF000410570 /* libsqlite3.0.dylib in Frameworks */,
+				27E3C61116532BF000410570 /* Security.framework in Frameworks */,
+				27E3C61216532BF000410570 /* SystemConfiguration.framework in Frameworks */,
+				27E3C61316532BF000410570 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27E5A859163D931B00B8D029 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27E5A85C163D931B00B8D029 /* AppKit.framework in Frameworks */,
+				27E5A85D163D931B00B8D029 /* Cocoa.framework in Frameworks */,
+				27E5A85E163D931B00B8D029 /* CoreFoundation.framework in Frameworks */,
+				27E5A85F163D931B00B8D029 /* CoreServices.framework in Frameworks */,
+				27E5A860163D931B00B8D029 /* Foundation.framework in Frameworks */,
+				27E5A861163D931B00B8D029 /* libsqlite3.0.dylib in Frameworks */,
+				27E5A862163D931B00B8D029 /* Security.framework in Frameworks */,
+				27E5A863163D931B00B8D029 /* SystemConfiguration.framework in Frameworks */,
+				27E5A864163D931B00B8D029 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		273147B51652DAED0027850D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				275743F4165AE1D000EBBD2C /* FishLampXcodeConfigs */,
+				273147E31652DF490027850D /* FluffyTool-Prefix.pch */,
+				27EF8D97165ABDED00EB7949 /* FishLampSync.sh */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		273147D81652DF2C0027850D /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				2710AC4916546D27003AFF57 /* FLFluffyTool.h */,
+				2710AC4A16546D27003AFF57 /* FLFluffyTool.m */,
+				273147DB1652DF2C0027850D /* main.m */,
+				2710AC7D1655A830003AFF57 /* FLRunTestsToolTask.h */,
+				2710AC7E1655A830003AFF57 /* FLRunTestsToolTask.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		27574356165AE02A00EBBD2C /* FishLamp */ = {
+			isa = PBXGroup;
+			children = (
+				275743F3165AE06B00EBBD2C /* Workers */,
+				275743DC165AE04300EBBD2C /* Testing */,
+				275743BD165AE03500EBBD2C /* Core */,
+			);
+			name = FishLamp;
+			sourceTree = "<group>";
+		};
+		2757435C165AE03500EBBD2C /* ErrorDomains */ = {
+			isa = PBXGroup;
+			children = (
+				27574358165AE03500EBBD2C /* FLAssertionFailureErrorDomain.h */,
+				27574359165AE03500EBBD2C /* FLAssertionFailureErrorDomain.m */,
+				2757435A165AE03500EBBD2C /* FLFrameworkErrorDomain.h */,
+				2757435B165AE03500EBBD2C /* FLFrameworkErrorDomain.m */,
+			);
+			path = ErrorDomains;
+			sourceTree = "<group>";
+		};
+		27574363165AE03500EBBD2C /* Exceptions */ = {
+			isa = PBXGroup;
+			children = (
+				2757435D165AE03500EBBD2C /* FLAbortException.h */,
+				2757435E165AE03500EBBD2C /* FLAbortException.m */,
+				2757435F165AE03500EBBD2C /* FLExceptions.h */,
+				27574360165AE03500EBBD2C /* FLExceptions.m */,
+				27574361165AE03500EBBD2C /* NSException+NSError.h */,
+				27574362165AE03500EBBD2C /* NSException+NSError.m */,
+			);
+			path = Exceptions;
+			sourceTree = "<group>";
+		};
+		275743A2165AE03500EBBD2C /* Logger */ = {
+			isa = PBXGroup;
+			children = (
+				27574393165AE03500EBBD2C /* FLLog.h */,
+				27574394165AE03500EBBD2C /* FLLog.m */,
+				27574395165AE03500EBBD2C /* FLLogEntry.h */,
+				27574396165AE03500EBBD2C /* FLLogEntry.m */,
+				27574397165AE03500EBBD2C /* FLLogger.h */,
+				27574398165AE03500EBBD2C /* FLLogger.m */,
+				27574399165AE03500EBBD2C /* FLLogPacket_Internal.h */,
+				2757439A165AE03500EBBD2C /* FLLogSink.h */,
+				2757439B165AE03500EBBD2C /* FLLogSink.m */,
+				2757439C165AE03500EBBD2C /* FLPrintf.h */,
+				2757439D165AE03500EBBD2C /* FLPrintf.m */,
+				2757439E165AE03500EBBD2C /* FLPrintfLogSink.h */,
+				2757439F165AE03500EBBD2C /* FLPrintfLogSink.m */,
+				275743A0165AE03500EBBD2C /* FLTraceOff.h */,
+				275743A1165AE03500EBBD2C /* FLTraceOn.h */,
+			);
+			path = Logger;
+			sourceTree = "<group>";
+		};
+		275743B3165AE03500EBBD2C /* OSVersion */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = OSVersion;
+			sourceTree = "<group>";
+		};
+		275743BC165AE03500EBBD2C /* Properties */ = {
+			isa = PBXGroup;
+			children = (
+				275743B4165AE03500EBBD2C /* FLAssociatedProperty.h */,
+				275743B5165AE03500EBBD2C /* FLAtomicProperties.h */,
+				275743B6165AE03500EBBD2C /* FLBitFlagsProperty.h */,
+				275743B7165AE03500EBBD2C /* FLDefaultProperty.h */,
+				275743B8165AE03500EBBD2C /* FLProperties.h */,
+				275743B9165AE03500EBBD2C /* FLSingletonProperty.h */,
+				275743BA165AE03500EBBD2C /* FLStaticMemberProperty.h */,
+				275743BB165AE03500EBBD2C /* FLStructFlagsProperty.h */,
+			);
+			path = Properties;
+			sourceTree = "<group>";
+		};
+		275743BD165AE03500EBBD2C /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				27574357165AE03500EBBD2C /* _FLAtomic.h */,
+				2757435C165AE03500EBBD2C /* ErrorDomains */,
+				27574363165AE03500EBBD2C /* Exceptions */,
+				27574364165AE03500EBBD2C /* FLAssertions.h */,
+				27574365165AE03500EBBD2C /* FLAssertions.m */,
+				27574366165AE03500EBBD2C /* FlAtomic.h */,
+				27574367165AE03500EBBD2C /* FLBitFlags.h */,
+				27574368165AE03500EBBD2C /* FLBitFlags.m */,
+				27574369165AE03500EBBD2C /* FLCallback.h */,
+				2757436A165AE03500EBBD2C /* FLCallback.m */,
+				2757436B165AE03500EBBD2C /* FLCallback_t.h */,
+				2757436C165AE03500EBBD2C /* FLCallback_t.m */,
+				2757436D165AE03500EBBD2C /* FLCocoaCompatibility.h */,
+				2757436E165AE03500EBBD2C /* FLCompilerWarnings.h */,
+				2757436F165AE03500EBBD2C /* FLConfirmations.h */,
+				27574370165AE03500EBBD2C /* FLCoreFlags.h */,
+				27574371165AE03500EBBD2C /* FLCoreFoundation.h */,
+				27574372165AE03500EBBD2C /* FLDeallocNotifier.h */,
+				27574373165AE03500EBBD2C /* FLDeallocNotifier.m */,
+				27574374165AE03500EBBD2C /* FLDebug.h */,
+				27574375165AE03500EBBD2C /* FLDebug.m */,
+				27574376165AE03500EBBD2C /* FLDeletedObjectReference.h */,
+				27574377165AE03500EBBD2C /* FLDeletedObjectReference.m */,
+				27574378165AE03500EBBD2C /* FLErrorDescription.h */,
+				27574379165AE03500EBBD2C /* FLErrorDescription.m */,
+				2757437A165AE03500EBBD2C /* FLErrorDomain.h */,
+				2757437B165AE03500EBBD2C /* FLErrorDomain.m */,
+				2757437C165AE03500EBBD2C /* FLFrameworkModule.h */,
+				2757437D165AE03500EBBD2C /* FLFrameworkModule.m */,
+				2757437E165AE03500EBBD2C /* FLMutableError.h */,
+				2757437F165AE03500EBBD2C /* FLMutableError.m */,
+				27574380165AE03500EBBD2C /* FLObjc.h */,
+				27574381165AE03500EBBD2C /* FLObjcARC.h */,
+				27574382165AE03500EBBD2C /* FLObjcMRC.h */,
+				27574383165AE03500EBBD2C /* FLObjcRuntime.h */,
+				27574384165AE03500EBBD2C /* FLObjcRuntime.m */,
+				27574385165AE03500EBBD2C /* FLOSVersion.h */,
+				27574386165AE03500EBBD2C /* FLOSVersion.m */,
+				27574387165AE03500EBBD2C /* FLRuntimeInfo.h */,
+				27574388165AE03500EBBD2C /* FLRuntimeInfo.m */,
+				27574389165AE03500EBBD2C /* FLStackTrace.h */,
+				2757438A165AE03500EBBD2C /* FLStackTrace.m */,
+				2757438B165AE03500EBBD2C /* FLStringUtils.h */,
+				2757438C165AE03500EBBD2C /* FLStringUtils.m */,
+				2757438D165AE03500EBBD2C /* FLStringUtilsInlineMethods.h */,
+				2757438E165AE03500EBBD2C /* FLVersion.h */,
+				2757438F165AE03500EBBD2C /* FLVersion.m */,
+				27574390165AE03500EBBD2C /* FLWeaklyReferenced.h */,
+				27574391165AE03500EBBD2C /* FLWeakReference.h */,
+				27574392165AE03500EBBD2C /* FLWeakReference.m */,
+				275743A2165AE03500EBBD2C /* Logger */,
+				275743A3165AE03500EBBD2C /* NSArray+FLExtras.h */,
+				275743A4165AE03500EBBD2C /* NSArray+FLExtras.m */,
+				275743A5165AE03500EBBD2C /* NSDate+FLAdditions.h */,
+				275743A6165AE03500EBBD2C /* NSDate+FLAdditions.m */,
+				275743A7165AE03500EBBD2C /* NSDictionary+FLAdditions.h */,
+				275743A8165AE03500EBBD2C /* NSDictionary+FLAdditions.m */,
+				275743A9165AE03500EBBD2C /* NSError+FLExtras.h */,
+				275743AA165AE03500EBBD2C /* NSError+FLExtras.m */,
+				275743AB165AE03500EBBD2C /* NSObject+Blocks.h */,
+				275743AC165AE03500EBBD2C /* NSObject+Blocks.m */,
+				275743AD165AE03500EBBD2C /* NSObject+FLSelectorPerforming.h */,
+				275743AE165AE03500EBBD2C /* NSObject+FLSelectorPerforming.m */,
+				275743AF165AE03500EBBD2C /* NSString+Lists.h */,
+				275743B0165AE03500EBBD2C /* NSString+Lists.m */,
+				275743B1165AE03500EBBD2C /* NSValue+FLCocoaCompatibility.h */,
+				275743B2165AE03500EBBD2C /* NSValue+FLCocoaCompatibility.m */,
+				275743B3165AE03500EBBD2C /* OSVersion */,
+				275743BC165AE03500EBBD2C /* Properties */,
+			);
+			name = Core;
+			path = ../../Core/Classes/Core;
+			sourceTree = "<group>";
+		};
+		275743D0165AE04300EBBD2C /* Internal */ = {
+			isa = PBXGroup;
+			children = (
+				275743C8165AE04300EBBD2C /* FLSanityCheckRunner.h */,
+				275743C9165AE04300EBBD2C /* FLSanityCheckRunner.m */,
+				275743CA165AE04300EBBD2C /* FLStaticTestMethodRunner.h */,
+				275743CB165AE04300EBBD2C /* FLStaticTestMethodRunner.m */,
+				275743CC165AE04300EBBD2C /* FLTestFinder.h */,
+				275743CD165AE04300EBBD2C /* FLTestFinder.m */,
+				275743CE165AE04300EBBD2C /* FLUnitTestSubclassRunner.h */,
+				275743CF165AE04300EBBD2C /* FLUnitTestSubclassRunner.m */,
+			);
+			path = Internal;
+			sourceTree = "<group>";
+		};
+		275743DB165AE04300EBBD2C /* Results */ = {
+			isa = PBXGroup;
+			children = (
+				275743D1165AE04300EBBD2C /* FLTestCaseResult.h */,
+				275743D2165AE04300EBBD2C /* FLTestCaseResult.m */,
+				275743D3165AE04300EBBD2C /* FLTestCaseResult_Internal.h */,
+				275743D4165AE04300EBBD2C /* FLTestResult.h */,
+				275743D5165AE04300EBBD2C /* FLTestResult.m */,
+				275743D6165AE04300EBBD2C /* FLTestResultCollection.h */,
+				275743D7165AE04300EBBD2C /* FLTestResultCollection.m */,
+				275743D8165AE04300EBBD2C /* FLUnitTestResult.h */,
+				275743D9165AE04300EBBD2C /* FLUnitTestResult.m */,
+				275743DA165AE04300EBBD2C /* FLUnitTestResult_Internal.h */,
+			);
+			path = Results;
+			sourceTree = "<group>";
+		};
+		275743DC165AE04300EBBD2C /* Testing */ = {
+			isa = PBXGroup;
+			children = (
+				275743BE165AE04300EBBD2C /* FLTestCase.h */,
+				275743BF165AE04300EBBD2C /* FLTestCase.m */,
+				275743C0165AE04300EBBD2C /* FLUnitTest.h */,
+				275743C1165AE04300EBBD2C /* FLUnitTest.m */,
+				275743C2165AE04300EBBD2C /* FLUnitTestGroup.h */,
+				275743C3165AE04300EBBD2C /* FLUnitTestGroup.m */,
+				275743C4165AE04300EBBD2C /* FLUnitTestObserver.h */,
+				275743C5165AE04300EBBD2C /* FLUnitTestObserver.m */,
+				275743C6165AE04300EBBD2C /* FLUnitTestRunner.h */,
+				275743C7165AE04300EBBD2C /* FLUnitTestRunner.m */,
+				275743D0165AE04300EBBD2C /* Internal */,
+				275743DB165AE04300EBBD2C /* Results */,
+			);
+			name = Testing;
+			path = ../../Core/Classes/Testing;
+			sourceTree = "<group>";
+		};
+		275743F3165AE06B00EBBD2C /* Workers */ = {
+			isa = PBXGroup;
+			children = (
+				275743DD165AE06B00EBBD2C /* FLAsyncBlockWorker.h */,
+				275743DE165AE06B00EBBD2C /* FLAsyncBlockWorker.m */,
+				275743DF165AE06B00EBBD2C /* FLAsyncTask.h */,
+				275743E0165AE06B00EBBD2C /* FLAsyncTask.m */,
+				275743E1165AE06B00EBBD2C /* FLBlockWorker.h */,
+				275743E2165AE06B00EBBD2C /* FLBlockWorker.m */,
+				275743E3165AE06B00EBBD2C /* FLDispatcher.h */,
+				275743E4165AE06B00EBBD2C /* FLDispatcher.m */,
+				275743E5165AE06B00EBBD2C /* FLFallible.h */,
+				275743E6165AE06B00EBBD2C /* FLFallible.m */,
+				275743E7165AE06B00EBBD2C /* FLFinisher.h */,
+				275743E8165AE06B00EBBD2C /* FLFinisher.m */,
+				275743E9165AE06B00EBBD2C /* FLJob.h */,
+				275743EA165AE06B00EBBD2C /* FLJob.m */,
+				275743EB165AE06B00EBBD2C /* FLResult.h */,
+				275743EC165AE06B00EBBD2C /* FLResult.m */,
+				275743ED165AE06B00EBBD2C /* FLRunnable.h */,
+				275743EE165AE06B00EBBD2C /* FLRunnable.m */,
+				275743EF165AE06B00EBBD2C /* FLWorker.h */,
+				275743F0165AE06B00EBBD2C /* FLWorker.m */,
+				275743F1165AE06B00EBBD2C /* FLWorkerQueue.h */,
+				275743F2165AE06B00EBBD2C /* FLWorkerQueue.m */,
+			);
+			name = Workers;
+			path = ../../Core/Classes/Modules/Async/Workers;
+			sourceTree = "<group>";
+		};
+		275743F4165AE1D000EBBD2C /* FishLampXcodeConfigs */ = {
+			isa = PBXGroup;
+			children = (
+				275743F5165AE1D000EBBD2C /* FishLampProjectSettingsDebug.xcconfig */,
+				275743F6165AE1D000EBBD2C /* FishLampProjectSettingsRelease.xcconfig */,
+				275743F7165AE1D000EBBD2C /* FishLampProjectSettingsTest.xcconfig */,
+				275743F8165AE1D000EBBD2C /* FishLampTargetSettingsiOS.xcconfig */,
+				275743F9165AE1D000EBBD2C /* FishLampTargetSettingsMac.xcconfig */,
+				275743FA165AE1D000EBBD2C /* FishLampTargetSettingsMac32.xcconfig */,
+				275743FB165AE1D000EBBD2C /* FishLampTargetSettingsMacLegacy.xcconfig */,
+			);
+			name = FishLampXcodeConfigs;
+			path = FishLamp/XcodeConfigs/FishLampXcodeConfigs;
+			sourceTree = "<group>";
+		};
+		276CE92815E54E31000A5CE6 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				27A43AA415CDCC73001CB13E /* Foundation.framework */,
+				276CE92615E54D45000A5CE6 /* libsqlite3.0.dylib */,
+				276CE90915E54C89000A5CE6 /* AssetsLibrary.framework */,
+				276CE90A15E54C8A000A5CE6 /* AVFoundation.framework */,
+				276CE90B15E54C8A000A5CE6 /* CFNetwork.framework */,
+				276CE90C15E54C8B000A5CE6 /* CoreLocation.framework */,
+				276CE90D15E54C8D000A5CE6 /* CoreMedia.framework */,
+				276CE90E15E54C8E000A5CE6 /* CoreMotion.framework */,
+				276CE90F15E54C8E000A5CE6 /* CoreText.framework */,
+				276CE91015E54C8F000A5CE6 /* ImageIO.framework */,
+				276CE91115E54C8F000A5CE6 /* MapKit.framework */,
+				276CE91215E54C90000A5CE6 /* MessageUI.framework */,
+				276CE91315E54C90000A5CE6 /* QuartzCore.framework */,
+				276CE91415E54C91000A5CE6 /* SystemConfiguration.framework */,
+				276CE91515E54C91000A5CE6 /* UIKit.framework */,
+				276CE90215E54BFE000A5CE6 /* MobileCoreServices.framework */,
+				276CE90015E54BF0000A5CE6 /* MediaPlayer.framework */,
+				276CE8EE15E54B2F000A5CE6 /* CoreFoundation.framework */,
+				276CE8EF15E54B30000A5CE6 /* CoreGraphics.framework */,
+				276CE8F015E54B31000A5CE6 /* CoreImage.framework */,
+				276CE8F115E54B33000A5CE6 /* Security.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		276CE92915E54E7F000A5CE6 /* OSX */ = {
+			isa = PBXGroup;
+			children = (
+				27A43A8215CDCC1B001CB13E /* AppKit.framework */,
+				27A43A8415CDCC1B001CB13E /* Foundation.framework */,
+				27A43A7F15CDCC1B001CB13E /* Cocoa.framework */,
+			);
+			name = OSX;
+			sourceTree = "<group>";
+		};
+		27A43A7115CDCC1B001CB13E = {
+			isa = PBXGroup;
+			children = (
+				27574356165AE02A00EBBD2C /* FishLamp */,
+				273147D81652DF2C0027850D /* Classes */,
+				273147B51652DAED0027850D /* Supporting Files */,
+				27A43A7E15CDCC1B001CB13E /* Frameworks */,
+				27A43A7D15CDCC1B001CB13E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		27A43A7D15CDCC1B001CB13E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				270DFDC615E99BAC00ED5FB0 /* fluffy */,
+				27E5A86A163D931B00B8D029 /* FluffyTool32 */,
+				27E3C61916532BF000410570 /* fluffy */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		27A43A7E15CDCC1B001CB13E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				270D02DC15E9B1F500ED5FB0 /* AppKit.framework */,
+				270D02DD15E9B1F600ED5FB0 /* Cocoa.framework */,
+				270D02DE15E9B1F800ED5FB0 /* CoreFoundation.framework */,
+				270D02DF15E9B1F900ED5FB0 /* CoreServices.framework */,
+				270D02E015E9B1FA00ED5FB0 /* Foundation.framework */,
+				270D02E115E9B1FD00ED5FB0 /* libsqlite3.0.dylib */,
+				270D02E215E9B1FE00ED5FB0 /* Security.framework */,
+				270D02E315E9B1FF00ED5FB0 /* SystemConfiguration.framework */,
+				276CE92915E54E7F000A5CE6 /* OSX */,
+				276CE92815E54E31000A5CE6 /* iOS */,
+				270DFDC815E99BAC00ED5FB0 /* Foundation.framework */,
+				27EC89841658458E004724CA /* SenTestingKit.framework */,
+				27EC89871658458E004724CA /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		27EC89871658458E004724CA /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				27EC89881658458E004724CA /* AppKit.framework */,
+				27EC89891658458E004724CA /* CoreData.framework */,
+				27EC898A1658458E004724CA /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		270DFDC515E99BAC00ED5FB0 /* FluffyTool */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 270DFDD115E99BAC00ED5FB0 /* Build configuration list for PBXNativeTarget "FluffyTool" */;
+			buildPhases = (
+				27EF8D9A165ABE4E00EB7949 /* ShellScript */,
+				270DFDC215E99BAC00ED5FB0 /* Sources */,
+				270DFDC315E99BAC00ED5FB0 /* Frameworks */,
+				270DFDC415E99BAC00ED5FB0 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FluffyTool;
+			productName = Fluffy;
+			productReference = 270DFDC615E99BAC00ED5FB0 /* fluffy */;
+			productType = "com.apple.product-type.tool";
+		};
+		27E3C60316532BF000410570 /* FluffyToolLegacy */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 27E3C61516532BF000410570 /* Build configuration list for PBXNativeTarget "FluffyToolLegacy" */;
+			buildPhases = (
+				27E3C60616532BF000410570 /* Sources */,
+				27E3C60916532BF000410570 /* Frameworks */,
+				27E3C61416532BF000410570 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FluffyToolLegacy;
+			productName = Fluffy;
+			productReference = 27E3C61916532BF000410570 /* fluffy */;
+			productType = "com.apple.product-type.tool";
+		};
+		27E5A851163D931B00B8D029 /* FluffyTool32 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 27E5A866163D931B00B8D029 /* Build configuration list for PBXNativeTarget "FluffyTool32" */;
+			buildPhases = (
+				27E5A856163D931B00B8D029 /* Sources */,
+				27E5A859163D931B00B8D029 /* Frameworks */,
+				27E5A865163D931B00B8D029 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FluffyTool32;
+			productName = Fluffy;
+			productReference = 27E5A86A163D931B00B8D029 /* FluffyTool32 */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		27A43A7315CDCC1B001CB13E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = "Mike Fullerton";
+			};
+			buildConfigurationList = 27A43A7615CDCC1B001CB13E /* Build configuration list for PBXProject "Fluffy" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				English,
+			);
+			mainGroup = 27A43A7115CDCC1B001CB13E;
+			productRefGroup = 27A43A7D15CDCC1B001CB13E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				270DFDC515E99BAC00ED5FB0 /* FluffyTool */,
+				27E5A851163D931B00B8D029 /* FluffyTool32 */,
+				27E3C60316532BF000410570 /* FluffyToolLegacy */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		27EF8D9A165ABE4E00EB7949 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "bash FishLampSync.sh ../../../FishLamp";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		270DFDC215E99BAC00ED5FB0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				273147DE1652DF2C0027850D /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27E3C60616532BF000410570 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27E3C60816532BF000410570 /* main.m in Sources */,
+				2710AC4D16546D27003AFF57 /* FLFluffyTool.m in Sources */,
+				2710AC811655A830003AFF57 /* FLRunTestsToolTask.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27E5A856163D931B00B8D029 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				273147DF1652DF2C0027850D /* main.m in Sources */,
+				2710AC4C16546D27003AFF57 /* FLFluffyTool.m in Sources */,
+				2710AC801655A830003AFF57 /* FLRunTestsToolTask.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		270DFDD215E99BAC00ED5FB0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 275743F9165AE1D000EBBD2C /* FishLampTargetSettingsMac.xcconfig */;
+			buildSettings = {
+				GCC_DYNAMIC_NO_PIC = NO;
+			};
+			name = Debug;
+		};
+		270DFDD415E99BAC00ED5FB0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 275743F9165AE1D000EBBD2C /* FishLampTargetSettingsMac.xcconfig */;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		27A43A8B15CDCC1B001CB13E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 275743F5165AE1D000EBBD2C /* FishLampProjectSettingsDebug.xcconfig */;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = Debug;
+		};
+		27A43A8C15CDCC1B001CB13E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 275743F6165AE1D000EBBD2C /* FishLampProjectSettingsRelease.xcconfig */;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+			};
+			name = Release;
+		};
+		27E3C61616532BF000410570 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 275743FB165AE1D000EBBD2C /* FishLampTargetSettingsMacLegacy.xcconfig */;
+			buildSettings = {
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+			};
+			name = Debug;
+		};
+		27E3C61716532BF000410570 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 275743FB165AE1D000EBBD2C /* FishLampTargetSettingsMacLegacy.xcconfig */;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		27E5A867163D931B00B8D029 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 275743FA165AE1D000EBBD2C /* FishLampTargetSettingsMac32.xcconfig */;
+			buildSettings = {
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				PRODUCT_NAME = FluffyTool32;
+			};
+			name = Debug;
+		};
+		27E5A868163D931B00B8D029 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 275743FA165AE1D000EBBD2C /* FishLampTargetSettingsMac32.xcconfig */;
+			buildSettings = {
+				PRODUCT_NAME = FluffyTool32;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		270DFDD115E99BAC00ED5FB0 /* Build configuration list for PBXNativeTarget "FluffyTool" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				270DFDD215E99BAC00ED5FB0 /* Debug */,
+				270DFDD415E99BAC00ED5FB0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		27A43A7615CDCC1B001CB13E /* Build configuration list for PBXProject "Fluffy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27A43A8B15CDCC1B001CB13E /* Debug */,
+				27A43A8C15CDCC1B001CB13E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		27E3C61516532BF000410570 /* Build configuration list for PBXNativeTarget "FluffyToolLegacy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27E3C61616532BF000410570 /* Debug */,
+				27E3C61716532BF000410570 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		27E5A866163D931B00B8D029 /* Build configuration list for PBXNativeTarget "FluffyTool32" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27E5A867163D931B00B8D029 /* Debug */,
+				27E5A868163D931B00B8D029 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 27A43A7315CDCC1B001CB13E /* Project object */;
+}
