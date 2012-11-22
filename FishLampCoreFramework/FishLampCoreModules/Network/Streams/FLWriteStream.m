@@ -70,15 +70,18 @@ synthesize_(error);
 
 - (void) openNetworkStream {
     FLAssertIsNotNil_(_streamRef);
-    CFWriteStreamScheduleWithRunLoop(_streamRef, self.runLoop, bridge_(void*,NSDefaultRunLoopMode));
-    CFWriteStreamOpen(_streamRef);
+
+// FIXME
+//    CFWriteStreamScheduleWithRunLoop(_streamRef, self.runLoop, bridge_(void*,NSDefaultRunLoopMode));
+//    CFWriteStreamOpen(_streamRef);
 }
 
 - (void) closeNetworkStream  {
     FLAssertIsNotNil_(_streamRef);
 
-    CFWriteStreamUnscheduleFromRunLoop(_streamRef, self.runLoop, bridge_(void*,NSDefaultRunLoopMode));
-    CFWriteStreamClose(_streamRef);
+// FIXME
+//    CFWriteStreamUnscheduleFromRunLoop(_streamRef, self.runLoop, bridge_(void*,NSDefaultRunLoopMode));
+//    CFWriteStreamClose(_streamRef);
 }
 
 - (NSError*) error {
@@ -86,9 +89,6 @@ synthesize_(error);
 }
 
 - (void) sendBytes:(const uint8_t*) bytes length:(unsigned long) length {
-
-    FLAssert_v([NSThread currentThread] == self.thread, @"tcp operation on wrong thread");
- 
     FLAssertIsNotNil_(_streamRef);
 
     const uint8_t *buffer = bytes;

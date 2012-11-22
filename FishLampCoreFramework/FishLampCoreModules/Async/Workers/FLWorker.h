@@ -10,7 +10,6 @@
 
 #import "FLFinisher.h"
 #import "FLFallible.h"
-#import "FLRunnable.h"
 #import "FLAsyncTask.h"
 
 @protocol FLWorker <NSObject>

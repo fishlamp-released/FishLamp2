@@ -77,13 +77,57 @@ synthesize_(error)
 - (void) openNetworkStream {
     self.error = nil;
     FLAssertNotNil_(_streamRef);
-    CFReadStreamScheduleWithRunLoop(_streamRef, self.runLoop, bridge_(void*,NSDefaultRunLoopMode));
+    
+//    CFDataRef handle = CFReadStreamCopyProperty(_streamRef, kCFStreamPropertySocketNativeHandle);
+////	if(nativeProp == NULL)
+////	{
+////		if (errPtr) *errPtr = [self getStreamError];
+////		return NO;
+////	}
+//
+//
+//    if(handle) {
+//        dispatch_source_t source = dispatch_source_create(DISPATCH_SOURCE_TYPE_READ, (uintptr_t) handle, 0, self.dispatchQueue.dispatch_queue_t);
+//        CFRelease(handle);
+//    
+//        dispatch_source_set_event_handler(source, ^{
+//            FLLog(@"event handler");
+//    
+////				NSAutoreleasePool *eventPool = [[NSAutoreleasePool alloc] init];
+////				
+////				LogVerbose(@"event4Block");
+////				
+////				unsigned long i = 0;
+////				unsigned long numPendingConnections = dispatch_source_get_data(acceptSource);
+////				
+////				LogVerbose(@"numPendingConnections: %lu", numPendingConnections);
+////				
+////				while ([self doAccept:socketFD] && (++i < numPendingConnections));
+////				
+////				[eventPool drain];
+//			});
+//			
+//        dispatch_source_set_cancel_handler(source, ^{
+//            FLLog(@"cancel handler");
+//            
+//    //        LogVerbose(@"dispatch_release(accept4Source)");
+//    //        dispatch_release(acceptSource);
+//    //        
+//    //        LogVerbose(@"close(socket4FD)");
+//    //        close(socketFD);
+//        });
+//			
+////			LogVerbose(@"dispatch_resume(accept4Source)");
+//        dispatch_resume(source);   
+//    }
+
     CFReadStreamOpen(_streamRef);
+    CFReadStreamScheduleWithRunLoop(_streamRef, CFRunLoopGetMain(), bridge_(void*,NSDefaultRunLoopMode));
 }
 
 - (void) closeNetworkStream {
     FLAssertNotNil_(_streamRef);
-    CFReadStreamUnscheduleFromRunLoop(_streamRef, self.runLoop, bridge_(void*,NSDefaultRunLoopMode));
+    CFReadStreamUnscheduleFromRunLoop(_streamRef, CFRunLoopGetMain(), bridge_(void*,NSDefaultRunLoopMode));
     CFReadStreamClose(_streamRef);
 }
 
@@ -110,7 +154,6 @@ synthesize_(error)
 }
 
 - (void) readAvailableBytesWithByteBuffer:(FLByteBuffer*) buffer {
-    FLAssert_v([NSThread currentThread] == self.thread, @"tcp operation on wrong thread");
     FLAssertNotNil_(_streamRef);
 
     while(!buffer.isFull && [self hasBytesAvailable]) {
@@ -132,7 +175,6 @@ synthesize_(error)
 - (NSUInteger) readAvailableBytes:(void*) bytes 
                         maxLength:(NSUInteger) maxLength {
     
-    FLAssert_v([NSThread currentThread] == self.thread, @"tcp operation on wrong thread");
     FLAssertNotNil_(_streamRef);
     
 
@@ -176,7 +218,6 @@ synthesize_(error)
 #define kBufferSize 1024 
 
 - (NSInteger) appendBytesToMutableData:(NSMutableData*) data {
-    FLAssert_v([NSThread currentThread] == self.thread, @"tcp operation on wrong thread");
     FLAssertNotNil_(_streamRef);
     
     CFIndex bytesRead = 0;
@@ -257,7 +298,6 @@ synthesize_(error)
 FIXME("readbytes");
     FLAssertFailed_v(@"this is broken");
 
-    FLAssert_v([NSThread currentThread] == self.thread, @"tcp operation on wrong thread");
     FLAssertIsNotNil_(self.streamRef);
     
 //    NSUInteger amountRead = [self readAvailableBytes:bytes maxLength:amount];
@@ -283,7 +323,6 @@ FIXME("readbytes");
 
 - (void) readAvailableBytesWithBlock:(void (^)(BOOL* stop)) readblock {
 
-    FLAssert_v([NSThread currentThread] == self.thread, @"tcp operation on wrong thread");
     FLAssertNotNil_(_streamRef);
 
     if(readblock) {

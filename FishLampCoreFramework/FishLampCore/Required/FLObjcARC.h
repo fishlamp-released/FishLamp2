@@ -6,13 +6,10 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#if __has_feature(objc_arc)
-#define FL_ARC 1
+#if FL_ARC
 
-// object memory management
 #define mrc_autorelease_(__OBJ__)    
 #define mrc_retain_(__OBJ__) 
-
 
 #define retain_(__OBJ__)                        __OBJ__
 #define release_(__OBJ__) 
@@ -37,8 +34,6 @@ void FLManuallyRelease(id* obj) {
         *obj = nil;
     }
 }
-
-#define dealloc_(...)    
 
 #endif
 

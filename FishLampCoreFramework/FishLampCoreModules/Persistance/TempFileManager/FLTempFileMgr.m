@@ -35,9 +35,15 @@
     return self;
 }
 
-dealloc_(
+
+#if FL_MRC
+- (void) dealloc {
+
     [_folder release];
-)
+    [super dealloc];
+}
+#endif
+
 
 - (void) addFile:(id<FLAbstractFile>) file {
     @synchronized(self) {

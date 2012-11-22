@@ -7,7 +7,7 @@
 //
 
 #import "FLFinisher.h"
-#import "FLDispatchQueues.h"
+#import "FLDispatchQueue.h"
 
 //NS_INLINE 
 //FLRunner* FLRunWorker(id<FLWorker>)
@@ -25,14 +25,12 @@
 
 @interface FLFinisher ()
 @property (readwrite, strong) id result;
-@property (readwrite, assign) BOOL finishedSynchronously;
 @end
 
 @implementation FLFinisher
 
 synthesize_(result);
 synthesize_(notificationScheduler)
-synthesize_(finishedSynchronously)
 
 + (id) finisherWithResultBlock:(FLResultBlock) completion {
     return autorelease_([[[self class] alloc] initWithResultBlock:completion]);
@@ -43,7 +41,6 @@ synthesize_(finishedSynchronously)
     self = [super init];
     if(self) {
         if(completion) {
-            _startThread = [NSThread currentThread];
             _resultNotificationBlock = [completion copy];
         }
     }
@@ -53,7 +50,6 @@ synthesize_(finishedSynchronously)
 - (id) initWithTarget:(id) target action:(SEL) action {
     self = [super init];
     if(self) {
-        _startThread = [NSThread currentThread];
         _resultNotificationTarget = target;
         _resultNotificationAction = action;
     }
@@ -76,7 +72,8 @@ synthesize_(finishedSynchronously)
     return self.result != nil;
 }
 
-dealloc_(
+#if FL_MRC
+- (void) dealloc {
     if(_resultNotificationBlock) {
         [_resultNotificationBlock release];
     }
@@ -85,8 +82,10 @@ dealloc_(
     }
     [_result release];
     [_subFinishers release];
-    [super dealloc];
-)
+    
+    super_dealloc_();
+}
+#endif
 
 + (id) finisher {
     return autorelease_([[[self class] alloc] init]);
@@ -114,9 +113,6 @@ dealloc_(
 }
 
 - (void) scheduleFinish {
-    
-    self.finishedSynchronously = ([NSThread currentThread] == _startThread);
-
     if(_notificationScheduler) {
         FLFinisherNotificationScheduler scheduler = _notificationScheduler;
         mrc_retain_(scheduler);
@@ -167,6 +163,25 @@ dealloc_(
     
     FLAssertNotNil_(self.result);
 }
+
+- (void) scheduleFinishOnMainThread {
+
+    static FLFinisherNotificationScheduler s_block = ^(dispatch_block_t finishBlock) {
+        if(finishBlock) {
+            if(![NSThread isMainThread]) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    finishBlock();
+                });    
+            }
+            else {
+                finishBlock();
+            }
+        }
+    };    
+
+    self.notificationScheduler = s_block;
+}
+
 
 @end
 

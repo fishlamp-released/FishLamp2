@@ -14,11 +14,11 @@
 #define kRunLoopMode NSDefaultRunLoopMode
 
 @interface FLAbstractNetworkStream ()
-@property (readwrite, assign) NSThread* thread;
 @property (readwrite, assign) CFRunLoopRef runLoop;
 @property (readwrite, assign) BOOL isOpen;
 @property (readwrite, copy) FLStreamClosedBlock closeBlock;
-
+@property (readwrite, strong) FLFinisher* closeFinisher;
+@property (readwrite, strong) FLDispatchQueue* dispatchQueue;
 
 @property (readwrite, strong) NSError* error;
 - (void) openNetworkStream;
@@ -30,8 +30,10 @@
 
 synthesize_(runLoop)
 synthesize_(isOpen)
-synthesize_(thread)
 synthesize_(closeBlock)
+
+@synthesize closeFinisher = _closeFinisher;
+@synthesize dispatchQueue = _dispatchQueue;
 
 - (id) init {
     self = [super init];
@@ -44,9 +46,10 @@ synthesize_(closeBlock)
 }
 
 - (void) dealloc {
-    FLAssert_v(self.thread == nil, @"still running in thread");
    
 #if FL_MRC
+    [_dispatchQueue release];
+    [_closeFinisher release];
     [_queue release];
     [_closeBlock release];
     [super dealloc];
@@ -73,17 +76,6 @@ synthesize_(closeBlock)
     }
 }
 
-- (void) queueStreamAction:(SEL) action {
-    [_queue addSelector:action];
-    
-    if([NSThread currentThread] == self.thread) {
-        [self runStreamTasks];
-    }
-    else {
-        [self performSelector:@selector(runStreamTasks) onThread:self.thread withObject:nil waitUntilDone:NO];
-    }
-}
-
 - (void) _closeStream {
     if(!_didClose) {
         _didClose = YES;
@@ -93,9 +85,6 @@ synthesize_(closeBlock)
         [self closeNetworkStream];
         
         [self postObservation:@selector(networkStreamDidClose:)];
-        
-        self.runLoop = nil;
-        self.thread = nil;
         self.isOpen = NO;
         
         if(self.closeBlock) {
@@ -107,22 +96,36 @@ synthesize_(closeBlock)
 
 - (void) closeStream:(NSError*) error {
     self.error = error;
-    [self queueStreamAction:@selector(_closeStream)];
+    [self.dispatchQueue dispatchBlock:^{
+        [self _closeStream];
+        [self.closeFinisher setFinishedWithResult:self.error];
+        self.closeFinisher = nil;
+    }];
 }    
 
 - (void) _openStream {
-    [self postObservation:@selector(networkStreamWillOpen:)];
-    [self openNetworkStream];
 }
 
 - (void) openStream:(FLStreamClosedBlock) didCloseBlock {
-    self.closeBlock = didCloseBlock;
-    self.runLoop = CFRunLoopGetCurrent();
-    self.thread = [NSThread currentThread];
+//    [self queueStreamAction:@selector(_openStream)];
+}
+
+- (FLFinisher*) openStream:(id<FLDispatcher>) dispatcher resultBlock:(FLResultBlock) resultBlock {
+
+    self.dispatchQueue = dispatcher;
+    self.closeFinisher = [FLFinisher finisherWithResultBlock:resultBlock];
+
     _didClose = NO;
     self.isOpen = NO;
-    [self queueStreamAction:@selector(_openStream)];
+
+    [dispatcher dispatchBlock:^{
+        [self postObservation:@selector(networkStreamWillOpen:)];
+        [self openNetworkStream];
+    }];
+
+    return self.closeFinisher;
 }
+
 
 - (NSError*) error {
     return nil;
@@ -144,7 +147,7 @@ synthesize_(closeBlock)
 
 - (void) handleStreamEvent:(CFStreamEventType) eventType {
 
-    FLAssert_v([NSThread currentThread] == self.thread, @"tcp operation on wrong thread");
+//    FLAssert_v([NSThread currentThread] == self.thread, @"tcp operation on wrong thread");
 
 #if TRACE
     FLDebugLog(@"Read Stream got event %d", eventType);

@@ -168,7 +168,7 @@ synthesize_(error);
     self.httpResponse = newResponse;
     self.readStream = [self.httpRequest createReadStreamForRequestWithURL:url];
     [self.readStream addObserver:self];
-    [self.readStream openStream:nil];
+    [self.readStream openStream:self.dispatchQueue resultBlock:nil];
 }
 
 - (void) openNetworkStream {
@@ -208,17 +208,17 @@ synthesize_(error);
     }
 }
 
-- (void) readResponseData {
-    [self readResponseHeadersIfNeeded];
-    [self.readStream appendBytesToMutableData:_response.mutableResponseData];
-}
-
 - (void) readStreamHasBytesAvailable:(id<FLNetworkStream>) networkStream {
-    [self queueStreamAction:@selector(readResponseData)];
+    [self.dispatchQueue dispatchBlock:^{
+        [self readResponseHeadersIfNeeded];
+        [self.readStream appendBytesToMutableData:_response.mutableResponseData];
+    }];
 }
 
 - (void) networkStreamDidOpen:(id<FLNetworkStream>) networkStream {
-    [self queueStreamAction:@selector(readResponseHeadersIfNeeded)];
+    [self.dispatchQueue dispatchBlock:^{
+        [self readResponseHeadersIfNeeded];
+    }];
 }
 
 - (void) networkStreamDidClose:(id<FLNetworkStream>) networkStream {

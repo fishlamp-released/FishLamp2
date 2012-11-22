@@ -8,7 +8,7 @@
 
 #import "FLHttpTests.h"
 #import "FLHttpConnection.h"
-#import "FLDispatchQueues.h"
+#import "FLDispatchQueue.h"
 
 @implementation FLHttpTests
 
@@ -16,7 +16,7 @@
     FLHttpRequest *request = [FLHttpRequest httpRequestWithURL:[NSURL URLWithString:@"http://www.google.com"]];
     FLHttpConnection* connection = [FLHttpConnection httpConnection:request];
 
-    FLFinisher* finisher = [connection openConnection:[FLBackgroundQueue instance]];
+    FLFinisher* finisher = [connection openConnection:FLFifoQueue];
     [finisher waitUntilFinished];
     
     FLHttpResponse* response = FLThrowError_(finisher.result);

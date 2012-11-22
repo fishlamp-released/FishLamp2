@@ -18,9 +18,15 @@
 
 synthesize_(object)
 
-dealloc_(
+
+#if FL_MRC
+- (void) dealloc {
+
     [_object release];
-)
+    [super dealloc];
+}
+#endif
+
 
 
 - (BOOL) willAddParametersToURL {

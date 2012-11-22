@@ -80,9 +80,15 @@ synthesize_(observers);
     }
 }
 
-dealloc_(
+
+#if FL_MRC
+- (void) dealloc {
+
     [_observers release];
-)
+    [super dealloc];
+}
+#endif
+
 
 - (void) removeObserver:(id) observer {
     @synchronized(self) {

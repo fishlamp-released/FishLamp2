@@ -12,6 +12,7 @@
 #import "FLAbortException.h"
 #import "FLContextual.h"
 #import "FLWorker.h"
+#import "FLDispatcher.h"
 
 @class FLOperation;
 
@@ -86,6 +87,7 @@ typedef void (^FLRunOperationBlock)(FLOperation* operation);
 + (id) operationWithInput:(id) input;
 + (id) operation:(FLRunOperationBlock) block;
 
+- (FLFinisher*) startOperation:(id<FLDispatcher>) inDispatcher;
 - (NSError*) runSynchronously;
 
 /// @brief run a suboperation

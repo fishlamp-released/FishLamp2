@@ -10,22 +10,22 @@
 #import "FLNetworkStream.h"
 #import "FLObservable.h"
 #import "FLSelectorQueue.h"
+//#import "FLDispatchQueue.h"
 
 @interface FLAbstractNetworkStream : FLObservable<FLNetworkStream> {
 @private
-    __unsafe_unretained NSThread* _thread;
     CFRunLoopRef _runLoop;
     BOOL _isOpen;
     BOOL _didClose;
     FLStreamClosedBlock _closeBlock;
     FLSelectorQueue* _queue;
     BOOL _busy;
+    
+    FLFinisher* _closeFinisher;
+    FLDispatchQueue* _dispatchQueue;
 }
 
-@property (readonly, assign) NSThread* thread;
-@property (readonly, assign) CFRunLoopRef runLoop;
-
-- (void) queueStreamAction:(SEL) action;
+@property (readonly, strong) FLDispatchQueue* dispatchQueue;
 @end
 
 @interface FLAbstractNetworkStream (CFStream)

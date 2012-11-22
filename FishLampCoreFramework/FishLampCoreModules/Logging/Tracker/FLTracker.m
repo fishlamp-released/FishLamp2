@@ -8,7 +8,7 @@
 
 #import "FLTracker.h"
 #import "FLTrackerSink.h"
-#import "FLDispatchQueues.h"
+#import "FLDispatchQueue.h"
 
 @implementation FLTracker
 

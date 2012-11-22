@@ -7,7 +7,7 @@
 //
 
 #import "FLDeallocNotifierSanityChecks.h"
-#import "FLDispatchQueues.h"
+#import "FLDispatchQueue.h"
 #import "FLCallback.h"
 #import "FLTimeoutTests.h"
 
@@ -89,7 +89,7 @@
     };
     
     
-    FLFinisher* returnedFinisher = [FLDispatchQueue dispatch:asyncBlock finisher:finisher];
+    FLFinisher* returnedFinisher = [FLDefaultQueue dispatch:asyncBlock finisher:finisher];
     
     FLAssert_(finisher == returnedFinisher);
     

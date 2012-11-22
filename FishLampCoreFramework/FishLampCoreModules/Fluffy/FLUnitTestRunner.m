@@ -7,9 +7,7 @@
 //
 
 #import "FLUnitTestRunner.h"
-
-#import "FLJob.h"
-#import "FLDispatchQueues.h"
+#import "FLDispatchQueue.h"
 #import "FLSanityCheckRunner.h"
 #import "FLUnitTestSubclassRunner.h"
 #import "FLStaticTestMethodRunner.h"

@@ -18,13 +18,11 @@ const NSString* FLTimeoutTimerTimeoutEvent = @"com.fishlamp.timer.timedout";
 @property (readwrite, strong) NSTimer* timer;
 @property (readwrite, assign) NSTimeInterval timestamp;
 @property (readwrite, assign) BOOL timedOut;
-@property (readwrite, assign) NSThread* thread;
 @end
 
 @implementation FLTimeoutTimer
 @synthesize timeoutInterval = _timeoutInterval;
 @synthesize timestamp = _timestamp;
-@synthesize thread = _thread;
 @synthesize finisher = _finisher;
 @synthesize timer = _timer;
 @synthesize timedOut = _timedOut;
@@ -199,3 +197,57 @@ synthesize_(checkFrequency);
 			self.code == NSURLErrorTimedOut; 
 }
 @end
+
+#if 0
+
+@interface MyWatchdogTimer {
+@private
+    dispatch_source_t     _timer;
+}
+
+- (id)initWithTimeout:(NSTimeInterval)timeout;
+- (void)invalidate;
+
+@end
+
+- (id)initWithTimeout:(NSTimeInterval)timeout {
+    self = [super init];
+    if (self) {            
+        dispatch_queue_t queue = dispatch_get_global_queue(
+                                    DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+
+        // create our timer source
+        _timer = dispatch_source_create(
+                           DISPATCH_SOURCE_TYPE_TIMER, 0, 0,
+                           queue);
+
+        // set the time to fire (we're only going to fire once,
+        // so just fill in the initial time).
+        dispatch_source_set_timer(_timer,
+               dispatch_time(DISPATCH_TIME_NOW, timeout * NSEC_PER_SEC),
+               DISPATCH_TIME_FOREVER, 0);
+
+        // Hey, let's actually do something when the timer fires!
+        dispatch_source_set_event_handler(_timer, ^{
+            NSLog(@"WATCHDOG: task took longer than %f seconds",
+                    timeout);
+            // ensure we never fire again
+            dispatch_source_cancel(_timer);
+        });
+
+        // now that our timer is all set to go, start it
+        dispatch_resume(_timer);
+    }
+    return self;
+}
+
+- (void)dealloc {
+    dispatch_source_cancel(_timer);
+    dispatch_release(_timer);
+    [super dealloc];
+}
+
+- (void)invalidate {
+    _dispatch_source_cancel(_timer);
+}
+#endif

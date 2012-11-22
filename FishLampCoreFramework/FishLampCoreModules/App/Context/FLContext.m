@@ -26,9 +26,15 @@ synthesize_(sessionOpen);
     return self;
 }
 
-dealloc_(    
+
+#if FL_MRC
+- (void) dealloc {
+    
     [_services release];
-)
+    [super dealloc];
+}
+#endif
+
 
 - (void) registerService:(id<FLService>) service 
        forID:(id) serviceID {

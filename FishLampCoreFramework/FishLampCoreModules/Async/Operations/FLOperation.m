@@ -57,18 +57,17 @@ synthesize_(context);
     return autorelease_([[[self class] alloc] initWithRunBlock:callback]);
 }
 
-dealloc_ (
+#if FL_MRC
+- (void) dealloc {
     [_error release];
     [_operationInput release];;
     [_operationOutput release];
     [_runBlock release];
     [_operationID release];
 	[_predicate release];
-)
-
-//- (FLOperationType) operationType {
-//    return FLOperationTypeNormal;
-//}
+    [super dealloc];
+}
+#endif
 
 - (id) init {
 	if((self = [super init])) {
@@ -234,6 +233,16 @@ dealloc_ (
     [self postObservation:@selector(operationDidFinish:)];
     
     return self.error;
+}
+
+- (FLFinisher*) startOperation:(id<FLDispatcher>) inDispatcher {
+    return [inDispatcher dispatch:^(FLFinisher* finisher){
+        id result = [self runSynchronously];
+        if(!result) {
+            result = self.output;
+        }
+        [finisher setFinishedWithResult:result];
+    }];
 }
 
 - (void) _resetState {

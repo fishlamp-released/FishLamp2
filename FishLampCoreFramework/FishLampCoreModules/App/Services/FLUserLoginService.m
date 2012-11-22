@@ -39,9 +39,14 @@ service_register_(userService, FLUserLoginService);
 //	return [self initWithUserLogin:nil];
 //}
 
-//dealloc_(
-//    [_userLogin release];
-//)
+//
+#if FL_MRC
+- (void) dealloc {
+
+    [super dealloc];
+}
+#endif
+
 
 - (void) closeService {
 	[super closeService];

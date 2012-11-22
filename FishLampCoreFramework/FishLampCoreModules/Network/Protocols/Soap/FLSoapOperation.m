@@ -21,13 +21,16 @@ synthesize_(operationName);
 synthesize_(outputName);
 synthesize_(outputObject);
 
-dealloc_ (
+#if FL_MRC
+- (void) dealloc {
     [_outputObject release];
     [_outputName release];
     [_soapActionHeader release];
     [_operationName release];
     [_soapNamespace release];
-)
+    [super dealloc];
+}
+#endif
 
 - (FLHttpConnection*) createConnection {
     return [FLHttpConnection httpConnection:

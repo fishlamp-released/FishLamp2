@@ -65,8 +65,8 @@ synthesize_(error)
         self.writeStream = [FLWriteStream writeStream:writeStream];
         [self.writeStream addObserver:self];
         
-        [self.readStream openStream:nil];
-        [self.writeStream openStream:nil];
+        [self.readStream openStream:self.dispatchQueue resultBlock:nil];
+        [self.writeStream openStream:self.dispatchQueue resultBlock:nil];
     }
     @finally {
         if(host) {

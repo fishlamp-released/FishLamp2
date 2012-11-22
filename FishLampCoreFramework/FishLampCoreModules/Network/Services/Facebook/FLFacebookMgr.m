@@ -22,12 +22,18 @@ synthesize_(appId);
 synthesize_(encodedToken);
 synthesize_(permissions);
 
-dealloc_(
+
+#if FL_MRC
+- (void) dealloc {
+
     [_permissions release];
 	[_encodedToken release];
 	[_appId release];
 	[_facebookNetworkSession release];
-)
+    [super dealloc];
+}
+#endif
+
 
 // from facebook demo app
 + (NSString *)serializeURL:(NSString *)baseUrl

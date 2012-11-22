@@ -32,8 +32,8 @@ service_register_(twitter, FLTwitterMgr);
 
 @implementation FLTwitterMgr
 
-synthesize_(oauthInfo)
-synthesize_(oauthSession)
+@synthesize oauthInfo = _oauthInfo; 
+@synthesize oauthSession = _oauthSession; 
 
 - (id) init {
 	if((self = [super init])) {
@@ -50,10 +50,13 @@ synthesize_(oauthSession)
 	return self.oauthSession == nil;
 }
 
-dealloc_ (
+#if FL_MRC
+- (void) dealloc {
     [_oauthInfo release];
     [_oauthSession release];
-)
+    [super dealloc];
+}
+#endif
 
 - (FLDatabase*) database {
     return [[FLUserDataStorageService serviceFromContext:self.context] documentsDatabase];

@@ -110,12 +110,13 @@
 	}
 }
 
-
-
-dealloc_ (
+#if FL_MRC
+- (void) dealloc {
 	release_(_fileName);
 	release_(_folder);
-)
+    [super dealloc];
+}
+#endif
 
 - (NSString*) filePath
 {

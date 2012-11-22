@@ -8,7 +8,7 @@
 
 #import "FLAction.h"
 #import "FLHttpOperation.h"
-#import "FLDispatchQueues.h"
+#import "FLDispatchQueue.h"
 
 #define TIME_ALL_ACTIONS 0
 
@@ -319,7 +319,7 @@ TODO("MF: fix activity updater");
     [self showProgress];
 }
 
-- (void) actionFinished:(FLFinisher*) result {
+- (void) actionFinished {
     if(_progress) {
         [_progress hideProgress];
     }
@@ -391,17 +391,25 @@ TODO("MF: fix activity updater");
     if(context) {
         [context addOperation:runner];
     }
+        
+    FLFinisher* finisher = [FLFinisher finisher];
     
-    FLFinisher* actionFinisher = [FLFinisher finisherWithTarget:self action:@selector(actionFinished:)];
+    [FLForegroundQueue dispatchBlock:^{
+        [self actionStarted];
+        
+        [FLHighPriorityQueue dispatchBlock:^{
+            [runner runSynchronously];
+            
+            [FLForegroundQueue dispatchBlock:^{
+                [self actionFinished];
+                [finisher setFinished];
+            }];
+            
+        }];
+    }];
+
+    return finisher;
     
-    FLAsyncTaskBlock asyncBlock = ^(FLFinisher* theActionFinisher) { 
-        [self actionStarted]; 
-        [FLHighPriorityQueue dispatch: ^(id asyncTask){ 
-            [asyncTask setFinishedWithResult:[runner runSynchronously]]; } 
-            finisher:theActionFinisher];
-    };
-    
-    return [FLForegroundQueue dispatch:asyncBlock finisher:actionFinisher];
     
     
 //    FLBackgroundJob* bgJob = [FLBackgroundJob job];

@@ -47,11 +47,17 @@ synthesize_(startDirectory);
     return [self create];
 }
 
-dealloc_(
+
+#if FL_MRC
+- (void) dealloc {
+
     [_tasks release];
     [_toolName release];
     [_startDirectory release];
-)
+    [super dealloc];
+}
+#endif
+
 
 - (FLToolTask*) toolTaskForKey:(NSString*) key {
     return [_tasks objectForKey:key];

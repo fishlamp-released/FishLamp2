@@ -74,14 +74,19 @@ FLAssertDefaultInitNotCalled_v(@"hello");
 - (void) unload {
 }
 
-dealloc_(
-    
-        [_state release];
-        [_queueUID release];
-        [_assets release];
-//        [_locks release];
-    )
 
+#if FL_MRC
+- (void) dealloc {
+
+    
+    [_state release];
+    [_queueUID release];
+    [_assets release];
+//        [_locks release];
+
+    [super dealloc];
+}
+#endif
 
 - (void) unlock {
     --self.lockCount;
@@ -654,11 +659,15 @@ synthesize_(error);
     return autorelease_([[FLAssetQueueLoader alloc] initWithAssetQueue:queue]);
 }
 
-dealloc_ (
+#if FL_MRC
+- (void) dealloc {
     release_(_assets);
     release_(_assetQueue);
     release_(_error);
-)
+
+    [super dealloc];
+}
+#endif
 
 - (void) cancelLoading {
     _cancelled = YES;

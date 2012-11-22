@@ -30,9 +30,12 @@
     return self;
 }
 
-dealloc_ (
+#if FL_MRC
+- (void) dealloc {
     [_array release];
-)
+    [super dealloc];
+}
+#endif
 
 - (SEL) nextSelector {
     SEL selector = nil;

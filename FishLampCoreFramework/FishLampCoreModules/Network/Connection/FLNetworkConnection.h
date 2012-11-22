@@ -13,6 +13,7 @@
 #import "FLTimeoutTimer.h"
 #import "FLNetworkStream.h"
 #import "FLDispatcher.h"
+#import "FLDispatchQueue.h"
 
 #define FLNetworkConnectionDefaultTimeout 120.0f
 
@@ -26,7 +27,6 @@ extern const FLNetworkConnectionByteCount FLNetworkConnectionByteCountZero;
 
 @interface FLNetworkConnection : FLObservable<FLNetworkStreamObserver, FLCancellable> {
 @private
-    __unsafe_unretained NSThread* _thread;
     FLFinisher* _finisher;
     id<FLNetworkStream> _networkStream;
     FLTimeoutTimer* _timeoutTimer;
@@ -37,13 +37,11 @@ extern const FLNetworkConnectionByteCount FLNetworkConnectionByteCountZero;
 @property (readonly, strong) FLTimeoutTimer* timeoutTimer;
 @property (readonly, assign) FLNetworkConnectionByteCount writeByteCount;
 @property (readonly, assign) FLNetworkConnectionByteCount readByteCount;
-@property (readonly, assign) NSThread* thread;
-
 @property (readonly, strong) id<FLNetworkStream> networkStream;
 
 - (void) touchTimestamp;
 
-- (FLFinisher*) openConnection:(id<FLDispatcher>) dispatcher;
+- (FLFinisher*) openConnection:(FLDispatchQueue*) dispatcher;
 
 // override point.
 - (id) resultFromStream:(id<FLNetworkStream>) stream;

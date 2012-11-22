@@ -9,6 +9,8 @@
 #import "FLTestToolMain.h"
 #import "FLUnitTestRunner.h"
 
+#import "FLDispatchQueue.h"
+
 int FLTestToolMain(int argc, char *argv[]) {
     @autoreleasepool {
         @try {

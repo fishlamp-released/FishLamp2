@@ -9,7 +9,7 @@
 #import "FLDnsConnectionTests.h"
 #import "FLNetworkHost.h"
 #import "FLNetworkHostResolver.h"
-#import "FLDispatchQueues.h"
+#import "FLDispatchQueue.h"
 
 @implementation FLDnsConnectionTests
 
@@ -37,7 +37,7 @@
     FLNetworkHost* host = [FLNetworkHost networkHostWithName:@"google.com"];
     
     FLNetworkHostResolver* resolver = [FLNetworkHostResolver networkHostResolver:host];
-    FLFinisher* finisher = [resolver openConnection:[FLBackgroundQueue instance]];
+    FLFinisher* finisher = [resolver openConnection:FLDefaultQueue];
     [finisher waitUntilFinished];
     
     FLThrowError_(finisher.result);

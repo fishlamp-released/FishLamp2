@@ -8,7 +8,7 @@
 
 #import "FLActionTests.h"
 #import "FLAction.h"
-#import "FLDispatchQueues.h"
+#import "FLDispatchQueue.h"
 
 @implementation FLActionTests
 
@@ -45,7 +45,7 @@
 }
 
 - (void) testBackgroundThreadStart {
-    [[FLDispatchQueue dispatchBlock:^{
+    [[FLDefaultQueue dispatchBlock:^{
         [self runOneAction];
     }] waitUntilFinished];
 }

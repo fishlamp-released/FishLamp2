@@ -16,7 +16,6 @@
 const FLNetworkConnectionByteCount FLNetworkConnectionByteCountZero = {0, 0, 0};
 
 @interface FLNetworkConnection ()
-@property (readwrite, assign) NSThread* thread;
 @property (readwrite, strong) id<FLNetworkStream> networkStream;
 @property (readwrite, strong) FLFinisher* finisher;
 @property (readwrite, strong) FLTimeoutTimer* timeoutTimer;
@@ -34,7 +33,6 @@ const FLNetworkConnectionByteCount FLNetworkConnectionByteCountZero = {0, 0, 0};
 @synthesize finisher = _finisher;
 @synthesize networkStream = _networkStream;
 @synthesize timeoutTimer = _timeoutTimer;
-@synthesize thread = _thread;
 @synthesize writeByteCount = _writeByteCount;
 @synthesize readByteCount = _readByteCount;
 
@@ -134,9 +132,9 @@ synthesize_(wasCancelled);
     return nil;
 }
 
-- (FLFinisher*) openConnection:(id<FLDispatcher>) dispatcher {
+- (FLFinisher*) openConnection:(FLDispatchQueue*) dispatcher {
     
-    return [dispatcher dispatch:^(id asyncTask) {
+    return [dispatcher dispatch:^(FLFinisher* finisher) {
 
         FLAssertIsNil_(self.networkStream);
         [self postObservation:@selector(networkConnectionStarting:)];
@@ -154,27 +152,44 @@ synthesize_(wasCancelled);
             }
         }
 
-        self.thread = [NSThread currentThread];
-
-        [self.networkStream openStream:^(id<FLNetworkStream> closedStream) {
-            
+        [self.networkStream openStream:dispatcher resultBlock:^(id result) {
             [self.networkStream removeObserver:nil];
             self.networkStream = nil;
-            self.thread = nil;
             [self postObservation:@selector(networkConnectionDisconnected:)];
              
-            [asyncTask addSubFinisher:[FLFinisher finisherWithResultBlock:^(id result) {
+            [finisher addSubFinisher:[FLFinisher finisherWithResultBlock:^(id aResult) {
                 [self postObservation:@selector(networkConnectionFinished:)];
             }]];
 
-            if([closedStream error]) {
-                FLDebugLog(@"stream received error: %@", [[closedStream error] localizedDescription]);
-                [asyncTask setFinishedWithResult:[closedStream error]];
+            if([result isError]) {
+                FLDebugLog(@"stream received error: %@", [result localizedDescription]);
+                [finisher setFinishedWithResult:result];
             } 
             else {
-                [asyncTask setFinishedWithResult:[self resultFromStream:closedStream]];
+                [finisher setFinishedWithResult:result];
             }
         }];
+
+
+//        [self.networkStream openStream:^(id<FLNetworkStream> closedStream) {
+//            
+//            [self.networkStream removeObserver:nil];
+//            self.networkStream = nil;
+//            self.thread = nil;
+//            [self postObservation:@selector(networkConnectionDisconnected:)];
+//             
+//            [finisher addSubFinisher:[FLFinisher finisherWithResultBlock:^(id result) {
+//                [self postObservation:@selector(networkConnectionFinished:)];
+//            }]];
+//
+//            if([closedStream error]) {
+//                FLDebugLog(@"stream received error: %@", [[closedStream error] localizedDescription]);
+//                [finisher setFinishedWithResult:[closedStream error]];
+//            } 
+//            else {
+//                [finisher setFinishedWithResult:[self resultFromStream:closedStream]];
+//            }
+//        }];
     }];
 }
 

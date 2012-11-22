@@ -19,9 +19,15 @@ synthesize_(authenticator);
     [super openService];
 }
 
-dealloc_(
+
+#if FL_MRC
+- (void) dealloc {
+
     [_authenticator release];
-)
+    [super dealloc];
+}
+#endif
+
 
 - (void) httpOperationWillPrepare:(FLHttpOperation*) operation {
     operation.httpAuthenticator = self.authenticator;

@@ -9,7 +9,6 @@
 #import "FLOperationQueue.h"
 #import "FLPerformSelectorOperation.h"
 #import "FLCollectionIterator.h"
-#import "FLJob.h"
 #import "FLFinisher.h"
 
 #if DEBUG

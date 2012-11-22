@@ -9,7 +9,7 @@
 #import "FLWeakRefTests.h"
 
 #import "FLCallback.h"
-#import "FLDispatchQueues.h"
+#import "FLDispatchQueue.h"
 #import "FLTimeoutTests.h"
 
 @interface FLWeakRefTestObject : FLCallback<FLWeaklyReferenced> {
@@ -77,7 +77,7 @@
     // are autoreleased in the thread and running the test in the main
     // loop causes a deadlock.
   
-    [FLDispatchQueue dispatchBlock:^{
+    [FLDefaultQueue dispatchBlock:^{
         __block BOOL wasDeleted = NO;
     
         FLWeakRefTestObject* obj = [[FLWeakRefTestObject alloc] initWithBlock:^(id sender){

@@ -48,12 +48,18 @@ synthesize_(httpConnectionAuthenticator);
 	return autorelease_([[[self class] alloc] initWithURL:url]);
 }
 
-dealloc_(
+
+#if FL_MRC
+- (void) dealloc {
+
     [_httpConnectionAuthenticator release];
     [_httpAuthenticator release];
     [_httpResponse release];
     [_URL release];
-)
+    [super dealloc];
+}
+#endif
+
 
 - (FLHttpConnection*) httpConnection {
     return (FLHttpConnection*) self.networkConnection;

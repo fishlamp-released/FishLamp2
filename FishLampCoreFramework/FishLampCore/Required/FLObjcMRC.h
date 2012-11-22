@@ -6,8 +6,8 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#if !__has_feature(objc_arc)
-#define FL_MRC 1
+#if FL_MRC
+
 #import <objc/runtime.h>
 
 // object memory management
@@ -18,7 +18,8 @@
 #define autorelease_(__OBJ__)               [__OBJ__ autorelease]
 #define mrc_autorelease_(__OBJ__)           [__OBJ__ autorelease]
 
-#define super_dealloc_()                    [self performSelector:sel_getUid("sendDeallocNotification")]; [super dealloc]
+//#define super_dealloc_()                    [self performSelector:sel_getUid("sendDeallocNotification")]; [super dealloc]
+#define super_dealloc_()                    [super dealloc]
 #define bridge_(__TO__, __FROM__)           ((__TO__) __FROM__)
 #define bridge_transfer_(__TO__, __FROM__)  ((__TO__) __FROM__)
 #define bridge_retain_(__TO__, __FROM__)    ((__TO__) [__FROM__ retain])
@@ -62,14 +63,5 @@ void _FLReleaseBlockWithNil_(dispatch_block_t* block) {
 #define FLRetainObject_(a,b)            _FLRetainObject((id*) &a, (id) b)
 #define FLCopyObject_(a,b)              _FLCopyObject((id*) &a, (id) b)
 #define FLCopyBlock(__BLOCK__)          autorelease_([__BLOCK__ copy])
-
-//      
-
-#define dealloc_(...) \
-    - (void) dealloc { \
-        do { __VA_ARGS__ } while(0); \
-        [self performSelector:sel_getUid("sendDeallocNotification")]; \
-        [super dealloc]; \
-    }
 
 #endif

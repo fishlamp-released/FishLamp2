@@ -7,7 +7,7 @@
 //
 
 #import "FLLogFileManager.h"
-#import "FLDispatchQueues.h"
+#import "FLDispatchQueue.h"
 #import "NSFileManager+FLExtras.h"
 
 @interface FLLogFileManager ()

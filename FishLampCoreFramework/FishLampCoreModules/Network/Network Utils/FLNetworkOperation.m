@@ -9,7 +9,7 @@
 #import "FLNetworkOperation.h"
 #import "FLReachableNetwork.h"
 #import "FLNetworkConnectionObserver.h"
-#import "FLDispatchQueues.h"
+#import "FLDispatchQueue.h"
 
 @interface FLNetworkOperation ()
 @property (readwrite, strong) FLNetworkConnection* connection;
@@ -92,7 +92,7 @@
 
     FLAssertIsNotNil_v(self.networkConnection, nil);
     
-    FLFinisher* finisher = [self.networkConnection openConnection:[FLBackgroundQueue instance]];
+    FLFinisher* finisher = [self.networkConnection openConnection:FLDefaultQueue];
     [finisher waitUntilFinished];
     id result = finisher.result;
 

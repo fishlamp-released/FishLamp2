@@ -23,9 +23,15 @@ synthesize_(json);
     return self;
 }
 
-dealloc_(
+
+#if FL_MRC
+- (void) dealloc {
+
 	[_json release];
-)
+    [super dealloc];
+}
+#endif
+
 
 - (void) runSelf {
 

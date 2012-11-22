@@ -130,10 +130,10 @@
 }
 
 - (void) updateQueue {
-    NSThread* thread = self.thread;
-    if(thread) {
-        [self performSelector:@selector(_updateQueue) onThread:thread withObject:nil waitUntilDone:NO];
-    }
+//    NSThread* thread = self.thread;
+//    if(thread) {
+//        [self performSelector:@selector(_updateQueue) onThread:thread withObject:nil waitUntilDone:NO];
+//    }
 }
 
 - (void) readStreamHasBytesAvailable:(id<FLNetworkStream>) networkStream {  

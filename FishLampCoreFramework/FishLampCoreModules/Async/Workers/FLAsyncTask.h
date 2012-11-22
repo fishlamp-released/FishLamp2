@@ -11,4 +11,4 @@
 @protocol FLAsyncTask <FLFinisher>
 @end
 
-typedef void (^FLAsyncTaskBlock)(id asyncTask);
+typedef void (^FLAsyncTaskBlock)(FLFinisher* asyncTask);

@@ -12,8 +12,14 @@
 
 synthesize_(userLogin)
 
-dealloc_(
+
+#if FL_MRC
+- (void) dealloc {
+
     [_userLogin release];
-)
+    [super dealloc];
+}
+#endif
+
 
 @end

@@ -16,9 +16,6 @@
 
 synthesize_(context);
 
-dealloc_ (
-)
-
 - (void) removeFromContext:(id) context {
     self.context = nil;
 }

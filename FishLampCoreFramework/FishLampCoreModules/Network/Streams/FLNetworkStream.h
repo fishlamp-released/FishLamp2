@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "FLObservable.h"
+#import "FLDispatcher.h"
 
 @protocol FLNetworkStream;
 typedef void (^FLStreamClosedBlock)(id<FLNetworkStream> stream);
@@ -15,7 +16,7 @@ typedef void (^FLStreamClosedBlock)(id<FLNetworkStream> stream);
 @protocol FLNetworkStream <FLObservable>
 
 @property (readonly, assign) BOOL isOpen;
-- (void) openStream:(FLStreamClosedBlock) didCloseBlock;
+- (FLFinisher*) openStream:(id<FLDispatcher>) dispatcher resultBlock:(FLResultBlock) resultBlock;
 - (void) closeStream:(NSError*) error;
 
 @property (readonly, strong) NSError* error;

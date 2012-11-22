@@ -13,7 +13,6 @@
 @protocol FLFinisher <NSObject>
 @property (readonly, strong) id result;
 @property (readonly, assign, getter=isFinished) BOOL finished;
-@property (readonly, assign) BOOL finishedSynchronously;
 
 - (void) setFinished;
 - (void) setFinishedWithResult:(id) result;
@@ -30,16 +29,9 @@ typedef void (^FLFinisherNotificationScheduler)(dispatch_block_t finishBlock);
     FLFinisherNotificationScheduler _notificationScheduler;
     id _result;
     FLResultBlock _resultNotificationBlock;
-    __unsafe_unretained id _resultNotificationTarget;
     SEL _resultNotificationAction;
-    __unsafe_unretained NSThread* _startThread;
-    BOOL _finishedSynchronously;
+    __unsafe_unretained id _resultNotificationTarget;
 }
-
-@property (readwrite, copy) FLFinisherNotificationScheduler notificationScheduler;
-
-// isFinished && error == nil
-//@property (readonly, assign) BOOL didSucceed; 
 
 - (id) initWithResultBlock:(FLResultBlock) resultBlock;
 - (id) initWithTarget:(id) target action:(SEL) action; // myMethod:(FLFinisher*) result;
@@ -52,5 +44,10 @@ typedef void (^FLFinisherNotificationScheduler)(dispatch_block_t finishBlock);
 
 // override point
 - (void) didFinish;
+
+
+// for rescheduling finish on different threads.
+@property (readwrite, copy) FLFinisherNotificationScheduler notificationScheduler;
+- (void) scheduleFinishOnMainThread;
 
 @end

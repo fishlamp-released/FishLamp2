@@ -30,9 +30,14 @@ synthesize_(key);
     return autorelease_([[[self class] alloc] initWithKey:key]);
 }
 
-dealloc_(
+
+#if FL_MRC
+- (void) dealloc {
+
     [_values release];
-)
+    [super dealloc];
+}
+#endif
 
 - (void) addValue:(NSString*) param {
     if(!_values) {

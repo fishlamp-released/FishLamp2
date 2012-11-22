@@ -34,9 +34,15 @@ synthesize_(networkHost)
     return autorelease_([[FLNetworkHostResolverStream alloc] initWithNetworkHost:self.networkHost]);
 }
 
-dealloc_(
+
+#if FL_MRC
+- (void) dealloc {
+
     [_networkHost release];
-)
+    [super dealloc];
+}
+#endif
+
 
 @end
 
