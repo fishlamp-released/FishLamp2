@@ -1,0 +1,11 @@
+//
+//  FishLampProjectSettingsRelease.xcconfig
+//  FishLampCore
+//
+//  Created by Mike Fullerton on 11/13/12.
+//  Copyright (c) 2012 Mike Fullerton. All rights reserved.
+//
+
+FISHLAMP = FishLamp
+#include "FishLamp/FishLampXcodeConfigs/ProjectIncludes/FishLampPaths.xcconfig"
+#include "FishLamp/FishLampXcodeConfigs/ProjectIncludes/FishLampSettings.xcconfig"

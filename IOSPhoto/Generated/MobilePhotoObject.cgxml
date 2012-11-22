@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<schema projectName="FishLamp Mobile">
+<organization name="GreenTongue Software, LLC"/>    
+<generatorOptions>
+        <typePrefix>FL</typePrefix>
+    </generatorOptions>
+    <typeDefinitions>
+        <typeDefinition typeName="AVCaptureFlashMode" dataType="enum"/>
+        <typeDefinition typeName="FLDatabaseObject" dataType="object" import="FLDatabaseObject.h"/>
+    </typeDefinitions>
+    <objects>
+       <object typeName="FLCameraConfig" protocols="NSCopying, NSCoding">
+            <!-- ifDef="FL_CUSTOM_CAMERA" -->
+            <properties>
+                <property type="NSInteger" name="captureDevicePosition"/>
+                <!--  <property type="AVCaptureFlashMode" name="captureFlashMode"/> -->
+                <property type="NSInteger" name="captureFlashMode"/>
+                <property type="NSInteger" name="captureTorchMode"/>
+                <property type="NSInteger" name="captureFocusMode"/>
+                <property type="NSInteger" name="captureWhiteBalanceMode"/>
+                <property type="BOOL" name="showGuidelines"/>
+                <property type="BOOL" name="showStabityTracker"/>
+                <property type="BOOL" name="showZoom"/>
+                <property type="BOOL" name="foo"/>
+            </properties>
+        </object>
+    </objects>
+</schema>
