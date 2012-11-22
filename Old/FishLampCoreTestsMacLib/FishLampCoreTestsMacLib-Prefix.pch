@@ -1,0 +1,8 @@
+//
+// Prefix header for all source files of the 'FishLampCoreTestsMacLib' target in the 'FishLampCoreTestsMacLib' project
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+    #import "FishLampCore.h"
+#endif
