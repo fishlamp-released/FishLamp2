@@ -1,0 +1,13 @@
+//
+// Prefix header for all source files of the 'Fluffy' target in the 'Fluffy' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+    #import "FLCore.h"
+    #import "FLBlocks.h"
+    #import "NSObject+Copying.h"
+#endif
+
+
+

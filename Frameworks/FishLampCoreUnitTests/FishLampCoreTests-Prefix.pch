@@ -1,9 +1,0 @@
-//
-// Prefix header for all source files of the 'FishLampCore-ARM' target in the 'FishLampCore-ARM' project
-//
-
-#ifdef __OBJC__
-    #import <Foundation/Foundation.h>
-    #import "FishLampCore.h"
-    #import "FLUnitTest.h"
-#endif

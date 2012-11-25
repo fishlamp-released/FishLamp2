@@ -6,10 +6,10 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-//#import "FLTool.h"
+#import "FLTool.h"
 
-//@interface FLFluffyTool : NSObject<FLToolDelegate> {
-//@private
-//}
-//
-//@end
+@interface FLFluffyTool : NSObject<FLToolDelegate> {
+@private
+}
+
+@end

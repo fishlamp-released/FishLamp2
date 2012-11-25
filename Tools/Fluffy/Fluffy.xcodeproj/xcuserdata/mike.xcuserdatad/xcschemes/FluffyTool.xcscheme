@@ -59,7 +59,7 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "FishLampCoreTestsMac.bundle"
+            argument = "-t &quot;$HOME/Library/Developer/FishLamp/CocoaTests&quot;"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>

@@ -2,21 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:SampleApps/Posty/Posty.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:OSX/Fluffy/Fluffy.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:Core/FishLampCore.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:Core/Tests/FishLampCoreTests.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:iOS/FishLampiOS.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:OSX/Sink/FishLampSync.xcodeproj">
+      location = "group:Tools/Fluffy/Fluffy.xcodeproj">
    </FileRef>
 </Workspace>
