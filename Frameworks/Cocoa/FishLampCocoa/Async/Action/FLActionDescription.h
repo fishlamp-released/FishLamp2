@@ -14,30 +14,30 @@
 // example: @"Upload,Uploading,Uploaded"
 // example: @"Authenticate,Authenticating,Authenticated,Authentication"
 
-extern NSString* FLActionDescriptionTypeUpload;
-extern NSString* FLActionDescriptionTypeSave;
-extern NSString* FLActionDescriptionTypeDownload;
-extern NSString* FLActionDescriptionTypeWrite;
-extern NSString* FLActionDescriptionTypeRead;
-extern NSString* FLActionDescriptionTypeLoad;
-extern NSString* FLActionDescriptionTypeSync;
-extern NSString* FLActionDescriptionTypeUpdate;
-extern NSString* FLActionDescriptionTypeDelete;
-extern NSString* FLActionDescriptionTypeMove;
-extern NSString* FLActionDescriptionTypeRename;
-extern NSString* FLActionDescriptionTypeRefresh;
-extern NSString* FLActionDescriptionTypeRemove;
-extern NSString* FLActionDescriptionTypeAdd;
-extern NSString* FLActionDescriptionTypeEmpty;
-extern NSString* FLActionDescriptionTypeSort;
-extern NSString* FLActionDescriptionTypeRotate;
-extern NSString* FLActionDescriptionTypeAuthenticate;
-extern NSString* FLActionDescriptionTypeTake;
-extern NSString* FLActionDescriptionTypeCreate;
-extern NSString* FLActionDescriptionTypeFeaturing;
-extern NSString* FLActionDescriptionTypeUnFeaturing;
-extern NSString* FLActionDescriptionTypeCopy;
-extern NSString* FLActionDescriptionTypeOptimize;
+extern NSString* FLActionTypeUpload;
+extern NSString* FLActionTypeSave;
+extern NSString* FLActionTypeDownload;
+extern NSString* FLActionTypeWrite;
+extern NSString* FLActionTypeRead;
+extern NSString* FLActionTypeLoad;
+extern NSString* FLActionTypeSync;
+extern NSString* FLActionTypeUpdate;
+extern NSString* FLActionTypeDelete;
+extern NSString* FLActionTypeMove;
+extern NSString* FLActionTypeRename;
+extern NSString* FLActionTypeRefresh;
+extern NSString* FLActionTypeRemove;
+extern NSString* FLActionTypeAdd;
+extern NSString* FLActionTypeEmpty;
+extern NSString* FLActionTypeSort;
+extern NSString* FLActionTypeRotate;
+extern NSString* FLActionTypeAuthenticate;
+extern NSString* FLActionTypeTake;
+extern NSString* FLActionTypeCreate;
+extern NSString* FLActionTypeFeaturing;
+extern NSString* FLActionTypeUnFeaturing;
+extern NSString* FLActionTypeCopy;
+extern NSString* FLActionTypeOptimize;
 
 
 

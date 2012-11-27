@@ -7,17 +7,36 @@
 //
 
 #import "FLUserPreferences.h"
-#import "NSFileManager+FLExtras.h"
 
 #define kFileName @"prefs.plist"
 
+@interface FLUserPreferences ()
+@property (readwrite, strong, nonatomic) FLFolder* folder;
+@end
+
 @implementation FLUserPreferences
 
-- (id) initWithFolder:(FLFolder*) folder {
-	if((self = [super initWithFolder:folder fileName:kFileName])) {
-	}
-	
-	return self;
+@synthesize folder = _folder;
+
++ (id) userPreferences {
+    return autorelease_([[[self class] alloc] init]);
+}
+
++ (id) readFromFolder:(FLFolder*) folder {
+    FLAssertNotNil_(folder);
+    
+    FLUserPreferences* prefs = [folder readObjectFromFile:kFileName];
+    if(!prefs) {
+        prefs = [FLUserPreferences userPreferences];
+        [prefs setDefaults];
+    }
+
+    prefs.folder = folder;
+    return prefs;
+}
+
+- (void) writeToFile {
+	[_folder writeObjectToFile:kFileName object:self];
 }
 
 - (id) initWithCoder:(NSCoder*) aDecoder {
@@ -30,16 +49,15 @@
 - (void) setDefaults {
 }
 
-- (BOOL) readFromFile {
-	if(![super readFromFile]) {
-		[self setDefaults];
-		return NO;
-	}
-
-	return YES;
-}
-
 - (void) encodeWithCoder:(NSCoder*) aCoder {
 }
+
+#if FL_MRC
+- (void) dealloc {
+    [_folder release];
+    [super dealloc];
+}
+#endif
+
 
 @end

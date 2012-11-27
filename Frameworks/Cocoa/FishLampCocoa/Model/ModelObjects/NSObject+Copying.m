@@ -8,9 +8,7 @@
 
 #import "NSObject+Copying.h"
 
-
-@implementation NSObject (Copying)
-
+@implementation NSObject (FLCopyable)
 - (void) copySelfTo:(id) object {
 }
 @end

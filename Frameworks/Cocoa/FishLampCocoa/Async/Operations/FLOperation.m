@@ -14,29 +14,25 @@
 @property (readwrite, copy, nonatomic) FLRunOperationBlock runBlock;
 @property (readwrite, assign) BOOL wasStarted;
 @property (readwrite, assign) BOOL isFinished;
-@property (readwrite, assign) BOOL didFail;
-@property (readwrite, assign) BOOL wasCancelled;
 @property (readwrite, strong) id input;
 @property (readwrite, strong) id output;
 @property (readwrite, assign) id context;
+@property (readwrite, strong) FLFinisher* cancelFinisher;
 @end
 
 @implementation FLOperation
 
-synthesize_(operationID);
-synthesize_(tag);
-synthesize_(predicate);
-synthesize_(runBlock);
-synthesize_(disabled);
-synthesize_(error);
-synthesize_(wasStarted);
-synthesize_(isFinished);
-synthesize_(didFail);
-synthesize_(wasCancelled);
-synthesize_(context);
-
+@synthesize error = _error;
+@synthesize operationID = _operationID;
+@synthesize runBlock = _runBlock;
+@synthesize disabled = _disabled;
+@synthesize wasStarted = _wasStarted;
+@synthesize isFinished = _isFinished;
+@synthesize context = _context;
+@synthesize cancelFinisher = _cancelFinisher;
 @synthesize input = _operationInput;
 @synthesize output = _operationOutput;
+@synthesize tag = _tag;
 
 - (void) removeFromContext:(id) context {
     self.context = nil;
@@ -59,12 +55,12 @@ synthesize_(context);
 
 #if FL_MRC
 - (void) dealloc {
+    [_cancelFinisher release];
     [_error release];
     [_operationInput release];;
     [_operationOutput release];
     [_runBlock release];
     [_operationID release];
-	[_predicate release];
     [super dealloc];
 }
 #endif
@@ -90,38 +86,6 @@ synthesize_(context);
     return autorelease_([[[self class] alloc] initWithInput:input]);
 }
 
-- (NSError*) error  {
-    
-    NSError* error = nil;
-    @synchronized(self) {
-        if(!_error && self.wasCancelled) {
-            FLRetainObject_(_error, [NSError cancelError]);
-        }
-        error = _error;
-    }
-    return error;
-}
-
-- (void) setError:(NSError*) error  {
-    
-    @synchronized(self) {
-        FLRetainObject_(_error, error);
-        
-        if(_error) {
-            self.didFail = YES;
-            
-            if(_error.isCancelError) {
-                self.wasCancelled = YES;
-            }
-        }
-        else {
-            self.didFail = NO;
-        }
-
-        FLTraceIf(_error && !_error.isCancelError, @"operation got error:%@", [_error description]);
-    }
-}
-
 - (BOOL) didSucceed {
     return self.isFinished && !self.didFail && !self.wasCancelled;
 }
@@ -138,25 +102,45 @@ synthesize_(context);
 }
 
 - (BOOL) canCancel {
-    return !self.wasCancelled && !self.didSucceed && !self.didFail && !self.didRun;
+    return !self.cancelWasRequested && !self.didSucceed && !self.didFail && !self.didRun;
 }
 
-- (BOOL) requestCancel:(dispatch_block_t) cancelCompletionOrNil  {
-    BOOL shouldCancel = NO;
-    if([self canCancel] ) {
-        @synchronized(self) {
-            if([self canCancel]) {
-                shouldCancel = YES;
-                self.wasCancelled = YES;
-            }
-        }
-    }
-    if(shouldCancel) {
-        [self cancelSelf];
-        [self postObservation:@selector(operationWasCancelled:)];
+- (BOOL) wasCancelled {
+    return self.cancelFinisher && self.cancelFinisher.isFinished;
+}
+
+- (BOOL) cancelWasRequested {
+    return self.cancelFinisher != nil;
+}
+
+- (FLFinisher*) requestCancel:(FLResultBlock) completion {
+
+    FLFinisher* finisher = [FLFinisher finisherWithResultBlock:completion];
+    if(self.didRun || self.wasCancelled) {
+        [finisher setFinished];
+        return finisher;
     }
     
-    return YES;
+    @synchronized(self) {
+        if(!self.cancelFinisher) {
+            self.cancelFinisher = finisher;
+            
+            self.error = [NSError cancelError];
+
+            if(!self.isBusy) {
+                [self.cancelFinisher setFinished];
+            }
+        }
+        else {
+            [self.cancelFinisher addSubFinisher:finisher];
+        }
+    }
+    
+    return finisher;
+}
+
+- (BOOL) didFail {
+    return self.error != nil;
 }
 
 - (void) runSelf {
@@ -166,8 +150,7 @@ synthesize_(context);
    return   !self.wasCancelled &&
             !self.didFail &&
             !self.isFinished &&
-            !self.isDisabled &&
-            (!_predicate || [_predicate isSatisfiedByObject:self]);
+            !self.isDisabled;
 }
 
 - (BOOL) isBusy {
@@ -207,6 +190,11 @@ synthesize_(context);
     return nil;
 }
 
+- (void) abortIfNeeded {
+    if(self.error) {
+        [FLAbortException raise];
+    }
+}
 
 - (id) runSynchronously {
     @try {
@@ -232,6 +220,11 @@ synthesize_(context);
             }
         }
     }
+    @catch(FLAbortException* ex) {
+        if(!self.error) {
+            self.error = [NSError abortError];
+        }
+    }
     @catch(NSException* ex) {
         self.error = ex.error;
     }
@@ -245,6 +238,11 @@ synthesize_(context);
     
     [self setLessBusy];
     self.isFinished = YES;
+    
+    if(self.cancelFinisher) {
+         [self.cancelFinisher setFinished];
+         [self postObservation:@selector(operationWasCancelled:)];
+    }
 
     [self postObservation:@selector(operationDidFinish:)];
     
@@ -254,13 +252,16 @@ synthesize_(context);
 - (FLFinisher*) startOperationInDispatcher:(id<FLDispatcher>) inDispatcher 
                                 completion:(FLCompletionBlock) completion{
                                 
-    FLFinisher* finisher = [inDispatcher dispatchAsyncBlock:^(FLFinisher* finisher){
+    FLFinisher* outFinisher = [inDispatcher dispatchAsyncBlock:^(FLFinisher* finisher){
         [finisher setFinishedWithResult:[self runSynchronously]];
     }];
     
-    finisher.requestCancelBlock = ^{ [self requestCancel]; };
+// TODO: awkward    
+    outFinisher.requestCancelBlock = ^{ 
+        [self requestCancel:nil]; 
+    };
     
-    return finisher;
+    return outFinisher;
 }
 
 - (FLFinisher*) startOperation:(FLCompletionBlock) completion{
@@ -271,7 +272,6 @@ synthesize_(context);
     self.error = nil;
     self.wasStarted = NO;
     self.isFinished = NO;
-    self.didFail = NO;
 }
 
 - (void) resetRunState {
@@ -293,7 +293,7 @@ synthesize_(context);
 //}
 
 - (void) operationWasCancelled:(FLOperation*) operation {
-    [self requestCancel];
+    [self requestCancel:nil];
 }
 
 - (void) _finishSubOperation:(FLOperation*) operation {

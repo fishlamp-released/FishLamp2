@@ -267,8 +267,7 @@
 - (id) readObjectFromFile:(NSString*) fileName {
 	FLAssertStringIsNotEmpty_v(fileName, nil);
     NSData* data = [self readDataFromFile:fileName];
-	if(data)
-    {
+	if(data) {
         return [NSKeyedUnarchiver unarchiveObjectWithData:data];
     }
 
@@ -281,32 +280,18 @@
 	
 	NSError* error = nil;
 	[data writeToFile:[self pathForFile:fileName] options:NSAtomicWrite error:&error];
-	if(error) {
-        FLThrowError_(autorelease_(error));
-    }
+	FLThrowError_(autorelease_(error));
 }
 
 - (NSData*) readDataFromFile:(NSString*) fileName {
 	FLAssertStringIsNotEmpty_v(fileName, nil);
 
-    NSError* internalErr = nil;
-	
 	NSString* path = [self pathForFile:fileName];
-	
-	if(![[NSFileManager defaultManager] fileExistsAtPath:path]) {
-		FLThrowError_( autorelease_([[NSError alloc] initWithDomain:NSCocoaErrorDomain code:NSFileNoSuchFileError userInfo:nil]));
-	}
-	
-	NSData* data = [NSData dataWithContentsOfFile:[self pathForFile:fileName] options:NSDataReadingUncached error:&internalErr];
 
-    if(internalErr) {
-        FLThrowError_(autorelease_(internalErr));
-    }
-
-    if(!data) {
-        FLThrowErrorCode_v(NSCocoaErrorDomain, NSFileReadUnknownError, @"unexpectedly read empty file");
-    }
-
+    NSError* error = nil;
+	NSData* data = [NSData dataWithContentsOfFile:path options:0 error:&error];
+    FLThrowError_(autorelease_(error));
+    
     return data;
 }
 
@@ -364,6 +349,10 @@
 
 - (NSUInteger) countItems:(BOOL) recursive {
     return [[NSFileManager defaultManager] countItemsInDirectory:self.folderPath recursively:recursive visibleItemsOnly:YES];
+}
+
+- (NSString*) fileUTI:(NSString*) name {
+    return autorelease_(bridge_(NSString*, UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (CFStringRef) [[self pathForFile:name] pathExtension], NULL)));
 }
 
 @end

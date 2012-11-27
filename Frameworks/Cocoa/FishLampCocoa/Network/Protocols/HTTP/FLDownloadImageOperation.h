@@ -10,7 +10,7 @@
 
 #import "FLHttpOperation.h"
 #import "FLCachedImage.h"
-#import "FLJpegFile.h"
+#import "FLImage.h"
 
 @interface FLDownloadImageOperation : FLHttpOperation {
 }
@@ -18,8 +18,8 @@
 // output is a FLCachedImage.
 
 - (FLCachedImage*) cachedImageOutput;
-- (FLJpegFile*) jpegFileOutput;
-- (FLImage*) imageOutput;
+- (FLImage*) jpegFileOutput;
+- (NSImage_*) imageOutput;
 
 @end
 

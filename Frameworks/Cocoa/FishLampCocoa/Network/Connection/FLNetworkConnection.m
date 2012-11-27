@@ -17,11 +17,10 @@ const FLNetworkConnectionByteCount FLNetworkConnectionByteCountZero = {0, 0, 0};
 
 @interface FLNetworkConnection ()
 @property (readwrite, strong) id<FLNetworkStream> networkStream;
-@property (readwrite, strong) FLFinisher* finisher;
+@property (readwrite, strong) FLFinisher* cancelFinisher;
 @property (readwrite, strong) FLTimeoutTimer* timeoutTimer;
 @property (readwrite, assign) FLNetworkConnectionByteCount writeByteCount;
 @property (readwrite, assign) FLNetworkConnectionByteCount readByteCount;
-@property (readwrite, assign) BOOL wasCancelled;
 
 - (void) setTimedOut:(FLTimeoutTimer*) timer;
 @end
@@ -30,13 +29,11 @@ const FLNetworkConnectionByteCount FLNetworkConnectionByteCountZero = {0, 0, 0};
 
 //@synthesize retryCount = _retryCount;
 
-@synthesize finisher = _finisher;
+@synthesize cancelFinisher = _cancelFinisher;
 @synthesize networkStream = _networkStream;
 @synthesize timeoutTimer = _timeoutTimer;
 @synthesize writeByteCount = _writeByteCount;
 @synthesize readByteCount = _readByteCount;
-
-synthesize_(wasCancelled);
 
 - (id) init {
     if((self = [super init])) {
@@ -68,7 +65,7 @@ synthesize_(wasCancelled);
 
 #if FL_MRC
     [_timeoutTimer release];
-    [_finisher release];
+    [_cancelFinisher release];
     [_networkStream release];
     super_dealloc_();
 #endif
@@ -126,6 +123,10 @@ synthesize_(wasCancelled);
 
 - (void) networkStreamDidClose:(id<FLNetworkStream>) networkStream {
     [self.timeoutTimer touchTimestamp];
+    
+    if(self.cancelFinisher) {
+        [self.cancelFinisher setFinished];
+    }
 }
 
 - (id) resultFromStream:(id<FLNetworkStream>) stream {
@@ -193,22 +194,35 @@ synthesize_(wasCancelled);
     }];
 }
 
-- (BOOL) requestCancel:(dispatch_block_t) cancelCompletionOrNil {
-    BOOL shouldCancel = NO;
-    if(!self.wasCancelled) {
-        @synchronized(self) {
-            if(!self.wasCancelled && self.networkStream.isOpen) {
-                shouldCancel = YES;
-                self.wasCancelled = YES;
+- (BOOL) wasCancelled {
+    return self.cancelFinisher && self.cancelFinisher.isFinished;
+}
+
+- (BOOL) cancelWasRequested {
+    return self.cancelFinisher != nil;
+}
+
+- (FLFinisher*) requestCancel:(FLResultBlock) completion {
+
+    FLFinisher* finisher = [FLFinisher finisherWithResultBlock:completion];
+
+    @synchronized(self) {
+        if(!self.cancelFinisher) {
+            self.cancelFinisher = finisher;
+            
+            if(self.networkStream.isOpen) {
+                [self.networkStream closeStreamWithResult:[NSError cancelError]];
             }
+            else {
+                [self.cancelFinisher setFinished];
+            }
+        }
+        else {
+            [self.cancelFinisher addSubFinisher:finisher];
         }
     }
 
-    if(shouldCancel) {
-        [self.networkStream closeStreamWithResult:[NSError timeoutError]];
-    }
-    
-    return YES;
+    return finisher;
 }
 
 - (void) networkStreamDidWriteBytes:(id<FLWriteStream>) stream {

@@ -17,7 +17,10 @@
 - (id) initWithFolder:(FLFolder*) folder 
              fileName:(NSString*) fileName {
 	if((self = [super init])) {
-		self.folder = folder;
+		FLAssertIsNotNil_(folder);
+		FLAssertStringIsNotEmpty_(fileName);
+		
+        self.folder = folder;
 		self.fileName = fileName;
 	}
 	return self;
@@ -37,33 +40,45 @@
 	[_folder deleteFile:self.fileName];
 }
 
-- (void) writeToFile {
-	[_folder writeObjectToFile:self.fileName object:self];
+- (void) writeDataToFile:(NSData*) data {
+	[_folder writeDataToFile:self.fileName data:data];
+}
+
+- (void) writeObjectToFile:(id) object {
+	[_folder writeObjectToFile:self.fileName object:object];
 }
 
 - (BOOL) fileExists {
 	return [_folder fileExistsInFolder:self.fileName];
 }
 
-- (BOOL) readFromFile {
-	@try {
-		if([_folder fileExistsInFolder:self.fileName])
-		{
-			id contents = [_folder readObjectFromFile:self.fileName];
-			
-            if(contents)
-            {
-                FLMergeObjects(self, contents, FLMergeModeSourceWins);
-            }
-			
-			return YES;
-		}
-	}
-	@catch(NSException* ex) {
-		FLDebugLog(@"exception loading folderFile: %@", [ex description]);
-	}
-	
-	return NO;
+- (id) readObjectFromFile {
+	return [_folder readObjectFromFile:self.fileName];
 }
+
+- (NSData*) readDataFromFile {
+    return [_folder readDataFromFile:self.fileName];
+}
+
+- (unsigned  long long) fileSize {
+	return [_folder sizeForFileName:self.fileName];
+}
+
+- (id) copyWithZone:(NSZone *)zone {
+	return [[[self class] alloc] initWithFolder:self.folder fileName:self.fileName];
+}
+
+- (NSInputStream*) createReadStream {
+
+	if(!self.fileExists)
+	{
+		FLThrowError_([NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorFileDoesNotExist 
+			userInfo:[NSDictionary dictionaryWithObject:@"file is missing - can't create read stream" forKey:NSLocalizedFailureReasonErrorKey]]);
+	}
+
+	return autorelease_([[NSInputStream alloc] initWithFileAtPath:self.filePath]);
+}
+
+
 
 @end

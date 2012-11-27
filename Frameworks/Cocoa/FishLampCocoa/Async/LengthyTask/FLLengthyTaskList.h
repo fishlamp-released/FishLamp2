@@ -1,24 +1,25 @@
+////
+////  FLLengthyTaskList.h
+////  FishLamp
+////
+////  Created by Mike Fullerton on 7/2/11.
+////  Copyright 2011 GreenTongue Software. All rights reserved.
+////
 //
-//  FLLengthyTaskList.h
-//  FishLamp
+//#import <Foundation/Foundation.h>
+//#import "FishLampCore.h"
 //
-//  Created by Mike Fullerton on 7/2/11.
-//  Copyright 2011 GreenTongue Software. All rights reserved.
+//#import "FLLengthyTask.h"
+//#import "FLOperationQueue.h"
 //
-
-#import <Foundation/Foundation.h>
-#import "FishLampCore.h"
-
-#import "FLLengthyTask.h"
-
-@interface FLLengthyTaskList : FLLengthyTask<FLLengthyTaskDelegate> {
-@private
-	NSMutableArray* _taskList;
-	FLLengthyTask* _currentTask;
-}
-
-@property (readonly, assign, nonatomic) NSUInteger count;
-
-- (void) addLengthyTask:(FLLengthyTask*) task;
-
-@end
+//@interface FLLengthyTaskList : FLOperation<FLLengthyTaskDelegate> {
+//@private
+//    FLOperationQueue* _tasks;
+//	FLLengthyTask* _currentTask;
+//}
+//
+//@property (readonly, assign, nonatomic) NSUInteger count;
+//
+//- (void) addLengthyTask:(FLLengthyTask*) task;
+//
+//@end

@@ -8,29 +8,28 @@
 
 #import <Foundation/Foundation.h>
 #import "FishLampCore.h"
+#import "FLCancellable.h"
+#import "FLContextual.h"
+#import "FLOperation.h"
 
 @protocol FLLengthyTaskDelegate;
 
-#import "FLCancellable.h"
-#import "FLContextual.h"
 
-@interface FLLengthyTask : FLContextual<FLCancellable> {
+@interface FLLengthyTask : FLOperation {
 @private
-    BOOL _wasCancelled;
     BOOL _started;
 	NSString* _name;
 	NSUInteger _totalStepCount;
 	NSUInteger _currentStep;
-	__unsafe_unretained id<FLLengthyTaskDelegate> _delegate;
+    __unsafe_unretained id<FLLengthyTaskDelegate> _delegate;
 }
 
 + (id) lengthyTask;
 
 @property (readwrite, strong, nonatomic) NSString* taskName;
-
 @property (readwrite, assign) id<FLLengthyTaskDelegate> delegate;
-
-- (void) executeTask;
+@property (readonly, assign, nonatomic) NSUInteger totalStepCount;
+@property (readwrite, assign, nonatomic) NSUInteger stepCount;
 
 // override points.
 - (void) prepareTask;
@@ -39,9 +38,6 @@
 - (BOOL) shouldExecuteTask; // default returns YES
 - (void) beginSelf;
 
-@property (readonly, assign, nonatomic) NSUInteger totalStepCount;
-
-@property (readwrite, assign, nonatomic) NSUInteger stepCount;
 - (void) setStepCount:(NSUInteger) stepCount
        totalStepCount:(NSUInteger) totalStepCount;
 

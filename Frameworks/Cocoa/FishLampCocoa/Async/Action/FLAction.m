@@ -25,68 +25,55 @@
 @end
 
 @interface FLAction ()
-@property (readwrite, strong) FLOperationQueue* operations;
 @end
 
-static FLCallback_t s_failedCallback;
-static id<FLActionErrorDelegate> s_errorDisplayDelegate = nil;
-
 @implementation FLAction
-
-+ (void) setActionErrorDelegate:(id<FLActionErrorDelegate>) delegate {
-    s_errorDisplayDelegate = delegate;
-}
 
 @synthesize lastWarningTimestamp = _lastWarningTimestamp;
 @synthesize minimumTimeBetweenWarnings = _minimumTimeBetweenWarnings;
 @synthesize onShowNotification = _willShowNotificationCallback;
 @synthesize onUpdateProgress = _progressCallback;
-@synthesize actionDescription = _actionDescription;
 @synthesize progressController = _progress;
 @synthesize operations = _operations;
 @synthesize didSucceed = _didSucceed;
+@synthesize starting = _startingBlock;
+@synthesize handledError = _handledError;
+@synthesize disableErrorNotifications = _disableErrorNotifications;
+@synthesize disableWarningNotifications = _disableWarningNotifications;
+@synthesize disableActivityTimer = _disableActivityTimer;
+@synthesize networkRequired = _networkRequired;
 
-synthesize_(starting)
-synthesize_(finished)
+static FLCallback_t s_failedCallback;
+static id<FLActionErrorDelegate> s_errorDisplayDelegate = nil;
 
-FLSynthesizeStructProperty(handledError, setHandledError, BOOL, _actionFlags)
-FLSynthesizeStructProperty(disableErrorNotifications, setDisableErrorNotifications, BOOL, _actionFlags)
-FLSynthesizeStructProperty(disableWarningNotifications, setDisableWarningNotifications, BOOL, _actionFlags)
-FLSynthesizeStructProperty(disableActivityTimer, setDisableActivityTimer, BOOL, _actionFlags)
-FLSynthesizeStructProperty(networkRequired, setNetworkRequired, BOOL, _actionFlags);
-
-//- (FLOperationQueue*) operations {
-//    return self;
-//}
++ (void) setActionErrorDelegate:(id<FLActionErrorDelegate>) delegate {
+    s_errorDisplayDelegate = delegate;
+}
 
 - (BOOL) willSendDeallocNotification {
     return YES;
 }
 
 - (id) init {
-//    self = [super initWithRunner:[FLOperationQueueRunner instance]];
-    self = [super init];
-	if(self) {
-        _minimumTimeBetweenWarnings = FLActionMinimumTimeBetweenWarnings;
-		_actionDescription = [[FLActionDescription alloc] init];
-        _operations = [[FLOperationQueue alloc] init];
-        [_operations addObserver:self];
-    }
-	
-	return self;
+    return [self initWithActionType:nil];
 }
 
 - (id) initWithActionType:(NSString*) actionType {
-	if((self = [self init])) {
-		self.actionDescription.actionType = actionType;
-	}
-	return self;
+    return [self initWithActionType:nil actionItemName:nil];
 }
 
 - (id) initWithActionType:(NSString*) actionType actionItemName:(NSString*) actionItemName {
 	if((self = [self init])){
-		self.actionDescription.actionType = actionType;
-		self.actionDescription.actionItemName = actionItemName;
+        _minimumTimeBetweenWarnings = FLActionMinimumTimeBetweenWarnings;
+		_actionDescription = [[FLActionDescription alloc] init];
+        _operations = [[FLOperationQueue alloc] init];
+        [_operations addObserver:self];
+		if(FLStringIsNotEmpty(actionType)) {
+            _actionDescription.actionType = actionType;
+        }
+        if(FLStringIsNotEmpty(actionItemName)) {
+            _actionDescription.actionItemName = actionItemName;
+        }
 	}
 	return self;
 }
@@ -201,54 +188,42 @@ TODO("MF: fix activity updater");
 }
 #endif
 
-- (id) result {
-    if(!self.error) {
-//        if(!output) {
-            for(FLOperation* operation in self.operations.reverseIterator) {
-                id operationOutput = operation.operationOutput;
-                if(operationOutput) {
-                    return operationOutput;
-                }
-            };
-//        }
-    }
-    
-    return nil;
-}
-
 - (void) dealloc {
+#if FL_MRC    
+    FLSendDeallocNotification();
+#endif
+
 	[self closeNotification];
     [_operations removeObserver:self];
 
 #if FL_MRC    
-    [_finished release];
-    [_starting release];
+    [_actionDescription release];
+    [_startingBlock release];
     [_operations release];
-    release_(_progressCallback);
-    release_(_willShowNotificationCallback);
-    release_(_progress);
-    release_(_actionDescription);
+    [_progressCallback release];
+    [_willShowNotificationCallback release];
+    [_progress release];
     [super dealloc];
 #endif        
 }
 
 - (NSString*) itemNameInProgress{
-    return self.actionDescription.itemNameInProgress;
+    return _actionDescription.itemNameInProgress;
 }
 - (void) setItemNameInProgress:(NSString*) actionItemName {
-    self.actionDescription.itemNameInProgress = actionItemName;
+    _actionDescription.itemNameInProgress = actionItemName;
 }
 - (NSString*) actionItemName {
-    return self.actionDescription.actionItemName;
+    return _actionDescription.actionItemName;
 }
 - (void) setActionItemName:(NSString*) actionItemName {
-    self.actionDescription.actionItemName = actionItemName;
+    _actionDescription.actionItemName = actionItemName;
 }
 - (void) setActionType:(NSString*) actionType {
-    self.actionDescription.actionType = actionType;
+    _actionDescription.actionType = actionType;
 }
 - (NSString*) actionType {
-    return self.actionType;
+    return _actionDescription.actionType;
 }
 
 - (void) notificationViewUserClosed:(id) view {
@@ -289,10 +264,6 @@ TODO("MF: fix activity updater");
 	}
 }
 
-- (void) respondToCancelEvent:(id) sender {
-	[self requestCancel];
-}
-
 - (void) showProgress {
 	if(_progress) {
 		if(_actionDescription) {
@@ -319,7 +290,7 @@ TODO("MF: fix activity updater");
     [self showProgress];
 }
 
-- (void) actionFinished {
+- (id) actionFinished:(id) result {
     if(_progress) {
         [_progress hideProgress];
     }
@@ -336,12 +307,11 @@ TODO("MF: fix activity updater");
         }
     }
     @catch(NSException* ex) {
-    // derp
+        FLAssertFailed_v(@"should never get exception in action finished: %@", [ex description]);
+        @throw;
     }
     
-    if(self.finished) {
-        self.finished(self);
-    }
+    return result;
 }
 
 - (id) failedOperation {
@@ -354,121 +324,68 @@ TODO("MF: fix activity updater");
 }
 
 - (BOOL) wasCancelled {
-    for(FLOperation* operation in self.operations.reverseIterator) {
-        if(operation.wasCancelled) {
-            return YES;
-        }
-    }
-    
-    return NO;
+    return self.operations.wasCancelled;
 }
 
 - (NSError*) error {
     return [self.failedOperation error];
 }
 
-- (void) requestCancel {
-    [self.operations cancelAllOperations];
+- (BOOL) cancelWasRequested {
+    return self.operations.cancelWasRequested;
 }
 
-//- (NSError*) runSynchronously {
-//    return [self runSynchronouslyWithAsyncTask:[FLFinisher finisher]];;
-//}
-//
-//- (id) runSynchronouslyWithAsyncTask:(id) asyncTask {
-//    [self startAction:asyncTask];
-//    [asyncTask waitUntilFinished];
-//    return [asyncTask result];
-//}
-
-- (FLFinisher*) startAction {
-    return [self startActionInContext:nil];
+- (FLFinisher*) requestCancel:(FLResultBlock) completion {
+    return [self.operations requestCancel:completion];
 }
 
-- (FLFinisher*) startActionInContext:(FLOperationContext*) context {
+- (FLFinisher*) startAction:(FLResultBlock) resultBlock {
+    return [self startActionInContext:nil completion:resultBlock];
+}
 
-    FLOperationQueueRunner* runner = [FLOperationQueueRunner operationQueueRunner:self.operations];
-    if(context) {
-        [context addOperation:runner];
-    }
+- (FLFinisher*) startActionInContext:(FLOperationContext*) context 
+                          completion:(FLResultBlock) resultBlock {
+
+FIXME("context and actions");
+//    FLOperationQueueRunner* runner = [FLOperationQueueRunner operationQueueRunner:self.operations];
+//    if(context) {
+//        [context addOperation:runner];
+//    }
         
-    FLFinisher* finisher = [FLFinisher finisher];
+    FLFinisher* finisher = [FLFinisher finisherWithResultBlock:resultBlock];
     
     [FLForegroundQueue dispatchBlock:^{
         [self actionStarted];
         
         [FLHighPriorityQueue dispatchBlock:^{
-            [runner runSynchronously];
+            id result = [self.operations runSynchronously];
             
             [FLForegroundQueue dispatchBlock:^{
-                [self actionFinished];
-                [finisher setFinished];
+                [finisher setFinishedWithResult:[self actionFinished:result]];
             }];
             
         }];
     }];
 
     return finisher;
-    
-    
-    
-//    FLBackgroundJob* bgJob = [FLBackgroundJob job];
-//    [fgJob addWorker:bgJob];
-//
-//
-//    [bgJob addWorker:runner];
-//    
-//    return [[FLForegroundQueue instance] dispatchWorker:fgJob completion:completion];
-
-
-//    _didSucceed = NO;
-//    
-//    starting = FLCopyBlock(starting);
-//    
-//    FLFinisher* actionFinisher = [FLFinisher finisher:completion];
-//    
-//    
-//    FLAsyncFinisherBlock finishActionInMainThread = ^(FLFinisher finisher){
-//        [self actionFinished];
-//
-//        if(context) {
-//            [context removeOperation:runner];
-//        }
-//
-//        [actionFinisher setFinished];
-//        [asyncTask setFinished];
-//    };
-//
-//    FLAsyncFinisherBlock startActionInMainThread = ^(FLFinisher finisher){
-//        if(starting) {
-//            starting();
-//        }
-//        [self actionStarted];
-//        [[FLDispatchQueue instance] dispatchWorker:runner completion: ^(id result) {
-//            [[FLForegroundQueue instance] dispatchAsyncBlock:finishActionInMainThread]; }];
-//        
-//        [asyncTask setFinished];
-//    };
-//    
-//
-//    [[FLForegroundQueue instance] dispatchAsyncBlock:startActionInMainThread];
-//
-//    return actionFinisher;
 }
 
 - (id) runSynchronously {
-    return [[self startAction] waitUntilFinished];
+    return [[self startAction:nil] waitUntilFinished];
 }
 
 - (id) firstOperation {
     return self.operations.firstOperation;
 }
+
 - (id) lastOperation {
     return self.operations.lastOperation;
 }
+
 - (id) lastOperationOutput {
     return self.operations.lastOperationOutput;
 }
+
 - (void) addOperation:(FLOperation*) operation {
     [self.operations addOperation:operation];
 }

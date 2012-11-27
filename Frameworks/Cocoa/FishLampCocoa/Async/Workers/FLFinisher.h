@@ -37,7 +37,8 @@ typedef void (^FLRequestCancelBlock)();
     FLRequestCancelBlock _requestCancelBlock;
     SEL _resultNotificationAction;
     __unsafe_unretained id _resultNotificationTarget;
-    
+    BOOL _cancelled;
+    BOOL _cancelWasRequested;
 }
 
 - (id) initWithResultBlock:(FLResultBlock) resultBlock;
@@ -57,5 +58,12 @@ typedef void (^FLRequestCancelBlock)();
 // for rescheduling finish on different threads.
 @property (readwrite, copy) FLFinisherNotificationScheduler notificationScheduler;
 - (void) scheduleFinishOnMainThread;
+
+@end
+
+@interface FLFinisher (FLCancellable)
+
+- (void) setObjectWasCancelled:(id<FLCancellable>) object 
+         setCancelled:(dispatch_block_t) setCancelled;
 
 @end

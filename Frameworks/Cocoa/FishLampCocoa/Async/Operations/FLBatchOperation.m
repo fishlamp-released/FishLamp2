@@ -11,13 +11,14 @@
 @interface FLBatchOperation ()
 @property (readwrite, assign) NSUInteger completedCount;
 @property (readwrite, assign) NSUInteger batchCount;
-
+@property (readonly, strong) NSArray* queue;
 @end
 
 @implementation FLBatchOperation
 
 @synthesize completedCount = _completedCount;
 @synthesize batchCount = _batchCount;
+@synthesize queue = _queue;
 
 - (id) init {
     self = [super init];
@@ -48,7 +49,7 @@
 
 - (void) runSelf {
 
-    while(!self.didFail && !self.wasCancelled) {
+    while(YES) {
     
         id object = nil;
         @synchronized(self) {
@@ -61,6 +62,8 @@
         if(!object) {
             break;
         }
+        
+        [self abortIfNeeded];
         
         [self processBatchObject:object];
 

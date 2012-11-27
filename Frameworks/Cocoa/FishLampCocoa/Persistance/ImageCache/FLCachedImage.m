@@ -14,6 +14,7 @@
 @implementation FLCachedImage
 
 @synthesize imageFile = _imageFile;
+
 FLSynthesizeCachedObjectHandlerProperty(FLCachedImage);
 
 - (id) initWithURL:(NSURL*) url {
@@ -40,10 +41,12 @@ FLSynthesizeCachedObjectHandlerProperty(FLCachedImage);
     return autorelease_([[[self class] alloc] initWithURL:url]);
 }
 
+#if FL_MRC
 - (void) dealloc {
-	FLReleaseWithNil_(_imageFile);
-	super_dealloc_();
+    [_imageFile release];
+    [super dealloc];
 }
+#endif
 
 - (void) setUrl:(NSString*) inValue  { 
 	[super setUrl:inValue];
@@ -56,7 +59,7 @@ FLSynthesizeCachedObjectHandlerProperty(FLCachedImage);
 - (void) copySelfTo:(id) object {
 	[super copySelfTo:object];
 	
-	FLJpegFile* file = [[self imageFile] copy];
+	FLImageFile* file = [[self imageFile] copy];
 	[object setImageFile:file];
 	release_(file);
 }

@@ -10,12 +10,12 @@
 #import "FishLampCore.h"
 
 #import "FLCachedImageBaseClass.h"
-#import "FLJpegFile.h"
+#import "FLImage.h"
 
 // TODO: store url as NSURL in superclass
 @interface FLCachedImage : FLCachedImageBaseClass {
 @private
-	FLJpegFile* _imageFile;
+	FLImage* _imageFile;
 }
 
 - (id) initWithURL:(NSURL*) url;
@@ -25,6 +25,6 @@
 + (FLCachedImage*) cachedImageWithUrlString:(NSString*) url;
 + (FLCachedImage*) cachedImage;
 
-@property (readwrite, retain, nonatomic) FLJpegFile* imageFile;
+@property (readwrite, retain, nonatomic) FLImage* imageFile;
 
 @end

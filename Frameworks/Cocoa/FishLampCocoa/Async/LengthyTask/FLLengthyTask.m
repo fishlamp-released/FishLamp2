@@ -10,14 +10,9 @@
 
 //#define SLOW 1
 
-@interface FLLengthyTask ()
-@property (readwrite, assign) BOOL wasCancelled; // needs to be atomic.
-@end
-
 @implementation FLLengthyTask
 
-+ (id) lengthyTask
-{
++ (id) lengthyTask {
 	return autorelease_([[[self class] alloc] init]);
 }
 
@@ -25,19 +20,19 @@
 @synthesize stepCount = _currentStep;
 @synthesize totalStepCount = _totalStepCount;
 @synthesize delegate = _delegate;
-@synthesize wasCancelled = _wasCancelled;
 
-- (BOOL) requestCancel:(dispatch_block_t) cancelCompletionOrNil {
-    self.wasCancelled = YES;
-    return YES;
+#if FL_MRC
+- (void) dealloc {
+    [_name release];
+    [super dealloc];
 }
+#endif
 
 - (NSUInteger) calculateTotalStepCount {
 	return 1;
 }
 
 - (void) prepareTask {
-	self.wasCancelled = NO;
     _started = NO;
 	_currentStep = 0;
 	_totalStepCount = [self calculateTotalStepCount];
@@ -55,8 +50,11 @@
     return YES;
 }
 
-- (void) executeTask {
+- (void) runSelf {
+
     if([self shouldExecuteTask] && (!_delegate || [_delegate lengthyTaskShouldBegin:self])) {
+        [self prepareTask];
+        
         _currentStep = 0;
         _started = YES;
         [_delegate lengthyTaskWillBegin:self];
@@ -84,14 +82,15 @@
     [self setStepCount:_currentStep + 1];
 }
 
-
 - (void) setStepCount:(NSUInteger) stepCount
                totalStepCount:(NSUInteger) totalStepCount {
 
 	_currentStep = stepCount;
     _totalStepCount = totalStepCount;
     if(_started ) {
-        FLThrowIfCancelled(self);
+
+        [self abortIfNeeded];
+        
         FLAssert_v(_currentStep <= _totalStepCount - 1, @"current step exceeded total");
         [_delegate lengthyTaskDidIncrementStep:self];
 
@@ -102,15 +101,5 @@
     
 //	_currentStep = MIN(_currentStep + 1, _totalStepCount);
 }
-
-#if FL_MRC
-- (void) dealloc {
-	release_(_name);
-	super_dealloc_();
-}
-#endif
-
-
-
 
 @end

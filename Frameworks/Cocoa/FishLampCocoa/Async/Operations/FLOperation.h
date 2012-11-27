@@ -32,18 +32,16 @@ typedef void (^FLRunOperationBlock)(FLOperation* operation);
 	FLRunOperationBlock _runBlock;
 
 // deciders
-    id<FLPredicate> _predicate;
     BOOL _disabled;
 
 // state
     int32_t _busy;
-    BOOL _wasCancelled;
 
 // run state (reset with each run)
     NSError* _error;
     BOOL _wasStarted;
     BOOL _isFinished;
-    BOOL _didFail;
+    FLFinisher* _cancelFinisher;
 }
 
 @property (readwrite, strong) id operationInput;
@@ -75,9 +73,6 @@ typedef void (^FLRunOperationBlock)(FLOperation* operation);
 @property (readonly, assign) BOOL didSucceed;   // didRun && error = nil && !wasCancelled
 @property (readonly, assign) BOOL didRun;
 @property (readwrite, strong) NSError* error;
-
-/// a nil predicate is the same as a YES predicate
-@property (readwrite, strong) id<FLPredicate> predicate;
 
 - (id) init;
 - (id) initWithRunBlock:(FLRunOperationBlock) block;
@@ -115,6 +110,8 @@ typedef void (^FLRunOperationBlock)(FLOperation* operation);
 
 /// @brief this is called for you to respond to if requestCancel is called
 - (void) cancelSelf;
+
+- (void) abortIfNeeded;
 
 @end
 

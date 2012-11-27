@@ -72,18 +72,18 @@
 }
 
 - (void) _appWillResignActive:(id) sender {
-	if(_state.isOpening) {
-    	_state.isOpening = NO;
+	if(_isOpening) {
+    	_isOpening = NO;
     }
-    if(_state.upgrading) {
-        _state.upgrading = NO;
+    if(_upgrading) {
+        _upgrading = NO;
     }
     
     FLReleaseWithNil_(_upgradeTaskList);
 }
 
 - (void) _appWillBecomeActive:(id) sender {
-	if(!self.isServiceOpen && _state.willOpen) {
+	if(!self.isServiceOpen && _willOpen) {
         [self _beginOpeningService];
     }
 }
@@ -143,7 +143,7 @@
 
 
 - (BOOL) isServiceOpen {
-	return _state.open;
+	return _open;
 }	 
  
 - (void) deleteServiceData  {
@@ -199,9 +199,9 @@
 		FLAssertIsNil_v(_cacheDatabase, nil);
 		FLAssertIsNil_v(_documentsDatabase, nil);
 		
-		_state.open = NO;
-		_state.willOpen = NO;
-		_state.isOpening = NO;
+		_open = NO;
+		_willOpen = NO;
+		_isOpening = NO;
 		
         [super closeService];
         
@@ -209,7 +209,7 @@
     }
 }
 
-- (void) _initServiceObjectsIfNeeded {
+- (void) initServiceObjectsIfNeeded {
     NSArray* cachePaths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
     NSString* userCacheFolder = [cachePaths objectAtIndex: 0];
 
@@ -268,9 +268,9 @@
 }
 
 - (void) finishOpeningService {
-	_state.open = YES;
-	_state.willOpen = NO;
-	_state.isOpening = NO;
+	_open = YES;
+	_willOpen = NO;
+	_isOpening = NO;
 
 //    self.backgroundTasks = [FLBackgroundTaskMgr create];
 //    [self addAppService:_backgroundTasks];
@@ -280,56 +280,60 @@
 //    }];
 }
 
-- (BOOL) _beginOpeningService
-{
-	if([self.context userLogin] && _state.open == NO && !_state.isOpening && _state.willOpen)
-	{
-		_state.isOpening = YES;
-
-		[self _initServiceObjectsIfNeeded];
-		
-		FLApplicationDataVersion* input = [FLApplicationDataVersion applicationDataVersion];
+- (BOOL) runUpgradeTasksIfNeeded {
+    
+    FLApplicationDataVersion* input = [FLApplicationDataVersion applicationDataVersion];
 		input.userGuid = [self.context userLogin].userGuid;
 		
-		FLApplicationDataVersion* dataVersion = [[FLApplicationDataModel instance].database loadObject:input];
+    FLApplicationDataVersion* dataVersion = [[FLApplicationDataModel instance].database loadObject:input];
 		
-        // TODO: show error on downgrade?
+    if( (dataVersion == nil) || 
+        FLStringIsEmpty(dataVersion.versionString) ||
+        !FLStringsAreEqual(dataVersion.versionString, [NSFileManager appVersion]))
+    {
+        _upgrading = YES;
+    
+        _upgradeTaskList = [[FLVersionUpgradeLengthyTaskList alloc] initWithFromVersion:dataVersion.versionString toVersion:[NSFileManager appVersion]];
         
-		if( (dataVersion == nil) || 
-            FLStringIsEmpty(dataVersion.versionString) ||
-            !FLStringsAreEqual(dataVersion.versionString, [NSFileManager appVersion]))
-        {
-			_state.upgrading = YES;
+        if([_cacheDatabase databaseNeedsUpgrade]) {
+            [_upgradeTaskList addOperation:[FLUpgradeDatabaseLengthyTask upgradeDatabaseLengthyTask:_cacheDatabase]];
+        }
+
+        if([_documentsDatabase databaseNeedsUpgrade]) {
+            [_upgradeTaskList addOperation:[FLUpgradeDatabaseLengthyTask upgradeDatabaseLengthyTask:_documentsDatabase]];
+        }
+        
+        [self postObservation:@selector(userDataService:appVersionWillChange:) withObject:_upgradeTaskList];
+        
+        _upgradeTaskList.progressController = [[self class] createVersionUpgradeProgressViewController];
+        [_upgradeTaskList.progressController setTitle:[NSString stringWithFormat:(NSLocalizedString(@"Updating to Version: %@", nil)), [NSFileManager appVersion]]];
+
+        id result = [_upgradeTaskList runSynchronously];
+        
+        if([result error]) {
+            // TODO: Ok, now what?
+        }
+        else {
+            [self finishUpgradeTasks];
+        }
+        
+        return YES;
+
+    }
+    
+    return NO;
+
+}
+
+- (BOOL) _beginOpeningService
+{
+	if([self.context userLogin] && _open == NO && !_isOpening && _willOpen)
+	{
+		_isOpening = YES;
+
+		[self initServiceObjectsIfNeeded];
 		
-			_upgradeTaskList = [[FLVersionUpgradeLengthyTaskList alloc] initWithFromVersion:dataVersion.versionString toVersion:[NSFileManager appVersion]];
-		
-			if([_cacheDatabase databaseNeedsUpgrade]) {
-				[_upgradeTaskList addLengthyTask:[FLUpgradeDatabaseLengthyTask upgradeDatabaseLengthyTask:_cacheDatabase]];
-			}
-
-			if([_documentsDatabase databaseNeedsUpgrade]) {
-				[_upgradeTaskList addLengthyTask:[FLUpgradeDatabaseLengthyTask upgradeDatabaseLengthyTask:_documentsDatabase]];
-			}
-            
-            [self postObservation:@selector(userDataService:appVersionWillChange:) withObject:_upgradeTaskList];
-
-            FLAction* action = [FLAction action];
-            action.actionDescription.actionType = FLActionDescriptionTypeUpdate;
-            [action addOperation: [FLLengthyTaskOperation lengthyTaskOperation:_upgradeTaskList]];
-            
-            action.progressController = [[self class] createVersionUpgradeProgressViewController:_upgradeTaskList];
-            [action.progressController setTitle:[NSString stringWithFormat:(NSLocalizedString(@"Updating to Version: %@", nil)), [NSFileManager appVersion]]];
-
-            [[action startAction] waitUntilFinished];
-//            if([ isError]) {
-//                // TODO: Ok, now what?
-//            }
-//            else {
-                 [self finishUpgradeTasks];
-//            }
-            
-		}
-		else {
+        if(![self runUpgradeTasksIfNeeded]) {
             [self finishOpeningService];
 		}
 	}
@@ -340,17 +344,17 @@
 - (void) openService {
 	[self closeService];
     FLAssert_v(FLStringIsNotEmpty([self.context userLogin].userName), @"invalid userLogin");
-    _state.willOpen = YES;
-    _state.isOpening = NO;
-    _state.open = NO;
-    _state.upgrading = NO;
+    _willOpen = YES;
+    _isOpening = NO;
+    _open = NO;
+    _upgrading = NO;
     [self _beginOpeningService];
     
     [super openService];
 }
 
 - (void) finishUpgradeTasks {	
-	if(_state.upgrading) {
+	if(_upgrading) {
 		FLAssertIsNotNil_v([self.context userLogin], nil);
 		FLAssert_v(_upgradeTaskList != nil, @"not upgrading");
 		
@@ -360,7 +364,7 @@
 		[[FLApplicationDataModel instance].database saveObject:version];
 
 		FLReleaseWithNil_(_upgradeTaskList);
-		_state.upgrading = NO;
+		_upgrading = NO;
 
         [self finishOpeningService];
 	}

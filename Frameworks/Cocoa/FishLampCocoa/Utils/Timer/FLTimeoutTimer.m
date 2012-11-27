@@ -18,6 +18,7 @@ const NSString* FLTimeoutTimerTimeoutEvent = @"com.fishlamp.timer.timedout";
 @property (readwrite, strong) NSTimer* timer;
 @property (readwrite, assign) NSTimeInterval timestamp;
 @property (readwrite, assign) BOOL timedOut;
+@property (readwrite, strong) FLFinisher* cancelFinisher;
 @end
 
 @implementation FLTimeoutTimer
@@ -26,7 +27,8 @@ const NSString* FLTimeoutTimerTimeoutEvent = @"com.fishlamp.timer.timedout";
 @synthesize finisher = _finisher;
 @synthesize timer = _timer;
 @synthesize timedOut = _timedOut;
-synthesize_(checkFrequency);
+@synthesize checkFrequency = _checkFrequency;
+@synthesize cancelFinisher = _cancelFinisher;
 
 - (id) initWithTimeoutInterval:(NSTimeInterval) interval {
     self = [super init];
@@ -140,17 +142,42 @@ synthesize_(checkFrequency);
     }
 
 #if FL_MRC
+    [_cancelFinisher release];
     [_timer release];
     [super dealloc];
 #endif
 }
 
-- (BOOL) requestCancel:(dispatch_block_t) cancelCompletionOrNil {
-    @synchronized(self) {
-        [self killTimer];
-        self.finisher = nil;
-    }
+- (BOOL) wasCancelled {
+    return self.cancelFinisher && self.cancelFinisher.isFinished;
 }
+
+- (BOOL) cancelWasRequested {
+    return self.cancelFinisher != nil;
+}
+
+- (FLFinisher*) requestCancel:(FLResultBlock) completion {
+
+    FLFinisher* finisher = [FLFinisher finisherWithResultBlock:completion];
+    
+    @synchronized(self) {
+        if(!self.cancelFinisher) {
+            self.cancelFinisher = finisher;
+            
+            [self killTimer];
+            self.finisher = nil;
+        }
+        else {
+            [self.cancelFinisher addSubFinisher:finisher];
+        }
+    }
+    
+    return finisher;
+    
+    
+    return finisher;
+}
+
 
 - (void) touchTimestamp {
     self.timestamp = [NSDate timeIntervalSinceReferenceDate];

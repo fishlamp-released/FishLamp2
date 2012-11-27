@@ -20,11 +20,13 @@
 
 @interface FLOperationQueue ()
 @property (readwrite, strong, nonatomic) NSArray* operations;
+@property (readwrite, strong) FLFinisher* cancelFinisher;
 @end
 
 @implementation FLOperationQueue
 
 @synthesize operations = _operations;
+@synthesize cancelFinisher = _cancelFinisher;
 
 - (id) init {
     self = [super init];
@@ -46,7 +48,9 @@
     for(FLOperation* operation in list) {
         [operation removeObserver:self];
     }
+
 #if FL_MRC 
+    [_cancelFinisher release];
     [list release];
     [super dealloc];
 #endif
@@ -271,13 +275,48 @@
     return [_operations reverseIterator];
 }
 
-- (void) cancelAllOperations {
-    for(FLOperation* operation in self.operations.reverseIterator) {
-        if(operation.didRun) {
-            break;
+- (BOOL) wasCancelled {
+    return self.cancelFinisher.isFinished;
+}
+
+- (BOOL) cancelWasRequested {
+    return self.cancelFinisher != nil;
+}
+
+- (FLFinisher*) requestCancel:(FLResultBlock) completion {
+
+    FLFinisher* finisher = [FLFinisher finisherWithResultBlock:completion];
+
+    @synchronized(self) {
+
+        if(!self.cancelFinisher) {
+            self.cancelFinisher = finisher;
+            
+            int32_t count = 0;
+            __block int32_t cancelledCount = 0;
+            for(FLOperation* operation in self.operations) {
+                if(operation.didRun) {
+                    continue;
+                }
+                ++count;
+                [operation requestCancel:^(FLResult result) {
+                    ++cancelledCount;
+                    
+                    if(cancelledCount == count) {
+                        [self.cancelFinisher setFinished];
+                    }
+                }];
+            }       
         }
-        [operation requestCancel:nil];
+        else {
+            [self.cancelFinisher addSubFinisher:finisher];
+        }
+
     }
+    
+
+    
+    return finisher;
 }
 
 - (void) operationWillRun:(FLOperation*) operation {
@@ -293,7 +332,8 @@
 }
 
 - (id) runSynchronously {
-
+    self.cancelFinisher = nil;
+    
     for(FLOperation* operation in self.operations.forwardIterator) {
         if([[operation runSynchronously] isFailedResult]) {
             return [[operation runSynchronously] error];
@@ -312,77 +352,13 @@
     return [self startOperationsInDispatcher:FLDefaultQueue];
 }
 
-
-
-@end
-
-@implementation FLOperationQueueRunner
-
-- (FLOperationQueue*) operations {
-    return self.operationInput;
-}
-
-- (id) initWithOperationQueue:(FLOperationQueue*) queue {
-    self = [self initWithInput:queue];
-    if(self) {
-    }
-    return self;
-}
-
-+ (id) operationQueueRunner:(FLOperationQueue*) queue {
-    return autorelease_([[[self class] alloc] initWithOperationQueue:queue]);
-}
-
-- (BOOL) requestCancel:(dispatch_block_t) cancelCompletionOrNil  {
-    [self.operations cancelAllOperations];
-    
-    return YES;
-}
-
-- (void) resetRunState {
-    for(FLOperation* operation in self.operations.reverseIterator) {
-        [operation resetRunState];
-    };
-}
-
-- (void) resetRunStateIfNeeded {
-    for(FLOperation* operation in self.operations.reverseIterator) {
-        [operation resetRunStateIfNeeded];
-    };
-}
-
-- (void) syncStateWithOperation:(FLOperation*) operation {
-    if(self.wasCancelled ) {
-        if(!operation.wasCancelled) {
-            [operation requestCancel:nil];
-        }
-    }
-    else if(operation.wasCancelled) {
-        if(!self.wasCancelled) {
-            [self requestCancel:nil];
-        }
-    }
-    else if(operation.error) {
-        self.error = [NSError abortError];
-    }
-    else if(self.error) {
-        operation.error = self.error;
-    }
-}
-
-- (void) runSelf {
-    
-    for(FLOperation* operation in self.operations.forwardIterator) {
-        
-        [operation runSynchronously];
-        [self syncStateWithOperation:operation];
-        
-        if(!operation.didSucceed) {
-            break;
-        }
-    };
-    
+- (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state 
+                                  objects:(id __unsafe_unretained [])buffer 
+                                    count:(NSUInteger)len {
+    return [_operations countByEnumeratingWithState:state objects:buffer count:len];
 }
 
 @end
+
+
 

@@ -25,6 +25,7 @@
 
 @interface FLFinisher ()
 @property (readwrite, strong) FLResult result;
+@property (readwrite, assign) BOOL cancelWasRequested;
 @end
 
 @implementation FLFinisher
@@ -32,6 +33,8 @@
 @synthesize requestCancelBlock = _requestCancelBlock;
 @synthesize result = _result;
 @synthesize notificationScheduler = _notificationScheduler;
+@synthesize cancelled = _cancelled;
+@synthesize cancelWasRequested = _cancelWasRequested;
 
 + (id) finisherWithResultBlock:(FLResultBlock) completion {
     return autorelease_([[[self class] alloc] initWithResultBlock:completion]);
@@ -95,13 +98,12 @@
     return autorelease_([[[self class] alloc] init]);
 }
 
-- (BOOL) requestCancel:(dispatch_block_t) cancelCompletionOrNil {
+- (void) requestCancel:(dispatch_block_t) cancelCompletionOrNil {
     if(_requestCancelBlock) {
+        self.cancelWasRequested = YES;
         _requestCancelBlock();
-        return YES;
+        _cancelled = YES;
     }
-    
-    return NO;
 }
 
 - (void) didFinish {
@@ -199,5 +201,50 @@
 
 
 @end
+
+@implementation FLFinisher (SharedCancelBehavior)
+
+//+ (BOOL) wasCancelled:(id<FLCancellableRequestDelegate>) object {
+//    return [object cancelRequest] && [[object cancelRequest] cancelFinished];
+//}
+//
+//+ (BOOL) cancelWasRequested:(id<FLCancellableRequestDelegate>) object {
+//    return object.cancelRequest != nil;
+//}
+//
+//+ (BOOL) requestCancelWithObject:(id<FLCancellableRequestDelegate>) object
+//                cancelCompletion:(FLCancelBlock) cancelCompletionOrNil {
+//
+//    BOOL shouldCancel = NO;
+//    if([object canCancel]) {
+//        @synchronized(object) {
+//            if([object canCancel]) {
+//                shouldCancel = YES;
+//            }
+//        }
+//    }
+//    if(shouldCancel) {
+//        [object startCancellingWithCancelRequest:[FLCancelRequest cancelRequest:cancelCompletionOrNil]];
+//        return YES;
+//    }
+//
+//    return NO;
+//}
+
+- (void) setObjectWasCancelled:(id<FLCancellable>) object 
+         setCancelled:(dispatch_block_t) setCancelled {
+    if(![object wasCancelled]) {
+        @synchronized(object) {
+            if(![object wasCancelled]) {
+                setCancelled();
+            }
+        }
+    }
+    
+    [self setFinished];
+}
+             
+@end
+
 
 

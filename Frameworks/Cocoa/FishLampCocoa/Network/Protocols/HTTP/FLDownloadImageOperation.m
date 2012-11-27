@@ -34,8 +34,10 @@
         if(data && data.length > 0)
         {
             // note: folder and file name will be set by image cache.
-            FLJpegFile* imageFile = [[FLJpegFile alloc] init];
-            imageFile.jpegData = data;
+            FLImage* imageFile = [[FLImage alloc] init];
+            imageFile.imageBytes = data;
+            // uhoh, how do I tell what type it is???
+FIXME("ambiguous type")            
             photo.imageFile = imageFile;
             FLReleaseWithNil_(imageFile);
             
@@ -48,11 +50,11 @@
 	return self.operationOutput;
 }
 
-- (FLJpegFile*) jpegFileOutput {
+- (FLImage*) jpegFileOutput {
 	return [self cachedImageOutput].imageFile;
 }
 
-- (FLImage*) imageOutput {
+- (NSImage_*) imageOutput {
 	return [self jpegFileOutput].image;
 }
 

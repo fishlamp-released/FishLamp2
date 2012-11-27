@@ -34,7 +34,3 @@ typedef enum {
 @interface FLFrameworkErrorDomain : NSObject<FLErrorDomain>
 @end
 
-@interface NSError (FLCancel)
-+ (NSError*) cancelError;
-@property (readonly, nonatomic, assign) BOOL isCancelError;
-@end

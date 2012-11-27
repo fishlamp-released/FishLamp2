@@ -9,6 +9,7 @@
 #import "FLAbstractFile.h"
 #import "FLFolder.h"
 
+#if 0
 @implementation FLAbstractFile
 
 @synthesize folder = _folder;
@@ -42,76 +43,29 @@
 	return self;
 }
 
-- (void) beginLoadingRepresentation:(FLErrorCallback) finishedLoadingBlock
-{
-    if(finishedLoadingBlock)
-    {
-        finishedLoadingBlock(nil);
-    }
-}
-
-- (void) beginReadFromStorage:(FLErrorCallback) completionBlock
-{
-    if(completionBlock)
-    {
-        completionBlock(nil);
-    }
-}
-- (void) beginWriteToStorage:(FLErrorCallback) completionBlock
-{
-    if(completionBlock)
-    {
-        completionBlock(nil);
-    }
-}
-- (void) beginDeleteFromStorage:(FLErrorCallback) completionBlock
-{
-    if(completionBlock)
-    {
-        completionBlock(nil);
-    }
-}
-
-- (BOOL) existsInStorage
-{
+- (BOOL) existsInStorage {
 	[self _throwIfNotConfigured];
 
 	return [_folder fileExistsInFolder:self.fileName];
 }
 
-- (void) deleteFromStorage
-{
+- (void) deleteFromStorage {
 	[self _throwIfNotConfigured];
 
 	[_folder deleteFile:self.fileName];
 }
 
-- (void) writeToStorage
-{
+- (void) writeToStorage {
 	[self _throwIfNotConfigured];
 }
 
-- (void) readFromStorage
-{
+- (void) readFromStorage {
 	[self _throwIfNotConfigured];
-}
-
-- (void) _throwIfNotConfigured
-{
-	if(!_folder)
-	{
-		FLThrowError_([NSError errorWithDomain:[FLFrameworkErrorDomain instance] code:FLErrorInvalidFolder
-			userInfo:[NSDictionary dictionaryWithObject:@"No Folder Set in FLJpegFile" forKey:NSLocalizedDescriptionKey]]);
-	}
-	if(FLStringIsEmpty(self.fileName))
-	{
-		FLThrowError_([NSError errorWithDomain:[FLFrameworkErrorDomain instance] code:FLErrorInvalidName
-			userInfo:[NSDictionary dictionaryWithObject:@"No FileName Set in FLJpegFile" forKey:NSLocalizedDescriptionKey]]);
-	}
 }
 
 #if FL_MRC
 - (void) dealloc {
+    FLSendDeallocNotification();
 	release_(_fileName);
 	release_(_folder);
     [super dealloc];
@@ -123,9 +77,7 @@
 	return [_folder pathForFile:self.fileName];
 }
 
-- (NSInputStream*) createReadStream
-{
-	[self _throwIfNotConfigured];
+- (NSInputStream*) createReadStream {
 
 	NSString* myPath = [_folder pathForFile:self.fileName];
 
@@ -138,20 +90,17 @@
 	return autorelease_([[NSInputStream alloc] initWithFileAtPath:myPath]);
 }
 
-- (unsigned long long) sizeInStorage
-{
-	[self _throwIfNotConfigured];
+- (unsigned long long) sizeInStorage {
 	return [_folder sizeForFileName:self.fileName];
 }
 
-- (BOOL) canSaveToFile
-{
+- (BOOL) canSaveToFile {
 	return _folder != nil && FLStringIsNotEmpty(_fileName);
 }	
 
-- (id) copyWithZone:(NSZone *)zone
-{
+- (id) copyWithZone:(NSZone *)zone {
 	return [[FLAbstractFile allocWithZone:zone] initWithFolder:self.folder fileName:self.fileName];
 }
 
 @end
+#endif

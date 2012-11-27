@@ -18,9 +18,10 @@ typedef void (^FLOperationQueueVisitor)(id operation, BOOL* stop);
 typedef id (^FLCreateOperationBlock)();
 
 
-@interface FLOperationQueue : FLObservable<FLWorker, FLRunnable> {
+@interface FLOperationQueue : FLObservable<FLWorker, FLRunnable, FLCancellable, NSFastEnumeration> {
 @private
 	NSMutableArray* _operations;
+    FLFinisher* _cancelFinisher;
 }
 
 + (FLOperationQueue*) operationQueue;
@@ -80,25 +81,13 @@ typedef id (^FLCreateOperationBlock)();
 
 - (void) removeAllOperations;
 
-- (void) cancelAllOperations;
-
 - (FLFinisher*) startOperationsInDispatcher:(id<FLDispatcher>) inDispatcher;
 - (FLFinisher*) startOperations;
 
-@end
-
-@interface FLOperationQueue (FLOptionalOverrides)
+// optional overrides
 - (void) operationWasAdded:(FLOperation*) operation;
 - (void) operationWasRemoved:(FLOperation*) operation;
 @end
-
-@interface FLOperationQueueRunner : FLOperation {
-}
-@property (readonly, strong) FLOperationQueue* operations;
-- (id) initWithOperationQueue:(FLOperationQueue*) queue;
-+ (id) operationQueueRunner:(FLOperationQueue*) queue;
-@end
-
 
 @protocol FLOperationQueueObserver <NSObject>
 @optional

@@ -8,14 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import "FishLampCore.h"
+#import "FLAction.h"
 
-#import "FLLengthyTaskList.h"
-
-@interface FLVersionUpgradeLengthyTaskList : FLLengthyTaskList {
+@interface FLVersionUpgradeLengthyTaskList : FLAction {
 @private 
 	NSString* _fromVersion;
 	NSString* _toVersion;
 }
+
 @property (readonly, retain, nonatomic) NSString* fromVersion;
 @property (readonly, retain, nonatomic) NSString* toVersion;
 

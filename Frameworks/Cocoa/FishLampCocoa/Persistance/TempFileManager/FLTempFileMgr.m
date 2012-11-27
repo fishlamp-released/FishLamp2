@@ -12,6 +12,10 @@
 
 #import <dispatch/dispatch.h>
 
+@interface FLTempFileMgr ()
+@property (readwrite, strong) FLFolder* folder;
+@end
+
 @implementation FLTempFileMgr
 
 @synthesize folder = _folder;
@@ -28,8 +32,9 @@
     [self closeService];
 }
 
-- (id) init {
+- (id) initWithFolder:(FLFolder*) folder {
     if((self = [super init])) {
+        self.folder = folder;
     }
     
     return self;
@@ -44,43 +49,29 @@
 }
 #endif
 
-
-- (void) addFile:(id<FLAbstractFile>) file {
+- (void) addFile:(id) file fileName:(NSString*) fileName {
     @synchronized(self) {
         if(!_files) {
             _files = [[NSMutableDictionary alloc] init];
         }
         
-        [_files setObject:[FLWeakReference weakReference:file] forKey:file.fileName];
+        [_files setObject:file forKey:fileName];
     }
 }
 
-- (void) removeFile:(id<FLAbstractFile>) file {
+- (void) removeFile:(NSString*) fileName {
     @synchronized(self) {
-        [_files removeObjectForKey:file.fileName];
+        [_files removeObjectForKey:fileName];
     }
 }
 
-- (BOOL) hasFile:(id<FLAbstractFile>) file {
-    @synchronized(self) {
-        FLWeakReference* ref = [_files objectForKey:file.fileName];
-        return ref && ref.object; 
-    }
-    
-    return NO;
-}
-
-- (void) setFolder:(FLFolder *)folder {
-    @synchronized(self) {
-        FLRetainObject_(_folder, folder);
-        FLReleaseWithNil_(_files);
-    }
+- (BOOL) hasFile:(NSString*) fileName {
+    return [_files objectForKey:fileName] != nil;
 }
 
 - (void) _removeNilFiles {
     NSMutableArray* keysToDelete = nil;
-    for(NSString* fileName in _files)
-    {
+    for(NSString* fileName in _files) {
         FLWeakReference* ref = [_files objectForKey:fileName];
         if(ref.isNil)
         {

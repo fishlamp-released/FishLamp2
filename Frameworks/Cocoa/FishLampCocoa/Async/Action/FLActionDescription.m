@@ -8,33 +8,33 @@
 
 #import "FLActionDescription.h"
 
-NSString* FLActionDescriptionTypeUpload = nil;
-NSString* FLActionDescriptionTypeSave = nil;
-NSString* FLActionDescriptionTypeDownload = nil;
-NSString* FLActionDescriptionTypeWrite = nil;
-NSString* FLActionDescriptionTypeRead = nil;
-NSString* FLActionDescriptionTypeLoad = nil;
-NSString* FLActionDescriptionTypeSync = nil;
-NSString* FLActionDescriptionTypeUpdate= nil;
+NSString* FLActionTypeUpload = nil;
+NSString* FLActionTypeSave = nil;
+NSString* FLActionTypeDownload = nil;
+NSString* FLActionTypeWrite = nil;
+NSString* FLActionTypeRead = nil;
+NSString* FLActionTypeLoad = nil;
+NSString* FLActionTypeSync = nil;
+NSString* FLActionTypeUpdate= nil;
 
-NSString* FLActionDescriptionTypeDelete = nil;
-NSString* FLActionDescriptionTypeMove = nil;
-NSString* FLActionDescriptionTypeRename = nil;
-NSString* FLActionDescriptionTypeRefresh= nil;
-NSString* FLActionDescriptionTypeRemove = nil;
-NSString* FLActionDescriptionTypeAdd = nil;
-NSString* FLActionDescriptionTypeEmpty = nil;
-NSString* FLActionDescriptionTypeSort = nil;
-NSString* FLActionDescriptionTypeRotate = nil;
-NSString* FLActionDescriptionTypeAuthenticate = nil;
-NSString* FLActionDescriptionTypeTake = nil;
-NSString* FLActionDescriptionTypeCreate = nil;
+NSString* FLActionTypeDelete = nil;
+NSString* FLActionTypeMove = nil;
+NSString* FLActionTypeRename = nil;
+NSString* FLActionTypeRefresh= nil;
+NSString* FLActionTypeRemove = nil;
+NSString* FLActionTypeAdd = nil;
+NSString* FLActionTypeEmpty = nil;
+NSString* FLActionTypeSort = nil;
+NSString* FLActionTypeRotate = nil;
+NSString* FLActionTypeAuthenticate = nil;
+NSString* FLActionTypeTake = nil;
+NSString* FLActionTypeCreate = nil;
 
-NSString* FLActionDescriptionTypeFeaturing = nil;
-NSString* FLActionDescriptionTypeUnFeaturing = nil;
+NSString* FLActionTypeFeaturing = nil;
+NSString* FLActionTypeUnFeaturing = nil;
 
-NSString* FLActionDescriptionTypeCopy = nil;
-NSString* FLActionDescriptionTypeOptimize = nil;
+NSString* FLActionTypeCopy = nil;
+NSString* FLActionTypeOptimize = nil;
 
 // --
 
@@ -72,33 +72,33 @@ NSString* FLActionDescriptionItemNameNone = nil;
 
 + (void) initialize
 {
-	FLActionDescriptionTypeUpload = NSLocalizedString(@"Upload,Uploading,Uploaded", nil);
-	FLActionDescriptionTypeSave = NSLocalizedString(@"Save,Saving,Saved", nil);
-	FLActionDescriptionTypeDownload = NSLocalizedString(@"Download,Downloading,Downloaded", nil);
-	FLActionDescriptionTypeWrite = NSLocalizedString(@"Write,Writing,Written", nil);
-	FLActionDescriptionTypeRead = NSLocalizedString(@"Read,Reading,Read", nil);
-	FLActionDescriptionTypeLoad = NSLocalizedString(@"Load,Loading,Loaded", nil);
-	FLActionDescriptionTypeSync = NSLocalizedString(@"Sync,Syncing,Synced", nil);
-	FLActionDescriptionTypeUpdate= NSLocalizedString(@"Update,Updating,Updated", nil);
+	FLActionTypeUpload = NSLocalizedString(@"Upload,Uploading,Uploaded", nil);
+	FLActionTypeSave = NSLocalizedString(@"Save,Saving,Saved", nil);
+	FLActionTypeDownload = NSLocalizedString(@"Download,Downloading,Downloaded", nil);
+	FLActionTypeWrite = NSLocalizedString(@"Write,Writing,Written", nil);
+	FLActionTypeRead = NSLocalizedString(@"Read,Reading,Read", nil);
+	FLActionTypeLoad = NSLocalizedString(@"Load,Loading,Loaded", nil);
+	FLActionTypeSync = NSLocalizedString(@"Sync,Syncing,Synced", nil);
+	FLActionTypeUpdate= NSLocalizedString(@"Update,Updating,Updated", nil);
 
-	FLActionDescriptionTypeDelete = NSLocalizedString(@"Delete,Deleting,Deleted,Deletion", nil);
-	FLActionDescriptionTypeMove = NSLocalizedString(@"Move,Moving,Moved", nil);
-	FLActionDescriptionTypeRename = NSLocalizedString(@"Rename,Renaming,Renamed", nil);
-	FLActionDescriptionTypeRefresh= NSLocalizedString(@"Refresh,Refreshing,Refreshed", nil);
-	FLActionDescriptionTypeRemove = NSLocalizedString(@"Remove,Removing,Removed", nil);
-	FLActionDescriptionTypeAdd = NSLocalizedString(@"Add,Adding,Added", nil);
-	FLActionDescriptionTypeEmpty = NSLocalizedString(@"Empty,Emptying,Emptied", nil);
-	FLActionDescriptionTypeSort = NSLocalizedString(@"Sort,Sorting,Sorted", nil);
-	FLActionDescriptionTypeRotate = NSLocalizedString(@"Rotate,Rotating,Rotated,Rotation", nil);
-	FLActionDescriptionTypeAuthenticate = NSLocalizedString(@"Authenticate,Authenticating,Authenticated,Authentication", nil);
-	FLActionDescriptionTypeTake = NSLocalizedString(@"Take,Taking,Taken", nil);
-	FLActionDescriptionTypeCreate = NSLocalizedString(@"Create,Creating,Created,Creation", nil);
+	FLActionTypeDelete = NSLocalizedString(@"Delete,Deleting,Deleted,Deletion", nil);
+	FLActionTypeMove = NSLocalizedString(@"Move,Moving,Moved", nil);
+	FLActionTypeRename = NSLocalizedString(@"Rename,Renaming,Renamed", nil);
+	FLActionTypeRefresh= NSLocalizedString(@"Refresh,Refreshing,Refreshed", nil);
+	FLActionTypeRemove = NSLocalizedString(@"Remove,Removing,Removed", nil);
+	FLActionTypeAdd = NSLocalizedString(@"Add,Adding,Added", nil);
+	FLActionTypeEmpty = NSLocalizedString(@"Empty,Emptying,Emptied", nil);
+	FLActionTypeSort = NSLocalizedString(@"Sort,Sorting,Sorted", nil);
+	FLActionTypeRotate = NSLocalizedString(@"Rotate,Rotating,Rotated,Rotation", nil);
+	FLActionTypeAuthenticate = NSLocalizedString(@"Authenticate,Authenticating,Authenticated,Authentication", nil);
+	FLActionTypeTake = NSLocalizedString(@"Take,Taking,Taken", nil);
+	FLActionTypeCreate = NSLocalizedString(@"Create,Creating,Created,Creation", nil);
 
-	FLActionDescriptionTypeFeaturing = NSLocalizedString(@"Feature,Featuring,Featured", nil);
-	FLActionDescriptionTypeUnFeaturing = NSLocalizedString(@"Unfeature,Unfeaturing,Unfeatured", nil);
+	FLActionTypeFeaturing = NSLocalizedString(@"Feature,Featuring,Featured", nil);
+	FLActionTypeUnFeaturing = NSLocalizedString(@"Unfeature,Unfeaturing,Unfeatured", nil);
 
-	FLActionDescriptionTypeCopy = NSLocalizedString(@"Copy,Copying,Copied", nil);
-	FLActionDescriptionTypeOptimize = NSLocalizedString(@"Optimize,Optimizing,Optimized,Optimization", nil);
+	FLActionTypeCopy = NSLocalizedString(@"Copy,Copying,Copied", nil);
+	FLActionTypeOptimize = NSLocalizedString(@"Optimize,Optimizing,Optimized,Optimization", nil);
 
 	// --
 

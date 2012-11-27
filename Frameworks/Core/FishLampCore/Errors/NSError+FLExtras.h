@@ -56,3 +56,9 @@
 
 
 @end
+
+@interface NSError (FLCancelling)
++ (NSError*) cancelError;
+@property (readonly, nonatomic, assign) BOOL isCancelError;
+@end
+

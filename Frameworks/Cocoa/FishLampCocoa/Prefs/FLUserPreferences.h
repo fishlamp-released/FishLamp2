@@ -7,14 +7,19 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "FLFolder.h"
 
-#import "FLFolderFile.h"
-
-@interface FLUserPreferences : FLFolderFile<NSCoding> {
+@interface FLUserPreferences : NSObject<NSCoding> {
+@private
+    FLFolder* _folder;
 }
 
-- (id) initWithFolder:(FLFolder*) folder;
++ (id) userPreferences;
++ (id) readFromFolder:(FLFolder*) folder;
 
 - (void) setDefaults;
+- (void) writeToFile;
+
+
 
 @end

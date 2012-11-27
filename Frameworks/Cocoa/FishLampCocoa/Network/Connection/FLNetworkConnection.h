@@ -28,13 +28,13 @@ extern const FLNetworkConnectionByteCount FLNetworkConnectionByteCountZero;
 
 @interface FLNetworkConnection : FLObservable<FLNetworkStreamObserver, FLCancellable> {
 @private
-    FLFinisher* _finisher;
     id<FLNetworkStream> _networkStream;
     FLTimeoutTimer* _timeoutTimer;
     FLNetworkConnectionByteCount _writeByteCount;
     FLNetworkConnectionByteCount _readByteCount;
-    BOOL _wasCancelled;
+    FLFinisher* _cancelFinisher;
 }
+
 @property (readonly, strong) FLTimeoutTimer* timeoutTimer;
 @property (readonly, assign) FLNetworkConnectionByteCount writeByteCount;
 @property (readonly, assign) FLNetworkConnectionByteCount readByteCount;

@@ -11,7 +11,7 @@
 
 #import "FLFolder.h"
 
-@interface FLFolderFile : NSObject {
+@interface FLFolderFile : NSObject<NSCopying> {
 @private
 	NSString* _fileName;
 	FLFolder* _folder;
@@ -19,14 +19,20 @@
 
 - (id) initWithFolder:(FLFolder*) folder fileName:(NSString*) fileName;
 
-@property (readwrite, retain, nonatomic) FLFolder* folder;
-@property (readwrite, retain, nonatomic) NSString* fileName; 
+@property (readwrite, strong, nonatomic) FLFolder* folder;
+@property (readwrite, strong, nonatomic) NSString* fileName; 
+@property (readonly, strong, nonatomic) NSString* filePath;
+@property (readonly, assign) unsigned long long fileSize;
 
-@property (readonly, retain, nonatomic) NSString* filePath;
+- (id) readObjectFromFile;
+- (NSData*) readDataFromFile;
 
-- (void) writeToFile;
-- (BOOL) readFromFile;
+- (void) writeDataToFile:(NSData*) data;
+- (void) writeObjectToFile:(id) object;
+
 - (void) deleteFile;
 - (BOOL) fileExists;
+
+- (NSInputStream*) createReadStream;
 
 @end

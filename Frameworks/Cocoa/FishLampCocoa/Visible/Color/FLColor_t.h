@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "FishLampCore.h"
 
-#import "FLColor+FLExtras.h"
+#import "UIColor+FLExtras.h"
 
 typedef struct {
 	CGFloat red;
@@ -54,7 +54,7 @@ FLColorRange_t FLColorRangeMake(FLColor_t start, FLColor_t end) {
     return range;
 }
 
-@interface FLColor (FLColorUtils) 
+@interface UIColor_ (FLColorUtils) 
 - (FLColor_t) color_t;
-+ (FLColor*) colorWithColor_t:(FLColor_t) color;
++ (UIColor_*) colorWithColor_t:(FLColor_t) color;
 @end

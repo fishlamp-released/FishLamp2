@@ -10,8 +10,6 @@
 #import "FLCore.h"
 #import "FLBlocks.h"
 
-typedef void (^FLGetSizeBlock)(NSError* error, unsigned long long size);
-
 @protocol FLStorableObject <NSObject>
 
 @property (readonly, assign, nonatomic) BOOL canWriteToStorage;
@@ -20,16 +18,7 @@ typedef void (^FLGetSizeBlock)(NSError* error, unsigned long long size);
 @property (readonly, assign, nonatomic) unsigned long long sizeInStorage;
 
 - (NSInputStream*) createReadStream;
-
-- (void) beginLoadingRepresentation:(FLErrorCallback) completionBlock;
-
-- (void) beginReadFromStorage:(FLErrorCallback) completionBlock;
-- (void) beginWriteToStorage:(FLErrorCallback) completionBlock;
-- (void) beginDeleteFromStorage:(FLErrorCallback) completionBlock;
-
 - (void) readFromStorage;
 - (void) writeToStorage;
 - (void) deleteFromStorage; // will throw if not exists!
-
-
 @end

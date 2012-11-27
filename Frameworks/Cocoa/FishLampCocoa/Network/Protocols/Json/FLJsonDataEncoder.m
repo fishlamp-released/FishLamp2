@@ -11,7 +11,7 @@
 #import "FLStringUtils.h"
 #import "FLBase64Encoding.h"
 #import "FLDateMgr.h"
-#import "FLColor+FLExtras.h"
+#import "UIColor+FLExtras.h"
 #import "FLColor_t.h"
 #import "FLCocoaCompatibility.h"
 

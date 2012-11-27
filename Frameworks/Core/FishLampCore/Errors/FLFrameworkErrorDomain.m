@@ -81,17 +81,3 @@ synthesize_singleton_(FLFrameworkErrorDomain);
 @end
 
 
-@implementation NSError (FLCancelError)
-+ (NSError*) cancelError {
-    return [NSError errorWithDomain:[FLFrameworkErrorDomain instance]
-                               code:FLCancelErrorCode
-               localizedDescription:NSLocalizedString(@"Cancelled", @"used in cancel error localized description")];
-
-}
-
-- (BOOL) isCancelError {
-	return	FLStringsAreEqual([[FLFrameworkErrorDomain instance] errorDomainString], self.domain) &&
-			self.code == FLCancelErrorCode; 
-}
-
-@end

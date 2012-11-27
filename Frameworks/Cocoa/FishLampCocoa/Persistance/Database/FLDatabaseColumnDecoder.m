@@ -134,17 +134,18 @@ id FLLegacyDatabaseColumnDecoder(FLDatabase* database,
     return FLDefaultDatabaseColumnDecoder(database, table, column, object);
 }
 
-#if IOS
-@implementation FLImage (SqlObjectDatabase)
+@implementation NSImage_ (SqlObjectDatabase)
 + (id) decodeObjectWithSqliteColumnData:(NSData*) data {
-	return [FLImage imageWithData:data];
+	return [NSImage_ imageWithData:data];
 }
 - (void) bindToStatement:(FLDatabaseIterator*) statement parameterIndex:(int) parameterIndex {
+FIXME("osx");
+#if IOS
 	NSData* data = UIImageJPEGRepresentation(self, 1.0f);
 	[data bindToStatement:statement parameterIndex:parameterIndex];
+#endif    
 }
 + (FLDatabaseType) sqlType {
 	return FLDatabaseTypeObject;
 }
 @end
-#endif

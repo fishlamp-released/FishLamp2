@@ -13,10 +13,8 @@
 @synthesize fromVersion = _fromVersion;
 @synthesize toVersion = _toVersion;
 
-- (id) initWithFromVersion:(NSString*) fromVersion toVersion:(NSString*) toVersion
-{
-	if((self = [super init]))
-	{
+- (id) initWithFromVersion:(NSString*) fromVersion toVersion:(NSString*) toVersion {
+	if((self = [super initWithActionType:FLActionTypeUpdate])) {
 		_fromVersion = retain_(fromVersion);
 		_toVersion = retain_(toVersion);
 	}
@@ -24,12 +22,13 @@
 	return self;
 }
 
-- (void) dealloc
-{
+#if FL_MRC
+- (void) dealloc {
     release_(_fromVersion);
     release_(_toVersion);
-    super_dealloc_();
+    [super dealloc];
 }
+#endif
 
 + (FLVersionUpgradeLengthyTaskList*) versionUpgradeLengthyTaskList:(NSString*) fromVersion toVersion:(NSString*) toVersion
 {

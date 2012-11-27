@@ -37,15 +37,11 @@
 	FLFolder* _photoCacheFolder;
 	FLFolder* _tempFolder;
 	FLFolder* _logFolder;
-    
-	struct {
-		unsigned int willOpen: 1;
-		unsigned int isOpening: 1;
-		unsigned int open: 1;
-		unsigned int upgrading: 1;
-	} _state;
-	
 	FLVersionUpgradeLengthyTaskList* _upgradeTaskList;
+    BOOL _willOpen;
+    BOOL _isOpening;
+    BOOL _open;
+    BOOL _upgrading;
 }
 
 + (id) userDataStorageService;
@@ -53,7 +49,7 @@
 @end
 
 @interface FLUserDataStorageService (PlatformSpecific)
-+ (id) createVersionUpgradeProgressViewController:(FLLengthyTask*) lengthyTask;
++ (id) createVersionUpgradeProgressViewController;
 + (id) createUserLoggingOutProgressViewController;
 @end
 

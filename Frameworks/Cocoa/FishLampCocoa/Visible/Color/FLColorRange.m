@@ -9,13 +9,13 @@
 // [/Generated]
 
 #import "FLColorRange.h"
-#import "FLColor+FLExtras.h"
-#import "FLColor+FLMoreColors.h"
+#import "UIColor+FLExtras.h"
+#import "UIColor+FLMoreColors.h"
 
 @interface FLColorRange ()
 @property (readwrite, assign, nonatomic) CGFloat alpha;
-@property (readwrite, strong, nonatomic) FLColor* endColor;
-@property (readwrite, strong, nonatomic) FLColor* startColor;
+@property (readwrite, strong, nonatomic) UIColor_* endColor;
+@property (readwrite, strong, nonatomic) UIColor_* startColor;
 @end
 
 @implementation FLColorRange
@@ -24,8 +24,8 @@
 @synthesize endColor = _endColor;
 @synthesize startColor = _startColor;
 
-- (id) initWithStartColor:(FLColor*) startColor
-                 endColor:(FLColor*) endColor
+- (id) initWithStartColor:(UIColor_*) startColor
+                 endColor:(UIColor_*) endColor
 {
     self = [super init];
     if(self) {
@@ -36,8 +36,8 @@
     return self;
 }
 
-+ (FLColorRange*) colorRange:(FLColor*) startColor
-    endColor:(FLColor*) endColor {
++ (FLColorRange*) colorRange:(UIColor_*) startColor
+    endColor:(UIColor_*) endColor {
     return autorelease_([[[self class] alloc] initWithStartColor:startColor endColor:endColor]);
 }
 
@@ -77,27 +77,27 @@
 
 @implementation FLColorRange (FLGradientColors)
 
-+ (FLColorRange*) gradientColorsFromColor:(FLColor*) color 
++ (FLColorRange*) gradientColorsFromColor:(UIColor_*) color 
                                   intensity:(CGFloat) intensity
 {
     FLColor_t color_t = color.color_t;
 	FLColor_t startColor = FLColorLighten(color_t, intensity);
 	FLColor_t endColor = FLColorDarken(color_t, intensity);
 	
-    return [FLColorRange colorRange:[FLColor colorWithColor_t:startColor] endColor:[FLColor colorWithColor_t:endColor]];
+    return [FLColorRange colorRange:[UIColor_ colorWithColor_t:startColor] endColor:[UIColor_ colorWithColor_t:endColor]];
 }	
 
 + (FLColorRange*) iPhoneBlueGradientColorRange {
 
 	FLReturnStaticObjectFromBlock(^{ 
-        return [FLColorRange gradientColorsFromColor:[FLColor iPhoneBlueColor] intensity:0.7f];
+        return [FLColorRange gradientColorsFromColor:[UIColor_ iPhoneBlueColor] intensity:0.7f];
         });
 
 }
 
 +(FLColorRange*) redGradientColorRange {
 	FLReturnStaticObjectFromBlock(^{ 
-        return [FLColorRange colorRange:FLRgbColor(236,19,20,1.0)  endColor:[FLColor fireEngineRed]];
+        return [FLColorRange colorRange:FLRgbColor(236,19,20,1.0)  endColor:[UIColor_ fireEngineRed]];
         });
 }
 
@@ -127,7 +127,7 @@
 
 +(FLColorRange*) blackGradientColorRange {
 	FLReturnStaticObjectFromBlock(^{ 
-        return [FLColorRange colorRange:[FLColor darkGrayColor] endColor:[FLColor blackColor]];
+        return [FLColorRange colorRange:[UIColor_ darkGrayColor] endColor:[UIColor_ blackColor]];
         });
 }
 
@@ -159,9 +159,9 @@
 
 //+ (FLGradientColorPair*) deleteButtonRedGradientColors;
 //{
-//    FLSynchronizedStatic(s_color, FLGradientColorPair, [[FLGradientColorPair alloc] initWithStartColor:FLRgbColor(240,127,136,1.0) endColor:[FLColor fireEngineRed]]);
+//    FLSynchronizedStatic(s_color, FLGradientColorPair, [[FLGradientColorPair alloc] initWithStartColor:FLRgbColor(240,127,136,1.0) endColor:[UIColor_ fireEngineRed]]);
 ////    FLSynchronizedStatic(s_color, FLGradientColorPair, [[FLGradientColorPair alloc] initWithStartColor:FLRgbColor(240,127,136,1.0) endColor:FLRgbColor(231,53,66,1.0)]);
-////    FLSynchronizedStatic(s_color, FLGradientColorPair, [[FLGradientColorPair alloc] initWithStartColor:FLRgbColor(236,19,20,1.0)  endColor:[FLColor fireEngineRed]]);
+////    FLSynchronizedStatic(s_color, FLGradientColorPair, [[FLGradientColorPair alloc] initWithStartColor:FLRgbColor(236,19,20,1.0)  endColor:[UIColor_ fireEngineRed]]);
 //    return s_color;
 //}
 //

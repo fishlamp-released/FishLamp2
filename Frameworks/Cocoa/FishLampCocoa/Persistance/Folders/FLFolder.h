@@ -68,5 +68,7 @@ typedef void (^FLFileVisitorBlock)(NSString* fileName, BOOL* stop);
 
 - (NSUInteger) countItems:(BOOL) recursive;
 
+- (NSString*) fileUTI:(NSString*) name;
+
 @end
 

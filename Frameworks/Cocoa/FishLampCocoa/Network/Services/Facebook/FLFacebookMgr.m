@@ -59,7 +59,7 @@ synthesize_(permissions);
 	for (NSString* key in [params keyEnumerator]) 
 	{
 #if IOS    
-		if (	([[params valueForKey:key] isKindOfClass:[FLImage class]])
+		if (	([[params valueForKey:key] isKindOfClass:[NSImage_ class]])
 				||([[params valueForKey:key] isKindOfClass:[NSData class]])) 
 		{
 			if ([httpMethod isEqualToString:@"GET"]) 

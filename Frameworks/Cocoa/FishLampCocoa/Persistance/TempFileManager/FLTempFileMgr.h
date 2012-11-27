@@ -18,11 +18,15 @@
     FLFolder* _folder;
 }
 
-@property (readwrite, strong, nonatomic) FLFolder* folder;
+- (id) initWithFolder:(FLFolder*) folder;
 
-- (void) addFile:(id<FLAbstractFile>) file;
-- (void) removeFile:(id<FLAbstractFile>) file;
-- (BOOL) hasFile:(id<FLAbstractFile>) file;
+@property (readonly, strong) FLFolder* folder;
+
+- (void) addFile:(id) file fileName:(NSString*) fileName;
+
+- (void) removeFile:(NSString*) fileName;
+
+- (BOOL) hasFile:(NSString*) fileName;
 
 - (void) beginPurgeInBackgroundThread:(dispatch_block_t) purgeComplete;
 

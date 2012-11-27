@@ -13,10 +13,12 @@
 #if __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_2_0
 	#define IOS 1
     #undef MAC
+    #undef OSX
     
 #else
 	#undef IOS
     #define MAC 1
+    #define OSX 1
 #endif
 
 #if DEBUG
@@ -36,10 +38,3 @@
 #ifdef TRACE
 #error TRACE is meant per file and should not be defined globally
 #endif
-
-// TODO - move these to iOS
-#define DeviceIsPad()   NO
-#define DeviceIsPhone() NO
-#define DeviceIsPod()   NO
-#define DeviceIsSimulator() NO
-

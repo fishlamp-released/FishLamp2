@@ -10,6 +10,10 @@
 #import "FLCoreFlags.h"
 #import "FLRequired.h"
 
-@interface NSObject (Copying)
+@protocol FLCopyable <NSObject>
+- (void) copySelfTo:(id) object;
+@end
+
+@interface NSObject (FLCopyable)
 - (void) copySelfTo:(id) object;
 @end

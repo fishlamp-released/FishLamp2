@@ -29,7 +29,9 @@ extern const NSTimeInterval FLTimeoutTimerDefaultCheckFrequencyInterval;
     BOOL _timedOut;
     NSTimer* _timer;
     FLFinisher* _finisher;
+    FLFinisher* _cancelFinisher;
 }
+
 @property (readonly, assign) NSTimeInterval timeoutInterval;
 @property (readonly, assign) NSTimeInterval timestamp;
 @property (readonly, assign) NSTimeInterval idleDuration;

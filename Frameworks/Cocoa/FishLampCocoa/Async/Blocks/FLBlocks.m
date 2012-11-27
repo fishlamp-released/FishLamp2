@@ -26,9 +26,8 @@ float FLTimeBlock(dispatch_block_t block)  {
 } 
 
 
-#if ! __has_feature(objc_arc)
-void FLPerformBlockInAutoreleasePool(void (^callback)())
-{
+#if FL_MRC
+void FLPerformBlockInAutoreleasePool(void (^callback)()) {
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
     @try {
         if(callback) {

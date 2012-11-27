@@ -10,7 +10,7 @@
 #import "FLGuid.h"
 #import "FLDatabaseErrors.h"
 #import "FLDatabase.h"
-#import "FLColor+FLExtras.h"
+#import "UIColor+FLExtras.h"
 #import "FLDatabase.h"
 #import "FLDatabase_Internal.h"
 
@@ -697,7 +697,7 @@
 @end
 
 //
-//@implementation FLColor (FLDatabaseIterator) 
+//@implementation UIColor_ (FLDatabaseIterator) 
 //- (void) bindToStatement:(FLDatabaseIterator*) statement parameterIndex:(int) parameterIndex
 //{
 //	[statement bindText:parameterIndex text:[self toRgbString]];

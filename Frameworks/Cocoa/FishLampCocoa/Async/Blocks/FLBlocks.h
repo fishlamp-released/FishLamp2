@@ -27,8 +27,6 @@ typedef void (^FLErrorCallback)(NSError* error);
 extern void FLPerformBlockInAutoreleasePool(void (^callback)());
 #endif
 
-
-
 extern id FLCopyOrRetainObject(id src);
 
 extern float FLTimeBlock (dispatch_block_t block);

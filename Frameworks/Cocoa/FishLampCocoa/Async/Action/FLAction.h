@@ -29,7 +29,7 @@ typedef void (^FLActionBlock)(FLAction* action);
 
 @protocol FLActionErrorDelegate;
 
-@interface FLAction : NSObject<FLCancellable, FLWeaklyReferenced, FLRunnable> {
+@interface FLAction : NSObject<FLActionDescription, FLCancellable, FLWeaklyReferenced, FLRunnable> {
 @private
     FLOperationQueue* _operations;
 
@@ -38,24 +38,40 @@ typedef void (^FLActionBlock)(FLAction* action);
 	FLWeakReference* _errorNotification;
 	
 	FLActionBlock _willShowNotificationCallback;
-	FLActionBlock _starting;
-	FLActionBlock _finished;
-    
+	FLActionBlock _startingBlock;
+	
     FLActionProgressCallback _progressCallback;
 
 	NSTimeInterval _lastWarningTimestamp;
 	NSTimeInterval _minimumTimeBetweenWarnings;
 	
-	struct {
-		unsigned int handledError:1;
-		unsigned int disableErrorNotifications:1;
-		unsigned int disableWarningNotifications:1;
-		unsigned int disableActivityTimer: 1;
-        unsigned int networkRequired: 1;
-	} _actionFlags;
-    
-    BOOL _didSucceed;
+	BOOL _handledError;
+	BOOL _disableErrorNotifications;
+    BOOL _disableWarningNotifications;
+	BOOL _disableActivityTimer;
+    BOOL _networkRequired;
 }
+
+
+@property (readonly, strong) FLOperationQueue* operations;
+
+// UGH!
+@property (readwrite, assign, nonatomic) BOOL networkRequired;
+@property (readwrite, assign, nonatomic) BOOL handledError;
+@property (readwrite, assign, nonatomic) BOOL disableWarningNotifications;
+@property (readwrite, assign, nonatomic) BOOL disableErrorNotifications;
+@property (readwrite, assign, nonatomic) BOOL disableActivityTimer;
+@property (readwrite, assign, nonatomic) NSTimeInterval lastWarningTimestamp;
+@property (readwrite, assign, nonatomic) NSTimeInterval minimumTimeBetweenWarnings;
+@property (readwrite, assign, nonatomic) id errorNotificationForUser; // weakref
+
+// progress
+@property (readwrite, strong, nonatomic) id<FLProgressViewController> progressController;
+
+// blocks
+@property (readwrite, copy) FLActionBlock onShowNotification;
+@property (readwrite, copy) FLActionProgressCallback onUpdateProgress;
+@property (readwrite, copy) FLActionBlock starting;
 
 - (id) init;
 - (id) initWithActionType:(NSString*) actionType;
@@ -65,40 +81,7 @@ typedef void (^FLActionBlock)(FLAction* action);
 + (id) actionWithActionType:(NSString*) actionType;
 + (id) actionWithActionType:(NSString*) actionType actionItemName:(NSString*) actionItemName;
 
-@property (readonly, strong) FLOperationQueue* operations;
-
-
-@property (readwrite, assign, nonatomic) BOOL networkRequired;
-
-// this is only set if didSucceed == YES.
-// this return either self.operationOutput, or searches backward in queue for first operation
-// will output. This is the most common use case.
-@property (readonly, strong, nonatomic) FLResult result;
-
-// progress
-@property (readwrite, strong, nonatomic) id<FLProgressViewController> progressController;
-
-@property (readwrite, strong, nonatomic) FLActionDescription* actionDescription; // also used by error handling
-
-// error and warning info
-@property (readwrite, assign, nonatomic) BOOL handledError;
-@property (readwrite, assign, nonatomic) BOOL disableWarningNotifications;
-@property (readwrite, assign, nonatomic) BOOL disableErrorNotifications;
-@property (readwrite, assign, nonatomic) BOOL disableActivityTimer;
-@property (readwrite, assign, nonatomic) NSTimeInterval lastWarningTimestamp;
-@property (readwrite, assign, nonatomic) NSTimeInterval minimumTimeBetweenWarnings;
-@property (readwrite, assign, nonatomic) id errorNotificationForUser; // weakref
-
-@property (readwrite, copy) FLActionBlock onShowNotification;
-@property (readwrite, copy) FLActionProgressCallback onUpdateProgress;
-
-@property (readwrite, copy) FLActionBlock starting;
-@property (readwrite, copy) FLActionBlock finished;
-
-// misc
-- (void) respondToCancelEvent:(id) sender; // wire this up to buttons if you want
-
-// protected
+// optioal overrides
 - (void) showProgress;
 - (void) willHandleError;
 - (void) willReportError;
@@ -106,8 +89,11 @@ typedef void (^FLActionBlock)(FLAction* action);
 + (void) setActionErrorDelegate:(id<FLActionErrorDelegate>) delegate;
 + (void) setGlobalFailedCallback:(id) target action:(SEL) action;
 
-- (FLFinisher*) startAction;
-- (FLFinisher*) startActionInContext:(FLOperationContext*) context;
+// chooses the right dispatchers for you.
+- (FLFinisher*) startAction:(FLResultBlock) resultBlock;
+
+- (FLFinisher*) startActionInContext:(FLOperationContext*) context 
+                          completion:(FLResultBlock) resultBlock;
 
 @end
 
