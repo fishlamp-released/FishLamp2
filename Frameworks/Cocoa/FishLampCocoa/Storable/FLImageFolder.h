@@ -6,10 +6,10 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import "FLPhotoStorage.h"
+#import "FLImageStorage.h"
 #import "FLFolder.h"
 
-@interface FLPhotoFolder : NSObject<FLPhotoStorage> {
+@interface FLImageFolder : NSObject<FLImageStorage> {
 @private
     FLFolder* _folder;
 }

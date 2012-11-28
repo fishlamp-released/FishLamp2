@@ -11,10 +11,10 @@
 #import "FLImage.h"
 #import "FLPhoto.h"
 
-@protocol FLPhotoStorage <NSObject, FLImageDelegate>
+@protocol FLImageStorage <NSObject>
 
 - (FLPhoto*) readPhoto:(id) storageKey;
-- (void) writePhoto:(FLPhoto*) photo
+- (void) writePhoto:(FLPhoto*) photo;
 
 - (FLImage*) readImageForStorageKey:(id) storageKey subType:(NSString*) subType;
 
@@ -23,6 +23,6 @@
 - (FLImage*) readThumbnailImageForStorageKey:(id) storageKey;
 
 - (void) writeImage:(FLImage*) image withCompression:(CGFloat) compression;
-- (void) writeImage:(FLImage*) image
+- (void) writeImage:(FLImage*) image;
 
 @end

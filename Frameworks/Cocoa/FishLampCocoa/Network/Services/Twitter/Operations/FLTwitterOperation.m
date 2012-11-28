@@ -14,13 +14,15 @@
 
 @implementation FLTwitterOperation
 
-@synthesize twitterService = _session;
+@synthesize inputObject = _inputObject;
 
-- (void) dealloc
-{
-	release_(_session);
-	super_dealloc_();
+#if FL_MRC
+- (void) dealloc {
+    [_inputObject release];
+    [super dealloc];
 }
+#endif
+
 
 - (BOOL) willAddParametersToRequestContent:(FLOAuthAuthorizationHeader*) signature
 {
@@ -31,19 +33,15 @@
 
     FLHttpConnection* connection = self.httpConnection;
 
-	FLOAuthAuthorizationHeader* oauthHeader = nil;
-	if(_session) {
-		oauthHeader = [FLOAuthAuthorizationHeader authorizationHeader];
-    }
+	FLOAuthAuthorizationHeader* oauthHeader = [FLOAuthAuthorizationHeader authorizationHeader];
 	
-    id input = self.input;
+    id input = self.inputObject;
     
 	NSMutableString* content = [NSMutableString string];
 	
-	if(input && [self willAddParametersToRequestContent:oauthHeader])
-	{
+	if(input && [self willAddParametersToRequestContent:oauthHeader]) {
         int count = 0;
-        FLObjectDescriber* describer = [[self.input class] sharedObjectDescriber];
+        FLObjectDescriber* describer = [[input class] sharedObjectDescriber];
         for(NSString* propertyName in describer.propertyDescribers)
         {
             id obj = [input valueForKey:propertyName];
@@ -63,11 +61,17 @@
 	
 	[connection.httpRequest setFormUrlEncodedContent:content];
 
+    FLTwitterMgr* twitter = [self.context twitterService];
+
 	if(oauthHeader) {
-        [oauthHeader setParameter:kFLOAuthHeaderToken value:self.twitterService.oauthSession.oauth_token];
-        NSString* secret = [NSString stringWithFormat:@"%@&%@", self.twitterService.oauthInfo.consumerSecret, self.twitterService.oauthSession.oauth_token_secret];
+        [oauthHeader setParameter:kFLOAuthHeaderToken value:twitter.oauthSession.oauth_token];
+        
+        NSString* secret = [NSString stringWithFormat:@"%@&%@", 
+                                twitter.oauthInfo.consumerSecret, 
+                                twitter.oauthSession.oauth_token_secret];
+        
         [connection.httpRequest setOAuthAuthorizationHeader:oauthHeader
-                                                consumerKey:self.twitterService.oauthInfo.consumerKey
+                                                consumerKey:twitter.oauthInfo.consumerKey
                                                      secret:secret];
 	}
 }
@@ -75,32 +79,26 @@
 
 - (FLResult) runSelf {
     [self configureRequest];
-    [super runSelf];
     
-    if(!self.error) {
-	
-        // this is a hack. In the case of a successfull tweet, it's returning a object containing
-        // a bunch of info. In the case of an error, it's returning an error object (FLTwitterError).
-        // TODO: refactor this.
-        
-        FLJsonParser* parser = [FLJsonParser jsonParser];
-        NSDictionary* object = [parser parseJsonData:self.httpResponse.responseData rootObject:nil];
-        NSError* error = parser.error;
-        
-        if(!error)
-        {
-            if([object objectForKey:@"error"])
-            {
-                error = [NSError errorWithDomain:@"FLTwitterErrorDomain" code:1 localizedDescription:[object objectForKey:@"error"]];
-            }
-        }
-
-        if(!error) {
-            error = [self.httpResponse simpleHttpResponseErrorCheck];
-        }
-        
-        self.error = error;
+    FLHttpResponse* httpResponse = FLRunSelfForResponse(FLHttpResponse);
+    
+    // this is a hack. In the case of a successfull tweet, it's returning a object containing
+    // a bunch of info. In the case of an error, it's returning an error object (FLTwitterError).
+    // TODO: refactor this.
+    
+    FLJsonParser* parser = [FLJsonParser jsonParser];
+    NSDictionary* twitterResponse = [parser parseJsonData:httpResponse.responseData rootObject:nil];
+   
+     FLThrowError(parser.error);
+    
+    if([twitterResponse objectForKey:@"error"]) {
+        FLThrowError_(
+            [NSError errorWithDomain:@"FLTwitterErrorDomain" code:1 localizedDescription:[twitterResponse objectForKey:@"error"]]);
     }
+
+    FLThrowError_([self.httpResponse simpleHttpResponseErrorCheck]);
+    
+    return twitterResponse;
 }
 	
 

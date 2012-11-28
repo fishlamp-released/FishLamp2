@@ -18,10 +18,10 @@
 
 @interface FLTwitterOperation : FLHttpOperation {
 @private
-	FLTwitterMgr* _session;
+    id _inputObject;
 }
 
-@property (readwrite, retain, nonatomic) FLTwitterMgr* twitterService;
+@property (readwrite, strong) id inputObject;
 
 // optional override points
 - (BOOL) willAddParametersToRequestContent:(FLOAuthAuthorizationHeader*) signature;

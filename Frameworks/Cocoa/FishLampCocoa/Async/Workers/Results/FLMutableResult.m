@@ -15,7 +15,7 @@
 - (id) init {
     self = [super init];
     if(self) {
-        self.result = FLSuccesfullResult;
+        self.result = FLSuccessfullResult;
     }
     return self;
 }

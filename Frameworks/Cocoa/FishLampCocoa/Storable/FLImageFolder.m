@@ -6,18 +6,19 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import "FLPhotoFolder.h"
+#import "FLImageFolder.h"
 #import "FLImage.h"
+#import "FLCoreFoundation.h"
 
 #define FLOriginalFileSuffix @"_O"
 #define FLPreviewFileSuffix @"_F"
 #define FLThumbnailFileSuffix @"_T"
 
-@interface FLPhotoFolder () 
+@interface FLImageFolder () 
 @property (readwrite, strong) FLFolder* folder;
 @end
 
-@implementation FLPhotoFolder
+@implementation FLImageFolder
 
 @synthesize folder = _folder;
 
@@ -62,8 +63,7 @@ static NSDictionary* s_suffixes = nil;
     if (UTTypeConformsTo(bridge_(CFStringRef, fileUTI), kUTTypeImage)) {
         NSData* data = [_folder readDataFromFile:name];
         FLImage* image = [FLImage photoWithImageBytes:data];
-        image.delegate = self;
-        image.storageType = fileUTI;
+        image.storableType = fileUTI;
         image.storageKey = name;
         return image;
     }
@@ -86,7 +86,6 @@ static NSDictionary* s_suffixes = nil;
     NSData* data = [_folder readDataFromFile:fileName];
     if(data) {
         FLImage* image = [FLImage photoWithImageBytes:data];
-        image.delegate = self;
         image.storableSubType = subType;
         image.storableType = [_folder fileUTI:fileName];
         image.storageKey = storageKey;
@@ -151,9 +150,9 @@ static NSDictionary* s_suffixes = nil;
     FLAssert_(compression >= 0.0 && compression <= 1.0);
 
     NSData* bytes = image.imageBytes;
-    NSString* uti = image.storageType;
+    NSString* uti = image.storableType;
     NSString* fileName = image.storageKey;
-    NSDictionary* properties = image.properties;
+    NSDictionary* properties = image.exifData;
 
     NSString* filePath = [self.folder pathForFile:fileName];
 
@@ -171,11 +170,11 @@ static NSDictionary* s_suffixes = nil;
         imageDestRef = CGImageDestinationCreateWithURL(bridge_(void*,url), bridge_(CFStringRef, uti), 1, nil /* always nil */);
         FLConfirmIsNotNil_(imageDestRef);
 
-        NSDictionary* compressionInfo = [NSDictionary dictionaryWithObject:[NSNumber numberWithFloat:compression] forKey: bridge_(NSString* kCGImageDestinationLossyCompressionQuality)];
+        NSDictionary* compressionInfo = [NSDictionary dictionaryWithObject:[NSNumber numberWithFloat:compression] forKey: bridge_(NSString*, kCGImageDestinationLossyCompressionQuality)];
 
         CGImageDestinationSetProperties(imageDestRef, bridge_(CFDictionaryRef, compressionInfo));
 
-        imageSourceRef = CGImageSourceCreateWithData(bridge_(void*,jpgData), nil);
+        imageSourceRef = CGImageSourceCreateWithData(bridge_(void*, bytes), nil);
         FLConfirmIsNotNil_(imageSourceRef);
         
         if(properties) {
@@ -193,7 +192,7 @@ static NSDictionary* s_suffixes = nil;
     }
 }
 
-- (void) writeImage:(FLImage*) image withCompression:(CGFloat) compression {
+- (void) writeImage:(FLImage*) image {
     [self writeImage:image withCompression:1.0f];
 }
 
@@ -202,7 +201,7 @@ static NSDictionary* s_suffixes = nil;
 
 }
 
-- (id<FLPhotoStorage>) imageStorage:(FLImage*) image {
+- (id<FLImageStorage>) imageStorage:(FLImage*) image {
     return self;
 }
 

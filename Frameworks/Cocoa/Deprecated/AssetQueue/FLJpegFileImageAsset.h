@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#if 0
 #import "FLJpegFile.h"
 #import "FLFolder.h"
 #import "FLImageAsset.h"
@@ -36,3 +36,4 @@
 //
 //@interface FLCameraPhoto : FLJpegFileImageAsset
 //@end
+#endif

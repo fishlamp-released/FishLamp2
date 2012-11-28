@@ -6,6 +6,7 @@
 //  Copyright (c) 2012 GreenTongue Software. All rights reserved.
 //
 
+#if 0
 #import "FLOperationCacheHandler.h"
 
 @implementation FLOperationCacheHandler
@@ -133,3 +134,4 @@ FLSynthesizeStructProperty(wasLoadedFromCache, setWasLoadedFromCache, BOOL, _net
 }
 
 @end
+#endif

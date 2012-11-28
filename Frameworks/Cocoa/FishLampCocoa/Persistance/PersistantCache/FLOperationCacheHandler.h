@@ -5,7 +5,7 @@
 //  Created by Mike Fullerton on 4/9/12.
 //  Copyright (c) 2012 GreenTongue Software. All rights reserved.
 //
-
+#if 0
 #import "FishLampCore.h"
 #import "FLDatabase.h"
 #import "FLOperation.h"
@@ -60,3 +60,4 @@ typedef enum {
 
 @end
 
+#endif

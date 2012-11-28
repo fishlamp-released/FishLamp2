@@ -10,12 +10,12 @@
 
 @class FLImage;
 @class FLDatabase;
-@protocol FLPhotoStorage;
+@protocol FLImageStorage;
 @class FLImageProperties;
 
 @protocol FLImageStorageStrategy <FLStorageStrategy>
 
-- (id<FLPhotoStorage>) storageForImage:(FLImage*) image;
+- (id<FLImageStorage>) storageForImage:(FLImage*) image;
 - (FLDatabase*) databaseForImage:(FLImage*) image;
 
 - (FLImageProperties*) imagePropertiesForImageURL:(NSURL*) url;

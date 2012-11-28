@@ -18,7 +18,7 @@ NSString* const FLPhotoType = @"com.fishlamp.photo";
 
 - (id) init {
 	if((self = [super init])) {
-        self.assetUTI = FLPhotoType;
+        self.storageKey = FLPhotoType;
 	}
 	return self;
 }
@@ -49,7 +49,7 @@ NSString* const FLPhotoType = @"com.fishlamp.photo";
 }
 
 - (void) copySelfTo:(FLPhoto*) photo {
-    [super copySelfTo:object];
+    [super copySelfTo:photo];
     photo.originalImage = autorelease_([self.originalImage copy]);
     photo.thumbnailImage = autorelease_([self.thumbnailImage copy]);
     photo.previewImage = autorelease_([self.previewImage copy]);

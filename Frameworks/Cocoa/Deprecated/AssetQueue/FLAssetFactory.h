@@ -8,17 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
-#import "FLQueuedAsset.h"
-
-@interface FLAssetFactory : NSObject {
-@private
-    NSMutableDictionary* _factoryBlocks;
-}
-FLSingletonProperty(FLAssetFactory);
-
-- (void) addAssetClass:(Class) aAssetClass;
-
-- (id) createAssetForQueuedAsset:(FLQueuedAsset*) queuedAsset;
-
-
-@end
+//#import "FLQueuedAsset.h"
+//
+//@interface FLAssetFactory : NSObject {
+//@private
+//    NSMutableDictionary* _factoryBlocks;
+//}
+//FLSingletonProperty(FLAssetFactory);
+//
+//- (void) addAssetClass:(Class) aAssetClass;
+//
+//- (id) createAssetForQueuedAsset:(FLQueuedAsset*) queuedAsset;
+//
+//
+//@end

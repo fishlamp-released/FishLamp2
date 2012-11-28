@@ -12,7 +12,7 @@
 #import "FLContext.h"
 
 
-service_register_(twitter, FLTwitterMgr);
+service_register_(twitterService, FLTwitterMgr);
 
 @interface FLTwitterMgr ()
 @property (readwrite, strong) FLOAuthSession* oauthSession;

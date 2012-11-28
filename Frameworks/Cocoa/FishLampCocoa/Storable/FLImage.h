@@ -12,8 +12,7 @@
 #import "FLImageStorageStrategy.h"
 #import "FLImageProperties.h"
 
-@protocol FLImageDelegate;
-@protocol FLPhotoStorage;
+@protocol FLImageStorage;
 
 extern NSString* const FLImageTypeThumbnail;
 extern NSString* const FLImageTypePreview;

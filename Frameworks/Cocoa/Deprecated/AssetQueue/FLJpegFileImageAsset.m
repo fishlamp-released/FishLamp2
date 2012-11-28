@@ -5,7 +5,7 @@
 //	Created by Mike Fullerton on 10/25/09.
 //	Copyright 2009 GreenTongue Software. All rights reserved.
 //
-
+#if 0
 #import "FLJpegFileImageAsset.h"
 #import "UIImageUtilities.h"
 #import "UIImage+Resize.h"
@@ -358,3 +358,4 @@ FIXME("ios dependencecy");
 //}
 //
 //@end
+#endif
