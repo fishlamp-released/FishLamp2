@@ -14,8 +14,8 @@
 @property (readwrite, copy, nonatomic) FLRunOperationBlock runBlock;
 @property (readwrite, assign) BOOL wasStarted;
 @property (readwrite, assign) BOOL isFinished;
-@property (readwrite, strong) id input;
-@property (readwrite, strong) id output;
+//@property (readwrite, strong) id input;
+//@property (readwrite, strong) id output;
 @property (readwrite, assign) id context;
 @property (readwrite, strong) FLFinisher* cancelFinisher;
 @end
@@ -30,8 +30,6 @@
 @synthesize isFinished = _isFinished;
 @synthesize context = _context;
 @synthesize cancelFinisher = _cancelFinisher;
-@synthesize input = _operationInput;
-@synthesize output = _operationOutput;
 @synthesize tag = _tag;
 
 - (void) removeFromContext:(id) context {
@@ -57,8 +55,8 @@
 - (void) dealloc {
     [_cancelFinisher release];
     [_error release];
-    [_operationInput release];;
-    [_operationOutput release];
+//    [_operationInput release];;
+//    [_operationOutput release];
     [_runBlock release];
     [_operationID release];
     [super dealloc];
@@ -74,16 +72,20 @@
 	return self;
 }
 
-- (id) initWithInput:(id) input {
-    self = [super init];
-    if(self) {
-        self.operationInput = input;
-    }
-    return self;
-}
+//- (id) initWithInput:(id) input {
+//    self = [super init];
+//    if(self) {
+//        self.operationInput = input;
+//    }
+//    return self;
+//}
 
-+ (id) operationWithInput:(id) input {
-    return autorelease_([[[self class] alloc] initWithInput:input]);
+//+ (id) operationWithInput:(id) input {
+//    return autorelease_([[[self class] alloc] initWithInput:input]);
+//}
+
+- (id) output {
+    return nil;
 }
 
 - (BOOL) didSucceed {
@@ -143,7 +145,8 @@
     return self.error != nil;
 }
 
-- (void) runSelf {
+- (FLResult) runSelf {
+    return FLSuccessfullResult;
 }
 
 - (BOOL) willRun {
@@ -173,22 +176,22 @@
 
 }
 
-- (void) finishSelf {
+- (void) finishSelf:(FLResult*) withResult {
 
 }
 
-- (id) result {
-    if(self.didRun) {
-        if(self.error) {
-            return self.error;
-        }
-        if(self.output) {
-            return self.output;
-        }
-        return FLSuccessfullResult;
-    }
-    return nil;
-}
+//- (id) result {
+//    if(self.didRun) {
+//        if(self.error) {
+//            return self.error;
+//        }
+//        if(self.output) {
+//            return self.output;
+//        }
+//        return FLSuccessfullResult;
+//    }
+//    return nil;
+//}
 
 - (void) abortIfNeeded {
     if(self.error) {
@@ -197,6 +200,8 @@
 }
 
 - (id) runSynchronously {
+
+    FLResult result = nil;
     @try {
         [self setMoreBusy];
        
@@ -213,40 +218,51 @@
         
         if(self.willRun) {
             if(self.runBlock) {
-                self.runBlock(self);
+                result = self.runBlock(self);
             }
             else {
-                [self runSelf];
+                result = [self runSelf];
+            }
+            
+            if(result == nil) {
+                result = FLFailedResult;
             }
         }
     }
     @catch(FLAbortException* ex) {
-        if(!self.error) {
-            self.error = [NSError abortError];
+        if(![result error]) {
+            result = [NSError abortError];
         }
     }
     @catch(NSException* ex) {
-        self.error = ex.error;
+        if(![result error]) {
+            result = ex.error;
+        }
     }
 
     @try {
-        [self finishSelf];  
+        [self finishSelf:&result];  
     }
     @catch(NSException* ex) {
-        self.error = ex.error;
+        if(![result error]) {
+            result = ex.error;
+        }
     }
     
     [self setLessBusy];
     self.isFinished = YES;
     
     if(self.cancelFinisher) {
-         [self.cancelFinisher setFinished];
-         [self postObservation:@selector(operationWasCancelled:)];
+    
+        result = [NSError cancelError];
+        
+        [self.cancelFinisher setFinished];
+        [self postObservation:@selector(operationWasCancelled:)];
     }
 
     [self postObservation:@selector(operationDidFinish:)];
     
-    return self.result;
+    return result;
 }
 
 - (FLFinisher*) startOperationInDispatcher:(id<FLDispatcher>) inDispatcher 
@@ -269,9 +285,9 @@
 }
 
 - (void) _resetState {
-    self.error = nil;
     self.wasStarted = NO;
     self.isFinished = NO;
+    self.error = nil;
 }
 
 - (void) resetRunState {
@@ -283,83 +299,14 @@
         [self _resetState];
     }
 }
-
-//- (void) observeStart:(FLOperationBlock) block {
-//    [self addObserver:[FLOperationWillStartObserver operationObserver:block]];
-//}
-//
-//- (void) observeFinish:(FLOperationBlock) block {
-//    [self addObserver:[FLOperationDidFinishObserver operationObserver:block]];
-//}
-
 - (void) operationWasCancelled:(FLOperation*) operation {
     [self requestCancel:nil];
 }
-
-- (void) _finishSubOperation:(FLOperation*) operation {
-}
-
-- (void) runSubOperation:(FLOperation*) operation
-               withBlock:(void (^)()) block {
-    
-    [self addObserver:operation];
-    [operation addObserver:self];
-    
-    if(operation.context == nil) {
-        [operation addToContext:self.context];
-    }
-    @try {
-        if(block) {
-            block();
-        }
-        else {
-            [operation runSynchronously];
-        }
-        
-        [operation throwAbortIfFailed];
-    }
-    @catch(FLAbortException* ex) {
-        @throw;
-    }
-    @catch(NSException* ex) {
-        operation.error = ex.error;
-        @throw;
-    }
-    @finally {
-        [self removeObserver:operation];
-        [operation removeObserver:self];
-        
-        if(operation.error) {
-            self.error = operation.error;
-        }
-    }
-}
-
-- (void) runSubOperation:(FLOperation*) operation {
-    [self runSubOperation:operation withBlock:nil];
-}
-
 
 - (void) throwAbortIfFailed {
     if(self.didFail || self.wasCancelled) {
         @throw [FLAbortException abortException];
     }
-}
-
-- (id) operationOutput {
-    return self.output;
-}
-
-- (void) setOperationOutput:(id) output {
-    self.output = output;
-}
-
-- (id) operationInput {
-    return self.input;
-}
-
-- (void) setOperationInput:(id) input {
-    self.input = input;
 }
 
 @end

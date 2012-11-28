@@ -39,16 +39,16 @@
     *redirect = NO;
 }
 
-- (void) runSelf {
+- (FLResult) runSelf {
 	
     FLOAuthAuthorizationHeader* oauthHeader = [FLOAuthAuthorizationHeader authorizationHeader];
     [self.httpRequest setOAuthAuthorizationHeader:oauthHeader
                                       consumerKey:_app.consumerKey
                                            secret:[_app.consumerSecret stringByAppendingString:@"&"]];
     self.httpRequest.requestMethod = @"POST";
-    [super runSelf];
+    id result = [super runSelf];
 
-    if(!self.error) {
+    if([result succeeded]) {
         NSData* data = self.httpResponse.responseData;
 #if DEBUG
         NSString* responseStr = autorelease_([[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
@@ -58,8 +58,10 @@
         [FLUrlParameterParser parseData:data intoObject:response strict:YES 
             requiredKeys:[NSArray arrayWithObjects:@"oauth_token_secret", @"oauth_token", @"oauth_callback_confirmed", nil]];
         
-        self.operationOutput = response;
+        result = response;
     }
+    
+    return result;
 }
 
 

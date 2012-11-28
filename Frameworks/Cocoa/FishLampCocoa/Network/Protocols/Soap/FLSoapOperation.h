@@ -25,7 +25,14 @@
     
     NSString* _operationName;
     id _outputObject;
+    
+    id _soapOutput;
+    id _soapInput;
 }
+
+@property (readwrite, strong) id soapInput;
+@property (readwrite, strong) id soapOutput;
+    
 @property (readwrite, strong) NSString* outputName;
 @property (readwrite, strong) id outputObject;
 

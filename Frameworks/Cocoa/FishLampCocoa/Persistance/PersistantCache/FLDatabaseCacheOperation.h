@@ -24,14 +24,13 @@ typedef enum
 
 @interface FLDatabaseCacheOperation : FLOperation {
 @private
-	FLCacheOperationType _operation;
-	FLDatabase* _cache;
+	FLCacheOperationType _operationType;
+	FLDatabase* _database;
+    id _input;
 }
 
-@property (readwrite, assign, nonatomic) FLCacheOperationType operation;
-
 - (id) initWithObjectAndOperationType:(FLDatabase*) cache
-	object:(id) object 
-	operation:(FLCacheOperationType) operation;
+                                input:(id) input 	
+                            operation:(FLCacheOperationType) operation;
 	
 @end

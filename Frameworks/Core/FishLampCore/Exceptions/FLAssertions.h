@@ -57,9 +57,12 @@
     #define FLAssertIsOverridden_v          FLConfirmIsOverridden_v
 
     NS_INLINE
-    id _FLAssertIsType(id object, Class class) {
+    id _FLAssertIsType(id object, Class aClass) {
         if(object) {
-            FLAssert_v([object isKindOfClass:class], @"expecting type of %@", NSStringFromClass(class));
+            FLAssert_v([object isKindOfClass:aClass], 
+                @"expecting type of %@ but got %@", 
+                NSStringFromClass(aClass), 
+                NSStringFromClass([object class]));
         }
         return object;
     }

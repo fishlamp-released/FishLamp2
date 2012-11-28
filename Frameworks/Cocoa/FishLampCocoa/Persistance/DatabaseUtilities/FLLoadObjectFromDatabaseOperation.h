@@ -13,6 +13,7 @@
 @interface FLLoadObjectFromDatabaseOperation : FLOperation {
 @private
 	FLDatabase* _database;
+    id _input;
 }
 
 - (id) initWithCacheableObjectInput:(FLDatabase*) database 

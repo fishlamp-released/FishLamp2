@@ -26,7 +26,7 @@
 //	[self.operationInput requestCancel:nil];
 //}
 //
-//- (void) runSelf {
+//- (FLResult) runSelf {
 //	FLLengthyTask* task = self.operationInput;
 //    [task prepareTask];
 //    [task executeTask];

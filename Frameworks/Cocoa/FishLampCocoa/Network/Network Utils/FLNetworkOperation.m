@@ -84,24 +84,13 @@
     FLConfirmNotNil_v(self.networkConnection, @"the connection is nil");
 }
 
-- (void) handleAsyncResultFromConnection:(id) output {
-    self.operationOutput = output;
-}
-
-- (void) runSelf {
+- (FLResult) runSelf {
 
     FLAssertIsNotNil_v(self.networkConnection, nil);
     
     FLFinisher* finisher = [self.networkConnection openConnection:FLFifoQueue];
     [finisher waitUntilFinished];
-    FLResult result = finisher.result;
-
-    if([result error]) {
-        self.error = result;
-    }
-    else {
-        [self handleAsyncResultFromConnection:result];
-    }
+    return finisher.result;
 }
 
 @end

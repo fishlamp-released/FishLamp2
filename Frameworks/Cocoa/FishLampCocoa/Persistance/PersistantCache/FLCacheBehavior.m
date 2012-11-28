@@ -16,7 +16,7 @@
 @synthesize warnOnMainThreadDelete = _warnOnMainThreadDelete;
 #endif
 
-//@synthesize cache = _cache;
+@synthesize memoryCache = _cache;
 
 - (id) cacheKeyForObject:(id) object
 {

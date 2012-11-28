@@ -10,129 +10,61 @@
 #import "FLPerformSelectorOperation.h"
 #import "FLObjectDatabase.h"
 
-@implementation FLCachedObjectOperation
-@synthesize cache = _cache;
-@synthesize subOperation = _subOperation;
+@interface FLCachedObjectOperation ()
+@property (readwrite, assign) BOOL wasLoadedFromCache;
+@end
 
-FLSynthesizeStructProperty(canSaveToCache, setCanSaveToCache, BOOL, _cacheOperationFlags);
-FLSynthesizeStructProperty(canLoadFromCache, setCanLoadFromCache, BOOL, _cacheOperationFlags);
-FLSynthesizeStructProperty(wasLoadedFromCache, setWasLoadedFromCache, BOOL, _cacheOperationFlags);
-FLSynthesizeStructProperty(wasLoadedFromMemoryCache, setWasLoadedFromMemoryCache, BOOL, _cacheOperationFlags);
-FLSynthesizeStructProperty(shouldRunIfLoadedFromCache, setShouldRunIfLoadedFromCache, BOOL, _cacheOperationFlags);
+@implementation FLCachedObjectOperation
+@synthesize canSaveToCache = _canSaveToCache;
+@synthesize canLoadFromCache = _canLoadFromCache;
+@synthesize wasLoadedFromCache = _wasLoadedFromCache;
+@synthesize alwaysRunSubOperations = _alwaysRunSubOperations;
 
 - (id) init {
 	if((self = [super init])) {
-	}
-
-	return self;
-}
-
-- (id) initWithSubOperation:(FLOperation*) operation {
-	if((self = [super init])) {
-		self.subOperation = operation;
-	}
-	return self;
-}
-
-+ (id) cachedObjectOperation:(FLOperation*) subOperation {
-    return autorelease_([[[self class] alloc] initWithSubOperation:subOperation]);
-}
-
-- (void) dealloc {
-	release_(_cache);
-	release_(_subOperation);
-	super_dealloc_();
-}
-
-- (void) setWasLoadedFromCacheCallback:(id) target action:(SEL) action {
-	_target = target;
-    _action = action;
-}
-
-- (void) setInputObjectForCacheLoading {
-}
-
-- (id) loadOutputFromMemoryCache {
-    FLAssertIsNotNil_(self.cache);
-
-	if(!self.input) {
-		[self setInputObjectForCacheLoading];
-	}
-	return [((FLObjectDatabase*)self.cache) loadObjectFromMemoryCache:self.input];
-}
-
-- (id) loadOutputFromCache {
-	if(!self.input) {	
-		[self setInputObjectForCacheLoading];
-	}
-	return [self.cache loadObject:self.input];
-}
-
-- (void) setOutputFromCache:(id) object {
-	self.output = object;
-}
-
-- (BOOL) loadFromMemoryCache {
-
-    FLAssertIsNotNil_(self.cache);
-
-	id cachedObject = [self loadOutputFromMemoryCache];
-
-	if(cachedObject) {
-		[self setOutputFromCache:cachedObject];
-		self.wasLoadedFromMemoryCache = YES;
-		self.wasLoadedFromCache = YES;
-		
-		[self didLoadFromCache];
-	}
-	
-	return self.wasLoadedFromMemoryCache;
-}
-
-- (void) didLoadFromCache {
-    FLPerformSelector1(_target, _action, self);
-}
-
-- (void) loadFromCache {
-	id cachedObject = [self loadOutputFromCache];
-
-	if(cachedObject) {
-		[self setOutputFromCache:cachedObject];
-	
-		self.wasLoadedFromCache = YES;
-		[self didLoadFromCache];
-	}
-}
-
-- (void) saveOutputToCache {
-	[self.cache saveObject:self.output];
-}
-
-- (void) setOutputFromSubOperation {
-	self.output = self.subOperation.output;
-}
-
-- (void) runSubOperations {
-    [self runSubOperation:_subOperation];
-}
-
-
-- (void) runSelf {
-	if(self.canLoadFromCache && (!self.wasLoadedFromCache || self.shouldRunIfLoadedFromCache)) {
-		[self loadFromCache];
-	}
-	
-    if(!self.wasLoadedFromCache || self.shouldRunIfLoadedFromCache) {
-		self.wasLoadedFromCache = NO;
-	
-        [self runSubOperations];
-
-        [self setOutputFromSubOperation];
+        FLAssert_v([self conformsToProtocol:@protocol(FLCacheObjectOperationSubclass)], @"subclass must implement FLCacheObjectOperationSubclass protocol");
     
-        if(self.canSaveToCache && !self.wasLoadedFromCache) {
-            [self saveOutputToCache];
+        self.canLoadFromCache = YES;
+        self.canSaveToCache = YES;
+    }
+
+	return self;
+}
+
+- (id) runSubOperations {
+    return FLFailedResult;
+}
+
+- (id) loadObjectFromDatabase {
+    return nil;
+}
+
+- (void) saveObjectToDatabase:(id) object {
+}
+
+- (FLResult) runSelf {
+    FLResult object = nil;
+    
+	if(self.canLoadFromCache) {
+		object = [self loadObjectFromDatabase];
+        
+        if(object) {
+        	self.wasLoadedFromCache = YES;
+            [self postObservation:@selector(cachedObjectOperation:didLoadObjectFromDatabase:) withObject:object];
         }
 	}
+	
+    if(!object || self.alwaysRunSubOperations) {
+		self.wasLoadedFromCache = NO;
+	
+        object = FLThrowError([self runSubOperations]);
+
+        if(self.canSaveToCache) {
+            [self saveObjectToDatabase:object];
+        }
+	}
+    
+   return object;
 }
 
 

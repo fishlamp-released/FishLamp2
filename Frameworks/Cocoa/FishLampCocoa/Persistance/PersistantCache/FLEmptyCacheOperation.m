@@ -11,9 +11,9 @@
 
 @implementation FLEmptyCacheOperation
 
-- (void) runSelf {
+- (FLResult) runSelf {
 	[[FLCacheManager instance] broadcastEmptyCacheMessage:self];
-
+    return FLSuccessfullResult;
 }
 
 + (FLEmptyCacheOperation*) emptyCacheOperation {

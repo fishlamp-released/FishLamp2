@@ -10,6 +10,7 @@
 
 #import "FLResult.h"
 #import "FLCancellable.h"
+#import "FLResultProducing.h"
 
 @protocol FLFinisher <FLResultProducing, FLCancellable>
 @property (readonly, strong) FLResult result;

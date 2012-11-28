@@ -13,16 +13,16 @@
 
 @implementation FLFacebookLoadUserOperation
 
-- (void) runSelf {
+- (FLResult) runSelf {
 
 
 	FLFacebookUser* user = [FLFacebookUser facebookUser];
 FIXME(@"load the user id???");
 //	user.id = self.userId;
-	self.operationInput = user;
-	self.operationOutput = [FLFacebookUser facebookUser];
+	self.inputObject = user;
+	self.outputObject = [FLFacebookUser facebookUser];
 
-    [super runSelf];
+    return [super runSelf];
 }
 
 - (BOOL) willAddParametersToURL {

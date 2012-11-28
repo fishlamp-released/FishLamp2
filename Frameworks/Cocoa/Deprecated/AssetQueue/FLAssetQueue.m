@@ -672,7 +672,7 @@ FIXME("compatability")
 }
 #endif
  
-- (void) runSelf {
+- (FLResult) runSelf {
     
     // TODO: Load with sort. eg USE TSQL: ORDER BY
     NSArray* queue = nil;
@@ -704,9 +704,11 @@ FIXME("compatability")
 
             [self abortIfNeeded];
         }
-        
-        self.output = newQueue;
+     
+        return newQueue;
     }
+    
+    return FLFailedResult;
 }
 
 @end

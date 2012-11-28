@@ -97,17 +97,18 @@ synthesize_(httpConnectionAuthenticator);
     [super prepareSelf];
 }
 
-- (void) runSelf {
+- (FLResult) runSelf {
     [self prepareAuthenticatedConnection:self.httpConnection];
-    [super runSelf];
+    FLResult result = [super runSelf];
+    if(![result error]) {
+        FLHttpResponse* httpResponse = result;
+        FLAssertIsNotNil_(httpResponse);
+        FLAssertIsKindOfClass_(httpResponse, FLHttpResponse);
+        self.httpResponse = httpResponse;
+    }
+    return result;
 }
 
-- (void) handleAsyncResultFromConnection:(id) result {
-    FLHttpResponse* httpResponse = result;
-    FLAssertIsNotNil_(httpResponse);
-    FLAssertIsKindOfClass_(httpResponse, FLHttpResponse);
-    self.httpResponse = httpResponse;
-}
 
 @end
 

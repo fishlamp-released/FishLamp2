@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "FLImage.h"
-#import "FLStorableAsset.h"
+#import "FLStorable.h"
 
 extern NSString* const FLPhotoType;
 

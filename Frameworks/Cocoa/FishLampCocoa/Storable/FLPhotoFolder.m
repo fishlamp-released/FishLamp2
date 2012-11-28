@@ -61,10 +61,11 @@ static NSDictionary* s_suffixes = nil;
 
     if (UTTypeConformsTo(bridge_(CFStringRef, fileUTI), kUTTypeImage)) {
         NSData* data = [_folder readDataFromFile:name];
-        FLImage* photo = [FLImage photoWithImageBytes:data];
-        photo.assetType = fileUTI;
-        photo.storageKey = name;
-        return photo;
+        FLImage* image = [FLImage photoWithImageBytes:data];
+        image.delegate = self;
+        image.storageType = fileUTI;
+        image.storageKey = name;
+        return image;
     }
     else if (UTTypeConformsTo(bridge_(CFStringRef, fileUTI), kUTTypeMovie)) {
     }
@@ -85,8 +86,9 @@ static NSDictionary* s_suffixes = nil;
     NSData* data = [_folder readDataFromFile:fileName];
     if(data) {
         FLImage* image = [FLImage photoWithImageBytes:data];
-        image.assetSubType = subType;
-        image.assetType = [_folder fileUTI:fileName];
+        image.delegate = self;
+        image.storableSubType = subType;
+        image.storableType = [_folder fileUTI:fileName];
         image.storageKey = storageKey;
         return image;
     }
@@ -198,6 +200,10 @@ static NSDictionary* s_suffixes = nil;
 - (void) writePhoto:(FLPhoto*) photo {
 
 
+}
+
+- (id<FLPhotoStorage>) imageStorage:(FLImage*) image {
+    return self;
 }
 
 //

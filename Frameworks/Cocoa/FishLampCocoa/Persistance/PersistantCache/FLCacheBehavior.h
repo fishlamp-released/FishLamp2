@@ -45,6 +45,8 @@
 	
 }
 
+@property (readonly, strong) FLInMemoryDataCache* memoryCache;
+
 - (id) initWithCapacity:(NSUInteger) capacity;
 + (FLCacheBehavior*) sharedCacheBehavior:(NSUInteger) capacity;
 

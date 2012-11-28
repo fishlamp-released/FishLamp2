@@ -9,70 +9,104 @@
 #import "FLDownloadImageOperation.h"
 #import "FLCachedImage.h"
 
+@interface FLDownloadImageOperation ()
+@property (readwrite, strong) FLImage* image;
+@property (readwrite, strong) id<FLImageStorageStrategy> storageStrategy;
+@end
+
 @implementation FLDownloadImageOperation
 
-- (id) initWithURL:(NSURL*) url {
-    self = [super initWithURL:url];
+@synthesize image = _image;
+@synthesize storageStrategy = _storageStrategy;
+
+
+- (id) initWithImageURL:(NSURL*) imageURL 
+    storageStrategy:(id<FLImageStorageStrategy>) storageStrategy {
+    
+    self = [super initWithURL:imageURL];
     if(self) {
-        self.input = [FLCachedImage cachedImage];
+        self.storageStrategy = storageStrategy;
+    }
+    
+    return self;
+}
+
+- (id) initWithImageURL:(NSURL*) imageURL {
+    self = [self initWithImageURL:imageURL storageStrategy:nil];
+    if(self) {
+    
     }
     return self;
 }
 
-- (void) runSelf {
-	[((FLCachedImage*)self.input) setUrl:self.URL.absoluteString];
+#if FL_MRC
+- (void) dealloc {
+    [_storageStrategy release];
+    [super dealloc];
+}
+#endif
 
-    [super runSelf];
-
-    FLThrowError_([self.httpResponse simpleHttpResponseErrorCheck]);
-    if(!self.error) {
+- (FLResult) runSelf {
     
-        FLCachedImage* photo = [FLCachedImage cachedImage];
-        photo.url = self.URL.absoluteString;
+    
+    id result = [super runSelf];
+    if([result succeeded]) {
+//        NSData* imageBytes = result;
         
-        NSData* data = self.httpResponse.responseData;
-        if(data && data.length > 0)
-        {
-            // note: folder and file name will be set by image cache.
-            FLImage* imageFile = [[FLImage alloc] init];
-            imageFile.imageBytes = data;
-            // uhoh, how do I tell what type it is???
-FIXME("ambiguous type")            
-            photo.imageFile = imageFile;
-            FLReleaseWithNil_(imageFile);
-            
-            self.output = photo;
-        }
+//    FLImageProperties* imageInfo = nil;
+//    if(_storageStrategy) {
+//        imageInfo = [_storageStrategy imagePropertiesForImageURL:self.imageURL];
+//    }
+        
+        
     }
-}
+    
+        
+    [super runSelf];
+//
+//    FLThrowError_([self.httpResponse simpleHttpResponseErrorCheck]);
+//    if(!self.error) {
+//    
+//        FLCachedImage* photo = [FLCachedImage cachedImage];
+//        photo.url = self.URL.absoluteString;
+//        
+//        NSData* data = self.httpResponse.responseData;
+//        if(data && data.length > 0)
+//        {
+//            // note: folder and file name will be set by image cache.
+//            FLImage* imageFile = [[FLImage alloc] init];
+//            imageFile.imageBytes = data;
+//            // uhoh, how do I tell what type it is???
+//FIXME("ambiguous type")            
+//            photo.imageFile = imageFile;
+//            FLReleaseWithNil_(imageFile);
+//            
+//            self.output = photo;
+//        }
+//    }
 
-- (FLCachedImage*) cachedImageOutput {
-	return self.operationOutput;
-}
-
-- (FLImage*) jpegFileOutput {
-	return [self cachedImageOutput].imageFile;
-}
-
-- (NSImage_*) imageOutput {
-	return [self jpegFileOutput].image;
+    return result;
 }
 
 @end
 
+@interface FLDownloadImageBytesOperation ()
+@property (readwrite, strong) NSData* imageBytes;
+@end
+
 @implementation FLDownloadImageBytesOperation 
 
-- (void) runSelf {
-	[super runSelf];
+@synthesize imageBytes = _imageBytes;
 
-    FLThrowError_([self.httpResponse simpleHttpResponseErrorCheck]);
-    if(!self.error) {
-        self.output = self.httpResponse.responseData;
+- (FLResult) runSelf {
+	id result = [super runSelf];
+    if([result succeeded]) {
+        FLThrowError_([self.httpResponse simpleHttpResponseErrorCheck]);
+        self.imageBytes = self.httpResponse.responseData;
+        return self.imageBytes;
     }
-}
 
-- (NSData*) imageDataOutput {
-    return (NSData*) self.output;
+    return result;
 }
 
 @end

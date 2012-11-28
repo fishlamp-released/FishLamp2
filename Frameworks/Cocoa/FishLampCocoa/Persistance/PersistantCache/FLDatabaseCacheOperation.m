@@ -10,63 +10,59 @@
 
 @implementation FLDatabaseCacheOperation
 
-@synthesize operation = _operation;
-
-- (id) initWithObjectAndOperationType:(FLDatabase*) cache
-	object:(id) object 
-	operation:(FLCacheOperationType) operation
+- (id) initWithObjectAndOperationType:(FLDatabase*) database
+                                input:(id) input 
+                            operation:(FLCacheOperationType) operation
 {
 	if((self = [super init]))
 	{
-		FLAssertIsNotNil_v(cache, nil);
-		FLAssertIsNotNil_v(object, nil);
+		FLAssertIsNotNil_v(database, nil);
+		FLAssertIsNotNil_v(input, nil);
 		
-		_cache = retain_(cache);
-		self.input = object;
-		self.operation = operation;
+        _database = retain_(database);
+        _input = retain_(input);
+		_operationType = operation;
 	}
 	
 	return self;
 }
 
-- (void) runSelf
-{
-	id output = nil;
-				
-	@try
-	{
-		switch(_operation)
-		{
-			case gtLoadFromCacheOperation:
-				self.output = [_cache loadObject:self.input];
-				break;
-			case gtSaveToCacheOperation:
-				[_cache saveObject:self.input];
-				break;
+- (FLResult) runSelf {
+    FLResult result = FLSuccessfullResult;
+	
+    switch(_operationType)
+    {
+        case gtLoadFromCacheOperation:
+            result = [_database loadObject:_input];
+            break;
 
-			case gtDeleteFromCacheOperation:
-				[_cache deleteObject:self.input];
-				break;
-				
-				
-			case gtLoadFromDatabaseOperation:
-			case gtSaveToDatabaseOperation:
-			case gtDeleteFromDatabase:
-				FLAssertFailed_v(@"not implemented");
-				break;
-				
-		}
-	}
-	@finally {
-		FLReleaseWithNil_(output);
-	}
+        case gtSaveToCacheOperation:
+            [_database saveObject:_input];
+            break;
+
+        case gtDeleteFromCacheOperation:
+            [_database deleteObject:_input];
+            break;
+            
+            
+        case gtLoadFromDatabaseOperation:
+        case gtSaveToDatabaseOperation:
+        case gtDeleteFromDatabase:
+            FLAssertFailed_v(@"not implemented");
+            break;
+            
+    }
+	
+    return result;
 }
 
-- (void) dealloc
-{
-	release_(_cache);
-	super_dealloc_();
+#if FL_MRC
+- (void) dealloc {
+    [_database release];
+    [_input release];
+    [super dealloc];
 }
+#endif
 
 @end
 

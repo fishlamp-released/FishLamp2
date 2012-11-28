@@ -20,22 +20,25 @@
 }
 #endif
 
-- (void) runSelf {
+- (FLResult) runSelf {
 
     self.URL = [FLFacebookMgr buildOAuthUrl:self.permissions
                                    forAppId:[[FLFacebookMgr serviceFromContext:self.context] appId]];
 
     [FLFacebookMgr clearFacebookCookies];
 
-    [super runSelf];
+    id result = [super runSelf];
 
-    if(!self.error) {
+    if(![result error]) {
+
         NSError* error = nil;
-        self.output = [FLFacebookMgr authenticationResponseFromURL:self.httpRequest.requestURL outError:&error];
+        result = [FLFacebookMgr authenticationResponseFromURL:self.httpRequest.requestURL outError:&error];
         if(error) {
             FLThrowError_(error);
         }
     }
+    
+    return result;
 }
 
 - (void) networkConnection:(FLNetworkConnection*) connection

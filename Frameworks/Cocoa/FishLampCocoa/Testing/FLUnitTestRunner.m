@@ -22,9 +22,9 @@
     return autorelease_([[[self class] alloc] init]);
 }
 
-- (void) runSelf {
+- (FLResult) runSelf {
     FLUnitTestRunner* runner = [FLUnitTestRunner unitTestRunner];
-    self.output = [runner runAllTests];
+    return [runner runAllTests];
 }
 
 @end

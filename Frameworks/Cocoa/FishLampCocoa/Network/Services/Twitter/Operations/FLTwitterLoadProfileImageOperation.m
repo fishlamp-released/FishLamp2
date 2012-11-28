@@ -36,7 +36,7 @@
 	super_dealloc_();
 }
 
-- (void) runSelf {
+- (FLResult) runSelf {
     self.URL = [NSURL URLWithString:[NSString stringWithFormat:@"http://api.twitter.com/1/users/profile_image/%@.json?size=%@", _username, _imageSize]];
     FLAssertNotNil_(self.URL);
     
@@ -46,7 +46,7 @@ FIXME(@"need the behavior but not the operation");
 //        self.operationInput = [FLCachedImage cachedImage];
   
     
-    [super runSelf];
+    return [super runSelf];
 }
 
 @end

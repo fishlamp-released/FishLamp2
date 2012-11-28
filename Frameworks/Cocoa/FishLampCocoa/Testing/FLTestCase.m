@@ -173,7 +173,7 @@ synthesize_(priority);
     return [self.testCaseName compare:other.testCaseName];
 }
 
-- (void) runSelf {
+- (FLResult) runSelf {
     @try {
         if(!FLPerformSelector(_testCaseTarget, _testCaseSelector)) {
             if(_testCaseBlock) {
@@ -223,7 +223,7 @@ synthesize_(priority);
     }
     @catch(NSException* ex) {
         
-//        if(ex.error.isFailedResult) {
+//        if(ex.error.failed) {
 //            failed = ex.error.code;
 //        }
         

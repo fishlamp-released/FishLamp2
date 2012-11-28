@@ -26,10 +26,6 @@
 
 - (FLNetworkConnection*) createNetworkConnection; 
 
-// sets operationOutput by default.
-- (void) handleAsyncResultFromConnection:(id) result;
-
-
 @end
 
 

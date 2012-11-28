@@ -14,8 +14,10 @@
 @interface FLJsonOperation : FLHttpOperation {
 @private
 	FLJsonStringBuilder* _json;
+    id _outputObject;
 }
 
+@property (readwrite, strong) id outputObject;
 @property (readwrite, strong) FLJsonStringBuilder* json;
 
 @end

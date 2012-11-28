@@ -49,7 +49,7 @@
 //    [[NSNotificationCenter defaultCenter] removeObserver:self name:NSFileHandleReadToEndOfFileCompletionNotification object:[notification object]];
 //}
 //
-- (void) runSelf {
+- (FLResult) runSelf {
 
     NSTask* task = [[NSTask alloc] init];
     @try {
@@ -98,8 +98,7 @@
             outputStr = autorelease_([[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding]);
         }
         
-        self.output = outputStr;
-        
+        return outputStr;
     }
     @catch (NSException* ex) {
         FLLog(@"Exception: %@", [ex description]);
@@ -110,6 +109,8 @@
         task.terminationHandler = nil;
         release_(task);
     }
+    
+    return FLFailedResult;
 }
 @end
 

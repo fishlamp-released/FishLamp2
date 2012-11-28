@@ -13,9 +13,9 @@
 - (id) initWithDatabaseObjectInput:(FLDatabase*) database 
 							 input:(id) input {
 	if((self = [self init])) {
-		self.input = input;
 		FLAssertIsNotNil_(database);
 		FLAssertIsNotNil_(input);
+        _input = retain_(input);
 		_database = retain_(database);
 	}
 	return self;
@@ -23,15 +23,18 @@
 
 #if FL_MRC
 - (void) dealloc {
-	release_(_database);
-	super_dealloc_();
+    [_input release];
+    [_database release];
+    [super dealloc];
 }
 #endif
 
-- (void) runSelf {
-	FLAssertIsNotNil_(_database);
-	[_database saveObject:[self input]];
 
+- (FLResult) runSelf {
+	FLAssertIsNotNil_(_database);
+	FLAssertIsNotNil_(_input);
+	[_database saveObject:_input];
+    return FLSuccessfullResult;
 }
 
 @end

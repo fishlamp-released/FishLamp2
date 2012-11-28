@@ -13,20 +13,19 @@
 #import "FLContextual.h"
 #import "FLWorker.h"
 #import "FLDispatcher.h"
+#import "FLResult.h"
 
 @class FLOperation;
 
-typedef void (^FLRunOperationBlock)(FLOperation* operation);
+typedef FLResult (^FLRunOperationBlock)(FLOperation* operation);
 
 @interface FLOperation : FLObservable<FLCancellable, FLContextual> {
 @private
     __unsafe_unretained id _context;
-    id _operationInput;
-    id _operationOutput;
-
-// id
+    id _result;
 	NSInteger _tag;
 	id _operationID;
+    NSError* _error;
 
 // optional run block (or override runSelf)
 	FLRunOperationBlock _runBlock;
@@ -38,22 +37,21 @@ typedef void (^FLRunOperationBlock)(FLOperation* operation);
     int32_t _busy;
 
 // run state (reset with each run)
-    NSError* _error;
     BOOL _wasStarted;
     BOOL _isFinished;
     FLFinisher* _cancelFinisher;
 }
 
-@property (readwrite, strong) id operationInput;
-@property (readwrite, strong) id operationOutput;
+//@property (readwrite, strong) id operationInput;
+//@property (readwrite, strong) id operationOutput;
 
 // input/output
 // Note: we're not using properties here to give us some flexibily with subclasses.
-- (id) output;
-- (void) setOutput:(id) output;
+//- (id) output;
+//- (void) setOutput:(id) output;
 
-- (id) input;
-- (void) setInput:(id) input;
+//- (id) input;
+//- (void) setInput:(id) input;
 
 // TODO: abstract this better;
 //@property (readonly, assign) FLOperationType operationType;
@@ -72,24 +70,22 @@ typedef void (^FLRunOperationBlock)(FLOperation* operation);
 @property (readonly, assign) BOOL didFail;      // self.error != nil
 @property (readonly, assign) BOOL didSucceed;   // didRun && error = nil && !wasCancelled
 @property (readonly, assign) BOOL didRun;
+
 @property (readwrite, strong) NSError* error;
 
 - (id) init;
 - (id) initWithRunBlock:(FLRunOperationBlock) block;
-- (id) initWithInput:(id) input;
 
 + (id) operation;
-+ (id) operationWithInput:(id) input;
 + (id) operation:(FLRunOperationBlock) block;
 
-- (FLFinisher*) startOperationInDispatcher:(id<FLDispatcher>) inDispatcher completion:(FLCompletionBlock) completion;
+- (FLFinisher*) startOperationInDispatcher:(id<FLDispatcher>) inDispatcher 
+                                completion:(FLCompletionBlock) completion;
+                                
 - (FLFinisher*) startOperation:(FLCompletionBlock) completion;;
-- (id) runSynchronously;
-- (id) result;
 
-/// @brief run a suboperation
-/// parent inherits results, e.g. errors.
-- (void) runSubOperation:(FLOperation*) operation;
+/// This will not throw.
+- (id) runSynchronously;
 
 // utils
 - (void) throwAbortIfFailed;
@@ -105,8 +101,8 @@ typedef void (^FLRunOperationBlock)(FLOperation* operation);
 /// @brief Required override point (or use runBlock).
 /// Either override run or set the operation's run block.
 - (void) prepareSelf;
-- (void) runSelf;
-- (void) finishSelf;
+- (FLResult) runSelf;
+- (void) finishSelf:(FLResult*) withResult;
 
 /// @brief this is called for you to respond to if requestCancel is called
 - (void) cancelSelf;
@@ -127,32 +123,13 @@ typedef void (^FLRunOperationBlock)(FLOperation* operation);
 
 @end
 
-/// TODO remove these
-//typedef void (^FLOperationObserverBlock)(FLOperation* operation);
-//
-//@interface FLOperation (Observing)
-///// Observing. Also see superclass FLObservableObject.
-////- (void) observeStart:(FLOperationObserverBlock) block;
-////- (void) observeFinish:(FLOperationObserverBlock) block;
-//@end
-//
-//@interface FLOperationObserver : NSObject <FLOperationObserver> {
-//@private
-//    FLOperationBlock _block;
-//}
-//- (id) initWithBlock:(FLOperationObserverBlock) block;
-//+ (id) operationObserver:(FLOperationObserverBlock) block;
-//- (void) invokeBlockWithOperation:(FLOperation*) operation;
-//@end
-//
-//@interface FLOperationWillStartObserver : FLOperationObserver
-//@end
-//
-//@interface FLOperationDidFinishObserver : FLOperationObserver
-//@end
+#define FLRunOperation_(__OPERATION__) FLThrowError([__OPERATION__ runSynchronously])
+
+#define FLRunSelfForResponse(__TYPE__) FLAssertIsType([__TYPE__ class], FLThrowError([super runSelf]))
 
 
-@interface FLOperation ()
 
 
-@end
+
+
+

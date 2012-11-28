@@ -9,7 +9,11 @@
 #import <Foundation/Foundation.h>
 
 #import "FLStorable.h"
-#import "FLCocoaCompatibility.h"
+#import "FLImageStorageStrategy.h"
+#import "FLImageProperties.h"
+
+@protocol FLImageDelegate;
+@protocol FLPhotoStorage;
 
 extern NSString* const FLImageTypeThumbnail;
 extern NSString* const FLImageTypePreview;
@@ -19,27 +23,33 @@ extern NSString* const FLImageTypeOriginal;
 @private
 	NSImage_* _image;
 	NSData* _imageBytes;
-	NSDictionary* _properties;
+	NSDictionary* _exifData;
+    FLImageProperties* _imageProperties;
+    id<FLImageStorageStrategy> _storageStrategy;
 }
+
+@property (readwrite, strong) FLImageProperties* imageProperties;
+@property (readwrite, strong) id<FLImageStorageStrategy>  storageStrategy;
 
 @property (readwrite, strong, nonatomic) NSImage_* image;
 @property (readwrite, strong, nonatomic) NSData* imageBytes;
-@property (readwrite, strong, nonatomic) NSDictionary* properties;
+@property (readwrite, strong, nonatomic) NSDictionary* exifData;
 
 - (id) initWithImageBytes:(NSData*) imageBytes;
  
 + (id) photoWithImageBytes:(NSData*) imageBytes;
 
 - (id) initWithImage:(NSImage_*) image 
-          properties:(NSDictionary*)properties;
+          exifData:(NSDictionary*)exifData;
 
 - (void) clearAll;
 
 - (void) setImage:(NSImage_*) image 
-       properties:(NSDictionary*) properties;
+       exifData:(NSDictionary*) exifData;
 
 - (void) setImage:(NSImage_*) image 
        imageBytes:(NSData*) bytes 
-       properties:(NSDictionary*) properties;
+       exifData:(NSDictionary*) exifData;
 
 @end
+

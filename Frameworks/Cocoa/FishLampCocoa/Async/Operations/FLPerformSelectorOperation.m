@@ -22,8 +22,10 @@
 	return autorelease_([[[self class] alloc] initWithTarget:target action:action]);
 }
 
-- (void) runSelf {
+- (FLResult) runSelf {
     FLPerformSelector1(_target, _action, self);
+
+    return FLSuccessfullResult;
 }
 
 - (void) setCallback:(id) target action:(SEL) action {

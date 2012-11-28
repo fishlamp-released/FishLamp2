@@ -11,7 +11,7 @@
 #import "FLImage.h"
 #import "FLPhoto.h"
 
-@protocol FLPhotoStorage <NSObject>
+@protocol FLPhotoStorage <NSObject, FLImageDelegate>
 
 - (FLPhoto*) readPhoto:(id) storageKey;
 - (void) writePhoto:(FLPhoto*) photo

@@ -47,7 +47,7 @@
 
 }
 
-- (void) runSelf {
+- (FLResult) runSelf {
 
     while(YES) {
     
@@ -71,6 +71,8 @@
 
         [self postObservation:@selector(batchOperation:didProccessObject:) withObject:object];
     }
+    
+    return FLSuccessfullResult;
 }
 
 

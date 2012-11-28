@@ -14,6 +14,8 @@
 @private
 }
 
++ (id) objectBuilder;
+
 - (void) buildObjectsFromDictionary:(NSDictionary*) dictionary withRootObject:(id) rootObject;
 
 @end

@@ -13,6 +13,7 @@
 @interface FLSaveObjectToDatabaseOperation : FLOperation {
 @private
 	FLDatabase* _database;
+    id _input;
 }
 
 - (id) initWithDatabaseObjectInput:(FLDatabase*) database input:(id) input;

@@ -73,7 +73,7 @@
 }
 
 
-- (void) runSelf {
+- (FLResult) runSelf {
     [self configureRequest];
     [super runSelf];
     

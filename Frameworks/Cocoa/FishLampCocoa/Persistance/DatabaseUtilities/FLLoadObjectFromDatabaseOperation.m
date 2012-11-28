@@ -11,34 +11,30 @@
 @implementation FLLoadObjectFromDatabaseOperation
 
 - (id) initWithCacheableObjectInput:(FLDatabase*) database 
-							  input:(id) input
-{
-	if((self = [self init]))
-	{
+							  input:(id) input {
+	self = [self init];
+    if(self) {
 		FLAssertIsNotNil_(database);
 		FLAssertIsNotNil_(input);
-		self.input = input;
+        _input = retain_(input);
 		_database = retain_(database);
 	}
 	return self;
 } 
 
-- (void) runSelf {
-	FLAssertIsNotNil_(_database);
-	id outputObject = nil;
-	@try {
-		[_database loadObject:[self input] outputObject:&outputObject];
-		self.output = outputObject;
-	}
-	@finally {
-		FLReleaseWithNil_(outputObject);
-	}
-
+- (FLResult) runSelf {
+	FLAssertIsNotNil_(_input);
+    FLAssertIsNotNil_(_database);
+	return [_database loadObject:_input];
 }
 
+#if FL_MRC
 - (void) dealloc {
-	release_(_database);
-	super_dealloc_();
+    [_input release];
+    [_database release];
+    [super dealloc];
 }
+#endif
+
 
 @end

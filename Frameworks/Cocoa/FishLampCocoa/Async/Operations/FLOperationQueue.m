@@ -208,23 +208,23 @@
 }
 
 - (id) lastOperationOutput {
-    return [[self lastOperation] operationOutput];
+    return [[self lastOperation] output];
 }
 
 - (id) firstOperationOutput {
-    return [[self firstOperation] operationOutput];
+    return [[self firstOperation] output];
 }
 
 - (id) outputById:(id) operationID {
-    return [[self operationByID:operationID] operationOutput];
+    return [[self operationByID:operationID] output];
 }
 
 - (id) outputByTag:(NSInteger) tag {
-    return [[self operationByTag:tag] operationOutput];
+    return [[self operationByTag:tag] output];
 }
 
 - (id) outputByOperationClass:(Class) aClass {
-    return [[self operationByClass:aClass] operationOutput];
+    return [[self operationByClass:aClass] output];
 }
 
 - (void) cancelOperationByID:(id) operationID {
@@ -335,7 +335,7 @@
     self.cancelFinisher = nil;
     
     for(FLOperation* operation in self.operations.forwardIterator) {
-        if([[operation runSynchronously] isFailedResult]) {
+        if([[operation runSynchronously] failed]) {
             return [[operation runSynchronously] error];
         }
     }

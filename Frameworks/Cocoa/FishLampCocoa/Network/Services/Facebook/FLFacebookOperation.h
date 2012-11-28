@@ -15,7 +15,12 @@
 @interface FLFacebookOperation : FLHttpOperation {
 @private
 	NSString* _object;
+    id _outputObject;
+    id _inputObject;
 }
+
+@property (readwrite, strong) id inputObject;
+@property (readwrite, strong) id outputObject;
 
 @property (readwrite, strong) NSString* object;
 

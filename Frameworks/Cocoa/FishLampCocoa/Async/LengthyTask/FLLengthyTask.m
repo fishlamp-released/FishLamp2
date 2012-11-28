@@ -43,14 +43,14 @@
 	[_delegate lengthyTaskDidChangeName:self];
 }
 
-- (void) beginSelf {
+- (void) executeSelf {
 }
 
 - (BOOL) shouldExecuteTask {
     return YES;
 }
 
-- (void) runSelf {
+- (FLResult) runSelf {
 
     if([self shouldExecuteTask] && (!_delegate || [_delegate lengthyTaskShouldBegin:self])) {
         [self prepareTask];
@@ -58,7 +58,7 @@
         _currentStep = 0;
         _started = YES;
         [_delegate lengthyTaskWillBegin:self];
-        [self beginSelf];
+        [self executeSelf];
 
 #if DEBUG
         if(_currentStep < _totalStepCount - 1) {
@@ -72,6 +72,8 @@
         _currentStep = self.totalStepCount;
         [_delegate lengthyTaskDidFinish:self];
     }
+    
+    return FLSuccessfullResult;
 }
 
 - (void) setStepCount:(NSUInteger) stepCount {

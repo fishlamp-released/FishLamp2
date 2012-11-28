@@ -82,7 +82,7 @@
         return obj1.groupPriority  > obj2.groupPriority ? NSOrderedAscending : NSOrderedDescending;
     }]; 
     
-    NSMutableArray* result = [NSMutableArray array];
+    NSMutableArray* resultArray = [NSMutableArray array];
     
     for(FLUnitTestGroup* group in groupList) {
     
@@ -93,12 +93,12 @@
         
         for(Class aClass in classList) {
             FLUnitTest* test = autorelease_([[[aClass class] alloc] init]);
-            [test runSynchronously];
-            [result addObject:test.output];
+            FLUnitTestResult* result = FLThrowError([test runSynchronously]);
+            [resultArray addObject:result];
         }
     }
     
-    return result;
+    return resultArray;
     
     
 }

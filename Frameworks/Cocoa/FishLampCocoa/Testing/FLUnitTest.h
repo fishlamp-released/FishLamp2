@@ -31,7 +31,6 @@
     FLTestResultCollection* _results;
 }
 
-@property (readonly, strong) FLTestResultCollection* results;
 @property (readonly, strong) NSString* unitTestName;
 
 + (FLUnitTest*) unitTest;

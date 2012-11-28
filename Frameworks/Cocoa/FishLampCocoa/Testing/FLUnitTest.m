@@ -17,14 +17,12 @@
 #import "FLOperationQueue.h"
 
 @interface FLUnitTest ()
-@property (readwrite, strong) FLTestResultCollection* results;
 @property (readonly, strong) NSArray* testCases;
 @end
 
 @implementation FLUnitTest
 
 @synthesize testCases = _testCases;
-@synthesize results = _results;
 
 + (FLUnitTest*) unitTest {
     return autorelease_([[[self class] alloc] init]);
@@ -105,9 +103,7 @@
 
 #if FL_MRC
 - (void) dealloc {
-    [_results release];
     [_testCases release];
-    [_results release];
     [super dealloc];
 }
 #endif
@@ -160,9 +156,10 @@
     return YES;
 }
 
-- (void) runSelf {
+- (FLResult) runSelf {
+    FLTestResultCollection* results = [FLTestResultCollection testResultCollection];
+        
     if([self willRunTests]) {
-        self.results = [FLTestResultCollection testResultCollection];
         
         [self setupTests];
     
@@ -175,7 +172,7 @@
             else {
                 FLTestCaseResult* result = [FLTestCaseResult testCaseResult:testCase];
 
-                [self.results setTestResult:result forKey:testCase.testCaseName];
+                [results setTestResult:result forKey:testCase.testCaseName];
 
                 @try {
                     
@@ -183,12 +180,12 @@
                     
                     FLLog(@"STARTING %@", testCase.testCaseName);
 
-                    [self runSubOperation:testCase];
+                    FLThrowError([testCase runSynchronously]);
                     [result setPassed];
                     FLLog(@"PASS!")
                 }
                 @catch(NSException* ex) {
-                    [[self.results testResultForKey:testCase.testCaseName] setError:ex.error];
+                    [[results testResultForKey:testCase.testCaseName] setError:ex.error];
                     FLLog(@"FAIL: %@", [ex.error description]);
                 }
                 @finally {
@@ -205,14 +202,14 @@
             }
         }
         
-        FLConfirmIsYes_v([self.results allTestsPassed], @"tests failed");
-        
-        self.output = self.results;
-    }
+        FLConfirmIsYes_v([results allTestsPassed], @"tests failed");
+     }
+    
+    return results;
 }
 
 - (NSString*) description {
-    return [NSString stringWithFormat:@"%@ { group=%@, results:%@ }", [super description], [[[self class] unitTestGroup] description], [self.results description]];
+    return [NSString stringWithFormat:@"%@ { group=%@ }", [super description], [[[self class] unitTestGroup] description]];
 }
 
 - (void) setupTests {

@@ -23,7 +23,7 @@
 }
 #endif
 
-- (void) copySelfTo:(id) object {
+- (void) copySelfTo:(FLStorable*) object {
     object.storageKey = self.storageKey;
     object.storableType = self.storableType;
     object.storableSubType = self.storableSubType;
@@ -37,4 +37,5 @@
 
 
 @end
+
 

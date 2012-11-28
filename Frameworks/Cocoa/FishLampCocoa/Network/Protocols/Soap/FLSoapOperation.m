@@ -15,14 +15,18 @@
 
 @implementation FLSoapOperation 
 
-synthesize_(soapActionHeader);
-synthesize_(soapNamespace);
-synthesize_(operationName);
-synthesize_(outputName);
-synthesize_(outputObject);
+@synthesize soapInput = _soapInput;
+@synthesize soapOutput = _soapOutput;
+@synthesize soapActionHeader = _soapActionHeader;
+@synthesize soapNamespace = _soapNamespace;
+@synthesize operationName = _operationName;
+@synthesize outputName = _outputName;
+@synthesize outputObject = _outputObject;
 
 #if FL_MRC
 - (void) dealloc {
+    [_soapInput release];
+    [_soapOutput release];
     [_outputObject release];
     [_outputName release];
     [_soapActionHeader release];
@@ -74,35 +78,36 @@ synthesize_(outputObject);
     FLThrowError_([NSError errorWithSoapFault:fault]);
 }
 
-- (void) runSelf {
+- (FLResult) runSelf {
 
     FLAssertStringIsNotEmpty_(self.URL.absoluteString);
     FLAssertStringIsNotEmpty_(self.soapNamespace);
     FLAssertStringIsNotEmpty_(self.operationName);
 
     FLSoapStringBuilder* soap = [FLSoapStringBuilder stringBuilder];
-	[soap.body addObjectAsFunction:self.operationName object:[self input] xmlNamespace:self.soapNamespace];
+	[soap.body addObjectAsFunction:self.operationName object:[self soapInput] xmlNamespace:self.soapNamespace];
 
     self.httpRequest.requestMethod = @"POST";
 	[self.httpRequest setHeaderValue:self.soapActionHeader forName:@"SOAPAction"]; //[NSString stringWithFormat:@"\"%@\"", self.soapActionHeader]];
 	[self.httpRequest setUtf8Content:[soap buildStringWithNoWhitespace]];
 
-    [super runSelf];
+    FLHttpResponse* response = FLThrowError([super runSelf]);
 
-    if(!self.error) {
-        NSData* data = self.httpResponse.responseData;
-        
-        FLSoapFault11* fault = [FLSoapOperation checkForSoapFaultInData:data];
-        if(fault) {
-            [self handleSoapFault:fault];
-        }
-        
-        FLThrowError_([self.httpResponse simpleHttpResponseErrorCheck]);
-       
-        if(_outputObject) {
-            [self parseXmlResponse:data object:_outputObject];
-        }
+    NSData* data = response.responseData;
+    
+    FLSoapFault11* fault = [FLSoapOperation checkForSoapFaultInData:data];
+    if(fault) {
+        [self handleSoapFault:fault];
     }
+    
+    FLThrowError_([self.httpResponse simpleHttpResponseErrorCheck]);
+   
+    if(_outputObject) {
+        [self parseXmlResponse:data object:_outputObject];
+        return _outputObject;
+    }
+    
+    return data;
 }
 
 - (id) output {

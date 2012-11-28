@@ -16,30 +16,31 @@
 
 @implementation FLFacebookOperation
 
-synthesize_(object)
+@synthesize object = _object;
+@synthesize outputObject = _outputObject;
+@synthesize inputObject = _inputObject;
 
 
 #if FL_MRC
 - (void) dealloc {
-
+    [_inputObject release];
+    [_outputObject release];
     [_object release];
     [super dealloc];
 }
 #endif
-
-
 
 - (BOOL) willAddParametersToURL {
 	return YES;
 }
 
 - (void) addParametersToURLString:(NSMutableString*) url {
-	if(self.input) {
+	if(self.inputObject) {
 		
-        FLObjectDescriber* describer = [[self.input class] sharedObjectDescriber];
+        FLObjectDescriber* describer = [[self.inputObject class] sharedObjectDescriber];
 	
 		for(NSString* propertyName in describer.propertyDescribers) {
-			id obj = [self.input valueForKey:propertyName];
+			id obj = [self.inputObject valueForKey:propertyName];
 			if(obj) {
 				FLAssert_v([obj isKindOfClass:[NSString class]], @"not a string"); 
 				if(FLStringIsNotEmpty(obj)) {
@@ -50,8 +51,27 @@ synthesize_(object)
 	}
 }
 
+- (NSDictionary*) responseParsedIntoDictionary:(FLHttpResponse*) httpResponse {
+    NSData* responseData = [httpResponse responseData];
 
-- (void) runSelf {
+// look for error
+    FLJsonParser* parser = [FLJsonParser jsonParser];
+    NSDictionary* response = [parser parseJsonData:responseData rootObject:nil];
+    FLThrowError_(parser.error);
+
+    if([response objectForKey:@"error"]) {
+        FLDebugLog(@"Got facebookService error: %@", [response description]);
+    
+        FLThrowErrorCode_v(@"Facebook", 1,
+            @"%@ = \"%@\"",
+            NSLocalizedString(@"Unexpected Facebook Response", nil),
+            [response objectForKey:@"error"]);
+    }
+    
+    return response;
+}
+
+- (FLResult) runSelf {
     FLFacebookMgr* facebook = [FLFacebookMgr serviceFromContext:self.context];
 
     NSString* userID = facebook.facebookNetworkSession.userId;
@@ -67,32 +87,24 @@ synthesize_(object)
     
     self.URL = URL;
 
-    [super runSelf];
+    FLResult result = [super runSelf];
     
-    if(!self.error) {
+    if(![result succeeded]) {
     
-        NSData* responseData = self.httpResponse.responseData;
-    
-        FLJsonParser* parser = [FLJsonParser jsonParser];
-		NSDictionary* response = [parser parseJsonData:responseData rootObject:nil];
-        FLThrowError_(parser.error);
-
-        if([response objectForKey:@"error"])
-        {
-            FLDebugLog(@"Got facebookService error: %@", [response description]);
-        
-            FLThrowErrorCode_v(@"Facebook", 1,
-                @"%@ = \"%@\"",
-                NSLocalizedString(@"Unexpected Facebook Response", nil),
-                [response objectForKey:@"error"]);
+        NSDictionary* responseDictionary = [self responseParsedIntoDictionary:result];
+       
+        if(self.outputObject) {
+            FLObjectBuilder* builder = [FLObjectBuilder objectBuilder];
+            [builder buildObjectsFromDictionary:responseDictionary withRootObject:self.outputObject];
+            
+            result = self.outputObject;
         }
-        else
-        {
-            FLObjectBuilder* builder = [[FLObjectBuilder alloc] init];
-            [builder buildObjectsFromDictionary:response withRootObject:self.operationOutput];
-            release_(builder);
+        else {
+            result = responseDictionary;
         }
     }
+    
+    return result;
 }
 
 @end

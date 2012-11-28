@@ -36,7 +36,7 @@
 - (NSUInteger) calculateTotalStepCount; // returns totalStepCount
 
 - (BOOL) shouldExecuteTask; // default returns YES
-- (void) beginSelf;
+- (void) executeSelf;
 
 - (void) setStepCount:(NSUInteger) stepCount
        totalStepCount:(NSUInteger) totalStepCount;

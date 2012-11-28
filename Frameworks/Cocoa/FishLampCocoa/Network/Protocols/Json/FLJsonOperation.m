@@ -14,7 +14,9 @@
 
 @implementation FLJsonOperation
 
-synthesize_(json);
+@synthesize outputObject = _outputObject;
+@synthesize json = _json;
+
 
 - (id) init {
     self = [super init];
@@ -26,34 +28,35 @@ synthesize_(json);
 
 #if FL_MRC
 - (void) dealloc {
-
+    [_outputObject release];
 	[_json release];
     [super dealloc];
 }
 #endif
 
-
-- (void) runSelf {
+- (FLResult) runSelf {
 
     if(self.json && !self.json.isEmpty) {
         NSData* content = [[self.json buildStringWithNoWhitespace] dataUsingEncoding:NSUTF8StringEncoding];
         [self.httpRequest setContentWithData:content typeContentHeader:@"application/json; charset=utf-8"];
     }
 	
-    [super runSelf];
+    FLResult result = [super runSelf];
     
-    if(!self.error) {
+    if([result succeeded]) {
         FLJsonParser* parser = [FLJsonParser jsonParser];
         
-        if(!self.output) {
-            self.output = [NSMutableDictionary dictionary];
+        if(!_outputObject) {
+            _outputObject = [NSMutableDictionary dictionary];
         }
         
-        self.operationOutput = [parser parseJsonData:self.httpResponse.responseData rootObject:self.output];
+        result = [parser parseJsonData:[result responseData] rootObject:_outputObject];
 
         FLThrowError_(parser.error);
         FLThrowError_([self.httpResponse simpleHttpResponseErrorCheck]);
     }
+    
+    return result;
 }
 
 @end

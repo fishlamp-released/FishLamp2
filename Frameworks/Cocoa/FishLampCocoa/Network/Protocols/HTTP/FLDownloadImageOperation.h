@@ -12,20 +12,23 @@
 #import "FLCachedImage.h"
 #import "FLImage.h"
 
-@interface FLDownloadImageOperation : FLHttpOperation {
+
+
+@interface FLDownloadImageBytesOperation : FLHttpOperation {
+@private
 }
-
-// output is a FLCachedImage.
-
-- (FLCachedImage*) cachedImageOutput;
-- (FLImage*) jpegFileOutput;
-- (NSImage_*) imageOutput;
 
 @end
 
-@interface FLDownloadImageBytesOperation : FLHttpOperation {
+
+@interface FLDownloadImageOperation : FLDownloadImageBytesOperation {
+@private
+    id<FLImageStorageStrategy> _storageStrategy;
 }
 
-- (NSData*) imageDataOutput;
+- (id) initWithImageURL:(NSURL*) imageURL;
+
+- (id) initWithImageURL:(NSURL*) imageURL 
+        storageStrategy:(id<FLImageStorageStrategy>) storageStrategy;
 
 @end

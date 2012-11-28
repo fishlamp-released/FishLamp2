@@ -18,6 +18,10 @@
 
 @implementation FLObjectBuilder
 
++ (id) objectBuilder {
+    return autorelease_([[[self class] alloc] init]);
+}
+
 - (NSMutableArray*) addObjectsToArray:(NSMutableArray*) fromArray 
 	forProperty:(FLPropertyDescription*) propertyDescription
 {

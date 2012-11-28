@@ -69,9 +69,8 @@
 	super_dealloc_();
 }
 
-- (void) runSelf {
+- (FLResult) runSelf {
 
-	
 	FLOAuthAuthorizationHeader* oauthHeader = [FLOAuthAuthorizationHeader authorizationHeader];
 	[oauthHeader setParameter:kFLOAuthHeaderToken value:_authData.oauth_token];
 	[oauthHeader setParameter:@"oauth_verifier" value:_authData.oauth_verifier];
@@ -81,17 +80,19 @@
 	self.httpRequest.requestMethod = @"POST";
     [self.httpRequest setOAuthAuthorizationHeader:oauthHeader consumerKey:_app.consumerKey secret:secret];
 
-	[super runSelf];
+	id result = [super runSelf];
     
-    if(!self.error) {
+    if([result succeeded]) {
         FLOAuthSession* session = [FLOAuthSession oAuthSession];
         [FLUrlParameterParser parseData:self.httpResponse.responseData 
             intoObject:session 
             strict:YES 
             requiredKeys:[NSArray arrayWithObjects:@"oauth_token", @"oauth_token_secret", @"user_id", @"screen_name", nil]];
 
-        self.output = session;
+        result = session;
     }
+    
+    return result;
 }
 
 @end
