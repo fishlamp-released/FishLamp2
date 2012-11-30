@@ -69,10 +69,8 @@ const NSString* FLTimeoutTimerTimeoutEvent = @"com.fishlamp.timer.timedout";
         
         [self postObservationForEvent:FLTimeoutTimerTimeoutEvent];
         
-//        [self postObservation:@selector(timeoutTimerDidTimeout:)];
-        
         [self.finisher setFinishedWithResult:[NSError timeoutError]];
-        [self requestCancel:nil];
+        [self stopTimer];
     }
     else {
         [self postObservationForEvent:FLTimeoutTimerCheckEvent];
@@ -93,16 +91,9 @@ const NSString* FLTimeoutTimerTimeoutEvent = @"com.fishlamp.timer.timedout";
 //    }
 }
 
-- (void) killTimer {
-    NSTimer* timer = self.timer;
-    if(timer) {
-        [timer invalidate];
-    }
-    self.timer = nil;
-}    
-    
+   
 - (void) startWorking:(id) asyncTask {
-    [self killTimer];
+    [self stopTimer];
 
     self.finisher = asyncTask;
 
@@ -132,10 +123,6 @@ const NSString* FLTimeoutTimerTimeoutEvent = @"com.fishlamp.timer.timedout";
     return finisher;
 }
 
-//- (FLFinisher*) runSynchronously {
-//    return [[self start:nil] waitUntilFinished];
-//}
-
 - (void) dealloc  {
     if(_timer) {
         [_timer invalidate];
@@ -156,26 +143,13 @@ const NSString* FLTimeoutTimerTimeoutEvent = @"com.fishlamp.timer.timedout";
     return self.cancelFinisher != nil;
 }
 
-- (FLFinisher*) requestCancel:(FLResultBlock) completion {
+- (void) stopTimer {
 
-    FLFinisher* finisher = [FLFinisher finisherWithResultBlock:completion];
-    
-    @synchronized(self) {
-        if(!self.cancelFinisher) {
-            self.cancelFinisher = finisher;
-            
-            [self killTimer];
-            self.finisher = nil;
-        }
-        else {
-            [self.cancelFinisher addSubFinisher:finisher];
-        }
+    NSTimer* timer = self.timer;
+    if(timer) {
+        [timer invalidate];
     }
-    
-    return finisher;
-    
-    
-    return finisher;
+    self.timer = nil;
 }
 
 

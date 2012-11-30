@@ -98,15 +98,15 @@ typedef void (^FLActionBlock)(FLAction* action);
 @end
 
 
-@interface FLAction ()
-// backward compatibility
-@property (readonly, strong) NSError* error;
-@property (readonly, assign) BOOL didSucceed;
-- (void) addOperation:(FLOperation*) operation;
-- (id) firstOperation;
-- (id) lastOperation;
-- (id) lastOperationOutput;
-@end
+//@interface FLAction ()
+//// backward compatibility
+//@property (readonly, strong) NSError* error;
+//@property (readonly, assign) BOOL didSucceed;
+//- (void) addOperation:(FLOperation*) operation;
+//- (id) firstOperation;
+//- (id) lastOperation;
+//
+//@end
 
 
 // TODO: prob don't need this anymore

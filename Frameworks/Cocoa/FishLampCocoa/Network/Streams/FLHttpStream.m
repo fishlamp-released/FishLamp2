@@ -191,7 +191,7 @@
     self.responseStream = [self.httpRequest createResponseStreamWithURL:url];
     [self.responseStream addObserver:self];
 
-    [self.responseStream openStream:self.dispatchQueue withResultBlock:^(FLResult result) {
+    [self.responseStream openStream:self.dispatchQueue streamClosedBlock:^(FLResult result) {
         [self handleStreamClosed:result];
     }];
 }
@@ -250,6 +250,10 @@
 
 - (void) readStreamDidReadBytes:(id<FLNetworkStream>) stream{
     [self postObservation:@selector(readStreamDidReadBytes:)];
+}
+
+- (FLFinisher*) requestCancel:(FLResultBlock)completion {
+    return [self.responseStream requestCancel:completion];
 }
 
 

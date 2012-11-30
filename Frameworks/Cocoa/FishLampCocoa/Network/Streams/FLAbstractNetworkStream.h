@@ -19,6 +19,8 @@
     BOOL _isOpen;
     BOOL _didClose;
     BOOL _busy;
+
+    FLCancellable* _cancelHandler;
 }
 @property (readonly, strong) FLDispatchQueue* dispatchQueue;
 @end

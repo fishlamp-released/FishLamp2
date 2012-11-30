@@ -33,13 +33,13 @@
 	FLAssert_v([table.columns count] > 0, @"no columns in the table, bub");
 
     if(![self tableExists:table]) {
-        [self exec:[table createTableSql]];
+        [self execute:[table createTableSql]];
         for(NSArray* indexes in table.indexes.objectEnumerator) {
             for(FLDatabaseIndex* idx in indexes) {
                 NSString* createIndex = [idx createIndexSqlForTableName:table.tableName];
                 
                 if(FLStringIsNotEmpty(createIndex)) {
-                    [self exec:createIndex];
+                    [self execute:createIndex];
                 }
             }
         }
@@ -108,7 +108,7 @@
 	FLAssertStringIsNotEmpty_(tableName);
 
 	@try  {
-		[self exec:[NSString stringWithFormat:@"DROP TABLE %@", tableName]];
+		[self execute:[NSString stringWithFormat:@"DROP TABLE %@", tableName]];
 	}
 	@catch(NSException* ex) {
 		if(!ex.error.isTableDoesNotExistError) {
@@ -148,26 +148,6 @@
 - (void) insertOrReplaceRowInTable:(NSString*) tableName row:(NSDictionary*) row {
 	[self _insertOrUpdateRowInTable:tableName row:row action:@"INSERT OR REPLACE"];
 }
-
-//- (void) addColumnsToTable:(FLDatabaseTable*) table newColumns:(NSDictionary*) newColumns
-//{
-//	NSMutableString* sqlBuilder = [NSMutableString stringWithFormat:@"ALTER TABLE %@ ", FLSqlDatabaseInternalNameEncode(table.tableName)]; 
-//	int i = 0;
-//	for(FLDataType* col in newColumns.objectEnumerator)
-//	{			 
-//		[sqlBuilder appendFormat:@"%@ADD COLUMN %@ %@", (i++ > 0 ? @", " : @""), FLSqlDatabaseInternalNameEncode(col.key), SqlTypeFromFLType(col)];
-//	}
-//
-//	@synchronized(_sqlDatabase) {
-//		[_sqlDatabase exec:sqlBuilder];
-//
-//		NSArray* indexes = [self _indexesForTableNamed:FLSqlDatabaseInternalNameEncode(table.tableName) columnsToIndex:newColumns];
-//		for(NSString* createIndex in indexes)
-//		{
-//			[_sqlDatabase exec:createIndex];
-//		}
-//	}
-//}
 
 - (void) runQueryOnTable:(FLDatabaseTable*) table
               withString:(NSString*) statementString

@@ -136,6 +136,28 @@ NSString* FLStringWithFormatOrNil(NSString* format, ...) {
     return FLStringIsNotEmpty(string) && [self rangeOfString:string].length == string.length;
 }
 
+- (NSUInteger) subStringCount:(NSString*) substring {
+    NSUInteger count = 0;
+    NSUInteger subLen = substring.length;
+    NSUInteger len = self.length - substring.length;
+    
+    for(int i = 0; i < len; i++) {
+        for(int j = 0; (j < subLen && i < len); j++) {
+            if([self characterAtIndex:i] != [substring characterAtIndex:j]) {
+                goto skip;
+                
+                ++i;
+            }
+        }
+        
+        ++count;
+        
+        skip: ;
+    }
+    
+    return count;
+}
+
 
 @end
 

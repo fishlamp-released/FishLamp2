@@ -9,49 +9,42 @@
 #import "FLSqlBuilder.h"
 #import "NSString+Lists.h"
 #import "FLSqlStatement.h"
+#import "FLStringUtils.h"
 
 #define SQL_PLACEHOLDER @"?"
 
-@implementation NSString (Util)
-
-- (NSUInteger) subStringCount:(NSString*) substring {
-    NSUInteger count = 0;
-    NSUInteger subLen = substring.length;
-    NSUInteger len = self.length - substring.length;
-    
-    for(int i = 0; i < len; i++) {
-        for(int j = 0; (j < subLen && i < len); j++) {
-            if([self characterAtIndex:i] != [substring characterAtIndex:j]) {
-                goto skip;
-                
-                ++i;
-            }
-        }
-        
-        ++count;
-        
-        skip: ;
-    }
-    
-    return count;
-}
-
-@end
-
 @implementation FLSqlBuilder
 
-@synthesize sqlString = _sql;
+@synthesize sqlString = _sqlString;
 @synthesize objects = _dataToBind;
 
+- (id) initWithString:(NSString*) string {
+    self = [super init];
+    if(self) {
+        _sqlString = [[NSMutableString alloc] init];
+    
+        self.sqlString = string;
+    }
+    
+    return self;
+}
+
+- (id) init {
+    return [self initWithString:nil];
+}
+
++ (id) sqlBuilderWithString:(NSString*) string {
+    return autorelease_([[[self class] alloc] initWithString:string]);
+}
+
 - (NSInteger) length {
-    return _sql.length;
+    return _sqlString.length;
 }
 
 - (void) setSqlString:(NSString*) string {
-    release_(_sql);
-    _sql = [string mutableCopy];
+    [_sqlString setString:string];
     
-    if(FLStringIsEmpty(_sql) || [_sql characterAtIndex:_sql.length - 1] == ' ' ) {
+    if(FLStringIsEmpty(_sqlString) || [_sqlString characterAtIndex:_sqlString.length - 1] == ' ' ) {
         _spaceDisableCount = 1;
     }
     else {
@@ -59,14 +52,6 @@
     }
 }
 
-- (id) init {
-    self = [super init];
-    if(self) {
-        _sql = [[NSMutableString alloc] init];
-        _spaceDisableCount = 1;
-    }
-    return self;
-}
 
 + (FLSqlBuilder*) sqlBuilder {
     return autorelease_([[FLSqlBuilder alloc] init]);
@@ -74,9 +59,9 @@
 
 - (void) bindToSqlStatement:(FLSqlStatement*) statement {
 
-    FLAssert_v([_sql subStringCount:@"@?"] == self.objects.count,   
+    FLAssert_v([_sqlString subStringCount:@"@?"] == self.objects.count,   
         @"binding failure. placeholder count:%d, object count: %d", 
-        [_sql subStringCount:@"@?"], 
+        [_sqlString subStringCount:@"@?"], 
         self.objects.count);
 
     if(self.objects) {
@@ -94,7 +79,7 @@
 - (void) dealloc {
     release_(_delimiter);
     release_(_dataToBind);
-    release_(_sql);
+    release_(_sqlString);
     super_dealloc_();
 }
 #endif
@@ -108,10 +93,10 @@
     FLAssert_v(_spaceDisableCount >= 0, @"space disable less than zero");
     
     if(_spaceDisableCount == 0) {
-        [_sql appendFormat:@" %@", string];
+        [_sqlString appendFormat:@" %@", string];
     }
     else {
-        [_sql appendString:string];
+        [_sqlString appendString:string];
         --_spaceDisableCount;
     }
 }
@@ -124,7 +109,7 @@
             [self appendString:delimiter];
         }
         else {
-            [_sql appendString:delimiter];
+            [_sqlString appendString:delimiter];
         }
     }
 }

@@ -9,62 +9,48 @@
 #import <Foundation/Foundation.h>
 
 #import "FLResult.h"
-#import "FLCancellable.h"
-#import "FLResultProducing.h"
 
-@protocol FLFinisher <FLResultProducing, FLCancellable>
+@class FLFinisher;
+
+typedef void (^FLFinisherNotificationSchedulerBlock)(dispatch_block_t notifier);
+
+@interface FLFinisher : NSObject {
+@private
+    id _result;
+    FLResultBlock _resultBlock;
+    dispatch_block_t _notificationCompletionBlock;
+    dispatch_semaphore_t _semaphore;
+    FLFinisherNotificationSchedulerBlock _scheduleNotificationBlock;
+}
+
 @property (readonly, strong) FLResult result;
 @property (readonly, assign, getter=isFinished) BOOL finished;
 
+// for rescheduling finish on different threads. 
+@property (readwrite, copy) FLFinisherNotificationSchedulerBlock scheduleNotificationBlock;
+
+- (id) initWithResultBlock:(FLResultBlock) resultBlock;
+
++ (id) finisher;
++ (id) finisherWithResultBlock:(FLResultBlock) resultBlock;
+
 - (void) setFinished;
+
 - (void) setFinishedWithResult:(id) result;
+
+- (void) setFinishedWithResult:(id) result 
+                    completion:(dispatch_block_t) notificationCompletionBlock;
 
 // blocks in current thread
 - (FLResult) waitUntilFinished;
-- (void) waitOnce;
 
 
-@end
+// optional stuff
 
-typedef void (^FLFinisherNotificationScheduler)(dispatch_block_t finishBlock);
-typedef void (^FLRequestCancelBlock)();
-
-@interface FLFinisher : NSObject<FLFinisher> {
-@private
-    NSMutableArray* _subFinishers;
-    FLFinisherNotificationScheduler _notificationScheduler;
-    id _result;
-    FLResultBlock _resultNotificationBlock;
-    FLRequestCancelBlock _requestCancelBlock;
-    SEL _resultNotificationAction;
-    __unsafe_unretained id _resultNotificationTarget;
-    BOOL _cancelled;
-    BOOL _cancelWasRequested;
-}
-
-- (id) initWithResultBlock:(FLResultBlock) resultBlock;
-- (id) initWithTarget:(id) target action:(SEL) action; // myMethod:(FLFinisher*) result;
-
-+ (id) finisher;
-+ (id) finisherWithResultBlock:(FLResultBlock) block;
-+ (id) finisherWithTarget:(id) target action:(SEL) action;
-
-- (void) addSubFinisher:(FLFinisher*) finisher;
-
-// override point
-- (void) didFinish;
-
-@property (readwrite, strong) FLRequestCancelBlock requestCancelBlock;
-
-// for rescheduling finish on different threads.
-@property (readwrite, copy) FLFinisherNotificationScheduler notificationScheduler;
-- (void) scheduleFinishOnMainThread;
++ (FLFinisherNotificationSchedulerBlock) scheduleNotificationInMainThreadBlock;
 
 @end
 
-@interface FLFinisher (FLCancellable)
 
-- (void) setObjectWasCancelled:(id<FLCancellable>) object 
-         setCancelled:(dispatch_block_t) setCancelled;
-
+@interface FLScheduledFinisher : FLFinisher
 @end

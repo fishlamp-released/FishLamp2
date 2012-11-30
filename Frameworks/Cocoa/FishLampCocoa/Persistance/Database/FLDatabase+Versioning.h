@@ -23,7 +23,7 @@ typedef void (^FLDatabaseTableUpgradedBlock)(     FLDatabaseTable* table, NSStri
 
 /// upgrades to runtime version
 - (void) upgradeDatabase:(FLDatabaseUpgradeProgressBlock) progress
-           tableUpgraded:(FLDatabaseTableUpgradedBlock) progressBlock;
+           tableUpgraded:(FLDatabaseTableUpgradedBlock) tableUpgraded;
 
 // this is the app version by default. This means the database will want an upgraded each time
 // the app version changes.

@@ -37,7 +37,7 @@ typedef enum {
 
 @interface FLSqlBuilder : NSObject {
 @private
-    NSMutableString* _sql;
+    NSMutableString* _sqlString;
     NSString* _delimiter;
     NSMutableArray* _dataToBind;
 
@@ -48,7 +48,10 @@ typedef enum {
     BOOL _insertPrefixDelimiterSpace;
 }
 
+- (id) initWithString:(NSString*) string;
+
 + (FLSqlBuilder*) sqlBuilder;
++ (FLSqlBuilder*) sqlBuilderWithString:(NSString*) string;
 
 @property (readwrite, nonatomic, copy) NSString* sqlString;
 

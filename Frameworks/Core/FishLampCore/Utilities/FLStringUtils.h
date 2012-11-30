@@ -34,6 +34,8 @@
 
 - (BOOL) containsString:(NSString*) string;
 
+- (NSUInteger) subStringCount:(NSString*) substring;
+
 @end
 
 @interface NSMutableString (FLStringUtilities)

@@ -19,17 +19,17 @@
 @property (readonly, assign) dispatch_queue_t dispatch_queue_t;
 @property (readonly, strong) NSString* label;
 
-- (id) initWithLabel:(const char*) label  
+- (id) initWithLabel:(NSString*) label  
                 attr:(dispatch_queue_attr_t) attr;
 
 - (id) initWithDispatchQueue:(dispatch_queue_t) queue;
 
 + (FLDispatchQueue*) dispatchQueue:(dispatch_queue_t) queue;
-+ (FLDispatchQueue*) dispatchQueueWithLabel:(const char*) label 
++ (FLDispatchQueue*) dispatchQueueWithLabel:(NSString*) label 
                                        attr:(dispatch_queue_attr_t) attr;
                                        
-+ (FLDispatchQueue*) fifoDispatchQueue:(const char*) label;
-+ (FLDispatchQueue*) concurrentDispatchQueue:(const char*) label;
++ (FLDispatchQueue*) fifoDispatchQueue:(NSString*) label;
++ (FLDispatchQueue*) concurrentDispatchQueue:(NSString*) label;
 
 + (FLDispatchQueue*) currentQueue;
 

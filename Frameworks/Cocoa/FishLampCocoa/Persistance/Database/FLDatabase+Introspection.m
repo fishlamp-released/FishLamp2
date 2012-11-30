@@ -11,17 +11,15 @@
 @implementation FLDatabase (Introspection)
 
 - (NSArray*) tableNamesInDatabase {
-	NSArray* rows = nil; 
-	[self runQueryWithString:@"SELECT name FROM sqlite_master WHERE type='table'" outRows:&rows];
-	
-	NSMutableArray* outArray = [NSMutableArray arrayWithCapacity:rows.count];
-	for(NSDictionary* row in rows) {	
-		NSString* name = [row objectForKey:@"name"];
-		if(name) {
-			[outArray addObject:name];
-		}
-	}
-	release_(rows);
+	NSMutableArray* outArray = [NSMutableArray array];
+
+	[self execute:@"SELECT name FROM sqlite_master WHERE type='table'" 
+      rowResultBlock:^(NSDictionary *row, BOOL *stop) {
+          NSString* name = [row objectForKey:@"name"];
+          if(name) {
+              [outArray addObject:name];
+          }
+      }];
 	
 	return outArray;
 }
@@ -31,40 +29,34 @@
 }
 
 - (NSDictionary*) detailsForTableNamed:(NSString*) tableName {
-	NSArray* rows = nil; 
-	[self runQueryWithString:[NSString stringWithFormat:@"PRAGMA table_info(%@)", tableName] outRows:&rows];
-	
+
 	NSMutableDictionary* info = [NSMutableDictionary dictionary];
-	for(NSDictionary* row in rows) {
-		[info setObject:row forKey:[row objectForKey:@"name"]];
-	}
-	release_(rows);
-	
+	[self executeSql:[NSString stringWithFormat:@"PRAGMA table_info(%@)", tableName] 
+      rowResultBlock:^(NSDictionary *row, BOOL *stop) {
+          [info setObject:row forKey:[row objectForKey:@"name"]];
+      }];
+
 	return info;
 }
 
 - (NSArray*) indexesForTableNamed:(NSString*) tableName {
-	NSArray* rows = nil; 
-	[self runQueryWithString:[NSString stringWithFormat:@"PRAGMA index_list(%@)", tableName] outRows:&rows];
-	return autorelease_(rows);
+	return [self execute:[NSString stringWithFormat:@"PRAGMA index_list(%@)", tableName]];
 }
 
 - (NSArray*) detailsForIndexedNamed:(NSString*) indexName {
-	NSArray* rows = nil; 
-	[self runQueryWithString:[NSString stringWithFormat:@"PRAGMA index_info(%@)", indexName] outRows:&rows];
-	return autorelease_(rows);
+	return [self execute:[NSString stringWithFormat:@"PRAGMA index_info(%@)", indexName]];
 }
 
 - (NSUInteger) tableCount {
     __block NSUInteger count = 0;
-
-    FLSqlBuilder* sql = [FLSqlBuilder sqlBuilder];
-    [sql appendString:@"SELECT COUNT(*) FROM sqlite_master WHERE type='table'"];
     
-    [self executeSql:sql rowResultBlock:^(NSDictionary* row, BOOL* stop) {
+    [self execute:@"SELECT COUNT(*) FROM sqlite_master WHERE type='table'" 
+      rowResultBlock:^(NSDictionary* row, BOOL* stop) {
+        
         NSNumber* number = [row objectForKey:@"COUNT(*)"];
         if(number) {
             count = [number integerValue];
+            *stop = YES;
         }
     }];
     

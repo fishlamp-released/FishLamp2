@@ -229,6 +229,8 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
     return bytesRead;
 }
 
+
+
 //- (NSUInteger) appendAvailableBytesToData:(NSMutableData*) data 
 //                                chunkSize:(NSUInteger) chunkSize {
 //

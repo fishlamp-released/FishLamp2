@@ -82,7 +82,7 @@ FLSynthesizeSingleton(FLApplicationDataModel);
 
 	if([database openDatabase:FLDatabaseOpenFlagsDefault]) {
         [database upgradeDatabase:nil tableUpgraded:nil];
-	}
+    }
     
     self.database = database;
 }

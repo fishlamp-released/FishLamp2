@@ -77,9 +77,12 @@
         [task launch];
             
         while(task.isRunning && !taskTerminated) {
-            if(self.error) {
-                [task terminate];
-            }
+
+// TODO: cancel support?? do we need an error?
+
+//            if(self.error) {
+//                [task terminate];
+//            }
         }
         
         NSString* outputStr = nil;

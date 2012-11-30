@@ -19,6 +19,7 @@
 #import "FLDatabaseErrors.h"
 #import "FLDatabaseColumnDecoder.h"
 #import "FLDatabaseStatement.h"
+#import "FLDispatchQueue.h"
 
 @interface FLDatabase : NSObject {
 @private
@@ -26,6 +27,8 @@
 	NSString* _filePath;
 	NSMutableDictionary* _tables;
 	FLDatabaseColumnDecoder _columnDecoder;
+    FLDispatchQueue* _dispatcher;
+    BOOL _isOpen;
 }
 
 @property (readwrite, assign, nonatomic) FLDatabaseColumnDecoder columnDecoder;
@@ -35,10 +38,10 @@
 @property (readonly, retain, nonatomic) NSString* fileName;
 
 /// returns point to sqlite3 reference
-@property (readonly, assign, nonatomic) sqlite3* sqlite3;
+@property (readonly, assign) sqlite3* sqlite3;
 
 /// returns YES is db is open
-@property (readonly, assign, nonatomic) BOOL isOpen;
+@property (readonly, assign) BOOL isOpen;
 
 /// Initialize database object. This doesn't open the db.
 - (id) initWithFilePath:(NSString*) filePath;
@@ -62,12 +65,14 @@
 - (void) cancelCurrentOperation; 
 
 /// Exec a command. Threadsafe.
-- (void) exec:(NSString*) sql;
+//- (void) exec:(NSString*) sql;
 
-- (void) executeTransaction:(void (^)()) block;
+- (void) executeTransaction:(dispatch_block_t) block;
 
-- (void) runQueryWithString:(NSString*) statementString
-                    outRows:(NSArray**) outRows;
+- (NSArray*) execute:(NSString*) sqlString;
+
+- (void) execute:(NSString*) sqlString
+  rowResultBlock:(FLDatabaseStatementDidSelectRowBlock) rowResultBlock;
 
 - (void) executeStatement:(FLDatabaseStatement*) statement;
 
@@ -78,11 +83,12 @@
 - (void) purgeMemoryIfPossible;
 
 // utils
-- (void) beginAsyncBlock:(void(^)(FLDatabase*)) asyncBlock
-              errorBlock:(void(^)(FLDatabase*, NSError*)) errorBlock;
-
 + (FLDatabaseColumnDecoder) defaultColumnDecoder;
 + (void) setDefaultColumnDecoder:(FLDatabaseColumnDecoder) decoder;
+
+- (FLResult) dispatchBlock:(dispatch_block_t) block;
+- (FLResult) dispatchFifoBlock:(dispatch_block_t) block;
+@property (readonly, strong) FLDispatchQueue* dispatchQueue;
 
 @end
 

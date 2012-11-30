@@ -7,17 +7,34 @@
 //
 #import "FishLampCore.h"
 #import "FLResult.h"
+#import "FLObservable.h"
+
 @class FLFinisher;
 
 typedef void (^FLCancelBlock)();
 
 @protocol FLCancellable <NSObject>
-
-@property (readonly, assign,getter=wasCancelled) BOOL cancelled; 
-
-@property (readonly, assign) BOOL cancelWasRequested; 
-
 - (FLFinisher*) requestCancel:(FLResultBlock) completion; 
-
 @end
 
+@interface FLCancellable : NSObject<FLCancellable> {
+@private
+    NSMutableArray* _cancelled;
+    NSMutableArray* _dependents;
+    BOOL _wasCancelled;
+}
+
++ (id) cancelHandler;
+
+@property (readonly, assign) BOOL wasCancelled;
+
+- (void) reset;
+- (FLResult) setFinished:(FLResult) result;
+
+- (void) addDependent:(id<FLCancellable>) dependent;
+- (void) removeDependent:(id<FLCancellable>) dependent;
+
+- (FLResult) runBlock:(FLResult (^)()) block 
+         forDependent:(id<FLCancellable>) dependent;
+
+@end

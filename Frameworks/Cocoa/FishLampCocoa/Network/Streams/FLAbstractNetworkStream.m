@@ -19,6 +19,7 @@
 @property (readwrite, strong) FLFinisher* closeFinisher;
 @property (readwrite, strong) FLDispatchQueue* dispatchQueue;
 @property (readwrite, strong) FLResult result;
+@property (readwrite, strong) FLCancellable* cancelHandler;
 
 - (void) openStream;
 - (void) closeStream;
@@ -31,6 +32,7 @@
 @synthesize result = _result;
 @synthesize closeFinisher = _closeFinisher;
 @synthesize dispatchQueue = _dispatchQueue;
+@synthesize cancelHandler = _cancelHandler;
 
 - (id) init {
     self = [super init];
@@ -42,6 +44,7 @@
 
 #if FL_MRC
 - (void) dealloc {
+    [_cancelHandler release];
     [_result release];
     [_dispatchQueue release];
     [_closeFinisher release];
@@ -60,13 +63,15 @@
         [self postObservation:@selector(networkStreamDidClose:)];
         self.isOpen = NO;
 
-        FLResult result = self.result;
+        FLResult result = [self.cancelHandler setFinished:self.result];
         if(!result) {
             result = FLSuccessfullResult;
         }
         
         [self.closeFinisher setFinishedWithResult:result];
         self.closeFinisher = nil;
+        
+        self.cancelHandler = nil;
     }
 }
 
@@ -78,13 +83,15 @@
 }    
 
 - (FLFinisher*) openStream:(id<FLDispatcher>) dispatcher 
-           withResultBlock:(FLResultBlock) resultBlock {
+         streamClosedBlock:(FLResultBlock) streamClosedBlock {
 
     self.result = nil;
     self.didClose = NO;
     self.isOpen = NO;
     self.dispatchQueue = dispatcher;
-    self.closeFinisher = [FLFinisher finisherWithResultBlock:resultBlock];
+    self.closeFinisher = [FLFinisher finisherWithResultBlock:streamClosedBlock];
+
+    self.cancelHandler = [FLCancellable cancelHandler];
 
     [dispatcher dispatchBlock:^{
         [self postObservation:@selector(networkStreamWillOpen:)];
@@ -100,6 +107,16 @@
 - (void) closeStream {
 }
 
+- (FLFinisher*) requestCancel:(FLResultBlock) completion {
+
+    FLFinisher* finisher = [self.cancelHandler requestCancel:completion];
+
+    if(self.isOpen) {
+        [self closeStreamWithResult:[NSError cancelError]];
+    }
+
+    return finisher;
+}
 
 @end
 

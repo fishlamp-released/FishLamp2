@@ -33,7 +33,7 @@ extern const FLNetworkConnectionByteCount FLNetworkConnectionByteCountZero;
     FLTimeoutTimer* _timeoutTimer;
     FLNetworkConnectionByteCount _writeByteCount;
     FLNetworkConnectionByteCount _readByteCount;
-    FLFinisher* _cancelFinisher;
+    FLCancellable* _cancelHandler;
 }
 
 @property (readonly, strong) FLTimeoutTimer* timeoutTimer;
@@ -46,7 +46,6 @@ extern const FLNetworkConnectionByteCount FLNetworkConnectionByteCountZero;
 - (FLFinisher*) openConnection:(FLDispatchQueue*) dispatcher;
 
 // override point.
-- (id) resultFromStream:(id<FLNetworkStream>) stream;
 - (id<FLNetworkStream>) createNetworkStream;
 
 /** retry support */

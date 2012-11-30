@@ -17,13 +17,23 @@
 #import "FLAppInfo.h"
 #import "FLSqlStatement.h"
 
+@interface FLDatabase ()
+@property (readwrite, assign) sqlite3* sqlite3;
+@property (readwrite, assign) BOOL isOpen;
+@property (readwrite, strong, nonatomic) NSMutableDictionary* tables;
+@end
+
 @implementation FLDatabase
 
 @synthesize sqlite3 = _sqlite;
 @synthesize filePath = _filePath;
 @synthesize columnDecoder = _columnDecoder;
+@synthesize tables = _tables;
+@synthesize dispatchQueue = _dispatchQueue;
+@synthesize isOpen = _isOpen;
 
 static FLDatabaseColumnDecoder s_decoder = nil;
+static int s_count = 0;
 
 + (FLDatabaseColumnDecoder) defaultColumnDecoder {
     return s_decoder;
@@ -46,6 +56,14 @@ static FLDatabaseColumnDecoder s_decoder = nil;
     }
 }
 
+- (FLResult) dispatchBlock:(dispatch_block_t) block {
+    return FLThrowError([[FLDefaultQueue dispatchBlock:block] waitUntilFinished]);
+}
+
+- (FLResult) dispatchFifoBlock:(dispatch_block_t) block {
+    return FLThrowError([[_dispatcher dispatchBlock:block] waitUntilFinished]);
+}
+
 - (void) handleLowMemory:(id)sender {
 	[self purgeMemoryIfPossible];
 }
@@ -55,6 +73,9 @@ static FLDatabaseColumnDecoder s_decoder = nil;
     if(self)  {
 		_sqlite = nil;
         self.columnDecoder = s_decoder;
+
+        _dispatcher = [[FLDispatchQueue alloc] initWithLabel:[NSString stringWithFormat:@"com.fishlamp.queue.database-%d", ++s_count] 
+            attr:DISPATCH_QUEUE_SERIAL];
 
 #if IOS
 	[[NSNotificationCenter defaultCenter] addObserver:self
@@ -82,16 +103,20 @@ static FLDatabaseColumnDecoder s_decoder = nil;
 #endif
 
 	FLAssertIsNil_v(_sqlite, nil);
-	release_(_filePath);
-	super_dealloc_();
+    
+#if FL_MRC    
+    [_dispatcher release];
+    [_filePath release];
+    [super dealloc];
+#endif    
 }
 
 - (void) deleteOnDisk {
-	NSError* error = nil;
-	[[NSFileManager defaultManager] removeItemAtPath:[self filePath] error:&error];
-    if(error) {
-        FLThrowError_(autorelease_(error));
-    }
+	[self dispatchFifoBlock:^{
+        NSError* error = nil;
+        [[NSFileManager defaultManager] removeItemAtPath:[self filePath] error:&error];
+        FLThrowError(autorelease_(error));
+    }];
 }
 
 - (BOOL) databaseFileExistsOnDisk {
@@ -110,92 +135,107 @@ static FLDatabaseColumnDecoder s_decoder = nil;
 }
 
 - (void) cancelCurrentOperation {
-	if(_sqlite) {
-		@synchronized(self) {
-			sqlite3_interrupt(_sqlite);
-		}
-	}
+    sqlite3_interrupt(self.sqlite3);
+    
+//	if(_sqlite) {
+//		@synchronized(self) {
+//		}
+//	}
 }
 
 - (void) purgeMemoryIfPossible {
-	@synchronized(self) {
-		sqlite3_release_memory(INT32_MAX);
-	}
+    [self dispatchFifoBlock:^{
+        sqlite3_release_memory(INT32_MAX);
+    }];
 }
 
 - (NSString*) fileName {
     return [self.filePath lastPathComponent];
 }
 
-- (void) exec:(NSString*) sql {	
-    const char* c_sql = [sql UTF8String];
-    @synchronized(self) {
+//- (void) exec:(NSString*) sql {	
+//    const char* c_sql = [sql UTF8String];
+//    @synchronized(self) {
+//
+//        FLDbLog(@"%@ <- %@", self.fileName, sql);
+//		if(sqlite3_exec(_sqlite, c_sql, NULL, NULL, nil)) {
+//			[self throwSqliteError:c_sql];
+//		}	
+//
+//        FLDbLog(@"%@ -> DONE", self.fileName);
+//	}
+//}
 
-        FLDbLog(@"%@ <- %@", self.fileName, sql);
-		if(sqlite3_exec(_sqlite, c_sql, NULL, NULL, nil)) {
-			[self throwSqliteError:c_sql];
-		}	
-
-        FLDbLog(@"%@ -> DONE", self.fileName);
-	}
-}
-
-- (BOOL) isOpen {
-    BOOL isOpen = NO;
-    @synchronized(self) {
-        isOpen = _sqlite != nil;
-    }
-	return isOpen;
-}
-
-- (BOOL) openDatabase:(FLDatabaseOpenFlags) flags
-{
-	if(_sqlite != nil) {
+- (void) sqliteOpen:(FLDatabaseOpenFlags) flags {
+    sqlite3* sqlite3 = self.sqlite3;
+    
+    if(sqlite3 != nil || self.isOpen) {
         FLThrowErrorCode_v( 
-            FLDatabaseErrorDomain,
-            FLDatabaseErrorDatabaseAlreadyOpen, 
-            @"Database is already open");
-    }
-	
-    BOOL needsUpgrade = NO;
-	@synchronized(self) {
-		@try {
-            if(sqlite3_open_v2([_filePath UTF8String], &_sqlite, flags, nil)) {
-                [self throwSqliteError:nil];
-            }
-            
-            _tables = [[NSMutableDictionary alloc] init];
-            [self initializeVersioning];
-            needsUpgrade = [self databaseNeedsUpgrade];
-        }
-        @catch(NSException* ex) {
-            if(_sqlite) {
-                [self closeDatabase];
-            }
-            
-            @throw;
-        }
+        FLDatabaseErrorDomain,
+        FLDatabaseErrorDatabaseAlreadyOpen, 
+        @"Database is already open");
     }
     
+    @try {
+        if(sqlite3_open_v2([_filePath UTF8String], &sqlite3, flags, nil)) {
+            [self throwSqliteError:nil];
+        }
+    }
+    @catch(NSException* ex) {
+        if(sqlite3) {
+            sqlite3_close(sqlite3);
+        }
+        self.tables = nil;
+        @throw;
+    }
+    
+    self.tables = [NSMutableDictionary dictionary];
+    self.sqlite3 = sqlite3;
+}
+
+- (BOOL) openDatabase:(FLDatabaseOpenFlags) flags {
+    
+    __block BOOL needsUpgrade = NO;
+
+    if(self.sqlite3 != nil || self.isOpen) {
+        FLThrowErrorCode_v( 
+        FLDatabaseErrorDomain,
+        FLDatabaseErrorDatabaseAlreadyOpen, 
+        @"Database is already open");
+    }
+    
+	[self dispatchFifoBlock:^{ 
+        [self sqliteOpen:flags]; 
+    }];
+    [self initializeVersioning];
+    [self dispatchFifoBlock:^{
+        needsUpgrade = [self databaseNeedsUpgrade];
+    }];
+
+    self.isOpen = YES;
+           
     return needsUpgrade;
 }
 
 - (void) closeDatabase  {
-	if(_sqlite == nil) {
-        FLThrowErrorCode_v( 
-            FLDatabaseErrorDomain,
-            FLDatabaseErrorDatabaseAlreadyOpen, 
-            @"Database is already closed");
-    }
+    
+    [self dispatchFifoBlock:^{
+        sqlite3* sqlite3 = self.sqlite3;
+        self.sqlite3 = nil;
+    
+        if(sqlite3 == nil) {
+            FLThrowErrorCode_v( 
+                FLDatabaseErrorDomain,
+                FLDatabaseErrorDatabaseAlreadyOpen, 
+                @"Database is already closed");
+        }
 
-	@synchronized(self) {
-		if(sqlite3_close(_sqlite)) {
-			[self throwSqliteError:nil];
-		}
-		
-		_sqlite = nil;
-        FLReleaseWithNil_(_tables);
-	}
+        if(sqlite3_close(sqlite3)) {
+            [self throwSqliteError:nil];
+        }
+        
+        self.tables = nil;
+    }];
 }
 
 - (void) throwSqliteError:(const char*) sql {
@@ -234,49 +274,50 @@ static FLDatabaseColumnDecoder s_decoder = nil;
     [self runQueryOnTable:nil withString:statementString outRows:outRows];
 }
 
-- (void) executeTransaction:(void (^)()) block {
+- (void) executeTransaction:(dispatch_block_t) block {
 
     @try {
-        [self exec:@"BEGIN TRANSACTION;"];
-        block();
-        [self exec:@"COMMIT;"];
+        [self execute:@"BEGIN TRANSACTION;"];
+        [self dispatchFifoBlock:block];
+        [self execute:@"COMMIT;"];
     }
     @catch(NSException* ex) {
-        [self exec:@"ROLLBACK;"];
+        [self execute:@"ROLLBACK;"];
         @throw;
     } 
 }
 
-
-- (void) beginAsyncBlock:(void(^)(FLDatabase*)) asyncBlock
-              errorBlock:(void(^)(FLDatabase*, NSError*)) errorBlock
-{
-    asyncBlock = autorelease_([asyncBlock copy]);
-    errorBlock = autorelease_([errorBlock copy]);
-
-    dispatch_async(
-        dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), 
-        ^{
-            @try {
-                if(asyncBlock) {
-                    asyncBlock(self);
-                }
-            }
-            @catch(NSException* ex) {
-                if(errorBlock) {
-                    errorBlock(self, ex.error); 
-                }
-            }
-         });
-}                       
+//- (void) beginAsyncBlock:(void(^)(FLDatabase*)) asyncBlock
+//              errorBlock:(void(^)(FLDatabase*, NSError*)) errorBlock
+//{
+//    asyncBlock = autorelease_([asyncBlock copy]);
+//    errorBlock = autorelease_([errorBlock copy]);
+//
+//    dispatch_async(
+//        dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), 
+//        ^{
+//            @try {
+//                if(asyncBlock) {
+//                    asyncBlock(self);
+//                }
+//            }
+//            @catch(NSException* ex) {
+//                if(errorBlock) {
+//                    errorBlock(self, ex.error); 
+//                }
+//            }
+//         });
+//}                       
 
 - (void) executeSql:(FLSqlBuilder*) sql 
         rowResultBlock:(FLDatabaseStatementDidSelectRowBlock) rowResultBlock {
     
-    FLSqlStatement* sqlStatement = [FLSqlStatement sqlStatement:self columnDecoder:nil];
-	@try {
-        BOOL stop = NO;
-        @synchronized(self) {
+    rowResultBlock = FLCopyBlock(rowResultBlock);
+    
+    [self dispatchFifoBlock:^{
+        FLSqlStatement* sqlStatement = [FLSqlStatement sqlStatement:self columnDecoder:nil];
+        @try {
+            BOOL stop = NO;
             [sqlStatement prepareWithSql:sql];
             while(!stop && !sqlStatement.isDone) {
                 NSDictionary* row = [sqlStatement step];
@@ -286,41 +327,58 @@ static FLDatabaseColumnDecoder s_decoder = nil;
                     }
                 }
             }
-		}
-    }
-    @finally {
-        [sqlStatement finalizeStatement];
-    }
+        }
+        @finally {
+            [sqlStatement finalizeStatement];
+        }
+    }];
+    
 }
 
-- (void) executeStatement:(FLDatabaseStatement*) statement {
-
-    FLAssertNotNil_(statement);
-
-    FLDecodeColumnObjectBlock decoder = nil;
-    if(statement.table && self.columnDecoder) {
-        decoder = ^ id (NSString* column, id object) {
-            return self.columnDecoder(self, statement.table, [statement.table columnByName:column], object);
-        };
-    }
-
-    FLSqlStatement* sqlStatement = [FLSqlStatement sqlStatement:self columnDecoder:decoder];
-	@try {
+- (NSArray*) execute:(NSString*) sqlString {
+    NSMutableArray* array = [NSMutableArray array];
+    [self execute:sqlString rowResultBlock:^(NSDictionary *row, BOOL *stop) {
+        [array addObject:row];
+    }];
     
-        BOOL stop = NO;
+    return array;
+}
+
+- (void) execute:(NSString*) sqlString
+  rowResultBlock:(FLDatabaseStatementDidSelectRowBlock) rowResultBlock {
+ 
+    [self executeSql:[FLSqlBuilder sqlBuilderWithString:sqlString] rowResultBlock:rowResultBlock];
+}               
+
+
+- (void) executeStatement:(FLDatabaseStatement*) statement {
+    
+    [self dispatchFifoBlock:^{
+        FLAssertNotNil_(statement);
+
+        FLDecodeColumnObjectBlock decoder = nil;
+        if(statement.table && self.columnDecoder) {
+            decoder = ^ id (NSString* column, id object) {
+                return self.columnDecoder(self, statement.table, [statement.table columnByName:column], object);
+            };
+        }
+
+        FLSqlStatement* sqlStatement = [FLSqlStatement sqlStatement:self columnDecoder:decoder];
+        @try {
         
-        if(statement.prepare) {
-            statement.prepare(&stop);
-            if(stop) {
-                return;
+            BOOL stop = NO;
+            
+            if(statement.prepare) {
+                statement.prepare(&stop);
+                if(stop) {
+                    return;
+                }
             }
-        }
-        
-        if(statement.table) {
-            [self createTableIfNeeded:statement.table];
-        }
-        
-        @synchronized(self) {
+            
+            if(statement.table) {
+                [self createTableIfNeeded:statement.table];
+            }
+            
             [sqlStatement prepareWithSql:statement];
             while(!stop && !sqlStatement.isDone) {
                 NSDictionary* row = [sqlStatement step];
@@ -335,23 +393,23 @@ static FLDatabaseColumnDecoder s_decoder = nil;
                     }
                 }
             }
-		}
 
-        // must be outside of @synchronized lock.
-        if(statement.finished) {
-            statement.finished(nil);
+            // must be outside of @synchronized lock.
+            if(statement.finished) {
+                statement.finished(nil);
+            }
         }
-    }
-    @catch(NSException* ex) {
-        if(statement.finished) {
-            statement.finished(ex.error);
+        @catch(NSException* ex) {
+            if(statement.finished) {
+                statement.finished(ex.error);
+            }
+            
+            @throw;
         }
-        
-        @throw;
-    }
-    @finally {
-        [sqlStatement finalizeStatement];
-    }
+        @finally {
+            [sqlStatement finalizeStatement];
+        }
+    }];
 }
 
 

@@ -64,8 +64,8 @@
         self.writeStream = [FLWriteStream writeStream:writeStream];
         [self.writeStream addObserver:self];
         
-        [self.readStream openStream:self.dispatchQueue withResultBlock:nil];
-        [self.writeStream openStream:self.dispatchQueue withResultBlock:nil];
+        [self.readStream openStream:self.dispatchQueue streamClosedBlock:nil];
+        [self.writeStream openStream:self.dispatchQueue streamClosedBlock:nil];
     }
     @finally {
         if(host) {

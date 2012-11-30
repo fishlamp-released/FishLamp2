@@ -44,12 +44,14 @@ FLTestCaseFlagPair s_flagPairs[] = {
 };
 
 @implementation FLTestCase
-synthesize_(testCaseName);
-synthesize_(testCaseTarget);
-synthesize_(testCaseSelector);
-synthesize_(testCaseBlock);
-synthesize_(disabledReason);
-synthesize_(priority);
+@synthesize disabled = _disabled;
+@synthesize priority = _priority;
+@synthesize disabledReason = _disabledReason;
+@synthesize testCaseBlock = _testCaseBlock;
+@synthesize testCaseSelector = _testCaseSelector;
+@synthesize testCaseTarget = _testCaseTarget;
+@synthesize testCaseName = _testCaseName;
+
 
 - (void) setDisabledWithReason:(NSString*) reason {
     self.disabled = YES;
@@ -174,17 +176,13 @@ synthesize_(priority);
 }
 
 - (FLResult) runSelf {
-    @try {
-        if(!FLPerformSelector(_testCaseTarget, _testCaseSelector)) {
-            if(_testCaseBlock) {
-                _testCaseBlock();
-            }
+    if(!FLPerformSelector(_testCaseTarget, _testCaseSelector)) {
+        if(_testCaseBlock) {
+            _testCaseBlock();
         }
     }
-    @catch(NSException* ex) {
-        self.error = ex.error;
-        @throw;
-    }
+    
+    return FLSuccessfullResult;
 }
 
 

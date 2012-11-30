@@ -10,13 +10,15 @@
 #import "FLObservable.h"
 #import "FLDispatcher.h"
 #import "FLResult.h"
+#import "FLResultProducing.h"
+#import "FLCancellable.h"
 
-@protocol FLNetworkStream <FLObservable, FLResultProducing>
+@protocol FLNetworkStream <FLObservable, FLResultProducing, FLCancellable>
 
 @property (readonly, assign) BOOL isOpen;
 
 - (FLFinisher*) openStream:(id<FLDispatcher>) dispatcher 
-           withResultBlock:(FLResultBlock) resultBlock;
+         streamClosedBlock:(FLResultBlock) streamClosedBlock;
 
 - (void) closeStreamWithResult:(id) result;
 @end

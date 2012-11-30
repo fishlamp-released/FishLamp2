@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "FishLampCore.h"
-#import "FLCallback_t.h"
+#import "FLResult.h"
 
 @class FLNetworkConnection;
 
@@ -21,7 +21,7 @@
 
 // you only get one of each of these
 - (void) networkConnectionStarting:(FLNetworkConnection*) connection;
-- (void) networkConnectionFinished:(FLNetworkConnection*) connection;
+- (void) networkConnection:(FLNetworkConnection*) connection finishedWithResult:(FLResult) result;
 
 // connection events - can get multiples
 - (void) networkConnectionConnecting:(FLNetworkConnection*) connection;

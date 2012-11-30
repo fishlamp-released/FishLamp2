@@ -34,10 +34,10 @@ static void * const s_queue_key = (void*)&s_queue_key;
     return self;
 }
 
-- (id) initWithLabel:(const char*) label  
+- (id) initWithLabel:(NSString*) label  
                 attr:(dispatch_queue_attr_t) attr {
 
-    dispatch_queue_t queue = dispatch_queue_create(label, attr);
+    dispatch_queue_t queue = dispatch_queue_create([label cStringUsingEncoding:NSASCIIStringEncoding], attr);
     if(!queue) {
         return nil;
     }
@@ -55,15 +55,15 @@ static void * const s_queue_key = (void*)&s_queue_key;
     return autorelease_([[[self class] alloc] initWithDispatchQueue:queue]);
 }
 
-+ (FLDispatchQueue*) dispatchQueueWithLabel:(const char*) label attr:(dispatch_queue_attr_t) attr {
++ (FLDispatchQueue*) dispatchQueueWithLabel:(NSString*) label attr:(dispatch_queue_attr_t) attr {
     return autorelease_([[[self class] alloc] initWithLabel:label attr:attr]);
 }
 
-+ (FLDispatchQueue*) fifoDispatchQueue:(const char*) label {
++ (FLDispatchQueue*) fifoDispatchQueue:(NSString*) label {
     return autorelease_([[[self class] alloc] initWithLabel:label attr:DISPATCH_QUEUE_SERIAL]);
 }
 
-+ (FLDispatchQueue*) concurrentDispatchQueue:(const char*) label {
++ (FLDispatchQueue*) concurrentDispatchQueue:(NSString*) label {
     return autorelease_([[[self class] alloc] initWithLabel:label attr:DISPATCH_QUEUE_CONCURRENT]);
 }
 
@@ -90,14 +90,10 @@ static void * const s_queue_key = (void*)&s_queue_key;
 - (FLFinisher*) dispatchBlock:(dispatch_block_t) block 
                 completion:(FLCompletionBlock) completion {
 
-    FLFinisher* finisher = [FLFinisher finisherWithResultBlock:completion];
+    FLFinisher* finisher = [FLScheduledFinisher finisherWithResultBlock:completion];
 
     FLAssertNotNil_(block);
     FLAssertNotNil_(finisher);
-
-    if([NSThread isMainThread]) {
-        [finisher scheduleFinishOnMainThread];
-    }
 
     dispatch_async(_dispatch_queue, ^{
         @try {
@@ -121,14 +117,10 @@ static void * const s_queue_key = (void*)&s_queue_key;
 - (FLFinisher*) dispatchAsyncBlock:(FLAsyncFinisherBlock) block 
                        completion:(FLCompletionBlock) completion {
 
-    FLFinisher* finisher = [FLFinisher finisherWithResultBlock:completion];
+    FLFinisher* finisher = [FLScheduledFinisher finisherWithResultBlock:completion];
 
     FLAssertNotNil_(block);
     FLAssertNotNil_(finisher);
-
-    if([NSThread isMainThread]) {
-        [finisher scheduleFinishOnMainThread];
-    }
 
     dispatch_async(_dispatch_queue, ^{
         @try {
@@ -167,10 +159,8 @@ static void * const s_queue_key = (void*)&s_queue_key;
 
 @implementation FLFrameworkQueues 
 + (FLDispatchQueue*) fifoQueue {
-    FLReturnStaticObject([[FLDispatchQueue alloc] initWithLabel:"com.fishlamp.queue.fifo" attr:DISPATCH_QUEUE_SERIAL]);
+    FLReturnStaticObject([[FLDispatchQueue alloc] initWithLabel:@"com.fishlamp.queue.fifo" attr:DISPATCH_QUEUE_SERIAL]);
 }
-
-
 @end
 
 

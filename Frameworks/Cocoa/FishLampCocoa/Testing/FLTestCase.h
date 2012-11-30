@@ -29,6 +29,7 @@ typedef void (^FLTestBlock)();
     SEL _testCaseSelector;
     __unsafe_unretained id _testCaseTarget;
     NSString* _disabledReason;
+    BOOL _disabled;
 }
 
 - (void) setDisabledWithReason:(NSString*) reason;
@@ -39,7 +40,7 @@ typedef void (^FLTestBlock)();
 @property (readonly, assign, nonatomic) SEL testCaseSelector;
 @property (readonly, assign, nonatomic) id testCaseTarget;
 @property (readonly, copy, nonatomic) FLTestBlock testCaseBlock;
-
+@property (readwrite, assign, nonatomic, getter=isDisabled) BOOL disabled;
 
 // construction
 - (id) initWithName:(NSString*) name target:(id) target selector:(SEL) selector;

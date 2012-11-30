@@ -44,29 +44,5 @@
     return nil;
 }
 
-
-
 @end
 
-/*
-+ (id) networkOperation:(NSURL*) url {
-	return autorelease_([[[self class] alloc] initWithURL:url]);
-}
-
-@synthesize URL = _URL;
-- (id) initWithURL:(NSURL*) url {
-    self = [super init];
-    if(self) {
-        self.URL = url;
-    }
-    return self;
-}
-
-#if FL_MRC
-- (void) dealloc {
-    [_URL release];
-    [super dealloc];
-}
-#endif
-
-*/

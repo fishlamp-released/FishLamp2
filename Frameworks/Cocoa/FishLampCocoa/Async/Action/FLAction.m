@@ -35,7 +35,6 @@
 @synthesize onUpdateProgress = _progressCallback;
 @synthesize progressController = _progress;
 @synthesize operations = _operations;
-@synthesize didSucceed = _didSucceed;
 @synthesize starting = _startingBlock;
 @synthesize handledError = _handledError;
 @synthesize disableErrorNotifications = _disableErrorNotifications;
@@ -296,7 +295,7 @@ TODO("MF: fix activity updater");
     }
 
     @try {
-        if(!self.error || self.wasCancelled) {
+        if(![result error] || [[result error] isCancelError]) {
             [self closeNotification];
         } else {
             [self willHandleError];
@@ -314,25 +313,13 @@ TODO("MF: fix activity updater");
     return result;
 }
 
-- (id) failedOperation {
+- (id) failedOperationInResults:(NSDictionary*) results {
     for(FLOperation* operation in self.operations.reverseIterator) {
-        if(operation.error) {
+        if([[results objectForKey:operation.operationID] error]) {
             return operation;
         }
     }
     return nil;
-}
-
-- (BOOL) wasCancelled {
-    return self.operations.wasCancelled;
-}
-
-- (NSError*) error {
-    return [self.failedOperation error];
-}
-
-- (BOOL) cancelWasRequested {
-    return self.operations.cancelWasRequested;
 }
 
 - (FLFinisher*) requestCancel:(FLResultBlock) completion {
@@ -374,17 +361,17 @@ FIXME("context and actions");
     return [[self startAction:nil] waitUntilFinished];
 }
 
-- (id) firstOperation {
-    return self.operations.firstOperation;
-}
-
-- (id) lastOperation {
-    return self.operations.lastOperation;
-}
-
-- (id) lastOperationOutput {
-    return self.operations.lastOperationOutput;
-}
+//- (id) firstOperation {
+//    return self.operations.firstOperation;
+//}
+//
+//- (id) lastOperation {
+//    return self.operations.lastOperation;
+//}
+//
+//- (id) lastOperationOutput {
+//    return self.operations.lastOperationOutput;
+//}
 
 - (void) addOperation:(FLOperation*) operation {
     [self.operations addOperation:operation];

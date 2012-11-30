@@ -22,24 +22,10 @@ typedef FLResult (^FLRunOperationBlock)(FLOperation* operation);
 @interface FLOperation : FLObservable<FLCancellable, FLContextual> {
 @private
     __unsafe_unretained id _context;
-    id _result;
-	NSInteger _tag;
+    __unsafe_unretained FLCancellable* _cancelHandler;
 	id _operationID;
-    NSError* _error;
-
-// optional run block (or override runSelf)
 	FLRunOperationBlock _runBlock;
-
-// deciders
-    BOOL _disabled;
-
-// state
-    int32_t _busy;
-
-// run state (reset with each run)
-    BOOL _wasStarted;
-    BOOL _isFinished;
-    FLFinisher* _cancelFinisher;
+	NSInteger _tag;
 }
 
 // TODO: abstract this better;
@@ -48,19 +34,6 @@ typedef FLResult (^FLRunOperationBlock)(FLOperation* operation);
 // misc
 @property (readwrite, strong, nonatomic) id operationID;
 @property (readwrite, assign, nonatomic) NSInteger tag;
-
-// state
-@property (readwrite, assign, getter=isDisabled) BOOL disabled;
-@property (readonly, assign, getter=isBusy) BOOL busy;
-
-@property (readonly, assign) BOOL wasStarted;
-@property (readonly, assign) BOOL isFinished;
-
-@property (readonly, assign) BOOL didFail;      // self.error != nil
-@property (readonly, assign) BOOL didSucceed;   // didRun && error = nil && !wasCancelled
-@property (readonly, assign) BOOL didRun;
-
-@property (readwrite, strong) NSError* error;
 
 - (id) init;
 - (id) initWithRunBlock:(FLRunOperationBlock) block;
@@ -76,27 +49,22 @@ typedef FLResult (^FLRunOperationBlock)(FLOperation* operation);
 /// This will not throw.
 - (id) runSynchronously;
 
-// utils
-- (void) throwAbortIfFailed;
-- (void) resetRunState;
-- (void) resetRunStateIfNeeded;
-- (void) setMoreBusy;
-- (void) setLessBusy;
 
-/*
-    optional overrides
- */
+//
+// for subclasses
+//
+
+// this will raise an abort exception if runState has been signaled as finished.
+- (void) abortIfNeeded;
+
+//    optional overrides
 
 /// @brief Required override point (or use runBlock).
 /// Either override run or set the operation's run block.
-- (void) prepareSelf;
 - (FLResult) runSelf;
-- (void) finishSelf:(FLResult*) withResult;
 
 /// @brief this is called for you to respond to if requestCancel is called
 - (void) cancelSelf;
-
-- (void) abortIfNeeded;
 
 @end
 
@@ -105,10 +73,7 @@ typedef FLResult (^FLRunOperationBlock)(FLOperation* operation);
 
 // these always happen in the thread the operation is running on
 - (void) operationWillRun:(FLOperation*) operation;
-- (void) operationDidFinish:(FLOperation*) operation;
-- (void) operationWasCancelled:(FLOperation*) operation;
-
-- (void) operationBusyStateDidChange:(FLOperation*) operation;
+- (void) operationDidFinish:(FLOperation*) operation withResult:(FLResult) withResult;
 
 @end
 

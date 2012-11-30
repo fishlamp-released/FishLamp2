@@ -21,7 +21,7 @@ extern const NSString* FLTimeoutTimerTimeoutEvent;
 // connection for sure.        
 extern const NSTimeInterval FLTimeoutTimerDefaultCheckFrequencyInterval;
 
-@interface FLTimeoutTimer : FLObservable2<FLWorker, FLCancellable> {
+@interface FLTimeoutTimer : FLObservable2 {
 @private
     NSTimeInterval _timestamp;
     NSTimeInterval _timeoutInterval;
@@ -49,6 +49,7 @@ extern const NSTimeInterval FLTimeoutTimerDefaultCheckFrequencyInterval;
 - (FLFinisher*) startTimer:(FLFinisher*) finisher;
 
 - (void) touchTimestamp;
+- (void) stopTimer;
 
 @end
 

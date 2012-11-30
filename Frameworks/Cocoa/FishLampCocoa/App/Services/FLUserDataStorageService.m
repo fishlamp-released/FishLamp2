@@ -16,7 +16,6 @@
 #import "FLCacheManager.h"
 #import "NSFileManager+FLExtras.h"
 #import "NSString+Guid.h"
-#import "FLLengthyTaskOperation.h"
 #import "FLAction.h"
 #import "FLBackgroundTaskMgr.h"
 #import "FLAction.h"
@@ -307,11 +306,11 @@ service_register_(storageService, FLUserDataStorageService, @"com.fishlamp.servi
         _upgradeTaskList = [[FLVersionUpgradeLengthyTaskList alloc] initWithFromVersion:dataVersion.versionString toVersion:[FLAppInfo appVersion]];
         
         if([_cacheDatabase databaseNeedsUpgrade]) {
-            [_upgradeTaskList addOperation:[FLUpgradeDatabaseLengthyTask upgradeDatabaseLengthyTask:_cacheDatabase]];
+            [_upgradeTaskList.operations addOperation:[FLUpgradeDatabaseLengthyTask upgradeDatabaseLengthyTask:_cacheDatabase]];
         }
 
         if([_documentsDatabase databaseNeedsUpgrade]) {
-            [_upgradeTaskList addOperation:[FLUpgradeDatabaseLengthyTask upgradeDatabaseLengthyTask:_documentsDatabase]];
+            [_upgradeTaskList.operations addOperation:[FLUpgradeDatabaseLengthyTask upgradeDatabaseLengthyTask:_documentsDatabase]];
         }
         
         [self postObservation:@selector(userDataService:appVersionWillChange:) withObject:_upgradeTaskList];

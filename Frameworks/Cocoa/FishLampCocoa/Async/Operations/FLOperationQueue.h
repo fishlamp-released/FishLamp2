@@ -21,7 +21,8 @@ typedef id (^FLCreateOperationBlock)();
 @interface FLOperationQueue : FLObservable<FLWorker, FLRunnable, FLCancellable, NSFastEnumeration> {
 @private
 	NSMutableArray* _operations;
-    FLFinisher* _cancelFinisher;
+    
+    __unsafe_unretained FLCancellable* _cancelHandler;
 }
 
 + (FLOperationQueue*) operationQueue;
@@ -57,6 +58,8 @@ typedef id (^FLCreateOperationBlock)();
 
 - (id) operationByClass:(Class) class;
 
+//- (void) cancelOperationByID:(id) operationID;
+
 ///// @return YES is if stopped
 //- (BOOL) visitOperationsInReverseOrder:(FLOperationQueueVisitor) visitor;
 //
@@ -65,17 +68,13 @@ typedef id (^FLCreateOperationBlock)();
 
 // output helpers
 
-@property (readonly, strong) id firstOperationOutput;
+- (FLResult) firstOperationOutput:(NSDictionary*) inResult;
 
-@property (readonly, strong) id lastOperationOutput;
+- (FLResult) lastOperationOutput:(NSDictionary*) inResult;
 
-- (id) outputById:(id) operationID;
+- (id) outputByTag:(NSInteger) tag  inResult:(NSDictionary*) inResult;
 
-- (id) outputByTag:(NSInteger) tag;
-
-- (id) outputByOperationClass:(Class) aClass;
-
-- (void) cancelOperationByID:(id) operationID;
+- (id) outputByOperationClass:(Class) aClass  inResult:(NSDictionary*) inResult;
 
 - (void) removeOperation:(FLOperation*) operation;
 

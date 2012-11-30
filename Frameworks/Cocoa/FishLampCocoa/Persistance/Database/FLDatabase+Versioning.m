@@ -11,6 +11,7 @@
 #import "FLDatabase_Internal.h"
 #import "NSFileManager+FLExtras.h"
 #import "FLSqlBuilder.h"
+#import "FLBlocks.h"
 
 /*
 - (NSDictionary*) historyForName:(NSString*) name;
@@ -102,13 +103,10 @@ static NSString* s_version;
 }
 
 - (NSDictionary*) readHistoryForTable:(FLDatabaseTable*) table {
-	NSArray* rows = nil;
-
-	[self runQueryWithString:[NSString stringWithFormat:@"SELECT * FROM %@ WHERE %@='%@'", 
+	NSArray* rows = [self execute:[NSString stringWithFormat:@"SELECT * FROM %@ WHERE %@='%@'", 
 		kHistory,
 		kName,
-		table.tableName]
-		outRows:&rows];
+		table.tableName]];
 		
 	return rows.count == 1 ? rows.firstObject : nil;
 }
@@ -389,45 +387,42 @@ NSString* FLLegacyDecodeString(NSString* string) {
 		NSString* oldNamesSql = [FLSqlBuilder sqlListFromArray:oldNames delimiter:@"," withinParens:NO prefixDelimiterWithSpace:NO ];
 		NSString* newNamesSql = [FLSqlBuilder sqlListFromArray:newNames delimiter:@"," withinParens:NO prefixDelimiterWithSpace:NO ];
 
-		@synchronized(self) {
-			@try {
-                mrc_autorelease_(retain_(table));
-                
-                // use a transaction to protect data from failures
-				[self exec:@"BEGIN TRANSACTION"];
-
-                // create a temp table
-				[self exec:[NSString stringWithFormat:@"CREATE TEMPORARY TABLE %@(%@)", tempTableName, existingColNamesSql]];
-
-                // copy the whole table to a temp table.
-				[self exec:[NSString stringWithFormat:@"INSERT INTO %@ (%@) SELECT %@ FROM %@", tempTableName, existingColNamesSql, existingColNamesSql, table.tableName]];
-
-                // drip the original table.
-				[self dropTable:table];
-                
-                // create the new table
-				[self createTableIfNeeded:table];
-				
-                // only copy back the rows we want, renaming on the way
-				[self exec:[NSString stringWithFormat:@"INSERT INTO %@ (%@) SELECT %@ FROM %@", table.tableName, newNamesSql, oldNamesSql, tempTableName]];
-
-                // delete temp table.
-				[self exec:[NSString stringWithFormat:@"DROP TABLE %@", tempTableName]];
-
-                // commit the whole thing
-				[self exec:@"COMMIT"];
-				
-				FLDebugLog(@"Table upgraded ok: %@", table.tableName);
-			
-                return YES;
-            }
-			@catch(NSException* ex) {
-				[self exec:@"ROLLBACK"];
-                @throw;
-			}
+        @try {
+            mrc_autorelease_(retain_(table));
             
-		}
-	}
+            // use a transaction to protect data from failures
+            [self execute:@"BEGIN TRANSACTION"];
+
+            // create a temp table
+            [self execute:[NSString stringWithFormat:@"CREATE TEMPORARY TABLE %@(%@)", tempTableName, existingColNamesSql]];
+
+            // copy the whole table to a temp table.
+            [self execute:[NSString stringWithFormat:@"INSERT INTO %@ (%@) SELECT %@ FROM %@", tempTableName, existingColNamesSql, existingColNamesSql, table.tableName]];
+
+            // drip the original table.
+            [self dropTable:table];
+            
+            // create the new table
+            [self createTableIfNeeded:table];
+            
+            // only copy back the rows we want, renaming on the way
+            [self execute:[NSString stringWithFormat:@"INSERT INTO %@ (%@) SELECT %@ FROM %@", table.tableName, newNamesSql, oldNamesSql, tempTableName]];
+
+            // delete temp table.
+            [self execute:[NSString stringWithFormat:@"DROP TABLE %@", tempTableName]];
+
+            // commit the whole thing
+            [self execute:@"COMMIT"];
+            
+            FLDebugLog(@"Table upgraded ok: %@", table.tableName);
+        
+            return YES;
+        }
+        @catch(NSException* ex) {
+            [self execute:@"ROLLBACK"];
+            @throw;
+        }
+    }
 
     return NO;
 }
@@ -442,8 +437,9 @@ NSString* FLLegacyDecodeString(NSString* string) {
     
     for(NSString* tableName in tableNames) {
         
+#if FL_MRC
         FLPerformBlockInAutoreleasePool(^{
-        
+#endif        
             FLDatabaseTable* table = [self tableForName:tableName];
             if(table && [self upgradeTable:table allTableNames:tableNames]) {
                 if(tableUpgraded) {
@@ -456,7 +452,9 @@ NSString* FLLegacyDecodeString(NSString* string) {
             }
             
             ++count;
+#if FL_MRC
         });
+#endif        
 	}
     
     [self writeDatabaseVersion:version];
@@ -465,9 +463,14 @@ NSString* FLLegacyDecodeString(NSString* string) {
 - (void) upgradeDatabase:(FLDatabaseUpgradeProgressBlock) progress
            tableUpgraded:(FLDatabaseTableUpgradedBlock) tableUpgraded {
 
-    [self upgradeDatabaseToVersion:[[self class] currentRuntimeVersion]
-                          progress:progress
-                     tableUpgraded:tableUpgraded];
+    progress = FLCopyBlock(progress);
+    tableUpgraded = FLCopyBlock(tableUpgraded);
+
+    [[FLDefaultQueue dispatchBlock:^{
+            [self upgradeDatabaseToVersion:[[self class] currentRuntimeVersion]
+                                  progress:progress
+                             tableUpgraded:tableUpgraded];
+        }] waitUntilFinished];
 }
 
 @end
