@@ -10,7 +10,8 @@
 
 #import "FLHttpOperation.h"
 
-@class FLFacebookMgr;
+@class FLFacebookNetworkSession;
+@class FLFacebookError;
 
 @interface FLFacebookOperation : FLHttpOperation {
 @private
@@ -27,6 +28,28 @@
 // override points
 - (void) addParametersToURLString:(NSMutableString*) url;
 - (BOOL) willAddParametersToURL;
+
+// UTILS
+
+// based on code from facebook demo app
+
+- (FLFacebookNetworkSession*) sessionFromURLParams:(NSDictionary*) params;
+
+- (NSDictionary*)parseURLParams:(NSString *)query;
+
+- (NSMutableString*) buildURL:(NSString*) authenticationToken
+                         user:(NSString*) user
+                       object:(NSString*) object
+                       params:(NSString*) firstParameter, ...;
+
+- (NSString*) serializeURL:(NSString *)baseUrl
+				   params:(NSDictionary *)params
+			   httpMethod:(NSString *)httpMethod;
+
+- (NSString*) serializeURL:(NSString *)baseUrl
+				   params:(NSDictionary *)params;
+                       
+- (FLFacebookError*) errorFromURLParams:(NSDictionary*) params;
 
 @end
 

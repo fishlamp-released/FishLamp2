@@ -9,19 +9,18 @@
 #import <Foundation/Foundation.h>
 
 #import "FLHttpOperation.h"
-#import "FLTwitterMgr.h"
 #import "FLOAuthAuthorizationHeader.h"
 
-@class FLTwitterOperation;
-
-//typedef void (^FLConfigureTwitterOperationCallback)(FLTwitterOperation* operation);
-
-@interface FLTwitterOperation : FLHttpOperation {
+@interface FLTwitterOperation : FLHttpOperation<FLHttpRequestAuthenticator> {
 @private
     id _inputObject;
+    NSURL* _twitterURL;
 }
 
+@property (readwrite, strong) NSURL* twitterURL;
 @property (readwrite, strong) id inputObject;
+
+- (id) initWithTwitterURL:(NSURL*) url;
 
 // optional override points
 - (BOOL) willAddParametersToRequestContent:(FLOAuthAuthorizationHeader*) signature;

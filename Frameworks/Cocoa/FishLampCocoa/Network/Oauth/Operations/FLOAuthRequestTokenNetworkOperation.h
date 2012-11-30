@@ -15,9 +15,8 @@
 @interface FLOAuthRequestTokenNetworkOperation : FLHttpOperation {
 @private 
 	FLOAuthApp* _app;
+    NSURL* _url;
 }
-
-@property (readonly, retain, nonatomic) FLOAuthApp* OAuthApp;
 
 - (id) initWithOAuthApp:(FLOAuthApp*) app;
 + (FLOAuthRequestTokenNetworkOperation*) OAuthRequestTokenNetworkOperation:(FLOAuthApp*) app;

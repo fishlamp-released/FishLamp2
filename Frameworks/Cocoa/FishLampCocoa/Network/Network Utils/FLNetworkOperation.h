@@ -9,23 +9,25 @@
 #import "FishLampCore.h"
 #import "FLOperation.h"
 #import "FLNetworkConnection.h"
+#import "FLResult.h"
 
 @interface FLNetworkOperation : FLOperation<FLNetworkConnectionObserver> {
 @private
-    FLNetworkConnection* _networkConnection;
-    
+    // needd for cancelling
+    FLNetworkConnection* _connection;
 }
-@property (readwrite, strong) FLNetworkConnection* networkConnection;
 
-- (id) initWithNetworkConnection:(FLNetworkConnection*) connection;
-
-+ (id) networkOperationWithConnection:(FLNetworkConnection*) connection;
 + (id) networkOperation;
 
-// override points
-
-- (FLNetworkConnection*) createNetworkConnection; 
+- (FLResult) runConnection:(FLNetworkConnection*) connection;
 
 @end
 
 
+/*
+    NSURL* _URL;
+@property (readwrite, strong) NSURL* URL;
+
+- (id) initWithURL:(NSURL*) url;
++ (id) networkOperation:(NSURL*) url;
+*/

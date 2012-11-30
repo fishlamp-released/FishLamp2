@@ -13,87 +13,144 @@ NSString* const FLImageTypePreview =    @"com.fishlamp.image.preview";
 NSString* const FLImageTypeOriginal =   @"com.fishlamp.image.original";
 
 @interface FLImage ()
+@property (readwrite, strong, nonatomic) NSImage_* image;
+@property (readwrite, strong, nonatomic) NSData* imageData;
+//@property (readwrite, strong, nonatomic) NSDictionary* exifDictionary;
 @end
 
 @implementation FLImage
 
 @synthesize image = _image;
-@synthesize imageBytes = _imageBytes;
-@synthesize exifData = _exifData;
+@synthesize imageData = _imageData;
+@synthesize exifDictionary = _exifDictionary;
 @synthesize imageProperties = _imageProperties;
 @synthesize storageStrategy = _storageStrategy;
 
-- (id) initWithImage:(NSImage_*) image 
-            exifData:(NSDictionary*) exifData {
-
-    self = [super init];
-	if(self) {
-		[self setImage:image imageBytes:nil exifData:exifData];
-	}
-
-	return self;
+- (id) init {
+    return [self initWithImage:nil exifDictionary:nil imageData:nil];
 }
 
-- (id) initWithImageBytes:(NSData*) data {
+- (id) initWithImage:(NSImage_*) image 
+      exifDictionary:(NSDictionary*) exifDictionary 
+           imageData:(NSData*) imageData  {
     
     self = [super init];
-	if(self) {
-		[self setImage:nil imageBytes:data exifData:nil];
-	}
+    if(self) {
+		[self setImage:image exifDictionary:exifDictionary imageData:imageData ];
+    }
+    return self;
+}       
 
-	return self;
+- (id) initWithImageProperties:(FLImageProperties*) imageProperties 
+               storageStrategy:(id<FLImageStorageStrategy>) storageStrategy
+{
+    self = [self initWithImage:nil exifDictionary:nil imageData:nil];
+    if(self) {
+        self.imageProperties = imageProperties;
+        self.storageStrategy = storageStrategy;
+    }
+    
+    return self;
 }
 
-+ (id) photoWithImageBytes:(NSData*) imageBytes {
-    return autorelease_([[[self class] alloc] initWithImageBytes:imageBytes]);
++ (id) imageWithImageProperties:(FLImageProperties*) imageProperties 
+               storageStrategy:(id<FLImageStorageStrategy>) storageStrategy {
+    return autorelease_([[[self class] alloc] initWithImageProperties:imageProperties storageStrategy:storageStrategy]);
 }
 
-+ (id) photoWithImage:(NSImage_*) image exifData:(NSDictionary*) exifData{
-    return autorelease_([[[self class] alloc] initWithImage:image exifData:exifData]);
++ (id) image {
+    return autorelease_([[[self class] alloc] initWithImage:nil exifDictionary:nil imageData:nil ]);
 }
+
++ (id) imageWithImage:(NSImage_*) image 
+             exifDictionary:(NSDictionary*)exifDictionary
+            imageData:(NSData*) imageData {
+    return autorelease_([[[self class] alloc] initWithImage:image exifDictionary:exifDictionary imageData:imageData]);
+}            
 
 - (void) setImage:(NSImage_*) image 
-       imageBytes:(NSData*) bytes 
-       exifData:(NSDictionary*) exifData {
+   exifDictionary:(NSDictionary*) exifDictionary 
+        imageData:(NSData*) imageData {
     
-    FLRetainObject_(_image, image);
-    FLRetainObject_(_imageBytes, bytes);
-    FLRetainObject_(_exifData, exifData);
+    self.image = image;
+    self.imageData = imageData;
+    self.exifDictionary = exifDictionary;
 //    _dimensions = _image ? _image.size : FLSizeZero;
 }       
 
-- (void) clearAll {
-    [self setImage:nil imageBytes:nil exifData:nil];
+- (void) releaseAllImageData {
+    [self setImage:nil exifDictionary:nil imageData:nil];
 }
 
-- (void) setImage:(NSImage_*) image {
-    [self setImage:image imageBytes:nil exifData:nil];
-}
-
-- (void) setImage:(NSImage_*) image exifData:(NSDictionary*) exif {
-    [self setImage:image imageBytes:nil exifData:exif];
-}
+//- (void) clear {
+//    [self setImage:nil imageData:nil exifDictionary:nil];
+//}
 
 #if FL_MRC
 - (void) dealloc { 
     [_storageStrategy release];
     [_imageProperties release];
     [_image release];
-    [_imageBytes release];
-    [_exifData release];
+    [_imageData release];
+    [_exifDictionary release];
     [super dealloc];
 }
 #endif
 
-- (void) setImageBytes:(NSData*) data {
-    [self setImage:nil imageBytes:data exifData:nil];
-}
+//- (void) setImageData:(NSData*) data {
+//    [self setImage:nil imageData:data exifDictionary:nil];
+//}
 
 - (void) copySelfTo:(FLImage*) image {
     [super copySelfTo:image];
-    [image setImage:self.image imageBytes:self.imageBytes exifData:self.exifData];
+    [image setImage:self.image exifDictionary:self.exifDictionary imageData:self.imageData];
     image.imageProperties = self.imageProperties;
     image.storageStrategy = self.storageStrategy;
 }
 
 @end
+
+@implementation FLImage (ExtendedConstruction)
+
+- (id) initWithImage:(NSImage_*) image 
+            exifDictionary:(NSDictionary*) exifDictionary {
+	
+    return [self initWithImage:image exifDictionary:exifDictionary imageData:nil];
+}
+
+- (id) initWithImage:(NSImage_*) image {
+    return [self initWithImage:image exifDictionary:nil imageData:nil];
+}
+
+- (id) initWithData:(NSData*) data {
+    return [self initWithImage:nil exifDictionary:nil imageData:data];
+}
+
++ (id) imageWithData:(NSData*) imageData {
+    return autorelease_([[[self class] alloc] initWithData:imageData]);
+}
+
++ (id) imageWithImage:(NSImage_*) image exifDictionary:(NSDictionary*) exifDictionary{
+    return autorelease_([[[self class] alloc] initWithImage:image exifDictionary:exifDictionary]);
+}
+
++ (id) imageWithImageProperties:(FLImageProperties*) imageProperties {
+    return autorelease_([[[self class] alloc] initWithImageProperties:imageProperties storageStrategy:nil]);
+}
+
+- (id) initWithImageProperties:(FLImageProperties*) imageProperties {
+    return [self initWithImageProperties:imageProperties storageStrategy:nil];
+}
+
+@end
+
+
+
+
+//- (void) setImage:(NSImage_*) image {
+//    [self setImage:image imageData:nil exifDictionary:nil];
+//}
+//
+//- (void) setImage:(NSImage_*) image exifDictionary:(NSDictionary*) exif {
+//    [self setImage:image imageData:nil exifDictionary:exif];
+//}

@@ -10,27 +10,31 @@
 #import "NSFileManager+FLExtras.h"
 #import "NSString+URL.h"
 #import "FLStringBuilder.h"
+#import "FLAppInfo.h"
 
 @implementation NSURLRequest (HTTP)
+
 static NSString* s_defaultUserAgent = nil;
 
-+ (void) setDefaultUserAgent:(NSString*) userAgent
-{
++ (void) initialize {
+    if(!s_defaultUserAgent) {
+        [self setDefaultUserAgent:[FLAppInfo userAgent]];
+    }
+}
+
++ (void) setDefaultUserAgent:(NSString*) userAgent {
 	FLRetainObject_(s_defaultUserAgent, userAgent);
 }
 
-+ (NSString*) defaultUserAgent
-{
++ (NSString*) defaultUserAgent {
 	return s_defaultUserAgent;
 }
 
-- (BOOL) hasHeader:(NSString*) header
-{
+- (BOOL) hasHeader:(NSString*) header {
 	return [self valueForHTTPHeaderField:header] != nil;
 }
 
-- (NSString*) postHeader
-{
+- (NSString*) postHeader {
 	return [NSString stringWithFormat:@"%@ HTTP/1.1", self.URL.path];
 }
 
@@ -62,28 +66,19 @@ static NSString* s_defaultUserAgent = nil;
 		
 }
 
-- (BOOL) willPostRequest
-{
-	return FLStringsAreEqual([self HTTPMethod], @"POST");
-}
-
 @end
 
 
 @implementation NSMutableURLRequest (HTTP)
 
 
-- (void) setUserAgentHeader:(NSString*) userAgent
-{
+- (void) setUserAgentHeader:(NSString*) userAgent {
 	FLAssertStringIsNotEmpty_v(userAgent, nil);
-
 	[self setHeader:@"User-Agent" data:userAgent];
 }
 
-- (void) setDefaultUserAgentHeader
-{
-	if(FLStringIsNotEmpty([NSURLRequest defaultUserAgent]))
-	{
+- (void) setUserAgentHeader {
+	if(FLStringIsNotEmpty([NSURLRequest defaultUserAgent])) {
 		[self setUserAgentHeader:s_defaultUserAgent];
 	}
 }

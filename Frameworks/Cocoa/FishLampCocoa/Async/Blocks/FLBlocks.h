@@ -21,7 +21,7 @@ id FLReturnObject(id (^createBlock)(void)) {
 typedef void (^FLObjectBlock)(id object);
 typedef void (^FLErrorCallback)(NSError* error);
 
-#if  __has_feature(objc_arc)
+#if FL_ARC
 #define FLPerformBlockInAutoreleasePool(__BLOCK__) __BLOCK__()
 #else
 extern void FLPerformBlockInAutoreleasePool(void (^callback)());

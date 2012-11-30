@@ -25,4 +25,6 @@
 - (void) writeImage:(FLImage*) image withCompression:(CGFloat) compression;
 - (void) writeImage:(FLImage*) image;
 
+- (void) deleteImage:(FLImage*) image;
+
 @end

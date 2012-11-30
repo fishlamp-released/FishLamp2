@@ -34,7 +34,7 @@ static NSDictionary* s_destinationProperties = nil;
 }
 
 - (id) initWithImage:(NSImage_*) image 
-	exifData:(NSDictionary*) exifData
+	exifDictionary:(NSDictionary*) exifDictionary
 	folder:(FLFolder*) folder 
 	fileName:(NSString*) fileName {
 
@@ -42,7 +42,7 @@ static NSDictionary* s_destinationProperties = nil;
 		FLAssertIsNotNil_v(folder, nil);
 		FLAssertStringIsNotEmpty_v(fileName, nil);
 
-		[self setImage:image exifData:exifData];
+		[self setImage:image exifDictionary:exifDictionary];
 		self.folder = folder;
 		self.fileName = fileName;
 		self.exclusiveMode = YES;
@@ -320,7 +320,7 @@ static NSDictionary* s_destinationProperties = nil;
 	return imageFile;
 }
 
-- (void) setImage:(NSImage_*) image exifData:(NSDictionary*) exif
+- (void) setImage:(NSImage_*) image exifDictionary:(NSDictionary*) exif
 {
 	FLReleaseWithNil_(_jpegData);
 	[self setImage:image];

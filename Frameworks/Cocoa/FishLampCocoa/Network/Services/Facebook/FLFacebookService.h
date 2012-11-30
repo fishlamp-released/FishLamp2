@@ -10,13 +10,10 @@
 
 #import "FacebookEnums.h"
 #import "FLService.h"
-#import "FLNetworkServerContext.h"
-#import "FLFacebookNetworkSession.h"
 #import "FLFacebookAll.h"
+#import "FLFacebookNetworkSession.h"
 #import "FLFacebookOperation.h"
-#import "FLAction.h"
 #import "FLFacebookAuthenticationResponse.h"
-
 
 #define FLFacebookErrorKey @"fb_error"
 #define FLFacebookErrorDomain @"FLFacebookErrorDomain"
@@ -32,11 +29,7 @@ typedef enum {
 
 #define FLFacebookPostStatusOnlyPermissions [NSArray arrayWithObjects:kFLFacebookUserWritePermissionPublishStream, kFLFacebookUserWritePermissionOfflineAccess, nil ]
 
-
-
-@protocol FLFacebookManagerDelegate;
-
-@interface FLFacebookMgr : FLService {
+@interface FLFacebookService : FLService {
 @private
 	FLFacebookNetworkSession* _facebookNetworkSession; // 
 	NSString* _appId;
@@ -50,36 +43,11 @@ typedef enum {
 @property (readwrite, retain, nonatomic) NSString* encodedToken;
 
 - (void) logout;
-
 - (BOOL) appNeedsAuthorizationForPermissions:(NSArray*) permissions;
 - (BOOL) appSessionHasExpired;
 
-+ (void) clearFacebookCookies;
-
-+ (NSMutableString*) buildURL:(NSString*) authenticationToken
-	user:(NSString*) user
-	object:(NSString*) object
-	params:(NSString*) firstParameter, ...;
-
-// utils not requring state
-+ (NSURL*) buildOAuthUrl:(NSArray *)permissions forAppId:(NSString*) appId;
-
-// from facebook demo app
-+ (NSString*)serializeURL:(NSString *)baseUrl
-                   params:(NSDictionary *)params;
-
-// from facebook demo app
-+ (NSString*)serializeURL:(NSString *)baseUrl
-                   params:(NSDictionary *)params
-               httpMethod:(NSString *)httpMethod;
-
-+ (NSDictionary*)parseURLParams:(NSString *)query;
-+ (FLFacebookError*) errorFromURLParams:(NSDictionary*) params;
-+ (FLFacebookNetworkSession*) sessionFromURLParams:(NSDictionary*) params;
-
-
-+ (FLFacebookAuthenticationResponse*) authenticationResponseFromURL:(NSURL*) url outError:(NSError**) error;
++ (void) clearHTTPCookies;
 
 @end
 
-service_declare_(facebookService, FLFacebookMgr);
+service_declare_(facebookService, FLFacebookService);

@@ -21,6 +21,9 @@
 #import "FLBackgroundTaskMgr.h"
 #import "FLAction.h"
 #import "FLObjectDatabase.h"
+#import "FLAppInfo.h"
+
+service_register_(storageService, FLUserDataStorageService, @"com.fishlamp.service.storage")
 
 @interface FLUserDataStorageService ()
 - (BOOL) _beginOpeningService;
@@ -35,8 +38,8 @@
 @synthesize documentsDatabase = _documentsDatabase;
 @synthesize documentsFolder = _documentsFolder;
 @synthesize cacheFolder = _cacheFolder;
-@synthesize photoFolder = _photoFolder;
-@synthesize photoCacheFolder = _photoCacheFolder;
+@synthesize imageFolder = _imageFolder;
+@synthesize imageCacheFolder = _imageCacheFolder;
 @synthesize tempFolder = _tempFolder;
 @synthesize logFolder = _logFolder;
 @synthesize upgradeTaskList = _upgradeTaskList;
@@ -152,8 +155,8 @@
 
     FLReleaseWithNil_(_documentsFolder);
 	FLReleaseWithNil_(_cacheFolder);
-	FLReleaseWithNil_(_photoFolder);
-	FLReleaseWithNil_(_photoCacheFolder);
+	FLReleaseWithNil_(_imageFolder);
+	FLReleaseWithNil_(_imageCacheFolder);
 	FLReleaseWithNil_(_tempFolder);
 	FLReleaseWithNil_(_logFolder);
 
@@ -209,17 +212,22 @@
     }
 }
 
-- (void) initServiceObjectsIfNeeded {
+- (void) initCache {
+    
     NSArray* cachePaths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
     NSString* userCacheFolder = [cachePaths objectAtIndex: 0];
+
+#if OSX
+    userCacheFolder = [userCacheFolder stringByAppendingPathComponent:[[self class] serviceUTI]];
+#endif
 
 	if(!_cacheFolder){
 		_cacheFolder = [[FLFolder alloc] initWithPath:[userCacheFolder stringByAppendingPathComponent:[self.context userLogin].userGuid]];
 		[_cacheFolder createIfNeeded];
 	}
-	if(!_photoCacheFolder) {
-		_photoCacheFolder = [[FLFolder alloc] initWithPath:[userCacheFolder stringByAppendingPathComponent:@"photos"]];
-		[_photoCacheFolder createIfNeeded];
+	if(!_imageCacheFolder) {
+		_imageCacheFolder = [[FLImageFolder alloc] initWithPath:[userCacheFolder stringByAppendingPathComponent:@"photos"]];
+		[_imageCacheFolder createIfNeeded];
 	}
 	if(!_tempFolder) {
 		_tempFolder = [[FLFolder alloc] initWithPath:[userCacheFolder stringByAppendingPathComponent:@"temp"]];
@@ -237,34 +245,37 @@
         [NSFileManager addSkipBackupAttributeToFile:_cacheDatabase.filePath];
 #endif        
 	}
+}
 
+- (void) initDocuments {
 
-#if IOS    
-    NSArray* documentsPaths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+    NSArray* documentsPaths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
     NSString* userDocumentsFolder = [documentsPaths objectAtIndex: 0];
+
+#if OSX
+    userDocumentsFolder = [userDocumentsFolder stringByAppendingPathComponent:[[self class] serviceUTI]];
+#endif
     
 	if(!_documentsFolder) {
 		_documentsFolder = [[FLFolder alloc] initWithPath:[userDocumentsFolder stringByAppendingPathComponent:[self.context userLogin].userGuid]];
 		[_documentsFolder createIfNeeded];
 	}
-	if(!_photoFolder) {
-		_photoFolder = [[FLFolder alloc] initWithPath:[userDocumentsFolder stringByAppendingPathComponent:@"photos"]];
-		[_photoFolder createIfNeeded];
+    
+// does photo folder make sense on OS X?    
+	if(!_imageFolder) {
+		_imageFolder = [[FLImageFolder alloc] initWithPath:[userDocumentsFolder stringByAppendingPathComponent:@"photos"]];
+		[_imageFolder createIfNeeded];
 	}
-
-#else 
-    // TODO: for mac 
-    // make folder in application support.
     
-    
-    // Photo folder doesn't make sense on mac. Consider.
-
-#endif        
-
 	if(!_documentsDatabase) {
 		_documentsDatabase = [[FLObjectDatabase alloc] initWithDefaultName:self.documentsFolder.folderPath];
 		[_documentsDatabase openDatabase:FLDatabaseOpenFlagsDefault];
-	}
+	}    
+}
+
+- (void) initServiceObjectsIfNeeded {
+    [self initCache];
+    [self initDocuments];
 }
 
 - (void) finishOpeningService {
@@ -289,11 +300,11 @@
 		
     if( (dataVersion == nil) || 
         FLStringIsEmpty(dataVersion.versionString) ||
-        !FLStringsAreEqual(dataVersion.versionString, [NSFileManager appVersion]))
+        !FLStringsAreEqual(dataVersion.versionString, [FLAppInfo appVersion]))
     {
         _upgrading = YES;
     
-        _upgradeTaskList = [[FLVersionUpgradeLengthyTaskList alloc] initWithFromVersion:dataVersion.versionString toVersion:[NSFileManager appVersion]];
+        _upgradeTaskList = [[FLVersionUpgradeLengthyTaskList alloc] initWithFromVersion:dataVersion.versionString toVersion:[FLAppInfo appVersion]];
         
         if([_cacheDatabase databaseNeedsUpgrade]) {
             [_upgradeTaskList addOperation:[FLUpgradeDatabaseLengthyTask upgradeDatabaseLengthyTask:_cacheDatabase]];
@@ -306,7 +317,7 @@
         [self postObservation:@selector(userDataService:appVersionWillChange:) withObject:_upgradeTaskList];
         
         _upgradeTaskList.progressController = [[self class] createVersionUpgradeProgressViewController];
-        [_upgradeTaskList.progressController setTitle:[NSString stringWithFormat:(NSLocalizedString(@"Updating to Version: %@", nil)), [NSFileManager appVersion]]];
+        [_upgradeTaskList.progressController setTitle:[NSString stringWithFormat:(NSLocalizedString(@"Updating to Version: %@", nil)), [FLAppInfo appVersion]]];
 
         id result = [_upgradeTaskList runSynchronously];
         
@@ -360,7 +371,7 @@
 		
 		FLApplicationDataVersion* version = [FLApplicationDataVersion applicationDataVersion];
 		version.userGuid = [self.context userLogin].userGuid;
-		version.versionString = [NSFileManager appVersion];
+		version.versionString = [FLAppInfo appVersion];
 		[[FLApplicationDataModel instance].database saveObject:version];
 
 		FLReleaseWithNil_(_upgradeTaskList);

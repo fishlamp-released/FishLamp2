@@ -17,6 +17,7 @@
 #import "NSFileManager+FLExtras.h"
 #import "NSString+GUID.h"
 #import "FLObjectDatabase.h"
+#import "FLAppInfo.h"
 
 @interface FLApplicationDataModel ()
 @property (readwrite, strong) FLDatabase* database;
@@ -118,7 +119,7 @@ BOOL FLIsValidUser(FLUserLogin* userLogin) {
 		{
 			NSString* password = nil;
 			if([FLKeychain getPasswordForUsername:userLogin.userGuid
-								   andServiceName:[NSFileManager appName]
+								   andServiceName:[FLAppInfo appName]
 									  outPassword:&password
 											error:nil])
 			{
@@ -138,7 +139,7 @@ BOOL FLIsValidUser(FLUserLogin* userLogin) {
 		{
 			if([FLKeychain storeUsername: userLogin.userGuid
 								andPassword:userLogin.password
-								forServiceName:[NSFileManager appName]
+								forServiceName:[FLAppInfo appName]
 								updateExisting:YES
 								error:nil])
 			{
@@ -147,7 +148,7 @@ BOOL FLIsValidUser(FLUserLogin* userLogin) {
 		else
 		{
 			if([FLKeychain deleteItemForUsername:userLogin.userGuid
-				andServiceName:[NSFileManager appName]
+				andServiceName:[FLAppInfo appName]
 				error:nil])
 			{
 			}
@@ -246,7 +247,7 @@ BOOL FLIsValidUser(FLUserLogin* userLogin) {
 	if(FLIsValidUser(userLogin))
 	{
 		[FLKeychain deleteItemForUsername:userLogin.userGuid
-			andServiceName:[NSFileManager appName]
+			andServiceName:[FLAppInfo appName]
 			error:nil];
 		
 		[self.database deleteObject:userLogin];

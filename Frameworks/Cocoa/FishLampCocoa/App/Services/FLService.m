@@ -15,23 +15,23 @@
 
 @implementation FLService
 
-synthesize_(context)
-synthesize_(isServiceOpen)
+@synthesize context = _context;
+@synthesize isServiceOpen = _isServiceOpen;
 
 + (id) serviceFromContext:(id) context {
     FLAssertNotNil_(context);
 
-    id service = [context serviceForID:[self serviceID]];
+    id service = [context serviceForID:[self serviceUTI]];
     FLAssertNotNil_v(service, @"service not found in context");
     return service;
 }
 
 + (id) optionalServiceFromContext:(id) context {
-    return [context serviceForID:[self serviceID]];
+    return [context serviceForID:[self serviceUTI]];
 }
 
 + (BOOL) contextHasService:(id) context {
-    return [context serviceForID:[self serviceID]] != nil;
+    return [context serviceForID:[self serviceUTI]] != nil;
 }
 
 - (void) wasAddedToContext:(FLContext*) context {
@@ -39,8 +39,8 @@ synthesize_(isServiceOpen)
     self.context = context;
 }
 
-+ (id) serviceID {
-    FLAssertFailed_v(@"need to define serviceID");
++ (NSString*) serviceUTI {
+    FLAssertFailed_v(@"need to define serviceUTI");
     return nil;
 }
 

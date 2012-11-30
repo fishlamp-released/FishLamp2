@@ -15,16 +15,14 @@
 
 #import "FishLampCore.h"
 #import "FLDatabaseDefines.h"
-#import "FLDatabaseIterator.h"
 #import "FLDatabaseTable.h"
 #import "FLDatabaseErrors.h"
 #import "FLDatabaseColumnDecoder.h"
-
-@class FLDatabaseIterator;
+#import "FLDatabaseStatement.h"
 
 @interface FLDatabase : NSObject {
 @private
-	sqlite3* _database;
+	sqlite3* _sqlite;
 	NSString* _filePath;
 	NSMutableDictionary* _tables;
 	FLDatabaseColumnDecoder _columnDecoder;
@@ -71,6 +69,11 @@
 - (void) runQueryWithString:(NSString*) statementString
                     outRows:(NSArray**) outRows;
 
+- (void) executeStatement:(FLDatabaseStatement*) statement;
+
+- (void) executeSql:(FLSqlBuilder*) sql 
+     rowResultBlock:(FLDatabaseStatementDidSelectRowBlock) rowResultBlock;
+
 // misc
 - (void) purgeMemoryIfPossible;
 
@@ -79,7 +82,6 @@
               errorBlock:(void(^)(FLDatabase*, NSError*)) errorBlock;
 
 + (FLDatabaseColumnDecoder) defaultColumnDecoder;
-
 + (void) setDefaultColumnDecoder:(FLDatabaseColumnDecoder) decoder;
 
 @end
@@ -101,19 +103,16 @@
 #define FLDbLogIf(__CONDITION__, __FORMAT__, ...)
 #endif
 
-NS_INLINE
-BOOL FLDatabaseIsInternalNameEncoded(NSString* name) {
-	return [name hasPrefix:FL_DATABASE_PREFIX];
-}
+#define FLDatabaseIsInternalNameEncoded_(__NAME__) [__NAME__ hasPrefix:FL_DATABASE_PREFIX]
 
 NS_INLINE 
 NSString* FLDatabaseNameEncode(NSString* name) {
-	return [name hasPrefix:FL_DATABASE_PREFIX ] ? name : [NSString stringWithFormat:@"%@%@", FL_DATABASE_PREFIX, name];
+	return FLDatabaseIsInternalNameEncoded_(name) ? name : [NSString stringWithFormat:@"%@%@", FL_DATABASE_PREFIX, name];
 }
 
 NS_INLINE 
 NSString* FLDatabaseNameDecode(NSString* internalName) {
-	return [internalName hasPrefix:FL_DATABASE_PREFIX ] ? [internalName substringFromIndex:FL_DATABASE_PREFIX.length] : internalName;
+	return FLDatabaseIsInternalNameEncoded_(internalName) ? [internalName substringFromIndex:FL_DATABASE_PREFIX.length] : internalName;
 }
 
 

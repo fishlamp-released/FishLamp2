@@ -15,12 +15,12 @@
 #define FLThumbnailFileSuffix @"_T"
 
 @interface FLImageFolder () 
-@property (readwrite, strong) FLFolder* folder;
+//@property (readwrite, strong) FLFolder* folder;
 @end
 
 @implementation FLImageFolder
 
-@synthesize folder = _folder;
+//@synthesize folder = _folder;
 
 static NSDictionary* s_suffixes = nil;
 + (void) initialize {
@@ -32,37 +32,37 @@ static NSDictionary* s_suffixes = nil;
     }
 }
 
-#if FL_MRC
-- (void) dealloc {
-    [_folder release];
-    [super dealloc];
-}
-#endif
+//#if FL_MRC
+//- (void) dealloc {
+//    [_folder release];
+//    [super dealloc];
+//}
+//#endif
 
 - (NSString*) extensionForUTI:(NSString*) uti {
     return @"JPG";
 }
 
-- (id) initWithFolder:(FLFolder*) folder {
-    self = [super init];
-    if(self) {
-        self.folder = folder;
-    }
-    return self;
-}
+//- (id) initWithFolder:(FLFolder*) folder {
+//    self = [super init];
+//    if(self) {
+//        self = folder;
+//    }
+//    return self;
+//}
 
 // kUTTypeImage
 
 
 - (id) readAssetFromStorage:(id) name {
 
-    NSString* pathToFile = [_folder pathForFile:name];
+    NSString* pathToFile = [self pathForFile:name];
 
-    NSString* fileUTI = [_folder fileUTI:pathToFile];
+    NSString* fileUTI = [self fileUTI:pathToFile];
 
     if (UTTypeConformsTo(bridge_(CFStringRef, fileUTI), kUTTypeImage)) {
-        NSData* data = [_folder readDataFromFile:name];
-        FLImage* image = [FLImage photoWithImageBytes:data];
+        NSData* data = [self readDataFromFile:name];
+        FLImage* image = [FLImage imageWithData:data];
         image.storableType = fileUTI;
         image.storageKey = name;
         return image;
@@ -83,11 +83,11 @@ static NSDictionary* s_suffixes = nil;
     
     NSString* fileName = [NSString stringWithFormat:@"%@%@.%@", storageKey, suffix, extension];
 
-    NSData* data = [_folder readDataFromFile:fileName];
+    NSData* data = [self readDataFromFile:fileName];
     if(data) {
-        FLImage* image = [FLImage photoWithImageBytes:data];
+        FLImage* image = [FLImage imageWithData:data];
         image.storableSubType = subType;
-        image.storableType = [_folder fileUTI:fileName];
+        image.storableType = [self fileUTI:fileName];
         image.storageKey = storageKey;
         return image;
     }
@@ -117,7 +117,7 @@ static NSDictionary* s_suffixes = nil;
 //	if(!_properties) {
 //		[self _throwIfNotConfigured];
 //
-//		NSURL* url = [[NSURL alloc] initFileURLWithPath:[self.folder pathForFile:self.fileName]];
+//		NSURL* url = [[NSURL alloc] initFileURLWithPath:[self pathForFile:self.fileName]];
 //		CGImageSourceRef imageSourceRef = nil;
 //		@try
 //		{
@@ -149,12 +149,12 @@ static NSDictionary* s_suffixes = nil;
 
     FLAssert_(compression >= 0.0 && compression <= 1.0);
 
-    NSData* bytes = image.imageBytes;
+    NSData* bytes = image.imageData;
     NSString* uti = image.storableType;
     NSString* fileName = image.storageKey;
-    NSDictionary* properties = image.exifData;
+    NSDictionary* properties = image.exifDictionary;
 
-    NSString* filePath = [self.folder pathForFile:fileName];
+    NSString* filePath = [self pathForFile:fileName];
 
     FLAssertStringIsNotEmpty_(filePath);
 
@@ -203,6 +203,10 @@ static NSDictionary* s_suffixes = nil;
 
 - (id<FLImageStorage>) imageStorage:(FLImage*) image {
     return self;
+}
+
+- (void) deleteImage:(FLImage*) image {
+
 }
 
 //

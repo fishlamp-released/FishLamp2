@@ -7,10 +7,10 @@
 //
 
 #import "FLDatabaseTable.h"
-#import "FLDatabaseIterator.h"
 #import "FLDatabase_Internal.h"
 
 #import "FLObjcRuntime.h"
+#import "FLSqlStatement.h"
 
 @interface FLDatabaseColumn (Internal)
 - (void) setIndexed:(BOOL) isIndexed;
@@ -27,7 +27,6 @@
 @synthesize decodedTableName = _decodedTableName;
 @synthesize classRepresentedByTable = _tableClass;
 @synthesize columnDecoder = _columnDecoder;
-
 
 - (void) setTableName:(NSString*) tableName {
     FLAssertStringIsNotEmpty_(tableName);
@@ -221,6 +220,50 @@
 	return table;
 }
 
+- (NSDictionary*) filterColumnsForObject:(id) object
+                                  filter:(void (^)(FLDatabaseColumn* column, BOOL* useIt, BOOL* cancel)) filter {
+    NSMutableDictionary* values = nil;
+    
+    BOOL cancel = NO;
+
+	for(FLDatabaseColumn* col in self.columns.objectEnumerator) {
+        BOOL useIt = NO;
+        filter(col, &useIt, &cancel);
+        if(cancel) {
+            return nil;
+        }
+        if(useIt) {
+        
+            id data = [object valueForKey:col.decodedColumnName];
+			
+			if(data) {
+                if(!values) {
+                    values = [NSMutableDictionary dictionaryWithCapacity:self.columns.count];
+                }
+            
+                [values setObject:data forKey:col.columnName];
+			}
+		}
+	}
+
+    return values;
+}
+
+- (id) objectForRow:(NSDictionary*) row {
+
+    id newObject = autorelease_([[self.classRepresentedByTable alloc] init]);
+    FLAssertIsNotNil_(newObject);
+    
+    for(NSString* columnName in row) {
+        id data = [row objectForKey:columnName];
+        if(data && ![data isEqual:[NSNull null]]) {
+            [newObject setValue:data forKey:FLDatabaseNameDecode(columnName)];
+        }
+    }
+    
+    return newObject;        
+}
+
 @end
 
 @implementation NSObject (FLDatabaseTable) 
@@ -254,6 +297,7 @@
 
     return outDictionary;
 }
+
 
 
 //+ (FLDatabaseTable*) createEmptySqliteTable

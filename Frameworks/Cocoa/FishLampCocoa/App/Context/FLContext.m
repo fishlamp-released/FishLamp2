@@ -37,21 +37,21 @@ synthesize_(sessionOpen);
 
 
 - (void) registerService:(id<FLService>) service 
-       forID:(id) serviceID {
+                   forID:(id) serviceUTI {
 
-    [self removeServiceForID:serviceID];
+    [self removeServiceForID:serviceUTI];
 
     FLAssertNotNil_(service);
 
     [service addObserver:self];
     [self addObserver:service];
 
-    [_services setObject:service forKey:serviceID];
+    [_services setObject:service forKey:serviceUTI];
     [service wasAddedToContext:self];
 }
 
 - (void) registerService:(id<FLService>) service {
-    [self registerService:service forID:[[service class] serviceID]];
+    [self registerService:service forID:[[service class] serviceUTI]];
 }
 
 - (void) removeServiceForID:(id) key {
@@ -65,15 +65,15 @@ synthesize_(sessionOpen);
 }
 
 - (void) removeService:(id<FLService>) service {
-    [self removeServiceForID:[[service class] serviceID]];
+    [self removeServiceForID:[[service class] serviceUTI]];
 }
 
-//- (BOOL) serviceIsRegistered:(id) serviceID {
-//    return [_services objectForKey:serviceID] != nil;
+//- (BOOL) serviceIsRegistered:(id) serviceUTI {
+//    return [_services objectForKey:serviceUTI] != nil;
 //}
 
-- (id) serviceForID:(NSString*) serviceID {
-    return [_services objectForKey:serviceID];
+- (id) serviceForID:(NSString*) serviceUTI {
+    return [_services objectForKey:serviceUTI];
 }
 
 - (void) openContext {

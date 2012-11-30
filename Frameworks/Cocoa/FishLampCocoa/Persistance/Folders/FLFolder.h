@@ -19,7 +19,7 @@ typedef void (^FLFileVisitorBlock)(NSString* fileName, BOOL* stop);
 	NSString* _fullPath;
 }
 
-@property (readonly, retain, nonatomic) NSString* folderPath;
+@property (readonly, strong) NSString* folderPath;
 
 - (id) initWithPath:(NSString*) path;
 

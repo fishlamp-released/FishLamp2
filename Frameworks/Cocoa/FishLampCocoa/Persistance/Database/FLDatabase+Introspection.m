@@ -58,9 +58,10 @@
 - (NSUInteger) tableCount {
     __block NSUInteger count = 0;
 
-    FLDatabaseIterator* statement = [FLDatabaseIterator databaseIterator:self table:nil];
-    [statement appendString:@"SELECT COUNT(*) FROM sqlite_master WHERE type='table'"];
-    [statement execute:^(NSDictionary* row, BOOL* stop) {
+    FLSqlBuilder* sql = [FLSqlBuilder sqlBuilder];
+    [sql appendString:@"SELECT COUNT(*) FROM sqlite_master WHERE type='table'"];
+    
+    [self executeSql:sql rowResultBlock:^(NSDictionary* row, BOOL* stop) {
         NSNumber* number = [row objectForKey:@"COUNT(*)"];
         if(number) {
             count = [number integerValue];

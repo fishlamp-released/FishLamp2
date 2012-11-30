@@ -7,6 +7,7 @@
 //
 
 #import "FLDatabase.h"
+#import "FLDatabaseStatement.h"
 
 @interface FLDatabase (FLTables)
 
@@ -37,13 +38,12 @@
 - (void) dropTableByName:(NSString*) tableName;
 
 - (void) insertOrReplaceRowInTable:(NSString*) tableName 
-						row:(NSDictionary*) row;
+                               row:(NSDictionary*) row;
 
 - (void) insertRowInTable:(NSString*) tableName
 			          row:(NSDictionary*) row;
 
 - (void) replaceRowInTable:(NSString*) tableName
 			          row:(NSDictionary*) row;
-
 
 @end

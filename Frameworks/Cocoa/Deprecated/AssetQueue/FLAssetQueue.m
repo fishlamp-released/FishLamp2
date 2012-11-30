@@ -519,18 +519,33 @@ FIXME("compatability")
 
     __block BOOL foundIt = NO;
 
-    FLDatabaseIterator* statement = [FLDatabaseIterator databaseIterator:self.database table:table];
+    FLDatabaseStatement* statement = [FLDatabaseStatement databaseStatement:table];
     [statement appendString:SQL_SELECT andString:FLDatabaseNameEncode(@"assetUID")];
     [statement appendString:SQL_FROM andString:table.tableName];
     [statement appendString:SQL_WHERE];
     [statement appendObject:assetUrl comparedToString:FLDatabaseNameEncode(@"assetURL") withComparer:SQL_EQUAL];
-
-    [statement execute:^(NSDictionary* row, BOOL* stop) {
+    
+    statement.rowResultBlock = ^(NSDictionary* row, BOOL* stop) {
         foundIt = [row objectForKey:FLDatabaseNameEncode(@"assetUID")] != nil;
         if(foundIt) {
             *stop = YES;
         }
-    }];
+    };
+    
+    [self.database executeStatement:statement];
+
+//    FLDatabaseIterator* statement = [FLDatabaseIterator databaseIterator:self.database table:table];
+//    [statement appendString:SQL_SELECT andString:FLDatabaseNameEncode(@"assetUID")];
+//    [statement appendString:SQL_FROM andString:table.tableName];
+//    [statement appendString:SQL_WHERE];
+//    [statement appendObject:assetUrl comparedToString:FLDatabaseNameEncode(@"assetURL") withComparer:SQL_EQUAL];
+//
+//    [statement execute:^(NSDictionary* row, BOOL* stop) {
+//        foundIt = [row objectForKey:FLDatabaseNameEncode(@"assetUID")] != nil;
+//        if(foundIt) {
+//            *stop = YES;
+//        }
+//    }];
 
     return foundIt;
 }

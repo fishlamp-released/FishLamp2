@@ -7,10 +7,36 @@
 //
 
 #import "FLSqlBuilder.h"
-
 #import "NSString+Lists.h"
+#import "FLSqlStatement.h"
 
 #define SQL_PLACEHOLDER @"?"
+
+@implementation NSString (Util)
+
+- (NSUInteger) subStringCount:(NSString*) substring {
+    NSUInteger count = 0;
+    NSUInteger subLen = substring.length;
+    NSUInteger len = self.length - substring.length;
+    
+    for(int i = 0; i < len; i++) {
+        for(int j = 0; (j < subLen && i < len); j++) {
+            if([self characterAtIndex:i] != [substring characterAtIndex:j]) {
+                goto skip;
+                
+                ++i;
+            }
+        }
+        
+        ++count;
+        
+        skip: ;
+    }
+    
+    return count;
+}
+
+@end
 
 @implementation FLSqlBuilder
 
@@ -46,12 +72,24 @@
     return autorelease_([[FLSqlBuilder alloc] init]);
 }
 
-- (void) setFinishedPreparing {
+- (void) bindToSqlStatement:(FLSqlStatement*) statement {
+
+    FLAssert_v([_sql subStringCount:@"@?"] == self.objects.count,   
+        @"binding failure. placeholder count:%d, object count: %d", 
+        [_sql subStringCount:@"@?"], 
+        self.objects.count);
+
+    if(self.objects) {
+        int parmIdx = 0;
+        for(id object in self.objects) {
+            [object bindToStatement:statement parameterIndex:++parmIdx];
+        }
+    }
+
     FLReleaseWithNil_(_delimiter);
     FLReleaseWithNil_(_dataToBind);
     self.sqlString = @"";
 }
-
 #if FL_MRC 
 - (void) dealloc {
     release_(_delimiter);

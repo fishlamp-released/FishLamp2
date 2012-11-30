@@ -103,7 +103,7 @@ extern void FLDebugCompareHeaders(NSString* lhs, NSString* rhs);
 	}
 	
 	return [NSString stringWithFormat:@"%@&%@&%@",
-            request.requestMethod,
+            request.HTTPMethod,
 			[request.requestURL.absoluteString urlEncodeString:NSUTF8StringEncoding],
 			[outString urlEncodeString:NSUTF8StringEncoding]];
 }
@@ -181,7 +181,8 @@ extern void FLDebugCompareHeaders(NSString* lhs, NSString* rhs);
 
 @end
 
-@implementation FLHttpRequest (OAuth)
+@implementation FLMutableHttpRequest (OAuth)
+
 - (void) setOAuthAuthorizationHeader:(FLOAuthAuthorizationHeader*) signature
                          consumerKey:(NSString*) consumerKey
                               secret:(NSString*) secret {
@@ -193,7 +194,7 @@ extern void FLDebugCompareHeaders(NSString* lhs, NSString* rhs);
 #if DEBUG
     FLLog(@"%@ = %@", FLOAuthHttpAuthorizationHeader, header);
 #endif
-    [self setHeaderValue:header forName:FLOAuthHttpAuthorizationHeader];
+    [self setValue:header forHTTPHeaderField:FLOAuthHttpAuthorizationHeader];
 }
 
 @end

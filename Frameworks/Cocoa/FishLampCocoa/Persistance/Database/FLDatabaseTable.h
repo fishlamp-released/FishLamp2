@@ -16,6 +16,7 @@
 #import "FLDatabaseIndex.h"
 #import "FLSqlBuilder.h"
 #import "FLDatabaseColumnDecoder.h"
+#import "FLDatabaseStatement.h"
 
 @interface FLDatabaseTable : NSObject<NSCopying> {
 @private
@@ -30,6 +31,7 @@
     NSArray* _primaryKeyColumns;
     NSArray* _indexedColumns;
 }
+
 @property (readwrite, assign, nonatomic) FLDatabaseColumnDecoder columnDecoder;
 
 @property (readwrite, strong, nonatomic) NSString* tableName;
@@ -66,6 +68,11 @@
 - (id) databaseTableWithClass:(Class) aClass;
 
 - (NSString*) createTableSqlWithIndexes;
+
+- (NSDictionary*) filterColumnsForObject:(id) object
+                                  filter:(void (^)(FLDatabaseColumn* column, BOOL* useIt, BOOL* cancel)) filter;
+
+- (id) objectForRow:(NSDictionary*) row;
 
 @end
 

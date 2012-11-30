@@ -9,42 +9,27 @@
 #import <Foundation/Foundation.h>
 #import "FishLampCore.h"
 
-typedef void (^FLMutableURLRequestCallback)(NSMutableURLRequest* request);
-typedef void (^FLURLRequestCallback)(NSURLRequest* request);
-
-#define FLHttpConnectionMethodPost @"POST"
-#define FLHttpConnectionMethodGet @"GET"
-
-NS_INLINE 
-BOOL FLIsHTTPRequestMethod(NSString* method)
-{
-	return FLStringsAreEqual(FLHttpConnectionMethodPost, method) || FLStringsAreEqual(FLHttpConnectionMethodGet, method);
-}
-
-NS_INLINE
-BOOL FLIsHTTPPostRequestMethod(NSString* method)
-{
-	return FLStringsAreEqual(FLHttpConnectionMethodPost, method);
-}
-
 @interface NSURLRequest (HTTP)
+
+// this is set with [FLAppInfo userAgent] by default
 + (void) setDefaultUserAgent:(NSString*) userAgent;
+
 + (NSString*) defaultUserAgent;
 
 - (BOOL) hasHeader:(NSString*) header;
+
 - (NSString*) postHeader;
 
-- (BOOL) willPostRequest;
 @end
 
 @interface NSMutableURLRequest (HTTP)
 
 - (void) setUserAgentHeader:(NSString*) userAgent;
-- (void) setDefaultUserAgentHeader;
+
+- (void) setUserAgentHeader;
 
 - (void) setHeader:(NSString*)headerName 
 			  data:(NSString*)data;
-
 
 - (void) setFormUrlEncodedContent:(NSString*) content;
 

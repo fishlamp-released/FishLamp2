@@ -14,10 +14,12 @@
 #import "FLDatabaseColumnDecoder.h"
 #import "FLDatabase+Tables.h"
 #import "FLDatabase.h"
+#import "FLAppInfo.h"
+#import "FLSqlStatement.h"
 
 @implementation FLDatabase
 
-@synthesize sqlite3 = _database;
+@synthesize sqlite3 = _sqlite;
 @synthesize filePath = _filePath;
 @synthesize columnDecoder = _columnDecoder;
 
@@ -34,7 +36,7 @@ static FLDatabaseColumnDecoder s_decoder = nil;
 + (void) initialize {
     static BOOL didInit = NO;
     if(!didInit) {
-        [FLDatabase setCurrentRuntimeVersion:[NSFileManager appVersion]];
+        [FLDatabase setCurrentRuntimeVersion:[FLAppInfo appVersion]];
 
 #if FL_LEGACY_DB_ENCODING
         [FLDatabase setDefaultColumnDecoder:FLLegacyDatabaseColumnDecoder];
@@ -51,7 +53,7 @@ static FLDatabaseColumnDecoder s_decoder = nil;
 - (id) init {
     self = [super init];
     if(self)  {
-		_database = nil;
+		_sqlite = nil;
         self.columnDecoder = s_decoder;
 
 #if IOS
@@ -79,7 +81,7 @@ static FLDatabaseColumnDecoder s_decoder = nil;
   	[[NSNotificationCenter defaultCenter] removeObserver:self];
 #endif
 
-	FLAssertIsNil_v(_database, nil);
+	FLAssertIsNil_v(_sqlite, nil);
 	release_(_filePath);
 	super_dealloc_();
 }
@@ -108,9 +110,9 @@ static FLDatabaseColumnDecoder s_decoder = nil;
 }
 
 - (void) cancelCurrentOperation {
-	if(_database) {
+	if(_sqlite) {
 		@synchronized(self) {
-			sqlite3_interrupt(_database);
+			sqlite3_interrupt(_sqlite);
 		}
 	}
 }
@@ -130,7 +132,7 @@ static FLDatabaseColumnDecoder s_decoder = nil;
     @synchronized(self) {
 
         FLDbLog(@"%@ <- %@", self.fileName, sql);
-		if(sqlite3_exec(_database, c_sql, NULL, NULL, nil)) {
+		if(sqlite3_exec(_sqlite, c_sql, NULL, NULL, nil)) {
 			[self throwSqliteError:c_sql];
 		}	
 
@@ -141,14 +143,14 @@ static FLDatabaseColumnDecoder s_decoder = nil;
 - (BOOL) isOpen {
     BOOL isOpen = NO;
     @synchronized(self) {
-        isOpen = _database != nil;
+        isOpen = _sqlite != nil;
     }
 	return isOpen;
 }
 
 - (BOOL) openDatabase:(FLDatabaseOpenFlags) flags
 {
-	if(_database != nil) {
+	if(_sqlite != nil) {
         FLThrowErrorCode_v( 
             FLDatabaseErrorDomain,
             FLDatabaseErrorDatabaseAlreadyOpen, 
@@ -158,7 +160,7 @@ static FLDatabaseColumnDecoder s_decoder = nil;
     BOOL needsUpgrade = NO;
 	@synchronized(self) {
 		@try {
-            if(sqlite3_open_v2([_filePath UTF8String], &_database, flags, nil)) {
+            if(sqlite3_open_v2([_filePath UTF8String], &_sqlite, flags, nil)) {
                 [self throwSqliteError:nil];
             }
             
@@ -167,7 +169,7 @@ static FLDatabaseColumnDecoder s_decoder = nil;
             needsUpgrade = [self databaseNeedsUpgrade];
         }
         @catch(NSException* ex) {
-            if(_database) {
+            if(_sqlite) {
                 [self closeDatabase];
             }
             
@@ -179,7 +181,7 @@ static FLDatabaseColumnDecoder s_decoder = nil;
 }
 
 - (void) closeDatabase  {
-	if(_database == nil) {
+	if(_sqlite == nil) {
         FLThrowErrorCode_v( 
             FLDatabaseErrorDomain,
             FLDatabaseErrorDatabaseAlreadyOpen, 
@@ -187,19 +189,19 @@ static FLDatabaseColumnDecoder s_decoder = nil;
     }
 
 	@synchronized(self) {
-		if(sqlite3_close(_database)) {
+		if(sqlite3_close(_sqlite)) {
 			[self throwSqliteError:nil];
 		}
 		
-		_database = nil;
+		_sqlite = nil;
         FLReleaseWithNil_(_tables);
 	}
 }
 
 - (void) throwSqliteError:(const char*) sql {
 
-	int errorCode = sqlite3_errcode(_database);
-	const char* c_message = sqlite3_errmsg(_database);
+	int errorCode = sqlite3_errcode(_sqlite);
+	const char* c_message = sqlite3_errmsg(_sqlite);
 
 	NSMutableDictionary* userInfo = [NSMutableDictionary dictionary];
 	
@@ -268,6 +270,89 @@ static FLDatabaseColumnDecoder s_decoder = nil;
          });
 }                       
 
+- (void) executeSql:(FLSqlBuilder*) sql 
+        rowResultBlock:(FLDatabaseStatementDidSelectRowBlock) rowResultBlock {
+    
+    FLSqlStatement* sqlStatement = [FLSqlStatement sqlStatement:self columnDecoder:nil];
+	@try {
+        BOOL stop = NO;
+        @synchronized(self) {
+            [sqlStatement prepareWithSql:sql];
+            while(!stop && !sqlStatement.isDone) {
+                NSDictionary* row = [sqlStatement step];
+                if(row) {
+                    if(rowResultBlock) {
+                        rowResultBlock(row, &stop);
+                    }
+                }
+            }
+		}
+    }
+    @finally {
+        [sqlStatement finalizeStatement];
+    }
+}
+
+- (void) executeStatement:(FLDatabaseStatement*) statement {
+
+    FLAssertNotNil_(statement);
+
+    FLDecodeColumnObjectBlock decoder = nil;
+    if(statement.table && self.columnDecoder) {
+        decoder = ^ id (NSString* column, id object) {
+            return self.columnDecoder(self, statement.table, [statement.table columnByName:column], object);
+        };
+    }
+
+    FLSqlStatement* sqlStatement = [FLSqlStatement sqlStatement:self columnDecoder:decoder];
+	@try {
+    
+        BOOL stop = NO;
+        
+        if(statement.prepare) {
+            statement.prepare(&stop);
+            if(stop) {
+                return;
+            }
+        }
+        
+        if(statement.table) {
+            [self createTableIfNeeded:statement.table];
+        }
+        
+        @synchronized(self) {
+            [sqlStatement prepareWithSql:statement];
+            while(!stop && !sqlStatement.isDone) {
+                NSDictionary* row = [sqlStatement step];
+                if(row) {
+                
+                    if(statement.rowResultBlock) {
+                        statement.rowResultBlock(row, &stop);
+                    }
+                    if(statement.objectResultBlock) {
+                        FLAssertIsNotNil_v(statement.table, @"table is required in statement to decode object");
+                        statement.objectResultBlock([statement.table objectForRow:row], &stop);
+                    }
+                }
+            }
+		}
+
+        // must be outside of @synchronized lock.
+        if(statement.finished) {
+            statement.finished(nil);
+        }
+    }
+    @catch(NSException* ex) {
+        if(statement.finished) {
+            statement.finished(ex.error);
+        }
+        
+        @throw;
+    }
+    @finally {
+        [sqlStatement finalizeStatement];
+    }
+}
 
 
 

@@ -10,12 +10,9 @@
 #import "FLDatabase.h"
 #import "FLDatabaseTable.h"
 #import "FLDatabaseColumn.h"
-
 #import "FLObjectDescriber.h"
-
-#import "FLDatabaseIterator.h"
-
 #import "FLBase64Encoding.h"
+#import "FLSqlStatement.h"
 
 id FLDefaultDatabaseColumnDecoder( FLDatabase* database,
                              FLDatabaseTable* table,
@@ -134,18 +131,4 @@ id FLLegacyDatabaseColumnDecoder(FLDatabase* database,
     return FLDefaultDatabaseColumnDecoder(database, table, column, object);
 }
 
-@implementation NSImage_ (SqlObjectDatabase)
-+ (id) decodeObjectWithSqliteColumnData:(NSData*) data {
-	return [NSImage_ imageWithData:data];
-}
-- (void) bindToStatement:(FLDatabaseIterator*) statement parameterIndex:(int) parameterIndex {
-FIXME("osx");
-#if IOS
-	NSData* data = UIImageJPEGRepresentation(self, 1.0f);
-	[data bindToStatement:statement parameterIndex:parameterIndex];
-#endif    
-}
-+ (FLDatabaseType) sqlType {
-	return FLDatabaseTypeObject;
-}
-@end
+

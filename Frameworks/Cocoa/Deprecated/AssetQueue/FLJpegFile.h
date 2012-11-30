@@ -36,7 +36,7 @@
 	fileName:(NSString*) fileName;
 
 - (id) initWithImage:(NSImage_*) image 
-	exifData:(NSDictionary*)exifData
+	exifDictionary:(NSDictionary*)exifDictionary
 	folder:(FLFolder*) folder 
 	fileName:(NSString*) fileName;
 

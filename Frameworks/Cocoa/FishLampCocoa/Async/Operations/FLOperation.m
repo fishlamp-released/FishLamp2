@@ -9,6 +9,7 @@
 #import "FLOperation.h"
 #import "FLTraceOff.h"
 #import "FLFinisher.h"
+#import "FLDispatchQueue.h"
 
 @interface FLOperation ()
 @property (readwrite, copy, nonatomic) FLRunOperationBlock runBlock;

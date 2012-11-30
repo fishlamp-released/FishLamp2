@@ -42,17 +42,6 @@ typedef FLResult (^FLRunOperationBlock)(FLOperation* operation);
     FLFinisher* _cancelFinisher;
 }
 
-//@property (readwrite, strong) id operationInput;
-//@property (readwrite, strong) id operationOutput;
-
-// input/output
-// Note: we're not using properties here to give us some flexibily with subclasses.
-//- (id) output;
-//- (void) setOutput:(id) output;
-
-//- (id) input;
-//- (void) setInput:(id) input;
-
 // TODO: abstract this better;
 //@property (readonly, assign) FLOperationType operationType;
 

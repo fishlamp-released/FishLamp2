@@ -51,8 +51,10 @@
 #endif
 
 - (id) initWithOAuthApp:(FLOAuthApp*) app authData:(FLOAuthAuthencationData*) data {
-	if((self = [super initWithURL:[NSURL URLWithString:app.accessTokenUrl]])) {
-		_app = retain_(app);
+    self = [super init];
+	if(self) {
+		_url = [[NSURL alloc] initWithString:app.accessTokenUrl];
+        _app = retain_(app);
 		_authData = retain_(data);
 	}
 	
@@ -63,11 +65,14 @@
 	return autorelease_([[FLOAuthRequestAccessTokenNetworkOperation alloc] initWithOAuthApp:app authData:data]);
 }
 
-- (void) dealloc  {
-	release_(_app);
-	release_(_authData);
-	super_dealloc_();
+#if FL_MRC
+- (void) dealloc {
+    [_url release];
+    [_app release];
+    [_authData release];
+    [super dealloc];
 }
+#endif
 
 - (FLResult) runSelf {
 
@@ -77,22 +82,18 @@
 
     NSString* secret = [NSString stringWithFormat:@"%@&%@", _app.consumerSecret, _authData.oauth_token_secret];
 
-	self.httpRequest.requestMethod = @"POST";
-    [self.httpRequest setOAuthAuthorizationHeader:oauthHeader consumerKey:_app.consumerKey secret:secret];
+    FLMutableHttpRequest* request = [FLMutableHttpRequest httpPostRequestWithURL:_url];
+	[request setOAuthAuthorizationHeader:oauthHeader consumerKey:_app.consumerKey secret:secret];
 
-	id result = [super runSelf];
-    
-    if([result succeeded]) {
-        FLOAuthSession* session = [FLOAuthSession oAuthSession];
-        [FLUrlParameterParser parseData:self.httpResponse.responseData 
-            intoObject:session 
-            strict:YES 
-            requiredKeys:[NSArray arrayWithObjects:@"oauth_token", @"oauth_token_secret", @"user_id", @"screen_name", nil]];
+    FLHttpResponse* response = [self sendHttpRequest:request];
 
-        result = session;
-    }
-    
-    return result;
+    FLOAuthSession* session = [FLOAuthSession oAuthSession];
+    [FLUrlParameterParser parseData:response.responseData 
+        intoObject:session 
+        strict:YES 
+        requiredKeys:[NSArray arrayWithObjects:@"oauth_token", @"oauth_token_secret", @"user_id", @"screen_name", nil]];
+
+    return session;
 }
 
 @end

@@ -45,9 +45,9 @@
 
 
 - (void) createAssetIfNeeded {
-	if(!self.assetObject) {
-        self.assetObject = [[FLAssetFactory instance] createAssetForQueuedAsset:self];
-	}
+//	if(!self.assetObject) {
+//        self.assetObject = [[FLAssetFactory instance] createAssetForQueuedAsset:self];
+//	}
 }
 
 - (id) initWithAssetUID:(NSString*) assetUID {

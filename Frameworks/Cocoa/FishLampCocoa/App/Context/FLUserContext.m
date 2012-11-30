@@ -10,8 +10,7 @@
 
 @implementation FLUserContext
 
-synthesize_(userLogin)
-
+@synthesize userLogin = _userLogin;
 
 #if FL_MRC
 - (void) dealloc {

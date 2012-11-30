@@ -10,13 +10,13 @@
 //
 
 
-#import "FLHttpOperation.h"
+#import "FLFacebookOperation.h"
 @class FLFacebookStatusMessage;
 
 // --------------------------------------------------------------------
 // FLFacebookUpdateStatusOperation
 // --------------------------------------------------------------------
-@interface FLFacebookUpdateStatusOperation : FLHttpOperation{ 
+@interface FLFacebookUpdateStatusOperation : FLFacebookOperation{ 
 @private
     FLFacebookStatusMessage* __input;
     NSString* __output;

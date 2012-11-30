@@ -72,10 +72,10 @@
 	
     __block NSUInteger count = 0;
     
-    FLDatabaseIterator* statement = [FLDatabaseIterator databaseIterator:self table:nil];
-    [statement appendFormat:@"SELECT COUNT(*) FROM %@", table];
+    FLSqlBuilder* sql = [FLSqlBuilder sqlBuilder];
+    [sql appendFormat:@"SELECT COUNT(*) FROM %@", table];
     
-    [statement execute:^(NSDictionary* row, BOOL* stop) {
+    [self executeSql:sql rowResultBlock: ^(NSDictionary* row, BOOL* stop) {
         NSNumber* number = [row objectForKey:@"COUNT(*)"];
         if(number) {
             count = [number integerValue];
@@ -91,16 +91,16 @@
     
     __block BOOL exists = NO;
 
-    FLDatabaseIterator* statement = [FLDatabaseIterator databaseIterator:self table:nil];
-    [statement appendFormat:@"SELECT name FROM sqlite_master WHERE name='%@'", tableName];
+    FLSqlBuilder* sql = [FLSqlBuilder sqlBuilder];
+    [sql appendFormat:@"SELECT name FROM sqlite_master WHERE name='%@'", tableName];
 
-    [statement execute:^(NSDictionary* row, BOOL* stop) {
+    [self executeSql:sql rowResultBlock:^(NSDictionary* row, BOOL* stop) {
         exists = FLStringsAreEqual([row objectForKey:@"name"], tableName);
         if(exists) {
             *stop = YES;
         }
     }];
-    
+
     return exists;
 }
 
@@ -127,11 +127,12 @@
 //    FLDatabaseTable* table = [[object class] sharedDatabaseTable];
 //    [self createTableIfNeeded:table];
 
-    FLDatabaseIterator* statement = [FLDatabaseIterator databaseIterator:self table:nil];
-    statement.sqlString = action;
-    [statement appendString:SQL_INTO andString:tableName];
-    [statement appendInsertClauseForRow:row];
-    [statement execute];
+    FLSqlBuilder* sql = [FLSqlBuilder sqlBuilder];
+    sql.sqlString = action;
+    [sql appendString:SQL_INTO andString:tableName];
+    [sql appendInsertClauseForRow:row];
+
+    [self executeSql:sql rowResultBlock:nil];
 }
 
 - (void) replaceRowInTable:(NSString*) tableName 
@@ -173,15 +174,16 @@
                  outRows:(NSArray**) outRows {
     
     NSMutableArray* result = [NSMutableArray array];
-    
-    FLDatabaseIterator* statement = [FLDatabaseIterator databaseIterator:self table:table];
-    
+
+    FLDatabaseStatement* statement = [FLDatabaseStatement databaseStatement:table];
     [statement appendString:statementString];
     
-    [statement execute:^(NSDictionary* row, BOOL* stop) {
+    statement.rowResultBlock = ^(NSDictionary* row, BOOL* stop) {
         [result addObject:row];
-    }];
-        
+    };
+     
+    [self executeStatement:statement];
+
     *outRows = retain_(result);
 }
 

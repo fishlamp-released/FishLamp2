@@ -14,11 +14,11 @@
 #import "FLCancellable.h"
 #import "FLCacheManager.h"
 #import "FLBase64Encoding.h"
-#import "FLDatabaseIterator.h"
 #import "NSArray+FLExtras.h"
 #import "NSString+Lists.h"
 #import "FLSqlBuilder.h"
 #import "FLDatabase_Internal.h"
+#import "FLAppInfo.h"
 
 @implementation FLObjectDatabase
   
@@ -27,7 +27,7 @@
 }
 
 - (id) initWithDefaultName:(NSString*) directory {
-	NSString* name = [[NSString alloc] initWithFormat:@"%@.sqlite", [NSFileManager appName]];
+	NSString* name = [[NSString alloc] initWithFormat:@"%@.sqlite", [FLAppInfo appName]];
 	if((self = [self initWithName:name directory:directory])) {
 	}
 	FLReleaseWithNil_(name);
@@ -118,34 +118,32 @@
 
 	FLDatabaseTable* table = [[inputObject class] sharedDatabaseTable];
 
-	FLDatabaseIterator* statement = [FLDatabaseIterator databaseIterator:self table:table];
-
+    FLDatabaseStatement* statement = [FLDatabaseStatement databaseStatement:table];
     NSMutableArray* results = [NSMutableArray array];
 
-	[statement selectObjects:^(BOOL* stop){
-            NSString* resultColumns = [FLSqlBuilder sqlListFromArray:resultColumnNames delimiter:@"," withinParens:NO prefixDelimiterWithSpace:NO emptyString:SQL_ALL];
+    NSString* resultColumns = [FLSqlBuilder sqlListFromArray:resultColumnNames delimiter:@"," withinParens:NO prefixDelimiterWithSpace:NO emptyString:SQL_ALL];
 
-            [statement appendString:SQL_SELECT andString:resultColumns];
-            [statement appendString:SQL_FROM andString:table.tableName];
-            
-            if(![statement appendWhereClauseForSelectingObject:inputObject]) {
-                *stop = YES;
-            }
-		} 
-		didSelectObject:^(id object, BOOL* stop) {
-            if(behavior && [behavior didLoadObjectFromDatabaseCache:object]) {
-                [results addObject:object];
-            }
-            else {
-                [self deleteObject:object];
-            }
-		}
-		didFinish:^{
-			if(outObjects) {
-				*outObjects = retain_(results);
-			}
-		}
-		];
+    [statement appendString:SQL_SELECT andString:resultColumns];
+    [statement appendString:SQL_FROM andString:table.tableName];
+    
+    FLAssert_([statement appendWhereClauseForSelectingObject:inputObject] != NO);
+    
+    statement.objectResultBlock = ^(id object, BOOL* stop) {
+        if(behavior && [behavior didLoadObjectFromDatabaseCache:object]) {
+            [results addObject:object];
+        }
+        else {
+            [self deleteObject:object];
+        }
+    };
+    
+    statement.finished = ^{
+        if(outObjects) {
+            *outObjects = retain_(results);
+        }
+    };
+    
+    [self executeStatement:statement];
 }
 
 - (void) loadAllObjectsForTypeWithTable:(FLDatabaseTable*) table outObjects:(NSArray**) outObjects
@@ -160,28 +158,26 @@
 	id<FLCacheBehavior> behavior = [[table classRepresentedByTable] sharedCacheBehavior];
     
     NSMutableArray* results = [NSMutableArray array];
-
-	FLDatabaseIterator* statement = [FLDatabaseIterator databaseIterator:self table:table];
-    [statement selectObjects:^(BOOL *stop){
-            [statement appendString:SQL_SELECT andString:SQL_ALL];
-            [statement appendString:SQL_FROM andString:table.tableName];
+    FLDatabaseStatement* statement = [FLDatabaseStatement databaseStatement:table];
+    [statement appendString:SQL_SELECT andString:SQL_ALL];
+    [statement appendString:SQL_FROM andString:table.tableName];
+    
+    statement.objectResultBlock = ^(id object, BOOL* stop) {
+        if(behavior && [behavior didLoadObjectFromDatabaseCache:object]) {
+            [results addObject:object];
         }
-		didSelectObject:^(id object, BOOL* stop) {
+        else {
+            [self deleteObject:object];
+        }
+    };
+        
+    statement.finished = ^{
+        if(outObjects) {
+            *outObjects = retain_(results);
+        }
+    };
 
-            if(behavior && [behavior didLoadObjectFromDatabaseCache:object]) {
-                [results addObject:object];
-            }
-            else {
-                [self deleteObject:object];
-            }
-		}
-		didFinish:^{
-			if(outObjects) {
-				*outObjects = retain_(results);
-			}
-		}
-		];
-
+    [self executeStatement:statement];
 }
 
 @end

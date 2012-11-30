@@ -9,14 +9,10 @@
 #import "FLJsonOperation.h"
 #import "FLJsonParser.h"
 
-@interface FLJsonOperation ()
-@end
-
 @implementation FLJsonOperation
 
 @synthesize outputObject = _outputObject;
 @synthesize json = _json;
-
 
 - (id) init {
     self = [super init];
@@ -36,25 +32,25 @@
 
 - (FLResult) runSelf {
 
+    FLMutableHttpRequest* request = [FLMutableHttpRequest httpPostRequestWithURL:self.httpRequestURL];
+
     if(self.json && !self.json.isEmpty) {
         NSData* content = [[self.json buildStringWithNoWhitespace] dataUsingEncoding:NSUTF8StringEncoding];
-        [self.httpRequest setContentWithData:content typeContentHeader:@"application/json; charset=utf-8"];
+        [request setContentWithData:content typeContentHeader:@"application/json; charset=utf-8"];
     }
 	
-    FLResult result = [super runSelf];
+    FLHttpResponse* httpResponse = [self sendHttpRequest:request withAuthenticator:self.requestAuthenticator];
     
-    if([result succeeded]) {
-        FLJsonParser* parser = [FLJsonParser jsonParser];
-        
-        if(!_outputObject) {
-            _outputObject = [NSMutableDictionary dictionary];
-        }
-        
-        result = [parser parseJsonData:[result responseData] rootObject:_outputObject];
-
-        FLThrowError_(parser.error);
-        FLThrowError_([self.httpResponse simpleHttpResponseErrorCheck]);
+    FLJsonParser* parser = [FLJsonParser jsonParser];
+    
+    if(!_outputObject) {
+        _outputObject = [NSMutableDictionary dictionary];
     }
+    
+    id result = [parser parseJsonData:[httpResponse responseData] rootObject:_outputObject];
+
+    FLThrowError_(parser.error);
+    FLThrowError_([httpResponse simpleHttpResponseErrorCheck]);
     
     return result;
 }

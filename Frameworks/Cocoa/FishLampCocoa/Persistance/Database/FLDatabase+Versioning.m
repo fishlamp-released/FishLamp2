@@ -116,15 +116,16 @@ static NSString* s_version;
 - (NSString*) readDatabaseVersion {
     
     __block NSString* version = nil;
+    
+    FLSqlBuilder* sql = [FLSqlBuilder sqlBuilder];
+    [sql appendFormat:@"SELECT %@ FROM %@ WHERE %@=1",
+            kVersion,
+            kVersion,
+            kVersionId];
 
-	FLDatabaseIterator* statement = [FLDatabaseIterator databaseIterator:self table:nil];
-    [statement appendFormat:@"SELECT %@ FROM %@ WHERE %@=1",
-        kVersion,
-        kVersion,
-        kVersionId];
-
-    [statement execute:^(NSDictionary* row, BOOL* stop) {
+    [self executeSql:sql rowResultBlock:^(NSDictionary* row, BOOL* stop) {
         version = [row objectForKey:kVersion];
+        *stop = YES;
     }];
 
     return version;
@@ -442,6 +443,7 @@ NSString* FLLegacyDecodeString(NSString* string) {
     for(NSString* tableName in tableNames) {
         
         FLPerformBlockInAutoreleasePool(^{
+        
             FLDatabaseTable* table = [self tableForName:tableName];
             if(table && [self upgradeTable:table allTableNames:tableNames]) {
                 if(tableUpgraded) {

@@ -21,8 +21,8 @@ extern NSString* const FLImageTypeOriginal;
 @interface FLImage : FLStorable {
 @private
 	NSImage_* _image;
-	NSData* _imageBytes;
-	NSDictionary* _exifData;
+	NSData* _imageData;
+	NSDictionary* _exifDictionary;
     FLImageProperties* _imageProperties;
     id<FLImageStorageStrategy> _storageStrategy;
 }
@@ -30,25 +30,41 @@ extern NSString* const FLImageTypeOriginal;
 @property (readwrite, strong) FLImageProperties* imageProperties;
 @property (readwrite, strong) id<FLImageStorageStrategy>  storageStrategy;
 
-@property (readwrite, strong, nonatomic) NSImage_* image;
-@property (readwrite, strong, nonatomic) NSData* imageBytes;
-@property (readwrite, strong, nonatomic) NSDictionary* exifData;
+@property (readonly, strong, nonatomic) NSImage_* image;
+@property (readonly, strong, nonatomic) NSData* imageData;
+@property (readwrite, strong, nonatomic) NSDictionary* exifDictionary;
 
-- (id) initWithImageBytes:(NSData*) imageBytes;
- 
-+ (id) photoWithImageBytes:(NSData*) imageBytes;
+- (id) initWithImageProperties:(FLImageProperties*) imageProperties 
+               storageStrategy:(id<FLImageStorageStrategy>) storageStrategy;
 
-- (id) initWithImage:(NSImage_*) image 
-          exifData:(NSDictionary*)exifData;
+- (id) initWithImage:(NSImage_*) imageOrNil
+      exifDictionary:(NSDictionary*) exifDictionaryOrNil 
+           imageData:(NSData*) imageDataOrNil;
 
-- (void) clearAll;
++ (id) image;
+
++ (id) imageWithImage:(NSImage_*) image 
+       exifDictionary:(NSDictionary*) exifDictionary
+            imageData:(NSData*) imageData;
+
++ (id) imageWithImageProperties:(FLImageProperties*) imageProperties 
+                storageStrategy:(id<FLImageStorageStrategy>) storageStrategy;
 
 - (void) setImage:(NSImage_*) image 
-       exifData:(NSDictionary*) exifData;
+   exifDictionary:(NSDictionary*) exifDictionary
+        imageData:(NSData*) imageData;
 
-- (void) setImage:(NSImage_*) image 
-       imageBytes:(NSData*) bytes 
-       exifData:(NSDictionary*) exifData;
+- (void) releaseAllImageData;
 
 @end
 
+@interface FLImage (ExtendedConstruction)
+
+- (id) initWithImage:(NSImage_*) image;
+- (id) initWithData:(NSData*) data;
++ (id) imageWithData:(NSData*) imageData;
++ (id) imageWithImage:(NSImage_*) image exifDictionary:(NSDictionary*) exifDictionary;
++ (id) imageWithImageProperties:(FLImageProperties*) imageProperties;
+- (id) initWithImageProperties:(FLImageProperties*) imageProperties;
+
+@end

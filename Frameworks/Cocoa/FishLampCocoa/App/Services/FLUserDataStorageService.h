@@ -12,37 +12,44 @@
 #import "FLLengthyTask.h"
 #import "FLLengthyTaskList.h"
 #import "FLVersionUpgradeLengthyTaskList.h"
+#import "FLImageFolder.h"
 
 @protocol FLUserDataStorageService <FLService>
-// caching
-@property (readonly, strong) FLDatabase* cacheDatabase;
-@property (readonly, strong) FLDatabase* documentsDatabase;
-
-// folders
-@property (readonly, strong) FLFolder* documentsFolder;
-@property (readonly, strong) FLFolder* cacheFolder;
-@property (readonly, strong) FLFolder* photoFolder;
-@property (readonly, strong) FLFolder* photoCacheFolder;
-@property (readonly, strong) FLFolder* tempFolder;
-@property (readonly, strong) FLFolder* logFolder;
 @end
 
 @interface FLUserDataStorageService : FLService<FLUserDataStorageService> {
 @private
-	FLDatabase* _cacheDatabase;
-	FLDatabase* _documentsDatabase;
-	FLFolder* _documentsFolder;
+
+// cache
 	FLFolder* _cacheFolder;
-	FLFolder* _photoFolder;
-	FLFolder* _photoCacheFolder;
+	FLImageFolder* _imageCacheFolder;
 	FLFolder* _tempFolder;
 	FLFolder* _logFolder;
+	FLDatabase* _cacheDatabase;
+
+// documents
+	FLFolder* _documentsFolder;
+	FLDatabase* _documentsDatabase;
+	FLImageFolder* _imageFolder;
+
 	FLVersionUpgradeLengthyTaskList* _upgradeTaskList;
     BOOL _willOpen;
     BOOL _isOpening;
     BOOL _open;
     BOOL _upgrading;
 }
+
+// cache
+@property (readonly, strong) FLFolder* cacheFolder;
+@property (readonly, strong) FLDatabase* cacheDatabase;
+@property (readonly, strong) FLImageFolder* imageCacheFolder;
+@property (readonly, strong) FLFolder* tempFolder;
+@property (readonly, strong) FLFolder* logFolder;
+
+// app data
+@property (readonly, strong) FLDatabase* documentsDatabase;
+@property (readonly, strong) FLFolder* documentsFolder;
+@property (readonly, strong) FLImageFolder* imageFolder;
 
 + (id) userDataStorageService;
 
@@ -60,4 +67,4 @@
 
 @end
 
-service_declare_(storage, FLUserDataStorageService);
+service_declare_(storageService, FLUserDataStorageService);

@@ -176,7 +176,7 @@ static float s_thumbnailSize = 0.0;
 			cornerRadius:0 
 			interpolationQuality:kCGInterpolationDefault
 			makeSquare:NO]
-		exifData:nil
+		exifDictionary:nil
 		];
 	
 //	  FLAssert_v(startImage != nil, @"no image to create thumbnail with");
@@ -200,7 +200,7 @@ static float s_thumbnailSize = 0.0;
 		[self.fullScreen setImage:[self.original.image resizedImageWithContentMode:UIViewContentModeScaleAspectFit 
 			bounds:FLSizeMake(s_fullSize, s_fullSize) 
 			interpolationQuality:kCGInterpolationDefault]
-			exifData:nil];
+			exifDictionary:nil];
 	}
 	
 }

@@ -35,3 +35,4 @@ extern id FLLegacyDatabaseColumnDecoder(FLDatabase* database,
                                         FLDatabaseColumn* column,
                                         id object);
                                         
+typedef id (^FLDecodeColumnObjectBlock)(NSString* columnName, id object);

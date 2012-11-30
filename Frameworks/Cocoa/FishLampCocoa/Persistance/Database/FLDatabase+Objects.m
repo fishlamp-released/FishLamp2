@@ -67,7 +67,7 @@
 
 //			NSString* selectWhat = resultColumnNames && resultColumnNames.count ? [NSString stringWithFormat:@"(%@)", [NSString concatStringArray:resultColumnNames]] : @"*";
 //			
-//			BOOL boundOk = [statement prepareStatement:[NSMutableString stringWithFormat:@"SELECT %@ FROM %@ WHERE", selectWhat, table.tableName]
+//			BOOL boundOk = [iterator prepareStatement:[NSMutableString stringWithFormat:@"SELECT %@ FROM %@ WHERE", selectWhat, table.tableName]
 //                                             forObject:inputObject];
             
 
@@ -82,30 +82,30 @@
 	}
 
 	FLDatabaseTable* table = [[inputObject class] sharedDatabaseTable];
-
-	FLDatabaseIterator* statement = [FLDatabaseIterator databaseIterator:self table:table];
-
+    FLDatabaseStatement* statement = [FLDatabaseStatement databaseStatement:table];
     NSMutableArray* results = [NSMutableArray array];
+    
+    
+    NSString* resultColumns = [FLSqlBuilder sqlListFromArray:resultColumnNames delimiter:@"," withinParens:NO prefixDelimiterWithSpace:NO emptyString:SQL_ALL];
 
-	[statement selectObjects:^(BOOL* stop){
-            NSString* resultColumns = [FLSqlBuilder sqlListFromArray:resultColumnNames delimiter:@"," withinParens:NO prefixDelimiterWithSpace:NO emptyString:SQL_ALL];
-
-            [statement appendString:SQL_SELECT andString:resultColumns];
-            [statement appendString:SQL_FROM andString:table.tableName];
-            
-            if(![statement appendWhereClauseForSelectingObject:inputObject]) {
-                *stop = YES;
-            }
-		} 
-		didSelectObject:^(id object, BOOL* stop) {
-            [results addObject:object];
-		}
-		didFinish:^{
-			if(outObjects) {
-				*outObjects = retain_(results);
-			}
-		}
-	];
+    [statement appendString:SQL_SELECT andString:resultColumns];
+    [statement appendString:SQL_FROM andString:table.tableName];
+    
+    if(![statement appendWhereClauseForSelectingObject:inputObject]) {
+        return;
+    }
+    
+    statement.objectResultBlock = ^(id object, BOOL* stop) {
+        [results addObject:object];
+    };
+    
+    statement.finished = ^(NSError* error){
+        if(outObjects && !error) {
+            *outObjects = retain_(results);
+        }
+    };
+    
+    [self executeStatement:statement];
 }
 
 - (BOOL) objectExistsInDatabase:(id) inputObject
@@ -114,29 +114,47 @@
 		FLThrowErrorCode_v(FLObjectDatabaseErrorDomain, FLDatabaseErrorInvalidInputObject, @"null input object");
 	}
 
-	FLDatabaseTable* table = [[inputObject class] sharedDatabaseTable];
-
-	FLDatabaseIterator* statement = [FLDatabaseIterator databaseIterator:self table:table];
     __block BOOL foundIt = NO;
+
+	FLDatabaseTable* table = [[inputObject class] sharedDatabaseTable];
+    FLDatabaseStatement* statement = [FLDatabaseStatement databaseStatement:table];
     
-	[statement selectRows:^(BOOL* stop){
+    // TODO: it'd be faster to just load only primary key columns instead of all columns
 
-            // TODO: it'd be faster to just load only primary key columns instead of all columns
+    [statement appendString:SQL_SELECT andString:SQL_ALL];
+    [statement appendString:SQL_FROM andString:table.tableName];
+    
+    if(![statement appendWhereClauseForSelectingObject:inputObject]) {
 
-            [statement appendString:SQL_SELECT andString:SQL_ALL];
-            [statement appendString:SQL_FROM andString:table.tableName];
-            
-            if(![statement appendWhereClauseForSelectingObject:inputObject]) {
-                *stop = YES;
-            }
-		}
-		didSelectRow:^(NSDictionary* row, BOOL* stop) {
-            foundIt = YES;
-			*stop = YES;
-		}
-		didFinish:^(NSError* error){
-		}
-		];
+        FLAssertFailed_v(@"No.")
+    }
+    
+    statement.rowResultBlock = ^(NSDictionary* row, BOOL* stop) {
+        foundIt = YES;
+        *stop = YES;
+    };
+    
+    [self executeStatement:statement];
+    
+    
+//	[iterator selectRows:^(BOOL* stop){
+//
+//            // TODO: it'd be faster to just load only primary key columns instead of all columns
+//
+//            [iterator appendString:SQL_SELECT andString:SQL_ALL];
+//            [iterator appendString:SQL_FROM andString:table.tableName];
+//            
+//            if(![iterator appendWhereClauseForSelectingObject:inputObject]) {
+//                *stop = YES;
+//            }
+//		}
+//		didSelectRow:^(NSDictionary* row, BOOL* stop) {
+//            foundIt = YES;
+//			*stop = YES;
+//		}
+//		didFinish:^(NSError* error){
+//		}
+//		];
 
     return foundIt;
 }
@@ -157,23 +175,25 @@
 		FLThrowErrorCode_v(FLObjectDatabaseErrorDomain, FLDatabaseErrorInvalidOutputObject, @"null output object");
 	}
 	
-	FLDatabaseIterator* statement = [FLDatabaseIterator databaseIterator:self table:table];
     
     NSMutableArray* results = [NSMutableArray array];
 
-	[statement selectObjects:^(BOOL *stop){
-            [statement appendString:SQL_SELECT andString:SQL_ALL];
-            [statement appendString:SQL_FROM andString:table.tableName];
+    FLDatabaseStatement* statement = [FLDatabaseStatement databaseStatement:table];
+
+    [statement appendString:SQL_SELECT andString:SQL_ALL];
+    [statement appendString:SQL_FROM andString:table.tableName];
+    
+    statement.objectResultBlock = ^(id object, BOOL* stop) {
+        [results addObject:object];
+    };
+    
+    statement.finished = ^(NSError* error){
+        if(outObjects && !error) {
+            *outObjects = retain_(results);
         }
-		didSelectObject:^(id object, BOOL* stop) {
-            [results addObject:object];
-		}
-		didFinish:^{
-			if(outObjects) {
-				*outObjects = retain_(results);
-			}
-		}
-	];
+    };
+    
+    [self executeStatement:statement];
 }
 
 - (void) loadAllObjectsForType:(id) object 
@@ -188,16 +208,16 @@
         FLAssertIsNotNil_v(inputObject, nil);
             
         FLDatabaseTable* table = [[inputObject class] sharedDatabaseTable];
-        FLDatabaseIterator* statement = [FLDatabaseIterator databaseIterator:self table:table];
-                                            
+        
+        FLDatabaseStatement* statement = [FLDatabaseStatement databaseStatement:table];
         [statement appendString:SQL_DELETE];
         [statement appendString:SQL_FROM andString:table.tableName];
-        
+
         if(![statement appendWhereClauseForSelectingObject:inputObject]) {
             FLThrowErrorCode_v(FLObjectDatabaseErrorDomain, FLDatabaseErrorNoParametersSpecified, @"No parameters specified");
         }
-        
-        [statement execute];
+
+        [self executeStatement:statement];
     }];
     
     FLPerformSelector1(inputObject, @selector(wasRemovedFromDatabase:), self);
@@ -225,14 +245,13 @@
 @implementation FLDatabase (ObjectsInternal)
 - (void) _saveOneObject:(id) object {
     FLDatabaseTable* table = [[object class] sharedDatabaseTable];
-
-    FLDatabaseIterator* statement = [FLDatabaseIterator databaseIterator:self table:table];
+    FLDatabaseStatement* statement = [FLDatabaseStatement databaseStatement:table];
     [statement appendString:SQL_INSERT];
     [statement appendString:SQL_OR];
     [statement appendString:SQL_REPLACE];
     [statement appendString:SQL_INTO andString:table.tableName];
     [statement appendInsertClauseForObject:object];
-    [statement execute];
+    [self executeStatement:statement];
     
     FLPerformSelector1(object, @selector(wasSavedToDatabase:), self);
 }

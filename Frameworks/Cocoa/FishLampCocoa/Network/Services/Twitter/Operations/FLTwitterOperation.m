@@ -11,17 +11,29 @@
 #import "NSString+URL.h"
 #import "FLObjectDescriber.h"
 #import "FLJsonParser.h"
+#import "FLTwitterMgr.h"
 
 @implementation FLTwitterOperation
 
 @synthesize inputObject = _inputObject;
+@synthesize twitterURL = _twitterURL;
+
 
 #if FL_MRC
 - (void) dealloc {
+    [_twitterURL release];
     [_inputObject release];
     [super dealloc];
 }
 #endif
+
+- (id) initWithTwitterURL:(NSURL*) url {
+    self = [super init];
+    if(self) {
+        self.twitterURL = url;
+    }
+    return self;
+}
 
 
 - (BOOL) willAddParametersToRequestContent:(FLOAuthAuthorizationHeader*) signature
@@ -29,11 +41,9 @@
 	return YES;
 }
 
-- (void) configureRequest {
-
-    FLHttpConnection* connection = self.httpConnection;
-
-	FLOAuthAuthorizationHeader* oauthHeader = [FLOAuthAuthorizationHeader authorizationHeader];
+- (FLResult) authenticateHTTPRequest:(FLMutableHttpRequest*) httpRequest {
+	
+    FLOAuthAuthorizationHeader* oauthHeader = [FLOAuthAuthorizationHeader authorizationHeader];
 	
     id input = self.inputObject;
     
@@ -59,7 +69,7 @@
         }
 	}
 	
-	[connection.httpRequest setFormUrlEncodedContent:content];
+	[httpRequest setFormUrlEncodedContent:content];
 
     FLTwitterMgr* twitter = [self.context twitterService];
 
@@ -70,17 +80,20 @@
                                 twitter.oauthInfo.consumerSecret, 
                                 twitter.oauthSession.oauth_token_secret];
         
-        [connection.httpRequest setOAuthAuthorizationHeader:oauthHeader
+        [httpRequest setOAuthAuthorizationHeader:oauthHeader
                                                 consumerKey:twitter.oauthInfo.consumerKey
                                                      secret:secret];
 	}
+    
+    return httpRequest;
 }
 
 
 - (FLResult) runSelf {
-    [self configureRequest];
-    
-    FLHttpResponse* httpResponse = FLRunSelfForResponse(FLHttpResponse);
+
+    FLMutableHttpRequest* httpRequest = [FLMutableHttpRequest httpPostRequestWithURL:self.twitterURL];
+
+    FLHttpResponse* httpResponse = [self sendHttpRequest:httpRequest withAuthenticator:self];
     
     // this is a hack. In the case of a successfull tweet, it's returning a object containing
     // a bunch of info. In the case of an error, it's returning an error object (FLTwitterError).
@@ -89,14 +102,14 @@
     FLJsonParser* parser = [FLJsonParser jsonParser];
     NSDictionary* twitterResponse = [parser parseJsonData:httpResponse.responseData rootObject:nil];
    
-     FLThrowError(parser.error);
+    FLThrowError(parser.error);
     
     if([twitterResponse objectForKey:@"error"]) {
         FLThrowError_(
             [NSError errorWithDomain:@"FLTwitterErrorDomain" code:1 localizedDescription:[twitterResponse objectForKey:@"error"]]);
     }
 
-    FLThrowError_([self.httpResponse simpleHttpResponseErrorCheck]);
+    FLThrowError_([httpResponse simpleHttpResponseErrorCheck]);
     
     return twitterResponse;
 }

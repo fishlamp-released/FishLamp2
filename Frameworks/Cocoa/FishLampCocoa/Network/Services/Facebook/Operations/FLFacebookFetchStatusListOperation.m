@@ -8,13 +8,13 @@
 
 #import "FLFacebookFetchStatusListOperation.h"
 #import "FLFacebookFetchStatusListResponse.h"
-#import "FLFacebookMgr.h"
+#import "FLFacebookService.h"
 #import "FLUserDataStorageService.h"
 
 @implementation FLFacebookFetchStatusListOperation
 
-- (id) initWithURL:(NSURL*) url {
-    self = [super initWithURL:url];
+- (id) initWithHTTPRequestURL:(NSURL*) url {
+    self = [super initWithHTTPRequestURL:url];
     if(self) {
         self.object = @"home";
     }

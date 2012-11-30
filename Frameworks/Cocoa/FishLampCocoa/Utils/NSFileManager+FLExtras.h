@@ -16,12 +16,6 @@ typedef void (^FLFileManagerVisitor)(NSString* filePath, BOOL* stop);
 	outSize:(unsigned long long*) outSize
 	outError:(NSError**) outError;
 	
-+ (NSString*) appMarketingVersion;
-
-+ (NSString*) appVersion;       
-
-+ (NSString*) appName;
-
 + (void) moveFolderContents:(NSString*) fromFolder toFolder:(NSString*) toFolder;
 
 + (NSString*) timeStampedName:(NSString*) baseName	optionalExtension:(NSString*) extension;
@@ -29,6 +23,7 @@ typedef void (^FLFileManagerVisitor)(NSString* filePath, BOOL* stop);
 + (BOOL) createDirectoryIfNeeded:(NSString*) path;
 
 + (unsigned long long) availableDiskSpace;
+
 + (unsigned long long) diskSize;
 
 - (NSUInteger) countItemsInDirectory:(NSString*) path 

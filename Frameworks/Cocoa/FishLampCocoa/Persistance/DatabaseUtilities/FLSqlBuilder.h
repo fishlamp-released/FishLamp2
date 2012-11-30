@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+@class FLSqlStatement;
 
 #define SQL_ALL @"*"
 
@@ -38,9 +39,9 @@ typedef enum {
 @private
     NSMutableString* _sql;
     NSString* _delimiter;
-    NSInteger _listCount;
     NSMutableArray* _dataToBind;
 
+    NSInteger _listCount;
     NSInteger _spaceDisableCount;
     BOOL _inList;
     BOOL _closeParens;
@@ -90,7 +91,7 @@ typedef enum {
 
 - (void) appendInsertClauseForRow:(NSDictionary*) row;
 
-- (void) setFinishedPreparing;
+- (void) bindToSqlStatement:(FLSqlStatement*) statement;
 
 @end
 

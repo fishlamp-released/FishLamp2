@@ -16,17 +16,17 @@
 //	return autorelease_([[FLOAuthOperationAuthenticator alloc] init]);
 //}
 //
-//- (NSError*) doAuthenticateOperation:(FLHttpOperation*) operation 
+//- (NSError*) doAuthenticateOperation:(FLNetworkOperation*) operation 
 //{
 //	return nil;
 //}
 //
-//- (BOOL) shouldAuthenticateWebService:(FLHttpOperation*) operation
+//- (BOOL) shouldAuthenticateWebService:(FLNetworkOperation*) operation
 //{
 //	return YES;
 //}
 //
-//- (void) prepareAuthenticatedOperation:(FLHttpOperation*) operation
+//- (void) prepareAuthenticatedOperation:(FLNetworkOperation*) operation
 //{
 //	
 //}

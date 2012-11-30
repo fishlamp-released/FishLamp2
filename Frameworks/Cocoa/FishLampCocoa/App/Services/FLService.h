@@ -13,7 +13,7 @@
 
 @protocol FLService <FLObservable>
 
-+ (id) serviceID;
++ (NSString*) serviceUTI;
 
 @property (readonly, assign) id context;
 - (void) wasAddedToContext:(FLContext*) context;
@@ -34,5 +34,7 @@
 }
 @end
 
-#define synthesize_service_(__NAME__, __TYPE__) \
-    - (__TYPE__*) __NAME__ { return [__TYPE__ serviceFromContext:self]; } 
+//#define synthesize_service_(__NAME__, __TYPE__) \
+//    - (__TYPE__*) __NAME__ { return [__TYPE__ serviceFromContext:self]; } 
+    
+    

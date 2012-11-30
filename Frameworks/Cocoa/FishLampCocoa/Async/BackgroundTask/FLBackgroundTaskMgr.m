@@ -17,7 +17,7 @@
 - (void) _handleReadyState;
 @end
 
-service_register_(backgroundTaskService, FLBackgroundTaskMgr);
+service_register_(backgroundTaskService, FLBackgroundTaskMgr, @"com.fishlamp.service.background-task");
 
 @implementation FLBackgroundTaskMgr
 

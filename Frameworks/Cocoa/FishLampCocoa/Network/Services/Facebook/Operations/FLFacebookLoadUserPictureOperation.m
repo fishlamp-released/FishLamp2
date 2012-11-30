@@ -15,8 +15,8 @@
 
 @synthesize pictureSize = _pictureSize;
 
-- (id) initWithURL:(NSURL*) url {
-    self = [super initWithURL:url];
+- (id) initWithHTTPRequestURL:(NSURL*) url {
+    self = [super initWithHTTPRequestURL:url];
     if(self) {
         self.object = @"picture";
         [self setPictureSize:FLFacebookLoadUserPictureOperationInputSizeNormal];
@@ -48,7 +48,7 @@
 //		break;
 //	}
 //
-//	if((self = [super initWithURL:[NSURL URLWithString:[FLFacebookMgr buildURL:encodedToken user:userId object:@"picture" params:@"type", sizeStr, nil]]]))
+//	if((self = [super initWithURL:[NSURL URLWithString:[FLFacebookService buildURL:encodedToken user:userId object:@"picture" params:@"type", sizeStr, nil]]]))
 //	{	
 //		self.userId = userId;
 //		self.operationInput = [FLCachedImage cachedImageWithUrlString:self.URL.absoluteString];

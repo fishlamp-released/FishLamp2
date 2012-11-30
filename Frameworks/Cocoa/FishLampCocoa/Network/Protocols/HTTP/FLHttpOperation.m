@@ -1,5 +1,5 @@
 //
-//	FLHttpOperation.m
+//	FLNetworkOperation.m
 //	FishLamp
 //
 //	Created by Mike Fullerton on 9/9/09.
@@ -7,108 +7,64 @@
 //
 
 #import "FLHttpOperation.h"
-#import "FLTraceOff.h"
-
-@interface FLHttpOperation ()
-@property (readwrite, strong) FLHttpResponse* httpResponse;
-@end
+#import "FLHttpConnection.h"
 
 @implementation FLHttpOperation
-
-synthesize_(httpResponse);
-synthesize_(URL);
-synthesize_(httpAuthenticator);
-synthesize_(httpConnectionAuthenticator);
-
-- (void) didInit {
-}
-
-- (id) init {
-	if((self = [super init])) {
-        [self didInit];
-	}
-	
-	return [self initWithURL:nil];
-}
-
-- (id) initWithURL:(NSURL*) url {
-	if((self = [super init])) {	
-		self.URL = url;
-        [self didInit];
-	}
-	
-	return self;
-}
-
-- (id) initWithURLString:(NSString*) url {
-	return [self initWithURL:[NSURL URLWithString:url]];
-}
-
-+ (id) httpOperationWithURL:(NSURL*) url {
-	return autorelease_([[[self class] alloc] initWithURL:url]);
-}
-
+@synthesize requestAuthenticator = _requestAuthenticator;
+@synthesize httpRequestURL = _httpRequestURL;
 
 #if FL_MRC
 - (void) dealloc {
-
-    [_httpConnectionAuthenticator release];
-    [_httpAuthenticator release];
-    [_httpResponse release];
-    [_URL release];
+    [_httpRequestURL release];
+    [_requestAuthenticator release];
     [super dealloc];
 }
 #endif
 
-
-- (FLHttpConnection*) httpConnection {
-    return (FLHttpConnection*) self.networkConnection;
-}
-
-- (void) setHttpConnection:(FLHttpConnection*) connection {
-    self.networkConnection = connection;
-}
- 
-- (FLHttpConnection*) createNetworkConnection {
-    return  [FLHttpConnection httpConnection:[FLHttpRequest httpRequestWithURL:self.URL requestMethod:@"GET"]];
-}
-
-- (FLHttpRequest*) httpRequest {
-    return self.httpConnection.httpRequest;
-}
-
-- (void) prepareAuthenticatedConnection:(FLHttpConnection*) connection {
-
-#if DEBUG
-    if(self.httpConnectionAuthenticator) {
-        FLTrace(@"Adding security token to request in %@", NSStringFromClass([self class]));
+- (id) initWithHTTPRequestURL:(NSURL*) url {
+    self = [super init];
+    if(self) {
+        self.httpRequestURL = url;
     }
-#endif
-
-    FLPerformSelector2(self.httpConnectionAuthenticator, @selector(authenticateConnection:withContext:), connection, self.context);
+    return self;
 }
 
-- (void) authenticateSelf {
-    FLPerformSelector1(self.httpAuthenticator, @selector(authenticateOperation:), self);
+- (id) init {
+    return [self initWithHTTPRequestURL:nil];
 }
 
-- (void) prepareSelf {
-    [self authenticateSelf];
-    [super prepareSelf];
++ (id) httpOperation {
+    return autorelease_([[[self class] alloc] initWithHTTPRequestURL:nil]);
 }
 
-- (FLResult) runSelf {
-    [self prepareAuthenticatedConnection:self.httpConnection];
-    FLResult result = [super runSelf];
-    if(![result error]) {
-        FLHttpResponse* httpResponse = result;
-        FLAssertIsNotNil_(httpResponse);
-        FLAssertIsKindOfClass_(httpResponse, FLHttpResponse);
-        self.httpResponse = httpResponse;
-    }
-    return result;
++ (id) httpOperationWithHTTPRequestURL:(NSURL*) httpRequestURL {
+    return autorelease_([[[self class] alloc] initWithHTTPRequestURL:httpRequestURL]);
 }
 
+- (FLHttpResponse*) sendHttpRequest:(FLMutableHttpRequest*) request 
+                  withAuthenticator:(id<FLHttpRequestAuthenticator>) authenticator {
+    
+    FLAssertNotNil_(authenticator);
+    FLAssertNotNil_(request);
+
+    FLThrowError([authenticator authenticateHTTPRequest:request]);
+    
+    return [self sendHttpRequest:request];
+}
+
+- (FLHttpResponse*) sendHttpRequest:(FLHttpRequest*) request {
+
+    FLAssertNotNil_(request);
+
+    FLHttpConnection* connection = [FLHttpConnection httpConnection:request];
+    
+    FLHttpResponse* httpResponse = FLThrowError([self runConnection:connection]);
+    FLAssertIsNotNil_(httpResponse);
+    FLAssertIsKindOfClass_(httpResponse, FLHttpResponse);
+
+    return httpResponse;
+
+}
 
 @end
 

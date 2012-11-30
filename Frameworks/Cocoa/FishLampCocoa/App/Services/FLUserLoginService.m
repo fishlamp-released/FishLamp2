@@ -16,7 +16,7 @@
 #import "FLUserDataStorageService.h"
 #import "FLContext.h"
 
-service_register_(userService, FLUserLoginService);
+service_register_(userService, FLUserLoginService, @"com.fishlamp.service.user-login");
 
 @interface FLUserLoginService ()
 @property (readwrite, assign, getter=isAuthenticated) BOOL authenticated;

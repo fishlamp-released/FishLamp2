@@ -10,50 +10,14 @@
 
 @implementation FLHttpServerService
 
-synthesize_(authenticator);
-
-- (void) openService {
-    if(!self.authenticator) {
-        self.authenticator = [self.context httpAuthenticator];
-    }
-    [super openService];
-}
-
+@synthesize httpRequestAuthenticator = _httpRequestAuthenticator;
 
 #if FL_MRC
 - (void) dealloc {
 
-    [_authenticator release];
+    [_httpRequestAuthenticator release];
     [super dealloc];
 }
 #endif
-
-
-- (void) httpOperationWillPrepare:(FLHttpOperation*) operation {
-    operation.httpAuthenticator = self.authenticator;
-}
-
-//- (void) closeService {
-//    self.authenticator = nil;
-//    [super closeService];
-//}
-
-//- (void) httpOperation:(FLHttpOperation*) operation 
-//     prepareConnection:(FLHttpConnection*) connection {
-//
-//    if(self.authenticator) {
-//        [self.authenticator authenticateConnection:connection withAuthenticatedOperation:operation];
-//    }
-//}
-//
-//- (void) httpOperationWillRun:(FLHttpOperation*) operation {
-//    if(operation.isSecure && operation.isAuthenticated) {
-//        if(self.authenticator) {
-//            [self.authenticator authenticateOperationSynchronously:operation];
-//        }
-//
-//        operation.isAuthenticated = YES;
-//    }
-//}
 
 @end

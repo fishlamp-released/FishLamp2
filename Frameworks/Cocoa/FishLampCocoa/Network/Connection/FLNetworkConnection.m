@@ -133,6 +133,7 @@ const FLNetworkConnectionByteCount FLNetworkConnectionByteCountZero = {0, 0, 0};
     return nil;
 }
 
+
 - (FLFinisher*) openConnection:(FLDispatchQueue*) dispatcher {
     
     return [dispatcher dispatchAsyncBlock:^(FLFinisher* finisher) {
@@ -193,6 +194,7 @@ const FLNetworkConnectionByteCount FLNetworkConnectionByteCountZero = {0, 0, 0};
 //        }];
     }];
 }
+
 
 - (BOOL) wasCancelled {
     return self.cancelFinisher && self.cancelFinisher.isFinished;

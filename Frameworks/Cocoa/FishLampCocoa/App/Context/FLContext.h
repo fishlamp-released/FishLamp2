@@ -17,15 +17,15 @@
 }
 
 - (void) registerService:(id<FLService>) appService 
-              forID:(id) serviceID;
+              forID:(id) serviceUTI;
 
 - (void) registerService:(id<FLService>) service;
 
 - (void) removeService:(id<FLService>) service;
 
-- (void) removeServiceForID:(id) serviceID;
+- (void) removeServiceForID:(id) serviceUTI;
 
-- (id) serviceForID:(id) serviceID;
+- (id) serviceForID:(id) serviceUTI;
 
 @property (readonly, assign, getter=isContextOpen) BOOL sessionOpen;
 - (void) openContext;
@@ -43,12 +43,12 @@
         @property (readonly, strong) id __NAME__; \
     @end
 
-#define service_register_(__NAME__, __TYPE__) \
+#define service_register_(__NAME__, __TYPE__, __UTI__) \
     @implementation __TYPE__ (__TYPE__##ServiceRegistration) \
-        + (NSString*) serviceID { return @#__NAME__; } \
+        + (NSString*) serviceUTI { return __UTI__; } \
     @end \
     @implementation FLContext (__TYPE__##ServiceRegistration) \
-        - (id) __NAME__ { return [self valueForKey:@#__NAME__]; }\
+        - (id) __NAME__ { return [self valueForKey:__UTI__]; }\
     @end
 
 @protocol FLSessionObserver <FLObservable>

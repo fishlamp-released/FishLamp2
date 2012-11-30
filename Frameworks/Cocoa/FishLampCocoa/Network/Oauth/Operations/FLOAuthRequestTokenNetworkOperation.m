@@ -14,11 +14,11 @@
 
 @implementation FLOAuthRequestTokenNetworkOperation
 
-@synthesize OAuthApp = _app;
-
 - (id) initWithOAuthApp:(FLOAuthApp*) app {
-	if((self = [super initWithURL:[NSURL URLWithString:app.requestTokenUrl]]))  {
-		_app = retain_(app);
+    self = [super init];
+	if(self)  {
+		_url = [[NSURL alloc] initWithString:app.requestTokenUrl];
+        _app = retain_(app);
 	}
 	
 	return self;
@@ -28,10 +28,13 @@
 	return autorelease_([[FLOAuthRequestTokenNetworkOperation alloc] initWithOAuthApp:app]);
 }
 
+#if FL_MRC
 - (void) dealloc {
-	release_(_app);
-	super_dealloc_();
+    [_url release];
+    [_app release];
+    [super dealloc];
 }
+#endif
 
 - (void) networkConnection:(FLNetworkConnection*) connection
             shouldRedirect:(BOOL*) redirect
@@ -42,26 +45,26 @@
 - (FLResult) runSelf {
 	
     FLOAuthAuthorizationHeader* oauthHeader = [FLOAuthAuthorizationHeader authorizationHeader];
-    [self.httpRequest setOAuthAuthorizationHeader:oauthHeader
-                                      consumerKey:_app.consumerKey
-                                           secret:[_app.consumerSecret stringByAppendingString:@"&"]];
-    self.httpRequest.requestMethod = @"POST";
-    id result = [super runSelf];
-
-    if([result succeeded]) {
-        NSData* data = self.httpResponse.responseData;
-#if DEBUG
-        NSString* responseStr = autorelease_([[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-        FLDebugLog(@"FL OAuthRequestToken response: %@", responseStr);
-#endif	
-        FLOAuthAuthencationData* response = [FLOAuthAuthencationData oAuthAuthencationData];
-        [FLUrlParameterParser parseData:data intoObject:response strict:YES 
-            requiredKeys:[NSArray arrayWithObjects:@"oauth_token_secret", @"oauth_token", @"oauth_callback_confirmed", nil]];
-        
-        result = response;
-    }
     
-    return result;
+    FLMutableHttpRequest* request = [FLMutableHttpRequest httpPostRequestWithURL:_url];
+    
+    [request setOAuthAuthorizationHeader:oauthHeader
+                             consumerKey:_app.consumerKey
+                                  secret:[_app.consumerSecret stringByAppendingString:@"&"]];
+    
+    NSData* data = [self sendHttpRequest:request].responseData;
+    
+#if DEBUG
+    NSString* responseStr = autorelease_([[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+    FLDebugLog(@"FL OAuthRequestToken response: %@", responseStr);
+#endif	
+
+    FLOAuthAuthencationData* response = [FLOAuthAuthencationData oAuthAuthencationData];
+
+    [FLUrlParameterParser parseData:data intoObject:response strict:YES 
+        requiredKeys:[NSArray arrayWithObjects:@"oauth_token_secret", @"oauth_token", @"oauth_callback_confirmed", nil]];
+        
+    return response;
 }
 
 

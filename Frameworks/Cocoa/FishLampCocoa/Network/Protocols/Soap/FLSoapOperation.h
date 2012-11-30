@@ -7,15 +7,7 @@
 //
 
 #import "FLHttpOperation.h"
-#import "FLNetworkServerContext.h"
 #import "FLSoapFault11.h"
-
-@interface FLNetworkServerContext (Soap)
-- (NSString*) serverURL;
-- (NSString*) soapNamespace;
-- (NSString*) soapActionHeaderForOperationName:(NSString*) operationName;
-@end
-
 
 @interface FLSoapOperation : FLHttpOperation {
 @private

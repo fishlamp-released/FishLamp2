@@ -22,7 +22,7 @@
 @property (readonly, assign, nonatomic) FLSize imageDimensions;
 @property (readonly, assign, nonatomic) BOOL hasImage;
 
-- (void) setImage:(NSImage_*) image exifData:(NSDictionary*) exif;
+- (void) setImage:(NSImage_*) image exifDictionary:(NSDictionary*) exif;
 - (void) releaseImage;
 
 - (FLJpegFile*) createTempFileForStreamingInFolder:(FLFolder*) inFolder 

@@ -8,7 +8,7 @@
         <typePrefix>FL</typePrefix>
     </generatorOptions>
     <typeDefinitions>
-        <typeDefinition typeName="FLHttpOperation" dataType="Object"/>
+        <typeDefinition typeName="FLFacebookOperation" dataType="Object"/>
         <typeDefinition typeName="NSURL" dataType="Object"/>
     </typeDefinitions>
     <enumTypes>
@@ -458,7 +458,7 @@
                 </property>
             </properties>
         </object>
-        <object typeName="FLFacebookUpdateStatusOperation" superclass="FLHttpOperation">
+        <object typeName="FLFacebookUpdateStatusOperation" superclass="FLFacebookOperation">
             <properties>
                 <property type="FLFacebookStatusMessage" name="input"/>
                 <property type="string" name="output"/>

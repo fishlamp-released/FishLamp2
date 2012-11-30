@@ -19,7 +19,7 @@
     __unsafe_unretained id<FLHttpStreamDelegate> _delegate;
     FLMutableHttpResponse* _response;
     FLHttpRequest* _request;
-    FLReadStream* _readStream;
+    FLReadStream* _responseStream;
     NSError* _error;
 }
 @property (readwrite, assign) id<FLHttpStreamDelegate> delegate;

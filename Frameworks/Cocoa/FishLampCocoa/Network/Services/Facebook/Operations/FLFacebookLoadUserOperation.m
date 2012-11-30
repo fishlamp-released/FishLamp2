@@ -8,7 +8,7 @@
 
 #import "FLFacebookLoadUserOperation.h"
 #import "FLFacebookUser.h"
-#import "FLFacebookMgr.h"
+#import "FLFacebookService.h"
 #import "FLOperationCacheHandler.h"
 
 @implementation FLFacebookLoadUserOperation

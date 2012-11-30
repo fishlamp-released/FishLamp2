@@ -7,7 +7,6 @@
 //
 
 #import "FLSoapOperation.h"
-#import "FLSoapNetworkConnection.h"
 #import "FLSoapParser.h"
 #import "FLSoapError.h"
 #import "FLSoapFault11.h"
@@ -35,11 +34,6 @@
     [super dealloc];
 }
 #endif
-
-- (FLHttpConnection*) createConnection {
-    return [FLHttpConnection httpConnection:
-            [FLHttpRequest httpRequestWithURL:self.URL requestMethod:@"POST"]];
-}
 
 #define MAX_ERR_LEN 500
 
@@ -80,34 +74,34 @@
 
 - (FLResult) runSelf {
 
-    FLAssertStringIsNotEmpty_(self.URL.absoluteString);
+    FLAssertStringIsNotEmpty_(self.httpRequestURL.absoluteString);
     FLAssertStringIsNotEmpty_(self.soapNamespace);
     FLAssertStringIsNotEmpty_(self.operationName);
 
     FLSoapStringBuilder* soap = [FLSoapStringBuilder stringBuilder];
 	[soap.body addObjectAsFunction:self.operationName object:[self soapInput] xmlNamespace:self.soapNamespace];
 
-    self.httpRequest.requestMethod = @"POST";
-	[self.httpRequest setHeaderValue:self.soapActionHeader forName:@"SOAPAction"]; //[NSString stringWithFormat:@"\"%@\"", self.soapActionHeader]];
-	[self.httpRequest setUtf8Content:[soap buildStringWithNoWhitespace]];
+    FLMutableHttpRequest* request = [FLMutableHttpRequest httpPostRequestWithURL:self.httpRequestURL];
+    [request setValue:self.soapActionHeader forHTTPHeaderField:@"SOAPAction"]; 
+    [request setUtf8Content:[soap buildStringWithNoWhitespace]];
 
-    FLHttpResponse* response = FLThrowError([super runSelf]);
+    FLHttpResponse* httpResponse = [self sendHttpRequest:request withAuthenticator:self.requestAuthenticator];
 
-    NSData* data = response.responseData;
+    NSData* data = httpResponse.responseData;
     
     FLSoapFault11* fault = [FLSoapOperation checkForSoapFaultInData:data];
     if(fault) {
         [self handleSoapFault:fault];
     }
     
-    FLThrowError_([self.httpResponse simpleHttpResponseErrorCheck]);
+    FLThrowError_([httpResponse simpleHttpResponseErrorCheck]);
    
-    if(_outputObject) {
-        [self parseXmlResponse:data object:_outputObject];
-        return _outputObject;
+    if(!_outputObject) {
+        return data;
     }
     
-    return data;
+    [self parseXmlResponse:data object:_outputObject];
+    return _outputObject;
 }
 
 - (id) output {
@@ -118,18 +112,5 @@
 }
 
 @end
-@implementation FLNetworkServerContext (Soap)
-- (NSString*) serverURL {
-    return [self.properties objectForKey:FLNetworkServerPropertyKeyUrl];
-}
 
-- (NSString*) soapNamespace {
-    return [self.properties objectForKey:FLNetworkServerPropertyKeyTargetNamespace];
-}
-
-- (NSString*) soapActionHeaderForOperationName:(NSString*) operationName {
-    FLAssertStringIsNotEmpty_v(operationName, nil);
-	return [self.properties objectForKey:operationName];
-}
-@end
 

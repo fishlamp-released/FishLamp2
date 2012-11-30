@@ -8,8 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-#import "FLHttpOperation.h"
-#import "FLTwitterMgr.h"
 #import "FLTwitterOperation.h"
 
 @interface FLTwitterPostStatusOperation : FLTwitterOperation {

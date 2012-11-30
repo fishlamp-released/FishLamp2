@@ -9,11 +9,8 @@
 #import "FLImageStorage.h"
 #import "FLFolder.h"
 
-@interface FLImageFolder : NSObject<FLImageStorage> {
+@interface FLImageFolder : FLFolder<FLImageStorage> {
 @private
-    FLFolder* _folder;
 }
-
-- (id) initWithFolder:(FLFolder*) folder;
 
 @end

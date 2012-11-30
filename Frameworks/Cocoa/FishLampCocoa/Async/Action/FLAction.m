@@ -7,8 +7,8 @@
 //
 
 #import "FLAction.h"
-#import "FLHttpOperation.h"
 #import "FLDispatchQueue.h"
+#import "FLCallback_t.h"
 
 #define TIME_ALL_ACTIONS 0
 
@@ -118,7 +118,7 @@ static id<FLActionErrorDelegate> s_errorDisplayDelegate = nil;
 
 TODO("MF: fix activity updater");
 
-- (void) _activityUpdate:(FLHttpOperation*) operation idleTimeSpan:(NSTimeInterval) idleTimeSpan {
+- (void) _activityUpdate:(FLNetworkOperation*) operation idleTimeSpan:(NSTimeInterval) idleTimeSpan {
 	if(!self.disableActivityTimer)
 	{
 #if DEBUG

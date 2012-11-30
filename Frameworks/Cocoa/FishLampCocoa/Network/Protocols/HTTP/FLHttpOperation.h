@@ -1,5 +1,5 @@
 //
-//	FLHttpOperation.h
+//	FLNetworkOperation.h
 //	FishLamp
 //
 //	Created by Mike Fullerton on 9/9/09.
@@ -8,56 +8,32 @@
 
 #import "FishLampCore.h"
 #import "FLNetworkOperation.h"
-#import "FLHttpConnection.h"
-
-@protocol FLHttpOperationDelegate;
-@protocol FLHttpOperationAuthenticator;
-@protocol FLHttpConnectionAuthenticator;
+#import "FLHttpRequest.h"
+#import "FLHttpResponse.h"
+#import "FLMutableHttpRequest.h"
 
 @interface FLHttpOperation : FLNetworkOperation {
-@private	
-	NSURL* _URL;
-    FLHttpResponse* _httpResponse;
-    id<FLHttpOperationAuthenticator> _httpAuthenticator;
-    id<FLHttpConnectionAuthenticator> _httpConnectionAuthenticator;
+@private
+    id<FLHttpRequestAuthenticator> _RequestAuthenticator;
+    NSURL* _httpRequestURL;
 }
 
-@property (readwrite, strong) id<FLHttpOperationAuthenticator> httpAuthenticator;
-@property (readwrite, strong) id<FLHttpConnectionAuthenticator> httpConnectionAuthenticator;
+@property (readwrite, strong) NSURL* httpRequestURL;
 
-@property (readwrite, strong) NSURL* URL;
+@property (readwrite, strong) id<FLHttpRequestAuthenticator> requestAuthenticator;
 
-@property (readwrite, strong) FLHttpConnection* httpConnection;
+- (id) initWithHTTPRequestURL:(NSURL*) url;
 
-@property (readonly, strong) FLHttpRequest* httpRequest;
-@property (readonly, strong) FLHttpResponse* httpResponse;
++ (id) httpOperation;
 
-// creation
-- (id) initWithURL:(NSURL*) url; // designated 
++ (id) httpOperationWithHTTPRequestURL:(NSURL*) httpRequestURL;
 
-+ (id) httpOperationWithURL:(NSURL*) url;
 
-// these are ignored if operation doesn't have an authenticator.
-//@property (readwrite, assign) BOOL isSecure;
-//@property (readwrite, assign) BOOL isAuthenticated;
+- (FLHttpResponse*) sendHttpRequest:(FLMutableHttpRequest*) request 
+                  withAuthenticator:(id<FLHttpRequestAuthenticator>) authenticator;
 
-- (void) authenticateSelf;
-- (void) prepareAuthenticatedConnection:(FLHttpConnection*) connection;
+- (FLHttpResponse*) sendHttpRequest:(FLHttpRequest*) request;
 
 @end
 
-@interface FLHttpOperation (OptionalOverrides)
-
-// called by all the init methods.
-- (void) didInit;
-
-@end
-
-@protocol FLHttpOperationAuthenticator <NSObject>
-- (void) authenticateOperation:(FLHttpOperation*) operation;
-@end
-
-@protocol FLHttpConnectionAuthenticator <NSObject>
-- (void) authenticateConnection:(FLHttpConnection*) connection withContext:(id) context;
-@end
 

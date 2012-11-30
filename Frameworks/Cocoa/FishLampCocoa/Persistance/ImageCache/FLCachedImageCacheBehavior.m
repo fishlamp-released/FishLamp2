@@ -21,15 +21,15 @@
 @synthesize warnOnMainThreadDelete = _warnOnMainThreadDelete;
 #endif
 
-- (FLFolder*) _photoCacheFolder {
+- (FLFolder*) _imageCacheFolder {
 
 // TODO: Finish decoupling this
-// [FLUserLoginService instance].photoCacheFolder
+// [FLUserLoginService instance].imageCacheFolder
 
     return nil;
 }
 - (void) _doClearCache:(NSNotification*) notification {
-    [[self _photoCacheFolder] deleteAllFiles:^(NSString* file, BOOL* stop) {
+    [[self _imageCacheFolder] deleteAllFiles:^(NSString* file, BOOL* stop) {
         if(notification.cancellableOperation.wasCancelled) {
             *stop = YES;
         }
@@ -69,10 +69,10 @@ FIXME("attach to user sessions....");
 	super_dealloc_();
 }
 
-- (BOOL) willSaveObjectToDatabaseCache:(FLCachedImage*) cachedImage
+- (BOOL) willSaveObjectToDatabaseCache:(FLImageProperties*) cachedImage
 {
 	FLAssertIsNotNil_v(cachedImage, nil);
-	FLAssert_v([cachedImage isKindOfClass:[FLCachedImage class]], @"wrong type of class for image cache");
+	FLAssert_v([cachedImage isKindOfClass:[FLImageProperties class]], @"wrong type of class for image cache");
 	
 	if(!cachedImage.imageFile || !cachedImage.imageFile.hasImage)
 	{
@@ -82,7 +82,7 @@ FIXME("attach to user sessions....");
 	
 	if(!cachedImage.imageFile.folder)
 	{
-		cachedImage.imageFile.folder = [self _photoCacheFolder];
+		cachedImage.imageFile.folder = [self _imageCacheFolder];
 	}
 	
 	if(FLStringIsEmpty(cachedImage.imageFile.fileName))
@@ -102,7 +102,7 @@ FIXME("attach to user sessions....");
 	return YES;
 }
 
-- (void) updateOrAddToMemoryCache:(FLCachedImage*) cachedImage
+- (void) updateOrAddToMemoryCache:(FLImageProperties*) cachedImage
 {
 	if(cachedImage.imageFile.hasImage)
 	{
@@ -119,10 +119,10 @@ FIXME("attach to user sessions....");
 	}
 }
 
-- (BOOL) didSaveObjectToDatabaseCache:(FLCachedImage*) cachedImage
+- (BOOL) didSaveObjectToDatabaseCache:(FLImageProperties*) cachedImage
 {
 	FLAssertIsNotNil_v(cachedImage, nil);
-	FLAssert_v([cachedImage isKindOfClass:[FLCachedImage class]], @"wrong type of class for image cache");
+	FLAssert_v([cachedImage isKindOfClass:[FLImageProperties class]], @"wrong type of class for image cache");
 	
 	if(!cachedImage.imageFile || !cachedImage.imageFile.hasImage)
 	{
@@ -138,12 +138,12 @@ FIXME("attach to user sessions....");
 	return YES;
 }
 
-- (id) loadObjectFromMemoryCache:(FLCachedImage*) inputObject
+- (id) loadObjectFromMemoryCache:(FLImageProperties*) inputObject
 {
 	FLAssertIsNotNil_v(inputObject, nil);
-	FLAssert_v([inputObject isKindOfClass:[FLCachedImage class]], @"wrong type of class for image cache");
+	FLAssert_v([inputObject isKindOfClass:[FLImageProperties class]], @"wrong type of class for image cache");
 
-	FLCachedImage* cachedImage = [_memoryCache objectForKey:inputObject.imageId];
+	FLImageProperties* cachedImage = [_memoryCache objectForKey:inputObject.imageId];
 	if(cachedImage)
 	{
 		if(!cachedImage.imageFile || !cachedImage.imageFile.hasImage)
@@ -159,14 +159,14 @@ FIXME("attach to user sessions....");
 	return cachedImage;
 }
 
-- (void) didRemoveObjectFromCache:(FLCachedImage*) cachedImage
+- (void) didRemoveObjectFromCache:(FLImageProperties*) cachedImage
 {
 	FLAssertIsNotNil_v(cachedImage, nil);
-	FLAssert_v([cachedImage isKindOfClass:[FLCachedImage class]], @"wrong type of class for image cache");
+	FLAssert_v([cachedImage isKindOfClass:[FLImageProperties class]], @"wrong type of class for image cache");
 
 	[_memoryCache removeObjectForKey:cachedImage.imageId];
 
-	cachedImage.imageFile.folder = [self _photoCacheFolder];
+	cachedImage.imageFile.folder = [self _imageCacheFolder];
 	cachedImage.imageFile.fileName = cachedImage.fileName;
 	if([cachedImage.imageFile existsInStorage])
 	{
@@ -174,13 +174,13 @@ FIXME("attach to user sessions....");
 	}
 }
 
-- (BOOL) didLoadObjectFromDatabaseCache:(FLCachedImage*) cachedImage
+- (BOOL) didLoadObjectFromDatabaseCache:(FLImageProperties*) cachedImage
 {
 	FLAssertIsNotNil_v(cachedImage, nil);
-	FLAssert_v([cachedImage isKindOfClass:[FLCachedImage class]], @"wrong class in image cache");
+	FLAssert_v([cachedImage isKindOfClass:[FLImageProperties class]], @"wrong class in image cache");
    
 	// need to set this in the cached object and load the image from disk.
-	FLJpegFile* imageFile = [[FLJpegFile alloc] initWithJpegData:nil folder:[self _photoCacheFolder] fileName:cachedImage.fileName];
+	FLJpegFile* imageFile = [[FLJpegFile alloc] initWithJpegData:nil folder:[self _imageCacheFolder] fileName:cachedImage.fileName];
 	@try
 	{
 		if([imageFile existsInStorage])
@@ -216,7 +216,7 @@ FIXME("attach to user sessions....");
 //+ (void) clearImageCache:(id<FLCancellable>) operation
 //{
 //	[_memoryCache removeAllObjects];
-//    [[FLUserLoginService instance].photoCacheFolder deleteAllFiles:operation];
+//    [[FLUserLoginService instance].imageCacheFolder deleteAllFiles:operation];
 //}
 
 - (void) clearMemoryCache

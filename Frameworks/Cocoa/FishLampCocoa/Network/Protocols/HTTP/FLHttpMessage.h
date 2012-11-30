@@ -22,7 +22,7 @@
 /** request */ 
 @property (readonly, assign, nonatomic) BOOL isRequest;
 @property (readonly, retain, nonatomic) NSURL* requestURL;
-@property (readonly, retain, nonatomic) NSString* requestMethod;
+@property (readonly, retain, nonatomic) NSString* HTTPMethod;
 
 /** response */
 @property (readonly, assign, nonatomic) NSInteger responseStatusCode;
@@ -32,11 +32,11 @@
 @property (readwrite, retain, nonatomic) NSData* bodyData;
 
 - (id) initWithHttpMessageRef:(CFHTTPMessageRef) ref; // takes ownership
-- (id) initWithURL:(NSURL*) url requestMethod:(NSString*) requestMethodOrNil; // defaults to GET if nil
+- (id) initWithURL:(NSURL*) url HTTPMethod:(NSString*) HTTPMethodOrNil; // defaults to GET if nil
 - (id) init;
 
 + (id) httpMessageWithHttpMessageRef:(CFHTTPMessageRef) ref; // takes ownership
-+ (id) httpMessageWithURL:(NSURL*) url requestMethod:(NSString*) requestMethodOrNil; // defaults to GET if nil
++ (id) httpMessageWithURL:(NSURL*) url HTTPMethod:(NSString*) HTTPMethodOrNil; // defaults to GET if nil
 
 - (void) setHeader:(NSString*) header value:(NSString*) value;
 - (NSString*) valueForHeader:(NSString*) header;

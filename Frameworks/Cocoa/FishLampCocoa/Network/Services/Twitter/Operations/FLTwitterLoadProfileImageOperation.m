@@ -16,14 +16,16 @@
 @synthesize imageSize = _imageSize;
 @synthesize username = _username;
 
-- (id) initWithURL:(NSURL*) url {
-    self = [super initWithURL:url];
+- (id) initWithTwitterURL:(NSURL*) url {
+    self = [super initWithTwitterURL:url];
     if(self) {
 	    self.imageSize = FLTwitterImageSizeNormal;
 
-        [self addObserver:
-            [FLOperationCacheHandler operationCacheHandler:[[FLUserDataStorageService serviceFromContext:self.context] cacheDatabase]
-                                              behavior:FLHttpOperationCacheBehaviorAll]];
+
+// FIXME
+//        [self addObserver:
+//            [FLOperationCacheHandler operationCacheHandler:[[FLUserDataStorageService serviceFromContext:self.context] cacheDatabase]
+//                                              behavior:FLHttpOperationCacheBehaviorAll]];
     }
     
     return self;
@@ -37,8 +39,8 @@
 }
 
 - (FLResult) runSelf {
-    self.URL = [NSURL URLWithString:[NSString stringWithFormat:@"http://api.twitter.com/1/users/profile_image/%@.json?size=%@", _username, _imageSize]];
-    FLAssertNotNil_(self.URL);
+    self.twitterURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://api.twitter.com/1/users/profile_image/%@.json?size=%@", _username, _imageSize]];
+    FLAssertNotNil_(self.httpRequestURL);
     
 FIXME(@"need the behavior but not the operation");
   

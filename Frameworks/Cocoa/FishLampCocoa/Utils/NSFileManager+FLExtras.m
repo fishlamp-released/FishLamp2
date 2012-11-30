@@ -50,28 +50,6 @@
 	return YES;
 }
 
-+ (NSString*) appVersion {
-    static NSString* s_version = nil; 
-	if(!s_version) {
-        s_version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
-	}
-
-    return s_version;
-}
-
-+ (NSString*) appMarketingVersion {
-	return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
-}
-
-+ (NSString*) appName {
-	static NSString* appName = nil;
-	if(!appName) {
-		appName = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleName"];
-	}
-
-	return appName; 
-}
-
 + (void) moveFolderContents:(NSString*) fromFolder toFolder:(NSString*) toFolder {
 // move visible contents of folder to archive folder
 // we can't just move the folder because of the hidden .svn folder.
@@ -286,3 +264,4 @@
 
 
 @end
+

@@ -12,15 +12,8 @@
 
 @implementation FLTwitterPostStatusOperation
 
-- (void) prepareSelf {
-
-#if DEBUG
-	self.URL = [NSURL URLWithString:@"https://api.twitter.com/1/statuses/update.json"];
-#else
-	self.URL = [NSURL URLWithString:@"https://api.twitter.com/1/statuses/update.json"];
-#endif
-    self.httpRequest.requestMethod = @"POST";
-    
-    [super prepareSelf];
+- (id) init {
+    return [super initWithTwitterURL:[NSURL URLWithString:@"https://api.twitter.com/1/statuses/update.json"]];
 }
+
 @end

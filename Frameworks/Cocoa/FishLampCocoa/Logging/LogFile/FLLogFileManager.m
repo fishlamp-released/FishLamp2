@@ -9,6 +9,7 @@
 #import "FLLogFileManager.h"
 #import "FLDispatchQueue.h"
 #import "NSFileManager+FLExtras.h"
+#import "FLAppInfo.h"
 
 @interface FLLogFileManager ()
 @property (readwrite, strong, nonatomic) FLLogFile* logFile;
@@ -71,7 +72,7 @@ FLSynthesizeSingleton(FLLogFileManager);
     if(self) {
 //        [self _subscribeToEvents];
     
-        self.appName = [NSFileManager appName];
+        self.appName = [FLAppInfo appName];
         
         self.stringFormatter = ^(NSString* input) {
             return [NSString stringWithFormat:@"%@:%@\n", [NSDate date], input];

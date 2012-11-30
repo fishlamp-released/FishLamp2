@@ -19,78 +19,54 @@
 
 @synthesize connection = _networkConnection;
 
-- (void) setNetworkConnection:(FLNetworkConnection*) connection {
-    if(connection) {
-        [self.connection removeObserver:self];
-    }
-    self.connection = connection;
-    [self.connection addObserver:self];
-}
-
-- (FLNetworkConnection*) networkConnection {
-    return self.connection;
-}
-
-- (id) init {
-    self = [super init];
-    if(self) {
-	}
-    
-    return self;
-}
-
 + (id) networkOperation {
-	return autorelease_([[[self class] alloc] init]);
+	return autorelease_([[[self class] alloc] initWithURL:nil]);
 }
-
-- (id) initWithNetworkConnection:(FLNetworkConnection*) connection {
-    self = [super init];
-    if(self) {
-        self.networkConnection = connection;
-    }
-    return self;
-}
-
-+ (id) networkOperationWithConnection:(FLNetworkConnection*) connection {
-    return autorelease_([[[self class] alloc] initWithNetworkConnection:connection]);
-}
-
 
 - (void) cancelSelf {
 	[super cancelSelf];
-    if(_networkConnection) {
-        [_networkConnection requestCancel:nil];
+    [self.connection requestCancel:nil];
+}
+
+- (FLResult) runConnection:(FLNetworkConnection*) connection {
+    
+    @try {
+        self.connection = connection; // so we can cancel it.
+        [connection addObserver:self];
+
+        return [[connection openConnection:FLFifoQueue] waitUntilFinished];
     }
-}
+    @finally {
+         [_networkConnection removeObserver:self];
+         self.connection = nil;
+    }
 
-- (void) dealloc {
-    [_networkConnection removeObserver:self];
-
-#if FL_MRC
-    release_(_networkConnection);
-	super_dealloc_();
-#endif
-}
-
-- (FLNetworkConnection*) createNetworkConnection {
     return nil;
 }
 
-- (void) prepareSelf {
-    [super prepareSelf];
-	if(!self.networkConnection) {
-		self.networkConnection = [self createNetworkConnection];
-	}
-    FLConfirmNotNil_v(self.networkConnection, @"the connection is nil");
-}
 
-- (FLResult) runSelf {
-
-    FLAssertIsNotNil_v(self.networkConnection, nil);
-    
-    FLFinisher* finisher = [self.networkConnection openConnection:FLFifoQueue];
-    [finisher waitUntilFinished];
-    return finisher.result;
-}
 
 @end
+
+/*
++ (id) networkOperation:(NSURL*) url {
+	return autorelease_([[[self class] alloc] initWithURL:url]);
+}
+
+@synthesize URL = _URL;
+- (id) initWithURL:(NSURL*) url {
+    self = [super init];
+    if(self) {
+        self.URL = url;
+    }
+    return self;
+}
+
+#if FL_MRC
+- (void) dealloc {
+    [_URL release];
+    [super dealloc];
+}
+#endif
+
+*/

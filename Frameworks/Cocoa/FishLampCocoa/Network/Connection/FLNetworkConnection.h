@@ -15,6 +15,7 @@
 #import "FLDispatcher.h"
 #import "FLDispatchQueue.h"
 #import "FLCancellable.h"
+#import "FLRunnable.h"
 
 #define FLNetworkConnectionDefaultTimeout 120.0f
 

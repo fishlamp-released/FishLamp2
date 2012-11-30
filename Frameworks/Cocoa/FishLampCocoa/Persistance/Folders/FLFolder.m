@@ -9,14 +9,13 @@
 #import "FLFolder.h"
 #import "NSFileManager+FLExtras.h"
 
+@interface FLFolder ()
+@property (readwrite, strong) NSString* folderPath;
+@end
+
 @implementation FLFolder
 
 @synthesize folderPath = _fullPath;
-
-- (void) setFolderPath:(NSString*) folderPath {
-	FLAssertStringIsNotEmpty_v(folderPath, nil);
-	FLRetainObject_(_fullPath, folderPath);
-}
 
 - (id) init {
 	if((self = [super init])) {
@@ -56,11 +55,12 @@
     return autorelease_([[[self class] alloc] initWithPath:path]);
 }
 
-- (void) dealloc
-{
-	FLReleaseWithNil_(_fullPath);
-	super_dealloc_();
+#if FL_MRC
+- (void) dealloc {
+    [_fullPath release];
+	[super dealloc];
 }
+#endif
 
 - (void) deleteAllFiles:(FLFileVisitorBlock) visitor {
     [self deleteFiles:^(NSString* fileName, BOOL* shouldDeleteFile, BOOL* stop){
@@ -223,7 +223,6 @@
 	return [[attr objectForKey:NSFileSize] longLongValue];
 }
 
-
 - (void) createIfNeeded {
 	NSError* err = nil;
 	BOOL isDirectory;
@@ -352,7 +351,16 @@
 }
 
 - (NSString*) fileUTI:(NSString*) name {
-    return autorelease_(bridge_(NSString*, UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (CFStringRef) [[self pathForFile:name] pathExtension], NULL)));
+
+    NSString* extension = [[self pathForFile:name] pathExtension];
+    FLConfirmStringIsNotEmpty_v(extension, @"failed to get file extension for %@", name);
+    
+    NSString* UTI = bridge_(NSString*, UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension,  bridge_(CFStringRef, extension), NULL));
+
+    FLConfirmNotNil_v(UTI, @"failed to get UTI for extension for file %@", name);
+
+    return autorelease_(UTI);
+                    
 }
 
 @end

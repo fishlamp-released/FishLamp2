@@ -7,9 +7,6 @@
         <objectsFolderName>GeneratedObjects</objectsFolderName>
         <typePrefix>FL</typePrefix>
     </generatorOptions>
-    <typeDefinitions>
-        <typeDefinition typeName="FLHttpOperation" dataType="object"/>
-    </typeDefinitions>
     <!--
     <enumTypes>
         <enumType typeName="FLFacebookUserReadPermission">

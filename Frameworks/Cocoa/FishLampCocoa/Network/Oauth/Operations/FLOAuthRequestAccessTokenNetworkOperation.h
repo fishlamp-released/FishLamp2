@@ -13,10 +13,10 @@
 #import "FLOAuthApp.h"
 
 @interface FLOAuthRequestAccessTokenNetworkOperation : FLHttpOperation {
-
 @private
 	FLOAuthAuthencationData* _authData;
 	FLOAuthApp* _app;
+    NSURL* _url;
 }
 
 - (id) initWithOAuthApp:(FLOAuthApp*) app authData:(FLOAuthAuthencationData*) data;

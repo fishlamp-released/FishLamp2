@@ -13,7 +13,7 @@
 @interface FLHttpStream ()
 @property (readwrite, strong) FLHttpResponse* httpResponse;
 @property (readwrite, strong) FLHttpRequest* httpRequest;
-@property (readwrite, strong) FLReadStream* readStream;
+@property (readwrite, strong) FLReadStream* responseStream;
 - (void) readResponseHeadersIfNeeded;
 - (void) openStreamToURL:(NSURL*) url;
 @end
@@ -56,42 +56,34 @@
 
 @implementation FLHttpRequest (Utils)
 
-- (FLHttpMessage*) messageForRequest:(NSURL*) atURL {
-    FLHttpMessage* message = [FLHttpMessage httpMessageWithURL:atURL requestMethod:self.requestMethod];
-    [message setHeaders:self.requestHeaders];
-    return message;
-}
+- (FLReadStream*) createResponseStreamWithURL:(NSURL*) url {
 
-- (FLReadStream*) createReadStreamForRequestWithURL:(NSURL*) atURL {
-
-    if(!atURL) {
-        atURL = self.requestURL;
-    }
-
+    FLReadStream* responseStream = nil;
     CFReadStreamRef ref = nil;
     @try {
     
-        FLHttpMessage* message = [self messageForRequest:atURL];
-        if(!message) {
-            return nil;
-        }
-
-        if(FLStringIsNotEmpty(self.postBodyFilePath)) {
-            NSInputStream* inputStream = [NSInputStream inputStreamWithFileAtPath:self.postBodyFilePath];
-
-            ref =   CFReadStreamCreateForStreamedHTTPRequest(kCFAllocatorDefault,
-                                    message.messageRef,
-                                    bridge_(CFReadStreamRef, inputStream));
-        }
-        else {
-            if(self.postData) {
-                message.bodyData = self.postData;
+        FLHttpMessage* message = [FLHttpMessage httpMessageWithURL:url HTTPMethod:self.HTTPMethod];
+        if(message) {
+            [message setHeaders:self.allHTTPHeaderFields];
+            
+            NSInputStream* inputStream = self.HTTPBodyStream;
+            if(inputStream) {
+                // I don't quite get why we're making a read stream for a readstream???
+                ref = CFReadStreamCreateForStreamedHTTPRequest(kCFAllocatorDefault,
+                                        message.messageRef,
+                                        bridge_(CFReadStreamRef, inputStream));
+            }
+            else if(self.HTTPBody) {
+                message.bodyData = self.HTTPBody;
+                ref = CFReadStreamCreateForHTTPRequest(kCFAllocatorDefault, message.messageRef);
             }
             
-            ref = CFReadStreamCreateForHTTPRequest(kCFAllocatorDefault, message.messageRef);
+            FLConfirmNotNil_v(ref, @"unable to create CFReadStreamRef - HTTPBody or HTTPBodyStream required");
+                    
+            responseStream = [FLReadStream readStream:ref];
         }
 
-        return [FLReadStream readStream:ref];
+        FLConfirmNotNil_v(responseStream, @"unable to create FLReadStream");
     }
     @finally {
         if(ref) {
@@ -99,7 +91,7 @@
         }
     }
     
-    return nil;
+    return responseStream;
 }
 
 
@@ -109,7 +101,7 @@
 
 @synthesize httpResponse = _response;
 @synthesize httpRequest = _request;
-@synthesize readStream = _readStream;
+@synthesize responseStream = _responseStream;
 @synthesize delegate = _delegate;
 
 - (id) initWithHttpRequest:(FLHttpRequest*) request {
@@ -135,7 +127,7 @@
     [_error release];
     [_request release];
     [_response release];
-    [_readStream release];
+    [_responseStream release];
     [super dealloc];
 #endif
 }
@@ -143,10 +135,10 @@
 #define kStreamReadChunkSize 1024
 
 - (void) closeReadStream:(id) result {
-    if(_readStream) {
-        [_readStream removeObserver:self];
-        [_readStream closeStreamWithResult:result];
-        self.readStream = nil;
+    if(_responseStream) {
+        [_responseStream removeObserver:self];
+        [_responseStream closeStreamWithResult:result];
+        self.responseStream = nil;
     }
 }
 
@@ -196,10 +188,10 @@
 
     newResponse.mutableResponseData = [NSMutableData dataWithCapacity:kStreamReadChunkSize]; 
     self.httpResponse = newResponse;
-    self.readStream = [self.httpRequest createReadStreamForRequestWithURL:url];
-    [self.readStream addObserver:self];
+    self.responseStream = [self.httpRequest createResponseStreamWithURL:url];
+    [self.responseStream addObserver:self];
 
-    [self.readStream openStream:self.dispatchQueue withResultBlock:^(FLResult result) {
+    [self.responseStream openStream:self.dispatchQueue withResultBlock:^(FLResult result) {
         [self handleStreamClosed:result];
     }];
 }
@@ -213,13 +205,13 @@
 }
 
 - (BOOL) isOpen {
-    return self.readStream != nil && self.readStream.isOpen;
+    return self.responseStream != nil && self.responseStream.isOpen;
 }
 
 - (void) readResponseHeadersIfNeeded  {
     
     if(!_response.responseHeaders) {
-        FLHttpMessage* message = [self.readStream readResponseHeaders];
+        FLHttpMessage* message = [self.responseStream readResponseHeaders];
         if(message.isHeaderComplete) {
             [_response setResponseHeadersWithHttpMessage:message];
             
@@ -236,7 +228,7 @@
 - (void) readStreamHasBytesAvailable:(id<FLNetworkStream>) networkStream {
     [self.dispatchQueue dispatchBlock:^{
         [self readResponseHeadersIfNeeded];
-        [self.readStream appendBytesToMutableData:_response.mutableResponseData];
+        [self.responseStream appendBytesToMutableData:_response.mutableResponseData];
     }];
 }
 
