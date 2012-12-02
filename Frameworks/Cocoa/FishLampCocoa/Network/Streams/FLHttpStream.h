@@ -20,7 +20,6 @@
     FLMutableHttpResponse* _response;
     FLHttpRequest* _request;
     FLReadStream* _responseStream;
-    NSError* _error;
 }
 @property (readwrite, assign) id<FLHttpStreamDelegate> delegate;
 

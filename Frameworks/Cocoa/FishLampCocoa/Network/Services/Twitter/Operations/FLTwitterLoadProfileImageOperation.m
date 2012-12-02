@@ -7,7 +7,7 @@
 //
 
 #import "FLTwitterLoadProfileImageOperation.h"
-#import "FLTwitterMgr.h"
+#import "FLTwitterService.h"
 #import "FLOperationCacheHandler.h"
 #import "FLUserDataStorageService.h"
 
@@ -24,7 +24,7 @@
 
 // FIXME
 //        [self addObserver:
-//            [FLOperationCacheHandler operationCacheHandler:[[FLUserDataStorageService serviceFromContext:self.context] cacheDatabase]
+//            [FLOperationCacheHandler operationCacheHandler:[[self.context storageService] cacheDatabase]
 //                                              behavior:FLHttpOperationCacheBehaviorAll]];
     }
     

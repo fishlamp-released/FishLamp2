@@ -9,7 +9,7 @@
 #import "FLService.h"
 #import "FLUserDataStorageService.h"
 
-service_declare_(imageCacheService, FLImageCacheService);
+FLDeclareService(imageCacheService, FLImageCacheService);
 
 @interface FLImageCacheService : FLService
 

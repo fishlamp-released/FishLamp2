@@ -14,7 +14,7 @@
 
 @interface FLHttpOperation : FLNetworkOperation {
 @private
-    id<FLHttpRequestAuthenticator> _RequestAuthenticator;
+    id<FLHttpRequestAuthenticator> _requestAuthenticator;
     NSURL* _httpRequestURL;
 }
 

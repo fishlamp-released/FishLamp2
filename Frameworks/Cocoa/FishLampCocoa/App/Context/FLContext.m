@@ -20,7 +20,7 @@ synthesize_(sessionOpen);
 - (id) init {
     self = [super init];
     if(self) {
-        _services = [[NSMutableDictionary alloc] init];
+        _registeredServices = [[NSMutableSet alloc] init];
     }
     
     return self;
@@ -29,59 +29,52 @@ synthesize_(sessionOpen);
 
 #if FL_MRC
 - (void) dealloc {
-    
-    [_services release];
+    [_registeredServices release];
     [super dealloc];
 }
 #endif
 
-
-- (void) registerService:(id<FLService>) service 
-                   forID:(id) serviceUTI {
-
-    [self removeServiceForID:serviceUTI];
-
-    FLAssertNotNil_(service);
-
-    [service addObserver:self];
-    [self addObserver:service];
-
-    [_services setObject:service forKey:serviceUTI];
-    [service wasAddedToContext:self];
+- (BOOL) serviceIsRegistered:(NSString*) name {
+    FLAssertStringIsNotEmpty_(name);
+    return [_registeredServices containsObject:name];
 }
 
-- (void) registerService:(id<FLService>) service {
-    [self registerService:service forID:[[service class] serviceUTI]];
-}
+- (id) serviceForName:(NSString*) name {
+    FLAssertStringIsNotEmpty_(name);
+    return ([_registeredServices containsObject:name]) ? [self valueForKey:name] : nil;
+} 
 
-- (void) removeServiceForID:(id) key {
-    id service = [_services objectForKey:key];
+- (void) removeServiceForName:(NSString*) name {
+    FLAssertStringIsNotEmpty_(name);
+
+    id service = [self serviceForName:name];
     if(service) {
         [service wasAddedToContext:nil];
         [service removeObserver:self];
         [self removeObserver:service];
-        [_services removeObjectForKey:key];
+        [_registeredServices removeObject:name];
     }
 }
 
-- (void) removeService:(id<FLService>) service {
-    [self removeServiceForID:[[service class] serviceUTI]];
-}
+- (void) setService:(id<FLService>) service 
+                 forName:(NSString*) name{
 
-//- (BOOL) serviceIsRegistered:(id) serviceUTI {
-//    return [_services objectForKey:serviceUTI] != nil;
-//}
-
-- (id) serviceForID:(NSString*) serviceUTI {
-    return [_services objectForKey:serviceUTI];
+    FLAssertStringIsNotEmpty_(name);
+    FLAssertNotNil_(service);
+    
+    [self removeServiceForName:name];
+    [_registeredServices addObject:name];
+    [service addObserver:self];
+    [self addObserver:service];
+    [service wasAddedToContext:self];
 }
 
 - (void) openContext {
     [self postObservation:@selector(sessionWillOpen:)];
 
     self.sessionOpen = YES;
-    for(id<FLService> service in _services.objectEnumerator) {
-        [service openService];
+    for(NSString* serviceName in _registeredServices) {
+        [[self serviceForName:serviceName] openService];
     }
     
     [self postObservation:@selector(sessionDidOpen:)];
@@ -90,9 +83,10 @@ synthesize_(sessionOpen);
 - (void) closeContext {
     [self postObservation:@selector(sessionWillClose:)];
 
-    for(id<FLService> service in _services.objectEnumerator) {
-        [service closeService];
+    for(NSString* serviceName in _registeredServices) {
+        [[self serviceForName:serviceName] closeService];
     }
+
     self.sessionOpen = NO;
     [self postObservation:@selector(sessionDidClose:)];
 }

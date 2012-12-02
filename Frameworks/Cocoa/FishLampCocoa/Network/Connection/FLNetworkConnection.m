@@ -68,7 +68,6 @@ const FLNetworkConnectionByteCount FLNetworkConnectionByteCountZero = {0, 0, 0};
 #if FL_MRC
     [_cancelHandler release];
     [_timeoutTimer release];
-    [_cancelFinisher release];
     [_networkStream release];
     super_dealloc_();
 #endif

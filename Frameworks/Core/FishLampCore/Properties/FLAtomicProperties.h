@@ -24,23 +24,13 @@
     FLSythesizeAtomicInt32Setter(__SETTER__, __TYPE__, __MEMBER_NAME__)
     
     
-    
-// EXPERIMENTAL
+extern id FLAtomicPropertyGet(id __strong * addr);
+extern void FLAtomicPropertySet(id __strong * addr, id newValue);
+extern void FLAtomicPropertyCopy(id __strong * addr, id newValue);
 
-// NOT TESTED 
-
-// from: http://cocoawithlove.com/2009/10/memory-and-thread-safe-custom-property.html
-
-#define FLAtomicRetainedSetToFrom(dest, source) \
-    objc_setProperty(self, _cmd, (ptrdiff_t)(&dest) - (ptrdiff_t)(self), source, YES, NO)
-
-#define FLAtomicCopiedSetToFrom(dest, source) \
-    objc_setProperty(self, _cmd, (ptrdiff_t)(&dest) - (ptrdiff_t)(self), source, YES, YES)
-
-#define FLAtomicAutoreleasedGet(source) \
-    objc_getProperty(self, _cmd, (ptrdiff_t)(&source) - (ptrdiff_t)(self), YES)
-
-#define FLAtomicStructToFrom(dest, source) \
-    objc_copyStruct(&dest, &source, sizeof(__typeof__(source)), YES, NO)
-
-// synthesize for atomic ints
+//- (NSString *) name {
+//    return FLAtomicGetPropertyValue(&_name);
+//}
+//- (void)setName:(NSString *) name {
+//    FLAtomicSetPropertyValue(&_name, name, NO);
+//}

@@ -11,14 +11,12 @@
 #import "FLUserDataStorageService.h"
 #import "FLContext.h"
 
-service_register_(facebookService, FLFacebookService, @"com.fishlamp.service.fishlamp");
-
 @implementation FLFacebookService
 
-synthesize_(facebookNetworkSession);
-synthesize_(appId);
-synthesize_(encodedToken);
-synthesize_(permissions);
+@synthesize facebookNetworkSession = _facebookNetworkSession;
+@synthesize appId = _appId;
+@synthesize encodedToken = _encodedToken;
+@synthesize permissions = _permissions;
 
 #if FL_MRC
 - (void) dealloc {
@@ -30,8 +28,12 @@ synthesize_(permissions);
 }
 #endif
 
++ (id) facebookService {
+    return autorelease_([[[self class] alloc] init]);
+}
+
 - (FLDatabase*) database {
-    return [[FLUserDataStorageService serviceFromContext:self.context] documentsDatabase];
+    return [[self.context storageService] documentsDatabase];
 }
 
 - (void) logout

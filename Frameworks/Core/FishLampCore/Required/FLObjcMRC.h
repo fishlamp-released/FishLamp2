@@ -64,4 +64,6 @@ void _FLReleaseBlockWithNil_(dispatch_block_t* block) {
 #define FLCopyObject_(a,b)              _FLCopyObject((id*) &a, (id) b)
 #define FLCopyBlock(__BLOCK__)          autorelease_([__BLOCK__ copy])
 
+extern void FLPerformBlockInAutoreleasePool(void (^callback)());
+
 #endif

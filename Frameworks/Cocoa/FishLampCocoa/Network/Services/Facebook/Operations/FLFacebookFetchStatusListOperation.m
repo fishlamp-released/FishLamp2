@@ -28,7 +28,7 @@
     FLFacebookFetchStatusListResponse* result = FLRunSelfForResponse(FLFacebookFetchStatusListResponse);
     
     NSArray* messages = result.data;
-    [[[FLUserDataStorageService serviceFromContext:self.context] documentsDatabase] batchSaveObjects:messages];
+    [[[self.context storageService] documentsDatabase] batchSaveObjects:messages];
 	
     return result;
 }

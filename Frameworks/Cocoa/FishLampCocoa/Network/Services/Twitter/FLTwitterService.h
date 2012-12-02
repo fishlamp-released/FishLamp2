@@ -14,11 +14,13 @@
 
 #define FLTwitterDefaultUserID [NSString zeroGuidString]
 
-@interface FLTwitterMgr : FLService {
+@interface FLTwitterService : FLService {
 @private
     FLOAuthApp* _oauthInfo;
 	FLOAuthSession* _oauthSession;
 }
+
++ (FLTwitterService*) twitterService;
 
 @property (readonly, strong) FLOAuthApp* oauthInfo;
 @property (readonly, strong) FLOAuthSession* oauthSession;
@@ -26,5 +28,5 @@
 + (void) clearTwitterCookies;
 @end
 
-service_declare_(twitterService, FLTwitterMgr);
+FLDeclareService(twitterService, FLTwitterService);
 

@@ -22,8 +22,6 @@
 #import "FLObjectDatabase.h"
 #import "FLAppInfo.h"
 
-service_register_(storageService, FLUserDataStorageService, @"com.fishlamp.service.storage")
-
 @interface FLUserDataStorageService ()
 - (BOOL) _beginOpeningService;
 - (void) finishUpgradeTasks;
@@ -217,7 +215,7 @@ service_register_(storageService, FLUserDataStorageService, @"com.fishlamp.servi
     NSString* userCacheFolder = [cachePaths objectAtIndex: 0];
 
 #if OSX
-    userCacheFolder = [userCacheFolder stringByAppendingPathComponent:[[self class] serviceUTI]];
+    userCacheFolder = [userCacheFolder stringByAppendingPathComponent:[FLAppInfo bundleIdentifier]];
 #endif
 
 	if(!_cacheFolder){
@@ -252,7 +250,7 @@ service_register_(storageService, FLUserDataStorageService, @"com.fishlamp.servi
     NSString* userDocumentsFolder = [documentsPaths objectAtIndex: 0];
 
 #if OSX
-    userDocumentsFolder = [userDocumentsFolder stringByAppendingPathComponent:[[self class] serviceUTI]];
+    userDocumentsFolder = [userDocumentsFolder stringByAppendingPathComponent:[FLAppInfo bundleIdentifier]];
 #endif
     
 	if(!_documentsFolder) {

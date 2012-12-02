@@ -28,7 +28,6 @@
 @interface FLUnitTest : FLOperation {
 @private
     NSMutableArray* _testCases;
-    FLTestResultCollection* _results;
 }
 
 @property (readonly, strong) NSString* unitTestName;

@@ -13,19 +13,7 @@
 
 // WARNING: don't import anything here. This file is imported by FishLamp.  This is imported by everything.
 
-NS_INLINE
-id FLReturnObject(id (^createBlock)(void)) {
-    return createBlock != nil ? createBlock() : nil;
-}
 
-typedef void (^FLObjectBlock)(id object);
-typedef void (^FLErrorCallback)(NSError* error);
-
-#if FL_ARC
-#define FLPerformBlockInAutoreleasePool(__BLOCK__) __BLOCK__()
-#else
-extern void FLPerformBlockInAutoreleasePool(void (^callback)());
-#endif
 
 extern id FLCopyOrRetainObject(id src);
 

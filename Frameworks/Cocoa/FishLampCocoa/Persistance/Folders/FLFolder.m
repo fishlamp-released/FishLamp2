@@ -8,6 +8,7 @@
 
 #import "FLFolder.h"
 #import "NSFileManager+FLExtras.h"
+#import "FLBlocks.h"
 
 @interface FLFolder ()
 @property (readwrite, strong) NSString* folderPath;
@@ -92,9 +93,13 @@
         }
 		__block BOOL stop = NO;
         for(NSString* name in everything) {
+#if FL_MRC
             FLPerformBlockInAutoreleasePool(^{
                 visitorBlock(name, &stop);
             });
+#else
+            visitorBlock(name, &stop);
+#endif            
             
             if(stop) {
                 break;
@@ -144,8 +149,9 @@
 	__block unsigned long long size = 0;
 	
 	if([self existsOnDisk]) {
+#if FL_MRC
 		FLPerformBlockInAutoreleasePool(^{
-                
+#endif                
 			NSError* err = nil;
 			NSDictionary* folderAttr = [[NSFileManager defaultManager] attributesOfItemAtPath:[self folderPath] error:&err];
 			if(err) {
@@ -165,7 +171,9 @@
 			
             __block BOOL stop = NO;
 			for(NSString* path in everything) {
+#if FL_MRC
 				FLPerformBlockInAutoreleasePool(^{
+#endif                
                     NSError* innerErr = nil;
                 	NSDictionary* attr = [[NSFileManager defaultManager] attributesOfItemAtPath:
 						[[self folderPath] stringByAppendingPathComponent:path] error:&innerErr];
@@ -181,13 +189,17 @@
                     }
                     
                     
+#if FL_MRC
                 });
+#endif                
                 
                 if(stop) {
                     break;
                 }
 			}
+#if FL_MRC
         });
+#endif        
 	}
 	return size;
 }
@@ -297,7 +309,9 @@
 - (void) moveFilesToFolder:(FLFolder*) destinationFolder withCopy:(BOOL) copy {
 	FLAssertIsNotNil_v(destinationFolder, nil);
 
+#if FL_MRC
 	FLPerformBlockInAutoreleasePool(^{
+#endif            
 		if(![self existsOnDisk] || ![destinationFolder existsOnDisk]) {
 			FLThrowError_( autorelease_([[NSError alloc] initWithDomain:NSCocoaErrorDomain code:NSFileNoSuchFileError userInfo:nil]));
 		}
@@ -331,7 +345,9 @@
                FLThrowError_(autorelease_(err));
             }
         }
+#if FL_MRC
 	});
+#endif    
 }
 
 - (BOOL) fileExistsInFolder:(NSString*) name {
@@ -355,11 +371,11 @@
     NSString* extension = [[self pathForFile:name] pathExtension];
     FLConfirmStringIsNotEmpty_v(extension, @"failed to get file extension for %@", name);
     
-    NSString* UTI = bridge_(NSString*, UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension,  bridge_(CFStringRef, extension), NULL));
+    NSString* UTI = autorelease_(bridge_transfer_(NSString*, UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension,  bridge_(CFStringRef, extension), NULL)));
 
     FLConfirmNotNil_v(UTI, @"failed to get UTI for extension for file %@", name);
 
-    return autorelease_(UTI);
+    return UTI;
                     
 }
 

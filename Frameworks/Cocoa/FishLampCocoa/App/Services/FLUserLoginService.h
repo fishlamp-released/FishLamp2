@@ -29,4 +29,4 @@
 //- (void) userSessionDidClose:(id<FLUserLoginService>) userSession;
 //@end
 
-service_declare_(userService, FLUserLoginService);
+FLDeclareService(userService, FLUserLoginService);

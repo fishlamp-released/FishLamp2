@@ -44,16 +44,13 @@
 }
 
 - (void) dealloc {
-    NSArray* list = retain_(_operations);
-    _operations = nil;
-
-    for(FLOperation* operation in list) {
+    for(FLOperation* operation in _operations) {
         [operation removeObserver:self];
     }
 
 #if FL_MRC 
-    [_cancelFinisher release];
-    [list release];
+    [_cancelHandler release];
+    [_operations release];
     [super dealloc];
 #endif
 }

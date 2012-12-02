@@ -10,10 +10,9 @@
 #import "FLObservable.h"
 #import "FLContextual.h"
 #import "FLContext.h"
+#import "FLAtomicProperties.h"
 
 @protocol FLService <FLObservable>
-
-+ (NSString*) serviceUTI;
 
 @property (readonly, assign) id context;
 - (void) wasAddedToContext:(FLContext*) context;
@@ -21,9 +20,6 @@
 @property (readonly, assign) BOOL isServiceOpen;
 - (void) openService;
 - (void) closeService;
-
-+ (id) serviceFromContext:(id) context;
-+ (id) optionalServiceFromContext:(id) context;
 
 @end
 
@@ -34,7 +30,19 @@
 }
 @end
 
-//#define synthesize_service_(__NAME__, __TYPE__) \
-//    - (__TYPE__*) __NAME__ { return [__TYPE__ serviceFromContext:self]; } 
-    
+#define FLDeclareService(__NAME__, __TYPE__) \
+    @class __TYPE__; \
+    @protocol __TYPE__##ServiceRegistration <NSObject> \
+        @property (readwrite, strong) __TYPE__* __NAME__; \
+    @end
+
+#define FLSynthesizeService(__GETTER__, __SETTER__, __TYPE__) \
+    - (__TYPE__*) __GETTER__ { \
+        return FLAtomicPropertyGet(&_##__GETTER__); \
+    } \
+    - (void) __SETTER__:(__TYPE__*) service { \
+        [self setService:service forName:@#__GETTER__]; \
+        FLAtomicPropertySet(&_##__GETTER__, service); \
+    }
+
     

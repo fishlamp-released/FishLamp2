@@ -37,6 +37,8 @@ typedef enum {
     NSArray* _permissions;
 }
 
++ (id) facebookService;
+
 @property (readwrite, retain, nonatomic) NSArray* permissions;
 @property (readwrite, retain, nonatomic) NSString* appId;
 @property (readwrite, retain, nonatomic) FLFacebookNetworkSession* facebookNetworkSession;
@@ -50,4 +52,4 @@ typedef enum {
 
 @end
 
-service_declare_(facebookService, FLFacebookService);
+FLDeclareService(facebookService, FLFacebookService);

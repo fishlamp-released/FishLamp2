@@ -18,22 +18,6 @@
 @synthesize context = _context;
 @synthesize isServiceOpen = _isServiceOpen;
 
-+ (id) serviceFromContext:(id) context {
-    FLAssertNotNil_(context);
-
-    id service = [context serviceForID:[self serviceUTI]];
-    FLAssertNotNil_v(service, @"service not found in context");
-    return service;
-}
-
-+ (id) optionalServiceFromContext:(id) context {
-    return [context serviceForID:[self serviceUTI]];
-}
-
-+ (BOOL) contextHasService:(id) context {
-    return [context serviceForID:[self serviceUTI]] != nil;
-}
-
 - (void) wasAddedToContext:(FLContext*) context {
     FLAssert_v([self.context isContextOpen] == NO, @"adding service to open context");
     self.context = context;

@@ -19,7 +19,7 @@ typedef void (^FLDatabaseStatementFailedBlock)(NSError* error);
 
 @interface FLDatabaseStatement : FLSqlBuilder {
 @private
-    FLDatabaseStatementPrepareBlock prepare;
+    FLDatabaseStatementPrepareBlock _prepare;
     FLDatabaseStatementDidSelectRowBlock _rowResultBlock;
     FLDatabaseStatementDidSelectObjectBlock _objectResultBlock;
     FLDatabaseStatementFinishedBlock _finished;

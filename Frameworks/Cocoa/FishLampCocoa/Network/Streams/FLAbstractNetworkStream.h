@@ -18,7 +18,6 @@
     id _result;
     BOOL _isOpen;
     BOOL _didClose;
-    BOOL _busy;
 
     FLCancellable* _cancelHandler;
 }

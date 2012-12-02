@@ -11,6 +11,8 @@
 #import "NSString+Guid.h"
 #import "NSFileManager+FLExtras.h"
 
+#if REFACTOR
+
 @implementation FLCachedImageCacheBehavior
 
 @synthesize maxLongSideForInMemoryCache = _maxLongSideForInMemoryCache;
@@ -226,3 +228,4 @@ FIXME("attach to user sessions....");
 
 @end
 
+#endif

@@ -134,8 +134,10 @@
 {
 	__block NSImage_* newImage = nil;
 	@try {
+#if FL_MRC
         FLPerformBlockInAutoreleasePool(
         ^{
+#endif
             if(shrinkData.makeSquare)
             {
                 [self imageByScalingAndCroppingForSize:&newImage targetSize:FLSizeMake(shrinkData.maxLongSide,shrinkData.maxLongSide)];
@@ -160,7 +162,9 @@
             }
             
             shrinkData.outputImage = newImage;
+#if FL_MRC
         }); 
+#endif        
     }
     @finally {
     	FLReleaseWithNil_(newImage);
@@ -189,14 +193,18 @@
 - (void) convertToJpegPrivate:(FLImageOperationData*) imageData
 {
 #if IOS
+#if FL_MRC
 	FLPerformBlockInAutoreleasePool(^{
+#endif    
 		NSData* data = UIImageJPEGRepresentation(self, imageData.compression);
 		if(data == nil || [data length] == 0) {
             FLThrowErrorCode_v(@"FLImageErrorDomain", 1, @"Conversion to Jpeg failed");
         }
 		
 		imageData.outputData = data;
+#if FL_MRC
 	});
+#endif    
 #else 
     FLAssertIsImplemented_v(nil);
 #endif
@@ -323,8 +331,9 @@ static void FLAddRoundedRectToPath(CGContextRef context, FLRect rect, float oval
 		__block CGContextRef context = nil;
 		__block CGColorSpaceRef colorSpace = nil;
         @try {
-            FLPerformBlockInAutoreleasePool(
-            ^{
+#if FL_MRC
+            FLPerformBlockInAutoreleasePool(^{
+#endif            
                 int w = img.size.width;
                 int h = img.size.height;
          
@@ -343,7 +352,9 @@ static void FLAddRoundedRectToPath(CGContextRef context, FLRect rect, float oval
                 release_(img);
          
                 newImage = retain_([NSImage_ imageWithCGImage:imageMasked]);
+#if FL_MRC
             });
+#endif            
         }
         @finally {
 			if(colorSpace) CGColorSpaceRelease(colorSpace);

@@ -24,7 +24,6 @@
 @interface FLWriteStream : FLAbstractNetworkStream<FLWriteStream, FLConcreteNetworkStream> {
 @private
  	CFWriteStreamRef _streamRef;
-    NSError* _error;
 }
 @property (readonly, assign) CFWriteStreamRef streamRef;
 

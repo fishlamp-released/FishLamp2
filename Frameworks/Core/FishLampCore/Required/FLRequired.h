@@ -33,8 +33,3 @@
 #import "FLDebug.h"
 #import "FLMath.h"
 
-//// experimental
-//@interface NSObject (FLCreateInstance)
-//+ (id) create;
-//@end
-

@@ -76,3 +76,4 @@
 
 @end 
 
+extern float FLTimeBlock (dispatch_block_t block);

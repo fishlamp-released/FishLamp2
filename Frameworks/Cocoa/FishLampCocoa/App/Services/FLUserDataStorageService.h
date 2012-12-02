@@ -14,10 +14,7 @@
 #import "FLVersionUpgradeLengthyTaskList.h"
 #import "FLImageFolder.h"
 
-@protocol FLUserDataStorageService <FLService>
-@end
-
-@interface FLUserDataStorageService : FLService<FLUserDataStorageService> {
+@interface FLUserDataStorageService : FLService {
 @private
 
 // cache
@@ -67,4 +64,4 @@
 
 @end
 
-service_declare_(storageService, FLUserDataStorageService);
+FLDeclareService(storageService, FLUserDataStorageService);

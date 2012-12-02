@@ -6,15 +6,15 @@
 //  Copyright 2011 GreenTongue Software. All rights reserved.
 //
 
-#import "FLTwitterMgr.h"
+#import "FLTwitterService.h"
 #import "NSString+GUID.h"
 #import "FLUserDataStorageService.h"
 #import "FLContext.h"
 
 
-service_register_(twitterService, FLTwitterMgr, @"com.fishlamp.service.twitter");
+service_register_(twitterService, FLTwitterService, @"com.fishlamp.service.twitter");
 
-@interface FLTwitterMgr ()
+@interface FLTwitterService ()
 @property (readwrite, strong) FLOAuthSession* oauthSession;
 @property (readwrite, strong) FLOAuthApp* oauthInfo;
 
@@ -30,7 +30,7 @@ service_register_(twitterService, FLTwitterMgr, @"com.fishlamp.service.twitter")
 
 @end
 
-@implementation FLTwitterMgr
+@implementation FLTwitterService
 
 @synthesize oauthInfo = _oauthInfo; 
 @synthesize oauthSession = _oauthSession; 
@@ -41,6 +41,10 @@ service_register_(twitterService, FLTwitterMgr, @"com.fishlamp.service.twitter")
 	}
 	
 	return self;
+}
+
++ (id) twitterService {
+    return autorelease_([[[self class] alloc] init]);
 }
 
 - (BOOL) needsAuthorizationForUserGuid:(NSString*) userGuid {
@@ -59,7 +63,7 @@ service_register_(twitterService, FLTwitterMgr, @"com.fishlamp.service.twitter")
 #endif
 
 - (FLDatabase*) database {
-    return [[FLUserDataStorageService serviceFromContext:self.context] documentsDatabase];
+    return [[self.context storageService] documentsDatabase];
 }
 
 + (void) clearTwitterCookies {
@@ -80,7 +84,7 @@ service_register_(twitterService, FLTwitterMgr, @"com.fishlamp.service.twitter")
 	input.userGuid = userGuid;
 	input.appName = @"twitter.com";
 	[self.database deleteObject:input];
-    [FLTwitterMgr clearTwitterCookies];
+    [FLTwitterService clearTwitterCookies];
 	self.oauthSession = nil;
 }
 

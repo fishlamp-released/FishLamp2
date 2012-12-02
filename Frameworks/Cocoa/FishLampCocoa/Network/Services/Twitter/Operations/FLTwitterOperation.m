@@ -11,7 +11,7 @@
 #import "NSString+URL.h"
 #import "FLObjectDescriber.h"
 #import "FLJsonParser.h"
-#import "FLTwitterMgr.h"
+#import "FLTwitterService.h"
 
 @implementation FLTwitterOperation
 
@@ -71,7 +71,7 @@
 	
 	[httpRequest setFormUrlEncodedContent:content];
 
-    FLTwitterMgr* twitter = [self.context twitterService];
+    FLTwitterService* twitter = [self.context twitterService];
 
 	if(oauthHeader) {
         [oauthHeader setParameter:kFLOAuthHeaderToken value:twitter.oauthSession.oauth_token];

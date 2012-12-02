@@ -16,6 +16,7 @@
 
 @class FLOperationContext;
 @class FLBackgroundTaskMgr;
+typedef void (^FLObjectBlock)(id object);
 
 @protocol FLBackgroundTask <NSObject>
 
@@ -103,4 +104,4 @@
 
 @end
 
-service_declare_(backgroundTaskService, FLBackgroundTaskMgr);
+FLDeclareService(backgroundTaskService, FLBackgroundTaskMgr);

@@ -17,3 +17,5 @@
 @interface NSObject (FLCopyable)
 - (void) copySelfTo:(id) object;
 @end
+
+extern id FLCopyOrRetainObject(id src);

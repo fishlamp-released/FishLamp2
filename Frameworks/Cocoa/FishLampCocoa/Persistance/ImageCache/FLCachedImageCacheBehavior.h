@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#if REFACTOR
+
 #import "FLCacheBehavior.h"
 #import "FLCachedImage.h"
 #import "FLInMemoryDataCache.h"
@@ -23,7 +25,6 @@
 	BOOL _warnOnMainThreadDelete;
 	BOOL _warnOnMainThreadWrite;
 #endif
-
 }
 
 - (id) initWithCapacity:(NSUInteger) capacity;
@@ -35,3 +36,5 @@
 //+ (void) clearImageCache:(id<FLCancellable>) operation;
 
 @end
+
+#endif

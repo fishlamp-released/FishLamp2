@@ -17,7 +17,7 @@
 
 @implementation FLNetworkOperation
 
-@synthesize connection = _networkConnection;
+@synthesize connection = _connection;
 
 + (id) networkOperation {
 	return autorelease_([[[self class] alloc] initWithURL:nil]);
@@ -37,7 +37,7 @@
         return [[connection openConnection:FLFifoQueue] waitUntilFinished];
     }
     @finally {
-         [_networkConnection removeObserver:self];
+         [self.connection removeObserver:self];
          self.connection = nil;
     }
 

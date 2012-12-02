@@ -63,8 +63,9 @@
 	FLAssertIsNil_(_parser);
 
     @try {
+#if FL_MRC
         FLPerformBlockInAutoreleasePool(^{
-        
+#endif        
             if(!self.dataDecoder) {
                 self.dataDecoder = [self onCreateDataDecoder];
             }
@@ -77,7 +78,9 @@
             [self onConfigureParser:_parser];
             
             [_parser parse];
+#if FL_MRC
         });
+#endif
     }
     @finally {
 		_parser.delegate = nil;
