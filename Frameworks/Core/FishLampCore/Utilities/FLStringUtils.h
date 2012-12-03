@@ -60,4 +60,8 @@ extern BOOL FLStringsAreEqualCaseInsensitive(NSString* lhs, NSString* rhs);
 
 #define FLStringsAreNotEqual(lhs, rhs) (!FLStringsAreEqual(lhs, rhs))
 
+NS_INLINE
+NSString* FLEmptyStringOrString(NSString* string) {
+    return FLStringIsEmpty(string) ? @"" : string;
+}
 

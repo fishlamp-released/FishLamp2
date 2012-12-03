@@ -62,7 +62,6 @@ static void WriteStreamClientCallBack(CFWriteStreamRef readStream,
     }
     
 #if FL_MRC
-    [_error release];
     [super dealloc];
 #endif    
 }

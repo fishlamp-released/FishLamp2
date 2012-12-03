@@ -18,4 +18,4 @@ typedef id FLResult;
 #define FLFailedResult      [NSError failedResultError]
 
 typedef void (^FLResultBlock)(FLResult result);
-
+typedef void (^FLCompletionBlock)(FLResult result);

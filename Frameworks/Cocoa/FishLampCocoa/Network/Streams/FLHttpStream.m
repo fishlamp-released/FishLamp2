@@ -122,9 +122,7 @@
 }
 
 - (void) dealloc  {
-        
 #if FL_MRC
-    [_error release];
     [_request release];
     [_response release];
     [_responseStream release];

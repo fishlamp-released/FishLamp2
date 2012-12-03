@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import "FishLampCore.h"
+#import "FLCore.h"
 #import "FLDispatcher.h"
 #import <dispatch/dispatch.h>
 

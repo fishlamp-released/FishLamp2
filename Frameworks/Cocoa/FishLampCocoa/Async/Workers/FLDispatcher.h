@@ -12,7 +12,6 @@
 #import "FLAsyncTask.h"
 #import "FLResult.h"
 
-typedef void (^FLCompletionBlock)(FLResult result);
 
 @protocol FLDispatcher <NSObject>
 

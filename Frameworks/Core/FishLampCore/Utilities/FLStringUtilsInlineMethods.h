@@ -25,3 +25,4 @@ FL_SHIP_ONLY_INLINE
 BOOL FLStringsAreEqualCaseInsensitive(NSString* lhs, NSString* rhs) { 
 	return [(lhs == nil ? @"" : lhs) isEqualToString:(rhs == nil ) ? @"" :rhs caseSensitive:NO];
 }
+
