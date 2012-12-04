@@ -7,4 +7,9 @@
 //
 
 #include "FishLamp/XcodeConfigIncludes/FishLampTarget-OSX-32.xcconfig"
+#include "FishLamp/FishLampPaths.xcconfig"
+HEADER_SEARCH_PATHS= $(inherited) $(FISHLAMP_CORE) $(FISHLAMP_COCOA)
+
+
+
 #include "SharedTargetSettings.xcconfig"

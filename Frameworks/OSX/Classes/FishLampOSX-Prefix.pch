@@ -1,8 +1,0 @@
-//
-// Prefix header for all source files of the 'FishLampCocoaApp' target in the 'FishLampCocoaApp' project
-//
-
-#ifdef __OBJC__
-    #import <Cocoa/Cocoa.h>
-    #import "FishLampCore.h"
-#endif

@@ -4,4 +4,10 @@
    <FileRef
       location = "group:Tools/Fluffy/Fluffy.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:Frameworks/Cocoa/Libs/FishLampCocoaLib/FishLampCocoa.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Xcode">
+   </FileRef>
 </Workspace>
