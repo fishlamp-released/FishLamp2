@@ -1,0 +1,5 @@
+the custom project templates don't do the following:
+
+1. add fishlamp 
+2. add DebugTest or ReleaseTest custom build configurations.
+

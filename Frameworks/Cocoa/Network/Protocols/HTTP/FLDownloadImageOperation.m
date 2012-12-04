@@ -1,0 +1,84 @@
+//
+//  FLDownloadImageOperation.m
+//  FishLamp
+//
+//  Created by Mike Fullerton on 7/10/11.
+//  Copyright 2011 GreenTongue Software, LLC. All rights reserved.
+//
+
+#import "FLDownloadImageOperation.h"
+#import "FLCachedImage.h"
+
+
+@implementation FLDownloadImageOperation
+
+- (id) initWithImageURL:(NSURL*) url {
+    return [super initWithHTTPRequestURL:url];
+}
+
++ (id) downloadImageOperation {
+    return autorelease_([[[self class] alloc] initWithImageURL:nil]);
+}
+
++ (id) downloadImageOperationWithImageURL:(NSURL*) imageURL{
+    return autorelease_([[[self class] alloc] initWithImageURL:imageURL]);
+}
+
+- (FLResult) runSelf {
+
+    FLMutableHttpRequest* request = [FLMutableHttpRequest httpRequestWithURL:self.httpRequestURL];
+
+    FLHttpResponse* httpResponse = [self sendHttpRequest:request 
+                                       withAuthenticator:self.requestAuthenticator];
+    
+    FLThrowError_([httpResponse simpleHttpResponseErrorCheck]);
+    
+    FLImage* image = [FLImage imageWithData:httpResponse.responseData];
+    image.imageProperties = [FLImageProperties imagePropertiesWithImageURL:self.httpRequestURL];
+    return image;
+}
+
+//- (FLResult) runSelf {
+//    
+//    
+//    id result = [super runSelf];
+//    if([result succeeded]) {
+////        NSData* imageBytes = result;
+//        
+////    FLImageProperties* imageInfo = nil;
+////    if(_storageStrategy) {
+////        imageInfo = [_storageStrategy imagePropertiesForImageURL:self.imageURL];
+////    }
+//        
+//        
+//    }
+//    
+//        
+//    [super runSelf];
+////
+////    FLThrowError_([self.httpResponse simpleHttpResponseErrorCheck]);
+////    if(!self.error) {
+////    
+////        FLCachedImage* photo = [FLCachedImage cachedImage];
+////        photo.url = self.URL.absoluteString;
+////        
+////        NSData* data = self.httpResponse.responseData;
+////        if(data && data.length > 0)
+////        {
+////            // note: folder and file name will be set by image cache.
+////            FLImage* imageFile = [[FLImage alloc] init];
+////            imageFile.imageBytes = data;
+////            // uhoh, how do I tell what type it is???
+////FIXME("ambiguous type")            
+////            photo.imageFile = imageFile;
+////            FLReleaseWithNil_(imageFile);
+////            
+////            self.output = photo;
+////        }
+////    }
+//
+//    return result;
+//}
+
+@end
+
