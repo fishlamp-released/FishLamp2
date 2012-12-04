@@ -7,5 +7,11 @@
 //
 
 #include "FishLamp/XcodeConfigIncludes/FishLampTarget-OSX-64-ARC.xcconfig"
+#include "FishLamp/FishLampPaths.xcconfig"
+
+FISHLAMP_HEADER_SEARCH_PATHS = $(FISHLAMP_CORE) $(FISHLAMP_COCOA)
+HEADER_SEARCH_PATHS= $(inherited) $(FISHLAMP_HEADER_SEARCH_PATHS)
+
+
 #include "SharedTargetSettings.xcconfig"
 

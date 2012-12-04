@@ -13,7 +13,7 @@ cd "$1"
 INSTALL_DIR=`pwd`
 FISHLAMP_SOURCE=""
 FISHLAMP_DEST="$INSTALL_DIR/FishLamp"
-SCRIPT_NAME="install_fishlamp.sh"
+SCRIPT_NAME="InstallFishlamp.sh"
 FISHLAMP_RELATIVE_PATH=""
 
 function verbose() {
@@ -83,23 +83,27 @@ function sync_files() {
 }
 
 function update_update_script() {
-	local new_script="$INSTALL_DIR/update_fishlamp.sh"
 	
-	update_str="bash \"$FISHLAMP_SOURCE/install_fishlamp.sh\" \"$INSTALL_DIR\""
+	local new_script="$INSTALL_DIR/UpdateFishLamp"
+	
+	update_str="bash \"$FISHLAMP_SOURCE/$SCRIPT_NAME\" \"$INSTALL_DIR\""
 	
 	if [ ! -f "$new_script" ]; then
 		echo "$update_str" > "$new_script"
+		chmod +x "$new_script"
 		verbose "updated update script"
 	else
 		
 		in_file=`grep "$update_str" "$new_script"`
 		if [[ "$in_file" == "" ]]; then
 			echo "$update_str" > "$new_script"
+			chmod +x "$new_script"
 			verbose "updated update script"
 		else
 			verbose "update script is up to date"
 		fi
 	fi
+	
 }
 
 function prepare_install() {

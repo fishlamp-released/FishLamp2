@@ -1,0 +1,7 @@
+// Version:6
+FISHLAMP = /Users/mike/Enlistments/zenfolio/FishLamp
+FISHLAMP_ALL = /Users/mike/Enlistments/zenfolio/FishLamp/Frameworks/**
+FISHLAMP_CORE = /Users/mike/Enlistments/zenfolio/FishLamp/Frameworks/Core/**
+FISHLAMP_COCOA = /Users/mike/Enlistments/zenfolio/FishLamp/Frameworks/Cocoa/** /Users/mike/Enlistments/zenfolio/FishLamp/Frameworks/Dependencies/** /Users/mike/Enlistments/zenfolio/FishLamp/Frameworks/External/** /Users/mike/Enlistments/zenfolio/FishLamp/Frameworks/Deprecated/**
+FISHLAMP_IOS = /Users/mike/Enlistments/zenfolio/FishLamp/Frameworks/iOS/**
+FISHLAMP_IOS_PHOTO = /Users/mike/Enlistments/zenfolio/FishLamp/Frameworks/iOSPhoto/**
