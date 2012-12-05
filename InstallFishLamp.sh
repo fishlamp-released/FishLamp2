@@ -23,7 +23,7 @@ function verbose() {
 function write_paths_file() {
 
     path="$FISHLAMP_DEST/FishLampPaths.xcconfig"
-	version="// Version:6"
+	version="// Version:12"
 		
 	if [ ! -f "$path" ]; then
 	# make new empty file
@@ -33,12 +33,13 @@ function write_paths_file() {
 	in_file=`grep "$version" "$path"`
 	if [[ "$in_file" == "" ]]; then
 	    echo "$version" > "$path"
-	    echo "FISHLAMP = $FISHLAMP_SOURCE" >> "$path"
-	    echo "FISHLAMP_ALL = $FISHLAMP_SOURCE/Frameworks/**" >> "$path"
-	    echo "FISHLAMP_CORE = $FISHLAMP_SOURCE/Frameworks/Core/**" >> "$path"
-	    echo "FISHLAMP_COCOA = $FISHLAMP_SOURCE/Frameworks/Cocoa/** $FISHLAMP_SOURCE/Frameworks/Dependencies/** $FISHLAMP_SOURCE/Frameworks/External/** $FISHLAMP_SOURCE/Frameworks/Deprecated/**" >> "$path"
-	    echo "FISHLAMP_IOS = $FISHLAMP_SOURCE/Frameworks/iOS/**" >> "$path"
-	    echo "FISHLAMP_IOS_PHOTO = $FISHLAMP_SOURCE/Frameworks/iOSPhoto/**" >> "$path"
+	    echo "FISHLAMP = $FISHLAMP_SOURCE/Frameworks" >> "$path"
+	    echo "FISHLAMP_ALL = \$(FISHLAMP)/**" >> "$path"
+	    echo "FISHLAMP_CORE = \$(FISHLAMP)/Core/**" >> "$path"
+	    echo "FISHLAMP_COCOA = \$(FISHLAMP)/Cocoa/** \$(FISHLAMP)/Dependencies/** \$(FISHLAMP)/External/** \$(FISHLAMP)/Deprecated/** \$(FISHLAMP_CORE)" >> "$path"
+	    echo "FISHLAMP_OSX = \$(FISHLAMP)/OSX/** \$(FISHLAMP_COCOA)" >> "$path"
+	    echo "FISHLAMP_IOS = \$(FISHLAMP)/iOS/** \$(FISHLAMP_COCOA)" >> "$path"
+	    echo "FISHLAMP_IOS_PHOTO = \$(FISHLAMP)/iOSPhoto/** \$(FISHLAMP_IOS)" >> "$path"
 
 		echo "updated paths file: $path"
 	else

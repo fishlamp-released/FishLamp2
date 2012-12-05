@@ -7,6 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		270380C6166EDDAC0082D9D9 /* FLWizardViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 270380C4166EDDAC0082D9D9 /* FLWizardViewController.h */; };
+		270380C7166EDDAC0082D9D9 /* FLWizardViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 270380C4166EDDAC0082D9D9 /* FLWizardViewController.h */; };
+		270380C8166EDDAC0082D9D9 /* FLWizardViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 270380C4166EDDAC0082D9D9 /* FLWizardViewController.h */; };
+		270380C9166EDDAC0082D9D9 /* FLWizardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 270380C5166EDDAC0082D9D9 /* FLWizardViewController.m */; };
+		270380CA166EDDAC0082D9D9 /* FLWizardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 270380C5166EDDAC0082D9D9 /* FLWizardViewController.m */; };
+		270380CB166EDDAC0082D9D9 /* FLWizardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 270380C5166EDDAC0082D9D9 /* FLWizardViewController.m */; };
+		270380CF166EDDC10082D9D9 /* FLGlobalMenuController.h in Headers */ = {isa = PBXBuildFile; fileRef = 270380CD166EDDC10082D9D9 /* FLGlobalMenuController.h */; };
+		270380D0166EDDC10082D9D9 /* FLGlobalMenuController.h in Headers */ = {isa = PBXBuildFile; fileRef = 270380CD166EDDC10082D9D9 /* FLGlobalMenuController.h */; };
+		270380D1166EDDC10082D9D9 /* FLGlobalMenuController.h in Headers */ = {isa = PBXBuildFile; fileRef = 270380CD166EDDC10082D9D9 /* FLGlobalMenuController.h */; };
+		270380D2166EDDC10082D9D9 /* FLGlobalMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 270380CE166EDDC10082D9D9 /* FLGlobalMenuController.m */; };
+		270380D3166EDDC10082D9D9 /* FLGlobalMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 270380CE166EDDC10082D9D9 /* FLGlobalMenuController.m */; };
+		270380D4166EDDC10082D9D9 /* FLGlobalMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 270380CE166EDDC10082D9D9 /* FLGlobalMenuController.m */; };
+		270380DA166EDE1C0082D9D9 /* FLClickablePathViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 270380D8166EDE1C0082D9D9 /* FLClickablePathViewController.h */; };
+		270380DB166EDE1C0082D9D9 /* FLClickablePathViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 270380D8166EDE1C0082D9D9 /* FLClickablePathViewController.h */; };
+		270380DC166EDE1C0082D9D9 /* FLClickablePathViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 270380D8166EDE1C0082D9D9 /* FLClickablePathViewController.h */; };
+		270380DD166EDE1C0082D9D9 /* FLClickablePathViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 270380D9166EDE1C0082D9D9 /* FLClickablePathViewController.m */; };
+		270380DE166EDE1C0082D9D9 /* FLClickablePathViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 270380D9166EDE1C0082D9D9 /* FLClickablePathViewController.m */; };
+		270380DF166EDE1C0082D9D9 /* FLClickablePathViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 270380D9166EDE1C0082D9D9 /* FLClickablePathViewController.m */; };
+		270380E2166EDFA80082D9D9 /* FLClickablePathView.h in Headers */ = {isa = PBXBuildFile; fileRef = 270380E0166EDFA80082D9D9 /* FLClickablePathView.h */; };
+		270380E3166EDFA80082D9D9 /* FLClickablePathView.h in Headers */ = {isa = PBXBuildFile; fileRef = 270380E0166EDFA80082D9D9 /* FLClickablePathView.h */; };
+		270380E4166EDFA80082D9D9 /* FLClickablePathView.h in Headers */ = {isa = PBXBuildFile; fileRef = 270380E0166EDFA80082D9D9 /* FLClickablePathView.h */; };
+		270380E5166EDFA80082D9D9 /* FLClickablePathView.m in Sources */ = {isa = PBXBuildFile; fileRef = 270380E1166EDFA80082D9D9 /* FLClickablePathView.m */; };
+		270380E6166EDFA80082D9D9 /* FLClickablePathView.m in Sources */ = {isa = PBXBuildFile; fileRef = 270380E1166EDFA80082D9D9 /* FLClickablePathView.m */; };
+		270380E7166EDFA80082D9D9 /* FLClickablePathView.m in Sources */ = {isa = PBXBuildFile; fileRef = 270380E1166EDFA80082D9D9 /* FLClickablePathView.m */; };
 		2798CE62166D886500A0863D /* FLContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CA42166D886400A0863D /* FLContext.h */; };
 		2798CE63166D886500A0863D /* FLContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CA42166D886400A0863D /* FLContext.h */; };
 		2798CE64166D886500A0863D /* FLContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CA42166D886400A0863D /* FLContext.h */; };
@@ -3250,13 +3274,6 @@
 		2798DB0A166D886500A0863D /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE5E166D886500A0863D /* UIImage+RoundedCorner.m */; };
 		2798DB0B166D886500A0863D /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE5E166D886500A0863D /* UIImage+RoundedCorner.m */; };
 		2798DB0C166D886500A0863D /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE5E166D886500A0863D /* UIImage+RoundedCorner.m */; };
-		2798DB0D166D886500A0863D /* FLGlobalMenuController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE60166D886500A0863D /* FLGlobalMenuController.h */; };
-		2798DB0E166D886500A0863D /* FLGlobalMenuController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE60166D886500A0863D /* FLGlobalMenuController.h */; };
-		2798DB0F166D886500A0863D /* FLGlobalMenuController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE60166D886500A0863D /* FLGlobalMenuController.h */; };
-		2798DB10166D886500A0863D /* FLGlobalMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE61166D886500A0863D /* FLGlobalMenuController.m */; };
-		2798DB11166D886500A0863D /* FLGlobalMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE61166D886500A0863D /* FLGlobalMenuController.m */; };
-		2798DB12166D886500A0863D /* FLGlobalMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE61166D886500A0863D /* FLGlobalMenuController.m */; };
-		2798DB13166D886500A0863D /* FLGlobalMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE61166D886500A0863D /* FLGlobalMenuController.m */; };
 		2798DB2F166D888500A0863D /* NSObject+SBJson.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798DB16166D888500A0863D /* NSObject+SBJson.h */; };
 		2798DB30166D888500A0863D /* NSObject+SBJson.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798DB16166D888500A0863D /* NSObject+SBJson.h */; };
 		2798DB31166D888500A0863D /* NSObject+SBJson.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798DB16166D888500A0863D /* NSObject+SBJson.h */; };
@@ -3350,6 +3367,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		270380C3166EDDAC0082D9D9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/FLWizardViewController.xib; sourceTree = "<group>"; };
+		270380C4166EDDAC0082D9D9 /* FLWizardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLWizardViewController.h; sourceTree = "<group>"; };
+		270380C5166EDDAC0082D9D9 /* FLWizardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLWizardViewController.m; sourceTree = "<group>"; };
+		270380CD166EDDC10082D9D9 /* FLGlobalMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLGlobalMenuController.h; sourceTree = "<group>"; };
+		270380CE166EDDC10082D9D9 /* FLGlobalMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLGlobalMenuController.m; sourceTree = "<group>"; };
+		270380D8166EDE1C0082D9D9 /* FLClickablePathViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLClickablePathViewController.h; sourceTree = "<group>"; };
+		270380D9166EDE1C0082D9D9 /* FLClickablePathViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLClickablePathViewController.m; sourceTree = "<group>"; };
+		270380E0166EDFA80082D9D9 /* FLClickablePathView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLClickablePathView.h; sourceTree = "<group>"; };
+		270380E1166EDFA80082D9D9 /* FLClickablePathView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLClickablePathView.m; sourceTree = "<group>"; };
 		27048EF0161CB58600C38ADA /* libFishLampCocoa-OSX-32.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoa-OSX-32.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		270D02DD15E9B1F600ED5FB0 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		270D02DE15E9B1F800ED5FB0 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/CoreFoundation.framework; sourceTree = DEVELOPER_DIR; };
@@ -4324,8 +4350,6 @@
 		2798CE5C166D886500A0863D /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
 		2798CE5D166D886500A0863D /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
 		2798CE5E166D886500A0863D /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
-		2798CE60166D886500A0863D /* FLGlobalMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLGlobalMenuController.h; sourceTree = "<group>"; };
-		2798CE61166D886500A0863D /* FLGlobalMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLGlobalMenuController.m; sourceTree = "<group>"; };
 		2798DB16166D888500A0863D /* NSObject+SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJson.h"; sourceTree = "<group>"; };
 		2798DB17166D888500A0863D /* NSObject+SBJson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJson.m"; sourceTree = "<group>"; };
 		2798DB18166D888500A0863D /* SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJson.h; sourceTree = "<group>"; };
@@ -4399,6 +4423,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		270380C1166EDDAC0082D9D9 /* WizardViewController */ = {
+			isa = PBXGroup;
+			children = (
+				270380C2166EDDAC0082D9D9 /* FLWizardViewController.xib */,
+				270380C4166EDDAC0082D9D9 /* FLWizardViewController.h */,
+				270380C5166EDDAC0082D9D9 /* FLWizardViewController.m */,
+				270380D8166EDE1C0082D9D9 /* FLClickablePathViewController.h */,
+				270380D9166EDE1C0082D9D9 /* FLClickablePathViewController.m */,
+				270380E0166EDFA80082D9D9 /* FLClickablePathView.h */,
+				270380E1166EDFA80082D9D9 /* FLClickablePathView.m */,
+			);
+			path = WizardViewController;
+			sourceTree = "<group>";
+		};
+		270380CC166EDDC10082D9D9 /* Menus */ = {
+			isa = PBXGroup;
+			children = (
+				270380CD166EDDC10082D9D9 /* FLGlobalMenuController.h */,
+				270380CE166EDDC10082D9D9 /* FLGlobalMenuController.m */,
+			);
+			path = Menus;
+			sourceTree = "<group>";
+		};
 		2731477B1652D2D30027850D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -6271,8 +6318,8 @@
 		2798CE5F166D886500A0863D /* OSX */ = {
 			isa = PBXGroup;
 			children = (
-				2798CE60166D886500A0863D /* FLGlobalMenuController.h */,
-				2798CE61166D886500A0863D /* FLGlobalMenuController.m */,
+				270380CC166EDDC10082D9D9 /* Menus */,
+				270380C1166EDDAC0082D9D9 /* WizardViewController */,
 			);
 			name = OSX;
 			path = ../../Frameworks/OSX;
@@ -6900,7 +6947,6 @@
 				2798DAF9166D886500A0863D /* UIImage+Alpha.h in Headers */,
 				2798DB00166D886500A0863D /* UIImage+Resize.h in Headers */,
 				2798DB07166D886500A0863D /* UIImage+RoundedCorner.h in Headers */,
-				2798DB0E166D886500A0863D /* FLGlobalMenuController.h in Headers */,
 				2798DB30166D888500A0863D /* NSObject+SBJson.h in Headers */,
 				2798DB36166D888500A0863D /* SBJson.h in Headers */,
 				2798DB39166D888500A0863D /* SBJsonParser.h in Headers */,
@@ -6914,6 +6960,10 @@
 				2798DB69166D888500A0863D /* SBJsonTokeniser.h in Headers */,
 				2798DB6F166D888500A0863D /* SBJsonUTF8Stream.h in Headers */,
 				2798DB75166D888500A0863D /* SBJsonWriter.h in Headers */,
+				270380C7166EDDAC0082D9D9 /* FLWizardViewController.h in Headers */,
+				270380D0166EDDC10082D9D9 /* FLGlobalMenuController.h in Headers */,
+				270380DB166EDE1C0082D9D9 /* FLClickablePathViewController.h in Headers */,
+				270380E3166EDFA80082D9D9 /* FLClickablePathView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7419,7 +7469,6 @@
 				2798DAFA166D886500A0863D /* UIImage+Alpha.h in Headers */,
 				2798DB01166D886500A0863D /* UIImage+Resize.h in Headers */,
 				2798DB08166D886500A0863D /* UIImage+RoundedCorner.h in Headers */,
-				2798DB0F166D886500A0863D /* FLGlobalMenuController.h in Headers */,
 				2798DB31166D888500A0863D /* NSObject+SBJson.h in Headers */,
 				2798DB37166D888500A0863D /* SBJson.h in Headers */,
 				2798DB3A166D888500A0863D /* SBJsonParser.h in Headers */,
@@ -7433,6 +7482,10 @@
 				2798DB6A166D888500A0863D /* SBJsonTokeniser.h in Headers */,
 				2798DB70166D888500A0863D /* SBJsonUTF8Stream.h in Headers */,
 				2798DB76166D888500A0863D /* SBJsonWriter.h in Headers */,
+				270380C8166EDDAC0082D9D9 /* FLWizardViewController.h in Headers */,
+				270380D1166EDDC10082D9D9 /* FLGlobalMenuController.h in Headers */,
+				270380DC166EDE1C0082D9D9 /* FLClickablePathViewController.h in Headers */,
+				270380E4166EDFA80082D9D9 /* FLClickablePathView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7938,7 +7991,6 @@
 				2798DAF8166D886500A0863D /* UIImage+Alpha.h in Headers */,
 				2798DAFF166D886500A0863D /* UIImage+Resize.h in Headers */,
 				2798DB06166D886500A0863D /* UIImage+RoundedCorner.h in Headers */,
-				2798DB0D166D886500A0863D /* FLGlobalMenuController.h in Headers */,
 				2798DB2F166D888500A0863D /* NSObject+SBJson.h in Headers */,
 				2798DB35166D888500A0863D /* SBJson.h in Headers */,
 				2798DB38166D888500A0863D /* SBJsonParser.h in Headers */,
@@ -7952,6 +8004,10 @@
 				2798DB68166D888500A0863D /* SBJsonTokeniser.h in Headers */,
 				2798DB6E166D888500A0863D /* SBJsonUTF8Stream.h in Headers */,
 				2798DB74166D888500A0863D /* SBJsonWriter.h in Headers */,
+				270380C6166EDDAC0082D9D9 /* FLWizardViewController.h in Headers */,
+				270380CF166EDDC10082D9D9 /* FLGlobalMenuController.h in Headers */,
+				270380DA166EDE1C0082D9D9 /* FLClickablePathViewController.h in Headers */,
+				270380E2166EDFA80082D9D9 /* FLClickablePathView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8562,7 +8618,6 @@
 				2798DAFD166D886500A0863D /* UIImage+Alpha.m in Sources */,
 				2798DB04166D886500A0863D /* UIImage+Resize.m in Sources */,
 				2798DB0B166D886500A0863D /* UIImage+RoundedCorner.m in Sources */,
-				2798DB12166D886500A0863D /* FLGlobalMenuController.m in Sources */,
 				2798DB33166D888500A0863D /* NSObject+SBJson.m in Sources */,
 				2798DB3C166D888500A0863D /* SBJsonParser.m in Sources */,
 				2798DB42166D888500A0863D /* SBJsonStreamParser.m in Sources */,
@@ -8575,6 +8630,10 @@
 				2798DB6C166D888500A0863D /* SBJsonTokeniser.m in Sources */,
 				2798DB72166D888500A0863D /* SBJsonUTF8Stream.m in Sources */,
 				2798DB78166D888500A0863D /* SBJsonWriter.m in Sources */,
+				270380CA166EDDAC0082D9D9 /* FLWizardViewController.m in Sources */,
+				270380D3166EDDC10082D9D9 /* FLGlobalMenuController.m in Sources */,
+				270380DE166EDE1C0082D9D9 /* FLClickablePathViewController.m in Sources */,
+				270380E6166EDFA80082D9D9 /* FLClickablePathView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9020,7 +9079,6 @@
 				2798DAFE166D886500A0863D /* UIImage+Alpha.m in Sources */,
 				2798DB05166D886500A0863D /* UIImage+Resize.m in Sources */,
 				2798DB0C166D886500A0863D /* UIImage+RoundedCorner.m in Sources */,
-				2798DB13166D886500A0863D /* FLGlobalMenuController.m in Sources */,
 				2798DB34166D888500A0863D /* NSObject+SBJson.m in Sources */,
 				2798DB3D166D888500A0863D /* SBJsonParser.m in Sources */,
 				2798DB43166D888500A0863D /* SBJsonStreamParser.m in Sources */,
@@ -9033,6 +9091,10 @@
 				2798DB6D166D888500A0863D /* SBJsonTokeniser.m in Sources */,
 				2798DB73166D888500A0863D /* SBJsonUTF8Stream.m in Sources */,
 				2798DB79166D888500A0863D /* SBJsonWriter.m in Sources */,
+				270380CB166EDDAC0082D9D9 /* FLWizardViewController.m in Sources */,
+				270380D4166EDDC10082D9D9 /* FLGlobalMenuController.m in Sources */,
+				270380DF166EDE1C0082D9D9 /* FLClickablePathViewController.m in Sources */,
+				270380E7166EDFA80082D9D9 /* FLClickablePathView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9478,7 +9540,6 @@
 				2798DAFB166D886500A0863D /* UIImage+Alpha.m in Sources */,
 				2798DB02166D886500A0863D /* UIImage+Resize.m in Sources */,
 				2798DB09166D886500A0863D /* UIImage+RoundedCorner.m in Sources */,
-				2798DB10166D886500A0863D /* FLGlobalMenuController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9924,7 +9985,6 @@
 				2798DAFC166D886500A0863D /* UIImage+Alpha.m in Sources */,
 				2798DB03166D886500A0863D /* UIImage+Resize.m in Sources */,
 				2798DB0A166D886500A0863D /* UIImage+RoundedCorner.m in Sources */,
-				2798DB11166D886500A0863D /* FLGlobalMenuController.m in Sources */,
 				2798DB32166D888500A0863D /* NSObject+SBJson.m in Sources */,
 				2798DB3B166D888500A0863D /* SBJsonParser.m in Sources */,
 				2798DB41166D888500A0863D /* SBJsonStreamParser.m in Sources */,
@@ -9937,10 +9997,25 @@
 				2798DB6B166D888500A0863D /* SBJsonTokeniser.m in Sources */,
 				2798DB71166D888500A0863D /* SBJsonUTF8Stream.m in Sources */,
 				2798DB77166D888500A0863D /* SBJsonWriter.m in Sources */,
+				270380C9166EDDAC0082D9D9 /* FLWizardViewController.m in Sources */,
+				270380D2166EDDC10082D9D9 /* FLGlobalMenuController.m in Sources */,
+				270380DD166EDE1C0082D9D9 /* FLClickablePathViewController.m in Sources */,
+				270380E5166EDFA80082D9D9 /* FLClickablePathView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		270380C2166EDDAC0082D9D9 /* FLWizardViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				270380C3166EDDAC0082D9D9 /* en */,
+			);
+			name = FLWizardViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		27048EEC161CB58600C38ADA /* Debug */ = {
