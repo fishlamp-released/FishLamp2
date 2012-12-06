@@ -37,7 +37,7 @@
 //	return nil;
 //}
 //
-//- (NSImage_*) thumbnailImage
+//- (SDKImage*) thumbnailImage
 //{
 //	return nil;
 //}

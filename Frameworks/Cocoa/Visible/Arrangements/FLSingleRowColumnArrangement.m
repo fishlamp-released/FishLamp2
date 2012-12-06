@@ -10,8 +10,8 @@
 
 @implementation FLSingleRowColumnArrangement
 
-- (FLSize) layoutArrangeableObjects:(NSArray*) objects
-                         inBounds:(FLRect) bounds {
+- (SDKSize) layoutArrangeableObjects:(NSArray*) objects
+                         inBounds:(SDKRect) bounds {
 	
     CGFloat colWidth = bounds.size.width;
 
@@ -30,7 +30,7 @@
         }
 	}
 		
-	FLPoint origin = bounds.origin;
+	SDKPoint origin = bounds.origin;
     
     CGFloat bottom = bounds.origin.y;
 
@@ -39,7 +39,7 @@
 			continue;
 		}
 		
-		FLRect frame = [self frameForObject:object];
+		SDKRect frame = [self frameForObject:object];
         
         frame.origin = origin;
         

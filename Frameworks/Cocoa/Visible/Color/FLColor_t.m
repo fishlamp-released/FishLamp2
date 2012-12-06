@@ -7,8 +7,9 @@
 //
 
 #import "FLColor_t.h"
+#import "FLColor.h"
 
-@implementation UIColor_ (FLColorUtils)
+@implementation SDKColor (FLColorUtils)
 
 - (FLColor_t) color_t
 {
@@ -17,15 +18,15 @@
    return color;
 }
 
-+ (UIColor_*) colorWithColor_t:(FLColor_t) color
++ (SDKColor*) colorWithColor_t:(FLColor_t) color
 {
 #if IOS
-	return [UIColor_ colorWithRed:color.red 
+	return [SDKColor colorWithRed:color.red 
 								green:color.green 
 								blue:color.blue 
 								alpha:color.alpha ];
 #else
-	return [UIColor_ colorWithDeviceRed:color.red 
+	return [SDKColor colorWithDeviceRed:color.red 
 								green:color.green 
 								blue:color.blue 
 								alpha:color.alpha ];

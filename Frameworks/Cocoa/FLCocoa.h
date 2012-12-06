@@ -7,8 +7,9 @@
 //
 
 #import "FLCore.h"
+#import "SDKCompatibility.h"
+#import "FLGeometry.h"
 #import "NSObject+Copying.h"
 #import "FLBlocks.h"
-#import "FLCocoaCompatibility.h"
 #import "FLResult.h"
 #import "FLDispatchQueue.h"

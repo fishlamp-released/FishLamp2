@@ -7,7 +7,7 @@
 //
 #if 0
 #import "FLJpegFileImageAsset.h"
-#import "UIImageUtilities.h"
+#import "SDKImage.h"
 #import "UIImage+Resize.h"
 #import "FLQueuedAsset.h"
 
@@ -37,7 +37,7 @@ static float s_thumbnailSize = 0.0;
 + (void) initialize {
 
 #if IOS
-	FLRect bounds = [UIScreen mainScreen].bounds;
+	SDKRect bounds = [UIScreen mainScreen].bounds;
 	s_fullSize = MAX(bounds.size.width, bounds.size.height);
 	s_thumbnailSize = DeviceIsPad() ? 120 : 80.0;
 	
@@ -161,9 +161,9 @@ static float s_thumbnailSize = 0.0;
 
 - (void) createThumbnailVersion
 {
-//	NSImage_* thumb = nil;
+//	SDKImage* thumb = nil;
 	
-	NSImage_* startImage = self.original.image;
+	SDKImage* startImage = self.original.image;
 	if(!startImage)
 	{
 		startImage = self.fullScreen.image;
@@ -288,7 +288,7 @@ static float s_thumbnailSize = 0.0;
 	FLReleaseWithNil_(_fullScreenImageFile);
 }
 
-- (NSImage_*) thumbnailImage {
+- (SDKImage*) thumbnailImage {
 
 // FIXME: asset stuff is a mess
 

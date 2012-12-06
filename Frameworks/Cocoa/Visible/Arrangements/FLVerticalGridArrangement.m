@@ -48,8 +48,8 @@
     return autorelease_([[[self class] alloc] initWithCellHeight:cellHeight columnCount:columnCount]);
 }
 
-- (FLSize) layoutArrangeableObjects:(NSArray*) objects
-                           inBounds:(FLRect) bounds {
+- (SDKSize) layoutArrangeableObjects:(NSArray*) objects
+                           inBounds:(SDKRect) bounds {
 
     FLAssert_v(_columnCount > 0, @"can't have zero columns");
     
@@ -66,7 +66,7 @@
     NSInteger rowCount = ((itemCount / _columnCount) + (((itemCount % _columnCount) > 0) ? 1 : 0));
     
     NSInteger itemIndex = 0;
-    FLPoint origin = bounds.origin;
+    SDKPoint origin = bounds.origin;
     
     CGFloat maxBottom = 0;
 
@@ -81,7 +81,7 @@
                 continue;
             }
 
-            FLRect frame = FLRectIntegral(FLRectMake(origin.x, origin.y, cellWidth, _cellHeight));
+            SDKRect frame = FLRectIntegral(FLRectMake(origin.x, origin.y, cellWidth, _cellHeight));
             
             frame = [self setFrame:frame forObject:object];
         

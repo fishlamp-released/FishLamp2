@@ -12,7 +12,7 @@
 
 @implementation NSException (NSError)
 
-FLSynthesizeAssociatedProperty_(retain_nonatomic, _error, setError, NSError*);
+FLSynthesizeAssociatedProperty(retain_nonatomic, _error, setError, NSError*);
 
 - (NSError*) error {
     NSError* error = [self _error];

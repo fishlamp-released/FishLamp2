@@ -13,14 +13,14 @@ static void * const kArrangeableObjectKey = (void*)&kArrangeableObjectKey;
 @interface FLArrangeableObjectState : NSObject {
 @private
     FLArrangeableState _arrangeableState;
-    FLEdgeInsets _arrangeableInsets;
+    SDKEdgeInsets _arrangeableInsets;
     FLArrangeableGrowMode _arrangeableGrowMode;
     FLArrangeableWeight _arrangeableWeight;
 
 }
 + (FLArrangeableObjectState*) arrangebleObjectState;
 @property (readwrite, assign, nonatomic) FLArrangeableState arrangeableState;
-@property (readwrite, assign, nonatomic) FLEdgeInsets arrangeableInsets; // deltas from arrangement.arrangeableInsets
+@property (readwrite, assign, nonatomic) SDKEdgeInsets arrangeableInsets; // deltas from arrangement.arrangeableInsets
 @property (readwrite, assign, nonatomic) FLArrangeableGrowMode arrangeableGrowMode;
 @property (readwrite, assign, nonatomic) FLArrangeableWeight arrangeableWeight;
 
@@ -44,7 +44,7 @@ static void * const kArrangeableObjectKey = (void*)&kArrangeableObjectKey;
 
 @implementation NSObject (FLArrangeable)
 
-FLSynthesizeAssociatedProperty_(retain_nonatomic, arrangeableStateObject, setArrangeableStateObject, FLArrangeableObjectState*);
+FLSynthesizeAssociatedProperty(retain_nonatomic, arrangeableStateObject, setArrangeableStateObject, FLArrangeableObjectState*);
 
 - (FLArrangeableObjectState*) arrangeableStateObjectCreatedIfNeeded {
     FLArrangeableObjectState* object = [self arrangeableStateObject];
@@ -56,12 +56,12 @@ FLSynthesizeAssociatedProperty_(retain_nonatomic, arrangeableStateObject, setArr
     return object;
 }
 
-- (FLEdgeInsets) arrangeableInsets {
+- (SDKEdgeInsets) arrangeableInsets {
     FLArrangeableObjectState* object = [self arrangeableStateObject];
-    return object ? object.arrangeableInsets : FLEdgeInsetsZero;
+    return object ? object.arrangeableInsets : SDKEdgeInsetsZero;
 }
 
-- (void) setFrameInsets:(FLEdgeInsets)arrangeableInsets {
+- (void) setFrameInsets:(SDKEdgeInsets)arrangeableInsets {
     FLArrangeableObjectState* object = [self arrangeableStateObjectCreatedIfNeeded];
     object.arrangeableInsets = arrangeableInsets;
 }

@@ -15,10 +15,10 @@
 
 @interface FLJpegFile : FLFolderFile<FLStorableImage, FLStorableObject> {
 @private
-	NSImage_* _image;
+	SDKImage* _image;
 	NSData* _jpegData;
 	NSDictionary* _properties;
-	FLSize _dimensions;
+	SDKSize _dimensions;
     BOOL _exclusiveMode;
 }
 
@@ -35,7 +35,7 @@
 	folder:(FLFolder*) folder 
 	fileName:(NSString*) fileName;
 
-- (id) initWithImage:(NSImage_*) image 
+- (id) initWithImage:(SDKImage*) image 
 	exifDictionary:(NSDictionary*)exifDictionary
 	folder:(FLFolder*) folder 
 	fileName:(NSString*) fileName;

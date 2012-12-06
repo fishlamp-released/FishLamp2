@@ -10,8 +10,8 @@
 
 @implementation FLFillInBoundsArrangement
 
-- (FLSize) layoutArrangeableObjects:(NSArray*) objects
-                           inBounds:(FLRect) bounds {
+- (SDKSize) layoutArrangeableObjects:(NSArray*) objects
+                           inBounds:(SDKRect) bounds {
 
 	for(id object in objects) {
 		if([object isHidden])  {

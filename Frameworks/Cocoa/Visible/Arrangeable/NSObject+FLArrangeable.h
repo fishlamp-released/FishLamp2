@@ -20,7 +20,7 @@
 // here.
 
 /*
-    @property (readwrite, assign, nonatomic) FLEdgeInsets innerInsets;
+    @property (readwrite, assign, nonatomic) SDKEdgeInsets innerInsets;
     @property (readwrite, assign, nonatomic) FLArrangeableGrowMode arrangeableGrowMode;
     @property (readwrite, assign, nonatomic) FLArrangeableWeight arrangeableWeight;
     @property (readwrite, assign, nonatomic) FLArrangeableState arrangeableState
@@ -33,7 +33,7 @@
 
 
 #define FLDeclareArrangebleObjectProperties() \
-    @property (readwrite, assign, nonatomic) FLEdgeInsets innerInsets; \
+    @property (readwrite, assign, nonatomic) SDKEdgeInsets innerInsets; \
     @property (readwrite, assign, nonatomic) FLArrangeableGrowMode arrangeableGrowMode; \
     @property (readwrite, assign, nonatomic) FLArrangeableWeight arrangeableWeight; \
     @property (readwrite, assign, nonatomic) FLArrangeableState arrangeableState

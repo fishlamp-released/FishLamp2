@@ -11,28 +11,50 @@
 #import "FLClickablePathViewController.h"
 
 @protocol FLWizardViewControllerDelegate;
+@class FLWizardViewController;
+
+@protocol FLWizardPanel <NSObject>
++ (NSString*) localizedWizardPanelTitle;
+
+@optional
+- (void) wizardPanelWillAppear:(FLWizardViewController*) wizard;
+- (void) wizardPanelDidAppear:(FLWizardViewController*) wizard;
+- (void) wizardPanelWillDisappear:(FLWizardViewController*) wizard;
+- (void) wizardPanelDidDisappear:(FLWizardViewController*) wizard;
+- (void) wizardPanelWasCancelled:(FLWizardViewController*) wizard;
+@end
+
+typedef NSViewController<FLWizardPanel> FLWizardPanelController;
 
 @interface FLWizardViewController : NSViewController<FLClickablePathViewControllerDelegate> {
 @private
+    IBOutlet NSButton* _nextButton;
+    IBOutlet NSButton* _previousButton;
+    IBOutlet NSButton* _cancelButton;
+    IBOutlet NSTextField* _titleTextField;
+
     NSMutableArray* _viewStack;
-    NSButton* _nextButton;
-    NSButton* _previousButton;
-    NSButton* _cancelButton;
+    NSArray* _panelClasses;
+    int _currentPanel;
     
-    id<FLWizardViewControllerDelegate> _delegate;
+    IBOutlet id<FLWizardViewControllerDelegate> _delegate;
 }
 
-@property (readwrite, strong, nonatomic) IBOutlet NSButton* nextButton;
-@property (readwrite, strong, nonatomic) IBOutlet NSButton* previousButton;
-@property (readwrite, strong, nonatomic) IBOutlet NSButton* cancelButton;
-@property (readonly, strong, nonatomic) NSViewController* visibleViewController;
-@property (readwrite, assign, nonatomic) IBOutlet id<FLWizardViewControllerDelegate> delegate;
+- (void) startWizardWithPanelClasses:(NSArray*) panelClasses;
 
-- (NSViewController*) popViewControllerAnimated:(BOOL) animated;
-- (void) pushViewController:(NSViewController*) viewController animated:(BOOL) animated;
+@property (readonly, strong, nonatomic) NSButton* nextButton;
+@property (readonly, strong, nonatomic) NSButton* previousButton;
+@property (readonly, strong, nonatomic) NSButton* cancelButton;
+@property (readonly, strong, nonatomic) NSTextField* titleTextField;
 
+@property (readwrite, assign, nonatomic) IBOutlet id<FLWizardViewControllerDelegate> wizardViewControllerDelegate;
+
+- (IBAction) nextPanel:(id) sender;
+- (IBAction) prevPanel:(id) sender;
+- (IBAction) cancel:(id) sender;
 @end
 
 @protocol FLWizardViewControllerDelegate <NSObject>
 
 @end
+

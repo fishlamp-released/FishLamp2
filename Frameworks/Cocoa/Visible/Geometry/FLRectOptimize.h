@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+#import "SDKRect.h"
+#import "SDKPoint.h"
+
 /* 
 	Regarding FLRectOptimize
 
@@ -24,14 +27,14 @@
 
 #if DEBUG
 
-extern FLSize FLSizeOptimizeForView(FLSize aSize);
+extern SDKSize FLSizeOptimizeForView(SDKSize aSize);
 
 // optimizing location and size for view frames
-extern BOOL FLRectWidthIsOptimizedForView(FLRect r);
-extern BOOL FLRectHeightIsOptimizedForView(FLRect r);
-extern BOOL FLRectIsOptimizedForView(FLRect r);
-extern FLRect FLRectOptimizedForViewSize(FLRect r);
-extern FLRect FLRectOptimizedForViewLocation(FLRect r);
+extern BOOL FLRectWidthIsOptimizedForView(SDKRect r);
+extern BOOL FLRectHeightIsOptimizedForView(SDKRect r);
+extern BOOL FLRectIsOptimizedForView(SDKRect r);
+extern SDKRect FLRectOptimizedForViewSize(SDKRect r);
+extern SDKRect FLRectOptimizedForViewLocation(SDKRect r);
 
 
 #define FLWarnIfRectIsNotOptimizedForView(r) if(!FLRectIsOptimizedForView(r)) FLDebugLog(@"%s is not optimized for view", #r)
@@ -43,7 +46,7 @@ extern FLRect FLRectOptimizedForViewLocation(FLRect r);
 #define FLAssertRectOptimizedForView_v(r)
 
 
-#import "_FLRectOptimize.h"
+#import "SDKRectOptimize_Inlines.h"
 
 #endif
 

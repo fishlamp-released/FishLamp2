@@ -218,13 +218,13 @@ static NSDictionary* s_suffixes = nil;
 //    
 //    CGImageDestinationRef imageSourceRef = nil;
 //    @try {
-//        NSImage_* image = self.image;
+//        SDKImage* image = self.image;
 //        FLAssertIsNotNil_v(image, nil);
 //
 //#if IOS        
 //        CGImageRef imageRef = image.CGImage;
 //#else
-//// TODO: (how to get CGImage from NSImage_?)
+//// TODO: (how to get CGImage from SDKImage?)
 //        
 //        CGImageRef imageRef = nil;
 //        

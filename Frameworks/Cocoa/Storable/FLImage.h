@@ -20,7 +20,7 @@ extern NSString* const FLImageTypeOriginal;
 
 @interface FLImage : FLStorable {
 @private
-	NSImage_* _image;
+	SDKImage* _image;
 	NSData* _imageData;
 	NSDictionary* _exifDictionary;
     FLImageProperties* _imageProperties;
@@ -30,27 +30,27 @@ extern NSString* const FLImageTypeOriginal;
 @property (readwrite, strong) FLImageProperties* imageProperties;
 @property (readwrite, strong) id<FLImageStorageStrategy>  storageStrategy;
 
-@property (readonly, strong, nonatomic) NSImage_* image;
+@property (readonly, strong, nonatomic) SDKImage* image;
 @property (readonly, strong, nonatomic) NSData* imageData;
 @property (readwrite, strong, nonatomic) NSDictionary* exifDictionary;
 
 - (id) initWithImageProperties:(FLImageProperties*) imageProperties 
                storageStrategy:(id<FLImageStorageStrategy>) storageStrategy;
 
-- (id) initWithImage:(NSImage_*) imageOrNil
+- (id) initWithImage:(SDKImage*) imageOrNil
       exifDictionary:(NSDictionary*) exifDictionaryOrNil 
            imageData:(NSData*) imageDataOrNil;
 
 + (id) image;
 
-+ (id) imageWithImage:(NSImage_*) image 
++ (id) imageWithImage:(SDKImage*) image 
        exifDictionary:(NSDictionary*) exifDictionary
             imageData:(NSData*) imageData;
 
 + (id) imageWithImageProperties:(FLImageProperties*) imageProperties 
                 storageStrategy:(id<FLImageStorageStrategy>) storageStrategy;
 
-- (void) setImage:(NSImage_*) image 
+- (void) setImage:(SDKImage*) image 
    exifDictionary:(NSDictionary*) exifDictionary
         imageData:(NSData*) imageData;
 
@@ -60,10 +60,10 @@ extern NSString* const FLImageTypeOriginal;
 
 @interface FLImage (ExtendedConstruction)
 
-- (id) initWithImage:(NSImage_*) image;
+- (id) initWithImage:(SDKImage*) image;
 - (id) initWithData:(NSData*) data;
 + (id) imageWithData:(NSData*) imageData;
-+ (id) imageWithImage:(NSImage_*) image exifDictionary:(NSDictionary*) exifDictionary;
++ (id) imageWithImage:(SDKImage*) image exifDictionary:(NSDictionary*) exifDictionary;
 + (id) imageWithImageProperties:(FLImageProperties*) imageProperties;
 - (id) initWithImageProperties:(FLImageProperties*) imageProperties;
 

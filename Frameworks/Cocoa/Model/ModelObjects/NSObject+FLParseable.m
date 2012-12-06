@@ -53,5 +53,5 @@
 @end
 
 @implementation NSObject (FLParseable)
-FLSynthesizeAssociatedProperty_(retain_nonatomic, parseInfo, setParseInfo, FLParseInfo*);
+FLSynthesizeAssociatedProperty(retain_nonatomic, parseInfo, setParseInfo, FLParseInfo*);
 @end

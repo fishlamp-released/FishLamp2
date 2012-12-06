@@ -13,7 +13,7 @@ NSString* const FLImageTypePreview =    @"com.fishlamp.image.preview";
 NSString* const FLImageTypeOriginal =   @"com.fishlamp.image.original";
 
 @interface FLImage ()
-@property (readwrite, strong, nonatomic) NSImage_* image;
+@property (readwrite, strong, nonatomic) SDKImage* image;
 @property (readwrite, strong, nonatomic) NSData* imageData;
 //@property (readwrite, strong, nonatomic) NSDictionary* exifDictionary;
 @end
@@ -30,7 +30,7 @@ NSString* const FLImageTypeOriginal =   @"com.fishlamp.image.original";
     return [self initWithImage:nil exifDictionary:nil imageData:nil];
 }
 
-- (id) initWithImage:(NSImage_*) image 
+- (id) initWithImage:(SDKImage*) image 
       exifDictionary:(NSDictionary*) exifDictionary 
            imageData:(NSData*) imageData  {
     
@@ -62,13 +62,13 @@ NSString* const FLImageTypeOriginal =   @"com.fishlamp.image.original";
     return autorelease_([[[self class] alloc] initWithImage:nil exifDictionary:nil imageData:nil ]);
 }
 
-+ (id) imageWithImage:(NSImage_*) image 
++ (id) imageWithImage:(SDKImage*) image 
              exifDictionary:(NSDictionary*)exifDictionary
             imageData:(NSData*) imageData {
     return autorelease_([[[self class] alloc] initWithImage:image exifDictionary:exifDictionary imageData:imageData]);
 }            
 
-- (void) setImage:(NSImage_*) image 
+- (void) setImage:(SDKImage*) image 
    exifDictionary:(NSDictionary*) exifDictionary 
         imageData:(NSData*) imageData {
     
@@ -112,13 +112,13 @@ NSString* const FLImageTypeOriginal =   @"com.fishlamp.image.original";
 
 @implementation FLImage (ExtendedConstruction)
 
-- (id) initWithImage:(NSImage_*) image 
+- (id) initWithImage:(SDKImage*) image 
             exifDictionary:(NSDictionary*) exifDictionary {
 	
     return [self initWithImage:image exifDictionary:exifDictionary imageData:nil];
 }
 
-- (id) initWithImage:(NSImage_*) image {
+- (id) initWithImage:(SDKImage*) image {
     return [self initWithImage:image exifDictionary:nil imageData:nil];
 }
 
@@ -130,7 +130,7 @@ NSString* const FLImageTypeOriginal =   @"com.fishlamp.image.original";
     return autorelease_([[[self class] alloc] initWithData:imageData]);
 }
 
-+ (id) imageWithImage:(NSImage_*) image exifDictionary:(NSDictionary*) exifDictionary{
++ (id) imageWithImage:(SDKImage*) image exifDictionary:(NSDictionary*) exifDictionary{
     return autorelease_([[[self class] alloc] initWithImage:image exifDictionary:exifDictionary]);
 }
 
@@ -147,10 +147,10 @@ NSString* const FLImageTypeOriginal =   @"com.fishlamp.image.original";
 
 
 
-//- (void) setImage:(NSImage_*) image {
+//- (void) setImage:(SDKImage*) image {
 //    [self setImage:image imageData:nil exifDictionary:nil];
 //}
 //
-//- (void) setImage:(NSImage_*) image exifDictionary:(NSDictionary*) exif {
+//- (void) setImage:(SDKImage*) image exifDictionary:(NSDictionary*) exif {
 //    [self setImage:image imageData:nil exifDictionary:exif];
 //}

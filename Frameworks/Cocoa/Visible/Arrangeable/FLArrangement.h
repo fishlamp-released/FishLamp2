@@ -11,25 +11,25 @@
 #import "FishLampCore.h"
 #import "FLArrangeable.h"
 #import "FLArrangeableContainer.h"
-#import "FLEdgeInsets.h"
+#import "SDKEdgeInsets.h"
 
 @class FLArrangement;
 
-typedef void (^FLArrangementWillLayoutBlock)(id arrangement, FLRect bounds);
-typedef void (^FLArrangementFrameSetter)(id view, FLRect newFrame); 
+typedef void (^FLArrangementWillLayoutBlock)(id arrangement, SDKRect bounds);
+typedef void (^FLArrangementFrameSetter)(id view, SDKRect newFrame); 
 
 @interface FLArrangement : NSObject {
 @private
-	FLEdgeInsets _outerInsets;
-	FLEdgeInsets _innerInsets;
+	SDKEdgeInsets _outerInsets;
+	SDKEdgeInsets _innerInsets;
     
     FLArrangementWillLayoutBlock _onWillArrange;
     FLArrangementFrameSetter _frameSetter;
 }
 
-@property (readwrite, assign, nonatomic) FLEdgeInsets outerInsets;
+@property (readwrite, assign, nonatomic) SDKEdgeInsets outerInsets;
 
-@property (readwrite, assign, nonatomic) FLEdgeInsets innerInsets;
+@property (readwrite, assign, nonatomic) SDKEdgeInsets innerInsets;
 
 @property (readwrite, copy, nonatomic) FLArrangementFrameSetter frameSetter;
  
@@ -38,20 +38,20 @@ typedef void (^FLArrangementFrameSetter)(id view, FLRect newFrame);
 + (id) arrangement;
 
 // each item must implement methods in FLArrangeable
-- (FLSize) performArrangement:(NSArray*) arrayOfArrangeabeFrames
-                     inBounds:(FLRect) bounds;
+- (SDKSize) performArrangement:(NSArray*) arrayOfArrangeabeFrames
+                     inBounds:(SDKRect) bounds;
 
 // utils for subclasses.
 
-- (FLRect) setFrame:(FLRect) frame
+- (SDKRect) setFrame:(SDKRect) frame
           forObject:(id) object;
 
-- (FLRect) frameForObject:(id) object;
+- (SDKRect) frameForObject:(id) object;
 
 // override point. Returns size of new bounds - can be same size as input bounds.
 // each item must implement methods in FLArrangeable
-- (FLSize) layoutArrangeableObjects:(NSArray*) objects
-                           inBounds:(FLRect) bounds;
+- (SDKSize) layoutArrangeableObjects:(NSArray*) objects
+                           inBounds:(SDKRect) bounds;
 
 + (FLArrangementFrameSetter) defaultFrameSetter;
 

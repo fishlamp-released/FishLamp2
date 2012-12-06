@@ -11,9 +11,8 @@
 #import "FLDateMgr.h"
 #import "FLStringUtils.h"
 #import "FLBase64Encoding.h"
-#import "UIColor+FLExtras.h"
-#import "FLCocoaCompatibility.h"
-#import "NSValue+FLCocoaCompatibility.h"
+#import "FLColor.h"
+
 
 @implementation FLSoapDataEncoder
 
@@ -67,15 +66,15 @@ FLSynthesizeSingleton(FLSoapDataEncoder);
 		break;
 	
         case FLDataTypePoint:
-            *outString = retain_(NSStringFromFLPoint([data FLPointValue]));
+            *outString = retain_(FLStringFromPoint([data SDKPointValue]));
             break;
             
         case FLDataTypeRect:
-            *outString = retain_(NSStringFromFLRect([data FLRectValue]));
+            *outString = retain_(NSStringFromSDKRect([data SDKRectValue]));
             break;
 
         case FLDataTypeSize:
-            *outString = retain_(NSStringFromFLSize([data FLSizeValue]));
+            *outString = retain_(NSStringFromSDKSize([data SDKSizeValue]));
             break;
 
         case FLDataTypeValue:
@@ -137,19 +136,19 @@ FLSynthesizeSingleton(FLSoapDataEncoder);
 		break;
         
         case FLDataTypeColor:
-            *outDecodedObject = retain_([UIColor_ colorWithRgbString:encodedDataString]);
+            *outDecodedObject = retain_([SDKColor colorWithRgbString:encodedDataString]);
         break;
 	
         case FLDataTypePoint:
-            *outDecodedObject = retain_([NSValue valueWithFLPoint:FLPointFromString(encodedDataString)]);
+            *outDecodedObject = retain_([NSValue valueWithSDKPoint:FLPointFromString(encodedDataString)]);
             break;
             
         case FLDataTypeRect:
-            *outDecodedObject = retain_([NSValue valueWithFLRect:FLRectFromString(encodedDataString)]);
+            *outDecodedObject = retain_([NSValue valueWithSDKRect:FLRectFromString(encodedDataString)]);
             break;
         
         case FLDataTypeSize:
-            *outDecodedObject = retain_([NSValue valueWithFLSize:FLSizeFromString(encodedDataString)]);
+            *outDecodedObject = retain_([NSValue valueWithSDKSize:FLSizeFromString(encodedDataString)]);
             break;
         
         case FLDataTypeURL:

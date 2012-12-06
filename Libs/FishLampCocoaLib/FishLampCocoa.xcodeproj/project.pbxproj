@@ -31,6 +31,82 @@
 		270380E5166EDFA80082D9D9 /* FLClickablePathView.m in Sources */ = {isa = PBXBuildFile; fileRef = 270380E1166EDFA80082D9D9 /* FLClickablePathView.m */; };
 		270380E6166EDFA80082D9D9 /* FLClickablePathView.m in Sources */ = {isa = PBXBuildFile; fileRef = 270380E1166EDFA80082D9D9 /* FLClickablePathView.m */; };
 		270380E7166EDFA80082D9D9 /* FLClickablePathView.m in Sources */ = {isa = PBXBuildFile; fileRef = 270380E1166EDFA80082D9D9 /* FLClickablePathView.m */; };
+		273FC193166FB7AE0072C62A /* NSView+FLAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 273FC191166FB7AE0072C62A /* NSView+FLAdditions.h */; };
+		273FC194166FB7AE0072C62A /* NSView+FLAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 273FC191166FB7AE0072C62A /* NSView+FLAdditions.h */; };
+		273FC195166FB7AE0072C62A /* NSView+FLAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 273FC191166FB7AE0072C62A /* NSView+FLAdditions.h */; };
+		273FC196166FB7AE0072C62A /* NSView+FLAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 273FC192166FB7AE0072C62A /* NSView+FLAdditions.m */; };
+		273FC197166FB7AE0072C62A /* NSView+FLAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 273FC192166FB7AE0072C62A /* NSView+FLAdditions.m */; };
+		273FC198166FB7AE0072C62A /* NSView+FLAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 273FC192166FB7AE0072C62A /* NSView+FLAdditions.m */; };
+		273FC1B5166FC1750072C62A /* FLColor.h in Headers */ = {isa = PBXBuildFile; fileRef = 273FC1B3166FC1740072C62A /* FLColor.h */; };
+		273FC1B6166FC1750072C62A /* FLColor.h in Headers */ = {isa = PBXBuildFile; fileRef = 273FC1B3166FC1740072C62A /* FLColor.h */; };
+		273FC1B7166FC1750072C62A /* FLColor.h in Headers */ = {isa = PBXBuildFile; fileRef = 273FC1B3166FC1740072C62A /* FLColor.h */; };
+		273FC22E166FD74F0072C62A /* SDKCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 273FC20E166FD74F0072C62A /* SDKCompatibility.h */; };
+		273FC22F166FD74F0072C62A /* SDKCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 273FC20E166FD74F0072C62A /* SDKCompatibility.h */; };
+		273FC230166FD74F0072C62A /* SDKCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 273FC20E166FD74F0072C62A /* SDKCompatibility.h */; };
+		273FC235166FD74F0072C62A /* SDKColor.h in Headers */ = {isa = PBXBuildFile; fileRef = 273FC210166FD74F0072C62A /* SDKColor.h */; };
+		273FC236166FD74F0072C62A /* SDKColor.h in Headers */ = {isa = PBXBuildFile; fileRef = 273FC210166FD74F0072C62A /* SDKColor.h */; };
+		273FC237166FD74F0072C62A /* SDKColor.h in Headers */ = {isa = PBXBuildFile; fileRef = 273FC210166FD74F0072C62A /* SDKColor.h */; };
+		273FC23C166FD74F0072C62A /* SDKEdgeInsets.h in Headers */ = {isa = PBXBuildFile; fileRef = 273FC212166FD74F0072C62A /* SDKEdgeInsets.h */; };
+		273FC23D166FD74F0072C62A /* SDKEdgeInsets.h in Headers */ = {isa = PBXBuildFile; fileRef = 273FC212166FD74F0072C62A /* SDKEdgeInsets.h */; };
+		273FC23E166FD74F0072C62A /* SDKEdgeInsets.h in Headers */ = {isa = PBXBuildFile; fileRef = 273FC212166FD74F0072C62A /* SDKEdgeInsets.h */; };
+		273FC23F166FD74F0072C62A /* SDKEdgeInsets.m in Sources */ = {isa = PBXBuildFile; fileRef = 273FC213166FD74F0072C62A /* SDKEdgeInsets.m */; };
+		273FC240166FD74F0072C62A /* SDKEdgeInsets.m in Sources */ = {isa = PBXBuildFile; fileRef = 273FC213166FD74F0072C62A /* SDKEdgeInsets.m */; };
+		273FC241166FD74F0072C62A /* SDKEdgeInsets.m in Sources */ = {isa = PBXBuildFile; fileRef = 273FC213166FD74F0072C62A /* SDKEdgeInsets.m */; };
+		273FC242166FD74F0072C62A /* SDKEdgeInsets.m in Sources */ = {isa = PBXBuildFile; fileRef = 273FC213166FD74F0072C62A /* SDKEdgeInsets.m */; };
+		273FC243166FD74F0072C62A /* SDKImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 273FC214166FD74F0072C62A /* SDKImage.h */; };
+		273FC244166FD74F0072C62A /* SDKImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 273FC214166FD74F0072C62A /* SDKImage.h */; };
+		273FC245166FD74F0072C62A /* SDKImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 273FC214166FD74F0072C62A /* SDKImage.h */; };
+		273FC246166FD74F0072C62A /* SDKImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 273FC215166FD74F0072C62A /* SDKImage.m */; };
+		273FC247166FD74F0072C62A /* SDKImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 273FC215166FD74F0072C62A /* SDKImage.m */; };
+		273FC248166FD74F0072C62A /* SDKImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 273FC215166FD74F0072C62A /* SDKImage.m */; };
+		273FC249166FD74F0072C62A /* SDKImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 273FC215166FD74F0072C62A /* SDKImage.m */; };
+		273FC24A166FD74F0072C62A /* SDKPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = 273FC216166FD74F0072C62A /* SDKPoint.h */; };
+		273FC24B166FD74F0072C62A /* SDKPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = 273FC216166FD74F0072C62A /* SDKPoint.h */; };
+		273FC24C166FD74F0072C62A /* SDKPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = 273FC216166FD74F0072C62A /* SDKPoint.h */; };
+		273FC24D166FD74F0072C62A /* SDKRect.h in Headers */ = {isa = PBXBuildFile; fileRef = 273FC217166FD74F0072C62A /* SDKRect.h */; };
+		273FC24E166FD74F0072C62A /* SDKRect.h in Headers */ = {isa = PBXBuildFile; fileRef = 273FC217166FD74F0072C62A /* SDKRect.h */; };
+		273FC24F166FD74F0072C62A /* SDKRect.h in Headers */ = {isa = PBXBuildFile; fileRef = 273FC217166FD74F0072C62A /* SDKRect.h */; };
+		273FC25B166FD74F0072C62A /* SDKValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 273FC21B166FD74F0072C62A /* SDKValue.h */; };
+		273FC25C166FD74F0072C62A /* SDKValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 273FC21B166FD74F0072C62A /* SDKValue.h */; };
+		273FC25D166FD74F0072C62A /* SDKValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 273FC21B166FD74F0072C62A /* SDKValue.h */; };
+		273FC25E166FD74F0072C62A /* SDKValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 273FC21C166FD74F0072C62A /* SDKValue.m */; };
+		273FC25F166FD74F0072C62A /* SDKValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 273FC21C166FD74F0072C62A /* SDKValue.m */; };
+		273FC260166FD74F0072C62A /* SDKValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 273FC21C166FD74F0072C62A /* SDKValue.m */; };
+		273FC261166FD74F0072C62A /* SDKValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 273FC21C166FD74F0072C62A /* SDKValue.m */; };
+		273FC263166FDB840072C62A /* FLCoreFoundation.h in Headers */ = {isa = PBXBuildFile; fileRef = 273FC262166FDB840072C62A /* FLCoreFoundation.h */; };
+		273FC264166FDB840072C62A /* FLCoreFoundation.h in Headers */ = {isa = PBXBuildFile; fileRef = 273FC262166FDB840072C62A /* FLCoreFoundation.h */; };
+		273FC265166FDB840072C62A /* FLCoreFoundation.h in Headers */ = {isa = PBXBuildFile; fileRef = 273FC262166FDB840072C62A /* FLCoreFoundation.h */; };
+		273FC27F166FDF0B0072C62A /* SDKColor+FLMoreColors.h in Headers */ = {isa = PBXBuildFile; fileRef = 273FC27D166FDF090072C62A /* SDKColor+FLMoreColors.h */; };
+		273FC280166FDF0B0072C62A /* SDKColor+FLMoreColors.h in Headers */ = {isa = PBXBuildFile; fileRef = 273FC27D166FDF090072C62A /* SDKColor+FLMoreColors.h */; };
+		273FC281166FDF0B0072C62A /* SDKColor+FLMoreColors.h in Headers */ = {isa = PBXBuildFile; fileRef = 273FC27D166FDF090072C62A /* SDKColor+FLMoreColors.h */; };
+		273FC282166FDF0B0072C62A /* SDKColor+FLMoreColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 273FC27E166FDF0A0072C62A /* SDKColor+FLMoreColors.m */; };
+		273FC283166FDF0B0072C62A /* SDKColor+FLMoreColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 273FC27E166FDF0A0072C62A /* SDKColor+FLMoreColors.m */; };
+		273FC284166FDF0B0072C62A /* SDKColor+FLMoreColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 273FC27E166FDF0A0072C62A /* SDKColor+FLMoreColors.m */; };
+		273FC285166FDF0B0072C62A /* SDKColor+FLMoreColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 273FC27E166FDF0A0072C62A /* SDKColor+FLMoreColors.m */; };
+		273FC289166FDF810072C62A /* SDKColor+FLUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 273FC287166FDF7F0072C62A /* SDKColor+FLUtils.h */; };
+		273FC28A166FDF810072C62A /* SDKColor+FLUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 273FC287166FDF7F0072C62A /* SDKColor+FLUtils.h */; };
+		273FC28B166FDF810072C62A /* SDKColor+FLUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 273FC287166FDF7F0072C62A /* SDKColor+FLUtils.h */; };
+		273FC28C166FDF810072C62A /* SDKColor+FLUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 273FC288166FDF800072C62A /* SDKColor+FLUtils.m */; };
+		273FC28D166FDF810072C62A /* SDKColor+FLUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 273FC288166FDF800072C62A /* SDKColor+FLUtils.m */; };
+		273FC28E166FDF810072C62A /* SDKColor+FLUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 273FC288166FDF800072C62A /* SDKColor+FLUtils.m */; };
+		273FC28F166FDF810072C62A /* SDKColor+FLUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 273FC288166FDF800072C62A /* SDKColor+FLUtils.m */; };
+		273FC291166FE07C0072C62A /* FLImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 273FC290166FE07B0072C62A /* FLImage.h */; };
+		273FC292166FE07C0072C62A /* FLImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 273FC290166FE07B0072C62A /* FLImage.h */; };
+		273FC293166FE07C0072C62A /* FLImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 273FC290166FE07B0072C62A /* FLImage.h */; };
+		273FC296166FE0990072C62A /* SDKImage+FLColorize.h in Headers */ = {isa = PBXBuildFile; fileRef = 273FC294166FE0980072C62A /* SDKImage+FLColorize.h */; };
+		273FC297166FE0990072C62A /* SDKImage+FLColorize.h in Headers */ = {isa = PBXBuildFile; fileRef = 273FC294166FE0980072C62A /* SDKImage+FLColorize.h */; };
+		273FC298166FE0990072C62A /* SDKImage+FLColorize.h in Headers */ = {isa = PBXBuildFile; fileRef = 273FC294166FE0980072C62A /* SDKImage+FLColorize.h */; };
+		273FC299166FE0990072C62A /* SDKImage+FLColorize.m in Sources */ = {isa = PBXBuildFile; fileRef = 273FC295166FE0990072C62A /* SDKImage+FLColorize.m */; };
+		273FC29A166FE0990072C62A /* SDKImage+FLColorize.m in Sources */ = {isa = PBXBuildFile; fileRef = 273FC295166FE0990072C62A /* SDKImage+FLColorize.m */; };
+		273FC29B166FE0990072C62A /* SDKImage+FLColorize.m in Sources */ = {isa = PBXBuildFile; fileRef = 273FC295166FE0990072C62A /* SDKImage+FLColorize.m */; };
+		273FC29C166FE0990072C62A /* SDKImage+FLColorize.m in Sources */ = {isa = PBXBuildFile; fileRef = 273FC295166FE0990072C62A /* SDKImage+FLColorize.m */; };
+		273FC29F166FE0AE0072C62A /* SDKImage+FLUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 273FC29D166FE0AD0072C62A /* SDKImage+FLUtils.h */; };
+		273FC2A0166FE0AE0072C62A /* SDKImage+FLUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 273FC29D166FE0AD0072C62A /* SDKImage+FLUtils.h */; };
+		273FC2A1166FE0AE0072C62A /* SDKImage+FLUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 273FC29D166FE0AD0072C62A /* SDKImage+FLUtils.h */; };
+		273FC2A2166FE0AE0072C62A /* SDKImage+FLUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 273FC29E166FE0AE0072C62A /* SDKImage+FLUtils.m */; };
+		273FC2A3166FE0AE0072C62A /* SDKImage+FLUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 273FC29E166FE0AE0072C62A /* SDKImage+FLUtils.m */; };
+		273FC2A4166FE0AE0072C62A /* SDKImage+FLUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 273FC29E166FE0AE0072C62A /* SDKImage+FLUtils.m */; };
+		273FC2A5166FE0AE0072C62A /* SDKImage+FLUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 273FC29E166FE0AE0072C62A /* SDKImage+FLUtils.m */; };
 		2798CE62166D886500A0863D /* FLContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CA42166D886400A0863D /* FLContext.h */; };
 		2798CE63166D886500A0863D /* FLContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CA42166D886400A0863D /* FLContext.h */; };
 		2798CE64166D886500A0863D /* FLContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CA42166D886400A0863D /* FLContext.h */; };
@@ -2657,51 +2733,6 @@
 		2798D8A1166D886500A0863D /* FLColorRange.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CD8E166D886500A0863D /* FLColorRange.m */; };
 		2798D8A2166D886500A0863D /* FLColorRange.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CD8E166D886500A0863D /* FLColorRange.m */; };
 		2798D8A3166D886500A0863D /* FLColorRange.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CD8E166D886500A0863D /* FLColorRange.m */; };
-		2798D8A4166D886500A0863D /* UIColor+FLExtras.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CD8F166D886500A0863D /* UIColor+FLExtras.h */; };
-		2798D8A5166D886500A0863D /* UIColor+FLExtras.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CD8F166D886500A0863D /* UIColor+FLExtras.h */; };
-		2798D8A6166D886500A0863D /* UIColor+FLExtras.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CD8F166D886500A0863D /* UIColor+FLExtras.h */; };
-		2798D8A7166D886500A0863D /* UIColor+FLExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CD90166D886500A0863D /* UIColor+FLExtras.m */; };
-		2798D8A8166D886500A0863D /* UIColor+FLExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CD90166D886500A0863D /* UIColor+FLExtras.m */; };
-		2798D8A9166D886500A0863D /* UIColor+FLExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CD90166D886500A0863D /* UIColor+FLExtras.m */; };
-		2798D8AA166D886500A0863D /* UIColor+FLExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CD90166D886500A0863D /* UIColor+FLExtras.m */; };
-		2798D8AB166D886500A0863D /* UIColor+FLMoreColors.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CD91166D886500A0863D /* UIColor+FLMoreColors.h */; };
-		2798D8AC166D886500A0863D /* UIColor+FLMoreColors.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CD91166D886500A0863D /* UIColor+FLMoreColors.h */; };
-		2798D8AD166D886500A0863D /* UIColor+FLMoreColors.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CD91166D886500A0863D /* UIColor+FLMoreColors.h */; };
-		2798D8AE166D886500A0863D /* UIColor+FLMoreColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CD92166D886500A0863D /* UIColor+FLMoreColors.m */; };
-		2798D8AF166D886500A0863D /* UIColor+FLMoreColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CD92166D886500A0863D /* UIColor+FLMoreColors.m */; };
-		2798D8B0166D886500A0863D /* UIColor+FLMoreColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CD92166D886500A0863D /* UIColor+FLMoreColors.m */; };
-		2798D8B1166D886500A0863D /* UIColor+FLMoreColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CD92166D886500A0863D /* UIColor+FLMoreColors.m */; };
-		2798D8B2166D886500A0863D /* FLCocoaCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CD94166D886500A0863D /* FLCocoaCompatibility.h */; };
-		2798D8B3166D886500A0863D /* FLCocoaCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CD94166D886500A0863D /* FLCocoaCompatibility.h */; };
-		2798D8B4166D886500A0863D /* FLCocoaCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CD94166D886500A0863D /* FLCocoaCompatibility.h */; };
-		2798D8B5166D886500A0863D /* FLCocoaCompatibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CD95166D886500A0863D /* FLCocoaCompatibility.m */; };
-		2798D8B6166D886500A0863D /* FLCocoaCompatibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CD95166D886500A0863D /* FLCocoaCompatibility.m */; };
-		2798D8B7166D886500A0863D /* FLCocoaCompatibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CD95166D886500A0863D /* FLCocoaCompatibility.m */; };
-		2798D8B8166D886500A0863D /* FLCocoaCompatibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CD95166D886500A0863D /* FLCocoaCompatibility.m */; };
-		2798D8B9166D886500A0863D /* FLCoreFoundation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CD96166D886500A0863D /* FLCoreFoundation.h */; };
-		2798D8BA166D886500A0863D /* FLCoreFoundation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CD96166D886500A0863D /* FLCoreFoundation.h */; };
-		2798D8BB166D886500A0863D /* FLCoreFoundation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CD96166D886500A0863D /* FLCoreFoundation.h */; };
-		2798D8BC166D886500A0863D /* FLiOSCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CD97166D886500A0863D /* FLiOSCompatibility.h */; };
-		2798D8BD166D886500A0863D /* FLiOSCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CD97166D886500A0863D /* FLiOSCompatibility.h */; };
-		2798D8BE166D886500A0863D /* FLiOSCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CD97166D886500A0863D /* FLiOSCompatibility.h */; };
-		2798D8BF166D886500A0863D /* FLiOSCompatibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CD98166D886500A0863D /* FLiOSCompatibility.m */; };
-		2798D8C0166D886500A0863D /* FLiOSCompatibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CD98166D886500A0863D /* FLiOSCompatibility.m */; };
-		2798D8C1166D886500A0863D /* FLiOSCompatibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CD98166D886500A0863D /* FLiOSCompatibility.m */; };
-		2798D8C2166D886500A0863D /* FLiOSCompatibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CD98166D886500A0863D /* FLiOSCompatibility.m */; };
-		2798D8C3166D886500A0863D /* FLOSXCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CD99166D886500A0863D /* FLOSXCompatibility.h */; };
-		2798D8C4166D886500A0863D /* FLOSXCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CD99166D886500A0863D /* FLOSXCompatibility.h */; };
-		2798D8C5166D886500A0863D /* FLOSXCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CD99166D886500A0863D /* FLOSXCompatibility.h */; };
-		2798D8C6166D886500A0863D /* FLOSXCompatibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CD9A166D886500A0863D /* FLOSXCompatibility.m */; };
-		2798D8C7166D886500A0863D /* FLOSXCompatibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CD9A166D886500A0863D /* FLOSXCompatibility.m */; };
-		2798D8C8166D886500A0863D /* FLOSXCompatibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CD9A166D886500A0863D /* FLOSXCompatibility.m */; };
-		2798D8C9166D886500A0863D /* FLOSXCompatibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CD9A166D886500A0863D /* FLOSXCompatibility.m */; };
-		2798D8CA166D886500A0863D /* NSValue+FLCocoaCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CD9B166D886500A0863D /* NSValue+FLCocoaCompatibility.h */; };
-		2798D8CB166D886500A0863D /* NSValue+FLCocoaCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CD9B166D886500A0863D /* NSValue+FLCocoaCompatibility.h */; };
-		2798D8CC166D886500A0863D /* NSValue+FLCocoaCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CD9B166D886500A0863D /* NSValue+FLCocoaCompatibility.h */; };
-		2798D8CD166D886500A0863D /* NSValue+FLCocoaCompatibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CD9C166D886500A0863D /* NSValue+FLCocoaCompatibility.m */; };
-		2798D8CE166D886500A0863D /* NSValue+FLCocoaCompatibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CD9C166D886500A0863D /* NSValue+FLCocoaCompatibility.m */; };
-		2798D8CF166D886500A0863D /* NSValue+FLCocoaCompatibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CD9C166D886500A0863D /* NSValue+FLCocoaCompatibility.m */; };
-		2798D8D0166D886500A0863D /* NSValue+FLCocoaCompatibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CD9C166D886500A0863D /* NSValue+FLCocoaCompatibility.m */; };
 		2798D8D1166D886500A0863D /* FLDisplayFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CD9E166D886500A0863D /* FLDisplayFormatter.h */; };
 		2798D8D2166D886500A0863D /* FLDisplayFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CD9E166D886500A0863D /* FLDisplayFormatter.h */; };
 		2798D8D3166D886500A0863D /* FLDisplayFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CD9E166D886500A0863D /* FLDisplayFormatter.h */; };
@@ -2716,66 +2747,52 @@
 		2798D8DC166D886500A0863D /* FLDisplayFormatters.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CDA1166D886500A0863D /* FLDisplayFormatters.m */; };
 		2798D8DD166D886500A0863D /* FLDisplayFormatters.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CDA1166D886500A0863D /* FLDisplayFormatters.m */; };
 		2798D8DE166D886500A0863D /* FLDisplayFormatters.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CDA1166D886500A0863D /* FLDisplayFormatters.m */; };
-		2798D8DF166D886500A0863D /* _FLContentMode.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDA3166D886500A0863D /* _FLContentMode.h */; };
-		2798D8E0166D886500A0863D /* _FLContentMode.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDA3166D886500A0863D /* _FLContentMode.h */; };
-		2798D8E1166D886500A0863D /* _FLContentMode.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDA3166D886500A0863D /* _FLContentMode.h */; };
-		2798D8E2166D886500A0863D /* _FLRect.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDA4166D886500A0863D /* _FLRect.h */; };
-		2798D8E3166D886500A0863D /* _FLRect.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDA4166D886500A0863D /* _FLRect.h */; };
-		2798D8E4166D886500A0863D /* _FLRect.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDA4166D886500A0863D /* _FLRect.h */; };
-		2798D8E5166D886500A0863D /* _FLRectOptimize.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDA5166D886500A0863D /* _FLRectOptimize.h */; };
-		2798D8E6166D886500A0863D /* _FLRectOptimize.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDA5166D886500A0863D /* _FLRectOptimize.h */; };
-		2798D8E7166D886500A0863D /* _FLRectOptimize.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDA5166D886500A0863D /* _FLRectOptimize.h */; };
-		2798D8E8166D886500A0863D /* FLContentMode.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDA6166D886500A0863D /* FLContentMode.h */; };
-		2798D8E9166D886500A0863D /* FLContentMode.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDA6166D886500A0863D /* FLContentMode.h */; };
-		2798D8EA166D886500A0863D /* FLContentMode.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDA6166D886500A0863D /* FLContentMode.h */; };
-		2798D8EB166D886500A0863D /* FLContentMode.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CDA7166D886500A0863D /* FLContentMode.m */; };
-		2798D8EC166D886500A0863D /* FLContentMode.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CDA7166D886500A0863D /* FLContentMode.m */; };
-		2798D8ED166D886500A0863D /* FLContentMode.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CDA7166D886500A0863D /* FLContentMode.m */; };
-		2798D8EE166D886500A0863D /* FLContentMode.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CDA7166D886500A0863D /* FLContentMode.m */; };
-		2798D8EF166D886500A0863D /* FLEdgeInsets.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDA8166D886500A0863D /* FLEdgeInsets.h */; };
-		2798D8F0166D886500A0863D /* FLEdgeInsets.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDA8166D886500A0863D /* FLEdgeInsets.h */; };
-		2798D8F1166D886500A0863D /* FLEdgeInsets.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDA8166D886500A0863D /* FLEdgeInsets.h */; };
-		2798D8F2166D886500A0863D /* FLEdgeInsets.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CDA9166D886500A0863D /* FLEdgeInsets.m */; };
-		2798D8F3166D886500A0863D /* FLEdgeInsets.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CDA9166D886500A0863D /* FLEdgeInsets.m */; };
-		2798D8F4166D886500A0863D /* FLEdgeInsets.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CDA9166D886500A0863D /* FLEdgeInsets.m */; };
-		2798D8F5166D886500A0863D /* FLEdgeInsets.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CDA9166D886500A0863D /* FLEdgeInsets.m */; };
+		2798D8DF166D886500A0863D /* FLRectLayout_Inlines.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDA3166D886500A0863D /* FLRectLayout_Inlines.h */; };
+		2798D8E0166D886500A0863D /* FLRectLayout_Inlines.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDA3166D886500A0863D /* FLRectLayout_Inlines.h */; };
+		2798D8E1166D886500A0863D /* FLRectLayout_Inlines.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDA3166D886500A0863D /* FLRectLayout_Inlines.h */; };
+		2798D8E2166D886500A0863D /* FLRectUtilities_Inlines.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDA4166D886500A0863D /* FLRectUtilities_Inlines.h */; };
+		2798D8E3166D886500A0863D /* FLRectUtilities_Inlines.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDA4166D886500A0863D /* FLRectUtilities_Inlines.h */; };
+		2798D8E4166D886500A0863D /* FLRectUtilities_Inlines.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDA4166D886500A0863D /* FLRectUtilities_Inlines.h */; };
+		2798D8E5166D886500A0863D /* FLRectOptimize_Inlines.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDA5166D886500A0863D /* FLRectOptimize_Inlines.h */; };
+		2798D8E6166D886500A0863D /* FLRectOptimize_Inlines.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDA5166D886500A0863D /* FLRectOptimize_Inlines.h */; };
+		2798D8E7166D886500A0863D /* FLRectOptimize_Inlines.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDA5166D886500A0863D /* FLRectOptimize_Inlines.h */; };
+		2798D8E8166D886500A0863D /* FLRectLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDA6166D886500A0863D /* FLRectLayout.h */; };
+		2798D8E9166D886500A0863D /* FLRectLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDA6166D886500A0863D /* FLRectLayout.h */; };
+		2798D8EA166D886500A0863D /* FLRectLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDA6166D886500A0863D /* FLRectLayout.h */; };
+		2798D8EB166D886500A0863D /* FLRectLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CDA7166D886500A0863D /* FLRectLayout.m */; };
+		2798D8EC166D886500A0863D /* FLRectLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CDA7166D886500A0863D /* FLRectLayout.m */; };
+		2798D8ED166D886500A0863D /* FLRectLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CDA7166D886500A0863D /* FLRectLayout.m */; };
+		2798D8EE166D886500A0863D /* FLRectLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CDA7166D886500A0863D /* FLRectLayout.m */; };
 		2798D8F6166D886500A0863D /* FLGeometry.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDAA166D886500A0863D /* FLGeometry.h */; };
 		2798D8F7166D886500A0863D /* FLGeometry.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDAA166D886500A0863D /* FLGeometry.h */; };
 		2798D8F8166D886500A0863D /* FLGeometry.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDAA166D886500A0863D /* FLGeometry.h */; };
-		2798D8F9166D886500A0863D /* FLPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDAB166D886500A0863D /* FLPoint.h */; };
-		2798D8FA166D886500A0863D /* FLPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDAB166D886500A0863D /* FLPoint.h */; };
-		2798D8FB166D886500A0863D /* FLPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDAB166D886500A0863D /* FLPoint.h */; };
-		2798D8FC166D886500A0863D /* FLRect.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDAC166D886500A0863D /* FLRect.h */; };
-		2798D8FD166D886500A0863D /* FLRect.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDAC166D886500A0863D /* FLRect.h */; };
-		2798D8FE166D886500A0863D /* FLRect.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDAC166D886500A0863D /* FLRect.h */; };
-		2798D8FF166D886500A0863D /* FLRect.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CDAD166D886500A0863D /* FLRect.m */; };
-		2798D900166D886500A0863D /* FLRect.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CDAD166D886500A0863D /* FLRect.m */; };
-		2798D901166D886500A0863D /* FLRect.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CDAD166D886500A0863D /* FLRect.m */; };
-		2798D902166D886500A0863D /* FLRect.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CDAD166D886500A0863D /* FLRect.m */; };
+		2798D8F9166D886500A0863D /* FLPointUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDAB166D886500A0863D /* FLPointUtilities.h */; };
+		2798D8FA166D886500A0863D /* FLPointUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDAB166D886500A0863D /* FLPointUtilities.h */; };
+		2798D8FB166D886500A0863D /* FLPointUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDAB166D886500A0863D /* FLPointUtilities.h */; };
+		2798D8FC166D886500A0863D /* FLRectUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDAC166D886500A0863D /* FLRectUtilities.h */; };
+		2798D8FD166D886500A0863D /* FLRectUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDAC166D886500A0863D /* FLRectUtilities.h */; };
+		2798D8FE166D886500A0863D /* FLRectUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDAC166D886500A0863D /* FLRectUtilities.h */; };
+		2798D8FF166D886500A0863D /* FLRectUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CDAD166D886500A0863D /* FLRectUtilities.m */; };
+		2798D900166D886500A0863D /* FLRectUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CDAD166D886500A0863D /* FLRectUtilities.m */; };
+		2798D901166D886500A0863D /* FLRectUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CDAD166D886500A0863D /* FLRectUtilities.m */; };
+		2798D902166D886500A0863D /* FLRectUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CDAD166D886500A0863D /* FLRectUtilities.m */; };
 		2798D903166D886500A0863D /* FLRectOptimize.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDAE166D886500A0863D /* FLRectOptimize.h */; };
 		2798D904166D886500A0863D /* FLRectOptimize.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDAE166D886500A0863D /* FLRectOptimize.h */; };
 		2798D905166D886500A0863D /* FLRectOptimize.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDAE166D886500A0863D /* FLRectOptimize.h */; };
-		2798D906166D886500A0863D /* FLSize.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDAF166D886500A0863D /* FLSize.h */; };
-		2798D907166D886500A0863D /* FLSize.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDAF166D886500A0863D /* FLSize.h */; };
-		2798D908166D886500A0863D /* FLSize.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDAF166D886500A0863D /* FLSize.h */; };
-		2798D909166D886500A0863D /* FLSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CDB0166D886500A0863D /* FLSize.m */; };
-		2798D90A166D886500A0863D /* FLSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CDB0166D886500A0863D /* FLSize.m */; };
-		2798D90B166D886500A0863D /* FLSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CDB0166D886500A0863D /* FLSize.m */; };
-		2798D90C166D886500A0863D /* FLSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CDB0166D886500A0863D /* FLSize.m */; };
-		2798D90D166D886500A0863D /* UIImage+Colorize.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDB2166D886500A0863D /* UIImage+Colorize.h */; };
-		2798D90E166D886500A0863D /* UIImage+Colorize.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDB2166D886500A0863D /* UIImage+Colorize.h */; };
-		2798D90F166D886500A0863D /* UIImage+Colorize.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDB2166D886500A0863D /* UIImage+Colorize.h */; };
-		2798D910166D886500A0863D /* UIImage+Colorize.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CDB3166D886500A0863D /* UIImage+Colorize.m */; };
-		2798D911166D886500A0863D /* UIImage+Colorize.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CDB3166D886500A0863D /* UIImage+Colorize.m */; };
-		2798D912166D886500A0863D /* UIImage+Colorize.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CDB3166D886500A0863D /* UIImage+Colorize.m */; };
-		2798D913166D886500A0863D /* UIImage+Colorize.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CDB3166D886500A0863D /* UIImage+Colorize.m */; };
-		2798D914166D886500A0863D /* UIImageUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDB4166D886500A0863D /* UIImageUtilities.h */; };
-		2798D915166D886500A0863D /* UIImageUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDB4166D886500A0863D /* UIImageUtilities.h */; };
-		2798D916166D886500A0863D /* UIImageUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDB4166D886500A0863D /* UIImageUtilities.h */; };
-		2798D917166D886500A0863D /* UIImageUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CDB5166D886500A0863D /* UIImageUtilities.m */; };
-		2798D918166D886500A0863D /* UIImageUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CDB5166D886500A0863D /* UIImageUtilities.m */; };
-		2798D919166D886500A0863D /* UIImageUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CDB5166D886500A0863D /* UIImageUtilities.m */; };
-		2798D91A166D886500A0863D /* UIImageUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CDB5166D886500A0863D /* UIImageUtilities.m */; };
+		2798D906166D886500A0863D /* FLSizeUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDAF166D886500A0863D /* FLSizeUtilities.h */; };
+		2798D907166D886500A0863D /* FLSizeUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDAF166D886500A0863D /* FLSizeUtilities.h */; };
+		2798D908166D886500A0863D /* FLSizeUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDAF166D886500A0863D /* FLSizeUtilities.h */; };
+		2798D909166D886500A0863D /* FLSizeUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CDB0166D886500A0863D /* FLSizeUtilities.m */; };
+		2798D90A166D886500A0863D /* FLSizeUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CDB0166D886500A0863D /* FLSizeUtilities.m */; };
+		2798D90B166D886500A0863D /* FLSizeUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CDB0166D886500A0863D /* FLSizeUtilities.m */; };
+		2798D90C166D886500A0863D /* FLSizeUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CDB0166D886500A0863D /* FLSizeUtilities.m */; };
+		2798D90D166D886500A0863D /* FLImageUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDB2166D886500A0863D /* FLImageUtilities.h */; };
+		2798D90E166D886500A0863D /* FLImageUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDB2166D886500A0863D /* FLImageUtilities.h */; };
+		2798D90F166D886500A0863D /* FLImageUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDB2166D886500A0863D /* FLImageUtilities.h */; };
+		2798D910166D886500A0863D /* FLImageUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CDB3166D886500A0863D /* FLImageUtilities.m */; };
+		2798D911166D886500A0863D /* FLImageUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CDB3166D886500A0863D /* FLImageUtilities.m */; };
+		2798D912166D886500A0863D /* FLImageUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CDB3166D886500A0863D /* FLImageUtilities.m */; };
+		2798D913166D886500A0863D /* FLImageUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CDB3166D886500A0863D /* FLImageUtilities.m */; };
 		2798D91B166D886500A0863D /* FLProgressFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDB7166D886500A0863D /* FLProgressFactory.h */; };
 		2798D91C166D886500A0863D /* FLProgressFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDB7166D886500A0863D /* FLProgressFactory.h */; };
 		2798D91D166D886500A0863D /* FLProgressFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDB7166D886500A0863D /* FLProgressFactory.h */; };
@@ -3253,27 +3270,27 @@
 		2798DAF5166D886500A0863D /* NSData+RSHexDump.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE57166D886500A0863D /* NSData+RSHexDump.m */; };
 		2798DAF6166D886500A0863D /* NSData+RSHexDump.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE57166D886500A0863D /* NSData+RSHexDump.m */; };
 		2798DAF7166D886500A0863D /* NSData+RSHexDump.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE57166D886500A0863D /* NSData+RSHexDump.m */; };
-		2798DAF8166D886500A0863D /* UIImage+Alpha.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE59166D886500A0863D /* UIImage+Alpha.h */; };
-		2798DAF9166D886500A0863D /* UIImage+Alpha.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE59166D886500A0863D /* UIImage+Alpha.h */; };
-		2798DAFA166D886500A0863D /* UIImage+Alpha.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE59166D886500A0863D /* UIImage+Alpha.h */; };
-		2798DAFB166D886500A0863D /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE5A166D886500A0863D /* UIImage+Alpha.m */; };
-		2798DAFC166D886500A0863D /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE5A166D886500A0863D /* UIImage+Alpha.m */; };
-		2798DAFD166D886500A0863D /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE5A166D886500A0863D /* UIImage+Alpha.m */; };
-		2798DAFE166D886500A0863D /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE5A166D886500A0863D /* UIImage+Alpha.m */; };
-		2798DAFF166D886500A0863D /* UIImage+Resize.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE5B166D886500A0863D /* UIImage+Resize.h */; };
-		2798DB00166D886500A0863D /* UIImage+Resize.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE5B166D886500A0863D /* UIImage+Resize.h */; };
-		2798DB01166D886500A0863D /* UIImage+Resize.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE5B166D886500A0863D /* UIImage+Resize.h */; };
-		2798DB02166D886500A0863D /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE5C166D886500A0863D /* UIImage+Resize.m */; };
-		2798DB03166D886500A0863D /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE5C166D886500A0863D /* UIImage+Resize.m */; };
-		2798DB04166D886500A0863D /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE5C166D886500A0863D /* UIImage+Resize.m */; };
-		2798DB05166D886500A0863D /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE5C166D886500A0863D /* UIImage+Resize.m */; };
-		2798DB06166D886500A0863D /* UIImage+RoundedCorner.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE5D166D886500A0863D /* UIImage+RoundedCorner.h */; };
-		2798DB07166D886500A0863D /* UIImage+RoundedCorner.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE5D166D886500A0863D /* UIImage+RoundedCorner.h */; };
-		2798DB08166D886500A0863D /* UIImage+RoundedCorner.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE5D166D886500A0863D /* UIImage+RoundedCorner.h */; };
-		2798DB09166D886500A0863D /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE5E166D886500A0863D /* UIImage+RoundedCorner.m */; };
-		2798DB0A166D886500A0863D /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE5E166D886500A0863D /* UIImage+RoundedCorner.m */; };
-		2798DB0B166D886500A0863D /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE5E166D886500A0863D /* UIImage+RoundedCorner.m */; };
-		2798DB0C166D886500A0863D /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE5E166D886500A0863D /* UIImage+RoundedCorner.m */; };
+		2798DAF8166D886500A0863D /* SDKImage+Alpha.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE59166D886500A0863D /* SDKImage+Alpha.h */; };
+		2798DAF9166D886500A0863D /* SDKImage+Alpha.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE59166D886500A0863D /* SDKImage+Alpha.h */; };
+		2798DAFA166D886500A0863D /* SDKImage+Alpha.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE59166D886500A0863D /* SDKImage+Alpha.h */; };
+		2798DAFB166D886500A0863D /* SDKImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE5A166D886500A0863D /* SDKImage+Alpha.m */; };
+		2798DAFC166D886500A0863D /* SDKImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE5A166D886500A0863D /* SDKImage+Alpha.m */; };
+		2798DAFD166D886500A0863D /* SDKImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE5A166D886500A0863D /* SDKImage+Alpha.m */; };
+		2798DAFE166D886500A0863D /* SDKImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE5A166D886500A0863D /* SDKImage+Alpha.m */; };
+		2798DAFF166D886500A0863D /* SDKImage+Resize.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE5B166D886500A0863D /* SDKImage+Resize.h */; };
+		2798DB00166D886500A0863D /* SDKImage+Resize.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE5B166D886500A0863D /* SDKImage+Resize.h */; };
+		2798DB01166D886500A0863D /* SDKImage+Resize.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE5B166D886500A0863D /* SDKImage+Resize.h */; };
+		2798DB02166D886500A0863D /* SDKImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE5C166D886500A0863D /* SDKImage+Resize.m */; };
+		2798DB03166D886500A0863D /* SDKImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE5C166D886500A0863D /* SDKImage+Resize.m */; };
+		2798DB04166D886500A0863D /* SDKImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE5C166D886500A0863D /* SDKImage+Resize.m */; };
+		2798DB05166D886500A0863D /* SDKImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE5C166D886500A0863D /* SDKImage+Resize.m */; };
+		2798DB06166D886500A0863D /* SDKImage+RoundedCorner.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE5D166D886500A0863D /* SDKImage+RoundedCorner.h */; };
+		2798DB07166D886500A0863D /* SDKImage+RoundedCorner.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE5D166D886500A0863D /* SDKImage+RoundedCorner.h */; };
+		2798DB08166D886500A0863D /* SDKImage+RoundedCorner.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE5D166D886500A0863D /* SDKImage+RoundedCorner.h */; };
+		2798DB09166D886500A0863D /* SDKImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE5E166D886500A0863D /* SDKImage+RoundedCorner.m */; };
+		2798DB0A166D886500A0863D /* SDKImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE5E166D886500A0863D /* SDKImage+RoundedCorner.m */; };
+		2798DB0B166D886500A0863D /* SDKImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE5E166D886500A0863D /* SDKImage+RoundedCorner.m */; };
+		2798DB0C166D886500A0863D /* SDKImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE5E166D886500A0863D /* SDKImage+RoundedCorner.m */; };
 		2798DB2F166D888500A0863D /* NSObject+SBJson.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798DB16166D888500A0863D /* NSObject+SBJson.h */; };
 		2798DB30166D888500A0863D /* NSObject+SBJson.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798DB16166D888500A0863D /* NSObject+SBJson.h */; };
 		2798DB31166D888500A0863D /* NSObject+SBJson.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798DB16166D888500A0863D /* NSObject+SBJson.h */; };
@@ -3349,6 +3366,24 @@
 		2798DB77166D888500A0863D /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798DB2E166D888500A0863D /* SBJsonWriter.m */; };
 		2798DB78166D888500A0863D /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798DB2E166D888500A0863D /* SBJsonWriter.m */; };
 		2798DB79166D888500A0863D /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798DB2E166D888500A0863D /* SBJsonWriter.m */; };
+		279AA167167032F1003EC2EB /* FLWizardView.h in Headers */ = {isa = PBXBuildFile; fileRef = 279AA165167032F1003EC2EB /* FLWizardView.h */; };
+		279AA168167032F1003EC2EB /* FLWizardView.h in Headers */ = {isa = PBXBuildFile; fileRef = 279AA165167032F1003EC2EB /* FLWizardView.h */; };
+		279AA169167032F1003EC2EB /* FLWizardView.h in Headers */ = {isa = PBXBuildFile; fileRef = 279AA165167032F1003EC2EB /* FLWizardView.h */; };
+		279AA16A167032F1003EC2EB /* FLWizardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 279AA166167032F1003EC2EB /* FLWizardView.m */; };
+		279AA16B167032F1003EC2EB /* FLWizardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 279AA166167032F1003EC2EB /* FLWizardView.m */; };
+		279AA16C167032F1003EC2EB /* FLWizardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 279AA166167032F1003EC2EB /* FLWizardView.m */; };
+		279AA170167033BD003EC2EB /* FLWizardWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 279AA16D167033BC003EC2EB /* FLWizardWindowController.h */; };
+		279AA171167033BD003EC2EB /* FLWizardWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 279AA16D167033BC003EC2EB /* FLWizardWindowController.h */; };
+		279AA172167033BD003EC2EB /* FLWizardWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 279AA16D167033BC003EC2EB /* FLWizardWindowController.h */; };
+		279AA173167033BD003EC2EB /* FLWizardWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 279AA16E167033BC003EC2EB /* FLWizardWindowController.m */; };
+		279AA174167033BD003EC2EB /* FLWizardWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 279AA16E167033BC003EC2EB /* FLWizardWindowController.m */; };
+		279AA175167033BD003EC2EB /* FLWizardWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 279AA16E167033BC003EC2EB /* FLWizardWindowController.m */; };
+		279AA17916703C36003EC2EB /* WTFWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 279AA17616703C35003EC2EB /* WTFWindowController.h */; };
+		279AA17A16703C36003EC2EB /* WTFWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 279AA17616703C35003EC2EB /* WTFWindowController.h */; };
+		279AA17B16703C36003EC2EB /* WTFWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 279AA17616703C35003EC2EB /* WTFWindowController.h */; };
+		279AA17C16703C36003EC2EB /* WTFWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 279AA17716703C35003EC2EB /* WTFWindowController.m */; };
+		279AA17D16703C36003EC2EB /* WTFWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 279AA17716703C35003EC2EB /* WTFWindowController.m */; };
+		279AA17E16703C36003EC2EB /* WTFWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 279AA17716703C35003EC2EB /* WTFWindowController.m */; };
 		27D1E5C2166D355C00DB680E /* FishLampCocoa-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27D1E5C1166D355C00DB680E /* FishLampCocoa-Prefix.pch */; };
 		27D1E5C3166D355C00DB680E /* FishLampCocoa-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27D1E5C1166D355C00DB680E /* FishLampCocoa-Prefix.pch */; };
 		27D1E5C4166D355C00DB680E /* FishLampCocoa-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27D1E5C1166D355C00DB680E /* FishLampCocoa-Prefix.pch */; };
@@ -3367,7 +3402,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		270380C3166EDDAC0082D9D9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/FLWizardViewController.xib; sourceTree = "<group>"; };
 		270380C4166EDDAC0082D9D9 /* FLWizardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLWizardViewController.h; sourceTree = "<group>"; };
 		270380C5166EDDAC0082D9D9 /* FLWizardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLWizardViewController.m; sourceTree = "<group>"; };
 		270380CD166EDDC10082D9D9 /* FLGlobalMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLGlobalMenuController.h; sourceTree = "<group>"; };
@@ -3386,6 +3420,30 @@
 		270D02E315E9B1FF00ED5FB0 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
 		270DFDC815E99BAC00ED5FB0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		27314C79165328400027850D /* libFishLampCocoa-OSX-64.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoa-OSX-64.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		273FC191166FB7AE0072C62A /* NSView+FLAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSView+FLAdditions.h"; sourceTree = "<group>"; };
+		273FC192166FB7AE0072C62A /* NSView+FLAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSView+FLAdditions.m"; sourceTree = "<group>"; };
+		273FC1B3166FC1740072C62A /* FLColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLColor.h; sourceTree = "<group>"; };
+		273FC20E166FD74F0072C62A /* SDKCompatibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDKCompatibility.h; sourceTree = "<group>"; };
+		273FC210166FD74F0072C62A /* SDKColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDKColor.h; sourceTree = "<group>"; };
+		273FC212166FD74F0072C62A /* SDKEdgeInsets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDKEdgeInsets.h; sourceTree = "<group>"; };
+		273FC213166FD74F0072C62A /* SDKEdgeInsets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDKEdgeInsets.m; sourceTree = "<group>"; };
+		273FC214166FD74F0072C62A /* SDKImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDKImage.h; sourceTree = "<group>"; };
+		273FC215166FD74F0072C62A /* SDKImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDKImage.m; sourceTree = "<group>"; };
+		273FC216166FD74F0072C62A /* SDKPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDKPoint.h; sourceTree = "<group>"; };
+		273FC217166FD74F0072C62A /* SDKRect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDKRect.h; sourceTree = "<group>"; };
+		273FC21A166FD74F0072C62A /* SDKSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDKSize.h; sourceTree = "<group>"; };
+		273FC21B166FD74F0072C62A /* SDKValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDKValue.h; sourceTree = "<group>"; };
+		273FC21C166FD74F0072C62A /* SDKValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDKValue.m; sourceTree = "<group>"; };
+		273FC262166FDB840072C62A /* FLCoreFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCoreFoundation.h; sourceTree = "<group>"; };
+		273FC27D166FDF090072C62A /* SDKColor+FLMoreColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SDKColor+FLMoreColors.h"; sourceTree = "<group>"; };
+		273FC27E166FDF0A0072C62A /* SDKColor+FLMoreColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SDKColor+FLMoreColors.m"; sourceTree = "<group>"; };
+		273FC287166FDF7F0072C62A /* SDKColor+FLUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SDKColor+FLUtils.h"; sourceTree = "<group>"; };
+		273FC288166FDF800072C62A /* SDKColor+FLUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SDKColor+FLUtils.m"; sourceTree = "<group>"; };
+		273FC290166FE07B0072C62A /* FLImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLImage.h; sourceTree = "<group>"; };
+		273FC294166FE0980072C62A /* SDKImage+FLColorize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SDKImage+FLColorize.h"; sourceTree = "<group>"; };
+		273FC295166FE0990072C62A /* SDKImage+FLColorize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SDKImage+FLColorize.m"; sourceTree = "<group>"; };
+		273FC29D166FE0AD0072C62A /* SDKImage+FLUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SDKImage+FLUtils.h"; sourceTree = "<group>"; };
+		273FC29E166FE0AE0072C62A /* SDKImage+FLUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SDKImage+FLUtils.m"; sourceTree = "<group>"; };
 		276CE8EE15E54B2F000A5CE6 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		276CE8EF15E54B30000A5CE6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		276CE8F015E54B31000A5CE6 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
@@ -4167,41 +4225,24 @@
 		2798CD8C166D886500A0863D /* FLColor_t.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLColor_t.m; sourceTree = "<group>"; };
 		2798CD8D166D886500A0863D /* FLColorRange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLColorRange.h; sourceTree = "<group>"; };
 		2798CD8E166D886500A0863D /* FLColorRange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLColorRange.m; sourceTree = "<group>"; };
-		2798CD8F166D886500A0863D /* UIColor+FLExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+FLExtras.h"; sourceTree = "<group>"; };
-		2798CD90166D886500A0863D /* UIColor+FLExtras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+FLExtras.m"; sourceTree = "<group>"; };
-		2798CD91166D886500A0863D /* UIColor+FLMoreColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+FLMoreColors.h"; sourceTree = "<group>"; };
-		2798CD92166D886500A0863D /* UIColor+FLMoreColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+FLMoreColors.m"; sourceTree = "<group>"; };
-		2798CD94166D886500A0863D /* FLCocoaCompatibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCocoaCompatibility.h; sourceTree = "<group>"; };
-		2798CD95166D886500A0863D /* FLCocoaCompatibility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLCocoaCompatibility.m; sourceTree = "<group>"; };
-		2798CD96166D886500A0863D /* FLCoreFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCoreFoundation.h; sourceTree = "<group>"; };
-		2798CD97166D886500A0863D /* FLiOSCompatibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLiOSCompatibility.h; sourceTree = "<group>"; };
-		2798CD98166D886500A0863D /* FLiOSCompatibility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLiOSCompatibility.m; sourceTree = "<group>"; };
-		2798CD99166D886500A0863D /* FLOSXCompatibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLOSXCompatibility.h; sourceTree = "<group>"; };
-		2798CD9A166D886500A0863D /* FLOSXCompatibility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLOSXCompatibility.m; sourceTree = "<group>"; };
-		2798CD9B166D886500A0863D /* NSValue+FLCocoaCompatibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSValue+FLCocoaCompatibility.h"; sourceTree = "<group>"; };
-		2798CD9C166D886500A0863D /* NSValue+FLCocoaCompatibility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSValue+FLCocoaCompatibility.m"; sourceTree = "<group>"; };
 		2798CD9E166D886500A0863D /* FLDisplayFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLDisplayFormatter.h; sourceTree = "<group>"; };
 		2798CD9F166D886500A0863D /* FLDisplayFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLDisplayFormatter.m; sourceTree = "<group>"; };
 		2798CDA0166D886500A0863D /* FLDisplayFormatters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLDisplayFormatters.h; sourceTree = "<group>"; };
 		2798CDA1166D886500A0863D /* FLDisplayFormatters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLDisplayFormatters.m; sourceTree = "<group>"; };
-		2798CDA3166D886500A0863D /* _FLContentMode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _FLContentMode.h; sourceTree = "<group>"; };
-		2798CDA4166D886500A0863D /* _FLRect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _FLRect.h; sourceTree = "<group>"; };
-		2798CDA5166D886500A0863D /* _FLRectOptimize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _FLRectOptimize.h; sourceTree = "<group>"; };
-		2798CDA6166D886500A0863D /* FLContentMode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLContentMode.h; sourceTree = "<group>"; };
-		2798CDA7166D886500A0863D /* FLContentMode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLContentMode.m; sourceTree = "<group>"; };
-		2798CDA8166D886500A0863D /* FLEdgeInsets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEdgeInsets.h; sourceTree = "<group>"; };
-		2798CDA9166D886500A0863D /* FLEdgeInsets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEdgeInsets.m; sourceTree = "<group>"; };
+		2798CDA3166D886500A0863D /* FLRectLayout_Inlines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLRectLayout_Inlines.h; sourceTree = "<group>"; };
+		2798CDA4166D886500A0863D /* FLRectUtilities_Inlines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLRectUtilities_Inlines.h; sourceTree = "<group>"; };
+		2798CDA5166D886500A0863D /* FLRectOptimize_Inlines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLRectOptimize_Inlines.h; sourceTree = "<group>"; };
+		2798CDA6166D886500A0863D /* FLRectLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLRectLayout.h; sourceTree = "<group>"; };
+		2798CDA7166D886500A0863D /* FLRectLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLRectLayout.m; sourceTree = "<group>"; };
 		2798CDAA166D886500A0863D /* FLGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLGeometry.h; sourceTree = "<group>"; };
-		2798CDAB166D886500A0863D /* FLPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLPoint.h; sourceTree = "<group>"; };
-		2798CDAC166D886500A0863D /* FLRect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLRect.h; sourceTree = "<group>"; };
-		2798CDAD166D886500A0863D /* FLRect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLRect.m; sourceTree = "<group>"; };
+		2798CDAB166D886500A0863D /* FLPointUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLPointUtilities.h; sourceTree = "<group>"; };
+		2798CDAC166D886500A0863D /* FLRectUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLRectUtilities.h; sourceTree = "<group>"; };
+		2798CDAD166D886500A0863D /* FLRectUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLRectUtilities.m; sourceTree = "<group>"; };
 		2798CDAE166D886500A0863D /* FLRectOptimize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLRectOptimize.h; sourceTree = "<group>"; };
-		2798CDAF166D886500A0863D /* FLSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLSize.h; sourceTree = "<group>"; };
-		2798CDB0166D886500A0863D /* FLSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLSize.m; sourceTree = "<group>"; };
-		2798CDB2166D886500A0863D /* UIImage+Colorize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Colorize.h"; sourceTree = "<group>"; };
-		2798CDB3166D886500A0863D /* UIImage+Colorize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Colorize.m"; sourceTree = "<group>"; };
-		2798CDB4166D886500A0863D /* UIImageUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageUtilities.h; sourceTree = "<group>"; };
-		2798CDB5166D886500A0863D /* UIImageUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageUtilities.m; sourceTree = "<group>"; };
+		2798CDAF166D886500A0863D /* FLSizeUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLSizeUtilities.h; sourceTree = "<group>"; };
+		2798CDB0166D886500A0863D /* FLSizeUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLSizeUtilities.m; sourceTree = "<group>"; };
+		2798CDB2166D886500A0863D /* FLImageUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLImageUtilities.h; sourceTree = "<group>"; };
+		2798CDB3166D886500A0863D /* FLImageUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLImageUtilities.m; sourceTree = "<group>"; };
 		2798CDB7166D886500A0863D /* FLProgressFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLProgressFactory.h; sourceTree = "<group>"; };
 		2798CDB8166D886500A0863D /* FLProgressFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLProgressFactory.m; sourceTree = "<group>"; };
 		2798CDB9166D886500A0863D /* FLProgressViewControllerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLProgressViewControllerProtocol.h; sourceTree = "<group>"; };
@@ -4344,12 +4385,12 @@
 		2798CE54166D886500A0863D /* ISO8601DateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISO8601DateFormatter.m; sourceTree = "<group>"; };
 		2798CE56166D886500A0863D /* NSData+RSHexDump.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+RSHexDump.h"; sourceTree = "<group>"; };
 		2798CE57166D886500A0863D /* NSData+RSHexDump.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+RSHexDump.m"; sourceTree = "<group>"; };
-		2798CE59166D886500A0863D /* UIImage+Alpha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Alpha.h"; sourceTree = "<group>"; };
-		2798CE5A166D886500A0863D /* UIImage+Alpha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Alpha.m"; sourceTree = "<group>"; };
-		2798CE5B166D886500A0863D /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
-		2798CE5C166D886500A0863D /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
-		2798CE5D166D886500A0863D /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
-		2798CE5E166D886500A0863D /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
+		2798CE59166D886500A0863D /* SDKImage+Alpha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SDKImage+Alpha.h"; sourceTree = "<group>"; };
+		2798CE5A166D886500A0863D /* SDKImage+Alpha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SDKImage+Alpha.m"; sourceTree = "<group>"; };
+		2798CE5B166D886500A0863D /* SDKImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SDKImage+Resize.h"; sourceTree = "<group>"; };
+		2798CE5C166D886500A0863D /* SDKImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SDKImage+Resize.m"; sourceTree = "<group>"; };
+		2798CE5D166D886500A0863D /* SDKImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SDKImage+RoundedCorner.h"; sourceTree = "<group>"; };
+		2798CE5E166D886500A0863D /* SDKImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SDKImage+RoundedCorner.m"; sourceTree = "<group>"; };
 		2798DB16166D888500A0863D /* NSObject+SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJson.h"; sourceTree = "<group>"; };
 		2798DB17166D888500A0863D /* NSObject+SBJson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJson.m"; sourceTree = "<group>"; };
 		2798DB18166D888500A0863D /* SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJson.h; sourceTree = "<group>"; };
@@ -4376,6 +4417,15 @@
 		2798DB2D166D888500A0863D /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		2798DB2E166D888500A0863D /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
 		2798DB81166D8A7F00A0863D /* SharedTargetSettings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = SharedTargetSettings.xcconfig; sourceTree = "<group>"; };
+		279AA165167032F1003EC2EB /* FLWizardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLWizardView.h; sourceTree = "<group>"; };
+		279AA166167032F1003EC2EB /* FLWizardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLWizardView.m; sourceTree = "<group>"; };
+		279AA16D167033BC003EC2EB /* FLWizardWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLWizardWindowController.h; sourceTree = "<group>"; };
+		279AA16E167033BC003EC2EB /* FLWizardWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLWizardWindowController.m; sourceTree = "<group>"; };
+		279AA17616703C35003EC2EB /* WTFWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WTFWindowController.h; sourceTree = "<group>"; };
+		279AA17716703C35003EC2EB /* WTFWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WTFWindowController.m; sourceTree = "<group>"; };
+		279AA17816703C36003EC2EB /* WTFWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WTFWindowController.xib; sourceTree = "<group>"; };
+		279AA18816703DE6003EC2EB /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = FLWizardViewController.xib; sourceTree = "<group>"; };
+		279AA18A16703DE6003EC2EB /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = FLWizardWindowController.xib; sourceTree = "<group>"; };
 		27A43AB415CDCC89001CB13E /* libFishLampCocoa-iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoa-iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27A43AC415CDCCCB001CB13E /* libFishLampCocoa-OSX-64-ARC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoa-OSX-64-ARC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27D1070B166D7C9100DB680E /* Xcode */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Xcode; path = ../../Xcode; sourceTree = "<group>"; };
@@ -4426,13 +4476,20 @@
 		270380C1166EDDAC0082D9D9 /* WizardViewController */ = {
 			isa = PBXGroup;
 			children = (
-				270380C2166EDDAC0082D9D9 /* FLWizardViewController.xib */,
+				279AA18616703DE6003EC2EB /* en.lproj */,
 				270380C4166EDDAC0082D9D9 /* FLWizardViewController.h */,
 				270380C5166EDDAC0082D9D9 /* FLWizardViewController.m */,
 				270380D8166EDE1C0082D9D9 /* FLClickablePathViewController.h */,
 				270380D9166EDE1C0082D9D9 /* FLClickablePathViewController.m */,
 				270380E0166EDFA80082D9D9 /* FLClickablePathView.h */,
 				270380E1166EDFA80082D9D9 /* FLClickablePathView.m */,
+				279AA165167032F1003EC2EB /* FLWizardView.h */,
+				279AA166167032F1003EC2EB /* FLWizardView.m */,
+				279AA16D167033BC003EC2EB /* FLWizardWindowController.h */,
+				279AA16E167033BC003EC2EB /* FLWizardWindowController.m */,
+				279AA17616703C35003EC2EB /* WTFWindowController.h */,
+				279AA17716703C35003EC2EB /* WTFWindowController.m */,
+				279AA17816703C36003EC2EB /* WTFWindowController.xib */,
 			);
 			path = WizardViewController;
 			sourceTree = "<group>";
@@ -4454,6 +4511,34 @@
 				27D1E5BA166D34DE00DB680E /* XcodeConfigs */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		273FC18F166FB79C0072C62A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				273FC191166FB7AE0072C62A /* NSView+FLAdditions.h */,
+				273FC192166FB7AE0072C62A /* NSView+FLAdditions.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		273FC208166FD7490072C62A /* Compatibility */ = {
+			isa = PBXGroup;
+			children = (
+				273FC20E166FD74F0072C62A /* SDKCompatibility.h */,
+				273FC210166FD74F0072C62A /* SDKColor.h */,
+				273FC212166FD74F0072C62A /* SDKEdgeInsets.h */,
+				273FC213166FD74F0072C62A /* SDKEdgeInsets.m */,
+				273FC214166FD74F0072C62A /* SDKImage.h */,
+				273FC215166FD74F0072C62A /* SDKImage.m */,
+				273FC216166FD74F0072C62A /* SDKPoint.h */,
+				273FC217166FD74F0072C62A /* SDKRect.h */,
+				273FC21A166FD74F0072C62A /* SDKSize.h */,
+				273FC21B166FD74F0072C62A /* SDKValue.h */,
+				273FC21C166FD74F0072C62A /* SDKValue.m */,
+			);
+			name = Compatibility;
+			path = Visible/Compatibility;
 			sourceTree = "<group>";
 		};
 		276CE92815E54E31000A5CE6 /* iOS */ = {
@@ -4506,6 +4591,7 @@
 				2798CD22166D886500A0863D /* Strings */,
 				2798CD2C166D886500A0863D /* Testing */,
 				2798CD4D166D886500A0863D /* Utils */,
+				273FC208166FD7490072C62A /* Compatibility */,
 				2798CD6D166D886500A0863D /* Visible */,
 			);
 			name = Cocoa;
@@ -5822,6 +5908,7 @@
 		2798CD4D166D886500A0863D /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				273FC262166FDB840072C62A /* FLCoreFoundation.h */,
 				2798CD4E166D886500A0863D /* FLAnswerable.h */,
 				2798CD4F166D886500A0863D /* FLAnswerable.m */,
 				2798CD50166D886500A0863D /* FLAppInfo.h */,
@@ -5877,7 +5964,6 @@
 				2798CD6E166D886500A0863D /* Arrangeable */,
 				2798CD79166D886500A0863D /* Arrangements */,
 				2798CD8A166D886500A0863D /* Color */,
-				2798CD93166D886500A0863D /* Compatibility */,
 				2798CD9D166D886500A0863D /* DisplayFormatters */,
 				2798CDA2166D886500A0863D /* Geometry */,
 				2798CDB1166D886500A0863D /* Image */,
@@ -5934,28 +6020,13 @@
 				2798CD8C166D886500A0863D /* FLColor_t.m */,
 				2798CD8D166D886500A0863D /* FLColorRange.h */,
 				2798CD8E166D886500A0863D /* FLColorRange.m */,
-				2798CD8F166D886500A0863D /* UIColor+FLExtras.h */,
-				2798CD90166D886500A0863D /* UIColor+FLExtras.m */,
-				2798CD91166D886500A0863D /* UIColor+FLMoreColors.h */,
-				2798CD92166D886500A0863D /* UIColor+FLMoreColors.m */,
+				273FC1B3166FC1740072C62A /* FLColor.h */,
+				273FC27D166FDF090072C62A /* SDKColor+FLMoreColors.h */,
+				273FC27E166FDF0A0072C62A /* SDKColor+FLMoreColors.m */,
+				273FC287166FDF7F0072C62A /* SDKColor+FLUtils.h */,
+				273FC288166FDF800072C62A /* SDKColor+FLUtils.m */,
 			);
 			path = Color;
-			sourceTree = "<group>";
-		};
-		2798CD93166D886500A0863D /* Compatibility */ = {
-			isa = PBXGroup;
-			children = (
-				2798CD94166D886500A0863D /* FLCocoaCompatibility.h */,
-				2798CD95166D886500A0863D /* FLCocoaCompatibility.m */,
-				2798CD96166D886500A0863D /* FLCoreFoundation.h */,
-				2798CD97166D886500A0863D /* FLiOSCompatibility.h */,
-				2798CD98166D886500A0863D /* FLiOSCompatibility.m */,
-				2798CD99166D886500A0863D /* FLOSXCompatibility.h */,
-				2798CD9A166D886500A0863D /* FLOSXCompatibility.m */,
-				2798CD9B166D886500A0863D /* NSValue+FLCocoaCompatibility.h */,
-				2798CD9C166D886500A0863D /* NSValue+FLCocoaCompatibility.m */,
-			);
-			path = Compatibility;
 			sourceTree = "<group>";
 		};
 		2798CD9D166D886500A0863D /* DisplayFormatters */ = {
@@ -5972,20 +6043,18 @@
 		2798CDA2166D886500A0863D /* Geometry */ = {
 			isa = PBXGroup;
 			children = (
-				2798CDA3166D886500A0863D /* _FLContentMode.h */,
-				2798CDA4166D886500A0863D /* _FLRect.h */,
-				2798CDA5166D886500A0863D /* _FLRectOptimize.h */,
-				2798CDA6166D886500A0863D /* FLContentMode.h */,
-				2798CDA7166D886500A0863D /* FLContentMode.m */,
-				2798CDA8166D886500A0863D /* FLEdgeInsets.h */,
-				2798CDA9166D886500A0863D /* FLEdgeInsets.m */,
+				2798CDA6166D886500A0863D /* FLRectLayout.h */,
+				2798CDA7166D886500A0863D /* FLRectLayout.m */,
+				2798CDA3166D886500A0863D /* FLRectLayout_Inlines.h */,
 				2798CDAA166D886500A0863D /* FLGeometry.h */,
-				2798CDAB166D886500A0863D /* FLPoint.h */,
-				2798CDAC166D886500A0863D /* FLRect.h */,
-				2798CDAD166D886500A0863D /* FLRect.m */,
+				2798CDA5166D886500A0863D /* FLRectOptimize_Inlines.h */,
+				2798CDAB166D886500A0863D /* FLPointUtilities.h */,
+				2798CDAC166D886500A0863D /* FLRectUtilities.h */,
+				2798CDAD166D886500A0863D /* FLRectUtilities.m */,
+				2798CDA4166D886500A0863D /* FLRectUtilities_Inlines.h */,
 				2798CDAE166D886500A0863D /* FLRectOptimize.h */,
-				2798CDAF166D886500A0863D /* FLSize.h */,
-				2798CDB0166D886500A0863D /* FLSize.m */,
+				2798CDAF166D886500A0863D /* FLSizeUtilities.h */,
+				2798CDB0166D886500A0863D /* FLSizeUtilities.m */,
 			);
 			path = Geometry;
 			sourceTree = "<group>";
@@ -5993,10 +6062,13 @@
 		2798CDB1166D886500A0863D /* Image */ = {
 			isa = PBXGroup;
 			children = (
-				2798CDB2166D886500A0863D /* UIImage+Colorize.h */,
-				2798CDB3166D886500A0863D /* UIImage+Colorize.m */,
-				2798CDB4166D886500A0863D /* UIImageUtilities.h */,
-				2798CDB5166D886500A0863D /* UIImageUtilities.m */,
+				2798CDB2166D886500A0863D /* FLImageUtilities.h */,
+				2798CDB3166D886500A0863D /* FLImageUtilities.m */,
+				273FC290166FE07B0072C62A /* FLImage.h */,
+				273FC294166FE0980072C62A /* SDKImage+FLColorize.h */,
+				273FC295166FE0990072C62A /* SDKImage+FLColorize.m */,
+				273FC29D166FE0AD0072C62A /* SDKImage+FLUtils.h */,
+				273FC29E166FE0AE0072C62A /* SDKImage+FLUtils.m */,
 			);
 			path = Image;
 			sourceTree = "<group>";
@@ -6305,12 +6377,12 @@
 		2798CE58166D886500A0863D /* UIImage+TrevorHarmon */ = {
 			isa = PBXGroup;
 			children = (
-				2798CE59166D886500A0863D /* UIImage+Alpha.h */,
-				2798CE5A166D886500A0863D /* UIImage+Alpha.m */,
-				2798CE5B166D886500A0863D /* UIImage+Resize.h */,
-				2798CE5C166D886500A0863D /* UIImage+Resize.m */,
-				2798CE5D166D886500A0863D /* UIImage+RoundedCorner.h */,
-				2798CE5E166D886500A0863D /* UIImage+RoundedCorner.m */,
+				2798CE59166D886500A0863D /* SDKImage+Alpha.h */,
+				2798CE5A166D886500A0863D /* SDKImage+Alpha.m */,
+				2798CE5B166D886500A0863D /* SDKImage+Resize.h */,
+				2798CE5C166D886500A0863D /* SDKImage+Resize.m */,
+				2798CE5D166D886500A0863D /* SDKImage+RoundedCorner.h */,
+				2798CE5E166D886500A0863D /* SDKImage+RoundedCorner.m */,
 			);
 			path = "UIImage+TrevorHarmon";
 			sourceTree = "<group>";
@@ -6318,6 +6390,7 @@
 		2798CE5F166D886500A0863D /* OSX */ = {
 			isa = PBXGroup;
 			children = (
+				273FC18F166FB79C0072C62A /* Views */,
 				270380CC166EDDC10082D9D9 /* Menus */,
 				270380C1166EDDAC0082D9D9 /* WizardViewController */,
 			);
@@ -6364,6 +6437,15 @@
 				2798DB2E166D888500A0863D /* SBJsonWriter.m */,
 			);
 			path = "json-framework";
+			sourceTree = "<group>";
+		};
+		279AA18616703DE6003EC2EB /* en.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				279AA18716703DE6003EC2EB /* FLWizardViewController.xib */,
+				279AA18916703DE6003EC2EB /* FLWizardWindowController.xib */,
+			);
+			path = en.lproj;
 			sourceTree = "<group>";
 		};
 		27A43A7115CDCC1B001CB13E = {
@@ -6840,27 +6922,18 @@
 				2798D890166D886500A0863D /* FLVerticalGridArrangement.h in Headers */,
 				2798D897166D886500A0863D /* FLColor_t.h in Headers */,
 				2798D89E166D886500A0863D /* FLColorRange.h in Headers */,
-				2798D8A5166D886500A0863D /* UIColor+FLExtras.h in Headers */,
-				2798D8AC166D886500A0863D /* UIColor+FLMoreColors.h in Headers */,
-				2798D8B3166D886500A0863D /* FLCocoaCompatibility.h in Headers */,
-				2798D8BA166D886500A0863D /* FLCoreFoundation.h in Headers */,
-				2798D8BD166D886500A0863D /* FLiOSCompatibility.h in Headers */,
-				2798D8C4166D886500A0863D /* FLOSXCompatibility.h in Headers */,
-				2798D8CB166D886500A0863D /* NSValue+FLCocoaCompatibility.h in Headers */,
 				2798D8D2166D886500A0863D /* FLDisplayFormatter.h in Headers */,
 				2798D8D9166D886500A0863D /* FLDisplayFormatters.h in Headers */,
-				2798D8E0166D886500A0863D /* _FLContentMode.h in Headers */,
-				2798D8E3166D886500A0863D /* _FLRect.h in Headers */,
-				2798D8E6166D886500A0863D /* _FLRectOptimize.h in Headers */,
-				2798D8E9166D886500A0863D /* FLContentMode.h in Headers */,
-				2798D8F0166D886500A0863D /* FLEdgeInsets.h in Headers */,
+				2798D8E0166D886500A0863D /* FLRectLayout_Inlines.h in Headers */,
+				2798D8E3166D886500A0863D /* FLRectUtilities_Inlines.h in Headers */,
+				2798D8E6166D886500A0863D /* FLRectOptimize_Inlines.h in Headers */,
+				2798D8E9166D886500A0863D /* FLRectLayout.h in Headers */,
 				2798D8F7166D886500A0863D /* FLGeometry.h in Headers */,
-				2798D8FA166D886500A0863D /* FLPoint.h in Headers */,
-				2798D8FD166D886500A0863D /* FLRect.h in Headers */,
+				2798D8FA166D886500A0863D /* FLPointUtilities.h in Headers */,
+				2798D8FD166D886500A0863D /* FLRectUtilities.h in Headers */,
 				2798D904166D886500A0863D /* FLRectOptimize.h in Headers */,
-				2798D907166D886500A0863D /* FLSize.h in Headers */,
-				2798D90E166D886500A0863D /* UIImage+Colorize.h in Headers */,
-				2798D915166D886500A0863D /* UIImageUtilities.h in Headers */,
+				2798D907166D886500A0863D /* FLSizeUtilities.h in Headers */,
+				2798D90E166D886500A0863D /* FLImageUtilities.h in Headers */,
 				2798D91C166D886500A0863D /* FLProgressFactory.h in Headers */,
 				2798D923166D886500A0863D /* FLProgressViewControllerProtocol.h in Headers */,
 				2798D926166D886500A0863D /* FLProgressViewProtocol.h in Headers */,
@@ -6944,9 +7017,9 @@
 				2798DAE8166D886500A0863D /* Base64Transcoder.h in Headers */,
 				2798DAEB166D886500A0863D /* ISO8601DateFormatter.h in Headers */,
 				2798DAF2166D886500A0863D /* NSData+RSHexDump.h in Headers */,
-				2798DAF9166D886500A0863D /* UIImage+Alpha.h in Headers */,
-				2798DB00166D886500A0863D /* UIImage+Resize.h in Headers */,
-				2798DB07166D886500A0863D /* UIImage+RoundedCorner.h in Headers */,
+				2798DAF9166D886500A0863D /* SDKImage+Alpha.h in Headers */,
+				2798DB00166D886500A0863D /* SDKImage+Resize.h in Headers */,
+				2798DB07166D886500A0863D /* SDKImage+RoundedCorner.h in Headers */,
 				2798DB30166D888500A0863D /* NSObject+SBJson.h in Headers */,
 				2798DB36166D888500A0863D /* SBJson.h in Headers */,
 				2798DB39166D888500A0863D /* SBJsonParser.h in Headers */,
@@ -6964,6 +7037,24 @@
 				270380D0166EDDC10082D9D9 /* FLGlobalMenuController.h in Headers */,
 				270380DB166EDE1C0082D9D9 /* FLClickablePathViewController.h in Headers */,
 				270380E3166EDFA80082D9D9 /* FLClickablePathView.h in Headers */,
+				273FC194166FB7AE0072C62A /* NSView+FLAdditions.h in Headers */,
+				273FC1B6166FC1750072C62A /* FLColor.h in Headers */,
+				273FC22F166FD74F0072C62A /* SDKCompatibility.h in Headers */,
+				273FC236166FD74F0072C62A /* SDKColor.h in Headers */,
+				273FC23D166FD74F0072C62A /* SDKEdgeInsets.h in Headers */,
+				273FC244166FD74F0072C62A /* SDKImage.h in Headers */,
+				273FC24B166FD74F0072C62A /* SDKPoint.h in Headers */,
+				273FC24E166FD74F0072C62A /* SDKRect.h in Headers */,
+				273FC25C166FD74F0072C62A /* SDKValue.h in Headers */,
+				273FC264166FDB840072C62A /* FLCoreFoundation.h in Headers */,
+				273FC280166FDF0B0072C62A /* SDKColor+FLMoreColors.h in Headers */,
+				273FC28A166FDF810072C62A /* SDKColor+FLUtils.h in Headers */,
+				273FC292166FE07C0072C62A /* FLImage.h in Headers */,
+				273FC297166FE0990072C62A /* SDKImage+FLColorize.h in Headers */,
+				273FC2A0166FE0AE0072C62A /* SDKImage+FLUtils.h in Headers */,
+				279AA168167032F1003EC2EB /* FLWizardView.h in Headers */,
+				279AA171167033BD003EC2EB /* FLWizardWindowController.h in Headers */,
+				279AA17A16703C36003EC2EB /* WTFWindowController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7362,27 +7453,18 @@
 				2798D891166D886500A0863D /* FLVerticalGridArrangement.h in Headers */,
 				2798D898166D886500A0863D /* FLColor_t.h in Headers */,
 				2798D89F166D886500A0863D /* FLColorRange.h in Headers */,
-				2798D8A6166D886500A0863D /* UIColor+FLExtras.h in Headers */,
-				2798D8AD166D886500A0863D /* UIColor+FLMoreColors.h in Headers */,
-				2798D8B4166D886500A0863D /* FLCocoaCompatibility.h in Headers */,
-				2798D8BB166D886500A0863D /* FLCoreFoundation.h in Headers */,
-				2798D8BE166D886500A0863D /* FLiOSCompatibility.h in Headers */,
-				2798D8C5166D886500A0863D /* FLOSXCompatibility.h in Headers */,
-				2798D8CC166D886500A0863D /* NSValue+FLCocoaCompatibility.h in Headers */,
 				2798D8D3166D886500A0863D /* FLDisplayFormatter.h in Headers */,
 				2798D8DA166D886500A0863D /* FLDisplayFormatters.h in Headers */,
-				2798D8E1166D886500A0863D /* _FLContentMode.h in Headers */,
-				2798D8E4166D886500A0863D /* _FLRect.h in Headers */,
-				2798D8E7166D886500A0863D /* _FLRectOptimize.h in Headers */,
-				2798D8EA166D886500A0863D /* FLContentMode.h in Headers */,
-				2798D8F1166D886500A0863D /* FLEdgeInsets.h in Headers */,
+				2798D8E1166D886500A0863D /* FLRectLayout_Inlines.h in Headers */,
+				2798D8E4166D886500A0863D /* FLRectUtilities_Inlines.h in Headers */,
+				2798D8E7166D886500A0863D /* FLRectOptimize_Inlines.h in Headers */,
+				2798D8EA166D886500A0863D /* FLRectLayout.h in Headers */,
 				2798D8F8166D886500A0863D /* FLGeometry.h in Headers */,
-				2798D8FB166D886500A0863D /* FLPoint.h in Headers */,
-				2798D8FE166D886500A0863D /* FLRect.h in Headers */,
+				2798D8FB166D886500A0863D /* FLPointUtilities.h in Headers */,
+				2798D8FE166D886500A0863D /* FLRectUtilities.h in Headers */,
 				2798D905166D886500A0863D /* FLRectOptimize.h in Headers */,
-				2798D908166D886500A0863D /* FLSize.h in Headers */,
-				2798D90F166D886500A0863D /* UIImage+Colorize.h in Headers */,
-				2798D916166D886500A0863D /* UIImageUtilities.h in Headers */,
+				2798D908166D886500A0863D /* FLSizeUtilities.h in Headers */,
+				2798D90F166D886500A0863D /* FLImageUtilities.h in Headers */,
 				2798D91D166D886500A0863D /* FLProgressFactory.h in Headers */,
 				2798D924166D886500A0863D /* FLProgressViewControllerProtocol.h in Headers */,
 				2798D927166D886500A0863D /* FLProgressViewProtocol.h in Headers */,
@@ -7466,9 +7548,9 @@
 				2798DAE9166D886500A0863D /* Base64Transcoder.h in Headers */,
 				2798DAEC166D886500A0863D /* ISO8601DateFormatter.h in Headers */,
 				2798DAF3166D886500A0863D /* NSData+RSHexDump.h in Headers */,
-				2798DAFA166D886500A0863D /* UIImage+Alpha.h in Headers */,
-				2798DB01166D886500A0863D /* UIImage+Resize.h in Headers */,
-				2798DB08166D886500A0863D /* UIImage+RoundedCorner.h in Headers */,
+				2798DAFA166D886500A0863D /* SDKImage+Alpha.h in Headers */,
+				2798DB01166D886500A0863D /* SDKImage+Resize.h in Headers */,
+				2798DB08166D886500A0863D /* SDKImage+RoundedCorner.h in Headers */,
 				2798DB31166D888500A0863D /* NSObject+SBJson.h in Headers */,
 				2798DB37166D888500A0863D /* SBJson.h in Headers */,
 				2798DB3A166D888500A0863D /* SBJsonParser.h in Headers */,
@@ -7486,6 +7568,24 @@
 				270380D1166EDDC10082D9D9 /* FLGlobalMenuController.h in Headers */,
 				270380DC166EDE1C0082D9D9 /* FLClickablePathViewController.h in Headers */,
 				270380E4166EDFA80082D9D9 /* FLClickablePathView.h in Headers */,
+				273FC195166FB7AE0072C62A /* NSView+FLAdditions.h in Headers */,
+				273FC1B7166FC1750072C62A /* FLColor.h in Headers */,
+				273FC230166FD74F0072C62A /* SDKCompatibility.h in Headers */,
+				273FC237166FD74F0072C62A /* SDKColor.h in Headers */,
+				273FC23E166FD74F0072C62A /* SDKEdgeInsets.h in Headers */,
+				273FC245166FD74F0072C62A /* SDKImage.h in Headers */,
+				273FC24C166FD74F0072C62A /* SDKPoint.h in Headers */,
+				273FC24F166FD74F0072C62A /* SDKRect.h in Headers */,
+				273FC25D166FD74F0072C62A /* SDKValue.h in Headers */,
+				273FC265166FDB840072C62A /* FLCoreFoundation.h in Headers */,
+				273FC281166FDF0B0072C62A /* SDKColor+FLMoreColors.h in Headers */,
+				273FC28B166FDF810072C62A /* SDKColor+FLUtils.h in Headers */,
+				273FC293166FE07C0072C62A /* FLImage.h in Headers */,
+				273FC298166FE0990072C62A /* SDKImage+FLColorize.h in Headers */,
+				273FC2A1166FE0AE0072C62A /* SDKImage+FLUtils.h in Headers */,
+				279AA169167032F1003EC2EB /* FLWizardView.h in Headers */,
+				279AA172167033BD003EC2EB /* FLWizardWindowController.h in Headers */,
+				279AA17B16703C36003EC2EB /* WTFWindowController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7884,27 +7984,18 @@
 				2798D88F166D886500A0863D /* FLVerticalGridArrangement.h in Headers */,
 				2798D896166D886500A0863D /* FLColor_t.h in Headers */,
 				2798D89D166D886500A0863D /* FLColorRange.h in Headers */,
-				2798D8A4166D886500A0863D /* UIColor+FLExtras.h in Headers */,
-				2798D8AB166D886500A0863D /* UIColor+FLMoreColors.h in Headers */,
-				2798D8B2166D886500A0863D /* FLCocoaCompatibility.h in Headers */,
-				2798D8B9166D886500A0863D /* FLCoreFoundation.h in Headers */,
-				2798D8BC166D886500A0863D /* FLiOSCompatibility.h in Headers */,
-				2798D8C3166D886500A0863D /* FLOSXCompatibility.h in Headers */,
-				2798D8CA166D886500A0863D /* NSValue+FLCocoaCompatibility.h in Headers */,
 				2798D8D1166D886500A0863D /* FLDisplayFormatter.h in Headers */,
 				2798D8D8166D886500A0863D /* FLDisplayFormatters.h in Headers */,
-				2798D8DF166D886500A0863D /* _FLContentMode.h in Headers */,
-				2798D8E2166D886500A0863D /* _FLRect.h in Headers */,
-				2798D8E5166D886500A0863D /* _FLRectOptimize.h in Headers */,
-				2798D8E8166D886500A0863D /* FLContentMode.h in Headers */,
-				2798D8EF166D886500A0863D /* FLEdgeInsets.h in Headers */,
+				2798D8DF166D886500A0863D /* FLRectLayout_Inlines.h in Headers */,
+				2798D8E2166D886500A0863D /* FLRectUtilities_Inlines.h in Headers */,
+				2798D8E5166D886500A0863D /* FLRectOptimize_Inlines.h in Headers */,
+				2798D8E8166D886500A0863D /* FLRectLayout.h in Headers */,
 				2798D8F6166D886500A0863D /* FLGeometry.h in Headers */,
-				2798D8F9166D886500A0863D /* FLPoint.h in Headers */,
-				2798D8FC166D886500A0863D /* FLRect.h in Headers */,
+				2798D8F9166D886500A0863D /* FLPointUtilities.h in Headers */,
+				2798D8FC166D886500A0863D /* FLRectUtilities.h in Headers */,
 				2798D903166D886500A0863D /* FLRectOptimize.h in Headers */,
-				2798D906166D886500A0863D /* FLSize.h in Headers */,
-				2798D90D166D886500A0863D /* UIImage+Colorize.h in Headers */,
-				2798D914166D886500A0863D /* UIImageUtilities.h in Headers */,
+				2798D906166D886500A0863D /* FLSizeUtilities.h in Headers */,
+				2798D90D166D886500A0863D /* FLImageUtilities.h in Headers */,
 				2798D91B166D886500A0863D /* FLProgressFactory.h in Headers */,
 				2798D922166D886500A0863D /* FLProgressViewControllerProtocol.h in Headers */,
 				2798D925166D886500A0863D /* FLProgressViewProtocol.h in Headers */,
@@ -7988,9 +8079,9 @@
 				2798DAE7166D886500A0863D /* Base64Transcoder.h in Headers */,
 				2798DAEA166D886500A0863D /* ISO8601DateFormatter.h in Headers */,
 				2798DAF1166D886500A0863D /* NSData+RSHexDump.h in Headers */,
-				2798DAF8166D886500A0863D /* UIImage+Alpha.h in Headers */,
-				2798DAFF166D886500A0863D /* UIImage+Resize.h in Headers */,
-				2798DB06166D886500A0863D /* UIImage+RoundedCorner.h in Headers */,
+				2798DAF8166D886500A0863D /* SDKImage+Alpha.h in Headers */,
+				2798DAFF166D886500A0863D /* SDKImage+Resize.h in Headers */,
+				2798DB06166D886500A0863D /* SDKImage+RoundedCorner.h in Headers */,
 				2798DB2F166D888500A0863D /* NSObject+SBJson.h in Headers */,
 				2798DB35166D888500A0863D /* SBJson.h in Headers */,
 				2798DB38166D888500A0863D /* SBJsonParser.h in Headers */,
@@ -8008,6 +8099,24 @@
 				270380CF166EDDC10082D9D9 /* FLGlobalMenuController.h in Headers */,
 				270380DA166EDE1C0082D9D9 /* FLClickablePathViewController.h in Headers */,
 				270380E2166EDFA80082D9D9 /* FLClickablePathView.h in Headers */,
+				273FC193166FB7AE0072C62A /* NSView+FLAdditions.h in Headers */,
+				273FC1B5166FC1750072C62A /* FLColor.h in Headers */,
+				273FC22E166FD74F0072C62A /* SDKCompatibility.h in Headers */,
+				273FC235166FD74F0072C62A /* SDKColor.h in Headers */,
+				273FC23C166FD74F0072C62A /* SDKEdgeInsets.h in Headers */,
+				273FC243166FD74F0072C62A /* SDKImage.h in Headers */,
+				273FC24A166FD74F0072C62A /* SDKPoint.h in Headers */,
+				273FC24D166FD74F0072C62A /* SDKRect.h in Headers */,
+				273FC25B166FD74F0072C62A /* SDKValue.h in Headers */,
+				273FC263166FDB840072C62A /* FLCoreFoundation.h in Headers */,
+				273FC27F166FDF0B0072C62A /* SDKColor+FLMoreColors.h in Headers */,
+				273FC289166FDF810072C62A /* SDKColor+FLUtils.h in Headers */,
+				273FC291166FE07C0072C62A /* FLImage.h in Headers */,
+				273FC296166FE0990072C62A /* SDKImage+FLColorize.h in Headers */,
+				273FC29F166FE0AE0072C62A /* SDKImage+FLUtils.h in Headers */,
+				279AA167167032F1003EC2EB /* FLWizardView.h in Headers */,
+				279AA170167033BD003EC2EB /* FLWizardWindowController.h in Headers */,
+				279AA17916703C36003EC2EB /* WTFWindowController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8544,20 +8653,12 @@
 				2798D894166D886500A0863D /* FLVerticalGridArrangement.m in Sources */,
 				2798D89B166D886500A0863D /* FLColor_t.m in Sources */,
 				2798D8A2166D886500A0863D /* FLColorRange.m in Sources */,
-				2798D8A9166D886500A0863D /* UIColor+FLExtras.m in Sources */,
-				2798D8B0166D886500A0863D /* UIColor+FLMoreColors.m in Sources */,
-				2798D8B7166D886500A0863D /* FLCocoaCompatibility.m in Sources */,
-				2798D8C1166D886500A0863D /* FLiOSCompatibility.m in Sources */,
-				2798D8C8166D886500A0863D /* FLOSXCompatibility.m in Sources */,
-				2798D8CF166D886500A0863D /* NSValue+FLCocoaCompatibility.m in Sources */,
 				2798D8D6166D886500A0863D /* FLDisplayFormatter.m in Sources */,
 				2798D8DD166D886500A0863D /* FLDisplayFormatters.m in Sources */,
-				2798D8ED166D886500A0863D /* FLContentMode.m in Sources */,
-				2798D8F4166D886500A0863D /* FLEdgeInsets.m in Sources */,
-				2798D901166D886500A0863D /* FLRect.m in Sources */,
-				2798D90B166D886500A0863D /* FLSize.m in Sources */,
-				2798D912166D886500A0863D /* UIImage+Colorize.m in Sources */,
-				2798D919166D886500A0863D /* UIImageUtilities.m in Sources */,
+				2798D8ED166D886500A0863D /* FLRectLayout.m in Sources */,
+				2798D901166D886500A0863D /* FLRectUtilities.m in Sources */,
+				2798D90B166D886500A0863D /* FLSizeUtilities.m in Sources */,
+				2798D912166D886500A0863D /* FLImageUtilities.m in Sources */,
 				2798D920166D886500A0863D /* FLProgressFactory.m in Sources */,
 				2798D92D166D886500A0863D /* __FLSlideshowOptions.m in Sources */,
 				2798D934166D886500A0863D /* FLSlideshowOptions.m in Sources */,
@@ -8615,9 +8716,9 @@
 				2798DAE5166D886500A0863D /* Base64Transcoder.c in Sources */,
 				2798DAEF166D886500A0863D /* ISO8601DateFormatter.m in Sources */,
 				2798DAF6166D886500A0863D /* NSData+RSHexDump.m in Sources */,
-				2798DAFD166D886500A0863D /* UIImage+Alpha.m in Sources */,
-				2798DB04166D886500A0863D /* UIImage+Resize.m in Sources */,
-				2798DB0B166D886500A0863D /* UIImage+RoundedCorner.m in Sources */,
+				2798DAFD166D886500A0863D /* SDKImage+Alpha.m in Sources */,
+				2798DB04166D886500A0863D /* SDKImage+Resize.m in Sources */,
+				2798DB0B166D886500A0863D /* SDKImage+RoundedCorner.m in Sources */,
 				2798DB33166D888500A0863D /* NSObject+SBJson.m in Sources */,
 				2798DB3C166D888500A0863D /* SBJsonParser.m in Sources */,
 				2798DB42166D888500A0863D /* SBJsonStreamParser.m in Sources */,
@@ -8634,6 +8735,17 @@
 				270380D3166EDDC10082D9D9 /* FLGlobalMenuController.m in Sources */,
 				270380DE166EDE1C0082D9D9 /* FLClickablePathViewController.m in Sources */,
 				270380E6166EDFA80082D9D9 /* FLClickablePathView.m in Sources */,
+				273FC197166FB7AE0072C62A /* NSView+FLAdditions.m in Sources */,
+				273FC241166FD74F0072C62A /* SDKEdgeInsets.m in Sources */,
+				273FC248166FD74F0072C62A /* SDKImage.m in Sources */,
+				273FC260166FD74F0072C62A /* SDKValue.m in Sources */,
+				273FC284166FDF0B0072C62A /* SDKColor+FLMoreColors.m in Sources */,
+				273FC28E166FDF810072C62A /* SDKColor+FLUtils.m in Sources */,
+				273FC29B166FE0990072C62A /* SDKImage+FLColorize.m in Sources */,
+				273FC2A4166FE0AE0072C62A /* SDKImage+FLUtils.m in Sources */,
+				279AA16B167032F1003EC2EB /* FLWizardView.m in Sources */,
+				279AA174167033BD003EC2EB /* FLWizardWindowController.m in Sources */,
+				279AA17D16703C36003EC2EB /* WTFWindowController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9005,20 +9117,12 @@
 				2798D895166D886500A0863D /* FLVerticalGridArrangement.m in Sources */,
 				2798D89C166D886500A0863D /* FLColor_t.m in Sources */,
 				2798D8A3166D886500A0863D /* FLColorRange.m in Sources */,
-				2798D8AA166D886500A0863D /* UIColor+FLExtras.m in Sources */,
-				2798D8B1166D886500A0863D /* UIColor+FLMoreColors.m in Sources */,
-				2798D8B8166D886500A0863D /* FLCocoaCompatibility.m in Sources */,
-				2798D8C2166D886500A0863D /* FLiOSCompatibility.m in Sources */,
-				2798D8C9166D886500A0863D /* FLOSXCompatibility.m in Sources */,
-				2798D8D0166D886500A0863D /* NSValue+FLCocoaCompatibility.m in Sources */,
 				2798D8D7166D886500A0863D /* FLDisplayFormatter.m in Sources */,
 				2798D8DE166D886500A0863D /* FLDisplayFormatters.m in Sources */,
-				2798D8EE166D886500A0863D /* FLContentMode.m in Sources */,
-				2798D8F5166D886500A0863D /* FLEdgeInsets.m in Sources */,
-				2798D902166D886500A0863D /* FLRect.m in Sources */,
-				2798D90C166D886500A0863D /* FLSize.m in Sources */,
-				2798D913166D886500A0863D /* UIImage+Colorize.m in Sources */,
-				2798D91A166D886500A0863D /* UIImageUtilities.m in Sources */,
+				2798D8EE166D886500A0863D /* FLRectLayout.m in Sources */,
+				2798D902166D886500A0863D /* FLRectUtilities.m in Sources */,
+				2798D90C166D886500A0863D /* FLSizeUtilities.m in Sources */,
+				2798D913166D886500A0863D /* FLImageUtilities.m in Sources */,
 				2798D921166D886500A0863D /* FLProgressFactory.m in Sources */,
 				2798D92E166D886500A0863D /* __FLSlideshowOptions.m in Sources */,
 				2798D935166D886500A0863D /* FLSlideshowOptions.m in Sources */,
@@ -9076,9 +9180,9 @@
 				2798DAE6166D886500A0863D /* Base64Transcoder.c in Sources */,
 				2798DAF0166D886500A0863D /* ISO8601DateFormatter.m in Sources */,
 				2798DAF7166D886500A0863D /* NSData+RSHexDump.m in Sources */,
-				2798DAFE166D886500A0863D /* UIImage+Alpha.m in Sources */,
-				2798DB05166D886500A0863D /* UIImage+Resize.m in Sources */,
-				2798DB0C166D886500A0863D /* UIImage+RoundedCorner.m in Sources */,
+				2798DAFE166D886500A0863D /* SDKImage+Alpha.m in Sources */,
+				2798DB05166D886500A0863D /* SDKImage+Resize.m in Sources */,
+				2798DB0C166D886500A0863D /* SDKImage+RoundedCorner.m in Sources */,
 				2798DB34166D888500A0863D /* NSObject+SBJson.m in Sources */,
 				2798DB3D166D888500A0863D /* SBJsonParser.m in Sources */,
 				2798DB43166D888500A0863D /* SBJsonStreamParser.m in Sources */,
@@ -9095,6 +9199,17 @@
 				270380D4166EDDC10082D9D9 /* FLGlobalMenuController.m in Sources */,
 				270380DF166EDE1C0082D9D9 /* FLClickablePathViewController.m in Sources */,
 				270380E7166EDFA80082D9D9 /* FLClickablePathView.m in Sources */,
+				273FC198166FB7AE0072C62A /* NSView+FLAdditions.m in Sources */,
+				273FC242166FD74F0072C62A /* SDKEdgeInsets.m in Sources */,
+				273FC249166FD74F0072C62A /* SDKImage.m in Sources */,
+				273FC261166FD74F0072C62A /* SDKValue.m in Sources */,
+				273FC285166FDF0B0072C62A /* SDKColor+FLMoreColors.m in Sources */,
+				273FC28F166FDF810072C62A /* SDKColor+FLUtils.m in Sources */,
+				273FC29C166FE0990072C62A /* SDKImage+FLColorize.m in Sources */,
+				273FC2A5166FE0AE0072C62A /* SDKImage+FLUtils.m in Sources */,
+				279AA16C167032F1003EC2EB /* FLWizardView.m in Sources */,
+				279AA175167033BD003EC2EB /* FLWizardWindowController.m in Sources */,
+				279AA17E16703C36003EC2EB /* WTFWindowController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9466,20 +9581,12 @@
 				2798D892166D886500A0863D /* FLVerticalGridArrangement.m in Sources */,
 				2798D899166D886500A0863D /* FLColor_t.m in Sources */,
 				2798D8A0166D886500A0863D /* FLColorRange.m in Sources */,
-				2798D8A7166D886500A0863D /* UIColor+FLExtras.m in Sources */,
-				2798D8AE166D886500A0863D /* UIColor+FLMoreColors.m in Sources */,
-				2798D8B5166D886500A0863D /* FLCocoaCompatibility.m in Sources */,
-				2798D8BF166D886500A0863D /* FLiOSCompatibility.m in Sources */,
-				2798D8C6166D886500A0863D /* FLOSXCompatibility.m in Sources */,
-				2798D8CD166D886500A0863D /* NSValue+FLCocoaCompatibility.m in Sources */,
 				2798D8D4166D886500A0863D /* FLDisplayFormatter.m in Sources */,
 				2798D8DB166D886500A0863D /* FLDisplayFormatters.m in Sources */,
-				2798D8EB166D886500A0863D /* FLContentMode.m in Sources */,
-				2798D8F2166D886500A0863D /* FLEdgeInsets.m in Sources */,
-				2798D8FF166D886500A0863D /* FLRect.m in Sources */,
-				2798D909166D886500A0863D /* FLSize.m in Sources */,
-				2798D910166D886500A0863D /* UIImage+Colorize.m in Sources */,
-				2798D917166D886500A0863D /* UIImageUtilities.m in Sources */,
+				2798D8EB166D886500A0863D /* FLRectLayout.m in Sources */,
+				2798D8FF166D886500A0863D /* FLRectUtilities.m in Sources */,
+				2798D909166D886500A0863D /* FLSizeUtilities.m in Sources */,
+				2798D910166D886500A0863D /* FLImageUtilities.m in Sources */,
 				2798D91E166D886500A0863D /* FLProgressFactory.m in Sources */,
 				2798D92B166D886500A0863D /* __FLSlideshowOptions.m in Sources */,
 				2798D932166D886500A0863D /* FLSlideshowOptions.m in Sources */,
@@ -9537,9 +9644,16 @@
 				2798DAE3166D886500A0863D /* Base64Transcoder.c in Sources */,
 				2798DAED166D886500A0863D /* ISO8601DateFormatter.m in Sources */,
 				2798DAF4166D886500A0863D /* NSData+RSHexDump.m in Sources */,
-				2798DAFB166D886500A0863D /* UIImage+Alpha.m in Sources */,
-				2798DB02166D886500A0863D /* UIImage+Resize.m in Sources */,
-				2798DB09166D886500A0863D /* UIImage+RoundedCorner.m in Sources */,
+				2798DAFB166D886500A0863D /* SDKImage+Alpha.m in Sources */,
+				2798DB02166D886500A0863D /* SDKImage+Resize.m in Sources */,
+				2798DB09166D886500A0863D /* SDKImage+RoundedCorner.m in Sources */,
+				273FC23F166FD74F0072C62A /* SDKEdgeInsets.m in Sources */,
+				273FC246166FD74F0072C62A /* SDKImage.m in Sources */,
+				273FC25E166FD74F0072C62A /* SDKValue.m in Sources */,
+				273FC282166FDF0B0072C62A /* SDKColor+FLMoreColors.m in Sources */,
+				273FC28C166FDF810072C62A /* SDKColor+FLUtils.m in Sources */,
+				273FC299166FE0990072C62A /* SDKImage+FLColorize.m in Sources */,
+				273FC2A2166FE0AE0072C62A /* SDKImage+FLUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9911,20 +10025,12 @@
 				2798D893166D886500A0863D /* FLVerticalGridArrangement.m in Sources */,
 				2798D89A166D886500A0863D /* FLColor_t.m in Sources */,
 				2798D8A1166D886500A0863D /* FLColorRange.m in Sources */,
-				2798D8A8166D886500A0863D /* UIColor+FLExtras.m in Sources */,
-				2798D8AF166D886500A0863D /* UIColor+FLMoreColors.m in Sources */,
-				2798D8B6166D886500A0863D /* FLCocoaCompatibility.m in Sources */,
-				2798D8C0166D886500A0863D /* FLiOSCompatibility.m in Sources */,
-				2798D8C7166D886500A0863D /* FLOSXCompatibility.m in Sources */,
-				2798D8CE166D886500A0863D /* NSValue+FLCocoaCompatibility.m in Sources */,
 				2798D8D5166D886500A0863D /* FLDisplayFormatter.m in Sources */,
 				2798D8DC166D886500A0863D /* FLDisplayFormatters.m in Sources */,
-				2798D8EC166D886500A0863D /* FLContentMode.m in Sources */,
-				2798D8F3166D886500A0863D /* FLEdgeInsets.m in Sources */,
-				2798D900166D886500A0863D /* FLRect.m in Sources */,
-				2798D90A166D886500A0863D /* FLSize.m in Sources */,
-				2798D911166D886500A0863D /* UIImage+Colorize.m in Sources */,
-				2798D918166D886500A0863D /* UIImageUtilities.m in Sources */,
+				2798D8EC166D886500A0863D /* FLRectLayout.m in Sources */,
+				2798D900166D886500A0863D /* FLRectUtilities.m in Sources */,
+				2798D90A166D886500A0863D /* FLSizeUtilities.m in Sources */,
+				2798D911166D886500A0863D /* FLImageUtilities.m in Sources */,
 				2798D91F166D886500A0863D /* FLProgressFactory.m in Sources */,
 				2798D92C166D886500A0863D /* __FLSlideshowOptions.m in Sources */,
 				2798D933166D886500A0863D /* FLSlideshowOptions.m in Sources */,
@@ -9982,9 +10088,9 @@
 				2798DAE4166D886500A0863D /* Base64Transcoder.c in Sources */,
 				2798DAEE166D886500A0863D /* ISO8601DateFormatter.m in Sources */,
 				2798DAF5166D886500A0863D /* NSData+RSHexDump.m in Sources */,
-				2798DAFC166D886500A0863D /* UIImage+Alpha.m in Sources */,
-				2798DB03166D886500A0863D /* UIImage+Resize.m in Sources */,
-				2798DB0A166D886500A0863D /* UIImage+RoundedCorner.m in Sources */,
+				2798DAFC166D886500A0863D /* SDKImage+Alpha.m in Sources */,
+				2798DB03166D886500A0863D /* SDKImage+Resize.m in Sources */,
+				2798DB0A166D886500A0863D /* SDKImage+RoundedCorner.m in Sources */,
 				2798DB32166D888500A0863D /* NSObject+SBJson.m in Sources */,
 				2798DB3B166D888500A0863D /* SBJsonParser.m in Sources */,
 				2798DB41166D888500A0863D /* SBJsonStreamParser.m in Sources */,
@@ -10001,18 +10107,37 @@
 				270380D2166EDDC10082D9D9 /* FLGlobalMenuController.m in Sources */,
 				270380DD166EDE1C0082D9D9 /* FLClickablePathViewController.m in Sources */,
 				270380E5166EDFA80082D9D9 /* FLClickablePathView.m in Sources */,
+				273FC196166FB7AE0072C62A /* NSView+FLAdditions.m in Sources */,
+				273FC240166FD74F0072C62A /* SDKEdgeInsets.m in Sources */,
+				273FC247166FD74F0072C62A /* SDKImage.m in Sources */,
+				273FC25F166FD74F0072C62A /* SDKValue.m in Sources */,
+				273FC283166FDF0B0072C62A /* SDKColor+FLMoreColors.m in Sources */,
+				273FC28D166FDF810072C62A /* SDKColor+FLUtils.m in Sources */,
+				273FC29A166FE0990072C62A /* SDKImage+FLColorize.m in Sources */,
+				273FC2A3166FE0AE0072C62A /* SDKImage+FLUtils.m in Sources */,
+				279AA16A167032F1003EC2EB /* FLWizardView.m in Sources */,
+				279AA173167033BD003EC2EB /* FLWizardWindowController.m in Sources */,
+				279AA17C16703C36003EC2EB /* WTFWindowController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		270380C2166EDDAC0082D9D9 /* FLWizardViewController.xib */ = {
+		279AA18716703DE6003EC2EB /* FLWizardViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				270380C3166EDDAC0082D9D9 /* en */,
+				279AA18816703DE6003EC2EB /* en */,
 			);
 			name = FLWizardViewController.xib;
+			sourceTree = "<group>";
+		};
+		279AA18916703DE6003EC2EB /* FLWizardWindowController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				279AA18A16703DE6003EC2EB /* en */,
+			);
+			name = FLWizardWindowController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

@@ -14,7 +14,7 @@
 @protocol FLArrangeableContainer <NSObject>
 @property (readwrite, strong, nonatomic) FLArrangement* arrangement;
 @property (readonly, nonatomic) NSArray* arrangeables;
-@property (readwrite, assign, nonatomic) FLRect bounds;
+@property (readwrite, assign, nonatomic) SDKRect bounds;
 @end
 //
 //@interface FLArrangeableContainer : NSObject

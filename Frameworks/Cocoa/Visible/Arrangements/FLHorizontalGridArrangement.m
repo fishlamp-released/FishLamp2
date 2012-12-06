@@ -15,20 +15,20 @@
     return autorelease_([[[self class] alloc] init]);
 }
 
-//- (FLSize) performArrangement:(NSArray*) views 
-//                         inBounds:(FLRect) bounds
+//- (SDKSize) performArrangement:(NSArray*) views 
+//                         inBounds:(SDKRect) bounds
 //{
 ////	CGFloat colWidth = bounds.size.width;
 ////
 ////// TODO: Not sure how the margins and innerInsets should work here.
 ////
-//////    FLRect frame = bounds;
+//////    SDKRect frame = bounds;
 //////    bounds.origin.x += self.innerInsets.left;
 //////    bounds.origin.y += self.innerInsets.top;
 //////    bounds.size.width -= (self.innerInsets.left + self.innerInsets.right);
 //////    bounds.size.height -= (self.innerInsets.top + self.innerInsets.bottom);
 ////
-////    FLRect containerBounds = bounds;
+////    SDKRect containerBounds = bounds;
 ////
 ////    NSInteger count = 0;
 ////	for(id view in views)
@@ -40,24 +40,24 @@
 ////
 ////        containerBounds.origin.x = (containerBounds.size.width * count++);
 ////
-//////        FLRect frame = containerBounds;
+//////        SDKRect frame = containerBounds;
 //////        bounds.origin.x += self.innerInsets.left;
 //////        bounds.origin.y += self.innerInsets.top;
 //////        bounds.size.width -= (self.innerInsets.left + self.innerInsets.right);
 //////        bounds.size.height -= (self.innerInsets.top + self.innerInsets.bottom);
 ////
-//////		FLEdgeInsets adjustedMargins = [self addouterInsetsToInsets:view];
+//////		SDKEdgeInsets adjustedMargins = [self addouterInsetsToInsets:view];
 //////		origin.x += adjustedMargins.left;
 ////		[view setLayoutFrame:containerBounds];
 ////    }
 ////    return FLSizeMake(FLRectGetRight(containerBounds), bounds.size.height);
 //}
 
-- (FLSize) layoutArrangeableObjects:(NSArray*) objects
-                         inBounds:(FLRect) bounds {
+- (SDKSize) layoutArrangeableObjects:(NSArray*) objects
+                         inBounds:(SDKRect) bounds {
 
 /*
-    FLSize cellSize = [self.delegate cellViewLayoutGetCellSize:self inBounds:bounds];
+    SDKSize cellSize = [self.delegate cellViewLayoutGetCellSize:self inBounds:bounds];
 
     NSInteger itemCount = views.count;
     NSInteger rowCount = bounds.size.height / cellSize.height;
@@ -83,12 +83,12 @@
             }
             
             
-            FLRect frame = FLRectMake(  bounds.origin.x + (col * cellSize.width), 
+            SDKRect frame = FLRectMake(  bounds.origin.x + (col * cellSize.width), 
                                         bounds.origin.y + (row * cellSize.height), 
                                         cellSize.width, 
                                         cellSize.height);
 
-            FLEdgeInsets adjustedMargins = [self addouterInsetsToInsets:view];
+            SDKEdgeInsets adjustedMargins = [self addouterInsetsToInsets:view];
             frame.origin.x += adjustedMargins.left;
             frame.origin.y += adjustedMargins.top;
             frame.size.width -= (adjustedMargins.left + adjustedMargins.right);
@@ -109,9 +109,9 @@
 //                j--;
 //                continue;
 //            }
-////            FLEdgeInsets adjustedMargins = [self addouterInsetsToInsets:view];
+////            SDKEdgeInsets adjustedMargins = [self addouterInsetsToInsets:view];
 //            
-//            FLRect frame = FLRectMake(bounds.origin.x + (j * cellSize.width), top, cellSize.width, cellSize.height);
+//            SDKRect frame = FLRectMake(bounds.origin.x + (j * cellSize.width), top, cellSize.width, cellSize.height);
 //
 ////            frame.origin.x += adjustedMargins.left;
 ////            frame.origin.y += adjustedMargins.top;

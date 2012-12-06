@@ -10,7 +10,7 @@
 
 #import "FishLampCore.h"
 #import "FLArrangeable.h"
-#import "FLRect.h"
+#import "SDKRect.h"
 
 // behavior
 //
@@ -23,9 +23,9 @@
 //    FLPaddingInt bottom;
 //} FLArrangeablePadding;
 
-typedef FLEdgeInsets FLPaddingInsets;
+typedef SDKEdgeInsets FLPaddingInsets;
 
-#define FLPaddingInsetsZero FLEdgeInsetsZero
+#define FLPaddingInsetsZero SDKEdgeInsetsZero
 #define FLPaddingInsetsMake FLEdgeInsetsMake
 
 typedef enum {
@@ -45,13 +45,13 @@ typedef int8_t FLArrangeableWeight;
 
 // internal state
 
-//    FLEdgeInsets arrangeableInsets;
+//    SDKEdgeInsets arrangeableInsets;
 //    FLArrangeableWeight arrangeableWeight;
 //    FLArrangeableGrowMode arrangeableGrowMode;
 
 // this is for arrangements use only.
 typedef struct {
-    FLRect _lastFrame;
+    SDKRect _lastFrame;
     FLPaddingInsets _lastInsets;
 } FLArrangeableState;
 
@@ -67,11 +67,11 @@ static const FLArrangeableState FLArrangeableStateZero;
 
 @property (readwrite, assign, nonatomic, getter=isHidden) BOOL hidden;
 
-@property (readwrite, assign, nonatomic) FLRect arrangeableFrame;
+@property (readwrite, assign, nonatomic) SDKRect arrangeableFrame;
 
 // override point
-- (void) calculateArrangementSize:(FLSize*) outSize
-                           inSize:(FLSize) inSize
+- (void) calculateArrangementSize:(SDKSize*) outSize
+                           inSize:(SDKSize) inSize
                          fillMode:(FLArrangeableGrowMode) fillMode;
 
 // for internal use by arrangement

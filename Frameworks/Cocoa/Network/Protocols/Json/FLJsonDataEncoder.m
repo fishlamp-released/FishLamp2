@@ -11,9 +11,7 @@
 #import "FLStringUtils.h"
 #import "FLBase64Encoding.h"
 #import "FLDateMgr.h"
-#import "UIColor+FLExtras.h"
-#import "FLColor_t.h"
-#import "FLCocoaCompatibility.h"
+#import "FLColor.h"
 
 @implementation FLJsonDataEncoder
 
@@ -77,7 +75,7 @@ FLSynthesizeSingleton(FLJsonDataEncoder);
 		break;
         
         case FLDataTypeRect: {   
-            FLRect r = [data FLRectValue];
+            SDKRect r = [data SDKRectValue];
             *outString = [NSString stringWithFormat:@"{\"x\"=%f,\"y\"=%f,\"width\"=%f,height=\"%f\"}",
                 r.origin.x,
                 r.origin.y,
@@ -86,7 +84,7 @@ FLSynthesizeSingleton(FLJsonDataEncoder);
             break;
         }
         case FLDataTypePoint: {
-            FLPoint pt = [data FLPointValue];
+            SDKPoint pt = [data SDKPointValue];
             *outString = [NSString stringWithFormat:@"{\"x\"=%f,\"y\"=%f}",
                 pt.x,
                 pt.y];
@@ -94,7 +92,7 @@ FLSynthesizeSingleton(FLJsonDataEncoder);
         }
         
         case FLDataTypeSize:{   
-            FLSize size = [data FLSizeValue];
+            SDKSize size = [data SDKSizeValue];
             *outString = [NSString stringWithFormat:@"{\"width\"=%f,height=\"%f\"}",
                 size.width,
                 size.height];

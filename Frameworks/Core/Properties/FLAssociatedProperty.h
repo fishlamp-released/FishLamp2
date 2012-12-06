@@ -22,7 +22,7 @@
 
 #define __KEYNAME__(__NAME__) s_##__NAME__##Key
 
-#define FLSynthesizeAssociatedProperty_(__ASSOCIATION_POLICY__, __GETTER__, __SETTER__, __TYPE__) \
+#define FLSynthesizeAssociatedProperty(__ASSOCIATION_POLICY__, __GETTER__, __SETTER__, __TYPE__) \
     FLSynthesizeAssociatedObjectKey_(__KEYNAME__(__GETTER__)); \
     \
     - (void) __SETTER__:(__TYPE__) obj { \

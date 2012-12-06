@@ -10,10 +10,10 @@
 
 @implementation FLRightJustifiedColumnArrangement 
 
-- (FLSize) layoutArrangeableObjects:(NSArray*) objects
-                           inBounds:(FLRect) bounds {
+- (SDKSize) layoutArrangeableObjects:(NSArray*) objects
+                           inBounds:(SDKRect) bounds {
 
-	FLPoint topRight = FLRectGetTopRight(bounds);
+	SDKPoint topRight = FLRectGetTopRight(bounds);
    
     CGFloat bottom = bounds.origin.y ;
 
@@ -22,7 +22,7 @@
 			continue;
 		}
 		
-        FLRect frame = [self frameForObject:object];
+        SDKRect frame = [self frameForObject:object];
         
         topRight.x -= frame.size.width;
 	

@@ -7,7 +7,7 @@
 //
 
 #import "FLManualViewLayout.h"
-#import "FLCocoaCompatibility.h"
+#import "SDKCompatibility.h"
 
 @implementation FLManualViewLayout
 
@@ -35,25 +35,25 @@
     [_views setObject:view forKey:key];
 }
 
-- (FLRect) layoutFrameForKey:(id) key {
+- (SDKRect) layoutFrameForKey:(id) key {
     NSValue* val = [_frames objectForKey:key];
     if(!val) {
         id view = [_views objectForKey:key];
         if(view) {
-            val = [NSValue valueWithFLRect:[view frame]];
+            val = [NSValue valueWithSDKRect:[view frame]];
             [_frames setObject:val forKey:key];
         }
     }
 
-    return val ? [val FLRectValue] : FLRectZero;
+    return val ? [val SDKRectValue] : FLRectZero;
 
 }
 
-- (void) setLayoutFrame:(FLRect) frame forKey:(id) key {
-    [_frames setObject:[NSValue valueWithFLRect:frame] forKey:key];
+- (void) setLayoutFrame:(SDKRect) frame forKey:(id) key {
+    [_frames setObject:[NSValue valueWithSDKRect:frame] forKey:key];
 }
 
-- (void) updateLayoutInBounds:(FLRect) bounds {
+- (void) updateLayoutInBounds:(SDKRect) bounds {
     if(_onLayout) {
         _onLayout(self, bounds);
     }
@@ -73,7 +73,7 @@
         id view = [_views objectForKey:key];
         NSValue* val = [_frames objectForKey:key];
         if(val) {
-            [view setFrame:[val FLRectValue]];
+            [view setFrame:[val SDKRectValue]];
         }
     }
 }

@@ -11,7 +11,7 @@
 
 @class FLManualViewLayout;
 
-typedef void (^FLManualViewLayoutBlock)(FLManualViewLayout* layout, FLRect inBounds);
+typedef void (^FLManualViewLayoutBlock)(FLManualViewLayout* layout, SDKRect inBounds);
 
 @interface FLManualViewLayout : NSObject {
 @private
@@ -24,11 +24,11 @@ typedef void (^FLManualViewLayoutBlock)(FLManualViewLayout* layout, FLRect inBou
 
 - (void) setView:(id) view forKey:(id) key;
 
-- (FLRect) layoutFrameForKey:(id) key;
-- (void) setLayoutFrame:(FLRect) frame forKey:(id) key;
+- (SDKRect) layoutFrameForKey:(id) key;
+- (void) setLayoutFrame:(SDKRect) frame forKey:(id) key;
 
 - (void) updateFrames;
-- (void) updateLayoutInBounds:(FLRect) bounds;
+- (void) updateLayoutInBounds:(SDKRect) bounds;
 - (void) applyLayout;
 
 @end

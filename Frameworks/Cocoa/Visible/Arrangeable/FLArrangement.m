@@ -8,7 +8,7 @@
 
 #import "FLArrangement.h"
 
-// - (FLEdgeInsets) addInnerInsetsToOuterInsets:(FLEdgeInsets) innerInsets;
+// - (SDKEdgeInsets) addInnerInsetsToOuterInsets:(SDKEdgeInsets) innerInsets;
 
 @implementation FLArrangement
 
@@ -38,28 +38,28 @@
 }
 #endif
 
-- (FLSize) layoutArrangeableObjects:(NSArray*) objects
-                           inBounds:(FLRect) bounds {
+- (SDKSize) layoutArrangeableObjects:(NSArray*) objects
+                           inBounds:(SDKRect) bounds {
     return bounds.size;
 }
 
-- (FLSize) performArrangement:(NSArray*) arrangeableFrames 
-                inBounds:(FLRect) bounds {
+- (SDKSize) performArrangement:(NSArray*) arrangeableFrames 
+                inBounds:(SDKRect) bounds {
 
     if(_onWillArrange) {
         _onWillArrange(self, bounds);
     }   
     
-    FLSize layoutSize = [self layoutArrangeableObjects:arrangeableFrames
-                                              inBounds:FLEdgeInsetsInsetRect(bounds, self.outerInsets)];
+    SDKSize layoutSize = [self layoutArrangeableObjects:arrangeableFrames
+                                              inBounds:FLRectInsetWithEdgeInsets(bounds, self.outerInsets)];
     
     layoutSize.width += (self.outerInsets.left + self.outerInsets.right);
     layoutSize.height += (self.outerInsets.top + self.outerInsets.bottom);
     return layoutSize;
 }
 
-- (FLEdgeInsets) addInnerInsetsToOuterInsets:(FLEdgeInsets) innerInsets {
-    FLEdgeInsets insets = self.outerInsets;
+- (SDKEdgeInsets) addInnerInsetsToOuterInsets:(SDKEdgeInsets) innerInsets {
+    SDKEdgeInsets insets = self.outerInsets;
     insets.top += innerInsets.top;
     insets.bottom -= innerInsets.bottom;
     insets.left += innerInsets.left;
@@ -68,7 +68,7 @@
 }
 
 NS_INLINE
-FLRect FLArrangeableStateCalcFrame(FLArrangeableState state, FLRect frame) {
+SDKRect FLArrangeableStateCalcFrame(FLArrangeableState state, SDKRect frame) {
     if(FLRectEqualToRect(frame, state._lastFrame)) {
         frame.origin.x -= state._lastInsets.left;
         frame.origin.y -= state._lastInsets.top;
@@ -78,18 +78,18 @@ FLRect FLArrangeableStateCalcFrame(FLArrangeableState state, FLRect frame) {
 
     return frame;
 }
-- (FLRect) setFrame:(FLRect) frame
+- (SDKRect) setFrame:(SDKRect) frame
           forObject:(id) object {
 
     FLArrangeableState state = [object arrangeableState];
-    FLEdgeInsets insets = [self addInnerInsetsToOuterInsets:state._lastInsets];
-    FLRect newFrame = FLEdgeInsetsInsetRect(frame, insets);
+    SDKEdgeInsets insets = [self addInnerInsetsToOuterInsets:state._lastInsets];
+    SDKRect newFrame = FLRectInsetWithEdgeInsets(frame, insets);
     
     FLArrangeableGrowMode growMode = [object arrangeableGrowMode];
     
     if( growMode == FLArrangeableGrowModeGrowWidth ||
         growMode == FLArrangeableGrowModeGrowHeight) {
-        FLSize size = newFrame.size;
+        SDKSize size = newFrame.size;
         [object calculateArrangementSize:&size inSize:newFrame.size fillMode:growMode];
         
         newFrame.size = size;
@@ -105,13 +105,13 @@ FLRect FLArrangeableStateCalcFrame(FLArrangeableState state, FLRect frame) {
     return frame;
 }
 
-- (FLRect) frameForObject:(id) object {
+- (SDKRect) frameForObject:(id) object {
     return FLArrangeableStateCalcFrame([object arrangeableState], [object frame]);
 }
 
-//- (FLRect) padFrameForArrangeableFrame:(id) arrangeableFrame unpaddedRect:(FLRect) unpaddedRect {
+//- (SDKRect) padFrameForArrangeableFrame:(id) arrangeableFrame unpaddedRect:(SDKRect) unpaddedRect {
 //    
-//    FLEdgeInsets padding = [self addouterInsetsToInsets:[arrangeableFrame innerInsets]];
+//    SDKEdgeInsets padding = [self addouterInsetsToInsets:[arrangeableFrame innerInsets]];
 //    unpaddedRect.origin.x += padding.left;
 //    unpaddedRect.origin.y += padding.top;
 //    unpaddedRect.size.width -= padding.left + padding.right;
@@ -119,7 +119,7 @@ FLRect FLArrangeableStateCalcFrame(FLArrangeableState state, FLRect frame) {
 //    return unpaddedRect;
 //} 
 
-static FLArrangementFrameSetter s_frameSetter = ^(id arrangeableFrame, FLRect frame) { 
+static FLArrangementFrameSetter s_frameSetter = ^(id arrangeableFrame, SDKRect frame) { 
         [arrangeableFrame setFrame:frame];
     };
     
@@ -127,7 +127,7 @@ static FLArrangementFrameSetter s_frameSetter = ^(id arrangeableFrame, FLRect fr
     return s_frameSetter;
 }
 
-static FLArrangementFrameSetter s_size_setter = ^(id arrangeableFrame, FLRect frame) { 
+static FLArrangementFrameSetter s_size_setter = ^(id arrangeableFrame, SDKRect frame) { 
     [arrangeableFrame setFrame:FLRectOptimizedForViewSize(frame)];
 };
 
@@ -135,7 +135,7 @@ static FLArrangementFrameSetter s_size_setter = ^(id arrangeableFrame, FLRect fr
     return s_size_setter;
 }
 
-static FLArrangementFrameSetter s_location_setter = ^(id arrangeableFrame, FLRect frame) { 
+static FLArrangementFrameSetter s_location_setter = ^(id arrangeableFrame, SDKRect frame) { 
     [arrangeableFrame setFrame:FLRectOptimizedForViewLocation(frame)];
 };
 

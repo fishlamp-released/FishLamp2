@@ -14,26 +14,26 @@
 
 @interface FLColorRange : NSObject { 
 @private
-	UIColor_* _startColor;
-	UIColor_* _endColor;
+	SDKColor* _startColor;
+	SDKColor* _endColor;
 	CGFloat _alpha;
 } 
 
 
 @property (readonly, assign, nonatomic) CGFloat alpha;
 
-@property (readonly, strong, nonatomic) UIColor_* endColor;
+@property (readonly, strong, nonatomic) SDKColor* endColor;
 
-@property (readonly, strong, nonatomic) UIColor_* startColor;
+@property (readonly, strong, nonatomic) SDKColor* startColor;
 
 @property (readonly, assign, nonatomic) FLColorRange_t colorRange_t;
 
 
-- (id) initWithStartColor:(UIColor_*) startColor
-                 endColor:(UIColor_*) endColor;
+- (id) initWithStartColor:(SDKColor*) startColor
+                 endColor:(SDKColor*) endColor;
 
-+ (FLColorRange*) colorRange:(UIColor_*) startColor
-                    endColor:(UIColor_*) endColor;
++ (FLColorRange*) colorRange:(SDKColor*) startColor
+                    endColor:(SDKColor*) endColor;
  
 @end
 
@@ -42,9 +42,9 @@
 
 @property (readwrite, assign, nonatomic) CGFloat alpha;
 
-@property (readwrite, strong, nonatomic) UIColor_* endColor;
+@property (readwrite, strong, nonatomic) SDKColor* endColor;
 
-@property (readwrite, strong, nonatomic) UIColor_* startColor;
+@property (readwrite, strong, nonatomic) SDKColor* startColor;
 
 + (FLMutableColorRange*) colorRange; 
 
@@ -53,7 +53,7 @@
 
 @interface FLColorRange (FLGradientColors)
 // utils
-+ (FLColorRange*) gradientColorsFromColor:(UIColor_*) color                                  
++ (FLColorRange*) gradientColorsFromColor:(SDKColor*) color                                  
                                intensity:(CGFloat) intensity; // from 0.0 to 1.0 (.7 is typical)
 
 // premade gradients
