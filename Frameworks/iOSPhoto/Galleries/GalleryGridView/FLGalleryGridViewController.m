@@ -19,8 +19,8 @@
 
 - (void) dealloc
 {   
-    release_(_galleryID);
-    release_(_galleryContainer);
+    FLRelease(_galleryID);
+    FLRelease(_galleryContainer);
     super_dealloc_();
 }
 

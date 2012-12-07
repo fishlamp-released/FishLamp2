@@ -25,7 +25,7 @@
 
 + (FLViewOwner*) viewOwner:(UIView*) view
 {
-	return autorelease_([[FLViewOwner alloc] initWithView:view]);
+	return FLAutorelease([[FLViewOwner alloc] initWithView:view]);
 }
 
 - (void) dealloc

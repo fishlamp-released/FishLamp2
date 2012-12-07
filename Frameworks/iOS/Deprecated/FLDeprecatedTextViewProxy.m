@@ -24,7 +24,7 @@
 - (void) dealloc
 {
 	[_proxiedView removeFromSuperview];
-	release_(_proxiedView);
+	FLRelease(_proxiedView);
 	super_dealloc_();
 }
 
@@ -177,22 +177,22 @@
 //	  [_proxiedView setHidden:hidden];
 //}
 
-//- (FLRect) frame
+//- (CGRect) frame
 //{
 //	  return [_proxiedView frame];
 //}
 //
-//- (void) setFrame:(FLRect) frame
+//- (void) setFrame:(CGRect) frame
 //{
 //	  [_proxiedView setFrame:frame];
 //}
 //
-//- (FLRect) newFrame
+//- (CGRect) newFrame
 //{
 //	  return [_proxiedView frame];
 //}
 //
-//- (void) setNewFrame:(FLRect) frame
+//- (void) setNewFrame:(CGRect) frame
 //{
 //	  [_proxiedView setNewFrame:frame];
 //}

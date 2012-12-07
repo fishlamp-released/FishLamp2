@@ -13,7 +13,7 @@
 
 @interface FLFrame : NSObject<FLArrangeable> {
 @private
-    FLRect _frame;
+    CGRect _frame;
     FLControlState _controlState;
     BOOL _hidden;
     
@@ -23,7 +23,7 @@
     FLArrangeableState _arrangeableState;
 }
 
-@property (readwrite, assign, nonatomic) FLRect frame;
+@property (readwrite, assign, nonatomic) CGRect frame;
 
 @property (readwrite, assign, nonatomic) FLControlState controlState;
 
@@ -37,17 +37,17 @@
 
 @property (readonly, nonatomic) BOOL isFrameOptimized;
 
-@property (readwrite, assign, nonatomic) FLRect frameOptimizedForLocation;
+@property (readwrite, assign, nonatomic) CGRect frameOptimizedForLocation;
 
-@property (readwrite, assign, nonatomic) FLRect frameOptimizedForSize;
+@property (readwrite, assign, nonatomic) CGRect frameOptimizedForSize;
 
 @property (readwrite, assign, nonatomic, getter=isHidden) BOOL hidden; 
 
-- (id) initWithFrame:(FLRect) frame;
+- (id) initWithFrame:(CGRect) frame;
 
-- (void) moveFrameBy:(FLPoint) offset;
+- (void) moveFrameBy:(CGPoint) offset;
 
-- (BOOL) pointIsInside:(FLPoint)point;
+- (BOOL) pointIsInside:(CGPoint)point;
 
 - (void) didChangeFrame;
 

@@ -5,7 +5,7 @@
 //  Created by Mike Fullerton on 5/22/11.
 //  Copyright 2011 GreenTongue Software. All rights reserved.
 //
-#import "FishLampCore.h"
+#import "FLCore.h"
 #import "FLOperation.h"
 #import "FLDatabase.h"
 #import "FLUserLogin.h"

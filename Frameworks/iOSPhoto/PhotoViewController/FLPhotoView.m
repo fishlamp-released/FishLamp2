@@ -27,14 +27,14 @@
 @implementation FLPhotoImageView
 
 
-- (FLRect) frameSizedToFitInSuperview:(BOOL) centerInSuperview
+- (CGRect) frameSizedToFitInSuperview:(BOOL) centerInSuperview
 {
-	FLRect frame = CGRectZero;
+	CGRect frame = CGRectZero;
 	if(self.superview)
 	{
 		FLSize size = _imageSize;
 			
-		FLRect superbounds = self.superview.bounds;
+		CGRect superbounds = self.superview.bounds;
 		if( !_autoZoom && 
 			!CGSizeEqualToSize(size, CGSizeZero) &&
 			size.width < superbounds.size.width &&
@@ -83,7 +83,7 @@ FLSynthesizeStructProperty(didShowError, setDidShowError, BOOL, _photoViewFlags)
 @synthesize imageView = _imageView;
 @synthesize imageScrollView = _scrollView;
 
-- (id)initWithFrame:(FLRect)frame
+- (id)initWithFrame:(CGRect)frame
 {
 	if((self = [super initWithFrame:frame]))
 	{
@@ -158,11 +158,11 @@ FLSynthesizeStructProperty(didShowError, setDidShowError, BOOL, _photoViewFlags)
  
 	[self stopSpinner];
  
-	release_(_scrollView);
-	release_(_imageView);
-	release_(_spinner);
-	release_(_detailsView);
-	release_(_errorView);
+	FLRelease(_scrollView);
+	FLRelease(_imageView);
+	FLRelease(_spinner);
+	FLRelease(_detailsView);
+	FLRelease(_errorView);
 	super_dealloc_();
 }
 

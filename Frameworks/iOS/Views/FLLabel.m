@@ -12,7 +12,7 @@
 
 @synthesize willUnderline = _underline;
 
-- (void)drawRect:(FLRect)rect 
+- (void)drawRect:(CGRect)rect 
 {
 	[super drawRect:rect];
 	
@@ -37,7 +37,7 @@
 
 - (FLTextDescriptor*) textDescriptor
 {
-	return autorelease_([_textDescriptor copy]);
+	return FLAutorelease([_textDescriptor copy]);
 }
 
 - (void) setTextDescriptor:(FLTextDescriptor*) textDescriptor
@@ -48,7 +48,7 @@
 
 - (void) resize:(FLSize) newSize
 {
-	FLRect frame = self.frame;
+	CGRect frame = self.frame;
 	if(self.willUnderline)
 	{
 		frame.size.height += 2;
@@ -59,7 +59,7 @@
 
 - (void) dealloc
 {
-	release_(_textDescriptor);
+	FLRelease(_textDescriptor);
 	super_dealloc_();
 }
 
@@ -122,7 +122,7 @@
 
 #if DEBUG
 
-- (void) setFrame:(FLRect) frame
+- (void) setFrame:(CGRect) frame
 {
 	if(!FLRectIsOptimizedForView(frame))
 	{
@@ -134,9 +134,9 @@
 
 #endif
 
-//- (void)drawTextInRect:(FLRect)rect
+//- (void)drawTextInRect:(CGRect)rect
 //{
-//	  FLRect outRect = CGRectIntegral(rect);
+//	  CGRect outRect = CGRectIntegral(rect);
 //	  if(!FLRectWidthIsOptimizedForView(self.frame)) 
 //	  {
 //		  outRect.size.width += 1;

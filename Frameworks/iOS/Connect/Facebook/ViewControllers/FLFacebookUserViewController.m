@@ -27,7 +27,7 @@
 
 - (void) dealloc
 {
-	release_(_userId);
+	FLRelease(_userId);
 	super_dealloc_();
 }
 

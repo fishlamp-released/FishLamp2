@@ -25,10 +25,10 @@
 
 + (FLBackButtonShapeWidget*) backButtonShapeWidget:(CGFloat) pointSize
 {
-	return autorelease_([[FLBackButtonShapeWidget alloc] initWithPointSize:pointSize]);
+	return FLAutorelease([[FLBackButtonShapeWidget alloc] initWithPointSize:pointSize]);
 }
 
--(void) createPathForShapeInRect:(CGMutablePathRef) path rect:(FLRect) rect
+-(void) createPathForShapeInRect:(CGMutablePathRef) path rect:(CGRect) rect
 {
 	FLCreateRectPathBackButtonShape(path, rect, self.cornerRadius, _pointSize);
 }

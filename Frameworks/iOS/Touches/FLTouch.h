@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-// the SDK reuses UITouches. This is here so a snapshot of a touch can be saved.
+// the FL reuses UITouches. This is here so a snapshot of a touch can be saved.
 
 @interface FLTouch : NSObject {
 @private
@@ -17,10 +17,10 @@
 	NSUInteger _tapCount;
 	__unsafe_unretained UIWindow* _window;
 	__unsafe_unretained UIView* _view;
-	FLPoint _location;
-	FLPoint _previousLocation;
-	FLPoint _windowLocation;
-	FLPoint _windowPreviousLocation;
+	CGPoint _location;
+	CGPoint _previousLocation;
+	CGPoint _windowLocation;
+	CGPoint _windowPreviousLocation;
 }
 
 - (id) initWithUITouch:(UITouch*) touch;
@@ -34,11 +34,11 @@
 @property(nonatomic, assign, readonly) UIWindow	   *window;
 @property(nonatomic, assign, readonly) UIView	   *view;
 
-@property(nonatomic, assign, readonly)	FLPoint locationInView;
-@property(nonatomic, assign, readonly)	FLPoint previousLocationInView;
+@property(nonatomic, assign, readonly)	CGPoint locationInView;
+@property(nonatomic, assign, readonly)	CGPoint previousLocationInView;
 
-@property(nonatomic, assign, readonly)	FLPoint locationInWindow;
-@property(nonatomic, assign, readonly) FLPoint previousLocationInWindow;
+@property(nonatomic, assign, readonly)	CGPoint locationInWindow;
+@property(nonatomic, assign, readonly) CGPoint previousLocationInWindow;
 
 
 @end

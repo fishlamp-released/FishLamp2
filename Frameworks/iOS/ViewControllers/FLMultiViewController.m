@@ -19,8 +19,8 @@
 
 - (void) dealloc
 {
-    release_(_title);
-    release_(_viewController);
+    FLRelease(_title);
+    FLRelease(_viewController);
     super_dealloc_();
 }
 
@@ -49,12 +49,12 @@
 
 + (FLViewControllerPlaceholder*) viewControllerPlaceholder:(NSString*) title viewControllerClass:(Class) viewControllerClass
 {
-    return autorelease_([[FLViewControllerPlaceholder alloc] initWithViewControllerClass:viewControllerClass title:title]);
+    return FLAutorelease([[FLViewControllerPlaceholder alloc] initWithViewControllerClass:viewControllerClass title:title]);
 }
 
 + (FLViewControllerPlaceholder*) viewControllerPlaceholder:(NSString*) title viewControllerFactory:(FLCallback_t) factory
 {
-    return autorelease_([[FLViewControllerPlaceholder alloc] initWithViewControllerFactory:factory title:title]);
+    return FLAutorelease([[FLViewControllerPlaceholder alloc] initWithViewControllerFactory:factory title:title]);
 }
 
 - (void) purgeViewController
@@ -177,7 +177,7 @@
 
 - (void) updateLayout
 {
-    FLRect bounds = self.view.bounds;
+    CGRect bounds = self.view.bounds;
     bounds.origin.x = 0;
     
     for(FLViewControllerPlaceholder* placeholder in self.placeholders.forwardObjectEnumerator)
@@ -196,8 +196,8 @@
 
 - (void) dealloc
 {	
-    release_(_arrangement);
-	release_(_viewControllers);
+    FLRelease(_arrangement);
+	FLRelease(_viewControllers);
 
 	super_dealloc_();
 }
@@ -212,14 +212,14 @@
     return self.view;
 }
 
-- (FLRect) containerViewVisibleBounds
+- (CGRect) containerViewVisibleBounds
 {
     return self.view.bounds;
 }
 
 - (void) updateVisibleViews
 {
-    FLRect visibleBounds = self.containerViewVisibleBounds;
+    CGRect visibleBounds = self.containerViewVisibleBounds;
     UIView* containerView = self.containerView;
     
     for(FLViewControllerPlaceholder* placeholder in self.placeholders.forwardObjectEnumerator)

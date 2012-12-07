@@ -32,7 +32,7 @@
 	__unsafe_unretained id<FLEmailerDelegate> _delegate;
 	
 	UIStatusBarStyle _statusBarStyle;
-	FLRect _frame;
+	CGRect _frame;
 	
 	MFMailComposeViewController* _emailController;
 }

@@ -72,22 +72,22 @@ FLSynthesizeStructProperty(bottomItem, setBottomItem, FLViewContentItem, _flags)
 + (id) viewContentsDescriptorWithTop:(FLViewContentItem) top
     bottom:(FLViewContentItem) bottom
       hasStatusBar:(BOOL) hasStatusBar {
-    return autorelease_([[[self class] alloc] initWithTop:top bottom:bottom hasStatusBar:hasStatusBar]);
+    return FLAutorelease([[[self class] alloc] initWithTop:top bottom:bottom hasStatusBar:hasStatusBar]);
 }
 
 + (id) viewContentsDescriptorWithTop:(FLViewContentItem) top
     bottom:(FLViewContentItem) bottom
       hasStatusBar:(BOOL) hasStatusBar
     padding:(UIEdgeInsets) padding {
-    return autorelease_([[[self class] alloc] initWithTop:top bottom:bottom hasStatusBar:hasStatusBar padding:padding]);
+    return FLAutorelease([[[self class] alloc] initWithTop:top bottom:bottom hasStatusBar:hasStatusBar padding:padding]);
 }
 
 + (id) viewContentsDescriptorWithViewContentsDescriptor:(FLViewContentsDescriptor*) original {
-    return autorelease_([[[self class] alloc] initWithViewContentsDescriptor:original]);
+    return FLAutorelease([[[self class] alloc] initWithViewContentsDescriptor:original]);
 }
 
 + (id) viewContentsDescriptor {
-    return autorelease_([[[self class] alloc] init]);
+    return FLAutorelease([[[self class] alloc] init]);
 }
 
 + (FLViewContentsDescriptor*) emptyDescriptor {
@@ -168,7 +168,7 @@ FLSynthesizeStructProperty(bottomItem, setBottomItem, FLViewContentItem, _flags)
 @implementation FLMutableViewContentsDescriptor
 
 + (FLMutableViewContentsDescriptor*) mutableViewContentsDescriptor {
-    return autorelease_([[FLMutableViewContentsDescriptor alloc] init]);
+    return FLAutorelease([[FLMutableViewContentsDescriptor alloc] init]);
 }
 
 @dynamic topItem;
@@ -265,7 +265,7 @@ FLSynthesizeAssociatedProperty(retain_nonatomic, _viewContentsDescriptor, setVie
                             [self contentViewInsetRight]);
 }
 
-- (FLRect) contentViewFrameInBounds:(FLRect) bounds {
+- (CGRect) contentViewFrameInBounds:(CGRect) bounds {
     return UIEdgeInsetsInsetRect(bounds, self.contentViewInsets);
 } 
 
@@ -347,7 +347,7 @@ CGFloat FLViewContentsDescriptorCalculateBottom( FLViewContentsDescriptor conten
 	return bottom;
 }
 
-FLRect FLViewContentsDescriptorCalculateContainerRect(FLRect bounds, FLViewContentsDescriptor contents)
+CGRect FLViewContentsDescriptorCalculateContainerRect(CGRect bounds, FLViewContentsDescriptor contents)
 {
 	CGFloat top = FLViewContentsDescriptorCalculateTop(contents);
 	bounds.origin.y = top;

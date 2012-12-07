@@ -5,6 +5,7 @@
 //  Created by Mike Fullerton on 11/24/12.
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
+#import "FLCore.h"
 
 NS_INLINE
 BOOL FLIsIntegralValue(CGFloat coord) {

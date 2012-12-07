@@ -251,7 +251,7 @@
    
 	for(int i = 0; i < 4; i++)
 	{
-		UILabel* label = autorelease_([[UILabel alloc] initWithFrame:CGRectMake(0,0,kLabelSize,kLabelSize)]);
+		UILabel* label = FLAutorelease([[UILabel alloc] initWithFrame:CGRectMake(0,0,kLabelSize,kLabelSize)]);
 		label.font = [UIFont boldSystemFontOfSize:[UIFont buttonFontSize]];
 		label.textAlignment = UITextAlignmentCenter;
 		label.backgroundColor = [UIColor gray85Color];
@@ -282,11 +282,11 @@
 #if FL_MRC
 - (void) dealloc
 {
-	release_(_errorLabel);
-	release_(_pinToCheck);
-	release_(_titleLabel);
-    release_(_numberLabels);
-	release_(_buttons);
+	FLRelease(_errorLabel);
+	FLRelease(_pinToCheck);
+	FLRelease(_titleLabel);
+    FLRelease(_numberLabels);
+	FLRelease(_buttons);
 	super_dealloc_();
 }
 #endif
@@ -300,7 +300,7 @@
 	[self setNeedsLayout];
 }
 
-- (id) initWithFrame:(FLRect) frame
+- (id) initWithFrame:(CGRect) frame
 {
 	if((self = [super initWithFrame:frame]))
 	{

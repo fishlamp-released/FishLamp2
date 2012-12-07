@@ -33,8 +33,8 @@
 
 - (void) dealloc
 {
-	release_(_username);
-	release_(_imageSize);
+	FLRelease(_username);
+	FLRelease(_imageSize);
 	super_dealloc_();
 }
 

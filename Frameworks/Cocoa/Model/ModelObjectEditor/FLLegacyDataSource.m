@@ -20,7 +20,7 @@ FLSplitKeyPath FLSplitKeyPathFromString(NSString* keyPathString)
 	if(range.length == 0)
 	{
 		keyPath.dataSourceKey = nil;
-		keyPath.dataKey = autorelease_(retain_(keyPathString));
+		keyPath.dataKey = FLAutorelease(FLRetain(keyPathString));
 	}
 	else 
 	{
@@ -52,7 +52,7 @@ FLSplitKeyPath FLSplitKeyPathFromString(NSString* keyPathString)
 
 - (void) dealloc
 {
-	release_(_dataSources);
+	FLRelease(_dataSources);
 	super_dealloc_();
 }
 
@@ -107,7 +107,7 @@ FLSplitKeyPath FLSplitKeyPathFromString(NSString* keyPathString)
 	if(dataSource)
 	{
 		id previousValue = [dataSource dataSourceManager:self objectForKey:path.dataKey];
-		mrc_autorelease_(retain_(previousValue));
+		FLAutoreleaseObject(FLRetain(previousValue));
 		
 		if(![[object class] objectIsEqualToObject:object toObject:previousValue])
 		{
@@ -128,7 +128,7 @@ FLSplitKeyPath FLSplitKeyPathFromString(NSString* keyPathString)
 	if(dataSource)
 	{
 		id previousValue = [dataSource dataSourceManager:self objectForKey:path.dataKey];
-		mrc_autorelease_(retain_(previousValue));
+		FLAutoreleaseObject(FLRetain(previousValue));
 			
 		[dataSource dataSourceManager:self removeObjectForKey:path.dataKey];
 		if(fire)

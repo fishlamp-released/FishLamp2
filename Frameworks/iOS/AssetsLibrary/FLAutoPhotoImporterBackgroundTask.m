@@ -28,7 +28,7 @@
 
 - (FLAssetLibraryAutoPhotoImporter*) createImporter
 {
-    return autorelease_([[FLAssetLibraryAutoPhotoImporter alloc] init]);
+    return FLAutorelease([[FLAssetLibraryAutoPhotoImporter alloc] init]);
 }
 
 - (BOOL) shouldImportAssets

@@ -1,6 +1,6 @@
 //
 //  FLARCMacros.m
-//  FishLampCore
+//  FLCore
 //
 //  Created by Mike Fullerton on 10/30/12.
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
@@ -11,18 +11,37 @@
 #import <objc/runtime.h>
 
 // object memory management
-#define retain_(__OBJ__)                    [__OBJ__ retain]
-#define mrc_retain_(__OBJ__)                [__OBJ__ retain]
+#define FLRetain(__OBJ__)   \
+            [__OBJ__ retain]
 
-#define release_(__OBJ__)                   [__OBJ__ release];
-#define autorelease_(__OBJ__)               [__OBJ__ autorelease]
-#define mrc_autorelease_(__OBJ__)           [__OBJ__ autorelease]
+NS_INLINE
+void FLRetainObject(id object) {
+    [object retain];
+}
 
-//#define super_dealloc_()                    [self performSelector:sel_getUid("sendDeallocNotification")]; [super dealloc]
-#define super_dealloc_()                    [super dealloc]
-#define bridge_(__TO__, __FROM__)           ((__TO__) __FROM__)
-#define bridge_transfer_(__TO__, __FROM__)  ((__TO__) __FROM__)
-#define bridge_retain_(__TO__, __FROM__)    ((__TO__) [__FROM__ retain])
+#define FLRelease(__OBJ__) \
+            [__OBJ__ release]
+
+#define FLAutorelease(__OBJ__) \
+            [__OBJ__ autorelease] 
+
+NS_INLINE
+void FLAutoreleaseObject(id object) {
+    [object autorelease];
+}
+
+#define FLSuperDealloc() \
+            [super dealloc]
+    //#define super_dealloc_()                    [self performSelector:sel_getUid("sendDeallocNotification")]; [super dealloc]
+            
+#define bridge_(__TO__, __FROM__) \
+            ((__TO__) __FROM__)
+
+#define bridge_transfer_(__TO__, __FROM__) \
+            ((__TO__) __FROM__)
+
+#define bridge_FLRetain(__TO__, __FROM__) \
+            ((__TO__) [__FROM__ retain])
 
 // mrc utils
 
@@ -43,7 +62,7 @@ void _FLRetainObject(id* a, id b) {
 }
 
 NS_INLINE
-void _FLCopyObject(id* a, id b) {
+void _FLAssignObjectWithCopy(id* a, id b) {
     if(a && (*a != b)) { 
         [*a release]; 
         *a = [b copy]; 
@@ -58,12 +77,54 @@ void _FLReleaseBlockWithNil_(dispatch_block_t* block) {
     }
 }
 
-#define FLReleaseWithNil_(__OBJ__)      FLManuallyRelease(&(__OBJ__))
-#define FLReleaseBlockWithNil_(b)       _FLReleaseBlockWithNil_((dispatch_block_t*) &(b))
-#define FLRetainObject_(a,b)            _FLRetainObject((id*) &a, (id) b)
-#define FLCopyObject_(a,b)              _FLCopyObject((id*) &a, (id) b)
-#define FLCopyBlock(__BLOCK__)          autorelease_([__BLOCK__ copy])
+#define FLReleaseWithNil(__OBJ__) \
+            FLManuallyRelease(&(__OBJ__))
 
-extern void FLPerformBlockInAutoreleasePool(void (^callback)());
+#define FLReleaseBlockWithNil(b) \
+            _FLReleaseBlockWithNil_((dispatch_block_t*) &(b))
+
+#define FLAssignObjectWithRetain(a,b) \
+            _FLRetainObject((id*) &a, (id) b)
+
+#define FLAssignObjectWithCopy(a,b) \
+            _FLAssignObjectWithCopy((id*) &a, (id) b)
+
+#define FLAutoreleasedCopy(__OBJECT__) \
+            FLAutorelease([__OBJECT__ copy])
+
+#define FLAutoreleasedMutableCopy(__OBJECT__) \
+            FLAutorelease([__OBJECT__ mutableCopy])
+
+#define FLAutoreleasedRetained(__OBJECT__) \
+            FLAutorelease([__OBJECT__ retain])
+
+#define FLAutoreleasePoolOpen(__NAME__) \
+    { \
+        NSAutoreleasePool* __NAME__ = [[NSAutoreleasePool alloc] init]; \
+        @try {
+
+#define FLAutoreleasePoolClose(__NAME__) \
+            [__NAME__ drain]; \
+        } \
+        @catch(id exception) { \
+            [exception retain]; \
+            [__NAME__ drain]; \
+            [exception autorelease]; \
+            @throw; \
+        } \
+    }
+
+#define FLAutoreleasePoolWithName(__NAME__, __VA_ARGS__) \
+            FLAutoreleasePoolOpen(__NAME__) \
+            __VA_ARGS__ \
+            FLAutoreleasePoolClose(__NAME__) \
+
+    
+#define FLAutoreleasePool(__VA_ARGS__) \
+            FLAutoreleasePoolOpen(pool) \
+            __VA_ARGS__ \
+            FLAutoreleasePoolClose(pool) \
+
+    
 
 #endif

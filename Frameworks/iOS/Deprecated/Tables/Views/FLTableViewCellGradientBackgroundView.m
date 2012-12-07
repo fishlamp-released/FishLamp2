@@ -15,7 +15,7 @@
 @synthesize arrowColor = _arrowColor;
 @synthesize arrowAlpha = _arrowAlpha;
 
-- (id) initWithFrame:(FLRect) frame
+- (id) initWithFrame:(CGRect) frame
 {
 	if((self = [super initWithFrame:frame]))
 	{
@@ -27,7 +27,7 @@
 	return self;
 }
 
-- (void) drawRect:(FLRect) rect
+- (void) drawRect:(CGRect) rect
 {
 	[super drawRect:rect];
 	
@@ -42,7 +42,7 @@
 
 - (void) dealloc
 {
-	release_(_arrowColor);
+	FLRelease(_arrowColor);
 	super_dealloc_();
 }
 @end

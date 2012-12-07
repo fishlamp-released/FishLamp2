@@ -59,7 +59,7 @@
 } 
 
 + (id) queuedAsset:(NSString*) assetUID {
-	return autorelease_([[[self class] alloc] initWithAssetUID:assetUID]);
+	return FLAutorelease([[[self class] alloc] initWithAssetUID:assetUID]);
 }
 
 - (id<FLImageAsset>) imageAsset {

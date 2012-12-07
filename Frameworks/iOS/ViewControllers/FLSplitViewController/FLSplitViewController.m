@@ -34,13 +34,13 @@
 + (FLSplitViewController*) splitViewController:(UIViewController*) topViewController
                           bottomViewController:(UIViewController*) bottomViewController {
    
-     return autorelease_([[[self class] alloc] initWithTopViewController:topViewController bottomViewController:bottomViewController]);   
+     return FLAutorelease([[[self class] alloc] initWithTopViewController:topViewController bottomViewController:bottomViewController]);   
 }
 
 - (void) dealloc {
-    release_(_topViewController);
-    release_(_bottomViewController);
-    release_(_splitterView);
+    FLRelease(_topViewController);
+    FLRelease(_bottomViewController);
+    FLRelease(_splitterView);
     super_dealloc_();
 }
 
@@ -48,7 +48,7 @@
     [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
 }
 
-- (void) _updateLayoutInBounds:(FLRect) bounds {
+- (void) _updateLayoutInBounds:(CGRect) bounds {
     _splitterView.frame = FLRectSetWidth(_splitterView.frame, bounds.size.width);
     self.topViewController.view.frame = CGRectMake(0,0, bounds.size.width, FLRectGetTop(_splitterView.frame));
     
@@ -82,7 +82,7 @@
 {
     [super viewDidLoad];
     
-    FLRect bounds = self.view.bounds;
+    CGRect bounds = self.view.bounds;
     
     _splitterView = [[FLSplitterView alloc] initWithFrame:CGRectMake(0, 0, bounds.size.width, 20.0f)];
     _splitterView.delegate = self;

@@ -20,7 +20,7 @@
 
 + (FLFacebookDataList*) facebookDataList
 {
-    return autorelease_([[FLFacebookDataList alloc] init]);
+    return FLAutorelease([[FLFacebookDataList alloc] init]);
 }
 
 - (id) init

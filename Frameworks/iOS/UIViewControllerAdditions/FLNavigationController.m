@@ -31,7 +31,7 @@ static CGFloat s_prevAlpha;
 //	  if(cb)
 //	  {
 //		  [cb invoke:self];
-//		  release_(cb);
+//		  FLRelease(cb);
 //	  }
 //	  
 //	  [browser.navigationController setNavigationBarHidden:YES animated:YES]
@@ -64,7 +64,7 @@ static CGFloat s_prevAlpha;
 	finished:(NSNumber *)finished context:(void *)context
 {
 	[UIView setAnimationDelegate:nil];
-	UIViewController* viewController = autorelease_(bridge_(UIViewController*, context));
+	UIViewController* viewController = FLAutorelease(bridge_(UIViewController*, context));
 	[viewController.view removeFromSuperview];
 	[self pushViewController:viewController animated:NO];
 
@@ -169,7 +169,7 @@ static CGFloat s_prevAlpha;
 - (void) doneAnimatingPopViewController:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context
 {
 	[UIView setAnimationDelegate:nil];
-	UIView* view = autorelease_(bridge_(UIView*, context));
+	UIView* view = FLAutorelease(bridge_(UIView*, context));
 	[view removeFromSuperview];
 }
 
@@ -401,7 +401,7 @@ static CGFloat s_prevAlpha;
 
 - (UINavigationController*) createContainingNavigationController
 {
-	FLNavigationController* controller = autorelease_([[FLNavigationController alloc] initWithRootViewController:self]);
+	FLNavigationController* controller = FLAutorelease([[FLNavigationController alloc] initWithRootViewController:self]);
     self.wantsFullScreenLayout = self.wantsFullScreenLayout;
     [controller addChildViewController:self];
     [controller.view addSubview:self.view]; 
@@ -430,7 +430,7 @@ static CGFloat s_prevAlpha;
 
 + (FLNavigationController*) navigationController:(UIViewController*) rootViewController
 {
-	return autorelease_([[FLNavigationController alloc] initWithRootViewController:rootViewController]);
+	return FLAutorelease([[FLNavigationController alloc] initWithRootViewController:rootViewController]);
 }
 
 - (void) viewDidLoad {
@@ -444,7 +444,7 @@ static CGFloat s_prevAlpha;
 	[item setHidesBackButton:YES animated:NO];
 
 	self.title = nil;
-	item.titleView = autorelease_([[UIView alloc] initWithFrame:CGRectZero]);
+	item.titleView = FLAutorelease([[UIView alloc] initWithFrame:CGRectZero]);
 	[item setLeftBarButtonItem:nil animated:NO];
 	[item setRightBarButtonItem:nil animated:NO];
 }

@@ -15,7 +15,7 @@
 @synthesize backgroundView = _backgroundView;
 @synthesize title = _titleLabel;
 
-- (id) initWithFrame:(FLRect) frame
+- (id) initWithFrame:(CGRect) frame
 {
     if((self = [super initWithFrame:frame]))
     {
@@ -70,7 +70,7 @@
 
         [self addSubview:_titleLabel];
         
-        UIView* view = autorelease_([[UIView alloc] initWithFrame:self.bounds]);
+        UIView* view = FLAutorelease([[UIView alloc] initWithFrame:self.bounds]);
         view.backgroundColor = [UIColor blackColor];
         view.alpha = 0.5f;
         self.backgroundView = view;
@@ -85,11 +85,11 @@
 
 - (void) dealloc
 {
-    release_(_titleLabel);
-    release_(_backgroundView);
-    release_(_spinner);
-    release_(_thumbnailButton);
-    release_(_buttons);
+    FLRelease(_titleLabel);
+    FLRelease(_backgroundView);
+    FLRelease(_spinner);
+    FLRelease(_thumbnailButton);
+    FLRelease(_buttons);
     super_dealloc_();
 }
 
@@ -103,7 +103,7 @@
     
     CGFloat buttonSize = self.bounds.size.height - 8.0f;
     
-    FLRect buttonRect = CGRectMake(4, 4, buttonSize,buttonSize);
+    CGRect buttonRect = CGRectMake(4, 4, buttonSize,buttonSize);
     
     _thumbnailButton.frame = buttonRect;
     
@@ -116,7 +116,7 @@
         button.frame = buttonRect;
     }
     
-    FLRect titleRect;
+    CGRect titleRect;
     titleRect.origin.x = FLRectGetRight(_thumbnailButton.frame) + 4;
     titleRect.origin.y = 4.0f;
     titleRect.size.width = buttonRect.origin.x - titleRect.origin.x;

@@ -27,7 +27,7 @@ FLSynthesizeStructProperty(drawMode, setDrawMode, FLTableViewCellSectionDrawMode
 @synthesize fillColor = _fillColor;
 @synthesize borderColor = _borderColor;
 
-- (id) initWithFrame:(FLRect) frame
+- (id) initWithFrame:(CGRect) frame
 {
 	if((self = [super initWithFrame:frame]))
 	{
@@ -48,10 +48,10 @@ FLSynthesizeStructProperty(drawMode, setDrawMode, FLTableViewCellSectionDrawMode
 
 - (void) dealloc
 {
-	release_(_highlightedFillColor);
-	release_(_highlightedBorderColor);
-	release_(_fillColor);
-	release_(_borderColor);
+	FLRelease(_highlightedFillColor);
+	FLRelease(_highlightedBorderColor);
+	FLRelease(_fillColor);
+	FLRelease(_borderColor);
 	super_dealloc_();
 }
 
@@ -100,7 +100,7 @@ FLSynthesizeStructProperty(drawMode, setDrawMode, FLTableViewCellSectionDrawMode
 	[self _update];
 }
 
-- (void)drawSelf:(FLRect)rect
+- (void)drawSelf:(CGRect)rect
 {
 //	  FLRgbColor borderColor = self.isHighlighted ? 
 //		  self.highlightedBorderColor.color_t :

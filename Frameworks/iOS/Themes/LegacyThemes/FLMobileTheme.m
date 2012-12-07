@@ -55,15 +55,15 @@
 //
 //- (void) dealloc
 //{
-//	release_(_gradientStartColor);
-//	release_(_gradientEndColor);
-//	release_(_cellBackgroundColor);
-//	release_(_valueTextColor);
-//	release_(_tableHeaderTextColor);
-//	release_(_titleTextColor);
-//	release_(_placeholderDescriptor);
-//	release_(_titleDescriptor);
-//	release_(_valueDescriptor);
+//	FLRelease(_gradientStartColor);
+//	FLRelease(_gradientEndColor);
+//	FLRelease(_cellBackgroundColor);
+//	FLRelease(_valueTextColor);
+//	FLRelease(_tableHeaderTextColor);
+//	FLRelease(_titleTextColor);
+//	FLRelease(_placeholderDescriptor);
+//	FLRelease(_titleDescriptor);
+//	FLRelease(_valueDescriptor);
 //	super_dealloc_();
 //}
 //

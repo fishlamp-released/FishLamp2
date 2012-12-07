@@ -25,7 +25,7 @@
 
 //+ (id) photoGridViewController:(FLGalleryDataModel*) dataModel
 //{
-//    return autorelease_([[[self class] alloc] initWithGalleryDataProvider:dataModel]);
+//    return FLAutorelease([[[self class] alloc] initWithGalleryDataProvider:dataModel]);
 //}
 
 //- (FLGridCell*) createGridViewCellForGridViewItem:(id) item
@@ -33,7 +33,7 @@
 //    return [FLPhotoGridViewCell photoGridViewCell:item];
 //}
 
-//- (FLSize) cellViewLayoutGetCellSize:(FLCellArrangement*) layout inBounds:(FLRect) bounds
+//- (FLSize) cellViewLayoutGetCellSize:(FLCellArrangement*) layout inBounds:(CGRect) bounds
 //{
 //    return self.view.frame.size;
 //}
@@ -68,7 +68,7 @@
 
 - (void) dealloc
 {
-//    release_(_buttonbarHost);
+//    FLRelease(_buttonbarHost);
     super_dealloc_();
 }
 
@@ -81,7 +81,7 @@
 }
 
 - (void) beginShowingGalleryItem:(id<FLGalleryObject>) galleryItem
-             fromRectInSuperview:(FLRect) rect
+             fromRectInSuperview:(CGRect) rect
 {
     [self scrollToGalleryItem:galleryItem animated:NO];
     self.view.frame = self.view.superview.bounds;

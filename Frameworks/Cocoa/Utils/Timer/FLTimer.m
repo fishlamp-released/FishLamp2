@@ -64,7 +64,7 @@
 - (void) dealloc
 {
 	[self stopTimer];
-	release_(_target);
+	FLRelease(_target);
 	super_dealloc_();
 }
 

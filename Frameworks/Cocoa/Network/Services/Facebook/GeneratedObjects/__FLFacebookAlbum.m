@@ -103,16 +103,16 @@
 
 - (void) dealloc
 {
-    release_(__description);
-    release_(__from);
-    release_(__location);
-    release_(__link);
-    release_(__cover_photo);
-    release_(__privacy);
-    release_(__count);
-    release_(__type);
-    release_(__created_time);
-    release_(__updated_time);
+    FLRelease(__description);
+    FLRelease(__from);
+    FLRelease(__location);
+    FLRelease(__link);
+    FLRelease(__cover_photo);
+    FLRelease(__privacy);
+    FLRelease(__count);
+    FLRelease(__type);
+    FLRelease(__created_time);
+    FLRelease(__updated_time);
     super_dealloc_();
 }
 
@@ -133,7 +133,7 @@
 
 + (FLFacebookAlbum*) facebookAlbum
 {
-    return autorelease_([[FLFacebookAlbum alloc] init]);
+    return FLAutorelease([[FLFacebookAlbum alloc] init]);
 }
 
 - (id) init
@@ -148,16 +148,16 @@
 {
     if((self = [super initWithCoder:aDecoder]))
     {
-        __description = retain_([aDecoder decodeObjectForKey:@"__description"]);
-        __from = retain_([aDecoder decodeObjectForKey:@"__from"]);
-        __location = retain_([aDecoder decodeObjectForKey:@"__location"]);
-        __link = retain_([aDecoder decodeObjectForKey:@"__link"]);
-        __cover_photo = retain_([aDecoder decodeObjectForKey:@"__cover_photo"]);
-        __privacy = retain_([aDecoder decodeObjectForKey:@"__privacy"]);
-        __count = retain_([aDecoder decodeObjectForKey:@"__count"]);
-        __type = retain_([aDecoder decodeObjectForKey:@"__type"]);
-        __created_time = retain_([aDecoder decodeObjectForKey:@"__created_time"]);
-        __updated_time = retain_([aDecoder decodeObjectForKey:@"__updated_time"]);
+        __description = FLRetain([aDecoder decodeObjectForKey:@"__description"]);
+        __from = FLRetain([aDecoder decodeObjectForKey:@"__from"]);
+        __location = FLRetain([aDecoder decodeObjectForKey:@"__location"]);
+        __link = FLRetain([aDecoder decodeObjectForKey:@"__link"]);
+        __cover_photo = FLRetain([aDecoder decodeObjectForKey:@"__cover_photo"]);
+        __privacy = FLRetain([aDecoder decodeObjectForKey:@"__privacy"]);
+        __count = FLRetain([aDecoder decodeObjectForKey:@"__count"]);
+        __type = FLRetain([aDecoder decodeObjectForKey:@"__type"]);
+        __created_time = FLRetain([aDecoder decodeObjectForKey:@"__created_time"]);
+        __updated_time = FLRetain([aDecoder decodeObjectForKey:@"__updated_time"]);
     }
     return self;
 }

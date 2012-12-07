@@ -46,8 +46,8 @@
 
 - (void) dealloc
 {
-    release_(__error);
-    release_(__request);
+    FLRelease(__error);
+    FLRelease(__request);
     super_dealloc_();
 }
 
@@ -69,8 +69,8 @@
 {
     if((self = [super init]))
     {
-        __error = retain_([aDecoder decodeObjectForKey:@"__error"]);
-        __request = retain_([aDecoder decodeObjectForKey:@"__request"]);
+        __error = FLRetain([aDecoder decodeObjectForKey:@"__error"]);
+        __request = FLRetain([aDecoder decodeObjectForKey:@"__request"]);
     }
     return self;
 }
@@ -124,7 +124,7 @@
 
 + (FLTwitterError*) twitterError
 {
-    return autorelease_([[FLTwitterError alloc] init]);
+    return FLAutorelease([[FLTwitterError alloc] init]);
 }
 
 @end

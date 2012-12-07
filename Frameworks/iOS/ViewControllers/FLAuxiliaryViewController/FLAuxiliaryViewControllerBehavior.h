@@ -18,7 +18,7 @@
 - (void) showViewControllerAnimated:(BOOL) animated viewController:(FLAuxiliaryViewController*) viewController;
 - (void) hideViewControllerAnimated:(BOOL) animated viewController:(FLAuxiliaryViewController*) viewController;
 - (void) didFinishDraggingWithResults:(FLViewDraggerResults) results viewController:(FLAuxiliaryViewController*) viewController;
-- (FLRect) initialFrameForContainerView:(FLAuxiliaryViewController*) viewController;
+- (CGRect) initialFrameForContainerView:(FLAuxiliaryViewController*) viewController;
 - (BOOL) handleInternalTouches:(NSSet*) touches event:(UIEvent*) event viewController:(FLAuxiliaryViewController*) viewController;
 - (void) didAddTouchableView:(FLAuxiliaryViewController*) viewController;
 @end

@@ -14,7 +14,7 @@
 @synthesize topImageWidget = _topImageWidget;
 @synthesize topImageScale = _topImageScale;
 
-- (id) initWithFrame:(FLRect) frame
+- (id) initWithFrame:(CGRect) frame
 {
 	if((self = [super initWithFrame:frame]))
 	{
@@ -23,9 +23,9 @@
 	return self;
 }
 
-+ (FLImageInImageWidget*) imageInImageWidget:(FLRect) frame
++ (FLImageInImageWidget*) imageInImageWidget:(CGRect) frame
 {
-	return autorelease_([[FLImageInImageWidget alloc] initWithFrame:frame]);
+	return FLAutorelease([[FLImageInImageWidget alloc] initWithFrame:frame]);
 }
 
 - (void) setTopImageWidget:(FLImageWidget*) widget
@@ -41,7 +41,7 @@
 
 - (void) dealloc
 {
-	release_(_topImageWidget);
+	FLRelease(_topImageWidget);
 	super_dealloc_();
 }
 

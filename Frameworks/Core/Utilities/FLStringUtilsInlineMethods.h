@@ -1,6 +1,6 @@
 //
 //  NSString+FLExtrasInline.m
-//  FishLampCore
+//  FLCore
 //
 //  Created by Mike Fullerton on 5/18/12.
 //  Copyright (c) 2012 GreenTongue Software. All rights reserved.

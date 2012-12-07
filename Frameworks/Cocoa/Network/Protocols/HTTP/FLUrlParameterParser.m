@@ -58,13 +58,13 @@
 
 + (BOOL) parseData:(NSData*) data intoObject:(id) object strict:(BOOL) strict
 {
-	return [FLUrlParameterParser parseString:autorelease_([[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]) intoObject:object strict:strict];
+	return [FLUrlParameterParser parseString:FLAutorelease([[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]) intoObject:object strict:strict];
 }
 
 + (BOOL) parseString:(NSString*) string intoObject:(id) object strict:(BOOL) strict requiredKeys:(NSArray*) requiredKeys
 {
 	BOOL gotItAll = YES;
-	NSMutableDictionary* values = autorelease_([[NSString parseURLParams:string] mutableCopy]);
+	NSMutableDictionary* values = FLAutorelease([[NSString parseURLParams:string] mutableCopy]);
 	
 	for(NSString* key in requiredKeys)
 	{
@@ -95,7 +95,7 @@
 
 + (BOOL) parseData:(NSData*) data intoObject:(id) object strict:(BOOL) strict  requiredKeys:(NSArray*) requiredKeys
 {
-	return [FLUrlParameterParser parseString:autorelease_([[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]) intoObject:object strict:strict requiredKeys:requiredKeys];
+	return [FLUrlParameterParser parseString:FLAutorelease([[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]) intoObject:object strict:strict requiredKeys:requiredKeys];
 }
 
 

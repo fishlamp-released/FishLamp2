@@ -16,7 +16,7 @@
 
 @synthesize visibleAlpha = _visibleAlpha;
 
-- (id) initWithFrame:(FLRect) frame {
+- (id) initWithFrame:(CGRect) frame {
     if((self = [super initWithFrame:frame])) {   
         self.backgroundColor = [UIColor clearColor];
         self.alpha = 1.0;

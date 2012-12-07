@@ -24,12 +24,12 @@
 
 + (FLSaveImageAssetToStorageOperation*) saveImageAssetToStorageOperation:(id<FLImageAsset>) asset wantsThumbnail:(BOOL) wantsThumbnail
 {
-	return autorelease_([[FLSaveImageAssetToStorageOperation alloc] initWithImageAsset:asset wantsThumbnail:wantsThumbnail]);
+	return FLAutorelease([[FLSaveImageAssetToStorageOperation alloc] initWithImageAsset:asset wantsThumbnail:wantsThumbnail]);
 }
 
 - (void) dealloc
 {
-	release_(_asset);
+	FLRelease(_asset);
 	super_dealloc_();
 }
 

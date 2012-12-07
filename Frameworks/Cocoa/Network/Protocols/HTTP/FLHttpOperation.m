@@ -34,11 +34,11 @@
 }
 
 + (id) httpOperation {
-    return autorelease_([[[self class] alloc] initWithHTTPRequestURL:nil]);
+    return FLAutorelease([[[self class] alloc] initWithHTTPRequestURL:nil]);
 }
 
 + (id) httpOperationWithHTTPRequestURL:(NSURL*) httpRequestURL {
-    return autorelease_([[[self class] alloc] initWithHTTPRequestURL:httpRequestURL]);
+    return FLAutorelease([[[self class] alloc] initWithHTTPRequestURL:httpRequestURL]);
 }
 
 - (FLHttpResponse*) sendHttpRequest:(FLMutableHttpRequest*) request 

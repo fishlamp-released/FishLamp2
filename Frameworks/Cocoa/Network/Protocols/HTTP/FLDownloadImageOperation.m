@@ -8,7 +8,7 @@
 
 #import "FLDownloadImageOperation.h"
 #import "FLCachedImage.h"
-
+#import "FLImageProperties.h"
 
 @implementation FLDownloadImageOperation
 
@@ -17,11 +17,11 @@
 }
 
 + (id) downloadImageOperation {
-    return autorelease_([[[self class] alloc] initWithImageURL:nil]);
+    return FLAutorelease([[[self class] alloc] initWithImageURL:nil]);
 }
 
 + (id) downloadImageOperationWithImageURL:(NSURL*) imageURL{
-    return autorelease_([[[self class] alloc] initWithImageURL:imageURL]);
+    return FLAutorelease([[[self class] alloc] initWithImageURL:imageURL]);
 }
 
 - (FLResult) runSelf {
@@ -33,7 +33,7 @@
     
     FLThrowError_([httpResponse simpleHttpResponseErrorCheck]);
     
-    FLImage* image = [FLImage imageWithData:httpResponse.responseData];
+    FLStorableImage* image = [FLStorableImage imageWithData:httpResponse.responseData];
     image.imageProperties = [FLImageProperties imagePropertiesWithImageURL:self.httpRequestURL];
     return image;
 }

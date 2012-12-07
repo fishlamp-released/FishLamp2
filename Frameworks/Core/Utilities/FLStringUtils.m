@@ -17,7 +17,7 @@ NSString* FLStringWithFormatOrNil(NSString* format, ...) {
         va_list va;
         va_start(va, format);
         
-        NSString* string = autorelease_([[NSString alloc] initWithFormat:(NSString*)format arguments:va]);
+        NSString* string = FLAutorelease([[NSString alloc] initWithFormat:(NSString*)format arguments:va]);
         va_end(va);
         return string;
     }
@@ -31,7 +31,7 @@ NSString* FLStringWithFormatOrNil(NSString* format, ...) {
 
     NSRange range = [self rangeOfString:substring];
     if(range.length > 0) {
-        NSMutableString* newString = autorelease_([self mutableCopy]);
+        NSMutableString* newString = FLAutorelease([self mutableCopy]);
         [newString deleteCharactersInRange:range];
         return newString;
     }
@@ -47,7 +47,7 @@ NSString* FLStringWithFormatOrNil(NSString* format, ...) {
         va_start(va, format);
         NSString* string = [[NSString alloc] initWithFormat:format arguments:va];
         va_end(va);
-        return autorelease_(string);
+        return FLAutorelease(string);
     }
     
     return @"";

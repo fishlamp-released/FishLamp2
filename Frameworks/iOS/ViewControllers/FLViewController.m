@@ -38,7 +38,7 @@ static FLViewController* s_presentingModalViewController = nil;
 @synthesize disableBackgroundTasks = _disableBackgroundTasks; 
 
 + (id) viewController {
-	return autorelease_([[[self class] alloc] init]);
+	return FLAutorelease([[[self class] alloc] init]);
 }
 
 - (void) _networkReachabilityDidChange:(NSNotification*) notification {
@@ -118,7 +118,7 @@ static FLViewController* s_presentingModalViewController = nil;
 - (UIView*) createView {
     FLAssert_v([NSThread currentThread] == [NSThread mainThread], @"Not on main thread");
 
-	UIView* view = autorelease_([[UIView alloc] initWithFrame:CGRectMake(0,0,0,0)]);
+	UIView* view = FLAutorelease([[UIView alloc] initWithFrame:CGRectMake(0,0,0,0)]);
 	view.backgroundColor = [UIColor blackColor];
 	view.autoresizingMask = UIViewAutoresizingFlexibleEverything;
 	view.autoresizesSubviews = YES;
@@ -289,7 +289,7 @@ static FLViewController* s_presentingModalViewController = nil;
 			[cb invoke:self];
 		}
 		
-		release_(callbacks);
+		FLRelease(callbacks);
 	}
 
 #if TRACE

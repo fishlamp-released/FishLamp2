@@ -20,7 +20,7 @@
 }
 
 + (id) shellCommand:(NSString*) launchPath {
-    return autorelease_([[[self class] alloc] initWithLaunchPath:launchPath]);
+    return FLAutorelease([[[self class] alloc] initWithLaunchPath:launchPath]);
 }
 
 #if FL_MRC
@@ -98,7 +98,7 @@
 
         if(file) {
             NSData* data = [file availableData];
-            outputStr = autorelease_([[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding]);
+            outputStr = FLAutorelease([[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding]);
         }
         
         return outputStr;
@@ -110,7 +110,7 @@
     }
     @finally {
         task.terminationHandler = nil;
-        release_(task);
+        FLRelease(task);
     }
     
     return FLFailedResult;

@@ -22,7 +22,7 @@
 	BOOL _enabled;
 	
 	NSUInteger _thumbCount;
-	FLRect _widgetFrame;
+	CGRect _widgetFrame;
 	NSUInteger _maxThumbCount;
 	CGFloat _indexScale;
 	CGFloat _leftSide;

@@ -26,7 +26,7 @@
 }
 
 + (id) staticTestMethodRunner:(NSArray*) selectorInfoList {
-    return autorelease_([[FLStaticTestMethodRunner alloc] init]);
+    return FLAutorelease([[FLStaticTestMethodRunner alloc] init]);
 }
 
 - (BOOL) runTestWithFinisher:(FLSelectorInfo*) info {

@@ -5,7 +5,7 @@
 //  Created by Mike Fullerton on 4/8/12.
 //  Copyright (c) 2012 GreenTongue Software. All rights reserved.
 //
-#import "FishLampCore.h"
+#import "FLCore.h"
 
 #import "FLNetworkConnection.h"
 #import "FLTcpConnectionWriter.h"

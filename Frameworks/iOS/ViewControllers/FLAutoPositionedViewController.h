@@ -32,16 +32,16 @@
 
 // this will resize and reposition the view.
 - (void) updateViewSizeAndPosition; // gets bounds from parentSuperviewController.view
-- (void) updateViewSizeAndPosition:(FLRect) inBounds;
+- (void) updateViewSizeAndPosition:(CGRect) inBounds;
 
 
 // override these.
-- (void) sizeToFitInBounds:(FLRect) bounds;
-- (UIView*) createAutoPositionedViewWithFrame:(FLRect) frame;
+- (void) sizeToFitInBounds:(CGRect) bounds;
+- (UIView*) createAutoPositionedViewWithFrame:(CGRect) frame;
 
 // this is the bounds that the view will be shown in, adjusted for contents
 // of view determined by FLViewContentsDescriptor.
-- (FLRect) maxVisibleRect:(BOOL) adjustingForKeyboard;
+- (CGRect) maxVisibleRect:(BOOL) adjustingForKeyboard;
 
 - (void) viewMayOverridePosition;
 

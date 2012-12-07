@@ -12,7 +12,7 @@
 
 @implementation FLCropImageView
 
-- (id) initWithFrame:(FLRect)frame
+- (id) initWithFrame:(CGRect)frame
 {
     if((self = [super initWithFrame:frame]))
     {
@@ -32,7 +32,7 @@
 
 - (void) dealloc
 {
-    release_(_imageView);
+    FLRelease(_imageView);
     super_dealloc_();
 }
 

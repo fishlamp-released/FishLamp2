@@ -14,7 +14,7 @@
 {
 	if((self = [super initWithCapacity:capacity]))
 	{
-		_cacheKey = retain_(cacheKey);
+		_cacheKey = FLRetain(cacheKey);
 	}
 	
 	return self;
@@ -22,13 +22,13 @@
 
 + (FLObjectCacheBehavior*) objectCacheBehavior:(NSUInteger) capacity cacheKey:(NSString*) cacheKey
 {
-	return autorelease_([[FLObjectCacheBehavior alloc] initWithCapacity:capacity cacheKey:cacheKey]);
+	return FLAutorelease([[FLObjectCacheBehavior alloc] initWithCapacity:capacity cacheKey:cacheKey]);
 }
 
 
 - (void) dealloc
 {
-	release_(_cacheKey);
+	FLRelease(_cacheKey);
 	super_dealloc_();
 }
 

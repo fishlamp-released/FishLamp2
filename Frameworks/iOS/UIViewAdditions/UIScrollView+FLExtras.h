@@ -12,7 +12,7 @@
 
 @interface UIScrollView (FLExtras)
 
-- (FLRect) visibleRect;
+- (CGRect) visibleRect;
 - (void) scrollToTop:(BOOL) animated;
 - (void) scrollToBottom:(BOOL) animated;
 //- (void) adjustInsets:(FLViewContentsDescriptor*) contents;

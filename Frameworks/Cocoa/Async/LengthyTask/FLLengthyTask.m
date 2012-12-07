@@ -13,7 +13,7 @@
 @implementation FLLengthyTask
 
 + (id) lengthyTask {
-	return autorelease_([[[self class] alloc] init]);
+	return FLAutorelease([[[self class] alloc] init]);
 }
 
 @synthesize taskName = _name;
@@ -39,7 +39,7 @@
 }
 
 - (void) setTaskName:(NSString*) name {
-	FLRetainObject_(_name, name);
+	FLAssignObjectWithRetain(_name, name);
 	[_delegate lengthyTaskDidChangeName:self];
 }
 

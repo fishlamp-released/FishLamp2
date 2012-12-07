@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "FishLampCore.h"
+#import "FLCore.h"
 #import "FLSimpleNotifier.h"
 #import "FLWeakReference.h"
 

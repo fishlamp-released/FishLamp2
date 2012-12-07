@@ -28,7 +28,7 @@
 
 + (FLTextEditViewController*) textEditViewController
 {
-	return autorelease_([[FLTextEditViewController alloc] initWithNibName:nil bundle:nil]);
+	return FLAutorelease([[FLTextEditViewController alloc] initWithNibName:nil bundle:nil]);
 }
 
 - (NSInteger) maxSize
@@ -62,10 +62,10 @@
 
 - (void) dealloc
 {
-    release_(_placeholderText);
-    release_(_text);
+    FLRelease(_placeholderText);
+    FLRelease(_text);
     _textEditView.delegate = nil;
-	release_(_textEditView);
+	FLRelease(_textEditView);
 	super_dealloc_();
 }
 

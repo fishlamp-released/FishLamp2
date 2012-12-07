@@ -11,7 +11,7 @@
 
 @implementation FLThumbnailWidget
 
-- (id) initWithFrame:(FLRect) frame
+- (id) initWithFrame:(CGRect) frame
 {
 	if((self = [super initWithFrame:frame]))
 	{
@@ -55,7 +55,7 @@
 
 - (void) dealloc
 {
-	release_(_highlightedView);
+	FLRelease(_highlightedView);
 	super_dealloc_();
 }
 
@@ -84,7 +84,7 @@
 			
 			if(tableView)
 			{
-				FLRect frame = FLRectScale(self.frame, Scale);
+				CGRect frame = FLRectScale(self.frame, Scale);
 				UIImage* image = self.topImageWidget.image ? self.topImageWidget.image : self.bottomImageWidget.image;
 				
 				FLSize imageSize = image.size;

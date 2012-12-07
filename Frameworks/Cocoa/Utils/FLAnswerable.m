@@ -1,6 +1,6 @@
 //
 //  FLAnswerable.m
-//  FishLampCore
+//  FLCore
 //
 //  Created by Mike Fullerton on 11/2/12.
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
@@ -38,15 +38,15 @@
 }
 
 + (id) answerable:(BOOL) defaultAnswer {
-    return autorelease_([[[self class] alloc] initWithDefaultAnswer:defaultAnswer]);
+    return FLAutorelease([[[self class] alloc] initWithDefaultAnswer:defaultAnswer]);
 }
 
 + (id) answerable:(BOOL) defaultAnswer withObject:(id) object {
-    return autorelease_([[[self class] alloc] initWithDefaultAnswer:defaultAnswer withObject:object]);
+    return FLAutorelease([[[self class] alloc] initWithDefaultAnswer:defaultAnswer withObject:object]);
 }
 
 + (id) answerable {
-    return autorelease_([[[self class] alloc] init]);
+    return FLAutorelease([[[self class] alloc] init]);
 }
 
 #if FL_MRC

@@ -48,12 +48,12 @@
 }
 
 + (FLViewControllerStack*) viewControllerStack:(UIViewController*) rootViewController {
-    return autorelease_([[FLViewControllerStack alloc] initWithRootViewController:rootViewController]);
+    return FLAutorelease([[FLViewControllerStack alloc] initWithRootViewController:rootViewController]);
 }
 
 - (void) dealloc {
-    release_(_rootViewController);
-    release_(_viewControllers);
+    FLRelease(_rootViewController);
+    FLRelease(_viewControllers);
     super_dealloc_();
 }
 

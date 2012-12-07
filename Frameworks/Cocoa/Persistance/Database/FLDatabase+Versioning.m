@@ -40,12 +40,12 @@ static NSString* kHistory = nil;
 
 - (void) initializeVersioning {
 
-    kVersionId = retain_(FLDatabaseNameEncode(@"version_id"));
-    kVersion = retain_(FLDatabaseNameEncode(@"version"));
-    kHistory = retain_(FLDatabaseNameEncode(@"history"));
-    kName = retain_(FLDatabaseNameEncode(@"name"));
-    kEntry = retain_(FLDatabaseNameEncode(@"entry"));
-    kWrittenDate = retain_(FLDatabaseNameEncode(@"written_date"));
+    kVersionId = FLRetain(FLDatabaseNameEncode(@"version_id"));
+    kVersion = FLRetain(FLDatabaseNameEncode(@"version"));
+    kHistory = FLRetain(FLDatabaseNameEncode(@"history"));
+    kName = FLRetain(FLDatabaseNameEncode(@"name"));
+    kEntry = FLRetain(FLDatabaseNameEncode(@"entry"));
+    kWrittenDate = FLRetain(FLDatabaseNameEncode(@"written_date"));
 
     FLDatabaseTable* historyTable = [FLDatabaseTable databaseTableWithTableName:kHistory];
     
@@ -95,7 +95,7 @@ static NSString* kHistory = nil;
 static NSString* s_version;
 
 + (void) setCurrentRuntimeVersion:(NSString*) version {
-    FLRetainObject_(s_version, version);
+    FLAssignObjectWithRetain(s_version, version);
 }
 
 + (NSString*) currentRuntimeVersion {
@@ -388,7 +388,7 @@ NSString* FLLegacyDecodeString(NSString* string) {
 		NSString* newNamesSql = [FLSqlBuilder sqlListFromArray:newNames delimiter:@"," withinParens:NO prefixDelimiterWithSpace:NO ];
 
         @try {
-            mrc_autorelease_(retain_(table));
+            FLAutoreleaseObject(FLRetain(table));
             
             // use a transaction to protect data from failures
             [self execute:@"BEGIN TRANSACTION"];
@@ -437,9 +437,8 @@ NSString* FLLegacyDecodeString(NSString* string) {
     
     for(NSString* tableName in tableNames) {
         
-#if FL_MRC
-        FLPerformBlockInAutoreleasePool(^{
-#endif        
+        FLAutoreleasePool(
+       
             FLDatabaseTable* table = [self tableForName:tableName];
             if(table && [self upgradeTable:table allTableNames:tableNames]) {
                 if(tableUpgraded) {
@@ -452,9 +451,7 @@ NSString* FLLegacyDecodeString(NSString* string) {
             }
             
             ++count;
-#if FL_MRC
-        });
-#endif        
+        )      
 	}
     
     [self writeDatabaseVersion:version];
@@ -463,8 +460,8 @@ NSString* FLLegacyDecodeString(NSString* string) {
 - (void) upgradeDatabase:(FLDatabaseUpgradeProgressBlock) progress
            tableUpgraded:(FLDatabaseTableUpgradedBlock) tableUpgraded {
 
-    progress = FLCopyBlock(progress);
-    tableUpgraded = FLCopyBlock(tableUpgraded);
+    progress = FLAutoreleasedCopy(progress);
+    tableUpgraded = FLAutoreleasedCopy(tableUpgraded);
 
     [[FLDefaultQueue dispatchBlock:^{
             [self upgradeDatabaseToVersion:[[self class] currentRuntimeVersion]

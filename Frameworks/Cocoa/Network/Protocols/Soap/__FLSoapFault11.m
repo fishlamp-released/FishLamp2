@@ -60,10 +60,10 @@
 
 - (void) dealloc
 {
-    release_(__faultcode);
-    release_(__faultstring);
-    release_(__faultactor);
-    release_(__detail);
+    FLRelease(__faultcode);
+    FLRelease(__faultstring);
+    FLRelease(__faultactor);
+    FLRelease(__detail);
     super_dealloc_();
 }
 
@@ -87,10 +87,10 @@
 {
     if((self = [super init]))
     {
-        __faultcode = retain_([aDecoder decodeObjectForKey:@"__faultcode"]);
-        __faultstring = retain_([aDecoder decodeObjectForKey:@"__faultstring"]);
-        __faultactor = retain_([aDecoder decodeObjectForKey:@"__faultactor"]);
-        __detail = retain_([aDecoder decodeObjectForKey:@"__detail"]);
+        __faultcode = FLRetain([aDecoder decodeObjectForKey:@"__faultcode"]);
+        __faultstring = FLRetain([aDecoder decodeObjectForKey:@"__faultstring"]);
+        __faultactor = FLRetain([aDecoder decodeObjectForKey:@"__faultactor"]);
+        __detail = FLRetain([aDecoder decodeObjectForKey:@"__detail"]);
     }
     return self;
 }
@@ -148,7 +148,7 @@
 
 + (FLSoapFault11*) soapFault11
 {
-    return autorelease_([[FLSoapFault11 alloc] init]);
+    return FLAutorelease([[FLSoapFault11 alloc] init]);
 }
 
 @end

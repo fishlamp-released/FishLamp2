@@ -7,18 +7,19 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "FishLampCore.h"
+#import "FLCore.h"
 
+#import "FLStorableImageProtocol.h"
 #import "FLStorableObject.h"
 #import "FLStorableImage.h"
 #import "FLFolderFile.h"
 
-@interface FLJpegFile : FLFolderFile<FLStorableImage, FLStorableObject> {
+@interface FLJpegFile : FLFolderFile<FLStorableImageProtocol, FLStorableObject> {
 @private
-	SDKImage* _image;
+	FLImage* _image;
 	NSData* _jpegData;
 	NSDictionary* _properties;
-	SDKSize _dimensions;
+	FLSize _dimensions;
     BOOL _exclusiveMode;
 }
 
@@ -35,7 +36,7 @@
 	folder:(FLFolder*) folder 
 	fileName:(NSString*) fileName;
 
-- (id) initWithImage:(SDKImage*) image 
+- (id) initWithImage:(FLImage*) image 
 	exifDictionary:(NSDictionary*)exifDictionary
 	folder:(FLFolder*) folder 
 	fileName:(NSString*) fileName;

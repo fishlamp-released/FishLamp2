@@ -15,18 +15,18 @@
 
 - (id) initWithDatabase:(FLDatabase*) database {
 	if((self = [super init])) {
-		_database = retain_(database);
+		_database = FLRetain(database);
 	}
 
 	return self;
 }
 
 + (FLUpgradeDatabaseLengthyTask*) upgradeDatabaseLengthyTask:(FLDatabase*) database {
-	return autorelease_([[FLUpgradeDatabaseLengthyTask alloc] initWithDatabase:database]);
+	return FLAutorelease([[FLUpgradeDatabaseLengthyTask alloc] initWithDatabase:database]);
 }
 
 - (void) dealloc {
-	release_(_database);
+	FLRelease(_database);
 	super_dealloc_();
 }
 

@@ -53,7 +53,7 @@
     [self setNeedsLayout];
 }
 
-- (id) initWithFrame:(FLRect) frame
+- (id) initWithFrame:(CGRect) frame
 {
     if((self = [super initWithFrame:frame]))
     {
@@ -83,7 +83,7 @@
 {
     [super layoutSubviews];
     
-    FLRect frame = self.bounds;
+    CGRect frame = self.bounds;
 //    self.dragBar.frame = frame;
     _openBackgroundWidget.frame = frame;
     _openButton.frameOptimizedForLocation = FLRectCenterRectInRect(self.bounds, frame);
@@ -211,10 +211,10 @@
 
 - (void) dealloc
 {
-    release_(_openBackgroundWidget);
-//    release_(_dragBar);
-    release_(_openButton);
-    release_(_closeButton);
+    FLRelease(_openBackgroundWidget);
+//    FLRelease(_dragBar);
+    FLRelease(_openButton);
+    FLRelease(_closeButton);
     super_dealloc_();
 }
 

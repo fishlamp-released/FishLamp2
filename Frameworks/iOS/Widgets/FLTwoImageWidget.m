@@ -13,7 +13,7 @@
 @synthesize topImageWidget = _topImageWidget;
 @synthesize bottomImageWidget = _bottomImageWidget;
 
-- (id) initWithFrame:(FLRect) frame
+- (id) initWithFrame:(CGRect) frame
 {
 	if((self = [super initWithFrame:frame]))
 	{
@@ -33,8 +33,8 @@
 
 - (void) dealloc
 {
-	release_(_topImageWidget);
-	release_(_bottomImageWidget);
+	FLRelease(_topImageWidget);
+	FLRelease(_bottomImageWidget);
 	super_dealloc_();
 }
 

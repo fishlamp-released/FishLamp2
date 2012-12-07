@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "FishLampCore.h"
+#import "FLCore.h"
 #import "FLArrangeable.h"
 #import "FLArrangeableContainer.h"
 
@@ -42,5 +42,5 @@
 
 @interface UIView (FLMiscUtils)
 - (void) visitSubviews:(void (^)(id view)) visitor;
-- (FLRect) layoutBounds;
+- (CGRect) layoutBounds;
 @end

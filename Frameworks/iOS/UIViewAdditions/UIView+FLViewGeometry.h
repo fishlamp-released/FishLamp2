@@ -23,11 +23,11 @@
 
 @interface UIView (FLViewGeometry)
 
-+ (id) viewWithFrame:(FLRect) frame;
++ (id) viewWithFrame:(CGRect) frame;
 
-- (void) moveBy:(FLPoint) delta;
+- (void) moveBy:(CGPoint) delta;
 - (void) moveBy:(CGFloat) x y:(CGFloat)y;
-- (void) moveTo:(FLPoint) newOrigin;
+- (void) moveTo:(CGPoint) newOrigin;
 - (void) moveTo:(CGFloat) left top:(CGFloat) top;
 
 - (void) resize:(FLSize) newSize;
@@ -45,16 +45,16 @@
 
 
 @property (readonly, assign, nonatomic) BOOL isFrameOptimized;
-@property (readwrite, assign, nonatomic) FLRect frameOptimizedForLocation;
-@property (readwrite, assign, nonatomic) FLRect frameOptimizedForSize;
+@property (readwrite, assign, nonatomic) CGRect frameOptimizedForLocation;
+@property (readwrite, assign, nonatomic) CGRect frameOptimizedForSize;
 
 // only sets it if it changed. returns frame
-@property (readwrite, assign, nonatomic) FLRect newFrame; 
-- (BOOL) setFrameIfChanged:(FLRect) newFrame;
-- (BOOL) setBoundsIfChanged:(FLRect) newBounds;
+@property (readwrite, assign, nonatomic) CGRect newFrame; 
+- (BOOL) setFrameIfChanged:(CGRect) newFrame;
+- (BOOL) setBoundsIfChanged:(CGRect) newBounds;
 
 - (BOOL) setViewSizeToFitInSuperview:(BOOL) centerInSuperview;
-- (FLRect) frameSizedToFitInSuperview:(BOOL) centerInSuperview; 
+- (CGRect) frameSizedToFitInSuperview:(BOOL) centerInSuperview; 
 - (FLSize) sizeThatFitsInSuperview;
 
 - (BOOL) setViewSizeToContentSize; // does nothing by default, up to subclasses or categories to implement 

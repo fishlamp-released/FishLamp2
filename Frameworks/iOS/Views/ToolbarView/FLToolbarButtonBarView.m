@@ -11,7 +11,7 @@
 
 @implementation FLToolbarButtonbarView
 
-- (id) initWithFrame:(FLRect) frame
+- (id) initWithFrame:(CGRect) frame
 {
 	if((self = [super initWithFrame:frame]))
 	{
@@ -30,7 +30,7 @@
 	}
 }
 
-- (void) setFrame:(FLRect) frame
+- (void) setFrame:(CGRect) frame
 {
 	FLLog(@"setting frame: %@", NSStringFromCGRect(frame));
 

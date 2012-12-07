@@ -42,7 +42,7 @@ NSString *FLKeychainErrorDomain = @"FLKeychainErrorDomain";
 		FLReleaseWithNil_(keys);
 		FLReleaseWithNil_(objects);
 
-		mrc_autorelease_(query);
+		FLAutoreleaseObject(query);
 
 		// First do a query for attributes, in case we already have a Keychain item with no password data set.
 		// One likely way such an incorrect item could have come about is due to the previous (incorrect)
@@ -83,7 +83,7 @@ NSString *FLKeychainErrorDomain = @"FLKeychainErrorDomain";
 
 		status = SecItemCopyMatching(bridge_(CFDictionaryRef, passwordQuery), &resultData);
 
-		mrc_autorelease_(resultData);
+		FLAutoreleaseObject(resultData);
 
 		FLReleaseWithNil_(passwordQuery);
 
@@ -170,7 +170,7 @@ NSString *FLKeychainErrorDomain = @"FLKeychainErrorDomain";
 			{
 				if(error)
 				{
-					*error = retain_(err);
+					*error = FLRetain(err);
 				}
 				FLReleaseWithNil_(err);
 				return NO;

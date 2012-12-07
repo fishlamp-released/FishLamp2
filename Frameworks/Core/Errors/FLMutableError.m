@@ -28,13 +28,13 @@ FLSynthesizeDictionaryProperty(errorDomain, setErrorDomain, id<FLErrorDomain>, F
 
 #if FL_MRC 
 - (void) dealloc {
-    release_(_mutableUserInfo);
+    FLRelease(_mutableUserInfo);
     super_dealloc_();
 }
 #endif
 
 - (void) setUserInfo:(NSDictionary*) userInfo {
-    FLRetainObject_(_mutableUserInfo, autorelease_([userInfo mutableCopy]));
+    FLAssignObjectWithRetain(_mutableUserInfo, FLAutorelease([userInfo mutableCopy]));
 }
 
 - (id)initWithDomain:(NSString *)domain code:(NSInteger)code userInfo:(NSDictionary *) userInfo {
@@ -59,11 +59,11 @@ FLSynthesizeDictionaryProperty(errorDomain, setErrorDomain, id<FLErrorDomain>, F
 }
 
 + (id) mutableErrorWithError:(NSError*) error {
-    return autorelease_([[[self class] alloc] initWithError:error]);
+    return FLAutorelease([[[self class] alloc] initWithError:error]);
 }
 
 + (id) mutableErrorWithError:(NSError*) error stackTrace:(FLStackTrace*) stackTrace {
-    return autorelease_([[[self class] alloc] initWithError:error stackTrace:stackTrace]);
+    return FLAutorelease([[[self class] alloc] initWithError:error stackTrace:stackTrace]);
 }
 
 - (void) setObject:(id) object forKey:(id) key {

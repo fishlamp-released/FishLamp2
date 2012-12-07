@@ -33,11 +33,11 @@
 }
 
 + (id) mutableResult {
-    return autorelease_([[[self class] alloc] init]);
+    return FLAutorelease([[[self class] alloc] init]);
 }
 
 + (id) mutableResultWithResult:(id) result {
-    return autorelease_([[[self class] alloc] initWithResult:result]);
+    return FLAutorelease([[[self class] alloc] initWithResult:result]);
 }
 
 - (BOOL) succeeded {

@@ -18,9 +18,9 @@
 
 void InstallDefaultUserNotificationErrorFormatters()
 {
-	[[FLErrorDescriberManager instance] addErrorDescriber:autorelease_([[NSUrlErrorDomainErrorFormatter alloc] init]) ];
-//	  [[FLErrorDescriberManager instance] addErrorDescriber:autorelease_([[NSPOSIXErrorDomainErrorFormatter alloc] init]) ]; 
-	[[FLErrorDescriberManager instance] addErrorDescriber:autorelease_([[FLSoapFaultErrorDomainErrorFormatter alloc] init])]; 
+	[[FLErrorDescriberManager instance] addErrorDescriber:FLAutorelease([[NSUrlErrorDomainErrorFormatter alloc] init]) ];
+//	  [[FLErrorDescriberManager instance] addErrorDescriber:FLAutorelease([[NSPOSIXErrorDomainErrorFormatter alloc] init]) ]; 
+	[[FLErrorDescriberManager instance] addErrorDescriber:FLAutorelease([[FLSoapFaultErrorDomainErrorFormatter alloc] init])]; 
 }
 
 @implementation NSUrlErrorDomainErrorFormatter

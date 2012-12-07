@@ -10,7 +10,7 @@
 #import "FLCoreFoundation.h"
 
 void FLDrawLinearGradient(CGContextRef context, 
-    FLRect rect, 
+    CGRect rect, 
     CGColorRef startColor, 
     CGColorRef endColor) {
 
@@ -21,8 +21,8 @@ void FLDrawLinearGradient(CGContextRef context,
 	
 	CGGradientRef gradient = CGGradientCreateWithColors(colorSpace, bridge_(CFArrayRef, colors), locations);
 	
-	FLPoint startPoint = CGPointMake(CGRectGetMidX(rect), CGRectGetMinY(rect));
-	FLPoint endPoint = CGPointMake(CGRectGetMidX(rect), CGRectGetMaxY(rect));
+	CGPoint startPoint = CGPointMake(CGRectGetMidX(rect), CGRectGetMinY(rect));
+	CGPoint endPoint = CGPointMake(CGRectGetMidX(rect), CGRectGetMaxY(rect));
 	
 	CGContextSaveGState(context);
 	CGContextAddRect(context, rect);

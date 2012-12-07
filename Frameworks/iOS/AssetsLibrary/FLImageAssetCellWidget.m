@@ -44,7 +44,7 @@
 }
 
 
-- (id) initWithFrame:(FLRect) frame
+- (id) initWithFrame:(CGRect) frame
 {
 	if((self = [super initWithFrame:frame]))
 	{
@@ -93,12 +93,12 @@
 
 - (void) dealloc
 {
-	release_(_itemNumber);
-	release_(_processedImage);
-	release_(_selectedImage);
-	release_(_asset);
-	release_(_imageFrame);
-	release_(_thumbnailImageWidget);
+	FLRelease(_itemNumber);
+	FLRelease(_processedImage);
+	FLRelease(_selectedImage);
+	FLRelease(_asset);
+	FLRelease(_imageFrame);
+	FLRelease(_thumbnailImageWidget);
 	super_dealloc_();
 }
 

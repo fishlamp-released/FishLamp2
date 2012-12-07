@@ -10,7 +10,7 @@
 
 @implementation FLImageRowView
 
-- (id) initWithFrame:(FLRect) frame
+- (id) initWithFrame:(CGRect) frame
 {
 	if((self = [super initWithFrame:frame]))
 	{
@@ -61,7 +61,7 @@
 	super_dealloc_();
 }
  
-- (void)drawRect:(FLRect)rect
+- (void)drawRect:(CGRect)rect
 {
 	[super drawRect:rect];
 
@@ -70,7 +70,7 @@
 	{	
 		if(_images[i])
 		{
-			FLRect frame = FLRectMakeWithSize(_images[i].size);
+			CGRect frame = FLRectMakeWithSize(_images[i].size);
 			frame.origin.x = rightSide - frame.size.width;
 			rightSide = frame.origin.x - 4.0f;
 			frame = FLRectOptimizedForViewSize(FLRectCenterRectInRectVertically(self.bounds, frame));
@@ -81,7 +81,7 @@
 		}
 	}
 	
-// FLRect imageRect = CGRectMake(self.bounds.size.width, 0, 0, 0);
+// CGRect imageRect = CGRectMake(self.bounds.size.width, 0, 0, 0);
 //	  if(self.image1)
 //	{	
 //		imageRect.size = self.image1.size;

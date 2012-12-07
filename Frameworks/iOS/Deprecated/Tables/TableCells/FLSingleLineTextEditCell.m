@@ -25,7 +25,7 @@
 
 + (FLSingleLineTextEditCell*) singleLineTextEditCell:(NSString*) titleLabelOrNil
 {
-	FLSingleLineTextEditCell* cell = autorelease_([[FLSingleLineTextEditCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"FLSingleLineTextEditCell"]);
+	FLSingleLineTextEditCell* cell = FLAutorelease([[FLSingleLineTextEditCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"FLSingleLineTextEditCell"]);
 	if(FLStringIsNotEmpty(titleLabelOrNil))
 	{
 		cell.textLabelText = titleLabelOrNil;
@@ -88,7 +88,7 @@
 
 - (UIView*) createValueLabel
 {
-	FLTextField* textField = autorelease_([[FLTextField alloc] initWithFrame:CGRectZero]);
+	FLTextField* textField = FLAutorelease([[FLTextField alloc] initWithFrame:CGRectZero]);
 	textField.clearButtonMode = UITextFieldViewModeWhileEditing;
 	textField.backgroundColor = [UIColor clearColor];
 	textField.autoresizingMask = UIViewAutoresizingNone;
@@ -230,7 +230,7 @@
 
 + (FLPasswordTextEditCell*) passwordTextEditCell:(NSString*) titleLabelOrNil
 {
-	FLPasswordTextEditCell* cell = autorelease_([[FLPasswordTextEditCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"FLSingleLineTextEditCell"]);
+	FLPasswordTextEditCell* cell = FLAutorelease([[FLPasswordTextEditCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"FLSingleLineTextEditCell"]);
 	if(FLStringIsNotEmpty(titleLabelOrNil))
 	{
 		cell.textLabelText = titleLabelOrNil;

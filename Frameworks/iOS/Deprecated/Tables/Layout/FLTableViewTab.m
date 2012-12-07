@@ -37,7 +37,7 @@
 
 - (void) dealloc
 {
-	release_(_sections);
+	FLRelease(_sections);
 	super_dealloc_();
 }
 

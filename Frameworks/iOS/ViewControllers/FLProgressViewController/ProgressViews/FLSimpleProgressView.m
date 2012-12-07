@@ -20,7 +20,7 @@
 @synthesize textLabel = _textLabel;
 @synthesize spinner = _spinner;
 
-- (id)initWithFrame:(FLRect)frame {
+- (id)initWithFrame:(CGRect)frame {
     if(CGRectEqualToRect(CGRectZero, frame)) {
         frame = CGRectMake(0,0,kWidth, kHeight);
     }
@@ -85,17 +85,17 @@
 
 #if FL_MRC
 - (void) dealloc {
-    release_(_textLabel);
-    release_(_spinner);
+    FLRelease(_textLabel);
+    FLRelease(_spinner);
     super_dealloc_();
 }
 #endif
 
 - (void) layoutProgressViews {
 
-    FLRect topRect = CGRectMake(0,0,self.bounds.size.width, kHeight);
+    CGRect topRect = CGRectMake(0,0,self.bounds.size.width, kHeight);
 
-    FLRect titleRect = CGRectZero;
+    CGRect titleRect = CGRectZero;
     titleRect.origin.x = FLRectGetRight(_spinner.frame) + 10.0f;
     titleRect.size.height = 18;
     titleRect.size.width = self.bounds.size.width - titleRect.origin.x;
@@ -206,7 +206,7 @@
 
 @implementation FLLargerSimpleProgressView 
 
-- (id) initWithFrame:(FLRect)frame {
+- (id) initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if(self) {
         self.textLabel.textAlignment = UITextAlignmentCenter;

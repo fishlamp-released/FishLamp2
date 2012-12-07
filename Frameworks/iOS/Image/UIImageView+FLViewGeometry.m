@@ -16,13 +16,13 @@
 	return [self setFrameIfChanged:FLRectSetSizeWithSize(self.frame, self.image.size)];
 }
 
-- (FLRect) frameSizedToFitInSuperview:(BOOL) centerInSuperview
+- (CGRect) frameSizedToFitInSuperview:(BOOL) centerInSuperview
 {
 	UIImage* image = self.image;
 	if(image && self.superview)
 	{
-		FLRect superviewBounds = self.superview.bounds;
-		FLRect newFrame = FLRectFitInRectInRectProportionally(
+		CGRect superviewBounds = self.superview.bounds;
+		CGRect newFrame = FLRectFitInRectInRectProportionally(
 			FLRectMakeWithSize(superviewBounds.size), 
 			FLRectMakeWithSize(image.size));
 			
@@ -40,7 +40,7 @@
 - (void) resizeProportionally:(FLSize) maxSize
 {
 //	  [self setViewSizeToImageSize];
-	FLRect newBounds = [self.image proportionalBoundsWithMaxSize:maxSize];
+	CGRect newBounds = [self.image proportionalBoundsWithMaxSize:maxSize];
 	self.newFrame = CGRectIntegral(FLRectSetSizeWithSize(self.frame, newBounds.size));
 }
 

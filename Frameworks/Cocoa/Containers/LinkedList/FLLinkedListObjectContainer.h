@@ -1,12 +1,12 @@
 //
 //  FLLinkedListObjectContainer.h
-//  FishLampCore
+//  FLCore
 //
 //  Created by Mike Fullerton on 4/24/12.
 //  Copyright (c) 2012 GreenTongue Software. All rights reserved.
 //
 
-#import "FishLampCore.h"
+#import "FLCore.h"
 
 #import "FLLinkedListElement.h"
 #import "FLLinkedList.h"

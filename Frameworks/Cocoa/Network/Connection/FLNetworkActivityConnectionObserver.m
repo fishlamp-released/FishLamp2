@@ -23,7 +23,7 @@ FLSynthesizeSingleton(FLNetworkActivityConnectionObserver);
 }
 
 + (FLNetworkActivityConnectionObserver*) networkActivityConnectionObserver {
-    return autorelease_([[[self class] alloc] init]);
+    return FLAutorelease([[[self class] alloc] init]);
 }
 
 @end

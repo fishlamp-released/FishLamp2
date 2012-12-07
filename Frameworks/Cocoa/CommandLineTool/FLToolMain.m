@@ -16,7 +16,7 @@ int FLToolMain(Class delegateClass) {
         @try {
             FLConfirmNotNil_v(delegateClass, @"FLTool needs a delegate!");
         
-            id delegate = autorelease_([[delegateClass alloc] init]);
+            id delegate = FLAutorelease([[delegateClass alloc] init]);
             FLConfirmNotNil_v(delegate, @"unable to create delegate class: %@", NSStringFromClass(delegateClass));
             
             tool = [FLTool tool];

@@ -42,7 +42,7 @@
 	FLCameraExifViewController* controller = [[FLCameraExifViewController alloc] init];
 	controller.exifBuilder.masterExif = exif;
 	[self.navigationController pushViewController:controller animated:YES];
-	release_(controller);
+	FLRelease(controller);
 }
 
 - (void) viewDidLoad
@@ -55,7 +55,7 @@
 		target:self
 		action:@selector(showExif:)];
 	[self.navigationItem setRightBarButtonItem:exifButton];
-	release_(exifButton);
+	FLRelease(exifButton);
 
 }
 

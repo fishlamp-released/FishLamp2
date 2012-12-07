@@ -66,8 +66,8 @@
 #if FL_MRC
 - (void) dealloc {
     FLSendDeallocNotification();
-	release_(_fileName);
-	release_(_folder);
+	FLRelease(_fileName);
+	FLRelease(_folder);
     [super dealloc];
 }
 #endif
@@ -87,7 +87,7 @@
 			userInfo:[NSDictionary dictionaryWithObject:@"Image file is missing - can't create read stream for upload" forKey:NSLocalizedFailureReasonErrorKey]]);
 	}
 
-	return autorelease_([[NSInputStream alloc] initWithFileAtPath:myPath]);
+	return FLAutorelease([[NSInputStream alloc] initWithFileAtPath:myPath]);
 }
 
 - (unsigned long long) sizeInStorage {

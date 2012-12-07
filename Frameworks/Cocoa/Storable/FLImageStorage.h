@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "FLImage.h"
+#import "FLStorableImage.h"
 #import "FLPhoto.h"
 
 @protocol FLImageStorage <NSObject>
@@ -16,15 +16,15 @@
 - (FLPhoto*) readPhoto:(id) storageKey;
 - (void) writePhoto:(FLPhoto*) photo;
 
-- (FLImage*) readImageForStorageKey:(id) storageKey subType:(NSString*) subType;
+- (FLStorableImage*) readImageForStorageKey:(id) storageKey subType:(NSString*) subType;
 
-- (FLImage*) readPreviewImageForStorageKey:(id) storageKey;
-- (FLImage*) readOriginalImageForStorageKey:(id) storageKey;
-- (FLImage*) readThumbnailImageForStorageKey:(id) storageKey;
+- (FLStorableImage*) readPreviewImageForStorageKey:(id) storageKey;
+- (FLStorableImage*) readOriginalImageForStorageKey:(id) storageKey;
+- (FLStorableImage*) readThumbnailImageForStorageKey:(id) storageKey;
 
-- (void) writeImage:(FLImage*) image withCompression:(CGFloat) compression;
-- (void) writeImage:(FLImage*) image;
+- (void) writeImage:(FLStorableImage*) image withCompression:(CGFloat) compression;
+- (void) writeImage:(FLStorableImage*) image;
 
-- (void) deleteImage:(FLImage*) image;
+- (void) deleteImage:(FLStorableImage*) image;
 
 @end

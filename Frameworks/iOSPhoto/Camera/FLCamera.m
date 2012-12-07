@@ -27,7 +27,7 @@
 
 - (void) dealloc
 {
-	release_(_error);
+	FLRelease(_error);
 	
 	FLAssert_v(_session == nil, @"must call stop before deleting camera"); 
 	
@@ -60,7 +60,7 @@
 	{
         if(error)
         {
-            FLThrowError_(autorelease_(err));
+            FLThrowError_(FLAutorelease(err));
         }
 
 	
@@ -117,9 +117,9 @@
 //	[inView.layer addSublayer: self.previewLayer];
 //}
 //
-//- (UIView *) previewWithBounds: (FLRect) bounds
+//- (UIView *) previewWithBounds: (CGRect) bounds
 //{
-//	UIView *view = autorelease_([[UIView alloc] initWithFrame:bounds]);
+//	UIView *view = FLAutorelease([[UIView alloc] initWithFrame:bounds]);
 //	
 //	AVCaptureVideoPreviewLayer *preview = [AVCaptureVideoPreviewLayer layerWithSession: self.session];
 //	preview.frame = bounds;
@@ -150,7 +150,7 @@
 	}
 	        if(err)
         {
-           FLThrowError_(autorelease_(err));
+           FLThrowError_(FLAutorelease(err));
         }
 
 }
@@ -169,7 +169,7 @@
 		}
 		        if(err)
         {
-           FLThrowError_(autorelease_(err));
+           FLThrowError_(FLAutorelease(err));
         }
 
 	}

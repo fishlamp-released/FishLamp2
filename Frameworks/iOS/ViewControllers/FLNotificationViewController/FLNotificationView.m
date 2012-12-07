@@ -11,7 +11,7 @@
 
 @implementation FLNotificationView
 
-- (id)initWithFrame:(FLRect)frame
+- (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
@@ -56,7 +56,7 @@
 
 }
 
-- (void) setFrame:(FLRect) frame
+- (void) setFrame:(CGRect) frame
 {
     [super setFrame:frame];
 }
@@ -64,8 +64,8 @@
 #if FL_MRC
 - (void) dealloc
 {
-    release_(_gradient);
-    release_(_titleLabel);
+    FLRelease(_gradient);
+    FLRelease(_titleLabel);
     super_dealloc_();
 }
 #endif

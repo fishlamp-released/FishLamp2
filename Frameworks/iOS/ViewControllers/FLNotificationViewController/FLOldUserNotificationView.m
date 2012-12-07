@@ -75,7 +75,7 @@ FLSynthesizeStructProperty(autoDismiss, setAutoDismiss, BOOL, _userNotificationF
 - (void) dealloc
 {
     [[FLApplication sharedApplication] removeEventInterceptor:self];
-	release_(_error);
+	FLRelease(_error);
 	super_dealloc_();
 }
 
@@ -294,7 +294,7 @@ return NO;
 
 + (FLDeferUserNotificationShow*) deferUserNotificationShow:(FLOldUserNotificationView*) view
 {
-   FLDeferUserNotificationShow* show = autorelease_([[FLDeferUserNotificationShow alloc] init]);
+   FLDeferUserNotificationShow* show = FLAutorelease([[FLDeferUserNotificationShow alloc] init]);
    show.userInfo = view;
    return show; 
 }

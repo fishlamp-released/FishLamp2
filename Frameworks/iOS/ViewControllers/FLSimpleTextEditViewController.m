@@ -31,7 +31,7 @@
 
 + (FLSimpleTextEditViewController*) simpleTextEditViewController:(NSString*) prompt value:(NSString*) value helpPrompt:(NSString*) helpPrompt editMode:(FLSimpleTextEditViewControllerMode) mode
 {
-	return autorelease_([[FLSimpleTextEditViewController alloc] initWithPrompt:prompt value:value helpPrompt:helpPrompt editMode:mode]);
+	return FLAutorelease([[FLSimpleTextEditViewController alloc] initWithPrompt:prompt value:value helpPrompt:helpPrompt editMode:mode]);
 }
 
 - (void) willConstructWithTableLayoutBuilder:(FLTableViewLayoutBuilder*) builder

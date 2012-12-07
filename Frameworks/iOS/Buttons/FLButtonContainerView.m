@@ -14,7 +14,7 @@
 
 @synthesize onSetupButton = _onSetupButton;
 
-- (id)initWithFrame:(FLRect)frame
+- (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
@@ -26,7 +26,7 @@
 }
 
 - (void) dealloc {
-    release_(_onSetupButton);
+    FLRelease(_onSetupButton);
     super_dealloc_();
 }
 

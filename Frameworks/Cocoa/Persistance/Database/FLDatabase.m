@@ -115,7 +115,7 @@ static int s_count = 0;
 	[self dispatchFifoBlock:^{
         NSError* error = nil;
         [[NSFileManager defaultManager] removeItemAtPath:[self filePath] error:&error];
-        FLThrowError(autorelease_(error));
+        FLThrowError(FLAutorelease(error));
     }];
 }
 
@@ -128,7 +128,7 @@ static int s_count = 0;
 	NSError* error = nil;
 	[NSFileManager getFileSize:self.filePath outSize:&size outError:&error];
     if(error){
-        FLThrowError_(autorelease_(error));
+        FLThrowError_(FLAutorelease(error));
     }
 
 	return size;
@@ -290,8 +290,8 @@ static int s_count = 0;
 //- (void) beginAsyncBlock:(void(^)(FLDatabase*)) asyncBlock
 //              errorBlock:(void(^)(FLDatabase*, NSError*)) errorBlock
 //{
-//    asyncBlock = autorelease_([asyncBlock copy]);
-//    errorBlock = autorelease_([errorBlock copy]);
+//    asyncBlock = FLAutorelease([asyncBlock copy]);
+//    errorBlock = FLAutorelease([errorBlock copy]);
 //
 //    dispatch_async(
 //        dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), 
@@ -312,7 +312,7 @@ static int s_count = 0;
 - (void) executeSql:(FLSqlBuilder*) sql 
         rowResultBlock:(FLDatabaseStatementDidSelectRowBlock) rowResultBlock {
     
-    rowResultBlock = FLCopyBlock(rowResultBlock);
+    rowResultBlock = FLAutoreleasedCopy(rowResultBlock);
     
     [self dispatchFifoBlock:^{
         FLSqlStatement* sqlStatement = [FLSqlStatement sqlStatement:self columnDecoder:nil];

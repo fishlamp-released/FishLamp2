@@ -20,19 +20,19 @@
 }
 
 + (FLButton*) deleteButton {
-    return autorelease_([[[self class] alloc] initWithTitle:NSLocalizedString(@"Delete", nil)]);
+    return FLAutorelease([[[self class] alloc] initWithTitle:NSLocalizedString(@"Delete", nil)]);
 }
 
 + (FLButton*) deleteButton:(FLButtonPress)onPress {
-    return autorelease_([[[self class] alloc] initWithTitle:NSLocalizedString(@"Delete", nil) onPress:onPress]);
+    return FLAutorelease([[[self class] alloc] initWithTitle:NSLocalizedString(@"Delete", nil) onPress:onPress]);
 }
 
 + (FLButton*) removeButton {
-    return autorelease_([[[self class] alloc] initWithTitle:NSLocalizedString(@"Remove", nil)]);
+    return FLAutorelease([[[self class] alloc] initWithTitle:NSLocalizedString(@"Remove", nil)]);
 }
 
 + (FLButton*) removeButton:(FLButtonPress)onPress {
-    return autorelease_([[[self class] alloc] initWithTitle:NSLocalizedString(@"Remove", nil) onPress:onPress]);
+    return FLAutorelease([[[self class] alloc] initWithTitle:NSLocalizedString(@"Remove", nil) onPress:onPress]);
 }
 
 

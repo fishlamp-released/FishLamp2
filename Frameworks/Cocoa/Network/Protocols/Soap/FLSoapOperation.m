@@ -1,6 +1,6 @@
 //
 //  FLSoapOperation.m
-//  FishLampCore
+//  FLCore
 //
 //  Created by Mike Fullerton on 11/4/12.
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
@@ -49,7 +49,7 @@
 				FLDebugLog(@"Soap Fault:%@/%@", [soapFault faultcode], [soapFault faultstring]);
 			}
 			@finally {
-				release_(soapParser);
+				FLRelease(soapParser);
 			}
             return soapFault;
 		}
@@ -64,7 +64,7 @@
 		[soapParser buildObjects:object];
 	}
 	@finally {
-		release_(soapParser);
+		FLRelease(soapParser);
 	}
 }
 

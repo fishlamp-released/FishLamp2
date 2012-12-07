@@ -26,9 +26,9 @@
 }
 
 - (void) dealloc {	
-    release_(_fileURL);
-	release_(_fileName);
-	release_(_gradientView);
+    FLRelease(_fileURL);
+	FLRelease(_fileName);
+	FLRelease(_gradientView);
 	super_dealloc_();
 }
 

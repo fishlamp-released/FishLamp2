@@ -6,42 +6,64 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#ifndef PRAGMA_WARNINGS_AS_BUGS
-#define PRAGMA_WARNINGS_AS_BUGS 1
-#endif
+//#ifndef FIXME_WARNINGS
+//    #define FIXME_WARNINGS 1
+//#endif
+//
+//#ifndef NOT_IMPLEMENTED_WARNINGS
+//    #define NOT_IMPLEMENTED_WARNINGS 1
+//#endif
+//
+//#ifndef BUG_WARNINGS
+//    #define BUG_WARNINGS 1
+//#endif
 
-#ifndef FIXME_WARNINGS
+#if ALL_CODE_WARNINGS
+
+    #ifndef TODO_WARNINGS
+    #define TODO_WARNINGS 1
+    #endif
+
+    #ifndef FIXME_WARNINGS
     #define FIXME_WARNINGS 1
-#endif
+    #endif
 
-#ifndef NOT_IMPLEMENTED_WARNINGS
+    #ifndef NOT_IMPLEMENTED_WARNINGS
     #define NOT_IMPLEMENTED_WARNINGS 1
+    #endif
+
+    #ifndef BUG_WARNINGS
+    #define BUG_WARNINGS 1
+    #endif
+
 #endif
 
-#ifndef BUG_WARNINGS
-    #define BUG_WARNINGS 1
-#endif
 
 #define DO_PRAGMA(x) _Pragma (#x)
 
-#if PRAGMA_WARNINGS_AS_BUGS
-    #undef FIXME_WARNINGS
-    #define FIXME_WARNINGS 1
-
-    #undef NOT_IMPLEMENTED_WARNINGS
-    #define NOT_IMPLEMENTED_WARNINGS 1
-
+#if TODO_WARNINGS
     #define TODO(x) DO_PRAGMA(message ("[BUG]: TODO: " #x))
-    #define FIXME(x) DO_PRAGMA(message ("[BUG]: FIXME: " #x))
-    #define NOT_IMPLEMENTED(x) DO_PRAGMA(message ("[BUG]: NOT_IMPLEMENTED: " #x))
-
 #else
-    #define TODO(x) DO_PRAGMA(message ("TODO: " #x))
-    #define FIXME(x) DO_PRAGMA(message ("FIXME: " #x))
-    #define NOT_IMPLEMENTED(x) DO_PRAGMA(message ("NOT_IMPLEMENTED: " #x))
+    #define TODO(x)
 #endif
 
-#define BUG(x) DO_PRAGMA(message ("[BUG]: " #x))
+#if FIXME_WARNINGS
+    #define FIXME(x) DO_PRAGMA(message ("[BUG]: FIXME: " #x))
+#else
+    #define FIXME(x)
+#endif   
+    
+#if NOT_IMPLEMENTED_WARNINGS    
+    #define NOT_IMPLEMENTED(x) DO_PRAGMA(message ("[BUG]: NOT_IMPLEMENTED: " #x))
+#else     
+    #define NOT_IMPLEMENTED(x)
+#endif    
+
+#if BUG_WARNINGS
+    #define BUG(x) DO_PRAGMA(message ("[BUG]: " #x))
+#else
+    #define BUG(x)
+#endif    
 
 
 //

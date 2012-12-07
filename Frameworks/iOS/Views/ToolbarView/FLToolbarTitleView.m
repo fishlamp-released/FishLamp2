@@ -25,7 +25,7 @@
 }
 
 - (void) dealloc {
-    release_(_textLabel);
+    FLRelease(_textLabel);
     super_dealloc_();
 }
 
@@ -36,14 +36,14 @@
 }
 
 + (FLToolbarTitleView*) toolbarTitleView {
-    return autorelease_([[FLToolbarTitleView alloc] init]);
+    return FLAutorelease([[FLToolbarTitleView alloc] init]);
 }
 
 - (void) setSubviewSize:(FLSize) size {
     _textLabel.frame = FLRectSetSizeWithSize(_textLabel.frame, size);
 }
 
-- (FLSize) subviewSizeThatFitsInBounds:(FLRect) bounds {
+- (FLSize) subviewSizeThatFitsInBounds:(CGRect) bounds {
     return [_textLabel sizeThatFitsText];
 }
 

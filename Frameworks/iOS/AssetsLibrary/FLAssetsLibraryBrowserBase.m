@@ -50,13 +50,13 @@
 - (void) dealloc
 {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
-	release_(_locationManager);
-	release_(_processedAssets);
-	release_(_chosenAssets);
-	release_(_disabledAssets);
-	release_(_assetQueue);
-	release_(_emptyCellImage);
-	release_(_groups);
+	FLRelease(_locationManager);
+	FLRelease(_processedAssets);
+	FLRelease(_chosenAssets);
+	FLRelease(_disabledAssets);
+	FLRelease(_assetQueue);
+	FLRelease(_emptyCellImage);
+	FLRelease(_groups);
 	super_dealloc_();
 }
 
@@ -74,7 +74,7 @@
     {
         FLAssetsLibraryImageAsset* gt_asset = [[FLAssetsLibraryImageAsset alloc] initWithALAsset:asset];
         [self.chosenAssets setObject:gt_asset forKey:gt_asset.assetURL];
-        release_(gt_asset); 
+        FLRelease(gt_asset); 
     }
 }
 

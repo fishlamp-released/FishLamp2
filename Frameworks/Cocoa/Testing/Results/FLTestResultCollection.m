@@ -21,7 +21,7 @@
 }
 
 + (id) testResultCollection {
-    return autorelease_([[[self class] alloc] init]);
+    return FLAutorelease([[[self class] alloc] init]);
 }
 
 #if FL_MRC

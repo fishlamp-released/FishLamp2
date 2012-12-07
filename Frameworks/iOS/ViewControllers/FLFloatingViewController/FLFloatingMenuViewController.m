@@ -40,8 +40,8 @@ FLAssertDefaultInitNotCalled_();
 
 - (void) dealloc
 {
-    release_(_parentController);
-    release_(_subMenu);
+    FLRelease(_parentController);
+    FLRelease(_subMenu);
     super_dealloc_();
 }
 
@@ -68,7 +68,7 @@ FLAssertDefaultInitNotCalled_();
 
 + (FLFloatingMenuViewController*) menuViewController:(NSString*) title
 {
-	return autorelease_([[FLFloatingMenuViewController alloc] initWithTitle:title]);
+	return FLAutorelease([[FLFloatingMenuViewController alloc] initWithTitle:title]);
 }
 
 //- (void) menuViewDidResize:(FLMenuView*) view
@@ -233,7 +233,7 @@ FLAssertDefaultInitNotCalled_();
 //    {
 //        self.menuView.menuTitle = self.title;
 //        
-//        FLRect frame = self.view.frame;
+//        CGRect frame = self.view.frame;
 //        frame.size = [self.menuView layoutSubviewsWithArrangement];
 //        self.view.newFrame = frame;
 //

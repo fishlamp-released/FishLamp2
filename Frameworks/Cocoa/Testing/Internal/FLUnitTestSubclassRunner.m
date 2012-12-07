@@ -22,7 +22,7 @@
 }
 
 + (id) unitTestSubclassRunner {
-    return autorelease_([[[self class] alloc] init]);
+    return FLAutorelease([[[self class] alloc] init]);
 }
 
 - (void) sortClassList:(NSMutableArray*) classList {
@@ -72,7 +72,7 @@
         [groupClassList addObject:aClass];
     }
     
-    NSMutableArray* groupList = autorelease_([[groups allKeys] mutableCopy]);
+    NSMutableArray* groupList = FLAutorelease([[groups allKeys] mutableCopy]);
     [groupList sortUsingComparator:^NSComparisonResult(FLUnitTestGroup* obj1, FLUnitTestGroup* obj2) {
         
         if(obj1.groupPriority == obj2.groupPriority) {
@@ -92,7 +92,7 @@
         [self sortClassList:classList];
         
         for(Class aClass in classList) {
-            FLUnitTest* test = autorelease_([[[aClass class] alloc] init]);
+            FLUnitTest* test = FLAutorelease([[[aClass class] alloc] init]);
             FLUnitTestResult* result = FLThrowError([test runSynchronously]);
             [resultArray addObject:result];
         }

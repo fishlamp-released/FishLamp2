@@ -25,7 +25,7 @@ FLAssertDefaultInitNotCalled_();
 }
 
 + (FLNonRetainedObject*) nonRetainedObject:(id) object {
-	return autorelease_([[FLNonRetainedObject alloc] initWithObject:object]);
+	return FLAutorelease([[FLNonRetainedObject alloc] initWithObject:object]);
 }
 
 - (NSString*) description {

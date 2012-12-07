@@ -57,7 +57,7 @@
 }
 
 + (FLLinkedList*) linkedList {
-    return autorelease_([[FLLinkedList alloc] init]);
+    return FLAutorelease([[FLLinkedList alloc] init]);
 }
 
 - (void) dealloc {
@@ -289,7 +289,7 @@
 - (id) removeObject:(id) object {
 
     if([object linkedList] == self) {
-        mrc_autorelease_(retain_(object));
+        FLAutoreleaseObject(FLRetain(object));
     
         [self _removeObject:object];
         [object setLinkedList:nil];
@@ -313,7 +313,7 @@
 
 - (id) moveObjectToHead:(id) object {
 
-    mrc_autorelease_(retain_(object));
+    FLAutoreleaseObject(FLRetain(object));
 	[self _removeObject:object];
 	[self _insertObject:object beforeObject:self.firstObject];
     
@@ -326,7 +326,7 @@
 
 - (id) moveObjectToTail:(id) object {
 
-    mrc_autorelease_(retain_(object));
+    FLAutoreleaseObject(FLRetain(object));
 	[self _removeObject:object];
 	[self _insertObject:object afterObject:self.lastObject];
     
@@ -339,7 +339,7 @@
 
 - (id) moveObject:(id) object afterObject:(id) afterObject {
 
-    mrc_autorelease_(retain_(object));
+    FLAutoreleaseObject(FLRetain(object));
 	[self _removeObject:object];
 	[self _insertObject:object afterObject:afterObject];
 
@@ -352,7 +352,7 @@
 
 - (id) moveObject:(id) object beforeObject:(id) beforeObject {
 
-    mrc_autorelease_(retain_(object));
+    FLAutoreleaseObject(FLRetain(object));
 	[self _removeObject:object];
 	[self _insertObject:object beforeObject:beforeObject];
 	 
@@ -372,8 +372,8 @@
 
     ++_mutatationCount;
     
-    mrc_autorelease_(retain_(firstObject));
-    mrc_autorelease_(retain_(secondObject));
+    FLAutoreleaseObject(FLRetain(firstObject));
+    FLAutoreleaseObject(FLRetain(secondObject));
     
     id firstObjectNext = [firstObject nextObjectInLinkedList];
     id secondObjectNext = [secondObject nextObjectInLinkedList];
@@ -411,7 +411,7 @@
     id walker = self.firstObject;
 	while(walker) {
         
-        id objectToRemove = autorelease_(retain_(walker));
+        id objectToRemove = FLAutorelease(FLRetain(walker));
         walker = [walker nextObjectInLinkedList];
 		
         [self _removeObject:objectToRemove];
@@ -437,7 +437,7 @@
 - (void) addObjectsFromList:(FLLinkedList*) list {
 
     for(id<FLLinkedListElement> element in self.mutableEnumerator) {
-        mrc_autorelease_(retain_(element));
+        FLAutoreleaseObject(FLRetain(element));
         [list removeObject:element];
         [self addObject:element];
     }
@@ -838,14 +838,14 @@ int main()
 }
 
 + (FLLinkedListMutableEnumerator*) linkedListMutableEnumerator:(FLLinkedList*) list {
-    return autorelease_([[FLLinkedListMutableEnumerator alloc] initWithLinkedList:list]);
+    return FLAutorelease([[FLLinkedListMutableEnumerator alloc] initWithLinkedList:list]);
 }
 
 #if FL_MRC 
 - (void) dealloc {
-    release_(_next);
-    release_(_current);
-    release_(_list);
+    FLRelease(_next);
+    FLRelease(_current);
+    FLRelease(_list);
     super_dealloc_();
 }
 #endif

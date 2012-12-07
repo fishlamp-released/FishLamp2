@@ -31,12 +31,12 @@
 #endif
 
 + (id) sanityTestRunner {
-    return autorelease_([[[self class] alloc] init]);
+    return FLAutorelease([[[self class] alloc] init]);
 }
 
 - (void) startWorking:(id) asyncTask {
     
-    NSMutableArray* tests = autorelease_([[_sanityTests allObjects] mutableCopy]);
+    NSMutableArray* tests = FLAutorelease([[_sanityTests allObjects] mutableCopy]);
     
     [tests sortedArrayUsingSelector:@selector(compare:)];
     

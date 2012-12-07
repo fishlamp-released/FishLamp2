@@ -32,15 +32,15 @@
 }
 
 - (void) dealloc  {
-    release_(_startPath);
-    release_(_visitorBlock);
+    FLRelease(_startPath);
+    FLRelease(_visitorBlock);
     super_dealloc_();
 }
 
 + (FLVisitFilesInFolderLengthyTask*) visitFilesInFolderLengthyTask:(NSString*) taskName 
                                                          startPath:(NSString*) startPath 
                                                       visitorBlock:(FLFileManagerVisitor) visitorBlock {
-    return autorelease_([[FLVisitFilesInFolderLengthyTask alloc] initWithTaskName:taskName startPath:startPath visitorBlock:visitorBlock]);
+    return FLAutorelease([[FLVisitFilesInFolderLengthyTask alloc] initWithTaskName:taskName startPath:startPath visitorBlock:visitorBlock]);
 }        
 
 - (NSUInteger) calculateTotalStepCount {

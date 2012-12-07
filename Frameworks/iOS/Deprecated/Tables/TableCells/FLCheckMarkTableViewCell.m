@@ -20,10 +20,10 @@
 
 - (void) dealloc
 {	
-	release_(_group);
-	release_(_checkedValue);
-//	  release_(_checkMark);
-	release_(_subLabel);
+	FLRelease(_group);
+	FLRelease(_checkedValue);
+//	  FLRelease(_checkMark);
+	FLRelease(_subLabel);
 	super_dealloc_();
 }
 
@@ -55,7 +55,7 @@
 
 + (id) checkMarkedTableCell:(NSString*) labelOrNil checked:(BOOL) checked checkedValue:(id) checkedValue
 {
-	FLCheckMarkTableViewCell* cell = autorelease_([[[self class] alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"FLCheckMarkedTableCell"]);
+	FLCheckMarkTableViewCell* cell = FLAutorelease([[[self class] alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"FLCheckMarkedTableCell"]);
 	if(FLStringIsNotEmpty(labelOrNil))
 	{
 		cell.textLabelText = labelOrNil;
@@ -108,7 +108,7 @@
 	
 	if(_subLabel.text.length > 0)
 	{
-		FLRect subLabelFrame = self.layoutRect;
+		CGRect subLabelFrame = self.layoutRect;
 		subLabelFrame.origin.x += SUBLABEL_INDENT;
 		subLabelFrame.size.width -= SUBLABEL_INDENT;
 		subLabelFrame.size.height = 18;
@@ -116,7 +116,7 @@
 		
 		_subLabel.frameOptimizedForSize = subLabelFrame;
 	
-		FLRect textFrame = self.label.frame;
+		CGRect textFrame = self.label.frame;
 		textFrame.origin.y -= 4;
 		self.label.frameOptimizedForSize = textFrame;
 	}
@@ -162,7 +162,7 @@
 @synthesize borderWidth = _borderWidth;
 @synthesize borderColor = _color;
 
-- (void) drawRect:(FLRect)rect
+- (void) drawRect:(CGRect)rect
 {
 	CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSaveGState(context);
@@ -177,7 +177,7 @@
 
 - (void) dealloc
 {
-	release_(_color);
+	FLRelease(_color);
 	super_dealloc_();
 }
 @end
@@ -193,7 +193,7 @@
 
 + (id) onOffCheckMarkTableViewCell:(NSString*) labelOrNil
 {
-	FLOnOffCheckMarkTableViewCell* cell = autorelease_([[[self class] alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"FLCheckMarkedTableCell"]);
+	FLOnOffCheckMarkTableViewCell* cell = FLAutorelease([[[self class] alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"FLCheckMarkedTableCell"]);
 	if(FLStringIsNotEmpty(labelOrNil))
 	{
 		cell.textLabelText = labelOrNil;
@@ -237,7 +237,7 @@
 
 - (void) dealloc
 {
-    release_(_check);
+    FLRelease(_check);
     super_dealloc_();
 }
 
@@ -248,7 +248,7 @@
 {
     [super layoutSubviews];
     
-    FLRect layoutRect = self.layoutRect;
+    CGRect layoutRect = self.layoutRect;
 	_circle.frameOptimizedForSize = FLRectCenterRectInRectVertically(layoutRect, FLRectSetLeft(_circle.frame, layoutRect.origin.x + kLeftBuffer));
     _check.frame = FLRectCenterRectInRect(_circle.frame, _check.frame); 
         

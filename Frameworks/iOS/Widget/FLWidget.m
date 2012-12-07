@@ -51,18 +51,18 @@
     };
 }
 
-- (void) setLayoutFrame:(FLRect) layoutFrame {
+- (void) setLayoutFrame:(CGRect) layoutFrame {
     [self setFrameOptimizedForLocation:layoutFrame];
 }
 
-- (void) layoutInBounds:(FLRect) bounds {
+- (void) layoutInBounds:(CGRect) bounds {
 }
 
 - (id) init {
 	return [self initWithFrame:CGRectZero];
 }
 
-- (id) initWithFrame:(FLRect) frame {   
+- (id) initWithFrame:(CGRect) frame {   
     self = [super initWithFrame:frame];
 	if(self) {
         _alpha = 1.0;
@@ -71,12 +71,12 @@
 	return self;
 }
 
-+ (id) widgetWithFrame:(FLRect) frame {
-	return autorelease_([[[self class] alloc] initWithFrame:frame]);
++ (id) widgetWithFrame:(CGRect) frame {
+	return FLAutorelease([[[self class] alloc] initWithFrame:frame]);
 }
 
 + (id) widget {
-	return autorelease_([[[self class] alloc] init]);
+	return FLAutorelease([[[self class] alloc] init]);
 }
 
 - (void) setBackgroundColor:(UIColor*) color {
@@ -96,7 +96,7 @@
         [widget removeFromParent];
     }
 
-	release_(widgets);
+	FLRelease(widgets);
 }
 
 - (void) setAlpha:(CGFloat) alpha {
@@ -111,10 +111,10 @@
 	[self removeAllWidgets];
 
     _touchHandler.touchableObject = nil;
-    release_(_arrangement);
-    release_(_touchHandler);
-	release_(_backgroundColor);
-    release_(_userData);
+    FLRelease(_arrangement);
+    FLRelease(_touchHandler);
+	FLRelease(_backgroundColor);
+    FLRelease(_userData);
 	super_dealloc_();
 }
 
@@ -179,7 +179,7 @@
 - (void) layoutWidgets {
 }
 
-- (void) setFrame:(FLRect) frame {
+- (void) setFrame:(CGRect) frame {
 #if DEBUG
 	if(frame.origin.x > 5000 || frame.origin.x < -5000) {
 		FLLog(@"widget frame is out of bounds");
@@ -193,7 +193,7 @@
 		}
 #endif	
 	
-		FLPoint offset = FLPointSubtractPointFromPoint(frame.origin, self.frame.origin);
+		CGPoint offset = FLPointSubtractPointFromPoint(frame.origin, self.frame.origin);
 		if(!CGPointEqualToPoint(offset, CGPointZero)) {
 			for(FLWidget* widget in _widgets) {
 				[widget moveFrameBy:offset];
@@ -243,7 +243,7 @@
     [self.view setNeedsDisplay];
 }
 
-- (FLWidget *)hitTest:(FLPoint)point interactiveCellsOnly:(BOOL) interactiveCellsOnly {
+- (FLWidget *)hitTest:(CGPoint)point interactiveCellsOnly:(BOOL) interactiveCellsOnly {
 	for(FLWidget* widget in _widgets) {
 		if(!widget.isHidden && CGRectContainsPoint(widget.frame, point)) {
 			FLWidget* touched = [widget hitTest:point interactiveCellsOnly:interactiveCellsOnly];
@@ -320,7 +320,7 @@
     }
 }
 
-- (void) drawSelf:(FLRect) rect {
+- (void) drawSelf:(CGRect) rect {
     FLAssertIsNotNil_(self.parent);
 
     for(FLWidget* widget in _widgets) {
@@ -332,7 +332,7 @@
     }
 }
 
-- (void) drawWidget:(FLRect) drawRect {
+- (void) drawWidget:(CGRect) drawRect {
     FLAssertIsNotNil_(self.parent);
 
 
@@ -473,7 +473,7 @@ TODO("MF: optimize this.")
 - (void) layoutSubwidgetsWithArrangement:(BOOL) adjustSize {
     FLArrangement* layout = self.arrangement;
     if(layout) {
-        FLRect bounds = [self frame];
+        CGRect bounds = [self frame];
         bounds.size = [layout performArrangement:[self subwidgets] inBounds:bounds];
         if(adjustSize) {
             [self setFrame:bounds];
@@ -490,8 +490,8 @@ TODO("MF: optimize this.")
 //}
 
 
-//- (void) autoPositionInRect:(FLRect) bounds;
-- (void) autoPositionInRect:(FLRect) bounds {
+//- (void) autoPositionInRect:(CGRect) bounds;
+- (void) autoPositionInRect:(CGRect) bounds {
     self.frameOptimizedForLocation = FLRectPositionRectInRectWithContentMode(bounds, self.frame, self.contentMode);
 }
 
@@ -499,17 +499,17 @@ TODO("MF: optimize this.")
 
 @end
 
-void (^FLWidgetSunburstHighlighter)(FLWidget* viewwidget, FLRect rect) = ^(FLWidget* viewwidget, FLRect rect) {
+void (^FLWidgetSunburstHighlighter)(FLWidget* viewwidget, CGRect rect) = ^(FLWidget* viewwidget, CGRect rect) {
 	viewwidget.view.clipsToBounds = NO;
 	viewwidget.view.superview.clipsToBounds = NO;
 	CGContextRef context = UIGraphicsGetCurrentContext();
 	CGContextSaveGState(context);
 
-//	  FLRect bigRect = FLRectScale(viewwidget.frame, 4.0);
+//	  CGRect bigRect = FLRectScale(viewwidget.frame, 4.0);
 //	  bigRect = FLRectCenterOnPoint(bigRect, FLRectGetCenter(viewwidget.frame));
 
-	FLPoint startPoint = FLRectGetCenter(viewwidget.frame);
-	FLPoint endPoint = startPoint;
+	CGPoint startPoint = FLRectGetCenter(viewwidget.frame);
+	CGPoint endPoint = startPoint;
    
 	FLColor_t color = [UIColor whiteColor].color_t;
 	FLColor_t end = [UIColor grayColor].color_t;

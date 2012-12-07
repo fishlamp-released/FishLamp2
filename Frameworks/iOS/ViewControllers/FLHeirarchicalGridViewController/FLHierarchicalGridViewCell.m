@@ -22,11 +22,11 @@
 }
 
 + (FLHierarchicalGridViewCell*) hierarchicalGridViewCell:(id) dataObject  {
-    return autorelease_([[FLHierarchicalGridViewCell alloc] initWithDataRef:dataObject]);
+    return FLAutorelease([[FLHierarchicalGridViewCell alloc] initWithDataRef:dataObject]);
 }
 
 - (UIView*) createViewForGridCellState:(FLGridCellState)visibleViewID {
-    return autorelease_([[FLHierarchicalGridViewCellView alloc] initWithFrame:self.frame]);
+    return FLAutorelease([[FLHierarchicalGridViewCellView alloc] initWithFrame:self.frame]);
 }
 
 //- (void) cellWillAppearInSuperview:(UIView*) superview 

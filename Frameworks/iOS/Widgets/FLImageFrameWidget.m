@@ -15,7 +15,7 @@
 
 FLSynthesizeStructProperty(imageContentMode, setImageContentMode, FLWidgetImageContentMode, _imageFrameFlags);
 
-- (id) initWithFrame:(FLRect) frame
+- (id) initWithFrame:(CGRect) frame
 {
 	if((self = [super initWithFrame:frame]))
 	{
@@ -26,9 +26,9 @@ FLSynthesizeStructProperty(imageContentMode, setImageContentMode, FLWidgetImageC
 	return self;
 }
 
-+ (FLImageFrameWidget*) imageFrameWidget:(FLRect) frame
++ (FLImageFrameWidget*) imageFrameWidget:(CGRect) frame
 {
-	return autorelease_([[FLImageFrameWidget alloc] initWithFrame:frame]);
+	return FLAutorelease([[FLImageFrameWidget alloc] initWithFrame:frame]);
 }
 
 - (void) setFrameColor:(UIColor*) color
@@ -39,8 +39,8 @@ FLSynthesizeStructProperty(imageContentMode, setImageContentMode, FLWidgetImageC
 
 - (void) dealloc
 {
-	release_(_frameColor);
-	release_(_imageWidget);
+	FLRelease(_frameColor);
+	FLRelease(_imageWidget);
 	super_dealloc_();
 }	
 
@@ -89,9 +89,9 @@ FLSynthesizeStructProperty(imageContentMode, setImageContentMode, FLWidgetImageC
 	[self setNeedsLayout];
 }
 
-- (FLRect) thumbnailFrame:(FLWidgetImageContentMode) contentMode
+- (CGRect) thumbnailFrame:(FLWidgetImageContentMode) contentMode
 {
-    FLRect thumbnailFrame = CGRectZero;
+    CGRect thumbnailFrame = CGRectZero;
 	
     switch(contentMode)
     {
@@ -158,7 +158,7 @@ FLSynthesizeStructProperty(imageContentMode, setImageContentMode, FLWidgetImageC
 	[super layoutWidgets];
 }
 
-- (void) drawSelf:(FLRect) rect
+- (void) drawSelf:(CGRect) rect
 {
 	if(self.showFrame)
 	{
@@ -168,7 +168,7 @@ FLSynthesizeStructProperty(imageContentMode, setImageContentMode, FLWidgetImageC
 		[[UIColor blackColor] setStroke];
 		[self.frameColor setFill];
 		
-		FLRect frameRect = _imageWidget.frame;
+		CGRect frameRect = _imageWidget.frame;
 		frameRect.origin.x -= (_frameWidth);
 		frameRect.origin.y -= (_frameWidth);
 		frameRect.size.width += (_frameWidth*2);
@@ -176,7 +176,7 @@ FLSynthesizeStructProperty(imageContentMode, setImageContentMode, FLWidgetImageC
 		
 		if(_imageFrameFlags.showStack)
 		{
-			FLRect stackFrame = frameRect;
+			CGRect stackFrame = frameRect;
 			stackFrame.origin.x += _frameWidth;
 			stackFrame.origin.y -= _frameWidth;
 			CGContextFillRect( context , stackFrame );

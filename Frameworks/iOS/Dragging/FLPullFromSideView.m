@@ -12,7 +12,7 @@
 
 @synthesize delegate = _delegate;
 
-- (id) initWithFrame:(FLRect) frame
+- (id) initWithFrame:(CGRect) frame
 {
     if((self = [super initWithFrame:frame]))
     {
@@ -30,11 +30,11 @@
     super_dealloc_();
 }
 
-- (void) finishTouching:(FLPoint) touch delta:(FLPoint) delta
+- (void) finishTouching:(CGPoint) touch delta:(CGPoint) delta
 {
 }
 
-- (void) touchesDidBegin:(FLPoint) touch
+- (void) touchesDidBegin:(CGPoint) touch
 {
 }
 
@@ -44,7 +44,7 @@
     _lastPoint = [touch locationInView:self.superview];
 }
 
-- (void) touchesDidMove:(FLPoint) touch delta:(FLPoint) delta
+- (void) touchesDidMove:(CGPoint) touch delta:(CGPoint) delta
 {
 }
 
@@ -52,11 +52,11 @@
 {
     UITouch* touch = [touches anyObject];
 
-    FLPoint pt = [touch locationInView:self.superview];
+    CGPoint pt = [touch locationInView:self.superview];
         
     if(!CGPointEqualToPoint(CGPointZero, _lastPoint))
     {   
-        FLPoint delta = CGPointMake(
+        CGPoint delta = CGPointMake(
             pt.x - _lastPoint.x,
             pt.y - _lastPoint.y);
             
@@ -69,8 +69,8 @@
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
     UITouch* touch = [touches anyObject];
-    FLPoint pt = [touch locationInView:self.superview];
-    FLPoint delta = CGPointMake(
+    CGPoint pt = [touch locationInView:self.superview];
+    CGPoint delta = CGPointMake(
         pt.x - _lastPoint.x,
         pt.y - _lastPoint.y);
     
@@ -131,7 +131,7 @@
     [self resetView];
 }
 
-- (void) touchesDidMove:(FLPoint)touch delta:(FLPoint)delta
+- (void) touchesDidMove:(CGPoint)touch delta:(CGPoint)delta
 {
     [self setLeft:self.frame.origin.x + delta.x];
     [self.delegate tugboatView:self dragViewsBy:CGPointMake(delta.x, 0)];
@@ -162,7 +162,7 @@
             }];
 }
 
-- (void) finishTouching:(FLPoint)touch delta:(FLPoint)delta
+- (void) finishTouching:(CGPoint)touch delta:(CGPoint)delta
 {
     switch(_side)
     {

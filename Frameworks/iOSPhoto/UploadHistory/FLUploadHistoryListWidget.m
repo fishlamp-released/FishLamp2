@@ -35,7 +35,7 @@
     
 }
 
-- (id) initWithFrame:(FLRect) frame
+- (id) initWithFrame:(CGRect) frame
 {
 	if((self = [super initWithFrame:frame])) {
         
@@ -109,16 +109,16 @@
 
 - (void) dealloc
 {
-	release_(_leftColumn);
-	release_(_centerColumn);
-	release_(_rightColumn);
-	release_(_countLabel);
-	release_(_uploadedAsset);
-	release_(_gradient);
-	release_(_thumbnail);
-	release_(_assetName);
-	release_(_assetDestinationName);
-	release_(_uploadDate);
+	FLRelease(_leftColumn);
+	FLRelease(_centerColumn);
+	FLRelease(_rightColumn);
+	FLRelease(_countLabel);
+	FLRelease(_uploadedAsset);
+	FLRelease(_gradient);
+	FLRelease(_thumbnail);
+	FLRelease(_assetName);
+	FLRelease(_assetDestinationName);
+	FLRelease(_uploadDate);
 	super_dealloc_();
 }
 

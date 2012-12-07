@@ -32,7 +32,7 @@
 }
 
 + (id) tcpStream:(NSString*) remoteHost  remotePort:(int32_t) remotePort {
-    return autorelease_([[[self class] alloc] initWithRemoteHost:remoteHost remotePort:remotePort]);
+    return FLAutorelease([[[self class] alloc] initWithRemoteHost:remoteHost remotePort:remotePort]);
 }
 
 - (void) openStream {

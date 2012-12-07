@@ -83,7 +83,7 @@ FLSynthesizeStructProperty(saveChangesImmediately, setSaveChangesImmediately, BO
 
 - (UIScrollView*) createScrollView
 {
-    FLTableView* tableView = autorelease_([[FLTableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain]);
+    FLTableView* tableView = FLAutorelease([[FLTableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain]);
     tableView.autoresizingMask = UIViewAutoresizingFlexibleEverything;
     tableView.autoresizesSubviews = YES;
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -117,9 +117,9 @@ FLSynthesizeStructProperty(saveChangesImmediately, setSaveChangesImmediately, BO
     });
 }
 
-- (FLRect) autoSizedTableViewFrame
+- (CGRect) autoSizedTableViewFrame
 {
-    FLRect frame = self.tableView.frame;
+    CGRect frame = self.tableView.frame;
     
     if(CGRectIsEmpty(frame))
     {
@@ -284,7 +284,7 @@ FLSynthesizeStructProperty(saveChangesImmediately, setSaveChangesImmediately, BO
 	FLTableViewLayout* layout = _layout;
 	_layout = nil;
 	[layout prepareForDestruction];
-	release_(layout);
+	FLRelease(layout);
 }
 
 - (NSString*) helpFileName
@@ -309,10 +309,10 @@ FLSynthesizeStructProperty(saveChangesImmediately, setSaveChangesImmediately, BO
 - (void)dealloc 
 {	
 	[self shutDown];
-	release_(_cancelButtonTitle);
-	release_(_saveButtonTitle);
-	release_(_dataSourceManager);
-	release_(_backgroundImage);
+	FLRelease(_cancelButtonTitle);
+	FLRelease(_saveButtonTitle);
+	FLRelease(_dataSourceManager);
+	FLRelease(_backgroundImage);
 	super_dealloc_();
 }
 
@@ -325,7 +325,7 @@ FLSynthesizeStructProperty(saveChangesImmediately, setSaveChangesImmediately, BO
 			if(_imageView)
 			{
 				[_imageView removeFromSuperview];
-				release_(_imageView);
+				FLRelease(_imageView);
 			}
 
 			_imageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
@@ -1059,15 +1059,15 @@ FLSynthesizeStructProperty(saveChangesImmediately, setSaveChangesImmediately, BO
 //	  
 //	  if([data conformsToProtocol:@protocol(NSMutableCopying)])
 //	  {
-//		  [self.dataSourceManager setDataSource:autorelease_([data mutableCopy]) forKey:key];
+//		  [self.dataSourceManager setDataSource:FLAutorelease([data mutableCopy]) forKey:key];
 //	  }
 //	  else if([data conformsToProtocol:@protocol(NSCopying)])
 //	  {
-//		  [self.dataSourceManager setDataSource:autorelease_([data copy]) forKey:key];
+//		  [self.dataSourceManager setDataSource:FLAutorelease([data copy]) forKey:key];
 //	  }
 //	  else
 //	  {
-//		  [self.dataSourceManager setDataSource:autorelease_([data copy]) forKey:key];
+//		  [self.dataSourceManager setDataSource:FLAutorelease([data copy]) forKey:key];
 //	  }
 //}
 

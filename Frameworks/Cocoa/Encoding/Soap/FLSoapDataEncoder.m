@@ -48,11 +48,11 @@ FLSynthesizeSingleton(FLSoapDataEncoder);
 		case FLDataTypeDouble:
 		case FLDataTypeBool:
 			FLAssert_v([data isKindOfClass:[NSNumber class]], @"expecting a NSNumber here");
-			*outString = retain_([_numberFormatter stringFromNumber:data]);
+			*outString = FLRetain([_numberFormatter stringFromNumber:data]);
 		break;
 		
 		case FLDataTypeString:
-			*outString = retain_([data xmlEncode]);
+			*outString = FLRetain([data xmlEncode]);
 		break;
 		
 		case FLDataTypeData:
@@ -62,19 +62,19 @@ FLSynthesizeSingleton(FLSoapDataEncoder);
 		break;
 		
 		case FLDataTypeDate:
-			*outString = retain_([[FLDateMgr instance] ISO8601DateToString:(NSDate*) data]); 
+			*outString = FLRetain([[FLDateMgr instance] ISO8601DateToString:(NSDate*) data]); 
 		break;
 	
         case FLDataTypePoint:
-            *outString = retain_(FLStringFromPoint([data SDKPointValue]));
+            *outString = FLRetain(FLStringFromPoint([data FLPointValue]));
             break;
             
         case FLDataTypeRect:
-            *outString = retain_(NSStringFromSDKRect([data SDKRectValue]));
+            *outString = FLRetain(FLStringFromRect([data FLRectValue]));
             break;
 
         case FLDataTypeSize:
-            *outString = retain_(NSStringFromSDKSize([data SDKSizeValue]));
+            *outString = FLRetain(FLStringFromSize([data FLSizeValue]));
             break;
 
         case FLDataTypeValue:
@@ -83,11 +83,11 @@ FLSynthesizeSingleton(FLSoapDataEncoder);
             break;
     
         case FLDataTypeColor:
-            *outString = retain_([data toRgbString]);
+            *outString = FLRetain([data toRgbString]);
         break;
      
         case FLDataTypeURL:
-            *outString = retain_([data absoluteString]); 
+            *outString = FLRetain([data absoluteString]); 
         break;
     }
 } 
@@ -114,7 +114,7 @@ FLSynthesizeSingleton(FLSoapDataEncoder);
 		case FLDataTypeDouble: {
 			NSNumber* number = [_numberFormatter numberFromString:encodedDataString];
 			if(number) {
-				*outDecodedObject = retain_(number);
+				*outDecodedObject = FLRetain(number);
 			}
 		}
 		break;
@@ -128,31 +128,31 @@ FLSynthesizeSingleton(FLSoapDataEncoder);
 		break;
 		
 		case FLDataTypeDate:
-			*outDecodedObject = retain_([[FLDateMgr instance] ISO8601StringToDate:encodedDataString]);
+			*outDecodedObject = FLRetain([[FLDateMgr instance] ISO8601StringToDate:encodedDataString]);
 		break;
 	
 		case FLDataTypeString:
-			*outDecodedObject = retain_([encodedDataString xmlDecode]);
+			*outDecodedObject = FLRetain([encodedDataString xmlDecode]);
 		break;
         
         case FLDataTypeColor:
-            *outDecodedObject = retain_([SDKColor colorWithRgbString:encodedDataString]);
+            *outDecodedObject = FLRetain([FLColor colorWithRgbString:encodedDataString]);
         break;
 	
         case FLDataTypePoint:
-            *outDecodedObject = retain_([NSValue valueWithSDKPoint:FLPointFromString(encodedDataString)]);
+            *outDecodedObject = FLRetain([NSValue valueWithFLPoint:FLPointFromString(encodedDataString)]);
             break;
             
         case FLDataTypeRect:
-            *outDecodedObject = retain_([NSValue valueWithSDKRect:FLRectFromString(encodedDataString)]);
+            *outDecodedObject = FLRetain([NSValue valueWithFLRect:FLRectFromString(encodedDataString)]);
             break;
         
         case FLDataTypeSize:
-            *outDecodedObject = retain_([NSValue valueWithSDKSize:FLSizeFromString(encodedDataString)]);
+            *outDecodedObject = FLRetain([NSValue valueWithFLSize:FLSizeFromString(encodedDataString)]);
             break;
         
         case FLDataTypeURL:
-            *outDecodedObject = retain_([[NSURL alloc] initWithString:encodedDataString]);
+            *outDecodedObject = FLRetain([[NSURL alloc] initWithString:encodedDataString]);
             break;
         
         case FLDataTypeValue:

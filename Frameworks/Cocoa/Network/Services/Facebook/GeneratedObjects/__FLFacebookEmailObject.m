@@ -39,7 +39,7 @@
 
 - (void) dealloc
 {
-    release_(__email);
+    FLRelease(__email);
     super_dealloc_();
 }
 
@@ -51,7 +51,7 @@
 
 + (FLFacebookEmailObject*) facebookEmailObject
 {
-    return autorelease_([[FLFacebookEmailObject alloc] init]);
+    return FLAutorelease([[FLFacebookEmailObject alloc] init]);
 }
 
 - (id) init
@@ -66,7 +66,7 @@
 {
     if((self = [super initWithCoder:aDecoder]))
     {
-        __email = retain_([aDecoder decodeObjectForKey:@"__email"]);
+        __email = FLRetain([aDecoder decodeObjectForKey:@"__email"]);
     }
     return self;
 }

@@ -89,7 +89,7 @@ static FLLowMemoryHandler* s_handler = nil;
 
 + (void) setDefaultHandler:(FLLowMemoryHandler*) handler
 {
-	FLRetainObject_(s_handler, handler);
+	FLAssignObjectWithRetain(s_handler, handler);
 }
 
 + (id) defaultHandler

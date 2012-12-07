@@ -13,7 +13,7 @@
 #import <Foundation/Foundation.h>
 #import <sqlite3.h>
 
-#import "FishLampCore.h"
+#import "FLCore.h"
 #import "FLDatabaseDefines.h"
 #import "FLDatabaseTable.h"
 #import "FLDatabaseErrors.h"

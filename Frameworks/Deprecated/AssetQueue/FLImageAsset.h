@@ -6,16 +6,15 @@
 //	Copyright 2009 GreenTongue Software. All rights reserved.
 //
 
-#import "FLStorableImage.h"
+#import "FLStorableImageProtocol.h"
 #import "FLAsset.h"
 @class FLAssetStorage;
 
-
 @protocol FLImageAsset <FLAsset, NSCopying> 
 
-@property (readonly, retain, nonatomic) id<FLStorableImage> original;
-@property (readonly, retain, nonatomic) id<FLStorableImage> thumbnail;
-@property (readonly, retain, nonatomic) id<FLStorableImage> fullScreen;
+@property (readonly, retain, nonatomic) id<FLStorableImageProtocol> original;
+@property (readonly, retain, nonatomic) id<FLStorableImageProtocol> thumbnail;
+@property (readonly, retain, nonatomic) id<FLStorableImageProtocol> fullScreen;
 
 // for convienience
 - (void) loadFullScreen;

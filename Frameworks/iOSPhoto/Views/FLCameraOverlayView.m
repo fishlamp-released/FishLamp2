@@ -95,7 +95,7 @@
 	[_cameraOverlayDelegate cameraOverlayView:self flashModeWasChanged:newMode];
 }
 
-- (id) initWithFrame:(FLRect) frame
+- (id) initWithFrame:(CGRect) frame
 {
 	if(self = [super initWithFrame:frame])
 	{
@@ -151,7 +151,7 @@
 		crosshairs.alpha = 0.8;
 		crosshairs.frame = FLRectCenterRectInRect(_focusView.bounds, crosshairs.frame);
 		[_focusView addSubview:crosshairs];
-		release_(crosshairs);
+		FLRelease(crosshairs);
 		
 //		  _focusView.hidden = YES;
 		[self addSubview:_focusView];
@@ -188,7 +188,7 @@
 		_flashSegmentedControl.alpha = _flashButton.alpha;
 		_flashSegmentedControl.selectedSegmentIndex = 1;
 		_flashSegmentedControl.hidden = YES;
-		release_(items);
+		FLRelease(items);
 		[self addSubview:_flashSegmentedControl];
 	}
 	return self;
@@ -201,7 +201,7 @@
 	_focusView.hidden = !visible;
 }
 
-- (void) showFocusGraphicAt:(FLPoint) pt isVisible:(BOOL) isVisible
+- (void) showFocusGraphicAt:(CGPoint) pt isVisible:(BOOL) isVisible
 {
 //	  _focusView.hidden = NO;
 	if(!_dragging)
@@ -314,7 +314,7 @@
 	flashView.backgroundColor = [UIColor whiteColor];
 	flashView.alpha = 1.0;
 	[self addSubview:flashView];
-	release_(flashView);
+	FLRelease(flashView);
 	
 	[UIView beginAnimations:@"viewin" context:flashView];
 	[UIView setAnimationDuration:0.3];
@@ -349,7 +349,7 @@
 	_spinner.newFrame = FLRectCenterRectInRect(self.bounds, _spinner.frame);
 	
 	[_flipCameraButton sizeToFit];
-	FLRect flipFrame = FLRectAddWidth(_flipCameraButton.frame, 10);
+	CGRect flipFrame = FLRectAddWidth(_flipCameraButton.frame, 10);
 	_flipCameraButton.newFrame = FLRectSetOrigin(flipFrame, self.bounds.size.width - flipFrame.size.width - 10, 10);	
 	
 	[_flashButton sizeToFit];
@@ -399,7 +399,7 @@ void DrawHorizontalLine(CGContextRef ctx, CGFloat y, CGFloat width)
 	CGContextStrokePath(ctx);
 }
 
-- (void) drawRect:(FLRect) rect 
+- (void) drawRect:(CGRect) rect 
 {
 	[super drawRect:rect];
 	CGContextRef ctx = UIGraphicsGetCurrentContext(); //get the graphics context

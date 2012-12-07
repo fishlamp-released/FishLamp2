@@ -20,7 +20,7 @@
 }
 
 + (FLLogSink*) logSink:(FLLogSinkOutputFlags) outputFlags {
-    return autorelease_([[[self class] alloc] initWithLogSinkOutputFlags:outputFlags]);
+    return FLAutorelease([[[self class] alloc] initWithLogSinkOutputFlags:outputFlags]);
 }
 
 - (void) openEntry {

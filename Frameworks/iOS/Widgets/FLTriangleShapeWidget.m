@@ -29,10 +29,10 @@
 
 + (FLTriangleShapeWidget*) triangleShapeWidget:(FLTriangleCorner) corner
 {
-	return autorelease_([[[self class] alloc] initWithTriangleCorner:corner]);
+	return FLAutorelease([[[self class] alloc] initWithTriangleCorner:corner]);
 }
 
--(void) createPathForShapeInRect:(CGMutablePathRef) path rect:(FLRect) rect
+-(void) createPathForShapeInRect:(CGMutablePathRef) path rect:(CGRect) rect
 {
     CGRectInset(rect, -2, -2);
 

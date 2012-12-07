@@ -17,7 +17,7 @@
 @synthesize borderGradient = _borderGradient;
 
 
-- (id) initWithFrame:(FLRect) frame {
+- (id) initWithFrame:(CGRect) frame {
 	if((self = [super initWithFrame:frame])) {
 		self.borderLineWidth = 1.0f;
 		
@@ -32,12 +32,12 @@
 }
 
 - (void) dealloc {
-	release_(_borderGradient);
-	release_(_innerBorderColor);
+	FLRelease(_borderGradient);
+	FLRelease(_innerBorderColor);
 	super_dealloc_();
 }
 
--(void) createPathForShapeInRect:(CGMutablePathRef) path rect:(FLRect) rect {
+-(void) createPathForShapeInRect:(CGMutablePathRef) path rect:(CGRect) rect {
 }
 
 - (void) layoutWidgets {
@@ -47,12 +47,12 @@
     _borderGradient.frame = self.frame;
 }
 
-- (void) drawSelf:(FLRect) rect {
+- (void) drawSelf:(CGRect) rect {
 	CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSaveGState(context);
 
 	rect = CGRectInset(self.frame, 1, 1);
-    FLRect innerRect = CGRectInset(self.frame, _lineWidth + 1.0f, _lineWidth + 1.0f);
+    CGRect innerRect = CGRectInset(self.frame, _lineWidth + 1.0f, _lineWidth + 1.0f);
     
     // draw gradient for border
     CGMutablePathRef borderPath = CGPathCreateMutable();

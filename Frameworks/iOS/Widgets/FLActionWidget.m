@@ -21,7 +21,7 @@
 	_action.object = action;
 }
 
-- (id) initWithFrame:(FLRect) frame {
+- (id) initWithFrame:(CGRect) frame {
 	if((self = [super initWithFrame:frame])) {
 		_action = [[FLWeakReference alloc] init];
 	}
@@ -30,8 +30,8 @@
 }
 
 - (void) dealloc {
-	release_(_action);
-	release_(_operationContext);
+	FLRelease(_action);
+	FLRelease(_operationContext);
 	super_dealloc_();
 }
 @end

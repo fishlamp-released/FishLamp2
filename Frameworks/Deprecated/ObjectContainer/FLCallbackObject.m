@@ -44,16 +44,16 @@
 }
 
 + (FLCallbackObject*) callback:(id) target action:(SEL) action {
-	return autorelease_([[FLCallbackObject alloc] initWithTarget:target action:action]);
+	return FLAutorelease([[FLCallbackObject alloc] initWithTarget:target action:action]);
 }
 
 + (FLCallbackObject*) callbackWithContainedTarget:(id<FLObjectContainer>) targetInContainer action:(SEL) action {
-	return autorelease_([[FLCallbackObject alloc] initWithContainedTarget:targetInContainer action:action]);
+	return FLAutorelease([[FLCallbackObject alloc] initWithContainedTarget:targetInContainer action:action]);
 }
 
 - (id) invoke:(id) sender {
-//	mrc_autorelease_(self);
-//	mrc_autorelease_(sender);
+//	FLAutoreleaseObject(self);
+//	FLAutoreleaseObject(sender);
 	return [self.target performSelector:_action withObject:sender];
 }
 

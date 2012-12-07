@@ -68,10 +68,10 @@
 
 - (void) dealloc
 {
-	release_(_asset);
-	release_(_assetURL);
-	release_(_properties);
-	release_(_image);
+	FLRelease(_asset);
+	FLRelease(_assetURL);
+	FLRelease(_properties);
+	FLRelease(_image);
 	super_dealloc_();
 }
 
@@ -134,7 +134,7 @@
     }
     else
     {
-        finishedLoadingBlock = autorelease_([finishedLoadingBlock copy]);
+        finishedLoadingBlock = FLAutorelease([finishedLoadingBlock copy]);
 
         [[FLAssetsLibrary instance] assetForURL:self.assetURL
             resultBlock:^(ALAsset *asset) {
@@ -192,7 +192,7 @@
     }
     else
     {
-        completionBlock = autorelease_([completionBlock copy]);
+        completionBlock = FLAutorelease([completionBlock copy]);
     
         [self beginLoadingRepresentation:^(NSError* error) {
             if(!error)
@@ -212,7 +212,7 @@
 {
 	if(self.imageSize == FLAssetsLibraryImageSizeOriginal && !_asset)
 	{
-		completionBlock = autorelease_([completionBlock copy]);
+		completionBlock = FLAutorelease([completionBlock copy]);
     
        	[[FLAssetsLibrary instance] writeImageToSavedPhotosAlbum:self.image.CGImage 
 				orientation:(ALAssetOrientation) self.image.imageOrientation
@@ -285,7 +285,7 @@
 			[[FLAssetsLibrary instance] writeImageToSavedPhotosAlbum:self.image.CGImage 
 				orientation:(ALAssetOrientation) self.image.imageOrientation
 				completionBlock: ^(NSURL *assetURL, NSError *blockError){
-					error = autorelease_(retain_(blockError));
+					error = FLAutorelease(retain_(blockError));
 					self.assetURL = assetURL;
 					[lock signal];
 					}];
@@ -347,7 +347,7 @@
 		[self readFromStorage];
 	}
 	
-	FLJpegFile* tempFile = autorelease_([[FLJpegFile alloc] initWithImage:self.image exifData:self.properties folder:folder fileName:fileName]);
+	FLJpegFile* tempFile = FLAutorelease([[FLJpegFile alloc] initWithImage:self.image exifData:self.properties folder:folder fileName:fileName]);
     [[FLTempFileMgr instance] addFile:tempFile];
 	[tempFile writeToStorage];
     return tempFile;
@@ -361,7 +361,7 @@
 		[self readFromStorage];
 	}
 	
-	FLJpegFile* toFile = autorelease_([[FLJpegFile alloc] initWithImage:self.image exifData:self.properties folder:folder fileName:fileName]);
+	FLJpegFile* toFile = FLAutorelease([[FLJpegFile alloc] initWithImage:self.image exifData:self.properties folder:folder fileName:fileName]);
 	[toFile writeToStorage];
 	
 	return toFile;

@@ -40,7 +40,7 @@
 }
 
 + (FLOperationQueue*) operationQueue {
-    return autorelease_([[[self class] alloc] init]);
+    return FLAutorelease([[[self class] alloc] init]);
 }
 
 - (void) dealloc {
@@ -258,7 +258,7 @@
         }
     }
     @finally {
-        release_(notifyList);
+        FLRelease(notifyList);
     }
 }
 

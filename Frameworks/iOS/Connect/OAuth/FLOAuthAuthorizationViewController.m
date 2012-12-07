@@ -32,13 +32,13 @@
 
 + (FLOAuthAuthorizationViewController*) OAuthAuthorizationViewController
 {
-	return autorelease_([[[self class] alloc] init]);
+	return FLAutorelease([[[self class] alloc] init]);
 }
 
 - (void) dealloc
 {
-	release_(_authData);
-	release_(_app);
+	FLRelease(_authData);
+	FLRelease(_app);
 	super_dealloc_();
 }
 

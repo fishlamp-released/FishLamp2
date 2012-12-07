@@ -24,7 +24,7 @@
     [self addWidget:widget];
 }
 
-- (id) initWithFrame:(FLRect) frame {
+- (id) initWithFrame:(CGRect) frame {
     self = [super initWithFrame:frame]; 
     if(self) {
         self.autoresizesSubviews = NO;
@@ -53,7 +53,7 @@
 
 #if FL_MRC
 - (void) dealloc {
-    release_(_containedView);
+    FLRelease(_containedView);
     super_dealloc_();
 }
 

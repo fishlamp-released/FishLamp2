@@ -36,7 +36,7 @@ synthesize_(httpResponse)
 }
 
 + (id) httpConnection:(FLHttpRequest*) httpRequest {
-    return autorelease_([[[self class] alloc] initWithHttpRequest:httpRequest]);
+    return FLAutorelease([[[self class] alloc] initWithHttpRequest:httpRequest]);
 }
 
 #if FL_MRC

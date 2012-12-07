@@ -219,7 +219,7 @@ FLSynthesizeSingleton(FLFloatingViewEventReceiver);
 
 - (void) dealloc
 {
-	release_(_popupStack);
+	FLRelease(_popupStack);
 	[[FLApplication sharedApplication] removeEventInterceptor:self];
 	super_dealloc_();
 }
@@ -357,8 +357,8 @@ FLSynthesizeStructProperty(contentViewIsModal, setContentViewIsModal, BOOL, _sta
 	[[FLFloatingViewEventReceiver instance] removePopupViewController:self];
     [[FLBackgroundTaskMgr instance] removeObserver:self];
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
-    release_(_childPopover);
-	release_(_contentViewController);
+    FLRelease(_childPopover);
+	FLRelease(_contentViewController);
 	super_dealloc_();
 }
 
@@ -397,7 +397,7 @@ FLSynthesizeStructProperty(contentViewIsModal, setContentViewIsModal, BOOL, _sta
 
 - (void) loadView
 {
-    self.view = autorelease_([[FLFloatingView alloc] initWithFrame:CGRectMake(0,0,200,200)]);
+    self.view = FLAutorelease([[FLFloatingView alloc] initWithFrame:CGRectMake(0,0,200,200)]);
 }
 
 - (void) viewDidLoad
@@ -429,14 +429,14 @@ FLSynthesizeStructProperty(contentViewIsModal, setContentViewIsModal, BOOL, _sta
     }
 }
 
-- (void) updateViewSizeAndPosition:(FLRect) inBounds
+- (void) updateViewSizeAndPosition:(CGRect) inBounds
 {
     [self resizeToContentSizeAnimated:NO];
 }
 
 #define kLayoutPadding 5.0f
 
-- (FLRect) _checkFrame:(FLRect) frame inFrame:(FLRect) superFrame
+- (CGRect) _checkFrame:(CGRect) frame inFrame:(CGRect) superFrame
 {
     if(frame.origin.x < kLayoutPadding)
     {
@@ -455,16 +455,16 @@ FLSynthesizeStructProperty(contentViewIsModal, setContentViewIsModal, BOOL, _sta
     return frame;
 }
 
-- (void) _setFramePosition:(FLRect) frame animated:(BOOL) animated
+- (void) _setFramePosition:(CGRect) frame animated:(BOOL) animated
 {
     FLFloatingView* view = self.floatingView;
     UIView* containerView = view.containerView;
 
 	if(view.superview)
 	{
-		FLRect prevFrame = view.frame;
+		CGRect prevFrame = view.frame;
 	
-		FLRect maxVisibleRect = [self maxVisibleRect:_state.adjustingForKeyboard];
+		CGRect maxVisibleRect = [self maxVisibleRect:_state.adjustingForKeyboard];
 		
 		if(frame.size.height > maxVisibleRect.size.height)
 		{
@@ -481,13 +481,13 @@ FLSynthesizeStructProperty(contentViewIsModal, setContentViewIsModal, BOOL, _sta
 			containerView.newFrame = FLRectAddWidth(containerView.frame, -delta);
 		}
 	
-		FLRect keyboardRect = CGRectZero; 
+		CGRect keyboardRect = CGRectZero; 
 		if(_state.adjustingForKeyboard)
 		{
 			keyboardRect = FLRectJustifyRectInRectBottom(view.superview.bounds, [[FLKeyboardManager instance] keyboardRectForView:view.superview]);
 		}
         
-        FLRect superFrame = [self maxVisibleRect:NO];
+        CGRect superFrame = [self maxVisibleRect:NO];
         
         if(!_positionProvider || _arrowDirection == FLFloatingViewArrowDirectionNone)
 		{
@@ -513,7 +513,7 @@ FLSynthesizeStructProperty(contentViewIsModal, setContentViewIsModal, BOOL, _sta
 			FLAssert_v([provider respondsToSelector:@selector(frame)], @"must implement frame");
 			FLAssert_v([provider respondsToSelector:@selector(superview)], @"must implement frame");
 			
-			FLRect fromFrame = [view.superview convertRect:provider.floatingViewTargetFrame fromView:provider.floatingViewTargetView];
+			CGRect fromFrame = [view.superview convertRect:provider.floatingViewTargetFrame fromView:provider.floatingViewTargetView];
 		
 			switch(_arrowDirection)
 			{
@@ -573,11 +573,11 @@ FLSynthesizeStructProperty(contentViewIsModal, setContentViewIsModal, BOOL, _sta
 
     FLSize size = self.contentViewSize;
 
-	FLRect myFrame = FLRectSetSize(view.frame, 
+	CGRect myFrame = FLRectSetSize(view.frame, 
 		size.width + (view.frameWidth*2), 
 		size.height + (view.frameWidth*2));
 
-	FLRect containerViewFrame = CGRectMake(view.frameWidth, view.frameWidth, size.width, size.height);
+	CGRect containerViewFrame = CGRectMake(view.frameWidth, view.frameWidth, size.width, size.height);
     	
     CGFloat arrowWidth = view.arrowWidth;
     
@@ -632,7 +632,7 @@ FLSynthesizeStructProperty(contentViewIsModal, setContentViewIsModal, BOOL, _sta
 @end
 
 @implementation UIView (FLFloatingViewTargetProvider)
-- (FLRect) floatingViewTargetFrame
+- (CGRect) floatingViewTargetFrame
 {	
 	return self.bounds;
 }
@@ -643,7 +643,7 @@ FLSynthesizeStructProperty(contentViewIsModal, setContentViewIsModal, BOOL, _sta
 @end
 
 @implementation FLWidget (FLFloatingViewTargetProvider)
-- (FLRect) floatingViewTargetFrame
+- (CGRect) floatingViewTargetFrame
 {	
 	return self.frame;
 }
@@ -676,7 +676,7 @@ FLSynthesizeAssociatedProperty(retain_nonatomic, contentSizeForViewInFloatingVie
                                        fromPositionProvider:(id) provider
                                                withBehavior:(id<FLPresentationBehavior>) behavior
                                               withAnimation:(id<FLViewControllerTransitionAnimation>) animation {
-    FLFloatingViewController* floatingViewController = autorelease_( [[FLFloatingViewController alloc] initWithArrowDirection:arrowDirection fromPositionProvider:provider]);
+    FLFloatingViewController* floatingViewController = FLAutorelease( [[FLFloatingViewController alloc] initWithArrowDirection:arrowDirection fromPositionProvider:provider]);
 
     floatingViewController.contentViewController = controller;
     

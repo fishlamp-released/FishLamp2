@@ -25,7 +25,7 @@
 @synthesize postedTimeWidget = _postedTime;
 @synthesize thumbnailWidget = _thumbnail;
 
-- (id) initWithFrame:(FLRect) frame
+- (id) initWithFrame:(CGRect) frame
 {
 	if((self = [super initWithFrame:frame]))
 	{
@@ -61,7 +61,7 @@
 //
 //		_message = [[FLLabelWidget alloc] initWithFrame: CGRectMake(0,0,100,20)];
 //		_message.themeAction = @selector(applyThemeToMessageInTable:);
-////		_message.viewLayoutCallback = ^(id layoutView, FLRect layoutFrame) {
+////		_message.viewLayoutCallback = ^(id layoutView, CGRect layoutFrame) {
 ////			return FLRectSetHeight(layoutFrame, [layoutView heightOfTextForWidth:layoutFrame.size.width]); 
 ////		};
 //		[_rightColumn addWidget:_message];
@@ -72,13 +72,13 @@
 
 - (void) dealloc
 {
-	release_(_rightColumn);
-	release_(_nameAndPostDateWidget);
-	release_(_gradient);
-	release_(_thumbnail);
-	release_(_userName);
-	release_(_message);
-	release_(_postedTime);
+	FLRelease(_rightColumn);
+	FLRelease(_nameAndPostDateWidget);
+	FLRelease(_gradient);
+	FLRelease(_thumbnail);
+	FLRelease(_userName);
+	FLRelease(_message);
+	FLRelease(_postedTime);
 	super_dealloc_();
 }
 

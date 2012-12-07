@@ -67,11 +67,11 @@
 
 - (void) dealloc
 {
-    release_(__employer);
-    release_(__location);
-    release_(__position);
-    release_(__start_date);
-    release_(__end_date);
+    FLRelease(__employer);
+    FLRelease(__location);
+    FLRelease(__position);
+    FLRelease(__start_date);
+    FLRelease(__end_date);
     super_dealloc_();
 }
 
@@ -87,7 +87,7 @@
 
 + (FLFacebookEmployer*) facebookEmployer
 {
-    return autorelease_([[FLFacebookEmployer alloc] init]);
+    return FLAutorelease([[FLFacebookEmployer alloc] init]);
 }
 
 - (id) init
@@ -102,11 +102,11 @@
 {
     if((self = [super initWithCoder:aDecoder]))
     {
-        __employer = retain_([aDecoder decodeObjectForKey:@"__employer"]);
-        __location = retain_([aDecoder decodeObjectForKey:@"__location"]);
-        __position = retain_([aDecoder decodeObjectForKey:@"__position"]);
-        __start_date = retain_([aDecoder decodeObjectForKey:@"__start_date"]);
-        __end_date = retain_([aDecoder decodeObjectForKey:@"__end_date"]);
+        __employer = FLRetain([aDecoder decodeObjectForKey:@"__employer"]);
+        __location = FLRetain([aDecoder decodeObjectForKey:@"__location"]);
+        __position = FLRetain([aDecoder decodeObjectForKey:@"__position"]);
+        __start_date = FLRetain([aDecoder decodeObjectForKey:@"__start_date"]);
+        __end_date = FLRetain([aDecoder decodeObjectForKey:@"__end_date"]);
     }
     return self;
 }

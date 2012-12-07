@@ -60,10 +60,10 @@ static BOOL s_editingMode;
 - (void) dealloc
 {
 	[self hideWarningLabel];
-	release_(_warningIcon);
-	release_(_warningLabel);
-	release_(_helpTextLabel);
-	release_(_countDownLabel);
+	FLRelease(_warningIcon);
+	FLRelease(_warningLabel);
+	FLRelease(_helpTextLabel);
+	FLRelease(_countDownLabel);
 	super_dealloc_();
 }
 
@@ -303,7 +303,7 @@ static BOOL s_editingMode;
 
 - (void) positionCountdownView:(UILabel*) label
 {
-	FLRect r = FLRectJustifyRectInRectRight(self.bounds, label.frame);
+	CGRect r = FLRectJustifyRectInRectRight(self.bounds, label.frame);
 	r.origin.y = 10;
 	r.origin.x -= 18;
 	label.frameOptimizedForSize = r;
@@ -380,7 +380,7 @@ static BOOL s_editingMode;
 	
 //	  if(_warningIcon)
 //	  {
-//		  FLRect rect = _warningIcon.frame;
+//		  CGRect rect = _warningIcon.frame;
 //		  rect = FLRectJustifyRectInRectRight(self.bounds, rect);
 //		  rect.origin.y = 10;
 //		  rect.origin.x -= 10;

@@ -11,7 +11,7 @@
 
 @implementation FLTextBarView
 
-- (id) initWithFrame:(FLRect) frame
+- (id) initWithFrame:(CGRect) frame
 {
 	if((self = [super initWithFrame:frame]))
 	{
@@ -74,15 +74,15 @@
 #define SpaceBetween 4
 #define Padding 10
 
-- (FLRect) adjustViewsInRect
+- (CGRect) adjustViewsInRect
 {
-	FLRect superviewBounds = self.superview.bounds;
-	FLRect insetBounds = CGRectInset(superviewBounds, 10, 0);
+	CGRect superviewBounds = self.superview.bounds;
+	CGRect insetBounds = CGRectInset(superviewBounds, 10, 0);
 	
-	FLRect myFrame = self.frame;
+	CGRect myFrame = self.frame;
 	myFrame.size.width = superviewBounds.size.width;
 	
-	FLRect labelFrame = insetBounds;
+	CGRect labelFrame = insetBounds;
 	labelFrame.size = [self.label sizeToFitText:FLSizeMake(labelFrame.size.width, 2048.0f)];
 	
 	FLSize textSize = _text ? [self.textLabel sizeToFitText:insetBounds.size] : CGSizeZero;
@@ -96,7 +96,7 @@
 	else if ((labelFrame.size.width + textSize.width + SpaceBetween) < insetBounds.size.width)
 	{
 		// one line
-		FLRect bounds = CGRectMake(0,0, labelFrame.size.width + textSize.width + SpaceBetween, labelFrame.size.height + Padding);
+		CGRect bounds = CGRectMake(0,0, labelFrame.size.width + textSize.width + SpaceBetween, labelFrame.size.height + Padding);
 		bounds = FLRectCenterRectInRectHorizontally(myFrame, bounds);
 		[_label moveTo:bounds.origin];
 		
@@ -126,7 +126,7 @@
 }
 #endif
 
-- (void)drawRect:(FLRect)rect
+- (void)drawRect:(CGRect)rect
 {
 	[super drawRect:rect];
 	

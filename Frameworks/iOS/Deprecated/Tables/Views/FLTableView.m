@@ -18,7 +18,7 @@
 FLSynthesizeStructProperty(drawSectionBorders, setDrawSectionBorders, BOOL, _tableViewState);
 FLSynthesizeStructProperty(cellSeparatorLine, setCellSeparatorLine, FLTableViewCellSeparatorLine, _tableViewState);
 
-- (id)initWithFrame:(FLRect)frame style:(UITableViewStyle)style
+- (id)initWithFrame:(CGRect)frame style:(UITableViewStyle)style
 {
 	if((self = [super initWithFrame:frame style:UITableViewStylePlain]))
 	{
@@ -63,7 +63,7 @@ FLSynthesizeStructProperty(cellSeparatorLine, setCellSeparatorLine, FLTableViewC
 
 @implementation UITableViewCell (FLTableView)
 
-- (BOOL) tableViewDragSelectStartValueForPoint:(FLPoint) point
+- (BOOL) tableViewDragSelectStartValueForPoint:(CGPoint) point
 {
 	return NO;
 }
@@ -72,7 +72,7 @@ FLSynthesizeStructProperty(cellSeparatorLine, setCellSeparatorLine, FLTableViewC
 {
 }
 
-- (void) tableViewDragSelectRectChanged:(FLRect) dragRect startValue:(BOOL) startValue
+- (void) tableViewDragSelectRectChanged:(CGRect) dragRect startValue:(BOOL) startValue
 {
 }
 

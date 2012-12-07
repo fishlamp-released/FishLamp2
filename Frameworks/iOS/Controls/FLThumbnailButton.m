@@ -27,7 +27,7 @@ FLSynthesizeStructProperty(selectedBehavior, setSelectedBehavior, FLThumbnailBut
 
 static FLThumbnailButton* s_touchedButton = nil;
 
-- (id)initWithFrame:(FLRect)frame
+- (id)initWithFrame:(CGRect)frame
 {
 	if((self = [super initWithFrame:frame]))
 	{
@@ -44,7 +44,7 @@ static FLThumbnailButton* s_touchedButton = nil;
 
 + (FLThumbnailButton*) thumbnailButton
 {
-	return autorelease_([[FLThumbnailButton alloc] initWithFrame:CGRectZero]);
+	return FLAutorelease([[FLThumbnailButton alloc] initWithFrame:CGRectZero]);
 }	
 
 - (void) dealloc
@@ -53,9 +53,9 @@ static FLThumbnailButton* s_touchedButton = nil;
 	{
 		s_touchedButton = nil;
 	}
-	release_(_userData);
-	release_(_callback);
-	release_(_buttonAnimation);
+	FLRelease(_userData);
+	FLRelease(_callback);
+	FLRelease(_buttonAnimation);
 	super_dealloc_();
 }
 
@@ -83,7 +83,7 @@ static FLThumbnailButton* s_touchedButton = nil;
 	if(self.enabled && s_touchedButton == self)
 	{
 		UITouch* touch = [touches anyObject];
-		FLPoint touchPoint = [touch locationInView:self];
+		CGPoint touchPoint = [touch locationInView:self];
 		self.selected = CGRectContainsPoint(self.bounds, touchPoint);
 	}
 }
@@ -134,7 +134,7 @@ static FLThumbnailButton* s_touchedButton = nil;
 		   withEvent: (UIEvent *) event 
 {	
 	UITouch* touch = [touches anyObject];
-	FLPoint touchPt = [touch locationInView:self];
+	CGPoint touchPt = [touch locationInView:self];
 	
 	if([self hitTest:touchPt withEvent:event])
 	{
@@ -259,7 +259,7 @@ static SEL s_selectors[AnimationQueueCount];
 
 - (void) shrinkAnimation:(FLThumbnailButton*) button
 {
-	FLRect frame = button.frame;
+	CGRect frame = button.frame;
 	
 	frame = CGRectInset(frame, 5,5);
 	
@@ -317,7 +317,7 @@ static SEL s_selectors[AnimationQueueCount];
 
 + (FLZoomButtonAnimation*) zoomButtonAnimation:(id<FLButtonAnimationDelegate>) delegate
 {
-	FLZoomButtonAnimation* animation = autorelease_([[FLZoomButtonAnimation alloc] init]);
+	FLZoomButtonAnimation* animation = FLAutorelease([[FLZoomButtonAnimation alloc] init]);
 	animation.delegate = delegate;
 	return animation;
 }
@@ -340,7 +340,7 @@ static SEL s_selectors[AnimationQueueCount];
 	
 	UIView* hostView = [_delegate buttonAnimationGetHostView:self];
 	
-	FLRect frame = [hostView convertRect:button.frame fromView:button];
+	CGRect frame = [hostView convertRect:button.frame fromView:button];
 	
 	UIImageView* zoomView = [[UIImageView alloc] initWithFrame:frame];
 	zoomView.backgroundColor = [UIColor blackColor];

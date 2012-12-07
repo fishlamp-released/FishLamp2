@@ -44,7 +44,7 @@ static void * const kListenerKey = (void*)&kListenerKey;
 - (FLThemeChangeListener*) themeChangeListener {
     FLThemeChangeListener* listener = [self _themeChangelistener];
     if(!listener) {
-        listener = autorelease_([[FLThemeChangeListener alloc] initWithObject:self]);
+        listener = FLAutorelease([[FLThemeChangeListener alloc] initWithObject:self]);
         self.themeChangeListener = listener;
     }
     return listener;

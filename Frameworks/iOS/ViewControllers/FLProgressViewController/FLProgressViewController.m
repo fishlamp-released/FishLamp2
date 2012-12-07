@@ -32,7 +32,7 @@
     }   
 }
 
-- (void) sizeToFitInBounds:(FLRect) bounds {
+- (void) sizeToFitInBounds:(CGRect) bounds {
     if([self.progressView respondsToSelector:@selector(setMinimumViewSize:)]) {
         [self.progressView setMinimumViewSize:self.minimumViewSize];
     }
@@ -75,9 +75,9 @@
 - (void) dealloc {
     FLAssert_v([NSThread currentThread] == [NSThread mainThread], @"Not on main thread");
 
-    release_(_progressProxy);
-    release_(_onHideProgress);
-    release_(_onShowProgress);
+    FLRelease(_progressProxy);
+    FLRelease(_onHideProgress);
+    FLRelease(_onShowProgress);
     super_dealloc_();
 }
 #endif
@@ -99,7 +99,7 @@
 
 - (UIView*) createView {
     if(_viewClass) {
-        return autorelease_([[_viewClass alloc] initWithFrame:CGRectZero]);
+        return FLAutorelease([[_viewClass alloc] initWithFrame:CGRectZero]);
     }
     
     return [super createView];
@@ -110,7 +110,7 @@
 }
 
 + (id) progressViewController:(Class) viewClass {
-    return autorelease_([[[self class] alloc] initWithProgressViewClass:viewClass]);
+    return FLAutorelease([[[self class] alloc] initWithProgressViewClass:viewClass]);
 }
 
 + (id) progressViewController:(Class) viewClass 
@@ -264,20 +264,20 @@
 }
 
 + (FLProgressViewOwner*) progressViewOwner:(UIView*) view {
-    return autorelease_([[FLProgressViewOwner alloc] initWithView:view]);
+    return FLAutorelease([[FLProgressViewOwner alloc] initWithView:view]);
 }
 
 + (FLProgressViewOwner*) progressViewOwner {
-    return autorelease_([[FLProgressViewOwner alloc] init]);
+    return FLAutorelease([[FLProgressViewOwner alloc] init]);
 }
 
 - (void) dealloc  {
     FLAssert_v([NSThread currentThread] == [NSThread mainThread], @"Not on main thread");
     [_progressView removeFromSuperview];
 #if FL_MRC    
-    release_(_onShowProgress);
-    release_(_onHideProgress);
-    release_(_progressView);
+    FLRelease(_onShowProgress);
+    FLRelease(_onHideProgress);
+    FLRelease(_progressView);
     super_dealloc_();
 #endif
 }

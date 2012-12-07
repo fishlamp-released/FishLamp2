@@ -42,11 +42,11 @@ const NSString* FLTimeoutTimerTimeoutEvent = @"com.fishlamp.timer.timedout";
 }
 
 + (FLTimeoutTimer*) timeoutTimer:(NSTimeInterval) timeoutInterval {
-    return autorelease_([[[self class] alloc] initWithTimeoutInterval:timeoutInterval]);
+    return FLAutorelease([[[self class] alloc] initWithTimeoutInterval:timeoutInterval]);
 }
 
 + (id) timeoutTimer {
-    return autorelease_([[[self class] alloc] init]);
+    return FLAutorelease([[[self class] alloc] init]);
 }
 
 - (BOOL) isLate {

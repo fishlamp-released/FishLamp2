@@ -105,15 +105,15 @@
 }
 
 + (FLNetworkHost*) networkHostWithName:(NSString*) name {
-    return autorelease_([[FLNetworkHost alloc] initWithName:name]);
+    return FLAutorelease([[FLNetworkHost alloc] initWithName:name]);
 }
 
 + (FLNetworkHost*) networkHostWithAddress:(NSData*) data {
-    return autorelease_([[FLNetworkHost alloc] initWithAddress:data]);
+    return FLAutorelease([[FLNetworkHost alloc] initWithAddress:data]);
 }
 
 + (FLNetworkHost*) networkHostWithAddressString:(NSString*) addressString {
-    return autorelease_([[FLNetworkHost alloc] initWithAddressString:addressString]);
+    return FLAutorelease([[FLNetworkHost alloc] initWithAddressString:addressString]);
 }
 
 - (NSArray *) resolvedAddresses {
@@ -184,11 +184,11 @@
         CFRelease(_hostRef);
     }
     
-    release_(_resolvedHostNames);
-    release_(_resolvedAddressStrings);
-    release_(_resolvedAddresses);
-    release_(_hostHame);
-    release_(_addressData);
+    FLRelease(_resolvedHostNames);
+    FLRelease(_resolvedAddressStrings);
+    FLRelease(_resolvedAddresses);
+    FLRelease(_hostHame);
+    FLRelease(_addressData);
     super_dealloc_();
 }
 

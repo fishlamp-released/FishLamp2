@@ -33,7 +33,7 @@
 {
 	FLSize outSize = FLSizeOptimizeForView([self sizeThatFitsText:size]);
 	
-	FLRect r = self.frame;
+	CGRect r = self.frame;
 	r.size = outSize;
 	r = FLRectOptimizedForViewSize(r);
 	self.newFrame = r;
@@ -41,7 +41,7 @@
 	return outSize;
 }
 
-- (void) drawUnderline:(FLRect) inRect 
+- (void) drawUnderline:(CGRect) inRect 
 	withColor:(UIColor*) color
 	withLineWidth:(CGFloat) width
 {

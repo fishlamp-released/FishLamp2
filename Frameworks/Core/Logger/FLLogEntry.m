@@ -1,6 +1,6 @@
 //
 //  FLLogEntry.m
-//  FishLampCore
+//  FLCore
 //
 //  Created by Mike Fullerton on 11/1/12.
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
@@ -70,7 +70,7 @@
 }
 
 + (id) logEntry {
-    return autorelease_([[[self class] alloc] init]);
+    return FLAutorelease([[[self class] alloc] init]);
 }
 
 @end

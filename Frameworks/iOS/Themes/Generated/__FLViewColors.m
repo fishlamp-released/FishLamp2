@@ -60,10 +60,10 @@
 
 - (void) dealloc
 {
-    release_(__normalColor);
-    release_(__selectedColor);
-    release_(__highlightedColor);
-    release_(__disabledColor);
+    FLRelease(__normalColor);
+    FLRelease(__selectedColor);
+    FLRelease(__highlightedColor);
+    FLRelease(__disabledColor);
     super_dealloc_();
 }
 
@@ -148,7 +148,7 @@
 
 + (FLViewColors*) viewColors
 {
-    return autorelease_([[FLViewColors alloc] init]);
+    return FLAutorelease([[FLViewColors alloc] init]);
 }
 
 @end

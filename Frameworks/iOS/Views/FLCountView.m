@@ -11,7 +11,7 @@
 
 @implementation FLCountView
 
-- (id) initWithFrame:(FLRect) frame
+- (id) initWithFrame:(CGRect) frame
 {
 	if((self = [super initWithFrame:frame]))
 	{
@@ -41,7 +41,7 @@
 
 - (void) dealloc
 {
-	release_(_countView);
+	FLRelease(_countView);
 	super_dealloc_();
 }
 
@@ -62,7 +62,7 @@
 
 	[_countView sizeToFitText:FLSizeMake(CGFLOAT_MAX, CGFLOAT_MAX)];
 	
-	FLRect frame = _countView.frame;
+	CGRect frame = _countView.frame;
 	frame.size.width += 16;
 	frame.size.height += 6;
 	frame = FLRectCenterOnPoint(frame, FLRectGetCenter(self.frame));

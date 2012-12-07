@@ -46,26 +46,26 @@
 }
 
 + (id) httpResponse:(NSURL*) requestURL {
-    return autorelease_([[[self class] alloc] initWithRequestURL:requestURL redirectedFrom:nil]);
+    return FLAutorelease([[[self class] alloc] initWithRequestURL:requestURL redirectedFrom:nil]);
 }
 
 + (id) httpResponse:(NSURL*) requestURL redirectedFrom:(FLHttpResponse*) redirectedFrom {
-    return autorelease_([[[self class] alloc] initWithRequestURL:requestURL redirectedFrom:redirectedFrom]);
+    return FLAutorelease([[[self class] alloc] initWithRequestURL:requestURL redirectedFrom:redirectedFrom]);
 }
 
 #if FL_MRC
 - (void) dealloc  {
     [_redirectedFrom release];
     [_requestURL release];
-    release_(_responseStatusLine);
-    release_(_responseHeaders);
-    release_(_data);
+    FLRelease(_responseStatusLine);
+    FLRelease(_responseHeaders);
+    FLRelease(_data);
     super_dealloc_();
 }
 #endif
 
 + (id) httpRespose {
-    return autorelease_([[[self class] alloc] init]);
+    return FLAutorelease([[[self class] alloc] init]);
 }
 
 - (NSError*) simpleHttpResponseErrorCheck 
@@ -82,7 +82,7 @@
 				]
 				forKey:NSLocalizedDescriptionKey];
 	
-	   return autorelease_([[NSError alloc] initWithDomain:[FLFrameworkErrorDomain instance]
+	   return FLAutorelease([[NSError alloc] initWithDomain:[FLFrameworkErrorDomain instance]
 			code:statusCode
 			userInfo:errorInfo]);
 	}
@@ -99,7 +99,7 @@
     response.responseHeaders = self.responseHeaders;
     response.responseStatusCode = self.responseStatusCode;
     response.redirectedFrom = self.redirectedFrom;
-    response.mutableResponseData = autorelease_([self.mutableResponseData mutableCopy]);
+    response.mutableResponseData = FLAutorelease([self.mutableResponseData mutableCopy]);
     response.responseStatusLine = self.responseStatusLine;
     return response;
 }
@@ -109,7 +109,7 @@
     response.responseHeaders = self.responseHeaders;
     response.responseStatusCode = self.responseStatusCode;
     response.redirectedFrom = self.redirectedFrom;
-    response.mutableResponseData = autorelease_([self.mutableResponseData mutableCopy]);
+    response.mutableResponseData = FLAutorelease([self.mutableResponseData mutableCopy]);
     response.responseStatusLine = self.responseStatusLine;
     return response;
 }
@@ -117,7 +117,7 @@
 - (NSString*) description {
 //    NSMutableString* string = [self headers]
     
-    NSString* responseStr = autorelease_([[NSString alloc] initWithData:self.responseData encoding:NSUTF8StringEncoding]);
+    NSString* responseStr = FLAutorelease([[NSString alloc] initWithData:self.responseData encoding:NSUTF8StringEncoding]);
     
     return [NSMutableString stringWithFormat:@"%@ {\n%@\n}", [super description], responseStr];
 }

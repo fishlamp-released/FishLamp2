@@ -14,7 +14,7 @@
 #import "FLBackgroundTaskMgr.h"
 
 @protocol FLFloatingViewTargetProvider <NSObject>
-- (FLRect) floatingViewTargetFrame;
+- (CGRect) floatingViewTargetFrame;
 - (UIView*) floatingViewTargetView;
 @end
 
@@ -64,12 +64,12 @@ extern NSString *const FLPopoverViewWasResized;
 @end
 
 @interface FLWidget (FLFloatingViewTargetProvider)
-- (FLRect) floatingViewTargetFrame;
+- (CGRect) floatingViewTargetFrame;
 - (UIView*) floatingViewTargetView;
 @end
 
 @interface UIView (FLFloatingViewTargetProvider)
-- (FLRect) floatingViewTargetFrame;
+- (CGRect) floatingViewTargetFrame;
 - (UIView*) floatingViewTargetView;
 @end
 

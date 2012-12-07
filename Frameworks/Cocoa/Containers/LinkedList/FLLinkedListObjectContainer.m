@@ -1,6 +1,6 @@
 //
 //  FLLinkedListObjectContainer.m
-//  FishLampCore
+//  FLCore
 //
 //  Created by Mike Fullerton on 4/24/12.
 //  Copyright (c) 2012 GreenTongue Software. All rights reserved.
@@ -21,13 +21,13 @@
 }
 
 + (FLLinkedListObjectContainer*) linkedListObjectContainer:(id) object {
-    return autorelease_([[FLLinkedListObjectContainer alloc] initWithObject:object]);
+    return FLAutorelease([[FLLinkedListObjectContainer alloc] initWithObject:object]);
 }
 
 #if FL_MRC
 - (void) dealloc {
-    release_(_key);
-    release_(_object);
+    FLRelease(_key);
+    FLRelease(_object);
 	super_dealloc_();
 }
 #endif

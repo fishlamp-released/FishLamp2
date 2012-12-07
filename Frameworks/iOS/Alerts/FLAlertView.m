@@ -24,7 +24,7 @@
     [[[FLTheme currentTheme] alertViewThemeApplicator] applyThemeToObject:self];
 }
 
-- (id)initWithFrame:(FLRect)frame
+- (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
@@ -106,7 +106,7 @@
     }
 
     if(FLStringIsNotEmpty(_messageLabel.text)) {
-        FLRect frame = _messageLabel.frame;
+        CGRect frame = _messageLabel.frame;
         frame.origin.x = padding.left;
         frame.origin.y = FLRectGetBottom(self.titleLabel.frame) - padding.bottom;
         frame.size.width = contentWidth;
@@ -140,10 +140,10 @@
 
 #if FL_MRC 
 - (void) dealloc {
-    release_(_buttonBox);
-    release_(_triangleShapeWidget);
-    release_(_colorBar);
-    release_(_title);    release_(_messageLabel);
+    FLRelease(_buttonBox);
+    FLRelease(_triangleShapeWidget);
+    FLRelease(_colorBar);
+    FLRelease(_title);    FLRelease(_messageLabel);
     super_dealloc_();
 }
 
@@ -185,7 +185,7 @@
     
     if(_triangleShapeWidget) {
         [_triangleShapeWidget removeFromParent];
-        release_(_triangleShapeWidget);
+        FLRelease(_triangleShapeWidget);
     }
     
     _triangleShapeWidget = [[FLTriangleShapeWidget alloc] initWithFrame:CGRectMake(0,0,_triangleSize,_triangleSize)];

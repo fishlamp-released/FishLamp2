@@ -51,7 +51,7 @@
 
 - (void) dealloc
 {
-	release_(_unboundedArrays);
+	FLRelease(_unboundedArrays);
 	super_dealloc_();
 }
 

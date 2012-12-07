@@ -27,7 +27,7 @@
 + (FLModalPopoverController*) presentViewController:(UIViewController*) contentController
 	inViewController:(UIViewController*) inViewController
 	permittedArrowDirections:(UIPopoverArrowDirection)arrowDirections
-	fromRect:(FLRect) rect
+	fromRect:(CGRect) rect
 	animated:(BOOL) animated
 	isModal:(BOOL) isModal;
 

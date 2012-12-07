@@ -84,9 +84,9 @@
 
 - (void) dealloc
 {
-	release_(_userInfo);
-	release_(_items);
-	release_(_clickedCallback);
+	FLRelease(_userInfo);
+	FLRelease(_items);
+	FLRelease(_clickedCallback);
 	super_dealloc_();
 }
 

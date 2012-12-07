@@ -14,15 +14,15 @@
 @synthesize tiledImage = _image;
 
 - (void) dealloc {
-	release_(_image);
+	FLRelease(_image);
 	super_dealloc_();
 }
 
-- (void)drawRect:(FLRect)rect {
+- (void)drawRect:(CGRect)rect {
 	// Drawing code
 	CGImageRef image = CGImageRetain(_image.CGImage);
 
-	FLRect imageRect;
+	CGRect imageRect;
 	imageRect.origin = CGPointMake(0.0, 0.0);
 	imageRect.size = _image.size;
 

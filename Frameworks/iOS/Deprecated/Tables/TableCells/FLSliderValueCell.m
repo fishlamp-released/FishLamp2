@@ -82,7 +82,7 @@
 	[self updateValue:YES];
 }
 
-- (void) layoutLabels:(FLRect) contentViewBounds
+- (void) layoutLabels:(CGRect) contentViewBounds
 {
 	contentViewBounds.size.height = MAX(self.valueLabel.labelView.frame.size.height, 
 		self.label.frame.size.height);
@@ -93,8 +93,8 @@
 {
 	[super layoutSubviews];
 
-	FLRect layoutRect = self.layoutRect;
-	FLRect frame = layoutRect;
+	CGRect layoutRect = self.layoutRect;
+	CGRect frame = layoutRect;
 	frame = FLRectInsetLeft(frame, -2);
 	frame.size.height = 30;
 	
@@ -106,7 +106,7 @@
 
 + (FLSliderValueCell*) sliderCell:(NSString*) labelOrNil
 {
-	FLSliderValueCell* cell = autorelease_([[FLSliderValueCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NSStringFromClass([self class])]);
+	FLSliderValueCell* cell = FLAutorelease([[FLSliderValueCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NSStringFromClass([self class])]);
 	if(FLStringIsNotEmpty(labelOrNil)) {
 		cell.textLabelText = labelOrNil;
 	}

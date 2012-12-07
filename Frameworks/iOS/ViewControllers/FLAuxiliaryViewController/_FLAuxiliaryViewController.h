@@ -22,11 +22,11 @@
 @property (readonly, strong, nonatomic) FLAuxiliaryView* containerView;
 
 // rects
-@property (readonly, assign, nonatomic) FLRect onscreenFrame;
-@property (readonly, assign, nonatomic) FLRect offscreenFrame;
-@property (readonly, assign, nonatomic) FLRect onscreenFrameInHostView;
-@property (readonly, assign, nonatomic) FLRect destRectForDraggerViewInHostView;
-@property (readonly, assign, nonatomic) FLRect startRectForDraggerViewInHostView;
+@property (readonly, assign, nonatomic) CGRect onscreenFrame;
+@property (readonly, assign, nonatomic) CGRect offscreenFrame;
+@property (readonly, assign, nonatomic) CGRect onscreenFrameInHostView;
+@property (readonly, assign, nonatomic) CGRect destRectForDraggerViewInHostView;
+@property (readonly, assign, nonatomic) CGRect startRectForDraggerViewInHostView;
 
 - (void) _hideAnimationFinished;
 

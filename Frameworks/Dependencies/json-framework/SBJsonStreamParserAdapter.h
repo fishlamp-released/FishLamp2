@@ -77,10 +77,10 @@ typedef enum {
  you will get one call for each full method.
  
  @code
- SBJsonStreamParserAdapter *adapter = autorelease_([[SBJsonStreamParserAdapter alloc] init]);
+ SBJsonStreamParserAdapter *adapter = FLAutorelease([[SBJsonStreamParserAdapter alloc] init]);
  adapter.delegate = self;
  
- SBJsonStreamParser *parser = autorelease_([[SBJsonStreamParser alloc] init]);
+ SBJsonStreamParser *parser = FLAutorelease([[SBJsonStreamParser alloc] init]);
  parser.delegate = adapter;
  parser.supportMultipleDocuments = YES;
 
@@ -103,11 +103,11 @@ typedef enum {
  being called on your delegate.
  
  @code
- SBJsonStreamParserAdapter *adapter = autorelease_([[SBJsonStreamParserAdapter alloc] init]);
+ SBJsonStreamParserAdapter *adapter = FLAutorelease([[SBJsonStreamParserAdapter alloc] init]);
  adapter.delegate = self;
  adapter.levelsToSkip = 1;
  
- SBJsonStreamParser *parser = autorelease_([[SBJsonStreamParser alloc] init]);
+ SBJsonStreamParser *parser = FLAutorelease([[SBJsonStreamParser alloc] init]);
  parser.delegate = adapter;
  
  // Note that this input contains A SINGLE top-level document

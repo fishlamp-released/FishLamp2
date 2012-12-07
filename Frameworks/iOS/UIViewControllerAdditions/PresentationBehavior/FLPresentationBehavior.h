@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "FishLampCore.h"
+#import "FLCore.h"
 
 @protocol FLPresentationBehavior <NSObject>
 

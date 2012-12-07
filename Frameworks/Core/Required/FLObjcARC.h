@@ -1,6 +1,6 @@
 //
 //  FLARCMacros.h
-//  FishLampCore
+//  FLCore
 //
 //  Created by Mike Fullerton on 10/30/12.
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
@@ -8,24 +8,52 @@
 
 #if FL_ARC
 
-#define mrc_autorelease_(__OBJ__)    
-#define mrc_retain_(__OBJ__) 
 
-#define retain_(__OBJ__)                        __OBJ__
-#define release_(__OBJ__) 
-#define autorelease_(__OBJ__)                   __OBJ__
-#define super_dealloc_()
 
-#define bridge_(__TO__, __FROM__)               ((__bridge __TO__) __FROM__)
-#define bridge_transfer_(__TO__, __FROM__)      ((__bridge_transfer __TO__) __FROM__)
-#define bridge_retain_(__TO__, __FROM__)        ((__bridge_retained __TO__) __FROM__)
+#define FLRetain(__OBJ__) \
+            __OBJ__
+
+#define FLRetainObject(__OBJ__) 
+
+#define FLRelease(__OBJ__) 
+
+#define FLAutorelease(__OBJ__) \
+            __OBJ__
+
+#define FLAutoreleaseObject(__OBJ__)    
+
+#define FLSuperDealloc()
+
+#define bridge_(__TO__, __FROM__) \
+            ((__bridge __TO__) __FROM__)
+            
+#define bridge_transfer_(__TO__, __FROM__) \
+            ((__bridge_transfer __TO__) __FROM__)
+
+#define bridge_FLRetain(__TO__, __FROM__) \
+            ((__bridge_retained __TO__) __FROM__)
 
 // arc utils
-#define FLReleaseBlockWithNil_(b)               b = nil
-#define FLReleaseWithNil_(b)                    b = nil
-#define FLRetainObject_(a,b)                    a = b
-#define FLCopyObject_(a,b)                      a = [b copy]
-#define FLCopyBlock(__BLOCK__)                  [__BLOCK__ copy]
+#define FLReleaseBlockWithNil(__OBJ__) \
+            __OBJ__ = nil
+
+#define FLReleaseWithNil(__OBJ__) \
+            __OBJ__ = nil
+
+#define FLAssignObjectWithRetain(__ASSIGN_TO_,__OBJ__) \
+            _ASSIGN_TO_ = __OBJ__
+
+#define FLAssignObjectWithCopy(__ASSIGN_TO_,__OBJ__) \
+            __ASSIGN_TO_ = [__OBJ__ copy]
+
+#define FLAssignObjectWithMutableCopy(__ASSIGN_TO_,__OBJ__) \
+            __ASSIGN_TO_ = [__OBJ__ mutableCopy]
+
+#define FLAutoreleasedCopy(__OBJ__) \
+            [__OBJ__ copy]
+
+#define FLAutoreleasedMutableCopy(__OBJ__) \
+            [__OBJ__ mutableCopy]
 
 NS_INLINE
 void FLManuallyRelease(id* obj) {
@@ -34,6 +62,10 @@ void FLManuallyRelease(id* obj) {
         *obj = nil;
     }
 }
+
+#define FLAutoreleasePoolOpen(__NAME__) 
+
+#define FLAutoreleasePoolClose(__NAME__) 
 
 #endif
 

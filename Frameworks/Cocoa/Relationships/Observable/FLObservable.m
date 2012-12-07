@@ -222,7 +222,7 @@ synthesize_(observers);
 }
 
 + (id) unretainedObserver:(id) observer isObserving:(id) observedObject {
-    return autorelease_([[[self class] alloc] initWithObserver:observer isObserving:observedObject]);
+    return FLAutorelease([[[self class] alloc] initWithObserver:observer isObserving:observedObject]);
 }
 
 - (void) receiveObservation:(SEL) selector fromObservable:(id) observable  {

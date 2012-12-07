@@ -99,17 +99,17 @@
 
 + (UIBarButtonItem*) flexibleSpaceBarButtonItem
 {
-	return autorelease_([[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil]);
+	return FLAutorelease([[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil]);
 }
 
 + (UIBarButtonItem*) imageButtonBarButtonItem:(UIImage*) image target:(id) target action:(SEL) action
 {
-	return autorelease_([[UIBarButtonItem alloc] initWithImage:image style:UIBarButtonItemStylePlain target:target	action:action] );
+	return FLAutorelease([[UIBarButtonItem alloc] initWithImage:image style:UIBarButtonItemStylePlain target:target	action:action] );
 }
 
 + (UIBarButtonItem*) fixedSpaceBarButtonItem:(CGFloat) width
 {
-	UIBarButtonItem* item = autorelease_([[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil]);
+	UIBarButtonItem* item = FLAutorelease([[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil]);
 	item.width = width;
 	return item;
 }

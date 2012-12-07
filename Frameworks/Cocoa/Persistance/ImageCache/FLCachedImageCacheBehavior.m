@@ -61,13 +61,13 @@ FIXME("attach to user sessions....");
 
 + (FLCachedImageCacheBehavior*) cachedImageCacheBehavior:(NSUInteger) capacity 
 {
-	return autorelease_([[FLCachedImageCacheBehavior alloc] initWithCapacity:capacity]);
+	return FLAutorelease([[FLCachedImageCacheBehavior alloc] initWithCapacity:capacity]);
 }
 
 - (void) dealloc
 {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
-	release_(_memoryCache);
+	FLRelease(_memoryCache);
 	super_dealloc_();
 }
 
@@ -108,7 +108,7 @@ FIXME("attach to user sessions....");
 {
 	if(cachedImage.imageFile.hasImage)
 	{
-		SDKSize size = cachedImage.imageFile.imageDimensions;
+		FLSize size = cachedImage.imageFile.imageDimensions;
 	
 		if(MIN(size.width, size.height) <= _maxLongSideForInMemoryCache)
 		{

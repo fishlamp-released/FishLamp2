@@ -15,7 +15,7 @@
 @synthesize columnWidth = _columnWidth;
 @synthesize resizeColumnsToFit = _resizeColumns;
 
-- (id) initWithFrame:(FLRect) frame
+- (id) initWithFrame:(CGRect) frame
 {
 	if((self = [super initWithFrame:frame]))
 	{

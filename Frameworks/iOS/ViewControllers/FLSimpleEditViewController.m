@@ -124,9 +124,9 @@
 
 - (void) dealloc
 {
-	release_(_contentView);
-	release_(_saveButton);
-	release_(_cancelButton);
+	FLRelease(_contentView);
+	FLRelease(_saveButton);
+	FLRelease(_cancelButton);
 	super_dealloc_();
 }
 
@@ -221,7 +221,7 @@
 }
 
 - (UIView*) createBackgroundView {
-	FLGradientView* view = autorelease_([[FLGradientView alloc] initWithFrame:CGRectMake(0,0,320,480)]);
+	FLGradientView* view = FLAutorelease([[FLGradientView alloc] initWithFrame:CGRectMake(0,0,320,480)]);
     return view;
 }
 
@@ -248,20 +248,20 @@
 {
 	if(self.navigationController)
 	{
-		FLRect navBarRect = self.navigationController.navigationBar.frame;
+		CGRect navBarRect = self.navigationController.navigationBar.frame;
 
 //		if(_bottomToolbar)
 //		{
-//			FLRect toolbarRect = _bottomToolbar.hidden ? CGRectZero : _bottomToolbar.frame;
+//			CGRect toolbarRect = _bottomToolbar.hidden ? CGRectZero : _bottomToolbar.frame;
 //			
-//			FLRect newRect = self.view.bounds;
+//			CGRect newRect = self.view.bounds;
 //			newRect.origin.y = FLRectGetBottom(navBarRect);
 //			newRect.size.height = toolbarRect.origin.y - newRect.origin.y;
 //			self.webView.frame = newRect;
 //		}
 //		else
 		{
-			FLRect newRect = self.view.bounds;
+			CGRect newRect = self.view.bounds;
 			newRect.origin.y = FLRectGetBottom(navBarRect);
 			newRect.size.height = FLRectGetBottom(self.view.bounds) - newRect.origin.y;
 			_contentView.frame = newRect;

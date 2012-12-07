@@ -68,13 +68,13 @@ typedef enum {
 }
 + (FLButtonbarViewContainer*) buttonbarViewContainer:(UIView*) view key:(NSString*) key
 {
-	return autorelease_([[FLButtonbarViewContainer alloc] initWithView:view key:key]);
+	return FLAutorelease([[FLButtonbarViewContainer alloc] initWithView:view key:key]);
 }
 
 - (void) dealloc
 {
-	release_(_view);
-	release_(_key);
+	FLRelease(_view);
+	FLRelease(_key);
 	super_dealloc_();
 }
 
@@ -105,7 +105,7 @@ typedef enum {
 FLSynthesizeStructProperty(isInitialized, setIsInitialized, BOOL, _navBarFlags);
 FLSynthesizeStructProperty(automaticallyShowBackButton, setAutomaticallyShowBackButton, BOOL, _navBarFlags);
 
-- (id) initWithFrame:(FLRect) frame
+- (id) initWithFrame:(CGRect) frame
 {
 	if((self = [super initWithFrame:frame]))
 	{
@@ -121,13 +121,13 @@ FLSynthesizeStructProperty(automaticallyShowBackButton, setAutomaticallyShowBack
 
 - (void) dealloc
 {
-	release_(_leftViews);
-	release_(_rightViews);
-	release_(_label);
+	FLRelease(_leftViews);
+	FLRelease(_rightViews);
+	FLRelease(_label);
 	super_dealloc_();
 }
 
-- (FLRect) rectForButtonWithKey:(NSString*) key forDisplayInView:(UIView*) view
+- (CGRect) rectForButtonWithKey:(NSString*) key forDisplayInView:(UIView*) view
 {
 	UIView* ourBarView = [self viewForKey:key];
 	return ourBarView ? [view convertRect:ourBarView.frame fromView:self] : CGRectZero;
@@ -341,14 +341,14 @@ FLSynthesizeStructProperty(automaticallyShowBackButton, setAutomaticallyShowBack
 	FLButtonbarViewContainer* viewContainer = [self _viewContainerForKey:key array:_leftViews];
 	if(viewContainer)
 	{
-		[_leftViews removeObject:autorelease_(retain_(viewContainer))];
+		[_leftViews removeObject:FLAutorelease(retain_(viewContainer))];
 	}
 	else
 	{
 		viewContainer = [self _viewContainerForKey:key array:_rightViews];
 		if(viewContainer)
 		{
-			[_rightViews removeObject:autorelease_(retain_(viewContainer))];
+			[_rightViews removeObject:FLAutorelease(retain_(viewContainer))];
 		}
 	}
 	
@@ -603,7 +603,7 @@ FLSynthesizeStructProperty(automaticallyShowBackButton, setAutomaticallyShowBack
 						left += s_buffer;
 					}
 				
-					FLRect r = FLRectSetSize(leftView.frame, 
+					CGRect r = FLRectSetSize(leftView.frame, 
 							MAX(leftView.frame.size.width, height), 
 							MAX(leftView.frame.size.height, height));
 						
@@ -622,7 +622,7 @@ FLSynthesizeStructProperty(automaticallyShowBackButton, setAutomaticallyShowBack
 				
 					[leftView setViewSizeToContentSize];
 
-					FLRect r = CGRectMake(left,0,leftView.frame.size.width, height);
+					CGRect r = CGRectMake(left,0,leftView.frame.size.width, height);
 					leftView.frameOptimizedForSize = FLRectCenterRectInRect(r, leftView.frame);
 					
 					left = FLRectGetRight(leftView.frame);
@@ -643,10 +643,10 @@ FLSynthesizeStructProperty(automaticallyShowBackButton, setAutomaticallyShowBack
 			UIView* rightView = viewContainer.view;
 			if(!rightView.hidden && viewContainer.animationState != FLButtonBarViewAnimationStateAnimatingHide)
 			{
-				FLRect layoutRect = CGRectMake(0,0,MAX(s_minWidth, rightView.frame.size.width), height);
+				CGRect layoutRect = CGRectMake(0,0,MAX(s_minWidth, rightView.frame.size.width), height);
 				if(rightView.tag == kResizableView)
 				{
-					FLRect r = FLRectSetSize(rightView.frame, 
+					CGRect r = FLRectSetSize(rightView.frame, 
 								MAX(rightView.frame.size.width, height),
 								MAX(rightView.frame.size.height, height));
 					
@@ -681,8 +681,8 @@ FLSynthesizeStructProperty(automaticallyShowBackButton, setAutomaticallyShowBack
 	
 	CGFloat maxSize = right - left;
 	   
-	FLRect titleRect = CGRectZero;
-	FLRect subtitleRect = CGRectZero;
+	CGRect titleRect = CGRectZero;
+	CGRect subtitleRect = CGRectZero;
 		
 	titleRect.size = [_label sizeThatFitsText];
 	titleRect = FLRectCenterRectInRect(self.bounds, FLRectSetWidth(titleRect, MIN(maxSize, titleRect.size.width)));
@@ -696,7 +696,7 @@ FLSynthesizeStructProperty(automaticallyShowBackButton, setAutomaticallyShowBack
 		subtitleRect.origin.y = FLRectGetBottom(titleRect) - 2.0f;
 	}
 	
-//	  FLPoint centerPoint = FLRectGetCenter(self.bounds); //[self convertPoint:FLRectGetCenter(self.superview.bounds) fromView:self.superview];
+//	  CGPoint centerPoint = FLRectGetCenter(self.bounds); //[self convertPoint:FLRectGetCenter(self.superview.bounds) fromView:self.superview];
 //	  frame = FLRectOptimizedForViewSize(FLRectCenterOnPoint(frame, centerPoint));
 	
 	CGFloat insetLeft = 0.0;
@@ -779,12 +779,12 @@ FLSynthesizeStructProperty(automaticallyShowBackButton, setAutomaticallyShowBack
     gradient.autoresizingMask = UIViewAutoresizingFlexibleEverything;
     gradient.alpha = 0.6f;
     [self insertSubview:gradient atIndex:0];
-    release_(gradient);
+    FLRelease(gradient);
 }
 
 + (void) createTopToolbarForViewController:(UIViewController*) viewController
 {
-    FLDeprecatedButtonbarView* toolbar = autorelease_([[FLDeprecatedButtonbarView alloc] initWithFrame:CGRectMake(0,0,viewController.view.frame.size.width, 44)]);
+    FLDeprecatedButtonbarView* toolbar = FLAutorelease([[FLDeprecatedButtonbarView alloc] initWithFrame:CGRectMake(0,0,viewController.view.frame.size.width, 44)]);
     toolbar.title = viewController.title;
     [toolbar addBackgroundGradientView];
     viewController.topBarView = toolbar;

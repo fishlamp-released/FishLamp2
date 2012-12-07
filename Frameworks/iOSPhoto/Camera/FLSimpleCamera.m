@@ -28,7 +28,7 @@
 
 @implementation FLOverlayCameraView
 
-- (id) initWithFrame:(FLRect) frame
+- (id) initWithFrame:(CGRect) frame
 {
     if((self = [super initWithFrame:frame]))
     {
@@ -51,11 +51,11 @@
 
 - (void) dealloc
 {
-    release_(_label);
+    FLRelease(_label);
     super_dealloc_();
 }
 
-- (BOOL) pointInside:(FLPoint)point withEvent:(UIEvent *)event
+- (BOOL) pointInside:(CGPoint)point withEvent:(UIEvent *)event
 {
     return NO;
 }
@@ -108,7 +108,7 @@
 
 
 - (void) _addLocationOverlay {
-    _overlayView = autorelease_([[FLOverlayCameraView alloc] initWithFrame:CGRectMake(0,50,320,480)]);
+    _overlayView = FLAutorelease([[FLOverlayCameraView alloc] initWithFrame:CGRectMake(0,50,320,480)]);
     _overlayView.userInteractionEnabled = YES;
     _overlayView.exclusiveTouch = NO;
     _overlayView.multipleTouchEnabled = YES;
@@ -156,7 +156,7 @@
     if(_locationManager) {
         CLLocation* lastLocation = _locationManager.location;
         if(lastLocation && CLLocationCoordinate2DIsValid(lastLocation.coordinate)) {
-            NSMutableDictionary* locDict = autorelease_([[exif objectForKey:(NSString*)kCGImagePropertyGPSDictionary] mutableCopy]);
+            NSMutableDictionary* locDict = FLAutorelease([[exif objectForKey:(NSString*)kCGImagePropertyGPSDictionary] mutableCopy]);
             
             if(!locDict) {
                 locDict = [NSMutableDictionary dictionary];

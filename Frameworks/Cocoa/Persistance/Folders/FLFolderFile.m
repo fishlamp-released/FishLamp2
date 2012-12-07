@@ -27,8 +27,8 @@
 }
 
 - (void) dealloc {
-	release_(_fileName);
-	release_(_folder);
+	FLRelease(_fileName);
+	FLRelease(_folder);
 	super_dealloc_();
 }
 
@@ -76,7 +76,7 @@
 			userInfo:[NSDictionary dictionaryWithObject:@"file is missing - can't create read stream" forKey:NSLocalizedFailureReasonErrorKey]]);
 	}
 
-	return autorelease_([[NSInputStream alloc] initWithFileAtPath:self.filePath]);
+	return FLAutorelease([[NSInputStream alloc] initWithFileAtPath:self.filePath]);
 }
 
 

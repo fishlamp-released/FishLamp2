@@ -46,7 +46,7 @@
 
 - (void) dealloc
 {
-	release_(_subview);
+	FLRelease(_subview);
 	super_dealloc_();
 }
 

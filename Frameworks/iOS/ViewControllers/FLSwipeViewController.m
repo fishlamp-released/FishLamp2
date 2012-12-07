@@ -27,15 +27,15 @@
 }
 
 - (void) dealloc {   
-    release_(_bottomAuxiliaryViewController);
-    release_(_scrollView);
-    release_(_breadCrumbview);
-    release_(_breadcrumbHost);
+    FLRelease(_bottomAuxiliaryViewController);
+    FLRelease(_scrollView);
+    FLRelease(_breadCrumbview);
+    FLRelease(_breadcrumbHost);
     super_dealloc_();
 }
 
 - (void) updateLayout {
-    FLRect bounds = self.view.bounds;
+    CGRect bounds = self.view.bounds;
     bounds.origin.x = 0;
     
     for(FLViewControllerPlaceholder* placeholder in self.placeholders.forwardObjectEnumerator) {
@@ -52,15 +52,15 @@
     return _scrollView;
 }
 
-- (FLRect) containerViewVisibleBounds {
-    FLRect visibleRect;
+- (CGRect) containerViewVisibleBounds {
+    CGRect visibleRect;
     visibleRect.origin = _scrollView.contentOffset;
     visibleRect.size = _scrollView.frame.size;
     return CGRectInset(visibleRect, 4, 4);
 }
 
 - (void) recalculateScrollView:(BOOL) animate {
-    FLRect bounds = self.view.bounds;
+    CGRect bounds = self.view.bounds;
     CGFloat visibleWidth = bounds.size.width;
     
     bounds.size.width *= self.viewControllerCount;
@@ -111,7 +111,7 @@
     gradientView.autoresizingMask = UIViewAutoresizingFlexibleEverything;
     gradientView.alpha = 0.75f;
     [_breadcrumbHost addSubview:gradientView];
-    release_(gradientView);
+    FLRelease(gradientView);
 
     _breadCrumbview = [[FLBreadcrumbView alloc] initWithFrame:_breadcrumbHost.bounds];
     _breadCrumbview.autoresizingMask = UIViewAutoresizingFlexibleEverything; 
@@ -193,7 +193,7 @@
 }
 
 - (void) updateVisibleViews {
-    FLRect visibleBounds = self.containerViewVisibleBounds;
+    CGRect visibleBounds = self.containerViewVisibleBounds;
     UIView* containerView = self.containerView;
     
     for(FLViewControllerPlaceholder* placeholder in self.placeholders.forwardObjectEnumerator) {

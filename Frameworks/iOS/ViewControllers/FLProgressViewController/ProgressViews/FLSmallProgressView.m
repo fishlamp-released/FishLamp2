@@ -27,7 +27,7 @@
 - (void) applyTheme:(FLTheme*) theme {
 }
 
-- (id) initWithFrame:(FLRect) frame
+- (id) initWithFrame:(CGRect) frame
 {
     if(CGRectEqualToRect(CGRectZero, frame))
     {
@@ -52,14 +52,14 @@
 		
 		[self addSubview:_gradientView];
 		
-		self.titleLabel = autorelease_([[UILabel alloc] initWithFrame:CGRectZero]);
-		self.progressBarLabel = autorelease_([[UILabel alloc] initWithFrame:CGRectZero]);
+		self.titleLabel = FLAutorelease([[UILabel alloc] initWithFrame:CGRectZero]);
+		self.progressBarLabel = FLAutorelease([[UILabel alloc] initWithFrame:CGRectZero]);
 		
-		self.progressBar = autorelease_([[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault]);
-		self.progressBarSpinner = autorelease_([[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite]);
+		self.progressBar = FLAutorelease([[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault]);
+		self.progressBarSpinner = FLAutorelease([[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite]);
 		self.progressBarSpinner.hidesWhenStopped = YES;
 		
-		self.button = autorelease_([[FLToolbarButtonDeprecated alloc] initWithColor:FLGradientButtonBlack title:NSLocalizedString(@"Cancel", nil) target:nil action:nil]);
+		self.button = FLAutorelease([[FLToolbarButtonDeprecated alloc] initWithColor:FLGradientButtonBlack title:NSLocalizedString(@"Cancel", nil) target:nil action:nil]);
 		
 		[self _configureLabel:self.titleLabel];
 		[self _configureLabel:self.progressBarLabel];
@@ -84,20 +84,20 @@
 
 - (void) dealloc
 {
-	release_(_gradientView);
+	FLRelease(_gradientView);
 	super_dealloc_();
 }
 
 + (FLSmallProgressView*) smallProgressView
 {
-	return autorelease_([[FLSmallProgressView alloc] initWithFrame:CGRectZero]);
+	return FLAutorelease([[FLSmallProgressView alloc] initWithFrame:CGRectZero]);
 }
 
 - (void) layoutSubviews
 {
 	[super layoutSubviews];
 
-	FLRect frame = self.bounds;
+	CGRect frame = self.bounds;
 	_gradientView.frame = frame;
 	self.button.frameOptimizedForSize = 
 		FLRectCenterRectInRectVertically(frame, FLRectSetLeft(self.button.frame, self.bounds.size.width - self.button.frame.size.width - 10));

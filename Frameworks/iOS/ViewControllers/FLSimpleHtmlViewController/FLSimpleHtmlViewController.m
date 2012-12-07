@@ -18,9 +18,9 @@
 
 - (void) dealloc
 {
-	release_(_htmlView);
-	release_(_configureRequestCallback);
-	release_(_finishLoadingCallback);
+	FLRelease(_htmlView);
+	FLRelease(_configureRequestCallback);
+	FLRelease(_finishLoadingCallback);
 	super_dealloc_();
 }
 
@@ -32,7 +32,7 @@
 	}
 	else
 	{
-		UIView* parentView = autorelease_([[UIView alloc] initWithFrame:CGRectMake(0,0,320,480)]);
+		UIView* parentView = FLAutorelease([[UIView alloc] initWithFrame:CGRectMake(0,0,320,480)]);
 		parentView.autoresizingMask = UIViewAutoresizingFlexibleEverything;
 		parentView.autoresizesSubviews = YES;
 	

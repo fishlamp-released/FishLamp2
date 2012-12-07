@@ -36,7 +36,7 @@
 - (void) dealloc
 {
     [self _releaseLocationManager];
-    release_(_callback);
+    FLRelease(_callback);
     super_dealloc_();
 }
 

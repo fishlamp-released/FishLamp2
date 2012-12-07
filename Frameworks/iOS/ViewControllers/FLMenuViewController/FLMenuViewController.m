@@ -37,13 +37,13 @@
 
 + (FLMenuViewController*) menuViewController:(NSString*) title
 {
-    return autorelease_([[FLMenuViewController alloc] initWithTitle:title]);
+    return FLAutorelease([[FLMenuViewController alloc] initWithTitle:title]);
 }
 
 - (void) dealloc
 {
     [_menuView clearDelegates];
-    release_(_menuView);
+    FLRelease(_menuView);
     super_dealloc_();
 }
 
@@ -66,7 +66,7 @@
     }
 }
 //
-//- (void) layoutMenuInFrame:(FLRect) frame contentMode:(FLMenuViewControllerLayoutMode) contentMode
+//- (void) layoutMenuInFrame:(CGRect) frame contentMode:(FLMenuViewControllerLayoutMode) contentMode
 //{
 //    if(self.isViewLoaded)
 //    {

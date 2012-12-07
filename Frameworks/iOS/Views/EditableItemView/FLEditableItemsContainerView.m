@@ -12,7 +12,7 @@
 
 @implementation FLEditableItemsContainerView
 
-- (id)initWithFrame:(FLRect)frame {
+- (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         _items = [[NSMutableDictionary alloc] init];
@@ -58,7 +58,7 @@
 
 - (FLSize) sizeThatFits:(FLSize)size {
 
-    FLRect bounds = self.bounds; 
+    CGRect bounds = self.bounds; 
     bounds.size.width = size.width;
 
     return [self.arrangement performArrangement:self.subviews inBounds:bounds];

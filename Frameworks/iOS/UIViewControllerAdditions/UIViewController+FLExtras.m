@@ -92,16 +92,16 @@ FLSynthesizeAssociatedProperty(retain_nonatomic, transitionAnimation, setTransit
     }    
 }
 
-- (FLRect) frameForTopBarView:(UIView*) view {
-    FLRect frame = view.frame;
+- (CGRect) frameForTopBarView:(UIView*) view {
+    CGRect frame = view.frame;
     frame.origin.y = self.statusBarInset;
     frame.origin.x = 0;
     frame.size.width = self.view.bounds.size.width;
     return frame;
 }
 
-- (FLRect) frameForBottomBarView:(UIView*) view {
-    FLRect frame = view.frame;
+- (CGRect) frameForBottomBarView:(UIView*) view {
+    CGRect frame = view.frame;
     frame.origin.y = FLRectGetBottom(self.view.bounds) - frame.size.height;
     frame.origin.x = 0;
     frame.size.width = self.view.bounds.size.width;
@@ -177,7 +177,7 @@ FLSynthesizeAssociatedProperty(retain_nonatomic, transitionAnimation, setTransit
     }
     
     
-    FLRect frame = viewController.view.frame;
+    CGRect frame = viewController.view.frame;
     [behavior willPresentViewController:viewController inParentViewController:self];
     viewController.view.frame = frame; // please respect my frame
              
@@ -226,7 +226,7 @@ FLSynthesizeAssociatedProperty(retain_nonatomic, transitionAnimation, setTransit
 - (UIActivityIndicatorView*) addActivityIndicatorView:(UIActivityIndicatorViewStyle) style {
     FLAssert_v([NSThread currentThread] == [NSThread mainThread], @"Not on main thread");
 
-    UIActivityIndicatorView* spinner = autorelease_([[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:style]);
+    UIActivityIndicatorView* spinner = FLAutorelease([[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:style]);
     UIView* superview = self.view;
     spinner.frameOptimizedForLocation = FLRectCenterRectInRect(superview.bounds, spinner.frame);
     [spinner startAnimating];

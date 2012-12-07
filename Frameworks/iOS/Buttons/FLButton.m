@@ -84,7 +84,7 @@
 	return self;
 }
 
-- (id)initWithFrame:(FLRect)aRect {
+- (id)initWithFrame:(CGRect)aRect {
 	if ((self = [super initWithFrame: aRect])) {
 		[self privateInit];
 	}
@@ -113,24 +113,24 @@
 }
 
 + (FLButton*) button {
-    return autorelease_([[[self class] alloc] initWithFrame:CGRectZero]);
+    return FLAutorelease([[[self class] alloc] initWithFrame:CGRectZero]);
 }
 
 + (FLButton*) buttonWithTitle:(NSString*) title {
-    return autorelease_([[[self class] alloc] initWithTitle:title]);
+    return FLAutorelease([[[self class] alloc] initWithTitle:title]);
 }
 
 + (FLButton*) buttonWithTitle:(NSString*) title
                       onPress:(FLButtonPress) onPress {
-    return autorelease_([[[self class] alloc] initWithTitle:title onPress:onPress]);
+    return FLAutorelease([[[self class] alloc] initWithTitle:title onPress:onPress]);
 }
 
 - (void) dealloc {
-    release_(_stylizer);
-    release_(_colorizer);
-    release_(_onPress);
-    release_(_shapeWidget);
-	release_(_backgroundWidget);
+    FLRelease(_stylizer);
+    FLRelease(_colorizer);
+    FLRelease(_onPress);
+    FLRelease(_shapeWidget);
+	FLRelease(_backgroundWidget);
 	super_dealloc_();
 }
 
@@ -172,7 +172,7 @@
 	[self setNeedsLayout];
 }
 
-- (void) drawRect:(FLRect) rect {
+- (void) drawRect:(CGRect) rect {
 	[super drawRect:rect];
     [_shapeWidget drawWidget:rect];
 }

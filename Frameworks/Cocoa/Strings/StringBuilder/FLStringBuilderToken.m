@@ -27,11 +27,11 @@
 @synthesize token = _token;
 
 + (FLTokenPlaceholder*) tokenPlaceholder {
-    return autorelease_([[FLTokenPlaceholder alloc] init]);
+    return FLAutorelease([[FLTokenPlaceholder alloc] init]);
 }
 
 + (FLTokenPlaceholder*) tokenPlaceholder:(id) tokenOrNil {
-    return autorelease_([[FLTokenPlaceholder alloc] initWithToken:tokenOrNil]);
+    return FLAutorelease([[FLTokenPlaceholder alloc] initWithToken:tokenOrNil]);
 }
 
 - (void) appendSelfToString:(NSMutableString*) string
@@ -44,7 +44,7 @@
 }
 
 - (id)copyWithZone:(NSZone *)zone {
-    return [[FLTokenPlaceholder alloc] initWithToken:autorelease_([_token copy])];
+    return [[FLTokenPlaceholder alloc] initWithToken:FLAutorelease([_token copy])];
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
@@ -86,7 +86,7 @@
 @implementation FLEolToken
 
 + (id) eolToken {
-    return autorelease_([[FLEolToken alloc] init]);
+    return FLAutorelease([[FLEolToken alloc] init]);
 }
 
 - (void) appendSelfToString:(NSMutableString*) string
@@ -106,7 +106,7 @@
 @implementation FLIndentToken
 
 + (FLIndentToken*) indentToken {
-    return autorelease_([[[self class] alloc] init]);
+    return FLAutorelease([[[self class] alloc] init]);
 }
 
 - (void) appendSelfToString:(NSMutableString*) string
@@ -123,7 +123,7 @@
 @implementation FLOutdentToken
 
 + (FLOutdentToken*) outdentToken {
-    return autorelease_([[[self class] alloc] init]);
+    return FLAutorelease([[[self class] alloc] init]);
 }
 
 - (void) appendSelfToString:(NSMutableString*) string
@@ -141,7 +141,7 @@
 @synthesize line = _line;
 
 + (FLSingleLineToken*) singleLineToken:(NSString*) line {
-    FLSingleLineToken* token = autorelease_([[[self class] alloc] init]);
+    FLSingleLineToken* token = FLAutorelease([[[self class] alloc] init]);
     token.line = line;
     return token;
 }

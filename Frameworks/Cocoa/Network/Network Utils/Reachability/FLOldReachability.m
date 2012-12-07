@@ -384,7 +384,7 @@ static void ReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReach
 
 + (FLReachability*) reachabilityWithHostName: (NSString*) hostName
 {
-	FLReachability* retVal = autorelease_([[FLReachability alloc] init]);
+	FLReachability* retVal = FLAutorelease([[FLReachability alloc] init]);
 	retVal.reachabilityRef = ;
 	retVal.hostName = hostName;
 	retVal.isWifiRef = NO;

@@ -28,7 +28,7 @@
     [self setNeedsLayout];
 }
 
-- (id) initWithFrame:(FLRect) frame {
+- (id) initWithFrame:(CGRect) frame {
     if((self = [super initWithFrame:frame])) {
         self.backgroundColor = [UIColor clearColor];
         self.userInteractionEnabled = YES;
@@ -76,11 +76,11 @@
 }
 
 - (void) dealloc {
-    release_(_selectedGradient);
-    release_(_disclosureWidget);
-    release_(_gradient1);
-    release_(_gradient2);
-    release_(_label);
+    FLRelease(_selectedGradient);
+    FLRelease(_disclosureWidget);
+    FLRelease(_gradient1);
+    FLRelease(_gradient2);
+    FLRelease(_label);
     super_dealloc_();
 }
 
@@ -119,7 +119,7 @@
         _selectedGradient.frame = CGRectMake(self.bounds.origin.x, self.bounds.origin.y, kSelectedBarWidth, self.bounds.size.height);
     }
 
-    FLRect labelFrame = CGRectInset(_gradient1.frame, kPadding, 0);
+    CGRect labelFrame = CGRectInset(_gradient1.frame, kPadding, 0);
     labelFrame.size.height = kLabelHeight;
     
      _label.frameOptimizedForSize = FLRectCenterRectInRectVertically(_gradient1.frame, labelFrame);

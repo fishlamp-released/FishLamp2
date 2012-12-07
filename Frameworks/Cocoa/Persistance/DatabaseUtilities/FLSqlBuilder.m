@@ -34,7 +34,7 @@
 }
 
 + (id) sqlBuilderWithString:(NSString*) string {
-    return autorelease_([[[self class] alloc] initWithString:string]);
+    return FLAutorelease([[[self class] alloc] initWithString:string]);
 }
 
 - (NSInteger) length {
@@ -54,7 +54,7 @@
 
 
 + (FLSqlBuilder*) sqlBuilder {
-    return autorelease_([[FLSqlBuilder alloc] init]);
+    return FLAutorelease([[FLSqlBuilder alloc] init]);
 }
 
 - (void) bindToSqlStatement:(FLSqlStatement*) statement {
@@ -77,9 +77,9 @@
 }
 #if FL_MRC 
 - (void) dealloc {
-    release_(_delimiter);
-    release_(_dataToBind);
-    release_(_sqlString);
+    FLRelease(_delimiter);
+    FLRelease(_dataToBind);
+    FLRelease(_sqlString);
     super_dealloc_();
 }
 #endif
@@ -131,7 +131,7 @@
 	NSString *string = [[NSString alloc] initWithFormat:format arguments:va];
 	va_end(va);
 	[self appendString:string];
-    release_(string);
+    FLRelease(string);
 }
 
 - (void) appendString:(NSString*) string andString:(NSString*) andString {
@@ -146,7 +146,7 @@
                   withinParens:(BOOL) withinParens
       prefixDelimiterWithSpace:(BOOL) prefixDelimiterWithSpace {
 
-    FLRetainObject_(_delimiter, delimiter);
+    FLAssignObjectWithRetain(_delimiter, delimiter);
     _insertPrefixDelimiterSpace = prefixDelimiterWithSpace;
     if(withinParens) {
         [self openParen];

@@ -29,7 +29,7 @@
 }
 
 + (id) errorWithSoapFault:(FLSoapFault11*) fault {
-    return autorelease_([[[self class] alloc] initWithSoapFault:fault]);
+    return FLAutorelease([[[self class] alloc] initWithSoapFault:fault]);
 }
 
 - (FLSoapFault11*) soapFault {

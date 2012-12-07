@@ -6,7 +6,7 @@
 //	Copyright 2009 Greentongue Software. All rights reserved.
 //
 
-#import "FishLampCore.h"
+#import "FLCore.h"
 
 @interface FLKeyValuePair : NSObject {
 @private

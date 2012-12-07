@@ -52,21 +52,21 @@
 }
 
 + (FLTcpConnection*) tcpConnection {
-    return autorelease_([[[self class] alloc] init]); 
+    return FLAutorelease([[[self class] alloc] init]); 
 }
 
 + (FLTcpConnection*) tcpConnection:(NSString*) remoteHost remotePort:(int32_t) remotePort {
-    return autorelease_([[[self class] alloc] initWithRemoteHost:remoteHost remotePort:remotePort]);
+    return FLAutorelease([[[self class] alloc] initWithRemoteHost:remoteHost remotePort:remotePort]);
 }
 
 - (void) dealloc {
 #if FL_MRC
-    release_(_writer);
-    release_(_reader);
-    release_(_remoteHost);
-    release_(_additions);
-    release_(_requests);
-    release_(_blockingObject);
+    FLRelease(_writer);
+    FLRelease(_reader);
+    FLRelease(_remoteHost);
+    FLRelease(_additions);
+    FLRelease(_requests);
+    FLRelease(_blockingObject);
     super_dealloc_();
 #endif
 }
@@ -77,7 +77,7 @@
 
 - (void) blockRequestsWithObject:(id) object {
     FLAssert_v(_blockingObject == nil, @"alreadying blocking with an object");
-    FLRetainObject_(_blockingObject, object);
+    FLAssignObjectWithRetain(_blockingObject, object);
 }
 
 - (void) unblockRequestsWithObject:(id) object {

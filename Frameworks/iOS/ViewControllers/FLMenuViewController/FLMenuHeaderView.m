@@ -27,7 +27,7 @@
     label.textColor = FLRgbColor(171,197,225,1.0);
 }
 
-- (id) initWithFrame:(FLRect)frame
+- (id) initWithFrame:(CGRect)frame
 {
     if((self = [super initWithFrame:CGRectMake(0, 0, 100, 36)]))
     {
@@ -66,15 +66,15 @@
 
 - (void) dealloc
 {
-    release_(_label);
-    release_(_gradientView);
+    FLRelease(_label);
+    FLRelease(_gradientView);
     super_dealloc_();
 }
 @end
 
 @implementation FLMenuHeaderView
 
-- (id) initWithFrame:(FLRect)frame
+- (id) initWithFrame:(CGRect)frame
 {
     if((self = [super initWithFrame:CGRectMake(0, 0, 100, 36)]))
     {

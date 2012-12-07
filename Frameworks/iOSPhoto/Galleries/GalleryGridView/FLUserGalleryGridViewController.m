@@ -30,7 +30,7 @@
 
 - (void) dealloc
 {
-    release_(_topToolbar);
+    FLRelease(_topToolbar);
     super_dealloc_();
 }
 

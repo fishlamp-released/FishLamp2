@@ -30,12 +30,12 @@
 
 + (FLStringChooserViewController*) stringChooserViewController:(NSArray*) stringList selectedString:(NSString*) selectedString
 {
-	return autorelease_([[FLStringChooserViewController alloc] initWithStringList:stringList selectedString:selectedString]);
+	return FLAutorelease([[FLStringChooserViewController alloc] initWithStringList:stringList selectedString:selectedString]);
 }
 
 - (UIScrollView*) createScrollView
 {
-    FLTableView* tableView = autorelease_([[FLTableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain]);
+    FLTableView* tableView = FLAutorelease([[FLTableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain]);
     tableView.backgroundColor = [UIColor clearColor];
     tableView.autoresizingMask = UIViewAutoresizingFlexibleEverything;
     tableView.autoresizesSubviews = YES;
@@ -54,7 +54,7 @@
 	}
 	else
 	{
-		FLGradientView* view = autorelease_([[FLGradientView alloc] initWithFrame:CGRectMake(0,0,320,480)]);		
+		FLGradientView* view = FLAutorelease([[FLGradientView alloc] initWithFrame:CGRectMake(0,0,320,480)]);		
 		view.autoresizingMask = UIViewAutoresizingFlexibleEverything;
 		view.autoresizesSubviews = YES;
 		self.view = view;
@@ -90,12 +90,12 @@
 
 - (void) dealloc
 {	
-	release_(_chosenCallback);
-	release_(_chosenString);
-	release_(_toolbar);
-	release_(_stringList);
-	release_(_initialSelection);
-	release_(_chooseButton);
+	FLRelease(_chosenCallback);
+	FLRelease(_chosenString);
+	FLRelease(_toolbar);
+	FLRelease(_stringList);
+	FLRelease(_initialSelection);
+	FLRelease(_chooseButton);
 	super_dealloc_();
 }
 
@@ -145,7 +145,7 @@
 	
 	if(!cell)
 	{
-		cell = autorelease_([[FLSimpleTextItemTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:s_id]);
+		cell = FLAutorelease([[FLSimpleTextItemTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:s_id]);
 //		  cell.themeAction = @selector(applyThemeToStringChooserViewControllerCell:);
 //		  [cell applyTheme];
 	}

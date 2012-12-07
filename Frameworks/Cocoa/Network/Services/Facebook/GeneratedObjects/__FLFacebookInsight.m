@@ -32,14 +32,14 @@
 
 - (void) dealloc
 {
-    release_(__value);
-    release_(__end_time);
+    FLRelease(__value);
+    FLRelease(__end_time);
     super_dealloc_();
 }
 
 + (FLFacebookInsight*) facebookInsight
 {
-    return autorelease_([[FLFacebookInsight alloc] init]);
+    return FLAutorelease([[FLFacebookInsight alloc] init]);
 }
 
 - (id) init

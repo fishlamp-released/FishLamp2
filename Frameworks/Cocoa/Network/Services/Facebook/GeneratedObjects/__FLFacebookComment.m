@@ -61,10 +61,10 @@
 
 - (void) dealloc
 {
-    release_(__created_time);
-    release_(__message);
-    release_(__from);
-    release_(__likes);
+    FLRelease(__created_time);
+    FLRelease(__message);
+    FLRelease(__from);
+    FLRelease(__likes);
     super_dealloc_();
 }
 
@@ -79,7 +79,7 @@
 
 + (FLFacebookComment*) facebookComment
 {
-    return autorelease_([[FLFacebookComment alloc] init]);
+    return FLAutorelease([[FLFacebookComment alloc] init]);
 }
 
 - (id) init
@@ -94,10 +94,10 @@
 {
     if((self = [super initWithCoder:aDecoder]))
     {
-        __created_time = retain_([aDecoder decodeObjectForKey:@"__created_time"]);
-        __message = retain_([aDecoder decodeObjectForKey:@"__message"]);
-        __from = retain_([aDecoder decodeObjectForKey:@"__from"]);
-        __likes = retain_([aDecoder decodeObjectForKey:@"__likes"]);
+        __created_time = FLRetain([aDecoder decodeObjectForKey:@"__created_time"]);
+        __message = FLRetain([aDecoder decodeObjectForKey:@"__message"]);
+        __from = FLRetain([aDecoder decodeObjectForKey:@"__from"]);
+        __likes = FLRetain([aDecoder decodeObjectForKey:@"__likes"]);
     }
     return self;
 }

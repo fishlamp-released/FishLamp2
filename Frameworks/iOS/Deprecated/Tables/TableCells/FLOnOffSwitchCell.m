@@ -46,7 +46,7 @@
 
 + (FLOnOffSwitchCell*) onOffSwitchTableViewCell:(NSString*) titleOrNil
 {
-	FLOnOffSwitchCell* cell = autorelease_([[[self class] alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NSStringFromClass([self class])]);
+	FLOnOffSwitchCell* cell = FLAutorelease([[[self class] alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NSStringFromClass([self class])]);
 	if(FLStringIsNotEmpty(titleOrNil))
 	{
 		cell.textLabelText = titleOrNil;
@@ -65,7 +65,7 @@
 
 - (void)dealloc 
 {
-	release_(_switch); 
+	FLRelease(_switch); 
 	super_dealloc_();
 }
 
@@ -99,8 +99,8 @@
 
 - (void) _layoutSubviews
 {
-	FLRect layoutRect = self.layoutRect;
-	FLRect frame = FLRectJustifyRectInRectRight(layoutRect, _switch.frame);	
+	CGRect layoutRect = self.layoutRect;
+	CGRect frame = FLRectJustifyRectInRectRight(layoutRect, _switch.frame);	
 	frame = FLRectCenterRectInRectVertically(layoutRect, frame);
 //	frame.origin.x -= 10;
 	_switch.frameOptimizedForSize = frame;
@@ -128,7 +128,7 @@
 
 - (void) _layoutSubviews
 {
-	FLRect layoutRect = self.layoutRect;
+	CGRect layoutRect = self.layoutRect;
 	self.switchControl.frameOptimizedForSize = FLRectCenterRectInRectVertically(layoutRect, FLRectSetLeft(self.switchControl.frame, layoutRect.origin.x));
     self.label.frameOptimizedForSize = FLRectCenterRectInRectVertically(layoutRect, FLRectSetLeft(self.label.frame, FLRectGetRight(self.switchControl.frame) + 10.0f));
 }

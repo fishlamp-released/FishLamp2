@@ -11,7 +11,7 @@
 
 @implementation FLRoundRectWidget
 
--(void) createPathForShapeInRect:(CGMutablePathRef) path rect:(FLRect) rect
+-(void) createPathForShapeInRect:(CGMutablePathRef) path rect:(CGRect) rect
 {
 	FLCreateRectPath(path, rect, self.cornerRadius);
 }

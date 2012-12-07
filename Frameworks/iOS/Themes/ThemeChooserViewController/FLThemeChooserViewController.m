@@ -24,7 +24,7 @@
 
 - (void) dealloc 
 {
-	release_(_savedThemeInfo);
+	FLRelease(_savedThemeInfo);
 	super_dealloc_();
 }
 

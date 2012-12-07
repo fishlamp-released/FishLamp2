@@ -25,7 +25,7 @@
 }
 
 - (void) dealloc {	
-	release_(_pictureSize);
+	FLRelease(_pictureSize);
 	super_dealloc_();
 }
 
@@ -81,7 +81,7 @@ FIXME(@"need the behavior but not the operation");
 
 //+ (FLFacebookLoadUserPictureOperation*) facebookLoadUserPicture:(NSString*) encodedToken userId:(NSString*) userId  size:(FLFacebookPictureSize) size
 //{
-//	return autorelease_([[FLFacebookLoadUserPictureOperation alloc] initWithAccessToken:encodedToken userId:userId size:size]);
+//	return FLAutorelease([[FLFacebookLoadUserPictureOperation alloc] initWithAccessToken:encodedToken userId:userId size:size]);
 //}
 
 

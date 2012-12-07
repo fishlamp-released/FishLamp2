@@ -12,10 +12,10 @@
 @implementation FLFolderThumbnailGridViewCell
 
 + (FLFolderThumbnailGridViewCell*) folderThumbnailGridViewCell:(id) dataRef {
-    return autorelease_([[FLFolderThumbnailGridViewCell alloc] initWithDataRef:dataRef]);
+    return FLAutorelease([[FLFolderThumbnailGridViewCell alloc] initWithDataRef:dataRef]);
 }
 
 - (UIView*) createPrimaryView {
-    return autorelease_([[FLFolderThumbnailGridViewCellView alloc] initWithFrame:CGRectZero]);
+    return FLAutorelease([[FLFolderThumbnailGridViewCellView alloc] initWithFrame:CGRectZero]);
 }
 @end

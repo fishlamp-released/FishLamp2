@@ -86,7 +86,7 @@ FIXME("MF: This looks ass slow. Self, try again.")
 }
 
 
-- (NSInteger) _findFirstIndexInVisibleBounds:(FLRect) bounds 
+- (NSInteger) _findFirstIndexInVisibleBounds:(CGRect) bounds 
                            forCellCollection:(FLOrderedCollection*) cells {
     
     NSInteger newFirstIndex = NSNotFound;
@@ -162,7 +162,7 @@ FIXME("MF: This looks ass slow. Self, try again.")
 
 
 - (NSInteger)  _findLastIndexFromNewFirstIndex:(NSInteger) firstIndex
-                                 visibleBounds:(FLRect) visibleBounds
+                                 visibleBounds:(CGRect) visibleBounds
                              forCellCollection:(FLOrderedCollection*) cells {
     NSUInteger count = cells.count;
     NSInteger lastMatching = NSNotFound;
@@ -181,7 +181,7 @@ FIXME("MF: This looks ass slow. Self, try again.")
     return lastMatching;
 }
 
-- (void) recalculateVisibleCellsInBounds:(FLRect) visibleBounds  {
+- (void) recalculateVisibleCellsInBounds:(CGRect) visibleBounds  {
     
     [_delegate visibleGridCellCollection:self updateCellVisiblityInBounds:visibleBounds];
 

@@ -37,15 +37,15 @@
 }
 
 + (id) galleryObject:(id) objectID {
-    return autorelease_([[[self class] alloc] initWithObjectID:objectID]);
+    return FLAutorelease([[[self class] alloc] initWithObjectID:objectID]);
 }
 
 #if FL_MRC
 - (void) dealloc {
-    release_(_dataRefKey);
-    release_(_title);
-    release_(_ownerID);
-    release_(_parentID);
+    FLRelease(_dataRefKey);
+    FLRelease(_title);
+    FLRelease(_ownerID);
+    FLRelease(_parentID);
     [_objectID release];
     super_dealloc_();
 }

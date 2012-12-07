@@ -13,7 +13,7 @@
 
 + (NSString*) guidString {
 	CFUUIDRef uuid = CFUUIDCreate(kCFAllocatorDefault);
-	NSString* str = autorelease_(bridge_transfer_(NSString*, CFUUIDCreateString(kCFAllocatorDefault, uuid)));
+	NSString* str = FLAutorelease(bridge_transfer_(NSString*, CFUUIDCreateString(kCFAllocatorDefault, uuid)));
 	CFRelease(uuid);
 	return str;
 }

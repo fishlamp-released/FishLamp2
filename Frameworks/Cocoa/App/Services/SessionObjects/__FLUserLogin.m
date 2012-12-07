@@ -88,14 +88,14 @@
 
 - (void) dealloc
 {
-    release_(__userGuid);
-    release_(__userName);
-    release_(__password);
-    release_(__isAuthenticated);
-    release_(__authToken);
-    release_(__email);
-    release_(__authTokenLastUpdateTime);
-    release_(__userValue);
+    FLRelease(__userGuid);
+    FLRelease(__userName);
+    FLRelease(__password);
+    FLRelease(__isAuthenticated);
+    FLRelease(__authToken);
+    FLRelease(__email);
+    FLRelease(__authTokenLastUpdateTime);
+    FLRelease(__userValue);
     super_dealloc_();
 }
 
@@ -123,14 +123,14 @@
 {
     if((self = [super init]))
     {
-        __userGuid = retain_([aDecoder decodeObjectForKey:@"__userGuid"]);
-        __userName = retain_([aDecoder decodeObjectForKey:@"__userName"]);
-        __password = retain_([aDecoder decodeObjectForKey:@"__password"]);
-        __isAuthenticated = retain_([aDecoder decodeObjectForKey:@"__isAuthenticated"]);
-        __authToken = retain_([aDecoder decodeObjectForKey:@"__authToken"]);
-        __email = retain_([aDecoder decodeObjectForKey:@"__email"]);
-        __authTokenLastUpdateTime = retain_([aDecoder decodeObjectForKey:@"__authTokenLastUpdateTime"]);
-        __userValue = retain_([aDecoder decodeObjectForKey:@"__userValue"]);
+        __userGuid = FLRetain([aDecoder decodeObjectForKey:@"__userGuid"]);
+        __userName = FLRetain([aDecoder decodeObjectForKey:@"__userName"]);
+        __password = FLRetain([aDecoder decodeObjectForKey:@"__password"]);
+        __isAuthenticated = FLRetain([aDecoder decodeObjectForKey:@"__isAuthenticated"]);
+        __authToken = FLRetain([aDecoder decodeObjectForKey:@"__authToken"]);
+        __email = FLRetain([aDecoder decodeObjectForKey:@"__email"]);
+        __authTokenLastUpdateTime = FLRetain([aDecoder decodeObjectForKey:@"__authTokenLastUpdateTime"]);
+        __userValue = FLRetain([aDecoder decodeObjectForKey:@"__userValue"]);
     }
     return self;
 }
@@ -197,7 +197,7 @@
 
 + (FLUserLogin*) userLogin
 {
-    return autorelease_([[FLUserLogin alloc] init]);
+    return FLAutorelease([[FLUserLogin alloc] init]);
 }
 
 @end

@@ -34,7 +34,7 @@
 
 + (FLMultiLineTextEditCell*) multiLineTextEditCell:(NSString*) titleLabelOrNil
 {
-	FLMultiLineTextEditCell* cell = autorelease_([[FLMultiLineTextEditCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"FLMultiLineTextEditCell"]);
+	FLMultiLineTextEditCell* cell = FLAutorelease([[FLMultiLineTextEditCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"FLMultiLineTextEditCell"]);
 	if(FLStringIsNotEmpty(titleLabelOrNil))
 	{
 		cell.textLabelText = titleLabelOrNil;
@@ -58,9 +58,9 @@
 	return _textView ? _textView.text : [super valueLabelText];
 }
 
-- (FLRect) _rectForTextView
+- (CGRect) _rectForTextView
 {
-	FLRect layoutRect = self.layoutRect;
+	CGRect layoutRect = self.layoutRect;
 	CGFloat newTop = FLRectGetBottom(self.label.frame);
 	layoutRect.size.height -= (newTop - layoutRect.origin.y);
 	layoutRect.origin.y = newTop;
@@ -75,7 +75,7 @@
 	
 	if(_textView )
 	{	
-		FLRect layoutRect = [self _rectForTextView];
+		CGRect layoutRect = [self _rectForTextView];
 		if(!CGRectEqualToRect(_textView.frame, layoutRect))
 		{
 			_textView.frame = layoutRect;
@@ -205,8 +205,8 @@
 
 - (void) dealloc
 {
-	release_(_traits);
-	release_(_textView);
+	FLRelease(_traits);
+	FLRelease(_textView);
 	super_dealloc_();
 }
 

@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 GreenTongue Software, LLC. All rights reserved.
 //
 
-#import "FishLampCore.h"
+#import "FLCore.h"
 #import "FLObjectContainer.h"
 
 @interface FLNonRetainedObject : NSObject<FLObjectContainer> {

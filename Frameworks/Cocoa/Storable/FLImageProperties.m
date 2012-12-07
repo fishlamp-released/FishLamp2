@@ -27,11 +27,11 @@
 }
 
 + (id) imageProperties {
-	return autorelease_([[[self class] alloc] init]);
+	return FLAutorelease([[[self class] alloc] init]);
 }
 
 + (id) imagePropertiesWithImageURL:(NSURL*) url {
-    return autorelease_([[[self class] alloc] initWithImageURL:url]);
+    return FLAutorelease([[[self class] alloc] initWithImageURL:url]);
 }
 
 - (void) setUrl:(NSString*) inValue  { 

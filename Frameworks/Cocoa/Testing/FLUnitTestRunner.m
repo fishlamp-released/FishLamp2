@@ -19,7 +19,7 @@
 @implementation FLRunUnitTestsOperation
 
 + (id) unitTestRunnerOperation {
-    return autorelease_([[[self class] alloc] init]);
+    return FLAutorelease([[[self class] alloc] init]);
 }
 
 - (FLResult) runSelf {
@@ -32,7 +32,7 @@
 @implementation FLUnitTestRunner 
 
 + (id) unitTestRunner {
-    return autorelease_([[[self class] alloc] init]);
+    return FLAutorelease([[[self class] alloc] init]);
 }
 
 - (NSArray*) findTestWorkers {

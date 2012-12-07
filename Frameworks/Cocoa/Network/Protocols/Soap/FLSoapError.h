@@ -5,7 +5,7 @@
 //	Created by Mike Fullerton on 12/20/09.
 //	Copyright 2009 GreenTongue Software. All rights reserved.
 //
-#import "FishLampCore.h"
+#import "FLCore.h"
 #import "FLFrameworkErrorDomain.h"
 #import "FLSoapFault11.h"
 #import "FLErrorDomain.h"

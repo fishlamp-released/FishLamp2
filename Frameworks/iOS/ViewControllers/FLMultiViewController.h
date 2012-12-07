@@ -37,7 +37,7 @@
 
 // call when scrolling, etc..
 - (UIView*) containerView; // returns self.view by default
-- (FLRect) containerViewVisibleBounds; // returns self.view.bounds by default;
+- (CGRect) containerViewVisibleBounds; // returns self.view.bounds by default;
 
 - (void) updateVisibleViews; 
     // hides and shows visible views.
@@ -50,7 +50,7 @@
 @private
     Class _viewControllerClass;
     FLCallback_t _viewControllerFactory;
-    FLRect _frame;
+    CGRect _frame;
     NSString* _title;
     UIViewController* _viewController;
     BOOL _autoPurge;
@@ -58,7 +58,7 @@
 
 @property (readwrite, assign, nonatomic) FLCallback_t viewControllerFactory;
 @property (readwrite, assign, nonatomic) Class viewControllerClass;
-@property (readwrite, assign, nonatomic) FLRect frame;
+@property (readwrite, assign, nonatomic) CGRect frame;
 @property (readwrite, retain, nonatomic) NSString* title;
 @property (readwrite, assign, nonatomic) BOOL autoPurgeHiddenViewController;
 @property (readwrite, retain, nonatomic) UIViewController* viewController;

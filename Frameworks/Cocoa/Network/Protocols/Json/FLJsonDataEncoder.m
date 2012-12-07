@@ -52,7 +52,7 @@ FLSynthesizeSingleton(FLJsonDataEncoder);
 		case FLDataTypeFloat:
 		case FLDataTypeDouble:
 			FLAssert_v([data isKindOfClass:[NSNumber class]], @"expecting a NSNumber here");
-			*outString = retain_([_numberFormatter stringFromNumber:data]);
+			*outString = FLRetain([_numberFormatter stringFromNumber:data]);
 		break;
 		
 		case FLDataTypeBool:
@@ -75,7 +75,7 @@ FLSynthesizeSingleton(FLJsonDataEncoder);
 		break;
         
         case FLDataTypeRect: {   
-            SDKRect r = [data SDKRectValue];
+            CGRect r = [data FLRectValue];
             *outString = [NSString stringWithFormat:@"{\"x\"=%f,\"y\"=%f,\"width\"=%f,height=\"%f\"}",
                 r.origin.x,
                 r.origin.y,
@@ -84,7 +84,7 @@ FLSynthesizeSingleton(FLJsonDataEncoder);
             break;
         }
         case FLDataTypePoint: {
-            SDKPoint pt = [data SDKPointValue];
+            CGPoint pt = [data FLPointValue];
             *outString = [NSString stringWithFormat:@"{\"x\"=%f,\"y\"=%f}",
                 pt.x,
                 pt.y];
@@ -92,7 +92,7 @@ FLSynthesizeSingleton(FLJsonDataEncoder);
         }
         
         case FLDataTypeSize:{   
-            SDKSize size = [data SDKSizeValue];
+            FLSize size = [data FLSizeValue];
             *outString = [NSString stringWithFormat:@"{\"width\"=%f,height=\"%f\"}",
                 size.width,
                 size.height];

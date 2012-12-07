@@ -99,7 +99,7 @@ FLStackTrace_t _FLStackTraceMake(const char* filePath, const char* function, int
 }
 
 + (FLStackTrace*) stackTrace:(FLStackTrace_t) stackTrace {
-    return autorelease_([[FLStackTrace alloc] initWithStackTrace:stackTrace]);
+    return FLAutorelease([[FLStackTrace alloc] initWithStackTrace:stackTrace]);
 }
 
 - (void) dealloc {

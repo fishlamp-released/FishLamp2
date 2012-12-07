@@ -47,9 +47,9 @@
 
 - (void) dealloc
 {
-	release_(_helpText);
-	release_(_rowKey);
-	release_(_dataKeyPath);
+	FLRelease(_helpText);
+	FLRelease(_rowKey);
+	FLRelease(_dataKeyPath);
 	super_dealloc_();
 }
 

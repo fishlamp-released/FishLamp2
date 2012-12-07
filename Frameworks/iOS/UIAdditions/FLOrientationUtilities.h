@@ -243,7 +243,7 @@ CGFloat UICalculateInterfaceRotationDegrees(UIInterfaceOrientation from, UIInter
 }
 
 NS_INLINE
-FLRect CGRectForInterfaceOrientation(UIInterfaceOrientation interfaceOrientation, FLRect rect)
+CGRect CGRectForInterfaceOrientation(UIInterfaceOrientation interfaceOrientation, CGRect rect)
 {
 	return UIInterfaceOrientationIsLandscape(interfaceOrientation) != (rect.size.width > rect.size.height) ? FLRectRotate90Degrees(rect) : rect;
 }

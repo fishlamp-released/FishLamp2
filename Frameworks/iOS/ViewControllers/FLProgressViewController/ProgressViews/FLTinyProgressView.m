@@ -11,7 +11,7 @@
 
 @implementation FLTinyProgressView
 
-- (id) initWithFrame:(FLRect) frame
+- (id) initWithFrame:(CGRect) frame
 {
     if(CGRectEqualToRect(CGRectZero, frame))
     {
@@ -38,7 +38,7 @@
 //        [UIColor gray25Color];
 		[self addSubview:_progressView];
 		
-		self.progressBarSpinner = autorelease_([[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite]);
+		self.progressBarSpinner = FLAutorelease([[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite]);
 		[self.progressBarSpinner startAnimating];
 		[self addSubview:self.progressBarSpinner];
 		
@@ -48,7 +48,7 @@
 		titleLabel.backgroundColor = [UIColor clearColor];
 		self.titleLabel = titleLabel;
 		[self addSubview:titleLabel];
-		release_(titleLabel);
+		FLRelease(titleLabel);
 	}
 	
 	return self;
@@ -61,13 +61,13 @@
 
 + (FLTinyProgressView*) tinyProgressView
 {
-	return autorelease_([[FLTinyProgressView alloc] init]);
+	return FLAutorelease([[FLTinyProgressView alloc] init]);
 }
 
 - (void) dealloc
 {
-	release_(_backgroundView);
-	release_(_progressView);
+	FLRelease(_backgroundView);
+	FLRelease(_progressView);
 	super_dealloc_();
 }	
 

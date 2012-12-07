@@ -79,17 +79,17 @@
              animated:(BOOL) animated;
 
 // visible rect in scrollView
-- (FLRect) visibleBounds;
+- (CGRect) visibleBounds;
 
 // visible cells
 @property (readonly, retain, nonatomic) id<FLVisibleGridCellCollection> visibleCellCollection;
-- (void) updateVisibleCells:(FLRect) visibleBounds;
+- (void) updateVisibleCells:(CGRect) visibleBounds;
 - (void) lastCellIsVisible;
 - (void) visibleCellsChanged;
 - (void) unloadVisibleCells;
 
 // layout
-- (void) reflowCellsInBounds:(FLRect) bounds;
+- (void) reflowCellsInBounds:(CGRect) bounds;
 - (void) reflowCells; 
 
 

@@ -23,7 +23,7 @@ function verbose() {
 function write_paths_file() {
 
     path="$FISHLAMP_DEST/FishLampPaths.xcconfig"
-	version="// Version:12"
+	version="// Version:14"
 		
 	if [ ! -f "$path" ]; then
 	# make new empty file
@@ -36,7 +36,7 @@ function write_paths_file() {
 	    echo "FISHLAMP = $FISHLAMP_SOURCE/Frameworks" >> "$path"
 	    echo "FISHLAMP_ALL = \$(FISHLAMP)/**" >> "$path"
 	    echo "FISHLAMP_CORE = \$(FISHLAMP)/Core/**" >> "$path"
-	    echo "FISHLAMP_COCOA = \$(FISHLAMP)/Cocoa/** \$(FISHLAMP)/Dependencies/** \$(FISHLAMP)/External/** \$(FISHLAMP)/Deprecated/** \$(FISHLAMP_CORE)" >> "$path"
+	    echo "FISHLAMP_COCOA = \$(FISHLAMP)/Cocoa/** \$(FISHLAMP)/CocoaUI/** \$(FISHLAMP)/Dependencies/** \$(FISHLAMP)/External/** \$(FISHLAMP)/Deprecated/** \$(FISHLAMP_CORE)" >> "$path"
 	    echo "FISHLAMP_OSX = \$(FISHLAMP)/OSX/** \$(FISHLAMP_COCOA)" >> "$path"
 	    echo "FISHLAMP_IOS = \$(FISHLAMP)/iOS/** \$(FISHLAMP_COCOA)" >> "$path"
 	    echo "FISHLAMP_IOS_PHOTO = \$(FISHLAMP)/iOSPhoto/** \$(FISHLAMP_IOS)" >> "$path"

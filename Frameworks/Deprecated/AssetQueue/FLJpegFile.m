@@ -15,7 +15,7 @@
 
 @interface FLJpegFile ()
 @property (readwrite, strong, nonatomic) NSDictionary* properties;
-@property (readwrite, strong) SDKImage* imageData;
+@property (readwrite, strong) FLImage* imageData;
 @end
 
 @implementation FLJpegFile
@@ -33,7 +33,7 @@ static NSDictionary* s_destinationProperties = nil;
     }
 }
 
-- (id) initWithImage:(SDKImage*) image 
+- (id) initWithImage:(FLImage*) image 
 	exifDictionary:(NSDictionary*) exifDictionary
 	folder:(FLFolder*) folder 
 	fileName:(NSString*) fileName {
@@ -79,7 +79,7 @@ static NSDictionary* s_destinationProperties = nil;
 	return self;
 }
 
-- (void) setImage:(SDKImage*) image {
+- (void) setImage:(FLImage*) image {
     self.imageData = image;
 	_dimensions = _image ? _image.size : FLSizeZero;
 }
@@ -97,9 +97,9 @@ static NSDictionary* s_destinationProperties = nil;
     self.imageData = nil;
 }
 
-- (SDKImage*) image {
+- (FLImage*) image {
 	if(!_image && _jpegData) {
-		_image = [[SDKImage alloc] initWithData:_jpegData];
+		_image = [[FLImage alloc] initWithData:_jpegData];
 		_dimensions = _image.size;
 	}
 	
@@ -131,10 +131,10 @@ static NSDictionary* s_destinationProperties = nil;
 - (void) setJpegData:(NSData*) data {
 	self.image = nil;
 	_dimensions = FLSizeZero;
-	FLRetainObject_(_jpegData, data);
+	FLAssignObjectWithRetain(_jpegData, data);
 }
 
-- (SDKSize) imageDimensions {
+- (FLSize) imageDimensions {
 	if(FLSizeEqualToSize(_dimensions, FLSizeZero)) {
 		_dimensions = self.image.size;
 	}
@@ -215,13 +215,13 @@ static NSDictionary* s_destinationProperties = nil;
     
     CGImageDestinationRef imageSourceRef = nil;
     @try {
-        SDKImage* image = self.image;
+        FLImage* image = self.image;
         FLAssertIsNotNil_v(image, nil);
 
 #if IOS        
         CGImageRef imageRef = image.CGImage;
 #else
-// TODO: (how to get CGImage from SDKImage?)
+// TODO: (how to get CGImage from FLImage?)
         
         CGImageRef imageRef = nil;
         
@@ -248,7 +248,7 @@ static NSDictionary* s_destinationProperties = nil;
         if(imageSourceRef) {		
             CFRelease(imageSourceRef);
         }
-        release_(url);
+        FLRelease(url);
     }
 }
 
@@ -287,7 +287,7 @@ static NSDictionary* s_destinationProperties = nil;
 			if(imageSourceRef)
 			{
 				self.properties = 
-                    autorelease_(bridge_(NSDictionary*,
+                    FLAutorelease(bridge_(NSDictionary*,
                         CGImageSourceCopyPropertiesAtIndex(imageSourceRef, 0, nil)));
 			}
 		}
@@ -320,11 +320,11 @@ static NSDictionary* s_destinationProperties = nil;
 	return imageFile;
 }
 
-- (void) setImage:(SDKImage*) image exifDictionary:(NSDictionary*) exif
+- (void) setImage:(FLImage*) image exifDictionary:(NSDictionary*) exif
 {
 	FLReleaseWithNil_(_jpegData);
 	[self setImage:image];
-	FLRetainObject_(_properties, exif);
+	FLAssignObjectWithRetain(_properties, exif);
 }
 
 - (void) readRepresentation {

@@ -19,7 +19,7 @@
 	UIBarButtonItem* _stop;
 }
 
-- (void) showWithKeyboardRect:(FLRect) keyboardRect;
+- (void) showWithKeyboardRect:(CGRect) keyboardRect;
 - (void) slideOffscreen;
 - (void) update;
 

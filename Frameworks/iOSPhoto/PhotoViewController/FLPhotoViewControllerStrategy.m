@@ -42,7 +42,7 @@ FLSynthesizeStructProperty(registeredForFocusEvents, setRegisteredForFocusEvents
 {
 	FLCameraPhotoViewController* controller = [[FLCameraPhotoViewController alloc] initWithArrayOfCameraPhotos:self.viewController.photos folder:self.viewController.folder];
 	[self.viewController.navigationController pushViewController:controller animated:animated];
-	release_(controller);
+	FLRelease(controller);
 }
 
 - (void) dealloc
@@ -51,13 +51,13 @@ FLSynthesizeStructProperty(registeredForFocusEvents, setRegisteredForFocusEvents
 
 	_cameraController.delegate = nil;
 	[_cameraController stopCamera];
-	release_(_cameraController);
+	FLRelease(_cameraController);
 	super_dealloc_();
 }
 
 - (void) updateFocusRect
 {
-	FLPoint pt = [_cameraController.camera.device focusPointOfInterest];
+	CGPoint pt = [_cameraController.camera.device focusPointOfInterest];
 	pt.x *= 320.0;
 	pt.y *= 480.0;
 	pt.y = 480.0 - pt.y;
@@ -224,7 +224,7 @@ FLSynthesizeStructProperty(registeredForFocusEvents, setRegisteredForFocusEvents
 	self.cameraController.cameraFlashMode = newMode;
 }
 
-- (void) cameraOverlayView:(FLCameraOverlayView*) overlayView userTouchScreenAtPoint:(FLPoint) point
+- (void) cameraOverlayView:(FLCameraOverlayView*) overlayView userTouchScreenAtPoint:(CGPoint) point
 {
 	//	  if( point.x > 80 && point.x < (self.view.bounds.size.width - 80) &&
 	//		  point.y > 100 && point.y < (self.view.bounds.size.height - 100))
@@ -235,7 +235,7 @@ FLSynthesizeStructProperty(registeredForFocusEvents, setRegisteredForFocusEvents
 			if([currentDevice lockForConfiguration:nil])
 			{
 				point.y = 480.0 - point.y;
-				FLPoint cameraPoint = CGPointMake(point.x/320.0, point.y/480.0);
+				CGPoint cameraPoint = CGPointMake(point.x/320.0, point.y/480.0);
 				currentDevice.focusPointOfInterest = cameraPoint;
 				[currentDevice unlockForConfiguration];
 			}
@@ -281,7 +281,7 @@ FLSynthesizeStructProperty(registeredForFocusEvents, setRegisteredForFocusEvents
 	{
 		FLFramesCameraController* cameraController = [[FLFramesCameraController alloc] init];
 		self.cameraController = cameraController;
-		release_(cameraController);
+		FLRelease(cameraController);
 		self.cameraController.delegate = self;
 	}
 	
@@ -298,7 +298,7 @@ FLSynthesizeStructProperty(registeredForFocusEvents, setRegisteredForFocusEvents
 	{
 		FLStillCameraController* cameraController = [[FLStillCameraController alloc] init];
 		self.cameraController = cameraController;
-		release_(cameraController);
+		FLRelease(cameraController);
 
 		self.cameraController.delegate = self;
 	}

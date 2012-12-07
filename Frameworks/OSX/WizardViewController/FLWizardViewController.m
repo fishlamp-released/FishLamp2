@@ -9,61 +9,52 @@
 #import "FLWizardViewController.h"
 
 @interface FLWizardViewController ()
-@property (readwrite, strong, nonatomic) NSArray* panelClasses;
-- (void) popViewControllerAnimated:(BOOL) animated;
-- (void) pushViewController:(FLWizardPanelController*) viewController animated:(BOOL) animated;
-@property (readonly, strong, nonatomic) FLWizardPanelController* visibleViewController;
+@property (readwrite, strong, nonatomic) NSMutableArray* pendingStack;
+
+- (IBAction) respondToNextButton:(id) sender;
+- (IBAction) respondToPreviousButton:(id) sender;
+- (IBAction) respondToOtherButton:(id) sender;
+
 @end
 
 @implementation FLWizardViewController
 
 @synthesize nextButton = _nextButton;
 @synthesize previousButton = _previousButton;
-@synthesize cancelButton = _cancelButton;
-@synthesize wizardViewControllerDelegate = _delegate;
-@synthesize panelClasses = _panelClasses;
+@synthesize otherButton = _otherButton;
+@synthesize delegate = _delegate;
+@synthesize wizardPanels = _wizardPanels;
 @synthesize titleTextField = _titleTextField;
+@synthesize pendingStack = _pendingStack;
+@synthesize titleEnclosureView = _titleEnclosureView;
+@synthesize buttonEnclosureView = _buttonEnclosureView;
+@synthesize wizardPanelBackgroundView = _wizardPanelBackgroundView;
+@synthesize backgroundView = _backgroundView;
+@synthesize wizardPanelEnclosureView = _wizardPanelEnclosureView;
 
 #if FL_MRC
 - (void) dealloc {
-    [_panelClasses release];
+    [_wizardPanelBackgroundView release];
+    [_backgroundView release];
+    [_wizardPanelEnclosureView release];
+    [_buttonEnclosureView release];
+    [_titleEnclosureView release];
+    [_pendingStack release];
+    [_wizardPanels release];
     [_nextButton release];
     [_previousButton release];
-    [_cancelButton release];
+    [_otherButton release];
     [_viewStack release];
+    
     [super dealloc];
 }
 #endif
 
 - (id) init {
-    self = [super initWithNibName:@"FLWizardViewController" bundle:nil];
+    self = [self initWithNibName:@"FLWizardViewController" bundle:nil];
     if(self) {
-        
     }
     return self;
-}
-
-+ (id) wizardViewController {
-    return autorelease_([[[self class] alloc] init]);
-}
-
-- (void)loadView {
-    [super loadView];
-    _previousButton.hidden = YES;
-    _cancelButton.hidden = YES;
-    _nextButton.enabled = NO;
-}
-
-- (FLWizardPanelController*) createPanelForIndex:(int) idx {
-    Class panelClass = [_panelClasses objectAtIndex:idx];
-    return autorelease_([[panelClass alloc] init]); 
-}
-
-- (void) startWizardWithPanelClasses:(NSArray*) panelClasses {
-    self.panelClasses = panelClasses;
-    
-    _currentPanel = 0;
-    [self pushViewController:[self createPanelForIndex:_currentPanel] animated:NO];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -71,37 +62,96 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         _viewStack = [[NSMutableArray alloc] init];
+        _wizardPanels = [[NSMutableArray alloc] init];
     }
     
     return self;
 }
 
-- (IBAction) nextPanel:(id) sender {
-
++ (id) wizardViewController {
+    return FLAutorelease([[[self class] alloc] init]);
 }
 
-- (IBAction) prevPanel:(id) sender {
-
+- (void) setViewToResize:(NSView*) view {
+    view.autoresizingMask = NSViewHeightSizable | NSViewWidthSizable;
+//    view.layerContentsPlacement = NSViewLayerContentsPlacementBottomLeft;
 }
 
-- (IBAction) cancel:(id) sender {
-    FLPerformSelector1(self.visibleViewController, @selector(wizardPanelDidDisappear:), self);
+- (void) setBackgroundView:(NSView*) view {
+    view.frame = self.view.bounds;
+    [self setViewToResize:view];
+    [self.view addSubview:view positioned:NSWindowBelow relativeTo:nil];
 }
 
-- (FLWizardPanelController*) visibleViewController {
-    return _viewStack.count > 0 ? autorelease_(retain_([_viewStack objectAtIndex:_viewStack.count - 1])) : nil;
+- (void) setWizardPanelBackgroundView:(NSView*) view {
+    view.frame = _wizardPanelEnclosureView.bounds;
+    [self setViewToResize:view];
+    [_wizardPanelEnclosureView addSubview:view positioned:NSWindowBelow relativeTo:nil];
 }
 
-- (FLWizardPanelController*) tertiaryViewController {
-    return _viewStack.count > 1 ? autorelease_(retain_([_viewStack objectAtIndex:_viewStack.count - 2])) : nil;
+- (void) startWizardInWindow:(NSWindow*) window {
+    [window setContentView:self.view];
+    [window setDefaultButtonCell:[self.nextButton cell]];
+
+    self.pendingStack = FLAutoreleasedMutableCopy(self.wizardPanels); 
+    
+    FLPerformSelector1(_delegate, @selector(wizardViewControllerWillStart:), self);
+    
+    [self pushWizardPanel:[self.pendingStack popFirstObject] animated:NO completion:^{
+        FLPerformSelector1(_delegate, @selector(wizardViewControllerDidStart:), self);
+    }];
 }
 
-- (void) popViewControllerAnimated:(BOOL) animated {
+- (void)loadView {
+    [super loadView];
+    _previousButton.hidden = YES;
+    _otherButton.hidden = YES;
+    _nextButton.enabled = NO;
+    FLPerformSelector1(_delegate, @selector(wizardViewControllerCanStart:), self);
+}
+
+- (IBAction) respondToNextButton:(id) sender {
+    FLPerformSelector1(self.visibleWizardPanel, @selector(wizardPanelRespondToNextButton:), self);
+}
+
+- (IBAction) respondToPreviousButton:(id) sender {
+    FLPerformSelector1(self.visibleWizardPanel, @selector(wizardPanelRespondToPreviousButton:), self);
+}
+
+- (IBAction) respondToOtherButton:(id) sender {
+    FLPerformSelector1(self.visibleWizardPanel, @selector(wizardPanelRespondToOtherButton:), self);
+}
+
+- (FLWizardPanel*) nextWizardPanel {
+    return _viewStack.count > 0 ? FLAutorelease(FLRetain([_viewStack objectAtIndex:_viewStack.count - 1])) : nil;
+}
+
+- (FLWizardPanel*) visibleWizardPanel {
+    return _viewStack.count > 0 ? FLAutorelease(FLRetain([_viewStack objectAtIndex:_viewStack.count - 1])) : nil;
+}
+
+- (FLWizardPanel*) previousWizardPanel {
+    return _viewStack.count > 1 ? FLAutorelease(FLRetain([_viewStack objectAtIndex:_viewStack.count - 2])) : nil;
+}
+
+- (void) addWizardPanel:(FLWizardPanel*) wizardPanel {
+
+    [self setViewToResize:wizardPanel.view];
+
+    [_wizardPanels addObject:wizardPanel];
+}
+
+- (void) removeWizardPanel:(FLWizardPanel*) wizardPanel {
+    [_wizardPanels removeObject:wizardPanel];
+}
+
+- (void) popWizardPanelAnimated:(BOOL) animated 
+                     completion:(void (^)()) completion{
 
     animated = NO;
 
-    NSViewController* toHide = self.visibleViewController;
-    NSViewController* toShow = self.tertiaryViewController;
+    NSViewController* toHide = self.visibleWizardPanel;
+    NSViewController* toShow = self.previousWizardPanel;
     
     if(animated) {
     
@@ -110,6 +160,7 @@
     
         if(toHide) {
             [toHide.view removeFromSuperview];
+            [_viewStack removeObject:toHide];
         }
 
         if(toShow) {
@@ -117,20 +168,25 @@
             toShow.view.hidden = NO;
         }
 
+        if(toHide) {
+        }
+
+        if(completion) {
+            completion();
+        }
     }
     
-    if(toHide) {
-        [_viewStack removeObject:toHide];
-    }
      
     [self.view.window display];
 }
 
-- (void) pushViewController:(FLWizardPanelController*) viewController animated:(BOOL) animated {
+- (void) pushWizardPanel:(FLWizardPanel*) viewController 
+                animated:(BOOL) animated 
+              completion:(void (^)()) completion {
 
 
     animated = NO;
-    NSViewController* visible = self.visibleViewController;
+    NSViewController* visible = self.visibleWizardPanel;
     
     [_viewStack addObject:viewController];
     
@@ -156,7 +212,7 @@
 //            self,                           NSViewAnimationTargetKey,
 //            NSViewAnimationFadeOutEffect,	NSViewAnimationEffectKey, nil]];
 //        
-//        NSViewAnimation *animation = autorelease_([[NSViewAnimation alloc] initWithViewAnimations:animations]);
+//        NSViewAnimation *animation = FLAutorelease([[NSViewAnimation alloc] initWithViewAnimations:animations]);
 //        [animation setAnimationBlockingMode:NSAnimationBlocking];
 //        [animation setDuration:0.3];
 //        [animation startAnimation];
@@ -168,15 +224,27 @@
     }
     else {
 
-        self.titleTextField.stringValue = [[viewController class] localizedWizardPanelTitle];
+        self.titleTextField.stringValue = viewController.title;
 
-        viewController.view.frame = self.view.frame;
-        [self.view addSubview:viewController.view positioned:NSWindowAbove relativeTo:visible.view];
+        [_breadcrumbBarView setBreadcrumb:[FLBreadcrumb breadcrumb:viewController.title] forKey:viewController.title];
+
+        viewController.view.frame = _wizardPanelEnclosureView.bounds;
+        
+//        NSView* aboveView = visible.view;
+//        if(!aboveView) {
+//            aboveView = _wizardPanelBackgroundView;
+//        }
+//        
+        [_wizardPanelEnclosureView addSubview:viewController.view positioned:NSWindowAbove relativeTo:nil];
         visible.view.hidden = YES;
 
         FLPerformSelector1(viewController, @selector(wizardPanelDidAppear:), self);
         if(visible) {
             FLPerformSelector1(visible, @selector(wizardPanelDidDisappear:), self);
+        }
+        
+        if(completion) {
+            completion();
         }
     }
 

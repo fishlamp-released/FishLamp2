@@ -31,7 +31,7 @@
 
 #if FL_MRC 
 - (void) dealloc {
-    release_(_lengthyTask);
+    FLRelease(_lengthyTask);
     super_dealloc_();
 }
 
@@ -67,7 +67,7 @@
 
 + (FLLengthyTaskProgressViewController*) lengthyTaskProgressViewController:(FLLengthyTask*) task
                                                          progressViewClass:(Class) progressViewClass {
-    return autorelease_([[FLLengthyTaskProgressViewController alloc] initWithLengthyTask:task  progressViewClass:progressViewClass]);
+    return FLAutorelease([[FLLengthyTaskProgressViewController alloc] initWithLengthyTask:task  progressViewClass:progressViewClass]);
 }
 
 

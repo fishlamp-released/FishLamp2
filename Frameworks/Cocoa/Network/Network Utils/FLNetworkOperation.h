@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 GreenTongue Software. All rights reserved.
 //
 
-#import "FishLampCore.h"
+#import "FLCore.h"
 #import "FLOperation.h"
 #import "FLNetworkConnection.h"
 #import "FLResult.h"

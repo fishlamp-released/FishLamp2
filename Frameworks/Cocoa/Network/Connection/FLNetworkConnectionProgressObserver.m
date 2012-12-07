@@ -38,15 +38,15 @@
 }
 
 + (FLNetworkConnectionProgressObserver*) networkConnectionProgressObserver {
-    return autorelease_([[[self class] alloc] init]);   
+    return FLAutorelease([[[self class] alloc] init]);   
 }
 
 #if FL_MRC
 - (void) dealloc {
-    release_(_onCreateProgress);
+    FLRelease(_onCreateProgress);
     if(_progress) {
         [_progress hideProgress];
-        release_(_progress);
+        FLRelease(_progress);
     }
     super_dealloc_();   
 }

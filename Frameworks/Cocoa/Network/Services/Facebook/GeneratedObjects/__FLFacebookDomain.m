@@ -37,7 +37,7 @@
 
 + (FLFacebookDomain*) facebookDomain
 {
-    return autorelease_([[FLFacebookDomain alloc] init]);
+    return FLAutorelease([[FLFacebookDomain alloc] init]);
 }
 
 - (id) init

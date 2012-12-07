@@ -178,7 +178,7 @@
 
 - (NSDictionary*)parseURLParams:(NSString *)query {
 	NSArray *pairs = [query componentsSeparatedByString:@"&"];
-	NSMutableDictionary *params = autorelease_([[NSMutableDictionary alloc] init]);
+	NSMutableDictionary *params = FLAutorelease([[NSMutableDictionary alloc] init]);
 	
 	for (NSString *pair in pairs) 
 	{
@@ -205,7 +205,7 @@
 	for (NSString* key in [params keyEnumerator]) 
 	{
 #if IOS    
-		if (	([[params valueForKey:key] isKindOfClass:[SDKImage class]])
+		if (	([[params valueForKey:key] isKindOfClass:[FLImage class]])
 				||([[params valueForKey:key] isKindOfClass:[NSData class]])) 
 		{
 			if ([httpMethod isEqualToString:@"GET"]) 
@@ -217,7 +217,7 @@
 		}
 #endif
 
-		NSString* escaped_value = autorelease_(bridge_transfer_(NSString*,
+		NSString* escaped_value = FLAutorelease(bridge_transfer_(NSString*,
                                         CFURLCreateStringByAddingPercentEscapes(
                                             NULL, /* allocator */
                                             bridge_(void*,[params objectForKey:key]),

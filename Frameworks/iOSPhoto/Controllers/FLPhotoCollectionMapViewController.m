@@ -17,8 +17,8 @@
 @synthesize thumbnail = _thumbnail;
 - (void) dealloc
 {
-	release_(_thumbnail);
-	release_(_photo);
+	FLRelease(_thumbnail);
+	FLRelease(_photo);
 	super_dealloc_();
 }
 @end
@@ -41,7 +41,7 @@
 	annotation.subtitle = FLPrettyStringForCoordinate(coordinate);
 	annotation.thumbnail = thumbnail;
 	[self.mapView addAnnotation:annotation];
-	release_(annotation);
+	FLRelease(annotation);
 	
 	self.title = [NSString stringWithFormat:(NSLocalizedString(@"%d Photos", nil)), self.mapView.annotations.count];
 	
@@ -109,7 +109,7 @@
 
 - (void) dealloc
 {	
-	release_(_progressView);
+	FLRelease(_progressView);
 	super_dealloc_();
 }
 
@@ -156,7 +156,7 @@
 
 - (MKAnnotationView *) mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>) annotation
 {
-	MKPinAnnotationView *annView= autorelease_([[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"currentloc"]);
+	MKPinAnnotationView *annView= FLAutorelease([[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"currentloc"]);
 	annView.pinColor = MKPinAnnotationColorGreen;
 	annView.animatesDrop=YES;
 	annView.canShowCallout = YES;

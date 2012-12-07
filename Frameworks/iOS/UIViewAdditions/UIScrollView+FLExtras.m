@@ -11,9 +11,9 @@
 
 @implementation UIScrollView (FLExtras)
 
-- (FLRect) visibleRect
+- (CGRect) visibleRect
 {
-	FLRect visibleRect;
+	CGRect visibleRect;
 	visibleRect.origin = self.contentOffset;
 	visibleRect.size = self.bounds.size;
 	visibleRect.origin.y += self.contentInset.top;
@@ -30,7 +30,7 @@
 
 - (void) scrollToBottom:(BOOL) animated
 {
-	FLRect bounds = self.bounds;
+	CGRect bounds = self.bounds;
 	FLSize mySize = self.contentSize;
 	if(mySize.height > bounds.size.height)
 	{

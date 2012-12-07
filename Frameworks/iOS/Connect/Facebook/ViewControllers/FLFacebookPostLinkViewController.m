@@ -36,18 +36,18 @@
 
 + (FLFacebookPostLinkViewController*) facebookPostLinkViewController:(FLFacebookLink*) fbLink
 {
-	return autorelease_([[FLFacebookPostLinkViewController alloc] initWithLink:fbLink]);
+	return FLAutorelease([[FLFacebookPostLinkViewController alloc] initWithLink:fbLink]);
 }
 
 + (FLFacebookPostLinkViewController*) facebookPostLinkViewController
 {
-	return autorelease_([[FLFacebookPostLinkViewController alloc] init]);
+	return FLAutorelease([[FLFacebookPostLinkViewController alloc] init]);
 }	
 
 - (void) dealloc
 {
-    release_(_linkLabel);
-	release_(_headerView);
+    FLRelease(_linkLabel);
+	FLRelease(_headerView);
 	super_dealloc_();
 }
 

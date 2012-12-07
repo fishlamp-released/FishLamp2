@@ -72,7 +72,7 @@ FLTestCaseFlagPair s_flagPairs[] = {
 
     NSString* theString = string;
     if(lookForFlags) {
-        NSMutableString* newString = autorelease_([string mutableCopy]);
+        NSMutableString* newString = FLAutorelease([string mutableCopy]);
 
         for(int i = 0; i < (sizeof(s_flagPairs) / sizeof(FLTestCaseFlagPair)); i++) {
             
@@ -100,7 +100,7 @@ FLTestCaseFlagPair s_flagPairs[] = {
     }
 
 
-    FLRetainObject_(_testCaseName, theString);
+    FLAssignObjectWithRetain(_testCaseName, theString);
 }
 
 - (id) initWithName:(NSString*) name testBlock:(FLTestBlock) block {
@@ -126,11 +126,11 @@ FLTestCaseFlagPair s_flagPairs[] = {
 }
 
 + (FLTestCase*) testCase:(NSString*) name target:(id) target selector:(SEL) selector {
-    return autorelease_([[FLTestCase alloc] initWithName:name target:target selector:selector]);
+    return FLAutorelease([[FLTestCase alloc] initWithName:name target:target selector:selector]);
 }
 
 + (FLTestCase*) testCase:(NSString*) name testBlock:(FLTestBlock) block {
-    return autorelease_([[FLTestCase alloc] initWithName:name testBlock:block]);
+    return FLAutorelease([[FLTestCase alloc] initWithName:name testBlock:block]);
 }
 
 - (void) setTestCaseSelector:(SEL) sel {
@@ -147,11 +147,11 @@ FLTestCaseFlagPair s_flagPairs[] = {
 #if FL_MRC
 - (void) dealloc {
  
-    release_(_disabledReason);
+    FLRelease(_disabledReason);
  
-//    release_(_testCompletionBlock);
-    release_(_testCaseName);
-    release_(_testCaseBlock);
+//    FLRelease(_testCompletionBlock);
+    FLRelease(_testCaseName);
+    FLRelease(_testCaseBlock);
     super_dealloc_();
 }
 #endif

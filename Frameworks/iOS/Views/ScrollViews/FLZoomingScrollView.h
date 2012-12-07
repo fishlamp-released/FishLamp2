@@ -29,10 +29,10 @@
 	CGFloat _maxZoomScale;
 	CGFloat _doubleTapZoomScale;
 	
-	FLPoint _zoomOutDelta;
+	CGPoint _zoomOutDelta;
 	CGFloat _zoomOutScale;
 	
-	FLRect _startFrame;
+	CGRect _startFrame;
 	
 	struct {
 		unsigned int animating:1;
@@ -46,7 +46,7 @@
 		unsigned int didEndZooming:1;
 	} _zoomingScrollViewFlags;
 	
-	FLPoint _totalDelta;
+	CGPoint _totalDelta;
 	NSInteger _touchCount;
 	NSTimeInterval _lastSingleTap;
 	NSTimeInterval _firstTapTimeStamp;
@@ -70,7 +70,7 @@
 @property (readwrite, retain, nonatomic) UIView* zoomedView;
 
 - (void) setZoomingScrollViewZoomScale:(float) scale animated:(BOOL) animated;
-- (void) setZoomingScrollViewZoomScale:(float) scale translateToPoint:(FLPoint) point animated:(BOOL) animated;
+- (void) setZoomingScrollViewZoomScale:(float) scale translateToPoint:(CGPoint) point animated:(BOOL) animated;
 
 - (void) stopZooming:(BOOL) animated 
 	target:(id) target 

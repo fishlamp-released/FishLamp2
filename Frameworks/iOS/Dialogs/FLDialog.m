@@ -50,7 +50,7 @@
 }
 
 + (id) dialog:(UIViewController*) viewController {
-    return autorelease_([[[self class] alloc] initWithViewController:viewController]);
+    return FLAutorelease([[[self class] alloc] initWithViewController:viewController]);
 }
 
 - (void) viewDidLoad {
@@ -76,7 +76,7 @@
 
 #if FL_MRC
 - (void) dealloc {
-    release_(_contentViewController);
+    FLRelease(_contentViewController);
     super_dealloc_();
 }
 #endif

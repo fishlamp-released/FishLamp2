@@ -63,7 +63,7 @@
 
 // override these
 - (UIFont*) titleFont;
-- (FLRect) rectUsedForCenteringSubviews;
+- (CGRect) rectUsedForCenteringSubviews;
 - (void) updateImageAndTextViewPositions;
 - (FLSize) defaultSize;
 @end

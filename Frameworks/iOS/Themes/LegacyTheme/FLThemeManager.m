@@ -35,7 +35,7 @@ FLSynthesizeSingleton(FLThemeManager);
 //	FLSavedThemeInfo* output = [[FLUserSession instance].documentsDatabase loadObject:input];
 //	if(!output)
 //	{
-//		output = autorelease_([[FLSavedThemeInfo alloc] init]);
+//		output = FLAutorelease([[FLSavedThemeInfo alloc] init]);
 //		output.fontSizeValue = s_theme.fontSize;
 //		output.name = s_theme.name;
 //		output.className = NSStringFromClass([s_theme class]);
@@ -56,7 +56,7 @@ FLSynthesizeSingleton(FLThemeManager);
 
 - (void) setThemeWithThemeInfo:(FLSavedThemeInfo*) themeInfo
 {
-//	FLLegacyTheme* theme = autorelease_([[NSClassFromString(themeInfo.className) alloc] initWithSavedThemeInfo:themeInfo]);
+//	FLLegacyTheme* theme = FLAutorelease([[NSClassFromString(themeInfo.className) alloc] initWithSavedThemeInfo:themeInfo]);
 //	[self setCurrentTheme:theme];
 }
 
@@ -65,7 +65,7 @@ FLSynthesizeSingleton(FLThemeManager);
 //	FLSavedThemeInfo* themeInfo = [self loadSavedThemeInfo];
 //	if(themeInfo)
 //	{
-//		FLTheme* theme = autorelease_([[NSClassFromString(themeInfo.className) alloc] initWithSavedThemeInfo:themeInfo]);
+//		FLTheme* theme = FLAutorelease([[NSClassFromString(themeInfo.className) alloc] initWithSavedThemeInfo:themeInfo]);
 //		[self setCurrentTheme:theme];
 //	}
 }
@@ -98,7 +98,7 @@ FLSynthesizeSingleton(FLThemeManager);
 
 - (void) loadThemeList
 {
-    release_(_themes);
+    FLRelease(_themes);
 
 //    NSArray* paths = [[NSBundle mainBundle] pathsForResourcesOfType:@"flt" inDirectory:nil];
 //    _themes = [[NSMutableArray alloc] initWithCapacity:paths.count];

@@ -45,8 +45,8 @@
 
 - (void) dealloc
 {
-	release_(_firstTouch);
-	release_(_lastTouch);
+	FLRelease(_firstTouch);
+	FLRelease(_lastTouch);
 	super_dealloc_();
 }
 
@@ -115,7 +115,7 @@ FLSynthesizeStructProperty(canScrollTiles, setCanScrollTiles, BOOL, _tilingScrol
 	return self;
 }
 
-- (id)initWithFrame:(FLRect)frame 
+- (id)initWithFrame:(CGRect)frame 
 {
 	if ((self = [super initWithFrame:frame])) 
 	{
@@ -135,7 +135,7 @@ FLSynthesizeStructProperty(canScrollTiles, setCanScrollTiles, BOOL, _tilingScrol
 	{
 		*outView = retain_(view);
 	}
-	release_(view);
+	FLRelease(view);
 }
 
 - (void) _removeTiledViewAtIndex:(NSUInteger) which
@@ -159,7 +159,7 @@ FLSynthesizeStructProperty(canScrollTiles, setCanScrollTiles, BOOL, _tilingScrol
 	UIView* newView = nil;
 	[self createTiledView:&newView];
 	[_tiledViews addObject:newView];
-	release_(newView);
+	FLRelease(newView);
 	[self updateTiledArrangement];
 }
 
@@ -192,8 +192,8 @@ FLSynthesizeStructProperty(canScrollTiles, setCanScrollTiles, BOOL, _tilingScrol
 	
 	[[FLLowMemoryHandler defaultHandler] removeObserver:self];
 	[self tearDown];
-	release_(_scrollQueue);
-	release_(_currentScroll);
+	FLRelease(_scrollQueue);
+	FLRelease(_currentScroll);
 	super_dealloc_();
 }
 
@@ -246,7 +246,7 @@ FLSynthesizeStructProperty(canScrollTiles, setCanScrollTiles, BOOL, _tilingScrol
 {
 	if(!_tilingScrollViewFlags.isAutoRotating)
 	{
-		FLRect pageFrame = FLRectSetOrigin(self.frame, 0,0); 
+		CGRect pageFrame = FLRectSetOrigin(self.frame, 0,0); 
 		
 		for(NSUInteger i = 0; i < self.tiledViewCount; i++)
 		{
@@ -265,7 +265,7 @@ FLSynthesizeStructProperty(canScrollTiles, setCanScrollTiles, BOOL, _tilingScrol
 			[self setContentSize:size];
 		}
 		
-		FLRect visibleRect = [self scrollViewPageRectForViewAtIndex:self.centerViewIndex];
+		CGRect visibleRect = [self scrollViewPageRectForViewAtIndex:self.centerViewIndex];
 		
 		[self scrollRectToVisible:visibleRect animated:NO];
 	}
@@ -282,7 +282,7 @@ FLSynthesizeStructProperty(canScrollTiles, setCanScrollTiles, BOOL, _tilingScrol
 	CGFloat delta = scrollSnapshot.scrollAmount;
 	if(delta && self.canScrollTiles)
 	{
-		FLRect newBounds = CGRectZero;
+		CGRect newBounds = CGRectZero;
 		if(fabsf(delta) < BACK_THRESHOLD && ((scrollSnapshot.lastTouch.timestamp - scrollSnapshot.firstTouch.timestamp) >= 0.3f))
 		{
 			newBounds = [self scrollViewPageRectForViewAtIndex:self.centerViewIndex];
@@ -354,7 +354,7 @@ FLSynthesizeStructProperty(canScrollTiles, setCanScrollTiles, BOOL, _tilingScrol
 	if(_touchCount <= 0)
 	{
 		_touchCount = 0;
-		release_(_currentScroll);
+		FLRelease(_currentScroll);
 		_currentScroll = [[FLScrollSnapshot alloc] initWithFirstTouch:[FLTouch touchWithUITouch:[touches anyObject]]];
 		_tilingScrollViewFlags.scrollInProgress = NO;
 		_tilingScrollViewFlags.disableScroll = NO;
@@ -379,7 +379,7 @@ FLSynthesizeStructProperty(canScrollTiles, setCanScrollTiles, BOOL, _tilingScrol
 			_currentScroll.scrollAmount += delta;
 			if(self.canScrollTiles)
 			{
-				FLPoint newOffset = CGPointMake(self.contentOffset.x - delta, self.contentOffset.y);
+				CGPoint newOffset = CGPointMake(self.contentOffset.x - delta, self.contentOffset.y);
 				[self setContentOffset:newOffset animated:NO];
 			}
 			
@@ -436,11 +436,11 @@ FLSynthesizeStructProperty(canScrollTiles, setCanScrollTiles, BOOL, _tilingScrol
 	[self touchableScrollView:self touchesEnded:touches withEvent:event];
 }
 
-- (FLRect) scrollViewPageRectForViewAtIndex:(NSInteger) idx
+- (CGRect) scrollViewPageRectForViewAtIndex:(NSInteger) idx
 {
 	FLAssert_v(idx >= 0, @"view not found in arrangement");
 	
-	FLRect bounds = FLRectSetOrigin(self.frame, 0, 0);
+	CGRect bounds = FLRectSetOrigin(self.frame, 0, 0);
 	if(idx > 0)
 	{
 		bounds.origin.x = (bounds.size.width * idx) + (idx * (FLTilingScrollViewPageMargin*2));
@@ -460,7 +460,7 @@ FLSynthesizeStructProperty(canScrollTiles, setCanScrollTiles, BOOL, _tilingScrol
 		UIView* newView = nil;
 		[self createTiledView:&newView];
 		[_tiledViews addObject:newView];
-		release_(newView);
+		FLRelease(newView);
 	}
 	
 	[self updateTiledArrangement];
@@ -483,7 +483,7 @@ FLSynthesizeStructProperty(canScrollTiles, setCanScrollTiles, BOOL, _tilingScrol
 		UIView* view = nil;
 		[self createTiledView:&view];
 		[_tiledViews addObject:view];
-		release_(view);
+		FLRelease(view);
 	}
 	
 	[self updateTiledArrangement];
@@ -583,7 +583,7 @@ FLSynthesizeStructProperty(canScrollTiles, setCanScrollTiles, BOOL, _tilingScrol
 	UIView* newView = nil;
 	[self createTiledView:&newView];
 	[_tiledViews addObject:newView];
-	release_(newView);
+	FLRelease(newView);
 	
 	[self updateTiledArrangement];
 	
@@ -607,7 +607,7 @@ FLSynthesizeStructProperty(canScrollTiles, setCanScrollTiles, BOOL, _tilingScrol
 	UIView* newView = nil;
 	[self createTiledView:&newView];
 	[_tiledViews insertObject:newView atIndex:0];
-	release_(newView);
+	FLRelease(newView);
 
 	[self updateTiledArrangement];
 

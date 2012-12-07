@@ -61,13 +61,13 @@ FLSynthesizeStructProperty(allowMultipleSelections, setAllowMultipleSelections, 
 }
 
 - (void) dealloc {
-    release_(_selectedObjectIds);
-    release_(_visibleCellCollection);
-    release_(_cellCollection);
-    release_(_arrangement);
-    release_(_objectCache);
-    release_(_dataProvider);
-    release_(_scrollIndicatorView);
+    FLRelease(_selectedObjectIds);
+    FLRelease(_visibleCellCollection);
+    FLRelease(_cellCollection);
+    FLRelease(_arrangement);
+    FLRelease(_objectCache);
+    FLRelease(_dataProvider);
+    FLRelease(_scrollIndicatorView);
     super_dealloc_();
 }
 
@@ -116,8 +116,8 @@ FLSynthesizeStructProperty(allowMultipleSelections, setAllowMultipleSelections, 
      
 //     UIInterfaceOrientation oldOrientation = 
 //     
-//     FLRect oldBounds = self.view.bounds;
-//     FLRect newBounds = oldBounds;
+//     CGRect oldBounds = self.view.bounds;
+//     CGRect newBounds = oldBounds;
 //
 //    if(UIInterfaceOrientationIsLandscape(toInterfaceOrientation)) {
 //        newBounds.size.width = MAX(oldBounds.size.width, oldBounds.size.height);
@@ -138,8 +138,8 @@ FLSynthesizeStructProperty(allowMultipleSelections, setAllowMultipleSelections, 
     [self reflowCellsInBounds:self.scrollView.bounds];
 }
 
-- (FLRect) visibleBounds  {
-    FLRect visibleRect;
+- (CGRect) visibleBounds  {
+    CGRect visibleRect;
 	visibleRect.origin = self.scrollView.contentOffset;
 	visibleRect.size = self.scrollView.bounds.size;
     visibleRect.origin.y += self.scrollView.contentInset.top;
@@ -173,7 +173,7 @@ FLSynthesizeStructProperty(allowMultipleSelections, setAllowMultipleSelections, 
     [self.visibleCellCollection removeAllCells];
 }
 
-- (void) updateVisibleCells:(FLRect) visibleBounds {
+- (void) updateVisibleCells:(CGRect) visibleBounds {
     UIView* superview = self.gridViewSuperview;
         
     for(FLGridCell* cell in self.visibleCellCollection) {
@@ -194,7 +194,7 @@ FLSynthesizeStructProperty(allowMultipleSelections, setAllowMultipleSelections, 
     [self visibleCellsChanged];
 }
 
-- (void) visibleGridCellCollection:(id<FLVisibleGridCellCollection>) collection updateCellVisiblityInBounds:(FLRect) bounds {
+- (void) visibleGridCellCollection:(id<FLVisibleGridCellCollection>) collection updateCellVisiblityInBounds:(CGRect) bounds {
     [self updateVisibleCells:bounds];
 }
 
@@ -206,7 +206,7 @@ FLSynthesizeStructProperty(allowMultipleSelections, setAllowMultipleSelections, 
     [self reflowCellsInBounds:self.view.bounds];
 }
 
-- (void) reflowCellsInBounds:(FLRect) bounds {
+- (void) reflowCellsInBounds:(CGRect) bounds {
     FLAssertIsNotNil_(self.arrangement);
     FLAssertIsNotNil_(self.visibleCellCollection);
     FLAssertIsNotNil_(self.scrollView);
@@ -249,7 +249,7 @@ FLSynthesizeStructProperty(allowMultipleSelections, setAllowMultipleSelections, 
 
 - (void) updateScrollIndicatorViewPosition {
     if(_scrollIndicatorView) {
-        FLRect r;
+        CGRect r;
         r.origin = self.scrollView.contentOffset;
         r.size = self.scrollView.bounds.size;
         

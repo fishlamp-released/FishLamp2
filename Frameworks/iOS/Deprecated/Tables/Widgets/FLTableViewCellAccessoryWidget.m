@@ -23,7 +23,7 @@
 @synthesize arrowSize = _arrowSize;
 @synthesize selectedColor = _selectedColor;
 
-- (id) initWithFrame:(FLRect) frame
+- (id) initWithFrame:(CGRect) frame
 {
 	if((self = [super initWithFrame:frame]))
 	{
@@ -36,9 +36,9 @@
 
 - (void) dealloc
 {
-    release_(_selectedColor);
-	release_(_highlightedColor);
-	release_(_color);
+    FLRelease(_selectedColor);
+	FLRelease(_highlightedColor);
+	FLRelease(_color);
 	super_dealloc_();
 }
 
@@ -88,7 +88,7 @@
 }
 
 
-- (void) drawSelf:(FLRect) rect
+- (void) drawSelf:(CGRect) rect
 {
 	switch(_type)
 	{
@@ -102,7 +102,7 @@
 		{
 			CGContextRef ctx = UIGraphicsGetCurrentContext();
 
-			FLRect frame = self.frame;
+			CGRect frame = self.frame;
             
             FLColor_t rgb = self.color.color_t;
             

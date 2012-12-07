@@ -96,9 +96,9 @@ FLSynthesizeSingleton(FLLogFileManager);
 - (void) dealloc {
     [self _close];
 
-    release_(_appLogsFolder);
-    release_(_appName);
-    release_(_stringFormatter);
+    FLRelease(_appLogsFolder);
+    FLRelease(_appName);
+    FLRelease(_stringFormatter);
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     super_dealloc_();
@@ -123,7 +123,7 @@ FLSynthesizeSingleton(FLLogFileManager);
         else if(modDate > newest && 
                 modDate > (now - _reuseIfNewerThanSeconds)) {
                 
-            FLRetainObject_(outFilePath, fileName);
+            FLAssignObjectWithRetain(outFilePath, fileName);
             newest = modDate;
         }
     

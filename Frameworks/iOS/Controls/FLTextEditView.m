@@ -29,7 +29,7 @@
 //	view.textDescriptor = self.valueDescriptor;
 }
 
-- (id) initWithFrame:(FLRect) frame
+- (id) initWithFrame:(CGRect) frame
 {
 	if((self = [super initWithFrame:frame]))
 	{
@@ -147,10 +147,10 @@
 
 - (void) dealloc
 {
-	release_(_countdownView);
-	release_(_roundRectView);
+	FLRelease(_countdownView);
+	FLRelease(_roundRectView);
 	_textView.delegate = nil;
-    release_(_textView);
+    FLRelease(_textView);
 	super_dealloc_();
 }
 

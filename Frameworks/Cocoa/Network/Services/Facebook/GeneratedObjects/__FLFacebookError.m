@@ -60,10 +60,10 @@
 
 - (void) dealloc
 {
-    release_(__error_reason);
-    release_(__error);
-    release_(__error_description);
-    release_(__externalUrl);
+    FLRelease(__error_reason);
+    FLRelease(__error);
+    FLRelease(__error_description);
+    FLRelease(__externalUrl);
     super_dealloc_();
 }
 
@@ -77,7 +77,7 @@
 
 + (FLFacebookError*) facebookError
 {
-    return autorelease_([[FLFacebookError alloc] init]);
+    return FLAutorelease([[FLFacebookError alloc] init]);
 }
 
 - (id) init
@@ -92,10 +92,10 @@
 {
     if((self = [super init]))
     {
-        __error_reason = retain_([aDecoder decodeObjectForKey:@"__error_reason"]);
-        __error = retain_([aDecoder decodeObjectForKey:@"__error"]);
-        __error_description = retain_([aDecoder decodeObjectForKey:@"__error_description"]);
-        __externalUrl = retain_([aDecoder decodeObjectForKey:@"__externalUrl"]);
+        __error_reason = FLRetain([aDecoder decodeObjectForKey:@"__error_reason"]);
+        __error = FLRetain([aDecoder decodeObjectForKey:@"__error"]);
+        __error_description = FLRetain([aDecoder decodeObjectForKey:@"__error_description"]);
+        __externalUrl = FLRetain([aDecoder decodeObjectForKey:@"__externalUrl"]);
     }
     return self;
 }

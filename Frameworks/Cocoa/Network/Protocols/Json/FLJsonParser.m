@@ -18,11 +18,11 @@
 @synthesize error = _error;
 
 + (FLJsonParser*) jsonParser {
-    return autorelease_([[FLJsonParser alloc] init]);
+    return FLAutorelease([[FLJsonParser alloc] init]);
 }
 
 - (void) dealloc {
-    release_(_error);
+    FLRelease(_error);
     super_dealloc_();
 }
 
@@ -47,13 +47,13 @@
         {
             FLObjectBuilder* builder = [[FLObjectBuilder alloc] init];
             [builder buildObjectsFromDictionary:outObject withRootObject:rootObject];
-            release_(builder);
+            FLRelease(builder);
             
             outObject = rootObject;
         }
     }    
     
-    release_(parser);
+    FLRelease(parser);
     return outObject;
 #endif
     

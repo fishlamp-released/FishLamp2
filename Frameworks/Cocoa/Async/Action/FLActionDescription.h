@@ -6,7 +6,7 @@
 //	Copyright 2010 GreenTongue Software. All rights reserved.
 //
 
-#import "FishLampCore.h"
+#import "FLCore.h"
 
 // TYPES
 

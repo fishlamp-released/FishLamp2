@@ -20,7 +20,7 @@
 @synthesize connection = _connection;
 
 + (id) networkOperation {
-	return autorelease_([[[self class] alloc] initWithURL:nil]);
+	return FLAutorelease([[[self class] alloc] initWithURL:nil]);
 }
 
 - (void) cancelSelf {

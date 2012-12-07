@@ -1,6 +1,6 @@
 //
 //  FLDispatchQueue.m
-//  FishLampCore
+//  FLCore
 //
 //  Created by Mike Fullerton on 10/29/12.
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
@@ -52,19 +52,19 @@ static void * const s_queue_key = (void*)&s_queue_key;
 }
 
 + (FLDispatchQueue*) dispatchQueue:(dispatch_queue_t) queue {
-    return autorelease_([[[self class] alloc] initWithDispatchQueue:queue]);
+    return FLAutorelease([[[self class] alloc] initWithDispatchQueue:queue]);
 }
 
 + (FLDispatchQueue*) dispatchQueueWithLabel:(NSString*) label attr:(dispatch_queue_attr_t) attr {
-    return autorelease_([[[self class] alloc] initWithLabel:label attr:attr]);
+    return FLAutorelease([[[self class] alloc] initWithLabel:label attr:attr]);
 }
 
 + (FLDispatchQueue*) fifoDispatchQueue:(NSString*) label {
-    return autorelease_([[[self class] alloc] initWithLabel:label attr:DISPATCH_QUEUE_SERIAL]);
+    return FLAutorelease([[[self class] alloc] initWithLabel:label attr:DISPATCH_QUEUE_SERIAL]);
 }
 
 + (FLDispatchQueue*) concurrentDispatchQueue:(NSString*) label {
-    return autorelease_([[[self class] alloc] initWithLabel:label attr:DISPATCH_QUEUE_CONCURRENT]);
+    return FLAutorelease([[[self class] alloc] initWithLabel:label attr:DISPATCH_QUEUE_CONCURRENT]);
 }
 
 - (void) dealloc {

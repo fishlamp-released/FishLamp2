@@ -32,7 +32,7 @@ id _run_block_to_create_object(FLStaticCreateObjectBlock block) {
         static dispatch_once_t pred = 0;; \
         static id s_static_object = nil; \
         dispatch_once(&pred, ^{ \
-            s_static_object = retain_(_run_block_to_create_object((FLStaticCreateObjectBlock) __BLOCK__)); \
+            s_static_object = FLRetain(_run_block_to_create_object((FLStaticCreateObjectBlock) __BLOCK__)); \
         }); \
         return s_static_object
 
@@ -40,7 +40,7 @@ id _run_block_to_create_object(FLStaticCreateObjectBlock block) {
 #define FLReturnStaticObjectFromSelector(TARGET, ACTION) \
         static dispatch_once_t pred = 0; \
         static id s_static_object = nil; \
-        dispatch_once(&pred, ^{ s_static_object = retain_([TARGET performSelector:ACTION]); }); \
+        dispatch_once(&pred, ^{ s_static_object = FLRetain([TARGET performSelector:ACTION]); }); \
         return s_static_object
         
 #define FLReturnStaticObject(...) \

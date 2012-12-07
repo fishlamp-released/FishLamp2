@@ -32,8 +32,8 @@ typedef enum {
 
 - (void) clear; // release image.
 
-+ (FLImageWidget*) imageWidgetWithFrame:(FLRect) frame;
++ (FLImageWidget*) imageWidgetWithFrame:(CGRect) frame;
 
 @end
 
-extern void FLWidgetBlueTintImageHighlighter(id widget, FLRect rect);
+extern void FLWidgetBlueTintImageHighlighter(id widget, CGRect rect);

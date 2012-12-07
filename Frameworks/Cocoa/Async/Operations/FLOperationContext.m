@@ -11,7 +11,7 @@
 @implementation FLOperationContextManager
 
 + (id) operationContextManager {
-    return autorelease_([[[self class] alloc] init]);
+    return FLAutorelease([[[self class] alloc] init]);
 }
 
 - (id) init {
@@ -71,7 +71,7 @@
 @implementation FLOperationContext
 
 + (id) operationContext {
-    return autorelease_([[[self class] alloc] init]);
+    return FLAutorelease([[[self class] alloc] init]);
 }
 
 - (BOOL) isBusy {

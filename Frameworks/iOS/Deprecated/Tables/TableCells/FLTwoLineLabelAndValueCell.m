@@ -29,7 +29,7 @@
 
 + (FLTwoLineLabelAndValueCell*) twoLineLabelAndValueCell
 {
-	return autorelease_([[FLTwoLineLabelAndValueCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NSStringFromClass([self class])]);
+	return FLAutorelease([[FLTwoLineLabelAndValueCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NSStringFromClass([self class])]);
 }
 
 + (FLTwoLineLabelAndValueCell*) twoLineLabelAndValueCell:(NSString*) label
@@ -70,13 +70,13 @@
 - (void) layoutSubviews
 {
 	[super layoutSubviews];
-	FLRect layoutRect = self.layoutRect;
+	CGRect layoutRect = self.layoutRect;
 
-	FLRect labelRect = layoutRect;
+	CGRect labelRect = layoutRect;
 	labelRect.size.height = [self textLabelSizeForContentViewWidth:layoutRect.size.width].height;
 	self.label.frameOptimizedForSize = labelRect;
 	
-	FLRect valueRect = layoutRect;
+	CGRect valueRect = layoutRect;
 	valueRect = FLRectAlignRectVertically(labelRect, valueRect);
 	valueRect.origin.y += kHeightOffset;
 	valueRect.size.height = FLRectGetBottom(layoutRect) - valueRect.origin.y;

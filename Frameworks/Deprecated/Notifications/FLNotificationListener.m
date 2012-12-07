@@ -29,12 +29,12 @@
 
 + (id) notificationListener
 {
-    return autorelease_([[[self class] alloc] init]);
+    return FLAutorelease([[[self class] alloc] init]);
 }
 
 + (id) notificationListener:(id) target action:(SEL) action
 {
-    return autorelease_([[[self class] alloc] initWithTarget:target action:action]);
+    return FLAutorelease([[[self class] alloc] initWithTarget:target action:action]);
 }
 
 - (void) didReceiveEvent:(NSNotification*) notification

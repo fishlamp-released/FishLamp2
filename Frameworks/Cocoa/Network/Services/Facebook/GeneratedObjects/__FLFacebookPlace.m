@@ -39,7 +39,7 @@
 
 - (void) dealloc
 {
-    release_(__location);
+    FLRelease(__location);
     super_dealloc_();
 }
 
@@ -51,7 +51,7 @@
 
 + (FLFacebookPlace*) facebookPlace
 {
-    return autorelease_([[FLFacebookPlace alloc] init]);
+    return FLAutorelease([[FLFacebookPlace alloc] init]);
 }
 
 - (id) init
@@ -66,7 +66,7 @@
 {
     if((self = [super initWithCoder:aDecoder]))
     {
-        __location = retain_([aDecoder decodeObjectForKey:@"__location"]);
+        __location = FLRetain([aDecoder decodeObjectForKey:@"__location"]);
     }
     return self;
 }

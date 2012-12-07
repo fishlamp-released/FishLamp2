@@ -22,7 +22,7 @@
 @synthesize testName = _testName;
 
 + (id) testResult {
-    return autorelease_([[[self class] alloc] init]);
+    return FLAutorelease([[[self class] alloc] init]);
 }
 
 - (void) setPassed {
@@ -68,7 +68,7 @@
 @dynamic expectedCount;
 
 + (FLCountedTestResult*) countedTestResult:(NSUInteger) expectedCount {
-    return autorelease_([[[self class] alloc] initWithExpectedCount:expectedCount]);
+    return FLAutorelease([[[self class] alloc] initWithExpectedCount:expectedCount]);
 }
 
 @end

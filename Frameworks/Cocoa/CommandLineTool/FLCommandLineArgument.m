@@ -27,7 +27,7 @@ synthesize_(key);
 }
 
 + (id) commandLineArgument:(NSString*) key {
-    return autorelease_([[[self class] alloc] initWithKey:key]);
+    return FLAutorelease([[[self class] alloc] initWithKey:key]);
 }
 
 

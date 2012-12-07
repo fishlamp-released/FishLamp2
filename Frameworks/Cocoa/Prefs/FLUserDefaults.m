@@ -125,7 +125,7 @@ static NSString* LegacyKeys[] = {
 			  
 					if(FLStringIsNotEmpty(userName))
 					{
-						NSMutableDictionary* userItems = retain_([outDictionary objectForKey:userName]);
+						NSMutableDictionary* userItems = FLRetain([outDictionary objectForKey:userName]);
 						if(!userItems)
 						{
 							userItems = [[NSMutableDictionary alloc] init];
@@ -207,7 +207,7 @@ static NSString* LegacyKeys[] = {
 	login.email = [defaults	 stringForKey:KEY([FLUserLogin emailKey], login)];
 	login.userGuid = [defaults stringForKey:KEY([FLUserLogin userGuidKey], login)];
 	login.authTokenLastUpdateTime = [defaults doubleForKey:KEY([FLUserLogin authTokenLastUpdateTimeKey], login)];
-	login.userData = autorelease_([[defaults dictionaryForKey:KEY([FLUserLogin userDataKey], login)] mutableCopy] );
+	login.userData = FLAutorelease([[defaults dictionaryForKey:KEY([FLUserLogin userDataKey], login)] mutableCopy] );
 	if(FLStringIsNotEmpty(login.userGuid))
 	{
 		if(error) 
@@ -271,7 +271,7 @@ Exit:
 		{
 			if(error)
 			{
-				*error = retain_(internalError);
+				*error = FLRetain(internalError);
 			}
 		}
 	
@@ -367,7 +367,7 @@ Exit:
 	
 	if(error)
 	{
-		*error = retain_(internalError);
+		*error = FLRetain(internalError);
 	}
 	
 	FLReleaseWithNil_(internalError);

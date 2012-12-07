@@ -18,7 +18,7 @@
 
 @synthesize userGuid = _userGuid;
 
-- (id) initWithFrame:(FLRect) frame
+- (id) initWithFrame:(CGRect) frame
 {
 	if((self = [super initWithFrame:frame]))
 	{
@@ -29,7 +29,7 @@
 
 - (void) dealloc
 {
-	release_(_userGuid);
+	FLRelease(_userGuid);
 	super_dealloc_();
 }
 

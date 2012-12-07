@@ -41,7 +41,7 @@
 }
 
 + (id) assetQueueLock:(FLAssetQueue*) queue {
-    return autorelease_([[[self class] alloc] initWithAssetQueue:queue]);
+    return FLAutorelease([[[self class] alloc] initWithAssetQueue:queue]);
 }
 
 - (void) dealloc {
@@ -65,7 +65,7 @@ FLAssertDefaultInitNotCalled_v(@"hello");
 	if((self = [super init]))
 	{	
 		FLAssertIsNotNil_v(uid, nil);
-		_queueUID = retain_(uid);
+		_queueUID = FLRetain(uid);
 	}
 	
 	return self;
@@ -225,11 +225,11 @@ FLAssertDefaultInitNotCalled_v(@"hello");
 		obj1 = [_assets objectAtIndex:lhs];
 		obj2 = [_assets objectAtIndex:rhs];
 
-		NSNumber* temp = retain_(obj1.positionInQueue);
+		NSNumber* temp = FLRetain(obj1.positionInQueue);
 		obj1.positionInQueue = obj2.positionInQueue;
 		obj2.positionInQueue = temp;
 		
-        release_(temp);
+        FLRelease(temp);
 		
         [_assets exchangeObjectAtIndex:lhs withObjectAtIndex:rhs];
     }
@@ -410,7 +410,7 @@ FIXME("asset q")
 
     NSDate* date = [[NSDate alloc] init];
     asset.queuedDate = date;
-    release_(date);
+    FLRelease(date);
 
     FLDatabase* database = self.database;
 	FLAssertIsNotNil_v(database, nil);
@@ -432,7 +432,7 @@ FIXME("asset q")
 FIXME("load first asset")
 
 /*
-    completionBlock = autorelease_([completionBlock copy]);
+    completionBlock = FLAutorelease([completionBlock copy]);
     
     FLDatabase* database = self.database;
 	FLAssertIsNotNil_v(database, nil);
@@ -452,7 +452,7 @@ FIXME("load first asset")
 
                 }
                 didSelectObject:^(id object, BOOL* stop) {
-                    FLRetainObject_(asset, object);
+                    FLAssignObjectWithRetain(asset, object);
                     *stop = YES;
                 }
                 didFinish:^{
@@ -619,7 +619,7 @@ FIXME("compatability")
 - (void) finishLoadingFromDatabase:(NSMutableArray*) queue
 {
     @synchronized(self) {
-        FLRetainObject_(_assets, queue);
+        FLAssignObjectWithRetain(_assets, queue);
     }
 }
 
@@ -633,7 +633,7 @@ FIXME("compatability")
 //
 //    FLLog(@"Added lock");
 //
-//    FLAssetQueueLoadLock* lock = autorelease_([[FLAssetQueueLoadLock alloc] initWithAssetQueue:self]);
+//    FLAssetQueueLoadLock* lock = FLAutorelease([[FLAssetQueueLoadLock alloc] initWithAssetQueue:self]);
 //    [_locks addObject:[NSValue valueWithNonretainedObject:lock]];
     return [FLAssetQueueLock assetQueueLock:self];
 }
@@ -677,7 +677,7 @@ FIXME("compatability")
 }
 
 + (FLAssetQueueLoader*) assetQueueLoader:(FLAssetQueue*) queue {
-    return autorelease_([[FLAssetQueueLoader alloc] initWithAssetQueue:queue]);
+    return FLAutorelease([[FLAssetQueueLoader alloc] initWithAssetQueue:queue]);
 }
 
 #if FL_MRC
@@ -692,12 +692,12 @@ FIXME("compatability")
     // TODO: Load with sort. eg USE TSQL: ORDER BY
     NSArray* queue = nil;
     [_assetQueue.database loadAllObjectsForTypeWithClass:[_assetQueue queueClass] outObjects:&queue];
-    mrc_autorelease_(queue);
+    FLAutoreleaseObject(queue);
 
     if(queue) {
         [self abortIfNeeded];
 
-        NSMutableArray* newQueue = autorelease_([queue mutableCopy]);
+        NSMutableArray* newQueue = FLAutorelease([queue mutableCopy]);
 
         if(newQueue.count > 0) {
             for(FLQueuedAsset* asset in newQueue) {

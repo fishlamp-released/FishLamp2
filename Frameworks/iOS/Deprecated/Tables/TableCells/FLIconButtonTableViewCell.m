@@ -38,7 +38,7 @@
 	
 		_iconImageView.image = _icon;
 		
-		FLRect rect = CGRectZero;
+		CGRect rect = CGRectZero;
 		rect.size = _icon.size;
 		_iconImageView.frameOptimizedForSize = rect;
 		self.cellHeight = _icon.size.height + 20;
@@ -65,7 +65,7 @@
 #if DEBUG
 //#warning use layer
 #endif
-- (void)drawRect:(FLRect)rect
+- (void)drawRect:(CGRect)rect
 {
 	[super drawRect:rect];
 	

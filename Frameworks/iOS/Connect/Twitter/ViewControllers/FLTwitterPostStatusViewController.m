@@ -43,14 +43,14 @@
 
 + (FLTwitterPostStatusViewController*) twitterPostStatusViewController:(FLTwitterStatusUpdate*) update  userGuid:(NSString*) userGuid
 {
-	return autorelease_([[FLTwitterPostStatusViewController alloc] initWithStatusUpdate:update userGuid:userGuid]);
+	return FLAutorelease([[FLTwitterPostStatusViewController alloc] initWithStatusUpdate:update userGuid:userGuid]);
 }
 
 - (void) dealloc
 {
-    release_(_headerView);
-	release_(_userGuid);
-	release_(_statusUpdate);
+    FLRelease(_headerView);
+	FLRelease(_userGuid);
+	FLRelease(_statusUpdate);
 	super_dealloc_();
 }
 

@@ -22,13 +22,19 @@
 // This is more readable than #if !FL_ARC, but either way works.
 #undef FL_ARC 
 #undef FL_MRC
+
 #if __has_feature(objc_arc)
-#define FL_ARC 1
-#import "FLObjcARC.h"
+    #define FL_ARC 1
+    #import "FLObjcARC.h"
 #else
-#define FL_MRC 1
-#import "FLObjcMRC.h"
+    #define FL_MRC 1
+    #import "FLObjcMRC.h"
 #endif
+
+// todo remove these
+#define FLReleaseWithNil_                   FLReleaseWithNil 
+#define FLReleaseBlockWithNil_              FLReleaseBlockWithNil
+#define super_dealloc_                      FLSuperDealloc
 
 #import "FLDebug.h"
 #import "FLMath.h"

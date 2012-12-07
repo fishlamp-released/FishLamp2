@@ -15,6 +15,6 @@
 }
 
 - (void) beginShowingGalleryItem:(id<FLGalleryObject>) galleryItem
-             fromRectInSuperview:(FLRect) rect; // zoom animation
+             fromRectInSuperview:(CGRect) rect; // zoom animation
 
 @end

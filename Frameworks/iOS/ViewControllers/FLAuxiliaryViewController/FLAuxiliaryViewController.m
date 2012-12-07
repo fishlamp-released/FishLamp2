@@ -83,7 +83,7 @@ FLSynthesizeAssociatedProperty(assign_nonatomic, _auxiliaryViewController, setAu
 
 + (id) auxiliaryViewController:(FLAuxiliaryViewControllerPinnedSide) side
     behavior:(id<FLAuxiliaryViewControllerBehavior>) behavior {
-    return autorelease_([[[self class] alloc] initWithPinnedSide:side behavior:behavior]);
+    return FLAutorelease([[[self class] alloc] initWithPinnedSide:side behavior:behavior]);
 }
 
 - (void) setParentViewController:(UIViewController*) viewController {
@@ -113,7 +113,7 @@ FLSynthesizeAssociatedProperty(assign_nonatomic, _auxiliaryViewController, setAu
     }
 }
 
-- (FLRect) dragControllerCalculateDragBoundsInHostView:(FLDragController*) controller {
+- (CGRect) dragControllerCalculateDragBoundsInHostView:(FLDragController*) controller {
     return CGRectUnion( [self onscreenFrameInHostView], 
                         [self destRectForDraggerViewInHostView]);
 }
@@ -175,21 +175,21 @@ FLSynthesizeAssociatedProperty(assign_nonatomic, _auxiliaryViewController, setAu
 - (void) dealloc {   
     _dragController.delegate = nil;
 #if FL_MRC 
-    release_(_createViewController);
-    release_(_addTouchableViewsCallback);
-    release_(_draggableButton);
-    release_(_dragController);
-    release_(_behavior);
-    release_(_viewController);
-    release_(_containerView);
+    FLRelease(_createViewController);
+    FLRelease(_addTouchableViewsCallback);
+    FLRelease(_draggableButton);
+    FLRelease(_dragController);
+    FLRelease(_behavior);
+    FLRelease(_viewController);
+    FLRelease(_containerView);
     super_dealloc_();
 #endif
 }
 
-- (FLRect) onscreenFrame {
-    FLRect superBounds = [_behavior parentControllerForAuxiliaryViewController:self].view.bounds;
+- (CGRect) onscreenFrame {
+    CGRect superBounds = [_behavior parentControllerForAuxiliaryViewController:self].view.bounds;
     
-    FLRect viewFrame = _viewController.view.bounds;
+    CGRect viewFrame = _viewController.view.bounds;
     
     switch(_side) {
         case FLAuxiliaryViewControllerPinnedSideRight:
@@ -249,16 +249,16 @@ FLSynthesizeAssociatedProperty(assign_nonatomic, _auxiliaryViewController, setAu
     [self.dragController addSecondaryTouchableView:self.draggableButton];
 }
 
-- (FLRect) onscreenFrameInHostView {
+- (CGRect) onscreenFrameInHostView {
     UIView* parentView = [_behavior parentControllerForAuxiliaryViewController:self].view;
-    FLRect frame = [self onscreenFrame];
+    CGRect frame = [self onscreenFrame];
     return parentView != self.view ? [self.view convertRect:frame fromView:parentView] : frame;
 }
 
-- (FLRect) offscreenFrame {
-    FLRect superBounds = [_behavior parentControllerForAuxiliaryViewController:self].view.bounds;
+- (CGRect) offscreenFrame {
+    CGRect superBounds = [_behavior parentControllerForAuxiliaryViewController:self].view.bounds;
     
-    FLRect viewFrame = _viewController.view.bounds;
+    CGRect viewFrame = _viewController.view.bounds;
     
     switch(_side) {
         case FLAuxiliaryViewControllerPinnedSideRight:
@@ -294,14 +294,14 @@ FLSynthesizeAssociatedProperty(assign_nonatomic, _auxiliaryViewController, setAu
 
     viewController.auxiliaryViewController = self;
 
-    FLRect frame = [_behavior initialFrameForContainerView:self];
+    CGRect frame = [_behavior initialFrameForContainerView:self];
     
     _viewController.view.frame = FLRectSetOrigin(frame, 0, 0);
     
     if(_containerView)
     {
         [_containerView removeFromSuperview];
-        release_(_containerView);
+        FLRelease(_containerView);
     }
         
     _containerView = [[FLAuxiliaryView alloc] initWithFrame:frame];
@@ -331,10 +331,10 @@ FLSynthesizeAssociatedProperty(assign_nonatomic, _auxiliaryViewController, setAu
     [_behavior hideViewControllerAnimated:animated viewController:self];
 }      
 
-- (FLRect) destRectForDraggerViewInHostView {
+- (CGRect) destRectForDraggerViewInHostView {
     UIView* view = self.view;
-    FLRect frame = [_dragController touchableViewFrameInHostView];
-    FLRect limit = [self onscreenFrameInHostView];
+    CGRect frame = [_dragController touchableViewFrameInHostView];
+    CGRect limit = [self onscreenFrameInHostView];
 
     switch(self.revealSide)
     {
@@ -367,10 +367,10 @@ FLSynthesizeAssociatedProperty(assign_nonatomic, _auxiliaryViewController, setAu
     return frame;
 }
 
-- (FLRect) startRectForDraggerViewInHostView {
+- (CGRect) startRectForDraggerViewInHostView {
     UIView* view = self.view;
 
-    FLRect frame = [_dragController touchableViewFrameInHostView];
+    CGRect frame = [_dragController touchableViewFrameInHostView];
     
     switch(self.revealSide) {
         case FLAuxiliaryViewControllerPinnedSideBottom:
@@ -408,9 +408,9 @@ FLSynthesizeAssociatedProperty(assign_nonatomic, _auxiliaryViewController, setAu
 #define kInvisibleSize 20.0f
 
 - (void) addInvisibleDragViewToViewController:(UIViewController*) viewController {
-    FLRect bounds = viewController.view.bounds;
+    CGRect bounds = viewController.view.bounds;
 
-    FLRect frame;
+    CGRect frame;
     switch(self.revealSide) {
         case FLAuxiliaryViewControllerPinnedSideTop:
             frame = CGRectMake(0, 0, bounds.size.width, kInvisibleSize); 

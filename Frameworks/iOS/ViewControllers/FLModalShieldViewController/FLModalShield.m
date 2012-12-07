@@ -22,7 +22,7 @@
 
 @synthesize navigationController = _navigationController;
 
-- (id) initWithFrame:(FLRect) frame
+- (id) initWithFrame:(CGRect) frame
 {
     if((self = [super initWithFrame:frame]))
     {
@@ -97,7 +97,7 @@
 
 @implementation FLFingerprintView
 
-- (id) initWithFrame:(FLRect) rect {
+- (id) initWithFrame:(CGRect) rect {
 	if((self = [super initWithFrame:rect])) {
 		self.exclusiveTouch = YES;
 		self.multipleTouchEnabled = YES;
@@ -110,11 +110,11 @@
 }
 
 - (void)doneRemoving:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context {
-	UIView* view = autorelease_(bridge_(UIView*, context));
+	UIView* view = FLAutorelease(bridge_(UIView*, context));
     [view removeFromSuperview];
 }
 
-- (void) drawAnimationAt:(FLPoint) pt {
+- (void) drawAnimationAt:(CGPoint) pt {
 	static UIImage* s_image = nil;
 	if(!s_image) {
 		s_image = [UIImage imageNamed:@"thumbprint-white.png"];
@@ -124,12 +124,12 @@
         mrc_retain_(s_image);
 	}
 
-	UIImageView* view = autorelease_([[UIImageView alloc] initWithImage:s_image]);
+	UIImageView* view = FLAutorelease([[UIImageView alloc] initWithImage:s_image]);
 	
 	view.frame = FLRectSetSizeWithSize( view.frame, s_image.size);
 	view.frame = FLRectCenterOnPoint( view.frame, pt);
 	
-//	FLRect frame = view.frame;
+//	CGRect frame = view.frame;
 //	  frame.size = _image.size;
 //	frame.origin.x = pt.x - (frame.size.width/2);
 //	frame.origin.y = pt.y - (frame.size.height/2);

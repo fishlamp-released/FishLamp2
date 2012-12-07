@@ -13,7 +13,7 @@
 //
 //+ (FLOAuthOperationAuthenticator*) OAuthOperationAuthenticator
 //{
-//	return autorelease_([[FLOAuthOperationAuthenticator alloc] init]);
+//	return FLAutorelease([[FLOAuthOperationAuthenticator alloc] init]);
 //}
 //
 //- (NSError*) doAuthenticateOperation:(FLNetworkOperation*) operation 

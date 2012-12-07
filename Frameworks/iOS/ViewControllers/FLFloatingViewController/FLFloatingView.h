@@ -27,7 +27,7 @@ typedef enum {
 	UIView* _containerView;
 	UIView* _contentView;
 	FLFloatingViewArrowDirection _arrowDirection;
-	FLRect _targetRect;
+	CGRect _targetRect;
 	FLGradientWidget* _topGradient;
 	FLGradientWidget* _lineGradient;
     
@@ -40,7 +40,7 @@ typedef enum {
 @property (readwrite, assign, nonatomic) CGFloat frameWidth;
 @property (readwrite, assign, nonatomic) CGFloat cornerRadius;
 @property (readwrite, assign, nonatomic) FLFloatingViewArrowDirection arrowDirection;
-@property (readwrite, assign, nonatomic) FLRect targetRect;
+@property (readwrite, assign, nonatomic) CGRect targetRect;
 
 @property (readonly, retain, nonatomic) UIView* containerView;
 @property (readwrite, retain, nonatomic) UIView* contentView;

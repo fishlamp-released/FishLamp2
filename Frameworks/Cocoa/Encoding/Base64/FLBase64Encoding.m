@@ -92,14 +92,14 @@
 {
 	NSData* data = nil;
 	[self base64Decode:&data];
-	return autorelease_(data);
+	return FLAutorelease(data);
 }
 
 - (NSData*) base64Encode
 {
 	NSData* data = nil;
 	[self base64Encode:&data];
-	return autorelease_(data);
+	return FLAutorelease(data);
 }
 
 

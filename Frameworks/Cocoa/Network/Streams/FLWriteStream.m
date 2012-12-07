@@ -49,7 +49,7 @@ static void WriteStreamClientCallBack(CFWriteStreamRef readStream,
 }
 
 + (id) writeStream:(CFWriteStreamRef) streamRef {
-    return autorelease_([[[self class] alloc] initWithWriteStream:streamRef]);
+    return FLAutorelease([[[self class] alloc] initWithWriteStream:streamRef]);
 }
 
 - (void) dealloc {
@@ -83,7 +83,7 @@ static void WriteStreamClientCallBack(CFWriteStreamRef readStream,
 }
 
 //- (id) result {
-//    NSError* error = autorelease_(bridge_transfer_(NSError*,CFWriteStreamCopyError(self.streamRef)));
+//    NSError* error = FLAutorelease(bridge_transfer_(NSError*,CFWriteStreamCopyError(self.streamRef)));
 //    if(error) {
 //        return error;
 //    }
@@ -113,7 +113,7 @@ static void WriteStreamClientCallBack(CFWriteStreamRef readStream,
 }
 
 - (unsigned long) bytesWritten {
-    NSNumber* number = autorelease_(bridge_transfer_(NSNumber*,
+    NSNumber* number = FLAutorelease(bridge_transfer_(NSNumber*,
         CFWriteStreamCopyProperty(self.streamRef, kCFStreamPropertyDataWritten)));
     return [number unsignedLongValue];
 }

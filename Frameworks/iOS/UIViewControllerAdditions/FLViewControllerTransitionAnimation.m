@@ -15,7 +15,7 @@
 
 + (id) viewControllerTransitionAnimation
 {
-    return autorelease_([[[self class] alloc] init]);
+    return FLAutorelease([[[self class] alloc] init]);
 }
 
 - (void) beginShowAnimationForViewController:(UIViewController*) viewController
@@ -37,7 +37,7 @@
 #if FL_MRC
 - (void) dealloc
 {
-    release_(_callback);
+    FLRelease(_callback);
     super_dealloc_();
 }
 #endif
@@ -69,7 +69,7 @@ FLSynthesizeSingleton(FLDropAndSlideInFromRightAnimation);
     finishedBlock: (FLViewControllerAnimationBlock) finishedBlock
 {
 
-    FLRect destFrame = viewController.view.superview.bounds;
+    CGRect destFrame = viewController.view.superview.bounds;
     viewController.view.frame = FLRectSetLeft(destFrame, FLRectGetRight(destFrame));
     
     CGFloat savedAlpha = parentViewController.view.alpha;
@@ -97,7 +97,7 @@ FLSynthesizeSingleton(FLDropAndSlideInFromRightAnimation);
     parentViewController:(UIViewController*) parentViewController
     finishedBlock: (FLViewControllerAnimationBlock) finishedBlock
 {
-    FLRect destFrame = FLRectSetLeft(viewController.view.frame, FLRectGetRight(viewController.view.superview.bounds));
+    CGRect destFrame = FLRectSetLeft(viewController.view.frame, FLRectGetRight(viewController.view.superview.bounds));
     CGFloat savedAlpha = parentViewController.view.alpha;
     parentViewController.view.alpha = 0.0;
     
@@ -134,7 +134,7 @@ FLSynthesizeSingleton(FLDropAndSlideInFromLeftAnimation);
                                finishedBlock:(FLViewControllerAnimationBlock) finishedBlock
 {
 
-    FLRect destFrame = viewController.view.superview.bounds;
+    CGRect destFrame = viewController.view.superview.bounds;
     viewController.view.frame = FLRectSetLeft(destFrame, -destFrame.size.width);
     
     CGFloat savedAlpha = parentViewController.view.alpha;
@@ -160,7 +160,7 @@ FLSynthesizeSingleton(FLDropAndSlideInFromLeftAnimation);
                         parentViewController:(UIViewController*) parentViewController
                                finishedBlock: (FLViewControllerAnimationBlock) finishedBlock
 {
-    FLRect destFrame = viewController.view.frame;
+    CGRect destFrame = viewController.view.frame;
     destFrame.origin.x = -destFrame.size.width;
 
     CGFloat savedAlpha = parentViewController.view.alpha;

@@ -52,7 +52,7 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
 }
 
 + (id) readStream:(CFReadStreamRef) streamRef {
-    return autorelease_([[[self class] alloc] initWithReadStream:streamRef]);
+    return FLAutorelease([[[self class] alloc] initWithReadStream:streamRef]);
 }
 
 - (void) dealloc {
@@ -123,7 +123,7 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
 }
 
 - (NSError*) readStreamError {
-    return autorelease_(bridge_transfer_(NSError*, CFReadStreamCopyError(self.streamRef)));
+    return FLAutorelease(bridge_transfer_(NSError*, CFReadStreamCopyError(self.streamRef)));
 }
 
 - (BOOL) hasBytesAvailable {
@@ -326,7 +326,7 @@ FIXME("readbytes");
 //}
 
 - (unsigned long) bytesRead {
-    NSNumber* number = autorelease_(bridge_transfer_(NSNumber*,
+    NSNumber* number = FLAutorelease(bridge_transfer_(NSNumber*,
         CFReadStreamCopyProperty(self.streamRef, kCFStreamPropertyDataWritten)));
 
     return [number unsignedLongValue];

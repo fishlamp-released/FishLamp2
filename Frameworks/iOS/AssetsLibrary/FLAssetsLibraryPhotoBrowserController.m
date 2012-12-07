@@ -65,9 +65,9 @@
 
 - (void) dealloc
 {
-    release_(_notificationView);
-	release_(_assets);
-	release_(_group);
+    FLRelease(_notificationView);
+	FLRelease(_assets);
+	FLRelease(_group);
 	super_dealloc_();
 }
 
@@ -94,7 +94,7 @@
     _notificationView.layer.borderColor = [UIColor darkGrayColor].CGColor;
     _notificationView.layer.borderWidth = 1.0f;
     
-    UILabel* label = autorelease_([[UILabel alloc] initWithFrame:_notificationView.bounds]);
+    UILabel* label = FLAutorelease([[UILabel alloc] initWithFrame:_notificationView.bounds]);
     label.autoresizingMask = UIViewAutoresizingFlexibleEverything;
     label.font = [UIFont boldSystemFontOfSize:[UIFont buttonFontSize]];
     label.textColor = [UIColor amberColor ];
@@ -134,7 +134,7 @@
 
 + (FLAssetsLibraryPhotoBrowserController*) assetsLibraryPhotoBrowserController:(FLAssetQueue*) assetsQueue  withGroup:(ALAssetsGroup*) group
 {
-	return autorelease_([[FLAssetsLibraryPhotoBrowserController alloc] initWithAssetQueue:assetsQueue withGroup:group]);
+	return FLAutorelease([[FLAssetsLibraryPhotoBrowserController alloc] initWithAssetQueue:assetsQueue withGroup:group]);
 }
 
 - (NSUInteger) numberOfDataItems

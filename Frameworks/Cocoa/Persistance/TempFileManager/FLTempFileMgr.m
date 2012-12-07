@@ -98,7 +98,7 @@
         [self _removeNilFiles];
     
         if(purgeComplete) {
-            purgeComplete = autorelease_([purgeComplete copy]);
+            purgeComplete = FLAutorelease([purgeComplete copy]);
         }
         
         dispatch_async(

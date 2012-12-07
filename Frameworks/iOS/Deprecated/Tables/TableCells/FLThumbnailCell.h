@@ -28,7 +28,7 @@
 - (void) stopSpinner;
 - (BOOL) spinnerIsAnimating;
 
-- (FLRect) thumbFrame;
+- (CGRect) thumbFrame;
 
 - (UIImage*) image;
 

@@ -62,7 +62,7 @@
     }
 }
 
-- (id) initWithFrame:(FLRect)frame {
+- (id) initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if(self) {
         _label = [[UILabel alloc] initWithFrame:frame];
@@ -120,15 +120,15 @@
 }
 
 + (FLEditableItemView*) editableItemView {
-    return autorelease_([[[self class] alloc] init]);
+    return FLAutorelease([[[self class] alloc] init]);
 }
 
 #if FL_MRC
 - (void) dealloc {
-    release_(_label);
-    release_(_value);
-    release_(_onValidate);
-    release_(_onChanged);
+    FLRelease(_label);
+    FLRelease(_value);
+    FLRelease(_onValidate);
+    FLRelease(_onChanged);
     super_dealloc_();
 }
 #endif

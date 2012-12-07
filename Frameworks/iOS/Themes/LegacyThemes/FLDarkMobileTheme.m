@@ -107,7 +107,7 @@
 //		self.tableHeaderTextColor = FLRgbColor(171,197,225,1.0);
 //		self.titleTextColor =  [UIColor whiteColor];
 //	
-//		self.titleDescriptor = autorelease_(
+//		self.titleDescriptor = FLAutorelease(
 //            [[FLTextDescriptor alloc] initWithFont:[UIFont BOLD_FONT_OF_SIZE:[self calculateActualFontSize]]
 //                                      enabledColor:[UIColor whiteColor]
 //                                enabledShadowColor:[UIColor blackColor]
@@ -119,7 +119,7 @@
 //                               selectedShadowColor:[UIColor blackColor]
 //                                      shadowOffset:CGSizeZero]);
 //
-//		self.valueDescriptor = autorelease_(
+//		self.valueDescriptor = FLAutorelease(
 //            [[FLTextDescriptor alloc] initWithFont:[UIFont FONT_OF_SIZE:[self calculateActualFontSize]]
 //                                      enabledColor:self.valueTextColor
 //                                enabledShadowColor:[UIColor blackColor]
@@ -131,7 +131,7 @@
 //                               selectedShadowColor:[UIColor blackColor]
 //                                      shadowOffset:CGSizeZero]);
 //	 
-//		self.placeholderDescriptor = autorelease_(
+//		self.placeholderDescriptor = FLAutorelease(
 //            [[FLTextDescriptor alloc] initWithFont:[UIFont FONT_OF_SIZE:[self calculateActualFontSize]]
 //                                      enabledColor:[UIColor grayColor]
 //                                enabledShadowColor:[UIColor blackColor]

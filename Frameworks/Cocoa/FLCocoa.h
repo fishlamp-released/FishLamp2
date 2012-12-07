@@ -7,7 +7,7 @@
 //
 
 #import "FLCore.h"
-#import "SDKCompatibility.h"
+#import "FLCompatibility.h"
 #import "FLGeometry.h"
 #import "NSObject+Copying.h"
 #import "FLBlocks.h"

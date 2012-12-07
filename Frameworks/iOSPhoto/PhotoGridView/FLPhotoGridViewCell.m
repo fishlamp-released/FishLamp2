@@ -11,7 +11,7 @@
 @implementation FLPhotoGridViewCell
 
 + (FLPhotoGridViewCell*) photoGridViewCell:(id) dataRef {
-    return autorelease_([[FLPhotoGridViewCell alloc] initWithDataRef:dataRef]);
+    return FLAutorelease([[FLPhotoGridViewCell alloc] initWithDataRef:dataRef]);
 }
 
 @end

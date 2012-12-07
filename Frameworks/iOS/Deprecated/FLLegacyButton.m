@@ -94,7 +94,7 @@
 //}
 	
 
-- (FLRect) rectUsedForCenteringSubviews
+- (CGRect) rectUsedForCenteringSubviews
 {
 	return self.bounds;
 }	
@@ -109,7 +109,7 @@
 	return self;
 }
 
-- (id)initWithFrame:(FLRect)aRect 
+- (id)initWithFrame:(CGRect)aRect 
 {
 	if ((self = [super initWithFrame: aRect])) 
 	{
@@ -121,10 +121,10 @@
 
 - (void) dealloc
 {
-	release_(_disabledImage);
-	release_(_image);
-	release_(_titleLabel);
-	release_(_imageView);
+	FLRelease(_disabledImage);
+	FLRelease(_image);
+	FLRelease(_titleLabel);
+	FLRelease(_imageView);
 	super_dealloc_();
 }
 
@@ -264,7 +264,7 @@
 
 - (void) updateImageAndTextViewPositions
 {
-	FLRect rectUsedForCenteringSubviews = self.rectUsedForCenteringSubviews;
+	CGRect rectUsedForCenteringSubviews = self.rectUsedForCenteringSubviews;
 	CGFloat border = (rectUsedForCenteringSubviews.size.width - (_imageView.frame.size.width + _titleLabel.frame.size.width + 10.f)) / 2.0f;
 	_imageView.frameOptimizedForLocation = 
 		FLRectMoveVertically(
@@ -277,7 +277,7 @@
 {
 	[super layoutSubviews];
 	
-	FLRect rectUsedForCenteringSubviews = [self rectUsedForCenteringSubviews];
+	CGRect rectUsedForCenteringSubviews = [self rectUsedForCenteringSubviews];
 
 	if(FLStringIsNotEmpty(_titleLabel.text))
 	{

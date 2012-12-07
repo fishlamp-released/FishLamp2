@@ -45,7 +45,7 @@
 
 - (FLModalPopoverController*) presentInPopoverFromViewController:(UIViewController*) viewController
                                         permittedArrowDirections:(UIPopoverArrowDirection)arrowDirections
-                                                        fromRect:(FLRect) rect
+                                                        fromRect:(CGRect) rect
                                                          animate:(BOOL) animated;
 #endif
 @end

@@ -52,10 +52,10 @@
 
 - (void) dealloc
 {
-	release_(_highlightedFillColor);
-	release_(_highlightedBorderColor);
-	release_(_fillColor);
-	release_(_borderColor);
+	FLRelease(_highlightedFillColor);
+	FLRelease(_highlightedBorderColor);
+	FLRelease(_fillColor);
+	FLRelease(_borderColor);
 	super_dealloc_();
 }
 
@@ -126,7 +126,7 @@
 	return self;
 }
 
-- (id)initWithFrame:(FLRect)frame 
+- (id)initWithFrame:(CGRect)frame 
 {
 	if ((self = [super initWithFrame:frame])) 
 	{
@@ -136,7 +136,7 @@
 	return self;
 }
 
-- (void)drawRect:(FLRect)rect
+- (void)drawRect:(CGRect)rect
 {
 	CGContextRef context = UIGraphicsGetCurrentContext();
 	CGContextSaveGState(context);

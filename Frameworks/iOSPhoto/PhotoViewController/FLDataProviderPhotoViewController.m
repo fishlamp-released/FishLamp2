@@ -28,7 +28,7 @@
 
 - (void) dealloc
 {
-    release_(_dataProvider);
+    FLRelease(_dataProvider);
     super_dealloc_();
 }
 
@@ -44,7 +44,7 @@
 
     [super createTopToolbar];
 
-    self.topToolbar = autorelease_([[FLDeprecatedButtonbarToolbar alloc] initWithFrame:CGRectMake(0,20,self.view.frame.size.width, 44) buttonbarView:self.buttonbar]);
+    self.topToolbar = FLAutorelease([[FLDeprecatedButtonbarToolbar alloc] initWithFrame:CGRectMake(0,20,self.view.frame.size.width, 44) buttonbarView:self.buttonbar]);
     [self.view addSubview:self.topToolbar];
     
 }

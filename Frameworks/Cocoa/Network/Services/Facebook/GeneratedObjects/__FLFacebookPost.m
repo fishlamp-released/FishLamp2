@@ -171,25 +171,25 @@
 
 - (void) dealloc
 {
-    release_(__object_id);
-    release_(__from);
-    release_(__to);
-    release_(__message);
-    release_(__picture);
-    release_(__link);
-    release_(__caption);
-    release_(__description);
-    release_(__source);
-    release_(__icon);
-    release_(__properties);
-    release_(__application);
-    release_(__privacy);
-    release_(__comments);
-    release_(__likes);
-    release_(__actions);
-    release_(__type);
-    release_(__updated_time);
-    release_(__created_time);
+    FLRelease(__object_id);
+    FLRelease(__from);
+    FLRelease(__to);
+    FLRelease(__message);
+    FLRelease(__picture);
+    FLRelease(__link);
+    FLRelease(__caption);
+    FLRelease(__description);
+    FLRelease(__source);
+    FLRelease(__icon);
+    FLRelease(__properties);
+    FLRelease(__application);
+    FLRelease(__privacy);
+    FLRelease(__comments);
+    FLRelease(__likes);
+    FLRelease(__actions);
+    FLRelease(__type);
+    FLRelease(__updated_time);
+    FLRelease(__created_time);
     super_dealloc_();
 }
 
@@ -219,7 +219,7 @@
 
 + (FLFacebookPost*) facebookPost
 {
-    return autorelease_([[FLFacebookPost alloc] init]);
+    return FLAutorelease([[FLFacebookPost alloc] init]);
 }
 
 - (id) init
@@ -234,25 +234,25 @@
 {
     if((self = [super initWithCoder:aDecoder]))
     {
-        __object_id = retain_([aDecoder decodeObjectForKey:@"__object_id"]);
-        __from = retain_([aDecoder decodeObjectForKey:@"__from"]);
-        __to = retain_([aDecoder decodeObjectForKey:@"__to"]);
-        __message = retain_([aDecoder decodeObjectForKey:@"__message"]);
-        __picture = retain_([aDecoder decodeObjectForKey:@"__picture"]);
-        __link = retain_([aDecoder decodeObjectForKey:@"__link"]);
-        __caption = retain_([aDecoder decodeObjectForKey:@"__caption"]);
-        __description = retain_([aDecoder decodeObjectForKey:@"__description"]);
-        __source = retain_([aDecoder decodeObjectForKey:@"__source"]);
-        __icon = retain_([aDecoder decodeObjectForKey:@"__icon"]);
+        __object_id = FLRetain([aDecoder decodeObjectForKey:@"__object_id"]);
+        __from = FLRetain([aDecoder decodeObjectForKey:@"__from"]);
+        __to = FLRetain([aDecoder decodeObjectForKey:@"__to"]);
+        __message = FLRetain([aDecoder decodeObjectForKey:@"__message"]);
+        __picture = FLRetain([aDecoder decodeObjectForKey:@"__picture"]);
+        __link = FLRetain([aDecoder decodeObjectForKey:@"__link"]);
+        __caption = FLRetain([aDecoder decodeObjectForKey:@"__caption"]);
+        __description = FLRetain([aDecoder decodeObjectForKey:@"__description"]);
+        __source = FLRetain([aDecoder decodeObjectForKey:@"__source"]);
+        __icon = FLRetain([aDecoder decodeObjectForKey:@"__icon"]);
         __properties = [[aDecoder decodeObjectForKey:@"__properties"] mutableCopy];
-        __application = retain_([aDecoder decodeObjectForKey:@"__application"]);
-        __privacy = retain_([aDecoder decodeObjectForKey:@"__privacy"]);
-        __comments = retain_([aDecoder decodeObjectForKey:@"__comments"]);
-        __likes = retain_([aDecoder decodeObjectForKey:@"__likes"]);
+        __application = FLRetain([aDecoder decodeObjectForKey:@"__application"]);
+        __privacy = FLRetain([aDecoder decodeObjectForKey:@"__privacy"]);
+        __comments = FLRetain([aDecoder decodeObjectForKey:@"__comments"]);
+        __likes = FLRetain([aDecoder decodeObjectForKey:@"__likes"]);
         __actions = [[aDecoder decodeObjectForKey:@"__actions"] mutableCopy];
-        __type = retain_([aDecoder decodeObjectForKey:@"__type"]);
-        __updated_time = retain_([aDecoder decodeObjectForKey:@"__updated_time"]);
-        __created_time = retain_([aDecoder decodeObjectForKey:@"__created_time"]);
+        __type = FLRetain([aDecoder decodeObjectForKey:@"__type"]);
+        __updated_time = FLRetain([aDecoder decodeObjectForKey:@"__updated_time"]);
+        __created_time = FLRetain([aDecoder decodeObjectForKey:@"__created_time"]);
     }
     return self;
 }

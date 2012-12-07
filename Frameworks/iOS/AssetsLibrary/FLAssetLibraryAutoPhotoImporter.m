@@ -96,7 +96,7 @@
 {
     FLAssert_v(_delegate != nil, @"a delegate is required.");
 
-    completedBlock = autorelease_([completedBlock copy]);
+    completedBlock = FLAutorelease([completedBlock copy]);
     
     [self _clearData];
     
@@ -158,7 +158,7 @@
                FLLog(@"found asset to add: %@", newAsset.assetURL);
 #endif                           
                [_importedAssets addObject:newAsset];
-               release_(imageAsset);
+               FLRelease(imageAsset);
            }
         }];
 }

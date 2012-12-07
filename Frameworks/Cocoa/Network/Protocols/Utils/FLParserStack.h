@@ -8,7 +8,7 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "FishLampCore.h"
+#import "FLCore.h"
 
 #define FLParserStackMaxDepth 128
 
@@ -34,7 +34,7 @@ extern void FLParserStackFree(FLParserStack** stack);
 NS_INLINE
 void FLParserStackSetNodeObject(FLParserStackNode* node, id object)
 {
-	FLRetainObject_((node->object), object);
+	FLAssignObjectWithRetain((node->object), object);
 }
 
 NS_INLINE
@@ -44,8 +44,8 @@ void FLParserStackPush(FLParserStack* stack, id key, id object) {
 	}
 
 	++stack->top;
-	stack->stack[stack->top].key = retain_(key);
-	stack->stack[stack->top].object = retain_(object);
+	stack->stack[stack->top].key = FLRetain(key);
+	stack->stack[stack->top].object = FLRetain(object);
 }
 
 NS_INLINE

@@ -46,7 +46,7 @@
 
 - (void) setShakyIconVisible:(BOOL) isVisible;
 
-- (void) showFocusGraphicAt:(FLPoint) pt isVisible:(BOOL) isVisible;
+- (void) showFocusGraphicAt:(CGPoint) pt isVisible:(BOOL) isVisible;
 
 - (void) setThumbnail:(UIImage*) image newCount:(NSInteger) newCount;
 - (void) removeThumbnail;
@@ -72,7 +72,7 @@
 - (void) cameraOverlayView:(FLCameraOverlayView*) overlayView flashModeWasChanged:(UIImagePickerControllerCameraFlashMode) newMode;
 - (void) cameraOverlayView:(FLCameraOverlayView*) overlayView zoomChanged:(float) newZoom;
 
-- (void) cameraOverlayView:(FLCameraOverlayView*) overlayView userTouchScreenAtPoint:(FLPoint) point;
+- (void) cameraOverlayView:(FLCameraOverlayView*) overlayView userTouchScreenAtPoint:(CGPoint) point;
 
 
 @end

@@ -9,8 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #import "FLHttpOperation.h"
-#import "FLCachedImage.h"
-#import "FLImage.h"
+#import "FLStorableImage.h"
 
 @interface FLDownloadImageOperation : FLHttpOperation {
 }

@@ -15,7 +15,7 @@
 @synthesize lineBreakMode = _lineBreakMode;
 @synthesize text = _text;
 
-- (id) initWithFrame:(FLRect) frame
+- (id) initWithFrame:(CGRect) frame
 {
 	if((self = [super initWithFrame:frame]))
 	{
@@ -29,8 +29,8 @@
 
 - (void) dealloc
 {
-	release_(_text);
-	release_(_textDescriptor);
+	FLRelease(_text);
+	FLRelease(_textDescriptor);
 	super_dealloc_();
 }
 
@@ -40,7 +40,7 @@
 	[self setNeedsDisplay];
 }
 
-- (void) drawSelf:(FLRect) rect
+- (void) drawSelf:(CGRect) rect
 {
 	if(!_textDescriptor)
 	{

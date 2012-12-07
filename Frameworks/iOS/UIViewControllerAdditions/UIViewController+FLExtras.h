@@ -92,8 +92,8 @@ typedef void (^FLViewControllerDismissHandler)(UIViewController* viewController,
 
 @interface UIViewController (FLToolbars) 
 // these takes into consideration the FLViewContents descriptor, etc.
-- (FLRect) frameForTopBarView:(UIView*) view;
-- (FLRect) frameForBottomBarView:(UIView*) view;
+- (CGRect) frameForTopBarView:(UIView*) view;
+- (CGRect) frameForBottomBarView:(UIView*) view;
 
 // these are stored with special tags in the subView list
 // Note that either toolBar can be ANY kind of view.

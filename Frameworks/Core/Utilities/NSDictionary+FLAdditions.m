@@ -45,7 +45,7 @@ const FLDictionaryEntry FLDictionaryEntryNil = { nil, nil };
 }
 
 + (id)dictionaryWithEntryArray:(const FLDictionaryEntry[]) objects {
-    return autorelease_([[NSDictionary alloc] initWithEntryArray:objects]);
+    return FLAutorelease([[NSDictionary alloc] initWithEntryArray:objects]);
 }
 
 + (id) combineDictionary:(NSDictionary *)otherDictionary

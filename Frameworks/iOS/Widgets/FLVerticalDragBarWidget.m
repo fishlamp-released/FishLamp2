@@ -33,20 +33,20 @@
 
 + (FLVerticalDragBarWidget*) verticalDragBarWidget:(FLVerticalDragBarWidgetStyle) style
 {
-    return autorelease_([[FLVerticalDragBarWidget alloc] initWithStyle:style]);
+    return FLAutorelease([[FLVerticalDragBarWidget alloc] initWithStyle:style]);
 }
 
 - (void) dealloc
 {
-    release_(_lineColor);
+    FLRelease(_lineColor);
     super_dealloc_();
 }
 
-- (void) drawSelf:(FLRect) rect
+- (void) drawSelf:(CGRect) rect
 {
     CGContextRef ctx = UIGraphicsGetCurrentContext();
 
-    FLRect frame = self.frame;
+    CGRect frame = self.frame;
     FLColor_t rgb = [self.lineColor color_t];
     
     CGContextSetRGBStrokeColor(ctx, rgb.red, rgb.green, rgb.blue, 1.0); 

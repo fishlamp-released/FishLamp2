@@ -17,7 +17,7 @@ FLSynthesizeSingleton(FLBigThumbnailViewVerticalLayout)
 {
     if((self = [super init]))
     {
-        self.onWillArrange = ^(id arrangement, FLRect bounds) {
+        self.onWillArrange = ^(id arrangement, CGRect bounds) {
             if(bounds.size.width > bounds.size.height) {
                 self.columnCount = 4;
             }
@@ -30,7 +30,7 @@ FLSynthesizeSingleton(FLBigThumbnailViewVerticalLayout)
     return self;
 }
 
-//- (FLSize) cellViewLayoutGetCellSize:(FLCellArrangement*) layout inBounds:(FLRect) bounds
+//- (FLSize) cellViewLayoutGetCellSize:(FLCellArrangement*) layout inBounds:(CGRect) bounds
 //{
 //    if(DeviceIsPad())
 //    {

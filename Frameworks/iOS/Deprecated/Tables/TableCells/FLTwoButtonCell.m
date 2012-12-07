@@ -62,14 +62,14 @@
 {
 	[super layoutSubviews];
  
-	FLRect layoutRect = self.layoutRect;
+	CGRect layoutRect = self.layoutRect;
 
 	if(!FLTestBits(self.sectionWidget.drawMode,FLTableViewCellSectionDrawModeBorder))
 	{
 		layoutRect = CGRectInset(layoutRect, 10, 0);
 	}
 
-	FLRect buttonFrame = FLRectSetWidth(_leftButton ? _leftButton.frame : _rightButton.frame, (layoutRect.size.width / 2.0f) - (DeviceIsPad() ? 20.0f : 10.0f));
+	CGRect buttonFrame = FLRectSetWidth(_leftButton ? _leftButton.frame : _rightButton.frame, (layoutRect.size.width / 2.0f) - (DeviceIsPad() ? 20.0f : 10.0f));
 	
 	if(_leftButton)
 	{
@@ -82,14 +82,14 @@
 }
 - (void)dealloc 
 {
-	release_(_leftButton);
-	release_(_rightButton);	
+	FLRelease(_leftButton);
+	FLRelease(_rightButton);	
 	super_dealloc_();
 }
 
 + (FLTwoButtonCell*) twoButtonCell
 {
-	return autorelease_([[FLTwoButtonCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"FLTwoButtonCell"]);
+	return FLAutorelease([[FLTwoButtonCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"FLTwoButtonCell"]);
 }	
 
 + (FLTwoButtonCell*) twoButtonCell:(FLLegacyButton*) leftButton

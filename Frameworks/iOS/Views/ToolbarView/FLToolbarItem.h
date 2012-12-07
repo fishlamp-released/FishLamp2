@@ -54,17 +54,17 @@ typedef enum {
 - (void) wasAddedToToolbarView:(FLToolbarView*) view;
 - (void) wasRemovedFromToolbarView:(FLToolbarView*) view;
 
-- (void) drawRect:(FLRect) rect;
+- (void) drawRect:(CGRect) rect;
 
 
 
 
 - (void) toolbarTitleDidChange:(NSString*) title;
 
-- (FLSize) subviewSizeThatFitsInBounds:(FLRect) bounds;
+- (FLSize) subviewSizeThatFitsInBounds:(CGRect) bounds;
 - (void) setSubviewSize:(FLSize) size;
 
-- (void) updateSizeInBounds:(FLRect) bounds;
+- (void) updateSizeInBounds:(CGRect) bounds;
 
 - (void) updateLayout;
 

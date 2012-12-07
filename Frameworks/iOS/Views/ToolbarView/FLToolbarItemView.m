@@ -13,7 +13,7 @@
 
 + (id) toolbarItemView:(UIView*) view 
          onChosenBlock:(FLToolbarViewBlock) onChosenBlock {
-    return autorelease_([[[self class] alloc] initWithView:view onChosenBlock:onChosenBlock]);
+    return FLAutorelease([[[self class] alloc] initWithView:view onChosenBlock:onChosenBlock]);
 }
 
 - (void) wasAddedToToolbarView:(FLToolbarView*) view {

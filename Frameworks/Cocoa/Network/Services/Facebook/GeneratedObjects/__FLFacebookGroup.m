@@ -74,12 +74,12 @@
 
 - (void) dealloc
 {
-    release_(__owner);
-    release_(__icon);
-    release_(__description);
-    release_(__link);
-    release_(__privacy);
-    release_(__updated_time);
+    FLRelease(__owner);
+    FLRelease(__icon);
+    FLRelease(__description);
+    FLRelease(__link);
+    FLRelease(__privacy);
+    FLRelease(__updated_time);
     super_dealloc_();
 }
 
@@ -96,7 +96,7 @@
 
 + (FLFacebookGroup*) facebookGroup
 {
-    return autorelease_([[FLFacebookGroup alloc] init]);
+    return FLAutorelease([[FLFacebookGroup alloc] init]);
 }
 
 - (id) init
@@ -111,12 +111,12 @@
 {
     if((self = [super initWithCoder:aDecoder]))
     {
-        __owner = retain_([aDecoder decodeObjectForKey:@"__owner"]);
-        __icon = retain_([aDecoder decodeObjectForKey:@"__icon"]);
-        __description = retain_([aDecoder decodeObjectForKey:@"__description"]);
-        __link = retain_([aDecoder decodeObjectForKey:@"__link"]);
-        __privacy = retain_([aDecoder decodeObjectForKey:@"__privacy"]);
-        __updated_time = retain_([aDecoder decodeObjectForKey:@"__updated_time"]);
+        __owner = FLRetain([aDecoder decodeObjectForKey:@"__owner"]);
+        __icon = FLRetain([aDecoder decodeObjectForKey:@"__icon"]);
+        __description = FLRetain([aDecoder decodeObjectForKey:@"__description"]);
+        __link = FLRetain([aDecoder decodeObjectForKey:@"__link"]);
+        __privacy = FLRetain([aDecoder decodeObjectForKey:@"__privacy"]);
+        __updated_time = FLRetain([aDecoder decodeObjectForKey:@"__updated_time"]);
     }
     return self;
 }

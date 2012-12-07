@@ -24,11 +24,11 @@
 	return self;
 }
 
-- (void) layoutLabels:(FLRect) contentViewBounds
+- (void) layoutLabels:(CGRect) contentViewBounds
 {
-	FLRect valueRect = FLRectCenterRectInRectVertically(contentViewBounds, self.valueLabel.labelView.frame);
+	CGRect valueRect = FLRectCenterRectInRectVertically(contentViewBounds, self.valueLabel.labelView.frame);
 	
-	FLRect titleRect = FLRectCenterRectInRectVertically(contentViewBounds, self.label.frame);
+	CGRect titleRect = FLRectCenterRectInRectVertically(contentViewBounds, self.label.frame);
 	titleRect.origin.x = contentViewBounds.origin.x;
 	titleRect = FLRectSetWidth(titleRect, MIN(titleRect.size.width, contentViewBounds.size.width - valueRect.size.width));
 	
@@ -55,7 +55,7 @@
 
 + (FLWideSingleLineLabelAndValueCell*) wideSingleLineLabelAndValueCell
 {
-	return autorelease_([[FLWideSingleLineLabelAndValueCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"FLWideSingleLineLabelAndValueCell"]);
+	return FLAutorelease([[FLWideSingleLineLabelAndValueCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"FLWideSingleLineLabelAndValueCell"]);
 }
 
 

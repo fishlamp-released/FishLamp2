@@ -36,7 +36,7 @@ FLSynthesizeStructProperty(separatorLine, setSeparatorLine, FLTableViewCellBackg
     self.cornerRadius = 4.0;
 }
 
-- (id) initWithFrame:(FLRect) frame
+- (id) initWithFrame:(CGRect) frame
 {
 	if((self = [super initWithFrame:frame])) {
         self.wantsApplyTheme = YES;
@@ -45,9 +45,9 @@ FLSynthesizeStructProperty(separatorLine, setSeparatorLine, FLTableViewCellBackg
 	return self;
 }
 
-//- (FLRect) rectForPath
+//- (CGRect) rectForPath
 //{
-//	  FLRect rect = [super rectForPath];
+//	  CGRect rect = [super rectForPath];
 //
 //	  switch(self.drawMode)
 //	  {
@@ -74,7 +74,7 @@ FLSynthesizeStructProperty(separatorLine, setSeparatorLine, FLTableViewCellBackg
 
 
 
-- (void)drawRect:(FLRect)rect
+- (void)drawRect:(CGRect)rect
 {
 	[super drawRect:rect];
 	

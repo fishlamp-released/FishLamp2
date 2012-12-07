@@ -37,22 +37,22 @@
 - (void) setSubviewSize:(FLSize) size {
 }
 
-- (FLSize) subviewSizeThatFitsInBounds:(FLRect) bounds {
+- (FLSize) subviewSizeThatFitsInBounds:(CGRect) bounds {
     return CGSizeZero;
 }
 
-- (FLSize) sizeThatFitsInBounds:(FLRect) bounds {
+- (FLSize) sizeThatFitsInBounds:(CGRect) bounds {
     FLSize size = [self subviewSizeThatFitsInBounds:bounds];
     size.width += self.horizontalPadding;
     size.height = bounds.size.height;
     return size;
 }
 
-- (void) updateSizeInBounds:(FLRect) bounds {
+- (void) updateSizeInBounds:(CGRect) bounds {
 
     FLSize subviewSize = [self subviewSizeThatFitsInBounds:bounds];
     
-    FLRect frame = self.frame;
+    CGRect frame = self.frame;
     frame.size = subviewSize;
     frame.size.width += self.horizontalPadding;
     frame.size.height = bounds.size.height;
@@ -65,7 +65,7 @@
 
     if(self.view) {
 
-        FLRect viewFrame = FLRectCenterRectInRectVertically(self.frame, [self.view frame]);
+        CGRect viewFrame = FLRectCenterRectInRectVertically(self.frame, [self.view frame]);
             
         switch(self.viewAlignment) {
             case FLToolbarItemAlignmentNone:
@@ -94,7 +94,7 @@
     _toolbar = nil;
 }
 
-- (void) drawRect:(FLRect) rect {
+- (void) drawRect:(CGRect) rect {
 }
 
 - (void) toolbarTitleDidChange:(NSString*) title {

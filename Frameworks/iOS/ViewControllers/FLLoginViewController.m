@@ -32,7 +32,7 @@
 
 - (UIView*) createContentView {
 
-    FLEditableItemsContainerView* view = autorelease_([[FLEditableItemsContainerView alloc] initWithFrame:CGRectMake(0, 0, 100, 40)]);
+    FLEditableItemsContainerView* view = FLAutorelease([[FLEditableItemsContainerView alloc] initWithFrame:CGRectMake(0, 0, 100, 40)]);
 
     FLEditableItemView* userName = [FLEditableItemView editableItemView];
     userName.placeHolderText = @"Username or E-mail";

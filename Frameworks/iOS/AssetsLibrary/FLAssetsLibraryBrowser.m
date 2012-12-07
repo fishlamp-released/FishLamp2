@@ -38,18 +38,18 @@
 
 - (void) dealloc
 {
-    release_(_locationManager);
-	release_(_groups);
-	release_(_processedAssets);
-	release_(_chosenAssets);
-	release_(_disabledAssets);
-	release_(_queue);
+    FLRelease(_locationManager);
+	FLRelease(_groups);
+	FLRelease(_processedAssets);
+	FLRelease(_chosenAssets);
+	FLRelease(_disabledAssets);
+	FLRelease(_queue);
 	super_dealloc_();
 }
 
 + (FLAssetsLibraryBrowser*) assetsLibraryBrowser:(FLAssetQueue*) queue
 {
-	return autorelease_([[FLAssetsLibraryBrowser alloc] initWithAssetQueue:queue]);
+	return FLAutorelease([[FLAssetsLibraryBrowser alloc] initWithAssetQueue:queue]);
 }
 
 
@@ -59,8 +59,8 @@
 	FLAssertIsNotNil_v(tabBar, nil);
 
 	tabBar.items = [NSArray arrayWithObjects:
-			autorelease_([[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"All Photos", nil) image:[UIImage imageNamed:@"image.png"] tag: 0]),
-			autorelease_([[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"Albums", nil) image:[UIImage imageNamed:@"images.png"] tag: 1]),
+			FLAutorelease([[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"All Photos", nil) image:[UIImage imageNamed:@"image.png"] tag: 0]),
+			FLAutorelease([[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"Albums", nil) image:[UIImage imageNamed:@"images.png"] tag: 1]),
 			nil];	
 }
 
@@ -86,12 +86,12 @@
 	switch(idx)
 	{
 		case 0:
-			controller = autorelease_([[FLAssetsLibraryAllAssetsBrowser alloc] initWithAssetQueue:_queue]);
+			controller = FLAutorelease([[FLAssetsLibraryAllAssetsBrowser alloc] initWithAssetQueue:_queue]);
 			[self _setupViewController:controller];
 		break;
 
 		case 1:
-			controller = autorelease_([[FLAssetsLibraryGroupBrowser alloc] initWithAssetQueue:_queue]);
+			controller = FLAutorelease([[FLAssetsLibraryGroupBrowser alloc] initWithAssetQueue:_queue]);
 			[self _setupViewController:controller];
 		break;
 	}

@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "FishLampCore.h"
+#import "FLCore.h"
 
 #define FLNetworkServerPropertyKeyUrl @"url"
 #define FLNetworkServerPropertyKeyTargetNamespace @"namespace"

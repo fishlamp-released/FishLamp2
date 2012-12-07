@@ -97,15 +97,15 @@
 
 - (void) dealloc
 {
-    release_(__from);
-    release_(__updated_time);
-    release_(__created_time);
-    release_(__link);
-    release_(__icon);
-    release_(__source);
-    release_(__height);
-    release_(__width);
-    release_(__tags);
+    FLRelease(__from);
+    FLRelease(__updated_time);
+    FLRelease(__created_time);
+    FLRelease(__link);
+    FLRelease(__icon);
+    FLRelease(__source);
+    FLRelease(__height);
+    FLRelease(__width);
+    FLRelease(__tags);
     super_dealloc_();
 }
 
@@ -125,7 +125,7 @@
 
 + (FLFacebookPhoto*) facebookPhoto
 {
-    return autorelease_([[FLFacebookPhoto alloc] init]);
+    return FLAutorelease([[FLFacebookPhoto alloc] init]);
 }
 
 - (id) init
@@ -140,14 +140,14 @@
 {
     if((self = [super initWithCoder:aDecoder]))
     {
-        __from = retain_([aDecoder decodeObjectForKey:@"__from"]);
-        __updated_time = retain_([aDecoder decodeObjectForKey:@"__updated_time"]);
-        __created_time = retain_([aDecoder decodeObjectForKey:@"__created_time"]);
-        __link = retain_([aDecoder decodeObjectForKey:@"__link"]);
-        __icon = retain_([aDecoder decodeObjectForKey:@"__icon"]);
-        __source = retain_([aDecoder decodeObjectForKey:@"__source"]);
-        __height = retain_([aDecoder decodeObjectForKey:@"__height"]);
-        __width = retain_([aDecoder decodeObjectForKey:@"__width"]);
+        __from = FLRetain([aDecoder decodeObjectForKey:@"__from"]);
+        __updated_time = FLRetain([aDecoder decodeObjectForKey:@"__updated_time"]);
+        __created_time = FLRetain([aDecoder decodeObjectForKey:@"__created_time"]);
+        __link = FLRetain([aDecoder decodeObjectForKey:@"__link"]);
+        __icon = FLRetain([aDecoder decodeObjectForKey:@"__icon"]);
+        __source = FLRetain([aDecoder decodeObjectForKey:@"__source"]);
+        __height = FLRetain([aDecoder decodeObjectForKey:@"__height"]);
+        __width = FLRetain([aDecoder decodeObjectForKey:@"__width"]);
         __tags = [[aDecoder decodeObjectForKey:@"__tags"] mutableCopy];
     }
     return self;

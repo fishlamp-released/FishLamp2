@@ -33,7 +33,7 @@
 //
 //- (void) dealloc
 //{
-//	release_(_name);
+//	FLRelease(_name);
 //	super_dealloc_();
 //}
 //

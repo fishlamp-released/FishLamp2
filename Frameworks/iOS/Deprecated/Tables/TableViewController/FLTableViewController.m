@@ -71,7 +71,7 @@
 
 - (UIScrollView*) createScrollView
 {
-	FLTableView* tableView = autorelease_([[FLTableView alloc] initWithFrame:self.view.bounds]);
+	FLTableView* tableView = FLAutorelease([[FLTableView alloc] initWithFrame:self.view.bounds]);
 	tableView.backgroundColor = self.view.backgroundColor;
 	tableView.autoresizingMask = UIViewAutoresizingFlexibleEverything;
 	tableView.autoresizesSubviews = YES;
@@ -99,7 +99,7 @@
     FLFloatingViewController* popover = self.floatingViewController;
     if(popover)
     {
-        FLRect lastSectionRect = [self.view convertRect:[self.tableView rectForSection:self.tableView.numberOfSections - 1] fromView:self.tableView];
+        CGRect lastSectionRect = [self.view convertRect:[self.tableView rectForSection:self.tableView.numberOfSections - 1] fromView:self.tableView];
         FLSize size =  self.view.frame.size;
         
         size.height = FLRectGetBottom(lastSectionRect);

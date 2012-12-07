@@ -11,8 +11,8 @@
 
 
 @interface UIView (FLMenuView)
-- (void) handleTouch:(FLPoint) point;
-- (void) handleSelect:(FLPoint) point;
+- (void) handleTouch:(CGPoint) point;
+- (void) handleSelect:(CGPoint) point;
 - (CGFloat) optimalWidth;
 - (void) handleCancel;
 - (void) _clearMenuViewDelegates;
@@ -20,13 +20,13 @@
 
 @implementation UIView (FLMenuView)
 
-- (void) handleTouch:(FLPoint) point {
+- (void) handleTouch:(CGPoint) point {
     for(UIView* view in self.subviews) {
         [view handleTouch:[view convertPoint:point fromView:self]];
     }
 }
 
-- (void) handleSelect:(FLPoint) point {
+- (void) handleSelect:(CGPoint) point {
     for(UIView* view in self.subviews) {
         [view handleSelect:[view convertPoint:point fromView:self]];
     }
@@ -79,7 +79,7 @@
     _titleView.hidden = FLStringIsEmpty(menuTitle);
 }
 
-- (id) initWithFrame:(FLRect) frame {
+- (id) initWithFrame:(CGRect) frame {
     if((self = [super initWithFrame:frame])) {
         self.userInteractionEnabled = YES;
         self.multipleTouchEnabled = YES;
@@ -89,7 +89,7 @@
         _menuItemSize = FLSizeMake(100, 50);
         
         FLVerticalGridArrangement* layout = [FLVerticalGridArrangement verticalGridArrangement];
-        layout.onWillArrange = ^(id theLayout, FLRect bounds) {
+        layout.onWillArrange = ^(id theLayout, CGRect bounds) {
             [theLayout setColumnCount:bounds.size.width / _menuItemSize.width];
             [theLayout setCellHeight:_menuItemSize.height];
         };
@@ -112,8 +112,8 @@
 }
 
 - (void) dealloc {
-    release_(_menuItems);
-    release_(_titleView);
+    FLRelease(_menuItems);
+    FLRelease(_titleView);
     super_dealloc_();
 }
 
@@ -142,7 +142,7 @@
     
     if(!_madeSelection) {
         UITouch* touch = [touches anyObject];
-        FLPoint point = [touch locationInView:self];
+        CGPoint point = [touch locationInView:self];
         [self handleTouch:point];
     }
 }
@@ -165,7 +165,7 @@
         _madeSelection = YES;
         
         UITouch* touch = [touches anyObject];
-        FLPoint point = [touch locationInView:self];
+        CGPoint point = [touch locationInView:self];
 
         [self handleSelect:point];
     }

@@ -102,7 +102,7 @@ typedef enum {
 
 - (UIEdgeInsets) contentViewInsets;
 
-- (FLRect) contentViewFrameInBounds:(FLRect) bounds;
+- (CGRect) contentViewFrameInBounds:(CGRect) bounds;
 
 @end
 
@@ -209,7 +209,7 @@ CGFloat FLViewContentsDescriptorMinHeight(CGFloat height, FLViewContentsDescript
 
 extern CGFloat FLViewContentsDescriptorCalculateTop( FLViewContentsDescriptor contents);
 extern CGFloat FLViewContentsDescriptorCalculateBottom( FLViewContentsDescriptor contents);
-extern FLRect FLViewContentsDescriptorCalculateContainerRect(FLRect bounds, FLViewContentsDescriptor contents);
+extern CGRect FLViewContentsDescriptorCalculateContainerRect(CGRect bounds, FLViewContentsDescriptor contents);
 
 #if FLViewContentsDescriptorPadding
 extern UIEdgeInsets FLViewContentsDescriptorPaddingForRectLayout(FLViewContentsDescriptor contents);
@@ -223,8 +223,8 @@ UIEdgeInsets FLViewContentsDescriptorPaddingForRectLayout(FLViewContentsDescript
 
 
 NS_INLINE
-FLRect FLViewContentsDescriptorCalculateRectVertically(FLRect containeeRect, 
-	FLRect containerRect,	  
+CGRect FLViewContentsDescriptorCalculateRectVertically(CGRect containeeRect, 
+	CGRect containerRect,	  
 	FLViewContentsDescriptor contents,
 	FLContentMode rectLayout)
 {
@@ -232,8 +232,8 @@ FLRect FLViewContentsDescriptorCalculateRectVertically(FLRect containeeRect,
 }
 
 NS_INLINE
-FLRect FLViewContentsDescriptorCalculateRectHorizonally(FLRect containeeRect, 
-	FLRect containerRect,	  
+CGRect FLViewContentsDescriptorCalculateRectHorizonally(CGRect containeeRect, 
+	CGRect containerRect,	  
 	FLViewContentsDescriptor contents,
 	FLContentMode rectLayout)
 {
@@ -241,9 +241,9 @@ FLRect FLViewContentsDescriptorCalculateRectHorizonally(FLRect containeeRect,
 }
 	
 NS_INLINE
-FLRect FLViewContentsDescriptorCalculateRect(
-	FLRect containeeRect, 
-	FLRect containerRect,	  
+CGRect FLViewContentsDescriptorCalculateRect(
+	CGRect containeeRect, 
+	CGRect containerRect,	  
 	FLViewContentsDescriptor contents,
 	FLContentMode rectLayout)
 {

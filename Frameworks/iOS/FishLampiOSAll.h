@@ -7,7 +7,7 @@
 //
 
 // Prerequisites
-#import "FishLampCore.h"
+#import "FLCore.h"
 
 // Controls
 #import "FLButton.h"

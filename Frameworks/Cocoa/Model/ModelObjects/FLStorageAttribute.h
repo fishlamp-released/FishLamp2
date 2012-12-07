@@ -7,7 +7,7 @@
 //
 
 #import "FLBitFlags.h"
-#import "FishLampCore.h"
+#import "FLCore.h"
 
 // using bit flags so you can build it quick inline, e.g. a | b | c
 

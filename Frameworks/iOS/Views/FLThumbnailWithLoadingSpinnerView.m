@@ -10,7 +10,7 @@
 
 @implementation FLThumbnailWithLoadingSpinnerView
 
-- (id) initWithFrame:(FLRect) rect
+- (id) initWithFrame:(CGRect) rect
 {
 	if((self = [super initWithFrame:rect]))
 	{

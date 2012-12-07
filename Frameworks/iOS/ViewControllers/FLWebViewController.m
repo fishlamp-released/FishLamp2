@@ -44,7 +44,7 @@ FLAssertDefaultInitNotCalled_()
 
 + (id) webViewController:(FLWebViewControllerButtonMode) buttonMode
 {
-    return autorelease_([[[self class] alloc] initWithButtonMode:buttonMode]);
+    return FLAutorelease([[[self class] alloc] initWithButtonMode:buttonMode]);
 }
 
 - (void) loadView
@@ -55,7 +55,7 @@ FLAssertDefaultInitNotCalled_()
 	}
 	else
 	{
-		UIView* parentView = autorelease_([[UIView alloc] initWithFrame:CGRectMake(0,0,320,480)]);
+		UIView* parentView = FLAutorelease([[UIView alloc] initWithFrame:CGRectMake(0,0,320,480)]);
 		parentView.autoresizingMask = UIViewAutoresizingFlexibleEverything;
 		parentView.autoresizesSubviews = YES;
 		parentView.backgroundColor = [UIColor whiteColor];
@@ -121,13 +121,13 @@ FLAssertDefaultInitNotCalled_()
 
 - (void) removeActionButton
 {
-	NSMutableArray* items = autorelease_([[_bottomToolbar items] mutableCopy]);
+	NSMutableArray* items = FLAutorelease([[_bottomToolbar items] mutableCopy]);
 	[items removeObject:_actionButton];
 	_bottomToolbar.items = items;
 }
 
 - (void) dealloc {
-	release_(_startURL);
+	FLRelease(_startURL);
 	[self cleanupWebViewController];
 	super_dealloc_();
 }
@@ -181,7 +181,7 @@ FLAssertDefaultInitNotCalled_()
 			outValue = [self shouldNavigateToLink:request.URL];
             if(outValue && self.openLinksInNewViewController)
             {
-                FLWebViewController* controller = autorelease_([[[self class] alloc] initWithButtonMode:self.buttonMode]);
+                FLWebViewController* controller = FLAutorelease([[[self class] alloc] initWithButtonMode:self.buttonMode]);
                 controller.openLinksInNewViewController = self.openLinksInNewViewController;
                 controller.openHttpLinksInSafari = self.openHttpLinksInSafari;
                 controller.autoSetTitle = YES; // TODO: no other way, maybe have delegate set this?
@@ -357,20 +357,20 @@ FLAssertDefaultInitNotCalled_()
 {
 	if(self.navigationController)
 	{
-		FLRect navBarRect = self.navigationController.navigationBar.frame;
+		CGRect navBarRect = self.navigationController.navigationBar.frame;
 
 		if(_bottomToolbar && _bottomToolbar.hidden == NO)
 		{
-			FLRect toolbarRect = _bottomToolbar.frame;
+			CGRect toolbarRect = _bottomToolbar.frame;
 			
-			FLRect newRect = self.view.bounds;
+			CGRect newRect = self.view.bounds;
 			newRect.origin.y = FLRectGetBottom(navBarRect);
 			newRect.size.height = toolbarRect.origin.y - newRect.origin.y;
 			self.webView.frame = newRect;
 		}
 		else
 		{
-			FLRect newRect = self.view.bounds;
+			CGRect newRect = self.view.bounds;
 			newRect.origin.y = FLRectGetBottom(navBarRect);
 			newRect.size.height = FLRectGetBottom(self.view.bounds) - newRect.origin.y;
 			self.webView.frame = newRect;

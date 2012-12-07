@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "FishLampCore.h"
+#import "FLCore.h"
 
 @protocol FLErrorDescription <NSObject>
 @property (readwrite, retain, nonatomic) NSString* title;

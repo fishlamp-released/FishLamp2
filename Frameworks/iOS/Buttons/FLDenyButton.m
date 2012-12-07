@@ -20,19 +20,19 @@
 }
 
 + (FLButton*) cancelButton:(FLButtonPress)onPress {
-    return autorelease_([[[self class] alloc] initWithTitle:NSLocalizedString(@"Cancel", nil) onPress:onPress]);
+    return FLAutorelease([[[self class] alloc] initWithTitle:NSLocalizedString(@"Cancel", nil) onPress:onPress]);
 }
 
 + (FLButton*) cancelButton {
-    return autorelease_([[[self class] alloc] initWithTitle:NSLocalizedString(@"Cancel", nil)]);
+    return FLAutorelease([[[self class] alloc] initWithTitle:NSLocalizedString(@"Cancel", nil)]);
 }
 
 + (FLButton*) noButton {
-    return autorelease_([[[self class] alloc] initWithTitle:NSLocalizedString(@"No", nil)]);
+    return FLAutorelease([[[self class] alloc] initWithTitle:NSLocalizedString(@"No", nil)]);
 }
 
 + (FLButton*) noButton:(FLButtonPress)onPress {
-    return autorelease_([[[self class] alloc] initWithTitle:NSLocalizedString(@"No", nil) onPress:onPress]);
+    return FLAutorelease([[[self class] alloc] initWithTitle:NSLocalizedString(@"No", nil) onPress:onPress]);
 }
 
 

@@ -29,22 +29,22 @@
 
 - (void) dealloc 
 {
-	release_(_builder);
-	release_(_masterExif);
-	release_(_extras);
-	release_(_overrides);
+	FLRelease(_builder);
+	FLRelease(_masterExif);
+	FLRelease(_extras);
+	FLRelease(_overrides);
 	super_dealloc_();
 }
 
 - (void) setMasterExif:(NSDictionary*) dict
 {
-	release_(_masterExif);
+	FLRelease(_masterExif);
 	_masterExif = [dict mutableCopy];
 }
 
 - (void) _addTiffData:(FLTableViewLayoutBuilder*) builder dataSourceManager:(FLLegacyDataSource*) dataSourceManager exifDictionary:(NSDictionary*) exifDict
 {
-	[dataSourceManager setDataSource:autorelease_([exifDict mutableCopy]) forKey:(NSString*)kCGImagePropertyTIFFDictionary];
+	[dataSourceManager setDataSource:FLAutorelease([exifDict mutableCopy]) forKey:(NSString*)kCGImagePropertyTIFFDictionary];
 	
 	if([exifDict objectForKey:(NSString*)kCGImagePropertyTIFFMake])
 	{
@@ -128,7 +128,7 @@
 
 - (void) _addExifExifData:(FLTableViewLayoutBuilder*) builder dataSourceManager:(FLLegacyDataSource*) dataSourceManager exifDictionary:(NSDictionary*) exifDict
 {
-	[dataSourceManager setDataSource:autorelease_([exifDict mutableCopy]) forKey:(NSString*)kCGImagePropertyExifDictionary];
+	[dataSourceManager setDataSource:FLAutorelease([exifDict mutableCopy]) forKey:(NSString*)kCGImagePropertyExifDictionary];
 
 	if( [exifDict objectForKey:(NSString*)kCGImagePropertyExifDateTimeOriginal])
 	{
@@ -203,11 +203,11 @@
 {
 	if(self.masterExif)
 	{
-		FLMasterPhotoExif* exif = autorelease_([[FLMasterPhotoExif alloc] initWithDictionary:self.masterExif]);
+		FLMasterPhotoExif* exif = FLAutorelease([[FLMasterPhotoExif alloc] initWithDictionary:self.masterExif]);
 		
 		FLPhotoMapViewController* controller = [[FLPhotoMapViewController alloc] init];
 		[row.viewController.navigationController pushViewController:controller animated:YES];
-		release_(controller);
+		FLRelease(controller);
 	
 		[controller addPin:NSLocalizedString(@"Photo", @"Exif - name of pin when showing on map") coordinate:exif.gpsExif.coordinate];
 	}

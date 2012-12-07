@@ -1,6 +1,6 @@
 //
 //  FLObservable2.m
-//  FishLampCore
+//  FLCore
 //
 //  Created by Mike Fullerton on 11/14/12.
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
@@ -26,7 +26,7 @@ synthesize_(target);
 synthesize_(action);
 
 + (id) observerEvent {
-    return autorelease_([[[self class] alloc] init]);
+    return FLAutorelease([[[self class] alloc] init]);
 }
 
 + (FLObserverEvent*) observerEvent:(id) target action:(SEL) action {

@@ -41,7 +41,7 @@
 }
 
 + (id) operation:(FLRunOperationBlock) callback {
-    return autorelease_([[[self class] alloc] initWithRunBlock:callback]);
+    return FLAutorelease([[[self class] alloc] initWithRunBlock:callback]);
 }
 
 #if FL_MRC
@@ -62,7 +62,7 @@
 }
 
 + (id) operation {
-	return autorelease_([[[self class] alloc] init]);
+	return FLAutorelease([[[self class] alloc] init]);
 }
 
 - (void) cancelSelf {
@@ -151,7 +151,7 @@
 //}
 //
 //+ (id) operationObserver:(FLOperationObserverBlock) block {
-//    return autorelease_([[[self class] alloc] initWithBlock:block]);
+//    return FLAutorelease([[[self class] alloc] initWithBlock:block]);
 //}
 //
 //#if FL_MRC

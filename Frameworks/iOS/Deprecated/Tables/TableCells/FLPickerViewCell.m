@@ -24,7 +24,7 @@
 
 - (void) dealloc
 {
-	release_(_pickerView);
+	FLRelease(_pickerView);
 	super_dealloc_();
 }
 

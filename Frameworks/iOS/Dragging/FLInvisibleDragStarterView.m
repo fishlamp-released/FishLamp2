@@ -10,7 +10,7 @@
 
 @implementation FLInvisibleDragStarterView
 
-- (id)initWithFrame:(FLRect)frame
+- (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
@@ -22,7 +22,7 @@
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
-- (void)drawRect:(FLRect)rect
+- (void)drawRect:(CGRect)rect
 {
     // Drawing code
 }

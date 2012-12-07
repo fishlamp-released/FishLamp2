@@ -24,7 +24,7 @@
 @property (readwrite, assign, nonatomic) CGFloat cornerRadius;
 @property (readwrite, strong, nonatomic) UIColor* innerBorderColor;
 
--(void) createPathForShapeInRect:(CGMutablePathRef) path rect:(FLRect) rect;
+-(void) createPathForShapeInRect:(CGMutablePathRef) path rect:(CGRect) rect;
 
 
 @end

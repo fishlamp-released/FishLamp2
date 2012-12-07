@@ -46,8 +46,8 @@
 
 - (void) dealloc
 {
-    release_(__type);
-    release_(__pictureSize);
+    FLRelease(__type);
+    FLRelease(__pictureSize);
     super_dealloc_();
 }
 
@@ -59,7 +59,7 @@
 
 + (FLFacebookLoadUserPictureOperationInput*) facebookLoadUserPictureOperationInput
 {
-    return autorelease_([[FLFacebookLoadUserPictureOperationInput alloc] init]);
+    return FLAutorelease([[FLFacebookLoadUserPictureOperationInput alloc] init]);
 }
 
 - (id) init
@@ -74,8 +74,8 @@
 {
     if((self = [super init]))
     {
-        __type = retain_([aDecoder decodeObjectForKey:@"__type"]);
-        __pictureSize = retain_([aDecoder decodeObjectForKey:@"__pictureSize"]);
+        __type = FLRetain([aDecoder decodeObjectForKey:@"__type"]);
+        __pictureSize = FLRetain([aDecoder decodeObjectForKey:@"__pictureSize"]);
     }
     return self;
 }

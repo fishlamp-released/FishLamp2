@@ -26,7 +26,7 @@
 
 
 @implementation NSObject (FLDeallocNotifier)
-FLSynthesizeAssociatedProperty(retain_nonatomic, _deallocNotifier, _setDeallocNotifier, FLDeallocNotifier*);
+FLSynthesizeAssociatedProperty(FLRetainnonatomic, _deallocNotifier, _setDeallocNotifier, FLDeallocNotifier*);
 
 - (FLDeallocNotifier*) deallocNotifier {
     @synchronized(self) {
@@ -123,7 +123,7 @@ static void (*originalDealloc)(id,SEL);
 }
 
 + (id) deallocNotifier:(id) object {
-    return autorelease_([[FLDeallocNotifier alloc] initWithObject:object]);
+    return FLAutorelease([[FLDeallocNotifier alloc] initWithObject:object]);
 }
 
 - (void) addNotifier:(FLSimpleNotifier*) notifier {
@@ -145,10 +145,10 @@ static void (*originalDealloc)(id,SEL);
     NSSet* notifiers = nil;
     FLDeletedObjectReference* ref = nil;
     @synchronized(self) {
-        notifiers = autorelease_(_notifiers);
+        notifiers = FLAutorelease(_notifiers);
         _notifiers = nil;
 
-        ref = autorelease_(_deletedObjectReference);
+        ref = FLAutorelease(_deletedObjectReference);
         _deletedObjectReference = nil;
     }
     

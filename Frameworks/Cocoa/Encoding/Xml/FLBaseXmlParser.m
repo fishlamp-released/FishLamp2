@@ -32,7 +32,7 @@
             error = [NSError errorWithDomain:NSXMLParserErrorDomain code:error.code localizedDescription:errorStr];
         }
         
-        FLRetainObject_(_error, error);
+        FLAssignObjectWithRetain(_error, error);
         [_parser abortParsing];
     }
 }
@@ -48,9 +48,9 @@
 - (void) dealloc
 {
 	_parser.delegate = nil;
-	release_(_parser);
-	release_(_error);
-	release_(_dataDecoder);
+	FLRelease(_parser);
+	FLRelease(_error);
+	FLRelease(_dataDecoder);
 	super_dealloc_();
 }
 
@@ -63,9 +63,7 @@
 	FLAssertIsNil_(_parser);
 
     @try {
-#if FL_MRC
-        FLPerformBlockInAutoreleasePool(^{
-#endif        
+        FLAutoreleasePool(
             if(!self.dataDecoder) {
                 self.dataDecoder = [self onCreateDataDecoder];
             }
@@ -78,9 +76,7 @@
             [self onConfigureParser:_parser];
             
             [_parser parse];
-#if FL_MRC
-        });
-#endif
+        ) 
     }
     @finally {
 		_parser.delegate = nil;
@@ -88,7 +84,7 @@
     	
 	if(self.error)
 	{
-		FLThrowError_(autorelease_(retain_(self.error)));
+		FLThrowError_(FLAutorelease(FLRetain(self.error)));
 	}
 }
 

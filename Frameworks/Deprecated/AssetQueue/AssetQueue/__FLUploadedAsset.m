@@ -123,19 +123,19 @@
 
 - (void) dealloc
 {
-    release_(__queueUID);
-    release_(__uploadedAssetUID);
-    release_(__assetType);
-    release_(__assetURL);
-    release_(__assetUID);
-    release_(__uploadedAssetURL);
-    release_(__uploadedAssetId);
-    release_(__uploadDestinationId);
-    release_(__uploadDestinationName);
-    release_(__uploadDestinationURL);
-    release_(__assetName);
-    release_(__thumbnail);
-    release_(__uploadedDate);
+    FLRelease(__queueUID);
+    FLRelease(__uploadedAssetUID);
+    FLRelease(__assetType);
+    FLRelease(__assetURL);
+    FLRelease(__assetUID);
+    FLRelease(__uploadedAssetURL);
+    FLRelease(__uploadedAssetId);
+    FLRelease(__uploadDestinationId);
+    FLRelease(__uploadDestinationName);
+    FLRelease(__uploadDestinationURL);
+    FLRelease(__assetName);
+    FLRelease(__thumbnail);
+    FLRelease(__uploadedDate);
     super_dealloc_();
 }
 
@@ -168,19 +168,19 @@
 {
     if((self = [super init]))
     {
-        __queueUID = retain_([aDecoder decodeObjectForKey:@"__queueUID"]);
-        __uploadedAssetUID = retain_([aDecoder decodeObjectForKey:@"__uploadedAssetUID"]);
-        __assetType = retain_([aDecoder decodeObjectForKey:@"__assetType"]);
-        __assetURL = retain_([aDecoder decodeObjectForKey:@"__assetURL"]);
-        __assetUID = retain_([aDecoder decodeObjectForKey:@"__assetUID"]);
-        __uploadedAssetURL = retain_([aDecoder decodeObjectForKey:@"__uploadedAssetURL"]);
-        __uploadedAssetId = retain_([aDecoder decodeObjectForKey:@"__uploadedAssetId"]);
-        __uploadDestinationId = retain_([aDecoder decodeObjectForKey:@"__uploadDestinationId"]);
-        __uploadDestinationName = retain_([aDecoder decodeObjectForKey:@"__uploadDestinationName"]);
-        __uploadDestinationURL = retain_([aDecoder decodeObjectForKey:@"__uploadDestinationURL"]);
-        __assetName = retain_([aDecoder decodeObjectForKey:@"__assetName"]);
-        __thumbnail = retain_([aDecoder decodeObjectForKey:@"__thumbnail"]);
-        __uploadedDate = retain_([aDecoder decodeObjectForKey:@"__uploadedDate"]);
+        __queueUID = FLRetain([aDecoder decodeObjectForKey:@"__queueUID"]);
+        __uploadedAssetUID = FLRetain([aDecoder decodeObjectForKey:@"__uploadedAssetUID"]);
+        __assetType = FLRetain([aDecoder decodeObjectForKey:@"__assetType"]);
+        __assetURL = FLRetain([aDecoder decodeObjectForKey:@"__assetURL"]);
+        __assetUID = FLRetain([aDecoder decodeObjectForKey:@"__assetUID"]);
+        __uploadedAssetURL = FLRetain([aDecoder decodeObjectForKey:@"__uploadedAssetURL"]);
+        __uploadedAssetId = FLRetain([aDecoder decodeObjectForKey:@"__uploadedAssetId"]);
+        __uploadDestinationId = FLRetain([aDecoder decodeObjectForKey:@"__uploadDestinationId"]);
+        __uploadDestinationName = FLRetain([aDecoder decodeObjectForKey:@"__uploadDestinationName"]);
+        __uploadDestinationURL = FLRetain([aDecoder decodeObjectForKey:@"__uploadDestinationURL"]);
+        __assetName = FLRetain([aDecoder decodeObjectForKey:@"__assetName"]);
+        __thumbnail = FLRetain([aDecoder decodeObjectForKey:@"__thumbnail"]);
+        __uploadedDate = FLRetain([aDecoder decodeObjectForKey:@"__uploadedDate"]);
     }
     return self;
 }
@@ -206,7 +206,7 @@
         [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"uploadDestinationName" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"uploadDestinationName"];
         [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"uploadDestinationURL" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"uploadDestinationURL"];
         [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"assetName" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"assetName"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"thumbnail" propertyClass:[SDKImage class] propertyType:FLDataTypeObject] forPropertyName:@"thumbnail"];
+        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"thumbnail" propertyClass:[FLImage class] propertyType:FLDataTypeObject] forPropertyName:@"thumbnail"];
         [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"uploadedDate" propertyClass:[NSDate class] propertyType:FLDataTypeDate] forPropertyName:@"uploadedDate"];
     });
     return s_describer;
@@ -259,7 +259,7 @@
 
 + (FLUploadedAsset*) uploadedAsset
 {
-    return autorelease_([[FLUploadedAsset alloc] init]);
+    return FLAutorelease([[FLUploadedAsset alloc] init]);
 }
 
 @end

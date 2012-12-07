@@ -35,7 +35,7 @@
 		if(_FLDefaultName(NAME) != inObj) { \
 			@synchronized(self) { \
 				if(_FLDefaultName(NAME) != inObj) { \
-					release_(_FLDefaultName(NAME)); \
+					FLRelease(_FLDefaultName(NAME)); \
 					_FLDefaultName(NAME) = inObj; \
 				} \
 			} \

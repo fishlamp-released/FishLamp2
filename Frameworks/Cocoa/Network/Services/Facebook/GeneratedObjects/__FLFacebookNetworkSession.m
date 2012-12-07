@@ -67,11 +67,11 @@
 
 - (void) dealloc
 {
-    release_(__userId);
-    release_(__appId);
-    release_(__access_token);
-    release_(__expiration_date);
-    release_(__permissions);
+    FLRelease(__userId);
+    FLRelease(__appId);
+    FLRelease(__access_token);
+    FLRelease(__expiration_date);
+    FLRelease(__permissions);
     super_dealloc_();
 }
 
@@ -86,7 +86,7 @@
 
 + (FLFacebookNetworkSession*) facebookNetworkSession
 {
-    return autorelease_([[FLFacebookNetworkSession alloc] init]);
+    return FLAutorelease([[FLFacebookNetworkSession alloc] init]);
 }
 
 - (id) init
@@ -101,10 +101,10 @@
 {
     if((self = [super init]))
     {
-        __userId = retain_([aDecoder decodeObjectForKey:@"__userId"]);
-        __appId = retain_([aDecoder decodeObjectForKey:@"__appId"]);
-        __access_token = retain_([aDecoder decodeObjectForKey:@"__access_token"]);
-        __expiration_date = retain_([aDecoder decodeObjectForKey:@"__expiration_date"]);
+        __userId = FLRetain([aDecoder decodeObjectForKey:@"__userId"]);
+        __appId = FLRetain([aDecoder decodeObjectForKey:@"__appId"]);
+        __access_token = FLRetain([aDecoder decodeObjectForKey:@"__access_token"]);
+        __expiration_date = FLRetain([aDecoder decodeObjectForKey:@"__expiration_date"]);
         __permissions = [[aDecoder decodeObjectForKey:@"__permissions"] mutableCopy];
     }
     return self;

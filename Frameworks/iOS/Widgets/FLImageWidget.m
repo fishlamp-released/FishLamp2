@@ -15,7 +15,7 @@
 @synthesize image = _image;
 @synthesize imageContentMode = _imageContentMode;
 
-- (id) initWithFrame:(FLRect) frame
+- (id) initWithFrame:(CGRect) frame
 {
 	if((self = [super initWithFrame:frame]))
 	{
@@ -32,14 +32,14 @@
 	[self setNeedsDisplay];
 }
 
-+ (FLImageWidget*) imageWidgetWithFrame:(FLRect) frame
++ (FLImageWidget*) imageWidgetWithFrame:(CGRect) frame
 {
-	return autorelease_([[FLImageWidget alloc] initWithFrame:frame]);
+	return FLAutorelease([[FLImageWidget alloc] initWithFrame:frame]);
 }
 
 - (void) dealloc
 {
-	release_(_image);
+	FLRelease(_image);
 	super_dealloc_();
 }
 
@@ -49,14 +49,14 @@
 	[self setNeedsDisplay];
 }
 
-- (void) drawSelf:(FLRect)rect
+- (void) drawSelf:(CGRect)rect
 {
 	if(_image)
 	{
 		CGContextRef context = UIGraphicsGetCurrentContext();
 		CGContextSaveGState(context);
 
-		FLRect imageRect = self.frame;
+		CGRect imageRect = self.frame;
 		switch(self.imageContentMode)
 		{
 			case FLWidgetImageContentModeScaleToFill:
@@ -162,7 +162,7 @@
 
 @end
 
-void FLWidgetBlueTintImageHighlighter(id widget, FLRect rect)
+void FLWidgetBlueTintImageHighlighter(id widget, CGRect rect)
 {
 	[[[widget image] imageTintedWithColor:[UIColor iPhoneBlueColor] fraction:0.5] drawInRect:rect];
 }

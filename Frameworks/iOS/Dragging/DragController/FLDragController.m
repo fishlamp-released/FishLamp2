@@ -36,7 +36,7 @@ FLSynthesizeStructProperty(dragWatcherIsRunning, setDragWatcherIsRunning, BOOL, 
 
 + (id) dragController
 {
-    return autorelease_([[[self class] alloc] init]);
+    return FLAutorelease([[[self class] alloc] init]);
 }
 
 - (void) startDragWatcher
@@ -63,10 +63,10 @@ FLSynthesizeStructProperty(dragWatcherIsRunning, setDragWatcherIsRunning, BOOL, 
 {
     [self stopDragWatcher];
     
-    release_(_secondaryViews);
-    release_(_touchableView);
-    release_(_dragDestinations);
-    release_(_draggableObjects);
+    FLRelease(_secondaryViews);
+    FLRelease(_touchableView);
+    FLRelease(_dragDestinations);
+    FLRelease(_draggableObjects);
     super_dealloc_();
 }
 
@@ -115,14 +115,14 @@ FLSynthesizeStructProperty(dragWatcherIsRunning, setDragWatcherIsRunning, BOOL, 
     return [_delegate dragControllerGetHostView:self];
 }
 
-- (FLRect) touchableViewFrameInHostView
+- (CGRect) touchableViewFrameInHostView
 {   
     FLAssertIsNotNil_(self.hostView);
     
     return [self.hostView convertRect:_touchableView.frame fromView:_touchableView.superview];
 }
 
-- (FLRect) viewFrameInHostView:(UIView*) view
+- (CGRect) viewFrameInHostView:(UIView*) view
 {
     FLAssertIsNotNil_(self.hostView);
     
@@ -178,13 +178,13 @@ FLSynthesizeStructProperty(dragWatcherIsRunning, setDragWatcherIsRunning, BOOL, 
     [self.touchableView dragControllerWillBeginDragging:self];
 }
 
-- (void) moveDragRespondersByAmount:(FLPoint) amount 
+- (void) moveDragRespondersByAmount:(CGPoint) amount 
             animationDuration:(CGFloat) duration
             animationFinished:(dispatch_block_t) animationFinished
 {
     if(amount.x != 0.0f || amount.y != 0.0f)
     {
-        animationFinished = autorelease_([animationFinished copy]);
+        animationFinished = FLAutorelease([animationFinished copy]);
         [self _didBeginTouching];
         
         [UIView animateWithDuration:duration
@@ -216,7 +216,7 @@ FLSynthesizeStructProperty(dragWatcherIsRunning, setDragWatcherIsRunning, BOOL, 
 }
 
 
-- (id) _intersectingDestination:(FLRect) frame
+- (id) _intersectingDestination:(CGRect) frame
 {
     for(id destination in _dragDestinations)
     {
@@ -232,38 +232,38 @@ FLSynthesizeStructProperty(dragWatcherIsRunning, setDragWatcherIsRunning, BOOL, 
 #define distance(a,b) FLDistanceBetweenTwoPoints(a, b)
 
 NS_INLINE
-float dot(FLPoint a, FLPoint b)
+float dot(CGPoint a, CGPoint b)
 {
     return (a.x * b.x) + (a.y * b.y);
 }
 
 NS_INLINE
-FLPoint add(FLPoint a, FLPoint b)
+CGPoint add(CGPoint a, CGPoint b)
 {
     return CGPointMake(a.x + b.x, a.y + b.y);
 }
 
 NS_INLINE
-FLPoint subtract(FLPoint a, FLPoint b)
+CGPoint subtract(CGPoint a, CGPoint b)
 {
     return CGPointMake(a.x - b.x, a.y - b.y);
 }
 
 NS_INLINE
-float length_squared(FLPoint a, FLPoint b)
+float length_squared(CGPoint a, CGPoint b)
 {
     return distance(a, b) * distance(a, b); 
 }
 
 NS_INLINE
-FLPoint multiply(FLPoint a, FLPoint b)
+CGPoint multiply(CGPoint a, CGPoint b)
 {
     return CGPointMake(a.x * b.x, a.y * b.y);
 }
 
 // adapted from here: http://stackoverflow.com/questions/849211/shortest-distance-between-a-point-and-a-line-segment
 
-float minimum_distance(FLPoint v, FLPoint w, FLPoint p) 
+float minimum_distance(CGPoint v, CGPoint w, CGPoint p) 
 {
     // Return minimum distance between line segment vw and point p
     const float l2 = length_squared(v, w);  // i.e. |w-v|^2 -  avoid a sqrt
@@ -286,14 +286,14 @@ float minimum_distance(FLPoint v, FLPoint w, FLPoint p)
         return distance(p, w);  // Beyond the 'w' end of the segment
     }
 
-    FLPoint projection = multiply(CGPointMake(v.x + t, v.y + t), subtract(w, v)); // v + t * (w - v);  // Projection falls on the segment
+    CGPoint projection = multiply(CGPointMake(v.x + t, v.y + t), subtract(w, v)); // v + t * (w - v);  // Projection falls on the segment
 
     return distance(p, projection);
 }
 
 // TODO: move this with the other rect utils.
 
-float FLMinDistanceToRectFromPoint(FLRect rect, FLPoint point)
+float FLMinDistanceToRectFromPoint(CGRect rect, CGPoint point)
 {
     float min = minimum_distance(rect.origin, FLRectGetTopRight(rect), point);
     min = MIN(min, minimum_distance(FLRectGetTopRight(rect), FLRectGetBottomRight(rect), point));
@@ -301,7 +301,7 @@ float FLMinDistanceToRectFromPoint(FLRect rect, FLPoint point)
     return MIN(min, minimum_distance(rect.origin, FLRectGetBottomLeft(rect), point));
 }
 
-float FLMinDistanceToRectFromRect(FLRect lhs, FLRect rhs)
+float FLMinDistanceToRectFromRect(CGRect lhs, CGRect rhs)
 {
     float min = FLMinDistanceToRectFromPoint(lhs, rhs.origin);
     min = MIN(min, FLMinDistanceToRectFromPoint(lhs, FLRectGetTopRight(rhs)));
@@ -309,7 +309,7 @@ float FLMinDistanceToRectFromRect(FLRect lhs, FLRect rhs)
     return MIN(min, FLMinDistanceToRectFromPoint(lhs, FLRectGetBottomRight(rhs)));
 }
 
-- (id) _closestDestination:(FLRect) frame
+- (id) _closestDestination:(CGRect) frame
 {
     NSInteger closestIndex = 0;
     
@@ -333,7 +333,7 @@ float FLMinDistanceToRectFromRect(FLRect lhs, FLRect rhs)
 {
     if(_dragDestinations && _dragDestinations.count > 0) {
 
-        FLRect touchableRect = self.touchableViewFrameInHostView;
+        CGRect touchableRect = self.touchableViewFrameInHostView;
         
         id destination = [self _intersectingDestination:touchableRect];
         if(!destination) {
@@ -343,9 +343,9 @@ float FLMinDistanceToRectFromRect(FLRect lhs, FLRect rhs)
         if(destination) {
 
             UITouch* touch = touches.anyObject;
-            FLRect destRect = [destination frame];
+            CGRect destRect = [destination frame];
             
-            FLPoint touchPt = [touch locationInView:self.hostView];
+            CGPoint touchPt = [touch locationInView:self.hostView];
             _dragResults.lastTouchInTouchableView = CGRectContainsPoint(touchableRect, touchPt);
             if(!_dragResults.lastTouchInTouchableView)
             {
@@ -358,7 +358,7 @@ float FLMinDistanceToRectFromRect(FLRect lhs, FLRect rhs)
                 }
             }
 
-            FLPoint delta = FLPointSubtractPointFromPoint(  destRect.origin, touchableRect.origin);
+            CGPoint delta = FLPointSubtractPointFromPoint(  destRect.origin, touchableRect.origin);
 
             if(fabs(delta.x) > 2.0f || fabs(delta.y) > 2.0f)
             {
@@ -432,16 +432,16 @@ float FLMinDistanceToRectFromRect(FLRect lhs, FLRect rhs)
 {
     UITouch* touch = [touches anyObject];
     UIView* hostView = self.hostView;
-    FLPoint touchPoint = [touch locationInView:hostView];
+    CGPoint touchPoint = [touch locationInView:hostView];
     
-    FLRect frame = self.touchableViewFrameInHostView; 
+    CGRect frame = self.touchableViewFrameInHostView; 
     _dragResults.lastTouchInTouchableView = CGRectContainsPoint(frame, touchPoint);
     
-    FLRect newFrame = frame;
+    CGRect newFrame = frame;
     newFrame.origin.x = touchPoint.x - _dragResults.touchOffset.x;
     newFrame.origin.y = touchPoint.y - _dragResults.touchOffset.y;
     
-    FLRect dragLimit = _dragLimit; // [hostView convertRect:_dragLimit fromView:hostView];
+    CGRect dragLimit = _dragLimit; // [hostView convertRect:_dragLimit fromView:hostView];
 
     if(dragLimit.size.width > frame.size.width)
     {
@@ -475,7 +475,7 @@ float FLMinDistanceToRectFromRect(FLRect lhs, FLRect rhs)
         newFrame.origin.y = frame.origin.y;
     }
     
-    FLPoint delta = FLPointSubtractPointFromPoint(newFrame.origin, frame.origin); 
+    CGPoint delta = FLPointSubtractPointFromPoint(newFrame.origin, frame.origin); 
         
     if(delta.x != 0.0f || delta.y != 0.0f)
     {
@@ -615,12 +615,12 @@ float FLMinDistanceToRectFromRect(FLRect lhs, FLRect rhs)
 
 + (FLDragControllerDragDestination*) dragDestination
 {
-    return autorelease_([[[self class] alloc] init]);
+    return FLAutorelease([[[self class] alloc] init]);
 }
 
 + (FLDragControllerDragDestination*) dragDestination:(FLCallback_t) callback
 {
-    return autorelease_([[[self class] alloc] initWithSetFrameCallback:callback]);
+    return FLAutorelease([[[self class] alloc] initWithSetFrameCallback:callback]);
 }
 
 - (void) dragControllerUpdateFrame:(FLDragController*) manager
@@ -634,7 +634,7 @@ float FLMinDistanceToRectFromRect(FLRect lhs, FLRect rhs)
 @implementation UIView (FLDragController)
 
 - (void) dragController:(FLDragController*) controller 
-    dragViewByAmount:(FLPoint) amount
+    dragViewByAmount:(CGPoint) amount
 {
     self.frameOptimizedForLocation = FLRectMoveWithPoint(self.frame, amount);
 }
@@ -655,7 +655,7 @@ didFinishDraggingWithResults:(FLViewDraggerResults) results
 @implementation UIViewController (FLDragController)
 
 - (void) dragController:(FLDragController*) controller 
-    dragViewByAmount:(FLPoint) amount 
+    dragViewByAmount:(CGPoint) amount 
 {
     self.view.frameOptimizedForLocation = FLRectMoveWithPoint(self.view.frame, amount);
 }

@@ -25,14 +25,14 @@
 + (FLSaveImageToUsersPhotoAlbumOperation*) saveImageToUserPhotoAlbumOperation:(UIImage*) image 
                                                                    properties:(NSDictionary*) properties
 {
-    return autorelease_([[[self class] alloc] initWithImageInput:image properties:properties]);
+    return FLAutorelease([[[self class] alloc] initWithImageInput:image properties:properties]);
 }
 
 - (void) dealloc
 {
-	release_(_properties);
-	release_(_lock);
-	release_(_assetsLibrary);
+	FLRelease(_properties);
+	FLRelease(_lock);
+	FLRelease(_assetsLibrary);
 	super_dealloc_();
 }
 

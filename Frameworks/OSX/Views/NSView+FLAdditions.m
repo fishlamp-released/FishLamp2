@@ -13,10 +13,15 @@
 - (void)sendToBack {
     id superView = [self superview]; 
     if (superView) {
-        mrc_autorelease_(retain_(self));
+        FLAutoreleaseObject(FLRetain(self));
         [self removeFromSuperview];
         [superView addSubview:self positioned:NSWindowBelow relativeTo:nil];
     }
+}
+
+- (void) addBackgroundView:(NSView*) view {
+    view.frame = self.bounds;
+    [self addSubview:view positioned:NSWindowBelow relativeTo:nil];
 }
 
 @end

@@ -13,7 +13,7 @@
 @interface FLWideSingleLineLabelAndValueCell : FLLabelAndValueBaseCell {
 }
 
-- (void) layoutLabels:(FLRect) rect;
+- (void) layoutLabels:(CGRect) rect;
 
 + (FLWideSingleLineLabelAndValueCell*) wideSingleLineLabelAndValueCell;
 + (FLWideSingleLineLabelAndValueCell*) wideSingleLineLabelAndValueCell:(NSString*) label;

@@ -38,8 +38,8 @@
 
 - (void) rotateViewToOrientation:(UIInterfaceOrientation) orientation
 {
-	FLRect bounds = self.bounds;
-	FLRect newBounds = bounds;
+	CGRect bounds = self.bounds;
+	CGRect newBounds = bounds;
 	
 	self.transform = CGAffineTransformMakeRotation(FLDegreesToRadians(UIDegreesFromInterfaceOrientation(orientation)));
 	

@@ -69,7 +69,7 @@
 
 + (id) tableViewCell:(NSString *)reuseIdentifier
 {
-	return autorelease_([[[self class] alloc] initWithReuseIdentifier:reuseIdentifier]);
+	return FLAutorelease([[[self class] alloc] initWithReuseIdentifier:reuseIdentifier]);
 }
 
 - (BOOL) disabled
@@ -115,7 +115,7 @@
 		
 		if(type != UITableViewCellAccessoryNone && !_accessory)
 		{
-			self.accessoryWidget = autorelease_([[FLTableViewCellAccessoryWidget alloc] init]);
+			self.accessoryWidget = FLAutorelease([[FLTableViewCellAccessoryWidget alloc] init]);
 		}
 
 		if(_accessory)
@@ -147,11 +147,11 @@
 	[_widget teardown];
 	[_accessory teardown];
 	[_sectionWidget teardown];
-	release_(_replacementLabel);
-	release_(_sectionWidget);
-	release_(_background);
-	release_(_accessory);
-	release_(_widget);
+	FLRelease(_replacementLabel);
+	FLRelease(_sectionWidget);
+	FLRelease(_background);
+	FLRelease(_accessory);
+	FLRelease(_widget);
 	super_dealloc_();
 }
 
@@ -166,7 +166,7 @@
 
 - (void) updateWidgetFrames
 {
-	FLRect frame = self.bounds;
+	CGRect frame = self.bounds;
 	frame = FLRectInsetRight(frame, self.sectionMargins.right);
 	frame = FLRectInsetLeft(frame, self.sectionMargins.left);
 	_sectionWidget.frame = frame;
@@ -254,7 +254,7 @@
 {
 	return [FLTableViewCell calculateLabelSize:self.label layoutRectWidth:width returnValidHeight:NO];
 }
-- (void) drawRect:(FLRect) rect
+- (void) drawRect:(CGRect) rect
 {
 	[super drawRect:rect];
 	
@@ -369,9 +369,9 @@
 	[self setNeedsLayout];
 }
 
-- (FLRect) layoutRect
+- (CGRect) layoutRect
 {
-	FLRect layout = _sectionWidget.frame;
+	CGRect layout = _sectionWidget.frame;
 	if(self.willDrawSection)
 	{
 		layout = FLRectInsetLeft(layout, self.sectionPadding.left);
@@ -425,7 +425,7 @@
 {
 	if(_replacementLabel)
 	{
-		FLRect layoutRect = self.layoutRect;
+		CGRect layoutRect = self.layoutRect;
 		[self updateTextLabelSizeWithLayoutRectWidth:layoutRect.size.width];
 		self.label.frameOptimizedForLocation = 
 			FLRectSetLeft(FLRectCenterRectInRectVertically(layoutRect, self.label.frame), layoutRect.origin.x);
@@ -439,7 +439,7 @@
 {
 	if(self.label)
 	{
-		FLRect layoutRect = self.layoutRect;
+		CGRect layoutRect = self.layoutRect;
 		[self updateTextLabelSizeWithLayoutRectWidth:layoutRect.size.width];
 		self.label.frameOptimizedForLocation = 
 			FLRectSetLeft(FLRectCenterRectInRectVertically(layoutRect, self.label.frame), layoutRect.origin.x + 10.0f);

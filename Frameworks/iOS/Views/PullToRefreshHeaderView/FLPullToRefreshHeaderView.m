@@ -45,7 +45,7 @@ typedef enum {
 //		_statusLabel.themeAction = @selector(applyThemeToTableViewCellTitleLabel:);
 }
 
-- (id)initWithFrame:(FLRect)frame 
+- (id)initWithFrame:(CGRect)frame 
 {
 	if ((self = [super initWithFrame:frame])) 
 	{
@@ -146,7 +146,7 @@ typedef enum {
 	self.newFrame = CGRectMake(0.0f, 0.0f - HEIGHT, self.superview.bounds.size.width, HEIGHT);
 	_backgroundView.newFrame = self.bounds;
 	
-	FLRect bounds = self.bounds;
+	CGRect bounds = self.bounds;
 	_statusLabel.newFrame = FLRectOptimizedForViewSize(FLRectCenterRectInRect(bounds, CGRectMake(0.0f, 0.0f, self.frame.size.width, 20.0f)));
 	_lastUpdatedDate.newFrame = FLRectOptimizedForViewSize(
 		FLRectAlignRectVertically(_statusLabel.frame, 
@@ -158,10 +158,10 @@ typedef enum {
 
 - (void) dealloc
 {
-	release_(_backgroundView);
-	release_(_statusLabel);
-	release_(_arrowImage);
-	release_(_spinner);
+	FLRelease(_backgroundView);
+	FLRelease(_statusLabel);
+	FLRelease(_arrowImage);
+	FLRelease(_spinner);
 	super_dealloc_();
 }
 
@@ -193,7 +193,7 @@ typedef enum {
 //	_lastUpdatedLabel.text = [NSString stringWithFormat:@"Last Updated: %@", [formatter stringFromDate:[NSDate date]]];
 //	[[NSUserDefaults standardUserDefaults] setObject:_lastUpdatedLabel.text forKey:@"FLRefreshTableView_LastRefresh"];
 //	[[NSUserDefaults standardUserDefaults] synchronize];
-//	release_(formatter);
+//	FLRelease(formatter);
 //}
 
 - (FLPullToRefreshHeaderViewState) state
@@ -295,7 +295,7 @@ typedef enum {
 	return insets;
 }
 
-- (void)drawRect:(FLRect)rect
+- (void)drawRect:(CGRect)rect
 {
 	[super drawRect:rect];
 	

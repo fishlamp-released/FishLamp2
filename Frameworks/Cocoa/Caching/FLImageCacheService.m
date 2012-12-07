@@ -20,21 +20,21 @@ service_register_(imageCacheService, FLImageCacheService, @"com.fishlamp.service
     return [[self.context storageService] imageCacheFolder];
 }
 
-- (void) saveImage:(FLImage*) image {
+- (void) saveImage:(FLStorableImage*) image {
     [self.cacheDatabase saveObject:image.imageProperties];
     [self.imageCacheFolder writeImage:image];
 }
 
-- (void) deleteImage:(FLImage*) image {
+- (void) deleteImage:(FLStorableImage*) image {
     [self.imageCacheFolder deleteImage:image];
     [self.cacheDatabase deleteObject:image];
 }
 
-- (FLImage*) loadImageForURL:(NSURL*) url {
+- (FLStorableImage*) loadImageForURL:(NSURL*) url {
     FLImageProperties* input = [FLImageProperties imagePropertiesWithImageURL:url];
     FLImageProperties* props = [self.cacheDatabase loadObject:input];
     if(props) {
-        FLImage* image = [FLImage imageWithImageProperties:props];
+        FLStorableImage* image = [FLStorableImage imageWithImageProperties:props];
         
 // TODO: add storage strategy!!        
         

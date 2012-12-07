@@ -9,5 +9,6 @@
 #import <Cocoa/Cocoa.h>
 
 @interface NSView (FLAdditions)
-- (void)sendToBack;
+- (void) sendToBack;
+- (void) addBackgroundView:(NSView*) view;
 @end

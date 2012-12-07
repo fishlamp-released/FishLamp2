@@ -32,7 +32,7 @@ static id s_touchedObject = nil;
 - (void) dealloc {
     [self stopInterceptingGlobalTouches];
     
-    release_(_wasSelectedCallback);
+    FLRelease(_wasSelectedCallback);
 	super_dealloc_();
 }
 
@@ -133,7 +133,7 @@ static id s_touchedObject = nil;
 @implementation FLSelectOnTouchDownHandler
 
 + (FLSelectOnTouchDownHandler*) selectOnTouchDownHandler {
-    return autorelease_([[FLSelectOnTouchDownHandler alloc] init]);
+    return FLAutorelease([[FLSelectOnTouchDownHandler alloc] init]);
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -193,7 +193,7 @@ static id s_lastEnteredObject = nil;
 }
 
 + (FLSelectOnTouchUpHandler*) selectOnTouchUpHandler {
-    return autorelease_([[FLSelectOnTouchUpHandler alloc] init]);
+    return FLAutorelease([[FLSelectOnTouchUpHandler alloc] init]);
 }
 
 - (BOOL) isTouching {
@@ -292,7 +292,7 @@ static id s_lastEnteredObject = nil;
     
     if(self.gotTouchDown) {
         UITouch* touch = [touches anyObject];
-		FLPoint point = [touch locationInView:[self.touchableObject view]];
+		CGPoint point = [touch locationInView:[self.touchableObject view]];
 			
 		NSTimeInterval delay = [NSDate timeIntervalSinceReferenceDate] - _startTap;
 		

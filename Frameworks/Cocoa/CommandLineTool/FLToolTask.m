@@ -13,7 +13,7 @@
 @implementation FLToolTask
 
 + (id) toolTask {
-    return autorelease_([[[self class] alloc] init]);
+    return FLAutorelease([[[self class] alloc] init]);
 }
 
 - (NSArray*) argumentKeys {

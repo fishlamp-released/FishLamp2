@@ -14,7 +14,7 @@
 @synthesize foregroundImage = _image;
 @synthesize enabled = _enabled;
 
-- (id)initWithFrame:(FLRect)frame
+- (id)initWithFrame:(CGRect)frame
 {
 	if((self = [super initWithFrame:frame]))
 	{
@@ -33,9 +33,9 @@
 
 - (void) dealloc
 {
-	release_(_disabledView);
-	release_(_image);
-	release_(_backgroundImage);
+	FLRelease(_disabledView);
+	FLRelease(_image);
+	FLRelease(_backgroundImage);
 	super_dealloc_();
 }
 

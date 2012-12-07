@@ -44,13 +44,13 @@ FLSynthesizeSingleton(FLBelowAuxiliaryViewBehavior);
     [childController.dragController addDragResponder:parent.view];
 }
 
-- (FLRect) scrollDestinationRectForBelowStyle:(FLAuxiliaryViewController*) viewController {
+- (CGRect) scrollDestinationRectForBelowStyle:(FLAuxiliaryViewController*) viewController {
 
     FLAssertIsNotNil_(viewController);
 
-    FLRect onScreenFrame = [viewController onscreenFrame];
+    CGRect onScreenFrame = [viewController onscreenFrame];
     UIView* view = viewController.parentViewController.view;
-    FLRect frame; 
+    CGRect frame; 
     switch(viewController.revealSide) {
         case FLAuxiliaryViewControllerPinnedSideRight:
             frame = FLRectSetLeft(view.frame, view.superview.bounds.origin.x - onScreenFrame.size.width - kBelowBuffer);    
@@ -80,7 +80,7 @@ FLSynthesizeSingleton(FLBelowAuxiliaryViewBehavior);
         [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
     }
     
-    FLPoint delta = FLPointSubtractPointFromPoint([self scrollDestinationRectForBelowStyle:viewController].origin, viewController.parentViewController.view.frame.origin);
+    CGPoint delta = FLPointSubtractPointFromPoint([self scrollDestinationRectForBelowStyle:viewController].origin, viewController.parentViewController.view.frame.origin);
     
     [viewController.dragController moveDragRespondersByAmount:delta animationDuration:0.3 animationFinished:nil];
 }
@@ -93,7 +93,7 @@ FLSynthesizeSingleton(FLBelowAuxiliaryViewBehavior);
         [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
     }
     
-    FLPoint delta = FLPointSubtractPointFromPoint(viewController.parentViewController.view.superview.bounds.origin, viewController.parentViewController.view.frame.origin);
+    CGPoint delta = FLPointSubtractPointFromPoint(viewController.parentViewController.view.superview.bounds.origin, viewController.parentViewController.view.frame.origin);
     
     [viewController.dragController moveDragRespondersByAmount:delta animationDuration:0.3 animationFinished:^{ [viewController _hideAnimationFinished]; }];
 } 
@@ -103,7 +103,7 @@ FLSynthesizeSingleton(FLBelowAuxiliaryViewBehavior);
 
     FLAssertIsNotNil_(viewController);
 
-    FLRect frame = [viewController.dragController touchableViewFrameInHostView];
+    CGRect frame = [viewController.dragController touchableViewFrameInHostView];
     
     if( results.userDidTouchView &&
        results.lastTouchInTouchableView &&
@@ -129,7 +129,7 @@ FLSynthesizeSingleton(FLBelowAuxiliaryViewBehavior);
     }
 }
 
-- (FLRect) initialFrameForContainerView:(FLAuxiliaryViewController*) viewController {
+- (CGRect) initialFrameForContainerView:(FLAuxiliaryViewController*) viewController {
 
     FLAssertIsNotNil_(viewController);
 

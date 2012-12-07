@@ -34,13 +34,13 @@ FLSynthesizeSingleton(FLAboveAuxiliaryViewBehavior);
 }
 
 - (void) showViewControllerAnimated:(BOOL) animated viewController:(FLAuxiliaryViewController*) viewController {
-    FLPoint delta = FLPointSubtractPointFromPoint([viewController onscreenFrame].origin, viewController.containerView.frame.origin);
+    CGPoint delta = FLPointSubtractPointFromPoint([viewController onscreenFrame].origin, viewController.containerView.frame.origin);
     [viewController.dragController moveDragRespondersByAmount:delta animationDuration:0.3 animationFinished:nil];
 }
 
 - (void) hideViewControllerAnimated:(BOOL) animated viewController:(FLAuxiliaryViewController*) viewController {
     if(viewController.viewController) {
-        FLPoint delta = FLPointSubtractPointFromPoint([viewController offscreenFrame].origin, viewController.containerView.frame.origin);
+        CGPoint delta = FLPointSubtractPointFromPoint([viewController offscreenFrame].origin, viewController.containerView.frame.origin);
         [viewController.dragController moveDragRespondersByAmount:delta animationDuration:0.3 animationFinished:^{ [viewController _hideAnimationFinished]; }];
     }
 } 
@@ -59,7 +59,7 @@ FLSynthesizeSingleton(FLAboveAuxiliaryViewBehavior);
     //        }];
 }
 
-- (FLRect) initialFrameForContainerView:(FLAuxiliaryViewController*) viewController {
+- (CGRect) initialFrameForContainerView:(FLAuxiliaryViewController*) viewController {
     return [viewController offscreenFrame];
 }
 

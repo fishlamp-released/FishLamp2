@@ -25,7 +25,7 @@ CGFloat kFrameSize = 0; //5.0f
 }
 
 
-- (id) initWithFrame:(FLRect) frame
+- (id) initWithFrame:(CGRect) frame
 {
 	if((self = [super initWithFrame:frame]))
 	{
@@ -49,7 +49,7 @@ CGFloat kFrameSize = 0; //5.0f
 	return self;
 }
 
-- (void) drawRect:(FLRect) rect
+- (void) drawRect:(CGRect) rect
 {
 	[super drawRect:rect];
 	
@@ -59,7 +59,7 @@ CGFloat kFrameSize = 0; //5.0f
 		[[UIColor blackColor] setStroke];
 		[[UIColor whiteColor] setFill];
 		
-		FLRect thumbFrame = _thumbnailButton.frame;
+		CGRect thumbFrame = _thumbnailButton.frame;
 		thumbFrame.size.width += (kFrameSize*2);
 		thumbFrame.size.height += (kFrameSize*2);
 		thumbFrame.origin.x -= kFrameSize;
@@ -68,7 +68,7 @@ CGFloat kFrameSize = 0; //5.0f
 		
 		if(_frameViewFlags.showStack)
 		{
-			FLRect stackFrame = thumbFrame;
+			CGRect stackFrame = thumbFrame;
 			stackFrame.origin.x += kFrameSize;
 			stackFrame.origin.y -= kFrameSize;
 			CGContextClearRect( context , stackFrame );
@@ -119,10 +119,10 @@ CGFloat kFrameSize = 0; //5.0f
 
 - (void) dealloc
 {
-	release_(_thumbnailButton);
-	release_(_backgroundThumbnail);
-	release_(_foregroundThumbnail);
-	release_(_scaledForegroundThumbnail);
+	FLRelease(_thumbnailButton);
+	FLRelease(_backgroundThumbnail);
+	FLRelease(_foregroundThumbnail);
+	FLRelease(_scaledForegroundThumbnail);
 	super_dealloc_();
 }
 
@@ -131,7 +131,7 @@ CGFloat kFrameSize = 0; //5.0f
 	return sender != nil && _thumbnailButton == sender;
 }
 
-- (FLRect) thumbnailImageFrame
+- (CGRect) thumbnailImageFrame
 {
 	return _thumbnailButton ? _thumbnailButton.frame : CGRectZero;
 }
@@ -161,7 +161,7 @@ CGFloat kFrameSize = 0; //5.0f
 
 - (void) setShowBothThumbnails:(BOOL) showBoth 
 	foregroundThumbnailScale:(CGFloat) scale 
-	positionOffset:(FLPoint) offset {
+	positionOffset:(CGPoint) offset {
 	
     self.showBothThumbnails = showBoth;
 	_foregoundThumbnailScale = scale;
@@ -172,8 +172,8 @@ CGFloat kFrameSize = 0; //5.0f
 	
     FLAssert_v(_maxSize.width != 0.0f && _maxSize.height != 0.0f, @"invalid max size");
 	
-    FLRect thumbnailFrame =[image proportionalBoundsWithMaxSize:_maxSize];
-	FLPoint thumbOrigin = {0.0f, 0.0f};
+    CGRect thumbnailFrame =[image proportionalBoundsWithMaxSize:_maxSize];
+	CGPoint thumbOrigin = {0.0f, 0.0f};
 	FLSize frameSize = {0,0};
 	
 	if(_frameViewFlags.showFrame)
@@ -255,7 +255,7 @@ CGFloat kFrameSize = 0; //5.0f
 			[_thumbnailButton addSubview:_scaledForegroundThumbnail];
 		}
 		_scaledForegroundThumbnail.image = _foregroundThumbnail;
-		FLRect frame = FLRectSetSizeWithSize(_scaledForegroundThumbnail.frame, _foregroundThumbnail.size);
+		CGRect frame = FLRectSetSizeWithSize(_scaledForegroundThumbnail.frame, _foregroundThumbnail.size);
 		frame = FLRectFitInRectInRectProportionally(_thumbnailButton.bounds, frame);
 		frame = FLRectScale(frame, _foregoundThumbnailScale);
 		frame = FLRectCenterRectInRect(_thumbnailButton.bounds, frame);

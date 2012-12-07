@@ -27,7 +27,7 @@
 
 + (FLCheckMarkGroup*) checkMarkTableCellGroup:(NSString*) dataKeyPath
 {
-	return autorelease_([[FLCheckMarkGroup alloc] initWithDataKeyPath:dataKeyPath]);
+	return FLAutorelease([[FLCheckMarkGroup alloc] initWithDataKeyPath:dataKeyPath]);
 }
 
 - (FLCheckMarkTableViewCell*) cellAtIndex:(NSUInteger) idx
@@ -98,8 +98,8 @@
 
 - (void) dealloc
 {
-	release_(_rows);
-	release_(_dataKey);
+	FLRelease(_rows);
+	FLRelease(_dataKey);
 	super_dealloc_();
 }
 

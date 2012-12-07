@@ -29,7 +29,7 @@
 #endif
 
 + (id) facebookService {
-    return autorelease_([[[self class] alloc] init]);
+    return FLAutorelease([[[self class] alloc] init]);
 }
 
 - (FLDatabase*) database {
@@ -72,7 +72,7 @@
 		FLFacebookNetworkSession* input = [FLFacebookNetworkSession facebookNetworkSession];
 		input.appId = self.appId;
 		
-		FLRetainObject_(_facebookNetworkSession, [self.database loadObject:input]);
+		FLAssignObjectWithRetain(_facebookNetworkSession, [self.database loadObject:input]);
 		
 		if(_facebookNetworkSession && FLStringIsEmpty(_facebookNetworkSession.userId))
 		{
@@ -128,7 +128,7 @@
 
 - (void) setFacebookNetworkSession:(FLFacebookNetworkSession*) session
 {
-	FLRetainObject_(_facebookNetworkSession, session);
+	FLAssignObjectWithRetain(_facebookNetworkSession, session);
 
 	self.encodedToken = nil;
 	
@@ -150,7 +150,7 @@
 {
 	if(!_encodedToken)
 	{
-		_encodedToken =  retain_([self.facebookNetworkSession.access_token urlEncodeString:NSUTF8StringEncoding]);
+		_encodedToken =  FLRetain([self.facebookNetworkSession.access_token urlEncodeString:NSUTF8StringEncoding]);
 	}
 	return _encodedToken;
 }

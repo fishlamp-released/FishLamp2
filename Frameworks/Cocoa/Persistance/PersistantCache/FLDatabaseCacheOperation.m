@@ -19,8 +19,8 @@
 		FLAssertIsNotNil_v(database, nil);
 		FLAssertIsNotNil_v(input, nil);
 		
-        _database = retain_(database);
-        _input = retain_(input);
+        _database = FLRetain(database);
+        _input = FLRetain(input);
 		_operationType = operation;
 	}
 	

@@ -43,6 +43,6 @@
 @property (readwrite, retain, nonatomic) UIColor* highlightedBorderColor;
 @property (readwrite, assign, nonatomic) CGFloat borderAlpha;
 
-//- (FLRect) rectForPath;
+//- (CGRect) rectForPath;
 
 @end

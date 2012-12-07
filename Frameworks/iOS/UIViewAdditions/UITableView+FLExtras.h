@@ -15,7 +15,7 @@
 @end
 
 @interface UITableViewCell (FLExtras)
-+ (void) drawDisclosureArrowInRect:(FLRect) rect 
++ (void) drawDisclosureArrowInRect:(CGRect) rect 
 	color:(UIColor*) color 
 	alpha:(CGFloat) alpha
 	context:(CGContextRef) context;

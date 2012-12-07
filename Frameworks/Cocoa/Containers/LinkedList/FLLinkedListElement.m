@@ -1,6 +1,6 @@
 //
 //  FLLinkedListElement.m
-//  FishLampCore
+//  FLCore
 //
 //  Created by Mike Fullerton on 4/24/12.
 //  Copyright (c) 2012 GreenTongue Software. All rights reserved.
@@ -18,8 +18,8 @@
 
 #if FL_MRC
 - (void) dealloc {
-    release_(_nextObjectInLinkedList);
-    release_(_previousObjectInLinkedList);
+    FLRelease(_nextObjectInLinkedList);
+    FLRelease(_previousObjectInLinkedList);
 	super_dealloc_();
 }
 #endif
@@ -29,6 +29,6 @@
 
 @implementation NSObject (FLLinkedList)
 FLSynthesizeAssociatedProperty(assign_nonatomic, linkedList, setLinkedList, FLLinkedList*);
-FLSynthesizeAssociatedProperty(retain_nonatomic, nextObjectInLinkedList, setNextObjectInLinkedList, id);
-FLSynthesizeAssociatedProperty(retain_nonatomic, previousObjectInLinkedList, setPreviousObjectInLinkedList, id);
+FLSynthesizeAssociatedProperty(FLRetainnonatomic, nextObjectInLinkedList, setNextObjectInLinkedList, id);
+FLSynthesizeAssociatedProperty(FLRetainnonatomic, previousObjectInLinkedList, setPreviousObjectInLinkedList, id);
 @end

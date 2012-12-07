@@ -46,7 +46,7 @@
 - (UIView*) viewForKey:(NSString*) key;
 - (void) setView:(UIView*) view forKey:(NSString*)key animated:(BOOL) animated; // replaces 
 
-- (FLRect) rectForButtonWithKey:(NSString*) key forDisplayInView:(UIView*) view;
+- (CGRect) rectForButtonWithKey:(NSString*) key forDisplayInView:(UIView*) view;
 
 - (void) disableAllButtons;
 - (void) setViewHidden:(BOOL) hidden forKey:(NSString*) key	 animated:(BOOL) animated;

@@ -24,7 +24,7 @@ NSString* const FLPhotoType = @"com.fishlamp.photo";
 }
 
 + (id) photo {
-    return autorelease_([[[self class] alloc] init]);
+    return FLAutorelease([[[self class] alloc] init]);
 }
 
 
@@ -50,14 +50,14 @@ NSString* const FLPhotoType = @"com.fishlamp.photo";
 
 - (void) copySelfTo:(FLPhoto*) photo {
     [super copySelfTo:photo];
-    photo.originalImage = autorelease_([self.originalImage copy]);
-    photo.thumbnailImage = autorelease_([self.thumbnailImage copy]);
-    photo.previewImage = autorelease_([self.previewImage copy]);
+    photo.originalImage = FLAutorelease([self.originalImage copy]);
+    photo.thumbnailImage = FLAutorelease([self.thumbnailImage copy]);
+    photo.previewImage = FLAutorelease([self.previewImage copy]);
 }
 
 @end
 
-//#import "SDKImage.h"
+//#import "FLImage.h"
 //#import "UIImage+Resize.h"
 //#import "FLQueuedAsset.h"
 
@@ -74,7 +74,7 @@ NSString* const FLPhotoType = @"com.fishlamp.photo";
 //+ (void) initialize {
 //
 //#if IOS
-//	SDKRect bounds = [UIScreen mainScreen].bounds;
+//	CGRect bounds = [UIScreen mainScreen].bounds;
 //	s_fullSize = MAX(bounds.size.width, bounds.size.height);
 //	s_thumbnailSize = DeviceIsPad() ? 120 : 80.0;
 //    s_fullSize *= [UIScreen mainScreen].scale;
@@ -112,9 +112,9 @@ NSString* const FLPhotoType = @"com.fishlamp.photo";
 //}
 //- (void) createThumbnailVersion
 //{
-////	SDKImage* thumb = nil;
+////	FLImage* thumb = nil;
 //	
-//	SDKImage* startImage = self.original.image;
+//	FLImage* startImage = self.original.image;
 //	if(!startImage)
 //	{
 //		startImage = self.fullScreen.image;
@@ -213,7 +213,7 @@ NSString* const FLPhotoType = @"com.fishlamp.photo";
 //	FLReleaseWithNil_(_fullScreenImageFile);
 //}
 
-//- (SDKImage*) thumbnailImage {
+//- (FLImage*) thumbnailImage {
 //
 //// FIXME: asset stuff is a mess
 //

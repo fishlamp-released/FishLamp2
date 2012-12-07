@@ -18,7 +18,7 @@
 
 @property (readwrite, strong, nonatomic) NSString* assetUID; //
 @property (readonly, strong, nonatomic) NSURL* assetURL; // file: or assets-library:
-@property (readonly, strong, nonatomic) SDKImage* thumbnailImage;
+@property (readonly, strong, nonatomic) FLImage* thumbnailImage;
 
 //- (void) deleteFromAssetStorage;
 

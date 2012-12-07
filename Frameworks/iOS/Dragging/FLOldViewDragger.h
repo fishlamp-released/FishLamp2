@@ -14,8 +14,8 @@
 
 @interface FLOldViewDragger :  NSObject<FLApplicationEventInterceptor> {
 @private
-    FLPoint _firstTouch;
-    FLPoint _lastTouch;
+    CGPoint _firstTouch;
+    CGPoint _lastTouch;
     id<FLDraggableItem> _item;
     BOOL _touchIsInside;
 }
@@ -29,25 +29,25 @@
 - (void) beginWatchingTouchesForDraggableItem:(id<FLDraggableItem>) item;
 - (void) stopWatchingTouches;
 
-- (FLPoint) pointInView:(FLPoint) windowCoordinatePoint;
+- (CGPoint) pointInView:(CGPoint) windowCoordinatePoint;
 
 @end
 
 typedef struct {
 // touches are in window coordinates!!
-    FLPoint firstTouch;
-    FLPoint previousTouch;
-    FLPoint currentTouch;
-    FLPoint currentDelta;
-    FLRect frame;
+    CGPoint firstTouch;
+    CGPoint previousTouch;
+    CGPoint currentTouch;
+    CGPoint currentDelta;
+    CGRect frame;
 } FLViewDraggerDragInfo;
 
 
 @protocol FLDraggableItem <NSObject>
 
 @property (readonly, assign, nonatomic) UIView* touchableView;
-@property (readonly, assign, nonatomic) FLRect frame;
-@property (readonly, assign, nonatomic) FLRect dragLimit;
+@property (readonly, assign, nonatomic) CGRect frame;
+@property (readonly, assign, nonatomic) CGRect dragLimit;
 @property (readonly, assign, nonatomic) NSArray* dragDestinations; // array of rects.
 
 - (void) viewDraggerDragWillBegin:(FLOldViewDragger*) dragger;

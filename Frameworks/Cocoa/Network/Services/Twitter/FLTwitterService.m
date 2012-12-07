@@ -44,7 +44,7 @@ service_register_(twitterService, FLTwitterService, @"com.fishlamp.service.twitt
 }
 
 + (id) twitterService {
-    return autorelease_([[[self class] alloc] init]);
+    return FLAutorelease([[[self class] alloc] init]);
 }
 
 - (BOOL) needsAuthorizationForUserGuid:(NSString*) userGuid {

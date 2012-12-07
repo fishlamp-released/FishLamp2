@@ -12,7 +12,7 @@
 
 @implementation NSException (NSError)
 
-FLSynthesizeAssociatedProperty(retain_nonatomic, _error, setError, NSError*);
+FLSynthesizeAssociatedProperty(FLRetainnonatomic, _error, setError, NSError*);
 
 - (NSError*) error {
     NSError* error = [self _error];
@@ -52,11 +52,11 @@ FLSynthesizeAssociatedProperty(retain_nonatomic, _error, setError, NSError*);
                             reason:(NSString *)reason
                           userInfo:(NSDictionary *)userInfo
                              error:(NSError*)error {
-	return autorelease_([[[self class] alloc] initWithName:name reason:reason userInfo:userInfo error:error]);
+	return FLAutorelease([[[self class] alloc] initWithName:name reason:reason userInfo:userInfo error:error]);
 }
 
 + (NSException*) exceptionWithError:(NSError*)error {
-	return autorelease_([[[self class] alloc] initWithName:nil reason:nil userInfo:nil error:error]);
+	return FLAutorelease([[[self class] alloc] initWithName:nil reason:nil userInfo:nil error:error]);
 }
 
 @end

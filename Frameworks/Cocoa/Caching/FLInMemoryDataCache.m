@@ -83,7 +83,7 @@
 
 - (id) expireOldestObjectInCache
 {
-	id object = autorelease_(retain_([_list.lastObject object]));
+	id object = FLAutorelease(FLRetain([_list.lastObject object]));
 	[self expireLastObject];
 	return object;
 }
@@ -114,7 +114,7 @@
 			
 			[_list pushObject:newObject];
 			[_objects setObject:newObject forKey:key];
-			release_(newObject);
+			FLRelease(newObject);
 		}
 
 #if TRACE		
@@ -140,7 +140,7 @@
 #endif		  
 
 			[_list moveObjectToHead:node];
-			return autorelease_(retain_(node.object));
+			return FLAutorelease(FLRetain(node.object));
 		}
 #if TRACE
 		else
@@ -194,8 +194,8 @@
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 	[[FLLowMemoryHandler defaultHandler] removeObserver:self];
-	release_(_objects);
-	release_(_list);
+	FLRelease(_objects);
+	FLRelease(_list);
 	super_dealloc_();
 }
 

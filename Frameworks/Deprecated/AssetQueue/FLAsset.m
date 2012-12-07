@@ -28,7 +28,7 @@
 //
 //- (void) dealloc
 //{
-//	release_(_assetUID);
+//	FLRelease(_assetUID);
 //	super_dealloc_();
 //}
 //
@@ -37,7 +37,7 @@
 //	return nil;
 //}
 //
-//- (SDKImage*) thumbnailImage
+//- (FLImage*) thumbnailImage
 //{
 //	return nil;
 //}

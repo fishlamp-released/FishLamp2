@@ -52,7 +52,7 @@
 - (void) layoutSubviews
 {
 	[super layoutSubviews];
-	FLRect layoutRect = self.layoutRect;
+	CGRect layoutRect = self.layoutRect;
 
 	switch(_mode)
 	{
@@ -82,13 +82,13 @@
 
 - (void) dealloc
 {
-	release_(_button);
+	FLRelease(_button);
 	super_dealloc_();
 }
 
 + (FLButtonCell*) buttonCell:(FLLegacyButton*) button buttonMode :(FLButtonCellButtonMode) buttonMode
 {
-	return autorelease_([[FLButtonCell alloc] initWithButton:button buttonMode:buttonMode]);
+	return FLAutorelease([[FLButtonCell alloc] initWithButton:button buttonMode:buttonMode]);
 }
 
 @end

@@ -26,8 +26,8 @@
     if(self) {
         _line = line;
         _column = column;
-        FLRetainObject_(_fileName, file);
-        FLRetainObject_(_hint, hint);
+        FLAssignObjectWithRetain(_fileName, file);
+        FLAssignObjectWithRetain(_hint, hint);
     }
     
     return self;
@@ -35,15 +35,15 @@
 
 #if FL_MRC
 - (void) dealloc {
-    release_(_fileName);
-    release_(_hint);
+    FLRelease(_fileName);
+    FLRelease(_hint);
     super_dealloc_();
 }
 
 #endif
 
 + (FLParseInfo*) parseInfo:(NSString*) hint file:(NSString*) fileName line:(NSUInteger) line column:(NSUInteger) column {
-    return autorelease_([[FLParseInfo alloc] initWithHint:hint file:fileName line:line column:column]); 
+    return FLAutorelease([[FLParseInfo alloc] initWithHint:hint file:fileName line:line column:column]); 
 }
 
 - (NSString*) description {
@@ -53,5 +53,5 @@
 @end
 
 @implementation NSObject (FLParseable)
-FLSynthesizeAssociatedProperty(retain_nonatomic, parseInfo, setParseInfo, FLParseInfo*);
+FLSynthesizeAssociatedProperty(FLRetainnonatomic, parseInfo, setParseInfo, FLParseInfo*);
 @end

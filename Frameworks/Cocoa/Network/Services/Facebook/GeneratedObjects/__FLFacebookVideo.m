@@ -83,13 +83,13 @@
 
 - (void) dealloc
 {
-    release_(__from);
-    release_(__updated_time);
-    release_(__created_time);
-    release_(__embed_html);
-    release_(__icon);
-    release_(__source);
-    release_(__tags);
+    FLRelease(__from);
+    FLRelease(__updated_time);
+    FLRelease(__created_time);
+    FLRelease(__embed_html);
+    FLRelease(__icon);
+    FLRelease(__source);
+    FLRelease(__tags);
     super_dealloc_();
 }
 
@@ -107,7 +107,7 @@
 
 + (FLFacebookVideo*) facebookVideo
 {
-    return autorelease_([[FLFacebookVideo alloc] init]);
+    return FLAutorelease([[FLFacebookVideo alloc] init]);
 }
 
 - (id) init
@@ -122,12 +122,12 @@
 {
     if((self = [super initWithCoder:aDecoder]))
     {
-        __from = retain_([aDecoder decodeObjectForKey:@"__from"]);
-        __updated_time = retain_([aDecoder decodeObjectForKey:@"__updated_time"]);
-        __created_time = retain_([aDecoder decodeObjectForKey:@"__created_time"]);
-        __embed_html = retain_([aDecoder decodeObjectForKey:@"__embed_html"]);
-        __icon = retain_([aDecoder decodeObjectForKey:@"__icon"]);
-        __source = retain_([aDecoder decodeObjectForKey:@"__source"]);
+        __from = FLRetain([aDecoder decodeObjectForKey:@"__from"]);
+        __updated_time = FLRetain([aDecoder decodeObjectForKey:@"__updated_time"]);
+        __created_time = FLRetain([aDecoder decodeObjectForKey:@"__created_time"]);
+        __embed_html = FLRetain([aDecoder decodeObjectForKey:@"__embed_html"]);
+        __icon = FLRetain([aDecoder decodeObjectForKey:@"__icon"]);
+        __source = FLRetain([aDecoder decodeObjectForKey:@"__source"]);
         __tags = [[aDecoder decodeObjectForKey:@"__tags"] mutableCopy];
     }
     return self;

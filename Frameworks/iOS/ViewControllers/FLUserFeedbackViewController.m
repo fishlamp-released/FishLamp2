@@ -59,7 +59,7 @@
 
 + (FLUserFeedbackViewController*) userFeedbackViewController:(NSString*) emailAddress buttonTitleArray:(NSArray*) buttonTitleArray
 {
-   FLUserFeedbackViewController* controller = autorelease_([[FLUserFeedbackViewController alloc] init]);
+   FLUserFeedbackViewController* controller = FLAutorelease([[FLUserFeedbackViewController alloc] init]);
    controller.emailAddress = emailAddress;
    controller.stringArray = buttonTitleArray;
    return controller; 

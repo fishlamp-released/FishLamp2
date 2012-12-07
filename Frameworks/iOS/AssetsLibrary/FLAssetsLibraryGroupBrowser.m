@@ -44,7 +44,7 @@
 
 + (FLAssetsLibraryGroupBrowser*) assetsLibraryGroupBrowser:(FLAssetQueue*) queue
 {
-	return autorelease_([[FLAssetsLibraryGroupBrowser alloc] initWithAssetQueue:queue]);
+	return FLAutorelease([[FLAssetsLibraryGroupBrowser alloc] initWithAssetQueue:queue]);
 }
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

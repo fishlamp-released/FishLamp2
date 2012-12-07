@@ -25,7 +25,7 @@
 
 - (void) dealloc
 {
-    release_(_imageView);
+    FLRelease(_imageView);
     super_dealloc_();
 }
 
@@ -50,7 +50,7 @@
 {
     [super viewDidLoad];
     
-    FLRect bounds = self.view.bounds;
+    CGRect bounds = self.view.bounds;
     
     bounds = FLRectInsetTop(bounds, FLRectGetBottom(self.navigationController.navigationBar.frame));
     

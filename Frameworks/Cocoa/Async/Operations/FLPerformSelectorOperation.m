@@ -19,7 +19,7 @@
 }
 
 + (id) performSelectorOperation:(id) target action:(SEL) action {
-	return autorelease_([[[self class] alloc] initWithTarget:target action:action]);
+	return FLAutorelease([[[self class] alloc] initWithTarget:target action:action]);
 }
 
 - (FLResult) runSelf {

@@ -49,7 +49,7 @@ typedef enum {
 @end
 
 @interface UITableViewCell (FLTableView)
-- (BOOL) tableViewDragSelectStartValueForPoint:(FLPoint) point;	
+- (BOOL) tableViewDragSelectStartValueForPoint:(CGPoint) point;	
 - (void) tableViewDragSelectSaveSelectedState;
-- (void) tableViewDragSelectRectChanged:(FLRect) dragRect startValue:(BOOL) startValue;
+- (void) tableViewDragSelectRectChanged:(CGRect) dragRect startValue:(BOOL) startValue;
 @end

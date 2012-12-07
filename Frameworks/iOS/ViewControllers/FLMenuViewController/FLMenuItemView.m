@@ -139,7 +139,7 @@
 //    self.gradientColors = [NSColorRange colorRangeWithColorRangeName:theme.
 }
 
-- (id) initWithFrame:(FLRect)frame
+- (id) initWithFrame:(CGRect)frame
 {
     if((self = [super initWithFrame:frame]))
     {
@@ -195,21 +195,21 @@
 
 + (FLMenuItemView*) menuItemView:(NSString*) title target:(id) target action:(SEL) action
 {
-    return autorelease_([[FLMenuItemView alloc] initWithTitle:title target:target action:action]);
+    return FLAutorelease([[FLMenuItemView alloc] initWithTitle:title target:target action:action]);
 }
 
 + (FLMenuItemView*) menuItemView:(NSString*) title submenu:(id) submenu
 {
-    return autorelease_([[FLMenuItemView alloc] initWithTitle:title submenu:submenu]);
+    return FLAutorelease([[FLMenuItemView alloc] initWithTitle:title submenu:submenu]);
 }
 
 - (void) dealloc
 {   
-    release_(_userData);
-    release_(_disclosureView);
-    release_(_subMenu);
-    release_(_label);
-    release_(_imageView);
+    FLRelease(_userData);
+    FLRelease(_disclosureView);
+    FLRelease(_subMenu);
+    FLRelease(_label);
+    FLRelease(_imageView);
     super_dealloc_();
 }
 
@@ -312,7 +312,7 @@
     [self performSelector:@selector(blinkOne) withObject:nil afterDelay:0.1];
 }
 
-- (void) handleSelect:(FLPoint) point 
+- (void) handleSelect:(CGPoint) point 
 {
     if(!self.disabled)
     {
@@ -347,7 +347,7 @@
     }
 }
 
-- (void) handleTouch:(FLPoint) point
+- (void) handleTouch:(CGPoint) point
 {
     if(!self.disabled)
     {

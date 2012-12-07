@@ -191,7 +191,7 @@ static void ReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReach
 			hostName = [hostName substringFromIndex:range.location + 2];
 		}
         
-        FLRetainObject_(_hostName, hostName);
+        FLAssignObjectWithRetain(_hostName, hostName);
 
 //#if DEBUG		   
 //		  FLDebugLog(FLDebugReachability, @"Set reachability for host: %@", hostName);
@@ -204,11 +204,11 @@ static void ReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReach
 }
 
 + (FLReachableHost*) reachableHost:(NSString*) hostName {
-    return autorelease_([[FLReachableHost alloc] initWithHostName:hostName]);
+    return FLAutorelease([[FLReachableHost alloc] initWithHostName:hostName]);
 }
 
 - (void) dealloc {
-    release_(_hostName);
+    FLRelease(_hostName);
     super_dealloc_();
 }
 

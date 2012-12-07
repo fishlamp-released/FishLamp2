@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "FishLampCore.h"
+#import "FLCore.h"
 
 @protocol FLGlobalNetworkActivityIndicator <NSObject>
 - (void) showNetworkActivityIndicator:(id) startedBy;

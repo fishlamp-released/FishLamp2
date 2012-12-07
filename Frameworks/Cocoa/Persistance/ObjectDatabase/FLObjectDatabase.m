@@ -93,7 +93,7 @@
 #endif
 		if(newObject) {
 			if(outputObject) {
-				*outputObject = retain_(newObject);
+				*outputObject = FLRetain(newObject);
 			}
 		
 			return;
@@ -139,7 +139,7 @@
     
     statement.finished = ^{
         if(outObjects) {
-            *outObjects = retain_(results);
+            *outObjects = FLRetain(results);
         }
     };
     
@@ -173,7 +173,7 @@
         
     statement.finished = ^{
         if(outObjects) {
-            *outObjects = retain_(results);
+            *outObjects = FLRetain(results);
         }
     };
 
@@ -209,7 +209,7 @@
 ////            }
 ////        }
 ////        @finally {
-////            release_(output);
+////            FLRelease(output);
 ////        }
 ////    }
 ////    withEventHandler:handler

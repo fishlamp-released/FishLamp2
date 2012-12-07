@@ -13,7 +13,7 @@
 @synthesize gradient = _gradientWidget;
 
 - (void) dealloc {
-	release_(_gradientWidget);
+	FLRelease(_gradientWidget);
 	super_dealloc_();
 }
 
@@ -22,7 +22,7 @@
 //	[self setColorRange:[FLColorRange colorRange:self.gradientStartColor endColor:self.gradientEndColor] forControlState:UIControlStateNormal];
 }
 
-- (id)initWithFrame:(FLRect)frame {
+- (id)initWithFrame:(CGRect)frame {
 	if ((self = [super initWithFrame:frame])) {	
         self.wantsApplyTheme = YES;
 
@@ -64,7 +64,7 @@
 
 @implementation FLBlackGradientView
 
-- (id) initWithFrame:(FLRect) frame
+- (id) initWithFrame:(CGRect) frame
 {
 	if((self = [super initWithFrame:frame]))
 	{

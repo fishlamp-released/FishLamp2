@@ -27,11 +27,11 @@ synthesize_(networkHost)
 }
 
 + (FLNetworkHostResolver*) networkHostResolver:(FLNetworkHost*) host {
-    return autorelease_([[FLNetworkHostResolver alloc] initWithNetworkHost:host]);
+    return FLAutorelease([[FLNetworkHostResolver alloc] initWithNetworkHost:host]);
 }
 
 - (id<FLNetworkStream>) createNetworkStream {
-    return autorelease_([[FLNetworkHostResolverStream alloc] initWithNetworkHost:self.networkHost]);
+    return FLAutorelease([[FLNetworkHostResolverStream alloc] initWithNetworkHost:self.networkHost]);
 }
 
 

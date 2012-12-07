@@ -53,9 +53,9 @@
 
 - (void) dealloc
 {
-    release_(__originalID);
-    release_(__assetURL);
-    release_(__exportedDate);
+    FLRelease(__originalID);
+    FLRelease(__assetURL);
+    FLRelease(__exportedDate);
     super_dealloc_();
 }
 
@@ -68,7 +68,7 @@
 
 + (FLExportedAsset*) exportedAsset
 {
-    return autorelease_([[FLExportedAsset alloc] init]);
+    return FLAutorelease([[FLExportedAsset alloc] init]);
 }
 
 - (id) init
@@ -83,9 +83,9 @@
 {
     if((self = [super init]))
     {
-        __originalID = retain_([aDecoder decodeObjectForKey:@"__originalID"]);
-        __assetURL = retain_([aDecoder decodeObjectForKey:@"__assetURL"]);
-        __exportedDate = retain_([aDecoder decodeObjectForKey:@"__exportedDate"]);
+        __originalID = FLRetain([aDecoder decodeObjectForKey:@"__originalID"]);
+        __assetURL = FLRetain([aDecoder decodeObjectForKey:@"__assetURL"]);
+        __exportedDate = FLRetain([aDecoder decodeObjectForKey:@"__exportedDate"]);
     }
     return self;
 }

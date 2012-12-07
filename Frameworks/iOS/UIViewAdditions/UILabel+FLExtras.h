@@ -14,7 +14,7 @@
 - (FLSize) sizeThatFitsText;
 - (FLSize) sizeToFitText;
 - (FLSize) sizeToFitText:(FLSize) size;
-- (void) drawUnderline:(FLRect) inRect 
+- (void) drawUnderline:(CGRect) inRect 
 	withColor:(UIColor*) color
 	withLineWidth:(CGFloat) width; 
 	

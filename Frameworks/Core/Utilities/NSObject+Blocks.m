@@ -30,27 +30,27 @@
 
 - (void) performBlockWithDelay:(NSTimeInterval) delay
                          block:(void (^)()) block {   
-    [NSObject performSelector:@selector(_performBlock:) withObject:FLCopyBlock(block) afterDelay:delay];
+    [NSObject performSelector:@selector(_performBlock:) withObject:FLAutoreleasedCopy(block) afterDelay:delay];
 }
 
 - (void) performBlockOnMainThread:(void (^)()) block  {
-    [NSObject performSelectorOnMainThread:@selector(_performBlock:) withObject:FLCopyBlock(block) waitUntilDone:NO];
+    [NSObject performSelectorOnMainThread:@selector(_performBlock:) withObject:FLAutoreleasedCopy(block) waitUntilDone:NO];
 }
 
 + (void) performBlockOnMainThread:(void (^)()) block  {
-    [NSObject performSelectorOnMainThread:@selector(_performBlock:) withObject:FLCopyBlock(block) waitUntilDone:NO];
+    [NSObject performSelectorOnMainThread:@selector(_performBlock:) withObject:FLAutoreleasedCopy(block) waitUntilDone:NO];
 }
 
 - (void) performBlockOnMainThreadAndWaitUntilDone:(void (^)()) block {
-    [NSObject performSelectorOnMainThread:@selector(_performBlock:) withObject:FLCopyBlock(block) waitUntilDone:YES];
+    [NSObject performSelectorOnMainThread:@selector(_performBlock:) withObject:FLAutoreleasedCopy(block) waitUntilDone:YES];
 }
 
 - (void) performBlockOnThread:(NSThread*) thread block:(void (^)()) block {
-    [NSObject performSelector:@selector(_performBlock:) onThread:thread withObject:FLCopyBlock(block) waitUntilDone:NO];
+    [NSObject performSelector:@selector(_performBlock:) onThread:thread withObject:FLAutoreleasedCopy(block) waitUntilDone:NO];
 }
 
 + (void) performBlockOnThread:(NSThread*) thread block:(void (^)()) block {
-    [NSObject performSelector:@selector(_performBlock:) onThread:thread withObject:FLCopyBlock(block) waitUntilDone:NO];
+    [NSObject performSelector:@selector(_performBlock:) onThread:thread withObject:FLAutoreleasedCopy(block) waitUntilDone:NO];
 }
 
 @end

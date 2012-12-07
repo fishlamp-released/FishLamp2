@@ -27,7 +27,7 @@ FLSynthesizeSingleton(FLModalPresentationBehavior);
 
 - (void) dealloc
 {
-    release_(_shieldViewController);
+    FLRelease(_shieldViewController);
     super_dealloc_();
 }
     
@@ -38,7 +38,7 @@ FLSynthesizeSingleton(FLModalPresentationBehavior);
 
 - (UIViewController*) createShieldViewController
 {
-    return autorelease_([[FLModalShieldViewController alloc] init]);
+    return FLAutorelease([[FLModalShieldViewController alloc] init]);
 }
 
 - (void) willPresentViewController:(UIViewController*) viewController

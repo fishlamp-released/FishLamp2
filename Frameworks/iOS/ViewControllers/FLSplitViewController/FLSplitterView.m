@@ -14,7 +14,7 @@
 
 @synthesize delegate = _splitterViewDelegate; 
 
-- (id) initWithFrame:(FLRect) frame {
+- (id) initWithFrame:(CGRect) frame {
     self = [super initWithFrame:frame];
     if(self) {
         self.autoresizesSubviews = NO;
@@ -36,7 +36,7 @@
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch* touch = [touches anyObject];
-    FLPoint newTouch = [touch locationInView:self.superview];
+    CGPoint newTouch = [touch locationInView:self.superview];
     self.frameOptimizedForLocation = FLRectCenterOnPointVertically(self.frame, newTouch);
     [self.delegate splitterViewWasMoved:self];
 }

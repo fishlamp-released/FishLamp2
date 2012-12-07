@@ -34,11 +34,11 @@
 }
 
 + (id) xmlElement:(NSString*) openTag closeTag:(NSString*) closeTag {
-    return autorelease_([[[self class] alloc] initWithOpenTag:openTag closeTag:closeTag]);
+    return FLAutorelease([[[self class] alloc] initWithOpenTag:openTag closeTag:closeTag]);
 }
 
 + (id) xmlElement:(NSString*) name {
-    return autorelease_([[[self class] alloc] initWithOpenTag:name closeTag:name]);
+    return FLAutorelease([[[self class] alloc] initWithOpenTag:name closeTag:name]);
 }
 
 #if FL_MRC

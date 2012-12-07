@@ -38,6 +38,6 @@
 
 @property (readwrite, retain, nonatomic) FLImageWidget* imageWidget;
 
-+ (FLImageFrameWidget*) imageFrameWidget:(FLRect) frame;
++ (FLImageFrameWidget*) imageFrameWidget:(CGRect) frame;
 
 @end

@@ -13,7 +13,7 @@
 @synthesize shapeWidget = _roundRect;
 @synthesize backgroundGradient = _backgroundGradient;
 
-- (id)initWithFrame:(FLRect)frame
+- (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
@@ -41,8 +41,8 @@
 }
 
 - (void) dealloc {
-    release_(_roundRect);
-    release_(_backgroundGradient);
+    FLRelease(_roundRect);
+    FLRelease(_backgroundGradient);
     super_dealloc_();
 }
 

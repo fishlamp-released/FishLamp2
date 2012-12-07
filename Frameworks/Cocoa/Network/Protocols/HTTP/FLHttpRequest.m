@@ -44,7 +44,7 @@ static NSString* s_defaultUserAgent = nil;
 }   
 
 + (void) setDefaultUserAgent:(NSString*) userAgent {
-    FLRetainObject_(s_defaultUserAgent, userAgent);
+    FLAssignObjectWithRetain(s_defaultUserAgent, userAgent);
 }
 
 @synthesize HTTPMethod = _HTTPMethod;
@@ -97,13 +97,13 @@ static NSString* s_defaultUserAgent = nil;
 }
 
 - (void) copyTo:(FLHttpRequest*) request {
-    request.HTTPMethod = autorelease_([self.HTTPMethod copy]);
-    request.allHTTPHeaderFields = autorelease_([self.allHTTPHeaderFields mutableCopy]);
-    request.requestURL = autorelease_([self.requestURL copy]);
-    request.postBodyFilePath = autorelease_([self.postBodyFilePath copy]);
-    request.HTTPBody = autorelease_([self.HTTPBody copy]);
+    request.HTTPMethod = FLAutorelease([self.HTTPMethod copy]);
+    request.allHTTPHeaderFields = FLAutorelease([self.allHTTPHeaderFields mutableCopy]);
+    request.requestURL = FLAutorelease([self.requestURL copy]);
+    request.postBodyFilePath = FLAutorelease([self.postBodyFilePath copy]);
+    request.HTTPBody = FLAutorelease([self.HTTPBody copy]);
     request.postLength = self.postLength;
-    request.HTTPBodyStream = autorelease_([self.HTTPBodyStream copy]);
+    request.HTTPBodyStream = FLAutorelease([self.HTTPBodyStream copy]);
 }
 
 - (id)mutableCopyWithZone:(NSZone *)zone {
@@ -119,11 +119,11 @@ static NSString* s_defaultUserAgent = nil;
 }
 
 + (id) httpRequestWithURL:(NSURL*) url {
-    return autorelease_([[[self class] alloc] initWithURL:url HTTPMethod:@"GET"]);
+    return FLAutorelease([[[self class] alloc] initWithURL:url HTTPMethod:@"GET"]);
 }
 
 + (id) httpRequest {
-    return autorelease_([[[self class] alloc] init]);
+    return FLAutorelease([[[self class] alloc] init]);
 }
 
 - (void) setValue:(NSString *)value forHTTPHeaderField:(NSString *)field {
@@ -169,7 +169,7 @@ static NSString* s_defaultUserAgent = nil;
 }
 
 - (void) setHTTPMethod:(NSString *)HTTPMethod {
-    FLRetainObject_(_HTTPMethod, HTTPMethod);
+    FLAssignObjectWithRetain(_HTTPMethod, HTTPMethod);
     
     if(self.isPostRequest) {
         [self setValue:[NSString stringWithFormat:@"%@ HTTP/%@", self.requestURL.path, [self HTTPVersion]] forHTTPHeaderField:@"POST"];
@@ -201,7 +201,7 @@ static NSString* s_defaultUserAgent = nil;
 - (void) setHTTPBody:(NSData*) data {
     _postLength = 0;
     FLReleaseWithNil_(_postBodyFilePath);
-    FLRetainObject_(_postData, data);
+    FLAssignObjectWithRetain(_postData, data);
     if (_postData) {
         _postLength = _postData.length;
         self.HTTPMethod = @"POST";
@@ -212,13 +212,13 @@ static NSString* s_defaultUserAgent = nil;
     _postLength = 0;
     FLReleaseWithNil_(_postData);
     
-    FLRetainObject_(_postBodyFilePath, path);
+    FLAssignObjectWithRetain(_postBodyFilePath, path);
     if(FLStringIsNotEmpty(_postBodyFilePath)) {
         NSError* err = nil;
         _postLength= [[[NSFileManager defaultManager] attributesOfItemAtPath:self.postBodyFilePath error:&err] fileSize];
         
         if(err) {
-           FLThrowError_(autorelease_(err));
+           FLThrowError_(FLAutorelease(err));
         }
         self.HTTPMethod = @"POST";
 	}

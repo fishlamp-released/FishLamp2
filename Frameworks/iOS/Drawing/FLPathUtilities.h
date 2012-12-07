@@ -8,26 +8,26 @@
 
 #import <Foundation/Foundation.h>
 
-extern void FLCreateRectPathWithCornerRadii(CGMutablePathRef path, FLRect rect, CGFloat topLeft, CGFloat topRight, CGFloat bottomRight, CGFloat bottomLeft);
+extern void FLCreateRectPathWithCornerRadii(CGMutablePathRef path, CGRect rect, CGFloat topLeft, CGFloat topRight, CGFloat bottomRight, CGFloat bottomLeft);
 
 NS_INLINE 
-void FLCreateRectPath(CGMutablePathRef path, FLRect rect, CGFloat cornerRadius) {
+void FLCreateRectPath(CGMutablePathRef path, CGRect rect, CGFloat cornerRadius) {
 	FLCreateRectPathWithCornerRadii(path, rect, cornerRadius, cornerRadius, cornerRadius, cornerRadius);
 }
 
 #define FLCreateRectPath(path, rect, cornerRadius) FLCreateRectPathWithCornerRadii(path, rect, cornerRadius, cornerRadius, cornerRadius, cornerRadius )
 
-extern void FLCreateRectPathWithTopArrow(CGMutablePathRef path, FLRect rect, FLPoint arrowPoint, CGFloat arrowSize, CGFloat cornerRadius);
-extern void FLCreateRectPathWithRightArrow(CGMutablePathRef path, FLRect rect, FLPoint arrowPoint, CGFloat arrowSize, CGFloat cornerRadius);
-extern void FLCreateRectPathWithBottomArrow(CGMutablePathRef path, FLRect rect, FLPoint arrowPoint, CGFloat arrowSize, CGFloat cornerRadius);
-extern void FLCreateRectPathWithLeftArrow(CGMutablePathRef path, FLRect rect, FLPoint arrowPoint, CGFloat arrowSize, CGFloat cornerRadius);
+extern void FLCreateRectPathWithTopArrow(CGMutablePathRef path, CGRect rect, CGPoint arrowPoint, CGFloat arrowSize, CGFloat cornerRadius);
+extern void FLCreateRectPathWithRightArrow(CGMutablePathRef path, CGRect rect, CGPoint arrowPoint, CGFloat arrowSize, CGFloat cornerRadius);
+extern void FLCreateRectPathWithBottomArrow(CGMutablePathRef path, CGRect rect, CGPoint arrowPoint, CGFloat arrowSize, CGFloat cornerRadius);
+extern void FLCreateRectPathWithLeftArrow(CGMutablePathRef path, CGRect rect, CGPoint arrowPoint, CGFloat arrowSize, CGFloat cornerRadius);
 
-extern void FLCreatePartialRectPathTop(CGMutablePathRef path, FLRect rect, CGFloat cornerRadius);
-extern void FLCreatePartialRectPathLeft(CGMutablePathRef path, FLRect rect, CGFloat cornerRadius);
-extern void FLCreatePartialRectPathRight(CGMutablePathRef path, FLRect rect, CGFloat cornerRadius);
-extern void FLCreatePartialRectPathBottom(CGMutablePathRef path, FLRect rect, CGFloat cornerRadius);
+extern void FLCreatePartialRectPathTop(CGMutablePathRef path, CGRect rect, CGFloat cornerRadius);
+extern void FLCreatePartialRectPathLeft(CGMutablePathRef path, CGRect rect, CGFloat cornerRadius);
+extern void FLCreatePartialRectPathRight(CGMutablePathRef path, CGRect rect, CGFloat cornerRadius);
+extern void FLCreatePartialRectPathBottom(CGMutablePathRef path, CGRect rect, CGFloat cornerRadius);
 
-extern void FLCreateRectPathBackButtonShape(CGMutablePathRef path, FLRect rect, CGFloat cornerRadius, CGFloat pointSize);
+extern void FLCreateRectPathBackButtonShape(CGMutablePathRef path, CGRect rect, CGFloat cornerRadius, CGFloat pointSize);
 
 typedef enum {
     FLTriangleCornerUpperLeft,
@@ -37,5 +37,5 @@ typedef enum {
 } FLTriangleCorner;
 
 extern void FLSetPathToTriangleInRectCorner(CGMutablePathRef path, 
-    FLRect rect, 
+    CGRect rect, 
     FLTriangleCorner cornerInRect);

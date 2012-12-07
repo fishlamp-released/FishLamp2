@@ -19,7 +19,7 @@
 @synthesize folder = _folder;
 
 + (id) userPreferences {
-    return autorelease_([[[self class] alloc] init]);
+    return FLAutorelease([[[self class] alloc] init]);
 }
 
 + (id) readFromFolder:(FLFolder*) folder {

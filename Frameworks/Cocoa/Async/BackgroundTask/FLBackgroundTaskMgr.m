@@ -84,7 +84,7 @@ FIXME("operation context");
 }
 
 + (id) backgroundTaskMgr {
-    return autorelease_([[[self class] alloc] init]);
+    return FLAutorelease([[[self class] alloc] init]);
 }
 
 - (void) dealloc {
@@ -95,9 +95,9 @@ FIXME("operation context");
 FIXME("attach to user sessions....");
 //    [[FLUserLoginService instance] removeObserver:self];
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
-    release_(_sequenceQueue);
-	release_(_operations);
-	release_(_queue);
+    FLRelease(_sequenceQueue);
+	FLRelease(_operations);
+	FLRelease(_queue);
 	super_dealloc_();
 }
 
@@ -320,7 +320,7 @@ FIXME("attach to user sessions....");
 
 - (void) beginCancellingAllTasks:(FLObjectBlock) finishedBlock
 {
-    [self _checkCancelState:autorelease_([finishedBlock copy])];
+    [self _checkCancelState:FLAutorelease([finishedBlock copy])];
 }
 
 - (void) resetAllTasks

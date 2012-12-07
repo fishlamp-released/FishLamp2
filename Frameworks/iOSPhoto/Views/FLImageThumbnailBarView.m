@@ -67,7 +67,7 @@
     [self.rootWidget addWidget:_selectedThumbnail];
 }
 
-- (id) initWithFrame:(FLRect) frame
+- (id) initWithFrame:(CGRect) frame
 {
 	if((self = [super initWithFrame:CGRectZero]))
 	{
@@ -88,8 +88,8 @@
 
 - (void) dealloc
 {
-	release_(_selectedThumbnail);
-	release_(_thumbnails);
+	FLRelease(_selectedThumbnail);
+	FLRelease(_thumbnails);
 	super_dealloc_();
 }
 
@@ -192,7 +192,7 @@
 			FLThumbnailBarCell* cell = [[FLThumbnailBarCell alloc] init];
 		    [self.rootWidget addWidget:cell];
             [_thumbnails addObject:cell];
-			release_(cell);
+			FLRelease(cell);
 		}
 	}
 	else if(_thumbnails.count > thumbcount)
@@ -254,7 +254,7 @@
 	
 }
 
-- (void) drawRect:(FLRect) rect
+- (void) drawRect:(CGRect) rect
 {
 	[super drawRect:rect];
 	
@@ -293,7 +293,7 @@
 	if(self.enabled)
 	{
 		UITouch* touch = [touches anyObject];
-		FLPoint pt = [touch locationInView:self];
+		CGPoint pt = [touch locationInView:self];
 //		  if([_selectedThumbnail hitTest:pt interactiveCellsOnly:NO])
 //		  {
 //			  return;
@@ -383,7 +383,7 @@
 
 @implementation FLThumbnailBarCountView
 
-- (id) initWithFrame:(FLRect) frame
+- (id) initWithFrame:(CGRect) frame
 {
 	if((self = [super initWithFrame:frame]))
 	{
@@ -430,8 +430,8 @@
 
 - (void) dealloc
 {
-	release_(_label);
-	release_(_view);
+	FLRelease(_label);
+	FLRelease(_view);
 	super_dealloc_();
 }
 

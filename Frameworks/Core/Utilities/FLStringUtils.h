@@ -12,7 +12,7 @@
 
 - (BOOL)isEqualToString:(NSString *)aString caseSensitive:(BOOL) caseSensitive;
 
-// SDK version isn't to happy with nil.
+// FL version isn't to happy with nil.
 // this returns @"" if formatOrNil is nil.
 + (NSString*) stringWithFormatOrNil:(NSString*) formatOrNil, ...;
 

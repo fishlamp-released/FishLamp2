@@ -32,19 +32,19 @@
 
 + (FLNavigationControllerViewController*) navigationControllerViewController:(UIViewController*) rootNavigationController
 {
-	return autorelease_([[FLNavigationControllerViewController alloc] initWithRootViewController:rootNavigationController]);
+	return FLAutorelease([[FLNavigationControllerViewController alloc] initWithRootViewController:rootNavigationController]);
 }
 
 - (void) dealloc
 {
-	release_(_rootViewController);
-	release_(_navigationController);
+	FLRelease(_rootViewController);
+	FLRelease(_navigationController);
 	super_dealloc_();
 }
 
 - (void) loadView
 {
-	self.view = autorelease_([[UIView alloc] initWithFrame:CGRectMake(0,0,320,640)]);
+	self.view = FLAutorelease([[UIView alloc] initWithFrame:CGRectMake(0,0,320,640)]);
 }
 
 - (void) viewDidLoad

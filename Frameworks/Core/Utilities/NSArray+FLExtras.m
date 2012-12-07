@@ -31,7 +31,7 @@
             *error = err;
         }
         else {
-            release_(err);
+            FLRelease(err);
         }
     
         return nil;
@@ -54,7 +54,7 @@
             *error = err;
         }
         else {
-            release_(err);
+            FLRelease(err);
         }
     
         return nil;
@@ -147,7 +147,7 @@
 	FLAssert_v(toIndex < (NSUInteger)self.count, @"bad from idx");
 
 	if(fromIndex != toIndex) {
-		id object = autorelease_(retain_([self objectAtIndex:fromIndex]));
+		id object = FLAutorelease(FLRetain([self objectAtIndex:fromIndex]));
         
         [self removeObjectAtIndex:fromIndex];
 		
@@ -170,7 +170,7 @@
 }
 
 - (id) dequeueLastObject {
-    id object = autorelease_(retain_([self lastObject]));
+    id object = FLAutorelease(FLRetain([self lastObject]));
     [self removeLastObject];
 	return object;
 }
@@ -180,7 +180,7 @@
 }
 
 - (id) popFirstObject {
-	id object = autorelease_(retain_([self objectAtIndex:0]));
+	id object = FLAutorelease(FLRetain([self objectAtIndex:0]));
     [self removeObjectAtIndex:0];
 	return object;
 }

@@ -78,15 +78,15 @@ static id<FLActionErrorDelegate> s_errorDisplayDelegate = nil;
 }
 
 + (id) action {
-	return autorelease_([[[self class] alloc] init]);
+	return FLAutorelease([[[self class] alloc] init]);
 }
 
 + (id) actionWithActionType:(NSString*) actionType {
-	return autorelease_([[[self class] alloc] initWithActionType:actionType]);
+	return FLAutorelease([[[self class] alloc] initWithActionType:actionType]);
 }
 
 + (id) actionWithActionType:(NSString*) actionType actionItemName:(NSString*) actionItemName {
-	return autorelease_([[[self class] alloc] initWithActionType:actionType actionItemName:actionItemName]);
+	return FLAutorelease([[[self class] alloc] initWithActionType:actionType actionItemName:actionItemName]);
 }
 
 + (void) setGlobalFailedCallback:(id) target action:(SEL) action {

@@ -107,9 +107,9 @@
     [self hideWarning];
 
 #if FL_MRC 
-    release_(_onFormatWarningString);
-    release_(_onCreateAlert);
-    release_(_alertViewController);
+    FLRelease(_onFormatWarningString);
+    FLRelease(_onCreateAlert);
+    FLRelease(_alertViewController);
     super_dealloc_();
 #endif
 }

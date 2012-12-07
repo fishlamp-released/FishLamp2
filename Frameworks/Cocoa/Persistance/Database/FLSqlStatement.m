@@ -8,7 +8,7 @@
 
 #import "FLSqlStatement.h"
 #import "FLGuid.h"
-#import "SDKColor.h"
+#import "FLColor.h"
 #import "FLSqlBuilder.h"
 #import "FLDatabase_Internal.h"
 
@@ -32,7 +32,7 @@ sqlite3_stmt* FLStatmentFailed(	sqlite3_stmt* stmt) {
 @synthesize stepValue = _stepValue;
 
 + (id) sqlStatement:(FLDatabase*) database columnDecoder:(FLDecodeColumnObjectBlock) columnDecoder {
-    return autorelease_([[[self class] alloc] initWithDatabase:database columnDecoder:columnDecoder]);
+    return FLAutorelease([[[self class] alloc] initWithDatabase:database columnDecoder:columnDecoder]);
 }
 
 - (id) initWithDatabase:(FLDatabase*) database columnDecoder:(FLDecodeColumnObjectBlock) columnDecoder {
@@ -225,7 +225,7 @@ sqlite3_stmt* FLStatmentFailed(	sqlite3_stmt* stmt) {
 	NSString* outString = nil;
 	const char* cstr = (const char*) sqlite3_column_text(statement_, col);
 	if(cstr) {
-		outString = autorelease_([[NSString alloc] initWithUTF8String:cstr]);
+		outString = FLAutorelease([[NSString alloc] initWithUTF8String:cstr]);
 	}
 	
 	return outString;
@@ -503,11 +503,11 @@ sqlite3_stmt* FLStatmentFailed(	sqlite3_stmt* stmt) {
 }
 @end
 
-#import "SDKCompatibility.h"
+#import "FLCompatibility.h"
 
-@implementation SDKImage (FLSqlStatement)
+@implementation FLImage (FLSqlStatement)
 + (id) decodeObjectWithSqliteColumnData:(NSData*) data {
-	return [SDKImage imageWithData:data];
+	return [FLImage imageWithData:data];
 }
 - (void) bindToStatement:(FLSqlStatement*) statement parameterIndex:(int) parameterIndex {
 FIXME("osx");
@@ -521,7 +521,7 @@ FIXME("osx");
 }
 @end
 
-//@implementation SDKColor (FLDatabaseIterator) 
+//@implementation FLColor (FLDatabaseIterator) 
 //- (void) bindToStatement:(FLDatabaseIterator*) statement parameterIndex:(int) parameterIndex
 //{
 //	[statement bindText:parameterIndex text:[self toRgbString]];

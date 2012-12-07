@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "FishLampCore.h"
+#import "FLCore.h"
 
 #import "FLXmlStringBuilder.h"
 #import "FLXmlElement.h"

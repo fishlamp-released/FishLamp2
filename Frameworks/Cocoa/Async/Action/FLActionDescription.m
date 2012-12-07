@@ -140,22 +140,22 @@ NSString* FLActionDescriptionItemNameNone = nil;
 
 + (FLActionDescription*) actionDescription
 {
-	return autorelease_([[FLActionDescription alloc] init]);
+	return FLAutorelease([[FLActionDescription alloc] init]);
 }
 
 + (FLActionDescription*) actionDescription:(NSString*) actionType
 	actionItemName:(NSString*) actionItemName
 {
-	return autorelease_([[FLActionDescription alloc] initWithActionType:actionType actionItemName:actionItemName]);
+	return FLAutorelease([[FLActionDescription alloc] initWithActionType:actionType actionItemName:actionItemName]);
 }
 
 - (void) dealloc
 {
-	release_(_customProgressString);
-	release_(_actionType);
-	release_(_itemName);
-	release_(_actionWords);
-	release_(_itemNameInProgress);
+	FLRelease(_customProgressString);
+	FLRelease(_actionType);
+	FLRelease(_itemName);
+	FLRelease(_actionWords);
+	FLRelease(_itemNameInProgress);
 	super_dealloc_();
 }
 
@@ -208,7 +208,7 @@ NSString* FLActionDescriptionItemNameNone = nil;
 {
 	if(!_actionWords)
 	{
-		_actionWords = retain_([self.actionType componentsSeparatedByString:@","]);
+		_actionWords = FLRetain([self.actionType componentsSeparatedByString:@","]);
 	}
 	return _actionWords;
 }

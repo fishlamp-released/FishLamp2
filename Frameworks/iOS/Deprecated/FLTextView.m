@@ -15,7 +15,7 @@
 @synthesize placeholderTextLabel = _placeholderTextLabel;
 @synthesize viewLayoutMargins = _viewLayoutMargins;
 
-- (id) initWithFrame:(FLRect) frame
+- (id) initWithFrame:(CGRect) frame
 {
 	if((self = [super initWithFrame:frame]))
 	{
@@ -37,7 +37,7 @@
 
 - (void) dealloc
 {
-	release_(_textDescriptor);
+	FLRelease(_textDescriptor);
 	super_dealloc_();
 }
 
@@ -52,7 +52,7 @@
 
 - (FLTextDescriptor*) textDescriptor
 {
-	return autorelease_([_textDescriptor copy]);
+	return FLAutorelease([_textDescriptor copy]);
 }
 
 - (void) setTextDescriptor:(FLTextDescriptor*) textDescriptor
@@ -146,7 +146,7 @@
 
 - (void) insertStringAtSelection:(NSString*) string
 {
-	NSMutableString* text = autorelease_([self.text mutableCopy]);
+	NSMutableString* text = FLAutorelease([self.text mutableCopy]);
 	NSRange selection = self.selectedRange;
 	[text insertString:string atIndex:selection.location];
 	self.text = text;

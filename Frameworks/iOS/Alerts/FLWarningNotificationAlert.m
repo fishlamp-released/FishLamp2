@@ -34,7 +34,7 @@
 }
 
 + (FLWarningNotificationAlert*) warningNotificationAlert {
-    return autorelease_([[[self class] alloc] init]);   
+    return FLAutorelease([[[self class] alloc] init]);   
 }
 
 @end

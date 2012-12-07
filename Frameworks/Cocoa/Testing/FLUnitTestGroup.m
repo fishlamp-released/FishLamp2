@@ -1,6 +1,6 @@
 //
 //  FLUnitTestGroup.m
-//  FishLampCore
+//  FLCore
 //
 //  Created by Mike Fullerton on 11/1/12.
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
@@ -28,7 +28,7 @@
 }
 
 + (id) unitTestGroup:(NSString*) name priority:(int32_t) priority {
-    return autorelease_([[[self class] alloc] initWithGroupName:name priority:priority]);
+    return FLAutorelease([[[self class] alloc] initWithGroupName:name priority:priority]);
 }
 
 #if FL_MRC
@@ -44,7 +44,7 @@
 }
 
 - (id) copyWithZone:(NSZone*) zone {
-    return retain_(self);
+    return FLRetain(self);
 }
 
 - (NSUInteger)hash {

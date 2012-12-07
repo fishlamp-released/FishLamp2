@@ -39,7 +39,7 @@
 {
 	FLReleaseWithNil_(_title);
 	FLReleaseWithNil_(_cells);
-	release_(_headerView);
+	FLRelease(_headerView);
 	super_dealloc_();
 }
 

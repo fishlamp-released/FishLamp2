@@ -25,7 +25,7 @@
 @synthesize rightItems = _rightItems;
 @synthesize centerItems = _centerItems;
 
-- (id) initWithFrame:(FLRect) frame
+- (id) initWithFrame:(CGRect) frame
 {
 	if((self = [super initWithFrame:frame])) {
 		self.backgroundColor = [UIColor clearColor];
@@ -49,7 +49,7 @@
     gradient.autoresizingMask = UIViewAutoresizingFlexibleEverything;
     gradient.alpha = 0.6f;
     self.backgroundView = gradient;
-    release_(gradient);
+    FLRelease(gradient);
 }
 
 - (void) addFramedBlackBackground
@@ -68,15 +68,15 @@
 
 + (FLToolbarView*) toolbarView
 {
-    return autorelease_([[FLToolbarView alloc] init]);
+    return FLAutorelease([[FLToolbarView alloc] init]);
 }
 
 - (void) dealloc
 {
-    release_(_backgroundView);
-	release_(_leftItems);
-	release_(_centerItems);
-	release_(_rightItems);
+    FLRelease(_backgroundView);
+	FLRelease(_leftItems);
+	FLRelease(_centerItems);
+	FLRelease(_rightItems);
 	super_dealloc_();
 }
 
@@ -107,7 +107,7 @@
 
         [_centerItems updateSizeInBounds:self.bounds];
 
-        FLRect frame = _centerItems.frame;
+        CGRect frame = _centerItems.frame;
         
         frame = FLRectCenterRectInRect(self.bounds, frame);
 
@@ -145,7 +145,7 @@
     [_rightItems visitToolbarItems:visitor];
 }
 
-- (void) drawRect:(FLRect)rect
+- (void) drawRect:(CGRect)rect
 {
     [super drawRect:rect];
     

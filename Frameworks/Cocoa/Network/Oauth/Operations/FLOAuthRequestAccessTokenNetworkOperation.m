@@ -54,15 +54,15 @@
     self = [super init];
 	if(self) {
 		_url = [[NSURL alloc] initWithString:app.accessTokenUrl];
-        _app = retain_(app);
-		_authData = retain_(data);
+        _app = FLRetain(app);
+		_authData = FLRetain(data);
 	}
 	
 	return self;
 }
 
 + (FLOAuthRequestAccessTokenNetworkOperation*) OAuthRequestAccessTokenNetworkOperation:(FLOAuthApp*) app authData:(FLOAuthAuthencationData*) data {
-	return autorelease_([[FLOAuthRequestAccessTokenNetworkOperation alloc] initWithOAuthApp:app authData:data]);
+	return FLAutorelease([[FLOAuthRequestAccessTokenNetworkOperation alloc] initWithOAuthApp:app authData:data]);
 }
 
 #if FL_MRC

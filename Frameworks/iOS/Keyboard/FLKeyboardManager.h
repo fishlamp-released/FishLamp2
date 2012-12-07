@@ -16,14 +16,14 @@ extern NSString *const FLKeyboardDidHideNotification; // This actually gets fire
 
 @interface FLKeyboardManager : NSObject {
 @private
-	FLRect _keyboardRect;
+	CGRect _keyboardRect;
 	BOOL _showing;
 }
 
 - (void) startWatchingKeyboard;
 
 @property (readonly, assign, nonatomic) BOOL isShowing;
-- (FLRect) keyboardRectForView:(UIView*) view;
+- (CGRect) keyboardRectForView:(UIView*) view;
 
 FLSingletonProperty(FLKeyboardManager);
 

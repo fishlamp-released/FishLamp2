@@ -19,15 +19,15 @@
 @synthesize arrangeableInsets = _arrangeableInsets;
 @synthesize arrangeableState = _arrangeableState;
 
-- (FLRect) arrangeableFrame {
+- (CGRect) arrangeableFrame {
     return self.frame;
 }
 
-- (void) setArrangeableFrame:(FLRect) frame {
+- (void) setArrangeableFrame:(CGRect) frame {
     self.frame = frame;
 }
 
-- (id) initWithFrame:(FLRect) rect {
+- (id) initWithFrame:(CGRect) rect {
     self = [super init];
     if(self) {
         self.frame = rect;
@@ -52,23 +52,23 @@
     }
 }
 
-- (BOOL) pointIsInside:(FLPoint)point {
+- (BOOL) pointIsInside:(CGPoint)point {
 	return CGRectContainsPoint(self.frame, point);
 }	
 
-- (FLRect) frameOptimizedForLocation {
+- (CGRect) frameOptimizedForLocation {
 	return FLRectOptimizedForViewLocation(self.frame);
 }
 
-- (void) setFrameOptimizedForLocation:(FLRect) frame {
+- (void) setFrameOptimizedForLocation:(CGRect) frame {
 	self.frame = FLRectOptimizedForViewLocation(frame);
 }
 
-- (FLRect) frameOptimizedForSize {
+- (CGRect) frameOptimizedForSize {
 	return FLRectOptimizedForViewSize(self.frame);
 }
 
-- (void) setFrameOptimizedForSize:(FLRect) frame {
+- (void) setFrameOptimizedForSize:(CGRect) frame {
 	self.frame = FLRectOptimizedForViewSize(frame);
 }
 
@@ -76,14 +76,14 @@
 	return FLRectIsOptimizedForView(self.frame);
 }
 
-- (void) moveFrameBy:(FLPoint) offset {
+- (void) moveFrameBy:(CGPoint) offset {
 	self.frame = FLRectMoveWithPoint(self.frame, offset);
 }
 
 - (void) didChangeFrame {
 }
 
-- (void) setFrame:(FLRect) frame {
+- (void) setFrame:(CGRect) frame {
 
     if(!CGRectEqualToRect(self.frame, frame)) {
         _frame = frame;

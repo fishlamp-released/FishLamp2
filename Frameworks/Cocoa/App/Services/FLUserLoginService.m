@@ -25,7 +25,7 @@ service_register_(userService, FLUserLoginService, @"com.fishlamp.service.user-l
 @implementation FLUserLoginService
 
 + (id) userLoginService {
-    return autorelease_([[[self class] alloc] init]);
+    return FLAutorelease([[[self class] alloc] init]);
 }
 
 - (void) closeService {

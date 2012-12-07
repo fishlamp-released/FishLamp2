@@ -75,7 +75,7 @@ typedef void (^FLBlockObserverNotifierWithObject)(id sender, id object);
 
 
 #define FLSynthesizeObserveable() \
-    FLSynthesizeAssociatedPropertyWithLazyGetter_(retain_atomic, observable, setObservable, FLObservable*, [FLObservable create]); \
+    FLSynthesizeAssociatedPropertyWithLazyGetter_(FLRetainatomic, observable, setObservable, FLObservable*, [FLObservable create]); \
     - (id)forwardingTargetForSelector:(SEL)aSelector { \
         return self.observable; \
     }

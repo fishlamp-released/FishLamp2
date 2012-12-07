@@ -51,7 +51,7 @@
 }
 
 + (id) unretained:(id) object {
-	return autorelease_([[[self class] alloc] initWithObject:object]);
+	return FLAutorelease([[[self class] alloc] initWithObject:object]);
 }
 
 - (void)forwardInvocation:(NSInvocation *)invocation {

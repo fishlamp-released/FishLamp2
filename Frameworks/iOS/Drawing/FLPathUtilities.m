@@ -8,7 +8,7 @@
 
 #import "FLPathUtilities.h"
 
-void FLCreateRectPathWithCornerRadii(CGMutablePathRef path, FLRect rect, CGFloat topLeft, CGFloat topRight, CGFloat bottomRight, CGFloat bottomLeft)
+void FLCreateRectPathWithCornerRadii(CGMutablePathRef path, CGRect rect, CGFloat topLeft, CGFloat topRight, CGFloat bottomRight, CGFloat bottomLeft)
 {
 	//
 	// Create the boundary path
@@ -56,7 +56,7 @@ void FLCreateRectPathWithCornerRadii(CGMutablePathRef path, FLRect rect, CGFloat
 	CGPathCloseSubpath(path);
 }
 
-void FLCreateRectPathWithTopArrow(CGMutablePathRef path, FLRect rect, FLPoint arrowPoint, CGFloat arrowSize, CGFloat cornerRadius)
+void FLCreateRectPathWithTopArrow(CGMutablePathRef path, CGRect rect, CGPoint arrowPoint, CGFloat arrowSize, CGFloat cornerRadius)
 {
 	
 
@@ -118,7 +118,7 @@ void FLCreateRectPathWithTopArrow(CGMutablePathRef path, FLRect rect, FLPoint ar
 
 }
 
-void FLCreateRectPathBackButtonShape(CGMutablePathRef path, FLRect rect, CGFloat cornerRadius, CGFloat ptSize)
+void FLCreateRectPathBackButtonShape(CGMutablePathRef path, CGRect rect, CGFloat cornerRadius, CGFloat ptSize)
 {
 	// bottomLeft
 	
@@ -163,7 +163,7 @@ void FLCreateRectPathBackButtonShape(CGMutablePathRef path, FLRect rect, CGFloat
 }
 
 
-void FLCreateRectPathWithRightArrow(CGMutablePathRef path, FLRect rect, FLPoint arrowPoint, CGFloat arrowSize, CGFloat cornerRadius)
+void FLCreateRectPathWithRightArrow(CGMutablePathRef path, CGRect rect, CGPoint arrowPoint, CGFloat arrowSize, CGFloat cornerRadius)
 {
         // bottom left
 	CGPathMoveToPoint(path, NULL,
@@ -225,7 +225,7 @@ void FLCreateRectPathWithRightArrow(CGMutablePathRef path, FLRect rect, FLPoint 
 
 }
 
-void FLCreateRectPathWithBottomArrow(CGMutablePathRef path, FLRect rect, FLPoint arrowPoint, CGFloat arrowSize, CGFloat cornerRadius)
+void FLCreateRectPathWithBottomArrow(CGMutablePathRef path, CGRect rect, CGPoint arrowPoint, CGFloat arrowSize, CGFloat cornerRadius)
 {
 	
  
@@ -298,7 +298,7 @@ void FLCreateRectPathWithBottomArrow(CGMutablePathRef path, FLRect rect, FLPoint
 
 }
 
-void FLCreateRectPathWithLeftArrow(CGMutablePathRef path, FLRect rect, FLPoint arrowPoint, CGFloat arrowSize, CGFloat cornerRadius)
+void FLCreateRectPathWithLeftArrow(CGMutablePathRef path, CGRect rect, CGPoint arrowPoint, CGFloat arrowSize, CGFloat cornerRadius)
 {
         // bottom left
 	CGPathMoveToPoint(path, NULL,
@@ -355,7 +355,7 @@ void FLCreateRectPathWithLeftArrow(CGMutablePathRef path, FLRect rect, FLPoint a
 	CGPathCloseSubpath(path);
 }
 
-void FLCreatePartialRectPathTop(CGMutablePathRef path, FLRect rect, CGFloat cornerRadius)
+void FLCreatePartialRectPathTop(CGMutablePathRef path, CGRect rect, CGFloat cornerRadius)
 {
 	//
 	// Create the boundary path
@@ -392,7 +392,7 @@ void FLCreatePartialRectPathTop(CGMutablePathRef path, FLRect rect, CGFloat corn
 	
 }
 
-void FLCreatePartialRectPathLeft(CGMutablePathRef path, FLRect rect, CGFloat cornerRadius)
+void FLCreatePartialRectPathLeft(CGMutablePathRef path, CGRect rect, CGFloat cornerRadius)
 {
 	
 	CGPathMoveToPoint(path, NULL,
@@ -403,7 +403,7 @@ void FLCreatePartialRectPathLeft(CGMutablePathRef path, FLRect rect, CGFloat cor
 		FLRectGetBottom(rect) - cornerRadius);	
 }
 
-void FLCreatePartialRectPathRight(CGMutablePathRef path, FLRect rect, CGFloat cornerRadius)
+void FLCreatePartialRectPathRight(CGMutablePathRef path, CGRect rect, CGFloat cornerRadius)
 {
 	
 	CGPathMoveToPoint(path, NULL,
@@ -414,7 +414,7 @@ void FLCreatePartialRectPathRight(CGMutablePathRef path, FLRect rect, CGFloat co
 		FLRectGetBottom(rect) - cornerRadius);	
 }
 
-void FLCreatePartialRectPathBottom(CGMutablePathRef path, FLRect rect, CGFloat cornerRadius)
+void FLCreatePartialRectPathBottom(CGMutablePathRef path, CGRect rect, CGFloat cornerRadius)
 {
 	//
 	// Create the boundary path
@@ -450,7 +450,7 @@ void FLCreatePartialRectPathBottom(CGMutablePathRef path, FLRect rect, CGFloat c
 }
 
 void FLSetPathToTriangleInRectCorner(CGMutablePathRef path, 
-    FLRect rect, 
+    CGRect rect, 
     FLTriangleCorner cornerInRect) {
     
     switch(cornerInRect) {

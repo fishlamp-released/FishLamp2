@@ -53,9 +53,9 @@
 
 - (void) dealloc
 {
-    release_(__name);
-    release_(__className);
-    release_(__fontSize);
+    FLRelease(__name);
+    FLRelease(__className);
+    FLRelease(__fontSize);
     super_dealloc_();
 }
 
@@ -88,7 +88,7 @@
 
 + (FLSavedThemeInfo*) savedThemeInfo
 {
-    return autorelease_([[FLSavedThemeInfo alloc] init]);
+    return FLAutorelease([[FLSavedThemeInfo alloc] init]);
 }
 
 + (FLObjectDescriber*) sharedObjectDescriber

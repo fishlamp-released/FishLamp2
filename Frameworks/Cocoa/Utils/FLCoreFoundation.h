@@ -1,6 +1,6 @@
 //
 //  FLCoreFoundationUtils.h
-//  FishLampCore
+//  FLCore
 //
 //  Created by Mike Fullerton on 10/30/12.
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
@@ -25,6 +25,6 @@ void _FLReleaseCFRef(CFTypeRef* ref) {
 //            bridge_(CFStringRef, __OBJ__)
 //
 //#define FLBridgeRetainToCFString(__OBJ__) \
-//            bridge_retain_(CFStringRef, __OBJ__)
+//            bridge_FLRetain(CFStringRef, __OBJ__)
             
             

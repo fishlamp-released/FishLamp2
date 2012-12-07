@@ -48,13 +48,13 @@
 
 + (FLDictionaryDataRef*) dictionaryDataRef:(id) key
                                 dictionary:(NSDictionary*) dictionary {
-    return autorelease_([[[self class] alloc] initWithDataRefKey:key dictionary:dictionary]);
+    return FLAutorelease([[[self class] alloc] initWithDataRefKey:key dictionary:dictionary]);
 }
 
 #if FL_MRC
 - (void) dealloc {
-    release_(_key);
-    release_(_dictionary);
+    FLRelease(_key);
+    FLRelease(_dictionary);
     super_dealloc_();
 }
 #endif
@@ -87,13 +87,13 @@
 
 + (FLMutableDictionaryDataRef*) dictionaryDataRef:(id) key
                                 dictionary:(NSMutableDictionary*) dictionary {
-    return autorelease_([[[self class] alloc] initWithDataRefKey:key dictionary:dictionary]);
+    return FLAutorelease([[[self class] alloc] initWithDataRefKey:key dictionary:dictionary]);
 }
 
 #if FL_MRC
 - (void) dealloc {
-    release_(_key);
-    release_(_dictionary);
+    FLRelease(_key);
+    FLRelease(_dictionary);
     super_dealloc_();
 }
 #endif

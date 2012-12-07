@@ -25,7 +25,7 @@
 #undef allocWithZone
 
 NS_INLINE
-FLRect AdjustFrame(FLRect frame)
+CGRect AdjustFrame(CGRect frame)
 {
 	//frame.origin.y += 2;
 	return FLRectOptimizedForViewSize(frame);
@@ -85,7 +85,7 @@ FLSynthesizeSingleton(FLMemoryMonitor)
 		_rightLabel.text = text2;
 		FLReleaseWithNil_(text2);
 		
-		FLRect superviewBounds = superview.bounds;
+		CGRect superviewBounds = superview.bounds;
 		
 		_rightLabel.frame = AdjustFrame(FLRectJustifyRectInRectBottomRight(superviewBounds, _rightLabel.frame));
 		_leftLabel.frame = AdjustFrame(FLRectJustifyRectInRectBottom(superviewBounds, _leftLabel.frame));
@@ -309,7 +309,7 @@ void printProcessorInfo()
 
 void report_memory(void) {
 
-//	FLBytesDataSizeFormatter* formatter = autorelease_([[FLBytesDataSizeFormatter alloc] init]);
+//	FLBytesDataSizeFormatter* formatter = FLAutorelease([[FLBytesDataSizeFormatter alloc] init]);
 
 	struct task_basic_info info;
 	mach_msg_type_number_t size = sizeof(info);

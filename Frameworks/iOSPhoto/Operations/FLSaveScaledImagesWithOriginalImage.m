@@ -32,7 +32,7 @@
 				   folder:(FLFolder*) folder
 			  saveOptions:(FLSaveScaledImagesWithOriginalImageOption) options {
     
-        return autorelease_([[FLSaveScaledImagesWithOriginalImage alloc] initWithPhotoInput:photo folder:folder saveOptions:options]);
+        return FLAutorelease([[FLSaveScaledImagesWithOriginalImage alloc] initWithPhotoInput:photo folder:folder saveOptions:options]);
 }
 
 

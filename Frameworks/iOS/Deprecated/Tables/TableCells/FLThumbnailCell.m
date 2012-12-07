@@ -14,7 +14,7 @@
 
 @synthesize thumbnailView = _thumbnailImageView;
 
-- (FLRect) thumbFrame
+- (CGRect) thumbFrame
 {
 	return CGRectMake(0,0,ThumbnailHeight,ThumbnailHeight);
 }

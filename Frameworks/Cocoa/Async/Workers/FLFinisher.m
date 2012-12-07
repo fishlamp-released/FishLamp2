@@ -23,14 +23,14 @@
 @synthesize resultBlock = _resultBlock;
 
 + (id) finisherWithResultBlock:(FLResultBlock) completion {
-    return autorelease_([[[self class] alloc] initWithResultBlock:completion]);
+    return FLAutorelease([[[self class] alloc] initWithResultBlock:completion]);
 }
 
 + (FLFinisherNotificationSchedulerBlock) scheduleNotificationInMainThreadBlock {
     static FLFinisherNotificationSchedulerBlock s_block = ^(dispatch_block_t notifier) {
         if(![NSThread isMainThread]) {
             
-            notifier = FLCopyBlock(notifier);
+            notifier = FLAutoreleasedCopy(notifier);
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 notifier();
@@ -85,12 +85,12 @@
 }
 
 + (id) finisher {
-    return autorelease_([[[self class] alloc] init]);
+    return FLAutorelease([[[self class] alloc] init]);
 }
 
 - (FLResult) waitUntilFinished {
     
-    mrc_retain_(self);
+    FLRetainObject(self);
     
     @try {
         if([NSThread isMainThread]) {
@@ -105,7 +105,7 @@
         } 
     }
     @finally {
-        mrc_autorelease_(self);
+        FLAutoreleaseObject(self);
     }   
 
     return self.result;

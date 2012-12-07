@@ -47,7 +47,7 @@ FLSynthesizeStructProperty(animating, setAnimating, BOOL, _zoomingScrollViewFlag
 	// no-op
 }
 
-- (id)initWithFrame:(FLRect) frame
+- (id)initWithFrame:(CGRect) frame
 {
 	if ((self = [super initWithFrame:frame])) 
 	{
@@ -142,10 +142,10 @@ FLSynthesizeStructProperty(animating, setAnimating, BOOL, _zoomingScrollViewFlag
 		[_zoomingScrollViewDelegate zoomingScrollView:self zoomScaleForViewChanged:self.zoomedView zoomScale:_zoomScale];
 	}
 }
-- (FLRect) _setCorrectLocation:(FLRect) newFrame
+- (CGRect) _setCorrectLocation:(CGRect) newFrame
 {
 // we might be rotated, so use the unrotated bounds from the layer if we need to.
-	FLRect visibleRect = 
+	CGRect visibleRect = 
 			CGAffineTransformEqualToTransform(CGAffineTransformIdentity, self.transform) ?
 			CGRectMake(0,0,self.frame.size.width, self.frame.size.height) :
 			CGRectMake(0,0,self.layer.bounds.size.width, self.layer.bounds.size.height);
@@ -188,7 +188,7 @@ FLSynthesizeStructProperty(animating, setAnimating, BOOL, _zoomingScrollViewFlag
 
 - (void) _zoomingDidStop
 {
-	FLRect frame = _zoomedView.layer.frame;
+	CGRect frame = _zoomedView.layer.frame;
 	_zoomedView.transform = CGAffineTransformIdentity;
 	self.contentOffset = CGPointZero;
 	self.contentSize = frame.size;
@@ -204,7 +204,7 @@ FLSynthesizeStructProperty(animating, setAnimating, BOOL, _zoomingScrollViewFlag
 
 - (void) _zoomOutFinished
 {
-	FLRect frame = _zoomedView.layer.frame;
+	CGRect frame = _zoomedView.layer.frame;
 	_zoomedView.transform = CGAffineTransformIdentity;
 	_zoomScale = _zoomOutScale;
 	_zoomOutScale = 1.0f;
@@ -225,7 +225,7 @@ FLSynthesizeStructProperty(animating, setAnimating, BOOL, _zoomingScrollViewFlag
 
 	_zoomOutScale = _zoomScale * scaleDelta;
 			
-	FLRect newFrame = FLRectScale(_zoomedView.frame, scaleDelta);
+	CGRect newFrame = FLRectScale(_zoomedView.frame, scaleDelta);
 
 	newFrame = [self _setCorrectLocation:newFrame];
 			
@@ -271,7 +271,7 @@ FLSynthesizeStructProperty(animating, setAnimating, BOOL, _zoomingScrollViewFlag
 	{
 		FLCallbackObject* cb = (FLCallbackObject*) CFBridgingRelease(context);
 		[cb invoke:self];
-		release_(cb);
+		FLRelease(cb);
 	}
 
 	
@@ -283,7 +283,7 @@ FLSynthesizeStructProperty(animating, setAnimating, BOOL, _zoomingScrollViewFlag
 	target:(id) target
 	action:(SEL) action
 {
-	FLRect frame = [_zoomedView frameSizedToFitInSuperview:YES];
+	CGRect frame = [_zoomedView frameSizedToFitInSuperview:YES];
 		
 	self.animating = animated;
 
@@ -296,7 +296,7 @@ FLSynthesizeStructProperty(animating, setAnimating, BOOL, _zoomingScrollViewFlag
 ////		frame.size.width/_zoomedView.frame.size.width,
 ////		frame.size.height/_zoomedView.frame.size.height);
 //
-//	  FLPoint delta = FLPointSubtractPointFromPoint(FLRectGetCenter(frame), FLRectGetCenter(_zoomedView.frame));
+//	  CGPoint delta = FLPointSubtractPointFromPoint(FLRectGetCenter(frame), FLRectGetCenter(_zoomedView.frame));
 //	  
 //	  CGAffineTransform move = CGAffineTransformMakeTranslation(delta.x, delta.y);
 //	  
@@ -361,10 +361,10 @@ FLSynthesizeStructProperty(animating, setAnimating, BOOL, _zoomingScrollViewFlag
 
 - (void) _zoomingDidFinishWithTransform
 {
-	FLRect newFrame = _zoomedView.layer.frame;
+	CGRect newFrame = _zoomedView.layer.frame;
 	_zoomedView.transform = CGAffineTransformIdentity;
    
-	FLPoint offset = self.contentOffset; 
+	CGPoint offset = self.contentOffset; 
 
 	if(newFrame.size.width >= self.frame.size.width)
 	{	
@@ -400,7 +400,7 @@ FLSynthesizeStructProperty(animating, setAnimating, BOOL, _zoomingScrollViewFlag
 	FLAssertFailed_v(@"Call setZoomingScrollViewZoomScale instead of setZoomScale");
 }
 
-- (void) setZoomingScrollViewZoomScale:(float) scale translateToPoint:(FLPoint) point animated:(BOOL) animated
+- (void) setZoomingScrollViewZoomScale:(float) scale translateToPoint:(CGPoint) point animated:(BOOL) animated
 {
 	if(!FLFloatEqualToFloat(scale, _zoomScale)) {
     
@@ -471,9 +471,9 @@ FLSynthesizeStructProperty(animating, setAnimating, BOOL, _zoomingScrollViewFlag
 
 #define BorderBuffer 0.0f
 
-- (FLPoint) _makeValidScrollOffsetFromDelta:(FLPoint) delta
+- (CGPoint) _makeValidScrollOffsetFromDelta:(CGPoint) delta
 {
-	FLPoint newOffset = self.contentOffset;
+	CGPoint newOffset = self.contentOffset;
 	
 	if(self.contentSize.width > self.frame.size.width)
 	{
@@ -528,7 +528,7 @@ FLSynthesizeStructProperty(animating, setAnimating, BOOL, _zoomingScrollViewFlag
 		if(_zoomScale > 1.0f)
 		{
 			UITouch* touch = [touches anyObject];
-			FLPoint delta;
+			CGPoint delta;
 			delta.x = [touch locationInView:self].x - [touch previousLocationInView:self].x; 
 			delta.y = [touch locationInView:self].y - [touch previousLocationInView:self].y; 
 
@@ -599,9 +599,9 @@ FLSynthesizeStructProperty(animating, setAnimating, BOOL, _zoomingScrollViewFlag
 		{
 			_inZoomRelativeScale = newZoomScale;
 		
-			FLRect prevFrame = _zoomedView.frame;
+			CGRect prevFrame = _zoomedView.frame;
 			
-			FLRect newFrame = FLRectScale(_startFrame, _inZoomRelativeScale);
+			CGRect newFrame = FLRectScale(_startFrame, _inZoomRelativeScale);
 			
 			if((_zoomScale * newZoomScale) <= 1.0f)
 			{
@@ -614,7 +614,7 @@ FLSynthesizeStructProperty(animating, setAnimating, BOOL, _zoomingScrollViewFlag
 				newFrame = [self _setCorrectLocation:newFrame];
 			}
 			
-			FLPoint delta = FLPointSubtractPointFromPoint(FLRectGetCenter(newFrame), FLRectGetCenter(prevFrame));
+			CGPoint delta = FLPointSubtractPointFromPoint(FLRectGetCenter(newFrame), FLRectGetCenter(prevFrame));
 			
 			_zoomedView.frameOptimizedForSize = newFrame;
 			
@@ -690,7 +690,7 @@ FLSynthesizeStructProperty(animating, setAnimating, BOOL, _zoomingScrollViewFlag
 			_zoomingScrollViewFlags.cancelSingleTap = YES;
 			
 			UITouch* touch = [touches anyObject];
-			FLPoint delta;
+			CGPoint delta;
 			delta.x = [touch locationInView:self].x - [touch previousLocationInView:self].x; 
 			delta.y = [touch locationInView:self].y - [touch previousLocationInView:self].y; 
 			
@@ -706,7 +706,7 @@ FLSynthesizeStructProperty(animating, setAnimating, BOOL, _zoomingScrollViewFlag
 			delta.x *= 10;
 			delta.y *= 10;
 			
-			FLRect newBounds = FLRectSetOriginWithPoint(self.layer.bounds, [self _makeValidScrollOffsetFromDelta:delta]);
+			CGRect newBounds = FLRectSetOriginWithPoint(self.layer.bounds, [self _makeValidScrollOffsetFromDelta:delta]);
 						
 			// using animation so we have control over duration and timing function. 
 

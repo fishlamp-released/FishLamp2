@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "FishLampCore.h"
+#import "FLCore.h"
 #import "FLObservable.h"
 #import "FLOperationQueue.h"
 #import "FLAnswerable.h"

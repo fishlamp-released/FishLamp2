@@ -10,13 +10,13 @@
 
 @implementation UIView (FLViewGeometry)
 
-+ (id) viewWithFrame:(FLRect) frame {
-    return autorelease_([[[self class] alloc] initWithFrame:frame]);
++ (id) viewWithFrame:(CGRect) frame {
+    return FLAutorelease([[[self class] alloc] initWithFrame:frame]);
 }
 
-- (void) moveBy:(FLPoint) delta {
+- (void) moveBy:(CGPoint) delta {
 	if(delta.x != 0.0f || delta.y != 0.0f) {
-		FLRect frame = self.frame;
+		CGRect frame = self.frame;
 		frame.origin.x += delta.x;
 		frame.origin.y += delta.y;
 		self.frame = frame;
@@ -25,7 +25,7 @@
 
 - (void) moveBy:(CGFloat) x y:(CGFloat)y {
 	if(x != 0.0f || y != 0.0f) {
-		FLRect frame = self.frame;
+		CGRect frame = self.frame;
 		frame.origin.x += x;
 		frame.origin.y += y;
 		self.newFrame = frame;
@@ -36,7 +36,7 @@
 	self.newFrame = FLRectSetSizeWithSize(self.frame, newSize);
 }
 
-- (void) moveTo:(FLPoint) newOrigin {
+- (void) moveTo:(CGPoint) newOrigin {
 	self.newFrame = FLRectSetOrigin(self.frame, newOrigin.x, newOrigin.y);
 }
 
@@ -66,19 +66,19 @@
 
 #endif
 
-- (FLRect) frameOptimizedForLocation {
+- (CGRect) frameOptimizedForLocation {
 	return FLRectOptimizedForViewLocation(self.frame);
 }
 
-- (void) setFrameOptimizedForLocation:(FLRect) frame {
+- (void) setFrameOptimizedForLocation:(CGRect) frame {
 	self.newFrame = FLRectOptimizedForViewLocation(frame);
 }
 
-- (FLRect) frameOptimizedForSize {
+- (CGRect) frameOptimizedForSize {
 	return FLRectOptimizedForViewSize(self.frame);
 }
 
-- (void) setFrameOptimizedForSize:(FLRect) frame {
+- (void) setFrameOptimizedForSize:(CGRect) frame {
 	self.newFrame = FLRectOptimizedForViewSize(frame);
 }
 
@@ -86,11 +86,11 @@
 	return FLRectIsOptimizedForView(self.frame);
 }
 
-- (FLRect) newFrame {
+- (CGRect) newFrame {
 	return self.frame;
 }
 
-- (void) setNewFrame:(FLRect) newFrame {
+- (void) setNewFrame:(CGRect) newFrame {
 #if DEBUG
 	if(!FLRectIsIntegral(newFrame)) {
 		FLLog(@"Warning setting non-integral rect in view: %@", NSStringFromCGRect(newFrame));
@@ -106,7 +106,7 @@
 #endif
 }
 
-- (BOOL) setFrameIfChanged:(FLRect) newFrame {
+- (BOOL) setFrameIfChanged:(CGRect) newFrame {
 	
     if(!CGRectEqualToRect(newFrame, self.frame)) {
 		self.frame = newFrame;
@@ -116,7 +116,7 @@
 	return NO;
 }
 
-- (BOOL) setBoundsIfChanged:(FLRect) newBounds {
+- (BOOL) setBoundsIfChanged:(CGRect) newBounds {
 	
     if(!CGRectEqualToRect(newBounds, self.bounds)) {
 		self.bounds = newBounds;
@@ -137,7 +137,7 @@
 //}
 #endif
 
-- (FLRect) frameSizedToFitInSuperview:(BOOL) centerInSuperview {
+- (CGRect) frameSizedToFitInSuperview:(BOOL) centerInSuperview {
 	return self.superview ? self.superview.bounds : CGRectZero;
 }
 

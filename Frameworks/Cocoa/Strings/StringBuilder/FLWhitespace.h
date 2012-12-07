@@ -1,13 +1,13 @@
 //
 //  FLWhitespace.h
-//  FishLampCore
+//  FLCore
 //
 //  Created by Mike Fullerton on 5/25/12.
 //  Copyright (c) 2012 GreenTongue Software. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-#import "FishLampCore.h"
+#import "FLCore.h"
 
 /// FLWhitespaceDefaultEOL is the default EOL (\\n)
 

@@ -23,7 +23,7 @@
 }
 
 - (void) dealloc {
-	release_(_properties);
+	FLRelease(_properties);
 	super_dealloc_();
 }
 

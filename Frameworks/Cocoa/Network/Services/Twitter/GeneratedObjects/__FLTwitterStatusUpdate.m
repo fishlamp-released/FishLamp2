@@ -74,12 +74,12 @@
 
 - (void) dealloc
 {
-    release_(__status);
-    release_(__in_reply_to_status_id);
-    release_(__place_id);
-    release_(__display_coordinates);
-    release_(__trim_user);
-    release_(__include_entities);
+    FLRelease(__status);
+    FLRelease(__in_reply_to_status_id);
+    FLRelease(__place_id);
+    FLRelease(__display_coordinates);
+    FLRelease(__trim_user);
+    FLRelease(__include_entities);
     super_dealloc_();
 }
 
@@ -105,12 +105,12 @@
 {
     if((self = [super init]))
     {
-        __status = retain_([aDecoder decodeObjectForKey:@"__status"]);
-        __in_reply_to_status_id = retain_([aDecoder decodeObjectForKey:@"__in_reply_to_status_id"]);
-        __place_id = retain_([aDecoder decodeObjectForKey:@"__place_id"]);
-        __display_coordinates = retain_([aDecoder decodeObjectForKey:@"__display_coordinates"]);
-        __trim_user = retain_([aDecoder decodeObjectForKey:@"__trim_user"]);
-        __include_entities = retain_([aDecoder decodeObjectForKey:@"__include_entities"]);
+        __status = FLRetain([aDecoder decodeObjectForKey:@"__status"]);
+        __in_reply_to_status_id = FLRetain([aDecoder decodeObjectForKey:@"__in_reply_to_status_id"]);
+        __place_id = FLRetain([aDecoder decodeObjectForKey:@"__place_id"]);
+        __display_coordinates = FLRetain([aDecoder decodeObjectForKey:@"__display_coordinates"]);
+        __trim_user = FLRetain([aDecoder decodeObjectForKey:@"__trim_user"]);
+        __include_entities = FLRetain([aDecoder decodeObjectForKey:@"__include_entities"]);
     }
     return self;
 }
@@ -172,7 +172,7 @@
 
 + (FLTwitterStatusUpdate*) twitterStatusUpdate
 {
-    return autorelease_([[FLTwitterStatusUpdate alloc] init]);
+    return FLAutorelease([[FLTwitterStatusUpdate alloc] init]);
 }
 
 @end

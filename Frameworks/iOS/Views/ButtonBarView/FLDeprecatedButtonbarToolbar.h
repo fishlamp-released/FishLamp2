@@ -18,7 +18,7 @@
 	FLDeprecatedButtonbarView* _buttonbar;
 }
 
-- (id) initWithFrame:(FLRect)frame buttonbarView:(FLDeprecatedButtonbarView*) buttonBarView;
+- (id) initWithFrame:(CGRect)frame buttonbarView:(FLDeprecatedButtonbarView*) buttonBarView;
 
 @property (readonly, retain, nonatomic) FLDeprecatedButtonbarView* buttonbar;
 

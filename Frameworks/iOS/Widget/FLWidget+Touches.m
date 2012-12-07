@@ -146,7 +146,7 @@ static FLWidget* s_lastEnteredWidget = nil;
 }
 #endif
 
-//- (void)touchEventReceiverTouchesBegan:(FLPoint) point inView:(UIView*) view
+//- (void)touchEventReceiverTouchesBegan:(CGPoint) point inView:(UIView*) view
 //{
 //	if(!self.isDisabled && !self.isHidden)
 //	{
@@ -180,7 +180,7 @@ static FLWidget* s_lastEnteredWidget = nil;
 //	}
 //}
 
-- (void)touchEventReceiverTouchesMoved:(FLPoint) point inView:(UIView*) view
+- (void)touchEventReceiverTouchesMoved:(CGPoint) point inView:(UIView*) view
 {
 	if(	!self.isDisabled && 
 		!self.isHidden)
@@ -323,7 +323,7 @@ static FLWidget* s_lastEnteredWidget = nil;
 	
 	if(_state.gotFirstTouch || _state.isTouching)
 	{
-		FLPoint pt = [touch locationInView:self.superview];
+		CGPoint pt = [touch locationInView:self.superview];
 			
 		NSTimeInterval delay = [NSDate timeIntervalSinceReferenceDate] - _startTap;
 		

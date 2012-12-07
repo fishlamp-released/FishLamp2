@@ -25,7 +25,7 @@
 }
 
 + (FLDataPath*) dataKeyWithPath:(NSString*) path {
-    return autorelease_([[FLDataPath alloc] initWithPath:path]);
+    return FLAutorelease([[FLDataPath alloc] initWithPath:path]);
 }
 
 - (NSUInteger) keyCount {
@@ -53,7 +53,7 @@
 
 #if FL_MRC
 - (void) dealloc {
-    release_(_keys);
+    FLRelease(_keys);
     super_dealloc_();
 }
 #endif

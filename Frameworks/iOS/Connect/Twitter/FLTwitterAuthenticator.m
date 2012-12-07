@@ -16,7 +16,7 @@
 
 + (FLTwitterAuthenticator*) twitterAuthenticator
 {
-    return autorelease_([[FLTwitterAuthenticator alloc] init]);
+    return FLAutorelease([[FLTwitterAuthenticator alloc] init]);
 }
 
 - (void) cleanup

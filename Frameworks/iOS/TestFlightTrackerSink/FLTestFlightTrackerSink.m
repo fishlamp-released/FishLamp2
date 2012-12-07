@@ -27,7 +27,7 @@
 }
 
 + (FLTestFlightTrackerSink*) testFlightTrackerSink {
-    return autorelease_([[FLTestFlightTrackerSink alloc] init]);
+    return FLAutorelease([[FLTestFlightTrackerSink alloc] init]);
 }
 
 - (void) trackEvent:(NSString*) message {

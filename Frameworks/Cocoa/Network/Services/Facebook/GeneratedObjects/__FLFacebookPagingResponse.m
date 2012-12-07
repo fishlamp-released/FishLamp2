@@ -46,8 +46,8 @@
 
 - (void) dealloc
 {
-    release_(__previous);
-    release_(__next);
+    FLRelease(__previous);
+    FLRelease(__next);
     super_dealloc_();
 }
 
@@ -59,7 +59,7 @@
 
 + (FLFacebookPagingResponse*) facebookPagingResponse
 {
-    return autorelease_([[FLFacebookPagingResponse alloc] init]);
+    return FLAutorelease([[FLFacebookPagingResponse alloc] init]);
 }
 
 - (id) init
@@ -74,8 +74,8 @@
 {
     if((self = [super init]))
     {
-        __previous = retain_([aDecoder decodeObjectForKey:@"__previous"]);
-        __next = retain_([aDecoder decodeObjectForKey:@"__next"]);
+        __previous = FLRetain([aDecoder decodeObjectForKey:@"__previous"]);
+        __next = FLRetain([aDecoder decodeObjectForKey:@"__next"]);
     }
     return self;
 }

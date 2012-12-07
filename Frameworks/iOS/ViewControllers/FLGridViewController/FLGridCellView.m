@@ -42,7 +42,7 @@ FLSynthesizeAssociatedProperty(assign_nonatomic, gridCell, setGridCell, id);
 
 @synthesize gridCell = _gridViewCell;
 
-- (id) initWithFrame:(FLRect) frame {
+- (id) initWithFrame:(CGRect) frame {
     self = [super initWithFrame:frame];
     if(self) {
         self.backgroundColor = [UIColor clearColor];

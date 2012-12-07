@@ -9,13 +9,13 @@
 #import <Foundation/Foundation.h>
 
 extern void FLDrawLinearGradient(CGContextRef context, 
-    FLRect rect, 
+    CGRect rect, 
     CGColorRef startColor, 
     CGColorRef endColor);
    
 typedef struct {
-    FLPoint startPoint; 
-    FLPoint endPoint; 
+    CGPoint startPoint; 
+    CGPoint endPoint; 
     CGFloat width;
     CGLineCap cap;
     CGColorRef color;

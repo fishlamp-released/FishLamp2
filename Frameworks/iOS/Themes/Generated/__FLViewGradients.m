@@ -90,14 +90,14 @@
 
 - (void) dealloc
 {
-    release_(__normalGradientEnum);
-    release_(__selectedGradientEnum);
-    release_(__highlightedGradientEnum);
-    release_(__disabledGradientEnum);
-    release_(__normalGradient);
-    release_(__selectedGradient);
-    release_(__highlightedGradient);
-    release_(__disabledGradient);
+    FLRelease(__normalGradientEnum);
+    FLRelease(__selectedGradientEnum);
+    FLRelease(__highlightedGradientEnum);
+    FLRelease(__disabledGradientEnum);
+    FLRelease(__normalGradient);
+    FLRelease(__selectedGradient);
+    FLRelease(__highlightedGradient);
+    FLRelease(__disabledGradient);
     super_dealloc_();
 }
 
@@ -202,7 +202,7 @@
 
 + (FLViewGradients*) viewGradients
 {
-    return autorelease_([[FLViewGradients alloc] init]);
+    return FLAutorelease([[FLViewGradients alloc] init]);
 }
 
 @end

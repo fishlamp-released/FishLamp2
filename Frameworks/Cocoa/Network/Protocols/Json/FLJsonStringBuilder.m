@@ -14,7 +14,7 @@
 
 -(void)dealloc
 {
-	release_(_dataEncoder);
+	FLRelease(_dataEncoder);
 	super_dealloc_();
 }
 
@@ -55,7 +55,7 @@
 //		}
 //		@finally
 //		{
-//			release_(string);
+//			FLRelease(string);
 //		}
 //	}
 //}

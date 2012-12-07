@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <SystemConfiguration/SystemConfiguration.h>
-#import "FishLampCore.h"
+#import "FLCore.h"
 
 
 // monitored reachability objects send this notification and themselves as the object when

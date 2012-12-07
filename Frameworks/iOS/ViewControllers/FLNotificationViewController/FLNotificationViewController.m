@@ -44,7 +44,7 @@
     [self updateViewSizeAndPosition];
 }
 
-- (void) sizeToFitInBounds:(FLRect) bounds {
+- (void) sizeToFitInBounds:(CGRect) bounds {
     self.view.frame = FLRectSetSizeWithSize(self.view.frame, [self.view sizeThatFits:bounds.size]);
 }
 
@@ -134,6 +134,6 @@ FLSynthesizeSingleton(FLActionErrorNotificationHandler);
 
 - (id<FLDisplayedNotification>) createNotificationWithType:(FLDisplayedNotificationType) type
 {
-	return autorelease_([[FLOldUserNotificationView alloc] initWithType:type]);
+	return FLAutorelease([[FLOldUserNotificationView alloc] initWithType:type]);
 }
 */

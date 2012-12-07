@@ -24,7 +24,7 @@
 	
  // output.minFrameDuration = CMTimeMake(1, 15);
 	[self.session addOutput:_output];
-	release_(_output);
+	FLRelease(_output);
 }
 
 - (void) _configureSession:(AVCaptureSession*) session
@@ -162,8 +162,8 @@
 																						   }																							   
 																					   }
 																				   }];
-															 release_(library);
-															 release_(image);
+															 FLRelease(library);
+															 FLRelease(image);
 														 } else if (error) {
 															 id delegate = [self delegate];
 															 if ([delegate respondsToSelector:@selector(captureStillImageFailedWithError:)]) {

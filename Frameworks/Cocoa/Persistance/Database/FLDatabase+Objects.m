@@ -29,27 +29,27 @@
 	
 	if(array) {
 		if(outputObject && array.count == 1) {
-			*outputObject = retain_([array objectAtIndex:0]);
+			*outputObject = FLRetain([array objectAtIndex:0]);
 		}
 		else if(array.count > 1) {
-			release_(array);
+			FLRelease(array);
 			FLThrowErrorCode_v(FLObjectDatabaseErrorDomain, FLDatabaseErrorTooManyObjectsReturned,
                              ([NSString stringWithFormat:@"Too many objects returned for input object of type: %@", NSStringFromClass([inputObject class])]));
 		}
-		release_(array);
+		FLRelease(array);
 	}
 }
 
 - (id) loadObject:(id) inputObject {
 	id output = nil;
 	[self loadObject:inputObject outputObject:&output];
-	return autorelease_(output);
+	return FLAutorelease(output);
 }
 
 - (NSArray*) selectObjectsMatchingInputObject:(id) inputObject {
 	NSArray* array = nil;
 	[self selectObjectsMatchingInputObject:inputObject resultColumnNames:nil resultObjects:&array];
-	return autorelease_(array);
+	return FLAutorelease(array);
 }
 
 - (NSArray*) selectObjectsMatchingInputObject:(id) inputObject
@@ -57,7 +57,7 @@
 	NSArray* array = nil;
 	[self selectObjectsMatchingInputObject:inputObject resultColumnNames:resultColumnNames resultObjects:&array];
 
-	return autorelease_(array);
+	return FLAutorelease(array);
 }
 
 - (void) selectObjectsMatchingInputObject:(id) inputObject 
@@ -101,7 +101,7 @@
     
     statement.finished = ^(NSError* error){
         if(outObjects && !error) {
-            *outObjects = retain_(results);
+            *outObjects = FLRetain(results);
         }
     };
     
@@ -189,7 +189,7 @@
     
     statement.finished = ^(NSError* error){
         if(outObjects && !error) {
-            *outObjects = retain_(results);
+            *outObjects = FLRetain(results);
         }
     };
     
@@ -264,7 +264,7 @@
 }
 
 + (id) readObjectFromDatabase:(FLDatabase*) database withSearchValue:(id) value forKey:(id) key {
-    id objectInput = autorelease_([[[self class] alloc] init]);
+    id objectInput = FLAutorelease([[[self class] alloc] init]);
     
     if(objectInput) {
         [objectInput setValue:value forKey:key];

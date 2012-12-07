@@ -19,12 +19,12 @@
 }
 
 + (FLRetainedObject*) retainedObject:(id) object {
-	return autorelease_([[FLRetainedObject alloc] initWithObject:object]);
+	return FLAutorelease([[FLRetainedObject alloc] initWithObject:object]);
 }
 
 #if FL_MRC
 - (void) dealloc {
-    release_(_object);
+    FLRelease(_object);
 	super_dealloc_();
 }
 #endif

@@ -40,11 +40,11 @@
 }
 
 + (id) callbackWithTarget:(id) target action:(SEL) action {
-    return autorelease_([[FLCallback alloc] initWithTarget:target action:action]);
+    return FLAutorelease([[FLCallback alloc] initWithTarget:target action:action]);
 }
 
 + (id) callbackWithBlock:(FLCallbackBlock) block {
-    return autorelease_([[FLCallback alloc] initWithBlock:block]);
+    return FLAutorelease([[FLCallback alloc] initWithBlock:block]);
 }
 
 

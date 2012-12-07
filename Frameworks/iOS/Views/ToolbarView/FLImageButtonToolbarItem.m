@@ -16,7 +16,7 @@
 - (void) setSubviewSize:(FLSize) size {
 }
 
-- (FLSize) subviewSizeThatFitsInBounds:(FLRect) bounds {
+- (FLSize) subviewSizeThatFitsInBounds:(CGRect) bounds {
     return [self.view frame].size;
 }
 
@@ -53,14 +53,14 @@
 + (id) imageButtonToolbarItemWithImage:(UIImage*) image         
                 onChosenBlock:(FLToolbarViewBlock) onChosenBlock {
 
-    return autorelease_([[FLImageButtonToolbarItem alloc] initWithImage:image onChosenBlock:onChosenBlock]);
+    return FLAutorelease([[FLImageButtonToolbarItem alloc] initWithImage:image onChosenBlock:onChosenBlock]);
 
 }
 
 + (id) imageButtonToolbarItemWithImageName:(NSString*) imageName         
                 onChosenBlock:(FLToolbarViewBlock) onChosenBlock {
 
-    return autorelease_([[FLImageButtonToolbarItem alloc] initWithImageName:imageName onChosenBlock:onChosenBlock]);
+    return FLAutorelease([[FLImageButtonToolbarItem alloc] initWithImageName:imageName onChosenBlock:onChosenBlock]);
 
 }
 

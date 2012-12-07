@@ -20,27 +20,27 @@
 }
 
 + (FLButton*) okButton:(FLButtonPress)onPress {
-    return autorelease_([[[self class] alloc] initWithTitle:NSLocalizedString(@"OK", nil) onPress:onPress]);
+    return FLAutorelease([[[self class] alloc] initWithTitle:NSLocalizedString(@"OK", nil) onPress:onPress]);
 }
 
 + (FLButton*) okButton {
-    return autorelease_([[[self class] alloc] initWithTitle:NSLocalizedString(@"OK", nil)]);
+    return FLAutorelease([[[self class] alloc] initWithTitle:NSLocalizedString(@"OK", nil)]);
 }
 
 + (FLButton*) yesButton {
-    return autorelease_([[[self class] alloc] initWithTitle:NSLocalizedString(@"Yes", nil)]);
+    return FLAutorelease([[[self class] alloc] initWithTitle:NSLocalizedString(@"Yes", nil)]);
 }
 
 + (FLButton*) yesButton:(FLButtonPress)onPress {
-    return autorelease_([[[self class] alloc] initWithTitle:NSLocalizedString(@"Yes", nil) onPress:onPress]);
+    return FLAutorelease([[[self class] alloc] initWithTitle:NSLocalizedString(@"Yes", nil) onPress:onPress]);
 }
 
 + (FLButton*) saveButton:(FLButtonPress)onPress {
-    return autorelease_([[[self class] alloc] initWithTitle:NSLocalizedString(@"Save", nil) onPress:onPress]);
+    return FLAutorelease([[[self class] alloc] initWithTitle:NSLocalizedString(@"Save", nil) onPress:onPress]);
 }
 
 + (FLButton*) saveButton {
-    return autorelease_([[[self class] alloc] initWithTitle:NSLocalizedString(@"Save", nil)]);
+    return FLAutorelease([[[self class] alloc] initWithTitle:NSLocalizedString(@"Save", nil)]);
 }
 
 

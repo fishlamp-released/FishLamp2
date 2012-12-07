@@ -27,7 +27,7 @@
 //
 //#if FL_MRC
 //- (void) dealloc {
-//    release_(_factoryBlocks);
+//    FLRelease(_factoryBlocks);
 //    super_dealloc_();
 //}
 //#endif
@@ -47,7 +47,7 @@
 ////    if(prefixLocation.location > 0) {
 ////        Class aClass = [_factoryBlocks objectForKey:[urlString substringToIndex:prefixLocation.location]];
 ////        if(aClass) {
-////            return autorelease_([[aClass alloc] initWithQueuedAsset:queuedAsset]);
+////            return FLAutorelease([[aClass alloc] initWithQueuedAsset:queuedAsset]);
 ////        }
 ////    }
 //

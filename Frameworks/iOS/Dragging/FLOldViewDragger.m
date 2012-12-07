@@ -25,7 +25,7 @@
 - (void) dealloc
 {
     [[FLApplication sharedApplication] removeEventInterceptor:self];
-    release_(_item);
+    FLRelease(_item);
     super_dealloc_();
 }
 
@@ -36,7 +36,7 @@
 
 + (FLOldViewDragger*) viewDragger
 {
-    return autorelease_([[FLOldViewDragger alloc] init]);
+    return FLAutorelease([[FLOldViewDragger alloc] init]);
 }
 
 - (void) beginWatchingTouchesForDraggableItem:(id<FLDraggableItem>) item
@@ -56,7 +56,7 @@
     FLReleaseWithNil_(_item);
 }
 
-- (FLPoint) pointInView:(FLPoint) windowCoordinatePoint
+- (CGPoint) pointInView:(CGPoint) windowCoordinatePoint
 {
     return [_window convertPoint:windowCoordinatePoint toView:_item.touchableView];
 }
@@ -78,7 +78,7 @@
     
     if(frames && frames.count)
     {
-        FLPoint center = FLRectGetCenter(drag.frame);
+        CGPoint center = FLRectGetCenter(drag.frame);
         
         NSInteger closestIndex = 0;
         
@@ -142,11 +142,11 @@
             drag.previousTouch = _lastTouch;
             drag.firstTouch = _firstTouch;
             
-            FLRect frame = _item.frame;
+            CGRect frame = _item.frame;
             
-            FLRect newFrame = FLRectMoveWithPoint(frame, FLPointSubtractPointFromPoint(drag.currentTouch, _lastTouch));
+            CGRect newFrame = FLRectMoveWithPoint(frame, FLPointSubtractPointFromPoint(drag.currentTouch, _lastTouch));
             
-            FLRect limit = _item.dragLimit;
+            CGRect limit = _item.dragLimit;
 
             if(limit.size.width > frame.size.width)
             {
@@ -229,11 +229,11 @@
             drag.previousTouch = _lastTouch;
             drag.firstTouch = _firstTouch;
             
-            FLRect frame = _item.frame;
+            CGRect frame = _item.frame;
             
-            FLRect newFrame = FLRectMoveWithPoint(frame, FLPointSubtractPointFromPoint(drag.currentTouch, _lastTouch));
+            CGRect newFrame = FLRectMoveWithPoint(frame, FLPointSubtractPointFromPoint(drag.currentTouch, _lastTouch));
             
-            FLRect limit = _item.dragLimit;
+            CGRect limit = _item.dragLimit;
 
             if(limit.size.width > frame.size.width)
             {

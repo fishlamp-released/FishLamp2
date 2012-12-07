@@ -39,7 +39,7 @@
 
 - (void)loadView
 {
-	FLPinEditingView* view = autorelease_([[FLPinEditingView alloc] initWithFrame:CGRectZero]);		   
+	FLPinEditingView* view = FLAutorelease([[FLPinEditingView alloc] initWithFrame:CGRectZero]);		   
 	view.delegate = self;	 
 	self.view = view;
 

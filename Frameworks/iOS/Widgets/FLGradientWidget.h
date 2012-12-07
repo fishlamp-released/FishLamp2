@@ -18,7 +18,7 @@
 }
 
 + (FLGradientWidget*) gradientWidget;
-+ (FLGradientWidget*) gradientWidgetWithFrame:(FLRect) frame;
++ (FLGradientWidget*) gradientWidgetWithFrame:(CGRect) frame;
 
 @property (readwrite, strong, nonatomic) FLViewGradients* gradientColors;
 

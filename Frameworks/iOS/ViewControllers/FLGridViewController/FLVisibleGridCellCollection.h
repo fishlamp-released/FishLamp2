@@ -32,7 +32,7 @@ NSUInteger FLRangeLastIndex(NSRange range) {
 
 - (void) removeAllCells;
 
-- (void) recalculateVisibleCellsInBounds:(FLRect) bounds;
+- (void) recalculateVisibleCellsInBounds:(CGRect) bounds;
 
 @end
 
@@ -46,6 +46,6 @@ NSUInteger FLRangeLastIndex(NSRange range) {
 
 @protocol FLVisibleGridCellCollectionDelegate <NSObject>
 - (void) visibleGridCellCollectionVisibleCellsDidChange:(id<FLVisibleGridCellCollection>) collection;
-- (void) visibleGridCellCollection:(id<FLVisibleGridCellCollection>) collection updateCellVisiblityInBounds:(FLRect) bounds;
+- (void) visibleGridCellCollection:(id<FLVisibleGridCellCollection>) collection updateCellVisiblityInBounds:(CGRect) bounds;
 - (FLOrderedCollection*) visibleGridCellCollectionGetCellCollection:(id<FLVisibleGridCellCollection>) collection;
 @end

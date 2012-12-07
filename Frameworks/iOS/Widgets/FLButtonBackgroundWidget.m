@@ -14,7 +14,7 @@
 @synthesize topGradient = _topGradient;
 @synthesize bottomGradient = _bottomGradient;
 
-- (id) initWithFrame:(FLRect) frame
+- (id) initWithFrame:(CGRect) frame
 {
 	if((self = [super initWithFrame:frame]))
 	{
@@ -30,7 +30,7 @@
 
 + (FLButtonBackgroundWidget*) buttonBackgroundWidget
 {
-	return autorelease_([[FLButtonBackgroundWidget alloc] initWithFrame:CGRectZero]);
+	return FLAutorelease([[FLButtonBackgroundWidget alloc] initWithFrame:CGRectZero]);
 }
 
 - (CGFloat) alpha
@@ -46,7 +46,7 @@
 
 - (void) layoutWidgets
 {
-	FLRect frame = self.frame;
+	CGRect frame = self.frame;
 	frame.size.height *= 0.5;
 //	  frame.size.height += 0.5;
 	_topGradient.frameOptimizedForSize = frame;
@@ -60,8 +60,8 @@
 
 - (void) dealloc
 {
-	release_(_topGradient);
-	release_(_bottomGradient);
+	FLRelease(_topGradient);
+	FLRelease(_bottomGradient);
 	super_dealloc_();
 }
 

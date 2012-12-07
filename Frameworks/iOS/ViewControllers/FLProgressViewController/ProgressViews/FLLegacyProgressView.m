@@ -22,7 +22,7 @@
 @synthesize roundRectView = _roundRectView;
 @synthesize button = _button;
 
-- (id) initWithFrame:(FLRect) frame
+- (id) initWithFrame:(CGRect) frame
 {
 	if((self = [super initWithFrame:frame]))
 	{
@@ -38,13 +38,13 @@
 
 - (void) dealloc
 {
-	release_(_progressBarLabel);
-	release_(_progressBar);
-	release_(_progressBarSpinner);
-	release_(_titleLabel);
-	release_(_secondaryTextLabel);
-	release_(_button);
-	release_(_roundRectView);
+	FLRelease(_progressBarLabel);
+	FLRelease(_progressBar);
+	FLRelease(_progressBarSpinner);
+	FLRelease(_titleLabel);
+	FLRelease(_secondaryTextLabel);
+	FLRelease(_button);
+	FLRelease(_roundRectView);
 	super_dealloc_();
 }
 

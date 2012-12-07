@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "FishLampCore.h"
+#import "FLCore.h"
 
 @protocol FLLegacyDataSourceDelegate;
 
@@ -47,7 +47,7 @@ typedef struct {
 NS_INLINE
 NSString* FLKeyPathStringMake(NSString* dataSourceKey, NSString* dataKey) {
 	return FLStringIsEmpty(dataSourceKey) ? 
-		autorelease_(retain_(dataKey)) :
+		FLAutorelease(FLRetain(dataKey)) :
 		[NSString stringWithFormat:@"%@.%@", dataSourceKey, dataKey];
 }
 

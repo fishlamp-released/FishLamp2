@@ -43,7 +43,7 @@ typedef enum {
 	} _photoViewFlags;
 }
 
-- (id)initWithFrame:(FLRect)frame;
+- (id)initWithFrame:(CGRect)frame;
 - (id)initWithImage:(UIImage *)image forImageSize:(FLPhotoViewImageSize) imageSize;
 
 

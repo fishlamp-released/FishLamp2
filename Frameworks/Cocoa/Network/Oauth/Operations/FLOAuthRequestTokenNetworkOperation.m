@@ -18,14 +18,14 @@
     self = [super init];
 	if(self)  {
 		_url = [[NSURL alloc] initWithString:app.requestTokenUrl];
-        _app = retain_(app);
+        _app = FLRetain(app);
 	}
 	
 	return self;
 }
 
 + (FLOAuthRequestTokenNetworkOperation*) OAuthRequestTokenNetworkOperation:(FLOAuthApp*) app {
-	return autorelease_([[FLOAuthRequestTokenNetworkOperation alloc] initWithOAuthApp:app]);
+	return FLAutorelease([[FLOAuthRequestTokenNetworkOperation alloc] initWithOAuthApp:app]);
 }
 
 #if FL_MRC
@@ -55,7 +55,7 @@
     NSData* data = [self sendHttpRequest:request].responseData;
     
 #if DEBUG
-    NSString* responseStr = autorelease_([[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+    NSString* responseStr = FLAutorelease([[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
     FLDebugLog(@"FL OAuthRequestToken response: %@", responseStr);
 #endif	
 

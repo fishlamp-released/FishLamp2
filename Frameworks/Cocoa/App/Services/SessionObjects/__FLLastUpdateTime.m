@@ -46,8 +46,8 @@
 
 - (void) dealloc
 {
-    release_(__lastUpdateId);
-    release_(__lastUpdate);
+    FLRelease(__lastUpdateId);
+    FLRelease(__lastUpdate);
     super_dealloc_();
 }
 
@@ -69,15 +69,15 @@
 {
     if((self = [super init]))
     {
-        __lastUpdateId = retain_([aDecoder decodeObjectForKey:@"__lastUpdateId"]);
-        __lastUpdate = retain_([aDecoder decodeObjectForKey:@"__lastUpdate"]);
+        __lastUpdateId = FLRetain([aDecoder decodeObjectForKey:@"__lastUpdateId"]);
+        __lastUpdate = FLRetain([aDecoder decodeObjectForKey:@"__lastUpdate"]);
     }
     return self;
 }
 
 + (FLLastUpdateTime*) lastUpdateTime
 {
-    return autorelease_([[FLLastUpdateTime alloc] init]);
+    return FLAutorelease([[FLLastUpdateTime alloc] init]);
 }
 
 + (FLObjectDescriber*) sharedObjectDescriber

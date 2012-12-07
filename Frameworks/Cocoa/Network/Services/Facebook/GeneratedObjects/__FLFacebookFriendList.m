@@ -40,7 +40,7 @@
 
 - (void) dealloc
 {
-    release_(__friends);
+    FLRelease(__friends);
     super_dealloc_();
 }
 
@@ -52,7 +52,7 @@
 
 + (FLFacebookFriendList*) facebookFriendList
 {
-    return autorelease_([[FLFacebookFriendList alloc] init]);
+    return FLAutorelease([[FLFacebookFriendList alloc] init]);
 }
 
 - (id) init

@@ -10,12 +10,12 @@
 
 @implementation UIView (FLViewAnimation)
 
-- (FLRect) _getOffscreenFrameForPosition:(FLViewAnimationType) position
+- (CGRect) _getOffscreenFrameForPosition:(FLViewAnimationType) position
 {
 	if(self.superview)
 	{
-		FLRect superBounds = self.superview.bounds;
-		FLRect startFrame = self.frame;
+		CGRect superBounds = self.superview.bounds;
+		CGRect startFrame = self.frame;
 
 		switch(position)
 		{
@@ -54,7 +54,7 @@
 	mrc_autorelease_(retain_(self));
 	
 	if(context) {
-		FLViewAnimationFinishedBlock finishedBlock = autorelease_(bridge_(FLViewAnimationFinishedBlock, context));
+		FLViewAnimationFinishedBlock finishedBlock = FLAutorelease(bridge_(FLViewAnimationFinishedBlock, context));
 		finishedBlock(self);
 	}
 	
@@ -89,7 +89,7 @@
 	if(context) {
 		FLViewAnimationFinishedBlock finishedBlock = bridge_(FLViewAnimationFinishedBlock, context);
 		finishedBlock(self);
-		release_(finishedBlock);
+		FLRelease(finishedBlock);
 	}
 
 }
@@ -99,7 +99,7 @@
 	CGFloat alpha = self.alpha;
 	self.alpha = 0.0;
 	
-	FLRect currentFrame = self.frame;
+	CGRect currentFrame = self.frame;
 	if(type != FLViewAnimationTypeFade)
 	{
 		self.frame = [self _getOffscreenFrameForPosition:type];
@@ -142,7 +142,7 @@
 	   payload.finishedBlock(self); 
 	}
 	
-	release_(payload);
+	FLRelease(payload);
 }
 
 + (void) _doneFadingBatch:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context
@@ -162,7 +162,7 @@
 	   batchPayload.finishedBlock(batchPayload.payloadArray); 
 	}
 
-	release_(batchPayload);
+	FLRelease(batchPayload);
 }
 
 
@@ -261,13 +261,13 @@
 }
 
 + (FLViewAnimationFadePayload*) viewAnimationFadePayload:(UIView*) view alpha:(CGFloat) alpha hidden:(BOOL) hidden finishedBlock:(FLViewAnimationFinishedBlock) finishedBlock {
-	return autorelease_([[FLViewAnimationFadePayload alloc] initWithView:view alpha:alpha hidden:hidden finishedBlock:finishedBlock]);
+	return FLAutorelease([[FLViewAnimationFadePayload alloc] initWithView:view alpha:alpha hidden:hidden finishedBlock:finishedBlock]);
 }
 
 - (void) dealloc
 {
-	release_(_block);
-	release_(_view);
+	FLRelease(_block);
+	FLRelease(_view);
 	super_dealloc_();
 }
 
@@ -289,8 +289,8 @@
 
 - (void) dealloc
 {
-	release_(_payloadArray);
-	release_(_finishedBlock);
+	FLRelease(_payloadArray);
+	FLRelease(_finishedBlock);
 	super_dealloc_();
 }
 

@@ -29,15 +29,15 @@
 
 + (FLUploadHistoryViewController*) uploadHistoryViewController:(FLAssetQueue*) queue inDatabase:(FLObjectDatabase*) database doneBlock:(dispatch_block_t) doneBlock
 {
-	return autorelease_([[FLUploadHistoryViewController alloc] initWithAssetQueue:queue inDatabase:database doneBlock:doneBlock]);
+	return FLAutorelease([[FLUploadHistoryViewController alloc] initWithAssetQueue:queue inDatabase:database doneBlock:doneBlock]);
 }
 
 - (void) dealloc
 {
-	release_(_doneBlock);
-	release_(_database);
-	release_(_uploadedAssets);
-	release_(_assetQueue);
+	FLRelease(_doneBlock);
+	FLRelease(_database);
+	FLRelease(_uploadedAssets);
+	FLRelease(_assetQueue);
 	super_dealloc_();
 }
 
@@ -74,7 +74,7 @@
 	
 	if(!cell)
 	{
-		cell = autorelease_([[FLTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:s_id]);
+		cell = FLAutorelease([[FLTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:s_id]);
 		widget = [FLUploadHistoryListWidget widgetWithFrame:CGRectZero];
 		cell.widget = widget;
 	}
@@ -96,7 +96,7 @@
 	[_database loadAllObjectsForTypeWithClass:[FLUploadedAsset class] outObjects:&assets];
 	
 	_uploadedAssets = [assets mutableCopy];
-	release_(assets);
+	FLRelease(assets);
 	
 	[_uploadedAssets sortUsingComparator:^(id lhs, id rhs) { return [[rhs uploadedAssetUID] compare:[lhs uploadedAssetUID]]; }];
 	

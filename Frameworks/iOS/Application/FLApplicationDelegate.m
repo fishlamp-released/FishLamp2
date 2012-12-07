@@ -9,7 +9,7 @@
 #import "FLApplicationDelegate.h"
 #import "FLMobileTheme.h"
 #import "FLViewController.h"
-#import "FishLampCore.h"
+#import "FLCore.h"
 #import "FLApplicationDataModel.h"
 #import "FLViewControllerStack.h"
 
@@ -28,7 +28,7 @@
 }
 
 - (UIWindow*) createDefaultWindow {
-    UIWindow* window = autorelease_([[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]]);
+    UIWindow* window = FLAutorelease([[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]]);
     window.backgroundColor = [UIColor blackColor];
     
     return window;
@@ -40,8 +40,8 @@
 }
 
 - (void) dealloc {
-    release_(_window);
-    release_(_rootViewController);
+    FLRelease(_window);
+    FLRelease(_rootViewController);
     super_dealloc_();
 }
 
@@ -101,7 +101,7 @@
 @synthesize navigationController = _navigationController;
 
 - (void)dealloc {
-    release_(_navigationController);
+    FLRelease(_navigationController);
     super_dealloc_();
 }
 - (void) setRootViewController:(UIViewController*) viewController {

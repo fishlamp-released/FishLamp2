@@ -51,7 +51,7 @@ FLSynthesizeStructProperty(maximizeWidth, setMaximizeWidth, BOOL, _style);
 #endif
 }
 
-- (id) initWithFrame:(FLRect) frame
+- (id) initWithFrame:(CGRect) frame
 {
     if(CGRectEqualToRect(CGRectZero, frame))
     {
@@ -103,7 +103,7 @@ FLSynthesizeStructProperty(maximizeWidth, setMaximizeWidth, BOOL, _style);
 
 - (void)dealloc 
 {	
-	release_(_roundRectView);
+	FLRelease(_roundRectView);
 	
 	[self releaseViews];
 	super_dealloc_();
@@ -120,7 +120,7 @@ FLSynthesizeStructProperty(maximizeWidth, setMaximizeWidth, BOOL, _style);
 
 - (FLSize) setContentModes:(UIView*) containerView
 {
-	FLRect progressFrame = CGRectMake(0,0,0,0);
+	CGRect progressFrame = CGRectMake(0,0,0,0);
 
 	FLAssertIsNotNil_(_textLabel);
 	
@@ -381,10 +381,10 @@ FLSynthesizeStructProperty(maximizeWidth, setMaximizeWidth, BOOL, _style);
 	{
 		UITouch* touch = [touches anyObject];
 
-		FLPoint curPoint = [touch locationInView:self.superview];
-		FLPoint prevPoint = [touch previousLocationInView:self.superview];
+		CGPoint curPoint = [touch locationInView:self.superview];
+		CGPoint prevPoint = [touch previousLocationInView:self.superview];
 		
-		FLRect frame = FLRectMoveWithPoint(self.frame, 
+		CGRect frame = FLRectMoveWithPoint(self.frame, 
 			CGPointMake(curPoint.x - prevPoint.x, curPoint.y - prevPoint.y));
 		self.newFrame = frame;
 	}
@@ -483,7 +483,7 @@ FLSynthesizeStructProperty(maximizeWidth, setMaximizeWidth, BOOL, _style);
 	canDrag:(BOOL) canDrag
 	maximizeWidth:(BOOL) maximizeWidth
 {
-	FLLegacySimpleProgressView* outView = autorelease_([[FLLegacySimpleProgressView alloc] initWithFrame:CGRectZero]);
+	FLLegacySimpleProgressView* outView = FLAutorelease([[FLLegacySimpleProgressView alloc] initWithFrame:CGRectZero]);
 	[outView _resetStyle:[outView _createStyle:NO 
 		hasProgressBar:hasProgressBar 
 			hasSecondaryText:hasSecondaryText canDrag:canDrag maximizeWidth:maximizeWidth]];
@@ -495,7 +495,7 @@ FLSynthesizeStructProperty(maximizeWidth, setMaximizeWidth, BOOL, _style);
 	canDrag:(BOOL) canDrag
 	maximizeWidth:(BOOL) maximizeWidth
 {
-	FLLegacySimpleProgressView* outView = autorelease_([[FLLegacySimpleProgressView alloc] initWithFrame:CGRectZero]);
+	FLLegacySimpleProgressView* outView = FLAutorelease([[FLLegacySimpleProgressView alloc] initWithFrame:CGRectZero]);
 	[outView _resetStyle:[outView _createStyle:YES hasProgressBar:hasProgressBar 
 		hasSecondaryText:hasSecondaryText canDrag:canDrag maximizeWidth:maximizeWidth]];
 	return outView;

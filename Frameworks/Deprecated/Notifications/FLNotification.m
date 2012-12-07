@@ -16,14 +16,14 @@
 @synthesize userInfo = _userInfo;
 
 + (id)notificationWithName:(NSString *)aName object:(id)anObject {
-    FLNotification* notification = autorelease_([[[self class] alloc] init]);
+    FLNotification* notification = FLAutorelease([[[self class] alloc] init]);
     notification.name = aName;
     notification.object = anObject;
     return notification;
 }
 
 + (id)notificationWithName:(NSString *)aName object:(id)anObject userInfo:(NSDictionary *)aUserInfo {
-    FLNotification* notification = autorelease_([[[self class] alloc] init]);
+    FLNotification* notification = FLAutorelease([[[self class] alloc] init]);
     notification.name = aName;
     notification.object = anObject;
     notification.userInfo = aUserInfo;
@@ -32,9 +32,9 @@
 
 #if FL_MRC
 - (void) dealloc {
-    release_(_name);
-    release_(_object);
-    release_(_userInfo);
+    FLRelease(_name);
+    FLRelease(_object);
+    FLRelease(_userInfo);
     super_dealloc_();
 }
 #endif

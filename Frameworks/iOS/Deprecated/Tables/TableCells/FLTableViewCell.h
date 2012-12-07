@@ -54,7 +54,7 @@
 - (id) initWithReuseIdentifier:(NSString *)reuseIdentifier;
 + (id) tableViewCell:(NSString *)reuseIdentifier;
 
-- (FLRect) layoutRect;
+- (CGRect) layoutRect;
 - (CGFloat) layoutRectWidthFromTableView:(UITableView*) tableView;
 
 - (FLWidget*) widget;

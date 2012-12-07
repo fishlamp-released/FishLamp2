@@ -39,9 +39,9 @@ FLSynthesizeStructProperty(isLoading, setLoading, BOOL, _flags);
 
 - (void) dealloc
 {
-	release_(_image);
-	release_(_photo);
-	release_(_photoView);
+	FLRelease(_image);
+	FLRelease(_photo);
+	FLRelease(_photoView);
 	super_dealloc_();
 }
 
@@ -170,11 +170,11 @@ FLSynthesizeStructProperty(isFullScreenTapDisabled, setFullScreenTapDisabled, BO
 {   
 	[self stopSlideShowTimer];
     [self cleanupPhotoViewController];
-	release_(_randomSlideshowIndexes);
-	release_(_slideshowOptions);
+	FLRelease(_randomSlideshowIndexes);
+	FLRelease(_slideshowOptions);
 	self.photoViewControllerDelegate = nil;
-	release_(_action);
-	release_(_thumbnailAction);
+	FLRelease(_action);
+	FLRelease(_thumbnailAction);
 	super_dealloc_();
 }
 
@@ -219,7 +219,7 @@ FLSynthesizeStructProperty(isFullScreenTapDisabled, setFullScreenTapDisabled, BO
 		[view addSubview:_scrollView];
 		
 		self.view = view;
-		release_(view);
+		FLRelease(view);
 	
 	}
 	else
@@ -491,7 +491,7 @@ FLSynthesizeStructProperty(isFullScreenTapDisabled, setFullScreenTapDisabled, BO
 		return;
 	} 
 	
-	FLPhotoViewLoadingState* state = autorelease_([[FLPhotoViewLoadingState alloc] init]);
+	FLPhotoViewLoadingState* state = FLAutorelease([[FLPhotoViewLoadingState alloc] init]);
 	state.photoView = photoView;
 	state.photo = [self currentPhoto];
 	state.lastKnownPhotoIndex = self.currentPhotoIndex;
@@ -686,7 +686,7 @@ FLSynthesizeStructProperty(isFullScreenTapDisabled, setFullScreenTapDisabled, BO
 			_photoMapController = [[FLWeakReference alloc] init];
 		}
 	
-		FLPhotoMapViewController* controller = autorelease_([[FLPhotoMapViewController alloc] init]);
+		FLPhotoMapViewController* controller = FLAutorelease([[FLPhotoMapViewController alloc] init]);
 		_photoMapController.object = controller;
 		if(DeviceIsPad())
 		{
@@ -899,7 +899,7 @@ FLSynthesizeStructProperty(isFullScreenTapDisabled, setFullScreenTapDisabled, BO
 	}
 	else
 	{
-        UIToolbar* bottomToolbar = autorelease_([[UIToolbar alloc] initWithFrame:CGRectMake(0,0,self.view.bounds.size.width, 44)]);
+        UIToolbar* bottomToolbar = FLAutorelease([[UIToolbar alloc] initWithFrame:CGRectMake(0,0,self.view.bounds.size.width, 44)]);
         bottomToolbar.barStyle = UIBarStyleBlack;
         bottomToolbar.translucent = YES;
         bottomToolbar.frame = FLRectJustifyRectInRectBottom(self.view.bounds, _bottomToolbar.frame);
@@ -1034,7 +1034,7 @@ FLSynthesizeStructProperty(isFullScreenTapDisabled, setFullScreenTapDisabled, BO
 #if LOG
 		FLLog(@"beginning to load photo view at idx: %d", viewIndex);
 #endif
-		FLPhotoViewLoadingState* state = autorelease_([[FLPhotoViewLoadingState alloc] init]);
+		FLPhotoViewLoadingState* state = FLAutorelease([[FLPhotoViewLoadingState alloc] init]);
 		state.photoView = photoView;
 		state.photo = [_photoViewControllerDelegate photoViewController:self photoAtIndex:photoIndex];
 		state.lastKnownPhotoIndex = photoIndex;
@@ -1411,7 +1411,7 @@ FLSynthesizeStructProperty(isFullScreenTapDisabled, setFullScreenTapDisabled, BO
 		{
 // TODO: replace this
 
-//			FLOldUserNotificationView* view = autorelease_([[FLOldUserNotificationView alloc] initAsInfoNotification]);
+//			FLOldUserNotificationView* view = FLAutorelease([[FLOldUserNotificationView alloc] initAsInfoNotification]);
 //			view.autoDismiss = NO;
 //			view.shouldAutoCloseAfterDelay = NO;
 //#if VIEW_AUTOLAYOUT
@@ -1424,13 +1424,13 @@ FLSynthesizeStructProperty(isFullScreenTapDisabled, setFullScreenTapDisabled, BO
 		}
 		else
 		{
-			UIView* view = autorelease_([[UIView alloc] initWithFrame:photoView.bounds]);
+			UIView* view = FLAutorelease([[UIView alloc] initWithFrame:photoView.bounds]);
 			view.autoresizingMask = UIViewAutoresizingFlexibleEverything;
 			view.autoresizesSubviews = YES;
 			view.backgroundColor = [UIColor clearColor];
 			view.userInteractionEnabled = YES;
 			
-			UILabel* label = autorelease_([[UILabel alloc] initWithFrame:DeviceIsPad() ? CGRectMake(0,0, 400, 400): CGRectMake(0,0, 300, 300)]);
+			UILabel* label = FLAutorelease([[UILabel alloc] initWithFrame:DeviceIsPad() ? CGRectMake(0,0, 400, 400): CGRectMake(0,0, 300, 300)]);
 			label.userInteractionEnabled = YES;
 			label.textAlignment = UITextAlignmentCenter;
 			label.numberOfLines = 0;
@@ -1620,7 +1620,7 @@ FLSynthesizeStructProperty(isFullScreenTapDisabled, setFullScreenTapDisabled, BO
 
 - (void) populateRandomSlideshowArray
 {
-	release_(_randomSlideshowIndexes);
+	FLRelease(_randomSlideshowIndexes);
 	_randomSlideshowIndexes = [[NSMutableArray alloc] initWithCapacity:self.photoCount];
 
 	for(NSUInteger i = 0; i < self.photoCount; i++)

@@ -14,7 +14,7 @@
 
 @synthesize thumbnailWidget = _galleryThumbnail;
 
-- (id) initWithFrame:(FLRect) frame
+- (id) initWithFrame:(CGRect) frame
 {
     if((self = [super initWithFrame:frame]))
     {
@@ -68,7 +68,7 @@
 
 - (void) dealloc
 {
-	release_(_galleryThumbnail);
+	FLRelease(_galleryThumbnail);
     super_dealloc_();
 }
 

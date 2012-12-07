@@ -47,8 +47,8 @@
 
 - (void) dealloc
 {
-    release_(__count);
-    release_(__data);
+    FLRelease(__count);
+    FLRelease(__data);
     super_dealloc_();
 }
 
@@ -60,7 +60,7 @@
 
 + (FLFacebookLikeList*) facebookLikeList
 {
-    return autorelease_([[FLFacebookLikeList alloc] init]);
+    return FLAutorelease([[FLFacebookLikeList alloc] init]);
 }
 
 - (id) init
@@ -75,7 +75,7 @@
 {
     if((self = [super init]))
     {
-        __count = retain_([aDecoder decodeObjectForKey:@"__count"]);
+        __count = FLRetain([aDecoder decodeObjectForKey:@"__count"]);
         __data = [[aDecoder decodeObjectForKey:@"__data"] mutableCopy];
     }
     return self;

@@ -24,7 +24,7 @@
 
 + (FLFacebookAuthenticator*) facebookAuthenticator
 {
-    return autorelease_([[FLFacebookAuthenticator alloc] init]);
+    return FLAutorelease([[FLFacebookAuthenticator alloc] init]);
 }
 
 - (void) cleanup

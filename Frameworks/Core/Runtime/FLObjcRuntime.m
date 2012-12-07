@@ -571,7 +571,7 @@ void FLSelectorSwizzle(Class c, SEL originalSelector, SEL newSelector) {
 
 @implementation NSObject (FLCreateInstance)
 + (id) create {
-    return autorelease_([[[self class] alloc] init]);
+    return FLAutorelease([[[self class] alloc] init]);
 }
 @end
 

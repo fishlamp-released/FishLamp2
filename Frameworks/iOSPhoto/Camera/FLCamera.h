@@ -33,7 +33,7 @@ typedef void (^FLCameraStoppedBlock)(FLCamera* camera, NSError* error);
 @property (readonly, retain, nonatomic) AVCaptureDevice* device;
 @property (readonly, retain, nonatomic) AVCaptureVideoPreviewLayer* previewLayer;
 
-//- (UIView*) previewWithBounds:(FLRect) bounds;
+//- (UIView*) previewWithBounds:(CGRect) bounds;
 //- (void) addCaptureLayerToView:(UIView*) inView;
 - (void) start:(AVCaptureDevicePosition) whichDevice startedBlock:(FLCameraStartedBlock) startedBlock;
 - (void) stop:(FLCameraStartedBlock) stoppedBlock;

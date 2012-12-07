@@ -114,7 +114,7 @@
 }
 
 + (id) httpStream:(FLHttpRequest*) request {
-    return autorelease_([[[self class] alloc] initWithHttpRequest:request]);
+    return FLAutorelease([[[self class] alloc] initWithHttpRequest:request]);
 }
 
 - (id) output {
@@ -272,7 +272,7 @@
 }
 
 - (unsigned long) bytesWritten {
-    NSNumber* number = autorelease_(bridge_transfer_(NSNumber*,
+    NSNumber* number = FLAutorelease(bridge_transfer_(NSNumber*,
         CFReadStreamCopyProperty(_streamRef, kCFStreamPropertyHTTPRequestBytesWrittenCount)));
     
     return number.unsignedLongValue;

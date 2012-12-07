@@ -22,7 +22,7 @@
 //      [self setColorRange:[FLColorRange grayGradientColorRange] forControlState:UIControlStateNormal];
 //}
 
-- (id) initWithFrame:(FLRect) frame {
+- (id) initWithFrame:(CGRect) frame {
 	if((self = [super initWithFrame:frame])){
 //        self.wantsApplyTheme = YES;
 		
@@ -31,8 +31,8 @@
 	return self;
 }
 
-+ (FLGradientWidget*) gradientWidgetWithFrame:(FLRect) frame {
-    return autorelease_([[[self class] alloc] initWithFrame:frame]);
++ (FLGradientWidget*) gradientWidgetWithFrame:(CGRect) frame {
+    return FLAutorelease([[[self class] alloc] initWithFrame:frame]);
 
 }
 
@@ -42,7 +42,7 @@
 
 #if FL_MRC
 - (void) dealloc {
-    release_(_gradientColors);
+    FLRelease(_gradientColors);
     super_dealloc_();
 }
 #endif
@@ -56,7 +56,7 @@
     return [_gradientColors colorRangeForControlState:state];
 }
 
-- (void) drawSelf:(FLRect) rect{
+- (void) drawSelf:(CGRect) rect{
 
 	CGContextRef context = UIGraphicsGetCurrentContext();
 	CGContextSaveGState(context);

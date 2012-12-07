@@ -69,25 +69,25 @@
     [self updateViewSizeAndPosition:self.parentViewController.view.bounds];
 }
 
-- (void) updateViewSizeAndPosition:(FLRect) inBounds {
+- (void) updateViewSizeAndPosition:(CGRect) inBounds {
     [self sizeToFitInBounds:inBounds];
     self.view.frameOptimizedForLocation = FLRectPositionRectInRectWithContentMode(
         [self contentViewFrameInBounds:inBounds], self.view.frame, self.contentMode);
 }
 
-- (void) sizeToFitInBounds:(FLRect) bounds {
+- (void) sizeToFitInBounds:(CGRect) bounds {
     [self.view sizeToFit];
 }
 
-- (FLRect) maxVisibleRect:(BOOL) adjustingForKeyboard {
+- (CGRect) maxVisibleRect:(BOOL) adjustingForKeyboard {
 	if(self.view.superview) {
 
 // TODO: why is this here?
         FLAssertIsImplemented_();
 
-		FLRect maxVisibleRect = self.view.superview.bounds;
+		CGRect maxVisibleRect = self.view.superview.bounds;
 
-		FLRect keyboardRect = CGRectZero;
+		CGRect keyboardRect = CGRectZero;
 		if(adjustingForKeyboard) {
 			keyboardRect = FLRectJustifyRectInRectBottom(maxVisibleRect, [[FLKeyboardManager instance] keyboardRectForView:self.view.superview]);
 		}
@@ -107,7 +107,7 @@
 	return CGRectZero;
 }
 
-- (UIView*) createAutoPositionedViewWithFrame:(FLRect) frame {
+- (UIView*) createAutoPositionedViewWithFrame:(CGRect) frame {
     return nil;
 }
 

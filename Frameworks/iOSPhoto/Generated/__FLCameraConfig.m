@@ -74,7 +74,7 @@
 
 + (FLCameraConfig*) cameraConfig
 {
-    return autorelease_([[FLCameraConfig alloc] init]);
+    return FLAutorelease([[FLCameraConfig alloc] init]);
 }
 
 - (void) copySelfTo:(id) object
@@ -100,15 +100,15 @@
 
 - (void) dealloc
 {
-    release_(__captureDevicePosition);
-    release_(__captureFlashMode);
-    release_(__captureTorchMode);
-    release_(__captureFocusMode);
-    release_(__captureWhiteBalanceMode);
-    release_(__showGuidelines);
-    release_(__showStabityTracker);
-    release_(__showZoom);
-    release_(__foo);
+    FLRelease(__captureDevicePosition);
+    FLRelease(__captureFlashMode);
+    FLRelease(__captureTorchMode);
+    FLRelease(__captureFocusMode);
+    FLRelease(__captureWhiteBalanceMode);
+    FLRelease(__showGuidelines);
+    FLRelease(__showStabityTracker);
+    FLRelease(__showZoom);
+    FLRelease(__foo);
     super_dealloc_();
 }
 

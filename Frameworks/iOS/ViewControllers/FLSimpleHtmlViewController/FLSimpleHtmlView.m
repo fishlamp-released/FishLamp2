@@ -16,7 +16,7 @@
 FLSynthesizeStructProperty(isLoaded, setIsLoaded, BOOL, _simpleHtmlFlags);
 FLSynthesizeStructProperty(isLoading, setIsLoading, BOOL, _simpleHtmlFlags);
 
-- (id)initWithFrame:(FLRect)frame
+- (id)initWithFrame:(CGRect)frame
 {
 	if((self = [super initWithFrame:frame]))
 	{
@@ -42,11 +42,11 @@ FLSynthesizeStructProperty(isLoading, setIsLoading, BOOL, _simpleHtmlFlags);
 
 - (void) dealloc
 {
-	release_(_lastDocument);
+	FLRelease(_lastDocument);
 	self.delegate = nil;
 	self.simpleHtmlViewDelegate = nil;
 	[self stopLoading];
-	release_(_spinner);
+	FLRelease(_spinner);
 	super_dealloc_();
 }
 
@@ -148,7 +148,7 @@ FLSynthesizeStructProperty(isLoading, setIsLoading, BOOL, _simpleHtmlFlags);
 
 	FLSize loadedSize = [self sizeThatFits:FLSizeMake(maxSize.width, FLT_MAX)];
  
-	FLRect htmlFrame = self.frame;
+	CGRect htmlFrame = self.frame;
 	htmlFrame.size.width = maxSize.width;
 	htmlFrame.size.height = MIN(loadedSize.height, maxSize.height);
 	self.frame = htmlFrame;

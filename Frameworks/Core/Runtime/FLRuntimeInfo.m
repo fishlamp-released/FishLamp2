@@ -74,11 +74,11 @@
 }
 
 + (id) selectorInfoWithClass:(Class) aClass selector:(SEL) selector {
-    return autorelease_([[FLSelectorInfo alloc] initWithClass:aClass selector:selector]);
+    return FLAutorelease([[FLSelectorInfo alloc] initWithClass:aClass selector:selector]);
 }
 
 + (id) selectorInfoWithObject:(id) object selector:(SEL) selector {
-    return autorelease_([[FLSelectorInfo alloc] initWithObject:object selector:selector]);
+    return FLAutorelease([[FLSelectorInfo alloc] initWithObject:object selector:selector]);
 }
 
 - (BOOL) targetRespondsToSelector {
@@ -161,7 +161,7 @@
 
 - (NSString*) stringFromSelector {
     if(!_selectorString) {
-        _selectorString = retain_(NSStringFromSelector(_selector));
+        _selectorString = FLRetain(NSStringFromSelector(_selector));
     }
     return _selectorString;
 }

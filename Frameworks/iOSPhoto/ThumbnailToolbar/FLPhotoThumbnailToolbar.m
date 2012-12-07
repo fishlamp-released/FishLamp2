@@ -44,7 +44,7 @@
 		nil];	 
 }
 
-- (id) initWithFrame:(FLRect) frame
+- (id) initWithFrame:(CGRect) frame
 {
 	if((self = [super initWithFrame:frame]))
 	{
@@ -72,10 +72,10 @@
 
 - (void) dealloc
 {	
-	release_(_thumbnailBar);
-	release_(_previousButton);
-	release_(_nextButton);
-	release_(_thumbnailBarItem);
+	FLRelease(_thumbnailBar);
+	FLRelease(_previousButton);
+	FLRelease(_nextButton);
+	FLRelease(_thumbnailBarItem);
 	super_dealloc_();
 }
 
@@ -85,7 +85,7 @@
 {
 	NSArray* items = self.items;
 	
-	FLRect frame = FLRectInsetLeft(self.bounds, ButtonSize);
+	CGRect frame = FLRectInsetLeft(self.bounds, ButtonSize);
 	frame = FLRectInsetRight(frame, ButtonSize + 10);
 	frame = FLRectCenterRectInRect(self.bounds, frame);
 	_thumbnailBarItem.width = frame.size.width;

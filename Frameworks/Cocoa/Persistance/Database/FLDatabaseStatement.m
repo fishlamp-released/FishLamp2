@@ -36,7 +36,7 @@
 }
 
 + (FLDatabaseStatement*) databaseStatement:(FLDatabaseTable*) table {
-    return autorelease_([[[self class] alloc] initWithDatabaseTable:table]);
+    return FLAutorelease([[[self class] alloc] initWithDatabaseTable:table]);
 }
 
 #if FL_MRC

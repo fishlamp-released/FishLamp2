@@ -39,12 +39,12 @@
 
 + (FLDatabaseObject*) databaseObject
 {
-    return autorelease_([[FLDatabaseObject alloc] init]);
+    return FLAutorelease([[FLDatabaseObject alloc] init]);
 }
 
 - (void) dealloc
 {
-    release_(__uid);
+    FLRelease(__uid);
     super_dealloc_();
 }
 
@@ -65,7 +65,7 @@
 {
     if((self = [super init]))
     {
-        __uid = retain_([aDecoder decodeObjectForKey:@"__uid"]);
+        __uid = FLRetain([aDecoder decodeObjectForKey:@"__uid"]);
     }
     return self;
 }

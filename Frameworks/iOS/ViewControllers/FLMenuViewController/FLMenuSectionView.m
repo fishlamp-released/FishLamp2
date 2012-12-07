@@ -42,7 +42,7 @@
 
 - (void) dealloc
 {
-    release_(_header);
+    FLRelease(_header);
     super_dealloc_();
 }
 

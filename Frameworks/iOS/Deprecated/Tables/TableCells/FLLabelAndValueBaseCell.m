@@ -26,7 +26,7 @@ FLSynthesizeStructProperty(trimWhiteSpace, setTrimWhiteSpace, BOOL, _baseFlags);
 
 - (UIView*) createValueLabel
 {
-	FLLabel* label = autorelease_([[FLLabel alloc] initWithFrame:CGRectZero]);
+	FLLabel* label = FLAutorelease([[FLLabel alloc] initWithFrame:CGRectZero]);
 	label.backgroundColor = [UIColor clearColor];
 	label.lineBreakMode = UILineBreakModeTailTruncation; 
 	label.textAlignment = UITextAlignmentLeft; 
@@ -76,8 +76,8 @@ FLSynthesizeStructProperty(trimWhiteSpace, setTrimWhiteSpace, BOOL, _baseFlags);
 
 - (void) dealloc
 {
-	release_(_spinner);
-	release_(_value);
+	FLRelease(_spinner);
+	FLRelease(_value);
 	super_dealloc_();
 }
 

@@ -24,7 +24,7 @@
 @synthesize viewController = _viewController;
 @synthesize view = _view;
 
-- (FLRect) calculateLayoutFrameInBounds:(FLRect) bounds {
+- (CGRect) calculateLayoutFrameInBounds:(CGRect) bounds {
     return bounds;
 }
 
@@ -60,9 +60,9 @@
         [self.objectCache cacheObject:_view];
     }
 
-    release_(_viewController);
-    release_(_view);
-    release_(_dataRef);
+    FLRelease(_viewController);
+    FLRelease(_view);
+    FLRelease(_dataRef);
     super_dealloc_();
 }
 
@@ -104,7 +104,7 @@
 }
 
 - (UIView*) createViewForGridCellState:(FLGridCellState) state {
-    return autorelease_([[[self viewClassForCellState:state] alloc] initWithFrame:self.frame]);
+    return FLAutorelease([[[self viewClassForCellState:state] alloc] initWithFrame:self.frame]);
 }
 //
 //- (void) setView:(UIView*) view {
@@ -185,7 +185,7 @@
                 [self finishChangingVisibleView];
             };
             
-            block(prevView, newView, autorelease_([callback copy]));
+            block(prevView, newView, FLAutorelease([callback copy]));
         }
         else {
             [self.objectCache cacheObject:prevView];

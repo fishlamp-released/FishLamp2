@@ -27,7 +27,7 @@
 
 - (FLTextDescriptor*) textDescriptor
 {
-	return autorelease_([_textDescriptor copy]);
+	return FLAutorelease([_textDescriptor copy]);
 }
 
 - (void) setTextDescriptor:(FLTextDescriptor*) textDescriptor
@@ -50,7 +50,7 @@
 	return self;
 }
 
-- (id) initWithFrame:(FLRect) frame
+- (id) initWithFrame:(CGRect) frame
 {
 	if((self = [super initWithFrame:frame]))
 	{
@@ -71,8 +71,8 @@
 
 - (void) dealloc
 {
-	release_(_placeholderTextDescriptor);
-	release_(_textDescriptor);
+	FLRelease(_placeholderTextDescriptor);
+	FLRelease(_textDescriptor);
 	super_dealloc_();
 }
 

@@ -44,7 +44,7 @@ NSString* const FLToolDefaultKey = @"--default-task";
 }
 
 + (id) tool {
-    return autorelease_([[[self class] alloc] init]);
+    return FLAutorelease([[[self class] alloc] init]);
 }
 
 #if FL_MRC

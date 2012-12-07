@@ -13,7 +13,7 @@
 
 - (CGFloat) calculateTotalHeight
 {
-    FLRect lastSectionRect = [self rectForSection:self.numberOfSections - 1];
+    CGRect lastSectionRect = [self rectForSection:self.numberOfSections - 1];
     
     CGFloat height = FLRectGetBottom(lastSectionRect);
     
@@ -27,7 +27,7 @@
 #define ArrowSize 6
 #define ArrowThickness 2.5
 
-+ (void) drawDisclosureArrowInRect:(FLRect) rect 
++ (void) drawDisclosureArrowInRect:(CGRect) rect 
 	color:(UIColor*) color 
 	alpha:(CGFloat) alpha
 	context:(CGContextRef) ctx
@@ -42,7 +42,7 @@
 	[color rgbValues:&r green:&g blue:&b  alpha:&ignore];
 	CGContextSetRGBStrokeColor(ctx, r, g, b, alpha); 
 	CGContextSetLineWidth(ctx, ArrowThickness);
-	FLPoint pointOfArrow = CGPointMake(rect.size.width - 10.0f, (rect.size.height*0.5f));
+	CGPoint pointOfArrow = CGPointMake(rect.size.width - 10.0f, (rect.size.height*0.5f));
 	CGContextMoveToPoint(ctx, pointOfArrow.x - ArrowSize, pointOfArrow.y - ArrowSize);
 	CGContextAddLineToPoint(ctx , pointOfArrow.x, pointOfArrow.y);
 	CGContextAddLineToPoint(ctx , pointOfArrow.x - ArrowSize, pointOfArrow.y + ArrowSize);

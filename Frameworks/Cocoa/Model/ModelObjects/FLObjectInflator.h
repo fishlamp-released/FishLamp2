@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "FishLampCore.h"
+#import "FLCore.h"
 
 // this is basically an adaptor class. 
 // I'll have to dig through the memory banks to remember why we needed it... :-)

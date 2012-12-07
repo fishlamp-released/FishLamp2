@@ -15,7 +15,7 @@
 {
 	if(firstParameter)
 	{
-		NSMutableString* outUrl = autorelease_([url mutableCopy]);
+		NSMutableString* outUrl = FLAutorelease([url mutableCopy]);
 		BOOL isFirst = YES;
 		NSString* key = firstParameter;
 		id obj = nil;
@@ -53,7 +53,7 @@
 
 - (NSString*) appendURLParameters:(NSString*) firstParameter, ...  
 {
-	NSMutableString* outUrl = autorelease_([self mutableCopy]);
+	NSMutableString* outUrl = FLAutorelease([self mutableCopy]);
 	BOOL isFirst = YES;
 	NSString* key = firstParameter;
 	id obj = nil;
@@ -90,7 +90,7 @@
 + (NSDictionary*) parseURLParams:(NSString *)query
 {
 	NSArray *pairs = [query componentsSeparatedByString:@"&"];
-	NSMutableDictionary *params = autorelease_([[NSMutableDictionary alloc] init]);
+	NSMutableDictionary *params = FLAutorelease([[NSMutableDictionary alloc] init]);
 	
 	for (NSString *pair in pairs) 
 	{
@@ -106,7 +106,7 @@
 
 - (NSString *) urlEncodeString:(NSStringEncoding)encoding
 {
-	return autorelease_(bridge_transfer_(NSString*,CFURLCreateStringByAddingPercentEscapes(
+	return FLAutorelease(bridge_transfer_(NSString*,CFURLCreateStringByAddingPercentEscapes(
 			kCFAllocatorDefault, 
 			bridge_(void*,self),
 			NULL, // escape all
@@ -116,7 +116,7 @@
 
 - (NSString *) urlDecodeString:(NSStringEncoding)encoding {
 
-	return autorelease_(bridge_transfer_(NSString*,
+	return FLAutorelease(bridge_transfer_(NSString*,
                 CFURLCreateStringByReplacingPercentEscapesUsingEncoding(
                     kCFAllocatorDefault, 
                     bridge_(void*,self),

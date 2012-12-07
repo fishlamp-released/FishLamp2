@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #import "FLInMemoryDataCache.h"
-#import "FishLampCore.h"
+#import "FLCore.h"
 
 @protocol FLCacheBehavior <NSObject>
 
@@ -64,7 +64,7 @@
 #define FLSynthesizeCachedObjectHandlerProperty(__class__) \
 	static id<FLCacheBehavior> __memberName(__class__) = nil;\
 	+ (void) setSharedCacheBehavior:(id<FLCacheBehavior>) behavior {\
-		FLRetainObject_(__memberName(__class__), behavior); \
+		FLAssignObjectWithRetain(__memberName(__class__), behavior); \
 	} \
 	+ (id<FLCacheBehavior>) sharedCacheBehavior { \
 		return __memberName(__class__); \

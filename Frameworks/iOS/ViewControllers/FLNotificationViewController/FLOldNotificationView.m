@@ -18,7 +18,7 @@
 //+ (void) recursiveDisable:(UIView*) view
 //	disabledList:(NSMutableArray*) disabledList;
 
-- (UILabel*) createTitleLabel:(FLRect) labelFrame;
+- (UILabel*) createTitleLabel:(CGRect) labelFrame;
 	
 @end
 
@@ -102,7 +102,7 @@ FLSynthesizeStructProperty(notificationViewStyle, setNotificationViewStyle, FLOl
 #endif
 }
 
-- (id) initWithFrame:(FLRect) frame
+- (id) initWithFrame:(CGRect) frame
 {
 	if((self = [super initWithFrame:frame]))
 	{
@@ -182,11 +182,11 @@ FLSynthesizeStructProperty(notificationViewStyle, setNotificationViewStyle, FLOl
 
 	[self cancelTimer];
 	
-    release_(_text);
-	release_(_textColor);
-	release_(_title);
-	release_(_oldBackgroundColor);
-	release_(_oldTextColor);
+    FLRelease(_text);
+	FLRelease(_textColor);
+	FLRelease(_title);
+	FLRelease(_oldBackgroundColor);
+	FLRelease(_oldTextColor);
 	
 	[self releaseViews];
 	
@@ -258,7 +258,7 @@ FLSynthesizeStructProperty(notificationViewStyle, setNotificationViewStyle, FLOl
 
 - (void) setBoundsToHeight:(CGFloat) height
 {
-	FLRect frame = self.frame;
+	CGRect frame = self.frame;
 	frame.size.height = height;
 	self.frameOptimizedForSize = frame;
 }
@@ -455,8 +455,8 @@ FLSynthesizeStructProperty(notificationViewStyle, setNotificationViewStyle, FLOl
 
 #if VIEW_AUTOLAYOUT
 
-	FLRect containerBounds = FLViewContentsDescriptorCalculateContainerRect(self.superview.bounds, self.superviewContentsDescriptor);
-	FLRect newFrame = self.frame;
+	CGRect containerBounds = FLViewContentsDescriptorCalculateContainerRect(self.superview.bounds, self.superviewContentsDescriptor);
+	CGRect newFrame = self.frame;
 	
 	if(newFrame.size.width == 0)
 	{
@@ -468,14 +468,14 @@ FLSynthesizeStructProperty(notificationViewStyle, setNotificationViewStyle, FLOl
 		newFrame.size.width -= (MARGIN*2);
 	}
 	
-	FLRect textFrame = CGRectIntegral(FLRectSetHeight(FLRectMakeWithSize(newFrame.size), 10));
+	CGRect textFrame = CGRectIntegral(FLRectSetHeight(FLRectMakeWithSize(newFrame.size), 10));
 	
 	if(_titleLabel)
 	{
 		_titleLabel.text = _title;
 		
 		[_titleLabel sizeToFitText:FLSizeMake(newFrame.size.width, CGFLOAT_MAX)];
-		FLRect labelFrame = _titleLabel.frame;
+		CGRect labelFrame = _titleLabel.frame;
 		labelFrame = FLRectSetOrigin(labelFrame, 0,0);
 		labelFrame.size.width = newFrame.size.width;
 		
@@ -641,7 +641,7 @@ FLSynthesizeStructProperty(notificationViewStyle, setNotificationViewStyle, FLOl
 		
 		if(self.frame.size.width == 0.0f)
 		{
-			FLRect rect = self.frame;
+			CGRect rect = self.frame;
 			rect.size.height = 32; // non zero starting point only, will be recaculated later.
 			rect.size.width = self.superview.bounds.size.width - (MARGIN*2);
 			self.frame = rect;

@@ -20,7 +20,7 @@ NSString *const FLKeyboardWillHideNotification = @"FLKeyboardWillHideNotificatio
 
 FLSynthesizeSingleton(FLKeyboardManager);
 
-- (FLRect) keyboardRectForView:(UIView*) view {
+- (CGRect) keyboardRectForView:(UIView*) view {
 	return [view convertRect:_keyboardRect fromView:view.window];
 }
 

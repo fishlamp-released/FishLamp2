@@ -39,7 +39,7 @@
 
 - (void) dealloc
 {
-    release_(__id);
+    FLRelease(__id);
     super_dealloc_();
 }
 
@@ -50,7 +50,7 @@
 
 + (FLFacebookObject*) facebookObject
 {
-    return autorelease_([[FLFacebookObject alloc] init]);
+    return FLAutorelease([[FLFacebookObject alloc] init]);
 }
 
 - (id) init
@@ -65,7 +65,7 @@
 {
     if((self = [super init]))
     {
-        __id = retain_([aDecoder decodeObjectForKey:@"__id"]);
+        __id = FLRetain([aDecoder decodeObjectForKey:@"__id"]);
     }
     return self;
 }

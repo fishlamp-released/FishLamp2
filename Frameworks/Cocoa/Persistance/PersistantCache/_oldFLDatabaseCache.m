@@ -46,7 +46,7 @@
 //{
 //	[[NSNotificationCenter defaultCenter] removeObserver:self];
 //	[[FLLowMemoryHandler defaultHandler] removeObserver:self];
-//	release_(_database);
+//	FLRelease(_database);
 //	super_dealloc_();
 //}
 //
@@ -68,8 +68,8 @@
 //{
 //	FLAssertIsNotNil_(inputObject);
 //	
-//	FLSqlDatabaseOperation* sqlOperation = autorelease_([[FLSqlDatabaseOperation alloc] init]);
-//	FLSqlQuery* query = autorelease_([[FLSqlSelectQuery alloc] init]);
+//	FLSqlDatabaseOperation* sqlOperation = FLAutorelease([[FLSqlDatabaseOperation alloc] init]);
+//	FLSqlQuery* query = FLAutorelease([[FLSqlSelectQuery alloc] init]);
 //
 //	id<FLCacheBehavior> behavior = [[inputObject class] sharedCacheBehavior];
 //	FLLogAssert(behavior != nil, @"%@ has no cache behavior", NSStringFromClass([inputObject class]));
@@ -120,7 +120,7 @@
 //	return [[[inputObject class] sharedCacheBehavior] loadObjectFromMemoryCache:inputObject];
 //}
 //loadObject:inputObject outputObject:&output];
-//	return mrc_autorelease_(output);
+//	return FLAutoreleaseObject(output);
 //}
 //
 //- (void) saveObjectToCache:(id) object
@@ -150,7 +150,7 @@
 //- (void) deleteObject:(id) object
 //{
 //	FLAssertIsNotNil_(object);
-//	retain_(object);
+//	FLRetain(object);
 //		
 //	@try
 //	{	

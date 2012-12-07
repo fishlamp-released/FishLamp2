@@ -48,7 +48,7 @@ static NSMutableArray* s_stack = nil;
 
 - (void) dealloc
 {
-	release_(_shield);
+	FLRelease(_shield);
 	self.delegate = nil;
 	super_dealloc_();
 }
@@ -108,11 +108,11 @@ static NSMutableArray* s_stack = nil;
 + (FLModalPopoverController*) presentViewController:(UIViewController*) contentController
 	inViewController:(UIViewController*) viewController
 	permittedArrowDirections:(UIPopoverArrowDirection)arrowDirections
-	fromRect:(FLRect) rect
+	fromRect:(CGRect) rect
 	animated:(BOOL) animated
 	isModal:(BOOL) isModal
 {
-	FLModalPopoverController* modalController = autorelease_([[FLModalPopoverController alloc] initWithContentViewController:contentController isModal:isModal]);
+	FLModalPopoverController* modalController = FLAutorelease([[FLModalPopoverController alloc] initWithContentViewController:contentController isModal:isModal]);
 	if(arrowDirections == 0)
 	{
 		rect = FLRectCenterRectInRect(viewController.view.bounds, CGRectMake(0,0,20,20));

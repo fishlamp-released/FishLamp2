@@ -12,7 +12,7 @@
 //
 //@implementation FLFacebookStatusLinkWidget
 //
-//- (id) initWithFrame:(FLRect) frame
+//- (id) initWithFrame:(CGRect) frame
 //{
 //	if((self = [super initWithFrame:frame]))
 //	{
@@ -35,7 +35,7 @@
 ////
 ////		_caption = [[FLLabelWidget alloc] initWithFrame:CGRectMake(0,0,140,20)];
 ////		_caption.themeAction = @selector(applyThemeToMessageInTable:);
-//////		_caption.viewLayoutCallback = ^(id layoutView, FLRect layoutFrame) {
+//////		_caption.viewLayoutCallback = ^(id layoutView, CGRect layoutFrame) {
 //////			return FLRectSetHeight(layoutFrame, [layoutView heightOfTextForWidth:layoutFrame.size.width]); 
 //////		};
 ////		[_rightColumn addWidget:_caption];

@@ -48,7 +48,7 @@
 }
 
 + (id) arrayIterator:(NSArray*) array {
-    return autorelease_([[[self class] alloc] initWithArray:array]);
+    return FLAutorelease([[[self class] alloc] initWithArray:array]);
 }
 
 - (id) init {
@@ -163,7 +163,7 @@
 //}
 //
 //+ (id) iteratorTranslator:(id<FLCollectionIterator>) iterator translator:(FLTranslatorBlock) translator {
-//    return autorelease_([[[self class] alloc] initWithIterator:iterator translator:translator]);
+//    return FLAutorelease([[[self class] alloc] initWithIterator:iterator translator:translator]);
 //}
 //
 //- (id) nextObject {

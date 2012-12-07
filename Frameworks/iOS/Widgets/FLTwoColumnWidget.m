@@ -14,7 +14,7 @@
 @synthesize leftColumn = _leftColumn;
 @synthesize rightColumn = _rightColumn;
 
-- (id) initWithFrame:(FLRect) frame
+- (id) initWithFrame:(CGRect) frame
 {
 	if((self = [super initWithFrame:frame]))
 	{
@@ -33,7 +33,7 @@
 {
     [super layoutWidgets];
     
-    FLRect bounds = self.frame;
+    CGRect bounds = self.frame;
     bounds.size.width *= 0.5f;
     
     _leftColumn.frameOptimizedForSize = bounds;
@@ -44,8 +44,8 @@
 
 - (void) dealloc
 {
-	release_(_leftColumn);
-	release_(_rightColumn);
+	FLRelease(_leftColumn);
+	FLRelease(_rightColumn);
 	super_dealloc_();
 }
 @end

@@ -10,23 +10,23 @@
 
 @interface FLTugboatView : UIView {
 @private
-    FLPoint _lastPoint;
+    CGPoint _lastPoint;
     __unsafe_unretained id<FLTugboatViewDelegate> _delegate;
 }
 
 @property (readwrite, assign, nonatomic) id<FLTugboatViewDelegate> delegate;
 
 // touches are in superview's coordinates.
-- (void) touchesDidBegin:(FLPoint) touch;
-- (void) touchesDidMove:(FLPoint) touch delta:(FLPoint) delta;
-- (void) finishTouching:(FLPoint) touch delta:(FLPoint) delta;
+- (void) touchesDidBegin:(CGPoint) touch;
+- (void) touchesDidMove:(CGPoint) touch delta:(CGPoint) delta;
+- (void) finishTouching:(CGPoint) touch delta:(CGPoint) delta;
 
 @end
 
 @protocol FLTugboatViewDelegate <NSObject>
 - (void) tugboatViewDidFinishAnimating:(FLTugboatView*) tugboatView;
 - (void) tugboatView:(FLTugboatView*) view setLeft:(CGFloat) left;
-- (void) tugboatView:(FLTugboatView*) view dragViewsBy:(FLPoint) delta;
+- (void) tugboatView:(FLTugboatView*) view dragViewsBy:(CGPoint) delta;
 @end
 
 typedef enum {

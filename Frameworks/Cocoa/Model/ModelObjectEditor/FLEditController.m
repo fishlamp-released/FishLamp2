@@ -56,13 +56,13 @@
 }
 
 + (FLEditController*) editController {
-    return autorelease_([[[self class] alloc] init]);
+    return FLAutorelease([[[self class] alloc] init]);
 }
 
 - (void) dealloc {
-	release_(_rootContainer);
-	release_(_observers);
-	release_(_validators);
+	FLRelease(_rootContainer);
+	FLRelease(_observers);
+	FLRelease(_validators);
 	super_dealloc_();
 }
 
@@ -112,7 +112,7 @@
 		id previousObject = [container objectForPath:key];
     
         if( !FLObjectsAreEqual(previousObject, object) ) {
-            mrc_autorelease_(retain_(previousObject));
+            FLAutoreleaseObject(FLRetain(previousObject));
             [container setValue:object forKey:key];
             [self didReplaceObject:previousObject withObject:object forPath:path];
         }
@@ -146,7 +146,7 @@
         _observers = [[NSMutableDictionary alloc] init];
     }
     
-    observer = autorelease_([observer copy]);
+    observer = FLAutorelease([observer copy]);
     
     NSMutableArray* observers = [_observers objectForKey:path];
     if(!observers) {
@@ -162,7 +162,7 @@
         _validators = [[NSMutableDictionary alloc] init];
     }
     
-    validator = autorelease_([validator copy]);
+    validator = FLAutorelease([validator copy]);
     
     NSMutableArray* array = [_validators objectForKey:path];
     if(!array) {

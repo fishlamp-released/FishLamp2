@@ -7,7 +7,7 @@
 //
 
 ARCHS = armv7 armv7s
-SDKROOT = iphoneos
+FLROOT = iphoneos
 SUPPORTED_PLATFORMS = iphonesimulator iphoneos
 CLANG_ENABLE_OBJC_ARC = YES
 COPY_PHASE_STRIP = NO

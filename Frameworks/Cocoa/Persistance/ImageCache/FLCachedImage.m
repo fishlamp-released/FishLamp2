@@ -31,15 +31,15 @@
 //}
 //
 //+ (FLCachedImage*) cachedImageWithUrlString:(NSString*) url {
-//	return autorelease_([[[self class] alloc] initWithUrlString:url]);
+//	return FLAutorelease([[[self class] alloc] initWithUrlString:url]);
 //}
 //
 //+ (FLCachedImage*) cachedImage {
-//	return autorelease_([[[self class] alloc] init]);
+//	return FLAutorelease([[[self class] alloc] init]);
 //}
 //
 //+ (FLCachedImage*) cachedImageWithURL:(NSURL*) url {
-//    return autorelease_([[[self class] alloc] initWithURL:url]);
+//    return FLAutorelease([[[self class] alloc] initWithURL:url]);
 //}
 //
 //#if FL_MRC
@@ -62,7 +62,7 @@
 //	
 //	FLImage* file = [self.imageFile copy];
 //	[object setImageFile:file];
-//	release_(file);
+//	FLRelease(file);
 //}
 //
 //@end

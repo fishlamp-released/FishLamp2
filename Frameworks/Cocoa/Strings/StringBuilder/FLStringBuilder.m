@@ -35,7 +35,7 @@
 }
 
 + (id) stringBuilder {
-    return autorelease_([[[self class] alloc] init]);
+    return FLAutorelease([[[self class] alloc] init]);
 }
 
 #if FL_MRC
@@ -201,7 +201,7 @@
 - (void) appendFormat:(NSString*) format, ... {
 	va_list va;
 	va_start(va, format);
-	NSString *string = autorelease_([[NSString alloc] initWithFormat:format arguments:va]);
+	NSString *string = FLAutorelease([[NSString alloc] initWithFormat:format arguments:va]);
 	va_end(va);
     [self appendString:string];
 }
@@ -209,7 +209,7 @@
 - (void) appendLineWithFormat:(NSString*) format, ... {
 	va_list va;
 	va_start(va, format);
-	NSString *string = autorelease_([[NSString alloc] initWithFormat:format arguments:va]);
+	NSString *string = FLAutorelease([[NSString alloc] initWithFormat:format arguments:va]);
 	va_end(va);
 	[self appendLine:string];
 }

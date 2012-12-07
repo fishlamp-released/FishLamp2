@@ -7,7 +7,7 @@
 //
 
 #import "FLImageFolder.h"
-#import "FLImage.h"
+#import "FLStorableImage.h"
 #import "FLCoreFoundation.h"
 
 #define FLOriginalFileSuffix @"_O"
@@ -62,7 +62,7 @@ static NSDictionary* s_suffixes = nil;
 
     if (UTTypeConformsTo(bridge_(CFStringRef, fileUTI), kUTTypeImage)) {
         NSData* data = [self readDataFromFile:name];
-        FLImage* image = [FLImage imageWithData:data];
+        FLStorableImage* image = [FLStorableImage imageWithData:data];
         image.storableType = fileUTI;
         image.storageKey = name;
         return image;
@@ -73,7 +73,7 @@ static NSDictionary* s_suffixes = nil;
     return nil;
 }
 
-- (FLImage*) readImageForStorageKey:(id) storageKey subType:(NSString*) subType {
+- (FLStorableImage*) readImageForStorageKey:(id) storageKey subType:(NSString*) subType {
 
     NSString* suffix = [s_suffixes objectForKey:subType];
     FLConfirmStringIsNotEmpty_v(subType, @"Unknown subtype: %@", subType);
@@ -85,7 +85,7 @@ static NSDictionary* s_suffixes = nil;
 
     NSData* data = [self readDataFromFile:fileName];
     if(data) {
-        FLImage* image = [FLImage imageWithData:data];
+        FLStorableImage* image = [FLStorableImage imageWithData:data];
         image.storableSubType = subType;
         image.storableType = [self fileUTI:fileName];
         image.storageKey = storageKey;
@@ -95,15 +95,15 @@ static NSDictionary* s_suffixes = nil;
     return nil;
 }
 
-- (FLImage*) readOriginalImageForStorageKey:(id) storageKey {
+- (FLStorableImage*) readOriginalImageForStorageKey:(id) storageKey {
 	return [self readImageForStorageKey:storageKey subType:FLImageTypeOriginal];
 }
 
-- (FLImage*) readThumbnailImageForStorageKey:(id) storageKey {
+- (FLStorableImage*) readThumbnailImageForStorageKey:(id) storageKey {
 	return [self readImageForStorageKey:storageKey subType:FLImageTypeThumbnail];
 }
 
-- (FLImage*) readPreviewImageForStorageKey:(id) storageKey {
+- (FLStorableImage*) readPreviewImageForStorageKey:(id) storageKey {
 	return [self readImageForStorageKey:storageKey subType:FLImageTypePreview];
 }
 
@@ -125,7 +125,7 @@ static NSDictionary* s_suffixes = nil;
 //			if(imageSourceRef)
 //			{
 //				self.properties = 
-//                    autorelease_(bridge_(NSDictionary*,
+//                    FLAutorelease(bridge_(NSDictionary*,
 //                        CGImageSourceCopyPropertiesAtIndex(imageSourceRef, 0, nil)));
 //			}
 //		}
@@ -145,7 +145,7 @@ static NSDictionary* s_suffixes = nil;
     return nil;
 }
 
-- (void) writeImage:(FLImage*) image withCompression:(CGFloat) compression {
+- (void) writeImage:(FLStorableImage*) image withCompression:(CGFloat) compression {
 
     FLAssert_(compression >= 0.0 && compression <= 1.0);
 
@@ -192,7 +192,7 @@ static NSDictionary* s_suffixes = nil;
     }
 }
 
-- (void) writeImage:(FLImage*) image {
+- (void) writeImage:(FLStorableImage*) image {
     [self writeImage:image withCompression:1.0f];
 }
 
@@ -201,11 +201,11 @@ static NSDictionary* s_suffixes = nil;
 
 }
 
-- (id<FLImageStorage>) imageStorage:(FLImage*) image {
+- (id<FLImageStorage>) imageStorage:(FLStorableImage*) image {
     return self;
 }
 
-- (void) deleteImage:(FLImage*) image {
+- (void) deleteImage:(FLStorableImage*) image {
 
 }
 
@@ -218,13 +218,13 @@ static NSDictionary* s_suffixes = nil;
 //    
 //    CGImageDestinationRef imageSourceRef = nil;
 //    @try {
-//        SDKImage* image = self.image;
+//        FLStorableImage* image = self.image;
 //        FLAssertIsNotNil_v(image, nil);
 //
 //#if IOS        
 //        CGImageRef imageRef = image.CGImage;
 //#else
-//// TODO: (how to get CGImage from SDKImage?)
+//// TODO: (how to get CGImage from FLStorableImage?)
 //        
 //        CGImageRef imageRef = nil;
 //        
@@ -251,7 +251,7 @@ static NSDictionary* s_suffixes = nil;
 //        if(imageSourceRef) {		
 //            CFRelease(imageSourceRef);
 //        }
-//        release_(url);
+//        FLRelease(url);
 //    }
 //}
 //
@@ -279,19 +279,19 @@ static NSDictionary* s_suffixes = nil;
 //}
 
 
-//- (void) writeImage:(FLImage*) image subType:(NSString*) subType forStorageKey:(id) storageKey {
+//- (void) writeImage:(FLStorableImage*) image subType:(NSString*) subType forStorageKey:(id) storageKey {
 //
 //}
 //
-//- (void) writePreviewImage:(FLImage*) image forStorageKey:(id) storageKey {
+//- (void) writePreviewImage:(FLStorableImage*) image forStorageKey:(id) storageKey {
 //    [self writeImage:image subType:FLImageTypePreview forStorageKey:storageKey];
 //}
 //
-//- (void) writeOriginalImage:(FLImage*) image forStorageKey:(id) storageKey {
+//- (void) writeOriginalImage:(FLStorableImage*) image forStorageKey:(id) storageKey {
 //    [self writeImage:image subType:FLImageTypeOriginal forStorageKey:storageKey];
 //}
 //
-//- (void) writeThumbnailImage:(FLImage*) image forStorageKey:(id) storageKey {
+//- (void) writeThumbnailImage:(FLStorableImage*) image forStorageKey:(id) storageKey {
 //    [self writeImage:image subType:FLImageTypeThumbnail forStorageKey:storageKey];
 //}
 

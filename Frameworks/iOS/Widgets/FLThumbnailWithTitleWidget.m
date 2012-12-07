@@ -13,7 +13,7 @@
 @synthesize imageFrameWidget = _imageFrame;
 @synthesize titleLabelWidget = _label;
 
-- (id) initWithFrame:(FLRect) frame
+- (id) initWithFrame:(CGRect) frame
 {
 	if((self = [super initWithFrame:frame]))
 	{
@@ -40,8 +40,8 @@
 
 - (void) dealloc
 {
-	release_(_imageFrame);
-	release_(_label);
+	FLRelease(_imageFrame);
+	FLRelease(_label);
 	super_dealloc_();
 }
 
@@ -61,7 +61,7 @@
 	
 //	if(DeviceIsPad())
 	{
-		FLRect layoutFrame = DeviceIsPad() ? 
+		CGRect layoutFrame = DeviceIsPad() ? 
 			CGRectInset(self.frame, 10, 10) :
 			CGRectInset(self.frame, 0,0);
 	

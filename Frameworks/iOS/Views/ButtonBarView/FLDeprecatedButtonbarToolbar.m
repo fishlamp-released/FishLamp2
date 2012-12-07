@@ -12,7 +12,7 @@
 
 @synthesize buttonbar = _buttonbar;
 
-- (id) initWithFrame:(FLRect)frame buttonbarView:(FLDeprecatedButtonbarView*) buttonbarView
+- (id) initWithFrame:(CGRect)frame buttonbarView:(FLDeprecatedButtonbarView*) buttonbarView
 {
 	if((self = [super initWithFrame:frame]))
     {
@@ -27,14 +27,14 @@
     return self;
 }
 
-- (id) initWithFrame:(FLRect) frame
+- (id) initWithFrame:(CGRect) frame
 {
-	return [self initWithFrame:frame buttonbarView:autorelease_([[FLToolbarButtonbarView alloc] initWithFrame:frame])];
+	return [self initWithFrame:frame buttonbarView:FLAutorelease([[FLToolbarButtonbarView alloc] initWithFrame:frame])];
 }
 
 - (void) dealloc
 {
-	release_(_buttonbar);
+	FLRelease(_buttonbar);
 	super_dealloc_();
 }
 

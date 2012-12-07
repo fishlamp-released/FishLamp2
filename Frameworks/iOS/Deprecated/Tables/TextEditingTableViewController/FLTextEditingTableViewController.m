@@ -98,7 +98,7 @@ FLSynthesizeStructProperty(keyboardWillShowInView, setKeyboardWillShowInView, BO
 
 - (void) updateHeights
 {
-	FLRect rectForSection = [self.tableView rectForSection:self.tableView.numberOfSections - 1];
+	CGRect rectForSection = [self.tableView rectForSection:self.tableView.numberOfSections - 1];
 	CGFloat height = rectForSection.origin.y + rectForSection.size.height; // + _intermediateScrollView.contentInset.top; // self.tableView.contentInset.top;
 	self.tableView.newFrame = FLRectSetHeight(self.tableView.frame, height);
 
@@ -129,7 +129,7 @@ FLSynthesizeStructProperty(keyboardWillShowInView, setKeyboardWillShowInView, BO
 	self.tableView.autoresizingMask = UIViewAutoresizingFlexibleEverything;
 	_intermediateScrollView.backgroundColor = self.tableView.backgroundColor;
 	self.tableView.backgroundView = nil; 
-    // autorelease_([[FLGradientView alloc] initWithFrame:self.view.bounds]);
+    // FLAutorelease([[FLGradientView alloc] initWithFrame:self.view.bounds]);
 	UITableView* tableView = self.tableView;
 	[tableView.superview insertSubview:_intermediateScrollView belowSubview:tableView];
 	mrc_retain_(tableView);
@@ -137,7 +137,7 @@ FLSynthesizeStructProperty(keyboardWillShowInView, setKeyboardWillShowInView, BO
 	tableView.frame = FLRectSetOrigin(self.tableView.frame, 0,0);
 	tableView.contentInset = UIEdgeInsetsZero;
 	[_intermediateScrollView addSubview:tableView];
-	release_(tableView);
+	FLRelease(tableView);
 }
 
 - (void) tableViewDidLayoutSubviews:(UITableView*) tableView
@@ -162,11 +162,11 @@ FLSynthesizeStructProperty(keyboardWillShowInView, setKeyboardWillShowInView, BO
 	return _intermediateScrollView.contentInset.top /*+ self.tableView.sectionHeaderHeight*/;
 }
 
-- (FLRect) visibleRectForScrolling
+- (CGRect) visibleRectForScrolling
 {
 	if(self.keyboardWillShowInView)
 	{
-		FLRect rect = self.view.bounds;
+		CGRect rect = self.view.bounds;
 		CGFloat top = self.contentViewInsetTop;
 		rect.origin.y = top;
 		rect.size.height -= top;
@@ -194,13 +194,13 @@ FLSynthesizeStructProperty(keyboardWillShowInView, setKeyboardWillShowInView, BO
 
     if(cell)
     {
-        FLRect rect = [self.view convertRect:cell.bounds fromView:cell];
+        CGRect rect = [self.view convertRect:cell.bounds fromView:cell];
         
-        FLRect visibleRect = [self visibleRectForScrolling];
+        CGRect visibleRect = [self visibleRectForScrolling];
         
         if(!CGRectContainsRect(visibleRect, rect))
         {
-            FLPoint scrollPoint = rect.origin;
+            CGPoint scrollPoint = rect.origin;
             
             if(rect.size.height > visibleRect.size.height)
             {

@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 GreenTongue Software. All rights reserved.
 //
 
-#import "FishLampCore.h"
+#import "FLCore.h"
 
 #import <QuartzCore/QuartzCore.h>
 #import <UIKit/UIKit.h>
@@ -21,8 +21,8 @@
 
 // From Core
 #import "FLGeometry.h"
-#import "FLRect.h"
-#import "FLPoint.h"
+#import "CGRect.h"
+#import "CGPoint.h"
 #import "FLSize.h"
 #import "FLEdgeInsets.h"
 
@@ -128,7 +128,7 @@
 #endif
 
 /*
-This is a known bug with the iOS 4.1 SDK and building using LLVM for the iPhone Simulator. You can read all about it in this thread on Apple's Developer Forums.
+This is a known bug with the iOS 4.1 FL and building using LLVM for the iPhone Simulator. You can read all about it in this thread on Apple's Developer Forums.
 
 The recommended solution is to add the following to Other C Flags in your project's build settings: -D__IPHONE_OS_VERSION_MIN_REQUIRED=040100 where you replace 040100 with your deployment target version (030000 for 3.0, for example).
 */
@@ -139,7 +139,7 @@ The recommended solution is to add the following to Other C Flags in your projec
 #endif
 
 #ifndef __IPHONE_5_0
-#warning ERROR! FishLamp Requires iPhone SDK >= 5.0. See FishLampRequired.h for compatibility help.
+#warning ERROR! FishLamp Requires iPhone FL >= 5.0. See FishLampRequired.h for compatibility help.
 #endif
 
 #ifndef FL_CUSTOM_CAMERA

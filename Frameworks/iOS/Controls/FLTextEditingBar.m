@@ -14,7 +14,7 @@
 
 @synthesize delegate = _textEditingBarDelegate;
 
-- (id) initWithFrame:(FLRect) frame
+- (id) initWithFrame:(CGRect) frame
 {
 	if((self = [super initWithFrame:CGRectMake(0,0,320, FLTextEditCellEditingBarHeight)]))
 	{
@@ -35,7 +35,7 @@
 			_prev, 
 			space, 
 			_next, 
-			autorelease_([[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil]), 
+			FLAutorelease([[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil]), 
 			_stop, 
 			nil];
 
@@ -63,11 +63,11 @@
 	[self update];
 }
 
-- (void) showWithKeyboardRect:(FLRect) keyboardRect
+- (void) showWithKeyboardRect:(CGRect) keyboardRect
 {
 	if(self.superview)
 	{
-		FLRect newFrame = CGRectMake(	0, 
+		CGRect newFrame = CGRectMake(	0, 
 										self.superview.bounds.size.height - keyboardRect.size.height - self.frame.size.height,
 										keyboardRect.size.width,
 										FLTextEditCellEditingBarHeight);

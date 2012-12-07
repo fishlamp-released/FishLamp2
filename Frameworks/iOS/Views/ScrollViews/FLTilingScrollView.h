@@ -83,7 +83,7 @@ typedef enum
 - (BOOL) removeTiledView:(id) view;
 
 // rect utils
-- (FLRect) scrollViewPageRectForViewAtIndex:(NSInteger) idx;
+- (CGRect) scrollViewPageRectForViewAtIndex:(NSInteger) idx;
 
 // arrangemennt
 - (void) shiftArrangementToLeft;

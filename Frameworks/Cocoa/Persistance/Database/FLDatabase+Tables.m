@@ -164,7 +164,7 @@
      
     [self executeStatement:statement];
 
-    *outRows = retain_(result);
+    *outRows = FLRetain(result);
 }
 
 @end

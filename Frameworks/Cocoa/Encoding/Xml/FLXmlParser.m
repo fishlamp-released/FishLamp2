@@ -26,7 +26,7 @@
 @synthesize fileName = _fileName;
 
 + (id) xmlParser:(NSData*) data {
-	return autorelease_([[[self class] alloc] initWithXmlData:data]);
+	return FLAutorelease([[[self class] alloc] initWithXmlData:data]);
 }
 
 - (void) buildObjects:(id) rootObject
@@ -51,9 +51,9 @@
 
 - (void) dealloc
 {
-    release_(_fileName);
-	release_(_parseState);
-	release_(_data);
+    FLRelease(_fileName);
+	FLRelease(_parseState);
+	FLRelease(_data);
 	super_dealloc_();
 }
 
@@ -109,10 +109,10 @@
     }
 	
 #if DEBUG
-    mrc_autorelease_(newState);
+    FLAutoreleaseObject(newState);
 	FLAssertIsNotNil_(newState.object);
 #else
-	release_(newState);
+	FLRelease(newState);
 #endif    
 }
 
@@ -147,7 +147,7 @@
 				}
 				
 				[lastState.object finishParsingFrom:self state:lastState];
-				release_(inflatedObject);
+				FLRelease(inflatedObject);
 			}
 #if DEBUG	 
 			else

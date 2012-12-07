@@ -61,10 +61,10 @@
 
 - (void) dealloc
 {
-    release_(__from);
-    release_(__to);
-    release_(__message);
-    release_(__created_time);
+    FLRelease(__from);
+    FLRelease(__to);
+    FLRelease(__message);
+    FLRelease(__created_time);
     super_dealloc_();
 }
 
@@ -79,7 +79,7 @@
 
 + (FLFacebookMessage*) facebookMessage
 {
-    return autorelease_([[FLFacebookMessage alloc] init]);
+    return FLAutorelease([[FLFacebookMessage alloc] init]);
 }
 
 - (id) init
@@ -94,10 +94,10 @@
 {
     if((self = [super initWithCoder:aDecoder]))
     {
-        __from = retain_([aDecoder decodeObjectForKey:@"__from"]);
-        __to = retain_([aDecoder decodeObjectForKey:@"__to"]);
-        __message = retain_([aDecoder decodeObjectForKey:@"__message"]);
-        __created_time = retain_([aDecoder decodeObjectForKey:@"__created_time"]);
+        __from = FLRetain([aDecoder decodeObjectForKey:@"__from"]);
+        __to = FLRetain([aDecoder decodeObjectForKey:@"__to"]);
+        __message = FLRetain([aDecoder decodeObjectForKey:@"__message"]);
+        __created_time = FLRetain([aDecoder decodeObjectForKey:@"__created_time"]);
     }
     return self;
 }

@@ -27,31 +27,22 @@
 	FLAssert_v([NSThread isMainThread], @"performing action on main thread");
 
     @try {
-#if FL_MRC
-        FLPerformBlockInAutoreleasePool(^{
+        FLAutoreleasePool(
             [_target performSelector:_foregroundAction];
-        });
-#else
-    [_target performSelector:_foregroundAction];
-#endif
+        )
     }
     @finally {
         FLReleaseWithNil_(_target);
     }
 }
 
-- (void) _performInBackground
-{
-#if FL_MRC
-	FLPerformBlockInAutoreleasePool(^{
-#endif    
-    	FLAssert_v(![NSThread isMainThread], @"performing action on main thread");
-	
-		[_target performSelector:_backgroundAction];
-		[self performSelectorOnMainThread:@selector(_performInForeground) withObject:nil waitUntilDone:NO];
-#if FL_MRC
-	});
-#endif    
+- (void) _performInBackground {
+    FLAutoreleasePool(
+        FLAssert_v(![NSThread isMainThread], @"performing action on main thread");
+
+        [_target performSelector:_backgroundAction];
+        [self performSelectorOnMainThread:@selector(_performInForeground) withObject:nil waitUntilDone:NO];
+    )
 }
 
 - (void) beginTaskOnQueue:(NSOperationQueue*) queue 
@@ -59,7 +50,7 @@
 	backgroundAction:(SEL) backgroundAction 
 	foregroundAction:(SEL) foregroundAction
 {
-	_target = retain_(target);
+	_target = FLRetain(target);
 	_backgroundAction = backgroundAction;
 	_foregroundAction = foregroundAction;
 

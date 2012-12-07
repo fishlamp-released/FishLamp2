@@ -27,7 +27,7 @@ extern CGFloat kFrameSize;
 	} _frameViewFlags;
 	
 	CGFloat _foregoundThumbnailScale;
-	FLPoint _scaledForegroundThumbnailOffset;
+	CGPoint _scaledForegroundThumbnailOffset;
 	FLSize _maxSize;
 }
 
@@ -46,11 +46,11 @@ extern CGFloat kFrameSize;
 - (void) addTarget:(id)target action:(SEL)action;
 - (BOOL) ownsSenderOfEvent:(id) sender;
 	
-- (FLRect) thumbnailImageFrame;	   
+- (CGRect) thumbnailImageFrame;	   
 
 @property (readwrite, assign, nonatomic) BOOL showBothThumbnails;
 
-- (void) setShowBothThumbnails:(BOOL) showBoth foregroundThumbnailScale:(CGFloat) scale positionOffset:(FLPoint) offset;
+- (void) setShowBothThumbnails:(BOOL) showBoth foregroundThumbnailScale:(CGFloat) scale positionOffset:(CGPoint) offset;
 
 @end
 

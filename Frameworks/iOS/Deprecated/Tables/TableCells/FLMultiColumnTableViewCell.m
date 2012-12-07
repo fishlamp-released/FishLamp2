@@ -28,13 +28,13 @@
 		widget.style = FLMultiColumnWidgetStyleDynamic;
 		widget.resizeColumnsToFit = YES;
 		[super setWidget:widget];
-		release_(widget);
+		FLRelease(widget);
 	}
 	
 	return self;
 }
 
-- (BOOL) tableViewDragSelectStartValueForPoint:(FLPoint) point
+- (BOOL) tableViewDragSelectStartValueForPoint:(CGPoint) point
 {
 	point = [self convertPoint:point fromView:self.superview];
 
@@ -69,7 +69,7 @@
 		
 }
 
-- (void) tableViewDragSelectRectChanged:(FLRect) rect startValue:(BOOL) startValue
+- (void) tableViewDragSelectRectChanged:(CGRect) rect startValue:(BOOL) startValue
 {
 	rect = [self convertRect:rect fromView:self.superview];
 

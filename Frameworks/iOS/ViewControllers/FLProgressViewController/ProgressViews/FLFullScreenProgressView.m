@@ -31,7 +31,7 @@
     [self setNeedsLayout];
 }
 
-- (id)initWithFrame:(FLRect)frame
+- (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
@@ -96,10 +96,10 @@
 
 #if FL_MRC 
 - (void) dealloc {
-    release_(_titleLabel);
-    release_(_spinner);
-    release_(_backgroundWidget);
-    release_(_progress);
+    FLRelease(_titleLabel);
+    FLRelease(_spinner);
+    FLRelease(_backgroundWidget);
+    FLRelease(_progress);
     super_dealloc_();
 }
 #endif

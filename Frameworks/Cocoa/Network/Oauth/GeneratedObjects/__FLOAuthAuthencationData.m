@@ -44,10 +44,10 @@
 
 - (void) dealloc
 {
-    release_(__oauth_token_secret);
-    release_(__oauth_callback_confirmed);
-    release_(__oauth_token);
-    release_(__oauth_verifier);
+    FLRelease(__oauth_token_secret);
+    FLRelease(__oauth_callback_confirmed);
+    FLRelease(__oauth_token);
+    FLRelease(__oauth_verifier);
     super_dealloc_();
 }
 
@@ -61,7 +61,7 @@
 
 + (FLOAuthAuthencationData*) oAuthAuthencationData
 {
-    return autorelease_([[FLOAuthAuthencationData alloc] init]);
+    return FLAutorelease([[FLOAuthAuthencationData alloc] init]);
 }
 
 + (FLObjectDescriber*) sharedObjectDescriber

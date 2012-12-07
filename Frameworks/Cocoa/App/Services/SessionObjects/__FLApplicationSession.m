@@ -32,7 +32,7 @@
 
 + (FLApplicationSession*) applicationSession
 {
-    return autorelease_([[FLApplicationSession alloc] init]);
+    return FLAutorelease([[FLApplicationSession alloc] init]);
 }
 
 - (void) copySelfTo:(id) object
@@ -51,8 +51,8 @@
 
 - (void) dealloc
 {
-    release_(__sessionId);
-    release_(__userGuid);
+    FLRelease(__sessionId);
+    FLRelease(__userGuid);
     super_dealloc_();
 }
 
@@ -74,8 +74,8 @@
 {
     if((self = [super init]))
     {
-        __sessionId = retain_([aDecoder decodeObjectForKey:@"__sessionId"]);
-        __userGuid = retain_([aDecoder decodeObjectForKey:@"__userGuid"]);
+        __sessionId = FLRetain([aDecoder decodeObjectForKey:@"__sessionId"]);
+        __userGuid = FLRetain([aDecoder decodeObjectForKey:@"__userGuid"]);
     }
     return self;
 }

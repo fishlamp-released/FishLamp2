@@ -30,8 +30,8 @@
 } 
 
 - (id) init;
-- (id) initWithFrame:(FLRect) frame;
-+ (id) widgetWithFrame:(FLRect) frame;
+- (id) initWithFrame:(CGRect) frame;
++ (id) widgetWithFrame:(CGRect) frame;
 + (id) widget;
 
 @property (readwrite, assign, nonatomic) CGFloat alpha; // this overrides alpha in colors
@@ -46,7 +46,7 @@
 // drawing 
 
 - (void) setNeedsDisplay;
-- (void) drawWidget:(FLRect) rect; // call from view, or superwidget, etc..
+- (void) drawWidget:(CGRect) rect; // call from view, or superwidget, etc..
 
 // a parent can be another widget or a view.
 @property (readwrite, weak, nonatomic) id parent;
@@ -73,12 +73,12 @@
 
 // override points
 
-- (void) drawSelf:(FLRect) rect;
+- (void) drawSelf:(CGRect) rect;
 - (void) layoutWidgets;
 - (void) didMoveToParent;
 
 // hit test utils
-- (FLWidget *)hitTest:(FLPoint)point interactiveCellsOnly:(BOOL) interactiveCellsOnly;
+- (FLWidget *)hitTest:(CGPoint)point interactiveCellsOnly:(BOOL) interactiveCellsOnly;
 
 - (void) teardown;
 
@@ -112,5 +112,5 @@
 // this is a c function that can customize how a widget is drawn when highlighted.
 //@property (readwrite, assign, nonatomic) FLCustomHighlighter highlighter;
 
-extern void (^FLWidgetSunburstHighlighter)(FLWidget* widget, FLRect rect);
+extern void (^FLWidgetSunburstHighlighter)(FLWidget* widget, CGRect rect);
 

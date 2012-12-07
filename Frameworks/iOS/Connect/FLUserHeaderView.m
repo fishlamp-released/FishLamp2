@@ -20,7 +20,7 @@
 //	view.nameLabel.textDescriptor = self.titleDescriptor;
 }
 
-- (id) initWithFrame:(FLRect) frame
+- (id) initWithFrame:(CGRect) frame
 {
 	if((self = [super initWithFrame:frame])) {
         self.wantsApplyTheme = YES;
@@ -55,10 +55,10 @@
 
 - (void) dealloc
 {
-	release_(_logo);
-	release_(_spinner);
-	release_(_thumbnail);
-	release_(_nameLabel);
+	FLRelease(_logo);
+	FLRelease(_spinner);
+	FLRelease(_thumbnail);
+	FLRelease(_nameLabel);
 	super_dealloc_();
 }
 

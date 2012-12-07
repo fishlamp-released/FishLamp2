@@ -40,7 +40,7 @@
 #endif
 
 + (FLDeletedObjectReference*) deletedObjectReference:(id) object {
-    return autorelease_([[FLDeletedObjectReference alloc] initWithObject:object]);
+    return FLAutorelease([[FLDeletedObjectReference alloc] initWithObject:object]);
 }
 
 @end

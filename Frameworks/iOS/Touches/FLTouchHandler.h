@@ -12,7 +12,7 @@
 
 @protocol FLTouchableObject <NSObject>
 - (UIView*) view;
-@property (readwrite, assign, nonatomic) FLRect frame;
+@property (readwrite, assign, nonatomic) CGRect frame;
 @property (readonly, assign, nonatomic, getter=isUserInteractionEnabled) BOOL userInteractionEnabled;
 @property (readwrite, assign, nonatomic, getter=isHighlighted) BOOL highlighted;
 @property (readonly, assign, nonatomic, getter=isHidden) BOOL hidden;
@@ -22,7 +22,7 @@
 
 @protocol FLTouchHandlerDelegate;
 
-typedef void (*FLCustomHighlighter)(id object, FLRect highlightRect);
+typedef void (*FLCustomHighlighter)(id object, CGRect highlightRect);
 typedef void (^FLTouchHandlerWasSelected)(id touchedObject);
 
 @interface FLTouchHandler : NSObject<FLApplicationEventInterceptor> {

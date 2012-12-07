@@ -21,7 +21,7 @@
 @dynamic hidden;
 @dynamic arrangeableFrame;
 
-- (id) initWithFrame:(FLRect) frame {
+- (id) initWithFrame:(CGRect) frame {
     self = [super initWithFrame:frame];
     if(self) {
         self.autoresizesSubviews = NO;
@@ -32,7 +32,7 @@
 
 #if FL_MRC
 - (void) dealloc {
-    release_(_arrangement);
+    FLRelease(_arrangement);
     super_dealloc_();
 }
 #endif

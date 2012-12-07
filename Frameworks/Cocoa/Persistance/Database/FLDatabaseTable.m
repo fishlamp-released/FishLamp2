@@ -31,8 +31,8 @@
 - (void) setTableName:(NSString*) tableName {
     FLAssertStringIsNotEmpty_(tableName);
 	
-    FLRetainObject_(_tableName, FLDatabaseNameEncode(tableName));
-	FLRetainObject_(_decodedTableName, FLDatabaseNameDecode(_tableName));
+    FLAssignObjectWithRetain(_tableName, FLDatabaseNameEncode(tableName));
+	FLAssignObjectWithRetain(_decodedTableName, FLDatabaseNameDecode(_tableName));
     _tableClass = NSClassFromString(_decodedTableName);
 }
 
@@ -46,7 +46,7 @@
 }
 
 + (FLDatabaseTable*) databaseTableWithTableName:(NSString*) tableName {
-	return autorelease_([[FLDatabaseTable alloc] initWithTableName:tableName]);
+	return FLAutorelease([[FLDatabaseTable alloc] initWithTableName:tableName]);
 }
 
 - (NSArray*) primaryKeyColumns {
@@ -82,12 +82,12 @@
 }
 
 - (void) dealloc {
-    release_(_primaryKeyColumns);
-    release_(_indexedColumns);
-	release_(_decodedTableName);
-	release_(_indexes);
-	release_(_tableName);
-	release_(_columns);
+    FLRelease(_primaryKeyColumns);
+    FLRelease(_indexedColumns);
+	FLRelease(_decodedTableName);
+	FLRelease(_indexes);
+	FLRelease(_tableName);
+	FLRelease(_columns);
 	super_dealloc_();
 }
 
@@ -210,7 +210,7 @@
 }
 
 - (id) databaseTableWithClass:(Class) aClass {
-	return autorelease_([[FLDatabaseTable alloc] initWithClass:aClass]);
+	return FLAutorelease([[FLDatabaseTable alloc] initWithClass:aClass]);
 }
 
 - (id) copyWithZone:(NSZone *)zone {
@@ -251,7 +251,7 @@
 
 - (id) objectForRow:(NSDictionary*) row {
 
-    id newObject = autorelease_([[self.classRepresentedByTable alloc] init]);
+    id newObject = FLAutorelease([[self.classRepresentedByTable alloc] init]);
     FLAssertIsNotNil_(newObject);
     
     for(NSString* columnName in row) {

@@ -24,11 +24,11 @@ FLSynthesizeAssociatedProperty(retain_nonatomic, arrangement, setArrangement, FL
 @dynamic arrangeableWeight;
 @dynamic arrangeableState;
 
-- (FLRect) arrangeableFrame {
+- (CGRect) arrangeableFrame {
     return self.frame;
 }
 
-- (void) setArrangeableFrame:(FLRect) frame {
+- (void) setArrangeableFrame:(CGRect) frame {
     self.frame = frame;
 }
 
@@ -45,7 +45,7 @@ FLSynthesizeAssociatedProperty(retain_nonatomic, arrangement, setArrangement, FL
                         adjustViewSize:(BOOL) adjustSize {
     NSArray* subviews = self.subviews;
     if(arrangement) {
-        FLRect bounds = self.bounds;
+        CGRect bounds = self.bounds;
         bounds.size = [arrangement performArrangement:subviews inBounds:bounds];
         if(adjustSize) {
             self.bounds = bounds;
@@ -85,7 +85,7 @@ FLSynthesizeAssociatedProperty(retain_nonatomic, arrangement, setArrangement, FL
 
 @implementation UIView (FLMiscUtils)
 
-- (FLRect) layoutBounds {
+- (CGRect) layoutBounds {
 
 // TODO this isn't right.
     return FLEdgeInsetsInsetRect(self.bounds, self.innerInsets);

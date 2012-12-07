@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "FishLampCore.h"
+#import "FLCore.h"
 #import "FLHttpOperation.h"
 #import "FLJsonStringBuilder.h"
 

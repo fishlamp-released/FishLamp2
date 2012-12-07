@@ -27,7 +27,7 @@
 
 @synthesize post = _post;
 
-- (id) initWithFrame:(FLRect) frame
+- (id) initWithFrame:(CGRect) frame
 {
 	if((self = [super initWithFrame:frame]))
 	{
@@ -47,8 +47,8 @@
 
 - (void) dealloc
 {	
-	release_(_likesAndCommentsWidget);
-	release_(_post);
+	FLRelease(_likesAndCommentsWidget);
+	FLRelease(_post);
 	super_dealloc_();
 }
 

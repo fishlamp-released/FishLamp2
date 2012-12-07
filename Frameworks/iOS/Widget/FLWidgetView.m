@@ -32,7 +32,7 @@
     }
 }
 
-- (id)initWithFrame:(FLRect)frame {
+- (id)initWithFrame:(CGRect)frame {
 	if((self = [super initWithFrame:frame])) {
         self.autoresizesSubviews = NO;
         _rootWidget = [[FLWidget alloc] initWithFrame:self.bounds];
@@ -54,7 +54,7 @@
 }
 
 - (void) dealloc {
-    release_(_rootWidget);
+    FLRelease(_rootWidget);
     super_dealloc_();
 }
 
@@ -64,7 +64,7 @@
     [_rootWidget setNeedsLayout];
 }
 
-- (void) drawRect:(FLRect) rect {
+- (void) drawRect:(CGRect) rect {
 	[super drawRect:rect];
     [_rootWidget drawWidget:rect];
 }

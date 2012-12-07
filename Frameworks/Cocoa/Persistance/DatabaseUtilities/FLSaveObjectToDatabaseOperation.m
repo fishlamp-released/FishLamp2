@@ -15,8 +15,8 @@
 	if((self = [self init])) {
 		FLAssertIsNotNil_(database);
 		FLAssertIsNotNil_(input);
-        _input = retain_(input);
-		_database = retain_(database);
+        _input = FLRetain(input);
+		_database = FLRetain(database);
 	}
 	return self;
 } 

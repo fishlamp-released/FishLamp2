@@ -26,12 +26,12 @@
 
 + (FLPasswordEntryViewController*) passwordEntryViewController:(NSString*) prompt withOptions:(FLPasswordEntryViewControllerOptionMask) options
 {
-	return autorelease_([[FLPasswordEntryViewController alloc] initWithPrompt:prompt withOptions:options]);
+	return FLAutorelease([[FLPasswordEntryViewController alloc] initWithPrompt:prompt withOptions:options]);
 }
 
 - (void) dealloc
 {
-	release_(_prompt);
+	FLRelease(_prompt);
 	super_dealloc_();
 }
 

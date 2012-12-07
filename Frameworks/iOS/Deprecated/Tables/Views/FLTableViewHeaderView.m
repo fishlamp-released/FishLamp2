@@ -21,7 +21,7 @@
 	[[self textLabel] addGlow];
 }
 
-- (id) initWithFrame:(FLRect) frame
+- (id) initWithFrame:(CGRect) frame
 {
 	if((self = [super initWithFrame:frame]))
 	{
@@ -47,7 +47,7 @@
 
 - (void) dealloc
 {
-	release_(_label);
+	FLRelease(_label);
 	super_dealloc_();
 }
 
@@ -59,7 +59,7 @@
 	{
 		[_label sizeToFitText];
 		
-		FLRect frame = FLRectJustifyRectInRectBottom(self.bounds, _label.frame);
+		CGRect frame = FLRectJustifyRectInRectBottom(self.bounds, _label.frame);
 		frame = FLRectSetLeft(frame, _indent);
 		frame.origin.y -= 2;
 		_label.frameOptimizedForSize = frame;

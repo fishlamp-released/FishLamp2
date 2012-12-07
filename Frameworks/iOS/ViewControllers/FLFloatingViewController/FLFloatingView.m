@@ -27,7 +27,7 @@
     [self setNeedsLayout];
 }
 
-- (id) initWithFrame:(FLRect) frame
+- (id) initWithFrame:(CGRect) frame
 {
 	if((self = [super initWithFrame:frame]))
 	{
@@ -97,35 +97,35 @@
     [self setNeedsDisplay];
 }
 
-- (void) getPathForTop:(CGMutablePathRef) path rect:(FLRect) rect
+- (void) getPathForTop:(CGMutablePathRef) path rect:(CGRect) rect
 {
-	FLPoint point = FLRectGetCenter(_targetRect);
+	CGPoint point = FLRectGetCenter(_targetRect);
 	point.y = rect.origin.y; 
 	FLCreateRectPathWithTopArrow(path, rect, point, self.arrowWidth, self.cornerRadius);
 }
 
-- (void) getPathForBottom:(CGMutablePathRef) path rect:(FLRect) rect
+- (void) getPathForBottom:(CGMutablePathRef) path rect:(CGRect) rect
 {
-	FLPoint point = FLRectGetCenter(_targetRect);
+	CGPoint point = FLRectGetCenter(_targetRect);
 	point.y = FLRectGetBottom(rect);
 	FLCreateRectPathWithBottomArrow(path, rect, point, self.arrowWidth, self.cornerRadius);
 }
 
-- (void) getPathForRight:(CGMutablePathRef) path rect:(FLRect) rect
+- (void) getPathForRight:(CGMutablePathRef) path rect:(CGRect) rect
 {
-	FLPoint point = FLRectGetCenter(_targetRect);
+	CGPoint point = FLRectGetCenter(_targetRect);
 	point.x = FLRectGetRight(rect);
 	FLCreateRectPathWithRightArrow(path, rect, point, self.arrowWidth, self.cornerRadius);
 }
 
-- (void) getPathForLeft:(CGMutablePathRef) path rect:(FLRect) rect
+- (void) getPathForLeft:(CGMutablePathRef) path rect:(CGRect) rect
 {
-	FLPoint point = FLRectGetCenter(_targetRect);
+	CGPoint point = FLRectGetCenter(_targetRect);
 	point.x = rect.origin.x;
 	FLCreateRectPathWithLeftArrow(path, rect, point, self.arrowWidth, self.cornerRadius);
 }
 
-- (void) pathForRect:(CGMutablePathRef) path rect:(FLRect) rect
+- (void) pathForRect:(CGMutablePathRef) path rect:(CGRect) rect
 {
     switch(_arrowDirection)
 	{
@@ -151,7 +151,7 @@
 - (void) drawOuterPath:(CGContextRef) context
 {
 	_lineGradient.frame = self.bounds;
-	FLRect outerRect = CGRectInset(self.bounds, 1, 1);
+	CGRect outerRect = CGRectInset(self.bounds, 1, 1);
 	CGMutablePathRef path =	 CGPathCreateMutable();
 	[self pathForRect:path rect:outerRect];
 	CGContextAddPath(context, path);
@@ -161,13 +161,13 @@
 }
 
 #if DEBUG
-- (void) setFrame:(FLRect) frame
+- (void) setFrame:(CGRect) frame
 {
     [super setFrame:frame];
 }
 #endif
 
-- (void)drawRect:(FLRect)rect
+- (void)drawRect:(CGRect)rect
 {
     [super drawRect:rect];
 //	
@@ -178,7 +178,7 @@
 	CGContextRestoreGState(context);
 	CGContextSaveGState(context);
 	  
-	FLRect innerRect = CGRectInset(self.bounds, self.frameWidth + 1.0f, self.frameWidth + 1.0f);
+	CGRect innerRect = CGRectInset(self.bounds, self.frameWidth + 1.0f, self.frameWidth + 1.0f);
 	CGMutablePathRef path =	 CGPathCreateMutable();
 	[self pathForRect:path rect:innerRect];
 	 
@@ -203,10 +203,10 @@
 
 - (void) dealloc
 {	
-	release_(_lineGradient);
-	release_(_topGradient);
-	release_(_containerView);
-	release_(_contentView);
+	FLRelease(_lineGradient);
+	FLRelease(_topGradient);
+	FLRelease(_containerView);
+	FLRelease(_contentView);
 	super_dealloc_();
 }
 

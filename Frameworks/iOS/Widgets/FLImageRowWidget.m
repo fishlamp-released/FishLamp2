@@ -11,7 +11,7 @@
 
 @implementation FLImageRowWidget
 
-- (id) initWithFrame:(FLRect) frame
+- (id) initWithFrame:(CGRect) frame
 {
 	if((self = [super initWithFrame:frame]))
 	{
@@ -43,14 +43,14 @@
 	}	
 }
 
-- (void)drawSelf:(FLRect)rect
+- (void)drawSelf:(CGRect)rect
 {
 	CGFloat rightSide = FLRectGetRight(self.frame);
 	for(int i = FLImageRowViewMaxImageCount - 1; i >= 0; i--)
 	{	
 		if(_images[i])
 		{
-			FLRect frame = FLRectMakeWithSize(_images[i].size);
+			CGRect frame = FLRectMakeWithSize(_images[i].size);
 			frame.origin.x = rightSide - frame.size.width;
 			frame = FLRectOptimizedForViewSize(FLRectCenterRectInRectVertically(self.frame, frame));
 			if(CGRectIntersectsRect(rect, frame))

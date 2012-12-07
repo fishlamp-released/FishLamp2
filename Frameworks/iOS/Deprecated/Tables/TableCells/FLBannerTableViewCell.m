@@ -29,7 +29,7 @@
 
 + (FLBannerTableViewCell*) bannerTableCell:(NSString*) banner
 {
-   FLBannerTableViewCell* cell = autorelease_([[[self class] alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"FLBannerTableCell"]);
+   FLBannerTableViewCell* cell = FLAutorelease([[[self class] alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"FLBannerTableCell"]);
    cell.textLabelText = banner;
    return cell;
 }
@@ -61,7 +61,7 @@
 
 + (FLCenteredBannerTableViewCell*) centeredBannerTableCell:(NSString*) banner
 {
-   FLCenteredBannerTableViewCell* cell = autorelease_([[FLCenteredBannerTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"FLCenteredBannerCell"]);
+   FLCenteredBannerTableViewCell* cell = FLAutorelease([[FLCenteredBannerTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"FLCenteredBannerCell"]);
    cell.textLabelText = banner;
    return cell;
 }

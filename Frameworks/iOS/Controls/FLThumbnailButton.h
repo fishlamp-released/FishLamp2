@@ -65,7 +65,7 @@ typedef enum {
 @end
 
 @interface FLBounceButtonAnimation : FLButtonAnimation {
-	FLRect _originalFrame;
+	CGRect _originalFrame;
 	NSArray* _animationQueue;
 	int _currentAnimation;
 }

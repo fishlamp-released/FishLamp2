@@ -132,7 +132,7 @@ void HandleException(NSException *exception)
 		setObject:callStack
 		forKey:UncaughtExceptionHandlerAddressesKey];
 	
-	[autorelease_([[FLUncaughtExceptionHandler alloc] init])
+	[FLAutorelease([[FLUncaughtExceptionHandler alloc] init])
 		performSelectorOnMainThread:@selector(handleException:)
 		withObject:
 			[NSException
@@ -160,7 +160,7 @@ void SignalHandler(int inSignal)
 		setObject:callStack
 		forKey:UncaughtExceptionHandlerAddressesKey];
 	
-	[autorelease_([[FLUncaughtExceptionHandler alloc] init]) 
+	[FLAutorelease([[FLUncaughtExceptionHandler alloc] init]) 
 		performSelectorOnMainThread:@selector(handleException:)
 		withObject:
 			[NSException

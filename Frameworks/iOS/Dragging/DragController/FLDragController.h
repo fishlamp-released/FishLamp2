@@ -11,9 +11,9 @@
 #import "FLCallback_t.h"
 
 typedef struct {
-    FLRect startFrame;
-    FLPoint touchOffset;
-    FLPoint amountMoved;
+    CGRect startFrame;
+    CGPoint touchOffset;
+    CGPoint amountMoved;
     unsigned int userDidTouchView: 1;
     unsigned int didDragView : 1;
     unsigned int lastTouchInTouchableView : 1;
@@ -27,7 +27,7 @@ typedef struct {
     NSMutableArray* _dragDestinations;
     NSMutableArray* _secondaryViews;
         
-    FLRect _dragLimit;
+    CGRect _dragLimit;
     FLViewDraggerResults _dragResults;
     
     struct {
@@ -60,18 +60,18 @@ typedef struct {
 
 - (void) addDragDestination:(id) destination;
 
-- (void) moveDragRespondersByAmount:(FLPoint) amount 
+- (void) moveDragRespondersByAmount:(CGPoint) amount 
                   animationDuration:(CGFloat) duration
                   animationFinished:(dispatch_block_t) animationFinished;
 
-- (FLRect) touchableViewFrameInHostView;
-- (FLRect) viewFrameInHostView:(UIView*) view;
+- (CGRect) touchableViewFrameInHostView;
+- (CGRect) viewFrameInHostView:(UIView*) view;
 
 @end
 
 @protocol FLDragControllerDelegate <NSObject>
 - (UIView*) dragControllerGetHostView:(FLDragController*) controller;
-- (FLRect) dragControllerCalculateDragBoundsInHostView:(FLDragController*) controller;
+- (CGRect) dragControllerCalculateDragBoundsInHostView:(FLDragController*) controller;
 @optional
 - (void) dragControllerWillBeginDragging:(FLDragController*) controller;
 - (void) dragController:(FLDragController*) controller didFinishDraggingWithResults:(FLViewDraggerResults) results;
@@ -81,7 +81,7 @@ typedef struct {
 
 
 @protocol FLDragControllerDragDestination <NSObject>
-@property (readwrite, assign, nonatomic) FLRect frame;
+@property (readwrite, assign, nonatomic) CGRect frame;
 
 @optional
 - (void) dragControllerUpdateFrame:(FLDragController*) controller;
@@ -92,7 +92,7 @@ typedef struct {
 
 @interface FLDragControllerDragDestination : NSObject<FLDragControllerDragDestination> {
 @private
-    FLRect _frame;
+    CGRect _frame;
     FLCallback_t _setFrameCallback;
 }
 @property (readwrite, assign, nonatomic) FLCallback_t setFrameCallback;
@@ -106,7 +106,7 @@ typedef struct {
 @protocol FLDragControllerDragResponder <NSObject>
 @optional
 - (void) dragController:(FLDragController*) controller 
-    dragViewByAmount:(FLPoint) amount;
+    dragViewByAmount:(CGPoint) amount;
 
 - (void) dragControllerWillBeginDragging:(FLDragController*) controller;
 
@@ -116,7 +116,7 @@ didFinishDraggingWithResults:(FLViewDraggerResults) results;
 
 @interface UIView (FLDragController)
 - (void) dragController:(FLDragController*) controller 
-    dragViewByAmount:(FLPoint) amount;
+    dragViewByAmount:(CGPoint) amount;
           
 - (void) dragControllerWillBeginDragging:(FLDragController*) manager;
 
@@ -127,6 +127,6 @@ didFinishDraggingWithResults:(FLViewDraggerResults) results;
 
 @interface UIViewController (FLDragController)
 - (void) dragController:(FLDragController*) controller 
-    dragViewByAmount:(FLPoint) amount;
+    dragViewByAmount:(CGPoint) amount;
 @end
 

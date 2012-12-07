@@ -129,7 +129,7 @@ NSString* makeDescriptionString(NSString* reason, NSString* comment) {
                        comment:(NSString*) commentOrNil
                   stackTrace:(FLStackTrace*) stackTrace {
 
-    return autorelease_([[[self class] alloc] initWithDomain:domain
+    return FLAutorelease([[[self class] alloc] initWithDomain:domain
                                                         code:code
                                                     userInfo:dict
                                                       reason:reasonOrNil
@@ -145,7 +145,7 @@ NSString* makeDescriptionString(NSString* reason, NSString* comment) {
 //                         comment:(NSString*) comment
 //                    stackTrace:(FLStackTrace*) stackTrace {
 //    
-//    return autorelease_([[[self class] alloc] initWithDomain:domain
+//    return FLAutorelease([[[self class] alloc] initWithDomain:domain
 //                                                                code:code
 //                                                            userInfo:dict
 //                                                              reason:reason

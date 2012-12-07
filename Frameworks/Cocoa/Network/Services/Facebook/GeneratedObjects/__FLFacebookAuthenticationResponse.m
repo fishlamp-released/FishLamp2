@@ -47,8 +47,8 @@
 
 - (void) dealloc
 {
-    release_(__session);
-    release_(__redirectURL);
+    FLRelease(__session);
+    FLRelease(__redirectURL);
     super_dealloc_();
 }
 
@@ -60,7 +60,7 @@
 
 + (FLFacebookAuthenticationResponse*) facebookAuthenticationResponse
 {
-    return autorelease_([[FLFacebookAuthenticationResponse alloc] init]);
+    return FLAutorelease([[FLFacebookAuthenticationResponse alloc] init]);
 }
 
 - (id) init
@@ -75,8 +75,8 @@
 {
     if((self = [super init]))
     {
-        __session = retain_([aDecoder decodeObjectForKey:@"__session"]);
-        __redirectURL = retain_([aDecoder decodeObjectForKey:@"__redirectURL"]);
+        __session = FLRetain([aDecoder decodeObjectForKey:@"__session"]);
+        __redirectURL = FLRetain([aDecoder decodeObjectForKey:@"__redirectURL"]);
     }
     return self;
 }

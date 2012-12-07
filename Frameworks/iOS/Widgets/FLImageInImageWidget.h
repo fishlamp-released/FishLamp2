@@ -18,6 +18,6 @@
 @property (readwrite, assign, nonatomic) CGFloat topImageScale;
 @property (readwrite, retain, nonatomic) FLImageWidget* topImageWidget; // use the widget's contentMode to position.
 
-+ (FLImageInImageWidget*) imageInImageWidget:(FLRect) frame;
++ (FLImageInImageWidget*) imageInImageWidget:(CGRect) frame;
 
 @end

@@ -40,7 +40,7 @@
 }
 
 - (NSData*) bodyData {
-    return autorelease_(bridge_transfer_(NSData*,CFHTTPMessageCopyBody(_message)));
+    return FLAutorelease(bridge_transfer_(NSData*,CFHTTPMessageCopyBody(_message)));
 }
 
 - (void) setBodyData:(NSData*) bodyData {
@@ -52,16 +52,16 @@
 }
 
 - (NSString*) valueForHeader:(NSString*) header {
-    return autorelease_(bridge_transfer_(NSString*,
+    return FLAutorelease(bridge_transfer_(NSString*,
                 CFHTTPMessageCopyHeaderFieldValue(_message, bridge_(void*,header))));
 }
 
 - (NSString*) httpVersion {
-    return autorelease_(bridge_transfer_(NSString*,CFHTTPMessageCopyVersion(_message)));
+    return FLAutorelease(bridge_transfer_(NSString*,CFHTTPMessageCopyVersion(_message)));
 }
 
 - (NSDictionary*) allHeaders {
-    return autorelease_(bridge_transfer_(NSDictionary*,CFHTTPMessageCopyAllHeaderFields(_message)));
+    return FLAutorelease(bridge_transfer_(NSDictionary*,CFHTTPMessageCopyAllHeaderFields(_message)));
 }
 
 - (void) dealloc {
@@ -81,11 +81,11 @@
 } 
 
 + (id) httpMessageWithHttpMessageRef:(CFHTTPMessageRef) ref {
-    return autorelease_([[[self class] alloc] initWithHttpMessageRef:ref]);
+    return FLAutorelease([[[self class] alloc] initWithHttpMessageRef:ref]);
 }
 
 + (id) httpMessageWithURL:(NSURL*) url HTTPMethod:(NSString*) HTTPMethodOrNil {
-    return autorelease_([[[self class] alloc] initWithURL:url HTTPMethod:HTTPMethodOrNil]);
+    return FLAutorelease([[[self class] alloc] initWithURL:url HTTPMethod:HTTPMethodOrNil]);
 }
 
 - (id)copyWithZone:(NSZone *)zone {
@@ -101,11 +101,11 @@
 }
 
 - (NSURL*) requestURL {
-    return autorelease_(bridge_transfer_(NSURL*,CFHTTPMessageCopyRequestURL(_message)));
+    return FLAutorelease(bridge_transfer_(NSURL*,CFHTTPMessageCopyRequestURL(_message)));
 }
 
 - (NSString*) HTTPMethod {
-    return autorelease_(bridge_transfer_(NSString*,CFHTTPMessageCopyRequestMethod(_message)));
+    return FLAutorelease(bridge_transfer_(NSString*,CFHTTPMessageCopyRequestMethod(_message)));
 }
 
 - (NSInteger) responseStatusCode {
@@ -113,7 +113,7 @@
 }
 
 - (NSString*) responseStatusLine {
-    return autorelease_(bridge_transfer_(NSString*,CFHTTPMessageCopyResponseStatusLine(_message)));
+    return FLAutorelease(bridge_transfer_(NSString*,CFHTTPMessageCopyResponseStatusLine(_message)));
 }
 
 - (void) setHeaders:(NSDictionary*) headers {

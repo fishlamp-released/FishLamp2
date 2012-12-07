@@ -33,11 +33,11 @@
 }
 
 + (id) httpRequestWithURL:(NSURL*) url HTTPMethod:(NSString*) HTTPMethod {
-    return autorelease_([[[self class] alloc] initWithURL:url HTTPMethod:HTTPMethod]);
+    return FLAutorelease([[[self class] alloc] initWithURL:url HTTPMethod:HTTPMethod]);
 }
 
 + (id) httpPostRequestWithURL:(NSURL*) url {
-    return autorelease_([[[self class] alloc] initWithURL:url HTTPMethod:@"POST"]);
+    return FLAutorelease([[[self class] alloc] initWithURL:url HTTPMethod:@"POST"]);
 }
 
 - (void) removeHTTPHeaderField:(NSString*) headerName {

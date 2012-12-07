@@ -1,6 +1,6 @@
 //
 //  FLWhitespace.m
-//  FishLampCore
+//  FLCore
 //
 //  Created by Mike Fullerton on 5/25/12.
 //  Copyright (c) 2012 GreenTongue Software. All rights reserved.
@@ -24,17 +24,17 @@
 }
 
 + (FLWhitespace*) whitespace {
-    return autorelease_([[[self class] alloc] init]);
+    return FLAutorelease([[[self class] alloc] init]);
 }
 
 - (void) dealloc {
     for(int i = 0; i < 100; i++) {
         if(_cachedTabs[i]) {
-            release_(_cachedTabs[i]);
+            FLRelease(_cachedTabs[i]);
         }
     }
-    release_(_eolString);
-    release_(_tabString);
+    FLRelease(_eolString);
+    FLRelease(_tabString);
     
     super_dealloc_();
 }
@@ -47,7 +47,7 @@
         
             NSString* string = [@"" stringByPaddingToLength:(indent * _tabString.length) withString:_tabString startingAtIndex:0];
             
-            _cachedTabs[indent] = retain_(string);
+            _cachedTabs[indent] = FLRetain(string);
         }
         return _cachedTabs[indent];
     }
