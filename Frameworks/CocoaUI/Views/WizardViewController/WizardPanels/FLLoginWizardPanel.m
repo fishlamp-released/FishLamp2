@@ -8,6 +8,7 @@
 
 #import "FLLoginWizardPanel.h"
 #import "FLProgressWizardPanel.h"
+#import "NSObject+Blocks.h"
 
 @interface FLLoginWizardPanel ()
 - (IBAction)resetLogin:(id)sender;
@@ -172,17 +173,21 @@
 - (void) wizardPanelDidAppear {
     [super wizardPanelDidAppear];
     [self updateButtonSelectedState];
-    
-    if(FLStringIsEmpty(self.userName)) {
-        [self.userNameTextField becomeFirstResponder];
-    }
-    else {
-        [self.passwordEntryField becomeFirstResponder];
-    }
+
+    [self performBlockOnMainThread:^{
+        if(FLStringIsEmpty(self.userName)) {
+            [self.userNameTextField becomeFirstResponder];
+        }
+        else {
+            [self.passwordEntryField becomeFirstResponder];
+        }
+    }];
 }
 
 - (void) wizardPanelWillDisappear {
     [super wizardPanelWillDisappear];
+    [self.wizard becomeFirstResponder];
+    
     [self.userNameTextField resignFirstResponder];
     [self.passwordEntryField resignFirstResponder];
 }
