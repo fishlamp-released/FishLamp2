@@ -130,7 +130,7 @@
     [self addToolbarItem:[FLImageButtonToolbarItem imageButtonToolbarItemWithImage:image onChosenBlock:buttonPress]];
 }
 
-- (void) addEmptyItem:(FLSize) size {
+- (void) addEmptyItem:(CGSize) size {
     FLToolbarItem* item = [[FLToolbarItem alloc] initWithFrame:FLRectMakeWithSize(size)];
     [self addToolbarItem:item];
     FLRelease(item);

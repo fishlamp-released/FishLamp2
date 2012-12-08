@@ -100,7 +100,7 @@
     if(popover)
     {
         CGRect lastSectionRect = [self.view convertRect:[self.tableView rectForSection:self.tableView.numberOfSections - 1] fromView:self.tableView];
-        FLSize size =  self.view.frame.size;
+        CGSize size =  self.view.frame.size;
         
         size.height = FLRectGetBottom(lastSectionRect);
 

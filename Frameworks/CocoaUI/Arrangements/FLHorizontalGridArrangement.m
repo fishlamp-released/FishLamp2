@@ -15,7 +15,7 @@
     return FLAutorelease([[[self class] alloc] init]);
 }
 
-//- (FLSize) performArrangement:(NSArray*) views 
+//- (CGSize) performArrangement:(NSArray*) views 
 //                         inBounds:(CGRect) bounds
 //{
 ////	CGFloat colWidth = bounds.size.width;
@@ -53,11 +53,11 @@
 ////    return FLSizeMake(FLRectGetRight(containerBounds), bounds.size.height);
 //}
 
-- (FLSize) layoutArrangeableObjects:(NSArray*) objects
+- (CGSize) layoutArrangeableObjects:(NSArray*) objects
                          inBounds:(CGRect) bounds {
 
 /*
-    FLSize cellSize = [self.delegate cellViewLayoutGetCellSize:self inBounds:bounds];
+    CGSize cellSize = [self.delegate cellViewLayoutGetCellSize:self inBounds:bounds];
 
     NSInteger itemCount = views.count;
     NSInteger rowCount = bounds.size.height / cellSize.height;

@@ -19,7 +19,7 @@
 
 @property (readonly, strong, nonatomic) FLImage* image;
 @property (readonly, strong, nonatomic) NSDictionary* properties;
-@property (readonly, assign, nonatomic) FLSize imageDimensions;
+@property (readonly, assign, nonatomic) CGSize imageDimensions;
 @property (readonly, assign, nonatomic) BOOL hasImage;
 
 - (void) setImage:(FLImage*) image exifDictionary:(NSDictionary*) exif;

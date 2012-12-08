@@ -20,46 +20,32 @@
 - (id) initWithFrame:(CGRect) frame {
     if((self = [super initWithFrame:frame])) {
         self.userInteractionEnabled = YES; 
+
+#if IOS
         self.backgroundColor = [FLColor clearColor];
-        _breadcrumbs = [[FLOrderedCollection alloc] init];
+#endif
         
-        self.backgroundColor = [FLColor whiteColor];
         self.enabledTextColor = [FLColor blackColor];
-        self.disabledTextColor = [FLColor lightGrayColor];
+        self.disabledTextColor = [FLColor grayColor];
         self.highlightedTextColor = [FLColor blueColor];
-        self.textFont = [FLFont systemFontOfSize:8];
+        self.textFont = [FLFont boldSystemFontOfSize:[FLFont systemFontSize]];
+
+        _breadcrumbs = [[FLOrderedCollection alloc] init];
     }
     
     return self;
 }
 
-- (NSAttributedString*) buildAttributedString {
-    NSMutableAttributedString* outString = FLAutorelease([[NSMutableAttributedString alloc] init]);
-    for(FLBreadcrumb* breadcrumb in _breadcrumbs.forwardObjectEnumerator) {
-        if(FLStringIsEmpty(breadcrumb.string) || breadcrumb.isHidden) {
-            continue;
-        }
-    
-        [outString appendAttributedString:breadcrumb.attributedString];
-    }
-    
-    return outString;
-}
-
-- (void) dealloc {
-    if(_frameRef) {
-        CFRelease(_frameRef);
-    }
-
 #if FL_MRC
+- (void) dealloc {
     [_enabledTextColor release];
     [_disabledTextColor release];
     [_highlightedTextColor release];
     [_textFont release];
     [_breadcrumbs release];
     [super dealloc];
-#endif
 }
+#endif
 
 - (FLBreadcrumb*) breadcrumbAtIndex:(NSUInteger) index {
     return [_breadcrumbs objectAtIndex:index];
@@ -83,6 +69,9 @@
 
 - (void) setBreadcrumb:(FLBreadcrumb*) breadcrumb 
                 forKey:(NSString*) key  {
+
+    FLAssertStringIsNotEmpty_(key);
+    FLAssertNotNil_(breadcrumb);
                 
     if(!breadcrumb.enabledTextColor) {
         breadcrumb.enabledTextColor = self.enabledTextColor;
@@ -109,7 +98,20 @@
     [self setNeedsLayout];
 }
 
-- (void) _setStringRunFrames:(CTFrameRef) frameRef 
+- (NSAttributedString*) buildAttributedString {
+    NSMutableAttributedString* outString = FLAutorelease([[NSMutableAttributedString alloc] init]);
+    for(FLBreadcrumb* breadcrumb in _breadcrumbs.forwardObjectEnumerator) {
+        if(FLStringIsEmpty(breadcrumb.string) || breadcrumb.isHidden) {
+            continue;
+        }
+    
+        [outString appendAttributedString:breadcrumb.attributedString];
+    }
+    
+    return outString;
+}
+
+- (void) setStringRunFrames:(CTFrameRef) frameRef 
                       offset:(CGFloat) offset {
 
     for(FLBreadcrumb* breadcrumb in _breadcrumbs.forwardObjectEnumerator) {
@@ -121,19 +123,7 @@
     if(lineCount) {
         CGPoint origins[lineCount];
         
-        CGPoint* fuckyou = origins;
-        
-        for(int i = 0; i < lineCount; i++) {
-            origins[i].x = 0;
-            origins[i].y = 0;
-        
-        }
-        
-        CGRect rect;
-        
-        rect = FLRectCenterRectInRect(self.bounds, rect);
-        
-        CTFrameGetLineOrigins(frameRef, CFRangeMake(0, 0), fuckyou);
+        CTFrameGetLineOrigins(frameRef, CFRangeMake(0, 0), origins);
 
         for(CFIndex lineIndex = 0; lineIndex < lineCount; lineIndex++) {
             CTLineRef line = CFArrayGetValueAtIndex(lines, lineIndex);
@@ -170,41 +160,37 @@
     }
 }
 
-- (void) setNeedsLayout {
-    [super setNeedsLayout];
-    
-    if(_frameRef) {
-        CFRelease(_frameRef);
-        _frameRef = nil;
-    }
-    
-    [self setNeedsDisplay];
-}
-
-- (void) _layoutFrameInContext:(CGContextRef) context {
+- (CTFrameRef) createFrameForCGContext:(CGContextRef) context {
     NSAttributedString* attributedStringToDraw = [self buildAttributedString];
 
     CGRect bounds = self.bounds;
-
+    
     CTFramesetterRef framesetter = nil;
     CGMutablePathRef path = CGPathCreateMutable();
-    if(!path) goto done;
-    
-    CGPathAddRect(path, NULL, bounds);
+    if(!path) {
+        return nil;
+    }
 
-    framesetter = CTFramesetterCreateWithAttributedString(bridge_(CFAttributedStringRef, attributedStringToDraw));
-    if(!framesetter) goto done;
+    @try {
+    
+        CGPathAddRect(path, NULL, bounds);
+
+        framesetter = CTFramesetterCreateWithAttributedString(bridge_(CFAttributedStringRef, attributedStringToDraw));
+        if(!framesetter) {
+            return nil;
+        }
    
-    // Create the frame and draw it into the graphics context
-    _frameRef = CTFramesetterCreateFrame(framesetter,
-                                          CFRangeMake(0, attributedStringToDraw.length), path, NULL);
+        // Create the frame and draw it into the graphics context
+        CTFrameRef frameRef = CTFramesetterCreateFrame(framesetter,
+                                          CFRangeMake(0, 0), path, NULL);
     
-    if(!_frameRef) goto done;
+        if(!frameRef) {
+            return nil;
+        }
+        
+        CGFloat boxOffset = 0.0f;
 
-    CGFloat boxOffset = 0.0f;
-
-    if(_verticalTextAlignment != FLVerticalTextAlignmentTop) {
-        CFArrayRef lines = CTFrameGetLines(_frameRef);
+        CFArrayRef lines = CTFrameGetLines(frameRef);
         CFIndex lineCount = CFArrayGetCount(lines);
         if(lineCount) {
             CGFloat size = 0;
@@ -237,18 +223,21 @@
                 }
             }
         }
+        
+        [self setStringRunFrames:frameRef offset:boxOffset];
+
+        return frameRef;
+    }
+    @finally {
+        if(path) {
+            CFRelease(path);
+        } 
+        if(framesetter) {
+            CFRelease(framesetter);
+        }
     }
 
-    [self _setStringRunFrames:_frameRef offset:boxOffset];
-
-done:
-    
-    if(path) {
-        CFRelease(path);
-    } 
-    if(framesetter) {
-        CFRelease(framesetter);
-    }
+    return nil;
 }
 
 - (void) drawRect:(CGRect) drawRect {
@@ -256,6 +245,10 @@ done:
 
     CGContextRef context = FLGraphicsGetCurrentContext();
     CGContextSaveGState(context);
+#if OSX
+    CGContextSetTextMatrix(context, CGAffineTransformIdentity);
+#endif
+
 
 #if IOS
     // flip to context coordinates for drawing text.
@@ -264,15 +257,20 @@ done:
     CGContextScaleCTM(context, 1.0, -1.0);
 #endif
 
-    if(!_frameRef) {    
-        [self _layoutFrameInContext:context];
+    CTFrameRef frameRef = [self createFrameForCGContext:context];
+    @try {
+        if(frameRef) {
+            CTFrameDraw(frameRef, context);
+        }
     }
-    
-    if(_frameRef) {
-        CTFrameDraw(_frameRef, context);
+    @finally {
+        if(frameRef) {
+            CFRelease(frameRef);
+        }
+        
+        CGContextRestoreGState(context);
     }
      
-    CGContextRestoreGState(context);
 }
 
 - (FLBreadcrumb*) breadcrumbAtPoint:(CGPoint) point {
@@ -282,6 +280,11 @@ done:
         }
     }
     return nil;
+}
+
+- (void) setNeedsLayout {
+    [super setNeedsLayout];
+    [self setNeedsDisplay];
 }
 
 

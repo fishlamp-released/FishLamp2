@@ -11,12 +11,12 @@
 
 @interface NSValue (FLCompatibility)
 
-+ (NSValue *)valueWithFLPoint:(CGPoint)point;
-+ (NSValue *)valueWithFLSize:(FLSize)size;
-+ (NSValue *)valueWithFLRect:(CGRect)rect;
++ (NSValue *)valueWithCGPoint:(CGPoint)point;
++ (NSValue *)valueWithCGSize:(CGSize)size;
++ (NSValue *)valueWithCGRect:(CGRect)rect;
 
-- (CGPoint) FLPointValue;
-- (FLSize) FLSizeValue;
-- (CGRect) FLRectValue;
+- (CGPoint) CGPointValue;
+- (CGSize) CGSizeValue;
+- (CGRect) CGRectValue;
 
 @end

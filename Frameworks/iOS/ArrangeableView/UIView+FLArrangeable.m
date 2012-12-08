@@ -71,8 +71,8 @@ FLSynthesizeAssociatedProperty(retain_nonatomic, arrangement, setArrangement, FL
 
 
 
-- (void) calculateArrangementSize:(FLSize*) outSize
-                           inSize:(FLSize) inSize
+- (void) calculateArrangementSize:(CGSize*) outSize
+                           inSize:(CGSize) inSize
                          fillMode:(FLArrangeableGrowMode) fillMode {
 }
 

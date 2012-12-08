@@ -65,6 +65,6 @@
 - (UIFont*) titleFont;
 - (CGRect) rectUsedForCenteringSubviews;
 - (void) updateImageAndTextViewPositions;
-- (FLSize) defaultSize;
+- (CGSize) defaultSize;
 @end
 

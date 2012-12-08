@@ -118,11 +118,11 @@ FLSynthesizeStructProperty(imageContentMode, setImageContentMode, FLWidgetImageC
                 if(_imageFrameFlags.showFrame) borderSize += ((_frameWidth*1.5)*2);
                 if(_imageFrameFlags.showStack) borderSize += (_frameWidth*1.5);
                 
-                FLSize scaledSize = self.frame.size;
+                CGSize scaledSize = self.frame.size;
                 scaledSize.height -= borderSize;
                 scaledSize.width -= borderSize;
                 
-                FLSize optimalSize = image.size;
+                CGSize optimalSize = image.size;
                 if( optimalSize.width <= scaledSize.width && 
                     optimalSize.height <= scaledSize.height &&
                     self.imageContentMode == FLWidgetImageContentModeScaleAspectFitOptimalSize)

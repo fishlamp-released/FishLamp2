@@ -47,7 +47,7 @@
 }
    
    
-- (FLSize)sizeThatFits:(FLSize) inSize {
+- (CGSize)sizeThatFits:(CGSize) inSize {
 
 
     return inSize;

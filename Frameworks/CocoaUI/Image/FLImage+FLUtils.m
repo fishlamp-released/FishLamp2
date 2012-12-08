@@ -57,7 +57,7 @@
 
 //- (NSUInteger) imageSize
 //{
-//	  FLSize size = self.size;
+//	  CGSize size = self.size;
 //		
 //	size_t bits = CGImageGetBitsPerComponent(self.CGImage);
 //		
@@ -66,12 +66,12 @@
 //	return outSize;
 //}
 
-- (void)imageByScalingAndCroppingForSize:(FLImage**) outImage targetSize:(FLSize)targetSize
+- (void)imageByScalingAndCroppingForSize:(FLImage**) outImage targetSize:(CGSize)targetSize
 {
 #if IOS
 	FLImage *sourceImage = self;
 	FLImage *newImage = nil;	   
-	FLSize imageSize = sourceImage.size;
+	CGSize imageSize = sourceImage.size;
 	CGFloat width = imageSize.width;
 	CGFloat height = imageSize.height;
 	CGFloat targetWidth = targetSize.width;
@@ -142,8 +142,8 @@
             }
             else
             {
-                FLSize size = self.size;
-                FLSize targetSize = size;
+                CGSize size = self.size;
+                CGSize targetSize = size;
                 
                 if(size.width > size.height)
                 {
@@ -229,7 +229,7 @@
         CGRectMake(0,0, self.size.width, self.size.height) :
 		CGRectMake(0,0, self.size.height, self.size.width);
 	
-    FLSize rotatedSize = rotatedFrame.size;
+    CGSize rotatedSize = rotatedFrame.size;
 
 	// Create the bitmap context
 	UIGraphicsBeginImageContext(rotatedSize);
@@ -265,7 +265,7 @@
 {
 #if IOS
 	CGRect rotatedFrame = CGRectMake(0,0, self.size.width, self.size.height);
-	FLSize rotatedSize = rotatedFrame.size;
+	CGSize rotatedSize = rotatedFrame.size;
 
 	// Create the bitmap context
 	UIGraphicsBeginImageContext(rotatedSize);

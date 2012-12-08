@@ -39,11 +39,11 @@
     return FLAutorelease([[FLToolbarTitleView alloc] init]);
 }
 
-- (void) setSubviewSize:(FLSize) size {
+- (void) setSubviewSize:(CGSize) size {
     _textLabel.frame = FLRectSetSizeWithSize(_textLabel.frame, size);
 }
 
-- (FLSize) subviewSizeThatFitsInBounds:(CGRect) bounds {
+- (CGSize) subviewSizeThatFitsInBounds:(CGRect) bounds {
     return [_textLabel sizeThatFitsText];
 }
 

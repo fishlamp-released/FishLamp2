@@ -56,9 +56,9 @@
 
 - (void) calculateCellHeightInTable:(UITableView *)tableView
 {	
-	FLSize labelSize = [self textLabelSizeForContentViewWidth:[self layoutRectWidthFromTableView:tableView]];
+	CGSize labelSize = [self textLabelSizeForContentViewWidth:[self layoutRectWidthFromTableView:tableView]];
 
-	FLSize valueSize = [self valueTextSizeForContentViewWidth:[self layoutRectWidthFromTableView:tableView]];
+	CGSize valueSize = [self valueTextSizeForContentViewWidth:[self layoutRectWidthFromTableView:tableView]];
 
 	self.cellHeight = labelSize.height + valueSize.height + kHeightOffset + self.sectionPadding.top + self.sectionPadding.bottom;
 }

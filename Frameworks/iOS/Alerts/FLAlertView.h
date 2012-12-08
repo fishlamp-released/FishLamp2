@@ -28,14 +28,14 @@ typedef enum {
 
     CGFloat _colorBarSize;
     CGFloat _triangleSize;
-    FLSize _buttonSize;
+    CGSize _buttonSize;
     CGFloat _buttonCornerRadius;
     CGFloat _titleHeight;
 }
 
 @property (readwrite, assign, nonatomic) CGFloat triangleSize;
 @property (readwrite, assign, nonatomic) CGFloat colorBarSize;
-@property (readwrite, assign, nonatomic) FLSize buttonSize;
+@property (readwrite, assign, nonatomic) CGSize buttonSize;
 @property (readwrite, assign, nonatomic) CGFloat buttonCornerRadius;
 @property (readwrite, assign, nonatomic) CGFloat titleHeight;
 

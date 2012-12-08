@@ -25,6 +25,9 @@
 + (id) finisherWithResultBlock:(FLResultBlock) completion {
     return FLAutorelease([[[self class] alloc] initWithResultBlock:completion]);
 }
++ (id) finisher:(FLResultBlock) completion {
+    return FLAutorelease([[[self class] alloc] initWithResultBlock:completion]);
+}
 
 + (FLFinisherNotificationSchedulerBlock) scheduleNotificationInMainThreadBlock {
     static FLFinisherNotificationSchedulerBlock s_block = ^(dispatch_block_t notifier) {

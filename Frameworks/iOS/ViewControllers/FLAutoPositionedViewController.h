@@ -22,7 +22,7 @@
 
 // default view size, this is the size the view will START with
 // but it'll probably be adusted by the view.
-+ (FLSize) defaultAutoPostionedViewSize;
++ (CGSize) defaultAutoPostionedViewSize;
 
 // this is passed onto the view. 
 @property (readwrite, assign, nonatomic) CGFloat viewAlpha;

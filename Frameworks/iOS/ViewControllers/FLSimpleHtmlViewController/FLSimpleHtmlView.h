@@ -35,7 +35,7 @@
 - (void) beginLoadingUrl:(NSURL*) url
 		 spinnerStyle:(UIActivityIndicatorViewStyle) spinnerStyle;
 
-- (void) setSizeToLoadedSizeWithMaxSize:(FLSize) maxSize;
+- (void) setSizeToLoadedSizeWithMaxSize:(CGSize) maxSize;
 
 - (void) startSpinner:(UIActivityIndicatorViewStyle) style;
 - (void) stopSpinner;

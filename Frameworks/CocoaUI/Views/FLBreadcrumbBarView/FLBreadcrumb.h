@@ -21,6 +21,7 @@ typedef void (^FLBreadcrumbTouchedBlock)(FLBreadcrumb* breadcrumb);
     FLFont* _textFont;
 
     NSString* _string;
+    
     FLBreadcrumbTouchedBlock _touchedBlock;
     NSMutableArray* _runFrames;
     

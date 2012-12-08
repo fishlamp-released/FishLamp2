@@ -108,7 +108,7 @@ FIXME("attach to user sessions....");
 {
 	if(cachedImage.imageFile.hasImage)
 	{
-		FLSize size = cachedImage.imageFile.imageDimensions;
+		CGSize size = cachedImage.imageFile.imageDimensions;
 	
 		if(MIN(size.width, size.height) <= _maxLongSideForInMemoryCache)
 		{

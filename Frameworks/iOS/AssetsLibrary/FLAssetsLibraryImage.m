@@ -377,9 +377,9 @@
 	FLReleaseWithNil_(_image);
 }
 
-- (FLSize) imageDimensions
+- (CGSize) imageDimensions
 {
-    FLSize dimensions = CGSizeZero;
+    CGSize dimensions = CGSizeZero;
     NSDictionary* metadata = self.asset.defaultRepresentation.metadata;
     if(metadata)
     {

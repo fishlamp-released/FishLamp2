@@ -38,19 +38,19 @@
 }
 #endif
 
-- (FLSize) layoutArrangeableObjects:(NSArray*) objects
+- (CGSize) layoutArrangeableObjects:(NSArray*) objects
                            inBounds:(CGRect) bounds {
     return bounds.size;
 }
 
-- (FLSize) performArrangement:(NSArray*) arrangeableFrames 
+- (CGSize) performArrangement:(NSArray*) arrangeableFrames 
                 inBounds:(CGRect) bounds {
 
     if(_onWillArrange) {
         _onWillArrange(self, bounds);
     }   
     
-    FLSize layoutSize = [self layoutArrangeableObjects:arrangeableFrames
+    CGSize layoutSize = [self layoutArrangeableObjects:arrangeableFrames
                                               inBounds:FLRectInsetWithEdgeInsets(bounds, self.outerInsets)];
     
     layoutSize.width += (self.outerInsets.left + self.outerInsets.right);
@@ -89,7 +89,7 @@ CGRect FLArrangeableStateCalcFrame(FLArrangeableState state, CGRect frame) {
     
     if( growMode == FLArrangeableGrowModeGrowWidth ||
         growMode == FLArrangeableGrowModeGrowHeight) {
-        FLSize size = newFrame.size;
+        CGSize size = newFrame.size;
         [object calculateArrangementSize:&size inSize:newFrame.size fillMode:growMode];
         
         newFrame.size = size;

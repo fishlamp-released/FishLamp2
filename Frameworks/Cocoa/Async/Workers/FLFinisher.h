@@ -32,6 +32,7 @@ typedef void (^FLFinisherNotificationSchedulerBlock)(dispatch_block_t notifier);
 - (id) initWithResultBlock:(FLResultBlock) resultBlock;
 
 + (id) finisher;
++ (id) finisher:(FLResultBlock) resultBlock;
 + (id) finisherWithResultBlock:(FLResultBlock) resultBlock;
 
 - (void) setFinished;

@@ -28,7 +28,7 @@ extern CGFloat kFrameSize;
 	
 	CGFloat _foregoundThumbnailScale;
 	CGPoint _scaledForegroundThumbnailOffset;
-	FLSize _maxSize;
+	CGSize _maxSize;
 }
 
 @property (readwrite, assign, nonatomic) BOOL showFrame;
@@ -39,7 +39,7 @@ extern CGFloat kFrameSize;
 @property (readwrite, retain, nonatomic) UIImage* foregroundThumbnail;
 @property (readwrite, retain, nonatomic) UIImage* backgroundThumbnail;
 
-@property (readwrite, assign, nonatomic) FLSize maxSize;
+@property (readwrite, assign, nonatomic) CGSize maxSize;
 	   
 - (void) clearThumbnails;
 

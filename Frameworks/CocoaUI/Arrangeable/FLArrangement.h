@@ -38,7 +38,7 @@ typedef void (^FLArrangementFrameSetter)(id view, CGRect newFrame);
 + (id) arrangement;
 
 // each item must implement methods in FLArrangeable
-- (FLSize) performArrangement:(NSArray*) arrayOfArrangeabeFrames
+- (CGSize) performArrangement:(NSArray*) arrayOfArrangeabeFrames
                      inBounds:(CGRect) bounds;
 
 // utils for subclasses.
@@ -50,7 +50,7 @@ typedef void (^FLArrangementFrameSetter)(id view, CGRect newFrame);
 
 // override point. Returns size of new bounds - can be same size as input bounds.
 // each item must implement methods in FLArrangeable
-- (FLSize) layoutArrangeableObjects:(NSArray*) objects
+- (CGSize) layoutArrangeableObjects:(NSArray*) objects
                            inBounds:(CGRect) bounds;
 
 + (FLArrangementFrameSetter) defaultFrameSetter;

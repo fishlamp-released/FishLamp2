@@ -24,10 +24,10 @@
 @property (nonatomic, strong)	 NSString		*text;		   
 @property (readwrite, copy, nonatomic) FLTextDescriptor* textDescriptor;
 
-- (FLSize) sizeThatFitsText:(FLSize) size;
-- (FLSize) sizeThatFitsText;
-- (FLSize) sizeToFitText;
-- (FLSize) sizeToFitText:(FLSize) size;
+- (CGSize) sizeThatFitsText:(CGSize) size;
+- (CGSize) sizeThatFitsText;
+- (CGSize) sizeToFitText;
+- (CGSize) sizeToFitText:(CGSize) size;
 - (CGFloat) heightOfTextForWidth:(CGFloat) width;
 - (CGFloat) heightOfTextForWidth:(CGFloat) width andString:(NSString*) string;
 

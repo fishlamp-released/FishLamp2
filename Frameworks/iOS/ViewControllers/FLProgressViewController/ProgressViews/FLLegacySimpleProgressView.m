@@ -118,7 +118,7 @@ FLSynthesizeStructProperty(maximizeWidth, setMaximizeWidth, BOOL, _style);
 #define MinWidthWithProgress 120
 #define TextMargin 20
 
-- (FLSize) setContentModes:(UIView*) containerView
+- (CGSize) setContentModes:(UIView*) containerView
 {
 	CGRect progressFrame = CGRectMake(0,0,0,0);
 
@@ -138,7 +138,7 @@ FLSynthesizeStructProperty(maximizeWidth, setMaximizeWidth, BOOL, _style);
 //		  _textLabel.text = _style.title;
 		_textLabel.frameOptimizedForSize = FLRectSetSize(_textLabel.frame, 0,0);
 		
-		FLSize size = [_textLabel sizeThatFitsText:FLSizeMake(CGFLOAT_MAX, CGFLOAT_MAX)];
+		CGSize size = [_textLabel sizeThatFitsText:FLSizeMake(CGFLOAT_MAX, CGFLOAT_MAX)];
 		size.height = 20;
 //		  size.height += 2; // for some reason it's cutting off decenders
 		

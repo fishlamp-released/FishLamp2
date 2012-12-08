@@ -40,17 +40,17 @@
     if(!val) {
         id view = [_views objectForKey:key];
         if(view) {
-            val = [NSValue valueWithFLRect:[view frame]];
+            val = [NSValue valueWithCGRect:[view frame]];
             [_frames setObject:val forKey:key];
         }
     }
 
-    return val ? [val FLRectValue] : FLRectZero;
+    return val ? [val CGRectValue] : CGRectZero;
 
 }
 
 - (void) setLayoutFrame:(CGRect) frame forKey:(id) key {
-    [_frames setObject:[NSValue valueWithFLRect:frame] forKey:key];
+    [_frames setObject:[NSValue valueWithCGRect:frame] forKey:key];
 }
 
 - (void) updateLayoutInBounds:(CGRect) bounds {
@@ -73,7 +73,7 @@
         id view = [_views objectForKey:key];
         NSValue* val = [_frames objectForKey:key];
         if(val) {
-            [view setFrame:[val FLRectValue]];
+            [view setFrame:[val CGRectValue]];
         }
     }
 }

@@ -67,11 +67,11 @@
 
 - (void) enabledStateDidChange;
 
-+ (FLSize) calculateLabelSize:(UILabel*) label
++ (CGSize) calculateLabelSize:(UILabel*) label
 	layoutRectWidth:(CGFloat) layoutRectWidth
 	returnValidHeight:(BOOL) returnValidHeight;
 
-- (FLSize) textLabelSizeForContentViewWidth:(CGFloat) width;
+- (CGSize) textLabelSizeForContentViewWidth:(CGFloat) width;
 
 - (void) updateTextLabelSizeWithLayoutRectWidth:(CGFloat) layoutRectWidth;
 

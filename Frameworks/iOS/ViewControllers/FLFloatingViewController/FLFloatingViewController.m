@@ -571,7 +571,7 @@ FLSynthesizeStructProperty(contentViewIsModal, setContentViewIsModal, BOOL, _sta
 {
     FLFloatingView* view = self.floatingView;
 
-    FLSize size = self.contentViewSize;
+    CGSize size = self.contentViewSize;
 
 	CGRect myFrame = FLRectSetSize(view.frame, 
 		size.width + (view.frameWidth*2), 
@@ -609,7 +609,7 @@ FLSynthesizeStructProperty(contentViewIsModal, setContentViewIsModal, BOOL, _sta
 	[view setNeedsLayout];
 }
 
-- (void) setContentViewSize:(FLSize)size animated:(BOOL)animated
+- (void) setContentViewSize:(CGSize)size animated:(BOOL)animated
 {
     FLAssert_v(!FLSizeIsEmpty(size), @"empty size");
     FLAssert_v(size.height > 0, @"invalid height");
@@ -619,7 +619,7 @@ FLSynthesizeStructProperty(contentViewIsModal, setContentViewIsModal, BOOL, _sta
 	[self resizeToContentSizeAnimated:animated];
 }
 
-- (void) setContentViewSize:(FLSize) size
+- (void) setContentViewSize:(CGSize) size
 {
 	[self setContentViewSize:size animated:YES];
 }
@@ -661,13 +661,13 @@ FLSynthesizeAssociatedProperty(retain_nonatomic, contentSizeForViewInFloatingVie
     return [[self parentViewController] floatingViewController];
 }
 
-- (FLSize) contentSizeForViewInFloatingView {
+- (CGSize) contentSizeForViewInFloatingView {
     NSValue* value = self.contentSizeForViewInFloatingViewValue;
 
     return value ? [value FLSizeValue] : CGSizeZero;
 }
 
-- (void) setContentSizeForViewInFloatingView:(FLSize) size {
+- (void) setContentSizeForViewInFloatingView:(CGSize) size {
     self.contentSizeForViewInFloatingViewValue = [NSValue valueWithFLSize:size];
 }
 

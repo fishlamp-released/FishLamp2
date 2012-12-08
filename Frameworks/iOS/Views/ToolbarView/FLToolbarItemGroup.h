@@ -48,5 +48,5 @@
                    imageColor:(FLImageColor) colorOfImageInFile
                   buttonPress:(FLButtonPress) buttonPress;
 
-- (void) addEmptyItem:(FLSize) size;
+- (void) addEmptyItem:(CGSize) size;
 @end

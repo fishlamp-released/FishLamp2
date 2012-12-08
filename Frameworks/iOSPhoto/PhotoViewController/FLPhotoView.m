@@ -16,7 +16,7 @@
 
 
 @interface FLPhotoImageView : UIImageView {
-	FLSize _imageSize;
+	CGSize _imageSize;
 	FLPhotoViewImageSize _imageSizeEnum;
 	BOOL _autoZoom;
 }
@@ -32,7 +32,7 @@
 	CGRect frame = CGRectZero;
 	if(self.superview)
 	{
-		FLSize size = _imageSize;
+		CGSize size = _imageSize;
 			
 		CGRect superbounds = self.superview.bounds;
 		if( !_autoZoom && 

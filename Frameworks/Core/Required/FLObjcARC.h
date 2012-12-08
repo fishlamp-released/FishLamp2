@@ -41,7 +41,7 @@
             __OBJ__ = nil
 
 #define FLAssignObjectWithRetain(__ASSIGN_TO_,__OBJ__) \
-            _ASSIGN_TO_ = __OBJ__
+            __ASSIGN_TO_ = __OBJ__
 
 #define FLAssignObjectWithCopy(__ASSIGN_TO_,__OBJ__) \
             __ASSIGN_TO_ = [__OBJ__ copy]

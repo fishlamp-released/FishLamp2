@@ -291,14 +291,14 @@ CGRect FLRectAddSize(CGRect rect, CGFloat width, CGFloat height) {
 }
 
 FL_SHIP_ONLY_INLINE 
-CGRect FLRectAddSizeWithSize(CGRect rect, FLSize size) {
+CGRect FLRectAddSizeWithSize(CGRect rect, CGSize size) {
 	rect.size.width += size.width;
 	rect.size.height += size.height;
 	return rect;
 }
 
 FL_SHIP_ONLY_INLINE 
-CGRect FLRectSetSizeWithSize(CGRect rect, FLSize size) {
+CGRect FLRectSetSizeWithSize(CGRect rect, CGSize size) {
 	rect.size = size;
 	return rect;
 }
@@ -311,7 +311,7 @@ CGRect FLRectScale(CGRect rect, CGFloat scaleFactor) {
 }
 
 FL_SHIP_ONLY_INLINE 
-CGRect FLRectMakeWithSize(FLSize size) {	
+CGRect FLRectMakeWithSize(CGSize size) {	
 	return FLRectMake(0,0,size.width, size.height);
 }
 

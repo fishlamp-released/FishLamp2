@@ -46,7 +46,7 @@
     [self _update];
 }
 
-- (void) resize:(FLSize) newSize
+- (void) resize:(CGSize) newSize
 {
 	CGRect frame = self.frame;
 	if(self.willUnderline)

@@ -33,7 +33,7 @@
     return self;   
 }
 
-+ (FLSize) defaultAutoPostionedViewSize {
++ (CGSize) defaultAutoPostionedViewSize {
     return FLSizeMake(200,200);
 }
 

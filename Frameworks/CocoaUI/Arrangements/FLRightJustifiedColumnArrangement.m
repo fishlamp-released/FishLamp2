@@ -10,7 +10,7 @@
 
 @implementation FLRightJustifiedColumnArrangement 
 
-- (FLSize) layoutArrangeableObjects:(NSArray*) objects
+- (CGSize) layoutArrangeableObjects:(NSArray*) objects
                            inBounds:(CGRect) bounds {
 
 	CGPoint topRight = FLRectGetTopRight(bounds);

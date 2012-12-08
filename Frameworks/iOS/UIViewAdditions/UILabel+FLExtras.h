@@ -10,16 +10,16 @@
 
 
 @interface UILabel (FLExtras)
-- (FLSize) sizeThatFitsText:(FLSize) size;
-- (FLSize) sizeThatFitsText;
-- (FLSize) sizeToFitText;
-- (FLSize) sizeToFitText:(FLSize) size;
+- (CGSize) sizeThatFitsText:(CGSize) size;
+- (CGSize) sizeThatFitsText;
+- (CGSize) sizeToFitText;
+- (CGSize) sizeToFitText:(CGSize) size;
 - (void) drawUnderline:(CGRect) inRect 
 	withColor:(UIColor*) color
 	withLineWidth:(CGFloat) width; 
 	
 - (void)sizeToFitWidth:(CGFloat)fixedWidth;
-- (FLSize)sizeThatFitsWidth:(CGFloat)fixedWidth;
+- (CGSize)sizeThatFitsWidth:(CGFloat)fixedWidth;
 
 - (void) addGlow;
 

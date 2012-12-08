@@ -312,7 +312,7 @@ void FLGradientButtonColorLightGray(id button)
 	[self resizeImageToSmallSize];
 }
 
-- (FLSize) defaultSize
+- (CGSize) defaultSize
 {
 	return FLSizeMake(80,32);
 }
@@ -321,7 +321,7 @@ void FLGradientButtonColorLightGray(id button)
 {
 	if(self.superview)
 	{
-		FLSize size = self.frame.size;
+		CGSize size = self.frame.size;
 		if(FLStringIsNotEmpty(self.titleLabel.text))
 		{
 			[self.titleLabel sizeToFitText];
@@ -459,7 +459,7 @@ void FLGradientButtonColorLightGray(id button)
 	[self resizeImageToSmallSize];
 }
 
-- (FLSize) defaultSize
+- (CGSize) defaultSize
 {
 	return FLSizeMake(80,40);
 }
@@ -468,7 +468,7 @@ void FLGradientButtonColorLightGray(id button)
 
 @implementation FLSmallButtonDeprecated
 
-- (FLSize) defaultSize {
+- (CGSize) defaultSize {
 	return FLSizeMake(80,32);
 }
 

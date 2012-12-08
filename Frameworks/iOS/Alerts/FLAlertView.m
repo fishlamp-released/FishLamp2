@@ -72,7 +72,7 @@
 
 #define kBuffer 10.0
 
-- (FLSize)sizeThatFits:(FLSize) inSize {
+- (CGSize)sizeThatFits:(CGSize) inSize {
     
     UIEdgeInsets padding = self.innerInsets;
 

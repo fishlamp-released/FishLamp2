@@ -16,7 +16,7 @@
 
 @implementation FLLoginViewController
 
-+ (FLSize) defaultAutoPostionedViewSize {
++ (CGSize) defaultAutoPostionedViewSize {
     return DeviceIsPad() ? FLSizeMake(320,200) : FLSizeMake(300,200);
 }
 

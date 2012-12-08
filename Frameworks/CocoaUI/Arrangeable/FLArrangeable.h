@@ -69,8 +69,8 @@ static const FLArrangeableState FLArrangeableStateZero;
 @property (readwrite, assign, nonatomic) CGRect arrangeableFrame;
 
 // override point
-- (void) calculateArrangementSize:(FLSize*) outSize
-                           inSize:(FLSize) inSize
+- (void) calculateArrangementSize:(CGSize*) outSize
+                           inSize:(CGSize) inSize
                          fillMode:(FLArrangeableGrowMode) fillMode;
 
 // for internal use by arrangement

@@ -251,11 +251,11 @@
 	_textView.editable = !self.disabled;
 }
 
-- (FLSize) valueTextSizeForContentViewWidth:(CGFloat) width
+- (CGSize) valueTextSizeForContentViewWidth:(CGFloat) width
 {
 	if(_numberOfLines)
 	{
-		FLSize size = [@"Ty" sizeWithFont:self.valueLabel.font
+		CGSize size = [@"Ty" sizeWithFont:self.valueLabel.font
 							constrainedToSize:FLSizeMake(width,CGFLOAT_MAX)
 							lineBreakMode:self.valueLabel.lineBreakMode];
 		size.height += 2;

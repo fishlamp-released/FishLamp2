@@ -39,7 +39,7 @@
 	super_dealloc_();
 }
 
-- (FLSize)sizeThatFits:(FLSize)size
+- (CGSize)sizeThatFits:(CGSize)size
 {
 	if(_image)
 	{

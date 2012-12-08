@@ -10,7 +10,6 @@
 
 @implementation FLFrame
 
-//@synthesize tag = _tag;
 @synthesize controlState = _controlState;
 @synthesize frame = _frame;
 @synthesize hidden = _hidden;
@@ -36,7 +35,7 @@
 }
 
 - (id) init {
-    self = [self initWithFrame:FLRectZero];
+    self = [self initWithFrame:CGRectZero];
     if(self) {
     }
     return self;
@@ -123,8 +122,8 @@
     FLSetOrClearBits(_controlState, FLControlStateDisabled, disabled);
 }
 
-- (void) calculateArrangementSize:(FLSize*) outSize
-                           inSize:(FLSize) inSize
+- (void) calculateArrangementSize:(CGSize*) outSize
+                           inSize:(CGSize) inSize
                          fillMode:(FLArrangeableGrowMode) growMode {
 }
 

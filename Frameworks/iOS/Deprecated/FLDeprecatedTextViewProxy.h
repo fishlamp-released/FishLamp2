@@ -50,7 +50,7 @@
 
 // not all of the proxied views respond to these selectors, if not, it's a no-op
 @property (nonatomic, retain, readwrite) UIColor* shadowColor; 
-@property (nonatomic, assign, readwrite) FLSize shadowOffset;
+@property (nonatomic, assign, readwrite) CGSize shadowOffset;
 
 @property (nonatomic, copy, readwrite) FLTextDescriptor* textDescriptor;
 

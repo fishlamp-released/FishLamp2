@@ -41,7 +41,7 @@
 
 - (void) adjustSpinnerFrame;
 
-- (FLSize) valueTextSizeForContentViewWidth:(CGFloat) width;
+- (CGSize) valueTextSizeForContentViewWidth:(CGFloat) width;
 	
 @end
 

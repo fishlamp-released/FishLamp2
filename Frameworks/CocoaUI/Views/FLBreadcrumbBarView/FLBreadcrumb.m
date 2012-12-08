@@ -8,9 +8,8 @@
 
 #import "FLBreadcrumb.h"
 
-
-
 @implementation FLBreadcrumb
+
 @synthesize enabledTextColor = _enabledTextColor;
 @synthesize disabledTextColor = _disabledTextColor;
 @synthesize highlightedTextColor = _highlightedTextColor;
@@ -31,7 +30,7 @@
     self = [super init];
     if(self) {
         _runFrames = [[NSMutableArray alloc] init];
-        self.string = @"y"; // string;
+        self.string = string;
     }
     
     return self;
@@ -45,18 +44,17 @@
     return FLAutorelease([[FLBreadcrumb alloc] initWithString:string]);
 }
 
-
 - (void) resetRunFrames {
     [_runFrames removeAllObjects];
 }   
 
 - (void) addRunFrame:(CGRect) frame {
-    [_runFrames addObject:[NSValue valueWithFLRect:frame]];
+    [_runFrames addObject:[NSValue valueWithCGRect:frame]];
 }
 
 - (BOOL) pointInString:(CGPoint) point {
     for(NSValue* value in _runFrames) {
-        if(CGRectContainsPoint([value FLRectValue], point)) {
+        if(CGRectContainsPoint([value CGRectValue], point)) {
             return YES;
         }
     }

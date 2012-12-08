@@ -32,7 +32,7 @@
 	}
 }
 
-- (void) resize:(FLSize) newSize {
+- (void) resize:(CGSize) newSize {
 	self.newFrame = FLRectSetSizeWithSize(self.frame, newSize);
 }
 
@@ -141,7 +141,7 @@
 	return self.superview ? self.superview.bounds : CGRectZero;
 }
 
-- (FLSize) sizeThatFitsInSuperview {
+- (CGSize) sizeThatFitsInSuperview {
 	return self.superview ? [self frameSizedToFitInSuperview:NO].size : CGSizeZero;
 }
 

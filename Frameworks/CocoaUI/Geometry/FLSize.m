@@ -8,4 +8,4 @@
 
 #import "FLSize.h"
 
-const FLSize FLSizeMax = { CGFLOAT_MAX, CGFLOAT_MAX };
+const CGSize FLSizeMax = { CGFLOAT_MAX, CGFLOAT_MAX };

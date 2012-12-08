@@ -39,15 +39,15 @@ typedef enum {
 	   interpolationQuality:(CGInterpolationQuality)quality
 				 makeSquare:(BOOL) makeSquare;
 
-- (FLImage *)resizedImage:(FLSize)newSize
+- (FLImage *)resizedImage:(CGSize)newSize
 	 interpolationQuality:(CGInterpolationQuality)quality;
 
 - (FLImage *)resizedImageWithContentMode:(UIViewContentMode)contentMode
-								  bounds:(FLSize)bounds
+								  bounds:(CGSize)bounds
 					interpolationQuality:(CGInterpolationQuality)quality;
 
-- (CGRect) proportionalBoundsWithMaxSize:(FLSize) maxSize;
+- (CGRect) proportionalBoundsWithMaxSize:(CGSize) maxSize;
 
-- (FLSize) proportionalSizeWithMaxSize:(FLSize) maxSize;
+- (CGSize) proportionalSizeWithMaxSize:(CGSize) maxSize;
 
 @end

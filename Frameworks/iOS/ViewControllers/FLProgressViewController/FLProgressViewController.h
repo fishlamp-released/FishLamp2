@@ -32,13 +32,13 @@
 @interface FLProgressViewController : FLAutoPositionedViewController<FLProgressViewController> {
 @private
     Class _viewClass;
-    FLSize _minSize;
+    CGSize _minSize;
     FLProgressViewControllerBlock _onShowProgress;
     FLProgressViewControllerBlock _onHideProgress;
     FLProgressViewOwner* _progressProxy;
 }
 
-@property (readwrite, assign, nonatomic) FLSize minimumViewSize;
+@property (readwrite, assign, nonatomic) CGSize minimumViewSize;
 
 - (id) initWithProgressViewClass:(Class) viewClass;
 

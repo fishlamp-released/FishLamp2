@@ -70,7 +70,7 @@
 //	  double zoomScale = pow(2, zoomExponent);
 //	  
 //	  // scale the map’s size in pixel space
-//	  FLSize mapSizeInPixels = mapView.bounds.size;
+//	  CGSize mapSizeInPixels = mapView.bounds.size;
 //	  double scaledMapWidth = mapSizeInPixels.width * zoomScale;
 //	  double scaledMapHeight = mapSizeInPixels.height * zoomScale;
 //	  
@@ -113,7 +113,7 @@
 	double zoomScale = pow(2, zoomExponent);
 
 	// scale the map’s size in pixel space
-	FLSize mapSizeInPixels = mapView.bounds.size;
+	CGSize mapSizeInPixels = mapView.bounds.size;
 	double scaledMapWidth = mapSizeInPixels.width * zoomScale;
 	double scaledMapHeight = mapSizeInPixels.height * zoomScale;
 

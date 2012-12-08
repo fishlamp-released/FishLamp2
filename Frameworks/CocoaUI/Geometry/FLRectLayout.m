@@ -7,7 +7,7 @@
 //
 
 #import "FLRectLayout.h"
-#import "CGRect.h"
+#import "FLRect.h"
 
 #if DEBUG
 #import "FLRectLayout_Inlines.h"

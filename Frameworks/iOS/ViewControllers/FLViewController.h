@@ -40,8 +40,8 @@
 	
     FLNavigationControllerAnimation _navigationControllerCloseAnimation;
 	__unsafe_unretained FLViewController* _modalParent;
-    FLSize _floatingViewContentSize;
-    FLSize _startSize;
+    CGSize _floatingViewContentSize;
+    CGSize _startSize;
     
     BOOL _viewIsVisible;
     BOOL _disableBackgroundTasks;
@@ -63,7 +63,7 @@
 @property (readwrite, assign, nonatomic) BOOL disableBackgroundTasks;
 @property (readwrite, assign, nonatomic) FLNavigationControllerAnimation navigationControllerCloseAnimation;
 @property (readonly, assign, nonatomic) BOOL viewIsVisible;
-@property (readwrite, assign, nonatomic) FLSize contentSizeForViewInFloatingView;
+@property (readwrite, assign, nonatomic) CGSize contentSizeForViewInFloatingView;
 
 // only called for active view controller
 - (void) appDidEnterForeground;

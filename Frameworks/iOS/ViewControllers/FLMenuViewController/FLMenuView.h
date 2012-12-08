@@ -20,12 +20,12 @@
     BOOL _madeSelection;
     BOOL _touching;
     NSMutableArray* _menuItems;
-    FLSize _menuItemSize;
+    CGSize _menuItemSize;
 }
 
 @property (readwrite, assign, nonatomic) id<FLMenuViewDelegate> delegate;
 
-@property (readwrite, assign, nonatomic) FLSize menuItemSize;
+@property (readwrite, assign, nonatomic) CGSize menuItemSize;
 @property (readwrite, retain, nonatomic) NSString* menuTitle;
 
 - (void) clearDelegates;

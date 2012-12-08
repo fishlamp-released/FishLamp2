@@ -251,7 +251,7 @@
 
 - (CGFloat) optimalWidth
 {
-    FLSize size = [_label sizeToFitText];
+    CGSize size = [_label sizeToFitText];
     return size.width + kTextLeft + kTextRight;
 }
 

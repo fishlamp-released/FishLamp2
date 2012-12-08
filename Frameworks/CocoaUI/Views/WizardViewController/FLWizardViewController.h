@@ -8,24 +8,11 @@
 
 #import <Cocoa/Cocoa.h>
 
+#import "FLView.h"
 #import "FLBreadcrumbBarView.h"
+#import "FLWizardPanel.h"
 
 @protocol FLWizardViewControllerDelegate;
-@class FLWizardViewController;
-
-@protocol FLWizardPanel <NSObject>
-@optional
-- (void) wizardPanelWillAppear:(FLWizardViewController*) wizard;
-- (void) wizardPanelDidAppear:(FLWizardViewController*) wizard;
-- (void) wizardPanelWillDisappear:(FLWizardViewController*) wizard;
-- (void) wizardPanelDidDisappear:(FLWizardViewController*) wizard;
-
-- (void) wizardPanelRespondToNextButton:(FLWizardViewController*) wizard;
-- (void) wizardPanelRespondToPreviousButton:(FLWizardViewController*) wizard;
-- (void) wizardPanelRespondToOtherButton:(FLWizardViewController*) wizard;
-@end
-
-typedef NSViewController<FLWizardPanel> FLWizardPanel;
 
 @interface FLWizardViewController : NSViewController {
 @private
@@ -42,10 +29,10 @@ typedef NSViewController<FLWizardPanel> FLWizardPanel;
     IBOutlet NSTextField* _titleTextField;
     __unsafe_unretained id<FLWizardViewControllerDelegate> _delegate;
 
-    NSMutableArray* _viewStack;
-    NSMutableArray* _pendingStack;
-    NSMutableArray* _wizardPanels;
+    NSMutableArray* _visibleWizardPanels;
+    NSMutableArray* _queuedWizardPanels;
 }
+
 // delegate
 @property (readwrite, assign, nonatomic) IBOutlet id<FLWizardViewControllerDelegate> delegate;
 
@@ -64,35 +51,67 @@ typedef NSViewController<FLWizardPanel> FLWizardPanel;
 @property (readonly, strong, nonatomic) NSView* wizardPanelEnclosureView;
 
 // panels
+@property (readonly, strong, nonatomic) NSArray* visibleWizardPanels;
+@property (readonly, strong, nonatomic) NSArray* queuedWizardPanels;
 
-@property (readonly, strong, nonatomic) NSArray* wizardPanels;
 @property (readonly, strong, nonatomic) FLWizardPanel* visibleWizardPanel;
-@property (readonly, strong, nonatomic) FLWizardPanel* nextWizardPanel;
-@property (readonly, strong, nonatomic) FLWizardPanel* previousWizardPanel;
+
 - (void) addWizardPanel:(FLWizardPanel*) wizardPanel;
+
 - (void) removeWizardPanel:(FLWizardPanel*) wizardPanel;
 
-
-// visible panels.
-- (void) popWizardPanelAnimated:(BOOL) animated
-                     completion:(void (^)()) completion;
+- (void) presentNextWizardPanelAnimated:(BOOL) animated
+                       completion:(void (^)(FLWizardPanel* newPanel)) completion;
 
 - (void) pushWizardPanel:(FLWizardPanel*) viewController 
                 animated:(BOOL) animated 
-              completion:(void (^)()) completion;
-              
+              completion:(void (^)(FLWizardPanel* newPanel)) completion;
+
+- (void) popWizardPanelAnimated:(BOOL) animated
+                     completion:(void (^)(FLWizardPanel* poppedPanel)) completion;
+
+// visible panels.
+
 - (void) startWizardInWindow:(NSWindow*) window;
 
 // creation
 + (id) wizardViewController;
 
+// optional overrides
+- (void) setWizardPanelTitleFields:(FLWizardPanel*) wizardPanel;
+- (void) wizardPanelDidDissappear:(FLWizardPanel*) wizardPanel;
+- (void) wizardPanelWillDissappear:(FLWizardPanel*) wizardPanel;
+- (void) wizardPanelDidAppear:(FLWizardPanel*) wizardPanel;
+- (void) wizardPanelWillAppear:(FLWizardPanel*) wizardPanel;
+
+// utils
+- (void) updateBackButtonEnabledState;
 @end
 
 @protocol FLWizardViewControllerDelegate <NSObject>
 @optional
 - (void) wizardViewControllerCanStart:(FLWizardViewController*) wizard;
-- (void) wizardViewControllerWillStart:(FLWizardViewController*) wizard;
-- (void) wizardViewControllerDidStart:(FLWizardViewController*) wizard;
-- (void) wizardViewControllerDidFinish:(FLWizardViewController*) wizard;
+
+- (void) wizardViewController:(FLWizardViewController*) wizard 
+     willStartWithWizardPanel:(FLWizardPanel*) wizardPanel;
+
+- (void) wizardViewController:(FLWizardViewController*) wizard 
+      didStartWithWizardPanel:(FLWizardPanel*) wizardPanel;
+
+- (void) wizardViewController:(FLWizardViewController*) wizard 
+     didFinishWithWizardPanel:(FLWizardPanel*) wizardPanel;
+
+- (void) wizardViewController:(FLWizardViewController*) wizard 
+        wizardPanelWillAppear:(FLWizardPanel*) wizardPanel;
+
+- (void) wizardViewController:(FLWizardViewController*) wizard 
+         wizardPanelDidAppear:(FLWizardPanel*) wizardPanel;
+
+- (void) wizardViewController:(FLWizardViewController*) wizard 
+     wizardPanelWillDisappear:(FLWizardPanel*) wizardPanel;
+
+- (void) wizardViewController:(FLWizardViewController*) wizard 
+      wizardPanelDidDisappear:(FLWizardPanel*) wizardPanel;
+
 @end
 

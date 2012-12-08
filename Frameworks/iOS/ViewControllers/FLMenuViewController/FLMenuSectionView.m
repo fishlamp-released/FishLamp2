@@ -46,9 +46,9 @@
     super_dealloc_();
 }
 
-//- (FLSize) layoutSubviewsWithArrangement
+//- (CGSize) layoutSubviewsWithArrangement
 //{
-//    FLSize size = [super layoutSubviewsWithArrangement];
+//    CGSize size = [super layoutSubviewsWithArrangement];
 //    self.frameOptimizedForLocation = FLRectSetSizeWithSize(self.frame, size);
 //    return size;
 //}

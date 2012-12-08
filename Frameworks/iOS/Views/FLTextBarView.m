@@ -85,7 +85,7 @@
 	CGRect labelFrame = insetBounds;
 	labelFrame.size = [self.label sizeToFitText:FLSizeMake(labelFrame.size.width, 2048.0f)];
 	
-	FLSize textSize = _text ? [self.textLabel sizeToFitText:insetBounds.size] : CGSizeZero;
+	CGSize textSize = _text ? [self.textLabel sizeToFitText:insetBounds.size] : CGSizeZero;
 	
 	if(!_text)
 	{

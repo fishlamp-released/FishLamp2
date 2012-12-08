@@ -10,7 +10,7 @@
 
 @implementation FLSingleRowColumnArrangement
 
-- (FLSize) layoutArrangeableObjects:(NSArray*) objects
+- (CGSize) layoutArrangeableObjects:(NSArray*) objects
                          inBounds:(CGRect) bounds {
 	
     CGFloat colWidth = bounds.size.width;

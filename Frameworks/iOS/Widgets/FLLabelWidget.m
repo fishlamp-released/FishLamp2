@@ -124,27 +124,27 @@
     [self setNeedsDisplay];
 }
 
-- (FLSize) sizeThatFitsText:(FLSize) size
+- (CGSize) sizeThatFitsText:(CGSize) size
 {
 	FLAssertIsNotNil_(self.textDescriptor.font);
 	return FLSizeOptimizeForView(	[self.text sizeWithFont:self.textDescriptor.font
 									constrainedToSize:size
 									lineBreakMode:self.lineBreakMode] );
 }
-- (FLSize) sizeThatFitsText
+- (CGSize) sizeThatFitsText
 {
 	return [self sizeThatFitsText:FLSizeMake(2048.0, 2048.0)];
 }
-- (FLSize) sizeToFitText
+- (CGSize) sizeToFitText
 {
 	return [self sizeToFitText:FLSizeMake(2048.0, 2048.0)];
 
 //	  return [self sizeToFitText:FLSizeMake(self.superview ? self.superview.bounds.size.width : 2048.0, 2048.0)];
 }
 
-- (FLSize) sizeToFitText:(FLSize) size
+- (CGSize) sizeToFitText:(CGSize) size
 {
-	FLSize outSize = FLSizeOptimizeForView([self sizeThatFitsText:size]);
+	CGSize outSize = FLSizeOptimizeForView([self sizeThatFitsText:size]);
 	self.frame = FLRectSetSizeWithSize(self.frame, outSize);
 	return outSize;
 }
@@ -168,8 +168,8 @@
 	self.frame = FLRectSetHeight(self.frame, [self heightOfTextForWidth:self.frame.size.width]);
 }
 
-- (void) calculateArrangementSize:(FLSize*) outSize
-                           inSize:(FLSize) inSize
+- (void) calculateArrangementSize:(CGSize*) outSize
+                           inSize:(CGSize) inSize
                          fillMode:(FLArrangeableGrowMode) fillMode {
     
     switch(fillMode) {

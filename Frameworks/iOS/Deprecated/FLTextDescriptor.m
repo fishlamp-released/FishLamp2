@@ -30,7 +30,7 @@
 	highlightedShadowColor:(UIColor*) highlightedShadowColor
 	selectedColor:(UIColor*) selectedColor
 	selectedShadowColor:(UIColor*) selectedShadowColor
-	shadowOffset:(FLSize) shadowOffset
+	shadowOffset:(CGSize) shadowOffset
 {
 	if((self = [super init]))
 	{
@@ -77,7 +77,7 @@
 	highlightedShadowColor:(UIColor*) highlightedShadowColor
 	selectedColor:(UIColor*) selectedColor
 	selectedShadowColor:(UIColor*) selectedShadowColor
-	shadowOffset:(FLSize) shadowOffset
+	shadowOffset:(CGSize) shadowOffset
 {
 	return FLAutorelease([[FLTextDescriptor alloc] initWithFont:font
 		enabledColor:enabledColor

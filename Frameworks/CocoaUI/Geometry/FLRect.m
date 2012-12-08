@@ -6,7 +6,7 @@
 //	Copyright 2009 Greentongue Software. All rights reserved.
 //
 
-#import "CGRect.h"
+#import "FLRect.h"
 
 #if DEBUG
 #import "FLRect_Inlines.h"

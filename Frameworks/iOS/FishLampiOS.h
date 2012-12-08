@@ -23,7 +23,7 @@
 #import "FLGeometry.h"
 #import "CGRect.h"
 #import "CGPoint.h"
-#import "FLSize.h"
+#import "CGSize.h"
 #import "FLEdgeInsets.h"
 
 #import "FLColor+FLExtras.h"

@@ -146,7 +146,7 @@ FLSynthesizeStructProperty(trimWhiteSpace, setTrimWhiteSpace, BOOL, _baseFlags);
 	}
 }
 
-- (FLSize) valueTextSizeForContentViewWidth:(CGFloat) width
+- (CGSize) valueTextSizeForContentViewWidth:(CGFloat) width
 {
 	NSString* text = self.valueLabel.text;
 	if(FLStringIsEmpty(text))
@@ -154,7 +154,7 @@ FLSynthesizeStructProperty(trimWhiteSpace, setTrimWhiteSpace, BOOL, _baseFlags);
 		text = @"Ty"; // capitol + decender
 	}
 
-	FLSize size = [text sizeWithFont:self.valueLabel.font
+	CGSize size = [text sizeWithFont:self.valueLabel.font
 						constrainedToSize:FLSizeMake(width,CGFLOAT_MAX)
 						lineBreakMode:self.valueLabel.lineBreakMode];
 	size.height += 2;

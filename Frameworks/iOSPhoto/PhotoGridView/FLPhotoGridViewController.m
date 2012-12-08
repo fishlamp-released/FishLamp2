@@ -33,7 +33,7 @@
 //    return [FLPhotoGridViewCell photoGridViewCell:item];
 //}
 
-//- (FLSize) cellViewLayoutGetCellSize:(FLCellArrangement*) layout inBounds:(CGRect) bounds
+//- (CGSize) cellViewLayoutGetCellSize:(FLCellArrangement*) layout inBounds:(CGRect) bounds
 //{
 //    return self.view.frame.size;
 //}

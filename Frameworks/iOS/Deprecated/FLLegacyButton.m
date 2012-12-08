@@ -21,7 +21,7 @@
 @synthesize image = _image;
 @synthesize imageView = _imageView;
 
-- (FLSize) defaultSize
+- (CGSize) defaultSize
 {
 	return FLSizeMake(100,40);
 }
@@ -371,7 +371,7 @@
 {
 	if(self.superview)
 	{
-		FLSize size = self.frame.size;
+		CGSize size = self.frame.size;
 		if(FLStringIsNotEmpty(self.titleLabel.text))
 		{
 			[self.titleLabel sizeToFitText];

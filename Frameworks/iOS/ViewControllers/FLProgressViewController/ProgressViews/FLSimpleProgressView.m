@@ -121,9 +121,9 @@
     return _textLabel.text;
 }
 
-- (FLSize)sizeThatFits:(FLSize) inSize {
-    FLSize size = [_textLabel sizeThatFitsText];
-    FLSize outSize = self.bounds.size;
+- (CGSize)sizeThatFits:(CGSize) inSize {
+    CGSize size = [_textLabel sizeThatFitsText];
+    CGSize outSize = self.bounds.size;
     outSize.height = MAX(_minSize.height, kHeight);
     outSize.width = MAX(_minSize.width, 100.0f + size.width + 20.0f);
     return outSize;
@@ -225,8 +225,8 @@
 }
 
 
-- (FLSize)sizeThatFits:(FLSize) inSize {
-    FLSize outSize = [self.textLabel sizeThatFitsText];
+- (CGSize)sizeThatFits:(CGSize) inSize {
+    CGSize outSize = [self.textLabel sizeThatFitsText];
     outSize.width = MAX(self.minSize.width, outSize.width*2);
     outSize.height = MAX(self.minSize.height, outSize.width * 0.40);
     return outSize;

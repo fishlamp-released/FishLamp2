@@ -69,6 +69,8 @@ extern BOOL FLRectLayoutIsValid(FLRectLayout loc);
 
 extern BOOL FLRectLayoutNotNone(FLRectLayout loc);
 
+// FLRect
+
 extern CGRect FLRectLayoutRectInRect(
 	CGRect containerRect,
 	CGRect containeeRect,

@@ -31,7 +31,7 @@
 - (void) scrollToBottom:(BOOL) animated
 {
 	CGRect bounds = self.bounds;
-	FLSize mySize = self.contentSize;
+	CGSize mySize = self.contentSize;
 	if(mySize.height > bounds.size.height)
 	{
 		[self setContentOffset:CGPointMake(0, mySize.height-bounds.size.height+self.contentInset.bottom) animated: animated];

@@ -37,7 +37,7 @@ extern NSString *const FLPopoverViewWasResized;
     FLFloatingViewController* _childPopover;
     __unsafe_unretained FLFloatingViewController* _parentPopover;
 
-	FLSize _contentViewSize;
+	CGSize _contentViewSize;
     FLFloatingViewControllerArrowDirection _arrowDirection;
     
 	struct {
@@ -51,8 +51,8 @@ extern NSString *const FLPopoverViewWasResized;
 
 @property (readwrite, weak, nonatomic) id positionProvider;
 @property (readwrite, assign, nonatomic) FLCallback_t wasDismissedCallback;
-@property (readwrite, assign, nonatomic) FLSize contentViewSize; // setting with this makes animated:YES
-- (void) setContentViewSize:(FLSize)size animated:(BOOL)animated;
+@property (readwrite, assign, nonatomic) CGSize contentViewSize; // setting with this makes animated:YES
+- (void) setContentViewSize:(CGSize)size animated:(BOOL)animated;
 
 // children
 @property (readonly, assign, nonatomic) FLFloatingViewController* parentFloatingViewController;
@@ -76,7 +76,7 @@ extern NSString *const FLPopoverViewWasResized;
 @interface UIViewController (FLFloatingViewController)
 
 @property (readonly, assign, nonatomic) FLFloatingViewController* floatingViewController;
-@property (readwrite, assign, nonatomic) FLSize contentSizeForViewInFloatingView;
+@property (readwrite, assign, nonatomic) CGSize contentSizeForViewInFloatingView;
 
 - (FLFloatingViewController*) presentFloatingViewController:(UIViewController*) controller
                                  permittedArrowDirection:(FLFloatingViewControllerArrowDirection)arrowDirection

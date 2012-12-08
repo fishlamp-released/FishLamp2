@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 GreenTongue Software, LLC. All rights reserved.
 //
 
+#import "FLView.h"
 #import "FLBreadcrumb.h"
 #import "FLOrderedCollection.h"
-#import "FLCocoaView.h"
 
 typedef enum { 
     FLVerticalTextAlignmentTop,
@@ -16,16 +16,15 @@ typedef enum {
     FLVerticalTextAlignmentBottom
 } FLVerticalTextAlignment; 
 
-@interface FLBreadcrumbBarView : FLCocoaView {
+@interface FLBreadcrumbBarView : FLView {
 @private
     FLOrderedCollection* _breadcrumbs;
-    CTFrameRef _frameRef;
     FLVerticalTextAlignment _verticalTextAlignment;
 
     FLColor* _enabledTextColor;
     FLColor* _disabledTextColor;
-    FLColor* _highlightedColor;
-    FLFont* _font;
+    FLColor* _highlightedTextColor;
+    FLFont* _textFont;
 }
 
 @property (readwrite, retain, nonatomic) FLColor* enabledTextColor;

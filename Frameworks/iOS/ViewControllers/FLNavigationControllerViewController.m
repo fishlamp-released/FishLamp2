@@ -53,7 +53,7 @@
 	
 	self.view.backgroundColor = [UIColor clearColor];
 
-//    FLSize size = _rootViewController.view.frame.size;
+//    CGSize size = _rootViewController.view.frame.size;
         
     _navigationController.navigationBar.barStyle = UIBarStyleBlack;
     _navigationController.navigationBar.translucent = YES;

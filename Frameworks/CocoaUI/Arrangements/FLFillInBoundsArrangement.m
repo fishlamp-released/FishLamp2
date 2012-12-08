@@ -10,7 +10,7 @@
 
 @implementation FLFillInBoundsArrangement
 
-- (FLSize) layoutArrangeableObjects:(NSArray*) objects
+- (CGSize) layoutArrangeableObjects:(NSArray*) objects
                            inBounds:(CGRect) bounds {
 
 	for(id object in objects) {

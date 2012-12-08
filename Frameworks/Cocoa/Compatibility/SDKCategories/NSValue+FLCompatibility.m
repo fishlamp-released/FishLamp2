@@ -8,49 +8,26 @@
 
 #import "NSValue+FLCompatibility.h"
 
+#if OSX
 @implementation NSValue (FLCompatibility)
 
-#if IOS
-+ (NSValue *)valueWithFLPoint:(CGPoint)point {
-    return [NSValue valueWithCGPoint:point];
-}
-+ (NSValue *)valueWithFLSize:(FLSize)size {
-    return [NSValue valueWithCGSize:size];
-}
-+ (NSValue *)valueWithFLRect:(CGRect)rect {
-    return [NSValue valueWithCGRect:rect];
-}
-- (CGPoint)FLPointValue {
-    return self.CGPointValue;
-}
-- (FLSize)FLSizeValue {
-    return self.CGSizeValue;
-}
-- (CGRect)FLRectValue {
-    return self.CGRectValue;
-}
-#endif
-
-#if OSX
-+ (NSValue *)valueWithFLPoint:(CGPoint)point {
++ (NSValue *)valueWithCGPoint:(CGPoint)point {
     return [NSValue valueWithPoint:point];
 }
-+ (NSValue *)valueWithFLSize:(FLSize)size {
++ (NSValue *)valueWithCGSize:(CGSize)size {
     return [NSValue valueWithSize:size];
 }
-+ (NSValue *)valueWithFLRect:(CGRect)rect {
++ (NSValue *)valueWithCGRect:(CGRect)rect {
     return [NSValue valueWithRect:rect];
 }
-- (CGPoint)FLPointValue {
+- (CGPoint)CGPointValue {
     return self.pointValue;
 }
-- (FLSize)FLSizeValue {
+- (CGSize)CGSizeValue {
     return self.sizeValue;
 }
-- (CGRect)FLRectValue {
+- (CGRect)CGRectValue {
     return self.rectValue;
 }
-
-#endif
-
 @end
+#endif

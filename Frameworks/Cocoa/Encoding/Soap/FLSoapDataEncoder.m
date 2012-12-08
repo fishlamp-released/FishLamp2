@@ -66,15 +66,15 @@ FLSynthesizeSingleton(FLSoapDataEncoder);
 		break;
 	
         case FLDataTypePoint:
-            *outString = FLRetain(FLStringFromPoint([data FLPointValue]));
+            *outString = FLRetain(NSStringFromCGPoint([data CGPointValue]));
             break;
             
         case FLDataTypeRect:
-            *outString = FLRetain(FLStringFromRect([data FLRectValue]));
+            *outString = FLRetain(NSStringFromCGRect([data CGRectValue]));
             break;
 
         case FLDataTypeSize:
-            *outString = FLRetain(FLStringFromSize([data FLSizeValue]));
+            *outString = FLRetain(NSStringFromCGSize([data CGSizeValue]));
             break;
 
         case FLDataTypeValue:
@@ -140,15 +140,15 @@ FLSynthesizeSingleton(FLSoapDataEncoder);
         break;
 	
         case FLDataTypePoint:
-            *outDecodedObject = FLRetain([NSValue valueWithFLPoint:FLPointFromString(encodedDataString)]);
+            *outDecodedObject = FLRetain([NSValue valueWithCGPoint:CGPointFromString(encodedDataString)]);
             break;
             
         case FLDataTypeRect:
-            *outDecodedObject = FLRetain([NSValue valueWithFLRect:FLRectFromString(encodedDataString)]);
+            *outDecodedObject = FLRetain([NSValue valueWithCGRect:CGRectFromString(encodedDataString)]);
             break;
         
         case FLDataTypeSize:
-            *outDecodedObject = FLRetain([NSValue valueWithFLSize:FLSizeFromString(encodedDataString)]);
+            *outDecodedObject = FLRetain([NSValue valueWithCGSize:CGSizeFromString(encodedDataString)]);
             break;
         
         case FLDataTypeURL:

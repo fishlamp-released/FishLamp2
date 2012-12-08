@@ -215,7 +215,7 @@
 	}
 }
 
-+ (FLSize) calculateLabelSize:(UILabel*) label
++ (CGSize) calculateLabelSize:(UILabel*) label
 	layoutRectWidth:(CGFloat) layoutRectWidth
 	returnValidHeight:(BOOL) returnValidHeight
 {
@@ -229,7 +229,7 @@
 		
 		FLAssertIsNotNil_(label.font);
 		
-		FLSize textSize = [text sizeWithFont:label.font
+		CGSize textSize = [text sizeWithFont:label.font
 							constrainedToSize:FLSizeMake(layoutRectWidth,CGFLOAT_MAX)
 							lineBreakMode:label.lineBreakMode];
 		
@@ -245,12 +245,12 @@
 {
 	if(_replacementLabel)
 	{
-		FLSize size = [FLTableViewCell calculateLabelSize:_replacementLabel layoutRectWidth:layoutRectWidth returnValidHeight:YES];
+		CGSize size = [FLTableViewCell calculateLabelSize:_replacementLabel layoutRectWidth:layoutRectWidth returnValidHeight:YES];
 		_replacementLabel.frameOptimizedForLocation = FLRectSetSize(_replacementLabel.frame, layoutRectWidth, size.height);
 	}
 }
 
-- (FLSize) textLabelSizeForContentViewWidth:(CGFloat) width
+- (CGSize) textLabelSizeForContentViewWidth:(CGFloat) width
 {
 	return [FLTableViewCell calculateLabelSize:self.label layoutRectWidth:width returnValidHeight:NO];
 }

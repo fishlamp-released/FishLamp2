@@ -106,7 +106,7 @@
     return self;
 }
 
-- (void) setMenuItemSize:(FLSize) menuItemSize {
+- (void) setMenuItemSize:(CGSize) menuItemSize {
     _menuItemSize = menuItemSize;
     [self layoutSubviewsWithArrangement:self.arrangement adjustViewSize:YES];
 }
@@ -117,14 +117,14 @@
     super_dealloc_();
 }
 
-//- (FLSize) layoutSubviewsWithArrangement
+//- (CGSize) layoutSubviewsWithArrangement
 //{
 //    if(self.autoSetWidth)
 //    {
 //        self.frameOptimizedForSize = FLRectSetWidth(self.frame, [self optimalWidth]);
 //    }
 //
-//    FLSize size = [super layoutSubviewsWithArrangement];
+//    CGSize size = [super layoutSubviewsWithArrangement];
 //    self.frameOptimizedForLocation = FLRectSetSizeWithSize(self.frame, size);
 //    
 //    return size;

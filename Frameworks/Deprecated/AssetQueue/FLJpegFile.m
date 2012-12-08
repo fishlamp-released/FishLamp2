@@ -134,7 +134,7 @@ static NSDictionary* s_destinationProperties = nil;
 	FLAssignObjectWithRetain(_jpegData, data);
 }
 
-- (FLSize) imageDimensions {
+- (CGSize) imageDimensions {
 	if(FLSizeEqualToSize(_dimensions, FLSizeZero)) {
 		_dimensions = self.image.size;
 	}

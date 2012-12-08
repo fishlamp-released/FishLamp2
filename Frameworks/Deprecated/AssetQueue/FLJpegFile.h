@@ -19,7 +19,7 @@
 	FLImage* _image;
 	NSData* _jpegData;
 	NSDictionary* _properties;
-	FLSize _dimensions;
+	CGSize _dimensions;
     BOOL _exclusiveMode;
 }
 

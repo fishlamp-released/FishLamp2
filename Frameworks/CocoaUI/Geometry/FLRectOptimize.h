@@ -25,7 +25,7 @@
 
 #if DEBUG
 
-extern FLSize FLSizeOptimizeForView(FLSize aSize);
+extern CGSize FLSizeOptimizeForView(CGSize aSize);
 
 // optimizing location and size for view frames
 extern BOOL FLRectWidthIsOptimizedForView(CGRect r);

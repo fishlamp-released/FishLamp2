@@ -25,7 +25,7 @@
             self.view.superview == nil;
 }
 
-- (void) setMinimumViewSize:(FLSize) size {
+- (void) setMinimumViewSize:(CGSize) size {
     _minSize = size;
     if([self isViewLoaded]) {
         [self updateViewSizeAndPosition];

@@ -6,9 +6,11 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import "FLCocoaView.h"
+#import "FLView.h"
 
-@implementation FLCocoaView
+#if OSX
+
+@implementation FLView
 
 @synthesize backgroundColor = _backgroundColor;
 
@@ -16,8 +18,6 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code here.
-        self.backgroundColor = [NSColor whiteColor];
     }
     
     return self;
@@ -38,7 +38,10 @@
     }
 }
 
-#if OSX
+@end
+
+@implementation NSView (FLCompatibility)
+
 - (void) setNeedsLayout {
     [self setNeedsDisplay:YES];
 }
@@ -52,9 +55,31 @@
 }
 
 - (void) setUserInteractionEnabled:(BOOL) enabled {
-
 }
+
+
+@end
+
 #endif
+
+
+@implementation SDKViewController (FLNibLoading)
+
+- (NSString*) defaultNibName {
+#if OSX
+    return [NSString stringWithFormat:@"%@-OSX", NSStringFromClass([self class])];
+#else 
+    return [NSString stringWithFormat:@"%@-iOS", NSStringFromClass([self class])];
+#endif    
+}
+
+- (id) initWithDefaultNibName {
+    return [self initWithNibName:self.defaultNibName bundle:nil];
+}
+
+- (id) initWithDefaultNibName:(NSBundle *)nibBundleOrNil {
+    return [self initWithNibName:self.defaultNibName bundle:nibBundleOrNil];
+}
 
 
 @end

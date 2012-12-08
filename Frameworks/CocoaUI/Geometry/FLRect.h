@@ -10,6 +10,19 @@
 #import "FLGeometryCompatibility.h"
 #import "FLMath.h"
 
+
+#if DEBUG
+    #define CGRectInset             FLRectInset
+#else
+    #define FLRectInset             CGRectInset
+#endif
+
+#define FLRectMake                  CGRectMake
+#define FLRectIntegral              CGRectIntegral
+#define FLRectGetMidX               CGRectGetMidX
+#define FLRectGetMidY               CGRectGetMidY
+#define FLRectEqualToRect           CGRectEqualToRect
+
 #define FLRectMakeIntegral(__x__, __y__, __width__, __height__) \
 	 FLRectIntegral(FLRectMake(__x__,__y__,__width__,__height__))
 
@@ -20,41 +33,27 @@
 #define FLRectGetTopLeft(__rect__) (__rect__).origin
 
 #if IOS
-    #if DEBUG
-        #define CGRectInset             FLRectInset
-    #else
-        #define FLRectInset             CGRectInset
-    #endif
-    
-    #define FLRectMake                  CGRectMake
-    #define FLRectFromString            CGRectFromString
-    #define FLRectIntegral              CGRectIntegral
-    #define FLRectGetMidX               CGRectGetMidX
-    #define FLRectGetMidY               CGRectGetMidY
     #define FLRectInsetWithEdgeInsets   UIEdgeInsetsInsetRect
-    #define FLRectEqualToRect           CGRectEqualToRect
-    #define FLRectZero                  CGRectZero
-    #define FLStringFromRect         NSStringFromCGRect
 #endif    
 
 
-#if OSX
-    #if DEBUG
-        #define NSRectInset             FLRectInset
-    #else
-        #define FLRectInset             NSRectInset
-    #endif
-    
-    #define FLStringFromRect         NSStringFromRect
-    #define FLRectFromString            NSRectFromString
-    #define FLRectMake                  NSMakeRect
-    #define FLRectIntegral              NSIntegralRect
-    #define FLRectGetMidX               NSMidX
-    #define FLRectGetMidY               NSMidY
-    #define FLRectEqualToRect           NSEqualRects
-    #define FLRectZero                  NSZeroRect
-    
-#endif
+//#if OSX
+//    #if DEBUG
+//        #define NSRectInset             FLRectInset
+//    #else
+//        #define FLRectInset             NSRectInset
+//    #endif
+//    
+//    #define FLStringFromRect         NSStringFromRect
+//    #define FLRectFromString            NSRectFromString
+//    #define FLRectMake                  NSMakeRect
+//    #define FLRectIntegral              NSIntegralRect
+//    #define FLRectGetMidX               NSMidX
+//    #define FLRectGetMidY               NSMidY
+//    #define FLRectEqualToRect           NSEqualRects
+//    #define CGRectZero                  NSZeroRect
+//    
+//#endif
 
 
 
@@ -112,8 +111,8 @@ extern CGRect FLRectSetWidth(CGRect rect, CGFloat width);
 extern CGRect FLRectAddWidth(CGRect rect, CGFloat width);
 extern CGRect FLRectSetSize(CGRect rect, CGFloat width, CGFloat height);
 extern CGRect FLRectAddSize(CGRect rect, CGFloat width, CGFloat height);
-extern CGRect FLRectAddSizeWithSize(CGRect rect, FLSize size);
-extern CGRect FLRectSetSizeWithSize(CGRect rect, FLSize size);
+extern CGRect FLRectAddSizeWithSize(CGRect rect, CGSize size);
+extern CGRect FLRectSetSizeWithSize(CGRect rect, CGSize size);
 extern CGRect FLRectScale(CGRect rect, CGFloat scaleFactor);
 
 // location
@@ -136,7 +135,7 @@ extern CGRect FLRectMoveHorizontally(CGRect rect, CGFloat delta);
 extern CGRect FLRectMove(CGRect rect, CGFloat xDelta, CGFloat yDelta);
 
 // construction
-extern CGRect FLRectMakeWithSize(FLSize size);
+extern CGRect FLRectMakeWithSize(CGSize size);
 extern CGRect FLRectMakeWithWidthAndHeight(CGFloat width, CGFloat height);
 
 // misc

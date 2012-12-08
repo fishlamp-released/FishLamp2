@@ -102,7 +102,7 @@ FLSynthesizeStructProperty(keyboardWillShowInView, setKeyboardWillShowInView, BO
 	CGFloat height = rectForSection.origin.y + rectForSection.size.height; // + _intermediateScrollView.contentInset.top; // self.tableView.contentInset.top;
 	self.tableView.newFrame = FLRectSetHeight(self.tableView.frame, height);
 
-	FLSize size = self.tableView.frame.size;
+	CGSize size = self.tableView.frame.size;
 	if(self.keyboardWillShowInView && _textEditingTableViewControllerFlags.resizedForEditing)
 	{
 		size.height += (self.keyboardHeight - self.contentViewInsetBottom);

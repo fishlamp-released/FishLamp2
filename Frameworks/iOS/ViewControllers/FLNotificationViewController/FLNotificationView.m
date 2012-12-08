@@ -89,7 +89,7 @@
     return _titleLabel.text;
 }
 
-- (FLSize)sizeThatFits:(FLSize) size
+- (CGSize)sizeThatFits:(CGSize) size
 {
     size.height = [_titleLabel sizeThatFitsWidth:size.width - 40.0f].height;
     return size;

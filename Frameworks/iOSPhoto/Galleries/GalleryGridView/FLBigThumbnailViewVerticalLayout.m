@@ -30,7 +30,7 @@ FLSynthesizeSingleton(FLBigThumbnailViewVerticalLayout)
     return self;
 }
 
-//- (FLSize) cellViewLayoutGetCellSize:(FLCellArrangement*) layout inBounds:(CGRect) bounds
+//- (CGSize) cellViewLayoutGetCellSize:(FLCellArrangement*) layout inBounds:(CGRect) bounds
 //{
 //    if(DeviceIsPad())
 //    {

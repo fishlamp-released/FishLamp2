@@ -411,7 +411,7 @@ static FLViewController* s_presentingModalViewController = nil;
     [FLViewController setPresentingModalViewController:nil];
 }
 
-- (void) setContentSizeForViewInPopover:(FLSize) size {
+- (void) setContentSizeForViewInPopover:(CGSize) size {
 	[super setContentSizeForViewInPopover:size];
 }
 

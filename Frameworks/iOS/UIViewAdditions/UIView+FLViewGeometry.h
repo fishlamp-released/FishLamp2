@@ -30,7 +30,7 @@
 - (void) moveTo:(CGPoint) newOrigin;
 - (void) moveTo:(CGFloat) left top:(CGFloat) top;
 
-- (void) resize:(FLSize) newSize;
+- (void) resize:(CGSize) newSize;
 
 /* 
 	Regarding optimizeFrame
@@ -55,7 +55,7 @@
 
 - (BOOL) setViewSizeToFitInSuperview:(BOOL) centerInSuperview;
 - (CGRect) frameSizedToFitInSuperview:(BOOL) centerInSuperview; 
-- (FLSize) sizeThatFitsInSuperview;
+- (CGSize) sizeThatFitsInSuperview;
 
 - (BOOL) setViewSizeToContentSize; // does nothing by default, up to subclasses or categories to implement 
 

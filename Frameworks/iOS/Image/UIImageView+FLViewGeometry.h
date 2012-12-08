@@ -11,6 +11,6 @@
 @interface UIImageView (FLViewGeometry)
 // return YES is frame was changed.
 - (BOOL) resizeToImageSize;
-- (void) resizeProportionally:(FLSize) maxSize;
+- (void) resizeProportionally:(CGSize) maxSize;
 @end
 

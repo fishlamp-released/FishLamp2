@@ -75,7 +75,7 @@ FLSynthesizeSingleton(FLJsonDataEncoder);
 		break;
         
         case FLDataTypeRect: {   
-            CGRect r = [data FLRectValue];
+            CGRect r = [data CGRectValue];
             *outString = [NSString stringWithFormat:@"{\"x\"=%f,\"y\"=%f,\"width\"=%f,height=\"%f\"}",
                 r.origin.x,
                 r.origin.y,
@@ -84,7 +84,7 @@ FLSynthesizeSingleton(FLJsonDataEncoder);
             break;
         }
         case FLDataTypePoint: {
-            CGPoint pt = [data FLPointValue];
+            CGPoint pt = [data CGPointValue];
             *outString = [NSString stringWithFormat:@"{\"x\"=%f,\"y\"=%f}",
                 pt.x,
                 pt.y];
@@ -92,7 +92,7 @@ FLSynthesizeSingleton(FLJsonDataEncoder);
         }
         
         case FLDataTypeSize:{   
-            FLSize size = [data FLSizeValue];
+            CGSize size = [data CGSizeValue];
             *outString = [NSString stringWithFormat:@"{\"width\"=%f,height=\"%f\"}",
                 size.width,
                 size.height];

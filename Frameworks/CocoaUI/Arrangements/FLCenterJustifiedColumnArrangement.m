@@ -11,10 +11,10 @@
 
 @implementation FLCenterJustifiedColumnArrangement 
 
-- (FLSize) layoutArrangeableObjects:(NSArray*) objects
+- (CGSize) layoutArrangeableObjects:(NSArray*) objects
                            inBounds:(CGRect) bounds {
 
-    FLSize size = [super layoutArrangeableObjects:objects inBounds:bounds];
+    CGSize size = [super layoutArrangeableObjects:objects inBounds:bounds];
     size.width = bounds.size.width;
 
     // find right side of last visible object, we'll shift all

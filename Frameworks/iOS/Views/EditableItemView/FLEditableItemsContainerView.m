@@ -56,7 +56,7 @@
     [self.arrangement performArrangement:self.subviews inBounds:self.bounds];
 }
 
-- (FLSize) sizeThatFits:(FLSize)size {
+- (CGSize) sizeThatFits:(CGSize)size {
 
     CGRect bounds = self.bounds; 
     bounds.size.width = size.width;

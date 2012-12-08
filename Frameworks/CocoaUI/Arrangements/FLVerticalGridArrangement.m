@@ -48,7 +48,7 @@
     return FLAutorelease([[[self class] alloc] initWithCellHeight:cellHeight columnCount:columnCount]);
 }
 
-- (FLSize) layoutArrangeableObjects:(NSArray*) objects
+- (CGSize) layoutArrangeableObjects:(NSArray*) objects
                            inBounds:(CGRect) bounds {
 
     FLAssert_v(_columnCount > 0, @"can't have zero columns");

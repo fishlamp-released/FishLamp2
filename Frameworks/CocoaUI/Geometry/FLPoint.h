@@ -10,20 +10,17 @@
 
 #define FLCoordinateIntegral(__coordinate__) (CGFloat) round(__coordinate__)
 
-#if IOS
-    #define FLPointFromString       CGPointFromString
-    #define FLStringFromPoint       NSStringFromCGPoint
-    #define FLPointMake             CGPointMake
-    #define FLPointEqualToPoint     CGPointEqualToPoint
-    #define FLPointsAreEqual        CGPointEqualToPoint
-    #define FLPointZero             CGPointZero
-    #define FLEmptyPoint            FLPointZero
+#define FLPointMake             CGPointMake
+#define FLPointEqualToPoint     CGPointEqualToPoint
+#define FLPointsAreEqual        CGPointEqualToPoint
 
-#else
-    #define FLPointFromString       NSPointFromString
-    #define FLStringFromPoint       NSStringFromPoint
-    #define FLPointMake             CGPointMake
-#endif
+//#if IOS
+//
+//#else
+//    #define FLPointFromString       NSPointFromString
+//    #define FLStringFromPoint       NSStringFromPoint
+//    #define FLPointMake             CGPointMake
+//#endif
 
 
 NS_INLINE

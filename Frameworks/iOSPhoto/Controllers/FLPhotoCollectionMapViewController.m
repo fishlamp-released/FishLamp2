@@ -124,7 +124,7 @@
 
 //			FLModalPopoverController* controller = [FLModalPopoverController modalPopoverControllerForViewController:self];
 //		  
-//			FLSize size = controller.floatingViewContentSize;
+//			CGSize size = controller.floatingViewContentSize;
 //		  
 //			  if(UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation))
 //			  {

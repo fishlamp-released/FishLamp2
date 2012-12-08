@@ -8,19 +8,19 @@
 
 #import <Foundation/Foundation.h>
 
-#if IOS
-    #define CGPoint CGPoint
-    #define CGRect CGRect
-    #define FLSize CGSize
-    #define FLEdgeInsets UIEdgeInsets
-#else
-//    #define CGPoint CGPoint
-//    #define CGRect CGRect
-//    #define FLSize CGSize
 
-//    #define CGPoint NSPoint
-//    #define CGRect NSRect
-//    #define FLSize NSSize
-    #define FLEdgeInsets NSEdgeInsets
+#if IOS
+    #define FLEdgeInsets                UIEdgeInsets
+#else
+    #define CGSizeFromString            NSSizeFromString
+    #define NSStringFromCGSize          NSStringFromSize
+    
+    #define CGRectFromString            NSRectFromString
+    #define NSStringFromCGRect          NSStringFromRect
+    
+    #define CGPointFromString           NSPointFromString
+    #define NSStringFromCGPoint         NSStringFromPoint
+
+    #define FLEdgeInsets                NSEdgeInsets
 #endif
 

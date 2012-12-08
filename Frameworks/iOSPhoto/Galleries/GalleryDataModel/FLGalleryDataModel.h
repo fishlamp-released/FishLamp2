@@ -32,7 +32,7 @@ typedef enum {
                          startingIndex:(NSUInteger) startingIndex;
     
 - (FLAction*) imageLoaderForGalleryObject:(id) galleryObject
-                               sizeInView:(FLSize) imageSize
+                               sizeInView:(CGSize) imageSize
                                  sizeHint:(FLGalleryImageSizeHint) sizeHint;
     
 

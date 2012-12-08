@@ -87,7 +87,7 @@
 				CGRect frame = FLRectScale(self.frame, Scale);
 				UIImage* image = self.topImageWidget.image ? self.topImageWidget.image : self.bottomImageWidget.image;
 				
-				FLSize imageSize = image.size;
+				CGSize imageSize = image.size;
 				
 				if(imageSize.height > imageSize.width)
 				{

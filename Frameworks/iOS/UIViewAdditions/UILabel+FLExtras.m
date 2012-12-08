@@ -11,27 +11,27 @@
 
 @implementation UILabel (FLExtras)
 
-- (FLSize) sizeThatFitsText:(FLSize) size
+- (CGSize) sizeThatFitsText:(CGSize) size
 {
 	return FLStringIsEmpty(self.text)? CGSizeZero : 
 									[self.text sizeWithFont:self.font
 									constrainedToSize:size
 									lineBreakMode:self.lineBreakMode];
 }
-- (FLSize) sizeThatFitsText
+- (CGSize) sizeThatFitsText
 {
 	return [self sizeThatFitsText:FLSizeMake(2048.0, 2048.0)];
 }
-- (FLSize) sizeToFitText
+- (CGSize) sizeToFitText
 {
 	return [self sizeToFitText:FLSizeMake(2048.0, 2048.0)];
 
 //	  return [self sizeToFitText:FLSizeMake(self.superview ? self.superview.bounds.size.width : 2048.0, 2048.0)];
 }
 
-- (FLSize) sizeToFitText:(FLSize) size
+- (CGSize) sizeToFitText:(CGSize) size
 {
-	FLSize outSize = FLSizeOptimizeForView([self sizeThatFitsText:size]);
+	CGSize outSize = FLSizeOptimizeForView([self sizeThatFitsText:size]);
 	
 	CGRect r = self.frame;
 	r.size = outSize;
@@ -65,7 +65,7 @@
 	CGContextStrokePath(context);
 }
 
-- (FLSize)sizeThatFitsWidth:(CGFloat)fixedWidth
+- (CGSize)sizeThatFitsWidth:(CGFloat)fixedWidth
 {   
     return [self sizeThatFitsText:FLSizeMake(fixedWidth, 2048)];
 }

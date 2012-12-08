@@ -34,15 +34,15 @@
     return self;
 }
 
-- (void) setSubviewSize:(FLSize) size {
+- (void) setSubviewSize:(CGSize) size {
 }
 
-- (FLSize) subviewSizeThatFitsInBounds:(CGRect) bounds {
+- (CGSize) subviewSizeThatFitsInBounds:(CGRect) bounds {
     return CGSizeZero;
 }
 
-- (FLSize) sizeThatFitsInBounds:(CGRect) bounds {
-    FLSize size = [self subviewSizeThatFitsInBounds:bounds];
+- (CGSize) sizeThatFitsInBounds:(CGRect) bounds {
+    CGSize size = [self subviewSizeThatFitsInBounds:bounds];
     size.width += self.horizontalPadding;
     size.height = bounds.size.height;
     return size;
@@ -50,7 +50,7 @@
 
 - (void) updateSizeInBounds:(CGRect) bounds {
 
-    FLSize subviewSize = [self subviewSizeThatFitsInBounds:bounds];
+    CGSize subviewSize = [self subviewSizeThatFitsInBounds:bounds];
     
     CGRect frame = self.frame;
     frame.size = subviewSize;

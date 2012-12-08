@@ -27,8 +27,8 @@ typedef enum {
 @property (readwrite, assign, nonatomic) FLWidgetImageContentMode imageContentMode;
 
 - (void) resizeToImageSize;
-- (void) resizeToImageSizeWithMaxSize:(FLSize) maxSize;
-- (void) resizeProportionallyWithMaxSize:(FLSize) maxSize;
+- (void) resizeToImageSizeWithMaxSize:(CGSize) maxSize;
+- (void) resizeProportionallyWithMaxSize:(CGSize) maxSize;
 
 - (void) clear; // release image.
 

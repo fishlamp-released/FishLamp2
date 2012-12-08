@@ -37,7 +37,7 @@
 	return CGRectZero;
 }
 
-- (void) resizeProportionally:(FLSize) maxSize
+- (void) resizeProportionally:(CGSize) maxSize
 {
 //	  [self setViewSizeToImageSize];
 	CGRect newBounds = [self.image proportionalBoundsWithMaxSize:maxSize];

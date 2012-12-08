@@ -174,7 +174,7 @@ CGFloat kFrameSize = 0; //5.0f
 	
     CGRect thumbnailFrame =[image proportionalBoundsWithMaxSize:_maxSize];
 	CGPoint thumbOrigin = {0.0f, 0.0f};
-	FLSize frameSize = {0,0};
+	CGSize frameSize = {0,0};
 	
 	if(_frameViewFlags.showFrame)
 	{
@@ -192,7 +192,7 @@ CGFloat kFrameSize = 0; //5.0f
 	}
 	thumbnailFrame.origin = thumbOrigin;
 	
-	FLSize thumbSize = thumbnailFrame.size;
+	CGSize thumbSize = thumbnailFrame.size;
 	thumbSize.width -=	 frameSize.width;
 	thumbSize.height -=	  frameSize.height;
 	thumbnailFrame.size = thumbSize;
@@ -206,7 +206,7 @@ CGFloat kFrameSize = 0; //5.0f
 
 //- (void) _adjustViewSizeWithImage:(UIImage*) image
 //{
-//	  FLSize size = FLSizeMake(FLRectGetRight(_thumbnailButton.frame), FLRectGetBottom(_thumbnailButton.frame));
+//	  CGSize size = FLSizeMake(FLRectGetRight(_thumbnailButton.frame), FLRectGetBottom(_thumbnailButton.frame));
 //	  size.width += kFrameSize + (_frameViewFlags.showStack ? kFrameSize : 0.0) + 2.0f;
 //	  size.height += kFrameSize + (_frameViewFlags.showStack ? kFrameSize : 0.0) + 2.0f; 
 //	  if([self setFrameIfChanged:FLRectSetSizeWithSize(self.frame, size)])
@@ -278,7 +278,7 @@ CGFloat kFrameSize = 0; //5.0f
 	}	 
 }
 
-- (void) setMaxSize:(FLSize) size
+- (void) setMaxSize:(CGSize) size
 {
 	_maxSize = size;
 	self.frame = CGRectMake(0,0,_maxSize.width,_maxSize.height);

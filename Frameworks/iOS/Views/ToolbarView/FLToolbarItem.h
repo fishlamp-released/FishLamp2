@@ -35,7 +35,7 @@ typedef enum {
     FLToolbarViewBlock _onChosen;
     __weak FLToolbarView* _toolbar;
     CGFloat _horizontalPadding;
-    FLSize _minSize;
+    CGSize _minSize;
     FLToolbarItemAlignment _viewAlignment;
     id _view;
 }
@@ -44,7 +44,7 @@ typedef enum {
 
 @property (readwrite, assign, nonatomic) FLToolbarItemAlignment viewAlignment;
 @property (readwrite, strong, nonatomic) id view;
-@property (readwrite, assign, nonatomic) FLSize minSize;
+@property (readwrite, assign, nonatomic) CGSize minSize;
 @property (readwrite, assign, nonatomic) CGFloat horizontalPadding;
 
 @property (readwrite, copy, nonatomic) FLToolbarViewBlock onChosen;
@@ -61,8 +61,8 @@ typedef enum {
 
 - (void) toolbarTitleDidChange:(NSString*) title;
 
-- (FLSize) subviewSizeThatFitsInBounds:(CGRect) bounds;
-- (void) setSubviewSize:(FLSize) size;
+- (CGSize) subviewSizeThatFitsInBounds:(CGRect) bounds;
+- (void) setSubviewSize:(CGSize) size;
 
 - (void) updateSizeInBounds:(CGRect) bounds;
 

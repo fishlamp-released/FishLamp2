@@ -13,10 +13,10 @@
 
 @implementation FLImageButtonToolbarItem
 
-- (void) setSubviewSize:(FLSize) size {
+- (void) setSubviewSize:(CGSize) size {
 }
 
-- (FLSize) subviewSizeThatFitsInBounds:(CGRect) bounds {
+- (CGSize) subviewSizeThatFitsInBounds:(CGRect) bounds {
     return [self.view frame].size;
 }
 

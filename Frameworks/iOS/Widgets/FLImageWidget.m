@@ -69,8 +69,8 @@
 			case FLWidgetImageContentModeScaleAspectFitOptimalSize:
 			case FLWidgetImageContentModeScaleAspectFit:
 			{	
-				FLSize scaledSize = self.frame.size;
-				FLSize optimalSize = _image.size;
+				CGSize scaledSize = self.frame.size;
+				CGSize optimalSize = _image.size;
 				if( optimalSize.width <= scaledSize.width && 
 					optimalSize.height <= scaledSize.height &&
 					self.imageContentMode == FLWidgetImageContentModeScaleAspectFitOptimalSize)
@@ -129,11 +129,11 @@
 		}
 	}
 }
-- (void) resizeToImageSizeWithMaxSize:(FLSize) maxSize
+- (void) resizeToImageSizeWithMaxSize:(CGSize) maxSize
 {
 	if(_image)
 	{
-		FLSize imageSize = _image.size;
+		CGSize imageSize = _image.size;
 		if( imageSize.width <= maxSize.width && 
 			imageSize.height <= maxSize.height)
 		{
@@ -147,7 +147,7 @@
 	}
 }
 
-- (void) resizeProportionallyWithMaxSize:(FLSize) maxSize
+- (void) resizeProportionallyWithMaxSize:(CGSize) maxSize
 {
 	if(_image)
 	{

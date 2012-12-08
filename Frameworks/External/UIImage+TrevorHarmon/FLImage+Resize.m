@@ -9,11 +9,11 @@
 
 // Private helper methods
 @interface FLImage (ResizeUtils)
-- (FLImage *)resizedImage:(FLSize)newSize
+- (FLImage *)resizedImage:(CGSize)newSize
 				transform:(CGAffineTransform)transform
 		   drawTransposed:(BOOL)transpose
 	 interpolationQuality:(CGInterpolationQuality)quality;
-- (CGAffineTransform)transformForOrientation:(FLSize)newSize;
+- (CGAffineTransform)transformForOrientation:(CGSize)newSize;
 @end
 
 @implementation FLImage (ResizeUtils)
@@ -63,7 +63,7 @@
 
 // Returns a rescaled copy of the image, taking into account its orientation
 // The image will be scaled disproportionately if necessary to fit the bounds specified by the parameter
-- (FLImage *)resizedImage:(FLSize)newSize interpolationQuality:(CGInterpolationQuality)quality {
+- (FLImage *)resizedImage:(CGSize)newSize interpolationQuality:(CGInterpolationQuality)quality {
 	BOOL drawTransposed = NO;
     
 #if IOS
@@ -88,7 +88,7 @@
 
 // Resizes the image according to the given content mode, taking into account the image's orientation
 - (FLImage *)resizedImageWithContentMode:(UIViewContentMode)contentMode
-								  bounds:(FLSize)bounds
+								  bounds:(CGSize)bounds
 					interpolationQuality:(CGInterpolationQuality)quality {
 	CGFloat horizontalRatio = bounds.width / self.size.width;
 	CGFloat verticalRatio = bounds.height / self.size.height;
@@ -107,7 +107,7 @@
 			[NSException raise:NSInvalidArgumentException format:@"Unsupported content mode: %d", contentMode];
 	}
 	
-	FLSize newSize = FLSizeMake(self.size.width * ratio, self.size.height * ratio);
+	CGSize newSize = FLSizeMake(self.size.width * ratio, self.size.height * ratio);
 	
 	return [self resizedImage:newSize interpolationQuality:quality];
 }
@@ -118,7 +118,7 @@
 // Returns a copy of the image that has been transformed using the given affine transform and scaled to the new size
 // The new image's orientation will be FLImageOrientationUp, regardless of the current image's orientation
 // If the new size is not integral, it will be rounded up
-- (FLImage *)resizedImage:(FLSize)newSize
+- (FLImage *)resizedImage:(CGSize)newSize
 				transform:(CGAffineTransform)transform
 		   drawTransposed:(BOOL)transpose
 	 interpolationQuality:(CGInterpolationQuality)quality {
@@ -168,7 +168,7 @@
 }
 
 // Returns an affine transform that takes into account the image orientation when drawing a scaled image
-- (CGAffineTransform)transformForOrientation:(FLSize)newSize {
+- (CGAffineTransform)transformForOrientation:(CGSize)newSize {
 	CGAffineTransform transform = CGAffineTransformIdentity;
 	
 #if IOS
@@ -215,12 +215,12 @@
 	return transform;
 }
 
-- (CGRect) proportionalBoundsWithMaxSize:(FLSize) maxSize
+- (CGRect) proportionalBoundsWithMaxSize:(CGSize) maxSize
 {
 	return FLRectFitInRectInRectProportionally(FLRectMakeWithSize(maxSize), FLRectMakeWithSize(self.size));
 }
 
-- (FLSize) proportionalSizeWithMaxSize:(FLSize) maxSize
+- (CGSize) proportionalSizeWithMaxSize:(CGSize) maxSize
 {
 	return [self proportionalBoundsWithMaxSize:maxSize].size;
 }

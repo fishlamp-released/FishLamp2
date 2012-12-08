@@ -7,12 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		270380C6166EDDAC0082D9D9 /* FLWizardViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 270380C4166EDDAC0082D9D9 /* FLWizardViewController.h */; };
-		270380C7166EDDAC0082D9D9 /* FLWizardViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 270380C4166EDDAC0082D9D9 /* FLWizardViewController.h */; };
-		270380C8166EDDAC0082D9D9 /* FLWizardViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 270380C4166EDDAC0082D9D9 /* FLWizardViewController.h */; };
-		270380C9166EDDAC0082D9D9 /* FLWizardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 270380C5166EDDAC0082D9D9 /* FLWizardViewController.m */; };
-		270380CA166EDDAC0082D9D9 /* FLWizardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 270380C5166EDDAC0082D9D9 /* FLWizardViewController.m */; };
-		270380CB166EDDAC0082D9D9 /* FLWizardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 270380C5166EDDAC0082D9D9 /* FLWizardViewController.m */; };
 		270380CF166EDDC10082D9D9 /* FLGlobalMenuController.h in Headers */ = {isa = PBXBuildFile; fileRef = 270380CD166EDDC10082D9D9 /* FLGlobalMenuController.h */; };
 		270380D0166EDDC10082D9D9 /* FLGlobalMenuController.h in Headers */ = {isa = PBXBuildFile; fileRef = 270380CD166EDDC10082D9D9 /* FLGlobalMenuController.h */; };
 		270380D1166EDDC10082D9D9 /* FLGlobalMenuController.h in Headers */ = {isa = PBXBuildFile; fileRef = 270380CD166EDDC10082D9D9 /* FLGlobalMenuController.h */; };
@@ -259,13 +253,13 @@
 		270B0EB61671592000F59249 /* FLBreadcrumbBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 270B0DA41671592000F59249 /* FLBreadcrumbBarView.m */; };
 		270B0EB71671592000F59249 /* FLBreadcrumbBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 270B0DA41671592000F59249 /* FLBreadcrumbBarView.m */; };
 		270B0EB81671592000F59249 /* FLBreadcrumbBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 270B0DA41671592000F59249 /* FLBreadcrumbBarView.m */; };
-		270B0EBC16715A1600F59249 /* FLCocoaView.h in Headers */ = {isa = PBXBuildFile; fileRef = 270B0EBA16715A1600F59249 /* FLCocoaView.h */; };
-		270B0EBD16715A1600F59249 /* FLCocoaView.h in Headers */ = {isa = PBXBuildFile; fileRef = 270B0EBA16715A1600F59249 /* FLCocoaView.h */; };
-		270B0EBE16715A1600F59249 /* FLCocoaView.h in Headers */ = {isa = PBXBuildFile; fileRef = 270B0EBA16715A1600F59249 /* FLCocoaView.h */; };
-		270B0EBF16715A1600F59249 /* FLCocoaView.m in Sources */ = {isa = PBXBuildFile; fileRef = 270B0EBB16715A1600F59249 /* FLCocoaView.m */; };
-		270B0EC016715A1600F59249 /* FLCocoaView.m in Sources */ = {isa = PBXBuildFile; fileRef = 270B0EBB16715A1600F59249 /* FLCocoaView.m */; };
-		270B0EC116715A1600F59249 /* FLCocoaView.m in Sources */ = {isa = PBXBuildFile; fileRef = 270B0EBB16715A1600F59249 /* FLCocoaView.m */; };
-		270B0EC216715A1600F59249 /* FLCocoaView.m in Sources */ = {isa = PBXBuildFile; fileRef = 270B0EBB16715A1600F59249 /* FLCocoaView.m */; };
+		270B0EBC16715A1600F59249 /* FLView.h in Headers */ = {isa = PBXBuildFile; fileRef = 270B0EBA16715A1600F59249 /* FLView.h */; };
+		270B0EBD16715A1600F59249 /* FLView.h in Headers */ = {isa = PBXBuildFile; fileRef = 270B0EBA16715A1600F59249 /* FLView.h */; };
+		270B0EBE16715A1600F59249 /* FLView.h in Headers */ = {isa = PBXBuildFile; fileRef = 270B0EBA16715A1600F59249 /* FLView.h */; };
+		270B0EBF16715A1600F59249 /* FLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 270B0EBB16715A1600F59249 /* FLView.m */; };
+		270B0EC016715A1600F59249 /* FLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 270B0EBB16715A1600F59249 /* FLView.m */; };
+		270B0EC116715A1600F59249 /* FLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 270B0EBB16715A1600F59249 /* FLView.m */; };
+		270B0EC216715A1600F59249 /* FLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 270B0EBB16715A1600F59249 /* FLView.m */; };
 		270B0FDC1671621D00F59249 /* FLEdgeInsets.h in Headers */ = {isa = PBXBuildFile; fileRef = 270B0FDB1671621D00F59249 /* FLEdgeInsets.h */; };
 		270B0FDD1671621D00F59249 /* FLEdgeInsets.h in Headers */ = {isa = PBXBuildFile; fileRef = 270B0FDB1671621D00F59249 /* FLEdgeInsets.h */; };
 		270B0FDE1671621D00F59249 /* FLEdgeInsets.h in Headers */ = {isa = PBXBuildFile; fileRef = 270B0FDB1671621D00F59249 /* FLEdgeInsets.h */; };
@@ -312,6 +306,41 @@
 		273FC263166FDB840072C62A /* FLCoreFoundation.h in Headers */ = {isa = PBXBuildFile; fileRef = 273FC262166FDB840072C62A /* FLCoreFoundation.h */; };
 		273FC264166FDB840072C62A /* FLCoreFoundation.h in Headers */ = {isa = PBXBuildFile; fileRef = 273FC262166FDB840072C62A /* FLCoreFoundation.h */; };
 		273FC265166FDB840072C62A /* FLCoreFoundation.h in Headers */ = {isa = PBXBuildFile; fileRef = 273FC262166FDB840072C62A /* FLCoreFoundation.h */; };
+		2776CC701672643C00F2E70A /* FLJson.h in Headers */ = {isa = PBXBuildFile; fileRef = 2776CC6E1672643C00F2E70A /* FLJson.h */; };
+		2776CC711672643C00F2E70A /* FLJson.h in Headers */ = {isa = PBXBuildFile; fileRef = 2776CC6E1672643C00F2E70A /* FLJson.h */; };
+		2776CC721672643C00F2E70A /* FLJson.h in Headers */ = {isa = PBXBuildFile; fileRef = 2776CC6E1672643C00F2E70A /* FLJson.h */; };
+		2776CC731672643C00F2E70A /* FLJson.m in Sources */ = {isa = PBXBuildFile; fileRef = 2776CC6F1672643C00F2E70A /* FLJson.m */; };
+		2776CC741672643C00F2E70A /* FLJson.m in Sources */ = {isa = PBXBuildFile; fileRef = 2776CC6F1672643C00F2E70A /* FLJson.m */; };
+		2776CC751672643C00F2E70A /* FLJson.m in Sources */ = {isa = PBXBuildFile; fileRef = 2776CC6F1672643C00F2E70A /* FLJson.m */; };
+		2776CC761672643C00F2E70A /* FLJson.m in Sources */ = {isa = PBXBuildFile; fileRef = 2776CC6F1672643C00F2E70A /* FLJson.m */; };
+		2776CC981672868E00F2E70A /* FLWizardViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2776CC911672868E00F2E70A /* FLWizardViewController.h */; };
+		2776CC991672868E00F2E70A /* FLWizardViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2776CC911672868E00F2E70A /* FLWizardViewController.h */; };
+		2776CC9A1672868E00F2E70A /* FLWizardViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2776CC911672868E00F2E70A /* FLWizardViewController.h */; };
+		2776CC9B1672868E00F2E70A /* FLWizardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2776CC921672868E00F2E70A /* FLWizardViewController.m */; };
+		2776CC9C1672868E00F2E70A /* FLWizardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2776CC921672868E00F2E70A /* FLWizardViewController.m */; };
+		2776CC9D1672868E00F2E70A /* FLWizardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2776CC921672868E00F2E70A /* FLWizardViewController.m */; };
+		2776CC9E1672868E00F2E70A /* FLWizardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2776CC921672868E00F2E70A /* FLWizardViewController.m */; };
+		2776CC9F1672868E00F2E70A /* FLLoginWizardPanel.h in Headers */ = {isa = PBXBuildFile; fileRef = 2776CC941672868E00F2E70A /* FLLoginWizardPanel.h */; };
+		2776CCA01672868E00F2E70A /* FLLoginWizardPanel.h in Headers */ = {isa = PBXBuildFile; fileRef = 2776CC941672868E00F2E70A /* FLLoginWizardPanel.h */; };
+		2776CCA11672868E00F2E70A /* FLLoginWizardPanel.h in Headers */ = {isa = PBXBuildFile; fileRef = 2776CC941672868E00F2E70A /* FLLoginWizardPanel.h */; };
+		2776CCA21672868E00F2E70A /* FLLoginWizardPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2776CC951672868E00F2E70A /* FLLoginWizardPanel.m */; };
+		2776CCA31672868E00F2E70A /* FLLoginWizardPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2776CC951672868E00F2E70A /* FLLoginWizardPanel.m */; };
+		2776CCA41672868E00F2E70A /* FLLoginWizardPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2776CC951672868E00F2E70A /* FLLoginWizardPanel.m */; };
+		2776CCA51672868E00F2E70A /* FLLoginWizardPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2776CC951672868E00F2E70A /* FLLoginWizardPanel.m */; };
+		2776CCA61672868E00F2E70A /* FLProgressWizardPanel.h in Headers */ = {isa = PBXBuildFile; fileRef = 2776CC961672868E00F2E70A /* FLProgressWizardPanel.h */; };
+		2776CCA71672868E00F2E70A /* FLProgressWizardPanel.h in Headers */ = {isa = PBXBuildFile; fileRef = 2776CC961672868E00F2E70A /* FLProgressWizardPanel.h */; };
+		2776CCA81672868E00F2E70A /* FLProgressWizardPanel.h in Headers */ = {isa = PBXBuildFile; fileRef = 2776CC961672868E00F2E70A /* FLProgressWizardPanel.h */; };
+		2776CCA91672868E00F2E70A /* FLProgressWizardPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2776CC971672868E00F2E70A /* FLProgressWizardPanel.m */; };
+		2776CCAA1672868E00F2E70A /* FLProgressWizardPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2776CC971672868E00F2E70A /* FLProgressWizardPanel.m */; };
+		2776CCAB1672868E00F2E70A /* FLProgressWizardPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2776CC971672868E00F2E70A /* FLProgressWizardPanel.m */; };
+		2776CCAC1672868E00F2E70A /* FLProgressWizardPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2776CC971672868E00F2E70A /* FLProgressWizardPanel.m */; };
+		2776CCC21672958300F2E70A /* FLWizardPanel.h in Headers */ = {isa = PBXBuildFile; fileRef = 2776CCC01672958200F2E70A /* FLWizardPanel.h */; };
+		2776CCC31672958300F2E70A /* FLWizardPanel.h in Headers */ = {isa = PBXBuildFile; fileRef = 2776CCC01672958200F2E70A /* FLWizardPanel.h */; };
+		2776CCC41672958300F2E70A /* FLWizardPanel.h in Headers */ = {isa = PBXBuildFile; fileRef = 2776CCC01672958200F2E70A /* FLWizardPanel.h */; };
+		2776CCC51672958300F2E70A /* FLWizardPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2776CCC11672958300F2E70A /* FLWizardPanel.m */; };
+		2776CCC61672958300F2E70A /* FLWizardPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2776CCC11672958300F2E70A /* FLWizardPanel.m */; };
+		2776CCC71672958300F2E70A /* FLWizardPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2776CCC11672958300F2E70A /* FLWizardPanel.m */; };
+		2776CCC81672958300F2E70A /* FLWizardPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2776CCC11672958300F2E70A /* FLWizardPanel.m */; };
 		2798CE62166D886500A0863D /* FLContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CA42166D886400A0863D /* FLContext.h */; };
 		2798CE63166D886500A0863D /* FLContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CA42166D886400A0863D /* FLContext.h */; };
 		2798CE64166D886500A0863D /* FLContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CA42166D886400A0863D /* FLContext.h */; };
@@ -3300,81 +3329,6 @@
 		2798DB0A166D886500A0863D /* FLImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE5E166D886500A0863D /* FLImage+RoundedCorner.m */; };
 		2798DB0B166D886500A0863D /* FLImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE5E166D886500A0863D /* FLImage+RoundedCorner.m */; };
 		2798DB0C166D886500A0863D /* FLImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE5E166D886500A0863D /* FLImage+RoundedCorner.m */; };
-		2798DB2F166D888500A0863D /* NSObject+SBJson.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798DB16166D888500A0863D /* NSObject+SBJson.h */; };
-		2798DB30166D888500A0863D /* NSObject+SBJson.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798DB16166D888500A0863D /* NSObject+SBJson.h */; };
-		2798DB31166D888500A0863D /* NSObject+SBJson.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798DB16166D888500A0863D /* NSObject+SBJson.h */; };
-		2798DB32166D888500A0863D /* NSObject+SBJson.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798DB17166D888500A0863D /* NSObject+SBJson.m */; };
-		2798DB33166D888500A0863D /* NSObject+SBJson.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798DB17166D888500A0863D /* NSObject+SBJson.m */; };
-		2798DB34166D888500A0863D /* NSObject+SBJson.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798DB17166D888500A0863D /* NSObject+SBJson.m */; };
-		2798DB35166D888500A0863D /* SBJson.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798DB18166D888500A0863D /* SBJson.h */; };
-		2798DB36166D888500A0863D /* SBJson.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798DB18166D888500A0863D /* SBJson.h */; };
-		2798DB37166D888500A0863D /* SBJson.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798DB18166D888500A0863D /* SBJson.h */; };
-		2798DB38166D888500A0863D /* SBJsonParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798DB19166D888500A0863D /* SBJsonParser.h */; };
-		2798DB39166D888500A0863D /* SBJsonParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798DB19166D888500A0863D /* SBJsonParser.h */; };
-		2798DB3A166D888500A0863D /* SBJsonParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798DB19166D888500A0863D /* SBJsonParser.h */; };
-		2798DB3B166D888500A0863D /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798DB1A166D888500A0863D /* SBJsonParser.m */; };
-		2798DB3C166D888500A0863D /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798DB1A166D888500A0863D /* SBJsonParser.m */; };
-		2798DB3D166D888500A0863D /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798DB1A166D888500A0863D /* SBJsonParser.m */; };
-		2798DB3E166D888500A0863D /* SBJsonStreamParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798DB1B166D888500A0863D /* SBJsonStreamParser.h */; };
-		2798DB3F166D888500A0863D /* SBJsonStreamParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798DB1B166D888500A0863D /* SBJsonStreamParser.h */; };
-		2798DB40166D888500A0863D /* SBJsonStreamParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798DB1B166D888500A0863D /* SBJsonStreamParser.h */; };
-		2798DB41166D888500A0863D /* SBJsonStreamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798DB1C166D888500A0863D /* SBJsonStreamParser.m */; };
-		2798DB42166D888500A0863D /* SBJsonStreamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798DB1C166D888500A0863D /* SBJsonStreamParser.m */; };
-		2798DB43166D888500A0863D /* SBJsonStreamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798DB1C166D888500A0863D /* SBJsonStreamParser.m */; };
-		2798DB44166D888500A0863D /* SBJsonStreamParserAccumulator.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798DB1D166D888500A0863D /* SBJsonStreamParserAccumulator.h */; };
-		2798DB45166D888500A0863D /* SBJsonStreamParserAccumulator.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798DB1D166D888500A0863D /* SBJsonStreamParserAccumulator.h */; };
-		2798DB46166D888500A0863D /* SBJsonStreamParserAccumulator.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798DB1D166D888500A0863D /* SBJsonStreamParserAccumulator.h */; };
-		2798DB47166D888500A0863D /* SBJsonStreamParserAccumulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798DB1E166D888500A0863D /* SBJsonStreamParserAccumulator.m */; };
-		2798DB48166D888500A0863D /* SBJsonStreamParserAccumulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798DB1E166D888500A0863D /* SBJsonStreamParserAccumulator.m */; };
-		2798DB49166D888500A0863D /* SBJsonStreamParserAccumulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798DB1E166D888500A0863D /* SBJsonStreamParserAccumulator.m */; };
-		2798DB4A166D888500A0863D /* SBJsonStreamParserAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798DB1F166D888500A0863D /* SBJsonStreamParserAdapter.h */; };
-		2798DB4B166D888500A0863D /* SBJsonStreamParserAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798DB1F166D888500A0863D /* SBJsonStreamParserAdapter.h */; };
-		2798DB4C166D888500A0863D /* SBJsonStreamParserAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798DB1F166D888500A0863D /* SBJsonStreamParserAdapter.h */; };
-		2798DB4D166D888500A0863D /* SBJsonStreamParserAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798DB20166D888500A0863D /* SBJsonStreamParserAdapter.m */; };
-		2798DB4E166D888500A0863D /* SBJsonStreamParserAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798DB20166D888500A0863D /* SBJsonStreamParserAdapter.m */; };
-		2798DB4F166D888500A0863D /* SBJsonStreamParserAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798DB20166D888500A0863D /* SBJsonStreamParserAdapter.m */; };
-		2798DB50166D888500A0863D /* SBJsonStreamParserState.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798DB21166D888500A0863D /* SBJsonStreamParserState.h */; };
-		2798DB51166D888500A0863D /* SBJsonStreamParserState.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798DB21166D888500A0863D /* SBJsonStreamParserState.h */; };
-		2798DB52166D888500A0863D /* SBJsonStreamParserState.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798DB21166D888500A0863D /* SBJsonStreamParserState.h */; };
-		2798DB53166D888500A0863D /* SBJsonStreamParserState.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798DB22166D888500A0863D /* SBJsonStreamParserState.m */; };
-		2798DB54166D888500A0863D /* SBJsonStreamParserState.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798DB22166D888500A0863D /* SBJsonStreamParserState.m */; };
-		2798DB55166D888500A0863D /* SBJsonStreamParserState.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798DB22166D888500A0863D /* SBJsonStreamParserState.m */; };
-		2798DB56166D888500A0863D /* SBJsonStreamWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798DB23166D888500A0863D /* SBJsonStreamWriter.h */; };
-		2798DB57166D888500A0863D /* SBJsonStreamWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798DB23166D888500A0863D /* SBJsonStreamWriter.h */; };
-		2798DB58166D888500A0863D /* SBJsonStreamWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798DB23166D888500A0863D /* SBJsonStreamWriter.h */; };
-		2798DB59166D888500A0863D /* SBJsonStreamWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798DB24166D888500A0863D /* SBJsonStreamWriter.m */; };
-		2798DB5A166D888500A0863D /* SBJsonStreamWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798DB24166D888500A0863D /* SBJsonStreamWriter.m */; };
-		2798DB5B166D888500A0863D /* SBJsonStreamWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798DB24166D888500A0863D /* SBJsonStreamWriter.m */; };
-		2798DB5C166D888500A0863D /* SBJsonStreamWriterAccumulator.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798DB25166D888500A0863D /* SBJsonStreamWriterAccumulator.h */; };
-		2798DB5D166D888500A0863D /* SBJsonStreamWriterAccumulator.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798DB25166D888500A0863D /* SBJsonStreamWriterAccumulator.h */; };
-		2798DB5E166D888500A0863D /* SBJsonStreamWriterAccumulator.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798DB25166D888500A0863D /* SBJsonStreamWriterAccumulator.h */; };
-		2798DB5F166D888500A0863D /* SBJsonStreamWriterAccumulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798DB26166D888500A0863D /* SBJsonStreamWriterAccumulator.m */; };
-		2798DB60166D888500A0863D /* SBJsonStreamWriterAccumulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798DB26166D888500A0863D /* SBJsonStreamWriterAccumulator.m */; };
-		2798DB61166D888500A0863D /* SBJsonStreamWriterAccumulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798DB26166D888500A0863D /* SBJsonStreamWriterAccumulator.m */; };
-		2798DB62166D888500A0863D /* SBJsonStreamWriterState.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798DB27166D888500A0863D /* SBJsonStreamWriterState.h */; };
-		2798DB63166D888500A0863D /* SBJsonStreamWriterState.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798DB27166D888500A0863D /* SBJsonStreamWriterState.h */; };
-		2798DB64166D888500A0863D /* SBJsonStreamWriterState.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798DB27166D888500A0863D /* SBJsonStreamWriterState.h */; };
-		2798DB65166D888500A0863D /* SBJsonStreamWriterState.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798DB28166D888500A0863D /* SBJsonStreamWriterState.m */; };
-		2798DB66166D888500A0863D /* SBJsonStreamWriterState.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798DB28166D888500A0863D /* SBJsonStreamWriterState.m */; };
-		2798DB67166D888500A0863D /* SBJsonStreamWriterState.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798DB28166D888500A0863D /* SBJsonStreamWriterState.m */; };
-		2798DB68166D888500A0863D /* SBJsonTokeniser.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798DB29166D888500A0863D /* SBJsonTokeniser.h */; };
-		2798DB69166D888500A0863D /* SBJsonTokeniser.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798DB29166D888500A0863D /* SBJsonTokeniser.h */; };
-		2798DB6A166D888500A0863D /* SBJsonTokeniser.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798DB29166D888500A0863D /* SBJsonTokeniser.h */; };
-		2798DB6B166D888500A0863D /* SBJsonTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798DB2A166D888500A0863D /* SBJsonTokeniser.m */; };
-		2798DB6C166D888500A0863D /* SBJsonTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798DB2A166D888500A0863D /* SBJsonTokeniser.m */; };
-		2798DB6D166D888500A0863D /* SBJsonTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798DB2A166D888500A0863D /* SBJsonTokeniser.m */; };
-		2798DB6E166D888500A0863D /* SBJsonUTF8Stream.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798DB2B166D888500A0863D /* SBJsonUTF8Stream.h */; };
-		2798DB6F166D888500A0863D /* SBJsonUTF8Stream.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798DB2B166D888500A0863D /* SBJsonUTF8Stream.h */; };
-		2798DB70166D888500A0863D /* SBJsonUTF8Stream.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798DB2B166D888500A0863D /* SBJsonUTF8Stream.h */; };
-		2798DB71166D888500A0863D /* SBJsonUTF8Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798DB2C166D888500A0863D /* SBJsonUTF8Stream.m */; };
-		2798DB72166D888500A0863D /* SBJsonUTF8Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798DB2C166D888500A0863D /* SBJsonUTF8Stream.m */; };
-		2798DB73166D888500A0863D /* SBJsonUTF8Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798DB2C166D888500A0863D /* SBJsonUTF8Stream.m */; };
-		2798DB74166D888500A0863D /* SBJsonWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798DB2D166D888500A0863D /* SBJsonWriter.h */; };
-		2798DB75166D888500A0863D /* SBJsonWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798DB2D166D888500A0863D /* SBJsonWriter.h */; };
-		2798DB76166D888500A0863D /* SBJsonWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798DB2D166D888500A0863D /* SBJsonWriter.h */; };
-		2798DB77166D888500A0863D /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798DB2E166D888500A0863D /* SBJsonWriter.m */; };
-		2798DB78166D888500A0863D /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798DB2E166D888500A0863D /* SBJsonWriter.m */; };
-		2798DB79166D888500A0863D /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798DB2E166D888500A0863D /* SBJsonWriter.m */; };
 		27D1E5C2166D355C00DB680E /* FishLampCocoa-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27D1E5C1166D355C00DB680E /* FishLampCocoa-Prefix.pch */; };
 		27D1E5C3166D355C00DB680E /* FishLampCocoa-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27D1E5C1166D355C00DB680E /* FishLampCocoa-Prefix.pch */; };
 		27D1E5C4166D355C00DB680E /* FishLampCocoa-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27D1E5C1166D355C00DB680E /* FishLampCocoa-Prefix.pch */; };
@@ -3393,8 +3347,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		270380C4166EDDAC0082D9D9 /* FLWizardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLWizardViewController.h; sourceTree = "<group>"; };
-		270380C5166EDDAC0082D9D9 /* FLWizardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLWizardViewController.m; sourceTree = "<group>"; };
 		270380CD166EDDC10082D9D9 /* FLGlobalMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLGlobalMenuController.h; sourceTree = "<group>"; };
 		270380CE166EDDC10082D9D9 /* FLGlobalMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLGlobalMenuController.m; sourceTree = "<group>"; };
 		27048EF0161CB58600C38ADA /* libFishLampCocoa-OSX-32.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoa-OSX-32.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -3469,8 +3421,8 @@
 		270B0DA21671592000F59249 /* FLBreadcrumb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLBreadcrumb.m; sourceTree = "<group>"; };
 		270B0DA31671592000F59249 /* FLBreadcrumbBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLBreadcrumbBarView.h; sourceTree = "<group>"; };
 		270B0DA41671592000F59249 /* FLBreadcrumbBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLBreadcrumbBarView.m; sourceTree = "<group>"; };
-		270B0EBA16715A1600F59249 /* FLCocoaView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCocoaView.h; sourceTree = "<group>"; };
-		270B0EBB16715A1600F59249 /* FLCocoaView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLCocoaView.m; sourceTree = "<group>"; };
+		270B0EBA16715A1600F59249 /* FLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLView.h; sourceTree = "<group>"; };
+		270B0EBB16715A1600F59249 /* FLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLView.m; sourceTree = "<group>"; };
 		270B0FDB1671621D00F59249 /* FLEdgeInsets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEdgeInsets.h; sourceTree = "<group>"; };
 		270B0FE81671656400F59249 /* FLEdgeInsets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEdgeInsets.m; sourceTree = "<group>"; };
 		270B0FEE1671676A00F59249 /* FLCompatibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCompatibility.h; sourceTree = "<group>"; };
@@ -3513,6 +3465,16 @@
 		276CE91315E54C90000A5CE6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		276CE91415E54C91000A5CE6 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		276CE91515E54C91000A5CE6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		2776CC6E1672643C00F2E70A /* FLJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FLJson.h; path = SBJson/FLJson.h; sourceTree = "<group>"; };
+		2776CC6F1672643C00F2E70A /* FLJson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FLJson.m; path = SBJson/FLJson.m; sourceTree = "<group>"; };
+		2776CC911672868E00F2E70A /* FLWizardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLWizardViewController.h; sourceTree = "<group>"; };
+		2776CC921672868E00F2E70A /* FLWizardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLWizardViewController.m; sourceTree = "<group>"; };
+		2776CC941672868E00F2E70A /* FLLoginWizardPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLLoginWizardPanel.h; sourceTree = "<group>"; };
+		2776CC951672868E00F2E70A /* FLLoginWizardPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLLoginWizardPanel.m; sourceTree = "<group>"; };
+		2776CC961672868E00F2E70A /* FLProgressWizardPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLProgressWizardPanel.h; sourceTree = "<group>"; };
+		2776CC971672868E00F2E70A /* FLProgressWizardPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLProgressWizardPanel.m; sourceTree = "<group>"; };
+		2776CCC01672958200F2E70A /* FLWizardPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLWizardPanel.h; sourceTree = "<group>"; };
+		2776CCC11672958300F2E70A /* FLWizardPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLWizardPanel.m; sourceTree = "<group>"; };
 		2798CA42166D886400A0863D /* FLContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLContext.h; sourceTree = "<group>"; };
 		2798CA43166D886400A0863D /* FLContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLContext.m; sourceTree = "<group>"; };
 		2798CA44166D886400A0863D /* FLContextual.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLContextual.h; sourceTree = "<group>"; };
@@ -4383,33 +4345,7 @@
 		2798CE5C166D886500A0863D /* FLImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FLImage+Resize.m"; sourceTree = "<group>"; };
 		2798CE5D166D886500A0863D /* FLImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FLImage+RoundedCorner.h"; sourceTree = "<group>"; };
 		2798CE5E166D886500A0863D /* FLImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FLImage+RoundedCorner.m"; sourceTree = "<group>"; };
-		2798DB16166D888500A0863D /* NSObject+SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJson.h"; sourceTree = "<group>"; };
-		2798DB17166D888500A0863D /* NSObject+SBJson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJson.m"; sourceTree = "<group>"; };
-		2798DB18166D888500A0863D /* SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJson.h; sourceTree = "<group>"; };
-		2798DB19166D888500A0863D /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonParser.h; sourceTree = "<group>"; };
-		2798DB1A166D888500A0863D /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
-		2798DB1B166D888500A0863D /* SBJsonStreamParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamParser.h; sourceTree = "<group>"; };
-		2798DB1C166D888500A0863D /* SBJsonStreamParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamParser.m; sourceTree = "<group>"; };
-		2798DB1D166D888500A0863D /* SBJsonStreamParserAccumulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamParserAccumulator.h; sourceTree = "<group>"; };
-		2798DB1E166D888500A0863D /* SBJsonStreamParserAccumulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamParserAccumulator.m; sourceTree = "<group>"; };
-		2798DB1F166D888500A0863D /* SBJsonStreamParserAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamParserAdapter.h; sourceTree = "<group>"; };
-		2798DB20166D888500A0863D /* SBJsonStreamParserAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamParserAdapter.m; sourceTree = "<group>"; };
-		2798DB21166D888500A0863D /* SBJsonStreamParserState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamParserState.h; sourceTree = "<group>"; };
-		2798DB22166D888500A0863D /* SBJsonStreamParserState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamParserState.m; sourceTree = "<group>"; };
-		2798DB23166D888500A0863D /* SBJsonStreamWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamWriter.h; sourceTree = "<group>"; };
-		2798DB24166D888500A0863D /* SBJsonStreamWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamWriter.m; sourceTree = "<group>"; };
-		2798DB25166D888500A0863D /* SBJsonStreamWriterAccumulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamWriterAccumulator.h; sourceTree = "<group>"; };
-		2798DB26166D888500A0863D /* SBJsonStreamWriterAccumulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamWriterAccumulator.m; sourceTree = "<group>"; };
-		2798DB27166D888500A0863D /* SBJsonStreamWriterState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamWriterState.h; sourceTree = "<group>"; };
-		2798DB28166D888500A0863D /* SBJsonStreamWriterState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamWriterState.m; sourceTree = "<group>"; };
-		2798DB29166D888500A0863D /* SBJsonTokeniser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonTokeniser.h; sourceTree = "<group>"; };
-		2798DB2A166D888500A0863D /* SBJsonTokeniser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonTokeniser.m; sourceTree = "<group>"; };
-		2798DB2B166D888500A0863D /* SBJsonUTF8Stream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonUTF8Stream.h; sourceTree = "<group>"; };
-		2798DB2C166D888500A0863D /* SBJsonUTF8Stream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonUTF8Stream.m; sourceTree = "<group>"; };
-		2798DB2D166D888500A0863D /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
-		2798DB2E166D888500A0863D /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
 		2798DB81166D8A7F00A0863D /* SharedTargetSettings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = SharedTargetSettings.xcconfig; sourceTree = "<group>"; };
-		279AA18816703DE6003EC2EB /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = FLWizardViewController.xib; sourceTree = "<group>"; };
 		27A43AB415CDCC89001CB13E /* libFishLampCocoa-iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoa-iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27A43AC415CDCCCB001CB13E /* libFishLampCocoa-OSX-64-ARC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoa-OSX-64-ARC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27D1070B166D7C9100DB680E /* Xcode */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Xcode; path = ../../Xcode; sourceTree = "<group>"; };
@@ -4457,16 +4393,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		270380C1166EDDAC0082D9D9 /* WizardViewController */ = {
-			isa = PBXGroup;
-			children = (
-				279AA18616703DE6003EC2EB /* en.lproj */,
-				270380C4166EDDAC0082D9D9 /* FLWizardViewController.h */,
-				270380C5166EDDAC0082D9D9 /* FLWizardViewController.m */,
-			);
-			path = WizardViewController;
-			sourceTree = "<group>";
-		};
 		270380CC166EDDC10082D9D9 /* Menus */ = {
 			isa = PBXGroup;
 			children = (
@@ -4621,9 +4547,10 @@
 		270B0D9F1671592000F59249 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2776CC8A1672868D00F2E70A /* WizardViewController */,
 				270B0DA01671592000F59249 /* FLBreadcrumbBarView */,
-				270B0EBA16715A1600F59249 /* FLCocoaView.h */,
-				270B0EBB16715A1600F59249 /* FLCocoaView.m */,
+				270B0EBA16715A1600F59249 /* FLView.h */,
+				270B0EBB16715A1600F59249 /* FLView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -4706,6 +4633,29 @@
 				276CE8F115E54B33000A5CE6 /* Security.framework */,
 			);
 			name = iOS;
+			sourceTree = "<group>";
+		};
+		2776CC8A1672868D00F2E70A /* WizardViewController */ = {
+			isa = PBXGroup;
+			children = (
+				2776CC911672868E00F2E70A /* FLWizardViewController.h */,
+				2776CC921672868E00F2E70A /* FLWizardViewController.m */,
+				2776CC931672868E00F2E70A /* WizardPanels */,
+				2776CCC01672958200F2E70A /* FLWizardPanel.h */,
+				2776CCC11672958300F2E70A /* FLWizardPanel.m */,
+			);
+			path = WizardViewController;
+			sourceTree = "<group>";
+		};
+		2776CC931672868E00F2E70A /* WizardPanels */ = {
+			isa = PBXGroup;
+			children = (
+				2776CC941672868E00F2E70A /* FLLoginWizardPanel.h */,
+				2776CC951672868E00F2E70A /* FLLoginWizardPanel.m */,
+				2776CC961672868E00F2E70A /* FLProgressWizardPanel.h */,
+				2776CC971672868E00F2E70A /* FLProgressWizardPanel.m */,
+			);
+			path = WizardPanels;
 			sourceTree = "<group>";
 		};
 		2798CA3F166D886400A0863D /* Cocoa */ = {
@@ -6343,6 +6293,8 @@
 				2798CE52166D886500A0863D /* ISO8601DateFormatter-PeterHosey */,
 				2798CE55166D886500A0863D /* NSData+RSHexDump-DanielJalkut */,
 				2798CE58166D886500A0863D /* UIImage+TrevorHarmon */,
+				2776CC6E1672643C00F2E70A /* FLJson.h */,
+				2776CC6F1672643C00F2E70A /* FLJson.m */,
 			);
 			name = External;
 			path = ../../Frameworks/External;
@@ -6393,59 +6345,9 @@
 			children = (
 				273FC18F166FB79C0072C62A /* Views */,
 				270380CC166EDDC10082D9D9 /* Menus */,
-				270380C1166EDDAC0082D9D9 /* WizardViewController */,
 			);
 			name = OSX;
 			path = ../../Frameworks/OSX;
-			sourceTree = "<group>";
-		};
-		2798DB14166D888500A0863D /* Dependencies */ = {
-			isa = PBXGroup;
-			children = (
-				2798DB15166D888500A0863D /* json-framework */,
-			);
-			name = Dependencies;
-			path = ../../Frameworks/Dependencies;
-			sourceTree = "<group>";
-		};
-		2798DB15166D888500A0863D /* json-framework */ = {
-			isa = PBXGroup;
-			children = (
-				2798DB16166D888500A0863D /* NSObject+SBJson.h */,
-				2798DB17166D888500A0863D /* NSObject+SBJson.m */,
-				2798DB18166D888500A0863D /* SBJson.h */,
-				2798DB19166D888500A0863D /* SBJsonParser.h */,
-				2798DB1A166D888500A0863D /* SBJsonParser.m */,
-				2798DB1B166D888500A0863D /* SBJsonStreamParser.h */,
-				2798DB1C166D888500A0863D /* SBJsonStreamParser.m */,
-				2798DB1D166D888500A0863D /* SBJsonStreamParserAccumulator.h */,
-				2798DB1E166D888500A0863D /* SBJsonStreamParserAccumulator.m */,
-				2798DB1F166D888500A0863D /* SBJsonStreamParserAdapter.h */,
-				2798DB20166D888500A0863D /* SBJsonStreamParserAdapter.m */,
-				2798DB21166D888500A0863D /* SBJsonStreamParserState.h */,
-				2798DB22166D888500A0863D /* SBJsonStreamParserState.m */,
-				2798DB23166D888500A0863D /* SBJsonStreamWriter.h */,
-				2798DB24166D888500A0863D /* SBJsonStreamWriter.m */,
-				2798DB25166D888500A0863D /* SBJsonStreamWriterAccumulator.h */,
-				2798DB26166D888500A0863D /* SBJsonStreamWriterAccumulator.m */,
-				2798DB27166D888500A0863D /* SBJsonStreamWriterState.h */,
-				2798DB28166D888500A0863D /* SBJsonStreamWriterState.m */,
-				2798DB29166D888500A0863D /* SBJsonTokeniser.h */,
-				2798DB2A166D888500A0863D /* SBJsonTokeniser.m */,
-				2798DB2B166D888500A0863D /* SBJsonUTF8Stream.h */,
-				2798DB2C166D888500A0863D /* SBJsonUTF8Stream.m */,
-				2798DB2D166D888500A0863D /* SBJsonWriter.h */,
-				2798DB2E166D888500A0863D /* SBJsonWriter.m */,
-			);
-			path = "json-framework";
-			sourceTree = "<group>";
-		};
-		279AA18616703DE6003EC2EB /* en.lproj */ = {
-			isa = PBXGroup;
-			children = (
-				279AA18716703DE6003EC2EB /* FLWizardViewController.xib */,
-			);
-			path = en.lproj;
 			sourceTree = "<group>";
 		};
 		27A43A7115CDCC1B001CB13E = {
@@ -6505,7 +6407,6 @@
 			isa = PBXGroup;
 			children = (
 				270B0D471671592000F59249 /* CocoaUI */,
-				2798DB14166D888500A0863D /* Dependencies */,
 				2798CA3F166D886400A0863D /* Cocoa */,
 				2798CDC1166D886500A0863D /* Core */,
 				2798CE19166D886500A0863D /* Deprecated */,
@@ -6989,20 +6890,6 @@
 				2798DAF9166D886500A0863D /* FLImage+Alpha.h in Headers */,
 				2798DB00166D886500A0863D /* FLImage+Resize.h in Headers */,
 				2798DB07166D886500A0863D /* FLImage+RoundedCorner.h in Headers */,
-				2798DB30166D888500A0863D /* NSObject+SBJson.h in Headers */,
-				2798DB36166D888500A0863D /* SBJson.h in Headers */,
-				2798DB39166D888500A0863D /* SBJsonParser.h in Headers */,
-				2798DB3F166D888500A0863D /* SBJsonStreamParser.h in Headers */,
-				2798DB45166D888500A0863D /* SBJsonStreamParserAccumulator.h in Headers */,
-				2798DB4B166D888500A0863D /* SBJsonStreamParserAdapter.h in Headers */,
-				2798DB51166D888500A0863D /* SBJsonStreamParserState.h in Headers */,
-				2798DB57166D888500A0863D /* SBJsonStreamWriter.h in Headers */,
-				2798DB5D166D888500A0863D /* SBJsonStreamWriterAccumulator.h in Headers */,
-				2798DB63166D888500A0863D /* SBJsonStreamWriterState.h in Headers */,
-				2798DB69166D888500A0863D /* SBJsonTokeniser.h in Headers */,
-				2798DB6F166D888500A0863D /* SBJsonUTF8Stream.h in Headers */,
-				2798DB75166D888500A0863D /* SBJsonWriter.h in Headers */,
-				270380C7166EDDAC0082D9D9 /* FLWizardViewController.h in Headers */,
 				270380D0166EDDC10082D9D9 /* FLGlobalMenuController.h in Headers */,
 				273FC194166FB7AE0072C62A /* NSView+FLAdditions.h in Headers */,
 				273FC264166FDB840072C62A /* FLCoreFoundation.h in Headers */,
@@ -7046,7 +6933,7 @@
 				270B0EA51671592000F59249 /* FLSlideshowOptions.h in Headers */,
 				270B0EAC1671592000F59249 /* FLBreadcrumb.h in Headers */,
 				270B0EB31671592000F59249 /* FLBreadcrumbBarView.h in Headers */,
-				270B0EBD16715A1600F59249 /* FLCocoaView.h in Headers */,
+				270B0EBD16715A1600F59249 /* FLView.h in Headers */,
 				270B0FDD1671621D00F59249 /* FLEdgeInsets.h in Headers */,
 				270B0FF81671676A00F59249 /* FLCompatibility.h in Headers */,
 				270B0FFB1671676A00F59249 /* FLGeometryCompatibility.h in Headers */,
@@ -7054,6 +6941,11 @@
 				270B10051671676A00F59249 /* FLImage+FLCompatibility.h in Headers */,
 				270B100C1671676A00F59249 /* NSValue+FLCompatibility.h in Headers */,
 				270B10151671678E00F59249 /* FLDeviceCompatibility.h in Headers */,
+				2776CC711672643C00F2E70A /* FLJson.h in Headers */,
+				2776CC991672868E00F2E70A /* FLWizardViewController.h in Headers */,
+				2776CCA01672868E00F2E70A /* FLLoginWizardPanel.h in Headers */,
+				2776CCA71672868E00F2E70A /* FLProgressWizardPanel.h in Headers */,
+				2776CCC31672958300F2E70A /* FLWizardPanel.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7518,20 +7410,6 @@
 				2798DAFA166D886500A0863D /* FLImage+Alpha.h in Headers */,
 				2798DB01166D886500A0863D /* FLImage+Resize.h in Headers */,
 				2798DB08166D886500A0863D /* FLImage+RoundedCorner.h in Headers */,
-				2798DB31166D888500A0863D /* NSObject+SBJson.h in Headers */,
-				2798DB37166D888500A0863D /* SBJson.h in Headers */,
-				2798DB3A166D888500A0863D /* SBJsonParser.h in Headers */,
-				2798DB40166D888500A0863D /* SBJsonStreamParser.h in Headers */,
-				2798DB46166D888500A0863D /* SBJsonStreamParserAccumulator.h in Headers */,
-				2798DB4C166D888500A0863D /* SBJsonStreamParserAdapter.h in Headers */,
-				2798DB52166D888500A0863D /* SBJsonStreamParserState.h in Headers */,
-				2798DB58166D888500A0863D /* SBJsonStreamWriter.h in Headers */,
-				2798DB5E166D888500A0863D /* SBJsonStreamWriterAccumulator.h in Headers */,
-				2798DB64166D888500A0863D /* SBJsonStreamWriterState.h in Headers */,
-				2798DB6A166D888500A0863D /* SBJsonTokeniser.h in Headers */,
-				2798DB70166D888500A0863D /* SBJsonUTF8Stream.h in Headers */,
-				2798DB76166D888500A0863D /* SBJsonWriter.h in Headers */,
-				270380C8166EDDAC0082D9D9 /* FLWizardViewController.h in Headers */,
 				270380D1166EDDC10082D9D9 /* FLGlobalMenuController.h in Headers */,
 				273FC195166FB7AE0072C62A /* NSView+FLAdditions.h in Headers */,
 				273FC265166FDB840072C62A /* FLCoreFoundation.h in Headers */,
@@ -7575,7 +7453,7 @@
 				270B0EA61671592000F59249 /* FLSlideshowOptions.h in Headers */,
 				270B0EAD1671592000F59249 /* FLBreadcrumb.h in Headers */,
 				270B0EB41671592000F59249 /* FLBreadcrumbBarView.h in Headers */,
-				270B0EBE16715A1600F59249 /* FLCocoaView.h in Headers */,
+				270B0EBE16715A1600F59249 /* FLView.h in Headers */,
 				270B0FDE1671621D00F59249 /* FLEdgeInsets.h in Headers */,
 				270B0FF91671676A00F59249 /* FLCompatibility.h in Headers */,
 				270B0FFC1671676A00F59249 /* FLGeometryCompatibility.h in Headers */,
@@ -7583,6 +7461,11 @@
 				270B10061671676A00F59249 /* FLImage+FLCompatibility.h in Headers */,
 				270B100D1671676A00F59249 /* NSValue+FLCompatibility.h in Headers */,
 				270B10161671678E00F59249 /* FLDeviceCompatibility.h in Headers */,
+				2776CC721672643C00F2E70A /* FLJson.h in Headers */,
+				2776CC9A1672868E00F2E70A /* FLWizardViewController.h in Headers */,
+				2776CCA11672868E00F2E70A /* FLLoginWizardPanel.h in Headers */,
+				2776CCA81672868E00F2E70A /* FLProgressWizardPanel.h in Headers */,
+				2776CCC41672958300F2E70A /* FLWizardPanel.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8047,20 +7930,6 @@
 				2798DAF8166D886500A0863D /* FLImage+Alpha.h in Headers */,
 				2798DAFF166D886500A0863D /* FLImage+Resize.h in Headers */,
 				2798DB06166D886500A0863D /* FLImage+RoundedCorner.h in Headers */,
-				2798DB2F166D888500A0863D /* NSObject+SBJson.h in Headers */,
-				2798DB35166D888500A0863D /* SBJson.h in Headers */,
-				2798DB38166D888500A0863D /* SBJsonParser.h in Headers */,
-				2798DB3E166D888500A0863D /* SBJsonStreamParser.h in Headers */,
-				2798DB44166D888500A0863D /* SBJsonStreamParserAccumulator.h in Headers */,
-				2798DB4A166D888500A0863D /* SBJsonStreamParserAdapter.h in Headers */,
-				2798DB50166D888500A0863D /* SBJsonStreamParserState.h in Headers */,
-				2798DB56166D888500A0863D /* SBJsonStreamWriter.h in Headers */,
-				2798DB5C166D888500A0863D /* SBJsonStreamWriterAccumulator.h in Headers */,
-				2798DB62166D888500A0863D /* SBJsonStreamWriterState.h in Headers */,
-				2798DB68166D888500A0863D /* SBJsonTokeniser.h in Headers */,
-				2798DB6E166D888500A0863D /* SBJsonUTF8Stream.h in Headers */,
-				2798DB74166D888500A0863D /* SBJsonWriter.h in Headers */,
-				270380C6166EDDAC0082D9D9 /* FLWizardViewController.h in Headers */,
 				270380CF166EDDC10082D9D9 /* FLGlobalMenuController.h in Headers */,
 				273FC193166FB7AE0072C62A /* NSView+FLAdditions.h in Headers */,
 				273FC263166FDB840072C62A /* FLCoreFoundation.h in Headers */,
@@ -8104,7 +7973,7 @@
 				270B0EA41671592000F59249 /* FLSlideshowOptions.h in Headers */,
 				270B0EAB1671592000F59249 /* FLBreadcrumb.h in Headers */,
 				270B0EB21671592000F59249 /* FLBreadcrumbBarView.h in Headers */,
-				270B0EBC16715A1600F59249 /* FLCocoaView.h in Headers */,
+				270B0EBC16715A1600F59249 /* FLView.h in Headers */,
 				270B0FDC1671621D00F59249 /* FLEdgeInsets.h in Headers */,
 				270B0FF71671676A00F59249 /* FLCompatibility.h in Headers */,
 				270B0FFA1671676A00F59249 /* FLGeometryCompatibility.h in Headers */,
@@ -8112,6 +7981,11 @@
 				270B10041671676A00F59249 /* FLImage+FLCompatibility.h in Headers */,
 				270B100B1671676A00F59249 /* NSValue+FLCompatibility.h in Headers */,
 				270B10141671678E00F59249 /* FLDeviceCompatibility.h in Headers */,
+				2776CC701672643C00F2E70A /* FLJson.h in Headers */,
+				2776CC981672868E00F2E70A /* FLWizardViewController.h in Headers */,
+				2776CC9F1672868E00F2E70A /* FLLoginWizardPanel.h in Headers */,
+				2776CCA61672868E00F2E70A /* FLProgressWizardPanel.h in Headers */,
+				2776CCC21672958300F2E70A /* FLWizardPanel.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8689,19 +8563,6 @@
 				2798DAFD166D886500A0863D /* FLImage+Alpha.m in Sources */,
 				2798DB04166D886500A0863D /* FLImage+Resize.m in Sources */,
 				2798DB0B166D886500A0863D /* FLImage+RoundedCorner.m in Sources */,
-				2798DB33166D888500A0863D /* NSObject+SBJson.m in Sources */,
-				2798DB3C166D888500A0863D /* SBJsonParser.m in Sources */,
-				2798DB42166D888500A0863D /* SBJsonStreamParser.m in Sources */,
-				2798DB48166D888500A0863D /* SBJsonStreamParserAccumulator.m in Sources */,
-				2798DB4E166D888500A0863D /* SBJsonStreamParserAdapter.m in Sources */,
-				2798DB54166D888500A0863D /* SBJsonStreamParserState.m in Sources */,
-				2798DB5A166D888500A0863D /* SBJsonStreamWriter.m in Sources */,
-				2798DB60166D888500A0863D /* SBJsonStreamWriterAccumulator.m in Sources */,
-				2798DB66166D888500A0863D /* SBJsonStreamWriterState.m in Sources */,
-				2798DB6C166D888500A0863D /* SBJsonTokeniser.m in Sources */,
-				2798DB72166D888500A0863D /* SBJsonUTF8Stream.m in Sources */,
-				2798DB78166D888500A0863D /* SBJsonWriter.m in Sources */,
-				270380CA166EDDAC0082D9D9 /* FLWizardViewController.m in Sources */,
 				270380D3166EDDC10082D9D9 /* FLGlobalMenuController.m in Sources */,
 				273FC197166FB7AE0072C62A /* NSView+FLAdditions.m in Sources */,
 				270B0DAA1671592000F59249 /* FLArrangeable.m in Sources */,
@@ -8734,11 +8595,16 @@
 				270B0EA91671592000F59249 /* FLSlideshowOptions.m in Sources */,
 				270B0EB01671592000F59249 /* FLBreadcrumb.m in Sources */,
 				270B0EB71671592000F59249 /* FLBreadcrumbBarView.m in Sources */,
-				270B0EC116715A1600F59249 /* FLCocoaView.m in Sources */,
+				270B0EC116715A1600F59249 /* FLView.m in Sources */,
 				270B0FEB1671656400F59249 /* FLEdgeInsets.m in Sources */,
 				270B10091671676A00F59249 /* FLImage+FLCompatibility.m in Sources */,
 				270B10101671676A00F59249 /* NSValue+FLCompatibility.m in Sources */,
 				270B10191671678E00F59249 /* FLDeviceCompatibility.m in Sources */,
+				2776CC751672643C00F2E70A /* FLJson.m in Sources */,
+				2776CC9D1672868E00F2E70A /* FLWizardViewController.m in Sources */,
+				2776CCA41672868E00F2E70A /* FLLoginWizardPanel.m in Sources */,
+				2776CCAB1672868E00F2E70A /* FLProgressWizardPanel.m in Sources */,
+				2776CCC71672958300F2E70A /* FLWizardPanel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9151,19 +9017,6 @@
 				2798DAFE166D886500A0863D /* FLImage+Alpha.m in Sources */,
 				2798DB05166D886500A0863D /* FLImage+Resize.m in Sources */,
 				2798DB0C166D886500A0863D /* FLImage+RoundedCorner.m in Sources */,
-				2798DB34166D888500A0863D /* NSObject+SBJson.m in Sources */,
-				2798DB3D166D888500A0863D /* SBJsonParser.m in Sources */,
-				2798DB43166D888500A0863D /* SBJsonStreamParser.m in Sources */,
-				2798DB49166D888500A0863D /* SBJsonStreamParserAccumulator.m in Sources */,
-				2798DB4F166D888500A0863D /* SBJsonStreamParserAdapter.m in Sources */,
-				2798DB55166D888500A0863D /* SBJsonStreamParserState.m in Sources */,
-				2798DB5B166D888500A0863D /* SBJsonStreamWriter.m in Sources */,
-				2798DB61166D888500A0863D /* SBJsonStreamWriterAccumulator.m in Sources */,
-				2798DB67166D888500A0863D /* SBJsonStreamWriterState.m in Sources */,
-				2798DB6D166D888500A0863D /* SBJsonTokeniser.m in Sources */,
-				2798DB73166D888500A0863D /* SBJsonUTF8Stream.m in Sources */,
-				2798DB79166D888500A0863D /* SBJsonWriter.m in Sources */,
-				270380CB166EDDAC0082D9D9 /* FLWizardViewController.m in Sources */,
 				270380D4166EDDC10082D9D9 /* FLGlobalMenuController.m in Sources */,
 				273FC198166FB7AE0072C62A /* NSView+FLAdditions.m in Sources */,
 				270B0DAB1671592000F59249 /* FLArrangeable.m in Sources */,
@@ -9196,11 +9049,16 @@
 				270B0EAA1671592000F59249 /* FLSlideshowOptions.m in Sources */,
 				270B0EB11671592000F59249 /* FLBreadcrumb.m in Sources */,
 				270B0EB81671592000F59249 /* FLBreadcrumbBarView.m in Sources */,
-				270B0EC216715A1600F59249 /* FLCocoaView.m in Sources */,
+				270B0EC216715A1600F59249 /* FLView.m in Sources */,
 				270B0FEC1671656400F59249 /* FLEdgeInsets.m in Sources */,
 				270B100A1671676A00F59249 /* FLImage+FLCompatibility.m in Sources */,
 				270B10111671676A00F59249 /* NSValue+FLCompatibility.m in Sources */,
 				270B101A1671678E00F59249 /* FLDeviceCompatibility.m in Sources */,
+				2776CC761672643C00F2E70A /* FLJson.m in Sources */,
+				2776CC9E1672868E00F2E70A /* FLWizardViewController.m in Sources */,
+				2776CCA51672868E00F2E70A /* FLLoginWizardPanel.m in Sources */,
+				2776CCAC1672868E00F2E70A /* FLProgressWizardPanel.m in Sources */,
+				2776CCC81672958300F2E70A /* FLWizardPanel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9643,11 +9501,16 @@
 				270B0EA71671592000F59249 /* FLSlideshowOptions.m in Sources */,
 				270B0EAE1671592000F59249 /* FLBreadcrumb.m in Sources */,
 				270B0EB51671592000F59249 /* FLBreadcrumbBarView.m in Sources */,
-				270B0EBF16715A1600F59249 /* FLCocoaView.m in Sources */,
+				270B0EBF16715A1600F59249 /* FLView.m in Sources */,
 				270B0FE91671656400F59249 /* FLEdgeInsets.m in Sources */,
 				270B10071671676A00F59249 /* FLImage+FLCompatibility.m in Sources */,
 				270B100E1671676A00F59249 /* NSValue+FLCompatibility.m in Sources */,
 				270B10171671678E00F59249 /* FLDeviceCompatibility.m in Sources */,
+				2776CC731672643C00F2E70A /* FLJson.m in Sources */,
+				2776CC9B1672868E00F2E70A /* FLWizardViewController.m in Sources */,
+				2776CCA21672868E00F2E70A /* FLLoginWizardPanel.m in Sources */,
+				2776CCA91672868E00F2E70A /* FLProgressWizardPanel.m in Sources */,
+				2776CCC51672958300F2E70A /* FLWizardPanel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -10060,19 +9923,6 @@
 				2798DAFC166D886500A0863D /* FLImage+Alpha.m in Sources */,
 				2798DB03166D886500A0863D /* FLImage+Resize.m in Sources */,
 				2798DB0A166D886500A0863D /* FLImage+RoundedCorner.m in Sources */,
-				2798DB32166D888500A0863D /* NSObject+SBJson.m in Sources */,
-				2798DB3B166D888500A0863D /* SBJsonParser.m in Sources */,
-				2798DB41166D888500A0863D /* SBJsonStreamParser.m in Sources */,
-				2798DB47166D888500A0863D /* SBJsonStreamParserAccumulator.m in Sources */,
-				2798DB4D166D888500A0863D /* SBJsonStreamParserAdapter.m in Sources */,
-				2798DB53166D888500A0863D /* SBJsonStreamParserState.m in Sources */,
-				2798DB59166D888500A0863D /* SBJsonStreamWriter.m in Sources */,
-				2798DB5F166D888500A0863D /* SBJsonStreamWriterAccumulator.m in Sources */,
-				2798DB65166D888500A0863D /* SBJsonStreamWriterState.m in Sources */,
-				2798DB6B166D888500A0863D /* SBJsonTokeniser.m in Sources */,
-				2798DB71166D888500A0863D /* SBJsonUTF8Stream.m in Sources */,
-				2798DB77166D888500A0863D /* SBJsonWriter.m in Sources */,
-				270380C9166EDDAC0082D9D9 /* FLWizardViewController.m in Sources */,
 				270380D2166EDDC10082D9D9 /* FLGlobalMenuController.m in Sources */,
 				273FC196166FB7AE0072C62A /* NSView+FLAdditions.m in Sources */,
 				270B0DA91671592000F59249 /* FLArrangeable.m in Sources */,
@@ -10105,26 +9955,20 @@
 				270B0EA81671592000F59249 /* FLSlideshowOptions.m in Sources */,
 				270B0EAF1671592000F59249 /* FLBreadcrumb.m in Sources */,
 				270B0EB61671592000F59249 /* FLBreadcrumbBarView.m in Sources */,
-				270B0EC016715A1600F59249 /* FLCocoaView.m in Sources */,
+				270B0EC016715A1600F59249 /* FLView.m in Sources */,
 				270B0FEA1671656400F59249 /* FLEdgeInsets.m in Sources */,
 				270B10081671676A00F59249 /* FLImage+FLCompatibility.m in Sources */,
 				270B100F1671676A00F59249 /* NSValue+FLCompatibility.m in Sources */,
 				270B10181671678E00F59249 /* FLDeviceCompatibility.m in Sources */,
+				2776CC741672643C00F2E70A /* FLJson.m in Sources */,
+				2776CC9C1672868E00F2E70A /* FLWizardViewController.m in Sources */,
+				2776CCA31672868E00F2E70A /* FLLoginWizardPanel.m in Sources */,
+				2776CCAA1672868E00F2E70A /* FLProgressWizardPanel.m in Sources */,
+				2776CCC61672958300F2E70A /* FLWizardPanel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		279AA18716703DE6003EC2EB /* FLWizardViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				279AA18816703DE6003EC2EB /* en */,
-			);
-			name = FLWizardViewController.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		27048EEC161CB58600C38ADA /* Debug */ = {

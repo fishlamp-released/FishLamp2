@@ -35,8 +35,8 @@
 - (void) insertSubview:(UIView*) view
  withArrangeableWeight:(FLArrangeableWeight) weight;
 
-- (void) calculateArrangementSize:(FLSize*) outSize
-                           inSize:(FLSize) inSize
+- (void) calculateArrangementSize:(CGSize*) outSize
+                           inSize:(CGSize) inSize
                          fillMode:(FLArrangeableGrowMode) fillMode;
 @end
 

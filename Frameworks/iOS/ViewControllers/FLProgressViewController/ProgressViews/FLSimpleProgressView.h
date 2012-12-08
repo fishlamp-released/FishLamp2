@@ -15,13 +15,13 @@
 	UILabel* _textLabel;
 	UILabel* _statusMessage;
 	UIActivityIndicatorView* _spinner;
-    FLSize _minSize;
+    CGSize _minSize;
 }
 
 @property (readonly, strong, nonatomic) UILabel* textLabel;
 @property (readonly, strong, nonatomic) UIActivityIndicatorView* spinner;
 
-@property (readwrite, assign, nonatomic) FLSize minSize;
+@property (readwrite, assign, nonatomic) CGSize minSize;
 
 @property (readwrite, retain, nonatomic) NSString* title;
 

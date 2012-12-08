@@ -117,7 +117,7 @@
 	}
 }
 
-- (void) setShadowOffset:(FLSize) size
+- (void) setShadowOffset:(CGSize) size
 {
 	if([_proxiedView respondsToSelector:@selector(setShadowOffset:)])
 	{
@@ -125,7 +125,7 @@
 	}
 }
 
-- (FLSize) shadowOffset
+- (CGSize) shadowOffset
 {
 	if([_proxiedView respondsToSelector:@selector(shadowOffset)])
 	{

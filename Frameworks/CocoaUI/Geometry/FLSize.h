@@ -1,5 +1,5 @@
 //
-//  FLSize.h
+//  CGSize.h
 //  FishLampCocoa
 //
 //  Created by Mike Fullerton on 5/12/12.
@@ -8,54 +8,49 @@
 #import "FLCore.h"
 #import "FLGeometryCompatibility.h"
 
-#if IOS
-    #define FLSizeMake               CGSizeMake
-    #define FLSizeFromString         CGSizeFromString
-    #define FLSizeZero               CGSizeZero
-    #define FLSizeEqualToSize        CGSizeEqualToSize
-    #define FLEqualSizes             CGSizeEqualToSize
-    #define FLStringFromSize         NSStringFromCGSize
+#define FLSizeMake               CGSizeMake
+#define FLSizeZero               CGSizeZero
+#define FLSizeEqualToSize        CGSizeEqualToSize
+#define FLEqualSizes             CGSizeEqualToSize
 
-#endif
+//#if OSX
+//    #define FLSizeMake               NSMakeSize
+//    #define FLSizeFromString         NSSizeFromString     
+//    #define FLSizeZero               NSZeroSize
+//    #define FLSizeEqualToSize        NSEqualSizes
+//    #define FLEqualSizes             NSEqualSizes
+//    #define FLStringFromSize         NSStringFromSize
+//#endif
 
-#if OSX
-    #define FLSizeMake               NSMakeSize
-    #define FLSizeFromString         NSSizeFromString     
-    #define FLSizeZero               NSZeroSize
-    #define FLSizeEqualToSize        NSEqualSizes
-    #define FLEqualSizes             NSEqualSizes
-    #define FLStringFromSize         NSStringFromSize
-#endif
-
-extern const FLSize FLSizeMax;
+extern const CGSize FLSizeMax;
 
 NS_INLINE
-FLSize FLSizeScale(FLSize size, CGFloat scaleFactor) {
+CGSize FLSizeScale(CGSize size, CGFloat scaleFactor) {
 	size.width *= scaleFactor;
 	size.height *= scaleFactor;
 	return size;
 }
 
 NS_INLINE
-FLSize FLSizeSwapValues(FLSize size) {
+CGSize FLSizeSwapValues(CGSize size) {
 	return FLSizeMake(size.height, size.width);
 }
 
 NS_INLINE
-FLSize FLSizeAddSizeToSize(FLSize addTo, FLSize delta) {
+CGSize FLSizeAddSizeToSize(CGSize addTo, CGSize delta) {
 	addTo.height += delta.height;
 	addTo.width += delta.width;
 	return addTo;
 }
 
 NS_INLINE
-FLSize FLPointSubtractSizeFromSize(FLSize subtractFrom, FLSize delta) {
+CGSize FLPointSubtractSizeFromSize(CGSize subtractFrom, CGSize delta) {
 	subtractFrom.width -= delta.width;
 	subtractFrom.height -= delta.height;
 	return subtractFrom;
 }
 
 NS_INLINE
-BOOL FLSizeIsEmpty(FLSize size) {
+BOOL FLSizeIsEmpty(CGSize size) {
 	return FLFloatEqualToZero(size.width) && FLFloatEqualToZero(size.height);
 }

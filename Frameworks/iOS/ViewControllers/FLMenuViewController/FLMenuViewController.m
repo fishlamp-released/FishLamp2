@@ -56,7 +56,7 @@
 //        self.frameOptimizedForSize = FLRectSetWidth(self.frame, [self optimalWidth]);
 //    }
 
-//        FLSize size = [_menuView layoutSubviewsWithArrangement];
+//        CGSize size = [_menuView layoutSubviewsWithArrangement];
 //        self.frameOptimizedForLocation = FLRectSetSizeWithSize(self.frame, size);
     
         [_menuView layoutSubviewsWithArrangement:_menuView.arrangement

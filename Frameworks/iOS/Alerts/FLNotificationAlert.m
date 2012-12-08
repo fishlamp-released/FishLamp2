@@ -10,7 +10,7 @@
 
 @implementation FLNotificationAlert
 
-+ (FLSize) defaultAutoPostionedViewSize {
++ (CGSize) defaultAutoPostionedViewSize {
     return FLSizeMake(320,100);
 }
 

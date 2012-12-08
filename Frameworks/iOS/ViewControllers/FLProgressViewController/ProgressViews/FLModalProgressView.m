@@ -14,7 +14,7 @@
 
 @implementation FLModalProgressView
 
-+ (FLSize) defaultProgressViewSize
++ (CGSize) defaultProgressViewSize
 {
     return DeviceIsPad() ? 
         FLSizeMake(420.0f,150.0f) :
