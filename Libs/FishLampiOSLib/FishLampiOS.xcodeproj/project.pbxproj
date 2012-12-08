@@ -523,8 +523,6 @@
 		270B0CF61671574C00F59249 /* FLThumbnailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 270B0A9E1671574C00F59249 /* FLThumbnailView.m */; };
 		270B0CF71671574C00F59249 /* FLThumbnailWithLoadingSpinnerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 270B0AA01671574C00F59249 /* FLThumbnailWithLoadingSpinnerView.m */; };
 		270B0CF81671574C00F59249 /* FLThumbnailWithLoadingSpinnerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 270B0AA01671574C00F59249 /* FLThumbnailWithLoadingSpinnerView.m */; };
-		270B0CF91671574C00F59249 /* FLTilingImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 270B0AA21671574C00F59249 /* FLTilingImageView.m */; };
-		270B0CFA1671574C00F59249 /* FLTilingImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 270B0AA21671574C00F59249 /* FLTilingImageView.m */; };
 		270B0CFB1671574C00F59249 /* FLViewOwner.m in Sources */ = {isa = PBXBuildFile; fileRef = 270B0AA41671574C00F59249 /* FLViewOwner.m */; };
 		270B0CFC1671574C00F59249 /* FLViewOwner.m in Sources */ = {isa = PBXBuildFile; fileRef = 270B0AA41671574C00F59249 /* FLViewOwner.m */; };
 		270B0CFD1671574C00F59249 /* FLPullToRefreshHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 270B0AA71671574C00F59249 /* FLPullToRefreshHeaderView.m */; };
@@ -1323,8 +1321,6 @@
 		270B0A9E1671574C00F59249 /* FLThumbnailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLThumbnailView.m; sourceTree = "<group>"; };
 		270B0A9F1671574C00F59249 /* FLThumbnailWithLoadingSpinnerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLThumbnailWithLoadingSpinnerView.h; sourceTree = "<group>"; };
 		270B0AA01671574C00F59249 /* FLThumbnailWithLoadingSpinnerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLThumbnailWithLoadingSpinnerView.m; sourceTree = "<group>"; };
-		270B0AA11671574C00F59249 /* FLTilingImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLTilingImageView.h; sourceTree = "<group>"; };
-		270B0AA21671574C00F59249 /* FLTilingImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLTilingImageView.m; sourceTree = "<group>"; };
 		270B0AA31671574C00F59249 /* FLViewOwner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLViewOwner.h; sourceTree = "<group>"; };
 		270B0AA41671574C00F59249 /* FLViewOwner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLViewOwner.m; sourceTree = "<group>"; };
 		270B0AA61671574C00F59249 /* FLPullToRefreshHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLPullToRefreshHeaderView.h; sourceTree = "<group>"; };
@@ -2774,8 +2770,6 @@
 				270B0A9E1671574C00F59249 /* FLThumbnailView.m */,
 				270B0A9F1671574C00F59249 /* FLThumbnailWithLoadingSpinnerView.h */,
 				270B0AA01671574C00F59249 /* FLThumbnailWithLoadingSpinnerView.m */,
-				270B0AA11671574C00F59249 /* FLTilingImageView.h */,
-				270B0AA21671574C00F59249 /* FLTilingImageView.m */,
 				270B0AA31671574C00F59249 /* FLViewOwner.h */,
 				270B0AA41671574C00F59249 /* FLViewOwner.m */,
 				270B0AA51671574C00F59249 /* PullToRefreshHeaderView */,
@@ -3681,7 +3675,6 @@
 				270B0CF41671574C00F59249 /* FLThumbnailFrameView.m in Sources */,
 				270B0CF61671574C00F59249 /* FLThumbnailView.m in Sources */,
 				270B0CF81671574C00F59249 /* FLThumbnailWithLoadingSpinnerView.m in Sources */,
-				270B0CFA1671574C00F59249 /* FLTilingImageView.m in Sources */,
 				270B0CFC1671574C00F59249 /* FLViewOwner.m in Sources */,
 				270B0CFE1671574C00F59249 /* FLPullToRefreshHeaderView.m in Sources */,
 				270B0D001671574C00F59249 /* FLTilingScrollView.m in Sources */,
@@ -4038,7 +4031,6 @@
 				270B0CF31671574C00F59249 /* FLThumbnailFrameView.m in Sources */,
 				270B0CF51671574C00F59249 /* FLThumbnailView.m in Sources */,
 				270B0CF71671574C00F59249 /* FLThumbnailWithLoadingSpinnerView.m in Sources */,
-				270B0CF91671574C00F59249 /* FLTilingImageView.m in Sources */,
 				270B0CFB1671574C00F59249 /* FLViewOwner.m in Sources */,
 				270B0CFD1671574C00F59249 /* FLPullToRefreshHeaderView.m in Sources */,
 				270B0CFF1671574C00F59249 /* FLTilingScrollView.m in Sources */,

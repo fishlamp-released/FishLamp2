@@ -42,18 +42,18 @@
 					<object class="NSTextField" id="1024145685">
 						<reference key="NSNextResponder" ref="974686820"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{66, 182}, {98, 19}}</string>
+						<string key="NSFrame">{{78, 182}, {98, 17}}</string>
 						<reference key="NSSuperview" ref="974686820"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="938653363"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="308904108">
-							<int key="NSCellFlags">67108864</int>
-							<int key="NSCellFlags2">71303168</int>
+							<int key="NSCellFlags">67108928</int>
+							<int key="NSCellFlags2">71305216</int>
 							<string key="NSContents">Password:</string>
-							<object class="NSFont" key="NSSupport" id="894157240">
+							<object class="NSFont" key="NSSupport" id="453628554">
 								<string key="NSName">MyriadPro-Bold</string>
-								<double key="NSSize">12</double>
+								<double key="NSSize">14</double>
 								<int key="NSfFlags">16</int>
 							</object>
 							<string key="NSPlaceholderString"/>
@@ -77,16 +77,16 @@
 					<object class="NSTextField" id="214007241">
 						<reference key="NSNextResponder" ref="974686820"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{66, 210}, {98, 19}}</string>
+						<string key="NSFrame">{{78, 210}, {98, 17}}</string>
 						<reference key="NSSuperview" ref="974686820"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="984608172"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="54548622">
-							<int key="NSCellFlags">67108864</int>
-							<int key="NSCellFlags2">71303168</int>
+							<int key="NSCellFlags">67108928</int>
+							<int key="NSCellFlags2">71305216</int>
 							<string key="NSContents">Account:</string>
-							<reference key="NSSupport" ref="894157240"/>
+							<reference key="NSSupport" ref="453628554"/>
 							<string key="NSPlaceholderString"/>
 							<reference key="NSControlView" ref="214007241"/>
 							<reference key="NSBackgroundColor" ref="761168538"/>
@@ -97,21 +97,21 @@
 					<object class="NSTextField" id="938653363">
 						<reference key="NSNextResponder" ref="974686820"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{180, 182}, {263, 19}}</string>
+						<string key="NSFrame">{{180, 183}, {263, 22}}</string>
 						<reference key="NSSuperview" ref="974686820"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="465360970"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="861193114">
-							<int key="NSCellFlags">-1804599231</int>
-							<int key="NSCellFlags2">272630848</int>
-							<string key="NSContents"/>
-							<object class="NSFont" key="NSSupport" id="161096227">
-								<string key="NSName">MyriadPro-Regular</string>
+							<int key="NSCellFlags">-1805647807</int>
+							<int key="NSCellFlags2">272631872</int>
+							<string key="NSContents">Password</string>
+							<object class="NSFont" key="NSSupport" id="1063071394">
+								<string key="NSName">LucidaGrande</string>
 								<double key="NSSize">13</double>
-								<int key="NSfFlags">16</int>
+								<int key="NSfFlags">1044</int>
 							</object>
-							<string key="NSPlaceholderString">Password</string>
+							<string key="NSPlaceholderString"/>
 							<reference key="NSControlView" ref="938653363"/>
 							<bool key="NSDrawsBackground">YES</bool>
 							<object class="NSColor" key="NSBackgroundColor" id="606515007">
@@ -138,7 +138,7 @@
 					<object class="NSTextField" id="984608172">
 						<reference key="NSNextResponder" ref="974686820"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{180, 210}, {263, 19}}</string>
+						<string key="NSFrame">{{180, 209}, {263, 22}}</string>
 						<reference key="NSSuperview" ref="974686820"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="1024145685"/>
@@ -147,7 +147,7 @@
 							<int key="NSCellFlags">-1804599231</int>
 							<int key="NSCellFlags2">272630784</int>
 							<string key="NSContents"/>
-							<reference key="NSSupport" ref="161096227"/>
+							<reference key="NSSupport" ref="1063071394"/>
 							<string key="NSPlaceholderString">Username or E-mail address</string>
 							<reference key="NSControlView" ref="984608172"/>
 							<bool key="NSDrawsBackground">YES</bool>
@@ -160,7 +160,7 @@
 						<reference key="NSNextResponder" ref="974686820"/>
 						<int key="NSvFlags">268</int>
 						<array class="NSMutableArray" key="NSSubviews"/>
-						<string key="NSFrame">{{178, 158}, {190, 18}}</string>
+						<string key="NSFrame">{{178, 157}, {190, 18}}</string>
 						<reference key="NSSuperview" ref="974686820"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="231246812"/>
@@ -169,10 +169,10 @@
 						<object class="NSButtonCell" key="NSCell" id="922718770">
 							<int key="NSCellFlags">-2080374784</int>
 							<int key="NSCellFlags2">268435456</int>
-							<string key="NSContents">Save in Keychain</string>
+							<string key="NSContents">Save Password in Keychain</string>
 							<object class="NSFont" key="NSSupport">
-								<string key="NSName">MyriadPro-Regular</string>
-								<double key="NSSize">12</double>
+								<string key="NSName">MyriadPro-Bold</string>
+								<double key="NSSize">11</double>
 								<int key="NSfFlags">16</int>
 							</object>
 							<string key="NSCellIdentifier">_NS:9</string>
@@ -197,7 +197,7 @@
 						<reference key="NSNextResponder" ref="974686820"/>
 						<int key="NSvFlags">268</int>
 						<array class="NSMutableArray" key="NSSubviews"/>
-						<string key="NSFrame">{{174, 112}, {160, 32}}</string>
+						<string key="NSFrame">{{180, 97}, {129, 28}}</string>
 						<reference key="NSSuperview" ref="974686820"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
@@ -208,15 +208,19 @@
 							<int key="NSCellFlags2">134217728</int>
 							<string key="NSContents">Forgot your login?</string>
 							<object class="NSFont" key="NSSupport">
-								<string key="NSName">LucidaGrande</string>
-								<double key="NSSize">13</double>
-								<int key="NSfFlags">1044</int>
+								<string key="NSName">LucidaGrande-Bold</string>
+								<double key="NSSize">11</double>
+								<int key="NSfFlags">3357</int>
 							</object>
 							<string key="NSCellIdentifier">_NS:22</string>
 							<reference key="NSControlView" ref="231246812"/>
 							<int key="NSButtonFlags">-2038022144</int>
-							<int key="NSButtonFlags2">129</int>
-							<reference key="NSAlternateImage" ref="161096227"/>
+							<int key="NSButtonFlags2">134</int>
+							<object class="NSFont" key="NSAlternateImage">
+								<string key="NSName">MyriadPro-Regular</string>
+								<double key="NSSize">11</double>
+								<int key="NSfFlags">16</int>
+							</object>
 							<string key="NSAlternateContents"/>
 							<string key="NSKeyEquivalent"/>
 							<int key="NSPeriodicDelay">400</int>
@@ -330,11 +334,11 @@
 						<reference key="object" ref="974686820"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="214007241"/>
-							<reference ref="1024145685"/>
 							<reference ref="465360970"/>
-							<reference ref="984608172"/>
 							<reference ref="938653363"/>
 							<reference ref="231246812"/>
+							<reference ref="1024145685"/>
+							<reference ref="984608172"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -441,7 +445,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">282</int>
+			<int key="maxID">288</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">

@@ -21,6 +21,8 @@
     #define FLColor             UIColor
     #define FLFont              UIFont
 
+    #define SDKImage            UIImage
+
     #define FLRgbColor(r,g,b,a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
 
     #define FLReturnRGBColor(__RED__,__GREEN__,__BLUE__,__ALPHA__) \
@@ -42,6 +44,7 @@
     #define FLColor             NSColor
     #define FLFont              NSFont
     
+    #define SDKImage            NSImage
 
     #define FLRgbColor(r,g,b,a) \
         [NSColor colorWithDeviceRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]

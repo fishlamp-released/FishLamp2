@@ -31,7 +31,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.title = NSLocalizedString(@"Login", nil);
+        self.title = NSLocalizedString(@"Start", nil);
         self.wizardPanelPrompt =  NSLocalizedString(@"Login to your account", nil);
     }
     
