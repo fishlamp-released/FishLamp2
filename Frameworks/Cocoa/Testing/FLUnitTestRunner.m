@@ -22,7 +22,7 @@
     return FLAutorelease([[[self class] alloc] init]);
 }
 
-- (FLResult) runSelf {
+- (FLResult) runSelf:(id) input {
     FLUnitTestRunner* runner = [FLUnitTestRunner unitTestRunner];
     return [runner runAllTests];
 }

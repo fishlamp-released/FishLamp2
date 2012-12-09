@@ -21,12 +21,12 @@
     return self;
 }
 
-- (FLResult) runSelf {
+- (FLResult) runSelf:(id) input {
 
 //        self.userId = @"me";
 
-    FLFacebookFetchStatusListResponse* result = FLRunSelfForResponse(FLFacebookFetchStatusListResponse);
-    
+    FLFacebookFetchStatusListResponse* result = FLConfirmResultType([super runSelf:input], FLFacebookFetchStatusListResponse);
+        
     NSArray* messages = result.data;
     [[[self.context storageService] documentsDatabase] batchSaveObjects:messages];
 	

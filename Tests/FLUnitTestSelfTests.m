@@ -12,11 +12,11 @@
 @implementation FLUnitTestSanityCheck
 
 - (void) setupTests {
-    [self.results setTestResultForNumber:1];
+//    [self.results setTestResultForNumber:1];
 }
 
 - (void) basicTest {
-    [[self.results testResultForNumber:1] setPassed];
+//    [[self.results testResultForNumber:1] setPassed];
 }
 
 @end

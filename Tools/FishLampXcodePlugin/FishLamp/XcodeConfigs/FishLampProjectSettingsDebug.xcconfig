@@ -1,0 +1,10 @@
+//
+//  FishLampProjectSettingsDebug.xcconfig
+//  FLCore
+//
+//  Created by Mike Fullerton on 11/13/12.
+//  Copyright (c) 2012 Mike Fullerton. All rights reserved.
+//
+
+#include "FishLamp/XcodeConfigIncludes/FishLampSettings.xcconfig"
+#include "FishLamp/XcodeConfigIncludes/FishLampSettingsDebug.xcconfig"

@@ -72,7 +72,7 @@
     FLThrowError_([NSError errorWithSoapFault:fault]);
 }
 
-- (FLResult) runSelf {
+- (FLResult) runSelf:(id) input {
 
     FLAssertStringIsNotEmpty_(self.httpRequestURL.absoluteString);
     FLAssertStringIsNotEmpty_(self.soapNamespace);

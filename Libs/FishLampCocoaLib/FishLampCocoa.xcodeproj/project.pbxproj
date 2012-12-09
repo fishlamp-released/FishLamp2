@@ -3336,6 +3336,12 @@
 		2798DB0A166D886500A0863D /* FLImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE5E166D886500A0863D /* FLImage+RoundedCorner.m */; };
 		2798DB0B166D886500A0863D /* FLImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE5E166D886500A0863D /* FLImage+RoundedCorner.m */; };
 		2798DB0C166D886500A0863D /* FLImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE5E166D886500A0863D /* FLImage+RoundedCorner.m */; };
+		27BB840416750CB20097CAEA /* FLXcodePlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 27BB840216750CB20097CAEA /* FLXcodePlugin.h */; };
+		27BB840516750CB20097CAEA /* FLXcodePlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 27BB840216750CB20097CAEA /* FLXcodePlugin.h */; };
+		27BB840616750CB20097CAEA /* FLXcodePlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 27BB840216750CB20097CAEA /* FLXcodePlugin.h */; };
+		27BB840716750CB20097CAEA /* FLXcodePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BB840316750CB20097CAEA /* FLXcodePlugin.m */; };
+		27BB840816750CB20097CAEA /* FLXcodePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BB840316750CB20097CAEA /* FLXcodePlugin.m */; };
+		27BB840916750CB20097CAEA /* FLXcodePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BB840316750CB20097CAEA /* FLXcodePlugin.m */; };
 		27D1E5C2166D355C00DB680E /* FishLampCocoa-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27D1E5C1166D355C00DB680E /* FishLampCocoa-Prefix.pch */; };
 		27D1E5C3166D355C00DB680E /* FishLampCocoa-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27D1E5C1166D355C00DB680E /* FishLampCocoa-Prefix.pch */; };
 		27D1E5C4166D355C00DB680E /* FishLampCocoa-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27D1E5C1166D355C00DB680E /* FishLampCocoa-Prefix.pch */; };
@@ -4357,6 +4363,8 @@
 		2798DB81166D8A7F00A0863D /* SharedTargetSettings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = SharedTargetSettings.xcconfig; sourceTree = "<group>"; };
 		27A43AB415CDCC89001CB13E /* libFishLampCocoa-iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoa-iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27A43AC415CDCCCB001CB13E /* libFishLampCocoa-OSX-64-ARC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoa-OSX-64-ARC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		27BB840216750CB20097CAEA /* FLXcodePlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLXcodePlugin.h; sourceTree = "<group>"; };
+		27BB840316750CB20097CAEA /* FLXcodePlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLXcodePlugin.m; sourceTree = "<group>"; };
 		27D1070B166D7C9100DB680E /* Xcode */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Xcode; path = ../../Xcode; sourceTree = "<group>"; };
 		27D1E5BB166D34DE00DB680E /* FishLampProjectSettingsDebug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FishLampProjectSettingsDebug.xcconfig; sourceTree = "<group>"; };
 		27D1E5BC166D34DE00DB680E /* FishLampProjectSettingsRelease.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FishLampProjectSettingsRelease.xcconfig; sourceTree = "<group>"; };
@@ -6362,6 +6370,7 @@
 		2798CE5F166D886500A0863D /* OSX */ = {
 			isa = PBXGroup;
 			children = (
+				27BB840116750C9D0097CAEA /* XcodePlugin */,
 				273FC18F166FB79C0072C62A /* Views */,
 				270380CC166EDDC10082D9D9 /* Menus */,
 			);
@@ -6406,6 +6415,15 @@
 				27EF7B37165A9C1E00EB7949 /* Other Frameworks */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		27BB840116750C9D0097CAEA /* XcodePlugin */ = {
+			isa = PBXGroup;
+			children = (
+				27BB840216750CB20097CAEA /* FLXcodePlugin.h */,
+				27BB840316750CB20097CAEA /* FLXcodePlugin.m */,
+			);
+			path = XcodePlugin;
 			sourceTree = "<group>";
 		};
 		27D1E5BA166D34DE00DB680E /* XcodeConfigs */ = {
@@ -6966,6 +6984,7 @@
 				2776CCF016739BB100F2E70A /* FLLoginWizardPanel.h in Headers */,
 				2776CCF716739BB100F2E70A /* FLProgressWizardPanel.h in Headers */,
 				2776CD0016739BDB00F2E70A /* FLTilingImageView.h in Headers */,
+				27BB840516750CB20097CAEA /* FLXcodePlugin.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7487,6 +7506,7 @@
 				2776CCF116739BB100F2E70A /* FLLoginWizardPanel.h in Headers */,
 				2776CCF816739BB100F2E70A /* FLProgressWizardPanel.h in Headers */,
 				2776CD0116739BDB00F2E70A /* FLTilingImageView.h in Headers */,
+				27BB840616750CB20097CAEA /* FLXcodePlugin.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8008,6 +8028,7 @@
 				2776CCEF16739BB100F2E70A /* FLLoginWizardPanel.h in Headers */,
 				2776CCF616739BB100F2E70A /* FLProgressWizardPanel.h in Headers */,
 				2776CCFF16739BDB00F2E70A /* FLTilingImageView.h in Headers */,
+				27BB840416750CB20097CAEA /* FLXcodePlugin.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8018,7 +8039,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 27048EEB161CB58600C38ADA /* Build configuration list for PBXNativeTarget "FishLampCocoa-OSX-32" */;
 			buildPhases = (
-				27D1F736166D433E00DB680E /* ShellScript */,
 				27048B71161CB58600C38ADA /* Sources */,
 				27048D0F161CB58600C38ADA /* Frameworks */,
 				27048D11161CB58600C38ADA /* Headers */,
@@ -8036,7 +8056,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 27314C75165328400027850D /* Build configuration list for PBXNativeTarget "FishLampCocoa-OSX-64" */;
 			buildPhases = (
-				27D1F733166D3BCC00DB680E /* ShellScript */,
 				273148BA165328400027850D /* Sources */,
 				27314A76165328400027850D /* Frameworks */,
 				27314A78165328400027850D /* Headers */,
@@ -8054,7 +8073,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 27A43ABD15CDCC89001CB13E /* Build configuration list for PBXNativeTarget "FishLampCocoa-iOS" */;
 			buildPhases = (
-				27D1F734166D42F700DB680E /* ShellScript */,
 				27A43AB015CDCC89001CB13E /* Sources */,
 				27A43AB115CDCC89001CB13E /* Frameworks */,
 				27A43AB215CDCC89001CB13E /* CopyFiles */,
@@ -8072,7 +8090,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 27A43ACC15CDCCCB001CB13E /* Build configuration list for PBXNativeTarget "FishLampCocoa-OSX-64-ARC" */;
 			buildPhases = (
-				27D1F735166D430E00DB680E /* ShellScript */,
 				27A43AC015CDCCCB001CB13E /* Sources */,
 				27A43AC115CDCCCB001CB13E /* Frameworks */,
 				27A43AC215CDCCCB001CB13E /* Headers */,
@@ -8115,65 +8132,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		27D1F733166D3BCC00DB680E /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = $PROJECT_DIR/UpdateFishlamp;
-			showEnvVarsInLog = 0;
-		};
-		27D1F734166D42F700DB680E /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = $PROJECT_DIR/UpdateFishlamp;
-			showEnvVarsInLog = 0;
-		};
-		27D1F735166D430E00DB680E /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = $PROJECT_DIR/UpdateFishlamp;
-			showEnvVarsInLog = 0;
-		};
-		27D1F736166D433E00DB680E /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = $PROJECT_DIR/UpdateFishlamp;
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		27048B71161CB58600C38ADA /* Sources */ = {
@@ -8628,6 +8586,7 @@
 				2776CCF416739BB100F2E70A /* FLLoginWizardPanel.m in Sources */,
 				2776CCFB16739BB100F2E70A /* FLProgressWizardPanel.m in Sources */,
 				2776CD0416739BDB00F2E70A /* FLTilingImageView.m in Sources */,
+				27BB840816750CB20097CAEA /* FLXcodePlugin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9083,6 +9042,7 @@
 				2776CCF516739BB100F2E70A /* FLLoginWizardPanel.m in Sources */,
 				2776CCFC16739BB100F2E70A /* FLProgressWizardPanel.m in Sources */,
 				2776CD0516739BDB00F2E70A /* FLTilingImageView.m in Sources */,
+				27BB840916750CB20097CAEA /* FLXcodePlugin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9991,6 +9951,7 @@
 				2776CCF316739BB100F2E70A /* FLLoginWizardPanel.m in Sources */,
 				2776CCFA16739BB100F2E70A /* FLProgressWizardPanel.m in Sources */,
 				2776CD0316739BDB00F2E70A /* FLTilingImageView.m in Sources */,
+				27BB840716750CB20097CAEA /* FLXcodePlugin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

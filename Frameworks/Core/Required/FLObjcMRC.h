@@ -118,13 +118,6 @@ void _FLReleaseBlockWithNil_(dispatch_block_t* block) {
             FLAutoreleasePoolOpen(__NAME__) \
             __VA_ARGS__ \
             FLAutoreleasePoolClose(__NAME__) \
-
-    
-#define FLAutoreleasePool(__VA_ARGS__) \
-            FLAutoreleasePoolOpen(pool) \
-            __VA_ARGS__ \
-            FLAutoreleasePoolClose(pool) \
-
     
 
 #endif

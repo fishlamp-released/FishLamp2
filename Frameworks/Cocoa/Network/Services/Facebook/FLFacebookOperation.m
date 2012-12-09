@@ -72,7 +72,7 @@
     return response;
 }
 
-- (FLResult) runSelf {
+- (FLResult) runSelf:(id) input {
     FLFacebookService* facebook = [self.context facebookService];
 
     NSString* userID = facebook.facebookNetworkSession.userId;

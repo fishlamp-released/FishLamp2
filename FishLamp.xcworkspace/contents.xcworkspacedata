@@ -2,12 +2,15 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Tools/Fluffy/Fluffy.xcodeproj">
+      location = "group:Libs/FishLampCocoaLib/FishLampCocoa.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:Frameworks/Cocoa/Libs/FishLampCocoaLib/FishLampCocoa.xcodeproj">
+      location = "group:Tools/FishLampXcodePlugin/FishLampXcodePlugin.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:Xcode">
+      location = "group:Libs/FishLampiOSLib/FishLampiOS.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Tools/CocoaTests/CocoaTests.xcodeproj">
    </FileRef>
 </Workspace>

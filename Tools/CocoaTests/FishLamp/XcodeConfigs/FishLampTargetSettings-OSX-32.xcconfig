@@ -1,0 +1,15 @@
+//
+//  FishLampTargetMac32.xcconfig
+//  FLCore
+//
+//  Created by Mike Fullerton on 11/13/12.
+//  Copyright (c) 2012 Mike Fullerton. All rights reserved.
+//
+
+#include "FishLamp/XcodeConfigIncludes/FishLampTarget-OSX-32.xcconfig"
+#include "FishLamp/FishLampPaths.xcconfig"
+
+FISHLAMP_HEADER_SEARCH_PATHS = $(FISHLAMP_OSX)
+HEADER_SEARCH_PATHS= $(inherited) $(FISHLAMP_HEADER_SEARCH_PATHS)
+
+#include "SharedTargetSettings.xcconfig"
