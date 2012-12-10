@@ -24,13 +24,6 @@ FLSynthesizeSingleton(FLXcodePlugin);
     _pluginBundle = FLRetain(plugin);
 }
 
-+ (void)pluginDidLoad:(NSBundle *)plugin {
-        NSLog(@"Hello world");
-
-
-    [[[self class] instance]pluginDidLoad:plugin];
-}
-
 - (void) testItem:(id) sender {
 }
 
@@ -40,7 +33,7 @@ FLSynthesizeSingleton(FLXcodePlugin);
 		NSMenuItem *viewMenuItem = [[NSApp mainMenu] itemWithTitle:@"View"];
 		if (viewMenuItem) {
 			[[viewMenuItem submenu] addItem:[NSMenuItem separatorItem]];
-			NSMenuItem *toggleSchemeInTitleBarItem = [[[NSMenuItem alloc] initWithTitle:@"FishLamp" action:@selector(testItem:) keyEquivalent:@""] autorelease];
+			NSMenuItem *toggleSchemeInTitleBarItem = [[[NSMenuItem alloc] initWithTitle:title action:@selector(testItem:) keyEquivalent:@""] autorelease];
 			[[viewMenuItem submenu] addItem:toggleSchemeInTitleBarItem];
 		}
 
@@ -56,5 +49,20 @@ FLSynthesizeSingleton(FLXcodePlugin);
 //		}
 
 }
+
+
+//+ (void)pluginDidLoad:(NSBundle *)plugin {
+//        NSLog(@"Hello world");
+//    
+////		NSMenuItem *viewMenuItem = [[NSApp mainMenu] itemWithTitle:@"View"];
+////		if (viewMenuItem) {
+////			[[viewMenuItem submenu] addItem:[NSMenuItem separatorItem]];
+////			NSMenuItem *toggleSchemeInTitleBarItem = [[[NSMenuItem alloc] initWithTitle:@"fishlamp" action:@selector(testItem:) keyEquivalent:@""] autorelease];
+////			[[viewMenuItem submenu] addItem:toggleSchemeInTitleBarItem];
+////		}
+//
+////    [[[self class] instance]pluginDidLoad:plugin];
+//}
+
 
 @end

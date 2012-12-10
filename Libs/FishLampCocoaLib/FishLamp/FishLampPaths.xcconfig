@@ -1,5 +1,5 @@
 // Version:14
-FISHLAMP = /Users/mike/Enlistments/zenfolio/FishLamp/Frameworks
+FISHLAMP = /Users/mike/Enlistments/FishLamp/Frameworks
 FISHLAMP_ALL = $(FISHLAMP)/**
 FISHLAMP_CORE = $(FISHLAMP)/Core/**
 FISHLAMP_COCOA = $(FISHLAMP)/Cocoa/** $(FISHLAMP)/CocoaUI/** $(FISHLAMP)/Dependencies/** $(FISHLAMP)/External/** $(FISHLAMP)/Deprecated/** $(FISHLAMP_CORE)

@@ -85,9 +85,14 @@ function sync_files() {
 
 function update_update_script() {
 	
-	local new_script="$INSTALL_DIR/UpdateFishLamp"
+	local new_script="$INSTALL_DIR/UpdateFishLamp.sh"
+	local old_script="$INSTALL_DIR/UpdateFishLamp"
 	
-	update_str="bash \"$FISHLAMP_SOURCE/$SCRIPT_NAME\" \"$INSTALL_DIR\""
+	if [ -f "$old_script" ]; then
+		rm "$old_script"
+	fi
+	
+	update_str="bash \"$FISHLAMP_RELATIVE_PATH/$SCRIPT_NAME\" \"$INSTALL_DIR\""
 	
 	if [ ! -f "$new_script" ]; then
 		echo "$update_str" > "$new_script"
