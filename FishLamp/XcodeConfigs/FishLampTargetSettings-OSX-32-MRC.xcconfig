@@ -8,13 +8,4 @@
 
 #include "FishLamp/XcodeConfigIncludes/FishLamp-OSX-32.xcconfig"
 #include "FishLamp/XcodeConfigIncludes/FishLamp-MRC.xcconfig"
-
-#include "FishLamp/XCodeConfigIncludes/FishLamp-Preprocessor.xcconfig"
-#include "FishLamp/FishLampPaths.xcconfig"
-
-FISHLAMP_HEADER_SEARCH_PATHS = $(FISHLAMP_OSX)
-
-HEADER_SEARCH_PATHS= $(inherited) $(FISHLAMP_HEADER_SEARCH_PATHS)
-
-#include "SharedTargetSettings.xcconfig"
-
+#include "FishLamp/XcodeConfigIncludes/FishLamp-Target.xcconfig"

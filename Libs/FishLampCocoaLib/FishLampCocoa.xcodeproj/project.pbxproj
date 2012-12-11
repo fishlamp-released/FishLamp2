@@ -5329,7 +5329,7 @@
 		27A43AC415CDCCCB001CB13E /* libFishLampCocoa-OSX-64-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoa-OSX-64-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27BB840216750CB20097CAEA /* FLXcodePlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLXcodePlugin.h; sourceTree = "<group>"; };
 		27BB840316750CB20097CAEA /* FLXcodePlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLXcodePlugin.m; sourceTree = "<group>"; };
-		27CBC1F416768BA600753D0A /* libFishLampCocoa-OSX-64 copy.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoa-OSX-64 copy.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		27CBC1F416768BA600753D0A /* libFishLampCocoa-OSX-32-64-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoa-OSX-32-64-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27CBC1F816768F2100753D0A /* FishLampProjectSettingsDebug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FishLampProjectSettingsDebug.xcconfig; sourceTree = "<group>"; };
 		27CBC1F916768F2100753D0A /* FishLampProjectSettingsRelease.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FishLampProjectSettingsRelease.xcconfig; sourceTree = "<group>"; };
 		27CBC1FA16768F2100753D0A /* FishLampTargetSettings-iOS-ARC.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "FishLampTargetSettings-iOS-ARC.xcconfig"; sourceTree = "<group>"; };
@@ -7367,7 +7367,7 @@
 				27A43AC415CDCCCB001CB13E /* libFishLampCocoa-OSX-64-MRC.a */,
 				27048EF0161CB58600C38ADA /* libFishLampCocoa-OSX-32-MRC.a */,
 				27314C79165328400027850D /* libFishLampCocoa-OSX-64-ARC.a */,
-				27CBC1F416768BA600753D0A /* libFishLampCocoa-OSX-64 copy.a */,
+				27CBC1F416768BA600753D0A /* libFishLampCocoa-OSX-32-64-MRC.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -9612,7 +9612,7 @@
 			);
 			name = "FishLampCocoa-OSX-32-64-MRC";
 			productName = FishLampCommandLine;
-			productReference = 27CBC1F416768BA600753D0A /* libFishLampCocoa-OSX-64 copy.a */;
+			productReference = 27CBC1F416768BA600753D0A /* libFishLampCocoa-OSX-32-64-MRC.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -12013,7 +12013,6 @@
 			baseConfigurationReference = 27CBC1FB16768F2100753D0A /* FishLampTargetSettings-OSX-32-64-MRC.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				PRODUCT_NAME = "FishLampCocoa-OSX-64 copy";
 			};
 			name = Debug;
 		};
@@ -12022,7 +12021,6 @@
 			baseConfigurationReference = 27CBC1FB16768F2100753D0A /* FishLampTargetSettings-OSX-32-64-MRC.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				PRODUCT_NAME = "FishLampCocoa-OSX-64 copy";
 			};
 			name = Release;
 		};

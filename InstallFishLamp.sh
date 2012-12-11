@@ -23,7 +23,7 @@ function verbose() {
 function write_paths_file() {
 
     path="$FISHLAMP_DEST/FishLampPaths.xcconfig"
-	version="// Version:14"
+	version="// Version:16"
 		
 	if [ ! -f "$path" ]; then
 	# make new empty file
@@ -33,7 +33,7 @@ function write_paths_file() {
 	in_file=`grep "$version" "$path"`
 	if [[ "$in_file" == "" ]]; then
 	    echo "$version" > "$path"
-	    echo "FISHLAMP = $FISHLAMP_SOURCE/Frameworks" >> "$path"
+	    echo "FISHLAMP = $FISHLAMP_RELATIVE_PATH/Frameworks" >> "$path"
 	    echo "FISHLAMP_ALL = \$(FISHLAMP)/**" >> "$path"
 	    echo "FISHLAMP_CORE = \$(FISHLAMP)/Core/**" >> "$path"
 	    echo "FISHLAMP_COCOA = \$(FISHLAMP)/Cocoa/** \$(FISHLAMP)/CocoaUI/** \$(FISHLAMP)/Dependencies/** \$(FISHLAMP)/External/** \$(FISHLAMP)/Deprecated/** \$(FISHLAMP_CORE)" >> "$path"

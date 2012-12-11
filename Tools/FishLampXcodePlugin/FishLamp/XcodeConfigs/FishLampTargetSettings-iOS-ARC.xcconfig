@@ -8,4 +8,13 @@
 
 #include "FishLamp/XcodeConfigIncludes/FishLamp-iOS.xcconfig"
 #include "FishLamp/XcodeConfigIncludes/FishLamp-ARC.xcconfig"
-#include "FishLamp/XcodeConfigIncludes/FishLamp-Target.xcconfig"
+
+#include "FishLamp/XCodeConfigIncludes/FishLamp-Preprocessor.xcconfig"
+#include "FishLamp/FishLampPaths.xcconfig"
+
+FISHLAMP_HEADER_SEARCH_PATHS = $(FISHLAMP_IOS) $(FISHLAMP_IOS_PHOTO)
+
+HEADER_SEARCH_PATHS= $(inherited) $(FISHLAMP_HEADER_SEARCH_PATHS)
+
+#include "SharedTargetSettings.xcconfig"
+

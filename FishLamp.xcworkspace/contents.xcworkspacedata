@@ -47,9 +47,6 @@
          <FileRef
             location = "group:FishLamp-Settings.xcconfig">
          </FileRef>
-         <FileRef
-            location = "group:FishLamp-Target.xcconfig">
-         </FileRef>
       </Group>
       <Group
          location = "group:XcodeConfigs"
