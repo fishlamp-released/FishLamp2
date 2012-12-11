@@ -68,7 +68,7 @@
 //	return nil;
 //}
 //
-//- (FLResult) runSelf {
+//- (FLResult) runSelf:(id) input {
 //
 //    for(FLLengthyTask* task in _taskList)
 //	{

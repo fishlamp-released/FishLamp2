@@ -1,0 +1,11 @@
+//
+//  FishLampTargetMac32.xcconfig
+//  FLCore
+//
+//  Created by Mike Fullerton on 11/13/12.
+//  Copyright (c) 2012 Mike Fullerton. All rights reserved.
+//
+
+#include "FishLamp/XcodeConfigIncludes/FishLamp-OSX-32.xcconfig"
+#include "FishLamp/XcodeConfigIncludes/FishLamp-MRC.xcconfig"
+#include "FishLamp/XcodeConfigIncludes/FishLamp-Target.xcconfig"

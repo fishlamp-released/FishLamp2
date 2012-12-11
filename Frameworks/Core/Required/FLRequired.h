@@ -31,6 +31,11 @@
     #import "FLObjcMRC.h"
 #endif
 
+#define FLAutoreleasePool(__VA_ARGS__) \
+            FLAutoreleasePoolOpen(pool) \
+            __VA_ARGS__ \
+            FLAutoreleasePoolClose(pool) \
+
 // todo remove these
 #define FLReleaseWithNil_                   FLReleaseWithNil 
 #define FLReleaseBlockWithNil_              FLReleaseBlockWithNil

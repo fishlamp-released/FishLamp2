@@ -24,7 +24,7 @@
     return FLAutorelease([[[self class] alloc] initWithImageURL:imageURL]);
 }
 
-- (FLResult) runSelf {
+- (FLResult) runSelf:(id) input {
 
     FLMutableHttpRequest* request = [FLMutableHttpRequest httpRequestWithURL:self.httpRequestURL];
 
@@ -38,10 +38,10 @@
     return image;
 }
 
-//- (FLResult) runSelf {
+//- (FLResult) runSelf:(id) input {
 //    
 //    
-//    id result = [super runSelf];
+//    id result = [super runSelf:(id) input];
 //    if([result succeeded]) {
 ////        NSData* imageBytes = result;
 //        
@@ -54,7 +54,7 @@
 //    }
 //    
 //        
-//    [super runSelf];
+//    [super runSelf:(id) input];
 ////
 ////    FLThrowError_([self.httpResponse simpleHttpResponseErrorCheck]);
 ////    if(!self.error) {

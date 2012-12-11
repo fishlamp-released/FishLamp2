@@ -72,7 +72,7 @@
     return [self.cancelHandler requestCancel:completion];
 }
 
-- (FLResult) runSelf {
+- (FLResult) runSelf:(id) input {
     return FLSuccessfullResult;
 }
 
@@ -83,6 +83,10 @@
 }
 
 - (id) runSynchronously {
+    return [self runSynchronously:nil];
+}
+
+- (id) runSynchronously:(id) input {
 
     FLCancellable* cancelHandler = [FLCancellable cancelHandler];
     id result = nil;
@@ -93,10 +97,10 @@
         [self postObservation:@selector(operationWillRun:)];
         
         if(self.runBlock) {
-            result = self.runBlock(self);
+            result = self.runBlock(self, input);
         }
         else {
-            result = [self runSelf];
+            result = [self runSelf:input];
         }
     }
     @catch(NSException* ex) {

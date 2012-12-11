@@ -30,7 +30,7 @@
 }
 #endif
 
-- (FLResult) runSelf {
+- (FLResult) runSelf:(id) input {
 
     FLMutableHttpRequest* request = [FLMutableHttpRequest httpPostRequestWithURL:self.httpRequestURL];
 

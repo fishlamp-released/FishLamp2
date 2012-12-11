@@ -17,7 +17,7 @@
 
 @class FLOperation;
 
-typedef FLResult (^FLRunOperationBlock)(FLOperation* operation);
+typedef FLResult (^FLRunOperationBlock)(FLOperation* operation, id inputOrNil);
 
 @interface FLOperation : FLObservable<FLCancellable, FLContextual> {
 @private
@@ -48,7 +48,7 @@ typedef FLResult (^FLRunOperationBlock)(FLOperation* operation);
 
 /// This will not throw.
 - (id) runSynchronously;
-
+- (id) runSynchronously:(id) input;
 
 //
 // for subclasses
@@ -61,7 +61,7 @@ typedef FLResult (^FLRunOperationBlock)(FLOperation* operation);
 
 /// @brief Required override point (or use runBlock).
 /// Either override run or set the operation's run block.
-- (FLResult) runSelf;
+- (FLResult) runSelf:(id) input;
 
 /// @brief this is called for you to respond to if requestCancel is called
 - (void) cancelSelf;
@@ -77,9 +77,9 @@ typedef FLResult (^FLRunOperationBlock)(FLOperation* operation);
 
 @end
 
-#define FLRunOperation_(__OPERATION__) FLThrowError([__OPERATION__ runSynchronously])
+//#define FLRunOperation_(__OPERATION__) FLThrowError([__OPERATION__ runSynchronously])
 
-#define FLRunSelfForResponse(__TYPE__) FLAssertIsType([__TYPE__ class], FLThrowError([super runSelf]))
+//#define FLrunSelf:(id) inputForResponse(__TYPE__) )
 
 
 

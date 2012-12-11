@@ -89,7 +89,7 @@
 }
 
 
-- (FLResult) runSelf {
+- (FLResult) runSelf:(id) input {
 
     FLMutableHttpRequest* httpRequest = [FLMutableHttpRequest httpPostRequestWithURL:self.twitterURL];
 

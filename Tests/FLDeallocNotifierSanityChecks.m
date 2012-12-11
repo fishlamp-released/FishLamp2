@@ -64,13 +64,9 @@
 #if FL_ARC
     __block __weak id test = nil;
 #endif    
-
-    FLFinisher* finisher = [FLFinisher finisher];
     
     FLAsyncTaskBlock asyncBlock = ^(FLFinisher* asyncFinisher) {
 
-        FLAssert_(finisher == asyncFinisher);
-    
         FLDeleteNotifier* notifier = [[FLDeleteNotifier alloc] initWithBlock:^(id sender){
             objectDeleted = YES;
         }];
@@ -89,10 +85,8 @@
     };
     
     
-    FLFinisher* returnedFinisher = [FLDefaultQueue dispatch:asyncBlock finisher:finisher];
-    
-    FLAssert_(finisher == returnedFinisher);
-    
+    FLFinisher* finisher = [FLDefaultQueue dispatchAsyncBlock:asyncBlock];
+        
 #if FL_ARC
     FLAssertIsNil_(test);
 #endif    

@@ -30,7 +30,7 @@
 #endif
 
 
-- (FLResult) runSelf {
+- (FLResult) runSelf:(id) input {
 	FLAssertIsNotNil_(_database);
 	FLAssertIsNotNil_(_input);
 	[_database saveObject:_input];

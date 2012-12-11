@@ -14,7 +14,6 @@
 		270D02E815E9B20100ED5FB0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270D02E015E9B1FA00ED5FB0 /* Foundation.framework */; };
 		270D02EA15E9B20100ED5FB0 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270D02E215E9B1FE00ED5FB0 /* Security.framework */; };
 		270D02EB15E9B20100ED5FB0 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270D02E315E9B1FF00ED5FB0 /* SystemConfiguration.framework */; };
-		270DFDC915E99BAC00ED5FB0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270DFDC815E99BAC00ED5FB0 /* Foundation.framework */; };
 		2710AC4C16546D27003AFF57 /* FLFluffyTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 2710AC4A16546D27003AFF57 /* FLFluffyTool.m */; };
 		2710AC4D16546D27003AFF57 /* FLFluffyTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 2710AC4A16546D27003AFF57 /* FLFluffyTool.m */; };
 		2710AC801655A830003AFF57 /* FLRunTestsToolTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 2710AC7E1655A830003AFF57 /* FLRunTestsToolTask.m */; };
@@ -1308,7 +1307,6 @@
 		27E3C61016532BF000410570 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 270D02E115E9B1FD00ED5FB0 /* libsqlite3.0.dylib */; };
 		27E3C61116532BF000410570 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270D02E215E9B1FE00ED5FB0 /* Security.framework */; };
 		27E3C61216532BF000410570 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270D02E315E9B1FF00ED5FB0 /* SystemConfiguration.framework */; };
-		27E3C61316532BF000410570 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270DFDC815E99BAC00ED5FB0 /* Foundation.framework */; };
 		27E5A85C163D931B00B8D029 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270D02DC15E9B1F500ED5FB0 /* AppKit.framework */; };
 		27E5A85D163D931B00B8D029 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270D02DD15E9B1F600ED5FB0 /* Cocoa.framework */; };
 		27E5A85E163D931B00B8D029 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270D02DE15E9B1F800ED5FB0 /* CoreFoundation.framework */; };
@@ -1317,7 +1315,6 @@
 		27E5A861163D931B00B8D029 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 270D02E115E9B1FD00ED5FB0 /* libsqlite3.0.dylib */; };
 		27E5A862163D931B00B8D029 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270D02E215E9B1FE00ED5FB0 /* Security.framework */; };
 		27E5A863163D931B00B8D029 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270D02E315E9B1FF00ED5FB0 /* SystemConfiguration.framework */; };
-		27E5A864163D931B00B8D029 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270DFDC815E99BAC00ED5FB0 /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -1360,7 +1357,6 @@
 		270D02E215E9B1FE00ED5FB0 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
 		270D02E315E9B1FF00ED5FB0 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
 		270DFDC615E99BAC00ED5FB0 /* fluffy */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = fluffy; sourceTree = BUILT_PRODUCTS_DIR; };
-		270DFDC815E99BAC00ED5FB0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2710AC4916546D27003AFF57 /* FLFluffyTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLFluffyTool.h; sourceTree = "<group>"; };
 		2710AC4A16546D27003AFF57 /* FLFluffyTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLFluffyTool.m; sourceTree = "<group>"; };
 		2710AC7D1655A830003AFF57 /* FLRunTestsToolTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLRunTestsToolTask.h; sourceTree = "<group>"; };
@@ -2313,16 +2309,9 @@
 		27846720166193CA00746CA9 /* FishLampTargetSettingsMac32.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FishLampTargetSettingsMac32.xcconfig; sourceTree = "<group>"; };
 		27846721166193CA00746CA9 /* FishLampTargetSettingsMacLegacy.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FishLampTargetSettingsMacLegacy.xcconfig; sourceTree = "<group>"; };
 		27846722166193CA00746CA9 /* SharedTargetSettings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = SharedTargetSettings.xcconfig; path = Xcode/SharedTargetSettings.xcconfig; sourceTree = "<group>"; };
-		27A43A7F15CDCC1B001CB13E /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
-		27A43A8215CDCC1B001CB13E /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
-		27A43A8415CDCC1B001CB13E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		27A43AA415CDCC73001CB13E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		27E3C61916532BF000410570 /* fluffy */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = fluffy; sourceTree = BUILT_PRODUCTS_DIR; };
 		27E5A86A163D931B00B8D029 /* FluffyTool32 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = FluffyTool32; sourceTree = BUILT_PRODUCTS_DIR; };
-		27EC89841658458E004724CA /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		27EC89881658458E004724CA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
-		27EC89891658458E004724CA /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		27EC898A1658458E004724CA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2338,7 +2327,6 @@
 				270D02E815E9B20100ED5FB0 /* Foundation.framework in Frameworks */,
 				270D02EA15E9B20100ED5FB0 /* Security.framework in Frameworks */,
 				270D02EB15E9B20100ED5FB0 /* SystemConfiguration.framework in Frameworks */,
-				270DFDC915E99BAC00ED5FB0 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2354,7 +2342,6 @@
 				27E3C61016532BF000410570 /* libsqlite3.0.dylib in Frameworks */,
 				27E3C61116532BF000410570 /* Security.framework in Frameworks */,
 				27E3C61216532BF000410570 /* SystemConfiguration.framework in Frameworks */,
-				27E3C61316532BF000410570 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2370,7 +2357,6 @@
 				27E5A861163D931B00B8D029 /* libsqlite3.0.dylib in Frameworks */,
 				27E5A862163D931B00B8D029 /* Security.framework in Frameworks */,
 				27E5A863163D931B00B8D029 /* SystemConfiguration.framework in Frameworks */,
-				27E5A864163D931B00B8D029 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2425,16 +2411,6 @@
 				276CE8F115E54B33000A5CE6 /* Security.framework */,
 			);
 			name = iOS;
-			sourceTree = "<group>";
-		};
-		276CE92915E54E7F000A5CE6 /* OSX */ = {
-			isa = PBXGroup;
-			children = (
-				27A43A8215CDCC1B001CB13E /* AppKit.framework */,
-				27A43A8415CDCC1B001CB13E /* Foundation.framework */,
-				27A43A7F15CDCC1B001CB13E /* Cocoa.framework */,
-			);
-			name = OSX;
 			sourceTree = "<group>";
 		};
 		27845D4D16618B2600746CA9 /* FishLampCocoa */ = {
@@ -4267,23 +4243,9 @@
 				270D02E115E9B1FD00ED5FB0 /* libsqlite3.0.dylib */,
 				270D02E215E9B1FE00ED5FB0 /* Security.framework */,
 				270D02E315E9B1FF00ED5FB0 /* SystemConfiguration.framework */,
-				276CE92915E54E7F000A5CE6 /* OSX */,
 				276CE92815E54E31000A5CE6 /* iOS */,
-				270DFDC815E99BAC00ED5FB0 /* Foundation.framework */,
-				27EC89841658458E004724CA /* SenTestingKit.framework */,
-				27EC89871658458E004724CA /* Other Frameworks */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		27EC89871658458E004724CA /* Other Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				27EC89881658458E004724CA /* AppKit.framework */,
-				27EC89891658458E004724CA /* CoreData.framework */,
-				27EC898A1658458E004724CA /* Foundation.framework */,
-			);
-			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

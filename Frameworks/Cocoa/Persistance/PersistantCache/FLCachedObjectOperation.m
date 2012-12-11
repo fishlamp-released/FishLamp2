@@ -42,7 +42,7 @@
 - (void) saveObjectToDatabase:(id) object {
 }
 
-- (FLResult) runSelf {
+- (FLResult) runSelf:(id) input {
     FLResult object = nil;
     
 	if(self.canLoadFromCache) {

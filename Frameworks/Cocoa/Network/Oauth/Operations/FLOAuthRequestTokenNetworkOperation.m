@@ -42,7 +42,7 @@
     *redirect = NO;
 }
 
-- (FLResult) runSelf {
+- (FLResult) runSelf:(id) input {
 	
     FLOAuthAuthorizationHeader* oauthHeader = [FLOAuthAuthorizationHeader authorizationHeader];
     

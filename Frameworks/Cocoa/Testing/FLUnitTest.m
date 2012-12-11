@@ -16,6 +16,8 @@
 #import "FLUnitTestResult_Internal.h"
 #import "FLOperationQueue.h"
 
+
+
 @interface FLUnitTest ()
 @property (readonly, strong) NSArray* testCases;
 @end
@@ -156,7 +158,7 @@
     return YES;
 }
 
-- (FLResult) runSelf {
+- (FLResult) runSelf:(id) input {
     FLTestResultCollection* results = [FLTestResultCollection testResultCollection];
         
     if([self willRunTests]) {

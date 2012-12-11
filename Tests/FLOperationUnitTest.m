@@ -12,34 +12,34 @@
 
 @implementation FLOperation (Tests)
 
-- (void) assertNotRun {
-    FLAssertIsFalse_v(self.wasCancelled, nil);
-    FLAssertIsFalse_v(self.wasStarted, nil);
-    FLAssertIsFalse_v(self.isFinished, nil);
-    FLAssertIsFalse_v(self.didSucceed, nil);
-    FLAssertIsNil_v(self.error, nil);
-}
-
-- (void) assertRanOk {
-    FLAssertIsFalse_v(self.wasCancelled, nil);
-    FLAssertIsTrue_v(self.wasStarted, nil);
-    FLAssertIsTrue_v(self.isFinished, nil);
-    FLAssertIsTrue_v(self.didSucceed, nil);
-    FLAssertIsNil_v(self.error, nil);
-}
-
-- (void) assertNotInQueue {
-//    FLAssertIsNil_v(self.operationQueue, nil);
-}
-
-- (void) assertInQueue {
-//    FLAssertIsNotNil_v(self.operationQueue, nil);
-}
-
-- (void) assertWasCancelled {
-    FLAssertIsKindOfClass_v(self.error, NSError, nil);
-    FLAssertIsTrue_v(self.wasCancelled, nil);
-}
+//- (void) assertNotRun {
+//    FLAssertIsFalse_v(self.wasCancelled, nil);
+//    FLAssertIsFalse_v(self.wasStarted, nil);
+//    FLAssertIsFalse_v(self.isFinished, nil);
+//    FLAssertIsFalse_v(self.didSucceed, nil);
+//    FLAssertIsNil_v(self.error, nil);
+//}
+//
+//- (void) assertRanOk {
+//    FLAssertIsFalse_v(self.wasCancelled, nil);
+//    FLAssertIsTrue_v(self.wasStarted, nil);
+//    FLAssertIsTrue_v(self.isFinished, nil);
+//    FLAssertIsTrue_v(self.didSucceed, nil);
+//    FLAssertIsNil_v(self.error, nil);
+//}
+//
+//- (void) assertNotInQueue {
+////    FLAssertIsNil_v(self.operationQueue, nil);
+//}
+//
+//- (void) assertInQueue {
+////    FLAssertIsNotNil_v(self.operationQueue, nil);
+//}
+//
+//- (void) assertWasCancelled {
+//    FLAssertIsKindOfClass_v(self.error, NSError, nil);
+//    FLAssertIsTrue_v(self.wasCancelled, nil);
+//}
 
 @end
 
@@ -47,14 +47,8 @@
 
 
 - (void) testSimpleCase {
-    
     FLOperation* op = [FLOperation operation];
-    [op assertNotInQueue];
-    [op assertNotRun];
-    [op runSynchronously];
-    [op assertRanOk];
-    [op assertNotInQueue];
-    
+    FLThrowError([op runSynchronously]);
 }
 
 - (void) testInQueue {
