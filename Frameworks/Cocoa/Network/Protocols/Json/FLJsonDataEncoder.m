@@ -11,7 +11,8 @@
 #import "FLStringUtils.h"
 #import "FLBase64Encoding.h"
 #import "FLDateMgr.h"
-#import "FLColor.h"
+#import "UIColor+FLUtils.h"
+#import "FLColor_t.h"
 
 @implementation FLJsonDataEncoder
 

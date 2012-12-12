@@ -9,10 +9,9 @@
 
 #import "FLArrangeableContainer.h"
 #import "FLArrangeable.h"
+#import "UIView+FLArrangeable.h"
 
-//#import "SDKView+FLArrangeable.h"
-
-@interface FLArrangeableView : SDKView<FLArrangeableContainer, FLArrangeable> {
+@interface FLArrangeableView : UIView<FLArrangeableContainer, FLArrangeable> {
 @private
     FLArrangeableState _arrangeableState;
     FLArrangement* _arrangement;
@@ -22,7 +21,7 @@
 @property (readwrite, retain, nonatomic) FLArrangement* arrangement;
 
 // arrangeable
-@property (readwrite, assign, nonatomic) SDKEdgeInsets arrangeableInsets;
+@property (readwrite, assign, nonatomic) UIEdgeInsets arrangeableInsets;
 
 @property (readwrite, assign, nonatomic) FLArrangeableGrowMode arrangeableGrowMode;
 

@@ -22,13 +22,13 @@
         self.userInteractionEnabled = YES; 
 
 #if IOS
-        self.backgroundColor = [FLColor clearColor];
+        self.backgroundColor = [UIColor clearColor];
 #endif
         
-        self.enabledTextColor = [FLColor blackColor];
-        self.disabledTextColor = [FLColor grayColor];
-        self.highlightedTextColor = [FLColor blueColor];
-        self.textFont = [FLFont boldSystemFontOfSize:[FLFont systemFontSize]];
+        self.enabledTextColor = [UIColor blackColor];
+        self.disabledTextColor = [UIColor grayColor];
+        self.highlightedTextColor = [UIColor blueColor];
+        self.textFont = [UIFont boldSystemFontOfSize:[UIFont systemFontSize]];
 
         _breadcrumbs = [[FLOrderedCollection alloc] init];
     }
@@ -243,7 +243,7 @@
 - (void) drawRect:(CGRect) drawRect {
     [super drawRect:drawRect];
 
-    CGContextRef context = FLGraphicsGetCurrentContext();
+    CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSaveGState(context);
 #if OSX
     CGContextSetTextMatrix(context, CGAffineTransformIdentity);

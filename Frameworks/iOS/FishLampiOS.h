@@ -7,6 +7,7 @@
 //
 
 #import "FLCore.h"
+#import "FLCoreUI.h"
 
 #import <QuartzCore/QuartzCore.h>
 #import <UIKit/UIKit.h>
@@ -26,8 +27,8 @@
 #import "CGSize.h"
 #import "FLEdgeInsets.h"
 
-#import "FLColor+FLExtras.h"
-#import "FLColor+FLMoreColors.h"
+#import "UIColor+FLUtils.h"
+#import "UIColor+FLMoreColors.h"
 
 #import "FLColor_t.h"
 
@@ -52,7 +53,7 @@
 // PresentationBehavior
 #import "FLModalPresentationBehavior.h"
 #import "FLNormalPresentationBehavior.h"
-#import "FLPresentationBehavior.h"
+#import "UIViewController+FLPresentationBehavior.h"
 #import "UIViewController+FLPresentationBehavior.h"
 
 // SdkAdditions/UIApplicationAdditions
@@ -75,7 +76,7 @@
 // SdkAdditions/UIViewControllerAdditions
 #import "FLViewContentsDescriptor.h"
 #import "FLViewControllerTransitionAnimation.h"
-#import "SDKViewController+FLAdditions.h"
+#import "UIViewController+FLAdditions.h"
 
 // Themes
 #import "NSObject+FLTheme.h"

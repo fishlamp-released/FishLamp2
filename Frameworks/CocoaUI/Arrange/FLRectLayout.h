@@ -5,8 +5,8 @@
 //	Created by Mike Fullerton on 2/13/10.
 //	Copyright 2010 GreenTongue Software. All rights reserved.
 //
-#import "FLCocoaUICompatibility.h"
-#import "FLCompatibility.h"
+#import "FLCocoaUIRequired.h"
+#import "FLCocoaRequired.h"
 
 typedef enum {
 	FLRectLayoutVerticalNone		  = 0,
@@ -35,7 +35,7 @@ typedef enum {
 typedef struct FLRectLayout { 
 	FLRectLayoutHorizontal horizontal:16;
 	FLRectLayoutVertical vertical:16;
-	SDKEdgeInsets insets;
+	UIEdgeInsets insets;
 } FLRectLayout;
 
 extern const FLRectLayout FLRectLayoutNone;
@@ -57,7 +57,7 @@ extern FLRectLayout FLRectLayoutMake(FLRectLayoutHorizontal horizontalLayout,
 
 extern FLRectLayout FLRectLayoutMakeWithInsets(FLRectLayoutHorizontal horizontalLayout,
                                                  FLRectLayoutVertical verticalLayout,
-                                                 SDKEdgeInsets insets);
+                                                 UIEdgeInsets insets);
 
 extern FLRectLayout FLRectLayoutSetVertical(FLRectLayout rectLayout,
                                               FLRectLayoutVertical vertical);

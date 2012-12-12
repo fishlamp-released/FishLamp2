@@ -6,24 +6,23 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "SDKImage.h"
+#import "FLCocoaUIRequired.h"
 #import "FLStorable.h"
 
 extern NSString* const FLPhotoType;
 
 @interface FLPhoto : FLStorable {
 @private
-	SDKImage* _previewImage;
-	SDKImage* _originalImage;
-	SDKImage* _thumbnailImage;
+	UIImage* _previewImage;
+	UIImage* _originalImage;
+	UIImage* _thumbnailImage;
 }
 
 + (FLPhoto*) photo;
 
-@property (readwrite, strong) SDKImage* originalImage;
-@property (readwrite, strong) SDKImage* thumbnailImage;
-@property (readwrite, strong) SDKImage* previewImage;
+@property (readwrite, strong) UIImage* originalImage;
+@property (readwrite, strong) UIImage* thumbnailImage;
+@property (readwrite, strong) UIImage* previewImage;
 
 - (void) clearImages; // in memory 
 

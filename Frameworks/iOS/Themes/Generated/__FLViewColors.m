@@ -105,10 +105,10 @@
         {
             s_describer = [[FLObjectDescriber alloc] init];
         }
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"normalColor" propertyClass:[FLColor class] propertyType:FLDataTypeColor] forPropertyName:@"normalColor"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"selectedColor" propertyClass:[FLColor class] propertyType:FLDataTypeColor] forPropertyName:@"selectedColor"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"highlightedColor" propertyClass:[FLColor class] propertyType:FLDataTypeColor] forPropertyName:@"highlightedColor"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"disabledColor" propertyClass:[FLColor class] propertyType:FLDataTypeColor] forPropertyName:@"disabledColor"];
+        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"normalColor" propertyClass:[UIColor class] propertyType:FLDataTypeColor] forPropertyName:@"normalColor"];
+        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"selectedColor" propertyClass:[UIColor class] propertyType:FLDataTypeColor] forPropertyName:@"selectedColor"];
+        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"highlightedColor" propertyClass:[UIColor class] propertyType:FLDataTypeColor] forPropertyName:@"highlightedColor"];
+        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"disabledColor" propertyClass:[UIColor class] propertyType:FLDataTypeColor] forPropertyName:@"disabledColor"];
     });
     return s_describer;
 }

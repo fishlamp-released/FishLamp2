@@ -9,7 +9,7 @@
 #import "FLDeprecatedButtonbarView.h"
 #import "FLNavigationControllerViewController.h"
 #import "FLGradientButton.h"
-#import "SDKImage+Colorize.h"
+#import "UIImage+Colorize.h"
 #import "FLViewController.h"
 #import "FLGradientView.h"
 

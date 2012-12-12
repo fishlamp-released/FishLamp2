@@ -8,21 +8,10 @@
 //
 #import "FLCore.h"
 #import "FLCocoa.h"
-#import "FLCompatibility.h"
+#import "FLCocoaRequired.h"
 
 #if IOS
-    #define SDKView             UIView
-    #define SDKViewController   UIViewController
-    #define SDKEvent            UIEvent
-    #define SDKFont             UIFont
-    #define SDKColor            UIColor
-    #define SDKImage            UIImage
-    #define SDKImageView        UIImageView
-
-// remove these
-    #define FLColor             UIColor
-    #define FLFont              UIFont
-
+    
     #define FLRgbColor(r,g,b,a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
 
     #define FLReturnRGBColor(__RED__,__GREEN__,__BLUE__,__ALPHA__) \
@@ -31,37 +20,15 @@
     #define FLReturnColor(__RED__,__GREEN__,__BLUE__,__ALPHA__) \
         FLReturnStaticObject([UIColor colorWithRed:__RED__ green:__GREEN__ blue:__BLUE__ alpha:__ALPHA__ ] )
 
-    #define FLGraphicsGetCurrentContext() UIGraphicsGetCurrentContext()
-    #define SDKGraphicsGetCurrentContext() UIGraphicsGetCurrentContext()
-
 #endif
 
 #if OSX
-#import "NSImage+FLCompatibility.h"
-#import "NSViewController+FLCompatibility.h"
-#import "NSView+FLCompatibility.h"
-#import "NSObject+FLTheme.h"
-
-    #define SDKView                     NSView
-    #define SDKViewController           NSViewController
-    #define SDKImage                    NSImage
-    #define SDKFont                     NSFont
-    #define SDKColor                    NSColor
-    #define SDKImageView                NSImageView
+    #define UIView                      NSView
+    #define UIViewController            NSViewController
+    #define UIImage                     NSImage
+    #define UIImageView                 NSImageView
+    #define UILabel                     NSTextField
     
-// remove these
-    #define FLColor                     NSColor
-    #define FLFont                      NSFont
-
-    #define CGSizeFromString            NSSizeFromString
-    #define NSStringFromCGSize          NSStringFromSize
-    
-    #define CGRectFromString            NSRectFromString
-    #define NSStringFromCGRect          NSStringFromRect
-    
-    #define CGPointFromString           NSPointFromString
-    #define NSStringFromCGPoint         NSStringFromPoint
-
     #define FLRgbColor(r,g,b,a) \
         [NSColor colorWithDeviceRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
 
@@ -71,11 +38,7 @@
     #define FLReturnColor(__RED__,__GREEN__,__BLUE__,__ALPHA__) \
         FLReturnStaticObject([NSColor colorWithDeviceRed:__RED__ green:__GREEN__ blue:__BLUE__ alpha:__ALPHA__ ] )
 
-
-// core graphics. move this somewhere better    
-    #define FLGraphicsGetCurrentContext() [[NSGraphicsContext currentContext] graphicsPort]
-    #define SDKGraphicsGetCurrentContext() [[NSGraphicsContext currentContext] graphicsPort]
-     
+    #define UIGraphicsGetCurrentContext() [[NSGraphicsContext currentContext] graphicsPort]
 
     // TODO: MOVE THIS
     // use our own enum I guess. Not finding equivelent in AppKit
@@ -89,5 +52,11 @@
     };
 
     typedef NSUInteger UIControlState;
-#endif    
+
+
+#import "NSViewController+FLCompatibility.h"
+#import "NSView+FLCompatibility.h"
+#import "NSObject+FLTheme.h"
+
+#endif
 

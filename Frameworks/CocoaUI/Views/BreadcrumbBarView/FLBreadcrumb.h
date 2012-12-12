@@ -15,10 +15,10 @@ typedef void (^FLBreadcrumbTouchedBlock)(FLBreadcrumb* breadcrumb);
 
 @interface FLBreadcrumb : NSObject {
 @private
-    FLColor* _enabledTextColor;
-    FLColor* _disabledTextColor;
-    FLColor* _highlightedTextColor;
-    FLFont* _textFont;
+    UIColor* _enabledTextColor;
+    UIColor* _disabledTextColor;
+    UIColor* _highlightedTextColor;
+    UIFont* _textFont;
 
     NSString* _string;
     
@@ -32,12 +32,12 @@ typedef void (^FLBreadcrumbTouchedBlock)(FLBreadcrumb* breadcrumb);
 }
 
 // if not set inherits from view
-@property (readwrite, strong, nonatomic) FLColor* enabledTextColor;
-@property (readwrite, strong, nonatomic) FLColor* disabledTextColor;
-@property (readwrite, strong, nonatomic) FLColor* highlightedTextColor;
-@property (readonly, strong, nonatomic) FLColor* colorForState;
+@property (readwrite, strong, nonatomic) UIColor* enabledTextColor;
+@property (readwrite, strong, nonatomic) UIColor* disabledTextColor;
+@property (readwrite, strong, nonatomic) UIColor* highlightedTextColor;
+@property (readonly, strong, nonatomic) UIColor* colorForState;
 
-@property (readwrite, strong, nonatomic) FLFont* textFont;
+@property (readwrite, strong, nonatomic) UIFont* textFont;
 
 // touch event
 @property (readwrite, copy, nonatomic) FLBreadcrumbTouchedBlock touchedBlock;

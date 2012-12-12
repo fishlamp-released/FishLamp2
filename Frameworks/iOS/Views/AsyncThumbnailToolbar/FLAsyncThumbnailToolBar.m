@@ -8,7 +8,7 @@
 
 #import "FLAsyncThumbnailToolBar.h"
 
-#import "SDKImage+Colorize.h"
+#import "UIImage+Colorize.h"
 
 @implementation FLAsyncThumbnailToolBar
 

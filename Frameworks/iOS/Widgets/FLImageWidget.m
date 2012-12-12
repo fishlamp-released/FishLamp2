@@ -7,8 +7,8 @@
 //
 
 #import "FLImageWidget.h"
-#import "SDKImage+Resize.h"
-#import "SDKImage+Colorize.h"
+#import "UIImage+Resize.h"
+#import "UIImage+Colorize.h"
 
 @implementation FLImageWidget
 
@@ -19,7 +19,7 @@
 {
 	if((self = [super initWithFrame:frame]))
 	{
-		self.contentMode = FLContentModeNone;
+		self.contentMode = FLRectLayoutNone;
 		self.imageContentMode = FLWidgetImageContentModeScaleAspectFit;
 	}
 	

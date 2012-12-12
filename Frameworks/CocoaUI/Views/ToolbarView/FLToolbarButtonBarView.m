@@ -5,7 +5,7 @@
 //	Created by Mike Fullerton on 6/6/10.
 //	Copyright 2010 GreenTongue Software. All rights reserved.
 //
-
+#if IOS
 #import "FLToolbarButtonbarView.h"
 #import "FLGradientButton.h"
 
@@ -13,17 +13,13 @@
 
 - (id) initWithFrame:(CGRect) frame {
 	if((self = [super initWithFrame:frame])) {
-#if IOS
 		self.autoresizingMask = UIViewAutoresizingFlexibleEverything;
-#else 
-
-#endif
 	}
 
 	return self;
 }
 
-- (void) willMoveToSuperview:(SDKView *)newSuperview
+- (void) willMoveToSuperview:(UIView *)newSuperview
 {
 	[super willMoveToSuperview:newSuperview];
 	if(newSuperview)
@@ -56,3 +52,4 @@
 @end
 
 
+#endif

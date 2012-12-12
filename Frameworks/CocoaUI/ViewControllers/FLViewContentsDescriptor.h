@@ -6,7 +6,7 @@
 //	Copyright 2010 GreenTongue Software. All rights reserved.
 //
 
-#import "FLCocoaUICompatibility.h"
+#import "FLCocoaUIRequired.h"
 #import "FLRectLayout.h"
 
 typedef enum { 
@@ -27,13 +27,13 @@ typedef enum {
         unsigned int hasStatusBar;
     } _flags;
     
-	SDKEdgeInsets _padding;
+	UIEdgeInsets _padding;
 } 
 
 @property (readonly, assign, nonatomic) BOOL hasStatusBar;
 @property (readonly, assign, nonatomic) FLViewContentItem topItem;
 @property (readonly, assign, nonatomic) FLViewContentItem bottomItem;
-@property (readonly, assign, nonatomic) SDKEdgeInsets padding;
+@property (readonly, assign, nonatomic) UIEdgeInsets padding;
 
 @property (readonly, assign, nonatomic) BOOL isValid;
 @property (readonly, assign, nonatomic) BOOL isEmpty;
@@ -45,7 +45,7 @@ typedef enum {
 - (id) initWithTop:(FLViewContentItem) top
     bottom:(FLViewContentItem) bottom
     hasStatusBar:(BOOL) hasStatusBar
-    padding:(SDKEdgeInsets) padding;
+    padding:(UIEdgeInsets) padding;
 
 - (id) initWithViewContentsDescriptor:(FLViewContentsDescriptor*) original;
 
@@ -58,7 +58,7 @@ typedef enum {
 + (id) viewContentsDescriptorWithTop:(FLViewContentItem) top
     bottom:(FLViewContentItem) bottom
     hasStatusBar:(BOOL) hasStatusBar
-    padding:(SDKEdgeInsets) padding;
+    padding:(UIEdgeInsets) padding;
 
 + (id) viewContentsDescriptorWithViewContentsDescriptor:(FLViewContentsDescriptor*) original;
 
@@ -82,14 +82,13 @@ typedef enum {
 @property (readwrite, assign, nonatomic) BOOL hasStatusBar;
 @property (readwrite, assign, nonatomic) FLViewContentItem topItem;
 @property (readwrite, assign, nonatomic) FLViewContentItem bottomItem;
-@property (readwrite, assign, nonatomic) SDKEdgeInsets padding;
+@property (readwrite, assign, nonatomic) UIEdgeInsets padding;
 
 @end
 
-@interface SDKViewController (FLViewContentsDescriptor)
+@interface UIViewController (FLViewContentsDescriptor)
 
 @property (readwrite, retain, nonatomic) FLViewContentsDescriptor* viewContentsDescriptor; // if not set, will get it from parentViewController or return emptyContentsDescriptor.
-
 
 @property (readonly, assign, nonatomic) BOOL viewEnclosesStatusBar; // defaults to YES
 - (CGFloat) statusBarInset; // returns according to settings and if it's visible.
@@ -99,7 +98,7 @@ typedef enum {
 - (CGFloat) contentViewInsetLeft;
 - (CGFloat) contentViewInsetBottom;
 
-- (SDKEdgeInsets) contentViewInsets;
+- (UIEdgeInsets) contentViewInsets;
 
 - (CGRect) contentViewFrameInBounds:(CGRect) bounds;
 
@@ -135,7 +134,7 @@ FLViewContentsDescriptor FLViewContentsDescriptorMake(	FLViewContentItem top,
 NS_INLINE
 FLViewContentsDescriptor FLViewContentsDescriptorMakeWithItemsAndPadding( FLViewContentItem top, 
 											FLViewContentItem bottom,
-											SDKEdgeInsets padding)
+											UIEdgeInsets padding)
 {
 	FLViewContentsDescriptor contents;
 	contents.top = top;
@@ -146,7 +145,7 @@ FLViewContentsDescriptor FLViewContentsDescriptorMakeWithItemsAndPadding( FLView
 					   
 
 NS_INLINE
-FLViewContentsDescriptor FLViewContentsDescriptorMakeWithPadding( SDKEdgeInsets padding)
+FLViewContentsDescriptor FLViewContentsDescriptorMakeWithPadding( UIEdgeInsets padding)
 {
 	FLViewContentsDescriptor contents;
 	contents.top = FLViewContentItemNone;
@@ -211,10 +210,10 @@ extern CGFloat FLViewContentsDescriptorCalculateBottom( FLViewContentsDescriptor
 extern CGRect FLViewContentsDescriptorCalculateContainerRect(CGRect bounds, FLViewContentsDescriptor contents);
 
 #if FLViewContentsDescriptorPadding
-extern SDKEdgeInsets FLViewContentsDescriptorPaddingForRectLayout(FLViewContentsDescriptor contents);
+extern UIEdgeInsets FLViewContentsDescriptorPaddingForRectLayout(FLViewContentsDescriptor contents);
 #else
 NS_INLINE
-SDKEdgeInsets FLViewContentsDescriptorPaddingForRectLayout(FLViewContentsDescriptor contents)
+UIEdgeInsets FLViewContentsDescriptorPaddingForRectLayout(FLViewContentsDescriptor contents)
 {
 	return UIEdgeInsetsMake(FLViewContentsDescriptorCalculateTop(contents), 0, FLViewContentsDescriptorCalculateBottom(contents), 0);
 }
@@ -225,7 +224,7 @@ NS_INLINE
 CGRect FLViewContentsDescriptorCalculateRectVertically(CGRect containeeRect, 
 	CGRect containerRect,	  
 	FLViewContentsDescriptor contents,
-	FLContentMode rectLayout)
+	FLRectLayout rectLayout)
 {
 	return FLRectPositionRectInRectVerticallyWithPadding(rectLayout, containerRect, containeeRect, FLViewContentsDescriptorPaddingForRectLayout(contents));
 }
@@ -234,7 +233,7 @@ NS_INLINE
 CGRect FLViewContentsDescriptorCalculateRectHorizonally(CGRect containeeRect, 
 	CGRect containerRect,	  
 	FLViewContentsDescriptor contents,
-	FLContentMode rectLayout)
+	FLRectLayout rectLayout)
 {
 	return FLRectPositionRectInRectHorizontallyWithPadding(rectLayout, containerRect, containeeRect, FLViewContentsDescriptorPaddingForRectLayout(contents));
 }
@@ -244,7 +243,7 @@ CGRect FLViewContentsDescriptorCalculateRect(
 	CGRect containeeRect, 
 	CGRect containerRect,	  
 	FLViewContentsDescriptor contents,
-	FLContentMode rectLayout)
+	FLRectLayout rectLayout)
 {
 	return FLViewContentsDescriptorCalculateRectVertically(
 		FLViewContentsDescriptorCalculateRectHorizonally(containeeRect, containerRect, contents, rectLayout), 

@@ -40,12 +40,12 @@
 //        self.layer.borderColor = [UIColor darkGrayColor].CGColor;
 
         FLRoundRectWidget* roundRect = [FLRoundRectWidget widgetWithFrame:self.bounds];
-        roundRect.contentMode = FLContentModeFill;
+        roundRect.contentMode = FLRectLayoutFill;
         roundRect.cornerRadius = 8.0;
         [self addWidget:roundRect];
         
         FLGradientWidget* widget = [FLGradientWidget widgetWithFrame:self.bounds];
-        widget.contentMode = FLContentModeFill;
+        widget.contentMode = FLRectLayoutFill;
         [roundRect addWidget:widget];
         [widget setColorRange:[FLColorRange lightLightGrayGradientColorRange] forControlState:UIControlStateNormal];
                             

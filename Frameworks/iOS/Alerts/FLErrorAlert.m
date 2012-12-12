@@ -25,7 +25,7 @@
     
     FLLabelWidget* label = [[FLLabelWidget alloc] initWithFrame:CGRectMake(0,2,16,14)];
     [self.alertView.cornerTriangle addWidget:label];
-    label.contentMode = FLContentModeMake(FLContentModeHorizontalRight, FLContentModeVerticalNone);
+    label.contentMode = FLRectLayoutMake(FLRectLayoutHorizontalRight, FLRectLayoutVerticalNone);
     label.text = @"!";
     label.textAlignment = UITextAlignmentLeft;
 

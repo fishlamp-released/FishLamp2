@@ -34,7 +34,7 @@
 
     self = [super init];
     if(self) {
-        self.contentMode = FLContentModeCentered;
+        self.contentMode = FLRectLayoutCentered;
 //        self.wantsApplyTheme = YES;
     }
     

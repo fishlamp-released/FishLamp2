@@ -29,7 +29,7 @@
 	imageRect.origin = CGPointMake(0.0, 0.0);
 	imageRect.size = _image.size;
 
-	CGContextRef context = FLGraphicsGetCurrentContext();		
+	CGContextRef context = UIGraphicsGetCurrentContext();		
 	CGContextClipToRect(context, CGRectMake(0.0, 0.0, rect.size.width, rect.size.height));		
 	CGContextDrawTiledImage(context, imageRect, image);
 	CGImageRelease(image);

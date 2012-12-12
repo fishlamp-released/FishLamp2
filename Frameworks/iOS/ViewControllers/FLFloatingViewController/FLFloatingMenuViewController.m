@@ -10,7 +10,7 @@
 #import "FLNavigationControllerViewController.h"
 #import "FLGradientButton.h"
 #import "FLButtonCell.h"
-#import "SDKImage+Colorize.h"
+#import "UIImage+Colorize.h"
 #import "FLArrangement.h"
 #import "FLGradientView.h"
 

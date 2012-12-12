@@ -30,18 +30,18 @@
         self.wantsApplyTheme = YES;
 
         _gradientWidget = [[FLGradientWidget alloc] initWithFrame:frame];
-        _gradientWidget.contentMode = FLContentModeFill;
+        _gradientWidget.contentMode = FLRectLayoutFill;
         [self addWidget:_gradientWidget];
     }
 	return self;
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
-	self.backgroundColor = [SDKColor clearColor];
+	self.backgroundColor = [UIColor clearColor];
 
 	if ((self = [super initWithCoder:aDecoder])) {
         _gradientWidget = [[FLGradientWidget alloc] initWithFrame:self.bounds];
-        _gradientWidget.contentMode = FLContentModeFill;
+        _gradientWidget.contentMode = FLRectLayoutFill;
         [self addWidget:_gradientWidget];
     }
 	return self;
@@ -71,7 +71,7 @@
 {
 	if((self = [super initWithFrame:frame]))
 	{
-		self.backgroundColor = [SDKColor darkDarkBlueTintedGrayColor];
+		self.backgroundColor = [UIColor darkDarkBlueTintedGrayColor];
 	}
 	
 	return self;
@@ -81,7 +81,7 @@
 {
 	if((self = [super initWithCoder:aDecoder]))
 	{
-		self.backgroundColor = [SDKColor darkDarkBlueTintedGrayColor];
+		self.backgroundColor = [UIColor darkDarkBlueTintedGrayColor];
 	}
 	
 	return self;

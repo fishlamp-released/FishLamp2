@@ -8,7 +8,7 @@
 
 #import "FLPinEditingView.h"
 #import "FLGradientButton.h"
-#import "SDKImage+Colorize.h"
+#import "UIImage+Colorize.h"
 
 #define kButtonHeight 60.0f
 #define kLabelSize 40.0f

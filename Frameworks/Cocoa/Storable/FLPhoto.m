@@ -57,14 +57,14 @@ NSString* const FLPhotoType = @"com.fishlamp.photo";
 
 @end
 
-//#import "SDKImage.h"
+//#import "FLCocoaUIRequired.h"
 //#import "UIImage+Resize.h"
 //#import "FLQueuedAsset.h"
 
 //@interface FLPhoto ()
-//@property (readwrite, retain, nonatomic) SDKImage*  original;
-//@property (readwrite, retain, nonatomic) SDKImage*  thumbnail;
-//@property (readwrite, retain, nonatomic) SDKImage*  fullScreen;
+//@property (readwrite, retain, nonatomic) UIImage*  original;
+//@property (readwrite, retain, nonatomic) UIImage*  thumbnail;
+//@property (readwrite, retain, nonatomic) UIImage*  fullScreen;
 //@end
 //@dynamic assetUID;
 
@@ -112,9 +112,9 @@ NSString* const FLPhotoType = @"com.fishlamp.photo";
 //}
 //- (void) createThumbnailVersion
 //{
-////	SDKImage* thumb = nil;
+////	UIImage* thumb = nil;
 //	
-//	SDKImage* startImage = self.original.image;
+//	UIImage* startImage = self.original.image;
 //	if(!startImage)
 //	{
 //		startImage = self.fullScreen.image;
@@ -213,7 +213,7 @@ NSString* const FLPhotoType = @"com.fishlamp.photo";
 //	FLReleaseWithNil(_fullScreenImageFile);
 //}
 
-//- (SDKImage*) thumbnailImage {
+//- (UIImage*) thumbnailImage {
 //
 //// FIXME: asset stuff is a mess
 //

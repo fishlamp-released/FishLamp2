@@ -206,7 +206,7 @@
         [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"uploadDestinationName" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"uploadDestinationName"];
         [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"uploadDestinationURL" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"uploadDestinationURL"];
         [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"assetName" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"assetName"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"thumbnail" propertyClass:[SDKImage class] propertyType:FLDataTypeObject] forPropertyName:@"thumbnail"];
+        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"thumbnail" propertyClass:[UIImage class] propertyType:FLDataTypeObject] forPropertyName:@"thumbnail"];
         [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"uploadedDate" propertyClass:[NSDate class] propertyType:FLDataTypeDate] forPropertyName:@"uploadedDate"];
     });
     return s_describer;

@@ -7,8 +7,8 @@
 //
 
 #import "FLMenuItemView.h"
-#import "SDKImage+Resize.h"
-#import "SDKImage+Colorize.h"
+#import "UIImage+Resize.h"
+#import "UIImage+Colorize.h"
 #import "FLCallback_t.h"
 #import "FLTableViewCellAccessoryWidget.h"
 #import "FLMenuView.h"

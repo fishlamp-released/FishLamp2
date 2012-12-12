@@ -8,7 +8,7 @@
 
 #import "FLTextEditView.h"
 #import "FLThemeManager.h"
-#import "FLColor+FLMoreColors.h"
+#import "UIColor+FLMoreColors.h"
 
 @implementation FLTextEditView
 

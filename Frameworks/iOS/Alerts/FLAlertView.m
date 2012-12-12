@@ -173,7 +173,7 @@
                             onSide:(FLAlertViewColorBarSide) side {
     if(!_colorBar) {
         _colorBar = [[FLGradientWidget alloc] initWithFrame:CGRectMake(0,0,10,10)];
-        _colorBar.contentMode = FLContentModeMake(FLContentModeHorizontalLeft, FLContentModeVerticalFill);
+        _colorBar.contentMode = FLRectLayoutMake(FLRectLayoutHorizontalLeft, FLRectLayoutVerticalFill);
         [self addWidget:_colorBar];
     }
 
@@ -193,22 +193,22 @@
     
     switch(_triangleShapeWidget.triangleCorner) {
         case FLTriangleCornerUpperLeft:
-            _triangleShapeWidget.contentMode = FLContentModeMake(FLContentModeHorizontalLeft, FLContentModeVerticalTop);
+            _triangleShapeWidget.contentMode = FLRectLayoutMake(FLRectLayoutHorizontalLeft, FLRectLayoutVerticalTop);
             break;
         case FLTriangleCornerUpperRight:
-            _triangleShapeWidget.contentMode = FLContentModeMake(FLContentModeHorizontalRight, FLContentModeVerticalTop);
+            _triangleShapeWidget.contentMode = FLRectLayoutMake(FLRectLayoutHorizontalRight, FLRectLayoutVerticalTop);
             break;
         case FLTriangleCornerBottomRight:
-            _triangleShapeWidget.contentMode = FLContentModeMake(FLContentModeHorizontalRight, FLContentModeVerticalBottom);
+            _triangleShapeWidget.contentMode = FLRectLayoutMake(FLRectLayoutHorizontalRight, FLRectLayoutVerticalBottom);
             break;
         case FLTriangleCornerBottomLeft:
-            _triangleShapeWidget.contentMode = FLContentModeMake(FLContentModeHorizontalLeft, FLContentModeVerticalBottom);
+            _triangleShapeWidget.contentMode = FLRectLayoutMake(FLRectLayoutHorizontalLeft, FLRectLayoutVerticalBottom);
             break;
 
     }
     
     FLGradientWidget* fill = [FLGradientWidget gradientWidget];
-    fill.contentMode = FLContentModeFill;
+    fill.contentMode = FLRectLayoutFill;
     [_triangleShapeWidget addWidget:fill];
     [fill setColorRange:colorRange forControlState:UIControlStateNormal];
     

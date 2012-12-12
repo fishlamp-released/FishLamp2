@@ -151,7 +151,7 @@
 		[_backgroundWidget removeFromParent];
 	}
 	FLAssignObjectWithRetain(_backgroundWidget, widget);
-	_backgroundWidget.contentMode = FLContentModeFill;
+	_backgroundWidget.contentMode = FLRectLayoutFill;
 
 	[self.shapeWidget addWidget:_backgroundWidget];
 	[self setNeedsLayout];
@@ -162,7 +162,7 @@
 		[_backgroundWidget removeFromParent];
 	}
 	FLAssignObjectWithRetain(_shapeWidget, widget);
-	_shapeWidget.contentMode = FLContentModeFill;
+	_shapeWidget.contentMode = FLRectLayoutFill;
     [self addWidget:_shapeWidget];
     
 	if(_backgroundWidget) {

@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import "FLCocoaUICompatibility.h"
+#import "FLCocoaUIRequired.h"
 
 #if OSX
 @interface FLView : NSView {

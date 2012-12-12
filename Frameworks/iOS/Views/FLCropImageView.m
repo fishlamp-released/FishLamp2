@@ -7,7 +7,7 @@
 //
 
 #import "FLCropImageView.h"
-#import "SDKImage+Resize.h"
+#import "UIImage+Resize.h"
 #import "UIImageView+FLViewGeometry.h"
 
 @implementation FLCropImageView

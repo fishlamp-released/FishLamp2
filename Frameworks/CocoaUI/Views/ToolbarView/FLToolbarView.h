@@ -14,18 +14,18 @@
 
 @class FLToolbarView;
 
-@interface FLToolbarView : SDKView  {
+@interface FLToolbarView : UIView  {
 @private
     FLToolbarItemGroup* _leftItems;
     FLToolbarItemGroup* _rightItems;
     FLToolbarItemGroup* _centerItems;
-    SDKView* _backgroundView;
+    UIView* _backgroundView;
 }
 
 - (id) init; // makes a 320x44 bar by default.
 + (FLToolbarView*) toolbarView;
 
-@property (readwrite, retain, nonatomic) SDKView* backgroundView;
+@property (readwrite, retain, nonatomic) UIView* backgroundView;
 
 - (void) addBackgroundGradientView;
 - (void) addFramedBlackBackground;
@@ -36,7 +36,7 @@
 
 - (void) visitAllToolbarItems:(FLToolbarViewBlock) visitor;
 
-- (void) viewControllerTitleDidChange:(SDKViewController*) viewController;
+- (void) viewControllerTitleDidChange:(UIViewController*) viewController;
 
 @end
 

@@ -148,59 +148,10 @@
 		271A05611677F3D4005E16A5 /* FLRectLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A04691677F3D4005E16A5 /* FLRectLayout.m */; };
 		271A05621677F3D4005E16A5 /* FLRectLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A04691677F3D4005E16A5 /* FLRectLayout.m */; };
 		271A05631677F3D4005E16A5 /* FLRectLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A04691677F3D4005E16A5 /* FLRectLayout.m */; };
-		271A05641677F3D4005E16A5 /* FLColor+FLMoreColors.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A046B1677F3D4005E16A5 /* FLColor+FLMoreColors.h */; };
-		271A05651677F3D4005E16A5 /* FLColor+FLMoreColors.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A046B1677F3D4005E16A5 /* FLColor+FLMoreColors.h */; };
-		271A05661677F3D4005E16A5 /* FLColor+FLMoreColors.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A046B1677F3D4005E16A5 /* FLColor+FLMoreColors.h */; };
-		271A05671677F3D4005E16A5 /* FLColor+FLMoreColors.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A046B1677F3D4005E16A5 /* FLColor+FLMoreColors.h */; };
-		271A05681677F3D4005E16A5 /* FLColor+FLMoreColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A046C1677F3D4005E16A5 /* FLColor+FLMoreColors.m */; };
-		271A05691677F3D4005E16A5 /* FLColor+FLMoreColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A046C1677F3D4005E16A5 /* FLColor+FLMoreColors.m */; };
-		271A056A1677F3D4005E16A5 /* FLColor+FLMoreColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A046C1677F3D4005E16A5 /* FLColor+FLMoreColors.m */; };
-		271A056B1677F3D4005E16A5 /* FLColor+FLMoreColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A046C1677F3D4005E16A5 /* FLColor+FLMoreColors.m */; };
-		271A056C1677F3D4005E16A5 /* FLColor+FLMoreColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A046C1677F3D4005E16A5 /* FLColor+FLMoreColors.m */; };
-		271A056D1677F3D4005E16A5 /* FLColor+FLUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A046D1677F3D4005E16A5 /* FLColor+FLUtils.h */; };
-		271A056E1677F3D4005E16A5 /* FLColor+FLUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A046D1677F3D4005E16A5 /* FLColor+FLUtils.h */; };
-		271A056F1677F3D4005E16A5 /* FLColor+FLUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A046D1677F3D4005E16A5 /* FLColor+FLUtils.h */; };
-		271A05701677F3D4005E16A5 /* FLColor+FLUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A046D1677F3D4005E16A5 /* FLColor+FLUtils.h */; };
-		271A05711677F3D4005E16A5 /* FLColor+FLUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A046E1677F3D4005E16A5 /* FLColor+FLUtils.m */; };
-		271A05721677F3D4005E16A5 /* FLColor+FLUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A046E1677F3D4005E16A5 /* FLColor+FLUtils.m */; };
-		271A05731677F3D4005E16A5 /* FLColor+FLUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A046E1677F3D4005E16A5 /* FLColor+FLUtils.m */; };
-		271A05741677F3D4005E16A5 /* FLColor+FLUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A046E1677F3D4005E16A5 /* FLColor+FLUtils.m */; };
-		271A05751677F3D4005E16A5 /* FLColor+FLUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A046E1677F3D4005E16A5 /* FLColor+FLUtils.m */; };
-		271A05761677F3D4005E16A5 /* FLColor.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A046F1677F3D4005E16A5 /* FLColor.h */; };
-		271A05771677F3D4005E16A5 /* FLColor.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A046F1677F3D4005E16A5 /* FLColor.h */; };
-		271A05781677F3D4005E16A5 /* FLColor.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A046F1677F3D4005E16A5 /* FLColor.h */; };
-		271A05791677F3D4005E16A5 /* FLColor.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A046F1677F3D4005E16A5 /* FLColor.h */; };
-		271A057A1677F3D4005E16A5 /* FLColor_t.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04701677F3D4005E16A5 /* FLColor_t.h */; };
-		271A057B1677F3D4005E16A5 /* FLColor_t.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04701677F3D4005E16A5 /* FLColor_t.h */; };
-		271A057C1677F3D4005E16A5 /* FLColor_t.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04701677F3D4005E16A5 /* FLColor_t.h */; };
-		271A057D1677F3D4005E16A5 /* FLColor_t.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04701677F3D4005E16A5 /* FLColor_t.h */; };
-		271A057E1677F3D4005E16A5 /* FLColor_t.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A04711677F3D4005E16A5 /* FLColor_t.m */; };
-		271A057F1677F3D4005E16A5 /* FLColor_t.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A04711677F3D4005E16A5 /* FLColor_t.m */; };
-		271A05801677F3D4005E16A5 /* FLColor_t.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A04711677F3D4005E16A5 /* FLColor_t.m */; };
-		271A05811677F3D4005E16A5 /* FLColor_t.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A04711677F3D4005E16A5 /* FLColor_t.m */; };
-		271A05821677F3D4005E16A5 /* FLColor_t.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A04711677F3D4005E16A5 /* FLColor_t.m */; };
-		271A05831677F3D4005E16A5 /* FLColorRange.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04721677F3D4005E16A5 /* FLColorRange.h */; };
-		271A05841677F3D4005E16A5 /* FLColorRange.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04721677F3D4005E16A5 /* FLColorRange.h */; };
-		271A05851677F3D4005E16A5 /* FLColorRange.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04721677F3D4005E16A5 /* FLColorRange.h */; };
-		271A05861677F3D4005E16A5 /* FLColorRange.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04721677F3D4005E16A5 /* FLColorRange.h */; };
-		271A05871677F3D4005E16A5 /* FLColorRange.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A04731677F3D4005E16A5 /* FLColorRange.m */; };
-		271A05881677F3D4005E16A5 /* FLColorRange.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A04731677F3D4005E16A5 /* FLColorRange.m */; };
-		271A05891677F3D4005E16A5 /* FLColorRange.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A04731677F3D4005E16A5 /* FLColorRange.m */; };
-		271A058A1677F3D4005E16A5 /* FLColorRange.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A04731677F3D4005E16A5 /* FLColorRange.m */; };
-		271A058B1677F3D4005E16A5 /* FLColorRange.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A04731677F3D4005E16A5 /* FLColorRange.m */; };
 		271A058C1677F3D4005E16A5 /* FLCocoaUICompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04751677F3D4005E16A5 /* FLCocoaUICompatibility.h */; };
 		271A058D1677F3D4005E16A5 /* FLCocoaUICompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04751677F3D4005E16A5 /* FLCocoaUICompatibility.h */; };
 		271A058E1677F3D4005E16A5 /* FLCocoaUICompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04751677F3D4005E16A5 /* FLCocoaUICompatibility.h */; };
 		271A058F1677F3D4005E16A5 /* FLCocoaUICompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04751677F3D4005E16A5 /* FLCocoaUICompatibility.h */; };
-		271A05901677F3D4005E16A5 /* NSImage+FLCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04761677F3D4005E16A5 /* NSImage+FLCompatibility.h */; };
-		271A05911677F3D4005E16A5 /* NSImage+FLCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04761677F3D4005E16A5 /* NSImage+FLCompatibility.h */; };
-		271A05921677F3D4005E16A5 /* NSImage+FLCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04761677F3D4005E16A5 /* NSImage+FLCompatibility.h */; };
-		271A05931677F3D4005E16A5 /* NSImage+FLCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04761677F3D4005E16A5 /* NSImage+FLCompatibility.h */; };
-		271A05941677F3D4005E16A5 /* NSImage+FLCompatibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A04771677F3D4005E16A5 /* NSImage+FLCompatibility.m */; };
-		271A05951677F3D4005E16A5 /* NSImage+FLCompatibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A04771677F3D4005E16A5 /* NSImage+FLCompatibility.m */; };
-		271A05961677F3D4005E16A5 /* NSImage+FLCompatibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A04771677F3D4005E16A5 /* NSImage+FLCompatibility.m */; };
-		271A05971677F3D4005E16A5 /* NSImage+FLCompatibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A04771677F3D4005E16A5 /* NSImage+FLCompatibility.m */; };
-		271A05981677F3D4005E16A5 /* NSImage+FLCompatibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A04771677F3D4005E16A5 /* NSImage+FLCompatibility.m */; };
 		271A05991677F3D4005E16A5 /* FLDisplayFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04791677F3D4005E16A5 /* FLDisplayFormatter.h */; };
 		271A059A1677F3D4005E16A5 /* FLDisplayFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04791677F3D4005E16A5 /* FLDisplayFormatter.h */; };
 		271A059B1677F3D4005E16A5 /* FLDisplayFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04791677F3D4005E16A5 /* FLDisplayFormatter.h */; };
@@ -223,88 +174,6 @@
 		271A05AC1677F3D4005E16A5 /* FLCocoaUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A047D1677F3D4005E16A5 /* FLCocoaUI.h */; };
 		271A05AD1677F3D4005E16A5 /* FLCocoaUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A047D1677F3D4005E16A5 /* FLCocoaUI.h */; };
 		271A05AE1677F3D4005E16A5 /* FLCocoaUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A047D1677F3D4005E16A5 /* FLCocoaUI.h */; };
-		271A05AF1677F3D4005E16A5 /* FLEdgeInsets.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A047F1677F3D4005E16A5 /* FLEdgeInsets.h */; };
-		271A05B01677F3D4005E16A5 /* FLEdgeInsets.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A047F1677F3D4005E16A5 /* FLEdgeInsets.h */; };
-		271A05B11677F3D4005E16A5 /* FLEdgeInsets.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A047F1677F3D4005E16A5 /* FLEdgeInsets.h */; };
-		271A05B21677F3D4005E16A5 /* FLEdgeInsets.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A047F1677F3D4005E16A5 /* FLEdgeInsets.h */; };
-		271A05B31677F3D4005E16A5 /* FLEdgeInsets.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A04801677F3D4005E16A5 /* FLEdgeInsets.m */; };
-		271A05B41677F3D4005E16A5 /* FLEdgeInsets.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A04801677F3D4005E16A5 /* FLEdgeInsets.m */; };
-		271A05B51677F3D4005E16A5 /* FLEdgeInsets.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A04801677F3D4005E16A5 /* FLEdgeInsets.m */; };
-		271A05B61677F3D4005E16A5 /* FLEdgeInsets.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A04801677F3D4005E16A5 /* FLEdgeInsets.m */; };
-		271A05B71677F3D4005E16A5 /* FLEdgeInsets.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A04801677F3D4005E16A5 /* FLEdgeInsets.m */; };
-		271A05B81677F3D4005E16A5 /* FLGeometry.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04811677F3D4005E16A5 /* FLGeometry.h */; };
-		271A05B91677F3D4005E16A5 /* FLGeometry.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04811677F3D4005E16A5 /* FLGeometry.h */; };
-		271A05BA1677F3D4005E16A5 /* FLGeometry.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04811677F3D4005E16A5 /* FLGeometry.h */; };
-		271A05BB1677F3D4005E16A5 /* FLGeometry.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04811677F3D4005E16A5 /* FLGeometry.h */; };
-		271A05BC1677F3D4005E16A5 /* FLPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04821677F3D4005E16A5 /* FLPoint.h */; };
-		271A05BD1677F3D4005E16A5 /* FLPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04821677F3D4005E16A5 /* FLPoint.h */; };
-		271A05BE1677F3D4005E16A5 /* FLPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04821677F3D4005E16A5 /* FLPoint.h */; };
-		271A05BF1677F3D4005E16A5 /* FLPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04821677F3D4005E16A5 /* FLPoint.h */; };
-		271A05C01677F3D4005E16A5 /* FLRect.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04831677F3D4005E16A5 /* FLRect.h */; };
-		271A05C11677F3D4005E16A5 /* FLRect.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04831677F3D4005E16A5 /* FLRect.h */; };
-		271A05C21677F3D4005E16A5 /* FLRect.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04831677F3D4005E16A5 /* FLRect.h */; };
-		271A05C31677F3D4005E16A5 /* FLRect.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04831677F3D4005E16A5 /* FLRect.h */; };
-		271A05C41677F3D4005E16A5 /* FLRect.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A04841677F3D4005E16A5 /* FLRect.m */; };
-		271A05C51677F3D4005E16A5 /* FLRect.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A04841677F3D4005E16A5 /* FLRect.m */; };
-		271A05C61677F3D4005E16A5 /* FLRect.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A04841677F3D4005E16A5 /* FLRect.m */; };
-		271A05C71677F3D4005E16A5 /* FLRect.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A04841677F3D4005E16A5 /* FLRect.m */; };
-		271A05C81677F3D4005E16A5 /* FLRect.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A04841677F3D4005E16A5 /* FLRect.m */; };
-		271A05C91677F3D4005E16A5 /* FLRect_Inlines.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04851677F3D4005E16A5 /* FLRect_Inlines.h */; };
-		271A05CA1677F3D4005E16A5 /* FLRect_Inlines.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04851677F3D4005E16A5 /* FLRect_Inlines.h */; };
-		271A05CB1677F3D4005E16A5 /* FLRect_Inlines.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04851677F3D4005E16A5 /* FLRect_Inlines.h */; };
-		271A05CC1677F3D4005E16A5 /* FLRect_Inlines.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04851677F3D4005E16A5 /* FLRect_Inlines.h */; };
-		271A05CD1677F3D4005E16A5 /* FLRectLayout_Inlines.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04861677F3D4005E16A5 /* FLRectLayout_Inlines.h */; };
-		271A05CE1677F3D4005E16A5 /* FLRectLayout_Inlines.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04861677F3D4005E16A5 /* FLRectLayout_Inlines.h */; };
-		271A05CF1677F3D4005E16A5 /* FLRectLayout_Inlines.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04861677F3D4005E16A5 /* FLRectLayout_Inlines.h */; };
-		271A05D01677F3D4005E16A5 /* FLRectLayout_Inlines.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04861677F3D4005E16A5 /* FLRectLayout_Inlines.h */; };
-		271A05D11677F3D4005E16A5 /* FLRectOptimize.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04871677F3D4005E16A5 /* FLRectOptimize.h */; };
-		271A05D21677F3D4005E16A5 /* FLRectOptimize.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04871677F3D4005E16A5 /* FLRectOptimize.h */; };
-		271A05D31677F3D4005E16A5 /* FLRectOptimize.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04871677F3D4005E16A5 /* FLRectOptimize.h */; };
-		271A05D41677F3D4005E16A5 /* FLRectOptimize.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04871677F3D4005E16A5 /* FLRectOptimize.h */; };
-		271A05D51677F3D4005E16A5 /* FLRectOptimize_Inlines.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04881677F3D4005E16A5 /* FLRectOptimize_Inlines.h */; };
-		271A05D61677F3D4005E16A5 /* FLRectOptimize_Inlines.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04881677F3D4005E16A5 /* FLRectOptimize_Inlines.h */; };
-		271A05D71677F3D4005E16A5 /* FLRectOptimize_Inlines.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04881677F3D4005E16A5 /* FLRectOptimize_Inlines.h */; };
-		271A05D81677F3D4005E16A5 /* FLRectOptimize_Inlines.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04881677F3D4005E16A5 /* FLRectOptimize_Inlines.h */; };
-		271A05D91677F3D4005E16A5 /* FLSize.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04891677F3D4005E16A5 /* FLSize.h */; };
-		271A05DA1677F3D4005E16A5 /* FLSize.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04891677F3D4005E16A5 /* FLSize.h */; };
-		271A05DB1677F3D4005E16A5 /* FLSize.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04891677F3D4005E16A5 /* FLSize.h */; };
-		271A05DC1677F3D4005E16A5 /* FLSize.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04891677F3D4005E16A5 /* FLSize.h */; };
-		271A05DD1677F3D4005E16A5 /* FLSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A048A1677F3D4005E16A5 /* FLSize.m */; };
-		271A05DE1677F3D4005E16A5 /* FLSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A048A1677F3D4005E16A5 /* FLSize.m */; };
-		271A05DF1677F3D4005E16A5 /* FLSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A048A1677F3D4005E16A5 /* FLSize.m */; };
-		271A05E01677F3D4005E16A5 /* FLSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A048A1677F3D4005E16A5 /* FLSize.m */; };
-		271A05E11677F3D4005E16A5 /* FLSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A048A1677F3D4005E16A5 /* FLSize.m */; };
-		271A05E21677F3D4005E16A5 /* SDKImage+FLColorize.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A048C1677F3D4005E16A5 /* SDKImage+FLColorize.h */; };
-		271A05E31677F3D4005E16A5 /* SDKImage+FLColorize.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A048C1677F3D4005E16A5 /* SDKImage+FLColorize.h */; };
-		271A05E41677F3D4005E16A5 /* SDKImage+FLColorize.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A048C1677F3D4005E16A5 /* SDKImage+FLColorize.h */; };
-		271A05E51677F3D4005E16A5 /* SDKImage+FLColorize.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A048C1677F3D4005E16A5 /* SDKImage+FLColorize.h */; };
-		271A05E61677F3D4005E16A5 /* SDKImage+FLColorize.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A048D1677F3D4005E16A5 /* SDKImage+FLColorize.m */; };
-		271A05E71677F3D4005E16A5 /* SDKImage+FLColorize.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A048D1677F3D4005E16A5 /* SDKImage+FLColorize.m */; };
-		271A05E81677F3D4005E16A5 /* SDKImage+FLColorize.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A048D1677F3D4005E16A5 /* SDKImage+FLColorize.m */; };
-		271A05E91677F3D4005E16A5 /* SDKImage+FLColorize.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A048D1677F3D4005E16A5 /* SDKImage+FLColorize.m */; };
-		271A05EA1677F3D4005E16A5 /* SDKImage+FLColorize.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A048D1677F3D4005E16A5 /* SDKImage+FLColorize.m */; };
-		271A05EB1677F3D4005E16A5 /* SDKImage+FLUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A048E1677F3D4005E16A5 /* SDKImage+FLUtils.h */; };
-		271A05EC1677F3D4005E16A5 /* SDKImage+FLUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A048E1677F3D4005E16A5 /* SDKImage+FLUtils.h */; };
-		271A05ED1677F3D4005E16A5 /* SDKImage+FLUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A048E1677F3D4005E16A5 /* SDKImage+FLUtils.h */; };
-		271A05EE1677F3D4005E16A5 /* SDKImage+FLUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A048E1677F3D4005E16A5 /* SDKImage+FLUtils.h */; };
-		271A05EF1677F3D4005E16A5 /* SDKImage+FLUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A048F1677F3D4005E16A5 /* SDKImage+FLUtils.m */; };
-		271A05F01677F3D4005E16A5 /* SDKImage+FLUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A048F1677F3D4005E16A5 /* SDKImage+FLUtils.m */; };
-		271A05F11677F3D4005E16A5 /* SDKImage+FLUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A048F1677F3D4005E16A5 /* SDKImage+FLUtils.m */; };
-		271A05F21677F3D4005E16A5 /* SDKImage+FLUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A048F1677F3D4005E16A5 /* SDKImage+FLUtils.m */; };
-		271A05F31677F3D4005E16A5 /* SDKImage+FLUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A048F1677F3D4005E16A5 /* SDKImage+FLUtils.m */; };
-		271A05F41677F3D4005E16A5 /* SDKImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04901677F3D4005E16A5 /* SDKImage.h */; };
-		271A05F51677F3D4005E16A5 /* SDKImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04901677F3D4005E16A5 /* SDKImage.h */; };
-		271A05F61677F3D4005E16A5 /* SDKImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04901677F3D4005E16A5 /* SDKImage.h */; };
-		271A05F71677F3D4005E16A5 /* SDKImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04901677F3D4005E16A5 /* SDKImage.h */; };
-		271A05F81677F3D4005E16A5 /* SDKImageView+FLViewGeometry.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04911677F3D4005E16A5 /* SDKImageView+FLViewGeometry.h */; };
-		271A05F91677F3D4005E16A5 /* SDKImageView+FLViewGeometry.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04911677F3D4005E16A5 /* SDKImageView+FLViewGeometry.h */; };
-		271A05FA1677F3D4005E16A5 /* SDKImageView+FLViewGeometry.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04911677F3D4005E16A5 /* SDKImageView+FLViewGeometry.h */; };
-		271A05FB1677F3D4005E16A5 /* SDKImageView+FLViewGeometry.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04911677F3D4005E16A5 /* SDKImageView+FLViewGeometry.h */; };
-		271A05FC1677F3D4005E16A5 /* SDKImageView+FLViewGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A04921677F3D4005E16A5 /* SDKImageView+FLViewGeometry.m */; };
-		271A05FD1677F3D4005E16A5 /* SDKImageView+FLViewGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A04921677F3D4005E16A5 /* SDKImageView+FLViewGeometry.m */; };
-		271A05FE1677F3D4005E16A5 /* SDKImageView+FLViewGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A04921677F3D4005E16A5 /* SDKImageView+FLViewGeometry.m */; };
-		271A05FF1677F3D4005E16A5 /* SDKImageView+FLViewGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A04921677F3D4005E16A5 /* SDKImageView+FLViewGeometry.m */; };
-		271A06001677F3D4005E16A5 /* SDKImageView+FLViewGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A04921677F3D4005E16A5 /* SDKImageView+FLViewGeometry.m */; };
 		271A06011677F3D4005E16A5 /* FLProgressFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04941677F3D4005E16A5 /* FLProgressFactory.h */; };
 		271A06021677F3D4005E16A5 /* FLProgressFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04941677F3D4005E16A5 /* FLProgressFactory.h */; };
 		271A06031677F3D4005E16A5 /* FLProgressFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04941677F3D4005E16A5 /* FLProgressFactory.h */; };
@@ -403,15 +272,15 @@
 		271A06601677F3D4005E16A5 /* FLPresentationBehavior.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A04B01677F3D4005E16A5 /* FLPresentationBehavior.m */; };
 		271A06611677F3D4005E16A5 /* FLPresentationBehavior.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A04B01677F3D4005E16A5 /* FLPresentationBehavior.m */; };
 		271A06621677F3D4005E16A5 /* FLPresentationBehavior.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A04B01677F3D4005E16A5 /* FLPresentationBehavior.m */; };
-		271A06631677F3D4005E16A5 /* SDKViewController+FLPresentationBehavior.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04B11677F3D4005E16A5 /* SDKViewController+FLPresentationBehavior.h */; };
-		271A06641677F3D4005E16A5 /* SDKViewController+FLPresentationBehavior.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04B11677F3D4005E16A5 /* SDKViewController+FLPresentationBehavior.h */; };
-		271A06651677F3D4005E16A5 /* SDKViewController+FLPresentationBehavior.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04B11677F3D4005E16A5 /* SDKViewController+FLPresentationBehavior.h */; };
-		271A06661677F3D4005E16A5 /* SDKViewController+FLPresentationBehavior.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04B11677F3D4005E16A5 /* SDKViewController+FLPresentationBehavior.h */; };
-		271A06671677F3D4005E16A5 /* SDKViewController+FLPresentationBehavior.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A04B21677F3D4005E16A5 /* SDKViewController+FLPresentationBehavior.m */; };
-		271A06681677F3D4005E16A5 /* SDKViewController+FLPresentationBehavior.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A04B21677F3D4005E16A5 /* SDKViewController+FLPresentationBehavior.m */; };
-		271A06691677F3D4005E16A5 /* SDKViewController+FLPresentationBehavior.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A04B21677F3D4005E16A5 /* SDKViewController+FLPresentationBehavior.m */; };
-		271A066A1677F3D4005E16A5 /* SDKViewController+FLPresentationBehavior.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A04B21677F3D4005E16A5 /* SDKViewController+FLPresentationBehavior.m */; };
-		271A066B1677F3D4005E16A5 /* SDKViewController+FLPresentationBehavior.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A04B21677F3D4005E16A5 /* SDKViewController+FLPresentationBehavior.m */; };
+		271A06631677F3D4005E16A5 /* UIViewController+FLPresentationBehavior.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04B11677F3D4005E16A5 /* UIViewController+FLPresentationBehavior.h */; };
+		271A06641677F3D4005E16A5 /* UIViewController+FLPresentationBehavior.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04B11677F3D4005E16A5 /* UIViewController+FLPresentationBehavior.h */; };
+		271A06651677F3D4005E16A5 /* UIViewController+FLPresentationBehavior.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04B11677F3D4005E16A5 /* UIViewController+FLPresentationBehavior.h */; };
+		271A06661677F3D4005E16A5 /* UIViewController+FLPresentationBehavior.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04B11677F3D4005E16A5 /* UIViewController+FLPresentationBehavior.h */; };
+		271A06671677F3D4005E16A5 /* UIViewController+FLPresentationBehavior.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A04B21677F3D4005E16A5 /* UIViewController+FLPresentationBehavior.m */; };
+		271A06681677F3D4005E16A5 /* UIViewController+FLPresentationBehavior.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A04B21677F3D4005E16A5 /* UIViewController+FLPresentationBehavior.m */; };
+		271A06691677F3D4005E16A5 /* UIViewController+FLPresentationBehavior.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A04B21677F3D4005E16A5 /* UIViewController+FLPresentationBehavior.m */; };
+		271A066A1677F3D4005E16A5 /* UIViewController+FLPresentationBehavior.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A04B21677F3D4005E16A5 /* UIViewController+FLPresentationBehavior.m */; };
+		271A066B1677F3D4005E16A5 /* UIViewController+FLPresentationBehavior.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A04B21677F3D4005E16A5 /* UIViewController+FLPresentationBehavior.m */; };
 		271A066C1677F3D4005E16A5 /* FLProgressViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04B41677F3D4005E16A5 /* FLProgressViewController.h */; };
 		271A066D1677F3D4005E16A5 /* FLProgressViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04B41677F3D4005E16A5 /* FLProgressViewController.h */; };
 		271A066E1677F3D4005E16A5 /* FLProgressViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04B41677F3D4005E16A5 /* FLProgressViewController.h */; };
@@ -421,15 +290,15 @@
 		271A06721677F3D4005E16A5 /* FLProgressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A04B51677F3D4005E16A5 /* FLProgressViewController.m */; };
 		271A06731677F3D4005E16A5 /* FLProgressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A04B51677F3D4005E16A5 /* FLProgressViewController.m */; };
 		271A06741677F3D4005E16A5 /* FLProgressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A04B51677F3D4005E16A5 /* FLProgressViewController.m */; };
-		271A06751677F3D4005E16A5 /* SDKViewController+FLAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04B61677F3D4005E16A5 /* SDKViewController+FLAdditions.h */; };
-		271A06761677F3D4005E16A5 /* SDKViewController+FLAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04B61677F3D4005E16A5 /* SDKViewController+FLAdditions.h */; };
-		271A06771677F3D4005E16A5 /* SDKViewController+FLAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04B61677F3D4005E16A5 /* SDKViewController+FLAdditions.h */; };
-		271A06781677F3D4005E16A5 /* SDKViewController+FLAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04B61677F3D4005E16A5 /* SDKViewController+FLAdditions.h */; };
-		271A06791677F3D4005E16A5 /* SDKViewController+FLAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A04B71677F3D4005E16A5 /* SDKViewController+FLAdditions.m */; };
-		271A067A1677F3D4005E16A5 /* SDKViewController+FLAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A04B71677F3D4005E16A5 /* SDKViewController+FLAdditions.m */; };
-		271A067B1677F3D4005E16A5 /* SDKViewController+FLAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A04B71677F3D4005E16A5 /* SDKViewController+FLAdditions.m */; };
-		271A067C1677F3D4005E16A5 /* SDKViewController+FLAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A04B71677F3D4005E16A5 /* SDKViewController+FLAdditions.m */; };
-		271A067D1677F3D4005E16A5 /* SDKViewController+FLAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A04B71677F3D4005E16A5 /* SDKViewController+FLAdditions.m */; };
+		271A06751677F3D4005E16A5 /* UIViewController+FLAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04B61677F3D4005E16A5 /* UIViewController+FLAdditions.h */; };
+		271A06761677F3D4005E16A5 /* UIViewController+FLAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04B61677F3D4005E16A5 /* UIViewController+FLAdditions.h */; };
+		271A06771677F3D4005E16A5 /* UIViewController+FLAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04B61677F3D4005E16A5 /* UIViewController+FLAdditions.h */; };
+		271A06781677F3D4005E16A5 /* UIViewController+FLAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04B61677F3D4005E16A5 /* UIViewController+FLAdditions.h */; };
+		271A06791677F3D4005E16A5 /* UIViewController+FLAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A04B71677F3D4005E16A5 /* UIViewController+FLAdditions.m */; };
+		271A067A1677F3D4005E16A5 /* UIViewController+FLAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A04B71677F3D4005E16A5 /* UIViewController+FLAdditions.m */; };
+		271A067B1677F3D4005E16A5 /* UIViewController+FLAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A04B71677F3D4005E16A5 /* UIViewController+FLAdditions.m */; };
+		271A067C1677F3D4005E16A5 /* UIViewController+FLAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A04B71677F3D4005E16A5 /* UIViewController+FLAdditions.m */; };
+		271A067D1677F3D4005E16A5 /* UIViewController+FLAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A04B71677F3D4005E16A5 /* UIViewController+FLAdditions.m */; };
 		271A067E1677F3D4005E16A5 /* FLViewControllerTransitionAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04B91677F3D4005E16A5 /* FLViewControllerTransitionAnimation.h */; };
 		271A067F1677F3D4005E16A5 /* FLViewControllerTransitionAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04B91677F3D4005E16A5 /* FLViewControllerTransitionAnimation.h */; };
 		271A06801677F3D4005E16A5 /* FLViewControllerTransitionAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04B91677F3D4005E16A5 /* FLViewControllerTransitionAnimation.h */; };
@@ -484,15 +353,15 @@
 		271A06B11677F3D4005E16A5 /* FLArrangeableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A04C81677F3D4005E16A5 /* FLArrangeableView.m */; };
 		271A06B21677F3D4005E16A5 /* FLArrangeableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A04C81677F3D4005E16A5 /* FLArrangeableView.m */; };
 		271A06B31677F3D4005E16A5 /* FLArrangeableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A04C81677F3D4005E16A5 /* FLArrangeableView.m */; };
-		271A06B41677F3D4005E16A5 /* SDKView+FLArrangeable.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04C91677F3D4005E16A5 /* SDKView+FLArrangeable.h */; };
-		271A06B51677F3D4005E16A5 /* SDKView+FLArrangeable.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04C91677F3D4005E16A5 /* SDKView+FLArrangeable.h */; };
-		271A06B61677F3D4005E16A5 /* SDKView+FLArrangeable.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04C91677F3D4005E16A5 /* SDKView+FLArrangeable.h */; };
-		271A06B71677F3D4005E16A5 /* SDKView+FLArrangeable.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04C91677F3D4005E16A5 /* SDKView+FLArrangeable.h */; };
-		271A06B81677F3D4005E16A5 /* SDKView+FLArrangeable.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A04CA1677F3D4005E16A5 /* SDKView+FLArrangeable.m */; };
-		271A06B91677F3D4005E16A5 /* SDKView+FLArrangeable.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A04CA1677F3D4005E16A5 /* SDKView+FLArrangeable.m */; };
-		271A06BA1677F3D4005E16A5 /* SDKView+FLArrangeable.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A04CA1677F3D4005E16A5 /* SDKView+FLArrangeable.m */; };
-		271A06BB1677F3D4005E16A5 /* SDKView+FLArrangeable.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A04CA1677F3D4005E16A5 /* SDKView+FLArrangeable.m */; };
-		271A06BC1677F3D4005E16A5 /* SDKView+FLArrangeable.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A04CA1677F3D4005E16A5 /* SDKView+FLArrangeable.m */; };
+		271A06B41677F3D4005E16A5 /* UIView+FLArrangeable.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04C91677F3D4005E16A5 /* UIView+FLArrangeable.h */; };
+		271A06B51677F3D4005E16A5 /* UIView+FLArrangeable.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04C91677F3D4005E16A5 /* UIView+FLArrangeable.h */; };
+		271A06B61677F3D4005E16A5 /* UIView+FLArrangeable.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04C91677F3D4005E16A5 /* UIView+FLArrangeable.h */; };
+		271A06B71677F3D4005E16A5 /* UIView+FLArrangeable.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04C91677F3D4005E16A5 /* UIView+FLArrangeable.h */; };
+		271A06B81677F3D4005E16A5 /* UIView+FLArrangeable.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A04CA1677F3D4005E16A5 /* UIView+FLArrangeable.m */; };
+		271A06B91677F3D4005E16A5 /* UIView+FLArrangeable.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A04CA1677F3D4005E16A5 /* UIView+FLArrangeable.m */; };
+		271A06BA1677F3D4005E16A5 /* UIView+FLArrangeable.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A04CA1677F3D4005E16A5 /* UIView+FLArrangeable.m */; };
+		271A06BB1677F3D4005E16A5 /* UIView+FLArrangeable.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A04CA1677F3D4005E16A5 /* UIView+FLArrangeable.m */; };
+		271A06BC1677F3D4005E16A5 /* UIView+FLArrangeable.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A04CA1677F3D4005E16A5 /* UIView+FLArrangeable.m */; };
 		271A06BD1677F3D4005E16A5 /* FLBreadcrumb.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04CC1677F3D4005E16A5 /* FLBreadcrumb.h */; };
 		271A06BE1677F3D4005E16A5 /* FLBreadcrumb.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04CC1677F3D4005E16A5 /* FLBreadcrumb.h */; };
 		271A06BF1677F3D4005E16A5 /* FLBreadcrumb.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A04CC1677F3D4005E16A5 /* FLBreadcrumb.h */; };
@@ -637,6 +506,19 @@
 		271A07521678037E005E16A5 /* NSObject+FLTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A074B1678037E005E16A5 /* NSObject+FLTheme.m */; };
 		271A07531678037E005E16A5 /* NSObject+FLTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A074B1678037E005E16A5 /* NSObject+FLTheme.m */; };
 		271A07541678037E005E16A5 /* NSObject+FLTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A074B1678037E005E16A5 /* NSObject+FLTheme.m */; };
+		271A078616785434005E16A5 /* FLAutoPositionedViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A078416785434005E16A5 /* FLAutoPositionedViewController.h */; };
+		271A078716785434005E16A5 /* FLAutoPositionedViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A078416785434005E16A5 /* FLAutoPositionedViewController.h */; };
+		271A078816785434005E16A5 /* FLAutoPositionedViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A078416785434005E16A5 /* FLAutoPositionedViewController.h */; };
+		271A078916785434005E16A5 /* FLAutoPositionedViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A078416785434005E16A5 /* FLAutoPositionedViewController.h */; };
+		271A078A16785434005E16A5 /* FLAutoPositionedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A078516785434005E16A5 /* FLAutoPositionedViewController.m */; };
+		271A078B16785434005E16A5 /* FLAutoPositionedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A078516785434005E16A5 /* FLAutoPositionedViewController.m */; };
+		271A078C16785434005E16A5 /* FLAutoPositionedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A078516785434005E16A5 /* FLAutoPositionedViewController.m */; };
+		271A078D16785434005E16A5 /* FLAutoPositionedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A078516785434005E16A5 /* FLAutoPositionedViewController.m */; };
+		271A078E16785434005E16A5 /* FLAutoPositionedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 271A078516785434005E16A5 /* FLAutoPositionedViewController.m */; };
+		271A07D316786468005E16A5 /* FLCocoaUIRequired.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A07D116786467005E16A5 /* FLCocoaUIRequired.h */; };
+		271A07D416786468005E16A5 /* FLCocoaUIRequired.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A07D116786467005E16A5 /* FLCocoaUIRequired.h */; };
+		271A07D516786468005E16A5 /* FLCocoaUIRequired.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A07D116786467005E16A5 /* FLCocoaUIRequired.h */; };
+		271A07D616786468005E16A5 /* FLCocoaUIRequired.h in Headers */ = {isa = PBXBuildFile; fileRef = 271A07D116786467005E16A5 /* FLCocoaUIRequired.h */; };
 		273FC193166FB7AE0072C62A /* NSView+FLAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 273FC191166FB7AE0072C62A /* NSView+FLAdditions.h */; };
 		273FC194166FB7AE0072C62A /* NSView+FLAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 273FC191166FB7AE0072C62A /* NSView+FLAdditions.h */; };
 		273FC195166FB7AE0072C62A /* NSView+FLAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 273FC191166FB7AE0072C62A /* NSView+FLAdditions.h */; };
@@ -1096,33 +978,191 @@
 		2798DAF5166D886500A0863D /* NSData+RSHexDump.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE57166D886500A0863D /* NSData+RSHexDump.m */; };
 		2798DAF6166D886500A0863D /* NSData+RSHexDump.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE57166D886500A0863D /* NSData+RSHexDump.m */; };
 		2798DAF7166D886500A0863D /* NSData+RSHexDump.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE57166D886500A0863D /* NSData+RSHexDump.m */; };
-		2798DAF8166D886500A0863D /* SDKImage+Alpha.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE59166D886500A0863D /* SDKImage+Alpha.h */; };
-		2798DAF9166D886500A0863D /* SDKImage+Alpha.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE59166D886500A0863D /* SDKImage+Alpha.h */; };
-		2798DAFA166D886500A0863D /* SDKImage+Alpha.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE59166D886500A0863D /* SDKImage+Alpha.h */; };
-		2798DAFB166D886500A0863D /* SDKImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE5A166D886500A0863D /* SDKImage+Alpha.m */; };
-		2798DAFC166D886500A0863D /* SDKImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE5A166D886500A0863D /* SDKImage+Alpha.m */; };
-		2798DAFD166D886500A0863D /* SDKImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE5A166D886500A0863D /* SDKImage+Alpha.m */; };
-		2798DAFE166D886500A0863D /* SDKImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE5A166D886500A0863D /* SDKImage+Alpha.m */; };
-		2798DAFF166D886500A0863D /* SDKImage+Resize.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE5B166D886500A0863D /* SDKImage+Resize.h */; };
-		2798DB00166D886500A0863D /* SDKImage+Resize.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE5B166D886500A0863D /* SDKImage+Resize.h */; };
-		2798DB01166D886500A0863D /* SDKImage+Resize.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE5B166D886500A0863D /* SDKImage+Resize.h */; };
-		2798DB02166D886500A0863D /* SDKImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE5C166D886500A0863D /* SDKImage+Resize.m */; };
-		2798DB03166D886500A0863D /* SDKImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE5C166D886500A0863D /* SDKImage+Resize.m */; };
-		2798DB04166D886500A0863D /* SDKImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE5C166D886500A0863D /* SDKImage+Resize.m */; };
-		2798DB05166D886500A0863D /* SDKImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE5C166D886500A0863D /* SDKImage+Resize.m */; };
-		2798DB06166D886500A0863D /* SDKImage+RoundedCorner.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE5D166D886500A0863D /* SDKImage+RoundedCorner.h */; };
-		2798DB07166D886500A0863D /* SDKImage+RoundedCorner.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE5D166D886500A0863D /* SDKImage+RoundedCorner.h */; };
-		2798DB08166D886500A0863D /* SDKImage+RoundedCorner.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE5D166D886500A0863D /* SDKImage+RoundedCorner.h */; };
-		2798DB09166D886500A0863D /* SDKImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE5E166D886500A0863D /* SDKImage+RoundedCorner.m */; };
-		2798DB0A166D886500A0863D /* SDKImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE5E166D886500A0863D /* SDKImage+RoundedCorner.m */; };
-		2798DB0B166D886500A0863D /* SDKImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE5E166D886500A0863D /* SDKImage+RoundedCorner.m */; };
-		2798DB0C166D886500A0863D /* SDKImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE5E166D886500A0863D /* SDKImage+RoundedCorner.m */; };
+		2798DAF8166D886500A0863D /* UIImage+Alpha.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE59166D886500A0863D /* UIImage+Alpha.h */; };
+		2798DAF9166D886500A0863D /* UIImage+Alpha.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE59166D886500A0863D /* UIImage+Alpha.h */; };
+		2798DAFA166D886500A0863D /* UIImage+Alpha.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE59166D886500A0863D /* UIImage+Alpha.h */; };
+		2798DAFB166D886500A0863D /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE5A166D886500A0863D /* UIImage+Alpha.m */; };
+		2798DAFC166D886500A0863D /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE5A166D886500A0863D /* UIImage+Alpha.m */; };
+		2798DAFD166D886500A0863D /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE5A166D886500A0863D /* UIImage+Alpha.m */; };
+		2798DAFE166D886500A0863D /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE5A166D886500A0863D /* UIImage+Alpha.m */; };
+		2798DAFF166D886500A0863D /* UIImage+Resize.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE5B166D886500A0863D /* UIImage+Resize.h */; };
+		2798DB00166D886500A0863D /* UIImage+Resize.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE5B166D886500A0863D /* UIImage+Resize.h */; };
+		2798DB01166D886500A0863D /* UIImage+Resize.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE5B166D886500A0863D /* UIImage+Resize.h */; };
+		2798DB02166D886500A0863D /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE5C166D886500A0863D /* UIImage+Resize.m */; };
+		2798DB03166D886500A0863D /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE5C166D886500A0863D /* UIImage+Resize.m */; };
+		2798DB04166D886500A0863D /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE5C166D886500A0863D /* UIImage+Resize.m */; };
+		2798DB05166D886500A0863D /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE5C166D886500A0863D /* UIImage+Resize.m */; };
+		2798DB06166D886500A0863D /* UIImage+RoundedCorner.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE5D166D886500A0863D /* UIImage+RoundedCorner.h */; };
+		2798DB07166D886500A0863D /* UIImage+RoundedCorner.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE5D166D886500A0863D /* UIImage+RoundedCorner.h */; };
+		2798DB08166D886500A0863D /* UIImage+RoundedCorner.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE5D166D886500A0863D /* UIImage+RoundedCorner.h */; };
+		2798DB09166D886500A0863D /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE5E166D886500A0863D /* UIImage+RoundedCorner.m */; };
+		2798DB0A166D886500A0863D /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE5E166D886500A0863D /* UIImage+RoundedCorner.m */; };
+		2798DB0B166D886500A0863D /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE5E166D886500A0863D /* UIImage+RoundedCorner.m */; };
+		2798DB0C166D886500A0863D /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE5E166D886500A0863D /* UIImage+RoundedCorner.m */; };
 		27BB840416750CB20097CAEA /* FLXcodePlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 27BB840216750CB20097CAEA /* FLXcodePlugin.h */; };
 		27BB840516750CB20097CAEA /* FLXcodePlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 27BB840216750CB20097CAEA /* FLXcodePlugin.h */; };
 		27BB840616750CB20097CAEA /* FLXcodePlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 27BB840216750CB20097CAEA /* FLXcodePlugin.h */; };
 		27BB840716750CB20097CAEA /* FLXcodePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BB840316750CB20097CAEA /* FLXcodePlugin.m */; };
 		27BB840816750CB20097CAEA /* FLXcodePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BB840316750CB20097CAEA /* FLXcodePlugin.m */; };
 		27BB840916750CB20097CAEA /* FLXcodePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BB840316750CB20097CAEA /* FLXcodePlugin.m */; };
+		27C364D016786C210029D2C5 /* NSColor+FLCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C364CE16786C210029D2C5 /* NSColor+FLCompatibility.h */; };
+		27C364D116786C210029D2C5 /* NSColor+FLCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C364CE16786C210029D2C5 /* NSColor+FLCompatibility.h */; };
+		27C364D216786C210029D2C5 /* NSColor+FLCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C364CE16786C210029D2C5 /* NSColor+FLCompatibility.h */; };
+		27C364D316786C210029D2C5 /* NSColor+FLCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C364CE16786C210029D2C5 /* NSColor+FLCompatibility.h */; };
+		27C364D416786C210029D2C5 /* NSColor+FLCompatibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C364CF16786C210029D2C5 /* NSColor+FLCompatibility.m */; };
+		27C364D516786C210029D2C5 /* NSColor+FLCompatibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C364CF16786C210029D2C5 /* NSColor+FLCompatibility.m */; };
+		27C364D616786C210029D2C5 /* NSColor+FLCompatibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C364CF16786C210029D2C5 /* NSColor+FLCompatibility.m */; };
+		27C364D716786C210029D2C5 /* NSColor+FLCompatibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C364CF16786C210029D2C5 /* NSColor+FLCompatibility.m */; };
+		27C364D816786C210029D2C5 /* NSColor+FLCompatibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C364CF16786C210029D2C5 /* NSColor+FLCompatibility.m */; };
+		27C364E216786C5F0029D2C5 /* FLColor_t.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C364DA16786C5F0029D2C5 /* FLColor_t.h */; };
+		27C364E316786C5F0029D2C5 /* FLColor_t.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C364DA16786C5F0029D2C5 /* FLColor_t.h */; };
+		27C364E416786C5F0029D2C5 /* FLColor_t.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C364DA16786C5F0029D2C5 /* FLColor_t.h */; };
+		27C364E516786C5F0029D2C5 /* FLColor_t.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C364DA16786C5F0029D2C5 /* FLColor_t.h */; };
+		27C364E616786C5F0029D2C5 /* FLColor_t.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C364DB16786C5F0029D2C5 /* FLColor_t.m */; };
+		27C364E716786C5F0029D2C5 /* FLColor_t.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C364DB16786C5F0029D2C5 /* FLColor_t.m */; };
+		27C364E816786C5F0029D2C5 /* FLColor_t.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C364DB16786C5F0029D2C5 /* FLColor_t.m */; };
+		27C364E916786C5F0029D2C5 /* FLColor_t.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C364DB16786C5F0029D2C5 /* FLColor_t.m */; };
+		27C364EA16786C5F0029D2C5 /* FLColor_t.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C364DB16786C5F0029D2C5 /* FLColor_t.m */; };
+		27C364EB16786C5F0029D2C5 /* FLColorRange.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C364DC16786C5F0029D2C5 /* FLColorRange.h */; };
+		27C364EC16786C5F0029D2C5 /* FLColorRange.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C364DC16786C5F0029D2C5 /* FLColorRange.h */; };
+		27C364ED16786C5F0029D2C5 /* FLColorRange.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C364DC16786C5F0029D2C5 /* FLColorRange.h */; };
+		27C364EE16786C5F0029D2C5 /* FLColorRange.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C364DC16786C5F0029D2C5 /* FLColorRange.h */; };
+		27C364EF16786C5F0029D2C5 /* FLColorRange.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C364DD16786C5F0029D2C5 /* FLColorRange.m */; };
+		27C364F016786C5F0029D2C5 /* FLColorRange.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C364DD16786C5F0029D2C5 /* FLColorRange.m */; };
+		27C364F116786C5F0029D2C5 /* FLColorRange.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C364DD16786C5F0029D2C5 /* FLColorRange.m */; };
+		27C364F216786C5F0029D2C5 /* FLColorRange.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C364DD16786C5F0029D2C5 /* FLColorRange.m */; };
+		27C364F316786C5F0029D2C5 /* FLColorRange.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C364DD16786C5F0029D2C5 /* FLColorRange.m */; };
+		27C364F416786C5F0029D2C5 /* UIColor+FLMoreColors.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C364DE16786C5F0029D2C5 /* UIColor+FLMoreColors.h */; };
+		27C364F516786C5F0029D2C5 /* UIColor+FLMoreColors.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C364DE16786C5F0029D2C5 /* UIColor+FLMoreColors.h */; };
+		27C364F616786C5F0029D2C5 /* UIColor+FLMoreColors.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C364DE16786C5F0029D2C5 /* UIColor+FLMoreColors.h */; };
+		27C364F716786C5F0029D2C5 /* UIColor+FLMoreColors.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C364DE16786C5F0029D2C5 /* UIColor+FLMoreColors.h */; };
+		27C364F816786C5F0029D2C5 /* UIColor+FLMoreColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C364DF16786C5F0029D2C5 /* UIColor+FLMoreColors.m */; };
+		27C364F916786C5F0029D2C5 /* UIColor+FLMoreColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C364DF16786C5F0029D2C5 /* UIColor+FLMoreColors.m */; };
+		27C364FA16786C5F0029D2C5 /* UIColor+FLMoreColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C364DF16786C5F0029D2C5 /* UIColor+FLMoreColors.m */; };
+		27C364FB16786C5F0029D2C5 /* UIColor+FLMoreColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C364DF16786C5F0029D2C5 /* UIColor+FLMoreColors.m */; };
+		27C364FC16786C5F0029D2C5 /* UIColor+FLMoreColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C364DF16786C5F0029D2C5 /* UIColor+FLMoreColors.m */; };
+		27C364FD16786C5F0029D2C5 /* UIColor+FLUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C364E016786C5F0029D2C5 /* UIColor+FLUtils.h */; };
+		27C364FE16786C5F0029D2C5 /* UIColor+FLUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C364E016786C5F0029D2C5 /* UIColor+FLUtils.h */; };
+		27C364FF16786C5F0029D2C5 /* UIColor+FLUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C364E016786C5F0029D2C5 /* UIColor+FLUtils.h */; };
+		27C3650016786C5F0029D2C5 /* UIColor+FLUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C364E016786C5F0029D2C5 /* UIColor+FLUtils.h */; };
+		27C3650116786C5F0029D2C5 /* UIColor+FLUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C364E116786C5F0029D2C5 /* UIColor+FLUtils.m */; };
+		27C3650216786C5F0029D2C5 /* UIColor+FLUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C364E116786C5F0029D2C5 /* UIColor+FLUtils.m */; };
+		27C3650316786C5F0029D2C5 /* UIColor+FLUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C364E116786C5F0029D2C5 /* UIColor+FLUtils.m */; };
+		27C3650416786C5F0029D2C5 /* UIColor+FLUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C364E116786C5F0029D2C5 /* UIColor+FLUtils.m */; };
+		27C3650516786C5F0029D2C5 /* UIColor+FLUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C364E116786C5F0029D2C5 /* UIColor+FLUtils.m */; };
+		27C3650716786C980029D2C5 /* FLCocoaRequired.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C3650616786C980029D2C5 /* FLCocoaRequired.h */; };
+		27C3650816786C980029D2C5 /* FLCocoaRequired.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C3650616786C980029D2C5 /* FLCocoaRequired.h */; };
+		27C3650916786C980029D2C5 /* FLCocoaRequired.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C3650616786C980029D2C5 /* FLCocoaRequired.h */; };
+		27C3650A16786C980029D2C5 /* FLCocoaRequired.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C3650616786C980029D2C5 /* FLCocoaRequired.h */; };
+		27C3651816786D440029D2C5 /* FLEdgeInsets.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C3650C16786D440029D2C5 /* FLEdgeInsets.h */; };
+		27C3651916786D440029D2C5 /* FLEdgeInsets.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C3650C16786D440029D2C5 /* FLEdgeInsets.h */; };
+		27C3651A16786D440029D2C5 /* FLEdgeInsets.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C3650C16786D440029D2C5 /* FLEdgeInsets.h */; };
+		27C3651B16786D440029D2C5 /* FLEdgeInsets.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C3650C16786D440029D2C5 /* FLEdgeInsets.h */; };
+		27C3651C16786D440029D2C5 /* FLEdgeInsets.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C3650D16786D440029D2C5 /* FLEdgeInsets.m */; };
+		27C3651D16786D440029D2C5 /* FLEdgeInsets.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C3650D16786D440029D2C5 /* FLEdgeInsets.m */; };
+		27C3651E16786D440029D2C5 /* FLEdgeInsets.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C3650D16786D440029D2C5 /* FLEdgeInsets.m */; };
+		27C3651F16786D440029D2C5 /* FLEdgeInsets.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C3650D16786D440029D2C5 /* FLEdgeInsets.m */; };
+		27C3652016786D440029D2C5 /* FLEdgeInsets.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C3650D16786D440029D2C5 /* FLEdgeInsets.m */; };
+		27C3652116786D440029D2C5 /* FLGeometry.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C3650E16786D440029D2C5 /* FLGeometry.h */; };
+		27C3652216786D440029D2C5 /* FLGeometry.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C3650E16786D440029D2C5 /* FLGeometry.h */; };
+		27C3652316786D440029D2C5 /* FLGeometry.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C3650E16786D440029D2C5 /* FLGeometry.h */; };
+		27C3652416786D440029D2C5 /* FLGeometry.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C3650E16786D440029D2C5 /* FLGeometry.h */; };
+		27C3652516786D440029D2C5 /* FLPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C3650F16786D440029D2C5 /* FLPoint.h */; };
+		27C3652616786D440029D2C5 /* FLPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C3650F16786D440029D2C5 /* FLPoint.h */; };
+		27C3652716786D440029D2C5 /* FLPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C3650F16786D440029D2C5 /* FLPoint.h */; };
+		27C3652816786D440029D2C5 /* FLPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C3650F16786D440029D2C5 /* FLPoint.h */; };
+		27C3652916786D440029D2C5 /* FLRect.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C3651016786D440029D2C5 /* FLRect.h */; };
+		27C3652A16786D440029D2C5 /* FLRect.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C3651016786D440029D2C5 /* FLRect.h */; };
+		27C3652B16786D440029D2C5 /* FLRect.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C3651016786D440029D2C5 /* FLRect.h */; };
+		27C3652C16786D440029D2C5 /* FLRect.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C3651016786D440029D2C5 /* FLRect.h */; };
+		27C3652D16786D440029D2C5 /* FLRect.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C3651116786D440029D2C5 /* FLRect.m */; };
+		27C3652E16786D440029D2C5 /* FLRect.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C3651116786D440029D2C5 /* FLRect.m */; };
+		27C3652F16786D440029D2C5 /* FLRect.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C3651116786D440029D2C5 /* FLRect.m */; };
+		27C3653016786D440029D2C5 /* FLRect.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C3651116786D440029D2C5 /* FLRect.m */; };
+		27C3653116786D440029D2C5 /* FLRect.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C3651116786D440029D2C5 /* FLRect.m */; };
+		27C3653216786D440029D2C5 /* FLRect_Inlines.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C3651216786D440029D2C5 /* FLRect_Inlines.h */; };
+		27C3653316786D440029D2C5 /* FLRect_Inlines.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C3651216786D440029D2C5 /* FLRect_Inlines.h */; };
+		27C3653416786D440029D2C5 /* FLRect_Inlines.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C3651216786D440029D2C5 /* FLRect_Inlines.h */; };
+		27C3653516786D440029D2C5 /* FLRect_Inlines.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C3651216786D440029D2C5 /* FLRect_Inlines.h */; };
+		27C3653616786D440029D2C5 /* FLRectLayout_Inlines.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C3651316786D440029D2C5 /* FLRectLayout_Inlines.h */; };
+		27C3653716786D440029D2C5 /* FLRectLayout_Inlines.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C3651316786D440029D2C5 /* FLRectLayout_Inlines.h */; };
+		27C3653816786D440029D2C5 /* FLRectLayout_Inlines.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C3651316786D440029D2C5 /* FLRectLayout_Inlines.h */; };
+		27C3653916786D440029D2C5 /* FLRectLayout_Inlines.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C3651316786D440029D2C5 /* FLRectLayout_Inlines.h */; };
+		27C3653A16786D440029D2C5 /* FLRectOptimize.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C3651416786D440029D2C5 /* FLRectOptimize.h */; };
+		27C3653B16786D440029D2C5 /* FLRectOptimize.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C3651416786D440029D2C5 /* FLRectOptimize.h */; };
+		27C3653C16786D440029D2C5 /* FLRectOptimize.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C3651416786D440029D2C5 /* FLRectOptimize.h */; };
+		27C3653D16786D440029D2C5 /* FLRectOptimize.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C3651416786D440029D2C5 /* FLRectOptimize.h */; };
+		27C3653E16786D440029D2C5 /* FLRectOptimize_Inlines.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C3651516786D440029D2C5 /* FLRectOptimize_Inlines.h */; };
+		27C3653F16786D440029D2C5 /* FLRectOptimize_Inlines.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C3651516786D440029D2C5 /* FLRectOptimize_Inlines.h */; };
+		27C3654016786D440029D2C5 /* FLRectOptimize_Inlines.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C3651516786D440029D2C5 /* FLRectOptimize_Inlines.h */; };
+		27C3654116786D440029D2C5 /* FLRectOptimize_Inlines.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C3651516786D440029D2C5 /* FLRectOptimize_Inlines.h */; };
+		27C3654216786D440029D2C5 /* FLSize.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C3651616786D440029D2C5 /* FLSize.h */; };
+		27C3654316786D440029D2C5 /* FLSize.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C3651616786D440029D2C5 /* FLSize.h */; };
+		27C3654416786D440029D2C5 /* FLSize.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C3651616786D440029D2C5 /* FLSize.h */; };
+		27C3654516786D440029D2C5 /* FLSize.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C3651616786D440029D2C5 /* FLSize.h */; };
+		27C3654616786D440029D2C5 /* FLSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C3651716786D440029D2C5 /* FLSize.m */; };
+		27C3654716786D440029D2C5 /* FLSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C3651716786D440029D2C5 /* FLSize.m */; };
+		27C3654816786D440029D2C5 /* FLSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C3651716786D440029D2C5 /* FLSize.m */; };
+		27C3654916786D440029D2C5 /* FLSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C3651716786D440029D2C5 /* FLSize.m */; };
+		27C3654A16786D440029D2C5 /* FLSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C3651716786D440029D2C5 /* FLSize.m */; };
+		27C3655116786D840029D2C5 /* FLImageUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C3654C16786D840029D2C5 /* FLImageUtilities.h */; };
+		27C3655216786D840029D2C5 /* FLImageUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C3654C16786D840029D2C5 /* FLImageUtilities.h */; };
+		27C3655316786D840029D2C5 /* FLImageUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C3654C16786D840029D2C5 /* FLImageUtilities.h */; };
+		27C3655416786D840029D2C5 /* FLImageUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C3654C16786D840029D2C5 /* FLImageUtilities.h */; };
+		27C3655516786D840029D2C5 /* UIImage+FLColorize.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C3654D16786D840029D2C5 /* UIImage+FLColorize.h */; };
+		27C3655616786D840029D2C5 /* UIImage+FLColorize.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C3654D16786D840029D2C5 /* UIImage+FLColorize.h */; };
+		27C3655716786D840029D2C5 /* UIImage+FLColorize.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C3654D16786D840029D2C5 /* UIImage+FLColorize.h */; };
+		27C3655816786D840029D2C5 /* UIImage+FLColorize.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C3654D16786D840029D2C5 /* UIImage+FLColorize.h */; };
+		27C3655916786D840029D2C5 /* UIImage+FLColorize.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C3654E16786D840029D2C5 /* UIImage+FLColorize.m */; };
+		27C3655A16786D840029D2C5 /* UIImage+FLColorize.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C3654E16786D840029D2C5 /* UIImage+FLColorize.m */; };
+		27C3655B16786D840029D2C5 /* UIImage+FLColorize.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C3654E16786D840029D2C5 /* UIImage+FLColorize.m */; };
+		27C3655C16786D840029D2C5 /* UIImage+FLColorize.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C3654E16786D840029D2C5 /* UIImage+FLColorize.m */; };
+		27C3655D16786D840029D2C5 /* UIImage+FLColorize.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C3654E16786D840029D2C5 /* UIImage+FLColorize.m */; };
+		27C3655E16786D840029D2C5 /* UIImage+FLUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C3654F16786D840029D2C5 /* UIImage+FLUtils.h */; };
+		27C3655F16786D840029D2C5 /* UIImage+FLUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C3654F16786D840029D2C5 /* UIImage+FLUtils.h */; };
+		27C3656016786D840029D2C5 /* UIImage+FLUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C3654F16786D840029D2C5 /* UIImage+FLUtils.h */; };
+		27C3656116786D840029D2C5 /* UIImage+FLUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C3654F16786D840029D2C5 /* UIImage+FLUtils.h */; };
+		27C3656216786D840029D2C5 /* UIImage+FLUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C3655016786D840029D2C5 /* UIImage+FLUtils.m */; };
+		27C3656316786D840029D2C5 /* UIImage+FLUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C3655016786D840029D2C5 /* UIImage+FLUtils.m */; };
+		27C3656416786D840029D2C5 /* UIImage+FLUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C3655016786D840029D2C5 /* UIImage+FLUtils.m */; };
+		27C3656516786D840029D2C5 /* UIImage+FLUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C3655016786D840029D2C5 /* UIImage+FLUtils.m */; };
+		27C3656616786D840029D2C5 /* UIImage+FLUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C3655016786D840029D2C5 /* UIImage+FLUtils.m */; };
+		27C3656916786DF50029D2C5 /* NSImage+FLCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C3656716786DF50029D2C5 /* NSImage+FLCompatibility.h */; };
+		27C3656A16786DF50029D2C5 /* NSImage+FLCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C3656716786DF50029D2C5 /* NSImage+FLCompatibility.h */; };
+		27C3656B16786DF50029D2C5 /* NSImage+FLCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C3656716786DF50029D2C5 /* NSImage+FLCompatibility.h */; };
+		27C3656C16786DF50029D2C5 /* NSImage+FLCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C3656716786DF50029D2C5 /* NSImage+FLCompatibility.h */; };
+		27C3656D16786DF50029D2C5 /* NSImage+FLCompatibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C3656816786DF50029D2C5 /* NSImage+FLCompatibility.m */; };
+		27C3656E16786DF50029D2C5 /* NSImage+FLCompatibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C3656816786DF50029D2C5 /* NSImage+FLCompatibility.m */; };
+		27C3656F16786DF50029D2C5 /* NSImage+FLCompatibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C3656816786DF50029D2C5 /* NSImage+FLCompatibility.m */; };
+		27C3657016786DF50029D2C5 /* NSImage+FLCompatibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C3656816786DF50029D2C5 /* NSImage+FLCompatibility.m */; };
+		27C3657116786DF50029D2C5 /* NSImage+FLCompatibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C3656816786DF50029D2C5 /* NSImage+FLCompatibility.m */; };
+		27C36578167873EE0029D2C5 /* UILabel+FLExtras.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C36572167873D10029D2C5 /* UILabel+FLExtras.h */; };
+		27C36579167873EE0029D2C5 /* UILabel+FLExtras.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C36572167873D10029D2C5 /* UILabel+FLExtras.h */; };
+		27C3657A167873EE0029D2C5 /* UILabel+FLExtras.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C36572167873D10029D2C5 /* UILabel+FLExtras.h */; };
+		27C3657B167873EE0029D2C5 /* UILabel+FLExtras.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C36572167873D10029D2C5 /* UILabel+FLExtras.h */; };
+		27C3657C167873EE0029D2C5 /* UILabel+FLExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C36573167873D20029D2C5 /* UILabel+FLExtras.m */; };
+		27C3657D167873EE0029D2C5 /* UILabel+FLExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C36573167873D20029D2C5 /* UILabel+FLExtras.m */; };
+		27C3657E167873EE0029D2C5 /* UILabel+FLExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C36573167873D20029D2C5 /* UILabel+FLExtras.m */; };
+		27C3657F167873EE0029D2C5 /* UILabel+FLExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C36573167873D20029D2C5 /* UILabel+FLExtras.m */; };
+		27C36580167873EE0029D2C5 /* UILabel+FLExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C36573167873D20029D2C5 /* UILabel+FLExtras.m */; };
+		27C36581167873EE0029D2C5 /* UIView+FLViewGeometry.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C36574167873D40029D2C5 /* UIView+FLViewGeometry.h */; };
+		27C36582167873EE0029D2C5 /* UIView+FLViewGeometry.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C36574167873D40029D2C5 /* UIView+FLViewGeometry.h */; };
+		27C36583167873EE0029D2C5 /* UIView+FLViewGeometry.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C36574167873D40029D2C5 /* UIView+FLViewGeometry.h */; };
+		27C36584167873EE0029D2C5 /* UIView+FLViewGeometry.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C36574167873D40029D2C5 /* UIView+FLViewGeometry.h */; };
+		27C36585167873EE0029D2C5 /* UIView+FLViewGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C36575167873D80029D2C5 /* UIView+FLViewGeometry.m */; };
+		27C36586167873EE0029D2C5 /* UIView+FLViewGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C36575167873D80029D2C5 /* UIView+FLViewGeometry.m */; };
+		27C36587167873EE0029D2C5 /* UIView+FLViewGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C36575167873D80029D2C5 /* UIView+FLViewGeometry.m */; };
+		27C36588167873EE0029D2C5 /* UIView+FLViewGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C36575167873D80029D2C5 /* UIView+FLViewGeometry.m */; };
+		27C36589167873EE0029D2C5 /* UIView+FLViewGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C36575167873D80029D2C5 /* UIView+FLViewGeometry.m */; };
+		27C3658A167873EE0029D2C5 /* UIView+ViewAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C36576167873DD0029D2C5 /* UIView+ViewAnimation.h */; };
+		27C3658B167873EE0029D2C5 /* UIView+ViewAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C36576167873DD0029D2C5 /* UIView+ViewAnimation.h */; };
+		27C3658C167873EE0029D2C5 /* UIView+ViewAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C36576167873DD0029D2C5 /* UIView+ViewAnimation.h */; };
+		27C3658D167873EE0029D2C5 /* UIView+ViewAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C36576167873DD0029D2C5 /* UIView+ViewAnimation.h */; };
+		27C3658E167873EE0029D2C5 /* UIView+ViewAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C36577167873E50029D2C5 /* UIView+ViewAnimation.m */; };
+		27C3658F167873EE0029D2C5 /* UIView+ViewAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C36577167873E50029D2C5 /* UIView+ViewAnimation.m */; };
+		27C36590167873EE0029D2C5 /* UIView+ViewAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C36577167873E50029D2C5 /* UIView+ViewAnimation.m */; };
+		27C36591167873EE0029D2C5 /* UIView+ViewAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C36577167873E50029D2C5 /* UIView+ViewAnimation.m */; };
+		27C36592167873EE0029D2C5 /* UIView+ViewAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C36577167873E50029D2C5 /* UIView+ViewAnimation.m */; };
 		27CA48B91677E62C008D64BE /* FLContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 27CA44EC1677E62B008D64BE /* FLContext.h */; };
 		27CA48BA1677E62C008D64BE /* FLContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 27CA44EC1677E62B008D64BE /* FLContext.h */; };
 		27CA48BB1677E62C008D64BE /* FLContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 27CA44EC1677E62B008D64BE /* FLContext.h */; };
@@ -1670,10 +1710,10 @@
 		27CA4AD91677E62C008D64BE /* FLUsageTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA45751677E62B008D64BE /* FLUsageTask.m */; };
 		27CA4ADA1677E62C008D64BE /* FLUsageTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA45751677E62B008D64BE /* FLUsageTask.m */; };
 		27CA4ADB1677E62C008D64BE /* FLUsageTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA45751677E62B008D64BE /* FLUsageTask.m */; };
-		27CA4ADC1677E62C008D64BE /* FLCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 27CA45771677E62B008D64BE /* FLCompatibility.h */; };
-		27CA4ADD1677E62C008D64BE /* FLCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 27CA45771677E62B008D64BE /* FLCompatibility.h */; };
-		27CA4ADE1677E62C008D64BE /* FLCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 27CA45771677E62B008D64BE /* FLCompatibility.h */; };
-		27CA4ADF1677E62C008D64BE /* FLCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 27CA45771677E62B008D64BE /* FLCompatibility.h */; };
+		27CA4ADC1677E62C008D64BE /* FLCocoaCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 27CA45771677E62B008D64BE /* FLCocoaCompatibility.h */; };
+		27CA4ADD1677E62C008D64BE /* FLCocoaCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 27CA45771677E62B008D64BE /* FLCocoaCompatibility.h */; };
+		27CA4ADE1677E62C008D64BE /* FLCocoaCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 27CA45771677E62B008D64BE /* FLCocoaCompatibility.h */; };
+		27CA4ADF1677E62C008D64BE /* FLCocoaCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 27CA45771677E62B008D64BE /* FLCocoaCompatibility.h */; };
 		27CA4B031677E62C008D64BE /* FLCollectionIterator.h in Headers */ = {isa = PBXBuildFile; fileRef = 27CA45821677E62B008D64BE /* FLCollectionIterator.h */; };
 		27CA4B041677E62C008D64BE /* FLCollectionIterator.h in Headers */ = {isa = PBXBuildFile; fileRef = 27CA45821677E62B008D64BE /* FLCollectionIterator.h */; };
 		27CA4B051677E62C008D64BE /* FLCollectionIterator.h in Headers */ = {isa = PBXBuildFile; fileRef = 27CA45821677E62B008D64BE /* FLCollectionIterator.h */; };
@@ -4429,9 +4469,9 @@
 		27CBBFBA16768BA600753D0A /* Base64Transcoder.c in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE50166D886500A0863D /* Base64Transcoder.c */; };
 		27CBBFBB16768BA600753D0A /* ISO8601DateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE54166D886500A0863D /* ISO8601DateFormatter.m */; };
 		27CBBFBC16768BA600753D0A /* NSData+RSHexDump.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE57166D886500A0863D /* NSData+RSHexDump.m */; };
-		27CBBFBD16768BA600753D0A /* SDKImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE5A166D886500A0863D /* SDKImage+Alpha.m */; };
-		27CBBFBE16768BA600753D0A /* SDKImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE5C166D886500A0863D /* SDKImage+Resize.m */; };
-		27CBBFBF16768BA600753D0A /* SDKImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE5E166D886500A0863D /* SDKImage+RoundedCorner.m */; };
+		27CBBFBD16768BA600753D0A /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE5A166D886500A0863D /* UIImage+Alpha.m */; };
+		27CBBFBE16768BA600753D0A /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE5C166D886500A0863D /* UIImage+Resize.m */; };
+		27CBBFBF16768BA600753D0A /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE5E166D886500A0863D /* UIImage+RoundedCorner.m */; };
 		27CBBFC016768BA600753D0A /* FLGlobalMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 270380CE166EDDC10082D9D9 /* FLGlobalMenuController.m */; };
 		27CBBFC116768BA600753D0A /* NSView+FLAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 273FC192166FB7AE0072C62A /* NSView+FLAdditions.m */; };
 		27CBBFE516768BA600753D0A /* FLJson.m in Sources */ = {isa = PBXBuildFile; fileRef = 2776CC6F1672643C00F2E70A /* FLJson.m */; };
@@ -4515,9 +4555,9 @@
 		27CBC1B116768BA600753D0A /* Base64Transcoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE51166D886500A0863D /* Base64Transcoder.h */; };
 		27CBC1B216768BA600753D0A /* ISO8601DateFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE53166D886500A0863D /* ISO8601DateFormatter.h */; };
 		27CBC1B316768BA600753D0A /* NSData+RSHexDump.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE56166D886500A0863D /* NSData+RSHexDump.h */; };
-		27CBC1B416768BA600753D0A /* SDKImage+Alpha.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE59166D886500A0863D /* SDKImage+Alpha.h */; };
-		27CBC1B516768BA600753D0A /* SDKImage+Resize.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE5B166D886500A0863D /* SDKImage+Resize.h */; };
-		27CBC1B616768BA600753D0A /* SDKImage+RoundedCorner.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE5D166D886500A0863D /* SDKImage+RoundedCorner.h */; };
+		27CBC1B416768BA600753D0A /* UIImage+Alpha.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE59166D886500A0863D /* UIImage+Alpha.h */; };
+		27CBC1B516768BA600753D0A /* UIImage+Resize.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE5B166D886500A0863D /* UIImage+Resize.h */; };
+		27CBC1B616768BA600753D0A /* UIImage+RoundedCorner.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE5D166D886500A0863D /* UIImage+RoundedCorner.h */; };
 		27CBC1B716768BA600753D0A /* FLGlobalMenuController.h in Headers */ = {isa = PBXBuildFile; fileRef = 270380CD166EDDC10082D9D9 /* FLGlobalMenuController.h */; };
 		27CBC1B816768BA600753D0A /* NSView+FLAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 273FC191166FB7AE0072C62A /* NSView+FLAdditions.h */; };
 		27CBC1EA16768BA600753D0A /* FLJson.h in Headers */ = {isa = PBXBuildFile; fileRef = 2776CC6E1672643C00F2E70A /* FLJson.h */; };
@@ -4581,42 +4621,12 @@
 		271A04671677F3D4005E16A5 /* FLVerticalGridArrangement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLVerticalGridArrangement.m; sourceTree = "<group>"; };
 		271A04681677F3D4005E16A5 /* FLRectLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLRectLayout.h; sourceTree = "<group>"; };
 		271A04691677F3D4005E16A5 /* FLRectLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLRectLayout.m; sourceTree = "<group>"; };
-		271A046B1677F3D4005E16A5 /* FLColor+FLMoreColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FLColor+FLMoreColors.h"; sourceTree = "<group>"; };
-		271A046C1677F3D4005E16A5 /* FLColor+FLMoreColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FLColor+FLMoreColors.m"; sourceTree = "<group>"; };
-		271A046D1677F3D4005E16A5 /* FLColor+FLUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FLColor+FLUtils.h"; sourceTree = "<group>"; };
-		271A046E1677F3D4005E16A5 /* FLColor+FLUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FLColor+FLUtils.m"; sourceTree = "<group>"; };
-		271A046F1677F3D4005E16A5 /* FLColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLColor.h; sourceTree = "<group>"; };
-		271A04701677F3D4005E16A5 /* FLColor_t.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLColor_t.h; sourceTree = "<group>"; };
-		271A04711677F3D4005E16A5 /* FLColor_t.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLColor_t.m; sourceTree = "<group>"; };
-		271A04721677F3D4005E16A5 /* FLColorRange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLColorRange.h; sourceTree = "<group>"; };
-		271A04731677F3D4005E16A5 /* FLColorRange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLColorRange.m; sourceTree = "<group>"; };
 		271A04751677F3D4005E16A5 /* FLCocoaUICompatibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCocoaUICompatibility.h; sourceTree = "<group>"; };
-		271A04761677F3D4005E16A5 /* NSImage+FLCompatibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+FLCompatibility.h"; sourceTree = "<group>"; };
-		271A04771677F3D4005E16A5 /* NSImage+FLCompatibility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+FLCompatibility.m"; sourceTree = "<group>"; };
 		271A04791677F3D4005E16A5 /* FLDisplayFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLDisplayFormatter.h; sourceTree = "<group>"; };
 		271A047A1677F3D4005E16A5 /* FLDisplayFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLDisplayFormatter.m; sourceTree = "<group>"; };
 		271A047B1677F3D4005E16A5 /* FLDisplayFormatters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLDisplayFormatters.h; sourceTree = "<group>"; };
 		271A047C1677F3D4005E16A5 /* FLDisplayFormatters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLDisplayFormatters.m; sourceTree = "<group>"; };
 		271A047D1677F3D4005E16A5 /* FLCocoaUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCocoaUI.h; sourceTree = "<group>"; };
-		271A047F1677F3D4005E16A5 /* FLEdgeInsets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEdgeInsets.h; sourceTree = "<group>"; };
-		271A04801677F3D4005E16A5 /* FLEdgeInsets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEdgeInsets.m; sourceTree = "<group>"; };
-		271A04811677F3D4005E16A5 /* FLGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLGeometry.h; sourceTree = "<group>"; };
-		271A04821677F3D4005E16A5 /* FLPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLPoint.h; sourceTree = "<group>"; };
-		271A04831677F3D4005E16A5 /* FLRect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLRect.h; sourceTree = "<group>"; };
-		271A04841677F3D4005E16A5 /* FLRect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLRect.m; sourceTree = "<group>"; };
-		271A04851677F3D4005E16A5 /* FLRect_Inlines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLRect_Inlines.h; sourceTree = "<group>"; };
-		271A04861677F3D4005E16A5 /* FLRectLayout_Inlines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLRectLayout_Inlines.h; sourceTree = "<group>"; };
-		271A04871677F3D4005E16A5 /* FLRectOptimize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLRectOptimize.h; sourceTree = "<group>"; };
-		271A04881677F3D4005E16A5 /* FLRectOptimize_Inlines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLRectOptimize_Inlines.h; sourceTree = "<group>"; };
-		271A04891677F3D4005E16A5 /* FLSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLSize.h; sourceTree = "<group>"; };
-		271A048A1677F3D4005E16A5 /* FLSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLSize.m; sourceTree = "<group>"; };
-		271A048C1677F3D4005E16A5 /* SDKImage+FLColorize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SDKImage+FLColorize.h"; sourceTree = "<group>"; };
-		271A048D1677F3D4005E16A5 /* SDKImage+FLColorize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SDKImage+FLColorize.m"; sourceTree = "<group>"; };
-		271A048E1677F3D4005E16A5 /* SDKImage+FLUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SDKImage+FLUtils.h"; sourceTree = "<group>"; };
-		271A048F1677F3D4005E16A5 /* SDKImage+FLUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SDKImage+FLUtils.m"; sourceTree = "<group>"; };
-		271A04901677F3D4005E16A5 /* SDKImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDKImage.h; sourceTree = "<group>"; };
-		271A04911677F3D4005E16A5 /* SDKImageView+FLViewGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SDKImageView+FLViewGeometry.h"; sourceTree = "<group>"; };
-		271A04921677F3D4005E16A5 /* SDKImageView+FLViewGeometry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SDKImageView+FLViewGeometry.m"; sourceTree = "<group>"; };
 		271A04941677F3D4005E16A5 /* FLProgressFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLProgressFactory.h; sourceTree = "<group>"; };
 		271A04951677F3D4005E16A5 /* FLProgressFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLProgressFactory.m; sourceTree = "<group>"; };
 		271A04961677F3D4005E16A5 /* FLProgressViewControllerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLProgressViewControllerProtocol.h; sourceTree = "<group>"; };
@@ -4640,12 +4650,12 @@
 		271A04AD1677F3D4005E16A5 /* FLViewControllerStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLViewControllerStack.m; sourceTree = "<group>"; };
 		271A04AF1677F3D4005E16A5 /* FLPresentationBehavior.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLPresentationBehavior.h; sourceTree = "<group>"; };
 		271A04B01677F3D4005E16A5 /* FLPresentationBehavior.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLPresentationBehavior.m; sourceTree = "<group>"; };
-		271A04B11677F3D4005E16A5 /* SDKViewController+FLPresentationBehavior.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SDKViewController+FLPresentationBehavior.h"; sourceTree = "<group>"; };
-		271A04B21677F3D4005E16A5 /* SDKViewController+FLPresentationBehavior.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SDKViewController+FLPresentationBehavior.m"; sourceTree = "<group>"; };
+		271A04B11677F3D4005E16A5 /* UIViewController+FLPresentationBehavior.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+FLPresentationBehavior.h"; sourceTree = "<group>"; };
+		271A04B21677F3D4005E16A5 /* UIViewController+FLPresentationBehavior.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+FLPresentationBehavior.m"; sourceTree = "<group>"; };
 		271A04B41677F3D4005E16A5 /* FLProgressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLProgressViewController.h; sourceTree = "<group>"; };
 		271A04B51677F3D4005E16A5 /* FLProgressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLProgressViewController.m; sourceTree = "<group>"; };
-		271A04B61677F3D4005E16A5 /* SDKViewController+FLAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SDKViewController+FLAdditions.h"; sourceTree = "<group>"; };
-		271A04B71677F3D4005E16A5 /* SDKViewController+FLAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SDKViewController+FLAdditions.m"; sourceTree = "<group>"; };
+		271A04B61677F3D4005E16A5 /* UIViewController+FLAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+FLAdditions.h"; sourceTree = "<group>"; };
+		271A04B71677F3D4005E16A5 /* UIViewController+FLAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+FLAdditions.m"; sourceTree = "<group>"; };
 		271A04B91677F3D4005E16A5 /* FLViewControllerTransitionAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLViewControllerTransitionAnimation.h; sourceTree = "<group>"; };
 		271A04BA1677F3D4005E16A5 /* FLViewControllerTransitionAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLViewControllerTransitionAnimation.m; sourceTree = "<group>"; };
 		271A04BC1677F3D4005E16A5 /* FLWizardPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLWizardPanel.h; sourceTree = "<group>"; };
@@ -4658,8 +4668,8 @@
 		271A04C41677F3D4005E16A5 /* FLProgressWizardPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLProgressWizardPanel.m; sourceTree = "<group>"; };
 		271A04C71677F3D4005E16A5 /* FLArrangeableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLArrangeableView.h; sourceTree = "<group>"; };
 		271A04C81677F3D4005E16A5 /* FLArrangeableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLArrangeableView.m; sourceTree = "<group>"; };
-		271A04C91677F3D4005E16A5 /* SDKView+FLArrangeable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SDKView+FLArrangeable.h"; sourceTree = "<group>"; };
-		271A04CA1677F3D4005E16A5 /* SDKView+FLArrangeable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SDKView+FLArrangeable.m"; sourceTree = "<group>"; };
+		271A04C91677F3D4005E16A5 /* UIView+FLArrangeable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+FLArrangeable.h"; sourceTree = "<group>"; };
+		271A04CA1677F3D4005E16A5 /* UIView+FLArrangeable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+FLArrangeable.m"; sourceTree = "<group>"; };
 		271A04CC1677F3D4005E16A5 /* FLBreadcrumb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLBreadcrumb.h; sourceTree = "<group>"; };
 		271A04CD1677F3D4005E16A5 /* FLBreadcrumb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLBreadcrumb.m; sourceTree = "<group>"; };
 		271A04CE1677F3D4005E16A5 /* FLBreadcrumbBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLBreadcrumbBarView.h; sourceTree = "<group>"; };
@@ -4692,6 +4702,9 @@
 		271A07401677FFDB005E16A5 /* NSView+FLCompatibility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSView+FLCompatibility.m"; sourceTree = "<group>"; };
 		271A074A1678037D005E16A5 /* NSObject+FLTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+FLTheme.h"; sourceTree = "<group>"; };
 		271A074B1678037E005E16A5 /* NSObject+FLTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+FLTheme.m"; sourceTree = "<group>"; };
+		271A078416785434005E16A5 /* FLAutoPositionedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAutoPositionedViewController.h; sourceTree = "<group>"; };
+		271A078516785434005E16A5 /* FLAutoPositionedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAutoPositionedViewController.m; sourceTree = "<group>"; };
+		271A07D116786467005E16A5 /* FLCocoaUIRequired.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCocoaUIRequired.h; sourceTree = "<group>"; };
 		27314C79165328400027850D /* libFishLampCocoa-OSX-64-ARC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoa-OSX-64-ARC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		273FC191166FB7AE0072C62A /* NSView+FLAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSView+FLAdditions.h"; sourceTree = "<group>"; };
 		273FC192166FB7AE0072C62A /* NSView+FLAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSView+FLAdditions.m"; sourceTree = "<group>"; };
@@ -4848,17 +4861,53 @@
 		2798CE54166D886500A0863D /* ISO8601DateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISO8601DateFormatter.m; sourceTree = "<group>"; };
 		2798CE56166D886500A0863D /* NSData+RSHexDump.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+RSHexDump.h"; sourceTree = "<group>"; };
 		2798CE57166D886500A0863D /* NSData+RSHexDump.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+RSHexDump.m"; sourceTree = "<group>"; };
-		2798CE59166D886500A0863D /* SDKImage+Alpha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SDKImage+Alpha.h"; sourceTree = "<group>"; };
-		2798CE5A166D886500A0863D /* SDKImage+Alpha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SDKImage+Alpha.m"; sourceTree = "<group>"; };
-		2798CE5B166D886500A0863D /* SDKImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SDKImage+Resize.h"; sourceTree = "<group>"; };
-		2798CE5C166D886500A0863D /* SDKImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SDKImage+Resize.m"; sourceTree = "<group>"; };
-		2798CE5D166D886500A0863D /* SDKImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SDKImage+RoundedCorner.h"; sourceTree = "<group>"; };
-		2798CE5E166D886500A0863D /* SDKImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SDKImage+RoundedCorner.m"; sourceTree = "<group>"; };
+		2798CE59166D886500A0863D /* UIImage+Alpha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Alpha.h"; sourceTree = "<group>"; };
+		2798CE5A166D886500A0863D /* UIImage+Alpha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Alpha.m"; sourceTree = "<group>"; };
+		2798CE5B166D886500A0863D /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
+		2798CE5C166D886500A0863D /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
+		2798CE5D166D886500A0863D /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
+		2798CE5E166D886500A0863D /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
 		2798DB81166D8A7F00A0863D /* SharedTargetSettings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = SharedTargetSettings.xcconfig; sourceTree = "<group>"; };
 		27A43AB415CDCC89001CB13E /* libFishLampCocoa-iOS-ARC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoa-iOS-ARC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27A43AC415CDCCCB001CB13E /* libFishLampCocoa-OSX-64-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoa-OSX-64-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27BB840216750CB20097CAEA /* FLXcodePlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLXcodePlugin.h; sourceTree = "<group>"; };
 		27BB840316750CB20097CAEA /* FLXcodePlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLXcodePlugin.m; sourceTree = "<group>"; };
+		27C364CE16786C210029D2C5 /* NSColor+FLCompatibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSColor+FLCompatibility.h"; sourceTree = "<group>"; };
+		27C364CF16786C210029D2C5 /* NSColor+FLCompatibility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSColor+FLCompatibility.m"; sourceTree = "<group>"; };
+		27C364DA16786C5F0029D2C5 /* FLColor_t.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLColor_t.h; sourceTree = "<group>"; };
+		27C364DB16786C5F0029D2C5 /* FLColor_t.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLColor_t.m; sourceTree = "<group>"; };
+		27C364DC16786C5F0029D2C5 /* FLColorRange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLColorRange.h; sourceTree = "<group>"; };
+		27C364DD16786C5F0029D2C5 /* FLColorRange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLColorRange.m; sourceTree = "<group>"; };
+		27C364DE16786C5F0029D2C5 /* UIColor+FLMoreColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+FLMoreColors.h"; sourceTree = "<group>"; };
+		27C364DF16786C5F0029D2C5 /* UIColor+FLMoreColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+FLMoreColors.m"; sourceTree = "<group>"; };
+		27C364E016786C5F0029D2C5 /* UIColor+FLUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+FLUtils.h"; sourceTree = "<group>"; };
+		27C364E116786C5F0029D2C5 /* UIColor+FLUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+FLUtils.m"; sourceTree = "<group>"; };
+		27C3650616786C980029D2C5 /* FLCocoaRequired.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCocoaRequired.h; sourceTree = "<group>"; };
+		27C3650C16786D440029D2C5 /* FLEdgeInsets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEdgeInsets.h; sourceTree = "<group>"; };
+		27C3650D16786D440029D2C5 /* FLEdgeInsets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEdgeInsets.m; sourceTree = "<group>"; };
+		27C3650E16786D440029D2C5 /* FLGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLGeometry.h; sourceTree = "<group>"; };
+		27C3650F16786D440029D2C5 /* FLPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLPoint.h; sourceTree = "<group>"; };
+		27C3651016786D440029D2C5 /* FLRect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLRect.h; sourceTree = "<group>"; };
+		27C3651116786D440029D2C5 /* FLRect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLRect.m; sourceTree = "<group>"; };
+		27C3651216786D440029D2C5 /* FLRect_Inlines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLRect_Inlines.h; sourceTree = "<group>"; };
+		27C3651316786D440029D2C5 /* FLRectLayout_Inlines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLRectLayout_Inlines.h; sourceTree = "<group>"; };
+		27C3651416786D440029D2C5 /* FLRectOptimize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLRectOptimize.h; sourceTree = "<group>"; };
+		27C3651516786D440029D2C5 /* FLRectOptimize_Inlines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLRectOptimize_Inlines.h; sourceTree = "<group>"; };
+		27C3651616786D440029D2C5 /* FLSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLSize.h; sourceTree = "<group>"; };
+		27C3651716786D440029D2C5 /* FLSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLSize.m; sourceTree = "<group>"; };
+		27C3654C16786D840029D2C5 /* FLImageUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLImageUtilities.h; sourceTree = "<group>"; };
+		27C3654D16786D840029D2C5 /* UIImage+FLColorize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+FLColorize.h"; sourceTree = "<group>"; };
+		27C3654E16786D840029D2C5 /* UIImage+FLColorize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+FLColorize.m"; sourceTree = "<group>"; };
+		27C3654F16786D840029D2C5 /* UIImage+FLUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+FLUtils.h"; sourceTree = "<group>"; };
+		27C3655016786D840029D2C5 /* UIImage+FLUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+FLUtils.m"; sourceTree = "<group>"; };
+		27C3656716786DF50029D2C5 /* NSImage+FLCompatibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+FLCompatibility.h"; sourceTree = "<group>"; };
+		27C3656816786DF50029D2C5 /* NSImage+FLCompatibility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+FLCompatibility.m"; sourceTree = "<group>"; };
+		27C36572167873D10029D2C5 /* UILabel+FLExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+FLExtras.h"; sourceTree = "<group>"; };
+		27C36573167873D20029D2C5 /* UILabel+FLExtras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+FLExtras.m"; sourceTree = "<group>"; };
+		27C36574167873D40029D2C5 /* UIView+FLViewGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+FLViewGeometry.h"; sourceTree = "<group>"; };
+		27C36575167873D80029D2C5 /* UIView+FLViewGeometry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+FLViewGeometry.m"; sourceTree = "<group>"; };
+		27C36576167873DD0029D2C5 /* UIView+ViewAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+ViewAnimation.h"; sourceTree = "<group>"; };
+		27C36577167873E50029D2C5 /* UIView+ViewAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+ViewAnimation.m"; sourceTree = "<group>"; };
 		27CA44EC1677E62B008D64BE /* FLContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLContext.h; sourceTree = "<group>"; };
 		27CA44ED1677E62B008D64BE /* FLContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLContext.m; sourceTree = "<group>"; };
 		27CA44EE1677E62B008D64BE /* FLContextual.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLContextual.h; sourceTree = "<group>"; };
@@ -4983,7 +5032,7 @@
 		27CA45721677E62B008D64BE /* FLToolTask_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLToolTask_Internal.h; sourceTree = "<group>"; };
 		27CA45741677E62B008D64BE /* FLUsageTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLUsageTask.h; sourceTree = "<group>"; };
 		27CA45751677E62B008D64BE /* FLUsageTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLUsageTask.m; sourceTree = "<group>"; };
-		27CA45771677E62B008D64BE /* FLCompatibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCompatibility.h; sourceTree = "<group>"; };
+		27CA45771677E62B008D64BE /* FLCocoaCompatibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCocoaCompatibility.h; sourceTree = "<group>"; };
 		27CA45821677E62B008D64BE /* FLCollectionIterator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCollectionIterator.h; sourceTree = "<group>"; };
 		27CA45831677E62B008D64BE /* FLCollectionIterator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLCollectionIterator.m; sourceTree = "<group>"; };
 		27CA45841677E62B008D64BE /* FLKeyValuePair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLKeyValuePair.h; sourceTree = "<group>"; };
@@ -5659,12 +5708,9 @@
 			isa = PBXGroup;
 			children = (
 				271A044B1677F3D4005E16A5 /* Arrange */,
-				271A046A1677F3D4005E16A5 /* Color */,
 				271A04741677F3D4005E16A5 /* Compatiblity */,
 				271A04781677F3D4005E16A5 /* DisplayFormatters */,
 				271A047D1677F3D4005E16A5 /* FLCocoaUI.h */,
-				271A047E1677F3D4005E16A5 /* Geometry */,
-				271A048B1677F3D4005E16A5 /* Image */,
 				271A04931677F3D4005E16A5 /* Progress */,
 				271A04981677F3D4005E16A5 /* Slideshow */,
 				271A049E1677F3D4005E16A5 /* Utils */,
@@ -5726,34 +5772,17 @@
 			path = Arrangements;
 			sourceTree = "<group>";
 		};
-		271A046A1677F3D4005E16A5 /* Color */ = {
-			isa = PBXGroup;
-			children = (
-				271A046B1677F3D4005E16A5 /* FLColor+FLMoreColors.h */,
-				271A046C1677F3D4005E16A5 /* FLColor+FLMoreColors.m */,
-				271A046D1677F3D4005E16A5 /* FLColor+FLUtils.h */,
-				271A046E1677F3D4005E16A5 /* FLColor+FLUtils.m */,
-				271A046F1677F3D4005E16A5 /* FLColor.h */,
-				271A04701677F3D4005E16A5 /* FLColor_t.h */,
-				271A04711677F3D4005E16A5 /* FLColor_t.m */,
-				271A04721677F3D4005E16A5 /* FLColorRange.h */,
-				271A04731677F3D4005E16A5 /* FLColorRange.m */,
-			);
-			path = Color;
-			sourceTree = "<group>";
-		};
 		271A04741677F3D4005E16A5 /* Compatiblity */ = {
 			isa = PBXGroup;
 			children = (
 				271A04751677F3D4005E16A5 /* FLCocoaUICompatibility.h */,
-				271A04761677F3D4005E16A5 /* NSImage+FLCompatibility.h */,
-				271A04771677F3D4005E16A5 /* NSImage+FLCompatibility.m */,
 				271A07341677FA1F005E16A5 /* NSViewController+FLCompatibility.h */,
 				271A07351677FA1F005E16A5 /* NSViewController+FLCompatibility.m */,
 				271A073F1677FFDB005E16A5 /* NSView+FLCompatibility.h */,
 				271A07401677FFDB005E16A5 /* NSView+FLCompatibility.m */,
 				271A074A1678037D005E16A5 /* NSObject+FLTheme.h */,
 				271A074B1678037E005E16A5 /* NSObject+FLTheme.m */,
+				271A07D116786467005E16A5 /* FLCocoaUIRequired.h */,
 			);
 			path = Compatiblity;
 			sourceTree = "<group>";
@@ -5767,39 +5796,6 @@
 				271A047C1677F3D4005E16A5 /* FLDisplayFormatters.m */,
 			);
 			path = DisplayFormatters;
-			sourceTree = "<group>";
-		};
-		271A047E1677F3D4005E16A5 /* Geometry */ = {
-			isa = PBXGroup;
-			children = (
-				271A047F1677F3D4005E16A5 /* FLEdgeInsets.h */,
-				271A04801677F3D4005E16A5 /* FLEdgeInsets.m */,
-				271A04811677F3D4005E16A5 /* FLGeometry.h */,
-				271A04821677F3D4005E16A5 /* FLPoint.h */,
-				271A04831677F3D4005E16A5 /* FLRect.h */,
-				271A04841677F3D4005E16A5 /* FLRect.m */,
-				271A04851677F3D4005E16A5 /* FLRect_Inlines.h */,
-				271A04861677F3D4005E16A5 /* FLRectLayout_Inlines.h */,
-				271A04871677F3D4005E16A5 /* FLRectOptimize.h */,
-				271A04881677F3D4005E16A5 /* FLRectOptimize_Inlines.h */,
-				271A04891677F3D4005E16A5 /* FLSize.h */,
-				271A048A1677F3D4005E16A5 /* FLSize.m */,
-			);
-			path = Geometry;
-			sourceTree = "<group>";
-		};
-		271A048B1677F3D4005E16A5 /* Image */ = {
-			isa = PBXGroup;
-			children = (
-				271A048C1677F3D4005E16A5 /* SDKImage+FLColorize.h */,
-				271A048D1677F3D4005E16A5 /* SDKImage+FLColorize.m */,
-				271A048E1677F3D4005E16A5 /* SDKImage+FLUtils.h */,
-				271A048F1677F3D4005E16A5 /* SDKImage+FLUtils.m */,
-				271A04901677F3D4005E16A5 /* SDKImage.h */,
-				271A04911677F3D4005E16A5 /* SDKImageView+FLViewGeometry.h */,
-				271A04921677F3D4005E16A5 /* SDKImageView+FLViewGeometry.m */,
-			);
-			path = Image;
 			sourceTree = "<group>";
 		};
 		271A04931677F3D4005E16A5 /* Progress */ = {
@@ -5857,6 +5853,8 @@
 		271A04A71677F3D4005E16A5 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				271A078416785434005E16A5 /* FLAutoPositionedViewController.h */,
+				271A078516785434005E16A5 /* FLAutoPositionedViewController.m */,
 				271A04A81677F3D4005E16A5 /* FLViewContentsDescriptor.h */,
 				271A04A91677F3D4005E16A5 /* FLViewContentsDescriptor.m */,
 				271A04AA1677F3D4005E16A5 /* FLViewController.h */,
@@ -5865,8 +5863,8 @@
 				271A04AD1677F3D4005E16A5 /* FLViewControllerStack.m */,
 				271A04AE1677F3D4005E16A5 /* PresentionBehavior */,
 				271A04B31677F3D4005E16A5 /* ProgressViewController */,
-				271A04B61677F3D4005E16A5 /* SDKViewController+FLAdditions.h */,
-				271A04B71677F3D4005E16A5 /* SDKViewController+FLAdditions.m */,
+				271A04B61677F3D4005E16A5 /* UIViewController+FLAdditions.h */,
+				271A04B71677F3D4005E16A5 /* UIViewController+FLAdditions.m */,
 				271A04B81677F3D4005E16A5 /* TransitionAnimations */,
 				271A04BB1677F3D4005E16A5 /* WizardViewController */,
 			);
@@ -5878,8 +5876,8 @@
 			children = (
 				271A04AF1677F3D4005E16A5 /* FLPresentationBehavior.h */,
 				271A04B01677F3D4005E16A5 /* FLPresentationBehavior.m */,
-				271A04B11677F3D4005E16A5 /* SDKViewController+FLPresentationBehavior.h */,
-				271A04B21677F3D4005E16A5 /* SDKViewController+FLPresentationBehavior.m */,
+				271A04B11677F3D4005E16A5 /* UIViewController+FLPresentationBehavior.h */,
+				271A04B21677F3D4005E16A5 /* UIViewController+FLPresentationBehavior.m */,
 			);
 			path = PresentionBehavior;
 			sourceTree = "<group>";
@@ -5928,6 +5926,12 @@
 		271A04C51677F3D4005E16A5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				27C36572167873D10029D2C5 /* UILabel+FLExtras.h */,
+				27C36573167873D20029D2C5 /* UILabel+FLExtras.m */,
+				27C36574167873D40029D2C5 /* UIView+FLViewGeometry.h */,
+				27C36575167873D80029D2C5 /* UIView+FLViewGeometry.m */,
+				27C36576167873DD0029D2C5 /* UIView+ViewAnimation.h */,
+				27C36577167873E50029D2C5 /* UIView+ViewAnimation.m */,
 				271A07291677F698005E16A5 /* FLControlState.h */,
 				271A072A1677F698005E16A5 /* FLControlState.m */,
 				271A04C61677F3D4005E16A5 /* ArrangeableView */,
@@ -5947,8 +5951,8 @@
 			children = (
 				271A04C71677F3D4005E16A5 /* FLArrangeableView.h */,
 				271A04C81677F3D4005E16A5 /* FLArrangeableView.m */,
-				271A04C91677F3D4005E16A5 /* SDKView+FLArrangeable.h */,
-				271A04CA1677F3D4005E16A5 /* SDKView+FLArrangeable.m */,
+				271A04C91677F3D4005E16A5 /* UIView+FLArrangeable.h */,
+				271A04CA1677F3D4005E16A5 /* UIView+FLArrangeable.m */,
 			);
 			path = ArrangeableView;
 			sourceTree = "<group>";
@@ -6321,12 +6325,12 @@
 		2798CE58166D886500A0863D /* UIImage+TrevorHarmon */ = {
 			isa = PBXGroup;
 			children = (
-				2798CE59166D886500A0863D /* SDKImage+Alpha.h */,
-				2798CE5A166D886500A0863D /* SDKImage+Alpha.m */,
-				2798CE5B166D886500A0863D /* SDKImage+Resize.h */,
-				2798CE5C166D886500A0863D /* SDKImage+Resize.m */,
-				2798CE5D166D886500A0863D /* SDKImage+RoundedCorner.h */,
-				2798CE5E166D886500A0863D /* SDKImage+RoundedCorner.m */,
+				2798CE59166D886500A0863D /* UIImage+Alpha.h */,
+				2798CE5A166D886500A0863D /* UIImage+Alpha.m */,
+				2798CE5B166D886500A0863D /* UIImage+Resize.h */,
+				2798CE5C166D886500A0863D /* UIImage+Resize.m */,
+				2798CE5D166D886500A0863D /* UIImage+RoundedCorner.h */,
+				2798CE5E166D886500A0863D /* UIImage+RoundedCorner.m */,
 			);
 			path = "UIImage+TrevorHarmon";
 			sourceTree = "<group>";
@@ -6395,9 +6399,58 @@
 			path = XcodePlugin;
 			sourceTree = "<group>";
 		};
+		27C364D916786C5F0029D2C5 /* Color */ = {
+			isa = PBXGroup;
+			children = (
+				27C364DA16786C5F0029D2C5 /* FLColor_t.h */,
+				27C364DB16786C5F0029D2C5 /* FLColor_t.m */,
+				27C364DC16786C5F0029D2C5 /* FLColorRange.h */,
+				27C364DD16786C5F0029D2C5 /* FLColorRange.m */,
+				27C364DE16786C5F0029D2C5 /* UIColor+FLMoreColors.h */,
+				27C364DF16786C5F0029D2C5 /* UIColor+FLMoreColors.m */,
+				27C364E016786C5F0029D2C5 /* UIColor+FLUtils.h */,
+				27C364E116786C5F0029D2C5 /* UIColor+FLUtils.m */,
+			);
+			path = Color;
+			sourceTree = "<group>";
+		};
+		27C3650B16786D430029D2C5 /* Geometry */ = {
+			isa = PBXGroup;
+			children = (
+				27C3650C16786D440029D2C5 /* FLEdgeInsets.h */,
+				27C3650D16786D440029D2C5 /* FLEdgeInsets.m */,
+				27C3650E16786D440029D2C5 /* FLGeometry.h */,
+				27C3650F16786D440029D2C5 /* FLPoint.h */,
+				27C3651016786D440029D2C5 /* FLRect.h */,
+				27C3651116786D440029D2C5 /* FLRect.m */,
+				27C3651216786D440029D2C5 /* FLRect_Inlines.h */,
+				27C3651316786D440029D2C5 /* FLRectLayout_Inlines.h */,
+				27C3651416786D440029D2C5 /* FLRectOptimize.h */,
+				27C3651516786D440029D2C5 /* FLRectOptimize_Inlines.h */,
+				27C3651616786D440029D2C5 /* FLSize.h */,
+				27C3651716786D440029D2C5 /* FLSize.m */,
+			);
+			path = Geometry;
+			sourceTree = "<group>";
+		};
+		27C3654B16786D840029D2C5 /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				27C3654C16786D840029D2C5 /* FLImageUtilities.h */,
+				27C3654D16786D840029D2C5 /* UIImage+FLColorize.h */,
+				27C3654E16786D840029D2C5 /* UIImage+FLColorize.m */,
+				27C3654F16786D840029D2C5 /* UIImage+FLUtils.h */,
+				27C3655016786D840029D2C5 /* UIImage+FLUtils.m */,
+			);
+			path = Image;
+			sourceTree = "<group>";
+		};
 		27CA44E91677E62B008D64BE /* Cocoa */ = {
 			isa = PBXGroup;
 			children = (
+				27C3654B16786D840029D2C5 /* Image */,
+				27C3650B16786D430029D2C5 /* Geometry */,
+				27C364D916786C5F0029D2C5 /* Color */,
 				27CA44EA1677E62B008D64BE /* App */,
 				27CA450E1677E62B008D64BE /* Async */,
 				27CA45531677E62B008D64BE /* Caching */,
@@ -6674,9 +6727,14 @@
 		27CA45761677E62B008D64BE /* Compatibility */ = {
 			isa = PBXGroup;
 			children = (
+				27CA45771677E62B008D64BE /* FLCocoaCompatibility.h */,
+				27C3650616786C980029D2C5 /* FLCocoaRequired.h */,
+				27C364CE16786C210029D2C5 /* NSColor+FLCompatibility.h */,
+				27C364CF16786C210029D2C5 /* NSColor+FLCompatibility.m */,
+				27C3656716786DF50029D2C5 /* NSImage+FLCompatibility.h */,
+				27C3656816786DF50029D2C5 /* NSImage+FLCompatibility.m */,
 				271A04231677EEF7005E16A5 /* NSValue+FLCompatibility.h */,
 				271A04241677EEF7005E16A5 /* NSValue+FLCompatibility.m */,
-				27CA45771677E62B008D64BE /* FLCompatibility.h */,
 			);
 			path = Compatibility;
 			sourceTree = "<group>";
@@ -7898,9 +7956,9 @@
 				2798DAE8166D886500A0863D /* Base64Transcoder.h in Headers */,
 				2798DAEB166D886500A0863D /* ISO8601DateFormatter.h in Headers */,
 				2798DAF2166D886500A0863D /* NSData+RSHexDump.h in Headers */,
-				2798DAF9166D886500A0863D /* SDKImage+Alpha.h in Headers */,
-				2798DB00166D886500A0863D /* SDKImage+Resize.h in Headers */,
-				2798DB07166D886500A0863D /* SDKImage+RoundedCorner.h in Headers */,
+				2798DAF9166D886500A0863D /* UIImage+Alpha.h in Headers */,
+				2798DB00166D886500A0863D /* UIImage+Resize.h in Headers */,
+				2798DB07166D886500A0863D /* UIImage+RoundedCorner.h in Headers */,
 				270380D0166EDDC10082D9D9 /* FLGlobalMenuController.h in Headers */,
 				273FC194166FB7AE0072C62A /* NSView+FLAdditions.h in Headers */,
 				2776CC711672643C00F2E70A /* FLJson.h in Headers */,
@@ -7968,7 +8026,7 @@
 				27CA4AC61677E62C008D64BE /* FLToolTask.h in Headers */,
 				27CA4ACF1677E62C008D64BE /* FLToolTask_Internal.h in Headers */,
 				27CA4AD31677E62C008D64BE /* FLUsageTask.h in Headers */,
-				27CA4ADC1677E62C008D64BE /* FLCompatibility.h in Headers */,
+				27CA4ADC1677E62C008D64BE /* FLCocoaCompatibility.h in Headers */,
 				27CA4B031677E62C008D64BE /* FLCollectionIterator.h in Headers */,
 				27CA4B0C1677E62C008D64BE /* FLKeyValuePair.h in Headers */,
 				27CA4B151677E62C008D64BE /* FLOrderedCollection.h in Headers */,
@@ -8297,29 +8355,10 @@
 				271A05491677F3D4005E16A5 /* FLSingleRowColumnArrangement.h in Headers */,
 				271A05521677F3D4005E16A5 /* FLVerticalGridArrangement.h in Headers */,
 				271A055B1677F3D4005E16A5 /* FLRectLayout.h in Headers */,
-				271A05641677F3D4005E16A5 /* FLColor+FLMoreColors.h in Headers */,
-				271A056D1677F3D4005E16A5 /* FLColor+FLUtils.h in Headers */,
-				271A05761677F3D4005E16A5 /* FLColor.h in Headers */,
-				271A057A1677F3D4005E16A5 /* FLColor_t.h in Headers */,
-				271A05831677F3D4005E16A5 /* FLColorRange.h in Headers */,
 				271A058C1677F3D4005E16A5 /* FLCocoaUICompatibility.h in Headers */,
-				271A05901677F3D4005E16A5 /* NSImage+FLCompatibility.h in Headers */,
 				271A05991677F3D4005E16A5 /* FLDisplayFormatter.h in Headers */,
 				271A05A21677F3D4005E16A5 /* FLDisplayFormatters.h in Headers */,
 				271A05AB1677F3D4005E16A5 /* FLCocoaUI.h in Headers */,
-				271A05AF1677F3D4005E16A5 /* FLEdgeInsets.h in Headers */,
-				271A05B81677F3D4005E16A5 /* FLGeometry.h in Headers */,
-				271A05BC1677F3D4005E16A5 /* FLPoint.h in Headers */,
-				271A05C01677F3D4005E16A5 /* FLRect.h in Headers */,
-				271A05C91677F3D4005E16A5 /* FLRect_Inlines.h in Headers */,
-				271A05CD1677F3D4005E16A5 /* FLRectLayout_Inlines.h in Headers */,
-				271A05D11677F3D4005E16A5 /* FLRectOptimize.h in Headers */,
-				271A05D51677F3D4005E16A5 /* FLRectOptimize_Inlines.h in Headers */,
-				271A05D91677F3D4005E16A5 /* FLSize.h in Headers */,
-				271A05E21677F3D4005E16A5 /* SDKImage+FLColorize.h in Headers */,
-				271A05EB1677F3D4005E16A5 /* SDKImage+FLUtils.h in Headers */,
-				271A05F41677F3D4005E16A5 /* SDKImage.h in Headers */,
-				271A05F81677F3D4005E16A5 /* SDKImageView+FLViewGeometry.h in Headers */,
 				271A06011677F3D4005E16A5 /* FLProgressFactory.h in Headers */,
 				271A060A1677F3D4005E16A5 /* FLProgressViewControllerProtocol.h in Headers */,
 				271A060E1677F3D4005E16A5 /* FLProgressViewProtocol.h in Headers */,
@@ -8332,16 +8371,16 @@
 				271A06481677F3D4005E16A5 /* FLViewController.h in Headers */,
 				271A06511677F3D4005E16A5 /* FLViewControllerStack.h in Headers */,
 				271A065A1677F3D4005E16A5 /* FLPresentationBehavior.h in Headers */,
-				271A06631677F3D4005E16A5 /* SDKViewController+FLPresentationBehavior.h in Headers */,
+				271A06631677F3D4005E16A5 /* UIViewController+FLPresentationBehavior.h in Headers */,
 				271A066C1677F3D4005E16A5 /* FLProgressViewController.h in Headers */,
-				271A06751677F3D4005E16A5 /* SDKViewController+FLAdditions.h in Headers */,
+				271A06751677F3D4005E16A5 /* UIViewController+FLAdditions.h in Headers */,
 				271A067E1677F3D4005E16A5 /* FLViewControllerTransitionAnimation.h in Headers */,
 				271A06871677F3D4005E16A5 /* FLWizardPanel.h in Headers */,
 				271A06901677F3D4005E16A5 /* FLWizardViewController.h in Headers */,
 				271A06991677F3D4005E16A5 /* FLLoginWizardPanel.h in Headers */,
 				271A06A21677F3D4005E16A5 /* FLProgressWizardPanel.h in Headers */,
 				271A06AB1677F3D4005E16A5 /* FLArrangeableView.h in Headers */,
-				271A06B41677F3D4005E16A5 /* SDKView+FLArrangeable.h in Headers */,
+				271A06B41677F3D4005E16A5 /* UIView+FLArrangeable.h in Headers */,
 				271A06BD1677F3D4005E16A5 /* FLBreadcrumb.h in Headers */,
 				271A06C61677F3D5005E16A5 /* FLBreadcrumbBarView.h in Headers */,
 				271A06CF1677F3D5005E16A5 /* FLGradientView.h in Headers */,
@@ -8358,6 +8397,30 @@
 				271A07361677FA1F005E16A5 /* NSViewController+FLCompatibility.h in Headers */,
 				271A07411677FFDB005E16A5 /* NSView+FLCompatibility.h in Headers */,
 				271A074C1678037E005E16A5 /* NSObject+FLTheme.h in Headers */,
+				271A078616785434005E16A5 /* FLAutoPositionedViewController.h in Headers */,
+				271A07D316786468005E16A5 /* FLCocoaUIRequired.h in Headers */,
+				27C364D016786C210029D2C5 /* NSColor+FLCompatibility.h in Headers */,
+				27C364E216786C5F0029D2C5 /* FLColor_t.h in Headers */,
+				27C364EB16786C5F0029D2C5 /* FLColorRange.h in Headers */,
+				27C364F416786C5F0029D2C5 /* UIColor+FLMoreColors.h in Headers */,
+				27C364FD16786C5F0029D2C5 /* UIColor+FLUtils.h in Headers */,
+				27C3650716786C980029D2C5 /* FLCocoaRequired.h in Headers */,
+				27C3651816786D440029D2C5 /* FLEdgeInsets.h in Headers */,
+				27C3652116786D440029D2C5 /* FLGeometry.h in Headers */,
+				27C3652516786D440029D2C5 /* FLPoint.h in Headers */,
+				27C3652916786D440029D2C5 /* FLRect.h in Headers */,
+				27C3653216786D440029D2C5 /* FLRect_Inlines.h in Headers */,
+				27C3653616786D440029D2C5 /* FLRectLayout_Inlines.h in Headers */,
+				27C3653A16786D440029D2C5 /* FLRectOptimize.h in Headers */,
+				27C3653E16786D440029D2C5 /* FLRectOptimize_Inlines.h in Headers */,
+				27C3654216786D440029D2C5 /* FLSize.h in Headers */,
+				27C3655116786D840029D2C5 /* FLImageUtilities.h in Headers */,
+				27C3655516786D840029D2C5 /* UIImage+FLColorize.h in Headers */,
+				27C3655E16786D840029D2C5 /* UIImage+FLUtils.h in Headers */,
+				27C3656916786DF50029D2C5 /* NSImage+FLCompatibility.h in Headers */,
+				27C36578167873EE0029D2C5 /* UILabel+FLExtras.h in Headers */,
+				27C36581167873EE0029D2C5 /* UIView+FLViewGeometry.h in Headers */,
+				27C3658A167873EE0029D2C5 /* UIView+ViewAnimation.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8444,9 +8507,9 @@
 				2798DAE9166D886500A0863D /* Base64Transcoder.h in Headers */,
 				2798DAEC166D886500A0863D /* ISO8601DateFormatter.h in Headers */,
 				2798DAF3166D886500A0863D /* NSData+RSHexDump.h in Headers */,
-				2798DAFA166D886500A0863D /* SDKImage+Alpha.h in Headers */,
-				2798DB01166D886500A0863D /* SDKImage+Resize.h in Headers */,
-				2798DB08166D886500A0863D /* SDKImage+RoundedCorner.h in Headers */,
+				2798DAFA166D886500A0863D /* UIImage+Alpha.h in Headers */,
+				2798DB01166D886500A0863D /* UIImage+Resize.h in Headers */,
+				2798DB08166D886500A0863D /* UIImage+RoundedCorner.h in Headers */,
 				270380D1166EDDC10082D9D9 /* FLGlobalMenuController.h in Headers */,
 				273FC195166FB7AE0072C62A /* NSView+FLAdditions.h in Headers */,
 				2776CC721672643C00F2E70A /* FLJson.h in Headers */,
@@ -8514,7 +8577,7 @@
 				27CA4AC81677E62C008D64BE /* FLToolTask.h in Headers */,
 				27CA4AD11677E62C008D64BE /* FLToolTask_Internal.h in Headers */,
 				27CA4AD51677E62C008D64BE /* FLUsageTask.h in Headers */,
-				27CA4ADE1677E62C008D64BE /* FLCompatibility.h in Headers */,
+				27CA4ADE1677E62C008D64BE /* FLCocoaCompatibility.h in Headers */,
 				27CA4B051677E62C008D64BE /* FLCollectionIterator.h in Headers */,
 				27CA4B0E1677E62C008D64BE /* FLKeyValuePair.h in Headers */,
 				27CA4B171677E62C008D64BE /* FLOrderedCollection.h in Headers */,
@@ -8843,29 +8906,10 @@
 				271A054B1677F3D4005E16A5 /* FLSingleRowColumnArrangement.h in Headers */,
 				271A05541677F3D4005E16A5 /* FLVerticalGridArrangement.h in Headers */,
 				271A055D1677F3D4005E16A5 /* FLRectLayout.h in Headers */,
-				271A05661677F3D4005E16A5 /* FLColor+FLMoreColors.h in Headers */,
-				271A056F1677F3D4005E16A5 /* FLColor+FLUtils.h in Headers */,
-				271A05781677F3D4005E16A5 /* FLColor.h in Headers */,
-				271A057C1677F3D4005E16A5 /* FLColor_t.h in Headers */,
-				271A05851677F3D4005E16A5 /* FLColorRange.h in Headers */,
 				271A058E1677F3D4005E16A5 /* FLCocoaUICompatibility.h in Headers */,
-				271A05921677F3D4005E16A5 /* NSImage+FLCompatibility.h in Headers */,
 				271A059B1677F3D4005E16A5 /* FLDisplayFormatter.h in Headers */,
 				271A05A41677F3D4005E16A5 /* FLDisplayFormatters.h in Headers */,
 				271A05AD1677F3D4005E16A5 /* FLCocoaUI.h in Headers */,
-				271A05B11677F3D4005E16A5 /* FLEdgeInsets.h in Headers */,
-				271A05BA1677F3D4005E16A5 /* FLGeometry.h in Headers */,
-				271A05BE1677F3D4005E16A5 /* FLPoint.h in Headers */,
-				271A05C21677F3D4005E16A5 /* FLRect.h in Headers */,
-				271A05CB1677F3D4005E16A5 /* FLRect_Inlines.h in Headers */,
-				271A05CF1677F3D4005E16A5 /* FLRectLayout_Inlines.h in Headers */,
-				271A05D31677F3D4005E16A5 /* FLRectOptimize.h in Headers */,
-				271A05D71677F3D4005E16A5 /* FLRectOptimize_Inlines.h in Headers */,
-				271A05DB1677F3D4005E16A5 /* FLSize.h in Headers */,
-				271A05E41677F3D4005E16A5 /* SDKImage+FLColorize.h in Headers */,
-				271A05ED1677F3D4005E16A5 /* SDKImage+FLUtils.h in Headers */,
-				271A05F61677F3D4005E16A5 /* SDKImage.h in Headers */,
-				271A05FA1677F3D4005E16A5 /* SDKImageView+FLViewGeometry.h in Headers */,
 				271A06031677F3D4005E16A5 /* FLProgressFactory.h in Headers */,
 				271A060C1677F3D4005E16A5 /* FLProgressViewControllerProtocol.h in Headers */,
 				271A06101677F3D4005E16A5 /* FLProgressViewProtocol.h in Headers */,
@@ -8878,16 +8922,16 @@
 				271A064A1677F3D4005E16A5 /* FLViewController.h in Headers */,
 				271A06531677F3D4005E16A5 /* FLViewControllerStack.h in Headers */,
 				271A065C1677F3D4005E16A5 /* FLPresentationBehavior.h in Headers */,
-				271A06651677F3D4005E16A5 /* SDKViewController+FLPresentationBehavior.h in Headers */,
+				271A06651677F3D4005E16A5 /* UIViewController+FLPresentationBehavior.h in Headers */,
 				271A066E1677F3D4005E16A5 /* FLProgressViewController.h in Headers */,
-				271A06771677F3D4005E16A5 /* SDKViewController+FLAdditions.h in Headers */,
+				271A06771677F3D4005E16A5 /* UIViewController+FLAdditions.h in Headers */,
 				271A06801677F3D4005E16A5 /* FLViewControllerTransitionAnimation.h in Headers */,
 				271A06891677F3D4005E16A5 /* FLWizardPanel.h in Headers */,
 				271A06921677F3D4005E16A5 /* FLWizardViewController.h in Headers */,
 				271A069B1677F3D4005E16A5 /* FLLoginWizardPanel.h in Headers */,
 				271A06A41677F3D4005E16A5 /* FLProgressWizardPanel.h in Headers */,
 				271A06AD1677F3D4005E16A5 /* FLArrangeableView.h in Headers */,
-				271A06B61677F3D4005E16A5 /* SDKView+FLArrangeable.h in Headers */,
+				271A06B61677F3D4005E16A5 /* UIView+FLArrangeable.h in Headers */,
 				271A06BF1677F3D4005E16A5 /* FLBreadcrumb.h in Headers */,
 				271A06C81677F3D5005E16A5 /* FLBreadcrumbBarView.h in Headers */,
 				271A06D11677F3D5005E16A5 /* FLGradientView.h in Headers */,
@@ -8904,6 +8948,30 @@
 				271A07381677FA1F005E16A5 /* NSViewController+FLCompatibility.h in Headers */,
 				271A07431677FFDB005E16A5 /* NSView+FLCompatibility.h in Headers */,
 				271A074E1678037E005E16A5 /* NSObject+FLTheme.h in Headers */,
+				271A078816785434005E16A5 /* FLAutoPositionedViewController.h in Headers */,
+				271A07D516786468005E16A5 /* FLCocoaUIRequired.h in Headers */,
+				27C364D216786C210029D2C5 /* NSColor+FLCompatibility.h in Headers */,
+				27C364E416786C5F0029D2C5 /* FLColor_t.h in Headers */,
+				27C364ED16786C5F0029D2C5 /* FLColorRange.h in Headers */,
+				27C364F616786C5F0029D2C5 /* UIColor+FLMoreColors.h in Headers */,
+				27C364FF16786C5F0029D2C5 /* UIColor+FLUtils.h in Headers */,
+				27C3650916786C980029D2C5 /* FLCocoaRequired.h in Headers */,
+				27C3651A16786D440029D2C5 /* FLEdgeInsets.h in Headers */,
+				27C3652316786D440029D2C5 /* FLGeometry.h in Headers */,
+				27C3652716786D440029D2C5 /* FLPoint.h in Headers */,
+				27C3652B16786D440029D2C5 /* FLRect.h in Headers */,
+				27C3653416786D440029D2C5 /* FLRect_Inlines.h in Headers */,
+				27C3653816786D440029D2C5 /* FLRectLayout_Inlines.h in Headers */,
+				27C3653C16786D440029D2C5 /* FLRectOptimize.h in Headers */,
+				27C3654016786D440029D2C5 /* FLRectOptimize_Inlines.h in Headers */,
+				27C3654416786D440029D2C5 /* FLSize.h in Headers */,
+				27C3655316786D840029D2C5 /* FLImageUtilities.h in Headers */,
+				27C3655716786D840029D2C5 /* UIImage+FLColorize.h in Headers */,
+				27C3656016786D840029D2C5 /* UIImage+FLUtils.h in Headers */,
+				27C3656B16786DF50029D2C5 /* NSImage+FLCompatibility.h in Headers */,
+				27C3657A167873EE0029D2C5 /* UILabel+FLExtras.h in Headers */,
+				27C36583167873EE0029D2C5 /* UIView+FLViewGeometry.h in Headers */,
+				27C3658C167873EE0029D2C5 /* UIView+ViewAnimation.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8990,9 +9058,9 @@
 				2798DAE7166D886500A0863D /* Base64Transcoder.h in Headers */,
 				2798DAEA166D886500A0863D /* ISO8601DateFormatter.h in Headers */,
 				2798DAF1166D886500A0863D /* NSData+RSHexDump.h in Headers */,
-				2798DAF8166D886500A0863D /* SDKImage+Alpha.h in Headers */,
-				2798DAFF166D886500A0863D /* SDKImage+Resize.h in Headers */,
-				2798DB06166D886500A0863D /* SDKImage+RoundedCorner.h in Headers */,
+				2798DAF8166D886500A0863D /* UIImage+Alpha.h in Headers */,
+				2798DAFF166D886500A0863D /* UIImage+Resize.h in Headers */,
+				2798DB06166D886500A0863D /* UIImage+RoundedCorner.h in Headers */,
 				270380CF166EDDC10082D9D9 /* FLGlobalMenuController.h in Headers */,
 				273FC193166FB7AE0072C62A /* NSView+FLAdditions.h in Headers */,
 				2776CC701672643C00F2E70A /* FLJson.h in Headers */,
@@ -9060,7 +9128,7 @@
 				27CA4AC71677E62C008D64BE /* FLToolTask.h in Headers */,
 				27CA4AD01677E62C008D64BE /* FLToolTask_Internal.h in Headers */,
 				27CA4AD41677E62C008D64BE /* FLUsageTask.h in Headers */,
-				27CA4ADD1677E62C008D64BE /* FLCompatibility.h in Headers */,
+				27CA4ADD1677E62C008D64BE /* FLCocoaCompatibility.h in Headers */,
 				27CA4B041677E62C008D64BE /* FLCollectionIterator.h in Headers */,
 				27CA4B0D1677E62C008D64BE /* FLKeyValuePair.h in Headers */,
 				27CA4B161677E62C008D64BE /* FLOrderedCollection.h in Headers */,
@@ -9389,29 +9457,10 @@
 				271A054A1677F3D4005E16A5 /* FLSingleRowColumnArrangement.h in Headers */,
 				271A05531677F3D4005E16A5 /* FLVerticalGridArrangement.h in Headers */,
 				271A055C1677F3D4005E16A5 /* FLRectLayout.h in Headers */,
-				271A05651677F3D4005E16A5 /* FLColor+FLMoreColors.h in Headers */,
-				271A056E1677F3D4005E16A5 /* FLColor+FLUtils.h in Headers */,
-				271A05771677F3D4005E16A5 /* FLColor.h in Headers */,
-				271A057B1677F3D4005E16A5 /* FLColor_t.h in Headers */,
-				271A05841677F3D4005E16A5 /* FLColorRange.h in Headers */,
 				271A058D1677F3D4005E16A5 /* FLCocoaUICompatibility.h in Headers */,
-				271A05911677F3D4005E16A5 /* NSImage+FLCompatibility.h in Headers */,
 				271A059A1677F3D4005E16A5 /* FLDisplayFormatter.h in Headers */,
 				271A05A31677F3D4005E16A5 /* FLDisplayFormatters.h in Headers */,
 				271A05AC1677F3D4005E16A5 /* FLCocoaUI.h in Headers */,
-				271A05B01677F3D4005E16A5 /* FLEdgeInsets.h in Headers */,
-				271A05B91677F3D4005E16A5 /* FLGeometry.h in Headers */,
-				271A05BD1677F3D4005E16A5 /* FLPoint.h in Headers */,
-				271A05C11677F3D4005E16A5 /* FLRect.h in Headers */,
-				271A05CA1677F3D4005E16A5 /* FLRect_Inlines.h in Headers */,
-				271A05CE1677F3D4005E16A5 /* FLRectLayout_Inlines.h in Headers */,
-				271A05D21677F3D4005E16A5 /* FLRectOptimize.h in Headers */,
-				271A05D61677F3D4005E16A5 /* FLRectOptimize_Inlines.h in Headers */,
-				271A05DA1677F3D4005E16A5 /* FLSize.h in Headers */,
-				271A05E31677F3D4005E16A5 /* SDKImage+FLColorize.h in Headers */,
-				271A05EC1677F3D4005E16A5 /* SDKImage+FLUtils.h in Headers */,
-				271A05F51677F3D4005E16A5 /* SDKImage.h in Headers */,
-				271A05F91677F3D4005E16A5 /* SDKImageView+FLViewGeometry.h in Headers */,
 				271A06021677F3D4005E16A5 /* FLProgressFactory.h in Headers */,
 				271A060B1677F3D4005E16A5 /* FLProgressViewControllerProtocol.h in Headers */,
 				271A060F1677F3D4005E16A5 /* FLProgressViewProtocol.h in Headers */,
@@ -9424,16 +9473,16 @@
 				271A06491677F3D4005E16A5 /* FLViewController.h in Headers */,
 				271A06521677F3D4005E16A5 /* FLViewControllerStack.h in Headers */,
 				271A065B1677F3D4005E16A5 /* FLPresentationBehavior.h in Headers */,
-				271A06641677F3D4005E16A5 /* SDKViewController+FLPresentationBehavior.h in Headers */,
+				271A06641677F3D4005E16A5 /* UIViewController+FLPresentationBehavior.h in Headers */,
 				271A066D1677F3D4005E16A5 /* FLProgressViewController.h in Headers */,
-				271A06761677F3D4005E16A5 /* SDKViewController+FLAdditions.h in Headers */,
+				271A06761677F3D4005E16A5 /* UIViewController+FLAdditions.h in Headers */,
 				271A067F1677F3D4005E16A5 /* FLViewControllerTransitionAnimation.h in Headers */,
 				271A06881677F3D4005E16A5 /* FLWizardPanel.h in Headers */,
 				271A06911677F3D4005E16A5 /* FLWizardViewController.h in Headers */,
 				271A069A1677F3D4005E16A5 /* FLLoginWizardPanel.h in Headers */,
 				271A06A31677F3D4005E16A5 /* FLProgressWizardPanel.h in Headers */,
 				271A06AC1677F3D4005E16A5 /* FLArrangeableView.h in Headers */,
-				271A06B51677F3D4005E16A5 /* SDKView+FLArrangeable.h in Headers */,
+				271A06B51677F3D4005E16A5 /* UIView+FLArrangeable.h in Headers */,
 				271A06BE1677F3D4005E16A5 /* FLBreadcrumb.h in Headers */,
 				271A06C71677F3D5005E16A5 /* FLBreadcrumbBarView.h in Headers */,
 				271A06D01677F3D5005E16A5 /* FLGradientView.h in Headers */,
@@ -9450,6 +9499,30 @@
 				271A07371677FA1F005E16A5 /* NSViewController+FLCompatibility.h in Headers */,
 				271A07421677FFDB005E16A5 /* NSView+FLCompatibility.h in Headers */,
 				271A074D1678037E005E16A5 /* NSObject+FLTheme.h in Headers */,
+				271A078716785434005E16A5 /* FLAutoPositionedViewController.h in Headers */,
+				271A07D416786468005E16A5 /* FLCocoaUIRequired.h in Headers */,
+				27C364D116786C210029D2C5 /* NSColor+FLCompatibility.h in Headers */,
+				27C364E316786C5F0029D2C5 /* FLColor_t.h in Headers */,
+				27C364EC16786C5F0029D2C5 /* FLColorRange.h in Headers */,
+				27C364F516786C5F0029D2C5 /* UIColor+FLMoreColors.h in Headers */,
+				27C364FE16786C5F0029D2C5 /* UIColor+FLUtils.h in Headers */,
+				27C3650816786C980029D2C5 /* FLCocoaRequired.h in Headers */,
+				27C3651916786D440029D2C5 /* FLEdgeInsets.h in Headers */,
+				27C3652216786D440029D2C5 /* FLGeometry.h in Headers */,
+				27C3652616786D440029D2C5 /* FLPoint.h in Headers */,
+				27C3652A16786D440029D2C5 /* FLRect.h in Headers */,
+				27C3653316786D440029D2C5 /* FLRect_Inlines.h in Headers */,
+				27C3653716786D440029D2C5 /* FLRectLayout_Inlines.h in Headers */,
+				27C3653B16786D440029D2C5 /* FLRectOptimize.h in Headers */,
+				27C3653F16786D440029D2C5 /* FLRectOptimize_Inlines.h in Headers */,
+				27C3654316786D440029D2C5 /* FLSize.h in Headers */,
+				27C3655216786D840029D2C5 /* FLImageUtilities.h in Headers */,
+				27C3655616786D840029D2C5 /* UIImage+FLColorize.h in Headers */,
+				27C3655F16786D840029D2C5 /* UIImage+FLUtils.h in Headers */,
+				27C3656A16786DF50029D2C5 /* NSImage+FLCompatibility.h in Headers */,
+				27C36579167873EE0029D2C5 /* UILabel+FLExtras.h in Headers */,
+				27C36582167873EE0029D2C5 /* UIView+FLViewGeometry.h in Headers */,
+				27C3658B167873EE0029D2C5 /* UIView+ViewAnimation.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9536,9 +9609,9 @@
 				27CBC1B116768BA600753D0A /* Base64Transcoder.h in Headers */,
 				27CBC1B216768BA600753D0A /* ISO8601DateFormatter.h in Headers */,
 				27CBC1B316768BA600753D0A /* NSData+RSHexDump.h in Headers */,
-				27CBC1B416768BA600753D0A /* SDKImage+Alpha.h in Headers */,
-				27CBC1B516768BA600753D0A /* SDKImage+Resize.h in Headers */,
-				27CBC1B616768BA600753D0A /* SDKImage+RoundedCorner.h in Headers */,
+				27CBC1B416768BA600753D0A /* UIImage+Alpha.h in Headers */,
+				27CBC1B516768BA600753D0A /* UIImage+Resize.h in Headers */,
+				27CBC1B616768BA600753D0A /* UIImage+RoundedCorner.h in Headers */,
 				27CBC1B716768BA600753D0A /* FLGlobalMenuController.h in Headers */,
 				27CBC1B816768BA600753D0A /* NSView+FLAdditions.h in Headers */,
 				27CBC1EA16768BA600753D0A /* FLJson.h in Headers */,
@@ -9606,7 +9679,7 @@
 				27CA4AC91677E62C008D64BE /* FLToolTask.h in Headers */,
 				27CA4AD21677E62C008D64BE /* FLToolTask_Internal.h in Headers */,
 				27CA4AD61677E62C008D64BE /* FLUsageTask.h in Headers */,
-				27CA4ADF1677E62C008D64BE /* FLCompatibility.h in Headers */,
+				27CA4ADF1677E62C008D64BE /* FLCocoaCompatibility.h in Headers */,
 				27CA4B061677E62C008D64BE /* FLCollectionIterator.h in Headers */,
 				27CA4B0F1677E62C008D64BE /* FLKeyValuePair.h in Headers */,
 				27CA4B181677E62C008D64BE /* FLOrderedCollection.h in Headers */,
@@ -9935,29 +10008,10 @@
 				271A054C1677F3D4005E16A5 /* FLSingleRowColumnArrangement.h in Headers */,
 				271A05551677F3D4005E16A5 /* FLVerticalGridArrangement.h in Headers */,
 				271A055E1677F3D4005E16A5 /* FLRectLayout.h in Headers */,
-				271A05671677F3D4005E16A5 /* FLColor+FLMoreColors.h in Headers */,
-				271A05701677F3D4005E16A5 /* FLColor+FLUtils.h in Headers */,
-				271A05791677F3D4005E16A5 /* FLColor.h in Headers */,
-				271A057D1677F3D4005E16A5 /* FLColor_t.h in Headers */,
-				271A05861677F3D4005E16A5 /* FLColorRange.h in Headers */,
 				271A058F1677F3D4005E16A5 /* FLCocoaUICompatibility.h in Headers */,
-				271A05931677F3D4005E16A5 /* NSImage+FLCompatibility.h in Headers */,
 				271A059C1677F3D4005E16A5 /* FLDisplayFormatter.h in Headers */,
 				271A05A51677F3D4005E16A5 /* FLDisplayFormatters.h in Headers */,
 				271A05AE1677F3D4005E16A5 /* FLCocoaUI.h in Headers */,
-				271A05B21677F3D4005E16A5 /* FLEdgeInsets.h in Headers */,
-				271A05BB1677F3D4005E16A5 /* FLGeometry.h in Headers */,
-				271A05BF1677F3D4005E16A5 /* FLPoint.h in Headers */,
-				271A05C31677F3D4005E16A5 /* FLRect.h in Headers */,
-				271A05CC1677F3D4005E16A5 /* FLRect_Inlines.h in Headers */,
-				271A05D01677F3D4005E16A5 /* FLRectLayout_Inlines.h in Headers */,
-				271A05D41677F3D4005E16A5 /* FLRectOptimize.h in Headers */,
-				271A05D81677F3D4005E16A5 /* FLRectOptimize_Inlines.h in Headers */,
-				271A05DC1677F3D4005E16A5 /* FLSize.h in Headers */,
-				271A05E51677F3D4005E16A5 /* SDKImage+FLColorize.h in Headers */,
-				271A05EE1677F3D4005E16A5 /* SDKImage+FLUtils.h in Headers */,
-				271A05F71677F3D4005E16A5 /* SDKImage.h in Headers */,
-				271A05FB1677F3D4005E16A5 /* SDKImageView+FLViewGeometry.h in Headers */,
 				271A06041677F3D4005E16A5 /* FLProgressFactory.h in Headers */,
 				271A060D1677F3D4005E16A5 /* FLProgressViewControllerProtocol.h in Headers */,
 				271A06111677F3D4005E16A5 /* FLProgressViewProtocol.h in Headers */,
@@ -9970,16 +10024,16 @@
 				271A064B1677F3D4005E16A5 /* FLViewController.h in Headers */,
 				271A06541677F3D4005E16A5 /* FLViewControllerStack.h in Headers */,
 				271A065D1677F3D4005E16A5 /* FLPresentationBehavior.h in Headers */,
-				271A06661677F3D4005E16A5 /* SDKViewController+FLPresentationBehavior.h in Headers */,
+				271A06661677F3D4005E16A5 /* UIViewController+FLPresentationBehavior.h in Headers */,
 				271A066F1677F3D4005E16A5 /* FLProgressViewController.h in Headers */,
-				271A06781677F3D4005E16A5 /* SDKViewController+FLAdditions.h in Headers */,
+				271A06781677F3D4005E16A5 /* UIViewController+FLAdditions.h in Headers */,
 				271A06811677F3D4005E16A5 /* FLViewControllerTransitionAnimation.h in Headers */,
 				271A068A1677F3D4005E16A5 /* FLWizardPanel.h in Headers */,
 				271A06931677F3D4005E16A5 /* FLWizardViewController.h in Headers */,
 				271A069C1677F3D4005E16A5 /* FLLoginWizardPanel.h in Headers */,
 				271A06A51677F3D4005E16A5 /* FLProgressWizardPanel.h in Headers */,
 				271A06AE1677F3D4005E16A5 /* FLArrangeableView.h in Headers */,
-				271A06B71677F3D4005E16A5 /* SDKView+FLArrangeable.h in Headers */,
+				271A06B71677F3D4005E16A5 /* UIView+FLArrangeable.h in Headers */,
 				271A06C01677F3D4005E16A5 /* FLBreadcrumb.h in Headers */,
 				271A06C91677F3D5005E16A5 /* FLBreadcrumbBarView.h in Headers */,
 				271A06D21677F3D5005E16A5 /* FLGradientView.h in Headers */,
@@ -9996,6 +10050,30 @@
 				271A07391677FA1F005E16A5 /* NSViewController+FLCompatibility.h in Headers */,
 				271A07441677FFDB005E16A5 /* NSView+FLCompatibility.h in Headers */,
 				271A074F1678037E005E16A5 /* NSObject+FLTheme.h in Headers */,
+				271A078916785434005E16A5 /* FLAutoPositionedViewController.h in Headers */,
+				271A07D616786468005E16A5 /* FLCocoaUIRequired.h in Headers */,
+				27C364D316786C210029D2C5 /* NSColor+FLCompatibility.h in Headers */,
+				27C364E516786C5F0029D2C5 /* FLColor_t.h in Headers */,
+				27C364EE16786C5F0029D2C5 /* FLColorRange.h in Headers */,
+				27C364F716786C5F0029D2C5 /* UIColor+FLMoreColors.h in Headers */,
+				27C3650016786C5F0029D2C5 /* UIColor+FLUtils.h in Headers */,
+				27C3650A16786C980029D2C5 /* FLCocoaRequired.h in Headers */,
+				27C3651B16786D440029D2C5 /* FLEdgeInsets.h in Headers */,
+				27C3652416786D440029D2C5 /* FLGeometry.h in Headers */,
+				27C3652816786D440029D2C5 /* FLPoint.h in Headers */,
+				27C3652C16786D440029D2C5 /* FLRect.h in Headers */,
+				27C3653516786D440029D2C5 /* FLRect_Inlines.h in Headers */,
+				27C3653916786D440029D2C5 /* FLRectLayout_Inlines.h in Headers */,
+				27C3653D16786D440029D2C5 /* FLRectOptimize.h in Headers */,
+				27C3654116786D440029D2C5 /* FLRectOptimize_Inlines.h in Headers */,
+				27C3654516786D440029D2C5 /* FLSize.h in Headers */,
+				27C3655416786D840029D2C5 /* FLImageUtilities.h in Headers */,
+				27C3655816786D840029D2C5 /* UIImage+FLColorize.h in Headers */,
+				27C3656116786D840029D2C5 /* UIImage+FLUtils.h in Headers */,
+				27C3656C16786DF50029D2C5 /* NSImage+FLCompatibility.h in Headers */,
+				27C3657B167873EE0029D2C5 /* UILabel+FLExtras.h in Headers */,
+				27C36584167873EE0029D2C5 /* UIView+FLViewGeometry.h in Headers */,
+				27C3658D167873EE0029D2C5 /* UIView+ViewAnimation.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -10176,9 +10254,9 @@
 				2798DAE5166D886500A0863D /* Base64Transcoder.c in Sources */,
 				2798DAEF166D886500A0863D /* ISO8601DateFormatter.m in Sources */,
 				2798DAF6166D886500A0863D /* NSData+RSHexDump.m in Sources */,
-				2798DAFD166D886500A0863D /* SDKImage+Alpha.m in Sources */,
-				2798DB04166D886500A0863D /* SDKImage+Resize.m in Sources */,
-				2798DB0B166D886500A0863D /* SDKImage+RoundedCorner.m in Sources */,
+				2798DAFD166D886500A0863D /* UIImage+Alpha.m in Sources */,
+				2798DB04166D886500A0863D /* UIImage+Resize.m in Sources */,
+				2798DB0B166D886500A0863D /* UIImage+RoundedCorner.m in Sources */,
 				270380D3166EDDC10082D9D9 /* FLGlobalMenuController.m in Sources */,
 				273FC197166FB7AE0072C62A /* NSView+FLAdditions.m in Sources */,
 				2776CC751672643C00F2E70A /* FLJson.m in Sources */,
@@ -10547,19 +10625,8 @@
 				271A054E1677F3D4005E16A5 /* FLSingleRowColumnArrangement.m in Sources */,
 				271A05571677F3D4005E16A5 /* FLVerticalGridArrangement.m in Sources */,
 				271A05601677F3D4005E16A5 /* FLRectLayout.m in Sources */,
-				271A05691677F3D4005E16A5 /* FLColor+FLMoreColors.m in Sources */,
-				271A05721677F3D4005E16A5 /* FLColor+FLUtils.m in Sources */,
-				271A057F1677F3D4005E16A5 /* FLColor_t.m in Sources */,
-				271A05881677F3D4005E16A5 /* FLColorRange.m in Sources */,
-				271A05951677F3D4005E16A5 /* NSImage+FLCompatibility.m in Sources */,
 				271A059E1677F3D4005E16A5 /* FLDisplayFormatter.m in Sources */,
 				271A05A71677F3D4005E16A5 /* FLDisplayFormatters.m in Sources */,
-				271A05B41677F3D4005E16A5 /* FLEdgeInsets.m in Sources */,
-				271A05C51677F3D4005E16A5 /* FLRect.m in Sources */,
-				271A05DE1677F3D4005E16A5 /* FLSize.m in Sources */,
-				271A05E71677F3D4005E16A5 /* SDKImage+FLColorize.m in Sources */,
-				271A05F01677F3D4005E16A5 /* SDKImage+FLUtils.m in Sources */,
-				271A05FD1677F3D4005E16A5 /* SDKImageView+FLViewGeometry.m in Sources */,
 				271A06061677F3D4005E16A5 /* FLProgressFactory.m in Sources */,
 				271A06171677F3D4005E16A5 /* __FLSlideshowOptions.m in Sources */,
 				271A06201677F3D4005E16A5 /* FLSlideshowOptions.m in Sources */,
@@ -10570,16 +10637,16 @@
 				271A064D1677F3D4005E16A5 /* FLViewController.m in Sources */,
 				271A06561677F3D4005E16A5 /* FLViewControllerStack.m in Sources */,
 				271A065F1677F3D4005E16A5 /* FLPresentationBehavior.m in Sources */,
-				271A06681677F3D4005E16A5 /* SDKViewController+FLPresentationBehavior.m in Sources */,
+				271A06681677F3D4005E16A5 /* UIViewController+FLPresentationBehavior.m in Sources */,
 				271A06711677F3D4005E16A5 /* FLProgressViewController.m in Sources */,
-				271A067A1677F3D4005E16A5 /* SDKViewController+FLAdditions.m in Sources */,
+				271A067A1677F3D4005E16A5 /* UIViewController+FLAdditions.m in Sources */,
 				271A06831677F3D4005E16A5 /* FLViewControllerTransitionAnimation.m in Sources */,
 				271A068C1677F3D4005E16A5 /* FLWizardPanel.m in Sources */,
 				271A06951677F3D4005E16A5 /* FLWizardViewController.m in Sources */,
 				271A069E1677F3D4005E16A5 /* FLLoginWizardPanel.m in Sources */,
 				271A06A71677F3D4005E16A5 /* FLProgressWizardPanel.m in Sources */,
 				271A06B01677F3D4005E16A5 /* FLArrangeableView.m in Sources */,
-				271A06B91677F3D4005E16A5 /* SDKView+FLArrangeable.m in Sources */,
+				271A06B91677F3D4005E16A5 /* UIView+FLArrangeable.m in Sources */,
 				271A06C21677F3D4005E16A5 /* FLBreadcrumb.m in Sources */,
 				271A06CB1677F3D5005E16A5 /* FLBreadcrumbBarView.m in Sources */,
 				271A06D41677F3D5005E16A5 /* FLGradientView.m in Sources */,
@@ -10596,6 +10663,21 @@
 				271A073B1677FA1F005E16A5 /* NSViewController+FLCompatibility.m in Sources */,
 				271A07461677FFDB005E16A5 /* NSView+FLCompatibility.m in Sources */,
 				271A07511678037E005E16A5 /* NSObject+FLTheme.m in Sources */,
+				271A078B16785434005E16A5 /* FLAutoPositionedViewController.m in Sources */,
+				27C364D516786C210029D2C5 /* NSColor+FLCompatibility.m in Sources */,
+				27C364E716786C5F0029D2C5 /* FLColor_t.m in Sources */,
+				27C364F016786C5F0029D2C5 /* FLColorRange.m in Sources */,
+				27C364F916786C5F0029D2C5 /* UIColor+FLMoreColors.m in Sources */,
+				27C3650216786C5F0029D2C5 /* UIColor+FLUtils.m in Sources */,
+				27C3651D16786D440029D2C5 /* FLEdgeInsets.m in Sources */,
+				27C3652E16786D440029D2C5 /* FLRect.m in Sources */,
+				27C3654716786D440029D2C5 /* FLSize.m in Sources */,
+				27C3655A16786D840029D2C5 /* UIImage+FLColorize.m in Sources */,
+				27C3656316786D840029D2C5 /* UIImage+FLUtils.m in Sources */,
+				27C3656E16786DF50029D2C5 /* NSImage+FLCompatibility.m in Sources */,
+				27C3657D167873EE0029D2C5 /* UILabel+FLExtras.m in Sources */,
+				27C36586167873EE0029D2C5 /* UIView+FLViewGeometry.m in Sources */,
+				27C3658F167873EE0029D2C5 /* UIView+ViewAnimation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -10656,9 +10738,9 @@
 				2798DAE6166D886500A0863D /* Base64Transcoder.c in Sources */,
 				2798DAF0166D886500A0863D /* ISO8601DateFormatter.m in Sources */,
 				2798DAF7166D886500A0863D /* NSData+RSHexDump.m in Sources */,
-				2798DAFE166D886500A0863D /* SDKImage+Alpha.m in Sources */,
-				2798DB05166D886500A0863D /* SDKImage+Resize.m in Sources */,
-				2798DB0C166D886500A0863D /* SDKImage+RoundedCorner.m in Sources */,
+				2798DAFE166D886500A0863D /* UIImage+Alpha.m in Sources */,
+				2798DB05166D886500A0863D /* UIImage+Resize.m in Sources */,
+				2798DB0C166D886500A0863D /* UIImage+RoundedCorner.m in Sources */,
 				270380D4166EDDC10082D9D9 /* FLGlobalMenuController.m in Sources */,
 				273FC198166FB7AE0072C62A /* NSView+FLAdditions.m in Sources */,
 				2776CC761672643C00F2E70A /* FLJson.m in Sources */,
@@ -11027,19 +11109,8 @@
 				271A05501677F3D4005E16A5 /* FLSingleRowColumnArrangement.m in Sources */,
 				271A05591677F3D4005E16A5 /* FLVerticalGridArrangement.m in Sources */,
 				271A05621677F3D4005E16A5 /* FLRectLayout.m in Sources */,
-				271A056B1677F3D4005E16A5 /* FLColor+FLMoreColors.m in Sources */,
-				271A05741677F3D4005E16A5 /* FLColor+FLUtils.m in Sources */,
-				271A05811677F3D4005E16A5 /* FLColor_t.m in Sources */,
-				271A058A1677F3D4005E16A5 /* FLColorRange.m in Sources */,
-				271A05971677F3D4005E16A5 /* NSImage+FLCompatibility.m in Sources */,
 				271A05A01677F3D4005E16A5 /* FLDisplayFormatter.m in Sources */,
 				271A05A91677F3D4005E16A5 /* FLDisplayFormatters.m in Sources */,
-				271A05B61677F3D4005E16A5 /* FLEdgeInsets.m in Sources */,
-				271A05C71677F3D4005E16A5 /* FLRect.m in Sources */,
-				271A05E01677F3D4005E16A5 /* FLSize.m in Sources */,
-				271A05E91677F3D4005E16A5 /* SDKImage+FLColorize.m in Sources */,
-				271A05F21677F3D4005E16A5 /* SDKImage+FLUtils.m in Sources */,
-				271A05FF1677F3D4005E16A5 /* SDKImageView+FLViewGeometry.m in Sources */,
 				271A06081677F3D4005E16A5 /* FLProgressFactory.m in Sources */,
 				271A06191677F3D4005E16A5 /* __FLSlideshowOptions.m in Sources */,
 				271A06221677F3D4005E16A5 /* FLSlideshowOptions.m in Sources */,
@@ -11050,16 +11121,16 @@
 				271A064F1677F3D4005E16A5 /* FLViewController.m in Sources */,
 				271A06581677F3D4005E16A5 /* FLViewControllerStack.m in Sources */,
 				271A06611677F3D4005E16A5 /* FLPresentationBehavior.m in Sources */,
-				271A066A1677F3D4005E16A5 /* SDKViewController+FLPresentationBehavior.m in Sources */,
+				271A066A1677F3D4005E16A5 /* UIViewController+FLPresentationBehavior.m in Sources */,
 				271A06731677F3D4005E16A5 /* FLProgressViewController.m in Sources */,
-				271A067C1677F3D4005E16A5 /* SDKViewController+FLAdditions.m in Sources */,
+				271A067C1677F3D4005E16A5 /* UIViewController+FLAdditions.m in Sources */,
 				271A06851677F3D4005E16A5 /* FLViewControllerTransitionAnimation.m in Sources */,
 				271A068E1677F3D4005E16A5 /* FLWizardPanel.m in Sources */,
 				271A06971677F3D4005E16A5 /* FLWizardViewController.m in Sources */,
 				271A06A01677F3D4005E16A5 /* FLLoginWizardPanel.m in Sources */,
 				271A06A91677F3D4005E16A5 /* FLProgressWizardPanel.m in Sources */,
 				271A06B21677F3D4005E16A5 /* FLArrangeableView.m in Sources */,
-				271A06BB1677F3D4005E16A5 /* SDKView+FLArrangeable.m in Sources */,
+				271A06BB1677F3D4005E16A5 /* UIView+FLArrangeable.m in Sources */,
 				271A06C41677F3D4005E16A5 /* FLBreadcrumb.m in Sources */,
 				271A06CD1677F3D5005E16A5 /* FLBreadcrumbBarView.m in Sources */,
 				271A06D61677F3D5005E16A5 /* FLGradientView.m in Sources */,
@@ -11076,6 +11147,21 @@
 				271A073D1677FA1F005E16A5 /* NSViewController+FLCompatibility.m in Sources */,
 				271A07481677FFDB005E16A5 /* NSView+FLCompatibility.m in Sources */,
 				271A07531678037E005E16A5 /* NSObject+FLTheme.m in Sources */,
+				271A078D16785434005E16A5 /* FLAutoPositionedViewController.m in Sources */,
+				27C364D716786C210029D2C5 /* NSColor+FLCompatibility.m in Sources */,
+				27C364E916786C5F0029D2C5 /* FLColor_t.m in Sources */,
+				27C364F216786C5F0029D2C5 /* FLColorRange.m in Sources */,
+				27C364FB16786C5F0029D2C5 /* UIColor+FLMoreColors.m in Sources */,
+				27C3650416786C5F0029D2C5 /* UIColor+FLUtils.m in Sources */,
+				27C3651F16786D440029D2C5 /* FLEdgeInsets.m in Sources */,
+				27C3653016786D440029D2C5 /* FLRect.m in Sources */,
+				27C3654916786D440029D2C5 /* FLSize.m in Sources */,
+				27C3655C16786D840029D2C5 /* UIImage+FLColorize.m in Sources */,
+				27C3656516786D840029D2C5 /* UIImage+FLUtils.m in Sources */,
+				27C3657016786DF50029D2C5 /* NSImage+FLCompatibility.m in Sources */,
+				27C3657F167873EE0029D2C5 /* UILabel+FLExtras.m in Sources */,
+				27C36588167873EE0029D2C5 /* UIView+FLViewGeometry.m in Sources */,
+				27C36591167873EE0029D2C5 /* UIView+ViewAnimation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -11136,9 +11222,9 @@
 				2798DAE3166D886500A0863D /* Base64Transcoder.c in Sources */,
 				2798DAED166D886500A0863D /* ISO8601DateFormatter.m in Sources */,
 				2798DAF4166D886500A0863D /* NSData+RSHexDump.m in Sources */,
-				2798DAFB166D886500A0863D /* SDKImage+Alpha.m in Sources */,
-				2798DB02166D886500A0863D /* SDKImage+Resize.m in Sources */,
-				2798DB09166D886500A0863D /* SDKImage+RoundedCorner.m in Sources */,
+				2798DAFB166D886500A0863D /* UIImage+Alpha.m in Sources */,
+				2798DB02166D886500A0863D /* UIImage+Resize.m in Sources */,
+				2798DB09166D886500A0863D /* UIImage+RoundedCorner.m in Sources */,
 				2776CC731672643C00F2E70A /* FLJson.m in Sources */,
 				27CA48BD1677E62C008D64BE /* FLContext.m in Sources */,
 				27CA48C61677E62C008D64BE /* FLContextual.m in Sources */,
@@ -11504,19 +11590,8 @@
 				271A054D1677F3D4005E16A5 /* FLSingleRowColumnArrangement.m in Sources */,
 				271A05561677F3D4005E16A5 /* FLVerticalGridArrangement.m in Sources */,
 				271A055F1677F3D4005E16A5 /* FLRectLayout.m in Sources */,
-				271A05681677F3D4005E16A5 /* FLColor+FLMoreColors.m in Sources */,
-				271A05711677F3D4005E16A5 /* FLColor+FLUtils.m in Sources */,
-				271A057E1677F3D4005E16A5 /* FLColor_t.m in Sources */,
-				271A05871677F3D4005E16A5 /* FLColorRange.m in Sources */,
-				271A05941677F3D4005E16A5 /* NSImage+FLCompatibility.m in Sources */,
 				271A059D1677F3D4005E16A5 /* FLDisplayFormatter.m in Sources */,
 				271A05A61677F3D4005E16A5 /* FLDisplayFormatters.m in Sources */,
-				271A05B31677F3D4005E16A5 /* FLEdgeInsets.m in Sources */,
-				271A05C41677F3D4005E16A5 /* FLRect.m in Sources */,
-				271A05DD1677F3D4005E16A5 /* FLSize.m in Sources */,
-				271A05E61677F3D4005E16A5 /* SDKImage+FLColorize.m in Sources */,
-				271A05EF1677F3D4005E16A5 /* SDKImage+FLUtils.m in Sources */,
-				271A05FC1677F3D4005E16A5 /* SDKImageView+FLViewGeometry.m in Sources */,
 				271A06051677F3D4005E16A5 /* FLProgressFactory.m in Sources */,
 				271A06161677F3D4005E16A5 /* __FLSlideshowOptions.m in Sources */,
 				271A061F1677F3D4005E16A5 /* FLSlideshowOptions.m in Sources */,
@@ -11527,16 +11602,16 @@
 				271A064C1677F3D4005E16A5 /* FLViewController.m in Sources */,
 				271A06551677F3D4005E16A5 /* FLViewControllerStack.m in Sources */,
 				271A065E1677F3D4005E16A5 /* FLPresentationBehavior.m in Sources */,
-				271A06671677F3D4005E16A5 /* SDKViewController+FLPresentationBehavior.m in Sources */,
+				271A06671677F3D4005E16A5 /* UIViewController+FLPresentationBehavior.m in Sources */,
 				271A06701677F3D4005E16A5 /* FLProgressViewController.m in Sources */,
-				271A06791677F3D4005E16A5 /* SDKViewController+FLAdditions.m in Sources */,
+				271A06791677F3D4005E16A5 /* UIViewController+FLAdditions.m in Sources */,
 				271A06821677F3D4005E16A5 /* FLViewControllerTransitionAnimation.m in Sources */,
 				271A068B1677F3D4005E16A5 /* FLWizardPanel.m in Sources */,
 				271A06941677F3D4005E16A5 /* FLWizardViewController.m in Sources */,
 				271A069D1677F3D4005E16A5 /* FLLoginWizardPanel.m in Sources */,
 				271A06A61677F3D4005E16A5 /* FLProgressWizardPanel.m in Sources */,
 				271A06AF1677F3D4005E16A5 /* FLArrangeableView.m in Sources */,
-				271A06B81677F3D4005E16A5 /* SDKView+FLArrangeable.m in Sources */,
+				271A06B81677F3D4005E16A5 /* UIView+FLArrangeable.m in Sources */,
 				271A06C11677F3D4005E16A5 /* FLBreadcrumb.m in Sources */,
 				271A06CA1677F3D5005E16A5 /* FLBreadcrumbBarView.m in Sources */,
 				271A06D31677F3D5005E16A5 /* FLGradientView.m in Sources */,
@@ -11553,6 +11628,21 @@
 				271A073A1677FA1F005E16A5 /* NSViewController+FLCompatibility.m in Sources */,
 				271A07451677FFDB005E16A5 /* NSView+FLCompatibility.m in Sources */,
 				271A07501678037E005E16A5 /* NSObject+FLTheme.m in Sources */,
+				271A078A16785434005E16A5 /* FLAutoPositionedViewController.m in Sources */,
+				27C364D416786C210029D2C5 /* NSColor+FLCompatibility.m in Sources */,
+				27C364E616786C5F0029D2C5 /* FLColor_t.m in Sources */,
+				27C364EF16786C5F0029D2C5 /* FLColorRange.m in Sources */,
+				27C364F816786C5F0029D2C5 /* UIColor+FLMoreColors.m in Sources */,
+				27C3650116786C5F0029D2C5 /* UIColor+FLUtils.m in Sources */,
+				27C3651C16786D440029D2C5 /* FLEdgeInsets.m in Sources */,
+				27C3652D16786D440029D2C5 /* FLRect.m in Sources */,
+				27C3654616786D440029D2C5 /* FLSize.m in Sources */,
+				27C3655916786D840029D2C5 /* UIImage+FLColorize.m in Sources */,
+				27C3656216786D840029D2C5 /* UIImage+FLUtils.m in Sources */,
+				27C3656D16786DF50029D2C5 /* NSImage+FLCompatibility.m in Sources */,
+				27C3657C167873EE0029D2C5 /* UILabel+FLExtras.m in Sources */,
+				27C36585167873EE0029D2C5 /* UIView+FLViewGeometry.m in Sources */,
+				27C3658E167873EE0029D2C5 /* UIView+ViewAnimation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -11613,9 +11703,9 @@
 				2798DAE4166D886500A0863D /* Base64Transcoder.c in Sources */,
 				2798DAEE166D886500A0863D /* ISO8601DateFormatter.m in Sources */,
 				2798DAF5166D886500A0863D /* NSData+RSHexDump.m in Sources */,
-				2798DAFC166D886500A0863D /* SDKImage+Alpha.m in Sources */,
-				2798DB03166D886500A0863D /* SDKImage+Resize.m in Sources */,
-				2798DB0A166D886500A0863D /* SDKImage+RoundedCorner.m in Sources */,
+				2798DAFC166D886500A0863D /* UIImage+Alpha.m in Sources */,
+				2798DB03166D886500A0863D /* UIImage+Resize.m in Sources */,
+				2798DB0A166D886500A0863D /* UIImage+RoundedCorner.m in Sources */,
 				270380D2166EDDC10082D9D9 /* FLGlobalMenuController.m in Sources */,
 				273FC196166FB7AE0072C62A /* NSView+FLAdditions.m in Sources */,
 				2776CC741672643C00F2E70A /* FLJson.m in Sources */,
@@ -11984,19 +12074,8 @@
 				271A054F1677F3D4005E16A5 /* FLSingleRowColumnArrangement.m in Sources */,
 				271A05581677F3D4005E16A5 /* FLVerticalGridArrangement.m in Sources */,
 				271A05611677F3D4005E16A5 /* FLRectLayout.m in Sources */,
-				271A056A1677F3D4005E16A5 /* FLColor+FLMoreColors.m in Sources */,
-				271A05731677F3D4005E16A5 /* FLColor+FLUtils.m in Sources */,
-				271A05801677F3D4005E16A5 /* FLColor_t.m in Sources */,
-				271A05891677F3D4005E16A5 /* FLColorRange.m in Sources */,
-				271A05961677F3D4005E16A5 /* NSImage+FLCompatibility.m in Sources */,
 				271A059F1677F3D4005E16A5 /* FLDisplayFormatter.m in Sources */,
 				271A05A81677F3D4005E16A5 /* FLDisplayFormatters.m in Sources */,
-				271A05B51677F3D4005E16A5 /* FLEdgeInsets.m in Sources */,
-				271A05C61677F3D4005E16A5 /* FLRect.m in Sources */,
-				271A05DF1677F3D4005E16A5 /* FLSize.m in Sources */,
-				271A05E81677F3D4005E16A5 /* SDKImage+FLColorize.m in Sources */,
-				271A05F11677F3D4005E16A5 /* SDKImage+FLUtils.m in Sources */,
-				271A05FE1677F3D4005E16A5 /* SDKImageView+FLViewGeometry.m in Sources */,
 				271A06071677F3D4005E16A5 /* FLProgressFactory.m in Sources */,
 				271A06181677F3D4005E16A5 /* __FLSlideshowOptions.m in Sources */,
 				271A06211677F3D4005E16A5 /* FLSlideshowOptions.m in Sources */,
@@ -12007,16 +12086,16 @@
 				271A064E1677F3D4005E16A5 /* FLViewController.m in Sources */,
 				271A06571677F3D4005E16A5 /* FLViewControllerStack.m in Sources */,
 				271A06601677F3D4005E16A5 /* FLPresentationBehavior.m in Sources */,
-				271A06691677F3D4005E16A5 /* SDKViewController+FLPresentationBehavior.m in Sources */,
+				271A06691677F3D4005E16A5 /* UIViewController+FLPresentationBehavior.m in Sources */,
 				271A06721677F3D4005E16A5 /* FLProgressViewController.m in Sources */,
-				271A067B1677F3D4005E16A5 /* SDKViewController+FLAdditions.m in Sources */,
+				271A067B1677F3D4005E16A5 /* UIViewController+FLAdditions.m in Sources */,
 				271A06841677F3D4005E16A5 /* FLViewControllerTransitionAnimation.m in Sources */,
 				271A068D1677F3D4005E16A5 /* FLWizardPanel.m in Sources */,
 				271A06961677F3D4005E16A5 /* FLWizardViewController.m in Sources */,
 				271A069F1677F3D4005E16A5 /* FLLoginWizardPanel.m in Sources */,
 				271A06A81677F3D4005E16A5 /* FLProgressWizardPanel.m in Sources */,
 				271A06B11677F3D4005E16A5 /* FLArrangeableView.m in Sources */,
-				271A06BA1677F3D4005E16A5 /* SDKView+FLArrangeable.m in Sources */,
+				271A06BA1677F3D4005E16A5 /* UIView+FLArrangeable.m in Sources */,
 				271A06C31677F3D4005E16A5 /* FLBreadcrumb.m in Sources */,
 				271A06CC1677F3D5005E16A5 /* FLBreadcrumbBarView.m in Sources */,
 				271A06D51677F3D5005E16A5 /* FLGradientView.m in Sources */,
@@ -12033,6 +12112,21 @@
 				271A073C1677FA1F005E16A5 /* NSViewController+FLCompatibility.m in Sources */,
 				271A07471677FFDB005E16A5 /* NSView+FLCompatibility.m in Sources */,
 				271A07521678037E005E16A5 /* NSObject+FLTheme.m in Sources */,
+				271A078C16785434005E16A5 /* FLAutoPositionedViewController.m in Sources */,
+				27C364D616786C210029D2C5 /* NSColor+FLCompatibility.m in Sources */,
+				27C364E816786C5F0029D2C5 /* FLColor_t.m in Sources */,
+				27C364F116786C5F0029D2C5 /* FLColorRange.m in Sources */,
+				27C364FA16786C5F0029D2C5 /* UIColor+FLMoreColors.m in Sources */,
+				27C3650316786C5F0029D2C5 /* UIColor+FLUtils.m in Sources */,
+				27C3651E16786D440029D2C5 /* FLEdgeInsets.m in Sources */,
+				27C3652F16786D440029D2C5 /* FLRect.m in Sources */,
+				27C3654816786D440029D2C5 /* FLSize.m in Sources */,
+				27C3655B16786D840029D2C5 /* UIImage+FLColorize.m in Sources */,
+				27C3656416786D840029D2C5 /* UIImage+FLUtils.m in Sources */,
+				27C3656F16786DF50029D2C5 /* NSImage+FLCompatibility.m in Sources */,
+				27C3657E167873EE0029D2C5 /* UILabel+FLExtras.m in Sources */,
+				27C36587167873EE0029D2C5 /* UIView+FLViewGeometry.m in Sources */,
+				27C36590167873EE0029D2C5 /* UIView+ViewAnimation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -12093,9 +12187,9 @@
 				27CBBFBA16768BA600753D0A /* Base64Transcoder.c in Sources */,
 				27CBBFBB16768BA600753D0A /* ISO8601DateFormatter.m in Sources */,
 				27CBBFBC16768BA600753D0A /* NSData+RSHexDump.m in Sources */,
-				27CBBFBD16768BA600753D0A /* SDKImage+Alpha.m in Sources */,
-				27CBBFBE16768BA600753D0A /* SDKImage+Resize.m in Sources */,
-				27CBBFBF16768BA600753D0A /* SDKImage+RoundedCorner.m in Sources */,
+				27CBBFBD16768BA600753D0A /* UIImage+Alpha.m in Sources */,
+				27CBBFBE16768BA600753D0A /* UIImage+Resize.m in Sources */,
+				27CBBFBF16768BA600753D0A /* UIImage+RoundedCorner.m in Sources */,
 				27CBBFC016768BA600753D0A /* FLGlobalMenuController.m in Sources */,
 				27CBBFC116768BA600753D0A /* NSView+FLAdditions.m in Sources */,
 				27CBBFE516768BA600753D0A /* FLJson.m in Sources */,
@@ -12464,19 +12558,8 @@
 				271A05511677F3D4005E16A5 /* FLSingleRowColumnArrangement.m in Sources */,
 				271A055A1677F3D4005E16A5 /* FLVerticalGridArrangement.m in Sources */,
 				271A05631677F3D4005E16A5 /* FLRectLayout.m in Sources */,
-				271A056C1677F3D4005E16A5 /* FLColor+FLMoreColors.m in Sources */,
-				271A05751677F3D4005E16A5 /* FLColor+FLUtils.m in Sources */,
-				271A05821677F3D4005E16A5 /* FLColor_t.m in Sources */,
-				271A058B1677F3D4005E16A5 /* FLColorRange.m in Sources */,
-				271A05981677F3D4005E16A5 /* NSImage+FLCompatibility.m in Sources */,
 				271A05A11677F3D4005E16A5 /* FLDisplayFormatter.m in Sources */,
 				271A05AA1677F3D4005E16A5 /* FLDisplayFormatters.m in Sources */,
-				271A05B71677F3D4005E16A5 /* FLEdgeInsets.m in Sources */,
-				271A05C81677F3D4005E16A5 /* FLRect.m in Sources */,
-				271A05E11677F3D4005E16A5 /* FLSize.m in Sources */,
-				271A05EA1677F3D4005E16A5 /* SDKImage+FLColorize.m in Sources */,
-				271A05F31677F3D4005E16A5 /* SDKImage+FLUtils.m in Sources */,
-				271A06001677F3D4005E16A5 /* SDKImageView+FLViewGeometry.m in Sources */,
 				271A06091677F3D4005E16A5 /* FLProgressFactory.m in Sources */,
 				271A061A1677F3D4005E16A5 /* __FLSlideshowOptions.m in Sources */,
 				271A06231677F3D4005E16A5 /* FLSlideshowOptions.m in Sources */,
@@ -12487,16 +12570,16 @@
 				271A06501677F3D4005E16A5 /* FLViewController.m in Sources */,
 				271A06591677F3D4005E16A5 /* FLViewControllerStack.m in Sources */,
 				271A06621677F3D4005E16A5 /* FLPresentationBehavior.m in Sources */,
-				271A066B1677F3D4005E16A5 /* SDKViewController+FLPresentationBehavior.m in Sources */,
+				271A066B1677F3D4005E16A5 /* UIViewController+FLPresentationBehavior.m in Sources */,
 				271A06741677F3D4005E16A5 /* FLProgressViewController.m in Sources */,
-				271A067D1677F3D4005E16A5 /* SDKViewController+FLAdditions.m in Sources */,
+				271A067D1677F3D4005E16A5 /* UIViewController+FLAdditions.m in Sources */,
 				271A06861677F3D4005E16A5 /* FLViewControllerTransitionAnimation.m in Sources */,
 				271A068F1677F3D4005E16A5 /* FLWizardPanel.m in Sources */,
 				271A06981677F3D4005E16A5 /* FLWizardViewController.m in Sources */,
 				271A06A11677F3D4005E16A5 /* FLLoginWizardPanel.m in Sources */,
 				271A06AA1677F3D4005E16A5 /* FLProgressWizardPanel.m in Sources */,
 				271A06B31677F3D4005E16A5 /* FLArrangeableView.m in Sources */,
-				271A06BC1677F3D4005E16A5 /* SDKView+FLArrangeable.m in Sources */,
+				271A06BC1677F3D4005E16A5 /* UIView+FLArrangeable.m in Sources */,
 				271A06C51677F3D5005E16A5 /* FLBreadcrumb.m in Sources */,
 				271A06CE1677F3D5005E16A5 /* FLBreadcrumbBarView.m in Sources */,
 				271A06D71677F3D5005E16A5 /* FLGradientView.m in Sources */,
@@ -12513,6 +12596,21 @@
 				271A073E1677FA1F005E16A5 /* NSViewController+FLCompatibility.m in Sources */,
 				271A07491677FFDB005E16A5 /* NSView+FLCompatibility.m in Sources */,
 				271A07541678037E005E16A5 /* NSObject+FLTheme.m in Sources */,
+				271A078E16785434005E16A5 /* FLAutoPositionedViewController.m in Sources */,
+				27C364D816786C210029D2C5 /* NSColor+FLCompatibility.m in Sources */,
+				27C364EA16786C5F0029D2C5 /* FLColor_t.m in Sources */,
+				27C364F316786C5F0029D2C5 /* FLColorRange.m in Sources */,
+				27C364FC16786C5F0029D2C5 /* UIColor+FLMoreColors.m in Sources */,
+				27C3650516786C5F0029D2C5 /* UIColor+FLUtils.m in Sources */,
+				27C3652016786D440029D2C5 /* FLEdgeInsets.m in Sources */,
+				27C3653116786D440029D2C5 /* FLRect.m in Sources */,
+				27C3654A16786D440029D2C5 /* FLSize.m in Sources */,
+				27C3655D16786D840029D2C5 /* UIImage+FLColorize.m in Sources */,
+				27C3656616786D840029D2C5 /* UIImage+FLUtils.m in Sources */,
+				27C3657116786DF50029D2C5 /* NSImage+FLCompatibility.m in Sources */,
+				27C36580167873EE0029D2C5 /* UILabel+FLExtras.m in Sources */,
+				27C36589167873EE0029D2C5 /* UIView+FLViewGeometry.m in Sources */,
+				27C36592167873EE0029D2C5 /* UIView+ViewAnimation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 GreenTongue Software, LLC. All rights reserved.
 //
 
-#import "FLCocoaUICompatibility.h"
+#import "FLCocoaUIRequired.h"
 #import "FLArrangement.h"
 
 #define FLVerticalGridArrangementDefaultCellHeight 60.0f

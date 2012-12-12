@@ -14,14 +14,14 @@ static void * const kArrangeableObjectKey = (void*)&kArrangeableObjectKey;
 @interface FLArrangeableObjectState : NSObject {
 @private
     FLArrangeableState _arrangeableState;
-    SDKEdgeInsets _arrangeableInsets;
+    UIEdgeInsets _arrangeableInsets;
     FLArrangeableGrowMode _arrangeableGrowMode;
     FLArrangeableWeight _arrangeableWeight;
 
 }
 + (FLArrangeableObjectState*) arrangebleObjectState;
 @property (readwrite, assign, nonatomic) FLArrangeableState arrangeableState;
-@property (readwrite, assign, nonatomic) SDKEdgeInsets arrangeableInsets; // deltas from arrangement.arrangeableInsets
+@property (readwrite, assign, nonatomic) UIEdgeInsets arrangeableInsets; // deltas from arrangement.arrangeableInsets
 @property (readwrite, assign, nonatomic) FLArrangeableGrowMode arrangeableGrowMode;
 @property (readwrite, assign, nonatomic) FLArrangeableWeight arrangeableWeight;
 
@@ -57,12 +57,12 @@ FLSynthesizeAssociatedProperty(retain_nonatomic, arrangeableStateObject, setArra
     return object;
 }
 
-- (SDKEdgeInsets) arrangeableInsets {
+- (UIEdgeInsets) arrangeableInsets {
     FLArrangeableObjectState* object = [self arrangeableStateObject];
-    return object ? object.arrangeableInsets : FLEdgeInsetsZero;
+    return object ? object.arrangeableInsets : UIEdgeInsetsZero;
 }
 
-- (void) setFrameInsets:(SDKEdgeInsets)arrangeableInsets {
+- (void) setFrameInsets:(UIEdgeInsets)arrangeableInsets {
     FLArrangeableObjectState* object = [self arrangeableStateObjectCreatedIfNeeded];
     object.arrangeableInsets = arrangeableInsets;
 }

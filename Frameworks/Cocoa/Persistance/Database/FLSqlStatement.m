@@ -8,7 +8,6 @@
 
 #import "FLSqlStatement.h"
 #import "FLGuid.h"
-#import "FLColor.h"
 #import "FLSqlBuilder.h"
 #import "FLDatabase_Internal.h"
 
@@ -503,11 +502,11 @@ sqlite3_stmt* FLStatmentFailed(	sqlite3_stmt* stmt) {
 }
 @end
 
-#import "FLCompatibility.h"
+#import "FLCocoaRequired.h"
 
-@implementation SDKImage (FLSqlStatement)
+@implementation UIImage (FLSqlStatement)
 + (id) decodeObjectWithSqliteColumnData:(NSData*) data {
-	return [SDKImage imageWithData:data];
+	return [UIImage imageWithData:data];
 }
 - (void) bindToStatement:(FLSqlStatement*) statement parameterIndex:(int) parameterIndex {
 FIXME("osx");
@@ -521,7 +520,7 @@ FIXME("osx");
 }
 @end
 
-//@implementation FLColor (FLDatabaseIterator) 
+//@implementation UIColor (FLDatabaseIterator) 
 //- (void) bindToStatement:(FLDatabaseIterator*) statement parameterIndex:(int) parameterIndex
 //{
 //	[statement bindText:parameterIndex text:[self toRgbString]];

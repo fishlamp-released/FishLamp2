@@ -8,7 +8,7 @@
 
 #import "FLDataProviderPhotoViewController.h"
 #import "FLDeprecatedButtonbarToolbar.h"
-#import "SDKImage+Colorize.h"
+#import "UIImage+Colorize.h"
 #import "FLViewControllerStack.h"
 
 @implementation FLDataProviderPhotoViewController

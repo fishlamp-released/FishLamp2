@@ -137,7 +137,7 @@ FLAssertFailed_v(@"incomment and fix this");
 //		  action.progressController = [FLLegacyProgressView defaultProgressView];
 //	  }
 //	  [action.progressView setStartDelay:0.3]; 
-//	[action.progressView setAutoLayoutMode:FLContentModeMake( FLContentModeHorizontalCentered, FLContentModeVerticalBottom)];
+//	[action.progressView setAutoLayoutMode:FLRectLayoutMake( FLRectLayoutHorizontalCentered, FLRectLayoutVerticalBottom)];
 //	  [action.progressView setProgressViewAlpha:0.4];
 //	  action.actionDescription.actionType = FLActionDescriptionTypeLoad;
 //	  

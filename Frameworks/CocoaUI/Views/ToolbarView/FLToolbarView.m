@@ -8,14 +8,16 @@
 
 #import "FLToolbarView.h"
 #import "FLArrangement.h"
-#import "SDKImage+Colorize.h"
+#import "UIImage+FLColorize.h"
 #import "FLGradientView.h"
 #import "FLViewController.h"
-#import "UILabel+FLExtras.h"
+
 #import "FLGradientView.h"
 #import "FLSingleRowColumnArrangement.h"
 
-
+#if IOS
+#import "UILabel+FLExtras.h"
+#endif
 
 
 @implementation FLToolbarView
@@ -28,7 +30,7 @@
 - (id) initWithFrame:(CGRect) frame
 {
 	if((self = [super initWithFrame:frame])) {
-		self.backgroundColor = [SDKColor clearColor];
+		self.backgroundColor = [UIColor clearColor];
 		self.autoresizingMask = UIViewAutoresizingFlexibleWidth | 
                                 UIViewAutoresizingFlexibleRightMargin;
 		self.autoresizesSubviews = NO;
@@ -127,7 +129,7 @@
     }
 }
 
-- (void) setBackgroundView:(SDKView*) backgroundView
+- (void) setBackgroundView:(UIView*) backgroundView
 {
     if(_backgroundView) {
         [_backgroundView removeFromSuperview];
@@ -156,7 +158,7 @@
     }];
 }
 
-- (void) viewControllerTitleDidChange:(SDKViewController*) viewController
+- (void) viewControllerTitleDidChange:(UIViewController*) viewController
 {
     [self visitAllToolbarItems:^(id toolbarItem) {
         [toolbarItem toolbarTitleDidChange:viewController.title];
@@ -172,12 +174,12 @@
     [self setNeedsLayout];
 }
 
-- (void) viewControllerViewWillAppear:(SDKViewController*) viewController
+- (void) viewControllerViewWillAppear:(UIViewController*) viewController
 {
     [self viewControllerTitleDidChange:viewController];
 }
 
-- (void) viewController:(SDKViewController*) viewController
+- (void) viewController:(UIViewController*) viewController
 willBePushedOnNavigationController:(UINavigationController *)controller
 {
 

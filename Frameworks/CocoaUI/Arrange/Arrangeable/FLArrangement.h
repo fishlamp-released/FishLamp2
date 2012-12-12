@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "FLCocoaUICompatibility.h"
+#import "FLCocoaUIRequired.h"
 #import "FLArrangeable.h"
 #import "FLArrangeableContainer.h"
 #import "FLEdgeInsets.h"
@@ -20,16 +20,16 @@ typedef void (^FLArrangementFrameSetter)(id view, CGRect newFrame);
 
 @interface FLArrangement : NSObject {
 @private
-	SDKEdgeInsets _outerInsets;
-	SDKEdgeInsets _innerInsets;
+	UIEdgeInsets _outerInsets;
+	UIEdgeInsets _innerInsets;
     
     FLArrangementWillLayoutBlock _onWillArrange;
     FLArrangementFrameSetter _frameSetter;
 }
 
-@property (readwrite, assign, nonatomic) SDKEdgeInsets outerInsets;
+@property (readwrite, assign, nonatomic) UIEdgeInsets outerInsets;
 
-@property (readwrite, assign, nonatomic) SDKEdgeInsets innerInsets;
+@property (readwrite, assign, nonatomic) UIEdgeInsets innerInsets;
 
 @property (readwrite, copy, nonatomic) FLArrangementFrameSetter frameSetter;
  

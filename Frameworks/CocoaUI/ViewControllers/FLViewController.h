@@ -6,9 +6,10 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import "FLCocoaUICompatibility.h"
-#import "SDKViewController+FLAdditions.h"
+#import "FLCocoaUIRequired.h"
+#import "UIViewController+FLAdditions.h"
+#import "UIViewController+FLPresentationBehavior.h"
 
-@interface FLViewController : SDKViewController
+@interface FLViewController : UIViewController
 
 @end

@@ -1079,7 +1079,7 @@ FLSynthesizeStructProperty(saveChangesImmediately, setSaveChangesImmediately, BO
 		view.title = NSLocalizedString(@"Network connection is unavailable.", nil);
 		view.text = NSLocalizedString(@"A network connection is required to save changes.", nil);
 #if VIEW_AUTOLAYOUT
-		view.autoLayoutMode = FLContentModeMake(FLContentModeHorizontalCentered, FLContentModeVerticalTop);
+		view.autoLayoutMode = FLRectLayoutMake(FLRectLayoutHorizontalCentered, FLRectLayoutVerticalTop);
 #endif        
 		[view showNotification];
 		FLReleaseWithNil(view);

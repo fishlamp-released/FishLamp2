@@ -19,10 +19,10 @@
     if(self) {
 //        self.dialogViewStyle = FLDialogViewStyleNotificationBar;
         if(DeviceIsPad()) {
-            self.contentMode = FLContentModeMake(FLContentModeHorizontalRight, FLContentModeVerticalBottom);
+            self.contentMode = FLRectLayoutMake(FLRectLayoutHorizontalRight, FLRectLayoutVerticalBottom);
         }
         else {
-            self.contentMode = FLContentModeMake(FLContentModeHorizontalFill, FLContentModeVerticalBottom);
+            self.contentMode = FLRectLayoutMake(FLRectLayoutHorizontalFill, FLRectLayoutVerticalBottom);
         }
     }
     return self;   

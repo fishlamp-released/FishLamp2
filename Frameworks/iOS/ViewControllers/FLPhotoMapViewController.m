@@ -10,7 +10,7 @@
 #import "FLGpsUtilities.h"
 #import "FLThumbnailButton.h"
 
-#import "SDKImage+Colorize.h"
+#import "UIImage+Colorize.h"
 #import "MKMapView+FLExtras.h"
 #import "FLFloatingViewController.h"
 

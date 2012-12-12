@@ -7,8 +7,8 @@
 //
 #import <QuartzCore/QuartzCore.h>
 #import "FLGradientWidget.h"
-#import "FLColor+FLMoreColors.h"
-#import "FLColor+FLExtras.h"
+#import "UIColor+FLMoreColors.h"
+#import "UIColor+FLUtils.h"
 #import "FLColor_t.h"
 #import "FLColorRange.h"
 #import "FLViewGradients.h"

@@ -11,7 +11,7 @@
 
 #import "FLGradientButton.h"
 #import "FLToolbarView.h"
-#import "SDKImage+Colorize.h"
+#import "UIImage+Colorize.h"
 #import "FLToolbarView.h"
 
 #import "FLViewControllerStack.h"

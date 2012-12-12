@@ -75,7 +75,7 @@
 }
 #endif
 
-- (FLColor*) colorForState {
+- (UIColor*) colorForState {
     if(self.isEnabled) {
         if(self.isHighlighted) {
             return self.highlightedTextColor;

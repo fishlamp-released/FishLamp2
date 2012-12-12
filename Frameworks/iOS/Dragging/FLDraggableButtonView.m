@@ -67,7 +67,7 @@
 //        [self.rootWidget addWidget:self.dragBar];
         
         FLGradientWidget* widget = [FLGradientWidget widget];
-        widget.contentMode = FLContentModeMake(FLContentModeHorizontalFill, FLContentModeVerticalFill);
+        widget.contentMode = FLRectLayoutMake(FLRectLayoutHorizontalFill, FLRectLayoutVerticalFill);
         widget.hidden = YES;
         [self.rootWidget addWidget:widget];
         

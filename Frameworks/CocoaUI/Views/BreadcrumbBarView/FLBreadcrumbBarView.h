@@ -21,16 +21,16 @@ typedef enum {
     FLOrderedCollection* _breadcrumbs;
     FLVerticalTextAlignment _verticalTextAlignment;
 
-    FLColor* _enabledTextColor;
-    FLColor* _disabledTextColor;
-    FLColor* _highlightedTextColor;
-    FLFont* _textFont;
+    UIColor* _enabledTextColor;
+    UIColor* _disabledTextColor;
+    UIColor* _highlightedTextColor;
+    UIFont* _textFont;
 }
 
-@property (readwrite, retain, nonatomic) FLColor* enabledTextColor;
-@property (readwrite, retain, nonatomic) FLColor* disabledTextColor;
-@property (readwrite, retain, nonatomic) FLColor* highlightedTextColor;
-@property (readwrite, retain, nonatomic) FLFont* textFont;
+@property (readwrite, retain, nonatomic) UIColor* enabledTextColor;
+@property (readwrite, retain, nonatomic) UIColor* disabledTextColor;
+@property (readwrite, retain, nonatomic) UIColor* highlightedTextColor;
+@property (readwrite, retain, nonatomic) UIFont* textFont;
 
 @property (readwrite, assign, nonatomic) FLVerticalTextAlignment verticalTextAlignment;
 

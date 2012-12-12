@@ -7,6 +7,7 @@
 //
 
 #import "NSValue+FLCompatibility.h"
+#import "FLEdgeInsets.h"
 
 #if OSX
 @implementation NSValue (FLCompatibility)
@@ -20,6 +21,10 @@
 + (NSValue *)valueWithCGRect:(CGRect)rect {
     return [NSValue valueWithRect:rect];
 }
++ (NSValue *)valueWithUIEdgeInsets:(UIEdgeInsets)insets {
+//FIXME
+    return nil;
+}
 - (CGPoint)CGPointValue {
     return self.pointValue;
 }
@@ -28,6 +33,10 @@
 }
 - (CGRect)CGRectValue {
     return self.rectValue;
+}
+- (UIEdgeInsets) UIEdgeInsetsValue {
+//FIXME
+    return UIEdgeInsetsZero;
 }
 @end
 #endif

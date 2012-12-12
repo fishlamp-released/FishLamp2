@@ -1,5 +1,5 @@
 //
-//  SDKImage.h
+//  UIImage.h
 //  Downloader
 //
 //  Created by Mike Fullerton on 11/26/12.
@@ -20,7 +20,7 @@ extern NSString* const FLImageTypeOriginal;
 
 @interface FLStorableImage : FLStorable {
 @private
-	SDKImage* _image;
+	UIImage* _image;
 	NSData* _imageData;
 	NSDictionary* _exifDictionary;
     FLImageProperties* _imageProperties;
@@ -30,27 +30,27 @@ extern NSString* const FLImageTypeOriginal;
 @property (readwrite, strong) FLImageProperties* imageProperties;
 @property (readwrite, strong) id<FLImageStorageStrategy>  storageStrategy;
 
-@property (readonly, strong, nonatomic) SDKImage* image;
+@property (readonly, strong, nonatomic) UIImage* image;
 @property (readonly, strong, nonatomic) NSData* imageData;
 @property (readwrite, strong, nonatomic) NSDictionary* exifDictionary;
 
 - (id) initWithImageProperties:(FLImageProperties*) imageProperties 
                storageStrategy:(id<FLImageStorageStrategy>) storageStrategy;
 
-- (id) initWithImage:(SDKImage*) imageOrNil
+- (id) initWithImage:(UIImage*) imageOrNil
       exifDictionary:(NSDictionary*) exifDictionaryOrNil 
            imageData:(NSData*) imageDataOrNil;
 
 + (id) image;
 
-+ (id) imageWithImage:(SDKImage*) image 
++ (id) imageWithImage:(UIImage*) image 
        exifDictionary:(NSDictionary*) exifDictionary
             imageData:(NSData*) imageData;
 
 + (id) imageWithImageProperties:(FLImageProperties*) imageProperties 
                 storageStrategy:(id<FLImageStorageStrategy>) storageStrategy;
 
-- (void) setImage:(SDKImage*) image 
+- (void) setImage:(UIImage*) image 
    exifDictionary:(NSDictionary*) exifDictionary
         imageData:(NSData*) imageData;
 
@@ -60,10 +60,10 @@ extern NSString* const FLImageTypeOriginal;
 
 @interface FLStorableImage (ExtendedConstruction)
 
-- (id) initWithImage:(SDKImage*) image;
+- (id) initWithImage:(UIImage*) image;
 - (id) initWithData:(NSData*) data;
 + (id) imageWithData:(NSData*) imageData;
-+ (id) imageWithImage:(SDKImage*) image exifDictionary:(NSDictionary*) exifDictionary;
++ (id) imageWithImage:(UIImage*) image exifDictionary:(NSDictionary*) exifDictionary;
 + (id) imageWithImageProperties:(FLImageProperties*) imageProperties;
 - (id) initWithImageProperties:(FLImageProperties*) imageProperties;
 

@@ -6,10 +6,8 @@
 //  Copyright 2011 GreenTongue Software. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
+#import "FLCocoaUIRequired.h"
 #import "FLStorableObject.h"
-#import "SDKImage.h"
 
 @class FLQueuedAsset;
 
@@ -19,7 +17,7 @@
 
 @property (readwrite, strong, nonatomic) NSString* assetUID; //
 @property (readonly, strong, nonatomic) NSURL* assetURL; // file: or assets-library:
-@property (readonly, strong, nonatomic) SDKImage* thumbnailImage;
+@property (readonly, strong, nonatomic) UIImage* thumbnailImage;
 
 //- (void) deleteFromAssetStorage;
 

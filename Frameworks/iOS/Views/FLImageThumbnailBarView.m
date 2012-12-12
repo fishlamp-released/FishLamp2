@@ -37,7 +37,7 @@
 	{
 		self.showFrame = YES;
 		self.frameWidth = 2.0f;
-		self.contentMode = FLContentModeFill;
+		self.contentMode = FLRectLayoutFill;
 		self.imageWidget = [FLImageWidget imageWidgetWithFrame:CGRectZero];
 		self.imageWidget.backgroundColor = [UIColor lightGrayColor];
 		self.imageWidget.imageContentMode = FLWidgetImageContentModeScaleAspectFill;

@@ -8,7 +8,7 @@
 
 #import "FLFloatingView.h"
 #import "FLPathUtilities.h"
-#import "FLColor+FLExtras.h"
+#import "UIColor+FLUtils.h"
 #import "FLColorRange.h"
 
 @implementation FLFloatingView

@@ -8,7 +8,7 @@
 
 #import "FLArrangement.h"
 
-// - (SDKEdgeInsets) addInnerInsetsToOuterInsets:(SDKEdgeInsets) innerInsets;
+// - (UIEdgeInsets) addInnerInsetsToOuterInsets:(UIEdgeInsets) innerInsets;
 
 @implementation FLArrangement
 
@@ -58,8 +58,8 @@
     return layoutSize;
 }
 
-- (SDKEdgeInsets) addInnerInsetsToOuterInsets:(SDKEdgeInsets) innerInsets {
-    SDKEdgeInsets insets = self.outerInsets;
+- (UIEdgeInsets) addInnerInsetsToOuterInsets:(UIEdgeInsets) innerInsets {
+    UIEdgeInsets insets = self.outerInsets;
     insets.top += innerInsets.top;
     insets.bottom -= innerInsets.bottom;
     insets.left += innerInsets.left;
@@ -82,7 +82,7 @@ CGRect FLArrangeableStateCalcFrame(FLArrangeableState state, CGRect frame) {
           forObject:(id) object {
 
     FLArrangeableState state = [object arrangeableState];
-    SDKEdgeInsets insets = [self addInnerInsetsToOuterInsets:state._lastInsets];
+    UIEdgeInsets insets = [self addInnerInsetsToOuterInsets:state._lastInsets];
     CGRect newFrame = FLRectInsetWithEdgeInsets(frame, insets);
     
     FLArrangeableGrowMode growMode = [object arrangeableGrowMode];
@@ -111,7 +111,7 @@ CGRect FLArrangeableStateCalcFrame(FLArrangeableState state, CGRect frame) {
 
 //- (CGRect) padFrameForArrangeableFrame:(id) arrangeableFrame unpaddedRect:(CGRect) unpaddedRect {
 //    
-//    SDKEdgeInsets padding = [self addouterInsetsToInsets:[arrangeableFrame innerInsets]];
+//    UIEdgeInsets padding = [self addouterInsetsToInsets:[arrangeableFrame innerInsets]];
 //    unpaddedRect.origin.x += padding.left;
 //    unpaddedRect.origin.y += padding.top;
 //    unpaddedRect.size.width -= padding.left + padding.right;

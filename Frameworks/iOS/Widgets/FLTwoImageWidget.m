@@ -18,11 +18,11 @@
 	if((self = [super initWithFrame:frame]))
 	{
 		_topImageWidget = [[FLImageWidget alloc] initWithFrame:frame];
-		_topImageWidget.contentMode = FLContentModeCentered;
+		_topImageWidget.contentMode = FLRectLayoutCentered;
 		_topImageWidget.imageContentMode = FLWidgetImageContentModeScaleAspectFit;
 		
 		_bottomImageWidget = [[FLImageWidget alloc] initWithFrame:frame];
-		_bottomImageWidget.contentMode = FLContentModeCentered;
+		_bottomImageWidget.contentMode = FLRectLayoutCentered;
 		_bottomImageWidget.imageContentMode = FLWidgetImageContentModeScaleAspectFit;
 		
 		[self addWidget:_bottomImageWidget];

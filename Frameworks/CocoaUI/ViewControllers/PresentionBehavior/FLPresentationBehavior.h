@@ -6,8 +6,7 @@
 //  Copyright (c) 2012 GreenTongue Software, LLC. All rights reserved.
 //
 
-#import "FLCocoa.h"
-#import "FLCocoaUICompatibility.h"
+#import "FLCocoaUIRequired.h"
 
 @protocol FLPresentationBehavior <NSObject>
 
@@ -15,17 +14,17 @@
 // should actually be a presentation behavior itself. When it is, remove this flag.
 @property (readonly, assign, nonatomic) BOOL canAutoDismissDontUseThis;
 
-- (void) willPresentViewController:(SDKViewController*) viewController
-            inParentViewController:(SDKViewController*) parentViewController;
+- (void) willPresentViewController:(UIViewController*) viewController
+            inParentViewController:(UIViewController*) parentViewController;
 
-- (void) didPresentViewController:(SDKViewController*) viewController
-           inParentViewController:(SDKViewController*) parentViewController;
+- (void) didPresentViewController:(UIViewController*) viewController
+           inParentViewController:(UIViewController*) parentViewController;
 
-- (void) willDismissViewController:(SDKViewController*) viewController
-          fromParentViewController:(SDKViewController*) parentViewController;
+- (void) willDismissViewController:(UIViewController*) viewController
+          fromParentViewController:(UIViewController*) parentViewController;
 
-- (void) didDismissViewController:(SDKViewController*) viewController
-         fromParentViewController:(SDKViewController*) parentViewController;
+- (void) didDismissViewController:(UIViewController*) viewController
+         fromParentViewController:(UIViewController*) parentViewController;
 
 @end
 

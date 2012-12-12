@@ -37,7 +37,7 @@
 	if((self = [super initWithFrame:frame]))
 	{
 #if VIEW_AUTOLAYOUT
-        self.autoLayoutMode = FLContentModeMake(FLContentModeHorizontalFill, FLContentModeVerticalBottom);
+        self.autoLayoutMode = FLRectLayoutMake(FLRectLayoutHorizontalFill, FLRectLayoutVerticalBottom);
 #endif        
         self.wantsApplyTheme = YES;
 

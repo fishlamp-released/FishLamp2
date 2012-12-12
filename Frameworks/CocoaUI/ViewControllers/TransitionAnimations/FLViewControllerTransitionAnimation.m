@@ -7,7 +7,7 @@
 //
 
 #import "FLViewControllerTransitionAnimation.h"
-#import "SDKViewController+FLAdditions.h"
+#import "UIViewController+FLAdditions.h"
 
 @implementation FLViewControllerTransitionAnimation
 
@@ -18,16 +18,16 @@
     return FLAutorelease([[[self class] alloc] init]);
 }
 
-- (void) beginShowAnimationForViewController:(SDKViewController*) viewController
-    parentViewController:(SDKViewController*) parentViewController
+- (void) beginShowAnimationForViewController:(UIViewController*) viewController
+    parentViewController:(UIViewController*) parentViewController
     finishedBlock: (FLViewControllerAnimationBlock) finishedBlock
 {
     if(finishedBlock)
         finishedBlock(viewController, parentViewController);
 }    
 
-- (void) beginHideAnimationForViewController:(SDKViewController*) viewController
-    parentViewController:(SDKViewController*) parentViewController
+- (void) beginHideAnimationForViewController:(UIViewController*) viewController
+    parentViewController:(UIViewController*) parentViewController
     finishedBlock: (FLViewControllerAnimationBlock) finishedBlock
 {
     if(finishedBlock)
@@ -64,8 +64,8 @@ FLSynthesizeSingleton(FLDropAndSlideInFromRightAnimation);
     return [self instance];
 }
 
-- (void) beginShowAnimationForViewController:(SDKViewController*) viewController
-    parentViewController:(SDKViewController*) parentViewController
+- (void) beginShowAnimationForViewController:(UIViewController*) viewController
+    parentViewController:(UIViewController*) parentViewController
     finishedBlock: (FLViewControllerAnimationBlock) finishedBlock
 {
 #if IOS
@@ -73,7 +73,7 @@ FLSynthesizeSingleton(FLDropAndSlideInFromRightAnimation);
     viewController.view.frame = FLRectSetLeft(destFrame, FLRectGetRight(destFrame));
     
     CGFloat savedAlpha = parentViewController.view.alpha;
-    [SDKView animateWithDuration:0.4
+    [UIView animateWithDuration:0.4
                 delay:0.0f
                 options:UIViewAnimationOptionCurveEaseInOut
                 animations:^{
@@ -93,8 +93,8 @@ FLSynthesizeSingleton(FLDropAndSlideInFromRightAnimation);
 #endif
 }
 
-- (void) beginHideAnimationForViewController:(SDKViewController*) viewController
-    parentViewController:(SDKViewController*) parentViewController
+- (void) beginHideAnimationForViewController:(UIViewController*) viewController
+    parentViewController:(UIViewController*) parentViewController
     finishedBlock: (FLViewControllerAnimationBlock) finishedBlock
 {
 #if IOS
@@ -102,7 +102,7 @@ FLSynthesizeSingleton(FLDropAndSlideInFromRightAnimation);
     CGFloat savedAlpha = parentViewController.view.alpha;
     parentViewController.view.alpha = 0.0;
     
-    [SDKView animateWithDuration:0.4
+    [UIView animateWithDuration:0.4
                 delay:0.0f
                 options:UIViewAnimationOptionCurveEaseInOut
                 animations:^{
@@ -131,8 +131,8 @@ FLSynthesizeSingleton(FLDropAndSlideInFromLeftAnimation);
     return [self instance];
 }
 
-- (void) beginShowAnimationForViewController:(SDKViewController*) viewController
-                        parentViewController:(SDKViewController*) parentViewController
+- (void) beginShowAnimationForViewController:(UIViewController*) viewController
+                        parentViewController:(UIViewController*) parentViewController
                                finishedBlock:(FLViewControllerAnimationBlock) finishedBlock
 {
 
@@ -143,7 +143,7 @@ FLSynthesizeSingleton(FLDropAndSlideInFromLeftAnimation);
     CGFloat savedAlpha = parentViewController.view.alpha;
     
 
-    [SDKView animateWithDuration:0.4
+    [UIView animateWithDuration:0.4
                 delay:0.0f
                 options:UIViewAnimationOptionCurveEaseInOut
                 animations:^{
@@ -161,8 +161,8 @@ FLSynthesizeSingleton(FLDropAndSlideInFromLeftAnimation);
 #endif
 }
 
-- (void) beginHideAnimationForViewController:(SDKViewController*) viewController
-                        parentViewController:(SDKViewController*) parentViewController
+- (void) beginHideAnimationForViewController:(UIViewController*) viewController
+                        parentViewController:(UIViewController*) parentViewController
                                finishedBlock: (FLViewControllerAnimationBlock) finishedBlock
 {
 #if IOS
@@ -172,7 +172,7 @@ FLSynthesizeSingleton(FLDropAndSlideInFromLeftAnimation);
     CGFloat savedAlpha = parentViewController.view.alpha;
     parentViewController.view.alpha = 0.0;
     
-    [SDKView animateWithDuration:0.4
+    [UIView animateWithDuration:0.4
                 delay:0.0f
                 options:UIViewAnimationOptionCurveEaseInOut
                 animations:^{
@@ -202,8 +202,8 @@ FLSynthesizeSingleton(FLCrossFadeAnimation);
     return [self instance];
 }
 
-- (void) beginShowAnimationForViewController:(SDKViewController*) viewController
-    parentViewController:(SDKViewController*) parentViewController
+- (void) beginShowAnimationForViewController:(UIViewController*) viewController
+    parentViewController:(UIViewController*) parentViewController
     finishedBlock: (FLViewControllerAnimationBlock) finishedBlock
 {
 #if IOS
@@ -211,7 +211,7 @@ FLSynthesizeSingleton(FLCrossFadeAnimation);
     CGFloat savedNewAlpha = viewController.view.alpha;
     viewController.view.alpha = 0.0;
     
-    [SDKView animateWithDuration:0.25
+    [UIView animateWithDuration:0.25
                 delay:0.0f
                 options:UIViewAnimationOptionCurveEaseInOut
                 animations:^{
@@ -229,8 +229,8 @@ FLSynthesizeSingleton(FLCrossFadeAnimation);
 #endif
 }
 
-- (void) beginHideAnimationForViewController:(SDKViewController*) viewController
-    parentViewController:(SDKViewController*) parentViewController
+- (void) beginHideAnimationForViewController:(UIViewController*) viewController
+    parentViewController:(UIViewController*) parentViewController
     finishedBlock: (FLViewControllerAnimationBlock) finishedBlock
 {
 #if IOS
@@ -238,7 +238,7 @@ FLSynthesizeSingleton(FLCrossFadeAnimation);
     CGFloat savedNewAlpha = viewController.view.alpha;
     parentViewController.view.alpha = 0.0;
     
-    [SDKView animateWithDuration:0.25
+    [UIView animateWithDuration:0.25
                 delay:0.0f
                 options:UIViewAnimationOptionCurveEaseInOut
                 animations:^{
@@ -287,8 +287,8 @@ FLSynthesizeSingleton(FLCrossFadeAnimation);
     super_dealloc_();
 }
 
-- (void) beginShowAnimationForViewController:(SDKViewController*) viewController
-    parentViewController:(SDKViewController*) parentViewController
+- (void) beginShowAnimationForViewController:(UIViewController*) viewController
+    parentViewController:(UIViewController*) parentViewController
     finishedBlock: (FLViewControllerAnimationBlock) finishedBlock
 {
 #if IOS
@@ -319,8 +319,8 @@ FLSynthesizeSingleton(FLCrossFadeAnimation);
 #endif
 }
 
-- (void) beginHideAnimationForViewController:(SDKViewController*) viewController
-    parentViewController:(SDKViewController*) parentViewController
+- (void) beginHideAnimationForViewController:(UIViewController*) viewController
+    parentViewController:(UIViewController*) parentViewController
     finishedBlock: (FLViewControllerAnimationBlock) finishedBlock
 {
 #if IOS

@@ -46,7 +46,7 @@
 //////        bounds.size.width -= (self.innerInsets.left + self.innerInsets.right);
 //////        bounds.size.height -= (self.innerInsets.top + self.innerInsets.bottom);
 ////
-//////		SDKEdgeInsets adjustedMargins = [self addouterInsetsToInsets:view];
+//////		UIEdgeInsets adjustedMargins = [self addouterInsetsToInsets:view];
 //////		origin.x += adjustedMargins.left;
 ////		[view setLayoutFrame:containerBounds];
 ////    }
@@ -88,7 +88,7 @@
                                         cellSize.width, 
                                         cellSize.height);
 
-            SDKEdgeInsets adjustedMargins = [self addouterInsetsToInsets:view];
+            UIEdgeInsets adjustedMargins = [self addouterInsetsToInsets:view];
             frame.origin.x += adjustedMargins.left;
             frame.origin.y += adjustedMargins.top;
             frame.size.width -= (adjustedMargins.left + adjustedMargins.right);
@@ -109,7 +109,7 @@
 //                j--;
 //                continue;
 //            }
-////            SDKEdgeInsets adjustedMargins = [self addouterInsetsToInsets:view];
+////            UIEdgeInsets adjustedMargins = [self addouterInsetsToInsets:view];
 //            
 //            CGRect frame = FLRectMake(bounds.origin.x + (j * cellSize.width), top, cellSize.width, cellSize.height);
 //

@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 GreenTongue Software, LLC. All rights reserved.
 //
 
-#import "FLCocoaUICompatibility.h"
+#import "FLCocoaUIRequired.h"
 
 // transition animations
 
@@ -15,12 +15,12 @@ typedef void (^FLViewControllerAnimationBlock)(id viewController, id parentViewC
 
 @protocol FLViewControllerTransitionAnimation <NSObject> 
 
-- (void) beginShowAnimationForViewController:(SDKViewController*) viewController
-                        parentViewController:(SDKViewController*) parentViewController
+- (void) beginShowAnimationForViewController:(UIViewController*) viewController
+                        parentViewController:(UIViewController*) parentViewController
                                finishedBlock:(FLViewControllerAnimationBlock) finishedBlock; 
 
-- (void) beginHideAnimationForViewController:(SDKViewController*) viewController
-                        parentViewController:(SDKViewController*) parentViewController
+- (void) beginHideAnimationForViewController:(UIViewController*) viewController
+                        parentViewController:(UIViewController*) parentViewController
                                finishedBlock:(FLViewControllerAnimationBlock) finishedBlock; 
 
 @end  
@@ -50,7 +50,7 @@ typedef void (^FLViewControllerAnimationBlock)(id viewController, id parentViewC
 
 @interface FLPopinViewControllerAnimation : FLViewControllerTransitionAnimation {
 @private
-    SDKViewController* _parent;
-    SDKViewController* _viewController;
+    UIViewController* _parent;
+    UIViewController* _viewController;
 }
 @end

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "FLCocoaUICompatibility.h"
+#import "FLCocoaUIRequired.h"
 #import "FLArrangeable.h"
 
 // behavior
@@ -22,9 +22,9 @@
 //    FLPaddingInt bottom;
 //} FLArrangeablePadding;
 
-typedef SDKEdgeInsets FLPaddingInsets;
+typedef UIEdgeInsets FLPaddingInsets;
 
-#define FLPaddingInsetsZero SDKEdgeInsetsZero
+#define FLPaddingInsetsZero UIEdgeInsetsZero
 #define FLPaddingInsetsMake FLEdgeInsetsMake
 
 typedef enum {
@@ -44,7 +44,7 @@ typedef int8_t FLArrangeableWeight;
 
 // internal state
 
-//    SDKEdgeInsets arrangeableInsets;
+//    UIEdgeInsets arrangeableInsets;
 //    FLArrangeableWeight arrangeableWeight;
 //    FLArrangeableGrowMode arrangeableGrowMode;
 

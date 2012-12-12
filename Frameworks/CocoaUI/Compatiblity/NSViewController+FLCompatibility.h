@@ -10,6 +10,9 @@
 
 #import <Cocoa/Cocoa.h>
 @interface NSViewController (FLCompatibility)
+
+@property (readonly, assign, nonatomic) NSViewController* parentViewController;
+
 - (void) addChildViewController:(NSViewController*) viewController;
 - (BOOL) isViewLoaded;
 - (void) viewDidLoad;
@@ -17,6 +20,12 @@
 - (void) removeFromParentViewController;
 - (void) viewDidLayoutSubviews;
 
-@property (readonly, assign, nonatomic) NSViewController* parentViewController;
+- (void) viewWillDisappear:(BOOL) animated;
+- (void) viewDidDisappear:(BOOL) animated;
+
+- (void) viewWillAppear:(BOOL) animated;
+- (void) viewDidAppear:(BOOL) animated;
+
+
 @end
 #endif

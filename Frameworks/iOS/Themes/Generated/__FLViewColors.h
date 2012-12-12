@@ -16,20 +16,20 @@
 // --------------------------------------------------------------------
 @interface FLViewColors : NSObject<NSCopying, NSCoding>{ 
 @private
-    FLColor* __normalColor;
-    FLColor* __selectedColor;
-    FLColor* __highlightedColor;
-    FLColor* __disabledColor;
+    UIColor* __normalColor;
+    UIColor* __selectedColor;
+    UIColor* __highlightedColor;
+    UIColor* __disabledColor;
 } 
 
 
-@property (readwrite, strong, nonatomic) FLColor* disabledColor;
+@property (readwrite, strong, nonatomic) UIColor* disabledColor;
 
-@property (readwrite, strong, nonatomic) FLColor* highlightedColor;
+@property (readwrite, strong, nonatomic) UIColor* highlightedColor;
 
-@property (readwrite, strong, nonatomic) FLColor* normalColor;
+@property (readwrite, strong, nonatomic) UIColor* normalColor;
 
-@property (readwrite, strong, nonatomic) FLColor* selectedColor;
+@property (readwrite, strong, nonatomic) UIColor* selectedColor;
 
 + (NSString*) disabledColorKey;
 

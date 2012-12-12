@@ -6,29 +6,29 @@
 //  Copyright (c) 2012 GreenTongue Software, LLC. All rights reserved.
 //
 
-#import "FLPresentationBehavior.h"
+#import "UIViewController+FLPresentationBehavior.h"
 
 //@implementation FLPresentationBehavior
 //
-//- (void) willPresentViewController:(SDKViewController*) viewController
-//            inParentViewController:(SDKViewController*) parentViewController
+//- (void) willPresentViewController:(UIViewController*) viewController
+//            inParentViewController:(UIViewController*) parentViewController
 //{
 //    [parentViewController addChildViewController:viewController];
 //    [parentViewController.view addSubview:viewController.view];
 //}
 //
-//- (void) didPresentViewController:(SDKViewController*) viewController
-//           inParentViewController:(SDKViewController*) parentViewController
+//- (void) didPresentViewController:(UIViewController*) viewController
+//           inParentViewController:(UIViewController*) parentViewController
 //{
 //}
 //
-//- (void) willDismissViewController:(SDKViewController*) viewController
-//            fromParentViewController:(SDKViewController*) parentViewController
+//- (void) willDismissViewController:(UIViewController*) viewController
+//            fromParentViewController:(UIViewController*) parentViewController
 //{
 //}
 //
-//- (void) didDismissViewController:(SDKViewController*) viewController
-//           fromParentViewController:(SDKViewController*) parentViewController
+//- (void) didDismissViewController:(UIViewController*) viewController
+//           fromParentViewController:(UIViewController*) parentViewController
 //{
 //    [[theViewController view] removeFromSuperview];
 //    [theViewController removeFromParentViewController];
@@ -38,8 +38,8 @@
 //    return YES;
 //}
 //
-//- (void) addShadow:(SDKColor*) color 
-//            toView:(SDKView*) view
+//- (void) addShadow:(UIColor*) color 
+//            toView:(UIView*) view
 //{
 //	view.layer.shadowColor = color.CGColor;
 //	view.layer.shadowOpacity = .8;

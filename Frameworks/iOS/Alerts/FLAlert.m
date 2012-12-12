@@ -8,7 +8,7 @@
 
 #import "FLAlert.h"
 #import "FLDialogShapeView.h"
-#import "SDKImage+Colorize.h"
+#import "UIImage+Colorize.h"
 
 @interface FLAlert ()
 @property (readwrite, strong, nonatomic) FLButton* pressedButton;

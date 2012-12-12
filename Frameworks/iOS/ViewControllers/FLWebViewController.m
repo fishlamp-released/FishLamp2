@@ -9,7 +9,7 @@
 #import "FLWebViewController.h"
 #import "FLOldUserNotificationView.h"
 #import "FLGradientButton.h"
-#import "SDKImage+Colorize.h"
+#import "UIImage+Colorize.h"
 #import "FLSimpleProgressView.h"
 
 #if 0
@@ -213,7 +213,7 @@ FLAssertDefaultInitNotCalled_()
 	
 	_progress = [[FLProgressViewController alloc] initWithProgressViewClass:[FLSimpleProgressView class]];
 	[_progress setTitle:NSLocalizedString(@"Loading...", nil)];
-	[_progress setContentMode:FLContentModeCentered];
+	[_progress setContentMode:FLRectLayoutCentered];
 //	[_progress.progressView setProgressViewAlpha:0.8];
     [self presentChildViewController:_progress];
 }

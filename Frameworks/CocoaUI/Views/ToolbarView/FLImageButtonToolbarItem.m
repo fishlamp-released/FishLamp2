@@ -7,8 +7,8 @@
 //
 
 #import "FLImageButtonToolbarItem.h"
-#import "SDKImage+FLColorize.h"
-#import "SDKImage+FLResize.h"
+#import "UIImage+FLColorize.h"
+#import "UIImage+Resize.h"
 
 #if IOS
 #import "FLButton.h"
@@ -23,11 +23,13 @@
     return [self.view frame].size;
 }
 
-- (id) initWithImage:(SDKImage*) image 
+- (id) initWithImage:(UIImage*) image 
        onChosenBlock:(FLToolbarViewBlock)onChosenBlock {
 
     if((self = [super init])) {
         self.onChosen = onChosenBlock;
+
+// FIXME
 
 #if IOS
         FLButton* button = [FLButton button];
@@ -48,15 +50,15 @@
 - (id) initWithImageName:(NSString*) imageName         
            onChosenBlock:(FLToolbarViewBlock) onChosenBlock {
 
-    FLFixMe_v(@"image needs themeing");
+// FIXME @"image needs themeing");
 
-    SDKImage* image = [SDKImage whiteImageNamed:imageName];
+    UIImage* image = [UIImage whiteImageNamed:imageName];
     FLAssertIsNotNil_(image);
 
     return [self initWithImage:image onChosenBlock:onChosenBlock];
 }
 
-+ (id) imageButtonToolbarItemWithImage:(SDKImage*) image         
++ (id) imageButtonToolbarItemWithImage:(UIImage*) image         
                 onChosenBlock:(FLToolbarViewBlock) onChosenBlock {
 
     return FLAutorelease([[FLImageButtonToolbarItem alloc] initWithImage:image onChosenBlock:onChosenBlock]);

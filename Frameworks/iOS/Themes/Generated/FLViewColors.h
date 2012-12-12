@@ -13,7 +13,7 @@
 @interface FLViewColors (MyCode)
 
 
-- (FLColor*) colorForControlState:(UIControlState) controlState;
-- (void) setColor:(FLColor*) color forControlState:(UIControlState) controlState;
+- (UIColor*) colorForControlState:(UIControlState) controlState;
+- (void) setColor:(UIColor*) color forControlState:(UIControlState) controlState;
 
 @end

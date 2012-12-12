@@ -44,9 +44,9 @@ FLSynthesizeStructProperty(maximizeWidth, setMaximizeWidth, BOOL, _style);
 
 - (void) applyTheme:(FLTheme*) theme {
 #if VIEW_AUTOLAYOUT
-	if(!FLContentModeIsValid([object autoLayoutMode]) || FLContentModesAreEqual(object.autoLayoutMode, FLContentModeNone))
+	if(!FLRectLayoutIsValid([object autoLayoutMode]) || FLRectLayoutsAreEqual(object.autoLayoutMode, FLRectLayoutNone))
 	{
-		[object setAutoLayoutMode: FLContentModeCentered];
+		[object setAutoLayoutMode: FLRectLayoutCentered];
 	}
 #endif
 }

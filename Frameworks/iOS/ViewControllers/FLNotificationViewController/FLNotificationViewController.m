@@ -23,7 +23,7 @@
 - (id) init {
     self = [super init];
     if(self) {
-        self.contentMode = FLContentModeMake(FLContentModeHorizontalFill, FLContentModeVerticalBottom);
+        self.contentMode = FLRectLayoutMake(FLRectLayoutHorizontalFill, FLRectLayoutVerticalBottom);
     }
     return self;
 }

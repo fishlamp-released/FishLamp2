@@ -33,7 +33,7 @@
             [FLProgressViewController progressViewController:[FLSimpleProgressView class]
                                         presentationBehavior:[FLModalPresentationBehavior instance]];
         
-        progress.contentMode = FLContentModeMake(FLContentModeHorizontalCentered, FLContentModeVerticalBottomThird);
+        progress.contentMode = FLRectLayoutMake(FLRectLayoutHorizontalCentered, FLRectLayoutVerticalBottomThird);
         progress.viewContentsDescriptor = [FLViewContentsDescriptor viewContentsDescriptorWithTop:FLViewContentItemToolbar bottom:FLViewContentItemNone hasStatusBar:NO];
         self.progressController = progress;
 

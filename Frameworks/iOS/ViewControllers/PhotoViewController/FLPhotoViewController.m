@@ -16,7 +16,7 @@
 #import "FLImageUtilities.h"
 #import "FLSlideShowOptionsViewController.h"
 #import "FLZoomingScrollView.h"
-#import "SDKImage+Colorize.h"
+#import "UIImage+Colorize.h"
 
 #import "FLPhotoMapViewController.h"
 #import "FLDeprecatedButtonbarToolbar.h"
@@ -346,7 +346,7 @@ FLSynthesizeStructProperty(isFullScreenTapDisabled, setFullScreenTapDisabled, BO
 		FLOldNotificationView* view = [[FLOldNotificationView alloc] init];
 #if VIEW_AUTOLAYOUT
 		view.viewDelegate = self;
-		view.autoLayoutMode = FLContentModeMake(FLContentModeHorizontalFill, FLContentModeVerticalTop);
+		view.autoLayoutMode = FLRectLayoutMake(FLRectLayoutHorizontalFill, FLRectLayoutVerticalTop);
 #endif        
 		// TODO: make isHtml and maxTextHeight configurable
 		

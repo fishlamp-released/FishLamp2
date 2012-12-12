@@ -8,15 +8,15 @@
 
 #import "FLStorageStrategy.h"
 
-@class SDKImage;
+@class UIImage;
 @class FLDatabase;
 @protocol FLImageStorage;
 @class FLImageProperties;
 
 @protocol FLImageStorageStrategy <FLStorageStrategy>
 
-- (id<FLImageStorage>) storageForImage:(SDKImage*) image;
-- (FLDatabase*) databaseForImage:(SDKImage*) image;
+- (id<FLImageStorage>) storageForImage:(UIImage*) image;
+- (FLDatabase*) databaseForImage:(UIImage*) image;
 
 - (FLImageProperties*) imagePropertiesForImageURL:(NSURL*) url;
 

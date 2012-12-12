@@ -7,7 +7,7 @@
 //
 
 #import "FLManualViewLayout.h"
-#import "FLCompatibility.h"
+#import "FLCocoaRequired.h"
 
 @implementation FLManualViewLayout
 

@@ -13,7 +13,7 @@
 #import "FLApplication.h"
 #import "FLFloatingViewController.h"
 #import "FLKeyboardManager.h"
-#import "SDKViewController+FLAdditions.h"
+#import "UIViewController+FLAdditions.h"
 
 #define kAnimationDuration 0.1
 

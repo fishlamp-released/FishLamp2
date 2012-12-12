@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "FLViewController.h"
 #import "FLMenuView.h"
-#import "FLColor+FLMoreColors.h"
+#import "UIColor+FLMoreColors.h"
 #import "FLMenuItemView.h"
 #import "FLFloatingViewController.h"
 #import "FLMenuViewController.h"

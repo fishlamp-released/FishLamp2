@@ -22,9 +22,9 @@
     return self;
 }
 
-- (void) _addViewController:(SDKViewController*) viewController {
+- (void) _addViewController:(UIViewController*) viewController {
     [self addChildViewController:viewController];
-    viewController.dismissHandler = ^(SDKViewController* controller, BOOL animated) {
+    viewController.dismissHandler = ^(UIViewController* controller, BOOL animated) {
         FLViewControllerStack* stack = controller.viewControllerStack;
         if(stack.viewControllers.count == 1) {
             [stack dismissViewControllerAnimated:animated];
@@ -37,7 +37,7 @@
     [_viewControllers addObject:viewController];
 }
 
-- (id) initWithRootViewController:(SDKViewController*) rootViewController {
+- (id) initWithRootViewController:(UIViewController*) rootViewController {
     if((self = [super init])) {
         _viewControllers = [[NSMutableArray alloc] init];
         FLAssignObjectWithRetain(_rootViewController, rootViewController);
@@ -47,7 +47,7 @@
     return self;
 }
 
-+ (FLViewControllerStack*) viewControllerStack:(SDKViewController*) rootViewController {
++ (FLViewControllerStack*) viewControllerStack:(UIViewController*) rootViewController {
     return FLAutorelease([[FLViewControllerStack alloc] initWithRootViewController:rootViewController]);
 }
 
@@ -60,7 +60,7 @@
 - (void) viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     
-    for(SDKViewController* controller in _viewControllers) {
+    for(UIViewController* controller in _viewControllers) {
         if([controller isViewLoaded]) {
             controller.view.frame = self.view.bounds;
         }
@@ -70,8 +70,8 @@
 - (void) viewDidLoad {
     [super viewDidLoad];
     
-    self.view.backgroundColor = [SDKColor clearColor];
-   	self.view.layer.shadowColor = [SDKColor blackColor].CGColor;
+    self.view.backgroundColor = [UIColor clearColor];
+   	self.view.layer.shadowColor = [UIColor blackColor].CGColor;
 	self.view.layer.shadowOpacity = .8;
 	self.view.layer.shadowRadius = 20.0;
 	self.view.layer.shadowOffset = FLSizeMake(0,3);
@@ -84,7 +84,7 @@
     [self.view addSubview:_rootViewController.view];
 }  
 
-- (void)pushViewController:(SDKViewController *)viewController 
+- (void)pushViewController:(UIViewController *)viewController 
              withAnimation:(id<FLViewControllerTransitionAnimation>) animation {
     
     FLAssertIsNotNil_(_rootViewController);
@@ -97,7 +97,7 @@
     FLAssertIsNotNil_(viewController);
     FLAssertIsNotNil_(animation);
     
-    SDKViewController* parent =  _viewControllers.lastObject;
+    UIViewController* parent =  _viewControllers.lastObject;
         
     if(viewController.transitionAnimation != animation) {
         viewController.transitionAnimation = animation;
@@ -118,11 +118,11 @@
             }];
 }
 
-- (void) pushViewController:(SDKViewController *)viewController {
+- (void) pushViewController:(UIViewController *)viewController {
     [self pushViewController:viewController withAnimation:nil];
 }
 
-- (SDKViewController*) visibleViewController	 {
+- (UIViewController*) visibleViewController	 {
     return _viewControllers.lastObject;
 }
 
@@ -130,7 +130,7 @@
     if(visitor) {
         BOOL stop = NO;
         
-        for(SDKViewController* viewController in _viewControllers.reverseObjectEnumerator) {
+        for(UIViewController* viewController in _viewControllers.reverseObjectEnumerator) {
             visitor(viewController, &stop);
             
             if(stop) {
@@ -140,13 +140,13 @@
     }
 }
 
-- (void) visitViewControllersStartingWithViewController:(SDKViewController*) aViewController 
+- (void) visitViewControllersStartingWithViewController:(UIViewController*) aViewController 
                                                 visitor:(FLViewControllerStackVisitor) visitor {
     if(visitor) {
         BOOL foundIt = NO;
         BOOL stop = NO;
         
-        for(SDKViewController* viewController in _viewControllers) {
+        for(UIViewController* viewController in _viewControllers) {
             if(viewController == aViewController) {
                 foundIt = YES;
             }
@@ -162,7 +162,7 @@
     }
 }                                                
 
-- (void) _removeViewController:(SDKViewController*) viewController {
+- (void) _removeViewController:(UIViewController*) viewController {
     for(int i = _viewControllers.count - 1; i >=0; i--) {
         if([_viewControllers objectAtIndex:i] == viewController) {
             viewController.transitionAnimation = nil;
@@ -191,9 +191,9 @@
 - (void) popViewControllerWithAnimation:(id<FLViewControllerTransitionAnimation>) animation {
     FLAssertIsNotNil_(animation);
 
-    SDKViewController* visibleController = self.visibleViewController;
+    UIViewController* visibleController = self.visibleViewController;
     
-    SDKViewController* parent = [self parentControllerForController:visibleController];
+    UIViewController* parent = [self parentControllerForController:visibleController];
     FLAssertIsNotNil_(parent);
 
     if(parent != visibleController) {
@@ -212,14 +212,14 @@
     }
 }
 
-- (void) popToViewController:(SDKViewController*) viewController 
+- (void) popToViewController:(UIViewController*) viewController 
                withAnimation:(id<FLViewControllerTransitionAnimation>) animation {
     FLAssertIsImplemented_();
 }
 
-- (SDKViewController*) parentControllerForController:(SDKViewController*) aController {
-    SDKViewController* last = nil;
-    for(SDKViewController* viewController in _viewControllers) {
+- (UIViewController*) parentControllerForController:(UIViewController*) aController {
+    UIViewController* last = nil;
+    for(UIViewController* viewController in _viewControllers) {
         if(viewController == aController) {
             return last;
         }
@@ -230,8 +230,8 @@
     return nil;
 }
 	
-- (BOOL) containsViewController:(SDKViewController*) aController {
-    for(SDKViewController* viewController in _viewControllers) {
+- (BOOL) containsViewController:(UIViewController*) aController {
+    for(UIViewController* viewController in _viewControllers) {
         if(viewController == aController) {
             return YES;
         }
@@ -246,7 +246,7 @@
 
 @end
 
-@implementation SDKViewController (FLViewControllerStack)
+@implementation UIViewController (FLViewControllerStack)
 
 - (void) willBePushedOnViewControllerStack:(FLViewControllerStack*) controller {
 }

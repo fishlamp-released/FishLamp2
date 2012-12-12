@@ -20,11 +20,11 @@
         self.backgroundColor = [UIColor clearColor];
       
         _roundRect = [[FLRoundRectWidget alloc] initWithFrame:self.bounds];
-        _roundRect.contentMode = FLContentModeFill;
+        _roundRect.contentMode = FLRectLayoutFill;
         [self addWidget:_roundRect];
         
         _backgroundGradient = [[FLGradientWidget alloc] initWithFrame:self.bounds];
-        _backgroundGradient.contentMode = FLContentModeFill;
+        _backgroundGradient.contentMode = FLRectLayoutFill;
         [_roundRect addWidget:_backgroundGradient];
     }
     

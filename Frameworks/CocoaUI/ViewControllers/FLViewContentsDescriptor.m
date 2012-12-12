@@ -8,10 +8,10 @@
 
 #import "FLViewContentsDescriptor.h"
 #import "FLProperties.h"
-#import "SDKViewController+FLAdditions.h"
+#import "UIViewController+FLAdditions.h"
 
 @interface FLViewContentsDescriptor ()
-@property (readwrite, assign, nonatomic) SDKEdgeInsets padding;
+@property (readwrite, assign, nonatomic) UIEdgeInsets padding;
 @end
 
 @implementation FLViewContentsDescriptor
@@ -57,7 +57,7 @@ FLSynthesizeStructProperty(bottomItem, setBottomItem, FLViewContentItem, _flags)
 - (id) initWithTop:(FLViewContentItem) top
     bottom:(FLViewContentItem) bottom
       hasStatusBar:(BOOL) hasStatusBar
-    padding:(SDKEdgeInsets) padding {
+    padding:(UIEdgeInsets) padding {
     self = [super init];
     if(self) {
         self.topItem = top;
@@ -78,7 +78,7 @@ FLSynthesizeStructProperty(bottomItem, setBottomItem, FLViewContentItem, _flags)
 + (id) viewContentsDescriptorWithTop:(FLViewContentItem) top
     bottom:(FLViewContentItem) bottom
       hasStatusBar:(BOOL) hasStatusBar
-    padding:(SDKEdgeInsets) padding {
+    padding:(UIEdgeInsets) padding {
     return FLAutorelease([[[self class] alloc] initWithTop:top bottom:bottom hasStatusBar:hasStatusBar padding:padding]);
 }
 
@@ -177,12 +177,16 @@ FLSynthesizeStructProperty(bottomItem, setBottomItem, FLViewContentItem, _flags)
 @dynamic hasStatusBar;
 @end
 
-@implementation SDKViewController (FLViewContentsDescriptor)
+@implementation UIViewController (FLViewContentsDescriptor)
 
 FLSynthesizeAssociatedProperty(retain_nonatomic, _viewContentsDescriptor, setViewContentsDescriptor, FLViewContentsDescriptor*);
 
 - (BOOL) viewEnclosesStatusBar {
+#if IOS
     return YES;
+#else 
+    return NO;
+#endif
 }
 
 - (FLViewContentsDescriptor*) viewContentsDescriptor {
@@ -199,13 +203,14 @@ FLSynthesizeAssociatedProperty(retain_nonatomic, _viewContentsDescriptor, setVie
 }
 
 - (CGFloat) statusBarInset {
+#if IOS
     FLViewContentsDescriptor* contents = self.viewContentsDescriptor;
     if (contents.hasStatusBar && 
         self.viewEnclosesStatusBar &&
         ![[UIApplication sharedApplication] isStatusBarHidden]) {
         return [UIDevice currentDevice].statusBarHeight;
     } 
-    
+#endif
     return 0;
 }
 
@@ -258,7 +263,7 @@ FLSynthesizeAssociatedProperty(retain_nonatomic, _viewContentsDescriptor, setVie
     return self.viewContentsDescriptor.padding.right;
 }
 
-- (SDKEdgeInsets) contentViewInsets {
+- (UIEdgeInsets) contentViewInsets {
 	return UIEdgeInsetsMake([self contentViewInsetTop], 
                             [self contentViewInsetLeft], 
                             [self contentViewInsetBottom], 
@@ -356,9 +361,9 @@ CGRect FLViewContentsDescriptorCalculateContainerRect(CGRect bounds, FLViewConte
 } 
 
 #if FLViewContentsDescriptorPadding
-SDKEdgeInsets FLViewContentsDescriptorPaddingForRectLayout(FLViewContentsDescriptor contents)
+UIEdgeInsets FLViewContentsDescriptorPaddingForRectLayout(FLViewContentsDescriptor contents)
 {
-	SDKEdgeInsets padding = contents.padding;
+	UIEdgeInsets padding = contents.padding;
 	padding.top += FLViewContentsDescriptorCalculateTop(contents);
 	padding.bottom += FLViewContentsDescriptorCalculateBottom(contents);
 	return padding;

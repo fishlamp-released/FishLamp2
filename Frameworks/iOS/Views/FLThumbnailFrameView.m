@@ -7,7 +7,7 @@
 //
 
 #import "FLThumbnailFrameView.h"
-#import "SDKImage+Resize.h"
+#import "UIImage+Resize.h"
 
 CGFloat kFrameSize = 0; //5.0f
 

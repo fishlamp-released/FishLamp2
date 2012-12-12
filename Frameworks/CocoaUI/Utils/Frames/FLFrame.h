@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 GreenTongue Software, LLC. All rights reserved.
 //
 
-#import "FLCocoaUICompatibility.h"
+#import "FLCocoaUIRequired.h"
 #import "FLArrangeable.h"
 #import "FLControlState.h"
 
@@ -18,7 +18,7 @@
     
     FLArrangeableWeight _arrangeableWeight;
     FLArrangeableGrowMode _arrangeableGrowMode;
-    SDKEdgeInsets _arrangeableInsets;
+    UIEdgeInsets _arrangeableInsets;
     FLArrangeableState _arrangeableState;
 }
 

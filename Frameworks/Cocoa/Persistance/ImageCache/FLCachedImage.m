@@ -10,7 +10,7 @@
 //#import "FLCacheBehavior.h"
 //#import "FLCachedImageCacheBehavior.h"
 //#import "NSObject+Copying.h"
-//#import "SDKImage.h"
+//#import "FLCocoaUIRequired.h"
 //
 //@implementation FLCachedImage
 //
@@ -60,7 +60,7 @@
 //- (void) copySelfTo:(id) object {
 //	[super copySelfTo:object];
 //	
-//	SDKImage* file = [self.imageFile copy];
+//	UIImage* file = [self.imageFile copy];
 //	[object setImageFile:file];
 //	FLRelease(file);
 //}

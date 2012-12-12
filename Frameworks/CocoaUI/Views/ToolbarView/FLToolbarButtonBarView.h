@@ -6,6 +6,7 @@
 //	Copyright 2010 GreenTongue Software. All rights reserved.
 //
 
+#if IOS
 #import <Foundation/Foundation.h>
 #import "FLDeprecatedButtonbarView.h"
 #import "FLLegacyButton.h"
@@ -20,3 +21,4 @@
 @end
 
 
+#endif

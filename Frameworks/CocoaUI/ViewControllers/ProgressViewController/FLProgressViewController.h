@@ -6,20 +6,14 @@
 //  Copyright (c) 2012 GreenTongue Software, LLC. All rights reserved.
 //
 
-#if IOS
 #import "FLAutoPositionedViewController.h"
-#else
-#define FLAutoPositionedViewController NSViewController
-
-#endif
-
 #import "FLProgressViewControllerProtocol.h"
-#import "FLPresentationBehavior.h"
+#import "UIViewController+FLPresentationBehavior.h"
 
 // TODO: maybe this should be a NSProxy?
 @interface FLProgressViewOwner : NSObject<FLProgressViewController> {
 @private
-    SDKView* _progressView;
+    UIView* _progressView;
     FLProgressViewControllerBlock _onShowProgress;
     FLProgressViewControllerBlock _onHideProgress;
 }
@@ -29,7 +23,7 @@
 @property (readwrite, copy, nonatomic) FLProgressViewControllerBlock onShowProgress;
 
 + (FLProgressViewOwner*) progressViewOwner;
-+ (FLProgressViewOwner*) progressViewOwner:(SDKView*) view;
++ (FLProgressViewOwner*) progressViewOwner:(UIView*) view;
 
 /// SEE FLProgressViewController. This View Controller supports all the methods defined there.
 

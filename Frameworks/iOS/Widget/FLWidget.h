@@ -11,7 +11,7 @@
 #import "FLFrame.h"
 #import "FLGridCellAware.h"
 #import "FLArrangement.h"
-#import "FLContentMode.h"
+#import "FLRectLayout.h"
 
 @interface FLWidget : FLFrame<FLGridCellAware> {
 @private
@@ -24,7 +24,7 @@
     BOOL _parentHidden;
     CGFloat _alpha;
     id _gridViewCell;
-    FLContentMode _contentMode;
+    FLRectLayout _contentMode;
     NSUInteger _tag;
     BOOL _userInteractionEnabled;
 } 
@@ -54,7 +54,7 @@
 
 // subwidgets
 
-@property (readwrite, assign, nonatomic) FLContentMode contentMode;
+@property (readwrite, assign, nonatomic) FLRectLayout contentMode;
     
 @property (readwrite, strong, nonatomic) FLArrangement* arrangement;
 

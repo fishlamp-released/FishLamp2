@@ -8,8 +8,8 @@
 
 #import "FLLegacyButton.h"
 
-#import "SDKImage+Colorize.h"
-#import "SDKImage+Resize.h"
+#import "UIImage+Colorize.h"
+#import "UIImage+Resize.h"
 
 
 @implementation FLLegacyButton

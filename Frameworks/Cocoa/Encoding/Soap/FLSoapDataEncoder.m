@@ -11,8 +11,7 @@
 #import "FLDateMgr.h"
 #import "FLStringUtils.h"
 #import "FLBase64Encoding.h"
-#import "FLColor.h"
-
+#import "UIColor+FLUtils.h"
 
 @implementation FLSoapDataEncoder
 
@@ -136,7 +135,7 @@ FLSynthesizeSingleton(FLSoapDataEncoder);
 		break;
         
         case FLDataTypeColor:
-            *outDecodedObject = FLRetain([FLColor colorWithRgbString:encodedDataString]);
+            *outDecodedObject = FLRetain([UIColor colorWithRgbString:encodedDataString]);
         break;
 	
         case FLDataTypePoint:

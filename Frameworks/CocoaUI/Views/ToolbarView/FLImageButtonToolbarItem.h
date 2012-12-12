@@ -13,13 +13,13 @@
 @interface FLImageButtonToolbarItem : FLToolbarItemView {
 }
 
-- (id) initWithImage:(SDKImage*) image 
+- (id) initWithImage:(UIImage*) image 
        onChosenBlock:(FLToolbarViewBlock)onChosenBlock;
 
 - (id) initWithImageName:(NSString*) imageName          
            onChosenBlock:(FLToolbarViewBlock) onChosenBlock;
 
-+ (id) imageButtonToolbarItemWithImage:(SDKImage*) image         
++ (id) imageButtonToolbarItemWithImage:(UIImage*) image         
                          onChosenBlock:(FLToolbarViewBlock) onChosenBlock;
 
 + (id) imageButtonToolbarItemWithImageName:(NSString*) imageName         

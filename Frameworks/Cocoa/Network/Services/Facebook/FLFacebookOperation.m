@@ -205,7 +205,7 @@
 	for (NSString* key in [params keyEnumerator]) 
 	{
 #if IOS    
-		if (	([[params valueForKey:key] isKindOfClass:[SDKImage class]])
+		if (	([[params valueForKey:key] isKindOfClass:[UIImage class]])
 				||([[params valueForKey:key] isKindOfClass:[NSData class]])) 
 		{
 			if ([httpMethod isEqualToString:@"GET"]) 

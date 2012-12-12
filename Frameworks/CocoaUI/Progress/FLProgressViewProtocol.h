@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "FLCocoaUICompatibility.h"
+#import "FLCocoaUIRequired.h"
 
 @protocol FLProgressView <NSObject>
 @optional

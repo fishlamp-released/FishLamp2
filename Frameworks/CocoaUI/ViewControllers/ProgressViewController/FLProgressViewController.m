@@ -5,10 +5,10 @@
 //  Created by Mike Fullerton on 3/23/12.
 //  Copyright (c) 2012 GreenTongue Software, LLC. All rights reserved.
 //
-
+#import "FLCocoaUIRequired.h"
 #import "FLProgressViewController.h"
-#import "SDKViewController+FLAdditions.h"
-#import "FLPresentationBehavior.h"
+#import "UIViewController+FLAdditions.h"
+#import "UIViewController+FLPresentationBehavior.h"
 
 @interface FLProgressViewController ()
 @end
@@ -51,12 +51,14 @@
 
     self = [super init];
     if(self) {
-        self.transitionAnimation = [SDKViewController defaultTransitionAnimation];
+        self.transitionAnimation = [UIViewController defaultTransitionAnimation];
 
 // default handlers
         self.onShowProgress = ^(id progress) {
 
-        FLIOS([[UIApplication visibleViewController] presentChildViewController:progress]);
+#if IOS
+        [[UIApplication visibleViewController] presentChildViewController:progress];
+#endif
         };
         
         self.onHideProgress = ^(id progress) {
@@ -104,7 +106,7 @@
     return self.view;
 }
 
-- (SDKView*) createView {
+- (UIView*) createView {
     if(_viewClass) {
         return FLAutorelease([[_viewClass alloc] initWithFrame:CGRectZero]);
     }
@@ -150,7 +152,7 @@
     FLAssertIsNotNil_(_onHideProgress);
     if(_onHideProgress) {
         _onHideProgress(self);
-        FLReleaseWithNil(_onHideProgress);
+        FLReleaseBlockWithNil(_onHideProgress);
     }
 }
 
@@ -261,7 +263,7 @@
     return self;
 }
 
-- (id) initWithView:(SDKView*) view {
+- (id) initWithView:(UIView*) view {
     self = [self init];
     if(self) {
         FLAssignObjectWithRetain(_progressView, view);
@@ -270,7 +272,7 @@
     return self;
 }
 
-+ (FLProgressViewOwner*) progressViewOwner:(SDKView*) view {
++ (FLProgressViewOwner*) progressViewOwner:(UIView*) view {
     return FLAutorelease([[FLProgressViewOwner alloc] initWithView:view]);
 }
 
@@ -422,7 +424,7 @@
 }
 + (FLProgressViewController*) simpleProgress
 {
-    return [FLProgressViewController progressViewController:[FLSimpleProgressView class] presentationBehavior:[SDKViewController defaultPresentationBehavior]];
+    return [FLProgressViewController progressViewController:[FLSimpleProgressView class] presentationBehavior:[UIViewController defaultPresentationBehavior]];
 }
 @end
 #endif

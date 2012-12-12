@@ -11,8 +11,8 @@
 
 @interface FLTilingImageView : FLView {
 @private
-    SDKImage* _image;
+    UIImage* _image;
 }
-@property (readwrite, strong, nonatomic) SDKImage* image;
+@property (readwrite, strong, nonatomic) UIImage* image;
 
 @end

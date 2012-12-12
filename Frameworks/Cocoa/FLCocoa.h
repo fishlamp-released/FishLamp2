@@ -6,8 +6,7 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import "FLCore.h"
-#import "FLCompatibility.h"
+#import "FLCocoaRequired.h"
 #import "FLGeometry.h"
 #import "NSObject+Copying.h"
 #import "FLBlocks.h"

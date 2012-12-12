@@ -5,56 +5,56 @@
 //  Created by Mike Fullerton on 1/21/12.
 //  Copyright (c) 2012 GreenTongue Software, LLC. All rights reserved.
 //
-#import "FLCocoaUICompatibility.h"
+#import "FLCocoaUIRequired.h"
 #import "FLViewController.h"
-#import "SDKViewController+FLAdditions.h"
+#import "UIViewController+FLAdditions.h"
 
-typedef void (^FLViewControllerStackVisitor)(SDKViewController* viewController, BOOL* stop);
+typedef void (^FLViewControllerStackVisitor)(UIViewController* viewController, BOOL* stop);
 
 @interface FLViewControllerStack : FLViewController {
 @private
     NSMutableArray* _viewControllers;
-    SDKViewController* _rootViewController;
+    UIViewController* _rootViewController;
 }
 
 // this is the bottom view controller. Think of it as the bottom viewController in the
 // stack. 
-@property (readonly, retain, nonatomic) SDKViewController* rootViewController;
+@property (readonly, retain, nonatomic) UIViewController* rootViewController;
 
-// the leaf most viewController in the stack (see comment in SDKViewController+FLAdditions.h
-@property (readonly, strong, nonatomic) SDKViewController* visibleViewController;
+// the leaf most viewController in the stack (see comment in UIViewController+FLAdditions.h
+@property (readonly, strong, nonatomic) UIViewController* visibleViewController;
 
 @property (readwrite, retain, nonatomic) NSArray* viewControllers;
 
-- (id) initWithRootViewController:(SDKViewController*) rootViewController;
+- (id) initWithRootViewController:(UIViewController*) rootViewController;
 
-+ (FLViewControllerStack*) viewControllerStack:(SDKViewController*) rootViewController;
++ (FLViewControllerStack*) viewControllerStack:(UIViewController*) rootViewController;
 
-- (void) pushViewController:(SDKViewController *)viewController 
+- (void) pushViewController:(UIViewController *)viewController 
              withAnimation:(id<FLViewControllerTransitionAnimation>) animation;
 
-- (void) pushViewController:(SDKViewController *)viewController;
+- (void) pushViewController:(UIViewController *)viewController;
 
 - (void) popViewControllerAnimated:(BOOL) animated; // YES uses the animation in the view controller.
     
 - (void) popViewControllerWithAnimation:(id<FLViewControllerTransitionAnimation>) animation;	
 
-- (void) popToViewController:(SDKViewController*) viewController
+- (void) popToViewController:(UIViewController*) viewController
                withAnimation:(id<FLViewControllerTransitionAnimation>) animation;
 
-- (SDKViewController*) parentControllerForController:(SDKViewController*) controller;
+- (UIViewController*) parentControllerForController:(UIViewController*) controller;
 	
-- (BOOL) containsViewController:(SDKViewController*) controller;	   
+- (BOOL) containsViewController:(UIViewController*) controller;	   
 
 - (void) visitViewControllers:(FLViewControllerStackVisitor) visitor; // backwards from top
 
 // this visits view controllers in back to front order starting with viewController
-- (void) visitViewControllersStartingWithViewController:(SDKViewController*) viewController 
+- (void) visitViewControllersStartingWithViewController:(UIViewController*) viewController 
                                                 visitor:(FLViewControllerStackVisitor) visitor;
 
 @end
 
-@interface SDKViewController (FLViewControllerStack)
+@interface UIViewController (FLViewControllerStack)
 - (void) willBePushedOnViewControllerStack:(FLViewControllerStack*) controller;
 - (void) wasPushedOnViewControllerStack:(FLViewControllerStack*) controller;
 

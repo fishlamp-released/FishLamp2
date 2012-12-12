@@ -41,7 +41,7 @@
         self.backgroundColor = [UIColor clearColor];
         
         _backgroundWidget = [[FLGradientWidget alloc] init];
-        _backgroundWidget.contentMode = FLContentModeFill;
+        _backgroundWidget.contentMode = FLRectLayoutFill;
         [self addWidget:_backgroundWidget];
         
         _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,0,frame.size.width, 20.0f)]; 
@@ -88,9 +88,9 @@
     _progress.frameOptimizedForLocation = FLRectCenterRectInRectHorizontally(self.bounds, CGRectMake(0,FLRectGetBottom(_titleLabel.frame) + 20.0f, self.bounds.size.width / 2.0f, 12.0f));
 }
 
-- (void) overrideViewPositionIfNeeded:(FLContentMode *)position {
+- (void) overrideViewPositionIfNeeded:(FLRectLayout *)position {
     if(position) {
-        *position = FLContentModeFill;
+        *position = FLRectLayoutFill;
     }
 }
 

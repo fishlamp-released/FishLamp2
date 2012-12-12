@@ -7,7 +7,7 @@
 //
 
 #import "FLImageAssetCellWidget.h"
-#import "FLColor+FLMoreColors.h"
+#import "UIColor+FLMoreColors.h"
 
 @implementation FLImageAssetCellWidget
 

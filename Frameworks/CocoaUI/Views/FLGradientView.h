@@ -29,7 +29,7 @@
 
 @end
 
-@interface FLBlackGradientView : SDKView
+@interface FLBlackGradientView : UIView
 @end
 
 #endif

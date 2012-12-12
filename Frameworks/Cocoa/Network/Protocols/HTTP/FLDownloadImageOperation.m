@@ -66,7 +66,7 @@
 ////        if(data && data.length > 0)
 ////        {
 ////            // note: folder and file name will be set by image cache.
-////            SDKImage* imageFile = [[SDKImage alloc] init];
+////            UIImage* imageFile = [[UIImage alloc] init];
 ////            imageFile.imageBytes = data;
 ////            // uhoh, how do I tell what type it is???
 ////FIXME("ambiguous type")            

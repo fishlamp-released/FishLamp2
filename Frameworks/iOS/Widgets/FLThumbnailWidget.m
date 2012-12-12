@@ -7,7 +7,7 @@
 //
 
 #import "FLThumbnailWidget.h"
-#import "SDKImage+Resize.h"
+#import "UIImage+Resize.h"
 
 @implementation FLThumbnailWidget
 

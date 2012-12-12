@@ -13,9 +13,9 @@
 
 @implementation FLViewColors (MyCode)
 
-- (FLColor*) colorForControlState:(UIControlState) controlState {
+- (UIColor*) colorForControlState:(UIControlState) controlState {
     
-    FLColor* color = self.normalColor;
+    UIColor* color = self.normalColor;
     switch(controlState) {
         case UIControlStateNormal:
         break;
@@ -40,7 +40,7 @@
 
 }
 
-- (void) setColor:(FLColor*) color forControlState:(UIControlState) controlState {
+- (void) setColor:(UIColor*) color forControlState:(UIControlState) controlState {
     switch(controlState) {
         case UIControlStateNormal:
             self.normalColor = color;

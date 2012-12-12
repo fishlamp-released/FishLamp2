@@ -42,7 +42,7 @@
         self.wantsApplyTheme = YES;
         
 		_gradient = [[FLGradientWidget alloc] initWithFrame:frame];
-		_gradient.contentMode = FLContentModeFill;
+		_gradient.contentMode = FLRectLayoutFill;
         [self addWidget:_gradient];        
 
 		self.arrangement = [FLSingleColumnRowArrangement arrangement];

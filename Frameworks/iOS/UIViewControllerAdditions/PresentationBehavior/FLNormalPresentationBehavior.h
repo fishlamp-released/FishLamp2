@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "FLCore.h"
-#import "FLPresentationBehavior.h"
+#import "UIViewController+FLPresentationBehavior.h"
 
 @interface FLNormalPresentationBehavior : NSObject<FLPresentationBehavior> {
 }

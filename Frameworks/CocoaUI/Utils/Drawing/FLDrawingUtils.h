@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 GreenTongue Software, LLC. All rights reserved.
 //
 
-#import "FLCocoaUICompatibility.h"
+#import "FLCocoaUIRequired.h"
 
 extern void FLDrawLinearGradient(CGContextRef context, 
     CGRect rect, 
@@ -25,7 +25,7 @@ extern void FLDrawLine(CGContextRef context, FLLine_t line);
 
 NS_INLINE
 CGContextRef FLPushContext() {
-	CGContextRef context = SDKGraphicsGetCurrentContext();
+	CGContextRef context = UIGraphicsGetCurrentContext();
 	CGContextSaveGState(context);
     return context;
 }

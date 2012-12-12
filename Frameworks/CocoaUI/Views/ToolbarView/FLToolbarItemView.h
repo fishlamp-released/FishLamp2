@@ -12,6 +12,6 @@
 
 @interface FLToolbarItemView : FLToolbarItem {
 }
-+ (id) toolbarItemView:(SDKView*) view 
++ (id) toolbarItemView:(UIView*) view 
          onChosenBlock:(FLToolbarViewBlock) onChosenBlock ;
 @end

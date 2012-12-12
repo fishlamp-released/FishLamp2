@@ -7,7 +7,7 @@
 //
 
 #import "FLImageFrameWidget.h"
-#import "SDKImage+Resize.h"
+#import "UIImage+Resize.h"
 
 @implementation FLImageFrameWidget
 @synthesize frameWidth = _frameWidth;

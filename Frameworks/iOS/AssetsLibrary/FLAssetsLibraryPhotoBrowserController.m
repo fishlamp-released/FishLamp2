@@ -19,9 +19,9 @@
 
 #import "FLOldNotificationView.h"
 
-#import "SDKImage+Colorize.h"
+#import "UIImage+Colorize.h"
 
-#import "FLColor+FLMoreColors.h"
+#import "UIColor+FLMoreColors.h"
 
 @implementation FLAssetsLibraryPhotoBrowserController
 

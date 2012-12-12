@@ -9,7 +9,7 @@
 #import "FLOldUserNotificationView.h"
 #import "NSFileManager+FLExtras.h"
 #import "FLSoapError.h"
-#import "SDKImage+Colorize.h"
+#import "UIImage+Colorize.h"
 #import "FLViewController.h"
 
 static FLWeakReference* s_currentView = nil;

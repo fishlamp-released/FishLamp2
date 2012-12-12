@@ -23,7 +23,7 @@
     if(self) {
         self.lengthyTask = task;
         self.lengthyTask.delegate = self;
-        self.contentMode = FLContentModeCentered;
+        self.contentMode = FLRectLayoutCentered;
     }
     
     return self;

@@ -7,16 +7,19 @@
 //
 
 #import "FLCore.h"
-#import "FLCompatibility.h"
+#import "FLCocoaRequired.h"
+#import "FLCocoaUIRequired.h"
 
 @interface NSValue (FLCompatibility)
 
 + (NSValue *)valueWithCGPoint:(CGPoint)point;
 + (NSValue *)valueWithCGSize:(CGSize)size;
 + (NSValue *)valueWithCGRect:(CGRect)rect;
++ (NSValue *)valueWithUIEdgeInsets:(UIEdgeInsets)insets;
 
 - (CGPoint) CGPointValue;
 - (CGSize) CGSizeValue;
 - (CGRect) CGRectValue;
+- (UIEdgeInsets) UIEdgeInsetsValue;
 
 @end

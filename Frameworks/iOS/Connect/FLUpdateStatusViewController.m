@@ -9,7 +9,7 @@
 #import "FLUpdateStatusViewController.h"
 #import "FLTextView.h"
 #import "FLFloatingMenuViewController.h"
-#import "SDKImage+Colorize.h"
+#import "UIImage+Colorize.h"
 #import "FLNavigationControllerViewController.h"
 #import "FLFloatingViewController.h"
 

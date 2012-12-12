@@ -22,7 +22,7 @@
         self.userInteractionEnabled = YES;
     
         FLGradientWidget* background = [FLGradientWidget widget];
-        background.contentMode = FLContentModeFill;
+        background.contentMode = FLRectLayoutFill;
         [background setColorRange:[FLColorRange lightLightGrayGradientColorRange] forControlState:FLControlStateNormal];
         [self addWidget:background];
     }

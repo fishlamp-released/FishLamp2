@@ -95,9 +95,9 @@ FLSynthesizeStructProperty(notificationViewStyle, setNotificationViewStyle, FLOl
 	[[self roundRectView] setBorderLineWidth:1.0];
 
 #if VIEW_AUTOLAYOUT
-	if(FLContentModesAreEqual([object autoLayoutMode], FLContentModeNone))
+	if(FLRectLayoutsAreEqual([object autoLayoutMode], FLRectLayoutNone))
 	{
-		[object setAutoLayoutMode:FLContentModeMake(FLContentModeHorizontalFill,FLContentModeVerticalBottom)];
+		[object setAutoLayoutMode:FLRectLayoutMake(FLRectLayoutHorizontalFill,FLRectLayoutVerticalBottom)];
 	}
 #endif
 }

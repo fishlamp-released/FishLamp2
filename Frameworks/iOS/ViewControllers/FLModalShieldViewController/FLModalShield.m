@@ -7,7 +7,7 @@
 //
 
 #import "FLModalShield.h"
-#import "SDKImage+Colorize.h"
+#import "UIImage+Colorize.h"
 
 @implementation FLModalShieldView
 @end

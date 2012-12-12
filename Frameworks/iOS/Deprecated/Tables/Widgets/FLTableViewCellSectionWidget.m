@@ -7,7 +7,7 @@
 //
 
 #import "FLTableViewCellSectionWidget.h"
-#import "FLColor+FLExtras.h"
+#import "UIColor+FLUtils.h"
 #import "FLPathUtilities.h"
 
 @implementation FLTableViewCellSectionWidget

@@ -19,7 +19,7 @@
     FLWidget* widget = [FLWidget widget];
     widget.backgroundColor = [UIColor blackColor];
     
-    widget.contentMode = FLContentModeFill;
+    widget.contentMode = FLRectLayoutFill;
     widget.alpha = 0.15;
     [self addWidget:widget];
 }
