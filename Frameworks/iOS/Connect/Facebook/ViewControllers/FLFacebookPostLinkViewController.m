@@ -26,7 +26,7 @@
 {
 	if((self = [super init]))
 	{
-		_link = retain_(fbLink);
+		_link = FLRetain(fbLink);
 		self.title = NSLocalizedString(@"Post Link on Facebook", nil);
 		self.saveButtonTitle = NSLocalizedString(@"Share", nil);
         self.maxSize = 500;
@@ -53,8 +53,8 @@
 
 - (void) viewDidUnload
 {   
-    FLReleaseWithNil_(_linkLabel);
-	FLReleaseWithNil_(_headerView);
+    FLReleaseWithNil(_linkLabel);
+	FLReleaseWithNil(_headerView);
 	[super viewDidUnload];
 }
 

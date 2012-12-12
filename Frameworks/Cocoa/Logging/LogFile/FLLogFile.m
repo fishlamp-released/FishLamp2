@@ -71,7 +71,7 @@
             FLLog(@"Log close failed: %@", [ex description]);
         }
         
-        FLReleaseWithNil_(_fileHandle);
+        FLReleaseWithNil(_fileHandle);
     }
 }
 

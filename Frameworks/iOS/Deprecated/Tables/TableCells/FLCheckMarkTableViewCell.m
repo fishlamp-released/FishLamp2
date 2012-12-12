@@ -10,7 +10,7 @@
 #import "FLGeometry.h"
 #import "FLCheckMarkGroup.h"
 
-#import "FLImage+Colorize.h"
+#import "SDKImage+Colorize.h"
 
 @implementation FLCheckMarkTableViewCell
 

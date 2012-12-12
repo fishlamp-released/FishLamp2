@@ -8,6 +8,8 @@
 
 #import "FLColor.h"
 
+#define FLToRgb(__c) (__c * 255.0f)
+
 @interface FLColor (FLUtils)
 
 + (FLColor*) colorWithRgbValues:(CGFloat) red /* 0-255 */

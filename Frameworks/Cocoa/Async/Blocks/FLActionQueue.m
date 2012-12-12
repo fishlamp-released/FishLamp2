@@ -85,7 +85,7 @@
 //- (void)dealloc 
 //{
 //	[self cancel];
-//	FLReleaseWithNil_(_operations);
+//	FLReleaseWithNil(_operations);
 //	super_dealloc_();
 //}
 //

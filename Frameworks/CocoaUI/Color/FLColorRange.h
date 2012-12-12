@@ -7,7 +7,7 @@
 // Copywrite (C) 2012 GreenTongue Software, LLC. All rights reserved.
 //
 // [/Generated]
-#import "FLCore.h"
+#import "FLCocoaUICompatibility.h"
 
 #import "FLColorRange.h"
 #import "FLColor_t.h"

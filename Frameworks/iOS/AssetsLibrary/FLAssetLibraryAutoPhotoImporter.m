@@ -23,11 +23,11 @@
 
 - (void) _clearData
 {
-    FLReleaseWithNil_(_assetQueue);
-    FLReleaseWithNil_(_importedDate);
-    FLReleaseWithNil_(_importedAssets);
-    FLReleaseWithNil_(_error);
-    FLReleaseWithNil_(_startDate);
+    FLReleaseWithNil(_assetQueue);
+    FLReleaseWithNil(_importedDate);
+    FLReleaseWithNil(_importedAssets);
+    FLReleaseWithNil(_error);
+    FLReleaseWithNil(_startDate);
     _cancelled = NO;
 }
 
@@ -59,12 +59,12 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
         @try {
             [_assetQueue batchAddAssets:_importedAssets];
-            FLRetainObject_(_importedDate, [NSDate date]);
+            FLAssignObjectWithRetain(_importedDate, [NSDate date]);
             [_delegate assetLibraryAutoPhotoImporter:self saveLastImportDate:_importedDate];
         }
         @catch(NSException* ex) {
-            FLReleaseWithNil_(_importedAssets);
-            FLRetainObject_(_error, ex.error);
+            FLReleaseWithNil(_importedAssets);
+            FLAssignObjectWithRetain(_error, ex.error);
         }
         [self performBlockOnMainThread:^{ [self _handleFinished:completedBlock]; }];
     });
@@ -100,9 +100,9 @@
     
     [self _clearData];
     
-    FLRetainObject_(_importedAssets, [NSMutableArray array]);
-    FLRetainObject_(_assetQueue, [_delegate assetLibraryAutoPhotoImporterGetAssetQueue:self]);
-    FLRetainObject_(_startDate, [_delegate assetLibraryAutoPhotoImporterGetLastImportDate:self]);
+    FLAssignObjectWithRetain(_importedAssets, [NSMutableArray array]);
+    FLAssignObjectWithRetain(_assetQueue, [_delegate assetLibraryAutoPhotoImporterGetAssetQueue:self]);
+    FLAssignObjectWithRetain(_startDate, [_delegate assetLibraryAutoPhotoImporterGetLastImportDate:self]);
     
     FLAssertIsNotNil_v(_assetQueue, nil);
     FLAssertIsNotNil_v(_startDate, nil);
@@ -129,7 +129,7 @@
                 FLLog(@"Importer got error: %@", [error description]);
 #endif                
             
-                FLRetainObject_(_error, error);
+                FLAssignObjectWithRetain(_error, error);
                 [self performBlockOnMainThread:^{ [self _handleFinished:completedBlock]; }];
             }
             else

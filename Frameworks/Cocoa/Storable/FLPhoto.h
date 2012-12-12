@@ -7,23 +7,23 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "FLImage.h"
+#import "SDKImage.h"
 #import "FLStorable.h"
 
 extern NSString* const FLPhotoType;
 
 @interface FLPhoto : FLStorable {
 @private
-	FLImage* _previewImage;
-	FLImage* _originalImage;
-	FLImage* _thumbnailImage;
+	SDKImage* _previewImage;
+	SDKImage* _originalImage;
+	SDKImage* _thumbnailImage;
 }
 
 + (FLPhoto*) photo;
 
-@property (readwrite, strong) FLImage* originalImage;
-@property (readwrite, strong) FLImage* thumbnailImage;
-@property (readwrite, strong) FLImage* previewImage;
+@property (readwrite, strong) SDKImage* originalImage;
+@property (readwrite, strong) SDKImage* thumbnailImage;
+@property (readwrite, strong) SDKImage* previewImage;
 
 - (void) clearImages; // in memory 
 

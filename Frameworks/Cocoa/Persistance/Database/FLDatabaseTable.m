@@ -107,7 +107,7 @@
 	
 	[[self.columns objectForKey:databaseIndex.columnName] setIndexed:YES];
     
-    FLReleaseWithNil_(_indexedColumns);
+    FLReleaseWithNil(_indexedColumns);
 }
 
 - (NSArray*) indexesForColumn:(NSString*) columnName {	

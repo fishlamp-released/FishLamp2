@@ -12,13 +12,30 @@
 // for compatibility with utility functions - like in FLRectGeometry.h
 
 #import "FLCore.h"
-#import "FLGeometryCompatibility.h"
-#import "FLUICompatibility.h"
-#import "FLDeviceCompatibility.h"
+
+#if IOS
+    #define SDKEdgeInsets               UIEdgeInsets
+    #define SDKEvent                    UIEvent
+
+    #define FLIOS(...)                  __VA_ARGS__
+    #define FLOSX(...)
+#endif
+
+#if OSX
+    #define SDKEdgeInsets               NSEdgeInsets
+    #define SDKEvent                    NSEvent
+
+    // TODO - get rid of these
+    #define DeviceIsPad()   NO
+    #define DeviceIsPhone() NO
+    #define DeviceIsPod()   NO
+    #define DeviceIsSimulator() NO
+
+    #define FLIOS(...)
+    #define FLOSX(...)                  __VA_ARGS__
+
+#endif
 
 // sdk categories
 #import "NSValue+FLCompatibility.h"
 
-#if IOS
-#define NSEvent UIEvent
-#endif

@@ -152,7 +152,7 @@ static FLReachability* s_default = nil;
 {
 	[self stopNotifer];
 
-	FLReleaseWithNil_(_hostName);
+	FLReleaseWithNil(_hostName);
 	if(_reachabilityRef!= NULL)
 	{
 		CFRelease(_reachabilityRef);

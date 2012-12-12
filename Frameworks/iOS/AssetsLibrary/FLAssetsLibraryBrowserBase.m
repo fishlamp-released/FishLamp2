@@ -39,7 +39,7 @@
 			name:ALAssetsLibraryChangedNotification
 			object:nil];
 		
-		_assetQueue = retain_(queue);
+		_assetQueue = FLRetain(queue);
         
         self.viewContentsDescriptor = [FLViewContentsDescriptor descriptorWithTopStatusAndToolbar];
     }
@@ -146,7 +146,7 @@
 	if(_spinner)
 	{
 		[_spinner removeFromSuperview];
-		FLReleaseWithNil_(_spinner);
+		FLReleaseWithNil(_spinner);
 	}
 }
 
@@ -190,7 +190,7 @@
 	if(_emptyMessage)
 	{
 		[_emptyMessage removeFromSuperview];
-		FLReleaseWithNil_(_emptyMessage);
+		FLReleaseWithNil(_emptyMessage);
 	}
 }
 

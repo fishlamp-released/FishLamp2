@@ -7,7 +7,7 @@
 //
 
 #import "FLPullToRefreshHeaderView.h"
-#import "FLImage+Colorize.h"
+#import "SDKImage+Colorize.h"
 #import "FLLabel.h"
 
 typedef enum {

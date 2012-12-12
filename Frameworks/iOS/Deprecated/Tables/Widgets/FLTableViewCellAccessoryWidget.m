@@ -8,7 +8,7 @@
 
 #import "FLTableViewCellAccessoryWidget.h"
 #import "FLColor+FLExtras.h"
-#import "FLImage+Colorize.h"
+#import "SDKImage+Colorize.h"
 
 #define ArrowSize 6
 #define ArrowThickness 2.5

@@ -140,7 +140,7 @@ FLSynthesizeStructProperty(trimWhiteSpace, setTrimWhiteSpace, BOOL, _baseFlags);
 	if(_spinner)
 	{
 		[_spinner removeFromSuperview];
-		FLReleaseWithNil_(_spinner);
+		FLReleaseWithNil(_spinner);
 		
 		_value.view.hidden = NO;
 	}

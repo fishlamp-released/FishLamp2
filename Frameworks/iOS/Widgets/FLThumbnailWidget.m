@@ -7,7 +7,7 @@
 //
 
 #import "FLThumbnailWidget.h"
-#import "FLImage+Resize.h"
+#import "SDKImage+Resize.h"
 
 @implementation FLThumbnailWidget
 
@@ -124,7 +124,7 @@
 	else
 	{
 		[_highlightedView removeFromSuperview];
-		FLReleaseWithNil_(_highlightedView);
+		FLReleaseWithNil(_highlightedView);
 	}
 }
 

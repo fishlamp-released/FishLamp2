@@ -28,7 +28,7 @@
 
 - (void) setImage:(UIImage*) image atIndex:(NSUInteger) idx
 {
-	FLRetainObject_(_images[idx], image);
+	FLAssignObjectWithRetain(_images[idx], image);
     [self setNeedsDisplay];
 }
 
@@ -38,7 +38,7 @@
 	{
 		if(_images[i])
 		{
-			FLReleaseWithNil_(_images[i]);
+			FLReleaseWithNil(_images[i]);
 		}
 	}	
 }
@@ -66,7 +66,7 @@
 
 - (void) removeImageAtIndex:(NSUInteger)idx
 {
-	FLReleaseWithNil_(_images[idx]);
+	FLReleaseWithNil(_images[idx]);
 }
 
 

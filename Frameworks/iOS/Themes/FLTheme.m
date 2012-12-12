@@ -31,7 +31,7 @@
 }
 
 + (void) setCurrentTheme:(FLTheme*) theme {
-//    FLRetainObject_(s_theme, theme);
+//    FLAssignObjectWithRetain(s_theme, theme);
 //    [s_theme wasSetToCurrentTheme];
 }
 

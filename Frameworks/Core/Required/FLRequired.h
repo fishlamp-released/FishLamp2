@@ -37,7 +37,6 @@
             FLAutoreleasePoolClose(pool) \
 
 // todo remove these
-#define FLReleaseWithNil_                   FLReleaseWithNil 
 #define FLReleaseBlockWithNil_              FLReleaseBlockWithNil
 #define super_dealloc_                      FLSuperDealloc
 

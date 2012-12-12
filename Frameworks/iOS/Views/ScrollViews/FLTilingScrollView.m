@@ -133,7 +133,7 @@ FLSynthesizeStructProperty(canScrollTiles, setCanScrollTiles, BOOL, _tilingScrol
 	[self addSubview:view];
 	if(outView)
 	{
-		*outView = retain_(view);
+		*outView = FLRetain(view);
 	}
 	FLRelease(view);
 }
@@ -183,7 +183,7 @@ FLSynthesizeStructProperty(canScrollTiles, setCanScrollTiles, BOOL, _tilingScrol
 		[view removeFromSuperview];
 	}
 	
-	FLReleaseWithNil_(_tiledViews);
+	FLReleaseWithNil(_tiledViews);
 }
 
 - (void) dealloc
@@ -396,7 +396,7 @@ FLSynthesizeStructProperty(canScrollTiles, setCanScrollTiles, BOOL, _tilingScrol
 	{
 		_currentScroll.lastTouch = [FLTouch touchWithUITouch:[touches anyObject]];
 		[self updateScroll:_currentScroll];
-		FLReleaseWithNil_(_currentScroll);
+		FLReleaseWithNil(_currentScroll);
 	}
 }
 

@@ -100,7 +100,7 @@
 //			if(![behavior didLoadObjectFromDatabaseCache:newObject])
 //			{
 //				[self deleteObject:newObject];
-//				FLReleaseWithNil_(&newObject);
+//				FLReleaseWithNil(&newObject);
 //			}
 //		}
 //	}
@@ -170,7 +170,7 @@
 //	}
 //	@finally
 //	{
-//		FLReleaseWithNil_(&object);
+//		FLReleaseWithNil(&object);
 //	}
 //}
 //

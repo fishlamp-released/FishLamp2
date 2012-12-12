@@ -48,8 +48,8 @@
 
 - (void) dealloc
 {
-	FLReleaseWithNil_(_spinner);
-	FLReleaseWithNil_(_thumbnailImageView);
+	FLReleaseWithNil(_spinner);
+	FLReleaseWithNil(_thumbnailImageView);
 	super_dealloc_();
 }
 

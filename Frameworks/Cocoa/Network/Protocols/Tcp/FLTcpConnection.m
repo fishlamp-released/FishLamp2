@@ -82,7 +82,7 @@
 
 - (void) unblockRequestsWithObject:(id) object {
     FLAssert_v(object == _blockingObject, @"trying to unblock with wrong object");
-    FLReleaseWithNil_(_blockingObject);
+    FLReleaseWithNil(_blockingObject);
 }
 
 - (void) _writeAvailableBytes {
@@ -157,7 +157,7 @@
 
 - (void) networkStreamDidClose:(id<FLNetworkStream>)networkStream {
     [super networkStreamDidClose:networkStream];
-    FLReleaseWithNil_(_blockingObject);
+    FLReleaseWithNil(_blockingObject);
 }
 
 

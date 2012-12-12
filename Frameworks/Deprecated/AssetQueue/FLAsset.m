@@ -37,7 +37,7 @@
 //	return nil;
 //}
 //
-//- (FLImage*) thumbnailImage
+//- (SDKImage*) thumbnailImage
 //{
 //	return nil;
 //}

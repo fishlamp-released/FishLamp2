@@ -79,7 +79,7 @@
         _upgrading = NO;
     }
     
-    FLReleaseWithNil_(_upgradeTaskList);
+    FLReleaseWithNil(_upgradeTaskList);
 }
 
 - (void) _appWillBecomeActive:(id) sender {
@@ -150,20 +150,20 @@
 //    [self removeAppService:self.backgroundTasks];
 //    self.backgroundTasks = nil;
 
-    FLReleaseWithNil_(_documentsFolder);
-	FLReleaseWithNil_(_cacheFolder);
-	FLReleaseWithNil_(_imageFolder);
-	FLReleaseWithNil_(_imageCacheFolder);
-	FLReleaseWithNil_(_tempFolder);
-	FLReleaseWithNil_(_logFolder);
+    FLReleaseWithNil(_documentsFolder);
+	FLReleaseWithNil(_cacheFolder);
+	FLReleaseWithNil(_imageFolder);
+	FLReleaseWithNil(_imageCacheFolder);
+	FLReleaseWithNil(_tempFolder);
+	FLReleaseWithNil(_logFolder);
 
-	FLReleaseWithNil_(_cacheDatabase);
-	FLReleaseWithNil_(_documentsDatabase);
+	FLReleaseWithNil(_cacheDatabase);
+	FLReleaseWithNil(_documentsDatabase);
 } 
  
 - (void) closeService
 {
-	FLReleaseWithNil_(_upgradeTaskList);
+	FLReleaseWithNil(_upgradeTaskList);
 	
 //    [self postObservation:@selector(userServiceWillClose:)];
 
@@ -371,7 +371,7 @@
 		version.versionString = [FLAppInfo appVersion];
 		[[FLApplicationDataModel instance].database saveObject:version];
 
-		FLReleaseWithNil_(_upgradeTaskList);
+		FLReleaseWithNil(_upgradeTaskList);
 		_upgrading = NO;
 
         [self finishOpeningService];

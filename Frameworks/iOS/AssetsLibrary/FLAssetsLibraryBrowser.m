@@ -19,7 +19,7 @@
 {
 	if((self = [super initWithNibName:nil bundle:nil]))
 	{
-		_queue = retain_(queue);
+		_queue = FLRetain(queue);
 		_disabledAssets = [[NSMutableSet alloc] init];	
 		_chosenAssets = [[NSMutableDictionary alloc] init];
 		_processedAssets = [[NSMutableDictionary alloc] init];

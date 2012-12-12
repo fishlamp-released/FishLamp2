@@ -9,7 +9,7 @@
 #import "FLWebViewController.h"
 #import "FLOldUserNotificationView.h"
 #import "FLGradientButton.h"
-#import "FLImage+Colorize.h"
+#import "SDKImage+Colorize.h"
 #import "FLSimpleProgressView.h"
 
 #if 0
@@ -104,19 +104,19 @@ FLAssertDefaultInitNotCalled_()
 
 - (void) cleanupWebViewController
 {
-	FLReleaseWithNil_(_bottomToolbar);
-	FLReleaseWithNil_(_reloadButton);
-	FLReleaseWithNil_(_backButton);
-	FLReleaseWithNil_(_forwardButton);
+	FLReleaseWithNil(_bottomToolbar);
+	FLReleaseWithNil(_reloadButton);
+	FLReleaseWithNil(_backButton);
+	FLReleaseWithNil(_forwardButton);
     _webView.delegate = nil;
 	[_webView stopLoading];
     if(_progress)
     {
         [_progress hideProgress];
-        FLReleaseWithNil_(_webView);
+        FLReleaseWithNil(_webView);
     }
-	FLReleaseWithNil_(_progress);
-	FLReleaseWithNil_(_actionButton);
+	FLReleaseWithNil(_progress);
+	FLReleaseWithNil(_actionButton);
 }
 
 - (void) removeActionButton
@@ -203,7 +203,7 @@ FLAssertDefaultInitNotCalled_()
 	if(_progress)
 	{
         [_progress hideProgress];
-		FLReleaseWithNil_(_progress);
+		FLReleaseWithNil(_progress);
 	}
 }
 
@@ -256,7 +256,7 @@ FLAssertDefaultInitNotCalled_()
 //		[alert setTextWithError:error];
 //	}
 //	[self.view addSubview:alert];
-//	FLReleaseWithNil_(alert);
+//	FLReleaseWithNil(alert);
 }
 
 - (IBAction) buttonClickBack:(id) sender
@@ -293,7 +293,7 @@ FLAssertDefaultInitNotCalled_()
 {
 	if(![self _openURLInSafariIfNeeded:url])
 	{
-		FLRetainObject_(_startURL, url);
+		FLAssignObjectWithRetain(_startURL, url);
 	
 		[_webView loadRequest:[self createURLRequestForURL:url]];
 	}

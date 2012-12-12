@@ -19,7 +19,7 @@
 
 #import "FLOldNotificationView.h"
 
-#import "FLImage+Colorize.h"
+#import "SDKImage+Colorize.h"
 
 #import "FLColor+FLMoreColors.h"
 
@@ -76,7 +76,7 @@
     if(_notificationView)
     {
         [_notificationView removeFromSuperviewWithAnimationType:FLViewAnimationTypeSlideFromTop duration:0.3f finishedBlock:nil];
-        FLReleaseWithNil_(_notificationView);
+        FLReleaseWithNil(_notificationView);
     }
 }
 

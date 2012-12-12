@@ -58,13 +58,13 @@ static NSMutableArray* s_stack = nil;
 	if(_shield)
 	{
 		[_shield hideShield];
-		FLReleaseWithNil_(_shield);
+		FLReleaseWithNil(_shield);
 	}
 }
 
 - (void)dismissPopoverAnimated:(BOOL)animated
 {
-	mrc_autorelease_(retain_(self));
+	FLAutorelease(FLRetain(self));
 	self.delegate = nil;
 	[self hideShieldView];
 	[s_stack removeObject:self];
@@ -75,7 +75,7 @@ static NSMutableArray* s_stack = nil;
 
 - (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
 {
-	mrc_autorelease_(retain_(self));
+	FLAutorelease(FLRetain(self));
 	self.delegate = nil;
 	[self hideShieldView];
 	[s_stack removeObject:self];

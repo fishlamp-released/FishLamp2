@@ -92,7 +92,7 @@
 
 - (void) setDismissedCallback:(id) targetOrObjectContainer action:(SEL) action
 {
-	FLReleaseWithNil_(_clickedCallback);
+	FLReleaseWithNil(_clickedCallback);
 	_clickedCallback = [[FLCallbackObject alloc] initWithTarget:targetOrObjectContainer action:action];
 }
 

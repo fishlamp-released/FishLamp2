@@ -59,7 +59,7 @@
 - (void) releaseCallbacks
 {
     FLReleaseBlockWithNil_(_blockCallback);
-    FLReleaseWithNil_(_callback);
+    FLReleaseWithNil(_callback);
 }
 
 - (void) dealloc

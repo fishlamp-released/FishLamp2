@@ -5,8 +5,7 @@
 //	Created by Mike Fullerton on 5/22/09.
 //	Copyright 2009 Greentongue Software. All rights reserved.
 //
-#import "FLCore.h"
-#import "FLGeometryCompatibility.h"
+#import "FLCocoaUICompatibility.h"
 
 #define FLCoordinateIntegral(__coordinate__) (CGFloat) round(__coordinate__)
 

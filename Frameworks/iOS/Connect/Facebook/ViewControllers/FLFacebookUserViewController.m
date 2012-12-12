@@ -17,7 +17,7 @@
 {
 	if((self = [super init]))
 	{
-		_userId = retain_(userId);
+		_userId = FLRetain(userId);
 		self.title = NSLocalizedString(@"Facebook User", nil);
 		
 	}
@@ -44,7 +44,7 @@
 //		operation.wasLoadedFromCacheCallback = ^{
 //			if(operation.didSucceed)
 //			{
-//				FLRetainObject_(_user, operation.output);
+//				FLAssignObjectWithRetain(_user, operation.output);
 //				[self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
 //			}
 //		};
@@ -52,7 +52,7 @@
 //		action.willFinishBlock = ^(id theAction) {
 //			if(action.didSucceed)
 //			{
-//				FLRetainObject_(_user, [[theAction lastOperation] operationOutput]);
+//				FLAssignObjectWithRetain(_user, [[theAction lastOperation] operationOutput]);
 //			}
 //			
 //			[self onDoneLoadingEditableData];

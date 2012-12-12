@@ -52,14 +52,14 @@
 
 - (void) pinEditViewDidCancel:(FLPinEditingView*) pinEditingView
 {
-	mrc_autorelease_(FLReturnRetain(self));
+	FLAutorelease(FLReturnRetain(self));
 	[self.delegate pinEditViewControllerDidCancel:self];	
 	[self dismissViewControllerAnimated:YES];
 }
 
 - (void) pinEditView:(FLPinEditingView*) pinEditingView didSetPin:(NSString*) pin
 {
-	mrc_autorelease_(FLReturnRetain(self));
+	FLAutorelease(FLReturnRetain(self));
 	if([self.delegate respondsToSelector:@selector(pinEditViewController:didSetPin:)])
 	{
 		[self.delegate pinEditViewController:self didSetPin:pin];	
@@ -69,7 +69,7 @@
 
 - (void) pinEditViewUserDidEnterCorrectPin:(FLPinEditingView*) pinEditingView
 {
-	mrc_autorelease_(FLReturnRetain(self));
+	FLAutorelease(FLReturnRetain(self));
 	if([self.delegate respondsToSelector:@selector(pinEditViewControllerUserDidEnterCorrectPin:)])
 	{
 		[self.delegate pinEditViewControllerUserDidEnterCorrectPin:self];	

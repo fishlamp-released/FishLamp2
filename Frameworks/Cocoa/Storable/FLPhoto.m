@@ -57,14 +57,14 @@ NSString* const FLPhotoType = @"com.fishlamp.photo";
 
 @end
 
-//#import "FLImage.h"
+//#import "SDKImage.h"
 //#import "UIImage+Resize.h"
 //#import "FLQueuedAsset.h"
 
 //@interface FLPhoto ()
-//@property (readwrite, retain, nonatomic) FLImage*  original;
-//@property (readwrite, retain, nonatomic) FLImage*  thumbnail;
-//@property (readwrite, retain, nonatomic) FLImage*  fullScreen;
+//@property (readwrite, retain, nonatomic) SDKImage*  original;
+//@property (readwrite, retain, nonatomic) SDKImage*  thumbnail;
+//@property (readwrite, retain, nonatomic) SDKImage*  fullScreen;
 //@end
 //@dynamic assetUID;
 
@@ -112,9 +112,9 @@ NSString* const FLPhotoType = @"com.fishlamp.photo";
 //}
 //- (void) createThumbnailVersion
 //{
-////	FLImage* thumb = nil;
+////	SDKImage* thumb = nil;
 //	
-//	FLImage* startImage = self.original.image;
+//	SDKImage* startImage = self.original.image;
 //	if(!startImage)
 //	{
 //		startImage = self.fullScreen.image;
@@ -136,7 +136,7 @@ NSString* const FLPhotoType = @"com.fishlamp.photo";
 ////	
 ////	self.thumbnail.image = thumb;
 ////	
-////	FLReleaseWithNil_(thumb);
+////	FLReleaseWithNil(thumb);
 //}
 //
 //
@@ -207,13 +207,13 @@ NSString* const FLPhotoType = @"com.fishlamp.photo";
 //		[_fullScreenImageFile deleteFromStorage];
 //	}
 //	
-////	FLReleaseWithNil_(_dataFile);
-//	FLReleaseWithNil_(_thumbnailImageFile);
-//	FLReleaseWithNil_(_originalImageFile);
-//	FLReleaseWithNil_(_fullScreenImageFile);
+////	FLReleaseWithNil(_dataFile);
+//	FLReleaseWithNil(_thumbnailImageFile);
+//	FLReleaseWithNil(_originalImageFile);
+//	FLReleaseWithNil(_fullScreenImageFile);
 //}
 
-//- (FLImage*) thumbnailImage {
+//- (SDKImage*) thumbnailImage {
 //
 //// FIXME: asset stuff is a mess
 //

@@ -200,7 +200,7 @@ static NSString* s_defaultUserAgent = nil;
 
 - (void) setHTTPBody:(NSData*) data {
     _postLength = 0;
-    FLReleaseWithNil_(_postBodyFilePath);
+    FLReleaseWithNil(_postBodyFilePath);
     FLAssignObjectWithRetain(_postData, data);
     if (_postData) {
         _postLength = _postData.length;
@@ -210,7 +210,7 @@ static NSString* s_defaultUserAgent = nil;
 
 - (void) setPostBodyFilePath:(NSString*) path {
     _postLength = 0;
-    FLReleaseWithNil_(_postData);
+    FLReleaseWithNil(_postData);
     
     FLAssignObjectWithRetain(_postBodyFilePath, path);
     if(FLStringIsNotEmpty(_postBodyFilePath)) {

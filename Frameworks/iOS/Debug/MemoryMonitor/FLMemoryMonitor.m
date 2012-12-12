@@ -51,8 +51,8 @@ FLSynthesizeSingleton(FLMemoryMonitor)
 		[_timer invalidate];
 	}
 	
-	FLReleaseWithNil_(_leftLabel);
-	FLReleaseWithNil_(_rightLabel);
+	FLReleaseWithNil(_leftLabel);
+	FLReleaseWithNil(_rightLabel);
 
 	super_dealloc_();
 }
@@ -73,7 +73,7 @@ FLSynthesizeSingleton(FLMemoryMonitor)
 
 		NSString* text1 = [[NSString alloc] initWithFormat:@"%0.1fmb", [self toMegabytes:_last]];
 		_leftLabel.text = text1;
-		FLReleaseWithNil_(text1);
+		FLReleaseWithNil(text1);
 		
 		CGFloat highWater = [self toMegabytes:_highWater];
 		NSString* text2 = [[NSString alloc] initWithFormat:@"%0.1fmb", highWater];
@@ -83,7 +83,7 @@ FLSynthesizeSingleton(FLMemoryMonitor)
 		}
 		
 		_rightLabel.text = text2;
-		FLReleaseWithNil_(text2);
+		FLReleaseWithNil(text2);
 		
 		CGRect superviewBounds = superview.bounds;
 		
@@ -178,9 +178,9 @@ FLSynthesizeSingleton(FLMemoryMonitor)
 	{
 		_started = NO;
 		[_leftLabel removeFromSuperview];
-		FLReleaseWithNil_(_leftLabel);
+		FLReleaseWithNil(_leftLabel);
 		[_rightLabel removeFromSuperview];
-		FLReleaseWithNil_(_rightLabel);
+		FLReleaseWithNil(_rightLabel);
 	}
 }
 

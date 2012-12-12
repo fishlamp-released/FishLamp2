@@ -7,8 +7,8 @@
 //
 
 #import "FLMenuItemView.h"
-#import "FLImage+Resize.h"
-#import "FLImage+Colorize.h"
+#import "SDKImage+Resize.h"
+#import "SDKImage+Colorize.h"
 #import "FLCallback_t.h"
 #import "FLTableViewCellAccessoryWidget.h"
 #import "FLMenuView.h"
@@ -235,7 +235,7 @@
 
 - (void) setSubMenu:(id) subMenu
 {
-    FLRetainObject_(_subMenu, subMenu);
+    FLAssignObjectWithRetain(_subMenu, subMenu);
     _disclosureView.hidden =  _subMenu == nil;
     
     [self setNeedsLayout];

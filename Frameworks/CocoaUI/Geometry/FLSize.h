@@ -5,8 +5,7 @@
 //  Created by Mike Fullerton on 5/12/12.
 //  Copyright (c) 2012 GreenTongue Software. All rights reserved.
 //
-#import "FLCore.h"
-#import "FLGeometryCompatibility.h"
+#import "FLCocoaUICompatibility.h"
 
 #define FLSizeMake               CGSizeMake
 #define FLSizeZero               CGSizeZero

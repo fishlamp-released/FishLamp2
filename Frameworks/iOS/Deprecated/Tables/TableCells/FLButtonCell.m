@@ -36,10 +36,10 @@
 	if(_button)
 	{
 		[_button removeFromSuperview];
-		FLReleaseWithNil_(_button);
+		FLReleaseWithNil(_button);
 	}
 	
-	_button = retain_(button);
+	_button = FLRetain(button);
 	[self addSubview:_button];
 }
 

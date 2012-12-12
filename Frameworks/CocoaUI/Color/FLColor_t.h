@@ -6,10 +6,7 @@
 //  Copyright (c) 2012 GreenTongue Software. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "FLCore.h"
-
-#import "FLUICompatibility.h"
+#import "FLCocoaUICompatibility.h"
 
 typedef struct {
 	CGFloat red;

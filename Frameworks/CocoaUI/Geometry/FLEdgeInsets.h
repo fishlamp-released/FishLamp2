@@ -6,8 +6,7 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "FLGeometryCompatibility.h"
+#import "FLCocoaUICompatibility.h"
 
 #if IOS
     #define FLEdgeInsetsZero                   UIEdgeInsetsZero
@@ -31,7 +30,7 @@
     }
 
     NS_INLINE
-    NSRect FLEdgeInsetsInsetRect(NSRect rect, FLEdgeInsets insets) {
+    NSRect FLEdgeInsetsInsetRect(NSRect rect, SDKEdgeInsets insets) {
         rect.origin.x    += insets.left;
         rect.origin.y    += insets.top;
         rect.size.width  -= (insets.left + insets.right);

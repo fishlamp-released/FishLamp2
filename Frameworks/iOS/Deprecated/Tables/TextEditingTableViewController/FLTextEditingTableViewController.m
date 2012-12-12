@@ -50,16 +50,16 @@ FLSynthesizeStructProperty(keyboardWillShowInView, setKeyboardWillShowInView, BO
 
 - (void) _cleanupTextEditingTableViewController
 {
-	FLReleaseWithNil_(_intermediateScrollView);
-	FLReleaseWithNil_(_currentCell);
-	FLReleaseWithNil_(_textEditBar);
+	FLReleaseWithNil(_intermediateScrollView);
+	FLReleaseWithNil(_currentCell);
+	FLReleaseWithNil(_textEditBar);
 	
 	for(FLTextEditCell* cell in _textEditCells)
 	{
 		cell.textEditingCellDelegate = nil;
 	}
 	
-	FLReleaseWithNil_(_textEditCells);
+	FLReleaseWithNil(_textEditCells);
 }
 
 - (void) dealloc
@@ -73,7 +73,7 @@ FLSynthesizeStructProperty(keyboardWillShowInView, setKeyboardWillShowInView, BO
 //	{
 //		[_textEditBar removeFromSuperview];
 //	}
-	FLReleaseWithNil_(_textEditBar);
+	FLReleaseWithNil(_textEditBar);
 	[self _cleanupTextEditingTableViewController];
 	super_dealloc_();
 }
@@ -519,7 +519,7 @@ FLSynthesizeStructProperty(keyboardWillShowInView, setKeyboardWillShowInView, BO
 	{
 		[_textEditBar removeFromSuperview];
 	}
-	FLReleaseWithNil_(_textEditBar);
+	FLReleaseWithNil(_textEditBar);
 
 	[FLTextEditCell setGlobalEditingMode:NO];
 	[self removeAdjustmentsForKeyboard];

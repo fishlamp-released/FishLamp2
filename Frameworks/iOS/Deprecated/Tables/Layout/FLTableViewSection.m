@@ -37,8 +37,8 @@
 
 - (void) dealloc
 {
-	FLReleaseWithNil_(_title);
-	FLReleaseWithNil_(_cells);
+	FLReleaseWithNil(_title);
+	FLReleaseWithNil(_cells);
 	FLRelease(_headerView);
 	super_dealloc_();
 }

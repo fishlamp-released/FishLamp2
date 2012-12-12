@@ -403,7 +403,7 @@ static FLViewController* s_presentingModalViewController = nil;
 	FLAssert_v([FLViewController presentingModalViewController] == self, @"dismissing with wrong view controller");
 	
 	FLAssertIsNotNil_(self.modalViewController); 
-	mrc_autorelease_(FLReturnRetain(self.modalViewController));
+	FLAutorelease(FLReturnRetain(self.modalViewController));
 	
 	[super dismissModalViewControllerAnimated:animated];
 	[self.modalViewController wasDismissedFromModalPresentation:self];

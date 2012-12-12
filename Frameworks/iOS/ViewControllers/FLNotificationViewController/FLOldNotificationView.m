@@ -61,7 +61,7 @@ FLSynthesizeStructProperty(notificationViewStyle, setNotificationViewStyle, FLOl
 
 - (void) setValueLabelText:(NSString*) text
 {
-	FLRetainObject_(_text, text);
+	FLAssignObjectWithRetain(_text, text);
 	_notificationViewFlags.textNeedsUpdate = YES;
 }
 
@@ -72,7 +72,7 @@ FLSynthesizeStructProperty(notificationViewStyle, setNotificationViewStyle, FLOl
 
 - (void) setTitle:(NSString*) text
 {
-	FLRetainObject_(_title, text);
+	FLAssignObjectWithRetain(_title, text);
 	_titleLabel.text = text;
 }
 
@@ -150,15 +150,15 @@ FLSynthesizeStructProperty(notificationViewStyle, setNotificationViewStyle, FLOl
 
 - (void) releaseViews
 {
-	FLReleaseWithNil_(_roundRectView);
-	FLReleaseWithNil_(_titleLabel);
-	FLReleaseWithNil_(_closeButton);
-	FLReleaseWithNil_(_iconView);
-	FLReleaseWithNil_(_htmlView);
-	FLReleaseWithNil_(_textView);
-	FLReleaseWithNil_(_timeLabel);
-	FLReleaseWithNil_(_closeBoxX);
-	FLReleaseWithNil_(_closeBoxImageView);
+	FLReleaseWithNil(_roundRectView);
+	FLReleaseWithNil(_titleLabel);
+	FLReleaseWithNil(_closeButton);
+	FLReleaseWithNil(_iconView);
+	FLReleaseWithNil(_htmlView);
+	FLReleaseWithNil(_textView);
+	FLReleaseWithNil(_timeLabel);
+	FLReleaseWithNil(_closeBoxX);
+	FLReleaseWithNil(_closeBoxImageView);
 }
 
 - (void) removeViews
@@ -215,7 +215,7 @@ FLSynthesizeStructProperty(notificationViewStyle, setNotificationViewStyle, FLOl
 	if(self.dismissStyle == FLOldNotificationViewDismissStyleTapAnywhere)
 	{
 		_roundRectView.fillColor = _oldBackgroundColor;
-		FLReleaseWithNil_(_oldBackgroundColor);
+		FLReleaseWithNil(_oldBackgroundColor);
 		[_roundRectView setNeedsDisplay];
 		_closeBoxImageView.alpha = 1.0;
 	}
@@ -230,12 +230,12 @@ FLSynthesizeStructProperty(notificationViewStyle, setNotificationViewStyle, FLOl
 
 - (void) onStartClose:(id) sender
 {
-	FLReleaseWithNil_(_oldBackgroundColor);
-	FLReleaseWithNil_(_oldTextColor);
+	FLReleaseWithNil(_oldBackgroundColor);
+	FLReleaseWithNil(_oldTextColor);
 
 	if(self.dismissStyle == FLOldNotificationViewDismissStyleTapAnywhere)
 	{
-		_oldBackgroundColor = retain_(self.backgroundColor);
+		_oldBackgroundColor = FLRetain(self.backgroundColor);
 		_closeBoxImageView.alpha = .3;
 		_roundRectView.fillColor = [UIColor iPhoneBlueColor];
 		[_roundRectView setNeedsDisplay];

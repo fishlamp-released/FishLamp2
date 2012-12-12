@@ -26,8 +26,8 @@ FLSynthesizeStructProperty(wantsPullToRefresh, setWantsPullToRefresh, BOOL, _scr
 
 - (void) cleanupScrollViewController {
 	_scrollView.delegate = nil;
-	FLReleaseWithNil_(_scrollView);
-	FLReleaseWithNil_(_pullToRefreshView);
+	FLReleaseWithNil(_scrollView);
+	FLReleaseWithNil(_pullToRefreshView);
 }
 
 - (void) dealloc {

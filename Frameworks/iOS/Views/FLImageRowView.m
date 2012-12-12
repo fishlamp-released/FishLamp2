@@ -32,14 +32,14 @@
 	{
 		if(!_images[i])
 		{
-			_images[i] = retain_(image);
+			_images[i] = FLRetain(image);
 		}
 	}
 }
 
 - (void) setImage:(UIImage*) image atIndex:(NSUInteger) idx
 {
-	FLRetainObject_(_images[idx], image);
+	FLAssignObjectWithRetain(_images[idx], image);
 	[self setNeedsDisplay];
 }
 
@@ -49,7 +49,7 @@
 	{
 		if(_images[i])
 		{
-			FLReleaseWithNil_(_images[i]);
+			FLReleaseWithNil(_images[i]);
 		}
 	}	
  }

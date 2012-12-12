@@ -42,8 +42,8 @@
 	input.appId = self.appId;
 
 	[self.database deleteObject:input];
-	FLReleaseWithNil_(_facebookNetworkSession);
-    FLReleaseWithNil_(_encodedToken);
+	FLReleaseWithNil(_facebookNetworkSession);
+    FLReleaseWithNil(_encodedToken);
     
     [FLFacebookService clearHTTPCookies];
 }
@@ -77,7 +77,7 @@
 		if(_facebookNetworkSession && FLStringIsEmpty(_facebookNetworkSession.userId))
 		{
 			[self.database deleteObject:_facebookNetworkSession];
-			FLReleaseWithNil_(_facebookNetworkSession);
+			FLReleaseWithNil(_facebookNetworkSession);
 		}
 	}
 	

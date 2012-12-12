@@ -75,7 +75,7 @@
 // SdkAdditions/UIViewControllerAdditions
 #import "FLViewContentsDescriptor.h"
 #import "FLViewControllerTransitionAnimation.h"
-#import "UIViewController+FLExtras.h"
+#import "SDKViewController+FLAdditions.h"
 
 // Themes
 #import "NSObject+FLTheme.h"

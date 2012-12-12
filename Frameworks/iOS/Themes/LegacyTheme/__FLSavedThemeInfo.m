@@ -79,9 +79,9 @@
 {
     if((self = [super initWithCoder:aDecoder]))
     {
-        __name = retain_([aDecoder decodeObjectForKey:@"__name"]);
-        __className = retain_([aDecoder decodeObjectForKey:@"__className"]);
-        __fontSize = retain_([aDecoder decodeObjectForKey:@"__fontSize"]);
+        __name = FLRetain([aDecoder decodeObjectForKey:@"__name"]);
+        __className = FLRetain([aDecoder decodeObjectForKey:@"__className"]);
+        __fontSize = FLRetain([aDecoder decodeObjectForKey:@"__fontSize"]);
     }
     return self;
 }

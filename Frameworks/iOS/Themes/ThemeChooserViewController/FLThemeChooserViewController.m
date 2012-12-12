@@ -16,7 +16,7 @@
 {
 	if((self = [super init]))
 	{
-//		_savedThemeInfo = retain_([[FLThemeManager instance] loadSavedThemeInfo]);
+//		_savedThemeInfo = FLRetain([[FLThemeManager instance] loadSavedThemeInfo]);
 //		[self.dataSourceManager setDataSource:_savedThemeInfo forKey:[FLSavedThemeInfo dataSourceKey]];
 	}
 	return self;

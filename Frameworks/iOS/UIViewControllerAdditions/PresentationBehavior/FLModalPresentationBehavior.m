@@ -78,12 +78,12 @@ FLSynthesizeSingleton(FLModalPresentationBehavior);
     mrc_retain_(viewController);
     [[viewController view] removeFromSuperview];
     [viewController removeFromParentViewController];
-    mrc_autorelease_(viewController);
+    FLAutorelease(viewController);
 
     if([_shieldViewController view].subviews.count == 0) {
         [[_shieldViewController view] removeFromSuperview];
         [_shieldViewController removeFromParentViewController];
-        FLReleaseWithNil_(_shieldViewController);
+        FLReleaseWithNil(_shieldViewController);
     }
 }
 

@@ -12,8 +12,8 @@
 
 // prettier and shorter versions of ugly association policy
 #define    assign_nonatomic    OBJC_ASSOCIATION_ASSIGN
-#define    FLRetainnonatomic    OBJC_ASSOCIATION_RETAIN_NONATOMIC
-#define    FLRetainatomic       OBJC_ASSOCIATION_RETAIN
+#define    retain_nonatomic    OBJC_ASSOCIATION_RETAIN_NONATOMIC
+#define    retain_atomic       OBJC_ASSOCIATION_RETAIN
 #define    copy_nonatomic      OBJC_ASSOCIATION_COPY_NONATOMIC
 #define    copy_atomic         OBJC_ASSOCIATION_COPY
 

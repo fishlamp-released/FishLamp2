@@ -45,7 +45,7 @@
 
     FLAssertIsNotNil_(item.touchableView);
     FLAssertIsNotNil_(item.touchableView.window);
-    _item = retain_(item);
+    _item = FLRetain(item);
 
    [[FLApplication sharedApplication] addEventInterceptor:self];
 }
@@ -53,7 +53,7 @@
 - (void) stopWatchingTouches
 {
     [[FLApplication sharedApplication] removeEventInterceptor:self];
-    FLReleaseWithNil_(_item);
+    FLReleaseWithNil(_item);
 }
 
 - (CGPoint) pointInView:(CGPoint) windowCoordinatePoint

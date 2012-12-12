@@ -29,6 +29,6 @@
 
 @implementation NSObject (FLLinkedList)
 FLSynthesizeAssociatedProperty(assign_nonatomic, linkedList, setLinkedList, FLLinkedList*);
-FLSynthesizeAssociatedProperty(FLRetainnonatomic, nextObjectInLinkedList, setNextObjectInLinkedList, id);
-FLSynthesizeAssociatedProperty(FLRetainnonatomic, previousObjectInLinkedList, setPreviousObjectInLinkedList, id);
+FLSynthesizeAssociatedProperty(retain_nonatomic, nextObjectInLinkedList, setNextObjectInLinkedList, id);
+FLSynthesizeAssociatedProperty(retain_nonatomic, previousObjectInLinkedList, setPreviousObjectInLinkedList, id);
 @end

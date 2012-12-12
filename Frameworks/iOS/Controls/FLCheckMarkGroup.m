@@ -18,7 +18,7 @@
 {
 	if((self = [super init]))
 	{
-		_dataKey = retain_(dataKeyPath);
+		_dataKey = FLRetain(dataKeyPath);
 		_rows = [[NSMutableArray alloc] init];
 	}
 

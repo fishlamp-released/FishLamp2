@@ -115,7 +115,7 @@ FLSynthesizeSingleton(FLActionErrorNotificationHandler);
 /*
 - (void) showNotification:(FLOldUserNotificationView*) notification
 {
-	mrc_autorelease_(FLReturnRetain(notification));
+	FLAutorelease(FLReturnRetain(notification));
 	FLViewController* controller = (FLViewController*) [self defaultViewController];
 #if VIEW_AUTOLAYOUT
 	notification.viewDelegate = controller;

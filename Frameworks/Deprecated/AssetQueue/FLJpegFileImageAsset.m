@@ -7,7 +7,7 @@
 //
 #if 0
 #import "FLJpegFileImageAsset.h"
-#import "FLImage.h"
+#import "SDKImage.h"
 #import "UIImage+Resize.h"
 #import "FLQueuedAsset.h"
 
@@ -91,10 +91,10 @@ static float s_thumbnailSize = 0.0;
 }
 
 - (void) dealloc {
-	FLReleaseWithNil_(_folder);
-	FLReleaseWithNil_(_fullScreenImageFile);
-	FLReleaseWithNil_(_originalImageFile);
-	FLReleaseWithNil_(_thumbnailImageFile);
+	FLReleaseWithNil(_folder);
+	FLReleaseWithNil(_fullScreenImageFile);
+	FLReleaseWithNil(_originalImageFile);
+	FLReleaseWithNil(_thumbnailImageFile);
 	super_dealloc_();
 }
 
@@ -161,9 +161,9 @@ static float s_thumbnailSize = 0.0;
 
 - (void) createThumbnailVersion
 {
-//	FLImage* thumb = nil;
+//	SDKImage* thumb = nil;
 	
-	FLImage* startImage = self.original.image;
+	SDKImage* startImage = self.original.image;
 	if(!startImage)
 	{
 		startImage = self.fullScreen.image;
@@ -185,7 +185,7 @@ static float s_thumbnailSize = 0.0;
 //	
 //	self.thumbnail.image = thumb;
 //	
-//	FLReleaseWithNil_(thumb);
+//	FLReleaseWithNil(thumb);
 }
 
 
@@ -212,9 +212,9 @@ static float s_thumbnailSize = 0.0;
 
 - (void) releaseFiles
 {
-	FLReleaseWithNil_(_thumbnailImageFile);
-	FLReleaseWithNil_(_originalImageFile);
-	FLReleaseWithNil_(_fullScreenImageFile);
+	FLReleaseWithNil(_thumbnailImageFile);
+	FLReleaseWithNil(_originalImageFile);
+	FLReleaseWithNil(_fullScreenImageFile);
 }
 
 
@@ -282,13 +282,13 @@ static float s_thumbnailSize = 0.0;
 		[_fullScreenImageFile deleteFromStorage];
 	}
 	
-//	FLReleaseWithNil_(_dataFile);
-	FLReleaseWithNil_(_thumbnailImageFile);
-	FLReleaseWithNil_(_originalImageFile);
-	FLReleaseWithNil_(_fullScreenImageFile);
+//	FLReleaseWithNil(_dataFile);
+	FLReleaseWithNil(_thumbnailImageFile);
+	FLReleaseWithNil(_originalImageFile);
+	FLReleaseWithNil(_fullScreenImageFile);
 }
 
-- (FLImage*) thumbnailImage {
+- (SDKImage*) thumbnailImage {
 
 // FIXME: asset stuff is a mess
 

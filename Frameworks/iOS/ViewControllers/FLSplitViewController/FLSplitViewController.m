@@ -97,7 +97,7 @@
 {
     [super viewDidUnload];
 
-    FLReleaseWithNil_(_splitterView);
+    FLReleaseWithNil(_splitterView);
     
     // Release any retained subviews of the main view.
 }

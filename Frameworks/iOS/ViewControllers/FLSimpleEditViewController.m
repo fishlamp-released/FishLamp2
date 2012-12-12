@@ -137,7 +137,7 @@
 
 - (void) setSaveButtonTitle:(NSString*) title
 {
-    FLRetainObject_(_saveButtonTitle, title);
+    FLAssignObjectWithRetain(_saveButtonTitle, title);
     if(_saveButton)
     {
         _saveButton.title = title;
@@ -154,7 +154,7 @@
 
 - (void) setCancelButtonTitle:(NSString*) title
 {
-    FLRetainObject_(_cancelButtonTitle, title);
+    FLAssignObjectWithRetain(_cancelButtonTitle, title);
     if(_cancelButton)
     {
         _cancelButton.title = title;
@@ -169,9 +169,9 @@
 {
     [super viewDidUnload];
     
-    FLReleaseWithNil_(_contentView);
-    FLReleaseWithNil_(_saveButton);
-    FLReleaseWithNil_(_cancelButton);
+    FLReleaseWithNil(_contentView);
+    FLReleaseWithNil(_saveButton);
+    FLReleaseWithNil(_cancelButton);
 }
 
 

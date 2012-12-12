@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+#import "FLViewController.h"
 
 @class FLWizardViewController;
 @class FLWizardPanel;
@@ -23,7 +23,7 @@
 - (void) wizardPanelRespondToOtherButton:(FLWizardPanel*) wizardPanel;
 @end
 
-@interface FLWizardPanel : NSViewController<FLWizardPanelDelegate> {
+@interface FLWizardPanel : FLViewController<FLWizardPanelDelegate> {
 @private
     __unsafe_unretained FLWizardViewController* _wizard;
     __unsafe_unretained id<FLWizardPanelDelegate> _delegate;

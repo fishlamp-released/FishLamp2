@@ -27,7 +27,7 @@
         [self instance]; \
     }   \
     + (void) releaseInstance { \
-        dispatch_once(&s_pred2##__class, ^{ FLReleaseWithNil_(s_instance##__class); s_pred1##__class = 0; }); \
+        dispatch_once(&s_pred2##__class, ^{ FLReleaseWithNil(s_instance##__class); s_pred1##__class = 0; }); \
         }
 
 #define singleton_property_ FLSingletonProperty

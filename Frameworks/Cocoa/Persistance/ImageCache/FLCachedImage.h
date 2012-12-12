@@ -10,12 +10,12 @@
 //#import "FLCore.h"
 //
 //#import "FLCachedImageBaseClass.h"
-//#import "FLImage.h"
+//#import "SDKImage.h"
 //
 //// TODO: store url as NSURL in superclass
 //@interface FLCachedImage : FLCachedImageBaseClass {
 //@private
-//	FLImage* _imageFile;
+//	SDKImage* _imageFile;
 //}
 //
 //- (id) initWithURL:(NSURL*) url;
@@ -25,7 +25,7 @@
 //+ (FLCachedImage*) cachedImageWithUrlString:(NSString*) url;
 //+ (FLCachedImage*) cachedImage;
 //
-//@property (readwrite, retain, nonatomic) FLImage* image;
+//@property (readwrite, retain, nonatomic) SDKImage* image;
 //
 //@end
 //

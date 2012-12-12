@@ -84,7 +84,7 @@ FLSynthesizeStructProperty(allowMultipleSelections, setAllowMultipleSelections, 
 
     [super viewDidUnload];
     
-    FLReleaseWithNil_(_scrollIndicatorView);
+    FLReleaseWithNil(_scrollIndicatorView);
 }
 
 - (void) createScrollIndicatorView {
@@ -351,8 +351,8 @@ FLSynthesizeStructProperty(allowMultipleSelections, setAllowMultipleSelections, 
 - (void) unselectAllCells {
     NSArray* prev = _selectedObjectIds;
     mrc_retain_(prev);
-    mrc_autorelease_(prev);
-    FLRetainObject_(_selectedObjectIds, [NSMutableArray array]);
+    FLAutorelease(prev);
+    FLAssignObjectWithRetain(_selectedObjectIds, [NSMutableArray array]);
 
     for(id dataRefKey in prev) {
         FLGridCell* cell = [self cellForDataRefKey:dataRefKey];
@@ -395,7 +395,7 @@ FLSynthesizeStructProperty(allowMultipleSelections, setAllowMultipleSelections, 
         [newCollection addObject:cell forKey:dataRefKey];
     }
     
-    FLRetainObject_(_cellCollection, newCollection);
+    FLAssignObjectWithRetain(_cellCollection, newCollection);
     [self reflowCells];
 }
 
@@ -412,7 +412,7 @@ FLSynthesizeStructProperty(allowMultipleSelections, setAllowMultipleSelections, 
         [newCollection addObject:cell forKey:dataRefKey];
     }
     
-    FLRetainObject_(_cellCollection, newCollection);
+    FLAssignObjectWithRetain(_cellCollection, newCollection);
     [self reflowCells];
 }
 

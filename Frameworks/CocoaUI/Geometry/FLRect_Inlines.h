@@ -105,7 +105,7 @@ CGRect FLRectJustifyRectInRectBottomLeft(CGRect container, CGRect containee) {
 }
 
 FL_SHIP_ONLY_INLINE 
-CGRect FLRectInsetWithEdgeInsets(CGRect inRect, FLEdgeInsets insets) {
+CGRect FLRectInsetWithEdgeInsets(CGRect inRect, SDKEdgeInsets insets) {
 	inRect.size.height -= (insets.top + insets.bottom);
     inRect.size.width -= (insets.left + insets.right);
     inRect.origin.x += insets.left;

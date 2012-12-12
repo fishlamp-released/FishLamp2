@@ -67,15 +67,15 @@
 
 - (void) dealloc
 {
-	FLReleaseWithNil_(_stringArray);
-	FLReleaseWithNil_(_emailAddress);
+	FLReleaseWithNil(_stringArray);
+	FLReleaseWithNil(_emailAddress);
 	super_dealloc_();
 }
 
 - (void) onButtonClicked:(FLLegacyButton*) button
 {
 // TODO: this is hack. We're presenting this from a modal view controller, so we can't nest these.
-    mrc_autorelease_(FLReturnRetain(self));
+    FLAutorelease(FLReturnRetain(self));
 
     [[FLViewController presentingModalViewController] dismissModalViewControllerAnimated:NO]; // this will dismiss us and our parents.
 
@@ -103,7 +103,7 @@
 	
 	[email composeEmail:(FLViewController*) [UIApplication visibleViewController]];
 	
-	FLReleaseWithNil_(email);
+	FLReleaseWithNil(email);
 
 }
 

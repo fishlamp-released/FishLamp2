@@ -20,10 +20,10 @@
 	if(_leftButton)
 	{
 		[_leftButton removeFromSuperview];
-		FLReleaseWithNil_(_leftButton);
+		FLReleaseWithNil(_leftButton);
 	}
 	
-	_leftButton = retain_(leftButton);
+	_leftButton = FLRetain(leftButton);
 	[self addSubview:_leftButton];
 	[self setNeedsLayout];
 }
@@ -33,10 +33,10 @@
 	if(_rightButton)
 	{
 		[_rightButton removeFromSuperview];
-		FLReleaseWithNil_(_rightButton);
+		FLReleaseWithNil(_rightButton);
 	}
 	
-	_rightButton = retain_(rightButton);
+	_rightButton = FLRetain(rightButton);
 	[self addSubview:_rightButton];
 	[self setNeedsLayout];
 }

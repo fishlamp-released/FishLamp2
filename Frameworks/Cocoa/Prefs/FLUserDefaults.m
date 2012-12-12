@@ -68,7 +68,7 @@ NSString* FLUserLoginErrorDomain = @"FLUserLoginErrorDomain";
 		}
 	}
 
-	FLReleaseWithNil_(guids);
+	FLReleaseWithNil(guids);
 
 }
 #endif
@@ -138,7 +138,7 @@ static NSString* LegacyKeys[] = {
 						{
 							[userItems setObject:data forKey:item];
 						}
-						FLReleaseWithNil_(userItems);
+						FLReleaseWithNil(userItems);
 					}
 				}
 			}
@@ -233,7 +233,7 @@ static NSString* LegacyKeys[] = {
 	{
 		if(internalError.code == FLUserLoginErrorGuidNotFound)
 		{
-			FLReleaseWithNil_(internalError);
+			FLReleaseWithNil(internalError);
 			ok = YES;
 		}
 		
@@ -252,7 +252,7 @@ static NSString* LegacyKeys[] = {
 	ok = YES;
 
 Exit:	   
-	FLReleaseWithNil_(password);
+	FLReleaseWithNil(password);
 	
 	if(internalError)
 	{
@@ -275,7 +275,7 @@ Exit:
 			}
 		}
 	
-		FLReleaseWithNil_(internalError);
+		FLReleaseWithNil(internalError);
 	}
 	   
 																																																													   
@@ -370,7 +370,7 @@ Exit:
 		*error = FLRetain(internalError);
 	}
 	
-	FLReleaseWithNil_(internalError);
+	FLReleaseWithNil(internalError);
 							
 	return NO;
 }
@@ -393,8 +393,8 @@ Exit:
     FLAssertIsNotNil_(keys);
     FLAssertIsNotNil_(userDefaultData);
     
-    FLReleaseWithNil_(keys);
-	FLReleaseWithNil_(userDefaultData);
+    FLReleaseWithNil(keys);
+	FLReleaseWithNil(userDefaultData);
 }
 
 @end

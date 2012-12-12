@@ -41,7 +41,7 @@
         _touchHandler.touchableObject = nil;
     }
     
-    FLRetainObject_(_touchHandler, touchHandler);
+    FLAssignObjectWithRetain(_touchHandler, touchHandler);
     _touchHandler.touchableObject = self;
     
     __block id myself = self;
@@ -80,7 +80,7 @@
 }
 
 - (void) setBackgroundColor:(UIColor*) color {
-	FLRetainObject_(_backgroundColor, color);
+	FLAssignObjectWithRetain(_backgroundColor, color);
     [self setNeedsDisplay];
 }
 
@@ -304,7 +304,7 @@
 - (void) removeWidget:(FLWidget*) widget {
 	FLAssert_v(widget.parent == self, @"attempting to remove subwidget from non-owning superwidget");
     if(_widgets && widget.parent == self) {
-        mrc_autorelease_(FLReturnRetain(widget));
+        FLAutorelease(FLReturnRetain(widget));
         [_widgets removeObject:widget];
         widget.parent = nil;
         [self setNeedsDisplay];

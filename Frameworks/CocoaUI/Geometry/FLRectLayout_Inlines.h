@@ -29,7 +29,7 @@ FLRectLayout FLRectLayoutMake(	FLRectLayoutHorizontal horizontalLayout,
 FL_SHIP_ONLY_INLINE
 FLRectLayout FLRectLayoutMakeWithInsets(	FLRectLayoutHorizontal horizontalLayout,
                                             FLRectLayoutVertical verticalLayout,
-                                            FLEdgeInsets insets)
+                                            SDKEdgeInsets insets)
 {
 	FLRectLayout loc;
 	loc.horizontal = horizontalLayout;

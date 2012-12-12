@@ -18,7 +18,7 @@
 {
 	if((self = [super init]))
 	{
-		_rootViewController = retain_(viewController);
+		_rootViewController = FLRetain(viewController);
 	    _navigationController = [[FLNavigationController alloc] initWithRootViewController:_rootViewController];
         _navigationController.wantsFullScreenLayout = YES;
         

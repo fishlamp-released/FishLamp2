@@ -5,9 +5,7 @@
 //	Created by Mike Fullerton on 5/22/09.
 //	Copyright 2009 Greentongue Software. All rights reserved.
 //
-#import <Foundation/Foundation.h>
-#import "FLCore.h"
-#import "FLGeometryCompatibility.h"
+#import "FLCocoaUICompatibility.h"
 #import "FLMath.h"
 
 
@@ -90,7 +88,7 @@ extern CGRect FLRectInsetTop(CGRect inRect, CGFloat delta);
 extern CGRect FLRectInsetBottom(CGRect inRect, CGFloat delta);
 extern CGRect FLRectInsetLeft(CGRect inRect, CGFloat delta);
 extern CGRect FLRectInsetRight(CGRect inRect, CGFloat delta);
-extern CGRect FLRectInsetWithEdgeInsets(CGRect inRect, FLEdgeInsets insets);
+extern CGRect FLRectInsetWithEdgeInsets(CGRect inRect, SDKEdgeInsets insets);
 
 // layout
 extern CGRect FLRectAlignRectsHorizonally(CGRect left, CGRect right);

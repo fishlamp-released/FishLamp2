@@ -44,14 +44,14 @@
 //	_context.actionContextDelegate = nil;
 	_emailController.mailComposeDelegate = nil;
 	
-	FLReleaseWithNil_(_emailController);
-//	FLReleaseWithNil_(_context);
-	FLReleaseWithNil_(_subject);
-	FLReleaseWithNil_(_body);
-	FLReleaseWithNil_(_attachmentFileName);
-	FLReleaseWithNil_(_attachmentMimeType);
-	FLReleaseWithNil_(_attachment);
-	FLReleaseWithNil_(_toRecipients);
+	FLReleaseWithNil(_emailController);
+//	FLReleaseWithNil(_context);
+	FLReleaseWithNil(_subject);
+	FLReleaseWithNil(_body);
+	FLReleaseWithNil(_attachmentFileName);
+	FLReleaseWithNil(_attachmentMimeType);
+	FLReleaseWithNil(_attachment);
+	FLReleaseWithNil(_toRecipients);
 		
 	super_dealloc_();
 }
@@ -81,7 +81,7 @@
 
         [alert addButton:[FLConfirmButton okButton]];
         [alert presentViewControllerAnimated:YES];
-		mrc_autorelease_(self);	   
+		FLAutorelease(self);	   
 		return NO;
 	}
 
@@ -127,12 +127,12 @@
 		[_delegate emailer:self didFinishWithResult:result error:error];
 	}
 	_emailController.mailComposeDelegate = nil;
-	FLReleaseWithNil_(_emailController);
-//	FLReleaseWithNil_(_context);
+	FLReleaseWithNil(_emailController);
+//	FLReleaseWithNil(_context);
 	_parentController = nil;
 	_delegate = nil;
 	
-	mrc_autorelease_(self);
+	FLAutorelease(self);
 }
 
 @end

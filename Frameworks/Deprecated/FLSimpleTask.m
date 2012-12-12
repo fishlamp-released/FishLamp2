@@ -32,7 +32,7 @@
         )
     }
     @finally {
-        FLReleaseWithNil_(_target);
+        FLReleaseWithNil(_target);
     }
 }
 

@@ -20,7 +20,7 @@
 		self.barStyle = UIBarStyleBlack;
 		self.translucent = YES;
         
-        _buttonbar = retain_(buttonbarView);
+        _buttonbar = FLRetain(buttonbarView);
         [self addSubview:_buttonbar];
     }
 

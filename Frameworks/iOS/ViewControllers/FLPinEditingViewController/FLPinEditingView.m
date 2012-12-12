@@ -8,7 +8,7 @@
 
 #import "FLPinEditingView.h"
 #import "FLGradientButton.h"
-#import "FLImage+Colorize.h"
+#import "SDKImage+Colorize.h"
 
 #define kButtonHeight 60.0f
 #define kLabelSize 40.0f
@@ -155,7 +155,7 @@
 	else if(!_checkingNewPinMode)
 	{
 		_titleLabel.text = NSLocalizedString(@"Confirm New PIN", nil);
-		_pinToCheck = retain_(self.pin);
+		_pinToCheck = FLRetain(self.pin);
 		_checkingNewPinMode = YES;
 		
 		[self performSelector:@selector(_clear) withObject:nil afterDelay:0.3];
@@ -294,7 +294,7 @@
 - (void) setPinCheckMode:(NSString*) pinToCheck maxAttempts:(NSUInteger) maxAttempts
 {
 	_titleLabel.text = NSLocalizedString(@"Enter PIN", nil);
-	FLRetainObject_(_pinToCheck, pinToCheck);
+	FLAssignObjectWithRetain(_pinToCheck, pinToCheck);
 	_maxAttempts = maxAttempts;
 	_pinCheckMode = YES;
 	[self setNeedsLayout];

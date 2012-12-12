@@ -7,7 +7,7 @@
 //
 
 #import "FLModalShield.h"
-#import "FLImage+Colorize.h"
+#import "SDKImage+Colorize.h"
 
 @implementation FLModalShieldView
 @end
@@ -76,11 +76,11 @@
 - (void) hideShield {
 	if(_barShield) {
 		[_barShield removeFromSuperview];
-		FLReleaseWithNil_(_barShield);
+		FLReleaseWithNil(_barShield);
 	}
 	if(_viewShield) {
 		[_viewShield removeFromSuperview];
-		FLReleaseWithNil_(_viewShield);
+		FLReleaseWithNil(_viewShield);
 	}
 }
 

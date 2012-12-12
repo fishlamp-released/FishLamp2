@@ -81,7 +81,7 @@
         }
     }
     
-    FLReleaseWithNil_(_cache);
+    FLReleaseWithNil(_cache);
 }
 
 @end

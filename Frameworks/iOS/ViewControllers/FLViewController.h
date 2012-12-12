@@ -15,7 +15,7 @@
 #import "FLWeakReference.h"
 #import "FLBackgroundTaskMgr.h"
 #import "FLViewContentsDescriptor.h"
-#import "UIViewController+FLExtras.h"
+#import "SDKViewController+FLAdditions.h"
 #import "FLFinisher.h"
 
 @class FLAction;

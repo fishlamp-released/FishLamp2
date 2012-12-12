@@ -71,8 +71,8 @@
         }
     }
 
-    FLReleaseWithNil_(_delimiter);
-    FLReleaseWithNil_(_dataToBind);
+    FLReleaseWithNil(_delimiter);
+    FLReleaseWithNil(_dataToBind);
     self.sqlString = @"";
 }
 #if FL_MRC 
@@ -158,7 +158,7 @@
 
 
 - (void) closeList {
-    FLReleaseWithNil_(_delimiter);
+    FLReleaseWithNil(_delimiter);
     _inList = NO;
     _listCount = 0;
     if(_closeParens) {

@@ -51,7 +51,7 @@
 {
 	[UIView setAnimationDelegate:nil];
 
-	mrc_autorelease_(retain_(self));
+	FLAutorelease(FLRetain(self));
 	
 	if(context) {
 		FLViewAnimationFinishedBlock finishedBlock = FLAutorelease(bridge_(FLViewAnimationFinishedBlock, context));
@@ -84,7 +84,7 @@
 - (void) _doneAnimating:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context
 {
 	[UIView setAnimationDelegate:nil];
-	mrc_autorelease_(retain_(self));
+	FLAutorelease(FLRetain(self));
 
 	if(context) {
 		FLViewAnimationFinishedBlock finishedBlock = bridge_(FLViewAnimationFinishedBlock, context);

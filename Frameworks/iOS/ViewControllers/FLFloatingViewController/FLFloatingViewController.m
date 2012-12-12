@@ -13,7 +13,7 @@
 #import "FLApplication.h"
 #import "FLFloatingViewController.h"
 #import "FLKeyboardManager.h"
-#import "UIViewController+FLExtras.h"
+#import "SDKViewController+FLAdditions.h"
 
 #define kAnimationDuration 0.1
 
@@ -258,7 +258,7 @@ FLSynthesizeStructProperty(contentViewIsModal, setContentViewIsModal, BOOL, _sta
 
 - (void) setChildFloatingViewController:(FLFloatingViewController *)childFloatingViewController
 {
-    FLRetainObject_(_childPopover, childFloatingViewController);
+    FLAssignObjectWithRetain(_childPopover, childFloatingViewController);
     if(childFloatingViewController.parentFloatingViewController != self)
     {
         childFloatingViewController.parentFloatingViewController = self;
@@ -335,7 +335,7 @@ FLSynthesizeStructProperty(contentViewIsModal, setContentViewIsModal, BOOL, _sta
     {
         [_childPopover setParentPopover:nil];
         [_childPopover dismissViewControllerAnimated:YES];
-        FLReleaseWithNil_(_childPopover);
+        FLReleaseWithNil(_childPopover);
     }
 }
 
@@ -347,7 +347,7 @@ FLSynthesizeStructProperty(contentViewIsModal, setContentViewIsModal, BOOL, _sta
         {
             [self dismissChild];
         }
-        FLRetainObject_(_childPopover, child);
+        FLAssignObjectWithRetain(_childPopover, child);
         [_childPopover setParentPopover:self];
     }
 }   
@@ -370,7 +370,7 @@ FLSynthesizeStructProperty(contentViewIsModal, setContentViewIsModal, BOOL, _sta
 
 - (void)dismissViewControllerAnimated:(BOOL)animated
 {
-	mrc_autorelease_(FLReturnRetain(self));
+	FLAutorelease(FLReturnRetain(self));
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	[[FLFloatingViewEventReceiver instance] removePopupViewController:self];
     [[FLBackgroundTaskMgr instance] removeObserver:self];
@@ -419,7 +419,7 @@ FLSynthesizeStructProperty(contentViewIsModal, setContentViewIsModal, BOOL, _sta
         }
     }
     
-    FLRetainObject_(_contentViewController, viewController);
+    FLAssignObjectWithRetain(_contentViewController, viewController);
     [self addChildViewController:_contentViewController];
 
     if(self.isViewLoaded)

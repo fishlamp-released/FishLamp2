@@ -86,7 +86,7 @@ FLSynthesizeStructProperty(logEvents, setLogEvents, BOOL, _timerFlags);
 	if(_timer)
 	{
 		[_timer stopTimer];
-		FLReleaseWithNil_(_timer);
+		FLReleaseWithNil(_timer);
 		_timeoutCallback.target = nil;
 		_timeoutCallback.action = nil;
 	}
@@ -213,7 +213,7 @@ FLSynthesizeStructProperty(logEvents, setLogEvents, BOOL, _timerFlags);
 //		[_delegate timer:self describeTimedObjectToBuilder:builder];
 //	}
 //	
-//	FLReleaseWithNil_(dateFormatter);
+//	FLReleaseWithNil(dateFormatter);
 //#endif
 //}
 

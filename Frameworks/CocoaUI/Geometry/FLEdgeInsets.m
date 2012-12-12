@@ -9,5 +9,5 @@
 #import "FLEdgeInsets.h"
 
 #if OSX
-const FLEdgeInsets FLEdgeInsetsZero = {0,0,0,0};
+const SDKEdgeInsets FLEdgeInsetsZero = {0,0,0,0};
 #endif

@@ -209,7 +209,7 @@ FIXME("attach to user sessions....");
 	}
 	@finally
 	{
-		FLReleaseWithNil_(imageFile);
+		FLReleaseWithNil(imageFile);
 	}
 	return YES;
 }

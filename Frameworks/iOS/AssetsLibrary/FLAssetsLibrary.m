@@ -519,7 +519,7 @@ NSError* DisplayDiagnosticError(NSError* error)
 //				[_assets replaceObjectAtIndex:idx withObject:result];
 //			}
 //		}];
-//	FLReleaseWithNil_(indexes);
+//	FLReleaseWithNil(indexes);
 //}
 
 

@@ -29,7 +29,7 @@
 
 - (void) dealloc
 {
-	FLReleaseWithNil_(_operation);
+	FLReleaseWithNil(_operation);
 	super_dealloc_();
 }
 

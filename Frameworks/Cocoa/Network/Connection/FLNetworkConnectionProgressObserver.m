@@ -32,7 +32,7 @@
     [self performBlockOnMainThread:^{
         if(_progress) {
             [_progress hideProgress];
-            FLReleaseWithNil_(_progress);
+            FLReleaseWithNil(_progress);
         }
     }];
 }

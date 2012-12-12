@@ -30,7 +30,7 @@
 	NSString* name = [[NSString alloc] initWithFormat:@"%@.sqlite", [FLAppInfo appName]];
 	if((self = [self initWithName:name directory:directory])) {
 	}
-	FLReleaseWithNil_(name);
+	FLReleaseWithNil(name);
 	return self;
 }
 

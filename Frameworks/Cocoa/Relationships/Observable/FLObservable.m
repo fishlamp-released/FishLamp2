@@ -66,7 +66,7 @@ synthesize_(observers);
  
         [_observers addObject:[NSValue valueWithNonretainedObject:observer]];
                   
-//        FLReleaseWithNil_(_iteratable);
+//        FLReleaseWithNil(_iteratable);
     }
 
 
@@ -75,7 +75,7 @@ synthesize_(observers);
 - (void) removeObserver:(id) observer {
     @synchronized(self) {
         [_observers removeObject:observer];
-//        FLReleaseWithNil_(_iteratable);
+//        FLReleaseWithNil(_iteratable);
     }
 }
 

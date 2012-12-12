@@ -1,0 +1,46 @@
+//
+//	SDKImageView+FLViewGeometry.m
+//	FishLamp
+//
+//	Created by Mike Fullerton on 10/17/10.
+//	Copyright 2010 GreenTongue Software. All rights reserved.
+//
+#import "SDKImageView+FLViewGeometry.h"
+#import "SDKImage+Resize.h"
+
+@implementation SDKImageView (FLViewGeometry)
+
+- (BOOL) resizeToImageSize
+{
+	return [self setFrameIfChanged:FLRectSetSizeWithSize(self.frame, self.image.size)];
+}
+
+- (CGRect) frameSizedToFitInSuperview:(BOOL) centerInSuperview
+{
+	SDKImage* image = self.image;
+	if(image && self.superview)
+	{
+		CGRect superviewBounds = self.superview.bounds;
+		CGRect newFrame = FLRectFitInRectInRectProportionally(
+			FLRectMakeWithSize(superviewBounds.size), 
+			FLRectMakeWithSize(image.size));
+			
+		if(centerInSuperview)
+		{
+			newFrame = FLRectCenterRectInRect(superviewBounds, newFrame);
+		}
+		
+		return newFrame;
+	}
+	
+	return CGRectZero;
+}
+
+- (void) resizeProportionally:(CGSize) maxSize
+{
+//	  [self setViewSizeToImageSize];
+	CGRect newBounds = [self.image proportionalBoundsWithMaxSize:maxSize];
+	self.newFrame = CGRectIntegral(FLRectSetSizeWithSize(self.frame, newBounds.size));
+}
+
+@end

@@ -87,7 +87,7 @@ FLSynthesizeAssociatedProperty(assign_nonatomic, _auxiliaryViewController, setAu
 }
 
 - (void) setParentViewController:(UIViewController*) viewController {
-    FLRetainObject_(_parentViewController, viewController);
+    FLAssignObjectWithRetain(_parentViewController, viewController);
     
     [self addTouchableViews];
     [_behavior didAddTouchableView:self];
@@ -290,7 +290,7 @@ FLSynthesizeAssociatedProperty(assign_nonatomic, _auxiliaryViewController, setAu
 
 - (void) setViewController:(UIViewController*) viewController  {   
     FLAssertIsNotNil_(viewController);
-    FLRetainObject_(_viewController, viewController);
+    FLAssignObjectWithRetain(_viewController, viewController);
 
     viewController.auxiliaryViewController = self;
 
@@ -319,12 +319,12 @@ FLSynthesizeAssociatedProperty(assign_nonatomic, _auxiliaryViewController, setAu
     [_dragController removeDragResponder:_parentViewController.view];
 
     [_containerView removeFromSuperview];
-    FLReleaseWithNil_(_containerView);
+    FLReleaseWithNil(_containerView);
 
     [_viewController.view removeFromSuperview];
     [_viewController removeFromParentViewController];
     self.viewController.auxiliaryViewController = nil;
-    FLReleaseWithNil_(_viewController);
+    FLReleaseWithNil(_viewController);
 }
 
 - (void) hideViewControllerAnimated:(BOOL) animated {

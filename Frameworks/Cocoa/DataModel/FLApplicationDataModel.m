@@ -49,7 +49,7 @@ FLSynthesizeSingleton(FLApplicationDataModel);
 
 - (void) closeDatabase {
 	[_database closeDatabase];
-	FLReleaseWithNil_(_database);
+	FLReleaseWithNil(_database);
 }
 
 - (BOOL) isOpen {
@@ -126,7 +126,7 @@ BOOL FLIsValidUser(FLUserLogin* userLogin) {
 				userLogin.password = password;
 				// ok if pw not loaded.
 			}
-			FLReleaseWithNil_(password);
+			FLReleaseWithNil(password);
 		}
 	}
 }

@@ -55,7 +55,7 @@
 
 - (void)dealloc 
 {
-	FLReleaseWithNil_(_slider);
+	FLReleaseWithNil(_slider);
 	super_dealloc_();
 }
 

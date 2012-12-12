@@ -1,0 +1,16 @@
+//
+//	SDKImageView+FLViewGeometry.h
+//	FishLamp
+//
+//	Created by Mike Fullerton on 10/17/10.
+//	Copyright 2010 GreenTongue Software. All rights reserved.
+//
+
+#import "FLCocoaUICompatibility.h"
+
+@interface SDKImageView (FLViewGeometry)
+// return YES is frame was changed.
+- (BOOL) resizeToImageSize;
+- (void) resizeProportionally:(CGSize) maxSize;
+@end
+

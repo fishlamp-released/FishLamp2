@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "FLCore.h"
+#import "FLCocoaUICompatibility.h"
 
 #import "FLProgressViewProtocol.h"
 

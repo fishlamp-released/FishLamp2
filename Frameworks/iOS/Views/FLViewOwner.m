@@ -31,7 +31,7 @@
 - (void) dealloc
 {
 	[_view removeFromSuperview];
-	FLReleaseWithNil_(_view);
+	FLReleaseWithNil(_view);
 	super_dealloc_();
 }
 

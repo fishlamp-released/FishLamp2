@@ -185,10 +185,10 @@
 }
 
 - (void) viewDidUnload {
-    FLReleaseWithNil_(_bottomAuxiliaryViewController);
-    FLReleaseWithNil_(_scrollView);
-    FLReleaseWithNil_(_breadcrumbHost);
-    FLReleaseWithNil_(_breadCrumbview);
+    FLReleaseWithNil(_bottomAuxiliaryViewController);
+    FLReleaseWithNil(_scrollView);
+    FLReleaseWithNil(_breadcrumbHost);
+    FLReleaseWithNil(_breadCrumbview);
     [super viewDidUnload];
 }
 

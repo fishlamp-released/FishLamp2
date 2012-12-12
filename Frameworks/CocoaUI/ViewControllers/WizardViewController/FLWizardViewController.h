@@ -6,15 +6,14 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
-
+#import "FLViewController.h"
 #import "FLView.h"
 #import "FLBreadcrumbBarView.h"
 #import "FLWizardPanel.h"
 
 @protocol FLWizardViewControllerDelegate;
 
-@interface FLWizardViewController : NSViewController {
+@interface FLWizardViewController : FLViewController {
 @private
     NSView* _backgroundView;
     NSView* _wizardPanelBackgroundView;

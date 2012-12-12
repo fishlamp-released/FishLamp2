@@ -9,7 +9,7 @@
 #import "FLDeprecatedButtonbarView.h"
 #import "FLNavigationControllerViewController.h"
 #import "FLGradientButton.h"
-#import "FLImage+Colorize.h"
+#import "SDKImage+Colorize.h"
 #import "FLViewController.h"
 #import "FLGradientView.h"
 
@@ -341,14 +341,14 @@ FLSynthesizeStructProperty(automaticallyShowBackButton, setAutomaticallyShowBack
 	FLButtonbarViewContainer* viewContainer = [self _viewContainerForKey:key array:_leftViews];
 	if(viewContainer)
 	{
-		[_leftViews removeObject:FLAutorelease(retain_(viewContainer))];
+		[_leftViews removeObject:FLAutorelease(FLRetain(viewContainer))];
 	}
 	else
 	{
 		viewContainer = [self _viewContainerForKey:key array:_rightViews];
 		if(viewContainer)
 		{
-			[_rightViews removeObject:FLAutorelease(retain_(viewContainer))];
+			[_rightViews removeObject:FLAutorelease(FLRetain(viewContainer))];
 		}
 	}
 	

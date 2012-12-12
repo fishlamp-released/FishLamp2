@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "FLCore.h"
+#import "FLCocoaUICompatibility.h"
 
 #import "FLStorableImageProtocol.h"
 #import "FLStorableObject.h"
@@ -16,7 +17,7 @@
 
 @interface FLJpegFile : FLFolderFile<FLStorableImageProtocol, FLStorableObject> {
 @private
-	FLImage* _image;
+	SDKImage* _image;
 	NSData* _jpegData;
 	NSDictionary* _properties;
 	CGSize _dimensions;
@@ -36,7 +37,7 @@
 	folder:(FLFolder*) folder 
 	fileName:(NSString*) fileName;
 
-- (id) initWithImage:(FLImage*) image 
+- (id) initWithImage:(SDKImage*) image 
 	exifDictionary:(NSDictionary*)exifDictionary
 	folder:(FLFolder*) folder 
 	fileName:(NSString*) fileName;

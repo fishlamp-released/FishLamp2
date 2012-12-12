@@ -53,7 +53,7 @@
         [_accessory removeFromParent];
     }
     
-    FLRetainObject_(_accessory, widget);
+    FLAssignObjectWithRetain(_accessory, widget);
     [self addWidget:_accessory];
 }
 
@@ -292,7 +292,7 @@
 		[_widget removeFromParent];
 	}
     
-	FLRetainObject_(_widget, widget);
+	FLAssignObjectWithRetain(_widget, widget);
 	[_sectionWidget addWidget:_widget];
 }
 

@@ -36,7 +36,7 @@
 
 - (void) setText:(NSString*) text
 {
-	FLRetainObject_(_text, text);
+	FLAssignObjectWithRetain(_text, text);
 	[self setNeedsDisplay];
 }
 

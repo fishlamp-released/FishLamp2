@@ -12,8 +12,8 @@
 #import "FLRoundRectWidget.h"
 #import "FLButtonBackgroundWidget.h"
 #import "FLBackButtonShapeWidget.h"
-#import "FLImage+Resize.h"
-#import "FLImage+Colorize.h"
+#import "SDKImage+Resize.h"
+#import "SDKImage+Colorize.h"
 #import "FLColorRange.h"
 
 
@@ -219,7 +219,7 @@ void FLGradientButtonColorLightGray(id button)
 		[_backgroundWidget removeFromParent];
 	}
 	widget.contentMode = FLContentModeFill;
-	FLRetainObject_(_backgroundWidget, widget);
+	FLAssignObjectWithRetain(_backgroundWidget, widget);
 	[self.shapeWidget addWidget:_backgroundWidget];
 	[self setNeedsLayout];
 }
@@ -233,7 +233,7 @@ void FLGradientButtonColorLightGray(id button)
 		[_backgroundWidget removeFromParent];
 	}
 	widget.contentMode = FLContentModeFill;
-	FLRetainObject_(_shapeWidget, widget);
+	FLAssignObjectWithRetain(_shapeWidget, widget);
     FLAssertIsNotNil_(self.rootWidget);
 
     [self.rootWidget addWidget:_shapeWidget];

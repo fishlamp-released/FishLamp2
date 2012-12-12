@@ -189,7 +189,7 @@
 		[_textView resignFirstResponder];
 		[_textView removeFromSuperview];
 		
-		mrc_autorelease_(_textView);
+		FLAutorelease(_textView);
 		_textView = nil;
 		
 		[self addSubview:self.valueLabel.view];

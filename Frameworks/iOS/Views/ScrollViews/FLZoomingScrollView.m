@@ -82,8 +82,8 @@ FLSynthesizeStructProperty(animating, setAnimating, BOOL, _zoomingScrollViewFlag
 - (void) dealloc
 {
 	self.zoomingScrollViewDelegate = nil;
-	FLReleaseWithNil_(_zoomedView);
-	FLReleaseWithNil_(_lastTouch);
+	FLReleaseWithNil(_zoomedView);
+	FLReleaseWithNil(_lastTouch);
 	super_dealloc_();
 }
 
@@ -99,7 +99,7 @@ FLSynthesizeStructProperty(animating, setAnimating, BOOL, _zoomingScrollViewFlag
 		if(_zoomedView)
 		{
 			[_zoomedView removeFromSuperview];
-			FLReleaseWithNil_(_zoomedView);
+			FLReleaseWithNil(_zoomedView);
 		}
 		
 		if(zoomedView)
@@ -107,7 +107,7 @@ FLSynthesizeStructProperty(animating, setAnimating, BOOL, _zoomingScrollViewFlag
 			_zoomedView.multipleTouchEnabled = YES;
 			_zoomedView.userInteractionEnabled = YES;
 			
-			_zoomedView = retain_(zoomedView);
+			_zoomedView = FLRetain(zoomedView);
 			[self addSubview:_zoomedView];
 			_zoomedView.transform = CGAffineTransformIdentity;
 			
@@ -466,7 +466,7 @@ FLSynthesizeStructProperty(animating, setAnimating, BOOL, _zoomingScrollViewFlag
 		[_zoomingScrollViewDelegate zoomingScrollView:self userTappedView:_zoomedView withTouch:_lastTouch];
 	}
 	
-	FLReleaseWithNil_(_lastTouch);
+	FLReleaseWithNil(_lastTouch);
 }
 
 #define BorderBuffer 0.0f
@@ -642,7 +642,7 @@ FLSynthesizeStructProperty(animating, setAnimating, BOOL, _zoomingScrollViewFlag
 		_zoomingScrollViewFlags.atRightEdge = self.atRightEdge;
 		_zoomingScrollViewFlags.atLeftEdge = self.atLeftEdge;
 		_zoomingScrollViewFlags.inEdgedScrollingMode = NO;
-		FLReleaseWithNil_(_touches);
+		FLReleaseWithNil(_touches);
 		_touches = [[NSMutableArray alloc] init];
 	}
 	
@@ -725,7 +725,7 @@ FLSynthesizeStructProperty(animating, setAnimating, BOOL, _zoomingScrollViewFlag
 			_lastSingleTap = 0; // disable double tap for next tap
 		}
 		
-		FLReleaseWithNil_(_touches);
+		FLReleaseWithNil(_touches);
 	}
 	
 //	  FLLog(@"touches ended: touchCount: %d, inTouches count: %d", _touchCount, touches.count);
@@ -773,7 +773,7 @@ FLSynthesizeStructProperty(animating, setAnimating, BOOL, _zoomingScrollViewFlag
 			}
 			else
 			{
-				FLRetainObject_(_lastTouch, touch);
+				FLAssignObjectWithRetain(_lastTouch, touch);
 				[self performSelector:@selector(_singleTap:) withObject:nil afterDelay:kDoubleTapInterval];
 			}
 			

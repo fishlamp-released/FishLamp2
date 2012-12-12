@@ -30,7 +30,7 @@
 		[_subview removeFromSuperview];
 	}
 
-	_subview = retain_(view);
+	_subview = FLRetain(view);
 	if(_subview)
 	{
 		[self addSubview:_subview];

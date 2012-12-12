@@ -9,7 +9,7 @@
 #import "FLUpdateStatusViewController.h"
 #import "FLTextView.h"
 #import "FLFloatingMenuViewController.h"
-#import "FLImage+Colorize.h"
+#import "SDKImage+Colorize.h"
 #import "FLNavigationControllerViewController.h"
 #import "FLFloatingViewController.h"
 
@@ -57,8 +57,8 @@
 
 - (void) viewDidUnload
 {	
-	FLReleaseWithNil_(_editingBar);
-	FLReleaseWithNil_(_textEditingBar);
+	FLReleaseWithNil(_editingBar);
+	FLReleaseWithNil(_textEditingBar);
     [super viewDidUnload];
 }
 

@@ -177,7 +177,7 @@ FLSynthesizeStructProperty(animateOnShow, setAnimateOnShow, BOOL, _flags);
 - (void) updateBadge:(NSString*) badge forTabBarItem:(UITabBarItem*) item
 {
 // hand waving required to set badge on unselected item.
-	NSArray* items = FLAutorelease(retain_(self.items));
+	NSArray* items = FLAutorelease(FLRetain(self.items));
 	UITabBarItem* selectedItem = self.selectedItem;
 	self.items = nil;
 	if(FLStringIsNotEmpty(badge))

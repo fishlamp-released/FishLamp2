@@ -52,7 +52,7 @@
 
 - (void) setText:(NSString*) text
 {
-    FLRetainObject_(_text, text);
+    FLAssignObjectWithRetain(_text, text);
     
     if(_textEditView)
     {
@@ -149,14 +149,14 @@
     }
     else
     {
-        FLRetainObject_(_text, text);
+        FLAssignObjectWithRetain(_text, text);
         [self updateSaveButtonState];
     }
 }
 
 - (void) textEditView:(FLTextEditView*) textEditView textDidChange:(NSString*) text
 {
-    FLRetainObject_(_text, text);
+    FLAssignObjectWithRetain(_text, text);
 	[self updateSaveButtonState];
 }
 
@@ -165,7 +165,7 @@
     [super viewDidUnload];
    
     _textEditView.delegate = nil;
-	FLReleaseWithNil_(_textEditView);
+	FLReleaseWithNil(_textEditView);
 }
 
 - (NSString*) placeholderText
@@ -175,7 +175,7 @@
 
 - (void) setPlaceholderText:(NSString *)placeholderText
 {
-    FLRetainObject_(_placeholderText, placeholderText);
+    FLAssignObjectWithRetain(_placeholderText, placeholderText);
     if(_textEditView)
     {
         _textEditView.placeholderText = placeholderText;

@@ -129,14 +129,14 @@
 {
     if((self = [super init]))
     {
-        __normalGradientEnum = retain_([aDecoder decodeObjectForKey:@"__normalGradientEnum"]);
-        __selectedGradientEnum = retain_([aDecoder decodeObjectForKey:@"__selectedGradientEnum"]);
-        __highlightedGradientEnum = retain_([aDecoder decodeObjectForKey:@"__highlightedGradientEnum"]);
-        __disabledGradientEnum = retain_([aDecoder decodeObjectForKey:@"__disabledGradientEnum"]);
-        __normalGradient = retain_([aDecoder decodeObjectForKey:@"__normalGradient"]);
-        __selectedGradient = retain_([aDecoder decodeObjectForKey:@"__selectedGradient"]);
-        __highlightedGradient = retain_([aDecoder decodeObjectForKey:@"__highlightedGradient"]);
-        __disabledGradient = retain_([aDecoder decodeObjectForKey:@"__disabledGradient"]);
+        __normalGradientEnum = FLRetain([aDecoder decodeObjectForKey:@"__normalGradientEnum"]);
+        __selectedGradientEnum = FLRetain([aDecoder decodeObjectForKey:@"__selectedGradientEnum"]);
+        __highlightedGradientEnum = FLRetain([aDecoder decodeObjectForKey:@"__highlightedGradientEnum"]);
+        __disabledGradientEnum = FLRetain([aDecoder decodeObjectForKey:@"__disabledGradientEnum"]);
+        __normalGradient = FLRetain([aDecoder decodeObjectForKey:@"__normalGradient"]);
+        __selectedGradient = FLRetain([aDecoder decodeObjectForKey:@"__selectedGradient"]);
+        __highlightedGradient = FLRetain([aDecoder decodeObjectForKey:@"__highlightedGradient"]);
+        __disabledGradient = FLRetain([aDecoder decodeObjectForKey:@"__disabledGradient"]);
     }
     return self;
 }

@@ -34,7 +34,7 @@
 	{
 		[_topImageWidget removeFromParent];
 	}
-	FLRetainObject_(_topImageWidget, widget);
+	FLAssignObjectWithRetain(_topImageWidget, widget);
 	[self addWidget:widget];
 	[self setNeedsLayout];
 }

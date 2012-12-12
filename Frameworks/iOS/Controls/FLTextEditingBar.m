@@ -41,9 +41,9 @@
 
 		[self setItems:array animated:NO];
 
-		FLReleaseWithNil_(array);
+		FLReleaseWithNil(array);
 
-		FLReleaseWithNil_(space);
+		FLReleaseWithNil(space);
 	}
 	
 	return self;
@@ -51,9 +51,9 @@
 
 - (void) dealloc
 {	
-	FLReleaseWithNil_(_next);
-	FLReleaseWithNil_(_prev);
-	FLReleaseWithNil_(_stop);
+	FLReleaseWithNil(_next);
+	FLReleaseWithNil(_prev);
+	FLReleaseWithNil(_stop);
 	super_dealloc_();
 }
 
@@ -82,7 +82,7 @@
 		}
 		
 		[UIView beginAnimations:@"viewin" context:nil];
-	//	[UIView setAnimationDelegate:retain_(self)];
+	//	[UIView setAnimationDelegate:FLRetain(self)];
 	//	[UIView setAnimationDidStopSelector:callback];
 		[UIView setAnimationDuration:0.2];
 		[UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
@@ -96,7 +96,7 @@
 	if(self.superview)
 	{
 		[UIView beginAnimations:@"viewin" context:nil];
-	//	[UIView setAnimationDelegate:retain_(self)];
+	//	[UIView setAnimationDelegate:FLRetain(self)];
 	//	[UIView setAnimationDidStopSelector:callback];
 		[UIView setAnimationDuration:0.3];
 		[UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];

@@ -7,8 +7,8 @@
 //
 
 #import "FLImageWidget.h"
-#import "FLImage+Resize.h"
-#import "FLImage+Colorize.h"
+#import "SDKImage+Resize.h"
+#import "SDKImage+Colorize.h"
 
 @implementation FLImageWidget
 
@@ -28,7 +28,7 @@
 
 - (void) clear
 {
-	FLReleaseWithNil_(_image);
+	FLReleaseWithNil(_image);
 	[self setNeedsDisplay];
 }
 
@@ -45,7 +45,7 @@
 
 - (void) setImage:(UIImage *) image
 {
-	FLRetainObject_(_image, image);
+	FLAssignObjectWithRetain(_image, image);
 	[self setNeedsDisplay];
 }
 

@@ -66,25 +66,25 @@ FLSynthesizeStructProperty(drawMode, setDrawMode, FLTableViewCellSectionDrawMode
 
 - (void) setFillColor:(UIColor*) color
 {
-	FLRetainObject_(_fillColor, color);
+	FLAssignObjectWithRetain(_fillColor, color);
     [self _update];
 }
 
 - (void) setHighlightedFillColor:(UIColor*) color
 {
-	FLRetainObject_(_highlightedFillColor, color);
+	FLAssignObjectWithRetain(_highlightedFillColor, color);
     [self _update];
 }
 
 - (void) setHighlightedBorderColor:(UIColor*) color
 {
-	FLRetainObject_(_highlightedBorderColor, color);
+	FLAssignObjectWithRetain(_highlightedBorderColor, color);
     [self _update];
 }
 
 - (void) setBorderColor:(UIColor*) color
 {
-    FLRetainObject_(_borderColor, color);
+    FLAssignObjectWithRetain(_borderColor, color);
     [self _update];
 }
 

@@ -95,7 +95,7 @@
         [self performBlockOnMainThread:^{
             if(_alertViewController) {
                 [_alertViewController dismissViewControllerAnimated:YES];
-                FLReleaseWithNil_(_alertViewController);
+                FLReleaseWithNil(_alertViewController);
             }
         }];
 

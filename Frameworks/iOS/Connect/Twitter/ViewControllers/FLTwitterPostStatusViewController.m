@@ -68,14 +68,14 @@
 
 - (void) setStatusUpdate:(FLTwitterStatusUpdate *)statusUpdate
 {
-    FLRetainObject_(_statusUpdate, statusUpdate);
+    FLAssignObjectWithRetain(_statusUpdate, statusUpdate);
     self.text = _statusUpdate.status;
 }
 
 - (void) viewDidUnload
 {
     [super viewDidUnload];
-    FLReleaseWithNil_(_headerView);
+    FLReleaseWithNil(_headerView);
 }
 
 - (void) presentTextIsTooLongMessage

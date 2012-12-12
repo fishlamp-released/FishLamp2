@@ -23,7 +23,7 @@
         self.wantsApplyTheme = YES;
 
 		_stringList = [stringList copy];
-		_initialSelection = retain_(selectedString);
+		_initialSelection = FLRetain(selectedString);
 	}
 	return self;
 }
@@ -83,8 +83,8 @@
 
 - (void) viewDidUnload
 {
-    FLReleaseWithNil_(_toolbar);
-    FLReleaseWithNil_(_chooseButton);
+    FLReleaseWithNil(_toolbar);
+    FLReleaseWithNil(_chooseButton);
     [super viewDidUnload];
 }
 
@@ -128,7 +128,7 @@
 
 - (IBAction) chooseButtonWasPressed:(id) sender
 {
-	FLRetainObject_(_chosenString, [_stringList objectAtIndex:[self.tableView indexPathForSelectedRow].row]);
+	FLAssignObjectWithRetain(_chosenString, [_stringList objectAtIndex:[self.tableView indexPathForSelectedRow].row]);
 	[_chosenCallback invoke:self];
 }
 

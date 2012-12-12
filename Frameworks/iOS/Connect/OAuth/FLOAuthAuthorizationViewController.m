@@ -46,7 +46,7 @@
 {
 	if(action.didSucceed)
 	{
-		_authData = retain_([[action lastOperation] operationOutput]);
+		_authData = FLRetain([[action lastOperation] operationOutput]);
 		
 		NSString* authorizeUrl = [NSString stringWithFormat:@"%@?oauth_token=%@",
 			_app.authorizeUrl,
@@ -61,7 +61,7 @@
     self.OAuthAuthorizationViewControllerDelegate = delegate;
 	self.openLinksInNewViewController = YES;
 
-	FLRetainObject_(_app, app);
+	FLAssignObjectWithRetain(_app, app);
 
 	FLAction* action = [FLAction action];
     [action addOperation:[FLOAuthRequestTokenNetworkOperation OAuthRequestTokenNetworkOperation:app]];

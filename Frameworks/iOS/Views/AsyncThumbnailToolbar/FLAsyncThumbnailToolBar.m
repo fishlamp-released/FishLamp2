@@ -8,7 +8,7 @@
 
 #import "FLAsyncThumbnailToolBar.h"
 
-#import "FLImage+Colorize.h"
+#import "SDKImage+Colorize.h"
 
 @implementation FLAsyncThumbnailToolBar
 
@@ -155,7 +155,7 @@
         [_backgroundView removeFromSuperview];
     }
 
-    FLRetainObject_(_backgroundView, view);
+    FLAssignObjectWithRetain(_backgroundView, view);
     
     if(_backgroundView)
     {

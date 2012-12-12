@@ -81,7 +81,7 @@
     if(_importer)
     {
         [_importer cancelImport];
-        FLReleaseWithNil_(_importer);
+        FLReleaseWithNil(_importer);
     }
 }
 
@@ -102,7 +102,7 @@
         FLLog(@"failed auto-adding assets. error = %@", [_importer.error description]);
     
         [self didFailToImportAssets:_importer.error];
-        FLReleaseWithNil_(_importer);
+        FLReleaseWithNil(_importer);
     }   
     else
     {
@@ -113,7 +113,7 @@
         _lastImportTime = [_importer.importedDate timeIntervalSinceReferenceDate];
         [self didFinishImportingAssets:_importer.importedAssets];
         
-        FLReleaseWithNil_(_importer);
+        FLReleaseWithNil(_importer);
         [[FLBackgroundTaskMgr instance] scheduleNextBackgroundTask];
     }
 }
@@ -123,7 +123,7 @@
     FLLog(@"Beginning to add photos");
 #endif
 
-    FLRetainObject_(_importer, [self createImporter]);
+    FLAssignObjectWithRetain(_importer, [self createImporter]);
     [_importer beginImporting:^{
             [self _finishedImporting];
         }];

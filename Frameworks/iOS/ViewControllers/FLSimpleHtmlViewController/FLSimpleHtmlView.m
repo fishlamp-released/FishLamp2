@@ -107,7 +107,7 @@ FLSynthesizeStructProperty(isLoading, setIsLoading, BOOL, _simpleHtmlFlags);
 		}
 		else
 		{
-			FLRetainObject_(_lastDocument, document);
+			FLAssignObjectWithRetain(_lastDocument, document);
 			[self loadHTMLString:document baseURL:nil];
 		}
 	}

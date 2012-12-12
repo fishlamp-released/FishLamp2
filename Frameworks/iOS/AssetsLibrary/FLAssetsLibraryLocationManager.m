@@ -29,7 +29,7 @@
     {
         _locationManager.delegate = nil;
         [_locationManager stopUpdatingLocation];
-        FLReleaseWithNil_(_locationManager);
+        FLReleaseWithNil(_locationManager);
     }
 }
 

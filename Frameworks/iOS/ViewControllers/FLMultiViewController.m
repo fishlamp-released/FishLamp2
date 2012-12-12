@@ -71,9 +71,9 @@
 
     if(self.autoPurgeHiddenViewController)
     {
-        mrc_autorelease_(retain_(_viewController));
+        FLAutorelease(FLRetain(_viewController));
         [_viewController removeFromParentViewController];
-        FLReleaseWithNil_(_viewController);
+        FLReleaseWithNil(_viewController);
     }
 }
 

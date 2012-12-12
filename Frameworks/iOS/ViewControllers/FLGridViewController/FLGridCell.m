@@ -111,11 +111,11 @@
 //    
 //    if(_view) {
 //        [self.objectCache cacheObject:_view];
-//        FLReleaseWithNil_(_view);
+//        FLReleaseWithNil(_view);
 //    }
 //    
 //    if(view) {
-//        FLRetainObject_(_view, view);
+//        FLAssignObjectWithRetain(_view, view);
 //        if(_view.superview != self.superview) {
 //            [self.superview addSubview:view];
 //        }

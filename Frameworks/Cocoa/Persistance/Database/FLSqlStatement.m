@@ -505,9 +505,9 @@ sqlite3_stmt* FLStatmentFailed(	sqlite3_stmt* stmt) {
 
 #import "FLCompatibility.h"
 
-@implementation FLImage (FLSqlStatement)
+@implementation SDKImage (FLSqlStatement)
 + (id) decodeObjectWithSqliteColumnData:(NSData*) data {
-	return [FLImage imageWithData:data];
+	return [SDKImage imageWithData:data];
 }
 - (void) bindToStatement:(FLSqlStatement*) statement parameterIndex:(int) parameterIndex {
 FIXME("osx");

@@ -53,8 +53,8 @@ BOOL FLParserStackPop(FLParserStack* stack)
 {
 	if(stack->top >= 0)
 	{
-		FLReleaseWithNil_((stack->stack[stack->top].key));
-		FLReleaseWithNil_((stack->stack[stack->top].object));
+		FLReleaseWithNil((stack->stack[stack->top].key));
+		FLReleaseWithNil((stack->stack[stack->top].object));
 		--stack->top;
 		return YES;
 	}

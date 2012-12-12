@@ -66,12 +66,12 @@
 ////        if(data && data.length > 0)
 ////        {
 ////            // note: folder and file name will be set by image cache.
-////            FLImage* imageFile = [[FLImage alloc] init];
+////            SDKImage* imageFile = [[SDKImage alloc] init];
 ////            imageFile.imageBytes = data;
 ////            // uhoh, how do I tell what type it is???
 ////FIXME("ambiguous type")            
 ////            photo.imageFile = imageFile;
-////            FLReleaseWithNil_(imageFile);
+////            FLReleaseWithNil(imageFile);
 ////            
 ////            self.output = photo;
 ////        }

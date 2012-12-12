@@ -29,10 +29,10 @@
 
 - (void) cleanup
 {
-   mrc_autorelease_(_viewController);
+   FLAutorelease(_viewController);
     _viewController = nil;
     
-    mrc_autorelease_(_delegate);
+    FLAutorelease(_delegate);
     _delegate = nil;
 }
 
@@ -77,7 +77,7 @@
         }
         
         [self cleanup];
-        mrc_autorelease_(self);
+        FLAutorelease(self);
     }];
 }
 
@@ -95,7 +95,7 @@
     [_delegate facebookAuthenticator:self authenticationDidFail:error];
 
     [self cleanup];
-    mrc_autorelease_(self);
+    FLAutorelease(self);
 }
 
 - (void) webViewControllerUserDidCancel:(FLWebViewController*) controller
@@ -104,7 +104,7 @@
     [_delegate facebookAuthenticatorWasCancelled:self];
 
     [self cleanup];
-    mrc_autorelease_(self);
+    FLAutorelease(self);
 }
 
 - (void) _didCompleteFacebookAction:(FLAction*) action 
@@ -117,7 +117,7 @@
 			[FLFacebookMgr instance].session = response.session;
 			[_delegate facebookAuthenticator:self authenticationDidComplete:response.session]; 
             [self cleanup];
-            mrc_autorelease_(self);
+            FLAutorelease(self);
 		}
 		else if(response.redirectURL)
 		{
@@ -134,14 +134,14 @@
 	{
         [_delegate facebookAuthenticator:self authenticationDidFail:action.error];
 	    [self cleanup];
-        mrc_autorelease_(self);
+        FLAutorelease(self);
     }
 }
 
 - (void) beginAuthenticatingInViewController:(FLViewController*) viewController  delegate:(id<FLFacebookAuthenticatorDelegate>) delegate
 {
-    FLRetainObject_(_delegate, delegate);
-    FLRetainObject_(_viewController, viewController);
+    FLAssignObjectWithRetain(_delegate, delegate);
+    FLAssignObjectWithRetain(_viewController, viewController);
     
 	if([[FLFacebookMgr instance] appNeedsAuthorizationForPermissions:[FLFacebookMgr instance].permissions])
 	{

@@ -7,7 +7,7 @@
 //
 
 #import "FLThumbnailFrameView.h"
-#import "FLImage+Resize.h"
+#import "SDKImage+Resize.h"
 
 CGFloat kFrameSize = 0; //5.0f
 
@@ -138,13 +138,13 @@ CGFloat kFrameSize = 0; //5.0f
 
 - (void) clearThumbnails
 {	
-	FLReleaseWithNil_(_backgroundThumbnail);
-	FLReleaseWithNil_(_foregroundThumbnail);
+	FLReleaseWithNil(_backgroundThumbnail);
+	FLReleaseWithNil(_foregroundThumbnail);
 
 	if(_scaledForegroundThumbnail)
 	{
 		[_scaledForegroundThumbnail removeFromSuperview];
-		FLReleaseWithNil_(_scaledForegroundThumbnail);
+		FLReleaseWithNil(_scaledForegroundThumbnail);
 	}
 
 	[_thumbnailButton clearImages];
@@ -274,7 +274,7 @@ CGFloat kFrameSize = 0; //5.0f
 	if(!_frameViewFlags.showBothThumbnails && _scaledForegroundThumbnail)
 	{
 		[_scaledForegroundThumbnail removeFromSuperview];
-		FLReleaseWithNil_(_scaledForegroundThumbnail);
+		FLReleaseWithNil(_scaledForegroundThumbnail);
 	}	 
 }
 
@@ -294,14 +294,14 @@ CGFloat kFrameSize = 0; //5.0f
 
 - (void) setBackgroundThumbnail:(UIImage*) image
 {
-	FLRetainObject_(_backgroundThumbnail, image);
+	FLAssignObjectWithRetain(_backgroundThumbnail, image);
 	[self _updateLayout];
 	[self setNeedsLayout];	
 }
 
 - (void) setForegroundThumbnail:(UIImage*) image
 {
-	FLRetainObject_(_foregroundThumbnail, image);
+	FLAssignObjectWithRetain(_foregroundThumbnail, image);
 	[self _updateLayout];
 	[self setNeedsLayout];	
 	

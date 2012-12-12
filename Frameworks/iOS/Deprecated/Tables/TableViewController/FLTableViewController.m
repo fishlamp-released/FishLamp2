@@ -13,7 +13,7 @@
 #import "FLFloatingViewController.h"
 #import "FLTableViewCell.h"
 
-#import "UIViewController+FLExtras.h"
+#import "SDKViewController+FLAdditions.h"
 #import "UIView+FLViewGeometry.h"
 
 @implementation FLTableViewController

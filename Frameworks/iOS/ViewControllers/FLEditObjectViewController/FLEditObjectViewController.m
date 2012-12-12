@@ -109,7 +109,7 @@ FLSynthesizeStructProperty(saveChangesImmediately, setSaveChangesImmediately, BO
 
 - (void) _createTableLayout
 {
-	FLReleaseWithNil_(_layout);
+	FLReleaseWithNil(_layout);
 	FLPerformBlockInAutoreleasePool(^{
         _layout = [[FLTableViewLayout alloc] initWithCellDataSouce:self];
         [self doUpdateDataSourceManager:self.dataSourceManager];
@@ -276,10 +276,10 @@ FLSynthesizeStructProperty(saveChangesImmediately, setSaveChangesImmediately, BO
 
 - (void) cleanUpEditableObjectView
 {
-	FLReleaseWithNil_(_tabBar);
-	FLReleaseWithNil_(_bottomToolbar);
-	FLReleaseWithNil_(_topToolbar);
-	FLReleaseWithNil_(_imageView);
+	FLReleaseWithNil(_tabBar);
+	FLReleaseWithNil(_bottomToolbar);
+	FLReleaseWithNil(_topToolbar);
+	FLReleaseWithNil(_imageView);
 
 	FLTableViewLayout* layout = _layout;
 	_layout = nil;
@@ -349,13 +349,13 @@ FLSynthesizeStructProperty(saveChangesImmediately, setSaveChangesImmediately, BO
 			{
 				[_imageView removeFromSuperview];
 			}
-			FLReleaseWithNil_(_imageView);
+			FLReleaseWithNil(_imageView);
 		}
 	}
 	else
 	{
 		[_imageView removeFromSuperview];
-		FLReleaseWithNil_(_imageView);
+		FLReleaseWithNil(_imageView);
 	}
 }
 
@@ -433,7 +433,7 @@ FLSynthesizeStructProperty(saveChangesImmediately, setSaveChangesImmediately, BO
 	FLHtmlHelpViewController* helpView = [[FLHtmlHelpViewController alloc] initWithButtonMode:FLWebViewControllerButtonModeNone];
 	helpView.fileName = self.helpFileName;
 	[self.navigationController pushViewController:helpView animated:YES];
-	FLReleaseWithNil_(helpView);
+	FLReleaseWithNil(helpView);
 }
 
 - (id) objectForKey:(id) key
@@ -615,7 +615,7 @@ FLSynthesizeStructProperty(saveChangesImmediately, setSaveChangesImmediately, BO
 
 - (void) onCancelComplete
 {
-	mrc_autorelease_(retain_(self));
+	FLAutorelease(FLRetain(self));
     [self dismissViewControllerAnimated:YES];
     
 //	FLInvokeCallback(self.dismissEvent, self);
@@ -917,7 +917,7 @@ FLSynthesizeStructProperty(saveChangesImmediately, setSaveChangesImmediately, BO
 //		view.title = NSLocalizedString(@"Unable to save changes.", nil);
 //		view.text = NSLocalizedString(@"Please try again when you have a network connection.", nil);
 //		[view showNotification];
-//		FLReleaseWithNil_(view);
+//		FLReleaseWithNil(view);
 	}
 	else if([self willBeginSavingChanges])
 	{
@@ -960,7 +960,7 @@ FLSynthesizeStructProperty(saveChangesImmediately, setSaveChangesImmediately, BO
 //	view.shouldAutoCloseAfterDelay = YES;
 //	
 //	[view showNotification];
-//	FLReleaseWithNil_(view);
+//	FLReleaseWithNil(view);
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
@@ -1054,8 +1054,8 @@ FLSynthesizeStructProperty(saveChangesImmediately, setSaveChangesImmediately, BO
 //	  forKey:(id) key 
 //	  saveToDataSource:(FLLegacyDataSource*) saveToDataSourceManager
 //{
-//	  FLRetainObject_(_saveKey, key);
-//	  FLRetainObject_(_saveToDataSourceManager, saveToDataSourceManager);
+//	  FLAssignObjectWithRetain(_saveKey, key);
+//	  FLAssignObjectWithRetain(_saveToDataSourceManager, saveToDataSourceManager);
 //	  
 //	  if([data conformsToProtocol:@protocol(NSMutableCopying)])
 //	  {
@@ -1082,7 +1082,7 @@ FLSynthesizeStructProperty(saveChangesImmediately, setSaveChangesImmediately, BO
 		view.autoLayoutMode = FLContentModeMake(FLContentModeHorizontalCentered, FLContentModeVerticalTop);
 #endif        
 		[view showNotification];
-		FLReleaseWithNil_(view);
+		FLReleaseWithNil(view);
 	}
 	
 	[super networkDidBecomeUnavailable];

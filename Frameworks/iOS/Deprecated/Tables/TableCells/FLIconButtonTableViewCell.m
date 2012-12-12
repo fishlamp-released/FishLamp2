@@ -33,8 +33,8 @@
 {
 	if(_icon != icon)
 	{
-		FLReleaseWithNil_(_icon);
-		_icon = retain_(icon);
+		FLReleaseWithNil(_icon);
+		_icon = FLRetain(icon);
 	
 		_iconImageView.image = _icon;
 		
@@ -49,8 +49,8 @@
 
 - (void) dealloc
 {
-	FLReleaseWithNil_(_iconImageView);
-	FLReleaseWithNil_(_icon);
+	FLReleaseWithNil(_iconImageView);
+	FLReleaseWithNil(_icon);
 	super_dealloc_();
 }
 

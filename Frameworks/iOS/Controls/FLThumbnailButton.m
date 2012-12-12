@@ -63,7 +63,7 @@ static FLThumbnailButton* s_touchedButton = nil;
 {
 	FLCallbackObject* cb = [[FLCallbackObject alloc] initWithTarget:target action:action];
 	self.callback = cb;
-	FLReleaseWithNil_(cb);
+	FLReleaseWithNil(cb);
 	
 	self.userInteractionEnabled = YES;
 	self.exclusiveTouch = YES;

@@ -7,9 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "FLCore.h"
-
-#import "FLGeometry.h"
+#import "FLCocoaUICompatibility.h"
 #import "FLFolder.h"
 
 @class FLFolder;
@@ -17,12 +15,12 @@
 
 @protocol FLStorableImageProtocol <NSCopying>
 
-@property (readonly, strong, nonatomic) FLImage* image;
+@property (readonly, strong, nonatomic) SDKImage* image;
 @property (readonly, strong, nonatomic) NSDictionary* properties;
 @property (readonly, assign, nonatomic) CGSize imageDimensions;
 @property (readonly, assign, nonatomic) BOOL hasImage;
 
-- (void) setImage:(FLImage*) image exifDictionary:(NSDictionary*) exif;
+- (void) setImage:(SDKImage*) image exifDictionary:(NSDictionary*) exif;
 - (void) releaseImage;
 
 - (FLJpegFile*) createTempFileForStreamingInFolder:(FLFolder*) inFolder 

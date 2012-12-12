@@ -68,7 +68,7 @@ static CGFloat s_prevAlpha;
 	[viewController.view removeFromSuperview];
 	[self pushViewController:viewController animated:NO];
 
-	[UIView beginAnimations:@"slide" context:bridge_(void*,retain_(viewController))];
+	[UIView beginAnimations:@"slide" context:bridge_(void*,FLRetain(viewController))];
     [UIView setAnimationDuration:0.15];
 	[UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
 	self.navigationBar.alpha = s_prevAlpha;
@@ -123,7 +123,7 @@ static CGFloat s_prevAlpha;
 			view.frame = FLRectSetTop(parentView.bounds, parentView.bounds.size.height);
 			[parentView addSubview:view];
 			
-			[UIView beginAnimations:@"slide" context:bridge_(void*,retain_(viewController))];
+			[UIView beginAnimations:@"slide" context:bridge_(void*,FLRetain(viewController))];
 			[UIView setAnimationDelegate:self];
 			[UIView setAnimationDidStopSelector:@selector(doneAnimatingSlideInFromBottom:finished:context:)];
 			[UIView setAnimationDuration:0.25];
@@ -187,7 +187,7 @@ static CGFloat s_prevAlpha;
 		{
 			UIViewController* controller = [self topViewController];
 			UIViewController* parent = [self parentControllerForController:controller];
-			UIView* view = retain_(controller.view);
+			UIView* view = FLRetain(controller.view);
 			[self popToViewController:viewController animated:NO];
 			[parent.view addSubview:view];
 			
@@ -238,7 +238,7 @@ static CGFloat s_prevAlpha;
 		{
 			UIViewController* controller = [self topViewController];
 			UIViewController* parent = [self parentControllerForController:controller];
-			UIView* view = retain_(controller.view);
+			UIView* view = FLRetain(controller.view);
 			[self popViewControllerAnimated:NO];
 			[parent.view addSubview:view];
 			

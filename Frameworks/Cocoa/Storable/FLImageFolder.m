@@ -136,7 +136,7 @@ static NSDictionary* s_suffixes = nil;
 //				CFRelease(imageSourceRef);
 //			}
 //		
-//			FLReleaseWithNil_(url);
+//			FLReleaseWithNil(url);
 //		}
 //	}
 //
@@ -188,7 +188,7 @@ static NSDictionary* s_suffixes = nil;
     @finally {
         FLReleaseCRef_(imageSourceRef);
         FLReleaseCRef_(imageDestRef);
-        FLReleaseWithNil_(url);
+        FLReleaseWithNil(url);
     }
 }
 

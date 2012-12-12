@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #import "FLStorableObject.h"
+#import "SDKImage.h"
 
 @class FLQueuedAsset;
 
@@ -18,7 +19,7 @@
 
 @property (readwrite, strong, nonatomic) NSString* assetUID; //
 @property (readonly, strong, nonatomic) NSURL* assetURL; // file: or assets-library:
-@property (readonly, strong, nonatomic) FLImage* thumbnailImage;
+@property (readonly, strong, nonatomic) SDKImage* thumbnailImage;
 
 //- (void) deleteFromAssetStorage;
 

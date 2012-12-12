@@ -7,7 +7,7 @@
 //
 
 #import "FLImageFrameWidget.h"
-#import "FLImage+Resize.h"
+#import "SDKImage+Resize.h"
 
 @implementation FLImageFrameWidget
 @synthesize frameWidth = _frameWidth;
@@ -33,7 +33,7 @@ FLSynthesizeStructProperty(imageContentMode, setImageContentMode, FLWidgetImageC
 
 - (void) setFrameColor:(UIColor*) color
 {
-	FLRetainObject_(_frameColor, color);
+	FLAssignObjectWithRetain(_frameColor, color);
 	[self setNeedsDisplay];
 }
 
@@ -72,7 +72,7 @@ FLSynthesizeStructProperty(imageContentMode, setImageContentMode, FLWidgetImageC
 - (void) setImageWidget:(FLImageWidget*) imageWidget
 {
 	[_imageWidget removeFromParent];
-	FLRetainObject_(_imageWidget, imageWidget);
+	FLAssignObjectWithRetain(_imageWidget, imageWidget);
 	_imageWidget.imageContentMode = FLWidgetImageContentModeScaleToFill;
 	[self addWidget:_imageWidget];
 	[self setNeedsLayout];

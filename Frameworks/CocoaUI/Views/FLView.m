@@ -39,47 +39,6 @@
 }
 
 @end
-
-@implementation NSView (FLCompatibility)
-
-- (void) setNeedsLayout {
-    [self setNeedsDisplay:YES];
-}
-
-- (void) setNeedsDisplay {
-    [self setNeedsDisplay:YES];
-}
-
-- (BOOL) userInteractionEnabled {
-    return NO;
-}
-
-- (void) setUserInteractionEnabled:(BOOL) enabled {
-}
-
-
-@end
-
 #endif
 
 
-@implementation SDKViewController (FLNibLoading)
-
-- (NSString*) defaultNibName {
-#if OSX
-    return [NSString stringWithFormat:@"%@-OSX", NSStringFromClass([self class])];
-#else 
-    return [NSString stringWithFormat:@"%@-iOS", NSStringFromClass([self class])];
-#endif    
-}
-
-- (id) initWithDefaultNibName {
-    return [self initWithNibName:self.defaultNibName bundle:nil];
-}
-
-- (id) initWithDefaultNibName:(NSBundle *)nibBundleOrNil {
-    return [self initWithNibName:self.defaultNibName bundle:nibBundleOrNil];
-}
-
-
-@end

@@ -135,7 +135,7 @@ FLAssertDefaultInitNotCalled_v(@"hello");
 //                [[value nonretainedObjectValue] clearQueueReference];
 //            }
 //            
-//            FLReleaseWithNil_(_locks);
+//            FLReleaseWithNil(_locks);
         }
     }
 

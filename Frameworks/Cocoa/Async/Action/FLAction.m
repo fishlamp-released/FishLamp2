@@ -106,7 +106,7 @@ static id<FLActionErrorDelegate> s_errorDisplayDelegate = nil;
         }];
     }
 
-	FLReleaseWithNil_(_errorNotification);
+	FLReleaseWithNil(_errorNotification);
 }
 
 + (void) setDisplayErrorForActionCallback:(FLCallback_t) callback {

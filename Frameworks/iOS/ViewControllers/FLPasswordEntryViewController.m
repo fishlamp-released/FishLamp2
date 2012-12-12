@@ -17,7 +17,7 @@
 {
 	if((self = [super init]))
 	{
-		_prompt = retain_(prompt);
+		_prompt = FLRetain(prompt);
 		_options = options;
 		[self.dataSourceManager setDefaultDataSource:[NSMutableDictionary dictionary]];
 	}

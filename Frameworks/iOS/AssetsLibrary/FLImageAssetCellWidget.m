@@ -106,7 +106,7 @@
 {
 	FLAssertIsNotNil_(asset);
 	
-	FLRetainObject_(_asset, asset);
+	FLAssignObjectWithRetain(_asset, asset);
 	
 	[asset.thumbnail readFromStorage];
 	

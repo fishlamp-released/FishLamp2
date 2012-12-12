@@ -32,10 +32,10 @@
 //			  [items replaceObjectAtIndex:i withObject:customItem];
 //			  if(outNewItem)
 //			  {
-//				  *outNewItem = retain_(customItem);
+//				  *outNewItem = FLRetain(customItem);
 //			  }
 //	 
-//			  FLReleaseWithNil_(customItem);
+//			  FLReleaseWithNil(customItem);
 //			  
 //			  break;
 //		  }
@@ -43,7 +43,7 @@
 //
 //	[self setItems:items animated:animated];
 //
-//	  FLReleaseWithNil_(items);
+//	  FLReleaseWithNil(items);
 //	 
 //	  return foundIt;
 //}
@@ -88,7 +88,7 @@
 		}
 	}
 	
-	FLReleaseWithNil_(items);
+	FLReleaseWithNil(items);
 	
 	return foundIt;
 }

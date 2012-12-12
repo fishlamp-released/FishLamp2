@@ -80,7 +80,7 @@ static BOOL s_editingMode;
 	if(_helpTextLabel)
 	{
 		[_helpTextLabel removeFromSuperview];
-		FLReleaseWithNil_(_helpTextLabel);
+		FLReleaseWithNil(_helpTextLabel);
 	}
 }
 
@@ -190,7 +190,7 @@ static BOOL s_editingMode;
 	if(_countDownLabel)
 	{
 		[_countDownLabel removeFromSuperview];
-		FLReleaseWithNil_(_countDownLabel);
+		FLReleaseWithNil(_countDownLabel);
 	}
 }
 
@@ -221,7 +221,7 @@ static BOOL s_editingMode;
 //	  if(_warningIcon)
 //	  {
 //		  [_warningIcon removeFromSuperview];
-//		  FLReleaseWithNil_(_warningIcon);
+//		  FLReleaseWithNil(_warningIcon);
 //	  }
 }
 
@@ -257,7 +257,7 @@ static BOOL s_editingMode;
 //	  {
 //		  [_viewAnimator removeFromSuperview:_warningLabel];
 //			  
-//		  FLReleaseWithNil_(_warningLabel);
+//		  FLReleaseWithNil(_warningLabel);
 //	  }
 }
 

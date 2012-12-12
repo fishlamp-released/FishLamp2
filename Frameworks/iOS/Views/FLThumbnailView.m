@@ -71,13 +71,13 @@
 
 - (void) setForegroundImage:(UIImage*) image
  {
-	FLRetainObject_(_image, image);
+	FLAssignObjectWithRetain(_image, image);
     [self updateImage];
 }
 
 - (void) setBackgroundImage:(UIImage *) image
 {
-	FLRetainObject_(_backgroundImage, image);
+	FLAssignObjectWithRetain(_backgroundImage, image);
     [self updateImage];
 }
 
@@ -101,7 +101,7 @@
 		if(_enabled && _disabledView)
 		{
 			[_disabledView removeFromSuperview];
-			FLReleaseWithNil_(_disabledView);
+			FLReleaseWithNil(_disabledView);
 		}
 		else if(!_enabled && !_disabledView)
 		{

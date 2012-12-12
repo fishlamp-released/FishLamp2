@@ -10,7 +10,7 @@
 #import "FLNavigationControllerViewController.h"
 #import "FLGradientButton.h"
 #import "FLButtonCell.h"
-#import "FLImage+Colorize.h"
+#import "SDKImage+Colorize.h"
 #import "FLArrangement.h"
 #import "FLGradientView.h"
 
@@ -82,7 +82,7 @@ FLAssertDefaultInitNotCalled_();
 
 - (void) setParentController:(FLFloatingMenuViewController*) controller
 {
-    FLRetainObject_(_parentController, controller);
+    FLAssignObjectWithRetain(_parentController, controller);
 }
 
 - (void) _dimissSubmenu
@@ -92,7 +92,7 @@ FLAssertDefaultInitNotCalled_();
         [_subMenu setParentController:nil];
         self.floatingViewController.childFloatingViewController = nil;
         [_subMenu.floatingViewController dismissViewControllerAnimated:YES];
-        FLReleaseWithNil_(_subMenu);
+        FLReleaseWithNil(_subMenu);
     }
 }
 
@@ -102,7 +102,7 @@ FLAssertDefaultInitNotCalled_();
     {
         [self _dimissSubmenu];
         
-        FLRetainObject_(_subMenu, menuItem.subMenu);
+        FLAssignObjectWithRetain(_subMenu, menuItem.subMenu);
         
         if(menuItem.subMenu)
         {
@@ -142,12 +142,12 @@ FLAssertDefaultInitNotCalled_();
 
 - (void) menuItemViewFinishedSelectAnimation:(FLMenuItemView*) menuItem
 {
-    mrc_autorelease_(retain_(self));
+    FLAutorelease(FLRetain(self));
     
     if(_parentController)
     {
         [_parentController dismissViewControllerAnimated:YES];
-        FLReleaseWithNil_(_parentController);
+        FLReleaseWithNil(_parentController);
     }
     else
     {

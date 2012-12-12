@@ -93,12 +93,12 @@ FLSynthesizeStructProperty(maximizeWidth, setMaximizeWidth, BOOL, _style);
 
 - (void) releaseViews
 {
-	FLReleaseWithNil_(_progressBar);
-	FLReleaseWithNil_(_spinner);
-	FLReleaseWithNil_(_textLabel);
-	FLReleaseWithNil_(_dragBar);
-	FLReleaseWithNil_(_progressBarTextLabel);
-	FLReleaseWithNil_(_progressBarSpinner);
+	FLReleaseWithNil(_progressBar);
+	FLReleaseWithNil(_spinner);
+	FLReleaseWithNil(_textLabel);
+	FLReleaseWithNil(_dragBar);
+	FLReleaseWithNil(_progressBarTextLabel);
+	FLReleaseWithNil(_progressBarSpinner);
 }
 
 - (void)dealloc 
@@ -285,8 +285,8 @@ FLSynthesizeStructProperty(maximizeWidth, setMaximizeWidth, BOOL, _style);
 		[_dragBar addSubview:view1];
 		[_dragBar addSubview:view2];
 		
-		FLReleaseWithNil_(view1);
-		FLReleaseWithNil_(view2);
+		FLReleaseWithNil(view1);
+		FLReleaseWithNil(view2);
 
 		[self addSubview:_dragBar];
 	}
@@ -620,7 +620,7 @@ FLSynthesizeStructProperty(maximizeWidth, setMaximizeWidth, BOOL, _style);
 			if(_progressBarSpinner)
 			{
 				[_progressBarSpinner removeFromSuperview];
-				FLReleaseWithNil_(_progressBarSpinner);
+				FLReleaseWithNil(_progressBarSpinner);
 			}
 		}
 

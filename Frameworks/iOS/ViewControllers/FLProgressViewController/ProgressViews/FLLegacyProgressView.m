@@ -80,7 +80,7 @@
 
 - (void) setButton:(FLLegacyButton*) button
 {
-	FLRetainObject_(_button, button);
+	FLAssignObjectWithRetain(_button, button);
     [_button setCallback:self action:@selector(buttonPressed:)];
 }
 

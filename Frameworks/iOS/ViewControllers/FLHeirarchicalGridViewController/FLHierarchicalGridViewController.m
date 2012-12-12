@@ -11,7 +11,7 @@
 
 #import "FLGradientButton.h"
 #import "FLToolbarView.h"
-#import "FLImage+Colorize.h"
+#import "SDKImage+Colorize.h"
 #import "FLToolbarView.h"
 
 #import "FLViewControllerStack.h"
@@ -97,7 +97,7 @@
 }
 
 - (void) setParentDataObject:(id) object {
-    FLRetainObject_(_parentDataRef, object);
+    FLAssignObjectWithRetain(_parentDataRef, object);
     [self willUpdateTitle];
 }
 

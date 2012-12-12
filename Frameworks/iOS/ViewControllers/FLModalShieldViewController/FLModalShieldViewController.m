@@ -29,7 +29,7 @@
 
 - (void) viewWillUnload {
     [super viewWillUnload];
-    FLReleaseWithNil_(_shieldView);
+    FLReleaseWithNil(_shieldView);
 }   
 
 - (void) dealloc {

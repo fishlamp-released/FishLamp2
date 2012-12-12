@@ -87,10 +87,10 @@
 {
     if((self = [super init]))
     {
-        __normalColor = retain_([aDecoder decodeObjectForKey:@"__normalColor"]);
-        __selectedColor = retain_([aDecoder decodeObjectForKey:@"__selectedColor"]);
-        __highlightedColor = retain_([aDecoder decodeObjectForKey:@"__highlightedColor"]);
-        __disabledColor = retain_([aDecoder decodeObjectForKey:@"__disabledColor"]);
+        __normalColor = FLRetain([aDecoder decodeObjectForKey:@"__normalColor"]);
+        __selectedColor = FLRetain([aDecoder decodeObjectForKey:@"__selectedColor"]);
+        __highlightedColor = FLRetain([aDecoder decodeObjectForKey:@"__highlightedColor"]);
+        __disabledColor = FLRetain([aDecoder decodeObjectForKey:@"__disabledColor"]);
     }
     return self;
 }

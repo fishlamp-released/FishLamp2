@@ -38,10 +38,10 @@ FLSynthesizeSingleton(FLLogFileManager);
             [closeMe closeLogFile];
         }];
 
-        FLReleaseWithNil_(_logFile);
+        FLReleaseWithNil(_logFile);
     }
 
-    FLReleaseWithNil_(_userName);
+    FLReleaseWithNil(_userName);
 }
 
 // TODO: decouple this 

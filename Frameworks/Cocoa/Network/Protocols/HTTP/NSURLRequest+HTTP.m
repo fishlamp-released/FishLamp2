@@ -109,7 +109,7 @@ static NSString* s_defaultUserAgent = nil;
 {
 	NSString* contentLength = [[NSString alloc] initWithFormat:@"%llu", length];
 	[self setHeader:@"Content-Length" data:contentLength];
-	FLReleaseWithNil_(contentLength);
+	FLReleaseWithNil(contentLength);
 }
 
 - (void) setContentWithData:(NSData*) content

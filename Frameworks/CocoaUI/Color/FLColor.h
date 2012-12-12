@@ -6,8 +6,8 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import "FLCore.h"
-#import "FLColor.h"
+#import "FLCocoaUICompatibility.h"
+
 #import "FLColor+FLMoreColors.h"
 #import "FLColor+FLUtils.h"
 #import "FLColorRange.h"

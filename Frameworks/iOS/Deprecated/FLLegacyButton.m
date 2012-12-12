@@ -8,8 +8,8 @@
 
 #import "FLLegacyButton.h"
 
-#import "FLImage+Colorize.h"
-#import "FLImage+Resize.h"
+#import "SDKImage+Colorize.h"
+#import "SDKImage+Resize.h"
 
 
 @implementation FLLegacyButton
@@ -247,8 +247,8 @@
 
 - (void) setImage:(UIImage*) image
 {
-	FLReleaseWithNil_(_disabledImage);
-	FLRetainObject_(_image, image);
+	FLReleaseWithNil(_disabledImage);
+	FLAssignObjectWithRetain(_image, image);
 	self.imageView.image = _image;
 	[self.imageView resizeToImageSize];
 	[self setNeedsLayout];
@@ -331,7 +331,7 @@
 
 - (void) _sendEvent:(id) sender
 {
-    mrc_autorelease_(retain_(self));
+    FLAutorelease(FLRetain(self));
 
 	self.highlighted = NO;
 	FLInvokeCallback(_buttonWasPressedCallback, self);

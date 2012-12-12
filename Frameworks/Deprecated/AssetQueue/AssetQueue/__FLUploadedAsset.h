@@ -9,6 +9,7 @@
 // Copywrite (C) 2012 GreenTongue Software, LLC. All rights reserved.
 //
 
+#import "FLCocoaUICompatibility.h"
 
 
 // --------------------------------------------------------------------
@@ -27,7 +28,7 @@
     NSString* __uploadDestinationName;
     NSString* __uploadDestinationURL;
     NSString* __assetName;
-    FLImage* __thumbnail;
+    SDKImage* __thumbnail;
     NSDate* __uploadedDate;
 } 
 
@@ -42,7 +43,7 @@
 
 @property (readwrite, strong, nonatomic) NSString* queueUID;
 
-@property (readwrite, strong, nonatomic) FLImage* thumbnail;
+@property (readwrite, strong, nonatomic) SDKImage* thumbnail;
 
 @property (readwrite, strong, nonatomic) NSNumber* uploadDestinationId;
 

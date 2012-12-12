@@ -21,13 +21,13 @@
 
 - (void) cleanup
 {
-    mrc_autorelease_(_delegate);
+    FLAutorelease(_delegate);
     _delegate = nil;
     
-    mrc_autorelease_(_viewController);
+    FLAutorelease(_viewController);
     _viewController = nil;
     
-    FLReleaseWithNil_(_userGuid);
+    FLReleaseWithNil(_userGuid);
 }
 
 - (void) dealloc
@@ -44,7 +44,7 @@
     [_delegate twitterAuthenticator:self didAuthenticateUser:_userGuid];
 
     [self cleanup];
-    mrc_autorelease_(self);
+    FLAutorelease(self);
 }
 
 - (void) OAuthAuthorizationViewController:(FLOAuthAuthorizationViewController*) controller authenticationDidFail:(NSError*) error
@@ -54,7 +54,7 @@
     [_delegate twitterAuthenticator:self didFail:error];
 
     [self cleanup];
-    mrc_autorelease_(self);
+    FLAutorelease(self);
 }
 
 - (void) webViewControllerUserDidCancel:(FLWebViewController*) controller
@@ -63,16 +63,16 @@
     [_delegate twitterAuthenticatorWasCancelled:self];
 
     [self cleanup];
-    mrc_autorelease_(self);
+    FLAutorelease(self);
 }
 
 - (void) beginAuthenticatingInViewController:(FLViewController*) viewController 
                                     userGuid:(NSString*) userGuid 
                                     delegate:(id<FLTwitterAuthenticatorDelegate>) delegate
 {
-    FLRetainObject_(_delegate, delegate);
-    FLRetainObject_(_userGuid, userGuid);
-    FLRetainObject_(_viewController, viewController);
+    FLAssignObjectWithRetain(_delegate, delegate);
+    FLAssignObjectWithRetain(_userGuid, userGuid);
+    FLAssignObjectWithRetain(_viewController, viewController);
     
 	if([[FLTwitterMgr instance] needsAuthorizationForUserGuid:userGuid])
 	{

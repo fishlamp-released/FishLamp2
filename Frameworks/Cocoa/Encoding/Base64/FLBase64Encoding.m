@@ -124,7 +124,7 @@
 	}
 	@finally
 	{
-		FLReleaseWithNil_(encoded);
+		FLReleaseWithNil(encoded);
 	}
 }
 
@@ -148,7 +148,7 @@
 	}
 	@finally
 	{
-		FLReleaseWithNil_(tempData);
+		FLReleaseWithNil(tempData);
 	}
 }
 
@@ -174,7 +174,7 @@
 	}
 	@finally
 	{
-		FLReleaseWithNil_(decodedData);
+		FLReleaseWithNil(decodedData);
 	}
 }
  

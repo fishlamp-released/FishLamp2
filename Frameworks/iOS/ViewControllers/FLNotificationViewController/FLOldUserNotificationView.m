@@ -9,7 +9,7 @@
 #import "FLOldUserNotificationView.h"
 #import "NSFileManager+FLExtras.h"
 #import "FLSoapError.h"
-#import "FLImage+Colorize.h"
+#import "SDKImage+Colorize.h"
 #import "FLViewController.h"
 
 static FLWeakReference* s_currentView = nil;
@@ -87,7 +87,7 @@ FLSynthesizeStructProperty(autoDismiss, setAutoDismiss, BOOL, _userNotificationF
 	iconView.frame = FLRectSetSize(iconView.frame, 20,20);
 	
 	self.iconView = iconView;
-	FLReleaseWithNil_(iconView);
+	FLReleaseWithNil(iconView);
 }
 
 - (void) setIconWithColor:(UIImage*) image color:(UIColor*) color blendMode:(CGBlendMode) blendMode
