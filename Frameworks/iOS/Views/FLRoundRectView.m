@@ -146,12 +146,12 @@
 	CGMutablePathRef roundRectPath = CGPathCreateMutable();
 	FLCreateRectPath(roundRectPath, rect, self.cornerRadius);
 	
-	FLColor_t fillColor = self.highlighted ? _highlightedFillColor.color_t : _fillColor.color_t;
+	FLColorValues fillColor = self.highlighted ? _highlightedFillColor.rgbColorValues : _fillColor.rgbColorValues;
 	CGContextSetRGBFillColor(context, fillColor.red, fillColor.green, fillColor.blue, self.fillAlpha);
 	CGContextAddPath(context, roundRectPath);
 	CGContextFillPath(context);
 
-	FLColor_t borderColor = self.highlighted ? _highlightedBorderColor.color_t : _borderColor.color_t;
+	FLColorValues borderColor = self.highlighted ? _highlightedBorderColor.rgbColorValues : _borderColor.rgbColorValues;
 	CGContextAddPath(context, roundRectPath);
 	CGContextSetRGBStrokeColor(context, borderColor.red, borderColor.green, borderColor.blue, self.borderAlpha);
 	CGContextSetLineWidth(context, self.borderLineWidth);

@@ -223,7 +223,7 @@
 	
 	self.layer.cornerRadius = 8.0f;
 	self.layer.masksToBounds = YES;
-	self.layer.borderColor = [FLRgbColor(100, 103, 107, 1.0) CGColor];
+	self.layer.borderColor = [FLColorCreateWithRGBColorValues(100, 103, 107, 1.0) CGColor];
 	self.layer.borderWidth = 1.0f;
 	
 	_buttons = [[NSMutableArray alloc] init];

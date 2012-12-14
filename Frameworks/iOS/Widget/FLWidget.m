@@ -511,8 +511,8 @@ void (^FLWidgetSunburstHighlighter)(FLWidget* viewwidget, CGRect rect) = ^(FLWid
 	CGPoint startPoint = FLRectGetCenter(viewwidget.frame);
 	CGPoint endPoint = startPoint;
    
-	FLColor_t color = [UIColor whiteColor].color_t;
-	FLColor_t end = [UIColor grayColor].color_t;
+	FLColorValues color = [UIColor whiteColor].rgbColorValues;
+	FLColorValues end = [UIColor grayColor].rgbColorValues;
 	
 	CGColorSpaceRef rgb = CGColorSpaceCreateDeviceRGB();
 	CGFloat colors[] = {

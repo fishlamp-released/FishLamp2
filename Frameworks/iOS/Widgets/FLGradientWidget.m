@@ -9,7 +9,7 @@
 #import "FLGradientWidget.h"
 #import "UIColor+FLMoreColors.h"
 #import "UIColor+FLUtils.h"
-#import "FLColor_t.h"
+#import "FLColorValues.h"
 #import "FLColorRange.h"
 #import "FLViewGradients.h"
 #import "FLColorRange.h"
@@ -61,7 +61,7 @@
 	CGContextRef context = UIGraphicsGetCurrentContext();
 	CGContextSaveGState(context);
 
-	FLColorRange_t colors = [_gradientColors colorRangeForControlState:self.controlState].colorRange_t;
+	FLColorRangeColorValues colors = [_gradientColors colorRangeForControlState:self.controlState].colorRangeColorValues;
     
     CGFloat alpha = self.alpha;
 	CGColorSpaceRef rgb = CGColorSpaceCreateDeviceRGB();

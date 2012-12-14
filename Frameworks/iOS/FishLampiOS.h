@@ -30,7 +30,7 @@
 #import "UIColor+FLUtils.h"
 #import "UIColor+FLMoreColors.h"
 
-#import "FLColor_t.h"
+#import "FLColorValues.h"
 
 // iOS
 

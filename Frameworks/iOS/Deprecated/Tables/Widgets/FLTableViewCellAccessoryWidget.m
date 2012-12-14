@@ -53,10 +53,10 @@
 {
 	static UIImage* s_image = nil;
 	if(!s_image)
-	{ /*FLRgbColor(171,197,225, 1.0)*/
+	{ /*FLColorCreateWithRGBColorValues(171,197,225, 1.0)*/
 		s_image = [UIImage imageNamed:@"check.png"];
 		s_image = [s_image colorizeImage:[UIColor whiteColor] blendMode:kCGBlendModeLighten];
-		s_image = [s_image colorizeImage:FLRgbColor(171,197,225, 1.0) blendMode:kCGBlendModeMultiply]; // TODO: hard coded color from dark them
+		s_image = [s_image colorizeImage:FLColorCreateWithRGBColorValues(171,197,225, 1.0) blendMode:kCGBlendModeMultiply]; // TODO: hard coded color from dark them
 		mrc_retain_(s_image);
 //		  s_image = [s_image colorizeImage:[UIColor lightGrayColor] blendMode:kCGBlendModeOverlay ];
 	}
@@ -104,15 +104,15 @@
 
 			CGRect frame = self.frame;
             
-            FLColor_t rgb = self.color.color_t;
+            FLColorValues rgb = self.color.rgbColorValues;
             
             if(self.isHighlighted && self.highlightedColor)
             {
-                rgb = self.highlightedColor.color_t;
+                rgb = self.highlightedColor.rgbColorValues;
             }
             else if(self.isSelected && self.selectedColor)
             {
-                rgb = self.selectedColor.color_t;
+                rgb = self.selectedColor.rgbColorValues;
             }
             
             CGContextSetRGBStrokeColor(ctx, rgb.red, rgb.green, rgb.blue, 1.0); 

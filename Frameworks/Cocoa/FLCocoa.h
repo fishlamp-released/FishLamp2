@@ -12,3 +12,5 @@
 #import "FLBlocks.h"
 #import "FLResult.h"
 #import "FLDispatchQueue.h"
+
+#import "FLColorModule.h"

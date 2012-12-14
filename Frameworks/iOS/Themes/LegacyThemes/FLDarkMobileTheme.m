@@ -78,7 +78,7 @@
 //    NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
 //
 //    [dictionary setObject:^(id object) {
-//        [object setColorRange:[FLColorRange colorRange:FLRgbColor(69,69,71,1.0) endColor:FLRgbColor(41,41,42, 1.0)] forControlState:UIControlStateNormal];
+//        [object setColorRange:[FLColorRange colorRange:FLColorCreateWithRGBColorValues(69,69,71,1.0) endColor:FLColorCreateWithRGBColorValues(41,41,42, 1.0)] forControlState:UIControlStateNormal];
 //        }
 //    forKey:[FLGradientView class]];
 //
@@ -100,11 +100,11 @@
 //	{
 //		self.name = @"Dark";
 //
-//		self.gradientEndColor = FLRgbColor(41,41,42, 1.0);
-//		self.gradientStartColor = FLRgbColor(69,69,71,1.0);
-//		self.cellBackgroundColor = FLRgbColor(41,41,42,1.0);
-//		self.valueTextColor = FLRgbColor(160,160,165,1.0);
-//		self.tableHeaderTextColor = FLRgbColor(171,197,225,1.0);
+//		self.gradientEndColor = FLColorCreateWithRGBColorValues(41,41,42, 1.0);
+//		self.gradientStartColor = FLColorCreateWithRGBColorValues(69,69,71,1.0);
+//		self.cellBackgroundColor = FLColorCreateWithRGBColorValues(41,41,42,1.0);
+//		self.valueTextColor = FLColorCreateWithRGBColorValues(160,160,165,1.0);
+//		self.tableHeaderTextColor = FLColorCreateWithRGBColorValues(171,197,225,1.0);
 //		self.titleTextColor =  [UIColor whiteColor];
 //	
 //		self.titleDescriptor = FLAutorelease(

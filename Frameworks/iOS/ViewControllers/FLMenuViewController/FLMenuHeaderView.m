@@ -24,7 +24,7 @@
 - (void) configureLabel:(UILabel*) label
 {
     label.font = [UIFont boldSystemFontOfSize:[UIFont smallSystemFontSize]];
-    label.textColor = FLRgbColor(171,197,225,1.0);
+    label.textColor = FLColorCreateWithRGBColorValues(171,197,225,1.0);
 }
 
 - (id) initWithFrame:(CGRect)frame
@@ -90,7 +90,7 @@
 - (void) _setGradientFrame:(FLGradientView*) gradient
 {
     gradient.wantsApplyTheme = NO;
-    [gradient.gradient setColorRange:[FLColorRange colorRange:FLRgbColor(112,112,114,1.0) endColor:FLRgbColor(55,55,57,1.0)] forControlState:UIControlStateNormal];
+    [gradient.gradient setColorRange:[FLColorRange colorRange:FLColorCreateWithRGBColorValues(112,112,114,1.0) endColor:FLColorCreateWithRGBColorValues(55,55,57,1.0)] forControlState:UIControlStateNormal];
     gradient.frameOptimizedForSize  = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height / 2.0f);
 }
 
@@ -99,7 +99,7 @@
     label.font = [UIFont boldSystemFontOfSize:[UIFont buttonFontSize]];
     label.textColor = [UIColor whiteColor];
     
-//    label.textColor = FLRgbColor(203, 102, 10,1.0);
+//    label.textColor = FLColorCreateWithRGBColorValues(203, 102, 10,1.0);
     label.textAlignment = UITextAlignmentCenter;
 }
 

@@ -189,7 +189,7 @@
 	CGContextAddPath(context, path);
     [[UIColor clearColor] setFill];
     
-	FLColor_t fillRgb = self.backgroundColor.color_t;
+	FLColorValues fillRgb = self.backgroundColor.rgbColorValues;
 	CGContextSetRGBFillColor(context, fillRgb.red, fillRgb.green, fillRgb.blue, 0.8);
 	CGContextFillPath(context);
 

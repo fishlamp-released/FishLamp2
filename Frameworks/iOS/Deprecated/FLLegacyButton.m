@@ -50,7 +50,7 @@
 //	  self.layer.masksToBounds = YES;
 //	  self.layer.borderColor = [UIColor darkGrayColor].CGColor;
 	
-//	  [FLRgbColor(100, 103, 107) CGColor];
+//	  [FLColorCreateWithRGBColorValues(100, 103, 107) CGColor];
 //	  self.layer.borderWidth = 1.0f;
 }
 

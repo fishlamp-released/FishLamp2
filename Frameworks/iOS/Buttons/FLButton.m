@@ -225,52 +225,52 @@
 
 FLButtonColorizer FLButtonColorRed = ^(FLButton* button)
 {
-	[[button backgroundWidget].topGradient setColorRange:[FLColorRange colorRange:FLRgbColor(240,127,136,1.0) endColor:FLRgbColor(231,53,66,1.0)] forControlState:UIControlStateNormal] ;
-	[[button backgroundWidget].bottomGradient setColorRange:[FLColorRange colorRange:/*FLRgbColor(225,1,17,1.0)*/ [UIColor fireEngineRed] endColor:FLRgbColor(236,19,20,1.0)] forControlState:UIControlStateNormal];
+	[[button backgroundWidget].topGradient setColorRange:[FLColorRange colorRange:FLColorCreateWithRGBColorValues(240,127,136,1.0) endColor:FLColorCreateWithRGBColorValues(231,53,66,1.0)] forControlState:UIControlStateNormal] ;
+	[[button backgroundWidget].bottomGradient setColorRange:[FLColorRange colorRange:/*FLColorCreateWithRGBColorValues(225,1,17,1.0)*/ [UIColor fireEngineRed] endColor:FLColorCreateWithRGBColorValues(236,19,20,1.0)] forControlState:UIControlStateNormal];
 	[button setLightText];
 };
 FLButtonColorizer FLButtonColorPaleBlue = ^(FLButton* button)
 {
-	[[button backgroundWidget].topGradient setColorRange:[FLColorRange colorRange:FLRgbColor(132,156,187,1.0) endColor:FLRgbColor(89,119,162,1.0)] forControlState:UIControlStateNormal];
-	[[button backgroundWidget].bottomGradient setColorRange:[FLColorRange colorRange:FLRgbColor(72,106,154,1.0) endColor:FLRgbColor(74,108,155,1.0)] forControlState:UIControlStateNormal];
+	[[button backgroundWidget].topGradient setColorRange:[FLColorRange colorRange:FLColorCreateWithRGBColorValues(132,156,187,1.0) endColor:FLColorCreateWithRGBColorValues(89,119,162,1.0)] forControlState:UIControlStateNormal];
+	[[button backgroundWidget].bottomGradient setColorRange:[FLColorRange colorRange:FLColorCreateWithRGBColorValues(72,106,154,1.0) endColor:FLColorCreateWithRGBColorValues(74,108,155,1.0)] forControlState:UIControlStateNormal];
 	[button setLightText];
 };
 FLButtonColorizer FLButtonColorBrightBlue = ^(FLButton* button)
 {
-	[[button backgroundWidget].topGradient setColorRange:[FLColorRange colorRange:FLRgbColor(108,147,232,1.0) endColor:FLRgbColor(57,112,224,1.0)] forControlState:UIControlStateNormal];
-	[[button backgroundWidget].bottomGradient setColorRange:[FLColorRange colorRange:FLRgbColor(34,96,221,1.0) endColor:FLRgbColor(36,99,222,1.0)] forControlState:UIControlStateNormal];
+	[[button backgroundWidget].topGradient setColorRange:[FLColorRange colorRange:FLColorCreateWithRGBColorValues(108,147,232,1.0) endColor:FLColorCreateWithRGBColorValues(57,112,224,1.0)] forControlState:UIControlStateNormal];
+	[[button backgroundWidget].bottomGradient setColorRange:[FLColorRange colorRange:FLColorCreateWithRGBColorValues(34,96,221,1.0) endColor:FLColorCreateWithRGBColorValues(36,99,222,1.0)] forControlState:UIControlStateNormal];
 	[button setLightText];
 };
 FLButtonColorizer FLButtonColorDarkGray = ^(FLButton* button)
 {
-	[[button backgroundWidget].topGradient setColorRange:[FLColorRange colorRange:FLRgbColor(112,112,114,1.0) endColor:FLRgbColor(55,55,57,1.0)] forControlState:UIControlStateNormal];
-	[[button backgroundWidget].bottomGradient setColorRange:[FLColorRange colorRange:FLRgbColor(33,33,35,1.0) endColor:FLRgbColor(71,71,73,1.0)] forControlState:UIControlStateNormal];
+	[[button backgroundWidget].topGradient setColorRange:[FLColorRange colorRange:FLColorCreateWithRGBColorValues(112,112,114,1.0) endColor:FLColorCreateWithRGBColorValues(55,55,57,1.0)] forControlState:UIControlStateNormal];
+	[[button backgroundWidget].bottomGradient setColorRange:[FLColorRange colorRange:FLColorCreateWithRGBColorValues(33,33,35,1.0) endColor:FLColorCreateWithRGBColorValues(71,71,73,1.0)] forControlState:UIControlStateNormal];
 	[button setLightText];
 };
 
 FLButtonColorizer FLButtonColorDarkGrayWithBlueTint = ^(FLButton* button)
 {
-	[[button backgroundWidget].topGradient setColorRange:[FLColorRange colorRange:FLRgbColor(106,112,118,1.0) endColor:FLRgbColor(55,63,71,1.0)] forControlState:UIControlStateNormal];
-	[[button backgroundWidget].bottomGradient setColorRange:[FLColorRange colorRange:FLRgbColor(43,50,59,1.0) endColor:FLRgbColor(65,71,80,1.0)] forControlState:UIControlStateNormal];
+	[[button backgroundWidget].topGradient setColorRange:[FLColorRange colorRange:FLColorCreateWithRGBColorValues(106,112,118,1.0) endColor:FLColorCreateWithRGBColorValues(55,63,71,1.0)] forControlState:UIControlStateNormal];
+	[[button backgroundWidget].bottomGradient setColorRange:[FLColorRange colorRange:FLColorCreateWithRGBColorValues(43,50,59,1.0) endColor:FLColorCreateWithRGBColorValues(65,71,80,1.0)] forControlState:UIControlStateNormal];
 	[button setLightText];
 };
 FLButtonColorizer FLButtonColorBlack = ^(FLButton* button)
 {
-	[[button backgroundWidget].topGradient setColorRange:[FLColorRange colorRange:FLRgbColor(112,112,112,1.0) endColor:FLRgbColor(54,54,54,1.0)] forControlState:UIControlStateNormal];
+	[[button backgroundWidget].topGradient setColorRange:[FLColorRange colorRange:FLColorCreateWithRGBColorValues(112,112,112,1.0) endColor:FLColorCreateWithRGBColorValues(54,54,54,1.0)] forControlState:UIControlStateNormal];
 	[[button backgroundWidget].bottomGradient setColorRange:[FLColorRange colorRange:[UIColor blackColor] endColor:[UIColor blackColor]] forControlState:UIControlStateNormal];
 	[button setLightText];
 };
 
 FLButtonColorizer FLButtonColorGray = ^(FLButton* button)
 {
-	[[button backgroundWidget].topGradient setColorRange:[FLColorRange colorRange:FLRgbColor(112,112,114,1.0) endColor:FLRgbColor(55,55,57,1.0)] forControlState:UIControlStateNormal];
-	[[button backgroundWidget].bottomGradient setColorRange:[FLColorRange colorRange:FLRgbColor(33,33,35,1.0) endColor:FLRgbColor(71,71,73,1.0)] forControlState:UIControlStateNormal];
+	[[button backgroundWidget].topGradient setColorRange:[FLColorRange colorRange:FLColorCreateWithRGBColorValues(112,112,114,1.0) endColor:FLColorCreateWithRGBColorValues(55,55,57,1.0)] forControlState:UIControlStateNormal];
+	[[button backgroundWidget].bottomGradient setColorRange:[FLColorRange colorRange:FLColorCreateWithRGBColorValues(33,33,35,1.0) endColor:FLColorCreateWithRGBColorValues(71,71,73,1.0)] forControlState:UIControlStateNormal];
 };
 
 FLButtonColorizer FLButtonColorLightGray = ^(FLButton* button)
 {
-	[[button backgroundWidget].topGradient setColorRange:[FLColorRange colorRange:FLRgbColor(112,112,114,1.0) endColor:FLRgbColor(55,55,57,1.0)] forControlState:UIControlStateNormal];
-	[[button backgroundWidget].bottomGradient setColorRange:[FLColorRange colorRange:FLRgbColor(33,33,35,1.0) endColor:FLRgbColor(71,71,73,1.0)] forControlState:UIControlStateNormal];
+	[[button backgroundWidget].topGradient setColorRange:[FLColorRange colorRange:FLColorCreateWithRGBColorValues(112,112,114,1.0) endColor:FLColorCreateWithRGBColorValues(55,55,57,1.0)] forControlState:UIControlStateNormal];
+	[[button backgroundWidget].bottomGradient setColorRange:[FLColorRange colorRange:FLColorCreateWithRGBColorValues(33,33,35,1.0) endColor:FLColorCreateWithRGBColorValues(71,71,73,1.0)] forControlState:UIControlStateNormal];
 };
 
 

@@ -84,7 +84,7 @@
         CGContextSaveGState(context);
         
         // TODO: use color components instead of UIColor+t
-		FLColor_t borderColor = _innerBorderColor.color_t;
+		FLColorValues borderColor = _innerBorderColor.rgbColorValues;
 		CGContextSetRGBStrokeColor(context, borderColor.red, borderColor.green, borderColor.blue, borderColor.alpha);
 		CGContextSetLineWidth(context, _lineWidth);
 		CGContextAddPath(context, innerPath);

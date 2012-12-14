@@ -102,17 +102,17 @@ FLSynthesizeStructProperty(drawMode, setDrawMode, FLTableViewCellSectionDrawMode
 
 - (void)drawSelf:(CGRect)rect
 {
-//	  FLRgbColor borderColor = self.isHighlighted ? 
-//		  self.highlightedBorderColor.color_t :
-//		  self.borderColor.color_t;
+//	  FLColorCreateWithRGBColorValues borderColor = self.isHighlighted ? 
+//		  self.highlightedBorderColor.rgbColorValues :
+//		  self.borderColor.rgbColorValues;
 
 	CGFloat lineWidth = 2.0f;
 
-	FLColor_t borderColor = self.borderColor.color_t;
+	FLColorValues borderColor = self.borderColor.rgbColorValues;
 
-	FLColor_t fillColor = self.isHighlighted ? 
-		self.highlightedFillColor.color_t :
-		self.fillColor.color_t;
+	FLColorValues fillColor = self.isHighlighted ? 
+		self.highlightedFillColor.rgbColorValues :
+		self.fillColor.rgbColorValues;
 
 	CGContextRef context = UIGraphicsGetCurrentContext();
 	CGContextSaveGState(context);

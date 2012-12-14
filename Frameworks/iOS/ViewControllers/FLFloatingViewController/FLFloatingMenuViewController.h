@@ -16,7 +16,7 @@
 
 @class FLWidget;
 
-#define FLMenuViewDeleteColor FLRgbColor(236,19,20,1.0)
+#define FLMenuViewDeleteColor FLColorCreateWithRGBColorValues(236,19,20,1.0)
 
 @interface FLFloatingMenuViewController : FLMenuViewController<FLMenuViewDelegate, FLMenuItemViewDelegate> {
 @private

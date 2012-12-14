@@ -47,7 +47,7 @@
     CGContextRef ctx = UIGraphicsGetCurrentContext();
 
     CGRect frame = self.frame;
-    FLColor_t rgb = [self.lineColor color_t];
+    FLColorValues rgb = [self.lineColor rgbColorValues];
     
     CGContextSetRGBStrokeColor(ctx, rgb.red, rgb.green, rgb.blue, 1.0); 
     CGContextSetLineWidth(ctx, self.lineThickness);
