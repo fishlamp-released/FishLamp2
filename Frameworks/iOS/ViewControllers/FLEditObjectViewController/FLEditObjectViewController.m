@@ -616,7 +616,7 @@ FLSynthesizeStructProperty(saveChangesImmediately, setSaveChangesImmediately, BO
 - (void) onCancelComplete
 {
 	FLAutorelease(FLRetain(self));
-    [self dismissViewControllerAnimated:YES];
+    [self hideViewController:YES];
     
 //	FLInvokeCallback(self.dismissEvent, self);
 }
@@ -634,7 +634,7 @@ FLSynthesizeStructProperty(saveChangesImmediately, setSaveChangesImmediately, BO
         [_self performSelector:cancelAction withObject:nil];
     }]];
     	
-	[alert presentViewControllerAnimated:YES];
+	[alert showViewControllerAnimated:YES];
 }
 
 - (void) confirmCancel
@@ -935,13 +935,13 @@ FLSynthesizeStructProperty(saveChangesImmediately, setSaveChangesImmediately, BO
 	}
 }
 
-- (void) didFinishSavingChanges:(BOOL) dismissViewControllerAnimated
+- (void) didFinishSavingChanges:(BOOL) hideViewController
 {
 	_editFlags.isSavingEditableData = NO;
 	
-	if(dismissViewControllerAnimated)
+	if(hideViewController)
 	{
-        [self dismissViewControllerAnimated:YES];
+        [self hideViewController:YES];
     
 //		FLInvokeCallback(self.dismissEvent, self);
 	}

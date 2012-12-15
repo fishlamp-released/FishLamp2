@@ -54,7 +54,7 @@
 {
 	FLAutorelease(FLReturnRetain(self));
 	[self.delegate pinEditViewControllerDidCancel:self];	
-	[self dismissViewControllerAnimated:YES];
+	[self hideViewController:YES];
 }
 
 - (void) pinEditView:(FLPinEditingView*) pinEditingView didSetPin:(NSString*) pin
@@ -64,7 +64,7 @@
 	{
 		[self.delegate pinEditViewController:self didSetPin:pin];	
 	}
-	[self dismissViewControllerAnimated:YES];
+	[self hideViewController:YES];
 }
 
 - (void) pinEditViewUserDidEnterCorrectPin:(FLPinEditingView*) pinEditingView
@@ -74,7 +74,7 @@
 	{
 		[self.delegate pinEditViewControllerUserDidEnterCorrectPin:self];	
 	}
-	[self dismissViewControllerAnimated:YES];
+	[self hideViewController:YES];
 }
 
 - (void) wasPushedOnNavigationController:(UINavigationController *)controller

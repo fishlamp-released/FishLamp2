@@ -27,7 +27,7 @@ FLSynthesizeAssociatedProperty(retain_nonatomic, _presentationBehavior, setPrese
 
 void (^FLGlobalPresentBlock)(id controller) = ^(id controller) {
 #if IOS
-    [[UIApplication visibleViewController] presentChildViewController:controller];
+    [[UIApplication visibleViewController] showChildViewController:controller];
 #endif
 };
 

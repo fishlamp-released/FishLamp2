@@ -84,7 +84,7 @@
         FLAssertIsNotNil_(self.onCreateAlert);
         self.alertViewController = self.onCreateAlert(self);
         FLAssertIsNotNil_(self.alertViewController);
-        [self.alertViewController presentViewControllerAnimated:YES];
+        [self.alertViewController showViewControllerAnimated:YES];
     }
 }
 
@@ -94,7 +94,7 @@
 
         [self performBlockOnMainThread:^{
             if(_alertViewController) {
-                [_alertViewController dismissViewControllerAnimated:YES];
+                [_alertViewController hideViewController:YES];
                 FLReleaseWithNil(_alertViewController);
             }
         }];

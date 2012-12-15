@@ -22,7 +22,7 @@
 //{
 //}
 //
-//- (void) willDismissViewController:(UIViewController*) viewController
+//- (void) willHideViewController:(UIViewController*) viewController
 //            fromParentViewController:(UIViewController*) parentViewController
 //{
 //}

@@ -28,6 +28,8 @@ typedef enum {
     UIViewContentModeBottomRight,
 } UIViewContentMode;
 
+typedef NSUInteger UIViewAnimationOptions;
+
 @interface NSView (UIKit)
 @property (readwrite, strong, nonatomic) UIColor* backgroundColor;
 @property (readwrite, assign, nonatomic) CGFloat alpha;

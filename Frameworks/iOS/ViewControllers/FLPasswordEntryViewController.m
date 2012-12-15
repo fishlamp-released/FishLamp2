@@ -85,7 +85,7 @@
 			FLAlert* alert = [FLAlert alertViewController:NSLocalizedString(@"No password was entered.", nil) 
                 message:NSLocalizedString(@"Please enter a valid password.", nil)];
             [alert addButton:[FLConfirmButton okButton]];
-			[alert presentViewControllerAnimated:YES];
+			[alert showViewControllerAnimated:YES];
 			return NO;
 		}
 	}
@@ -98,7 +98,7 @@
 			FLAlert* alert = [FLAlert alertViewController:NSLocalizedString(@"The two passwords you entered do not match.", nil) 
                                                                               message:NSLocalizedString(@"Please try again.",nil)];
             [alert addButton:[FLConfirmButton okButton]];
-			[alert presentViewControllerAnimated:YES];
+			[alert showViewControllerAnimated:YES];
 
 			[self beginEditingTextInCell:(FLTextEditCell*) [self cellForRowKey:@"password"]];
 

@@ -80,7 +80,7 @@
 					message:NSLocalizedString(@"Please check your email configuration and try again.", nil)];
 
         [alert addButton:[FLConfirmButton okButton]];
-        [alert presentViewControllerAnimated:YES];
+        [alert showViewControllerAnimated:YES];
 		FLAutorelease(self);	   
 		return NO;
 	}

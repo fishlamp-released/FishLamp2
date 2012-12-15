@@ -38,7 +38,7 @@ FLSynthesizeSingleton(FLAboveAuxiliaryViewBehavior);
     [viewController.dragController moveDragRespondersByAmount:delta animationDuration:0.3 animationFinished:nil];
 }
 
-- (void) hideViewControllerAnimated:(BOOL) animated viewController:(FLAuxiliaryViewController*) viewController {
+- (void) hideViewController:(BOOL) animated viewController:(FLAuxiliaryViewController*) viewController {
     if(viewController.viewController) {
         CGPoint delta = FLPointSubtractPointFromPoint([viewController offscreenFrame].origin, viewController.containerView.frame.origin);
         [viewController.dragController moveDragRespondersByAmount:delta animationDuration:0.3 animationFinished:^{ [viewController _hideAnimationFinished]; }];
@@ -54,7 +54,7 @@ FLSynthesizeSingleton(FLAboveAuxiliaryViewBehavior);
     //        ^{
     //            if(!viewController.auxiliaryViewIsOpen)
     //            {
-    //                [viewController hideViewControllerAnimated:NO];
+    //                [viewController hideViewController:NO];
     //            }
     //        }];
 }

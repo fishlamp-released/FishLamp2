@@ -77,7 +77,7 @@
 - (void) networkDidBecomeUnavailable;
 - (void) addDidAppearCallback:(FLCallbackObject*) callback;
 
-// set this before calling presentModalViewController so that dismissViewControllerAnimated knows to dismissModalView.
+// set this before calling presentModalViewController so that hideViewController knows to dismissModalView.
 @property (readwrite, assign, nonatomic) FLViewController* modalParentViewController;
 + (BOOL) isPresentingModalViewController;
 + (FLViewController*) presentingModalViewController;

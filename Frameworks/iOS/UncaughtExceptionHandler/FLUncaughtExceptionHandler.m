@@ -82,7 +82,7 @@ const NSInteger UncaughtExceptionHandlerReportAddressCount = 5;
 //			cancelButtonTitle:NSLocalizedString(@"Quit", nil)
 //			otherButtonTitles:NSLocalizedString(@"Continue", nil), nil]
 //		autorelease];
-//	[alert presentViewControllerAnimated:YES];
+//	[alert showViewControllerAnimated:YES];
 //	
 //	CFRunLoopRef runLoop = CFRunLoopGetCurrent();
 //	CFArrayRef allModes = CFRunLoopCopyAllModes(runLoop);

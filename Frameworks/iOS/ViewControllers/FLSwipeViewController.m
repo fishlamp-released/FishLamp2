@@ -177,7 +177,7 @@
 
     [self setSelectedIndex:newIndex animate:NO];
     
-    [self.bottomAuxiliaryViewController hideViewControllerAnimated:YES];
+    [self.bottomAuxiliaryViewController hideViewController:YES];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
@@ -212,7 +212,7 @@
 // TODO: ??
 //    [_bottomSwipeView close];
     
-    [self.bottomAuxiliaryViewController hideViewControllerAnimated:YES];
+    [self.bottomAuxiliaryViewController hideViewController:YES];
     
     [self recalculateScrollView:NO];
 }
@@ -220,12 +220,12 @@
 - (void) _didChangeMenuItem:(FLMenuItemView*) menuItem {
     [self didChooseMenuItem:menuItem.indexInMenu];
 
-    [self.bottomAuxiliaryViewController hideViewControllerAnimated:YES];
+    [self.bottomAuxiliaryViewController hideViewController:YES];
 }
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
     [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
-    [self.bottomAuxiliaryViewController hideViewControllerAnimated:YES];
+    [self.bottomAuxiliaryViewController hideViewController:YES];
 }
 
 - (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {

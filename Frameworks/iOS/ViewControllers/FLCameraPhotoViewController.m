@@ -96,7 +96,7 @@
 				delegate:self
 				cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
 		
-	[alert presentViewControllerAnimated:YES];
+	[alert showViewControllerAnimated:YES];
 	FLReleaseWithNil(alert);
 }
 

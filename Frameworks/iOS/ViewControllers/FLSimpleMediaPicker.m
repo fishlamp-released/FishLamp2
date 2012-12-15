@@ -97,7 +97,7 @@
 
     if(!_hidden) {
         _hidden = YES;
-        [self.viewController dismissViewControllerAnimated:_animated completion:^{
+        [self.viewController hideViewController:_animated completion:^{
             [self postObservation:@selector(simpleMediaPickerDidClose:)];
         }];
     }

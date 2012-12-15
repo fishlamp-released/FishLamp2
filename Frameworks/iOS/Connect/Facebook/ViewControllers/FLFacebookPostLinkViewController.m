@@ -64,7 +64,7 @@
         message:[NSString stringWithFormat:(NSLocalizedString(@"The maximum status length is 500 characters but yours is %d characters long.", nil)), self.textLength]];
         
     [alert addButton:[FLConfirmButton okButton]];
-    [alert presentViewControllerAnimated:YES];
+    [alert showViewControllerAnimated:YES];
 }
 
 - (void) configureContentView

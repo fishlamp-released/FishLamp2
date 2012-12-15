@@ -61,7 +61,7 @@ typedef UIViewController* (^FLAuxiliaryViewControllerCreateViewControllerBlock)(
 
 - (void) showViewControllerAnimated:(BOOL) animated;
 
-- (void) hideViewControllerAnimated:(BOOL) animated;
+- (void) hideViewController:(BOOL) animated;
 
 + (id<FLAuxiliaryViewControllerBehavior>) aboveBehavior;
 + (id<FLAuxiliaryViewControllerBehavior>) belowBehavior;

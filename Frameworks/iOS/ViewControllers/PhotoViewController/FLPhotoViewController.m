@@ -1160,7 +1160,7 @@ FLSynthesizeStructProperty(isFullScreenTapDisabled, setFullScreenTapDisabled, BO
 		
 		[self stopSlideShow:YES];
 		
-		[self dismissViewControllerAnimated:YES];
+		[self hideViewController:YES];
 	}
 }
 

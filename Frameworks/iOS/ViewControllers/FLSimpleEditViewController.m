@@ -107,7 +107,7 @@
 {
     if(!FLInvokeCallback(_beginCancelCallback, self))
     {
-        [self dismissViewControllerAnimated:YES];
+        [self hideViewController:YES];
     }
 }
 
@@ -208,10 +208,10 @@
     [self configureContentView];
 }
 
-- (void) dismissViewControllerAnimated:(BOOL)animated
+- (void) hideViewController:(BOOL)animated
 {
 	[self stopEditing];
-	[super dismissViewControllerAnimated:animated];
+	[super hideViewController:animated];
 }
 
 - (void) applyTheme:(FLTheme*) theme {

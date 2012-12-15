@@ -53,7 +53,7 @@
 
 - (void) beginSlideshow:(id) sender
 {
-	[self dismissViewControllerAnimated:YES];
+	[self hideViewController:YES];
 	[_slideshowDelegate slideshowOptionsViewController:self beginSlideshowWithOptions:self.options];
 }
 

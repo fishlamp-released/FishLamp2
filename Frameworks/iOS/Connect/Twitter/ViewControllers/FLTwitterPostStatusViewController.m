@@ -83,7 +83,7 @@
     FLAlert* alert = [FLAlert alertViewController:NSLocalizedString(@"Your tweet is too long.", nil)
                                                                       message:[NSString stringWithFormat:(NSLocalizedString(@"The tweet length is 140 characters but yours is %d characters long.", nil)), self.textLength]];
     [alert addButton:[FLConfirmButton okButton]];
-    [alert presentViewControllerAnimated:YES];
+    [alert showViewControllerAnimated:YES];
 }
 
 - (void) beginSaving

@@ -3869,6 +3869,10 @@
 		2776CC741672643C00F2E70A /* FLJson.m in Sources */ = {isa = PBXBuildFile; fileRef = 2776CC6F1672643C00F2E70A /* FLJson.m */; };
 		2776CC751672643C00F2E70A /* FLJson.m in Sources */ = {isa = PBXBuildFile; fileRef = 2776CC6F1672643C00F2E70A /* FLJson.m */; };
 		2776CC761672643C00F2E70A /* FLJson.m in Sources */ = {isa = PBXBuildFile; fileRef = 2776CC6F1672643C00F2E70A /* FLJson.m */; };
+		2784AA83167BEC8E00946B56 /* UIView_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 2784AA82167BEC8D00946B56 /* UIView_Internal.h */; };
+		2784AA84167BEC8E00946B56 /* UIView_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 2784AA82167BEC8D00946B56 /* UIView_Internal.h */; };
+		2784AA85167BEC8E00946B56 /* UIView_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 2784AA82167BEC8D00946B56 /* UIView_Internal.h */; };
+		2784AA86167BEC8E00946B56 /* UIView_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 2784AA82167BEC8D00946B56 /* UIView_Internal.h */; };
 		2798D936166D886500A0863D /* FLDebug.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDC3166D886500A0863D /* FLDebug.h */; };
 		2798D937166D886500A0863D /* FLDebug.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDC3166D886500A0863D /* FLDebug.h */; };
 		2798D938166D886500A0863D /* FLDebug.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDC3166D886500A0863D /* FLDebug.h */; };
@@ -5639,6 +5643,8 @@
 		276CE91515E54C91000A5CE6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2776CC6E1672643C00F2E70A /* FLJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FLJson.h; path = SBJson/FLJson.h; sourceTree = "<group>"; };
 		2776CC6F1672643C00F2E70A /* FLJson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FLJson.m; path = SBJson/FLJson.m; sourceTree = "<group>"; };
+		2784AA81167BD1C900946B56 /* fishlamp-module.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "fishlamp-module.json"; sourceTree = "<group>"; };
+		2784AA82167BEC8D00946B56 /* UIView_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIView_Internal.h; sourceTree = "<group>"; };
 		2798CDC3166D886500A0863D /* FLDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLDebug.h; sourceTree = "<group>"; };
 		2798CDC4166D886500A0863D /* FLDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLDebug.m; sourceTree = "<group>"; };
 		2798CDC6166D886500A0863D /* FLErrorDomain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLErrorDomain.h; sourceTree = "<group>"; };
@@ -5832,7 +5838,6 @@
 		27DB2044167A974F00452AD3 /* NSValue+UIKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSValue+UIKit.h"; sourceTree = "<group>"; };
 		27DB2045167A975000452AD3 /* NSValue+UIKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSValue+UIKit.m"; sourceTree = "<group>"; };
 		27DB204F167A98D500452AD3 /* UIKitModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIKitModule.h; sourceTree = "<group>"; };
-		27DB2050167A98D600452AD3 /* UIKitModule.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UIKitModule.json; sourceTree = "<group>"; };
 		27DB2051167A98D800452AD3 /* UIKitModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIKitModule.m; sourceTree = "<group>"; };
 		27DB2067167A9A5200452AD3 /* CGContext+UIKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CGContext+UIKit.h"; sourceTree = "<group>"; };
 		27DB2068167A9A5800452AD3 /* CGContext+UIKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CGContext+UIKit.m"; sourceTree = "<group>"; };
@@ -8097,9 +8102,7 @@
 			children = (
 				27DB2067167A9A5200452AD3 /* CGContext+UIKit.h */,
 				27DB2068167A9A5800452AD3 /* CGContext+UIKit.m */,
-				27DB204F167A98D500452AD3 /* UIKitModule.h */,
-				27DB2050167A98D600452AD3 /* UIKitModule.json */,
-				27DB2051167A98D800452AD3 /* UIKitModule.m */,
+				2784AA81167BD1C900946B56 /* fishlamp-module.json */,
 				27DB2044167A974F00452AD3 /* NSValue+UIKit.h */,
 				27DB2045167A975000452AD3 /* NSValue+UIKit.m */,
 				27DB1FC1167A94BA00452AD3 /* UIColor.h */,
@@ -8108,25 +8111,28 @@
 				27DB1FC4167A94BA00452AD3 /* UIControl.m */,
 				27DB1FC5167A94BA00452AD3 /* UIDevice.h */,
 				27DB1FC6167A94BA00452AD3 /* UIDevice.m */,
+				27DB202D167A94FA00452AD3 /* UIEvent.h */,
+				27DB202E167A94FB00452AD3 /* UIEvent.m */,
 				27DB1FC7167A94BA00452AD3 /* UIFont.h */,
 				27DB1FC8167A94BA00452AD3 /* UIFont.m */,
 				27DB1FC9167A94BA00452AD3 /* UIGeometry.h */,
 				27DB1FCA167A94BA00452AD3 /* UIGeometry.m */,
 				27DB1FCB167A94BA00452AD3 /* UIImage.h */,
 				27DB1FCC167A94BA00452AD3 /* UIImage.m */,
+				27DB2082167A9D5200452AD3 /* UIImageView.h */,
+				27DB2083167A9D5500452AD3 /* UIImageView.m */,
+				27DB204F167A98D500452AD3 /* UIKitModule.h */,
+				27DB2051167A98D800452AD3 /* UIKitModule.m */,
+				27DB2072167A9ACB00452AD3 /* UIKitRequired.h */,
+				27DB2077167A9B6900452AD3 /* UILabel.h */,
+				27DB2078167A9B6B00452AD3 /* UILabel.m */,
 				27DB1FCD167A94BA00452AD3 /* UITextField.h */,
 				27DB1FCE167A94BA00452AD3 /* UITextField.m */,
 				27DB1FCF167A94BA00452AD3 /* UIView.h */,
 				27DB1FD0167A94BA00452AD3 /* UIView.m */,
+				2784AA82167BEC8D00946B56 /* UIView_Internal.h */,
 				27DB1FD1167A94BA00452AD3 /* UIViewController.h */,
 				27DB1FD2167A94BA00452AD3 /* UIViewController.m */,
-				27DB202D167A94FA00452AD3 /* UIEvent.h */,
-				27DB202E167A94FB00452AD3 /* UIEvent.m */,
-				27DB2072167A9ACB00452AD3 /* UIKitRequired.h */,
-				27DB2077167A9B6900452AD3 /* UILabel.h */,
-				27DB2078167A9B6B00452AD3 /* UILabel.m */,
-				27DB2082167A9D5200452AD3 /* UIImageView.h */,
-				27DB2083167A9D5500452AD3 /* UIImageView.m */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -8709,6 +8715,7 @@
 				27DB2084167A9D5600452AD3 /* UIImageView.h in Headers */,
 				27DB208F167AA0BE00452AD3 /* FLView.h in Headers */,
 				27DB209A167AA11300452AD3 /* FLViewController.h in Headers */,
+				2784AA83167BEC8E00946B56 /* UIView_Internal.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9277,6 +9284,7 @@
 				27DB2086167A9D5600452AD3 /* UIImageView.h in Headers */,
 				27DB2091167AA0BE00452AD3 /* FLView.h in Headers */,
 				27DB209C167AA11300452AD3 /* FLViewController.h in Headers */,
+				2784AA85167BEC8E00946B56 /* UIView_Internal.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9845,6 +9853,7 @@
 				27DB2085167A9D5600452AD3 /* UIImageView.h in Headers */,
 				27DB2090167AA0BE00452AD3 /* FLView.h in Headers */,
 				27DB209B167AA11300452AD3 /* FLViewController.h in Headers */,
+				2784AA84167BEC8E00946B56 /* UIView_Internal.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -10413,6 +10422,7 @@
 				27DB2087167A9D5600452AD3 /* UIImageView.h in Headers */,
 				27DB2092167AA0BE00452AD3 /* FLView.h in Headers */,
 				27DB209D167AA11300452AD3 /* FLViewController.h in Headers */,
+				2784AA86167BEC8E00946B56 /* UIView_Internal.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

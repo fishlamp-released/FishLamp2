@@ -118,7 +118,7 @@ extern void FLEditObjectViewControllerShowButtonsImmediately(FLEditObjectViewCon
 - (IBAction) respondToSaveButton:(id) sender; 
 - (void) doBeginSavingChanges;
 - (BOOL) willBeginSavingChanges;
-- (void) didFinishSavingChanges:(BOOL) dismissViewControllerAnimated;
+- (void) didFinishSavingChanges:(BOOL) hideViewController;
 
 // finalizing data
 - (void) finalizeDataBeforeCommit; // return NO stops commit

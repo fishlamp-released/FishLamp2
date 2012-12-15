@@ -27,7 +27,7 @@ NSError* DisplayDiagnosticError(NSError* error)
             FLAlert* alertView =  [FLAlert alertViewController:@"-- DIAGNOSTIC ERROR --" message:[error description]];
             [self addCancelButton:@"OK"];
              
-            [alertView presentViewControllerAnimated:YES];
+            [alertView showViewControllerAnimated:YES];
         }
 #endif    
     }

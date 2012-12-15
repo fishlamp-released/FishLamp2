@@ -63,13 +63,13 @@
     [super viewDidLoad];
 
 //    [self addButtonWithTitle:@"Cancel" onPress:^(id controller) {
-//        [self dismissViewControllerAnimated:YES];
+//        [self hideViewController:YES];
 //    }];
 //
 //    [self addButtonWithTitle:@"Login" onPress:^(id controller) {
 //
 //        if([self.contentView validateAllItems]) {
-//            [self dismissViewControllerAnimated:YES];
+//            [self hideViewController:YES];
 //        }
 //    }];
 

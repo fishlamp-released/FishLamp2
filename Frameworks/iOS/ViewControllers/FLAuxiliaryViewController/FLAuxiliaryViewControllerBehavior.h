@@ -16,7 +16,7 @@
 - (UIViewController*) parentControllerForAuxiliaryViewController:(FLAuxiliaryViewController*) viewController;
 - (void) addContainerViewToParentViewController:(FLAuxiliaryViewController*) viewController;
 - (void) showViewControllerAnimated:(BOOL) animated viewController:(FLAuxiliaryViewController*) viewController;
-- (void) hideViewControllerAnimated:(BOOL) animated viewController:(FLAuxiliaryViewController*) viewController;
+- (void) hideViewController:(BOOL) animated viewController:(FLAuxiliaryViewController*) viewController;
 - (void) didFinishDraggingWithResults:(FLViewDraggerResults) results viewController:(FLAuxiliaryViewController*) viewController;
 - (CGRect) initialFrameForContainerView:(FLAuxiliaryViewController*) viewController;
 - (BOOL) handleInternalTouches:(NSSet*) touches event:(UIEvent*) event viewController:(FLAuxiliaryViewController*) viewController;

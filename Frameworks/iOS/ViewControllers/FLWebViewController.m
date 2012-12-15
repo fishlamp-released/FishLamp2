@@ -215,7 +215,7 @@ FLAssertDefaultInitNotCalled_()
 	[_progress setTitle:NSLocalizedString(@"Loading...", nil)];
 	[_progress setContentMode:FLRectLayoutCentered];
 //	[_progress.progressView setProgressViewAlpha:0.8];
-    [self presentChildViewController:_progress];
+    [self showChildViewController:_progress];
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView

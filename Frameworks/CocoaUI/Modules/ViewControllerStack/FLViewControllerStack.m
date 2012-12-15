@@ -27,7 +27,7 @@
     viewController.dismissHandler = ^(UIViewController* controller, BOOL animated) {
         FLViewControllerStack* stack = controller.viewControllerStack;
         if(stack.viewControllers.count == 1) {
-            [stack dismissViewControllerAnimated:animated];
+            [stack hideViewController:animated];
         }
         else {
             [stack popViewControllerAnimated:YES];
@@ -108,9 +108,9 @@
     [viewController willBePushedOnViewControllerStack:self];
     [self.view layoutIfNeeded];
     
-    [animation beginShowAnimationForViewController:viewController 
-        parentViewController:parent 
-        finishedBlock:^(id theViewController, id theParent){
+    [animation beginShowAnimationForViewController:viewController
+     parentViewController:parent
+        finishedBlock:^(UIViewController* theViewController, id theParent){
             if(theParent != self) {
                 [[theParent view] removeFromSuperview];
             }

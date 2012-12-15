@@ -11,4 +11,3 @@
 #if OSX
 #define UIColor                     NSColor
 #endif
-    

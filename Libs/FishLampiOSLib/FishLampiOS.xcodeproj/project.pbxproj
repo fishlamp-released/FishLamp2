@@ -399,8 +399,6 @@
 		27CA43DE1677E5FD008D64BE /* FLGpsUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA412C1677E5FD008D64BE /* FLGpsUtilities.m */; };
 		27CA43DF1677E5FD008D64BE /* FLMobileHtmlBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA412E1677E5FD008D64BE /* FLMobileHtmlBuilder.m */; };
 		27CA43E01677E5FD008D64BE /* FLMobileHtmlBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA412E1677E5FD008D64BE /* FLMobileHtmlBuilder.m */; };
-		27CA43E11677E5FD008D64BE /* FLAutoPositionedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA41311677E5FD008D64BE /* FLAutoPositionedViewController.m */; };
-		27CA43E21677E5FD008D64BE /* FLAutoPositionedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA41311677E5FD008D64BE /* FLAutoPositionedViewController.m */; };
 		27CA43E31677E5FD008D64BE /* FLAboveAuxiliaryViewBehavior.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA41351677E5FD008D64BE /* FLAboveAuxiliaryViewBehavior.m */; };
 		27CA43E41677E5FD008D64BE /* FLAboveAuxiliaryViewBehavior.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA41351677E5FD008D64BE /* FLAboveAuxiliaryViewBehavior.m */; };
 		27CA43E51677E5FD008D64BE /* FLAuxiliaryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA41371677E5FD008D64BE /* FLAuxiliaryView.m */; };
@@ -1122,8 +1120,6 @@
 		27CA412C1677E5FD008D64BE /* FLGpsUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLGpsUtilities.m; sourceTree = "<group>"; };
 		27CA412D1677E5FD008D64BE /* FLMobileHtmlBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLMobileHtmlBuilder.h; sourceTree = "<group>"; };
 		27CA412E1677E5FD008D64BE /* FLMobileHtmlBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLMobileHtmlBuilder.m; sourceTree = "<group>"; };
-		27CA41301677E5FD008D64BE /* FLAutoPositionedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAutoPositionedViewController.h; sourceTree = "<group>"; };
-		27CA41311677E5FD008D64BE /* FLAutoPositionedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAutoPositionedViewController.m; sourceTree = "<group>"; };
 		27CA41331677E5FD008D64BE /* _FLAuxiliaryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _FLAuxiliaryViewController.h; sourceTree = "<group>"; };
 		27CA41341677E5FD008D64BE /* FLAboveAuxiliaryViewBehavior.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAboveAuxiliaryViewBehavior.h; sourceTree = "<group>"; };
 		27CA41351677E5FD008D64BE /* FLAboveAuxiliaryViewBehavior.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAboveAuxiliaryViewBehavior.m; sourceTree = "<group>"; };
@@ -2417,8 +2413,6 @@
 		27CA412F1677E5FD008D64BE /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				27CA41301677E5FD008D64BE /* FLAutoPositionedViewController.h */,
-				27CA41311677E5FD008D64BE /* FLAutoPositionedViewController.m */,
 				27CA41321677E5FD008D64BE /* FLAuxiliaryViewController */,
 				27CA413F1677E5FD008D64BE /* FLCameraExifViewController.h */,
 				27CA41401677E5FD008D64BE /* FLCameraExifViewController.m */,
@@ -3218,7 +3212,6 @@
 				27CA43DC1677E5FD008D64BE /* FLCameraExifTableViewBuilder.m in Sources */,
 				27CA43DE1677E5FD008D64BE /* FLGpsUtilities.m in Sources */,
 				27CA43E01677E5FD008D64BE /* FLMobileHtmlBuilder.m in Sources */,
-				27CA43E21677E5FD008D64BE /* FLAutoPositionedViewController.m in Sources */,
 				27CA43E41677E5FD008D64BE /* FLAboveAuxiliaryViewBehavior.m in Sources */,
 				27CA43E61677E5FD008D64BE /* FLAuxiliaryView.m in Sources */,
 				27CA43E81677E5FD008D64BE /* FLAuxiliaryViewController.m in Sources */,
@@ -3553,7 +3546,6 @@
 				27CA43DB1677E5FD008D64BE /* FLCameraExifTableViewBuilder.m in Sources */,
 				27CA43DD1677E5FD008D64BE /* FLGpsUtilities.m in Sources */,
 				27CA43DF1677E5FD008D64BE /* FLMobileHtmlBuilder.m in Sources */,
-				27CA43E11677E5FD008D64BE /* FLAutoPositionedViewController.m in Sources */,
 				27CA43E31677E5FD008D64BE /* FLAboveAuxiliaryViewBehavior.m in Sources */,
 				27CA43E51677E5FD008D64BE /* FLAuxiliaryView.m in Sources */,
 				27CA43E71677E5FD008D64BE /* FLAuxiliaryViewController.m in Sources */,

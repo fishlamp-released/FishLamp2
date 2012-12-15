@@ -85,7 +85,7 @@ FLSynthesizeSingleton(FLBelowAuxiliaryViewBehavior);
     [viewController.dragController moveDragRespondersByAmount:delta animationDuration:0.3 animationFinished:nil];
 }
 
-- (void) hideViewControllerAnimated:(BOOL) animated viewController:(FLAuxiliaryViewController*) viewController {
+- (void) hideViewController:(BOOL) animated viewController:(FLAuxiliaryViewController*) viewController {
 
     FLAssertIsNotNil_(viewController);
 
@@ -112,14 +112,14 @@ FLSynthesizeSingleton(FLBelowAuxiliaryViewBehavior);
             [viewController showViewControllerAnimated:YES];
         }
         else {
-            [viewController hideViewControllerAnimated:YES];
+            [viewController hideViewController:YES];
         }
         
     }
     else
     {
         if(CGRectEqualToRect(frame, [viewController startRectForDraggerViewInHostView])) {
-            [viewController hideViewControllerAnimated:NO];
+            [viewController hideViewController:NO];
         }
         else {
             if(viewController.revealSide == FLAuxiliaryViewControllerPinnedSideBottom) {

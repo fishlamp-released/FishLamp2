@@ -9,6 +9,5 @@
 #import "UIKitRequired.h"
 
 #if OSX
-
 #define UIGraphicsGetCurrentContext() [[NSGraphicsContext currentContext] graphicsPort]
 #endif

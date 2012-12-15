@@ -202,11 +202,11 @@ FLSynthesizeSingleton(FLFloatingViewEventReceiver);
                 
                     if(pop.parentFloatingViewController)
                     {
-                        [pop.parentFloatingViewController dismissViewControllerAnimated:YES];
+                        [pop.parentFloatingViewController hideViewController:YES];
                     }
                     else
                     {
-                        [pop dismissViewControllerAnimated:YES];
+                        [pop hideViewController:YES];
                     }
 				}
 			break;
@@ -334,7 +334,7 @@ FLSynthesizeStructProperty(contentViewIsModal, setContentViewIsModal, BOOL, _sta
     if(_childPopover)
     {
         [_childPopover setParentPopover:nil];
-        [_childPopover dismissViewControllerAnimated:YES];
+        [_childPopover hideViewController:YES];
         FLReleaseWithNil(_childPopover);
     }
 }
@@ -368,7 +368,7 @@ FLSynthesizeStructProperty(contentViewIsModal, setContentViewIsModal, BOOL, _sta
     return self.presentationBehavior.canAutoDismissDontUseThis;
 }
 
-- (void)dismissViewControllerAnimated:(BOOL)animated
+- (void)hideViewController:(BOOL)animated
 {
 	FLAutorelease(FLReturnRetain(self));
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -380,7 +380,7 @@ FLSynthesizeStructProperty(contentViewIsModal, setContentViewIsModal, BOOL, _sta
         [self dismissChild];
     }
    
-    [super dismissViewControllerAnimated:animated];
+    [super hideViewController:animated];
 
 	FLInvokeCallback(_wasDismissedCallback, self);
 }
@@ -687,7 +687,7 @@ FLSynthesizeAssociatedProperty(retain_nonatomic, contentSizeForViewInFloatingVie
         floatingViewController.presentationBehavior = behavior;;
     }
     
-    [self presentChildViewController:floatingViewController];
+    [self showChildViewController:floatingViewController];
 
     return floatingViewController;
 }                        

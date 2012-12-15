@@ -20,7 +20,7 @@
 - (void) didPresentViewController:(UIViewController*) viewController
            inParentViewController:(UIViewController*) parentViewController;
 
-- (void) willDismissViewController:(UIViewController*) viewController
+- (void) willHideViewController:(UIViewController*) viewController
           fromParentViewController:(UIViewController*) parentViewController;
 
 - (void) didDismissViewController:(UIViewController*) viewController

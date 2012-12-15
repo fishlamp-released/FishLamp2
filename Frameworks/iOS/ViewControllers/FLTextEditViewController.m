@@ -69,10 +69,10 @@
 	super_dealloc_();
 }
 
-- (void) dismissViewControllerAnimated:(BOOL)animated 
+- (void) hideViewController:(BOOL)animated 
 {
     _textEditView.delegate = nil;
-    [super dismissViewControllerAnimated:animated];
+    [super hideViewController:animated];
 }
 
 - (NSUInteger) textLength
@@ -102,7 +102,7 @@
     FLAlert* alert = [FLAlert alertViewController:NSLocalizedString(@"The text is too long.", nil)
                                                                       message:[NSString stringWithFormat:(NSLocalizedString(@"The maximum length is %d characters.", nil)), self.maxSize]];
     [alert addButton:[FLConfirmButton okButton]];
-    [alert presentViewControllerAnimated:YES];
+    [alert showViewControllerAnimated:YES];
 }
 
 - (NSString*) truncatedText

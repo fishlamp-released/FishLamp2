@@ -57,12 +57,12 @@
         self.onShowProgress = ^(id progress) {
 
 #if IOS
-        [[UIApplication visibleViewController] presentChildViewController:progress];
+        [[UIApplication visibleViewController] showChildViewController:progress];
 #endif
         };
         
         self.onHideProgress = ^(id progress) {
-            [progress dismissViewControllerAnimated:YES];
+            [progress hideViewController:YES];
         };
         
         _progressProxy = [[FLProgressViewOwner alloc] init];

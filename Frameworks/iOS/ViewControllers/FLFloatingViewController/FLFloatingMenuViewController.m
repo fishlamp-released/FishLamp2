@@ -91,7 +91,7 @@ FLAssertDefaultInitNotCalled_();
     {
         [_subMenu setParentController:nil];
         self.floatingViewController.childFloatingViewController = nil;
-        [_subMenu.floatingViewController dismissViewControllerAnimated:YES];
+        [_subMenu.floatingViewController hideViewController:YES];
         FLReleaseWithNil(_subMenu);
     }
 }
@@ -146,12 +146,12 @@ FLAssertDefaultInitNotCalled_();
     
     if(_parentController)
     {
-        [_parentController dismissViewControllerAnimated:YES];
+        [_parentController hideViewController:YES];
         FLReleaseWithNil(_parentController);
     }
     else
     {
-        [self dismissViewControllerAnimated:YES];
+        [self hideViewController:YES];
     }
     
     menuItem.highlighted = NO;

@@ -90,7 +90,7 @@
 
 - (void) cancel:(id) sender
 {
-	[self dismissViewControllerAnimated:YES];
+	[self hideViewController:YES];
 }
 
 - (void) viewDidLoad

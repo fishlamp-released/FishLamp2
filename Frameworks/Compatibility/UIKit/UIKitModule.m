@@ -10,7 +10,10 @@
 // Copyright (c) 2012 GreenTongue Software LLC. All Rights Reserved.
 //
 
+#import "UIKitModule.h"
+
 @implementation UIKitModule
 + (void) initializeModule {
+    [UIViewController initUIKitCompatibility];
 }
 @end

@@ -59,8 +59,8 @@
     [super viewWillAppear:animated];
 }
 
-- (void) willPresentInViewController {
-    [super willPresentInViewController];
+- (void) viewControllerWillAppear {
+    [super viewControllerWillAppear];
     [self updateViewSizeAndPosition:self.parentViewController.view.bounds];
 }
 

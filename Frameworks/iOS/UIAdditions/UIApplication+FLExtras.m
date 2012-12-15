@@ -43,7 +43,7 @@
         message:errorMessage];
 
         [alert addButton:[FLConfirmButton okButton]];
-        [alert presentViewControllerAnimated:YES];
+        [alert showViewControllerAnimated:YES];
 		
 		return NO;
 	}

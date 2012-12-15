@@ -13,6 +13,8 @@
 @implementation NSView (UIKit)
 
 FLSynthesizeAssociatedProperty(retain_nonatomic, backgroundColor, setBackgroundColor, UIColor*)
+FLSynthesizeAssociatedProperty(assign_nonatomic, viewController, setViewController, UIViewController*)
+
 //@synthesize backgroundColor = _backgroundColor;
 
 //- (void)drawRect:(NSRect)dirtyRect {

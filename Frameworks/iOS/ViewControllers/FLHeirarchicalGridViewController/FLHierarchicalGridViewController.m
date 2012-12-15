@@ -135,7 +135,7 @@
         [toolbar.leftItems addToolbarItem:
             [FLImageButtonToolbarItem imageButtonToolbarItemWithImageName: self.discloseFromLeft ? @"back.png" : @"forward.png" 
                                                onChosenBlock:^(id item) { 
-                                                    [self dismissViewControllerAnimated:YES]; 
+                                                    [self hideViewController:YES]; 
                                                 } ]];
 
 //        [self.buttonbar addBackButton:@"<<" target:self action:@selector(popChild:)];

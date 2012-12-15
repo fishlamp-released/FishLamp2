@@ -190,7 +190,7 @@
         {
             if(controller.auxiliaryViewIsOpen)
             {
-                [controller hideViewControllerAnimated:YES];
+                [controller hideViewController:YES];
             }
             else
             {

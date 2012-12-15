@@ -16,41 +16,30 @@ typedef void (^FLViewControllerDismissHandler)(UIViewController* viewController,
 
 @interface UIViewController (FLExtras)
 
-// if this is set, it is called instead of willDismissViewController from
-// dismissViewControllerAnimated
+// if this is set, it is called instead of willHideViewController from
+// hideViewController
 @property (readwrite, copy, nonatomic) FLViewControllerDismissHandler dismissHandler; 
 
 // the animation is saved and used for dismissal
 // if the frame of the viewController is zero, the frame is set to the parents views
 // bounds, otherwise the frame is preserved. 
-- (void) presentChildViewController:(UIViewController*) viewController; 
+- (void) showViewController:(BOOL) animated
+       inHostViewController:(UIViewController*) hostViewController;
 
-// called after view & viewController are added to hierarchy, but before animation starts.
-- (void) willPresentInViewController; 
-                     
-// this is called when the transition animation is done.                      
-- (void) wasPresentedInParentViewController; 
+- (void) showViewController:(BOOL) animated;
 
-/// present in default view controller with either the attached behavior and transition
-/// animation or used the class's default.
-- (void) presentViewControllerAnimated:(BOOL) animated;
-
-// this calls the dismissHandler or willDismissViewControllerAnimated if there isn't a 
+// this calls the dismissHandler or willHideViewController if there isn't a 
 // dismiss handler.
-- (void) dismissViewControllerAnimated:(BOOL) animated; 
+- (void) hideViewController:(BOOL) animated; 
 
-// suitable for a button event, calls dismissViewControllerAnimated:YES
-- (void) dismissViewControllerWithSender:(id) sender; 
-
-// this is called when the animation id done 
-// (only guarenteed to be called if dismiss delegate is nil). Though best
-// practice is that the dismissHandler would call it (or use a transition
-// animation to call it).
-- (void) wasDismissedFromParentViewController; 
+- (void) viewControllerWillAppear;
+- (void) viewControllerDidAppear;
+- (void) viewControllerWillDisappear;
+- (void) viewControllerDidDisappear;
 
 // only called if dismiss delegate is nil. This uses
 // the transitionAnimation to dismiss the view controller.
-- (void) willDismissViewControllerAnimated:(BOOL) animated; 
+- (void) willHideViewController:(BOOL) animated; 
 
 // this is the leaf most visible view container that THIS viewController knows about, e.g. 
 // THIS viewController asks it's most visible viewController what it's visibleViewController 
@@ -58,6 +47,11 @@ typedef void (^FLViewControllerDismissHandler)(UIViewController* viewController,
 // having to have unholy knowledge of our children. In the end, a viewController will 
 // return SELF and complete the process.
 - (UIViewController*) visibleViewController;
+
+// misc
+
+// suitable for a button event, calls hideViewController:YES
+- (void) hideViewControllerWithSender:(id) sender; 
 
 @end
 

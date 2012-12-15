@@ -35,7 +35,7 @@ FLSynthesizeAssociatedProperty(assign_nonatomic, _auxiliaryViewController, setAu
 - (void) dismissAuxiliaryViewControllerAnimated:(BOOL) animated {
     FLAuxiliaryViewController* controller = [self auxiliaryViewController];
     if(controller) {
-        [controller hideViewControllerAnimated:animated];
+        [controller hideViewController:animated];
     }
 }
 
@@ -108,7 +108,7 @@ FLSynthesizeAssociatedProperty(assign_nonatomic, _auxiliaryViewController, setAu
         FLAssertIsNotNil_(self.viewController);
         __block id me = self;
         self.viewController.dismissHandler = ^(UIViewController* controller, BOOL animated) {
-            [me hideViewControllerAnimated:animated];
+            [me hideViewController:animated];
         };
     }
 }
@@ -144,7 +144,7 @@ FLSynthesizeAssociatedProperty(assign_nonatomic, _auxiliaryViewController, setAu
     UITouch* touch = [touches anyObject];
     if( touch.phase == UITouchPhaseBegan && 
         self.viewController && ![touch.view isDescendantOfView:self.viewController.view]) {
-        [self hideViewControllerAnimated:YES];
+        [self hideViewController:YES];
         return YES;
     }
     return NO;
@@ -327,8 +327,8 @@ FLSynthesizeAssociatedProperty(assign_nonatomic, _auxiliaryViewController, setAu
     FLReleaseWithNil(_viewController);
 }
 
-- (void) hideViewControllerAnimated:(BOOL) animated {
-    [_behavior hideViewControllerAnimated:animated viewController:self];
+- (void) hideViewController:(BOOL) animated {
+    [_behavior hideViewController:animated viewController:self];
 }      
 
 - (CGRect) destRectForDraggerViewInHostView {

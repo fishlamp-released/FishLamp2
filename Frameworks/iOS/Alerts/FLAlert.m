@@ -118,7 +118,7 @@
         self.pressedButton = nil;
         
         if(self.autoDismiss) {
-            [self dismissViewControllerAnimated:YES];
+            [self hideViewController:YES];
         }
     };
 

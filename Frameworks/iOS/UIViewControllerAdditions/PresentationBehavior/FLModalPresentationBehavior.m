@@ -68,7 +68,7 @@ FLSynthesizeSingleton(FLModalPresentationBehavior);
 {
 }
 
-- (void) willDismissViewController:(UIViewController*) viewController
+- (void) willHideViewController:(UIViewController*) viewController
           fromParentViewController:(UIViewController*) parentViewController
 {
     FLAssert_v(parentViewController == _shieldViewController, @"expecting parent to be shield view");

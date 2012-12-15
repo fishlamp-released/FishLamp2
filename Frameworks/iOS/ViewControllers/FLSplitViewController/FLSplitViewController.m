@@ -88,8 +88,8 @@
     _splitterView.delegate = self;
     [self.view addSubview:_splitterView];
     
-    [self presentChildViewController:self.topViewController];
-    [self presentChildViewController:self.bottomViewController];
+    [self showChildViewController:self.topViewController];
+    [self showChildViewController:self.bottomViewController];
     [self _setSplitterViewLocationByPercentage];
 }
 

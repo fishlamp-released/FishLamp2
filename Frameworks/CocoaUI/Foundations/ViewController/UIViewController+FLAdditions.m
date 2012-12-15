@@ -30,7 +30,7 @@ FLSynthesizeAssociatedProperty(retain_nonatomic, transitionAnimation, setTransit
 
 - (void) respondToBackButtonPress:(id) sender {
 	if([self backButtonWillDismissViewController]) {
-		[self dismissViewControllerAnimated:YES];
+		[self hideViewController:YES];
 //        FLInvokeCallback(_dismissEvent, self);
 	}
 }
@@ -111,12 +111,12 @@ FLSynthesizeAssociatedProperty(retain_nonatomic, transitionAnimation, setTransit
 }
 #endif
 
-- (void) willDismissViewControllerAnimated:(BOOL) animated {
+- (void) willHideViewController:(BOOL) animated {
     FLAssert_v([NSThread currentThread] == [NSThread mainThread], @"Not on main thread");
 
     FLAutorelease(FLRetain(self));
 
-    [[self presentationBehavior] willDismissViewController:self 
+    [[self presentationBehavior] willHideViewController:self
         fromParentViewController:self.parentViewController];
         
     id<FLViewControllerTransitionAnimation> animation = self.transitionAnimation;
@@ -125,86 +125,99 @@ FLSynthesizeAssociatedProperty(retain_nonatomic, transitionAnimation, setTransit
                                      finishedBlock:^(id theViewController, id theParent){
                                          [[theViewController presentationBehavior] didDismissViewController:theViewController
                                             fromParentViewController:theParent];
-                                         [theViewController wasDismissedFromParentViewController];
+                                         [theViewController viewControllerDidDisappear];
                                      }];
 }
 
-- (void) dismissViewControllerAnimated:(BOOL) animated {
+- (void) hideViewController:(BOOL) animated {
     FLAssert_v([NSThread currentThread] == [NSThread mainThread], @"Not on main thread");
 
     if(self.dismissHandler) {
         self.dismissHandler(self, animated);
     } else {
-        [self willDismissViewControllerAnimated:animated];
+        [self willHideViewController:animated];
     }
 }
 
-- (void) wasPresentedInParentViewController {
+- (void) viewControllerDidAppear {
 }
 
-- (void) wasDismissedFromParentViewController {
+- (void) viewControllerDidDisappear {
 }
 
-- (void) willPresentInViewController {
+- (void) viewControllerWillAppear {
     [self applyThemeIfNeeded];
+}
+
+- (void) viewControllerWillDisappear {
+
 }
 
 // the animation is saved and used for dismissal
 // if the frame of the viewController is zero, the frame is set to the parents views
 // bounds, otherwise the frame is preserved. 
-- (void) presentChildViewController:(UIViewController*) viewController {
+- (void) showViewController:(BOOL) animated
+       inHostViewController:(UIViewController*) hostViewController {
+
     FLAssert_v([NSThread currentThread] == [NSThread mainThread], @"Not on main thread");
     
-    FLAssertIsNotNil_(viewController);
-    FLAssert_v(viewController != self, @"can't present yourself in yourself");
+    FLAssertIsNotNil_(self);
+    FLAssert_v(self != hostViewController, @"can't present yourself in yourself");
       
-    FLViewControllerTransitionAnimation* animation = viewController.transitionAnimation;
+    FLViewControllerTransitionAnimation* animation = self.transitionAnimation;
       
     if(!animation){
-        animation = [[self class] defaultTransitionAnimation];
-        viewController.transitionAnimation = animation;
+        animation = [[hostViewController class] defaultTransitionAnimation];
+        self.transitionAnimation = animation;
     }
     FLAssertIsNotNil_(animation);
     
-    id<FLPresentationBehavior> behavior = viewController.presentationBehavior;
+    id<FLPresentationBehavior> behavior = self.presentationBehavior;
     
     if(!behavior) {
-        behavior = [[viewController class] defaultPresentationBehavior];
-        viewController.presentationBehavior = behavior;
+        behavior = [[self class] defaultPresentationBehavior];
+        self.presentationBehavior = behavior;
     }
 
     FLAssertIsNotNil_(behavior);
                   
-    if(CGRectEqualToRect(viewController.view.frame, CGRectZero)) {
-        viewController.view.frame = self.view.bounds;
+    if(CGRectEqualToRect(self.view.frame, CGRectZero)) {
+        self.view.frame = hostViewController.view.bounds;
     }
     
     
-    CGRect frame = viewController.view.frame;
-    [behavior willPresentViewController:viewController inParentViewController:self];
-    viewController.view.frame = frame; // please respect my frame
+    CGRect frame = self.view.frame;
+    [behavior willPresentViewController:self inParentViewController:hostViewController];
+    self.view.frame = frame; // please respect my frame
              
-    [viewController willPresentInViewController];
+    [self viewControllerWillAppear];
                 
-    [animation beginShowAnimationForViewController:viewController 
-        parentViewController:self 
+    [animation beginShowAnimationForViewController:self 
+        parentViewController:hostViewController 
         finishedBlock:^(id theViewController, id theParent) {
-                [theViewController wasPresentedInParentViewController];
+                [theViewController viewControllerDidAppear];
                 [[theViewController presentationBehavior] didPresentViewController:theViewController 
                                                             inParentViewController:theParent];
             }];
 }
 
-- (void) presentViewControllerAnimated:(BOOL) animated {
+- (void) showViewController:(BOOL) animated {
     FLAssert_v([NSThread currentThread] == [NSThread mainThread], @"Not on main thread");
     
     if(!animated) {
         self.transitionAnimation = [UIViewController defaultTransitionAnimation]; 
     }
 
+    if(self.parentViewController) {
+        [self showViewController:animated inHostViewController:self.parentViewController];
+    }
+    else {
+        
 #if IOS
-    [[UIApplication visibleViewController] presentChildViewController:self];
+        
+        [[UIApplication visibleViewController] showChildViewController:self];
 #endif
+    }
 }
 
 + (id<FLViewControllerTransitionAnimation>) defaultTransitionAnimation {
@@ -226,8 +239,8 @@ FLSynthesizeAssociatedProperty(retain_nonatomic, transitionAnimation, setTransit
 #endif
 }
 
-- (void) dismissViewControllerWithSender:(id) sender {
-    [self dismissViewControllerAnimated:YES];
+- (void) hideViewControllerWithSender:(id) sender {
+    [self hideViewController:YES];
 }
 
 
