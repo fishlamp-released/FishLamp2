@@ -6,7 +6,7 @@
 //	Copyright 2010 GreenTongue Software. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "FLCocoaUIRequired.h"
 
 #define UIViewAutoresizingFlexibleEverything	UIViewAutoresizingFlexibleLeftMargin | \
 												UIViewAutoresizingFlexibleWidth | \

@@ -7,7 +7,10 @@
 //
 
 #import "FLWizardViewController.h"
-#import <Quartz/Quartz.h>
+#import "FLAnimation.h"
+#import "FLFadeAnimation.h"
+#import "FLMoveAnimation.h"
+#import "FLDropBackAnimation.h"
 
 @interface FLWizardViewController ()
 @property (readonly, strong, nonatomic) FLWizardPanel* nextWizardPanel;
@@ -227,11 +230,6 @@
 
 
 #define kDuration 0.2f
-#define kScaleSmall 0.95f
-
-#define FLShrunkTransform(view)   CATransform3DConcat(CATransform3DMakeTranslation( (view.frame.size.width * (1.0 - kScaleSmall)) / 2.0f,  (view.frame.size.height * (1.0 - kScaleSmall)), 0), CATransform3DMakeScale(kScaleSmall, kScaleSmall, 1))
-#define FLUnshrunkTransform(view) CATransform3DMakeScale(1.0, 1.0, 1)
-//CATransform3DConcat(, CATransform3DMakeTranslation(-(view.frame.size.width / 2.0f), -(view.frame.size.height / 2.0f), 0))
 
 - (void) pushWizardPanel:(FLWizardPanel*) toShow 
                 animated:(BOOL) animated 
@@ -268,46 +266,53 @@
 
         [self.view.window display];
     };
-    
+
+    [_wizardPanelEnclosureView addSubview:toShow.view];
+
     if(animated) {
-        [toShow.view setFrame:FLRectSetOriginWithPoint(_wizardPanelEnclosureView.bounds, FLRectGetTopRight(toShow.view.frame))];
         
-        [_wizardPanelEnclosureView addSubview:toShow.view positioned:NSWindowAbove relativeTo:nil];
+        FLAnimation* animation = [FLAnimation animation];
+        [animation addAnimation:[FLFadeOutAnimation animationWithTarget:toHide]];
+        [animation addAnimation:[FLDropBackAnimation animationWithTarget:toHide]];
+        [animation addAnimation:[FLSlideInFromRightAnimation animationWithTarget:toShow]];
+        [animation addAnimation:[FLFadeInAnimation animationWithTarget:toShow]];
         
-        CABasicAnimation *controlPosAnim = [CABasicAnimation animationWithKeyPath:@"frame"];
-        [controlPosAnim setFromValue:[NSValue valueWithPoint:toShow.view.frame.origin]];
-        [controlPosAnim setToValue:[NSValue valueWithPoint:CGPointZero]];
-        controlPosAnim.removedOnCompletion = YES;
-        [toShow.view setAnimations:[NSDictionary dictionaryWithObjectsAndKeys:controlPosAnim, @"frame", nil]];
+        [animation startAnimating:finished];
+        
+        
+//        CABasicAnimation *controlPosAnim = [CABasicAnimation animationWithKeyPath:@"frame"];
+//        [controlPosAnim setFromValue:[NSValue valueWithPoint:toShow.view.frame.origin]];
+//        [controlPosAnim setToValue:[NSValue valueWithPoint:CGPointZero]];
+//        controlPosAnim.removedOnCompletion = YES;
+//        [toShow.view setAnimations:[NSDictionary dictionaryWithObjectsAndKeys:controlPosAnim, @"frame", nil]];
 
 
 
-        CABasicAnimation *scale = [CABasicAnimation animationWithKeyPath:@"transform"];
-        scale.fromValue =   [NSValue valueWithCATransform3D:CATransform3DMakeScale(1.0, 1.0, 1)];
-        scale.toValue =     [NSValue valueWithCATransform3D:FLShrunkTransform(toHide.view)];
-        scale.removedOnCompletion = YES;
-        toHide.view.layer.transform = FLShrunkTransform(toHide.view);
+//        CABasicAnimation *scale = [CABasicAnimation animationWithKeyPath:@"transform"];
+//        scale.fromValue =   [NSValue valueWithCATransform3D:CATransform3DMakeScale(1.0, 1.0, 1)];
+//        scale.toValue =     [NSValue valueWithCATransform3D:FLShrunkTransform(toHide.view)];
+//        scale.removedOnCompletion = YES;
+//        toHide.view.layer.transform = FLShrunkTransform(toHide.view);
 
-        CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"alphaValue"];
-        animation.fromValue = [NSNumber numberWithFloat:1.0f];
-        animation.toValue = [NSNumber numberWithFloat:0.0f];
-        animation.removedOnCompletion = YES;
-        animation.fillMode = kCAFillModeBoth;
-        animation.additive = NO;
-        [toHide.view setAnimations:[NSDictionary dictionaryWithObjectsAndKeys:animation, @"alphaValue", nil]];
+//        CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"alphaValue"];
+//        animation.fromValue = [NSNumber numberWithFloat:1.0f];
+//        animation.toValue = [NSNumber numberWithFloat:0.0f];
+//        animation.removedOnCompletion = YES;
+//        animation.fillMode = kCAFillModeBoth;
+//        animation.additive = NO;
+//        [toHide.view setAnimations:[NSDictionary dictionaryWithObjectsAndKeys:animation, @"alphaValue", nil]];
 
         
-        [CATransaction begin];
-        [CATransaction setAnimationDuration:kDuration];
-        [CATransaction setCompletionBlock:finished];
-        [[toShow.view animator] setFrame:_wizardPanelEnclosureView.bounds];
-        [[toHide.view animator] setAlphaValue:0.0f];
-        [toHide.view.layer addAnimation:scale forKey:@"transform"];
-//        toHide.view.layer.transform = CATransform3DMakeScale(0.5, 0.5, 1.0);
-        [CATransaction commit];
+//        [CATransaction begin];
+//        [CATransaction setAnimationDuration:kDuration];
+//        [CATransaction setCompletionBlock:finished];
+//        [[toShow.view animator] setFrame:_wizardPanelEnclosureView.bounds];
+//        [[toHide.view animator] setAlphaValue:0.0f];
+//        [toHide.view.layer addAnimation:scale forKey:@"transform"];
+////        toHide.view.layer.transform = CATransform3DMakeScale(0.5, 0.5, 1.0);
+//        [CATransaction commit];
     }
     else {
-        [_wizardPanelEnclosureView addSubview:toShow.view positioned:NSWindowAbove relativeTo:nil];
         finished();
     }
 }
@@ -351,37 +356,48 @@
           
     if(animated) {
         
-        toShow.view.alphaValue = 0.0f;
-        [_wizardPanelEnclosureView addSubview:toShow.view positioned:NSWindowAbove relativeTo:nil];
-    
+        FLAnimation* animation = [FLAnimation animation];
         
-        CABasicAnimation *controlPosAnim = [CABasicAnimation animationWithKeyPath:@"frame"];
-        [controlPosAnim setFromValue:[NSValue valueWithPoint:CGPointZero]];
-        [controlPosAnim setToValue:[NSValue valueWithPoint:FLRectGetTopRight(toHide.view.frame)]];
-        controlPosAnim.removedOnCompletion = YES;
-        [toHide.view setAnimations:[NSDictionary dictionaryWithObjectsAndKeys:controlPosAnim, @"frame", nil]];
+        [animation addAnimation:[FLFadeInAnimation animationWithTarget:toShow]];
+        [animation addAnimation:[FLComeForwardAnimation animationWithTarget:toShow]];
 
-        CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"alphaValue"];
-        animation.fromValue = [NSNumber numberWithFloat:0.0f];
-        animation.toValue = [NSNumber numberWithFloat:1.0f];
-        animation.removedOnCompletion = YES;
-        animation.fillMode = kCAFillModeBoth;
-        animation.additive = NO;
-        [toShow.view setAnimations:[NSDictionary dictionaryWithObjectsAndKeys:animation, @"alphaValue", nil]];
+        [animation addAnimation:[FLSlideOutToRightAnimation animationWithTarget:toHide]];
+        [animation addAnimation:[FLFadeOutAnimation animationWithTarget:toHide]];
 
+        [animation startAnimating:finished];
 
-        CABasicAnimation *scale = [CABasicAnimation animationWithKeyPath:@"transform"];
-        scale.fromValue =   [NSValue valueWithCATransform3D:FLShrunkTransform(toHide.view)];
-        scale.toValue =     [NSValue valueWithCATransform3D:FLUnshrunkTransform(toShow.view)];
-        scale.removedOnCompletion = YES;
- 
-        [CATransaction begin];
-        [CATransaction setAnimationDuration:kDuration];
-        [CATransaction setCompletionBlock:finished];
-        [toShow.view.layer addAnimation:scale forKey:@"transform"];
-        [[toHide.view animator] setFrame:FLRectSetOriginWithPoint(_wizardPanelEnclosureView.bounds, FLRectGetTopRight(toHide.view.frame))];
-        [[toShow.view animator] setAlphaValue:1.0f];
-        [CATransaction commit];
+        
+//        toShow.view.alphaValue = 0.0f;
+//        [_wizardPanelEnclosureView addSubview:toShow.view positioned:NSWindowAbove relativeTo:nil];
+//    
+//        
+//        CABasicAnimation *controlPosAnim = [CABasicAnimation animationWithKeyPath:@"frame"];
+//        [controlPosAnim setFromValue:[NSValue valueWithPoint:CGPointZero]];
+//        [controlPosAnim setToValue:[NSValue valueWithPoint:FLRectGetTopRight(toHide.view.frame)]];
+//        controlPosAnim.removedOnCompletion = YES;
+//        [toHide.view setAnimations:[NSDictionary dictionaryWithObjectsAndKeys:controlPosAnim, @"frame", nil]];
+//
+//        CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"alphaValue"];
+//        animation.fromValue = [NSNumber numberWithFloat:0.0f];
+//        animation.toValue = [NSNumber numberWithFloat:1.0f];
+//        animation.removedOnCompletion = YES;
+//        animation.fillMode = kCAFillModeBoth;
+//        animation.additive = NO;
+//        [toShow.view setAnimations:[NSDictionary dictionaryWithObjectsAndKeys:animation, @"alphaValue", nil]];
+//
+//
+//        CABasicAnimation *scale = [CABasicAnimation animationWithKeyPath:@"transform"];
+//        scale.fromValue =   [NSValue valueWithCATransform3D:FLShrunkTransform(toHide.view)];
+//        scale.toValue =     [NSValue valueWithCATransform3D:FLUnshrunkTransform(toShow.view)];
+//        scale.removedOnCompletion = YES;
+// 
+//        [CATransaction begin];
+//        [CATransaction setAnimationDuration:kDuration];
+//        [CATransaction setCompletionBlock:finished];
+//        [toShow.view.layer addAnimation:scale forKey:@"transform"];
+//        [[toHide.view animator] setFrame:FLRectSetOriginWithPoint(_wizardPanelEnclosureView.bounds, FLRectGetTopRight(toHide.view.frame))];
+//        [[toShow.view animator] setAlphaValue:1.0f];
+//        [CATransaction commit];
     }
     else {
         [_wizardPanelEnclosureView addSubview:toShow.view positioned:NSWindowAbove relativeTo:nil];

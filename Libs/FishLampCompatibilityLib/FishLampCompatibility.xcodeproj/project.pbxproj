@@ -1,0 +1,963 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		27CBBFEE16768BA600753D0A /* FishLampCompatibility-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27D1E5C1166D355C00DB680E /* FishLampCompatibility-Prefix.pch */; };
+		27D1E5C2166D355C00DB680E /* FishLampCompatibility-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27D1E5C1166D355C00DB680E /* FishLampCompatibility-Prefix.pch */; };
+		27D1E5C3166D355C00DB680E /* FishLampCompatibility-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27D1E5C1166D355C00DB680E /* FishLampCompatibility-Prefix.pch */; };
+		27D1E5C4166D355C00DB680E /* FishLampCompatibility-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27D1E5C1166D355C00DB680E /* FishLampCompatibility-Prefix.pch */; };
+		78CC1B25167D64DB00A37127 /* CGContext+UIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 78CC1B00167D64DB00A37127 /* CGContext+UIKit.h */; };
+		78CC1B26167D64DB00A37127 /* CGContext+UIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 78CC1B00167D64DB00A37127 /* CGContext+UIKit.h */; };
+		78CC1B27167D64DB00A37127 /* CGContext+UIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 78CC1B00167D64DB00A37127 /* CGContext+UIKit.h */; };
+		78CC1B28167D64DB00A37127 /* CGContext+UIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 78CC1B00167D64DB00A37127 /* CGContext+UIKit.h */; };
+		78CC1B29167D64DB00A37127 /* CGContext+UIKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B01167D64DB00A37127 /* CGContext+UIKit.m */; };
+		78CC1B2A167D64DB00A37127 /* CGContext+UIKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B01167D64DB00A37127 /* CGContext+UIKit.m */; };
+		78CC1B2B167D64DB00A37127 /* CGContext+UIKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B01167D64DB00A37127 /* CGContext+UIKit.m */; };
+		78CC1B2C167D64DB00A37127 /* CGContext+UIKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B01167D64DB00A37127 /* CGContext+UIKit.m */; };
+		78CC1B2D167D64DB00A37127 /* CGContext+UIKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B01167D64DB00A37127 /* CGContext+UIKit.m */; };
+		78CC1B32167D64DB00A37127 /* NSValue+UIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 78CC1B04167D64DB00A37127 /* NSValue+UIKit.h */; };
+		78CC1B33167D64DB00A37127 /* NSValue+UIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 78CC1B04167D64DB00A37127 /* NSValue+UIKit.h */; };
+		78CC1B34167D64DB00A37127 /* NSValue+UIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 78CC1B04167D64DB00A37127 /* NSValue+UIKit.h */; };
+		78CC1B35167D64DB00A37127 /* NSValue+UIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 78CC1B04167D64DB00A37127 /* NSValue+UIKit.h */; };
+		78CC1B36167D64DB00A37127 /* NSValue+UIKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B05167D64DB00A37127 /* NSValue+UIKit.m */; };
+		78CC1B37167D64DB00A37127 /* NSValue+UIKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B05167D64DB00A37127 /* NSValue+UIKit.m */; };
+		78CC1B38167D64DB00A37127 /* NSValue+UIKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B05167D64DB00A37127 /* NSValue+UIKit.m */; };
+		78CC1B39167D64DB00A37127 /* NSValue+UIKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B05167D64DB00A37127 /* NSValue+UIKit.m */; };
+		78CC1B3A167D64DB00A37127 /* NSValue+UIKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B05167D64DB00A37127 /* NSValue+UIKit.m */; };
+		78CC1B3B167D64DB00A37127 /* UIColor+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 78CC1B06167D64DB00A37127 /* UIColor+OSX.h */; };
+		78CC1B3C167D64DB00A37127 /* UIColor+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 78CC1B06167D64DB00A37127 /* UIColor+OSX.h */; };
+		78CC1B3D167D64DB00A37127 /* UIColor+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 78CC1B06167D64DB00A37127 /* UIColor+OSX.h */; };
+		78CC1B3E167D64DB00A37127 /* UIColor+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 78CC1B06167D64DB00A37127 /* UIColor+OSX.h */; };
+		78CC1B3F167D64DB00A37127 /* UIColor+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B07167D64DB00A37127 /* UIColor+OSX.m */; };
+		78CC1B40167D64DB00A37127 /* UIColor+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B07167D64DB00A37127 /* UIColor+OSX.m */; };
+		78CC1B41167D64DB00A37127 /* UIColor+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B07167D64DB00A37127 /* UIColor+OSX.m */; };
+		78CC1B42167D64DB00A37127 /* UIColor+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B07167D64DB00A37127 /* UIColor+OSX.m */; };
+		78CC1B43167D64DB00A37127 /* UIColor+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B07167D64DB00A37127 /* UIColor+OSX.m */; };
+		78CC1B44167D64DB00A37127 /* UIControl+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 78CC1B08167D64DB00A37127 /* UIControl+OSX.h */; };
+		78CC1B45167D64DB00A37127 /* UIControl+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 78CC1B08167D64DB00A37127 /* UIControl+OSX.h */; };
+		78CC1B46167D64DB00A37127 /* UIControl+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 78CC1B08167D64DB00A37127 /* UIControl+OSX.h */; };
+		78CC1B47167D64DB00A37127 /* UIControl+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 78CC1B08167D64DB00A37127 /* UIControl+OSX.h */; };
+		78CC1B48167D64DB00A37127 /* UIControl+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B09167D64DB00A37127 /* UIControl+OSX.m */; };
+		78CC1B49167D64DB00A37127 /* UIControl+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B09167D64DB00A37127 /* UIControl+OSX.m */; };
+		78CC1B4A167D64DB00A37127 /* UIControl+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B09167D64DB00A37127 /* UIControl+OSX.m */; };
+		78CC1B4B167D64DB00A37127 /* UIControl+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B09167D64DB00A37127 /* UIControl+OSX.m */; };
+		78CC1B4C167D64DB00A37127 /* UIControl+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B09167D64DB00A37127 /* UIControl+OSX.m */; };
+		78CC1B4D167D64DB00A37127 /* UIDevice+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 78CC1B0A167D64DB00A37127 /* UIDevice+OSX.h */; };
+		78CC1B4E167D64DB00A37127 /* UIDevice+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 78CC1B0A167D64DB00A37127 /* UIDevice+OSX.h */; };
+		78CC1B4F167D64DB00A37127 /* UIDevice+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 78CC1B0A167D64DB00A37127 /* UIDevice+OSX.h */; };
+		78CC1B50167D64DB00A37127 /* UIDevice+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 78CC1B0A167D64DB00A37127 /* UIDevice+OSX.h */; };
+		78CC1B51167D64DB00A37127 /* UIDevice+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B0B167D64DB00A37127 /* UIDevice+OSX.m */; };
+		78CC1B52167D64DB00A37127 /* UIDevice+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B0B167D64DB00A37127 /* UIDevice+OSX.m */; };
+		78CC1B53167D64DB00A37127 /* UIDevice+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B0B167D64DB00A37127 /* UIDevice+OSX.m */; };
+		78CC1B54167D64DB00A37127 /* UIDevice+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B0B167D64DB00A37127 /* UIDevice+OSX.m */; };
+		78CC1B55167D64DB00A37127 /* UIDevice+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B0B167D64DB00A37127 /* UIDevice+OSX.m */; };
+		78CC1B56167D64DB00A37127 /* UIEvent+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 78CC1B0C167D64DB00A37127 /* UIEvent+OSX.h */; };
+		78CC1B57167D64DB00A37127 /* UIEvent+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 78CC1B0C167D64DB00A37127 /* UIEvent+OSX.h */; };
+		78CC1B58167D64DB00A37127 /* UIEvent+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 78CC1B0C167D64DB00A37127 /* UIEvent+OSX.h */; };
+		78CC1B59167D64DB00A37127 /* UIEvent+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 78CC1B0C167D64DB00A37127 /* UIEvent+OSX.h */; };
+		78CC1B5A167D64DB00A37127 /* UIEvent+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B0D167D64DB00A37127 /* UIEvent+OSX.m */; };
+		78CC1B5B167D64DB00A37127 /* UIEvent+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B0D167D64DB00A37127 /* UIEvent+OSX.m */; };
+		78CC1B5C167D64DB00A37127 /* UIEvent+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B0D167D64DB00A37127 /* UIEvent+OSX.m */; };
+		78CC1B5D167D64DB00A37127 /* UIEvent+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B0D167D64DB00A37127 /* UIEvent+OSX.m */; };
+		78CC1B5E167D64DB00A37127 /* UIEvent+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B0D167D64DB00A37127 /* UIEvent+OSX.m */; };
+		78CC1B5F167D64DB00A37127 /* UIFont+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 78CC1B0E167D64DB00A37127 /* UIFont+OSX.h */; };
+		78CC1B60167D64DB00A37127 /* UIFont+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 78CC1B0E167D64DB00A37127 /* UIFont+OSX.h */; };
+		78CC1B61167D64DB00A37127 /* UIFont+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 78CC1B0E167D64DB00A37127 /* UIFont+OSX.h */; };
+		78CC1B62167D64DB00A37127 /* UIFont+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 78CC1B0E167D64DB00A37127 /* UIFont+OSX.h */; };
+		78CC1B63167D64DB00A37127 /* UIFont+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B0F167D64DB00A37127 /* UIFont+OSX.m */; };
+		78CC1B64167D64DB00A37127 /* UIFont+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B0F167D64DB00A37127 /* UIFont+OSX.m */; };
+		78CC1B65167D64DB00A37127 /* UIFont+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B0F167D64DB00A37127 /* UIFont+OSX.m */; };
+		78CC1B66167D64DB00A37127 /* UIFont+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B0F167D64DB00A37127 /* UIFont+OSX.m */; };
+		78CC1B67167D64DB00A37127 /* UIFont+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B0F167D64DB00A37127 /* UIFont+OSX.m */; };
+		78CC1B68167D64DB00A37127 /* UIGeometry+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 78CC1B10167D64DB00A37127 /* UIGeometry+OSX.h */; };
+		78CC1B69167D64DB00A37127 /* UIGeometry+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 78CC1B10167D64DB00A37127 /* UIGeometry+OSX.h */; };
+		78CC1B6A167D64DB00A37127 /* UIGeometry+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 78CC1B10167D64DB00A37127 /* UIGeometry+OSX.h */; };
+		78CC1B6B167D64DB00A37127 /* UIGeometry+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 78CC1B10167D64DB00A37127 /* UIGeometry+OSX.h */; };
+		78CC1B6C167D64DB00A37127 /* UIGeometry+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B11167D64DB00A37127 /* UIGeometry+OSX.m */; };
+		78CC1B6D167D64DB00A37127 /* UIGeometry+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B11167D64DB00A37127 /* UIGeometry+OSX.m */; };
+		78CC1B6E167D64DB00A37127 /* UIGeometry+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B11167D64DB00A37127 /* UIGeometry+OSX.m */; };
+		78CC1B6F167D64DB00A37127 /* UIGeometry+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B11167D64DB00A37127 /* UIGeometry+OSX.m */; };
+		78CC1B70167D64DB00A37127 /* UIGeometry+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B11167D64DB00A37127 /* UIGeometry+OSX.m */; };
+		78CC1B71167D64DB00A37127 /* UIImage+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 78CC1B12167D64DB00A37127 /* UIImage+OSX.h */; };
+		78CC1B72167D64DB00A37127 /* UIImage+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 78CC1B12167D64DB00A37127 /* UIImage+OSX.h */; };
+		78CC1B73167D64DB00A37127 /* UIImage+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 78CC1B12167D64DB00A37127 /* UIImage+OSX.h */; };
+		78CC1B74167D64DB00A37127 /* UIImage+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 78CC1B12167D64DB00A37127 /* UIImage+OSX.h */; };
+		78CC1B75167D64DB00A37127 /* UIImage+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B13167D64DB00A37127 /* UIImage+OSX.m */; };
+		78CC1B76167D64DB00A37127 /* UIImage+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B13167D64DB00A37127 /* UIImage+OSX.m */; };
+		78CC1B77167D64DB00A37127 /* UIImage+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B13167D64DB00A37127 /* UIImage+OSX.m */; };
+		78CC1B78167D64DB00A37127 /* UIImage+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B13167D64DB00A37127 /* UIImage+OSX.m */; };
+		78CC1B79167D64DB00A37127 /* UIImage+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B13167D64DB00A37127 /* UIImage+OSX.m */; };
+		78CC1B7A167D64DB00A37127 /* UIImageView+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 78CC1B14167D64DB00A37127 /* UIImageView+OSX.h */; };
+		78CC1B7B167D64DB00A37127 /* UIImageView+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 78CC1B14167D64DB00A37127 /* UIImageView+OSX.h */; };
+		78CC1B7C167D64DB00A37127 /* UIImageView+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 78CC1B14167D64DB00A37127 /* UIImageView+OSX.h */; };
+		78CC1B7D167D64DB00A37127 /* UIImageView+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 78CC1B14167D64DB00A37127 /* UIImageView+OSX.h */; };
+		78CC1B7E167D64DB00A37127 /* UIImageView+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B15167D64DB00A37127 /* UIImageView+OSX.m */; };
+		78CC1B7F167D64DB00A37127 /* UIImageView+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B15167D64DB00A37127 /* UIImageView+OSX.m */; };
+		78CC1B80167D64DB00A37127 /* UIImageView+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B15167D64DB00A37127 /* UIImageView+OSX.m */; };
+		78CC1B81167D64DB00A37127 /* UIImageView+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B15167D64DB00A37127 /* UIImageView+OSX.m */; };
+		78CC1B82167D64DB00A37127 /* UIImageView+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B15167D64DB00A37127 /* UIImageView+OSX.m */; };
+		78CC1B8C167D64DB00A37127 /* UIKitModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 78CC1B19167D64DB00A37127 /* UIKitModule.h */; };
+		78CC1B8D167D64DB00A37127 /* UIKitModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 78CC1B19167D64DB00A37127 /* UIKitModule.h */; };
+		78CC1B8E167D64DB00A37127 /* UIKitModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 78CC1B19167D64DB00A37127 /* UIKitModule.h */; };
+		78CC1B8F167D64DB00A37127 /* UIKitModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 78CC1B19167D64DB00A37127 /* UIKitModule.h */; };
+		78CC1B90167D64DB00A37127 /* UIKitModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B1A167D64DB00A37127 /* UIKitModule.m */; };
+		78CC1B91167D64DB00A37127 /* UIKitModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B1A167D64DB00A37127 /* UIKitModule.m */; };
+		78CC1B92167D64DB00A37127 /* UIKitModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B1A167D64DB00A37127 /* UIKitModule.m */; };
+		78CC1B93167D64DB00A37127 /* UIKitModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B1A167D64DB00A37127 /* UIKitModule.m */; };
+		78CC1B94167D64DB00A37127 /* UIKitModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B1A167D64DB00A37127 /* UIKitModule.m */; };
+		78CC1B95167D64DB00A37127 /* UIKitRequired.h in Headers */ = {isa = PBXBuildFile; fileRef = 78CC1B1B167D64DB00A37127 /* UIKitRequired.h */; };
+		78CC1B96167D64DB00A37127 /* UIKitRequired.h in Headers */ = {isa = PBXBuildFile; fileRef = 78CC1B1B167D64DB00A37127 /* UIKitRequired.h */; };
+		78CC1B97167D64DB00A37127 /* UIKitRequired.h in Headers */ = {isa = PBXBuildFile; fileRef = 78CC1B1B167D64DB00A37127 /* UIKitRequired.h */; };
+		78CC1B98167D64DB00A37127 /* UIKitRequired.h in Headers */ = {isa = PBXBuildFile; fileRef = 78CC1B1B167D64DB00A37127 /* UIKitRequired.h */; };
+		78CC1B99167D64DB00A37127 /* UILabel+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 78CC1B1C167D64DB00A37127 /* UILabel+OSX.h */; };
+		78CC1B9A167D64DB00A37127 /* UILabel+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 78CC1B1C167D64DB00A37127 /* UILabel+OSX.h */; };
+		78CC1B9B167D64DB00A37127 /* UILabel+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 78CC1B1C167D64DB00A37127 /* UILabel+OSX.h */; };
+		78CC1B9C167D64DB00A37127 /* UILabel+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 78CC1B1C167D64DB00A37127 /* UILabel+OSX.h */; };
+		78CC1B9D167D64DB00A37127 /* UILabel+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B1D167D64DB00A37127 /* UILabel+OSX.m */; };
+		78CC1B9E167D64DB00A37127 /* UILabel+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B1D167D64DB00A37127 /* UILabel+OSX.m */; };
+		78CC1B9F167D64DB00A37127 /* UILabel+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B1D167D64DB00A37127 /* UILabel+OSX.m */; };
+		78CC1BA0167D64DB00A37127 /* UILabel+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B1D167D64DB00A37127 /* UILabel+OSX.m */; };
+		78CC1BA1167D64DB00A37127 /* UILabel+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B1D167D64DB00A37127 /* UILabel+OSX.m */; };
+		78CC1BA2167D64DB00A37127 /* UITextField+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 78CC1B1E167D64DB00A37127 /* UITextField+OSX.h */; };
+		78CC1BA3167D64DB00A37127 /* UITextField+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 78CC1B1E167D64DB00A37127 /* UITextField+OSX.h */; };
+		78CC1BA4167D64DB00A37127 /* UITextField+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 78CC1B1E167D64DB00A37127 /* UITextField+OSX.h */; };
+		78CC1BA5167D64DB00A37127 /* UITextField+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 78CC1B1E167D64DB00A37127 /* UITextField+OSX.h */; };
+		78CC1BA6167D64DB00A37127 /* UITextField+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B1F167D64DB00A37127 /* UITextField+OSX.m */; };
+		78CC1BA7167D64DB00A37127 /* UITextField+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B1F167D64DB00A37127 /* UITextField+OSX.m */; };
+		78CC1BA8167D64DB00A37127 /* UITextField+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B1F167D64DB00A37127 /* UITextField+OSX.m */; };
+		78CC1BA9167D64DB00A37127 /* UITextField+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B1F167D64DB00A37127 /* UITextField+OSX.m */; };
+		78CC1BAA167D64DB00A37127 /* UITextField+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B1F167D64DB00A37127 /* UITextField+OSX.m */; };
+		78CC1BAB167D64DB00A37127 /* UIView+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 78CC1B20167D64DB00A37127 /* UIView+OSX.h */; };
+		78CC1BAC167D64DB00A37127 /* UIView+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 78CC1B20167D64DB00A37127 /* UIView+OSX.h */; };
+		78CC1BAD167D64DB00A37127 /* UIView+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 78CC1B20167D64DB00A37127 /* UIView+OSX.h */; };
+		78CC1BAE167D64DB00A37127 /* UIView+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 78CC1B20167D64DB00A37127 /* UIView+OSX.h */; };
+		78CC1BAF167D64DB00A37127 /* UIView+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B21167D64DB00A37127 /* UIView+OSX.m */; };
+		78CC1BB0167D64DB00A37127 /* UIView+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B21167D64DB00A37127 /* UIView+OSX.m */; };
+		78CC1BB1167D64DB00A37127 /* UIView+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B21167D64DB00A37127 /* UIView+OSX.m */; };
+		78CC1BB2167D64DB00A37127 /* UIView+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B21167D64DB00A37127 /* UIView+OSX.m */; };
+		78CC1BB3167D64DB00A37127 /* UIView+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B21167D64DB00A37127 /* UIView+OSX.m */; };
+		78CC1BB4167D64DB00A37127 /* UIView+OSX_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 78CC1B22167D64DB00A37127 /* UIView+OSX_Internal.h */; };
+		78CC1BB5167D64DB00A37127 /* UIView+OSX_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 78CC1B22167D64DB00A37127 /* UIView+OSX_Internal.h */; };
+		78CC1BB6167D64DB00A37127 /* UIView+OSX_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 78CC1B22167D64DB00A37127 /* UIView+OSX_Internal.h */; };
+		78CC1BB7167D64DB00A37127 /* UIView+OSX_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 78CC1B22167D64DB00A37127 /* UIView+OSX_Internal.h */; };
+		78CC1BB8167D64DB00A37127 /* UIViewController+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 78CC1B23167D64DB00A37127 /* UIViewController+OSX.h */; };
+		78CC1BB9167D64DB00A37127 /* UIViewController+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 78CC1B23167D64DB00A37127 /* UIViewController+OSX.h */; };
+		78CC1BBA167D64DB00A37127 /* UIViewController+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 78CC1B23167D64DB00A37127 /* UIViewController+OSX.h */; };
+		78CC1BBB167D64DB00A37127 /* UIViewController+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 78CC1B23167D64DB00A37127 /* UIViewController+OSX.h */; };
+		78CC1BBC167D64DB00A37127 /* UIViewController+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B24167D64DB00A37127 /* UIViewController+OSX.m */; };
+		78CC1BBD167D64DB00A37127 /* UIViewController+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B24167D64DB00A37127 /* UIViewController+OSX.m */; };
+		78CC1BBE167D64DB00A37127 /* UIViewController+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B24167D64DB00A37127 /* UIViewController+OSX.m */; };
+		78CC1BBF167D64DB00A37127 /* UIViewController+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B24167D64DB00A37127 /* UIViewController+OSX.m */; };
+		78CC1BC0167D64DB00A37127 /* UIViewController+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC1B24167D64DB00A37127 /* UIViewController+OSX.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		27A43AB215CDCC89001CB13E /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/${PRODUCT_NAME}";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		27048EF0161CB58600C38ADA /* libFishLampCompatibility-OSX-32-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCompatibility-OSX-32-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		270D02DD15E9B1F600ED5FB0 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
+		270D02DE15E9B1F800ED5FB0 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/CoreFoundation.framework; sourceTree = DEVELOPER_DIR; };
+		270D02DF15E9B1F900ED5FB0 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/CoreServices.framework; sourceTree = DEVELOPER_DIR; };
+		270D02E015E9B1FA00ED5FB0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		270D02E115E9B1FD00ED5FB0 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/usr/lib/libsqlite3.0.dylib; sourceTree = DEVELOPER_DIR; };
+		270D02E215E9B1FE00ED5FB0 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
+		270D02E315E9B1FF00ED5FB0 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
+		270DFDC815E99BAC00ED5FB0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		27314C79165328400027850D /* libFishLampCompatibility-OSX-64-ARC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCompatibility-OSX-64-ARC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		276CE8EE15E54B2F000A5CE6 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		276CE8EF15E54B30000A5CE6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		276CE8F015E54B31000A5CE6 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		276CE8F115E54B33000A5CE6 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		276CE90015E54BF0000A5CE6 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		276CE90215E54BFE000A5CE6 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		276CE90915E54C89000A5CE6 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		276CE90A15E54C8A000A5CE6 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		276CE90B15E54C8A000A5CE6 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		276CE90C15E54C8B000A5CE6 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		276CE90D15E54C8D000A5CE6 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		276CE90E15E54C8E000A5CE6 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		276CE90F15E54C8E000A5CE6 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		276CE91015E54C8F000A5CE6 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		276CE91115E54C8F000A5CE6 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		276CE91215E54C90000A5CE6 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		276CE91315E54C90000A5CE6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		276CE91415E54C91000A5CE6 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		276CE91515E54C91000A5CE6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		2798DB81166D8A7F00A0863D /* SharedTargetSettings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = SharedTargetSettings.xcconfig; sourceTree = "<group>"; };
+		27A43AB415CDCC89001CB13E /* libFishLampCompatibility-iOS-ARC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCompatibility-iOS-ARC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		27A43AC415CDCCCB001CB13E /* libFishLampCompatibility-OSX-64-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCompatibility-OSX-64-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		27CBC1F416768BA600753D0A /* libFishLampCompatibility-OSX-32-64-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCompatibility-OSX-32-64-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		27D1E5C1166D355C00DB680E /* FishLampCompatibility-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FishLampCompatibility-Prefix.pch"; sourceTree = "<group>"; };
+		27EF7B38165A9C1E00EB7949 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		27EF7B39165A9C1E00EB7949 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		27EF7B3A165A9C1E00EB7949 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		78CC1AA0167D5B5400A37127 /* FishLampProjectSettingsDebug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FishLampProjectSettingsDebug.xcconfig; sourceTree = "<group>"; };
+		78CC1AA1167D5B5400A37127 /* FishLampProjectSettingsRelease.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FishLampProjectSettingsRelease.xcconfig; sourceTree = "<group>"; };
+		78CC1AA2167D5B5400A37127 /* FishLampTargetSettings-iOS-ARC.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "FishLampTargetSettings-iOS-ARC.xcconfig"; sourceTree = "<group>"; };
+		78CC1AA3167D5B5400A37127 /* FishLampTargetSettings-OSX-32-64-MRC.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "FishLampTargetSettings-OSX-32-64-MRC.xcconfig"; sourceTree = "<group>"; };
+		78CC1AA4167D5B5400A37127 /* FishLampTargetSettings-OSX-32-MRC.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "FishLampTargetSettings-OSX-32-MRC.xcconfig"; sourceTree = "<group>"; };
+		78CC1AA5167D5B5400A37127 /* FishLampTargetSettings-OSX-64-ARC.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "FishLampTargetSettings-OSX-64-ARC.xcconfig"; sourceTree = "<group>"; };
+		78CC1AA6167D5B5400A37127 /* FishLampTargetSettings-OSX-64-MRC.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "FishLampTargetSettings-OSX-64-MRC.xcconfig"; sourceTree = "<group>"; };
+		78CC1AA8167D5C5800A37127 /* FishLampPaths.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = FishLampPaths.xcconfig; path = FishLampBuildSupport/FishLampPaths.xcconfig; sourceTree = "<group>"; };
+		78CC1AAA167D5ED500A37127 /* FishLamp-ARC.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "FishLamp-ARC.xcconfig"; sourceTree = "<group>"; };
+		78CC1AAB167D5ED500A37127 /* FishLamp-iOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "FishLamp-iOS.xcconfig"; sourceTree = "<group>"; };
+		78CC1AAC167D5ED500A37127 /* FishLamp-MRC.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "FishLamp-MRC.xcconfig"; sourceTree = "<group>"; };
+		78CC1AAD167D5ED500A37127 /* FishLamp-OSX-32-64.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "FishLamp-OSX-32-64.xcconfig"; sourceTree = "<group>"; };
+		78CC1AAE167D5ED500A37127 /* FishLamp-OSX-32.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "FishLamp-OSX-32.xcconfig"; sourceTree = "<group>"; };
+		78CC1AAF167D5ED500A37127 /* FishLamp-OSX-64.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "FishLamp-OSX-64.xcconfig"; sourceTree = "<group>"; };
+		78CC1AB0167D5ED500A37127 /* FishLamp-Preprocessor.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "FishLamp-Preprocessor.xcconfig"; sourceTree = "<group>"; };
+		78CC1AB1167D5ED500A37127 /* FishLamp-Settings-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "FishLamp-Settings-Debug.xcconfig"; sourceTree = "<group>"; };
+		78CC1AB2167D5ED500A37127 /* FishLamp-Settings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "FishLamp-Settings.xcconfig"; sourceTree = "<group>"; };
+		78CC1AB3167D5ED500A37127 /* FishLamp-Target.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "FishLamp-Target.xcconfig"; sourceTree = "<group>"; };
+		78CC1B00167D64DB00A37127 /* CGContext+UIKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CGContext+UIKit.h"; sourceTree = "<group>"; };
+		78CC1B01167D64DB00A37127 /* CGContext+UIKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CGContext+UIKit.m"; sourceTree = "<group>"; };
+		78CC1B02167D64DB00A37127 /* fishlamp-module.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "fishlamp-module.json"; sourceTree = "<group>"; };
+		78CC1B04167D64DB00A37127 /* NSValue+UIKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSValue+UIKit.h"; sourceTree = "<group>"; };
+		78CC1B05167D64DB00A37127 /* NSValue+UIKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSValue+UIKit.m"; sourceTree = "<group>"; };
+		78CC1B06167D64DB00A37127 /* UIColor+OSX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+OSX.h"; sourceTree = "<group>"; };
+		78CC1B07167D64DB00A37127 /* UIColor+OSX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+OSX.m"; sourceTree = "<group>"; };
+		78CC1B08167D64DB00A37127 /* UIControl+OSX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIControl+OSX.h"; sourceTree = "<group>"; };
+		78CC1B09167D64DB00A37127 /* UIControl+OSX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIControl+OSX.m"; sourceTree = "<group>"; };
+		78CC1B0A167D64DB00A37127 /* UIDevice+OSX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+OSX.h"; sourceTree = "<group>"; };
+		78CC1B0B167D64DB00A37127 /* UIDevice+OSX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+OSX.m"; sourceTree = "<group>"; };
+		78CC1B0C167D64DB00A37127 /* UIEvent+OSX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIEvent+OSX.h"; sourceTree = "<group>"; };
+		78CC1B0D167D64DB00A37127 /* UIEvent+OSX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIEvent+OSX.m"; sourceTree = "<group>"; };
+		78CC1B0E167D64DB00A37127 /* UIFont+OSX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+OSX.h"; sourceTree = "<group>"; };
+		78CC1B0F167D64DB00A37127 /* UIFont+OSX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+OSX.m"; sourceTree = "<group>"; };
+		78CC1B10167D64DB00A37127 /* UIGeometry+OSX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIGeometry+OSX.h"; sourceTree = "<group>"; };
+		78CC1B11167D64DB00A37127 /* UIGeometry+OSX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIGeometry+OSX.m"; sourceTree = "<group>"; };
+		78CC1B12167D64DB00A37127 /* UIImage+OSX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+OSX.h"; sourceTree = "<group>"; };
+		78CC1B13167D64DB00A37127 /* UIImage+OSX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+OSX.m"; sourceTree = "<group>"; };
+		78CC1B14167D64DB00A37127 /* UIImageView+OSX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+OSX.h"; sourceTree = "<group>"; };
+		78CC1B15167D64DB00A37127 /* UIImageView+OSX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+OSX.m"; sourceTree = "<group>"; };
+		78CC1B19167D64DB00A37127 /* UIKitModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIKitModule.h; sourceTree = "<group>"; };
+		78CC1B1A167D64DB00A37127 /* UIKitModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIKitModule.m; sourceTree = "<group>"; };
+		78CC1B1B167D64DB00A37127 /* UIKitRequired.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIKitRequired.h; sourceTree = "<group>"; };
+		78CC1B1C167D64DB00A37127 /* UILabel+OSX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+OSX.h"; sourceTree = "<group>"; };
+		78CC1B1D167D64DB00A37127 /* UILabel+OSX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+OSX.m"; sourceTree = "<group>"; };
+		78CC1B1E167D64DB00A37127 /* UITextField+OSX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+OSX.h"; sourceTree = "<group>"; };
+		78CC1B1F167D64DB00A37127 /* UITextField+OSX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+OSX.m"; sourceTree = "<group>"; };
+		78CC1B20167D64DB00A37127 /* UIView+OSX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+OSX.h"; sourceTree = "<group>"; };
+		78CC1B21167D64DB00A37127 /* UIView+OSX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+OSX.m"; sourceTree = "<group>"; };
+		78CC1B22167D64DB00A37127 /* UIView+OSX_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+OSX_Internal.h"; sourceTree = "<group>"; };
+		78CC1B23167D64DB00A37127 /* UIViewController+OSX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+OSX.h"; sourceTree = "<group>"; };
+		78CC1B24167D64DB00A37127 /* UIViewController+OSX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+OSX.m"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		27048D0F161CB58600C38ADA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27314A76165328400027850D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27A43AB115CDCC89001CB13E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27A43AC115CDCCCB001CB13E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27CBBFEC16768BA600753D0A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2731477B1652D2D30027850D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				78CC1AA8167D5C5800A37127 /* FishLampPaths.xcconfig */,
+				78CC1AA9167D5ED500A37127 /* XcodeConfigIncludes */,
+				78CC1A9F167D5B5400A37127 /* XcodeConfigs */,
+				2798DB81166D8A7F00A0863D /* SharedTargetSettings.xcconfig */,
+				27D1E5C1166D355C00DB680E /* FishLampCompatibility-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		276CE92815E54E31000A5CE6 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				276CE90915E54C89000A5CE6 /* AssetsLibrary.framework */,
+				276CE90A15E54C8A000A5CE6 /* AVFoundation.framework */,
+				276CE90B15E54C8A000A5CE6 /* CFNetwork.framework */,
+				276CE90C15E54C8B000A5CE6 /* CoreLocation.framework */,
+				276CE90D15E54C8D000A5CE6 /* CoreMedia.framework */,
+				276CE90E15E54C8E000A5CE6 /* CoreMotion.framework */,
+				276CE90F15E54C8E000A5CE6 /* CoreText.framework */,
+				276CE91015E54C8F000A5CE6 /* ImageIO.framework */,
+				276CE91115E54C8F000A5CE6 /* MapKit.framework */,
+				276CE91215E54C90000A5CE6 /* MessageUI.framework */,
+				276CE91315E54C90000A5CE6 /* QuartzCore.framework */,
+				276CE91415E54C91000A5CE6 /* SystemConfiguration.framework */,
+				276CE91515E54C91000A5CE6 /* UIKit.framework */,
+				276CE90215E54BFE000A5CE6 /* MobileCoreServices.framework */,
+				276CE90015E54BF0000A5CE6 /* MediaPlayer.framework */,
+				276CE8EE15E54B2F000A5CE6 /* CoreFoundation.framework */,
+				276CE8EF15E54B30000A5CE6 /* CoreGraphics.framework */,
+				276CE8F015E54B31000A5CE6 /* CoreImage.framework */,
+				276CE8F115E54B33000A5CE6 /* Security.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		27A43A7115CDCC1B001CB13E = {
+			isa = PBXGroup;
+			children = (
+				27DB1F34167A938600452AD3 /* Compatibility */,
+				2731477B1652D2D30027850D /* Supporting Files */,
+				27A43A7E15CDCC1B001CB13E /* Frameworks */,
+				27A43A7D15CDCC1B001CB13E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		27A43A7D15CDCC1B001CB13E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				27A43AB415CDCC89001CB13E /* libFishLampCompatibility-iOS-ARC.a */,
+				27A43AC415CDCCCB001CB13E /* libFishLampCompatibility-OSX-64-MRC.a */,
+				27048EF0161CB58600C38ADA /* libFishLampCompatibility-OSX-32-MRC.a */,
+				27314C79165328400027850D /* libFishLampCompatibility-OSX-64-ARC.a */,
+				27CBC1F416768BA600753D0A /* libFishLampCompatibility-OSX-32-64-MRC.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		27A43A7E15CDCC1B001CB13E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				270D02DD15E9B1F600ED5FB0 /* Cocoa.framework */,
+				270D02DE15E9B1F800ED5FB0 /* CoreFoundation.framework */,
+				270D02DF15E9B1F900ED5FB0 /* CoreServices.framework */,
+				270D02E015E9B1FA00ED5FB0 /* Foundation.framework */,
+				270D02E115E9B1FD00ED5FB0 /* libsqlite3.0.dylib */,
+				270D02E215E9B1FE00ED5FB0 /* Security.framework */,
+				270D02E315E9B1FF00ED5FB0 /* SystemConfiguration.framework */,
+				276CE92815E54E31000A5CE6 /* iOS */,
+				270DFDC815E99BAC00ED5FB0 /* Foundation.framework */,
+				27EF7B37165A9C1E00EB7949 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		27DB1F34167A938600452AD3 /* Compatibility */ = {
+			isa = PBXGroup;
+			children = (
+				78CC1AFF167D64DA00A37127 /* UIKit */,
+			);
+			name = Compatibility;
+			path = ../../Frameworks/Compatibility;
+			sourceTree = "<group>";
+		};
+		27EF7B37165A9C1E00EB7949 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				27EF7B38165A9C1E00EB7949 /* AppKit.framework */,
+				27EF7B39165A9C1E00EB7949 /* CoreData.framework */,
+				27EF7B3A165A9C1E00EB7949 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		78CC1A9F167D5B5400A37127 /* XcodeConfigs */ = {
+			isa = PBXGroup;
+			children = (
+				78CC1AA0167D5B5400A37127 /* FishLampProjectSettingsDebug.xcconfig */,
+				78CC1AA1167D5B5400A37127 /* FishLampProjectSettingsRelease.xcconfig */,
+				78CC1AA2167D5B5400A37127 /* FishLampTargetSettings-iOS-ARC.xcconfig */,
+				78CC1AA3167D5B5400A37127 /* FishLampTargetSettings-OSX-32-64-MRC.xcconfig */,
+				78CC1AA4167D5B5400A37127 /* FishLampTargetSettings-OSX-32-MRC.xcconfig */,
+				78CC1AA5167D5B5400A37127 /* FishLampTargetSettings-OSX-64-ARC.xcconfig */,
+				78CC1AA6167D5B5400A37127 /* FishLampTargetSettings-OSX-64-MRC.xcconfig */,
+			);
+			name = XcodeConfigs;
+			path = FishLampBuildSupport/XcodeConfigs;
+			sourceTree = "<group>";
+		};
+		78CC1AA9167D5ED500A37127 /* XcodeConfigIncludes */ = {
+			isa = PBXGroup;
+			children = (
+				78CC1AAA167D5ED500A37127 /* FishLamp-ARC.xcconfig */,
+				78CC1AAB167D5ED500A37127 /* FishLamp-iOS.xcconfig */,
+				78CC1AAC167D5ED500A37127 /* FishLamp-MRC.xcconfig */,
+				78CC1AAD167D5ED500A37127 /* FishLamp-OSX-32-64.xcconfig */,
+				78CC1AAE167D5ED500A37127 /* FishLamp-OSX-32.xcconfig */,
+				78CC1AAF167D5ED500A37127 /* FishLamp-OSX-64.xcconfig */,
+				78CC1AB0167D5ED500A37127 /* FishLamp-Preprocessor.xcconfig */,
+				78CC1AB1167D5ED500A37127 /* FishLamp-Settings-Debug.xcconfig */,
+				78CC1AB2167D5ED500A37127 /* FishLamp-Settings.xcconfig */,
+				78CC1AB3167D5ED500A37127 /* FishLamp-Target.xcconfig */,
+			);
+			name = XcodeConfigIncludes;
+			path = FishLampBuildSupport/XcodeConfigIncludes;
+			sourceTree = "<group>";
+		};
+		78CC1AFF167D64DA00A37127 /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				78CC1B00167D64DB00A37127 /* CGContext+UIKit.h */,
+				78CC1B01167D64DB00A37127 /* CGContext+UIKit.m */,
+				78CC1B02167D64DB00A37127 /* fishlamp-module.json */,
+				78CC1B04167D64DB00A37127 /* NSValue+UIKit.h */,
+				78CC1B05167D64DB00A37127 /* NSValue+UIKit.m */,
+				78CC1B06167D64DB00A37127 /* UIColor+OSX.h */,
+				78CC1B07167D64DB00A37127 /* UIColor+OSX.m */,
+				78CC1B08167D64DB00A37127 /* UIControl+OSX.h */,
+				78CC1B09167D64DB00A37127 /* UIControl+OSX.m */,
+				78CC1B0A167D64DB00A37127 /* UIDevice+OSX.h */,
+				78CC1B0B167D64DB00A37127 /* UIDevice+OSX.m */,
+				78CC1B0C167D64DB00A37127 /* UIEvent+OSX.h */,
+				78CC1B0D167D64DB00A37127 /* UIEvent+OSX.m */,
+				78CC1B0E167D64DB00A37127 /* UIFont+OSX.h */,
+				78CC1B0F167D64DB00A37127 /* UIFont+OSX.m */,
+				78CC1B10167D64DB00A37127 /* UIGeometry+OSX.h */,
+				78CC1B11167D64DB00A37127 /* UIGeometry+OSX.m */,
+				78CC1B12167D64DB00A37127 /* UIImage+OSX.h */,
+				78CC1B13167D64DB00A37127 /* UIImage+OSX.m */,
+				78CC1B14167D64DB00A37127 /* UIImageView+OSX.h */,
+				78CC1B15167D64DB00A37127 /* UIImageView+OSX.m */,
+				78CC1B19167D64DB00A37127 /* UIKitModule.h */,
+				78CC1B1A167D64DB00A37127 /* UIKitModule.m */,
+				78CC1B1B167D64DB00A37127 /* UIKitRequired.h */,
+				78CC1B1C167D64DB00A37127 /* UILabel+OSX.h */,
+				78CC1B1D167D64DB00A37127 /* UILabel+OSX.m */,
+				78CC1B1E167D64DB00A37127 /* UITextField+OSX.h */,
+				78CC1B1F167D64DB00A37127 /* UITextField+OSX.m */,
+				78CC1B20167D64DB00A37127 /* UIView+OSX.h */,
+				78CC1B21167D64DB00A37127 /* UIView+OSX.m */,
+				78CC1B22167D64DB00A37127 /* UIView+OSX_Internal.h */,
+				78CC1B23167D64DB00A37127 /* UIViewController+OSX.h */,
+				78CC1B24167D64DB00A37127 /* UIViewController+OSX.m */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		27048D11161CB58600C38ADA /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27D1E5C3166D355C00DB680E /* FishLampCompatibility-Prefix.pch in Headers */,
+				78CC1B25167D64DB00A37127 /* CGContext+UIKit.h in Headers */,
+				78CC1B32167D64DB00A37127 /* NSValue+UIKit.h in Headers */,
+				78CC1B3B167D64DB00A37127 /* UIColor+OSX.h in Headers */,
+				78CC1B44167D64DB00A37127 /* UIControl+OSX.h in Headers */,
+				78CC1B4D167D64DB00A37127 /* UIDevice+OSX.h in Headers */,
+				78CC1B56167D64DB00A37127 /* UIEvent+OSX.h in Headers */,
+				78CC1B5F167D64DB00A37127 /* UIFont+OSX.h in Headers */,
+				78CC1B68167D64DB00A37127 /* UIGeometry+OSX.h in Headers */,
+				78CC1B71167D64DB00A37127 /* UIImage+OSX.h in Headers */,
+				78CC1B7A167D64DB00A37127 /* UIImageView+OSX.h in Headers */,
+				78CC1B8C167D64DB00A37127 /* UIKitModule.h in Headers */,
+				78CC1B95167D64DB00A37127 /* UIKitRequired.h in Headers */,
+				78CC1B99167D64DB00A37127 /* UILabel+OSX.h in Headers */,
+				78CC1BA2167D64DB00A37127 /* UITextField+OSX.h in Headers */,
+				78CC1BAB167D64DB00A37127 /* UIView+OSX.h in Headers */,
+				78CC1BB4167D64DB00A37127 /* UIView+OSX_Internal.h in Headers */,
+				78CC1BB8167D64DB00A37127 /* UIViewController+OSX.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27314A78165328400027850D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27D1E5C4166D355C00DB680E /* FishLampCompatibility-Prefix.pch in Headers */,
+				78CC1B27167D64DB00A37127 /* CGContext+UIKit.h in Headers */,
+				78CC1B34167D64DB00A37127 /* NSValue+UIKit.h in Headers */,
+				78CC1B3D167D64DB00A37127 /* UIColor+OSX.h in Headers */,
+				78CC1B46167D64DB00A37127 /* UIControl+OSX.h in Headers */,
+				78CC1B4F167D64DB00A37127 /* UIDevice+OSX.h in Headers */,
+				78CC1B58167D64DB00A37127 /* UIEvent+OSX.h in Headers */,
+				78CC1B61167D64DB00A37127 /* UIFont+OSX.h in Headers */,
+				78CC1B6A167D64DB00A37127 /* UIGeometry+OSX.h in Headers */,
+				78CC1B73167D64DB00A37127 /* UIImage+OSX.h in Headers */,
+				78CC1B7C167D64DB00A37127 /* UIImageView+OSX.h in Headers */,
+				78CC1B8E167D64DB00A37127 /* UIKitModule.h in Headers */,
+				78CC1B97167D64DB00A37127 /* UIKitRequired.h in Headers */,
+				78CC1B9B167D64DB00A37127 /* UILabel+OSX.h in Headers */,
+				78CC1BA4167D64DB00A37127 /* UITextField+OSX.h in Headers */,
+				78CC1BAD167D64DB00A37127 /* UIView+OSX.h in Headers */,
+				78CC1BB6167D64DB00A37127 /* UIView+OSX_Internal.h in Headers */,
+				78CC1BBA167D64DB00A37127 /* UIViewController+OSX.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27A43AC215CDCCCB001CB13E /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27D1E5C2166D355C00DB680E /* FishLampCompatibility-Prefix.pch in Headers */,
+				78CC1B26167D64DB00A37127 /* CGContext+UIKit.h in Headers */,
+				78CC1B33167D64DB00A37127 /* NSValue+UIKit.h in Headers */,
+				78CC1B3C167D64DB00A37127 /* UIColor+OSX.h in Headers */,
+				78CC1B45167D64DB00A37127 /* UIControl+OSX.h in Headers */,
+				78CC1B4E167D64DB00A37127 /* UIDevice+OSX.h in Headers */,
+				78CC1B57167D64DB00A37127 /* UIEvent+OSX.h in Headers */,
+				78CC1B60167D64DB00A37127 /* UIFont+OSX.h in Headers */,
+				78CC1B69167D64DB00A37127 /* UIGeometry+OSX.h in Headers */,
+				78CC1B72167D64DB00A37127 /* UIImage+OSX.h in Headers */,
+				78CC1B7B167D64DB00A37127 /* UIImageView+OSX.h in Headers */,
+				78CC1B8D167D64DB00A37127 /* UIKitModule.h in Headers */,
+				78CC1B96167D64DB00A37127 /* UIKitRequired.h in Headers */,
+				78CC1B9A167D64DB00A37127 /* UILabel+OSX.h in Headers */,
+				78CC1BA3167D64DB00A37127 /* UITextField+OSX.h in Headers */,
+				78CC1BAC167D64DB00A37127 /* UIView+OSX.h in Headers */,
+				78CC1BB5167D64DB00A37127 /* UIView+OSX_Internal.h in Headers */,
+				78CC1BB9167D64DB00A37127 /* UIViewController+OSX.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27CBBFED16768BA600753D0A /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27CBBFEE16768BA600753D0A /* FishLampCompatibility-Prefix.pch in Headers */,
+				78CC1B28167D64DB00A37127 /* CGContext+UIKit.h in Headers */,
+				78CC1B35167D64DB00A37127 /* NSValue+UIKit.h in Headers */,
+				78CC1B3E167D64DB00A37127 /* UIColor+OSX.h in Headers */,
+				78CC1B47167D64DB00A37127 /* UIControl+OSX.h in Headers */,
+				78CC1B50167D64DB00A37127 /* UIDevice+OSX.h in Headers */,
+				78CC1B59167D64DB00A37127 /* UIEvent+OSX.h in Headers */,
+				78CC1B62167D64DB00A37127 /* UIFont+OSX.h in Headers */,
+				78CC1B6B167D64DB00A37127 /* UIGeometry+OSX.h in Headers */,
+				78CC1B74167D64DB00A37127 /* UIImage+OSX.h in Headers */,
+				78CC1B7D167D64DB00A37127 /* UIImageView+OSX.h in Headers */,
+				78CC1B8F167D64DB00A37127 /* UIKitModule.h in Headers */,
+				78CC1B98167D64DB00A37127 /* UIKitRequired.h in Headers */,
+				78CC1B9C167D64DB00A37127 /* UILabel+OSX.h in Headers */,
+				78CC1BA5167D64DB00A37127 /* UITextField+OSX.h in Headers */,
+				78CC1BAE167D64DB00A37127 /* UIView+OSX.h in Headers */,
+				78CC1BB7167D64DB00A37127 /* UIView+OSX_Internal.h in Headers */,
+				78CC1BBB167D64DB00A37127 /* UIViewController+OSX.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		27048B70161CB58600C38ADA /* FishLampCompatibility-OSX-32-MRC */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 27048EEB161CB58600C38ADA /* Build configuration list for PBXNativeTarget "FishLampCompatibility-OSX-32-MRC" */;
+			buildPhases = (
+				27048B71161CB58600C38ADA /* Sources */,
+				27048D0F161CB58600C38ADA /* Frameworks */,
+				27048D11161CB58600C38ADA /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "FishLampCompatibility-OSX-32-MRC";
+			productName = FishLampCocoaApp;
+			productReference = 27048EF0161CB58600C38ADA /* libFishLampCompatibility-OSX-32-MRC.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		273148B9165328400027850D /* FishLampCompatibility-OSX-64-ARC */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 27314C75165328400027850D /* Build configuration list for PBXNativeTarget "FishLampCompatibility-OSX-64-ARC" */;
+			buildPhases = (
+				273148BA165328400027850D /* Sources */,
+				27314A76165328400027850D /* Frameworks */,
+				27314A78165328400027850D /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "FishLampCompatibility-OSX-64-ARC";
+			productName = FishLampCommandLine;
+			productReference = 27314C79165328400027850D /* libFishLampCompatibility-OSX-64-ARC.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		27A43AB315CDCC89001CB13E /* FishLampCompatibility-iOS-ARC */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 27A43ABD15CDCC89001CB13E /* Build configuration list for PBXNativeTarget "FishLampCompatibility-iOS-ARC" */;
+			buildPhases = (
+				27A43AB015CDCC89001CB13E /* Sources */,
+				27A43AB115CDCC89001CB13E /* Frameworks */,
+				27A43AB215CDCC89001CB13E /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "FishLampCompatibility-iOS-ARC";
+			productName = FishLampiOS;
+			productReference = 27A43AB415CDCC89001CB13E /* libFishLampCompatibility-iOS-ARC.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		27A43AC315CDCCCB001CB13E /* FishLampCompatibility-OSX-64-MRC */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 27A43ACC15CDCCCB001CB13E /* Build configuration list for PBXNativeTarget "FishLampCompatibility-OSX-64-MRC" */;
+			buildPhases = (
+				27A43AC015CDCCCB001CB13E /* Sources */,
+				27A43AC115CDCCCB001CB13E /* Frameworks */,
+				27A43AC215CDCCCB001CB13E /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "FishLampCompatibility-OSX-64-MRC";
+			productName = FishLampCommandLine;
+			productReference = 27A43AC415CDCCCB001CB13E /* libFishLampCompatibility-OSX-64-MRC.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		27CBBE2916768BA600753D0A /* FishLampCompatibility-OSX-32-64-MRC */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 27CBC1F116768BA600753D0A /* Build configuration list for PBXNativeTarget "FishLampCompatibility-OSX-32-64-MRC" */;
+			buildPhases = (
+				27CBBE2A16768BA600753D0A /* Sources */,
+				27CBBFEC16768BA600753D0A /* Frameworks */,
+				27CBBFED16768BA600753D0A /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "FishLampCompatibility-OSX-32-64-MRC";
+			productName = FishLampCommandLine;
+			productReference = 27CBC1F416768BA600753D0A /* libFishLampCompatibility-OSX-32-64-MRC.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		27A43A7315CDCC1B001CB13E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = "Mike Fullerton";
+			};
+			buildConfigurationList = 27A43A7615CDCC1B001CB13E /* Build configuration list for PBXProject "FishLampCompatibility" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				English,
+			);
+			mainGroup = 27A43A7115CDCC1B001CB13E;
+			productRefGroup = 27A43A7D15CDCC1B001CB13E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				27A43AB315CDCC89001CB13E /* FishLampCompatibility-iOS-ARC */,
+				27048B70161CB58600C38ADA /* FishLampCompatibility-OSX-32-MRC */,
+				27A43AC315CDCCCB001CB13E /* FishLampCompatibility-OSX-64-MRC */,
+				273148B9165328400027850D /* FishLampCompatibility-OSX-64-ARC */,
+				27CBBE2916768BA600753D0A /* FishLampCompatibility-OSX-32-64-MRC */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		27048B71161CB58600C38ADA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				78CC1B2A167D64DB00A37127 /* CGContext+UIKit.m in Sources */,
+				78CC1B37167D64DB00A37127 /* NSValue+UIKit.m in Sources */,
+				78CC1B40167D64DB00A37127 /* UIColor+OSX.m in Sources */,
+				78CC1B49167D64DB00A37127 /* UIControl+OSX.m in Sources */,
+				78CC1B52167D64DB00A37127 /* UIDevice+OSX.m in Sources */,
+				78CC1B5B167D64DB00A37127 /* UIEvent+OSX.m in Sources */,
+				78CC1B64167D64DB00A37127 /* UIFont+OSX.m in Sources */,
+				78CC1B6D167D64DB00A37127 /* UIGeometry+OSX.m in Sources */,
+				78CC1B76167D64DB00A37127 /* UIImage+OSX.m in Sources */,
+				78CC1B7F167D64DB00A37127 /* UIImageView+OSX.m in Sources */,
+				78CC1B91167D64DB00A37127 /* UIKitModule.m in Sources */,
+				78CC1B9E167D64DB00A37127 /* UILabel+OSX.m in Sources */,
+				78CC1BA7167D64DB00A37127 /* UITextField+OSX.m in Sources */,
+				78CC1BB0167D64DB00A37127 /* UIView+OSX.m in Sources */,
+				78CC1BBD167D64DB00A37127 /* UIViewController+OSX.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		273148BA165328400027850D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				78CC1B2C167D64DB00A37127 /* CGContext+UIKit.m in Sources */,
+				78CC1B39167D64DB00A37127 /* NSValue+UIKit.m in Sources */,
+				78CC1B42167D64DB00A37127 /* UIColor+OSX.m in Sources */,
+				78CC1B4B167D64DB00A37127 /* UIControl+OSX.m in Sources */,
+				78CC1B54167D64DB00A37127 /* UIDevice+OSX.m in Sources */,
+				78CC1B5D167D64DB00A37127 /* UIEvent+OSX.m in Sources */,
+				78CC1B66167D64DB00A37127 /* UIFont+OSX.m in Sources */,
+				78CC1B6F167D64DB00A37127 /* UIGeometry+OSX.m in Sources */,
+				78CC1B78167D64DB00A37127 /* UIImage+OSX.m in Sources */,
+				78CC1B81167D64DB00A37127 /* UIImageView+OSX.m in Sources */,
+				78CC1B93167D64DB00A37127 /* UIKitModule.m in Sources */,
+				78CC1BA0167D64DB00A37127 /* UILabel+OSX.m in Sources */,
+				78CC1BA9167D64DB00A37127 /* UITextField+OSX.m in Sources */,
+				78CC1BB2167D64DB00A37127 /* UIView+OSX.m in Sources */,
+				78CC1BBF167D64DB00A37127 /* UIViewController+OSX.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27A43AB015CDCC89001CB13E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				78CC1B29167D64DB00A37127 /* CGContext+UIKit.m in Sources */,
+				78CC1B36167D64DB00A37127 /* NSValue+UIKit.m in Sources */,
+				78CC1B3F167D64DB00A37127 /* UIColor+OSX.m in Sources */,
+				78CC1B48167D64DB00A37127 /* UIControl+OSX.m in Sources */,
+				78CC1B51167D64DB00A37127 /* UIDevice+OSX.m in Sources */,
+				78CC1B5A167D64DB00A37127 /* UIEvent+OSX.m in Sources */,
+				78CC1B63167D64DB00A37127 /* UIFont+OSX.m in Sources */,
+				78CC1B6C167D64DB00A37127 /* UIGeometry+OSX.m in Sources */,
+				78CC1B75167D64DB00A37127 /* UIImage+OSX.m in Sources */,
+				78CC1B7E167D64DB00A37127 /* UIImageView+OSX.m in Sources */,
+				78CC1B90167D64DB00A37127 /* UIKitModule.m in Sources */,
+				78CC1B9D167D64DB00A37127 /* UILabel+OSX.m in Sources */,
+				78CC1BA6167D64DB00A37127 /* UITextField+OSX.m in Sources */,
+				78CC1BAF167D64DB00A37127 /* UIView+OSX.m in Sources */,
+				78CC1BBC167D64DB00A37127 /* UIViewController+OSX.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27A43AC015CDCCCB001CB13E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				78CC1B2B167D64DB00A37127 /* CGContext+UIKit.m in Sources */,
+				78CC1B38167D64DB00A37127 /* NSValue+UIKit.m in Sources */,
+				78CC1B41167D64DB00A37127 /* UIColor+OSX.m in Sources */,
+				78CC1B4A167D64DB00A37127 /* UIControl+OSX.m in Sources */,
+				78CC1B53167D64DB00A37127 /* UIDevice+OSX.m in Sources */,
+				78CC1B5C167D64DB00A37127 /* UIEvent+OSX.m in Sources */,
+				78CC1B65167D64DB00A37127 /* UIFont+OSX.m in Sources */,
+				78CC1B6E167D64DB00A37127 /* UIGeometry+OSX.m in Sources */,
+				78CC1B77167D64DB00A37127 /* UIImage+OSX.m in Sources */,
+				78CC1B80167D64DB00A37127 /* UIImageView+OSX.m in Sources */,
+				78CC1B9F167D64DB00A37127 /* UILabel+OSX.m in Sources */,
+				78CC1BA8167D64DB00A37127 /* UITextField+OSX.m in Sources */,
+				78CC1BB1167D64DB00A37127 /* UIView+OSX.m in Sources */,
+				78CC1BBE167D64DB00A37127 /* UIViewController+OSX.m in Sources */,
+				78CC1B92167D64DB00A37127 /* UIKitModule.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27CBBE2A16768BA600753D0A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				78CC1B2D167D64DB00A37127 /* CGContext+UIKit.m in Sources */,
+				78CC1B3A167D64DB00A37127 /* NSValue+UIKit.m in Sources */,
+				78CC1B43167D64DB00A37127 /* UIColor+OSX.m in Sources */,
+				78CC1B4C167D64DB00A37127 /* UIControl+OSX.m in Sources */,
+				78CC1B55167D64DB00A37127 /* UIDevice+OSX.m in Sources */,
+				78CC1B5E167D64DB00A37127 /* UIEvent+OSX.m in Sources */,
+				78CC1B67167D64DB00A37127 /* UIFont+OSX.m in Sources */,
+				78CC1B70167D64DB00A37127 /* UIGeometry+OSX.m in Sources */,
+				78CC1B79167D64DB00A37127 /* UIImage+OSX.m in Sources */,
+				78CC1B82167D64DB00A37127 /* UIImageView+OSX.m in Sources */,
+				78CC1B94167D64DB00A37127 /* UIKitModule.m in Sources */,
+				78CC1BA1167D64DB00A37127 /* UILabel+OSX.m in Sources */,
+				78CC1BAA167D64DB00A37127 /* UITextField+OSX.m in Sources */,
+				78CC1BB3167D64DB00A37127 /* UIView+OSX.m in Sources */,
+				78CC1BC0167D64DB00A37127 /* UIViewController+OSX.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		27048EEC161CB58600C38ADA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 78CC1AA4167D5B5400A37127 /* FishLampTargetSettings-OSX-32-MRC.xcconfig */;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		27048EEE161CB58600C38ADA /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 78CC1AA4167D5B5400A37127 /* FishLampTargetSettings-OSX-32-MRC.xcconfig */;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		27314C76165328400027850D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 78CC1AA5167D5B5400A37127 /* FishLampTargetSettings-OSX-64-ARC.xcconfig */;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+			};
+			name = Debug;
+		};
+		27314C77165328400027850D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 78CC1AA5167D5B5400A37127 /* FishLampTargetSettings-OSX-64-ARC.xcconfig */;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+			};
+			name = Release;
+		};
+		27A43A8B15CDCC1B001CB13E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 78CC1AA0167D5B5400A37127 /* FishLampProjectSettingsDebug.xcconfig */;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = Debug;
+		};
+		27A43A8C15CDCC1B001CB13E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 78CC1AA1167D5B5400A37127 /* FishLampProjectSettingsRelease.xcconfig */;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = Release;
+		};
+		27A43ABE15CDCC89001CB13E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 78CC1AA2167D5B5400A37127 /* FishLampTargetSettings-iOS-ARC.xcconfig */;
+			buildSettings = {
+				DSTROOT = /tmp/FishLampiOS.dst;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		27A43ABF15CDCC89001CB13E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 78CC1AA2167D5B5400A37127 /* FishLampTargetSettings-iOS-ARC.xcconfig */;
+			buildSettings = {
+				DSTROOT = /tmp/FishLampiOS.dst;
+				SKIP_INSTALL = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		27A43ACD15CDCCCB001CB13E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 78CC1AA6167D5B5400A37127 /* FishLampTargetSettings-OSX-64-MRC.xcconfig */;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+			};
+			name = Debug;
+		};
+		27A43ACE15CDCCCB001CB13E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 78CC1AA6167D5B5400A37127 /* FishLampTargetSettings-OSX-64-MRC.xcconfig */;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+			};
+			name = Release;
+		};
+		27CBC1F216768BA600753D0A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 78CC1AA3167D5B5400A37127 /* FishLampTargetSettings-OSX-32-64-MRC.xcconfig */;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+			};
+			name = Debug;
+		};
+		27CBC1F316768BA600753D0A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 78CC1AA3167D5B5400A37127 /* FishLampTargetSettings-OSX-32-64-MRC.xcconfig */;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		27048EEB161CB58600C38ADA /* Build configuration list for PBXNativeTarget "FishLampCompatibility-OSX-32-MRC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27048EEC161CB58600C38ADA /* Debug */,
+				27048EEE161CB58600C38ADA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		27314C75165328400027850D /* Build configuration list for PBXNativeTarget "FishLampCompatibility-OSX-64-ARC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27314C76165328400027850D /* Debug */,
+				27314C77165328400027850D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		27A43A7615CDCC1B001CB13E /* Build configuration list for PBXProject "FishLampCompatibility" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27A43A8B15CDCC1B001CB13E /* Debug */,
+				27A43A8C15CDCC1B001CB13E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		27A43ABD15CDCC89001CB13E /* Build configuration list for PBXNativeTarget "FishLampCompatibility-iOS-ARC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27A43ABE15CDCC89001CB13E /* Debug */,
+				27A43ABF15CDCC89001CB13E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		27A43ACC15CDCCCB001CB13E /* Build configuration list for PBXNativeTarget "FishLampCompatibility-OSX-64-MRC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27A43ACD15CDCCCB001CB13E /* Debug */,
+				27A43ACE15CDCCCB001CB13E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		27CBC1F116768BA600753D0A /* Build configuration list for PBXNativeTarget "FishLampCompatibility-OSX-32-64-MRC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27CBC1F216768BA600753D0A /* Debug */,
+				27CBC1F316768BA600753D0A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 27A43A7315CDCC1B001CB13E /* Project object */;
+}

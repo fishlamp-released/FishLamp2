@@ -10,10 +10,21 @@
 // Copyright (c) 2012 GreenTongue Software LLC. All Rights Reserved.
 //
 
+#if OSX
+#import "FLCore.h"
 #import "UIKitModule.h"
+
+@interface FOO : NSObject
+@end
+
+@interface UIKitModule : NSObject<FLFrameworkModule>
+@end
+
 
 @implementation UIKitModule
 + (void) initializeModule {
     [UIViewController initUIKitCompatibility];
 }
 @end
+
+#endif

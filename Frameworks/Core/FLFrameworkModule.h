@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "FLRequired.h"
 
 @protocol FLFrameworkModule <NSObject>
 + (void) initializeModule;

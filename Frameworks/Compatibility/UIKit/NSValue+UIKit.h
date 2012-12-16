@@ -10,7 +10,7 @@
 
 #if OSX
 
-#import "UIGeometry.h"
+#import "UIGeometry+OSX.h"
 
 @interface NSValue (UIKit)
 

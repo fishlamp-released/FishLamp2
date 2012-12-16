@@ -6,10 +6,6 @@
 //	Copyright 2009 Greentongue Software. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <execinfo.h>
-#import "FLRequired.h"
-
 // WARNING: don't import anything here. This file is imported by FishLamp.  This is imported by everything.
 
 //#if __clang__

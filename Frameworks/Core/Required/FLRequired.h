@@ -7,7 +7,6 @@
 //
 
 // WARNING: don't import anything here. This file is imported by FishLamp.  This is imported by everything.
-#import <Foundation/Foundation.h>
 
 #if DEBUG
     #define FL_SHIP_ONLY_INLINE 
@@ -41,5 +40,3 @@
 #define super_dealloc_                      FLSuperDealloc
 
 #import "FLDebug.h"
-#import "FLMath.h"
-

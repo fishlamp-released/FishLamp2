@@ -7,7 +7,6 @@
 //
 
 #import "NSValue+UIKit.h"
-#import "FLEdgeInsets.h"
 
 #if OSX
 @implementation NSValue (UIKit)

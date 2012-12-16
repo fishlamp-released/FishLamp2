@@ -10,13 +10,21 @@
 
 /// this sets the IOS or the MAC define
 
+#ifdef IOS
+#undef IOS
+#endif
+
+#ifdef MAC
+#undef MAC
+#endif
+
+#ifdef OSX
+#undef OSX
+#endif
+
 #if __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_2_0
-	#define IOS 1
-    #undef MAC
-    #undef OSX
-    
+    #define IOS 1
 #else
-	#undef IOS
     #define MAC 1
     #define OSX 1
 #endif

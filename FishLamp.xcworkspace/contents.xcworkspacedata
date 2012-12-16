@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workspace
    version = "1.0">
+   <FileRef
+      location = "group:Libs/FishLampCoreLib/../../FishLampBuildSupport">
+   </FileRef>
    <Group
       location = "group:XCode/FishLamp"
       name = "FishLamp">
@@ -82,6 +85,12 @@
    </FileRef>
    <FileRef
       location = "group:Libs/FishLampiOSLib/FishLampiOS.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Libs/FishLampCompatibilityLib/FishLampCompatibility.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Libs/FishLampCoreLib/FishLampCore.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Tools/CocoaTests/CocoaTests.xcodeproj">

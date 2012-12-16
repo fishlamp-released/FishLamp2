@@ -8,6 +8,14 @@
 
 #import "FLCore.h"
 #import "FLCocoa.h"
+
+#if OSX
+#import <Quartz/Quartz.h>
+#else
+
+#endif
+
+
 #import "NSObject+FLTheme.h"
 #import "FLView.h"
 #import "UIView+FLViewGeometry.h"

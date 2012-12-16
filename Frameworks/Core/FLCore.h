@@ -30,8 +30,9 @@
     #import <AppKit/AppKit.h>
     #import <CoreServices/CoreServices.h>
 #endif
-#import "FLCocoaRequired.h"
+
 #import "FLDebug.h"
+#import "FLMath.h"
 
 #import "FLStackTrace.h"
 #import "FLExceptions.h"

@@ -33,7 +33,7 @@ FLSynthesizeSingleton(FLXcodePlugin);
 		NSMenuItem *viewMenuItem = [[NSApp mainMenu] itemWithTitle:@"View"];
 		if (viewMenuItem) {
 			[[viewMenuItem submenu] addItem:[NSMenuItem separatorItem]];
-			NSMenuItem *toggleSchemeInTitleBarItem = [[[NSMenuItem alloc] initWithTitle:title action:@selector(testItem:) keyEquivalent:@""] autorelease];
+			NSMenuItem *toggleSchemeInTitleBarItem = FLAutorelease([[NSMenuItem alloc] initWithTitle:title action:@selector(testItem:) keyEquivalent:@""]) autorelease];
 			[[viewMenuItem submenu] addItem:toggleSchemeInTitleBarItem];
 		}
 
