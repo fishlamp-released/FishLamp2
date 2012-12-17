@@ -6,10 +6,9 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import "FLCocoa.h"
-#import "FLView.h"
+#import "FLCocoaUIRequired.h"
 
-@interface FLTilingImageView : FLView {
+@interface FLTilingImageView : UIView {
 @private
     UIImage* _image;
 }

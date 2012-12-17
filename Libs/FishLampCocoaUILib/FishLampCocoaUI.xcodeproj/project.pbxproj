@@ -271,15 +271,6 @@
 		78329CFF167E97C20024E8DC /* FLViewControllerTransitionAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329BB5167E97C20024E8DC /* FLViewControllerTransitionAnimation.m */; };
 		78329D00167E97C20024E8DC /* FLViewControllerTransitionAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329BB5167E97C20024E8DC /* FLViewControllerTransitionAnimation.m */; };
 		78329D01167E97C20024E8DC /* FLViewControllerTransitionAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329BB5167E97C20024E8DC /* FLViewControllerTransitionAnimation.m */; };
-		78329D02167E97C20024E8DC /* FLView.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329BB7167E97C20024E8DC /* FLView.h */; };
-		78329D03167E97C20024E8DC /* FLView.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329BB7167E97C20024E8DC /* FLView.h */; };
-		78329D04167E97C20024E8DC /* FLView.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329BB7167E97C20024E8DC /* FLView.h */; };
-		78329D05167E97C20024E8DC /* FLView.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329BB7167E97C20024E8DC /* FLView.h */; };
-		78329D06167E97C20024E8DC /* FLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329BB8167E97C20024E8DC /* FLView.m */; };
-		78329D07167E97C20024E8DC /* FLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329BB8167E97C20024E8DC /* FLView.m */; };
-		78329D08167E97C20024E8DC /* FLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329BB8167E97C20024E8DC /* FLView.m */; };
-		78329D09167E97C20024E8DC /* FLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329BB8167E97C20024E8DC /* FLView.m */; };
-		78329D0A167E97C20024E8DC /* FLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329BB8167E97C20024E8DC /* FLView.m */; };
 		78329D0B167E97C20024E8DC /* UIImageView+FLViewGeometry.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329BB9167E97C20024E8DC /* UIImageView+FLViewGeometry.h */; };
 		78329D0C167E97C20024E8DC /* UIImageView+FLViewGeometry.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329BB9167E97C20024E8DC /* UIImageView+FLViewGeometry.h */; };
 		78329D0D167E97C20024E8DC /* UIImageView+FLViewGeometry.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329BB9167E97C20024E8DC /* UIImageView+FLViewGeometry.h */; };
@@ -527,6 +518,15 @@
 		78329E08167E97C20024E8DC /* FLProgressWizardPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329BFD167E97C20024E8DC /* FLProgressWizardPanel.m */; };
 		78329E09167E97C20024E8DC /* FLProgressWizardPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329BFD167E97C20024E8DC /* FLProgressWizardPanel.m */; };
 		78329E0A167E97C20024E8DC /* FLProgressWizardPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329BFD167E97C20024E8DC /* FLProgressWizardPanel.m */; };
+		789EF0CB167EBD410019D6B2 /* FLView.h in Headers */ = {isa = PBXBuildFile; fileRef = 789EF0C9167EBD410019D6B2 /* FLView.h */; };
+		789EF0CC167EBD410019D6B2 /* FLView.h in Headers */ = {isa = PBXBuildFile; fileRef = 789EF0C9167EBD410019D6B2 /* FLView.h */; };
+		789EF0CD167EBD410019D6B2 /* FLView.h in Headers */ = {isa = PBXBuildFile; fileRef = 789EF0C9167EBD410019D6B2 /* FLView.h */; };
+		789EF0CE167EBD410019D6B2 /* FLView.h in Headers */ = {isa = PBXBuildFile; fileRef = 789EF0C9167EBD410019D6B2 /* FLView.h */; };
+		789EF0CF167EBD410019D6B2 /* FLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 789EF0CA167EBD410019D6B2 /* FLView.m */; };
+		789EF0D0167EBD410019D6B2 /* FLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 789EF0CA167EBD410019D6B2 /* FLView.m */; };
+		789EF0D1167EBD410019D6B2 /* FLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 789EF0CA167EBD410019D6B2 /* FLView.m */; };
+		789EF0D2167EBD410019D6B2 /* FLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 789EF0CA167EBD410019D6B2 /* FLView.m */; };
+		789EF0D3167EBD410019D6B2 /* FLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 789EF0CA167EBD410019D6B2 /* FLView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -645,8 +645,6 @@
 		78329BB2167E97C20024E8DC /* NSObject+FLTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+FLTheme.m"; sourceTree = "<group>"; };
 		78329BB4167E97C20024E8DC /* FLViewControllerTransitionAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLViewControllerTransitionAnimation.h; sourceTree = "<group>"; };
 		78329BB5167E97C20024E8DC /* FLViewControllerTransitionAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLViewControllerTransitionAnimation.m; sourceTree = "<group>"; };
-		78329BB7167E97C20024E8DC /* FLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLView.h; sourceTree = "<group>"; };
-		78329BB8167E97C20024E8DC /* FLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLView.m; sourceTree = "<group>"; };
 		78329BB9167E97C20024E8DC /* UIImageView+FLViewGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+FLViewGeometry.h"; sourceTree = "<group>"; };
 		78329BBA167E97C20024E8DC /* UIImageView+FLViewGeometry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+FLViewGeometry.m"; sourceTree = "<group>"; };
 		78329BBB167E97C20024E8DC /* UILabel+FLExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+FLExtras.h"; sourceTree = "<group>"; };
@@ -703,6 +701,8 @@
 		78329BFB167E97C20024E8DC /* FLLoginWizardPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLLoginWizardPanel.m; sourceTree = "<group>"; };
 		78329BFC167E97C20024E8DC /* FLProgressWizardPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLProgressWizardPanel.h; sourceTree = "<group>"; };
 		78329BFD167E97C20024E8DC /* FLProgressWizardPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLProgressWizardPanel.m; sourceTree = "<group>"; };
+		789EF0C9167EBD410019D6B2 /* FLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLView.h; sourceTree = "<group>"; };
+		789EF0CA167EBD410019D6B2 /* FLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1005,8 +1005,6 @@
 		78329BB6167E97C20024E8DC /* View */ = {
 			isa = PBXGroup;
 			children = (
-				78329BB7167E97C20024E8DC /* FLView.h */,
-				78329BB8167E97C20024E8DC /* FLView.m */,
 				78329BB9167E97C20024E8DC /* UIImageView+FLViewGeometry.h */,
 				78329BBA167E97C20024E8DC /* UIImageView+FLViewGeometry.m */,
 				78329BBB167E97C20024E8DC /* UILabel+FLExtras.h */,
@@ -1015,6 +1013,8 @@
 				78329BBE167E97C20024E8DC /* UIView+FLViewGeometry.m */,
 				78329BBF167E97C20024E8DC /* UIView+ViewAnimation.h */,
 				78329BC0167E97C20024E8DC /* UIView+ViewAnimation.m */,
+				789EF0C9167EBD410019D6B2 /* FLView.h */,
+				789EF0CA167EBD410019D6B2 /* FLView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1191,7 +1191,6 @@
 				78329CE7167E97C20024E8DC /* UIViewController+FLPresentationBehavior.h in Headers */,
 				78329CF0167E97C20024E8DC /* NSObject+FLTheme.h in Headers */,
 				78329CF9167E97C20024E8DC /* FLViewControllerTransitionAnimation.h in Headers */,
-				78329D02167E97C20024E8DC /* FLView.h in Headers */,
 				78329D0B167E97C20024E8DC /* UIImageView+FLViewGeometry.h in Headers */,
 				78329D14167E97C20024E8DC /* UILabel+FLExtras.h in Headers */,
 				78329D1D167E97C20024E8DC /* UIView+FLViewGeometry.h in Headers */,
@@ -1220,6 +1219,7 @@
 				78329DF0167E97C20024E8DC /* FLWizardViewController.h in Headers */,
 				78329DF9167E97C20024E8DC /* FLLoginWizardPanel.h in Headers */,
 				78329E02167E97C20024E8DC /* FLProgressWizardPanel.h in Headers */,
+				789EF0CB167EBD410019D6B2 /* FLView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1258,7 +1258,6 @@
 				78329CE9167E97C20024E8DC /* UIViewController+FLPresentationBehavior.h in Headers */,
 				78329CF2167E97C20024E8DC /* NSObject+FLTheme.h in Headers */,
 				78329CFB167E97C20024E8DC /* FLViewControllerTransitionAnimation.h in Headers */,
-				78329D04167E97C20024E8DC /* FLView.h in Headers */,
 				78329D0D167E97C20024E8DC /* UIImageView+FLViewGeometry.h in Headers */,
 				78329D16167E97C20024E8DC /* UILabel+FLExtras.h in Headers */,
 				78329D1F167E97C20024E8DC /* UIView+FLViewGeometry.h in Headers */,
@@ -1287,6 +1286,7 @@
 				78329DF2167E97C20024E8DC /* FLWizardViewController.h in Headers */,
 				78329DFB167E97C20024E8DC /* FLLoginWizardPanel.h in Headers */,
 				78329E04167E97C20024E8DC /* FLProgressWizardPanel.h in Headers */,
+				789EF0CD167EBD410019D6B2 /* FLView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1325,7 +1325,6 @@
 				78329CE8167E97C20024E8DC /* UIViewController+FLPresentationBehavior.h in Headers */,
 				78329CF1167E97C20024E8DC /* NSObject+FLTheme.h in Headers */,
 				78329CFA167E97C20024E8DC /* FLViewControllerTransitionAnimation.h in Headers */,
-				78329D03167E97C20024E8DC /* FLView.h in Headers */,
 				78329D0C167E97C20024E8DC /* UIImageView+FLViewGeometry.h in Headers */,
 				78329D15167E97C20024E8DC /* UILabel+FLExtras.h in Headers */,
 				78329D1E167E97C20024E8DC /* UIView+FLViewGeometry.h in Headers */,
@@ -1354,6 +1353,7 @@
 				78329DF1167E97C20024E8DC /* FLWizardViewController.h in Headers */,
 				78329DFA167E97C20024E8DC /* FLLoginWizardPanel.h in Headers */,
 				78329E03167E97C20024E8DC /* FLProgressWizardPanel.h in Headers */,
+				789EF0CC167EBD410019D6B2 /* FLView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1392,7 +1392,6 @@
 				78329CEA167E97C20024E8DC /* UIViewController+FLPresentationBehavior.h in Headers */,
 				78329CF3167E97C20024E8DC /* NSObject+FLTheme.h in Headers */,
 				78329CFC167E97C20024E8DC /* FLViewControllerTransitionAnimation.h in Headers */,
-				78329D05167E97C20024E8DC /* FLView.h in Headers */,
 				78329D0E167E97C20024E8DC /* UIImageView+FLViewGeometry.h in Headers */,
 				78329D17167E97C20024E8DC /* UILabel+FLExtras.h in Headers */,
 				78329D20167E97C20024E8DC /* UIView+FLViewGeometry.h in Headers */,
@@ -1421,6 +1420,7 @@
 				78329DF3167E97C20024E8DC /* FLWizardViewController.h in Headers */,
 				78329DFC167E97C20024E8DC /* FLLoginWizardPanel.h in Headers */,
 				78329E05167E97C20024E8DC /* FLProgressWizardPanel.h in Headers */,
+				789EF0CE167EBD410019D6B2 /* FLView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1576,7 +1576,6 @@
 				78329CEC167E97C20024E8DC /* UIViewController+FLPresentationBehavior.m in Sources */,
 				78329CF5167E97C20024E8DC /* NSObject+FLTheme.m in Sources */,
 				78329CFE167E97C20024E8DC /* FLViewControllerTransitionAnimation.m in Sources */,
-				78329D07167E97C20024E8DC /* FLView.m in Sources */,
 				78329D10167E97C20024E8DC /* UIImageView+FLViewGeometry.m in Sources */,
 				78329D19167E97C20024E8DC /* UILabel+FLExtras.m in Sources */,
 				78329D22167E97C20024E8DC /* UIView+FLViewGeometry.m in Sources */,
@@ -1604,6 +1603,7 @@
 				78329DF5167E97C20024E8DC /* FLWizardViewController.m in Sources */,
 				78329DFE167E97C20024E8DC /* FLLoginWizardPanel.m in Sources */,
 				78329E07167E97C20024E8DC /* FLProgressWizardPanel.m in Sources */,
+				789EF0D0167EBD410019D6B2 /* FLView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1639,7 +1639,6 @@
 				78329CEE167E97C20024E8DC /* UIViewController+FLPresentationBehavior.m in Sources */,
 				78329CF7167E97C20024E8DC /* NSObject+FLTheme.m in Sources */,
 				78329D00167E97C20024E8DC /* FLViewControllerTransitionAnimation.m in Sources */,
-				78329D09167E97C20024E8DC /* FLView.m in Sources */,
 				78329D12167E97C20024E8DC /* UIImageView+FLViewGeometry.m in Sources */,
 				78329D1B167E97C20024E8DC /* UILabel+FLExtras.m in Sources */,
 				78329D24167E97C20024E8DC /* UIView+FLViewGeometry.m in Sources */,
@@ -1667,6 +1666,7 @@
 				78329DF7167E97C20024E8DC /* FLWizardViewController.m in Sources */,
 				78329E00167E97C20024E8DC /* FLLoginWizardPanel.m in Sources */,
 				78329E09167E97C20024E8DC /* FLProgressWizardPanel.m in Sources */,
+				789EF0D2167EBD410019D6B2 /* FLView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1702,7 +1702,6 @@
 				78329CEB167E97C20024E8DC /* UIViewController+FLPresentationBehavior.m in Sources */,
 				78329CF4167E97C20024E8DC /* NSObject+FLTheme.m in Sources */,
 				78329CFD167E97C20024E8DC /* FLViewControllerTransitionAnimation.m in Sources */,
-				78329D06167E97C20024E8DC /* FLView.m in Sources */,
 				78329D0F167E97C20024E8DC /* UIImageView+FLViewGeometry.m in Sources */,
 				78329D18167E97C20024E8DC /* UILabel+FLExtras.m in Sources */,
 				78329D21167E97C20024E8DC /* UIView+FLViewGeometry.m in Sources */,
@@ -1730,6 +1729,7 @@
 				78329DF4167E97C20024E8DC /* FLWizardViewController.m in Sources */,
 				78329DFD167E97C20024E8DC /* FLLoginWizardPanel.m in Sources */,
 				78329E06167E97C20024E8DC /* FLProgressWizardPanel.m in Sources */,
+				789EF0CF167EBD410019D6B2 /* FLView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1765,7 +1765,6 @@
 				78329CED167E97C20024E8DC /* UIViewController+FLPresentationBehavior.m in Sources */,
 				78329CF6167E97C20024E8DC /* NSObject+FLTheme.m in Sources */,
 				78329CFF167E97C20024E8DC /* FLViewControllerTransitionAnimation.m in Sources */,
-				78329D08167E97C20024E8DC /* FLView.m in Sources */,
 				78329D11167E97C20024E8DC /* UIImageView+FLViewGeometry.m in Sources */,
 				78329D1A167E97C20024E8DC /* UILabel+FLExtras.m in Sources */,
 				78329D23167E97C20024E8DC /* UIView+FLViewGeometry.m in Sources */,
@@ -1793,6 +1792,7 @@
 				78329DF6167E97C20024E8DC /* FLWizardViewController.m in Sources */,
 				78329DFF167E97C20024E8DC /* FLLoginWizardPanel.m in Sources */,
 				78329E08167E97C20024E8DC /* FLProgressWizardPanel.m in Sources */,
+				789EF0D1167EBD410019D6B2 /* FLView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1828,7 +1828,6 @@
 				78329CEF167E97C20024E8DC /* UIViewController+FLPresentationBehavior.m in Sources */,
 				78329CF8167E97C20024E8DC /* NSObject+FLTheme.m in Sources */,
 				78329D01167E97C20024E8DC /* FLViewControllerTransitionAnimation.m in Sources */,
-				78329D0A167E97C20024E8DC /* FLView.m in Sources */,
 				78329D13167E97C20024E8DC /* UIImageView+FLViewGeometry.m in Sources */,
 				78329D1C167E97C20024E8DC /* UILabel+FLExtras.m in Sources */,
 				78329D25167E97C20024E8DC /* UIView+FLViewGeometry.m in Sources */,
@@ -1856,6 +1855,7 @@
 				78329DF8167E97C20024E8DC /* FLWizardViewController.m in Sources */,
 				78329E01167E97C20024E8DC /* FLLoginWizardPanel.m in Sources */,
 				78329E0A167E97C20024E8DC /* FLProgressWizardPanel.m in Sources */,
+				789EF0D3167EBD410019D6B2 /* FLView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

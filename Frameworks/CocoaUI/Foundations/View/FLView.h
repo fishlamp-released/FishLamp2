@@ -1,12 +1,14 @@
 //
 //  FLView.h
-//  FishLampCocoa
+//  FishLampCocoaUI
 //
-//  Created by Mike Fullerton on 12/13/12.
+//  Created by Mike Fullerton on 12/16/12.
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
+
 #import "FLCocoaUIRequired.h"
 
-@interface FLView : UIView
+@interface FLView : UIView {
+}
 
 @end

@@ -12,13 +12,27 @@
 #import "FLGradientWidget.h"
 #endif
 
+#import "FLView.h"
 #import "FLColorRange.h"
 
-@interface FLGradientView : FLWidgetView {
+@interface FLGradientView : FLView {
 @private
 #if IOS
 	FLGradientWidget* _gradientWidget;
 #endif
+
+/*
+    FLColorRange* _normalColorRange;
+    FLColorRange* _highlightedColorRange;
+    FLColorRange* _selectedColorRange;
+    FLColorRange* _disabledColorRange;
+    
+    UIControlStateNormal       = 0,                       
+    UIControlStateHighlighted  = 1 << 0,                  // used when UIControl isHighlighted is set
+    UIControlStateDisabled     = 1 << 1,
+    UIControlStateSelected     = 1 << 2,                  // flag usable by app (see below)
+*/
+    
 }
 
 @property (readwrite, assign, nonatomic, getter=isHighlighted) BOOL highlighted;

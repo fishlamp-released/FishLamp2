@@ -20,4 +20,4 @@ typedef id FLResult;
 typedef void (^FLResultBlock)(FLResult result);
 typedef void (^FLCompletionBlock)(FLResult result);
 
-#define FLConfirmResultType(__RESULT__, __EXPECTED_RESULT_TYPE__) FLAssertIsType([__EXPECTED_RESULT_TYPE__ class], FLThrowError(__RESULT__))
+#define FLConfirmResultType(__RESULT__, __EXPECTED_RESULT_TYPE__) FLAssertIsType([FLThrowError(__RESULT__) class], [__EXPECTED_RESULT_TYPE__ class])

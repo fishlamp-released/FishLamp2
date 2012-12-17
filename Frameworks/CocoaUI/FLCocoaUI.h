@@ -8,7 +8,6 @@
 
 #import "FLCocoaUIRequired.h"
 #import "FLGeometry.h"
-#import "FLViewUtilities.h"
 #import "UIColor+FLMoreColors.h"
 #import "UIColor+FLUtils.h"
 #import "FLColorRange.h"

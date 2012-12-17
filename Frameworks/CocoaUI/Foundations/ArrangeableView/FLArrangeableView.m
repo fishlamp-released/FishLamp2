@@ -1,5 +1,5 @@
 //
-//  FLView.m
+//  FLArrangeableView.m
 //  FishLampiOS
 //
 //  Created by Mike Fullerton on 7/30/12.

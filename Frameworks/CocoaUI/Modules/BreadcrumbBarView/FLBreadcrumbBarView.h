@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 GreenTongue Software, LLC. All rights reserved.
 //
 
-#import "FLView.h"
+#import "FLCocoaUIRequired.h"
 #import "FLBreadcrumb.h"
 #import "FLOrderedCollection.h"
 
@@ -16,7 +16,7 @@ typedef enum {
     FLVerticalTextAlignmentBottom
 } FLVerticalTextAlignment; 
 
-@interface FLBreadcrumbBarView : FLView {
+@interface FLBreadcrumbBarView : UIView {
 @private
     FLOrderedCollection* _breadcrumbs;
     FLVerticalTextAlignment _verticalTextAlignment;
