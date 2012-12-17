@@ -7,7 +7,7 @@
 //
 #import "FLCore.h"
 
-#import <Foundation/Foundation.h>
+#import "FLCocoaRequired.h"
 
 @interface FLHttpMessage : NSObject<NSCopying> {
 @private

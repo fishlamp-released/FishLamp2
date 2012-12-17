@@ -1,8 +1,10 @@
 
 #ifdef __OBJC__
 
-    #import "FLCore.h"
+#import "FLCore.h"
     
-    
+#if OSX
+#import "UIKitModule.h"
+#endif
 
 #endif

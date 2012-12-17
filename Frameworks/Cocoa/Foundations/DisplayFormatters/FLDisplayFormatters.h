@@ -6,7 +6,7 @@
 //	Copyright 2009 Greentongue Software. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "FLCocoaRequired.h"
 #import "FLDisplayFormatter.h"
 
 @interface FLKeywordListFormatter : NSObject {}

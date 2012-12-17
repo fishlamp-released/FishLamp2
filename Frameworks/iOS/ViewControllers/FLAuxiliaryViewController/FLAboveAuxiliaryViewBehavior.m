@@ -29,7 +29,7 @@ FLSynthesizeSingleton(FLAboveAuxiliaryViewBehavior);
     viewController.containerView.layer.shadowColor = [UIColor grayColor].CGColor;
     viewController.containerView.layer.shadowOpacity = .6;
     viewController.containerView.layer.shadowRadius = 20.0;
-    viewController.containerView.layer.shadowOffset = FLSizeMake(0,3);
+    viewController.containerView.layer.shadowOffset = CGSizeMake(0,3);
     viewController.containerView.clipsToBounds = NO;
 }
 

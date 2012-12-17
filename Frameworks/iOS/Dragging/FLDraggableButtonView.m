@@ -116,7 +116,7 @@
                 self.layer.shadowColor = [UIColor clearColor].CGColor;
                 self.layer.shadowOpacity = 0;
                 self.layer.shadowRadius = 0.0;
-                self.layer.shadowOffset = FLSizeMake(0,0);
+                self.layer.shadowOffset = CGSizeMake(0,0);
                 self.clipsToBounds = YES;
                 
             }
@@ -146,7 +146,7 @@
                 self.layer.shadowColor = [UIColor grayColor].CGColor;
                 self.layer.shadowOpacity = .6;
                 self.layer.shadowRadius = 20.0;
-                self.layer.shadowOffset = FLSizeMake(0,3);
+                self.layer.shadowOffset = CGSizeMake(0,3);
                 [self.layer setNeedsDisplay];
             }
         ];

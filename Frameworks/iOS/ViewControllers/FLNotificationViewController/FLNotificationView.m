@@ -30,7 +30,7 @@
         self.layer.shadowColor = [UIColor grayColor].CGColor;
         self.layer.shadowOpacity = 0.5;
         self.layer.shadowRadius = 20.0;
-        self.layer.shadowOffset = FLSizeMake(0,0);
+        self.layer.shadowOffset = CGSizeMake(0,0);
         self.clipsToBounds = NO;
 //        self.layer.borderWidth = 1.0;
 //        self.layer.borderColor = [UIColor grayColor].CGColor;
@@ -44,7 +44,7 @@
         _titleLabel = [[UILabel alloc] initWithFrame:self.bounds];
         _titleLabel.textColor = [UIColor whiteColor];
         _titleLabel.shadowColor = [UIColor blackColor];
-        _titleLabel.shadowOffset	= FLSizeMake (0.0, 1.0);
+        _titleLabel.shadowOffset	= CGSizeMake (0.0, 1.0);
         _titleLabel.backgroundColor = [UIColor clearColor];
         _titleLabel.textAlignment = UITextAlignmentCenter;
         _titleLabel.font = [UIFont boldSystemFontOfSize:[UIFont systemFontSize]]; 

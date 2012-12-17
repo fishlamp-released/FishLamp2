@@ -7,7 +7,7 @@
 // Copywrite (C) 2012 GreenTongue Software, LLC. All rights reserved.
 //
 // [/Generated]
-#import "FLCocoaUIRequired.h"
+#import "FLCocoaRequired.h"
 #import "FLColorRangeColorValues.h"
 
 @interface FLColorRange : NSObject { 

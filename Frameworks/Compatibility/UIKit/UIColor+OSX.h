@@ -10,4 +10,9 @@
 
 #if OSX
 #define UIColor                     NSColor
+
+@interface NSColor (FLCompatibility)
++ (NSColor*) colorWithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue alpha:(CGFloat)alpha;
+@end
+
 #endif

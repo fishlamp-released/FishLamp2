@@ -256,7 +256,7 @@
 	if(_numberOfLines)
 	{
 		CGSize size = [@"Ty" sizeWithFont:self.valueLabel.font
-							constrainedToSize:FLSizeMake(width,CGFLOAT_MAX)
+							constrainedToSize:CGSizeMake(width,CGFLOAT_MAX)
 							lineBreakMode:self.valueLabel.lineBreakMode];
 		size.height += 2;
 		size.height *= _numberOfLines;

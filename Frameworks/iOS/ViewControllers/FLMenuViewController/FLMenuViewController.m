@@ -24,11 +24,11 @@
         
         if(DeviceIsPad())
         {
-            _menuView.menuItemSize = FLSizeMake(256, 70);
+            _menuView.menuItemSize = CGSizeMake(256, 70);
         }
         else
         {
-            _menuView.menuItemSize = FLSizeMake(self.view.frame.size.width >= 320.0 ? 320 : 220, 50);
+            _menuView.menuItemSize = CGSizeMake(self.view.frame.size.width >= 320.0 ? 320 : 220, 50);
         }
 	}
 	

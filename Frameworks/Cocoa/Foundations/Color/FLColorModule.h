@@ -18,7 +18,6 @@
 #import "FLColorUtilities.h"
 #import "FLColorValues.h"
 #import "FLMutableColorRange.h"
-#import "NSColor+FLCompatibility.h"
 #import "UIColor+FLMoreColors.h"
 #import "UIColor+FLUtils.h"
 

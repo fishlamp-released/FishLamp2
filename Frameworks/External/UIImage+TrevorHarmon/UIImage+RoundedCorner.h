@@ -4,7 +4,7 @@
 // No warranty is expressed or implied.
 
 // Extends the UIImage class to support making rounded corners
-#import "FLCocoaUIRequired.h"
+#import "FLCocoaRequired.h"
 
 @interface UIImage (RoundedCorner)
 - (UIImage *)roundedCornerImage:(NSInteger)cornerSize borderSize:(NSInteger)borderSize;

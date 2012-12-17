@@ -19,7 +19,7 @@
 		_countView.lineBreakMode = UILineBreakModeTailTruncation;
 		_countView.textColor = [UIColor whiteColor];
 		_countView.shadowColor = [UIColor blackColor];
-		_countView.shadowOffset	= FLSizeMake (0.0, 0.0);
+		_countView.shadowOffset	= CGSizeMake (0.0, 0.0);
 		_countView.backgroundColor = [UIColor clearColor];
 		_countView.textAlignment = UITextAlignmentCenter;
 		_countView.font = [UIFont boldSystemFontOfSize:[UIFont systemFontSize]];
@@ -60,7 +60,7 @@
 {
 	[super layoutSubviews];
 
-	[_countView sizeToFitText:FLSizeMake(CGFLOAT_MAX, CGFLOAT_MAX)];
+	[_countView sizeToFitText:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX)];
 	
 	CGRect frame = _countView.frame;
 	frame.size.width += 16;

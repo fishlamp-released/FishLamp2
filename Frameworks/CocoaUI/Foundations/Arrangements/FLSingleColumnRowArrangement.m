@@ -22,19 +22,19 @@
         
         CGRect frame = [object frameForObject:object];
         frame.origin = FLPointMake(bounds.origin.x, top);
-        frame.size = FLSizeMake(bounds.size.width, frame.size.height);
+        frame.size = CGSizeMake(bounds.size.width, frame.size.height);
 
         [object setArrangeableFrame:frame];
         
                         
-//        CGSize size = [object calculateSizeInArrangementSize:FLSizeMake(width, [object frame].size.height) hint:[object arrangeableGrowMode]];
+//        CGSize size = [object calculateSizeInArrangementSize:CGSizeMake(width, [object frame].size.height) hint:[object arrangeableGrowMode]];
 //        
 //        setFrame(object, FLRectMake(left, top, size.width, size.height));
 					
 		top = FLRectGetBottom([object arrangeableFrame]);
     }
     
-	return FLSizeMake(bounds.size.width, top - bounds.origin.y);
+	return CGSizeMake(bounds.size.width, top - bounds.origin.y);
 }
 
 @end

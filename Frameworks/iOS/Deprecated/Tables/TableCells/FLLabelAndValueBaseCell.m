@@ -155,7 +155,7 @@ FLSynthesizeStructProperty(trimWhiteSpace, setTrimWhiteSpace, BOOL, _baseFlags);
 	}
 
 	CGSize size = [text sizeWithFont:self.valueLabel.font
-						constrainedToSize:FLSizeMake(width,CGFLOAT_MAX)
+						constrainedToSize:CGSizeMake(width,CGFLOAT_MAX)
 						lineBreakMode:self.valueLabel.lineBreakMode];
 	size.height += 2;
 	return size;

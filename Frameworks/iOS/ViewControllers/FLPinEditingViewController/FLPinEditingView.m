@@ -218,7 +218,7 @@
 	self.layer.shadowColor = [UIColor darkGrayColor].CGColor;
 	self.layer.shadowOpacity = 0.5;
 	self.layer.shadowRadius = 5.0;
-	self.layer.shadowOffset = FLSizeMake(0,3);
+	self.layer.shadowOffset = CGSizeMake(0,3);
 	self.clipsToBounds = NO;
 	
 	self.layer.cornerRadius = 8.0f;

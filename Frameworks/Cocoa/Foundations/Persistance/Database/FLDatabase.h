@@ -10,7 +10,7 @@
 	Abstraction for SqlDatabase that doesn't take a dependency on the rest of FishLamp.
 */
 
-#import <Foundation/Foundation.h>
+#import "FLCocoaRequired.h"
 #import <sqlite3.h>
 
 #import "FLCore.h"

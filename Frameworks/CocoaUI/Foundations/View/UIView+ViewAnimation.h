@@ -6,7 +6,7 @@
 //	Copyright 2011 GreenTongue Software. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "FLCocoaUIRequired.h"
 #if 0
 // TODO: rewrite with blocks (predates iOS 4)
 

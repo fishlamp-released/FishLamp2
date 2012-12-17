@@ -49,7 +49,7 @@ CGRect FLRectOptimizedForViewLocation(CGRect r) {
 
 FL_SHIP_ONLY_INLINE 
 CGSize FLSizeOptimizeForView(CGSize aSize) {
-	CGSize size = FLSizeMake(round(aSize.width), round(aSize.height));
+	CGSize size = CGSizeMake(round(aSize.width), round(aSize.height));
 	if(FLFloatMod(size.width, 2.0f) != 0.0f) size.width += 1.0f;
 	if(FLFloatMod(size.height, 2.0f) != 0.0f) size.height += 1.0f;
 	return size;

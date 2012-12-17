@@ -24,13 +24,13 @@
 #endif
 }
 - (CGSize) sizeThatFitsText {
-	return [self sizeThatFitsText:FLSizeMake(2048.0, 2048.0)];
+	return [self sizeThatFitsText:CGSizeMake(2048.0, 2048.0)];
 }
 
 - (CGSize) sizeToFitText {
-	return [self sizeToFitText:FLSizeMake(2048.0, 2048.0)];
+	return [self sizeToFitText:CGSizeMake(2048.0, 2048.0)];
 
-//	  return [self sizeToFitText:FLSizeMake(self.superview ? self.superview.bounds.size.width : 2048.0, 2048.0)];
+//	  return [self sizeToFitText:CGSizeMake(self.superview ? self.superview.bounds.size.width : 2048.0, 2048.0)];
 }
 
 - (CGSize) sizeToFitText:(CGSize) size {
@@ -71,7 +71,7 @@
 }
 
 - (CGSize)sizeThatFitsWidth:(CGFloat)fixedWidth {   
-    return [self sizeThatFitsText:FLSizeMake(fixedWidth, 2048)];
+    return [self sizeThatFitsText:CGSizeMake(fixedWidth, 2048)];
 }
 
 - (void)sizeToFitWidth:(CGFloat)fixedWidth {
@@ -87,7 +87,7 @@
 
 - (void) addGlow {
     self.layer.shadowColor = [self.textColor CGColor];
-    self.layer.shadowOffset = FLSizeMake(0.0, 0.0);
+    self.layer.shadowOffset = CGSizeMake(0.0, 0.0);
     self.layer.shadowRadius = 10.0;
     self.layer.shadowOpacity = 0.5;
 #if IOS

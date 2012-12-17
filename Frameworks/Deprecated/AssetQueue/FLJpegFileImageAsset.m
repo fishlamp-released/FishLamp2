@@ -7,7 +7,7 @@
 //
 #if 0
 #import "FLJpegFileImageAsset.h"
-#import "FLCocoaUIRequired.h"
+#import "FLCocoaRequired.h"
 #import "UIImage+Resize.h"
 #import "FLQueuedAsset.h"
 
@@ -198,7 +198,7 @@ static float s_thumbnailSize = 0.0;
 		FLAssert_v(self.original.hasImage, @"no image to create full screen version");
 
 		[self.fullScreen setImage:[self.original.image resizedImageWithContentMode:UIViewContentModeScaleAspectFit 
-			bounds:FLSizeMake(s_fullSize, s_fullSize) 
+			bounds:CGSizeMake(s_fullSize, s_fullSize) 
 			interpolationQuality:kCGInterpolationDefault]
 			exifDictionary:nil];
 	}

@@ -6,7 +6,7 @@
 //	Copyright 2010 GreenTongue Software. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "FLCocoaRequired.h"
 #import "FLCore.h"
 #import "FLCallback_t.h"
 #import "FLWeakReference.h" 

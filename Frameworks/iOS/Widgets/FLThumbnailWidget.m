@@ -91,12 +91,12 @@
 				
 				if(imageSize.height > imageSize.width)
 				{
-					imageSize = [image proportionalSizeWithMaxSize:FLSizeMake(self.frame.size.width, 1024.0)];
+					imageSize = [image proportionalSizeWithMaxSize:CGSizeMake(self.frame.size.width, 1024.0)];
 					
 				}
 				else
 				{
-					imageSize = [image proportionalSizeWithMaxSize:FLSizeMake(1024.0, self.frame.size.height)];
+					imageSize = [image proportionalSizeWithMaxSize:CGSizeMake(1024.0, self.frame.size.height)];
 				
 				}
 				frame.size = imageSize;
@@ -112,7 +112,7 @@
 				_highlightedView.layer.shadowColor = [UIColor blackColor].CGColor;
 				_highlightedView.layer.shadowOpacity = .8;
 				_highlightedView.layer.shadowRadius = 20.0;
-				_highlightedView.layer.shadowOffset = FLSizeMake(0,3);
+				_highlightedView.layer.shadowOffset = CGSizeMake(0,3);
 				_highlightedView.layer.borderColor = [UIColor blackColor].CGColor;			 
 				_highlightedView.layer.borderWidth = 1.0f;
 				

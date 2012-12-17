@@ -70,3 +70,11 @@
 
 @end
 
+NS_INLINE
+BOOL FLViewSetFrame(UIView* view, CGRect frame) {
+    if(!CGRectEqualToRect(view.frame, frame)) {
+        view.frame = frame;
+        return YES;
+    }
+    return NO;
+}

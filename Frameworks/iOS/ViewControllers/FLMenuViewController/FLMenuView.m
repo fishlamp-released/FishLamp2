@@ -86,7 +86,7 @@
         self.autoresizesSubviews = NO;
         self.autoresizingMask = UIViewAutoresizingNone;
         self.backgroundColor = [UIColor clearColor];
-        _menuItemSize = FLSizeMake(100, 50);
+        _menuItemSize = CGSizeMake(100, 50);
         
         FLVerticalGridArrangement* layout = [FLVerticalGridArrangement verticalGridArrangement];
         layout.onWillArrange = ^(id theLayout, CGRect bounds) {

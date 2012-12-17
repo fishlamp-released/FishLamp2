@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 GreenTongue Software, LLC. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "FLCocoaUIRequired.h"
 #import "FLCocoa.h"
 
 @class FLBreadcrumb;

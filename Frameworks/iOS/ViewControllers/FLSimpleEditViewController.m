@@ -31,7 +31,7 @@
         self.saveButtonTitle = NSLocalizedString(@"Save", nil);
         self.cancelButtonTitle = NSLocalizedString(@"Cancel", nil);
         
-        self.contentSizeForViewInFloatingView = FLSizeMake(600, 400);
+        self.contentSizeForViewInFloatingView = CGSizeMake(600, 400);
     }
     return self;
 }
@@ -291,7 +291,7 @@
 //        [contentView.arrangement setViewSize:contentView];
         
         [self.floatingViewController setContentViewSize:
-            FLSizeMake(FLRectGetRight(contentView.frame), FLRectGetBottom(contentView.frame)) 
+            CGSizeMake(FLRectGetRight(contentView.frame), FLRectGetBottom(contentView.frame)) 
             animated:NO];
     }
     else

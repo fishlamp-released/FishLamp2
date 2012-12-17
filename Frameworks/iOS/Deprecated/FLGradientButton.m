@@ -251,7 +251,7 @@ void FLGradientButtonColorLightGray(id button)
 {
 	if(self.image.size.height > Height)
 	{
-		[self.imageView resizeProportionally:[self.image proportionalBoundsWithMaxSize:FLSizeMake(1024.0f, Height)].size];
+		[self.imageView resizeProportionally:[self.image proportionalBoundsWithMaxSize:CGSizeMake(1024.0f, Height)].size];
 	}
 	else
 	{
@@ -314,7 +314,7 @@ void FLGradientButtonColorLightGray(id button)
 
 - (CGSize) defaultSize
 {
-	return FLSizeMake(80,32);
+	return CGSizeMake(80,32);
 }
 
 - (BOOL) setViewSizeToContentSize
@@ -461,7 +461,7 @@ void FLGradientButtonColorLightGray(id button)
 
 - (CGSize) defaultSize
 {
-	return FLSizeMake(80,40);
+	return CGSizeMake(80,40);
 }
 
 @end
@@ -469,7 +469,7 @@ void FLGradientButtonColorLightGray(id button)
 @implementation FLSmallButtonDeprecated
 
 - (CGSize) defaultSize {
-	return FLSizeMake(80,32);
+	return CGSizeMake(80,32);
 }
 
 - (void) setImage:(UIImage*) image {

@@ -138,7 +138,7 @@ FLSynthesizeStructProperty(maximizeWidth, setMaximizeWidth, BOOL, _style);
 //		  _textLabel.text = _style.title;
 		_textLabel.frameOptimizedForSize = FLRectSetSize(_textLabel.frame, 0,0);
 		
-		CGSize size = [_textLabel sizeThatFitsText:FLSizeMake(CGFLOAT_MAX, CGFLOAT_MAX)];
+		CGSize size = [_textLabel sizeThatFitsText:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX)];
 		size.height = 20;
 //		  size.height += 2; // for some reason it's cutting off decenders
 		
@@ -294,7 +294,7 @@ FLSynthesizeStructProperty(maximizeWidth, setMaximizeWidth, BOOL, _style);
 	_textLabel = [[UILabel alloc] initWithFrame:CGRectZero];
 	_textLabel.textColor = [UIColor whiteColor];
 	_textLabel.shadowColor = [UIColor blackColor];
-	_textLabel.shadowOffset	= FLSizeMake (0.0, 1.0);
+	_textLabel.shadowOffset	= CGSizeMake (0.0, 1.0);
 	_textLabel.backgroundColor = [UIColor clearColor];
 	_textLabel.textAlignment = UITextAlignmentCenter;
 	_textLabel.font = [UIFont boldSystemFontOfSize:[UIFont smallSystemFontSize]]; 

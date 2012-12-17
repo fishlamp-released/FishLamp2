@@ -6,7 +6,7 @@
 //	Copyright 2011 GreenTongue Software. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "FLCocoaUIRequired.h"
 
 extern void FLCreateRectPathWithCornerRadii(CGMutablePathRef path, CGRect rect, CGFloat topLeft, CGFloat topRight, CGFloat bottomRight, CGFloat bottomLeft);
 

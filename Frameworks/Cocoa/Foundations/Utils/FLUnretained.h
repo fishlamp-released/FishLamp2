@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "FLCocoaRequired.h"
 
 #import "FLCore.h"
 #import "FLSimpleNotifier.h"

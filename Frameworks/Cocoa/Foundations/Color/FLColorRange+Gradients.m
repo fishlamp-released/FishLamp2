@@ -7,6 +7,8 @@
 //
 
 #import "FLColorRange+Gradients.h"
+#import "UIColor+FLMoreColors.h"
+#import "FLColorUtilities.h"
 
 @implementation FLColorRange (FLGradientColors)
 

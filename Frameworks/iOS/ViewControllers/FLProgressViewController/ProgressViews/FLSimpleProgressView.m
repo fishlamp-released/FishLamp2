@@ -32,7 +32,7 @@
 //        self.layer.shadowColor = [UIColor grayColor].CGColor;
 //        self.layer.shadowOpacity = 0.5;
 //        self.layer.shadowRadius = 20.0;
-//        self.layer.shadowOffset = FLSizeMake(0,0);
+//        self.layer.shadowOffset = CGSizeMake(0,0);
 //        self.clipsToBounds = NO;
         self.backgroundColor = [UIColor clearColor];
 //        self.layer.cornerRadius = 1.0f;
@@ -52,7 +52,7 @@
         _textLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,0, 100, 18)];
         _textLabel.textColor = [UIColor gray10Color];
         _textLabel.shadowColor = [UIColor whiteColor];
-        _textLabel.shadowOffset = FLSizeMake(0,1);
+        _textLabel.shadowOffset = CGSizeMake(0,1);
         _textLabel.backgroundColor = [UIColor clearColor];
         _textLabel.textAlignment = UITextAlignmentLeft;
         _textLabel.font = [UIFont boldSystemFontOfSize:[UIFont smallSystemFontSize]]; 
@@ -71,7 +71,7 @@
         _statusMessage = [[UILabel alloc] initWithFrame:CGRectMake(0,0, 100, 18)];
         _statusMessage.textColor = [UIColor gray10Color];
         _statusMessage.shadowColor = [UIColor whiteColor];
-        _statusMessage.shadowOffset = FLSizeMake(0,1);
+        _statusMessage.shadowOffset = CGSizeMake(0,1);
         _statusMessage.backgroundColor = [UIColor clearColor];
         _statusMessage.textAlignment = UITextAlignmentCenter;
         _statusMessage.font = [UIFont systemFontOfSize:[UIFont smallSystemFontSize]]; 

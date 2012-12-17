@@ -7,20 +7,22 @@
 //
 #import "FLCore.h"
 
-#import "FLNetworkConnectionObserver.h"
-#import "FLProgressViewController.h"
+// TODO Move to CocoaUI
 
-typedef id<FLProgressViewController> (^FLNetworkConnectionProgressObserverCreateProgress)(id connection);
-
-@interface FLNetworkConnectionProgressObserver : NSObject<FLNetworkConnectionObserver> {
-@private
-    id<FLProgressViewController> _progress;
-    FLNetworkConnectionProgressObserverCreateProgress _onCreateProgress;
-}
-
-+ (FLNetworkConnectionProgressObserver*) networkConnectionProgressObserver;
-
-@property (readwrite, strong, nonatomic) FLNetworkConnectionProgressObserverCreateProgress onCreateProgress;
-@property (readwrite, strong, nonatomic) id<FLProgressViewController> progress;
-
-@end
+//#import "FLNetworkConnectionObserver.h"
+//#import "FLProgressViewController.h"
+//
+//typedef id<FLProgressViewController> (^FLNetworkConnectionProgressObserverCreateProgress)(id connection);
+//
+//@interface FLNetworkConnectionProgressObserver : NSObject<FLNetworkConnectionObserver> {
+//@private
+//    id<FLProgressViewController> _progress;
+//    FLNetworkConnectionProgressObserverCreateProgress _onCreateProgress;
+//}
+//
+//+ (FLNetworkConnectionProgressObserver*) networkConnectionProgressObserver;
+//
+//@property (readwrite, strong, nonatomic) FLNetworkConnectionProgressObserverCreateProgress onCreateProgress;
+//@property (readwrite, strong, nonatomic) id<FLProgressViewController> progress;
+//
+//@end

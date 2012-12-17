@@ -93,7 +93,7 @@
         origin.y = maxBottom;
     }
     
-    return FLSizeMake(bounds.size.width, maxBottom);
+    return CGSizeMake(bounds.size.width, maxBottom);
 }
 
 @end

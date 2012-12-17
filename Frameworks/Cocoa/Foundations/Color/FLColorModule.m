@@ -10,6 +10,8 @@
 // Copyright (c) 2012 GreenTongue Software LLC. All Rights Reserved.
 //
 
+#import "FLColorModule.h"
+
 @implementation FLColorModule
 + (void) initializeModule {
 }

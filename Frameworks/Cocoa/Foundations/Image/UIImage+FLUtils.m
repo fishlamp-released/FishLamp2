@@ -7,6 +7,7 @@
 //
 
 #import "UIImage+FLUtils.h"
+#import "FLGeometry.h"
 
 // TODO: for god's sake, use a block.
 #define RUN_ON_MAIN_THREAD 1
@@ -138,7 +139,7 @@
 
             if(shrinkData.makeSquare)
             {
-                [self imageByScalingAndCroppingForSize:&newImage targetSize:FLSizeMake(shrinkData.maxLongSide,shrinkData.maxLongSide)];
+                [self imageByScalingAndCroppingForSize:&newImage targetSize:CGSizeMake(shrinkData.maxLongSide,shrinkData.maxLongSide)];
             }
             else
             {

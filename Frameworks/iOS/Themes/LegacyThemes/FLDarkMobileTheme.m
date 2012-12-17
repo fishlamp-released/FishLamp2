@@ -191,7 +191,7 @@
 //	object.layer.shadowColor = [UIColor blackColor].CGColor;
 //	object.layer.shadowOpacity = 1.0;
 //	object.layer.shadowRadius = 10.0;
-//	object.layer.shadowOffset = FLSizeMake(0,3);
+//	object.layer.shadowOffset = CGSizeMake(0,3);
 //	
 //	[[object roundRectView] setCornerRadius:0];
 //	[[object roundRectView] setBorderLineWidth:1.0];

@@ -95,7 +95,7 @@
 //	  
 //	  if(self.image)
 //	{	
-//		imageRect.size = FLSizeMake(12,12);
+//		imageRect.size = CGSizeMake(12,12);
 //		  imageRect = FLRectCenterRectInRectVertically(self.bounds, imageRect);
 //		imageRect.origin.x -= (imageRect.size.width + (self.image1 != nil ? 4 : 0));
 //		if(CGRectIntersectsRect(rect, imageRect))

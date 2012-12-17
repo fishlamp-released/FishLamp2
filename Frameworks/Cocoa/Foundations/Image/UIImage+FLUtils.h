@@ -5,8 +5,7 @@
 //  Created by Mike Fullerton on 12/5/12.
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
-#import "FLCocoaUIRequired.h"
-
+#import "FLCocoaRequired.h"
 @interface UIImage (FLUtils)
 - (void) shrinkImage:(UIImage**) outImage maxLongSide:(float) maxLongSize makeSquare:(BOOL) makeSquare;
 - (void) convertToJpegData:(CGFloat) compression outData:(NSData**) outData;

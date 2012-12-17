@@ -7,6 +7,7 @@
 //
 
 #import "FLProgressWizardPanel.h"
+#import "UIViewController+FLAdditions.h"
 
 @interface FLProgressWizardPanel ()
 

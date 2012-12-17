@@ -5,17 +5,16 @@
 //  Created by Mike Fullerton on 5/12/12.
 //  Copyright (c) 2012 GreenTongue Software. All rights reserved.
 //
-#import "FLCocoaUIRequired.h"
-
-#define FLSizeMake               CGSizeMake
-#define FLSizeZero               CGSizeZero
+#import "FLCocoaRequired.h"
+#define CGSizeMake               CGSizeMake
+#define CGSizeZero               CGSizeZero
 #define FLSizeEqualToSize        CGSizeEqualToSize
 #define FLEqualSizes             CGSizeEqualToSize
 
 //#if OSX
-//    #define FLSizeMake               NSMakeSize
+//    #define CGSizeMake               NSMakeSize
 //    #define FLSizeFromString         NSSizeFromString     
-//    #define FLSizeZero               NSZeroSize
+//    #define CGSizeZero               NSZeroSize
 //    #define FLSizeEqualToSize        NSEqualSizes
 //    #define FLEqualSizes             NSEqualSizes
 //    #define FLStringFromSize         NSStringFromSize
@@ -32,7 +31,7 @@ CGSize FLSizeScale(CGSize size, CGFloat scaleFactor) {
 
 NS_INLINE
 CGSize FLSizeSwapValues(CGSize size) {
-	return FLSizeMake(size.height, size.width);
+	return CGSizeMake(size.height, size.width);
 }
 
 NS_INLINE

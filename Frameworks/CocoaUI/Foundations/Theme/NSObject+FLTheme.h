@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "FLCocoaUIRequired.h"
 
 #if OSX
 typedef id FLTheme;

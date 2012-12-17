@@ -35,7 +35,7 @@
 		_label.font = [UIFont boldSystemFontOfSize:[UIFont smallSystemFontSize]];
 		_label.shadowColor = [UIColor whiteColor];
 		_label.textColor = [UIColor darkGrayColor];
-		_label.shadowOffset = FLSizeMake(0,1);
+		_label.shadowOffset = CGSizeMake(0,1);
 		_label.backgroundColor = [UIColor clearColor];
 		_label.autoresizingMask = UIViewAutoresizingNone;
 		_label.contentMode = UIViewContentModeScaleToFill;

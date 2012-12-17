@@ -69,7 +69,7 @@
         _label.backgroundColor = [UIColor clearColor];
         _label.textColor = [UIColor gray10Color];
         _label.shadowColor = [UIColor whiteColor];
-        _label.shadowOffset = FLSizeMake(0,1);
+        _label.shadowOffset = CGSizeMake(0,1);
         _label.backgroundColor = [UIColor clearColor];
         _label.textAlignment = UITextAlignmentRight;
         _label.font = [UIFont boldSystemFontOfSize:[UIFont smallSystemFontSize]]; 

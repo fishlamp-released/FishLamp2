@@ -63,7 +63,7 @@ typedef enum {
 		_statusLabel.font = [UIFont boldSystemFontOfSize:13.0f];
 		_statusLabel.textColor = [UIColor blackColor]; //TEXT_COLOR;
 		_statusLabel.shadowColor = [UIColor whiteColor]; //[UIColor colorWithWhite:0.9f alpha:1.0f];
-//		_statusLabel.shadowOffset = FLSizeMake(0.0f, 1.0f);
+//		_statusLabel.shadowOffset = CGSizeMake(0.0f, 1.0f);
 		_statusLabel.backgroundColor = [UIColor clearColor];
 		_statusLabel.textAlignment = UITextAlignmentCenter;
 		[self addSubview:_statusLabel];
@@ -73,7 +73,7 @@ typedef enum {
 		_lastUpdatedDate.font = [UIFont systemFontOfSize:12.0f];
 		_lastUpdatedDate.textColor = _statusLabel.textColor; //TEXT_COLOR;
 		_lastUpdatedDate.shadowColor = _statusLabel.shadowColor; //[UIColor colorWithWhite:0.9f alpha:1.0f];
-//		_lastUpdatedDate.shadowOffset = FLSizeMake(0.0f, 1.0f);
+//		_lastUpdatedDate.shadowOffset = CGSizeMake(0.0f, 1.0f);
 		_lastUpdatedDate.backgroundColor = [UIColor clearColor];
 		_lastUpdatedDate.textAlignment = UITextAlignmentCenter;
 	//	_lastUpdatedDate.themeAction = @selector(applyThemeToTableViewCellTitleLabel:);

@@ -33,7 +33,7 @@
     textDescriptor.font = [UIFont boldSystemFontOfSize:[UIFont buttonFontSize]];
     textDescriptor.enabledColor = [UIColor grayColor];
     textDescriptor.enabledShadowColor = [UIColor blackColor];
-    textDescriptor.shadowOffset = FLSizeMake(0,1);
+    textDescriptor.shadowOffset = CGSizeMake(0,1);
     label.textDescriptor = textDescriptor;
 
     FLRelease(label);

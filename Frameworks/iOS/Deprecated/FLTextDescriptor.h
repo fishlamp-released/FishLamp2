@@ -37,7 +37,7 @@ typedef struct {
 	highlightedShadowColor:(UIColor*) highlightedShadowColor
 	selectedColor:(UIColor*) selectedColor
 	selectedShadowColor:(UIColor*) selectedShadowColor
-	shadowOffset:(CGSize) shadowOffset;	   // default is FLSizeMake(0, -1) -- a top shadow
+	shadowOffset:(CGSize) shadowOffset;	   // default is CGSizeMake(0, -1) -- a top shadow
 	
 + (FLTextDescriptor*) textDescriptor:(UIFont*) font
 	enabledColor:(UIColor*) enabledColor
@@ -66,7 +66,7 @@ typedef struct {
 @property (readwrite, retain, nonatomic)	 UIColor* selectedColor;
 @property (readwrite, retain, nonatomic)	 UIColor* selectedShadowColor;
 
-@property (readwrite, assign, nonatomic)	 CGSize	 shadowOffset;	  // default is FLSizeMake(0, -1) -- a top shadow
+@property (readwrite, assign, nonatomic)	 CGSize	 shadowOffset;	  // default is CGSizeMake(0, -1) -- a top shadow
 
 - (UIColor*) textColorForState:(FLTextDescriptorState) state;
 - (UIColor*) shadowColorForState:(FLTextDescriptorState) state;

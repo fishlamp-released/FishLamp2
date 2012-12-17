@@ -35,11 +35,11 @@ FLSynthesizeSingleton(FLBigThumbnailViewVerticalLayout)
 //    if(DeviceIsPad())
 //    {
 //        return (bounds.size.width > bounds.size.height) ? 
-//            FLSizeMake(170.0, 170.0) :
-//            FLSizeMake(192.0, 192.0);
+//            CGSizeMake(170.0, 170.0) :
+//            CGSizeMake(192.0, 192.0);
 //    
 //    }    
-//    return FLSizeMake(106.0f, 106.0f);
+//    return CGSizeMake(106.0f, 106.0f);
 //}
 
 @end

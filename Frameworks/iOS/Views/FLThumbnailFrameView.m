@@ -33,7 +33,7 @@ CGFloat kFrameSize = 0; //5.0f
 		self.autoresizesSubviews = NO;
 		self.showFrame = YES;
 		
-		_maxSize = FLSizeMake(120,120);
+		_maxSize = CGSizeMake(120,120);
 		
 		_thumbnailButton = [[FLThumbnailButton alloc] initWithFrame:CGRectZero];
 		_thumbnailButton.autoresizingMask = UIViewAutoresizingNone;
@@ -43,7 +43,7 @@ CGFloat kFrameSize = 0; //5.0f
 //		_thumbnailButton.layer.shadowColor = [UIColor darkGrayColor].CGColor;
 //		  _thumbnailButton.layer.shadowOpacity = 0.5;
 //		  _thumbnailButton.layer.shadowRadius = 5.0;
-//		  _thumbnailButton.layer.shadowOffset = FLSizeMake(0,3);
+//		  _thumbnailButton.layer.shadowOffset = CGSizeMake(0,3);
 //		  _thumbnailButton.clipsToBounds = NO;
 	}
 	return self;
@@ -206,7 +206,7 @@ CGFloat kFrameSize = 0; //5.0f
 
 //- (void) _adjustViewSizeWithImage:(UIImage*) image
 //{
-//	  CGSize size = FLSizeMake(FLRectGetRight(_thumbnailButton.frame), FLRectGetBottom(_thumbnailButton.frame));
+//	  CGSize size = CGSizeMake(FLRectGetRight(_thumbnailButton.frame), FLRectGetBottom(_thumbnailButton.frame));
 //	  size.width += kFrameSize + (_frameViewFlags.showStack ? kFrameSize : 0.0) + 2.0f;
 //	  size.height += kFrameSize + (_frameViewFlags.showStack ? kFrameSize : 0.0) + 2.0f; 
 //	  if([self setFrameIfChanged:FLRectSetSizeWithSize(self.frame, size)])

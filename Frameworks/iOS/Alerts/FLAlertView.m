@@ -50,7 +50,7 @@
 // default look
         _messageLabel.textColor = [UIColor gray25Color];
         _messageLabel.shadowColor = [UIColor whiteColor];
-        _messageLabel.shadowOffset = FLSizeMake(0,1);
+        _messageLabel.shadowOffset = CGSizeMake(0,1);
         _messageLabel.font = [UIFont boldSystemFontOfSize:[UIFont smallSystemFontSize]];
 
         [self addSubview:_messageLabel];
@@ -67,7 +67,7 @@
 }
 
 - (CGFloat) calculateContentViewHeightForWidth:(CGFloat) width {
-    return [_messageLabel sizeThatFits:FLSizeMake(width, 2048)].height;
+    return [_messageLabel sizeThatFits:CGSizeMake(width, 2048)].height;
 }
 
 #define kBuffer 10.0
@@ -88,7 +88,7 @@
         contentHeight += ([_buttonBox sizeThatFits:inSize].height);
     }
     
-    return FLSizeMake(inSize.width, contentHeight);
+    return CGSizeMake(inSize.width, contentHeight);
 }
 
 - (void) layoutSubviews {

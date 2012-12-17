@@ -6,14 +6,13 @@
 //  Copyright (c) 2012 GreenTongue Software, LLC. All rights reserved.
 //
 
-#import "FLViewController.h"
-#import "FLRectLayout.h"
+#import "FLCocoaUIRequired.h"
 
 @interface UIView (FLAutoPositionedViewController)
 - (void) overrideViewPositionIfNeeded:(FLRectLayout*) position; // does nothing by default.
 @end
 
-@interface FLAutoPositionedViewController : FLViewController {
+@interface FLAutoPositionedViewController : UIViewController {
 @private
     FLRectLayout _viewPosition;
     CGFloat _viewAlpha;

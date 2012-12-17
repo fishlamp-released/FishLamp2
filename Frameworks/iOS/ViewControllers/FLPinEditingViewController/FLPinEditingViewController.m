@@ -21,11 +21,11 @@
     {
         if(DeviceIsPad())
         {
-            self.contentSizeForViewInFloatingView = FLSizeMake(400, 400);
+            self.contentSizeForViewInFloatingView = CGSizeMake(400, 400);
         }
         else
         {
-            self.contentSizeForViewInFloatingView = FLSizeMake(300, 300);
+            self.contentSizeForViewInFloatingView = CGSizeMake(300, 300);
         }
     }
     

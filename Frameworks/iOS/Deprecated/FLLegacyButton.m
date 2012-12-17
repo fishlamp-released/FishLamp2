@@ -23,7 +23,7 @@
 
 - (CGSize) defaultSize
 {
-	return FLSizeMake(100,40);
+	return CGSizeMake(100,40);
 }
 
 - (void) _initButton
@@ -59,7 +59,7 @@
 	_imageView.layer.shadowColor = withColor.CGColor;
 	_imageView.layer.shadowOpacity = 0.5;
 	_imageView.layer.shadowRadius = 5.0;
-	_imageView.layer.shadowOffset = FLSizeMake(0,3);
+	_imageView.layer.shadowOffset = CGSizeMake(0,3);
 	_imageView.clipsToBounds = NO;
 }
 

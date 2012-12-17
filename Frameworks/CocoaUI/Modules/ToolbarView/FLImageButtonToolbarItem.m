@@ -33,7 +33,7 @@
 
 #if IOS
         FLButton* button = [FLButton button];
-        button.frame = [image proportionalBoundsWithMaxSize:FLSizeMake(26,26)];
+        button.frame = [image proportionalBoundsWithMaxSize:CGSizeMake(26,26)];
         [button setImage:image forState:UIControlStateNormal];
         button.onPress = onChosenBlock;
         button.enabled = YES;

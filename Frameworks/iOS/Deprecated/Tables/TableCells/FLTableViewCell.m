@@ -230,7 +230,7 @@
 		FLAssertIsNotNil_(label.font);
 		
 		CGSize textSize = [text sizeWithFont:label.font
-							constrainedToSize:FLSizeMake(layoutRectWidth,CGFLOAT_MAX)
+							constrainedToSize:CGSizeMake(layoutRectWidth,CGFLOAT_MAX)
 							lineBreakMode:label.lineBreakMode];
 		
 		textSize.height += 2;

@@ -144,7 +144,7 @@
 //	CGFloat textWidth = width - kBuffer - kTextLeft;
 //	FLTextDescriptor* desc = [FLThemeManager queryTheme:@selector(textDescriptorForMessageTextInTable)];
 //	return kMessageTop + kBuffer +  [string sizeWithFont:desc.font
-//									constrainedToSize:FLSizeMake(textWidth, 2048.0)
+//									constrainedToSize:CGSizeMake(textWidth, 2048.0)
 //									lineBreakMode:UILineBreakModeWordWrap].height;
 //}
 

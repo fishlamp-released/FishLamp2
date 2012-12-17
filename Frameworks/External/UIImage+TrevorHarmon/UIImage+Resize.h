@@ -4,7 +4,7 @@
 // No warranty is expressed or implied.
 
 // Extends the UIImage class to support resizing/cropping
-#import "FLCocoaUIRequired.h"
+#import "FLCocoaRequired.h"
 
 @interface UIImage (Resize)
 

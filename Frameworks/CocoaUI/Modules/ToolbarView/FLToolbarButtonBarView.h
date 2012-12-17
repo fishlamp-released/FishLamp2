@@ -7,7 +7,7 @@
 //
 
 #if IOS
-#import <Foundation/Foundation.h>
+#import "FLCocoaUIRequired.h"
 #import "FLDeprecatedButtonbarView.h"
 #import "FLLegacyButton.h"
 

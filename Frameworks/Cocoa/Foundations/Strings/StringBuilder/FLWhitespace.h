@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 GreenTongue Software. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "FLCocoaRequired.h"
 #import "FLCore.h"
 
 /// FLWhitespaceDefaultEOL is the default EOL (\\n)

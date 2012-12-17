@@ -69,7 +69,7 @@
 //           
 //        if(i == _selectedItem)
 //        {
-////            CGContextSetShadowWithColor(c, FLSizeMake(0,0), 5.0f, myColor);
+////            CGContextSetShadowWithColor(c, CGSizeMake(0,0), 5.0f, myColor);
 ////            [[UIColor clearColor] setFill];
 ////            
 ////            CGRect bigRect = FLRectScale(circle, 2.0f);

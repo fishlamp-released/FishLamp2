@@ -53,13 +53,13 @@
     switch(fillMode) {
         case FLArrangeableGrowModeGrowWidth:
             outSize->width = [self.text sizeWithFont:[UIFont systemFontOfSize:[UIFont systemFontSize]]
-                                            constrainedToSize:FLSizeMake( 2048, inSize.height)
+                                            constrainedToSize:CGSizeMake( 2048, inSize.height)
                                             lineBreakMode:UILineBreakModeWordWrap].height;
         break;
         
         case FLArrangeableGrowModeGrowHeight:
             outSize->height = [self.text sizeWithFont:[UIFont systemFontOfSize:[UIFont systemFontSize]]
-                                            constrainedToSize:FLSizeMake(inSize.width, 2048)
+                                            constrainedToSize:CGSizeMake(inSize.width, 2048)
                                             lineBreakMode:UILineBreakModeWordWrap].height;
         break;
 

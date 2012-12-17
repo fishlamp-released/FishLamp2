@@ -21,7 +21,7 @@
 @synthesize autoDismiss = _autoDismiss;
 
 + (CGSize) defaultAutoPostionedViewSize {
-    return DeviceIsPad() ? FLSizeMake(320,200) : FLSizeMake(260,200);
+    return DeviceIsPad() ? CGSizeMake(320,200) : CGSizeMake(260,200);
 }
 
 + (id<FLPresentationBehavior>) defaultPresentationBehavior {

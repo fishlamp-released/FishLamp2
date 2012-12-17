@@ -6,6 +6,6 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "FLCocoaRequired.h"
 
 extern int FLTestToolMain(int argc, const char *argv[]);

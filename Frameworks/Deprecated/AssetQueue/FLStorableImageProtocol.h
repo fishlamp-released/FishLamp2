@@ -6,8 +6,7 @@
 //	Copyright 2009 GreenTongue Software. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "FLCocoaUIRequired.h"
+#import "FLCocoaRequired.h"
 #import "FLFolder.h"
 
 @class FLFolder;

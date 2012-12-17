@@ -102,7 +102,7 @@
         [self.buttonbar addButtonToRightSide:[FLToolbarButtonDeprecated toolbarButton:@"Cancel" target:self action:@selector(cancel:)] forKey:@"cancel" animated:NO]; 
     }
     
-    self.contentSizeForViewInFloatingView = FLSizeMake(320, 480);
+    self.contentSizeForViewInFloatingView = CGSizeMake(320, 480);
 }
 
 @end

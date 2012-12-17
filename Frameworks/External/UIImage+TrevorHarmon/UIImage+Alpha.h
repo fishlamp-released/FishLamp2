@@ -3,7 +3,7 @@
 // Free for personal or commercial use, with or without modification.
 // No warranty is expressed or implied.
 
-#import "FLCocoaUIRequired.h"
+#import "FLCocoaRequired.h"
 
 // Helper methods for adding an alpha layer to an image
 @interface UIImage (Alpha)

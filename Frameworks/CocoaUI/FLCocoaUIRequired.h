@@ -15,20 +15,8 @@
 
 #endif
 
-
 #import "NSObject+FLTheme.h"
-#import "FLView.h"
 #import "UIView+FLViewGeometry.h"
-#import "UIViewController+FLAdditions.h"
-#import "FLViewController.h"
 
 #define FLWidgetView UIView
 
-NS_INLINE
-BOOL FLViewSetFrame(UIView* view, CGRect frame) {
-    if(!CGRectEqualToRect(view.frame, frame)) {
-        view.frame = frame;
-        return YES;
-    }
-    return NO;
-}

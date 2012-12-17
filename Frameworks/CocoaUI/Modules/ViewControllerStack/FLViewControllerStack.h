@@ -6,12 +6,11 @@
 //  Copyright (c) 2012 GreenTongue Software, LLC. All rights reserved.
 //
 #import "FLCocoaUIRequired.h"
-#import "FLViewController.h"
 #import "UIViewController+FLAdditions.h"
 
 typedef void (^FLViewControllerStackVisitor)(UIViewController* viewController, BOOL* stop);
 
-@interface FLViewControllerStack : FLViewController {
+@interface FLViewControllerStack : UIViewController {
 @private
     NSMutableArray* _viewControllers;
     UIViewController* _rootViewController;

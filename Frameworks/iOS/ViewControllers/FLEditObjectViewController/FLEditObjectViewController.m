@@ -69,7 +69,7 @@ FLSynthesizeStructProperty(saveChangesImmediately, setSaveChangesImmediately, BO
 	
 	self.buttonStrategy = FLEditObjectViewControllerShowBackButtonOnly;
     
-    self.contentSizeForViewInFloatingView = DeviceIsPad() ? FLSizeMake(500, 600) : FLSizeMake(320, 480);
+    self.contentSizeForViewInFloatingView = DeviceIsPad() ? CGSizeMake(500, 600) : CGSizeMake(320, 480);
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -143,7 +143,7 @@ FLSynthesizeStructProperty(saveChangesImmediately, setSaveChangesImmediately, BO
 //    }
 //    else
 //    {
-//        controller.contentViewSize = FLSizeMake( 500, MIN(600, self.view.frame.size.height));
+//        controller.contentViewSize = CGSizeMake( 500, MIN(600, self.view.frame.size.height));
 //    }
 //}
 
@@ -187,7 +187,7 @@ FLSynthesizeStructProperty(saveChangesImmediately, setSaveChangesImmediately, BO
 	
 	FLAssert_v([self.tableView isKindOfClass:[FLTableView class]], @"TableView needs to be a FLTableView");
 
-    self.contentSizeForViewInFloatingView = FLSizeMake( 500, MIN(600, self.view.frame.size.height));
+    self.contentSizeForViewInFloatingView = CGSizeMake( 500, MIN(600, self.view.frame.size.height));
 }
 
 - (BOOL) objectWasEdited

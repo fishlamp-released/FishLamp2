@@ -6,9 +6,7 @@
 //  Copyright 2011 GreenTongue Software, LLC. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "FLCoreFlags.h"
-#import "FLRequired.h"
+#import "FLCore.h"
 
 @protocol FLCopyable <NSObject>
 - (void) copySelfTo:(id) object;

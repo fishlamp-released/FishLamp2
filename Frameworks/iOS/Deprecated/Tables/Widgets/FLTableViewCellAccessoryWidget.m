@@ -76,12 +76,12 @@
 		break;
 	
 		case UITableViewCellAccessoryDisclosureIndicator:
-		self.frameOptimizedForSize = FLRectSetSizeWithSize(self.frame, FLSizeMake(self.arrowSize,self.arrowSize*2));
+		self.frameOptimizedForSize = FLRectSetSizeWithSize(self.frame, CGSizeMake(self.arrowSize,self.arrowSize*2));
 		break;
 	
 		case UITableViewCellAccessoryCheckmark:
-		self.frameOptimizedForSize = FLRectSetSizeWithSize(self.frame, FLSizeMake(16,18));
-		//self.frameOptimizedForSize = FLRectSetSizeWithSize(self.frame, FLSizeMake(_checkmarkSize,_checkmarkSize));
+		self.frameOptimizedForSize = FLRectSetSizeWithSize(self.frame, CGSizeMake(16,18));
+		//self.frameOptimizedForSize = FLRectSetSizeWithSize(self.frame, CGSizeMake(_checkmarkSize,_checkmarkSize));
 		break;
 	}
 

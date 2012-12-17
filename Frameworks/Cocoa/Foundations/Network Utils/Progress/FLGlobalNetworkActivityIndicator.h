@@ -6,7 +6,7 @@
 //  Copyright (c) 2011 GreenTongue Software, LLC. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "FLCocoaRequired.h"
 #import "FLCore.h"
 
 @protocol FLGlobalNetworkActivityIndicator <NSObject>

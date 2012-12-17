@@ -257,7 +257,7 @@ FLSynthesizeStructProperty(canScrollTiles, setCanScrollTiles, BOOL, _tilingScrol
 			pageFrame.origin.x += ((pageFrame.size.width) + FLTilingScrollViewPageMargin);
 		}
 	   
-		CGSize size = FLSizeMake(	pageFrame.origin.x, 
+		CGSize size = CGSizeMake(	pageFrame.origin.x, 
 									pageFrame.size.height);
 		
 		if(!CGSizeEqualToSize(size, self.contentSize))

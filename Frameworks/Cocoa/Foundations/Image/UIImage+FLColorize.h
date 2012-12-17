@@ -6,8 +6,7 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import "FLCocoaUIRequired.h"
-
+#import "FLCocoaRequired.h"
 @interface UIImage (FLColorize)
 
 - (UIImage *)colorizeImage:(UIColor *)theColor blendMode:(CGBlendMode) blendMode;

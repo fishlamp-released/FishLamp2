@@ -44,7 +44,7 @@
 //	view.layer.shadowColor = color.CGColor;
 //	view.layer.shadowOpacity = .8;
 //	view.layer.shadowRadius = 20.0;
-//	view.layer.shadowOffset = FLSizeMake(0,5);
+//	view.layer.shadowOffset = CGSizeMake(0,5);
 //    view.clipsToBounds = NO;
 //}
 //

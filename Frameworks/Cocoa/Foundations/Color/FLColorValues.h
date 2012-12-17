@@ -6,7 +6,8 @@
 //  Copyright (c) 2012 GreenTongue Software. All rights reserved.
 //
 
-#import "FLCocoaUIRequired.h"
+#import "FLCocoaRequired.h"
+#import "FLColorUtilities.h"
 
 typedef struct {
 	CGFloat red;
@@ -16,31 +17,11 @@ typedef struct {
     BOOL valuesAreRGB;
 } FLColorValues;
 
-#define FLDecimalColorToRgbColor(__DECIMAL__)   (__DECIMAL__ * 255.0f)
-
-#define FLRgbColorToDecimalColor(__RGB__)       (__RGB__ / 255.0f)
-
 @interface UIColor (FLColorValues)
 @property (readonly, assign, nonatomic) FLColorValues rgbColorValues;
 @property (readonly, assign, nonatomic) FLColorValues decimalColorValues;
 + (UIColor*) colorWithColorValues:(FLColorValues) value;
 @end
-
-NS_INLINE
-BOOL FLColorValueIsDecimal(CGFloat value) {
-    return value >= 0.0f && value <= 1.0f;
-}
-
-NS_INLINE
-BOOL FLColorValueIsRGB(CGFloat value) {
-    return value >= 1.0f && value <= 255.0f;
-}
-
-#define FLAssertColorValueIsRGB(__VALUE__) \
-            FLAssert_v(FLColorValueIsRGB(__VALUE__), @"%f should be between 1 and 255", __VALUE__)
-
-#define FLAssertColorValueIsDecimal(__VALUE__) \
-            FLAssert_v(FLColorValueIsDecimal(__VALUE__), @"%f should be between 0.0 and 1.0", __VALUE__)
 
 #if DEBUG
     NS_INLINE

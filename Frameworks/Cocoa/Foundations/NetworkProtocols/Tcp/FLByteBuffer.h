@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "FLCocoaRequired.h"
 #define FLByteBufferDeadBeafSize 4
 
 @interface FLByteBuffer : NSObject {

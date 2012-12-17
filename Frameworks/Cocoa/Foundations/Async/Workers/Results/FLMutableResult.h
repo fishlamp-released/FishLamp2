@@ -6,7 +6,9 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "FLCocoaRequired.h"
+#import "FLResult.h"
+#import "FLResulting.h"
 
 @interface FLMutableResult : NSObject<FLResulting> {
 @private

@@ -11,7 +11,7 @@
 #import "FLDateMgr.h"
 #import "FLStringUtils.h"
 #import "FLBase64Encoding.h"
-#import "UIColor+FLUtils.h"
+#import "FLColorUtilities.h"
 
 @implementation FLSoapDataEncoder
 

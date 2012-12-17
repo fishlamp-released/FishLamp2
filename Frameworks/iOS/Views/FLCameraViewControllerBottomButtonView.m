@@ -56,7 +56,7 @@
 	button.titleLabel.font = [UIFont boldSystemFontOfSize:[UIFont systemFontSize]];
 	[button setTitleColor:[UIColor darkTextColor] forState:UIControlStateNormal];
 	[button setTitleShadowColor:[UIColor whiteColor] forState:UIControlStateNormal];
-	button.titleLabel.shadowOffset = FLSizeMake(0, 1.0);
+	button.titleLabel.shadowOffset = CGSizeMake(0, 1.0);
 	[button setTitleColor:[UIColor grayColor] forState:UIControlStateDisabled];
 }
 

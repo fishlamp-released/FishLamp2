@@ -6,6 +6,7 @@
 #import "UIImage+Resize.h"
 #import "UIImage+RoundedCorner.h"
 #import "UIImage+Alpha.h"
+#import "FLGeometry.h"
 
 // Private helper methods
 @interface UIImage (ResizeUtils)
@@ -41,7 +42,7 @@
 {
 
 	UIImage *resizedImage = [self resizedImageWithContentMode:UIViewContentModeScaleAspectFill
-													   bounds:FLSizeMake(thumbnailSize, thumbnailSize)
+													   bounds:CGSizeMake(thumbnailSize, thumbnailSize)
 										 interpolationQuality:quality];
 	
 	if(makeSquare)
@@ -49,7 +50,7 @@
 		// Crop out any part of the image that's larger than the thumbnail size
 		// The cropped rect must be centered on the resized image
 		// Round the origin points so that the size isn't altered when CGRectIntegral is later invoked
-		CGRect cropRect = FLRectMake(round((resizedImage.size.width - thumbnailSize) / 2),
+		CGRect cropRect = CGRectMake(round((resizedImage.size.width - thumbnailSize) / 2),
 									 round((resizedImage.size.height - thumbnailSize) / 2),
 									 thumbnailSize,
 								 thumbnailSize);
@@ -107,7 +108,7 @@
 			[NSException raise:NSInvalidArgumentException format:@"Unsupported content mode: %d", contentMode];
 	}
 	
-	CGSize newSize = FLSizeMake(self.size.width * ratio, self.size.height * ratio);
+	CGSize newSize = CGSizeMake(self.size.width * ratio, self.size.height * ratio);
 	
 	return [self resizedImage:newSize interpolationQuality:quality];
 }

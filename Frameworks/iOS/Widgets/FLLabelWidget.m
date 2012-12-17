@@ -133,13 +133,13 @@
 }
 - (CGSize) sizeThatFitsText
 {
-	return [self sizeThatFitsText:FLSizeMake(2048.0, 2048.0)];
+	return [self sizeThatFitsText:CGSizeMake(2048.0, 2048.0)];
 }
 - (CGSize) sizeToFitText
 {
-	return [self sizeToFitText:FLSizeMake(2048.0, 2048.0)];
+	return [self sizeToFitText:CGSizeMake(2048.0, 2048.0)];
 
-//	  return [self sizeToFitText:FLSizeMake(self.superview ? self.superview.bounds.size.width : 2048.0, 2048.0)];
+//	  return [self sizeToFitText:CGSizeMake(self.superview ? self.superview.bounds.size.width : 2048.0, 2048.0)];
 }
 
 - (CGSize) sizeToFitText:(CGSize) size
@@ -159,7 +159,7 @@
 	FLAssertIsNotNil_(self.textDescriptor.font);
 
 	return [string sizeWithFont:self.textDescriptor.font
-									constrainedToSize:FLSizeMake(width, 2048.0)
+									constrainedToSize:CGSizeMake(width, 2048.0)
 									lineBreakMode:self.lineBreakMode].height;
 }
 

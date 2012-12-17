@@ -6,7 +6,8 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "FLCocoaRequired.h"
+#import "FLResult.h"
 
 @protocol FLTestResult <NSObject>
 @property (readonly, assign) BOOL passed;

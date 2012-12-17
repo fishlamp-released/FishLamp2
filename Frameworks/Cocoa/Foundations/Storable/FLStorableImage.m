@@ -75,7 +75,7 @@ NSString* const FLImageTypeOriginal =   @"com.fishlamp.image.original";
     self.image = image;
     self.imageData = imageData;
     self.exifDictionary = exifDictionary;
-//    _dimensions = _image ? _image.size : FLSizeZero;
+//    _dimensions = _image ? _image.size : CGSizeZero;
 }       
 
 - (void) releaseAllImageData {

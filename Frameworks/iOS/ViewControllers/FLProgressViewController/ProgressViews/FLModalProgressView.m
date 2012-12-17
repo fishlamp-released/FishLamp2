@@ -17,15 +17,15 @@
 + (CGSize) defaultProgressViewSize
 {
     return DeviceIsPad() ? 
-        FLSizeMake(420.0f,150.0f) :
-        FLSizeMake(300.0f,150.0f);
+        CGSizeMake(420.0f,150.0f) :
+        CGSizeMake(300.0f,150.0f);
 }
 
 - (void) _configureLabel:(UILabel*) label
 {
 	label.textColor = [UIColor whiteColor];
 	label.shadowColor = [UIColor blackColor];
-	label.shadowOffset	  = FLSizeMake (0.0, 0.0);
+	label.shadowOffset	  = CGSizeMake (0.0, 0.0);
 	label.backgroundColor = [UIColor clearColor];
 	label.textAlignment = UITextAlignmentCenter;
 	label.font = DeviceIsPad() ? [UIFont boldSystemFontOfSize:[UIFont systemFontSize]] : [UIFont boldSystemFontOfSize:[UIFont smallSystemFontSize]]; 
@@ -86,7 +86,7 @@
 		self.layer.shadowColor = [UIColor grayColor].CGColor;
 		self.layer.shadowOpacity = .8;
 		self.layer.shadowRadius = 10.0;
-		self.layer.shadowOffset = FLSizeMake(0,3);
+		self.layer.shadowOffset = CGSizeMake(0,3);
 	}
 	
 	return self;

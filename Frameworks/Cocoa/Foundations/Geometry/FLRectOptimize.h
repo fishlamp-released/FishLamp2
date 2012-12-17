@@ -6,8 +6,7 @@
 //  Copyright (c) 2012 GreenTongue Software. All rights reserved.
 //
 
-#import "FLCocoaUIRequired.h"
-
+#import "FLCocoaRequired.h"
 /* 
 	Regarding FLRectOptimize
 

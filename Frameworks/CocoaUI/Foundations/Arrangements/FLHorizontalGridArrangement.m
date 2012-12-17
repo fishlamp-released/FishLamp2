@@ -50,7 +50,7 @@
 //////		origin.x += adjustedMargins.left;
 ////		[view setLayoutFrame:containerBounds];
 ////    }
-////    return FLSizeMake(FLRectGetRight(containerBounds), bounds.size.height);
+////    return CGSizeMake(FLRectGetRight(containerBounds), bounds.size.height);
 //}
 
 - (CGSize) layoutArrangeableObjects:(NSArray*) objects

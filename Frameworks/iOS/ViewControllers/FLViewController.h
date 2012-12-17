@@ -18,6 +18,7 @@
 #import "UIViewController+FLAdditions.h"
 #import "FLFinisher.h"
 
+
 @class FLAction;
 
 #if DEBUG
@@ -33,7 +34,7 @@
 - (void) viewController:(UIViewController*) viewController willBePushedOnNavigationController:(UINavigationController *)controller;
 @end
 
-@interface FLViewController : UIViewController {
+@interface FLiViewController : UIViewController {
 @private
 	FLOperationContext* _operationContext;
 	NSMutableArray* _didAppearCallbacks;

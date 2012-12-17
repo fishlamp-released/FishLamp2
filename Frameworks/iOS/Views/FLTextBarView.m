@@ -83,7 +83,7 @@
 	myFrame.size.width = superviewBounds.size.width;
 	
 	CGRect labelFrame = insetBounds;
-	labelFrame.size = [self.label sizeToFitText:FLSizeMake(labelFrame.size.width, 2048.0f)];
+	labelFrame.size = [self.label sizeToFitText:CGSizeMake(labelFrame.size.width, 2048.0f)];
 	
 	CGSize textSize = _text ? [self.textLabel sizeToFitText:insetBounds.size] : CGSizeZero;
 	

@@ -6,7 +6,7 @@
 //	Copyright 2011 GreenTongue Software. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "FLCocoaRequired.h"
 #import "FLRequired.h"
 
 // WARNING: don't import anything here. This file is imported by FishLamp.  This is imported by everything.

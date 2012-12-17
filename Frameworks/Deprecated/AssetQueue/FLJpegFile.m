@@ -81,7 +81,7 @@ static NSDictionary* s_destinationProperties = nil;
 
 - (void) setImage:(UIImage*) image {
     self.imageData = image;
-	_dimensions = _image ? _image.size : FLSizeZero;
+	_dimensions = _image ? _image.size : CGSizeZero;
 }
 
 - (void) releaseImage {
@@ -130,12 +130,12 @@ static NSDictionary* s_destinationProperties = nil;
 
 - (void) setJpegData:(NSData*) data {
 	self.image = nil;
-	_dimensions = FLSizeZero;
+	_dimensions = CGSizeZero;
 	FLAssignObjectWithRetain(_jpegData, data);
 }
 
 - (CGSize) imageDimensions {
-	if(FLSizeEqualToSize(_dimensions, FLSizeZero)) {
+	if(CGSizeEqualToSize(_dimensions, CGSizeZero)) {
 		_dimensions = self.image.size;
 	}
 	

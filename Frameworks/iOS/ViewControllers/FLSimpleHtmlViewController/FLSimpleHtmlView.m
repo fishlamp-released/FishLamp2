@@ -146,7 +146,7 @@ FLSynthesizeStructProperty(isLoading, setIsLoading, BOOL, _simpleHtmlFlags);
 {
 	self.frame = FLRectSetSize(self.frame, maxSize.width, 20);
 
-	CGSize loadedSize = [self sizeThatFits:FLSizeMake(maxSize.width, FLT_MAX)];
+	CGSize loadedSize = [self sizeThatFits:CGSizeMake(maxSize.width, FLT_MAX)];
  
 	CGRect htmlFrame = self.frame;
 	htmlFrame.size.width = maxSize.width;

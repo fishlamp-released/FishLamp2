@@ -97,7 +97,7 @@
 	_thumbnail.image = image;
 	if(_thumbnail.image)
 	{
-		[_thumbnail resizeProportionally:FLSizeMake(50,50)];
+		[_thumbnail resizeProportionally:CGSizeMake(50,50)];
 		
 //		_thumbnail.frame = CGRectInset(_thumbnail.frame, -1, -1);
 		

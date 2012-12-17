@@ -8,7 +8,7 @@
 
 #import "NSFileManager+FLExtras.h"
 
-#import <Foundation/Foundation.h>
+#import "FLCocoaRequired.h"
 #include <sys/param.h>
 #include <sys/mount.h>
 #include <sys/xattr.h>

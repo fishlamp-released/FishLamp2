@@ -18,7 +18,7 @@
     _titleLabel.textColor = [UIColor whiteColor];
     _titleLabel.textColor = [UIColor gray10Color];
     _titleLabel.shadowColor = [UIColor whiteColor];
-    _titleLabel.shadowOffset = FLSizeMake(0,1);
+    _titleLabel.shadowOffset = CGSizeMake(0,1);
 
     if(!_spinner) {
         _spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];

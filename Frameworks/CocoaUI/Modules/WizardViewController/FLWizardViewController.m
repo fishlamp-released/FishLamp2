@@ -11,6 +11,7 @@
 #import "FLFadeAnimation.h"
 #import "FLMoveAnimation.h"
 #import "FLDropBackAnimation.h"
+#import "UIViewController+FLAdditions.h"
 
 @interface FLWizardViewController ()
 @property (readonly, strong, nonatomic) FLWizardPanel* nextWizardPanel;

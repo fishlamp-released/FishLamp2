@@ -7,6 +7,7 @@
 //
 
 #import "FLColorUtilities.h"
+#import "FLColorValues.h"
 
 NSString* FLRgbStringFromColor(UIColor* color) { //rgb(11,11,11,0.5)
 

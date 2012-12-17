@@ -10,8 +10,7 @@
 //#import "FLCacheBehavior.h"
 //#import "FLCachedImageCacheBehavior.h"
 //#import "NSObject+Copying.h"
-//#import "FLCocoaUIRequired.h"
-//
+//#import "FLCocoaRequired.h"//
 //@implementation FLCachedImage
 //
 //@synthesize imageFile = _imageFile;

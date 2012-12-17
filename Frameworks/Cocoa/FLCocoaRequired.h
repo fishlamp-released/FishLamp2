@@ -7,6 +7,8 @@
 //
 
 #import "FLCore.h"
+#import "NSObject+Copying.h"
+
 #if OSX
 #import "UIKitModule.h"
 #endif

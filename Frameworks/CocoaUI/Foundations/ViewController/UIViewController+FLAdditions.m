@@ -114,7 +114,7 @@ FLSynthesizeAssociatedProperty(retain_nonatomic, transitionAnimation, setTransit
 - (void) willHideViewController:(BOOL) animated {
     FLAssert_v([NSThread currentThread] == [NSThread mainThread], @"Not on main thread");
 
-    FLAutorelease(FLRetain(self));
+    FLAutoreleaseObject(FLRetain(self));
 
     [[self presentationBehavior] willHideViewController:self
         fromParentViewController:self.parentViewController];

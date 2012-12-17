@@ -15,6 +15,9 @@
 @private
     FLArrangeableState _arrangeableState;
     FLArrangement* _arrangement;
+    UIEdgeInsets _arrangeableInsets;
+    FLArrangeableGrowMode _arrangeableGrowMode;
+    FLArrangeableWeight _arrangeableWeight;
 }
 
 // arrangeble container

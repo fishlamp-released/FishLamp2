@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "FLCore.h"
-#import "FLCocoaUIRequired.h"
+#import "FLCocoaRequired.h"
 
 #import "FLStorableImageProtocol.h"
 #import "FLStorableObject.h"

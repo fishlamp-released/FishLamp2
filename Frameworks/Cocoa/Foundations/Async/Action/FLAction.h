@@ -11,8 +11,8 @@
 #import "FLOperation.h"
 #import "FLOperationContext.h"
 #import "FLActionDescription.h"
-#import "FLProgressViewController.h"
 #import "FLRunnable.h"
+#import "FLObservable.h"
 
 #define FLActionDefaultTimeBetweenActivityWarnings 30.0f
 #define FLActionMinimumTimeBetweenWarnings 15.0
@@ -26,18 +26,19 @@ typedef void (^FLActionProgressCallback)(	id action,
                                             unsigned long long totalAmountExpectedToWrite);
 
 typedef void (^FLActionBlock)(FLAction* action);
+typedef void (^FLActionErrorBlock)(FLAction* action, NSError* error);
 
 @protocol FLActionErrorDelegate;
+@protocol FLActionDelegate;
 
-@interface FLAction : NSObject<FLActionDescription, FLCancellable, FLWeaklyReferenced, FLRunnable> {
+@interface FLAction : FLObservable<FLActionDescription, FLCancellable, FLWeaklyReferenced, FLRunnable> {
 @private
     FLOperationQueue* _operations;
 
     FLActionDescription* _actionDescription;
-	id<FLProgressViewController> _progress;
-	FLWeakReference* _errorNotification;
+//	id<FLActionDelegate> _delegate;
 	
-	FLActionBlock _willShowNotificationCallback;
+	FLActionErrorBlock _willShowNotificationCallback;
 	FLActionBlock _startingBlock;
 	
     FLActionProgressCallback _progressCallback;
@@ -52,6 +53,7 @@ typedef void (^FLActionBlock)(FLAction* action);
     BOOL _networkRequired;
 }
 
+//@property (readwrite, strong, nonatomic) id<FLActionDelegate> delegate;
 
 @property (readonly, strong) FLOperationQueue* operations;
 
@@ -61,15 +63,14 @@ typedef void (^FLActionBlock)(FLAction* action);
 @property (readwrite, assign, nonatomic) BOOL disableWarningNotifications;
 @property (readwrite, assign, nonatomic) BOOL disableErrorNotifications;
 @property (readwrite, assign, nonatomic) BOOL disableActivityTimer;
+
 @property (readwrite, assign, nonatomic) NSTimeInterval lastWarningTimestamp;
 @property (readwrite, assign, nonatomic) NSTimeInterval minimumTimeBetweenWarnings;
-@property (readwrite, assign, nonatomic) id errorNotificationForUser; // weakref
 
-// progress
-@property (readwrite, strong, nonatomic) id<FLProgressViewController> progressController;
+//@property (readwrite, assign, nonatomic) id errorNotificationForUser; // weakref
 
 // blocks
-@property (readwrite, copy) FLActionBlock onShowNotification;
+@property (readwrite, copy) FLActionErrorBlock onShowNotification;
 @property (readwrite, copy) FLActionProgressCallback onUpdateProgress;
 @property (readwrite, copy) FLActionBlock starting;
 
@@ -81,11 +82,6 @@ typedef void (^FLActionBlock)(FLAction* action);
 + (id) actionWithActionType:(NSString*) actionType;
 + (id) actionWithActionType:(NSString*) actionType actionItemName:(NSString*) actionItemName;
 
-// optioal overrides
-- (void) showProgress;
-- (void) willHandleError;
-- (void) willReportError;
-
 + (void) setActionErrorDelegate:(id<FLActionErrorDelegate>) delegate;
 + (void) setGlobalFailedCallback:(id) target action:(SEL) action;
 
@@ -95,19 +91,28 @@ typedef void (^FLActionBlock)(FLAction* action);
 - (FLFinisher*) startActionInContext:(FLOperationContext*) context 
                           completion:(FLResultBlock) resultBlock;
 
+// optional overrides
+- (void) showProgress;
+- (void) willHandleError:(NSError*) error;
+- (void) willReportError:(NSError*) error;
+
 @end
 
+@protocol FLActionObserver <NSObject>
 
-//@interface FLAction ()
-//// backward compatibility
-//@property (readonly, strong) NSError* error;
-//@property (readonly, assign) BOOL didSucceed;
-//- (void) addOperation:(FLOperation*) operation;
-//- (id) firstOperation;
-//- (id) lastOperation;
-//
-//@end
+- (void) actionShowProgress:(FLAction*) action;
+- (void) actionUpdateProgress:(FLAction*) action;
+- (void) actionHideProgress:(FLAction*) action;
 
+- (void) action:(FLAction*) action showErrorAlert:(NSError*) error;
+- (void) actionHideErrorAlert:(FLAction*) action;
+
+- (void) action:(FLAction*) action showNotification:(id) notification;
+- (void) actionHideNotification:(FLAction*) action;
+
+- (void) action:(FLAction *)action handleError:(NSError *)error;
+
+@end
 
 // TODO: prob don't need this anymore
 #import "FLWeakReference.h"

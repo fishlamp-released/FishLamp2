@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 GreenTongue Software. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "FLCocoaUIRequired.h"
 #import "FLCocoaUIRequired.h"
 
 @protocol FLProgressView <NSObject>

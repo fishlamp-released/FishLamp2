@@ -6,7 +6,7 @@
 //  Copyright 2011 GreenTongue Software. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "FLCocoaRequired.h"
 #import "FLCore.h"
 #import "FLAction.h"
 

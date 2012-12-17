@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import "FLResulting.h"
+#import "FLResultObject.h"
 
 @implementation FLResultObject 
 

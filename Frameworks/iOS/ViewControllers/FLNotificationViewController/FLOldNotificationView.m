@@ -89,7 +89,7 @@ FLSynthesizeStructProperty(notificationViewStyle, setNotificationViewStyle, FLOl
     self.layer.shadowColor = [UIColor blackColor].CGColor;
 	self.layer.shadowOpacity = 1.0;
 	self.layer.shadowRadius = 10.0;
-	self.layer.shadowOffset = FLSizeMake(0,3);
+	self.layer.shadowOffset = CGSizeMake(0,3);
 	
 	[[self roundRectView] setCornerRadius:0];
 	[[self roundRectView] setBorderLineWidth:1.0];
@@ -404,7 +404,7 @@ FLSynthesizeStructProperty(notificationViewStyle, setNotificationViewStyle, FLOl
 		_titleLabel.lineBreakMode = UILineBreakModeTailTruncation;
 		_titleLabel.textColor = [UIColor whiteColor];
 		_titleLabel.shadowColor = [UIColor blackColor];
-		_titleLabel.shadowOffset	 = FLSizeMake (0.0, 0.0);
+		_titleLabel.shadowOffset	 = CGSizeMake (0.0, 0.0);
 		_titleLabel.backgroundColor = [UIColor clearColor];
 		_titleLabel.textAlignment = UITextAlignmentLeft;
 		_titleLabel.font = [self textViewFont];
@@ -434,7 +434,7 @@ FLSynthesizeStructProperty(notificationViewStyle, setNotificationViewStyle, FLOl
 			_textView.textAlignment = UITextAlignmentLeft;
 			_textView.numberOfLines = 0;
 			_textView.font	 = [self textViewFont];
-			_textView.shadowOffset	   = FLSizeMake (0.0, 0.0);
+			_textView.shadowOffset	   = CGSizeMake (0.0, 0.0);
 			_textView.shadowColor = [UIColor blackColor];
 			_textView.autoresizingMask = UIViewAutoresizingNone;
 			[self addSubview:_textView];
@@ -474,7 +474,7 @@ FLSynthesizeStructProperty(notificationViewStyle, setNotificationViewStyle, FLOl
 	{
 		_titleLabel.text = _title;
 		
-		[_titleLabel sizeToFitText:FLSizeMake(newFrame.size.width, CGFLOAT_MAX)];
+		[_titleLabel sizeToFitText:CGSizeMake(newFrame.size.width, CGFLOAT_MAX)];
 		CGRect labelFrame = _titleLabel.frame;
 		labelFrame = FLRectSetOrigin(labelFrame, 0,0);
 		labelFrame.size.width = newFrame.size.width;
@@ -531,7 +531,7 @@ FLSynthesizeStructProperty(notificationViewStyle, setNotificationViewStyle, FLOl
 	
 		if(_htmlView.isLoaded)
 		{
-			[_htmlView setSizeToLoadedSizeWithMaxSize:FLSizeMake(textFrame.size.width, maxHeight)];
+			[_htmlView setSizeToLoadedSizeWithMaxSize:CGSizeMake(textFrame.size.width, maxHeight)];
 		}
 		else
 		{

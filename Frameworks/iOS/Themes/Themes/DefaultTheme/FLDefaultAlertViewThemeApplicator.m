@@ -90,7 +90,7 @@ FLDialogViewStyleBlock FLAlertStyleNotificationBar = ^(FLDialogView* alert) {
 //    view.padding = 20.0f;
 //    view.titleLabel.textColor = [UIColor gray10Color];
 //    view.titleLabel.shadowColor = [UIColor whiteColor];
-//    view.titleLabel.shadowOffset = FLSizeMake(0,1);
+//    view.titleLabel.shadowOffset = CGSizeMake(0,1);
 //    view.titleLabel.font = [UIFont boldSystemFontOfSize:[UIFont systemFontSize]]; 
 //    [view.backgroundGradient setColorRange:[FLColorRange lightLightGrayGradientColorRange] forControlState:UIControlStateNormal];
 //    [view setNeedsLayout];

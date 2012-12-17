@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import "FLViewController.h"
+#import "FLCocoaUIRequired.h"
 
 @class FLWizardViewController;
 @class FLWizardPanel;
@@ -23,7 +23,7 @@
 - (void) wizardPanelRespondToOtherButton:(FLWizardPanel*) wizardPanel;
 @end
 
-@interface FLWizardPanel : FLViewController<FLWizardPanelDelegate> {
+@interface FLWizardPanel : UIViewController<FLWizardPanelDelegate> {
 @private
     __unsafe_unretained FLWizardViewController* _wizard;
     __unsafe_unretained id<FLWizardPanelDelegate> _delegate;

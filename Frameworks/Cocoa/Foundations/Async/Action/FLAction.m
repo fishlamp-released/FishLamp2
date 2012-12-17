@@ -33,7 +33,7 @@
 @synthesize minimumTimeBetweenWarnings = _minimumTimeBetweenWarnings;
 @synthesize onShowNotification = _willShowNotificationCallback;
 @synthesize onUpdateProgress = _progressCallback;
-@synthesize progressController = _progress;
+//@synthesize uiHandler   = _uiHandler;
 @synthesize operations = _operations;
 @synthesize starting = _startingBlock;
 @synthesize handledError = _handledError;
@@ -94,27 +94,29 @@ static id<FLActionErrorDelegate> s_errorDisplayDelegate = nil;
 }
 
 - (void) closeNotification {
-    id errorNotification = self.errorNotificationForUser;
+//    id errorNotification = self.errorNotificationForUser;
+//
+//    if(errorNotification && s_errorDisplayDelegate)
+//    {
+//        [self performBlockOnMainThread:^{
+//            if(s_errorDisplayDelegate)
+//            {
+//                [s_errorDisplayDelegate hideNotification:errorNotification];
+//            }
+//        }];
+//    }
+//
+//	FLReleaseWithNil(_errorNotification);
 
-    if(errorNotification && s_errorDisplayDelegate)
-    {
-        [self performBlockOnMainThread:^{
-            if(s_errorDisplayDelegate)
-            {
-                [s_errorDisplayDelegate hideNotification:errorNotification];
-            }
-        }];
-    }
-
-	FLReleaseWithNil(_errorNotification);
+//    FLPerformSelector(self.delegate, @selector(actionHideNotification:), self);
 }
 
 + (void) setDisplayErrorForActionCallback:(FLCallback_t) callback {
 
 }
 
-#if 0
 
+/*
 TODO("MF: fix activity updater");
 
 - (void) _activityUpdate:(FLNetworkOperation*) operation idleTimeSpan:(NSTimeInterval) idleTimeSpan {
@@ -185,14 +187,17 @@ TODO("MF: fix activity updater");
                 }];
     }
 }
-#endif
+*/
 
 - (void) dealloc {
+
+//    FLPerformSelector1(self.delegate, @selector(actionHideNotification:), self);
+//    self.delegate = nil;
+
 #if FL_MRC    
     FLSendDeallocNotification();
 #endif
 
-	[self closeNotification];
     [_operations removeObserver:self];
 
 #if FL_MRC    
@@ -201,7 +206,6 @@ TODO("MF: fix activity updater");
     [_operations release];
     [_progressCallback release];
     [_willShowNotificationCallback release];
-    [_progress release];
     [super dealloc];
 #endif        
 }
@@ -225,30 +229,34 @@ TODO("MF: fix activity updater");
     return _actionDescription.actionType;
 }
 
-- (void) notificationViewUserClosed:(id) view {
-//	  self.disableWarningNotifications = YES;
+//- (id) errorNotificationForUser {
+//	return _errorNotification ? _errorNotification.object : nil;
+//}
+//
+//- (void) setErrorNotificationForUser:(id) notification {
+//	if(!_errorNotification) {
+//		_errorNotification = [[FLWeakReference alloc] init];
+//	}
+//	
+//	_errorNotification.object = notification;
+//}
+
+- (void) willHandleError:(NSError*)  error{
+    if(!self.handledError) {
+        FLInvokeCallback(s_failedCallback, self);
+    }
+    
+    if(!self.handledError) {
+//        FLPerformSelector2(self.delegate, @selector(action:handleError:), self, error);
+    }
+    
 }
 
-- (id) errorNotificationForUser {
-	return _errorNotification ? _errorNotification.object : nil;
-}
-
-- (void) setErrorNotificationForUser:(id) notification {
-	if(!_errorNotification) {
-		_errorNotification = [[FLWeakReference alloc] init];
-	}
-	
-	_errorNotification.object = notification;
-}
-
-- (void) willHandleError {
-	FLInvokeCallback(s_failedCallback, self);
-}
-
-- (void) willReportError {
+- (void) willReportError:(NSError*) error {
 	if(!self.handledError && !self.disableErrorNotifications) {
+            
 		if(_willShowNotificationCallback) {
-			_willShowNotificationCallback(self);
+			_willShowNotificationCallback(self, error);
 		}
 		
 		if(!self.handledError && !self.disableErrorNotifications) {
@@ -264,18 +272,20 @@ TODO("MF: fix activity updater");
 }
 
 - (void) showProgress {
-	if(_progress) {
-		if(_actionDescription) {
-			NSString* title = _actionDescription.title;
-			FLAssertStringIsNotEmpty_v(title,nil);
-			
-			if(FLStringIsNotEmpty(title)) {
-				[_progress setTitle:title];
-			}
-		}
+//    FLPerformSelector1(self.delegate, @selector(actionShowProgress:), self))
 
-      	[_progress showProgress];
-	}
+//	if(_progress) {
+//		if(_actionDescription) {
+//			NSString* title = _actionDescription.title;
+//			FLAssertStringIsNotEmpty_v(title,nil);
+//			
+//			if(FLStringIsNotEmpty(title)) {
+//				[_progress setTitle:title];
+//			}
+//		}
+//
+//      	[_progress showProgress];
+//	}
 }
 
 - (void) addOperations:(FLOperation*) operation {
@@ -290,18 +300,21 @@ TODO("MF: fix activity updater");
 }
 
 - (id) actionFinished:(id) result {
-    if(_progress) {
-        [_progress hideProgress];
-    }
+//    if(_progress) {
+//        [_progress hideProgress];
+//    }
+    
+//    FLPerformSelector1(self.delegate, @selector(actionHideProgress:), self))
+
 
     @try {
         if(![result error] || [[result error] isCancelError]) {
             [self closeNotification];
         } else {
-            [self willHandleError];
+            [self willHandleError:[result error]];
             
             if(!self.handledError) {
-                [self willReportError];
+                [self willReportError:[result error]];
             }
         }
     }

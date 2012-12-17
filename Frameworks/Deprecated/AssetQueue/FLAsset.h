@@ -6,7 +6,7 @@
 //  Copyright 2011 GreenTongue Software. All rights reserved.
 //
 
-#import "FLCocoaUIRequired.h"
+#import "FLCocoaRequired.h"
 #import "FLStorableObject.h"
 
 @class FLQueuedAsset;

@@ -7,7 +7,7 @@
  *
  */
 
-#import <Foundation/Foundation.h>
+#import "FLCocoaRequired.h"
 #import "FLCore.h"
 
 #define FLParserStackMaxDepth 128

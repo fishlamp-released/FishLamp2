@@ -225,7 +225,7 @@ FLSynthesizeStructProperty(automaticallyShowBackButton, setAutomaticallyShowBack
 		}
 		_label.textColor = [UIColor whiteColor];
 		_label.shadowColor = [UIColor darkTextColor];
-		_label.shadowOffset	= FLSizeMake (0.0, 0.0);
+		_label.shadowOffset	= CGSizeMake (0.0, 0.0);
 		_label.lineBreakMode = UILineBreakModeTailTruncation;
 		_label.backgroundColor = [UIColor clearColor];
 		_label.textAlignment = UITextAlignmentCenter;
@@ -262,7 +262,7 @@ FLSynthesizeStructProperty(automaticallyShowBackButton, setAutomaticallyShowBack
 				_subtitleLabel.font = [UIFont systemFontOfSize:[UIFont smallSystemFontSize]];
 				_subtitleLabel.textColor = [UIColor grayColor];
 				_subtitleLabel.shadowColor = [UIColor darkTextColor];
-				_subtitleLabel.shadowOffset	= FLSizeMake (0.0, 0.0);
+				_subtitleLabel.shadowOffset	= CGSizeMake (0.0, 0.0);
 				_subtitleLabel.lineBreakMode = UILineBreakModeTailTruncation;
 				_subtitleLabel.backgroundColor = [UIColor clearColor];
 				_subtitleLabel.textAlignment = UITextAlignmentCenter;

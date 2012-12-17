@@ -61,7 +61,7 @@
     
 //        if(_imageView.image.size.height > Height)
 //        {
-//            [_imageView resizeProportionally:[_imageView.image proportionalBoundsWithMaxSize:FLSizeMake(1024.0f, Height)].size];
+//            [_imageView resizeProportionally:[_imageView.image proportionalBoundsWithMaxSize:CGSizeMake(1024.0f, Height)].size];
 //        }
 //        else
         {

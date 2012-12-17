@@ -24,7 +24,7 @@
 {
 	if((self = [super initWithNibName:@"FLPhotoMapView" bundle:nil]))
 	{
-        self.contentSizeForViewInFloatingView = FLSizeMake( 500, 500);
+        self.contentSizeForViewInFloatingView = CGSizeMake( 500, 500);
 	}
 	
 	return self;
@@ -74,7 +74,7 @@
 	CLLocationCoordinate2D centerCoord = { 37.33182, -122.03118 }; // apple headquarters
 	[self.mapView setCenterCoordinate:centerCoord zoomLevel:1 animated:NO];
 
-//    self.contentSizeForViewInFloatingView = FLSizeMake( 500, MIN(600, self.view.frame.size.height));
+//    self.contentSizeForViewInFloatingView = CGSizeMake( 500, MIN(600, self.view.frame.size.height));
 }
 
 - (IBAction) mapSwitched:(UISegmentedControl*) mapSwitcher
@@ -137,7 +137,7 @@
 //	FLFloatingViewController* popover = self.floatingViewController;
 //	if(popover)
 //	{
-//		self.contentSizeForViewInPopup = FLSizeMake(500, MIN(600, self.view.frame.size.height));
+//		self.contentSizeForViewInPopup = CGSizeMake(500, MIN(600, self.view.frame.size.height));
 //	}
 //}
 

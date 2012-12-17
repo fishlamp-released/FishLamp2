@@ -8,7 +8,7 @@
 #if 0
 #import "FLCore.h"
 
-#import <Foundation/Foundation.h>
+#import "FLCocoaRequired.h"
 #import <SystemConfiguration/SystemConfiguration.h>
 
 

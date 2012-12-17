@@ -7,7 +7,6 @@
 //
 
 #import "FLViewControllerStack.h"
-#import "FLViewController.h"
 
 @implementation FLViewControllerStack
 
@@ -74,7 +73,7 @@
    	self.view.layer.shadowColor = [UIColor blackColor].CGColor;
 	self.view.layer.shadowOpacity = .8;
 	self.view.layer.shadowRadius = 20.0;
-	self.view.layer.shadowOffset = FLSizeMake(0,3);
+	self.view.layer.shadowOffset = CGSizeMake(0,3);
 #if IOS
     self.view.clipsToBounds = NO;
 #endif

@@ -35,7 +35,7 @@
     self.textLabel.textColor = [UIColor gray10Color];
 #if IOS
     self.textLabel.shadowColor = [UIColor whiteColor];
-    self.textLabel.shadowOffset = FLSizeMake(0,1);
+    self.textLabel.shadowOffset = CGSizeMake(0,1);
 #endif
 }
 

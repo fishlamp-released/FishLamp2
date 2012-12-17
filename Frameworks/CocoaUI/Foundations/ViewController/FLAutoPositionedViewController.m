@@ -8,6 +8,7 @@
 
 #import "FLAutoPositionedViewController.h"
 #import "FLViewContentsDescriptor.h"
+#import "UIViewController+FLAdditions.h"
 
 #if IOS
 #import "FLKeyboardManager.h"
@@ -38,7 +39,7 @@
 }
 
 + (CGSize) defaultAutoPostionedViewSize {
-    return FLSizeMake(200,200);
+    return CGSizeMake(200,200);
 }
 
 - (BOOL) viewEnclosesStatusBar {

@@ -312,9 +312,11 @@
         }
         
         [self postObservation:@selector(userDataService:appVersionWillChange:) withObject:_upgradeTaskList];
-        
+
+/*        
         _upgradeTaskList.progressController = [[self class] createVersionUpgradeProgressViewController];
         [_upgradeTaskList.progressController setTitle:[NSString stringWithFormat:(NSLocalizedString(@"Updating to Version: %@", nil)), [FLAppInfo appVersion]]];
+*/        
 
         id result = [_upgradeTaskList runSynchronously];
         

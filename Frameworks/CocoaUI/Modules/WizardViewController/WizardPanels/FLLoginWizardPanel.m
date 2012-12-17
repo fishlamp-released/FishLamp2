@@ -9,7 +9,7 @@
 #import "FLLoginWizardPanel.h"
 #import "FLProgressWizardPanel.h"
 #import "NSObject+Blocks.h"
-#import "FLViewController.h"
+#import "UIViewController+FLAdditions.h"
 
 @interface FLLoginWizardPanel ()
 - (IBAction)resetLogin:(id)sender;

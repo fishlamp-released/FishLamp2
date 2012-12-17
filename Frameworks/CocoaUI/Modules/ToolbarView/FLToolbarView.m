@@ -10,7 +10,7 @@
 #import "FLArrangement.h"
 #import "UIImage+FLColorize.h"
 #import "FLGradientView.h"
-#import "FLViewController.h"
+#import "UIViewController+FLAdditions.h"
 
 #import "FLGradientView.h"
 #import "FLSingleRowColumnArrangement.h"

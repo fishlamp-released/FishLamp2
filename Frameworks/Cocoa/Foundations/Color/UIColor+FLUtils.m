@@ -7,6 +7,8 @@
 //
 
 #import "UIColor+FLUtils.h"
+#import "FLColorUtilities.h"
+#import "FLColorValues.h"
 
 @implementation UIColor (FLUtils)
 

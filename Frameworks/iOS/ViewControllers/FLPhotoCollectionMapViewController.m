@@ -128,11 +128,11 @@
 //		  
 //			  if(UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation))
 //			  {
-//				[controller setFloatingViewContentSize: FLSizeMake(600, size.height) animated:NO];
+//				[controller setFloatingViewContentSize: CGSizeMake(600, size.height) animated:NO];
 //			  }
 //			  else
 //			  {
-//				[controller setFloatingViewContentSize: FLSizeMake(600, size.height) animated:NO];
+//				[controller setFloatingViewContentSize: CGSizeMake(600, size.height) animated:NO];
 //			  }
 		}
 	}

@@ -6,12 +6,11 @@
 //	Copyright 2009 GreenTongue Software. All rights reserved.
 //
 
-//#import <Foundation/Foundation.h>
+//#import "FLCocoaRequired.h"
 //#import "FLCore.h"
 //
 //#import "FLCachedImageBaseClass.h"
-//#import "FLCocoaUIRequired.h"
-//
+//#import "FLCocoaRequired.h"//
 //// TODO: store url as NSURL in superclass
 //@interface FLCachedImage : FLCachedImageBaseClass {
 //@private

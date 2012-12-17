@@ -6,9 +6,7 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import "FLCocoaUIRequired.h"
-#import "FLColorValues.h"
-#import "NSColor+FLCompatibility.h"
+#import "FLCocoaRequired.h"
 
 @interface UIColor (FLUtils)
 

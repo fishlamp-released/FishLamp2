@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import "FLCocoaUIRequired.h"
+#import "FLCocoaRequired.h"
 #import "FLStorable.h"
 
 extern NSString* const FLPhotoType;
