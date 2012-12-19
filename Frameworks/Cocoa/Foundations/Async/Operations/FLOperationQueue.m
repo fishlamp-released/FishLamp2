@@ -94,7 +94,10 @@
 }
 
 - (void) operationWasAdded:(FLOperation*) operation {
+    
     [operation addObserver:self];
+    
+    
     [self postObservation:@selector(operationQueue:operationWasAdded:) withObject:operation];
 }
 

@@ -1943,24 +1943,24 @@
 		2741E9BA16793DB600CA87A9 /* NSNotification+FLExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741E0AC16793DB600CA87A9 /* NSNotification+FLExtras.m */; };
 		2741E9BB16793DB600CA87A9 /* NSNotification+FLExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741E0AC16793DB600CA87A9 /* NSNotification+FLExtras.m */; };
 		2741E9BC16793DB600CA87A9 /* NSNotification+FLExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741E0AC16793DB600CA87A9 /* NSNotification+FLExtras.m */; };
-		2741E9BD16793DB600CA87A9 /* FLObservable.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741E0AE16793DB600CA87A9 /* FLObservable.h */; };
-		2741E9BE16793DB600CA87A9 /* FLObservable.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741E0AE16793DB600CA87A9 /* FLObservable.h */; };
-		2741E9BF16793DB600CA87A9 /* FLObservable.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741E0AE16793DB600CA87A9 /* FLObservable.h */; };
-		2741E9C016793DB600CA87A9 /* FLObservable.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741E0AE16793DB600CA87A9 /* FLObservable.h */; };
-		2741E9C116793DB600CA87A9 /* FLObservable.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741E0AF16793DB600CA87A9 /* FLObservable.m */; };
-		2741E9C216793DB600CA87A9 /* FLObservable.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741E0AF16793DB600CA87A9 /* FLObservable.m */; };
-		2741E9C316793DB600CA87A9 /* FLObservable.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741E0AF16793DB600CA87A9 /* FLObservable.m */; };
-		2741E9C416793DB600CA87A9 /* FLObservable.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741E0AF16793DB600CA87A9 /* FLObservable.m */; };
-		2741E9C516793DB600CA87A9 /* FLObservable.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741E0AF16793DB600CA87A9 /* FLObservable.m */; };
-		2741E9C616793DB600CA87A9 /* FLObservable2.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741E0B016793DB600CA87A9 /* FLObservable2.h */; };
-		2741E9C716793DB600CA87A9 /* FLObservable2.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741E0B016793DB600CA87A9 /* FLObservable2.h */; };
-		2741E9C816793DB600CA87A9 /* FLObservable2.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741E0B016793DB600CA87A9 /* FLObservable2.h */; };
-		2741E9C916793DB600CA87A9 /* FLObservable2.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741E0B016793DB600CA87A9 /* FLObservable2.h */; };
-		2741E9CA16793DB600CA87A9 /* FLObservable2.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741E0B116793DB600CA87A9 /* FLObservable2.m */; };
-		2741E9CB16793DB600CA87A9 /* FLObservable2.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741E0B116793DB600CA87A9 /* FLObservable2.m */; };
-		2741E9CC16793DB600CA87A9 /* FLObservable2.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741E0B116793DB600CA87A9 /* FLObservable2.m */; };
-		2741E9CD16793DB600CA87A9 /* FLObservable2.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741E0B116793DB600CA87A9 /* FLObservable2.m */; };
-		2741E9CE16793DB600CA87A9 /* FLObservable2.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741E0B116793DB600CA87A9 /* FLObservable2.m */; };
+		2741E9BD16793DB600CA87A9 /* FLOldObservable.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741E0AE16793DB600CA87A9 /* FLOldObservable.h */; };
+		2741E9BE16793DB600CA87A9 /* FLOldObservable.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741E0AE16793DB600CA87A9 /* FLOldObservable.h */; };
+		2741E9BF16793DB600CA87A9 /* FLOldObservable.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741E0AE16793DB600CA87A9 /* FLOldObservable.h */; };
+		2741E9C016793DB600CA87A9 /* FLOldObservable.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741E0AE16793DB600CA87A9 /* FLOldObservable.h */; };
+		2741E9C116793DB600CA87A9 /* FLOldObservable.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741E0AF16793DB600CA87A9 /* FLOldObservable.m */; };
+		2741E9C216793DB600CA87A9 /* FLOldObservable.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741E0AF16793DB600CA87A9 /* FLOldObservable.m */; };
+		2741E9C316793DB600CA87A9 /* FLOldObservable.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741E0AF16793DB600CA87A9 /* FLOldObservable.m */; };
+		2741E9C416793DB600CA87A9 /* FLOldObservable.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741E0AF16793DB600CA87A9 /* FLOldObservable.m */; };
+		2741E9C516793DB600CA87A9 /* FLOldObservable.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741E0AF16793DB600CA87A9 /* FLOldObservable.m */; };
+		2741E9C616793DB600CA87A9 /* FLObservable.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741E0B016793DB600CA87A9 /* FLObservable.h */; };
+		2741E9C716793DB600CA87A9 /* FLObservable.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741E0B016793DB600CA87A9 /* FLObservable.h */; };
+		2741E9C816793DB600CA87A9 /* FLObservable.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741E0B016793DB600CA87A9 /* FLObservable.h */; };
+		2741E9C916793DB600CA87A9 /* FLObservable.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741E0B016793DB600CA87A9 /* FLObservable.h */; };
+		2741E9CA16793DB600CA87A9 /* FLObservable.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741E0B116793DB600CA87A9 /* FLObservable.m */; };
+		2741E9CB16793DB600CA87A9 /* FLObservable.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741E0B116793DB600CA87A9 /* FLObservable.m */; };
+		2741E9CC16793DB600CA87A9 /* FLObservable.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741E0B116793DB600CA87A9 /* FLObservable.m */; };
+		2741E9CD16793DB600CA87A9 /* FLObservable.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741E0B116793DB600CA87A9 /* FLObservable.m */; };
+		2741E9CE16793DB600CA87A9 /* FLObservable.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741E0B116793DB600CA87A9 /* FLObservable.m */; };
 		2741E9CF16793DB600CA87A9 /* FLDatabaseLink.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741E0B316793DB600CA87A9 /* FLDatabaseLink.h */; };
 		2741E9D016793DB600CA87A9 /* FLDatabaseLink.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741E0B316793DB600CA87A9 /* FLDatabaseLink.h */; };
 		2741E9D116793DB600CA87A9 /* FLDatabaseLink.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741E0B316793DB600CA87A9 /* FLDatabaseLink.h */; };
@@ -4180,10 +4180,10 @@
 		2741E0AA16793DB600CA87A9 /* FLMutableNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLMutableNotification.m; sourceTree = "<group>"; };
 		2741E0AB16793DB600CA87A9 /* NSNotification+FLExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotification+FLExtras.h"; sourceTree = "<group>"; };
 		2741E0AC16793DB600CA87A9 /* NSNotification+FLExtras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNotification+FLExtras.m"; sourceTree = "<group>"; };
-		2741E0AE16793DB600CA87A9 /* FLObservable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLObservable.h; sourceTree = "<group>"; };
-		2741E0AF16793DB600CA87A9 /* FLObservable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLObservable.m; sourceTree = "<group>"; };
-		2741E0B016793DB600CA87A9 /* FLObservable2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLObservable2.h; sourceTree = "<group>"; };
-		2741E0B116793DB600CA87A9 /* FLObservable2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLObservable2.m; sourceTree = "<group>"; };
+		2741E0AE16793DB600CA87A9 /* FLOldObservable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLOldObservable.h; sourceTree = "<group>"; };
+		2741E0AF16793DB600CA87A9 /* FLOldObservable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLOldObservable.m; sourceTree = "<group>"; };
+		2741E0B016793DB600CA87A9 /* FLObservable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLObservable.h; sourceTree = "<group>"; };
+		2741E0B116793DB600CA87A9 /* FLObservable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLObservable.m; sourceTree = "<group>"; };
 		2741E0B316793DB600CA87A9 /* FLDatabaseLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLDatabaseLink.h; sourceTree = "<group>"; };
 		2741E0B416793DB600CA87A9 /* FLDatabaseLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLDatabaseLink.m; sourceTree = "<group>"; };
 		2741E0B516793DB600CA87A9 /* FLImageFolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLImageFolder.h; sourceTree = "<group>"; };
@@ -5636,10 +5636,10 @@
 		2741E0AD16793DB600CA87A9 /* Observable */ = {
 			isa = PBXGroup;
 			children = (
-				2741E0AE16793DB600CA87A9 /* FLObservable.h */,
-				2741E0AF16793DB600CA87A9 /* FLObservable.m */,
-				2741E0B016793DB600CA87A9 /* FLObservable2.h */,
-				2741E0B116793DB600CA87A9 /* FLObservable2.m */,
+				2741E0AE16793DB600CA87A9 /* FLOldObservable.h */,
+				2741E0AF16793DB600CA87A9 /* FLOldObservable.m */,
+				2741E0B016793DB600CA87A9 /* FLObservable.h */,
+				2741E0B116793DB600CA87A9 /* FLObservable.m */,
 			);
 			path = Observable;
 			sourceTree = "<group>";
@@ -6641,8 +6641,8 @@
 				2741E9A216793DB600CA87A9 /* FLWeakReference.h in Headers */,
 				2741E9AB16793DB600CA87A9 /* FLMutableNotification.h in Headers */,
 				2741E9B416793DB600CA87A9 /* NSNotification+FLExtras.h in Headers */,
-				2741E9BD16793DB600CA87A9 /* FLObservable.h in Headers */,
-				2741E9C616793DB600CA87A9 /* FLObservable2.h in Headers */,
+				2741E9BD16793DB600CA87A9 /* FLOldObservable.h in Headers */,
+				2741E9C616793DB600CA87A9 /* FLObservable.h in Headers */,
 				2741E9CF16793DB600CA87A9 /* FLDatabaseLink.h in Headers */,
 				2741E9D816793DB600CA87A9 /* FLImageFolder.h in Headers */,
 				2741E9E116793DB600CA87A9 /* FLImageProperties.h in Headers */,
@@ -7082,8 +7082,8 @@
 				2741E9A416793DB600CA87A9 /* FLWeakReference.h in Headers */,
 				2741E9AD16793DB600CA87A9 /* FLMutableNotification.h in Headers */,
 				2741E9B616793DB600CA87A9 /* NSNotification+FLExtras.h in Headers */,
-				2741E9BF16793DB600CA87A9 /* FLObservable.h in Headers */,
-				2741E9C816793DB600CA87A9 /* FLObservable2.h in Headers */,
+				2741E9BF16793DB600CA87A9 /* FLOldObservable.h in Headers */,
+				2741E9C816793DB600CA87A9 /* FLObservable.h in Headers */,
 				2741E9D116793DB600CA87A9 /* FLDatabaseLink.h in Headers */,
 				2741E9DA16793DB600CA87A9 /* FLImageFolder.h in Headers */,
 				2741E9E316793DB600CA87A9 /* FLImageProperties.h in Headers */,
@@ -7523,8 +7523,8 @@
 				2741E9A316793DB600CA87A9 /* FLWeakReference.h in Headers */,
 				2741E9AC16793DB600CA87A9 /* FLMutableNotification.h in Headers */,
 				2741E9B516793DB600CA87A9 /* NSNotification+FLExtras.h in Headers */,
-				2741E9BE16793DB600CA87A9 /* FLObservable.h in Headers */,
-				2741E9C716793DB600CA87A9 /* FLObservable2.h in Headers */,
+				2741E9BE16793DB600CA87A9 /* FLOldObservable.h in Headers */,
+				2741E9C716793DB600CA87A9 /* FLObservable.h in Headers */,
 				2741E9D016793DB600CA87A9 /* FLDatabaseLink.h in Headers */,
 				2741E9D916793DB600CA87A9 /* FLImageFolder.h in Headers */,
 				2741E9E216793DB600CA87A9 /* FLImageProperties.h in Headers */,
@@ -7964,8 +7964,8 @@
 				2741E9A516793DB600CA87A9 /* FLWeakReference.h in Headers */,
 				2741E9AE16793DB600CA87A9 /* FLMutableNotification.h in Headers */,
 				2741E9B716793DB600CA87A9 /* NSNotification+FLExtras.h in Headers */,
-				2741E9C016793DB600CA87A9 /* FLObservable.h in Headers */,
-				2741E9C916793DB600CA87A9 /* FLObservable2.h in Headers */,
+				2741E9C016793DB600CA87A9 /* FLOldObservable.h in Headers */,
+				2741E9C916793DB600CA87A9 /* FLObservable.h in Headers */,
 				2741E9D216793DB600CA87A9 /* FLDatabaseLink.h in Headers */,
 				2741E9DB16793DB600CA87A9 /* FLImageFolder.h in Headers */,
 				2741E9E416793DB600CA87A9 /* FLImageProperties.h in Headers */,
@@ -8496,8 +8496,8 @@
 				2741E9A716793DB600CA87A9 /* FLWeakReference.m in Sources */,
 				2741E9B016793DB600CA87A9 /* FLMutableNotification.m in Sources */,
 				2741E9B916793DB600CA87A9 /* NSNotification+FLExtras.m in Sources */,
-				2741E9C216793DB600CA87A9 /* FLObservable.m in Sources */,
-				2741E9CB16793DB600CA87A9 /* FLObservable2.m in Sources */,
+				2741E9C216793DB600CA87A9 /* FLOldObservable.m in Sources */,
+				2741E9CB16793DB600CA87A9 /* FLObservable.m in Sources */,
 				2741E9D416793DB600CA87A9 /* FLDatabaseLink.m in Sources */,
 				2741E9DD16793DB600CA87A9 /* FLImageFolder.m in Sources */,
 				2741E9E616793DB600CA87A9 /* FLImageProperties.m in Sources */,
@@ -8898,8 +8898,8 @@
 				2741E9A916793DB600CA87A9 /* FLWeakReference.m in Sources */,
 				2741E9B216793DB600CA87A9 /* FLMutableNotification.m in Sources */,
 				2741E9BB16793DB600CA87A9 /* NSNotification+FLExtras.m in Sources */,
-				2741E9C416793DB600CA87A9 /* FLObservable.m in Sources */,
-				2741E9CD16793DB600CA87A9 /* FLObservable2.m in Sources */,
+				2741E9C416793DB600CA87A9 /* FLOldObservable.m in Sources */,
+				2741E9CD16793DB600CA87A9 /* FLObservable.m in Sources */,
 				2741E9D616793DB600CA87A9 /* FLDatabaseLink.m in Sources */,
 				2741E9DF16793DB600CA87A9 /* FLImageFolder.m in Sources */,
 				2741E9E816793DB600CA87A9 /* FLImageProperties.m in Sources */,
@@ -9300,8 +9300,8 @@
 				2741E9A616793DB600CA87A9 /* FLWeakReference.m in Sources */,
 				2741E9AF16793DB600CA87A9 /* FLMutableNotification.m in Sources */,
 				2741E9B816793DB600CA87A9 /* NSNotification+FLExtras.m in Sources */,
-				2741E9C116793DB600CA87A9 /* FLObservable.m in Sources */,
-				2741E9CA16793DB600CA87A9 /* FLObservable2.m in Sources */,
+				2741E9C116793DB600CA87A9 /* FLOldObservable.m in Sources */,
+				2741E9CA16793DB600CA87A9 /* FLObservable.m in Sources */,
 				2741E9D316793DB600CA87A9 /* FLDatabaseLink.m in Sources */,
 				2741E9DC16793DB600CA87A9 /* FLImageFolder.m in Sources */,
 				2741E9E516793DB600CA87A9 /* FLImageProperties.m in Sources */,
@@ -9702,8 +9702,8 @@
 				2741E9A816793DB600CA87A9 /* FLWeakReference.m in Sources */,
 				2741E9B116793DB600CA87A9 /* FLMutableNotification.m in Sources */,
 				2741E9BA16793DB600CA87A9 /* NSNotification+FLExtras.m in Sources */,
-				2741E9C316793DB600CA87A9 /* FLObservable.m in Sources */,
-				2741E9CC16793DB600CA87A9 /* FLObservable2.m in Sources */,
+				2741E9C316793DB600CA87A9 /* FLOldObservable.m in Sources */,
+				2741E9CC16793DB600CA87A9 /* FLObservable.m in Sources */,
 				2741E9D516793DB600CA87A9 /* FLDatabaseLink.m in Sources */,
 				2741E9DE16793DB600CA87A9 /* FLImageFolder.m in Sources */,
 				2741E9E716793DB600CA87A9 /* FLImageProperties.m in Sources */,
@@ -10104,8 +10104,8 @@
 				2741E9AA16793DB600CA87A9 /* FLWeakReference.m in Sources */,
 				2741E9B316793DB600CA87A9 /* FLMutableNotification.m in Sources */,
 				2741E9BC16793DB600CA87A9 /* NSNotification+FLExtras.m in Sources */,
-				2741E9C516793DB600CA87A9 /* FLObservable.m in Sources */,
-				2741E9CE16793DB600CA87A9 /* FLObservable2.m in Sources */,
+				2741E9C516793DB600CA87A9 /* FLOldObservable.m in Sources */,
+				2741E9CE16793DB600CA87A9 /* FLObservable.m in Sources */,
 				2741E9D716793DB600CA87A9 /* FLDatabaseLink.m in Sources */,
 				2741E9E016793DB600CA87A9 /* FLImageFolder.m in Sources */,
 				2741E9E916793DB600CA87A9 /* FLImageProperties.m in Sources */,

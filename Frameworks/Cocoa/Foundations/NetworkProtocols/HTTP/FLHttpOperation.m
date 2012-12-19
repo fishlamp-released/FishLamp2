@@ -44,10 +44,11 @@
 - (FLHttpResponse*) sendHttpRequest:(FLMutableHttpRequest*) request 
                   withAuthenticator:(id<FLHttpRequestAuthenticator>) authenticator {
     
-    FLAssertNotNil_(authenticator);
     FLAssertNotNil_(request);
 
-    FLThrowError([authenticator authenticateHTTPRequest:request]);
+    if(authenticator) {
+        FLThrowError([authenticator authenticateHTTPRequest:request]);
+    }
     
     return [self sendHttpRequest:request];
 }

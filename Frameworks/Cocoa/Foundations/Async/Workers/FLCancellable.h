@@ -7,7 +7,6 @@
 //
 #import "FLCore.h"
 #import "FLResult.h"
-#import "FLObservable.h"
 
 @class FLFinisher;
 

@@ -20,8 +20,8 @@
 
 @implementation FLHttpConnection
 
-synthesize_(httpRequest)
-synthesize_(httpResponse)
+@synthesize httpRequest = _httpRequest;
+@synthesize httpResponse = _httpResponse;
 
 - (id<FLNetworkStream>) createNetworkStream {
     return [FLHttpStream httpStream:self.httpRequest];
@@ -52,7 +52,10 @@ synthesize_(httpResponse)
                  toURL:(NSURL*) url {
 
     [self touchTimestamp];
-    
+   
+    // FIXME
+      
+/*    
     [self visitObservers:^(id<FLNetworkConnectionObserver> observer, BOOL* stop) { 
         
         if([observer respondsToSelector:@selector(networkConnection:shouldRedirect:toURL:)]) {
@@ -63,6 +66,7 @@ synthesize_(httpResponse)
             *stop = YES;
         }
     }];
+ */
 }
 
 - (void) networkStreamWillClose:(FLHttpStream*) networkStream {

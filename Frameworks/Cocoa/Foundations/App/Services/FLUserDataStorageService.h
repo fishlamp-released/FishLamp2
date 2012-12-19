@@ -57,8 +57,8 @@
 + (id) createUserLoggingOutProgressViewController;
 @end
 
-@protocol FLUserDataServiceObserver <FLObserver>
-@optional
+@protocol FLUserDataServiceObserver <NSObject>
+
 - (void) userDataService:(FLUserDataStorageService*) userDataService
     appVersionWillChange:(FLVersionUpgradeLengthyTaskList*) taskListToAddTo;
 

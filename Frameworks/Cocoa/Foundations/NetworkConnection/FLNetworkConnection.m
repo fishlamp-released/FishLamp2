@@ -22,7 +22,8 @@ const FLNetworkConnectionByteCount FLNetworkConnectionByteCountZero = {0, 0, 0};
 @property (readwrite, assign) FLNetworkConnectionByteCount writeByteCount;
 @property (readwrite, assign) FLNetworkConnectionByteCount readByteCount;
 
-- (void) setTimedOut:(FLTimeoutTimer*) timer;
+// timer observer
+- (void) timeoutTimerDidTimeout:(FLTimeoutTimer*) timer;
 @end
 
 @implementation FLNetworkConnection
@@ -39,7 +40,7 @@ const FLNetworkConnectionByteCount FLNetworkConnectionByteCountZero = {0, 0, 0};
     if((self = [super init])) {
         self.timeoutTimer = [FLTimeoutTimer timeoutTimer:FLNetworkConnectionDefaultTimeout];
         
-        [self.timeoutTimer addObserver:self forEvent:FLTimeoutTimerTimeoutEvent eventHandler:@selector(setTimedOut:)];
+        [self.timeoutTimer addObserver:self forEvent:@selector(timeoutTimerDidTimeout:)];
     
         _cancelHandler = [[FLCancellable alloc] init];
     }
@@ -101,7 +102,7 @@ const FLNetworkConnectionByteCount FLNetworkConnectionByteCountZero = {0, 0, 0};
 #endif
 }
 
-- (void) setTimedOut:(FLTimeoutTimer*) timer {
+- (void) timeoutTimerDidTimeout:(FLTimeoutTimer*) timer {
      [self.networkStream closeStreamWithResult:[NSError timeoutError]];
 }
 

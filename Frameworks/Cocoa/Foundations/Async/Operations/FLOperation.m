@@ -11,6 +11,8 @@
 #import "FLFinisher.h"
 #import "FLDispatchQueue.h"
 
+NSString* const FLOperationFinishedEvent;
+
 @interface FLOperation ()
 @property (readwrite, copy, nonatomic) FLRunOperationBlock runBlock;
 @property (readwrite, assign) id context;

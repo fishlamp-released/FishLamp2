@@ -43,8 +43,7 @@
 //    @end
 
 
-@protocol FLSessionObserver <FLObservable>
-@optional
+@protocol FLSessionObserver <NSObject>
 - (void) sessionWillOpen:(FLContext*) context;
 - (void) sessionDidOpen:(FLContext*) context;
 

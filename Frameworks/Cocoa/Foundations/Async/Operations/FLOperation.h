@@ -19,6 +19,8 @@
 
 typedef FLResult (^FLRunOperationBlock)(FLOperation* operation, id inputOrNil);
 
+extern NSString* const FLOperationFinishedEvent;
+
 @interface FLOperation : FLObservable<FLCancellable, FLContextual> {
 @private
     __unsafe_unretained id _context;
@@ -73,7 +75,9 @@ typedef FLResult (^FLRunOperationBlock)(FLOperation* operation, id inputOrNil);
 
 // these always happen in the thread the operation is running on
 - (void) operationWillRun:(FLOperation*) operation;
-- (void) operationDidFinish:(FLOperation*) operation withResult:(FLResult) withResult;
+
+- (void) operationDidFinish:(FLOperation*) operation 
+                 withResult:(FLResult) withResult;
 
 @end
 

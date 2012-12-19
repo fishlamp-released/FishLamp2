@@ -8,7 +8,6 @@
 
 #import "FLCocoaRequired.h"
 #import "FLCore.h"
-#import "FLObservable.h"
 #import "FLOperationQueue.h"
 #import "FLAnswerable.h"
 
@@ -93,8 +92,7 @@ typedef void (^FLObjectBlock)(id object);
 
 @end
 
-@protocol FLBackgroundTaskObserver <FLObserver>
-@optional
+@protocol FLBackgroundTaskObserver <NSObject>
 //- (BOOL) backgroundTaskMgrCanBeginBackgroundTasks:(FLBackgroundTaskMgr*) mgr;
 //- (BOOL) backgroundTaskMgr:(FLBackgroundTaskMgr*) mgr canBeginBackgroundTask:(id<FLBackgroundTask>) task;
 //

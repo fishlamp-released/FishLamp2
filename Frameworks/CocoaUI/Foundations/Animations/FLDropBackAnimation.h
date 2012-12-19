@@ -9,10 +9,13 @@
 #import "FLCocoaUIRequired.h"
 #import "FLAnimation.h"
 
-@interface FLDropBackAnimation : FLAnimation
+@interface FLZAxisAnimation : FLAnimation 
+@end
+
+@interface FLDropBackAnimation : FLZAxisAnimation
 
 @end
 
-@interface FLComeForwardAnimation : FLAnimation
+@interface FLComeForwardAnimation : FLZAxisAnimation
 
 @end

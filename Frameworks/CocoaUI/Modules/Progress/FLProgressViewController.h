@@ -77,7 +77,9 @@ typedef void (^FLProgressViewControllerBlock)(id progress);
 - (id) initWithProgressViewClass:(Class) viewClass;
 
 + (id) progressViewController:(Class) viewClass;
-+ (id) progressViewController:(Class) viewClass presentationBehavior:(id<FLPresentationBehavior>) presentationBehavior;
+
++ (id) progressViewController:(Class) viewClass 
+         presentationBehavior:(id<FLPresentationBehavior>) presentationBehavior;
 
 // TODO(MF): Not implemented yet.
 - (void) setStartDelay:(CGFloat) startDelay;

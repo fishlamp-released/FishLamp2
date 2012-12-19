@@ -89,7 +89,6 @@ typedef id (^FLCreateOperationBlock)();
 @end
 
 @protocol FLOperationQueueObserver <NSObject>
-@optional
 - (void) operationQueue:(FLOperationQueue*) queue operationWasAdded:(FLOperation*) operation;
 - (void) operationQueue:(FLOperationQueue*) queue operationWasRemoved:(FLOperation*) operation;
 

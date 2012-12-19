@@ -258,9 +258,6 @@
         [self updateBackButtonEnabledState];
         [self wizardPanelDidAppear:toShow];
         
-        [toHide.view removeFromSuperview];
-        toHide.view.alphaValue = 1.0;
-        
         if(completion) {
             completion(toShow);
         }
@@ -272,15 +269,86 @@
 
     if(animated) {
         
-        FLAnimation* animation = [FLAnimation animation];
-        [animation addAnimation:[FLFadeOutAnimation animationWithTarget:toHide]];
-        [animation addAnimation:[FLDropBackAnimation animationWithTarget:toHide]];
-        [animation addAnimation:[FLSlideInFromRightAnimation animationWithTarget:toShow]];
-        [animation addAnimation:[FLFadeInAnimation animationWithTarget:toShow]];
+       FLAnimator* animator = [FLAnimator animator:kDuration];
         
-        [animation startAnimating:finished];
+        [animator addAnimation:[FLFadeOutAnimation animation:toHide 
+                                                     options:FLAnimationOptionRemoveTargetViewFromSuperview | FLAnimationOptionRestoreValues]];
+
+        [animator addAnimation:[FLDropBackAnimation animation:toHide]];
+
+        [animator addAnimation:[FLSlideInFromRightAnimation animation:toShow]];
+        [animator addAnimation:[FLFadeInAnimation animation:toShow]];
+        
+        [animator startAnimating:finished];
         
         
+    }
+    else {
+        finished();
+    }
+}
+
+- (void) popWizardPanelAnimated:(BOOL) animated 
+                     completion:(void (^)(FLWizardPanel* panel)) completion{
+
+    FLWizardPanel* toHide = self.visibleWizardPanel;
+    FLWizardPanel* toShow = self.previousWizardPanel;
+
+    toShow.view.frame = _wizardPanelEnclosureView.bounds;
+            
+    self.nextButton.enabled = NO;
+    self.previousButton.hidden = NO;
+    self.previousButton.enabled = NO;
+    self.otherButton.hidden = YES;
+    
+    [self wizardPanelWillAppear:toShow];
+    [self wizardPanelWillDissappear:toHide];
+ 
+    [self setWizardPanelTitleFields:toShow];
+    
+    completion = FLAutoreleasedCopy(completion);
+    [_wizardPanelEnclosureView addSubview:toShow.view];
+        
+    dispatch_block_t finished = ^{
+        
+        [_visibleWizardPanels removeObject:toHide];
+        [_queuedWizardPanels pushObject:toHide];
+        
+        [self wizardPanelDidDissappear:toHide];
+        [self updateBackButtonEnabledState];
+        [self wizardPanelDidAppear:toShow];
+         
+        if(completion) {
+            completion(toHide);
+        }        
+        [self.view.window display];
+    };
+      
+          
+                  
+    if(animated) {
+        
+        FLAnimator* animator = [FLAnimator animator:kDuration];
+        
+        [animator addAnimation:[FLFadeInAnimation animation:toShow]];
+        [animator addAnimation:[FLComeForwardAnimation animation:toShow]];
+
+
+        [animator addAnimation:[FLSlideOutToRightAnimation animation:toHide]];
+        [animator addAnimation:[FLFadeOutAnimation animation:toHide 
+                                                     options:FLAnimationOptionRemoveTargetViewFromSuperview | FLAnimationOptionRestoreValues]];
+        
+        [animator startAnimating:finished];
+       
+    }
+    else {
+       finished();
+    }
+}
+
+
+@end
+
 //        CABasicAnimation *controlPosAnim = [CABasicAnimation animationWithKeyPath:@"frame"];
 //        [controlPosAnim setFromValue:[NSValue valueWithPoint:toShow.view.frame.origin]];
 //        [controlPosAnim setToValue:[NSValue valueWithPoint:CGPointZero]];
@@ -312,65 +380,10 @@
 //        [toHide.view.layer addAnimation:scale forKey:@"transform"];
 ////        toHide.view.layer.transform = CATransform3DMakeScale(0.5, 0.5, 1.0);
 //        [CATransaction commit];
-    }
-    else {
-        finished();
-    }
-}
-
-- (void) popWizardPanelAnimated:(BOOL) animated 
-                     completion:(void (^)(FLWizardPanel* panel)) completion{
-
-    FLWizardPanel* toHide = self.visibleWizardPanel;
-    FLWizardPanel* toShow = self.previousWizardPanel;
-
-    toShow.view.frame = _wizardPanelEnclosureView.bounds;
-            
-    self.nextButton.enabled = NO;
-    self.previousButton.hidden = NO;
-    self.previousButton.enabled = NO;
-    self.otherButton.hidden = YES;
-    
-    [self wizardPanelWillAppear:toShow];
-    [self wizardPanelWillDissappear:toHide];
- 
-    [self setWizardPanelTitleFields:toShow];
-    
-    completion = FLAutoreleasedCopy(completion);
- 
-    dispatch_block_t finished = ^{
-        
-        [_visibleWizardPanels removeObject:toHide];
-        [_queuedWizardPanels pushObject:toHide];
-        
-        [self wizardPanelDidDissappear:toHide];
-        [self updateBackButtonEnabledState];
-        [self wizardPanelDidAppear:toShow];
-        [toHide.view removeFromSuperview];
-        toHide.view.alphaValue = 1.0;
-        
-        if(completion) {
-            completion(toHide);
-        }        
-        [self.view.window display];
-    };
-          
-    if(animated) {
-        
-        FLAnimation* animation = [FLAnimation animation];
-        
-        [animation addAnimation:[FLFadeInAnimation animationWithTarget:toShow]];
-        [animation addAnimation:[FLComeForwardAnimation animationWithTarget:toShow]];
-
-        [animation addAnimation:[FLSlideOutToRightAnimation animationWithTarget:toHide]];
-        [animation addAnimation:[FLFadeOutAnimation animationWithTarget:toHide]];
-
-        [animation startAnimating:finished];
 
         
 //        toShow.view.alphaValue = 0.0f;
-//        [_wizardPanelEnclosureView addSubview:toShow.view positioned:NSWindowAbove relativeTo:nil];
-//    
+//       //    
 //        
 //        CABasicAnimation *controlPosAnim = [CABasicAnimation animationWithKeyPath:@"frame"];
 //        [controlPosAnim setFromValue:[NSValue valueWithPoint:CGPointZero]];
@@ -399,12 +412,3 @@
 //        [[toHide.view animator] setFrame:FLRectSetOriginWithPoint(_wizardPanelEnclosureView.bounds, FLRectGetTopRight(toHide.view.frame))];
 //        [[toShow.view animator] setAlphaValue:1.0f];
 //        [CATransaction commit];
-    }
-    else {
-        [_wizardPanelEnclosureView addSubview:toShow.view positioned:NSWindowAbove relativeTo:nil];
-        finished();
-    }
-}
-
-
-@end

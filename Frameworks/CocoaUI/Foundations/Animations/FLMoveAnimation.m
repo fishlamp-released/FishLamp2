@@ -37,9 +37,6 @@
 }
 @end
 
-@interface FLSlideInFromRightAnimation ()
-@end
-
 @implementation FLSlideInFromRightAnimation
 
 - (void) prepare {
@@ -54,9 +51,6 @@
     [super prepare];
 }
 
-@end
-
-@interface FLSlideOutToRightAnimation ()
 @end
 
 @implementation FLSlideOutToRightAnimation

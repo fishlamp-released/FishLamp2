@@ -10,7 +10,7 @@
 
 #import "FLFinisher.h"
 #import "FLWorker.h"
-#import "FLObservable2.h"
+#import "FLObservable.h"
 
 extern const NSString* FLTimeoutTimerCheckEvent;
 extern const NSString* FLTimeoutTimerTimeoutEvent;
@@ -21,7 +21,7 @@ extern const NSString* FLTimeoutTimerTimeoutEvent;
 // connection for sure.        
 extern const NSTimeInterval FLTimeoutTimerDefaultCheckFrequencyInterval;
 
-@interface FLTimeoutTimer : FLObservable2 {
+@interface FLTimeoutTimer : FLObservable {
 @private
     NSTimeInterval _timestamp;
     NSTimeInterval _timeoutInterval;
@@ -53,8 +53,9 @@ extern const NSTimeInterval FLTimeoutTimerDefaultCheckFrequencyInterval;
 
 @end
 
-@protocol FLTimeoutTimerObserver <FLObserver>
+@protocol FLTimeoutTimerObserver <NSObject>
 - (void) timeoutTimerDidTimeout:(FLTimeoutTimer*) timer;
+- (void) timeoutTimerCheckTimeout:(FLTimeoutTimer*) timer;
 @end
 
 @interface NSError (FLTimeout)

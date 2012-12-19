@@ -13,7 +13,8 @@
 @property (readwrite, strong) FLResult result;
 @property (readwrite, copy) dispatch_block_t notificationCompletionBlock;
 @property (readwrite, copy) FLResultBlock resultBlock;
-- (void) sendNotifications;
+@property (readwrite, assign, getter=isFinished) BOOL finished;
+- (void) finishFinishing;
 @end
 
 @implementation FLFinisher
@@ -21,6 +22,7 @@
 @synthesize scheduleNotificationBlock = _scheduleNotificationBlock;
 @synthesize notificationCompletionBlock = _notificationCompletionBlock;
 @synthesize resultBlock = _resultBlock;
+@synthesize finished = _finished;
 
 + (id) finisherWithResultBlock:(FLResultBlock) completion {
     return FLAutorelease([[[self class] alloc] initWithResultBlock:completion]);
@@ -53,18 +55,15 @@
     if(self) {
         if(completion) {
             _resultBlock = [completion copy];
-            _semaphore = dispatch_semaphore_create(0);
         }
+        
+        _semaphore = dispatch_semaphore_create(0);
     }
     return self;
 }
 
 - (id) init {
     return [self initWithResultBlock:nil];
-}
-
-- (BOOL) isFinished {
-    return self.result != nil;
 }
 
 - (void) dealloc {
@@ -104,7 +103,9 @@
             }
         } 
         else {
-             dispatch_semaphore_wait(_semaphore, DISPATCH_TIME_FOREVER);
+        
+                
+            dispatch_semaphore_wait(_semaphore, DISPATCH_TIME_FOREVER);
         } 
     }
     @finally {
@@ -114,7 +115,7 @@
     return self.result;
 }
 
-- (void) sendNotifications {
+- (void) finishFinishing {
 
     if(_resultBlock) {
         _resultBlock(self.result);
@@ -125,6 +126,8 @@
         _notificationCompletionBlock();
         self.notificationCompletionBlock = nil;
     }
+
+    self.finished = YES;
 
     if(_semaphore) {
         dispatch_semaphore_signal(_semaphore);
@@ -147,12 +150,12 @@
     
     if(_scheduleNotificationBlock) {
         _scheduleNotificationBlock(^{
-            [self sendNotifications];
+            [self finishFinishing];
         });
         self.scheduleNotificationBlock = nil;
     }
     else {
-        [self sendNotifications];
+        [self finishFinishing];
     } 
 }                    
 

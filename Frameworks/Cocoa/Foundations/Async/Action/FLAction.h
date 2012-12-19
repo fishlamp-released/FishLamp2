@@ -13,6 +13,7 @@
 #import "FLActionDescription.h"
 #import "FLRunnable.h"
 #import "FLObservable.h"
+#import "FLWeaklyReferenced.h"
 
 #define FLActionDefaultTimeBetweenActivityWarnings 30.0f
 #define FLActionMinimumTimeBetweenWarnings 15.0

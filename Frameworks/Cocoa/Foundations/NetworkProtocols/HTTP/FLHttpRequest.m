@@ -32,10 +32,93 @@
 
 @implementation FLHttpRequest
 
+void GetSystemVersion( int* major, int* minor, int* bugfix )
+{
+	// sensible default
+	static int mMajor = 10;
+	static int mMinor = 8;
+	static int mBugfix = 0;
+
+	static dispatch_once_t onceToken;
+	dispatch_once(&onceToken, ^{
+		NSString* versionString = [[NSDictionary dictionaryWithContentsOfFile:@"/System/Library/CoreServices/SystemVersion.plist"] objectForKey:@"ProductVersion"];
+		NSArray* versions = [versionString componentsSeparatedByString:@"."];
+		check( versions.count >= 2 );
+		if ( versions.count >= 1 ) {
+			mMajor = [[versions objectAtIndex:0] integerValue];
+		}
+		if ( versions.count >= 2 ) {
+			mMinor = [[versions objectAtIndex:1] integerValue];
+		}
+		if ( versions.count >= 3 ) {
+			mBugfix = [[versions objectAtIndex:2] integerValue];
+		}
+	});
+
+	*major = mMajor;
+	*minor = mMinor;
+	*bugfix = mBugfix;
+}
+
+#include <stdlib.h>
+#include <stdio.h>
+#include <sys/types.h>
+#include <sys/sysctl.h>
+#import "FLAppInfo.h"
+
+NSString* FLMachineModel()
+{
+    size_t len = 0;
+    sysctlbyname("hw.model", NULL, &len, NULL, 0);
+
+    if (len)
+    {
+        char *model = malloc(len*sizeof(char));
+        sysctlbyname("hw.model", model, &len, NULL, 0);
+        NSString *model_ns = [NSString stringWithUTF8String:model];
+        free(model);
+        return model_ns;
+    }
+
+    return @"UnknownMac"; //incase model name can't be read
+}
+
 static NSString* s_defaultUserAgent = nil;
 + (void) initialize {
     if(!s_defaultUserAgent) {
         [self setDefaultUserAgent:[FLAppInfo userAgent]];
+        
+        if(!s_defaultUserAgent) {
+        
+#if IOS        
+            NSString* defaultUserAgent = [NSString stringWithFormat:@"%@/%@ (%@; %@; %@; %@; %@;)", 
+                [FLAppInfo appName], 
+                [FLAppInfo appVersion],
+                [FLAppInfo bundleIdentifier],
+
+                [UIDevice currentDevice].model,
+                [UIDevice currentDevice].machineName,
+                [UIDevice currentDevice].systemName,
+                [UIDevice currentDevice].systemVersion];
+#else
+            int versionMajor=0, versionMinor=0, versionBugFix=0;
+            GetSystemVersion(&versionMajor, &versionMinor, &versionBugFix);
+    
+            NSString* defaultUserAgent = [NSString stringWithFormat:@"%@/%@ (%@; %@; %d.%d.%d;)", 
+                [FLAppInfo appName], 
+                [FLAppInfo appVersion],
+                [FLAppInfo bundleIdentifier],
+                FLMachineModel(),
+//                [UIDevice currentDevice].machineName,
+//                [UIDevice currentDevice].systemName,
+//                [UIDevice currentDevice].systemVersion];
+                versionMajor, versionMinor, versionBugFix];
+#endif                
+
+            [FLHttpRequest setDefaultUserAgent:defaultUserAgent];
+//            [NSURLRequest setDefaultUserAgent:defaultUserAgent];
+        
+        }
     }
 }
 

@@ -21,6 +21,7 @@ typedef void (^FLFinisherNotificationSchedulerBlock)(dispatch_block_t notifier);
     dispatch_block_t _notificationCompletionBlock;
     dispatch_semaphore_t _semaphore;
     FLFinisherNotificationSchedulerBlock _scheduleNotificationBlock;
+    BOOL _finished;
 }
 
 @property (readonly, strong) FLResult result;

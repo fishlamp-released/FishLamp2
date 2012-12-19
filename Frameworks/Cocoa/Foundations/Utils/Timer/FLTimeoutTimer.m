@@ -67,13 +67,13 @@ const NSString* FLTimeoutTimerTimeoutEvent = @"com.fishlamp.timer.timedout";
     if(self.isLate && !self.timedOut) {
         self.timedOut = YES;
         
-        [self postObservationForEvent:FLTimeoutTimerTimeoutEvent];
+        [self postObservation:@selector(timeoutTimerDidTimeout:)];
         
         [self.finisher setFinishedWithResult:[NSError timeoutError]];
         [self stopTimer];
     }
     else {
-        [self postObservationForEvent:FLTimeoutTimerCheckEvent];
+        [self postObservation:@selector(timeoutTimerCheckTimeout:)];
     }
     
 //    if(FLTestAnyBit(_connectionState, FLNetworkConnectionStateConnecting | FLNetworkConnectionStateConnected)) {

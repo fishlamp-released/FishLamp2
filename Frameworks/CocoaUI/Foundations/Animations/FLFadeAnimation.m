@@ -17,11 +17,10 @@
 @synthesize fromAlpha = _fromAlpha;
 @synthesize toAlpha = _toAlpha;
 
-- (id) init {
-    self = [super init];
+- (id) initWithTarget:(id) target {
+    self = [super initWithTarget:target];
     if(self) {
-        self.fromAlpha = -1;
-        self.toAlpha = -1;
+        self.toAlpha = 0.0f;
     }
     return self;
 }
@@ -30,24 +29,14 @@
     return FLAutorelease([[[self class] alloc] init]);
 }
 
-#if FL_DEALLOC
-- (void) dealloc {
-    
-    [super dealloc];
-}
-#endif
 
-- (void) prepare {
     
+- (void) prepare { 
     [super prepare];
-    
-    if(FLFloatEqualToFloat(self.fromAlpha, -1.0f)) {
-        self.fromAlpha = [self.targetView alphaValue];
-    }
-    else {
-        [self.targetView setAlphaValue:self.fromAlpha];
-    }
 
+    self.targetView.alphaValue = self.fromAlpha;
+    self.targetView.hidden = NO;
+    
     CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"alphaValue"];
     animation.fromValue = [NSNumber numberWithFloat:self.fromAlpha];
     animation.toValue = [NSNumber numberWithFloat:self.toAlpha];
@@ -68,6 +57,9 @@
 #endif
 }
 
+- (void) restore {
+    [self.targetView setAlphaValue:self.fromAlpha];
+}
 
 @end
 
@@ -75,46 +67,34 @@
 @end
 
 @implementation FLFadeInAnimation
-- (id) init {
-    self = [super init];
+
+- (id) initWithTarget:(id) target options:(FLAnimationOptions) options {
+    self = [super initWithTarget:target options:options];
     if(self) {
-        self.toAlpha = 1.0;
+        self.fromAlpha = 0.0;
+        self.toAlpha = 1.0f;
     }
     return self;
 }
 
-+ (id) fadeInAnimation {
-    return FLAutorelease([[[self class] alloc] init]);
-}
 
-#if FL_DEALLOC
-- (void) dealloc {
-    
-    [super dealloc];
-}
-#endif
-@end
-
-@interface FLFadeOutAnimation ()
 @end
 
 @implementation FLFadeOutAnimation
-- (id) init {
-    self = [super init];
+
+- (id) initWithTarget:(id) target options:(FLAnimationOptions) options {
+    self = [super initWithTarget:target options:options];
     if(self) {
-        self.toAlpha = 0.0;
+        self.toAlpha = 0.0f;
+        self.fromAlpha = 1.0f;
     }
     return self;
 }
 
-+ (id) fadeOutAnimation {
-    return FLAutorelease([[[self class] alloc] init]);
+- (void) finish {
+    [super finish];
+    self.targetView.hidden = YES;
+    [self restore];
 }
 
-#if FL_DEALLOC
-- (void) dealloc {
-    
-    [super dealloc];
-}
-#endif
 @end

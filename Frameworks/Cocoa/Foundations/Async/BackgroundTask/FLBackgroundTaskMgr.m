@@ -126,11 +126,13 @@ FIXME("attach to user sessions....");
 }
 
 - (BOOL) canBeginTasks {
-    return [self postQuestion:@selector(backgroundTaskMgr:canStart:) defaultAnswer:YES];
+    return NO;
+//    return [self postQuestion:@selector(backgroundTaskMgr:canStart:) defaultAnswer:YES];
 }
 
 - (BOOL) canBeginBackgroundTask:(id<FLBackgroundTask>) task {
-    return [self postQuestion:@selector(backgroundTaskMgr:canStart:backgroundTask:) defaultAnswer:YES withObject:task];
+    return NO;
+//    return [self postQuestion:@selector(backgroundTaskMgr:canStart:backgroundTask:) defaultAnswer:YES withObject:task];
 }
 
 - (void) _handleReadyState
