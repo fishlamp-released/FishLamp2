@@ -6,10 +6,9 @@
 //  Copyright (c) 2012 GreenTongue Software. All rights reserved.
 //
 #import "FLCore.h"
+#import "FLNetworkStream.h"
 
-#import "FLNetworkConnectionObserver.h"
-
-@interface FLNetworkActivityConnectionObserver : NSObject<FLNetworkConnectionObserver> {
+@interface FLNetworkActivityConnectionObserver : NSObject {
 @private
 }
 

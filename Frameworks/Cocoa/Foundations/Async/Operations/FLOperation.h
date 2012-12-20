@@ -24,10 +24,10 @@ extern NSString* const FLOperationFinishedEvent;
 @interface FLOperation : FLObservable<FLCancellable, FLContextual> {
 @private
     __unsafe_unretained id _context;
-    __unsafe_unretained FLCancellable* _cancelHandler;
 	id _operationID;
 	FLRunOperationBlock _runBlock;
 	NSInteger _tag;
+    BOOL _cancelled;
 }
 
 // TODO: abstract this better;
@@ -55,7 +55,6 @@ extern NSString* const FLOperationFinishedEvent;
 //
 // for subclasses
 //
-
 // this will raise an abort exception if runState has been signaled as finished.
 - (void) abortIfNeeded;
 
@@ -64,9 +63,6 @@ extern NSString* const FLOperationFinishedEvent;
 /// @brief Required override point (or use runBlock).
 /// Either override run or set the operation's run block.
 - (FLResult) runSelf:(id) input;
-
-/// @brief this is called for you to respond to if requestCancel is called
-- (void) cancelSelf;
 
 @end
 

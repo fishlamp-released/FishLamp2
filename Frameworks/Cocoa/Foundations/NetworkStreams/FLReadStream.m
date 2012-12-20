@@ -116,7 +116,7 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
     CFReadStreamScheduleWithRunLoop(_streamRef, CFRunLoopGetMain(), bridge_(void*,NSDefaultRunLoopMode));
 }
 
-- (void) closeStream {
+- (void) closeStreamWithResult:(id) result {
     FLAssertNotNil_(_streamRef);
     CFReadStreamUnscheduleFromRunLoop(_streamRef, CFRunLoopGetMain(), bridge_(void*,NSDefaultRunLoopMode));
     CFReadStreamClose(_streamRef);
@@ -137,7 +137,7 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
     }
     
     if(CFReadStreamGetStatus(self.streamRef) == kCFStreamStatusError) {
-        [self closeStreamWithResult:[self readStreamError]];
+        [self closeNetworkStreamWithResult:[self readStreamError]];
         return YES;
     }
     
@@ -152,7 +152,7 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
     }
 
     if(bytesRead < 0) {
-        [self closeStreamWithResult:[NSError errorWithDomain:(NSString*) kCFErrorDomainCFNetwork code:kCFURLErrorBadServerResponse localizedDescription:NSLocalizedString(@"Read networkbytes failed: %d", bytesRead)]];
+        [self closeNetworkStreamWithResult:[NSError errorWithDomain:(NSString*) kCFErrorDomainCFNetwork code:kCFURLErrorBadServerResponse localizedDescription:NSLocalizedString(@"Read networkbytes failed: %d", bytesRead)]];
         return YES;
     }
     
@@ -223,7 +223,7 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
     }
     
     if(bytesRead > 0) {
-        [self postObservation:@selector(readStreamDidReadBytes:)];
+        [self postObservation:@selector(networkStreamDidReadBytes:)];
     }
 
     return bytesRead;

@@ -14,7 +14,6 @@
 #endif
 
 #import "NSArray+FLExtras.h"
-#import "FLNetworkConnection_Internal.h"
 #import "FLBlockLinkedListElement.h"
 #import "FLTcpConnection_Internal.h"
 #import "FLTcpRequest.h"
@@ -137,7 +136,6 @@
 }
 
 - (void) readStreamHasBytesAvailable:(id<FLNetworkStream>) networkStream {  
-    [self touchTimestamp];
     [self updateQueue];
 }
 
@@ -155,8 +153,8 @@
 //}
 
 
-- (void) networkStreamDidClose:(id<FLNetworkStream>)networkStream {
-    [super networkStreamDidClose:networkStream];
+- (void) networkStream:(id<FLNetworkStream>)networkStream didCloseWithResult:(FLResult) result {
+//    [super networkStream:networkStream didCloseWithResult:result];
     FLReleaseWithNil(_blockingObject);
 }
 

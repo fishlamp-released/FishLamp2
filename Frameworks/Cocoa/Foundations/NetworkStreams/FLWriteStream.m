@@ -74,7 +74,7 @@ static void WriteStreamClientCallBack(CFWriteStreamRef readStream,
 //    CFWriteStreamOpen(_streamRef);
 }
 
-- (void) closeStream  {
+- (void) closeStreamWithResult:(id) result {
     FLAssertIsNotNil_(_streamRef);
 
 // FIXME
@@ -105,7 +105,8 @@ static void WriteStreamClientCallBack(CFWriteStreamRef readStream,
         buffer += amt;
     }
     
-    [self postObservation:@selector(writeStreamDidWriteBytes:)];
+    [self postObservation:@selector(networkStreamDidWriteBytes:)];
+    [self touchTimestamp];
 }
 
 - (void) sendData:(NSData*) data {

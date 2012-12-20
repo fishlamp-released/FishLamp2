@@ -21,14 +21,15 @@
 
 @interface FLOperationQueue ()
 @property (readwrite, strong, nonatomic) NSArray* operations;
-@property (readwrite, assign) FLCancellable* cancelHandler;
-
+@property (readwrite, assign, getter=wasCancelled) BOOL cancelled;
+@property (readwrite, strong) FLOperation* currentOperation;
 @end
 
 @implementation FLOperationQueue
 
 @synthesize operations = _operations;
-@synthesize cancelHandler = _cancelHandler;
+@synthesize cancelled = _cancelled;
+@synthesize currentOperation = _currentOperation;
 
 - (id) init {
     self = [super init];
@@ -44,12 +45,8 @@
 }
 
 - (void) dealloc {
-    for(FLOperation* operation in _operations) {
-        [operation removeObserver:self];
-    }
-
 #if FL_MRC 
-    [_cancelHandler release];
+    [_currentOperation release];
     [_operations release];
     [super dealloc];
 #endif
@@ -225,16 +222,6 @@
     return [inResult objectForKey:[[self operationByClass:aClass] operationID]];
 }
 
-- (void) cancelOperationByID:(id) operationID {
-    id operation = [self operationByID:operationID];
-    if(operation) {
-#if TRACE
-        FLDebugLog(@"Cancelling operation: %@", operationID);
-#endif        
-        [operation requestCancel:nil];
-    }
-}
-
 - (void) operationWasRemoved:(FLOperation*) operation {
     [operation removeObserver:self];
     [self postObservation:@selector(operationQueue:operationWasRemoved:) withObject:operation];
@@ -273,46 +260,10 @@
     return [_operations reverseIterator];
 }
 
-- (FLFinisher*) requestCancel:(FLResultBlock) completion {
-    return [self.cancelHandler requestCancel:completion];
+- (void) requestCancel {
+    self.cancelled = YES;
+    [self.currentOperation requestCancel];
 }
-
-
-//- (FLFinisher*) requestCancel:(FLResultBlock) completion {
-//
-////    FLFinisher* finisher = [FLFinisher finisherWithResultBlock:completion];
-////
-////    @synchronized(self) {
-////
-////        if(!self.cancelFinisher) {
-////            self.cancelFinisher = finisher;
-////            
-////            int32_t count = 0;
-////            __block int32_t cancelledCount = 0;
-////            for(FLOperation* operation in self.operations) {
-////                if(operation.didRun) {
-////                    continue;
-////                }
-////                ++count;
-////                [operation requestCancel:^(FLResult result) {
-////                    ++cancelledCount;
-////                    
-////                    if(cancelledCount == count) {
-////                        [self.cancelFinisher setFinished];
-////                    }
-////                }];
-////            }       
-////        }
-////        else {
-////            [self.cancelFinisher addSubFinisher:finisher];
-////        }
-////
-////    }
-//    
-//
-//    
-//    return finisher;
-//}
 
 - (void) operationWillRun:(FLOperation*) operation {
     [self postObservation:@selector(operationQueue:operationWillRun:) withObject:operation];
@@ -326,34 +277,43 @@
     [self postObservation:@selector(operationQueue:operationWasCancelled:) withObject:operation];
 }
 
-- (id) runSynchronously {
-    FLCancellable* cancelHandler = [FLCancellable cancelHandler];
-    id outResult = [NSMutableDictionary dictionary];
-    
+- (id) runOperation:(FLOperation*) operation {
+
     @try {
-        self.cancelHandler = cancelHandler;
-    
-        for(FLOperation* operation in self.operations.forwardIterator) {
-            
-            id operationResult = [self.cancelHandler runBlock:^ FLResult {
-                return [operation runSynchronously];
-            } forDependent:operation];
-            
-            [outResult setObject:operationResult forKey:operation.operationID];
-            
-            if([operationResult error] || self.cancelHandler.wasCancelled) {
-                break;
-            }
-        }
+        self.currentOperation = operation;
+        [self.currentOperation  addObserver:self];
+        return [operation runSynchronously];
     }
     @catch(NSException* ex) {
-        outResult = ex.error;
+        return ex.error;
     }
     @finally {
-        self.cancelHandler = nil;
+        [self.currentOperation removeObserver:self];
+        self.currentOperation = nil;
     }
     
-    return [cancelHandler setFinished:outResult];
+}
+
+- (id) runSynchronously {
+    self.cancelled = NO;
+
+    id outResult = [NSMutableDictionary dictionary];
+    
+    for(FLOperation* operation in self.operations.forwardIterator) {
+        id operationResult = [self runOperation:operation];
+
+        if(self.wasCancelled) {
+            operationResult = [NSError cancelError];
+        }
+
+        [outResult setObject:operationResult forKey:operation.operationID];
+
+        if([operationResult error]) {
+            break;
+        }
+    }
+
+    return outResult;
 }
 
 - (FLFinisher*) startOperationsInDispatcher:(id<FLDispatcher>) inDispatcher {

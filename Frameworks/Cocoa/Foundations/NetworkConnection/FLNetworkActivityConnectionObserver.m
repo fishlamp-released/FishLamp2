@@ -14,16 +14,16 @@
 
 FLSynthesizeSingleton(FLNetworkActivityConnectionObserver);
 
-- (void) observerWasAddedToNetworkConnection:(FLNetworkConnection*) connection {
-    [[FLGlobalNetworkActivityIndicator instance] showNetworkActivityIndicator:self];
-}
-
-- (void) observerWasRemovedFromNetworkConnection:(FLNetworkConnection*) connection {
-    [[FLGlobalNetworkActivityIndicator instance] hideNetworkActivityIndicator:self];
-}
-
-+ (FLNetworkActivityConnectionObserver*) networkActivityConnectionObserver {
-    return FLAutorelease([[[self class] alloc] init]);
-}
+//- (void) observerWasAddedToNetworkConnection:(FLNetworkConnection*) connection {
+//    [[FLGlobalNetworkActivityIndicator instance] showNetworkActivityIndicator:self];
+//}
+//
+//- (void) observerWasRemovedFromNetworkConnection:(FLNetworkConnection*) connection {
+//    [[FLGlobalNetworkActivityIndicator instance] hideNetworkActivityIndicator:self];
+//}
+//
+//+ (FLNetworkActivityConnectionObserver*) networkActivityConnectionObserver {
+//    return FLAutorelease([[[self class] alloc] init]);
+//}
 
 @end

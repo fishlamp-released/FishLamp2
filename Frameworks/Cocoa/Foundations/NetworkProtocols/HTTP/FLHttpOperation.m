@@ -7,14 +7,19 @@
 //
 
 #import "FLHttpOperation.h"
-#import "FLHttpConnection.h"
+
+@interface FLHttpOperation ()
+@property (readwrite, strong) FLHttpStream* httpStream;
+@end
 
 @implementation FLHttpOperation
 @synthesize requestAuthenticator = _requestAuthenticator;
 @synthesize httpRequestURL = _httpRequestURL;
+@synthesize httpStream = _httpStream;
 
 #if FL_MRC
 - (void) dealloc {
+    [_httpStream release];
     [_httpRequestURL release];
     [_requestAuthenticator release];
     [super dealloc];
@@ -41,6 +46,11 @@
     return FLAutorelease([[[self class] alloc] initWithHTTPRequestURL:httpRequestURL]);
 }
 
+- (void) requestCancel {
+	[super requestCancel];
+    [self.httpStream requestCancel];
+}
+
 - (FLHttpResponse*) sendHttpRequest:(FLMutableHttpRequest*) request 
                   withAuthenticator:(id<FLHttpRequestAuthenticator>) authenticator {
     
@@ -54,18 +64,24 @@
 }
 
 - (FLHttpResponse*) sendHttpRequest:(FLHttpRequest*) request {
-
     FLAssertNotNil_(request);
-
-    FLHttpConnection* connection = [FLHttpConnection httpConnection:request];
-    
-    FLHttpResponse* httpResponse = FLThrowError([self runConnection:connection]);
-    FLAssertIsNotNil_(httpResponse);
-    FLAssertIsKindOfClass_(httpResponse, FLHttpResponse);
-
-    return httpResponse;
-
+    self.httpStream = [FLHttpStream httpStream:request];
+    @try {
+        self.httpStream.delegate = self;
+        [self.httpStream addObserver:self];
+        return FLConfirmResultType([self.httpStream connectSynchronously], FLHttpResponse);
+    }
+    @finally {
+        [self.httpStream removeObserver:self];
+        self.httpStream.delegate = nil;
+        self.httpStream = nil;
+    }
 }
+
+- (void) httpStream:(FLHttpStream*) httpStream 
+     shouldRedirect:(BOOL*) redirect toURL:(NSURL*) url {
+}
+
 
 @end
 

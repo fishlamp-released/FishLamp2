@@ -16,7 +16,7 @@ NSString* const FLOperationFinishedEvent;
 @interface FLOperation ()
 @property (readwrite, copy, nonatomic) FLRunOperationBlock runBlock;
 @property (readwrite, assign) id context;
-@property (readwrite, assign) FLCancellable* cancelHandler;
+@property (readwrite, assign, getter=wasCancelled) BOOL cancelled;
 @end
 
 @implementation FLOperation
@@ -25,7 +25,7 @@ NSString* const FLOperationFinishedEvent;
 @synthesize runBlock = _runBlock;
 @synthesize context = _context;
 @synthesize tag = _tag;
-@synthesize cancelHandler = _cancelHandler;
+@synthesize cancelled = _cancelled;
 
 - (void) removeFromContext:(id) context {
     self.context = nil;
@@ -67,11 +67,8 @@ NSString* const FLOperationFinishedEvent;
 	return FLAutorelease([[[self class] alloc] init]);
 }
 
-- (void) cancelSelf {
-}
-
-- (FLFinisher*) requestCancel:(FLResultBlock) completion {
-    return [self.cancelHandler requestCancel:completion];
+- (void) requestCancel {
+    self.cancelled = YES;
 }
 
 - (FLResult) runSelf:(id) input {
@@ -79,7 +76,7 @@ NSString* const FLOperationFinishedEvent;
 }
 
 - (void) abortIfNeeded {
-    if(self.cancelHandler) {
+    if(self.wasCancelled) {
         [FLAbortException raise];
     }
 }
@@ -90,12 +87,10 @@ NSString* const FLOperationFinishedEvent;
 
 - (id) runSynchronously:(id) input {
 
-    FLCancellable* cancelHandler = [FLCancellable cancelHandler];
+    self.cancelled = NO;
     id result = nil;
     
     @try {
-        self.cancelHandler = cancelHandler;
-    
         [self postObservation:@selector(operationWillRun:)];
         
         if(self.runBlock) {
@@ -108,11 +103,6 @@ NSString* const FLOperationFinishedEvent;
     @catch(NSException* ex) {
         result = ex.error;
     }
-    @finally {
-        self.cancelHandler = nil;
-    }
-    
-    result = [cancelHandler setFinished:result];  
     
     [self postObservation:@selector(operationDidFinish:withResult:) withObject:result];
     
@@ -134,7 +124,7 @@ NSString* const FLOperationFinishedEvent;
 }
 
 - (void) operationWasCancelled:(FLOperation*) operation {
-    [self requestCancel:nil];
+    [self requestCancel];
 }
 
 @end

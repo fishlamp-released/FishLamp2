@@ -10,9 +10,9 @@
 
 #import "FLReadStream.h"
 #import "FLWriteStream.h"
-#import "FLAbstractNetworkStream.h"
+#import "FLNetworkStream.h"
 
-@interface FLTcpStream : FLAbstractNetworkStream<FLConcreteNetworkStream> {
+@interface FLTcpStream : FLNetworkStream<FLConcreteNetworkStream> {
 @private
     NSString* _remoteHost;
     int32_t _remotePort;

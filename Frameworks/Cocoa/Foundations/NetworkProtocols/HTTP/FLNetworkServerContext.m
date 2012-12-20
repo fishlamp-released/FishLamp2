@@ -8,7 +8,6 @@
 
 #import "FLNetworkServerContext.h"
 #import "FLHttpOperation.h"
-#import "FLNetworkConnectionAuthenticator.h"
 
 @implementation FLNetworkServerContext
 

@@ -8,7 +8,6 @@
 
 #import "FLCocoaRequired.h"
 #import "FLCore.h"
-#import "FLNetworkConnection.h"
 
 //typedef enum {
 //	SERVER_STATE_IDLE,
@@ -17,7 +16,7 @@
 //	SERVER_STATE_STOPPING
 //} FLServerState;
 
-@interface FLTcpListener : NSObject<FLNetworkConnectionObserver> {
+@interface FLTcpListener : NSObject {
 @private
 //	FLServerState _state;
 

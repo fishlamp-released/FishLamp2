@@ -7,21 +7,9 @@
 //
 
 #import "FLNetworkStream.h"
-#import "FLAbstractNetworkStream.h"
+#import "FLNetworkStream.h"
 
-@protocol FLWriteStream <NSObject>
-@property (readonly, assign) unsigned long bytesWritten;
-- (void) sendData:(NSData*) data;
-- (void) sendBytes:(const uint8_t*) bytes length:(unsigned long) length;
-@end
-
-@protocol FLWriteStreamDelegate <NSObject>
-- (void) writeStreamCanAcceptBytes:(id<FLWriteStream>) networkStream;
-- (void) writeStreamDidWriteBytes:(id<FLWriteStream>) stream;
-@end
-
-
-@interface FLWriteStream : FLAbstractNetworkStream<FLWriteStream, FLConcreteNetworkStream> {
+@interface FLWriteStream : FLNetworkStream<FLWriteStream, FLConcreteNetworkStream> {
 @private
  	CFWriteStreamRef _streamRef;
 }

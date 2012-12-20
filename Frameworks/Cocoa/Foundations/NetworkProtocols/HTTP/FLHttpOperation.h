@@ -7,15 +7,20 @@
 //
 
 #import "FLCore.h"
-#import "FLNetworkOperation.h"
+#import "FLOperation.h"
+#import "FLHttpStream.h"
 #import "FLHttpRequest.h"
 #import "FLHttpResponse.h"
 #import "FLMutableHttpRequest.h"
 
-@interface FLHttpOperation : FLNetworkOperation {
+@interface FLHttpOperation : FLOperation<FLHttpStreamDelegate> {
 @private
     id<FLHttpRequestAuthenticator> _requestAuthenticator;
     NSURL* _httpRequestURL;
+
+// only valid while sending request
+    FLHttpStream* _httpStream;
+    dispatch_semaphore_t _semaphore;
 }
 
 @property (readwrite, strong) NSURL* httpRequestURL;
@@ -27,7 +32,6 @@
 + (id) httpOperation;
 
 + (id) httpOperationWithHTTPRequestURL:(NSURL*) httpRequestURL;
-
 
 - (FLHttpResponse*) sendHttpRequest:(FLMutableHttpRequest*) request 
                   withAuthenticator:(id<FLHttpRequestAuthenticator>) authenticator;

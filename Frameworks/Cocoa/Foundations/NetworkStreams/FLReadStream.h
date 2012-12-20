@@ -9,20 +9,9 @@
 #import "FLNetworkStream.h"
 #import "FLNetworkStream.h"
 #import "FLByteBuffer.h"
-#import "FLAbstractNetworkStream.h"
+#import "FLNetworkStream.h"
 
-@protocol FLReadStream <NSObject>
-@property (readonly, assign) BOOL hasBytesAvailable;
-@property (readonly, assign) unsigned long bytesRead;
-
-/** this repeatedly calls readblock until there is no more available bytes, or the STOP is set to YES */
-//- (void) readAvailableBytesWithBlock:(void (^)(BOOL* stop)) readblock;
-
-- (NSInteger) appendBytesToMutableData:(NSMutableData*) data;
-
-@end
-
-@interface FLReadStream : FLAbstractNetworkStream<FLReadStream, FLConcreteNetworkStream>  {
+@interface FLReadStream : FLNetworkStream<FLReadStream, FLConcreteNetworkStream>  {
 @private
     CFReadStreamRef _streamRef;
 }
@@ -33,9 +22,4 @@
 
 + (id) readStream:(CFReadStreamRef) writeStream;
 
-@end
-
-@protocol FLReadStreamDelegate <NSObject>
-- (void) readStreamHasBytesAvailable:(id<FLReadStream>) networkStream;
-- (void) readStreamDidReadBytes:(id<FLReadStream>) stream;
 @end

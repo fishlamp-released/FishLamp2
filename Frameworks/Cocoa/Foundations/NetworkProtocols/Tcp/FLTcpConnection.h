@@ -6,14 +6,13 @@
 //  Copyright (c) 2012 GreenTongue Software. All rights reserved.
 //
 #import "FLCore.h"
-
-#import "FLNetworkConnection.h"
 #import "FLTcpConnectionWriter.h"
 #import "FLTcpConnectionReader.h"
 #import "FLTcpRequest.h"
 #import "FLLinkedList.h"
+#import "FLObservable.h"
 
-@interface FLTcpConnection : FLNetworkConnection {
+@interface FLTcpConnection : FLObservable {
 @private
     FLLinkedList* _requests;
     FLLinkedList* _additions;

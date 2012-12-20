@@ -1,23 +1,22 @@
 //
-//  FLNetworkHostResolver.h
-//  FishLampFrameworks
+//  FLNetworkHostResolverStream.h
+//  FLCore
 //
-//  Created by Mike Fullerton on 8/29/12.
+//  Created by Mike Fullerton on 11/10/12.
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import "FLNetworkConnection.h"
-#import "FLNetworkHost.h"
+#import "FLCocoaRequired.h"
 
-@interface FLNetworkHostResolver : FLNetworkConnection {
+#import "FLNetworkHost.h"
+#import "FLNetworkStream.h"
+
+@interface FLNetworkHostResolver : FLNetworkStream<FLConcreteNetworkStream> {
 @private
     FLNetworkHost* _networkHost;
 }
+@property (readonly, strong) FLNetworkHost* networkHost;
 
-@property (readonly, retain, nonatomic) FLNetworkHost* networkHost;
-
-- (id) initWithNetworkHost:(FLNetworkHost*) host;
-
-+ (FLNetworkHostResolver*) networkHostResolver:(FLNetworkHost*) host;
+- (id) initWithNetworkHost:(FLNetworkHost*) networkHost;
 
 @end

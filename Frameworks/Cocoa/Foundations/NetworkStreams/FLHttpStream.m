@@ -13,9 +13,12 @@
 @interface FLHttpStream ()
 @property (readwrite, strong) FLHttpResponse* httpResponse;
 @property (readwrite, strong) FLHttpRequest* httpRequest;
-@property (readwrite, strong) FLReadStream* responseStream;
+@property (readwrite, strong) FLReadStream* httpStream;
+@property (readwrite, strong) FLDispatchQueue* dispatchQueue;
+@property (readwrite, strong) FLFinisher* synchronousFinisher;
+
 - (void) readResponseHeadersIfNeeded;
-- (void) openStreamToURL:(NSURL*) url;
+- (void) openHttpStreamToURL:(NSURL*) url;
 @end
 
 @interface FLHttpResponse (Utils)
@@ -56,9 +59,9 @@
 
 @implementation FLHttpRequest (Utils)
 
-- (FLReadStream*) createResponseStreamWithURL:(NSURL*) url {
+- (FLReadStream*) createHttpStreamWithURL:(NSURL*) url {
 
-    FLReadStream* responseStream = nil;
+    FLReadStream* httpStream = nil;
     CFReadStreamRef ref = nil;
     @try {
     
@@ -68,7 +71,7 @@
             
             NSInputStream* inputStream = self.HTTPBodyStream;
             if(inputStream) {
-                // I don't quite get why we're making a read stream for a readstream???
+                // I don't quite get why we're making a read stream for a httpStream???
                 ref = CFReadStreamCreateForStreamedHTTPRequest(kCFAllocatorDefault,
                                         message.messageRef,
                                         bridge_(CFReadStreamRef, inputStream));
@@ -80,10 +83,10 @@
             
             FLConfirmNotNil_v(ref, @"unable to create CFReadStreamRef - HTTPBody or HTTPBodyStream required");
                     
-            responseStream = [FLReadStream readStream:ref];
+            httpStream = [FLReadStream readStream:ref];
         }
 
-        FLConfirmNotNil_v(responseStream, @"unable to create FLReadStream");
+        FLConfirmNotNil_v(httpStream, @"unable to create FLReadStream");
     }
     @finally {
         if(ref) {
@@ -91,7 +94,7 @@
         }
     }
     
-    return responseStream;
+    return httpStream;
 }
 
 
@@ -101,13 +104,22 @@
 
 @synthesize httpResponse = _response;
 @synthesize httpRequest = _request;
-@synthesize responseStream = _responseStream;
+@synthesize httpStream = _httpStream;
 @synthesize delegate = _delegate;
+@synthesize dispatchQueue = _dispatchQueue;
+@synthesize synchronousFinisher = _synchronousFinisher;
 
 - (id) initWithHttpRequest:(FLHttpRequest*) request {
     self = [super init];
     if(self) {
         self.httpRequest = request;
+        
+        static int s_count = 0;
+        
+// TODO: make a pool of these?        
+        _dispatchQueue = [[FLDispatchQueue alloc] initWithLabel:[NSString stringWithFormat:@"com.fishlamp.queue.network-stream-%d", ++s_count] 
+            attr:DISPATCH_QUEUE_SERIAL];
+        
     }
     
     return self;
@@ -122,56 +134,26 @@
 }
 
 - (void) dealloc  {
+    [_httpStream removeObserver:self];
 #if FL_MRC
+    [_dispatchQueue release];
     [_request release];
     [_response release];
-    [_responseStream release];
+    [_httpStream release];
     [super dealloc];
 #endif
 }
 
 #define kStreamReadChunkSize 1024
 
-- (void) closeReadStream:(id) result {
-    if(_responseStream) {
-        [_responseStream removeObserver:self];
-        [_responseStream closeStreamWithResult:result];
-        self.responseStream = nil;
+- (void) closeNetworkStreamWithResult:(id) result {
+    if(_httpStream) {
+        [_httpStream closeNetworkStreamWithResult:result];
     }
 }
 
-- (void) handleStreamClosed:(id) result {
-    if([result error]) {
-        [self closeStreamWithResult:result];
-    }
-    else {
+- (void) openHttpStreamToURL:(NSURL*) url {
 
-       [self readResponseHeadersIfNeeded];
-
-        // FIXME: there was an issue here with progress getting fouled up on redirects.
-        //    [self connectionGotTimerEvent];
-
-        BOOL redirect = _response.wantsRedirect;
-        if(redirect) {
-            NSURL* redirectURL = self.httpResponse.redirectURL;
-
-            [self.delegate httpStream:self shouldRedirect:&redirect toURL:redirectURL];
-            
-            if(redirect) {
-                [self openStreamToURL:redirectURL];
-            }
-        }
-
-        if(!redirect) {
-            [self closeStreamWithResult:self.httpResponse];
-        }
-    }
-}
-
-- (void) openStreamToURL:(NSURL*) url {
-
-    [self closeReadStream:FLSuccessfullResult];
-    
     FLMutableHttpResponse* newResponse = nil;
     FLHttpResponse* prev = self.httpResponse;
     
@@ -186,30 +168,32 @@
 
     newResponse.mutableResponseData = [NSMutableData dataWithCapacity:kStreamReadChunkSize]; 
     self.httpResponse = newResponse;
-    self.responseStream = [self.httpRequest createResponseStreamWithURL:url];
-    [self.responseStream addObserver:self];
+    self.httpStream = [self.httpRequest createHttpStreamWithURL:url];
+    [self.httpStream addObserver:self];
 
-    [self.responseStream openStream:self.dispatchQueue streamClosedBlock:^(FLResult result) {
-        [self handleStreamClosed:result];
+    [self.httpStream openNetworkStream];
+}
+
+- (void) openNetworkStream {
+    [self.dispatchQueue dispatchBlock:^{
+        [self openHttpStreamToURL:self.httpRequest.requestURL];
     }];
 }
 
-- (void) openStream {
-    [self openStreamToURL:self.httpRequest.requestURL];
-}
-
-- (void) closeStream {
-    [self closeReadStream:self.result];
-}
-
 - (BOOL) isOpen {
-    return self.responseStream != nil && self.responseStream.isOpen;
+    return self.httpStream != nil && self.httpStream.isOpen;
+}
+
+- (void) networkStream:(id<FLNetworkStream>) stream encounteredError:(NSError *)error {
+    [self.dispatchQueue dispatchBlock:^{
+        [self closeNetworkStreamWithResult:FLSuccessfullResult];
+    }];
 }
 
 - (void) readResponseHeadersIfNeeded  {
     
     if(!_response.responseHeaders) {
-        FLHttpMessage* message = [self.responseStream readResponseHeaders];
+        FLHttpMessage* message = [self.httpStream readResponseHeaders];
         if(message.isHeaderComplete) {
             [_response setResponseHeadersWithHttpMessage:message];
             
@@ -223,10 +207,10 @@
     }
 }
 
-- (void) readStreamHasBytesAvailable:(id<FLNetworkStream>) networkStream {
+- (void) networkStreamHasBytesAvailable:(id<FLNetworkStream>) networkStream {
     [self.dispatchQueue dispatchBlock:^{
         [self readResponseHeadersIfNeeded];
-        [self.responseStream appendBytesToMutableData:_response.mutableResponseData];
+        [self.httpStream appendBytesToMutableData:_response.mutableResponseData];
     }];
 }
 
@@ -236,11 +220,51 @@
     }];
 }
 
-- (void) networkStreamDidClose:(id<FLNetworkStream>) networkStream {
+- (void) releaseStream {
+    [_httpStream removeObserver:self];
+    self.httpStream = nil;
 }
 
-- (void) writeStreamCanAcceptBytes:(id<FLNetworkStream>) networkStream {
-    // nah, we're taking care of this with our request
+- (void) didCloseWithResult:(id) result {
+    [self releaseStream];
+    [self postObservation:@selector(networkStream:didCloseWithResult:) withObject:result];
+    if(self.synchronousFinisher) {
+        [self.synchronousFinisher setFinishedWithResult:result];
+    }
+}
+
+- (void) networkStream:(id<FLNetworkStream>) networkStream 
+    didCloseWithResult:(FLResult) result {
+    
+    [self.dispatchQueue dispatchBlock:^{
+        if([result error]) {
+            [self didCloseWithResult:result];
+        }
+        else {
+
+            [self readResponseHeadersIfNeeded];
+            
+            // FIXME: there was an issue here with progress getting fouled up on redirects.
+            //    [self connectionGotTimerEvent];
+
+            BOOL redirect = _response.wantsRedirect;
+            if(redirect) {
+                
+                NSURL* redirectURL = self.httpResponse.redirectURL;
+
+                [self.delegate httpStream:self shouldRedirect:&redirect toURL:redirectURL];
+                
+                if(redirect) {
+                    [self releaseStream];
+                    [self openHttpStreamToURL:redirectURL];
+                }
+            }
+
+            if(!redirect) {
+                [self didCloseWithResult:result];
+            }
+        }
+    }];
 }
 
 - (void) writeStreamDidWriteBytes:(id<FLNetworkStream>) stream {
@@ -250,10 +274,32 @@
     [self postObservation:@selector(readStreamDidReadBytes:)];
 }
 
-- (FLFinisher*) requestCancel:(FLResultBlock)completion {
-    return [self.responseStream requestCancel:completion];
+- (void) requestCancel {
+    return [self.httpStream requestCancel];
 }
 
+- (BOOL) hasBytesAvailable {
+    return self.httpStream.hasBytesAvailable;
+}
+
+- (unsigned long) bytesRead {
+    return self.httpStream.bytesRead;
+}
+
+- (NSInteger) appendBytesToMutableData:(NSMutableData*) data {
+    return [self.httpStream appendBytesToMutableData:data];
+}
+
+- (FLResult) connectSynchronously {
+    @try{
+        self.synchronousFinisher = [FLFinisher finisher];
+        [self openNetworkStream];
+        return [self.synchronousFinisher waitUntilFinished];
+    }
+    @finally {
+        self.synchronousFinisher = nil;
+    }
+}
 
 @end
 
@@ -281,3 +327,24 @@
 
 @end
 
+//- (void) httpStream:(FLHttpStream*) httpStream
+//        shouldRedirect:(BOOL*) redirect
+//                 toURL:(NSURL*) url {
+//
+//    [httpStream touchTimestamp];
+//   
+//    // FIXME
+//      
+///*    
+//    [self visitObservers:^(id<FLNetworkConnectionObserver> observer, BOOL* stop) { 
+//        
+//        if([observer respondsToSelector:@selector(networkConnection:shouldRedirect:toURL:)]) {
+//            [observer networkConnection:self shouldRedirect:redirect toURL:url];
+//        }
+//        
+//        if(*redirect) {
+//            *stop = YES;
+//        }
+//    }];
+// */
+//}

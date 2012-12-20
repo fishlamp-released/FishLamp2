@@ -36,9 +36,9 @@
 }
 #endif
 
-- (void) networkConnection:(FLNetworkConnection*) connection
-            shouldRedirect:(BOOL*) redirect
-                     toURL:(NSURL*) url {
+- (void) httpStream:(FLHttpStream*) httpStream
+     shouldRedirect:(BOOL*) redirect
+              toURL:(NSURL*) url {
     *redirect = NO;
 }
 

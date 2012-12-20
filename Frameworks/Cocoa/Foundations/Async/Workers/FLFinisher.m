@@ -24,30 +24,6 @@
 @synthesize resultBlock = _resultBlock;
 @synthesize finished = _finished;
 
-+ (id) finisherWithResultBlock:(FLResultBlock) completion {
-    return FLAutorelease([[[self class] alloc] initWithResultBlock:completion]);
-}
-+ (id) finisher:(FLResultBlock) completion {
-    return FLAutorelease([[[self class] alloc] initWithResultBlock:completion]);
-}
-
-+ (FLFinisherNotificationSchedulerBlock) scheduleNotificationInMainThreadBlock {
-    static FLFinisherNotificationSchedulerBlock s_block = ^(dispatch_block_t notifier) {
-        if(![NSThread isMainThread]) {
-            
-            notifier = FLAutoreleasedCopy(notifier);
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
-                notifier();
-            });    
-        }
-        else {
-            notifier();
-        }
-    }; 
-
-    return s_block;
-}
 
 - (id) initWithResultBlock:(FLResultBlock) completion {
     
@@ -58,6 +34,8 @@
         }
         
         _semaphore = dispatch_semaphore_create(0);
+        FLLog(@"created semaphor for %X, thread %@", (void*) _semaphore, [NSThread currentThread]);
+           
     }
     return self;
 }
@@ -90,23 +68,30 @@
     return FLAutorelease([[[self class] alloc] init]);
 }
 
++ (id) finisherWithResultBlock:(FLResultBlock) completion {
+    return FLAutorelease([[[self class] alloc] initWithResultBlock:completion]);
+}
++ (id) finisher:(FLResultBlock) completion {
+    return FLAutorelease([[[self class] alloc] initWithResultBlock:completion]);
+}
+
 - (FLResult) waitUntilFinished {
     
     FLRetainObject(self);
     
     @try {
-        if([NSThread isMainThread]) {
+//        if([NSThread isMainThread]) {
         // this may not work in all cases - e.g. some iOS apis expect to be called in the main thread
         // and this will cause endless blocking, unfortunately. I've seen this is the AssetLibrary sdk.
             while(!self.isFinished) {
                 [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate date]];
             }
-        } 
-        else {
-        
-                
-            dispatch_semaphore_wait(_semaphore, DISPATCH_TIME_FOREVER);
-        } 
+//        } 
+//        else {
+//            FLLog(@"waiting for semaphor for %X, thread %@", (void*) _semaphore, [NSThread currentThread]);
+//            dispatch_semaphore_wait(_semaphore, DISPATCH_TIME_FOREVER);
+//            FLLog(@"finished waiting for %X", (void*) _semaphore);
+//        } 
     }
     @finally {
         FLAutoreleaseObject(self);
@@ -130,6 +115,7 @@
     self.finished = YES;
 
     if(_semaphore) {
+        FLLog(@"releasing semaphor for %X, ont thread %@", (void*) _semaphore, [NSThread currentThread]);
         dispatch_semaphore_signal(_semaphore);
     }
 }
@@ -165,6 +151,24 @@
 
 - (void) setFinished {
     [self setFinishedWithResult:FLSuccessfullResult completion:nil];
+}
+
++ (FLFinisherNotificationSchedulerBlock) scheduleNotificationInMainThreadBlock {
+    static FLFinisherNotificationSchedulerBlock s_block = ^(dispatch_block_t notifier) {
+        if(![NSThread isMainThread]) {
+            
+            notifier = FLAutoreleasedCopy(notifier);
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                notifier();
+            });    
+        }
+        else {
+            notifier();
+        }
+    }; 
+
+    return s_block;
 }
 
 @end

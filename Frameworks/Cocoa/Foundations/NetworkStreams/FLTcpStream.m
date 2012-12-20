@@ -64,8 +64,8 @@
         self.writeStream = [FLWriteStream writeStream:writeStream];
         [self.writeStream addObserver:self];
         
-        [self.readStream openStream:self.dispatchQueue streamClosedBlock:nil];
-        [self.writeStream openStream:self.dispatchQueue streamClosedBlock:nil];
+        [self.readStream openStream];
+        [self.writeStream openStream];
     }
     @finally {
         if(host) {
@@ -92,15 +92,16 @@
 #endif
 }
 
-- (void) closeStream {
+- (void) closeStreamWithResult:(id) result {
+
     if(_readStream) {
         [_readStream removeObserver:self];
-        [_readStream closeStreamWithResult:[self result]];
+        [_readStream closeNetworkStreamWithResult:result];
         self.readStream = nil;
     }
     if(_writeStream) {
         [_writeStream removeObserver:self];
-        [_writeStream closeStreamWithResult:[self result]];
+        [_writeStream closeNetworkStreamWithResult:result];
         self.writeStream = nil;
     }
 }
@@ -123,8 +124,8 @@
 //    return [FLSuccessfullResult successfulResult];
 //}
 
-- (void) networkStreamDidClose:(id<FLNetworkStream>) networkStream {
-    [self closeStreamWithResult:[networkStream result]];
+- (void) networkStream:(id<FLNetworkStream>) networkStream didCloseWithResult:(FLResult) result {
+    [self closeNetworkStreamWithResult:result];
 }
 
 - (void) networkStreamDidOpen:(id<FLNetworkStream>) networkStream {
@@ -133,20 +134,20 @@
     }
 }
 
-- (void) readStreamHasBytesAvailable:(id<FLNetworkStream>) networkStream {
+- (void) readStreamHasBytesAvailable:(id<FLReadStream>) networkStream {
     [self postObservation:@selector(readStreamHasBytesAvailable:)];
 }
 
 
-- (void) writeStreamCanAcceptBytes:(id<FLNetworkStream>) networkStream {
+- (void) writeStreamCanAcceptBytes:(id<FLWriteStream>) networkStream {
     [self postObservation:@selector(writeStreamCanAcceptBytes:)];
 }
 
-- (void) writeStreamDidWriteBytes:(id<FLNetworkStream>) stream {
+- (void) writeStreamDidWriteBytes:(id<FLWriteStream>) stream {
     [self postObservation:@selector(writeStreamDidWriteBytes:)];
 }
 
-- (void) readStreamDidReadBytes:(id<FLNetworkStream>) stream{
+- (void) readStreamDidReadBytes:(id<FLReadStream>) stream{
     [self postObservation:@selector(readStreamDidReadBytes:)];
 }
 

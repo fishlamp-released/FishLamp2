@@ -7,8 +7,6 @@
 //
 
 #import "FLTcpConnection.h"
-#import "FLNetworkConnection_Internal.h"
-
 
 @interface FLTcpConnection ()
 + (FLTcpConnection*) tcpConnection;

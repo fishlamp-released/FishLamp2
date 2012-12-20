@@ -9,17 +9,20 @@
 #import "FLNetworkStream.h"
 #import "FLHttpRequest.h"
 #import "FLHttpResponse.h"
-#import "FLAbstractNetworkStream.h"
+#import "FLNetworkStream.h"
 #import "FLReadStream.h"
 
 @protocol FLHttpStreamDelegate;
 
-@interface FLHttpStream : FLAbstractNetworkStream<FLConcreteNetworkStream> {
+@interface FLHttpStream : FLObservable<FLReadStream, FLNetworkStream> {
 @private
     __unsafe_unretained id<FLHttpStreamDelegate> _delegate;
+    __unsafe_unretained FLFinisher* _synchronousFinisher;
+
     FLMutableHttpResponse* _response;
     FLHttpRequest* _request;
-    FLReadStream* _responseStream;
+    FLReadStream* _httpStream;
+    FLDispatchQueue* _dispatchQueue;
 }
 @property (readwrite, assign) id<FLHttpStreamDelegate> delegate;
 
@@ -28,6 +31,8 @@
 
 - (id) initWithHttpRequest:(FLHttpRequest*) request;
 + (id) httpStream:(FLHttpRequest*) request;
+
+- (FLResult) connectSynchronously; 
 
 @end
 

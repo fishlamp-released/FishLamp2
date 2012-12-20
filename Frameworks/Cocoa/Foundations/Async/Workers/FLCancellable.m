@@ -10,23 +10,11 @@
 #import "FLFinisher.h"
 
 @interface FLCancellable ()
-@property (readwrite, strong) NSMutableArray* cancelled;
-@property (readwrite, assign) BOOL wasCancelled;
+//@property (readwrite, strong) NSMutableArray* cancelled;
+//@property (readwrite, assign) BOOL wasCancelled;
 @end
 
 @implementation FLCancellable 
-
-@synthesize cancelled = _cancelled;
-@synthesize wasCancelled = _wasCancelled;
-
-- (id) init {
-    self = [super init];
-    if(self) {
-        _cancelled = [[NSMutableArray alloc] init];
-        _dependents= [[NSMutableArray alloc] init];
-    }
-    return self;
-}
 
 + (id) cancelHandler {
     return FLAutorelease([[[self class] alloc] init]);
@@ -35,49 +23,24 @@
 #if FL_MRC
 - (void) dealloc {
     [_dependents release];
-    [_cancelled release];
     [super dealloc];
 }
 #endif
 
-
-- (void) reset {
-    self.wasCancelled = NO;
-    [_cancelled removeAllObjects];
-}
-
-- (FLFinisher*) requestCancel:(FLResultBlock) completion {
+- (void) requestCancel {
     @synchronized(self) {
-        self.wasCancelled = YES;
-    
-        FLFinisher* finisher = [FLFinisher finisherWithResultBlock:completion];
-        [self.cancelled addObject:finisher];
-        
         for(id<FLCancellable> obj in _dependents) {
-            [obj requestCancel:nil];
+            [obj requestCancel];
         }
-        
-        return finisher;
     }
-}
-
-- (FLResult) setFinished:(FLResult) result {
-
-    if(_cancelled.count) {
-        result = [NSError cancelError];
-        
-        for(FLFinisher* finisher in _cancelled) {
-            [finisher setFinishedWithResult:result];
-        }
-        
-        [_cancelled removeAllObjects];
-    }
-    
-    return result;
 }
 
 - (void) addDependent:(id<FLCancellable>) dependent {
     @synchronized(self) {
+        if(!_dependents) {
+            _dependents= [[NSMutableArray alloc] init];
+        }
+    
         [_dependents addObject:dependent];
     }
 }
@@ -88,27 +51,28 @@
     }
 }
 
-- (FLResult) runBlock:(FLResult (^)()) block forDependent:(id<FLCancellable>) dependent {
-
-    @try {
-        [self addDependent:dependent];
-        if(self.wasCancelled) {
-            return [NSError cancelError];
-        }
-        
-        if(block) {
-            return block();
-        }
-    }
-    @catch(NSException* ex) {
-        return ex.error;
-    }
-    @finally {
-        [self removeDependent:dependent];
-    }
-    
-    return nil;
-}
+//
+//- (FLResult) runBlock:(FLResult (^)()) block forDependent:(id<FLCancellable>) dependent {
+//
+//    @try {
+//        [self addDependent:dependent];
+//        if(self.wasCancelled) {
+//            return [NSError cancelError];
+//        }
+//        
+//        if(block) {
+//            return block();
+//        }
+//    }
+//    @catch(NSException* ex) {
+//        return ex.error;
+//    }
+//    @finally {
+//        [self removeDependent:dependent];
+//    }
+//    
+//    return nil;
+//}
 
 
 @end

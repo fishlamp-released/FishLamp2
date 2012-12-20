@@ -44,7 +44,7 @@
 
 - (void) deactivateContext:(FLOperationContext*) context {
     @synchronized(self) {
-        [context requestCancel:nil];
+        [context requestCancel];
         [context removeObserver:self];
         [_contexts removeObject:context];
     }
@@ -52,7 +52,7 @@
 
 - (void) cancelAllOperations {
     for(FLOperationContext* context in _contexts) {
-        [context requestCancel:nil];
+        [context requestCancel];
     }
 }
 

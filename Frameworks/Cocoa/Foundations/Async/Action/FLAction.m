@@ -335,8 +335,8 @@ TODO("MF: fix activity updater");
     return nil;
 }
 
-- (FLFinisher*) requestCancel:(FLResultBlock) completion {
-    return [self.operations requestCancel:completion];
+- (void) requestCancel {
+    return [self.operations requestCancel];
 }
 
 - (FLFinisher*) startAction:(FLResultBlock) resultBlock {
