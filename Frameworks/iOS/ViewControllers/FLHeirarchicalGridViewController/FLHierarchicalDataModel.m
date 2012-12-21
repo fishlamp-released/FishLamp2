@@ -11,7 +11,7 @@
 @implementation FLAction (FLHierarchicalDataModel)
 
 - (NSArray*) loadChildrenResult {
-    return FLAssertIsType(self.result, NSArray);
+    return FLAssertObjectIsType(self.result, NSArray);
 }
 
 @end

@@ -18,25 +18,11 @@
 #define __INCLUDE_STACK_TRACE__ YES
 #endif
 
-@protocol FLErrorAwareObject <NSObject>
-@property (readonly, strong) NSError* error;
-@end
-
-NS_INLINE
-id FLThrowError(id object) {
-    if(!object) {
-        return nil;
-    }
-    NSError* error = [object error];
-    if(!error) { 
-        return object;
-    }
-
-    @throw [NSException exceptionWithError:[FLMutableError mutableErrorWithError:error stackTrace:FLCreateStackTrace(__INCLUDE_STACK_TRACE__)]];
-}
-
-#define FLThrowError_(__ERROR__) \
-            FLThrowError(__ERROR__)
+#if DEBUG
+extern id FLThrowError(id object);
+#else
+#import "FLExceptions_Inlines.h"
+#endif
 
 #define FLThrowErrorCode_v(__DOMAIN_OBJECT_OR_STRING__, __CODE__, __FORMAT__, ...) \
             @throw [NSException exceptionWithError: \
@@ -84,4 +70,4 @@ id FLThrowError(id object) {
 
 
 #define FLCThrowFailure_ FLThrowFailure_
-#define FLCThrowError_ FLThrowError_
+#define FLCThrowError_ FLThrowError

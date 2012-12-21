@@ -5,23 +5,22 @@
 //  Created by Mike Fullerton on 9/5/12.
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
+#import "FLCocoaRequired.h"
+@protocol FLReadStream;
+@protocol FLWriteStream;
 
-#import "FLLinkedListElement.h"
-#import "FLTcpConnectionReader.h"
-#import "FLTcpConnectionWriter.h"
-
-@interface FLTcpRequest : FLLinkedListElement {
+@interface FLTcpRequest : NSObject {
 @private
-    BOOL _wantsWrite;
-    BOOL _wantsRead;
 }
 
-@property (readwrite, assign, nonatomic) BOOL wantsWrite;
+- (BOOL) readData:(id<FLReadStream>) stream;
 
-@property (readwrite, assign, nonatomic) BOOL wantsRead;
-
-- (BOOL) readData:(FLTcpConnectionReader*) reader;
-
-- (BOOL) writeData:(FLTcpConnectionWriter*) writer;
+- (BOOL) writeData:(id<FLWriteStream>) stream;
 
 @end
+
+// TODO:
+// make subclasses for specific transaction types:
+// send bytes expecting bytes (e.g. wantsRead NO && wantsWrite = YES initialially)
+// send bytes expecting nothing back
+// receive arbritrary bytes

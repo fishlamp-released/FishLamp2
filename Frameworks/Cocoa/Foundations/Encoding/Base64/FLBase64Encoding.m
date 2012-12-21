@@ -38,7 +38,7 @@
 		}
 		else
 		{
-			FLThrowError_([NSError errorWithDomain:NSCocoaErrorDomain code:NSFormattingError userInfo:nil]);
+			FLThrowError([NSError errorWithDomain:NSCocoaErrorDomain code:NSFormattingError userInfo:nil]);
 		}
 	}
 	@finally
@@ -76,7 +76,7 @@
 		}
 		else
 		{
-			FLThrowError_([NSError errorWithDomain:NSCocoaErrorDomain code:NSFormattingError userInfo:nil]);
+			FLThrowError([NSError errorWithDomain:NSCocoaErrorDomain code:NSFormattingError userInfo:nil]);
 		}		
 	}
 	@finally

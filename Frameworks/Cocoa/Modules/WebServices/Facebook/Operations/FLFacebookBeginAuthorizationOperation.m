@@ -87,7 +87,7 @@ static NSString* kRedirectURL = @"http://www.facebook.com/connect/login_success.
 
 
 
-- (FLResult) runSelf:(id) input {
+- (FLResult) runOperationWithInput:(id) input {
 
     [FLFacebookService clearHTTPCookies];
 
@@ -108,7 +108,7 @@ static NSString* kRedirectURL = @"http://www.facebook.com/connect/login_success.
 //    NSError* error = nil;
 //    result = [self parseAuthenticationResponseFromURL:httpResponse.requestURL];
 //    if(error) {
-//        FLThrowError_(error);
+//        FLThrowError(error);
 //    }
 //
 //    

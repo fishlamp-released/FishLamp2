@@ -12,7 +12,9 @@
 
 @implementation FLNetworkActivityConnectionObserver
 
-FLSynthesizeSingleton(FLNetworkActivityConnectionObserver);
++ (id) networkActivityConnectionObserver {
+    return FLAutorelease([[[self class] alloc] init]);
+}
 
 //- (void) observerWasAddedToNetworkConnection:(FLNetworkConnection*) connection {
 //    [[FLGlobalNetworkActivityIndicator instance] showNetworkActivityIndicator:self];

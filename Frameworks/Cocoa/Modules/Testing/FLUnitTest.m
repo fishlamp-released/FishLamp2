@@ -158,7 +158,7 @@
     return YES;
 }
 
-- (FLResult) runSelf:(id) input {
+- (FLResult) runOperationWithInput:(id) input {
     FLTestResultCollection* results = [FLTestResultCollection testResultCollection];
         
     if([self willRunTests]) {

@@ -6,19 +6,29 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
+#import "FLCocoaRequired.h"
 #import "FLNetworkStream.h"
-
+#import "FLFinisher.h"
 #import "FLReadStream.h"
 #import "FLWriteStream.h"
-#import "FLNetworkStream.h"
+#import "FLTcpRequest.h"
+#import "FLDispatchQueue.h"
 
-@interface FLTcpStream : FLNetworkStream<FLConcreteNetworkStream> {
+@interface FLTcpStream : FLObservable<FLCancellable, FLReadStreamDelegate, FLWriteStreamDelegate> {
 @private
     NSString* _remoteHost;
     int32_t _remotePort;
     FLReadStream* _readStream;
 	FLWriteStream* _writeStream;
+    FLDispatchQueue* _dispatchQueue;
+  
+    BOOL _terminate;
+  
+// requests      
+    NSMutableArray* _requests;
+    NSMutableArray* _additions;
 }
+
 @property (readonly, strong) FLReadStream* readStream;
 @property (readonly, strong) FLWriteStream* writeStream;
 
@@ -29,6 +39,11 @@
 
 + (id) tcpStream:(NSString*) address remotePort:(int32_t) port;
 
+- (FLFinisher*) openConnection;
+- (void) closeConnectionWithResult:(id) result;
+
+- (void) addRequest:(FLTcpRequest*) request;
+- (void) addRequestsWithArray:(NSArray*) requestArray;
 @end
 
 extern NSString* const FLTcpStreamWriteErrorKey;
@@ -39,4 +54,3 @@ extern NSString* const FLTcpStreamReadErrorKey;
 @property (readonly, strong, nonatomic) NSError* readError;
 + (NSError*) tcpStreamError:(NSError*) readError writeError:(NSError*) writeError;
 @end
-

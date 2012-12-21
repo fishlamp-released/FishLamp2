@@ -8,7 +8,7 @@
 
 #import "FLCore.h"
 #import "FLDispatcher.h"
-#import <dispatch/dispatch.h>
+#import "FLObjectPool.h"
 
 @interface FLDispatchQueue: NSObject<FLDispatcher> {
 @private
@@ -35,32 +35,36 @@
 
 @end
 
-@interface FLSystemDispatchQueues : NSObject
-+ (FLDispatchQueue*) lowPriorityQueue;
-+ (FLDispatchQueue*) defaultQueue;
-+ (FLDispatchQueue*) highPriorityQueue;
-+ (FLDispatchQueue*) backgroundQueue;
-+ (FLDispatchQueue*) foregroundQueue;
+@interface FLDispatchQueue (SystemQueues)
++ (FLDispatchQueue*) sharedLowPriorityQueue;
++ (FLDispatchQueue*) sharedDefaultQueue;
++ (FLDispatchQueue*) sharedHighPriorityQueue;
++ (FLDispatchQueue*) sharedBackgroundQueue;
++ (FLDispatchQueue*) sharedForegroundQueue;
 @end
 
-@interface FLFrameworkQueues : NSObject
-+ (FLDispatchQueue*) fifoQueue;
+@interface FLFifoDispatchQueue : FLDispatchQueue
++ (id) fifoDispatchQueue;
++ (FLDispatchQueue*) sharedFifoQueue;
++ (FLObjectPool*) pool;
 @end
 
 #define FLHighPriorityQueue \
-            [FLSystemDispatchQueues highPriorityQueue]
+            [FLDispatchQueue sharedHighPriorityQueue]
 
 #define FLBackgroundQueue \
-            [FLSystemDispatchQueues backgroundQueue]
+            [FLDispatchQueue sharedBackgroundQueue]
 
 #define FLLowPriorityQueue \
-            [FLSystemDispatchQueues lowPriorityQueue]
+            [FLDispatchQueue sharedLowPriorityQueue]
             
 #define FLDefaultQueue \
-            [FLSystemDispatchQueues defaultQueue]
+            [FLDispatchQueue sharedDefaultQueue]
             
 #define FLForegroundQueue \
-            [FLSystemDispatchQueues foregroundQueue]
+            [FLDispatchQueue sharedForegroundQueue]
 
 #define FLFifoQueue \
-            [FLFrameworkQueues fifoQueue]
+            [FLFifoDispatchQueue sharedFifoQueue]
+
+

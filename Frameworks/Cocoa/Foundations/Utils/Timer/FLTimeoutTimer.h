@@ -9,7 +9,6 @@
 #import "FLObservable.h"
 
 #import "FLFinisher.h"
-#import "FLWorker.h"
 #import "FLObservable.h"
 
 extern const NSString* FLTimeoutTimerCheckEvent;
@@ -44,7 +43,7 @@ extern const NSTimeInterval FLTimeoutTimerDefaultCheckFrequencyInterval;
 + (FLTimeoutTimer*) timeoutTimer:(NSTimeInterval) timeoutInterval;
 
 - (FLFinisher*) startTimerWithFrequency:(NSTimeInterval) checkFrequency
-                                  finisher:(FLFinisher*) finisher;
+                               finisher:(FLFinisher*) finisher;
                                       
 - (FLFinisher*) startTimer:(FLFinisher*) finisher;
 

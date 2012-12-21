@@ -89,7 +89,7 @@
 }
 
 
-- (FLResult) runSelf:(id) input {
+- (FLResult) runOperationWithInput:(id) input {
 
     FLMutableHttpRequest* httpRequest = [FLMutableHttpRequest httpPostRequestWithURL:self.twitterURL];
 
@@ -105,11 +105,11 @@
     FLThrowError(parser.error);
     
     if([twitterResponse objectForKey:@"error"]) {
-        FLThrowError_(
+        FLThrowError(
             [NSError errorWithDomain:@"FLTwitterErrorDomain" code:1 localizedDescription:[twitterResponse objectForKey:@"error"]]);
     }
 
-    FLThrowError_([httpResponse simpleHttpResponseErrorCheck]);
+    FLThrowError([httpResponse simpleHttpResponseErrorCheck]);
     
     return twitterResponse;
 }

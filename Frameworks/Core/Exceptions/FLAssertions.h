@@ -56,27 +56,11 @@
     #define FLAssertIsOverridden_           FLConfirmIsOverridden_ 
     #define FLAssertIsOverridden_v          FLConfirmIsOverridden_v
 
-    NS_INLINE
-    id _FLAssertIsType(id object, Class aClass) {
-        if(object) {
-            FLAssert_v([object isKindOfClass:aClass], 
-                @"expecting type of %@ but got %@", 
-                NSStringFromClass(aClass), 
-                NSStringFromClass([object class]));
-        }
-        return object;
-    }
+    extern id _FLAssertObjectIsType(id object, NSString* className);
+    extern id _FLAssertConformsToProtocol(id object, Protocol* proto);
 
-    NS_INLINE
-    id _FLAssertConformsToProtocol(id object, Protocol* proto) {
-        if(object) {
-            FLAssert_v([object conformsToProtocol:proto], @"expecting object to implement protocol: %@", NSStringFromProtocol(proto));
-        }
-        return object;
-    }
-
-    #define FLAssertIsType(__OBJ__, __TYPE__) \
-        _FLAssertIsType(__OBJ__, NSClassFromString(@#__TYPE__))
+    #define FLAssertObjectIsType(__OBJ__, __TYPE__) \
+        _FLAssertObjectIsType(__OBJ__, @#__TYPE__)
 
     #define FLAssertConformsToProtocol(__OBJ__, __PROTOCOL__) \
         _FLAssertConformsToProtocol(__OBJ__, NSProtocolFromString(@#__PROTOCOL__))
@@ -141,7 +125,7 @@
     #define FLFixMe_ FLAssertIsFixed_
     #define FLFixMe_v FLAssertIsFixed_v
 
-    #define FLAssertIsType(__OBJ__, __TYPE__) __OBJ__
+    #define FLAssertObjectIsType(__OBJ__, __TYPE__) __OBJ__
     #define FLAssertConformsToProtocol(__OBJ__, __PROTOCOL__) __OBJ__
 
 #endif

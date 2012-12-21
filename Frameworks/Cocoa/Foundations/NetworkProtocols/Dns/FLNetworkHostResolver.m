@@ -13,27 +13,39 @@
 
 @interface FLNetworkHostResolver ()
 @property (readwrite, strong) FLNetworkHost* networkHost;
+@property (readwrite, strong) FLFinisher* finisher;
+@property (readwrite, assign) BOOL isOpen;
+
+- (void) cancelRunLoop;
 @end
 
 @implementation FLNetworkHostResolver
 
 @synthesize networkHost = _networkHost;
+@synthesize finisher = _finisher;
+@synthesize isOpen = _isOpen;
 
-- (id) initWithNetworkHost:(FLNetworkHost*) networkHost {
+- (id) init {
     self = [super init];
     if(self) {
-        self.networkHost = networkHost;
     }
     
     return self;
 }
 
-#if FL_MRC
 - (void) dealloc {
+    [self cancelRunLoop];
+    
+#if FL_MRC
+    [_finisher release];
     [_networkHost release];
     [super dealloc];
-}
 #endif
+}
+
++ (id) networkHostResolver {
+    return FLAutorelease([[[self class] alloc] init]);
+}
 
 - (void) resolutionCallback:(CFHostRef) theHost
                    typeInfo:(CFHostInfoType) typeInfo
@@ -54,7 +66,7 @@
         result = self.networkHost;
     }
     
-    [self closeNetworkStreamWithResult:result];
+    [self closeStreamWithResult:result];
 }
 
 static void HostResolutionCallback(CFHostRef theHost, CFHostInfoType typeInfo, const CFStreamError *error, void *info) {
@@ -63,7 +75,11 @@ static void HostResolutionCallback(CFHostRef theHost, CFHostInfoType typeInfo, c
     [resolver resolutionCallback:theHost typeInfo:typeInfo error:error];
 }
 
-- (void) openStream {
+- (void) openSelfWithInput:(id) input {
+    
+    FLAssert_v(!self.isOpen, @"already running");
+    self.isOpen = YES;
+    self.networkHost = input;
     
     CFHostClientContext context = { 0, bridge_(void*, self), NULL, NULL, NULL };
   
@@ -71,23 +87,55 @@ static void HostResolutionCallback(CFHostRef theHost, CFHostInfoType typeInfo, c
     FLAssertIsNotNil_v(host, nil);
 
     if (!CFHostSetClient(host, HostResolutionCallback, &context)) {
-        FLThrowError_([NSError errorWithDomain:NSPOSIXErrorDomain code:EINVAL userInfo:nil]);
+        [self closeStreamWithResult:[NSError errorWithDomain:NSPOSIXErrorDomain code:EINVAL userInfo:nil]];
+        
     }
+    else {
+        CFHostScheduleWithRunLoop(host, CFRunLoopGetMain(), bridge_(void*,NSDefaultRunLoopMode));
+        CFStreamError streamError = { 0, 0 };
+        if (!CFHostStartInfoResolution(host, self.networkHost.hostInfoType, &streamError) ) {
+            [self closeStreamWithResult:FLCreateErrorFromStreamError(&streamError)];
+        }
+    }
+}
 
-    CFHostScheduleWithRunLoop(host, CFRunLoopGetMain(), bridge_(void*,NSDefaultRunLoopMode));
-    CFStreamError streamError = { 0, 0 };
-    if (!CFHostStartInfoResolution(host, self.networkHost.hostInfoType, &streamError) ) {
-        FLThrowError_(FLCreateErrorFromStreamError(&streamError));
+- (void) cancelRunLoop {
+    if(self.isOpen) {
+        CFHostRef host = self.networkHost.hostRef;
+        if(host) {
+            /*BOOL success = */ CFHostSetClient(host, NULL, NULL);
+            CFHostUnscheduleFromRunLoop(host, CFRunLoopGetMain(), bridge_(void*,NSDefaultRunLoopMode));
+            CFHostCancelInfoResolution(host, self.networkHost.hostInfoType);
+        }
+        self.isOpen = NO;
     }
 }
 
-- (void) closeStreamWithResult:(id) result {
-    CFHostRef host = self.networkHost.hostRef;
-    if(host) {
-        /*BOOL success = */ CFHostSetClient(host, NULL, NULL);
-        CFHostUnscheduleFromRunLoop(host, CFRunLoopGetMain(), bridge_(void*,NSDefaultRunLoopMode));
-        CFHostCancelInfoResolution(host, self.networkHost.hostInfoType);
-    }
+- (void) closeSelfWithResult:(id) result {
+    [self cancelRunLoop];
+    [self.finisher setFinishedWithResult:result];
+    self.finisher = nil;
+    self.networkHost = nil;
 }
+
+- (void) didEncounterError:(NSError*) error {
+    [self closeStreamWithResult:error];
+}
+
+- (FLResult) resolveHostSynchronously:(FLNetworkHost*) host {
+    return [[self startResolvingHost:host] waitUntilFinished];
+}
+
+- (FLFinisher*) startResolvingHost:(FLNetworkHost*) host {
+    self.finisher = [FLFinisher finisher];
+    [self openStreamWithInput:host];
+    return self.finisher;
+}
+
+- (BOOL) networkStreamIsOpen:(FLNetworkStream*) stream {
+    return self.isOpen;
+}
+
+
 
 @end

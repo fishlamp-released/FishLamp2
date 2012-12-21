@@ -10,7 +10,6 @@
 
 #import "NSObject+FLSelectorPerforming.h"
 #import "FLFinisher.h"
-#import "FLFallible.h"
 
 static void * const s_queue_key = (void*)&s_queue_key;
 
@@ -110,11 +109,11 @@ static void * const s_queue_key = (void*)&s_queue_key;
     return finisher;
 }
 
-- (FLFinisher*) dispatchAsyncBlock:(FLAsyncFinisherBlock) block {
-    return [self dispatchAsyncBlock:block completion:nil];
+- (FLFinisher*) dispatchFinishableBlock:(FLFinishableBlock) block {
+    return [self dispatchFinishableBlock:block completion:nil];
 }
 
-- (FLFinisher*) dispatchAsyncBlock:(FLAsyncFinisherBlock) block 
+- (FLFinisher*) dispatchFinishableBlock:(FLFinishableBlock) block 
                        completion:(FLCompletionBlock) completion {
 
     FLFinisher* finisher = [FLScheduledFinisher finisherWithResultBlock:completion];
@@ -136,31 +135,168 @@ static void * const s_queue_key = (void*)&s_queue_key;
     return finisher;
 }
 
+#pragma mark -- object dispatcher 
+
+- (FLFinisher*) dispatchObject:(id) object {
+    return [self dispatchFinishableBlock:^(FLFinisher *finisher) {
+        [finisher setFinishedWithResult:[object runSynchronously]];
+    }];
+}
+
+- (FLFinisher*) dispatchObject:(id) object
+                     withInput:(id) input {
+    return [self dispatchFinishableBlock:^(FLFinisher *finisher) {
+        [finisher setFinishedWithResult:[object runSynchronouslyWithInput:input]];
+    }];
+}
+
+- (FLFinisher*) dispatchObject:(id) object
+                   completion:(FLCompletionBlock) completion {
+
+    return [self dispatchFinishableBlock:^(FLFinisher *finisher) {
+        [finisher setFinishedWithResult:[object runSynchronously]];
+    }
+    completion:completion];
+}
+
+- (FLFinisher*) dispatchObject:(id) object
+                    withInput:(id) input
+                   completion:(FLCompletionBlock) completion {
+    
+    return [self dispatchFinishableBlock:^(FLFinisher *finisher) {
+        [finisher setFinishedWithResult:[object runSynchronouslyWithInput:input]];
+    }
+    completion:completion];
+}
+
+#pragma mark -- selector dispatcher
+
+- (FLFinisher*) dispatchTarget:(id) target 
+                      selector:(SEL) selector {
+    return [self dispatchBlock:^{
+        FLPerformSelector(target, selector);
+    }];
+}
+
+- (FLFinisher*) dispatchTarget:(id) target 
+                      selector:(SEL) selector
+                    withObject:(id) object {
+    return [self dispatchBlock:^{
+        FLPerformSelector1(target, selector, object);
+    }];
+}
+
+- (FLFinisher*) dispatchTarget:(id) target 
+                      selector:(SEL) selector
+                    withObject:(id) object1
+                    withObject:(id) object2 {
+    return [self dispatchBlock:^{
+        FLPerformSelector2(target, selector, object1, object2);
+    }];
+}
+
+- (FLFinisher*) dispatchTarget:(id) target 
+                      selector:(SEL) selector
+                    withObject:(id) object1
+                    withObject:(id) object2
+                    withObject:(id) object3 {
+    return [self dispatchBlock:^{
+        FLPerformSelector3(target, selector, object1, object2, object3);
+    }];
+}
+
+- (FLFinisher*) dispatchTarget:(id) target 
+                      selector:(SEL) selector
+                    completion:(FLCompletionBlock) completion {
+    return [self dispatchBlock:^{
+        FLPerformSelector(target, selector);
+    }
+    completion:completion];
+}
+
+- (FLFinisher*) dispatchTarget:(id) target 
+                      selector:(SEL) selector
+                    withObject:(id) object
+                    completion:(FLCompletionBlock) completion {
+    return [self dispatchBlock:^{
+        FLPerformSelector1(target, selector, object);
+    }
+    completion:completion];
+
+}
+
+- (FLFinisher*) dispatchTarget:(id) target 
+                      selector:(SEL) selector
+                    withObject:(id) object1
+                    withObject:(id) object2
+                    completion:(FLCompletionBlock) completion {
+    return [self dispatchBlock:^{
+        FLPerformSelector2(target, selector, object1, object2);
+    }
+    completion:completion];
+
+}
+
+- (FLFinisher*) dispatchTarget:(id) target 
+                      selector:(SEL) selector
+                    withObject:(id) object1
+                    withObject:(id) object2
+                    withObject:(id) object3
+                    completion:(FLCompletionBlock) completion {
+
+    return [self dispatchBlock:^{
+        FLPerformSelector3(target, selector, object1, object2, object3);
+    }
+    completion:completion];
+}
+
+
+
 @end
 
-@implementation FLSystemDispatchQueues
+@implementation FLDispatchQueue (SystemQueues)
 
-+ (FLDispatchQueue*) lowPriorityQueue {
++ (FLDispatchQueue*) sharedLowPriorityQueue {
     FLReturnStaticObject( [[FLDispatchQueue alloc] initWithDispatchQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)]);
 }
-+ (FLDispatchQueue*) defaultQueue {
++ (FLDispatchQueue*) sharedDefaultQueue {
     FLReturnStaticObject( [[FLDispatchQueue alloc] initWithDispatchQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)]);
 }
-+ (FLDispatchQueue*) highPriorityQueue {
++ (FLDispatchQueue*) sharedHighPriorityQueue {
     FLReturnStaticObject([[FLDispatchQueue alloc] initWithDispatchQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)]);
 }
-+ (FLDispatchQueue*) backgroundQueue {
++ (FLDispatchQueue*) sharedBackgroundQueue {
     FLReturnStaticObject([[FLDispatchQueue alloc] initWithDispatchQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)]);
 }
-+ (FLDispatchQueue*) foregroundQueue {
++ (FLDispatchQueue*) sharedForegroundQueue {
     FLReturnStaticObject([[FLDispatchQueue alloc] initWithDispatchQueue:dispatch_get_main_queue()]);
 }
 @end
 
-@implementation FLFrameworkQueues 
-+ (FLDispatchQueue*) fifoQueue {
-    FLReturnStaticObject([[FLDispatchQueue alloc] initWithLabel:@"com.fishlamp.queue.fifo" attr:DISPATCH_QUEUE_SERIAL]);
+@implementation FLFifoDispatchQueue  
+
++ (id) fifoDispatchQueue {
+    return FLAutorelease([[[self class] alloc] init]);
 }
+
+- (id) init {
+    static int s_count = 0;
+    return [super initWithLabel:[NSString stringWithFormat:@"com.fishlamp.queue.fifo%d", s_count++] attr:DISPATCH_QUEUE_SERIAL];
+}
+
++ (FLDispatchQueue*) sharedFifoQueue {
+    FLReturnStaticObject([FLFifoDispatchQueue fifoDispatchQueue]);
+}
+
++ (FLObjectPool*) pool {
+    static FLObjectPoolFactory s_factory = ^{
+        return [FLFifoDispatchQueue fifoDispatchQueue];
+    };
+
+    FLReturnStaticObject([[FLObjectPool alloc] initWithObjectFactory:s_factory]); 
+}
+
+
 @end
 
 

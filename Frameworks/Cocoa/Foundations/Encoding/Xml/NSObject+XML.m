@@ -90,7 +90,7 @@
     NSError* error = nil;
     NSData* data = [NSData dataWithContentsOfFile:path options:NSDataReadingUncached error:&error];
     if(error) {
-        FLThrowError_(FLAutorelease(error));
+        FLThrowError(FLAutorelease(error));
     }
 
     FLXmlParser* parser = [FLXmlParser xmlParser:data];

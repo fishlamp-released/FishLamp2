@@ -300,7 +300,7 @@
 		
 		if(error)
 		{
-			FLThrowError_(error);
+			FLThrowError(error);
 		}
 	}
 }

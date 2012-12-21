@@ -9,6 +9,9 @@
 #import "FLWriteStream.h"
 
 @interface FLWriteStream ()
+- (void) handleStreamEvent:(CFStreamEventType) eventType;
+@property (readwrite, assign) BOOL isOpen;
+
 @end
 
 static void WriteStreamClientCallBack(CFWriteStreamRef readStream, 
@@ -22,6 +25,8 @@ static void WriteStreamClientCallBack(CFWriteStreamRef readStream,
 @implementation FLWriteStream
 
 @synthesize streamRef = _streamRef;
+@synthesize isOpen = _isOpen;
+@synthesize delegate = _delegate;
 
 - (id) initWithWriteStream:(CFWriteStreamRef) streamRef {
     
@@ -66,21 +71,71 @@ static void WriteStreamClientCallBack(CFWriteStreamRef readStream,
 #endif    
 }
 
-- (void) openStream {
-    FLAssertIsNotNil_(_streamRef);
-
-// FIXME
-//    CFWriteStreamScheduleWithRunLoop(_streamRef, self.runLoop, bridge_(void*,NSDefaultRunLoopMode));
-//    CFWriteStreamOpen(_streamRef);
+- (void) didEncounterError:(NSError*) error {
+    [self.delegate writeStream:self didEncounterError:error];
 }
 
-- (void) closeStreamWithResult:(id) result {
-    FLAssertIsNotNil_(_streamRef);
+- (void) handleStreamEvent:(CFStreamEventType) eventType {
 
-// FIXME
-//    CFWriteStreamUnscheduleFromRunLoop(_streamRef, self.runLoop, bridge_(void*,NSDefaultRunLoopMode));
-//    CFWriteStreamClose(_streamRef);
+//    FLAssert_v([NSThread currentThread] == self.thread, @"tcp operation on wrong thread");
+
+#if TRACE
+    FLDebugLog(@"Read Stream got event %d", eventType);
+#endif
+
+    switch (eventType)  {
+        case kCFStreamEventOpenCompleted: {
+            [self.timeoutTimer touchTimestamp];
+            self.isOpen = YES;
+            [self.delegate writeStreamDidOpen:self];
+        }
+        break;
+
+        case kCFStreamEventErrorOccurred: {
+            [self.timeoutTimer touchTimestamp];
+            NSError* error = FLAutorelease(bridge_transfer_(NSError*,CFWriteStreamCopyError(self.streamRef)));
+            [self didEncounterError:error];
+        }
+        break;
+        
+        case kCFStreamEventEndEncountered:{
+            [self.timeoutTimer touchTimestamp];
+            [self.delegate writeStream:self didCloseWithResult:FLSuccessfullResult];
+        }
+        break;
+        
+        case kCFStreamEventNone:
+            // wtf? why would we get this?
+            break;
+        
+        case kCFStreamEventHasBytesAvailable: {
+            FLAssertFailed_v(@"this is a write stream");
+        }
+        break;
+            
+        case kCFStreamEventCanAcceptBytes: {
+            [self.timeoutTimer touchTimestamp];
+            [self.delegate writeStreamCanAcceptBytes:self];
+            break;
+        }
+    }
 }
+
+- (void) openSelfWithInput:(id) input {
+    FLAssertIsNotNil_(_streamRef);
+    self.isOpen = NO;
+    CFWriteStreamScheduleWithRunLoop(_streamRef, CFRunLoopGetMain(), bridge_(void*,NSDefaultRunLoopMode));
+    CFWriteStreamOpen(_streamRef);
+}
+
+- (void) closeSelfWithResult:(id) result {
+    FLAssertIsNotNil_(_streamRef);
+    CFWriteStreamUnscheduleFromRunLoop(_streamRef, CFRunLoopGetMain(), bridge_(void*,NSDefaultRunLoopMode));
+    CFWriteStreamClose(_streamRef);
+    self.isOpen = NO;
+}
+
+
 
 //- (id) result {
 //    NSError* error = FLAutorelease(bridge_transfer_(NSError*,CFWriteStreamCopyError(self.streamRef)));
@@ -91,7 +146,11 @@ static void WriteStreamClientCallBack(CFWriteStreamRef readStream,
 //    return [FLSuccessfullResult successfulResult];
 //}
 
-- (void) sendBytes:(const uint8_t*) bytes length:(unsigned long) length {
+- (BOOL) canAcceptBytes {
+    return CFWriteStreamCanAcceptBytes(_streamRef);
+}
+
+- (void) writeBytes:(const uint8_t*) bytes length:(unsigned long) length {
     FLAssertIsNotNil_(_streamRef);
 
     const uint8_t *buffer = bytes;
@@ -105,12 +164,12 @@ static void WriteStreamClientCallBack(CFWriteStreamRef readStream,
         buffer += amt;
     }
     
-    [self postObservation:@selector(networkStreamDidWriteBytes:)];
     [self touchTimestamp];
+    [self.delegate writeStream:self didWriteBytes:length];
 }
 
-- (void) sendData:(NSData*) data {
-    [self sendBytes:data.bytes length:data.length];
+- (void) writeData:(NSData*) data {
+    [self writeBytes:data.bytes length:data.length];
 }
 
 - (unsigned long) bytesWritten {

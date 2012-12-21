@@ -57,7 +57,7 @@
 	NSError* err = nil;
 	NSArray* contents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:fromFolder error:&err];
     if(err) {
-       FLThrowError_(err);
+       FLThrowError(err);
     }
 	
 	for(NSString* item in contents) {
@@ -70,7 +70,7 @@
 	
 		[[NSFileManager defaultManager] moveItemAtPath:srcPath toPath:destPath error:&err];
         if(err) {
-           FLThrowError_(err);
+           FLThrowError(err);
         }
 	}
 }
@@ -115,7 +115,7 @@
 //	[[NSFileManager defaultManager] createDirectoryAtPath:newFolderPath withIntermediateDirectories:YES attributes:nil error:&err];
 //    if(err)
 //    {
-//       FLThrowError_(err);
+//       FLThrowError(err);
 //    }
 //	
 //	return newFolderPath;
@@ -131,7 +131,7 @@
 			attributes:nil 
 			error:&err];
 		        if(err) {
-           FLThrowError_(err);
+           FLThrowError(err);
         }
 
 	
@@ -196,7 +196,7 @@
     NSError* err = nil;
     NSDictionary* attrs = [self attributesOfItemAtPath:path error:&err];
     if(err) {
-       FLThrowError_(err);
+       FLThrowError(err);
     }
     
     return attrs.fileType == NSFileTypeDirectory;
@@ -222,7 +222,7 @@
     NSError* err = nil;
     NSArray* contents = [self contentsOfDirectoryAtPath:path error:&err];
     if(err) {
-       FLThrowError_(err);
+       FLThrowError(err);
     }
     
     for(NSString* item in contents) {

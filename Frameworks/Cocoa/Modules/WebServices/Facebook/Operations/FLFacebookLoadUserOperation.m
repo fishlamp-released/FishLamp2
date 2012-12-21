@@ -13,7 +13,7 @@
 
 @implementation FLFacebookLoadUserOperation
 
-- (FLResult) runSelf:(id) input {
+- (FLResult) runOperationWithInput:(id) input {
 
 
 	FLFacebookUser* user = [FLFacebookUser facebookUser];
@@ -22,7 +22,7 @@ FIXME(@"load the user id???");
 	self.inputObject = user;
 	self.outputObject = [FLFacebookUser facebookUser];
 
-    return [super runSelf:(id) input];
+    return [super runOperationWithInput:(id) input];
 }
 
 - (BOOL) willAddParametersToURL {

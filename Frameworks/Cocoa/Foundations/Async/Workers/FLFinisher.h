@@ -14,6 +14,7 @@
 
 typedef void (^FLFinisherNotificationSchedulerBlock)(dispatch_block_t notifier);
 
+
 @interface FLFinisher : NSObject {
 @private
     id _result;

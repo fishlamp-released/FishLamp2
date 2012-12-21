@@ -10,22 +10,11 @@
 
 @implementation FLTcpRequest
 
-@synthesize wantsWrite = _wantsWrite;
-@synthesize wantsRead = _wantsRead;
-
-- (id) init {
-    self = [super init];
-    if(self) {
-    }
-    
-    return self;
-}
-
-- (BOOL) readData:(FLTcpConnectionReader*) reader {
+- (BOOL) readData:(id<FLReadStream>) reader {
     return NO;
 }
 
-- (BOOL) writeData:(FLTcpConnectionWriter*) writer {
+- (BOOL) writeData:(id<FLReadStream>) writer {
     return NO;
 }
 

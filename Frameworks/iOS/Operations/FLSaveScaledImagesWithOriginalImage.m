@@ -42,7 +42,7 @@
 	super_dealloc_();
 }
 
-- (void) runSelf:(id) input
+- (void) runOperationWithInput:(id) input
 {
 	id<FLImageAsset> input = (FLJpegFileImageAsset*) self.input;
 	FLAssertIsNotNil_(input);

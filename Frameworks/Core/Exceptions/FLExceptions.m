@@ -8,7 +8,6 @@
 
 #import "FLExceptions.h"
 
-NS_INLINE
 id FLThrowErrorIfNeeded(id object) {
     if(!object) {
         return nil;
@@ -20,3 +19,7 @@ id FLThrowErrorIfNeeded(id object) {
 
     @throw [NSException exceptionWithError:[FLMutableError mutableErrorWithError:error stackTrace:FLCreateStackTrace(__INCLUDE_STACK_TRACE__)]];
 }
+
+#if DEBUG
+#import "FLExceptions_Inlines.h"
+#endif

@@ -13,14 +13,13 @@
 #import "FLHttpResponse.h"
 #import "FLMutableHttpRequest.h"
 
-@interface FLHttpOperation : FLOperation<FLHttpStreamDelegate> {
+@interface FLHttpOperation : FLOperation<FLHttpStreamRedirector> {
 @private
     id<FLHttpRequestAuthenticator> _requestAuthenticator;
     NSURL* _httpRequestURL;
 
 // only valid while sending request
     FLHttpStream* _httpStream;
-    dispatch_semaphore_t _semaphore;
 }
 
 @property (readwrite, strong) NSURL* httpRequestURL;

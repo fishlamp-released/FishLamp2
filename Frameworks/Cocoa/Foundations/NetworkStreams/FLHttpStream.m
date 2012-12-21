@@ -15,7 +15,7 @@
 @property (readwrite, strong) FLHttpRequest* httpRequest;
 @property (readwrite, strong) FLReadStream* httpStream;
 @property (readwrite, strong) FLDispatchQueue* dispatchQueue;
-@property (readwrite, strong) FLFinisher* synchronousFinisher;
+@property (readwrite, strong) FLFinisher* finisher;
 
 - (void) readResponseHeadersIfNeeded;
 - (void) openHttpStreamToURL:(NSURL*) url;
@@ -105,38 +105,26 @@
 @synthesize httpResponse = _response;
 @synthesize httpRequest = _request;
 @synthesize httpStream = _httpStream;
-@synthesize delegate = _delegate;
+@synthesize redirector = _redirector;
 @synthesize dispatchQueue = _dispatchQueue;
-@synthesize synchronousFinisher = _synchronousFinisher;
+@synthesize finisher = _finisher;
 
-- (id) initWithHttpRequest:(FLHttpRequest*) request {
+- (id) init {
     self = [super init];
     if(self) {
-        self.httpRequest = request;
-        
-        static int s_count = 0;
-        
-// TODO: make a pool of these?        
-        _dispatchQueue = [[FLDispatchQueue alloc] initWithLabel:[NSString stringWithFormat:@"com.fishlamp.queue.network-stream-%d", ++s_count] 
-            attr:DISPATCH_QUEUE_SERIAL];
-        
     }
     
     return self;
 }
 
-+ (id) httpStream:(FLHttpRequest*) request {
-    return FLAutorelease([[[self class] alloc] initWithHttpRequest:request]);
-}
-
-- (id) output {
-    return self.httpResponse;
++ (id) httpStream {
+    return FLAutorelease([[[self class] alloc] init]);
 }
 
 - (void) dealloc  {
-    [_httpStream removeObserver:self];
+    _httpStream.delegate = nil;
+    FLReleasePooledObject(&_dispatchQueue);
 #if FL_MRC
-    [_dispatchQueue release];
     [_request release];
     [_response release];
     [_httpStream release];
@@ -146,11 +134,13 @@
 
 #define kStreamReadChunkSize 1024
 
-- (void) closeNetworkStreamWithResult:(id) result {
-    if(_httpStream) {
-        [_httpStream closeNetworkStreamWithResult:result];
-    }
-}
+//- (void) networkStream:(FLNetworkStream*) stream 
+// closeStreamWithResult:(id) result {
+// 
+//    if(_httpStream) {
+//        [_httpStream closeStreamWithResult:result];
+//    }
+//}
 
 - (void) openHttpStreamToURL:(NSURL*) url {
 
@@ -169,25 +159,13 @@
     newResponse.mutableResponseData = [NSMutableData dataWithCapacity:kStreamReadChunkSize]; 
     self.httpResponse = newResponse;
     self.httpStream = [self.httpRequest createHttpStreamWithURL:url];
-    [self.httpStream addObserver:self];
+    self.httpStream.delegate = self;
 
-    [self.httpStream openNetworkStream];
-}
-
-- (void) openNetworkStream {
-    [self.dispatchQueue dispatchBlock:^{
-        [self openHttpStreamToURL:self.httpRequest.requestURL];
-    }];
+    [self.httpStream openStreamWithInput:self.httpRequest];
 }
 
 - (BOOL) isOpen {
     return self.httpStream != nil && self.httpStream.isOpen;
-}
-
-- (void) networkStream:(id<FLNetworkStream>) stream encounteredError:(NSError *)error {
-    [self.dispatchQueue dispatchBlock:^{
-        [self closeNetworkStreamWithResult:FLSuccessfullResult];
-    }];
 }
 
 - (void) readResponseHeadersIfNeeded  {
@@ -198,42 +176,83 @@
             [_response setResponseHeadersWithHttpMessage:message];
             
             if(!_response.redirectedFrom) {
-                [self postObservation:@selector(networkStreamDidOpen:)];
+                [self postObservation:@selector(httpStreamDidOpen:)];
             }
             
-            [self postObservation:@selector(writeStreamDidWriteBytes:)];
-            [self postObservation:@selector(readStreamDidReadBytes:)];
+            [self postObservation:@selector(httpStreamDidWriteBytes:)];
+            [self postObservation:@selector(httpStreamDidReadBytes:)];
         }
     }
 }
 
-- (void) networkStreamHasBytesAvailable:(id<FLNetworkStream>) networkStream {
-    [self.dispatchQueue dispatchBlock:^{
-        [self readResponseHeadersIfNeeded];
-        [self.httpStream appendBytesToMutableData:_response.mutableResponseData];
-    }];
-}
-
-- (void) networkStreamDidOpen:(id<FLNetworkStream>) networkStream {
-    [self.dispatchQueue dispatchBlock:^{
-        [self readResponseHeadersIfNeeded];
-    }];
-}
-
 - (void) releaseStream {
-    [_httpStream removeObserver:self];
+    self.httpStream.delegate = nil;
     self.httpStream = nil;
 }
 
 - (void) didCloseWithResult:(id) result {
     [self releaseStream];
-    [self postObservation:@selector(networkStream:didCloseWithResult:) withObject:result];
-    if(self.synchronousFinisher) {
-        [self.synchronousFinisher setFinishedWithResult:result];
+    [self postObservation:@selector(httpStream:didCloseWithResult:) withObject:result];
+    
+    if(![result error]) {
+        result = self.httpResponse;
     }
+    
+    if(self.finisher) {
+        [self.finisher setFinishedWithResult:result];
+    }
+    
+    self.httpRequest = nil;
+    self.finisher = nil;
+    self.httpStream = nil;
+    self.httpResponse = nil;
 }
 
-- (void) networkStream:(id<FLNetworkStream>) networkStream 
+- (void) closeStreamWithResult:(id) result {
+    [self.dispatchQueue dispatchBlock:^{
+        [self.httpStream closeStreamWithResult:result];
+    }];
+}
+
+- (void) requestCancel {
+    [self.httpStream requestCancel];
+}
+
+- (FLResult) sendSynchronousRequest:(FLHttpRequest*) request {
+    return [[self sendRequest:request] waitUntilFinished];
+}
+
+- (void) startRequest {
+    [self.dispatchQueue dispatchBlock:^{
+        [self openHttpStreamToURL:self.httpRequest.requestURL];
+    }];
+}
+
+- (FLFinisher*) sendRequest:(FLHttpRequest*) request {
+    self.httpRequest = request;
+    self.finisher = [FLFinisher finisher];
+    
+    if(!self.dispatchQueue) {
+        [[FLFifoDispatchQueue pool] requestPooledObject:^(id<FLDispatcher> dispatcher) {
+            self.dispatchQueue = dispatcher;
+            [self startRequest];
+        }];
+    }
+    else {
+        [self startRequest];
+    }
+    
+    return self.finisher;
+}
+
+
+- (void) readStreamDidOpen:(FLReadStream*) httpStream {
+    [self.dispatchQueue dispatchBlock:^{
+        [self readResponseHeadersIfNeeded];
+    }];
+}
+
+- (void) readStream:(FLReadStream*) networkStream 
     didCloseWithResult:(FLResult) result {
     
     [self.dispatchQueue dispatchBlock:^{
@@ -252,7 +271,7 @@
                 
                 NSURL* redirectURL = self.httpResponse.redirectURL;
 
-                [self.delegate httpStream:self shouldRedirect:&redirect toURL:redirectURL];
+                [self.redirector httpStream:self shouldRedirect:&redirect toURL:redirectURL];
                 
                 if(redirect) {
                     [self releaseStream];
@@ -264,42 +283,26 @@
                 [self didCloseWithResult:result];
             }
         }
+    }];      
+}
+
+- (void) readStream:(FLReadStream*) readStream
+   didEncounterError:(NSError*) error {
+
+    [self closeStreamWithResult:error];
+}
+
+- (void) readStreamHasBytesAvailable:(id<FLReadStream>) httpStream {
+    [self.dispatchQueue dispatchBlock:^{
+        [self readResponseHeadersIfNeeded];
+        [self.httpStream readAvailableBytes:_response.mutableResponseData];
     }];
 }
 
-- (void) writeStreamDidWriteBytes:(id<FLNetworkStream>) stream {
+- (void) readStream:(id<FLReadStream>) stream didReadBytes:(unsigned long) amountRead {
+    [self postObservation:@selector(httpStreamDidReadBytes:)];
 }
 
-- (void) readStreamDidReadBytes:(id<FLNetworkStream>) stream{
-    [self postObservation:@selector(readStreamDidReadBytes:)];
-}
-
-- (void) requestCancel {
-    return [self.httpStream requestCancel];
-}
-
-- (BOOL) hasBytesAvailable {
-    return self.httpStream.hasBytesAvailable;
-}
-
-- (unsigned long) bytesRead {
-    return self.httpStream.bytesRead;
-}
-
-- (NSInteger) appendBytesToMutableData:(NSMutableData*) data {
-    return [self.httpStream appendBytesToMutableData:data];
-}
-
-- (FLResult) connectSynchronously {
-    @try{
-        self.synchronousFinisher = [FLFinisher finisher];
-        [self openNetworkStream];
-        return [self.synchronousFinisher waitUntilFinished];
-    }
-    @finally {
-        self.synchronousFinisher = nil;
-    }
-}
 
 @end
 

@@ -19,3 +19,5 @@
 + (id) abortError;
 @end
 
+#define FLThrowAbortException() @throw [FLAbortException abortException]
+#define FLThrowAbortExeptionIf(__CONDITION__) if(__CONDITION__) FLThrowAbortException()

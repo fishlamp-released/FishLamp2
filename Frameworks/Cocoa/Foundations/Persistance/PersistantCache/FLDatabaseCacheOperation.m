@@ -27,7 +27,7 @@
 	return self;
 }
 
-- (FLResult) runSelf:(id) input {
+- (FLResult) runOperationWithInput:(id) input {
     FLResult result = FLSuccessfullResult;
 	
     switch(_operationType)

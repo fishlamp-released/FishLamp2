@@ -30,7 +30,7 @@
 }
 #endif
 
-- (FLResult) runSelf:(id) input {
+- (FLResult) runOperationWithInput:(id) input {
 
     FLMutableHttpRequest* request = [FLMutableHttpRequest httpPostRequestWithURL:self.httpRequestURL];
 
@@ -49,8 +49,8 @@
     
     id result = [parser parseJsonData:[httpResponse responseData] rootObject:_outputObject];
 
-    FLThrowError_(parser.error);
-    FLThrowError_([httpResponse simpleHttpResponseErrorCheck]);
+    FLThrowError(parser.error);
+    FLThrowError([httpResponse simpleHttpResponseErrorCheck]);
     
     return result;
 }

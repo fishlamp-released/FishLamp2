@@ -9,6 +9,12 @@
 #import "FLReadStream.h"
 #import "FLCoreFoundation.h"
 
+@interface FLReadStream ()
+- (void) handleStreamEvent:(CFStreamEventType) eventType;
+@property (readwrite, assign) BOOL isOpen;
+- (NSError*) readStreamError;
+
+@end
 
 #if DEBUG
 CFIndex _FLReadStreamRead(CFReadStreamRef stream, UInt8 *buffer, CFIndex bufferLength) {
@@ -25,8 +31,12 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
     [connection handleStreamEvent:eventType];
 }
 
+
 @implementation FLReadStream 
+
 @synthesize streamRef = _streamRef;
+@synthesize isOpen = _isOpen;
+@synthesize delegate = _delegate;
 
 - (id) initWithReadStream:(CFReadStreamRef) streamRef {
     if(!streamRef) {
@@ -56,92 +66,101 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
 }
 
 - (void) dealloc {
-    FLAssertIsNotNil_(_streamRef);
-    
-    CFReadStreamSetClient(_streamRef, kCFStreamEventNone, NULL, NULL);
-    FLReleaseCRef_(_streamRef);
+    if(_streamRef) {
+        CFReadStreamSetClient(_streamRef, kCFStreamEventNone, NULL, NULL);
+        FLReleaseCRef_(_streamRef);
+    }
     
 #if FL_MRC
     [super dealloc];
 #endif
 }
 
-- (void) openStream {
-    FLAssertNotNil_(_streamRef);
-    
-//    CFDataRef handle = CFReadStreamCopyProperty(_streamRef, kCFStreamPropertySocketNativeHandle);
-////	if(nativeProp == NULL)
-////	{
-////		if (errPtr) *errPtr = [self getStreamError];
-////		return NO;
-////	}
-//
-//
-//    if(handle) {
-//        dispatch_source_t source = dispatch_source_create(DISPATCH_SOURCE_TYPE_READ, (uintptr_t) handle, 0, self.dispatchQueue.dispatch_queue_t);
-//        CFRelease(handle);
-//    
-//        dispatch_source_set_event_handler(source, ^{
-//            FLLog(@"event handler");
-//    
-////				NSAutoreleasePool *eventPool = [[NSAutoreleasePool alloc] init];
-////				
-////				LogVerbose(@"event4Block");
-////				
-////				unsigned long i = 0;
-////				unsigned long numPendingConnections = dispatch_source_get_data(acceptSource);
-////				
-////				LogVerbose(@"numPendingConnections: %lu", numPendingConnections);
-////				
-////				while ([self doAccept:socketFD] && (++i < numPendingConnections));
-////				
-////				[eventPool drain];
-//			});
-//			
-//        dispatch_source_set_cancel_handler(source, ^{
-//            FLLog(@"cancel handler");
-//            
-//    //        LogVerbose(@"dispatch_release(accept4Source)");
-//    //        dispatch_release(acceptSource);
-//    //        
-//    //        LogVerbose(@"close(socket4FD)");
-//    //        close(socketFD);
-//        });
-//			
-////			LogVerbose(@"dispatch_resume(accept4Source)");
-//        dispatch_resume(source);   
-//    }
+- (void) handleStreamEvent:(CFStreamEventType) eventType {
 
-    CFReadStreamOpen(_streamRef);
-    CFReadStreamScheduleWithRunLoop(_streamRef, CFRunLoopGetMain(), bridge_(void*,NSDefaultRunLoopMode));
-}
+//    FLAssert_v([NSThread currentThread] == self.thread, @"tcp operation on wrong thread");
 
-- (void) closeStreamWithResult:(id) result {
-    FLAssertNotNil_(_streamRef);
-    CFReadStreamUnscheduleFromRunLoop(_streamRef, CFRunLoopGetMain(), bridge_(void*,NSDefaultRunLoopMode));
-    CFReadStreamClose(_streamRef);
+#if TRACE
+    FLDebugLog(@"Read Stream got event %d", eventType);
+#endif
+
+    switch (eventType)  {
+        case kCFStreamEventOpenCompleted: {
+            self.isOpen = YES;
+            [self.delegate readStreamDidOpen:self];
+        }
+        break;
+
+        case kCFStreamEventErrorOccurred: {
+            [self didEncounterError:[self readStreamError]];
+        }
+        break;
+        
+        case kCFStreamEventEndEncountered:{
+            [self.delegate readStream:self didCloseWithResult:FLSuccessfullResult];
+        }
+        break;
+        
+        case kCFStreamEventNone:
+            // wtf? why would we get this?
+            break;
+        
+        case kCFStreamEventHasBytesAvailable: {
+            [self.delegate readStreamHasBytesAvailable:self];
+        }
+        break;
+            
+        case kCFStreamEventCanAcceptBytes: {
+            FLAssertFailed_v(@"this is a read stream");
+            break;
+        }
+    }
 }
 
 - (NSError*) readStreamError {
     return FLAutorelease(bridge_transfer_(NSError*, CFReadStreamCopyError(self.streamRef)));
 }
 
+- (void) didEncounterError:(NSError*) error {
+    [self.delegate readStream:self didEncounterError:error];
+}
+
+- (void) openSelfWithInput:(id) input {
+    self.isOpen = NO;
+    FLAssertNotNil_(_streamRef);
+    
+    CFReadStreamOpen(_streamRef);
+    CFReadStreamScheduleWithRunLoop(_streamRef, CFRunLoopGetMain(), bridge_(void*,NSDefaultRunLoopMode));
+}
+
+- (void) closeSelfWithResult:(id) result {
+    FLAssertNotNil_(_streamRef);
+    CFReadStreamUnscheduleFromRunLoop(_streamRef, CFRunLoopGetMain(), bridge_(void*,NSDefaultRunLoopMode));
+    CFReadStreamClose(_streamRef);
+    self.isOpen = NO;
+}
+
 - (BOOL) hasBytesAvailable {
     return CFReadStreamHasBytesAvailable(self.streamRef);
 }
 
-- (BOOL) encounteredError {
+//- (BOOL) didEncounterError {
+//
+////    if([self.result error]) {
+////        return YES;
+////    }
+//    
+//    if(CFReadStreamGetStatus(self.streamRef) == kCFStreamStatusError) {
+//        [self closeStreamWithResult:[self readStreamError]];
+//         [self.delegate readStream:self didEncounterError:[self readStreamError]];
+//        return YES;
+//    }
+//    
+//    return NO;
+//}
 
-    if([self.result error]) {
-        return YES;
-    }
-    
-    if(CFReadStreamGetStatus(self.streamRef) == kCFStreamStatusError) {
-        [self closeNetworkStreamWithResult:[self readStreamError]];
-        return YES;
-    }
-    
-    return NO;
+- (BOOL) canContinueReading {
+    return YES;
 }
 
 - (BOOL) readResultIsError:(NSInteger) bytesRead {
@@ -152,7 +171,8 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
     }
 
     if(bytesRead < 0) {
-        [self closeNetworkStreamWithResult:[NSError errorWithDomain:(NSString*) kCFErrorDomainCFNetwork code:kCFURLErrorBadServerResponse localizedDescription:NSLocalizedString(@"Read networkbytes failed: %d", bytesRead)]];
+        [self didEncounterError:[NSError errorWithDomain:(NSString*) kCFErrorDomainCFNetwork code:kCFURLErrorBadServerResponse localizedDescription:NSLocalizedString(@"Read networkbytes failed: %d", bytesRead)]];
+    
         return YES;
     }
     
@@ -162,7 +182,7 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
 - (void) readAvailableBytesWithByteBuffer:(FLByteBuffer*) buffer {
     FLAssertNotNil_(_streamRef);
 
-    while(!buffer.isFull && [self hasBytesAvailable] && ![self encounteredError]) {
+    while(!buffer.isFull && [self hasBytesAvailable] && [self canContinueReading]) {
         
         NSInteger bytesRead = CFReadStreamRead(_streamRef, buffer.unusedContent, buffer.unusedContentLength);
         if([self readResultIsError:bytesRead]) {
@@ -184,9 +204,7 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
 #endif
     uint8_t* readPtr = bytes;
     NSUInteger readTotal = 0;
-    while(maxLength > 0 && [self hasBytesAvailable] && ![self encounteredError]) {
-
-//        FLThrowIfCancelled(self);
+    while(maxLength > 0 && [self hasBytesAvailable] && [self canContinueReading]) {
 
 #if DEBUG
         FLAssert_v(readPtr + maxLength <= lastBytePtr, @"buffer overrun!!!! Warning warning warning!!!!");
@@ -206,14 +224,14 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
 
 #define kBufferSize 1024 
 
-- (NSInteger) appendBytesToMutableData:(NSMutableData*) data {
+- (NSInteger) readAvailableBytes:(NSMutableData*) data {
     FLAssertNotNil_(_streamRef);
     
-    CFIndex bytesRead = 0;
+    unsigned long bytesRead = 0;
     
     uint8_t buffer[kBufferSize];
         
-    while([self hasBytesAvailable] && ![self encounteredError]) {
+    while([self hasBytesAvailable] && [self canContinueReading]) {
         bytesRead = CFReadStreamRead(self.streamRef, buffer, kBufferSize);
         if([self readResultIsError:bytesRead]) {
             break;
@@ -223,13 +241,11 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
     }
     
     if(bytesRead > 0) {
-        [self postObservation:@selector(networkStreamDidReadBytes:)];
+        [self.delegate readStream:self didReadBytes:bytesRead];
     }
 
     return bytesRead;
 }
-
-
 
 //- (NSUInteger) appendAvailableBytesToData:(NSMutableData*) data 
 //                                chunkSize:(NSUInteger) chunkSize {
@@ -332,6 +348,10 @@ FIXME("readbytes");
     return [number unsignedLongValue];
 }
 
+- (void) requestCancel {
+    [self.delegate readStream:self didEncounterError:[NSError cancelError]];
+}
+
 @end
 
 // EXPERIMENT(MF)
@@ -374,3 +394,45 @@ FIXME("readbytes");
 //    return nil;
 //}
 
+//    CFDataRef handle = CFReadStreamCopyProperty(_streamRef, kCFStreamPropertySocketNativeHandle);
+////	if(nativeProp == NULL)
+////	{
+////		if (errPtr) *errPtr = [self getStreamError];
+////		return NO;
+////	}
+//
+//
+//    if(handle) {
+//        dispatch_source_t source = dispatch_source_create(DISPATCH_SOURCE_TYPE_READ, (uintptr_t) handle, 0, self.dispatchQueue.dispatch_queue_t);
+//        CFRelease(handle);
+//    
+//        dispatch_source_set_event_handler(source, ^{
+//            FLLog(@"event handler");
+//    
+////				NSAutoreleasePool *eventPool = [[NSAutoreleasePool alloc] init];
+////				
+////				LogVerbose(@"event4Block");
+////				
+////				unsigned long i = 0;
+////				unsigned long numPendingConnections = dispatch_source_get_data(acceptSource);
+////				
+////				LogVerbose(@"numPendingConnections: %lu", numPendingConnections);
+////				
+////				while ([self doAccept:socketFD] && (++i < numPendingConnections));
+////				
+////				[eventPool drain];
+//			});
+//			
+//        dispatch_source_set_cancel_handler(source, ^{
+//            FLLog(@"cancel handler");
+//            
+//    //        LogVerbose(@"dispatch_release(accept4Source)");
+//    //        dispatch_release(acceptSource);
+//    //        
+//    //        LogVerbose(@"close(socket4FD)");
+//    //        close(socketFD);
+//        });
+//			
+////			LogVerbose(@"dispatch_resume(accept4Source)");
+//        dispatch_resume(source);   
+//    }

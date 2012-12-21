@@ -58,7 +58,7 @@
 // look for error
     FLJsonParser* parser = [FLJsonParser jsonParser];
     NSDictionary* response = [parser parseJsonData:responseData rootObject:nil];
-    FLThrowError_(parser.error);
+    FLThrowError(parser.error);
 
     if([response objectForKey:@"error"]) {
         FLDebugLog(@"Got facebookService error: %@", [response description]);
@@ -72,7 +72,7 @@
     return response;
 }
 
-- (FLResult) runSelf:(id) input {
+- (FLResult) runOperationWithInput:(id) input {
     FLFacebookService* facebook = [self.context facebookService];
 
     NSString* userID = facebook.facebookNetworkSession.userId;

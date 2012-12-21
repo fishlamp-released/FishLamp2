@@ -80,18 +80,18 @@
     FLRetainObject(self);
     
     @try {
-//        if([NSThread isMainThread]) {
+         if([NSThread isMainThread]) {
         // this may not work in all cases - e.g. some iOS apis expect to be called in the main thread
         // and this will cause endless blocking, unfortunately. I've seen this is the AssetLibrary sdk.
             while(!self.isFinished) {
                 [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate date]];
             }
-//        } 
-//        else {
-//            FLLog(@"waiting for semaphor for %X, thread %@", (void*) _semaphore, [NSThread currentThread]);
-//            dispatch_semaphore_wait(_semaphore, DISPATCH_TIME_FOREVER);
-//            FLLog(@"finished waiting for %X", (void*) _semaphore);
-//        } 
+        } 
+        else {
+            FLLog(@"waiting for semaphor for %X, thread %@", (void*) _semaphore, [NSThread currentThread]);
+            dispatch_semaphore_wait(_semaphore, DISPATCH_TIME_FOREVER);
+            FLLog(@"finished waiting for %X", (void*) _semaphore);
+        } 
     }
     @finally {
         FLAutoreleaseObject(self);

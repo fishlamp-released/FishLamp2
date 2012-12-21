@@ -24,24 +24,24 @@
     return FLAutorelease([[[self class] alloc] initWithImageURL:imageURL]);
 }
 
-- (FLResult) runSelf:(id) input {
+- (FLResult) runOperationWithInput:(id) input {
 
     FLMutableHttpRequest* request = [FLMutableHttpRequest httpRequestWithURL:self.httpRequestURL];
 
     FLHttpResponse* httpResponse = [self sendHttpRequest:request 
                                        withAuthenticator:self.requestAuthenticator];
     
-    FLThrowError_([httpResponse simpleHttpResponseErrorCheck]);
+    FLThrowError([httpResponse simpleHttpResponseErrorCheck]);
     
     FLStorableImage* image = [FLStorableImage imageWithData:httpResponse.responseData];
     image.imageProperties = [FLImageProperties imagePropertiesWithImageURL:self.httpRequestURL];
     return image;
 }
 
-//- (FLResult) runSelf:(id) input {
+//- (FLResult) runOperationWithInput:(id) input {
 //    
 //    
-//    id result = [super runSelf:(id) input];
+//    id result = [super runOperationWithInput:(id) input];
 //    if([result succeeded]) {
 ////        NSData* imageBytes = result;
 //        
@@ -54,9 +54,9 @@
 //    }
 //    
 //        
-//    [super runSelf:(id) input];
+//    [super runOperationWithInput:(id) input];
 ////
-////    FLThrowError_([self.httpResponse simpleHttpResponseErrorCheck]);
+////    FLThrowError([self.httpResponse simpleHttpResponseErrorCheck]);
 ////    if(!self.error) {
 ////    
 ////        FLCachedImage* photo = [FLCachedImage cachedImage];

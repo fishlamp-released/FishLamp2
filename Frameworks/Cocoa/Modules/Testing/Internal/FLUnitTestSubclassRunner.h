@@ -6,7 +6,6 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import "FLWorker.h"
 #import "FLTestFinder.h"
 
 @interface FLUnitTestSubclassRunner : NSObject<FLTestFinder> {

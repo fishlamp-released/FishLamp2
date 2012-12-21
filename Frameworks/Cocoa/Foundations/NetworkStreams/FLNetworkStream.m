@@ -12,59 +12,15 @@
 
 #define kRunLoopMode NSDefaultRunLoopMode
 
-@interface FLNetworkStream ()
-@property (readwrite, assign) BOOL isOpen;
-@property (readwrite, assign) BOOL didClose;
-@property (readwrite, strong) FLTimeoutTimer* timeoutTimer;
-@property (readwrite, assign, getter=wasCancelled) BOOL cancelled;
-
-- (void) openStream;
-- (void) closeStreamWithResult:(id) result;
-@end
-
 @implementation FLNetworkStream
-
-@synthesize isOpen = _isOpen;
-@synthesize didClose = _didClose;
-@synthesize timeoutTimer = _timeoutTimer;
-@synthesize cancelled = _cancelled;
 
 - (id) init {
     self = [super init];
     if(self) {
-        FLAssert_v([self conformsToProtocol:@protocol(FLConcreteNetworkStream)], @"subclasses must implement @protocol FLConcreteNetworkStream")
+        self.timeoutInterval = FLNetworkStreamDefaultTimeout;
     }
     return self;
 }
-
-#if FL_MRC
-- (void) dealloc {
-    [_timeoutTimer release];
-    [_timeoutTimer removeObserver:self];
-    [super dealloc];
-}
-#endif
-
-- (void) closeNetworkStreamWithResult:(id) result {
-    if(!self.didClose) {
-        
-        [_timeoutTimer stopTimer];
-        [_timeoutTimer removeObserver:self];
-        self.timeoutTimer = nil;
-        
-        if(!result) {
-            result = FLSuccessfullResult;
-        }
-        
-        [self postObservation:@selector(networkStream:willCloseWithResult:) withObject:result];
-        
-        [self closeStreamWithResult:result];
-        self.didClose = YES;
-        self.isOpen = NO;
-
-        [self postObservation:@selector(networkStream:didCloseWithResult:) withObject:result];
-    }
-}    
 
 - (void) connectionGotTimerEvent {
 // TODO: ("MF: fix http delegate");
@@ -101,95 +57,14 @@
     
 #endif
 }
+
 - (void) failIfUnreachable {
    if(![self checkReachability]) {
         NSError* error = [NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorNotConnectedToInternet localizedDescription:NSLocalizedString(@"Not Connected to Network", nil)];
-        if(error) {
-            FLThrowError_(error);
-        }
+        [self didEncounterError:error];
     }
 }
 
-- (void) openNetworkStream {
-    self.didClose = NO;
-    self.isOpen = NO;
-    self.cancelled = NO;
-    self.timeoutTimer = [FLTimeoutTimer timeoutTimer:FLNetworkStreamDefaultTimeout];
-    [self.timeoutTimer addObserver:self forEvent:@selector(timeoutTimerDidTimeout:)];
-    [self postObservation:@selector(networkStreamWillOpen:)];
-    [self openStream];
-}
-
-- (void) openStream {
-}
-
-- (void) closeStreamWithResult:(id) result {
-}
-
-- (void) requestCancel {
-    self.cancelled = YES;
-    if(self.isOpen) {
-        [self postObservation:@selector(networkStream:encounteredError:) withObject:[NSError cancelError]];
-    }
-}
-
-- (void) timeoutTimerDidTimeout:(FLTimeoutTimer*) timer {
-     [self postObservation:@selector(networkStream:encounteredError:) withObject:[NSError timeoutError]];
-}
-
-- (void) touchTimestamp {
-    [self.timeoutTimer touchTimestamp];
-}
-
-@end
-
-@implementation FLNetworkStream (CFStream)
-
-- (void) handleStreamEvent:(CFStreamEventType) eventType {
-
-//    FLAssert_v([NSThread currentThread] == self.thread, @"tcp operation on wrong thread");
-
-#if TRACE
-    FLDebugLog(@"Read Stream got event %d", eventType);
-#endif
-
-    switch (eventType)  {
-        case kCFStreamEventOpenCompleted: {
-            [self.timeoutTimer touchTimestamp];
-            self.isOpen = YES;
-            [self postObservation:@selector(networkStreamDidOpen:)];
-        }
-        break;
-
-        case kCFStreamEventErrorOccurred: {
-            [self.timeoutTimer touchTimestamp];
-            [self postObservation:@selector(networkStream:encounteredError:) withObject:nil];
-        }
-        break;
-        
-        case kCFStreamEventEndEncountered:{
-            [self.timeoutTimer touchTimestamp];
-            [self postObservation:@selector(networkStream:didCloseWithResult:) withObject:FLSuccessfullResult];
-        }
-        break;
-        
-        case kCFStreamEventNone:
-            // wtf? why would we get this?
-            break;
-        
-        case kCFStreamEventHasBytesAvailable: {
-            [self.timeoutTimer touchTimestamp];
-            [self postObservation:@selector(networkStreamHasBytesAvailable:)];
-        }
-        break;
-            
-        case kCFStreamEventCanAcceptBytes: {
-            [self.timeoutTimer touchTimestamp];
-            [self postObservation:@selector(networkStreamCanAcceptBytes:)];
-            break;
-        }
-    }
-}
 
 @end
 

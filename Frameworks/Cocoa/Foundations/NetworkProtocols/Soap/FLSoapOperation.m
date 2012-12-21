@@ -14,20 +14,18 @@
 
 @implementation FLSoapOperation 
 
-@synthesize soapInput = _soapInput;
-@synthesize soapOutput = _soapOutput;
+@synthesize soapRequest = _soapRequest;
+@synthesize soapResponse = _soapResponse;
 @synthesize soapActionHeader = _soapActionHeader;
 @synthesize soapNamespace = _soapNamespace;
 @synthesize operationName = _operationName;
-@synthesize outputName = _outputName;
-@synthesize outputObject = _outputObject;
+@synthesize responseDecoder = _responseDecoder;
 
 #if FL_MRC
 - (void) dealloc {
-    [_soapInput release];
-    [_soapOutput release];
-    [_outputObject release];
-    [_outputName release];
+    [_soapRequest release];
+    [_soapResponse release];
+    [_responseDecoder release];
     [_soapActionHeader release];
     [_operationName release];
     [_soapNamespace release];
@@ -69,17 +67,17 @@
 }
 
 - (void) handleSoapFault:(FLSoapFault11*) fault {
-    FLThrowError_([NSError errorWithSoapFault:fault]);
+    FLThrowError([NSError errorWithSoapFault:fault]);
 }
 
-- (FLResult) runSelf:(id) input {
+- (FLResult) runOperationWithInput:(id) input {
 
     FLAssertStringIsNotEmpty_(self.httpRequestURL.absoluteString);
     FLAssertStringIsNotEmpty_(self.soapNamespace);
     FLAssertStringIsNotEmpty_(self.operationName);
 
     FLSoapStringBuilder* soap = [FLSoapStringBuilder stringBuilder];
-	[soap.body addObjectAsFunction:self.operationName object:[self soapInput] xmlNamespace:self.soapNamespace];
+	[soap.body addObjectAsFunction:self.operationName object:[self soapRequest] xmlNamespace:self.soapNamespace];
 
     FLMutableHttpRequest* request = [FLMutableHttpRequest httpPostRequestWithURL:self.httpRequestURL];
     [request setValue:self.soapActionHeader forHTTPHeaderField:@"SOAPAction"]; 
@@ -94,21 +92,20 @@
         [self handleSoapFault:fault];
     }
     
-    FLThrowError_([httpResponse simpleHttpResponseErrorCheck]);
+    FLThrowError([httpResponse simpleHttpResponseErrorCheck]);
    
-    if(!_outputObject) {
-        return data;
+    id result = data;
+   
+    if(self.soapResponse) {
+        [self parseXmlResponse:data object:self.soapResponse];
+        result = self.soapResponse;
     }
     
-    [self parseXmlResponse:data object:_outputObject];
-    return _outputObject;
-}
-
-- (id) output {
-    if(_outputName && _outputObject) {
-        return [_outputObject valueForKey:_outputName];
+    if(self.responseDecoder) {
+        result = self.responseDecoder(result);
     }
-    return nil;
+    
+    return result;
 }
 
 @end

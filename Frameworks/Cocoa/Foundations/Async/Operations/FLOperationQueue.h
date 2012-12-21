@@ -10,7 +10,6 @@
 #import "FLCore.h"
 #import "FLOperation.h"
 #import "FLCollectionIterator.h"
-#import "FLRunnable.h"
 
 @class FLOperationQueue;
 
@@ -18,7 +17,7 @@ typedef void (^FLOperationQueueVisitor)(id operation, BOOL* stop);
 typedef id (^FLCreateOperationBlock)();
 
 
-@interface FLOperationQueue : FLObservable<FLWorker, FLRunnable, FLCancellable, NSFastEnumeration> {
+@interface FLOperationQueue : FLObservable<FLDispatchable, FLCancellable, NSFastEnumeration> {
 @private
 	NSMutableArray* _operations;
     BOOL _cancelled;

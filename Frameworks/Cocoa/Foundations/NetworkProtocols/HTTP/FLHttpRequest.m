@@ -301,7 +301,7 @@ static NSString* s_defaultUserAgent = nil;
         _postLength= [[[NSFileManager defaultManager] attributesOfItemAtPath:self.postBodyFilePath error:&err] fileSize];
         
         if(err) {
-           FLThrowError_(FLAutorelease(err));
+           FLThrowError(FLAutorelease(err));
         }
         self.HTTPMethod = @"POST";
 	}

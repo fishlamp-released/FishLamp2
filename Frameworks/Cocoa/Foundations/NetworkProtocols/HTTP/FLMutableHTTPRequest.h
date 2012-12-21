@@ -7,7 +7,7 @@
 //
 
 #import "FLCocoaRequired.h"
-
+#import "FLResult.h"
 #import "FLHttpRequest.h"
 
 @interface FLMutableHttpRequest : FLHttpRequest {

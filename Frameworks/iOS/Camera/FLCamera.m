@@ -60,7 +60,7 @@
 	{
         if(error)
         {
-            FLThrowError_(FLAutorelease(err));
+            FLThrowError(FLAutorelease(err));
         }
 
 	
@@ -150,7 +150,7 @@
 	}
 	        if(err)
         {
-           FLThrowError_(FLAutorelease(err));
+           FLThrowError(FLAutorelease(err));
         }
 
 }
@@ -169,7 +169,7 @@
 		}
 		        if(err)
         {
-           FLThrowError_(FLAutorelease(err));
+           FLThrowError(FLAutorelease(err));
         }
 
 	}

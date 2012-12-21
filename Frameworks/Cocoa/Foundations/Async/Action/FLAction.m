@@ -357,20 +357,23 @@ FIXME("context and actions");
     [FLForegroundQueue dispatchBlock:^{
         [self actionStarted];
         
-        [FLHighPriorityQueue dispatchBlock:^{
-            id result = [self.operations runSynchronously];
-            
-            [FLForegroundQueue dispatchBlock:^{
-                [finisher setFinishedWithResult:[self actionFinished:result]];
+        [FLHighPriorityQueue dispatchObject:self.operations 
+                                 completion:^(FLResult result) {
+                
+                [FLForegroundQueue dispatchBlock:^{
+                    [finisher setFinishedWithResult:[self actionFinished:result]];
+                }];
             }];
-            
-        }];
     }];
 
     return finisher;
 }
 
-- (id) runSynchronously {
+- (FLResult) runSynchronously {
+    return [[self startAction:nil] waitUntilFinished];
+}
+
+- (FLResult) runSynchronouslyWithInput:(id) input {
     return [[self startAction:nil] waitUntilFinished];
 }
 

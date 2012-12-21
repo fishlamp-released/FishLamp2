@@ -135,7 +135,7 @@ static NSString* s_defaultUserAgent = nil;
 	unsigned long long fileSize = 0;
 	NSError* err = 0;
 	if([NSFileManager getFileSize:path outSize:&fileSize outError:&err]) {
-		FLThrowError_(FLAutorelease(err));
+		FLThrowError(FLAutorelease(err));
 	}
 
 	NSInputStream* stream = FLAutorelease([[NSInputStream alloc] initWithFileAtPath:path]);

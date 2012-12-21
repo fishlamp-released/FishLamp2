@@ -8,6 +8,7 @@
 
 #import "FLCocoaRequired.h"
 #import "FLCore.h"
+#import "FLTcpStream.h"
 
 //typedef enum {
 //	SERVER_STATE_IDLE,

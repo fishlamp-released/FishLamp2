@@ -74,7 +74,7 @@
 }
 #endif
 
-- (FLResult) runSelf:(id) input {
+- (FLResult) runOperationWithInput:(id) input {
 
 	FLOAuthAuthorizationHeader* oauthHeader = [FLOAuthAuthorizationHeader authorizationHeader];
 	[oauthHeader setParameter:kFLOAuthHeaderToken value:_authData.oauth_token];

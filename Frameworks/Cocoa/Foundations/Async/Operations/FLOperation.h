@@ -8,10 +8,7 @@
 
 #import "FLObservable.h"
 #import "FLCancellable.h"
-#import "FLPredicate.h"
-#import "FLAbortException.h"
 #import "FLContextual.h"
-#import "FLWorker.h"
 #import "FLDispatcher.h"
 #import "FLResult.h"
 
@@ -19,9 +16,7 @@
 
 typedef FLResult (^FLRunOperationBlock)(FLOperation* operation, id inputOrNil);
 
-extern NSString* const FLOperationFinishedEvent;
-
-@interface FLOperation : FLObservable<FLCancellable, FLContextual> {
+@interface FLOperation : FLObservable<FLCancellable, FLContextual, FLDispatchable> {
 @private
     __unsafe_unretained id _context;
 	id _operationID;
@@ -43,31 +38,26 @@ extern NSString* const FLOperationFinishedEvent;
 + (id) operation;
 + (id) operation:(FLRunOperationBlock) block;
 
-- (FLFinisher*) startOperationInDispatcher:(id<FLDispatcher>) inDispatcher 
-                                completion:(FLCompletionBlock) completion;
-                                
-- (FLFinisher*) startOperation:(FLCompletionBlock) completion;;
-
-/// This will not throw.
-- (id) runSynchronously;
-- (id) runSynchronously:(id) input;
-
-//
-// for subclasses
-//
 // this will raise an abort exception if runState has been signaled as finished.
 - (void) abortIfNeeded;
 
-//    optional overrides
-
 /// @brief Required override point (or use runBlock).
 /// Either override run or set the operation's run block.
-- (FLResult) runSelf:(id) input;
+- (FLResult) runOperationWithInput:(id) input;
 
 @end
 
+@interface FLOperation (Dispatching)
+
+// To run async, use a FLDispatchQueue.
+
+/// This will not throw.
+- (FLResult) runSynchronously;
+- (FLResult) runSynchronouslyWithInput:(id) input;
+@end
+
+
 @protocol FLOperationObserver <NSObject>
-@optional
 
 // these always happen in the thread the operation is running on
 - (void) operationWillRun:(FLOperation*) operation;
@@ -76,14 +66,4 @@ extern NSString* const FLOperationFinishedEvent;
                  withResult:(FLResult) withResult;
 
 @end
-
-//#define FLRunOperation_(__OPERATION__) FLThrowError([__OPERATION__ runSynchronously])
-
-//#define FLrunSelf:(id) inputForResponse(__TYPE__) )
-
-
-
-
-
-
 

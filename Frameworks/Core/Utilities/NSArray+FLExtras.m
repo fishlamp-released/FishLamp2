@@ -170,9 +170,13 @@
 }
 
 - (id) dequeueLastObject {
-    id object = FLAutorelease(FLRetain([self lastObject]));
-    [self removeLastObject];
-	return object;
+    if(self.count) {
+        id object = FLAutorelease(FLRetain([self lastObject]));
+        [self removeLastObject];
+        return object;
+    }
+    
+    return nil;
 }
 
 - (void) pushObject:(id) object {
@@ -180,10 +184,15 @@
 }
 
 - (id) popFirstObject {
-	id object = FLAutorelease(FLRetain([self objectAtIndex:0]));
-    [self removeObjectAtIndex:0];
-	return object;
+    if(self.count) {
+        id object = FLAutorelease(FLRetain([self objectAtIndex:0]));
+        [self removeObjectAtIndex:0];
+        return object;
+    }
+    
+    return nil;
 }
+	
 
 
 @end

@@ -7,17 +7,18 @@
 //
 
 #import "FLObservable.h"
+#import "FLDispatchQueue.h"
 
 NSString* const FLObserverAllEvents = @"*";
 
 @interface FLObserverTarget : NSObject {
 @private    
-    __unsafe_unretained id _observer;
+    id _observer;
     SEL _selector;
     FLObservableBlock _block;
 }
 @property (readwrite, assign) SEL selector;
-@property (readwrite, assign) id observer;
+@property (readwrite, strong) id observer;
 @property (readwrite, copy) FLObservableBlock block;
 
 + (FLObserverTarget*) observerTarget:(id) observer selector:(SEL) selector;
@@ -79,8 +80,15 @@ NSString* const FLObserverAllEvents = @"*";
     }
 }
 
+- (void) clean {
+    self.observer = nil;
+    self.selector = nil;
+    self.block = nil;
+}
+
 #if FL_MRC
 - (void) dealloc {  
+    [_observer release];
     [_block release];
     [super dealloc];
 }
@@ -88,92 +96,103 @@ NSString* const FLObserverAllEvents = @"*";
 @end
 
 
-@interface FLObservable ()
-@property (readwrite, strong) NSMutableDictionary* observers;
-@end
+//@interface FLObservable ()
+//@property (readwrite, strong, nonatomic) NSMutableDictionary* observers;
+//@end
 
 @implementation FLObservable
 
-@synthesize observers = _observers;
+//@synthesize observers = _observers;
 
 - (id) init {
     self = [super init];
     if(self) {
-    
     }
     return self;
 }
 
-- (void) postObservationForArray:(NSArray*) array 
-                           block:(void (^)(id observer)) block {
-                           
-    if(array) {  
-        for(int i = array.count - 1; i >= 0; i--) {  
-            @try {  
-                block([array objectAtIndex:i]);
-            }
-            @catch(NSException* ex) {  
-                FLAssertFailed_v(@"Not allowed to throw exceptions from observer: %@", ex.reason);  
-            }  
-        }  
+#define FLPostObservationForArray(array, ...) \
+    if(array) {  \
+        for(id observer in array) { \
+            @try {  \
+                __VA_ARGS__; \
+            } \
+            @catch(NSException* ex) {  \
+                FLAssertFailed_v(@"Not allowed to throw exceptions from observer: %@", ex.reason);  \
+            }  \
+        }  \
     }
-}
+
     
 - (void) postObservation:(SEL) event {
     
-    [self postObservationForArray:[_observers objectForKey:NSStringFromSelector(event)] 
-                            block:^(id observer) { 
-                                [observer sendNotification:self event:event parmCount:0 parm1:nil parm2:nil];
-                            }];
-    
-    [self postObservationForArray:[_observers objectForKey:FLObserverAllEvents] 
-                            block:^(id observer) { 
-                                [observer sendNotification:self event:event parmCount:0 parm1:nil parm2:nil];
-                            }];
-
+    if(_observers) {
+        @synchronized(self) {
+            if(_observers) {
+                FLPostObservationForArray(  [_observers objectForKey:NSStringFromSelector(event)], 
+                                            [observer sendNotification:self event:event parmCount:0 parm1:nil parm2:nil]
+                                            );
+                
+                FLPostObservationForArray(  [_observers objectForKey:FLObserverAllEvents], 
+                                            [observer sendNotification:self event:event parmCount:0 parm1:nil parm2:nil]
+                                            );
+            }
+        }                    
+    }
 }
 
 - (void) postObservation:(SEL) event withObject:(id) object {
     
-    [self postObservationForArray:[_observers objectForKey:NSStringFromSelector(event)] 
-                            block:^(id observer) { 
-                                [observer sendNotification:self event:event parmCount:1 parm1:object parm2:nil];
-                            }];
+    if(_observers) {
+        @synchronized(self) {
+            if(_observers) {
 
-    [self postObservationForArray:[_observers objectForKey:FLObserverAllEvents] 
-                            block:^(id observer) { 
-                                [observer sendNotification:self event:event parmCount:1 parm1:object parm2:nil];
-                            }];
+                FLPostObservationForArray(  [_observers objectForKey:NSStringFromSelector(event)],
+                                            [observer sendNotification:self event:event parmCount:1 parm1:object parm2:nil]
+                                            );
+                                    
+
+                FLPostObservationForArray(  [_observers objectForKey:FLObserverAllEvents],
+                                            [observer sendNotification:self event:event parmCount:1 parm1:object parm2:nil]
+                                            );
+            }                  
+        }
+    }                                    
 }
 
 - (void) postObservation:(SEL) event withObject:(id) object1 withObject:(id) object2 {
     
-    [self postObservationForArray:[_observers objectForKey:NSStringFromSelector(event)] 
-                            block:^(id observer) { 
-                                [observer sendNotification:self event:event parmCount:2 parm1:object1 parm2:object2];
-                            }];
+    if(_observers) {
+        @synchronized(self) {
+            if(_observers) {
+                FLPostObservationForArray(  [_observers objectForKey:NSStringFromSelector(event)],
+                                            [observer sendNotification:self event:event parmCount:2 parm1:object1 parm2:object2]
+                                            );
 
-    [self postObservationForArray:[_observers objectForKey:FLObserverAllEvents] 
-                            block:^(id observer) { 
-                                [observer sendNotification:self event:event parmCount:2 parm1:object1 parm2:object2];
-                            }];
+                FLPostObservationForArray(  [_observers objectForKey:FLObserverAllEvents],
+                                            [observer sendNotification:self event:event parmCount:2 parm1:object1 parm2:object2]
+                                            );
+            }
+        }
+    }
 }
 
 
-- (void) addObserver:(id) object forKey:(NSString*) key {
-
+- (void) addObserver:(FLObserverTarget*) target forKey:(NSString*) key {
+return;
     @synchronized(self) {
-        if(!self.observers) {
-            self.observers = [NSMutableDictionary dictionary];
+    
+        if(!_observers) {
+            _observers = [[NSMutableDictionary alloc] init];
         }
         
-        NSMutableArray* observers = [_observers objectForKey:key];
-        if(!observers) {
-            observers = [NSMutableArray array];
-            [_observers setObject:observers forKey:key];
+        NSMutableArray* targets = [_observers objectForKey:key];
+        if(!targets) {
+            targets = [NSMutableArray array];
+            [_observers setObject:targets forKey:key];
         }
         
-        [observers addObject:object];
+        [targets addObject:target];
     }
 }
 
@@ -193,8 +212,6 @@ NSString* const FLObserverAllEvents = @"*";
     [self addObserver:[FLObserverTarget observerBlock:block forTarget:observer] forKey:NSStringFromSelector(event)];
 }
 
-
-
 #if FL_MRC
 - (void) dealloc {
     [_observers release];
@@ -206,8 +223,10 @@ NSString* const FLObserverAllEvents = @"*";
     @synchronized(self) {
         for(NSMutableArray* array in _observers.objectEnumerator) {
             for(int i = array.count - 1; i >=0; i--) {
-                id event = [array objectAtIndex:i];
-                if([event observer] == observer) {
+                FLObserverTarget* target = [array objectAtIndex:i];
+
+                if([target observer] == observer) {
+                    [target clean];
                     [array removeObjectAtIndex:i];
                 }
             }
@@ -220,8 +239,9 @@ NSString* const FLObserverAllEvents = @"*";
         NSMutableArray* array = [_observers objectForKey:NSStringFromSelector(event)];
         if(array) {
             for(int i = array.count - 1; i >=0; i--) {
-                id theObserver = [array objectAtIndex:i];
-                if([theObserver observer] == observer) {
+                FLObserverTarget* target = [array objectAtIndex:i];
+                if([target observer] == observer) {
+                    [target clean];
                     [array removeObjectAtIndex:i];
                 }
             }

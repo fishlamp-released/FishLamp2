@@ -11,12 +11,17 @@
 #import "FLNetworkHost.h"
 #import "FLNetworkStream.h"
 
-@interface FLNetworkHostResolver : FLNetworkStream<FLConcreteNetworkStream> {
+@interface FLNetworkHostResolver : FLNetworkStream {
 @private
     FLNetworkHost* _networkHost;
+    FLFinisher* _finisher;
+    BOOL _isOpen;
 }
-@property (readonly, strong) FLNetworkHost* networkHost;
 
-- (id) initWithNetworkHost:(FLNetworkHost*) networkHost;
++ (id) networkHostResolver;
+
+- (FLResult) resolveHostSynchronously:(FLNetworkHost*) host;
+- (FLFinisher*) startResolvingHost:(FLNetworkHost*) host;
+
 
 @end

@@ -11,7 +11,6 @@
 #import "FLOperation.h"
 #import "FLOperationContext.h"
 #import "FLActionDescription.h"
-#import "FLRunnable.h"
 #import "FLObservable.h"
 #import "FLWeaklyReferenced.h"
 
@@ -32,7 +31,7 @@ typedef void (^FLActionErrorBlock)(FLAction* action, NSError* error);
 @protocol FLActionErrorDelegate;
 @protocol FLActionDelegate;
 
-@interface FLAction : FLObservable<FLActionDescription, FLCancellable, FLWeaklyReferenced, FLRunnable> {
+@interface FLAction : FLObservable<FLActionDescription, FLCancellable, FLWeaklyReferenced, FLDispatchable> {
 @private
     FLOperationQueue* _operations;
 
@@ -91,6 +90,7 @@ typedef void (^FLActionErrorBlock)(FLAction* action, NSError* error);
 
 - (FLFinisher*) startActionInContext:(FLOperationContext*) context 
                           completion:(FLResultBlock) resultBlock;
+
 
 // optional overrides
 - (void) showProgress;

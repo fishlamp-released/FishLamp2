@@ -91,33 +91,32 @@
 
 - (CGRect) maxVisibleRect:(BOOL) adjustingForKeyboard {
 
-#if OSX
-    adjustingForKeyboard = NO;
-#endif
-
 	if(self.view.superview) {
 
-// TODO: why is this here?
-        FLAssertIsImplemented_();
-
 		CGRect maxVisibleRect = self.view.superview.bounds;
+		maxVisibleRect.origin.y = self.contentViewInsetTop; 
+		maxVisibleRect.size.height -= (maxVisibleRect.origin.y);
 
+		maxVisibleRect.origin.x = self.contentViewInsetLeft; 
+		maxVisibleRect.size.width -= (maxVisibleRect.origin.x);
+		maxVisibleRect.size.width -= self.contentViewInsetRight;
+
+#if OSX 
+        maxVisibleRect.size.height -= self.contentViewInsetBottom;
+#else        
 		CGRect keyboardRect = CGRectZero;
-#if IOS
 		if(adjustingForKeyboard) {
 			keyboardRect = FLRectJustifyRectInRectBottom(maxVisibleRect, [[FLKeyboardManager instance] keyboardRectForView:self.view.superview]);
 		}
-#endif
 
-		maxVisibleRect.origin.y = self.contentViewInsetTop; 
-		maxVisibleRect.size.height -= (maxVisibleRect.origin.y);
-		
         if(adjustingForKeyboard){
             maxVisibleRect.size.height -= keyboardRect.size.height;
         }
         else {
             maxVisibleRect.size.height -= self.contentViewInsetBottom;
         }
+        
+#endif         
 		return maxVisibleRect;
 	}
 	

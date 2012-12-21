@@ -84,7 +84,7 @@
     	
 	if(self.error)
 	{
-		FLThrowError_(FLAutorelease(FLRetain(self.error)));
+		FLThrowError(FLAutorelease(FLRetain(self.error)));
 	}
 }
 

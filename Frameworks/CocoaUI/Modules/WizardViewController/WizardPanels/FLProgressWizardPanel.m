@@ -17,6 +17,8 @@
 
 @synthesize progress = _progress;
 @synthesize progressLabel = _progressLabel;
+@synthesize progressContainer = _progressContainer;
+@synthesize errorContainer = _errorContainer;
 
 #if FL_MRC
 - (void) dealloc {
@@ -53,6 +55,14 @@
 
 - (void) setProgressText:(NSString*) text {
     _progressLabel.stringValue = text;
+}
+
+- (NSString*) errorText {
+    return _errorLabel.stringValue;
+}
+
+- (void) setErrorText:(NSString*) text {
+    _errorLabel.stringValue = text;
 }
 
 @end

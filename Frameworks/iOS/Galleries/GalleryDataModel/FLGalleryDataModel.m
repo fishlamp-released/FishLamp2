@@ -14,10 +14,10 @@
 }
 
 - (NSArray*) loadChildrenResult {
-    return FLAssertIsType(self.result, NSArray);
+    return FLAssertObjectIsType(self.result, NSArray);
 }
 
 - (UIImage*) loadImageResult {
-    return FLAssertIsType(self.result, UIImage);
+    return FLAssertObjectIsType(self.result, UIImage);
 }
 @end

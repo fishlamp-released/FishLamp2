@@ -9,24 +9,25 @@
 #import "FLHttpOperation.h"
 #import "FLSoapFault11.h"
 
+typedef id (^FLSoapResponseDecoder)(id soapResponse);
+
 @interface FLSoapOperation : FLHttpOperation {
 @private
+// for sending request
     NSString* _soapNamespace;
     NSString* _soapActionHeader;
-    NSString* _outputName;
-    
     NSString* _operationName;
-    id _outputObject;
-    
-    id _soapOutput;
-    id _soapInput;
+    id _soapRequest;
+
+// output
+    id _soapResponse;
+    FLSoapResponseDecoder _responseDecoder;
 }
 
-@property (readwrite, strong) id soapInput;
-@property (readwrite, strong) id soapOutput;
+@property (readwrite, strong) id soapRequest;
+@property (readwrite, strong) id soapResponse;
     
-@property (readwrite, strong) NSString* outputName;
-@property (readwrite, strong) id outputObject;
+@property (readwrite, copy) FLSoapResponseDecoder responseDecoder;
 
 @property (readwrite, strong) NSString* soapActionHeader;
 @property (readwrite, strong) NSString* soapNamespace;

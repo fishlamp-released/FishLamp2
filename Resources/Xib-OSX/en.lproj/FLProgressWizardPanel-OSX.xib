@@ -47,6 +47,8 @@
 								<int key="NSvFlags">268</int>
 								<string key="NSFrame">{{174, 40}, {223, 17}}</string>
 								<reference key="NSSuperview" ref="966811754"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:1535</string>
 								<bool key="NSEnabled">YES</bool>
 								<object class="NSTextFieldCell" key="NSCell" id="166255447">
@@ -60,7 +62,7 @@
 									</object>
 									<string key="NSCellIdentifier">_NS:1535</string>
 									<reference key="NSControlView" ref="542769402"/>
-									<object class="NSColor" key="NSBackgroundColor">
+									<object class="NSColor" key="NSBackgroundColor" id="72232349">
 										<int key="NSColorSpace">6</int>
 										<string key="NSCatalogName">System</string>
 										<string key="NSColorName">controlColor</string>
@@ -69,7 +71,7 @@
 											<bytes key="NSWhite">MC42NjY2NjY2NjY3AA</bytes>
 										</object>
 									</object>
-									<object class="NSColor" key="NSTextColor">
+									<object class="NSColor" key="NSTextColor" id="842881471">
 										<int key="NSColorSpace">6</int>
 										<string key="NSCatalogName">System</string>
 										<string key="NSColorName">controlTextColor</string>
@@ -86,6 +88,7 @@
 								<int key="NSvFlags">268</int>
 								<string key="NSFrame">{{137, 32}, {32, 32}}</string>
 								<reference key="NSSuperview" ref="966811754"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="542769402"/>
 								<string key="NSReuseIdentifierKey">_NS:945</string>
 								<int key="NSpiFlags">20490</int>
@@ -94,14 +97,53 @@
 						</array>
 						<string key="NSFrame">{{36, 88}, {414, 96}}</string>
 						<reference key="NSSuperview" ref="1005"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="815570231"/>
+						<string key="NSReuseIdentifierKey">_NS:9</string>
+						<string key="NSClassName">NSView</string>
+					</object>
+					<object class="NSCustomView" id="294977147">
+						<reference key="NSNextResponder" ref="1005"/>
+						<int key="NSvFlags">-2147483347</int>
+						<array class="NSMutableArray" key="NSSubviews">
+							<object class="NSTextField" id="171420715">
+								<reference key="NSNextResponder" ref="294977147"/>
+								<int key="NSvFlags">274</int>
+								<string key="NSFrame">{{17, 20}, {380, 56}}</string>
+								<reference key="NSSuperview" ref="294977147"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="966811754"/>
+								<string key="NSReuseIdentifierKey">_NS:1535</string>
+								<bool key="NSEnabled">YES</bool>
+								<object class="NSTextFieldCell" key="NSCell" id="554379132">
+									<int key="NSCellFlags">67108864</int>
+									<int key="NSCellFlags2">4194304</int>
+									<string key="NSContents">A horrible error has occured. Don't even think of pressing the back button...</string>
+									<object class="NSFont" key="NSSupport">
+										<string key="NSName">LucidaGrande</string>
+										<double key="NSSize">13</double>
+										<int key="NSfFlags">16</int>
+									</object>
+									<string key="NSCellIdentifier">_NS:1535</string>
+									<reference key="NSControlView" ref="171420715"/>
+									<reference key="NSBackgroundColor" ref="72232349"/>
+									<reference key="NSTextColor" ref="842881471"/>
+								</object>
+								<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
+							</object>
+						</array>
+						<string key="NSFrame">{{36, 88}, {414, 96}}</string>
+						<reference key="NSSuperview" ref="1005"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="171420715"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<string key="NSClassName">NSView</string>
 					</object>
 				</array>
 				<string key="NSFrameSize">{480, 272}</string>
 				<reference key="NSSuperview"/>
-				<reference key="NSNextKeyView" ref="966811754"/>
+				<reference key="NSWindow"/>
+				<reference key="NSNextKeyView" ref="294977147"/>
 				<string key="NSClassName">NSView</string>
 			</object>
 		</array>
@@ -130,6 +172,30 @@
 						<reference key="destination" ref="542769402"/>
 					</object>
 					<int key="connectionID">13</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">_progressContainer</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="966811754"/>
+					</object>
+					<int key="connectionID">18</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">_errorLabel</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="171420715"/>
+					</object>
+					<int key="connectionID">19</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">_errorContainer</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="294977147"/>
+					</object>
+					<int key="connectionID">20</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -163,6 +229,7 @@
 						<reference key="object" ref="1005"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="966811754"/>
+							<reference ref="294977147"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -174,6 +241,7 @@
 							<reference ref="815570231"/>
 						</array>
 						<reference key="parent" ref="1005"/>
+						<string key="objectName">Progress Container</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">3</int>
@@ -193,6 +261,28 @@
 						<reference key="object" ref="166255447"/>
 						<reference key="parent" ref="542769402"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">14</int>
+						<reference key="object" ref="294977147"/>
+						<array class="NSMutableArray" key="children">
+							<reference ref="171420715"/>
+						</array>
+						<reference key="parent" ref="1005"/>
+						<string key="objectName">Error Container</string>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">16</int>
+						<reference key="object" ref="171420715"/>
+						<array class="NSMutableArray" key="children">
+							<reference ref="554379132"/>
+						</array>
+						<reference key="parent" ref="294977147"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">17</int>
+						<reference key="object" ref="554379132"/>
+						<reference key="parent" ref="171420715"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -201,6 +291,9 @@
 				<string key="-3.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="1.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="11.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="14.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="16.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="17.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="3.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="6.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="7.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -209,9 +302,57 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">13</int>
+			<int key="maxID">20</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes"/>
+		<object class="IBClassDescriber" key="IBDocument.Classes">
+			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
+				<object class="IBPartialClassDescription">
+					<string key="className">FLProgressWizardPanel</string>
+					<string key="superclassName">FLWizardPanel</string>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="_errorContainer">NSView</string>
+						<string key="_errorLabel">NSTextField</string>
+						<string key="_progress">NSProgressIndicator</string>
+						<string key="_progressContainer">NSView</string>
+						<string key="_progressLabel">NSTextField</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="_errorContainer">
+							<string key="name">_errorContainer</string>
+							<string key="candidateClassName">NSView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="_errorLabel">
+							<string key="name">_errorLabel</string>
+							<string key="candidateClassName">NSTextField</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="_progress">
+							<string key="name">_progress</string>
+							<string key="candidateClassName">NSProgressIndicator</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="_progressContainer">
+							<string key="name">_progressContainer</string>
+							<string key="candidateClassName">NSView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="_progressLabel">
+							<string key="name">_progressLabel</string>
+							<string key="candidateClassName">NSTextField</string>
+						</object>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/FLProgressWizardPanel.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">FLWizardPanel</string>
+					<string key="superclassName">NSViewController</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/FLWizardPanel.h</string>
+					</object>
+				</object>
+			</array>
+		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaFramework</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDependencies">

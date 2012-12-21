@@ -13,6 +13,10 @@
 @property (readwrite, strong) NSString* remoteHost;
 @property (readwrite, strong) FLReadStream* readStream;
 @property (readwrite, strong) FLWriteStream* writeStream;
+@property (readwrite, strong) FLDispatchQueue* dispatchQueue;
+@property (readwrite, assign, getter=wasTerminated) BOOL terminate;
+
+- (void) updateRequestQueue;
 @end
 
 @implementation FLTcpStream
@@ -20,12 +24,22 @@
 @synthesize remoteHost = _remoteHost;
 @synthesize readStream = _readStream;
 @synthesize writeStream = _writeStream;
+@synthesize dispatchQueue = _dispatchQueue;
+@synthesize terminate = _terminate;
 
 - (id) initWithRemoteHost:(NSString*) remoteHost remotePort:(int32_t) remotePort {
     self = [self init];
     if(self) {
         self.remoteHost = remoteHost;
         self.remotePort = remotePort;
+        
+        _requests = [[NSMutableArray alloc] init];
+        _additions = [[NSMutableArray alloc] init];
+        
+        static int s_count = 0;
+        _dispatchQueue = [[FLDispatchQueue alloc] initWithLabel:[NSString stringWithFormat:@"com.fishlamp.queue.tcp-stream-%d", ++s_count] 
+            attr:DISPATCH_QUEUE_SERIAL];
+ 
     }
     
     return self;
@@ -35,49 +49,54 @@
     return FLAutorelease([[[self class] alloc] initWithRemoteHost:remoteHost remotePort:remotePort]);
 }
 
-- (void) openStream {
+- (FLFinisher*) openConnection {
 
-    FLAssertIsNil_(self.readStream);
-    FLAssertIsNil_(self.writeStream);
+    return [self.dispatchQueue dispatchBlock:^{
+        
+        FLAssertIsNil_(self.readStream);
+        FLAssertIsNil_(self.writeStream);
 
-    CFReadStreamRef readStream = nil;
-    CFWriteStreamRef writeStream = nil;
-    CFHostRef host = nil;
-    
-    @try {
-        FLAssert_v(self.remotePort != 0, @"remote port can't be zero");
-        FLAssertStringIsNotEmpty_(self.remoteHost);
-       
-        host = CFHostCreateWithName(NULL, bridge_(void*,self.remoteHost));
-        if(!host) {
-            FLThrowError_([NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorCannotFindHost localizedDescription:@"Unable to find to host"]);
-        }
+        CFReadStreamRef readStream = nil;
+        CFWriteStreamRef writeStream = nil;
+        CFHostRef host = nil;
         
-        CFStreamCreatePairWithSocketToCFHost(NULL, host, self.remotePort, &readStream, &writeStream);
-        if(!readStream || !writeStream) {
-            FLThrowError_([NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorNetworkConnectionLost localizedDescription:@"Unable to connect to host"]);
+        @try {
+            FLAssert_v(self.remotePort != 0, @"remote port can't be zero");
+            FLAssertStringIsNotEmpty_(self.remoteHost);
+           
+            host = CFHostCreateWithName(NULL, bridge_(void*,self.remoteHost));
+            if(!host) {
+                FLThrowError([NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorCannotFindHost localizedDescription:@"Unable to find to host"]);
+            }
+            
+            CFStreamCreatePairWithSocketToCFHost(NULL, host, self.remotePort, &readStream, &writeStream);
+            if(!readStream || !writeStream) {
+                FLThrowError([NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorNetworkConnectionLost localizedDescription:@"Unable to connect to host"]);
+            }
+                    
+            self.readStream = [FLReadStream readStream:readStream];
+            [self.readStream setDelegate:self];
+            
+            self.writeStream = [FLWriteStream writeStream:writeStream];
+            [self.writeStream setDelegate:self];
+            
+            [self.readStream openStreamWithInput:nil];
+            [self.writeStream openStreamWithInput:nil];
         }
-                
-        self.readStream = [FLReadStream readStream:readStream];
-        [self.readStream addObserver:self];
-        
-        self.writeStream = [FLWriteStream writeStream:writeStream];
-        [self.writeStream addObserver:self];
-        
-        [self.readStream openStream];
-        [self.writeStream openStream];
-    }
-    @finally {
-        if(host) {
-            CFRelease(host);
+        @finally {
+            if(host) {
+                CFRelease(host);
+            }
+            if(readStream) {
+                CFRelease(readStream);
+            }
+            if(writeStream) {
+                CFRelease(writeStream);
+            }
         }
-        if(readStream) {
-            CFRelease(readStream);
-        }
-        if(writeStream) {
-            CFRelease(writeStream);
-        }
-    }
+   
+    }];
+
 }
 
 - (void) dealloc {
@@ -85,6 +104,9 @@
     FLAssert_(!self.isOpen);
     
 #if FL_MRC
+    [_requests release];
+    [_additions release];
+    [_dispatchQueue release];
     [_remoteHost release];
     [_writeStream release];
     [_readStream release];
@@ -92,70 +114,177 @@
 #endif
 }
 
-- (void) closeStreamWithResult:(id) result {
-
-    if(_readStream) {
-        [_readStream removeObserver:self];
-        [_readStream closeNetworkStreamWithResult:result];
-        self.readStream = nil;
-    }
-    if(_writeStream) {
-        [_writeStream removeObserver:self];
-        [_writeStream closeNetworkStreamWithResult:result];
-        self.writeStream = nil;
-    }
-}
-
-//- (id) result {
-//
-//// ug - this is awkward.
-//
-//    id result1 = [self.readStream result];
-//    id result2 = [self.writeStream result];
-//    
-//    if([result2 error] || [result1 error]) {
-//        return [NSError tcpStreamError:[result1 error] writeError:[result2 error]];
-//    }
-//
-//    if(result1) {
-//        return result1;
-//    }
-//
-//    return [FLSuccessfullResult successfulResult];
-//}
-
-- (void) networkStream:(id<FLNetworkStream>) networkStream didCloseWithResult:(FLResult) result {
-    [self closeNetworkStreamWithResult:result];
-}
-
-- (void) networkStreamDidOpen:(id<FLNetworkStream>) networkStream {
-    if(self.isOpen) {
-        [self postObservation:@selector(networkStreamDidOpen:)];
-    }
-}
-
-- (void) readStreamHasBytesAvailable:(id<FLReadStream>) networkStream {
-    [self postObservation:@selector(readStreamHasBytesAvailable:)];
-}
-
-
-- (void) writeStreamCanAcceptBytes:(id<FLWriteStream>) networkStream {
-    [self postObservation:@selector(writeStreamCanAcceptBytes:)];
-}
-
-- (void) writeStreamDidWriteBytes:(id<FLWriteStream>) stream {
-    [self postObservation:@selector(writeStreamDidWriteBytes:)];
-}
-
-- (void) readStreamDidReadBytes:(id<FLReadStream>) stream{
-    [self postObservation:@selector(readStreamDidReadBytes:)];
+- (void) closeConnectionWithResult:(id) result {
+    self.terminate = YES;
+    
+    [self.dispatchQueue dispatchBlock:^{
+        if(_readStream) {
+            [_readStream setDelegate:nil];
+            [_readStream closeStreamWithResult:result];
+            self.readStream = nil;
+        }
+        if(_writeStream) {
+            [_writeStream setDelegate:nil];
+            [_writeStream closeStreamWithResult:result];
+            self.writeStream = nil;
+        }
+    }];
 }
 
 - (BOOL) isOpen {
     return self.writeStream.isOpen && self.readStream.isOpen;
 }
 
+- (void) readStreamDidOpen:(FLReadStream*) networkStream {
+    if(self.isOpen) {
+//        [self postObservation:@selector(networkStreamDidOpen:)];
+    }
+}
+
+- (void) readStream:(FLReadStream*) networkStream 
+    didCloseWithResult:(FLResult) result {
+    
+    [self closeConnectionWithResult:result];
+}
+
+- (void) readStream:(FLReadStream*) readStream
+      didEncounterError:(NSError*) error {
+    
+    [self closeConnectionWithResult:error];
+}
+
+- (void) readStreamHasBytesAvailable:(id<FLReadStream>) networkStream {
+    [self postObservation:@selector(readStreamHasBytesAvailable:)];
+    if(self.isOpen) {
+        [self updateRequestQueue];
+    }
+}
+
+- (void) readStream:(id<FLReadStream>) stream didReadBytes:(unsigned long) amountRead {
+//    [self postObservation:@selector(readStreamDidReadBytes:)];
+}
+
+- (void) writeStreamDidOpen:(FLWriteStream*) networkStream {
+    if(self.isOpen) {
+//        [self postObservation:@selector(networkStreamDidOpen:)];
+
+        [self updateRequestQueue];
+    }
+}
+
+- (void) writeStream:(FLWriteStream*) networkStream 
+  didCloseWithResult:(FLResult) result {
+    
+    [self closeConnectionWithResult:result];
+}
+
+- (void) writeStream:(FLWriteStream*) writeStream
+   didEncounterError:(NSError*) error {
+    
+    [self closeConnectionWithResult:error];
+}      
+
+- (void) writeStreamCanAcceptBytes:(id<FLWriteStream>) networkStream {
+//    [self postObservation:@selector(writeStreamCanAcceptBytes:)];
+
+    if(self.isOpen) {
+        [self updateRequestQueue];
+    }
+}
+
+- (void) writeStream:(id<FLWriteStream>) stream didWriteBytes:(unsigned long) amountWritten {
+//    [self postObservation:@selector(writeStreamDidWriteBytes:)];
+
+}
+
+- (void) requestCancel {
+    [self closeConnectionWithResult:[NSError cancelError]];
+}
+
+#pragma mark -- request queue
+
+- (void) writeAvailableBytes {
+    
+//    for(FLTcpRequest* request in _requests) {
+//        while(request && [request writeData:self.writeStream]) {
+//            FLThrowAbortExeptionIf(self.wasTerminated);
+//        }
+//    }
+}
+
+- (void) readAvailableBytes {
+
+//    while(self.readStream.hasBytesAvailable) {
+//        BOOL stop = YES;
+//
+//        for(FLTcpRequest* request in _requests) {
+//            FLThrowAbortExeptionIf(self.wasTerminated);
+//
+//            if(request && request.wantsRead) {
+//                request.wantsRead = [request readData:self.readStream];
+//                stop = NO;
+//                break;
+//            }
+//        }
+//        
+//        if(stop) {
+//            break;
+//        }
+//    
+//    }
+}
+
+- (void) updateQueue {
+
+    if(self.isOpen && !self.wasTerminated) {
+        @synchronized (self) {
+            [_requests addObjectsFromArray:_additions];
+            [_additions removeAllObjects];
+        }
+        
+        @try {
+            [self readAvailableBytes];
+            [self writeAvailableBytes];
+            
+//            for(int i = _requests.count; i >= 0; i--) {
+//                FLThrowAbortExeptionIf(self.wasTerminated);
+//
+//                FLTcpRequest* request = [_requests objectAtIndex:i];
+//                if(!request.wantsWrite && !request.wantsRead) {
+//                    [_requests removeObjectAtIndex:i];
+//                }
+//            }
+        }
+        @catch(NSException* ex) {
+            [self closeConnectionWithResult:ex.error];
+        }
+    }
+}
+
+- (void) updateRequestQueue {
+    [self.dispatchQueue dispatchBlock:^{
+        [self updateQueue];
+    }];
+}
+
+- (void) addRequest:(FLTcpRequest*) request {
+    @synchronized(self) {
+        [_additions addObject:request];
+    }
+    [self updateRequestQueue];
+}
+
+- (void) addRequestsWithArray:(NSArray*) requestArray {
+    @synchronized(self) {
+        [_additions addObjectsFromArray:requestArray];
+    }
+    [self updateRequestQueue];
+}
+
 @end
+
+
+
 
 NSString* const FLTcpStreamWriteErrorKey = @"FLTcpStreamWriteErrorKey";
 NSString* const FLTcpStreamReadErrorKey = @"FLTcpStreamReadErrorKey";
@@ -211,5 +340,3 @@ NSString* const FLTcpStreamReadErrorKey = @"FLTcpStreamReadErrorKey";
 }
 
 @end
-
-

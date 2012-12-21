@@ -8,11 +8,8 @@
 
 
 #import "FLTcpListener.h"
-#import "FLTcpConnection.h"
 #import <sys/socket.h>
 #import <arpa/inet.h>
-
-#import "FLTcpConnection_Internal.h"
 
 @interface NSData (FLTcpSockets) 
 - (int)port;
@@ -95,17 +92,17 @@
 //
 //}
 
-- (void) _removeConnection:(FLTcpConnection*) connection {
+- (void) _removeConnection:(FLTcpStream*) connection {
     @synchronized(self) {
         [_connections removeObject:connection];
     }
 }
 
-- (void) networkConnectionDidClose:(FLTcpConnection*) connection {
+- (void) networkConnectionDidClose:(FLTcpStream*) connection {
     [self _removeConnection:connection];
 }
 
-- (void) _addConnection:(FLTcpConnection*) connection {
+- (void) _addConnection:(FLTcpStream*) connection {
 
     [connection addObserver:self];
 
@@ -115,7 +112,7 @@
     }
 }
 
-- (BOOL) didHandleReadInConnection:(FLTcpConnection*) connection readStream:(NSInputStream*) readStream {
+- (BOOL) didHandleReadInConnection:(FLTcpStream*) connection readStream:(NSInputStream*) readStream {
 
 
     return YES;
@@ -143,7 +140,7 @@
 
 FIXME("accepting connections is broken");
 
-//    FLTcpConnection* newConnection = [FLTcpConnection tcpConnection];
+//    FLTcpStream* newConnection = [FLTcpStream tcpConnection];
 //    newConnection.remotePort = addressData.port;
 //    newConnection.remoteHostAddress = addressData.host;
 //    newConnection.localPort = self.listeningPort;

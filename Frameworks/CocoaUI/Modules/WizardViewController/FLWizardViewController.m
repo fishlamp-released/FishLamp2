@@ -95,9 +95,13 @@
 
 - (void) presentNextWizardPanelAnimated:(BOOL) animated
                        completion:(void (^)(FLWizardPanel* newPanel)) completion {
-                       
-    [self pushWizardPanel:[_queuedWizardPanels popFirstObject] animated:NO 
-               completion:completion];
+
+    FLWizardPanel* nextPanel = [_queuedWizardPanels popFirstObject];
+                        
+    if(nextPanel) {
+        [self pushWizardPanel:nextPanel animated:NO 
+                   completion:completion];
+    }
 }                       
 
 - (void) startWizardInWindow:(NSWindow*) window {
@@ -235,6 +239,8 @@
 - (void) pushWizardPanel:(FLWizardPanel*) toShow 
                 animated:(BOOL) animated 
               completion:(void (^)(FLWizardPanel* panel)) completion {
+
+    FLAssertNotNil_(toShow);
 
     FLWizardPanel* toHide = self.visibleWizardPanel;
     

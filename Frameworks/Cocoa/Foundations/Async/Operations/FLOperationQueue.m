@@ -316,8 +316,12 @@
     return outResult;
 }
 
+- (id) runSynchronouslyWithInput:(id) input {
+    return [self runSynchronously];
+}
+
 - (FLFinisher*) startOperationsInDispatcher:(id<FLDispatcher>) inDispatcher {
-    return [inDispatcher dispatchAsyncBlock:^(FLFinisher* finisher){
+    return [inDispatcher dispatchFinishableBlock:^(FLFinisher* finisher){
         [finisher setFinishedWithResult:[self runSynchronously]];
     }];
 }

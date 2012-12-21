@@ -15,11 +15,21 @@
 @private
     IBOutlet NSProgressIndicator* _progress;
     IBOutlet NSTextField* _progressLabel;
+    
+    IBOutlet NSView* _progressContainer;
+    IBOutlet NSView* _errorContainer;
+    
+    IBOutlet NSTextField* _errorLabel;
 }
+
+@property (readonly, strong, nonatomic) UIView* progressContainer;
+@property (readonly, strong, nonatomic) UIView* errorContainer;
+
 @property (readonly, strong, nonatomic) NSProgressIndicator* progress;
 @property (readonly, strong, nonatomic) NSTextField* progressLabel;
 
 @property (readwrite, strong, nonatomic) NSString* progressText;
+@property (readwrite, strong, nonatomic) NSString* errorText;
 
 + (id) progressWizardPanel;
 

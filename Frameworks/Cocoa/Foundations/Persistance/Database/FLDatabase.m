@@ -128,7 +128,7 @@ static int s_count = 0;
 	NSError* error = nil;
 	[NSFileManager getFileSize:self.filePath outSize:&size outError:&error];
     if(error){
-        FLThrowError_(FLAutorelease(error));
+        FLThrowError(FLAutorelease(error));
     }
 
 	return size;
@@ -266,7 +266,7 @@ static int s_count = 0;
     FLDbLog(@"%@ -> ERROR: %@", self.fileName, [error localizedDescription]);
     FLDbLogIf(sql != nil, @"\"%s\"", sql);
 
-	FLThrowError_(error);
+	FLThrowError(error);
 }
 
 - (void) runQueryWithString:(NSString*) statementString

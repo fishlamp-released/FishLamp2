@@ -71,21 +71,19 @@ NSString* const FLOperationFinishedEvent;
     self.cancelled = YES;
 }
 
-- (FLResult) runSelf:(id) input {
+- (FLResult) runOperationWithInput:(id) input {
     return FLSuccessfullResult;
 }
 
 - (void) abortIfNeeded {
-    if(self.wasCancelled) {
-        [FLAbortException raise];
-    }
+    FLThrowAbortExeptionIf(self.wasCancelled);
 }
 
-- (id) runSynchronously {
-    return [self runSynchronously:nil];
+- (FLResult) runSynchronously {
+    return [self runSynchronouslyWithInput:nil];
 }
 
-- (id) runSynchronously:(id) input {
+- (FLResult) runSynchronouslyWithInput:(id) input {
 
     self.cancelled = NO;
     id result = nil;
@@ -97,7 +95,7 @@ NSString* const FLOperationFinishedEvent;
             result = self.runBlock(self, input);
         }
         else {
-            result = [self runSelf:input];
+            result = [self runOperationWithInput:input];
         }
     }
     @catch(NSException* ex) {
@@ -107,20 +105,6 @@ NSString* const FLOperationFinishedEvent;
     [self postObservation:@selector(operationDidFinish:withResult:) withObject:result];
     
     return result;
-}
-
-- (FLFinisher*) startOperationInDispatcher:(id<FLDispatcher>) inDispatcher 
-                                completion:(FLCompletionBlock) completion{
-                                
-    FLFinisher* outFinisher = [inDispatcher dispatchAsyncBlock:^(FLFinisher* finisher){
-        [finisher setFinishedWithResult:[self runSynchronously]];
-    }];
-    
-    return outFinisher;
-}
-
-- (FLFinisher*) startOperation:(FLCompletionBlock) completion{
-    return [self startOperationInDispatcher:FLDefaultQueue completion:completion];
 }
 
 - (void) operationWasCancelled:(FLOperation*) operation {

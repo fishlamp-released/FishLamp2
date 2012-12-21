@@ -9,7 +9,6 @@
 #import "FLCocoaRequired.h"
 #import "FLCore.h"
 #import "FLHttpMessage.h"
-#import "FLRunnable.h"
 
 #define FLHttpRequestDefaultHTTPVersion @"1.1"
 

@@ -132,7 +132,6 @@
 }
 
 - (void) didFinishAuthenticatingWithResult:(FLResult) result {
-    [self stopLoginProgress];
     
     if(![result error]) {
         [self.wizard presentNextWizardPanelAnimated:YES completion:^(FLWizardPanel *newPanel) {

@@ -65,15 +65,15 @@
 
 - (FLHttpResponse*) sendHttpRequest:(FLHttpRequest*) request {
     FLAssertNotNil_(request);
-    self.httpStream = [FLHttpStream httpStream:request];
+    self.httpStream = [FLHttpStream httpStream];
     @try {
-        self.httpStream.delegate = self;
+        self.httpStream.redirector = self;
         [self.httpStream addObserver:self];
-        return FLConfirmResultType([self.httpStream connectSynchronously], FLHttpResponse);
+        return FLConfirmResultType([self.httpStream sendSynchronousRequest:request], FLHttpResponse);
     }
     @finally {
         [self.httpStream removeObserver:self];
-        self.httpStream.delegate = nil;
+        self.httpStream.redirector = nil;
         self.httpStream = nil;
     }
 }
