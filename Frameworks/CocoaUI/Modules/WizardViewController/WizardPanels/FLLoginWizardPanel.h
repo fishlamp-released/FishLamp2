@@ -14,13 +14,12 @@
 
 @protocol FLLoginWizardPanelDelegate;
 
-@interface FLLoginWizardPanel : FLWizardPanel<NSControlTextEditingDelegate> {
+@interface FLLoginWizardPanel : FLWizardPanel<NSControlTextEditingDelegate, FLWizardPanelDelegate> {
 @private
     IBOutlet NSTextField* _userNameTextField;
     IBOutlet NSSecureTextField* _passwordEntryField;
     IBOutlet NSButton* _savePasswordCheckBox;
     IBOutlet NSButton* _forgotPasswordButton;
-    FLProgressWizardPanel* _progress;
 }
 
 @property (readonly, strong, nonatomic) NSTextField* userNameTextField;
@@ -34,18 +33,15 @@
 
 + (id) loginWizardPanel;
 
-// optional overriddes
-- (void) didFinishAuthenticatingWithResult:(FLResult) result;
-
-- (void) didCancelAuthenticationWithResult:(FLResult) result;
-
 @end
 
 @protocol FLLoginWizardPanelDelegate <FLWizardPanelDelegate>
 @optional
-- (void) loginWizardPanel:(FLLoginWizardPanel*) loginPanel startAuthenticating:(FLFinisher*) finisher;
+- (void) loginWizardPanelStartAuthenticating:(FLLoginWizardPanel*) loginPanel;
 
-- (void) loginWizardPanel:(FLLoginWizardPanel*) loginPanel cancelAuthenticating:(FLFinisher*) finisher;
+- (BOOL) loginWizardPanelIsAuthenticated:(FLLoginWizardPanel*) loginPanel;
+
+- (void) loginWizardPanelCancelAuthentication:(FLLoginWizardPanel*) panel;
 
 - (void) loginWizardPanelResetPassword:(FLLoginWizardPanel*) loginPanel;
 @end

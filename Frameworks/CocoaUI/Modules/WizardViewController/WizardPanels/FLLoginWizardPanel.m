@@ -13,7 +13,6 @@
 
 @interface FLLoginWizardPanel ()
 - (IBAction)resetLogin:(id)sender;
-@property (readwrite, strong, nonatomic) FLProgressWizardPanel* progress;
 @end
 
 @implementation FLLoginWizardPanel
@@ -22,7 +21,6 @@
 @synthesize passwordEntryField = _passwordEntryField;
 @synthesize savePasswordCheckBox = _savePasswordCheckBox;
 @synthesize forgotPasswordButton = _forgotPasswordButton;
-@synthesize progress = _progress;
 
 - (id) init {
     return [self initWithDefaultNibName];
@@ -45,7 +43,6 @@
 
 #if FL_MRC
 - (void) dealloc {
-    [_progress release];
     [_userNameTextField release];
     [_passwordEntryField release];
     [_savePasswordCheckBox release];
@@ -96,11 +93,7 @@
 		}
 	}
 }
-#endif
 
-- (void) updateButtonSelectedState {
-    self.wizard.nextButton.enabled = [self canLogin];
-}
 
 - (void)controlTextDidChange:(NSNotification *)note {
 	if ( [note object] == self.userNameTextField || [note object] == self.passwordEntryField ) {
@@ -108,69 +101,45 @@
     }
 }
 
+#endif
+
+- (void) updateButtonSelectedState {
+    self.wizard.nextButton.enabled = [self canLogin];
+}
+
 - (IBAction)resetLogin:(id)sender {
     FLPerformSelector1(self.delegate, @selector(loginWizardPanelResetPassword:), self);
 }
 
-- (void) startLoginProgress {
-    self.progress = [FLProgressWizardPanel progressWizardPanel];
-    self.progress.delegate = self;
-    
-    [self.wizard pushWizardPanel:self.progress animated:YES completion:nil];
-}
 
-- (void) removeProgress {
-    [self.wizard removeWizardPanel:self.progress];
-    self.progress.delegate = nil;
-    self.progress = nil;
-}
-
-- (void) stopLoginProgress {
-    [self.wizard popWizardPanelAnimated:YES completion:^(FLWizardPanel* panel){
-        [self removeProgress];
-    }];
-}
-
-- (void) didFinishAuthenticatingWithResult:(FLResult) result {
-    
-    if([result error]) {
-        [self.progress flipViews:FLFlipAnimationDirectionUp duration:0.5f];
-    }
-    else {
-        [self.wizard presentNextWizardPanelAnimated:YES completion:^(FLWizardPanel *newPanel) {
-            [self removeProgress];
-        }];
-    }
-}
-
-- (void) didCancelAuthenticationWithResult:(FLResult) result {
-    [self stopLoginProgress];
-}
-    
-- (void) beginCancelling {
-    if(!FLPerformSelector2(self.delegate, 
-                          @selector(loginWizardPanel:cancelAuthenticating:), 
-                          self, 
-                          [FLFinisher finisher:^(FLResult result) { 
-                            [self didCancelAuthenticationWithResult:result]; }])) {
-        [self didCancelAuthenticationWithResult:FLSuccessfullResult];
-    }
-}
+//- (void) didFinishAuthenticatingWithResult:(FLResult) result {
+//    
+//    if([result error]) {
+//    }
+//    else {
+//        [self.wizard presentNextWizardPanelAnimated:YES completion:^(FLWizardPanel *newPanel) {
+//            [self.wizard removeWizardPanel:self.progress];
+//            self.progress = nil;
+//        }];
+//    }
+//}
     
 - (void) respondToNextButton {
-    [self startLoginProgress];
-    FLPerformSelector2( self.delegate, 
-                        @selector(loginWizardPanel:startAuthenticating:), 
-                        self, 
-                        [FLFinisher finisher:^(FLResult result) { [self didFinishAuthenticatingWithResult:result]; }]);
-}
 
-- (void) respondToBackButton:(FLWizardViewController *)wizard {
-    [self beginCancelling];
-}
-
-- (void) wizardPanelRespondToBackButton:(FLWizardPanel *)wizardPanel {
-    [self beginCancelling];
+    if([ ((id)self.delegate) loginWizardPanelIsAuthenticated:self]) {
+        [super respondToNextButton];
+    }
+    else {
+        FLProgressWizardPanel* progress = [FLProgressWizardPanel progressWizardPanel];
+        progress.delegate = self;
+        progress.nextPanelBlock = self.nextPanelBlock;
+        
+        [self.wizard pushWizardPanel:progress animated:YES completion:^(FLWizardPanel* panel) {
+            FLPerformSelector1( self.delegate, 
+                                @selector(loginWizardPanelStartAuthenticating:), 
+                                self);
+            }];
+    }
 }
 
 - (void) wizardPanelDidAppear {
@@ -187,6 +156,13 @@
     }];
 }
 
+- (void) wizardPanelWillAppear {
+    [super wizardPanelWillAppear];
+    FLPerformSelector1( self.delegate, 
+                        @selector(loginWizardPanelCancelAuthentication:), 
+                        self);
+}
+
 - (void) wizardPanelWillDisappear {
     [super wizardPanelWillDisappear];
     [self.wizard becomeFirstResponder];
@@ -200,6 +176,12 @@
     if(!self.savePasswordInKeychain) {
         self.password = @"";
     }
+}
+
+- (void) wizardPanelDidDisappear:(FLWizardPanel*) wizardPanel {
+
+// don't want it in the wizard stack.
+    [self.wizard removeWizardPanel:wizardPanel];
 }
 
 

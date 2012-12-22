@@ -34,6 +34,8 @@
 
 + (id) progressWizardPanel;
 
-- (void) flipViews:(FLFlipAnimationDirection) direction duration:(CGFloat) duration;
+
+
+//- (void) flipViews:(FLFlipAnimationDirection) direction duration:(CGFloat) duration;
 
 @end

@@ -12,14 +12,14 @@
 
 @interface FLPhotoThumbnailToolbar : UIToolbar {
 @private
-	UIBarButtonItem* _previousButton;
+	UIBarButtonItem* _backButton;
 	UIBarButtonItem* _nextButton;
 	UIBarButtonItem* _thumbnailBarItem;
 	FLImageThumbnailBarView* _thumbnailBar;
 	BOOL _enabled;
 }
 
-@property (readonly, strong, nonatomic) UIBarButtonItem* previousButton;
+@property (readonly, strong, nonatomic) UIBarButtonItem* backButton;
 @property (readonly, strong, nonatomic) UIBarButtonItem* nextButton;
 @property (readonly, strong, nonatomic) FLImageThumbnailBarView* thumbnailBarView;
 

@@ -18,6 +18,7 @@
 @synthesize wizard = _wizard;
 @synthesize delegate = _delegate;
 @synthesize wizardPanelPrompt = _wizardPanelPrompt;
+@synthesize nextPanelBlock = _nextPanelBlock;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -31,6 +32,7 @@
 
 #if FL_MRC
 - (void) dealloc {
+    [_nextPanelBlock release];
     [_wizardPanelPrompt release];
     [super dealloc];
 }
@@ -61,8 +63,17 @@
     FLPerformSelector1(self.delegate, @selector(wizardPanelDidDisappear:), self);
 }
 
+- (void) pushNextPanel:(BOOL) animated  
+            completion:(FLWizardPanelBlock) completion {
+
+    if(_nextPanelBlock) {
+        _nextPanelBlock(self.wizard, animated, completion);
+    }
+}
+
 - (void) respondToNextButton {
     FLPerformSelector1(self.delegate, @selector(wizardPanelRespondToNextButton:), self);
+    [self pushNextPanel:YES completion:nil];
 }
 
 - (void) respondToBackButton {
@@ -71,6 +82,10 @@
 
 - (void) respondToOtherButton {
     FLPerformSelector1(self.delegate, @selector(wizardPanelRespondToOtherButton:), self);
+}
+
+- (void) respondToError:(NSError*) error errorMessage:(NSString*) errorMessage {
+
 }
 
 @end

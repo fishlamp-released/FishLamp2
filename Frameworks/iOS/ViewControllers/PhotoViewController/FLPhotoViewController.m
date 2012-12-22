@@ -185,7 +185,7 @@ FLSynthesizeStructProperty(isFullScreenTapDisabled, setFullScreenTapDisabled, BO
 	if(_thumbnailBar)
 	{
 		_thumbnailBar.nextButton.enabled = photoCount > 1;
-		_thumbnailBar.previousButton.enabled = photoCount > 1;
+		_thumbnailBar.backButton.enabled = photoCount > 1;
 	}
 	
 	if(DeviceIsPad())

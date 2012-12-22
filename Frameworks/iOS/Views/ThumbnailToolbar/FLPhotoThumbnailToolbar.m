@@ -10,7 +10,7 @@
 
 @implementation FLPhotoThumbnailToolbar 
 
-@synthesize previousButton = _previousButton;
+@synthesize backButton = _backButton;
 @synthesize nextButton = _nextButton;
 @synthesize thumbnailBarView = _thumbnailBar;
 @synthesize enabled = _enabled;
@@ -24,7 +24,7 @@
     UIImage* rewind = [UIImage imageNamed:@"rewind.png"];
     FLAssertIsNotNil_(rewind);
 
-	_previousButton =	[[UIBarButtonItem alloc] initWithImage:rewind 
+	_backButton =	[[UIBarButtonItem alloc] initWithImage:rewind 
 		style:UIBarButtonItemStylePlain 
 		target:_thumbnailBar 
 		action:@selector(selectPrevThumbnail:)];
@@ -38,7 +38,7 @@
 		action:@selector(selectNextThumbnail:)];
 				
 	self.items = [NSArray arrayWithObjects:
-		_previousButton,
+		_backButton,
 		_thumbnailBarItem,
 		_nextButton,
 		nil];	 
@@ -65,7 +65,7 @@
 - (void) setEnabled:(BOOL) enabled
 {
 	_nextButton.enabled = enabled;
-	_previousButton.enabled = enabled;
+	_backButton.enabled = enabled;
 	_thumbnailBarItem.enabled = enabled;
 	_thumbnailBar.enabled = enabled;
 }
@@ -73,7 +73,7 @@
 - (void) dealloc
 {	
 	FLRelease(_thumbnailBar);
-	FLRelease(_previousButton);
+	FLRelease(_backButton);
 	FLRelease(_nextButton);
 	FLRelease(_thumbnailBarItem);
 	super_dealloc_();

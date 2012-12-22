@@ -46,10 +46,6 @@
     return self;
 }
 
-- (void) wizardPanelWillAppear {
-    [self.progress startAnimation:self];
-}
-
 - (NSString*) progressText {
     return _progressLabel.stringValue;
 }
@@ -84,17 +80,44 @@
     greenView.backgroundColor = [UIColor gray85Color];
     [self.errorContainer addSubview:greenView];
     [greenView sendToBack];
-
 }
 
-- (void) flipViews:(FLFlipAnimationDirection) direction duration:(CGFloat) duration {
-    
-    FLAnimator* animator = [FLAnimator animator:duration];
-    [animator addAnimation:[FLFlipAnimation flipAnimation:direction withTarget:self.progressContainer withSibling:self.errorContainer]];
+- (void) respondToError:(NSError*) error errorMessage:(NSString*) errorMessage {
+    self.errorText = errorMessage;
+    FLAnimator* animator = [FLAnimator animator:0.5];
+    [animator addAnimation:[FLFlipAnimation flipAnimation:FLFlipAnimationDirectionDown withTarget:self.progressContainer withSibling:self.errorContainer]];
     [animator startAnimating:^{
-    
+        self.wizard.otherButton.enabled = NO;
+        self.wizard.backButton.enabled = YES;
     }];
+}
+
+- (void) wizardPanelWillAppear {
+    [super wizardPanelWillAppear];
+    [self.progress startAnimation:self];
+    self.wizard.nextButton.enabled = NO;
+    self.wizard.backButton.enabled = NO;
+    self.wizard.otherButton.enabled = YES;
+    self.wizard.otherButton.hidden = NO;
+    self.wizard.otherButton.title = NSLocalizedString(@"Cancel", nil);
+}
+
+- (void) wizardPanelDidAppear {
+    [super wizardPanelDidAppear];
+}
+
+- (void) respondToOtherButton {
+    [super respondToOtherButton];
     
+    [self.wizard popWizardPanelAnimated:YES completion:^(FLWizardPanel* panel){
+    }];
+}
+
+- (void) respondToBackButton {
+    [super respondToBackButton];
+    
+    [self.wizard popWizardPanelAnimated:YES completion:^(FLWizardPanel* panel){
+    }];
 }
 
 

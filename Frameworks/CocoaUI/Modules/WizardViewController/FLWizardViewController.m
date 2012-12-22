@@ -16,26 +16,27 @@
 @interface FLWizardViewController ()
 @property (readonly, strong, nonatomic) FLWizardPanel* nextWizardPanel;
 @property (readonly, strong, nonatomic) FLWizardPanel* previousWizardPanel;
+@property (readonly, strong, nonatomic) NSArray* visibleWizardPanels;
 
 - (IBAction) respondToNextButton:(id) sender;
 - (IBAction) respondToBackButton:(id) sender;
 - (IBAction) respondToOtherButton:(id) sender;
+- (IBAction) respondToLogoutButton:(id) sender;
+
 @end
 
 @implementation FLWizardViewController
 
 @synthesize nextButton = _nextButton;
-@synthesize previousButton = _previousButton;
+@synthesize backButton = _backButton;
 @synthesize otherButton = _otherButton;
 @synthesize delegate = _delegate;
-@synthesize visibleWizardPanels = _visibleWizardPanels;
+@synthesize visibleWizardPanels = _wizardPanels;
 @synthesize titleTextField = _titleTextField;
-@synthesize titleEnclosureView = _titleEnclosureView;
 @synthesize buttonEnclosureView = _buttonEnclosureView;
 @synthesize wizardPanelBackgroundView = _wizardPanelBackgroundView;
 @synthesize backgroundView = _backgroundView;
 @synthesize wizardPanelEnclosureView = _wizardPanelEnclosureView;
-@synthesize queuedWizardPanels = _queuedWizardPanels;
 
 #if FL_MRC
 - (void) dealloc {
@@ -43,12 +44,11 @@
     [_backgroundView release];
     [_wizardPanelEnclosureView release];
     [_buttonEnclosureView release];
-    [_titleEnclosureView release];
-    [_queuedWizardPanels release];
+    [_breadcrumbEnclosureView release];
+    [_wizardPanels release];
     [_nextButton release];
-    [_previousButton release];
+    [_backButton release];
     [_otherButton release];
-    [_visibleWizardPanels release];
     
     [super dealloc];
 }
@@ -62,14 +62,11 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        _visibleWizardPanels = [[NSMutableArray alloc] init];
-        _queuedWizardPanels = [[NSMutableArray alloc] init];
+        _wizardPanels = [[NSMutableArray alloc] init];
     }
     
     return self;
 }
-
-
 
 + (id) wizardViewController {
     return FLAutorelease([[[self class] alloc] init]);
@@ -93,34 +90,30 @@
     [_wizardPanelEnclosureView addSubview:view positioned:NSWindowBelow relativeTo:nil];
 }
 
-- (void) presentNextWizardPanelAnimated:(BOOL) animated
-                       completion:(void (^)(FLWizardPanel* newPanel)) completion {
-
-    FLWizardPanel* nextPanel = [_queuedWizardPanels popFirstObject];
-                        
-    if(nextPanel) {
-        [self pushWizardPanel:nextPanel animated:NO 
-                   completion:completion];
-    }
-}                       
+//- (void) presentNextWizardPanelAnimated:(BOOL) animated
+//                       completion:(FLWizardPanelBlock) completion {
+//
+//    FLWizardPanel* nextPanel = [_wizardPanel popFirstObject];
+//                        
+//    if(nextPanel) {
+//        [self pushWizardPanel:nextPanel 
+//                     animated:NO 
+//                   completion:completion];
+//    }
+//}                       
 
 - (void) startWizardInWindow:(NSWindow*) window {
 
+    FLPerformSelector1(self.delegate, @selector(wizardViewControllerWillStartWizard:), self);
     [self.view setWantsLayer:YES];
-    
     [window setContentView:self.view];
     [window setDefaultButtonCell:[self.nextButton cell]];
-
-    FLPerformSelector2(self.delegate, @selector(wizardViewController:willStartWithWizardPanel:), self, [_queuedWizardPanels firstObject]);
-    
-    [self presentNextWizardPanelAnimated:NO completion:^(FLWizardPanel* panel){
-        FLPerformSelector2(self.delegate, @selector(wizardViewController:didStartWithWizardPanel:), self, panel);
-    }];
+    FLPerformSelector1(self.delegate, @selector(wizardViewControllerDidStartWizard:), self);
 }
 
 - (void)loadView {
     [super loadView];
-    _previousButton.hidden = YES;
+    _backButton.hidden = YES;
     _otherButton.hidden = YES;
     _nextButton.enabled = NO;
     FLPerformSelector1(self.delegate, @selector(wizardViewControllerCanStart:), self);
@@ -153,35 +146,32 @@
     }];
 }
 
+- (IBAction) respondToLogoutButton:(id) sender {
+    
+}
+
 - (IBAction) respondToOtherButton:(id) sender {
     [self.visibleWizardPanel respondToOtherButton];
 }
 
 - (FLWizardPanel*) nextWizardPanel {
-    return _visibleWizardPanels.count > 0 ? FLAutorelease(FLRetain([_visibleWizardPanels objectAtIndex:_visibleWizardPanels.count - 1])) : nil;
+    return _wizardPanels.count > 0 ? FLAutorelease(FLRetain([_wizardPanels objectAtIndex:_wizardPanels.count - 1])) : nil;
 }
 
 - (FLWizardPanel*) visibleWizardPanel {
-    return _visibleWizardPanels.count > 0 ? FLAutorelease(FLRetain([_visibleWizardPanels objectAtIndex:_visibleWizardPanels.count - 1])) : nil;
+    return _wizardPanels.count > 0 ? FLAutorelease(FLRetain([_wizardPanels objectAtIndex:_wizardPanels.count - 1])) : nil;
 }
 
 - (FLWizardPanel*) previousWizardPanel {
-    return _visibleWizardPanels.count > 1 ? FLAutorelease(FLRetain([_visibleWizardPanels objectAtIndex:_visibleWizardPanels.count - 2])) : nil;
+    return _wizardPanels.count > 1 ? FLAutorelease(FLRetain([_wizardPanels objectAtIndex:_wizardPanels.count - 2])) : nil;
 }
 
 - (void) updateBackButtonEnabledState {
-    self.previousButton.enabled = (_visibleWizardPanels.count > 1);
-}
-
-- (void) addWizardPanel:(FLWizardPanel*) wizardPanel {
-    
-    [self setViewToResize:wizardPanel.view];
-    [wizardPanel didMoveToWizard:self];
-    [_queuedWizardPanels addObject:wizardPanel];
+    self.backButton.enabled = (_wizardPanels.count > 1);
 }
 
 - (void) removeWizardPanel:(FLWizardPanel*) wizardPanel {
-    [_queuedWizardPanels removeObject:wizardPanel];
+    [_wizardPanels removeObject:wizardPanel];
     [wizardPanel didMoveToWizard:nil];
     [self updateBackButtonEnabledState];
 }
@@ -214,7 +204,6 @@
     }
 }
 
-
 - (void) setWizardPanelTitleFields:(FLWizardPanel*) wizardPanel {
 
     NSString* prompt = wizardPanel.wizardPanelPrompt;
@@ -238,22 +227,24 @@
 
 - (void) pushWizardPanel:(FLWizardPanel*) toShow 
                 animated:(BOOL) animated 
-              completion:(void (^)(FLWizardPanel* panel)) completion {
+              completion:(FLWizardPanelBlock) completion {
 
     FLAssertNotNil_(toShow);
-
+    
     FLWizardPanel* toHide = self.visibleWizardPanel;
     
     self.nextButton.enabled = NO;
-    self.previousButton.hidden = NO;
-    self.previousButton.enabled = (_visibleWizardPanels.count > 0);
+    self.backButton.hidden = NO;
+    self.backButton.enabled = (_wizardPanels.count > 0);
     self.otherButton.hidden = YES;
+    [toShow didMoveToWizard:self];
     toShow.view.frame = _wizardPanelEnclosureView.bounds;
+    [self setViewToResize:toShow.view];
     
     [self wizardPanelWillAppear:toShow];
     
-    [_visibleWizardPanels addObject:toShow];
-    
+    [_wizardPanels addObject:toShow];
+
     [self wizardPanelWillDissappear:toHide];
     
     completion = FLAutoreleasedCopy(completion);
@@ -267,6 +258,7 @@
         if(completion) {
             completion(toShow);
         }
+        
 
         [self.view.window display];
     };
@@ -295,7 +287,7 @@
 }
 
 - (void) popWizardPanelAnimated:(BOOL) animated 
-                     completion:(void (^)(FLWizardPanel* panel)) completion{
+                     completion:(FLWizardPanelBlock) completion{
 
     FLWizardPanel* toHide = self.visibleWizardPanel;
     FLWizardPanel* toShow = self.previousWizardPanel;
@@ -303,8 +295,8 @@
     toShow.view.frame = _wizardPanelEnclosureView.bounds;
             
     self.nextButton.enabled = NO;
-    self.previousButton.hidden = NO;
-    self.previousButton.enabled = NO;
+    self.backButton.hidden = NO;
+    self.backButton.enabled = NO;
     self.otherButton.hidden = YES;
     
     [self wizardPanelWillAppear:toShow];
@@ -317,8 +309,7 @@
         
     dispatch_block_t finished = ^{
         
-        [_visibleWizardPanels removeObject:toHide];
-        [_queuedWizardPanels pushObject:toHide];
+        [_wizardPanels removeObject:toHide];
         
         [self wizardPanelDidDissappear:toHide];
         [self updateBackButtonEnabledState];
@@ -330,8 +321,6 @@
         [self.view.window display];
     };
       
-          
-                  
     if(animated) {
         
         FLAnimator* animator = [FLAnimator animator:kDuration];

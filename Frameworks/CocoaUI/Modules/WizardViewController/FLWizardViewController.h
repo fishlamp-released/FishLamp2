@@ -12,63 +12,47 @@
 
 @protocol FLWizardViewControllerDelegate;
 
+
 @interface FLWizardViewController : UIViewController {
 @private
+    __unsafe_unretained id<FLWizardViewControllerDelegate> _delegate;
+
     NSView* _backgroundView;
     NSView* _wizardPanelBackgroundView;
     
+    IBOutlet NSView* _breadcrumbEnclosureView;
     IBOutlet FLBreadcrumbBarView* _breadcrumbBarView;
+    
     IBOutlet NSView* _wizardPanelEnclosureView;
-    IBOutlet NSView* _titleEnclosureView;
+    IBOutlet NSTextField* _titleTextField;
+    
     IBOutlet NSView* _buttonEnclosureView;
     IBOutlet NSButton* _nextButton;
-    IBOutlet NSButton* _previousButton;
+    IBOutlet NSButton* _backButton;
     IBOutlet NSButton* _otherButton;
-    IBOutlet NSTextField* _titleTextField;
-    __unsafe_unretained id<FLWizardViewControllerDelegate> _delegate;
+    
+    NSMutableArray* _wizardPanels;
+        
+// temp    
+    IBOutlet NSButton* _logoutButton;
 
-    NSMutableArray* _visibleWizardPanels;
-    NSMutableArray* _queuedWizardPanels;
 }
 
 // delegate
 @property (readwrite, assign, nonatomic) IBOutlet id<FLWizardViewControllerDelegate> delegate;
 
+// views
 @property (readwrite, strong, nonatomic) NSView* backgroundView;
 @property (readwrite, strong, nonatomic) NSView* wizardPanelBackgroundView;
 
 // backgrounds
 @property (readonly, strong, nonatomic) NSButton* nextButton;
-@property (readonly, strong, nonatomic) NSButton* previousButton;
+@property (readonly, strong, nonatomic) NSButton* backButton;
 @property (readonly, strong, nonatomic) NSButton* otherButton;
 @property (readonly, strong, nonatomic) NSTextField* titleTextField;
 
-@property (readonly, strong, nonatomic) NSView* titleEnclosureView;
 @property (readonly, strong, nonatomic) NSView* buttonEnclosureView;
-
 @property (readonly, strong, nonatomic) NSView* wizardPanelEnclosureView;
-
-// panels
-@property (readonly, strong, nonatomic) NSArray* visibleWizardPanels;
-@property (readonly, strong, nonatomic) NSArray* queuedWizardPanels;
-
-@property (readonly, strong, nonatomic) FLWizardPanel* visibleWizardPanel;
-
-- (void) addWizardPanel:(FLWizardPanel*) wizardPanel;
-
-- (void) removeWizardPanel:(FLWizardPanel*) wizardPanel;
-
-- (void) presentNextWizardPanelAnimated:(BOOL) animated
-                       completion:(void (^)(FLWizardPanel* newPanel)) completion;
-
-- (void) pushWizardPanel:(FLWizardPanel*) viewController 
-                animated:(BOOL) animated 
-              completion:(void (^)(FLWizardPanel* newPanel)) completion;
-
-- (void) popWizardPanelAnimated:(BOOL) animated
-                     completion:(void (^)(FLWizardPanel* poppedPanel)) completion;
-
-// visible panels.
 
 - (void) startWizardInWindow:(NSWindow*) window;
 
@@ -86,15 +70,30 @@
 - (void) updateBackButtonEnabledState;
 @end
 
+@interface FLWizardViewController (Navigation)
+
+@property (readonly, strong, nonatomic) NSArray* wizardPanels;
+
+@property (readonly, strong, nonatomic) FLWizardPanel* visibleWizardPanel;
+
+- (void) removeWizardPanel:(FLWizardPanel*) wizardPanel;
+
+- (void) pushWizardPanel:(FLWizardPanel*) viewController 
+                animated:(BOOL) animated 
+              completion:(FLWizardPanelBlock) completion;
+
+- (void) popWizardPanelAnimated:(BOOL) animated
+                     completion:(FLWizardPanelBlock) completion;
+@end
+
+
 @protocol FLWizardViewControllerDelegate <NSObject>
 @optional
 - (void) wizardViewControllerCanStart:(FLWizardViewController*) wizard;
 
-- (void) wizardViewController:(FLWizardViewController*) wizard 
-     willStartWithWizardPanel:(FLWizardPanel*) wizardPanel;
+- (void) wizardViewControllerWillStartWizard:(FLWizardViewController*) wizard;
 
-- (void) wizardViewController:(FLWizardViewController*) wizard 
-      didStartWithWizardPanel:(FLWizardPanel*) wizardPanel;
+- (void) wizardViewControllerDidStartWizard:(FLWizardViewController*) wizard;
 
 - (void) wizardViewController:(FLWizardViewController*) wizard 
      didFinishWithWizardPanel:(FLWizardPanel*) wizardPanel;
