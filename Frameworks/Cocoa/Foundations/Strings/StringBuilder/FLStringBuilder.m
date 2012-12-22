@@ -29,7 +29,7 @@
 - (id) init {
     self = [super init];
     if(self) {
-        _tokens = [NSMutableArray array];
+        _tokens = [[NSMutableArray alloc] init];
     }
     return self;
 }

@@ -285,7 +285,7 @@ static void * const s_queue_key = (void*)&s_queue_key;
 }
 
 + (FLDispatchQueue*) sharedFifoQueue {
-    FLReturnStaticObject([FLFifoDispatchQueue fifoDispatchQueue]);
+    FLReturnStaticObject([[FLFifoDispatchQueue alloc] init]);
 }
 
 + (FLObjectPool*) pool {

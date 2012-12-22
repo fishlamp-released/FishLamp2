@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		27544FCA16850C4300C104D7 /* FLFlipAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 27544FC816850C4200C104D7 /* FLFlipAnimation.h */; };
+		27544FCB16850C4300C104D7 /* FLFlipAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 27544FC816850C4200C104D7 /* FLFlipAnimation.h */; };
+		27544FCC16850C4300C104D7 /* FLFlipAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 27544FC816850C4200C104D7 /* FLFlipAnimation.h */; };
+		27544FCD16850C4300C104D7 /* FLFlipAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 27544FC816850C4200C104D7 /* FLFlipAnimation.h */; };
+		27544FCE16850C4300C104D7 /* FLFlipAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 27544FC916850C4300C104D7 /* FLFlipAnimation.m */; };
+		27544FCF16850C4300C104D7 /* FLFlipAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 27544FC916850C4300C104D7 /* FLFlipAnimation.m */; };
+		27544FD016850C4300C104D7 /* FLFlipAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 27544FC916850C4300C104D7 /* FLFlipAnimation.m */; };
+		27544FD116850C4300C104D7 /* FLFlipAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 27544FC916850C4300C104D7 /* FLFlipAnimation.m */; };
+		27544FD216850C4300C104D7 /* FLFlipAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 27544FC916850C4300C104D7 /* FLFlipAnimation.m */; };
 		27CBBFEE16768BA600753D0A /* FishLampCocoa-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27D1E5C1166D355C00DB680E /* FishLampCocoa-Prefix.pch */; };
 		27D1E5C2166D355C00DB680E /* FishLampCocoa-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27D1E5C1166D355C00DB680E /* FishLampCocoa-Prefix.pch */; };
 		27D1E5C3166D355C00DB680E /* FishLampCocoa-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27D1E5C1166D355C00DB680E /* FishLampCocoa-Prefix.pch */; };
@@ -552,6 +561,8 @@
 		270D02E315E9B1FF00ED5FB0 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
 		270DFDC815E99BAC00ED5FB0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		27314C79165328400027850D /* libFishLampCocoaUI-OSX-64-ARC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoaUI-OSX-64-ARC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		27544FC816850C4200C104D7 /* FLFlipAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLFlipAnimation.h; sourceTree = "<group>"; };
+		27544FC916850C4300C104D7 /* FLFlipAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLFlipAnimation.m; sourceTree = "<group>"; };
 		276CE8EE15E54B2F000A5CE6 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		276CE8EF15E54B30000A5CE6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		276CE8F015E54B31000A5CE6 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
@@ -889,6 +900,8 @@
 				78329B7A167E97C10024E8DC /* FLFadeAnimation.m */,
 				78329B7B167E97C10024E8DC /* FLMoveAnimation.h */,
 				78329B7C167E97C10024E8DC /* FLMoveAnimation.m */,
+				27544FC816850C4200C104D7 /* FLFlipAnimation.h */,
+				27544FC916850C4300C104D7 /* FLFlipAnimation.m */,
 			);
 			path = Animations;
 			sourceTree = "<group>";
@@ -1220,6 +1233,7 @@
 				78329DF9167E97C20024E8DC /* FLLoginWizardPanel.h in Headers */,
 				78329E02167E97C20024E8DC /* FLProgressWizardPanel.h in Headers */,
 				789EF0CB167EBD410019D6B2 /* FLView.h in Headers */,
+				27544FCA16850C4300C104D7 /* FLFlipAnimation.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1287,6 +1301,7 @@
 				78329DFB167E97C20024E8DC /* FLLoginWizardPanel.h in Headers */,
 				78329E04167E97C20024E8DC /* FLProgressWizardPanel.h in Headers */,
 				789EF0CD167EBD410019D6B2 /* FLView.h in Headers */,
+				27544FCC16850C4300C104D7 /* FLFlipAnimation.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1354,6 +1369,7 @@
 				78329DFA167E97C20024E8DC /* FLLoginWizardPanel.h in Headers */,
 				78329E03167E97C20024E8DC /* FLProgressWizardPanel.h in Headers */,
 				789EF0CC167EBD410019D6B2 /* FLView.h in Headers */,
+				27544FCB16850C4300C104D7 /* FLFlipAnimation.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1421,6 +1437,7 @@
 				78329DFC167E97C20024E8DC /* FLLoginWizardPanel.h in Headers */,
 				78329E05167E97C20024E8DC /* FLProgressWizardPanel.h in Headers */,
 				789EF0CE167EBD410019D6B2 /* FLView.h in Headers */,
+				27544FCD16850C4300C104D7 /* FLFlipAnimation.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1604,6 +1621,7 @@
 				78329DFE167E97C20024E8DC /* FLLoginWizardPanel.m in Sources */,
 				78329E07167E97C20024E8DC /* FLProgressWizardPanel.m in Sources */,
 				789EF0D0167EBD410019D6B2 /* FLView.m in Sources */,
+				27544FCF16850C4300C104D7 /* FLFlipAnimation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1667,6 +1685,7 @@
 				78329E00167E97C20024E8DC /* FLLoginWizardPanel.m in Sources */,
 				78329E09167E97C20024E8DC /* FLProgressWizardPanel.m in Sources */,
 				789EF0D2167EBD410019D6B2 /* FLView.m in Sources */,
+				27544FD116850C4300C104D7 /* FLFlipAnimation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1730,6 +1749,7 @@
 				78329DFD167E97C20024E8DC /* FLLoginWizardPanel.m in Sources */,
 				78329E06167E97C20024E8DC /* FLProgressWizardPanel.m in Sources */,
 				789EF0CF167EBD410019D6B2 /* FLView.m in Sources */,
+				27544FCE16850C4300C104D7 /* FLFlipAnimation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1793,6 +1813,7 @@
 				78329DFF167E97C20024E8DC /* FLLoginWizardPanel.m in Sources */,
 				78329E08167E97C20024E8DC /* FLProgressWizardPanel.m in Sources */,
 				789EF0D1167EBD410019D6B2 /* FLView.m in Sources */,
+				27544FD016850C4300C104D7 /* FLFlipAnimation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1856,6 +1877,7 @@
 				78329E01167E97C20024E8DC /* FLLoginWizardPanel.m in Sources */,
 				78329E0A167E97C20024E8DC /* FLProgressWizardPanel.m in Sources */,
 				789EF0D3167EBD410019D6B2 /* FLView.m in Sources */,
+				27544FD216850C4300C104D7 /* FLFlipAnimation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

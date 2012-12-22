@@ -7,7 +7,6 @@
 //
 
 #import "FLAssertions.h"
-#if DEBUG
 id _FLAssertObjectIsType(id object, NSString* className) {
     if(object) {
         Class aClass = NSClassFromString(className);
@@ -26,4 +25,3 @@ id _FLAssertConformsToProtocol(id object, Protocol* proto) {
     }
     return object;
 }
-#endif

@@ -133,7 +133,10 @@
 
 - (void) didFinishAuthenticatingWithResult:(FLResult) result {
     
-    if(![result error]) {
+    if([result error]) {
+        [self.progress flipViews:FLFlipAnimationDirectionUp duration:0.5f];
+    }
+    else {
         [self.wizard presentNextWizardPanelAnimated:YES completion:^(FLWizardPanel *newPanel) {
             [self removeProgress];
         }];

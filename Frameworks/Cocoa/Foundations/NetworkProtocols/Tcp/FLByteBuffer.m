@@ -8,8 +8,12 @@
 
 #import "FLByteBuffer.h"
 
+#if DEBUG
 #define FLAssertDeadBeaf_v() \
             FLAssert_v((*_deadBeafPtr) == 0xDEADBEAF, @"buffer overrun detected");
+#else
+#define FLAssertDeadBeaf_v()
+#endif            
 
 @implementation FLByteBuffer
 

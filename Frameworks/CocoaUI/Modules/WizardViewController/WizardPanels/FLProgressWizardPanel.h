@@ -10,6 +10,7 @@
 
 #import "FLWizardViewController.h"
 #import "FLWizardPanel.h"
+#import "FLFlipAnimation.h"
 
 @interface FLProgressWizardPanel : FLWizardPanel {
 @private
@@ -32,5 +33,7 @@
 @property (readwrite, strong, nonatomic) NSString* errorText;
 
 + (id) progressWizardPanel;
+
+- (void) flipViews:(FLFlipAnimationDirection) direction duration:(CGFloat) duration;
 
 @end
