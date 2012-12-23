@@ -3411,6 +3411,15 @@
 		2798DB0A166D886500A0863D /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE5E166D886500A0863D /* UIImage+RoundedCorner.m */; };
 		2798DB0B166D886500A0863D /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE5E166D886500A0863D /* UIImage+RoundedCorner.m */; };
 		2798DB0C166D886500A0863D /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE5E166D886500A0863D /* UIImage+RoundedCorner.m */; };
+		27A186D01686CC8100E4E37C /* FLRequestContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A186CE1686CC8100E4E37C /* FLRequestContext.h */; };
+		27A186D11686CC8100E4E37C /* FLRequestContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A186CE1686CC8100E4E37C /* FLRequestContext.h */; };
+		27A186D21686CC8100E4E37C /* FLRequestContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A186CE1686CC8100E4E37C /* FLRequestContext.h */; };
+		27A186D31686CC8100E4E37C /* FLRequestContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A186CE1686CC8100E4E37C /* FLRequestContext.h */; };
+		27A186D41686CC8100E4E37C /* FLRequestContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A186CF1686CC8100E4E37C /* FLRequestContext.m */; };
+		27A186D51686CC8100E4E37C /* FLRequestContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A186CF1686CC8100E4E37C /* FLRequestContext.m */; };
+		27A186D61686CC8100E4E37C /* FLRequestContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A186CF1686CC8100E4E37C /* FLRequestContext.m */; };
+		27A186D71686CC8100E4E37C /* FLRequestContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A186CF1686CC8100E4E37C /* FLRequestContext.m */; };
+		27A186D81686CC8100E4E37C /* FLRequestContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A186CF1686CC8100E4E37C /* FLRequestContext.m */; };
 		27CBBFA416768BA600753D0A /* __FLAssetQueueState.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE1D166D886500A0863D /* __FLAssetQueueState.m */; };
 		27CBBFA516768BA600753D0A /* __FLExportedAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE1F166D886500A0863D /* __FLExportedAsset.m */; };
 		27CBBFA616768BA600753D0A /* __FLQueuedAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE21166D886500A0863D /* __FLQueuedAsset.m */; };
@@ -3561,15 +3570,6 @@
 		27E35E8416868B4700AF13BE /* FLHttpRequestHeaders.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E35E7416868B4000AF13BE /* FLHttpRequestHeaders.m */; };
 		27E35E8516868B4700AF13BE /* FLHttpRequestHeaders.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E35E7416868B4000AF13BE /* FLHttpRequestHeaders.m */; };
 		27E35E8616868B4700AF13BE /* FLHttpRequestHeaders.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E35E7416868B4000AF13BE /* FLHttpRequestHeaders.m */; };
-		27E35EE31686B67600AF13BE /* FLRequestContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E35EE11686B67300AF13BE /* FLRequestContext.h */; };
-		27E35EE41686B67600AF13BE /* FLRequestContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E35EE11686B67300AF13BE /* FLRequestContext.h */; };
-		27E35EE51686B67600AF13BE /* FLRequestContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E35EE11686B67300AF13BE /* FLRequestContext.h */; };
-		27E35EE61686B67600AF13BE /* FLRequestContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E35EE11686B67300AF13BE /* FLRequestContext.h */; };
-		27E35EE71686B67600AF13BE /* FLRequestContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E35EE21686B67400AF13BE /* FLRequestContext.m */; };
-		27E35EE81686B67600AF13BE /* FLRequestContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E35EE21686B67400AF13BE /* FLRequestContext.m */; };
-		27E35EE91686B67600AF13BE /* FLRequestContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E35EE21686B67400AF13BE /* FLRequestContext.m */; };
-		27E35EEA1686B67600AF13BE /* FLRequestContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E35EE21686B67400AF13BE /* FLRequestContext.m */; };
-		27E35EEB1686B67600AF13BE /* FLRequestContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E35EE21686B67400AF13BE /* FLRequestContext.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -4397,6 +4397,8 @@
 		2798CE5D166D886500A0863D /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
 		2798CE5E166D886500A0863D /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
 		2798DB81166D8A7F00A0863D /* SharedTargetSettings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = SharedTargetSettings.xcconfig; sourceTree = "<group>"; };
+		27A186CE1686CC8100E4E37C /* FLRequestContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLRequestContext.h; sourceTree = "<group>"; };
+		27A186CF1686CC8100E4E37C /* FLRequestContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLRequestContext.m; sourceTree = "<group>"; };
 		27A43AB415CDCC89001CB13E /* libFishLampCocoa-iOS-ARC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoa-iOS-ARC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27A43AC415CDCCCB001CB13E /* libFishLampCocoa-OSX-64-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoa-OSX-64-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27CBC1F416768BA600753D0A /* libFishLampCocoa-OSX-32-64-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoa-OSX-32-64-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -4427,8 +4429,6 @@
 		27E35E7216868B3400AF13BE /* FLHttpRequestContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLHttpRequestContent.m; sourceTree = "<group>"; };
 		27E35E7316868B3900AF13BE /* FLHttpRequestHeaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLHttpRequestHeaders.h; sourceTree = "<group>"; };
 		27E35E7416868B4000AF13BE /* FLHttpRequestHeaders.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLHttpRequestHeaders.m; sourceTree = "<group>"; };
-		27E35EE11686B67300AF13BE /* FLRequestContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FLRequestContext.h; path = ../../../../../../ZenLib/Frameworks/Cocoa/Classes/Batch/FLRequestContext.h; sourceTree = "<group>"; };
-		27E35EE21686B67400AF13BE /* FLRequestContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FLRequestContext.m; path = ../../../../../../ZenLib/Frameworks/Cocoa/Classes/Batch/FLRequestContext.m; sourceTree = "<group>"; };
 		27EF7B38165A9C1E00EB7949 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		27EF7B39165A9C1E00EB7949 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		27EF7B3A165A9C1E00EB7949 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -5078,6 +5078,8 @@
 		2741DFD716793DB600CA87A9 /* HTTP */ = {
 			isa = PBXGroup;
 			children = (
+				27A186CE1686CC8100E4E37C /* FLRequestContext.h */,
+				27A186CF1686CC8100E4E37C /* FLRequestContext.m */,
 				27E35E7116868B2F00AF13BE /* FLHttpRequestContent.h */,
 				27E35E7216868B3400AF13BE /* FLHttpRequestContent.m */,
 				27E35E7316868B3900AF13BE /* FLHttpRequestHeaders.h */,
@@ -5100,8 +5102,6 @@
 				2741DFEB16793DB600CA87A9 /* FLUrlParameterParser.m */,
 				2741DFEC16793DB600CA87A9 /* NSURLRequest+HTTP.h */,
 				2741DFED16793DB600CA87A9 /* NSURLRequest+HTTP.m */,
-				27E35EE11686B67300AF13BE /* FLRequestContext.h */,
-				27E35EE21686B67400AF13BE /* FLRequestContext.m */,
 			);
 			path = HTTP;
 			sourceTree = "<group>";
@@ -6613,7 +6613,7 @@
 				27E35DFA16861F9000AF13BE /* FLLocalNotification.h in Headers */,
 				27E35E7516868B4700AF13BE /* FLHttpRequestContent.h in Headers */,
 				27E35E7E16868B4700AF13BE /* FLHttpRequestHeaders.h in Headers */,
-				27E35EE31686B67600AF13BE /* FLRequestContext.h in Headers */,
+				27A186D01686CC8100E4E37C /* FLRequestContext.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7035,7 +7035,7 @@
 				27E35DFC16861F9000AF13BE /* FLLocalNotification.h in Headers */,
 				27E35E7716868B4700AF13BE /* FLHttpRequestContent.h in Headers */,
 				27E35E8016868B4700AF13BE /* FLHttpRequestHeaders.h in Headers */,
-				27E35EE51686B67600AF13BE /* FLRequestContext.h in Headers */,
+				27A186D21686CC8100E4E37C /* FLRequestContext.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7457,7 +7457,7 @@
 				27E35DFB16861F9000AF13BE /* FLLocalNotification.h in Headers */,
 				27E35E7616868B4700AF13BE /* FLHttpRequestContent.h in Headers */,
 				27E35E7F16868B4700AF13BE /* FLHttpRequestHeaders.h in Headers */,
-				27E35EE41686B67600AF13BE /* FLRequestContext.h in Headers */,
+				27A186D11686CC8100E4E37C /* FLRequestContext.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7879,7 +7879,7 @@
 				27E35DFD16861F9000AF13BE /* FLLocalNotification.h in Headers */,
 				27E35E7816868B4700AF13BE /* FLHttpRequestContent.h in Headers */,
 				27E35E8116868B4700AF13BE /* FLHttpRequestHeaders.h in Headers */,
-				27E35EE61686B67600AF13BE /* FLRequestContext.h in Headers */,
+				27A186D31686CC8100E4E37C /* FLRequestContext.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8387,7 +8387,7 @@
 				27E35DFF16861F9000AF13BE /* FLLocalNotification.m in Sources */,
 				27E35E7A16868B4700AF13BE /* FLHttpRequestContent.m in Sources */,
 				27E35E8316868B4700AF13BE /* FLHttpRequestHeaders.m in Sources */,
-				27E35EE81686B67600AF13BE /* FLRequestContext.m in Sources */,
+				27A186D51686CC8100E4E37C /* FLRequestContext.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8775,7 +8775,7 @@
 				27E35E0116861F9000AF13BE /* FLLocalNotification.m in Sources */,
 				27E35E7C16868B4700AF13BE /* FLHttpRequestContent.m in Sources */,
 				27E35E8516868B4700AF13BE /* FLHttpRequestHeaders.m in Sources */,
-				27E35EEA1686B67600AF13BE /* FLRequestContext.m in Sources */,
+				27A186D71686CC8100E4E37C /* FLRequestContext.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9163,7 +9163,7 @@
 				27E35DFE16861F9000AF13BE /* FLLocalNotification.m in Sources */,
 				27E35E7916868B4700AF13BE /* FLHttpRequestContent.m in Sources */,
 				27E35E8216868B4700AF13BE /* FLHttpRequestHeaders.m in Sources */,
-				27E35EE71686B67600AF13BE /* FLRequestContext.m in Sources */,
+				27A186D41686CC8100E4E37C /* FLRequestContext.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9551,7 +9551,7 @@
 				27E35E0016861F9000AF13BE /* FLLocalNotification.m in Sources */,
 				27E35E7B16868B4700AF13BE /* FLHttpRequestContent.m in Sources */,
 				27E35E8416868B4700AF13BE /* FLHttpRequestHeaders.m in Sources */,
-				27E35EE91686B67600AF13BE /* FLRequestContext.m in Sources */,
+				27A186D61686CC8100E4E37C /* FLRequestContext.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9939,7 +9939,7 @@
 				27E35E0216861F9000AF13BE /* FLLocalNotification.m in Sources */,
 				27E35E7D16868B4700AF13BE /* FLHttpRequestContent.m in Sources */,
 				27E35E8616868B4700AF13BE /* FLHttpRequestHeaders.m in Sources */,
-				27E35EEB1686B67600AF13BE /* FLRequestContext.m in Sources */,
+				27A186D81686CC8100E4E37C /* FLRequestContext.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
