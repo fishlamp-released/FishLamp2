@@ -8,13 +8,13 @@
 
 #import "FLCocoaRequired.h"
 
-#import	"FLTwitterOperation.h"
+#import	"FLTwitterHttpRequest.h"
 
 #define FLTwitterImageSizeNormal @"normal"
 #define FLTwitterImageSizeSmall @"mini"
 #define FLTwitterImageSizeLarge @"bigger"
 
-@interface FLTwitterLoadProfileImageOperation : FLTwitterOperation {
+@interface FLTwitterLoadProfileImageHttpRequest : FLTwitterHttpRequest {
 @private
 	NSString* _imageSize;
 	NSString* _username;

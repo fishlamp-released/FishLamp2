@@ -38,6 +38,7 @@
 
 /** returns an error for responses >= 400 */
 - (NSError*) simpleHttpResponseErrorCheck;
+- (void) throwHttpErrorIfNeeded;
 
 @end
 

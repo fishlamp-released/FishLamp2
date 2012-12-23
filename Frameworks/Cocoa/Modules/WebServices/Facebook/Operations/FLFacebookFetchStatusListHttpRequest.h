@@ -8,9 +8,9 @@
 
 #import "FLCocoaRequired.h"
 
-#import "FLFacebookOperation.h"
+#import "FLFacebookHttpRequest.h"
 
-@interface FLFacebookFetchStatusListOperation : FLFacebookOperation {
+@interface FLFacebookFetchStatusListHttpRequest : FLFacebookHttpRequest {
 }
 
 @end

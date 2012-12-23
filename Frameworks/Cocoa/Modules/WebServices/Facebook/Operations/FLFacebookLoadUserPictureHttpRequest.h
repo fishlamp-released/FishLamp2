@@ -8,7 +8,7 @@
 
 #import "FLCocoaRequired.h"
 
-#import "FLFacebookOperation.h"
+#import "FLFacebookHttpRequest.h"
 #import "FLFacebookLoadUserPictureOperationInput.h"
 
 #import "FacebookEnums.h"
@@ -20,7 +20,7 @@
 
 // [operation.input setSize:FLFacebookLoadUserPictureOperationInputSizeSquare]
 
-@interface FLFacebookLoadUserPictureOperation : FLFacebookOperation {
+@interface FLFacebookLoadUserPictureHttpRequest : FLFacebookHttpRequest {
 @private
 	NSString* _pictureSize;
 }

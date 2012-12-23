@@ -10,7 +10,7 @@
 #import "FLFacebookStatusListViewController.h"
 #import "FLAction.h"
 #import "FLLegacyProgressView.h"
-#import "FLFacebookOperation.h"
+#import "FLFacebookHttpRequest.h"
 #import "FLFacebookFetchStatusListResponse.h"
 #import "FLFacebookPost.h"
 #import "FLFacebookMgr.h"

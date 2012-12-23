@@ -15,7 +15,6 @@ NSString* const FLOperationFinishedEvent;
 
 @interface FLOperation ()
 @property (readwrite, copy, nonatomic) FLRunOperationBlock runBlock;
-@property (readwrite, assign) id context;
 @property (readwrite, assign, getter=wasCancelled) BOOL cancelled;
 @end
 
@@ -23,17 +22,8 @@ NSString* const FLOperationFinishedEvent;
 
 @synthesize operationID = _operationID;
 @synthesize runBlock = _runBlock;
-@synthesize context = _context;
 @synthesize tag = _tag;
 @synthesize cancelled = _cancelled;
-
-- (void) removeFromContext:(id) context {
-    self.context = nil;
-}
-
-- (void) addToContext:(id) context {
-    self.context = context;
-}
 
 - (id) initWithRunBlock:(FLRunOperationBlock) callback {
     if((self = [self init])) {

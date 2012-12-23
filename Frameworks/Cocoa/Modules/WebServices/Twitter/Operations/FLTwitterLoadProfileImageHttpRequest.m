@@ -6,12 +6,12 @@
 //  Copyright 2011 GreenTongue Software. All rights reserved.
 //
 
-#import "FLTwitterLoadProfileImageOperation.h"
+#import "FLTwitterLoadProfileImageHttpRequest.h"
 #import "FLTwitterService.h"
 #import "FLOperationCacheHandler.h"
 #import "FLUserDataStorageService.h"
 
-@implementation FLTwitterLoadProfileImageOperation
+@implementation FLTwitterLoadProfileImageHttpRequest
 
 @synthesize imageSize = _imageSize;
 @synthesize username = _username;
@@ -38,17 +38,17 @@
 	super_dealloc_();
 }
 
-- (FLResult) runOperationWithInput:(id) input {
-    self.twitterURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://api.twitter.com/1/users/profile_image/%@.json?size=%@", _username, _imageSize]];
-    FLAssertNotNil_(self.httpRequestURL);
-    
-FIXME(@"need the behavior but not the operation");
-  
-//        self.responseHandler = [FLHttpImageDownloadNetworkResponseHandler instance];
-//        self.operationInput = [FLCachedImage cachedImage];
-  
-    
-    return [super runOperationWithInput:(id) input];
-}
+//- (FLResult) runOperationWithInput:(id) input {
+//    self.twitterURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://api.twitter.com/1/users/profile_image/%@.json?size=%@", _username, _imageSize]];
+//    FLAssertNotNil_(self.httpRequestURL);
+//    
+//FIXME(@"need the behavior but not the operation");
+//  
+////        self.responseHandler = [FLHttpImageDownloadNetworkResponseHandler instance];
+////        self.operationInput = [FLCachedImage cachedImage];
+//  
+//    
+//    return [super runOperationWithInput:(id) input];
+//}
 
 @end

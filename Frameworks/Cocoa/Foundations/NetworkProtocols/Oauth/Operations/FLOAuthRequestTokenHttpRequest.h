@@ -1,5 +1,6 @@
+
 //
-//  FLOAuthRequestTokenNetworkOperation.h
+//  FLOAuthRequestTokenHttpRequest.h
 //  FishLamp
 //
 //  Created by Mike Fullerton on 6/1/11.
@@ -8,17 +9,17 @@
 
 #import "FLCocoaRequired.h"
 
-#import "FLHttpOperation.h"
+#import "FLHttpRequest.h"
 #import "FLOAuth.h"
 #import "FLOAuthApp.h"
 
-@interface FLOAuthRequestTokenNetworkOperation : FLHttpOperation {
+@interface FLOAuthRequestTokenHttpRequest : FLHttpRequest {
 @private 
 	FLOAuthApp* _app;
     NSURL* _url;
 }
 
 - (id) initWithOAuthApp:(FLOAuthApp*) app;
-+ (FLOAuthRequestTokenNetworkOperation*) OAuthRequestTokenNetworkOperation:(FLOAuthApp*) app;
++ (FLOAuthRequestTokenHttpRequest*) OAuthRequestTokenNetworkOperation:(FLOAuthApp*) app;
 
 @end

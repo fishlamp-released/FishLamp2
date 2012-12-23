@@ -1,18 +1,18 @@
 //
-//  FLOAuthRequestAccessTokenNetworkOperation.m
+//  FLOAuthRequestAccessTokenHttpRequest.m
 //  FishLamp
 //
 //  Created by Mike Fullerton on 6/1/11.
 //  Copyright 2011 GreenTongue Software. All rights reserved.
 //
 
-#import "FLOAuthRequestAccessTokenNetworkOperation.h"
+#import "FLOAuthRequestAccessTokenHttpRequest.h"
 #import "FLOAuthAuthorizationHeader.h"
 #import "NSString+URL.h"
 #import "FLOAuthSession.h"
 #import "FLUrlParameterParser.h"
 
-@implementation FLOAuthRequestAccessTokenNetworkOperation
+@implementation FLOAuthRequestAccessTokenHttpRequest
 
 #if DEBUG
 - (void) testMe
@@ -61,8 +61,8 @@
 	return self;
 }
 
-+ (FLOAuthRequestAccessTokenNetworkOperation*) OAuthRequestAccessTokenNetworkOperation:(FLOAuthApp*) app authData:(FLOAuthAuthencationData*) data {
-	return FLAutorelease([[FLOAuthRequestAccessTokenNetworkOperation alloc] initWithOAuthApp:app authData:data]);
++ (FLOAuthRequestAccessTokenHttpRequest*) OAuthRequestAccessTokenNetworkOperation:(FLOAuthApp*) app authData:(FLOAuthAuthencationData*) data {
+	return FLAutorelease([[FLOAuthRequestAccessTokenHttpRequest alloc] initWithOAuthApp:app authData:data]);
 }
 
 #if FL_MRC
@@ -74,26 +74,42 @@
 }
 #endif
 
-- (FLResult) runOperationWithInput:(id) input {
-
+- (void) willSendHttpRequest {
+    [super willSendHttpRequest];
+    
 	FLOAuthAuthorizationHeader* oauthHeader = [FLOAuthAuthorizationHeader authorizationHeader];
 	[oauthHeader setParameter:kFLOAuthHeaderToken value:_authData.oauth_token];
 	[oauthHeader setParameter:@"oauth_verifier" value:_authData.oauth_verifier];
 
     NSString* secret = [NSString stringWithFormat:@"%@&%@", _app.consumerSecret, _authData.oauth_token_secret];
+ 	[self setOAuthAuthorizationHeader:oauthHeader consumerKey:_app.consumerKey secret:secret];
+}
 
-    FLHttpRequest* request = [FLHttpRequest httpPostRequestWithURL:_url];
-	[request setOAuthAuthorizationHeader:oauthHeader consumerKey:_app.consumerKey secret:secret];
-
-    FLHttpResponse* response = [self sendHttpRequest:request];
+- (id) didReceiveHttpResponse:(FLHttpResponse*) httpResponse {
 
     FLOAuthSession* session = [FLOAuthSession oAuthSession];
-    [FLUrlParameterParser parseData:response.responseData 
+    [FLUrlParameterParser parseData:httpResponse.responseData 
         intoObject:session 
         strict:YES 
         requiredKeys:[NSArray arrayWithObjects:@"oauth_token", @"oauth_token_secret", @"user_id", @"screen_name", nil]];
 
     return session;
 }
+
+//- (FLResult) runOperationWithInput:(id) input {
+//
+//
+//    FLHttpRequest* request = [FLHttpRequest httpPostRequestWithURL:_url];
+//
+//    FLHttpResponse* response = [self sendHttpRequest:request];
+//
+//    FLOAuthSession* session = [FLOAuthSession oAuthSession];
+//    [FLUrlParameterParser parseData:response.responseData 
+//        intoObject:session 
+//        strict:YES 
+//        requiredKeys:[NSArray arrayWithObjects:@"oauth_token", @"oauth_token_secret", @"user_id", @"screen_name", nil]];
+//
+//    return session;
+//}
 
 @end

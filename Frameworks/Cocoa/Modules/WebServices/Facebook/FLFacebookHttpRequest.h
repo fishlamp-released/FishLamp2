@@ -1,5 +1,5 @@
 //
-//  FLFacebookOperation.h
+//  FLFacebookHttpRequest.h
 //  FishLamp
 //
 //  Created by Mike Fullerton on 5/14/11.
@@ -7,18 +7,19 @@
 //
 
 #import "FLCocoaRequired.h"
+#import "FLHttpRequest.h"
 
-#import "FLHttpOperation.h"
-
+@class FLFacebookService;
 @class FLFacebookNetworkSession;
 @class FLFacebookError;
 
-@interface FLFacebookOperation : FLHttpOperation {
+@interface FLFacebookHttpRequest : FLHttpRequest {
 @private
 	NSString* _object;
     id _outputObject;
     id _inputObject;
 }
+@property (readwrite, strong) FLFacebookService* facebookService;
 
 @property (readwrite, strong) id inputObject;
 @property (readwrite, strong) id outputObject;

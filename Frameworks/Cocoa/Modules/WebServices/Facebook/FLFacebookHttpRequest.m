@@ -1,5 +1,5 @@
 //
-//  FLFacebookOperation.m
+//  FLFacebookHttpRequest.m
 //  FishLamp
 //
 //  Created by Mike Fullerton on 5/14/11.
@@ -12,17 +12,19 @@
 #import "FLJsonParser.h"
 #import "FLObjectBuilder.h"
 #import "FLFacebookService.h"
-#import "FLFacebookOperation.h"
+#import "FLFacebookHttpRequest.h"
 
 
-@implementation FLFacebookOperation
+@implementation FLFacebookHttpRequest
 
 @synthesize object = _object;
 @synthesize outputObject = _outputObject;
 @synthesize inputObject = _inputObject;
+@synthesize facebookService = _facebookService;
 
 #if FL_MRC
 - (void) dealloc {
+    [_facebookService release];
     [_inputObject release];
     [_outputObject release];
     [_object release];
@@ -72,35 +74,46 @@
     return response;
 }
 
-- (FLResult) runOperationWithInput:(id) input {
-    FLFacebookService* facebook = [self.context facebookService];
+- (void) willSendHttpRequest {
 
-    NSString* userID = facebook.facebookNetworkSession.userId;
-
-	NSMutableString* url = [self buildURL:facebook.encodedToken user:userID object:self.object params:nil];
-	
-	if([self willAddParametersToURL]) {
-		[self addParametersToURLString:url];
-	}
-	
-	NSURL* URL = [NSURL URLWithString:url];
-	FLAssertIsNotNil_v(URL, nil);
-    
-    FLHttpRequest* httpRequest = [FLHttpRequest httpPostRequestWithURL:URL];
-
-    FLHttpResponse* httpResponse = [self sendHttpRequest:httpRequest];
-    
-    NSDictionary* responseDictionary = [self responseParsedIntoDictionary:httpResponse];
-   
-    if(!self.outputObject) {
-        return responseDictionary;
-    }
-   
-    FLObjectBuilder* builder = [FLObjectBuilder objectBuilder];
-    [builder buildObjectsFromDictionary:responseDictionary withRootObject:self.outputObject];
-    
-    return self.outputObject;
 }
+
+
+- (id) didReceiveHttpResponse:(FLHttpResponse*) response {
+
+    return response;
+}
+
+//
+//- (FLResult) runOperationWithInput:(id) input {
+//    FLFacebookService* facebook = self.facebookService;
+//
+//    NSString* userID = facebook.facebookNetworkSession.userId;
+//
+//	NSMutableString* url = [self buildURL:facebook.encodedToken user:userID object:self.object params:nil];
+//	
+//	if([self willAddParametersToURL]) {
+//		[self addParametersToURLString:url];
+//	}
+//	
+//	NSURL* URL = [NSURL URLWithString:url];
+//	FLAssertIsNotNil_v(URL, nil);
+//    
+//    FLHttpRequest* httpRequest = [FLHttpRequest httpPostRequestWithURL:URL];
+//
+//    FLHttpResponse* httpResponse = [self sendHttpRequest:httpRequest];
+//    
+//    NSDictionary* responseDictionary = [self responseParsedIntoDictionary:httpResponse];
+//   
+//    if(!self.outputObject) {
+//        return responseDictionary;
+//    }
+//   
+//    FLObjectBuilder* builder = [FLObjectBuilder objectBuilder];
+//    [builder buildObjectsFromDictionary:responseDictionary withRootObject:self.outputObject];
+//    
+//    return self.outputObject;
+//}
 
 - (FLFacebookError*) errorFromURLParams:(NSDictionary*) params
 {

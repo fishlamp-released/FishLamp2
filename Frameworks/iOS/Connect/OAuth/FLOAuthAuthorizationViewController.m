@@ -7,8 +7,8 @@
 //
 
 #import "FLOAuthAuthorizationViewController.h"
-#import "FLOAuthRequestTokenNetworkOperation.h"
-#import "FLOAuthRequestAccessTokenNetworkOperation.h"
+#import "FLOAuthRequestTokenHttpRequest.h"
+#import "FLOAuthRequestAccessTokenHttpRequest.h"
 #import "FLUrlParameterParser.h"
 #import "FLProgressViewController.h"
 #import "FLSimpleProgressView.h"
@@ -64,7 +64,7 @@
 	FLAssignObjectWithRetain(_app, app);
 
 	FLAction* action = [FLAction action];
-    [action addOperation:[FLOAuthRequestTokenNetworkOperation OAuthRequestTokenNetworkOperation:app]];
+    [action addOperation:[FLOAuthRequestTokenHttpRequest OAuthRequestTokenNetworkOperation:app]];
     action.progressController = [FLProgressViewController progressViewController:[FLSimpleProgressView class] 
                                                             presentationBehavior:[FLModalPresentationBehavior instance]];
     action.actionDescription.actionType = FLActionDescriptionTypeAuthenticate;
@@ -114,7 +114,7 @@
         }
 
 		FLAction* action = [FLAction action];
-        [action addOperation:[FLOAuthRequestAccessTokenNetworkOperation OAuthRequestAccessTokenNetworkOperation:_app authData:_authData]];
+        [action addOperation:[FLOAuthRequestAccessTokenHttpRequest OAuthRequestAccessTokenNetworkOperation:_app authData:_authData]];
         
         action.progressController = [FLProgressViewController progressViewController:[FLSimpleProgressView class] 
                                                                 presentationBehavior:[FLModalPresentationBehavior instance]];

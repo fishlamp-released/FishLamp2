@@ -1,5 +1,5 @@
 //
-//  FLTwitterOperation.h
+//  FLTwitterHttpRequest.h
 //  FishLamp
 //
 //  Created by Mike Fullerton on 6/1/11.
@@ -7,11 +7,10 @@
 //
 
 #import "FLCocoaRequired.h"
-
-#import "FLHttpOperation.h"
+#import "FLHttpRequest.h"
 #import "FLOAuthAuthorizationHeader.h"
 
-@interface FLTwitterOperation : FLHttpOperation {
+@interface FLTwitterHttpRequest : FLHttpRequest {
 @private
     id _inputObject;
     NSURL* _twitterURL;

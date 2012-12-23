@@ -6,10 +6,10 @@
 //  Copyright 2011 GreenTongue Software. All rights reserved.
 //
 
-#import "FLJsonOperation.h"
+#import "FLJsonHttpRequest.h"
 #import "FLJsonParser.h"
 
-@implementation FLJsonOperation
+@implementation FLJsonHttpRequest
 
 @synthesize outputObject = _outputObject;
 @synthesize json = _json;
@@ -30,17 +30,15 @@
 }
 #endif
 
-- (FLResult) runOperationWithInput:(id) input {
-
-    FLHttpRequest* request = [FLHttpRequest httpPostRequestWithURL:self.httpRequestURL];
-
+- (void) willSendHttpRequest {
     if(self.json && !self.json.isEmpty) {
         NSData* content = [[self.json buildStringWithNoWhitespace] dataUsingEncoding:NSUTF8StringEncoding];
-        [request.httpBody setContentWithData:content typeContentHeader:@"application/json; charset=utf-8"];
+        [self.httpBody setContentWithData:content typeContentHeader:@"application/json; charset=utf-8"];
     }
-	
-    FLHttpResponse* httpResponse = [self sendHttpRequest:request];
-    
+}
+
+- (id) resultFromHttpResponse:(FLHttpResponse*) httpResponse {
+
     FLJsonParser* parser = [FLJsonParser jsonParser];
     
     if(!_outputObject) {
@@ -50,7 +48,8 @@
     id result = [parser parseJsonData:[httpResponse responseData] rootObject:_outputObject];
 
     FLThrowError(parser.error);
-    FLThrowError([httpResponse simpleHttpResponseErrorCheck]);
+    
+    [httpResponse throwHttpErrorIfNeeded];
     
     return result;
 }

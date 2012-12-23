@@ -8,10 +8,10 @@
 
 #import "FLCocoaRequired.h"
 #import "FLCore.h"
-#import "FLHttpOperation.h"
+#import "FLHttpRequest.h"
 #import "FLJsonStringBuilder.h"
 
-@interface FLJsonOperation : FLHttpOperation {
+@interface FLJsonHttpRequest : FLHttpRequest {
 @private
 	FLJsonStringBuilder* _json;
     id _outputObject;

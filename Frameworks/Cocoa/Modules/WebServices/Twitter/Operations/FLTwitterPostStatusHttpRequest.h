@@ -8,8 +8,8 @@
 
 #import "FLCocoaRequired.h"
 
-#import "FLTwitterOperation.h"
+#import "FLTwitterHttpRequest.h"
 
-@interface FLTwitterPostStatusOperation : FLTwitterOperation {
+@interface FLTwitterPostStatusHttpRequest : FLTwitterHttpRequest {
 }
 @end

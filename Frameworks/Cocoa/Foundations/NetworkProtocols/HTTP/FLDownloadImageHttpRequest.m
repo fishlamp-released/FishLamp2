@@ -1,41 +1,36 @@
 //
-//  FLDownloadImageOperation.m
+//  FLDownloadImageHttpRequest.m
 //  FishLamp
 //
 //  Created by Mike Fullerton on 7/10/11.
 //  Copyright 2011 GreenTongue Software, LLC. All rights reserved.
 //
 
-#import "FLDownloadImageOperation.h"
+#import "FLDownloadImageHttpRequest.h"
 #import "FLCachedImage.h"
 #import "FLImageProperties.h"
 
-@implementation FLDownloadImageOperation
+@implementation FLDownloadImageHttpRequest
 
-- (id) initWithImageURL:(NSURL*) url {
-    return [super initWithHTTPRequestURL:url];
++ (id) downloadImageRequest {
+    return FLAutorelease([[[self class] alloc] initWithURL:nil]);
 }
 
-+ (id) downloadImageOperation {
-    return FLAutorelease([[[self class] alloc] initWithImageURL:nil]);
++ (id) downloadImageRequestWithURL:(NSURL*) imageURL {
+    return FLAutorelease([[[self class] alloc] initWithURL:imageURL]);
 }
 
-+ (id) downloadImageOperationWithImageURL:(NSURL*) imageURL{
-    return FLAutorelease([[[self class] alloc] initWithImageURL:imageURL]);
-}
-
-- (FLResult) runOperationWithInput:(id) input {
-
-    FLHttpRequest* request = [FLHttpRequest httpRequestWithURL:self.httpRequestURL];
-
-    FLHttpResponse* httpResponse = [self sendHttpRequest:request];
+- (id) didSendHttpRequest:(FLHttpResponse*) response {
+    [response throwHttpErrorIfNeeded];
     
-    FLThrowError([httpResponse simpleHttpResponseErrorCheck]);
+    FLStorableImage* image = [FLStorableImage imageWithData:response.responseData];
+
+// TODO: could be a redirected URL for image???   
     
-    FLStorableImage* image = [FLStorableImage imageWithData:httpResponse.responseData];
-    image.imageProperties = [FLImageProperties imagePropertiesWithImageURL:self.httpRequestURL];
+    image.imageProperties = [FLImageProperties imagePropertiesWithImageURL:self.httpHeaders.requestURL];
     return image;
 }
+
 
 //- (FLResult) runOperationWithInput:(id) input {
 //    

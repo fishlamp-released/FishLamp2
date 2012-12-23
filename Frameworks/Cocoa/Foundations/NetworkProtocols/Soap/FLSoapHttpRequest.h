@@ -1,17 +1,17 @@
 //
-//  FLSoapOperation.h
+//  FLSoapHttpRequest.h
 //  FLCore
 //
 //  Created by Mike Fullerton on 11/4/12.
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import "FLHttpOperation.h"
+#import "FLHttpRequest.h"
 #import "FLSoapFault11.h"
 
 typedef id (^FLSoapResponseDecoder)(id soapResponse);
 
-@interface FLSoapOperation : FLHttpOperation {
+@interface FLSoapHttpRequest : FLHttpRequest {
 @private
 // for sending request
     NSString* _soapNamespace;

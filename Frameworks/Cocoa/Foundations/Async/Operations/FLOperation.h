@@ -8,7 +8,6 @@
 
 #import "FLObservable.h"
 #import "FLCancellable.h"
-#import "FLContextual.h"
 #import "FLDispatcher.h"
 #import "FLResult.h"
 
@@ -16,9 +15,8 @@
 
 typedef FLResult (^FLRunOperationBlock)(FLOperation* operation, id inputOrNil);
 
-@interface FLOperation : FLObservable<FLCancellable, FLContextual, FLDispatchable> {
+@interface FLOperation : FLObservable<FLCancellable, FLDispatchable> {
 @private
-    __unsafe_unretained id _context;
 	id _operationID;
 	FLRunOperationBlock _runBlock;
 	NSInteger _tag;

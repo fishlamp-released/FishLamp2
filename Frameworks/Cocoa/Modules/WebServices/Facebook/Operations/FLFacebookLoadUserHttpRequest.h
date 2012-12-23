@@ -8,8 +8,8 @@
 
 #import "FLCocoaRequired.h"
 
-#import "FLFacebookOperation.h"
+#import "FLFacebookHttpRequest.h"
 
-@interface FLFacebookLoadUserOperation : FLFacebookOperation {
+@interface FLFacebookLoadUserHttpRequest : FLFacebookHttpRequest {
 }
 @end

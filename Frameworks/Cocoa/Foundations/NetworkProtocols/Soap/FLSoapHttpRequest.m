@@ -1,18 +1,18 @@
 //
-//  FLSoapOperation.m
+//  FLSoapHttpRequest.m
 //  FLCore
 //
 //  Created by Mike Fullerton on 11/4/12.
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import "FLSoapOperation.h"
+#import "FLSoapHttpRequest.h"
 #import "FLSoapParser.h"
 #import "FLSoapError.h"
 #import "FLSoapFault11.h"
 #import "FLSoapStringBuilder.h"
 
-@implementation FLSoapOperation 
+@implementation FLSoapHttpRequest 
 
 @synthesize soapRequest = _soapRequest;
 @synthesize soapResponse = _soapResponse;
@@ -70,29 +70,29 @@
     FLThrowError([NSError errorWithSoapFault:fault]);
 }
 
-- (FLResult) runOperationWithInput:(id) input {
-
-    FLAssertStringIsNotEmpty_(self.httpRequestURL.absoluteString);
+- (void) willSendHttpRequest {
+    FLAssertStringIsNotEmpty_(self.httpHeaders.requestURL.absoluteString);
     FLAssertStringIsNotEmpty_(self.soapNamespace);
     FLAssertStringIsNotEmpty_(self.operationName);
 
-    FLSoapStringBuilder* soap = [FLSoapStringBuilder stringBuilder];
-	[soap.body addObjectAsFunction:self.operationName object:[self soapRequest] xmlNamespace:self.soapNamespace];
+// wehre is http request url?
 
-    FLHttpRequest* request = [FLHttpRequest httpPostRequestWithURL:self.httpRequestURL];
-    [request.httpHeaders setValue:self.soapActionHeader forHTTPHeaderField:@"SOAPAction"]; 
-    [request.httpBody setUtf8Content:[soap buildStringWithNoWhitespace]];
+    FLSoapStringBuilder* soapStringBuilder = [FLSoapStringBuilder stringBuilder];
+	[soapStringBuilder.body addObjectAsFunction:self.operationName object:[self soapRequest] xmlNamespace:self.soapNamespace];
 
-    FLHttpResponse* httpResponse = [self sendHttpRequest:request];
+    [self.httpHeaders setValue:self.soapActionHeader forHTTPHeaderField:@"SOAPAction"]; 
+    [self.httpBody setUtf8Content:[soapStringBuilder buildStringWithNoWhitespace]];
+}
 
+- (id) didReceiveHttpResponse:(FLHttpResponse*) httpResponse {
     NSData* data = httpResponse.responseData;
     
-    FLSoapFault11* fault = [FLSoapOperation checkForSoapFaultInData:data];
+    FLSoapFault11* fault = [FLSoapHttpRequest checkForSoapFaultInData:data];
     if(fault) {
         [self handleSoapFault:fault];
     }
     
-    FLThrowError([httpResponse simpleHttpResponseErrorCheck]);
+    [httpResponse throwHttpErrorIfNeeded];
    
     id result = data;
    

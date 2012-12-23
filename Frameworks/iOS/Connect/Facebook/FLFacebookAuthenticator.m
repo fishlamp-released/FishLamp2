@@ -11,7 +11,7 @@
 #import "FLFacebookLoginViewController.h"
 #import "FLNavigationControllerViewController.h"
 #import "FLFacebookLoadUserOperation.h"
-#import "FLFacebookBeginAuthorizationOperation.h"
+#import "FLFacebookBeginAuthorizationHttpRequest.h"
 #import "FLFloatingViewController.h"
 #import "FLOperationCacheHandler.h"
 #import "FLProgressViewController.h"
@@ -147,7 +147,7 @@
 	{
         mrc_retain_(self);
         FLAction* action = [FLAction action];
-        [action addOperation:[FLFacebookBeginAuthorizationOperation facebookBeginAuthorizationOperation:[FLFacebookMgr instance].permissions]];
+        [action addOperation:[FLFacebookBeginAuthorizationHttpRequest facebookBeginAuthorizationOperation:[FLFacebookMgr instance].permissions]];
         [action setProgressController:[FLProgressViewController progressViewController:[FLSimpleProgressView class] 
                                                                   presentationBehavior:[FLModalPresentationBehavior instance]]];
 

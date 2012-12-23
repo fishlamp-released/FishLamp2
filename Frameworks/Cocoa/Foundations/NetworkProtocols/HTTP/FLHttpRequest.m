@@ -29,7 +29,7 @@
 @property (readwrite, strong) FLFinisher* finisher;
 
 - (void) readResponseHeadersIfNeeded;
-- (void) openHttpStreamToURL:(NSURL*) url;
+- (void) openHttpStreamWithURL:(NSURL*) url;
 
 @end
 
@@ -79,14 +79,14 @@
 @synthesize httpBody = _content;
 
 - (id) init {
-    self = [self initWithURL:nil httpMethod:nil];
+    self = [self initWithRequestURL:nil httpMethod:nil];
     if(self) {
     }
     
     return self;
 }
 
--(id) initWithURL:(NSURL*) url httpMethod:(NSString*) httpMethod {
+-(id) initWithRequestURL:(NSURL*) url httpMethod:(NSString*) httpMethod {
     if((self = [super init])) {
         _content = [[FLHttpRequestContent alloc] init];
 
@@ -104,8 +104,8 @@
     return self;
 }
 
-- (id) initWithURL:(NSURL*) url  {
-    return [self initWithURL:url httpMethod:nil];
+- (id) initWithRequestURL:(NSURL*) url  {
+    return [self initWithRequestURL:url httpMethod:nil];
 }
 
 - (void) dealloc {
@@ -121,20 +121,20 @@
 #endif
 }
 
-+ (id) httpRequestWithURL:(NSURL*) url {
-    return FLAutorelease([[[self class] alloc] initWithURL:url httpMethod:@"GET"]);
++ (id) httpGetRequest:(NSURL*) url {
+    return FLAutorelease([[[self class] alloc] initWithRequestURL:url httpMethod:@"GET"]);
 }
 
 + (id) httpRequest {
     return FLAutorelease([[[self class] alloc] init]);
 }
 
-+ (id) httpRequestWithURL:(NSURL*) url httpMethod:(NSString*) httpMethod {
-    return FLAutorelease([[[self class] alloc] initWithURL:url httpMethod:httpMethod]);
++ (id) httpRequest:(NSURL*) url httpMethod:(NSString*) httpMethod {
+    return FLAutorelease([[[self class] alloc] initWithRequestURL:url httpMethod:httpMethod]);
 }
 
-+ (id) httpPostRequestWithURL:(NSURL*) url {
-    return FLAutorelease([[[self class] alloc] initWithURL:url httpMethod:@"POST"]);
++ (id) httpPostRequest:(NSURL*) url {
+    return FLAutorelease([[[self class] alloc] initWithRequestURL:url httpMethod:@"POST"]);
 }
 
 - (FLHttpRequestHeaders*) httpHeaders {
@@ -152,7 +152,7 @@
 //}
 
 - (id)copyWithZone:(NSZone *)zone {
-    FLHttpRequest* request = [[[self class] alloc] initWithURL:self.httpHeaders.requestURL httpMethod:self.httpHeaders.httpMethod];
+    FLHttpRequest* request = [[[self class] alloc] initWithRequestURL:self.httpHeaders.requestURL httpMethod:self.httpHeaders.httpMethod];
 //    [self copyTo:request];
     return request;
 }
@@ -197,7 +197,7 @@
     return networkStream;
 }
 
-- (void) openHttpStreamToURL:(NSURL*) url {
+- (void) openHttpStreamWithURL:(NSURL*) url {
 
     FLMutableHttpResponse* newResponse = nil;
     FLHttpResponse* prev = self.httpResponse;
@@ -244,22 +244,32 @@
     self.networkStream = nil;
 }
 
-- (void) didCloseWithResult:(id) result {
+- (id) didReceiveHttpResponse:(FLHttpResponse*) httpResponse {
+    return httpResponse;
+}
+
+- (void) didCloseWithResult:(FLResult) result {
     [self releaseStream];
-    [self postObservation:@selector(httpRequest:didCloseWithResult:) withObject:result];
     
-    if(![result error]) {
-        result = self.httpResponse;
+    @try {
+        if(![result error]) {
+            result = [self didReceiveHttpResponse:self.httpResponse];
+        }
     }
-    
-    if(self.finisher) {
-        [self.finisher setFinishedWithResult:result];
+    @catch(NSException* ex) {
+        result = ex.error;
     }
-    
-//    self.httpRequest = nil;
-    self.finisher = nil;
-    self.networkStream = nil;
-    self.httpResponse = nil;
+    @finally {
+        [self postObservation:@selector(httpRequest:didCloseWithResult:) withObject:result];
+        
+        if(self.finisher) {
+            [self.finisher setFinishedWithResult:result];
+        }
+        
+        self.finisher = nil;
+        self.networkStream = nil;
+        self.httpResponse = nil;
+    }
 }
 
 - (void) closeStreamWithResult:(id) result {
@@ -272,6 +282,10 @@
     [self.networkStream requestCancel];
 }
 
+- (void) willSendHttpRequest {
+
+}
+
 - (FLFinisher*) startRequest {
 //    self.httpRequest = request;
     self.finisher = [FLFinisher finisher];
@@ -279,7 +293,8 @@
     if(!self.dispatchQueue) {
         [[FLFifoDispatchQueue pool] requestPooledObject:^(id<FLDispatcher> dispatcher) {
             self.dispatchQueue = dispatcher;
-            [self openHttpStreamToURL:self.httpHeaders.requestURL];
+            [self willSendHttpRequest];
+            [self openHttpStreamWithURL:self.httpHeaders.requestURL];
         }];
     }
     else {
@@ -299,6 +314,10 @@
     }];
 }
 
+- (BOOL) shouldRedirectToURL:(NSURL*) url {
+    return YES;
+}
+
 - (void) readStream:(FLReadStream*) networkStream 
     didCloseWithResult:(FLResult) result {
     
@@ -315,14 +334,10 @@
 
             BOOL redirect = _response.wantsRedirect;
             if(redirect) {
-                
                 NSURL* redirectURL = self.httpResponse.redirectURL;
-
-                [self.redirector httpRequest:self shouldRedirect:&redirect toURL:redirectURL];
-                
-                if(redirect) {
+                if([self shouldRedirectToURL:redirectURL]) {
                     [self releaseStream];
-                    [self openHttpStreamToURL:redirectURL];
+                    [self openHttpStreamWithURL:redirectURL];
                 }
             }
 

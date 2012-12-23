@@ -10,7 +10,7 @@
 #import "FLAction.h"
 #import "FLLegacyProgressView.h"
 #import "FLFacebookMgr.h"
-#import "FLFacebookOperation.h"
+#import "FLFacebookHttpRequest.h"
 #import "FLFloatingViewController.h"
 #import "FLNavigationControllerViewController.h"
 #import "FLFacebookAuthenticator.h"
@@ -121,7 +121,7 @@
     action.actionDescription.actionType = FLActionDescriptionTypeUpdate;
 //	action.networkRequired = YES;
 
-    FLFacebookOperation* operation= [FLFacebookOperation facebookOperation];
+    FLFacebookHttpRequest* operation= [FLFacebookHttpRequest facebookOperation];
     [operation setObject: @"feed"];
     [operation setInput: _link];
     [operation setRequestWillPost];

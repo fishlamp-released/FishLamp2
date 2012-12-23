@@ -7,7 +7,7 @@
 //
 
 #import "FLServerSideImageWidget.h"
-#import "FLDownloadImageOperation.h"
+#import "FLDownloadImageHttpRequest.h"
 #import "FLAction.h"
 
 @implementation FLServerSideImageWidget
@@ -19,7 +19,7 @@
     FLAction* action = [FLAction action];
     [action actionDescription].actionType = FLActionDescriptionTypeDownload;
     [action actionDescription].actionItemName = NSLocalizedString(@"Profile Photo", nil);
-    [action addOperation:[FLDownloadImageOperation networkOperationWithURLString:url]];
+    [action addOperation:[FLDownloadImageHttpRequest networkOperationWithURLString:url]];
 
 	[viewController startAction:action completion: ^(id result) {
         if([action didSucceed]) {

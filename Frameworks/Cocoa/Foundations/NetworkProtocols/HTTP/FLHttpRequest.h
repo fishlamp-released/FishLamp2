@@ -16,9 +16,7 @@
 #import "FLDispatcher.h"
 #import "FLDispatchQueue.h"
 
-
 @class FLHttpRequest;
-@protocol FLHttpRequestRedirector;
 
 @protocol FLHttpRequestSender <NSObject>
 - (FLResult) sendHttpRequest:(FLHttpRequest*) request;
@@ -26,42 +24,40 @@
 
 @interface FLHttpRequest : FLObservable<FLCancellable, FLReadStreamDelegate> {
 @private
-    __unsafe_unretained id<FLHttpRequestRedirector> _redirector;
-    
     FLHttpRequestContent* _content;
-    
     FLFinisher* _finisher;
     FLMutableHttpResponse* _response;
     FLReadStream* _networkStream;
     FLDispatchQueue* _dispatchQueue;
 }
 
-@property (readwrite, assign) id<FLHttpRequestRedirector> redirector;
-
 @property (readonly, strong, nonatomic) FLHttpRequestHeaders* httpHeaders;
 @property (readonly, strong, nonatomic) FLHttpRequestContent* httpBody;
 
-- (id) initWithURL:(NSURL*) url;
-- (id) initWithURL:(NSURL*) url httpMethod:(NSString*) httpMethod;
+- (id) initWithRequestURL:(NSURL*) requestURL;
 
-+ (id) httpRequestWithURL:(NSURL*) url httpMethod:(NSString*) httpMethod;
-+ (id) httpPostRequestWithURL:(NSURL*) url;
+- (id) initWithRequestURL:(NSURL*) requestURL
+               httpMethod:(NSString*) httpMethod; // designated
+
++ (id) httpRequest:(NSURL*) url 
+        httpMethod:(NSString*) httpMethod;
 
 + (id) httpRequest;
-+ (id) httpRequestWithURL:(NSURL*) url;
+
+// sending
 
 - (FLResult) sendRequest; 
 
 - (FLFinisher*) startRequest;
 
-@end
+// optional overrides
 
-@protocol FLHttpRequestRedirector<NSObject>
-- (void) httpRequest:(FLHttpRequest*) httpRequest 
-      shouldRedirect:(BOOL*) redirect 
-               toURL:(NSURL*) url;
-@end
+- (void) willSendHttpRequest;
+- (id) didReceiveHttpResponse:(FLHttpResponse*) httpResponse;
 
+- (BOOL) shouldRedirectToURL:(NSURL*) url;
+
+@end
 
 @protocol FLHttpRequestObserver <NSObject>
 

@@ -1,18 +1,18 @@
 //
-//  FLFacebookBeginAuthorizationOperation.m
+//  FLFacebookBeginAuthorizationHttpRequest.m
 //  FishLamp
 //
 //  Created by Mike Fullerton on 6/5/11.
 //  Copyright 2011 GreenTongue Software. All rights reserved.
 //
 
-#import "FLFacebookBeginAuthorizationOperation.h"
+#import "FLFacebookBeginAuthorizationHttpRequest.h"
 #import "FLFacebookService.h"
 #import "NSString+URL.h"
 
 // - (FLFacebookAuthenticationResponse*) parseAuthenticationResponseFromURL:(NSURL*) url
 
-@implementation FLFacebookBeginAuthorizationOperation
+@implementation FLFacebookBeginAuthorizationHttpRequest
 
 @synthesize permissions = _permissions;
 
@@ -84,10 +84,12 @@ static NSString* kRedirectURL = @"http://www.facebook.com/connect/login_success.
 	return response;
 }
 
+- (void) willSendHttpRequest {
+
+}
 
 
-
-- (FLResult) runOperationWithInput:(id) input {
+- (id) didReceiveHttpResponse:(FLHttpResponse*) response {
 
     [FLFacebookService clearHTTPCookies];
 
@@ -117,8 +119,8 @@ static NSString* kRedirectURL = @"http://www.facebook.com/connect/login_success.
     return nil;
 }
 
-- (void) httpRequest:(FLHttpRequest*) httpRequest shouldRedirect:(BOOL*) redirect toURL:(NSURL*) url {
-    *redirect = NO;
+- (BOOL) shouldRedirectToURL:(NSURL*) url {
+    return NO;
 }
 
 @end

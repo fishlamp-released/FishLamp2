@@ -1,5 +1,5 @@
 //
-//  FLFacebookBeginAuthorizationOperation.h
+//  FLFacebookBeginAuthorizationHttpRequest.h
 //  FishLamp
 //
 //  Created by Mike Fullerton on 6/5/11.
@@ -8,9 +8,9 @@
 
 #import "FLCocoaRequired.h"
 
-#import "FLFacebookOperation.h"
+#import "FLFacebookHttpRequest.h"
 
-@interface FLFacebookBeginAuthorizationOperation : FLFacebookOperation {
+@interface FLFacebookBeginAuthorizationHttpRequest : FLFacebookHttpRequest {
 @private
     NSArray* _permissions;
 }

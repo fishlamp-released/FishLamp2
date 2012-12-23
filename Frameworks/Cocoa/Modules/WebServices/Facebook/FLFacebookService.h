@@ -12,7 +12,7 @@
 #import "FLService.h"
 #import "FLFacebookAll.h"
 #import "FLFacebookNetworkSession.h"
-#import "FLFacebookOperation.h"
+#import "FLFacebookHttpRequest.h"
 #import "FLFacebookAuthenticationResponse.h"
 
 #define FLFacebookErrorKey @"fb_error"

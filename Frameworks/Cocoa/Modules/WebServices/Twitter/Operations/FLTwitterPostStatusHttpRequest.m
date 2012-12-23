@@ -6,11 +6,11 @@
 //  Copyright 2011 GreenTongue Software. All rights reserved.
 //
 
-#import "FLTwitterPostStatusOperation.h"
+#import "FLTwitterPostStatusHttpRequest.h"
 #import "NSString+URL.h"
 #import "NSString+Guid.h"
 
-@implementation FLTwitterPostStatusOperation
+@implementation FLTwitterPostStatusHttpRequest
 
 - (id) init {
     return [super initWithTwitterURL:[NSURL URLWithString:@"https://api.twitter.com/1/statuses/update.json"]];

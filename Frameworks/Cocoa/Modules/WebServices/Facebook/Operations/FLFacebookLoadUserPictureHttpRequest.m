@@ -6,17 +6,17 @@
 //  Copyright 2011 GreenTongue Software. All rights reserved.
 //
 
-#import "FLFacebookLoadUserPictureOperation.h"
+#import "FLFacebookLoadUserPictureHttpRequest.h"
 #import "FLOperationCacheHandler.h"
-#import "FLDownloadImageOperation.h"
+#import "FLDownloadImageHttpRequest.h"
 #import "FLCachedImage.h"
 
-@implementation FLFacebookLoadUserPictureOperation
+@implementation FLFacebookLoadUserPictureHttpRequest
 
 @synthesize pictureSize = _pictureSize;
 
-- (id) initWithHTTPRequestURL:(NSURL*) url {
-    self = [super initWithHTTPRequestURL:url];
+- (id) initWithRequestURL:(NSURL*) url httpMethod:(NSString*) httpMethod {
+    self = [super initWithRequestURL:url httpMethod:httpMethod];
     if(self) {
         self.object = @"picture";
         [self setPictureSize:FLFacebookLoadUserPictureOperationInputSizeNormal];
@@ -59,18 +59,27 @@
 //}
 //
 
+- (void) willSendHttpRequest {
 
-
-- (FLResult) runOperationWithInput:(id) input {
-
-FIXME(@"need the behavior but not the operation");
-  
-//        self.responseHandler = [FLHttpImageDownloadNetworkResponseHandler instance];
-//        self.operationInput = [FLCachedImage cachedImage];
-  
-
-   return  [super runOperationWithInput:(id) input];
 }
+
+
+- (id) didReceiveHttpResponse:(FLHttpResponse*) response {
+
+    return response;
+}
+
+//
+//- (FLResult) runOperationWithInput:(id) input {
+//
+//FIXME(@"need the behavior but not the operation");
+//  
+////        self.responseHandler = [FLHttpImageDownloadNetworkResponseHandler instance];
+////        self.operationInput = [FLCachedImage cachedImage];
+//  
+//
+//   return  [super runOperationWithInput:(id) input];
+//}
 
 - (void) addParametersToURLString:(NSMutableString*) url
 {

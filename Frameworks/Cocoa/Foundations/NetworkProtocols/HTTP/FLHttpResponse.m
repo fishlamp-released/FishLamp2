@@ -68,8 +68,7 @@
     return FLAutorelease([[[self class] alloc] init]);
 }
 
-- (NSError*) simpleHttpResponseErrorCheck 
-{
+- (NSError*) simpleHttpResponseErrorCheck {
 	NSInteger statusCode = self.responseStatusCode;
 	if(statusCode >= 400)
 	{
@@ -88,6 +87,9 @@
 	}
 
 	return nil;
+}
+- (void) throwHttpErrorIfNeeded {
+    FLThrowError([self simpleHttpResponseErrorCheck]);
 }
 
 - (NSString*) valueForHeader:(NSString*) header {
