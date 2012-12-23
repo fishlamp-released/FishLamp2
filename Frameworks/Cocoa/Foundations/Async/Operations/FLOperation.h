@@ -15,7 +15,7 @@
 
 typedef FLResult (^FLRunOperationBlock)(FLOperation* operation, id inputOrNil);
 
-@interface FLOperation : FLObservable<FLCancellable, FLDispatchable> {
+@interface FLOperation : FLObservable<FLCancellable, FLSynchronouslyDispatchable> {
 @private
 	id _operationID;
 	FLRunOperationBlock _runBlock;

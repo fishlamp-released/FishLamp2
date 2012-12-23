@@ -283,29 +283,10 @@
 }
 
 - (void) willSendHttpRequest {
-
 }
 
-- (FLFinisher*) startRequest {
-//    self.httpRequest = request;
-    self.finisher = [FLFinisher finisher];
-    
-    if(!self.dispatchQueue) {
-        [[FLFifoDispatchQueue pool] requestPooledObject:^(id<FLDispatcher> dispatcher) {
-            self.dispatchQueue = dispatcher;
-            [self willSendHttpRequest];
-            [self openHttpStreamWithURL:self.httpHeaders.requestURL];
-        }];
-    }
-    else {
-        [self startRequest];
-    }
-    
-    return self.finisher;
-}
+- (void) wasStartedInHttpRequestContext:(FLHttpContext*) context {
 
-- (FLResult) sendRequest {
-    return [[self startRequest] waitUntilFinished];
 }
 
 - (void) readStreamDidOpen:(FLReadStream*) networkStream {
@@ -365,6 +346,29 @@
     [self postObservation:@selector(httpRequestDidReadBytes:)];
 }
 
+- (void) startRequest {
+    [self.dispatchQueue dispatchBlock:^{
+        [self willSendHttpRequest]; // this may set requestURL
+        [self openHttpStreamWithURL:self.httpHeaders.requestURL];
+    }];
+}
+
+- (void) startAsync:(FLFinisher*) finisher {
+
+    self.finisher = finisher;
+    
+    if(!self.dispatchQueue) {
+        [[FLFifoDispatchQueue pool] requestPooledObject:^(id<FLDispatcher> dispatcher) {
+            self.dispatchQueue = dispatcher;
+            [self startRequest];
+        }];
+    }
+    else {
+        [self startRequest];
+    }
+    
+    return finisher;
+}
 
 @end
 

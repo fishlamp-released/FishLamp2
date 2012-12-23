@@ -17,7 +17,7 @@ typedef void (^FLOperationQueueVisitor)(id operation, BOOL* stop);
 typedef id (^FLCreateOperationBlock)();
 
 
-@interface FLOperationQueue : FLObservable<FLDispatchable, FLCancellable, NSFastEnumeration> {
+@interface FLOperationQueue : FLObservable<FLSynchronouslyDispatchable, FLCancellable, NSFastEnumeration> {
 @private
 	NSMutableArray* _operations;
     BOOL _cancelled;

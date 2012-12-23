@@ -31,7 +31,7 @@ typedef void (^FLActionErrorBlock)(FLAction* action, NSError* error);
 @protocol FLActionErrorDelegate;
 @protocol FLActionDelegate;
 
-@interface FLAction : FLObservable<FLActionDescription, FLCancellable, FLWeaklyReferenced, FLDispatchable> {
+@interface FLAction : FLObservable<FLActionDescription, FLCancellable, FLWeaklyReferenced, FLSynchronouslyDispatchable> {
 @private
     FLOperationQueue* _operations;
 

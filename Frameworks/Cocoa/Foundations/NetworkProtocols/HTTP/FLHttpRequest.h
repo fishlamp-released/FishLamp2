@@ -17,12 +17,13 @@
 #import "FLDispatchQueue.h"
 
 @class FLHttpRequest;
+@class FLHttpContext;
 
 @protocol FLHttpRequestSender <NSObject>
 - (FLResult) sendHttpRequest:(FLHttpRequest*) request;
 @end
 
-@interface FLHttpRequest : FLObservable<FLCancellable, FLReadStreamDelegate> {
+@interface FLHttpRequest : FLObservable<FLCancellable, FLReadStreamDelegate, FLAsyncDispatchable> {
 @private
     FLHttpRequestContent* _content;
     FLFinisher* _finisher;
@@ -44,17 +45,9 @@
 
 + (id) httpRequest;
 
-// sending
-
-- (FLResult) sendRequest; 
-
-- (FLFinisher*) startRequest;
-
 // optional overrides
-
 - (void) willSendHttpRequest;
 - (id) didReceiveHttpResponse:(FLHttpResponse*) httpResponse;
-
 - (BOOL) shouldRedirectToURL:(NSURL*) url;
 
 @end

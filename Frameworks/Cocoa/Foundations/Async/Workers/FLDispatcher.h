@@ -12,9 +12,22 @@
 #import "FLFinisher.h"
 #import "FLResult.h"
 
+@protocol FLSynchronouslyDispatchable <NSObject>
+- (FLResult) runSynchronously;
+- (FLResult) runSynchronouslyWithInput:(id) input;
+@end
+
+@protocol FLAsyncDispatchable <NSObject>
+- (void) startAsync:(FLFinisher*) finisher;
+@end
+
 typedef void (^FLFinishableBlock)(FLFinisher* finisher);
 
-@protocol FLBlockDispatcher <NSObject>
+@protocol FLDispatcher <NSObject>
+
+// 
+// block dispatching
+//
 
 - (FLFinisher*) dispatchBlock:(dispatch_block_t) block;
 
@@ -26,35 +39,35 @@ typedef void (^FLFinishableBlock)(FLFinisher* finisher);
 - (FLFinisher*) dispatchFinishableBlock:(FLFinishableBlock) block
                              completion:(FLCompletionBlock) completion;
 
-@end
+// 
+// FLAsyncDispatchable dispatching
+// 
 
-@protocol FLDispatchable <NSObject>
-- (FLResult) runSynchronously;
-- (FLResult) runSynchronouslyWithInput:(id) input;
-@end
+- (FLFinisher*) dispatchAsync:(id /*FLAsyncDispatchable*/) dispatchableObject;
 
-@protocol FLObjectDispatcher <NSObject>
+- (FLFinisher*) dispatchAsync:(id /*FLAsyncDispatchable*/) dispatchableObject 
+                   completion:(FLCompletionBlock) completion;
 
-// object must implement the methods in FLDispatchable, 
-// but not necessarily the dispatchable protocol.
+//
+// FLSynchronouslyDispatchable object dispatching
+//
 
-- (FLFinisher*) dispatchObject:(id) object;
+- (FLFinisher*) dispatchSynchronousObject:(id /*FLSynchronouslyDispatchable*/) synchronouslyDispatchable;
 
-- (FLFinisher*) dispatchObject:(id) object
+- (FLFinisher*) dispatchSynchronousObject:(id /*FLSynchronouslyDispatchable*/) synchronouslyDispatchable
                     withInput:(id) input;
 
-- (FLFinisher*) dispatchObject:(id) object
+- (FLFinisher*) dispatchSynchronousObject:(id /*FLSynchronouslyDispatchable*/) synchronouslyDispatchable
                     withInput:(id) input
                    completion:(FLCompletionBlock) completion;
 
-- (FLFinisher*) dispatchObject:(id) object
+- (FLFinisher*) dispatchSynchronousObject:(id /*FLSynchronouslyDispatchable*/) object
                    completion:(FLCompletionBlock) completion;
 
 
-@end
-
-
-@protocol FLSelectorDispatcher <NSObject>
+//
+// target/selector dispatching
+//
 
 - (FLFinisher*) dispatchTarget:(id) target 
                       selector:(SEL) selector;
@@ -98,5 +111,4 @@ typedef void (^FLFinishableBlock)(FLFinisher* finisher);
 
 @end
 
-@protocol FLDispatcher <FLBlockDispatcher, FLObjectDispatcher, FLSelectorDispatcher>
-@end
+
