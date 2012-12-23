@@ -135,6 +135,11 @@ static void * const s_queue_key = (void*)&s_queue_key;
     return finisher;
 }
 
+- (NSError*) badDispachError {
+// TODO: make better error
+    return [NSError abortError];
+}
+
 #pragma mark -- async dispatcher
 
 - (FLFinisher*) dispatchAsync:(id) dispatchableObject {
@@ -147,7 +152,9 @@ static void * const s_queue_key = (void*)&s_queue_key;
     FLAssertNotNil_(dispatchableObject);
 
     return [self dispatchFinishableBlock:^(FLFinisher* finisher) {
-        [dispatchableObject startAsync:finisher];
+        SEL sel = [dispatchableObject asyncSelectorForDispatch:self];
+        FLResult result = [dispatchableObject performSelector:sel withObject:finisher];
+        [finisher setFinishedWithResult:result];
     }
     completion:completion];
 }
@@ -156,23 +163,23 @@ static void * const s_queue_key = (void*)&s_queue_key;
 
 - (FLFinisher*) dispatchSynchronousObject:(id) object {
     
-    return [self dispatchFinishableBlock:^(FLFinisher *finisher) {
-        [finisher setFinishedWithResult:[object runSynchronously]];
-    }];
+    return [self dispatchSynchronousObject:object completion:nil];
 }
 
 - (FLFinisher*) dispatchSynchronousObject:(id) object
                      withInput:(id) input {
-    return [self dispatchFinishableBlock:^(FLFinisher *finisher) {
-        [finisher setFinishedWithResult:[object runSynchronouslyWithInput:input]];
-    }];
+
+    return [self dispatchSynchronousObject:object withInput:input completion:nil];
 }
 
 - (FLFinisher*) dispatchSynchronousObject:(id) object
-                   completion:(FLCompletionBlock) completion {
+                               completion:(FLCompletionBlock) completion {
 
     return [self dispatchFinishableBlock:^(FLFinisher *finisher) {
-        [finisher setFinishedWithResult:[object runSynchronously]];
+        
+        SEL sel = [object synchronousSelectorForDispatch:self];
+        FLResult result = [object performSelector:sel];
+        [finisher setFinishedWithResult:result];
     }
     completion:completion];
 }
@@ -182,7 +189,10 @@ static void * const s_queue_key = (void*)&s_queue_key;
                    completion:(FLCompletionBlock) completion {
     
     return [self dispatchFinishableBlock:^(FLFinisher *finisher) {
-        [finisher setFinishedWithResult:[object runSynchronouslyWithInput:input]];
+
+        SEL sel = [object synchronousSelectorForDispatch:self];
+        FLResult result = [object performSelector:sel withObject:input];
+        [finisher setFinishedWithResult:result];
     }
     completion:completion];
 }

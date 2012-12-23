@@ -68,7 +68,7 @@
 //	return nil;
 //}
 //
-//- (FLResult) runOperationWithInput:(id) input {
+//- (FLResult) runOperation {
 //
 //    for(FLLengthyTask* task in _taskList)
 //	{

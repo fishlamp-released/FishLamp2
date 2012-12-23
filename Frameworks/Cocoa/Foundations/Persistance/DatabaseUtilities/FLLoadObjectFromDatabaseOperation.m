@@ -22,7 +22,7 @@
 	return self;
 } 
 
-- (FLResult) runOperationWithInput:(id) input {
+- (FLResult) runOperation {
 	FLAssertIsNotNil_(_input);
     FLAssertIsNotNil_(_database);
 	return [_database loadObject:_input];

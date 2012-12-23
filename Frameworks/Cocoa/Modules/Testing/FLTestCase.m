@@ -175,7 +175,7 @@ FLTestCaseFlagPair s_flagPairs[] = {
     return [self.testCaseName compare:other.testCaseName];
 }
 
-- (FLResult) runOperationWithInput:(id) input {
+- (FLResult) runOperation {
     if(!FLPerformSelector(_testCaseTarget, _testCaseSelector)) {
         if(_testCaseBlock) {
             _testCaseBlock();

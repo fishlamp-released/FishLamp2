@@ -70,7 +70,7 @@
 }
 
 //
-//- (FLResult) runOperationWithInput:(id) input {
+//- (FLResult) runOperation {
 //
 //FIXME(@"need the behavior but not the operation");
 //  
@@ -78,7 +78,7 @@
 ////        self.operationInput = [FLCachedImage cachedImage];
 //  
 //
-//   return  [super runOperationWithInput:(id) input];
+//   return  [super runOperation];
 //}
 
 - (void) addParametersToURLString:(NSMutableString*) url

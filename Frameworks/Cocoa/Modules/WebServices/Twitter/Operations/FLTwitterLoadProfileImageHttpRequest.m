@@ -38,7 +38,7 @@
 	super_dealloc_();
 }
 
-//- (FLResult) runOperationWithInput:(id) input {
+//- (FLResult) runOperation {
 //    self.twitterURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://api.twitter.com/1/users/profile_image/%@.json?size=%@", _username, _imageSize]];
 //    FLAssertNotNil_(self.httpRequestURL);
 //    
@@ -48,7 +48,7 @@
 ////        self.operationInput = [FLCachedImage cachedImage];
 //  
 //    
-//    return [super runOperationWithInput:(id) input];
+//    return [super runOperation];
 //}
 
 @end

@@ -294,6 +294,12 @@
     
 }
 
+- (void) startAsync:(FLFinisher*) finisher {
+    [FLDefaultQueue dispatchBlock: ^{
+        [finisher setFinishedWithResult:[self runSynchronously]];
+    }];
+}
+
 - (id) runSynchronously {
     self.cancelled = NO;
 
@@ -314,10 +320,6 @@
     }
 
     return outResult;
-}
-
-- (id) runSynchronouslyWithInput:(id) input {
-    return [self runSynchronously];
 }
 
 - (FLFinisher*) startOperationsInDispatcher:(id<FLDispatcher>) inDispatcher {

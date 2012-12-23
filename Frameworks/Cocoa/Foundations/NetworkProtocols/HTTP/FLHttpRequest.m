@@ -12,13 +12,11 @@
 #import "FLReadStream.h"
 #import "FLCore.h"
 #import "FLHttpMessage.h"
+#import "FLRequestContext.h"
 
-
-
-
-#if IOS
-#import <UIKit/UIKit.h>
-#endif
+//#if IOS
+//#import <UIKit/UIKit.h>
+//#endif
 
 #define kStreamReadChunkSize 1024
 
@@ -73,10 +71,10 @@
 @implementation FLHttpRequest
 @synthesize httpResponse = _response;
 @synthesize networkStream = _networkStream;
-@synthesize redirector = _redirector;
 @synthesize dispatchQueue = _dispatchQueue;
 @synthesize finisher = _finisher;
 @synthesize httpBody = _content;
+@synthesize requestContext = _requestContext;
 
 - (id) init {
     self = [self initWithRequestURL:nil httpMethod:nil];
@@ -113,6 +111,7 @@
     FLReleasePooledObject(&_dispatchQueue);
 
 #if FL_MRC
+    [_requestContext release];
     [_finisher release];
     [_content release];
     [_response release];
@@ -285,7 +284,7 @@
 - (void) willSendHttpRequest {
 }
 
-- (void) wasStartedInHttpRequestContext:(FLHttpContext*) context {
+- (void) wasStartedInHttpRequestContext:(FLRequestContext*) context {
 
 }
 
@@ -366,8 +365,31 @@
     else {
         [self startRequest];
     }
+}
+
+- (FLFinisher*) sendRequest:(FLCompletionBlock) completion {
+    FLFinisher* finisher = [FLFinisher finisher:completion];
+
+    if(_requestContext) {
+        [_requestContext sendRequest:self finisher:finisher];
+    }
+    else {
+        [self startAsync:finisher];
+    }
     
     return finisher;
+}
+
+- (FLFinisher*) sendRequest {
+    return [self sendRequest:nil];
+}
+
+- (FLResult) runSynchronously {
+    return [[self sendRequest] waitUntilFinished];
+}
+
+- (FLResult) sendRequestSynchronously {
+    return [self runSynchronously];
 }
 
 @end

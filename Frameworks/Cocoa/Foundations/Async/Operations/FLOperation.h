@@ -13,9 +13,9 @@
 
 @class FLOperation;
 
-typedef FLResult (^FLRunOperationBlock)(FLOperation* operation, id inputOrNil);
+typedef FLResult (^FLRunOperationBlock)(FLOperation* operation);
 
-@interface FLOperation : FLObservable<FLCancellable, FLSynchronouslyDispatchable> {
+@interface FLOperation : FLObservable<FLCancellable, FLDispatchable> {
 @private
 	id _operationID;
 	FLRunOperationBlock _runBlock;
@@ -41,19 +41,9 @@ typedef FLResult (^FLRunOperationBlock)(FLOperation* operation, id inputOrNil);
 
 /// @brief Required override point (or use runBlock).
 /// Either override run or set the operation's run block.
-- (FLResult) runOperationWithInput:(id) input;
+- (FLResult) runOperation;
 
 @end
-
-@interface FLOperation (Dispatching)
-
-// To run async, use a FLDispatchQueue.
-
-/// This will not throw.
-- (FLResult) runSynchronously;
-- (FLResult) runSynchronouslyWithInput:(id) input;
-@end
-
 
 @protocol FLOperationObserver <NSObject>
 

@@ -67,7 +67,7 @@
 
 }
 
-//- (FLResult) runOperationWithInput:(id) input {
+//- (FLResult) runOperation {
 //	
 //    
 //    FLHttpRequest* request = [FLHttpRequest httpPostRequestWithURL:_url];

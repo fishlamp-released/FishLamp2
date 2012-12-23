@@ -32,10 +32,10 @@
 }
 
 
-//- (FLResult) runOperationWithInput:(id) input {
+//- (FLResult) runOperation {
 //    
 //    
-//    id result = [super runOperationWithInput:(id) input];
+//    id result = [super runOperation];
 //    if([result succeeded]) {
 ////        NSData* imageBytes = result;
 //        
@@ -48,7 +48,7 @@
 //    }
 //    
 //        
-//    [super runOperationWithInput:(id) input];
+//    [super runOperation];
 ////
 ////    FLThrowError([self.httpResponse simpleHttpResponseErrorCheck]);
 ////    if(!self.error) {

@@ -12,17 +12,24 @@
 
 @interface FLRequestContext : NSObject {
 @private
-    FLFifoDispatchQueue* _schedulingQueue;
+    FLFifoDispatchQueue* _dispatcher;
     NSMutableArray* _requests;
 }
+
+@property (readonly, strong) id<FLDispatcher> dispatcher;
 
 - (FLFinisher*) sendRequest:(FLHttpRequest*) request;
 
 - (FLFinisher*) sendRequest:(FLHttpRequest*) request 
                  completion:(FLCompletionBlock) completion;
 
-- (FLResult) sendRequestSynchronously:(FLHttpRequest*) request;
+- (void) sendRequest:(FLHttpRequest*) request
+            finisher:(FLFinisher*) finisher;
 
 - (void) requestCancel;
 
+// optional overrides
+- (void) willStartRequest:(FLHttpRequest*) request;
+
 @end
+

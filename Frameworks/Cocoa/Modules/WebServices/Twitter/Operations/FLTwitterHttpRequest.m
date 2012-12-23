@@ -89,7 +89,7 @@
 }
 
 
-//- (FLResult) runOperationWithInput:(id) input {
+//- (FLResult) runOperation {
 //
 //    FLHttpRequest* httpRequest = [FLHttpRequest httpPostRequestWithURL:self.twitterURL];
 //

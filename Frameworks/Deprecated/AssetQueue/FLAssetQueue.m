@@ -687,7 +687,7 @@ FIXME("compatability")
 }
 #endif
  
-- (FLResult) runOperationWithInput:(id) input {
+- (FLResult) runOperation {
     
     // TODO: Load with sort. eg USE TSQL: ORDER BY
     NSArray* queue = nil;

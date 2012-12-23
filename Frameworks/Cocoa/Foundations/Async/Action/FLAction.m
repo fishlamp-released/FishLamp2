@@ -343,6 +343,22 @@ TODO("MF: fix activity updater");
     return [self startActionInContext:nil completion:resultBlock];
 }
 
+- (void) startAsync:(FLFinisher*) finisher {
+
+    [FLForegroundQueue dispatchBlock:^{
+        [self actionStarted];
+        
+        [FLHighPriorityQueue dispatchSynchronousObject:self.operations 
+                                 completion:^(FLResult result) {
+                
+                [FLForegroundQueue dispatchBlock:^{
+                    [finisher setFinishedWithResult:[self actionFinished:result]];
+                }];
+            }];
+    }];
+
+}
+
 - (FLFinisher*) startActionInContext:(FLOperationContext*) context 
                           completion:(FLResultBlock) resultBlock {
 
@@ -353,29 +369,14 @@ FIXME("context and actions");
 //    }
         
     FLFinisher* finisher = [FLFinisher finisherWithResultBlock:resultBlock];
-    
-    [FLForegroundQueue dispatchBlock:^{
-        [self actionStarted];
-        
-        [FLHighPriorityQueue dispatchObject:self.operations 
-                                 completion:^(FLResult result) {
-                
-                [FLForegroundQueue dispatchBlock:^{
-                    [finisher setFinishedWithResult:[self actionFinished:result]];
-                }];
-            }];
-    }];
-
+    [self startAsync:finisher];
     return finisher;
 }
 
 - (FLResult) runSynchronously {
-    return [[self startAction:nil] waitUntilFinished];
+    return [[self startActionInContext:nil completion:nil] waitUntilFinished];
 }
 
-- (FLResult) runSynchronouslyWithInput:(id) input {
-    return [[self startAction:nil] waitUntilFinished];
-}
 
 //- (id) firstOperation {
 //    return self.operations.firstOperation;

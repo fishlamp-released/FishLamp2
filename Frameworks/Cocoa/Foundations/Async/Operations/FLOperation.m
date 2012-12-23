@@ -61,7 +61,7 @@ NSString* const FLOperationFinishedEvent;
     self.cancelled = YES;
 }
 
-- (FLResult) runOperationWithInput:(id) input {
+- (FLResult) runOperation {
     return FLSuccessfullResult;
 }
 
@@ -69,11 +69,13 @@ NSString* const FLOperationFinishedEvent;
     FLThrowAbortExeptionIf(self.wasCancelled);
 }
 
-- (FLResult) runSynchronously {
-    return [self runSynchronouslyWithInput:nil];
+- (void) startAsync:(FLFinisher*) finisher {
+    [FLDefaultQueue dispatchSynchronousObject:^{
+        [finisher setFinishedWithResult:[self runSynchronously]];
+    }]; 
 }
 
-- (FLResult) runSynchronouslyWithInput:(id) input {
+- (FLResult) runSynchronously {
 
     self.cancelled = NO;
     id result = nil;
@@ -82,10 +84,10 @@ NSString* const FLOperationFinishedEvent;
         [self postObservation:@selector(operationWillRun:)];
         
         if(self.runBlock) {
-            result = self.runBlock(self, input);
+            result = self.runBlock(self);
         }
         else {
-            result = [self runOperationWithInput:input];
+            result = [self runOperation];
         }
     }
     @catch(NSException* ex) {

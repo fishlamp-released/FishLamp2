@@ -13,7 +13,7 @@
 
 @implementation FLFacebookLoadUserHttpRequest
 
-//- (FLResult) runOperationWithInput:(id) input {
+//- (FLResult) runOperation {
 //
 //
 //	FLFacebookUser* user = [FLFacebookUser facebookUser];
@@ -22,7 +22,7 @@
 //	self.inputObject = user;
 //	self.outputObject = [FLFacebookUser facebookUser];
 //
-//    return [super runOperationWithInput:(id) input];
+//    return [super runOperation];
 //}
 
 - (BOOL) willAddParametersToURL {

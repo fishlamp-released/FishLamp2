@@ -11,7 +11,7 @@
 
 @implementation FLEmptyCacheOperation
 
-- (FLResult) runOperationWithInput:(id) input {
+- (FLResult) runOperation {
 	[[FLCacheManager instance] broadcastEmptyCacheMessage:self];
     return FLSuccessfullResult;
 }

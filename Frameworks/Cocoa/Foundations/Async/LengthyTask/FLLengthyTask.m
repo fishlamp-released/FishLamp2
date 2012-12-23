@@ -50,7 +50,7 @@
     return YES;
 }
 
-- (FLResult) runOperationWithInput:(id) input {
+- (FLResult) runOperation {
 
     if([self shouldExecuteTask] && (!_delegate || [_delegate lengthyTaskShouldBegin:self])) {
         [self prepareTask];

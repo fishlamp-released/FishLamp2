@@ -21,7 +21,7 @@
     return self;
 }
 
-//- (FLResult) runOperationWithInput:(id) input {
+//- (FLResult) runOperation {
 //
 ////        self.userId = @"me";
 //

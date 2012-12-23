@@ -85,7 +85,7 @@
 }
 
 //
-//- (FLResult) runOperationWithInput:(id) input {
+//- (FLResult) runOperation {
 //    FLFacebookService* facebook = self.facebookService;
 //
 //    NSString* userID = facebook.facebookNetworkSession.userId;

@@ -11,15 +11,7 @@
 
 #import "FLFinisher.h"
 #import "FLResult.h"
-
-@protocol FLSynchronouslyDispatchable <NSObject>
-- (FLResult) runSynchronously;
-- (FLResult) runSynchronouslyWithInput:(id) input;
-@end
-
-@protocol FLAsyncDispatchable <NSObject>
-- (void) startAsync:(FLFinisher*) finisher;
-@end
+#import "FLDispatchable.h"
 
 typedef void (^FLFinishableBlock)(FLFinisher* finisher);
 
@@ -43,25 +35,25 @@ typedef void (^FLFinishableBlock)(FLFinisher* finisher);
 // FLAsyncDispatchable dispatching
 // 
 
-- (FLFinisher*) dispatchAsync:(id /*FLAsyncDispatchable*/) dispatchableObject;
+- (FLFinisher*) dispatchAsync:(id /*FLDispatchable*/) dispatchableObject;
 
-- (FLFinisher*) dispatchAsync:(id /*FLAsyncDispatchable*/) dispatchableObject 
+- (FLFinisher*) dispatchAsync:(id /*FLDispatchable*/) dispatchableObject 
                    completion:(FLCompletionBlock) completion;
 
 //
 // FLSynchronouslyDispatchable object dispatching
 //
 
-- (FLFinisher*) dispatchSynchronousObject:(id /*FLSynchronouslyDispatchable*/) synchronouslyDispatchable;
+- (FLFinisher*) dispatchSynchronousObject:(id /*FLDispatchable*/) synchronouslyDispatchable;
 
-- (FLFinisher*) dispatchSynchronousObject:(id /*FLSynchronouslyDispatchable*/) synchronouslyDispatchable
+- (FLFinisher*) dispatchSynchronousObject:(id /*FLDispatchable*/) synchronouslyDispatchable
                     withInput:(id) input;
 
-- (FLFinisher*) dispatchSynchronousObject:(id /*FLSynchronouslyDispatchable*/) synchronouslyDispatchable
+- (FLFinisher*) dispatchSynchronousObject:(id /*FLDispatchable*/) synchronouslyDispatchable
                     withInput:(id) input
                    completion:(FLCompletionBlock) completion;
 
-- (FLFinisher*) dispatchSynchronousObject:(id /*FLSynchronouslyDispatchable*/) object
+- (FLFinisher*) dispatchSynchronousObject:(id /*FLDispatchable*/) object
                    completion:(FLCompletionBlock) completion;
 
 

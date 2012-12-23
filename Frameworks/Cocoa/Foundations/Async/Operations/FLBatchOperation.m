@@ -47,7 +47,7 @@
 
 }
 
-- (FLResult) runOperationWithInput:(id) input {
+- (FLResult) runOperation {
 
     while(YES) {
     

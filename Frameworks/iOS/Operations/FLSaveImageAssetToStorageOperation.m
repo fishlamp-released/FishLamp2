@@ -33,7 +33,7 @@
 	super_dealloc_();
 }
 
-- (void) runOperationWithInput:(id) input
+- (void) runOperation
 {
 	[_asset.original writeToStorage];
 	if(_wantsThumbnail)

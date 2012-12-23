@@ -10,11 +10,13 @@
 
 @implementation FLRequestContext
 
+@synthesize dispatcher = _dispatcher;
+
 - (id) init {
     self = [super init];
     if(self) {
         _requests = [[NSMutableArray alloc] init];
-        _schedulingQueue = [[FLFifoDispatchQueue alloc] init];
+        _dispatcher = [[FLFifoDispatchQueue alloc] init];
     }
     
     return self;
@@ -22,48 +24,53 @@
 
 #if FL_MRC
 - (void) dealloc {
-    [_schedulingQueue release];
+    [_dispatcher release];
     [_requests release];
     [super dealloc];
 }
 #endif
 
-- (FLFinisher*) sendRequest:(FLHttpRequest*) request 
-                 completion:(FLCompletionBlock) completion {
-    
-    FLFinisher* finisher = [FLFinisher finisher:completion];
+- (void) willStartRequest:(FLHttpRequest*) request  {
+                
+}
 
-    [_schedulingQueue dispatchFinishableBlock:^(FLFinisher* finisherForRequest) {
+- (void) sendRequest:(FLHttpRequest*) request
+            finisher:(FLFinisher*) finisher  {
+    
+    [_dispatcher dispatchBlock: ^{
         [_requests addObject:request];
-        [ ((id)request) startAsync:finisherForRequest];
+        [self willStartRequest:request];
+        [ ((id)request) startAsync:finisher];
     }
     completion:^(FLResult result) {
         
         // this is the completion for the finisher created by dispatchFinishableBlock
         // we needed to intercept this to remove request from our queue.
         
-        [_schedulingQueue dispatchBlock:^{
+        [_dispatcher dispatchBlock:^{
             // queue up our remove.
             [_requests removeObject:request];
         }];
         
-        // our finisher the wraps up the request 
-        [finisher setFinishedWithResult:result];
     }];
-    
-    return finisher;
 }
 
 - (FLFinisher*) sendRequest:(FLHttpRequest*) request {
-    return [self sendRequest:request completion:nil];
+    FLFinisher* finisher = [FLFinisher finisher];
+    [self sendRequest:request finisher:finisher];
+    return finisher;
 }
 
-- (FLResult) sendRequestSynchronously:(FLHttpRequest*) request {
-    return [[self sendRequest:request] waitUntilFinished];
-}
+- (FLFinisher*) sendRequest:(FLHttpRequest*) request 
+                 completion:(FLCompletionBlock) completion {
+
+    FLFinisher* finisher = [FLFinisher finisher:completion];
+    [self sendRequest:request finisher:finisher];
+    return finisher;
+}                 
 
 - (void) requestCancel {
-    [_schedulingQueue dispatchBlock:^{
+    [_dispatcher dispatchBlock:^{
         for(FLHttpRequest* request in _requests) {
             [request requestCancel];
         }
