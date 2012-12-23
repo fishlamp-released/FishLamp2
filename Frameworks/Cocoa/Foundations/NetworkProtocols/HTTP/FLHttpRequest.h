@@ -7,59 +7,80 @@
 //
 
 #import "FLCocoaRequired.h"
-#import "FLCore.h"
-#import "FLHttpMessage.h"
 
-#define FLHttpRequestDefaultHTTPVersion @"1.1"
+#import "FLHttpRequestContent.h"
 
-@interface FLHttpRequest : NSObject<NSCopying, NSMutableCopying> {
+#import "FLHttpResponse.h"
+#import "FLReadStream.h"
+#import "FLObservable.h"
+#import "FLDispatcher.h"
+#import "FLDispatchQueue.h"
+
+
+@class FLHttpRequest;
+@protocol FLHttpRequestRedirector;
+
+@protocol FLHttpRequestSender <NSObject>
+- (FLResult) sendHttpRequest:(FLHttpRequest*) request;
+@end
+
+@interface FLHttpRequest : FLObservable<FLCancellable, FLReadStreamDelegate> {
 @private
-    NSString* _HTTPMethod;
-    NSMutableDictionary* _requestHeaders;
-    NSURL* _requestURL;
-    NSString* _postBodyFilePath;
-    NSData* _postData;
-    unsigned long long _postLength;
-    NSInputStream* _HTTPBodyStream;
+    __unsafe_unretained id<FLHttpRequestRedirector> _redirector;
+    
+    FLHttpRequestContent* _content;
+    
+    FLFinisher* _finisher;
+    FLMutableHttpResponse* _response;
+    FLReadStream* _networkStream;
+    FLDispatchQueue* _dispatchQueue;
 }
 
+@property (readwrite, assign) id<FLHttpRequestRedirector> redirector;
+
+@property (readonly, strong, nonatomic) FLHttpRequestHeaders* httpHeaders;
+@property (readonly, strong, nonatomic) FLHttpRequestContent* httpBody;
+
 - (id) initWithURL:(NSURL*) url;
+- (id) initWithURL:(NSURL*) url httpMethod:(NSString*) httpMethod;
+
++ (id) httpRequestWithURL:(NSURL*) url httpMethod:(NSString*) httpMethod;
++ (id) httpPostRequestWithURL:(NSURL*) url;
 
 + (id) httpRequest;
 + (id) httpRequestWithURL:(NSURL*) url;
 
-@property (readonly, strong, nonatomic) NSURL* requestURL;
+- (FLResult) sendRequest; 
 
-//
-// headers
-//
-@property (readonly, strong, nonatomic) NSDictionary* allHTTPHeaderFields;
-@property (readonly, strong, nonatomic) NSString* HTTPMethod;
-@property (readonly, assign, nonatomic, getter=isPostRequest) BOOL postRequest;
-@property (readonly, strong, nonatomic) NSString* hostHeader;
-@property (readonly, strong, nonatomic) NSString* userAgentHeader;
-@property (readonly, assign, nonatomic) unsigned long long contentLengthHeader;
-@property (readonly, strong, nonatomic) NSString* contentTypeHeader;
-
-- (NSString *) valueForHTTPHeaderField:(NSString *) field;
-- (BOOL) hasHTTPHeaderField:(NSString*) header;
-
-//
-// Content
-//
-@property (readonly, strong, nonatomic) NSString* postBodyFilePath;
-@property (readonly, strong, nonatomic) NSData* HTTPBody;
-@property (readonly, strong, nonatomic) NSInputStream* HTTPBodyStream;
-
-// 
-// MISC
-// 
-
-// by default this is loaded from [FLAppInfo userAgent];
-+ (void) setDefaultUserAgent:(NSString*) userAgent;
-+ (NSString*) defaultUserAgent;
+- (FLFinisher*) startRequest;
 
 @end
 
-// mutable
+@protocol FLHttpRequestRedirector<NSObject>
+- (void) httpRequest:(FLHttpRequest*) httpRequest 
+      shouldRedirect:(BOOL*) redirect 
+               toURL:(NSURL*) url;
+@end
+
+
+@protocol FLHttpRequestObserver <NSObject>
+
+- (void) httpRequestWillOpen:(FLHttpRequest*) httpRequest;
+
+- (void) httpRequestDidOpen:(FLHttpRequest*) httpRequest;
+
+- (void) httpRequest:(FLHttpRequest*) httpRequest 
+   willCloseWithResult:(FLResult) result;
+
+- (void) httpRequest:(FLHttpRequest*) httpRequest 
+    didCloseWithResult:(FLResult) result;
+
+- (void) httpRequest:(FLHttpRequest*) httpRequest
+      didEncounterError:(NSError*) error;
+
+- (void) httpRequestDidReadBytes:(FLHttpRequest*) httpRequest;
+
+- (void) httpRequestDidWriteBytes:(FLHttpRequest*) httpRequest;
+
+@end
 

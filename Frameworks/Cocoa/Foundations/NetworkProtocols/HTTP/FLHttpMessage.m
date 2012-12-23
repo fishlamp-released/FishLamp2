@@ -22,15 +22,15 @@
 }
 
 - (id) initWithURL:(NSURL*) url
-     HTTPMethod:(NSString*) HTTPMethod {
+     httpMethod:(NSString*) httpMethod {
     
     if((self = [super init])) {
-        if(!HTTPMethod || HTTPMethod.length == 0) {
-            HTTPMethod = @"GET";
+        if(!httpMethod || httpMethod.length == 0) {
+            httpMethod = @"GET";
         }   
         
         _message = CFHTTPMessageCreateRequest(kCFAllocatorDefault, 
-            bridge_(void*,HTTPMethod), bridge_(void*,url), kCFHTTPVersion1_1);
+            bridge_(void*,httpMethod), bridge_(void*,url), kCFHTTPVersion1_1);
     }
     return self;
 }
@@ -84,8 +84,8 @@
     return FLAutorelease([[[self class] alloc] initWithHttpMessageRef:ref]);
 }
 
-+ (id) httpMessageWithURL:(NSURL*) url HTTPMethod:(NSString*) HTTPMethodOrNil {
-    return FLAutorelease([[[self class] alloc] initWithURL:url HTTPMethod:HTTPMethodOrNil]);
++ (id) httpMessageWithURL:(NSURL*) url httpMethod:(NSString*) httpMethodOrNil {
+    return FLAutorelease([[[self class] alloc] initWithURL:url httpMethod:httpMethodOrNil]);
 }
 
 - (id)copyWithZone:(NSZone *)zone {
@@ -104,7 +104,7 @@
     return FLAutorelease(bridge_transfer_(NSURL*,CFHTTPMessageCopyRequestURL(_message)));
 }
 
-- (NSString*) HTTPMethod {
+- (NSString*) httpMethod {
     return FLAutorelease(bridge_transfer_(NSString*,CFHTTPMessageCopyRequestMethod(_message)));
 }
 

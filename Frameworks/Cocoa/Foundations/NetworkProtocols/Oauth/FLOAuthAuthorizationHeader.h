@@ -10,7 +10,7 @@
 
 #import "FLOAuthApp.h"
 #import "FLOAuthEnums.h"
-#import "FLMutableHttpRequest.h"
+#import "FLHttpRequest.h"
 
 @interface FLOAuthAuthorizationHeader : NSObject {
 @private
@@ -25,7 +25,7 @@
 
 @end
 
-@interface FLMutableHttpRequest (OAuth)
+@interface FLHttpRequest (OAuth)
 - (void) setOAuthAuthorizationHeader:(FLOAuthAuthorizationHeader*) signature
                          consumerKey:(NSString*) consumerKey
                               secret:(NSString*) secret;

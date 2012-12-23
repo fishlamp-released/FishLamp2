@@ -11,7 +11,7 @@
 #import "FLHttpOperation.h"
 #import "FLOAuthAuthorizationHeader.h"
 
-@interface FLTwitterOperation : FLHttpOperation<FLHttpRequestAuthenticator> {
+@interface FLTwitterOperation : FLHttpOperation {
 @private
     id _inputObject;
     NSURL* _twitterURL;

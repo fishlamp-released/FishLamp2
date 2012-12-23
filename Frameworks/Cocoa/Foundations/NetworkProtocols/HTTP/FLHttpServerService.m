@@ -10,12 +10,12 @@
 
 @implementation FLHttpServerService
 
-@synthesize httpRequestAuthenticator = _httpRequestAuthenticator;
+//@synthesize httpRequestAuthenticator = _httpRequestAuthenticator;
 
 #if FL_MRC
 - (void) dealloc {
 
-    [_httpRequestAuthenticator release];
+//    [_httpRequestAuthenticator release];
     [super dealloc];
 }
 #endif

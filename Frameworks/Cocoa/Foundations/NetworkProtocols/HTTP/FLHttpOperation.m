@@ -9,19 +9,19 @@
 #import "FLHttpOperation.h"
 
 @interface FLHttpOperation ()
-@property (readwrite, strong) FLHttpStream* httpStream;
+@property (readwrite, strong) FLHttpRequest* httpRequest;
 @end
 
 @implementation FLHttpOperation
-@synthesize requestAuthenticator = _requestAuthenticator;
 @synthesize httpRequestURL = _httpRequestURL;
-@synthesize httpStream = _httpStream;
+@synthesize httpRequest = _httpRequest;
+@synthesize requestSender = _requestSender;
 
 #if FL_MRC
 - (void) dealloc {
-    [_httpStream release];
+    [_httpRequest release];
     [_httpRequestURL release];
-    [_requestAuthenticator release];
+    [_requestSender release];
     [super dealloc];
 }
 #endif
@@ -48,37 +48,32 @@
 
 - (void) requestCancel {
 	[super requestCancel];
-    [self.httpStream requestCancel];
+    [self.httpRequest requestCancel];
 }
 
-- (FLHttpResponse*) sendHttpRequest:(FLMutableHttpRequest*) request 
-                  withAuthenticator:(id<FLHttpRequestAuthenticator>) authenticator {
-    
+- (FLResult) sendHttpRequest:(FLHttpRequest*) request {
     FLAssertNotNil_(request);
-
-    if(authenticator) {
-        FLThrowError([authenticator authenticateHTTPRequest:request]);
-    }
+    self.httpRequest = request;
     
-    return [self sendHttpRequest:request];
-}
-
-- (FLHttpResponse*) sendHttpRequest:(FLHttpRequest*) request {
-    FLAssertNotNil_(request);
-    self.httpStream = [FLHttpStream httpStream];
     @try {
-        self.httpStream.redirector = self;
-        [self.httpStream addObserver:self];
-        return FLConfirmResultType([self.httpStream sendSynchronousRequest:request], FLHttpResponse);
+        self.httpRequest.redirector = self;
+        [self.httpRequest addObserver:self];
+        
+        if(self.requestSender) {
+            return [self.requestSender sendHttpRequest:request];
+        }
+        else {
+            return [self.httpRequest sendRequest];
+        }
     }
     @finally {
-        [self.httpStream removeObserver:self];
-        self.httpStream.redirector = nil;
-        self.httpStream = nil;
+        [self.httpRequest removeObserver:self];
+        self.httpRequest.redirector = nil;
+        self.httpRequest = nil;
     }
 }
 
-- (void) httpStream:(FLHttpStream*) httpStream 
+- (void) httpRequest:(FLHttpRequest*) httpRequest 
      shouldRedirect:(BOOL*) redirect toURL:(NSURL*) url {
 }
 

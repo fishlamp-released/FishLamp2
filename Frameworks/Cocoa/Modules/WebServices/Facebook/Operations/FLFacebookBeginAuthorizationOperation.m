@@ -98,7 +98,7 @@ static NSString* kRedirectURL = @"http://www.facebook.com/connect/login_success.
 //    FLFacebookService* facebook = [self.context facebookService];
 
 
-//    FLMutableHttpRequest* httpRequest = [FLMutableHttpRequest httpRequestWithURL:url];
+//    FLHttpRequest* httpRequest = [FLHttpRequest httpRequestWithURL:url];
 //
 //    FLHttpResponse* httpResponse = [self sendHttpRequest:httpRequest withAuthenticator:nil];
 
@@ -117,7 +117,7 @@ static NSString* kRedirectURL = @"http://www.facebook.com/connect/login_success.
     return nil;
 }
 
-- (void) httpStream:(FLHttpStream*) httpStream shouldRedirect:(BOOL*) redirect toURL:(NSURL*) url {
+- (void) httpRequest:(FLHttpRequest*) httpRequest shouldRedirect:(BOOL*) redirect toURL:(NSURL*) url {
     *redirect = NO;
 }
 

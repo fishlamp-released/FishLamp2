@@ -8,34 +8,29 @@
 
 #import "FLCore.h"
 #import "FLOperation.h"
-#import "FLHttpStream.h"
 #import "FLHttpRequest.h"
 #import "FLHttpResponse.h"
-#import "FLMutableHttpRequest.h"
+#import "FLHttpRequest.h"
 
-@interface FLHttpOperation : FLOperation<FLHttpStreamRedirector> {
+@interface FLHttpOperation : FLOperation<FLHttpRequestRedirector, FLHttpRequestSender> {
 @private
-    id<FLHttpRequestAuthenticator> _requestAuthenticator;
     NSURL* _httpRequestURL;
 
+    id<FLHttpRequestSender> _requestSender;
+
 // only valid while sending request
-    FLHttpStream* _httpStream;
+    FLHttpRequest* _httpRequest;
 }
 
-@property (readwrite, strong) NSURL* httpRequestURL;
+@property (readwrite, strong) id<FLHttpRequestSender> requestSender;
 
-@property (readwrite, strong) id<FLHttpRequestAuthenticator> requestAuthenticator;
+@property (readwrite, strong) NSURL* httpRequestURL;
 
 - (id) initWithHTTPRequestURL:(NSURL*) url;
 
 + (id) httpOperation;
 
 + (id) httpOperationWithHTTPRequestURL:(NSURL*) httpRequestURL;
-
-- (FLHttpResponse*) sendHttpRequest:(FLMutableHttpRequest*) request 
-                  withAuthenticator:(id<FLHttpRequestAuthenticator>) authenticator;
-
-- (FLHttpResponse*) sendHttpRequest:(FLHttpRequest*) request;
 
 @end
 

@@ -79,11 +79,11 @@
     FLSoapStringBuilder* soap = [FLSoapStringBuilder stringBuilder];
 	[soap.body addObjectAsFunction:self.operationName object:[self soapRequest] xmlNamespace:self.soapNamespace];
 
-    FLMutableHttpRequest* request = [FLMutableHttpRequest httpPostRequestWithURL:self.httpRequestURL];
-    [request setValue:self.soapActionHeader forHTTPHeaderField:@"SOAPAction"]; 
-    [request setUtf8Content:[soap buildStringWithNoWhitespace]];
+    FLHttpRequest* request = [FLHttpRequest httpPostRequestWithURL:self.httpRequestURL];
+    [request.httpHeaders setValue:self.soapActionHeader forHTTPHeaderField:@"SOAPAction"]; 
+    [request.httpBody setUtf8Content:[soap buildStringWithNoWhitespace]];
 
-    FLHttpResponse* httpResponse = [self sendHttpRequest:request withAuthenticator:self.requestAuthenticator];
+    FLHttpResponse* httpResponse = [self sendHttpRequest:request];
 
     NSData* data = httpResponse.responseData;
     

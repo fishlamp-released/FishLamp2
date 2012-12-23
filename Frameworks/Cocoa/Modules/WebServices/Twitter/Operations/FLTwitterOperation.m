@@ -41,7 +41,7 @@
 	return YES;
 }
 
-- (FLResult) authenticateHTTPRequest:(FLMutableHttpRequest*) httpRequest {
+- (FLResult) authenticateHTTPRequest:(FLHttpRequest*) httpRequest {
 	
     FLOAuthAuthorizationHeader* oauthHeader = [FLOAuthAuthorizationHeader authorizationHeader];
 	
@@ -69,7 +69,7 @@
         }
 	}
 	
-	[httpRequest setFormUrlEncodedContent:content];
+	[httpRequest.httpBody setFormUrlEncodedContent:content];
 
     FLTwitterService* twitter = [self.context twitterService];
 
@@ -91,9 +91,9 @@
 
 - (FLResult) runOperationWithInput:(id) input {
 
-    FLMutableHttpRequest* httpRequest = [FLMutableHttpRequest httpPostRequestWithURL:self.twitterURL];
+    FLHttpRequest* httpRequest = [FLHttpRequest httpPostRequestWithURL:self.twitterURL];
 
-    FLHttpResponse* httpResponse = [self sendHttpRequest:httpRequest withAuthenticator:self];
+    FLHttpResponse* httpResponse = [self sendHttpRequest:httpRequest];
     
     // this is a hack. In the case of a successfull tweet, it's returning a object containing
     // a bunch of info. In the case of an error, it's returning an error object (FLTwitterError).

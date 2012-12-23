@@ -8,13 +8,13 @@
 
 #import "FLService.h"
 #import "FLHttpRequest.h"
-#import "FLMutableHTTPRequest.h"
+#import "FLHTTPRequest.h"
 
 @interface FLHttpServerService : FLService {
 @private
-    id<FLHttpRequestAuthenticator> _httpRequestAuthenticator;
+//    id<FLHttpRequestAuthenticator> _httpRequestAuthenticator;
 }
 
-@property (readwrite, strong) id<FLHttpRequestAuthenticator> httpRequestAuthenticator;
+//@property (readwrite, strong) id<FLHttpRequestAuthenticator> httpRequestAuthenticator;
 
 @end

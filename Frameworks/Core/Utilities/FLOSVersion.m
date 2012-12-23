@@ -8,17 +8,20 @@
 
 #import "FLOSVersion.h"
 
-FLVersion FLGetOSVersion() 
-{
-    static FLVersion s_osVersion = { 0, 0, 0, 0};
+FLVersion FLGetOSVersion()  {
+    static FLVersion s_osVersion = { 0, 0, 0, 0 };
+    static dispatch_once_t once = 0;
+    dispatch_once(&once, ^{
+        NSString* versionString = nil;
     
-    if(s_osVersion.major == 0) {
 #if IOS
-        s_osVersion = FLVersionFromString([UIDevice currentDevice].systemVersion);
+        versionString = [UIDevice currentDevice].systemVersion;
 #else
-    // TODO
-#endif
-    }
+        versionString = [[NSDictionary dictionaryWithContentsOfFile:@"/System/Library/CoreServices/SystemVersion.plist"] objectForKey:@"ProductVersion"];
+#endif   
+        s_osVersion = FLVersionFromString(versionString);
+
+    });
 
     return s_osVersion;
 }

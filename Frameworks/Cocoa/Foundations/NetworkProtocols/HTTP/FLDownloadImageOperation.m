@@ -26,10 +26,9 @@
 
 - (FLResult) runOperationWithInput:(id) input {
 
-    FLMutableHttpRequest* request = [FLMutableHttpRequest httpRequestWithURL:self.httpRequestURL];
+    FLHttpRequest* request = [FLHttpRequest httpRequestWithURL:self.httpRequestURL];
 
-    FLHttpResponse* httpResponse = [self sendHttpRequest:request 
-                                       withAuthenticator:self.requestAuthenticator];
+    FLHttpResponse* httpResponse = [self sendHttpRequest:request];
     
     FLThrowError([httpResponse simpleHttpResponseErrorCheck]);
     

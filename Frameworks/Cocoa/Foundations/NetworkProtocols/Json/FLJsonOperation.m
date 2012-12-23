@@ -32,14 +32,14 @@
 
 - (FLResult) runOperationWithInput:(id) input {
 
-    FLMutableHttpRequest* request = [FLMutableHttpRequest httpPostRequestWithURL:self.httpRequestURL];
+    FLHttpRequest* request = [FLHttpRequest httpPostRequestWithURL:self.httpRequestURL];
 
     if(self.json && !self.json.isEmpty) {
         NSData* content = [[self.json buildStringWithNoWhitespace] dataUsingEncoding:NSUTF8StringEncoding];
-        [request setContentWithData:content typeContentHeader:@"application/json; charset=utf-8"];
+        [request.httpBody setContentWithData:content typeContentHeader:@"application/json; charset=utf-8"];
     }
 	
-    FLHttpResponse* httpResponse = [self sendHttpRequest:request withAuthenticator:self.requestAuthenticator];
+    FLHttpResponse* httpResponse = [self sendHttpRequest:request];
     
     FLJsonParser* parser = [FLJsonParser jsonParser];
     

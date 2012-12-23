@@ -36,7 +36,7 @@
 }
 #endif
 
-- (void) httpStream:(FLHttpStream*) httpStream
+- (void) httpRequest:(FLHttpRequest*) httpRequest
      shouldRedirect:(BOOL*) redirect
               toURL:(NSURL*) url {
     *redirect = NO;
@@ -46,13 +46,13 @@
 	
     FLOAuthAuthorizationHeader* oauthHeader = [FLOAuthAuthorizationHeader authorizationHeader];
     
-    FLMutableHttpRequest* request = [FLMutableHttpRequest httpPostRequestWithURL:_url];
+    FLHttpRequest* request = [FLHttpRequest httpPostRequestWithURL:_url];
     
     [request setOAuthAuthorizationHeader:oauthHeader
                              consumerKey:_app.consumerKey
                                   secret:[_app.consumerSecret stringByAppendingString:@"&"]];
     
-    NSData* data = [self sendHttpRequest:request].responseData;
+    NSData* data = [[self sendHttpRequest:request] responseData];
     
 #if DEBUG
     NSString* responseStr = FLAutorelease([[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);

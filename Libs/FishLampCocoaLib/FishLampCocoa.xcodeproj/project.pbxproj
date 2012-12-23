@@ -1027,15 +1027,6 @@
 		2741E6AB16793DB600CA87A9 /* FLHttpServerService.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741DFE516793DB600CA87A9 /* FLHttpServerService.m */; };
 		2741E6AC16793DB600CA87A9 /* FLHttpServerService.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741DFE516793DB600CA87A9 /* FLHttpServerService.m */; };
 		2741E6AD16793DB600CA87A9 /* FLHttpServerService.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741DFE516793DB600CA87A9 /* FLHttpServerService.m */; };
-		2741E6AE16793DB600CA87A9 /* FLMutableHTTPRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DFE616793DB600CA87A9 /* FLMutableHTTPRequest.h */; };
-		2741E6AF16793DB600CA87A9 /* FLMutableHTTPRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DFE616793DB600CA87A9 /* FLMutableHTTPRequest.h */; };
-		2741E6B016793DB600CA87A9 /* FLMutableHTTPRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DFE616793DB600CA87A9 /* FLMutableHTTPRequest.h */; };
-		2741E6B116793DB600CA87A9 /* FLMutableHTTPRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DFE616793DB600CA87A9 /* FLMutableHTTPRequest.h */; };
-		2741E6B216793DB600CA87A9 /* FLMutableHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741DFE716793DB600CA87A9 /* FLMutableHTTPRequest.m */; };
-		2741E6B316793DB600CA87A9 /* FLMutableHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741DFE716793DB600CA87A9 /* FLMutableHTTPRequest.m */; };
-		2741E6B416793DB600CA87A9 /* FLMutableHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741DFE716793DB600CA87A9 /* FLMutableHTTPRequest.m */; };
-		2741E6B516793DB600CA87A9 /* FLMutableHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741DFE716793DB600CA87A9 /* FLMutableHTTPRequest.m */; };
-		2741E6B616793DB600CA87A9 /* FLMutableHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741DFE716793DB600CA87A9 /* FLMutableHTTPRequest.m */; };
 		2741E6B716793DB600CA87A9 /* FLNetworkServerContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DFE816793DB600CA87A9 /* FLNetworkServerContext.h */; };
 		2741E6B816793DB600CA87A9 /* FLNetworkServerContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DFE816793DB600CA87A9 /* FLNetworkServerContext.h */; };
 		2741E6B916793DB600CA87A9 /* FLNetworkServerContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DFE816793DB600CA87A9 /* FLNetworkServerContext.h */; };
@@ -1309,15 +1300,6 @@
 		2741E7E416793DB600CA87A9 /* FLParserStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741E03416793DB600CA87A9 /* FLParserStack.m */; };
 		2741E7E516793DB600CA87A9 /* FLParserStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741E03416793DB600CA87A9 /* FLParserStack.m */; };
 		2741E7E616793DB600CA87A9 /* FLParserStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741E03416793DB600CA87A9 /* FLParserStack.m */; };
-		2741E7F016793DB600CA87A9 /* FLHttpStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741E03816793DB600CA87A9 /* FLHttpStream.h */; };
-		2741E7F116793DB600CA87A9 /* FLHttpStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741E03816793DB600CA87A9 /* FLHttpStream.h */; };
-		2741E7F216793DB600CA87A9 /* FLHttpStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741E03816793DB600CA87A9 /* FLHttpStream.h */; };
-		2741E7F316793DB600CA87A9 /* FLHttpStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741E03816793DB600CA87A9 /* FLHttpStream.h */; };
-		2741E7F416793DB600CA87A9 /* FLHttpStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741E03916793DB600CA87A9 /* FLHttpStream.m */; };
-		2741E7F516793DB600CA87A9 /* FLHttpStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741E03916793DB600CA87A9 /* FLHttpStream.m */; };
-		2741E7F616793DB600CA87A9 /* FLHttpStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741E03916793DB600CA87A9 /* FLHttpStream.m */; };
-		2741E7F716793DB600CA87A9 /* FLHttpStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741E03916793DB600CA87A9 /* FLHttpStream.m */; };
-		2741E7F816793DB600CA87A9 /* FLHttpStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741E03916793DB600CA87A9 /* FLHttpStream.m */; };
 		2741E7F916793DB600CA87A9 /* FLNetworkStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741E03A16793DB600CA87A9 /* FLNetworkStream.h */; };
 		2741E7FA16793DB600CA87A9 /* FLNetworkStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741E03A16793DB600CA87A9 /* FLNetworkStream.h */; };
 		2741E7FB16793DB600CA87A9 /* FLNetworkStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741E03A16793DB600CA87A9 /* FLNetworkStream.h */; };
@@ -1887,7 +1869,6 @@
 		2741EA3816793DB600CA87A9 /* NSString+Lists.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741E0CD16793DB600CA87A9 /* NSString+Lists.m */; };
 		2741EA3916793DB600CA87A9 /* NSString+Lists.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741E0CD16793DB600CA87A9 /* NSString+Lists.m */; };
 		2741EA3A16793DB600CA87A9 /* NSString+Lists.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741E0CD16793DB600CA87A9 /* NSString+Lists.m */; };
-		2741EA3B16793DB600CA87A9 /* FLStringBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741E0CF16793DB600CA87A9 /* FLStringBuilder.h */; };
 		2741EA3C16793DB600CA87A9 /* FLStringBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741E0CF16793DB600CA87A9 /* FLStringBuilder.h */; };
 		2741EA3D16793DB600CA87A9 /* FLStringBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741E0CF16793DB600CA87A9 /* FLStringBuilder.h */; };
 		2741EA3E16793DB600CA87A9 /* FLStringBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741E0CF16793DB600CA87A9 /* FLStringBuilder.h */; };
@@ -1896,7 +1877,6 @@
 		2741EA4116793DB600CA87A9 /* FLStringBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741E0D016793DB600CA87A9 /* FLStringBuilder.m */; };
 		2741EA4216793DB600CA87A9 /* FLStringBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741E0D016793DB600CA87A9 /* FLStringBuilder.m */; };
 		2741EA4316793DB600CA87A9 /* FLStringBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741E0D016793DB600CA87A9 /* FLStringBuilder.m */; };
-		2741EA4416793DB600CA87A9 /* FLStringBuilderToken.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741E0D116793DB600CA87A9 /* FLStringBuilderToken.h */; };
 		2741EA4516793DB600CA87A9 /* FLStringBuilderToken.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741E0D116793DB600CA87A9 /* FLStringBuilderToken.h */; };
 		2741EA4616793DB600CA87A9 /* FLStringBuilderToken.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741E0D116793DB600CA87A9 /* FLStringBuilderToken.h */; };
 		2741EA4716793DB600CA87A9 /* FLStringBuilderToken.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741E0D116793DB600CA87A9 /* FLStringBuilderToken.h */; };
@@ -3545,6 +3525,42 @@
 		27DB1F8F167A93A500452AD3 /* FLCocoaRequired.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DB1F8D167A93A300452AD3 /* FLCocoaRequired.h */; };
 		27DB1F90167A93A500452AD3 /* FLCocoaRequired.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DB1F8D167A93A300452AD3 /* FLCocoaRequired.h */; };
 		27DB1F91167A93A500452AD3 /* FLCocoaRequired.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DB1F8D167A93A300452AD3 /* FLCocoaRequired.h */; };
+		27E35DD216861F3400AF13BE /* NSString+Lists.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E35DC916861F3400AF13BE /* NSString+Lists.h */; };
+		27E35DD316861F3400AF13BE /* NSString+Lists.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E35DC916861F3400AF13BE /* NSString+Lists.h */; };
+		27E35DD416861F3400AF13BE /* NSString+Lists.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E35DC916861F3400AF13BE /* NSString+Lists.h */; };
+		27E35DD516861F3400AF13BE /* NSString+Lists.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E35DC916861F3400AF13BE /* NSString+Lists.h */; };
+		27E35DD616861F3400AF13BE /* NSString+Lists.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E35DCA16861F3400AF13BE /* NSString+Lists.m */; };
+		27E35DD716861F3400AF13BE /* NSString+Lists.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E35DCA16861F3400AF13BE /* NSString+Lists.m */; };
+		27E35DD816861F3400AF13BE /* NSString+Lists.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E35DCA16861F3400AF13BE /* NSString+Lists.m */; };
+		27E35DD916861F3400AF13BE /* NSString+Lists.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E35DCA16861F3400AF13BE /* NSString+Lists.m */; };
+		27E35DDA16861F3400AF13BE /* NSString+Lists.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E35DCA16861F3400AF13BE /* NSString+Lists.m */; };
+		27E35DFA16861F9000AF13BE /* FLLocalNotification.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E35DF816861F9000AF13BE /* FLLocalNotification.h */; };
+		27E35DFB16861F9000AF13BE /* FLLocalNotification.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E35DF816861F9000AF13BE /* FLLocalNotification.h */; };
+		27E35DFC16861F9000AF13BE /* FLLocalNotification.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E35DF816861F9000AF13BE /* FLLocalNotification.h */; };
+		27E35DFD16861F9000AF13BE /* FLLocalNotification.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E35DF816861F9000AF13BE /* FLLocalNotification.h */; };
+		27E35DFE16861F9000AF13BE /* FLLocalNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E35DF916861F9000AF13BE /* FLLocalNotification.m */; };
+		27E35DFF16861F9000AF13BE /* FLLocalNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E35DF916861F9000AF13BE /* FLLocalNotification.m */; };
+		27E35E0016861F9000AF13BE /* FLLocalNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E35DF916861F9000AF13BE /* FLLocalNotification.m */; };
+		27E35E0116861F9000AF13BE /* FLLocalNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E35DF916861F9000AF13BE /* FLLocalNotification.m */; };
+		27E35E0216861F9000AF13BE /* FLLocalNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E35DF916861F9000AF13BE /* FLLocalNotification.m */; };
+		27E35E5D16867A3E00AF13BE /* FLHttpRequestHeaders.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E35E5B16867A3C00AF13BE /* FLHttpRequestHeaders.h */; };
+		27E35E5E16867A3E00AF13BE /* FLHttpRequestHeaders.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E35E5B16867A3C00AF13BE /* FLHttpRequestHeaders.h */; };
+		27E35E5F16867A3E00AF13BE /* FLHttpRequestHeaders.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E35E5B16867A3C00AF13BE /* FLHttpRequestHeaders.h */; };
+		27E35E6016867A3E00AF13BE /* FLHttpRequestHeaders.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E35E5B16867A3C00AF13BE /* FLHttpRequestHeaders.h */; };
+		27E35E6116867A3E00AF13BE /* FLHttpRequestHeaders.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E35E5C16867A3D00AF13BE /* FLHttpRequestHeaders.m */; };
+		27E35E6216867A3E00AF13BE /* FLHttpRequestHeaders.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E35E5C16867A3D00AF13BE /* FLHttpRequestHeaders.m */; };
+		27E35E6316867A3E00AF13BE /* FLHttpRequestHeaders.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E35E5C16867A3D00AF13BE /* FLHttpRequestHeaders.m */; };
+		27E35E6416867A3E00AF13BE /* FLHttpRequestHeaders.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E35E5C16867A3D00AF13BE /* FLHttpRequestHeaders.m */; };
+		27E35E6516867A3E00AF13BE /* FLHttpRequestHeaders.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E35E5C16867A3D00AF13BE /* FLHttpRequestHeaders.m */; };
+		27E35E6816867AB000AF13BE /* FLHttpRequestContent.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E35E6616867AAE00AF13BE /* FLHttpRequestContent.h */; };
+		27E35E6916867AB000AF13BE /* FLHttpRequestContent.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E35E6616867AAE00AF13BE /* FLHttpRequestContent.h */; };
+		27E35E6A16867AB000AF13BE /* FLHttpRequestContent.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E35E6616867AAE00AF13BE /* FLHttpRequestContent.h */; };
+		27E35E6B16867AB000AF13BE /* FLHttpRequestContent.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E35E6616867AAE00AF13BE /* FLHttpRequestContent.h */; };
+		27E35E6C16867AB000AF13BE /* FLHttpRequestContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E35E6716867AAE00AF13BE /* FLHttpRequestContent.m */; };
+		27E35E6D16867AB000AF13BE /* FLHttpRequestContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E35E6716867AAE00AF13BE /* FLHttpRequestContent.m */; };
+		27E35E6E16867AB000AF13BE /* FLHttpRequestContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E35E6716867AAE00AF13BE /* FLHttpRequestContent.m */; };
+		27E35E6F16867AB000AF13BE /* FLHttpRequestContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E35E6716867AAE00AF13BE /* FLHttpRequestContent.m */; };
+		27E35E7016867AB000AF13BE /* FLHttpRequestContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E35E6716867AAE00AF13BE /* FLHttpRequestContent.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -3799,8 +3815,6 @@
 		2741DFE316793DB600CA87A9 /* FLHttpResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLHttpResponse.m; sourceTree = "<group>"; };
 		2741DFE416793DB600CA87A9 /* FLHttpServerService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLHttpServerService.h; sourceTree = "<group>"; };
 		2741DFE516793DB600CA87A9 /* FLHttpServerService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLHttpServerService.m; sourceTree = "<group>"; };
-		2741DFE616793DB600CA87A9 /* FLMutableHTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLMutableHTTPRequest.h; sourceTree = "<group>"; };
-		2741DFE716793DB600CA87A9 /* FLMutableHTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLMutableHTTPRequest.m; sourceTree = "<group>"; };
 		2741DFE816793DB600CA87A9 /* FLNetworkServerContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLNetworkServerContext.h; sourceTree = "<group>"; };
 		2741DFE916793DB600CA87A9 /* FLNetworkServerContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLNetworkServerContext.m; sourceTree = "<group>"; };
 		2741DFEA16793DB600CA87A9 /* FLUrlParameterParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLUrlParameterParser.h; sourceTree = "<group>"; };
@@ -3864,8 +3878,6 @@
 		2741E03116793DB600CA87A9 /* FLTcpRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLTcpRequest.m; sourceTree = "<group>"; };
 		2741E03316793DB600CA87A9 /* FLParserStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLParserStack.h; sourceTree = "<group>"; };
 		2741E03416793DB600CA87A9 /* FLParserStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLParserStack.m; sourceTree = "<group>"; };
-		2741E03816793DB600CA87A9 /* FLHttpStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLHttpStream.h; sourceTree = "<group>"; };
-		2741E03916793DB600CA87A9 /* FLHttpStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLHttpStream.m; sourceTree = "<group>"; };
 		2741E03A16793DB600CA87A9 /* FLNetworkStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLNetworkStream.h; sourceTree = "<group>"; };
 		2741E03B16793DB600CA87A9 /* FLNetworkStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLNetworkStream.m; sourceTree = "<group>"; };
 		2741E03C16793DB600CA87A9 /* FLReadStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLReadStream.h; sourceTree = "<group>"; };
@@ -4392,6 +4404,20 @@
 		27DB1DFD167A5F6100452AD3 /* FLMutableColorRange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLMutableColorRange.m; sourceTree = "<group>"; };
 		27DB1E07167A769000452AD3 /* FLColorModule.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = FLColorModule.json; sourceTree = "<group>"; };
 		27DB1F8D167A93A300452AD3 /* FLCocoaRequired.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCocoaRequired.h; sourceTree = "<group>"; };
+		27E35DC916861F3400AF13BE /* NSString+Lists.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Lists.h"; sourceTree = "<group>"; };
+		27E35DCA16861F3400AF13BE /* NSString+Lists.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Lists.m"; sourceTree = "<group>"; };
+		27E35DCC16861F3400AF13BE /* FLStringBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLStringBuilder.h; sourceTree = "<group>"; };
+		27E35DCD16861F3400AF13BE /* FLStringBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLStringBuilder.m; sourceTree = "<group>"; };
+		27E35DCE16861F3400AF13BE /* FLStringBuilderToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLStringBuilderToken.h; sourceTree = "<group>"; };
+		27E35DCF16861F3400AF13BE /* FLStringBuilderToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLStringBuilderToken.m; sourceTree = "<group>"; };
+		27E35DD016861F3400AF13BE /* FLWhitespace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLWhitespace.h; sourceTree = "<group>"; };
+		27E35DD116861F3400AF13BE /* FLWhitespace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLWhitespace.m; sourceTree = "<group>"; };
+		27E35DF816861F9000AF13BE /* FLLocalNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLLocalNotification.h; sourceTree = "<group>"; };
+		27E35DF916861F9000AF13BE /* FLLocalNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLLocalNotification.m; sourceTree = "<group>"; };
+		27E35E5B16867A3C00AF13BE /* FLHttpRequestHeaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FLHttpRequestHeaders.h; path = ../../../../../../ZenLib/Frameworks/Cocoa/Classes/ObjectModel/FLHttpRequestHeaders.h; sourceTree = "<group>"; };
+		27E35E5C16867A3D00AF13BE /* FLHttpRequestHeaders.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FLHttpRequestHeaders.m; path = ../../../../../../ZenLib/Frameworks/Cocoa/Classes/ObjectModel/FLHttpRequestHeaders.m; sourceTree = "<group>"; };
+		27E35E6616867AAE00AF13BE /* FLHttpRequestContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FLHttpRequestContent.h; path = ../../../../../../ZenLib/Frameworks/Cocoa/Classes/ObjectModel/FLHttpRequestContent.h; sourceTree = "<group>"; };
+		27E35E6716867AAE00AF13BE /* FLHttpRequestContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FLHttpRequestContent.m; path = ../../../../../../ZenLib/Frameworks/Cocoa/Classes/ObjectModel/FLHttpRequestContent.m; sourceTree = "<group>"; };
 		27EF7B38165A9C1E00EB7949 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		27EF7B39165A9C1E00EB7949 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		27EF7B3A165A9C1E00EB7949 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -4488,9 +4514,11 @@
 				2741DFCF16793DB600CA87A9 /* NetworkProtocols */,
 				2741E03516793DB600CA87A9 /* NetworkStreams */,
 				2741E04616793DB600CA87A9 /* NetworkUtils */,
+				27E35DF716861F5800AF13BE /* Notifications */,
 				2741E04B16793DB600CA87A9 /* Persistance */,
 				2741E0A016793DB600CA87A9 /* Relationships */,
 				2741E0B216793DB600CA87A9 /* Storable */,
+				27E35DC816861F3400AF13BE /* Strings */,
 				2741E0CB16793DB600CA87A9 /* Strings */,
 				2741E0D516793DB600CA87A9 /* Utils */,
 			);
@@ -5051,14 +5079,16 @@
 				2741DFE316793DB600CA87A9 /* FLHttpResponse.m */,
 				2741DFE416793DB600CA87A9 /* FLHttpServerService.h */,
 				2741DFE516793DB600CA87A9 /* FLHttpServerService.m */,
-				2741DFE616793DB600CA87A9 /* FLMutableHTTPRequest.h */,
-				2741DFE716793DB600CA87A9 /* FLMutableHTTPRequest.m */,
 				2741DFE816793DB600CA87A9 /* FLNetworkServerContext.h */,
 				2741DFE916793DB600CA87A9 /* FLNetworkServerContext.m */,
 				2741DFEA16793DB600CA87A9 /* FLUrlParameterParser.h */,
 				2741DFEB16793DB600CA87A9 /* FLUrlParameterParser.m */,
 				2741DFEC16793DB600CA87A9 /* NSURLRequest+HTTP.h */,
 				2741DFED16793DB600CA87A9 /* NSURLRequest+HTTP.m */,
+				27E35E5B16867A3C00AF13BE /* FLHttpRequestHeaders.h */,
+				27E35E5C16867A3D00AF13BE /* FLHttpRequestHeaders.m */,
+				27E35E6616867AAE00AF13BE /* FLHttpRequestContent.h */,
+				27E35E6716867AAE00AF13BE /* FLHttpRequestContent.m */,
 			);
 			path = HTTP;
 			sourceTree = "<group>";
@@ -5174,8 +5204,6 @@
 		2741E03516793DB600CA87A9 /* NetworkStreams */ = {
 			isa = PBXGroup;
 			children = (
-				2741E03816793DB600CA87A9 /* FLHttpStream.h */,
-				2741E03916793DB600CA87A9 /* FLHttpStream.m */,
 				2741E03A16793DB600CA87A9 /* FLNetworkStream.h */,
 				2741E03B16793DB600CA87A9 /* FLNetworkStream.m */,
 				2741E03C16793DB600CA87A9 /* FLReadStream.h */,
@@ -6096,6 +6124,38 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		27E35DC816861F3400AF13BE /* Strings */ = {
+			isa = PBXGroup;
+			children = (
+				27E35DC916861F3400AF13BE /* NSString+Lists.h */,
+				27E35DCA16861F3400AF13BE /* NSString+Lists.m */,
+				27E35DCB16861F3400AF13BE /* StringBuilder */,
+			);
+			path = Strings;
+			sourceTree = "<group>";
+		};
+		27E35DCB16861F3400AF13BE /* StringBuilder */ = {
+			isa = PBXGroup;
+			children = (
+				27E35DCC16861F3400AF13BE /* FLStringBuilder.h */,
+				27E35DCD16861F3400AF13BE /* FLStringBuilder.m */,
+				27E35DCE16861F3400AF13BE /* FLStringBuilderToken.h */,
+				27E35DCF16861F3400AF13BE /* FLStringBuilderToken.m */,
+				27E35DD016861F3400AF13BE /* FLWhitespace.h */,
+				27E35DD116861F3400AF13BE /* FLWhitespace.m */,
+			);
+			path = StringBuilder;
+			sourceTree = "<group>";
+		};
+		27E35DF716861F5800AF13BE /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				27E35DF816861F9000AF13BE /* FLLocalNotification.h */,
+				27E35DF916861F9000AF13BE /* FLLocalNotification.m */,
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
 		27EF7B37165A9C1E00EB7949 /* Other Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -6281,7 +6341,6 @@
 				2741E69316793DB600CA87A9 /* FLHttpRequest.h in Headers */,
 				2741E69C16793DB600CA87A9 /* FLHttpResponse.h in Headers */,
 				2741E6A516793DB600CA87A9 /* FLHttpServerService.h in Headers */,
-				2741E6AE16793DB600CA87A9 /* FLMutableHTTPRequest.h in Headers */,
 				2741E6B716793DB600CA87A9 /* FLNetworkServerContext.h in Headers */,
 				2741E6C016793DB600CA87A9 /* FLUrlParameterParser.h in Headers */,
 				2741E6C916793DB600CA87A9 /* NSURLRequest+HTTP.h in Headers */,
@@ -6314,7 +6373,6 @@
 				2741E7CC16793DB600CA87A9 /* FLTcpListener.h in Headers */,
 				2741E7D516793DB600CA87A9 /* FLTcpRequest.h in Headers */,
 				2741E7DE16793DB600CA87A9 /* FLParserStack.h in Headers */,
-				2741E7F016793DB600CA87A9 /* FLHttpStream.h in Headers */,
 				2741E7F916793DB600CA87A9 /* FLNetworkStream.h in Headers */,
 				2741E80216793DB600CA87A9 /* FLReadStream.h in Headers */,
 				2741E81416793DB600CA87A9 /* FLTcpStream.h in Headers */,
@@ -6381,8 +6439,6 @@
 				2741EA2016793DB600CA87A9 /* __FLCachedImageBaseClass.h in Headers */,
 				2741EA2916793DB600CA87A9 /* FLCachedImageBaseClass.h in Headers */,
 				2741EA3216793DB600CA87A9 /* NSString+Lists.h in Headers */,
-				2741EA3B16793DB600CA87A9 /* FLStringBuilder.h in Headers */,
-				2741EA4416793DB600CA87A9 /* FLStringBuilderToken.h in Headers */,
 				2741EA4D16793DB600CA87A9 /* FLWhitespace.h in Headers */,
 				2741EA5616793DB600CA87A9 /* FLAnswerable.h in Headers */,
 				2741EA5F16793DB600CA87A9 /* FLAppInfo.h in Headers */,
@@ -6540,6 +6596,10 @@
 				27DB1F8E167A93A500452AD3 /* FLCocoaRequired.h in Headers */,
 				27544F871683981E00C104D7 /* FLStream.h in Headers */,
 				27544F921683C84800C104D7 /* FLObjectPool.h in Headers */,
+				27E35DD216861F3400AF13BE /* NSString+Lists.h in Headers */,
+				27E35DFA16861F9000AF13BE /* FLLocalNotification.h in Headers */,
+				27E35E5D16867A3E00AF13BE /* FLHttpRequestHeaders.h in Headers */,
+				27E35E6816867AB000AF13BE /* FLHttpRequestContent.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6700,7 +6760,6 @@
 				2741E69516793DB600CA87A9 /* FLHttpRequest.h in Headers */,
 				2741E69E16793DB600CA87A9 /* FLHttpResponse.h in Headers */,
 				2741E6A716793DB600CA87A9 /* FLHttpServerService.h in Headers */,
-				2741E6B016793DB600CA87A9 /* FLMutableHTTPRequest.h in Headers */,
 				2741E6B916793DB600CA87A9 /* FLNetworkServerContext.h in Headers */,
 				2741E6C216793DB600CA87A9 /* FLUrlParameterParser.h in Headers */,
 				2741E6CB16793DB600CA87A9 /* NSURLRequest+HTTP.h in Headers */,
@@ -6733,7 +6792,6 @@
 				2741E7CE16793DB600CA87A9 /* FLTcpListener.h in Headers */,
 				2741E7D716793DB600CA87A9 /* FLTcpRequest.h in Headers */,
 				2741E7E016793DB600CA87A9 /* FLParserStack.h in Headers */,
-				2741E7F216793DB600CA87A9 /* FLHttpStream.h in Headers */,
 				2741E7FB16793DB600CA87A9 /* FLNetworkStream.h in Headers */,
 				2741E80416793DB600CA87A9 /* FLReadStream.h in Headers */,
 				2741E81616793DB600CA87A9 /* FLTcpStream.h in Headers */,
@@ -6959,6 +7017,10 @@
 				27DB1F90167A93A500452AD3 /* FLCocoaRequired.h in Headers */,
 				27544F891683981E00C104D7 /* FLStream.h in Headers */,
 				27544F941683C84800C104D7 /* FLObjectPool.h in Headers */,
+				27E35DD416861F3400AF13BE /* NSString+Lists.h in Headers */,
+				27E35DFC16861F9000AF13BE /* FLLocalNotification.h in Headers */,
+				27E35E5F16867A3E00AF13BE /* FLHttpRequestHeaders.h in Headers */,
+				27E35E6A16867AB000AF13BE /* FLHttpRequestContent.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7119,7 +7181,6 @@
 				2741E69416793DB600CA87A9 /* FLHttpRequest.h in Headers */,
 				2741E69D16793DB600CA87A9 /* FLHttpResponse.h in Headers */,
 				2741E6A616793DB600CA87A9 /* FLHttpServerService.h in Headers */,
-				2741E6AF16793DB600CA87A9 /* FLMutableHTTPRequest.h in Headers */,
 				2741E6B816793DB600CA87A9 /* FLNetworkServerContext.h in Headers */,
 				2741E6C116793DB600CA87A9 /* FLUrlParameterParser.h in Headers */,
 				2741E6CA16793DB600CA87A9 /* NSURLRequest+HTTP.h in Headers */,
@@ -7152,7 +7213,6 @@
 				2741E7CD16793DB600CA87A9 /* FLTcpListener.h in Headers */,
 				2741E7D616793DB600CA87A9 /* FLTcpRequest.h in Headers */,
 				2741E7DF16793DB600CA87A9 /* FLParserStack.h in Headers */,
-				2741E7F116793DB600CA87A9 /* FLHttpStream.h in Headers */,
 				2741E7FA16793DB600CA87A9 /* FLNetworkStream.h in Headers */,
 				2741E80316793DB600CA87A9 /* FLReadStream.h in Headers */,
 				2741E81516793DB600CA87A9 /* FLTcpStream.h in Headers */,
@@ -7378,6 +7438,10 @@
 				27DB1F8F167A93A500452AD3 /* FLCocoaRequired.h in Headers */,
 				27544F881683981E00C104D7 /* FLStream.h in Headers */,
 				27544F931683C84800C104D7 /* FLObjectPool.h in Headers */,
+				27E35DD316861F3400AF13BE /* NSString+Lists.h in Headers */,
+				27E35DFB16861F9000AF13BE /* FLLocalNotification.h in Headers */,
+				27E35E5E16867A3E00AF13BE /* FLHttpRequestHeaders.h in Headers */,
+				27E35E6916867AB000AF13BE /* FLHttpRequestContent.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7538,7 +7602,6 @@
 				2741E69616793DB600CA87A9 /* FLHttpRequest.h in Headers */,
 				2741E69F16793DB600CA87A9 /* FLHttpResponse.h in Headers */,
 				2741E6A816793DB600CA87A9 /* FLHttpServerService.h in Headers */,
-				2741E6B116793DB600CA87A9 /* FLMutableHTTPRequest.h in Headers */,
 				2741E6BA16793DB600CA87A9 /* FLNetworkServerContext.h in Headers */,
 				2741E6C316793DB600CA87A9 /* FLUrlParameterParser.h in Headers */,
 				2741E6CC16793DB600CA87A9 /* NSURLRequest+HTTP.h in Headers */,
@@ -7571,7 +7634,6 @@
 				2741E7CF16793DB600CA87A9 /* FLTcpListener.h in Headers */,
 				2741E7D816793DB600CA87A9 /* FLTcpRequest.h in Headers */,
 				2741E7E116793DB600CA87A9 /* FLParserStack.h in Headers */,
-				2741E7F316793DB600CA87A9 /* FLHttpStream.h in Headers */,
 				2741E7FC16793DB600CA87A9 /* FLNetworkStream.h in Headers */,
 				2741E80516793DB600CA87A9 /* FLReadStream.h in Headers */,
 				2741E81716793DB600CA87A9 /* FLTcpStream.h in Headers */,
@@ -7797,6 +7859,10 @@
 				27DB1F91167A93A500452AD3 /* FLCocoaRequired.h in Headers */,
 				27544F8A1683981E00C104D7 /* FLStream.h in Headers */,
 				27544F951683C84800C104D7 /* FLObjectPool.h in Headers */,
+				27E35DD516861F3400AF13BE /* NSString+Lists.h in Headers */,
+				27E35DFD16861F9000AF13BE /* FLLocalNotification.h in Headers */,
+				27E35E6016867A3E00AF13BE /* FLHttpRequestHeaders.h in Headers */,
+				27E35E6B16867AB000AF13BE /* FLHttpRequestContent.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8061,7 +8127,6 @@
 				2741E69816793DB600CA87A9 /* FLHttpRequest.m in Sources */,
 				2741E6A116793DB600CA87A9 /* FLHttpResponse.m in Sources */,
 				2741E6AA16793DB600CA87A9 /* FLHttpServerService.m in Sources */,
-				2741E6B316793DB600CA87A9 /* FLMutableHTTPRequest.m in Sources */,
 				2741E6BC16793DB600CA87A9 /* FLNetworkServerContext.m in Sources */,
 				2741E6C516793DB600CA87A9 /* FLUrlParameterParser.m in Sources */,
 				2741E6CE16793DB600CA87A9 /* NSURLRequest+HTTP.m in Sources */,
@@ -8091,7 +8156,6 @@
 				2741E7D116793DB600CA87A9 /* FLTcpListener.m in Sources */,
 				2741E7DA16793DB600CA87A9 /* FLTcpRequest.m in Sources */,
 				2741E7E316793DB600CA87A9 /* FLParserStack.m in Sources */,
-				2741E7F516793DB600CA87A9 /* FLHttpStream.m in Sources */,
 				2741E7FE16793DB600CA87A9 /* FLNetworkStream.m in Sources */,
 				2741E80716793DB600CA87A9 /* FLReadStream.m in Sources */,
 				2741E81916793DB600CA87A9 /* FLTcpStream.m in Sources */,
@@ -8302,6 +8366,10 @@
 				27DB1E03167A5F6200452AD3 /* FLMutableColorRange.m in Sources */,
 				27544F8C1683981E00C104D7 /* FLStream.m in Sources */,
 				27544F971683C84800C104D7 /* FLObjectPool.m in Sources */,
+				27E35DD716861F3400AF13BE /* NSString+Lists.m in Sources */,
+				27E35DFF16861F9000AF13BE /* FLLocalNotification.m in Sources */,
+				27E35E6216867A3E00AF13BE /* FLHttpRequestHeaders.m in Sources */,
+				27E35E6D16867AB000AF13BE /* FLHttpRequestContent.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8446,7 +8514,6 @@
 				2741E69A16793DB600CA87A9 /* FLHttpRequest.m in Sources */,
 				2741E6A316793DB600CA87A9 /* FLHttpResponse.m in Sources */,
 				2741E6AC16793DB600CA87A9 /* FLHttpServerService.m in Sources */,
-				2741E6B516793DB600CA87A9 /* FLMutableHTTPRequest.m in Sources */,
 				2741E6BE16793DB600CA87A9 /* FLNetworkServerContext.m in Sources */,
 				2741E6C716793DB600CA87A9 /* FLUrlParameterParser.m in Sources */,
 				2741E6D016793DB600CA87A9 /* NSURLRequest+HTTP.m in Sources */,
@@ -8476,7 +8543,6 @@
 				2741E7D316793DB600CA87A9 /* FLTcpListener.m in Sources */,
 				2741E7DC16793DB600CA87A9 /* FLTcpRequest.m in Sources */,
 				2741E7E516793DB600CA87A9 /* FLParserStack.m in Sources */,
-				2741E7F716793DB600CA87A9 /* FLHttpStream.m in Sources */,
 				2741E80016793DB600CA87A9 /* FLNetworkStream.m in Sources */,
 				2741E80916793DB600CA87A9 /* FLReadStream.m in Sources */,
 				2741E81B16793DB600CA87A9 /* FLTcpStream.m in Sources */,
@@ -8687,6 +8753,10 @@
 				27DB1E05167A5F6200452AD3 /* FLMutableColorRange.m in Sources */,
 				27544F8E1683981E00C104D7 /* FLStream.m in Sources */,
 				27544F991683C84800C104D7 /* FLObjectPool.m in Sources */,
+				27E35DD916861F3400AF13BE /* NSString+Lists.m in Sources */,
+				27E35E0116861F9000AF13BE /* FLLocalNotification.m in Sources */,
+				27E35E6416867A3E00AF13BE /* FLHttpRequestHeaders.m in Sources */,
+				27E35E6F16867AB000AF13BE /* FLHttpRequestContent.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8831,7 +8901,6 @@
 				2741E69716793DB600CA87A9 /* FLHttpRequest.m in Sources */,
 				2741E6A016793DB600CA87A9 /* FLHttpResponse.m in Sources */,
 				2741E6A916793DB600CA87A9 /* FLHttpServerService.m in Sources */,
-				2741E6B216793DB600CA87A9 /* FLMutableHTTPRequest.m in Sources */,
 				2741E6BB16793DB600CA87A9 /* FLNetworkServerContext.m in Sources */,
 				2741E6C416793DB600CA87A9 /* FLUrlParameterParser.m in Sources */,
 				2741E6CD16793DB600CA87A9 /* NSURLRequest+HTTP.m in Sources */,
@@ -8861,7 +8930,6 @@
 				2741E7D016793DB600CA87A9 /* FLTcpListener.m in Sources */,
 				2741E7D916793DB600CA87A9 /* FLTcpRequest.m in Sources */,
 				2741E7E216793DB600CA87A9 /* FLParserStack.m in Sources */,
-				2741E7F416793DB600CA87A9 /* FLHttpStream.m in Sources */,
 				2741E7FD16793DB600CA87A9 /* FLNetworkStream.m in Sources */,
 				2741E80616793DB600CA87A9 /* FLReadStream.m in Sources */,
 				2741E81816793DB600CA87A9 /* FLTcpStream.m in Sources */,
@@ -9072,6 +9140,10 @@
 				27DB1E02167A5F6200452AD3 /* FLMutableColorRange.m in Sources */,
 				27544F8B1683981E00C104D7 /* FLStream.m in Sources */,
 				27544F961683C84800C104D7 /* FLObjectPool.m in Sources */,
+				27E35DD616861F3400AF13BE /* NSString+Lists.m in Sources */,
+				27E35DFE16861F9000AF13BE /* FLLocalNotification.m in Sources */,
+				27E35E6116867A3E00AF13BE /* FLHttpRequestHeaders.m in Sources */,
+				27E35E6C16867AB000AF13BE /* FLHttpRequestContent.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9216,7 +9288,6 @@
 				2741E69916793DB600CA87A9 /* FLHttpRequest.m in Sources */,
 				2741E6A216793DB600CA87A9 /* FLHttpResponse.m in Sources */,
 				2741E6AB16793DB600CA87A9 /* FLHttpServerService.m in Sources */,
-				2741E6B416793DB600CA87A9 /* FLMutableHTTPRequest.m in Sources */,
 				2741E6BD16793DB600CA87A9 /* FLNetworkServerContext.m in Sources */,
 				2741E6C616793DB600CA87A9 /* FLUrlParameterParser.m in Sources */,
 				2741E6CF16793DB600CA87A9 /* NSURLRequest+HTTP.m in Sources */,
@@ -9246,7 +9317,6 @@
 				2741E7D216793DB600CA87A9 /* FLTcpListener.m in Sources */,
 				2741E7DB16793DB600CA87A9 /* FLTcpRequest.m in Sources */,
 				2741E7E416793DB600CA87A9 /* FLParserStack.m in Sources */,
-				2741E7F616793DB600CA87A9 /* FLHttpStream.m in Sources */,
 				2741E7FF16793DB600CA87A9 /* FLNetworkStream.m in Sources */,
 				2741E80816793DB600CA87A9 /* FLReadStream.m in Sources */,
 				2741E81A16793DB600CA87A9 /* FLTcpStream.m in Sources */,
@@ -9457,6 +9527,10 @@
 				27DB1E04167A5F6200452AD3 /* FLMutableColorRange.m in Sources */,
 				27544F8D1683981E00C104D7 /* FLStream.m in Sources */,
 				27544F981683C84800C104D7 /* FLObjectPool.m in Sources */,
+				27E35DD816861F3400AF13BE /* NSString+Lists.m in Sources */,
+				27E35E0016861F9000AF13BE /* FLLocalNotification.m in Sources */,
+				27E35E6316867A3E00AF13BE /* FLHttpRequestHeaders.m in Sources */,
+				27E35E6E16867AB000AF13BE /* FLHttpRequestContent.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9601,7 +9675,6 @@
 				2741E69B16793DB600CA87A9 /* FLHttpRequest.m in Sources */,
 				2741E6A416793DB600CA87A9 /* FLHttpResponse.m in Sources */,
 				2741E6AD16793DB600CA87A9 /* FLHttpServerService.m in Sources */,
-				2741E6B616793DB600CA87A9 /* FLMutableHTTPRequest.m in Sources */,
 				2741E6BF16793DB600CA87A9 /* FLNetworkServerContext.m in Sources */,
 				2741E6C816793DB600CA87A9 /* FLUrlParameterParser.m in Sources */,
 				2741E6D116793DB600CA87A9 /* NSURLRequest+HTTP.m in Sources */,
@@ -9631,7 +9704,6 @@
 				2741E7D416793DB600CA87A9 /* FLTcpListener.m in Sources */,
 				2741E7DD16793DB600CA87A9 /* FLTcpRequest.m in Sources */,
 				2741E7E616793DB600CA87A9 /* FLParserStack.m in Sources */,
-				2741E7F816793DB600CA87A9 /* FLHttpStream.m in Sources */,
 				2741E80116793DB600CA87A9 /* FLNetworkStream.m in Sources */,
 				2741E80A16793DB600CA87A9 /* FLReadStream.m in Sources */,
 				2741E81C16793DB600CA87A9 /* FLTcpStream.m in Sources */,
@@ -9842,6 +9914,10 @@
 				27DB1E06167A5F6200452AD3 /* FLMutableColorRange.m in Sources */,
 				27544F8F1683981E00C104D7 /* FLStream.m in Sources */,
 				27544F9A1683C84800C104D7 /* FLObjectPool.m in Sources */,
+				27E35DDA16861F3400AF13BE /* NSString+Lists.m in Sources */,
+				27E35E0216861F9000AF13BE /* FLLocalNotification.m in Sources */,
+				27E35E6516867A3E00AF13BE /* FLHttpRequestHeaders.m in Sources */,
+				27E35E7016867AB000AF13BE /* FLHttpRequestContent.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

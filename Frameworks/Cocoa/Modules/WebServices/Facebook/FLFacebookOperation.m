@@ -86,7 +86,7 @@
 	NSURL* URL = [NSURL URLWithString:url];
 	FLAssertIsNotNil_v(URL, nil);
     
-    FLMutableHttpRequest* httpRequest = [FLMutableHttpRequest httpPostRequestWithURL:URL];
+    FLHttpRequest* httpRequest = [FLHttpRequest httpPostRequestWithURL:URL];
 
     FLHttpResponse* httpResponse = [self sendHttpRequest:httpRequest];
     

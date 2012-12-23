@@ -82,7 +82,7 @@
 
     NSString* secret = [NSString stringWithFormat:@"%@&%@", _app.consumerSecret, _authData.oauth_token_secret];
 
-    FLMutableHttpRequest* request = [FLMutableHttpRequest httpPostRequestWithURL:_url];
+    FLHttpRequest* request = [FLHttpRequest httpPostRequestWithURL:_url];
 	[request setOAuthAuthorizationHeader:oauthHeader consumerKey:_app.consumerKey secret:secret];
 
     FLHttpResponse* response = [self sendHttpRequest:request];
