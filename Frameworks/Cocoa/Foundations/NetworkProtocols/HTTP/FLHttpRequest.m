@@ -315,7 +315,8 @@
             BOOL redirect = _response.wantsRedirect;
             if(redirect) {
                 NSURL* redirectURL = self.httpResponse.redirectURL;
-                if([self shouldRedirectToURL:redirectURL]) {
+                redirect = [self shouldRedirectToURL:redirectURL];
+                if(redirect) {
                     [self releaseStream];
                     [self openHttpStreamWithURL:redirectURL];
                 }
