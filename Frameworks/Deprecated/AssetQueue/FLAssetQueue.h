@@ -12,9 +12,7 @@
 #import "FLDatabase.h"
 #import "FLPerformSelectorOperation.h"
 #import "FLAssetQueueState.h"
-
 #import "FLImageAsset.h"
-#import "FLService.h"
 
 @class FLAssetQueueLoadLock;
 
@@ -27,7 +25,7 @@ typedef enum
 typedef void (^FLQueuedAssetVisitor)(FLQueuedAsset* asset);
 typedef void (^FLAssetQueueLoadAssetBlock)(id loadedAsset, NSError* error);
 
-@interface FLAssetQueue : FLService<NSFastEnumeration> {
+@interface FLAssetQueue : NSObject<NSFastEnumeration> {
 @private
 	NSString* _queueUID;
 	NSMutableArray* _assets;
@@ -81,6 +79,9 @@ typedef void (^FLAssetQueueLoadAssetBlock)(id loadedAsset, NSError* error);
 - (void) didChangeAssetQueue;
 
 - (Class) queueClass;
+
+- (void) openService;
+- (void) closeService;
 
 @end
 typedef void (^FLAssetQueueLoaderBlock)(FLAssetQueueLoadLock* loadLock);

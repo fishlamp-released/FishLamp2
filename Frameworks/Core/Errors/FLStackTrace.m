@@ -39,7 +39,10 @@ const char* __copy_str(const char* str, int* len) {
 
 // [NSThread callStackSymbols]
 
-FLStackTrace_t _FLStackTraceMake(const char* filePath, const char* function, int lineNumber, BOOL withCallStack) {
+FLStackTrace_t FLStackTraceMake(    const char* filePath, 
+                                    const char* function, 
+                                    int lineNumber, 
+                                    BOOL withCallStack) {
     void* callstack[128];
     
     FLStackTrace_t trace;

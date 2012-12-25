@@ -9,7 +9,12 @@
 #import "FLFacebookService.h"
 #import "NSString+URL.h"
 #import "FLUserDataStorageService.h"
-#import "FLContext.h"
+#import "FLService.h"
+
+@interface FLFacebookService ()
+@property (readwrite, strong) FLDatabase* database;
+
+@end
 
 @implementation FLFacebookService
 
@@ -17,9 +22,11 @@
 @synthesize appId = _appId;
 @synthesize encodedToken = _encodedToken;
 @synthesize permissions = _permissions;
+@synthesize database = _database;
 
 #if FL_MRC
 - (void) dealloc {
+    [_database release];
     [_permissions release];
 	[_encodedToken release];
 	[_appId release];
@@ -32,8 +39,16 @@
     return FLAutorelease([[[self class] alloc] init]);
 }
 
-- (FLDatabase*) database {
-    return [[self.context storageService] documentsDatabase];
+- (void) openService:(id) sender {
+    self.database = [self.services resourceForKey:FLUserDataObjectDatabase];
+}
+
+- (void) closeService:(id) sender {
+    self.database = nil;
+    self.appId = nil;
+    self.encodedToken = nil;
+    self.permissions = nil;
+    self.facebookNetworkSession = nil;
 }
 
 - (void) logout
@@ -154,6 +169,7 @@
 	}
 	return _encodedToken;
 }
+
 
 
 

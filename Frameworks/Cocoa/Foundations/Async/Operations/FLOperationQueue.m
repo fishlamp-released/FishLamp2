@@ -282,7 +282,7 @@
     @try {
         self.currentOperation = operation;
         [self.currentOperation  addObserver:self];
-        return [operation runSynchronously];
+        return FLRunSynchronously(self.currentOperation);
     }
     @catch(NSException* ex) {
         return ex.error;
@@ -294,13 +294,13 @@
     
 }
 
-- (void) startAsync:(FLFinisher*) finisher {
-    [FLDefaultQueue dispatchBlock: ^{
-        [finisher setFinishedWithResult:[self runSynchronously]];
-    }];
+- (FLFinisher*) dispatch:(FLResultBlock) completion {
+    FLFinisher* finisher = [FLFinisher finisher:completion];
+    [self wasDispatched:finisher];
+    return finisher;
 }
 
-- (id) runSynchronously {
+- (void) wasDispatched:(FLFinisher*) finisher {
     self.cancelled = NO;
 
     id outResult = [NSMutableDictionary dictionary];
@@ -319,17 +319,7 @@
         }
     }
 
-    return outResult;
-}
-
-- (FLFinisher*) startOperationsInDispatcher:(id<FLDispatcher>) inDispatcher {
-    return [inDispatcher dispatchFinishableBlock:^(FLFinisher* finisher){
-        [finisher setFinishedWithResult:[self runSynchronously]];
-    }];
-}
-
-- (FLFinisher*) startOperations {
-    return [self startOperationsInDispatcher:FLDefaultQueue];
+    [finisher setFinishedWithResult:outResult];
 }
 
 - (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state 

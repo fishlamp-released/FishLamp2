@@ -6,17 +6,19 @@
 //  Copyright 2011 GreenTongue Software. All rights reserved.
 //
 
-#import "FLCocoaRequired.h"
+#import "FLService.h"
 
 #import "FacebookEnums.h"
-#import "FLService.h"
 #import "FLFacebookAll.h"
 #import "FLFacebookNetworkSession.h"
 #import "FLFacebookHttpRequest.h"
 #import "FLFacebookAuthenticationResponse.h"
 
+@class FLDatabase;
+
 #define FLFacebookErrorKey @"fb_error"
 #define FLFacebookErrorDomain @"FLFacebookErrorDomain"
+
 
 typedef enum { 
 	FLFacebookErrorCodeNone,
@@ -35,6 +37,7 @@ typedef enum {
 	NSString* _appId;
 	NSString* _encodedToken;
     NSArray* _permissions;
+    FLDatabase* _database;
 }
 
 + (id) facebookService;
@@ -52,4 +55,3 @@ typedef enum {
 
 @end
 
-FLDeclareService(facebookService, FLFacebookService);

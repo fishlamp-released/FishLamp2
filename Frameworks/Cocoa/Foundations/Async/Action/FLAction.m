@@ -339,16 +339,18 @@ TODO("MF: fix activity updater");
     return [self.operations requestCancel];
 }
 
-- (FLFinisher*) startAction:(FLResultBlock) resultBlock {
-    return [self startActionInContext:nil completion:resultBlock];
+- (FLFinisher*) dispatch:(FLResultBlock) completion {
+    FLFinisher* finisher = [FLFinisher finisher:completion];
+    [self wasDispatched:finisher];
+    return finisher;
 }
 
-- (void) startAsync:(FLFinisher*) finisher {
+- (void) wasDispatched:(FLFinisher*) finisher {
 
     [FLForegroundQueue dispatchBlock:^{
         [self actionStarted];
         
-        [FLHighPriorityQueue dispatchSynchronousObject:self.operations 
+        [FLHighPriorityQueue dispatchObject:self.operations
                                  completion:^(FLResult result) {
                 
                 [FLForegroundQueue dispatchBlock:^{
@@ -357,26 +359,8 @@ TODO("MF: fix activity updater");
             }];
     }];
 
+
 }
-
-- (FLFinisher*) startActionInContext:(FLOperationContext*) context 
-                          completion:(FLResultBlock) resultBlock {
-
-FIXME("context and actions");
-//    FLOperationQueueRunner* runner = [FLOperationQueueRunner operationQueueRunner:self.operations];
-//    if(context) {
-//        [context addOperation:runner];
-//    }
-        
-    FLFinisher* finisher = [FLFinisher finisherWithResultBlock:resultBlock];
-    [self startAsync:finisher];
-    return finisher;
-}
-
-- (FLResult) runSynchronously {
-    return [[self startActionInContext:nil completion:nil] waitUntilFinished];
-}
-
 
 //- (id) firstOperation {
 //    return self.operations.firstOperation;

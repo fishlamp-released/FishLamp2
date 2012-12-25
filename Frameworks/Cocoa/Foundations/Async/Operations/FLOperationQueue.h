@@ -70,9 +70,6 @@ typedef id (^FLCreateOperationBlock)();
 
 - (void) removeAllOperations;
 
-- (FLFinisher*) startOperationsInDispatcher:(id<FLDispatcher>) inDispatcher;
-- (FLFinisher*) startOperations;
-
 // optional overrides
 - (void) operationWasAdded:(FLOperation*) operation;
 - (void) operationWasRemoved:(FLOperation*) operation;

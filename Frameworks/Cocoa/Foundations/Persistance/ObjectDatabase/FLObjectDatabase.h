@@ -8,6 +8,8 @@
 #import "FLCore.h"
 #import "FLDatabase.h"
 
+#import "FLService.h"
+
 typedef enum {
     FLObjectDatabaseEventHintNone,
     FLObjectDatabaseEventHintLoaded,

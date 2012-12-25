@@ -40,7 +40,7 @@
     [_dispatcher dispatchBlock: ^{
         [_requests addObject:request];
         [self willStartRequest:request];
-        [ ((id)request) startAsync:finisher];
+        [ ((id)request) wasDispatched:finisher];
     }
     completion:^(FLResult result) {
         

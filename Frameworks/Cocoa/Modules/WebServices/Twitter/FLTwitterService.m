@@ -8,15 +8,13 @@
 
 #import "FLTwitterService.h"
 #import "NSString+GUID.h"
-#import "FLUserDataStorageService.h"
-#import "FLContext.h"
-
-
-service_register_(twitterService, FLTwitterService, @"com.fishlamp.service.twitter");
+#import "FLService.h"
+#import "FLDatabase.h"
 
 @interface FLTwitterService ()
 @property (readwrite, strong) FLOAuthSession* oauthSession;
 @property (readwrite, strong) FLOAuthApp* oauthInfo;
+@property (readwrite, strong) FLDatabase* database;
 
 - (void) didAuthenticateForUserGuid:(NSString*) userGuid 
                        oauthSession:(FLOAuthSession*) oauthSession;
@@ -34,6 +32,7 @@ service_register_(twitterService, FLTwitterService, @"com.fishlamp.service.twitt
 
 @synthesize oauthInfo = _oauthInfo; 
 @synthesize oauthSession = _oauthSession; 
+@synthesize database = _database;
 
 - (id) init {
 	if((self = [super init])) {
@@ -56,15 +55,12 @@ service_register_(twitterService, FLTwitterService, @"com.fishlamp.service.twitt
 
 #if FL_MRC
 - (void) dealloc {
+    [_database release];
     [_oauthInfo release];
     [_oauthSession release];
     [super dealloc];
 }
 #endif
-
-- (FLDatabase*) database {
-    return [[self.context storageService] documentsDatabase];
-}
 
 + (void) clearTwitterCookies {
   	NSMutableArray* deleteThese = [NSMutableArray array];
@@ -102,6 +98,17 @@ service_register_(twitterService, FLTwitterService, @"com.fishlamp.service.twitt
 	[self.database saveObject:oauthSession];
 	self.oauthSession = oauthSession;
 }
+
+- (void) openService:(id) sender {
+    self.database = [self.services resourceForKey:FLUserDataObjectDatabase];
+}
+
+- (void) closeService:(id) sender {
+    self.database = nil;
+    self.oauthSession = nil;
+    self.oauthInfo = nil;
+}
+
 
 @end
 

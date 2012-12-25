@@ -69,14 +69,7 @@ NSString* const FLOperationFinishedEvent;
     FLThrowAbortExeptionIf(self.wasCancelled);
 }
 
-- (void) startAsync:(FLFinisher*) finisher {
-    [FLDefaultQueue dispatchSynchronousObject:^{
-        [finisher setFinishedWithResult:[self runSynchronously]];
-    }]; 
-}
-
-- (FLResult) runSynchronously {
-
+- (void) wasDispatched:(FLFinisher*) finisher {
     self.cancelled = NO;
     id result = nil;
     
@@ -95,8 +88,14 @@ NSString* const FLOperationFinishedEvent;
     }
     
     [self postObservation:@selector(operationDidFinish:withResult:) withObject:result];
-    
-    return result;
+
+    [finisher setFinishedWithResult:result];
+}
+
+- (FLFinisher*) dispatch:(FLCompletionBlock) completion {
+    FLFinisher* finisher = [FLFinisher finisher:completion];
+    [self wasDispatched:finisher];
+    return finisher;
 }
 
 - (void) operationWasCancelled:(FLOperation*) operation {

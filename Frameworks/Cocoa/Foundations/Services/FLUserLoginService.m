@@ -9,14 +9,10 @@
 #import "FLUserLoginService.h"
 #import "FLLowMemoryHandler.h"
 #import "FLApplicationDataVersion.h"
-#import "FLApplicationDataModel.h"
 #import "NSFileManager+FLExtras.h"
 #import "NSString+Guid.h"
-#import "FLBackgroundTaskMgr.h"
-#import "FLUserDataStorageService.h"
-#import "FLContext.h"
+#import "FLService.h"
 
-service_register_(userService, FLUserLoginService, @"com.fishlamp.service.user-login");
 
 @interface FLUserLoginService ()
 @property (readwrite, assign, getter=isAuthenticated) BOOL authenticated;
@@ -28,8 +24,7 @@ service_register_(userService, FLUserLoginService, @"com.fishlamp.service.user-l
     return FLAutorelease([[[self class] alloc] init]);
 }
 
-- (void) closeService {
-	[super closeService];
+- (void) closeService:(id) sender {
     
 //    [self postObservation:@selector(userSessionWillClose:)];
 //    [super closeContext];
@@ -74,43 +69,48 @@ service_register_(userService, FLUserLoginService, @"com.fishlamp.service.user-l
 //    }
 }
 
-- (void) openService {
+- (void) openService:(id) sender {
 //    FLAssert_v(!self.isContextOpen, @"session already open");
 //    FLAssert_v(FLStringIsNotEmpty(self.userLogin.userName), @"invalid userLogin");
 
 //    [self postObservation:@selector(userSessionWillOpen:)];
-    [super openService];
+//    [super openService];
 //    [self postObservation:@selector(userSessionDidOpen:)];
 }
 
 - (void) saveUserLogin {
-    [[FLApplicationDataModel instance] saveUserLogin:[self.context userLogin]];
+//    [[FLApplicationDataModel instance] saveUserLogin:[self.context userLogin]];
 }
 
 - (BOOL) isAuthenticated {
-	return [self.context userLogin].isAuthenticatedValue;
+return NO;
+//	return [self.context userLogin].isAuthenticatedValue;
 }
 
 - (void) setAuthenticated:(BOOL) authenticated {
-    [self.context userLogin].isAuthenticatedValue = authenticated;
-    [[FLApplicationDataModel instance] saveUserLogin:[self.context userLogin]];
+//    [self.context userLogin].isAuthenticatedValue = authenticated;
+//    [[FLApplicationDataModel instance] saveUserLogin:[self.context userLogin]];
 }
 
 + (FLUserLogin*) loadLastUserLogin {
-	return [[FLApplicationDataModel instance] loadLastUserLogin];
+
+return nil;
+//	return [[FLApplicationDataModel instance] loadLastUserLogin];
 }
 
 + (FLUserLogin*) loadDefaultUser {
-	FLUserLogin* login = [[FLApplicationDataModel instance] loadUserLoginWithGuid:[NSString zeroGuidString]];
-    if(!login) {
-        login = [FLUserLogin userLogin];
-        login.userName = NSLocalizedString(@"Guest", nil);
-        login.isAuthenticatedValue = YES;
-        login.userGuid = [NSString zeroGuidString];
-        [[FLApplicationDataModel instance] saveUserLogin:login];
-        [[FLApplicationDataModel instance] setCurrentUser:login];
-    }
-	return login;
+//	FLUserLogin* login = [[FLApplicationDataModel instance] loadUserLoginWithGuid:[NSString zeroGuidString]];
+//    if(!login) {
+//        login = [FLUserLogin userLogin];
+//        login.userName = NSLocalizedString(@"Guest", nil);
+//        login.isAuthenticatedValue = YES;
+//        login.userGuid = [NSString zeroGuidString];
+//        [[FLApplicationDataModel instance] saveUserLogin:login];
+//        [[FLApplicationDataModel instance] setCurrentUser:login];
+//    }
+//	return login;
+
+    return nil;
 }
 
 @end

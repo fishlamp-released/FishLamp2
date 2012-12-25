@@ -11,9 +11,16 @@
 
 #import "FLFinisher.h"
 #import "FLResult.h"
-#import "FLDispatchable.h"
 
 typedef void (^FLFinishableBlock)(FLFinisher* finisher);
+
+@protocol FLDispatchable <NSObject>
+- (void) wasDispatched:(FLFinisher*) finisher;
+- (FLFinisher*) dispatch:(FLCompletionBlock) completion;
+@end
+
+#define FLRunSynchronously(OBJECT) \
+            FLThrowError([[OBJECT dispatch:nil] waitUntilFinished])
 
 @protocol FLDispatcher <NSObject>
 
@@ -35,26 +42,26 @@ typedef void (^FLFinishableBlock)(FLFinisher* finisher);
 // FLAsyncDispatchable dispatching
 // 
 
-- (FLFinisher*) dispatchAsync:(id /*FLDispatchable*/) dispatchableObject;
+- (FLFinisher*) dispatchObject:(id /*FLDispatchable*/) dispatchableObject;
 
-- (FLFinisher*) dispatchAsync:(id /*FLDispatchable*/) dispatchableObject 
-                   completion:(FLCompletionBlock) completion;
+- (FLFinisher*) dispatchObject:(id /*FLDispatchable*/) dispatchableObject 
+                    completion:(FLCompletionBlock) completion;
 
 //
-// FLSynchronouslyDispatchable object dispatching
+//// FLSynchronouslyDispatchable object dispatching
+////
 //
-
-- (FLFinisher*) dispatchSynchronousObject:(id /*FLDispatchable*/) synchronouslyDispatchable;
-
-- (FLFinisher*) dispatchSynchronousObject:(id /*FLDispatchable*/) synchronouslyDispatchable
-                    withInput:(id) input;
-
-- (FLFinisher*) dispatchSynchronousObject:(id /*FLDispatchable*/) synchronouslyDispatchable
-                    withInput:(id) input
-                   completion:(FLCompletionBlock) completion;
-
-- (FLFinisher*) dispatchSynchronousObject:(id /*FLDispatchable*/) object
-                   completion:(FLCompletionBlock) completion;
+//- (FLFinisher*) dispatchSynchronousObject:(id /*FLDispatchable*/) synchronouslyDispatchable;
+//
+//- (FLFinisher*) dispatchSynchronousObject:(id /*FLDispatchable*/) synchronouslyDispatchable
+//                    withInput:(id) input;
+//
+//- (FLFinisher*) dispatchSynchronousObject:(id /*FLDispatchable*/) synchronouslyDispatchable
+//                    withInput:(id) input
+//                   completion:(FLCompletionBlock) completion;
+//
+//- (FLFinisher*) dispatchSynchronousObject:(id /*FLDispatchable*/) object
+//                   completion:(FLCompletionBlock) completion;
 
 
 //

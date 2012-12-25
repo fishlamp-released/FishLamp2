@@ -14,6 +14,9 @@
 #define ASSERTIONS 1
 #endif
 
+#define callVardicMethodSafely(values...) ({ values *v = { values }; _actualFunction(values, sizeof(v) / sizeof(*v)); })
+
+
 #import "FLConfirmations.h"
 
 #if ASSERTIONS

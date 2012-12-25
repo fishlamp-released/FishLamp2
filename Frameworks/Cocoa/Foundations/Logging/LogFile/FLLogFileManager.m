@@ -56,15 +56,13 @@ FLSynthesizeSingleton(FLLogFileManager);
     return nil;
 }
    
-- (void) openService {
+- (void) openService:(id) openedBy {
     [self _close];
     [self _setUserName];
-    [super openService];
 }
 
-- (void) closeService {
+- (void) closeService:(id) closedBy {
     [self _close];
-    [self closeService];
 }
 
 - (id) init {

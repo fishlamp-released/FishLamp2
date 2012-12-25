@@ -9,7 +9,6 @@
 #import "FLCocoaRequired.h"
 #import "FLCore.h"
 #import "FLCancellable.h"
-#import "FLContextual.h"
 #import "FLOperation.h"
 
 @protocol FLLengthyTaskDelegate;

@@ -41,7 +41,7 @@
     [tests sortedArrayUsingSelector:@selector(compare:)];
     
     for(FLTestCase* test in tests) {
-        FLThrowError([test runSynchronously]);
+        FLRunSynchronously(test);
     }
     
     [asyncTask setFinished];

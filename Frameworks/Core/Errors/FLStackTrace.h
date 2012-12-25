@@ -28,10 +28,10 @@ typedef struct {
 extern void FLStackTraceInit(FLStackTrace_t* stackTrace, void* callstack);
 extern void FLStackTraceFree(FLStackTrace_t* trace);
 
-extern FLStackTrace_t _FLStackTraceMake(const char* filePath, const char* function, int lineNumber, BOOL withCallStack);
-
-#define FLStackTraceMake(__WITH_STACK_TRACE__) \
-    _FLStackTraceMake(__FILE__, __PRETTY_FUNCTION__, __LINE__, __WITH_STACK_TRACE__)
+extern FLStackTrace_t FLStackTraceMake( const char* filePath, 
+                                        const char* function, 
+                                        int lineNumber, 
+                                        BOOL withCallStack);
 
 NS_INLINE
 const char* FLStackEntryAtIndex(FLCallStack stack, NSUInteger index) {
@@ -57,8 +57,12 @@ const char* FLStackEntryAtIndex(FLCallStack stack, NSUInteger index) {
 - (const char*) stackEntryAtIndex:(int) idx;
 @end
 
+
+#define FLStackTraceToHere(__WITH_STACK_TRACE__) \
+            FLStackTraceMake(__FILE__, __PRETTY_FUNCTION__, __LINE__, __WITH_STACK_TRACE__)
+
 #define FLCreateStackTrace(__WITH_STACK_TRACE__) \
-            [FLStackTrace stackTrace:FLStackTraceMake(__WITH_STACK_TRACE__)]
+            [FLStackTrace stackTrace:FLStackTraceToHere(__WITH_STACK_TRACE__)]
 
 
 

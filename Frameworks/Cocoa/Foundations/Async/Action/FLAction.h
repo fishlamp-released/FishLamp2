@@ -85,13 +85,6 @@ typedef void (^FLActionErrorBlock)(FLAction* action, NSError* error);
 + (void) setActionErrorDelegate:(id<FLActionErrorDelegate>) delegate;
 + (void) setGlobalFailedCallback:(id) target action:(SEL) action;
 
-// chooses the right dispatchers for you.
-- (FLFinisher*) startAction:(FLResultBlock) resultBlock;
-
-- (FLFinisher*) startActionInContext:(FLOperationContext*) context 
-                          completion:(FLResultBlock) resultBlock;
-
-
 // optional overrides
 - (void) showProgress;
 - (void) willHandleError:(NSError*) error;

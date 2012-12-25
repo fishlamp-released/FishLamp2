@@ -7,18 +7,14 @@
 //
 
 #import "FLService.h"
-#import "FLUserDataStorageService.h"
 #import "FLStorableImage.h"
 
-FLDeclareService(imageCacheService, FLImageCacheService);
+@class FLDatabase;
+@class FLImageFolder;
 
-@interface FLImageCacheService : FLService
-
-@property (readonly, strong) FLDatabase* cacheDatabase;
-@property (readonly, strong) FLImageFolder* imageCacheFolder;
-
-- (FLStorableImage*) loadImageForURL:(NSURL*) url;
-
-- (void) deleteImage:(FLStorableImage*) image;
-- (void) saveImage:(FLStorableImage*) image;
+@interface FLImageCacheService : FLService {
+@private
+    FLDatabase* cacheDatabase;
+    FLImageFolder* imageCacheFolder;
+}
 @end

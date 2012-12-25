@@ -120,8 +120,6 @@ FLAssertDefaultInitNotCalled_v(@"hello");
     }
     
     self.state = state;
-
-    [super openService];
 }
 
 - (void) closeService {
@@ -138,8 +136,6 @@ FLAssertDefaultInitNotCalled_v(@"hello");
 //            FLReleaseWithNil(_locks);
         }
     }
-
-    [super closeService];
 }
 
 - (NSUInteger) count {

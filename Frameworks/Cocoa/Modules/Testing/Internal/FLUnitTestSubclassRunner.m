@@ -93,7 +93,7 @@
         
         for(Class aClass in classList) {
             FLUnitTest* test = FLAutorelease([[[aClass class] alloc] init]);
-            FLUnitTestResult* result = FLThrowError([test runSynchronously]);
+            FLUnitTestResult* result = FLRunSynchronously(test);
             [resultArray addObject:result];
         }
     }

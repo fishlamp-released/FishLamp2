@@ -203,7 +203,7 @@
 		_willOpen = NO;
 		_isOpening = NO;
 		
-        [super closeService];
+        [self.services closeServices:self];
         
 //        [self postObservation:@selector(userServiceDidClose:)];
     }
@@ -279,6 +279,8 @@
 	_open = YES;
 	_willOpen = NO;
 	_isOpening = NO;
+
+    [self.services openServices:self];
 
 //    self.backgroundTasks = [FLBackgroundTaskMgr create];
 //    [self addAppService:_backgroundTasks];
@@ -359,8 +361,6 @@
     _open = NO;
     _upgrading = NO;
     [self _beginOpeningService];
-    
-    [super openService];
 }
 
 - (void) finishUpgradeTasks {	

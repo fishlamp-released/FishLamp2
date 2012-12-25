@@ -102,4 +102,3 @@ typedef void (^FLObjectBlock)(id object);
 
 @end
 
-FLDeclareService(backgroundTaskService, FLBackgroundTaskMgr);

@@ -50,6 +50,9 @@
 
 + (id) userDataStorageService;
 
+- (void) openService;
+- (void) closeService;
+
 @end
 
 @interface FLUserDataStorageService (PlatformSpecific)
@@ -64,4 +67,7 @@
 
 @end
 
-FLDeclareService(storageService, FLUserDataStorageService);
+@protocol FLUserContextResponder <NSObject>
+- (void) userContextDidOpen:(FLUserDataStorageService*) service;
+- (void) userContextDidClose:(FLUserDataStorageService*) service;
+@end

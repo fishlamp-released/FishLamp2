@@ -71,8 +71,13 @@ synthesize_singleton_(FLFrameworkErrorDomain);
         case FLFrameworkTcpStreamErrorCode:
             return @"com.fishlamp.error.tcp";
         break;
+        
         case FLErrorResultFailed:
             return @"com.fishlamp.error.results-failed";
+        break;
+        
+        case FLUnhandledServiceRequestErrorCode:
+            return @"com.fishlamp.error.unhandled-service-request";
         break;
     }
     return @"";

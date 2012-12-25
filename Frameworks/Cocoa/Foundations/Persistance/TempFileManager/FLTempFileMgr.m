@@ -20,16 +20,15 @@
 
 @synthesize folder = _folder;
 
-- (void) openService {
+
+- (void) openService:(id) sender {
 //    self.folder = [self.context storageService].tempFolder;
     [self beginPurgeInBackgroundThread:nil];
-    [super openService];
 }
 
-- (void) closeService {
+- (void) closeService:(id) sender {
     [self beginPurgeInBackgroundThread:nil];
     self.folder = nil;
-    [self closeService];
 }
 
 - (id) initWithFolder:(FLFolder*) folder {

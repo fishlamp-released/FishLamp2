@@ -9,15 +9,13 @@
 #import "FLBackgroundTaskMgr.h"
 #import "FLOperationContext.h"
 #import "FLTraceOff.h"
-#import "FLContext.h"
+#import "FLService.h"
 
 #define kDelay 0.5f
 
 @interface FLBackgroundTaskMgr ()
 - (void) _handleReadyState;
 @end
-
-service_register_(backgroundTaskService, FLBackgroundTaskMgr, @"com.fishlamp.service.background-task");
 
 @implementation FLBackgroundTaskMgr
 
@@ -268,15 +266,14 @@ FIXME("attach to user sessions....");
 
 FIXME("attach to user sessions....");
 
-- (void) openService {
+
+- (void) openService:(id) openedBy {
     [self scheduleNextBackgroundTask];
-    [super openService];
 }
 
-- (void) closeService {
+- (void) closeService:(id) closedBy {
     [self _cancel];
     [self resetAllTasks];
-    [super closeService];
 }
 
 - (BOOL) isEnabled {

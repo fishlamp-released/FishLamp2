@@ -27,7 +27,8 @@ typedef enum {
 	FLAuthenticationErrorPasswordIncorrect,
 	FLAuthenticationErrorPasswordIncorrectOffline,
     FLErrorResultFailed,
-
+    FLUnhandledServiceRequestErrorCode,
+    
     FLSoapFaultError,
     FLFrameworkTcpStreamErrorCode
 } FLFrameworkErrorCode;

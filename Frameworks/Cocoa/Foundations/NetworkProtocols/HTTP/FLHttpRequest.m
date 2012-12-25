@@ -352,7 +352,7 @@
     }];
 }
 
-- (void) startAsync:(FLFinisher*) finisher {
+- (void) wasDispatched:(FLFinisher*) finisher {
 
     self.finisher = finisher;
     
@@ -368,17 +368,23 @@
 }
 
 - (FLFinisher*) sendRequest:(FLCompletionBlock) completion {
+    return [self dispatch:completion];
+}
+
+- (FLFinisher*) dispatch:(FLCompletionBlock) completion {
+    
     FLFinisher* finisher = [FLFinisher finisher:completion];
 
     if(_requestContext) {
         [_requestContext sendRequest:self finisher:finisher];
     }
     else {
-        [self startAsync:finisher];
+        [self wasDispatched:finisher];
     }
     
     return finisher;
 }
+
 
 - (FLFinisher*) sendRequest {
     return [self sendRequest:nil];

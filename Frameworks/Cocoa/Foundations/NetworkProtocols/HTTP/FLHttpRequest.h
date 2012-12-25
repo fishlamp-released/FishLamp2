@@ -15,7 +15,6 @@
 
 #import "FLHttpResponse.h"
 #import "FLHttpRequestContent.h"
-#import "FLDispatchable.h"
 #import "FLCancellable.h"
 
 #import "FLReadStream.h"
