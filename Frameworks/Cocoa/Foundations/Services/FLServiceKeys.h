@@ -36,6 +36,6 @@ extern NSString* const FLServiceRequestTypeDelete;
 
 extern NSString* const FLServiceRequestTypeFind;
 
-extern NSString* const FLServiceTypeHttpRequestService;
+extern NSString* const FLServiceTypehttpService;
 
 extern NSString* const FLUserDataStorageServiceID;

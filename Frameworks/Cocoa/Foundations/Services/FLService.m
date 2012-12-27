@@ -10,14 +10,12 @@
 #import "FLSession.h"
 
 @interface FLService ()
-@property (readwrite, assign) FLSession* session;
-@property (readwrite, strong) id serviceID;
+@property (readwrite, assign) id session;
 @end
 
 @implementation FLService
 
 @synthesize session = _session;
-@synthesize serviceID = _serviceType;
 
 - (void) openService:(FLSession*) session {
 }
@@ -30,6 +28,8 @@
 }
 
 @end
+
+
 //
 //typedef void (^FLServiceRequestHandler)(id service, FLServiceRequest* serviceRequest, FLFinisher* finisher);
 //

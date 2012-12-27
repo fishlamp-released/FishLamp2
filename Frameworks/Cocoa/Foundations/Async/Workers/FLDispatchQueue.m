@@ -82,10 +82,6 @@ static void * const s_queue_key = (void*)&s_queue_key;
     return bridge_(FLDispatchQueue*, dispatch_queue_get_specific(dispatch_get_current_queue(), s_queue_key));
 }
 
-- (FLFinisher*) dispatchBlock:(dispatch_block_t) block {
-    return [self dispatchBlock:block completion:nil];
-}
-
 - (FLFinisher*) dispatchBlock:(dispatch_block_t) block 
                 completion:(FLCompletionBlock) completion {
 
@@ -109,10 +105,6 @@ static void * const s_queue_key = (void*)&s_queue_key;
     return finisher;
 }
 
-- (FLFinisher*) dispatchFinishableBlock:(FLFinishableBlock) block {
-    return [self dispatchFinishableBlock:block completion:nil];
-}
-
 - (FLFinisher*) dispatchFinishableBlock:(FLFinishableBlock) block 
                        completion:(FLCompletionBlock) completion {
 
@@ -134,153 +126,6 @@ static void * const s_queue_key = (void*)&s_queue_key;
 
     return finisher;
 }
-
-- (NSError*) badDispachError {
-// TODO: make better error
-    return [NSError abortError];
-}
-
-#pragma mark -- async dispatcher
-
-- (FLFinisher*) dispatchObject:(id) object {
-    return [self dispatchObject:object completion:nil];
-}
-
-- (FLFinisher*) dispatchObject:(id) object 
-                   completion:(FLCompletionBlock) completion {
-
-    FLAssertNotNil_(object);
-
-    FLFinisher* finisher = [FLFinisher finisher:completion];
-
-    return [self dispatchBlock: ^{
-        [object startPerforming:^(FLResult result) {
-            [finisher setFinishedWithResult:result];
-        }];
-    }];
-    
-    return finisher;
-}
-
-//#pragma mark -- object dispatcher 
-//
-//- (FLFinisher*) dispatchSynchronousObject:(id) object {
-//    
-//    return [self dispatchSynchronousObject:object completion:nil];
-//}
-//
-//- (FLFinisher*) dispatchSynchronousObject:(id) object
-//                     withInput:(id) input {
-//
-//    return [self dispatchSynchronousObject:object withInput:input completion:nil];
-//}
-//
-//- (FLFinisher*) dispatchSynchronousObject:(id) object
-//                               completion:(FLCompletionBlock) completion {
-//
-//    return [self dispatchFinishableBlock:^(FLFinisher *finisher) {
-//        
-//        SEL sel = [object synchronousSelectorForDispatch:self];
-//        FLResult result = [object performSelector:sel];
-//        [finisher setFinishedWithResult:result];
-//    }
-//    completion:completion];
-//}
-//
-//- (FLFinisher*) dispatchSynchronousObject:(id) object
-//                    withInput:(id) input
-//                   completion:(FLCompletionBlock) completion {
-//    
-//    return [self dispatchFinishableBlock:^(FLFinisher *finisher) {
-//
-//        SEL sel = [object synchronousSelectorForDispatch:self];
-//        FLResult result = [object performSelector:sel withObject:input];
-//        [finisher setFinishedWithResult:result];
-//    }
-//    completion:completion];
-//}
-
-#pragma mark -- selector dispatcher
-
-- (FLFinisher*) dispatchTarget:(id) target 
-                      selector:(SEL) selector {
-    return [self dispatchBlock:^{
-        FLPerformSelector(target, selector);
-    }];
-}
-
-- (FLFinisher*) dispatchTarget:(id) target 
-                      selector:(SEL) selector
-                    withObject:(id) object {
-    return [self dispatchBlock:^{
-        FLPerformSelector1(target, selector, object);
-    }];
-}
-
-- (FLFinisher*) dispatchTarget:(id) target 
-                      selector:(SEL) selector
-                    withObject:(id) object1
-                    withObject:(id) object2 {
-    return [self dispatchBlock:^{
-        FLPerformSelector2(target, selector, object1, object2);
-    }];
-}
-
-- (FLFinisher*) dispatchTarget:(id) target 
-                      selector:(SEL) selector
-                    withObject:(id) object1
-                    withObject:(id) object2
-                    withObject:(id) object3 {
-    return [self dispatchBlock:^{
-        FLPerformSelector3(target, selector, object1, object2, object3);
-    }];
-}
-
-- (FLFinisher*) dispatchTarget:(id) target 
-                      selector:(SEL) selector
-                    completion:(FLCompletionBlock) completion {
-    return [self dispatchBlock:^{
-        FLPerformSelector(target, selector);
-    }
-    completion:completion];
-}
-
-- (FLFinisher*) dispatchTarget:(id) target 
-                      selector:(SEL) selector
-                    withObject:(id) object
-                    completion:(FLCompletionBlock) completion {
-    return [self dispatchBlock:^{
-        FLPerformSelector1(target, selector, object);
-    }
-    completion:completion];
-
-}
-
-- (FLFinisher*) dispatchTarget:(id) target 
-                      selector:(SEL) selector
-                    withObject:(id) object1
-                    withObject:(id) object2
-                    completion:(FLCompletionBlock) completion {
-    return [self dispatchBlock:^{
-        FLPerformSelector2(target, selector, object1, object2);
-    }
-    completion:completion];
-
-}
-
-- (FLFinisher*) dispatchTarget:(id) target 
-                      selector:(SEL) selector
-                    withObject:(id) object1
-                    withObject:(id) object2
-                    withObject:(id) object3
-                    completion:(FLCompletionBlock) completion {
-
-    return [self dispatchBlock:^{
-        FLPerformSelector3(target, selector, object1, object2, object3);
-    }
-    completion:completion];
-}
-
 
 
 @end

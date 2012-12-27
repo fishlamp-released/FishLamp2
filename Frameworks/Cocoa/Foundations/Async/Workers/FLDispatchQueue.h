@@ -10,7 +10,7 @@
 #import "FLDispatcher.h"
 #import "FLObjectPool.h"
 
-@interface FLDispatchQueue: NSObject<FLDispatcher> {
+@interface FLDispatchQueue : FLDispatcher {
 @private
     dispatch_queue_t _dispatch_queue;
     NSString* _label;

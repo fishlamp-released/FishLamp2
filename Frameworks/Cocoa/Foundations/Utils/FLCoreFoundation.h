@@ -25,6 +25,6 @@ void _FLReleaseCFRef(CFTypeRef* ref) {
 //            bridge_(CFStringRef, __OBJ__)
 //
 //#define FLBridgeRetainToCFString(__OBJ__) \
-//            bridge_FLRetain(CFStringRef, __OBJ__)
+//            bridge_retain_(CFStringRef, __OBJ__)
             
             

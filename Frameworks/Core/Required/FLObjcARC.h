@@ -30,7 +30,7 @@
 #define bridge_transfer_(__TO__, __FROM__) \
             ((__bridge_transfer __TO__) __FROM__)
 
-#define bridge_FLRetain(__TO__, __FROM__) \
+#define bridge_retain(__TO__, __FROM__) \
             ((__bridge_retained __TO__) __FROM__)
 
 // arc utils

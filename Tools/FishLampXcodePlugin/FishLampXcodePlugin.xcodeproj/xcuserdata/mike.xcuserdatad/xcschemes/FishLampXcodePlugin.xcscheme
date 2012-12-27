@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "27CB0B381674FE850093B5A9"
-               BuildableName = "FishLamp.xcplugin"
+               BuildableName = ".bundle"
                BlueprintName = "FishLampXcodePlugin"
                ReferencedContainer = "container:FishLampXcodePlugin.xcodeproj">
             </BuildableReference>

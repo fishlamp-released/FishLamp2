@@ -24,18 +24,19 @@
 #import "FLServiceKeys.h"
 
 
-@implementation FLSession (FLUserDataStorageService) 
-FLSynthesizeSessionService(storageService, setStorageService, FLUserDataStorageService*)
-FLSynthesizeSessionProperty(cacheFolder, FLFolder*, FLUserDataStorageService);
-FLSynthesizeSessionProperty(cacheDatabase, FLDatabase*, FLUserDataStorageService);
-FLSynthesizeSessionProperty(imageCacheFolder, FLImageFolder*, FLUserDataStorageService);
-FLSynthesizeSessionProperty(tempFolder, FLFolder*, FLUserDataStorageService);
-FLSynthesizeSessionProperty(logFolder, FLFolder*, FLUserDataStorageService);
-FLSynthesizeSessionProperty(documentsDatabase, FLDatabase*, FLUserDataStorageService);
-FLSynthesizeSessionProperty(documentsFolder, FLFolder*, FLUserDataStorageService);
-FLSynthesizeSessionProperty(imageFolder, FLImageFolder*, FLUserDataStorageService);
+//@implementation FLSession (FLUserDataStorageService) 
+//FLSynthesizeSessionService(storageService, setStorageService, FLUserDataStorageService*)
+//FLSynthesizeSessionProperty(cacheFolder, FLFolder*, FLUserDataStorageService);
+//FLSynthesizeSessionProperty(cacheDatabase, FLDatabase*, FLUserDataStorageService);
+//FLSynthesizeSessionProperty(imageCacheFolder, FLImageFolder*, FLUserDataStorageService);
+//FLSynthesizeSessionProperty(tempFolder, FLFolder*, FLUserDataStorageService);
+//FLSynthesizeSessionProperty(logFolder, FLFolder*, FLUserDataStorageService);
+//FLSynthesizeSessionProperty(documentsDatabase, FLDatabase*, FLUserDataStorageService);
+//FLSynthesizeSessionProperty(documentsFolder, FLFolder*, FLUserDataStorageService);
+//FLSynthesizeSessionProperty(imageFolder, FLImageFolder*, FLUserDataStorageService);
+//
+//@end
 
-@end
 
 
 @interface FLUserDataStorageService ()

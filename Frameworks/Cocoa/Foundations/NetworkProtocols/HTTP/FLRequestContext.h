@@ -12,6 +12,7 @@
 #import "FLService.h"
 #import "FLSession.h"
 
+
 @interface FLRequestContext : FLService {
 @private
     FLFifoDispatchQueue* _dispatcher;
@@ -35,6 +36,9 @@
 
 @end
 
-@interface FLSession (FLRequestContext) 
-@property (readwrite, strong, nonatomic) FLRequestContext* httpRequestService;
-@end
+
+
+//@interface FLSession (FLRequestContext) 
+//@property (readwrite, strong, nonatomic) FLRequestContext* httpService;
+//@end
+

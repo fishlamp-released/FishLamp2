@@ -26,6 +26,8 @@
 
 @end
 
-@interface FLSession (FLImageCacheService)
-@property (readwrite, strong) FLImageCacheService* imageCacheService;
-@end
+FLPublishService(imageCacheService, FLImageCacheService*)
+
+//@interface FLSession (FLImageCacheService)
+//@property (readwrite, strong) FLImageCacheService* imageCacheService;
+//@end

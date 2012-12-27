@@ -18,6 +18,7 @@
 //@property (readwrite, strong) NSMutableArray* locks;
 @property (readwrite, strong) NSArray* assets;
 @property (readwrite, assign) NSInteger lockCount;
+@property (readwrite, strong) FLDatabase* database;
 - (void) lock;
 - (void) unlock;
 @end
@@ -52,10 +53,11 @@
 
 @implementation FLAssetQueue
 
-synthesize_(lockCount);
-synthesize_(queueUID);
-synthesize_(assets);
-synthesize_(state);
+@synthesize database = _database;
+@synthesize lockCount = _lockCount;
+@synthesize assets = _assets;
+@synthesize state = _state;
+
 //synthesize_(locks);
 
 FLAssertDefaultInitNotCalled_v(@"hello");
@@ -71,19 +73,13 @@ FLAssertDefaultInitNotCalled_v(@"hello");
 	return self;
 }
 
-- (void) unload {
-}
-
-
 #if FL_MRC
 - (void) dealloc {
-
-    
+    [_database release];
     [_state release];
     [_queueUID release];
     [_assets release];
 //        [_locks release];
-
     [super dealloc];
 }
 #endif
@@ -99,11 +95,30 @@ FLAssertDefaultInitNotCalled_v(@"hello");
     ++self.lockCount;
 }
 
-- (FLDatabase*) database {
-    return nil;
+- (void) unloadQueue  {
+
+    if(self.assets)
+    {
+        @synchronized(self) {
+            self.assets = nil;
+            
+//            for(NSValue* value in _locks)
+//            {
+//                [[value nonretainedObjectValue] clearQueueReference];
+//            }
+//            
+//            FLReleaseWithNil(_locks);
+
+            self.state = nil;
+            self.database = nil;
+        }
+    }
 }
 
-- (void) openService {
+
+- (void) loadQueue:(FLDatabase*) database {
+    self.database = database;
+
     FLConfirmNotNil_(self.database);
     
     self.state = nil;
@@ -120,22 +135,6 @@ FLAssertDefaultInitNotCalled_v(@"hello");
     }
     
     self.state = state;
-}
-
-- (void) closeService {
-    if(self.assets)
-    {
-        @synchronized(self) {
-            self.assets = nil;
-            
-//            for(NSValue* value in _locks)
-//            {
-//                [[value nonretainedObjectValue] clearQueueReference];
-//            }
-//            
-//            FLReleaseWithNil(_locks);
-        }
-    }
 }
 
 - (NSUInteger) count {

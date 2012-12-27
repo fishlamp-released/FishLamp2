@@ -35,4 +35,4 @@ typedef id (^FLObjectPoolFactory)();
 
 @end
 
-extern void FLReleasePooledObject(id* object);
+extern void FLReleasePooledObject(id __strong * object);

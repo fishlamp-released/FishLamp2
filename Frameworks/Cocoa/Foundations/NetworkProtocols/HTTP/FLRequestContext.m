@@ -9,9 +9,9 @@
 #import "FLRequestContext.h"
 #import "FLServiceKeys.h"
 
-@implementation FLSession (FLRequestContext) 
-FLSynthesizeSessionService(httpRequestService, setHttpRequestService, FLRequestContext*)
-@end
+//@implementation FLSession (FLRequestContext) 
+//FLSynthesizeSessionService(httpService, sethttpService, FLRequestContext*)
+//@end
 
 @interface FLRequestContext ()
 @property (readwrite, strong) id<FLDispatcher> dispatcher;
