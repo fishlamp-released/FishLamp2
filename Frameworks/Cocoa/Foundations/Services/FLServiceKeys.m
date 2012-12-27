@@ -34,4 +34,4 @@ NSString* const FLServiceRequestTypeFind    = @"com.fishlamp.service.request.fin
 
 NSString* const FLServiceTypeImageCache     = @"com.fishlamp.service.cache.image";
 
-NSString* const FLServiceTypeHttpRequestService = @"com.fishlamp.service.http-request";
+NSString* const FLServiceTypehttpService = @"com.fishlamp.service.http-request";

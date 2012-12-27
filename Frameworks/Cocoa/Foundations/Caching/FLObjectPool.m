@@ -100,7 +100,7 @@ FLSynthesizeAssociatedProperty(retain_nonatomic, objectPool, setObjectPool, FLOb
 
 @end
 
-void FLReleasePooledObject(id* object) {
+void FLReleasePooledObject( id __strong * object) {
     if(object && *object) {
         [[*object objectPool] releasePooledObject:*object];
         *object = nil;

@@ -13,9 +13,10 @@
 #import "FLServiceKeys.h"
 #import "FLUserDataStorageService.h"
 
-@implementation FLSession (FLImageCacheService)
-FLSynthesizeSessionService(imageCacheService, setImageCacheService, FLImageCacheService*);
-@end
+
+//@implementation FLSession (FLImageCacheService)
+//FLSynthesizeSessionService(imageCacheService, setImageCacheService, FLImageCacheService*);
+//@end
 
 @interface FLImageCacheService ()
 @property (readwrite, strong) FLDatabase* cacheDatabase;
@@ -70,8 +71,8 @@ FLSynthesizeSessionService(imageCacheService, setImageCacheService, FLImageCache
 }
 
 - (void) openService:(FLSession*) session {
-    self.cacheDatabase = self.session.cacheDatabase;
-    self.imageCacheFolder = self.session.imageCacheFolder;
+    self.cacheDatabase = [[self.session userStorageService] cacheDatabase];
+    self.imageCacheFolder = [[self.session userStorageService] imageCacheFolder];
 }
 
 - (void) closeService:(FLSession*) session {

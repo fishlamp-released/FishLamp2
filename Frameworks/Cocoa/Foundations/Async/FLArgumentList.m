@@ -133,9 +133,21 @@
 	}
 	
     state->state = MIN(_count - 1, currentIndex + len);
-    state->itemsPtr =  (_arguments + currentIndex);
-	state->mutationsPtr = bridge_(void*, self);
-	return state->state = currentIndex;
+
+    NSUInteger count = state->state - currentIndex;
+
+    int bufferIndex = 0;
+    for(int i = currentIndex; i < count; i++) {
+        buffer[bufferIndex] = _arguments[i];
+    }
+
+    state->itemsPtr = buffer;
+    
+    // this is an immutable object, so it will never be mutated
+    static unsigned long s_mutations = 0;
+    
+	state->mutationsPtr = &s_mutations;
+	return count;
 }
 
 @end

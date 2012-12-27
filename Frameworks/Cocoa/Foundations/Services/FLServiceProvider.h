@@ -13,11 +13,23 @@
 @class FLSession;
 
 @protocol FLServiceProvider <NSObject>
-@property (readonly, assign) FLSession* session;
+@property (readonly, assign) id session;
 - (void) didMoveToSession:(FLSession*) session;
-
 @optional
 - (void) openService:(FLSession*) session;
 - (void) closeService:(FLSession*) session;
 - (void) requestCancel;
 @end
+
+#define FLPublishService(__NAME__, __TYPE__) \
+    \
+    @protocol __NAME__##PublishedService <NSObject> \
+        - (__TYPE__) __NAME__; \
+    @end
+
+//#define FLPublishProperty(__TYPE__, __NAME__) \
+//    \
+//    @protocol __NAME__##PublishedProperty <NSObject> \
+//        - (__TYPE__) __NAME__; \
+//    @end
+

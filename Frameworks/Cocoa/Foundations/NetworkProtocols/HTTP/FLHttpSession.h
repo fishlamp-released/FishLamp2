@@ -7,8 +7,13 @@
 //
 
 #import "FLSession.h"
+#import "FLRequestContext.h"
 
+@interface FLHttpSession : FLSession {
+@private
+    FLRequestContext* _requestContext;
+}
 
-@interface FLHttpSession : FLSession
+@property (readwrite, strong) FLRequestContext* httpService;
 
 @end

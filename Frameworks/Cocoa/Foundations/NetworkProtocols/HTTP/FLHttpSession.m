@@ -11,10 +11,12 @@
 
 @implementation FLHttpSession
 
+@synthesize httpService = _httpService;
+
 - (id) init {
     self = [super init];
     if(self) {
-        self.httpRequestService = [FLRequestContext requestContext];
+        [self registerService:@selector(httpService)];
     }
     
     return self;
@@ -22,6 +24,7 @@
 
 #if FL_MRC
 - (void) dealloc {
+    [_httpService release];
     [super dealloc];
 }
 #endif

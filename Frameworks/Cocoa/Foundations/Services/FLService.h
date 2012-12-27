@@ -17,7 +17,7 @@
 
 @interface FLService : FLObservable<FLServiceProvider> {
 @private
-    __unsafe_unretained FLSession* _session;
+    __unsafe_unretained id _session;
 }
 @end
 //

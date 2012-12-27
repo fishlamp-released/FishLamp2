@@ -16,13 +16,14 @@
 
 typedef id (^FLResourceProviderBlock)(id provider);
 
+typedef SEL FLServicePropertySelector;
+
 @interface FLSession : FLObservable {
 @private
-    NSMutableDictionary* _services;
     NSMutableDictionary* _resourceProviders;
     FLMutableBatchDictionary* _resourceConsumers;
     FLFifoDispatchQueue* _dispatcher;
-    
+    NSMutableArray* _services;
     BOOL _open;
 }
 
@@ -31,18 +32,19 @@ typedef id (^FLResourceProviderBlock)(id provider);
 
 + (id) session;
 
-- (id) serviceForServiceID:(id) serviceID;
-
-- (void) setService:(id) service forServiceID:(id) serviceID;
-
-- (void) removeServiceForServiceType:(id) serviceID;
-
 - (void) openSession;
+
 - (void) closeSession;
+
 - (void) requestCancel;
 
 // TODO : some sort of FIFO queue for opening???
 
+- (void) registerService:(FLServicePropertySelector) serviceSelector;
+
+- (void) unregisterService:(FLServicePropertySelector) serviceSelector;
+
+- (void) visitServices:(void (^)(id service, BOOL* stop)) visitor;
 
 // 
 // resources
@@ -67,71 +69,11 @@ typedef id (^FLResourceProviderBlock)(id provider);
 
 - (void) broadcast:(SEL) selector withObject:(id) object1 withObject:(id) object2;
 
-
-
 @end
 
-//#define __CATEGORY_FOR_SERVICE(__TYPE__) (__TYPE__##ServiceDeclaration)
-//
-//#define FLBeginPublishingService(__NAME__, __TYPE__) \
-//            @interface FLSession __CATEGORY_FOR_SERVICE(__TYPE__) \
-//                - (__TYPE__*) __NAME__
-//
-//#define FLBeginPublishingServiceForProtocol(__NAME__, __TYPE__) \
-//            @interface FLSession __CATEGORY_FOR_SERVICE(__TYPE__) \
-//                - (id<__TYPE__>) __NAME__ 
-//
-//#define FLPublishServiceProperty(__TYPE__, __NAME__) \
-//                - (__TYPE__) __NAME__ 
-//
-//#define FLEndPublishingService() \
-//            @end
-//           
-//#define FLPublishService(__NAME__, __TYPE__) \ 
-//            FLBeginPublishingService(__NAME__, __TYPE__); \
-//            FLEndPublishingService();
-//
-//#define FLPublishServiceForProtocol(__NAME__, __TYPE__) \ 
-//            FLBeginPublishingServiceForProtocol(__NAME__, __TYPE__); \
-//            FLEndPublishingService();
-//           
-//           
-//#define FLBeginSynthesizingService(__NAME__, __TYPE__, __SERVICE_TYPE__) \
-//            \
-//            @implementation __TYPE__ __CATEGORY_FOR_SERVICE(__TYPE__) \
-//                + (id) serviceID { \
-//                    return __SERVICE_TYPE__; \
-//                } \
-//            @end \
-//            \
-//            @implementation FLSession __CATEGORY_FOR_SERVICE(__TYPE__) \
-//            - (__TYPE__*) __NAME__ { \
-//                return [self serviceForServiceID:__SERVICE_TYPE__]; \
-//            } 
-//                        
-//#define FLSynthesizeSessionProperty(__TYPE__, __NAME__) \
-//            - (__TYPE__*) __NAME__ { \
-//                return nil; \
-//            } 
-//
-//
-//            
-//#define FLEndSynthesizingService() \
-//            @end
-//            
-//#define FLSynthesizeService(__NAME__, __TYPE__, __SERVICE_TYPE__) \
-//            FLBeginSynthesizingService(__NAME__, __TYPE__, __SERVICE_TYPE__); \
-//            FLEndSynthesiziingService()
-            
-#define FLSynthesizeSessionProperty(__GETTER__, __TYPE__, __SERVICE_CLASS_NAME__) \
-            - (__TYPE__) __GETTER__ { \
-                return [[self serviceForServiceID:@#__SERVICE_CLASS_NAME__] __GETTER__]; \
-            }             
+#define FLCreateAndRegisterService(__NAME__, __TYPE__) \
+            self.__NAME__ = FLAutorelease([[__TYPE__ alloc] init]); \
+            [self registerService:@selector(__NAME__)]
+    
 
-#define FLSynthesizeSessionService(__GETTER__, __SETTER__, __TYPE__) \
-           - (__TYPE__) __GETTER__ { \
-                return [self serviceForServiceID:@#__GETTER__]; \
-           } \
-           - (void) __SETTER__:(__TYPE__) service { \
-                [self setService:service forServiceID:@#__GETTER__]; \
-           }
+

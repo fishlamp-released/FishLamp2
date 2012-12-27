@@ -35,23 +35,6 @@
                     completion:(FLCompletionBlock) completion;
 
 //
-//// FLSynchronouslyDispatchable object dispatching
-////
-//
-//- (FLFinisher*) dispatchSynchronousObject:(id /*FLDispatchable*/) synchronouslyDispatchable;
-//
-//- (FLFinisher*) dispatchSynchronousObject:(id /*FLDispatchable*/) synchronouslyDispatchable
-//                    withInput:(id) input;
-//
-//- (FLFinisher*) dispatchSynchronousObject:(id /*FLDispatchable*/) synchronouslyDispatchable
-//                    withInput:(id) input
-//                   completion:(FLCompletionBlock) completion;
-//
-//- (FLFinisher*) dispatchSynchronousObject:(id /*FLDispatchable*/) object
-//                   completion:(FLCompletionBlock) completion;
-
-
-//
 // target/selector dispatching
 //
 
@@ -98,3 +81,21 @@
 @end
 
 
+@interface FLDispatcher : NSObject<FLDispatcher>
+
+// implement these two, the rest bottlenect through these.
+
+- (FLFinisher*) dispatchFinishableBlock:(FLFinishableBlock) block 
+                             completion:(FLCompletionBlock) completion;
+
+- (FLFinisher*) dispatchBlock:(dispatch_block_t) block 
+                   completion:(FLCompletionBlock) completion;
+    
+                
+@end
+
+@interface FLDispatcherDelegate <NSObject>
+@optional
+- (void) willDispatchObject:(id) object;
+- (void) didDispatchObject:(id) object;                                        
+@end

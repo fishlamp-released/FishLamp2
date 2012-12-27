@@ -21,10 +21,10 @@ typedef FLResult (^FLRunOperationBlock)(FLOperation* operation);
 	id _operationID;
 	FLRunOperationBlock _runBlock;
     BOOL _cancelled;
-    FLSession* _session;
+    id _session;
 }
 
-@property (readwrite, strong) FLSession* session;
+@property (readwrite, strong) id session;
 
 // TODO: abstract this better;
 //@property (readonly, assign) FLOperationType operationType;
