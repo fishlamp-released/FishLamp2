@@ -21,6 +21,22 @@
 #import "FLAction.h"
 #import "FLObjectDatabase.h"
 #import "FLAppInfo.h"
+#import "FLServiceKeys.h"
+
+
+@implementation FLSession (FLUserDataStorageService) 
+FLSynthesizeSessionService(storageService, setStorageService, FLUserDataStorageService*)
+FLSynthesizeSessionProperty(cacheFolder, FLFolder*, FLUserDataStorageService);
+FLSynthesizeSessionProperty(cacheDatabase, FLDatabase*, FLUserDataStorageService);
+FLSynthesizeSessionProperty(imageCacheFolder, FLImageFolder*, FLUserDataStorageService);
+FLSynthesizeSessionProperty(tempFolder, FLFolder*, FLUserDataStorageService);
+FLSynthesizeSessionProperty(logFolder, FLFolder*, FLUserDataStorageService);
+FLSynthesizeSessionProperty(documentsDatabase, FLDatabase*, FLUserDataStorageService);
+FLSynthesizeSessionProperty(documentsFolder, FLFolder*, FLUserDataStorageService);
+FLSynthesizeSessionProperty(imageFolder, FLImageFolder*, FLUserDataStorageService);
+
+@end
+
 
 @interface FLUserDataStorageService ()
 - (BOOL) _beginOpeningService;
@@ -41,7 +57,7 @@
 @synthesize logFolder = _logFolder;
 @synthesize upgradeTaskList = _upgradeTaskList;
 
-- (id) init {
+- (id) init { 
     self = [super init];
 	if(self) {   
         [self registerForEvents];
@@ -185,8 +201,8 @@
 	}
 	 
 	@try {
-//        [self.context userLogin].isAuthenticatedValue = NO;
-//        [[FLApplicationDataModel instance] saveUserLogin:[self.context userLogin]];
+//        [self userLogin].isAuthenticatedValue = NO;
+//        [[FLApplicationDataModel instance] saveUserLogin:[self userLogin]];
     
 		[_cacheDatabase closeDatabase];
 		[_documentsDatabase closeDatabase];
@@ -202,11 +218,12 @@
 		_open = NO;
 		_willOpen = NO;
 		_isOpening = NO;
-		
-        [self.services closeServices:self];
-        
 //        [self postObservation:@selector(userServiceDidClose:)];
     }
+}
+
+- (FLUserLogin*) userLogin {
+    return [self.session resourceForKey:FLUserLoginKey];
 }
 
 - (void) initCache {
@@ -218,8 +235,10 @@
     userCacheFolder = [userCacheFolder stringByAppendingPathComponent:[FLAppInfo bundleIdentifier]];
 #endif
 
+    FLUserLogin* userLogin = self.userLogin;
+
 	if(!_cacheFolder){
-		_cacheFolder = [[FLFolder alloc] initWithPath:[userCacheFolder stringByAppendingPathComponent:[self.context userLogin].userGuid]];
+		_cacheFolder = [[FLFolder alloc] initWithPath:[userCacheFolder stringByAppendingPathComponent:userLogin.userGuid]];
 		[_cacheFolder createIfNeeded];
 	}
 	if(!_imageCacheFolder) {
@@ -249,12 +268,14 @@
     NSArray* documentsPaths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
     NSString* userDocumentsFolder = [documentsPaths objectAtIndex: 0];
 
+    FLUserLogin* userLogin = self.userLogin;
+
 #if OSX
     userDocumentsFolder = [userDocumentsFolder stringByAppendingPathComponent:[FLAppInfo bundleIdentifier]];
 #endif
     
 	if(!_documentsFolder) {
-		_documentsFolder = [[FLFolder alloc] initWithPath:[userDocumentsFolder stringByAppendingPathComponent:[self.context userLogin].userGuid]];
+		_documentsFolder = [[FLFolder alloc] initWithPath:[userDocumentsFolder stringByAppendingPathComponent:userLogin.userGuid]];
 		[_documentsFolder createIfNeeded];
 	}
     
@@ -280,8 +301,6 @@
 	_willOpen = NO;
 	_isOpening = NO;
 
-    [self.services openServices:self];
-
 //    self.backgroundTasks = [FLBackgroundTaskMgr create];
 //    [self addAppService:_backgroundTasks];
 
@@ -293,7 +312,7 @@
 - (BOOL) runUpgradeTasksIfNeeded {
     
     FLApplicationDataVersion* input = [FLApplicationDataVersion applicationDataVersion];
-		input.userGuid = [self.context userLogin].userGuid;
+		input.userGuid = [self userLogin].userGuid;
 		
     FLApplicationDataVersion* dataVersion = [[FLApplicationDataModel instance].database loadObject:input];
 		
@@ -339,7 +358,7 @@
 
 - (BOOL) _beginOpeningService
 {
-	if([self.context userLogin] && _open == NO && !_isOpening && _willOpen)
+	if([self userLogin] && _open == NO && !_isOpening && _willOpen)
 	{
 		_isOpening = YES;
 
@@ -355,7 +374,7 @@
 
 - (void) openService {
 	[self closeService];
-    FLAssert_v(FLStringIsNotEmpty([self.context userLogin].userName), @"invalid userLogin");
+    FLAssert_v(FLStringIsNotEmpty([self userLogin].userName), @"invalid userLogin");
     _willOpen = YES;
     _isOpening = NO;
     _open = NO;
@@ -365,11 +384,11 @@
 
 - (void) finishUpgradeTasks {	
 	if(_upgrading) {
-		FLAssertIsNotNil_v([self.context userLogin], nil);
+		FLAssertIsNotNil_v([self userLogin], nil);
 		FLAssert_v(_upgradeTaskList != nil, @"not upgrading");
 		
 		FLApplicationDataVersion* version = [FLApplicationDataVersion applicationDataVersion];
-		version.userGuid = [self.context userLogin].userGuid;
+		version.userGuid = [self userLogin].userGuid;
 		version.versionString = [FLAppInfo appVersion];
 		[[FLApplicationDataModel instance].database saveObject:version];
 
@@ -381,7 +400,7 @@
 }
 
 - (BOOL) isServiceAuthenticated {
-	return [self.context userLogin].isAuthenticatedValue;
+	return [self userLogin].isAuthenticatedValue;
 }
 
 + (FLUserLogin*) loadLastUserLogin {

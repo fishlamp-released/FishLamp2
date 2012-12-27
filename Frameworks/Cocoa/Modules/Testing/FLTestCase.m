@@ -100,7 +100,7 @@ FLTestCaseFlagPair s_flagPairs[] = {
     }
 
 
-    FLAssignObjectWithRetain(_testCaseName, theString);
+    FLSetObjectWithRetain(_testCaseName, theString);
 }
 
 - (id) initWithName:(NSString*) name testBlock:(FLTestBlock) block {

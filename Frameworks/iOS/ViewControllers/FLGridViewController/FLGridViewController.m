@@ -352,7 +352,7 @@ FLSynthesizeStructProperty(allowMultipleSelections, setAllowMultipleSelections, 
     NSArray* prev = _selectedObjectIds;
     mrc_retain_(prev);
     FLAutorelease(prev);
-    FLAssignObjectWithRetain(_selectedObjectIds, [NSMutableArray array]);
+    FLSetObjectWithRetain(_selectedObjectIds, [NSMutableArray array]);
 
     for(id dataRefKey in prev) {
         FLGridCell* cell = [self cellForDataRefKey:dataRefKey];
@@ -395,7 +395,7 @@ FLSynthesizeStructProperty(allowMultipleSelections, setAllowMultipleSelections, 
         [newCollection addObject:cell forKey:dataRefKey];
     }
     
-    FLAssignObjectWithRetain(_cellCollection, newCollection);
+    FLSetObjectWithRetain(_cellCollection, newCollection);
     [self reflowCells];
 }
 
@@ -412,7 +412,7 @@ FLSynthesizeStructProperty(allowMultipleSelections, setAllowMultipleSelections, 
         [newCollection addObject:cell forKey:dataRefKey];
     }
     
-    FLAssignObjectWithRetain(_cellCollection, newCollection);
+    FLSetObjectWithRetain(_cellCollection, newCollection);
     [self reflowCells];
 }
 

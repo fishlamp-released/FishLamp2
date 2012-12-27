@@ -33,7 +33,7 @@ FLSynthesizeStructProperty(imageContentMode, setImageContentMode, FLWidgetImageC
 
 - (void) setFrameColor:(UIColor*) color
 {
-	FLAssignObjectWithRetain(_frameColor, color);
+	FLSetObjectWithRetain(_frameColor, color);
 	[self setNeedsDisplay];
 }
 
@@ -72,7 +72,7 @@ FLSynthesizeStructProperty(imageContentMode, setImageContentMode, FLWidgetImageC
 - (void) setImageWidget:(FLImageWidget*) imageWidget
 {
 	[_imageWidget removeFromParent];
-	FLAssignObjectWithRetain(_imageWidget, imageWidget);
+	FLSetObjectWithRetain(_imageWidget, imageWidget);
 	_imageWidget.imageContentMode = FLWidgetImageContentModeScaleToFill;
 	[self addWidget:_imageWidget];
 	[self setNeedsLayout];

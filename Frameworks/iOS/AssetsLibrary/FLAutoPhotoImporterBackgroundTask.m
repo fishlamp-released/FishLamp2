@@ -123,7 +123,7 @@
     FLLog(@"Beginning to add photos");
 #endif
 
-    FLAssignObjectWithRetain(_importer, [self createImporter]);
+    FLSetObjectWithRetain(_importer, [self createImporter]);
     [_importer beginImporting:^{
             [self _finishedImporting];
         }];

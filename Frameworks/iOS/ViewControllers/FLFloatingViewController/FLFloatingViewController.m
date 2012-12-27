@@ -258,7 +258,7 @@ FLSynthesizeStructProperty(contentViewIsModal, setContentViewIsModal, BOOL, _sta
 
 - (void) setChildFloatingViewController:(FLFloatingViewController *)childFloatingViewController
 {
-    FLAssignObjectWithRetain(_childPopover, childFloatingViewController);
+    FLSetObjectWithRetain(_childPopover, childFloatingViewController);
     if(childFloatingViewController.parentFloatingViewController != self)
     {
         childFloatingViewController.parentFloatingViewController = self;
@@ -347,7 +347,7 @@ FLSynthesizeStructProperty(contentViewIsModal, setContentViewIsModal, BOOL, _sta
         {
             [self dismissChild];
         }
-        FLAssignObjectWithRetain(_childPopover, child);
+        FLSetObjectWithRetain(_childPopover, child);
         [_childPopover setParentPopover:self];
     }
 }   
@@ -419,7 +419,7 @@ FLSynthesizeStructProperty(contentViewIsModal, setContentViewIsModal, BOOL, _sta
         }
     }
     
-    FLAssignObjectWithRetain(_contentViewController, viewController);
+    FLSetObjectWithRetain(_contentViewController, viewController);
     [self addChildViewController:_contentViewController];
 
     if(self.isViewLoaded)

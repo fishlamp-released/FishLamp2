@@ -59,12 +59,12 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
         @try {
             [_assetQueue batchAddAssets:_importedAssets];
-            FLAssignObjectWithRetain(_importedDate, [NSDate date]);
+            FLSetObjectWithRetain(_importedDate, [NSDate date]);
             [_delegate assetLibraryAutoPhotoImporter:self saveLastImportDate:_importedDate];
         }
         @catch(NSException* ex) {
             FLReleaseWithNil(_importedAssets);
-            FLAssignObjectWithRetain(_error, ex.error);
+            FLSetObjectWithRetain(_error, ex.error);
         }
         [self performBlockOnMainThread:^{ [self _handleFinished:completedBlock]; }];
     });
@@ -100,9 +100,9 @@
     
     [self _clearData];
     
-    FLAssignObjectWithRetain(_importedAssets, [NSMutableArray array]);
-    FLAssignObjectWithRetain(_assetQueue, [_delegate assetLibraryAutoPhotoImporterGetAssetQueue:self]);
-    FLAssignObjectWithRetain(_startDate, [_delegate assetLibraryAutoPhotoImporterGetLastImportDate:self]);
+    FLSetObjectWithRetain(_importedAssets, [NSMutableArray array]);
+    FLSetObjectWithRetain(_assetQueue, [_delegate assetLibraryAutoPhotoImporterGetAssetQueue:self]);
+    FLSetObjectWithRetain(_startDate, [_delegate assetLibraryAutoPhotoImporterGetLastImportDate:self]);
     
     FLAssertIsNotNil_v(_assetQueue, nil);
     FLAssertIsNotNil_v(_startDate, nil);
@@ -129,7 +129,7 @@
                 FLLog(@"Importer got error: %@", [error description]);
 #endif                
             
-                FLAssignObjectWithRetain(_error, error);
+                FLSetObjectWithRetain(_error, error);
                 [self performBlockOnMainThread:^{ [self _handleFinished:completedBlock]; }];
             }
             else

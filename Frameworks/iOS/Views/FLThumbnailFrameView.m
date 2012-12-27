@@ -294,14 +294,14 @@ CGFloat kFrameSize = 0; //5.0f
 
 - (void) setBackgroundThumbnail:(UIImage*) image
 {
-	FLAssignObjectWithRetain(_backgroundThumbnail, image);
+	FLSetObjectWithRetain(_backgroundThumbnail, image);
 	[self _updateLayout];
 	[self setNeedsLayout];	
 }
 
 - (void) setForegroundThumbnail:(UIImage*) image
 {
-	FLAssignObjectWithRetain(_foregroundThumbnail, image);
+	FLSetObjectWithRetain(_foregroundThumbnail, image);
 	[self _updateLayout];
 	[self setNeedsLayout];	
 	

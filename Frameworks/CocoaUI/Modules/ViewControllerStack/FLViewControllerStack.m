@@ -39,7 +39,7 @@
 - (id) initWithRootViewController:(UIViewController*) rootViewController {
     if((self = [super init])) {
         _viewControllers = [[NSMutableArray alloc] init];
-        FLAssignObjectWithRetain(_rootViewController, rootViewController);
+        FLSetObjectWithRetain(_rootViewController, rootViewController);
         [self _addViewController:_rootViewController];
     }
     

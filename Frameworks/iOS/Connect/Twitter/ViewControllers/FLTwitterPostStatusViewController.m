@@ -68,7 +68,7 @@
 
 - (void) setStatusUpdate:(FLTwitterStatusUpdate *)statusUpdate
 {
-    FLAssignObjectWithRetain(_statusUpdate, statusUpdate);
+    FLSetObjectWithRetain(_statusUpdate, statusUpdate);
     self.text = _statusUpdate.status;
 }
 

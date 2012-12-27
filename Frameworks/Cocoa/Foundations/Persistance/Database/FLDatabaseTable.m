@@ -31,8 +31,8 @@
 - (void) setTableName:(NSString*) tableName {
     FLAssertStringIsNotEmpty_(tableName);
 	
-    FLAssignObjectWithRetain(_tableName, FLDatabaseNameEncode(tableName));
-	FLAssignObjectWithRetain(_decodedTableName, FLDatabaseNameDecode(_tableName));
+    FLSetObjectWithRetain(_tableName, FLDatabaseNameEncode(tableName));
+	FLSetObjectWithRetain(_decodedTableName, FLDatabaseNameDecode(_tableName));
     _tableClass = NSClassFromString(_decodedTableName);
 }
 

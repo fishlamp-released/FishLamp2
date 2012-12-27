@@ -32,7 +32,7 @@
             error = [NSError errorWithDomain:NSXMLParserErrorDomain code:error.code localizedDescription:errorStr];
         }
         
-        FLAssignObjectWithRetain(_error, error);
+        FLSetObjectWithRetain(_error, error);
         [_parser abortParsing];
     }
 }

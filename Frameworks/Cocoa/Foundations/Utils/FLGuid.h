@@ -12,6 +12,8 @@
 
 #import "NSString+GUID.h"
 
+// TODO: see new SDK object NSUUID
+
 @interface FLGuid : NSObject<NSCopying, NSCoding> {
 @private
 	NSString* _guid;

@@ -235,7 +235,7 @@
 
 - (void) setSubMenu:(id) subMenu
 {
-    FLAssignObjectWithRetain(_subMenu, subMenu);
+    FLSetObjectWithRetain(_subMenu, subMenu);
     _disclosureView.hidden =  _subMenu == nil;
     
     [self setNeedsLayout];

@@ -97,7 +97,7 @@
 }
 
 - (void) setParentDataObject:(id) object {
-    FLAssignObjectWithRetain(_parentDataRef, object);
+    FLSetObjectWithRetain(_parentDataRef, object);
     [self willUpdateTitle];
 }
 

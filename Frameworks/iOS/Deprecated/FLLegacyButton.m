@@ -248,7 +248,7 @@
 - (void) setImage:(UIImage*) image
 {
 	FLReleaseWithNil(_disabledImage);
-	FLAssignObjectWithRetain(_image, image);
+	FLSetObjectWithRetain(_image, image);
 	self.imageView.image = _image;
 	[self.imageView resizeToImageSize];
 	[self setNeedsLayout];

@@ -41,7 +41,7 @@
         _touchHandler.touchableObject = nil;
     }
     
-    FLAssignObjectWithRetain(_touchHandler, touchHandler);
+    FLSetObjectWithRetain(_touchHandler, touchHandler);
     _touchHandler.touchableObject = self;
     
     __block id myself = self;
@@ -80,7 +80,7 @@
 }
 
 - (void) setBackgroundColor:(UIColor*) color {
-	FLAssignObjectWithRetain(_backgroundColor, color);
+	FLSetObjectWithRetain(_backgroundColor, color);
     [self setNeedsDisplay];
 }
 

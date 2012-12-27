@@ -116,7 +116,7 @@
 	NSInteger remaining = _maxSize - newText.length;
 	if(remaining == -1 && _remaining == 0)
 	{
-		FLAssignObjectWithRetain(_countdownColor, _countdownView.textColor);
+		FLSetObjectWithRetain(_countdownColor, _countdownView.textColor);
 		_countdownView.textColor = [UIColor fireEngineRed];
 	}
 	else if(remaining == 0 && _remaining == -1)

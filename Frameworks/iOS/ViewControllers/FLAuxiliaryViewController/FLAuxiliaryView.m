@@ -41,7 +41,7 @@
         [_containedView removeFromSuperview];
     }
     
-    FLAssignObjectWithRetain(_containedView, view);
+    FLSetObjectWithRetain(_containedView, view);
     [self addSubview:view];
     [self setNeedsLayout];
 }

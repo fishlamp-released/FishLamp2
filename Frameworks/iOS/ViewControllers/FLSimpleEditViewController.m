@@ -137,7 +137,7 @@
 
 - (void) setSaveButtonTitle:(NSString*) title
 {
-    FLAssignObjectWithRetain(_saveButtonTitle, title);
+    FLSetObjectWithRetain(_saveButtonTitle, title);
     if(_saveButton)
     {
         _saveButton.title = title;
@@ -154,7 +154,7 @@
 
 - (void) setCancelButtonTitle:(NSString*) title
 {
-    FLAssignObjectWithRetain(_cancelButtonTitle, title);
+    FLSetObjectWithRetain(_cancelButtonTitle, title);
     if(_cancelButton)
     {
         _cancelButton.title = title;

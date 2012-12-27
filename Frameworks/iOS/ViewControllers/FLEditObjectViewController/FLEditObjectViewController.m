@@ -1054,8 +1054,8 @@ FLSynthesizeStructProperty(saveChangesImmediately, setSaveChangesImmediately, BO
 //	  forKey:(id) key 
 //	  saveToDataSource:(FLLegacyDataSource*) saveToDataSourceManager
 //{
-//	  FLAssignObjectWithRetain(_saveKey, key);
-//	  FLAssignObjectWithRetain(_saveToDataSourceManager, saveToDataSourceManager);
+//	  FLSetObjectWithRetain(_saveKey, key);
+//	  FLSetObjectWithRetain(_saveToDataSourceManager, saveToDataSourceManager);
 //	  
 //	  if([data conformsToProtocol:@protocol(NSMutableCopying)])
 //	  {

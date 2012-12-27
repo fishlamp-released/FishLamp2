@@ -115,7 +115,7 @@
 //    }
 //    
 //    if(view) {
-//        FLAssignObjectWithRetain(_view, view);
+//        FLSetObjectWithRetain(_view, view);
 //        if(_view.superview != self.superview) {
 //            [self.superview addSubview:view];
 //        }

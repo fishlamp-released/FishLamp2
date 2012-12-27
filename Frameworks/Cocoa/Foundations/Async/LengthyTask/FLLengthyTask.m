@@ -39,7 +39,7 @@
 }
 
 - (void) setTaskName:(NSString*) name {
-	FLAssignObjectWithRetain(_name, name);
+	FLSetObjectWithRetain(_name, name);
 	[_delegate lengthyTaskDidChangeName:self];
 }
 

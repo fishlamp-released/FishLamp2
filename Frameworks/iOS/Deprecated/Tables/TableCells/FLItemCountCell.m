@@ -115,7 +115,7 @@
 {
     if(!FLStringsAreEqual(actionItemName, _itemName))
 	{
-        FLAssignObjectWithRetain(_itemName, actionItemName);
+        FLSetObjectWithRetain(_itemName, actionItemName);
 		[self updateText];
 	}
 }

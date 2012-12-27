@@ -140,7 +140,7 @@
         [_backgroundView removeFromSuperview];
     }
 
-    FLAssignObjectWithRetain(_backgroundView, backgroundView);
+    FLSetObjectWithRetain(_backgroundView, backgroundView);
     [self insertSubview:_backgroundView atIndex:0];
     [self setNeedsLayout];
 }

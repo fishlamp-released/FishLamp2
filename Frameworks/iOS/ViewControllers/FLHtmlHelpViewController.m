@@ -63,7 +63,7 @@
 
 - (void) setFileName:(NSString*) string {
     FLReleaseWithNil(_fileURL);
-	FLAssignObjectWithRetain(_fileName, [self fullyQualifiedNameForFileName:string]);
+	FLSetObjectWithRetain(_fileName, [self fullyQualifiedNameForFileName:string]);
     
     NSString* basePath = [[NSBundle mainBundle] bundlePath];
 	
@@ -74,7 +74,7 @@
 //		fileName = [NSString stringWithFormat:@"%@#%@", fileName, anchorNameOrNil];
 //	}
 	
-    FLAssignObjectWithRetain(_fileURL, [NSURL URLWithString:_fileName relativeToURL:baseURL]);
+    FLSetObjectWithRetain(_fileURL, [NSURL URLWithString:_fileName relativeToURL:baseURL]);
 	
     if(self.isViewLoaded) {
         [self beginLoadingURL:_fileURL];

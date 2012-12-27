@@ -7,8 +7,10 @@
 //
 
 #import "FLCocoaRequired.h"
+#import "FLDispatchable.h"
+#import "FLArgumentList.h"
 
-typedef void (^FLCallbackBlock)(id sender);
+typedef void (^FLCallbackBlock)(FLArgumentList* args);
 
 @interface FLCallback : NSObject {
 @private
@@ -27,6 +29,24 @@ typedef void (^FLCallbackBlock)(id sender);
 + (id) callbackWithTarget:(id) target action:(SEL) action;
 + (id) callbackWithBlock:(FLCallbackBlock) block;
 
-- (void) invoke:(id) sender;
+- (void) perform;
+- (void) performWithObject:(id) object;
+- (void) performWithObject:(id) object1 withObject:(id) object2;
+- (void) performWithObject:(id) object1 withObject:(id) object2 withObject:(id) object3;
+@end
+
+
+@interface FLStashedCallback : FLCallback<FLDispatchable> {
+@private
+    FLArgumentList* _arguments;
+}
+
+@property (readonly, strong, nonatomic) FLArgumentList* arguments;
+
+- (id) initWithTarget:(id) target action:(SEL) action arguments:(FLArgumentList*) arguments;
+- (id) initWithBlock:(FLCallbackBlock) block arguments:(FLArgumentList*) arguments;
+
++ (id) callbackWithTarget:(id) target action:(SEL) action arguments:(FLArgumentList*) arguments;
++ (id) callbackWithBlock:(FLCallbackBlock) block arguments:(FLArgumentList*) arguments;
 
 @end

@@ -75,7 +75,7 @@
     return FLAutorelease([[[self class] alloc] initWithResultBlock:completion]);
 }
 
-- (FLResult) waitUntilFinished {
+- (id) waitUntilFinished {
     
     FLRetainObject(self);
     
@@ -92,6 +92,8 @@
             dispatch_semaphore_wait(_semaphore, DISPATCH_TIME_FOREVER);
             FLLog(@"finished waiting for %X", (void*) _semaphore);
         } 
+        
+        FLThrowError(self.result);
     }
     @finally {
         FLAutoreleaseObject(self);

@@ -150,7 +150,7 @@
 	if(_backgroundWidget) {
 		[_backgroundWidget removeFromParent];
 	}
-	FLAssignObjectWithRetain(_backgroundWidget, widget);
+	FLSetObjectWithRetain(_backgroundWidget, widget);
 	_backgroundWidget.contentMode = FLRectLayoutFill;
 
 	[self.shapeWidget addWidget:_backgroundWidget];
@@ -161,7 +161,7 @@
 	if(_backgroundWidget) {
 		[_backgroundWidget removeFromParent];
 	}
-	FLAssignObjectWithRetain(_shapeWidget, widget);
+	FLSetObjectWithRetain(_shapeWidget, widget);
 	_shapeWidget.contentMode = FLRectLayoutFill;
     [self addWidget:_shapeWidget];
     

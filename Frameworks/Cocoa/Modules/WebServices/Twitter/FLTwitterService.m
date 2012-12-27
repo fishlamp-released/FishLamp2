@@ -10,6 +10,7 @@
 #import "NSString+GUID.h"
 #import "FLService.h"
 #import "FLDatabase.h"
+#import "FLServiceKeys.h"
 
 @interface FLTwitterService ()
 @property (readwrite, strong) FLOAuthSession* oauthSession;
@@ -99,11 +100,11 @@
 	self.oauthSession = oauthSession;
 }
 
-- (void) openService:(id) sender {
-    self.database = [self.services resourceForKey:FLUserDataObjectDatabase];
+- (void) openService:(FLSession*) session {
+    self.database = [self.session resourceForKey:FLUserDataPersistantDatabaseKey];
 }
 
-- (void) closeService:(id) sender {
+- (void) closeService:(FLSession*) session {
     self.database = nil;
     self.oauthSession = nil;
     self.oauthInfo = nil;

@@ -40,10 +40,10 @@
 #define FLReleaseWithNil(__OBJ__) \
             __OBJ__ = nil
 
-#define FLAssignObjectWithRetain(__ASSIGN_TO_,__OBJ__) \
+#define FLSetObjectWithRetain(__ASSIGN_TO_,__OBJ__) \
             __ASSIGN_TO_ = __OBJ__
 
-#define FLAssignObjectWithCopy(__ASSIGN_TO_,__OBJ__) \
+#define FLSetObjectWithCopy(__ASSIGN_TO_,__OBJ__) \
             __ASSIGN_TO_ = [__OBJ__ copy]
 
 #define FLAssignObjectWithMutableCopy(__ASSIGN_TO_,__OBJ__) \

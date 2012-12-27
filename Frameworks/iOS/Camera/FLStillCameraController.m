@@ -32,7 +32,7 @@
 
 - (void) setCamera:(FLCamera*) camera
 {
-	FLAssignObjectWithRetain(_camera, camera);
+	FLSetObjectWithRetain(_camera, camera);
 }
 
 - (void) dealloc

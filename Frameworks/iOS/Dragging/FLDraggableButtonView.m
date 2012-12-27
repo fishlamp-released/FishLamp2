@@ -34,7 +34,7 @@
     {
         [_openButton removeFromSuperview];
     }
-    FLAssignObjectWithRetain(_openButton, button);
+    FLSetObjectWithRetain(_openButton, button);
     [self addSubview:_openButton];
     
     [self setNeedsLayout];
@@ -46,7 +46,7 @@
     {
         [_closeButton removeFromSuperview];
     }
-    FLAssignObjectWithRetain(_closeButton, button);
+    FLSetObjectWithRetain(_closeButton, button);
     [self addSubview:_closeButton];
     _closeButton.hidden = YES;
     

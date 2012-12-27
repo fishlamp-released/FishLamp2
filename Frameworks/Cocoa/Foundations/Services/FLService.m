@@ -7,182 +7,79 @@
 //
 
 #import "FLService.h"
+#import "FLSession.h"
 
-typedef void (^FLServiceRequestHandler)(id service, FLServiceRequest* serviceRequest, FLFinisher* finisher);
-
-@implementation FLServiceGroup
-
-- (id) init {
-    self = [super init];
-    if(self) {
-        _services = [[NSMutableDictionary alloc] init];
-    }
-    
-    return self;
-}
-
-+ (id) serviceGroup {
-    return FLAutorelease([[[self class] alloc] init]);
-}
-
-#if FL_MRC
-- (void) dealloc {
-    [_services release];
-    [super dealloc];
-}
-#endif
-
-- (id) serviceForServiceType:(id) serviceType {
-    FLAssertNotNil_(serviceType);
-    return [_services objectForKey:serviceType];
-} 
-
-- (void) removeServiceForServiceType:(id) serviceType {
-
-    FLAssertNotNil_(serviceType);
-
-    id service = [self serviceForServiceType:serviceType];
-    if(service) {
-        [_services removeObjectForKey:serviceType];
-        FLPerformSelector1(service, @selector(didMoveToServiceGroup:), nil);
-    }
-}
-
-- (void) setService:(id) service forServiceType:(id) serviceType {
-
-    FLAssertNotNil_(serviceType);
-    FLAssertNotNil_(service);
-    
-    FLConfirm_v([_services objectForKey:serviceType] == nil, @"service type already registered: %@", serviceType);
-    
-    [_services setObject:service forKey:serviceType];
-    
-    FLPerformSelector1(service, @selector(didMoveToServiceGroup:), self);
-}
-
-- (BOOL) canServiceRequest:(FLServiceRequest*) request {
-    id service = [_services objectForKey:request.serviceType];
-    return service != nil;
-}
-
-- (FLFinisher*) sendServiceRequest:(FLServiceRequest*) request {
-    return [self sendServiceRequest:request completion:nil];
-}
-
-- (FLFinisher*) sendServiceRequest:(FLServiceRequest*) request 
-                 completion:(FLCompletionBlock) completion {
-                 
-    id service = [_services objectForKey:request.serviceType];
-    if(service) {
-       return [service didReceiveServiceRequest:request completion:completion]; 
-    }
-
-    FLFinisher* finisher = [FLFinisher finisher:completion];
-    [finisher setFinishedWithResult:[NSError serviceRequestNotHandledError:request.serviceType]];
-    return finisher;
-}                 
-
-- (void) openServices:(id) openedBy {
-    for(id<FLService> service in _services) {
-        FLPerformSelector1(service, @selector(openService:), openedBy);
-    }
-}
-
-- (void) closeServices:(id) closedBy {
-    for(id<FLService> service in _services) {
-        FLPerformSelector1(service, @selector(closeService:), closedBy);
-    }
-}
-
-- (id) resourceForKey:(id) key {
-//    for(id<FLService> service in _services) {
-//        FLPerformSelector1(service, @selector(resourceForKey:), key);
-//    }
-
-    return nil;
-}
-
-
-
+@interface FLService ()
+@property (readwrite, assign) FLSession* session;
+@property (readwrite, strong) id serviceID;
 @end
 
 @implementation FLService
 
-@synthesize services = _services;
+@synthesize session = _session;
+@synthesize serviceID = _serviceType;
 
-- (id) init {
-    self = [super init];
-    if(self) {
-        _requestHandlers = [[NSMutableDictionary alloc] init];
-    }
-    return self;
+- (void) openService:(FLSession*) session {
 }
 
-#if FL_MRC
-- (void) dealloc {
-    [_requestHandlers release];
-    [super dealloc];
-}
-#endif
-
-- (void) setRequestHandler:(SEL) selector forServiceRequestType:(id) serviceRequestType {
-
-    FLServiceRequestHandler handler = ^(id service, FLServiceRequest* serviceRequest, FLFinisher* finisher) {
-        FLPerformSelector2(service, selector, serviceRequest, finisher);
-    };
-
-    [_requestHandlers setObject:FLAutoreleasedCopy(handler) forKey:serviceRequestType];
+- (void) closeService:(FLSession*) session {
 }
 
-- (void) didMoveToServiceGroup:(FLServiceGroup*) parent {
-    _services = parent;
-}
-
-- (FLFinisher*) didReceiveServiceRequest:(FLServiceRequest*) request 
-                              completion:(FLCompletionBlock) completion {
-    
-    FLFinisher* finisher = [FLFinisher finisher:completion];
-
-    FLServiceRequestHandler handler = [_requestHandlers objectForKey:request.requestType];
-    if(handler) {
-        handler(self, request, finisher);
-    }
-    else {
-        [finisher setFinishedWithResult:[NSError serviceRequestNotHandledError:request.serviceType]];
-    }
-    
-    return finisher;
-                              
-}                              
-
-@end
-
-@implementation NSError (FLService)
-
-+ (NSError*) serviceRequestNotHandledError:(NSString*) serviceType {
-    
-    NSString* notHandled = NSLocalizedString(@"Unhandled service request for service type", nil);
-
-    NSString* errorString = [NSString stringWithFormat:@"%@: %@", notHandled, serviceType];
-
-    return [NSError errorWithDomain:[FLFrameworkErrorDomain instance]
-                                   code:FLUnhandledServiceRequestErrorCode
-                                   userInfo:[NSDictionary dictionaryWithObject:serviceType forKey:FLServiceTypeKey]
-                                   reason:errorString
-                                   comment:nil
-                                   stackTrace:FLCreateStackTrace(NO)];
-}
-
-- (BOOL) isUnhandledServiceRequestError {
-	return	FLStringsAreEqual(NSURLErrorDomain, self.domain) && 
-			self.code == FLUnhandledServiceRequestErrorCode; 
-}
-
-- (NSString*) unhandledServiceRequestServiceType {
-    return [self.userInfo objectForKey:FLServiceTypeKey];
+- (void) didMoveToSession:(FLSession*) session {
+    self.session = session;
 }
 
 @end
+//
+//typedef void (^FLServiceRequestHandler)(id service, FLServiceRequest* serviceRequest, FLFinisher* finisher);
+//
+//@implementation FLRequestHandlingService
+//
+//- (id) init {
+//    self = [super init];
+//    if(self) {
+//        _requestHandlers = [[NSMutableDictionary alloc] init];
+//    }
+//    return self;
+//}
+//
+//#if FL_MRC
+//- (void) dealloc {
+//    [_requestHandlers release];
+//    [super dealloc];
+//}
+//#endif
+//
+//- (void) setRequestHandler:(SEL) selector forServiceRequestType:(id) serviceRequestType {
+//
+//    FLServiceRequestHandler handler = ^(id service, FLServiceRequest* serviceRequest, FLFinisher* finisher) {
+//        FLPerformSelector2(service, selector, serviceRequest, finisher);
+//    };
+//
+//    [_requestHandlers setObject:FLAutoreleasedCopy(handler) forKey:serviceRequestType];
+//}
+//
+//- (FLFinisher*) didReceiveServiceRequest:(FLServiceRequest*) request 
+//                              completion:(FLCompletionBlock) completion {
+//    
+//    FLFinisher* finisher = [FLFinisher finisher:completion];
+//
+//    FLServiceRequestHandler handler = [_requestHandlers objectForKey:request.requestType];
+//    if(handler) {
+//        handler(self, request, finisher);
+//    }
+//    else {
+//        [finisher setFinishedWithResult:[NSError serviceRequestNotHandledError:request.serviceID]];
+//    }
+//    
+//    return finisher;
+//                              
+//}                              
+//
+//@end
+//
+
+
 //- (void) didMoveToService:(FLService*) parent {
 //    self.parentService = parentService;
 //}

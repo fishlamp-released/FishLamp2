@@ -44,7 +44,7 @@
 //		operation.wasLoadedFromCacheCallback = ^{
 //			if(operation.didSucceed)
 //			{
-//				FLAssignObjectWithRetain(_user, operation.output);
+//				FLSetObjectWithRetain(_user, operation.output);
 //				[self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
 //			}
 //		};
@@ -52,7 +52,7 @@
 //		action.willFinishBlock = ^(id theAction) {
 //			if(action.didSucceed)
 //			{
-//				FLAssignObjectWithRetain(_user, [[theAction lastOperation] operationOutput]);
+//				FLSetObjectWithRetain(_user, [[theAction lastOperation] operationOutput]);
 //			}
 //			
 //			[self onDoneLoadingEditableData];

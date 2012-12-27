@@ -35,7 +35,7 @@
 }
 
 - (void) setRootViewController:(UIViewController*) viewController {
-    FLAssignObjectWithRetain(_rootViewController, viewController);
+    FLSetObjectWithRetain(_rootViewController, viewController);
     self.window.rootViewController = self.rootViewController;
 }
 

@@ -23,7 +23,7 @@ static NSString* s_defaultUserAgent = nil;
 }
 
 + (void) setDefaultUserAgent:(NSString*) userAgent {
-	FLAssignObjectWithRetain(s_defaultUserAgent, userAgent);
+	FLSetObjectWithRetain(s_defaultUserAgent, userAgent);
 }
 
 + (NSString*) defaultUserAgent {

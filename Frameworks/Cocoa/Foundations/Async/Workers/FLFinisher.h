@@ -44,9 +44,8 @@ typedef void (^FLFinisherNotificationSchedulerBlock)(dispatch_block_t notifier);
 - (void) setFinishedWithResult:(id) result 
                     completion:(dispatch_block_t) notificationCompletionBlock;
 
-// blocks in current thread
-- (FLResult) waitUntilFinished;
-
+// blocks in current thread. Will @throw error if [self.result error] 
+- (id) waitUntilFinished;
 
 // optional stuff
 

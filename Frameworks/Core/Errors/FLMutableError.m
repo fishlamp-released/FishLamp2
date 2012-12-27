@@ -34,7 +34,7 @@ FLSynthesizeDictionaryProperty(errorDomain, setErrorDomain, id<FLErrorDomain>, F
 #endif
 
 - (void) setUserInfo:(NSDictionary*) userInfo {
-    FLAssignObjectWithRetain(_mutableUserInfo, FLAutorelease([userInfo mutableCopy]));
+    FLSetObjectWithRetain(_mutableUserInfo, FLAutorelease([userInfo mutableCopy]));
 }
 
 - (id)initWithDomain:(NSString *)domain code:(NSInteger)code userInfo:(NSDictionary *) userInfo {

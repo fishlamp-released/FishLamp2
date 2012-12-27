@@ -57,11 +57,11 @@ static int s_count = 0;
 }
 
 - (FLResult) dispatchBlock:(dispatch_block_t) block {
-    return FLThrowError([[FLDefaultQueue dispatchBlock:block] waitUntilFinished]);
+    return [[FLDefaultQueue dispatchBlock:block] waitUntilFinished];
 }
 
 - (FLResult) dispatchFifoBlock:(dispatch_block_t) block {
-    return FLThrowError([[_dispatchQueue dispatchBlock:block] waitUntilFinished]);
+    return [[_dispatchQueue dispatchBlock:block] waitUntilFinished];
 }
 
 - (void) handleLowMemory:(id)sender {

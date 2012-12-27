@@ -155,7 +155,7 @@
         [_backgroundView removeFromSuperview];
     }
 
-    FLAssignObjectWithRetain(_backgroundView, view);
+    FLSetObjectWithRetain(_backgroundView, view);
     
     if(_backgroundView)
     {

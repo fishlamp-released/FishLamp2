@@ -15,7 +15,7 @@
 
 - (void) setImage:(UIImage*) image
 {
-    FLAssignObjectWithRetain(_image, image);
+    FLSetObjectWithRetain(_image, image);
     
     if(_imageView)
     {

@@ -100,8 +100,8 @@
 - (void) setImage:(UIImage*) image 
          exifData:(NSDictionary*) exif
 {
-    FLAssignObjectWithRetain(_image, image);
-	FLAssignObjectWithRetain(_properties, exif);
+    FLSetObjectWithRetain(_image, image);
+	FLSetObjectWithRetain(_properties, exif);
 }
 
 - (void) setImageRef:(CGImageRef) imageRef 

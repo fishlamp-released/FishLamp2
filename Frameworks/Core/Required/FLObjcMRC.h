@@ -83,10 +83,10 @@ void _FLReleaseBlockWithNil_(dispatch_block_t* block) {
 #define FLReleaseBlockWithNil(b) \
             _FLReleaseBlockWithNil_((dispatch_block_t*) &(b))
 
-#define FLAssignObjectWithRetain(a,b) \
+#define FLSetObjectWithRetain(a,b) \
             _FLRetainObject((id*) &a, (id) b)
 
-#define FLAssignObjectWithCopy(a,b) \
+#define FLSetObjectWithCopy(a,b) \
             _FLAssignObjectWithCopy((id*) &a, (id) b)
 
 #define FLAutoreleasedCopy(__OBJECT__) \

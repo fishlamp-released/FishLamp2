@@ -56,7 +56,7 @@
 {
 	if(_post != post)
 	{
-		FLAssignObjectWithRetain(_post, post);
+		FLSetObjectWithRetain(_post, post);
         self.userNameWidget.text = post.from.name;
 		self.messageWidget.text = post.message;
 		self.postedTimeWidget.text = [FLDateFormatter displayFormatterDataToString:post.created_time];

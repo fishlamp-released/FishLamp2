@@ -128,7 +128,7 @@
 
 - (IBAction) chooseButtonWasPressed:(id) sender
 {
-	FLAssignObjectWithRetain(_chosenString, [_stringList objectAtIndex:[self.tableView indexPathForSelectedRow].row]);
+	FLSetObjectWithRetain(_chosenString, [_stringList objectAtIndex:[self.tableView indexPathForSelectedRow].row]);
 	[_chosenCallback invoke:self];
 }
 

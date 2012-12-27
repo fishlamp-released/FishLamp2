@@ -773,7 +773,7 @@ FLSynthesizeStructProperty(animating, setAnimating, BOOL, _zoomingScrollViewFlag
 			}
 			else
 			{
-				FLAssignObjectWithRetain(_lastTouch, touch);
+				FLSetObjectWithRetain(_lastTouch, touch);
 				[self performSelector:@selector(_singleTap:) withObject:nil afterDelay:kDoubleTapInterval];
 			}
 			

@@ -21,8 +21,8 @@ FLSynthesizeStructProperty(isPrimaryKey, setPrimaryKey, BOOL, _state);
 @synthesize decodedColumnName = _decodedColumnName;
 
 - (void) setColumnName:(NSString*) columnName {
-	FLAssignObjectWithRetain(_name, FLDatabaseNameEncode(columnName));
-	FLAssignObjectWithRetain(_decodedColumnName, FLDatabaseNameDecode(columnName));
+	FLSetObjectWithRetain(_name, FLDatabaseNameEncode(columnName));
+	FLSetObjectWithRetain(_decodedColumnName, FLDatabaseNameDecode(columnName));
 }
 
 - (void) dealloc {
@@ -46,7 +46,7 @@ FLSynthesizeStructProperty(isPrimaryKey, setPrimaryKey, BOOL, _state);
 	columnType:(FLDatabaseType) columnType  
 	columnConstraints:(NSArray*) constraints {
 	if((self = [super init])) {
-		FLAssignObjectWithRetain(_constraints, constraints);
+		FLSetObjectWithRetain(_constraints, constraints);
 		_state.isPrimaryKey = self.hasPrimaryKeyConstraint;
 		_state.isIndexed = _state.isPrimaryKey;
 		self.columnName = name;

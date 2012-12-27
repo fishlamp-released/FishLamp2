@@ -8,6 +8,8 @@
 
 #import "FLRequired.h"
 
+// NOTE: see NSScanner.h
+
 @interface NSString (FLStringUtilities)
 
 - (BOOL)isEqualToString:(NSString *)aString caseSensitive:(BOOL) caseSensitive;

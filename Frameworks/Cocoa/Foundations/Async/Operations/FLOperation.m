@@ -22,8 +22,8 @@ NSString* const FLOperationFinishedEvent;
 
 @synthesize operationID = _operationID;
 @synthesize runBlock = _runBlock;
-@synthesize tag = _tag;
 @synthesize cancelled = _cancelled;
+@synthesize session = _session;
 
 - (id) initWithRunBlock:(FLRunOperationBlock) callback {
     if((self = [self init])) {
@@ -38,6 +38,7 @@ NSString* const FLOperationFinishedEvent;
 
 #if FL_MRC
 - (void) dealloc {
+    [_session release];
     [_runBlock release];
     [_operationID release];
     [super dealloc];
@@ -69,7 +70,7 @@ NSString* const FLOperationFinishedEvent;
     FLThrowAbortExeptionIf(self.wasCancelled);
 }
 
-- (void) wasDispatched:(FLFinisher*) finisher {
+- (void) performWithFinisher:(FLFinisher*) finisher {
     self.cancelled = NO;
     id result = nil;
     
@@ -92,14 +93,12 @@ NSString* const FLOperationFinishedEvent;
     [finisher setFinishedWithResult:result];
 }
 
-- (FLFinisher*) dispatch:(FLCompletionBlock) completion {
-    FLFinisher* finisher = [FLFinisher finisher:completion];
-    [self wasDispatched:finisher];
-    return finisher;
-}
-
 - (void) operationWasCancelled:(FLOperation*) operation {
     [self requestCancel];
+}
+
+- (FLResult) runSynchronously {
+    return [[self startPerforming:nil] waitUntilFinished];
 }
 
 @end
