@@ -56,12 +56,12 @@ FLSynthesizeSingleton(FLLogFileManager);
     return nil;
 }
    
-- (void) openService:(id) openedBy {
+- (void) openService:(FLSession*) session {
     [self _close];
     [self _setUserName];
 }
 
-- (void) closeService:(id) closedBy {
+- (void) closeService:(FLSession*) session {
     [self _close];
 }
 
@@ -121,7 +121,7 @@ FLSynthesizeSingleton(FLLogFileManager);
         else if(modDate > newest && 
                 modDate > (now - _reuseIfNewerThanSeconds)) {
                 
-            FLAssignObjectWithRetain(outFilePath, fileName);
+            FLSetObjectWithRetain(outFilePath, fileName);
             newest = modDate;
         }
     

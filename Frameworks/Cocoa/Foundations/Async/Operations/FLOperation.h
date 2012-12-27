@@ -12,6 +12,7 @@
 #import "FLResult.h"
 
 @class FLOperation;
+@class FLSession;
 
 typedef FLResult (^FLRunOperationBlock)(FLOperation* operation);
 
@@ -19,16 +20,17 @@ typedef FLResult (^FLRunOperationBlock)(FLOperation* operation);
 @private
 	id _operationID;
 	FLRunOperationBlock _runBlock;
-	NSInteger _tag;
     BOOL _cancelled;
+    FLSession* _session;
 }
+
+@property (readwrite, strong) FLSession* session;
 
 // TODO: abstract this better;
 //@property (readonly, assign) FLOperationType operationType;
 
 // misc
 @property (readwrite, strong, nonatomic) id operationID;
-@property (readwrite, assign, nonatomic) NSInteger tag;
 
 - (id) init;
 - (id) initWithRunBlock:(FLRunOperationBlock) block;
@@ -39,10 +41,12 @@ typedef FLResult (^FLRunOperationBlock)(FLOperation* operation);
 // this will raise an abort exception if runState has been signaled as finished.
 - (void) abortIfNeeded;
 
+@end
+
+@interface FLOperation (OptionalOverrides)
 /// @brief Required override point (or use runBlock).
 /// Either override run or set the operation's run block.
 - (FLResult) runOperation;
-
 @end
 
 @protocol FLOperationObserver <NSObject>

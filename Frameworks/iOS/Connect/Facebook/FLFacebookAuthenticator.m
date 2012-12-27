@@ -140,8 +140,8 @@
 
 - (void) beginAuthenticatingInViewController:(FLViewController*) viewController  delegate:(id<FLFacebookAuthenticatorDelegate>) delegate
 {
-    FLAssignObjectWithRetain(_delegate, delegate);
-    FLAssignObjectWithRetain(_viewController, viewController);
+    FLSetObjectWithRetain(_delegate, delegate);
+    FLSetObjectWithRetain(_viewController, viewController);
     
 	if([[FLFacebookMgr instance] appNeedsAuthorizationForPermissions:[FLFacebookMgr instance].permissions])
 	{

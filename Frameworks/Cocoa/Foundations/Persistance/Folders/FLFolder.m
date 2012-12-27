@@ -28,7 +28,7 @@
 - (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super init];
     if(self) {
-        FLAssignObjectWithRetain(_fullPath, [aDecoder decodeObjectForKey:@"_fullPath"]);
+        FLSetObjectWithRetain(_fullPath, [aDecoder decodeObjectForKey:@"_fullPath"]);
     }   
 
     return self;

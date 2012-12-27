@@ -53,16 +53,12 @@ typedef id (^FLCreateOperationBlock)();
 
 - (id) operationByID:(id) operationID;
 
-- (id) operationByTag:(NSInteger) tag;
-
 - (id) operationByClass:(Class) class;
 
 //
 - (FLResult) firstOperationOutput:(NSDictionary*) inResult;
 
 - (FLResult) lastOperationOutput:(NSDictionary*) inResult;
-
-- (id) outputByTag:(NSInteger) tag  inResult:(NSDictionary*) inResult;
 
 - (id) outputByOperationClass:(Class) aClass  inResult:(NSDictionary*) inResult;
 

@@ -294,8 +294,8 @@ FLSynthesizeSingleton(FLCrossFadeAnimation);
 #if IOS
     self.callback = finishedBlock;
 
-    FLAssignObjectWithRetain(_viewController, viewController);
-    FLAssignObjectWithRetain(_parent, parentViewController);
+    FLSetObjectWithRetain(_viewController, viewController);
+    FLSetObjectWithRetain(_parent, parentViewController);
 
 	CALayer *viewLayer = viewController.view.layer;
 	CAKeyframeAnimation* popInAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform.scale"];
@@ -325,8 +325,8 @@ FLSynthesizeSingleton(FLCrossFadeAnimation);
 {
 #if IOS
     self.callback = finishedBlock;
-    FLAssignObjectWithRetain(_viewController, viewController);
-    FLAssignObjectWithRetain(_parent, parentViewController);
+    FLSetObjectWithRetain(_viewController, viewController);
+    FLSetObjectWithRetain(_parent, parentViewController);
 
 	CALayer *viewLayer = viewController.view.layer;
 	CAKeyframeAnimation* popInAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform.scale"];

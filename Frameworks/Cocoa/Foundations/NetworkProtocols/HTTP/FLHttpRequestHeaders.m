@@ -62,7 +62,7 @@
 
 
 - (void) setHttpMethod:(NSString *)httpMethod {
-    FLAssignObjectWithRetain(_httpMethod, httpMethod);
+    FLSetObjectWithRetain(_httpMethod, httpMethod);
     
     if(self.isPostRequest) {
         [self setValue:[NSString stringWithFormat:@"%@ HTTP/%@", self.requestURL.path, [self HTTPVersion]] forHTTPHeaderField:@"POST"];
@@ -191,7 +191,7 @@ static NSString* s_defaultUserAgent = nil;
 }   
 
 + (void) setDefaultUserAgent:(NSString*) userAgent {
-    FLAssignObjectWithRetain(s_defaultUserAgent, userAgent);
+    FLSetObjectWithRetain(s_defaultUserAgent, userAgent);
 }
 
 - (id) copyWithZone:(NSZone *)zone {

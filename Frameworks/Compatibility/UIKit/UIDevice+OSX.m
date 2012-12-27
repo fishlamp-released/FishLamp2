@@ -9,6 +9,9 @@
 #import "UIDevice+OSX.h"
 
 #if OSX
+
+//#import "NSProcessInfo.h"
+
 @implementation UIDevice
 
 @end

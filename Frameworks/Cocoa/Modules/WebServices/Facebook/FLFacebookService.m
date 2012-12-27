@@ -10,6 +10,7 @@
 #import "NSString+URL.h"
 #import "FLUserDataStorageService.h"
 #import "FLService.h"
+#import "FLServiceKeys.h"
 
 @interface FLFacebookService ()
 @property (readwrite, strong) FLDatabase* database;
@@ -39,11 +40,11 @@
     return FLAutorelease([[[self class] alloc] init]);
 }
 
-- (void) openService:(id) sender {
-    self.database = [self.services resourceForKey:FLUserDataObjectDatabase];
+- (void) openService:(FLSession*) session {
+    self.database = [self.session resourceForKey:FLUserDataPersistantDatabaseKey];
 }
 
-- (void) closeService:(id) sender {
+- (void) closeService:(FLSession*) session {
     self.database = nil;
     self.appId = nil;
     self.encodedToken = nil;
@@ -87,7 +88,7 @@
 		FLFacebookNetworkSession* input = [FLFacebookNetworkSession facebookNetworkSession];
 		input.appId = self.appId;
 		
-		FLAssignObjectWithRetain(_facebookNetworkSession, [self.database loadObject:input]);
+		FLSetObjectWithRetain(_facebookNetworkSession, [self.database loadObject:input]);
 		
 		if(_facebookNetworkSession && FLStringIsEmpty(_facebookNetworkSession.userId))
 		{
@@ -143,7 +144,7 @@
 
 - (void) setFacebookNetworkSession:(FLFacebookNetworkSession*) session
 {
-	FLAssignObjectWithRetain(_facebookNetworkSession, session);
+	FLSetObjectWithRetain(_facebookNetworkSession, session);
 
 	self.encodedToken = nil;
 	

@@ -146,7 +146,7 @@
                   withinParens:(BOOL) withinParens
       prefixDelimiterWithSpace:(BOOL) prefixDelimiterWithSpace {
 
-    FLAssignObjectWithRetain(_delimiter, delimiter);
+    FLSetObjectWithRetain(_delimiter, delimiter);
     _insertPrefixDelimiterSpace = prefixDelimiterWithSpace;
     if(withinParens) {
         [self openParen];

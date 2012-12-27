@@ -7,20 +7,7 @@
 //
 
 #import "FLCocoaRequired.h"
-#import <dispatch/dispatch.h>
-
-#import "FLFinisher.h"
-#import "FLResult.h"
-
-typedef void (^FLFinishableBlock)(FLFinisher* finisher);
-
-@protocol FLDispatchable <NSObject>
-- (void) wasDispatched:(FLFinisher*) finisher;
-- (FLFinisher*) dispatch:(FLCompletionBlock) completion;
-@end
-
-#define FLRunSynchronously(OBJECT) \
-            FLThrowError([[OBJECT dispatch:nil] waitUntilFinished])
+#import "FLDispatchable.h"
 
 @protocol FLDispatcher <NSObject>
 

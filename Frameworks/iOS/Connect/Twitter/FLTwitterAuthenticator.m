@@ -70,9 +70,9 @@
                                     userGuid:(NSString*) userGuid 
                                     delegate:(id<FLTwitterAuthenticatorDelegate>) delegate
 {
-    FLAssignObjectWithRetain(_delegate, delegate);
-    FLAssignObjectWithRetain(_userGuid, userGuid);
-    FLAssignObjectWithRetain(_viewController, viewController);
+    FLSetObjectWithRetain(_delegate, delegate);
+    FLSetObjectWithRetain(_userGuid, userGuid);
+    FLSetObjectWithRetain(_viewController, viewController);
     
 	if([[FLTwitterMgr instance] needsAuthorizationForUserGuid:userGuid])
 	{

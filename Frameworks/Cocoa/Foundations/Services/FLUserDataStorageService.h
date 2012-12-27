@@ -50,9 +50,6 @@
 
 + (id) userDataStorageService;
 
-- (void) openService;
-- (void) closeService;
-
 @end
 
 @interface FLUserDataStorageService (PlatformSpecific)
@@ -70,4 +67,16 @@
 @protocol FLUserContextResponder <NSObject>
 - (void) userContextDidOpen:(FLUserDataStorageService*) service;
 - (void) userContextDidClose:(FLUserDataStorageService*) service;
+@end
+
+@interface FLSession (FLUserDataStorageService) 
+@property (readwrite, strong) FLUserDataStorageService* storageService;
+@property (readonly, strong) FLFolder* cacheFolder;
+@property (readonly, strong) FLDatabase* cacheDatabase;
+@property (readonly, strong) FLImageFolder* imageCacheFolder;
+@property (readonly, strong) FLFolder* tempFolder;
+@property (readonly, strong) FLFolder* logFolder;
+@property (readonly, strong) FLDatabase* documentsDatabase;
+@property (readonly, strong) FLFolder* documentsFolder;
+@property (readonly, strong) FLImageFolder* imageFolder;
 @end

@@ -40,27 +40,41 @@
 }
 
 + (id) callbackWithTarget:(id) target action:(SEL) action {
-    return FLAutorelease([[FLCallback alloc] initWithTarget:target action:action]);
+    return FLAutorelease([[[self class] alloc] initWithTarget:target action:action]);
 }
 
 + (id) callbackWithBlock:(FLCallbackBlock) block {
-    return FLAutorelease([[FLCallback alloc] initWithBlock:block]);
+    return FLAutorelease([[[self class] alloc] initWithBlock:block]);
 }
 
-
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-
-- (void) invoke:(id) sender {
-    
-    if(_target && _action) {
-        [_target performSelector:_action withObject:sender];
-    }
+- (void) perform {
+    FLPerformSelector(_target, _action);
     
     if(_block) {
-        _block(sender);
+        _block(nil);
     }
+}
 
+- (void) performWithObject:(id) object {
+    
+    FLPerformSelector1(_target, _action, object);
+    if(_block) {
+        _block([FLArgumentList argumentList:object]);
+    }
+}
+
+- (void) performWithObject:(id) object1 withObject:(id) object2 {
+    FLPerformSelector2(_target, _action, object1, object2);
+    if(_block) {
+        _block([FLArgumentList argumentList:object1 withObject:object2]);
+    }
+}
+
+- (void) performWithObject:(id) object1 withObject:(id) object2 withObject:(id) object3 {
+    FLPerformSelector3(_target, _action, object1, object2, object3);
+    if(_block) {
+        _block([FLArgumentList argumentList:object1 withObject:object2 withObject:object3]);
+    }
 }
 
 #if FL_MRC
@@ -71,7 +85,71 @@
 }
 #endif
 
-#pragma clang diagnostic pop
-
-
 @end
+
+@interface FLStashedCallback ()
+@property (readwrite, strong, nonatomic) FLArgumentList* arguments;
+@end
+
+@implementation FLStashedCallback 
+
+@synthesize arguments = _arguments;
+
+- (id) initWithTarget:(id) target action:(SEL) action arguments:(FLArgumentList*) arguments {
+    self = [super initWithTarget:target action:action];
+    if(self) {
+        self.arguments = arguments;
+    }
+    return self;
+}
+
+- (id) initWithBlock:(FLCallbackBlock) block arguments:(FLArgumentList*) arguments {
+    self = [super initWithBlock:block];
+    if(self) {
+        self.arguments = arguments;
+    }
+    return self;
+}
+
++ (id) callbackWithTarget:(id) target action:(SEL) action arguments:(FLArgumentList*) arguments {
+    return FLAutorelease([[[self class] alloc] initWithTarget:target action:action arguments:arguments]);
+}
+
++ (id) callbackWithBlock:(FLCallbackBlock) block arguments:(FLArgumentList*) arguments {
+    return FLAutorelease([[[self class] alloc] initWithBlock:block arguments:arguments]);
+}
+
+- (void) performWithFinisher:(FLFinisher*) finisher {
+    switch(_arguments.count) {
+        case 0:
+            [self perform];
+            break;
+        
+        case 1:
+            [self performWithObject:[_arguments argument:0]];
+            break;
+        
+        case 2:
+            [self performWithObject:[_arguments argument:0] 
+                         withObject:[_arguments argument:1]];
+            break;
+
+        case 3:
+            [self performWithObject:[_arguments argument:0] 
+                         withObject:[_arguments argument:1]
+                         withObject:[_arguments argument:2]];
+            break;
+    }
+    
+    [finisher setFinished];
+}
+
+#if FL_MRC
+- (void) dealloc {
+    [_arguments release];
+    [super dealloc];
+}
+#endif
+
+        
+@end        

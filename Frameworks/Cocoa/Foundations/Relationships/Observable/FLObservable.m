@@ -179,7 +179,6 @@ NSString* const FLObserverAllEvents = @"*";
 
 
 - (void) addObserver:(FLObserverTarget*) target forKey:(NSString*) key {
-return;
     @synchronized(self) {
     
         if(!_observers) {

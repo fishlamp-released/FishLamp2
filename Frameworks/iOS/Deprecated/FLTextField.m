@@ -38,7 +38,7 @@
 
 - (void) setPlaceholderTextDescriptor:(FLTextDescriptor*) textDescriptor
 {
-	FLAssignObjectWithRetain(_placeholderTextDescriptor, textDescriptor);
+	FLSetObjectWithRetain(_placeholderTextDescriptor, textDescriptor);
 }
 
 - (id) init

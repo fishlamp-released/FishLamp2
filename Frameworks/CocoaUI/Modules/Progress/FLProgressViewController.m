@@ -270,7 +270,7 @@
 - (id) initWithView:(UIView*) view {
     self = [self init];
     if(self) {
-        FLAssignObjectWithRetain(_progressView, view);
+        FLSetObjectWithRetain(_progressView, view);
     }
     
     return self;

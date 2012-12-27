@@ -9,14 +9,16 @@
 #import "FLCocoaRequired.h"
 #import "FLDispatchQueue.h"
 #import "FLHttpRequest.h"
+#import "FLService.h"
+#import "FLSession.h"
 
-@interface FLRequestContext : NSObject {
+@interface FLRequestContext : FLService {
 @private
     FLFifoDispatchQueue* _dispatcher;
     NSMutableArray* _requests;
 }
 
-@property (readonly, strong) id<FLDispatcher> dispatcher;
++ (id) requestContext;
 
 - (FLFinisher*) sendRequest:(FLHttpRequest*) request;
 
@@ -33,3 +35,6 @@
 
 @end
 
+@interface FLSession (FLRequestContext) 
+@property (readwrite, strong, nonatomic) FLRequestContext* httpRequestService;
+@end

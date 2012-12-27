@@ -131,7 +131,7 @@ static NSDictionary* s_destinationProperties = nil;
 - (void) setJpegData:(NSData*) data {
 	self.image = nil;
 	_dimensions = CGSizeZero;
-	FLAssignObjectWithRetain(_jpegData, data);
+	FLSetObjectWithRetain(_jpegData, data);
 }
 
 - (CGSize) imageDimensions {
@@ -324,7 +324,7 @@ static NSDictionary* s_destinationProperties = nil;
 {
 	FLReleaseWithNil(_jpegData);
 	[self setImage:image];
-	FLAssignObjectWithRetain(_properties, exif);
+	FLSetObjectWithRetain(_properties, exif);
 }
 
 - (void) readRepresentation {

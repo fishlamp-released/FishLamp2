@@ -26,8 +26,8 @@
     if(self) {
         _line = line;
         _column = column;
-        FLAssignObjectWithRetain(_fileName, file);
-        FLAssignObjectWithRetain(_hint, hint);
+        FLSetObjectWithRetain(_fileName, file);
+        FLSetObjectWithRetain(_hint, hint);
     }
     
     return self;

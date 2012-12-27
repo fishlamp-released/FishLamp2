@@ -82,7 +82,7 @@ FLAssertDefaultInitNotCalled_();
 
 - (void) setParentController:(FLFloatingMenuViewController*) controller
 {
-    FLAssignObjectWithRetain(_parentController, controller);
+    FLSetObjectWithRetain(_parentController, controller);
 }
 
 - (void) _dimissSubmenu
@@ -102,7 +102,7 @@ FLAssertDefaultInitNotCalled_();
     {
         [self _dimissSubmenu];
         
-        FLAssignObjectWithRetain(_subMenu, menuItem.subMenu);
+        FLSetObjectWithRetain(_subMenu, menuItem.subMenu);
         
         if(menuItem.subMenu)
         {

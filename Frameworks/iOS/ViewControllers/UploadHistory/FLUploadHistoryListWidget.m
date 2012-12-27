@@ -90,7 +90,7 @@
 
 - (void) setUploadedAsset:(FLUploadedAsset*) asset count:(NSUInteger) count total:(NSUInteger) total
 {
-	FLAssignObjectWithRetain(_uploadedAsset, asset);
+	FLSetObjectWithRetain(_uploadedAsset, asset);
 	
 	_thumbnail.foregroundThumbnail = asset.thumbnail;
 	_assetName.text = asset.assetName;

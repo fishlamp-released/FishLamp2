@@ -21,12 +21,12 @@
 @synthesize folder = _folder;
 
 
-- (void) openService:(id) sender {
+- (void) openService:(FLSession*) session {
 //    self.folder = [self.context storageService].tempFolder;
     [self beginPurgeInBackgroundThread:nil];
 }
 
-- (void) closeService:(id) sender {
+- (void) closeService:(FLSession*) session {
     [self beginPurgeInBackgroundThread:nil];
     self.folder = nil;
 }

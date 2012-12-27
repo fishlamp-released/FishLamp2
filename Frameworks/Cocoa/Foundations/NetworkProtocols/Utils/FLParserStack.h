@@ -34,7 +34,7 @@ extern void FLParserStackFree(FLParserStack** stack);
 NS_INLINE
 void FLParserStackSetNodeObject(FLParserStackNode* node, id object)
 {
-	FLAssignObjectWithRetain((node->object), object);
+	FLSetObjectWithRetain((node->object), object);
 }
 
 NS_INLINE

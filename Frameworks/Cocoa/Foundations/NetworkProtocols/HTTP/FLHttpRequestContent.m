@@ -82,7 +82,7 @@
 - (void) setBodyData:(NSData*) data {
     self.httpHeaders.postLength = 0;
     FLReleaseWithNil(_postBodyFilePath);
-    FLAssignObjectWithRetain(_postData, data);
+    FLSetObjectWithRetain(_postData, data);
     if (_postData) {
         self.httpHeaders.postLength = _postData.length;
         self.httpHeaders.httpMethod = @"POST";
@@ -93,7 +93,7 @@
     self.httpHeaders.postLength = 0;
     FLReleaseWithNil(_postData);
     
-    FLAssignObjectWithRetain(_postBodyFilePath, path);
+    FLSetObjectWithRetain(_postBodyFilePath, path);
     if(FLStringIsNotEmpty(_postBodyFilePath)) {
         NSError* err = nil;
             self.httpHeaders.postLength = [[[NSFileManager defaultManager] attributesOfItemAtPath:self.postBodyFilePath error:&err] fileSize];

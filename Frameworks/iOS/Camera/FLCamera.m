@@ -78,7 +78,7 @@
 
 - (void) onError:(NSNotification*) sender
 {
-	FLAssignObjectWithRetain(_error, [sender.userInfo objectForKey:AVCaptureSessionErrorKey]);
+	FLSetObjectWithRetain(_error, [sender.userInfo objectForKey:AVCaptureSessionErrorKey]);
 
 	FLLog(@"Error: %@", [[sender.userInfo objectForKey:AVCaptureSessionErrorKey] description]);
 }

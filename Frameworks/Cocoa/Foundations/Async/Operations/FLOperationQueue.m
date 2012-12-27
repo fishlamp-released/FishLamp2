@@ -140,19 +140,19 @@
 //    [_operations insertObject:newOperation afterObject:afterOperation];
 //}
 
-- (id) operationByTag:(NSInteger) tag {
-    FLAssert_v(tag != 0, @"tag must be nonzero");
-
-    @synchronized(self) {
-        for(FLOperation* operation in _operations){
-            if(operation.tag == tag) {   
-                return operation;
-            }
-        }
-    }
-    
-    return nil;
-}
+//- (id) operationByTag:(NSInteger) tag {
+//    FLAssert_v(tag != 0, @"tag must be nonzero");
+//
+//    @synchronized(self) {
+//        for(FLOperation* operation in _operations){
+//            if(operation.tag == tag) {   
+//                return operation;
+//            }
+//        }
+//    }
+//    
+//    return nil;
+//}
 
 - (id) operationByID:(id) operationID {
     FLAssertIsNotNil_v(operationID, nil);
@@ -214,9 +214,6 @@
     return [inResult objectForKey:[[self firstOperation] operationID]];
 }
 
-- (id) outputByTag:(NSInteger) tag inResult:(NSDictionary*) inResult {
-    return [inResult objectForKey:[[self operationByTag:tag] operationID]];
-}
 
 - (id) outputByOperationClass:(Class) aClass inResult:(NSDictionary*) inResult {
     return [inResult objectForKey:[[self operationByClass:aClass] operationID]];
@@ -282,7 +279,7 @@
     @try {
         self.currentOperation = operation;
         [self.currentOperation  addObserver:self];
-        return FLRunSynchronously(self.currentOperation);
+        return [self.currentOperation runSynchronously];
     }
     @catch(NSException* ex) {
         return ex.error;
@@ -294,13 +291,7 @@
     
 }
 
-- (FLFinisher*) dispatch:(FLResultBlock) completion {
-    FLFinisher* finisher = [FLFinisher finisher:completion];
-    [self wasDispatched:finisher];
-    return finisher;
-}
-
-- (void) wasDispatched:(FLFinisher*) finisher {
+- (void) performWithFinisher:(FLFinisher*) finisher {
     self.cancelled = NO;
 
     id outResult = [NSMutableDictionary dictionary];

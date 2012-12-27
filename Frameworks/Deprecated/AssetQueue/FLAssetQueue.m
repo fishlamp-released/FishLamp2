@@ -448,7 +448,7 @@ FIXME("load first asset")
 
                 }
                 didSelectObject:^(id object, BOOL* stop) {
-                    FLAssignObjectWithRetain(asset, object);
+                    FLSetObjectWithRetain(asset, object);
                     *stop = YES;
                 }
                 didFinish:^{
@@ -615,7 +615,7 @@ FIXME("compatability")
 - (void) finishLoadingFromDatabase:(NSMutableArray*) queue
 {
     @synchronized(self) {
-        FLAssignObjectWithRetain(_assets, queue);
+        FLSetObjectWithRetain(_assets, queue);
     }
 }
 

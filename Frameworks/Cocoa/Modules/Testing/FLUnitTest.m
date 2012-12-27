@@ -182,7 +182,7 @@
                     
                     FLLog(@"STARTING %@", testCase.testCaseName);
 
-                    FLRunSynchronously(testCase);
+                    [testCase runSynchronously];
                     [result setPassed];
                     FLLog(@"PASS!")
                 }

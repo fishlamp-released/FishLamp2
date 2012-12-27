@@ -28,7 +28,7 @@
 {
     if(_galleryID != galleryID)
     {
-        FLAssignObjectWithRetain(_galleryID, galleryID);
+        FLSetObjectWithRetain(_galleryID, galleryID);
         FLReleaseWithNil(_galleryContainer);
     }
 }
@@ -37,8 +37,8 @@
 {
     if(_galleryContainer != galleryContainer)
     {   
-        FLAssignObjectWithRetain(_galleryContainer, galleryContainer);
-        FLAssignObjectWithRetain(_galleryID, [_galleryContainer dataRefKey]);
+        FLSetObjectWithRetain(_galleryContainer, galleryContainer);
+        FLSetObjectWithRetain(_galleryID, [_galleryContainer dataRefKey]);
         [self setTitleWithGalleryContainer];
     }
 }

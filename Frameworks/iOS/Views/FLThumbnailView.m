@@ -71,13 +71,13 @@
 
 - (void) setForegroundImage:(UIImage*) image
  {
-	FLAssignObjectWithRetain(_image, image);
+	FLSetObjectWithRetain(_image, image);
     [self updateImage];
 }
 
 - (void) setBackgroundImage:(UIImage *) image
 {
-	FLAssignObjectWithRetain(_backgroundImage, image);
+	FLSetObjectWithRetain(_backgroundImage, image);
     [self updateImage];
 }
 

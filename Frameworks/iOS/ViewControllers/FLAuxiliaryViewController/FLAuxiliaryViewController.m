@@ -87,7 +87,7 @@ FLSynthesizeAssociatedProperty(assign_nonatomic, _auxiliaryViewController, setAu
 }
 
 - (void) setParentViewController:(UIViewController*) viewController {
-    FLAssignObjectWithRetain(_parentViewController, viewController);
+    FLSetObjectWithRetain(_parentViewController, viewController);
     
     [self addTouchableViews];
     [_behavior didAddTouchableView:self];
@@ -290,7 +290,7 @@ FLSynthesizeAssociatedProperty(assign_nonatomic, _auxiliaryViewController, setAu
 
 - (void) setViewController:(UIViewController*) viewController  {   
     FLAssertIsNotNil_(viewController);
-    FLAssignObjectWithRetain(_viewController, viewController);
+    FLSetObjectWithRetain(_viewController, viewController);
 
     viewController.auxiliaryViewController = self;
 

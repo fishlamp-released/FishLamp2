@@ -293,7 +293,7 @@ FLAssertDefaultInitNotCalled_()
 {
 	if(![self _openURLInSafariIfNeeded:url])
 	{
-		FLAssignObjectWithRetain(_startURL, url);
+		FLSetObjectWithRetain(_startURL, url);
 	
 		[_webView loadRequest:[self createURLRequestForURL:url]];
 	}

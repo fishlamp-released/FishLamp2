@@ -154,7 +154,7 @@ static void * const s_queue_key = (void*)&s_queue_key;
     FLFinisher* finisher = [FLFinisher finisher:completion];
 
     return [self dispatchBlock: ^{
-        [object dispatch:^(FLResult result) {
+        [object startPerforming:^(FLResult result) {
             [finisher setFinishedWithResult:result];
         }];
     }];

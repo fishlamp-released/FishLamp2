@@ -191,7 +191,7 @@ static void ReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReach
 			hostName = [hostName substringFromIndex:range.location + 2];
 		}
         
-        FLAssignObjectWithRetain(_hostName, hostName);
+        FLSetObjectWithRetain(_hostName, hostName);
 
 //#if DEBUG		   
 //		  FLDebugLog(FLDebugReachability, @"Set reachability for host: %@", hostName);

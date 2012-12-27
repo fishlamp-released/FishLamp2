@@ -7,73 +7,27 @@
 //
 
 #import "FLCocoaRequired.h"
-#import "FLServiceRequest.h"
 #import "FLFinisher.h"
 #import "FLResult.h"
+#import "FLObservable.h"
+#import "FLServiceProvider.h"
+#import "FLSession.h"
 
-// resources. move these.
-extern NSString* FLUserDataObjectDatabase;
-extern NSString* FLUserDataCacheDatabase;
-extern NSString* FLUserDataImageCacheFolder;
+@class FLSession;
 
-@class FLServiceGroup;
-
-@protocol FLService <NSObject>
-@optional
-
-- (void) didMoveToServiceGroup:(FLServiceGroup*) parent;
-- (FLFinisher*) didReceiveServiceRequest:(FLServiceRequest*) request 
-                              completion:(FLCompletionBlock) completion;
-
-- (void) openService:(id) openedBy;
-- (void) closeService:(id) closedBy;
-
-- (id) resourceForKey:(id) key;
-
-@end
-
-@interface FLService : NSObject {
+@interface FLService : FLObservable<FLServiceProvider> {
 @private
-    FLServiceGroup* _services; 
-    NSMutableDictionary* _requestHandlers;
+    __unsafe_unretained FLSession* _session;
 }
-@property (readonly, assign) FLServiceGroup* services;
-
-- (void) setRequestHandler:(SEL) handler forServiceRequestType:(id) serviceRequestType;
-
-
 @end
-
-@interface FLServiceGroup : NSObject {
-@private
-    NSMutableDictionary* _services;
-}
-
-+ (id) serviceGroup;
-
-- (id) serviceForServiceType:(id) serviceType;
-- (void) setService:(id) service forServiceType:(id) serviceType;
-- (void) removeServiceForServiceType:(id) serviceType;
-
-- (BOOL) canServiceRequest:(FLServiceRequest*) request;
-
-- (FLFinisher*) sendServiceRequest:(FLServiceRequest*) request;
-
-- (FLFinisher*) sendServiceRequest:(FLServiceRequest*) request 
-                        completion:(FLCompletionBlock) completion;
-
-- (void) openServices:(id) sender;
-- (void) closeServices:(id) sender;
-
-// TODO : some sort of FIFO queue for opening???
-
-- (id) resourceForKey:(id) key;
-
-@end
-
-@interface NSError (FLService)
-+ (NSError*) serviceRequestNotHandledError:(NSString*) serviceType;
-- (BOOL) isUnhandledServiceRequestError;
-- (NSString*) unhandledServiceRequestServiceType;
-@end
+//
+//@interface FLRequestHandlingService : FLService {
+//@private
+//    NSMutableDictionary* _requestHandlers;
+//}
+//
+//- (void) setRequestHandler:(SEL) handler 
+//     forServiceRequestType:(id) serviceRequestType;
+//
+//@end
 

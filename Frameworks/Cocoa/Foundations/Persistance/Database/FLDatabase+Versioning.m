@@ -95,7 +95,7 @@ static NSString* kHistory = nil;
 static NSString* s_version;
 
 + (void) setCurrentRuntimeVersion:(NSString*) version {
-    FLAssignObjectWithRetain(s_version, version);
+    FLSetObjectWithRetain(s_version, version);
 }
 
 + (NSString*) currentRuntimeVersion {

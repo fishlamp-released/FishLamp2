@@ -61,7 +61,7 @@ FLSynthesizeStructProperty(notificationViewStyle, setNotificationViewStyle, FLOl
 
 - (void) setValueLabelText:(NSString*) text
 {
-	FLAssignObjectWithRetain(_text, text);
+	FLSetObjectWithRetain(_text, text);
 	_notificationViewFlags.textNeedsUpdate = YES;
 }
 
@@ -72,7 +72,7 @@ FLSynthesizeStructProperty(notificationViewStyle, setNotificationViewStyle, FLOl
 
 - (void) setTitle:(NSString*) text
 {
-	FLAssignObjectWithRetain(_title, text);
+	FLSetObjectWithRetain(_title, text);
 	_titleLabel.text = text;
 }
 

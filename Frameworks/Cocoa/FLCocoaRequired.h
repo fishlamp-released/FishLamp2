@@ -7,6 +7,8 @@
 //
 
 #import "FLCore.h"
+#import <dispatch/dispatch.h>
+
 #import "NSObject+Copying.h"
 #import "FLAbortException.h"
 

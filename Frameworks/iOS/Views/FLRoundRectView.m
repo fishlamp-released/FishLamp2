@@ -81,25 +81,25 @@
 
 - (void) setFillColor:(UIColor*) color
 {
-	FLAssignObjectWithRetain(_fillColor, color);
+	FLSetObjectWithRetain(_fillColor, color);
 	[self _update];
 }
 
 - (void) setHighlightedFillColor:(UIColor*) color
 {
-	FLAssignObjectWithRetain(_highlightedFillColor, color);
+	FLSetObjectWithRetain(_highlightedFillColor, color);
     [self _update];
 }
 
 - (void) setHighlightedBorderColor:(UIColor*) color
 {
-	FLAssignObjectWithRetain(_highlightedBorderColor, color);
+	FLSetObjectWithRetain(_highlightedBorderColor, color);
     [self _update];
 }
 
 - (void) setBorderColor:(UIColor*) color
 {
-	FLAssignObjectWithRetain(_borderColor, color);
+	FLSetObjectWithRetain(_borderColor, color);
     [self _update];
 }
 

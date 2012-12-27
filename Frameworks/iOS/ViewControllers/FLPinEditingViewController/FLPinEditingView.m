@@ -294,7 +294,7 @@
 - (void) setPinCheckMode:(NSString*) pinToCheck maxAttempts:(NSUInteger) maxAttempts
 {
 	_titleLabel.text = NSLocalizedString(@"Enter PIN", nil);
-	FLAssignObjectWithRetain(_pinToCheck, pinToCheck);
+	FLSetObjectWithRetain(_pinToCheck, pinToCheck);
 	_maxAttempts = maxAttempts;
 	_pinCheckMode = YES;
 	[self setNeedsLayout];

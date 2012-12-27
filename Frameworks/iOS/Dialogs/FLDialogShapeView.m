@@ -51,7 +51,7 @@
 //        [_contentView removeFromSuperview];
 //    }
 //    
-//    FLAssignObjectWithRetain(_contentView, contentView);
+//    FLSetObjectWithRetain(_contentView, contentView);
 //    if(_contentView) {
 //        [self addSubview:_contentView];
 //        [self setNeedsLayout];

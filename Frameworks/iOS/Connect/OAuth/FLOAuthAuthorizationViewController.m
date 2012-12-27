@@ -61,7 +61,7 @@
     self.OAuthAuthorizationViewControllerDelegate = delegate;
 	self.openLinksInNewViewController = YES;
 
-	FLAssignObjectWithRetain(_app, app);
+	FLSetObjectWithRetain(_app, app);
 
 	FLAction* action = [FLAction action];
     [action addOperation:[FLOAuthRequestTokenHttpRequest OAuthRequestTokenNetworkOperation:app]];

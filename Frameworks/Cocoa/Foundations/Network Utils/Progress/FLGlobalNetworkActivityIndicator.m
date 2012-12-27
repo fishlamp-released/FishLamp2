@@ -13,7 +13,7 @@ static id<FLGlobalNetworkActivityIndicator> s_globalIndicator = nil;
 @implementation FLGlobalNetworkActivityIndicator
 
 + (void) setInstance:(id<FLGlobalNetworkActivityIndicator>) indicator {
-    FLAssignObjectWithRetain(s_globalIndicator, indicator);
+    FLSetObjectWithRetain(s_globalIndicator, indicator);
 }
 
 + (id<FLGlobalNetworkActivityIndicator>) instance {

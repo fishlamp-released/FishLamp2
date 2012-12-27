@@ -28,7 +28,7 @@
 
 - (void) setImage:(UIImage*) image atIndex:(NSUInteger) idx
 {
-	FLAssignObjectWithRetain(_images[idx], image);
+	FLSetObjectWithRetain(_images[idx], image);
     [self setNeedsDisplay];
 }
 

@@ -219,7 +219,7 @@ void FLGradientButtonColorLightGray(id button)
 		[_backgroundWidget removeFromParent];
 	}
 	widget.contentMode = FLRectLayoutFill;
-	FLAssignObjectWithRetain(_backgroundWidget, widget);
+	FLSetObjectWithRetain(_backgroundWidget, widget);
 	[self.shapeWidget addWidget:_backgroundWidget];
 	[self setNeedsLayout];
 }
@@ -233,7 +233,7 @@ void FLGradientButtonColorLightGray(id button)
 		[_backgroundWidget removeFromParent];
 	}
 	widget.contentMode = FLRectLayoutFill;
-	FLAssignObjectWithRetain(_shapeWidget, widget);
+	FLSetObjectWithRetain(_shapeWidget, widget);
     FLAssertIsNotNil_(self.rootWidget);
 
     [self.rootWidget addWidget:_shapeWidget];

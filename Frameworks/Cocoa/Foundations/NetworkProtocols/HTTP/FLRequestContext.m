@@ -7,6 +7,15 @@
 //
 
 #import "FLRequestContext.h"
+#import "FLServiceKeys.h"
+
+@implementation FLSession (FLRequestContext) 
+FLSynthesizeSessionService(httpRequestService, setHttpRequestService, FLRequestContext*)
+@end
+
+@interface FLRequestContext ()
+@property (readwrite, strong) id<FLDispatcher> dispatcher;
+@end
 
 @implementation FLRequestContext
 
@@ -16,7 +25,6 @@
     self = [super init];
     if(self) {
         _requests = [[NSMutableArray alloc] init];
-        _dispatcher = [[FLFifoDispatchQueue alloc] init];
     }
     
     return self;
@@ -30,6 +38,15 @@
 }
 #endif
 
++ (id) requestContext {
+    return FLAutorelease([[[self class] alloc] init]);
+}
+
+- (void) didMoveToSession:(FLSession *)session {
+    [super didMoveToSession:session];
+    self.dispatcher = session.dispatcher;
+}
+
 - (void) willStartRequest:(FLHttpRequest*) request  {
                 
 }
@@ -40,7 +57,7 @@
     [_dispatcher dispatchBlock: ^{
         [_requests addObject:request];
         [self willStartRequest:request];
-        [ ((id)request) wasDispatched:finisher];
+        [ ((id)request) performWithFinisher:finisher];
     }
     completion:^(FLResult result) {
         
@@ -76,6 +93,5 @@
         }
     }];
 }
-
 
 @end

@@ -9,43 +9,32 @@
 #import "FLImageCacheService.h"
 #import "FLDatabase.h"
 #import "FLImageFolder.h"
+#import "FLSession.h"
+#import "FLServiceKeys.h"
+#import "FLUserDataStorageService.h"
+
+@implementation FLSession (FLImageCacheService)
+FLSynthesizeSessionService(imageCacheService, setImageCacheService, FLImageCacheService*);
+@end
 
 @interface FLImageCacheService ()
 @property (readwrite, strong) FLDatabase* cacheDatabase;
 @property (readwrite, strong) FLImageFolder* imageCacheFolder;
-
-- (void) deleteImage:(FLServiceRequest*) serviceRequest 
-            finisher:(FLFinisher*) finisher;
-
-- (void) readImage:(FLServiceRequest*) serviceRequest 
-          finisher:(FLFinisher*) finisher;
-
-- (void) saveImage:(FLServiceRequest*) serviceRequest 
-          finisher:(FLFinisher*) finisher;         
+//
+//- (void) deleteImage:(FLServiceRequest*) serviceRequest 
+//            finisher:(FLFinisher*) finisher;
+//
+//- (void) readImage:(FLServiceRequest*) serviceRequest 
+//          finisher:(FLFinisher*) finisher;
+//
+//- (void) saveImage:(FLServiceRequest*) serviceRequest 
+//          finisher:(FLFinisher*) finisher;         
 @end
 
 @implementation FLImageCacheService
 
 @synthesize cacheDatabase = _cacheDatabase;
 @synthesize imageCacheFolder = _imageCacheFolder;
-
-- (id) init {
-    self = [super init];
-    
-    if(self) {
-        [self setRequestHandler:@selector(saveImage:finisher:)
-          forServiceRequestType:FLServiceRequestTypeUpdate];
-
-        [self setRequestHandler:@selector(deleteImage:finisher:)
-          forServiceRequestType:FLServiceRequestTypeDelete];
-
-        [self setRequestHandler:@selector(readImage:finisher:)
-          forServiceRequestType:FLServiceRequestTypeRead];
-
-    }
-    
-    return self;
-}
 
 #if FL_MRC
 - (void) dealloc {
@@ -55,33 +44,18 @@
 }
 #endif
 
-- (void) saveImage:(FLServiceRequest*) serviceRequest 
-          finisher:(FLFinisher*) finisher {
-    
-    FLStorableImage* image = [serviceRequest argumentForKey:NSStringFromClass([FLStorableImage class])];
-    
+- (void) updateImage:(FLStorableImage*) image {
     [self.cacheDatabase saveObject:image.imageProperties];
     [self.imageCacheFolder writeImage:image];
-    
-    [finisher setFinished];
 }
 
-- (void) deleteImage:(FLServiceRequest*) serviceRequest 
-            finisher:(FLFinisher*) finisher {
-            
-    FLStorableImage* image = [serviceRequest argumentForKey:NSStringFromClass([FLStorableImage class])];
-
+- (void) deleteImage:(FLStorableImage*) image {
     [self.imageCacheFolder deleteImage:image];
     [self.cacheDatabase deleteObject:image];
-
-    [finisher setFinished];
 }
 
-- (void) readImage:(FLServiceRequest*) serviceRequest 
-          finisher:(FLFinisher*) finisher {
-            
-    NSURL* url = [serviceRequest argumentForKey:NSStringFromClass([NSURL class])];
-                
+
+- (FLStorableImage*) readImageWithURLKey:(NSURL*) url {
     FLImageProperties* input = [FLImageProperties imagePropertiesWithImageURL:url];
     FLImageProperties* props = [self.cacheDatabase loadObject:input];
     FLStorableImage* image = nil; 
@@ -92,17 +66,18 @@
 // TODO: add storage strategy!!        
     }
     
-    [finisher setFinishedWithResult:image];
+    return image;
 }
 
-- (void) openService:(id) sender {
-    self.cacheDatabase = [self.services resourceForKey:FLUserDataCacheDatabase];
-    self.imageCacheFolder = [self.services resourceForKey:FLUserDataImageCacheFolder];
+- (void) openService:(FLSession*) session {
+    self.cacheDatabase = self.session.cacheDatabase;
+    self.imageCacheFolder = self.session.imageCacheFolder;
 }
 
-- (void) closeService:(id) sender {
+- (void) closeService:(FLSession*) session {
     self.cacheDatabase = nil;
     self.imageCacheFolder = nil;
 }
+
 
 @end

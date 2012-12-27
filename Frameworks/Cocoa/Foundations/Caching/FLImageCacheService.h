@@ -8,6 +8,7 @@
 
 #import "FLService.h"
 #import "FLStorableImage.h"
+#import "FLSession.h"
 
 @class FLDatabase;
 @class FLImageFolder;
@@ -17,4 +18,14 @@
     FLDatabase* cacheDatabase;
     FLImageFolder* imageCacheFolder;
 }
+
+- (void) deleteImage:(FLStorableImage*) image;
+- (void) updateImage:(FLStorableImage*) image;
+
+- (FLStorableImage*) readImageWithURLKey:(NSURL*) url;
+
+@end
+
+@interface FLSession (FLImageCacheService)
+@property (readwrite, strong) FLImageCacheService* imageCacheService;
 @end
