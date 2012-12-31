@@ -11,13 +11,13 @@
 #import "FLResult.h"
 #import "FLObservable.h"
 #import "FLServiceProvider.h"
-#import "FLSession.h"
+#import "FLServiceManagingContext.h"
 
-@class FLSession;
+@class FLServiceManagingContext;
 
 @interface FLService : FLObservable<FLServiceProvider> {
 @private
-    __unsafe_unretained id _session;
+    __unsafe_unretained id _context;
 }
 @end
 //

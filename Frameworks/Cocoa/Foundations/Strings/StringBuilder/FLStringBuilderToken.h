@@ -6,57 +6,56 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import "FLCocoaRequired.h"
-
-#import "FLWhitespace.h"
-@class FLStringBuilder;
-
-@protocol FLStringBuilderToken <NSObject, NSCopying, NSCoding>
-
-- (void) appendSelfToString:(NSMutableString*) string
-                 whitespace:(FLWhitespace*) whitespace
-                  tabIndent:(NSInteger*) tabIndent;
-@end
-
-@interface NSString (FLStringBuilderToken)
-@end
-
-@interface FLTokenPlaceholder : NSObject<FLStringBuilderToken, NSCopying, NSCoding> {
-@private
-    id _token;
-}
-
-- (id) initWithToken:(id) token;
-
-+ (FLTokenPlaceholder*) tokenPlaceholder;
-+ (FLTokenPlaceholder*) tokenPlaceholder:(id) tokenOrNil;
-
-@property (readwrite, strong, nonatomic) id token;
-
-@end
-
-@interface FLEolToken : FLTokenPlaceholder
-+ (id) eolToken;
-@end
-
-@interface FLIndentToken : FLTokenPlaceholder {
-}
-+ (FLIndentToken*) indentToken;
-@end
-
-@interface FLOutdentToken : FLTokenPlaceholder {
-}
-+ (FLOutdentToken*) outdentToken;
-@end
-
-@interface FLSingleLineToken : FLEolToken {
-@private
-    NSString* _line;
-}
-
-@property (readwrite, strong, nonatomic) NSString* line;
-
-+ (FLSingleLineToken*) singleLineToken:(NSString*) line;
-
-
-@end
+//#import "FLCocoaRequired.h"
+//
+//#import "FLWhitespace.h"
+//#import "FLPrettyString.h"
+//
+//@class FLStringBuilder;
+//
+//@protocol FLStringBuilderToken <NSObject /* NSCopying , NSCoding*/>
+//- (void) buildStringWithPrettyString:(FLPrettyString*) stringAppender;
+//
+//@optional
+//- (void) didMoveToParent:(id) parent;
+//@end
+//
+//@interface NSString (FLStringBuilderToken)
+//@end
+//
+//// numbers are used for serializing tabs.
+//@interface NSNumber (FLStringBuilderToken)
+//@end
+//
+//
+////typedef NSString* (^FLTokenPlaceholderBlock)();
+////
+////@interface FLTokenPlaceholder : NSObject<FLStringBuilderToken> {
+////@private
+////    FLTokenPlaceholderBlock _block;
+////}
+////
+////- (id) initWithBlock:(FLTokenPlaceholderBlock) block;
+////+ (FLTokenPlaceholder*) tokenPlaceholder:(FLTokenPlaceholderBlock) block;
+////
+////@end
+//
+//
+//
+//// these are all singletons.
+//
+//@interface FLEolToken : NSObject<FLStringBuilderToken>
+//+ (id) eolToken;
+//@end
+//
+//@interface FLIndentToken : NSObject<FLStringBuilderToken> {
+//}
+//+ (id) indentToken;
+//@end
+//
+//@interface FLOutdentToken : NSObject<FLStringBuilderToken> {
+//}
+//+ (id) outdentToken;
+//@end
+//
+//

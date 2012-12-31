@@ -41,6 +41,10 @@
     return self;
 }
 
+- (id) init {
+    return [self initWithHttpMethod:@"GET"];
+}
+
 #if FL_MRC
 - (void) dealloc {
     [_httpMethod release];
@@ -211,5 +215,14 @@ static NSString* s_defaultUserAgent = nil;
 //    request.postLength = self.postLength;
 //    request.HTTPBodyStream = FLAutorelease([self.HTTPBodyStream copy]);
 //}
+
+- (NSString*) description {
+    NSMutableString* desc = [NSMutableString stringWithFormat:@"%@\r\n", [super description]];
+    [desc appendFormat:@"http method: \"%@\"\r\nurl: \"%@\"\r\n",  _httpMethod, [_requestURL description]];
+    if(_headers && _headers.count) {
+        [desc appendFormat:@"request headers:%@\r\n",  [_headers description]];
+    }
+    return desc;
+}
 
 @end

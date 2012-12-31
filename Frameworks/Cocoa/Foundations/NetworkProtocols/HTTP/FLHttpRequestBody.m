@@ -1,37 +1,53 @@
 //
-//  FLHttpRequestContent.m
+//  FLHttpRequestBody.m
 //  FishLampCocoa
 //
 //  Created by Mike Fullerton on 12/22/12.
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import "FLHttpRequestContent.h"
+#import "FLHttpRequestBody.h"
 
-@interface FLHttpRequestContent ()
+@interface FLHttpRequestBody ()
+@property (readwrite, strong, nonatomic) FLHttpRequestHeaders* requestHeaders;
 @end
 
-@implementation FLHttpRequestContent
+@implementation FLHttpRequestBody
 
-@synthesize httpHeaders = _httpHeaders;
+@synthesize requestHeaders = _requestHeaders;
+
 @synthesize postBodyFilePath = _postBodyFilePath;
 @synthesize bodyData = _postData;
 @synthesize bodyStream = _bodyStream;
+#if DEBUG
+@synthesize debugBody = _debugBody;
+#endif
 
 - (id) init {
     self = [super init];
     if(self) {
-        _httpHeaders = [[FLHttpRequestHeaders alloc] init];
     }
     return self;
 }
 
+- (id) initWithHeaders:(FLHttpRequestHeaders*) headers {
+    self = [super init];
+    if(self) {
+        self.requestHeaders = headers;
+    }
+    return self;
+
+}
+
 #if FL_MRC
 - (void) dealloc {
-    [_httpHeaders release];
+    [_requestHeaders release];
     [_postData release];
     [_bodyStream release];
     [_postBodyFilePath release];
+#if DEBUG
+    [_debugBody release];
+#endif    
     [super dealloc];
 }
 #endif
@@ -56,8 +72,8 @@
 	FLAssertStringIsNotEmpty_v(typeContentHeader, nil);
 
     self.bodyData = content;
-	[self.httpHeaders setContentTypeHeader:typeContentHeader];
-	[self.httpHeaders setContentLengthHeader:[content length]];
+	[self.requestHeaders setContentTypeHeader:typeContentHeader];
+	[self.requestHeaders setContentLengthHeader:[content length]];
 }
 
 - (void) setContentWithFilePath:(NSString*) path 
@@ -65,7 +81,7 @@
 	FLAssertStringIsNotEmpty_v(typeContentHeader, nil);
     FLAssert_v([[NSFileManager defaultManager] fileExistsAtPath:path], @"File at %@ doesn't exist", path);
 
-	[self.httpHeaders setContentTypeHeader:typeContentHeader];
+	[self.requestHeaders setContentTypeHeader:typeContentHeader];
     self.postBodyFilePath = path;
 }
 
@@ -80,28 +96,28 @@
 }
 
 - (void) setBodyData:(NSData*) data {
-    self.httpHeaders.postLength = 0;
+    self.requestHeaders.postLength = 0;
     FLReleaseWithNil(_postBodyFilePath);
     FLSetObjectWithRetain(_postData, data);
     if (_postData) {
-        self.httpHeaders.postLength = _postData.length;
-        self.httpHeaders.httpMethod = @"POST";
+        self.requestHeaders.postLength = _postData.length;
+        self.requestHeaders.httpMethod = @"POST";
 	}
 }
 
 - (void) setPostBodyFilePath:(NSString*) path {
-    self.httpHeaders.postLength = 0;
+    self.requestHeaders.postLength = 0;
     FLReleaseWithNil(_postData);
     
     FLSetObjectWithRetain(_postBodyFilePath, path);
     if(FLStringIsNotEmpty(_postBodyFilePath)) {
         NSError* err = nil;
-            self.httpHeaders.postLength = [[[NSFileManager defaultManager] attributesOfItemAtPath:self.postBodyFilePath error:&err] fileSize];
+            self.requestHeaders.postLength = [[[NSFileManager defaultManager] attributesOfItemAtPath:self.postBodyFilePath error:&err] fileSize];
         
         if(err) {
            FLThrowError(FLAutorelease(err));
         }
-        self.httpHeaders.httpMethod = @"POST";
+        self.requestHeaders.httpMethod = @"POST";
 	}
 }
 
@@ -112,6 +128,35 @@
         }
     }
     return _bodyStream;
+}
+
+- (NSString*) description {
+
+    NSMutableString* desc = [NSMutableString stringWithFormat:@"%@\r\n", [super description]];
+
+#if DEBUG
+    if(FLStringIsNotEmpty(_debugBody)) {
+        [desc appendFormat:@"body:\r\n%@", _debugBody];
+    }
+#endif
+    
+    if(_postData) {
+//        @try {
+//            NSString* postDataString = FLAutorelease([[NSString alloc] initWithData:_postData encoding:NSUTF8StringEncoding]);
+//            if(postDataString && postDataString.length) {
+//                [desc appendFormat:@"Request body:\r\n%@\r\n", postDataString];
+//            }
+//        }
+//        @catch(NSException* ex) {
+//        
+//        }
+    }
+
+    if(FLStringIsNotEmpty(_postBodyFilePath)) {
+        [desc appendFormat:@"request body (file path):%@\r\n", _postBodyFilePath];
+    }
+
+    return desc;
 }
 
 

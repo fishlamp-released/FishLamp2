@@ -43,7 +43,7 @@
 //}
 
 
-//- (void) appendElementValueWithObject:(id) object	forType:(FLDataTypeStruct*) type
+//- (void) appendLineWithEncodedObject:(id) object	forType:(FLDataTypeStruct*) type
 //{
 //	if(object)
 //	{
@@ -68,7 +68,7 @@
 //	}
 //	else
 //	{
-//		[self appendElementValueWithObject:object forType:type];
+//		[self appendLineWithEncodedObject:object forType:type];
 //	}
 //}
 //

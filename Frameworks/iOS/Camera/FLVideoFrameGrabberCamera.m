@@ -42,7 +42,7 @@
 	
 	dispatch_release(queue); // Will not work when uncommented -- apparently reference count is altered by 
 	
-	[self.session addOutput:captureOutput];
+	[self.context addOutput:captureOutput];
 
 }
 
@@ -104,7 +104,7 @@
 
 - (void) _configureSession:(AVCaptureSession*) session
 {
-//	  self.session.sessionPreset = AVCaptureSessionPresetPhoto;
+//	  self.context.sessionPreset = AVCaptureSessionPresetPhoto;
 }
 
 @end

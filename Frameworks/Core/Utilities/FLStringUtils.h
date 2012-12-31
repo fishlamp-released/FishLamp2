@@ -67,3 +67,10 @@ NSString* FLEmptyStringOrString(NSString* string) {
     return FLStringIsEmpty(string) ? @"" : string;
 }
 
+
+NS_INLINE
+void FLAppendString(NSMutableString* string, NSString* aString) {
+    if(FLStringIsNotEmpty(aString)) {
+        [string appendString:aString];
+    }
+}

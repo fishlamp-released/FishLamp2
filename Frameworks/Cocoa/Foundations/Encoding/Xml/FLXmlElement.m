@@ -10,35 +10,39 @@
 #import "FLXmlStringBuilder.h"
 
 @interface FLXmlElement ()
-@property (readwrite, strong, nonatomic) NSString* openTag;
-@property (readwrite, strong, nonatomic) NSString* closeTag;
+@property (readwrite, strong, nonatomic) NSString* xmlElementTag;
+@property (readwrite, strong, nonatomic) NSString* xmlElementCloseTag;
 @end
 
 @implementation FLXmlElement
 
-@synthesize openTag = _openTag;
-@synthesize closeTag = _closeTag;
+@synthesize xmlElementTag = _openTag;
+@synthesize xmlElementCloseTag = _closeTag;
 
-- (id) initWithOpenTag:(NSString*) tag closeTag:(NSString*) closeTag {
+- (id) initWithXmlElementTag:(NSString*) xmlElementTag 
+          xmlElementCloseTag:(NSString*) xmlElementCloseTag {
+          
     self = [super init];
     if(self) {
-        self.openTag = tag;
-        self.closeTag = closeTag;
-        self.header = [FLStringBuilder stringBuilder];
+        self.xmlElementTag = xmlElementTag;
+        self.xmlElementCloseTag = xmlElementCloseTag;
+        
+//        [self addStringBuilder:[FLStringBuilder stringBuilder]];
+        
     }
     return self;
 }
 
-- (id) initWithName:(NSString*) tag {
-    return [self initWithOpenTag:tag closeTag:tag];
+- (id) initWithXmlElementTag:(NSString*) xmlElementTag {
+    return [self initWithXmlElementTag:xmlElementTag xmlElementCloseTag:xmlElementTag];
 }
 
-+ (id) xmlElement:(NSString*) openTag closeTag:(NSString*) closeTag {
-    return FLAutorelease([[[self class] alloc] initWithOpenTag:openTag closeTag:closeTag]);
++ (id) xmlElement:(NSString*) xmlElementTag xmlElementCloseTag:(NSString*) xmlElementCloseTag {
+    return FLAutorelease([[[self class] alloc] initWithXmlElementTag:xmlElementTag xmlElementCloseTag:xmlElementCloseTag]);
 }
 
 + (id) xmlElement:(NSString*) name {
-    return FLAutorelease([[[self class] alloc] initWithOpenTag:name closeTag:name]);
+    return FLAutorelease([[[self class] alloc] initWithXmlElementTag:name xmlElementCloseTag:name]);
 }
 
 #if FL_MRC
@@ -74,33 +78,24 @@
     }
 }
 
-- (void) appendSelfToString:(NSMutableString*) string
-                 whitespace:(FLWhitespace*) whitespace
-                  tabIndent:(NSInteger*) tabIndent {
- 
-    if(_comments) {
-        [_comments appendSelfToString:string whitespace:whitespace tabIndent:tabIndent];
+- (FLXmlComment*) comments {
+    
+    if(!_comments) {
+        _comments = [FLXmlComment xmlComment];
     }
     
-    [super appendSelfToString:string whitespace:whitespace tabIndent:tabIndent];
-    
+    return _comments;
 }
 
-- (BOOL) shouldBuildString {
-    return YES;
+- (void) addElement:(FLXmlElement*) element {
+    [self addStringBuilder:element];
 }
 
-// TODO: make special header and footer XML writers??
-
-- (void) willBuildString {
-
-    BOOL isEmpty = self.isEmpty;
-    
-    NSString* openTag = nil;
+- (NSString*) xmlOpenTag:(BOOL) isEmpty {
     
     if(_attributes && _attributes.count) {
     
-        NSMutableString* attributedOpenTag = [NSMutableString stringWithFormat:@"<%@", self.openTag];
+        NSMutableString* attributedOpenTag = [NSMutableString stringWithFormat:@"<%@", self.xmlElementTag];
     
         for(NSString* key in _attributes) {
             [attributedOpenTag appendFormat:@" %@=\"%@\"", key, [_attributes objectForKey:key]];
@@ -113,33 +108,46 @@
             [attributedOpenTag appendString:@">"];
         }
         
-        openTag = attributedOpenTag;
+        return attributedOpenTag;
+    }
+    else if(isEmpty) {
+        return [NSString stringWithFormat:@"<%@/>", self.xmlElementTag];
     }
     else {
-        if(isEmpty) {
-            openTag = [NSString stringWithFormat:@"<%@/>", self.openTag];
-        }
-        else {
-            openTag = [NSString stringWithFormat:@"<%@>", self.openTag];
-        }
+        return [NSString stringWithFormat:@"<%@>", self.xmlElementTag];
     }
     
-    self.header = [FLSingleLineToken singleLineToken:openTag];
-    
-    if(!isEmpty) {
-        self.footer = [FLSingleLineToken singleLineToken:[NSString stringWithFormat:@"</%@>", self.closeTag]];
-    }
 }
 
-- (FLXmlComment*) comments {
-    
-    if(!_comments) {
-        _comments = [FLXmlComment stringBuilder];
+- (NSString*) xmlCloseTag:(BOOL) isEmpty {
+
+    if(!isEmpty) {
+        return [NSString stringWithFormat:@"</%@>", self.xmlElementCloseTag];
+    }
+    return @"";
+}
+
+- (void) appendSelfToPrettyString:(FLPrettyString*) prettyString {
+
+    if(_comments) {
+        [_comments appendSelfToPrettyString:prettyString];
     }
     
-    return _comments;
-}
+    BOOL isEmpty = !self.hasLines;
+    NSInteger tabIndent = self.tabIndent;
+
+    [prettyString appendLine:[self xmlOpenTag:isEmpty] withTabIndent:tabIndent];
+    
+    [super appendSelfToPrettyString:prettyString];
+    
+    [prettyString appendLine:[self xmlCloseTag:isEmpty] withTabIndent:tabIndent];
+      
+      
+}      
+
 
 
 @end
+
+
 

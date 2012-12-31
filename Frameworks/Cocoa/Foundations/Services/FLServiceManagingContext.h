@@ -1,5 +1,5 @@
 //
-//  FLSession.h
+//  FLServiceManagingContext.h
 //  FishLampCocoa
 //
 //  Created by Mike Fullerton on 12/26/12.
@@ -9,32 +9,30 @@
 #import "FLCocoaRequired.h"
 #import "FLServiceProvider.h"
 #import "FLObservable.h"
-#import "FLDispatcher.h"
+#import "FLAuthenticatedContext.h"
 
 @class FLMutableBatchDictionary;
-@class FLFifoDispatchQueue;
 
 typedef id (^FLResourceProviderBlock)(id provider);
 
 typedef SEL FLServicePropertySelector;
 
-@interface FLSession : FLObservable {
+@interface FLServiceManagingContext : FLAuthenticatedContext<FLObservable> {
 @private
     NSMutableDictionary* _resourceProviders;
     FLMutableBatchDictionary* _resourceConsumers;
-    FLFifoDispatchQueue* _dispatcher;
     NSMutableArray* _services;
     BOOL _open;
+    FLObservable* _observable;
 }
 
 @property (readonly, assign, getter=isOpen) BOOL open;
-@property (readonly, strong) id<FLDispatcher> dispatcher;
 
-+ (id) session;
++ (id) serviceManagingContext;
 
-- (void) openSession;
+- (void) openServices;
 
-- (void) closeSession;
+- (void) closeServices;
 
 - (void) requestCancel;
 

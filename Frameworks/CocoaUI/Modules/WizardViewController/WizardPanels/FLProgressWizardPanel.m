@@ -71,12 +71,12 @@
     self.errorContainer.wantsLayer = YES;
 #endif
 
-    FLView* blueView = [[FLView alloc] initWithFrame:self.progressContainer.bounds];
+    FLView* blueView = FLAutorelease([[FLView alloc] initWithFrame:self.progressContainer.bounds]);
     blueView.backgroundColor = [UIColor gray85Color];
     [self.progressContainer addSubview:blueView];
     [blueView sendToBack];
 
-    FLView* greenView = [[FLView alloc] initWithFrame:self.progressContainer.bounds];
+    FLView* greenView = FLAutorelease([[FLView alloc] initWithFrame:self.progressContainer.bounds]);
     greenView.backgroundColor = [UIColor gray85Color];
     [self.errorContainer addSubview:greenView];
     [greenView sendToBack];

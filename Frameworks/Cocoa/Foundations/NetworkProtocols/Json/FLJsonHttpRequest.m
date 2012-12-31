@@ -33,7 +33,7 @@
 - (void) willSendHttpRequest {
     if(self.json && !self.json.isEmpty) {
         NSData* content = [[self.json buildStringWithNoWhitespace] dataUsingEncoding:NSUTF8StringEncoding];
-        [self.httpBody setContentWithData:content typeContentHeader:@"application/json; charset=utf-8"];
+        [self.body setContentWithData:content typeContentHeader:@"application/json; charset=utf-8"];
     }
 }
 

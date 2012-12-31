@@ -40,11 +40,11 @@
     return FLAutorelease([[[self class] alloc] init]);
 }
 
-- (void) openService:(FLSession*) session {
-    self.database = [self.session resourceForKey:FLUserDataPersistantDatabaseKey];
+- (void) openService:(FLServiceManagingContext*) context {
+    self.database = [self.context resourceForKey:FLUserDataPersistantDatabaseKey];
 }
 
-- (void) closeService:(FLSession*) session {
+- (void) closeService:(FLServiceManagingContext*) context {
     self.database = nil;
     self.appId = nil;
     self.encodedToken = nil;

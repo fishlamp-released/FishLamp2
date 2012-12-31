@@ -15,14 +15,19 @@
 
 @interface FLAssetQueue ()
 @property (readwrite, strong) FLAssetQueueState* state;
-//@property (readwrite, strong) NSMutableArray* locks;
 @property (readwrite, strong) NSArray* assets;
-@property (readwrite, assign) NSInteger lockCount;
 @property (readwrite, strong) FLDatabase* database;
+
+#if QUEUE_LOCKING
+//@property (readwrite, strong) NSMutableArray* locks;
+@property (readwrite, assign) NSInteger lockCount;
 - (void) lock;
 - (void) unlock;
+#endif
+
 @end
 
+#if QUEUE_LOCKING
 @interface FLAssetQueueLock : NSObject {
 @private
     __unsafe_unretained FLAssetQueue* _assetQueue;
@@ -50,13 +55,18 @@
     super_dealloc_();
 }
 @end
+#endif
 
 @implementation FLAssetQueue
 
 @synthesize database = _database;
+#if QUEUE_LOCKING
 @synthesize lockCount = _lockCount;
+#endif
 @synthesize assets = _assets;
 @synthesize state = _state;
+@synthesize queueUID = _queueUID;
+
 
 //synthesize_(locks);
 
@@ -84,16 +94,18 @@ FLAssertDefaultInitNotCalled_v(@"hello");
 }
 #endif
 
+#if QUEUE_LOCKING
 - (void) unlock {
     --self.lockCount;
     if(self.lockCount == 0) {
-        [self unload];
+        [self unloadQueue];
     }
 }
 
 - (void) lock {
     ++self.lockCount;
 }
+#endif
 
 - (void) unloadQueue  {
 
@@ -618,6 +630,7 @@ FIXME("compatability")
     }
 }
 
+#if QUEUE_LOCKING
 - (id) loadLock {
     FLAssert_v(self.isLoaded, @"can't get a load lock on an unloaded queue");
 //
@@ -650,6 +663,7 @@ FIXME("compatability")
 //        FLLog(@"unloaded asset queue");
 //    }
 //}
+#endif
 
 @end
 

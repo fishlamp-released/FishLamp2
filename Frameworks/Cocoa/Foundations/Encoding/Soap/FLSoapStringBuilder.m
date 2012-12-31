@@ -9,7 +9,12 @@
 #import "FLSoapStringBuilder.h"
 #import "FLSoapDataEncoder.h"
 #import "NSObject+XML.h"
-#import "FLXmlElement.h"
+#import "FLObjectXmlElement.h"
+
+@interface FLSoapStringBuilder ()
+@property (readonly, strong, nonatomic) FLXmlElement* envelope;
+@property (readonly, strong, nonatomic) FLXmlElement* body;
+@end
 
 @implementation FLSoapStringBuilder
 
@@ -19,17 +24,25 @@
 - (id) init {
     self = [super init];
 	if(self) {
+        self.dataEncoder = [FLSoapDataEncoder instance];
+    
         [self appendDefaultXmlDeclaration];
-        _envelopeElement = [[FLXmlElement alloc] initWithName:@"soap:Envelope"];
+    
+        _envelopeElement = [[FLXmlElement alloc] initWithXmlElementTag:@"soap:Envelope"];
+        [self openElement:_envelopeElement];
+
         [_envelopeElement setAttribute:@"http://www.w3.org/2001/XMLSchema-instance"  forKey:@"xmlns:xsi"];
         [_envelopeElement setAttribute:@"http://www.w3.org/2001/XMLSchema" forKey:@"xmlns:xsd"];
 		[_envelopeElement setAttribute:@"http://schemas.xmlsoap.org/soap/envelope/"forKey:@"xmlns:soap" ];
-        [self addElement:_envelopeElement];
         
-        _bodyElement = [[FLXmlElement alloc] initWithName:@"soap:Body"];
-        [_envelopeElement addElement:_bodyElement];
+        _bodyElement = [[FLXmlElement alloc] initWithXmlElementTag:@"soap:Body"];
+        [self openElement:_bodyElement];
 	}
 	return self;
+}
+
++ (id) soapStringBuilder {
+    return FLAutorelease([[[self class] alloc] init]);
 }
 
 #if FL_MRC
@@ -44,25 +57,24 @@
                andEncodingHeader:(NSString*) encoding
                standalone:(BOOL) standalone {
     
-    [self appendFormat:@"<?xml version=\"%@\" encoding=\"%@\"?>", version, encoding];
+    [self.stringBuilder appendLineWithFormat:@"<?xml version=\"%@\" encoding=\"%@\"?>", version, encoding];
 }
 
 @end
 
 @implementation FLXmlElement (Soap)
 
-- (NSString*) encodeString:(NSString*) string {
-	return [string xmlEncode];
-}
+//- (NSString*) encodeString:(NSString*) string {
+//	return [string xmlEncode];
+//}
 
-- (void) addObjectAsFunction:(NSString*) functionName 
-                      object:(id) object                 
-                xmlNamespace:(NSString*) xmlNamespace {
++ (id) soapXmlElementWithObject:(id) object                 
+                  xmlElementTag:(NSString*) functionName 
+                   xmlNamespace:(NSString*) xmlNamespace {
 
-    FLXmlElement* element = [FLXmlElement xmlElement:functionName];
+    FLObjectXmlElement* element = [FLObjectXmlElement objectXmlElement:object xmlElementTag:functionName];
     [element setAttribute:xmlNamespace forKey:@"xmlns"];
-    [element addObjectAsXML:object withDataEncoder:[FLSoapDataEncoder instance]];
-    [self addElement:element];
+    return element;
 }
 
 - (void) addSoapParameter:(NSString*) name value:(NSString*) value {

@@ -19,7 +19,6 @@
     id _outputObject;
     id _inputObject;
 }
-@property (readwrite, strong) FLFacebookService* facebookService;
 
 @property (readwrite, strong) id inputObject;
 @property (readwrite, strong) id outputObject;

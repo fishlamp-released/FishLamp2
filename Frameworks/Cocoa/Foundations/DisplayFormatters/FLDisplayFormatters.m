@@ -60,7 +60,7 @@
 
 @end
 
-@implementation FLStringFormatter
+@implementation FLStringDisplayFormatter
 
 + (NSString*) displayFormatterDataToString:(id) data
 {

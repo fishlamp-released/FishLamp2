@@ -267,11 +267,11 @@ FIXME("attach to user sessions....");
 FIXME("attach to user sessions....");
 
 
-- (void) openService:(FLSession*) session {
+- (void) openService:(FLServiceManagingContext*) context {
     [self scheduleNextBackgroundTask];
 }
 
-- (void) closeService:(FLSession*) session {
+- (void) closeService:(FLServiceManagingContext*) context {
     [self _cancel];
     [self resetAllTasks];
 }

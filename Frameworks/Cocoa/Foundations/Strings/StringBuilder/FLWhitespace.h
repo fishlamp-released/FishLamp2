@@ -7,63 +7,61 @@
 //
 
 #import "FLCocoaRequired.h"
-#import "FLCore.h"
 
-/// FLWhitespaceDefaultEOL is the default EOL (\\n)
+@class FLPrettyString;
 
-#define FLWhitespaceDefaultEOL         @"\n"
+/// FLWhitespaceDefaultEOL is the default EOL "\n"
+
+#define FLWhitespaceDefaultEOL          @"\n"
 
 /// FLWhitespaceTabTab is defines a "tab style" behavior - e.g. it uses \\t not "    " for a tab.
 
-#define FLWhitespaceTabTab             @"\t"
+#define FLWhitespaceTabTab              @"\t"
 
 /// FLWhitespaceFourSpacesTab defines a four character tab. This is the default tab.
 
-#define FLWhitespaceFourSpacesTab      @"    " // 4 spaces
+//#define FLWhitespaceFourSpacesTab       @"    " // 4 spaces
+#define FLWhitespaceFourSpacesTab       @"...." // 4 spaces
 
-#ifndef FLWhitespaceDefaultTabString
 
 /// FLWhitespaceDefaultTabString defines the default tab string. You can override this in your prefix file.
 
-#define FLWhitespaceDefaultTabString FLWhitespaceFourSpacesTab
+#ifndef FLWhitespaceDefaultTabString    
+#define FLWhitespaceDefaultTabString    FLWhitespaceFourSpacesTab
 #endif
 
 /// FLWhitespace defines how a builder handles whitespace during a build. With this you can control tabs and LF.
+
+#define FLWhitespaceMaxIndent 128
 
 @interface FLWhitespace : NSObject {
 @private
     NSString* _eolString;
     NSString* _tabString;
-    NSString* _cachedTabs[100];
+    NSString* _cachedTabs[FLWhitespaceMaxIndent];
 }
 
 /// Create a whitespace
 
-+ (FLWhitespace*) whitespace;
+- (id) initWithEOL:(NSString*) eol tab:(NSString*) tab;
+
++ (id) whitespace:(NSString*) eol tab:(NSString*) tab;
 
 /// Set the eolString here, e.g. \\n or \\r\\n. See FLWhitespaceDefaultEOL
-
-@property (readwrite, strong, nonatomic) NSString* eolString;
+@property (readonly, strong, nonatomic) NSString* eolString;
 
 /// Set teh tabString. See FLWhitespaceFourSpacesTab or FLWhitespaceTabTab
-
-@property (readwrite, strong, nonatomic) NSString* tabString; 
+@property (readonly, strong, nonatomic) NSString* tabString; 
 
 /// returns tabString for indent level. This is cached and built once for the life of the formatter.
-
 - (NSString*) tabStringForScope:(NSUInteger) indent;
 
 /// returns a formatter built with default EOL and default tab string.
-
-+ (FLWhitespace*) tabbedFormat;
++ (id) tabbedWithSpacesWhitespace;
 
 /// returns a formatter that doesn't insert EOL or tabs (e.g. you're sending XML in a HTTP request)
++ (id) compressedWhitespace;
 
-+ (FLWhitespace*) compressedFormat;
-
-- (void) appendEol:(NSMutableString*) toString;
-- (void) appendTabs:(NSUInteger) count toString:(NSMutableString*) toString;
-- (void) appendEolAndTabs:(NSUInteger) tabCount toString:(NSMutableString*) toString;
-
++ (id) untabbedWhitespace;
 @end
 

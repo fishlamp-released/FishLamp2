@@ -7,24 +7,24 @@
 //
 
 #import "FLService.h"
-#import "FLSession.h"
+#import "FLServiceManagingContext.h"
 
 @interface FLService ()
-@property (readwrite, assign) id session;
+@property (readwrite, assign) id context;
 @end
 
 @implementation FLService
 
-@synthesize session = _session;
+@synthesize context = _context;
 
-- (void) openService:(FLSession*) session {
+- (void) openService:(FLServiceManagingContext*) context {
 }
 
-- (void) closeService:(FLSession*) session {
+- (void) closeService:(FLServiceManagingContext*) context {
 }
 
-- (void) didMoveToSession:(FLSession*) session {
-    self.session = session;
+- (void) didMoveToServiceManagerContext:(FLServiceManagingContext*) context {
+    self.context = context;
 }
 
 @end

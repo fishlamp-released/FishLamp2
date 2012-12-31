@@ -291,7 +291,7 @@
     
 }
 
-- (void) performWithFinisher:(FLFinisher*) finisher {
+- (void) startAsyncWithFinisher:(FLFinisher*) finisher {
     self.cancelled = NO;
 
     id outResult = [NSMutableDictionary dictionary];

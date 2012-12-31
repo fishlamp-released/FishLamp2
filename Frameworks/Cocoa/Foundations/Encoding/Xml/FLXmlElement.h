@@ -7,14 +7,15 @@
 //
 
 #import "FLCocoaRequired.h"
+#import "FLStringBuilder.h"
 
-#import "FLCore.h"
-#import "FLDataEncoder.h"
-#import "FLXmlStringBuilder.h"
+@protocol FLDataEncoder;
+@class FLPropertyDescription;
+@class FLXmlStringBuilder;
+@class FLXmlComment;
 
 // This is for WRITING Xml Elements only with the FLXmlStringBuilder.
-
-@interface FLXmlElement : FLXmlStringBuilder {
+@interface FLXmlElement : FLStringBuilder {
 @private
 	NSMutableDictionary* _attributes;
     NSString* _openTag;
@@ -25,19 +26,24 @@
 
 @property (readonly, strong, nonatomic) FLXmlComment* comments;
 
-@property (readonly, strong, nonatomic) NSString* openTag;
-@property (readonly, strong, nonatomic) NSString* closeTag;
+@property (readonly, strong, nonatomic) NSString* xmlElementTag;
+@property (readonly, strong, nonatomic) NSString* xmlElementCloseTag;
 
-- (id) initWithOpenTag:(NSString*) tag closeTag:(NSString*) closeTag;
-- (id) initWithName:(NSString*) tag;
+- (id) initWithXmlElementTag:(NSString*) tag 
+          xmlElementCloseTag:(NSString*) xmlElementCloseTag;
+          
+- (id) initWithXmlElementTag:(NSString*) tag;
 
-+ (id) xmlElement:(NSString*) openTag closeTag:(NSString*) closeTag;
++ (id) xmlElement:(NSString*) xmlElementTag 
+xmlElementCloseTag:(NSString*) xmlElementCloseTag;
+
 + (id) xmlElement:(NSString*) name;
 
 - (void) setAttribute:(NSString*) attributeValue forKey:(NSString*) key;
 - (void) appendAttribute:(NSString*) attributeValue forKey:(NSString*) key;
 
-
-
+- (void) addElement:(FLXmlElement*) element;
+  
 @end
+
 

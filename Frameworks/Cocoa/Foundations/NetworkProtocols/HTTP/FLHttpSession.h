@@ -6,14 +6,11 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import "FLSession.h"
-#import "FLRequestContext.h"
+#import "FLServiceManagingContext.h"
+#import "FLDispatchableContext.h"
 
-@interface FLHttpSession : FLSession {
+@interface FLHttpSession : FLServiceManagingContext {
 @private
-    FLRequestContext* _requestContext;
 }
-
-@property (readwrite, strong) FLRequestContext* httpService;
 
 @end

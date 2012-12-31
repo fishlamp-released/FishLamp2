@@ -8,7 +8,12 @@
 
 #import "FLCocoaRequired.h"
 #import "FLCore.h"
-#import "FLStringBuilder.h"
+#import "FLComplexStringBuilder.h"
+#import "FLPropertyDescription.h"
+#import "FLXmlElement.h"
+#import "FLDataEncoder.h"
+#import "FLObjectDescriber.h"
+#import "FLXmlComment.h"
 
 // xml
 #define FLXmlVersion1_0                         @"1.0"
@@ -17,23 +22,25 @@
 
 @class FLXmlElement;
 
-@interface FLXmlStringBuilder : FLStringBuilder {
+@interface FLXmlStringBuilder : FLComplexStringBuilder {
 @private
+    id<FLDataEncoder> _dataEncoder;
 }
+@property (readwrite, strong, nonatomic) id<FLDataEncoder> dataEncoder;
 
 + (FLXmlStringBuilder*) xmlStringBuilder;
+
+- (void) openElement:(FLXmlElement*) element;
+
+- (void) addElement:(FLXmlElement*) element;
+
+- (void) closeElement;
 
 - (void) appendXmlVersionDeclaration:(NSString*) version 
                    andEncodingHeader:(NSString*) encoding
                           standalone:(BOOL) standalone;
 
-- (void) appendDefaultXmlDeclaration;  
+- (void) appendDefaultXmlDeclaration; 
 
-- (void) addElement:(FLXmlElement*) element;
-
-@end
-
-@interface FLXmlComment : FLXmlStringBuilder {
-}
 @end
 

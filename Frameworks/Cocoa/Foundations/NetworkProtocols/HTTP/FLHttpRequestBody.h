@@ -1,5 +1,5 @@
 //
-//  FLHttpRequestContent.h
+//  FLHttpRequestBody.h
 //  FishLampCocoa
 //
 //  Created by Mike Fullerton on 12/22/12.
@@ -9,15 +9,21 @@
 #import "FLCocoaRequired.h"
 #import "FLHttpRequestHeaders.h"
 
-@interface FLHttpRequestContent : NSObject {
+@interface FLHttpRequestBody : NSObject {
 @private
-    FLHttpRequestHeaders* _httpHeaders;
+    FLHttpRequestHeaders* _requestHeaders;
     NSString* _postBodyFilePath;
     NSData* _postData;
     NSInputStream* _bodyStream;
+#if DEBUG
+    NSString* _debugBody;
+#endif    
 }
 
-@property (readonly, strong, nonatomic) FLHttpRequestHeaders* httpHeaders;
+- (id) initWithHeaders:(FLHttpRequestHeaders*) headers;
+
+@property (readonly, strong, nonatomic) FLHttpRequestHeaders* requestHeaders;
+
 @property (readwrite, strong, nonatomic) NSData* bodyData;
 @property (readwrite, strong, nonatomic) NSInputStream* bodyStream;
 @property (readwrite, strong, nonatomic) NSString* postBodyFilePath;
@@ -37,4 +43,7 @@
 
 - (void) setJpegContentWithFilePath:(NSString*) filePath;
 
+#if DEBUG
+@property (readwrite, strong, nonatomic) NSString* debugBody;
+#endif
 @end

@@ -12,12 +12,25 @@
 
 typedef void (^FLFinishableBlock)(FLFinisher* finisher);
 
+@protocol FLObjectAuthenticator;
+
 @protocol FLDispatchable <NSObject>
-- (void) performWithFinisher:(FLFinisher*) finisher;
+
+- (void) startAsyncWithFinisher:(FLFinisher*) finisher;
 
 @optional
-- (FLFinisher*) startPerforming;
-- (FLFinisher*) startPerforming:(FLCompletionBlock) completion;
+- (void) didMoveToContext:(id) context;
+- (id<FLObjectAuthenticator>) authenticator;
+- (void) requestCancel;
+@end
+
+@interface NSObject (FLDispatchable) 
 - (id) runSynchronously;
 @end
 
+@protocol FLObjectAuthenticator <NSObject>
+
+// returns new credentials
+- (id) authenticateObject:(id) object withCredentials:(id) credentials;
+        
+@end

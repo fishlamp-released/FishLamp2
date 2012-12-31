@@ -60,8 +60,21 @@ void FLSelectorSwizzle(Class c, SEL originalSelector, SEL newSelector);
 + (void) logMethodsForClass:(Class) aClass;
 #endif
 
+
+// http://www.cocoawithlove.com/2008/03/supersequent-implementation.html
+// Lookup the next implementation of the given selector after the
+// default one. Returns nil if no alternate implementation is found.
+- (IMP)getImplementationOf:(SEL)lookup after:(IMP)skip;
+
 @end
 
+#define invokeSupersequent(...) \
+    ([self getImplementationOf:_cmd \
+        after:impOfCallingMethod(self, _cmd)]) \
+            (self, _cmd, ##__VA_ARGS__)
 
-
+#define invokeSupersequentNoParameters() \
+    ([self getImplementationOf:_cmd \
+        after:impOfCallingMethod(self, _cmd)]) \
+            (self, _cmd)
 

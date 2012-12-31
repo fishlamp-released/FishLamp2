@@ -1,36 +1,25 @@
 //
-//  FLStringBuilderContents.m
-//  FishLamp
+//  FLPrettyString.m
+//  FishLampCocoa
 //
-//  Created by Mike Fullerton on 10/1/12.
+//  Created by Mike Fullerton on 12/29/12.
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
 #import "FLStringBuilder.h"
+#import "FLWhitespace.h"
 
-@implementation FLStringBuilder
+@implementation FLStringBuilder 
 
-@synthesize tokens = _tokens;
-@synthesize cursor = _cursor;
-@synthesize header = _header;
-@synthesize footer = _footer;
-
-- (id) initAsCopy:(FLStringBuilder*) original {
-    self = [self init];
-    if(self) {
-        _tokens = [original.tokens mutableCopy];
-        _header = [original.header copy];
-        _footer = [original.footer copy];
-        _cursor = original.cursor;
-    }
-    return self;
-}
+@synthesize lines = _lines;
+@synthesize parent = _parent;
 
 - (id) init {
     self = [super init];
     if(self) {
-        _tokens = [[NSMutableArray alloc] init];
-    }
+        _needsLine = YES;
+        _lines = [[NSMutableArray alloc] init];
+    }    
     return self;
 }
 
@@ -40,253 +29,112 @@
 
 #if FL_MRC
 - (void) dealloc {
-    [_tokens release];
-    [_header release];
-    [_footer release];
+    [_lines release];
     [super dealloc];
 }
 #endif
 
-- (id)copyWithZone:(NSZone *)zone {
-    return [[[self class] alloc] initAsCopy:self];
-}
-
-- (void)encodeWithCoder:(NSCoder *)aCoder {
-    if(_header) {
-        [aCoder encodeObject:_tokens forKey:@"_header"];
+- (void) appendString:(NSString*) string {
+    if(_needsLine) {
+        [self appendLine];
     }
-    [aCoder encodeObject:_tokens forKey:@"_tokens"];
-    if(_footer) {
-        [aCoder encodeObject:_tokens forKey:@"_footer"];
-    }
-    [aCoder encodeInteger:_cursor forKey:@"_cursor"];
+    
+    [[_lines lastObject] appendStringToLine:string];
 }
 
-- (id)initWithCoder:(NSCoder *)aDecoder {
-    self = [super init];
-    if(self) {
-        _header = [aDecoder decodeObjectForKey:@"_header"];
-        _tokens = [aDecoder decodeObjectForKey:@"_tokens"];
-        _footer = [aDecoder decodeObjectForKey:@"_footer"];
-        _cursor = [aDecoder decodeIntegerForKey:@"_cursor"];
-    }
-    return self;
-}
-
-- (void) willBuildString {
-}
-
-- (void) didBuildString {
-}
-
-- (BOOL) shouldBuildString {
-    return !self.isEmpty;
-}
-
-- (void) appendSelfToString:(NSMutableString*) string
-                 whitespace:(FLWhitespace*) whitespace
-                  tabIndent:(NSInteger*) tabIndent {
-   
-    if([self shouldBuildString]) {
-        [self willBuildString];
-        
-        if(_header) {
-            [_header appendSelfToString:string whitespace:whitespace tabIndent:tabIndent];
-        }
-
-        (*tabIndent)++;
-        
-        for(id object in _tokens) {
-            [object appendSelfToString:string whitespace:whitespace tabIndent:tabIndent];
-        }
-
-        (*tabIndent)--;
-        
-        if(_footer) {
-            [_footer appendSelfToString:string whitespace:whitespace tabIndent:tabIndent];
-        }
-        
-        [self didBuildString];
-    }
-   
-}
-
-- (NSString*) _preprocessLines:(NSString*) lines {
-	NSString* string = [lines stringByReplacingOccurrencesOfString:@"\r\n" withString:@"\n"];
-	string = [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-	return string;
-}
-
-- (void) appendLines:(NSString*) inLines trimWhitespace:(BOOL) trimWhitespace {
-	NSString* string = trimWhitespace ? [self _preprocessLines:inLines] : inLines;
-	if(FLStringIsNotEmpty(string)) {
-		NSArray* lines = [string componentsSeparatedByString:@"\n"];
-		for(NSString* line in lines) {
-			NSString* newline = trimWhitespace ? [line stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] : line;
-		
-			if(FLStringIsNotEmpty(newline)) {
-				[self appendLine:newline];
-            }
-		}
-	}
-}
-
-- (BOOL) isEmpty {
-    return !_tokens || _tokens.count == 0;
-}
-
-- (NSUInteger) tokenCount {
-    return _tokens.count;
-}
-
-- (id) tokenAtIndex:(NSUInteger) index {
-    return [_tokens objectAtIndex:index];
-}
-
-- (void) replaceTokenAtIndex:(NSUInteger) index withToken:(id) token {
-    [_tokens replaceObjectAtIndex:index withObject:token];
-}
-
-- (void) moveCurserToEnd {
-    _cursor = _tokens.count;
-}
-
-- (void) moveCursorToBeginning {
-    _cursor = 0;
-}
-
-- (void) addToken:(id) token {
-    [_tokens insertObject:token atIndex:_cursor++];
-}
-
-- (void) append:(FLStringBuilder*) builder {
-    [self addToken:builder];
-}
-
-- (void) indent {
-    [self addToken:[FLIndentToken indentToken]];
-}
-
-- (void) appendIndentedBlock:(void (^)()) indentedBlock {
-    [self indent];
-    if(indentedBlock) {
-        indentedBlock();
-    }
-    [self outdent];
-}
-
-- (void) outdent {
-    [self addToken:[FLOutdentToken outdentToken]];
-}
-
-- (void) insertBuilderContents:(FLStringBuilder*) builder {
-  	for(id contentItem in builder.tokens) {
-        [self addToken:contentItem];
-    }
+- (void) addStringBuilderLine:(FLStringBuilderLine*) line {
+    _needsLine = NO;
+    
+    [_lines addObject:line];
+    line.tabIndent += self.tabIndent;
+    line.parent = self;
+    [line didMoveToParent:self];
 }
 
 - (void) appendLine {
-    [self addToken:[FLEolToken eolToken]];
+    [self addStringBuilderLine:[FLStringBuilderLine stringBuilderLine:self.tabIndent]];
 }
 
-- (void) appendString:(NSString*) string {
-    [self addToken:string];
+- (void) setTabIndent:(NSInteger) tabIndent {
+    [super setTabIndent:tabIndent];
+    [[_lines lastObject] setTabIndent:tabIndent];
 }
 
-- (void) appendLine:(NSString*) line {
-    [self appendString:line];
-    [self appendLine];
-}
-
-- (void) appendFormat:(NSString*) format, ... {
-	va_list va;
-	va_start(va, format);
-	NSString *string = FLAutorelease([[NSString alloc] initWithFormat:format arguments:va]);
-	va_end(va);
-    [self appendString:string];
-}
-
-- (void) appendLineWithFormat:(NSString*) format, ... {
-	va_list va;
-	va_start(va, format);
-	NSString *string = FLAutorelease([[NSString alloc] initWithFormat:format arguments:va]);
-	va_end(va);
-	[self appendLine:string];
-}
-
-- (BOOL) isLastToken:(id) token {
-    return [self.tokens lastObject] == token;
-}
-
-- (id) lastToken {
-    return [self.tokens lastObject];
-}
-
-- (void) insertToken:(id) token beforeToken:(id) beforeToken {
-
-    for(NSInteger i = _tokens.count - 1; i >= 0; i--) {
-        if(beforeToken == [_tokens objectAtIndex:i]) {
-            [_tokens insertObject:token atIndex: MAX(i - 1, 0)];
-            break;
-        }
-    }
-}
-
-- (void) insertToken:(id) token atIndex:(NSUInteger) atIndex {
-    [_tokens insertObject:token atIndex:atIndex];
-}
-
-- (void) pushToken:(id) token {
-    [_tokens insertObject:token atIndex:0];
-}
-
-- (void) visitTokens:(void (^)(id token, BOOL* stop)) visitor {
-    
-    BOOL stop = NO;
-    for(id token in _tokens.reverseObjectEnumerator) {
-    
-        visitor(token, &stop);
-        
-        if(stop) {
-            break;
-        }
-    }
-}
-
-- (FLEolToken*) lastEolToken {
-    for(id token in _tokens.reverseObjectEnumerator) {
-
-        if([token isKindOfClass:[FLEolToken class]]) {
-            return token;
-        }
-    }
+- (id) copyWithZone:(NSZone*) zone {
 
     return nil;
 }
 
-- (void) removeToken:(id) token {
-    [_tokens removeObject:token];
-}
-
-- (void) removeAllTokens {
-    [_tokens removeAllObjects];
+- (void) appendSelfToPrettyString:(FLPrettyString*) prettyString {
+    
+    prettyString.tabIndent += self.tabIndent;
+    
+    for(id<FLStringBuilderLine> line in _lines) {
+        [line appendSelfToPrettyString:prettyString];
+    }
 }
 
 - (NSString*) buildStringWithWhitespace:(FLWhitespace*) whitespace {
     
-    NSMutableString* string = [NSMutableString string];
-    NSInteger tabIndent = -1;
-    [self appendSelfToString:string whitespace:whitespace tabIndent:&tabIndent];
+    FLPrettyString* prettyString = [FLPrettyString prettyString:whitespace];
     
-    return string;
-}
-
-- (NSString*) buildString {
-    return [self buildStringWithWhitespace:[FLWhitespace tabbedFormat]];
+    [self appendSelfToPrettyString:prettyString];
+    
+    return [prettyString string];
 }
 
 - (NSString*) buildStringWithNoWhitespace {
     return [self buildStringWithWhitespace:nil];
+}
+
+- (NSString*) buildString {
+    return [self buildStringWithWhitespace:[FLWhitespace tabbedWithSpacesWhitespace]];
+}
+
+- (NSUInteger) countLines {
+    NSUInteger count = 0;
+    if(!_lines) {
+        return 0;
+    }
+
+    for(id<FLStringBuilderLine> line in _lines) {
+        count += [line countLines];
+    }
+
+    return count;
+}
+
+- (BOOL) hasLines {
+    if(_lines) {
+        for(id<FLStringBuilderLine> line in _lines) {
+            if([line hasLines]) {
+                return YES;
+            }
+        }
+    }
+    
+    return NO;
+}
+
+- (void) addStringBuilder:(FLStringBuilder*) stringBuilder {
+    [_lines addObject:stringBuilder];
+    _needsLine = YES;
+    stringBuilder.parent = self;
+    [stringBuilder didMoveToParent:self];
+
+//    for(FLStringBuilderLine* line in prettyString.lines) {
+//        FLStringBuilderLine* newLine = [line copy];
+//        newLine.tabIndent += self.tabIndent;
+//        [_lines addObject:newLine];
+//    }
+}
+
+//- (void) insertLines:(id<FLLineBuilder>)anObject 
+//             atIndex:(NSUInteger)index {
+//    [_lines insertObject:anObject atIndex:index];
+//}
+
+- (void) didMoveToParent:(id) parent {
 }
 
 - (NSString*) description {
@@ -294,5 +142,3 @@
 }
 
 @end
-
-

@@ -82,14 +82,10 @@ static void * const s_queue_key = (void*)&s_queue_key;
     return bridge_(FLDispatchQueue*, dispatch_queue_get_specific(dispatch_get_current_queue(), s_queue_key));
 }
 
-- (FLFinisher*) dispatchBlock:(dispatch_block_t) block 
-                completion:(FLCompletionBlock) completion {
 
-    FLFinisher* finisher = [FLScheduledFinisher finisherWithResultBlock:completion];
-
-    FLAssertNotNil_(block);
-    FLAssertNotNil_(finisher);
-
+- (void) dispatchBlock:(dispatch_block_t) block 
+          withFinisher:(FLFinisher*) finisher {
+    
     dispatch_async(_dispatch_queue, ^{
         @try {
             if(block) {
@@ -101,18 +97,11 @@ static void * const s_queue_key = (void*)&s_queue_key;
             [finisher setFinishedWithResult:ex.error];
         }
     });
-
-    return finisher;
 }
 
-- (FLFinisher*) dispatchFinishableBlock:(FLFinishableBlock) block 
-                       completion:(FLCompletionBlock) completion {
-
-    FLFinisher* finisher = [FLScheduledFinisher finisherWithResultBlock:completion];
-
-    FLAssertNotNil_(block);
-    FLAssertNotNil_(finisher);
-
+- (void) dispatchFinishableBlock:(FLFinishableBlock) block 
+                    withFinisher:(FLFinisher*) finisher {
+    
     dispatch_async(_dispatch_queue, ^{
         @try {
             if(block) {
@@ -123,10 +112,7 @@ static void * const s_queue_key = (void*)&s_queue_key;
             [finisher setFinishedWithResult:ex.error];
         }
     });
-
-    return finisher;
 }
-
 
 @end
 

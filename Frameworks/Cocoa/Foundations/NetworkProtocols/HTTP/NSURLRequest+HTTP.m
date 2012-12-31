@@ -9,7 +9,7 @@
 #import "NSURLRequest+HTTP.h"
 #import "NSFileManager+FLExtras.h"
 #import "NSString+URL.h"
-#import "FLStringBuilder.h"
+#import "FLPrettyString.h"
 #import "FLAppInfo.h"
 
 @implementation NSURLRequest (HTTP)
@@ -38,7 +38,7 @@ static NSString* s_defaultUserAgent = nil;
 	return [NSString stringWithFormat:@"%@ HTTP/1.1", self.URL.path];
 }
 
-- (void) logToStringBuilder:(FLStringBuilder*) builder {
+- (void) logToStringBuilder:(FLPrettyString*) builder {
 	
     NSDictionary* headers = [self allHTTPHeaderFields];
 	
@@ -46,7 +46,7 @@ static NSString* s_defaultUserAgent = nil;
     [builder appendLineWithFormat:@"HTTP Method:%@", self.HTTPMethod];
     [builder appendLineWithFormat:@"URL: %@", [[self.URL absoluteString] urlDecodeString:NSUTF8StringEncoding]];
 	[builder appendLine:@"All Headers:"];
-	[builder appendIndentedBlock: ^{
+    [builder indent: ^{
         for(id key in headers) {
             [builder appendLineWithFormat:@"%@: %@", [key description], [[headers objectForKey:key] description]];
         }
@@ -57,7 +57,7 @@ static NSString* s_defaultUserAgent = nil;
 	NSData* data = [self HTTPBody];
 	NSString* stringData = FLAutorelease([[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
 	if(stringData) {
-        [builder appendIndentedBlock:^{
+        [builder indent:^{
             [builder appendLine:stringData];
         }];
     }

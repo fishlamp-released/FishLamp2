@@ -14,27 +14,33 @@
 #import "FLFinisher.h"
 
 #import "FLHttpResponse.h"
-#import "FLHttpRequestContent.h"
+#import "FLHttpRequestBody.h"
 #import "FLCancellable.h"
 
 #import "FLReadStream.h"
 
-@class FLRequestContext;
+@class FLDispatchableContext;
 
 @interface FLHttpRequest : FLObservable<FLCancellable, FLReadStreamDelegate, FLDispatchable> {
 @private
-    FLHttpRequestContent* _content;
+    FLHttpRequestHeaders* _headers;
+    FLHttpRequestBody* _body;
     FLFinisher* _finisher;
     FLMutableHttpResponse* _response;
     FLReadStream* _networkStream;
     FLDispatchQueue* _dispatchQueue;
-    FLRequestContext* _requestContext;
+    id _context;
+    id _authenticator;
 }
 
-@property (readwrite, strong, nonatomic) FLRequestContext* requestContext;
+// dispatchable
+@property (readonly, strong) id context;
+@property (readwrite, strong) id<FLObjectAuthenticator> authenticator;
 
-@property (readonly, strong, nonatomic) FLHttpRequestHeaders* httpHeaders;
-@property (readonly, strong, nonatomic) FLHttpRequestContent* httpBody;
+// http
+@property (readonly, strong, nonatomic) FLHttpRequestHeaders* headers;
+@property (readonly, strong, nonatomic) FLHttpRequestBody* body;
+
 
 - (id) initWithRequestURL:(NSURL*) requestURL;
 
@@ -66,31 +72,6 @@
  
 /// this returns YES by default.
 - (BOOL) shouldRedirectToURL:(NSURL*) url;
-
-@end
-
-@interface FLHttpRequest (RequestSending)
-
-// note that a FLHttpRequest implements FLDispatchable
-// so that the FLHttpRequest can be run in the dispatcher of your choice as well.
-// See FLDispatchQueue.h
-
-// These are here for convienience.
-
-/// starts in current thread.
-- (FLFinisher*) sendRequest:(FLCompletionBlock) completion;
-
-- (FLFinisher*) sendRequest;
-
-/// starts in current thread and blocks thread until complete
-- (FLResult) sendRequestSynchronously;
-
-/// starts in current thread but runs in context so the request
-/// can be authenticated or cancelled later in batches
-- (FLFinisher*) sendRequestWithContext:(FLRequestContext*) requestContext;
-
-/// runs in context and blocks current thread until done.
-- (FLResult) sendRequestSynchronouslyWithContext:(FLRequestContext*) requestContext;
 
 @end
 

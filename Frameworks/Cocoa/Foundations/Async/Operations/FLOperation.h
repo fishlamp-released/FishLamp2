@@ -12,7 +12,7 @@
 #import "FLResult.h"
 
 @class FLOperation;
-@class FLSession;
+@class FLServiceManagingContext;
 
 typedef FLResult (^FLRunOperationBlock)(FLOperation* operation);
 
@@ -21,10 +21,12 @@ typedef FLResult (^FLRunOperationBlock)(FLOperation* operation);
 	id _operationID;
 	FLRunOperationBlock _runBlock;
     BOOL _cancelled;
-    id _session;
+    id _context;
+    id _authenticator;
 }
 
-@property (readwrite, strong) id session;
+@property (readonly, strong) id context;
+@property (readwrite, strong) id<FLObjectAuthenticator> authenticator;
 
 // TODO: abstract this better;
 //@property (readonly, assign) FLOperationType operationType;

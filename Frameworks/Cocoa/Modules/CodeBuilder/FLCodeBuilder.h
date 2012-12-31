@@ -7,10 +7,9 @@
 //
 
 #import "FLCocoaRequired.h"
+#import "FLPrettyString.h"
 
-#import "FLStringBuilder.h"
-
-@interface FLCodeBuilder : FLStringBuilder {
+@interface FLCodeBuilder : FLPrettyString {
 @private
     NSString* _openBracket;
     NSString* _closeBracket;

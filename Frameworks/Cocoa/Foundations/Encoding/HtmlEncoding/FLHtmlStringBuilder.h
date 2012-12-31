@@ -41,6 +41,15 @@ extern NSString* const FLXMLDocTypeXHtml1_1;
 + (NSString*) convertHtmlBreaksToNewlines:(NSString*) input;
 + (BOOL) hasHtmlLineBreaks:(NSString*) input;
 
+
+- (FLXmlElement*) addLinkElement:(NSString*) href 
+                            link:(NSString*) link 
+                            text:(NSString*) text;
+                            
+- (FLXmlElement*) addBreakElement;
+
+- (FLXmlElement*) addDivElement;
+
 @end
 
 @interface FLXmlElement (FLHtmlStringBuilder)
@@ -50,10 +59,6 @@ extern NSString* const FLXMLDocTypeXHtml1_1;
 - (void) addStyleWidth:(NSUInteger) width;
 - (void) addStyleClearBackgroundColor;
 
-- (FLXmlElement*) addLink:(NSString*) href link:(NSString*) link text:(NSString*) text;
-
-- (FLXmlElement*) addBreak;
-- (FLXmlElement*) addDiv;
 
 @end
 

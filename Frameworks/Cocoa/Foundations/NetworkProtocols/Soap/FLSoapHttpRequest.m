@@ -71,17 +71,25 @@
 }
 
 - (void) willSendHttpRequest {
-    FLAssertStringIsNotEmpty_(self.httpHeaders.requestURL.absoluteString);
+    FLAssertStringIsNotEmpty_(self.headers.requestURL.absoluteString);
     FLAssertStringIsNotEmpty_(self.soapNamespace);
     FLAssertStringIsNotEmpty_(self.operationName);
 
 // wehre is http request url?
+    FLSoapStringBuilder* soapStringBuilder = [FLSoapStringBuilder soapStringBuilder];
+    
+    FLObjectXmlElement* element = [FLObjectXmlElement soapXmlElementWithObject:self.soapRequest 
+                                                                 xmlElementTag:self.operationName
+                                                                  xmlNamespace:self.soapNamespace];
+            
+	[soapStringBuilder addElement:element];
 
-    FLSoapStringBuilder* soapStringBuilder = [FLSoapStringBuilder stringBuilder];
-	[soapStringBuilder.body addObjectAsFunction:self.operationName object:[self soapRequest] xmlNamespace:self.soapNamespace];
-
-    [self.httpHeaders setValue:self.soapActionHeader forHTTPHeaderField:@"SOAPAction"]; 
-    [self.httpBody setUtf8Content:[soapStringBuilder buildStringWithNoWhitespace]];
+    [self.headers setValue:self.soapActionHeader forHTTPHeaderField:@"SOAPAction"]; 
+    [self.body setUtf8Content:[soapStringBuilder buildStringWithNoWhitespace]];
+    
+#if DEBUG
+    self.body.debugBody = [soapStringBuilder buildStringWithWhitespace];
+#endif    
 }
 
 - (id) didReceiveHttpResponse:(FLHttpResponse*) httpResponse {
@@ -99,6 +107,10 @@
     if(self.soapResponse) {
         [self parseXmlResponse:data object:self.soapResponse];
         result = self.soapResponse;
+        
+#if DEBUG
+        httpResponse.debugResponseData = result;
+#endif        
     }
     
     if(self.responseDecoder) {
