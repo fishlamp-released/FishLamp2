@@ -89,6 +89,8 @@
     
 #if DEBUG
     self.body.debugBody = [soapStringBuilder buildStringWithWhitespace];
+    
+    FLLog([self description]);
 #endif    
 }
 

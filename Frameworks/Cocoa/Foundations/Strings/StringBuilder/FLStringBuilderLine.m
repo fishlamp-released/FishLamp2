@@ -9,22 +9,9 @@
 #import "FLStringBuilderLine.h"
 
 @implementation FLStringBuilderLine 
+
 @synthesize string = _string;
-@synthesize tabIndent = _tabIndent;
 @synthesize parent = _parent;
-
-- (id) initWithTabCount:(NSInteger) tabIndent {
-    self = [super init];
-    if(self) {
-        _tabIndent = tabIndent;
-    }
-    
-    return self;
-}
-
-+ (id) stringBuilderLine:(NSInteger) tabIndent {
-    return FLAutorelease([[[self class] alloc] initWithTabCount:tabIndent]);
-}
 
 + (id) stringBuilderLine {
     return FLAutorelease([[[self class] alloc] init]);
@@ -59,26 +46,22 @@
 
 
 - (id) copyWithZone:(NSZone *)zone {
-    FLStringBuilderLine* line = [[[self class] alloc] initWithTabCount:_tabIndent];
-    [line appendStringToLine:line.string];
+    FLStringBuilderLine* line = [[[self class] alloc] init];
+    [line appendString:line.string];
     return line;
 }
 
 - (void) appendSelfToPrettyString:(FLPrettyString*) prettyString {
     if(FLStringIsNotEmpty(_string)) {
-        [prettyString appendLine:_string withTabIndent:_tabIndent];
+        [prettyString appendLine:_string];
     }
 }
 
-- (NSUInteger) countLines {
-    return FLStringIsNotEmpty(_string) ? 1 : 0;
-}
-
-- (BOOL) hasLines {
-   return FLStringIsNotEmpty(_string);
-}
-
 - (void) didMoveToParent:(id) parent {
+}
+
+- (NSString*) description {
+    return FLStringIsEmpty(_string) ? @"\"\"" : [NSString stringWithFormat:@"\"%@\"", _string]; 
 }
 
 @end

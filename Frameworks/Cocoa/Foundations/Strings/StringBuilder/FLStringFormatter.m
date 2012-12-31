@@ -10,8 +10,6 @@
 
 @implementation FLStringFormatter
 
-@synthesize tabIndent = _tabIndent;
-
 - (NSString*) _preprocessLines:(NSString*) lines {
 	NSString* string = [lines stringByReplacingOccurrencesOfString:@"\r\n" withString:@"\n"];
 	string = [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
@@ -39,8 +37,10 @@
 }
 
 - (void) appendLine:(NSString*) line {
-    [self appendString:line];
-    [self appendLine];
+    if(FLStringIsNotEmpty(line)) {
+        [self appendString:line];
+        [self appendLine];
+    }
 }
 
 - (void) appendFormat:(NSString*) format, ... {
@@ -59,28 +59,16 @@
 	[self appendLine:string];
 }
 
-- (void) indent {
-    ++_tabIndent;
+- (void) appendSelfToPrettyString:(FLPrettyString *)prettyString {
 }
 
-- (void) outdent {
-    --_tabIndent;
-}
 
-- (void) indent:(void (^)()) block {
-    [self appendLine];
-    [self indent];
-    block();
-    [self appendLine];
-    [self outdent];
-}
-
-- (void) appendLine:(NSString*) line 
-      withTabIndent:(NSInteger) tabIndent {
-    
-    self.tabIndent += tabIndent;
-    [self appendLine:line];
-    self.tabIndent -= tabIndent;
-}
+//- (void) appendLine:(NSString*) line 
+//      withTabIndent:(NSInteger) tabIndent {
+//    
+//    self.tabIndent += tabIndent;
+//    [self appendLine:line];
+//    self.tabIndent -= tabIndent;
+//}
       
 @end

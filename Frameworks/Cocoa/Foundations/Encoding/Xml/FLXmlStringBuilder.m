@@ -24,7 +24,6 @@
 - (id) init {
     self = [super init];
     if(self) {
-        [self openScope:[FLStringBuilder stringBuilder]];
     }
     return self;
 }
@@ -44,7 +43,7 @@
                andEncodingHeader:(NSString*) encoding
                standalone:(BOOL) standalone {
     
-    [self.stringBuilder appendLineWithFormat:@"<?xml version=\"%@\" encoding=\"%@\" standalone=\"%@\"?>", version, encoding, standalone ? @"yes" : @"no"];
+    [self addLineWithObject:[NSString stringWithFormat:@"<?xml version=\"%@\" encoding=\"%@\" standalone=\"%@\"?>", version, encoding, standalone ? @"yes" : @"no"]];
 }
 
 - (void) appendDefaultXmlDeclaration {
@@ -52,15 +51,15 @@
 }
 
 - (void) openElement:(FLXmlElement*) element {
-    [self openScope:element];
+    [self openFormatter:element];
 }
 
 - (void) addElement:(FLXmlElement*) element {
-    [self.stringBuilder addStringBuilder:element];
+    [self.formatter addLineWithObject:element];
 }
 
 - (void) closeElement {
-    [self closeScope];
+    [self closeFormatter];
 }
 
 @end

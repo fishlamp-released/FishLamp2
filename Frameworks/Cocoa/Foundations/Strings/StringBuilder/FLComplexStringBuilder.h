@@ -10,22 +10,22 @@
 #import "FLWhitespace.h"
 #import "FLStringFormatter.h"
 #import "FLStringBuilder.h"
+#import "FLPrettyString.h"
 
 @interface FLComplexStringBuilder : NSObject {
 @private
     NSMutableArray* _stack;
-    NSMutableArray* _stringBuilders;
 }
 
-@property (readonly, assign, nonatomic) BOOL isEmpty;
 - (id) init;
 + (id) complexStringBuilder;
 
-@property (readonly, strong, nonatomic) FLStringBuilder* stringBuilder;
-- (void) openScope:(FLStringBuilder*) scope;
-- (void) closeScope;
 
-- (void) addStringBuilder:(FLStringBuilder*) stringBuilder;
+@property (readonly, strong, nonatomic) FLStringBuilder* formatter;
+- (void) openFormatter:(FLStringBuilder*) scope;
+- (void) closeFormatter;
+
+- (void) addLineWithObject:(id /*FLBuildableString*/) object;
 
 /// This preserves scope of incoming builder (e.g. nests into THIS builder's scope)
 /// @param builder The builder containing the lines you want to append to this builder.

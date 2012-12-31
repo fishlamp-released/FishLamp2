@@ -9,30 +9,19 @@
 #import "FLWhitespace.h"
 #import "FLPrettyString.h"
 
-@protocol FLStringBuilderLine <NSObject, NSCopying>
-@property (readwrite, assign, nonatomic) NSInteger tabIndent;
-@property (readwrite, assign, nonatomic) id parent;
-
-- (void) appendSelfToPrettyString:(FLPrettyString*) prettyString;
-- (NSUInteger) countLines;
-- (BOOL) hasLines;                           
-- (void) didMoveToParent:(id) parent;
-
+@protocol FLStringBuilderLine <NSObject, NSCopying, FLBuildableString>
 @optional 
+@property (readwrite, assign, nonatomic) id parent;
+- (void) didMoveToParent:(id) parent;
 - (void) appendStringToLine:(NSString*) string;
-                           
 @end
 
 @interface FLStringBuilderLine : NSObject<FLStringBuilderLine> {
 @private 
     NSMutableString* _string;
-    NSInteger _tabIndent;
     __unsafe_unretained id _parent;
 }
 
-- (id) initWithTabCount:(NSInteger) tabIndent;
-
-+ (id) stringBuilderLine:(NSInteger) tabIndent;
 + (id) stringBuilderLine;
 
 @property (readwrite, strong, nonatomic) NSString* string;

@@ -8,9 +8,15 @@
 
 #import "FLCocoaRequired.h"
 
+@class FLPrettyString;
+
+@protocol FLStringFormatter <NSObject>
+- (void) appendLine; // required ovveride
+- (void) appendLine:(NSString*) line;  // required ovveride
+@end
+
 @interface FLStringFormatter : NSObject {
 @private
-    NSInteger _tabIndent;
 }
 
 /// @param string The string to append.
@@ -36,15 +42,7 @@
 - (void) appendLines:(NSString*) lines
       trimWhitespace:(BOOL) trimWhitespace;
 
-@property (readwrite, assign, nonatomic) NSInteger tabIndent;
-
-- (void) indent;
-- (void) outdent;
-
-- (void) indent:(void (^)()) block;
-
-- (void) appendLine:(NSString*) line 
-      withTabIndent:(NSInteger) tabIndentAddedToExistingTabIndent;
+- (void) appendSelfToPrettyString:(FLPrettyString*) prettyString;
 
 @end
 

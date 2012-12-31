@@ -34,31 +34,35 @@
 }
 #endif
 
+- (id) lastLine {
+    FLAssertNotNil_([_lines lastObject]);
+    return [_lines lastObject];
+}
+
 - (void) appendString:(NSString*) string {
     if(_needsLine) {
-        [self appendLine];
+        [_lines addObject:[FLStringBuilderLine stringBuilderLine]];
+        _needsLine = NO;
     }
     
-    [[_lines lastObject] appendStringToLine:string];
+    [self.lastLine appendStringToLine:string];
 }
 
 - (void) addStringBuilderLine:(FLStringBuilderLine*) line {
-    _needsLine = NO;
-    
     [_lines addObject:line];
-    line.tabIndent += self.tabIndent;
     line.parent = self;
     [line didMoveToParent:self];
+    _needsLine = YES;
 }
 
 - (void) appendLine {
-    [self addStringBuilderLine:[FLStringBuilderLine stringBuilderLine:self.tabIndent]];
+    _needsLine = YES;
 }
 
-- (void) setTabIndent:(NSInteger) tabIndent {
-    [super setTabIndent:tabIndent];
-    [[_lines lastObject] setTabIndent:tabIndent];
-}
+//- (void) setTabIndent:(NSInteger) tabIndent {
+//    [super setTabIndent:tabIndent];
+//    [self.lastLine setTabIndent:tabIndent];
+//}
 
 - (id) copyWithZone:(NSZone*) zone {
 
@@ -67,9 +71,7 @@
 
 - (void) appendSelfToPrettyString:(FLPrettyString*) prettyString {
     
-    prettyString.tabIndent += self.tabIndent;
-    
-    for(id<FLStringBuilderLine> line in _lines) {
+    for(id<FLBuildableString> line in _lines) {
         [line appendSelfToPrettyString:prettyString];
     }
 }
@@ -91,48 +93,17 @@
     return [self buildStringWithWhitespace:[FLWhitespace tabbedWithSpacesWhitespace]];
 }
 
-- (NSUInteger) countLines {
-    NSUInteger count = 0;
-    if(!_lines) {
-        return 0;
-    }
+- (void) addLineWithObject:(id<FLStringFormatter>) object {
+    [_lines addObject:object];
 
-    for(id<FLStringBuilderLine> line in _lines) {
-        count += [line countLines];
-    }
-
-    return count;
-}
-
-- (BOOL) hasLines {
-    if(_lines) {
-        for(id<FLStringBuilderLine> line in _lines) {
-            if([line hasLines]) {
-                return YES;
-            }
-        }
+    id builder = object;
+    if([builder conformsToProtocol:@protocol(FLStringBuilderLine)]) {
+        [builder setParent:self];
+        [builder didMoveToParent:self];
     }
     
-    return NO;
-}
-
-- (void) addStringBuilder:(FLStringBuilder*) stringBuilder {
-    [_lines addObject:stringBuilder];
     _needsLine = YES;
-    stringBuilder.parent = self;
-    [stringBuilder didMoveToParent:self];
-
-//    for(FLStringBuilderLine* line in prettyString.lines) {
-//        FLStringBuilderLine* newLine = [line copy];
-//        newLine.tabIndent += self.tabIndent;
-//        [_lines addObject:newLine];
-//    }
 }
-
-//- (void) insertLines:(id<FLLineBuilder>)anObject 
-//             atIndex:(NSUInteger)index {
-//    [_lines insertObject:anObject atIndex:index];
-//}
 
 - (void) didMoveToParent:(id) parent {
 }

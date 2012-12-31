@@ -20,8 +20,10 @@
 
 /// FLWhitespaceFourSpacesTab defines a four character tab. This is the default tab.
 
-//#define FLWhitespaceFourSpacesTab       @"    " // 4 spaces
-#define FLWhitespaceFourSpacesTab       @"...." // 4 spaces
+
+#define FLWhitespaceFourSpacesTab       @"    " // 4 spaces
+
+//#define FLWhitespaceFourSpacesTab       @"...." // 4 spaces
 
 
 /// FLWhitespaceDefaultTabString defines the default tab string. You can override this in your prefix file.
