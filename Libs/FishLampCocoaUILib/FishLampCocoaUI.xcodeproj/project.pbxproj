@@ -7,6 +7,42 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		27348DB4168DF55B00D4142E /* FLDrawableGradient.h in Headers */ = {isa = PBXBuildFile; fileRef = 27348DB2168DF55B00D4142E /* FLDrawableGradient.h */; };
+		27348DB5168DF55B00D4142E /* FLDrawableGradient.h in Headers */ = {isa = PBXBuildFile; fileRef = 27348DB2168DF55B00D4142E /* FLDrawableGradient.h */; };
+		27348DB6168DF55B00D4142E /* FLDrawableGradient.h in Headers */ = {isa = PBXBuildFile; fileRef = 27348DB2168DF55B00D4142E /* FLDrawableGradient.h */; };
+		27348DB7168DF55B00D4142E /* FLDrawableGradient.h in Headers */ = {isa = PBXBuildFile; fileRef = 27348DB2168DF55B00D4142E /* FLDrawableGradient.h */; };
+		27348DC0168DF8CE00D4142E /* FLDrawableShape.h in Headers */ = {isa = PBXBuildFile; fileRef = 27348DBE168DF8CC00D4142E /* FLDrawableShape.h */; };
+		27348DC1168DF8CE00D4142E /* FLDrawableShape.h in Headers */ = {isa = PBXBuildFile; fileRef = 27348DBE168DF8CC00D4142E /* FLDrawableShape.h */; };
+		27348DC2168DF8CE00D4142E /* FLDrawableShape.h in Headers */ = {isa = PBXBuildFile; fileRef = 27348DBE168DF8CC00D4142E /* FLDrawableShape.h */; };
+		27348DC3168DF8CE00D4142E /* FLDrawableShape.h in Headers */ = {isa = PBXBuildFile; fileRef = 27348DBE168DF8CC00D4142E /* FLDrawableShape.h */; };
+		27348DC4168DF8CE00D4142E /* FLDrawableShape.m in Sources */ = {isa = PBXBuildFile; fileRef = 27348DBF168DF8CD00D4142E /* FLDrawableShape.m */; };
+		27348DC5168DF8CE00D4142E /* FLDrawableShape.m in Sources */ = {isa = PBXBuildFile; fileRef = 27348DBF168DF8CD00D4142E /* FLDrawableShape.m */; };
+		27348DC6168DF8CE00D4142E /* FLDrawableShape.m in Sources */ = {isa = PBXBuildFile; fileRef = 27348DBF168DF8CD00D4142E /* FLDrawableShape.m */; };
+		27348DC7168DF8CE00D4142E /* FLDrawableShape.m in Sources */ = {isa = PBXBuildFile; fileRef = 27348DBF168DF8CD00D4142E /* FLDrawableShape.m */; };
+		27348DC8168DF8CE00D4142E /* FLDrawableShape.m in Sources */ = {isa = PBXBuildFile; fileRef = 27348DBF168DF8CD00D4142E /* FLDrawableShape.m */; };
+		27348DCA168DF8EF00D4142E /* FLDrawable.h in Headers */ = {isa = PBXBuildFile; fileRef = 27348DC9168DF8EE00D4142E /* FLDrawable.h */; };
+		27348DCB168DF8EF00D4142E /* FLDrawable.h in Headers */ = {isa = PBXBuildFile; fileRef = 27348DC9168DF8EE00D4142E /* FLDrawable.h */; };
+		27348DCC168DF8EF00D4142E /* FLDrawable.h in Headers */ = {isa = PBXBuildFile; fileRef = 27348DC9168DF8EE00D4142E /* FLDrawable.h */; };
+		27348DCD168DF8EF00D4142E /* FLDrawable.h in Headers */ = {isa = PBXBuildFile; fileRef = 27348DC9168DF8EE00D4142E /* FLDrawable.h */; };
+		27348DCF168DFCAF00D4142E /* FLDrawableGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 27348DCE168DFCAD00D4142E /* FLDrawableGradient.m */; };
+		27348DD0168DFCAF00D4142E /* FLDrawableGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 27348DCE168DFCAD00D4142E /* FLDrawableGradient.m */; };
+		27348DD1168DFCAF00D4142E /* FLDrawableGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 27348DCE168DFCAD00D4142E /* FLDrawableGradient.m */; };
+		27348DD2168DFCAF00D4142E /* FLDrawableGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 27348DCE168DFCAD00D4142E /* FLDrawableGradient.m */; };
+		27348DD3168DFCAF00D4142E /* FLDrawableGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 27348DCE168DFCAD00D4142E /* FLDrawableGradient.m */; };
+		27348DD5168DFEB000D4142E /* FLDrawable.m in Sources */ = {isa = PBXBuildFile; fileRef = 27348DD4168DFEAE00D4142E /* FLDrawable.m */; };
+		27348DD6168DFEB000D4142E /* FLDrawable.m in Sources */ = {isa = PBXBuildFile; fileRef = 27348DD4168DFEAE00D4142E /* FLDrawable.m */; };
+		27348DD7168DFEB000D4142E /* FLDrawable.m in Sources */ = {isa = PBXBuildFile; fileRef = 27348DD4168DFEAE00D4142E /* FLDrawable.m */; };
+		27348DD8168DFEB000D4142E /* FLDrawable.m in Sources */ = {isa = PBXBuildFile; fileRef = 27348DD4168DFEAE00D4142E /* FLDrawable.m */; };
+		27348DD9168DFEB000D4142E /* FLDrawable.m in Sources */ = {isa = PBXBuildFile; fileRef = 27348DD4168DFEAE00D4142E /* FLDrawable.m */; };
+		27348DDC168E05F500D4142E /* FLDrawableBorder.h in Headers */ = {isa = PBXBuildFile; fileRef = 27348DDA168E05F100D4142E /* FLDrawableBorder.h */; };
+		27348DDD168E05F500D4142E /* FLDrawableBorder.h in Headers */ = {isa = PBXBuildFile; fileRef = 27348DDA168E05F100D4142E /* FLDrawableBorder.h */; };
+		27348DDE168E05F500D4142E /* FLDrawableBorder.h in Headers */ = {isa = PBXBuildFile; fileRef = 27348DDA168E05F100D4142E /* FLDrawableBorder.h */; };
+		27348DDF168E05F500D4142E /* FLDrawableBorder.h in Headers */ = {isa = PBXBuildFile; fileRef = 27348DDA168E05F100D4142E /* FLDrawableBorder.h */; };
+		27348DE0168E05F500D4142E /* FLDrawableBorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 27348DDB168E05F200D4142E /* FLDrawableBorder.m */; };
+		27348DE1168E05F500D4142E /* FLDrawableBorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 27348DDB168E05F200D4142E /* FLDrawableBorder.m */; };
+		27348DE2168E05F500D4142E /* FLDrawableBorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 27348DDB168E05F200D4142E /* FLDrawableBorder.m */; };
+		27348DE3168E05F500D4142E /* FLDrawableBorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 27348DDB168E05F200D4142E /* FLDrawableBorder.m */; };
+		27348DE4168E05F500D4142E /* FLDrawableBorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 27348DDB168E05F200D4142E /* FLDrawableBorder.m */; };
 		27544FCA16850C4300C104D7 /* FLFlipAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 27544FC816850C4200C104D7 /* FLFlipAnimation.h */; };
 		27544FCB16850C4300C104D7 /* FLFlipAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 27544FC816850C4200C104D7 /* FLFlipAnimation.h */; };
 		27544FCC16850C4300C104D7 /* FLFlipAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 27544FC816850C4200C104D7 /* FLFlipAnimation.h */; };
@@ -561,6 +597,14 @@
 		270D02E315E9B1FF00ED5FB0 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
 		270DFDC815E99BAC00ED5FB0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		27314C79165328400027850D /* libFishLampCocoaUI-OSX-64-ARC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoaUI-OSX-64-ARC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		27348DB2168DF55B00D4142E /* FLDrawableGradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLDrawableGradient.h; sourceTree = "<group>"; };
+		27348DBE168DF8CC00D4142E /* FLDrawableShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLDrawableShape.h; sourceTree = "<group>"; };
+		27348DBF168DF8CD00D4142E /* FLDrawableShape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLDrawableShape.m; sourceTree = "<group>"; };
+		27348DC9168DF8EE00D4142E /* FLDrawable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLDrawable.h; sourceTree = "<group>"; };
+		27348DCE168DFCAD00D4142E /* FLDrawableGradient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLDrawableGradient.m; sourceTree = "<group>"; };
+		27348DD4168DFEAE00D4142E /* FLDrawable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLDrawable.m; sourceTree = "<group>"; };
+		27348DDA168E05F100D4142E /* FLDrawableBorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLDrawableBorder.h; sourceTree = "<group>"; };
+		27348DDB168E05F200D4142E /* FLDrawableBorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLDrawableBorder.m; sourceTree = "<group>"; };
 		27544FC816850C4200C104D7 /* FLFlipAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLFlipAnimation.h; sourceTree = "<group>"; };
 		27544FC916850C4300C104D7 /* FLFlipAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLFlipAnimation.m; sourceTree = "<group>"; };
 		276CE8EE15E54B2F000A5CE6 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
@@ -969,10 +1013,18 @@
 		78329BA1167E97C20024E8DC /* Drawing */ = {
 			isa = PBXGroup;
 			children = (
+				27348DC9168DF8EE00D4142E /* FLDrawable.h */,
+				27348DB2168DF55B00D4142E /* FLDrawableGradient.h */,
+				27348DCE168DFCAD00D4142E /* FLDrawableGradient.m */,
+				27348DBE168DF8CC00D4142E /* FLDrawableShape.h */,
+				27348DBF168DF8CD00D4142E /* FLDrawableShape.m */,
 				78329BA2167E97C20024E8DC /* FLDrawingUtils.h */,
 				78329BA3167E97C20024E8DC /* FLDrawingUtils.m */,
 				78329BA4167E97C20024E8DC /* FLPathUtilities.h */,
 				78329BA5167E97C20024E8DC /* FLPathUtilities.m */,
+				27348DD4168DFEAE00D4142E /* FLDrawable.m */,
+				27348DDA168E05F100D4142E /* FLDrawableBorder.h */,
+				27348DDB168E05F200D4142E /* FLDrawableBorder.m */,
 			);
 			path = Drawing;
 			sourceTree = "<group>";
@@ -1234,6 +1286,10 @@
 				78329E02167E97C20024E8DC /* FLProgressWizardPanel.h in Headers */,
 				789EF0CB167EBD410019D6B2 /* FLView.h in Headers */,
 				27544FCA16850C4300C104D7 /* FLFlipAnimation.h in Headers */,
+				27348DB4168DF55B00D4142E /* FLDrawableGradient.h in Headers */,
+				27348DC0168DF8CE00D4142E /* FLDrawableShape.h in Headers */,
+				27348DCA168DF8EF00D4142E /* FLDrawable.h in Headers */,
+				27348DDC168E05F500D4142E /* FLDrawableBorder.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1302,6 +1358,10 @@
 				78329E04167E97C20024E8DC /* FLProgressWizardPanel.h in Headers */,
 				789EF0CD167EBD410019D6B2 /* FLView.h in Headers */,
 				27544FCC16850C4300C104D7 /* FLFlipAnimation.h in Headers */,
+				27348DB6168DF55B00D4142E /* FLDrawableGradient.h in Headers */,
+				27348DC2168DF8CE00D4142E /* FLDrawableShape.h in Headers */,
+				27348DCC168DF8EF00D4142E /* FLDrawable.h in Headers */,
+				27348DDE168E05F500D4142E /* FLDrawableBorder.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1370,6 +1430,10 @@
 				78329E03167E97C20024E8DC /* FLProgressWizardPanel.h in Headers */,
 				789EF0CC167EBD410019D6B2 /* FLView.h in Headers */,
 				27544FCB16850C4300C104D7 /* FLFlipAnimation.h in Headers */,
+				27348DB5168DF55B00D4142E /* FLDrawableGradient.h in Headers */,
+				27348DC1168DF8CE00D4142E /* FLDrawableShape.h in Headers */,
+				27348DCB168DF8EF00D4142E /* FLDrawable.h in Headers */,
+				27348DDD168E05F500D4142E /* FLDrawableBorder.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1438,6 +1502,10 @@
 				78329E05167E97C20024E8DC /* FLProgressWizardPanel.h in Headers */,
 				789EF0CE167EBD410019D6B2 /* FLView.h in Headers */,
 				27544FCD16850C4300C104D7 /* FLFlipAnimation.h in Headers */,
+				27348DB7168DF55B00D4142E /* FLDrawableGradient.h in Headers */,
+				27348DC3168DF8CE00D4142E /* FLDrawableShape.h in Headers */,
+				27348DCD168DF8EF00D4142E /* FLDrawable.h in Headers */,
+				27348DDF168E05F500D4142E /* FLDrawableBorder.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1622,6 +1690,10 @@
 				78329E07167E97C20024E8DC /* FLProgressWizardPanel.m in Sources */,
 				789EF0D0167EBD410019D6B2 /* FLView.m in Sources */,
 				27544FCF16850C4300C104D7 /* FLFlipAnimation.m in Sources */,
+				27348DC5168DF8CE00D4142E /* FLDrawableShape.m in Sources */,
+				27348DD0168DFCAF00D4142E /* FLDrawableGradient.m in Sources */,
+				27348DD6168DFEB000D4142E /* FLDrawable.m in Sources */,
+				27348DE1168E05F500D4142E /* FLDrawableBorder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1686,6 +1758,10 @@
 				78329E09167E97C20024E8DC /* FLProgressWizardPanel.m in Sources */,
 				789EF0D2167EBD410019D6B2 /* FLView.m in Sources */,
 				27544FD116850C4300C104D7 /* FLFlipAnimation.m in Sources */,
+				27348DC7168DF8CE00D4142E /* FLDrawableShape.m in Sources */,
+				27348DD2168DFCAF00D4142E /* FLDrawableGradient.m in Sources */,
+				27348DD8168DFEB000D4142E /* FLDrawable.m in Sources */,
+				27348DE3168E05F500D4142E /* FLDrawableBorder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1750,6 +1826,10 @@
 				78329E06167E97C20024E8DC /* FLProgressWizardPanel.m in Sources */,
 				789EF0CF167EBD410019D6B2 /* FLView.m in Sources */,
 				27544FCE16850C4300C104D7 /* FLFlipAnimation.m in Sources */,
+				27348DC4168DF8CE00D4142E /* FLDrawableShape.m in Sources */,
+				27348DCF168DFCAF00D4142E /* FLDrawableGradient.m in Sources */,
+				27348DD5168DFEB000D4142E /* FLDrawable.m in Sources */,
+				27348DE0168E05F500D4142E /* FLDrawableBorder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1814,6 +1894,10 @@
 				78329E08167E97C20024E8DC /* FLProgressWizardPanel.m in Sources */,
 				789EF0D1167EBD410019D6B2 /* FLView.m in Sources */,
 				27544FD016850C4300C104D7 /* FLFlipAnimation.m in Sources */,
+				27348DC6168DF8CE00D4142E /* FLDrawableShape.m in Sources */,
+				27348DD1168DFCAF00D4142E /* FLDrawableGradient.m in Sources */,
+				27348DD7168DFEB000D4142E /* FLDrawable.m in Sources */,
+				27348DE2168E05F500D4142E /* FLDrawableBorder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1878,6 +1962,10 @@
 				78329E0A167E97C20024E8DC /* FLProgressWizardPanel.m in Sources */,
 				789EF0D3167EBD410019D6B2 /* FLView.m in Sources */,
 				27544FD216850C4300C104D7 /* FLFlipAnimation.m in Sources */,
+				27348DC8168DF8CE00D4142E /* FLDrawableShape.m in Sources */,
+				27348DD3168DFCAF00D4142E /* FLDrawableGradient.m in Sources */,
+				27348DD9168DFEB000D4142E /* FLDrawable.m in Sources */,
+				27348DE4168E05F500D4142E /* FLDrawableBorder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

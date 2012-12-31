@@ -8,15 +8,15 @@
 
 #import "FLService.h"
 #import "FLStorableImage.h"
-#import "FLSession.h"
+#import "FLServiceManagingContext.h"
 
 @class FLDatabase;
 @class FLImageFolder;
 
 @interface FLImageCacheService : FLService {
 @private
-    FLDatabase* cacheDatabase;
-    FLImageFolder* imageCacheFolder;
+    FLDatabase* _cacheDatabase;
+    FLImageFolder* _imageCacheFolder;
 }
 
 - (void) deleteImage:(FLStorableImage*) image;
@@ -28,6 +28,6 @@
 
 FLPublishService(imageCacheService, FLImageCacheService*)
 
-//@interface FLSession (FLImageCacheService)
+//@interface FLServiceManagingContext (FLImageCacheService)
 //@property (readwrite, strong) FLImageCacheService* imageCacheService;
 //@end

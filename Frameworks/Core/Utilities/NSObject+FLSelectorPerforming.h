@@ -69,3 +69,14 @@ BOOL FLPerformSelectorWithThreeObjects(id target, SEL selector, id withObject1, 
 #define FLPerformSelector1 FLPerformSelectorWithObject
 #define FLPerformSelector2 FLPerformSelectorWithTwoObjects
 #define FLPerformSelector3 FLPerformSelectorWithThreeObjects
+
+
+NS_INLINE
+id FLReturnValueForOptionalProperty(id object, SEL property) {
+
+    if(object && property && [object respondsToSelector:property]) {
+        return [object valueForKey:NSStringFromSelector(property)];
+    }
+    
+    return nil;
+}

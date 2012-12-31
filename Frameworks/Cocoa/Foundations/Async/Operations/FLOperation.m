@@ -23,7 +23,8 @@ NSString* const FLOperationFinishedEvent;
 @synthesize operationID = _operationID;
 @synthesize runBlock = _runBlock;
 @synthesize cancelled = _cancelled;
-@synthesize session = _session;
+@synthesize context = _context;
+@synthesize authenticator = _authenticator;
 
 - (id) initWithRunBlock:(FLRunOperationBlock) callback {
     if((self = [self init])) {
@@ -38,7 +39,8 @@ NSString* const FLOperationFinishedEvent;
 
 #if FL_MRC
 - (void) dealloc {
-    [_session release];
+    [_authenticator release];
+    [_context release];
     [_runBlock release];
     [_operationID release];
     [super dealloc];
@@ -70,7 +72,7 @@ NSString* const FLOperationFinishedEvent;
     FLThrowAbortExeptionIf(self.wasCancelled);
 }
 
-- (void) performWithFinisher:(FLFinisher*) finisher {
+- (void) startAsyncWithFinisher:(FLFinisher*) finisher {
     self.cancelled = NO;
     id result = nil;
     
@@ -98,7 +100,14 @@ NSString* const FLOperationFinishedEvent;
 }
 
 - (FLResult) runSynchronously {
-    return [[self startPerforming:nil] waitUntilFinished];
+    FLFinisher* finisher = [FLFinisher finisher];
+    [self startAsyncWithFinisher:finisher];
+    return [finisher waitUntilFinished];
+}
+
+
+- (void) didMoveToContext:(id)context {
+    _context = context;
 }
 
 @end

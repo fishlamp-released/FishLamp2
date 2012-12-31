@@ -1,12 +1,12 @@
 //
-//  FLSession.m
+//  FLServiceManagingContext.m
 //  FishLampCocoa
 //
 //  Created by Mike Fullerton on 12/26/12.
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import "FLSession.h"
+#import "FLServiceManagingContext.h"
 #import "FLKeyValuePair.h"
 #import "FLBatchDictionary.h"
 #import "FLCallback.h"
@@ -27,14 +27,15 @@
 #pragma GCC diagnostic ignored "-Warc-performSelector-leaks"
 
 
-@interface FLSession ()
+@interface FLServiceManagingContext ()
 @property (readwrite, assign, getter=isOpen) BOOL open;
+@property (readwrite, strong) FLObservable* observable;
 @end
 
-@implementation FLSession
+@implementation FLServiceManagingContext
 
 @synthesize open = _open;
-@synthesize dispatcher = _dispatcher;
+@synthesize observable = _observable;
 
 - (id) init {
     self = [super init];
@@ -42,25 +43,33 @@
         _services = [[NSMutableArray alloc] init];
         _resourceProviders = [[NSMutableDictionary alloc] init];
         _resourceConsumers = [[FLMutableBatchDictionary alloc] init];
-        _dispatcher = [[FLFifoDispatchQueue alloc] init];
+        _observable = [[FLObservable alloc] initWithObservedObject:self];
     }
     
     return self;
 }
 
-+ (id) session {
++ (id) serviceManagingContext {
     return FLAutorelease([[[self class] alloc] init]);
 }
 
 #if FL_MRC
 - (void) dealloc {
-    [_dispatcher release];
+    [_observable release];
     [_resourceConsumers release];
     [_resourceProviders release];
     [_services release];
     [super dealloc];
 }
 #endif
+
+- (id)forwardingTargetForSelector:(SEL)aSelector { 
+    if([self.observable respondsToSelector:aSelector]) {
+        return self.observable;
+    }
+    
+    return self;
+}
 
 //- (id) serviceForServiceID:(id) serviceID {
 //    FLAssertNotNil_(serviceID);
@@ -103,11 +112,11 @@
     [_services removeObject:[NSValue valueWithPointer:serviceSelector]];
 }
 
-- (void) openSession {
+- (void) openServices {
     [self broadcast:@selector(openService:) withObject:self];
 }
 
-- (void) closeSession {
+- (void) closeServices {
     [self broadcast:@selector(closeService:) withObject:self];
 }
 
@@ -190,11 +199,11 @@
 //#define __CATEGORY_FOR_SERVICE(__TYPE__) (__TYPE__##ServiceDeclaration)
 //
 //#define FLBeginPublishingService(__NAME__, __TYPE__) \
-//            @interface FLSession __CATEGORY_FOR_SERVICE(__TYPE__) \
+//            @interface FLServiceManagingContext __CATEGORY_FOR_SERVICE(__TYPE__) \
 //                - (__TYPE__*) __NAME__
 //
 //#define FLBeginPublishingServiceForProtocol(__NAME__, __TYPE__) \
-//            @interface FLSession __CATEGORY_FOR_SERVICE(__TYPE__) \
+//            @interface FLServiceManagingContext __CATEGORY_FOR_SERVICE(__TYPE__) \
 //                - (id<__TYPE__>) __NAME__ 
 //
 //#define FLPublishServiceProperty(__TYPE__, __NAME__) \
@@ -220,7 +229,7 @@
 //                } \
 //            @end \
 //            \
-//            @implementation FLSession __CATEGORY_FOR_SERVICE(__TYPE__) \
+//            @implementation FLServiceManagingContext __CATEGORY_FOR_SERVICE(__TYPE__) \
 //            - (__TYPE__*) __NAME__ { \
 //                return [self serviceForServiceID:__SERVICE_TYPE__]; \
 //            } 

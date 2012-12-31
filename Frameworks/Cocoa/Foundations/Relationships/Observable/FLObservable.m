@@ -104,9 +104,19 @@ NSString* const FLObserverAllEvents = @"*";
 
 //@synthesize observers = _observers;
 
+- (id) initWithObservedObject:(id) observed {
+    self = [super init];
+    if(self) {
+        _observed = observed;
+    }
+    
+    return self;
+}
+
 - (id) init {
     self = [super init];
     if(self) {
+        _observed = self;
     }
     return self;
 }
@@ -130,11 +140,11 @@ NSString* const FLObserverAllEvents = @"*";
         @synchronized(self) {
             if(_observers) {
                 FLPostObservationForArray(  [_observers objectForKey:NSStringFromSelector(event)], 
-                                            [observer sendNotification:self event:event parmCount:0 parm1:nil parm2:nil]
+                                            [observer sendNotification:_observed event:event parmCount:0 parm1:nil parm2:nil]
                                             );
                 
                 FLPostObservationForArray(  [_observers objectForKey:FLObserverAllEvents], 
-                                            [observer sendNotification:self event:event parmCount:0 parm1:nil parm2:nil]
+                                            [observer sendNotification:_observed event:event parmCount:0 parm1:nil parm2:nil]
                                             );
             }
         }                    
@@ -148,12 +158,12 @@ NSString* const FLObserverAllEvents = @"*";
             if(_observers) {
 
                 FLPostObservationForArray(  [_observers objectForKey:NSStringFromSelector(event)],
-                                            [observer sendNotification:self event:event parmCount:1 parm1:object parm2:nil]
+                                            [observer sendNotification:_observed event:event parmCount:1 parm1:object parm2:nil]
                                             );
                                     
 
                 FLPostObservationForArray(  [_observers objectForKey:FLObserverAllEvents],
-                                            [observer sendNotification:self event:event parmCount:1 parm1:object parm2:nil]
+                                            [observer sendNotification:_observed event:event parmCount:1 parm1:object parm2:nil]
                                             );
             }                  
         }
@@ -166,11 +176,11 @@ NSString* const FLObserverAllEvents = @"*";
         @synchronized(self) {
             if(_observers) {
                 FLPostObservationForArray(  [_observers objectForKey:NSStringFromSelector(event)],
-                                            [observer sendNotification:self event:event parmCount:2 parm1:object1 parm2:object2]
+                                            [observer sendNotification:_observed event:event parmCount:2 parm1:object1 parm2:object2]
                                             );
 
                 FLPostObservationForArray(  [_observers objectForKey:FLObserverAllEvents],
-                                            [observer sendNotification:self event:event parmCount:2 parm1:object1 parm2:object2]
+                                            [observer sendNotification:_observed event:event parmCount:2 parm1:object1 parm2:object2]
                                             );
             }
         }
@@ -249,7 +259,15 @@ NSString* const FLObserverAllEvents = @"*";
 }
 
 - (NSString*) description {
-    return [NSString stringWithFormat:@"%@ observers: %@", [super description], [_observers description]];
+
+    if(_observers && _observers.count) {
+        return [NSString stringWithFormat:@"%@ {\r\nobservers: %@\r\n}", [super description], [_observers description]];
+    }
+    
+    return [super description];
 }
 
 @end
+
+
+

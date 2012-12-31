@@ -26,6 +26,9 @@
 @synthesize responseStatusLine = _responseStatusLine;
 @synthesize requestURL = _requestURL;
 @synthesize redirectedFrom = _redirectedFrom;
+#if DEBUG
+@synthesize debugResponseData = _debugResponseData;
+#endif
 
 - (NSData*) responseData {
     return self.mutableResponseData;
@@ -53,16 +56,21 @@
     return FLAutorelease([[[self class] alloc] initWithRequestURL:requestURL redirectedFrom:redirectedFrom]);
 }
 
+
 #if FL_MRC
-- (void) dealloc  {
+- (void) dealloc {
     [_redirectedFrom release];
     [_requestURL release];
-    FLRelease(_responseStatusLine);
-    FLRelease(_responseHeaders);
-    FLRelease(_data);
-    super_dealloc_();
+    [_responseStatusLine release];
+    [_responseHeaders release];
+    [_data release];
+#if DEBUG
+    [_debugResponseData release];
+#endif    
+    [super dealloc];
 }
 #endif
+
 
 + (id) httpRespose {
     return FLAutorelease([[[self class] alloc] init]);
@@ -119,9 +127,22 @@
 - (NSString*) description {
 //    NSMutableString* string = [self headers]
     
-    NSString* responseStr = FLAutorelease([[NSString alloc] initWithData:self.responseData encoding:NSUTF8StringEncoding]);
+    NSMutableString* desc = [NSMutableString stringWithFormat:@"%@\r\n", [super description]];
+    [desc appendFormat:@"request URL:%@\r\n",  [_requestURL description]];
+    [desc appendFormat:@"response status line: \"%@\"\r\nresponse code: %d\r\n", _responseStatusLine, (int)_responseStatusCode];
+    [desc appendFormat:@"response headers: %@\r\n",  [_responseHeaders description]];
     
-    return [NSMutableString stringWithFormat:@"%@ {\n%@\n}", [super description], responseStr];
+#if DEBUG
+    if(_debugResponseData) {
+        [desc appendFormat:@"response data:\r\n%@\r\n", [_debugResponseData description]];
+    }
+#endif    
+
+    if(self.redirectedFrom) {
+        [desc appendFormat:@"redirected from: %@\r\n", [self.redirectedFrom description]];
+    }
+
+    return desc;
 }
 
 @end

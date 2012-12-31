@@ -12,7 +12,7 @@
 @interface FLKeywordListFormatter : NSObject {}
 @end
 
-@interface FLStringFormatter : NSObject {}
+@interface FLStringDisplayFormatter : NSObject {}
 @end
 
 @interface FLIntFormatter : NSObject {}

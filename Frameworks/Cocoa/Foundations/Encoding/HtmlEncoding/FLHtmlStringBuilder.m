@@ -31,9 +31,9 @@ NSString* const FLXMLDocTypeXHtml1_1 = @"html PUBLIC \"-//W3C//DTD XHTML 1.1//EN
         _htmlElement = [FLXmlElement xmlElement:@"html"];
         _headElement = [FLXmlElement xmlElement:@"head"];
         _bodyElement = [FLXmlElement xmlElement:@"body"];
-        [_htmlElement addElement:_headElement];
-        [_htmlElement addElement:_bodyElement];
-        [self addElement:_htmlElement];
+        [self openElement:_htmlElement];
+        [self addElement:_headElement];
+        [self openElement:_bodyElement];
     }
 
     return self;
@@ -44,7 +44,7 @@ NSString* const FLXMLDocTypeXHtml1_1 = @"html PUBLIC \"-//W3C//DTD XHTML 1.1//EN
 }
 
 -(void) addDocTypeDeclaration:(NSString*) declaration {
-    [self appendFormat:@"<!DOCTYPE %@>"];
+    [self.stringBuilder appendLineWithFormat:@"<!DOCTYPE %@>", declaration];
 }
 
 + (NSString*) convertNewlinesToHtmlBreaks:(NSString*) input {
@@ -70,6 +70,28 @@ NSString* const FLXMLDocTypeXHtml1_1 = @"html PUBLIC \"-//W3C//DTD XHTML 1.1//EN
 #endif
 
 
+- (FLXmlElement*) addBreakElement {
+    FLXmlElement* element = [FLXmlElement xmlElement:@"br"];
+    [self addElement:element];
+    return element;
+}
+
+- (FLXmlElement*) addDivElement {
+    FLXmlElement* element = [FLXmlElement xmlElement:@"div"];
+    [self addElement:element];
+    return element;
+}
+
+- (FLXmlElement*) addLinkElement:(NSString*) href 
+                            link:(NSString*) link 
+                            text:(NSString*) text {
+                            
+    FLXmlElement* element = [FLXmlElement xmlElement:@"a"];
+    [element setAttribute:link forKey:@"href"];
+    [element appendString:text];
+    [self addElement:element];
+	return element;
+}
 @end
 
 @implementation FLXmlElement (FLHtmlStringBuilder)
@@ -85,29 +107,6 @@ NSString* const FLXMLDocTypeXHtml1_1 = @"html PUBLIC \"-//W3C//DTD XHTML 1.1//EN
 - (void) addStyleHorizontallyCenter {
 	[self appendAttribute:@"margin-left:auto; margin-right:auto; " forKey:@"style"];
 }
-
-- (FLXmlElement*) addBreak {
-    FLXmlElement* element = [FLXmlElement xmlElement:@"br"];
-    [self addElement:element];
-    return element;
-}
-
-- (FLXmlElement*) addDiv {
-    FLXmlElement* element = [FLXmlElement xmlElement:@"div"];
-    [self addElement:element];
-    return element;
-}
-
-- (FLXmlElement*) addLink:(NSString*) href link:(NSString*) link text:(NSString*) text {
-    FLXmlElement* element = [FLXmlElement xmlElement:@"a"];
-    [element setAttribute:link forKey:@"href"];
-    [element appendString:text];
-    [self addElement:element];
-	return element;
-}
-
-
-
 
 @end
 

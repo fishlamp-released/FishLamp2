@@ -11,6 +11,7 @@
 typedef void (^FLObservableBlock)(id observedObject, id object1, id object2);
 
 @protocol FLObservable <NSObject>
+@optional
 
 /// gets all event selectors (if the observer implements them)
 - (void) addObserver:(id) observer; 
@@ -43,12 +44,36 @@ typedef void (^FLObservableBlock)(id observedObject, id object1, id object2);
 @interface FLObservable : NSObject<FLObservable> {
 @private
     NSMutableDictionary* _observers;
+    __unsafe_unretained id _observed; // set to 'self' by default.
 }
+- (id) initWithObservedObject:(id) observed;
+
 @end
 
 
-#define FLSynthesizeObserveable() \
-    FLSynthesizeAssociatedPropertyWithLazyGetter_(retain_atomic, observable, setObservable, FLObservable*, FLAutorelease([[FLObservable alloc] init]); \
-    - (id)forwardingTargetForSelector:(SEL)aSelector { \
-        return self.observable; \
+/*
+
+
+//make sure you set the observed object when mixing in like this:
+
+- (id) init {
+    self = [super init];
+    if(self) {
+        _observable = [[FLObservable alloc] initWithObservedObject:self];
     }
+    
+    return self;
+}
+
+// Example of "mixing in" observable. (assumes "observable" property implemeted)
+
+- (id)forwardingTargetForSelector:(SEL)aSelector { 
+    if([self.observable respondsToSelector:aSelector]) {
+        return self.observable;
+    }
+    
+    return self;
+}
+
+*/
+

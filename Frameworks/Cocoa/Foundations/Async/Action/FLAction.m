@@ -339,7 +339,7 @@ TODO("MF: fix activity updater");
     return [self.operations requestCancel];
 }
 
-- (void) performWithFinisher:(FLFinisher*) finisher {
+- (void) startAsyncWithFinisher:(FLFinisher*) finisher {
 
     [FLForegroundQueue dispatchBlock:^{
         [self actionStarted];

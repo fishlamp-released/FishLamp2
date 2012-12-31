@@ -64,7 +64,7 @@
         }
 
 	
-		[self.session addInput:input];
+		[self.context addInput:input];
 	}
 	@finally
 	{
@@ -105,7 +105,7 @@
 {
 	if(!_previewLayer)
 	{
-		_previewLayer= [[AVCaptureVideoPreviewLayer alloc] initWithSession: self.session];
+		_previewLayer= [[AVCaptureVideoPreviewLayer alloc] initWithSession: self.context];
 		_previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
 	}
 	
@@ -121,7 +121,7 @@
 //{
 //	UIView *view = FLAutorelease([[UIView alloc] initWithFrame:bounds]);
 //	
-//	AVCaptureVideoPreviewLayer *preview = [AVCaptureVideoPreviewLayer layerWithSession: self.session];
+//	AVCaptureVideoPreviewLayer *preview = [AVCaptureVideoPreviewLayer layerWithSession: self.context];
 //	preview.frame = bounds;
 //	preview.videoGravity = AVLayerVideoGravityResizeAspectFill;
 //	[view.layer addSublayer: preview];
@@ -213,7 +213,7 @@
 					[self _addOutput];
 			 
 				
-					[self.session startOperation];
+					[self.context startOperation];
 					startedBlock(self, _error);	
 				}
 				@catch(NSException*ex)

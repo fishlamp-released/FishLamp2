@@ -20,6 +20,10 @@
     NSMutableData* _data;
     NSDictionary* _responseHeaders;
     FLHttpResponse* _redirectedFrom;
+    
+#if DEBUG
+    id _debugResponseData;
+#endif    
 }
 
 @property (readonly, strong, nonatomic) NSURL* requestURL;
@@ -39,6 +43,11 @@
 /** returns an error for responses >= 400 */
 - (NSError*) simpleHttpResponseErrorCheck;
 - (void) throwHttpErrorIfNeeded;
+
+#if DEBUG
+@property (readwrite, strong, nonatomic) id debugResponseData;
+#endif    
+
 
 @end
 

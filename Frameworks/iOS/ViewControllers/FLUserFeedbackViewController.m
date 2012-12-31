@@ -80,12 +80,12 @@
     [[FLViewController presentingModalViewController] dismissModalViewControllerAnimated:NO]; // this will dismiss us and our parents.
 
 
-	FLEmailer* email = [[FLEmailer alloc] init];
+	FLEmailer* email = FLAutorelease([[FLEmailer alloc] init]_;
 //	email.delegate = self;
 	email.subject = button.titleLabel.text;
 	email.toRecipients = [NSArray arrayWithObject:_emailAddress];
 	
-	FLStringBuilder* builder = [FLStringBuilder stringBuilder];
+	FLPrettyString* builder = [FLPrettyString prettyString];
     
     // TODO: this is dumb - use FLHtmlStringBuilder????
     
@@ -100,11 +100,7 @@
 	[builder appendFormat:(NSLocalizedString(@"[SystemVersion:%@]<br/>", nil)), [UIDevice currentDevice].systemVersion];
 	email.body = [builder buildString];
 	
-	
 	[email composeEmail:(FLViewController*) [UIApplication visibleViewController]];
-	
-	FLReleaseWithNil(email);
-
 }
 
 - (void) willConstructWithTableLayoutBuilder:(FLTableViewLayoutBuilder*) builder

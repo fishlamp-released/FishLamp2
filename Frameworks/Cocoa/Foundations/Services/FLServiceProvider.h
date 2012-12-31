@@ -10,14 +10,16 @@
 #import "FLResult.h"
 #import "FLFinisher.h"
 
-@class FLSession;
+@class FLServiceManagingContext;
 
 @protocol FLServiceProvider <NSObject>
-@property (readonly, assign) id session;
-- (void) didMoveToSession:(FLSession*) session;
+
+@property (readonly, assign) id context;
+- (void) didMoveToServiceManagerContext:(FLServiceManagingContext*) context;
+
 @optional
-- (void) openService:(FLSession*) session;
-- (void) closeService:(FLSession*) session;
+- (void) openService:(FLServiceManagingContext*) context;
+- (void) closeService:(FLServiceManagingContext*) context;
 - (void) requestCancel;
 @end
 

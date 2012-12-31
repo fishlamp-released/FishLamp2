@@ -80,22 +80,44 @@
 
 @end
 
+@protocol FLDispatcherDelegate;
 
-@interface FLDispatcher : NSObject<FLDispatcher>
+@interface FLDispatcher : NSObject<FLDispatcher> {
+@private
+    __unsafe_unretained id<FLDispatcherDelegate> _delegate;
 
-// implement these two, the rest bottlenect through these.
+}
 
-- (FLFinisher*) dispatchFinishableBlock:(FLFinishableBlock) block 
-                             completion:(FLCompletionBlock) completion;
+@property (readwrite, assign) id<FLDispatcherDelegate> delegate;
 
-- (FLFinisher*) dispatchBlock:(dispatch_block_t) block 
-                   completion:(FLCompletionBlock) completion;
-    
+// required overrides. these are the bottlenecks
+- (void) dispatchBlock:(dispatch_block_t) block 
+              withFinisher:(FLFinisher*) finisher;
+
+- (void) dispatchFinishableBlock:(FLFinishableBlock) block 
+              withFinisher:(FLFinisher*) finisher;
+
+- (void) willDispatchObject:(id) object;
+
+- (void) didDispatchObject:(id) object;
                 
 @end
 
-@interface FLDispatcherDelegate <NSObject>
+@protocol FLDispatcherDelegate <NSObject> 
 @optional
-- (void) willDispatchObject:(id) object;
-- (void) didDispatchObject:(id) object;                                        
+
+- (void) dispatcher:(FLDispatcher*) dispatcher 
+ willDispatchObject:(id) object;
+
+- (void) dispatcher:(FLDispatcher*) dispatcher 
+  didDispatchObject:(id) object;                                        
+
+- (void) dispatcher:(FLDispatcher*) dispatcher 
+dispatchFinishableBlock:(FLFinishableBlock) block 
+         withFinisher:(FLFinisher*) finisher;
+         
+- (void) dispatcher:(FLDispatcher*) dispatcher
+      dispatchBlock:(dispatch_block_t) block 
+       withFinisher:(FLFinisher*) finisher;         
+
 @end

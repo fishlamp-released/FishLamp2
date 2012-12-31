@@ -9,17 +9,9 @@
 #import "FLDispatchable.h"
 
 @implementation NSObject (FLDispatchable) 
-- (FLFinisher*) startPerforming:(FLCompletionBlock) completion {
-    FLFinisher* finisher = [FLFinisher finisher:completion];
-    [ ((id)self) performWithFinisher:finisher];
-    return finisher;
-}
-
-- (FLFinisher*) startPerforming {
-    return [self startPerforming:nil];
-}
-
 - (id) runSynchronously {
-    return [[self startPerforming] waitUntilFinished];
+    FLFinisher* finisher = [FLFinisher finisher];
+    [ ((id)self) startAsyncWithFinisher:finisher];
+    return [finisher waitUntilFinished];
 }
 @end

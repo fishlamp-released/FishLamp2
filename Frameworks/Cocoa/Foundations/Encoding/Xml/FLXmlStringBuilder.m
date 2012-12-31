@@ -13,11 +13,18 @@
 
 #define EOL @"\r\n"
 
+@interface FLXmlStringBuilder ()
+ 
+@end
+
 @implementation FLXmlStringBuilder
+
+@synthesize dataEncoder = _dataEncoder;
 
 - (id) init {
     self = [super init];
     if(self) {
+        [self openScope:[FLStringBuilder stringBuilder]];
     }
     return self;
 }
@@ -26,34 +33,36 @@
 	return FLAutorelease([[[self class] alloc] init]);
 }
 
+#if FL_MRC
+- (void) dealloc {
+    [_dataEncoder release];
+    [super dealloc];
+}
+#endif
+
 -(void) appendXmlVersionDeclaration:(NSString*) version 
                andEncodingHeader:(NSString*) encoding
                standalone:(BOOL) standalone {
     
-    [self appendFormat:@"<?xml version=\"%@\" encoding=\"%@\" standalone=\"%@\"?>", version, encoding, standalone ? @"yes" : @"no"];
+    [self.stringBuilder appendLineWithFormat:@"<?xml version=\"%@\" encoding=\"%@\" standalone=\"%@\"?>", version, encoding, standalone ? @"yes" : @"no"];
 }
 
 - (void) appendDefaultXmlDeclaration {
     [self appendXmlVersionDeclaration:FLXmlVersion1_0 andEncodingHeader:FLXmlEncodingUtf8 standalone:YES];
 }
 
+- (void) openElement:(FLXmlElement*) element {
+    [self openScope:element];
+}
+
 - (void) addElement:(FLXmlElement*) element {
-    [super addToken:element];
+    [self.stringBuilder addStringBuilder:element];
 }
-@end
 
-@implementation FLXmlComment
-
-- (void) willBuildString {
-    if(!self.isEmpty) {
-        self.header = [FLSingleLineToken singleLineToken:@"<--"];
-        self.footer = [FLSingleLineToken singleLineToken:@"-->"];
-    }
-    else {
-        self.header = nil;
-        self.footer = nil;
-    }
+- (void) closeElement {
+    [self closeScope];
 }
+
 @end
 
 

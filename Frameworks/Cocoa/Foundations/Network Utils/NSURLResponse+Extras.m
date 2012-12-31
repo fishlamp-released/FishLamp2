@@ -7,7 +7,7 @@
 //
 
 #import "NSURLResponse+Extras.h"
-#import "FLStringBuilder.h"
+#import "FLPrettyString.h"
 
 @implementation NSHTTPURLResponse (Extras)
 
@@ -32,17 +32,17 @@
 	return nil;
 }
 
-- (void) logToStringBuilder:(FLStringBuilder*) builder {
+- (void) logToStringBuilder:(FLPrettyString*) prettyString {
 
 	NSDictionary* headers = [self allHeaderFields];
 	
-	[builder appendLineWithFormat:@"HTTP response: %d (%@)", self.statusCode, [NSHTTPURLResponse localizedStringForStatusCode:self.statusCode]];
+	[prettyString appendLineWithFormat:@"HTTP response: %d (%@)", self.statusCode, [NSHTTPURLResponse localizedStringForStatusCode:self.statusCode]];
 
-	[builder appendLine:@"headers:"];
+	[prettyString appendLine:@"headers:"];
 
-    [builder appendIndentedBlock:^{
+    [prettyString indent:^{
         for(id key in headers) {
-            [builder appendLineWithFormat:@"%@: %@", [key description], [[headers objectForKey:key] description]];
+            [prettyString appendLineWithFormat:@"%@: %@", [key description], [[headers objectForKey:key] description]];
         }
     }];
 }

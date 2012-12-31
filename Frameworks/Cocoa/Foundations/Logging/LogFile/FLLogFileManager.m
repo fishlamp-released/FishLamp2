@@ -56,12 +56,12 @@ FLSynthesizeSingleton(FLLogFileManager);
     return nil;
 }
    
-- (void) openService:(FLSession*) session {
+- (void) openService:(FLServiceManagingContext*) context {
     [self _close];
     [self _setUserName];
 }
 
-- (void) closeService:(FLSession*) session {
+- (void) closeService:(FLServiceManagingContext*) context {
     [self _close];
 }
 

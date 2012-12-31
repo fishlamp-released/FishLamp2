@@ -30,7 +30,11 @@ typedef void (^FLAssetQueueLoadAssetBlock)(id loadedAsset, NSError* error);
 	NSString* _queueUID;
 	NSMutableArray* _assets;
 	FLAssetQueueState* _state;
+
+#if QUEUE_LOCKING
     NSInteger _lockCount;
+#endif
+    
     FLDatabase* _database;
 }
 
@@ -62,7 +66,10 @@ typedef void (^FLAssetQueueLoadAssetBlock)(id loadedAsset, NSError* error);
 - (void) loadQueue:(FLDatabase*) database;
 - (void) unloadQueue;
 - (BOOL) isLoaded;
+
+#if QUEUE_LOCKING
 - (id) loadLock; //delete the lock to release it.
+#endif
 
 // these require queue to be loaded
 - (id) assetAtIndex:(NSUInteger) idx;

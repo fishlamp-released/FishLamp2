@@ -24,7 +24,7 @@
 #import "FLServiceKeys.h"
 
 
-//@implementation FLSession (FLUserDataStorageService) 
+//@implementation FLServiceManagingContext (FLUserDataStorageService) 
 //FLSynthesizeSessionService(storageService, setStorageService, FLUserDataStorageService*)
 //FLSynthesizeSessionProperty(cacheFolder, FLFolder*, FLUserDataStorageService);
 //FLSynthesizeSessionProperty(cacheDatabase, FLDatabase*, FLUserDataStorageService);
@@ -224,7 +224,7 @@
 }
 
 - (FLUserLogin*) userLogin {
-    return [self.session resourceForKey:FLUserLoginKey];
+    return [self.context resourceForKey:FLUserLoginKey];
 }
 
 - (void) initCache {

@@ -11,30 +11,9 @@
 #import "FLObjectDescriber.h"
 #import "FLObjectInflatorState.h"
 #import "FLXmlParser.h"
+#import "FLPropertyDescription.h"
 
 @implementation NSObject (XML)
-
-- (void) appendXmlToStringBuilder:(FLXmlStringBuilder*) stringBuilder
-                  withDataEncoder:(id<FLDataEncoder>) dataEncoder
-            propertyDescription:(FLPropertyDescription*) description
-{
-	FLObjectDescriber* objectDescriber = [[self class] sharedObjectDescriber];
-	
-	for(NSString* key in objectDescriber.propertyDescribers) {
-		id object = [self valueForKey:key];
-		if(object) {
-            FLXmlElement* element = [FLXmlElement xmlElement:key];
-            [stringBuilder addElement:element];
-            FLPropertyDescription* desc = [objectDescriber propertyDescriberForPropertyName:key];
-            if(desc.propertyType == FLDataTypeObject) {
-                [object appendXmlToStringBuilder:element withDataEncoder:dataEncoder propertyDescription:desc];
-            }
-            else {
-                [element appendElementValueWithObject:object withDataEncoder:dataEncoder propertyDescription:desc];
-            }
-        }
-	}
-}
 
 - (void) finishParsingFrom:(FLXmlParser*) parser 
                      state:(FLObjectInflatorState*) state {
@@ -86,7 +65,7 @@
 	return NO;
 }
 
-+ (id) objectWithContentsOfFile:(NSString*) path {
++ (id) objectWithContentsOfXMLFile:(NSString*) path {
     NSError* error = nil;
     NSData* data = [NSData dataWithContentsOfFile:path options:NSDataReadingUncached error:&error];
     if(error) {
@@ -102,48 +81,6 @@
     return obj;
 }
 
-@end
-
-
-@implementation NSArray (XML)
-
-- (void) streamSelfToXmlBuilder:(FLXmlStringBuilder*) stringBuilder
-withDataEncoder:(id<FLDataEncoder>) dataEncoder
-            propertyDescription:(FLPropertyDescription*) description {
-    
-	if(description && self.count) {
-		NSArray* arrayTypes = description.arrayTypes;
-		      
-		if(arrayTypes.count == 1) {
-			FLPropertyDescription* elementDesc = [arrayTypes lastObject];
-			for(id obj in self){
-                FLXmlElement* element = [FLXmlElement xmlElement:elementDesc.propertyName];
-                [element addObjectAsXML:obj withDataEncoder:dataEncoder propertyDescription:elementDesc];
-                [stringBuilder addElement:element];
-			}
-		}
-		else {
-			for(id obj in self) {
-				// hmm. expensive. need to decide for each item.
-				
-				for(FLPropertyDescription* elementDesc in arrayTypes) {
-					if([obj isKindOfClass:elementDesc.propertyClass]) {
-
-                        FLXmlElement* element = [FLXmlElement xmlElement:elementDesc.propertyName];
-                        [element addObjectAsXML:obj withDataEncoder:dataEncoder propertyDescription:elementDesc];
-                        [stringBuilder addElement:element];
-						break;
-					}
-				}
-			}		
-		}
-	}
-#if DEBUG
-	else if(!description) {
-		FLDebugLog(@"Warning not streaming object of type: %@", NSStringFromClass([self class]));
-	}
-#endif	
-}
 @end
 
 @implementation NSMutableArray (XML)
@@ -195,66 +132,6 @@ withDataEncoder:(id<FLDataEncoder>) dataEncoder
 	}
 
 	return NO;
-}
-
-@end
-
-
-@implementation FLXmlStringBuilder (NSObjectXML)
-
-- (void) addObjectAsXML:(id) object 
-        withDataEncoder:(id<FLDataEncoder>) dataEncoder {
-	[object appendXmlToStringBuilder:self withDataEncoder:dataEncoder propertyDescription:nil];
-}
-
-- (void) addObjectAsXML:(id) object
-        withDataEncoder:(id<FLDataEncoder>) dataEncoder
-    propertyDescription:(FLPropertyDescription*) description {
-	
-    if(description.propertyType == FLDataTypeObject) {
-		[object appendXmlToStringBuilder:self withDataEncoder:dataEncoder propertyDescription:description];
-	} 
-    else {
-		[self appendElementValueWithObject:object withDataEncoder:dataEncoder propertyDescription:description];
-	}
-}
-
-- (void) appendElementValueWithObject:(id) object
-                      withDataEncoder:(id<FLDataEncoder>) dataEncoder
-                  propertyDescription:(FLPropertyDescription*) description {
-
-    if(object) {
-        FLConfirmNotNil_v(dataEncoder, @"Xml String builder requires a data encoder");
-    
-		NSString* string = nil;
-        [dataEncoder encodeDataToString:object forType:description.propertyType outEncodedString:&string];
-        FLAssertNotNil_(string);
-        FLConfirm_([string isKindOfClass:[NSString class]]);
-        [self appendIndentedBlock:^{
-            [self appendLine:string];
-        }];
-	}
-}
-
-- (void) addObjectAsXML:(id) object
-        withDataEncoder:(id<FLDataEncoder>) dataEncoder
-    propertyDescription:(FLPropertyDescription*) description
-            elementName:(NSString*) elementName
-{
-	if(object) {
-        FLConfirmNotNil_v(dataEncoder, @"Xml String builder requires a data encoder");
-    
-		NSString* string = nil;
-		[dataEncoder encodeDataToString:object forType:description.propertyType outEncodedString:&string];
-		@try {
-            FLXmlElement* element = [FLXmlElement xmlElement:elementName];
-            [element appendString:string];
-            [self addElement:element];
-		}
-		@finally {
-			FLRelease(string);
-		}
-	}
 }
 
 @end

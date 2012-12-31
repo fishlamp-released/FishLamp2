@@ -23,13 +23,13 @@
 	[_output setOutputSettings:[NSDictionary dictionaryWithObject:AVVideoCodecJPEG forKey:AVVideoCodecKey]];
 	
  // output.minFrameDuration = CMTimeMake(1, 15);
-	[self.session addOutput:_output];
+	[self.context addOutput:_output];
 	FLRelease(_output);
 }
 
 - (void) _configureSession:(AVCaptureSession*) session
 {
-	self.session.sessionPreset = AVCaptureSessionPresetPhoto;
+	self.context.sessionPreset = AVCaptureSessionPresetPhoto;
 }
 
 - (void) _cleanupCamera

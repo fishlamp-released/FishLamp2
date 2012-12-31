@@ -8,7 +8,7 @@
  */
 
 #import "FLParserStack.h"
-#import "FLStringBuilder.h"
+#import "FLPrettyString.h"
 
 NSString *const FLParserStackErrorDomain = @"FLParserStackErrorDomain";
 
@@ -32,7 +32,7 @@ void FLParserStackFree(FLParserStack** stack)
 #if DEBUG
 void FLParserStackLogState(FLParserStack* stack, NSString* why)
 {
-	FLStringBuilder* builder = [FLStringBuilder stringBuilder];
+	FLPrettyString* builder = [FLPrettyString prettyString];
     [builder appendLineWithFormat:@"Logging parser stack: %@", why];
     [builder appendLineWithFormat:@"depth: %d", stack->top];
     if(stack->top >= 0)
@@ -44,6 +44,6 @@ void FLParserStackLogState(FLParserStack* stack, NSString* why)
         }
     }
 
-	FLDebugLog([builder buildString]);
+	FLDebugLog([builder string]);
 }
 #endif 

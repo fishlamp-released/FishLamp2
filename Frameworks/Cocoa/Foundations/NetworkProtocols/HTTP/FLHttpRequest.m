@@ -12,7 +12,7 @@
 #import "FLReadStream.h"
 #import "FLCore.h"
 #import "FLHttpMessage.h"
-#import "FLRequestContext.h"
+#import "FLDispatchableContext.h"
 
 //#if IOS
 //#import <UIKit/UIKit.h>
@@ -73,8 +73,10 @@
 @synthesize networkStream = _networkStream;
 @synthesize dispatchQueue = _dispatchQueue;
 @synthesize finisher = _finisher;
-@synthesize httpBody = _content;
-@synthesize requestContext = _requestContext;
+@synthesize body = _body;
+@synthesize context = _context;
+@synthesize authenticator = _authenticator;
+@synthesize headers = _headers;
 
 - (id) init {
     self = [self initWithRequestURL:nil httpMethod:nil];
@@ -86,16 +88,17 @@
 
 -(id) initWithRequestURL:(NSURL*) url httpMethod:(NSString*) httpMethod {
     if((self = [super init])) {
-        _content = [[FLHttpRequestContent alloc] init];
+        _headers = [[FLHttpRequestHeaders alloc] init];
+        _body = [[FLHttpRequestBody alloc] initWithHeaders:_headers];
 
-        self.httpHeaders.requestURL = url;
-        self.httpHeaders.httpMethod = httpMethod;
+        self.headers.requestURL = url;
+        self.headers.httpMethod = httpMethod;
         
         if(FLStringIsEmpty(httpMethod)) {
-            self.httpHeaders.httpMethod= @"GET";
+            self.headers.httpMethod= @"GET";
         }
         else {
-            self.httpHeaders.httpMethod = httpMethod;
+            self.headers.httpMethod = httpMethod;
         }
     }
     
@@ -111,13 +114,19 @@
     FLReleasePooledObject(&_dispatchQueue);
 
 #if FL_MRC
-    [_requestContext release];
+    [_headers release];
+    [_context release];
+    [_authenticator release];
     [_finisher release];
-    [_content release];
+    [_body release];
     [_response release];
     [_networkStream release];
     [super dealloc];
 #endif
+}
+
+- (void) didMoveToContext:(id)context {
+    _context = context;
 }
 
 + (id) httpGetRequest:(NSURL*) url {
@@ -136,10 +145,6 @@
     return FLAutorelease([[[self class] alloc] initWithRequestURL:url httpMethod:@"POST"]);
 }
 
-- (FLHttpRequestHeaders*) httpHeaders {
-    return _content.httpHeaders;
-}
-
 //- (void) copyTo:(FLHttpRequest*) request {
 //    request.httpMethod = FLAutorelease([self.httpMethod copy]);
 //    request.allHTTPHeaderFields = FLAutorelease([self.allHTTPHeaderFields mutableCopy]);
@@ -151,7 +156,7 @@
 //}
 
 - (id)copyWithZone:(NSZone *)zone {
-    FLHttpRequest* request = [[[self class] alloc] initWithRequestURL:self.httpHeaders.requestURL httpMethod:self.httpHeaders.httpMethod];
+    FLHttpRequest* request = [[[self class] alloc] initWithRequestURL:self.headers.requestURL httpMethod:self.headers.httpMethod];
 //    [self copyTo:request];
     return request;
 }
@@ -163,20 +168,20 @@
     @try {
     
         FLHttpMessage* message = [FLHttpMessage httpMessageWithURL:url 
-                                                        httpMethod:self.httpHeaders.httpMethod];
+                                                        httpMethod:self.headers.httpMethod];
                                                         
         if(message) {
-            [message setHeaders:self.httpHeaders.allHeaders];
+            [message setHeaders:self.headers.allHeaders];
             
-            NSInputStream* inputStream = self.httpBody.bodyStream;
+            NSInputStream* inputStream = self.body.bodyStream;
             if(inputStream) {
                 // I don't quite get why we're making a read stream for a networkStream???
                 ref = CFReadStreamCreateForStreamedHTTPRequest(kCFAllocatorDefault,
                                         message.messageRef,
                                         bridge_(CFReadStreamRef, inputStream));
             }
-            else if(self.httpBody.bodyData) {
-                message.bodyData = self.httpBody.bodyData;
+            else if(self.body.bodyData) {
+                message.bodyData = self.body.bodyData;
                 ref = CFReadStreamCreateForHTTPRequest(kCFAllocatorDefault, message.messageRef);
             }
             
@@ -284,7 +289,7 @@
 - (void) willSendHttpRequest {
 }
 
-- (void) wasStartedInHttpRequestContext:(FLRequestContext*) context {
+- (void) wasStartedInHttpRequestContext:(FLDispatchableContext*) context {
 
 }
 
@@ -349,11 +354,11 @@
 - (void) startRequest {
     [self.dispatchQueue dispatchBlock:^{
         [self willSendHttpRequest]; // this may set requestURL
-        [self openHttpStreamWithURL:self.httpHeaders.requestURL];
+        [self openHttpStreamWithURL:self.headers.requestURL];
     }];
 }
 
-- (void) performWithFinisher:(FLFinisher*) finisher {
+- (void) startAsyncWithFinisher:(FLFinisher*) finisher {
 
     self.finisher = finisher;
     
@@ -368,35 +373,27 @@
     }
 }
 
-- (FLFinisher*) sendRequest:(FLCompletionBlock) completion {
-    return [self startPerforming:completion];
-}
+//- (FLFinisher*) sendRequest:(FLCompletionBlock) completion {
+//    return [self startPerforming:completion];
+//}
+//
+//- (FLFinisher*) sendRequest {
+//    return [self sendRequest:nil];
+//}
+//
+//- (FLResult) runSynchronously {
+//    return [[self sendRequest] waitUntilFinished];
+//}
+//
+//- (FLResult) sendRequestSynchronously {
+//    return [self runSynchronously];
+//}
 
-- (FLFinisher*) startPerforming:(FLCompletionBlock) completion {
-    
-    FLFinisher* finisher = [FLFinisher finisher:completion];
-
-    if(_requestContext) {
-        [_requestContext sendRequest:self finisher:finisher];
-    }
-    else {
-        [self performWithFinisher:finisher];
-    }
-    
-    return finisher;
-}
-
-
-- (FLFinisher*) sendRequest {
-    return [self sendRequest:nil];
-}
-
-- (FLResult) runSynchronously {
-    return [[self sendRequest] waitUntilFinished];
-}
-
-- (FLResult) sendRequestSynchronously {
-    return [self runSynchronously];
+- (NSString*) description {
+    NSMutableString* desc = [NSMutableString stringWithFormat:@"%@\r\n", [super description]];
+    [desc appendString:[self.headers description]];
+    [desc appendString:[self.body description]];
+    return desc;
 }
 
 @end

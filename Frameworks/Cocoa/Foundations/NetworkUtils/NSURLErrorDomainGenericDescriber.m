@@ -7,7 +7,7 @@
 //
 
 #import "NSURLErrorDomainGenericDescriber.h"
-#import "FLStringBuilder.h"
+#import "FLPrettyString.h"
 
 //#import <CFNetwork/CFNetworkErrors.h>
 
@@ -16,7 +16,7 @@
 
 - (NSString*) descriptionForErrorCode:(NSInteger) errorCode {
  
-    FLStringBuilder* text = [FLStringBuilder stringBuilder];
+    FLPrettyString* text = [FLPrettyString prettyString];
 	
     switch(errorCode)
     {
@@ -53,7 +53,7 @@
             break;
     }
 
-	return [text buildString];
+	return [text string];
 }
 
 @end

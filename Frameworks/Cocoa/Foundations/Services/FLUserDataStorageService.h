@@ -72,7 +72,7 @@
 
 FLPublishService(userStorageService, FLUserDataStorageService*)
 
-//@interface FLSession (FLUserDataStorageService) 
+//@interface FLServiceManagingContext (FLUserDataStorageService) 
 //@property (readwrite, strong) FLUserDataStorageService* storageService;
 //@property (readonly, strong) FLFolder* cacheFolder;
 //@property (readonly, strong) FLDatabase* cacheDatabase;

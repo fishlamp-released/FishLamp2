@@ -69,7 +69,7 @@
         }
 	}
 	
-	[httpRequest.httpBody setFormUrlEncodedContent:content];
+	[httpRequest.body setFormUrlEncodedContent:content];
 
 //    FLTwitterService* twitter = [self.context twitterService];
 //

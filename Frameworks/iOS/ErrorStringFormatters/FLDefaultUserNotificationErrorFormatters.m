@@ -35,7 +35,7 @@ void InstallDefaultUserNotificationErrorFormatters()
 //		  errorDescription.title = @"An error occurred on the server.";
 //	  }	  
 
-	FLStringBuilder* builder = [FLStringBuilder stringBuilder];
+	FLPrettyString* builder = [FLPrettyString prettyString];
     
 	switch(error.code)
 	{
@@ -98,7 +98,7 @@ void InstallDefaultUserNotificationErrorFormatters()
 }
 
 - (NSString*) describeError:(NSError*) error {
-    FLStringBuilder* builder = [FLStringBuilder stringBuilder];
+    FLPrettyString* builder = [FLPrettyString prettyString];
 	
 	[builder appendLine:NSLocalizedString(@"The server returned an error.", nil)];
 	[builder appendLine];

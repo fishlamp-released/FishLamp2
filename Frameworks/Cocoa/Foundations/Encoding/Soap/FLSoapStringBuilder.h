@@ -10,7 +10,7 @@
 #import "FLCore.h"
 
 #import "FLXmlStringBuilder.h"
-#import "FLXmlElement.h"
+#import "FLObjectXmlElement.h"
 
 @interface FLSoapStringBuilder : FLXmlStringBuilder {
 @private
@@ -18,19 +18,20 @@
     FLXmlElement* _bodyElement;
 }
 
-@property (readonly, strong, nonatomic) FLXmlElement* envelope;
-@property (readonly, strong, nonatomic) FLXmlElement* body;
++ (id) soapStringBuilder;
 
 @end
 
-@interface FLXmlElement (Soap)
+@interface FLObjectXmlElement (Soap)
+
++ (id) soapXmlElementWithObject:(id) object                 
+                  xmlElementTag:(NSString*) functionName 
+                   xmlNamespace:(NSString*) xmlNamespace;
+
 - (void) addSoapParameter:(NSString*) name 
                     value:(NSString*) value;
 
 - (void) addSoapParameters:(NSDictionary*) parameters;
 
-- (void) addObjectAsFunction:(NSString*) functionName 
-                      object:(id) object 
-                xmlNamespace:(NSString*) xmlNamespace;
-
 @end
+

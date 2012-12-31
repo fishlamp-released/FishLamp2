@@ -7,27 +7,19 @@
 //
 
 #import "FLHttpSession.h"
-#import "FLRequestContext.h"
+#import "FLDispatchableContext.h"
 
 @implementation FLHttpSession
 
-@synthesize httpService = _httpService;
 
 - (id) init {
     self = [super init];
     if(self) {
-        [self registerService:@selector(httpService)];
     }
     
     return self;
 }
 
-#if FL_MRC
-- (void) dealloc {
-    [_httpService release];
-    [super dealloc];
-}
-#endif
 
 
 @end

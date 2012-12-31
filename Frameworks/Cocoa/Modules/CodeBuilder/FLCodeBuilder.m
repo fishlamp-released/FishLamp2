@@ -16,8 +16,8 @@
 - (id) init {
     self = [super init];
     if(self) {
-        self.header = [FLSingleLineToken singleLineToken:@""];
-        self.footer = [FLSingleLineToken singleLineToken:@""];
+//        self.header = [FLSingleLineToken singleLineToken:@""];
+//        self.footer = [FLSingleLineToken singleLineToken:@""];
     }
     return self;
 }
@@ -26,20 +26,18 @@
     return FLAutorelease([[[self class] alloc] init]);
 }
 
-- (BOOL) shouldBuildString {
-    return YES;
-}
+- (void) willBuildString:(FLPrettyString*) prettyString {
 
-- (void) willBuildString {
-
-    if(FLStringIsEmpty([self.header string])) {
-        [self.header setToken:_openBracket];
-    }
-    else {
-        [self.header setToken:[NSString stringWithFormat:@" %@", _openBracket]];
-    }
-
-    [self.footer setToken:_closeBracket];
+//    if(FLStringIsEmpty([self.header string])) {
+//        [self.header setToken:_openBracket];
+//    }
+//    else {
+//        [self.header setToken:[NSString stringWithFormat:@" %@", _openBracket]];
+//    }
+//
+//    [super buildStringWithPrettyString];
+//
+//    [self.footer setToken:_closeBracket];
 }
 
 #if FL_MRC

@@ -27,7 +27,7 @@
 
 // TODO: could be a redirected URL for image???   
     
-    image.imageProperties = [FLImageProperties imagePropertiesWithImageURL:self.httpHeaders.requestURL];
+    image.imageProperties = [FLImageProperties imagePropertiesWithImageURL:self.headers.requestURL];
     return image;
 }
 

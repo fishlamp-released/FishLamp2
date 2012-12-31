@@ -20,11 +20,9 @@
 @synthesize object = _object;
 @synthesize outputObject = _outputObject;
 @synthesize inputObject = _inputObject;
-@synthesize facebookService = _facebookService;
 
 #if FL_MRC
 - (void) dealloc {
-    [_facebookService release];
     [_inputObject release];
     [_outputObject release];
     [_object release];
