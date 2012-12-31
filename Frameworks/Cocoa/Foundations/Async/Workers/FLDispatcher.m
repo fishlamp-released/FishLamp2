@@ -92,7 +92,12 @@
             [self didDispatchObject:object];
         }];
         
-        [object startAsyncWithFinisher:objectFinisher];
+        @try {
+            [object startAsyncWithFinisher:objectFinisher];
+        }
+        @catch(NSException* ex) {
+            [objectFinisher setFinishedWithResult:ex.error];
+        }
     }];
     
     return finisher;

@@ -37,14 +37,3 @@
      propertyDescription:(FLPropertyDescription*) description;
 @end
 
-@interface FLXmlElementStringBuilderLine : FLStringBuilderLine {
-@private
-    id _object;
-    FLPropertyDescription* _propertyDescription;
-    NSString* _encodedString;
-}
-
-+ (id) xmlElementStringBuilderLine:(id) object propertyDescription:(FLPropertyDescription*) description;
-
-@end
-

@@ -46,12 +46,16 @@
 }
 #endif
 
-- (void) startAsyncWithFinisher:(FLFinisher*) finisher {
-    [finisher setFinished];
-}
-
 - (void) didMoveToContext:(id)context  {
     _context = context;
+}
+
+- (FLResult) runSynchronously {
+    return nil;
+}
+
+- (void) startAsyncWithFinisher:(FLFinisher*) finisher {
+    [finisher setFinishedWithResult:[self runSynchronously]];
 }
 
 @end

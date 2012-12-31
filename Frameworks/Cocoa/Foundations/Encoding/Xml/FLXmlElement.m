@@ -18,6 +18,7 @@
 
 @synthesize xmlElementTag = _openTag;
 @synthesize xmlElementCloseTag = _closeTag;
+@synthesize dataEncoder = _dataEncoder;
 
 - (id) initWithXmlElementTag:(NSString*) xmlElementTag 
           xmlElementCloseTag:(NSString*) xmlElementCloseTag {
@@ -26,9 +27,6 @@
     if(self) {
         self.xmlElementTag = xmlElementTag;
         self.xmlElementCloseTag = xmlElementCloseTag;
-        
-//        [self addStringBuilder:[FLStringBuilder stringBuilder]];
-        
     }
     return self;
 }
@@ -47,6 +45,7 @@
 
 #if FL_MRC
 - (void) dealloc {
+    [_dataEncoder release];
     [_openTag release];
     [_closeTag release];
     [_attributes release];
@@ -88,7 +87,7 @@
 }
 
 - (void) addElement:(FLXmlElement*) element {
-    [self addLineWithObject:element];
+    [self addStringBuilder:element];
 }
 
 - (NSString*) xmlOpenTag:(BOOL) isEmpty {
@@ -119,23 +118,22 @@
     
 }
 
-- (void) appendSelfToPrettyString:(FLPrettyString*) prettyString {
+- (void) appendLinesToPrettyString:(FLPrettyString *)prettyString {
 
     if(_comments) {
-        [_comments appendSelfToPrettyString:prettyString];
+        [_comments appendLinesToPrettyString:prettyString];
     }
     
     BOOL hasLines = self.lines.count > 0;
     [prettyString appendLine:[self xmlOpenTag:!hasLines]];
     if(hasLines) {
-        [prettyString indent];
-        [super appendSelfToPrettyString:prettyString];
-        [prettyString outdent];
+        [prettyString indent:^{
+            [super appendLinesToPrettyString:prettyString];
+        }];
+
         [prettyString appendLine:[NSString stringWithFormat:@"</%@>", self.xmlElementCloseTag]];
     }
 }      
-
-
 
 @end
 

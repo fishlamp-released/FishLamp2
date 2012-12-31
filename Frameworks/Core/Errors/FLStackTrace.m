@@ -107,8 +107,11 @@ FLStackTrace_t FLStackTraceMake(    const char* filePath,
 
 - (void) dealloc {
     FLStackTraceFree(&_stackTrace);
-    super_dealloc_();
+#if FL_MRC
+    [super dealloc];
+#endif
 }
+
 
 - (const char*) stackEntryAtIndex:(int) idx {
     return FLStackEntryAtIndex(_stackTrace.stack, idx);
@@ -117,5 +120,56 @@ FLStackTrace_t FLStackTraceMake(    const char* filePath,
 - (FLCallStack) callStack {
     return _stackTrace.stack;
 }
+
+- (int) stackDepth {
+    return _stackTrace.stack.depth;
+}
+
+- (void) describe:(FLPrettyString*) string {
+    [string appendLine:[NSString stringWithFormat:@"%s:%d, %s", 
+                          _stackTrace.fileName, 
+                          _stackTrace.lineNumber, 
+                          _stackTrace.function]];
+    [string indent:^{
+        for(int i = 0; i < self.stackDepth; i++) {
+            [string appendLine:[NSString stringWithFormat:@"%s", [self stackEntryAtIndex:i]]];
+        }
+    }];
+}
+
+- (NSString*) description {
+    FLPrettyString* str = [FLPrettyString prettyString];
+    [self describe:str];
+    return [str string];
+}
+
+//- (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state 
+//                                  objects:(id __unsafe_unretained [])buffer 
+//                                    count:(NSUInteger)len {
+//	
+//    unsigned long currentIndex = state->state;
+//    if(currentIndex >= _stackTrace.depth) {
+//		return 0;
+//	}
+//	
+//    state->state = MIN(_stackTrace.depth - 1, currentIndex + len);
+//
+//    NSUInteger count = state->state - currentIndex;
+//
+//    int bufferIndex = 0;
+//    for(int i = currentIndex; i < count; i++) {
+//        buffer[bufferIndex] = FLStackEntryAtIndex(_stackTrace.stack, idx);
+//    }
+//
+//    state->itemsPtr = buffer;
+//    
+//    // this is an immutable object, so it will never be mutated
+//    static unsigned long s_mutations = 0;
+//    
+//	state->mutationsPtr = &s_mutations;
+//	return count;
+//}
+
+
 
 @end

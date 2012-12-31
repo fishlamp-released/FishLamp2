@@ -12,6 +12,7 @@
 #import <execinfo.h>
 #import <objc/runtime.h>
 
+
 typedef struct {
     const char** lines;
     NSUInteger depth;
@@ -48,12 +49,15 @@ const char* FLStackEntryAtIndex(FLCallStack stack, NSUInteger index) {
 // use FLCreateStackTrace instead of this method
 + (FLStackTrace*) stackTrace:(FLStackTrace_t) willTakeOwnershipOfTrace;
 
+// where the stack trace was made
 @property (readonly, assign, nonatomic) const char* fileName;
 @property (readonly, assign, nonatomic) const char* filePath;
 @property (readonly, assign, nonatomic) const char* function;
 @property (readonly, assign, nonatomic) int lineNumber;
+
 @property (readonly, assign, nonatomic) FLCallStack callStack;
 
+@property (readonly, assign, nonatomic) int stackDepth;
 - (const char*) stackEntryAtIndex:(int) idx;
 @end
 

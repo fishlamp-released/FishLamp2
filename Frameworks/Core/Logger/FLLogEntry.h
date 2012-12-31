@@ -7,6 +7,7 @@
 //
 
 #import "FLRequired.h"
+@class FLStackTrace;
 
 @interface FLLogEntry : NSObject<NSCopying> {
 @private

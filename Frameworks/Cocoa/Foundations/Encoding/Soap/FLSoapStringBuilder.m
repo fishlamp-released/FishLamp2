@@ -27,7 +27,7 @@
         self.dataEncoder = [FLSoapDataEncoder instance];
     
         [self appendDefaultXmlDeclaration];
-    
+
         _envelopeElement = [[FLXmlElement alloc] initWithXmlElementTag:@"soap:Envelope"];
         [self openElement:_envelopeElement];
 
@@ -37,6 +37,8 @@
         
         _bodyElement = [[FLXmlElement alloc] initWithXmlElementTag:@"soap:Body"];
         [self openElement:_bodyElement];
+
+
 	}
 	return self;
 }
@@ -57,7 +59,7 @@
                andEncodingHeader:(NSString*) encoding
                standalone:(BOOL) standalone {
     
-    [self addLineWithObject:[NSString stringWithFormat:@"<?xml version=\"%@\" encoding=\"%@\"?>", version, encoding]];
+    [self.lines appendLineWithFormat:@"<?xml version=\"%@\" encoding=\"%@\"?>", version, encoding];
 }
 
 @end

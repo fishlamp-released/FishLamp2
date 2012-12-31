@@ -114,12 +114,10 @@
 - (void) appendLineWithEncodedObject:(id) object
                    propertyDescription:(FLPropertyDescription*) description {
 
-    FLAssertNotNil_v(self.document, @"must be added to document to serialize xml object (for dataEncoder)");
-
     if(object) {
         FLAssertNotNil_v(description, @"serialization requires property description")
         
-        id<FLDataEncoder> dataEncoder = [self.document dataEncoder];
+        id<FLDataEncoder> dataEncoder = [self dataEncoder];
         FLConfirmNotNil_v(dataEncoder, @"Xml String builder requires a data encoder");
     
 		NSString* string = nil;
@@ -134,8 +132,24 @@
 
     [super didMoveToParent:parent];
     if(parent && _object) {
-        FLAssertNotNil_v([parent document], @"must be added to document to serialize xml object");
         
+        if(!self.dataEncoder) {
+            id walker = self.parent;
+            while(walker) {
+                if([walker respondsToSelector:@selector(dataEncoder)]) {
+                    id dataEncoder = [walker dataEncoder];
+                    if(dataEncoder) {
+                        self.dataEncoder = dataEncoder;
+                        break;
+                    }
+
+                }
+                walker = [walker parent];
+            }
+        }
+    
+        FLAssertNotNil_([self dataEncoder]);
+
         if(!_propertyDescription || _propertyDescription.propertyType == FLDataTypeObject) {
             [_object addToXmlElement:self propertyDescription:_propertyDescription];
         } 
@@ -147,7 +161,17 @@
 
 @end
 
+/*
+@interface FLXmlElementStringBuilderLine : FLStringBuilderLine {
+@private
+    id _object;
+    FLPropertyDescription* _propertyDescription;
+    NSString* _encodedString;
+}
 
++ (id) xmlElementStringBuilderLine:(id) object propertyDescription:(FLPropertyDescription*) description;
+
+@end
 
 @interface FLXmlElementStringBuilderLine ()
 @property (readwrite, strong, nonatomic) id object;
@@ -215,3 +239,4 @@
 }
 
 @end                  
+*/

@@ -45,26 +45,26 @@ void InstallDefaultUserNotificationErrorFormatters()
 	
 		case NSURLErrorTimedOut:
 			[builder appendLine:NSLocalizedString(@"The server is not responding.", nil)];
-			[builder appendLine];
+			[builder endLine];
 			[builder appendLine:MovePhone];
 			break;
 
 		case kCFURLErrorNotConnectedToInternet:
 			[builder appendLine:NSLocalizedString(@"The device is not connected to the network.", nil)];
-			[builder appendLine];
+			[builder endLine];
 			[builder appendLine:NSLocalizedString(@"Please try again when you have a network connection.", nil)];
 			break;
 			
 		case NSURLErrorNetworkConnectionLost:
 			[builder appendLine:NSLocalizedString(@"The network connection was lost.", nil)];
-			[builder appendLine];
+			[builder endLine];
 			[builder appendLine:MovePhone];
 			break;
 
 		case NSURLErrorCannotFindHost:
 		case NSURLErrorCannotConnectToHost:		
 			[builder appendLine:NSLocalizedString(@"Unable to connect to server.", nil)];
-			[builder appendLine];
+			[builder endLine];
 			
 			break;
 
@@ -101,27 +101,27 @@ void InstallDefaultUserNotificationErrorFormatters()
     FLPrettyString* builder = [FLPrettyString prettyString];
 	
 	[builder appendLine:NSLocalizedString(@"The server returned an error.", nil)];
-	[builder appendLine];
+	[builder endLine];
 					  
 	FLSoapFault11* fault = error.soapFault;
 		
 	if(FLStringIsNotEmpty(fault.faultstring))
 	{
 		[builder appendLine:fault.faultstring];
-		[builder appendLine];
+		[builder endLine];
 	}
 	
 #if DEBUG	 
 	if(FLStringIsNotEmpty(fault.detail))
 	{
 		[builder appendLine:fault.detail];
-		[builder appendLine];
+		[builder endLine];
 	}
 	
 	if(FLStringIsNotEmpty(fault.faultactor))
 	{
 		[builder appendLine:fault.faultactor];
-		[builder appendLine];
+		[builder endLine];
 	}
 #endif
 	
