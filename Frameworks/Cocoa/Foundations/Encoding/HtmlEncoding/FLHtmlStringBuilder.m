@@ -44,8 +44,8 @@ NSString* const FLXMLDocTypeXHtml1_1 = @"html PUBLIC \"-//W3C//DTD XHTML 1.1//EN
 }
 
 -(void) addDocTypeDeclaration:(NSString*) declaration {
-    [self.formatter appendFormat:@"<!DOCTYPE %@>", declaration];
-    [self.formatter appendLine];
+    [self.lines appendFormat:@"<!DOCTYPE %@>", declaration];
+    [self.lines endLine];
 }
 
 + (NSString*) convertNewlinesToHtmlBreaks:(NSString*) input {

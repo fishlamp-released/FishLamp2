@@ -20,10 +20,11 @@
 	NSMutableDictionary* _attributes;
     NSString* _openTag;
     NSString* _closeTag;
-    
+    id<FLDataEncoder> _dataEncoder;
     FLXmlComment* _comments;
 }
 
+@property (readwrite, strong, nonatomic) id<FLDataEncoder> dataEncoder;
 @property (readonly, strong, nonatomic) FLXmlComment* comments;
 
 @property (readonly, strong, nonatomic) NSString* xmlElementTag;

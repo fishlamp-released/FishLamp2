@@ -43,7 +43,7 @@
                andEncodingHeader:(NSString*) encoding
                standalone:(BOOL) standalone {
     
-    [self addLineWithObject:[NSString stringWithFormat:@"<?xml version=\"%@\" encoding=\"%@\" standalone=\"%@\"?>", version, encoding, standalone ? @"yes" : @"no"]];
+    [self appendLineWithFormat:@"<?xml version=\"%@\" encoding=\"%@\" standalone=\"%@\"?>", version, encoding, standalone ? @"yes" : @"no"];
 }
 
 - (void) appendDefaultXmlDeclaration {
@@ -51,16 +51,17 @@
 }
 
 - (void) openElement:(FLXmlElement*) element {
-    [self openFormatter:element];
+    [self.stack push:element];
 }
 
 - (void) addElement:(FLXmlElement*) element {
-    [self.formatter addLineWithObject:element];
+    [self.stack.top addStringBuilder:element];
 }
 
 - (void) closeElement {
-    [self closeFormatter];
+    [self.stack pop];
 }
+
 
 @end
 

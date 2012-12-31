@@ -85,10 +85,10 @@
 	[soapStringBuilder addElement:element];
 
     [self.headers setValue:self.soapActionHeader forHTTPHeaderField:@"SOAPAction"]; 
-    [self.body setUtf8Content:[soapStringBuilder buildStringWithNoWhitespace]];
+    [self.body setUtf8Content:[FLStringBuilder buildStringWithNoWhiteSpace:soapStringBuilder]];
     
 #if DEBUG
-    self.body.debugBody = [soapStringBuilder buildStringWithWhitespace];
+    self.body.debugBody = [FLStringBuilder buildString:soapStringBuilder];
     
     FLLog([self description]);
 #endif    

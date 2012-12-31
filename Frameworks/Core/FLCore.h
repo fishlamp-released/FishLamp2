@@ -33,6 +33,8 @@
 
 #import "FLDebug.h"
 #import "FLMath.h"
+#import "FLStringFormatter.h"
+#import "FLPrettyString.h"
 
 #import "FLStackTrace.h"
 #import "FLExceptions.h"

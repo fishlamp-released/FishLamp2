@@ -10,9 +10,9 @@
 #import "FLCore.h"
 
 #import "FLDataEncoder.h"
-#import "FLComplexStringBuilder.h"
+#import "FLStringBuilderStack.h"
 
-@interface FLJsonStringBuilder : FLComplexStringBuilder {
+@interface FLJsonStringBuilder : FLScopedStringBuilder {
 @private
 	id<FLDataEncoder> _dataEncoder;
 }

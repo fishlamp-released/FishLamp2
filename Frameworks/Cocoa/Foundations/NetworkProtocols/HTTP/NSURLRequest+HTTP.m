@@ -49,25 +49,25 @@ static NSString* s_defaultUserAgent = nil;
     [prettyString indent: ^{
         for(id key in headers) {
             [prettyString appendLineWithFormat:@"%@: %@", [key description], [[headers objectForKey:key] description]];
-            [prettyString appendLine];
+            [prettyString endLine];
         }
     }];
 	
     [prettyString appendLine:@"Body:"];
-    [prettyString appendLine];
+    [prettyString endLine];
 
 	NSData* data = [self HTTPBody];
 	NSString* stringData = FLAutorelease([[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
 	if(FLStringIsNotEmpty(stringData)) {
         [prettyString indent:^{
             [prettyString appendLine:stringData];
-            [prettyString appendLine];
+            [prettyString endLine];
 
         }];
     }
     
     [prettyString appendLine:@"eod"];
-    [prettyString appendLine];
+    [prettyString endLine];
 }
 
 @end

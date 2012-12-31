@@ -11,6 +11,7 @@
 #import "FLResult.h"
 
 @class FLFinisher;
+@class FLStackTrace;
 
 typedef void (^FLFinisherNotificationSchedulerBlock)(dispatch_block_t notifier);
 
@@ -23,6 +24,11 @@ typedef void (^FLFinisherNotificationSchedulerBlock)(dispatch_block_t notifier);
     dispatch_semaphore_t _semaphore;
     FLFinisherNotificationSchedulerBlock _scheduleNotificationBlock;
     BOOL _finished;
+    
+#if DEBUG
+    FLStackTrace* _createdStackTrace;
+    FLStackTrace* _finishedStackTrace;
+#endif    
 }
 
 @property (readonly, strong) FLResult result;

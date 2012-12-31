@@ -19,9 +19,15 @@
 @synthesize whitespace = _whitespace;
 @synthesize tabIndent = _tabIndent;
 
++ (FLWhitespace*) defaultWhitespace {
+    return [FLWhitespace tabbedWithSpacesWhitespace];
+}
+
 - (id) initWithWhitespace:(FLWhitespace*) whitespace {
     self = [super init];
     if(self) {
+        self.delegate = self;
+    
         _string = [[NSMutableString alloc] init];
         _whitespace = FLRetain(whitespace);
         _needsTabInset = YES;
@@ -40,7 +46,13 @@
 }
 
 + (id) prettyString {
-    return FLAutorelease([[[self class] alloc] initWithWhitespace:[FLWhitespace tabbedWithSpacesWhitespace]]);
+    return FLAutorelease([[[self class] alloc] initWithWhitespace:[self defaultWhitespace]]);
+}
+
++ (id) prettyStringWithString:(NSString*) string {
+    FLPrettyString* prettyString = FLAutorelease([[[self class] alloc] initWithWhitespace:[self defaultWhitespace]]);
+    [prettyString appendString:string];
+    return prettyString;
 }
 
 - (NSUInteger) length {
@@ -56,14 +68,16 @@
 }
 #endif
 
-- (void) appendLine {
+- (void) stringFormatterAppendEOL:(FLStringFormatter*) stringFormatter {
     if(_eolString) { 
         [_string appendString:_eolString]; 
     } 
     _needsTabInset = YES;
 }
-            
-- (void) appendString:(NSString*) string {
+
+- (void) stringFormatter:(FLStringFormatter*) stringFormatter 
+            appendString:(NSString*) string {
+    
     if(FLStringIsNotEmpty(string)) {
 
 // only apply inset if the string is not empty
@@ -75,6 +89,10 @@
         }
         [_string appendString:string];
     }
+}            
+
+- (NSString*) stringFormatterGetString:(FLStringFormatter*) stringFormatter {
+    return _string;
 }
 
 - (id) copyWithZone:(NSZone*) zone {
@@ -93,33 +111,25 @@
 }
 
 - (void) indent:(void (^)()) block {
-    [self appendLine];
+    [self endLine];
     [self indent];
     block();
-    [self appendLine];
+    [self endLine];
     [self outdent];
 }
 
-- (void) appendSelfToPrettyString:(FLPrettyString*) prettyString {
-    [prettyString appendLine:[self string]];
-}
-
-//- (void) appendLine:(NSString*) string 
-//      withTabIndent:(NSInteger) tabIndent {
-//        
-//    if(_whitespace) {
-//        [_string appendFormat:@"%@%@%@", [_whitespace tabStringForScope:self.tabIndent + tabIndent], string, _whitespace.eolString];
-//    }
-//    else {
-//        [_string appendString:string];
-//    }
-//}
-
 @end
 
-@implementation NSString (FLPrettyString)
-- (void) appendSelfToPrettyString:(FLPrettyString*) prettyString {
-    [prettyString appendString:self];
+@implementation NSObject (FLPrettyString)
+
+- (void) describe:(FLPrettyString*) formatter {
+    [formatter appendLine:[self description]];
+}
+
+- (NSString*) prettyDescription {
+    FLPrettyString* str = [FLPrettyString prettyString];
+    [self describe:str];
+    return [str string];
 }
 
 @end

@@ -8,7 +8,7 @@
 
 #import "FLCocoaRequired.h"
 #import "FLCore.h"
-#import "FLComplexStringBuilder.h"
+#import "FLStringBuilderStack.h"
 #import "FLPropertyDescription.h"
 #import "FLXmlElement.h"
 #import "FLDataEncoder.h"
@@ -22,7 +22,7 @@
 
 @class FLXmlElement;
 
-@interface FLXmlStringBuilder : FLComplexStringBuilder {
+@interface FLXmlStringBuilder : FLScopedStringBuilder {
 @private
     id<FLDataEncoder> _dataEncoder;
 }

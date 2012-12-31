@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 GreenTongue Software. All rights reserved.
 //
 
-#import "FLCocoaRequired.h"
+#import "FLRequired.h"
 
 @class FLPrettyString;
 

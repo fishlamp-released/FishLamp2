@@ -40,3 +40,11 @@
 #define super_dealloc_                      FLSuperDealloc
 
 #import "FLDebug.h"
+
+
+@class FLPrettyString;
+
+@interface NSObject (FLStringFormatter)
+- (void) describe:(FLPrettyString*) formatter;
+- (NSString*) prettyDescription;
+@end

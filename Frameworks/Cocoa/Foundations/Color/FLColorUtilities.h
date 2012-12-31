@@ -49,10 +49,10 @@ BOOL FLColorValueIsRGB(CGFloat value) {
 
 
 #define FLReturnColorWithRGBRed(__RED__,__GREEN__,__BLUE__,__ALPHA__) \
-            FLReturnStaticObject(FLColorCreateWithRGBColorValues(__RED__, __GREEN__,__BLUE__, __ALPHA__))
+            FLReturnStaticObject(FLRetain(FLColorCreateWithRGBColorValues(__RED__, __GREEN__,__BLUE__, __ALPHA__)))
 
 #define FLReturnColorWithDecimalRed(__RED__,__GREEN__,__BLUE__,__ALPHA__) \
-            FLReturnStaticObject(FLColorCreateWithDecimalColorValues(__RED__, __GREEN__,__BLUE__, __ALPHA__))
+            FLReturnStaticObject(FLRetain(FLColorCreateWithDecimalColorValues(__RED__, __GREEN__,__BLUE__, __ALPHA__)))
 
 // #112233
 // rgb(10,11,12)

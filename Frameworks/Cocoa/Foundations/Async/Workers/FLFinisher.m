@@ -15,6 +15,13 @@
 @property (readwrite, copy) FLResultBlock resultBlock;
 @property (readwrite, assign, getter=isFinished) BOOL finished;
 - (void) finishFinishing;
+
+
+#if DEBUG
+@property (readwrite, strong) FLStackTrace* createdStackTrace;
+@property (readwrite, strong) FLStackTrace* finishedStackTrace;
+#endif
+
 @end
 
 @implementation FLFinisher
@@ -24,6 +31,10 @@
 @synthesize resultBlock = _resultBlock;
 @synthesize finished = _finished;
 
+#if DEBUG
+@synthesize createdStackTrace = _createdStackTrace;
+@synthesize finishedStackTrace = _finishedStackTrace;
+#endif
 
 - (id) initWithResultBlock:(FLResultBlock) completion {
     
@@ -35,6 +46,11 @@
         
         _semaphore = dispatch_semaphore_create(0);
         FLLog(@"created semaphor for %X, thread %@", (void*) _semaphore, [NSThread currentThread]);
+
+#if DEBUG
+        self.createdStackTrace = FLCreateStackTrace(YES);
+#endif
+
            
     }
     return self;
@@ -50,6 +66,12 @@
     }
     
 #if FL_MRC
+
+#if DEBUG
+    [_createdStackTrace release];
+    [_finishedStackTrace release];
+#endif    
+
     if(_resultBlock) {
         [_resultBlock release];
     }
@@ -135,6 +157,10 @@
     }
     
     self.notificationCompletionBlock = completion;
+
+#if DEBUG
+    self.finishedStackTrace = FLCreateStackTrace(YES);
+#endif
     
     if(_scheduleNotificationBlock) {
         _scheduleNotificationBlock(^{
@@ -172,6 +198,26 @@
 
     return s_block;
 }
+
+#if DEBUG    
+- (NSString*) description {
+    FLPrettyString* string = [FLPrettyString prettyString];
+    [string appendLine:[super description]];
+    [string appendLine:@"created stack trace:"];
+    [string indent:^{
+        [string appendLine:[_createdStackTrace description]];
+    }];
+    if(_finishedStackTrace) {
+        [string appendLine:@"finished stack trace:"];
+        [string indent:^{
+            [string appendLine:[_finishedStackTrace description]];
+        }];
+    }
+    
+
+    return string.string;
+}
+#endif
 
 @end
 

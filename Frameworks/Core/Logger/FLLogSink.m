@@ -7,10 +7,12 @@
 //
 
 #import "FLLogSink.h"
+#import "FLPrettyString.h"
 
 @implementation FLLogSink
 
-- (id) initWithLogSinkOutputFlags:(FLLogSinkOutputFlags) outputFlags {
+- (id) initWithLogSinkOutputFlags:(FLLogSinkOutputFlags) outputFlags  {
+
     self = [super init];
     if(self) {
         _outputFlags = outputFlags;
@@ -22,6 +24,7 @@
 + (FLLogSink*) logSink:(FLLogSinkOutputFlags) outputFlags {
     return FLAutorelease([[[self class] alloc] initWithLogSinkOutputFlags:outputFlags]);
 }
+
 
 - (void) openEntry {
 }

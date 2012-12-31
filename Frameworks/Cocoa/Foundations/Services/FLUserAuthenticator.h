@@ -24,4 +24,6 @@
 + (id) userAuthenticator:(NSString*) userName password:(NSString*) password;
 + (id) userAuthenticator:(FLUserLogin*) userLogin;
 
+- (FLResult) runSynchronously;
+
 @end

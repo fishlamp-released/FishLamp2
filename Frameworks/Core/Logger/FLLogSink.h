@@ -6,8 +6,7 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
+#import "FLRequired.h"
 #import "FLLogEntry.h"
 
 #define FLLogTypeInvalid    nil
@@ -39,8 +38,9 @@ typedef enum {
 + (FLLogSink*) logSink:(FLLogSinkOutputFlags) output;
 
 - (void) openEntry;
-- (void) appendLine:(NSString*) line;
+- (void) appendLine:(NSString*) line; // required ovveride
 - (void) closeEntry;
+
 
 @end
 

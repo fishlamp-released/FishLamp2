@@ -14,22 +14,21 @@
     return FLAutorelease([[[self class] alloc] init]);
 }
 
-- (void) appendSelfToPrettyString:(FLPrettyString*) prettyString {
+- (void) appendLinesToPrettyString:(FLPrettyString*) prettyString {
     
-//    FLPrettyString* temp = [FLPrettyString prettyString:prettyString.whitespace];
-//    temp.tabIndent = prettyString.tabIndent;
-//    [super appendSelfToPrettyString:temp];
-//    
-//    if(temp.length) {
-//        [prettyString appendLine:@"<--"];
-//
-//        [prettyString indent:^{
-//            [prettyString appendLine:temp.string];
-//        }];
-//        
-//        [prettyString appendLine:@"-->"];
-//    }
+    BOOL hasLines = self.lines.count > 0;
+    if(hasLines) {
+        [prettyString appendLine:@"<--"];
+
+        [prettyString indent:^{
+            [super appendLinesToPrettyString:prettyString];
+        }];
+        
+        [prettyString appendLine:@"-->"];
+    }
     
 }                           
 
 @end
+
+
