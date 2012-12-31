@@ -31,10 +31,10 @@
 #endif
 
 - (void) willSendHttpRequest {
-    if(self.json && !self.json.isEmpty) {
+//    if(self.json && self.json.lines.count > 0) {
         NSData* content = [[self.json buildStringWithNoWhitespace] dataUsingEncoding:NSUTF8StringEncoding];
         [self.body setContentWithData:content typeContentHeader:@"application/json; charset=utf-8"];
-    }
+//    }
 }
 
 - (id) resultFromHttpResponse:(FLHttpResponse*) httpResponse {

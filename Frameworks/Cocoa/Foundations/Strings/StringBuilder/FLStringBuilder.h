@@ -10,10 +10,11 @@
 #import "FLWhitespace.h"
 #import "FLStringFormatter.h"
 #import "FLStringBuilderLine.h"
+#import "FLPrettyString.h"
 
 @class FLStringBuilderLine;
 
-@interface FLStringBuilder : FLStringFormatter<FLStringBuilderLine> {
+@interface FLStringBuilder : FLStringFormatter<FLStringBuilderLine, FLStringFormatter, FLBuildableString> {
 @private
     NSMutableArray* _lines;
     BOOL _needsLine;
@@ -23,8 +24,7 @@
 
 + (id) stringBuilder;
 
-- (void) addStringBuilder:(FLStringBuilder*) stringBuilder;
-- (void) addStringBuilderLine:(FLStringBuilderLine*) line;
+- (void) addLineWithObject:(id /*FLBuildableString*/) object;
 
 - (NSString*) buildStringWithWhitespace:(FLWhitespace*) whitespace;
 - (NSString*) buildStringWithNoWhitespace;

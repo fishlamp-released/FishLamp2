@@ -14,7 +14,12 @@
     self = [super init];
     if(self) {
         _stack = [[NSMutableArray alloc] init];
-        _stringBuilders = [[NSMutableArray alloc] init];
+        FLStringBuilder* root = [FLStringBuilder stringBuilder];
+        root.parent = self;
+        [_stack addObject:root];
+        
+        [root didMoveToParent:self];
+        
     }
     return self;
 }
@@ -26,66 +31,33 @@
 #if FL_MRC
 - (void) dealloc {
     [_stack release];
-    [_stringBuilders release];
     [super dealloc];
 }
 #endif
 
-- (BOOL) isEmpty {
-    return _stack.count == 0;
-}
-
-- (NSString*) buildString {
-    
-    
-    return nil;
-}
-
-- (NSString*) description {
-    return [self buildString];
-}
-
-//- (void) appendLine {
-//    [[_stack lastObject] appendLine];
-//}
-//
-//- (void) appendString:(NSString*) string {
-//    [[_stack lastObject] appendString:string];
-//}
-
-//- (void) addStringBuilder:(FLStringBuilder*) builder {
-////  	for(id contentItem in builder.scope.tokens) {
-////        [self.scope addToken:FLAutorelease([contentItem copy])];
-////    }
-//}
-
-- (FLStringBuilder*) stringBuilder {
+- (id) formatter {
+    FLAssertNotNil_([_stack lastObject]);
     return [_stack lastObject];
 }
 
-- (void) openScope:(FLStringBuilder*) scope {
-    [self addStringBuilder:scope];
-    [_stack addObject:scope];
+- (void) openFormatter:(FLStringBuilder*) target {
+    [self.formatter addLineWithObject:target];
+    [_stack addObject:target];
 }
 
-- (void) closeScope {
+- (void) closeFormatter {
     [_stack removeLastObject];
+    FLAssert_(_stack.count > 0);
 }
 
-- (void) addStringBuilder:(FLStringBuilder*) stringBuilder {
-    [_stringBuilders addObject:stringBuilder];
-    stringBuilder.parent = self;
-    [stringBuilder didMoveToParent:self];
+- (void) addLineWithObject:(id /*FLBuildableString*/) object {
+    [self.formatter addLineWithObject:object];
 }
 
 - (NSString*) buildStringWithWhitespace:(FLWhitespace*) whitespace {
 
     FLPrettyString* prettyString = [FLPrettyString prettyString:whitespace];
-    
-    for(FLStringBuilder* stringBuilder in _stringBuilders) {
-        [stringBuilder appendSelfToPrettyString:prettyString];
-    }
-
+    [[_stack objectAtIndex:0] appendSelfToPrettyString:prettyString];
     return [prettyString string];
 }
 
@@ -97,7 +69,15 @@
     return [self buildStringWithWhitespace:[FLWhitespace tabbedWithSpacesWhitespace]];
 }
 
+- (NSString*) description {
+    return [self buildStringWithWhitespace];
+}
+
 - (id) complexStringBuilder {
+    return self;
+}
+
+- (id) rootParent {
     return self;
 }
 
@@ -107,7 +87,12 @@
 @implementation FLStringBuilder (FLComplexStringBuilder)
 
 - (id) rootParent {
-    return self.parent == nil ? self : self.parent;
+
+    if(self.parent != nil) {
+        return [self.parent rootParent];
+    }
+
+    return self;
 }
 
 - (id) complexStringBuilder {

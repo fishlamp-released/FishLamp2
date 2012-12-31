@@ -74,9 +74,11 @@
 }
 
 + (FLWhitespace*) compressedWhitespace {
-    FLReturnStaticObject(
-        [[FLWhitespace alloc] initWithEOL:nil tab:nil];
-    );
+    return nil;
+    
+//    FLReturnStaticObject(
+//        [[FLWhitespace alloc] initWithEOL:nil tab:nil];
+//    );
 }
 
 + (id) untabbedWhitespace {

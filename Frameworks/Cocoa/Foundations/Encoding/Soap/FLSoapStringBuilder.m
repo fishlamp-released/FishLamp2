@@ -57,7 +57,7 @@
                andEncodingHeader:(NSString*) encoding
                standalone:(BOOL) standalone {
     
-    [self.stringBuilder appendLineWithFormat:@"<?xml version=\"%@\" encoding=\"%@\"?>", version, encoding];
+    [self addLineWithObject:[NSString stringWithFormat:@"<?xml version=\"%@\" encoding=\"%@\"?>", version, encoding]];
 }
 
 @end

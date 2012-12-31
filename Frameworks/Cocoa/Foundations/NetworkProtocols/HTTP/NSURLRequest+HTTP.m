@@ -38,32 +38,36 @@ static NSString* s_defaultUserAgent = nil;
 	return [NSString stringWithFormat:@"%@ HTTP/1.1", self.URL.path];
 }
 
-- (void) logToStringBuilder:(FLPrettyString*) builder {
+- (void) logToStringBuilder:(FLPrettyString*) prettyString {
 	
     NSDictionary* headers = [self allHTTPHeaderFields];
-	
-	[builder appendLine:@"HTTP request:"];
-    [builder appendLineWithFormat:@"HTTP Method:%@", self.HTTPMethod];
-    [builder appendLineWithFormat:@"URL: %@", [[self.URL absoluteString] urlDecodeString:NSUTF8StringEncoding]];
-	[builder appendLine:@"All Headers:"];
-    [builder indent: ^{
+	[prettyString appendLine:@"HTTP request:"];
+    [prettyString appendLineWithFormat:@"HTTP Method:%@", self.HTTPMethod];
+    [prettyString appendLineWithFormat:@"URL: %@", [[self.URL absoluteString] urlDecodeString:NSUTF8StringEncoding]];
+    [prettyString appendLine:@"All Headers:"];
+    
+    [prettyString indent: ^{
         for(id key in headers) {
-            [builder appendLineWithFormat:@"%@: %@", [key description], [[headers objectForKey:key] description]];
+            [prettyString appendLineWithFormat:@"%@: %@", [key description], [[headers objectForKey:key] description]];
+            [prettyString appendLine];
         }
     }];
 	
-    [builder appendLine:@"Body:"];
-	
+    [prettyString appendLine:@"Body:"];
+    [prettyString appendLine];
+
 	NSData* data = [self HTTPBody];
 	NSString* stringData = FLAutorelease([[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-	if(stringData) {
-        [builder indent:^{
-            [builder appendLine:stringData];
+	if(FLStringIsNotEmpty(stringData)) {
+        [prettyString indent:^{
+            [prettyString appendLine:stringData];
+            [prettyString appendLine];
+
         }];
     }
     
-    [builder appendLine:@"eod"];
-		
+    [prettyString appendLine:@"eod"];
+    [prettyString appendLine];
 }
 
 @end

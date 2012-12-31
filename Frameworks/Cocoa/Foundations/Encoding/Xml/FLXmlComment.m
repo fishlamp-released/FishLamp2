@@ -10,37 +10,26 @@
 
 @implementation FLXmlComment
 
-//- (void) willBuildString:(FLPrettyString*) prettyString {
-//    if(self.tokenCount > 0) {
-//        [prettyString appendString:@"<--"];
-//    }
-//    [super willBuildString:prettyString];
-//}
-//
-//- (void) didBuildString:(FLPrettyString*) prettyString {
-//    if(self.tokenCount > 0) {
-//        [prettyString appendString:@"<--"];
-//    }
-//    [super didBuildString:prettyString];
-//}
-
 + (id) xmlComment {
     return FLAutorelease([[[self class] alloc] init]);
 }
 
-
 - (void) appendSelfToPrettyString:(FLPrettyString*) prettyString {
-    if(![self hasLines]) {
-        
-        [prettyString appendLine:@"<--" withTabIndent:self.tabIndent];
-        [prettyString indent];
-        
-        [super appendSelfToPrettyString:prettyString];
-        
-        [prettyString outdent];
-        
-        [prettyString appendLine:@"-->" withTabIndent:self.tabIndent];
-    }
+    
+//    FLPrettyString* temp = [FLPrettyString prettyString:prettyString.whitespace];
+//    temp.tabIndent = prettyString.tabIndent;
+//    [super appendSelfToPrettyString:temp];
+//    
+//    if(temp.length) {
+//        [prettyString appendLine:@"<--"];
+//
+//        [prettyString indent:^{
+//            [prettyString appendLine:temp.string];
+//        }];
+//        
+//        [prettyString appendLine:@"-->"];
+//    }
+    
 }                           
 
 @end

@@ -88,7 +88,7 @@
 }
 
 - (void) addElement:(FLXmlElement*) element {
-    [self addStringBuilder:element];
+    [self addLineWithObject:element];
 }
 
 - (NSString*) xmlOpenTag:(BOOL) isEmpty {
@@ -111,20 +111,12 @@
         return attributedOpenTag;
     }
     else if(isEmpty) {
-        return [NSString stringWithFormat:@"<%@/>", self.xmlElementTag];
+        return [NSString stringWithFormat:@"<%@ />", self.xmlElementTag];
     }
     else {
         return [NSString stringWithFormat:@"<%@>", self.xmlElementTag];
     }
     
-}
-
-- (NSString*) xmlCloseTag:(BOOL) isEmpty {
-
-    if(!isEmpty) {
-        return [NSString stringWithFormat:@"</%@>", self.xmlElementCloseTag];
-    }
-    return @"";
 }
 
 - (void) appendSelfToPrettyString:(FLPrettyString*) prettyString {
@@ -133,16 +125,14 @@
         [_comments appendSelfToPrettyString:prettyString];
     }
     
-    BOOL isEmpty = !self.hasLines;
-    NSInteger tabIndent = self.tabIndent;
-
-    [prettyString appendLine:[self xmlOpenTag:isEmpty] withTabIndent:tabIndent];
-    
-    [super appendSelfToPrettyString:prettyString];
-    
-    [prettyString appendLine:[self xmlCloseTag:isEmpty] withTabIndent:tabIndent];
-      
-      
+    BOOL hasLines = self.lines.count > 0;
+    [prettyString appendLine:[self xmlOpenTag:!hasLines]];
+    if(hasLines) {
+        [prettyString indent];
+        [super appendSelfToPrettyString:prettyString];
+        [prettyString outdent];
+        [prettyString appendLine:[NSString stringWithFormat:@"</%@>", self.xmlElementCloseTag]];
+    }
 }      
 
 

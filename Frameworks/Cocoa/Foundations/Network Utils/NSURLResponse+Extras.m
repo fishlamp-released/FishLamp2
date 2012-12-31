@@ -36,9 +36,11 @@
 
 	NSDictionary* headers = [self allHeaderFields];
 	
-	[prettyString appendLineWithFormat:@"HTTP response: %d (%@)", self.statusCode, [NSHTTPURLResponse localizedStringForStatusCode:self.statusCode]];
+	[prettyString appendFormat:@"HTTP response: %d (%@)", self.statusCode, [NSHTTPURLResponse localizedStringForStatusCode:self.statusCode]];
+    [prettyString appendLine];
 
-	[prettyString appendLine:@"headers:"];
+	[prettyString appendString:@"headers:"];
+    [prettyString appendLine];
 
     [prettyString indent:^{
         for(id key in headers) {

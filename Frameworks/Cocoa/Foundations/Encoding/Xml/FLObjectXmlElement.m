@@ -14,31 +14,6 @@
 @property (readwrite, strong, nonatomic) FLPropertyDescription* propertyDescription;
 @end
 
-@implementation FLXmlElement (XMLSerialization)
-
-- (void) appendLineWithEncodedObject:(id) object
-                   propertyDescription:(FLPropertyDescription*) description {
-
-    FLAssertNotNil_v(self.document, @"must be added to document to serialize xml object (for dataEncoder)");
-
-    if(object) {
-        FLAssertNotNil_v(description, @"serialization requires property description")
-        
-        id<FLDataEncoder> dataEncoder = [self.document dataEncoder];
-        FLConfirmNotNil_v(dataEncoder, @"Xml String builder requires a data encoder");
-    
-		NSString* string = nil;
-        [dataEncoder encodeDataToString:object forType:description.propertyType outEncodedString:&string];
-        FLAssertNotNil_(string);
-        FLConfirm_([string isKindOfClass:[NSString class]]);
-        [self indent:^{
-            [self appendLine:string];
-        }];
-	}
-
-}
-@end
-
 @implementation FLObjectXmlElement
 
 @synthesize object = _object;
@@ -91,8 +66,6 @@
 }
 #endif
 
-
-
 //- (void) addElementWithObject:(id) object {
 //    [object addToXmlElement:self propertyDescription:nil];
 //}
@@ -137,6 +110,25 @@
 //	}
 //}
 
+
+- (void) appendLineWithEncodedObject:(id) object
+                   propertyDescription:(FLPropertyDescription*) description {
+
+    FLAssertNotNil_v(self.document, @"must be added to document to serialize xml object (for dataEncoder)");
+
+    if(object) {
+        FLAssertNotNil_v(description, @"serialization requires property description")
+        
+        id<FLDataEncoder> dataEncoder = [self.document dataEncoder];
+        FLConfirmNotNil_v(dataEncoder, @"Xml String builder requires a data encoder");
+    
+		NSString* string = nil;
+        [dataEncoder encodeDataToString:object forType:description.propertyType outEncodedString:&string];
+        FLAssertNotNil_(string);
+        FLConfirm_([string isKindOfClass:[NSString class]]);
+        [self appendLine:string];
+	}
+}
 
 - (void) didMoveToParent:(id) parent {
 
@@ -218,7 +210,7 @@
     token.object = self.object;
     token.propertyDescription = self.propertyDescription;
     token.string = self.string;
-    token.tabIndent = self.tabIndent;
+//    token.tabIndent = self.tabIndent;
     return token;
 }
 

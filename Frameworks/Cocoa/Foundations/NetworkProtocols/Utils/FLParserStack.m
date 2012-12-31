@@ -32,18 +32,19 @@ void FLParserStackFree(FLParserStack** stack)
 #if DEBUG
 void FLParserStackLogState(FLParserStack* stack, NSString* why)
 {
-	FLPrettyString* builder = [FLPrettyString prettyString];
-    [builder appendLineWithFormat:@"Logging parser stack: %@", why];
-    [builder appendLineWithFormat:@"depth: %d", stack->top];
+	FLPrettyString* prettyString = [FLPrettyString prettyString];
+    [prettyString appendLineWithFormat:@"Logging parser stack: %@", why];
+    [prettyString appendLineWithFormat:@"depth: %d", stack->top];
+    
     if(stack->top >= 0)
     {
         for(int i = 0; i <= stack->top; i++)
         {
             FLParserStackNode* node = &(stack->stack[i]);
-            [builder appendLineWithFormat:@"%i: key: %@, class: %@",i, node->key, NSStringFromClass([node->object class])];
+            [prettyString appendLineWithFormat:@"%i: key: %@, class: %@",i, node->key, NSStringFromClass([node->object class])];
         }
     }
 
-	FLDebugLog([builder string]);
+	FLDebugLog([prettyString string]);
 }
 #endif 
