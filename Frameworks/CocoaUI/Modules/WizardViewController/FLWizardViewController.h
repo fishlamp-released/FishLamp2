@@ -8,8 +8,8 @@
 
 #import "FLCocoaUIRequired.h"
 #import "FLBreadcrumbBarView.h"
-#import "FLWizardPanel.h"
 
+@class FLWizardPanel;
 @protocol FLWizardViewControllerDelegate;
 
 
@@ -80,10 +80,10 @@
 
 - (void) pushWizardPanel:(FLWizardPanel*) viewController 
                 animated:(BOOL) animated 
-              completion:(FLWizardPanelBlock) completion;
+              completion:(void (^)(FLWizardPanel*)) completion;
 
 - (void) popWizardPanelAnimated:(BOOL) animated
-                     completion:(FLWizardPanelBlock) completion;
+                     completion:(void (^)(FLWizardPanel*)) completion;
 @end
 
 

@@ -71,16 +71,18 @@
     }
 }
 
-- (void) respondToNextButton {
+- (void) respondToNextButton:(id) sender {
     FLPerformSelector1(self.delegate, @selector(wizardPanelRespondToNextButton:), self);
     [self pushNextPanel:YES completion:nil];
 }
 
-- (void) respondToBackButton {
+- (void) respondToBackButton:(id) sender {
     FLPerformSelector1(self.delegate, @selector(wizardPanelRespondToBackButton:), self);
+    
+    [self.wizard popWizardPanelAnimated:YES completion:nil];
 }
 
-- (void) respondToOtherButton {
+- (void) respondToOtherButton:(id) sender {
     FLPerformSelector1(self.delegate, @selector(wizardPanelRespondToOtherButton:), self);
 }
 

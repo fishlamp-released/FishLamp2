@@ -7,6 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		271E3D9C169272E200FB62C9 /* FLProgressWizardView.h in Headers */ = {isa = PBXBuildFile; fileRef = 271E3D9A169272E000FB62C9 /* FLProgressWizardView.h */; };
+		271E3D9D169272E200FB62C9 /* FLProgressWizardView.h in Headers */ = {isa = PBXBuildFile; fileRef = 271E3D9A169272E000FB62C9 /* FLProgressWizardView.h */; };
+		271E3D9E169272E200FB62C9 /* FLProgressWizardView.h in Headers */ = {isa = PBXBuildFile; fileRef = 271E3D9A169272E000FB62C9 /* FLProgressWizardView.h */; };
+		271E3D9F169272E200FB62C9 /* FLProgressWizardView.h in Headers */ = {isa = PBXBuildFile; fileRef = 271E3D9A169272E000FB62C9 /* FLProgressWizardView.h */; };
+		271E3DA0169272E200FB62C9 /* FLProgressWizardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 271E3D9B169272E100FB62C9 /* FLProgressWizardView.m */; };
+		271E3DA1169272E200FB62C9 /* FLProgressWizardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 271E3D9B169272E100FB62C9 /* FLProgressWizardView.m */; };
+		271E3DA2169272E200FB62C9 /* FLProgressWizardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 271E3D9B169272E100FB62C9 /* FLProgressWizardView.m */; };
+		271E3DA3169272E200FB62C9 /* FLProgressWizardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 271E3D9B169272E100FB62C9 /* FLProgressWizardView.m */; };
+		271E3DA4169272E200FB62C9 /* FLProgressWizardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 271E3D9B169272E100FB62C9 /* FLProgressWizardView.m */; };
+		271E3DA8169272FD00FB62C9 /* FLTextWizardView.h in Headers */ = {isa = PBXBuildFile; fileRef = 271E3DA6169272FB00FB62C9 /* FLTextWizardView.h */; };
+		271E3DA9169272FD00FB62C9 /* FLTextWizardView.h in Headers */ = {isa = PBXBuildFile; fileRef = 271E3DA6169272FB00FB62C9 /* FLTextWizardView.h */; };
+		271E3DAA169272FD00FB62C9 /* FLTextWizardView.h in Headers */ = {isa = PBXBuildFile; fileRef = 271E3DA6169272FB00FB62C9 /* FLTextWizardView.h */; };
+		271E3DAB169272FD00FB62C9 /* FLTextWizardView.h in Headers */ = {isa = PBXBuildFile; fileRef = 271E3DA6169272FB00FB62C9 /* FLTextWizardView.h */; };
+		271E3DAC169272FD00FB62C9 /* FLTextWizardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 271E3DA7169272FC00FB62C9 /* FLTextWizardView.m */; };
+		271E3DAD169272FD00FB62C9 /* FLTextWizardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 271E3DA7169272FC00FB62C9 /* FLTextWizardView.m */; };
+		271E3DAE169272FD00FB62C9 /* FLTextWizardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 271E3DA7169272FC00FB62C9 /* FLTextWizardView.m */; };
+		271E3DAF169272FD00FB62C9 /* FLTextWizardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 271E3DA7169272FC00FB62C9 /* FLTextWizardView.m */; };
+		271E3DB0169272FD00FB62C9 /* FLTextWizardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 271E3DA7169272FC00FB62C9 /* FLTextWizardView.m */; };
 		27348DB4168DF55B00D4142E /* FLDrawableGradient.h in Headers */ = {isa = PBXBuildFile; fileRef = 27348DB2168DF55B00D4142E /* FLDrawableGradient.h */; };
 		27348DB5168DF55B00D4142E /* FLDrawableGradient.h in Headers */ = {isa = PBXBuildFile; fileRef = 27348DB2168DF55B00D4142E /* FLDrawableGradient.h */; };
 		27348DB6168DF55B00D4142E /* FLDrawableGradient.h in Headers */ = {isa = PBXBuildFile; fileRef = 27348DB2168DF55B00D4142E /* FLDrawableGradient.h */; };
@@ -596,6 +614,10 @@
 		270D02E215E9B1FE00ED5FB0 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
 		270D02E315E9B1FF00ED5FB0 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
 		270DFDC815E99BAC00ED5FB0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		271E3D9A169272E000FB62C9 /* FLProgressWizardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLProgressWizardView.h; sourceTree = "<group>"; };
+		271E3D9B169272E100FB62C9 /* FLProgressWizardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLProgressWizardView.m; sourceTree = "<group>"; };
+		271E3DA6169272FB00FB62C9 /* FLTextWizardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLTextWizardView.h; sourceTree = "<group>"; };
+		271E3DA7169272FC00FB62C9 /* FLTextWizardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLTextWizardView.m; sourceTree = "<group>"; };
 		27314C79165328400027850D /* libFishLampCocoaUI-OSX-64-ARC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoaUI-OSX-64-ARC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27348DB2168DF55B00D4142E /* FLDrawableGradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLDrawableGradient.h; sourceTree = "<group>"; };
 		27348DBE168DF8CC00D4142E /* FLDrawableShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLDrawableShape.h; sourceTree = "<group>"; };
@@ -1203,6 +1225,10 @@
 				78329BF7167E97C20024E8DC /* FLWizardViewController.h */,
 				78329BF8167E97C20024E8DC /* FLWizardViewController.m */,
 				78329BF9167E97C20024E8DC /* WizardPanels */,
+				271E3D9A169272E000FB62C9 /* FLProgressWizardView.h */,
+				271E3D9B169272E100FB62C9 /* FLProgressWizardView.m */,
+				271E3DA6169272FB00FB62C9 /* FLTextWizardView.h */,
+				271E3DA7169272FC00FB62C9 /* FLTextWizardView.m */,
 			);
 			path = WizardViewController;
 			sourceTree = "<group>";
@@ -1290,6 +1316,8 @@
 				27348DC0168DF8CE00D4142E /* FLDrawableShape.h in Headers */,
 				27348DCA168DF8EF00D4142E /* FLDrawable.h in Headers */,
 				27348DDC168E05F500D4142E /* FLDrawableBorder.h in Headers */,
+				271E3D9C169272E200FB62C9 /* FLProgressWizardView.h in Headers */,
+				271E3DA8169272FD00FB62C9 /* FLTextWizardView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1362,6 +1390,8 @@
 				27348DC2168DF8CE00D4142E /* FLDrawableShape.h in Headers */,
 				27348DCC168DF8EF00D4142E /* FLDrawable.h in Headers */,
 				27348DDE168E05F500D4142E /* FLDrawableBorder.h in Headers */,
+				271E3D9E169272E200FB62C9 /* FLProgressWizardView.h in Headers */,
+				271E3DAA169272FD00FB62C9 /* FLTextWizardView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1434,6 +1464,8 @@
 				27348DC1168DF8CE00D4142E /* FLDrawableShape.h in Headers */,
 				27348DCB168DF8EF00D4142E /* FLDrawable.h in Headers */,
 				27348DDD168E05F500D4142E /* FLDrawableBorder.h in Headers */,
+				271E3D9D169272E200FB62C9 /* FLProgressWizardView.h in Headers */,
+				271E3DA9169272FD00FB62C9 /* FLTextWizardView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1506,6 +1538,8 @@
 				27348DC3168DF8CE00D4142E /* FLDrawableShape.h in Headers */,
 				27348DCD168DF8EF00D4142E /* FLDrawable.h in Headers */,
 				27348DDF168E05F500D4142E /* FLDrawableBorder.h in Headers */,
+				271E3D9F169272E200FB62C9 /* FLProgressWizardView.h in Headers */,
+				271E3DAB169272FD00FB62C9 /* FLTextWizardView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1694,6 +1728,8 @@
 				27348DD0168DFCAF00D4142E /* FLDrawableGradient.m in Sources */,
 				27348DD6168DFEB000D4142E /* FLDrawable.m in Sources */,
 				27348DE1168E05F500D4142E /* FLDrawableBorder.m in Sources */,
+				271E3DA1169272E200FB62C9 /* FLProgressWizardView.m in Sources */,
+				271E3DAD169272FD00FB62C9 /* FLTextWizardView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1762,6 +1798,8 @@
 				27348DD2168DFCAF00D4142E /* FLDrawableGradient.m in Sources */,
 				27348DD8168DFEB000D4142E /* FLDrawable.m in Sources */,
 				27348DE3168E05F500D4142E /* FLDrawableBorder.m in Sources */,
+				271E3DA3169272E200FB62C9 /* FLProgressWizardView.m in Sources */,
+				271E3DAF169272FD00FB62C9 /* FLTextWizardView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1830,6 +1868,8 @@
 				27348DCF168DFCAF00D4142E /* FLDrawableGradient.m in Sources */,
 				27348DD5168DFEB000D4142E /* FLDrawable.m in Sources */,
 				27348DE0168E05F500D4142E /* FLDrawableBorder.m in Sources */,
+				271E3DA0169272E200FB62C9 /* FLProgressWizardView.m in Sources */,
+				271E3DAC169272FD00FB62C9 /* FLTextWizardView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1898,6 +1938,8 @@
 				27348DD1168DFCAF00D4142E /* FLDrawableGradient.m in Sources */,
 				27348DD7168DFEB000D4142E /* FLDrawable.m in Sources */,
 				27348DE2168E05F500D4142E /* FLDrawableBorder.m in Sources */,
+				271E3DA2169272E200FB62C9 /* FLProgressWizardView.m in Sources */,
+				271E3DAE169272FD00FB62C9 /* FLTextWizardView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1966,6 +2008,8 @@
 				27348DD3168DFCAF00D4142E /* FLDrawableGradient.m in Sources */,
 				27348DD9168DFEB000D4142E /* FLDrawable.m in Sources */,
 				27348DE4168E05F500D4142E /* FLDrawableBorder.m in Sources */,
+				271E3DA4169272E200FB62C9 /* FLProgressWizardView.m in Sources */,
+				271E3DB0169272FD00FB62C9 /* FLTextWizardView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

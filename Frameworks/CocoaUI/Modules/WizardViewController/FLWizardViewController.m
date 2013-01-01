@@ -12,6 +12,7 @@
 #import "FLMoveAnimation.h"
 #import "FLDropBackAnimation.h"
 #import "UIViewController+FLAdditions.h"
+#import "FLWizardPanel.h"
 
 @interface FLWizardViewController ()
 @property (readonly, strong, nonatomic) FLWizardPanel* nextWizardPanel;
@@ -133,7 +134,7 @@
     [self.view.window display];
     
     [self performBlockOnMainThread:^{
-        [self.visibleWizardPanel respondToNextButton];
+        [self.visibleWizardPanel respondToNextButton:sender];
     }];
 }
 
@@ -142,7 +143,7 @@
     [self.view.window display];
 
     [self performBlockOnMainThread:^{
-        [self.visibleWizardPanel respondToBackButton];
+        [self.visibleWizardPanel respondToBackButton:sender];
     }];
 }
 
@@ -151,7 +152,7 @@
 }
 
 - (IBAction) respondToOtherButton:(id) sender {
-    [self.visibleWizardPanel respondToOtherButton];
+    [self.visibleWizardPanel respondToOtherButton:sender];
 }
 
 - (FLWizardPanel*) nextWizardPanel {
@@ -167,7 +168,11 @@
 }
 
 - (void) updateBackButtonEnabledState {
-    self.backButton.enabled = (_wizardPanels.count > 1);
+
+    if(_wizardPanels.count == 1) {
+        self.backButton.enabled = NO; // (_wizardPanels.count > 1);
+    }
+
 }
 
 - (void) removeWizardPanel:(FLWizardPanel*) wizardPanel {
@@ -235,7 +240,7 @@
     
     self.nextButton.enabled = NO;
     self.backButton.hidden = NO;
-    self.backButton.enabled = (_wizardPanels.count > 0);
+    self.backButton.enabled = NO; // (_wizardPanels.count > 0);
     self.otherButton.hidden = YES;
     [toShow didMoveToWizard:self];
     toShow.view.frame = _wizardPanelEnclosureView.bounds;

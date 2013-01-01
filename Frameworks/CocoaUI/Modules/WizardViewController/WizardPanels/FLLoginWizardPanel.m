@@ -124,15 +124,19 @@
 //    }
 //}
     
-- (void) respondToNextButton {
+- (void) respondToNextButton:(id) sender {
 
     if([ ((id)self.delegate) loginWizardPanelIsAuthenticated:self]) {
-        [super respondToNextButton];
+        [super respondToNextButton:sender];
     }
     else {
         FLProgressWizardPanel* progress = [FLProgressWizardPanel progressWizardPanel];
         progress.delegate = self;
         progress.nextPanelBlock = self.nextPanelBlock;
+        
+        FLProgressWizardPanelProgressView* progressView = progress.progressView1;
+        progressView.progressText = @"Logging in...";
+        [progress setInitialView:progressView];
         
         [self.wizard pushWizardPanel:progress animated:YES completion:^(FLWizardPanel* panel) {
             FLPerformSelector1( self.delegate, 
