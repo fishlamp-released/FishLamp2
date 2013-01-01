@@ -9,11 +9,10 @@
 
 #import "FLCocoaUIRequired.h"
 #import "FLObservable.h"
+#import "FLWizardViewController.h"
 
-@class FLWizardViewController;
 @class FLWizardPanel;
 @protocol FLWizardPanelDelegate;
-
 
 typedef void (^FLWizardPanelBlock)(FLWizardPanel* panel);
 typedef void (^FLWizardPanelNextPanelBlock)(FLWizardViewController* wizard, BOOL animated, FLWizardPanelBlock completion);
@@ -38,9 +37,9 @@ typedef void (^FLWizardPanelNextPanelBlock)(FLWizardViewController* wizard, BOOL
 - (void) wizardPanelWillDisappear;
 - (void) wizardPanelDidDisappear;
 
-- (void) respondToNextButton;
-- (void) respondToBackButton;
-- (void) respondToOtherButton;
+- (IBAction) respondToNextButton:(id) sender;
+- (IBAction) respondToBackButton:(id) sender;
+- (IBAction) respondToOtherButton:(id) sender;
 
 - (void) pushNextPanel:(BOOL) animated completion:(FLWizardPanelBlock) completion;
 

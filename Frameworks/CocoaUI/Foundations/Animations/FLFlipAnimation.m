@@ -107,6 +107,14 @@
 //    CGFloat startValue = beginsOnTop ? 0.0f : M_PI;
 //    CGFloat endValue = beginsOnTop ? -M_PI : 0.0f;
     
+    self.siblingView.frame = self.targetView.frame;
+    
+    if(self.siblingView.superview == nil) {
+        [self.targetView.superview addSubview:self.siblingView 
+                                   positioned:NSWindowBelow 
+                                   relativeTo:self.targetView];
+    }
+    
     CAAnimation* topAnimation =     [self createAnimation:self.targetView start:start finish:finish path:keyPath];
     CAAnimation* bottomAnimation =  [self createAnimation:self.siblingView start:-finish finish:start path:keyPath];
     FLAssertNotNil_(topAnimation);
@@ -133,8 +141,6 @@
 
     topLayer.frame = FLRectMove(topLayer.frame, 0, topLayer.frame.size.height / 2);
     bottomLayer.frame = topLayer.frame; // FLRectMove(topLayer.frame, 0, -(topLayer.frame.size.height / 2));
-
-    
 
     CGFloat zDistance = 1500.0f;
     CATransform3D perspective = CATransform3DIdentity; 
