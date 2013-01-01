@@ -8,6 +8,7 @@
 
 #import "FLCocoaUIRequired.h"
 #import "FLBreadcrumbBarView.h"
+#import "FLFlipAnimation.h"
 
 @class FLWizardPanel;
 @protocol FLWizardViewControllerDelegate;
@@ -22,6 +23,8 @@
     
     IBOutlet NSView* _breadcrumbEnclosureView;
     IBOutlet FLBreadcrumbBarView* _breadcrumbBarView;
+    IBOutlet NSView* _notificationViewEnclosure;
+    NSView* _notificationView;
     
     IBOutlet NSView* _wizardPanelEnclosureView;
     IBOutlet NSTextField* _titleTextField;
@@ -44,6 +47,8 @@
 // views
 @property (readwrite, strong, nonatomic) NSView* backgroundView;
 @property (readwrite, strong, nonatomic) NSView* wizardPanelBackgroundView;
+@property (readonly, strong, nonatomic) UIView* notificationViewEnclosure;
+@property (readonly, strong, nonatomic) UIView* notificationView;
 
 // backgrounds
 @property (readonly, strong, nonatomic) NSButton* nextButton;
@@ -84,6 +89,20 @@
 
 - (void) popWizardPanelAnimated:(BOOL) animated
                      completion:(void (^)(FLWizardPanel*)) completion;
+
+
+
+- (void) flipToNextNotificationViewWithDirection:(FLFlipAnimationDirection) direction 
+                                        nextView:(UIView*) nextView
+                                      completion:(void (^)()) completion;
+
+- (void) setNotificationView:(UIView*) notificationView 
+                    animated:(BOOL) animated 
+                  completion:(void (^)()) completion;
+
+- (void) hideNotificationViewAnimated:(BOOL) animated 
+                  completion:(void (^)()) completion;
+
 @end
 
 
