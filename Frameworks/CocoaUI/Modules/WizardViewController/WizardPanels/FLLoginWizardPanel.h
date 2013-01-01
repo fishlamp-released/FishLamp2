@@ -6,11 +6,10 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
 #import "FLCocoa.h"
+#import "FLWizardPanel.h"
 #import "FLWizardViewController.h"
 #import "FLFinisher.h"
-#import "FLProgressWizardPanel.h"
 
 @protocol FLLoginWizardPanelDelegate;
 
@@ -32,6 +31,8 @@
 @property (readwrite, assign, nonatomic) BOOL savePasswordInKeychain; // doesn't actually save it, that's up to the delegate.
 
 + (id) loginWizardPanel;
+
+- (void) didFinishAuthenticatingWithResult:(FLResult) result;
 
 @end
 

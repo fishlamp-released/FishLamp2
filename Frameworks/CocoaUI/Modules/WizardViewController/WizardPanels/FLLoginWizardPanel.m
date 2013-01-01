@@ -111,18 +111,30 @@
     FLPerformSelector1(self.delegate, @selector(loginWizardPanelResetPassword:), self);
 }
 
+- (void) didFinishAuthenticatingWithResult:(FLResult) result {
 
-//- (void) didFinishAuthenticatingWithResult:(FLResult) result {
-//    
-//    if([result error]) {
-//    }
-//    else {
-//        [self.wizard presentNextWizardPanelAnimated:YES completion:^(FLWizardPanel *newPanel) {
-//            [self.wizard removeWizardPanel:self.progress];
-//            self.progress = nil;
-//        }];
-//    }
-//}
+    self.wizard.otherButton.enabled = NO;
+    
+    if([result error]) {
+        self.wizard.nextButton.enabled = YES;
+    
+        NSTextField* textField = FLAutorelease([[NSTextField alloc] initWithFrame:CGRectZero]);
+        textField.font = [NSFont fontWithName:@"MyriadPro-Bold" size:12];
+        textField.stringValue = @"We didn't recognize your username or password.";
+        textField.textColor = [NSColor redColor];
+        textField.drawsBackground = NO;
+        textField.bordered = NO;
+        [textField setBezeled:NO];
+        [textField setEditable:NO];
+        [textField setAlignment:NSLeftTextAlignment];
+        
+        [self.wizard setNotificationView:textField animated:YES completion:^{
+        }];        
+    }
+    else {
+        [self.wizard hideNotificationViewAnimated:YES completion:nil];
+    }
+}
     
 - (void) respondToNextButton:(id) sender {
 
@@ -130,20 +142,48 @@
         [super respondToNextButton:sender];
     }
     else {
-        FLProgressWizardPanel* progress = [FLProgressWizardPanel progressWizardPanel];
-        progress.delegate = self;
-        progress.nextPanelBlock = self.nextPanelBlock;
         
-        FLProgressWizardPanelProgressView* progressView = progress.progressView1;
-        progressView.progressText = @"Logging in...";
-        [progress setInitialView:progressView];
+        NSTextField* textField = FLAutorelease([[NSTextField alloc] initWithFrame:CGRectZero]);
+        textField.font = [NSFont fontWithName:@"MyriadPro-Bold" size:12];
+        textField.stringValue = @"Logging in…";
+        textField.textColor = [NSColor grayColor];
+        textField.drawsBackground = NO;
+        textField.bordered = NO;
+        [textField setBezeled:NO];
+        [textField setEditable:NO];
+        [textField setAlignment:NSLeftTextAlignment];
         
-        [self.wizard pushWizardPanel:progress animated:YES completion:^(FLWizardPanel* panel) {
+        [self.wizard setNotificationView:textField animated:YES completion:^{
+            self.wizard.otherButton.enabled = YES;
+            self.wizard.nextButton.enabled = NO;
+
             FLPerformSelector1( self.delegate, 
                                 @selector(loginWizardPanelStartAuthenticating:), 
                                 self);
-            }];
+        }];
+    
+    
+//        FLProgressWizardPanel* progress = [FLProgressWizardPanel progressWizardPanel];
+//        progress.delegate = self;
+//        progress.nextPanelBlock = self.nextPanelBlock;
+//        
+//        FLProgressWizardPanelProgressView* progressView = progress.progressView1;
+//        progressView.progressText = @"Logging in...";
+//        [progress setInitialView:progressView];
+//        
+//        [self.wizard pushWizardPanel:progress animated:YES completion:^(FLWizardPanel* panel) {
+//            }];
     }
+}
+
+- (void) respondToOtherButton:(id) sender {
+    [super respondToOtherButton:(id) sender];
+    
+    FLPerformSelector1( self.delegate, 
+                        @selector(loginWizardPanelCancelAuthentication:), 
+                        self);
+
+    [self.wizard hideNotificationViewAnimated:YES completion:nil];
 }
 
 - (void) wizardPanelDidAppear {
@@ -162,9 +202,15 @@
 
 - (void) wizardPanelWillAppear {
     [super wizardPanelWillAppear];
-    FLPerformSelector1( self.delegate, 
-                        @selector(loginWizardPanelCancelAuthentication:), 
-                        self);
+    
+    self.wizard.otherButton.hidden = NO;
+
+    self.wizard.otherButton.title = @"Cancel";
+    self.wizard.otherButton.enabled = NO;
+    
+//    FLPerformSelector1( self.delegate, 
+//                        @selector(loginWizardPanelCancelAuthentication:), 
+//                        self);
 }
 
 - (void) wizardPanelWillDisappear {

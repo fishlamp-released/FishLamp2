@@ -18,6 +18,7 @@
 @property (readonly, strong, nonatomic) FLWizardPanel* nextWizardPanel;
 @property (readonly, strong, nonatomic) FLWizardPanel* previousWizardPanel;
 @property (readonly, strong, nonatomic) NSArray* visibleWizardPanels;
+@property (readwrite, strong, nonatomic) UIView* notificationView;
 
 - (IBAction) respondToNextButton:(id) sender;
 - (IBAction) respondToBackButton:(id) sender;
@@ -38,6 +39,8 @@
 @synthesize wizardPanelBackgroundView = _wizardPanelBackgroundView;
 @synthesize backgroundView = _backgroundView;
 @synthesize wizardPanelEnclosureView = _wizardPanelEnclosureView;
+@synthesize notificationView = _notificationView;
+@synthesize notificationViewEnclosure = _notificationViewEnclosure;
 
 #if FL_MRC
 - (void) dealloc {
@@ -50,6 +53,7 @@
     [_nextButton release];
     [_backButton release];
     [_otherButton release];
+    [_notificationView release];
     
     [super dealloc];
 }
@@ -345,6 +349,60 @@
        finished();
     }
 }
+
+- (void) flipToNextNotificationViewWithDirection:(FLFlipAnimationDirection) direction 
+                                        nextView:(UIView*) nextView
+                                      completion:(void (^)()) completion {
+
+    completion = FLAutoreleasedCopy(completion);
+
+    FLAnimator* animator = [FLAnimator animator:0.5];
+    
+    [animator addAnimation:[FLFlipAnimation flipAnimation:direction 
+                                               withTarget:self.notificationView 
+                                              withSibling:nextView]];
+    [animator startAnimating:^{
+        [self.notificationView removeFromSuperview];
+        self.notificationView = nextView;
+        if(completion) {
+            completion();
+        }
+    }];
+}
+
+- (void) setNotificationView:(UIView*) notificationView 
+                    animated:(BOOL) animated 
+                  completion:(void (^)()) completion {
+    
+    notificationView.frame = self.notificationViewEnclosure.bounds;
+    if(self.notificationView) {
+        if(animated) {
+            [self flipToNextNotificationViewWithDirection:FLFlipAnimationDirectionDown nextView:notificationView completion:completion];
+        }
+        else {
+            [self.notificationView removeFromSuperview];
+            self.notificationView = notificationView;
+            [self.notificationViewEnclosure addSubview:notificationView];
+            
+            if(completion) completion();
+        }
+    }
+    else {
+        self.notificationView = notificationView;
+        [self.notificationViewEnclosure addSubview:notificationView];
+        if(completion) completion();
+    }
+}
+
+- (void) hideNotificationViewAnimated:(BOOL) animated 
+                  completion:(void (^)()) completion {
+
+    [self.notificationView removeFromSuperview];
+    self.notificationView = nil;
+    if(completion) completion();
+
+}                  
+
 
 
 @end
