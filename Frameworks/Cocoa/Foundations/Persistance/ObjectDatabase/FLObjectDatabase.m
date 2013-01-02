@@ -11,7 +11,6 @@
 #import "FLDatabaseTable.h"
 #import "FLLowMemoryHandler.h"
 #import "FLCacheBehavior.h"
-#import "FLCancellable.h"
 #import "FLCacheManager.h"
 #import "FLBase64Encoding.h"
 #import "NSArray+FLExtras.h"

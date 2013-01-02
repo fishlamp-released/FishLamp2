@@ -13,6 +13,8 @@
 #import "FLCore.h"
 #import "FLHttpMessage.h"
 #import "FLDispatchableContext.h"
+#import "FLDispatcher.h"
+#import "FLDispatchQueue.h"
 
 //#if IOS
 //#import <UIKit/UIKit.h>
@@ -358,7 +360,7 @@
     }];
 }
 
-- (void) startAsyncWithFinisher:(FLFinisher*) finisher {
+- (void) startWorking:(FLFinisher*) finisher {
 
     self.finisher = finisher;
     

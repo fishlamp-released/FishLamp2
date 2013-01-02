@@ -7,16 +7,14 @@
 //
 
 #import "FLCocoaRequired.h"
-#import "FLCancellable.h"
 #import "FLTimeoutTimer.h"
 #import "FLResult.h"
 
-@protocol FLStream <FLCancellable>
-
+@protocol FLStream <NSObject>
 @property (readonly, assign) BOOL isOpen;
 - (void) openStreamWithInput:(id) input;
 - (void) closeStreamWithResult:(id) result;
-
+- (void) requestCancel;
 @end
 
 @protocol FLWriteStream <FLStream>

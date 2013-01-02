@@ -8,210 +8,151 @@
 
 #import "FLAnimation.h"
 
-
-
 @interface FLAnimation ()
-@property (readwrite, assign, nonatomic) FLAnimation* parentAnimation;
-@end
-
-@implementation UIView (FLAnimation)
-- (UIView*) view {
-    return self;
-}
+//@property (readwrite, copy, nonatomic) FLAnimationBlock commit;
+//@property (readwrite, copy, nonatomic) FLAnimationBlock finish;
+@property (readwrite, strong, nonatomic) NSArray* animations;
 @end
 
 @implementation FLAnimation
 
-@synthesize prepareBlock = _prepare;
-@synthesize commitBlock = _commit;
-@synthesize finishBlock = _finish;
-@synthesize parent = _parent;
-@synthesize target = _target;
-@synthesize sibling = _sibling;
-@synthesize parentAnimation = _parentAnimation;
-@synthesize options = _options;
+@synthesize prepare = _prepare;
+@synthesize commit = _commit;
+@synthesize finish = _finish;
+@synthesize duration = _duration;
+@synthesize timingFunction = _timingFunction;
+@synthesize animations = _animations;
 
-- (id) initWithTarget:(id) target {
-    return [self initWithTarget:target options:0];
+
+- (id) initWithView:(UIView*) view  {
+    self = [self init];
+    if(self) {
+        FLAssertNotNil_(view);
+#if OSX
+        view.wantsLayer = YES;
+#endif          
+    }
+    return self;
 }
 
-- (id) initWithTarget:(id) target options:(FLAnimationOptions) options {
++ (id) animationWithView:(UIView*) view {
+    return FLAutorelease([[[self class] alloc] initWithView:view]);
+}
+
+- (id) init {
     self = [super init];
     if(self) {
-        self.target = target;
-        self.options = options;
+        self.duration = 0.3f;
     }
     return self;
 }
 
 + (id) animation {
-    return FLAutorelease([[[self class] alloc] initWithTarget:nil options:0]);
+    return FLAutorelease([[[self class] alloc] init]);
 }
 
-+ (id) animation:(id) target {
-    return FLAutorelease([[[self class] alloc] initWithTarget:target options:0]);
-}
-
-+ (id) animation:(id) target options:(FLAnimationOptions) options {
-    return FLAutorelease([[[self class] alloc] initWithTarget:target options:options]);
-}
-
-- (UIView*) targetView {
-    return [_target view];
-}
-
-- (UIView*) siblingView {
-    return [_sibling view];
-}
-
-- (UIView*) superview {
-    return [_parent view];
-}
 #if FL_MRC
 - (void) dealloc {
-    [_target release];
-    [_sibling release];
-    [_parent release];
+    [_timingFunction release];
     [_prepare release];
     [_commit release];
     [_finish release];
-    [super dealloc];
-}
-#endif
-
-- (void) prepare {
-    if(_prepare) {
-        _prepare(self);
-    }
-}
-
-- (void) commit {
-    if(_commit) {
-        _commit(self);
-    }
-}
-
-- (void) finish {
-    if(_finish) {
-        _finish(self);
-    }
-    
-    if(FLTestBits(self.options, FLAnimationOptionRemoveTargetViewFromSuperview)) {
-        [self removeTargetViewFromSuperview];
-    }
-    
-    if(FLTestBits(self.options, FLAnimationOptionRestoreValues)) {
-        [self restoreValues];
-    }
-}
-
-- (void) restoreValues {
-}
-
-- (void) removeTargetViewFromSuperview {
-    [self.targetView removeFromSuperview];
-}
-
-
-@end
-
-@implementation FLAnimator 
-
-- (void) startAnimating:(dispatch_block_t) completion {
-    
-    [self prepare];
-    
-    completion = FLAutoreleasedCopy(completion);
-    
-    [CATransaction begin];
-    [CATransaction setAnimationDuration:_duration];
-    
-    [CATransaction setCompletionBlock:^{
-        [self finish];
-        
-        if(completion) {
-            completion();
-        }
-    }];
-    
-    [self commit];
-    
-    [CATransaction commit];
-}
-
-#if FL_MRC
-- (void) dealloc {
     [_animations release];
     [super dealloc];
 }
 #endif
 
-+ (id) animator {
-    return FLAutorelease([[[self class] alloc] init]);
-}
-
-+ (id) animator:(CGFloat) duration {
-    return FLAutorelease([[[self class] alloc] initWithDuration:duration]);
-}
-
-//+ (id) animationWithTarget:(id) target {
-//    return FLAutorelease([[[self class] alloc] initWithTarget:target]);
-//}
-
 - (void) addAnimation:(FLAnimation*) animation {
     if(!_animations) {
         _animations = [[NSMutableArray alloc] init];
     }
-    
-    animation.parentAnimation = self;
     [_animations addObject:animation];
 }
 
-- (void) addAnimation:(FLAnimation*) animation 
-          configure:(void (^)(FLAnimation*)) configureBlock {
- 
-    if(configureBlock) {
-        configureBlock(animation);
+- (void) invokePrepare {
+    if(_prepare) {
+        _prepare(self);
     }
+    for(FLAnimation* animation in _animations) {
+        [animation invokePrepare];
+    }
+}
+
+- (void) invokeCommit {
+    if(_commit) {
+        _commit();
+    }
+    for(FLAnimation* animation in _animations) {
+        [animation invokeCommit];
+    }
+}
+
+- (void) invokeFinish {
+    if(_finish) {
+        _finish();
+    }
+    for(FLAnimation* animation in _animations) {
+        [animation invokeFinish];
+    }
+}
+
+- (void) openAnimation {
+    [self invokePrepare];
+
+    [CATransaction begin];
+    [CATransaction setAnimationDuration:self.duration];
     
-    [self addAnimation:animation];
-}
-
-- (id) init {
-    return [self initWithDuration:0.3f];
-}
-
-- (id) initWithDuration:(CGFloat) duration {
-    self = [super init];
-    if(self) {
-        _duration = duration;
-    }
-    return self;
-}
-
-- (void) prepare {
-    [super prepare];  
-    
-    for(FLAnimation* anim in _animations) {
-        [anim prepare];
+    if(self.timingFunction) {
+        [CATransaction setAnimationTimingFunction:[CAMediaTimingFunction functionWithName:self.timingFunction]];
     }
 }
 
-- (void) commit {
-    [super commit];  
-    
-    for(FLAnimation* anim in _animations) {
-        [anim commit];
-    }
-}
+- (void) closeAnimation:(FLFinisher*) finisher {
+    [CATransaction setCompletionBlock:^{
 
-- (void) finish {
-    [super finish];
+        [CATransaction begin];
+        [CATransaction setValue:[NSNumber numberWithBool:YES] forKey:kCATransactionDisableActions];
         
-    for(FLAnimation* anim in _animations) {
-        [anim finish];
-    }
+        [self invokeFinish];
+
+        [CATransaction commit];
+        
+        [finisher setFinished];
+    }];
+    
+    [self invokeCommit];
+    [CATransaction commit];
+    
+    self.prepare = nil;
+    self.commit = nil;
+    self.finish = nil;
+    self.animations = nil;
 }
 
+- (FLFinisher*) startAnimation:(void (^)()) didStartBlock
+                completion:(FLCompletionBlock) completion {
+
+    FLFinisher* finisher = [FLFinisher finisher:completion];
+    [self openAnimation];
+    if(didStartBlock) {
+        didStartBlock();
+    }
+    [self closeAnimation:finisher];
+    return finisher;
+}   
+
+- (void) startWorking:(FLFinisher*) finisher {
+    [self openAnimation];
+    [self closeAnimation:finisher];
+}             
+                
+- (FLFinisher*) startAnimation:(FLCompletionBlock) completion {
+    return [self startAnimation:nil completion:completion];
+}
+
+- (FLFinisher*) startAnimation {
+    return [self startAnimation:nil completion:nil];
+}
 
 @end
+

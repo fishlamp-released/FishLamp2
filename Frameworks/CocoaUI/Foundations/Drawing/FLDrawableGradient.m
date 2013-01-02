@@ -51,7 +51,7 @@
 		CGPointMake(self.frame.origin.x, FLRectGetBottom(self.frame)),
 		0);
     
-    self.finishDrawingBlock = ^{
+    self.finishDrawingBlock = ^(id drawable) {
         CGGradientRelease(gradient);
         CGContextRestoreGState(context);
     };

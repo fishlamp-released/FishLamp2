@@ -54,7 +54,7 @@
     return nil;
 }
 
-- (void) startAsyncWithFinisher:(FLFinisher*) finisher {
+- (void) startWorking:(FLFinisher*) finisher {
     [finisher setFinishedWithResult:[self runSynchronously]];
 }
 

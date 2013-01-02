@@ -84,19 +84,11 @@
     FLFinisher* finisher = [FLScheduledFinisher finisher:completion];
 
     return [self dispatchBlock: ^{
-        
-        [self willDispatchObject:object];
-        
-        FLFinisher* objectFinisher = [FLFinisher finisher:^(FLResult result) {
-            [finisher setFinishedWithResult:result];
-            [self didDispatchObject:object];
-        }];
-        
         @try {
-            [object startAsyncWithFinisher:objectFinisher];
+            [object startWorking:finisher];
         }
         @catch(NSException* ex) {
-            [objectFinisher setFinishedWithResult:ex.error];
+            [finisher setFinishedWithResult:ex.error];
         }
     }];
     

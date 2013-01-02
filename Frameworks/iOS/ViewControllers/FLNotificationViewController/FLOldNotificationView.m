@@ -48,7 +48,7 @@
 
 FLSynthesizeStructProperty(dismissStyle, setDismissStyle, FLOldNotificationViewDismissStyle, _notificationViewFlags);
 FLSynthesizeStructProperty(isHtml, setIsHtml, BOOL, _notificationViewFlags);
-FLSynthesizeStructProperty(animationType, setAnimationType, FLViewAnimationType, _notificationViewFlags);
+FLSynthesizeStructProperty(animationType, setAnimationType, FLAnimatedViewType, _notificationViewFlags);
 FLSynthesizeStructProperty(shouldAutoCloseAfterDelay, setShouldAutoCloseAfterDelay, BOOL, _notificationViewFlags);
 FLSynthesizeStructProperty(isModal, setIsModal, BOOL, _notificationViewFlags);
 FLSynthesizeStructProperty(notificationViewStyle, setNotificationViewStyle, FLOldNotificationViewStyle, _notificationViewFlags);

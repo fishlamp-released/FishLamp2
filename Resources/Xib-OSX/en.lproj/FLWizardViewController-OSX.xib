@@ -43,7 +43,7 @@
 						<reference key="NSNextResponder" ref="1005"/>
 						<int key="NSvFlags">290</int>
 						<array class="NSMutableArray" key="NSSubviews">
-							<object class="NSCustomView" id="332498636">
+							<object class="NSCustomView" id="23240000">
 								<reference key="NSNextResponder" ref="1018746906"/>
 								<int key="NSvFlags">274</int>
 								<string key="NSFrame">{{98, 4}, {220, 32}}</string>
@@ -213,10 +213,9 @@
 								<reference key="NSNextResponder" ref="142049478"/>
 								<int key="NSvFlags">265</int>
 								<array class="NSMutableArray" key="NSSubviews"/>
-								<string key="NSFrame">{{390, 10}, {70, 18}}</string>
+								<string key="NSFrame">{{390, 6}, {70, 22}}</string>
 								<reference key="NSSuperview" ref="142049478"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="NSEnabled">YES</bool>
 								<object class="NSButtonCell" key="NSCell" id="524769690">
@@ -394,7 +393,7 @@
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">_notificationViewEnclosure</string>
 						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="332498636"/>
+						<reference key="destination" ref="23240000"/>
 					</object>
 					<int key="connectionID">91</int>
 				</object>
@@ -442,7 +441,7 @@
 							<reference ref="671622157"/>
 							<reference ref="654275547"/>
 							<reference ref="726091005"/>
-							<reference ref="332498636"/>
+							<reference ref="23240000"/>
 						</array>
 						<reference key="parent" ref="1005"/>
 						<string key="objectName">Bottom Bar Enclosure</string>
@@ -542,7 +541,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">89</int>
-						<reference key="object" ref="332498636"/>
+						<reference key="object" ref="23240000"/>
 						<reference key="parent" ref="1018746906"/>
 					</object>
 				</array>
@@ -586,7 +585,7 @@
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">FLWizardViewController</string>
-					<string key="superclassName">UIViewController</string>
+					<string key="superclassName">NSViewController</string>
 					<dictionary class="NSMutableDictionary" key="actions">
 						<string key="respondToBackButton:">id</string>
 						<string key="respondToLogoutButton:">id</string>

@@ -312,7 +312,7 @@ FLSynthesizeStructProperty(automaticallyShowBackButton, setAutomaticallyShowBack
 			if(animated)
 			{
 				viewContainer.animationState = FLButtonBarViewAnimationStateAnimatingShow;
-				[view animateOntoScreen:FLViewAnimationTypeFade duration:kFadeAnimationDuration finishedBlock:^(UIView* blockView) 
+				[view animateOntoScreen:FLAnimatedViewTypeFade duration:kFadeAnimationDuration finishedBlock:^(UIView* blockView) 
 					{ viewContainer.animationState = FLButtonBarViewAnimationStateNone; }];
 				[self updateLayout:YES];
 			}
@@ -357,7 +357,7 @@ FLSynthesizeStructProperty(automaticallyShowBackButton, setAutomaticallyShowBack
 		if(animated)
 		{
 			viewContainer.animationState = FLButtonBarViewAnimationStateAnimatingHide;
-			[viewContainer.view removeFromSuperviewWithAnimationType:FLViewAnimationTypeFade duration:kFadeAnimationDuration finishedBlock:^(UIView* finishBlock) 
+			[viewContainer.view removeFromSuperviewWithAnimationType:FLAnimatedViewTypeFade duration:kFadeAnimationDuration finishedBlock:^(UIView* finishBlock) 
 				{ viewContainer.animationState = FLButtonBarViewAnimationStateNone; } ];
 			[self updateLayout:YES];
 		}
@@ -466,7 +466,7 @@ FLSynthesizeStructProperty(automaticallyShowBackButton, setAutomaticallyShowBack
 		if(animated)
 		{
 			container.animationState = FLButtonBarViewAnimationStateAnimatingShow;
-			[view animateOntoScreen:FLViewAnimationTypeFade duration:kFadeAnimationDuration finishedBlock:^(UIView* blockView) 
+			[view animateOntoScreen:FLAnimatedViewTypeFade duration:kFadeAnimationDuration finishedBlock:^(UIView* blockView) 
 				{ container.animationState = FLButtonBarViewAnimationStateNone; }];
 			[self updateLayout:YES];
 		}

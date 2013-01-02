@@ -491,7 +491,7 @@ static CGFloat s_prevAlpha;
             [self _prepareToShowButtonBar:buttonbar];	
             if(animated)
             {
-                [buttonbar animateOntoScreen:FLViewAnimationTypeSlideFromRight duration:0.3 finishedBlock:nil];
+                [buttonbar animateOntoScreen:FLAnimatedViewTypeSlideFromRight duration:0.3 finishedBlock:nil];
             }
             
             UIViewController* parent = self.visibleViewController;
@@ -537,7 +537,7 @@ static CGFloat s_prevAlpha;
 	{
 		if(animated)
 		{
-			[buttonbar removeFromSuperviewWithAnimationType:FLViewAnimationTypeSlideFromRight duration:0.3 finishedBlock:nil];
+			[buttonbar removeFromSuperviewWithAnimationType:FLAnimatedViewTypeSlideFromRight duration:0.3 finishedBlock:nil];
 		}
 		else
 		{

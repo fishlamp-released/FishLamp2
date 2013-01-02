@@ -7,8 +7,6 @@
 //
 
 #import "FLCocoaRequired.h"
-#import "FLCore.h"
-
 #import "NSNotification+FLExtras.h"
 
 extern NSString* const FLCacheManagerEmptyCacheNotification;
@@ -19,6 +17,6 @@ extern NSString* const FLCacheManagerEmptyCacheNotification;
 
 FLSingletonProperty(FLCacheManager);
 
-- (void) broadcastEmptyCacheMessage:(id<FLCancellable>) operation;
+- (void) broadcastEmptyCacheMessage:(id) operation;
 
 @end
