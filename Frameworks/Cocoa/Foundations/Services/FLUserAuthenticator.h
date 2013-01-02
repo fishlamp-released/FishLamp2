@@ -7,10 +7,10 @@
 //
 
 #import "FLCocoaRequired.h"
-#import "FLDispatchable.h"
+#import "FLContextuallyDispatchable.h"
 #import "FLUserLogin.h"
 
-@interface FLUserAuthenticator : NSObject<FLDispatchable> {
+@interface FLUserAuthenticator : NSObject<FLContextuallyDispatchable> {
 @private
     FLUserLogin* _userLogin;
     id _context;

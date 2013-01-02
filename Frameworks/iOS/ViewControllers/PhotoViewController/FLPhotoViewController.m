@@ -356,7 +356,7 @@ FLSynthesizeStructProperty(isFullScreenTapDisabled, setFullScreenTapDisabled, BO
 		view.notificationViewDelegate = self;
 		view.isHtml	 = YES;
 		view.maxTextHeight = 180;
-		view.animationType = FLViewAnimationTypeFade;
+		view.animationType = FLAnimatedViewTypeFade;
 		view.dismissStyle = FLOldNotificationViewDismissStyleCloseBox;
 		view.text = details;
 		photoView.detailsView = view;
@@ -844,7 +844,7 @@ FLSynthesizeStructProperty(isFullScreenTapDisabled, setFullScreenTapDisabled, BO
 		[self _startLoading];
 	}
 	
-	[_thumbnailCountView removeFromSuperviewWithAnimationType:FLViewAnimationTypeFade duration:0.3 finishedBlock:nil];
+	[_thumbnailCountView removeFromSuperviewWithAnimationType:FLAnimatedViewTypeFade duration:0.3 finishedBlock:nil];
 	FLReleaseWithNil(_thumbnailCountView);
 }
 
@@ -863,7 +863,7 @@ FLSynthesizeStructProperty(isFullScreenTapDisabled, setFullScreenTapDisabled, BO
 			_thumbnailCountView.autoresizingMask = UIViewAutoresizingPositioned;
 			
 			[self.view addSubview:_thumbnailCountView];
-			[_thumbnailCountView animateOntoScreen:FLViewAnimationTypeFade duration:0.3 finishedBlock:nil];
+			[_thumbnailCountView animateOntoScreen:FLAnimatedViewTypeFade duration:0.3 finishedBlock:nil];
 		}
 		
 		[_thumbnailCountView updateCount:newIndex+1 total:self.photoCount];

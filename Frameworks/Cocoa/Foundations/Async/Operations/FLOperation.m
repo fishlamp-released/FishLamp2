@@ -72,7 +72,7 @@ NSString* const FLOperationFinishedEvent;
     FLThrowAbortExeptionIf(self.wasCancelled);
 }
 
-- (void) startAsyncWithFinisher:(FLFinisher*) finisher {
+- (void) startWorking:(FLFinisher*) finisher {
     self.cancelled = NO;
     id result = nil;
     
@@ -101,7 +101,7 @@ NSString* const FLOperationFinishedEvent;
 
 - (FLResult) runSynchronously {
     FLFinisher* finisher = [FLFinisher finisher];
-    [self startAsyncWithFinisher:finisher];
+    [self startWorking:finisher];
     return [finisher waitUntilFinished];
 }
 

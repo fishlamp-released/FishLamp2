@@ -11,7 +11,7 @@
 @implementation NSObject (FLDispatchable) 
 - (id) runSynchronously {
     FLFinisher* finisher = [FLFinisher finisher];
-    [ ((id)self) startAsyncWithFinisher:finisher];
+    [ ((id)self) startWorking:finisher];
     return [finisher waitUntilFinished];
 }
 @end

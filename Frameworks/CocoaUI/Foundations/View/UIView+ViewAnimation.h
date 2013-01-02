@@ -12,24 +12,24 @@
 
 
 typedef enum {
-	FLViewAnimationTypeFade,
-	FLViewAnimationTypeSlideFromTop,
-	FLViewAnimationTypeSlideFromLeft,
-	FLViewAnimationTypeSlideFromBottom,
-	FLViewAnimationTypeSlideFromRight
-} FLViewAnimationType;
+	FLAnimatedViewTypeFade,
+	FLAnimatedViewTypeSlideFromTop,
+	FLAnimatedViewTypeSlideFromLeft,
+	FLAnimatedViewTypeSlideFromBottom,
+	FLAnimatedViewTypeSlideFromRight
+} FLAnimatedViewType;
 
-typedef void (^FLViewAnimationFinishedBlock)(UIView* view);
+typedef void (^FLAnimatedViewFinishedBlock)(UIView* view);
 typedef void (^FLViewBatchAnimationFinishedBlock)(NSArray* views);
 
-@interface UIView (FLViewAnimation)
-//- (void) animateOntoScreen:(FLViewAnimationType) type duration:(CGFloat) duration;
-- (void) animateOntoScreen:(FLViewAnimationType) type duration:(CGFloat) duration finishedBlock:(FLViewAnimationFinishedBlock) finishedBlock;
+@interface UIView (FLAnimatedView)
+//- (void) animateOntoScreen:(FLAnimatedViewType) type duration:(CGFloat) duration;
+- (void) animateOntoScreen:(FLAnimatedViewType) type duration:(CGFloat) duration finishedBlock:(FLAnimatedViewFinishedBlock) finishedBlock;
 
-//- (void) removeFromSuperviewWithAnimationType:(FLViewAnimationType) type duration:(CGFloat) duration;
-- (void) removeFromSuperviewWithAnimationType:(FLViewAnimationType) type duration:(CGFloat) duration finishedBlock:(FLViewAnimationFinishedBlock) finishedBlock;
+//- (void) removeFromSuperviewWithAnimationType:(FLAnimatedViewType) type duration:(CGFloat) duration;
+- (void) removeFromSuperviewWithAnimationType:(FLAnimatedViewType) type duration:(CGFloat) duration finishedBlock:(FLAnimatedViewFinishedBlock) finishedBlock;
 
-- (void) setHiddenWithFade:(BOOL) hidden duration:(CGFloat) duration finishedBlock:(FLViewAnimationFinishedBlock) finishedBlock;
+- (void) setHiddenWithFade:(BOOL) hidden duration:(CGFloat) duration finishedBlock:(FLAnimatedViewFinishedBlock) finishedBlock;
 
 // TODO: make this api the same as the other ones
 - (void) doPopInAnimation:(CGFloat) duration;
@@ -39,20 +39,20 @@ typedef void (^FLViewBatchAnimationFinishedBlock)(NSArray* views);
 @end
 
 
-@interface FLViewAnimationFadePayload : NSObject {
+@interface FLAnimatedViewFadePayload : NSObject {
 	CGFloat _alpha;
 	BOOL _hidden;
 	UIView* _view;
-	FLViewAnimationFinishedBlock _block;
+	FLAnimatedViewFinishedBlock _block;
 }
 
-@property (readwrite, copy, nonatomic) FLViewAnimationFinishedBlock finishedBlock;
+@property (readwrite, copy, nonatomic) FLAnimatedViewFinishedBlock finishedBlock;
 @property (readwrite, assign, nonatomic) CGFloat alpha;
 @property (readwrite, assign, nonatomic) BOOL hidden;
 @property (readwrite, retain, nonatomic) UIView* view;
 
-- (id) initWithView:(UIView*) view alpha:(CGFloat) alpha hidden:(BOOL) hidden finishedBlock:(FLViewAnimationFinishedBlock) finishedBlock;
-+ (FLViewAnimationFadePayload*) viewAnimationFadePayload:(UIView*) view alpha:(CGFloat) alpha hidden:(BOOL) hidden finishedBlock:(FLViewAnimationFinishedBlock) finishedBlock;
+- (id) initWithView:(UIView*) view alpha:(CGFloat) alpha hidden:(BOOL) hidden finishedBlock:(FLAnimatedViewFinishedBlock) finishedBlock;
++ (FLAnimatedViewFadePayload*) viewAnimationFadePayload:(UIView*) view alpha:(CGFloat) alpha hidden:(BOOL) hidden finishedBlock:(FLAnimatedViewFinishedBlock) finishedBlock;
 
 @end
 

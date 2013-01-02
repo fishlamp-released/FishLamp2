@@ -65,7 +65,7 @@ typedef enum {
 		FLOldNotificationViewDismissStyle dismissStyle: 2;
 		unsigned int isHtml: 1;
 		unsigned int notifiedWasTouched:1;
-		FLViewAnimationType animationType:4;
+		FLAnimatedViewType animationType:4;
 		unsigned int disableAutoClose:1;
 		unsigned int isModal:1;
 		unsigned int created:1;
@@ -79,7 +79,7 @@ typedef enum {
 @property (readwrite, assign, nonatomic) id<FLOldNotificationViewDelegate> notificationViewDelegate;
 
 @property (readwrite, assign, nonatomic) CGFloat padding;
-@property (readwrite, assign, nonatomic) FLViewAnimationType animationType;
+@property (readwrite, assign, nonatomic) FLAnimatedViewType animationType;
 @property (readwrite, assign, nonatomic) FLOldNotificationViewDismissStyle dismissStyle;
 @property (readwrite, assign, nonatomic) BOOL isHtml;
 @property (readwrite, assign, nonatomic) BOOL shouldAutoCloseAfterDelay;

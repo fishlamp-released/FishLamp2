@@ -10,76 +10,81 @@
 
 @class FLAnimation;
 
-typedef void (^FLAnimationBlock)(FLAnimation* animation);
+typedef void (^FLAnimationPrepareBlock)(id animation);
+typedef void (^FLAnimationBlock)();
 
-enum {
-    FLAnimationOptionNone                             = 0,
-    FLAnimationOptionRemoveTargetViewFromSuperview    = (1 << 1),
-    FLAnimationOptionRestoreValues                    = (1 << 2)
-}; 
-
-typedef NSUInteger FLAnimationOptions;
-
-@interface UIView (FLAnimation)
-- (UIView*) view; // returns self.
+@protocol FLAnimator <NSObject>
 @end
 
-@interface FLAnimation : NSObject {
+@interface FLAnimation : NSObject<FLDispatchable> {
 @private
-    FLAnimationBlock _prepare;
+    FLAnimationPrepareBlock _prepare;
     FLAnimationBlock _commit;
     FLAnimationBlock _finish;
-    id _parent;
-    id _target;
-    id _sibling;
-    FLAnimationOptions _options;
-    __unsafe_unretained FLAnimation* _parentAnimation;
-}
-
-- (id) initWithTarget:(id) target;
-- (id) initWithTarget:(id) target options:(FLAnimationOptions) options;
-
-+ (id) animation;
-+ (id) animation:(id) target;
-+ (id) animation:(id) target options:(FLAnimationOptions) options;
-
-@property (readonly, assign, nonatomic) FLAnimation* parentAnimation;
-
-@property (readwrite, assign, nonatomic) FLAnimationOptions options;
-@property (readwrite, strong, nonatomic) id parent;
-@property (readwrite, strong, nonatomic) id sibling;
-@property (readwrite, strong, nonatomic) id target;
-
-@property (readonly, strong, nonatomic) UIView* targetView;
-@property (readonly, strong, nonatomic) UIView* siblingView;
-@property (readonly, strong, nonatomic) UIView* superview;
-
-@property (readwrite, copy, nonatomic) FLAnimationBlock prepareBlock;
-@property (readwrite, copy, nonatomic) FLAnimationBlock commitBlock;
-@property (readwrite, copy, nonatomic) FLAnimationBlock finishBlock;
-
-- (void) prepare;
-- (void) commit;
-- (void) finish;
-
-- (void) restoreValues;
-- (void) removeTargetViewFromSuperview;
-
-@end
-
-@interface FLAnimator : FLAnimation {
     CGFloat _duration;
+    NSString* _timingFunction;
     NSMutableArray* _animations;
 }
 
-+ (id) animator;
-+ (id) animator:(CGFloat) duration;
+- (id) initWithView:(UIView*) view;
++ (id) animationWithView:(UIView*) view;
+
+@property (readwrite, copy, nonatomic) FLAnimationPrepareBlock prepare;
+@property (readwrite, copy, nonatomic) FLAnimationBlock commit;
+@property (readwrite, copy, nonatomic) FLAnimationBlock finish;
 
 - (void) addAnimation:(FLAnimation*) animation;
 
-- (void) addAnimation:(FLAnimation*) animation 
-            configure:(void (^)(FLAnimation*)) configureBlock;
+// these only apply to the animation upon which beginAnimation was called.
 
-- (void) startAnimating:(dispatch_block_t) completion;
+@property (readwrite, assign, nonatomic) CGFloat duration;
+@property (readwrite, strong, nonatomic) NSString* timingFunction;
+
+- (FLFinisher*) startAnimation;
+
+- (FLFinisher*) startAnimation:(FLCompletionBlock) completion;
+
+- (FLFinisher*) startAnimation:(void (^)()) didStartBlock
+                    completion:(FLCompletionBlock) completion;
+
 
 @end
+
+
+
+/*
+
+@implementation MyAnimation
+
+- (void) myMethod {
+}
+
+- (id) initWithView:(UIView*) view {
+    self = [super initWithView:view];
+    if(self) {
+    
+        // init your object.
+    
+        self.prepare = ^(id animation){
+            // prepare the view here
+            
+            [animation setCommit:^{
+                // set the animatable properties here
+                
+                // call backinto your object like this (to prevent memory cycle with the blocks)
+                [animation myMethod];
+            }];
+            
+            [animation setFinish:^{
+                // clean up here.
+            }];
+        };
+    }
+        
+    return self;
+}
+
+@end
+
+
+*/

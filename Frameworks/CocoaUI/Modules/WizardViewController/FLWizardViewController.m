@@ -14,6 +14,9 @@
 #import "UIViewController+FLAdditions.h"
 #import "FLWizardPanel.h"
 
+#import "FLSlideInAndDropTransition.h"
+#import "FLSlideOutAndComeForwardTransition.h"
+
 @interface FLWizardViewController ()
 @property (readonly, strong, nonatomic) FLWizardPanel* nextWizardPanel;
 @property (readonly, strong, nonatomic) FLWizardPanel* previousWizardPanel;
@@ -247,6 +250,7 @@
     self.backButton.enabled = NO; // (_wizardPanels.count > 0);
     self.otherButton.hidden = YES;
     [toShow didMoveToWizard:self];
+    
     toShow.view.frame = _wizardPanelEnclosureView.bounds;
     [self setViewToResize:toShow.view];
     
@@ -275,20 +279,10 @@
     [_wizardPanelEnclosureView addSubview:toShow.view];
 
     if(animated) {
-        
-       FLAnimator* animator = [FLAnimator animator:kDuration];
-        
-        [animator addAnimation:[FLFadeOutAnimation animation:toHide 
-                                                     options:FLAnimationOptionRemoveTargetViewFromSuperview | FLAnimationOptionRestoreValues]];
-
-        [animator addAnimation:[FLDropBackAnimation animation:toHide]];
-
-        [animator addAnimation:[FLSlideInFromRightAnimation animation:toShow]];
-        [animator addAnimation:[FLFadeInAnimation animation:toShow]];
-        
-        [animator startAnimating:finished];
-        
-        
+        FLSlideInAndDropTransition* transition = [FLSlideInAndDropTransition transitionWithViewToShow:toShow.view viewToHide:toHide.view];
+        [transition startAnimation:^(FLResult result){
+            finished();
+        }];
     }
     else {
         finished();
@@ -332,36 +326,30 @@
       
     if(animated) {
         
-        FLAnimator* animator = [FLAnimator animator:kDuration];
+        FLSlideOutAndComeForwardTransition* transition = [FLSlideOutAndComeForwardTransition transitionWithViewToShow:toShow.view viewToHide:toHide.view];
+        [[transition startAnimation] waitUntilFinished]; 
         
-        [animator addAnimation:[FLFadeInAnimation animation:toShow]];
-        [animator addAnimation:[FLComeForwardAnimation animation:toShow]];
-
-
-        [animator addAnimation:[FLSlideOutToRightAnimation animation:toHide]];
-        [animator addAnimation:[FLFadeOutAnimation animation:toHide 
-                                                     options:FLAnimationOptionRemoveTargetViewFromSuperview | FLAnimationOptionRestoreValues]];
+        finished();
         
-        [animator startAnimating:finished];
-       
+        //:^(FLResult result)
+//            finished();
+//        }];
     }
     else {
        finished();
     }
 }
 
-- (void) flipToNextNotificationViewWithDirection:(FLFlipAnimationDirection) direction 
+- (void) flipToNextNotificationViewWithDirection:(FLFlipViewAnimatorDirection) direction 
                                         nextView:(UIView*) nextView
                                       completion:(void (^)()) completion {
 
     completion = FLAutoreleasedCopy(completion);
 
-    FLAnimator* animator = [FLAnimator animator:0.5];
-    
-    [animator addAnimation:[FLFlipAnimation flipAnimation:direction 
-                                               withTarget:self.notificationView 
-                                              withSibling:nextView]];
-    [animator startAnimating:^{
+    FLFlipTransition* animation = [FLFlipTransition transitionWithViewToShow:nextView 
+                                                       viewToHide:self.notificationView];
+                                              
+    [animation startAnimation:^(FLResult result) {
         [self.notificationView removeFromSuperview];
         self.notificationView = nextView;
         if(completion) {
@@ -377,7 +365,7 @@
     notificationView.frame = self.notificationViewEnclosure.bounds;
     if(self.notificationView) {
         if(animated) {
-            [self flipToNextNotificationViewWithDirection:FLFlipAnimationDirectionDown nextView:notificationView completion:completion];
+            [self flipToNextNotificationViewWithDirection:FLFlipViewAnimatorDirectionDown nextView:notificationView completion:completion];
         }
         else {
             [self.notificationView removeFromSuperview];

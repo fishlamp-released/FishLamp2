@@ -97,9 +97,6 @@
 - (void) dispatchFinishableBlock:(FLFinishableBlock) block 
               withFinisher:(FLFinisher*) finisher;
 
-- (void) willDispatchObject:(id) object;
-
-- (void) didDispatchObject:(id) object;
                 
 @end
 

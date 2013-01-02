@@ -7,16 +7,18 @@
 //
 
 #import "FLObservable.h"
-#import "FLCancellable.h"
 #import "FLDispatcher.h"
 #import "FLResult.h"
+#import "FLObjectAuthenticator.h"
+#import "FLContextuallyDispatchable.h"
 
+@class FLDispatchableContext;
 @class FLOperation;
 @class FLServiceManagingContext;
 
 typedef FLResult (^FLRunOperationBlock)(FLOperation* operation);
 
-@interface FLOperation : FLObservable<FLCancellable, FLDispatchable> {
+@interface FLOperation : FLObservable<FLContextuallyDispatchable, FLAuthenticated> {
 @private
 	id _operationID;
 	FLRunOperationBlock _runBlock;

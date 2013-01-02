@@ -8,7 +8,7 @@
 
 #import "FLCocoaUIRequired.h"
 #import "FLBreadcrumbBarView.h"
-#import "FLFlipAnimation.h"
+#import "FLFlipTransition.h"
 
 @class FLWizardPanel;
 @protocol FLWizardViewControllerDelegate;
@@ -92,7 +92,7 @@
 
 
 
-- (void) flipToNextNotificationViewWithDirection:(FLFlipAnimationDirection) direction 
+- (void) flipToNextNotificationViewWithDirection:(FLFlipViewAnimatorDirection) direction 
                                         nextView:(UIView*) nextView
                                       completion:(void (^)()) completion;
 

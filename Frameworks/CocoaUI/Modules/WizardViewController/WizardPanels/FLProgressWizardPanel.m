@@ -158,7 +158,7 @@
    
     view.textValue = errorMessage;
    
-    [self flipToNextViewWithDirection:FLFlipAnimationDirectionDown nextView:view completion:^{
+    [self flipToNextViewWithDirection:FLFlipViewAnimatorDirectionDown nextView:view completion:^{
         self.wizard.otherButton.enabled = NO;
         self.wizard.backButton.enabled = YES;
     }];
@@ -184,7 +184,7 @@
     }];
 }
 
-- (void) flipToNextViewWithDirection:(FLFlipAnimationDirection) direction 
+- (void) flipToNextViewWithDirection:(FLFlipViewAnimatorDirection) direction 
                             nextView:(UIView*) nextView
                             completion:(void (^)()) completion {
 
@@ -194,14 +194,8 @@
     self.wizard.backButton.enabled = NO;
     self.wizard.nextButton.enabled = NO;
 
-    FLAnimator* animator = [FLAnimator animator:0.5];
-    
-    [animator addAnimation:[FLFlipAnimation flipAnimation:direction 
-                                               withTarget:self.currentView 
-                                              withSibling:nextView]];
-    [animator startAnimating:^{
-        [self.currentView removeFromSuperview];
-        
+    FLFlipTransition* transition = [FLFlipTransition transitionWithViewToShow:nextView viewToHide:self.currentView];
+    [transition startAnimation:^(FLResult result){
         self.currentView = nextView;
         if(completion) {
             completion();

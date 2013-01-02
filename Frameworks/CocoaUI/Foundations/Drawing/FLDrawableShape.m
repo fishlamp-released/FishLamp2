@@ -73,19 +73,20 @@
     CGContextAddPath(context, innerPath);
 	CGContextClip(context);
 
-    self.finishDrawingBlock = ^{
+    self.finishDrawingBlock = ^(id drawable) {
         // reset gstate 
         CGContextRestoreGState(context);
         
         // now draw inner border around subwidgets if we have a border color
         
-        if(_innerBorderColor) {
+        UIColor* borderColor = [drawable innerBorderColor];
+        if(borderColor) {
             CGContextSaveGState(context);
             
             // TODO: use color components instead of UIColor+t
-            FLColorValues borderColor = _innerBorderColor.rgbColorValues;
-            CGContextSetRGBStrokeColor(context, borderColor.red, borderColor.green, borderColor.blue, borderColor.alpha);
-            CGContextSetLineWidth(context, _lineWidth);
+            FLColorValues borderColorValues = borderColor.rgbColorValues;
+            CGContextSetRGBStrokeColor(context, borderColorValues.red, borderColorValues.green, borderColorValues.blue, borderColorValues.alpha);
+            CGContextSetLineWidth(context, [drawable borderLineWidth]);
             CGContextAddPath(context, innerPath);
             CGContextClip(context);
             CGContextStrokePath(context);

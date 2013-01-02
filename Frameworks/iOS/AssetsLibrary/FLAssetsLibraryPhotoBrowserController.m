@@ -75,7 +75,7 @@
 {
     if(_notificationView)
     {
-        [_notificationView removeFromSuperviewWithAnimationType:FLViewAnimationTypeSlideFromTop duration:0.3f finishedBlock:nil];
+        [_notificationView removeFromSuperviewWithAnimationType:FLAnimatedViewTypeSlideFromTop duration:0.3f finishedBlock:nil];
         FLReleaseWithNil(_notificationView);
     }
 }
@@ -104,7 +104,7 @@
     label.text = title;
     [_notificationView addSubview:label];
     [self.view addSubview:_notificationView];
-    [_notificationView animateOntoScreen:FLViewAnimationTypeSlideFromTop duration:0.3 finishedBlock:nil];
+    [_notificationView animateOntoScreen:FLAnimatedViewTypeSlideFromTop duration:0.3 finishedBlock:nil];
 }
 
 - (void) _cancelRangeSelect

@@ -64,7 +64,7 @@
 //            thumbnail.thumbnailWidget.touchHandler.wasSelectedCallback = FLCallbackMake(self, @selector(touchableObjectWasSelected:));
 
     if(animated) {
-        [thumbnail animateOntoScreen:FLViewAnimationTypeFade 
+        [thumbnail animateOntoScreen:FLAnimatedViewTypeFade 
                             duration:0.15 
                        finishedBlock:^(UIView* view) {
                             finished();

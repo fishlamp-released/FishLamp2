@@ -31,11 +31,11 @@
     [self drawRect:drawRect];      
 
     if(drawBlock) {
-        drawBlock(); 
+        drawBlock(self); 
     }
 
     if(_finishDrawingBlock) {
-        _finishDrawingBlock();
+        _finishDrawingBlock(self);
     }
 
     _finishDrawingBlock = nil;

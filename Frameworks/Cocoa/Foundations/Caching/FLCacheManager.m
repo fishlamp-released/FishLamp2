@@ -15,7 +15,7 @@ NSString* const FLCacheManagerEmptyCacheNotification = @"FLCacheManagerEmptyCach
 
 FLSynthesizeSingleton(FLCacheManager);
 
-- (void) broadcastEmptyCacheMessage:(id<FLCancellable>) operation
+- (void) broadcastEmptyCacheMessage:(id) operation
 {
 	if(operation)
 	{

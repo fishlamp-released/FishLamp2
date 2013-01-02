@@ -7,14 +7,12 @@
 //
 
 #import "FLCocoaRequired.h"
-
 #import "FLResult.h"
-
 @class FLFinisher;
 @class FLStackTrace;
 
 typedef void (^FLFinisherNotificationSchedulerBlock)(dispatch_block_t notifier);
-
+typedef void (^FLFinishableBlock)(FLFinisher* finisher);
 
 @interface FLFinisher : NSObject {
 @private

@@ -336,14 +336,14 @@ FLSynthesizeStructProperty(saveChangesImmediately, setSaveChangesImmediately, BO
 			[self.view insertSubview:_imageView atIndex:0];
 			if(animated)
 			{
-				[_imageView animateOntoScreen:FLViewAnimationTypeFade duration:0.3 finishedBlock:nil];
+				[_imageView animateOntoScreen:FLAnimatedViewTypeFade duration:0.3 finishedBlock:nil];
 			}
 		}
 		else
 		{
 			if(animated)
 			{
-				[_imageView removeFromSuperviewWithAnimationType:FLViewAnimationTypeFade duration:0.3 finishedBlock:nil];
+				[_imageView removeFromSuperviewWithAnimationType:FLAnimatedViewTypeFade duration:0.3 finishedBlock:nil];
 			}
 			else
 			{

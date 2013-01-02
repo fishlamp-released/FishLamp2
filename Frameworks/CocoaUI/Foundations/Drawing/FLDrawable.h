@@ -8,14 +8,14 @@
 
 #import "FLCocoaUIRequired.h"
 
-typedef void (^FLDrawingBlock)();
+typedef void (^FLDrawingBlock)(id drawable);
 
 @interface FLDrawable : NSObject {
 @private
     CGRect _frame;
     CGRect _superBounds;
     
-    FLDrawingBlock _finishDrawingBlock;
+    __unsafe_unretained FLDrawingBlock _finishDrawingBlock;
 }
 
 @property (readonly, assign, nonatomic) CGRect frame;

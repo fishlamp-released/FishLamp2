@@ -119,7 +119,7 @@
     return FLAutorelease([[[self class] alloc] initWithBlock:block arguments:arguments]);
 }
 
-- (void) startAsyncWithFinisher:(FLFinisher*) finisher {
+- (void) startWorking:(FLFinisher*) finisher {
     switch(_arguments.count) {
         case 0:
             [self perform];

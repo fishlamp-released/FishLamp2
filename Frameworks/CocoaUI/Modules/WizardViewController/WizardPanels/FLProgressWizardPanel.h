@@ -10,7 +10,7 @@
 
 #import "FLWizardViewController.h"
 #import "FLWizardPanel.h"
-#import "FLFlipAnimation.h"
+#import "FLFlipTransition.h"
 #import "FLView.h"
 
 @interface FLProgressWizardPanelView : FLView {
@@ -52,7 +52,7 @@
 
 + (id) progressWizardPanel;
 
-- (void) flipToNextViewWithDirection:(FLFlipAnimationDirection) direction 
+- (void) flipToNextViewWithDirection:(FLFlipViewAnimatorDirection) direction 
                             nextView:(UIView*) nextView
                             completion:(void (^)()) completion;
 

@@ -8,20 +8,21 @@
 
 #import "FLCocoaRequired.h"
 #import "FLObservable.h"
-#import "FLDispatcher.h"
-#import "FLDispatchQueue.h"
+
 #import "FLResult.h"
 #import "FLFinisher.h"
 
 #import "FLHttpResponse.h"
 #import "FLHttpRequestBody.h"
-#import "FLCancellable.h"
 
 #import "FLReadStream.h"
+#import "FLObjectAuthenticator.h"
+#import "FLContextuallyDispatchable.h"
 
 @class FLDispatchableContext;
+@class FLDispatchQueue;
 
-@interface FLHttpRequest : FLObservable<FLCancellable, FLReadStreamDelegate, FLDispatchable> {
+@interface FLHttpRequest : FLObservable<FLReadStreamDelegate, FLContextuallyDispatchable, FLAuthenticated> {
 @private
     FLHttpRequestHeaders* _headers;
     FLHttpRequestBody* _body;
