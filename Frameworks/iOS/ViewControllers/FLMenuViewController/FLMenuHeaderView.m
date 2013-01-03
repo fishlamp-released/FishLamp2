@@ -68,7 +68,7 @@
 {
     FLRelease(_label);
     FLRelease(_gradientView);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 @end
 

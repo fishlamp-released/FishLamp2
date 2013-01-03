@@ -73,7 +73,7 @@
 {
 	FLRelease(_placeholderTextDescriptor);
 	FLRelease(_textDescriptor);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void) setHighlighted:(BOOL) highlighted

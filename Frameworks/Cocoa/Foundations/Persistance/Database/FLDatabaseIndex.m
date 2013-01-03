@@ -28,7 +28,7 @@
 - (void) dealloc
 {
 	FLRelease(_columnName);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 + (FLDatabaseIndex*) databaseIndex:(NSString*) columnName indexProperties:(FLDatabaseColumnIndexProperties) indexProperties

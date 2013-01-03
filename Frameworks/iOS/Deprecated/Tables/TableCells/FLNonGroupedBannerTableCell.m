@@ -33,7 +33,7 @@
 - (void)dealloc 
 {
 	FLReleaseWithNil(_banner);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 

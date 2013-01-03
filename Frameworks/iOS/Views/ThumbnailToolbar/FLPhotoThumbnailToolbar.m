@@ -76,7 +76,7 @@
 	FLRelease(_backButton);
 	FLRelease(_nextButton);
 	FLRelease(_thumbnailBarItem);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 #define ButtonSize 40

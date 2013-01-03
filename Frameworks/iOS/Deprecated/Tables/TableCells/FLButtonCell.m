@@ -83,7 +83,7 @@
 - (void) dealloc
 {
 	FLRelease(_button);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 + (FLButtonCell*) buttonCell:(FLLegacyButton*) button buttonMode :(FLButtonCellButtonMode) buttonMode

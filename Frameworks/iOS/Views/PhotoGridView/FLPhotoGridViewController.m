@@ -69,7 +69,7 @@
 - (void) dealloc
 {
 //    FLRelease(_buttonbarHost);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 - (void) scrollToGalleryItem:(id<FLGalleryObject>) galleryItem    

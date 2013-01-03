@@ -138,7 +138,7 @@ static void * const kListenerKey = (void*)&kListenerKey;
 - (void) dealloc {
     _object = nil;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 @end

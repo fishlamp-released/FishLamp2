@@ -6,7 +6,7 @@
 //	Copyright 2009 GreenTongue Software. All rights reserved.
 //
 
-#import "FLViewController.h"
+#import "FLIViewController.h"
 #import "FLAction.h"
 
 #import "FLNavigationControllerViewController.h"
@@ -21,10 +21,10 @@
 
 // TODO: there is a lot of coupling and old crusty code in here.
 
-@interface FLViewController ()
+@interface FLiViewController ()
 @end
 
-@implementation FLViewController 
+@implementation FLiViewController 
 
 @synthesize navigationControllerCloseAnimation = _navigationControllerCloseAnimation;
 @synthesize operationContext = _operationContext;

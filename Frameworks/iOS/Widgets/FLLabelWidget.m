@@ -31,7 +31,7 @@
 {
 	FLRelease(_text);
 	FLRelease(_textDescriptor);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void) setText:(NSString*) text

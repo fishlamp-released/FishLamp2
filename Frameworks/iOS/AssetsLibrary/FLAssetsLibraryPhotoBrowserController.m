@@ -68,7 +68,7 @@
     FLRelease(_notificationView);
 	FLRelease(_assets);
 	FLRelease(_group);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void) _hideNotification

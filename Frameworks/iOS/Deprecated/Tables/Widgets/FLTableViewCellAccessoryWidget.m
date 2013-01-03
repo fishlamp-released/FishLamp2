@@ -39,7 +39,7 @@
     FLRelease(_selectedColor);
 	FLRelease(_highlightedColor);
 	FLRelease(_color);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void) setType:(UITableViewCellAccessoryType) type

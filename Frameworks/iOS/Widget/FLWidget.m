@@ -115,7 +115,7 @@
     FLRelease(_touchHandler);
 	FLRelease(_backgroundColor);
     FLRelease(_userData);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void) setNeedsLayout {

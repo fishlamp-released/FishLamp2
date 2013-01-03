@@ -51,7 +51,7 @@
     FLRelease(_headerView);
 	FLRelease(_userGuid);
 	FLRelease(_statusUpdate);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void) twitterAuthenticator:(FLTwitterAuthenticator*) authenticator 

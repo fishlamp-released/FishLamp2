@@ -47,7 +47,7 @@
 {
 	FLRelease(_firstTouch);
 	FLRelease(_lastTouch);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 @end
@@ -194,7 +194,7 @@ FLSynthesizeStructProperty(canScrollTiles, setCanScrollTiles, BOOL, _tilingScrol
 	[self tearDown];
 	FLRelease(_scrollQueue);
 	FLRelease(_currentScroll);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (NSUInteger) firstNextViewIndex

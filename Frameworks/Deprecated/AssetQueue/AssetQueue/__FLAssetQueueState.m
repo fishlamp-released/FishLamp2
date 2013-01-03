@@ -77,7 +77,7 @@
     FLRelease(__totalAssetsAdded);
     FLRelease(__firstQueuePosition);
     FLRelease(__lastQueuePosition);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder

@@ -48,7 +48,7 @@
     FLRelease(__oauth_callback_confirmed);
     FLRelease(__oauth_token);
     FLRelease(__oauth_verifier);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 - (id) init

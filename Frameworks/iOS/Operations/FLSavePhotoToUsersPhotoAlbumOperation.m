@@ -33,7 +33,7 @@
 	FLRelease(_properties);
 	FLRelease(_lock);
 	FLRelease(_assetsLibrary);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void) _doneSaving:(NSError*) error

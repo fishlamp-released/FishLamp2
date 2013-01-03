@@ -25,7 +25,7 @@
 {
 	[_proxiedView removeFromSuperview];
 	FLRelease(_proxiedView);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (NSString*) text

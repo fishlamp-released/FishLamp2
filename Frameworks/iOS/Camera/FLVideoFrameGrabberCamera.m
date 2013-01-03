@@ -25,7 +25,7 @@
 - (void) dealloc
 {
 	FLRelease(_frames);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void) _addOutput

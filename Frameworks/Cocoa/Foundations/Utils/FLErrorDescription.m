@@ -40,7 +40,7 @@
 	FLRelease(_error);
 	FLRelease(_title);
 	FLRelease(_description);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 @end

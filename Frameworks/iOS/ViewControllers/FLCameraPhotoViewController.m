@@ -63,7 +63,7 @@
 {
 	FLReleaseWithNil(_folder);
 	FLReleaseWithNil(_array);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (IBAction) rotateLeft:(id) sender

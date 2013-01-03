@@ -130,7 +130,7 @@
 
     FLConfirm_v([_resourceProviders objectForKey:resourceKey] == nil, @"resource provider for %@ already set", resourceKey);
     
-    [_resourceProviders setObject:[FLKeyValuePair keyValuePair:provider value:FLAutoreleasedCopy(providerBlock)] forKey:resourceKey];
+    [_resourceProviders setObject:[FLKeyValuePair keyValuePair:provider value:FLCopyWithAutorelease(providerBlock)] forKey:resourceKey];
 }
 
 - (void) addResourceConsumer:(id) consumer 

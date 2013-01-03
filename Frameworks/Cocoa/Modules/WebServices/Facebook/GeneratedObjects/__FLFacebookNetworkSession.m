@@ -72,7 +72,7 @@
     FLRelease(__access_token);
     FLRelease(__expiration_date);
     FLRelease(__permissions);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder

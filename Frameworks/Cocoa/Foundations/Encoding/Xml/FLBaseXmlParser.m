@@ -51,7 +51,7 @@
 	FLRelease(_parser);
 	FLRelease(_error);
 	FLRelease(_dataDecoder);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (id<FLDataDecoder>) onCreateDataDecoder {

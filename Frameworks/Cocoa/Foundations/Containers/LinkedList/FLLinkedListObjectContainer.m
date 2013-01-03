@@ -28,7 +28,7 @@
 - (void) dealloc {
     FLRelease(_key);
     FLRelease(_object);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 #endif
 

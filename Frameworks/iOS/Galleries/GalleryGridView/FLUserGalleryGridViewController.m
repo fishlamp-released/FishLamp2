@@ -31,7 +31,7 @@
 - (void) dealloc
 {
     FLRelease(_topToolbar);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 - (void) closeSelf:(id) sender

@@ -100,7 +100,7 @@
 {
 	FLRelease(_rows);
 	FLRelease(_dataKey);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 @end

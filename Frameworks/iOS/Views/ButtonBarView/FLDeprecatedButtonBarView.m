@@ -75,7 +75,7 @@ typedef enum {
 {
 	FLRelease(_view);
 	FLRelease(_key);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 @end
@@ -124,7 +124,7 @@ FLSynthesizeStructProperty(automaticallyShowBackButton, setAutomaticallyShowBack
 	FLRelease(_leftViews);
 	FLRelease(_rightViews);
 	FLRelease(_label);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (CGRect) rectForButtonWithKey:(NSString*) key forDisplayInView:(UIView*) view

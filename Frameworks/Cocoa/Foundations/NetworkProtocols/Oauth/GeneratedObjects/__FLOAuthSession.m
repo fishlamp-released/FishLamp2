@@ -80,7 +80,7 @@
     FLRelease(__oauth_token_secret);
     FLRelease(__user_id);
     FLRelease(__screen_name);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder

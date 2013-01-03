@@ -30,7 +30,7 @@
 - (void) dealloc
 {
 	FLRelease(_asset);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void) runOperation

@@ -31,7 +31,7 @@
     FLRelease(_scrollView);
     FLRelease(_breadCrumbview);
     FLRelease(_breadcrumbHost);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 - (void) updateLayout {

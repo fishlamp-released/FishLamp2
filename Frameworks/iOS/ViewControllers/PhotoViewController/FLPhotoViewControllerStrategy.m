@@ -52,7 +52,7 @@ FLSynthesizeStructProperty(registeredForFocusEvents, setRegisteredForFocusEvents
 	_cameraController.delegate = nil;
 	[_cameraController stopCamera];
 	FLRelease(_cameraController);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void) updateFocusRect

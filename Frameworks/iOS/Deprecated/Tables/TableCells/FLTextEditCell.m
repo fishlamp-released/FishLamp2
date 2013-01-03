@@ -64,7 +64,7 @@ static BOOL s_editingMode;
 	FLRelease(_warningLabel);
 	FLRelease(_helpTextLabel);
 	FLRelease(_countDownLabel);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void) clear

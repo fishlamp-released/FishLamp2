@@ -6,8 +6,8 @@
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
 
-#import "FLAnimation.h"
+#import "FLViewAnimation.h"
 
-@interface FLComeForwardAnimation : FLAnimation
+@interface FLComeForwardAnimation : FLViewAnimation
 
 @end

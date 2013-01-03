@@ -60,7 +60,7 @@
 	FLRelease(_selectedColor);
 	FLRelease(_selectedShadowColor);
 	FLRelease(_font);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 + (FLTextDescriptor*) textDescriptor

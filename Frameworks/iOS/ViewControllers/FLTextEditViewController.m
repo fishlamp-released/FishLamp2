@@ -66,7 +66,7 @@
     FLRelease(_text);
     _textEditView.delegate = nil;
 	FLRelease(_textEditView);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void) hideViewController:(BOOL)animated 

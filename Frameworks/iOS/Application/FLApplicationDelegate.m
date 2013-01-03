@@ -42,7 +42,7 @@
 - (void) dealloc {
     FLRelease(_window);
     FLRelease(_rootViewController);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 - (void) willInitApp {
@@ -102,7 +102,7 @@
 
 - (void)dealloc {
     FLRelease(_navigationController);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 - (void) setRootViewController:(UIViewController*) viewController {
     self.navigationController = [FLNavigationController navigationController:viewController];

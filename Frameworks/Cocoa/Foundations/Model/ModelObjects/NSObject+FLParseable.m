@@ -37,7 +37,7 @@
 - (void) dealloc {
     FLRelease(_fileName);
     FLRelease(_hint);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 #endif

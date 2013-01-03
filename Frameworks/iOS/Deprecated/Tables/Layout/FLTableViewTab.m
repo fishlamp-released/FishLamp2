@@ -38,7 +38,7 @@
 - (void) dealloc
 {
 	FLRelease(_sections);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 //- (BOOL) hasEditableRows

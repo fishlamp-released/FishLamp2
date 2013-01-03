@@ -22,7 +22,7 @@
 
 - (void) dealloc {
 	FLRelease(_properties);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 // stubs in case parents call [super ...]

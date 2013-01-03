@@ -57,7 +57,7 @@
 	FLRelease(_assetQueue);
 	FLRelease(_emptyCellImage);
 	FLRelease(_groups);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (BOOL) canAddAsset:(NSString *) url

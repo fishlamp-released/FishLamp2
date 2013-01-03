@@ -45,7 +45,7 @@
 - (void) dealloc
 {
     FLRelease(__uid);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder

@@ -19,7 +19,7 @@
 #if ! FL_ARC
 	[_target performSelectorOnMainThread:@selector(release) withObject:nil waitUntilDone:NO];
 #endif    
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void) _performInForeground

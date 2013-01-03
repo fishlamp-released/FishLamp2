@@ -163,7 +163,7 @@ FLSynthesizeStructProperty(didShowError, setDidShowError, BOOL, _photoViewFlags)
 	FLRelease(_spinner);
 	FLRelease(_detailsView);
 	FLRelease(_errorView);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (UIImage*) image

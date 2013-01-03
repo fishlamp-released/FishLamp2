@@ -29,7 +29,7 @@
     [self closeLogFile];
 
     FLRelease(_filePath);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 - (void) openLogFile {

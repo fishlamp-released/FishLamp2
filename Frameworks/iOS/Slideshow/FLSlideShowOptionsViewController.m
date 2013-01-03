@@ -38,7 +38,7 @@
 - (void) dealloc
 {
 	FLRelease(_options);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (FLSlideshowOptions*) options

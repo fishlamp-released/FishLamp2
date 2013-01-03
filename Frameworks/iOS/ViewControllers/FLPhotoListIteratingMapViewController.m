@@ -16,7 +16,7 @@
 {
 	FLRelease(_prevButton);
 	FLRelease(_nextButton);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void) _next:(id) sender

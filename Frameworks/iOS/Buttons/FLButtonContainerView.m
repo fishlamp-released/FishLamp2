@@ -27,7 +27,7 @@
 
 - (void) dealloc {
     FLRelease(_onSetupButton);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 - (void) layoutSubviews {

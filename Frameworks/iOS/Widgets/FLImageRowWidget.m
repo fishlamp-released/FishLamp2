@@ -23,7 +23,7 @@
 - (void) dealloc
 {
 	[self clearImages];
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void) setImage:(UIImage*) image atIndex:(NSUInteger) idx

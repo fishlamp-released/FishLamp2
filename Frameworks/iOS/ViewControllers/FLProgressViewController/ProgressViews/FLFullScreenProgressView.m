@@ -100,7 +100,7 @@
     FLRelease(_spinner);
     FLRelease(_backgroundWidget);
     FLRelease(_progress);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 #endif
 

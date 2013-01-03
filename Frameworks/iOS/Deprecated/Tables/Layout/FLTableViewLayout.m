@@ -31,7 +31,7 @@ FLAssertDefaultInitNotCalled_();
 - (void) dealloc
 {
 	FLRelease(_tabs);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (NSUInteger) tabCount

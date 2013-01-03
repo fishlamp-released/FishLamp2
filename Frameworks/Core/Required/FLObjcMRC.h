@@ -8,16 +8,19 @@
 
 #if FL_MRC
 
+#ifdef  __MRC_INCLUDE__
+#error already included
+#endif
+
+#define __MRC_INCLUDE__ 1
+
+
 #import <objc/runtime.h>
 
 // object memory management
 #define FLRetain(__OBJ__)   \
             [__OBJ__ retain]
 
-NS_INLINE
-void FLRetainObject(id object) {
-    [object retain];
-}
 
 #define FLRelease(__OBJ__) \
             [__OBJ__ release]
@@ -30,9 +33,14 @@ void FLAutoreleaseObject(id object) {
     [object autorelease];
 }
 
+NS_INLINE
+void FLRetainObject(id object) {
+    [object retain];
+}
+
+
 #define FLSuperDealloc() \
             [super dealloc]
-    //#define super_dealloc_()                    [self performSelector:sel_getUid("sendDeallocNotification")]; [super dealloc]
             
 #define bridge_(__TO__, __FROM__) \
             ((__TO__) __FROM__)
@@ -54,49 +62,15 @@ void FLManuallyRelease(id* obj) {
 }
 
 NS_INLINE
-void _FLRetainObject(id* a, id b) {
-    if(a && (*a != b)) { 
-        [*a release]; 
-        *a = [b retain]; 
-    }
-}
-
-NS_INLINE
-void _FLAssignObjectWithCopy(id* a, id b) {
-    if(a && (*a != b)) { 
-        [*a release]; 
-        *a = [b copy]; 
-    }
-}
-
-NS_INLINE
-void _FLReleaseBlockWithNil_(dispatch_block_t* block) {
+void _FLReleaseBlockWithNil(dispatch_block_t* block) {
     if(block && *block) {
-        [*block release];
+        FLRelease(*block);
         *block = nil;
     }
 }
 
-#define FLReleaseWithNil(__OBJ__) \
-            FLManuallyRelease(&(__OBJ__))
-
 #define FLReleaseBlockWithNil(b) \
-            _FLReleaseBlockWithNil_((dispatch_block_t*) &(b))
-
-#define FLSetObjectWithRetain(a,b) \
-            _FLRetainObject((id*) &a, (id) b)
-
-#define FLSetObjectWithCopy(a,b) \
-            _FLAssignObjectWithCopy((id*) &a, (id) b)
-
-#define FLAutoreleasedCopy(__OBJECT__) \
-            FLAutorelease([__OBJECT__ copy])
-
-#define FLAutoreleasedMutableCopy(__OBJECT__) \
-            FLAutorelease([__OBJECT__ mutableCopy])
-
-#define FLAutoreleasedRetained(__OBJECT__) \
-            FLAutorelease([__OBJECT__ retain])
+            _FLReleaseBlockWithNil((dispatch_block_t*) &(b))
 
 #define FLAutoreleasePoolOpen(__NAME__) \
     { \
@@ -114,10 +88,7 @@ void _FLReleaseBlockWithNil_(dispatch_block_t* block) {
         } \
     }
 
-#define FLAutoreleasePoolWithName(__NAME__, __VA_ARGS__) \
-            FLAutoreleasePoolOpen(__NAME__) \
-            __VA_ARGS__ \
-            FLAutoreleasePoolClose(__NAME__) \
+
     
 
 #endif

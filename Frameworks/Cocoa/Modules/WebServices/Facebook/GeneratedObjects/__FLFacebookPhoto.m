@@ -106,7 +106,7 @@
     FLRelease(__height);
     FLRelease(__width);
     FLRelease(__tags);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder

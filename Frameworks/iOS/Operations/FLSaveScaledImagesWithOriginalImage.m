@@ -39,7 +39,7 @@
 - (void) dealloc
 {
 	FLReleaseWithNil(_folder);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void) runOperation

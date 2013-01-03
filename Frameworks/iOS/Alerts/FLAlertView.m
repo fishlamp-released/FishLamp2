@@ -144,7 +144,7 @@
     FLRelease(_triangleShapeWidget);
     FLRelease(_colorBar);
     FLRelease(_title);    FLRelease(_messageLabel);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 #endif

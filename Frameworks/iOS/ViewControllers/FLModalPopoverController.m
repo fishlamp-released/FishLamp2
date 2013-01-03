@@ -50,7 +50,7 @@ static NSMutableArray* s_stack = nil;
 {
 	FLRelease(_shield);
 	self.delegate = nil;
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void) hideShieldView

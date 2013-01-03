@@ -65,7 +65,7 @@
     FLRelease(__to);
     FLRelease(__message);
     FLRelease(__created_time);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder

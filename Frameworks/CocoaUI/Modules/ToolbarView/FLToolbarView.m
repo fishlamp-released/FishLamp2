@@ -84,7 +84,7 @@
 	FLRelease(_leftItems);
 	FLRelease(_centerItems);
 	FLRelease(_rightItems);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void) layoutSubviews

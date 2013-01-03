@@ -33,7 +33,7 @@ static id s_touchedObject = nil;
     [self stopInterceptingGlobalTouches];
     
     FLRelease(_wasSelectedCallback);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (BOOL) gotTouchDown {

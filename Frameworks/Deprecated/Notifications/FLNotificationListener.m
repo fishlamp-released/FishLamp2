@@ -66,7 +66,7 @@
 - (void) dealloc 
 {
     [self removeAllObservers];
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 

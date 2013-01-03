@@ -201,7 +201,7 @@
     FLRelease(__copyright);
     FLRelease(__keywords);
     FLRelease(__assetObject);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder

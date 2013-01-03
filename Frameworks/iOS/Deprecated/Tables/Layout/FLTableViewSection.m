@@ -40,7 +40,7 @@
 	FLReleaseWithNil(_title);
 	FLReleaseWithNil(_cells);
 	FLRelease(_headerView);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (NSUInteger) cellCount

@@ -123,7 +123,7 @@ CGFloat kFrameSize = 0; //5.0f
 	FLRelease(_backgroundThumbnail);
 	FLRelease(_foregroundThumbnail);
 	FLRelease(_scaledForegroundThumbnail);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (BOOL) ownsSenderOfEvent:(id) sender

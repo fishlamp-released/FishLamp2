@@ -1,5 +1,5 @@
 //
-//  FLViewController.h
+//  UIViewController.h
 //  FishLampCocoa
 //
 //  Created by Mike Fullerton on 12/11/12.
@@ -10,6 +10,15 @@
 #if OSX
 #import "UIView+OSX.h"
 #define UIViewController NSViewController
+
+@protocol UIViewControllerCompatibility <NSObject>
+@property (readwrite, strong, nonatomic) NSArray *childViewControllers;
+@property (readwrite, assign, nonatomic) UIViewController* parentViewController;
+@property (readwrite, assign, nonatomic, getter=isViewLoaded) BOOL viewLoaded;
+
+- (void) didLoadViewForCompatibility:(NSView*) view;
+- (void) didUnloadViewForCompatibility:(NSView*) view;
+@end
 
 @interface NSViewController (UIKit)
 

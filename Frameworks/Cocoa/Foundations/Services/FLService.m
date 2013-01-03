@@ -56,7 +56,7 @@
 //        FLPerformSelector2(service, selector, serviceRequest, finisher);
 //    };
 //
-//    [_requestHandlers setObject:FLAutoreleasedCopy(handler) forKey:serviceRequestType];
+//    [_requestHandlers setObject:FLCopyWithAutorelease(handler) forKey:serviceRequestType];
 //}
 //
 //- (FLFinisher*) didReceiveServiceRequest:(FLServiceRequest*) request 

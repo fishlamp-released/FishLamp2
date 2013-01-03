@@ -68,7 +68,7 @@ FLSynthesizeStructProperty(allowMultipleSelections, setAllowMultipleSelections, 
     FLRelease(_objectCache);
     FLRelease(_dataProvider);
     FLRelease(_scrollIndicatorView);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 #if DEBUG

@@ -90,7 +90,7 @@
 {
 	FLRelease(_selectedThumbnail);
 	FLRelease(_thumbnails);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (BOOL) hasAllThumbnails
@@ -432,7 +432,7 @@
 {
 	FLRelease(_label);
 	FLRelease(_view);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 @end

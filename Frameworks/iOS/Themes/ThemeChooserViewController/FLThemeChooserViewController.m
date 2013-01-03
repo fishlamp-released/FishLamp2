@@ -25,7 +25,7 @@
 - (void) dealloc 
 {
 	FLRelease(_savedThemeInfo);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (BOOL) didChangeDataForKey:(id)key previousValue:(id)previousValue

@@ -59,7 +59,7 @@
 	FLRelease(_spinner);
 	FLRelease(_thumbnail);
 	FLRelease(_nameLabel);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void) layoutSubviews

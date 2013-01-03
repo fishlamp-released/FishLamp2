@@ -210,7 +210,7 @@
     FLRelease(_subMenu);
     FLRelease(_label);
     FLRelease(_imageView);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 - (void) setDisabled:(BOOL) disabled

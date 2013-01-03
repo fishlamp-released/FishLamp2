@@ -48,7 +48,7 @@
 {
     FLRelease(__type);
     FLRelease(__pictureSize);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder

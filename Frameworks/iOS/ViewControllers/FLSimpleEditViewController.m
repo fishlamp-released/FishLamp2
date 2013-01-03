@@ -127,7 +127,7 @@
 	FLRelease(_contentView);
 	FLRelease(_saveButton);
 	FLRelease(_cancelButton);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (NSString*) saveButtonTitle

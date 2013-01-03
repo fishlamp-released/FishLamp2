@@ -118,7 +118,7 @@
 {
 	self.textField.delegate = nil;
 	self.textField.canResignFirstResponder = YES;
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void) endEditing

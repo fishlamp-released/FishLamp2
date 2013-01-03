@@ -27,7 +27,7 @@
 
 - (void) dealloc {
 	FLRelease(_database);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (NSUInteger) calculateTotalStepCount {

@@ -23,7 +23,7 @@
 
 - (void) dealloc {
     FLRelease(_error);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 - (NSError* )parseJsonData:(NSData *)data rootObject:(id) rootObject {

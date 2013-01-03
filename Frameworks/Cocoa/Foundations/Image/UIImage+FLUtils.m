@@ -49,7 +49,7 @@
 {
 	FLReleaseWithNil(_outputData);
 	FLReleaseWithNil(_outputImage);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 @end
 

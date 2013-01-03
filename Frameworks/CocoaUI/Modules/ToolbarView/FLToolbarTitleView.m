@@ -28,7 +28,7 @@
 
 - (void) dealloc {
     FLRelease(_textLabel);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 - (void) setGrayText {

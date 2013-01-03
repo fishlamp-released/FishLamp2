@@ -106,7 +106,7 @@ FLSynthesizeStructProperty(maximizeWidth, setMaximizeWidth, BOOL, _style);
 	FLRelease(_roundRectView);
 	
 	[self releaseViews];
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 #define DragBarWidth 20

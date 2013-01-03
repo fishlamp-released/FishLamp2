@@ -36,7 +36,7 @@
 - (void) dealloc
 {
 	FLRelease(_exif);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 @end

@@ -41,7 +41,7 @@
 - (void) dealloc
 {
 	FLRelease(_imageCellView);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void) setNeedsLayout

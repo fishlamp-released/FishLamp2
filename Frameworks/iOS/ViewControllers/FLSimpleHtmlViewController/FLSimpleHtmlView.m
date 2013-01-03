@@ -47,7 +47,7 @@ FLSynthesizeStructProperty(isLoading, setIsLoading, BOOL, _simpleHtmlFlags);
 	self.simpleHtmlViewDelegate = nil;
 	[self stopLoading];
 	FLRelease(_spinner);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void) startSpinner:(UIActivityIndicatorViewStyle) spinnerStyle

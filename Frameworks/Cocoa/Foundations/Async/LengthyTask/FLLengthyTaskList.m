@@ -90,7 +90,7 @@
 //
 //- (void) dealloc {
 //	FLRelease(_taskList);
-//	super_dealloc_();
+//	FLSuperDealloc();
 //}
 //
 //- (void) addLengthyTask:(FLLengthyTask*) task {

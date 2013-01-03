@@ -110,7 +110,7 @@
 //    FLRelease(_onFormatWarningString);
 //    FLRelease(_onCreateAlert);
 //    FLRelease(_alertViewController);
-//    super_dealloc_();
+//    FLSuperDealloc();
 //#endif
 //}
 //

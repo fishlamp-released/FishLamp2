@@ -44,7 +44,7 @@
 {
     [_menuView clearDelegates];
     FLRelease(_menuView);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 - (void) updateLayout

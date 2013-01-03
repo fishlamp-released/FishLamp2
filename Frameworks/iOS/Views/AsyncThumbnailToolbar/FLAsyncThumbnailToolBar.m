@@ -90,7 +90,7 @@
     FLRelease(_spinner);
     FLRelease(_thumbnailButton);
     FLRelease(_buttons);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 #define kButtonSpace 20.0f

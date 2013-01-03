@@ -31,7 +31,7 @@
 //    FLRelease(_observeFinish);
 //    FLRelease(_observeResult);
 //    FLRelease(_observeAllResults);
-//    super_dealloc_();
+//    FLSuperDealloc();
 //}
 //#endif
 //

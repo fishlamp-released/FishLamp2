@@ -151,7 +151,7 @@
 	FLRelease(_roundRectView);
 	_textView.delegate = nil;
     FLRelease(_textView);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 #define kInset 5.0f

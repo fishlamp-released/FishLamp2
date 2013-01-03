@@ -43,6 +43,6 @@
 - (void) dealloc
 {
 	FLRelease(_arrowColor);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 @end

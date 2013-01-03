@@ -46,6 +46,6 @@
 {
 	FLRelease(_leftColumn);
 	FLRelease(_rightColumn);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 @end

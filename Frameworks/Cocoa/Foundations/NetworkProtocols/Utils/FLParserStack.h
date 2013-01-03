@@ -6,7 +6,7 @@
  *  Copyright 2011 GreenTongue Software. All rights reserved.
  *
  */
-
+/*
 #import "FLCocoaRequired.h"
 #import "FLCore.h"
 
@@ -32,9 +32,8 @@ extern FLParserStack* FLParserStackAlloc();
 extern void FLParserStackFree(FLParserStack** stack);
 
 NS_INLINE
-void FLParserStackSetNodeObject(FLParserStackNode* node, id object)
-{
-	FLSetObjectWithRetain((node->object), object);
+void FLParserStackSetNodeObject(FLParserStackNode* node, id object) {
+    FLSetObjectWithRetain((node->object), object);
 }
 
 NS_INLINE
@@ -96,3 +95,4 @@ NSInteger FLParserStackDepth(FLParserStack* stack)
 extern void FLParserStackLogState(FLParserStack* stack, NSString* why);
 #endif 
 
+*/

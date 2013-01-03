@@ -49,7 +49,7 @@
 {
     FLRelease(__period);
     FLRelease(__values);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder

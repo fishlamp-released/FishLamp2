@@ -46,7 +46,7 @@
 - (void) dealloc
 {
 	FLRelease(_cache);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (BOOL) willSaveObjectToDatabaseCache:(id) object

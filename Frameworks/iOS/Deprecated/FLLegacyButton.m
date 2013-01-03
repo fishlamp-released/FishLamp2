@@ -125,7 +125,7 @@
 	FLRelease(_image);
 	FLRelease(_titleLabel);
 	FLRelease(_imageView);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (BOOL) isTranslucent

@@ -27,7 +27,7 @@
 {
     FLRelease(_delimiter);
     FLRelease(_enums);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 #endif
 

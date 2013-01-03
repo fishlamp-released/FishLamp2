@@ -56,7 +56,7 @@
 - (void) dealloc
 {
 	FLRelease(_highlightedView);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 #define Scale 1.2

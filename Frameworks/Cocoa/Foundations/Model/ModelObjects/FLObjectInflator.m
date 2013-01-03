@@ -52,7 +52,7 @@
 - (void) dealloc
 {
 	FLRelease(_unboundedArrays);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void) addUnboundedArraySetter:(NSString*) name arrayPropertyName:(NSString*) arrayName

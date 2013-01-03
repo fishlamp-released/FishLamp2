@@ -39,7 +39,7 @@
 {
 	FLRelease(_authData);
 	FLRelease(_app);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void) _didCompleteAction:(FLAction*) action

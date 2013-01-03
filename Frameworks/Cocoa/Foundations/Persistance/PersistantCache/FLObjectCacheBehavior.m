@@ -29,7 +29,7 @@
 - (void) dealloc
 {
 	FLRelease(_cacheKey);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (id) cacheKeyForObject:(id) object

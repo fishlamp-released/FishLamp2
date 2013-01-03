@@ -63,7 +63,7 @@
     FLRelease(_viewController);
     FLRelease(_view);
     FLRelease(_dataRef);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 - (UIView*) superview {

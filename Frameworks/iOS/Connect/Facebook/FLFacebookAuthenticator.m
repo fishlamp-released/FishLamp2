@@ -39,7 +39,7 @@
 - (void) dealloc
 {
     [self cleanup];
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 - (void) _beginLoadingUser

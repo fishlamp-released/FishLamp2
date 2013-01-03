@@ -72,7 +72,7 @@
     FLRelease(__networks);
     FLRelease(__deny);
     FLRelease(__description);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder

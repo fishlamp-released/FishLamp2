@@ -28,7 +28,7 @@
 //#if FL_MRC
 //- (void) dealloc {
 //    FLRelease(_factoryBlocks);
-//    super_dealloc_();
+//    FLSuperDealloc();
 //}
 //#endif
 //

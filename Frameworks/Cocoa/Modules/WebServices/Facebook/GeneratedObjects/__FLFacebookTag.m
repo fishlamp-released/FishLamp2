@@ -42,7 +42,7 @@
     FLRelease(__user);
     FLRelease(__x);
     FLRelease(__y);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 + (FLFacebookTag*) facebookTag

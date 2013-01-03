@@ -58,7 +58,7 @@
 {
 	[self clearImages];
 	
-	super_dealloc_();
+	FLSuperDealloc();
 }
  
 - (void)drawRect:(CGRect)rect

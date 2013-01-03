@@ -42,7 +42,7 @@ FLAssertDefaultInitNotCalled_();
 {
     FLRelease(_parentController);
     FLRelease(_subMenu);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 - (void) showFromView:(UIView*) view

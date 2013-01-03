@@ -30,7 +30,7 @@
 - (void) dealloc
 {
 	FLRelease(_userGuid);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void) _didCompleteLoad:(FLAction*) action

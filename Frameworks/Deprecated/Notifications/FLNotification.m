@@ -35,7 +35,7 @@
     FLRelease(_name);
     FLRelease(_object);
     FLRelease(_userInfo);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 #endif
 

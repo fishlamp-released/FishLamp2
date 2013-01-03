@@ -14,18 +14,12 @@
 @synthesize showBothSidesDuringFlip = _showBothSidesDuringFlip;
 @synthesize perspectiveDistance = _perspectiveDistance;
 
-- (id) initWithView:(UIView*) view {
-    self = [super initWithView:view];
+- (id) init {
+    self = [super init];
     if(self) {
-    
         _perspectiveDistance = FLFlipAnimationDefaultPerspectiveDistance;
         _showBothSidesDuringFlip = YES;
-    
-        self.prepare = ^(id animation){
-            [animation prepareFlipAnimationForView:view];
-        };
     }
-        
     return self;
 }
 
@@ -98,5 +92,13 @@
         [view.layer addAnimation:flipAnimation forKey:@"flip"];    
     };
 }
+
+- (void) prepareViewAnimation:(UIView*) view {
+
+    self.prepare = ^(id animation){
+        [animation prepareFlipAnimationForView:view];
+    };
+}
+
 
 @end

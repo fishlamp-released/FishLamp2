@@ -34,7 +34,7 @@
 - (void) dealloc {
     FLRelease(_frameSetter);
     FLRelease(_onWillArrange);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 #endif
 

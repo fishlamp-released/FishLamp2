@@ -33,7 +33,7 @@
 - (void) dealloc
 {
     [self cleanup];
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 - (void) OAuthAuthorizationViewController:(FLOAuthAuthorizationViewController*) controller didAuthenticate:(FLOAuthSession*) session

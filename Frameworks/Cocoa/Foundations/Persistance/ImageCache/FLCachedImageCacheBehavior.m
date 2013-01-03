@@ -68,7 +68,7 @@ FIXME("attach to user sessions....");
 {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	FLRelease(_memoryCache);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (BOOL) willSaveObjectToDatabaseCache:(FLImageProperties*) cachedImage

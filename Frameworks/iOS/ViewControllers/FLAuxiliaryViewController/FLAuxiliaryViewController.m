@@ -182,7 +182,7 @@ FLSynthesizeAssociatedProperty(assign_nonatomic, _auxiliaryViewController, setAu
     FLRelease(_behavior);
     FLRelease(_viewController);
     FLRelease(_containerView);
-    super_dealloc_();
+    FLSuperDealloc();
 #endif
 }
 

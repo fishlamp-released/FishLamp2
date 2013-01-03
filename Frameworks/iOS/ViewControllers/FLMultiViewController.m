@@ -21,7 +21,7 @@
 {
     FLRelease(_title);
     FLRelease(_viewController);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 - (id) initWithViewControllerClass:(Class) viewControllerClass
@@ -199,7 +199,7 @@
     FLRelease(_arrangement);
 	FLRelease(_viewControllers);
 
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (NSUInteger) viewControllerCount

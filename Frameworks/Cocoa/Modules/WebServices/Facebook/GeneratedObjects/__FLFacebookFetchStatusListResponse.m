@@ -50,7 +50,7 @@
 {
     FLRelease(__paging);
     FLRelease(__data);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder

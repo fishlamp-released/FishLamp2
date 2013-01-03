@@ -98,7 +98,7 @@
     FLRelease(__selectedGradient);
     FLRelease(__highlightedGradient);
     FLRelease(__disabledGradient);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder

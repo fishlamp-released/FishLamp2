@@ -84,7 +84,7 @@ FLSynthesizeStructProperty(animating, setAnimating, BOOL, _zoomingScrollViewFlag
 	self.zoomingScrollViewDelegate = nil;
 	FLReleaseWithNil(_zoomedView);
 	FLReleaseWithNil(_lastTouch);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (BOOL) isZoomingScrollViewZooming

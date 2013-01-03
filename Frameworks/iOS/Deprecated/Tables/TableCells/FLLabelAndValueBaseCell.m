@@ -78,7 +78,7 @@ FLSynthesizeStructProperty(trimWhiteSpace, setTrimWhiteSpace, BOOL, _baseFlags);
 {
 	FLRelease(_spinner);
 	FLRelease(_value);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void) startSpinnerInValueCell

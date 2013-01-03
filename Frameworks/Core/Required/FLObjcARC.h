@@ -8,8 +8,6 @@
 
 #if FL_ARC
 
-
-
 #define FLRetain(__OBJ__) \
             __OBJ__
 
@@ -33,27 +31,7 @@
 #define bridge_retain(__TO__, __FROM__) \
             ((__bridge_retained __TO__) __FROM__)
 
-// arc utils
-#define FLReleaseBlockWithNil(__OBJ__) \
-            __OBJ__ = nil
-
-#define FLReleaseWithNil(__OBJ__) \
-            __OBJ__ = nil
-
-#define FLSetObjectWithRetain(__ASSIGN_TO_,__OBJ__) \
-            __ASSIGN_TO_ = __OBJ__
-
-#define FLSetObjectWithCopy(__ASSIGN_TO_,__OBJ__) \
-            __ASSIGN_TO_ = [__OBJ__ copy]
-
-#define FLAssignObjectWithMutableCopy(__ASSIGN_TO_,__OBJ__) \
-            __ASSIGN_TO_ = [__OBJ__ mutableCopy]
-
-#define FLAutoreleasedCopy(__OBJ__) \
-            [__OBJ__ copy]
-
-#define FLAutoreleasedMutableCopy(__OBJ__) \
-            [__OBJ__ mutableCopy]
+#define FLReleaseBlockWithNil(__BLOCK__) __BLOCK__ = nil
 
 NS_INLINE
 void FLManuallyRelease(id* obj) {

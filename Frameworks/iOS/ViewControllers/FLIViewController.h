@@ -57,7 +57,7 @@
 
 @end
 
-@interface FLViewController ()
+@interface FLiViewController ()
 
 // all this crap will probably be deprecated.
 

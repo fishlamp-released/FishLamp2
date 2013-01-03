@@ -38,7 +38,7 @@
 - (void) dealloc
 {
 	FLRelease(_textDescriptor);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void) _update

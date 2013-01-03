@@ -56,7 +56,7 @@
     FLRelease(__name);
     FLRelease(__className);
     FLRelease(__fontSize);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder

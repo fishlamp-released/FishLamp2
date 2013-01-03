@@ -8,12 +8,6 @@
 
 #import "FLAnimation.h"
 
-@interface FLAnimation ()
-//@property (readwrite, copy, nonatomic) FLAnimationBlock commit;
-//@property (readwrite, copy, nonatomic) FLAnimationBlock finish;
-@property (readwrite, strong, nonatomic) NSArray* animations;
-@end
-
 @implementation FLAnimation
 
 @synthesize prepare = _prepare;
@@ -21,22 +15,9 @@
 @synthesize finish = _finish;
 @synthesize duration = _duration;
 @synthesize timingFunction = _timingFunction;
-@synthesize animations = _animations;
 
-
-- (id) initWithView:(UIView*) view  {
-    self = [self init];
-    if(self) {
-        FLAssertNotNil_(view);
-#if OSX
-        view.wantsLayer = YES;
-#endif          
-    }
-    return self;
-}
-
-+ (id) animationWithView:(UIView*) view {
-    return FLAutorelease([[[self class] alloc] initWithView:view]);
++ (id) animation {
+    return FLAutorelease([[[self class] alloc] init]);
 }
 
 - (id) init {
@@ -47,57 +28,20 @@
     return self;
 }
 
-+ (id) animation {
-    return FLAutorelease([[[self class] alloc] init]);
-}
-
 #if FL_MRC
 - (void) dealloc {
     [_timingFunction release];
     [_prepare release];
     [_commit release];
     [_finish release];
-    [_animations release];
     [super dealloc];
 }
 #endif
 
-- (void) addAnimation:(FLAnimation*) animation {
-    if(!_animations) {
-        _animations = [[NSMutableArray alloc] init];
-    }
-    [_animations addObject:animation];
-}
-
-- (void) invokePrepare {
+- (void) openAnimation {
     if(_prepare) {
         _prepare(self);
     }
-    for(FLAnimation* animation in _animations) {
-        [animation invokePrepare];
-    }
-}
-
-- (void) invokeCommit {
-    if(_commit) {
-        _commit();
-    }
-    for(FLAnimation* animation in _animations) {
-        [animation invokeCommit];
-    }
-}
-
-- (void) invokeFinish {
-    if(_finish) {
-        _finish();
-    }
-    for(FLAnimation* animation in _animations) {
-        [animation invokeFinish];
-    }
-}
-
-- (void) openAnimation {
-    [self invokePrepare];
 
     [CATransaction begin];
     [CATransaction setAnimationDuration:self.duration];
@@ -113,20 +57,24 @@
         [CATransaction begin];
         [CATransaction setValue:[NSNumber numberWithBool:YES] forKey:kCATransactionDisableActions];
         
-        [self invokeFinish];
+        if(_finish) {
+            _finish();
+        }
 
         [CATransaction commit];
         
         [finisher setFinished];
     }];
     
-    [self invokeCommit];
+    if(_commit) {
+        _commit();
+    }
+    
     [CATransaction commit];
     
     self.prepare = nil;
     self.commit = nil;
     self.finish = nil;
-    self.animations = nil;
 }
 
 - (FLFinisher*) startAnimation:(void (^)()) didStartBlock

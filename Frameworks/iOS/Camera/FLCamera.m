@@ -31,7 +31,7 @@
 	
 	FLAssert_v(_session == nil, @"must call stop before deleting camera"); 
 	
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 //- (AVCaptureDevice*) findDevice

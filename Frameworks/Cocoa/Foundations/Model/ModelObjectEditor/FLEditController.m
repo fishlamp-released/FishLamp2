@@ -63,7 +63,7 @@
 	FLRelease(_rootContainer);
 	FLRelease(_observers);
 	FLRelease(_validators);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (id) objectForPath:(NSString*) path {

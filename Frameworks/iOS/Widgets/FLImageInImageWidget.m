@@ -42,7 +42,7 @@
 - (void) dealloc
 {
 	FLRelease(_topImageWidget);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void) clear

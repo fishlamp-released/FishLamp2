@@ -35,7 +35,7 @@
 {
     FLRelease(__input);
     FLRelease(__output);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 + (FLFacebookUpdateStatusOperation*) facebookUpdateStatusOperation

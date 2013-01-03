@@ -29,7 +29,7 @@ FLSynthesizeSingleton(FLDateMgr);
 - (void) dealloc
 {
 	FLRelease(_formatter);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (NSDate*) ISO8601StringToDate:(NSString*) string

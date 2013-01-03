@@ -35,7 +35,7 @@
 {
 	FLRelease(_username);
 	FLRelease(_imageSize);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 //- (FLResult) runOperation {

@@ -54,7 +54,7 @@
 - (FLStringBuilder*) pop {
     FLAssert_(_stack.count > 0)
 
-    id last = FLAutoreleasedRetained(self.top);
+    id last = FLRetainWithAutorelease(self.top);
     [last willMoveToStringBuilderStack:nil];
     [_stack removeLastObject];
     [last didMoveToStringBuilderStack:nil];

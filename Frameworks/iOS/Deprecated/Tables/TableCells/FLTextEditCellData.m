@@ -18,7 +18,7 @@
 {
 	FLRelease(_callback);
 	FLRelease(_traits);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (id) init

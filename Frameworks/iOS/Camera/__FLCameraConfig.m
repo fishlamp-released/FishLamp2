@@ -109,7 +109,7 @@
     FLRelease(__showStabityTracker);
     FLRelease(__showZoom);
     FLRelease(__foo);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder

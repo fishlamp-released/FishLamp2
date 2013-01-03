@@ -136,7 +136,7 @@
     FLRelease(__assetName);
     FLRelease(__thumbnail);
     FLRelease(__uploadedDate);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder

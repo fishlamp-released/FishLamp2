@@ -96,7 +96,7 @@
     FLRelease(__venue);
     FLRelease(__privacy);
     FLRelease(__updated_time);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder

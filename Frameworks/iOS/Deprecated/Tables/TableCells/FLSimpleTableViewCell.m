@@ -47,7 +47,7 @@
 - (void) dealloc
 {
 	FLRelease(_subview);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 @end

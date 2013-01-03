@@ -54,7 +54,7 @@
 	FLReleaseWithNil(_next);
 	FLReleaseWithNil(_prev);
 	FLReleaseWithNil(_stop);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void) layoutSubviews

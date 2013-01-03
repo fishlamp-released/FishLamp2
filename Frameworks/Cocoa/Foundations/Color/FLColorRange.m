@@ -45,7 +45,7 @@
 {
 	FLRelease(_startColor);
 	FLRelease(_endColor);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 #endif
 

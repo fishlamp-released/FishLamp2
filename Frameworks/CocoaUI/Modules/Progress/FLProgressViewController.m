@@ -87,7 +87,7 @@
     FLRelease(_progressProxy);
     FLRelease(_onHideProgress);
     FLRelease(_onShowProgress);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 #endif
 
@@ -291,7 +291,7 @@
     FLRelease(_onShowProgress);
     FLRelease(_onHideProgress);
     FLRelease(_progressView);
-    super_dealloc_();
+    FLSuperDealloc();
 #endif
 }
 

@@ -29,7 +29,7 @@
 - (void) dealloc {
 	FLRelease(_fileName);
 	FLRelease(_folder);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (NSString*) filePath {

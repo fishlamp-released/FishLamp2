@@ -27,7 +27,7 @@
     FLRelease(_onLayout);
     FLRelease(_views);
     FLRelease(_frames);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 #endif
 

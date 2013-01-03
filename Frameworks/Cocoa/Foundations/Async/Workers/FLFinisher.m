@@ -185,7 +185,7 @@
     static FLFinisherNotificationSchedulerBlock s_block = ^(dispatch_block_t notifier) {
         if(![NSThread isMainThread]) {
             
-            notifier = FLAutoreleasedCopy(notifier);
+            FLSafeguardBlock(notifier);
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 notifier();
