@@ -55,7 +55,7 @@
 - (void) dealloc {
     FLRelease(_key);
     FLRelease(_dictionary);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 #endif
 
@@ -94,7 +94,7 @@
 - (void) dealloc {
     FLRelease(_key);
     FLRelease(_dictionary);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 #endif
 

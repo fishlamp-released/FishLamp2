@@ -81,7 +81,7 @@
 	FLRelease(_thumnailImage);
 	FLRelease(_fullScreenImage);
 	FLRelease(_originalImage);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (NSURL*) assetURL

@@ -69,7 +69,7 @@ FLSynthesizeStructProperty(animateOnShow, setAnimateOnShow, BOOL, _flags);
 - (void) dealloc
 {	
 	FLRelease(_tabBar);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (UITabBar*) tabBar

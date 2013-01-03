@@ -75,7 +75,7 @@ FLSynthesizeStructProperty(keyboardWillShowInView, setKeyboardWillShowInView, BO
 //	}
 	FLReleaseWithNil(_textEditBar);
 	[self _cleanupTextEditingTableViewController];
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void) updateContentInsets

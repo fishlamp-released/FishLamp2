@@ -79,7 +79,7 @@
 	FLRelease(_userName);
 	FLRelease(_message);
 	FLRelease(_postedTime);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void) layoutWidgets

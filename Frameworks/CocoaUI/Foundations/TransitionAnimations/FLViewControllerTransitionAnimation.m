@@ -38,7 +38,7 @@
 - (void) dealloc
 {
     FLRelease(_callback);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 #endif
 
@@ -284,7 +284,7 @@ FLSynthesizeSingleton(FLCrossFadeAnimation);
     FLReleaseWithNil(_viewController);
     FLReleaseWithNil(_parent);
 
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 - (void) beginShowAnimationForViewController:(UIViewController*) viewController

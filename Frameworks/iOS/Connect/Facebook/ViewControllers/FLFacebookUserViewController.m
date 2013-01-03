@@ -28,7 +28,7 @@
 - (void) dealloc
 {
 	FLRelease(_userId);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void) doBeginLoadingObject

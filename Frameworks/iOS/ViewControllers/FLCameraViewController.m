@@ -111,7 +111,7 @@
 	FLRelease(_cameraConfig);
 	[self _cleanupCameraController];
 	
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void) viewWillAppear:(BOOL)animated

@@ -14,6 +14,7 @@
 
 FLSynthesizeAssociatedProperty(retain_nonatomic, backgroundColor, setBackgroundColor, UIColor*)
 FLSynthesizeAssociatedProperty(assign_nonatomic, viewController, setViewController, UIViewController*)
+FLSynthesizeAssociatedProperty(assign_nonatomic, needsLayoutNumber, setNeedsLayoutNumber, NSNumber*)
 
 //@synthesize backgroundColor = _backgroundColor;
 
@@ -26,9 +27,9 @@ FLSynthesizeAssociatedProperty(assign_nonatomic, viewController, setViewControll
 //    }
 //}
 
-- (void) setNeedsLayout {
-    [self setNeedsDisplay:YES];
-}
+//- (void) setNeedsLayout {
+//    [self setNeedsDisplay:YES];
+//}
 
 - (void) setNeedsDisplay {
     [self setNeedsDisplay:YES];
@@ -39,6 +40,31 @@ FLSynthesizeAssociatedProperty(assign_nonatomic, viewController, setViewControll
 }
 
 - (void) layoutIfNeeded {
+    if(self.needsLayoutNumber) {
+        self.needsLayoutNumber = nil;
+        
+        UIViewController* controller = self.viewController;
+        if(controller) {
+            [controller viewWillLayoutSubviews];
+        }
+        [self layoutSubviews];
+        if(controller) {
+            [controller viewDidLayoutSubviews];
+        }
+    }
+}
+
+- (void) setNeedsLayout {
+    static NSNumber* s_needsLayout = nil;
+    if(!s_needsLayout) {
+        s_needsLayout = [[NSNumber alloc] initWithBool:YES];
+    }
+
+    self.needsLayoutNumber = s_needsLayout;
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self layoutIfNeeded];
+    });
 
 }
 
@@ -63,16 +89,29 @@ FLSynthesizeAssociatedProperty(assign_nonatomic, viewController, setViewControll
     self.alphaValue = alpha;
 }
 
-- (void) insertSubview:(UIView*) view belowSubview:(UIView*) subview {
+- (void) insertSubview:(UIView*) view 
+          belowSubview:(UIView*) subview {
+    [self addSubview:view positioned:NSWindowBelow relativeTo:subview];
 }
 
-- (void) insertSubview:(UIView*) view aboveSubview:(UIView*) subview {
+- (void) insertSubview:(UIView*) view 
+          aboveSubview:(UIView*) subview {
+    [self addSubview:view positioned:NSWindowAbove relativeTo:subview];
 }
 
-- (void) insertSubview:(UIView*) view atIndex:(NSUInteger) atIndex {
+- (void) insertSubview:(UIView*) view 
+               atIndex:(NSUInteger) atIndex {
+
+    [self addSubview:view positioned:NSWindowAbove relativeTo:[self.subviews objectAtIndex:atIndex]];
 }
 
 - (void) bringSubviewToFront:(UIView*) view {
+    id superView = [self superview]; 
+    if (superView) {
+        FLAutoreleaseObject(FLRetain(self));
+        [self removeFromSuperview];
+        [superView addSubview:self positioned:NSWindowAbove relativeTo:nil];
+    }
 }
 
 - (void)sendToBack {
@@ -85,8 +124,14 @@ FLSynthesizeAssociatedProperty(assign_nonatomic, viewController, setViewControll
 }
 
 - (void) layoutSubviews {
+    for(NSView* view in self.subviews) {
+        [view layoutSubviews];
+    }
 }
 
+- (void) setUIViewCompatibilityMode {
+
+}
 
 @end
 #endif

@@ -39,7 +39,7 @@
 - (void) dealloc
 {
     FLRelease(_lineColor);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 - (void) drawSelf:(CGRect) rect

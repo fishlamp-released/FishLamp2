@@ -47,7 +47,7 @@
     FLRelease(_ownerID);
     FLRelease(_parentID);
     [_objectID release];
-    super_dealloc_();
+    FLSuperDealloc();
 }
 #endif
 

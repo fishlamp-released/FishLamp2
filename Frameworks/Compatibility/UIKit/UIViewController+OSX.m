@@ -1,5 +1,5 @@
 //
-//  FLViewController.m
+//  UIViewController+OSX.m
 //  FishLampCocoa
 //
 //  Created by Mike Fullerton on 12/11/12.
@@ -10,90 +10,41 @@
 #import "FLObjcRuntime.h"
 #import "UIView+OSX_Internal.h"
 
-@interface UIViewControllerState : NSObject {
-@private
-    NSMutableArray* _viewControllers;
-    UIView* _view;
-    __unsafe_unretained UIViewController* _parentViewController;
-}
-@property (readwrite, strong, nonatomic) UIView* view;
-@property (readwrite, assign, nonatomic) UIViewController* parentViewController;
-@property (readwrite, strong, nonatomic) NSMutableArray* viewControllers;
-
-@end
-
-@implementation UIViewControllerState
-
-+ (id) viewControllerState {
-    return FLAutorelease([[[self class] alloc] init]);
-}
-
-@synthesize parentViewController = _parentViewController;
-@synthesize viewControllers = _viewControllers;
-@synthesize view = _view;
-
-#if FL_MRC
-- (void) dealloc {
-    [_view release];
-    [_viewControllers release];
-    [super dealloc];
-}
-#endif
-
-@end
-
 @implementation NSViewController (UIKit)
 
-FLSynthesizeAssociatedProperty(retain_nonatomic, _stateObject, setStateObject, UIViewControllerState*)
-
-- (UIViewControllerState*) stateObject {
-    UIViewControllerState* state = self._stateObject;
-    if(state) {
-        return state;
-    }
-    
-    self.stateObject = [UIViewControllerState viewControllerState];
-    return self._stateObject;
-}
-
-- (UIViewController*) parentViewController {
-    return self.stateObject.parentViewController;
-}
-
-- (void) setParentViewController:(UIViewController*) viewController {
-    self.stateObject.parentViewController = viewController;
-}
+FLSynthesizeAssociatedProperty(assign_nonatomic, parentViewController, setParentViewController, NSViewController*);
+FLSynthesizeAssociatedProperty(retain_nonatomic, childViewControllers, setChildViewControllers, NSArray*);
+FLSynthesizeAssociatedProperty(retain_nonatomic, viewIsLoadedNumber, setViewIsLoadedNumber, NSNumber*);
 
 #pragma mark -- child view controllers
 
-- (NSArray*) childViewControllers {
-    return  self.stateObject.viewControllers;
-}
-
-- (NSMutableArray*) viewControllers {
-    if(!self.stateObject.viewControllers) {
-        self.stateObject.viewControllers = [NSMutableArray array];
+- (void) addChildViewController:(NSViewController*) viewController {
+    
+    NSMutableArray* children = (NSMutableArray*) self.childViewControllers;
+    if(!children) {
+        children = [NSMutableArray array];
+        self.childViewControllers = children;
     }
     
-    return self.stateObject.viewControllers;
-}
-
-- (void) addChildViewController:(NSViewController*) viewController {
     [viewController removeFromParentViewController];
     
     [viewController willMoveToParentViewController:self];
-    [self.viewControllers addObject:viewController];
-    [viewController didMoveToParentViewController:self];
+    [children addObject:viewController];
+    viewController.parentViewController = self;
+   [self didMoveToParentViewController:viewController];
 }
 
 - (void) removeViewController:(UIViewController*) viewController {
     if(viewController.parentViewController == self) {
+        
+        
         [viewController willMoveToParentViewController:nil];
         
-        [self.viewControllers removeObject:viewController];
-        viewController.parentViewController = nil;
+        NSMutableArray* children = (NSMutableArray*) self.childViewControllers;
+        [children removeObject:viewController];
 
-        [viewController didMoveToParentViewController:nil];
+        viewController.parentViewController = nil;
+        [self didMoveToParentViewController:nil];
     }
 }
 
@@ -135,7 +86,12 @@ FLSynthesizeAssociatedProperty(retain_nonatomic, _stateObject, setStateObject, U
 #pragma mark -- loading
 
 - (BOOL) isViewLoaded {
-    return self.stateObject.view != nil;
+    NSNumber* loaded = self.viewIsLoadedNumber;
+    return loaded && [loaded boolValue];
+}
+
+- (void) setViewLoaded:(BOOL) viewLoaded {
+   self.viewIsLoadedNumber = [NSNumber numberWithBool:viewLoaded];
 }
 
 - (void) viewDidLoad {
@@ -146,13 +102,22 @@ FLSynthesizeAssociatedProperty(retain_nonatomic, _stateObject, setStateObject, U
 
 - (void) viewWillUnload {
 }
-- (void) setViewUnloaded {
-    if(self.stateObject.view) {
+
+- (void) didLoadViewForCompatibility:(NSView*) view {
+}
+
+- (void) didUnloadViewForCompatibility:(NSView*) view {
+}        
+
+- (void) unloadLoadedView {
+    if(self.isViewLoaded) { 
         [self viewWillUnload];
-        self.stateObject.view.viewController = nil;
-        self.stateObject.view = nil;
-        
+        UIView* theView = FLRetainWithAutorelease(self.view);
+        theView.viewController = nil;
+        self.viewLoaded = NO;
+        [self setView:nil];
         [self viewDidUnload];
+        [self didUnloadViewForCompatibility:theView];
     }
 }
 
@@ -161,11 +126,14 @@ FLSynthesizeAssociatedProperty(retain_nonatomic, _stateObject, setStateObject, U
 }
 
 - (void) setViewLoaded {
-    UIView* theView = self.view;
-    if(theView) {
-        self.stateObject.view = theView;
-        theView.viewController = self;
-        [self viewDidLoad];
+    if(!self.isViewLoaded){
+        UIView* theView = self.view;
+        if(theView) {
+            theView.viewController = self;
+            self.viewLoaded = YES;
+            [self viewDidLoad];
+            [self didLoadViewForCompatibility:theView];
+        }
     }
 }
 
@@ -228,23 +196,24 @@ FLSynthesizeAssociatedProperty(retain_nonatomic, _stateObject, setStateObject, U
 
 - (void) compatibleSetView:(NSView*) aView {
     
-    [self setViewUnloaded];
-    [self setView:aView];
+    [self unloadLoadedView];
+    [self compatibleSetView:aView];
     [self setViewLoaded];
 }
 
-- (void) compatibleLoadView {
-    [self setViewUnloaded];
-    [self loadView];
-    [self setViewLoaded];
-}
+//- (void) compatibleLoadView {
+//    [self unloadLoadedView];
+//    [self compatibleLoadView];
+//    [self setViewLoaded];
+//}
 
 + (void) initUIKitCompatibility {
-    FLSelectorSwizzle([UIViewController class], @selector(compatibleLoadView), @selector(loadView));
+//    FLSelectorSwizzle([UIViewController class], @selector(compatibleLoadView), @selector(loadView));
     FLSelectorSwizzle([UIViewController class], @selector(compatibleSetView:), @selector(setView:));
 }
 
-
 @end
+
 #endif
+
 

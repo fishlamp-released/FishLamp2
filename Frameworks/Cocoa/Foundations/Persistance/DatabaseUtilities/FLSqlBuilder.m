@@ -80,7 +80,7 @@
     FLRelease(_delimiter);
     FLRelease(_dataToBind);
     FLRelease(_sqlString);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 #endif
 

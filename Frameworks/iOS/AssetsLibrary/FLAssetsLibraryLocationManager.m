@@ -37,7 +37,7 @@
 {
     [self _releaseLocationManager];
     FLRelease(_callback);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 
@@ -49,7 +49,7 @@
     }
     
     [self _releaseLocationManager];
-    FLReleaseBlockWithNil_(_callback);
+    FLReleaseBlockWithNil(_callback);
 }
 
 - (BOOL) isCheckingPermissions
@@ -103,7 +103,7 @@
 - (void) cancelPermissionsCheck
 {
     [self _releaseLocationManager];
-    FLReleaseBlockWithNil_(_callback);
+    FLReleaseBlockWithNil(_callback);
 }
 
 @end

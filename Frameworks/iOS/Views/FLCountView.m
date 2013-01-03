@@ -42,7 +42,7 @@
 - (void) dealloc
 {
 	FLRelease(_countView);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void) setCount:(NSInteger) count

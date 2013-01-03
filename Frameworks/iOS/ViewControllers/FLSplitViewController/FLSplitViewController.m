@@ -41,7 +41,7 @@
     FLRelease(_topViewController);
     FLRelease(_bottomViewController);
     FLRelease(_splitterView);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 - (void) willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {

@@ -58,7 +58,7 @@
 
 - (void) releaseCallbacks
 {
-    FLReleaseBlockWithNil_(_blockCallback);
+    FLReleaseBlockWithNil(_blockCallback);
     FLReleaseWithNil(_callback);
 }
 
@@ -67,7 +67,7 @@
     FLRelease(_blockCallback);
 	FLRelease(_buttonTitle);
 	FLRelease(_callback);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 + (FLAlertButtonCallback*) cancelButtonCallback

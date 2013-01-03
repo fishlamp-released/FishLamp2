@@ -312,7 +312,7 @@ static int s_count = 0;
 - (void) executeSql:(FLSqlBuilder*) sql 
         rowResultBlock:(FLDatabaseStatementDidSelectRowBlock) rowResultBlock {
     
-    rowResultBlock = FLAutoreleasedCopy(rowResultBlock);
+    rowResultBlock = FLCopyWithAutorelease(rowResultBlock);
     
     [self dispatchFifoBlock:^{
         FLSqlStatement* sqlStatement = [FLSqlStatement sqlStatement:self columnDecoder:nil];

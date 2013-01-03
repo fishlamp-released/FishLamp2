@@ -32,7 +32,7 @@ FLSynthesizeStructProperty(wantsPullToRefresh, setWantsPullToRefresh, BOOL, _scr
 
 - (void) dealloc {
     [self cleanupScrollViewController];
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 - (void) beginRefreshing:(BOOL) userRequestedRefresh {

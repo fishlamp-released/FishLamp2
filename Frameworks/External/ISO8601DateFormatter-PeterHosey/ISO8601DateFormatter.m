@@ -48,7 +48,7 @@ unichar ISO8601DefaultTimeSeparatorCharacter = DEFAULT_TIME_SEPARATOR;
 }
 - (void) dealloc {
 	FLRelease(defaultTimeZone);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 @synthesize defaultTimeZone;

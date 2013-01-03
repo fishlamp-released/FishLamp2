@@ -29,7 +29,7 @@
 //- (void) dealloc
 //{
 //	FLRelease(_assetUID);
-//	super_dealloc_();
+//	FLSuperDealloc();
 //}
 //
 //- (NSURL*) assetURL

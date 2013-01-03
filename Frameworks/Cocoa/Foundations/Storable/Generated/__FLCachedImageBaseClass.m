@@ -93,7 +93,7 @@
     FLRelease(__host);
     FLRelease(__imageVersion);
     FLRelease(__canCacheInMemory);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder

@@ -88,7 +88,7 @@
 	FLRelease(_indexes);
 	FLRelease(_tableName);
 	FLRelease(_columns);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void) addIndex:(FLDatabaseIndex*) databaseIndex {

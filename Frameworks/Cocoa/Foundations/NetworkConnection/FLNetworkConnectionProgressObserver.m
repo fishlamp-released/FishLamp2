@@ -50,7 +50,7 @@
 //        [_progress hideProgress];
 //        FLRelease(_progress);
 //    }
-//    super_dealloc_();   
+//    FLSuperDealloc();   
 //}
 //#endif
 //

@@ -49,7 +49,7 @@
 {
     FLRelease(__session);
     FLRelease(__redirectURL);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder

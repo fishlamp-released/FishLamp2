@@ -56,7 +56,7 @@ static FLThumbnailButton* s_touchedButton = nil;
 	FLRelease(_userData);
 	FLRelease(_callback);
 	FLRelease(_buttonAnimation);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void)addTarget:(id)target action:(SEL)action

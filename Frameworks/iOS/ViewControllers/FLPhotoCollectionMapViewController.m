@@ -19,7 +19,7 @@
 {
 	FLRelease(_thumbnail);
 	FLRelease(_photo);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 @end
 
@@ -110,7 +110,7 @@
 - (void) dealloc
 {	
 	FLRelease(_progressView);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void) viewWillAppear:(BOOL)animated

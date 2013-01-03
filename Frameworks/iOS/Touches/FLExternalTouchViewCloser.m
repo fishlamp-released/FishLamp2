@@ -57,7 +57,7 @@
 
     FLRelease(_views);
     FLRelease(_passThroughViews);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 - (void) addPrimaryView:(UIView*) view

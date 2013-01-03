@@ -34,7 +34,7 @@
 - (void) dealloc {
 	FLRelease(_borderGradient);
 	FLRelease(_innerBorderColor);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 -(void) createPathForShapeInRect:(CGMutablePathRef) path rect:(CGRect) rect {

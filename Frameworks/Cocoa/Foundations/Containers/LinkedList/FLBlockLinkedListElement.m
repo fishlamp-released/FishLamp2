@@ -19,7 +19,7 @@
 #if FL_MRC 
 - (void) dealloc {
     FLRelease(_block);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 #endif
 

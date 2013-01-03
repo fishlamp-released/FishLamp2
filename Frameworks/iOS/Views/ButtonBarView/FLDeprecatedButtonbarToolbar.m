@@ -35,7 +35,7 @@
 - (void) dealloc
 {
 	FLRelease(_buttonbar);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void) layoutSubviews

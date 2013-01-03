@@ -226,7 +226,7 @@
 	FLReleaseWithNil(_flashButton);
 	FLReleaseWithNil(_flipCameraButton);
 	FLReleaseWithNil(_spinner);
-	super_dealloc_();
+	FLSuperDealloc();
 }	
 
 - (void) setButtonsEnabled:(BOOL) enabled

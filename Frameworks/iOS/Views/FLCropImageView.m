@@ -33,7 +33,7 @@
 - (void) dealloc
 {
     FLRelease(_imageView);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 - (void) setImage:(UIImage*) image

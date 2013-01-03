@@ -87,7 +87,7 @@
 - (void) dealloc {
     FLRelease(_textLabel);
     FLRelease(_spinner);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 #endif
 

@@ -152,7 +152,7 @@ FLTestCaseFlagPair s_flagPairs[] = {
 //    FLRelease(_testCompletionBlock);
     FLRelease(_testCaseName);
     FLRelease(_testCaseBlock);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 #endif
 

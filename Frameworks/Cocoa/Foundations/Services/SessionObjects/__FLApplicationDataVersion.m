@@ -39,7 +39,7 @@
 {
     FLRelease(__userGuid);
     FLRelease(__versionString);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 - (id) init

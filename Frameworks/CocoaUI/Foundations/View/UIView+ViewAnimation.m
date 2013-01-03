@@ -268,7 +268,7 @@
 {
 	FLRelease(_block);
 	FLRelease(_view);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 @end
@@ -291,7 +291,7 @@
 {
 	FLRelease(_payloadArray);
 	FLRelease(_finishedBlock);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 @end

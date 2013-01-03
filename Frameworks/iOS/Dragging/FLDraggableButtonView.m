@@ -215,7 +215,7 @@
 //    FLRelease(_dragBar);
     FLRelease(_openButton);
     FLRelease(_closeButton);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 - (BOOL) auxiliaryViewControllerTapWillToggle:(FLAuxiliaryViewController*) controller

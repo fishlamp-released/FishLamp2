@@ -196,7 +196,7 @@
 	[[FLLowMemoryHandler defaultHandler] removeObserver:self];
 	FLRelease(_objects);
 	FLRelease(_list);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 

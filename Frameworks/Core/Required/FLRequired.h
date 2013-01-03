@@ -30,18 +30,10 @@
     #import "FLObjcMRC.h"
 #endif
 
-#define FLAutoreleasePool(__VA_ARGS__) \
-            FLAutoreleasePoolOpen(pool) \
-            __VA_ARGS__ \
-            FLAutoreleasePoolClose(pool) \
 
-// todo remove these
-#define FLReleaseBlockWithNil_              FLReleaseBlockWithNil
-#define super_dealloc_                      FLSuperDealloc
-
+#import "FLObjc.h"
 #import "FLDebug.h"
-
-
+            
 @class FLPrettyString;
 
 @interface NSObject (FLStringFormatter)

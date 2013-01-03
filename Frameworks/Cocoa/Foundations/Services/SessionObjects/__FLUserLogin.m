@@ -96,7 +96,7 @@
     FLRelease(__email);
     FLRelease(__authTokenLastUpdateTime);
     FLRelease(__userValue);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder

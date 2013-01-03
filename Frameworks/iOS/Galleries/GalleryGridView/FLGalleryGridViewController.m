@@ -21,7 +21,7 @@
 {   
     FLRelease(_galleryID);
     FLRelease(_galleryContainer);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 - (void) setGalleryID:(id) galleryID

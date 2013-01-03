@@ -81,7 +81,7 @@
     FLRelease(_gradient1);
     FLRelease(_gradient2);
     FLRelease(_label);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 #define kButtonWidth 44.0f

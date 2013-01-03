@@ -45,7 +45,7 @@
 	FLRelease(_secondaryTextLabel);
 	FLRelease(_button);
 	FLRelease(_roundRectView);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void) layoutSubviews

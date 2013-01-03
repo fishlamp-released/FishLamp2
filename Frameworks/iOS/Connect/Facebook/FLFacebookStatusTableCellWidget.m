@@ -49,7 +49,7 @@
 {	
 	FLRelease(_likesAndCommentsWidget);
 	FLRelease(_post);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void) setPost:(FLFacebookPost*) post

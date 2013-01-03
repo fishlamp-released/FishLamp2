@@ -26,7 +26,7 @@ FLSynthesizeSingleton(FLErrorDescriberManager);
 - (void) dealloc
 {
 	FLRelease(_describers);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void) addErrorDescriber:(id<FLErrorDescriber>) describer

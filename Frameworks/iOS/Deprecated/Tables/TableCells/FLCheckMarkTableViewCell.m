@@ -24,7 +24,7 @@
 	FLRelease(_checkedValue);
 //	  FLRelease(_checkMark);
 	FLRelease(_subLabel);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void) initSubLabel
@@ -178,7 +178,7 @@
 - (void) dealloc
 {
 	FLRelease(_color);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 @end
 
@@ -238,7 +238,7 @@
 - (void) dealloc
 {
     FLRelease(_check);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 #define kTextLeft 60.0f

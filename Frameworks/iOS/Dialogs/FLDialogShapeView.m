@@ -43,7 +43,7 @@
 - (void) dealloc {
     FLRelease(_roundRect);
     FLRelease(_backgroundGradient);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 //- (void) setContentView:(UIView*) contentView {

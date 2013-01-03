@@ -34,7 +34,7 @@
 - (void) dealloc
 {
     [self _clearData];
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 - (void) cancelImport

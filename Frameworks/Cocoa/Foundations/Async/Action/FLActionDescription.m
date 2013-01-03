@@ -156,7 +156,7 @@ NSString* FLActionDescriptionItemNameNone = nil;
 	FLRelease(_itemName);
 	FLRelease(_actionWords);
 	FLRelease(_itemNameInProgress);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (NSString*) title

@@ -53,7 +53,7 @@
 - (void) dealloc {
     FLRelease(_rootViewController);
     FLRelease(_viewControllers);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 - (void) viewDidLayoutSubviews {

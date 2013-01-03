@@ -129,7 +129,7 @@
     FLRelease(_value);
     FLRelease(_onValidate);
     FLRelease(_onChanged);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 #endif
 

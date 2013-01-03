@@ -46,7 +46,7 @@
 	FLRelease(_currentCell);
 	FLRelease(_cells);
 	FLRelease(_groups);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void) addTab

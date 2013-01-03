@@ -53,7 +53,7 @@
 	FLReleaseWithNil(_attachment);
 	FLReleaseWithNil(_toRecipients);
 		
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void) setAttachment:(NSData*) data

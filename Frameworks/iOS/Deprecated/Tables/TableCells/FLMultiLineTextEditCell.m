@@ -207,7 +207,7 @@
 {
 	FLRelease(_traits);
 	FLRelease(_textView);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (BOOL) isEditing

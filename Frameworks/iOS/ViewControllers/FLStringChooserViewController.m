@@ -96,7 +96,7 @@
 	FLRelease(_stringList);
 	FLRelease(_initialSelection);
 	FLRelease(_chooseButton);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 #if VIEW_AUTOLAYOUT

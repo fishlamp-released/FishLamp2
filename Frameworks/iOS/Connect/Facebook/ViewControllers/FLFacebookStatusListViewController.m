@@ -37,7 +37,7 @@
 - (void) dealloc
 {
 	FLRelease(_posts);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void) viewDidLoad

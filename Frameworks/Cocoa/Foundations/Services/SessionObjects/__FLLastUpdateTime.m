@@ -48,7 +48,7 @@
 {
     FLRelease(__lastUpdateId);
     FLRelease(__lastUpdate);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder

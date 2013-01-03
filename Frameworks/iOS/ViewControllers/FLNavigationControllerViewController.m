@@ -39,7 +39,7 @@
 {
 	FLRelease(_rootViewController);
 	FLRelease(_navigationController);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void) loadView

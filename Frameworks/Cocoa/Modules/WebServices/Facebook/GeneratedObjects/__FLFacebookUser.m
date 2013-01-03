@@ -226,7 +226,7 @@
     FLRelease(__significant_other);
     FLRelease(__website);
     FLRelease(__work);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder

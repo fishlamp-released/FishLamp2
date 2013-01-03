@@ -65,7 +65,7 @@
 {
 	[self stopTimer];
 	FLRelease(_target);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 @end
@@ -237,7 +237,7 @@ FLSynthesizeStructProperty(logEvents, setLogEvents, BOOL, _timerFlags);
 - (void) dealloc
 {	
 	[self _killTimer];
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void) updateTimeStamp 

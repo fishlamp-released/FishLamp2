@@ -15,7 +15,7 @@
 -(void)dealloc
 {
 	FLRelease(_dataEncoder);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 

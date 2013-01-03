@@ -54,7 +54,7 @@
     FLRelease(_fileName);
 	FLRelease(_parseState);
 	FLRelease(_data);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (id<FLDataDecoder>) onCreateDataDecoder {

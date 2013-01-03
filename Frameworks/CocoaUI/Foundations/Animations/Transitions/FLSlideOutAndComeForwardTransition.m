@@ -15,20 +15,17 @@
 
 @implementation FLSlideOutAndComeForwardTransition
 
-- (id) initWithViewToShow:(UIView*) viewToShow 
-               viewToHide:(UIView*) viewToHide {
+- (void) addAnimationsForViewToShow:(UIView*) viewToShow 
+                         viewToHide:(UIView*) viewToHide {
+
+    FLAnimation* animations[] = {
+        [FLFadeInAnimation animationWithView:viewToShow],
+        [FLComeForwardAnimation animationWithView:viewToShow],
+        [FLSlideOutToRightAnimation animationWithView:viewToHide],
+        [FLFadeOutAnimation animationWithView:viewToHide]
+    };
     
-    self = [super initWithViewToShow:viewToShow viewToHide:viewToHide];
-    if(self) {
-        self.prepare = ^(id animation) {
-            [animation addAnimation:[FLFadeInAnimation animationWithView:viewToShow]];
-            [animation addAnimation:[FLComeForwardAnimation animationWithView:viewToShow]];
-            [animation addAnimation:[FLSlideOutToRightAnimation animationWithView:viewToHide]];
-            [animation addAnimation:[FLFadeOutAnimation animationWithView:viewToHide]];
-        };
-    }
-    
-    return self;
+    [self setAnimations:[NSArray arrayWithObjects:animations count:4]];
 }
 
 @end

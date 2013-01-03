@@ -42,7 +42,7 @@ FLSynthesizeStructProperty(isLoading, setLoading, BOOL, _flags);
 	FLRelease(_image);
 	FLRelease(_photo);
 	FLRelease(_photoView);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 @end
@@ -175,7 +175,7 @@ FLSynthesizeStructProperty(isFullScreenTapDisabled, setFullScreenTapDisabled, BO
 	self.photoViewControllerDelegate = nil;
 	FLRelease(_action);
 	FLRelease(_thumbnailAction);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void) photoCountDidChange

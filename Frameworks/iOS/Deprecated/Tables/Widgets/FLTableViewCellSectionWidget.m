@@ -52,7 +52,7 @@ FLSynthesizeStructProperty(drawMode, setDrawMode, FLTableViewCellSectionDrawMode
 	FLRelease(_highlightedBorderColor);
 	FLRelease(_fillColor);
 	FLRelease(_borderColor);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void) _update

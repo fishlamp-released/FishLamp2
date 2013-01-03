@@ -21,7 +21,7 @@
 	FLRelease(_htmlView);
 	FLRelease(_configureRequestCallback);
 	FLRelease(_finishLoadingCallback);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void)loadView

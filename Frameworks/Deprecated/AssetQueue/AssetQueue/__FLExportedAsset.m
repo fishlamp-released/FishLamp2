@@ -56,7 +56,7 @@
     FLRelease(__originalID);
     FLRelease(__assetURL);
     FLRelease(__exportedDate);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder

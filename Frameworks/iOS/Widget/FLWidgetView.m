@@ -55,7 +55,7 @@
 
 - (void) dealloc {
     FLRelease(_rootWidget);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 - (void) layoutSubviews {

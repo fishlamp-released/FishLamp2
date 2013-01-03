@@ -227,7 +227,7 @@ FLSynthesizeStructProperty(delayShowingButtons, setDelayShowingButtons, BOOL, _e
 - (void) dealloc
 {
 	FLRelease(_buttonTitle);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 @end
@@ -241,7 +241,7 @@ FLSynthesizeStructProperty(delayShowingButtons, setDelayShowingButtons, BOOL, _e
 {
 	FLRelease(_saveButtonTitle);
 	FLRelease(_cancelButtonTitle);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void) updateSaveAndCancelButtons:(FLEditObjectViewController*) controller animate:(BOOL) animate

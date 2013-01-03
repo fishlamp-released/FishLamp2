@@ -54,7 +54,7 @@ FLSynthesizeSingleton(FLMemoryMonitor)
 	FLReleaseWithNil(_leftLabel);
 	FLReleaseWithNil(_rightLabel);
 
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (CGFloat) toMegabytes:(vm_size_t) size

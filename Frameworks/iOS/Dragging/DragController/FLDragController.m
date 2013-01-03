@@ -67,7 +67,7 @@ FLSynthesizeStructProperty(dragWatcherIsRunning, setDragWatcherIsRunning, BOOL, 
     FLRelease(_touchableView);
     FLRelease(_dragDestinations);
     FLRelease(_draggableObjects);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 - (void) addSecondaryTouchableView:(UIView*) view

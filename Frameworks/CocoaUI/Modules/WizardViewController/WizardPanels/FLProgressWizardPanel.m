@@ -188,7 +188,7 @@
                             nextView:(UIView*) nextView
                             completion:(void (^)()) completion {
 
-    completion = FLAutoreleasedCopy(completion);
+    completion = FLCopyWithAutorelease(completion);
 
     self.wizard.otherButton.enabled = NO;
     self.wizard.backButton.enabled = NO;

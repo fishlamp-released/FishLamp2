@@ -64,7 +64,7 @@
     FLRelease(__selectedColor);
     FLRelease(__highlightedColor);
     FLRelease(__disabledColor);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder

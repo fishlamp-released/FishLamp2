@@ -75,7 +75,7 @@
 	FLReleaseWithNil(_spinner);
 	FLReleaseWithNil(_bottomLabel);
 	
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void) updateText

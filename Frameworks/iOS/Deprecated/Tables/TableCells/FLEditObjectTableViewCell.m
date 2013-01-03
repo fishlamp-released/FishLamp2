@@ -50,7 +50,7 @@
 	FLRelease(_helpText);
 	FLRelease(_rowKey);
 	FLRelease(_dataKeyPath);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (BOOL) hasDataKey

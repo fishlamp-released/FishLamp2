@@ -173,7 +173,7 @@ void FLGradientButtonColorLightGray(id button)
 {
     FLRelease(_shapeWidget);
 	FLRelease(_backgroundWidget);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void) setHighlighted:(BOOL) highlighted

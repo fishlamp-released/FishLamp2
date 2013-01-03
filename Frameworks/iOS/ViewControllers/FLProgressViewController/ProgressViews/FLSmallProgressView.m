@@ -85,7 +85,7 @@
 - (void) dealloc
 {
 	FLRelease(_gradientView);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 + (FLSmallProgressView*) smallProgressView

@@ -75,7 +75,7 @@ FLSynthesizeAssociatedProperty(retain_nonatomic, objectPool, setObjectPool, FLOb
 }
 
 - (void) requestPooledObject:(FLObjectPoolBlock) block {
-    block = FLAutoreleasedCopy(block);
+    block = FLCopyWithAutorelease(block);
     
     [FLFifoQueue dispatchBlock:^{
         [_requests addObject:block];

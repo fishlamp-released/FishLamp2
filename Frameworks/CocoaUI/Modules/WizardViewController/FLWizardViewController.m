@@ -260,7 +260,7 @@
 
     [self wizardPanelWillDissappear:toHide];
     
-    completion = FLAutoreleasedCopy(completion);
+    completion = FLCopyWithAutorelease(completion);
     
     dispatch_block_t finished = ^{
         [self setWizardPanelTitleFields:toShow];
@@ -307,7 +307,7 @@
  
     [self setWizardPanelTitleFields:toShow];
     
-    completion = FLAutoreleasedCopy(completion);
+    completion = FLCopyWithAutorelease(completion);
     [_wizardPanelEnclosureView addSubview:toShow.view];
         
     dispatch_block_t finished = ^{
@@ -344,7 +344,7 @@
                                         nextView:(UIView*) nextView
                                       completion:(void (^)()) completion {
 
-    completion = FLAutoreleasedCopy(completion);
+    completion = FLCopyWithAutorelease(completion);
 
     FLFlipTransition* animation = [FLFlipTransition transitionWithViewToShow:nextView 
                                                        viewToHide:self.notificationView];

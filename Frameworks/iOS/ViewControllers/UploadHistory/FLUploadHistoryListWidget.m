@@ -119,7 +119,7 @@
 	FLRelease(_assetName);
 	FLRelease(_assetDestinationName);
 	FLRelease(_uploadDate);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 @end

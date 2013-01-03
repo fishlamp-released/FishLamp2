@@ -52,7 +52,7 @@
 - (void) dealloc
 {
     FLRelease(_label);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 - (BOOL) pointInside:(CGPoint)point withEvent:(UIEvent *)event

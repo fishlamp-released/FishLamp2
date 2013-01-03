@@ -48,7 +48,7 @@
 {
     FLRelease(_linkLabel);
 	FLRelease(_headerView);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void) viewDidUnload

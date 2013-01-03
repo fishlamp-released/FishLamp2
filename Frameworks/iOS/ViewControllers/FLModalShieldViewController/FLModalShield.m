@@ -86,7 +86,7 @@
 
 - (void) dealloc {
 	[self hideShield];
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (NSArray*) passThroughViewsForPopover {

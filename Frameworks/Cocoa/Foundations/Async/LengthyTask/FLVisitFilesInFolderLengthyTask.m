@@ -34,7 +34,7 @@
 - (void) dealloc  {
     FLRelease(_startPath);
     FLRelease(_visitorBlock);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 + (FLVisitFilesInFolderLengthyTask*) visitFilesInFolderLengthyTask:(NSString*) taskName 
@@ -58,7 +58,7 @@
             self.stepCount++;
         }];
     
-	FLReleaseBlockWithNil_(_visitorBlock);	
+	FLReleaseBlockWithNil(_visitorBlock);	
 }                                               
 
 @end 

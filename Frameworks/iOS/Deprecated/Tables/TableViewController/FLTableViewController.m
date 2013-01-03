@@ -81,7 +81,7 @@
 - (void) dealloc
 {
 	[self cleanupTableViewController];
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (BOOL) isLastRow:(NSIndexPath *)indexPath

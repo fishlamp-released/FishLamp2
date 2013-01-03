@@ -32,7 +32,7 @@
 - (void) dealloc
 {
 	FLRelease(_prompt);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void) willConstructWithTableLayoutBuilder:(FLTableViewLayoutBuilder*) builder

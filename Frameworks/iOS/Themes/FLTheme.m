@@ -21,7 +21,7 @@
 
 - (void) dealloc {
     FLRelease(_alertStyleHandler);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 + (FLTheme*) currentTheme {

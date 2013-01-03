@@ -120,7 +120,7 @@ FLAssertDefaultInitNotCalled_();
         free(_buffer);
         _buffer = nil;
     }
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 @end

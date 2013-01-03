@@ -190,7 +190,7 @@ FLSynthesizeStructProperty(notificationViewStyle, setNotificationViewStyle, FLOl
 	
 	[self releaseViews];
 	
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void) notifyWasTouched

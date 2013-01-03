@@ -96,7 +96,7 @@ FIXME("attach to user sessions....");
     FLRelease(_sequenceQueue);
 	FLRelease(_operations);
 	FLRelease(_queue);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void) addBackgroundTask:(id<FLBackgroundTask>) task

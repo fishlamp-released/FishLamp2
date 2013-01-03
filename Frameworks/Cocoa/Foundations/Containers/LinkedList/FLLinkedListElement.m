@@ -20,7 +20,7 @@
 - (void) dealloc {
     FLRelease(_nextObjectInLinkedList);
     FLRelease(_previousObjectInLinkedList);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 #endif
 

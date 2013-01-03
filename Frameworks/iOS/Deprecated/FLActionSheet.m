@@ -103,7 +103,7 @@
 {
 	FLReleaseWithNil(_items);
 	FLReleaseWithNil(_clickedCallback);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void) setDismissedCallback:(id) targetOrObjectContainer action:(SEL) action

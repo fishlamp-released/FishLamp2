@@ -52,7 +52,7 @@
 
 - (void) dealloc {
     [_assetQueue unlock];
-    super_dealloc_();
+    FLSuperDealloc();
 }
 @end
 #endif

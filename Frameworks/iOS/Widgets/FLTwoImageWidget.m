@@ -35,7 +35,7 @@
 {
 	FLRelease(_topImageWidget);
 	FLRelease(_bottomImageWidget);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void) releaseImages

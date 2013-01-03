@@ -72,7 +72,7 @@
     [self removeAllToolbarItems];
     FLRelease(_items);
     FLRelease(_itemArrangement);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 - (void) updateSizeInBounds:(CGRect) bounds {

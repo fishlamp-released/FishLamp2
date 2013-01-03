@@ -34,7 +34,7 @@
 {	
 	FLRelease(_mapView);
 	FLRelease(_mapSwitcher);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void) _resetZoom:(id) zoom

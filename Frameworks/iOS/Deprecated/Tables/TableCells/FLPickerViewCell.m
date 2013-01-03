@@ -25,7 +25,7 @@
 - (void) dealloc
 {
 	FLRelease(_pickerView);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (UIPickerView*) pickerView

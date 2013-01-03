@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
 
-#import "FLAnimation.h"
+#import "FLViewAnimation.h"
 
 typedef enum {
     FLFlipViewAnimatorDirectionUp,
@@ -31,7 +31,7 @@ FLFlipViewAnimatorDirection FLFlipViewAnimatorDirectionOpposite(FLFlipViewAnimat
 
 #define FLFlipAnimationDefaultPerspectiveDistance 1500.0f
 
-@interface FLFlipAnimation : FLAnimation {
+@interface FLFlipAnimation : FLViewAnimation {
 @private
     FLFlipViewAnimatorDirection _flipDirection;
     BOOL _showBothSidesDuringFlip;

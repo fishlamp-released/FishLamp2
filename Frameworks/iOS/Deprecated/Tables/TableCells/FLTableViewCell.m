@@ -152,7 +152,7 @@
 	FLRelease(_background);
 	FLRelease(_accessory);
 	FLRelease(_widget);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void) didMoveToSuperview

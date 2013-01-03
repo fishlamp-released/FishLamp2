@@ -80,7 +80,7 @@
     FLRelease(__display_coordinates);
     FLRelease(__trim_user);
     FLRelease(__include_entities);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder

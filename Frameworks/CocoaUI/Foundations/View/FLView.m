@@ -30,4 +30,39 @@
 }
 #endif
 
+//- (void) didAddSubview:(NSView*) view {
+//    [super didAddSubview:view];
+//    [self setNeedsLayout];
+//}
+//
+//- (void) viewDidMoveToSuperview {
+//    [super viewDidMoveToSuperview];
+//    [self setNeedsLayout];
+//}
+//
+//
+//- (void)willRemoveSubview:(NSView *)subview {
+//    [super willRemoveSubview:subview];
+//    [self setNeedsLayout];
+//}
+//
+//- (void) removeFromSuperview {
+//    NSView* superview = FLAutoreleaseRetained([self superview]);
+//    [super removeFromSuperview];
+//    [superview setNeedsLayout]
+//}
+//
+//- (void)setFrameSize:(NSSize)newSize {
+//    if(!CGSizeEqualToSize(newSize, self.frame.size)) {
+//        [[self superview]]
+//    }
+//    [super setFrameSize:newSize];
+//}
+//- (void)setFrame:(NSRect)frameRect {
+//    if(!CGSizeEqualToSize(newSize.size, self.frame.size)) {
+//    }
+//    [super setFrame:frameRect];
+//}
+
+
 @end

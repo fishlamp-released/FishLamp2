@@ -64,7 +64,7 @@
     FLRelease(__error);
     FLRelease(__error_description);
     FLRelease(__externalUrl);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder

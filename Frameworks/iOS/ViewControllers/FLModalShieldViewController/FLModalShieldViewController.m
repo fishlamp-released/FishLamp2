@@ -34,7 +34,7 @@
 
 - (void) dealloc {
     FLRelease(_shieldView);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 @end

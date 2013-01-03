@@ -26,7 +26,7 @@
 {
     [[FLApplication sharedApplication] removeEventInterceptor:self];
     FLRelease(_item);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 - (BOOL) isWatchingTouches

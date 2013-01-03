@@ -62,7 +62,7 @@
 {
 	FLRelease(_topGradient);
 	FLRelease(_bottomGradient);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 @end

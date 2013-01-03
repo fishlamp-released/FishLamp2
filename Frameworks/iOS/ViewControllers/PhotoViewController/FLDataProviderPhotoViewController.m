@@ -29,7 +29,7 @@
 - (void) dealloc
 {
     FLRelease(_dataProvider);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 - (void) closeSelf:(id) sender

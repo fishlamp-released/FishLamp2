@@ -36,7 +36,7 @@
 	FLRelease(_disabledView);
 	FLRelease(_image);
 	FLRelease(_backgroundImage);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (CGSize)sizeThatFits:(CGSize)size

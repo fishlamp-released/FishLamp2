@@ -64,7 +64,7 @@
 //	FLRelease(_placeholderDescriptor);
 //	FLRelease(_titleDescriptor);
 //	FLRelease(_valueDescriptor);
-//	super_dealloc_();
+//	FLSuperDealloc();
 //}
 //
 //-(CGFloat) calculateActualFontSize;

@@ -53,7 +53,7 @@
 {
     FLRelease(__sessionId);
     FLRelease(__userGuid);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder

@@ -66,7 +66,7 @@
 - (void)dealloc 
 {
 	FLRelease(_switch); 
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void) updateControlFromDataSource:(BOOL) animated

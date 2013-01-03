@@ -99,7 +99,7 @@
 	FLRelease(_asset);
 	FLRelease(_imageFrame);
 	FLRelease(_thumbnailImageWidget);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void) setAsset:(id<FLImageAsset>) asset

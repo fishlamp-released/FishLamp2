@@ -69,7 +69,7 @@
 - (void) dealloc
 {
 	FLRelease(_galleryThumbnail);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 - (void) wasCachedInCache:(FLObjectCache*) cache

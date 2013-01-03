@@ -65,7 +65,7 @@
         [self removeAllObjects];
     }
 
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 - (NSEnumerator*) mutableEnumerator {
@@ -846,7 +846,7 @@ int main()
     FLRelease(_next);
     FLRelease(_current);
     FLRelease(_list);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 #endif
 

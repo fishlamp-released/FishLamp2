@@ -84,7 +84,7 @@
 {
 	FLRelease(_leftButton);
 	FLRelease(_rightButton);	
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 + (FLTwoButtonCell*) twoButtonCell

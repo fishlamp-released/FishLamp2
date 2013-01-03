@@ -33,7 +33,7 @@
 	FLRelease(_masterExif);
 	FLRelease(_extras);
 	FLRelease(_overrides);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void) setMasterExif:(NSDictionary*) dict

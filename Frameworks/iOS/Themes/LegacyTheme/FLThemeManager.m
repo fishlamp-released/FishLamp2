@@ -24,7 +24,7 @@ FLSynthesizeSingleton(FLThemeManager);
 - (void) dealloc
 {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (FLSavedThemeInfo*) loadSavedThemeInfo

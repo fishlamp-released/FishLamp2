@@ -28,7 +28,7 @@
     FLRelease(_objectArray);
     FLRelease(_indexes);
     FLRelease(_keys);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 #endif
 

@@ -76,7 +76,7 @@
     FLRelease(__accessTokenUrl);
     FLRelease(__authorizeUrl);
     FLRelease(__callback);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 - (id) init

@@ -131,7 +131,7 @@
     FLRelease(_onPress);
     FLRelease(_shapeWidget);
 	FLRelease(_backgroundWidget);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void) layoutSubviews {

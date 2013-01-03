@@ -38,7 +38,7 @@
 	FLRelease(_database);
 	FLRelease(_uploadedAssets);
 	FLRelease(_assetQueue);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void) _done:(id) sender
@@ -46,7 +46,7 @@
 	if(_doneBlock)
 	{
 		_doneBlock();
-		FLReleaseBlockWithNil_(_doneBlock);
+		FLReleaseBlockWithNil(_doneBlock);
 	}
 }
 

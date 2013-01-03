@@ -108,7 +108,7 @@
 - (void) dealloc {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 //- (void) _appDidEnterBackground:(id) sender {

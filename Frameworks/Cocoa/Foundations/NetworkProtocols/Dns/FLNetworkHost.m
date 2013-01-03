@@ -189,7 +189,7 @@
     FLRelease(_resolvedAddresses);
     FLRelease(_hostHame);
     FLRelease(_addressData);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 @end

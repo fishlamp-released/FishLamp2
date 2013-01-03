@@ -88,7 +88,7 @@
     FLRelease(__random);
     FLRelease(__playMusic);
     FLRelease(__mediaItemList);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder

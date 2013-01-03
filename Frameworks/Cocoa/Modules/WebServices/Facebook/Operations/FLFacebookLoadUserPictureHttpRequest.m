@@ -26,7 +26,7 @@
 
 - (void) dealloc {	
 	FLRelease(_pictureSize);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 //- (id) initWithAccessToken:(NSString*) encodedToken userId:(NSString*) userId  size:(FLFacebookPictureSize) size

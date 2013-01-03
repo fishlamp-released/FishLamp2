@@ -68,7 +68,7 @@
 {
 	FLRelease(_backgroundView);
 	FLRelease(_progressView);
-	super_dealloc_();
+	FLSuperDealloc();
 }	
 
 - (void) _updateProgressFrame

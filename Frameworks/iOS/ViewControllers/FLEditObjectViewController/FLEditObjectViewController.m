@@ -313,7 +313,7 @@ FLSynthesizeStructProperty(saveChangesImmediately, setSaveChangesImmediately, BO
 	FLRelease(_saveButtonTitle);
 	FLRelease(_dataSourceManager);
 	FLRelease(_backgroundImage);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void) showBackgroundImage:(BOOL) show animated:(BOOL) animated

@@ -45,7 +45,7 @@
 	FLRelease(_object);
 	FLRelease(_key);
 	FLRelease(_data);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 @end

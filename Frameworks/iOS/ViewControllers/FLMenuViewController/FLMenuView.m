@@ -114,7 +114,7 @@
 - (void) dealloc {
     FLRelease(_menuItems);
     FLRelease(_titleView);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 //- (CGSize) layoutSubviewsWithArrangement

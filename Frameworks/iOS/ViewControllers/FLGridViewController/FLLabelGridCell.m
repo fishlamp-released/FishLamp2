@@ -24,7 +24,7 @@
 - (void) dealloc {
     FLRelease(_label);
     FLRelease(_text);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 //- (void) cellWillAppearInSuperview:(UIView *)superview  viewController:(FLGridViewController*) viewController  {

@@ -162,7 +162,7 @@ typedef enum {
 	FLRelease(_statusLabel);
 	FLRelease(_arrowImage);
 	FLRelease(_spinner);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void) updateLastUpdateTime:(NSDate*) date

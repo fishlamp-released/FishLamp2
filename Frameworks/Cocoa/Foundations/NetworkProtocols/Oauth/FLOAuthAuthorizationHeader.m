@@ -52,7 +52,7 @@ extern void FLDebugCompareHeaders(NSString* lhs, NSString* rhs);
 #if FL_MRC
 - (void) dealloc {
 	FLRelease(_parameters);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 #endif
 

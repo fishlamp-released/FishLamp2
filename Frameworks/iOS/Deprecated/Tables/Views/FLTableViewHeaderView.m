@@ -48,7 +48,7 @@
 - (void) dealloc
 {
 	FLRelease(_label);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void) layoutSubviews

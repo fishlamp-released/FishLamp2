@@ -44,7 +44,7 @@
 	FLRelease(_chosenAssets);
 	FLRelease(_disabledAssets);
 	FLRelease(_queue);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 + (FLAssetsLibraryBrowser*) assetsLibraryBrowser:(FLAssetQueue*) queue

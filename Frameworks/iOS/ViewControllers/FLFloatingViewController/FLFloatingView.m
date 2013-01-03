@@ -207,7 +207,7 @@
 	FLRelease(_topGradient);
 	FLRelease(_containerView);
 	FLRelease(_contentView);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 

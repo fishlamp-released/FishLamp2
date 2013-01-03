@@ -61,7 +61,7 @@ NSString* const FLReachabilityChangedNotification = @"FLReachabilityChangedNotif
 - (void) dealloc {
     [self stopMonitoring];
     self.reachability = nil;
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 - (void) setReachablility:(SCNetworkReachabilityRef) reachability {
@@ -209,7 +209,7 @@ static void ReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReach
 
 - (void) dealloc {
     FLRelease(_hostName);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 - (NSString*) description {

@@ -52,7 +52,7 @@
 {
 	FLRelease(_textEditingBar);
 	FLRelease(_editingBar);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void) viewDidUnload

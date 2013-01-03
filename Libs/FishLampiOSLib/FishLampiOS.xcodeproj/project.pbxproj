@@ -539,8 +539,8 @@
 		27CA446C1677E5FD008D64BE /* FLTextEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA41CE1677E5FD008D64BE /* FLTextEditViewController.m */; };
 		27CA446D1677E5FD008D64BE /* FLUserFeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA41D01677E5FD008D64BE /* FLUserFeedbackViewController.m */; };
 		27CA446E1677E5FD008D64BE /* FLUserFeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA41D01677E5FD008D64BE /* FLUserFeedbackViewController.m */; };
-		27CA446F1677E5FD008D64BE /* FLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA41D21677E5FD008D64BE /* FLViewController.m */; };
-		27CA44701677E5FD008D64BE /* FLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA41D21677E5FD008D64BE /* FLViewController.m */; };
+		27CA446F1677E5FD008D64BE /* FLIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA41D21677E5FD008D64BE /* FLIViewController.m */; };
+		27CA44701677E5FD008D64BE /* FLIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA41D21677E5FD008D64BE /* FLIViewController.m */; };
 		27CA44711677E5FD008D64BE /* FLWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA41D41677E5FD008D64BE /* FLWebViewController.m */; };
 		27CA44721677E5FD008D64BE /* FLWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA41D41677E5FD008D64BE /* FLWebViewController.m */; };
 		27CA44731677E5FD008D64BE /* FLDataProviderPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA41D71677E5FD008D64BE /* FLDataProviderPhotoViewController.m */; };
@@ -1265,8 +1265,8 @@
 		27CA41CE1677E5FD008D64BE /* FLTextEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLTextEditViewController.m; sourceTree = "<group>"; };
 		27CA41CF1677E5FD008D64BE /* FLUserFeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLUserFeedbackViewController.h; sourceTree = "<group>"; };
 		27CA41D01677E5FD008D64BE /* FLUserFeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLUserFeedbackViewController.m; sourceTree = "<group>"; };
-		27CA41D11677E5FD008D64BE /* FLViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLViewController.h; sourceTree = "<group>"; };
-		27CA41D21677E5FD008D64BE /* FLViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLViewController.m; sourceTree = "<group>"; };
+		27CA41D11677E5FD008D64BE /* FLIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLIViewController.h; sourceTree = "<group>"; };
+		27CA41D21677E5FD008D64BE /* FLIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLIViewController.m; sourceTree = "<group>"; };
 		27CA41D31677E5FD008D64BE /* FLWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLWebViewController.h; sourceTree = "<group>"; };
 		27CA41D41677E5FD008D64BE /* FLWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLWebViewController.m; sourceTree = "<group>"; };
 		27CA41D61677E5FD008D64BE /* FLDataProviderPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLDataProviderPhotoViewController.h; sourceTree = "<group>"; };
@@ -2470,8 +2470,8 @@
 				27CA41CE1677E5FD008D64BE /* FLTextEditViewController.m */,
 				27CA41CF1677E5FD008D64BE /* FLUserFeedbackViewController.h */,
 				27CA41D01677E5FD008D64BE /* FLUserFeedbackViewController.m */,
-				27CA41D11677E5FD008D64BE /* FLViewController.h */,
-				27CA41D21677E5FD008D64BE /* FLViewController.m */,
+				27CA41D11677E5FD008D64BE /* FLIViewController.h */,
+				27CA41D21677E5FD008D64BE /* FLIViewController.m */,
 				27CA41D31677E5FD008D64BE /* FLWebViewController.h */,
 				27CA41D41677E5FD008D64BE /* FLWebViewController.m */,
 				27CA41D51677E5FD008D64BE /* PhotoViewController */,
@@ -3282,7 +3282,7 @@
 				27CA446A1677E5FD008D64BE /* FLTabBarController.m in Sources */,
 				27CA446C1677E5FD008D64BE /* FLTextEditViewController.m in Sources */,
 				27CA446E1677E5FD008D64BE /* FLUserFeedbackViewController.m in Sources */,
-				27CA44701677E5FD008D64BE /* FLViewController.m in Sources */,
+				27CA44701677E5FD008D64BE /* FLIViewController.m in Sources */,
 				27CA44721677E5FD008D64BE /* FLWebViewController.m in Sources */,
 				27CA44741677E5FD008D64BE /* FLDataProviderPhotoViewController.m in Sources */,
 				27CA44761677E5FD008D64BE /* FLPhotoGalleryViewController.m in Sources */,
@@ -3616,7 +3616,7 @@
 				27CA44691677E5FD008D64BE /* FLTabBarController.m in Sources */,
 				27CA446B1677E5FD008D64BE /* FLTextEditViewController.m in Sources */,
 				27CA446D1677E5FD008D64BE /* FLUserFeedbackViewController.m in Sources */,
-				27CA446F1677E5FD008D64BE /* FLViewController.m in Sources */,
+				27CA446F1677E5FD008D64BE /* FLIViewController.m in Sources */,
 				27CA44711677E5FD008D64BE /* FLWebViewController.m in Sources */,
 				27CA44731677E5FD008D64BE /* FLDataProviderPhotoViewController.m in Sources */,
 				27CA44751677E5FD008D64BE /* FLPhotoGalleryViewController.m in Sources */,

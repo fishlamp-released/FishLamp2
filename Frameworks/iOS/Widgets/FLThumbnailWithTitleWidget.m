@@ -42,7 +42,7 @@
 {
 	FLRelease(_imageFrame);
 	FLRelease(_label);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void) setTitle:(NSString*) title

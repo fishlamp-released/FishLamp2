@@ -6,7 +6,7 @@
  *  Copyright 2011 GreenTongue Software. All rights reserved.
  *
  */
-
+/*
 #import "FLParserStack.h"
 #import "FLPrettyString.h"
 
@@ -48,3 +48,4 @@ void FLParserStackLogState(FLParserStack* stack, NSString* why)
 	FLDebugLog([prettyString string]);
 }
 #endif 
+*/

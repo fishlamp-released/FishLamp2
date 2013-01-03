@@ -38,7 +38,7 @@
 - (void) dealloc
 {
 	FLRelease(_camera);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void) beginCapture

@@ -36,7 +36,7 @@
 #if FL_MRC
 - (void) dealloc {
     FLRelease(_dataSource);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 #endif
 

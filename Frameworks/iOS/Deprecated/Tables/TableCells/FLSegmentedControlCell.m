@@ -46,7 +46,7 @@
 - (void) dealloc
 {
 	FLRelease(_control);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void) enabledStateDidChange

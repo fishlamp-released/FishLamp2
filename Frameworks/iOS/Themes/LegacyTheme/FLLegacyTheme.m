@@ -34,7 +34,7 @@
 //- (void) dealloc
 //{
 //	FLRelease(_name);
-//	super_dealloc_();
+//	FLSuperDealloc();
 //}
 //
 //

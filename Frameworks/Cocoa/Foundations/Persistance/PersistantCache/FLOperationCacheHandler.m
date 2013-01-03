@@ -109,12 +109,12 @@ FLSynthesizeStructProperty(wasLoadedFromCache, setWasLoadedFromCache, BOOL, _net
 
 - (void) dealloc
 {
-    FLReleaseBlockWithNil_(_loadFromCacheCallback);
-    FLReleaseBlockWithNil_(_saveToCacheCallback);
-    FLReleaseBlockWithNil_(_wasLoadedFromCacheCallback);
-    FLReleaseBlockWithNil_(_wasLoadedFromCacheMainThreadCallback);
+    FLReleaseBlockWithNil(_loadFromCacheCallback);
+    FLReleaseBlockWithNil(_saveToCacheCallback);
+    FLReleaseBlockWithNil(_wasLoadedFromCacheCallback);
+    FLReleaseBlockWithNil(_wasLoadedFromCacheMainThreadCallback);
     FLRelease(_database);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (void) willFinishSelf:(FLOperation*) operation {

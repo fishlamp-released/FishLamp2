@@ -29,7 +29,7 @@
     FLRelease(_fileURL);
 	FLRelease(_fileName);
 	FLRelease(_gradientView);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (BOOL) currentDocumentIsFile {

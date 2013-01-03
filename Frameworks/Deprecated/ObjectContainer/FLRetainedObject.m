@@ -25,7 +25,7 @@
 #if FL_MRC
 - (void) dealloc {
     FLRelease(_object);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 #endif
 

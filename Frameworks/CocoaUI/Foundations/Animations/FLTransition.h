@@ -6,11 +6,11 @@
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
 
-#import "FLAnimation.h"
+#import "FLBatchAnimation.h"
 
-@interface FLTransition : FLAnimation {
-@private
+@interface FLTransition : FLBatchAnimation {
 }
+
 
 - (id) initWithViewToShow:(UIView*) viewToShow 
                viewToHide:(UIView*) viewToHide;
@@ -18,9 +18,13 @@
 + (id) transitionWithViewToShow:(UIView*) viewToShow 
                      viewToHide:(UIView*) viewToHide;
 
-- (void) prepareTransitionWithViewToShow:(UIView*) viewToShow 
-                              viewToHide:(UIView*) viewToHide;
-                              
-- (void) finishTransitionWithViewToShow:(UIView*) viewToShow 
-                             viewToHide:(UIView*) viewToHide;          
+- (void) setViewToShow:(UIView*) viewToShow 
+            viewToHide:(UIView*) viewToHide;
+
+
+// override this
+- (void) addAnimationsForViewToShow:(UIView*) viewToShow 
+                         viewToHide:(UIView*) viewToHide;
+
+
 @end

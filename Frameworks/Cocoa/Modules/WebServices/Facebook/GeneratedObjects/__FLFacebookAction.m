@@ -48,7 +48,7 @@
 {
     FLRelease(__link);
     FLRelease(__name);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder

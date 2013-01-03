@@ -99,7 +99,7 @@ FLSynthesizeSingleton(FLLogFileManager);
     FLRelease(_stringFormatter);
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 

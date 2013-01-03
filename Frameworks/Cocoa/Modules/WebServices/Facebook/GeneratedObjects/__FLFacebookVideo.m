@@ -90,7 +90,7 @@
     FLRelease(__icon);
     FLRelease(__source);
     FLRelease(__tags);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder

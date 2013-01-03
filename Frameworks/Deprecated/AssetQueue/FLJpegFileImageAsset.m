@@ -95,7 +95,7 @@ static float s_thumbnailSize = 0.0;
 	FLReleaseWithNil(_fullScreenImageFile);
 	FLReleaseWithNil(_originalImageFile);
 	FLReleaseWithNil(_thumbnailImageFile);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 
 - (id<FLStorableImage>) original

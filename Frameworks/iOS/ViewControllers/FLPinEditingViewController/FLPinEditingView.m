@@ -287,7 +287,7 @@
 	FLRelease(_titleLabel);
     FLRelease(_numberLabels);
 	FLRelease(_buttons);
-	super_dealloc_();
+	FLSuperDealloc();
 }
 #endif
 

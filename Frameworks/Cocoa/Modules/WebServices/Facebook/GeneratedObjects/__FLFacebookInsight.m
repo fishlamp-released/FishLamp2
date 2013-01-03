@@ -34,7 +34,7 @@
 {
     FLRelease(__value);
     FLRelease(__end_time);
-    super_dealloc_();
+    FLSuperDealloc();
 }
 
 + (FLFacebookInsight*) facebookInsight
