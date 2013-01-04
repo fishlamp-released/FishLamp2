@@ -14,25 +14,32 @@
     return FLAutorelease([[[self class] alloc] init]);
 }
 
-- (void) prepareToFadeView:(UIView*) view fromAlpha:(CGFloat) fromAlpha toAlpha:(CGFloat) toAlpha {
-    
-    view.alphaValue = fromAlpha;
-    view.hidden = NO;
-    
-    CABasicAnimation *fade = [CABasicAnimation animationWithKeyPath:@"alphaValue"];
-    fade.fromValue = [NSNumber numberWithFloat:fromAlpha];
-    fade.toValue = [NSNumber numberWithFloat:toAlpha];
-    fade.removedOnCompletion = YES;
++ (CAAnimation*) animationForLayer:(CALayer*) layer 
+                         fromOpacity:(CGFloat) fromOpacity 
+                           toOpacity:(CGFloat) toOpacity {
+ 
+    CABasicAnimation *fade = [CABasicAnimation animationWithKeyPath:@"opacity"];
+    fade.fromValue = [NSNumber numberWithFloat:fromOpacity];
+    fade.toValue = [NSNumber numberWithFloat:toOpacity];
+    fade.removedOnCompletion = NO;
     fade.fillMode = kCAFillModeBoth;
     fade.additive = NO;
-    [view setAnimations:[NSDictionary dictionaryWithObjectsAndKeys:fade, @"alphaValue", nil]];
+    return fade;                      
+}                           
+
+- (void) setTarget:(id) target 
+       fromOpacity:(CGFloat) fromOpacity 
+         toOpacity:(CGFloat) toOpacity {
     
-    self.commit = ^{
-#if OSX
-        [[view  animator] setAlphaValue:toAlpha];
-#else
-        [view setAlpha:toAlpha];
-#endif
+    self.prepare = ^(id animation) {
+        CALayer* layer = [self layerFromTarget:target];
+        layer.opacity = fromOpacity;
+        layer.hidden = NO;
+        [layer addAnimation:[FLFadeAnimation animationForLayer:layer fromOpacity:fromOpacity toOpacity:toOpacity] forKey:@"opacity"];
+        
+        self.commit = ^{
+            [layer setOpacity:toOpacity];
+        };
     };
 }
 
@@ -40,24 +47,21 @@
 
 @implementation FLFadeInAnimation
 
-- (void) prepareViewAnimation:(UIView*) view {
-    self.prepare = ^(id animation) {
-        [animation prepareToFadeView:view fromAlpha:0.0 toAlpha:1.0];
-    };
+- (void) setTarget:(id) target {
+    [self setTarget:target fromOpacity:0.0 toOpacity:1.0];
 }
 
 @end
 
 @implementation FLFadeOutAnimation
 
-- (void) prepareViewAnimation:(UIView*) view {
-    self.prepare = ^(id animation) {
-        [animation prepareToFadeView:view fromAlpha:1.0 toAlpha:0.0];
-    
-        self.finish = ^{
-            view.hidden = YES;
-            [view setAlphaValue:1.0];
-        };
+- (void) setTarget:(id) target {
+    [self setTarget:target fromOpacity:1.0 toOpacity:0.0];
+
+    self.finish = ^{
+        CALayer* layer = [self layerFromTarget:target];
+        layer.hidden = YES;
+        [layer setOpacity:1.0];
     };
 }
 

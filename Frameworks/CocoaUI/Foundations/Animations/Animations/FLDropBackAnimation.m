@@ -7,13 +7,21 @@
 //
 
 #import "FLDropBackAnimation.h"
-#define kScaleSmall 0.95f
 
-#define FLShrunkTransform(view)   
+@implementation FLDropBackAnimation
 
-CATransform3D FLMakeShrinkAwayTransform(UIView* view, CGFloat scaleAmount) {
+@synthesize scale = _scale;
 
-    CGRect frame = view.frame;
+- (id) init {
+    self = [super init];
+    if(self) {
+        _scale = FLDropBackAnimationDefaultScale;
+    }
+    return self;
+}
+
++ (CATransform3D) transformForFrame:(CGRect) frame 
+                          withScale:(CGFloat) scaleAmount {
 
     CATransform3D scaleTransform = CATransform3DMakeScale(scaleAmount, scaleAmount, 1);
     CATransform3D translateTransform = CATransform3DMakeTranslation((frame.size.width * (1.0 - scaleAmount)) / 2.0f,  
@@ -23,28 +31,33 @@ CATransform3D FLMakeShrinkAwayTransform(UIView* view, CGFloat scaleAmount) {
 
 } 
 
-@implementation FLDropBackAnimation
++ (CAAnimation*) animationForLayer:(CALayer *) layer withScale:(CGFloat) scaleAmount {
+    
+    CABasicAnimation *scale = [CABasicAnimation animationWithKeyPath:@"transform"];
+    scale.fromValue =   [NSValue valueWithCATransform3D:layer.transform];
+    scale.toValue =     [NSValue valueWithCATransform3D:transform];
+    scale.removedOnCompletion = YES;
+    return scale;
+}
 
-- (void) prepareViewAnimation:(UIView*) view {    
+- (void) setTarget:(id) target {
+    
     self.prepare = ^(id animation) {
-        view.layer.transform = CATransform3DIdentity;
-        view.hidden = NO;
-
-        CATransform3D transform = FLMakeShrinkAwayTransform(view,kScaleSmall);
+        CALayer* layer = [self layerFromTarget:target]; {    
+        layer.transform = CATransform3DIdentity;
+        layer.hidden = NO;
         
-        CABasicAnimation *scale = [CABasicAnimation animationWithKeyPath:@"transform"];
-        scale.fromValue =   [NSValue valueWithCATransform3D:view.layer.transform];
-        scale.toValue =     [NSValue valueWithCATransform3D:transform];
-        scale.removedOnCompletion = YES;
+        CATransform3D transform = [FLDropBackAnimation transformForFrame:layer.frame withScale:_scale];
+        CAAnimation* dropBack = [FLDropBackAnimation animationForLayer:layer withScale:_scale];
 
         self.commit = ^{
-            [view.layer addAnimation:scale forKey:@"transform"];
-            view.layer.transform =  transform;
+            [layer addAnimation:dropBack forKey:@"transform"];
+            layer.transform = transform;
         };
 
         self.finish = ^{
-            view.hidden = YES;
-            view.layer.transform = CATransform3DIdentity;
+            layer.hidden = YES;
+            layer.transform = CATransform3DIdentity;
         };
     };
 }

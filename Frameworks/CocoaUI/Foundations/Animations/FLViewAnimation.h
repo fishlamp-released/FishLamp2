@@ -15,5 +15,5 @@
 - (void) setView:(UIView*) view;
 
 // override this
-- (void) prepareViewAnimation:(UIView*) view;
+- (void) prepareAnimationWithView:(UIView*) view;
 @end

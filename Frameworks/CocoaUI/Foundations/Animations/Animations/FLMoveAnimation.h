@@ -7,13 +7,19 @@
 //
 
 #import "FLCocoaUIRequired.h"
-#import "FLViewAnimation.h"
+#import "FLAnimation.h"
 
-@interface FLMoveAnimation : FLViewAnimation {
+@interface FLMoveAnimation : FLAnimation {
 }
-- (void) prepareToMoveView:(UIView*) view 
-                fromOrigin:(CGPoint) fromOrigin 
-                  toOrigin:(CGPoint) toOrigin;
+
+- (void) moveLayer:(CALayer*) layer
+        fromOrigin:(CGPoint) fromOrigin 
+          toOrigin:(CGPoint) toOrigin;
+
+// for subclasses
+- (void) prepareAnimationWithLayer:(CALayer*) layer 
+                        fromOrigin:(CGPoint) fromOrigin 
+                          toOrigin:(CGPoint) toOrigin;
 
 @end
 
