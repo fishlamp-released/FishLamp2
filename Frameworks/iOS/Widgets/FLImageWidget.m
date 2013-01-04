@@ -49,7 +49,7 @@
 	[self setNeedsDisplay];
 }
 
-- (void) drawSelf:(CGRect)rect
+- (void) drawRect:(CGRect)rect
 {
 	if(_image)
 	{
@@ -116,7 +116,7 @@
 		CGContextRestoreGState(context);
 	}
 	
-	[super drawSelf:rect];
+	[super drawRect:rect];
 }
 
 - (void) resizeToImageSize

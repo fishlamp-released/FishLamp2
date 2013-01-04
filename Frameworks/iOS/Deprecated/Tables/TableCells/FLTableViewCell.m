@@ -142,11 +142,7 @@
     self.selectionStyle = customSelectionStyle;
 }
 
-- (void) dealloc
-{
-	[_widget teardown];
-	[_accessory teardown];
-	[_sectionWidget teardown];
+- (void) dealloc {
 	FLRelease(_replacementLabel);
 	FLRelease(_sectionWidget);
 	FLRelease(_background);

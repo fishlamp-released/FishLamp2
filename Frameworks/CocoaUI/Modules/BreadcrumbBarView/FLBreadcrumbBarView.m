@@ -7,10 +7,11 @@
 //
 
 #import "FLBreadcrumbBarView.h"
+#import "FLCoreText.h"
 
 @implementation FLBreadcrumbBarView
 
-@synthesize breadcrumbs = _breadcrumbs;
+@synthesize strings = _strings;
 @synthesize verticalTextAlignment = _verticalTextAlignment;
 @synthesize enabledTextColor = _enabledTextColor;
 @synthesize disabledTextColor = _disabledTextColor;
@@ -30,7 +31,7 @@
         self.highlightedTextColor = [UIColor blueColor];
         self.textFont = [UIFont boldSystemFontOfSize:[UIFont systemFontSize]];
 
-        _breadcrumbs = [[FLOrderedCollection alloc] init];
+        _strings = [[FLOrderedCollection alloc] init];
     }
     
     return self;
@@ -38,61 +39,63 @@
 
 #if FL_MRC
 - (void) dealloc {
+    [_runFrames release];
     [_enabledTextColor release];
     [_disabledTextColor release];
     [_highlightedTextColor release];
     [_textFont release];
-    [_breadcrumbs release];
+    [_strings release];
+    [_runFrames release];
     [super dealloc];
 }
 #endif
 
-- (FLBreadcrumb*) breadcrumbAtIndex:(NSUInteger) index {
-    return [_breadcrumbs objectAtIndex:index];
+- (FLAttributedString*) stringAtIndex:(NSUInteger) index {
+    return [_strings objectAtIndex:index];
 }
 
-- (FLBreadcrumb*) breadcrumbForIndex:(NSString*) key {
-    return [_breadcrumbs objectForKey:key];
+- (FLAttributedString*) stringForKey:(NSString*) key {
+    return [_strings objectForKey:key];
 }
 
-- (void) setBreadcrumbString:(NSString*) string 
-          forBreadcrumbIndex:(NSUInteger) stringIndex {
-    [[_breadcrumbs objectAtIndex:stringIndex] setString:string];
+- (void) setString:(NSString*) string 
+          atIndex:(NSUInteger) stringIndex {
+    [[_strings objectAtIndex:stringIndex] setString:string];
     [self setNeedsLayout];
 }
 
-- (void) setBreadcrumbString:(NSString*) string 
-            forBreadcrumbKey:(NSString*) key {
-    [[_breadcrumbs objectForKey:key] setString:string];
+- (void) setString:(NSString*) string 
+            forKey:(NSString*) key {
+    [[_strings objectForKey:key] setString:string];
     [self setNeedsLayout];
 }
 
-- (void) setBreadcrumb:(FLBreadcrumb*) breadcrumb 
+- (void) setAttributedString:(FLAttributedString*) string 
                 forKey:(NSString*) key  {
 
     FLAssertStringIsNotEmpty_(key);
-    FLAssertNotNil_(breadcrumb);
+    FLAssertNotNil_(string);
                 
-    if(!breadcrumb.enabledTextColor) {
-        breadcrumb.enabledTextColor = self.enabledTextColor;
+    if(!string.enabledColor) {
+        string.enabledColor = self.enabledTextColor;
     }
-    if(!breadcrumb.disabledTextColor) {
-        breadcrumb.disabledTextColor = self.disabledTextColor;
+    if(!string.disabledColor) {
+        string.disabledColor = self.disabledTextColor;
     }
-    if(!breadcrumb.highlightedTextColor) {
-        breadcrumb.highlightedTextColor = self.highlightedTextColor;
+    if(!string.highlightedColor) {
+        string.highlightedColor = self.highlightedTextColor;
     }
-    if(!breadcrumb.textFont) {
-        breadcrumb.textFont = self.textFont;
+    if(!string.textFont) {
+        string.textFont = self.textFont;
     }
 
-    [_breadcrumbs addOrReplaceObject:breadcrumb forKey:key];
+    [_strings addOrReplaceObject:string forKey:key];
     [self setNeedsLayout];
 }
 
-- (void) setStringForAllBreadcrumbs:(NSString*) string {
-    for(FLBreadcrumb* breadcrumb in _breadcrumbs.forwardObjectEnumerator) {
-        breadcrumb.string = string;
+- (void) setStringForAllStrings:(NSString*) aString {
+    for(FLAttributedString* string in _strings.forwardObjectEnumerator) {
+        string.string = aString;
     }
     
     [self setNeedsLayout];
@@ -100,12 +103,12 @@
 
 - (NSAttributedString*) buildAttributedString {
     NSMutableAttributedString* outString = FLAutorelease([[NSMutableAttributedString alloc] init]);
-    for(FLBreadcrumb* breadcrumb in _breadcrumbs.forwardObjectEnumerator) {
-        if(FLStringIsEmpty(breadcrumb.string) || breadcrumb.isHidden) {
+    for(FLAttributedString* string in _strings.forwardObjectEnumerator) {
+        if(FLStringIsEmpty(string.string) || string.isHidden) {
             continue;
         }
     
-        [outString appendAttributedString:breadcrumb.attributedString];
+        [outString appendAttributedString:string.attributedString];
     }
     
     return outString;
@@ -114,10 +117,11 @@
 - (void) setStringRunFrames:(CTFrameRef) frameRef 
                       offset:(CGFloat) offset {
 
-    for(FLBreadcrumb* breadcrumb in _breadcrumbs.forwardObjectEnumerator) {
-        [breadcrumb resetRunFrames];
+    if(_runFrames) {
+        return;
     }
-   
+    _runFrames = [[FLMutableBatchDictionary alloc] init];
+
     CFArrayRef lines = CTFrameGetLines(frameRef);
     CFIndex lineCount = CFArrayGetCount(lines);
     if(lineCount) {
@@ -151,9 +155,9 @@
 #endif
 
                 NSDictionary* attributes = bridge_(NSDictionary*, CTRunGetAttributes(run));
-                FLBreadcrumb* breadcrumb = [attributes objectForKey:@"com.fishlamp.breadcrumb"];
-                if(breadcrumb) {
-                    [breadcrumb addRunFrame:runBounds];
+                FLAttributedString* str = [attributes objectForKey:@"com.fishlamp.string"];
+                if(str) {
+                    [_runFrames addObject:[NSValue valueWithCGRect:runBounds] forKey:str.string];
                 }
             }
          }
@@ -240,50 +244,61 @@
     return nil;
 }
 
-- (void) drawRect:(CGRect) drawRect {
-    [super drawRect:drawRect];
+//- (void) drawRect:(CGRect) drawRect {
+//    [super drawRect:drawRect];
+//
+//    CGContextRef context = UIGraphicsGetCurrentContext();
+//    CGContextSaveGState(context);
+//#if OSX
+//    CGContextSetTextMatrix(context, CGAffineTransformIdentity);
+//#endif
+//
+//
+//#if IOS
+//    // flip to context coordinates for drawing text.
+//    CGRect bounds = self.bounds;
+//    CGContextTranslateCTM(context, 0.0, bounds.size.height);
+//    CGContextScaleCTM(context, 1.0, -1.0);
+//#endif
+//
+//    CTFrameRef frameRef = [self createFrameForCGContext:context];
+//    @try {
+//        if(frameRef) {
+//            CTFrameDraw(frameRef, context);
+//        }
+//    }
+//    @finally {
+//        if(frameRef) {
+//            CFRelease(frameRef);
+//        }
+//        
+//        CGContextRestoreGState(context);
+//    }
+//     
+//}
 
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSaveGState(context);
-#if OSX
-    CGContextSetTextMatrix(context, CGAffineTransformIdentity);
-#endif
-
-
-#if IOS
-    // flip to context coordinates for drawing text.
-    CGRect bounds = self.bounds;
-    CGContextTranslateCTM(context, 0.0, bounds.size.height);
-    CGContextScaleCTM(context, 1.0, -1.0);
-#endif
-
-    CTFrameRef frameRef = [self createFrameForCGContext:context];
-    @try {
-        if(frameRef) {
-            CTFrameDraw(frameRef, context);
-        }
-    }
-    @finally {
-        if(frameRef) {
-            CFRelease(frameRef);
-        }
-        
-        CGContextRestoreGState(context);
-    }
-     
+- (void) drawRect:(CGRect) rect {
+    FLTextAlignment align = { FLVerticalTextAlignmentCenter };
+    
+    [FLCoreText drawString:[self buildAttributedString] withTextAlignment:align inBounds:self.bounds];
 }
 
-- (FLBreadcrumb*) breadcrumbAtPoint:(CGPoint) point {
-    for(FLBreadcrumb* breadcrumb in _breadcrumbs.forwardObjectEnumerator) {
-        if([breadcrumb pointInString:point]) {
-            return breadcrumb;
+- (FLAttributedString*) stringAtPoint:(CGPoint) point {
+
+    for(NSString* string in _runFrames) {
+        for(NSValue* value in [_runFrames objectsForKey:string]) {
+            if(CGRectContainsPoint([value CGRectValue], point)) {
+                return [self stringForKey:string];
+            }
         }
     }
+
     return nil;
 }
 
 - (void) setNeedsLayout {
     [super setNeedsLayout];
+    FLReleaseWithNil(_runFrames);
     [self setNeedsDisplay];
 }
 
@@ -294,19 +309,19 @@
     isTouching:(BOOL) isTouching {
     UITouch* touch = [touches anyObject];
     CGPoint pt = [touch locationInView:self];
-    FLBreadcrumb* touchingstring = [self stringForPoint:pt];
+    FLAttributedString* touchingstring = [self stringForPoint:pt];
 
-	for(FLBreadcrumb* breadcrumb in _breadcrumbs.forwardObjectEnumerator) {
-        if(breadcrumb.isHighlighted != isTouching) {
-            if(touchingstring == breadcrumb && breadcrumb.isTouchable) {
-                if(breadcrumb.isTouchable) {
+	for(FLAttributedString* string in _strings.forwardObjectEnumerator) {
+        if(string.isHighlighted != isTouching) {
+            if(touchingstring == string && string.isTouchable) {
+                if(string.isTouchable) {
                     touchingstring.highlighted = isTouching;
                     FLAssert_v(touchingstring.highlighted == isTouching, @"switch failed");
-                    FLLog(@"touched %@", breadcrumb.text);
+                    FLLog(@"touched %@", string.text);
                 }
             }
             else {
-                breadcrumb.highlighted = NO;
+                string.highlighted = NO;
             }
         }
     }

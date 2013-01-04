@@ -117,7 +117,7 @@
 	return [super calculateRowHeightInTableView:tableView withData:data];
 }
 
-//- (void) layoutWidgets
+//- (void) layoutSubWidgets
 //{
 //	_gradient.frame = self.frame;
 //

@@ -56,7 +56,7 @@
     return [_gradientColors colorRangeForControlState:state];
 }
 
-- (void) drawSelf:(CGRect) rect{
+- (void) drawRect:(CGRect) rect{
 
 	CGContextRef context = UIGraphicsGetCurrentContext();
 	CGContextSaveGState(context);
@@ -82,7 +82,7 @@
 	CGGradientRelease(gradient);
 	CGContextRestoreGState(context);
    
-	[super drawSelf:rect];
+	[super drawRect:rect];
 }
 
 @end

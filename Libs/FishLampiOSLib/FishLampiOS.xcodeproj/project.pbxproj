@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2731CCA21695FD1D00465E6C /* FLWidget+FLiOSWidget.m in Sources */ = {isa = PBXBuildFile; fileRef = 2731CCA11695FD1D00465E6C /* FLWidget+FLiOSWidget.m */; };
+		2731CCA31695FD1D00465E6C /* FLWidget+FLiOSWidget.m in Sources */ = {isa = PBXBuildFile; fileRef = 2731CCA11695FD1D00465E6C /* FLWidget+FLiOSWidget.m */; };
 		27CA42571677E5FD008D64BE /* FLAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA3F5B1677E5FD008D64BE /* FLAlert.m */; };
 		27CA42581677E5FD008D64BE /* FLAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA3F5B1677E5FD008D64BE /* FLAlert.m */; };
 		27CA42591677E5FD008D64BE /* FLAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA3F5D1677E5FD008D64BE /* FLAlertView.m */; };
@@ -615,8 +617,6 @@
 		27CA44B81677E5FD008D64BE /* FLPhotoThumbnailToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA42241677E5FD008D64BE /* FLPhotoThumbnailToolbar.m */; };
 		27CA44B91677E5FD008D64BE /* FLWidget+Touches.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA42271677E5FD008D64BE /* FLWidget+Touches.m */; };
 		27CA44BA1677E5FD008D64BE /* FLWidget+Touches.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA42271677E5FD008D64BE /* FLWidget+Touches.m */; };
-		27CA44BB1677E5FD008D64BE /* FLWidget.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA42291677E5FD008D64BE /* FLWidget.m */; };
-		27CA44BC1677E5FD008D64BE /* FLWidget.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA42291677E5FD008D64BE /* FLWidget.m */; };
 		27CA44BD1677E5FD008D64BE /* FLWidgetView.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA422B1677E5FD008D64BE /* FLWidgetView.m */; };
 		27CA44BE1677E5FD008D64BE /* FLWidgetView.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA422B1677E5FD008D64BE /* FLWidgetView.m */; };
 		27CA44BF1677E5FD008D64BE /* UIView+FLWidget.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA422D1677E5FD008D64BE /* UIView+FLWidget.m */; };
@@ -694,6 +694,8 @@
 		270D02E215E9B1FE00ED5FB0 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
 		270D02E315E9B1FF00ED5FB0 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
 		270DFDC815E99BAC00ED5FB0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		2731CCA01695FD1D00465E6C /* FLWidget+FLiOSWidget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FLWidget+FLiOSWidget.h"; sourceTree = "<group>"; };
+		2731CCA11695FD1D00465E6C /* FLWidget+FLiOSWidget.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FLWidget+FLiOSWidget.m"; sourceTree = "<group>"; };
 		276CE8EE15E54B2F000A5CE6 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		276CE8EF15E54B30000A5CE6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		276CE8F015E54B31000A5CE6 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
@@ -1341,8 +1343,6 @@
 		27CA42241677E5FD008D64BE /* FLPhotoThumbnailToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLPhotoThumbnailToolbar.m; sourceTree = "<group>"; };
 		27CA42261677E5FD008D64BE /* FLWidget+Touches.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FLWidget+Touches.h"; sourceTree = "<group>"; };
 		27CA42271677E5FD008D64BE /* FLWidget+Touches.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FLWidget+Touches.m"; sourceTree = "<group>"; };
-		27CA42281677E5FD008D64BE /* FLWidget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLWidget.h; sourceTree = "<group>"; };
-		27CA42291677E5FD008D64BE /* FLWidget.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLWidget.m; sourceTree = "<group>"; };
 		27CA422A1677E5FD008D64BE /* FLWidgetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLWidgetView.h; sourceTree = "<group>"; };
 		27CA422B1677E5FD008D64BE /* FLWidgetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLWidgetView.m; sourceTree = "<group>"; };
 		27CA422C1677E5FD008D64BE /* UIView+FLWidget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+FLWidget.h"; sourceTree = "<group>"; };
@@ -2832,12 +2832,12 @@
 			children = (
 				27CA42261677E5FD008D64BE /* FLWidget+Touches.h */,
 				27CA42271677E5FD008D64BE /* FLWidget+Touches.m */,
-				27CA42281677E5FD008D64BE /* FLWidget.h */,
-				27CA42291677E5FD008D64BE /* FLWidget.m */,
 				27CA422A1677E5FD008D64BE /* FLWidgetView.h */,
 				27CA422B1677E5FD008D64BE /* FLWidgetView.m */,
 				27CA422C1677E5FD008D64BE /* UIView+FLWidget.h */,
 				27CA422D1677E5FD008D64BE /* UIView+FLWidget.m */,
+				2731CCA01695FD1D00465E6C /* FLWidget+FLiOSWidget.h */,
+				2731CCA11695FD1D00465E6C /* FLWidget+FLiOSWidget.m */,
 			);
 			path = Widget;
 			sourceTree = "<group>";
@@ -3320,7 +3320,6 @@
 				27CA44B61677E5FD008D64BE /* FLZoomingScrollView.m in Sources */,
 				27CA44B81677E5FD008D64BE /* FLPhotoThumbnailToolbar.m in Sources */,
 				27CA44BA1677E5FD008D64BE /* FLWidget+Touches.m in Sources */,
-				27CA44BC1677E5FD008D64BE /* FLWidget.m in Sources */,
 				27CA44BE1677E5FD008D64BE /* FLWidgetView.m in Sources */,
 				27CA44C01677E5FD008D64BE /* UIView+FLWidget.m in Sources */,
 				27CA44C21677E5FD008D64BE /* FLActionWidget.m in Sources */,
@@ -3343,6 +3342,7 @@
 				27CA44E41677E5FD008D64BE /* FLTwoColumnWidget.m in Sources */,
 				27CA44E61677E5FD008D64BE /* FLTwoImageWidget.m in Sources */,
 				27CA44E81677E5FD008D64BE /* FLVerticalDragBarWidget.m in Sources */,
+				2731CCA31695FD1D00465E6C /* FLWidget+FLiOSWidget.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3654,7 +3654,6 @@
 				27CA44B51677E5FD008D64BE /* FLZoomingScrollView.m in Sources */,
 				27CA44B71677E5FD008D64BE /* FLPhotoThumbnailToolbar.m in Sources */,
 				27CA44B91677E5FD008D64BE /* FLWidget+Touches.m in Sources */,
-				27CA44BB1677E5FD008D64BE /* FLWidget.m in Sources */,
 				27CA44BD1677E5FD008D64BE /* FLWidgetView.m in Sources */,
 				27CA44BF1677E5FD008D64BE /* UIView+FLWidget.m in Sources */,
 				27CA44C11677E5FD008D64BE /* FLActionWidget.m in Sources */,
@@ -3677,6 +3676,7 @@
 				27CA44E31677E5FD008D64BE /* FLTwoColumnWidget.m in Sources */,
 				27CA44E51677E5FD008D64BE /* FLTwoImageWidget.m in Sources */,
 				27CA44E71677E5FD008D64BE /* FLVerticalDragBarWidget.m in Sources */,
+				2731CCA21695FD1D00465E6C /* FLWidget+FLiOSWidget.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

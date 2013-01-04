@@ -29,9 +29,9 @@
 	return self;
 }
 
-- (void) layoutWidgets
+- (void) layoutSubWidgets
 {
-    [super layoutWidgets];
+    [super layoutSubWidgets];
     
     CGRect bounds = self.frame;
     bounds.size.width *= 0.5f;

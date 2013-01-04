@@ -175,9 +175,9 @@
 	[self setNeedsDisplay];
 }
 
-- (void) layoutWidgets 
+- (void) layoutSubWidgets 
 {
-	[super layoutWidgets];
+	[super layoutSubWidgets];
 	
 	if(DeviceIsPad())
 	{

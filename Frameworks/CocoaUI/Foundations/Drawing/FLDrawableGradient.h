@@ -9,7 +9,7 @@
 #import "FLDrawable.h"
 #import "FLColorRange.h"
 
-@interface FLDrawableGradient : FLDrawable {
+@interface FLDrawableGradient : NSObject<FLDrawable> {
 @private
     FLColorRange* _colorRange;
 }

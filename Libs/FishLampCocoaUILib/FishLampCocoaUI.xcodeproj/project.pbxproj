@@ -79,6 +79,33 @@
 		271E3E841693AE2A00FB62C9 /* FLSlideInAndDropTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 271E3E7D1693AE2900FB62C9 /* FLSlideInAndDropTransition.m */; };
 		271E3E851693AE2A00FB62C9 /* FLSlideInAndDropTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 271E3E7D1693AE2900FB62C9 /* FLSlideInAndDropTransition.m */; };
 		271E3E861693AE2A00FB62C9 /* FLSlideInAndDropTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 271E3E7D1693AE2900FB62C9 /* FLSlideInAndDropTransition.m */; };
+		2731CC951695FC6D00465E6C /* FLWidget.h in Headers */ = {isa = PBXBuildFile; fileRef = 2731CC931695FC6D00465E6C /* FLWidget.h */; };
+		2731CC961695FC6D00465E6C /* FLWidget.h in Headers */ = {isa = PBXBuildFile; fileRef = 2731CC931695FC6D00465E6C /* FLWidget.h */; };
+		2731CC971695FC6D00465E6C /* FLWidget.h in Headers */ = {isa = PBXBuildFile; fileRef = 2731CC931695FC6D00465E6C /* FLWidget.h */; };
+		2731CC981695FC6D00465E6C /* FLWidget.h in Headers */ = {isa = PBXBuildFile; fileRef = 2731CC931695FC6D00465E6C /* FLWidget.h */; };
+		2731CC991695FC6D00465E6C /* FLWidget.m in Sources */ = {isa = PBXBuildFile; fileRef = 2731CC941695FC6D00465E6C /* FLWidget.m */; };
+		2731CC9A1695FC6D00465E6C /* FLWidget.m in Sources */ = {isa = PBXBuildFile; fileRef = 2731CC941695FC6D00465E6C /* FLWidget.m */; };
+		2731CC9B1695FC6D00465E6C /* FLWidget.m in Sources */ = {isa = PBXBuildFile; fileRef = 2731CC941695FC6D00465E6C /* FLWidget.m */; };
+		2731CC9C1695FC6D00465E6C /* FLWidget.m in Sources */ = {isa = PBXBuildFile; fileRef = 2731CC941695FC6D00465E6C /* FLWidget.m */; };
+		2731CC9D1695FC6D00465E6C /* FLWidget.m in Sources */ = {isa = PBXBuildFile; fileRef = 2731CC941695FC6D00465E6C /* FLWidget.m */; };
+		2731CCA616962E1900465E6C /* FLDrawableString.h in Headers */ = {isa = PBXBuildFile; fileRef = 2731CCA416962E1900465E6C /* FLDrawableString.h */; };
+		2731CCA716962E1900465E6C /* FLDrawableString.h in Headers */ = {isa = PBXBuildFile; fileRef = 2731CCA416962E1900465E6C /* FLDrawableString.h */; };
+		2731CCA816962E1900465E6C /* FLDrawableString.h in Headers */ = {isa = PBXBuildFile; fileRef = 2731CCA416962E1900465E6C /* FLDrawableString.h */; };
+		2731CCA916962E1900465E6C /* FLDrawableString.h in Headers */ = {isa = PBXBuildFile; fileRef = 2731CCA416962E1900465E6C /* FLDrawableString.h */; };
+		2731CCAA16962E1900465E6C /* FLDrawableString.m in Sources */ = {isa = PBXBuildFile; fileRef = 2731CCA516962E1900465E6C /* FLDrawableString.m */; };
+		2731CCAB16962E1900465E6C /* FLDrawableString.m in Sources */ = {isa = PBXBuildFile; fileRef = 2731CCA516962E1900465E6C /* FLDrawableString.m */; };
+		2731CCAC16962E1900465E6C /* FLDrawableString.m in Sources */ = {isa = PBXBuildFile; fileRef = 2731CCA516962E1900465E6C /* FLDrawableString.m */; };
+		2731CCAD16962E1900465E6C /* FLDrawableString.m in Sources */ = {isa = PBXBuildFile; fileRef = 2731CCA516962E1900465E6C /* FLDrawableString.m */; };
+		2731CCAE16962E1900465E6C /* FLDrawableString.m in Sources */ = {isa = PBXBuildFile; fileRef = 2731CCA516962E1900465E6C /* FLDrawableString.m */; };
+		2731CCB11696552400465E6C /* FLCoreText.h in Headers */ = {isa = PBXBuildFile; fileRef = 2731CCAF1696552400465E6C /* FLCoreText.h */; };
+		2731CCB21696552400465E6C /* FLCoreText.h in Headers */ = {isa = PBXBuildFile; fileRef = 2731CCAF1696552400465E6C /* FLCoreText.h */; };
+		2731CCB31696552400465E6C /* FLCoreText.h in Headers */ = {isa = PBXBuildFile; fileRef = 2731CCAF1696552400465E6C /* FLCoreText.h */; };
+		2731CCB41696552400465E6C /* FLCoreText.h in Headers */ = {isa = PBXBuildFile; fileRef = 2731CCAF1696552400465E6C /* FLCoreText.h */; };
+		2731CCB51696552400465E6C /* FLCoreText.m in Sources */ = {isa = PBXBuildFile; fileRef = 2731CCB01696552400465E6C /* FLCoreText.m */; };
+		2731CCB61696552400465E6C /* FLCoreText.m in Sources */ = {isa = PBXBuildFile; fileRef = 2731CCB01696552400465E6C /* FLCoreText.m */; };
+		2731CCB71696552400465E6C /* FLCoreText.m in Sources */ = {isa = PBXBuildFile; fileRef = 2731CCB01696552400465E6C /* FLCoreText.m */; };
+		2731CCB81696552400465E6C /* FLCoreText.m in Sources */ = {isa = PBXBuildFile; fileRef = 2731CCB01696552400465E6C /* FLCoreText.m */; };
+		2731CCB91696552400465E6C /* FLCoreText.m in Sources */ = {isa = PBXBuildFile; fileRef = 2731CCB01696552400465E6C /* FLCoreText.m */; };
 		27348DB4168DF55B00D4142E /* FLDrawableGradient.h in Headers */ = {isa = PBXBuildFile; fileRef = 27348DB2168DF55B00D4142E /* FLDrawableGradient.h */; };
 		27348DB5168DF55B00D4142E /* FLDrawableGradient.h in Headers */ = {isa = PBXBuildFile; fileRef = 27348DB2168DF55B00D4142E /* FLDrawableGradient.h */; };
 		27348DB6168DF55B00D4142E /* FLDrawableGradient.h in Headers */ = {isa = PBXBuildFile; fileRef = 27348DB2168DF55B00D4142E /* FLDrawableGradient.h */; };
@@ -469,15 +496,15 @@
 		78329D50167E97C20024E8DC /* UIViewController+FLAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329BC9167E97C20024E8DC /* UIViewController+FLAdditions.m */; };
 		78329D51167E97C20024E8DC /* UIViewController+FLAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329BC9167E97C20024E8DC /* UIViewController+FLAdditions.m */; };
 		78329D52167E97C20024E8DC /* UIViewController+FLAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329BC9167E97C20024E8DC /* UIViewController+FLAdditions.m */; };
-		78329D53167E97C20024E8DC /* FLBreadcrumb.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329BCC167E97C20024E8DC /* FLBreadcrumb.h */; };
-		78329D54167E97C20024E8DC /* FLBreadcrumb.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329BCC167E97C20024E8DC /* FLBreadcrumb.h */; };
-		78329D55167E97C20024E8DC /* FLBreadcrumb.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329BCC167E97C20024E8DC /* FLBreadcrumb.h */; };
-		78329D56167E97C20024E8DC /* FLBreadcrumb.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329BCC167E97C20024E8DC /* FLBreadcrumb.h */; };
-		78329D57167E97C20024E8DC /* FLBreadcrumb.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329BCD167E97C20024E8DC /* FLBreadcrumb.m */; };
-		78329D58167E97C20024E8DC /* FLBreadcrumb.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329BCD167E97C20024E8DC /* FLBreadcrumb.m */; };
-		78329D59167E97C20024E8DC /* FLBreadcrumb.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329BCD167E97C20024E8DC /* FLBreadcrumb.m */; };
-		78329D5A167E97C20024E8DC /* FLBreadcrumb.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329BCD167E97C20024E8DC /* FLBreadcrumb.m */; };
-		78329D5B167E97C20024E8DC /* FLBreadcrumb.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329BCD167E97C20024E8DC /* FLBreadcrumb.m */; };
+		78329D53167E97C20024E8DC /* FLAttributedString.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329BCC167E97C20024E8DC /* FLAttributedString.h */; };
+		78329D54167E97C20024E8DC /* FLAttributedString.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329BCC167E97C20024E8DC /* FLAttributedString.h */; };
+		78329D55167E97C20024E8DC /* FLAttributedString.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329BCC167E97C20024E8DC /* FLAttributedString.h */; };
+		78329D56167E97C20024E8DC /* FLAttributedString.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329BCC167E97C20024E8DC /* FLAttributedString.h */; };
+		78329D57167E97C20024E8DC /* FLAttributedString.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329BCD167E97C20024E8DC /* FLAttributedString.m */; };
+		78329D58167E97C20024E8DC /* FLAttributedString.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329BCD167E97C20024E8DC /* FLAttributedString.m */; };
+		78329D59167E97C20024E8DC /* FLAttributedString.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329BCD167E97C20024E8DC /* FLAttributedString.m */; };
+		78329D5A167E97C20024E8DC /* FLAttributedString.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329BCD167E97C20024E8DC /* FLAttributedString.m */; };
+		78329D5B167E97C20024E8DC /* FLAttributedString.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329BCD167E97C20024E8DC /* FLAttributedString.m */; };
 		78329D5C167E97C20024E8DC /* FLBreadcrumbBarView.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329BCE167E97C20024E8DC /* FLBreadcrumbBarView.h */; };
 		78329D5D167E97C20024E8DC /* FLBreadcrumbBarView.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329BCE167E97C20024E8DC /* FLBreadcrumbBarView.h */; };
 		78329D5E167E97C20024E8DC /* FLBreadcrumbBarView.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329BCE167E97C20024E8DC /* FLBreadcrumbBarView.h */; };
@@ -703,6 +730,12 @@
 		271E3E7C1693AE2900FB62C9 /* FLSlideInAndDropTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLSlideInAndDropTransition.h; sourceTree = "<group>"; };
 		271E3E7D1693AE2900FB62C9 /* FLSlideInAndDropTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLSlideInAndDropTransition.m; sourceTree = "<group>"; };
 		27314C79165328400027850D /* libFishLampCocoaUI-OSX-64-ARC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoaUI-OSX-64-ARC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2731CC931695FC6D00465E6C /* FLWidget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLWidget.h; sourceTree = "<group>"; };
+		2731CC941695FC6D00465E6C /* FLWidget.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLWidget.m; sourceTree = "<group>"; };
+		2731CCA416962E1900465E6C /* FLDrawableString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLDrawableString.h; sourceTree = "<group>"; };
+		2731CCA516962E1900465E6C /* FLDrawableString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLDrawableString.m; sourceTree = "<group>"; };
+		2731CCAF1696552400465E6C /* FLCoreText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCoreText.h; sourceTree = "<group>"; };
+		2731CCB01696552400465E6C /* FLCoreText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLCoreText.m; sourceTree = "<group>"; };
 		27348DB2168DF55B00D4142E /* FLDrawableGradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLDrawableGradient.h; sourceTree = "<group>"; };
 		27348DBE168DF8CC00D4142E /* FLDrawableShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLDrawableShape.h; sourceTree = "<group>"; };
 		27348DBF168DF8CD00D4142E /* FLDrawableShape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLDrawableShape.m; sourceTree = "<group>"; };
@@ -824,8 +857,8 @@
 		78329BC5167E97C20024E8DC /* FLViewContentsDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLViewContentsDescriptor.m; sourceTree = "<group>"; };
 		78329BC8167E97C20024E8DC /* UIViewController+FLAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+FLAdditions.h"; sourceTree = "<group>"; };
 		78329BC9167E97C20024E8DC /* UIViewController+FLAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+FLAdditions.m"; sourceTree = "<group>"; };
-		78329BCC167E97C20024E8DC /* FLBreadcrumb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLBreadcrumb.h; sourceTree = "<group>"; };
-		78329BCD167E97C20024E8DC /* FLBreadcrumb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLBreadcrumb.m; sourceTree = "<group>"; };
+		78329BCC167E97C20024E8DC /* FLAttributedString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAttributedString.h; sourceTree = "<group>"; };
+		78329BCD167E97C20024E8DC /* FLAttributedString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAttributedString.m; sourceTree = "<group>"; };
 		78329BCE167E97C20024E8DC /* FLBreadcrumbBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLBreadcrumbBarView.h; sourceTree = "<group>"; };
 		78329BCF167E97C20024E8DC /* FLBreadcrumbBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLBreadcrumbBarView.m; sourceTree = "<group>"; };
 		78329BD1167E97C20024E8DC /* FLGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLGradientView.h; sourceTree = "<group>"; };
@@ -952,6 +985,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		2731CC921695FC6D00465E6C /* Widgets */ = {
+			isa = PBXGroup;
+			children = (
+				2731CC931695FC6D00465E6C /* FLWidget.h */,
+				2731CC941695FC6D00465E6C /* FLWidget.m */,
+			);
+			path = Widgets;
+			sourceTree = "<group>";
+		};
 		2753D46F1694ABBE001B8856 /* StatusBarView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1055,6 +1097,7 @@
 		78329B73167E97C10024E8DC /* Foundations */ = {
 			isa = PBXGroup;
 			children = (
+				2731CC921695FC6D00465E6C /* Widgets */,
 				78329B71167E97C10024E8DC /* FLCocoaUI.h */,
 				78329B72167E97C10024E8DC /* FLCocoaUIRequired.h */,
 				78329B74167E97C10024E8DC /* Animations */,
@@ -1166,6 +1209,10 @@
 				27348DD4168DFEAE00D4142E /* FLDrawable.m */,
 				27348DDA168E05F100D4142E /* FLDrawableBorder.h */,
 				27348DDB168E05F200D4142E /* FLDrawableBorder.m */,
+				2731CCA416962E1900465E6C /* FLDrawableString.h */,
+				2731CCA516962E1900465E6C /* FLDrawableString.m */,
+				2731CCAF1696552400465E6C /* FLCoreText.h */,
+				2731CCB01696552400465E6C /* FLCoreText.m */,
 			);
 			path = Drawing;
 			sourceTree = "<group>";
@@ -1260,8 +1307,8 @@
 		78329BCB167E97C20024E8DC /* BreadcrumbBarView */ = {
 			isa = PBXGroup;
 			children = (
-				78329BCC167E97C20024E8DC /* FLBreadcrumb.h */,
-				78329BCD167E97C20024E8DC /* FLBreadcrumb.m */,
+				78329BCC167E97C20024E8DC /* FLAttributedString.h */,
+				78329BCD167E97C20024E8DC /* FLAttributedString.m */,
 				78329BCE167E97C20024E8DC /* FLBreadcrumbBarView.h */,
 				78329BCF167E97C20024E8DC /* FLBreadcrumbBarView.m */,
 			);
@@ -1406,7 +1453,7 @@
 				78329D2F167E97C20024E8DC /* FLAutoPositionedViewController.h in Headers */,
 				78329D38167E97C20024E8DC /* FLViewContentsDescriptor.h in Headers */,
 				78329D4A167E97C20024E8DC /* UIViewController+FLAdditions.h in Headers */,
-				78329D53167E97C20024E8DC /* FLBreadcrumb.h in Headers */,
+				78329D53167E97C20024E8DC /* FLAttributedString.h in Headers */,
 				78329D5C167E97C20024E8DC /* FLBreadcrumbBarView.h in Headers */,
 				78329D65167E97C20024E8DC /* FLGradientView.h in Headers */,
 				78329D6E167E97C20024E8DC /* FLProgressFactory.h in Headers */,
@@ -1447,6 +1494,9 @@
 				2753D4951694AD1A001B8856 /* FLViewController.h in Headers */,
 				2753D4AC1694D6CC001B8856 /* FLBatchAnimation.h in Headers */,
 				2753D4B71694E037001B8856 /* FLViewAnimation.h in Headers */,
+				2731CC951695FC6D00465E6C /* FLWidget.h in Headers */,
+				2731CCA616962E1900465E6C /* FLDrawableString.h in Headers */,
+				2731CCB11696552400465E6C /* FLCoreText.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1488,7 +1538,7 @@
 				78329D31167E97C20024E8DC /* FLAutoPositionedViewController.h in Headers */,
 				78329D3A167E97C20024E8DC /* FLViewContentsDescriptor.h in Headers */,
 				78329D4C167E97C20024E8DC /* UIViewController+FLAdditions.h in Headers */,
-				78329D55167E97C20024E8DC /* FLBreadcrumb.h in Headers */,
+				78329D55167E97C20024E8DC /* FLAttributedString.h in Headers */,
 				78329D5E167E97C20024E8DC /* FLBreadcrumbBarView.h in Headers */,
 				78329D67167E97C20024E8DC /* FLGradientView.h in Headers */,
 				78329D70167E97C20024E8DC /* FLProgressFactory.h in Headers */,
@@ -1529,6 +1579,9 @@
 				2753D4971694AD1A001B8856 /* FLViewController.h in Headers */,
 				2753D4AE1694D6CC001B8856 /* FLBatchAnimation.h in Headers */,
 				2753D4B91694E037001B8856 /* FLViewAnimation.h in Headers */,
+				2731CC971695FC6D00465E6C /* FLWidget.h in Headers */,
+				2731CCA816962E1900465E6C /* FLDrawableString.h in Headers */,
+				2731CCB31696552400465E6C /* FLCoreText.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1570,7 +1623,7 @@
 				78329D30167E97C20024E8DC /* FLAutoPositionedViewController.h in Headers */,
 				78329D39167E97C20024E8DC /* FLViewContentsDescriptor.h in Headers */,
 				78329D4B167E97C20024E8DC /* UIViewController+FLAdditions.h in Headers */,
-				78329D54167E97C20024E8DC /* FLBreadcrumb.h in Headers */,
+				78329D54167E97C20024E8DC /* FLAttributedString.h in Headers */,
 				78329D5D167E97C20024E8DC /* FLBreadcrumbBarView.h in Headers */,
 				78329D66167E97C20024E8DC /* FLGradientView.h in Headers */,
 				78329D6F167E97C20024E8DC /* FLProgressFactory.h in Headers */,
@@ -1611,6 +1664,9 @@
 				2753D4961694AD1A001B8856 /* FLViewController.h in Headers */,
 				2753D4AD1694D6CC001B8856 /* FLBatchAnimation.h in Headers */,
 				2753D4B81694E037001B8856 /* FLViewAnimation.h in Headers */,
+				2731CC961695FC6D00465E6C /* FLWidget.h in Headers */,
+				2731CCA716962E1900465E6C /* FLDrawableString.h in Headers */,
+				2731CCB21696552400465E6C /* FLCoreText.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1652,7 +1708,7 @@
 				78329D32167E97C20024E8DC /* FLAutoPositionedViewController.h in Headers */,
 				78329D3B167E97C20024E8DC /* FLViewContentsDescriptor.h in Headers */,
 				78329D4D167E97C20024E8DC /* UIViewController+FLAdditions.h in Headers */,
-				78329D56167E97C20024E8DC /* FLBreadcrumb.h in Headers */,
+				78329D56167E97C20024E8DC /* FLAttributedString.h in Headers */,
 				78329D5F167E97C20024E8DC /* FLBreadcrumbBarView.h in Headers */,
 				78329D68167E97C20024E8DC /* FLGradientView.h in Headers */,
 				78329D71167E97C20024E8DC /* FLProgressFactory.h in Headers */,
@@ -1693,6 +1749,9 @@
 				2753D4981694AD1A001B8856 /* FLViewController.h in Headers */,
 				2753D4AF1694D6CC001B8856 /* FLBatchAnimation.h in Headers */,
 				2753D4BA1694E037001B8856 /* FLViewAnimation.h in Headers */,
+				2731CC981695FC6D00465E6C /* FLWidget.h in Headers */,
+				2731CCA916962E1900465E6C /* FLDrawableString.h in Headers */,
+				2731CCB41696552400465E6C /* FLCoreText.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1851,7 +1910,7 @@
 				78329D34167E97C20024E8DC /* FLAutoPositionedViewController.m in Sources */,
 				78329D3D167E97C20024E8DC /* FLViewContentsDescriptor.m in Sources */,
 				78329D4F167E97C20024E8DC /* UIViewController+FLAdditions.m in Sources */,
-				78329D58167E97C20024E8DC /* FLBreadcrumb.m in Sources */,
+				78329D58167E97C20024E8DC /* FLAttributedString.m in Sources */,
 				78329D61167E97C20024E8DC /* FLBreadcrumbBarView.m in Sources */,
 				78329D6A167E97C20024E8DC /* FLGradientView.m in Sources */,
 				78329D73167E97C20024E8DC /* FLProgressFactory.m in Sources */,
@@ -1891,6 +1950,9 @@
 				2753D49A1694AD1A001B8856 /* FLViewController.m in Sources */,
 				2753D4B11694D6CC001B8856 /* FLBatchAnimation.m in Sources */,
 				2753D4BC1694E037001B8856 /* FLViewAnimation.m in Sources */,
+				2731CC9A1695FC6D00465E6C /* FLWidget.m in Sources */,
+				2731CCAB16962E1900465E6C /* FLDrawableString.m in Sources */,
+				2731CCB61696552400465E6C /* FLCoreText.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1929,7 +1991,7 @@
 				78329D36167E97C20024E8DC /* FLAutoPositionedViewController.m in Sources */,
 				78329D3F167E97C20024E8DC /* FLViewContentsDescriptor.m in Sources */,
 				78329D51167E97C20024E8DC /* UIViewController+FLAdditions.m in Sources */,
-				78329D5A167E97C20024E8DC /* FLBreadcrumb.m in Sources */,
+				78329D5A167E97C20024E8DC /* FLAttributedString.m in Sources */,
 				78329D63167E97C20024E8DC /* FLBreadcrumbBarView.m in Sources */,
 				78329D6C167E97C20024E8DC /* FLGradientView.m in Sources */,
 				78329D75167E97C20024E8DC /* FLProgressFactory.m in Sources */,
@@ -1969,6 +2031,9 @@
 				2753D49C1694AD1A001B8856 /* FLViewController.m in Sources */,
 				2753D4B31694D6CC001B8856 /* FLBatchAnimation.m in Sources */,
 				2753D4BE1694E037001B8856 /* FLViewAnimation.m in Sources */,
+				2731CC9C1695FC6D00465E6C /* FLWidget.m in Sources */,
+				2731CCAD16962E1900465E6C /* FLDrawableString.m in Sources */,
+				2731CCB81696552400465E6C /* FLCoreText.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2007,7 +2072,7 @@
 				78329D33167E97C20024E8DC /* FLAutoPositionedViewController.m in Sources */,
 				78329D3C167E97C20024E8DC /* FLViewContentsDescriptor.m in Sources */,
 				78329D4E167E97C20024E8DC /* UIViewController+FLAdditions.m in Sources */,
-				78329D57167E97C20024E8DC /* FLBreadcrumb.m in Sources */,
+				78329D57167E97C20024E8DC /* FLAttributedString.m in Sources */,
 				78329D60167E97C20024E8DC /* FLBreadcrumbBarView.m in Sources */,
 				78329D69167E97C20024E8DC /* FLGradientView.m in Sources */,
 				78329D72167E97C20024E8DC /* FLProgressFactory.m in Sources */,
@@ -2047,6 +2112,9 @@
 				2753D4991694AD1A001B8856 /* FLViewController.m in Sources */,
 				2753D4B01694D6CC001B8856 /* FLBatchAnimation.m in Sources */,
 				2753D4BB1694E037001B8856 /* FLViewAnimation.m in Sources */,
+				2731CC991695FC6D00465E6C /* FLWidget.m in Sources */,
+				2731CCAA16962E1900465E6C /* FLDrawableString.m in Sources */,
+				2731CCB51696552400465E6C /* FLCoreText.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2085,7 +2153,7 @@
 				78329D35167E97C20024E8DC /* FLAutoPositionedViewController.m in Sources */,
 				78329D3E167E97C20024E8DC /* FLViewContentsDescriptor.m in Sources */,
 				78329D50167E97C20024E8DC /* UIViewController+FLAdditions.m in Sources */,
-				78329D59167E97C20024E8DC /* FLBreadcrumb.m in Sources */,
+				78329D59167E97C20024E8DC /* FLAttributedString.m in Sources */,
 				78329D62167E97C20024E8DC /* FLBreadcrumbBarView.m in Sources */,
 				78329D6B167E97C20024E8DC /* FLGradientView.m in Sources */,
 				78329D74167E97C20024E8DC /* FLProgressFactory.m in Sources */,
@@ -2125,6 +2193,9 @@
 				2753D49B1694AD1A001B8856 /* FLViewController.m in Sources */,
 				2753D4B21694D6CC001B8856 /* FLBatchAnimation.m in Sources */,
 				2753D4BD1694E037001B8856 /* FLViewAnimation.m in Sources */,
+				2731CC9B1695FC6D00465E6C /* FLWidget.m in Sources */,
+				2731CCAC16962E1900465E6C /* FLDrawableString.m in Sources */,
+				2731CCB71696552400465E6C /* FLCoreText.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2163,7 +2234,7 @@
 				78329D37167E97C20024E8DC /* FLAutoPositionedViewController.m in Sources */,
 				78329D40167E97C20024E8DC /* FLViewContentsDescriptor.m in Sources */,
 				78329D52167E97C20024E8DC /* UIViewController+FLAdditions.m in Sources */,
-				78329D5B167E97C20024E8DC /* FLBreadcrumb.m in Sources */,
+				78329D5B167E97C20024E8DC /* FLAttributedString.m in Sources */,
 				78329D64167E97C20024E8DC /* FLBreadcrumbBarView.m in Sources */,
 				78329D6D167E97C20024E8DC /* FLGradientView.m in Sources */,
 				78329D76167E97C20024E8DC /* FLProgressFactory.m in Sources */,
@@ -2203,6 +2274,9 @@
 				2753D49D1694AD1A001B8856 /* FLViewController.m in Sources */,
 				2753D4B41694D6CC001B8856 /* FLBatchAnimation.m in Sources */,
 				2753D4BF1694E037001B8856 /* FLViewAnimation.m in Sources */,
+				2731CC9D1695FC6D00465E6C /* FLWidget.m in Sources */,
+				2731CCAE16962E1900465E6C /* FLDrawableString.m in Sources */,
+				2731CCB91696552400465E6C /* FLCoreText.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

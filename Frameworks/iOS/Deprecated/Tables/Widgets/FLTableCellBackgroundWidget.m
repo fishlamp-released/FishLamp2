@@ -20,7 +20,7 @@
 	}
 }
 
-- (void) drawSelf:(CGRect) rect
+- (void) drawRect:(CGRect) rect
 {
 	CGContextRef context = UIGraphicsGetCurrentContext();
 	
@@ -48,7 +48,7 @@
 	}
 	CGContextFillRect( context , self.frame );
 	
-	[super drawSelf:rect];
+	[super drawRect:rect];
 }
 
 

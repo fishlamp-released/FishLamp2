@@ -88,7 +88,7 @@
 }
 
 
-- (void) drawSelf:(CGRect) rect
+- (void) drawRect:(CGRect) rect
 {
 	switch(_type)
 	{
@@ -131,7 +131,7 @@
 		break;
 	}
 
-	[super drawSelf:rect];
+	[super drawRect:rect];
 }
 
 @end

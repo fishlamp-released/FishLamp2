@@ -30,7 +30,7 @@
 	_visibleColumnCount = columnCount;
 	
 	NSUInteger i = 0;
-	for(FLWidget* widget in self.subwidgets)
+	for(FLWidget* widget in self.subWidgets)
 	{
 		widget.hidden = (i++ >= _visibleColumnCount);
 	}
@@ -42,9 +42,9 @@
 	++_visibleColumnCount;
 }
 
-- (void) willRemoveWidget:(FLWidget*) widget
+- (void) willRemoveSubWidget:(FLWidget*) widget
 {
-    [super willRemoveWidget:widget];
+    [super willRemoveSubWidget:widget];
 	
 	if(!widget.hidden)
 	{
@@ -52,7 +52,7 @@
 	}
 }
 
-- (void) layoutWidgets
+- (void) layoutSubWidgets
 {
 	CGFloat columnWidth = self.style == FLMultiColumnWidgetStyleDynamic ? 
 		(self.frame.size.width / (CGFloat) _visibleColumnCount) :
@@ -66,7 +66,7 @@
 		self.frame.origin.x;
 	CGFloat top = self.frame.origin.y;
 	
-	for(FLWidget* widget in self.subwidgets)
+	for(FLWidget* widget in self.subWidgets)
 	{
 		if(!widget.isHidden)
 		{

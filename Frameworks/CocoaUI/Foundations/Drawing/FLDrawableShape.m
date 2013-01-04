@@ -26,7 +26,7 @@
         self.borderLineWidth = 1.0f;
 		
         // the border gradient is NOT a subwidget because we don't want it to be drawn
-        // when we call [super drawSelf], we're rendering it ourselves for the fram
+        // when we call [super drawRect], we're rendering it ourselves for the fram
 		_borderGradient = [[FLDrawableGradient alloc] init];
 		[_borderGradient setColorRange:[FLColorRange colorRange:[UIColor blackColor] endColor:[UIColor grayColor]]];
 
@@ -42,12 +42,13 @@
 #endif
 
 
-- (void) drawRect:(CGRect) drawRect  {
+- (void) drawRect:(CGRect) drawRect 
+        withFrame:(CGRect) frame 
+         inParent:(id) parent
+drawEnclosedBlock:(void (^)(void)) drawEnclosedBlock {
 
 	CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSaveGState(context);
-
-    CGRect frame = self.frame;
 
 	CGRect rect = CGRectInset(frame, 1, 1);
     CGRect innerRect = CGRectInset(frame, _lineWidth + 1.0f, _lineWidth + 1.0f);
@@ -58,7 +59,7 @@
 	CGContextAddPath(context, borderPath);
 	CGContextClip(context);
     
-    [_borderGradient drawRect:drawRect frame:frame superBounds:self.superBounds];
+    [_borderGradient drawRect:drawRect withFrame:frame inParent:parent drawEnclosedBlock:nil];
     CGPathRelease(borderPath);
     
     // clip out contents
@@ -73,29 +74,30 @@
     CGContextAddPath(context, innerPath);
 	CGContextClip(context);
 
-    self.finishDrawingBlock = ^(id drawable) {
-        // reset gstate 
-        CGContextRestoreGState(context);
-        
-        // now draw inner border around subwidgets if we have a border color
-        
-        UIColor* borderColor = [drawable innerBorderColor];
-        if(borderColor) {
-            CGContextSaveGState(context);
-            
-            // TODO: use color components instead of UIColor+t
-            FLColorValues borderColorValues = borderColor.rgbColorValues;
-            CGContextSetRGBStrokeColor(context, borderColorValues.red, borderColorValues.green, borderColorValues.blue, borderColorValues.alpha);
-            CGContextSetLineWidth(context, [drawable borderLineWidth]);
-            CGContextAddPath(context, innerPath);
-            CGContextClip(context);
-            CGContextStrokePath(context);
+    if(drawEnclosedBlock) {
+        drawEnclosedBlock();
+    }
 
-            CGContextRestoreGState(context);
-        }
+    CGContextRestoreGState(context);
+    
+    // now draw inner border around subWidgets if we have a border color
+    
+    if(_innerBorderColor) {
+        CGContextSaveGState(context);
         
-        CGPathRelease(innerPath);
-    };
+        // TODO: use color components instead of UIColor+t
+        FLColorValues borderColorValues = _innerBorderColor.rgbColorValues;
+        CGContextSetRGBStrokeColor(context, borderColorValues.red, borderColorValues.green, borderColorValues.blue, borderColorValues.alpha);
+        CGContextSetLineWidth(context, _lineWidth);
+        CGContextAddPath(context, innerPath);
+        CGContextClip(context);
+        CGContextStrokePath(context);
+
+        CGContextRestoreGState(context);
+    }
+    
+    CGPathRelease(innerPath);
+
 }      
 
 @end

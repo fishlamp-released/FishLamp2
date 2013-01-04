@@ -149,16 +149,16 @@ FLSynthesizeStructProperty(imageContentMode, setImageContentMode, FLWidgetImageC
 
 }
 
-- (void) layoutWidgets
+- (void) layoutSubWidgets
 {
 	if(_imageWidget && !CGSizeEqualToSize(CGSizeZero, self.frame.size)){
 		_imageWidget.frameOptimizedForSize = [self thumbnailFrame:self.imageContentMode];
 	}
 	
-	[super layoutWidgets];
+	[super layoutSubWidgets];
 }
 
-- (void) drawSelf:(CGRect) rect
+- (void) drawRect:(CGRect) rect
 {
 	if(self.showFrame)
 	{
@@ -189,7 +189,7 @@ FLSynthesizeStructProperty(imageContentMode, setImageContentMode, FLWidgetImageC
 	   CGContextRestoreGState(context);
 	}
 	
-	[super drawSelf:rect];
+	[super drawRect:rect];
 }
 
 

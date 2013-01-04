@@ -8,30 +8,18 @@
 
 #import "FLCocoaUIRequired.h"
 
-typedef void (^FLDrawingBlock)(id drawable);
-
-@interface FLDrawable : NSObject {
-@private
-    CGRect _frame;
-    CGRect _superBounds;
-    
-    __unsafe_unretained FLDrawingBlock _finishDrawingBlock;
-}
-
-@property (readonly, assign, nonatomic) CGRect frame;
-@property (readonly, assign, nonatomic) CGRect superBounds;
-@property (readwrite, assign, nonatomic) FLDrawingBlock finishDrawingBlock;
-
-- (void) drawRect:(CGRect) drawRect
-            frame:(CGRect) frame
-      superBounds:(CGRect) superBounds;
-          
-- (void) drawRect:(CGRect) drawRect
-            frame:(CGRect) frame
-      superBounds:(CGRect) superBounds
-     drawEnclosed:(FLDrawingBlock) drawBlock;          
-
-// override point.
-- (void) drawRect:(CGRect) drawRect;
-      
+@protocol FLDrawableParent <NSObject>
+@property (readonly, assign, nonatomic) CGRect bounds;
+@property (readonly, assign, nonatomic) UIView* view;
 @end
+
+@protocol FLDrawable <NSObject>
+
+- (void) drawRect:(CGRect) drawRect 
+        withFrame:(CGRect) frame 
+         inParent:(id) parent
+drawEnclosedBlock:(void (^)(void)) drawEnclosedBlock;
+
+@end
+
+extern void FLDrawRectWithDrawable(id drawable, CGRect drawRect, CGRect frame, id parent, dispatch_block_t drawEnclosed);
