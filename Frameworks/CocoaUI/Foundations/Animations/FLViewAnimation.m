@@ -22,7 +22,7 @@
     return FLAutorelease([[[self class] alloc] initWithView:view]);
 }
 
-- (void) prepareViewAnimation:(UIView*) view {
+- (void) prepareAnimationWithView:(UIView*) view {
 }
 
 - (void) setView:(UIView*) view {
@@ -34,7 +34,7 @@
     view.superview.wantsLayer = YES;
 #endif          
 
-    [self prepareViewAnimation:view];
+    [self prepareAnimationWithView:view];
 }
 
 

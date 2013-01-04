@@ -11,20 +11,28 @@
 
 @implementation FLComeForwardAnimation
 
-- (void) prepareViewAnimation:(UIView*) view {
-    self.prepare = ^(id animation) {
++ (CAAnimation) animationForLayer:(CALayer*) layer {
+    CABasicAnimation *scale = [CABasicAnimation animationWithKeyPath:@"transform"];
+    scale.fromValue =   [NSValue valueWithCATransform3D:layer.transform];
+    scale.toValue =     [NSValue valueWithCATransform3D:CATransform3DIdentity];
+    scale.removedOnCompletion = YES;
+    return scale;
+}
 
-        view.layer.transform = FLMakeShrinkAwayTransform(view,kScaleSmall);
-        view.hidden = NO;
+- (void) setTarget:(id) target {
+    
+    CALayer* layer = [self layerFromTarget:target];
+    
+    self.prepare = ^(id animation) {
         
-        CABasicAnimation *scale = [CABasicAnimation animationWithKeyPath:@"transform"];
-        scale.fromValue =   [NSValue valueWithCATransform3D:view.layer.transform];
-        scale.toValue =     [NSValue valueWithCATransform3D:CATransform3DIdentity];
-        scale.removedOnCompletion = YES;
+        layer.transform = [FLDropBackAnimation transformForFrame:layer.frame withScale:_scale];
+        layer.hidden = NO;
+        
+        CAAnimation* animation = [FLComeForwardAnimation animationForLayer:layer];
         
         self.commit = ^{
-            [view.layer addAnimation:scale forKey:@"transform"];
-            view.layer.transform =  CATransform3DIdentity;
+            [layer addAnimation:scale forKey:@"transform"];
+            layer.transform =  CATransform3DIdentity;
         };
     };
 }

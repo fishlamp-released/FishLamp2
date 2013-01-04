@@ -23,61 +23,78 @@
     return self;
 }
 
-- (void) addPerspectiveToView:(UIView*) view {
-    if(_perspectiveDistance > 0) {
-        CGFloat zDistance = _perspectiveDistance;
++ (void) addPerspectiveToLayer:(CALayer*) layer 
+       withPerspectiveDistance:(CGFloat) distance {
+ 
+    if(distance > 0) {
         CATransform3D perspective = CATransform3DIdentity; 
-        perspective.m34 = -1. / zDistance;
-
-        view.layer.transform = perspective;
+        perspective.m34 = -1. / distance;
+        layer.transform = perspective;
     }
 }
 
-- (void) prepareFlipAnimationForView:(UIView*) view {
++ (void) prepareLayerForFlip:(CALayer*) layer 
+             inFlipDirection:(FLFlipViewAnimatorDirection) flipDirection {
+        
+    CGRect newFrame = layer.frame;
     
-    view.layer.doubleSided = _showBothSidesDuringFlip;
+     switch(flipDirection) {
+        case FLFlipViewAnimatorDirectionUp:
+            newFrame.origin.y = newFrame.size.height / 2;
+            layer.anchorPoint = CGPointMake(0, .5);
+        break;
+        
+        case FLFlipViewAnimatorDirectionDown:
+            newFrame.origin.y = newFrame.size.height / 2;
+            layer.anchorPoint = CGPointMake(0, .5);
+        break;
 
+        case FLFlipViewAnimatorDirectionLeft:
+            newFrame.origin.x = newFrame.size.width / 2;
+            layer.anchorPoint = CGPointMake(.5, 0);
+        break;
+
+        case FLFlipViewAnimatorDirectionRight:
+            newFrame.origin.x = newFrame.size.width / 2;
+            layer.anchorPoint = CGPointMake(.5, 0);
+        break;
+    }
+    
+    layer.frame = newFrame;
+}
+
++ (CAAnimation*) createFlipAnimationForLayer:(CALayer*) layer 
+                           withFlipDirection:(FLFlipViewAnimatorDirection) flipDirection {
+    
     CGFloat start = 0.0f;
     CGFloat finish = 0.0f;
     NSString* keyPath = nil;
 
-    CGRect frame = view.layer.frame;
-    
-    switch(_flipDirection) {
+    switch(flipDirection) {
         case FLFlipViewAnimatorDirectionUp:
             keyPath = @"transform.rotation.x";
             start = 0.0f;
             finish = M_PI;
-            view.layer.anchorPoint = CGPointMake(0, .5);
-            frame.origin.y = frame.size.height / 2;
         break;
         
         case FLFlipViewAnimatorDirectionDown:
             keyPath = @"transform.rotation.x";
             start = 0.0f;
             finish = -M_PI;
-            view.layer.anchorPoint = CGPointMake(0, .5);
-            frame.origin.y = frame.size.height / 2;
         break;
 
         case FLFlipViewAnimatorDirectionLeft:
             keyPath = @"transform.rotation.y";
             start = 0.0f;
             finish = M_PI;
-            frame.origin.x = frame.size.width / 2;
-            view.layer.anchorPoint = CGPointMake(.5, 0);
         break;
 
         case FLFlipViewAnimatorDirectionRight:
             keyPath = @"transform.rotation.y";
             start = 0.0f;
             finish = -M_PI;
-            frame.origin.x = frame.size.width / 2;
-            view.layer.anchorPoint = CGPointMake(.5, 0);
         break;
     }
-
-    view.layer.frame = frame;
 
     CABasicAnimation *flipAnimation = [CABasicAnimation animationWithKeyPath:keyPath];
     flipAnimation.fromValue = [NSNumber numberWithDouble:start];
@@ -85,18 +102,28 @@
     flipAnimation.fillMode = kCAFillModeForwards;
     flipAnimation.additive = NO;
     flipAnimation.removedOnCompletion = NO;
+    return flipAnimation;
 
-    [self addPerspectiveToView:view];
-    
-    self.commit = ^{
-        [view.layer addAnimation:flipAnimation forKey:@"flip"];    
-    };
 }
 
-- (void) prepareViewAnimation:(UIView*) view {
+- (void) setTarget:(id) target {
 
     self.prepare = ^(id animation){
-        [animation prepareFlipAnimationForView:view];
+
+        CALayer* layer = [animation layerFromTarget:target];
+    
+        layer.doubleSided = _showBothSidesDuringFlip;
+        
+        [FLFlipAnimation prepareLayerForFlip:layer inFlipDirection:_flipDirection];
+        
+        CAAnimation* flipAnimation = [FLFlipAnimation createFlipAnimationForLayer:layer withFlipDirection:_flipDirection];
+
+        [FLFlipAnimation addPerspectiveToLayer:layer withPerspectiveDistance:_perspectiveDistance];
+    
+        self.commit = ^{
+            [layer addAnimation:flipAnimation forKey:@"flip"];    
+        };
+
     };
 }
 

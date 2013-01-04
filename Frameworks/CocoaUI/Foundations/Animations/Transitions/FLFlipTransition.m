@@ -25,12 +25,12 @@
 - (void) addAnimationsForViewToShow:(UIView*) viewToShow 
                          viewToHide:(UIView*) viewToHide {
 
-    FLFlipAnimation* show = [FLFlipAnimation animationWithView:viewToShow];
+    FLFlipAnimation* show = [FLFlipAnimation animationWithTarget:viewToShow];
     show.flipDirection = _flipDirection;
     show.showBothSidesDuringFlip = NO;
     show.perspectiveDistance = _perspectiveDistance;
 
-    FLFlipAnimation* hide = [FLFlipAnimation animationWithView:viewToHide];
+    FLFlipAnimation* hide = [FLFlipAnimation animationWithTarget:viewToHide];
     hide.flipDirection = FLFlipViewAnimatorDirectionOpposite(_flipDirection);;
     hide.showBothSidesDuringFlip = NO;
     hide.perspectiveDistance = _perspectiveDistance;

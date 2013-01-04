@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
 
-#import "FLViewAnimation.h"
+#import "FLAnimation.h"
 
 typedef enum {
     FLFlipViewAnimatorDirectionUp,
@@ -31,7 +31,7 @@ FLFlipViewAnimatorDirection FLFlipViewAnimatorDirectionOpposite(FLFlipViewAnimat
 
 #define FLFlipAnimationDefaultPerspectiveDistance 1500.0f
 
-@interface FLFlipAnimation : FLViewAnimation {
+@interface FLFlipAnimation : FLAnimation {
 @private
     FLFlipViewAnimatorDirection _flipDirection;
     BOOL _showBothSidesDuringFlip;
@@ -44,5 +44,16 @@ FLFlipViewAnimatorDirection FLFlipViewAnimatorDirectionOpposite(FLFlipViewAnimat
 
 @property (readwrite, assign, nonatomic) CGFloat perspectiveDistance;  // defaults to FLFlipAnimationDefaultPerspectiveDistance
 
+
+// utils
+
++ (void) addPerspectiveToLayer:(CALayer*) layer 
+       withPerspectiveDistance:(CGFloat) distance;
+       
++ (void) prepareLayerForFlip:(CALayer*) layer 
+             inFlipDirection:(FLFlipViewAnimatorDirection) flipDirection;
+   
++ (CAAnimation*) createFlipAnimationForLayer:(CALayer*) layer 
+                           withFlipDirection:(FLFlipViewAnimatorDirection) flipDirection;
 
 @end

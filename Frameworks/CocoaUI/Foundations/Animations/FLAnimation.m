@@ -8,6 +8,12 @@
 
 #import "FLAnimation.h"
 
+@implementation CALayer (FLAnimation)
+- (CALayer*) layer {
+    return self;
+}
+@end
+
 @implementation FLAnimation
 
 @synthesize prepare = _prepare;
@@ -16,9 +22,6 @@
 @synthesize duration = _duration;
 @synthesize timingFunction = _timingFunction;
 
-+ (id) animation {
-    return FLAutorelease([[[self class] alloc] init]);
-}
 
 - (id) init {
     self = [super init];
@@ -26,6 +29,26 @@
         self.duration = 0.3f;
     }
     return self;
+}
+
+- (id) initWithTarget:(id) target {
+    self = [self init];
+    if(self) {
+        [self setTarget:target];
+    }
+    return self;
+
+}
+
++ (id) animation {
+    return FLAutorelease([[[self class] alloc] init]);
+}
+
++ (id) animationWithTarget:(id) target {
+    return FLAutorelease([[[self class] alloc] initWithTarget:target]);
+}
+
+- (void) setTarget:(id) target {
 }
 
 #if FL_MRC
@@ -101,6 +124,14 @@
 - (FLFinisher*) startAnimation {
     return [self startAnimation:nil completion:nil];
 }
+
+- (CALayer*) layerFromTarget:(id) target {
+    FLAssertNotNil_(target);
+    FLAssertNotNil_([target layer]);
+    FLAssertNotNil_([target layer].superlayer);
+    return [target layer];
+}
+
 
 @end
 

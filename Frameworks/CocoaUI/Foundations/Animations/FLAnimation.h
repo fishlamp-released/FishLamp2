@@ -39,6 +39,14 @@ typedef void (^FLAnimationBlock)();
 - (FLFinisher*) startAnimation:(void (^)()) didStartBlock
                     completion:(FLCompletionBlock) completion;
 
+- (id) initWithTarget:(id) target;
++ (id) animationWithTarget:(id) target;
+
+- (void) setTarget:(id) target;
+
+// utils
+- (CALayer*) layerFromTarget:(id) target;
+
 @end
 
 

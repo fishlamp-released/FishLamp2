@@ -6,16 +6,23 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import "FLViewAnimation.h"
+#import "FLAnimation.h"
 
-@interface FLFadeAnimation : FLViewAnimation 
-- (void) prepareToFadeView:(UIView*) view fromAlpha:(CGFloat) fromAlpha toAlpha:(CGFloat) toAlpha;
+@interface FLFadeAnimation : FLAnimation {
+@private
+}
+
+- (void) setTarget:(id) target 
+       fromOpacity:(CGFloat) fromOpacity 
+         toOpacity:(CGFloat) toOpacity;
+
++ (CAAnimation*) animationForLayer:(CALayer*) layer 
+                         fromOpacity:(CGFloat) fromOpacity 
+                           toOpacity:(CGFloat) toOpacity;
 @end
 
-@interface FLFadeOutAnimation : FLFadeAnimation
-
+@interface FLFadeOutAnimation : FLAnimation
 @end
 
-@interface FLFadeInAnimation : FLFadeAnimation
-
+@interface FLFadeInAnimation : FLAnimation
 @end

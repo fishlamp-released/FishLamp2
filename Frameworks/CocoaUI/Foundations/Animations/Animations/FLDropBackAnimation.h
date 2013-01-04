@@ -7,11 +7,22 @@
 //
 
 #import "FLCocoaUIRequired.h"
-#import "FLViewAnimation.h"
+#import "FLAnimation.h"
 
-extern CATransform3D FLMakeShrinkAwayTransform(UIView* view, CGFloat scaleAmount);
-#define kScaleSmall 0.95f
+#define FLDropBackAnimationDefaultScale 0.95f
 
-@interface FLDropBackAnimation : FLViewAnimation
+@interface FLDropBackAnimation : FLAnimation {
+@private
+    CGFloat _scale;
+}
+
+@property (readwrite, assign, nonatomic) CGFloat scale;
+
++ (CAAnimation*) animationForLayer:(CALayer *) layer 
+                         withScale:(CGFloat) scaleAmount;
+
++ (CATransform3D) transformForFrame:(CGRect) frame 
+                          withScale:(CGFloat) scaleAmount {
+
 @end
 
