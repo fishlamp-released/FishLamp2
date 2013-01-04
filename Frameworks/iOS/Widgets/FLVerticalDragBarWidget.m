@@ -42,7 +42,7 @@
     FLSuperDealloc();
 }
 
-- (void) drawSelf:(CGRect) rect
+- (void) drawRect:(CGRect) rect
 {
     CGContextRef ctx = UIGraphicsGetCurrentContext();
 
@@ -70,7 +70,7 @@
     CGContextAddLineToPoint(ctx , left + (self.lineThickness + 2.0f), FLRectGetBottom(frame) - _padding.bottom);
     CGContextStrokePath(ctx);
 
-    [super drawSelf:rect];
+    [super drawRect:rect];
 }
 
 @end

@@ -40,7 +40,7 @@
 	[self setNeedsDisplay];
 }
 
-- (void) drawSelf:(CGRect) rect
+- (void) drawRect:(CGRect) rect
 {
 	if(!_textDescriptor)
 	{
@@ -105,7 +105,7 @@
 	 
 	CGContextRestoreGState(context);
 	
-	[super drawSelf:rect];
+	[super drawRect:rect];
 }
 
 - (FLTextDescriptor*) textDescriptor

@@ -22,7 +22,7 @@
 		self.borderLineWidth = 1.0f;
 		
         // the border gradient is NOT a subwidget because we don't want it to be drawn
-        // when we call [super drawSelf], we're rendering it ourselves for the fram
+        // when we call [super drawRect], we're rendering it ourselves for the fram
 		_borderGradient = [[FLGradientWidget alloc] initWithFrame:frame];
 		[_borderGradient setColorRange:[FLColorRange colorRange:[UIColor blackColor] endColor:[UIColor grayColor]] forControlState:UIControlStateNormal];
         _borderGradient.parent = self;
@@ -40,14 +40,14 @@
 -(void) createPathForShapeInRect:(CGMutablePathRef) path rect:(CGRect) rect {
 }
 
-- (void) layoutWidgets {
+- (void) layoutSubWidgets {
     
-    [super layoutWidgets];
+    [super layoutSubWidgets];
     
     _borderGradient.frame = self.frame;
 }
 
-- (void) drawSelf:(CGRect) rect {
+- (void) drawRect:(CGRect) rect {
 	CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSaveGState(context);
 
@@ -73,12 +73,12 @@
     
     CGContextAddPath(context, innerPath);
 	CGContextClip(context);
-	[super drawSelf:rect]; // draw subwidgets in clip area
+	[super drawRect:rect]; // draw subWidgets in clip area
 
     // reset gstate 
 	CGContextRestoreGState(context);
 	
-    // now draw inner border around subwidgets if we have a border color
+    // now draw inner border around subWidgets if we have a border color
     
     if(_innerBorderColor) {
         CGContextSaveGState(context);

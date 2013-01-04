@@ -9,7 +9,7 @@
 #import "FLDrawable.h"
 #import "FLDrawableGradient.h"
 
-@interface FLDrawableShape : FLDrawable {
+@interface FLDrawableShape : NSObject<FLDrawable> {
 @private
 	CGFloat _cornerRadius;
 	UIColor* _innerBorderColor;

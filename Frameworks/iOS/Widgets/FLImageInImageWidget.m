@@ -51,9 +51,9 @@
 	[_topImageWidget clear];
 }
 
-- (void) layoutWidgets
+- (void) layoutSubWidgets
 {
-	[super layoutWidgets];
+	[super layoutSubWidgets];
 //	  switch(self.contentMode)
 //	  {
 //		  case FLWidgetImageContentModeScaleToFill:

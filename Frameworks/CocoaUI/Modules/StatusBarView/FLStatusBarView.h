@@ -8,6 +8,11 @@
 
 #import "FLCocoaUIRequired.h"
 
-@interface FLStatusBarView : UIView
+#import "FLDrawableString.h"
+
+@interface FLStatusBarView : UIView {
+@private
+    FLDrawableString* _string;
+}
 
 @end

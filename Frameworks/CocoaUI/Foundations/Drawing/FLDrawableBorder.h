@@ -8,7 +8,7 @@
 
 #import "FLDrawable.h"
 
-@interface FLDrawableBorder : FLDrawable {
+@interface FLDrawableBorder : NSObject<FLDrawable> {
 @private
 	CGFloat _cornerRadius;
 	UIColor* _borderColor;

@@ -41,7 +41,7 @@
 	FLMultiColumnWidget* widget = self.widget;
 	if(!widget.isHidden)
 	{
-		for(FLWidget* subwidget in widget.subwidgets)
+		for(FLWidget* subwidget in widget.subWidgets)
 		{
 			if(!subwidget.isHidden && CGRectContainsPoint(subwidget.frame, point))
 			{
@@ -61,7 +61,7 @@
 	if(!widget.isHidden)
 	{
 		NSUInteger count = 0;
-		for(FLWidget* subwidget in widget.subwidgets)
+		for(FLWidget* subwidget in widget.subWidgets)
 		{
 			_selectedStates[count++] = subwidget.isSelected;
 		}
@@ -77,7 +77,7 @@
 	if(!widget.isHidden)
 	{	
 		NSUInteger count = 0;
-		for(FLWidget* subwidget in widget.subwidgets)
+		for(FLWidget* subwidget in widget.subWidgets)
 		{
 			if(CGRectIntersectsRect(rect, subwidget.frame))
 			{

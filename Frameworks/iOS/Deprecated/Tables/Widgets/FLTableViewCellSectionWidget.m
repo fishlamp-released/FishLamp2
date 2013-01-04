@@ -100,7 +100,7 @@ FLSynthesizeStructProperty(drawMode, setDrawMode, FLTableViewCellSectionDrawMode
 	[self _update];
 }
 
-- (void)drawSelf:(CGRect)rect
+- (void)drawRect:(CGRect)rect
 {
 //	  FLColorCreateWithRGBColorValues borderColor = self.isHighlighted ? 
 //		  self.highlightedBorderColor.rgbColorValues :
@@ -251,7 +251,7 @@ FLSynthesizeStructProperty(drawMode, setDrawMode, FLTableViewCellSectionDrawMode
 	}
 	
 	CGContextRestoreGState(context);
-	[super drawSelf:rect];
+	[super drawRect:rect];
 }
 
 @end

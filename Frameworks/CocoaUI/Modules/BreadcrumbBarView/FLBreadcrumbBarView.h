@@ -7,24 +7,22 @@
 //
 
 #import "FLCocoaUIRequired.h"
-#import "FLBreadcrumb.h"
+#import "FLAttributedString.h"
 #import "FLOrderedCollection.h"
-
-typedef enum { 
-    FLVerticalTextAlignmentTop,
-    FLVerticalTextAlignmentCenter,
-    FLVerticalTextAlignmentBottom
-} FLVerticalTextAlignment; 
+#import "FLDrawableString.h"
+#import "FLBatchDictionary.h"
 
 @interface FLBreadcrumbBarView : UIView {
 @private
-    FLOrderedCollection* _breadcrumbs;
+    FLOrderedCollection* _strings;
     FLVerticalTextAlignment _verticalTextAlignment;
 
     UIColor* _enabledTextColor;
     UIColor* _disabledTextColor;
     UIColor* _highlightedTextColor;
     UIFont* _textFont;
+
+    FLMutableBatchDictionary* _runFrames;
 }
 
 @property (readwrite, retain, nonatomic) UIColor* enabledTextColor;
@@ -34,27 +32,27 @@ typedef enum {
 
 @property (readwrite, assign, nonatomic) FLVerticalTextAlignment verticalTextAlignment;
 
-@property (readonly, retain, nonatomic) FLOrderedCollection* breadcrumbs;
+@property (readonly, retain, nonatomic) FLOrderedCollection* strings;
 
-// returns complete string for whole breadcrumbBar
+// returns complete string for whole stringBar
 - (NSAttributedString*) buildAttributedString;
 
-- (FLBreadcrumb*) breadcrumbAtPoint:(CGPoint) point;
+- (FLAttributedString*) stringAtPoint:(CGPoint) point;
 
-- (FLBreadcrumb*) breadcrumbAtIndex:(NSUInteger) index;
+- (FLAttributedString*) stringAtIndex:(NSUInteger) index;
 
-- (FLBreadcrumb*) breadcrumbForIndex:(NSString*) key;
+- (FLAttributedString*) stringForKey:(NSString*) key;
 
-- (void) setBreadcrumb:(FLBreadcrumb*) breadcrumb 
-                forKey:(NSString*) key;
+- (void) setAttributedString:(FLAttributedString*) string 
+                      forKey:(NSString*) key;
 
-- (void) setBreadcrumbString:(NSString*) string 
-          forBreadcrumbIndex:(NSUInteger) stringIndex;
+- (void) setString:(NSString*) string 
+           atIndex:(NSUInteger) stringIndex;
 
-- (void) setBreadcrumbString:(NSString*) string 
-            forBreadcrumbKey:(NSString*) key;
+- (void) setString:(NSString*) string 
+            forKey:(NSString*) key;
 
-- (void) setStringForAllBreadcrumbs:(NSString*) string; // e.g. @""
+- (void) setStringForAllStrings:(NSString*) string; // e.g. @""
 
 
 @end

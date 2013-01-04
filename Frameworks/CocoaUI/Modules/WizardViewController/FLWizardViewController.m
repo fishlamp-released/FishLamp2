@@ -230,7 +230,7 @@
     }
     
     if(FLStringIsNotEmpty(wizardPanel.title)) {
-        [_breadcrumbBarView setBreadcrumb:[FLBreadcrumb breadcrumb:wizardPanel.title] forKey:wizardPanel.title];
+        [_breadcrumbBarView setAttributedString:[FLAttributedString attributedString:wizardPanel.title] forKey:wizardPanel.title];
     }
 }
 

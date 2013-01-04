@@ -44,7 +44,7 @@
 	_bottomGradient.alpha = alpha;
 }
 
-- (void) layoutWidgets
+- (void) layoutSubWidgets
 {
 	CGRect frame = self.frame;
 	frame.size.height *= 0.5;
@@ -55,7 +55,7 @@
 	frame.size.height = self.frame.size.height - frame.origin.y;
 	_bottomGradient.frameOptimizedForSize = frame;
 	
-	[super layoutWidgets];
+	[super layoutSubWidgets];
 }
 
 - (void) dealloc

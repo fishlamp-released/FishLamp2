@@ -82,9 +82,9 @@
 	FLSuperDealloc();
 }
 
-- (void) layoutWidgets
+- (void) layoutSubWidgets
 {
-	[super layoutWidgets];
+	[super layoutSubWidgets];
 	
 //	[self.arrangement layoutView:self];
 //	[_rightColumn.arrangement layoutView:self];

@@ -43,7 +43,7 @@
 	}	
 }
 
-- (void)drawSelf:(CGRect)rect
+- (void)drawRect:(CGRect)rect
 {
 	CGFloat rightSide = FLRectGetRight(self.frame);
 	for(int i = FLImageRowViewMaxImageCount - 1; i >= 0; i--)
@@ -61,7 +61,7 @@
 		}
 	}
 
-	[super drawSelf:rect];
+	[super drawRect:rect];
 }
 
 - (void) removeImageAtIndex:(NSUInteger)idx

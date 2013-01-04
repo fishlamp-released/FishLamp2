@@ -55,9 +55,9 @@
 	_imageFrame.imageWidget.image = image;
 }
 
-- (void) layoutWidgets 
+- (void) layoutSubWidgets 
 {
-	[super layoutWidgets];
+	[super layoutSubWidgets];
 	
 //	if(DeviceIsPad())
 	{

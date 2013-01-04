@@ -27,7 +27,10 @@
 }
 #endif
 
-- (void) drawRect:(CGRect) drawRect {
+- (void) drawRect:(CGRect) drawRect 
+        withFrame:(CGRect) frame 
+         inParent:(id) inParent
+drawEnclosedBlock:(void (^)(void)) drawEnclosedBlock {
 
 	CGContextRef context = UIGraphicsGetCurrentContext();
 	CGContextSaveGState(context);
@@ -45,17 +48,18 @@
 	CGGradientRef	gradient = CGGradientCreateWithColorComponents(rgb, colorArray, NULL, sizeof(colorArray)/(sizeof(colorArray[0])*4));
 	CGColorSpaceRelease(rgb);	 
 	
-    CGContextClipToRect(context, self.frame);
+    CGContextClipToRect(context, frame);
 	CGContextDrawLinearGradient(context, gradient, 
-		self.frame.origin, 
-		CGPointMake(self.frame.origin.x, FLRectGetBottom(self.frame)),
+		frame.origin, 
+		CGPointMake(frame.origin.x, FLRectGetBottom(frame)),
 		0);
     
-    self.finishDrawingBlock = ^(id drawable) {
-        CGGradientRelease(gradient);
-        CGContextRestoreGState(context);
-    };
-        
+    if(drawEnclosedBlock) {
+        drawEnclosedBlock();
+    }
+    
+    CGGradientRelease(gradient);
+    CGContextRestoreGState(context);
 
 /*
 

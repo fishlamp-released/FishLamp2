@@ -43,14 +43,14 @@
 	[self setNeedsDisplay];
 }
 
-- (void) layoutWidgets
+- (void) layoutSubWidgets
 {
 	self.topImageWidget.frame = self.frame;
 	self.bottomImageWidget.frame = self.frame;
 	self.topImageWidget.hidden = (self.topImageWidget.image == nil);
 	self.bottomImageWidget.hidden = !self.topImageWidget.hidden;
 	
-	[super layoutWidgets];
+	[super layoutSubWidgets];
 }
 
 - (void) dealloc

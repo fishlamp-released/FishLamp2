@@ -8,43 +8,18 @@
 
 #import "FLDrawable.h"
 
-@implementation FLDrawable
+void FLDrawRectWithDrawable(id drawable, CGRect drawRect, CGRect frame, id parent, dispatch_block_t drawEnclosed) {
+    __block BOOL wasInvoked = NO;
+    
+    [drawable drawRect:drawRect withFrame:frame inParent:parent drawEnclosedBlock:^{
+        wasInvoked = YES;
+        if(drawEnclosed) {
+            drawEnclosed();
+        }
+    }];
 
-@synthesize frame = _frame;
-@synthesize superBounds = _superBounds;
-@synthesize finishDrawingBlock = _finishDrawingBlock;
-
-- (void) drawRect:(CGRect) drawRect
-                frame:(CGRect) frame
-          superBounds:(CGRect) superBounds {
-    [self drawRect:drawRect frame:frame superBounds:superBounds drawEnclosed:nil];
-}
-
-- (void) drawRect:(CGRect) drawRect
-            frame:(CGRect) frame
-      superBounds:(CGRect) superBounds
-     drawEnclosed:(FLDrawingBlock) drawBlock {
-
-    _frame = frame;
-    _superBounds = superBounds;
-
-    [self drawRect:drawRect];      
-
-    if(drawBlock) {
-        drawBlock(self); 
+    if(!wasInvoked && drawEnclosed) {
+        drawEnclosed();
     }
 
-    if(_finishDrawingBlock) {
-        _finishDrawingBlock(self);
-    }
-
-    _finishDrawingBlock = nil;
-    _frame = CGRectZero;
-    _superBounds = CGRectZero;
-}         
-
-- (void) drawRect:(CGRect) drawRect {
 }
-
-
-@end

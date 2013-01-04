@@ -22,7 +22,7 @@
     }
 }
 
-- (void) willRemoveWidget:(FLWidget*) widget {
+- (void) willRemoveSubWidget:(FLWidget*) widget {
 }
 
 - (void) widgetWasTouched:(FLWidget*) widget {

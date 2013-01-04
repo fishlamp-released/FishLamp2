@@ -85,3 +85,9 @@ static const FLArrangeableState FLArrangeableStateZero;
 //    
 //} FLArrangeableState_t;
 
+typedef struct {
+    FLArrangeableWeight weight;
+    FLArrangeableGrowMode growMode;
+    UIEdgeInsets insets;
+    FLArrangeableState state;
+} FLArrangement_t;
