@@ -11,27 +11,29 @@
 @implementation FLTransition
 
 - (id) init {
-    return [self initWithViewToShow:nil viewToHide:nil];
-}
-
-- (id) initWithViewToShow:(UIView*) viewToShow 
-               viewToHide:(UIView*) viewToHide {
 
     self = [super init];
     if(self) {
         self.timingFunction = kCAMediaTimingFunctionEaseInEaseOut;
-        if(viewToShow) {
-            [self setViewToShow:viewToShow viewToHide:viewToHide];
-        }
     }
 
     return self;
 }
 
-+ (id) transitionWithViewToShow:(UIView*) viewToShow 
-                     viewToHide:(UIView*) viewToHide  {
-    return FLAutorelease([[[self class] alloc] initWithViewToShow:viewToShow viewToHide:viewToHide]);
-}
+//- (id) initWithViewToShow:(UIView*) viewToShow 
+//               viewToHide:(UIView*) viewToHide {
+//
+//    self = [super init];
+//    if(self) {
+//        if(viewToShow) {
+//            [self setViewToShow:viewToShow viewToHide:viewToHide];
+//        }
+//    }
+//
+//    return self;
+//}
+
+
 
 - (void) setViewToShow:(UIView*) viewToShow viewToHide:(UIView*) viewToHide {
 
@@ -51,11 +53,21 @@
                               relativeTo:viewToHide];
     }
 
-    self.cleanup = ^{
+    self.finish = ^{
         [viewToHide removeFromSuperview];
     };
 
     [self addAnimationsForViewToShow:viewToShow viewToHide:viewToHide];
+}
+
++ (id) transitionWithViewToShow:(UIView*) viewToShow 
+                     viewToHide:(UIView*) viewToHide  {
+    FLTransition* transition = FLAutorelease([[[self class] alloc] init]);
+    if(viewToShow) {
+        [transition setViewToShow:viewToShow viewToHide:viewToHide];
+    }
+
+    return transition;
 }
 
 - (void) addAnimationsForViewToShow:(UIView*) viewToShow 

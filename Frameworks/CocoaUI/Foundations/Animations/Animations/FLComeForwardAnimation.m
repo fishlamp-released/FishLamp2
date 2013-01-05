@@ -11,7 +11,17 @@
 
 @implementation FLComeForwardAnimation
 
-+ (CAAnimation) animationForLayer:(CALayer*) layer {
+@synthesize scale = _scale;
+
+- (id) init {
+    self = [super init];
+    if(self) {
+        _scale = FLDropBackAnimationDefaultScale;
+    }
+    return self;
+}
+
++ (CAAnimation*) animationForLayer:(CALayer*) layer {
     CABasicAnimation *scale = [CABasicAnimation animationWithKeyPath:@"transform"];
     scale.fromValue =   [NSValue valueWithCATransform3D:layer.transform];
     scale.toValue =     [NSValue valueWithCATransform3D:CATransform3DIdentity];
@@ -21,17 +31,17 @@
 
 - (void) setTarget:(id) target {
     
-    CALayer* layer = [self layerFromTarget:target];
     
     self.prepare = ^(id animation) {
         
+        CALayer* layer = [self layerFromTarget:target];
         layer.transform = [FLDropBackAnimation transformForFrame:layer.frame withScale:_scale];
         layer.hidden = NO;
         
-        CAAnimation* animation = [FLComeForwardAnimation animationForLayer:layer];
+        CAAnimation* comeforward = [FLComeForwardAnimation animationForLayer:layer];
         
         self.commit = ^{
-            [layer addAnimation:scale forKey:@"transform"];
+            [layer addAnimation:comeforward forKey:@"transform"];
             layer.transform =  CATransform3DIdentity;
         };
     };

@@ -9,23 +9,23 @@
 #import "FLAnimation.h"
 
 typedef enum {
-    FLFlipViewAnimatorDirectionUp,
-    FLFlipViewAnimatorDirectionDown,
-    FLFlipViewAnimatorDirectionLeft,
-    FLFlipViewAnimatorDirectionRight
-} FLFlipViewAnimatorDirection;
+    FLFlipAnimationDirectionUp,
+    FLFlipAnimationDirectionDown,
+    FLFlipAnimationDirectionLeft,
+    FLFlipAnimationDirectionRight
+} FLFlipAnimationDirection;
 
 NS_INLINE
-FLFlipViewAnimatorDirection FLFlipViewAnimatorDirectionOpposite(FLFlipViewAnimatorDirection direction) {
+FLFlipAnimationDirection FLFlipAnimationDirectionOpposite(FLFlipAnimationDirection direction) {
     switch(direction) {
-        case FLFlipViewAnimatorDirectionUp: 
-            return FLFlipViewAnimatorDirectionDown;
-        case FLFlipViewAnimatorDirectionDown: 
-            return FLFlipViewAnimatorDirectionUp;
-        case FLFlipViewAnimatorDirectionLeft: 
-            return FLFlipViewAnimatorDirectionRight;
-        case FLFlipViewAnimatorDirectionRight: 
-            return FLFlipViewAnimatorDirectionLeft;
+        case FLFlipAnimationDirectionUp: 
+            return FLFlipAnimationDirectionDown;
+        case FLFlipAnimationDirectionDown: 
+            return FLFlipAnimationDirectionUp;
+        case FLFlipAnimationDirectionLeft: 
+            return FLFlipAnimationDirectionRight;
+        case FLFlipAnimationDirectionRight: 
+            return FLFlipAnimationDirectionLeft;
     }
 }
 
@@ -33,12 +33,12 @@ FLFlipViewAnimatorDirection FLFlipViewAnimatorDirectionOpposite(FLFlipViewAnimat
 
 @interface FLFlipAnimation : FLAnimation {
 @private
-    FLFlipViewAnimatorDirection _flipDirection;
+    FLFlipAnimationDirection _flipDirection;
     BOOL _showBothSidesDuringFlip;
     CGFloat _perspectiveDistance;
 }
 
-@property (readwrite, assign, nonatomic) FLFlipViewAnimatorDirection flipDirection;
+@property (readwrite, assign, nonatomic) FLFlipAnimationDirection flipDirection;
 
 @property (readwrite, assign, nonatomic) BOOL showBothSidesDuringFlip; // defaults to yes
 
@@ -51,9 +51,9 @@ FLFlipViewAnimatorDirection FLFlipViewAnimatorDirectionOpposite(FLFlipViewAnimat
        withPerspectiveDistance:(CGFloat) distance;
        
 + (void) prepareLayerForFlip:(CALayer*) layer 
-             inFlipDirection:(FLFlipViewAnimatorDirection) flipDirection;
+             inFlipDirection:(FLFlipAnimationDirection) flipDirection;
    
 + (CAAnimation*) createFlipAnimationForLayer:(CALayer*) layer 
-                           withFlipDirection:(FLFlipViewAnimatorDirection) flipDirection;
+                           withFlipDirection:(FLFlipAnimationDirection) flipDirection;
 
 @end

@@ -8,13 +8,9 @@
 
 #import "FLBatchAnimation.h"
 
-@interface FLTransition : FLBatchAnimation {
+@interface FLTransition : FLAnimation {
 }
 
-
-- (id) initWithViewToShow:(UIView*) viewToShow 
-               viewToHide:(UIView*) viewToHide;
-               
 + (id) transitionWithViewToShow:(UIView*) viewToShow 
                      viewToHide:(UIView*) viewToHide;
 

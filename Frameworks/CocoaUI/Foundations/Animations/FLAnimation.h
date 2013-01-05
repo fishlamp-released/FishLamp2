@@ -20,6 +20,8 @@ typedef void (^FLAnimationBlock)();
     FLAnimationBlock _finish;
     CGFloat _duration;
     NSString* _timingFunction;
+    
+    NSMutableArray* _animations;
 }
 
 @property (readwrite, copy, nonatomic) FLAnimationPrepareBlock prepare;
@@ -32,20 +34,21 @@ typedef void (^FLAnimationBlock)();
 
 + (id) animation;
 
-- (FLFinisher*) startAnimation;
+- (void) startAnimating;
 
-- (FLFinisher*) startAnimation:(FLCompletionBlock) completion;
+- (void) startAnimating:(void (^)()) completion;
 
-- (FLFinisher*) startAnimation:(void (^)()) didStartBlock
-                    completion:(FLCompletionBlock) completion;
+- (void) startAnimating:(void (^)()) didStartBlock
+             completion:(void (^)()) completion;
 
-- (id) initWithTarget:(id) target;
 + (id) animationWithTarget:(id) target;
 
 - (void) setTarget:(id) target;
 
 // utils
 - (CALayer*) layerFromTarget:(id) target;
+
+- (void) addAnimation:(FLAnimation*) animation;
 
 @end
 

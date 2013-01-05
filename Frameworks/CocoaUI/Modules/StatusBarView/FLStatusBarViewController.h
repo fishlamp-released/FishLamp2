@@ -10,6 +10,21 @@
 
 @interface FLStatusBarViewController : FLViewController {
 @private
+    NSMutableArray* _stack;
 }
+
+- (void) setStatusView:(UIView*) view 
+              animated:(BOOL) animated
+              completion:(void (^)()) completion;
+
+- (void) pushStatusView:(UIView*) view 
+               animated:(BOOL) animated
+               completion:(void (^)()) completion;
+               
+- (void) popStatusViewAnimated:(BOOL) animated 
+                    completion:(void (^)()) completion;
+
+- (void) removeAllStatusViewsAnimated:(BOOL) animated 
+                           completion:(void (^)()) completion;
 
 @end

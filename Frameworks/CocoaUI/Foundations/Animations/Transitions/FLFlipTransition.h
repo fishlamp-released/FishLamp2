@@ -1,5 +1,5 @@
 //
-//  FLFlipViewAnimator.h
+//  FLFlipAnimation.h
 //  FishLampCocoaUI
 //
 //  Created by Mike Fullerton on 12/21/12.
@@ -11,11 +11,15 @@
 
 @interface FLFlipTransition : FLTransition {
 @private
-    FLFlipViewAnimatorDirection _flipDirection;
+    FLFlipAnimationDirection _flipDirection;
     CGFloat _perspectiveDistance;
 }
 
-@property (readwrite, assign, nonatomic) FLFlipViewAnimatorDirection flipDirection;
++ (id) transitionWithViewToShow:(UIView*) viewToShow 
+                     viewToHide:(UIView*) viewToHide
+                  flipDirection:(FLFlipAnimationDirection) flipDirection;
+
+@property (readwrite, assign, nonatomic) FLFlipAnimationDirection flipDirection;
 @property (readwrite, assign, nonatomic) CGFloat perspectiveDistance;  // defaults to FLFlipAnimationDefaultPerspectiveDistance
 
 @end

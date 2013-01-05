@@ -18,14 +18,10 @@
 - (void) addAnimationsForViewToShow:(UIView*) viewToShow 
                          viewToHide:(UIView*) viewToHide {
 
-    FLAnimation* animations[] = {
-        [FLFadeInAnimation animationWithTarget:viewToShow],
-        [FLComeForwardAnimation animationWithTarget:viewToShow],
-        [FLSlideOutToRightAnimation animationWithTarget:viewToHide],
-        [FLFadeOutAnimation animationWithTarget:viewToHide]
-    };
-    
-    [self setAnimations:[NSArray arrayWithObjects:animations count:4]];
+    [self addAnimation:[FLFadeInAnimation animationWithTarget:viewToShow]];
+    [self addAnimation:[FLComeForwardAnimation animationWithTarget:viewToShow]];
+    [self addAnimation:[FLSlideOutToRightAnimation animationWithTarget:viewToHide]];
+    [self addAnimation:[FLFadeOutAnimation animationWithTarget:viewToHide]];
 }
 
 @end

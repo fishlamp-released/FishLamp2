@@ -21,8 +21,8 @@
                            toOpacity:(CGFloat) toOpacity;
 @end
 
-@interface FLFadeOutAnimation : FLAnimation
+@interface FLFadeOutAnimation : FLFadeAnimation
 @end
 
-@interface FLFadeInAnimation : FLAnimation
+@interface FLFadeInAnimation : FLFadeAnimation
 @end

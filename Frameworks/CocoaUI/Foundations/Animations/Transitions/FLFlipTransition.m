@@ -1,5 +1,5 @@
 //
-//  FLFlipViewAnimator.m
+//  FLFlipAnimation.m
 //  FishLampCocoaUI
 //
 //  Created by Mike Fullerton on 12/21/12.
@@ -17,7 +17,7 @@
     self = [super init];
     if(self) {
         _perspectiveDistance = FLFlipAnimationDefaultPerspectiveDistance;
-        self.duration = 0.5;
+        self.duration = 5.5;
     }
     return self;
 }
@@ -29,19 +29,22 @@
     show.flipDirection = _flipDirection;
     show.showBothSidesDuringFlip = NO;
     show.perspectiveDistance = _perspectiveDistance;
+    [self addAnimation:show];
 
     FLFlipAnimation* hide = [FLFlipAnimation animationWithTarget:viewToHide];
-    hide.flipDirection = FLFlipViewAnimatorDirectionOpposite(_flipDirection);;
+    hide.flipDirection = FLFlipAnimationDirectionOpposite(_flipDirection);;
     hide.showBothSidesDuringFlip = NO;
     hide.perspectiveDistance = _perspectiveDistance;
-
-    FLFlipAnimation* animations[] = {
-        show, 
-        hide
-    };
-    
-    [self setAnimations:[NSArray arrayWithObjects:animations count:2]];
+    [self addAnimation:hide];
 }
+
++ (id) transitionWithViewToShow:(UIView*) viewToShow 
+                     viewToHide:(UIView*) viewToHide
+                  flipDirection:(FLFlipAnimationDirection) flipDirection {
+    FLFlipTransition* transition = [FLFlipTransition transitionWithViewToShow:viewToShow   viewToHide:viewToHide];
+    transition.flipDirection = flipDirection;
+    return transition;
+}                  
 
 @end
 

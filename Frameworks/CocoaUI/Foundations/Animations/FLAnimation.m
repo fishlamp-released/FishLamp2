@@ -14,6 +14,9 @@
 }
 @end
 
+@interface FLAnimation ()
+@end
+
 @implementation FLAnimation
 
 @synthesize prepare = _prepare;
@@ -21,7 +24,6 @@
 @synthesize finish = _finish;
 @synthesize duration = _duration;
 @synthesize timingFunction = _timingFunction;
-
 
 - (id) init {
     self = [super init];
@@ -31,21 +33,17 @@
     return self;
 }
 
-- (id) initWithTarget:(id) target {
-    self = [self init];
-    if(self) {
-        [self setTarget:target];
-    }
-    return self;
-
-}
-
 + (id) animation {
     return FLAutorelease([[[self class] alloc] init]);
 }
 
 + (id) animationWithTarget:(id) target {
-    return FLAutorelease([[[self class] alloc] initWithTarget:target]);
+    FLAnimation* animation = FLAutorelease([[[self class] alloc] init]);
+    if(target) {
+        [animation setTarget:target];
+    }
+    
+    return animation;
 }
 
 - (void) setTarget:(id) target {
@@ -57,13 +55,21 @@
     [_prepare release];
     [_commit release];
     [_finish release];
+    [_animations release];
     [super dealloc];
 }
 #endif
 
 - (void) openAnimation {
-    if(_prepare) {
-        _prepare(self);
+
+    if(self.prepare) {
+        self.prepare(self);
+    }
+
+    for(FLAnimation* animation in _animations) {
+        if(animation.prepare) {
+            animation.prepare(animation);
+        }
     }
 
     [CATransaction begin];
@@ -74,55 +80,68 @@
     }
 }
 
-- (void) closeAnimation:(FLFinisher*) finisher {
+- (void) closeAnimation:(void (^)()) completion {
+    FLSafeguardBlock(completion);
+
     [CATransaction setCompletionBlock:^{
 
         [CATransaction begin];
         [CATransaction setValue:[NSNumber numberWithBool:YES] forKey:kCATransactionDisableActions];
-        
-        if(_finish) {
-            _finish();
-        }
 
+        for(FLAnimation* animation in _animations) {
+            if(animation.finish) {
+                animation.finish();
+            }
+        }
+   
+        if(self.finish) {
+            self.finish();
+        }
+        
         [CATransaction commit];
         
-        [finisher setFinished];
+        if(completion) {
+            completion();
+        }
     }];
+
     
-    if(_commit) {
-        _commit();
+    for(FLAnimation* animation in _animations) {
+        if(animation.commit) {
+            animation.commit();
+        }
     }
+
+    if(self.commit) {
+        self.commit();
+    }    
     
     [CATransaction commit];
-    
-    self.prepare = nil;
-    self.commit = nil;
-    self.finish = nil;
 }
 
-- (FLFinisher*) startAnimation:(void (^)()) didStartBlock
-                completion:(FLCompletionBlock) completion {
+- (void) startAnimating:(void (^)()) didStartBlock
+             completion:(void (^)()) completion {
 
-    FLFinisher* finisher = [FLFinisher finisher:completion];
     [self openAnimation];
     if(didStartBlock) {
         didStartBlock();
     }
-    [self closeAnimation:finisher];
-    return finisher;
+    [self closeAnimation:completion];
 }   
 
 - (void) startWorking:(FLFinisher*) finisher {
     [self openAnimation];
-    [self closeAnimation:finisher];
+    [self closeAnimation:^{
+        [finisher setFinished];
+    }];
 }             
                 
-- (FLFinisher*) startAnimation:(FLCompletionBlock) completion {
-    return [self startAnimation:nil completion:completion];
+- (void) startAnimating:(void (^)()) completion {
+    [self startAnimating:nil completion:completion];
 }
 
-- (FLFinisher*) startAnimation {
-    return [self startAnimation:nil completion:nil];
+- (void) startAnimating {
+    [self startAnimating:nil completion:nil];
 }
 
 - (CALayer*) layerFromTarget:(id) target {
@@ -130,6 +149,14 @@
     FLAssertNotNil_([target layer]);
     FLAssertNotNil_([target layer].superlayer);
     return [target layer];
+}
+
+- (void) addAnimation:(FLAnimation*) animation {
+    if(!_animations) {
+        _animations = [[NSMutableArray alloc] init];
+    }
+
+    [_animations addObject:animation];
 }
 
 

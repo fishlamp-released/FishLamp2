@@ -31,27 +31,22 @@
 
 } 
 
-+ (CAAnimation*) animationForLayer:(CALayer *) layer withScale:(CGFloat) scaleAmount {
-    
-    CABasicAnimation *scale = [CABasicAnimation animationWithKeyPath:@"transform"];
-    scale.fromValue =   [NSValue valueWithCATransform3D:layer.transform];
-    scale.toValue =     [NSValue valueWithCATransform3D:transform];
-    scale.removedOnCompletion = YES;
-    return scale;
-}
-
 - (void) setTarget:(id) target {
     
     self.prepare = ^(id animation) {
-        CALayer* layer = [self layerFromTarget:target]; {    
+        CALayer* layer = [self layerFromTarget:target];     
         layer.transform = CATransform3DIdentity;
         layer.hidden = NO;
         
         CATransform3D transform = [FLDropBackAnimation transformForFrame:layer.frame withScale:_scale];
-        CAAnimation* dropBack = [FLDropBackAnimation animationForLayer:layer withScale:_scale];
+
+        CABasicAnimation *scale = [CABasicAnimation animationWithKeyPath:@"transform"];
+        scale.fromValue =   [NSValue valueWithCATransform3D:layer.transform];
+        scale.toValue =     [NSValue valueWithCATransform3D:transform];
+        scale.removedOnCompletion = YES;
 
         self.commit = ^{
-            [layer addAnimation:dropBack forKey:@"transform"];
+            [layer addAnimation:scale forKey:@"transform"];
             layer.transform = transform;
         };
 

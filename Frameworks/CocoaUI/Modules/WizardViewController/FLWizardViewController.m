@@ -13,6 +13,7 @@
 #import "FLDropBackAnimation.h"
 #import "UIViewController+FLAdditions.h"
 #import "FLWizardPanel.h"
+#import "FLStatusBarViewController.h"
 
 #import "FLSlideInAndDropTransition.h"
 #import "FLSlideOutAndComeForwardTransition.h"
@@ -44,6 +45,7 @@
 @synthesize wizardPanelEnclosureView = _wizardPanelEnclosureView;
 @synthesize notificationView = _notificationView;
 @synthesize notificationViewEnclosure = _notificationViewEnclosure;
+@synthesize statusBar = _statusViewController;
 
 #if FL_MRC
 - (void) dealloc {
@@ -57,6 +59,7 @@
     [_backButton release];
     [_otherButton release];
     [_notificationView release];
+    [_statusViewController release];
     
     [super dealloc];
 }
@@ -71,6 +74,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         _wizardPanels = [[NSMutableArray alloc] init];
+        _statusViewController = [[FLStatusBarViewController alloc] init];
     }
     
     return self;
@@ -112,10 +116,13 @@
 
 - (void) startWizardInWindow:(NSWindow*) window {
 
+
     FLPerformSelector1(self.delegate, @selector(wizardViewControllerWillStartWizard:), self);
     [self.view setWantsLayer:YES];
     [window setContentView:self.view];
     [window setDefaultButtonCell:[self.nextButton cell]];
+    _statusViewController.view.frame = _notificationViewEnclosure.bounds;
+    [_notificationViewEnclosure addSubview:_statusViewController.view];
     FLPerformSelector1(self.delegate, @selector(wizardViewControllerDidStartWizard:), self);
 }
 
@@ -280,7 +287,7 @@
 
     if(animated) {
         FLSlideInAndDropTransition* transition = [FLSlideInAndDropTransition transitionWithViewToShow:toShow.view viewToHide:toHide.view];
-        [transition startAnimation:^(FLResult result){
+        [transition startAnimating:^{
             finished();
         }];
     }
@@ -327,20 +334,16 @@
     if(animated) {
         
         FLSlideOutAndComeForwardTransition* transition = [FLSlideOutAndComeForwardTransition transitionWithViewToShow:toShow.view viewToHide:toHide.view];
-        [[transition startAnimation] waitUntilFinished]; 
-        
-        finished();
-        
-        //:^(FLResult result)
-//            finished();
-//        }];
+        [transition startAnimating:^{
+            finished();
+        }];
     }
     else {
        finished();
     }
 }
 
-- (void) flipToNextNotificationViewWithDirection:(FLFlipViewAnimatorDirection) direction 
+- (void) flipToNextNotificationViewWithDirection:(FLFlipAnimationDirection) direction 
                                         nextView:(UIView*) nextView
                                       completion:(void (^)()) completion {
 
@@ -349,7 +352,7 @@
     FLFlipTransition* animation = [FLFlipTransition transitionWithViewToShow:nextView 
                                                        viewToHide:self.notificationView];
                                               
-    [animation startAnimation:^(FLResult result) {
+    [animation startAnimating:^(FLResult result) {
         [self.notificationView removeFromSuperview];
         self.notificationView = nextView;
         if(completion) {
@@ -365,7 +368,7 @@
     notificationView.frame = self.notificationViewEnclosure.bounds;
     if(self.notificationView) {
         if(animated) {
-            [self flipToNextNotificationViewWithDirection:FLFlipViewAnimatorDirectionDown nextView:notificationView completion:completion];
+            [self flipToNextNotificationViewWithDirection:FLFlipAnimationDirectionDown nextView:notificationView completion:completion];
         }
         else {
             [self.notificationView removeFromSuperview];
