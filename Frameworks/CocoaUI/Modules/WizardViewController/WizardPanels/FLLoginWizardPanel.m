@@ -116,7 +116,6 @@
     self.wizard.otherButton.enabled = NO;
     
     if([result error]) {
-        self.wizard.nextButton.enabled = YES;
     
         NSTextField* textField = FLAutorelease([[NSTextField alloc] initWithFrame:CGRectZero]);
         textField.font = [NSFont fontWithName:@"MyriadPro-Bold" size:12];
@@ -128,11 +127,12 @@
         [textField setEditable:NO];
         [textField setAlignment:NSLeftTextAlignment];
         
-        [self.wizard setNotificationView:textField animated:YES completion:^{
-        }];        
+        [self.wizard.statusBar setStatusView:textField animated:YES completion:^{
+            self.wizard.nextButton.enabled = YES;
+        }];
     }
     else {
-        [self.wizard hideNotificationViewAnimated:YES completion:nil];
+        [self.wizard.statusBar removeAllStatusViewsAnimated:YES  completion:nil];
     }
 }
     
@@ -152,11 +152,17 @@
         [textField setBezeled:NO];
         [textField setEditable:NO];
         [textField setAlignment:NSLeftTextAlignment];
-        
-        [self.wizard setNotificationView:textField animated:YES completion:^{
-            self.wizard.otherButton.enabled = YES;
-            self.wizard.nextButton.enabled = NO;
 
+        self.wizard.nextButton.enabled = NO;
+        self.wizard.otherButton.enabled = NO;
+        
+        [self.wizard.statusBar setStatusView:textField animated:YES completion:^{
+            self.wizard.otherButton.enabled = YES;
+
+//        [self.wizard setNotificationView:textField animated:YES completion:^{
+//            self.wizard.otherButton.enabled = YES;
+//            self.wizard.nextButton.enabled = NO;
+//
             FLPerformSelector1( self.delegate, 
                                 @selector(loginWizardPanelStartAuthenticating:), 
                                 self);
@@ -183,7 +189,7 @@
                         @selector(loginWizardPanelCancelAuthentication:), 
                         self);
 
-    [self.wizard hideNotificationViewAnimated:YES completion:nil];
+    [self.wizard.statusBar removeAllStatusViewsAnimated:NO completion:nil];
 }
 
 - (void) wizardPanelDidAppear {

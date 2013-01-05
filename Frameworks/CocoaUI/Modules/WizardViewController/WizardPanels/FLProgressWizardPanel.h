@@ -52,7 +52,7 @@
 
 + (id) progressWizardPanel;
 
-- (void) flipToNextViewWithDirection:(FLFlipViewAnimatorDirection) direction 
+- (void) flipToNextViewWithDirection:(FLFlipAnimationDirection) direction 
                             nextView:(UIView*) nextView
                             completion:(void (^)()) completion;
 

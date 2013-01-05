@@ -18,11 +18,8 @@
 
 @property (readwrite, assign, nonatomic) CGFloat scale;
 
-+ (CAAnimation*) animationForLayer:(CALayer *) layer 
-                         withScale:(CGFloat) scaleAmount;
-
 + (CATransform3D) transformForFrame:(CGRect) frame 
-                          withScale:(CGFloat) scaleAmount {
+                          withScale:(CGFloat) scaleAmount;
 
 @end
 

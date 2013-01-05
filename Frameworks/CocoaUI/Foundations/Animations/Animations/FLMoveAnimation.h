@@ -12,7 +12,7 @@
 @interface FLMoveAnimation : FLAnimation {
 }
 
-- (void) moveLayer:(CALayer*) layer
+- (void) setTarget:(id) target
         fromOrigin:(CGPoint) fromOrigin 
           toOrigin:(CGPoint) toOrigin;
 

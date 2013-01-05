@@ -8,6 +8,11 @@
 
 #import "FLAnimation.h"
 
-@interface FLComeForwardAnimation : FLAnimation
+@interface FLComeForwardAnimation : FLAnimation {
+@private
+   CGFloat _scale;
+}
+
+@property (readwrite, assign, nonatomic) CGFloat scale;
 
 @end

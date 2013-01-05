@@ -9,10 +9,10 @@
 #import "FLCocoaUIRequired.h"
 #import "FLBreadcrumbBarView.h"
 #import "FLFlipTransition.h"
+#import "FLStatusBarViewController.h"
 
 @class FLWizardPanel;
 @protocol FLWizardViewControllerDelegate;
-
 
 @interface FLWizardViewController : UIViewController {
 @private
@@ -35,6 +35,8 @@
     IBOutlet NSButton* _otherButton;
     
     NSMutableArray* _wizardPanels;
+        
+    FLStatusBarViewController* _statusViewController;
         
 // temp    
     IBOutlet NSButton* _logoutButton;
@@ -73,6 +75,8 @@
 
 // utils
 - (void) updateBackButtonEnabledState;
+
+@property (readonly, strong, nonatomic) FLStatusBarViewController* statusBar;
 @end
 
 @interface FLWizardViewController (Navigation)
@@ -92,16 +96,16 @@
 
 
 
-- (void) flipToNextNotificationViewWithDirection:(FLFlipViewAnimatorDirection) direction 
-                                        nextView:(UIView*) nextView
-                                      completion:(void (^)()) completion;
-
-- (void) setNotificationView:(UIView*) notificationView 
-                    animated:(BOOL) animated 
-                  completion:(void (^)()) completion;
-
-- (void) hideNotificationViewAnimated:(BOOL) animated 
-                  completion:(void (^)()) completion;
+//- (void) flipToNextNotificationViewWithDirection:(FLFlipAnimationDirection) direction 
+//                                        nextView:(UIView*) nextView
+//                                      completion:(void (^)()) completion;
+//
+//- (void) setNotificationView:(UIView*) notificationView 
+//                    animated:(BOOL) animated 
+//                  completion:(void (^)()) completion;
+//
+//- (void) hideNotificationViewAnimated:(BOOL) animated 
+//                  completion:(void (^)()) completion;
 
 @end
 

@@ -34,62 +34,37 @@
 }
 
 + (void) prepareLayerForFlip:(CALayer*) layer 
-             inFlipDirection:(FLFlipViewAnimatorDirection) flipDirection {
-        
-    CGRect newFrame = layer.frame;
-    
-     switch(flipDirection) {
-        case FLFlipViewAnimatorDirectionUp:
-            newFrame.origin.y = newFrame.size.height / 2;
-            layer.anchorPoint = CGPointMake(0, .5);
-        break;
-        
-        case FLFlipViewAnimatorDirectionDown:
-            newFrame.origin.y = newFrame.size.height / 2;
-            layer.anchorPoint = CGPointMake(0, .5);
-        break;
+             inFlipDirection:(FLFlipAnimationDirection) flipDirection {
 
-        case FLFlipViewAnimatorDirectionLeft:
-            newFrame.origin.x = newFrame.size.width / 2;
-            layer.anchorPoint = CGPointMake(.5, 0);
-        break;
-
-        case FLFlipViewAnimatorDirectionRight:
-            newFrame.origin.x = newFrame.size.width / 2;
-            layer.anchorPoint = CGPointMake(.5, 0);
-        break;
-    }
-    
-    layer.frame = newFrame;
 }
 
 + (CAAnimation*) createFlipAnimationForLayer:(CALayer*) layer 
-                           withFlipDirection:(FLFlipViewAnimatorDirection) flipDirection {
+                           withFlipDirection:(FLFlipAnimationDirection) flipDirection {
     
     CGFloat start = 0.0f;
     CGFloat finish = 0.0f;
     NSString* keyPath = nil;
 
     switch(flipDirection) {
-        case FLFlipViewAnimatorDirectionUp:
+        case FLFlipAnimationDirectionUp:
             keyPath = @"transform.rotation.x";
-            start = 0.0f;
-            finish = M_PI;
+            start = M_PI;
+            finish = 0.0;
         break;
         
-        case FLFlipViewAnimatorDirectionDown:
+        case FLFlipAnimationDirectionDown:
             keyPath = @"transform.rotation.x";
             start = 0.0f;
             finish = -M_PI;
         break;
 
-        case FLFlipViewAnimatorDirectionLeft:
+        case FLFlipAnimationDirectionLeft:
             keyPath = @"transform.rotation.y";
-            start = 0.0f;
-            finish = M_PI;
+            start = M_PI;
+            finish = 0.0f;
         break;
 
-        case FLFlipViewAnimatorDirectionRight:
+        case FLFlipAnimationDirectionRight:
             keyPath = @"transform.rotation.y";
             start = 0.0f;
             finish = -M_PI;
@@ -99,7 +74,7 @@
     CABasicAnimation *flipAnimation = [CABasicAnimation animationWithKeyPath:keyPath];
     flipAnimation.fromValue = [NSNumber numberWithDouble:start];
     flipAnimation.toValue = [NSNumber numberWithDouble:finish];
-    flipAnimation.fillMode = kCAFillModeForwards;
+    flipAnimation.fillMode = kCAFillModeBoth;
     flipAnimation.additive = NO;
     flipAnimation.removedOnCompletion = NO;
     return flipAnimation;
@@ -114,15 +89,30 @@
     
         layer.doubleSided = _showBothSidesDuringFlip;
         
-        [FLFlipAnimation prepareLayerForFlip:layer inFlipDirection:_flipDirection];
+        CGPoint position = layer.position;
+        CGPoint newPosition = position;
+        CGPoint anchorPoint = layer.anchorPoint;
+    
+        CGRect frame = layer.frame;
+        newPosition.y += (frame.size.height/ 2);
+        newPosition.x += (frame.size.width / 2);
+        layer.anchorPoint = CGPointMake(0.5, 0.5);
+        layer.position = newPosition;
         
         CAAnimation* flipAnimation = [FLFlipAnimation createFlipAnimationForLayer:layer withFlipDirection:_flipDirection];
 
-        [FLFlipAnimation addPerspectiveToLayer:layer withPerspectiveDistance:_perspectiveDistance];
+//        [FLFlipAnimation addPerspectiveToLayer:layer withPerspectiveDistance:_perspectiveDistance];
     
         self.commit = ^{
             [layer addAnimation:flipAnimation forKey:@"flip"];    
         };
+
+        self.finish = ^{
+            layer.anchorPoint = anchorPoint;
+            layer.position = position;
+        
+//            [self prepareLayerForFlip:FLFlipAnimationDirectionOpposite(_flipDirection)];
+        };  
 
     };
 }
