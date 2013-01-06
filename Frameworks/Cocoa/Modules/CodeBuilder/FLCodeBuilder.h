@@ -20,4 +20,6 @@
 @property (readwrite, strong, nonatomic) NSString* openBracket;
 @property (readwrite, strong, nonatomic) NSString* closeBracket;
 
+- (NSString*) buildString;
+
 @end
