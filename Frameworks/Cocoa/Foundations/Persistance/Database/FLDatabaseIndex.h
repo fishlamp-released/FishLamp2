@@ -7,7 +7,7 @@
 //
 
 #import "FLCocoaRequired.h"
-#import "FLCore.h"
+#import "FishLampCore.h"
 
 typedef enum {
 	FLDatabaseColumnIndexPropertyNone				= 0,

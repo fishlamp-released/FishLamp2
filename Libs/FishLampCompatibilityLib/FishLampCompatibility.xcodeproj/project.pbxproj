@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		274933E1169A03DE008E8EC5 /* FishLampCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 274933DF169A03DE008E8EC5 /* FishLampCompatibility.h */; };
+		274933E2169A03DE008E8EC5 /* FishLampCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 274933DF169A03DE008E8EC5 /* FishLampCompatibility.h */; };
+		274933E3169A03DE008E8EC5 /* FishLampCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 274933DF169A03DE008E8EC5 /* FishLampCompatibility.h */; };
+		274933E4169A03DE008E8EC5 /* FishLampCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 274933DF169A03DE008E8EC5 /* FishLampCompatibility.h */; };
+		27493407169A0D49008E8EC5 /* __CompatibilityHeaders.h in Headers */ = {isa = PBXBuildFile; fileRef = 27493406169A0D49008E8EC5 /* __CompatibilityHeaders.h */; };
+		27493408169A0D49008E8EC5 /* __CompatibilityHeaders.h in Headers */ = {isa = PBXBuildFile; fileRef = 27493406169A0D49008E8EC5 /* __CompatibilityHeaders.h */; };
+		27493409169A0D49008E8EC5 /* __CompatibilityHeaders.h in Headers */ = {isa = PBXBuildFile; fileRef = 27493406169A0D49008E8EC5 /* __CompatibilityHeaders.h */; };
+		2749340A169A0D49008E8EC5 /* __CompatibilityHeaders.h in Headers */ = {isa = PBXBuildFile; fileRef = 27493406169A0D49008E8EC5 /* __CompatibilityHeaders.h */; };
 		27CBBFEE16768BA600753D0A /* FishLampCompatibility-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27D1E5C1166D355C00DB680E /* FishLampCompatibility-Prefix.pch */; };
 		27D1E5C2166D355C00DB680E /* FishLampCompatibility-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27D1E5C1166D355C00DB680E /* FishLampCompatibility-Prefix.pch */; };
 		27D1E5C3166D355C00DB680E /* FishLampCompatibility-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27D1E5C1166D355C00DB680E /* FishLampCompatibility-Prefix.pch */; };
@@ -170,42 +178,14 @@
 
 /* Begin PBXFileReference section */
 		27048EF0161CB58600C38ADA /* libFishLampCompatibility-OSX-32-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCompatibility-OSX-32-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		270D02DD15E9B1F600ED5FB0 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
-		270D02DE15E9B1F800ED5FB0 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/CoreFoundation.framework; sourceTree = DEVELOPER_DIR; };
-		270D02DF15E9B1F900ED5FB0 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/CoreServices.framework; sourceTree = DEVELOPER_DIR; };
-		270D02E015E9B1FA00ED5FB0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		270D02E115E9B1FD00ED5FB0 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/usr/lib/libsqlite3.0.dylib; sourceTree = DEVELOPER_DIR; };
-		270D02E215E9B1FE00ED5FB0 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
-		270D02E315E9B1FF00ED5FB0 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
-		270DFDC815E99BAC00ED5FB0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		27314C79165328400027850D /* libFishLampCompatibility-OSX-64-ARC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCompatibility-OSX-64-ARC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		276CE8EE15E54B2F000A5CE6 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
-		276CE8EF15E54B30000A5CE6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		276CE8F015E54B31000A5CE6 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
-		276CE8F115E54B33000A5CE6 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		276CE90015E54BF0000A5CE6 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		276CE90215E54BFE000A5CE6 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
-		276CE90915E54C89000A5CE6 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
-		276CE90A15E54C8A000A5CE6 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		276CE90B15E54C8A000A5CE6 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
-		276CE90C15E54C8B000A5CE6 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		276CE90D15E54C8D000A5CE6 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
-		276CE90E15E54C8E000A5CE6 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
-		276CE90F15E54C8E000A5CE6 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
-		276CE91015E54C8F000A5CE6 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
-		276CE91115E54C8F000A5CE6 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		276CE91215E54C90000A5CE6 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
-		276CE91315E54C90000A5CE6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		276CE91415E54C91000A5CE6 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		276CE91515E54C91000A5CE6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		274933DF169A03DE008E8EC5 /* FishLampCompatibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishLampCompatibility.h; sourceTree = "<group>"; };
+		27493406169A0D49008E8EC5 /* __CompatibilityHeaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __CompatibilityHeaders.h; sourceTree = "<group>"; };
 		2798DB81166D8A7F00A0863D /* SharedTargetSettings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = SharedTargetSettings.xcconfig; sourceTree = "<group>"; };
 		27A43AB415CDCC89001CB13E /* libFishLampCompatibility-iOS-ARC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCompatibility-iOS-ARC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27A43AC415CDCCCB001CB13E /* libFishLampCompatibility-OSX-64-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCompatibility-OSX-64-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27CBC1F416768BA600753D0A /* libFishLampCompatibility-OSX-32-64-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCompatibility-OSX-32-64-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27D1E5C1166D355C00DB680E /* FishLampCompatibility-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FishLampCompatibility-Prefix.pch"; sourceTree = "<group>"; };
-		27EF7B38165A9C1E00EB7949 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
-		27EF7B39165A9C1E00EB7949 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		27EF7B3A165A9C1E00EB7949 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		78CC1AA0167D5B5400A37127 /* FishLampProjectSettingsDebug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FishLampProjectSettingsDebug.xcconfig; sourceTree = "<group>"; };
 		78CC1AA1167D5B5400A37127 /* FishLampProjectSettingsRelease.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FishLampProjectSettingsRelease.xcconfig; sourceTree = "<group>"; };
 		78CC1AA2167D5B5400A37127 /* FishLampTargetSettings-iOS-ARC.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "FishLampTargetSettings-iOS-ARC.xcconfig"; sourceTree = "<group>"; };
@@ -310,32 +290,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		276CE92815E54E31000A5CE6 /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-				276CE90915E54C89000A5CE6 /* AssetsLibrary.framework */,
-				276CE90A15E54C8A000A5CE6 /* AVFoundation.framework */,
-				276CE90B15E54C8A000A5CE6 /* CFNetwork.framework */,
-				276CE90C15E54C8B000A5CE6 /* CoreLocation.framework */,
-				276CE90D15E54C8D000A5CE6 /* CoreMedia.framework */,
-				276CE90E15E54C8E000A5CE6 /* CoreMotion.framework */,
-				276CE90F15E54C8E000A5CE6 /* CoreText.framework */,
-				276CE91015E54C8F000A5CE6 /* ImageIO.framework */,
-				276CE91115E54C8F000A5CE6 /* MapKit.framework */,
-				276CE91215E54C90000A5CE6 /* MessageUI.framework */,
-				276CE91315E54C90000A5CE6 /* QuartzCore.framework */,
-				276CE91415E54C91000A5CE6 /* SystemConfiguration.framework */,
-				276CE91515E54C91000A5CE6 /* UIKit.framework */,
-				276CE90215E54BFE000A5CE6 /* MobileCoreServices.framework */,
-				276CE90015E54BF0000A5CE6 /* MediaPlayer.framework */,
-				276CE8EE15E54B2F000A5CE6 /* CoreFoundation.framework */,
-				276CE8EF15E54B30000A5CE6 /* CoreGraphics.framework */,
-				276CE8F015E54B31000A5CE6 /* CoreImage.framework */,
-				276CE8F115E54B33000A5CE6 /* Security.framework */,
-			);
-			name = iOS;
-			sourceTree = "<group>";
-		};
 		27A43A7115CDCC1B001CB13E = {
 			isa = PBXGroup;
 			children = (
@@ -361,16 +315,6 @@
 		27A43A7E15CDCC1B001CB13E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				270D02DD15E9B1F600ED5FB0 /* Cocoa.framework */,
-				270D02DE15E9B1F800ED5FB0 /* CoreFoundation.framework */,
-				270D02DF15E9B1F900ED5FB0 /* CoreServices.framework */,
-				270D02E015E9B1FA00ED5FB0 /* Foundation.framework */,
-				270D02E115E9B1FD00ED5FB0 /* libsqlite3.0.dylib */,
-				270D02E215E9B1FE00ED5FB0 /* Security.framework */,
-				270D02E315E9B1FF00ED5FB0 /* SystemConfiguration.framework */,
-				276CE92815E54E31000A5CE6 /* iOS */,
-				270DFDC815E99BAC00ED5FB0 /* Foundation.framework */,
-				27EF7B37165A9C1E00EB7949 /* Other Frameworks */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -378,20 +322,12 @@
 		27DB1F34167A938600452AD3 /* Compatibility */ = {
 			isa = PBXGroup;
 			children = (
+				27493406169A0D49008E8EC5 /* __CompatibilityHeaders.h */,
 				78CC1AFF167D64DA00A37127 /* UIKit */,
+				274933DF169A03DE008E8EC5 /* FishLampCompatibility.h */,
 			);
 			name = Compatibility;
 			path = ../../Frameworks/Compatibility;
-			sourceTree = "<group>";
-		};
-		27EF7B37165A9C1E00EB7949 /* Other Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				27EF7B38165A9C1E00EB7949 /* AppKit.framework */,
-				27EF7B39165A9C1E00EB7949 /* CoreData.framework */,
-				27EF7B3A165A9C1E00EB7949 /* Foundation.framework */,
-			);
-			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
 		78CC1A9F167D5B5400A37127 /* XcodeConfigs */ = {
@@ -492,6 +428,8 @@
 				78CC1BAB167D64DB00A37127 /* UIView+OSX.h in Headers */,
 				78CC1BB4167D64DB00A37127 /* UIView+OSX_Internal.h in Headers */,
 				78CC1BB8167D64DB00A37127 /* UIViewController+OSX.h in Headers */,
+				274933E1169A03DE008E8EC5 /* FishLampCompatibility.h in Headers */,
+				27493407169A0D49008E8EC5 /* __CompatibilityHeaders.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -517,6 +455,8 @@
 				78CC1BAD167D64DB00A37127 /* UIView+OSX.h in Headers */,
 				78CC1BB6167D64DB00A37127 /* UIView+OSX_Internal.h in Headers */,
 				78CC1BBA167D64DB00A37127 /* UIViewController+OSX.h in Headers */,
+				274933E3169A03DE008E8EC5 /* FishLampCompatibility.h in Headers */,
+				27493409169A0D49008E8EC5 /* __CompatibilityHeaders.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -542,6 +482,8 @@
 				78CC1BAC167D64DB00A37127 /* UIView+OSX.h in Headers */,
 				78CC1BB5167D64DB00A37127 /* UIView+OSX_Internal.h in Headers */,
 				78CC1BB9167D64DB00A37127 /* UIViewController+OSX.h in Headers */,
+				274933E2169A03DE008E8EC5 /* FishLampCompatibility.h in Headers */,
+				27493408169A0D49008E8EC5 /* __CompatibilityHeaders.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -567,6 +509,8 @@
 				78CC1BAE167D64DB00A37127 /* UIView+OSX.h in Headers */,
 				78CC1BB7167D64DB00A37127 /* UIView+OSX_Internal.h in Headers */,
 				78CC1BBB167D64DB00A37127 /* UIViewController+OSX.h in Headers */,
+				274933E4169A03DE008E8EC5 /* FishLampCompatibility.h in Headers */,
+				2749340A169A0D49008E8EC5 /* __CompatibilityHeaders.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

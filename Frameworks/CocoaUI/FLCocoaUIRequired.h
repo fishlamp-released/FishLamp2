@@ -6,8 +6,8 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import "FLCore.h"
-#import "FLCocoa.h"
+#import "FishLampCore.h"
+#import "FishLampCocoa.h"
 
 #if OSX
 #import <Quartz/Quartz.h>

@@ -5,7 +5,7 @@
 //	Created by Mike Fullerton on 9/24/09.
 //	Copyright 2009 GreenTongue Software. All rights reserved.
 //
-#import "FLCore.h"
+#import "FishLampCore.h"
 
 extern NSString* release_ObjectsCachedInMemoryNotification;
 

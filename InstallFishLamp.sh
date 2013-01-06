@@ -39,8 +39,8 @@ function write_paths_file() {
     echo "FISHLAMP_COMPATIBILITY = \$(FISHLAMP)/Compatibility/** \$(FISHLAMP_CORE)" >> "$path" 
 	echo "FISHLAMP_COCOA = \$(FISHLAMP)/Cocoa/** \$(FISHLAMP)/Dependencies/** \$(FISHLAMP)/External/** \$(FISHLAMP)/Deprecated/** \$(FISHLAMP_COMPATIBILITY)" >> "$path"
 	echo "FISHLAMP_COCOA_UI = \$(FISHLAMP)/CocoaUI/** \$(FISHLAMP_COCOA)" >> "$path"
-    echo "FISHLAMP_OSX = \$(FISHLAMP)/OSX/** \$(FISHLAMP_COCOA)" >> "$path"
-    echo "FISHLAMP_IOS = \$(FISHLAMP)/iOS/** \$(FISHLAMP_COCOA)" >> "$path"
+    echo "FISHLAMP_OSX = \$(FISHLAMP)/OSX/** \$(FISHLAMP_COCOA_UI)" >> "$path"
+    echo "FISHLAMP_IOS = \$(FISHLAMP)/iOS/** \$(FISHLAMP_COCOA_UI)" >> "$path"
     
 	verbose "Updated $path ok"
 }

@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "FLCore.h"
+#import "FishLampCore.h"
 
 #import "FLErrorDescription.h"
 #import "FLActionDescription.h"

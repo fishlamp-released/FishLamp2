@@ -10,7 +10,7 @@
 // Copyright (c) 2012 GreenTongue Software LLC. All Rights Reserved.
 //
 
-#import "FLCore.h"
+#import "FishLampCore.h"
 #import "UIKitRequired.h"
 #import "CGContext+UIKit.h"
 #import "NSValue+UIKit.h"

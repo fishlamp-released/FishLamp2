@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import "FLCore.h"
+#import "FishLampCore.h"
 #import "FLCommandLineArgument.h"
 #import "FLTool.h"
 

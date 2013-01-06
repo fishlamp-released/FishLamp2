@@ -5,7 +5,7 @@
 //	Created by Mike Fullerton on 6/10/09.
 //	Copyright 2009 Greentongue Software. All rights reserved.
 //
-#import "FLCore.h"
+#import "FishLampCore.h"
 
 @protocol FLCancellable <NSObject>
 - (void) requestCancel; 

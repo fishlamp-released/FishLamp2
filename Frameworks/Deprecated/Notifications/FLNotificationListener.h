@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "FLCore.h"
+#import "FishLampCore.h"
 #import "FLCallback_t.h"
 
 @interface FLNotificationListener : NSObject {

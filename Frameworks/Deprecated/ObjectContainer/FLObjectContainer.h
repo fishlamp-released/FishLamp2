@@ -6,7 +6,7 @@
 //	Copyright 2009 GreenTongue Software. All rights reserved.
 //
 
-#import "FLCore.h"
+#import "FishLampCore.h"
 
 @protocol FLObjectContainer <NSObject>
 - (id) object;
