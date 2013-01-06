@@ -46,12 +46,15 @@
                animated:(BOOL) animated
                completion:(void (^)()) completion {
 
+
     UIView* rootView = self.view;
     view.autoresizingMask = NSViewHeightSizable | NSViewWidthSizable;
     view.frame = rootView.bounds;
     [rootView addSubview:view];
 
     if(animated) {
+        FLSafeguardBlock(completion);
+
         UIView* lastView = [_stack lastObject];
         if(lastView) {
             FLFlipTransition* fuckyoupieceofshit = [FLFlipTransition transitionWithViewToShow:view viewToHide:lastView flipDirection:FLFlipAnimationDirectionUp];
@@ -74,9 +77,11 @@
               completion:(void (^)()) completion {
 
     FLSafeguardBlock(completion);
-              
-    [self addStatusView:view animated:animated completion:^{
+
+    __unsafe_unretained id SELF = self;
+    [SELF addStatusView:view animated:animated completion:^{
         [self removeAllStatusViewsAnimated:NO completion:nil];
+
         [_stack addObject:view];
         
         if(completion) {
@@ -91,7 +96,8 @@
 
     FLSafeguardBlock(completion);
 
-    [self addStatusView:view animated:animated completion:^{
+    __unsafe_unretained id SELF = self;
+    [SELF addStatusView:view animated:animated completion:^{
         [_stack addObject:view];
 
         if(completion) {

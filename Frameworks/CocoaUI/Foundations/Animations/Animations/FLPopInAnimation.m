@@ -33,7 +33,7 @@
 - (void) setTarget:(id) target {
     self.prepare = ^(id animation){
         self.commit = ^{
-            CALayer* layer = [self layerFromTarget:target];
+            CALayer* layer = [animation layerFromTarget:target];
             [layer addAnimation:[FLPopInAnimation animationForLayer:layer] forKey:@"transform.scale"];    
         };
     };

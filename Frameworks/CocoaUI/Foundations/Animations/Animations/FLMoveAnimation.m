@@ -35,7 +35,7 @@
         [layer setPosition:fromOrigin];
 
         
-        [self setCommit:^{
+        [animation setCommit:^{
             [layer setPosition:toOrigin];
         
 //#if OSX

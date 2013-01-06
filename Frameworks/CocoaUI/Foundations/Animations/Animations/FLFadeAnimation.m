@@ -32,7 +32,7 @@
          toOpacity:(CGFloat) toOpacity {
     
     self.prepare = ^(id animation) {
-        CALayer* layer = [self layerFromTarget:target];
+        CALayer* layer = [animation layerFromTarget:target];
         layer.opacity = fromOpacity;
         layer.hidden = NO;
         [layer addAnimation:[FLFadeAnimation animationForLayer:layer fromOpacity:fromOpacity toOpacity:toOpacity] forKey:@"opacity"];
@@ -57,9 +57,9 @@
 
 - (void) setTarget:(id) target {
     [self setTarget:target fromOpacity:1.0 toOpacity:0.0];
+    CALayer* layer = [self layerFromTarget:target];
 
     self.finish = ^{
-        CALayer* layer = [self layerFromTarget:target];
         layer.hidden = YES;
         [layer setOpacity:1.0];
     };
