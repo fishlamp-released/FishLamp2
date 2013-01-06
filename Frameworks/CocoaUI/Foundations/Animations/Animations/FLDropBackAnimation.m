@@ -32,28 +32,26 @@
 } 
 
 - (void) setTarget:(id) target {
+
+    CALayer* layer = [self layerFromTarget:target];     
+    layer.transform = CATransform3DIdentity;
+    layer.hidden = NO;
     
-    self.prepare = ^(id animation) {
-        CALayer* layer = [self layerFromTarget:target];     
+    CATransform3D transform = [FLDropBackAnimation transformForFrame:layer.frame withScale:_scale];
+
+    CABasicAnimation *scale = [CABasicAnimation animationWithKeyPath:@"transform"];
+    scale.fromValue =   [NSValue valueWithCATransform3D:layer.transform];
+    scale.toValue =     [NSValue valueWithCATransform3D:transform];
+    scale.removedOnCompletion = YES;
+
+    self.commit = ^{
+        [layer addAnimation:scale forKey:@"transform"];
+        layer.transform = transform;
+    };
+
+    self.finish = ^{
+        layer.hidden = YES;
         layer.transform = CATransform3DIdentity;
-        layer.hidden = NO;
-        
-        CATransform3D transform = [FLDropBackAnimation transformForFrame:layer.frame withScale:_scale];
-
-        CABasicAnimation *scale = [CABasicAnimation animationWithKeyPath:@"transform"];
-        scale.fromValue =   [NSValue valueWithCATransform3D:layer.transform];
-        scale.toValue =     [NSValue valueWithCATransform3D:transform];
-        scale.removedOnCompletion = YES;
-
-        self.commit = ^{
-            [layer addAnimation:scale forKey:@"transform"];
-            layer.transform = transform;
-        };
-
-        self.finish = ^{
-            layer.hidden = YES;
-            layer.transform = CATransform3DIdentity;
-        };
     };
 }
 

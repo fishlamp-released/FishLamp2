@@ -83,23 +83,23 @@
 
 - (void) setTarget:(id) target {
 
-    self.prepare = ^(id animation){
+    CALayer* layer = [self layerFromTarget:target];
 
-        CALayer* layer = [animation layerFromTarget:target];
+    layer.doubleSided = _showBothSidesDuringFlip;
     
-        layer.doubleSided = _showBothSidesDuringFlip;
-        
-        CGPoint position = layer.position;
-        CGPoint newPosition = position;
-        CGPoint anchorPoint = layer.anchorPoint;
+    CGPoint position = layer.position;
+    CGPoint newPosition = position;
+    CGPoint anchorPoint = layer.anchorPoint;
+
+    CGRect frame = layer.frame;
+    newPosition.y += (frame.size.height/ 2);
+    newPosition.x += (frame.size.width / 2);
+    layer.anchorPoint = CGPointMake(0.5, 0.5);
+    layer.position = newPosition;
     
-        CGRect frame = layer.frame;
-        newPosition.y += (frame.size.height/ 2);
-        newPosition.x += (frame.size.width / 2);
-        layer.anchorPoint = CGPointMake(0.5, 0.5);
-        layer.position = newPosition;
-        
-        CAAnimation* flipAnimation = [FLFlipAnimation createFlipAnimationForLayer:layer withFlipDirection:_flipDirection];
+    CAAnimation* flipAnimation = [FLFlipAnimation createFlipAnimationForLayer:layer withFlipDirection:_flipDirection];
+
+    self.prepare = ^(id animation){
 
 //        [FLFlipAnimation addPerspectiveToLayer:layer withPerspectiveDistance:_perspectiveDistance];
     

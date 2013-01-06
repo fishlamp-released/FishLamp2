@@ -34,7 +34,7 @@
     
     self.prepare = ^(id animation) {
         
-        CALayer* layer = [self layerFromTarget:target];
+        CALayer* layer = [animation layerFromTarget:target];
         layer.transform = [FLDropBackAnimation transformForFrame:layer.frame withScale:_scale];
         layer.hidden = NO;
         
