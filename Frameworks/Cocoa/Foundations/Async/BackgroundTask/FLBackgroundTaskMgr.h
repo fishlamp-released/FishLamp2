@@ -7,7 +7,7 @@
 //
 
 #import "FLCocoaRequired.h"
-#import "FLCore.h"
+#import "FishLampCore.h"
 #import "FLOperationQueue.h"
 #import "FLAnswerable.h"
 

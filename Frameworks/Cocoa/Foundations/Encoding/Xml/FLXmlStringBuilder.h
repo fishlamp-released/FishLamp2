@@ -7,7 +7,7 @@
 //
 
 #import "FLCocoaRequired.h"
-#import "FLCore.h"
+#import "FishLampCore.h"
 #import "FLStringBuilderStack.h"
 #import "FLPropertyDescription.h"
 #import "FLXmlElement.h"

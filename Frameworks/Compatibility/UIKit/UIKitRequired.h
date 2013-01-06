@@ -7,7 +7,7 @@
 //
 
 
-#import "FLCore.h"
+#import "FishLampCore.h"
 
 #if OSX
 #import <Foundation/Foundation.h>

@@ -1,7 +1,7 @@
 
 #ifdef __OBJC__
 
-#import "FLCore.h"
+#import "FishLampCore.h"
     
 #if OSX
 #import "UIKitModule.h"

@@ -13,7 +13,7 @@
 #import "FLCocoaRequired.h"
 #import <sqlite3.h>
 
-#import "FLCore.h"
+#import "FishLampCore.h"
 #import "FLDatabaseDefines.h"
 #import "FLDatabaseTable.h"
 #import "FLDatabaseErrors.h"

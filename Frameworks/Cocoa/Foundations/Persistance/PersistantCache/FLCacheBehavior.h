@@ -9,7 +9,7 @@
 #import "FLCocoaRequired.h"
 
 #import "FLInMemoryDataCache.h"
-#import "FLCore.h"
+#import "FishLampCore.h"
 
 @protocol FLCacheBehavior <NSObject>
 

@@ -6,7 +6,7 @@
 //  Copyright (c) 2011 GreenTongue Software, LLC. All rights reserved.
 //
 
-#import "FLCore.h"
+#import "FishLampCore.h"
 
 typedef void (^FLQueuedBlock)(id sender);
 

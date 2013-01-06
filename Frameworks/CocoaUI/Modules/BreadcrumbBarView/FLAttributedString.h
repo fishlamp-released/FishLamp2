@@ -7,7 +7,7 @@
 //
 
 #import "FLCocoaUIRequired.h"
-#import "FLCocoa.h"
+#import "FishLampCocoa.h"
 
 @class FLAttributedString;
 

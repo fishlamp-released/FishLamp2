@@ -7,7 +7,7 @@
 //
 
 #import "FLCocoaRequired.h"
-#import "FLCore.h"
+#import "FishLampCore.h"
 
 // this is basically an adaptor class. 
 // I'll have to dig through the memory banks to remember why we needed it... :-)

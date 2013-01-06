@@ -11,7 +11,7 @@
 //
 
 #if OSX
-#import "FLCore.h"
+#import "FishLampCore.h"
 #import "UIKitModule.h"
 
 @interface FOO : NSObject

@@ -6,7 +6,7 @@
 //  Copyright 2011 GreenTongue Software, LLC. All rights reserved.
 //
 
-#import "FLCore.h"
+#import "FishLampCore.h"
 
 @protocol FLCopyable <NSObject>
 - (void) copySelfTo:(id) object;

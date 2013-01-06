@@ -17,7 +17,7 @@
     when the reference object is released.
 */
 
-#import "FLCore.h"
+#import "FishLampCore.h"
 #import "FLSimpleNotifier.h"
 #import "FLDeallocNotifier.h"
 #import "FLWeaklyReferenced.h"

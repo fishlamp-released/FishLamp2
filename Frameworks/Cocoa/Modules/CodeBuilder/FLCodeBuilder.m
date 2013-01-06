@@ -48,5 +48,8 @@
 }
 #endif
 
+- (NSString*) buildString {
+    return [self string];
+}
 
 @end

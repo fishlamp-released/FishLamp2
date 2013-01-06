@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import "FLCocoa.h"
+#import "FishLampCocoa.h"
 #import "FLWizardPanel.h"
 #import "FLWizardViewController.h"
 #import "FLFinisher.h"
