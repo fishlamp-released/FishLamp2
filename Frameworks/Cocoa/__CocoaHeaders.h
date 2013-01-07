@@ -113,11 +113,11 @@
 // Foundations/Geometry
 #import "FLEdgeInsets.h"
 #import "FLGeometry.h"
-#import "FLPoint.h"
-#import "FLRect.h"
+#import "FLPointGeometry.h"
+#import "FLRectGeometry.h"
 #import "FLRectLayout.h"
 #import "FLRectOptimize.h"
-#import "FLSize.h"
+#import "FLSizeGeometry.h"
 
 // Foundations/Image
 #import "FLImageUtilities.h"

@@ -6,6 +6,6 @@
 //  Copyright (c) 2012 GreenTongue Software. All rights reserved.
 //
 
-#import "FLSize.h"
+#import "FLSizeGeometry.h"
 
 const CGSize FLSizeMax = { CGFLOAT_MAX, CGFLOAT_MAX };

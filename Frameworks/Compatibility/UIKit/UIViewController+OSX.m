@@ -109,33 +109,33 @@ FLSynthesizeAssociatedProperty(retain_nonatomic, viewIsLoadedNumber, setViewIsLo
 - (void) didUnloadViewForCompatibility:(NSView*) view {
 }        
 
-- (void) unloadLoadedView {
-    if(self.isViewLoaded) { 
-        [self viewWillUnload];
-        UIView* theView = FLRetainWithAutorelease(self.view);
-        theView.viewController = nil;
-        self.viewLoaded = NO;
-        [self setView:nil];
-        [self viewDidUnload];
-        [self didUnloadViewForCompatibility:theView];
-    }
-}
+//- (void) unloadLoadedView {
+//    if(self.isViewLoaded) { 
+//        [self viewWillUnload];
+//        UIView* theView = FLRetainWithAutorelease(self.view);
+//        theView.viewController = nil;
+//        self.viewLoaded = NO;
+//        [self setView:nil];
+//        [self viewDidUnload];
+//        [self didUnloadViewForCompatibility:theView];
+//    }
+//}
 
 - (void)didReceiveMemoryWarning {
 
 }
 
-- (void) setViewLoaded {
-    if(!self.isViewLoaded){
-        UIView* theView = self.view;
-        if(theView) {
-            theView.viewController = self;
-            self.viewLoaded = YES;
-            [self viewDidLoad];
-            [self didLoadViewForCompatibility:theView];
-        }
-    }
-}
+//- (void) setViewLoaded {
+//    if(!self.isViewLoaded){
+//        UIView* theView = self.view;
+//        if(theView) {
+//            theView.viewController = self;
+//            self.viewLoaded = YES;
+//            [self viewDidLoad];
+//            [self didLoadViewForCompatibility:theView];
+//        }
+//    }
+//}
 
 #pragma mark -- transitions
 
@@ -196,15 +196,28 @@ FLSynthesizeAssociatedProperty(retain_nonatomic, viewIsLoadedNumber, setViewIsLo
 
 - (void) compatibleSetView:(NSView*) aView {
     
-    [self unloadLoadedView];
-    [self compatibleSetView:aView];
-    [self setViewLoaded];
+    if(self.isViewLoaded) {
+        [self viewWillUnload];
+    }
+
+    [self compatibleSetView:aView]; // this is actually the swizzled setView
+
+    if(self.isViewLoaded) {
+        self.viewLoaded = NO;
+        [self viewDidUnload];
+    }
+
+    if(aView) {
+        self.viewLoaded = YES;
+        [self viewDidLoad];
+    }
 }
 
 //- (void) compatibleLoadView {
-//    [self unloadLoadedView];
+//    [self viewWillLoad];
 //    [self compatibleLoadView];
-//    [self setViewLoaded];
+//    self.viewLoaded = YES;
+//    [self viewDidLoad];
 //}
 
 + (void) initUIKitCompatibility {

@@ -617,23 +617,23 @@
 		2741E4E516793DB600CA87A9 /* FLGeometry.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DF6E16793DB500CA87A9 /* FLGeometry.h */; };
 		2741E4E616793DB600CA87A9 /* FLGeometry.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DF6E16793DB500CA87A9 /* FLGeometry.h */; };
 		2741E4E716793DB600CA87A9 /* FLGeometry.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DF6E16793DB500CA87A9 /* FLGeometry.h */; };
-		2741E4E816793DB600CA87A9 /* FLPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DF6F16793DB500CA87A9 /* FLPoint.h */; };
-		2741E4E916793DB600CA87A9 /* FLPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DF6F16793DB500CA87A9 /* FLPoint.h */; };
-		2741E4EA16793DB600CA87A9 /* FLPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DF6F16793DB500CA87A9 /* FLPoint.h */; };
-		2741E4EB16793DB600CA87A9 /* FLPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DF6F16793DB500CA87A9 /* FLPoint.h */; };
-		2741E4EC16793DB600CA87A9 /* FLRect.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DF7016793DB500CA87A9 /* FLRect.h */; };
-		2741E4ED16793DB600CA87A9 /* FLRect.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DF7016793DB500CA87A9 /* FLRect.h */; };
-		2741E4EE16793DB600CA87A9 /* FLRect.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DF7016793DB500CA87A9 /* FLRect.h */; };
-		2741E4EF16793DB600CA87A9 /* FLRect.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DF7016793DB500CA87A9 /* FLRect.h */; };
-		2741E4F016793DB600CA87A9 /* FLRect.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741DF7116793DB500CA87A9 /* FLRect.m */; };
-		2741E4F116793DB600CA87A9 /* FLRect.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741DF7116793DB500CA87A9 /* FLRect.m */; };
-		2741E4F216793DB600CA87A9 /* FLRect.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741DF7116793DB500CA87A9 /* FLRect.m */; };
-		2741E4F316793DB600CA87A9 /* FLRect.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741DF7116793DB500CA87A9 /* FLRect.m */; };
-		2741E4F416793DB600CA87A9 /* FLRect.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741DF7116793DB500CA87A9 /* FLRect.m */; };
-		2741E4F516793DB600CA87A9 /* FLRect_Inlines.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DF7216793DB600CA87A9 /* FLRect_Inlines.h */; };
-		2741E4F616793DB600CA87A9 /* FLRect_Inlines.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DF7216793DB600CA87A9 /* FLRect_Inlines.h */; };
-		2741E4F716793DB600CA87A9 /* FLRect_Inlines.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DF7216793DB600CA87A9 /* FLRect_Inlines.h */; };
-		2741E4F816793DB600CA87A9 /* FLRect_Inlines.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DF7216793DB600CA87A9 /* FLRect_Inlines.h */; };
+		2741E4E816793DB600CA87A9 /* FLPointGeometry.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DF6F16793DB500CA87A9 /* FLPointGeometry.h */; };
+		2741E4E916793DB600CA87A9 /* FLPointGeometry.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DF6F16793DB500CA87A9 /* FLPointGeometry.h */; };
+		2741E4EA16793DB600CA87A9 /* FLPointGeometry.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DF6F16793DB500CA87A9 /* FLPointGeometry.h */; };
+		2741E4EB16793DB600CA87A9 /* FLPointGeometry.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DF6F16793DB500CA87A9 /* FLPointGeometry.h */; };
+		2741E4EC16793DB600CA87A9 /* FLRectGeometry.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DF7016793DB500CA87A9 /* FLRectGeometry.h */; };
+		2741E4ED16793DB600CA87A9 /* FLRectGeometry.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DF7016793DB500CA87A9 /* FLRectGeometry.h */; };
+		2741E4EE16793DB600CA87A9 /* FLRectGeometry.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DF7016793DB500CA87A9 /* FLRectGeometry.h */; };
+		2741E4EF16793DB600CA87A9 /* FLRectGeometry.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DF7016793DB500CA87A9 /* FLRectGeometry.h */; };
+		2741E4F016793DB600CA87A9 /* FLRectGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741DF7116793DB500CA87A9 /* FLRectGeometry.m */; };
+		2741E4F116793DB600CA87A9 /* FLRectGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741DF7116793DB500CA87A9 /* FLRectGeometry.m */; };
+		2741E4F216793DB600CA87A9 /* FLRectGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741DF7116793DB500CA87A9 /* FLRectGeometry.m */; };
+		2741E4F316793DB600CA87A9 /* FLRectGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741DF7116793DB500CA87A9 /* FLRectGeometry.m */; };
+		2741E4F416793DB600CA87A9 /* FLRectGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741DF7116793DB500CA87A9 /* FLRectGeometry.m */; };
+		2741E4F516793DB600CA87A9 /* FLRectGeometry_Inlines.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DF7216793DB600CA87A9 /* FLRectGeometry_Inlines.h */; };
+		2741E4F616793DB600CA87A9 /* FLRectGeometry_Inlines.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DF7216793DB600CA87A9 /* FLRectGeometry_Inlines.h */; };
+		2741E4F716793DB600CA87A9 /* FLRectGeometry_Inlines.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DF7216793DB600CA87A9 /* FLRectGeometry_Inlines.h */; };
+		2741E4F816793DB600CA87A9 /* FLRectGeometry_Inlines.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DF7216793DB600CA87A9 /* FLRectGeometry_Inlines.h */; };
 		2741E4F916793DB600CA87A9 /* FLRectLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DF7316793DB600CA87A9 /* FLRectLayout.h */; };
 		2741E4FA16793DB600CA87A9 /* FLRectLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DF7316793DB600CA87A9 /* FLRectLayout.h */; };
 		2741E4FB16793DB600CA87A9 /* FLRectLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DF7316793DB600CA87A9 /* FLRectLayout.h */; };
@@ -655,15 +655,15 @@
 		2741E50B16793DB600CA87A9 /* FLRectOptimize_Inlines.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DF7716793DB600CA87A9 /* FLRectOptimize_Inlines.h */; };
 		2741E50C16793DB600CA87A9 /* FLRectOptimize_Inlines.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DF7716793DB600CA87A9 /* FLRectOptimize_Inlines.h */; };
 		2741E50D16793DB600CA87A9 /* FLRectOptimize_Inlines.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DF7716793DB600CA87A9 /* FLRectOptimize_Inlines.h */; };
-		2741E50E16793DB600CA87A9 /* FLSize.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DF7816793DB600CA87A9 /* FLSize.h */; };
-		2741E50F16793DB600CA87A9 /* FLSize.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DF7816793DB600CA87A9 /* FLSize.h */; };
-		2741E51016793DB600CA87A9 /* FLSize.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DF7816793DB600CA87A9 /* FLSize.h */; };
-		2741E51116793DB600CA87A9 /* FLSize.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DF7816793DB600CA87A9 /* FLSize.h */; };
-		2741E51216793DB600CA87A9 /* FLSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741DF7916793DB600CA87A9 /* FLSize.m */; };
-		2741E51316793DB600CA87A9 /* FLSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741DF7916793DB600CA87A9 /* FLSize.m */; };
-		2741E51416793DB600CA87A9 /* FLSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741DF7916793DB600CA87A9 /* FLSize.m */; };
-		2741E51516793DB600CA87A9 /* FLSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741DF7916793DB600CA87A9 /* FLSize.m */; };
-		2741E51616793DB600CA87A9 /* FLSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741DF7916793DB600CA87A9 /* FLSize.m */; };
+		2741E50E16793DB600CA87A9 /* FLSizeGeometry.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DF7816793DB600CA87A9 /* FLSizeGeometry.h */; };
+		2741E50F16793DB600CA87A9 /* FLSizeGeometry.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DF7816793DB600CA87A9 /* FLSizeGeometry.h */; };
+		2741E51016793DB600CA87A9 /* FLSizeGeometry.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DF7816793DB600CA87A9 /* FLSizeGeometry.h */; };
+		2741E51116793DB600CA87A9 /* FLSizeGeometry.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DF7816793DB600CA87A9 /* FLSizeGeometry.h */; };
+		2741E51216793DB600CA87A9 /* FLSizeGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741DF7916793DB600CA87A9 /* FLSizeGeometry.m */; };
+		2741E51316793DB600CA87A9 /* FLSizeGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741DF7916793DB600CA87A9 /* FLSizeGeometry.m */; };
+		2741E51416793DB600CA87A9 /* FLSizeGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741DF7916793DB600CA87A9 /* FLSizeGeometry.m */; };
+		2741E51516793DB600CA87A9 /* FLSizeGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741DF7916793DB600CA87A9 /* FLSizeGeometry.m */; };
+		2741E51616793DB600CA87A9 /* FLSizeGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741DF7916793DB600CA87A9 /* FLSizeGeometry.m */; };
 		2741E51716793DB600CA87A9 /* FLImageUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DF7B16793DB600CA87A9 /* FLImageUtilities.h */; };
 		2741E51816793DB600CA87A9 /* FLImageUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DF7B16793DB600CA87A9 /* FLImageUtilities.h */; };
 		2741E51916793DB600CA87A9 /* FLImageUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DF7B16793DB600CA87A9 /* FLImageUtilities.h */; };
@@ -3835,17 +3835,17 @@
 		2741DF6C16793DB500CA87A9 /* FLEdgeInsets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEdgeInsets.h; sourceTree = "<group>"; };
 		2741DF6D16793DB500CA87A9 /* FLEdgeInsets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEdgeInsets.m; sourceTree = "<group>"; };
 		2741DF6E16793DB500CA87A9 /* FLGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLGeometry.h; sourceTree = "<group>"; };
-		2741DF6F16793DB500CA87A9 /* FLPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLPoint.h; sourceTree = "<group>"; };
-		2741DF7016793DB500CA87A9 /* FLRect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLRect.h; sourceTree = "<group>"; };
-		2741DF7116793DB500CA87A9 /* FLRect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLRect.m; sourceTree = "<group>"; };
-		2741DF7216793DB600CA87A9 /* FLRect_Inlines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLRect_Inlines.h; sourceTree = "<group>"; };
+		2741DF6F16793DB500CA87A9 /* FLPointGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLPointGeometry.h; sourceTree = "<group>"; };
+		2741DF7016793DB500CA87A9 /* FLRectGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLRectGeometry.h; sourceTree = "<group>"; };
+		2741DF7116793DB500CA87A9 /* FLRectGeometry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLRectGeometry.m; sourceTree = "<group>"; };
+		2741DF7216793DB600CA87A9 /* FLRectGeometry_Inlines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLRectGeometry_Inlines.h; sourceTree = "<group>"; };
 		2741DF7316793DB600CA87A9 /* FLRectLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLRectLayout.h; sourceTree = "<group>"; };
 		2741DF7416793DB600CA87A9 /* FLRectLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLRectLayout.m; sourceTree = "<group>"; };
 		2741DF7516793DB600CA87A9 /* FLRectLayout_Inlines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLRectLayout_Inlines.h; sourceTree = "<group>"; };
 		2741DF7616793DB600CA87A9 /* FLRectOptimize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLRectOptimize.h; sourceTree = "<group>"; };
 		2741DF7716793DB600CA87A9 /* FLRectOptimize_Inlines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLRectOptimize_Inlines.h; sourceTree = "<group>"; };
-		2741DF7816793DB600CA87A9 /* FLSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLSize.h; sourceTree = "<group>"; };
-		2741DF7916793DB600CA87A9 /* FLSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLSize.m; sourceTree = "<group>"; };
+		2741DF7816793DB600CA87A9 /* FLSizeGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLSizeGeometry.h; sourceTree = "<group>"; };
+		2741DF7916793DB600CA87A9 /* FLSizeGeometry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLSizeGeometry.m; sourceTree = "<group>"; };
 		2741DF7B16793DB600CA87A9 /* FLImageUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLImageUtilities.h; sourceTree = "<group>"; };
 		2741DF7C16793DB600CA87A9 /* UIImage+FLColorize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+FLColorize.h"; sourceTree = "<group>"; };
 		2741DF7D16793DB600CA87A9 /* UIImage+FLColorize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+FLColorize.m"; sourceTree = "<group>"; };
@@ -4941,17 +4941,17 @@
 				2741DF6C16793DB500CA87A9 /* FLEdgeInsets.h */,
 				2741DF6D16793DB500CA87A9 /* FLEdgeInsets.m */,
 				2741DF6E16793DB500CA87A9 /* FLGeometry.h */,
-				2741DF6F16793DB500CA87A9 /* FLPoint.h */,
-				2741DF7016793DB500CA87A9 /* FLRect.h */,
-				2741DF7116793DB500CA87A9 /* FLRect.m */,
-				2741DF7216793DB600CA87A9 /* FLRect_Inlines.h */,
+				2741DF6F16793DB500CA87A9 /* FLPointGeometry.h */,
+				2741DF7016793DB500CA87A9 /* FLRectGeometry.h */,
+				2741DF7116793DB500CA87A9 /* FLRectGeometry.m */,
+				2741DF7216793DB600CA87A9 /* FLRectGeometry_Inlines.h */,
 				2741DF7316793DB600CA87A9 /* FLRectLayout.h */,
 				2741DF7416793DB600CA87A9 /* FLRectLayout.m */,
 				2741DF7516793DB600CA87A9 /* FLRectLayout_Inlines.h */,
 				2741DF7616793DB600CA87A9 /* FLRectOptimize.h */,
 				2741DF7716793DB600CA87A9 /* FLRectOptimize_Inlines.h */,
-				2741DF7816793DB600CA87A9 /* FLSize.h */,
-				2741DF7916793DB600CA87A9 /* FLSize.m */,
+				2741DF7816793DB600CA87A9 /* FLSizeGeometry.h */,
+				2741DF7916793DB600CA87A9 /* FLSizeGeometry.m */,
 			);
 			path = Geometry;
 			sourceTree = "<group>";
@@ -6349,14 +6349,14 @@
 				2741E4D216793DB600CA87A9 /* NSString+XML.h in Headers */,
 				2741E4DB16793DB600CA87A9 /* FLEdgeInsets.h in Headers */,
 				2741E4E416793DB600CA87A9 /* FLGeometry.h in Headers */,
-				2741E4E816793DB600CA87A9 /* FLPoint.h in Headers */,
-				2741E4EC16793DB600CA87A9 /* FLRect.h in Headers */,
-				2741E4F516793DB600CA87A9 /* FLRect_Inlines.h in Headers */,
+				2741E4E816793DB600CA87A9 /* FLPointGeometry.h in Headers */,
+				2741E4EC16793DB600CA87A9 /* FLRectGeometry.h in Headers */,
+				2741E4F516793DB600CA87A9 /* FLRectGeometry_Inlines.h in Headers */,
 				2741E4F916793DB600CA87A9 /* FLRectLayout.h in Headers */,
 				2741E50216793DB600CA87A9 /* FLRectLayout_Inlines.h in Headers */,
 				2741E50616793DB600CA87A9 /* FLRectOptimize.h in Headers */,
 				2741E50A16793DB600CA87A9 /* FLRectOptimize_Inlines.h in Headers */,
-				2741E50E16793DB600CA87A9 /* FLSize.h in Headers */,
+				2741E50E16793DB600CA87A9 /* FLSizeGeometry.h in Headers */,
 				2741E51716793DB600CA87A9 /* FLImageUtilities.h in Headers */,
 				2741E51B16793DB600CA87A9 /* UIImage+FLColorize.h in Headers */,
 				2741E52416793DB600CA87A9 /* UIImage+FLUtils.h in Headers */,
@@ -6784,14 +6784,14 @@
 				2741E4D416793DB600CA87A9 /* NSString+XML.h in Headers */,
 				2741E4DD16793DB600CA87A9 /* FLEdgeInsets.h in Headers */,
 				2741E4E616793DB600CA87A9 /* FLGeometry.h in Headers */,
-				2741E4EA16793DB600CA87A9 /* FLPoint.h in Headers */,
-				2741E4EE16793DB600CA87A9 /* FLRect.h in Headers */,
-				2741E4F716793DB600CA87A9 /* FLRect_Inlines.h in Headers */,
+				2741E4EA16793DB600CA87A9 /* FLPointGeometry.h in Headers */,
+				2741E4EE16793DB600CA87A9 /* FLRectGeometry.h in Headers */,
+				2741E4F716793DB600CA87A9 /* FLRectGeometry_Inlines.h in Headers */,
 				2741E4FB16793DB600CA87A9 /* FLRectLayout.h in Headers */,
 				2741E50416793DB600CA87A9 /* FLRectLayout_Inlines.h in Headers */,
 				2741E50816793DB600CA87A9 /* FLRectOptimize.h in Headers */,
 				2741E50C16793DB600CA87A9 /* FLRectOptimize_Inlines.h in Headers */,
-				2741E51016793DB600CA87A9 /* FLSize.h in Headers */,
+				2741E51016793DB600CA87A9 /* FLSizeGeometry.h in Headers */,
 				2741E51916793DB600CA87A9 /* FLImageUtilities.h in Headers */,
 				2741E51D16793DB600CA87A9 /* UIImage+FLColorize.h in Headers */,
 				2741E52616793DB600CA87A9 /* UIImage+FLUtils.h in Headers */,
@@ -7220,14 +7220,14 @@
 				2741E4D316793DB600CA87A9 /* NSString+XML.h in Headers */,
 				2741E4DC16793DB600CA87A9 /* FLEdgeInsets.h in Headers */,
 				2741E4E516793DB600CA87A9 /* FLGeometry.h in Headers */,
-				2741E4E916793DB600CA87A9 /* FLPoint.h in Headers */,
-				2741E4ED16793DB600CA87A9 /* FLRect.h in Headers */,
-				2741E4F616793DB600CA87A9 /* FLRect_Inlines.h in Headers */,
+				2741E4E916793DB600CA87A9 /* FLPointGeometry.h in Headers */,
+				2741E4ED16793DB600CA87A9 /* FLRectGeometry.h in Headers */,
+				2741E4F616793DB600CA87A9 /* FLRectGeometry_Inlines.h in Headers */,
 				2741E4FA16793DB600CA87A9 /* FLRectLayout.h in Headers */,
 				2741E50316793DB600CA87A9 /* FLRectLayout_Inlines.h in Headers */,
 				2741E50716793DB600CA87A9 /* FLRectOptimize.h in Headers */,
 				2741E50B16793DB600CA87A9 /* FLRectOptimize_Inlines.h in Headers */,
-				2741E50F16793DB600CA87A9 /* FLSize.h in Headers */,
+				2741E50F16793DB600CA87A9 /* FLSizeGeometry.h in Headers */,
 				2741E51816793DB600CA87A9 /* FLImageUtilities.h in Headers */,
 				2741E51C16793DB600CA87A9 /* UIImage+FLColorize.h in Headers */,
 				2741E52516793DB600CA87A9 /* UIImage+FLUtils.h in Headers */,
@@ -7656,14 +7656,14 @@
 				2741E4D516793DB600CA87A9 /* NSString+XML.h in Headers */,
 				2741E4DE16793DB600CA87A9 /* FLEdgeInsets.h in Headers */,
 				2741E4E716793DB600CA87A9 /* FLGeometry.h in Headers */,
-				2741E4EB16793DB600CA87A9 /* FLPoint.h in Headers */,
-				2741E4EF16793DB600CA87A9 /* FLRect.h in Headers */,
-				2741E4F816793DB600CA87A9 /* FLRect_Inlines.h in Headers */,
+				2741E4EB16793DB600CA87A9 /* FLPointGeometry.h in Headers */,
+				2741E4EF16793DB600CA87A9 /* FLRectGeometry.h in Headers */,
+				2741E4F816793DB600CA87A9 /* FLRectGeometry_Inlines.h in Headers */,
 				2741E4FC16793DB600CA87A9 /* FLRectLayout.h in Headers */,
 				2741E50516793DB600CA87A9 /* FLRectLayout_Inlines.h in Headers */,
 				2741E50916793DB600CA87A9 /* FLRectOptimize.h in Headers */,
 				2741E50D16793DB600CA87A9 /* FLRectOptimize_Inlines.h in Headers */,
-				2741E51116793DB600CA87A9 /* FLSize.h in Headers */,
+				2741E51116793DB600CA87A9 /* FLSizeGeometry.h in Headers */,
 				2741E51A16793DB600CA87A9 /* FLImageUtilities.h in Headers */,
 				2741E51E16793DB600CA87A9 /* UIImage+FLColorize.h in Headers */,
 				2741E52716793DB600CA87A9 /* UIImage+FLUtils.h in Headers */,
@@ -8205,9 +8205,9 @@
 				2741E4CE16793DB600CA87A9 /* NSObject+XML.m in Sources */,
 				2741E4D716793DB600CA87A9 /* NSString+XML.m in Sources */,
 				2741E4E016793DB600CA87A9 /* FLEdgeInsets.m in Sources */,
-				2741E4F116793DB600CA87A9 /* FLRect.m in Sources */,
+				2741E4F116793DB600CA87A9 /* FLRectGeometry.m in Sources */,
 				2741E4FE16793DB600CA87A9 /* FLRectLayout.m in Sources */,
-				2741E51316793DB600CA87A9 /* FLSize.m in Sources */,
+				2741E51316793DB600CA87A9 /* FLSizeGeometry.m in Sources */,
 				2741E52016793DB600CA87A9 /* UIImage+FLColorize.m in Sources */,
 				2741E52916793DB600CA87A9 /* UIImage+FLUtils.m in Sources */,
 				2741E53216793DB600CA87A9 /* FLKeychain.m in Sources */,
@@ -8604,9 +8604,9 @@
 				2741E4D016793DB600CA87A9 /* NSObject+XML.m in Sources */,
 				2741E4D916793DB600CA87A9 /* NSString+XML.m in Sources */,
 				2741E4E216793DB600CA87A9 /* FLEdgeInsets.m in Sources */,
-				2741E4F316793DB600CA87A9 /* FLRect.m in Sources */,
+				2741E4F316793DB600CA87A9 /* FLRectGeometry.m in Sources */,
 				2741E50016793DB600CA87A9 /* FLRectLayout.m in Sources */,
-				2741E51516793DB600CA87A9 /* FLSize.m in Sources */,
+				2741E51516793DB600CA87A9 /* FLSizeGeometry.m in Sources */,
 				2741E52216793DB600CA87A9 /* UIImage+FLColorize.m in Sources */,
 				2741E52B16793DB600CA87A9 /* UIImage+FLUtils.m in Sources */,
 				2741E53416793DB600CA87A9 /* FLKeychain.m in Sources */,
@@ -9003,9 +9003,9 @@
 				2741E4CD16793DB600CA87A9 /* NSObject+XML.m in Sources */,
 				2741E4D616793DB600CA87A9 /* NSString+XML.m in Sources */,
 				2741E4DF16793DB600CA87A9 /* FLEdgeInsets.m in Sources */,
-				2741E4F016793DB600CA87A9 /* FLRect.m in Sources */,
+				2741E4F016793DB600CA87A9 /* FLRectGeometry.m in Sources */,
 				2741E4FD16793DB600CA87A9 /* FLRectLayout.m in Sources */,
-				2741E51216793DB600CA87A9 /* FLSize.m in Sources */,
+				2741E51216793DB600CA87A9 /* FLSizeGeometry.m in Sources */,
 				2741E51F16793DB600CA87A9 /* UIImage+FLColorize.m in Sources */,
 				2741E52816793DB600CA87A9 /* UIImage+FLUtils.m in Sources */,
 				2741E53116793DB600CA87A9 /* FLKeychain.m in Sources */,
@@ -9402,9 +9402,9 @@
 				2741E4CF16793DB600CA87A9 /* NSObject+XML.m in Sources */,
 				2741E4D816793DB600CA87A9 /* NSString+XML.m in Sources */,
 				2741E4E116793DB600CA87A9 /* FLEdgeInsets.m in Sources */,
-				2741E4F216793DB600CA87A9 /* FLRect.m in Sources */,
+				2741E4F216793DB600CA87A9 /* FLRectGeometry.m in Sources */,
 				2741E4FF16793DB600CA87A9 /* FLRectLayout.m in Sources */,
-				2741E51416793DB600CA87A9 /* FLSize.m in Sources */,
+				2741E51416793DB600CA87A9 /* FLSizeGeometry.m in Sources */,
 				2741E52116793DB600CA87A9 /* UIImage+FLColorize.m in Sources */,
 				2741E52A16793DB600CA87A9 /* UIImage+FLUtils.m in Sources */,
 				2741E53316793DB600CA87A9 /* FLKeychain.m in Sources */,
@@ -9801,9 +9801,9 @@
 				2741E4D116793DB600CA87A9 /* NSObject+XML.m in Sources */,
 				2741E4DA16793DB600CA87A9 /* NSString+XML.m in Sources */,
 				2741E4E316793DB600CA87A9 /* FLEdgeInsets.m in Sources */,
-				2741E4F416793DB600CA87A9 /* FLRect.m in Sources */,
+				2741E4F416793DB600CA87A9 /* FLRectGeometry.m in Sources */,
 				2741E50116793DB600CA87A9 /* FLRectLayout.m in Sources */,
-				2741E51616793DB600CA87A9 /* FLSize.m in Sources */,
+				2741E51616793DB600CA87A9 /* FLSizeGeometry.m in Sources */,
 				2741E52316793DB600CA87A9 /* UIImage+FLColorize.m in Sources */,
 				2741E52C16793DB600CA87A9 /* UIImage+FLUtils.m in Sources */,
 				2741E53516793DB600CA87A9 /* FLKeychain.m in Sources */,

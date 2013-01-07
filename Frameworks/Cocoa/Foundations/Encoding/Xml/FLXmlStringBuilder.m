@@ -39,15 +39,15 @@
 }
 #endif
 
--(void) appendXmlVersionDeclaration:(NSString*) version 
+-(void) appendXmlVersionHeader:(NSString*) version 
                andEncodingHeader:(NSString*) encoding
                standalone:(BOOL) standalone {
     
     [self appendLineWithFormat:@"<?xml version=\"%@\" encoding=\"%@\" standalone=\"%@\"?>", version, encoding, standalone ? @"yes" : @"no"];
 }
 
-- (void) appendDefaultXmlDeclaration {
-    [self appendXmlVersionDeclaration:FLXmlVersion1_0 andEncodingHeader:FLXmlEncodingUtf8 standalone:YES];
+- (void) appendDefaultXmlHeader {
+    [self appendXmlVersionHeader:FLXmlVersion1_0 andEncodingHeader:FLXmlEncodingUtf8 standalone:YES];
 }
 
 - (void) openElement:(FLXmlElement*) element {

@@ -6,9 +6,9 @@
 //	Copyright 2009 Greentongue Software. All rights reserved.
 //
 #import "FLCocoaRequired.h"
-#import "FLPoint.h"
-#import "FLSize.h"
-#import "FLRect.h"
+#import "FLPointGeometry.h"
+#import "FLSizeGeometry.h"
+#import "FLRectGeometry.h"
 #import "FLEdgeInsets.h"
 #import "FLRectOptimize.h"
 #import "FLRectLayout.h"
