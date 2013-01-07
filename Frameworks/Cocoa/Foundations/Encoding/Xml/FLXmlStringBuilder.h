@@ -36,11 +36,11 @@
 
 - (void) closeElement;
 
-- (void) appendXmlVersionDeclaration:(NSString*) version 
+- (void) appendXmlVersionHeader:(NSString*) version 
                    andEncodingHeader:(NSString*) encoding
                           standalone:(BOOL) standalone;
 
-- (void) appendDefaultXmlDeclaration; 
+- (void) appendDefaultXmlHeader; 
 
 @end
 

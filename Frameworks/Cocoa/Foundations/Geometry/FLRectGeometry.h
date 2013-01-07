@@ -7,7 +7,7 @@
 //
 #import "FLCocoaRequired.h"
 #import "FLMath.h"
-#import "FLPoint.h"
+#import "FLPointGeometry.h"
 
 #if DEBUG
     #define CGRectInset             FLRectInset
@@ -144,7 +144,7 @@ extern CGRect FLRectRotate90Degrees(CGRect rect);
 #else
 
 #define __INLINES__
-#include "FLRect_Inlines.h"
+#include "FLRectGeometry_Inlines.h"
 #undef __INLINES__
 
 //	This scales the containee rect to completely fill the container.

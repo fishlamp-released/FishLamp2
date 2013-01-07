@@ -196,7 +196,7 @@
 
 @end
 
-//#define __CATEGORY_FOR_SERVICE(__TYPE__) (__TYPE__##ServiceDeclaration)
+//#define __CATEGORY_FOR_SERVICE(__TYPE__) (__TYPE__##ServiceHeader)
 //
 //#define FLBeginPublishingService(__NAME__, __TYPE__) \
 //            @interface FLServiceManagingContext __CATEGORY_FOR_SERVICE(__TYPE__) \

@@ -9,7 +9,7 @@
 #import "UIView+FLArrangeable.h"
 #import "FLArrangeable.h"
 #import "FLArrangement.h"
-#import "FLRect.h"
+#import "FLRectGeometry.h"
 
 @implementation UIView (FLArrangeableContainer)
 FLSynthesizeAssociatedProperty(retain_nonatomic, arrangement, setArrangement, FLArrangement*);

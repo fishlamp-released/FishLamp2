@@ -13,7 +13,7 @@
 		27B4F366169A3F9200D56DFA /* libFishLampCocoaUI-OSX-64-ARC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27B4F321169A3E5500D56DFA /* libFishLampCocoaUI-OSX-64-ARC.a */; };
 		27B4F367169A3F9200D56DFA /* libFishLampCompatibility-OSX-64-ARC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27B4F330169A3E5500D56DFA /* libFishLampCompatibility-OSX-64-ARC.a */; };
 		27B4F368169A3F9200D56DFA /* libFishLampCore-OSX-64-ARC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27B4F33F169A3E5500D56DFA /* libFishLampCore-OSX-64-ARC.a */; };
-		27B4F36A169A3F9200D56DFA /* libFishLampOSX-64-ARC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27B4F369169A3F9200D56DFA /* libFishLampOSX-64-ARC.a */; };
+		27B4F45C169A586200D56DFA /* libFishLampOSX-64-ARC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27B4F3CD169A412700D56DFA /* libFishLampOSX-64-ARC.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -259,7 +259,6 @@
 		27B4F35A169A3E9500D56DFA /* FishLampTargetSettings-OSX-64-ARC.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "FishLampTargetSettings-OSX-64-ARC.xcconfig"; sourceTree = "<group>"; };
 		27B4F35B169A3E9500D56DFA /* FishLampTargetSettings-OSX-64-MRC.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "FishLampTargetSettings-OSX-64-MRC.xcconfig"; sourceTree = "<group>"; };
 		27B4F35C169A3E9500D56DFA /* SharedTargetSettings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = SharedTargetSettings.xcconfig; sourceTree = SOURCE_ROOT; };
-		27B4F369169A3F9200D56DFA /* libFishLampOSX-64-ARC.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libFishLampOSX-64-ARC.a"; path = "../../Libs/FishLampOSXLib/build/Release/libFishLampOSX-64-ARC.a"; sourceTree = "<group>"; };
 		27B4F36B169A403F00D56DFA /* InstallFishLamp.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = InstallFishLamp.sh; path = ../../InstallFishLamp.sh; sourceTree = "<group>"; };
 		27B4F36C169A403F00D56DFA /* FishLampBuildSupport */ = {isa = PBXFileReference; lastKnownFileType = folder; name = FishLampBuildSupport; path = /Users/mike/Enlistments/Wingman/FishLamp/Libs/FishLampCoreLib/../../FishLampBuildSupport; sourceTree = "<absolute>"; };
 		27B4F36D169A403F00D56DFA /* Resources */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Resources; path = /Users/mike/Enlistments/Wingman/FishLamp/Libs/FishLampCoreLib/../../Resources; sourceTree = "<absolute>"; };
@@ -270,7 +269,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				27B4F36A169A3F9200D56DFA /* libFishLampOSX-64-ARC.a in Frameworks */,
+				27B4F45C169A586200D56DFA /* libFishLampOSX-64-ARC.a in Frameworks */,
 				27B4F365169A3F9200D56DFA /* libFishLampCocoa-OSX-64-ARC.a in Frameworks */,
 				27B4F366169A3F9200D56DFA /* libFishLampCocoaUI-OSX-64-ARC.a in Frameworks */,
 				27B4F367169A3F9200D56DFA /* libFishLampCompatibility-OSX-64-ARC.a in Frameworks */,
@@ -285,6 +284,11 @@
 		27B4F2DA169A3E4500D56DFA = {
 			isa = PBXGroup;
 			children = (
+				27B4F2F9169A3E5500D56DFA /* FishLampCore.xcodeproj */,
+				27B4F2FC169A3E5500D56DFA /* FishLampCocoa.xcodeproj */,
+				27B4F2FF169A3E5500D56DFA /* FishLampCompatibility.xcodeproj */,
+				27B4F302169A3E5500D56DFA /* FishLampCocoaUI.xcodeproj */,
+				27B4F305169A3E5500D56DFA /* FishLampOSX.xcodeproj */,
 				27B4F36E169A403F00D56DFA /* Script Stuff */,
 				27B4F2EE169A3E4500D56DFA /* FishLampCocoaApp */,
 				27B4F2E7169A3E4500D56DFA /* Frameworks */,
@@ -303,12 +307,6 @@
 		27B4F2E7169A3E4500D56DFA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				27B4F2F9169A3E5500D56DFA /* FishLampCore.xcodeproj */,
-				27B4F2FC169A3E5500D56DFA /* FishLampCocoa.xcodeproj */,
-				27B4F2FF169A3E5500D56DFA /* FishLampCompatibility.xcodeproj */,
-				27B4F302169A3E5500D56DFA /* FishLampCocoaUI.xcodeproj */,
-				27B4F305169A3E5500D56DFA /* FishLampOSX.xcodeproj */,
-				27B4F369169A3F9200D56DFA /* libFishLampOSX-64-ARC.a */,
 				27B4F2E8169A3E4500D56DFA /* Cocoa.framework */,
 				27B4F2EA169A3E4500D56DFA /* Other Frameworks */,
 			);

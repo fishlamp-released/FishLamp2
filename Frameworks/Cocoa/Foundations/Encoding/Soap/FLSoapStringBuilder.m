@@ -26,7 +26,7 @@
 	if(self) {
         self.dataEncoder = [FLSoapDataEncoder instance];
     
-        [self appendDefaultXmlDeclaration];
+        [self appendDefaultXmlHeader];
 
         _envelopeElement = [[FLXmlElement alloc] initWithXmlElementTag:@"soap:Envelope"];
         [self openElement:_envelopeElement];
@@ -55,7 +55,7 @@
 }
 #endif
 
--(void) appendXmlVersionDeclaration:(NSString*) version 
+-(void) appendXmlVersionHeader:(NSString*) version 
                andEncodingHeader:(NSString*) encoding
                standalone:(BOOL) standalone {
     

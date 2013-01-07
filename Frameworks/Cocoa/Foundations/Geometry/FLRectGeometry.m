@@ -6,11 +6,11 @@
 //	Copyright 2009 Greentongue Software. All rights reserved.
 //
 
-#import "FLRect.h"
+#import "FLRectGeometry.h"
 
 #if DEBUG
 #define __INLINES__
-#include "FLRect_Inlines.h"
+#include "FLRectGeometry_Inlines.h"
 #include "FLRectOptimize_Inlines.h"
 #undef __INLINES__
 #endif

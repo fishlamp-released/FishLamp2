@@ -27,7 +27,7 @@ NSString* const FLXMLDocTypeXHtml1_1 = @"html PUBLIC \"-//W3C//DTD XHTML 1.1//EN
     
     self = [super init];
     if(self) {
-        [self addDocTypeDeclaration:docType];
+        [self addDocTypeHeader:docType];
         _htmlElement = [FLXmlElement xmlElement:@"html"];
         _headElement = [FLXmlElement xmlElement:@"head"];
         _bodyElement = [FLXmlElement xmlElement:@"body"];
@@ -43,8 +43,8 @@ NSString* const FLXMLDocTypeXHtml1_1 = @"html PUBLIC \"-//W3C//DTD XHTML 1.1//EN
     return FLAutorelease([[FLHtmlStringBuilder alloc] initWithDocType:docType]);
 }
 
--(void) addDocTypeDeclaration:(NSString*) declaration {
-    [self.lines appendFormat:@"<!DOCTYPE %@>", declaration];
+-(void) addDocTypeHeader:(NSString*) header {
+    [self.lines appendFormat:@"<!DOCTYPE %@>", header];
     [self.lines endLine];
 }
 

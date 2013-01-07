@@ -7,7 +7,7 @@
 //
 
 #import "FLRectLayout.h"
-#import "FLRect.h"
+#import "FLRectGeometry.h"
 
 #if DEBUG
 #define __INLINES__
