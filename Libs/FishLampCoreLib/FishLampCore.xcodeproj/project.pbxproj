@@ -270,9 +270,9 @@
 		2798DA10166D886500A0863D /* FLOSVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE0B166D886500A0863D /* FLOSVersion.m */; };
 		2798DA11166D886500A0863D /* FLOSVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE0B166D886500A0863D /* FLOSVersion.m */; };
 		2798DA12166D886500A0863D /* FLOSVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE0B166D886500A0863D /* FLOSVersion.m */; };
-		2798DA1A166D886500A0863D /* FLStringUtilsInlineMethods.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE0E166D886500A0863D /* FLStringUtilsInlineMethods.h */; };
-		2798DA1B166D886500A0863D /* FLStringUtilsInlineMethods.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE0E166D886500A0863D /* FLStringUtilsInlineMethods.h */; };
-		2798DA1C166D886500A0863D /* FLStringUtilsInlineMethods.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE0E166D886500A0863D /* FLStringUtilsInlineMethods.h */; };
+		2798DA1A166D886500A0863D /* FLStringUtils_Inlines.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE0E166D886500A0863D /* FLStringUtils_Inlines.h */; };
+		2798DA1B166D886500A0863D /* FLStringUtils_Inlines.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE0E166D886500A0863D /* FLStringUtils_Inlines.h */; };
+		2798DA1C166D886500A0863D /* FLStringUtils_Inlines.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE0E166D886500A0863D /* FLStringUtils_Inlines.h */; };
 		2798DA1D166D886500A0863D /* FLVersion.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE0F166D886500A0863D /* FLVersion.h */; };
 		2798DA1E166D886500A0863D /* FLVersion.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE0F166D886500A0863D /* FLVersion.h */; };
 		2798DA1F166D886500A0863D /* FLVersion.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE0F166D886500A0863D /* FLVersion.h */; };
@@ -377,7 +377,7 @@
 		27CBC18E16768BA600753D0A /* FLAtomic.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE07166D886500A0863D /* FLAtomic.h */; };
 		27CBC18F16768BA600753D0A /* FLBitFlags.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE08166D886500A0863D /* FLBitFlags.h */; };
 		27CBC19016768BA600753D0A /* FLOSVersion.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE0A166D886500A0863D /* FLOSVersion.h */; };
-		27CBC19216768BA600753D0A /* FLStringUtilsInlineMethods.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE0E166D886500A0863D /* FLStringUtilsInlineMethods.h */; };
+		27CBC19216768BA600753D0A /* FLStringUtils_Inlines.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE0E166D886500A0863D /* FLStringUtils_Inlines.h */; };
 		27CBC19316768BA600753D0A /* FLVersion.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE0F166D886500A0863D /* FLVersion.h */; };
 		27CBC19416768BA600753D0A /* NSArray+FLExtras.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE11166D886500A0863D /* NSArray+FLExtras.h */; };
 		27CBC19516768BA600753D0A /* NSDictionary+FLAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE13166D886500A0863D /* NSDictionary+FLAdditions.h */; };
@@ -481,7 +481,7 @@
 		2798CE09166D886500A0863D /* FLBitFlags.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLBitFlags.m; sourceTree = "<group>"; };
 		2798CE0A166D886500A0863D /* FLOSVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLOSVersion.h; sourceTree = "<group>"; };
 		2798CE0B166D886500A0863D /* FLOSVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLOSVersion.m; sourceTree = "<group>"; };
-		2798CE0E166D886500A0863D /* FLStringUtilsInlineMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLStringUtilsInlineMethods.h; sourceTree = "<group>"; };
+		2798CE0E166D886500A0863D /* FLStringUtils_Inlines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLStringUtils_Inlines.h; sourceTree = "<group>"; };
 		2798CE0F166D886500A0863D /* FLVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLVersion.h; sourceTree = "<group>"; };
 		2798CE10166D886500A0863D /* FLVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLVersion.m; sourceTree = "<group>"; };
 		2798CE11166D886500A0863D /* NSArray+FLExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+FLExtras.h"; sourceTree = "<group>"; };
@@ -712,7 +712,7 @@
 				2798CE09166D886500A0863D /* FLBitFlags.m */,
 				2798CE0A166D886500A0863D /* FLOSVersion.h */,
 				2798CE0B166D886500A0863D /* FLOSVersion.m */,
-				2798CE0E166D886500A0863D /* FLStringUtilsInlineMethods.h */,
+				2798CE0E166D886500A0863D /* FLStringUtils_Inlines.h */,
 				2798CE0F166D886500A0863D /* FLVersion.h */,
 				2798CE10166D886500A0863D /* FLVersion.m */,
 				2798CE11166D886500A0863D /* NSArray+FLExtras.h */,
@@ -820,7 +820,7 @@
 				2798DA03166D886500A0863D /* FLAtomic.h in Headers */,
 				2798DA06166D886500A0863D /* FLBitFlags.h in Headers */,
 				2798DA0D166D886500A0863D /* FLOSVersion.h in Headers */,
-				2798DA1B166D886500A0863D /* FLStringUtilsInlineMethods.h in Headers */,
+				2798DA1B166D886500A0863D /* FLStringUtils_Inlines.h in Headers */,
 				2798DA1E166D886500A0863D /* FLVersion.h in Headers */,
 				2798DA25166D886500A0863D /* NSArray+FLExtras.h in Headers */,
 				2798DA2C166D886500A0863D /* NSDictionary+FLAdditions.h in Headers */,
@@ -882,7 +882,7 @@
 				2798DA04166D886500A0863D /* FLAtomic.h in Headers */,
 				2798DA07166D886500A0863D /* FLBitFlags.h in Headers */,
 				2798DA0E166D886500A0863D /* FLOSVersion.h in Headers */,
-				2798DA1C166D886500A0863D /* FLStringUtilsInlineMethods.h in Headers */,
+				2798DA1C166D886500A0863D /* FLStringUtils_Inlines.h in Headers */,
 				2798DA1F166D886500A0863D /* FLVersion.h in Headers */,
 				2798DA26166D886500A0863D /* NSArray+FLExtras.h in Headers */,
 				2798DA2D166D886500A0863D /* NSDictionary+FLAdditions.h in Headers */,
@@ -944,7 +944,7 @@
 				2798DA02166D886500A0863D /* FLAtomic.h in Headers */,
 				2798DA05166D886500A0863D /* FLBitFlags.h in Headers */,
 				2798DA0C166D886500A0863D /* FLOSVersion.h in Headers */,
-				2798DA1A166D886500A0863D /* FLStringUtilsInlineMethods.h in Headers */,
+				2798DA1A166D886500A0863D /* FLStringUtils_Inlines.h in Headers */,
 				2798DA1D166D886500A0863D /* FLVersion.h in Headers */,
 				2798DA24166D886500A0863D /* NSArray+FLExtras.h in Headers */,
 				2798DA2B166D886500A0863D /* NSDictionary+FLAdditions.h in Headers */,
@@ -1006,7 +1006,7 @@
 				27CBC18E16768BA600753D0A /* FLAtomic.h in Headers */,
 				27CBC18F16768BA600753D0A /* FLBitFlags.h in Headers */,
 				27CBC19016768BA600753D0A /* FLOSVersion.h in Headers */,
-				27CBC19216768BA600753D0A /* FLStringUtilsInlineMethods.h in Headers */,
+				27CBC19216768BA600753D0A /* FLStringUtils_Inlines.h in Headers */,
 				27CBC19316768BA600753D0A /* FLVersion.h in Headers */,
 				27CBC19416768BA600753D0A /* NSArray+FLExtras.h in Headers */,
 				27CBC19516768BA600753D0A /* NSDictionary+FLAdditions.h in Headers */,

@@ -8,6 +8,9 @@
 
 // WARNING: don't import anything here. This file is imported by FishLamp.  This is imported by everything.
 
+#import <Foundation/Foundation.h>
+#import <Availability.h>
+
 #if DEBUG
     #define FL_SHIP_ONLY_INLINE 
 #else
@@ -32,11 +35,6 @@
 
 
 #import "FLObjc.h"
+#import "FLProperties.h"
 #import "FLDebug.h"
-            
-@class FLPrettyString;
-
-@interface NSObject (FLStringFormatter)
-- (void) describe:(FLPrettyString*) formatter;
-- (NSString*) prettyDescription;
-@end
+#import "FLAssertions.h"

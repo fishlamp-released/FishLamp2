@@ -143,7 +143,9 @@ extern CGRect FLRectRotate90Degrees(CGRect rect);
 
 #else
 
-#import "FLRect_Inlines.h"
+#define __INLINES__
+#include "FLRect_Inlines.h"
+#undef __INLINES__
 
 //	This scales the containee rect to completely fill the container.
 //	The containee rect is scaled proportionally so if it has a different

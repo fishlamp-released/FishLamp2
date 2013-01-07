@@ -6,6 +6,8 @@
 //  Copyright (c) 2012 GreenTongue Software. All rights reserved.
 //
 
+#ifdef __INLINES__
+
 FL_SHIP_ONLY_INLINE
 BOOL FLRectLayoutsAreEqual(FLRectLayout lhs, FLRectLayout rhs)
 {
@@ -76,3 +78,4 @@ CGRect FLRectLayoutRectInRect(
 		rectLayout);
 }
 
+#endif

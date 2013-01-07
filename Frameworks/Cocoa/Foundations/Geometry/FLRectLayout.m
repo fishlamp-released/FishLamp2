@@ -10,7 +10,9 @@
 #import "FLRect.h"
 
 #if DEBUG
+#define __INLINES__
 #import "FLRectLayout_Inlines.h"
+#undef __INLINES__
 #endif
 
 const struct FLRectLayout FLRectLayoutNone = {	FLRectLayoutHorizontalNone,	 FLRectLayoutVerticalNone, {0,0,0,0} };

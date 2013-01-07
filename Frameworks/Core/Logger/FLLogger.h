@@ -9,6 +9,7 @@
 #import "FLRequired.h"
 
 #import "FLLogEntry.h"
+#import "FLLogSink.h"
 
 @interface FLLogger : NSObject {
 @private

@@ -21,5 +21,7 @@ id FLThrowErrorIfNeeded(id object) {
 }
 
 #if DEBUG
-#import "FLExceptions_Inlines.h"
+#define __INLINES__ 
+#include "FLExceptions_Inlines.h"
+#undef __INLINES__
 #endif

@@ -7,6 +7,7 @@
 //
 
 #import "FLStackTrace.h"
+#import "FLPrettyString.h"
 
 const FLStackTrace_t FLStaceTraceEmpty = { 0, 0, 0, 0, {0, 0}};
 

@@ -5,6 +5,7 @@
 //  Created by Mike Fullerton on 5/18/12.
 //  Copyright (c) 2012 GreenTongue Software. All rights reserved.
 //
+#ifdef __INLINES__
 
 FL_SHIP_ONLY_INLINE
 BOOL FLStringIsEmpty(NSString* string) {
@@ -26,3 +27,4 @@ BOOL FLStringsAreEqualCaseInsensitive(NSString* lhs, NSString* rhs) {
 	return [(lhs == nil ? @"" : lhs) isEqualToString:(rhs == nil ) ? @"" :rhs caseSensitive:NO];
 }
 
+#endif

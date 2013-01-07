@@ -1,3 +1,4 @@
+#ifdef __INLINES__
 
 FL_SHIP_ONLY_INLINE 
 BOOL FLRectIsIntegral(CGRect r) {
@@ -320,6 +321,7 @@ CGRect FLRectMakeWithWidthAndHeight(CGFloat width, CGFloat height) {
 	return FLRectMake(0,0,width, height);
 }
 
+#endif
 
 
 

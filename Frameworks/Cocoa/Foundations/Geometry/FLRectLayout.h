@@ -88,7 +88,9 @@ extern CGRect FLRectLayoutRectVerticallyInRect(
     FLRectLayout rectLayout);
     
 #if !DEBUG
+#define __INLINES__
 #import "FLRectLayout_Inlines.h"
+#undef __INLINES__
 #endif
 
     

@@ -6,6 +6,8 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
+#ifdef __INLINES__
+
 FL_SHIP_ONLY_INLINE
 id FLThrowError(id object) {
     NSError* error = [object error];
@@ -14,3 +16,5 @@ id FLThrowError(id object) {
     }
     return object;
 }
+
+#endif
