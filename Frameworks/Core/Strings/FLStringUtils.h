@@ -57,7 +57,9 @@ extern BOOL FLStringIsNotEmpty(NSString* string);
 extern BOOL FLStringsAreEqual(NSString* lhs, NSString* rhs);
 extern BOOL FLStringsAreEqualCaseInsensitive(NSString* lhs, NSString* rhs);
 #else
-#import "FLStringUtilsInlineMethods.h"
+#define __INLINES__
+#import "FLStringUtils_Inlines.h"
+#undef __INLINES__
 #endif
 
 #define FLStringsAreNotEqual(lhs, rhs) (!FLStringsAreEqual(lhs, rhs))

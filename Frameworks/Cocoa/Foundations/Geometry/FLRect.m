@@ -9,8 +9,10 @@
 #import "FLRect.h"
 
 #if DEBUG
-#import "FLRect_Inlines.h"
-#import "FLRectOptimize_Inlines.h"
+#define __INLINES__
+#include "FLRect_Inlines.h"
+#include "FLRectOptimize_Inlines.h"
+#undef __INLINES__
 #endif
 
 CGRect FLRectFillRectInRectProportionally(CGRect container, CGRect containee) {

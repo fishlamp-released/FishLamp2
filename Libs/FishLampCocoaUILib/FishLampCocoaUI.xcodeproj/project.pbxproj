@@ -217,10 +217,6 @@
 		27D1E5C2166D355C00DB680E /* FishLampCocoa-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27D1E5C1166D355C00DB680E /* FishLampCocoa-Prefix.pch */; };
 		27D1E5C3166D355C00DB680E /* FishLampCocoa-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27D1E5C1166D355C00DB680E /* FishLampCocoa-Prefix.pch */; };
 		27D1E5C4166D355C00DB680E /* FishLampCocoa-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27D1E5C1166D355C00DB680E /* FishLampCocoa-Prefix.pch */; };
-		78329BFE167E97C20024E8DC /* FLCocoaUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329B71167E97C10024E8DC /* FLCocoaUI.h */; };
-		78329BFF167E97C20024E8DC /* FLCocoaUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329B71167E97C10024E8DC /* FLCocoaUI.h */; };
-		78329C00167E97C20024E8DC /* FLCocoaUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329B71167E97C10024E8DC /* FLCocoaUI.h */; };
-		78329C01167E97C20024E8DC /* FLCocoaUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329B71167E97C10024E8DC /* FLCocoaUI.h */; };
 		78329C02167E97C20024E8DC /* FLCocoaUIRequired.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329B72167E97C10024E8DC /* FLCocoaUIRequired.h */; };
 		78329C03167E97C20024E8DC /* FLCocoaUIRequired.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329B72167E97C10024E8DC /* FLCocoaUIRequired.h */; };
 		78329C04167E97C20024E8DC /* FLCocoaUIRequired.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329B72167E97C10024E8DC /* FLCocoaUIRequired.h */; };
@@ -773,7 +769,6 @@
 		78329B66167E41260024E8DC /* FishLampTargetSettings-OSX-64-ARC.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "FishLampTargetSettings-OSX-64-ARC.xcconfig"; sourceTree = "<group>"; };
 		78329B67167E41260024E8DC /* FishLampTargetSettings-OSX-64-MRC.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "FishLampTargetSettings-OSX-64-MRC.xcconfig"; sourceTree = "<group>"; };
 		78329B68167E426A0024E8DC /* FishLampPaths.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = FishLampPaths.xcconfig; path = FishLampBuildSupport/FishLampPaths.xcconfig; sourceTree = "<group>"; };
-		78329B71167E97C10024E8DC /* FLCocoaUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FLCocoaUI.h; path = ../FLCocoaUI.h; sourceTree = "<group>"; };
 		78329B72167E97C10024E8DC /* FLCocoaUIRequired.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FLCocoaUIRequired.h; path = ../FLCocoaUIRequired.h; sourceTree = "<group>"; };
 		78329B75167E97C10024E8DC /* FLAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAnimation.h; sourceTree = "<group>"; };
 		78329B76167E97C10024E8DC /* FLAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAnimation.m; sourceTree = "<group>"; };
@@ -1036,7 +1031,6 @@
 			isa = PBXGroup;
 			children = (
 				2731CC921695FC6D00465E6C /* Widgets */,
-				78329B71167E97C10024E8DC /* FLCocoaUI.h */,
 				78329B72167E97C10024E8DC /* FLCocoaUIRequired.h */,
 				78329B74167E97C10024E8DC /* Animations */,
 				78329B7D167E97C10024E8DC /* Arrangeable */,
@@ -1356,7 +1350,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				27D1E5C3166D355C00DB680E /* FishLampCocoa-Prefix.pch in Headers */,
-				78329BFE167E97C20024E8DC /* FLCocoaUI.h in Headers */,
 				78329C02167E97C20024E8DC /* FLCocoaUIRequired.h in Headers */,
 				78329C06167E97C20024E8DC /* FLAnimation.h in Headers */,
 				78329C2A167E97C20024E8DC /* FLArrangeable.h in Headers */,
@@ -1443,7 +1436,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				27D1E5C4166D355C00DB680E /* FishLampCocoa-Prefix.pch in Headers */,
-				78329C00167E97C20024E8DC /* FLCocoaUI.h in Headers */,
 				78329C04167E97C20024E8DC /* FLCocoaUIRequired.h in Headers */,
 				78329C08167E97C20024E8DC /* FLAnimation.h in Headers */,
 				78329C2C167E97C20024E8DC /* FLArrangeable.h in Headers */,
@@ -1530,7 +1522,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				27D1E5C2166D355C00DB680E /* FishLampCocoa-Prefix.pch in Headers */,
-				78329BFF167E97C20024E8DC /* FLCocoaUI.h in Headers */,
 				78329C03167E97C20024E8DC /* FLCocoaUIRequired.h in Headers */,
 				78329C07167E97C20024E8DC /* FLAnimation.h in Headers */,
 				78329C2B167E97C20024E8DC /* FLArrangeable.h in Headers */,
@@ -1617,7 +1608,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				27CBBFEE16768BA600753D0A /* FishLampCocoa-Prefix.pch in Headers */,
-				78329C01167E97C20024E8DC /* FLCocoaUI.h in Headers */,
 				78329C05167E97C20024E8DC /* FLCocoaUIRequired.h in Headers */,
 				78329C09167E97C20024E8DC /* FLAnimation.h in Headers */,
 				78329C2D167E97C20024E8DC /* FLArrangeable.h in Headers */,

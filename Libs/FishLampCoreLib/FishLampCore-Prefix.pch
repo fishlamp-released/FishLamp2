@@ -1,4 +1,7 @@
 
 #ifdef __OBJC__
-    #import "FishLampCore.h"
+    #import "FLRequired.h"
+    
 #endif
+
+

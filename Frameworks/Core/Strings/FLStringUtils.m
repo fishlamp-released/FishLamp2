@@ -9,7 +9,8 @@
 #import "FLStringUtils.h"
 
 #if DEBUG
-#import "FLStringUtilsInlineMethods.h"
+#define __INLINES__
+#import "FLStringUtils_Inlines.h"
 #endif 
 
 NSString* FLStringWithFormatOrNil(NSString* format, ...) {

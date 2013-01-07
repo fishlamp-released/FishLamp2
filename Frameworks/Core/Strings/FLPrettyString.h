@@ -10,7 +10,6 @@
 #import "FLStringFormatter.h"
 #import "FLWhitespace.h"
 
-
 @interface FLPrettyString : FLStringFormatter<NSCopying, FLStringFormatterDelegate> {
 @private
     NSMutableString* _string;
@@ -40,4 +39,9 @@
 
 + (FLWhitespace*) defaultWhitespace;
 
+@end
+
+@interface NSObject (FLStringFormatter)
+- (void) describe:(FLPrettyString*) formatter;
+- (NSString*) prettyDescription;
 @end

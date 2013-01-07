@@ -21,7 +21,10 @@
 #if DEBUG
 extern id FLThrowError(id object);
 #else
-#import "FLExceptions_Inlines.h"
+#define __INLINES__
+#include "FLExceptions_Inlines.h"
+#undef __INLINES__
+
 #endif
 
 #define FLThrowErrorCode_v(__DOMAIN_OBJECT_OR_STRING__, __CODE__, __FORMAT__, ...) \

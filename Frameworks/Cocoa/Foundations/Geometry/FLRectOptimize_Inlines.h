@@ -1,5 +1,6 @@
 
 #if IOS
+#ifdef __INLINES__
 
 FL_SHIP_ONLY_INLINE
 BOOL FLRectWidthIsOptimizedForView(CGRect r) {
@@ -55,4 +56,5 @@ CGSize FLSizeOptimizeForView(CGSize aSize) {
 	return size;
 }
 
+#endif
 #endif

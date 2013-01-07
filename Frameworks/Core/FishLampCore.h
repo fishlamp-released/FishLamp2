@@ -7,8 +7,6 @@
 //
 
 // Prerequisites
-#import <Foundation/Foundation.h>
-#import <Availability.h>
 
 #ifndef FISHLAMP
 #error FISHLAMP not defined
@@ -39,7 +37,6 @@
 #import "FLStackTrace.h"
 #import "FLExceptions.h"
 #import "FLAssertions.h"
-#import "FLProperties.h"
 #import "FLStringUtils.h"
 #import "FLOSVersion.h"
 
@@ -54,3 +51,4 @@
 #import "FLFrameworkModule.h"
 
 #import "__CoreHeaders.h"
+
