@@ -16,14 +16,20 @@ typedef void (^FLFileVisitorBlock)(NSString* fileName, BOOL* stop);
 
 @interface FLFolder : NSObject<NSCopying, NSCoding> {
 @private
-	NSString* _fullPath;
+    NSString* _folderPath;
 }
+
+@property (readonly, strong) NSURL* folderURL;
 
 @property (readonly, strong) NSString* folderPath;
 
-- (id) initWithPath:(NSString*) path;
+- (id) initWithFolderPath:(NSString*) path;
 
-+ (FLFolder*) folderWithPath:(NSString*) path;
+- (id) initWithURL:(NSURL*) url;
+
++ (FLFolder*) folder:(NSString*) path;
+
++ (FLFolder*) folderWithURL:(NSURL*) url;
 
 - (unsigned long long) calculateFolderSize:(FLFileVisitorBlock) operation 
                               outItemCount:(NSUInteger*) outItemCount;
@@ -71,4 +77,6 @@ typedef void (^FLFileVisitorBlock)(NSString* fileName, BOOL* stop);
 - (NSString*) fileUTI:(NSString*) name;
 
 @end
+
+
 

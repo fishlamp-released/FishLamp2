@@ -7,6 +7,7 @@
 //
 
 #import "FLCocoaRequired.h"
+#import "FLCommandLineParser.h"
 
 @interface FLCommandLineArgument : NSObject {
 @private

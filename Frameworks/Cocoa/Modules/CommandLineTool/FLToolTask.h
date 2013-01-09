@@ -8,19 +8,39 @@
 
 #import "FishLampCore.h"
 #import "FLCommandLineArgument.h"
-#import "FLTool.h"
+
+@class FLCommandLineTool;
+
+typedef void (^FLToolTaskBlock)(FLCommandLineArgument* argument, FLCommandLineTool* tool);
 
 @interface FLToolTask : NSObject {
 @private
+    NSMutableSet* _argumentKeys;
+    NSString* _taskDescription; 
+    NSString* _taskName;
+    FLToolTaskBlock _taskBlock;
 }
 
-@property (readonly, strong) NSString* helpDescription;
+@property (readwrite, strong, nonatomic) NSString* taskDescription;
 
-- (NSArray*) argumentKeys;
+@property (readwrite, copy, nonatomic) FLToolTaskBlock taskBlock;
 
+// by default, the name is the first key.
+@property (readwrite, strong, nonatomic) NSString* taskName;
+
+@property (readonly, strong, nonatomic) NSSet* taskArgumentKeys;
+
+- (id) initWithKeys:(NSString*) name;
++ (id) toolTask:(NSString*) keys;
 + (id) toolTask;
 
-- (void) runWithArgument:(FLCommandLineArgument*) argument inTool:(FLTool*) tool;
+- (void) addKeys:(NSString*) keys; // space and/or comma delimited.
+
+- (void) runWithArgument:(FLCommandLineArgument*) argument 
+                  inTool:(FLCommandLineTool*) tool;
+
+- (NSString*) buildUsageString;
+- (void) printHelpToStringFormatter:(FLStringFormatter*) formatter;
 
 // utils
 

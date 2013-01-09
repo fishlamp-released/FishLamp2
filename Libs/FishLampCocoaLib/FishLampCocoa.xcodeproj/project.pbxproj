@@ -1594,15 +1594,15 @@
 		2741EB1816793DB700CA87A9 /* FLShellCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741E10616793DB600CA87A9 /* FLShellCommand.m */; };
 		2741EB1916793DB700CA87A9 /* FLShellCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741E10616793DB600CA87A9 /* FLShellCommand.m */; };
 		2741EB1A16793DB700CA87A9 /* FLShellCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741E10616793DB600CA87A9 /* FLShellCommand.m */; };
-		2741EB1B16793DB700CA87A9 /* FLTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741E10716793DB600CA87A9 /* FLTool.h */; };
-		2741EB1C16793DB700CA87A9 /* FLTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741E10716793DB600CA87A9 /* FLTool.h */; };
-		2741EB1D16793DB700CA87A9 /* FLTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741E10716793DB600CA87A9 /* FLTool.h */; };
-		2741EB1E16793DB700CA87A9 /* FLTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741E10716793DB600CA87A9 /* FLTool.h */; };
-		2741EB1F16793DB700CA87A9 /* FLTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741E10816793DB600CA87A9 /* FLTool.m */; };
-		2741EB2016793DB700CA87A9 /* FLTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741E10816793DB600CA87A9 /* FLTool.m */; };
-		2741EB2116793DB700CA87A9 /* FLTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741E10816793DB600CA87A9 /* FLTool.m */; };
-		2741EB2216793DB700CA87A9 /* FLTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741E10816793DB600CA87A9 /* FLTool.m */; };
-		2741EB2316793DB700CA87A9 /* FLTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741E10816793DB600CA87A9 /* FLTool.m */; };
+		2741EB1B16793DB700CA87A9 /* FLCommandLineTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741E10716793DB600CA87A9 /* FLCommandLineTool.h */; };
+		2741EB1C16793DB700CA87A9 /* FLCommandLineTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741E10716793DB600CA87A9 /* FLCommandLineTool.h */; };
+		2741EB1D16793DB700CA87A9 /* FLCommandLineTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741E10716793DB600CA87A9 /* FLCommandLineTool.h */; };
+		2741EB1E16793DB700CA87A9 /* FLCommandLineTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741E10716793DB600CA87A9 /* FLCommandLineTool.h */; };
+		2741EB1F16793DB700CA87A9 /* FLCommandLineTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741E10816793DB600CA87A9 /* FLCommandLineTool.m */; };
+		2741EB2016793DB700CA87A9 /* FLCommandLineTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741E10816793DB600CA87A9 /* FLCommandLineTool.m */; };
+		2741EB2116793DB700CA87A9 /* FLCommandLineTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741E10816793DB600CA87A9 /* FLCommandLineTool.m */; };
+		2741EB2216793DB700CA87A9 /* FLCommandLineTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741E10816793DB600CA87A9 /* FLCommandLineTool.m */; };
+		2741EB2316793DB700CA87A9 /* FLCommandLineTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741E10816793DB600CA87A9 /* FLCommandLineTool.m */; };
 		2741EB2416793DB700CA87A9 /* FLToolMain.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741E10916793DB600CA87A9 /* FLToolMain.h */; };
 		2741EB2516793DB700CA87A9 /* FLToolMain.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741E10916793DB600CA87A9 /* FLToolMain.h */; };
 		2741EB2616793DB700CA87A9 /* FLToolMain.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741E10916793DB600CA87A9 /* FLToolMain.h */; };
@@ -1621,19 +1621,6 @@
 		2741EB3316793DB700CA87A9 /* FLToolTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741E10C16793DB600CA87A9 /* FLToolTask.m */; };
 		2741EB3416793DB700CA87A9 /* FLToolTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741E10C16793DB600CA87A9 /* FLToolTask.m */; };
 		2741EB3516793DB700CA87A9 /* FLToolTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741E10C16793DB600CA87A9 /* FLToolTask.m */; };
-		2741EB3616793DB700CA87A9 /* FLToolTask_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741E10D16793DB600CA87A9 /* FLToolTask_Internal.h */; };
-		2741EB3716793DB700CA87A9 /* FLToolTask_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741E10D16793DB600CA87A9 /* FLToolTask_Internal.h */; };
-		2741EB3816793DB700CA87A9 /* FLToolTask_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741E10D16793DB600CA87A9 /* FLToolTask_Internal.h */; };
-		2741EB3916793DB700CA87A9 /* FLToolTask_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741E10D16793DB600CA87A9 /* FLToolTask_Internal.h */; };
-		2741EB3A16793DB700CA87A9 /* FLUsageTask.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741E10F16793DB600CA87A9 /* FLUsageTask.h */; };
-		2741EB3B16793DB700CA87A9 /* FLUsageTask.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741E10F16793DB600CA87A9 /* FLUsageTask.h */; };
-		2741EB3C16793DB700CA87A9 /* FLUsageTask.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741E10F16793DB600CA87A9 /* FLUsageTask.h */; };
-		2741EB3D16793DB700CA87A9 /* FLUsageTask.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741E10F16793DB600CA87A9 /* FLUsageTask.h */; };
-		2741EB3E16793DB700CA87A9 /* FLUsageTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741E11016793DB600CA87A9 /* FLUsageTask.m */; };
-		2741EB3F16793DB700CA87A9 /* FLUsageTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741E11016793DB600CA87A9 /* FLUsageTask.m */; };
-		2741EB4016793DB700CA87A9 /* FLUsageTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741E11016793DB600CA87A9 /* FLUsageTask.m */; };
-		2741EB4116793DB700CA87A9 /* FLUsageTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741E11016793DB600CA87A9 /* FLUsageTask.m */; };
-		2741EB4216793DB700CA87A9 /* FLUsageTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741E11016793DB600CA87A9 /* FLUsageTask.m */; };
 		2741EB4316793DB700CA87A9 /* FLUserDefaults.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741E11216793DB600CA87A9 /* FLUserDefaults.h */; };
 		2741EB4416793DB700CA87A9 /* FLUserDefaults.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741E11216793DB600CA87A9 /* FLUserDefaults.h */; };
 		2741EB4516793DB700CA87A9 /* FLUserDefaults.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741E11216793DB600CA87A9 /* FLUserDefaults.h */; };
@@ -4056,15 +4043,12 @@
 		2741E10416793DB600CA87A9 /* FLCommandLineParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLCommandLineParser.m; sourceTree = "<group>"; };
 		2741E10516793DB600CA87A9 /* FLShellCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLShellCommand.h; sourceTree = "<group>"; };
 		2741E10616793DB600CA87A9 /* FLShellCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLShellCommand.m; sourceTree = "<group>"; };
-		2741E10716793DB600CA87A9 /* FLTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLTool.h; sourceTree = "<group>"; };
-		2741E10816793DB600CA87A9 /* FLTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLTool.m; sourceTree = "<group>"; };
+		2741E10716793DB600CA87A9 /* FLCommandLineTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCommandLineTool.h; sourceTree = "<group>"; };
+		2741E10816793DB600CA87A9 /* FLCommandLineTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLCommandLineTool.m; sourceTree = "<group>"; };
 		2741E10916793DB600CA87A9 /* FLToolMain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLToolMain.h; sourceTree = "<group>"; };
 		2741E10A16793DB600CA87A9 /* FLToolMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLToolMain.m; sourceTree = "<group>"; };
 		2741E10B16793DB600CA87A9 /* FLToolTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLToolTask.h; sourceTree = "<group>"; };
 		2741E10C16793DB600CA87A9 /* FLToolTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLToolTask.m; sourceTree = "<group>"; };
-		2741E10D16793DB600CA87A9 /* FLToolTask_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLToolTask_Internal.h; sourceTree = "<group>"; };
-		2741E10F16793DB600CA87A9 /* FLUsageTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLUsageTask.h; sourceTree = "<group>"; };
-		2741E11016793DB600CA87A9 /* FLUsageTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLUsageTask.m; sourceTree = "<group>"; };
 		2741E11216793DB600CA87A9 /* FLUserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLUserDefaults.h; sourceTree = "<group>"; };
 		2741E11316793DB600CA87A9 /* FLUserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLUserDefaults.m; sourceTree = "<group>"; };
 		2741E11416793DB600CA87A9 /* FLUserPreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLUserPreferences.h; sourceTree = "<group>"; };
@@ -5419,25 +5403,14 @@
 				2741E10416793DB600CA87A9 /* FLCommandLineParser.m */,
 				2741E10516793DB600CA87A9 /* FLShellCommand.h */,
 				2741E10616793DB600CA87A9 /* FLShellCommand.m */,
-				2741E10716793DB600CA87A9 /* FLTool.h */,
-				2741E10816793DB600CA87A9 /* FLTool.m */,
+				2741E10716793DB600CA87A9 /* FLCommandLineTool.h */,
+				2741E10816793DB600CA87A9 /* FLCommandLineTool.m */,
 				2741E10916793DB600CA87A9 /* FLToolMain.h */,
 				2741E10A16793DB600CA87A9 /* FLToolMain.m */,
 				2741E10B16793DB600CA87A9 /* FLToolTask.h */,
 				2741E10C16793DB600CA87A9 /* FLToolTask.m */,
-				2741E10D16793DB600CA87A9 /* FLToolTask_Internal.h */,
-				2741E10E16793DB600CA87A9 /* ToolTasks */,
 			);
 			path = CommandLineTool;
-			sourceTree = "<group>";
-		};
-		2741E10E16793DB600CA87A9 /* ToolTasks */ = {
-			isa = PBXGroup;
-			children = (
-				2741E10F16793DB600CA87A9 /* FLUsageTask.h */,
-				2741E11016793DB600CA87A9 /* FLUsageTask.m */,
-			);
-			path = ToolTasks;
 			sourceTree = "<group>";
 		};
 		2741E11116793DB600CA87A9 /* Prefs */ = {
@@ -6465,11 +6438,9 @@
 				2741EB0016793DB700CA87A9 /* FLCommandLineArgument.h in Headers */,
 				2741EB0916793DB700CA87A9 /* FLCommandLineParser.h in Headers */,
 				2741EB1216793DB700CA87A9 /* FLShellCommand.h in Headers */,
-				2741EB1B16793DB700CA87A9 /* FLTool.h in Headers */,
+				2741EB1B16793DB700CA87A9 /* FLCommandLineTool.h in Headers */,
 				2741EB2416793DB700CA87A9 /* FLToolMain.h in Headers */,
 				2741EB2D16793DB700CA87A9 /* FLToolTask.h in Headers */,
-				2741EB3616793DB700CA87A9 /* FLToolTask_Internal.h in Headers */,
-				2741EB3A16793DB700CA87A9 /* FLUsageTask.h in Headers */,
 				2741EB4316793DB700CA87A9 /* FLUserDefaults.h in Headers */,
 				2741EB4C16793DB700CA87A9 /* FLUserPreferences.h in Headers */,
 				2741EB5516793DB700CA87A9 /* FLTestCase.h in Headers */,
@@ -6901,11 +6872,9 @@
 				2741EB0216793DB700CA87A9 /* FLCommandLineArgument.h in Headers */,
 				2741EB0B16793DB700CA87A9 /* FLCommandLineParser.h in Headers */,
 				2741EB1416793DB700CA87A9 /* FLShellCommand.h in Headers */,
-				2741EB1D16793DB700CA87A9 /* FLTool.h in Headers */,
+				2741EB1D16793DB700CA87A9 /* FLCommandLineTool.h in Headers */,
 				2741EB2616793DB700CA87A9 /* FLToolMain.h in Headers */,
 				2741EB2F16793DB700CA87A9 /* FLToolTask.h in Headers */,
-				2741EB3816793DB700CA87A9 /* FLToolTask_Internal.h in Headers */,
-				2741EB3C16793DB700CA87A9 /* FLUsageTask.h in Headers */,
 				2741EB4516793DB700CA87A9 /* FLUserDefaults.h in Headers */,
 				2741EB4E16793DB700CA87A9 /* FLUserPreferences.h in Headers */,
 				2741EB5716793DB700CA87A9 /* FLTestCase.h in Headers */,
@@ -7337,11 +7306,9 @@
 				2741EB0116793DB700CA87A9 /* FLCommandLineArgument.h in Headers */,
 				2741EB0A16793DB700CA87A9 /* FLCommandLineParser.h in Headers */,
 				2741EB1316793DB700CA87A9 /* FLShellCommand.h in Headers */,
-				2741EB1C16793DB700CA87A9 /* FLTool.h in Headers */,
+				2741EB1C16793DB700CA87A9 /* FLCommandLineTool.h in Headers */,
 				2741EB2516793DB700CA87A9 /* FLToolMain.h in Headers */,
 				2741EB2E16793DB700CA87A9 /* FLToolTask.h in Headers */,
-				2741EB3716793DB700CA87A9 /* FLToolTask_Internal.h in Headers */,
-				2741EB3B16793DB700CA87A9 /* FLUsageTask.h in Headers */,
 				2741EB4416793DB700CA87A9 /* FLUserDefaults.h in Headers */,
 				2741EB4D16793DB700CA87A9 /* FLUserPreferences.h in Headers */,
 				2741EB5616793DB700CA87A9 /* FLTestCase.h in Headers */,
@@ -7773,11 +7740,9 @@
 				2741EB0316793DB700CA87A9 /* FLCommandLineArgument.h in Headers */,
 				2741EB0C16793DB700CA87A9 /* FLCommandLineParser.h in Headers */,
 				2741EB1516793DB700CA87A9 /* FLShellCommand.h in Headers */,
-				2741EB1E16793DB700CA87A9 /* FLTool.h in Headers */,
+				2741EB1E16793DB700CA87A9 /* FLCommandLineTool.h in Headers */,
 				2741EB2716793DB700CA87A9 /* FLToolMain.h in Headers */,
 				2741EB3016793DB700CA87A9 /* FLToolTask.h in Headers */,
-				2741EB3916793DB700CA87A9 /* FLToolTask_Internal.h in Headers */,
-				2741EB3D16793DB700CA87A9 /* FLUsageTask.h in Headers */,
 				2741EB4616793DB700CA87A9 /* FLUserDefaults.h in Headers */,
 				2741EB4F16793DB700CA87A9 /* FLUserPreferences.h in Headers */,
 				2741EB5816793DB700CA87A9 /* FLTestCase.h in Headers */,
@@ -8307,10 +8272,9 @@
 				2741EB0516793DB700CA87A9 /* FLCommandLineArgument.m in Sources */,
 				2741EB0E16793DB700CA87A9 /* FLCommandLineParser.m in Sources */,
 				2741EB1716793DB700CA87A9 /* FLShellCommand.m in Sources */,
-				2741EB2016793DB700CA87A9 /* FLTool.m in Sources */,
+				2741EB2016793DB700CA87A9 /* FLCommandLineTool.m in Sources */,
 				2741EB2916793DB700CA87A9 /* FLToolMain.m in Sources */,
 				2741EB3216793DB700CA87A9 /* FLToolTask.m in Sources */,
-				2741EB3F16793DB700CA87A9 /* FLUsageTask.m in Sources */,
 				2741EB4816793DB700CA87A9 /* FLUserDefaults.m in Sources */,
 				2741EB5116793DB700CA87A9 /* FLUserPreferences.m in Sources */,
 				2741EB5A16793DB700CA87A9 /* FLTestCase.m in Sources */,
@@ -8706,10 +8670,9 @@
 				2741EB0716793DB700CA87A9 /* FLCommandLineArgument.m in Sources */,
 				2741EB1016793DB700CA87A9 /* FLCommandLineParser.m in Sources */,
 				2741EB1916793DB700CA87A9 /* FLShellCommand.m in Sources */,
-				2741EB2216793DB700CA87A9 /* FLTool.m in Sources */,
+				2741EB2216793DB700CA87A9 /* FLCommandLineTool.m in Sources */,
 				2741EB2B16793DB700CA87A9 /* FLToolMain.m in Sources */,
 				2741EB3416793DB700CA87A9 /* FLToolTask.m in Sources */,
-				2741EB4116793DB700CA87A9 /* FLUsageTask.m in Sources */,
 				2741EB4A16793DB700CA87A9 /* FLUserDefaults.m in Sources */,
 				2741EB5316793DB700CA87A9 /* FLUserPreferences.m in Sources */,
 				2741EB5C16793DB700CA87A9 /* FLTestCase.m in Sources */,
@@ -9105,10 +9068,9 @@
 				2741EB0416793DB700CA87A9 /* FLCommandLineArgument.m in Sources */,
 				2741EB0D16793DB700CA87A9 /* FLCommandLineParser.m in Sources */,
 				2741EB1616793DB700CA87A9 /* FLShellCommand.m in Sources */,
-				2741EB1F16793DB700CA87A9 /* FLTool.m in Sources */,
+				2741EB1F16793DB700CA87A9 /* FLCommandLineTool.m in Sources */,
 				2741EB2816793DB700CA87A9 /* FLToolMain.m in Sources */,
 				2741EB3116793DB700CA87A9 /* FLToolTask.m in Sources */,
-				2741EB3E16793DB700CA87A9 /* FLUsageTask.m in Sources */,
 				2741EB4716793DB700CA87A9 /* FLUserDefaults.m in Sources */,
 				2741EB5016793DB700CA87A9 /* FLUserPreferences.m in Sources */,
 				2741EB5916793DB700CA87A9 /* FLTestCase.m in Sources */,
@@ -9504,10 +9466,9 @@
 				2741EB0616793DB700CA87A9 /* FLCommandLineArgument.m in Sources */,
 				2741EB0F16793DB700CA87A9 /* FLCommandLineParser.m in Sources */,
 				2741EB1816793DB700CA87A9 /* FLShellCommand.m in Sources */,
-				2741EB2116793DB700CA87A9 /* FLTool.m in Sources */,
+				2741EB2116793DB700CA87A9 /* FLCommandLineTool.m in Sources */,
 				2741EB2A16793DB700CA87A9 /* FLToolMain.m in Sources */,
 				2741EB3316793DB700CA87A9 /* FLToolTask.m in Sources */,
-				2741EB4016793DB700CA87A9 /* FLUsageTask.m in Sources */,
 				2741EB4916793DB700CA87A9 /* FLUserDefaults.m in Sources */,
 				2741EB5216793DB700CA87A9 /* FLUserPreferences.m in Sources */,
 				2741EB5B16793DB700CA87A9 /* FLTestCase.m in Sources */,
@@ -9903,10 +9864,9 @@
 				2741EB0816793DB700CA87A9 /* FLCommandLineArgument.m in Sources */,
 				2741EB1116793DB700CA87A9 /* FLCommandLineParser.m in Sources */,
 				2741EB1A16793DB700CA87A9 /* FLShellCommand.m in Sources */,
-				2741EB2316793DB700CA87A9 /* FLTool.m in Sources */,
+				2741EB2316793DB700CA87A9 /* FLCommandLineTool.m in Sources */,
 				2741EB2C16793DB700CA87A9 /* FLToolMain.m in Sources */,
 				2741EB3516793DB700CA87A9 /* FLToolTask.m in Sources */,
-				2741EB4216793DB700CA87A9 /* FLUsageTask.m in Sources */,
 				2741EB4B16793DB700CA87A9 /* FLUserDefaults.m in Sources */,
 				2741EB5416793DB700CA87A9 /* FLUserPreferences.m in Sources */,
 				2741EB5D16793DB700CA87A9 /* FLTestCase.m in Sources */,

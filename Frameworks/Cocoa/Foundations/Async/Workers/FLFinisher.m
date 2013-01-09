@@ -102,7 +102,7 @@
     FLRetainObject(self);
     
     @try {
-         if([NSThread isMainThread]) {
+        if([NSThread isMainThread]) {
         // this may not work in all cases - e.g. some iOS apis expect to be called in the main thread
         // and this will cause endless blocking, unfortunately. I've seen this is the AssetLibrary sdk.
             while(!self.isFinished) {

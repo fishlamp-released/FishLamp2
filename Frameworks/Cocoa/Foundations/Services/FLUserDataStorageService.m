@@ -239,19 +239,19 @@
     FLUserLogin* userLogin = self.userLogin;
 
 	if(!_cacheFolder){
-		_cacheFolder = [[FLFolder alloc] initWithPath:[userCacheFolder stringByAppendingPathComponent:userLogin.userGuid]];
+		_cacheFolder = [[FLFolder alloc] initWithFolderPath:[userCacheFolder stringByAppendingPathComponent:userLogin.userGuid]];
 		[_cacheFolder createIfNeeded];
 	}
 	if(!_imageCacheFolder) {
-		_imageCacheFolder = [[FLImageFolder alloc] initWithPath:[userCacheFolder stringByAppendingPathComponent:@"photos"]];
+		_imageCacheFolder = [[FLImageFolder alloc] initWithFolderPath:[userCacheFolder stringByAppendingPathComponent:@"photos"]];
 		[_imageCacheFolder createIfNeeded];
 	}
 	if(!_tempFolder) {
-		_tempFolder = [[FLFolder alloc] initWithPath:[userCacheFolder stringByAppendingPathComponent:@"temp"]];
+		_tempFolder = [[FLFolder alloc] initWithFolderPath:[userCacheFolder stringByAppendingPathComponent:@"temp"]];
 		[_tempFolder createIfNeeded];
 	}
 	if(!_logFolder) {
-		_logFolder = [[FLFolder alloc] initWithPath:[userCacheFolder stringByAppendingPathComponent:@"logs"]];
+		_logFolder = [[FLFolder alloc] initWithFolderPath:[userCacheFolder stringByAppendingPathComponent:@"logs"]];
 		[_logFolder createIfNeeded];
 	}
 
@@ -276,13 +276,13 @@
 #endif
     
 	if(!_documentsFolder) {
-		_documentsFolder = [[FLFolder alloc] initWithPath:[userDocumentsFolder stringByAppendingPathComponent:userLogin.userGuid]];
+		_documentsFolder = [[FLFolder alloc] initWithFolderPath:[userDocumentsFolder stringByAppendingPathComponent:userLogin.userGuid]];
 		[_documentsFolder createIfNeeded];
 	}
     
 // does photo folder make sense on OS X?    
 	if(!_imageFolder) {
-		_imageFolder = [[FLImageFolder alloc] initWithPath:[userDocumentsFolder stringByAppendingPathComponent:@"photos"]];
+		_imageFolder = [[FLImageFolder alloc] initWithFolderPath:[userDocumentsFolder stringByAppendingPathComponent:@"photos"]];
 		[_imageFolder createIfNeeded];
 	}
     

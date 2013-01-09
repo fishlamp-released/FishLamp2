@@ -20,7 +20,7 @@
 }
 
 @property (readonly, assign, nonatomic) NSUInteger length;
-@property (readonly, strong, nonatomic) FLWhitespace* whitespace;
+@property (readwrite, strong, nonatomic) FLWhitespace* whitespace;
 @property (readwrite, assign, nonatomic) NSInteger tabIndent;
 
 @property (readonly, strong, nonatomic) NSString* string;

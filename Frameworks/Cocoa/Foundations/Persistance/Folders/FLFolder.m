@@ -16,49 +16,59 @@
 
 @implementation FLFolder
 
-@synthesize folderPath = _fullPath;
+@synthesize folderPath = _folderPath;
+
+- (NSURL*) folderURL {
+    return [NSURL URLWithString:_folderPath];
+}
 
 - (id) init {
-	if((self = [super init])) {
+	if((self = [self initWithURL:nil])) {
 	}
 	
 	return self;
 }
 
+- (id) initWithURL:(NSURL*) url {
+	return [self initWithFolderPath:url.absoluteString];
+}
+
+- (id) initWithFolderPath:(NSString*) path {
+    self = [super init];
+    if(self) {
+        _folderPath = FLRetain(path);
+    }
+    return self;
+}
+
++ (id) folder:(NSString*) path  {
+    return FLAutorelease([[[self class] alloc] initWithFolderPath:path]);
+}
+
++ (FLFolder*) folderWithURL:(NSURL*) url {
+    return FLAutorelease([[[self class] alloc] initWithURL:url]);
+}
+
 - (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super init];
     if(self) {
-        FLSetObjectWithRetain(_fullPath, [aDecoder decodeObjectForKey:@"_fullPath"]);
+        FLSetObjectWithRetain(_folderPath, [aDecoder decodeObjectForKey:@"folderPath"]);
     }   
 
     return self;
 }
 
 - (void) encodeWithCoder:(NSCoder*) aCoder {
-    [aCoder encodeObject:_fullPath forKey:@"_fullPath"];
-}
-
-- (id) initWithPath:(NSString*) path {
-	FLAssertStringIsNotEmpty_v(path, nil);
-
-	if((self = [super init])) {
-		self.folderPath = path;
-	}
-	
-	return self;
+    [aCoder encodeObject:_folderPath forKey:@"folderPath"];
 }
 
 - (id)copyWithZone:(NSZone *)zone {
-    return [[[self class] alloc] initWithPath:self.folderPath];
+    return [[[self class] alloc] initWithFolderPath:FLCopyWithAutorelease(self.folderURL)];
 }
     
-+ (id) folderWithPath:(NSString*) path  {
-    return FLAutorelease([[[self class] alloc] initWithPath:path]);
-}
-
 #if FL_MRC
 - (void) dealloc {
-    [_fullPath release];
+    [_folderURL release];
 	[super dealloc];
 }
 #endif

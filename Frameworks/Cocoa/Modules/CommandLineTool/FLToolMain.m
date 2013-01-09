@@ -7,48 +7,37 @@
 //
 
 #import "FLToolMain.h"
-#import "FLTool.h"
+#import "FLCommandLineTool.h"
 
-int FLToolMain(Class delegateClass) {
-    
-    FLTool* tool = nil;
+int FLToolMain(Class toolClass) {
+
+#if FL_MRC    
     @autoreleasepool {
+#endif    
         @try {
-            FLConfirmNotNil_v(delegateClass, @"FLTool needs a delegate!");
-        
-            id delegate = FLAutorelease([[delegateClass alloc] init]);
-            FLConfirmNotNil_v(delegate, @"unable to create delegate class: %@", NSStringFromClass(delegateClass));
+            FLConfirmNotNil_v(toolClass, @"FLCommandLineTool needs a tool class type to instatiate");
             
-            tool = [FLTool tool];
-            tool.delegate = delegate;
-            
+            FLCommandLineTool* tool = FLAutorelease([[toolClass alloc] init]);
+            FLConfirmNotNil_v(tool, @"unable to create tool class: %@", NSStringFromClass(toolClass)); 
+                        
             NSArray* args = [[NSProcessInfo processInfo] arguments];
             tool.toolPath = [args objectAtIndex:0];
-            tool.startDirectory = tool.currentDirectory;
-
-//            NSMutableArray* parameters = [NSMutableArray arrayWithCapacity:argc];
-//            for(int i = 0; i < argc; i++) {
-//                NSString* parm = [NSString stringWithCString:argv[i] encoding:NSASCIIStringEncoding];
-//                if(i == 0) {
-//                    tool.startDirectory = parm;
-//                }
-//                else {
-//                    [parameters addObject:parm];
-//                }
-//            }
             
-            if([tool runToolWithParameters:[args subarrayWithRange:NSMakeRange(1, args.count -1)]]) {
-                return 1;
-            }
+            NSArray* argsWithoutPath = [args subarrayWithRange:NSMakeRange(1, args.count -1)];
+            
+            FLConfirmationFailure_v(@"need a live output to printf");
+            FLThrowError([tool processStringArray:argsWithoutPath withOutput:nil]);
+            
+            
+            
         }
         @catch(NSException* ex) {
             NSLog(@"uncaught exception: %@", [ex reason]);
             return 1;
         }
-        @finally {
-            tool.delegate = nil;
-        }
         
         return 0;
+#if FL_MRC
     }
+#endif    
 }

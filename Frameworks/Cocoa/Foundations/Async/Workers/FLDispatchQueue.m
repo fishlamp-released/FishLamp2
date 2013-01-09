@@ -114,6 +114,22 @@ static void * const s_queue_key = (void*)&s_queue_key;
     });
 }
 
++ (void)sleepForTimeInterval:(NSTimeInterval)milliseconds {
+    
+    if([NSThread isMainThread]) {
+        NSTimeInterval timeout = [NSDate timeIntervalSinceReferenceDate] + milliseconds;
+        while([NSDate timeIntervalSinceReferenceDate] < timeout) {
+            [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate date]];
+        }
+    } 
+    else {
+        dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+        dispatch_semaphore_wait(semaphore, 
+                                dispatch_time(DISPATCH_TIME_NOW, (milliseconds * NSEC_PER_MSEC)));
+        dispatch_release(semaphore);
+    } 
+}    
+
 @end
 
 @implementation FLDispatchQueue (SystemQueues)

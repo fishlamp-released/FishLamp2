@@ -13,7 +13,7 @@
 
 - (id) init {
     NSString* tempFolder = NSTemporaryDirectory();
-    self = [super initWithPath:[tempFolder stringByAppendingPathComponent:[NSString guidString]]];
+    self = [super initWithFolderPath:[tempFolder stringByAppendingPathComponent:[NSString guidString]]];
     if(self) {
     }
     return self;
