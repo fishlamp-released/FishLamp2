@@ -22,7 +22,7 @@
 }
 
 + (FLLogFile*) logFile:(NSString*) path {
-    return FLAutorelease([[[self class] alloc] initWithPath:path]);
+    return FLAutorelease([[[self class] alloc] initWithFolderPath:path]);
 }
 
 - (void) dealloc {

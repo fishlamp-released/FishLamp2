@@ -33,6 +33,8 @@
 
 + (FLDispatchQueue*) currentQueue;
 
++ (void)sleepForTimeInterval:(NSTimeInterval) milliseconds;
+
 @end
 
 @interface FLDispatchQueue (SystemQueues)

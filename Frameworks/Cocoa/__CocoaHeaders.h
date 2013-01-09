@@ -381,12 +381,9 @@
 #import "FLCommandLineArgument.h"
 #import "FLCommandLineParser.h"
 #import "FLShellCommand.h"
-#import "FLTool.h"
+#import "FLCommandLineTool.h"
 #import "FLToolMain.h"
 #import "FLToolTask.h"
-
-// Modules/CommandLineTool/ToolTasks
-#import "FLUsageTask.h"
 
 // Modules/Prefs
 #import "FLUserDefaults.h"

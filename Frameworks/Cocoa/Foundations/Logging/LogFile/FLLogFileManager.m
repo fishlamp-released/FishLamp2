@@ -82,7 +82,7 @@ FLSynthesizeSingleton(FLLogFileManager);
         NSArray* cachePaths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
         NSString* userCacheFolder = [cachePaths objectAtIndex: 0];
 
-        _appLogsFolder = [[FLFolder alloc] initWithPath:[userCacheFolder stringByAppendingPathComponent:@"logs"]];
+        _appLogsFolder = [[FLFolder alloc] initWithFolderPath:[userCacheFolder stringByAppendingPathComponent:@"logs"]];
 #else 
 // TODO: implement me
 #endif        

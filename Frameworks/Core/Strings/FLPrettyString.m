@@ -10,7 +10,6 @@
 
 @interface FLPrettyString ()
 @property (readwrite, strong, nonatomic) NSString* string;
-@property (readwrite, strong, nonatomic) FLWhitespace* whitespace;
 @end
 
 @implementation FLPrettyString

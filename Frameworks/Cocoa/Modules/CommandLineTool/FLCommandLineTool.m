@@ -6,53 +6,114 @@
 //  Copyright (c) 2012 GreenTongue Software. All rights reserved.
 //
 
-#import "FLTool.h"
+#import "FLCommandLineTool.h"
 #import "FLStringUtils.h"
 #import "FLErrorDomain.h"
-#import "FLToolTask_Internal.h"
-
-//@interface FLToolApplicationErrorDomainObject : FLErrorDomain<FLErrorDomainSubclass>
-//@end
-//
-//
-//@implementation FLToolApplicationErrorDomainObject 
-//
-//@end
-
+#import "FLResult.h"
+#import "NSString+Lists.h"
 
 NSString* const FLToolDefaultKey = @"--default-task";
 
-@interface FLTool ()
+@interface FLCommandLineTool ()
 //@property (readwrite, strong) NSString* startDirectory;
 @end
 
-@implementation FLTool
+@implementation FLHelpTask
 
-@synthesize toolPath = _toolPath;
+- (id) init {
+    self = [super initWithKeys:@"Help, ?, --help" ];
+    if(self) {
+    }
+    return self;
+}
+
+- (void) runWithArgument:(FLCommandLineArgument*) argument 
+                  inTool:(FLCommandLineTool*) tool {
+
+    [tool runTaskWithArgument:[FLCommandLineArgument commandLineArgument:@"--usage"]];
+
+    [tool.output appendBlankLine];
+    [tool.output appendLineWithFormat:@"Help for %@:", tool.toolName];
+    
+    NSMutableSet* tasks = [NSMutableSet set];
+    
+    for(FLToolTask* task in [tool.tasks objectEnumerator]) {
+        [tasks addObject:task];
+    }
+
+    for(FLToolTask* task in tasks) {
+        [task printHelpToStringFormatter:tool.output];
+    }
+}
+
+@end
+
+@implementation FLUsageTask
+
+- (id) init {
+    self = [super initWithKeys:@"--usage" ];
+    if(self) {
+    }
+    return self;
+}
+
+- (void) runWithArgument:(FLCommandLineArgument*) argument 
+                  inTool:(FLCommandLineTool*) tool {
+
+    NSMutableSet* tasks = [NSMutableSet set];
+    
+    for(FLToolTask* task in [tool.tasks objectEnumerator]) {
+        [tasks addObject:task];
+    }
+
+    NSString* leader = [NSString stringWithFormat:@"usage: %@ ", tool.toolName];
+    [tool.output appendString:leader];
+
+    for(FLToolTask* task in tasks) {
+        [tool.output appendFormat:@"[%@] ", [task buildUsageString]];
+    }
+    
+    [tool.output endLine];
+    
+    [tool.output appendLineWithFormat:@"%@[<args>]", [@"" stringWithPadding:leader.length]];
+}
+
+@end
+
+@implementation FLCommandLineTool
+
 @synthesize tasks = _tasks;
-@synthesize delegate = _delegate;
-@synthesize startDirectory = _startDirectory;
+@synthesize toolPath = _toolPath;
 @synthesize toolName = _toolName;
+@synthesize output = _output;
+@synthesize parser = _parser;
+
+static NSString* s_startDirectory = nil;
 
 - (id) init {
     self = [super init];
     if(self) {
         _tasks = [[NSMutableDictionary alloc] init];
+        
+        [self addToolTask:[FLUsageTask toolTask]];
+        [self addToolTask:[FLHelpTask toolTask]];
     }
     
     return self;
 }
 
-+ (id) tool {
++ (id) commandLineTool {
     return FLAutorelease([[[self class] alloc] init]);
 }
 
 #if FL_MRC
 - (void) dealloc {
-
+    [_parser release];
+    [_output release];
+    [_toolPath release];
+    [_toolName release];
     [_tasks release];
     [_toolName release];
-    [_startDirectory release];
     [super dealloc];
 }
 #endif
@@ -62,89 +123,131 @@ NSString* const FLToolDefaultKey = @"--default-task";
 }
 
 - (void) setDefaultToolTask:(FLToolTask*) task {
-    [self setToolTask:task forKeys:[NSArray arrayWithObject:FLToolDefaultKey]];
-    [self setToolTask:task forKeys:task.argumentKeys];
-}
-
-- (void) setToolTask:(FLToolTask*) task forKeys:(NSArray*) keys {
-    
-    FLAssertIsNotNil_(task);
-    FLAssertIsNotNil_(keys);
-    
-    for(NSString* key in keys) {
-        id existing = [_tasks objectForKey:key];
-        FLConfirmIsNil_v(existing, @"task already installed for key: %@", key);
-        [_tasks setObject:task forKey:key];
-    }
-}
-
-- (NSString*) toolDirectory {
-    return [self.toolPath stringByDeletingLastPathComponent];
+    [task addKeys:FLToolDefaultKey];
+    [self addToolTask:task];
 }
 
 - (void) addToolTask:(FLToolTask*) task {
-    [self setToolTask:task forKeys:[task argumentKeys]];
-}
-
-- (void) runToolTasksWithArguments:(NSArray*) arguments {
-
-    FLPerformSelector2(self.delegate, @selector(tool:willRunWithArguments:), self, arguments);
-
-    for(FLCommandLineArgument* arg in arguments) {
-        FLToolTask* task = [_tasks objectForKey:arg.key];
-        [task runWithArgument:arg inTool:self];
-    }
-
-    if(!arguments || arguments.count == 0) {
-        FLToolTask* task = [self toolTaskForKey:FLToolDefaultKey];
-        if(task) {
-            [task runWithArgument:[FLCommandLineArgument commandLineArgument:FLToolDefaultKey] inTool:self];
+    for(NSString* key in task.taskArgumentKeys) {
+        if(FLStringIsNotEmpty(key)) {
+            id existing = [_tasks objectForKey:[key lowercaseString]];
+            FLConfirmIsNil_v(existing, @"task already installed for key: %@", key);
+            [_tasks setObject:task forKey:key];
         }
     }
-
-    FLPerformSelector2(self.delegate, @selector(tool:didRunWithArguments:), self, arguments);
 }
 
-- (NSArray*) parseArgumentsFromParameters:(NSArray*) parameters withParser:(id<FLCommandLineParser>) parser {
-    if(parser) {
-        return [parser parseArguments:parameters];
+- (NSArray*) parseInputStringsIntoArgumentArray:(NSArray*) input {
+
+    if(self.parser) {
+        return [self.parser parseArguments:input];
     }
     
     NSMutableArray* args = [NSMutableArray array];
-    for(NSString* parm in parameters) {
+    for(NSString* parm in input) {
         [args addObject:[FLCommandLineArgument commandLineArgument:parm]];
     }
     return args;
 }
 
-- (NSError*) runToolWithParameters:(NSArray*) parameters {
+- (void) willRunWithArguments:(NSArray*) commandLineArgumentArray {
+}
+
+- (void) didRunWithArguments:(NSArray*) commandLineArgumentArray {
+}
+
+- (void) didFailWithError:(NSError*) error {
+}
+
+- (FLResult) processString:(NSString*) string 
+                withOutput:(FLStringFormatter*) formatter {
+
+    // why doesn't this just NOT add empty liness?
+    NSArray* dontWantEmptyLines = [string componentsSeparatedByCharactersInSet:
+                                   [NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    
+    
+    NSMutableArray* thisIsDumb = [NSMutableArray array];
+    for(NSString* aString in dontWantEmptyLines) {
+        if(FLStringIsNotEmpty(aString)) {
+            [thisIsDumb addObject:aString];
+        }
+    }
+
+    return [self processStringArray:thisIsDumb withOutput:formatter];
+}
+
+- (void) runTaskWithArgument:(FLCommandLineArgument*) argument {
+    FLToolTask* task = [_tasks objectForKey:argument.key];
+    [task runWithArgument:argument inTool:self];
+}
+
+- (FLResult) processStringArray:(NSArray*) inputStrings 
+                     withOutput:(FLStringFormatter*) formatter {
 
    @try {
-        id<FLCommandLineParser> parser = [self.delegate toolWillRun:self];
-    
-        NSArray* args = [self parseArgumentsFromParameters:parameters withParser:parser];
+        self.output = formatter;
+   
+        if(!s_startDirectory) {
+            s_startDirectory = FLRetain([[NSFileManager defaultManager] currentDirectoryPath]);
+        }
+   
+        NSArray* arguments = [self parseInputStringsIntoArgumentArray:inputStrings];
+   
+        [self willRunWithArguments:arguments];
 
-        [self runToolTasksWithArguments:args];
+        if(!arguments || arguments.count == 0) {
+            FLToolTask* task = [self toolTaskForKey:FLToolDefaultKey];
+            if(task) {
+                [task runWithArgument:[FLCommandLineArgument commandLineArgument:@""] inTool:self];
+            }
+//            else {
+//                [self printHelp];
+//            }
+        }
+        else {
 
+            NSMutableArray* tasks = [NSMutableArray array];
+            
+            for(FLCommandLineArgument* arg in arguments) {
+                FLToolTask* task = [_tasks objectForKey:[arg.key lowercaseString]];
+                if(task) {
+                    [tasks addObject:FLCopyWithAutorelease(^{
+                        [task runWithArgument:arg inTool:self];
+                    })];
+                }
+                else {
+                
+                    [tasks removeAllObjects];
+                    
+                    FLToolTask* defaultTask = [self toolTaskForKey:FLToolDefaultKey];
+                    if(defaultTask) {
+                        [defaultTask runWithArgument:arg inTool:self];
+                    }
+                    else {
+                        [self.output appendLineWithFormat:@"Unknown task: %@", arg.key];
+                    }
+                    
+                    break;
+                }
+            }
+            
+            if(tasks && tasks.count) {
+                for(dispatch_block_t block in tasks) {
+                    block();
+                }
+            }
+        }
+
+        [self didRunWithArguments:arguments];
     }
     @catch(NSException* ex) {
         
-        FLPerformSelector2(self.delegate, @selector(tool:didFailWithError:), self, ex.error);
-        FLLog(@"Failed: %@", ex.reason);
+        [self didFailWithError:ex.error];
         return ex.error;
     }
     
-    return nil;
-}
-
-- (void) setCurrentDirectory:(NSString*) newDirectory {
-
-// TODO: this returns a BOOL? Check it?
-    [[NSFileManager defaultManager] changeCurrentDirectoryPath:newDirectory];
-}
-
-- (NSString*) currentDirectory {
-    return [[NSFileManager defaultManager] currentDirectoryPath];
+    return FLSuccessfullResult;
 }
 
 - (void) openURL:(NSString *)url inBackground:(BOOL)background {
@@ -161,7 +264,23 @@ NSString* const FLToolDefaultKey = @"--default-task";
     [[NSWorkspace sharedWorkspace] openFile:path];
 }
 
+- (NSString*) toolDirectory {
+    return [self.toolPath stringByDeletingLastPathComponent];
+}
 
+- (void) setCurrentDirectory:(NSString*) newDirectory {
+
+// TODO: this returns a BOOL? Check it?
+    [[NSFileManager defaultManager] changeCurrentDirectoryPath:newDirectory];
+}
+
+- (NSString*) currentDirectory {
+    return [[NSFileManager defaultManager] currentDirectoryPath];
+}
+
++ (NSString*) startDirectory {
+    return s_startDirectory;
+}
 
 @end
 

@@ -7,6 +7,7 @@
 //
 
 #import "FLCommandLineParser.h"
+#import "FLCommandLineArgument.h"
 
 @implementation FLCommandLineParser
 

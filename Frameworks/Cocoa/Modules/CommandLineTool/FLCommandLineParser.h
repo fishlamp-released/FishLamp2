@@ -8,7 +8,7 @@
 
 #import "FLCocoaRequired.h"
 
-#import "FLCommandLineArgument.h"
+@class FLCommandLineArgument;
 
 @protocol FLCommandLineParser <NSObject>
 - (NSArray*) parseArguments:(NSArray*) arrayOfStrings;
@@ -18,4 +18,4 @@
 + (id) commandLineParser;
 @end
 
-extern NSArray* FLCommandLineArguments(int argc, const char * argv[]);
+//extern NSArray* FLCommandLineArguments(int argc, const char * argv[]);
