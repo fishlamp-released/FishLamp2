@@ -12,242 +12,135 @@
 #import "FLResult.h"
 #import "NSString+Lists.h"
 
-NSString* const FLToolDefaultKey = @"--default-task";
+#import "FLUsageToolTask.h"
+#import "FLHelpToolTask.h"
 
 @interface FLCommandLineTool ()
 //@property (readwrite, strong) NSString* startDirectory;
-@end
+@property (readwrite, strong, nonatomic) NSURL* toolPath;
+@property (readwrite, strong, nonatomic) NSString* toolName;
 
-@implementation FLHelpTask
+//@property (readonly, strong, nonatomic) NSURL* toolPath;
+@property (readwrite, strong, nonatomic) NSString* startDirectory;
+@property (readwrite, strong, nonatomic) NSString* currentDirectory;
 
-- (id) init {
-    self = [super initWithKeys:@"Help, ?, --help" ];
-    if(self) {
-    }
-    return self;
-}
 
-- (void) runWithArgument:(FLCommandLineArgument*) argument 
-                  inTool:(FLCommandLineTool*) tool {
-
-    [tool runTaskWithArgument:[FLCommandLineArgument commandLineArgument:@"--usage"]];
-
-    [tool.output appendBlankLine];
-    [tool.output appendLineWithFormat:@"Help for %@:", tool.toolName];
-    
-    NSMutableSet* tasks = [NSMutableSet set];
-    
-    for(FLToolTask* task in [tool.tasks objectEnumerator]) {
-        [tasks addObject:task];
-    }
-
-    for(FLToolTask* task in tasks) {
-        [task printHelpToStringFormatter:tool.output];
-    }
-}
 
 @end
 
-@implementation FLUsageTask
-
-- (id) init {
-    self = [super initWithKeys:@"--usage" ];
-    if(self) {
-    }
-    return self;
-}
-
-- (void) runWithArgument:(FLCommandLineArgument*) argument 
-                  inTool:(FLCommandLineTool*) tool {
-
-    NSMutableSet* tasks = [NSMutableSet set];
-    
-    for(FLToolTask* task in [tool.tasks objectEnumerator]) {
-        [tasks addObject:task];
-    }
-
-    NSString* leader = [NSString stringWithFormat:@"usage: %@ ", tool.toolName];
-    [tool.output appendString:leader];
-
-    for(FLToolTask* task in tasks) {
-        [tool.output appendFormat:@"[%@] ", [task buildUsageString]];
-    }
-    
-    [tool.output endLine];
-    
-    [tool.output appendLineWithFormat:@"%@[<args>]", [@"" stringWithPadding:leader.length]];
-}
-
-@end
+//@interface FLRootToolTask : FLToolTask
+//@end
+//
+//@implementation FLRootToolTask
+//
+//- (void) printHelpToStringFormatter:(FLStringFormatter*) output {
+//}
+//
+//- (NSString*) taskName {
+//    return self.tool.toolName;
+//}
+//
+//@end
 
 @implementation FLCommandLineTool
 
-@synthesize tasks = _tasks;
+//@synthesize listeners = _listeners;
 @synthesize toolPath = _toolPath;
 @synthesize toolName = _toolName;
-@synthesize output = _output;
-@synthesize parser = _parser;
+@synthesize startDirectory = _startDirectory;
+@synthesize commands = _commands;
 
-static NSString* s_startDirectory = nil;
 
-- (id) init {
+- (id) initWithToolName:(NSString*) name {
     self = [super init];
     if(self) {
-        _tasks = [[NSMutableDictionary alloc] init];
+        self.toolName = name;
+//        _listeners = [[NSMutableArray alloc] init];
+
+        _commands = [[NSMutableDictionary alloc] init];
+
+//        [self pushListener:[FLRootToolTask toolTask:@"Root"]];
         
-        [self addToolTask:[FLUsageTask toolTask]];
-        [self addToolTask:[FLHelpTask toolTask]];
+//        [self.listener addToolTask:[FLUsageToolTask toolTask]];
+//        [self.listener addToolTask:[FLHelpToolTask toolTask]];
     }
     
     return self;
 }
 
+- (id) init {
+    return [self initWithToolName:nil];
+}
+
 + (id) commandLineTool {
-    return FLAutorelease([[[self class] alloc] init]);
+    return FLAutorelease([[[self class] alloc] initWithToolName:nil]);
+}
+
++ (id) commandLineTool:(NSString*) toolName {
+    return FLAutorelease([[[self class] alloc] initWithToolName:toolName]);
 }
 
 #if FL_MRC
 - (void) dealloc {
-    [_parser release];
-    [_output release];
     [_toolPath release];
     [_toolName release];
-    [_tasks release];
-    [_toolName release];
+//    [_listeners release];
+    [_output release];
+    [_commands release];
     [super dealloc];
 }
 #endif
 
-- (FLToolTask*) toolTaskForKey:(NSString*) key {
-    return [_tasks objectForKey:key];
+- (void) setExecutingInShellAtPath:(NSURL*) url {
+    self.toolPath = url;
+    self.startDirectory = [[NSFileManager defaultManager] currentDirectoryPath];
 }
 
-- (void) setDefaultToolTask:(FLToolTask*) task {
-    [task addKeys:FLToolDefaultKey];
-    [self addToolTask:task];
+//- (void) pushListener:(id<FLParseable>) task {
+//    [_listeners addObject:task];
+//    FLPerformSelector1(task, @selector(setParent:), self);
+//}
+//
+//- (id<FLParseable>) popListener {
+//    return [_listeners dequeueLastObject];
+//}
+//
+//- (id<FLParseable>) listener {
+//    return [_listeners lastObject];
+//}
+//
+//- (id<FLParseable>) rootListener {
+//    return [_listeners firstObject];
+//}
+//
+//- (void) popListenerToListener:(id<FLParseable>) task {
+//    NSUInteger idx = [_listeners indexOfObject:task];
+//    if(idx != NSNotFound) {
+//        [_listeners removeObjectsInRange:NSMakeRange(idx, _listeners.count - idx)];
+//    }
+//}
+//
+//- (void) popListenerToRootListener {
+//    [self popListenerToListener:[_listeners firstObject]];
+//}
+
+- (void) addCommand:(FLToolCommand*) command {
+    [_commands setObject:command forKey:[command.commandName lowercaseString]];
 }
 
-- (void) addToolTask:(FLToolTask*) task {
-    for(NSString* key in task.taskArgumentKeys) {
-        if(FLStringIsNotEmpty(key)) {
-            id existing = [_tasks objectForKey:[key lowercaseString]];
-            FLConfirmIsNil_v(existing, @"task already installed for key: %@", key);
-            [_tasks setObject:task forKey:key];
-        }
-    }
-}
-
-- (NSArray*) parseInputStringsIntoArgumentArray:(NSArray*) input {
-
-    if(self.parser) {
-        return [self.parser parseArguments:input];
-    }
+- (void) parseInput:(FLParseableInput*) input output:(FLStringFormatter*) output {
     
-    NSMutableArray* args = [NSMutableArray array];
-    for(NSString* parm in input) {
-        [args addObject:[FLCommandLineArgument commandLineArgument:parm]];
+    NSString* key = [[input next] lowercaseString];
+    if(!key) {
+        // handle default case
     }
-    return args;
-}
-
-- (void) willRunWithArguments:(NSArray*) commandLineArgumentArray {
-}
-
-- (void) didRunWithArguments:(NSArray*) commandLineArgumentArray {
-}
-
-- (void) didFailWithError:(NSError*) error {
-}
-
-- (FLResult) processString:(NSString*) string 
-                withOutput:(FLStringFormatter*) formatter {
-
-    // why doesn't this just NOT add empty liness?
-    NSArray* dontWantEmptyLines = [string componentsSeparatedByCharactersInSet:
-                                   [NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    
-    
-    NSMutableArray* thisIsDumb = [NSMutableArray array];
-    for(NSString* aString in dontWantEmptyLines) {
-        if(FLStringIsNotEmpty(aString)) {
-            [thisIsDumb addObject:aString];
-        }
-    }
-
-    return [self processStringArray:thisIsDumb withOutput:formatter];
-}
-
-- (void) runTaskWithArgument:(FLCommandLineArgument*) argument {
-    FLToolTask* task = [_tasks objectForKey:argument.key];
-    [task runWithArgument:argument inTool:self];
-}
-
-- (FLResult) processStringArray:(NSArray*) inputStrings 
-                     withOutput:(FLStringFormatter*) formatter {
-
-   @try {
-        self.output = formatter;
-   
-        if(!s_startDirectory) {
-            s_startDirectory = FLRetain([[NSFileManager defaultManager] currentDirectoryPath]);
-        }
-   
-        NSArray* arguments = [self parseInputStringsIntoArgumentArray:inputStrings];
-   
-        [self willRunWithArguments:arguments];
-
-        if(!arguments || arguments.count == 0) {
-            FLToolTask* task = [self toolTaskForKey:FLToolDefaultKey];
-            if(task) {
-                [task runWithArgument:[FLCommandLineArgument commandLineArgument:@""] inTool:self];
-            }
-//            else {
-//                [self printHelp];
-//            }
-        }
-        else {
-
-            NSMutableArray* tasks = [NSMutableArray array];
-            
-            for(FLCommandLineArgument* arg in arguments) {
-                FLToolTask* task = [_tasks objectForKey:[arg.key lowercaseString]];
-                if(task) {
-                    [tasks addObject:FLCopyWithAutorelease(^{
-                        [task runWithArgument:arg inTool:self];
-                    })];
-                }
-                else {
-                
-                    [tasks removeAllObjects];
-                    
-                    FLToolTask* defaultTask = [self toolTaskForKey:FLToolDefaultKey];
-                    if(defaultTask) {
-                        [defaultTask runWithArgument:arg inTool:self];
-                    }
-                    else {
-                        [self.output appendLineWithFormat:@"Unknown task: %@", arg.key];
-                    }
-                    
-                    break;
-                }
-            }
-            
-            if(tasks && tasks.count) {
-                for(dispatch_block_t block in tasks) {
-                    block();
-                }
-            }
-        }
-
-        [self didRunWithArguments:arguments];
-    }
-    @catch(NSException* ex) {
+    else {
+        FLToolCommand* command = [_commands objectForKey:key];
+        FLConfirmNotNil_v(command, @"Unknown command: %@", key);
+        [command parseInput:input];
         
-        [self didFailWithError:ex.error];
-        return ex.error;
+        FLConfirm_v(input.last == nil, @"unhandled parameters: %@", input.unparsed);
     }
-    
-    return FLSuccessfullResult;
 }
 
 - (void) openURL:(NSString *)url inBackground:(BOOL)background {
@@ -264,10 +157,6 @@ static NSString* s_startDirectory = nil;
     [[NSWorkspace sharedWorkspace] openFile:path];
 }
 
-- (NSString*) toolDirectory {
-    return [self.toolPath stringByDeletingLastPathComponent];
-}
-
 - (void) setCurrentDirectory:(NSString*) newDirectory {
 
 // TODO: this returns a BOOL? Check it?
@@ -276,10 +165,6 @@ static NSString* s_startDirectory = nil;
 
 - (NSString*) currentDirectory {
     return [[NSFileManager defaultManager] currentDirectoryPath];
-}
-
-+ (NSString*) startDirectory {
-    return s_startDirectory;
 }
 
 @end
@@ -349,9 +234,9 @@ static NSString* s_startDirectory = nil;
 //    }
 //}
 
-//- (FLToolTask*) taskForArgument:(FLCommandLineArgument*) argument {
+//- (id<FLParseable>) taskForArgument:(FLCommandLineArgument*) argument {
 //
-//    for(FLToolTask* task in _tasks) {
+//    for(id<FLParseable> task in _listeners) {
 //        if([task hasInputParameter:argument.key]) {
 //            return task;
 //        }

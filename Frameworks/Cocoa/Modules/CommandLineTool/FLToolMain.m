@@ -8,6 +8,7 @@
 
 #import "FLToolMain.h"
 #import "FLCommandLineTool.h"
+#import "NSString+Lists.h"
 
 int FLToolMain(Class toolClass) {
 
@@ -21,15 +22,16 @@ int FLToolMain(Class toolClass) {
             FLConfirmNotNil_v(tool, @"unable to create tool class: %@", NSStringFromClass(toolClass)); 
                         
             NSArray* args = [[NSProcessInfo processInfo] arguments];
-            tool.toolPath = [args objectAtIndex:0];
+
+            [tool setExecutingInShellAtPath:[NSURL fileURLWithPath:[args objectAtIndex:0]]];
             
             NSArray* argsWithoutPath = [args subarrayWithRange:NSMakeRange(1, args.count -1)];
             
+
+            NSString* string = [NSString concatStringArray:argsWithoutPath delimiter:@" "];
+
             FLConfirmationFailure_v(@"need a live output to printf");
-            FLThrowError([tool processStringArray:argsWithoutPath withOutput:nil]);
-            
-            
-            
+            [tool parseInput:[FLParseableInput parseableInput:string] output:nil];
         }
         @catch(NSException* ex) {
             NSLog(@"uncaught exception: %@", [ex reason]);
