@@ -7,74 +7,52 @@
 //
 
 #import "FLCocoaRequired.h"
-#import "FLCommandLineArgument.h"
-#import "FLResult.h"
 #import "FLStringFormatter.h"
-#import "FLCommandLineParser.h"
-#import "FLToolTask.h"
-
-extern NSString* const FLToolDefaultKey;
-
-@class FLToolTask;
-@protocol FLCommandLineToolDelegate;
+#import "FLParseableInput.h"
+#import "FLToolCommand.h"
 
 @interface FLCommandLineTool : NSObject {
 @private
-    NSMutableDictionary* _tasks;
-    NSString* _toolName;
+    NSURL* _toolPath;
     NSString* _startDirectory;
-    NSString* _toolPath;
-    FLStringFormatter* _output;
-    id<FLCommandLineParser> _parser;
+    NSString* _toolName;
+//    NSMutableArray* _listeners;
+    
+    NSMutableDictionary* _commands;
 }
+@property (readonly, strong, nonatomic) NSString* toolName;
+
+- (id) initWithToolName:(NSString*) name;
 
 + (id) commandLineTool;
++ (id) commandLineTool:(NSString*) toolName;
 
-// set these as needed
-@property (readwrite, strong) id<FLCommandLineParser> parser;
-@property (readwrite, strong) NSString* toolPath;
-@property (readwrite, strong) FLStringFormatter* output;
+//@property (readonly, strong, nonatomic) NSArray* listeners;
+//
+//@property (readonly, strong, nonatomic) id rootListener;
+//@property (readonly, strong, nonatomic) id listener;
+//
+//- (void) pushListener:(id<FLParseable>) task;
+//
+//- (id<FLParseable>) popListener; 
+//- (void) popListenerToListener:(id<FLParseable>) task;
+//- (void) popListenerToRootListener;
 
-// tasks.
-@property (readonly, strong) NSDictionary* tasks;
-- (void) addToolTask:(FLToolTask*) task;
-- (void) setDefaultToolTask:(FLToolTask*) task;
-- (FLToolTask*) toolTaskForKey:(NSString*) key;
-
-- (void) runTaskWithArgument:(FLCommandLineArgument*) argument ;
+@property (readonly, strong, nonatomic) NSDictionary* commands;
+- (void) addCommand:(FLToolCommand*) command;
+- (void) parseInput:(FLParseableInput*) input output:(FLStringFormatter*) output;
 
 // utils
 - (void) openURL:(NSString *)url inBackground:(BOOL)background;
 - (void) openFileInDefaultEditor:(NSString*) path;
+@end
 
-- (FLResult) processString:(NSString*) string 
-                withOutput:(FLStringFormatter*) formatter;
-
-- (FLResult) processStringArray:(NSArray*) inputStrings 
-                withOutput:(FLStringFormatter*) formatter;
-
+@interface FLCommandLineTool (ShellUtils)
 // these are only really relevant for a shell tool
-@property (readwrite, strong) NSString* toolName;
-@property (readonly, strong) NSString* toolDirectory;
-@property (readwrite, strong) NSString* currentDirectory;
+@property (readonly, strong, nonatomic) NSURL* toolPath;
+@property (readonly, strong, nonatomic) NSString* startDirectory;
+@property (readwrite, strong, nonatomic) NSString* currentDirectory;
 
-+ (NSString*) startDirectory;
-
-// optional overrides. or have your tasks execute your stuff.
-
-- (void) willRunWithArguments:(NSArray*) commandLineArgumentArray;
-
-- (void) didRunWithArguments:(NSArray*) commandLineArgumentArray;
-
-- (void) didFailWithError:(NSError*) error;
-
-@end
-
-// std help task. not automatically added.
-
-@interface FLHelpTask : FLToolTask
-@end
-
-@interface FLUsageTask : FLToolTask
+- (void) setExecutingInShellAtPath:(NSURL*) url;
 @end
 

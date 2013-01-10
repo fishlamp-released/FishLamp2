@@ -159,6 +159,25 @@ NSString* FLStringWithFormatOrNil(NSString* format, ...) {
     return count;
 }
 
+- (NSArray*) componentsSeparatedByCharactersInSet:(NSCharacterSet*) charSet 
+                                allowEmptyStrings:(BOOL) allowEmptyStrings {
+
+    NSArray* components = [self componentsSeparatedByCharactersInSet:charSet];
+    if(!allowEmptyStrings) {
+        NSMutableArray* mutableComponents = [NSMutableArray arrayWithCapacity:components.count];
+        for(NSString* str in components) {
+            if(FLStringIsNotEmpty(str)) {
+                [mutableComponents addObject:str];
+            }
+        }
+        components = mutableComponents;
+    }
+
+    return components;
+}                                
+
+
+
 
 @end
 

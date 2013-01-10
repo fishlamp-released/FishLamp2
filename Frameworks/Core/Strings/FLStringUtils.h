@@ -38,6 +38,10 @@
 
 - (NSUInteger) subStringCount:(NSString*) substring;
 
+- (NSArray*) componentsSeparatedByCharactersInSet:(NSCharacterSet*) set 
+                                allowEmptyStrings:(BOOL) allowEmptyStrings;
+
+
 @end
 
 @interface NSMutableString (FLStringUtilities)

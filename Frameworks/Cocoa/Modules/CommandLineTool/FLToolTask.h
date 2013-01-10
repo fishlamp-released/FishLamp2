@@ -7,40 +7,63 @@
 //
 
 #import "FishLampCore.h"
-#import "FLCommandLineArgument.h"
+#import "FLCommandLineTool.h"
 
-@class FLCommandLineTool;
+//@class FLCommandLineTool;
+//
+//extern NSString* const FLToolDefaultKey;
+//
+//typedef void (^FLToolTaskBlock)(FLParseableInput* argument);
+//
+//@interface FLToolTask : NSObject<FLParseable> {
+//@private
+//    NSMutableSet* _argumentKeys;
+//    NSString* _taskDescription; 
+//    NSString* _taskName;
+//    FLToolTaskBlock _taskBlock;
+//    NSMutableDictionary* _tasks;
+//    __unsafe_unretained id _parent;
+//    __unsafe_unretained FLCommandLineTool* _tool;
+//}
+//
+//@property (readonly, strong, nonatomic) FLStringFormatter* output;
+//
+//@property (readwrite, assign, nonatomic) id parent;
+//@property (readonly, assign, nonatomic) FLCommandLineTool* tool;
+//
+//@property (readwrite, strong, nonatomic) NSString* taskDescription;
+//
+//@property (readwrite, copy, nonatomic) FLToolTaskBlock taskBlock;
+//
+//// by default, the name is the first key.
+//@property (readwrite, strong, nonatomic) NSString* taskName;
+//
+//@property (readonly, strong, nonatomic) NSSet* argumentKeys;
+//
+//- (id) initWithKeys:(NSString*) name;
+//+ (id) toolTask:(NSString*) keys;
+//+ (id) toolTask;
+//
+//- (void) addKeys:(NSString*) keys; // space and/or comma delimited.
+//
+//
+//// override this
+//- (id) findArguments:(FLParseableInput*) input;
+//- (void) runWithArguments:(id) arguments;
+//
+//// optional overrides
+//- (void) willRunWithArguments:(id) arguments;
+//- (void) didRunWithArguments:(id) arguments;
+//
+//- (void) didFailWithError:(NSError*)error;
+//
+//- (NSString*) buildUsageString;
+//- (void) printHelpToStringFormatter:(FLStringFormatter*) formatter;
+//
+//- (void) didMoveToParent:(id) parent;
+//
+//@end
 
-typedef void (^FLToolTaskBlock)(FLCommandLineArgument* argument, FLCommandLineTool* tool);
-
-@interface FLToolTask : NSObject {
-@private
-    NSMutableSet* _argumentKeys;
-    NSString* _taskDescription; 
-    NSString* _taskName;
-    FLToolTaskBlock _taskBlock;
-}
-
-@property (readwrite, strong, nonatomic) NSString* taskDescription;
-
-@property (readwrite, copy, nonatomic) FLToolTaskBlock taskBlock;
-
-// by default, the name is the first key.
-@property (readwrite, strong, nonatomic) NSString* taskName;
-
-@property (readonly, strong, nonatomic) NSSet* taskArgumentKeys;
-
-- (id) initWithKeys:(NSString*) name;
-+ (id) toolTask:(NSString*) keys;
-+ (id) toolTask;
-
-- (void) addKeys:(NSString*) keys; // space and/or comma delimited.
-
-- (void) runWithArgument:(FLCommandLineArgument*) argument 
-                  inTool:(FLCommandLineTool*) tool;
-
-- (NSString*) buildUsageString;
-- (void) printHelpToStringFormatter:(FLStringFormatter*) formatter;
 
 // utils
 
@@ -71,7 +94,4 @@ typedef void (^FLToolTaskBlock)(FLCommandLineArgument* argument, FLCommandLineTo
 //// just check if inputParameter (for another argumentHandler) is compatible with self
 //- (BOOL) isCompatibleWithParameter:(NSString*) argument;
 //
-
-
-@end
 
