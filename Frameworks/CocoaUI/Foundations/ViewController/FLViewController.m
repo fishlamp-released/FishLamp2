@@ -32,7 +32,7 @@
 }
 
 + (void) load {
-    [NSViewController initUIKitCompatibility];
+//    [NSViewController initUIKitCompatibility];
 }
 #endif
 
