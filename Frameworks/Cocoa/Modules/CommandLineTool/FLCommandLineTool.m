@@ -85,7 +85,6 @@
     [_toolPath release];
     [_toolName release];
 //    [_listeners release];
-    [_output release];
     [_commands release];
     [super dealloc];
 }

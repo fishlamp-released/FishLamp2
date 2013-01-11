@@ -114,16 +114,23 @@
 //    }
 //}                       
 
+- (void) willStartWizardInWindow:(NSWindow*) window {
+   FLPerformSelector1(self.delegate, @selector(wizardViewControllerWillStartWizard:), self);
+}
+
+- (void) didStartWizardInWindow:(NSWindow*) window {
+    FLPerformSelector1(self.delegate, @selector(wizardViewControllerDidStartWizard:), self);
+}
+
 - (void) startWizardInWindow:(NSWindow*) window {
+    [self willStartWizardInWindow:window];
 
-
-    FLPerformSelector1(self.delegate, @selector(wizardViewControllerWillStartWizard:), self);
     [self.view setWantsLayer:YES];
     [window setContentView:self.view];
     [window setDefaultButtonCell:[self.nextButton cell]];
     _statusViewController.view.frame = _notificationViewEnclosure.bounds;
     [_notificationViewEnclosure addSubview:_statusViewController.view];
-    FLPerformSelector1(self.delegate, @selector(wizardViewControllerDidStartWizard:), self);
+    [self didStartWizardInWindow:window];
 }
 
 - (void)loadView {
