@@ -1,6 +1,6 @@
 //
 //  FLException_Inlines.h
-//  FLCocoa
+//  FishLampCocoa
 //
 //  Created by Mike Fullerton on 12/20/12.
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.

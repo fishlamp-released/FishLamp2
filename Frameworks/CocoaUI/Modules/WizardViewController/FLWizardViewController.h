@@ -73,6 +73,9 @@
 - (void) wizardPanelDidAppear:(FLWizardPanel*) wizardPanel;
 - (void) wizardPanelWillAppear:(FLWizardPanel*) wizardPanel;
 
+- (void) willStartWizardInWindow:(NSWindow*) window;
+- (void) didStartWizardInWindow:(NSWindow*) window;
+
 // utils
 - (void) updateBackButtonEnabledState;
 

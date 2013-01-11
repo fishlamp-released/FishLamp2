@@ -68,7 +68,7 @@
     
 #if FL_MRC
 - (void) dealloc {
-    [_folderURL release];
+    [_folderPath release];
 	[super dealloc];
 }
 #endif

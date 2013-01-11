@@ -7,4 +7,4 @@
 //
 
 #import "FishLampCocoa.h"
-#import "__CompatibilityHeaders.h"
+//#import "__CompatibilityHeaders.h"
