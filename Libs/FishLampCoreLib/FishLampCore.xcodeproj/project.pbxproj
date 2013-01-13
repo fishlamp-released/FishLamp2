@@ -387,6 +387,10 @@
 		27DB1E0A167A7CBF00452AD3 /* FLFrameworkModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DB1E08167A7CBF00452AD3 /* FLFrameworkModule.h */; };
 		27DB1E0B167A7CBF00452AD3 /* FLFrameworkModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DB1E08167A7CBF00452AD3 /* FLFrameworkModule.h */; };
 		27DB1E0C167A7CBF00452AD3 /* FLFrameworkModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DB1E08167A7CBF00452AD3 /* FLFrameworkModule.h */; };
+		27F1F53E16A0A73E00B10213 /* NSObject+FLSelectorPerforming_Inlines.h in Headers */ = {isa = PBXBuildFile; fileRef = 27F1F53D16A0A73E00B10213 /* NSObject+FLSelectorPerforming_Inlines.h */; };
+		27F1F53F16A0A73E00B10213 /* NSObject+FLSelectorPerforming_Inlines.h in Headers */ = {isa = PBXBuildFile; fileRef = 27F1F53D16A0A73E00B10213 /* NSObject+FLSelectorPerforming_Inlines.h */; };
+		27F1F54016A0A73E00B10213 /* NSObject+FLSelectorPerforming_Inlines.h in Headers */ = {isa = PBXBuildFile; fileRef = 27F1F53D16A0A73E00B10213 /* NSObject+FLSelectorPerforming_Inlines.h */; };
+		27F1F54116A0A73E00B10213 /* NSObject+FLSelectorPerforming_Inlines.h in Headers */ = {isa = PBXBuildFile; fileRef = 27F1F53D16A0A73E00B10213 /* NSObject+FLSelectorPerforming_Inlines.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -495,8 +499,9 @@
 		2798DB81166D8A7F00A0863D /* SharedTargetSettings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = SharedTargetSettings.xcconfig; sourceTree = "<group>"; };
 		27A43AB415CDCC89001CB13E /* libFishLampCore-iOS-ARC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCore-iOS-ARC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27A43AC415CDCCCB001CB13E /* libFishLampCore-OSX-64-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCore-OSX-64-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		27CBC1F416768BA600753D0A /* libFishLampCore-OSX-32-64-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCore-OSX-32-64-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		27CBC1F416768BA600753D0A /* libFishLampCore-OSX-32-64-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libFishLampCore-OSX-32-64-MRC.a"; path = "libFishLampCore-OSX-3264-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27DB1E08167A7CBF00452AD3 /* FLFrameworkModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLFrameworkModule.h; sourceTree = "<group>"; };
+		27F1F53D16A0A73E00B10213 /* NSObject+FLSelectorPerforming_Inlines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+FLSelectorPerforming_Inlines.h"; sourceTree = "<group>"; };
 		78CC1A80167D383200A37127 /* FishLampCore-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FishLampCore-Prefix.pch"; sourceTree = "<group>"; };
 		78CC1A88167D4B9900A37127 /* FishLampPaths.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = FishLampPaths.xcconfig; path = FishLampBuildSupport/FishLampPaths.xcconfig; sourceTree = "<group>"; };
 		78CC1A8A167D4B9900A37127 /* FishLampProjectSettingsDebug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FishLampProjectSettingsDebug.xcconfig; sourceTree = "<group>"; };
@@ -721,6 +726,7 @@
 				2798CE14166D886500A0863D /* NSDictionary+FLAdditions.m */,
 				2798CE15166D886500A0863D /* NSObject+Blocks.h */,
 				2798CE16166D886500A0863D /* NSObject+Blocks.m */,
+				27F1F53D16A0A73E00B10213 /* NSObject+FLSelectorPerforming_Inlines.h */,
 				2798CE17166D886500A0863D /* NSObject+FLSelectorPerforming.h */,
 				2798CE18166D886500A0863D /* NSObject+FLSelectorPerforming.m */,
 			);
@@ -833,6 +839,7 @@
 				271E3D2516920FC800FB62C9 /* FLWhitespace.h in Headers */,
 				271E3D341692108B00FB62C9 /* FLStringBuilder.h in Headers */,
 				274933F1169A051E008E8EC5 /* __CoreHeaders.h in Headers */,
+				27F1F53E16A0A73E00B10213 /* NSObject+FLSelectorPerforming_Inlines.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -895,6 +902,7 @@
 				271E3D2716920FC800FB62C9 /* FLWhitespace.h in Headers */,
 				271E3D361692108B00FB62C9 /* FLStringBuilder.h in Headers */,
 				274933F3169A051E008E8EC5 /* __CoreHeaders.h in Headers */,
+				27F1F54016A0A73E00B10213 /* NSObject+FLSelectorPerforming_Inlines.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -957,6 +965,7 @@
 				271E3D2616920FC800FB62C9 /* FLWhitespace.h in Headers */,
 				271E3D351692108B00FB62C9 /* FLStringBuilder.h in Headers */,
 				274933F2169A051E008E8EC5 /* __CoreHeaders.h in Headers */,
+				27F1F53F16A0A73E00B10213 /* NSObject+FLSelectorPerforming_Inlines.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1019,6 +1028,7 @@
 				271E3D2816920FC800FB62C9 /* FLWhitespace.h in Headers */,
 				271E3D371692108B00FB62C9 /* FLStringBuilder.h in Headers */,
 				274933F4169A051E008E8EC5 /* __CoreHeaders.h in Headers */,
+				27F1F54116A0A73E00B10213 /* NSObject+FLSelectorPerforming_Inlines.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1093,9 +1103,9 @@
 			productReference = 27A43AC415CDCCCB001CB13E /* libFishLampCore-OSX-64-MRC.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		27CBBE2916768BA600753D0A /* FishLampCore-OSX-32-64-MRC */ = {
+		27CBBE2916768BA600753D0A /* FishLampCore-OSX-3264-MRC */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 27CBC1F116768BA600753D0A /* Build configuration list for PBXNativeTarget "FishLampCore-OSX-32-64-MRC" */;
+			buildConfigurationList = 27CBC1F116768BA600753D0A /* Build configuration list for PBXNativeTarget "FishLampCore-OSX-3264-MRC" */;
 			buildPhases = (
 				27CBBE2A16768BA600753D0A /* Sources */,
 				27CBBFEC16768BA600753D0A /* Frameworks */,
@@ -1105,7 +1115,7 @@
 			);
 			dependencies = (
 			);
-			name = "FishLampCore-OSX-32-64-MRC";
+			name = "FishLampCore-OSX-3264-MRC";
 			productName = FishLampCommandLine;
 			productReference = 27CBC1F416768BA600753D0A /* libFishLampCore-OSX-32-64-MRC.a */;
 			productType = "com.apple.product-type.library.static";
@@ -1136,7 +1146,7 @@
 				27048B70161CB58600C38ADA /* FishLampCore-OSX-32-MRC */,
 				27A43AC315CDCCCB001CB13E /* FishLampCore-OSX-64-MRC */,
 				273148B9165328400027850D /* FishLampCore-OSX-64-ARC */,
-				27CBBE2916768BA600753D0A /* FishLampCore-OSX-32-64-MRC */,
+				27CBBE2916768BA600753D0A /* FishLampCore-OSX-3264-MRC */,
 			);
 		};
 /* End PBXProject section */
@@ -1485,7 +1495,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		27CBC1F116768BA600753D0A /* Build configuration list for PBXNativeTarget "FishLampCore-OSX-32-64-MRC" */ = {
+		27CBC1F116768BA600753D0A /* Build configuration list for PBXNativeTarget "FishLampCore-OSX-3264-MRC" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				27CBC1F216768BA600753D0A /* Debug */,

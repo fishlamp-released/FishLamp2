@@ -15,7 +15,7 @@
 @protocol FLWizardPanelDelegate;
 
 typedef void (^FLWizardPanelBlock)(FLWizardPanel* panel);
-typedef void (^FLWizardPanelNextPanelBlock)(FLWizardViewController* wizard, BOOL animated, FLWizardPanelBlock completion);
+typedef FLWizardPanel* (^FLWizardPanelNextPanelBlock)();
 
 @interface FLWizardPanel : UIViewController {
 @private
@@ -40,8 +40,6 @@ typedef void (^FLWizardPanelNextPanelBlock)(FLWizardViewController* wizard, BOOL
 - (IBAction) respondToNextButton:(id) sender;
 - (IBAction) respondToBackButton:(id) sender;
 - (IBAction) respondToOtherButton:(id) sender;
-
-- (void) pushNextPanel:(BOOL) animated completion:(FLWizardPanelBlock) completion;
 
 - (void) respondToError:(NSError*) error errorMessage:(NSString*) errorMessage;
 

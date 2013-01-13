@@ -10,7 +10,6 @@
 
 @implementation FLUserAuthenticator 
 
-@synthesize context = _context;
 @synthesize userLogin = _userLogin;
 
 - (id) initWithUserLogin:(FLUserLogin*) userLogin {
@@ -45,17 +44,5 @@
     [super dealloc];
 }
 #endif
-
-- (void) didMoveToContext:(id)context  {
-    _context = context;
-}
-
-- (FLResult) runSynchronously {
-    return nil;
-}
-
-- (void) startWorking:(FLFinisher*) finisher {
-    [finisher setFinishedWithResult:[self runSynchronously]];
-}
 
 @end

@@ -56,24 +56,16 @@
 }
 
 - (void) wizardPanelWillDisappear {
-    FLPerformSelector1(self.delegate, @selector(wizardPanelWillDisappear:), self);
+   FLPerformSelector1(self.delegate, @selector(wizardPanelWillDisappear:), self);
 }
 
 - (void) wizardPanelDidDisappear {
-    FLPerformSelector1(self.delegate, @selector(wizardPanelDidDisappear:), self);
-}
-
-- (void) pushNextPanel:(BOOL) animated  
-            completion:(FLWizardPanelBlock) completion {
-
-    if(_nextPanelBlock) {
-        _nextPanelBlock(self.wizard, animated, completion);
-    }
+   FLPerformSelector1(self.delegate, @selector(wizardPanelDidDisappear:), self);
 }
 
 - (void) respondToNextButton:(id) sender {
     FLPerformSelector1(self.delegate, @selector(wizardPanelRespondToNextButton:), self);
-    [self pushNextPanel:YES completion:nil];
+    [self.wizard pushNextWizardPanelAnimated:YES completion:nil];
 }
 
 - (void) respondToBackButton:(id) sender {

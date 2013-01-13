@@ -15,6 +15,8 @@
     self = [super init];
     if(self) {
         self.timingFunction = kCAMediaTimingFunctionEaseInEaseOut;
+        self.duration = 0.5;
+    
     }
 
     return self;

@@ -58,7 +58,7 @@ typedef void (^FLFinishableBlock)(FLFinisher* finisher);
 @end
 
 
-@interface FLScheduledFinisher : FLFinisher
+@interface FLMainThreadFinisher : FLFinisher
 @end
 
 

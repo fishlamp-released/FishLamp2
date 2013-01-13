@@ -60,7 +60,7 @@
 #define FLLowPriorityQueue \
             [FLDispatchQueue sharedLowPriorityQueue]
             
-#define FLDefaultQueue \
+#define FLDefaultDispatcher \
             [FLDispatchQueue sharedDefaultQueue]
             
 #define FLForegroundQueue \
@@ -70,3 +70,10 @@
             [FLFifoDispatchQueue sharedFifoQueue]
 
 
+
+@interface FLDispatchContext : NSObject {
+@private
+    NSMutableArray* _objects;
+}
+
+@end

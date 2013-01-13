@@ -7,31 +7,29 @@
 //
 
 #import "FLObservable.h"
-#import "FLDispatcher.h"
+#import "FLDispatching.h"
 #import "FLResult.h"
-#import "FLObjectAuthenticator.h"
-#import "FLContextuallyDispatchable.h"
 
-@class FLDispatchableContext;
 @class FLOperation;
-@class FLServiceManagingContext;
 
 typedef FLResult (^FLRunOperationBlock)(FLOperation* operation);
 
-@interface FLOperation : FLObservable<FLContextuallyDispatchable, FLAuthenticated> {
+@protocol FLOperationDispatchingContext <NSObject>
+- (id<FLDispatching>) operationDispatcher:(FLOperation*) operation;
+- (void) operationDidStart:(FLOperation*) operation;
+- (void) operationDidFinish:(FLOperation*) operation;
+@end
+
+@interface FLOperation : FLObservable<FLContextual, FLDispatchable> {
 @private
 	id _operationID;
 	FLRunOperationBlock _runBlock;
     BOOL _cancelled;
     id _context;
-    id _authenticator;
+    __unsafe_unretained id _parent;
 }
 
 @property (readonly, strong) id context;
-@property (readwrite, strong) id<FLObjectAuthenticator> authenticator;
-
-// TODO: abstract this better;
-//@property (readonly, assign) FLOperationType operationType;
 
 // misc
 @property (readwrite, strong, nonatomic) id operationID;
@@ -42,15 +40,36 @@ typedef FLResult (^FLRunOperationBlock)(FLOperation* operation);
 + (id) operation;
 + (id) operation:(FLRunOperationBlock) block;
 
-// this will raise an abort exception if runState has been signaled as finished.
-- (void) abortIfNeeded;
-
-@end
-
-@interface FLOperation (OptionalOverrides)
 /// @brief Required override point (or use runBlock).
 /// Either override run or set the operation's run block.
 - (FLResult) runOperation;
+@end
+
+@interface FLOperation (Execution)
+
+// running in current thread.
+- (FLResult) runSynchronouslyInContext:(id) context; 
+
+// async operations will run in:
+// 1. dispatcher provided by context
+// 2. global default dispatcher (FLDefaultDispatcher)
+- (FLFinisher*) startOperationInContext:(id) context completion:(FLCompletionBlock) completion;
+
+// can be called from other thread. dispatcher context may call this.
+- (void) requestCancel;
+
+@end
+
+@interface FLOperation (SubclassUtils)
+
+// this will raise an abort exception if runState has been signaled as finished.
+// only for subclasses to call while executing operation.
+- (void) abortIfNeeded;
+- (BOOL) abortNeeded;
+
+// optional overides
+- (void) didMoveToContext:(id)context;
+
 @end
 
 @protocol FLOperationObserver <NSObject>

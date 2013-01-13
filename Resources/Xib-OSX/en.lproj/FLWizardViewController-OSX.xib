@@ -43,24 +43,12 @@
 						<reference key="NSNextResponder" ref="1005"/>
 						<int key="NSvFlags">290</int>
 						<array class="NSMutableArray" key="NSSubviews">
-							<object class="NSCustomView" id="23240000">
-								<reference key="NSNextResponder" ref="1018746906"/>
-								<int key="NSvFlags">274</int>
-								<string key="NSFrame">{{98, 4}, {220, 32}}</string>
-								<reference key="NSSuperview" ref="1018746906"/>
-								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="726091005"/>
-								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<string key="NSClassName">NSView</string>
-							</object>
 							<object class="NSButton" id="671622157">
 								<reference key="NSNextResponder" ref="1018746906"/>
 								<int key="NSvFlags">289</int>
 								<array class="NSMutableArray" key="NSSubviews"/>
 								<string key="NSFrame">{{396, 2}, {70, 32}}</string>
 								<reference key="NSSuperview" ref="1018746906"/>
-								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<bool key="NSViewIsLayerTreeHost">YES</bool>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="NSEnabled">YES</bool>
@@ -91,8 +79,6 @@
 								<array class="NSMutableArray" key="NSSubviews"/>
 								<string key="NSFrame">{{10, 3}, {82, 32}}</string>
 								<reference key="NSSuperview" ref="1018746906"/>
-								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<bool key="NSViewIsLayerTreeHost">YES</bool>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="NSEnabled">YES</bool>
@@ -119,8 +105,6 @@
 								<array class="NSMutableArray" key="NSSubviews"/>
 								<string key="NSFrame">{{327, 2}, {69, 32}}</string>
 								<reference key="NSSuperview" ref="1018746906"/>
-								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<bool key="NSViewIsLayerTreeHost">YES</bool>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="NSEnabled">YES</bool>
@@ -144,7 +128,6 @@
 						</array>
 						<string key="NSFrameSize">{480, 40}</string>
 						<reference key="NSSuperview" ref="1005"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="654275547"/>
 						<bool key="NSViewIsLayerTreeHost">YES</bool>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -159,7 +142,6 @@
 								<int key="NSvFlags">266</int>
 								<string key="NSFrame">{{17, 266}, {446, 22}}</string>
 								<reference key="NSSuperview" ref="639529674"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="1018746906"/>
 								<bool key="NSViewIsLayerTreeHost">YES</bool>
 								<string key="NSReuseIdentifierKey">_NS:1535</string>
@@ -199,7 +181,6 @@
 						</array>
 						<string key="NSFrame">{{0, 38}, {480, 303}}</string>
 						<reference key="NSSuperview" ref="1005"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="396995919"/>
 						<bool key="NSViewIsLayerTreeHost">YES</bool>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -215,7 +196,6 @@
 								<array class="NSMutableArray" key="NSSubviews"/>
 								<string key="NSFrame">{{390, 6}, {70, 22}}</string>
 								<reference key="NSSuperview" ref="142049478"/>
-								<reference key="NSWindow"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="NSEnabled">YES</bool>
 								<object class="NSButtonCell" key="NSCell" id="524769690">
@@ -244,7 +224,6 @@
 								<array class="NSMutableArray" key="NSSubviews"/>
 								<string key="NSFrame">{{20, 8}, {362, 20}}</string>
 								<reference key="NSSuperview" ref="142049478"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="421991366"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<string key="NSClassName">FLBreadcrumbBarView</string>
@@ -252,7 +231,6 @@
 						</array>
 						<string key="NSFrame">{{0, 341}, {480, 38}}</string>
 						<reference key="NSSuperview" ref="1005"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="146804114"/>
 						<bool key="NSViewIsLayerTreeHost">YES</bool>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -261,7 +239,6 @@
 				</array>
 				<string key="NSFrameSize">{480, 379}</string>
 				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="142049478"/>
 				<bool key="NSViewIsLayerTreeHost">YES</bool>
 				<string key="NSClassName">NSView</string>
@@ -389,14 +366,6 @@
 					</object>
 					<int key="connectionID">88</int>
 				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">_notificationViewEnclosure</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="23240000"/>
-					</object>
-					<int key="connectionID">91</int>
-				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -441,7 +410,6 @@
 							<reference ref="671622157"/>
 							<reference ref="654275547"/>
 							<reference ref="726091005"/>
-							<reference ref="23240000"/>
 						</array>
 						<reference key="parent" ref="1005"/>
 						<string key="objectName">Bottom Bar Enclosure</string>
@@ -539,11 +507,6 @@
 						<reference key="object" ref="524769690"/>
 						<reference key="parent" ref="421991366"/>
 					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">89</int>
-						<reference key="object" ref="23240000"/>
-						<reference key="parent" ref="1018746906"/>
-					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -564,7 +527,6 @@
 				<string key="8.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="84.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="85.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
-				<string key="89.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="9.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
@@ -573,109 +535,7 @@
 			<nil key="sourceID"/>
 			<int key="maxID">91</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes">
-			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
-				<object class="IBPartialClassDescription">
-					<string key="className">FLBreadcrumbBarView</string>
-					<string key="superclassName">NSView</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/FLBreadcrumbBarView.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">FLWizardViewController</string>
-					<string key="superclassName">NSViewController</string>
-					<dictionary class="NSMutableDictionary" key="actions">
-						<string key="respondToBackButton:">id</string>
-						<string key="respondToLogoutButton:">id</string>
-						<string key="respondToNextButton:">id</string>
-						<string key="respondToOtherButton:">id</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="actionInfosByName">
-						<object class="IBActionInfo" key="respondToBackButton:">
-							<string key="name">respondToBackButton:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="respondToLogoutButton:">
-							<string key="name">respondToLogoutButton:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="respondToNextButton:">
-							<string key="name">respondToNextButton:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="respondToOtherButton:">
-							<string key="name">respondToOtherButton:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="_backButton">NSButton</string>
-						<string key="_breadcrumbBarView">FLBreadcrumbBarView</string>
-						<string key="_breadcrumbEnclosureView">NSView</string>
-						<string key="_buttonEnclosureView">NSView</string>
-						<string key="_logoutButton">NSButton</string>
-						<string key="_nextButton">NSButton</string>
-						<string key="_notificationViewEnclosure">NSView</string>
-						<string key="_otherButton">NSButton</string>
-						<string key="_titleTextField">NSTextField</string>
-						<string key="_wizardPanelEnclosureView">NSView</string>
-						<string key="delegate">id</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="_backButton">
-							<string key="name">_backButton</string>
-							<string key="candidateClassName">NSButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="_breadcrumbBarView">
-							<string key="name">_breadcrumbBarView</string>
-							<string key="candidateClassName">FLBreadcrumbBarView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="_breadcrumbEnclosureView">
-							<string key="name">_breadcrumbEnclosureView</string>
-							<string key="candidateClassName">NSView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="_buttonEnclosureView">
-							<string key="name">_buttonEnclosureView</string>
-							<string key="candidateClassName">NSView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="_logoutButton">
-							<string key="name">_logoutButton</string>
-							<string key="candidateClassName">NSButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="_nextButton">
-							<string key="name">_nextButton</string>
-							<string key="candidateClassName">NSButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="_notificationViewEnclosure">
-							<string key="name">_notificationViewEnclosure</string>
-							<string key="candidateClassName">NSView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="_otherButton">
-							<string key="name">_otherButton</string>
-							<string key="candidateClassName">NSButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="_titleTextField">
-							<string key="name">_titleTextField</string>
-							<string key="candidateClassName">NSTextField</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="_wizardPanelEnclosureView">
-							<string key="name">_wizardPanelEnclosureView</string>
-							<string key="candidateClassName">NSView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="delegate">
-							<string key="name">delegate</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</dictionary>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/FLWizardViewController.h</string>
-					</object>
-				</object>
-			</array>
-		</object>
+		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaFramework</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDependencies">

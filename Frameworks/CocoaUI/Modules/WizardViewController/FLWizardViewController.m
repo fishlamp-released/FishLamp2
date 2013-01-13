@@ -22,7 +22,6 @@
 @property (readonly, strong, nonatomic) FLWizardPanel* nextWizardPanel;
 @property (readonly, strong, nonatomic) FLWizardPanel* previousWizardPanel;
 @property (readonly, strong, nonatomic) NSArray* visibleWizardPanels;
-@property (readwrite, strong, nonatomic) UIView* notificationView;
 
 - (IBAction) respondToNextButton:(id) sender;
 - (IBAction) respondToBackButton:(id) sender;
@@ -43,9 +42,6 @@
 @synthesize wizardPanelBackgroundView = _wizardPanelBackgroundView;
 @synthesize backgroundView = _backgroundView;
 @synthesize wizardPanelEnclosureView = _wizardPanelEnclosureView;
-@synthesize notificationView = _notificationView;
-@synthesize notificationViewEnclosure = _notificationViewEnclosure;
-@synthesize statusBar = _statusViewController;
 
 #if FL_MRC
 - (void) dealloc {
@@ -58,9 +54,6 @@
     [_nextButton release];
     [_backButton release];
     [_otherButton release];
-    [_notificationView release];
-    [_statusViewController release];
-    
     [super dealloc];
 }
 #endif
@@ -74,7 +67,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         _wizardPanels = [[NSMutableArray alloc] init];
-        _statusViewController = [[FLStatusBarViewController alloc] init];
     }
     
     return self;
@@ -128,8 +120,6 @@
     [self.view setWantsLayer:YES];
     [window setContentView:self.view];
     [window setDefaultButtonCell:[self.nextButton cell]];
-    _statusViewController.view.frame = _notificationViewEnclosure.bounds;
-    [_notificationViewEnclosure addSubview:_statusViewController.view];
     [self didStartWizardInWindow:window];
 }
 
@@ -202,33 +192,44 @@
     [self updateBackButtonEnabledState];
 }
 
-- (void) wizardPanelWillAppear:(FLWizardPanel*) wizardPanel {
+- (void) willShowWizardPanel:(FLWizardPanel*) wizardPanel {
     if(wizardPanel) {
         [wizardPanel wizardPanelWillAppear];
         FLPerformSelector2(self.delegate, @selector(wizardViewController:wizardPanelWillAppear:), self, wizardPanel);
     }
 }
 
-- (void) wizardPanelDidAppear:(FLWizardPanel*) wizardPanel {
+- (void) didShowWizardPanel:(FLWizardPanel*) wizardPanel {
     if(wizardPanel) {
         [wizardPanel wizardPanelDidAppear];
         FLPerformSelector2(self.delegate, @selector(wizardViewController:wizardPanelDidAppear:), self, wizardPanel);
     }
 }
 
-- (void) wizardPanelWillDissappear:(FLWizardPanel*) wizardPanel {
+- (void) willHideWizardPanel:(FLWizardPanel*) wizardPanel {
     if(wizardPanel) {
         [wizardPanel wizardPanelWillDisappear];
         FLPerformSelector2(self.delegate, @selector(wizardViewController:wizardPanelWillDisappear:), self, wizardPanel);
     }
 }
 
-- (void) wizardPanelDidDissappear:(FLWizardPanel*) wizardPanel {
+- (void) didHideWizardPanel:(FLWizardPanel*) wizardPanel {
     if(wizardPanel) {
         [wizardPanel wizardPanelDidDisappear];
         FLPerformSelector2(self.delegate, @selector(wizardViewController:wizardPanelDidAppear:), self, wizardPanel);
     }
 }
+
+- (void) wizardPanelRespondToNextButton:(FLWizardPanel*) wizardPanel {
+
+}
+
+- (void) wizardPanelRespondToBackButton:(FLWizardPanel*) wizardPanel {
+}
+
+- (void) wizardPanelRespondToOtherButton:(FLWizardPanel*) wizardPanel {
+}
+
 
 - (void) setWizardPanelTitleFields:(FLWizardPanel*) wizardPanel {
 
@@ -268,19 +269,19 @@
     toShow.view.frame = _wizardPanelEnclosureView.bounds;
     [self setViewToResize:toShow.view];
     
-    [self wizardPanelWillAppear:toShow];
+    [self willShowWizardPanel:toShow];
     
     [_wizardPanels addObject:toShow];
 
-    [self wizardPanelWillDissappear:toHide];
+    [self willHideWizardPanel:toHide];
     
     completion = FLCopyWithAutorelease(completion);
     
     dispatch_block_t finished = ^{
         [self setWizardPanelTitleFields:toShow];
-        [self wizardPanelDidDissappear:toHide];
+        [self didHideWizardPanel:toHide];
         [self updateBackButtonEnabledState];
-        [self wizardPanelDidAppear:toShow];
+        [self didShowWizardPanel:toShow];
         
         if(completion) {
             completion(toShow);
@@ -316,8 +317,8 @@
     self.backButton.enabled = NO;
     self.otherButton.hidden = YES;
     
-    [self wizardPanelWillAppear:toShow];
-    [self wizardPanelWillDissappear:toHide];
+    [self willShowWizardPanel:toShow];
+    [self willHideWizardPanel:toHide];
  
     [self setWizardPanelTitleFields:toShow];
     
@@ -328,9 +329,9 @@
         
         [_wizardPanels removeObject:toHide];
         
-        [self wizardPanelDidDissappear:toHide];
+        [self didHideWizardPanel:toHide];
         [self updateBackButtonEnabledState];
-        [self wizardPanelDidAppear:toShow];
+        [self didShowWizardPanel:toShow];
          
         if(completion) {
             completion(toHide);
@@ -350,56 +351,66 @@
     }
 }
 
-- (void) flipToNextNotificationViewWithDirection:(FLFlipAnimationDirection) direction 
-                                        nextView:(UIView*) nextView
-                                      completion:(void (^)()) completion {
+- (void) pushNextWizardPanelAnimated:(BOOL) animated 
+                          completion:(void (^)(FLWizardPanel*)) completion {
+   
+    if(self.visibleWizardPanel.nextPanelBlock) {
+        [self pushWizardPanel:self.visibleWizardPanel.nextPanelBlock() animated:animated completion:completion];
+    }                          
+                                                                        
+}                          
 
-    completion = FLCopyWithAutorelease(completion);
 
-    FLFlipTransition* animation = [FLFlipTransition transitionWithViewToShow:nextView 
-                                                       viewToHide:self.notificationView];
-                                              
-    [animation startAnimating:^(FLResult result) {
-        [self.notificationView removeFromSuperview];
-        self.notificationView = nextView;
-        if(completion) {
-            completion();
-        }
-    }];
-}
-
-- (void) setNotificationView:(UIView*) notificationView 
-                    animated:(BOOL) animated 
-                  completion:(void (^)()) completion {
-    
-    notificationView.frame = self.notificationViewEnclosure.bounds;
-    if(self.notificationView) {
-        if(animated) {
-            [self flipToNextNotificationViewWithDirection:FLFlipAnimationDirectionDown nextView:notificationView completion:completion];
-        }
-        else {
-            [self.notificationView removeFromSuperview];
-            self.notificationView = notificationView;
-            [self.notificationViewEnclosure addSubview:notificationView];
-            
-            if(completion) completion();
-        }
-    }
-    else {
-        self.notificationView = notificationView;
-        [self.notificationViewEnclosure addSubview:notificationView];
-        if(completion) completion();
-    }
-}
-
-- (void) hideNotificationViewAnimated:(BOOL) animated 
-                  completion:(void (^)()) completion {
-
-    [self.notificationView removeFromSuperview];
-    self.notificationView = nil;
-    if(completion) completion();
-
-}                  
+//- (void) flipToNextNotificationViewWithDirection:(FLFlipAnimationDirection) direction 
+//                                        nextView:(UIView*) nextView
+//                                      completion:(void (^)()) completion {
+//
+//    completion = FLCopyWithAutorelease(completion);
+//
+//    FLFlipTransition* animation = [FLFlipTransition transitionWithViewToShow:nextView 
+//                                                       viewToHide:self.notificationView];
+//                                              
+//    [animation startAnimating:^(FLResult result) {
+//        [self.notificationView removeFromSuperview];
+//        self.notificationView = nextView;
+//        if(completion) {
+//            completion();
+//        }
+//    }];
+//}
+//
+//- (void) setNotificationView:(UIView*) notificationView 
+//                    animated:(BOOL) animated 
+//                  completion:(void (^)()) completion {
+//    
+//    notificationView.frame = self.notificationViewEnclosure.bounds;
+//    if(self.notificationView) {
+//        if(animated) {
+//            [self flipToNextNotificationViewWithDirection:FLFlipAnimationDirectionDown nextView:notificationView completion:completion];
+//        }
+//        else {
+//            [self.notificationView removeFromSuperview];
+//            self.notificationView = notificationView;
+//            [self.notificationViewEnclosure addSubview:notificationView];
+//            
+//            if(completion) completion();
+//        }
+//    }
+//    else {
+//        self.notificationView = notificationView;
+//        [self.notificationViewEnclosure addSubview:notificationView];
+//        if(completion) completion();
+//    }
+//}
+//
+//- (void) hideNotificationViewAnimated:(BOOL) animated 
+//                  completion:(void (^)()) completion {
+//
+//    [self.notificationView removeFromSuperview];
+//    self.notificationView = nil;
+//    if(completion) completion();
+//
+//}                  
 
 
 

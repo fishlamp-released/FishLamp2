@@ -9,20 +9,11 @@
 #import "FLOperation.h"
 #import "FLTestResultCollection.h"
 
-@interface FLRunUnitTestsOperation : FLOperation {
-@private
-}
-
-+ (id) unitTestRunnerOperation;
-
-@end
-
-@interface FLUnitTestRunner : NSObject {
+@interface FLUnitTestRunner : FLOperation {
 }
 
 + (id) unitTestRunner;
 
 // returns array of FLTestResultCollection
-- (NSArray*) runAllTests;
 @end
 

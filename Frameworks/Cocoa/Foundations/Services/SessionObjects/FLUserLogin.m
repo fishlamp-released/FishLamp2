@@ -20,4 +20,11 @@
     return nil;
 }
 
++ (id) userLogin:(NSString*) userName password:(NSString*) password {
+    FLUserLogin* userLogin = [FLUserLogin userLogin];
+    userLogin.userName = userName;
+    userLogin.password = password;
+    return userLogin;
+}
+
 @end

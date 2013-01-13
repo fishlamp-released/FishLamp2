@@ -83,6 +83,25 @@ static void * const s_queue_key = (void*)&s_queue_key;
 }
 
 
+
+- (void) dispatchBlockWithDelay:(NSTimeInterval) delay
+                                 block:(dispatch_block_t) block 
+                          withFinisher:(FLFinisher*) finisher {
+ 
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (delay * NSEC_PER_SEC)), _dispatch_queue, ^{
+        @try {
+            if(block) {
+                block();
+            }
+            [finisher setFinished];
+        }
+        @catch(NSException* ex) {
+            [finisher setFinishedWithResult:ex.error];
+        }
+    });
+}                                 
+
+
 - (void) dispatchBlock:(dispatch_block_t) block 
           withFinisher:(FLFinisher*) finisher {
     
@@ -129,6 +148,11 @@ static void * const s_queue_key = (void*)&s_queue_key;
         dispatch_release(semaphore);
     } 
 }    
+
+
+- (void) dispatchBlockSynchronously:(dispatch_block_t) block {
+
+}
 
 @end
 

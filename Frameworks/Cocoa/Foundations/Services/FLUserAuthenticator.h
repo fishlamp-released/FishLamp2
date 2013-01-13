@@ -7,15 +7,14 @@
 //
 
 #import "FLCocoaRequired.h"
-#import "FLContextuallyDispatchable.h"
+#import "FLOperation.h"
 #import "FLUserLogin.h"
 
-@interface FLUserAuthenticator : NSObject<FLContextuallyDispatchable> {
+@interface FLUserAuthenticator : FLOperation {
 @private
     FLUserLogin* _userLogin;
-    id _context;
 }
-@property (readonly, strong) id context;
+
 @property (readonly, strong, nonatomic) FLUserLogin* userLogin;
 
 - (id) initWithUserLogin:(FLUserLogin*) userLogin;
@@ -23,7 +22,5 @@
 
 + (id) userAuthenticator:(NSString*) userName password:(NSString*) password;
 + (id) userAuthenticator:(FLUserLogin*) userLogin;
-
-- (FLResult) runSynchronously;
 
 @end

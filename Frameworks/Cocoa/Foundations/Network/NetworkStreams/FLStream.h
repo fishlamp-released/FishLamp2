@@ -9,6 +9,7 @@
 #import "FLCocoaRequired.h"
 #import "FLTimeoutTimer.h"
 #import "FLResult.h"
+#import "FLDispatching.h"
 
 @protocol FLStream <NSObject>
 @property (readonly, assign) BOOL isOpen;
@@ -46,6 +47,7 @@
     FLTimeoutTimer* _timeoutTimer;
     NSTimeInterval _timeoutInterval;
 }
+
 @property (readwrite, assign) NSTimeInterval timeoutInterval;
 @property (readonly, strong) FLTimeoutTimer* timeoutTimer;
 - (void) touchTimestamp;

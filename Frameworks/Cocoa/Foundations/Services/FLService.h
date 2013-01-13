@@ -11,9 +11,9 @@
 #import "FLResult.h"
 #import "FLObservable.h"
 #import "FLServiceProvider.h"
-#import "FLServiceManagingContext.h"
+#import "FLServiceManager.h"
 
-@class FLServiceManagingContext;
+@class FLServiceManager;
 
 @interface FLService : FLObservable<FLServiceProvider> {
 @private

@@ -21,14 +21,12 @@
 
 @interface FLOperationQueue ()
 @property (readwrite, strong, nonatomic) NSArray* operations;
-@property (readwrite, assign, getter=wasCancelled) BOOL cancelled;
 @property (readwrite, strong) FLOperation* currentOperation;
 @end
 
 @implementation FLOperationQueue
 
 @synthesize operations = _operations;
-@synthesize cancelled = _cancelled;
 @synthesize currentOperation = _currentOperation;
 
 - (id) init {
@@ -258,7 +256,7 @@
 }
 
 - (void) requestCancel {
-    self.cancelled = YES;
+    [super requestCancel];
     [self.currentOperation requestCancel];
 }
 
@@ -278,28 +276,25 @@
 
     @try {
         self.currentOperation = operation;
-        [self.currentOperation  addObserver:self];
-        return [self.currentOperation runSynchronously];
+        return [self.currentOperation runSynchronouslyInContext:self.context];
     }
     @catch(NSException* ex) {
         return ex.error;
     }
     @finally {
-        [self.currentOperation removeObserver:self];
         self.currentOperation = nil;
     }
     
 }
 
-- (void) startWorking:(FLFinisher*) finisher {
-    self.cancelled = NO;
+- (FLResult) runOperation {
 
     id outResult = [NSMutableDictionary dictionary];
     
     for(FLOperation* operation in self.operations.forwardIterator) {
         id operationResult = [self runOperation:operation];
 
-        if(self.wasCancelled) {
+        if(self.abortNeeded) {
             operationResult = [NSError cancelError];
         }
 
@@ -310,7 +305,7 @@
         }
     }
 
-    [finisher setFinishedWithResult:outResult];
+    return outResult;
 }
 
 - (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state 

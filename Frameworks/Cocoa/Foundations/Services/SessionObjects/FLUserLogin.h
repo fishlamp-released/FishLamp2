@@ -16,4 +16,6 @@
 
 @property (readwrite, strong, nonatomic) NSDictionary* userInfo;
 
++ (id) userLogin:(NSString*) userName password:(NSString*) password;
+
 @end

@@ -7,7 +7,7 @@
 //
 
 #import "FLService.h"
-#import "FLServiceManagingContext.h"
+#import "FLServiceManager.h"
 
 @interface FLService ()
 @property (readwrite, assign) id context;
@@ -17,13 +17,13 @@
 
 @synthesize context = _context;
 
-- (void) openService:(FLServiceManagingContext*) context {
+- (void) openService:(FLServiceManager*) context {
 }
 
-- (void) closeService:(FLServiceManagingContext*) context {
+- (void) closeService:(FLServiceManager*) context {
 }
 
-- (void) didMoveToServiceManagerContext:(FLServiceManagingContext*) context {
+- (void) didMoveToContext:(FLServiceManager*) context {
     self.context = context;
 }
 

@@ -182,7 +182,7 @@
                     
                     FLLog(@"STARTING %@", testCase.testCaseName);
 
-                    [testCase runSynchronously];
+                    [testCase runSynchronouslyInContext:self.context];
                     [result setPassed];
                     FLLog(@"PASS!")
                 }

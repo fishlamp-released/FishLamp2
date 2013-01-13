@@ -18,7 +18,6 @@
     BOOL _isOpen;
 }
 @property (readwrite, assign) id<FLReadStreamDelegate> delegate;
-
 @property (readonly, assign, nonatomic) CFReadStreamRef streamRef;
 
 - (BOOL) hasBytesAvailable;
@@ -32,6 +31,7 @@
 @end
 
 @protocol FLReadStreamDelegate <NSObject>
+
 - (void) readStreamDidOpen:(FLReadStream*) networkStream;
 
 - (void) readStream:(FLReadStream*) networkStream 

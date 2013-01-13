@@ -9,6 +9,12 @@
 #import "NSObject+FLSelectorPerforming.h"
 //#import "FLObjcRuntime.h"
 
+#if DEBUG
+#define __INLINES__
+#import "NSObject+FLSelectorPerforming_Inlines.h"
+#undef __INLINES__
+#endif
+
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Warc-performSelector-leaks"
 

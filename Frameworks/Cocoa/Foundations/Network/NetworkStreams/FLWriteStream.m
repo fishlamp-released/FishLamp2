@@ -79,9 +79,9 @@ static void WriteStreamClientCallBack(CFWriteStreamRef readStream,
 
 //    FLAssert_v([NSThread currentThread] == self.thread, @"tcp operation on wrong thread");
 
-#if TRACE
-    FLDebugLog(@"Read Stream got event %d", eventType);
-#endif
+//#if TRACE
+//    FLDebugLog(@"Write Stream got event %d", eventType);
+//#endif
 
     switch (eventType)  {
         case kCFStreamEventOpenCompleted: {

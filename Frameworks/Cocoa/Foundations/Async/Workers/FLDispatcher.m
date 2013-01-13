@@ -1,13 +1,12 @@
 //
-//  FLDispatcher.m
-//  FLCore
+//  FLAbstractDispatcher.m
+//  FishLampCocoa
 //
-//  Created by Mike Fullerton on 11/16/12.
-//  Copyright (c) 2012 Mike Fullerton. All rights reserved.
+//  Created by Mike Fullerton on 1/12/13.
+//  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
 
 #import "FLDispatcher.h"
-
 
 @implementation FLDispatcher 
 
@@ -16,7 +15,6 @@
 - (FLFinisher*) dispatchBlock:(dispatch_block_t) block {
     return [self dispatchBlock:block completion:nil];
 }
-
 
 - (void) willDispatchObject:(id) object {
     FLPerformSelector2(self.delegate, @selector(dispatcher:willDispatchObject:), self, object);
@@ -34,6 +32,10 @@
     }
 }
 
+- (FLFinisher*) createFinisher:(FLCompletionBlock) completionBlock {
+    return [FLMainThreadFinisher finisher:completionBlock];
+}
+
 - (void) dispatchFinishableBlock:(FLFinishableBlock) block 
               withFinisher:(FLFinisher*) finisher {
 
@@ -45,7 +47,7 @@
 - (FLFinisher*) dispatchBlock:(dispatch_block_t) block 
                 completion:(FLCompletionBlock) completion {
 
-    FLFinisher* finisher = [FLScheduledFinisher finisherWithResultBlock:completion];
+    FLFinisher* finisher = [self createFinisher:completion];
 
     FLAssertNotNil_(block);
     FLAssertNotNil_(finisher);
@@ -62,7 +64,7 @@
 - (FLFinisher*) dispatchFinishableBlock:(FLFinishableBlock) block 
                              completion:(FLCompletionBlock) completion {
 
-    FLFinisher* finisher = [FLScheduledFinisher finisherWithResultBlock:completion];
+    FLFinisher* finisher = [self createFinisher:completion];
     FLAssertNotNil_(block);
     FLAssertNotNil_(finisher);
     [self dispatchFinishableBlock:block withFinisher:finisher];
@@ -73,27 +75,81 @@
     return [self dispatchObject:object completion:nil];
 }
 
-- (void) willEnqueueObject:(id) object {
-}
-
 - (FLFinisher*) dispatchObject:(id) object 
                     completion:(FLCompletionBlock) completion {
 
     FLAssertNotNil_(object);
 
-    FLFinisher* finisher = [FLScheduledFinisher finisher:completion];
+    FLFinisher* finisher = [self createFinisher:completion];
 
     return [self dispatchBlock: ^{
+        
+        [self willDispatchObject:object];
+        
+        FLFinisher* objectFinisher =  [self createFinisher:^(FLResult result) {
+            [finisher setFinishedWithResult:result];
+            [self didDispatchObject:object];
+        }];
+        
         @try {
-            [object startWorking:finisher];
+            [object startWorking:objectFinisher];
         }
         @catch(NSException* ex) {
-            [finisher setFinishedWithResult:ex.error];
+            [objectFinisher setFinishedWithResult:ex.error];
         }
     }];
     
     return finisher;
 }
+
+//- (FLFinisher*) dispatchObject:(id) object 
+//                    completion:(FLCompletionBlock) completion {
+//
+//    FLAssertNotNil_(object);
+//
+//    FLFinisher* finisher = nil;
+//
+//    id context = self.context;
+//    if(context) {
+//        FLSafeguardBlock(completion);
+//    
+//         finisher = [self createFinisher:^(FLResult result) {
+//            if(completion) {
+//                completion(result));
+//            }
+//            FLPerformSelector2(context, @selector(dispatcher:didDispatchObject:), self, object);
+//        }];
+//    }
+//    else {
+//        finisher = [self createFinisher:completion];
+//    }
+//
+//    return [self dispatchBlock: ^{
+//        @try {
+//            FLPerformSelector2(context, @selector(dispatcher:willDispatchObject:), self, object);
+//            [object startWorking:finisher];
+//        }
+//        @catch(NSException* ex) {
+//            [finisher setFinishedWithResult:ex.error];
+//        }
+//     }];
+//    
+//    return finisher;
+//}
+
+- (void) dispatchBlockWithDelay:(NSTimeInterval) delay
+                                 block:(dispatch_block_t) block 
+                          withFinisher:(FLFinisher*) finisher {
+                          
+}                          
+
+- (FLFinisher*) dispatchBlockWithDelay:(NSTimeInterval) delay
+                                 block:(dispatch_block_t) block {
+
+    FLFinisher* finisher = [self createFinisher:nil];
+    [self dispatchBlockWithDelay:delay block:block withFinisher:finisher];
+    return finisher;
+}                          
 
 
 - (FLFinisher*) dispatchTarget:(id) target 

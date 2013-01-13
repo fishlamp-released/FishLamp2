@@ -13,22 +13,6 @@
 #import "FLStaticTestMethodRunner.h"
 #import "FLObjcRuntime.h"
 
-@interface FLRunUnitTestsOperation()
-@end
-
-@implementation FLRunUnitTestsOperation
-
-+ (id) unitTestRunnerOperation {
-    return FLAutorelease([[[self class] alloc] init]);
-}
-
-- (FLResult) runOperation {
-    FLUnitTestRunner* runner = [FLUnitTestRunner unitTestRunner];
-    return [runner runAllTests];
-}
-
-@end
-
 @implementation FLUnitTestRunner 
 
 + (id) unitTestRunner {
@@ -63,13 +47,13 @@
     NSMutableArray* array = [NSMutableArray array];
     NSArray* workers = [self findTestWorkers];
     for(id worker in workers) {
-        FLResult result = [worker runTests];
+        FLResult result = [worker runSynchronouslyInContext:self.context];
         [array addObject:result];
     }
     return array;
 }
 
-- (NSArray*) runAllTests {
+- (NSArray*) runOperation {
     return [self runTestWorkers:[self findTestWorkers]];
 }
 

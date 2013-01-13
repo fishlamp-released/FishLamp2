@@ -32,7 +32,7 @@
 
 + (id) loginWizardPanel;
 
-- (void) didFinishAuthenticatingWithResult:(FLResult) result;
+//- (void) didFinishAuthenticatingWithResult:(FLResult) result;
 
 @end
 

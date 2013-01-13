@@ -8,6 +8,7 @@
 
 #import "FLReadStream.h"
 #import "FLCoreFoundation.h"
+#import "FLTraceOff.h"
 
 @interface FLReadStream ()
 - (void) handleStreamEvent:(CFStreamEventType) eventType;
@@ -80,9 +81,9 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
 
 //    FLAssert_v([NSThread currentThread] == self.thread, @"tcp operation on wrong thread");
 
-#if TRACE
-    FLDebugLog(@"Read Stream got event %d", eventType);
-#endif
+//#if TRACE
+//    FLDebugLog(@"Read Stream got event %d", eventType);
+//#endif
 
     switch (eventType)  {
         case kCFStreamEventOpenCompleted: {

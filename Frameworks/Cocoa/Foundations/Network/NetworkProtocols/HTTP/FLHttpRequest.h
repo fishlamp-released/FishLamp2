@@ -8,40 +8,47 @@
 
 #import "FLCocoaRequired.h"
 #import "FLObservable.h"
-
+#import "FLDispatching.h"
+#import "FLReadStream.h"
 #import "FLResult.h"
-#import "FLFinisher.h"
-
 #import "FLHttpResponse.h"
 #import "FLHttpRequestBody.h"
 
-#import "FLReadStream.h"
-#import "FLObjectAuthenticator.h"
-#import "FLContextuallyDispatchable.h"
+@class FLHttpRequest;
+@class FLFinisher;
 
-@class FLDispatchableContext;
-@class FLDispatchQueue;
+@protocol FLHttpRequestAuthenticator <NSObject>
+// this needs to be synchronous for scheduling reasons amoung concurrent requests.
+- (void) authenticateHttpRequest:(FLHttpRequest*) httpRequest;
+@end
 
-@interface FLHttpRequest : FLObservable<FLReadStreamDelegate, FLContextuallyDispatchable, FLAuthenticated> {
+@protocol FLHttpRequestDispatchingContext <NSObject>
+- (id<FLDispatching>) httpRequestFifoDispatcher:(FLHttpRequest*) request;
+- (id<FLHttpRequestAuthenticator>) httpRequestAuthenticator:(FLHttpRequest*) request;
+- (void) httpRequestDidStart:(FLHttpRequest*) request;
+- (void) httpRequestDidFinish:(FLHttpRequest*) request;
+@end
+
+
+@interface FLHttpRequest : FLObservable<FLReadStreamDelegate, FLDispatchable, FLContextual> {
 @private
     FLHttpRequestHeaders* _headers;
     FLHttpRequestBody* _body;
     FLFinisher* _finisher;
     FLMutableHttpResponse* _response;
     FLReadStream* _networkStream;
-    FLDispatchQueue* _dispatchQueue;
     id _context;
-    id _authenticator;
+    id<FLDispatching> _dispatcher;
+    BOOL _authenticationDisabled;
 }
 
-// dispatchable
+@property (readwrite, assign, nonatomic) BOOL authenticationDisabled;
+
 @property (readonly, strong) id context;
-@property (readwrite, strong) id<FLObjectAuthenticator> authenticator;
 
 // http
 @property (readonly, strong, nonatomic) FLHttpRequestHeaders* headers;
 @property (readonly, strong, nonatomic) FLHttpRequestBody* body;
-
 
 - (id) initWithRequestURL:(NSURL*) requestURL;
 
@@ -53,7 +60,25 @@
 
 + (id) httpRequest;
 
-// optional overrides
+
+@end
+
+@interface FLHttpRequest () // Sending
+
+// by default the request is run in global FIFO queue (FLFifoDispatchQueue) 
+// if the context provides a dispatcher, that one will be used instead.
+- (void) requestCancel;
+
+- (FLResult) sendSynchronouslyInContext:(id) context;
+
+- (FLFinisher*) startRequestInContext:(id) context 
+                      completionBlock:(FLCompletionBlock) completionBlock;
+@end
+
+@interface FLHttpRequest () // optional overrides
+
+- (void) willAuthenticateHttpRequest:(id<FLHttpRequestAuthenticator>) authenticator;
+- (void) didAuthenticateHttpRequest;
 
 /// called before the request is started. You may set ALL of the
 /// request info here, including the URL
@@ -69,11 +94,9 @@
 // Redirects
 //
 
-// TODO: add max number of redirects.
- 
 /// this returns YES by default.
 - (BOOL) shouldRedirectToURL:(NSURL*) url;
-
+- (void) didMoveToContext:(id) context;
 @end
 
 
@@ -97,4 +120,6 @@
 - (void) httpRequestDidWriteBytes:(FLHttpRequest*) httpRequest;
 
 @end
+
+
 

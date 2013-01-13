@@ -217,6 +217,15 @@
 		27D1E5C2166D355C00DB680E /* FishLampCocoa-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27D1E5C1166D355C00DB680E /* FishLampCocoa-Prefix.pch */; };
 		27D1E5C3166D355C00DB680E /* FishLampCocoa-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27D1E5C1166D355C00DB680E /* FishLampCocoa-Prefix.pch */; };
 		27D1E5C4166D355C00DB680E /* FishLampCocoa-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27D1E5C1166D355C00DB680E /* FishLampCocoa-Prefix.pch */; };
+		27FE4A3D16A2499200C8F0FB /* UIView+FLEnabled.h in Headers */ = {isa = PBXBuildFile; fileRef = 27FE4A3B16A2499200C8F0FB /* UIView+FLEnabled.h */; };
+		27FE4A3E16A2499200C8F0FB /* UIView+FLEnabled.h in Headers */ = {isa = PBXBuildFile; fileRef = 27FE4A3B16A2499200C8F0FB /* UIView+FLEnabled.h */; };
+		27FE4A3F16A2499200C8F0FB /* UIView+FLEnabled.h in Headers */ = {isa = PBXBuildFile; fileRef = 27FE4A3B16A2499200C8F0FB /* UIView+FLEnabled.h */; };
+		27FE4A4016A2499200C8F0FB /* UIView+FLEnabled.h in Headers */ = {isa = PBXBuildFile; fileRef = 27FE4A3B16A2499200C8F0FB /* UIView+FLEnabled.h */; };
+		27FE4A4116A2499200C8F0FB /* UIView+FLEnabled.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FE4A3C16A2499200C8F0FB /* UIView+FLEnabled.m */; };
+		27FE4A4216A2499200C8F0FB /* UIView+FLEnabled.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FE4A3C16A2499200C8F0FB /* UIView+FLEnabled.m */; };
+		27FE4A4316A2499200C8F0FB /* UIView+FLEnabled.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FE4A3C16A2499200C8F0FB /* UIView+FLEnabled.m */; };
+		27FE4A4416A2499200C8F0FB /* UIView+FLEnabled.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FE4A3C16A2499200C8F0FB /* UIView+FLEnabled.m */; };
+		27FE4A4516A2499200C8F0FB /* UIView+FLEnabled.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FE4A3C16A2499200C8F0FB /* UIView+FLEnabled.m */; };
 		78329C02167E97C20024E8DC /* FLCocoaUIRequired.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329B72167E97C10024E8DC /* FLCocoaUIRequired.h */; };
 		78329C03167E97C20024E8DC /* FLCocoaUIRequired.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329B72167E97C10024E8DC /* FLCocoaUIRequired.h */; };
 		78329C04167E97C20024E8DC /* FLCocoaUIRequired.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329B72167E97C10024E8DC /* FLCocoaUIRequired.h */; };
@@ -761,6 +770,8 @@
 		27A43AC415CDCCCB001CB13E /* libFishLampCocoaUI-OSX-64-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoaUI-OSX-64-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27CBC1F416768BA600753D0A /* libFishLampCocoaUI-OSX-32-64-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoaUI-OSX-32-64-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27D1E5C1166D355C00DB680E /* FishLampCocoa-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FishLampCocoa-Prefix.pch"; sourceTree = "<group>"; };
+		27FE4A3B16A2499200C8F0FB /* UIView+FLEnabled.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+FLEnabled.h"; sourceTree = "<group>"; };
+		27FE4A3C16A2499200C8F0FB /* UIView+FLEnabled.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+FLEnabled.m"; sourceTree = "<group>"; };
 		78329B61167E41260024E8DC /* FishLampProjectSettingsDebug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FishLampProjectSettingsDebug.xcconfig; sourceTree = "<group>"; };
 		78329B62167E41260024E8DC /* FishLampProjectSettingsRelease.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FishLampProjectSettingsRelease.xcconfig; sourceTree = "<group>"; };
 		78329B63167E41260024E8DC /* FishLampTargetSettings-iOS-ARC.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "FishLampTargetSettings-iOS-ARC.xcconfig"; sourceTree = "<group>"; };
@@ -1198,6 +1209,8 @@
 				78329BC0167E97C20024E8DC /* UIView+ViewAnimation.m */,
 				789EF0C9167EBD410019D6B2 /* FLView.h */,
 				789EF0CA167EBD410019D6B2 /* FLView.m */,
+				27FE4A3B16A2499200C8F0FB /* UIView+FLEnabled.h */,
+				27FE4A3C16A2499200C8F0FB /* UIView+FLEnabled.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1428,6 +1441,7 @@
 				2731CCBC1697346800465E6C /* FLPopInAnimation.h in Headers */,
 				274933F6169A0608008E8EC5 /* __CocoaUIHeaders.h in Headers */,
 				27493733169A175D008E8EC5 /* FishLampCocoaUI.h in Headers */,
+				27FE4A3D16A2499200C8F0FB /* UIView+FLEnabled.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1514,6 +1528,7 @@
 				2731CCBE1697346800465E6C /* FLPopInAnimation.h in Headers */,
 				274933F8169A0608008E8EC5 /* __CocoaUIHeaders.h in Headers */,
 				27493735169A175D008E8EC5 /* FishLampCocoaUI.h in Headers */,
+				27FE4A3F16A2499200C8F0FB /* UIView+FLEnabled.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1600,6 +1615,7 @@
 				2731CCBD1697346800465E6C /* FLPopInAnimation.h in Headers */,
 				274933F7169A0608008E8EC5 /* __CocoaUIHeaders.h in Headers */,
 				27493734169A175D008E8EC5 /* FishLampCocoaUI.h in Headers */,
+				27FE4A3E16A2499200C8F0FB /* UIView+FLEnabled.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1686,6 +1702,7 @@
 				2731CCBF1697346800465E6C /* FLPopInAnimation.h in Headers */,
 				274933F9169A0608008E8EC5 /* __CocoaUIHeaders.h in Headers */,
 				27493736169A175D008E8EC5 /* FishLampCocoaUI.h in Headers */,
+				27FE4A4016A2499200C8F0FB /* UIView+FLEnabled.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1760,9 +1777,9 @@
 			productReference = 27A43AC415CDCCCB001CB13E /* libFishLampCocoaUI-OSX-64-MRC.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		27CBBE2916768BA600753D0A /* FishLampCocoaUI-OSX-32-64-MRC */ = {
+		27CBBE2916768BA600753D0A /* FishLampCocoaUI-OSX-3264-MRC */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 27CBC1F116768BA600753D0A /* Build configuration list for PBXNativeTarget "FishLampCocoaUI-OSX-32-64-MRC" */;
+			buildConfigurationList = 27CBC1F116768BA600753D0A /* Build configuration list for PBXNativeTarget "FishLampCocoaUI-OSX-3264-MRC" */;
 			buildPhases = (
 				27CBBE2A16768BA600753D0A /* Sources */,
 				27CBBFEC16768BA600753D0A /* Frameworks */,
@@ -1772,7 +1789,7 @@
 			);
 			dependencies = (
 			);
-			name = "FishLampCocoaUI-OSX-32-64-MRC";
+			name = "FishLampCocoaUI-OSX-3264-MRC";
 			productName = FishLampCommandLine;
 			productReference = 27CBC1F416768BA600753D0A /* libFishLampCocoaUI-OSX-32-64-MRC.a */;
 			productType = "com.apple.product-type.library.static";
@@ -1803,7 +1820,7 @@
 				27048B70161CB58600C38ADA /* FishLampCocoaUI-OSX-32-MRC */,
 				27A43AC315CDCCCB001CB13E /* FishLampCocoaUI-OSX-64-MRC */,
 				273148B9165328400027850D /* FishLampCocoaUI-OSX-64-ARC */,
-				27CBBE2916768BA600753D0A /* FishLampCocoaUI-OSX-32-64-MRC */,
+				27CBBE2916768BA600753D0A /* FishLampCocoaUI-OSX-3264-MRC */,
 			);
 		};
 /* End PBXProject section */
@@ -1887,6 +1904,7 @@
 				2731CCAB16962E1900465E6C /* FLDrawableString.m in Sources */,
 				2731CCB61696552400465E6C /* FLCoreText.m in Sources */,
 				2731CCC11697346800465E6C /* FLPopInAnimation.m in Sources */,
+				27FE4A4216A2499200C8F0FB /* UIView+FLEnabled.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1968,6 +1986,7 @@
 				2731CCAD16962E1900465E6C /* FLDrawableString.m in Sources */,
 				2731CCB81696552400465E6C /* FLCoreText.m in Sources */,
 				2731CCC31697346800465E6C /* FLPopInAnimation.m in Sources */,
+				27FE4A4416A2499200C8F0FB /* UIView+FLEnabled.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2049,6 +2068,7 @@
 				2731CCAA16962E1900465E6C /* FLDrawableString.m in Sources */,
 				2731CCB51696552400465E6C /* FLCoreText.m in Sources */,
 				2731CCC01697346800465E6C /* FLPopInAnimation.m in Sources */,
+				27FE4A4116A2499200C8F0FB /* UIView+FLEnabled.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2130,6 +2150,7 @@
 				2731CCAC16962E1900465E6C /* FLDrawableString.m in Sources */,
 				2731CCB71696552400465E6C /* FLCoreText.m in Sources */,
 				2731CCC21697346800465E6C /* FLPopInAnimation.m in Sources */,
+				27FE4A4316A2499200C8F0FB /* UIView+FLEnabled.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2211,6 +2232,7 @@
 				2731CCAE16962E1900465E6C /* FLDrawableString.m in Sources */,
 				2731CCB91696552400465E6C /* FLCoreText.m in Sources */,
 				2731CCC41697346800465E6C /* FLPopInAnimation.m in Sources */,
+				27FE4A4516A2499200C8F0FB /* UIView+FLEnabled.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2372,7 +2394,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		27CBC1F116768BA600753D0A /* Build configuration list for PBXNativeTarget "FishLampCocoaUI-OSX-32-64-MRC" */ = {
+		27CBC1F116768BA600753D0A /* Build configuration list for PBXNativeTarget "FishLampCocoaUI-OSX-3264-MRC" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				27CBC1F216768BA600753D0A /* Debug */,
