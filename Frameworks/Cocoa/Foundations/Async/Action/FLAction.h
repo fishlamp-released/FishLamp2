@@ -31,7 +31,7 @@ typedef void (^FLActionErrorBlock)(FLAction* action, NSError* error);
 @protocol FLActionErrorDelegate;
 @protocol FLActionDelegate;
 
-@interface FLAction : FLObservable<FLActionDescription, FLWeaklyReferenced, FLContextuallyDispatchable> {
+@interface FLAction : FLObservable<FLActionDescription, FLWeaklyReferenced, FLDispatchable> {
 @private
     FLOperationQueue* _operations;
 
@@ -51,7 +51,11 @@ typedef void (^FLActionErrorBlock)(FLAction* action, NSError* error);
     BOOL _disableWarningNotifications;
 	BOOL _disableActivityTimer;
     BOOL _networkRequired;
+    
+    id _context;
 }
+
+@property (readonly, strong) id context;
 
 //@property (readwrite, strong, nonatomic) id<FLActionDelegate> delegate;
 
@@ -89,6 +93,8 @@ typedef void (^FLActionErrorBlock)(FLAction* action, NSError* error);
 - (void) showProgress;
 - (void) willHandleError:(NSError*) error;
 - (void) willReportError:(NSError*) error;
+
+- (FLResult) runSynchronouslyInContext:(id) context; 
 
 @end
 

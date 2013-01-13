@@ -7,13 +7,12 @@
 //
 
 #import "FLTestFinder.h"
+#import "FLOperation.h"
 
-@interface FLUnitTestSubclassRunner : NSObject<FLTestFinder> {
+@interface FLUnitTestSubclassRunner : FLOperation<FLTestFinder> {
 @private
     NSMutableArray* _classList;
 }
 + (id) unitTestSubclassRunner;
-
-- (id) runTests;
 
 @end

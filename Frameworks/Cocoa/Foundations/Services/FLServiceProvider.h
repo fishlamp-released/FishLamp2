@@ -10,16 +10,16 @@
 #import "FLResult.h"
 #import "FLFinisher.h"
 
-@class FLServiceManagingContext;
+@class FLServiceManager;
 
 @protocol FLServiceProvider <NSObject>
 
 @property (readonly, assign) id context;
-- (void) didMoveToServiceManagerContext:(FLServiceManagingContext*) context;
+- (void) didMoveToContext:(id) context;
 
 @optional
-- (void) openService:(FLServiceManagingContext*) context;
-- (void) closeService:(FLServiceManagingContext*) context;
+- (void) openService:(FLServiceManager*) context;
+- (void) closeService:(FLServiceManager*) context;
 - (void) requestCancel;
 @end
 

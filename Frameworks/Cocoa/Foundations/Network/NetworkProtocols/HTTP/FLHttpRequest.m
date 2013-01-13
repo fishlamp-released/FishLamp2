@@ -12,8 +12,7 @@
 #import "FLReadStream.h"
 #import "FishLampCore.h"
 #import "FLHttpMessage.h"
-#import "FLDispatchableContext.h"
-#import "FLDispatcher.h"
+#import "FLDispatching.h"
 #import "FLDispatchQueue.h"
 
 //#if IOS
@@ -25,8 +24,9 @@
 @interface FLHttpRequest ()
 @property (readwrite, strong) FLHttpResponse* httpResponse;
 @property (readwrite, strong) FLReadStream* networkStream;
-@property (readwrite, strong) FLDispatchQueue* dispatchQueue;
+@property (readwrite, strong) id<FLDispatching> dispatcher;
 @property (readwrite, strong) FLFinisher* finisher;
+@property (readwrite, strong) id context;
 
 - (void) readResponseHeadersIfNeeded;
 - (void) openHttpStreamWithURL:(NSURL*) url;
@@ -73,12 +73,12 @@
 @implementation FLHttpRequest
 @synthesize httpResponse = _response;
 @synthesize networkStream = _networkStream;
-@synthesize dispatchQueue = _dispatchQueue;
 @synthesize finisher = _finisher;
 @synthesize body = _body;
 @synthesize context = _context;
-@synthesize authenticator = _authenticator;
 @synthesize headers = _headers;
+@synthesize dispatcher = _dispatcher;
+@synthesize authenticationDisabled = _authenticationDisabled;
 
 - (id) init {
     self = [self initWithRequestURL:nil httpMethod:nil];
@@ -113,12 +113,10 @@
 
 - (void) dealloc {
     _networkStream.delegate = nil;
-    FLReleasePooledObject(&_dispatchQueue);
-
 #if FL_MRC
+    [_dispatcher release];
     [_headers release];
     [_context release];
-    [_authenticator release];
     [_finisher release];
     [_body release];
     [_response release];
@@ -128,7 +126,9 @@
 }
 
 - (void) didMoveToContext:(id)context {
-    _context = context;
+    if(context != self.context) {
+        self.context = context;
+    }
 }
 
 + (id) httpGetRequest:(NSURL*) url {
@@ -272,14 +272,18 @@
             [self.finisher setFinishedWithResult:result];
         }
         
+        [self.context httpRequestDidFinish:self];
+
         self.finisher = nil;
         self.networkStream = nil;
         self.httpResponse = nil;
+        
+        self.dispatcher = nil;
     }
 }
 
 - (void) closeStreamWithResult:(id) result {
-    [self.dispatchQueue dispatchBlock:^{
+    [self.dispatcher dispatchBlock:^{
         [self.networkStream closeStreamWithResult:result];
     }];
 }
@@ -291,12 +295,8 @@
 - (void) willSendHttpRequest {
 }
 
-- (void) wasStartedInHttpRequestContext:(FLDispatchableContext*) context {
-
-}
-
 - (void) readStreamDidOpen:(FLReadStream*) networkStream {
-    [self.dispatchQueue dispatchBlock:^{
+    [self.dispatcher dispatchBlock:^{
         [self readResponseHeadersIfNeeded];
     }];
 }
@@ -308,7 +308,7 @@
 - (void) readStream:(FLReadStream*) networkStream 
     didCloseWithResult:(FLResult) result {
     
-    [self.dispatchQueue dispatchBlock:^{
+    [self.dispatcher dispatchBlock:^{
         if([result error]) {
             [self didCloseWithResult:result];
         }
@@ -343,7 +343,7 @@
 }
 
 - (void) readStreamHasBytesAvailable:(id<FLReadStream>) networkStream {
-    [self.dispatchQueue dispatchBlock:^{
+    [self.dispatcher dispatchBlock:^{
         [self readResponseHeadersIfNeeded];
         [self.networkStream readAvailableBytes:_response.mutableResponseData];
     }];
@@ -353,8 +353,17 @@
     [self postObservation:@selector(httpRequestDidReadBytes:)];
 }
 
-- (void) startRequest {
-    [self.dispatchQueue dispatchBlock:^{
+- (void) willAuthenticateHttpRequest:(id<FLHttpRequestAuthenticator>) authenticator {
+    
+}
+
+- (void) didAuthenticateHttpRequest {
+
+}
+
+- (void) sendRequest {
+    self.dispatcher = [FLFifoDispatchQueue fifoDispatchQueue];
+    [self.dispatcher dispatchBlock:^{
         [self willSendHttpRequest]; // this may set requestURL
         [self openHttpStreamWithURL:self.headers.requestURL];
     }];
@@ -362,34 +371,37 @@
 
 - (void) startWorking:(FLFinisher*) finisher {
 
+    [self.context httpRequestDidStart:self];
     self.finisher = finisher;
-    
-    if(!self.dispatchQueue) {
-        [[FLFifoDispatchQueue pool] requestPooledObject:^(id<FLDispatcher> dispatcher) {
-            self.dispatchQueue = dispatcher;
-            [self startRequest];
-        }];
-    }
-    else {
-        [self startRequest];
-    }
-}
 
-//- (FLFinisher*) sendRequest:(FLCompletionBlock) completion {
-//    return [self startPerforming:completion];
-//}
-//
-//- (FLFinisher*) sendRequest {
-//    return [self sendRequest:nil];
-//}
-//
-//- (FLResult) runSynchronously {
-//    return [[self sendRequest] waitUntilFinished];
-//}
-//
-//- (FLResult) sendRequestSynchronously {
-//    return [self runSynchronously];
-//}
+    id<FLDispatching> dispatcher = nil;
+    if([self.context respondsToSelector:@selector(httpRequestFifoDispatcher:)]) {
+        dispatcher = [self.context httpRequestFifoDispatcher:self];
+    }
+    
+    if(!dispatcher) {
+        dispatcher = FLFifoQueue;
+    }
+    
+    [dispatcher dispatchBlock:^{
+        @try {
+            if(!self.authenticationDisabled) {
+                id<FLHttpRequestAuthenticator> authenticator = [self.context httpRequestAuthenticator:self];
+                if(authenticator) {
+                    [self willAuthenticateHttpRequest:authenticator];
+                    [authenticator authenticateHttpRequest:self];
+                    [self didAuthenticateHttpRequest];
+                }
+            }
+        
+            [self sendRequest];
+        }
+        @catch(NSException* ex) {
+            [self closeStreamWithResult:ex.error];
+        }
+    }];
+    
+}
 
 - (NSString*) description {
     NSMutableString* desc = [NSMutableString stringWithFormat:@"%@\r\n", [super description]];
@@ -397,6 +409,25 @@
     [desc appendString:[self.body description]];
     return desc;
 }
+
+- (FLResult) sendSynchronouslyInContext:(id) context {
+    [self didMoveToContext:context];
+    
+    FLFinisher* finisher = [FLFinisher finisher:nil];
+    [self startWorking:finisher];
+    return [finisher waitUntilFinished];
+}
+
+- (FLFinisher*) startRequestInContext:(id) context 
+                      completionBlock:(FLCompletionBlock) completionBlock {
+
+    [self didMoveToContext:context];
+
+    FLFinisher* finisher = [FLFinisher finisher:completionBlock];
+    [self startWorking:finisher];
+    return finisher;
+}
+
 
 @end
 

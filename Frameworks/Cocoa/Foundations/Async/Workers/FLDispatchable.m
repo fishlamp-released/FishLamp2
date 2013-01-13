@@ -8,10 +8,11 @@
 
 #import "FLDispatchable.h"
 
-@implementation NSObject (FLDispatchable) 
-- (id) runSynchronously {
-    FLFinisher* finisher = [FLFinisher finisher];
-    [ ((id)self) startWorking:finisher];
-    return [finisher waitUntilFinished];
-}
-@end
+//@implementation NSObject (FLDispatchable) 
+//- (id) runSynchronously {
+//    FLFinisher* finisher = [FLFinisher finisher];
+//    [ ((id)self) startWorking:finisher];
+//    return [finisher waitUntilFinished];
+//}
+//@end
+

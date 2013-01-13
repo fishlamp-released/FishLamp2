@@ -14,7 +14,7 @@
 int FLTestToolMain(int argc, const char *argv[]) {
     @autoreleasepool {
         @try {
-            [[FLUnitTestRunner unitTestRunner] runAllTests];
+            [[FLUnitTestRunner unitTestRunner] runSynchronouslyInContext:nil];
             return 0;
         }
         @catch(NSException* ex) {

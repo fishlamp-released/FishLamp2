@@ -8,7 +8,7 @@
 
 #import "FLService.h"
 #import "FLStorableImage.h"
-#import "FLServiceManagingContext.h"
+#import "FLServiceManager.h"
 
 @class FLDatabase;
 @class FLImageFolder;
@@ -28,6 +28,6 @@
 
 FLPublishService(imageCacheService, FLImageCacheService*)
 
-//@interface FLServiceManagingContext (FLImageCacheService)
+//@interface FLServiceManager (FLImageCacheService)
 //@property (readwrite, strong) FLImageCacheService* imageCacheService;
 //@end

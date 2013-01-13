@@ -111,31 +111,31 @@
     FLPerformSelector1(self.delegate, @selector(loginWizardPanelResetPassword:), self);
 }
 
-- (void) didFinishAuthenticatingWithResult:(FLResult) result {
-
-    self.wizard.otherButton.enabled = NO;
-    
-    if([result error]) {
-    
-        NSTextField* textField = FLAutorelease([[NSTextField alloc] initWithFrame:CGRectZero]);
-        textField.font = [NSFont fontWithName:@"MyriadPro-Bold" size:12];
-        textField.stringValue = @"We didn't recognize your username or password.";
-        textField.textColor = [NSColor redColor];
-        textField.drawsBackground = NO;
-        textField.bordered = NO;
-        [textField setBezeled:NO];
-        [textField setEditable:NO];
-        [textField setAlignment:NSLeftTextAlignment];
-        
-        [self.wizard.statusBar setStatusView:textField animated:YES completion:^{
-            self.wizard.nextButton.enabled = YES;
-        }];
-    }
-    else {
-        [self.wizard.statusBar removeAllStatusViewsAnimated:YES  completion:nil];
-    }
-}
-    
+//- (void) didFinishAuthenticatingWithResult:(FLResult) result {
+//
+//    self.wizard.otherButton.enabled = NO;
+//    
+//    if([result error]) {
+//    
+//        NSTextField* textField = FLAutorelease([[NSTextField alloc] initWithFrame:CGRectZero]);
+//        textField.font = [NSFont fontWithName:@"MyriadPro-Bold" size:12];
+//        textField.stringValue = @"We didn't recognize your username or password.";
+//        textField.textColor = [NSColor redColor];
+//        textField.drawsBackground = NO;
+//        textField.bordered = NO;
+//        [textField setBezeled:NO];
+//        [textField setEditable:NO];
+//        [textField setAlignment:NSLeftTextAlignment];
+//        
+////        [self.wizard.statusBar setStatusView:textField animated:YES completion:^{
+////            self.wizard.nextButton.enabled = YES;
+////        }];
+//    }
+//    else {
+////        [self.wizard.statusBar removeAllStatusViewsAnimated:YES  completion:nil];
+//    }
+//}
+   
 - (void) respondToNextButton:(id) sender {
 
     if([ ((id)self.delegate) loginWizardPanelIsAuthenticated:self]) {
@@ -143,21 +143,21 @@
     }
     else {
         
-        NSTextField* textField = FLAutorelease([[NSTextField alloc] initWithFrame:CGRectZero]);
-        textField.font = [NSFont fontWithName:@"MyriadPro-Bold" size:12];
-        textField.stringValue = @"Logging in…";
-        textField.textColor = [NSColor grayColor];
-        textField.drawsBackground = NO;
-        textField.bordered = NO;
-        [textField setBezeled:NO];
-        [textField setEditable:NO];
-        [textField setAlignment:NSLeftTextAlignment];
+//        NSTextField* textField = FLAutorelease([[NSTextField alloc] initWithFrame:CGRectZero]);
+//        textField.font = [NSFont fontWithName:@"MyriadPro-Bold" size:12];
+//        textField.stringValue = @"Logging in…";
+//        textField.textColor = [NSColor grayColor];
+//        textField.drawsBackground = NO;
+//        textField.bordered = NO;
+//        [textField setBezeled:NO];
+//        [textField setEditable:NO];
+//        [textField setAlignment:NSLeftTextAlignment];
 
         self.wizard.nextButton.enabled = NO;
         self.wizard.otherButton.enabled = NO;
         
-        [self.wizard.statusBar setStatusView:textField animated:YES completion:^{
-            self.wizard.otherButton.enabled = YES;
+//        [self.wizard.statusBar setStatusView:textField animated:YES completion:^{
+//            self.wizard.otherButton.enabled = YES;
 
 //        [self.wizard setNotificationView:textField animated:YES completion:^{
 //            self.wizard.otherButton.enabled = YES;
@@ -166,7 +166,7 @@
             FLPerformSelector1( self.delegate, 
                                 @selector(loginWizardPanelStartAuthenticating:), 
                                 self);
-        }];
+//        }];
     
     
 //        FLProgressWizardPanel* progress = [FLProgressWizardPanel progressWizardPanel];
@@ -188,8 +188,6 @@
     FLPerformSelector1( self.delegate, 
                         @selector(loginWizardPanelCancelAuthentication:), 
                         self);
-
-    [self.wizard.statusBar removeAllStatusViewsAnimated:NO completion:nil];
 }
 
 - (void) wizardPanelDidAppear {
@@ -209,14 +207,9 @@
 - (void) wizardPanelWillAppear {
     [super wizardPanelWillAppear];
     
-    self.wizard.otherButton.hidden = NO;
-
-    self.wizard.otherButton.title = @"Cancel";
-    self.wizard.otherButton.enabled = NO;
-    
-//    FLPerformSelector1( self.delegate, 
-//                        @selector(loginWizardPanelCancelAuthentication:), 
-//                        self);
+    self.wizard.otherButton.hidden = YES;
+    self.wizard.nextButton.enabled = NO;
+    self.wizard.backButton.enabled = NO;
 }
 
 - (void) wizardPanelWillDisappear {

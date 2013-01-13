@@ -8,8 +8,3 @@
 
 #import "FLDispatchable.h"
 
-@protocol FLContextuallyDispatchable <FLDispatchable>
-@optional
-- (void) didMoveToContext:(id) context;
-- (void) requestCancel;
-@end

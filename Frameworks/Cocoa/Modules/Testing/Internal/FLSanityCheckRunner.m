@@ -34,19 +34,17 @@
     return FLAutorelease([[[self class] alloc] init]);
 }
 
-- (void) startWorking:(id) asyncTask {
+- (FLResult) runOperation {
     
     NSMutableArray* tests = FLAutorelease([[_sanityTests allObjects] mutableCopy]);
     
     [tests sortedArrayUsingSelector:@selector(compare:)];
     
     for(FLTestCase* test in tests) {
-        [test runSynchronously];
+        [test runSynchronouslyInContext:self.context];
     }
     
-    [asyncTask setFinished];
-    
-
+    return FLSuccessfullResult;
 }
 
 - (void) addPossibleTestMethod:(FLRuntimeInfo) info {

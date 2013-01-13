@@ -1,0 +1,15 @@
+//
+//  FishLamp-Target.xcconfig
+//  
+//
+//  Created by Mike Fullerton on 12/10/12.
+//
+//
+#include "FishLampBuildSupport/XCodeConfigIncludes/FishLamp-Preprocessor.xcconfig"
+#include "FishLampBuildSupport/FishLampPaths.xcconfig"
+
+FISHLAMP_HEADER_SEARCH_PATHS = $(FISHLAMP_IOS) $(FISHLAMP_IOS_PHOTO)
+HEADER_SEARCH_PATHS= $(inherited) $(FISHLAMP_HEADER_SEARCH_PATHS)
+
+#include "SharedTargetSettings.xcconfig"
+

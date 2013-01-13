@@ -16,6 +16,9 @@ NSString* const FLOperationFinishedEvent;
 @interface FLOperation ()
 @property (readwrite, copy, nonatomic) FLRunOperationBlock runBlock;
 @property (readwrite, assign, getter=wasCancelled) BOOL cancelled;
+@property (readwrite, assign) FLOperation* parent;
+@property (readwrite, strong) id context;
+
 @end
 
 @implementation FLOperation
@@ -24,7 +27,7 @@ NSString* const FLOperationFinishedEvent;
 @synthesize runBlock = _runBlock;
 @synthesize cancelled = _cancelled;
 @synthesize context = _context;
-@synthesize authenticator = _authenticator;
+@synthesize parent = _parent;
 
 - (id) initWithRunBlock:(FLRunOperationBlock) callback {
     if((self = [self init])) {
@@ -39,7 +42,6 @@ NSString* const FLOperationFinishedEvent;
 
 #if FL_MRC
 - (void) dealloc {
-    [_authenticator release];
     [_context release];
     [_runBlock release];
     [_operationID release];
@@ -72,6 +74,10 @@ NSString* const FLOperationFinishedEvent;
     FLThrowAbortExeptionIf(self.wasCancelled);
 }
 
+- (BOOL) abortNeeded {
+    return self.wasCancelled;
+}
+
 - (void) startWorking:(FLFinisher*) finisher {
     self.cancelled = NO;
     id result = nil;
@@ -90,25 +96,58 @@ NSString* const FLOperationFinishedEvent;
         result = ex.error;
     }
     
+    if(self.wasCancelled) {
+        result = [NSError cancelError];
+    }
+    
     [self postObservation:@selector(operationDidFinish:withResult:) withObject:result];
 
     [finisher setFinishedWithResult:result];
+    [self.context operationDidFinish:self];
 }
 
 - (void) operationWasCancelled:(FLOperation*) operation {
     [self requestCancel];
 }
 
-- (FLResult) runSynchronously {
+- (void) didMoveToContext:(id)context {
+    self.context = context;
+}
+
+- (FLResult) runSynchronouslyInContext:(id) context {
+    [self didMoveToContext:context];
+    [self.context operationDidStart:self];
+    
     FLFinisher* finisher = [FLFinisher finisher];
     [self startWorking:finisher];
     return [finisher waitUntilFinished];
 }
 
-
-- (void) didMoveToContext:(id)context {
-    _context = context;
+// async operations will run in:
+// 1. dispatcher provided by context
+// 2. global default dispatcher (FLDefaultDispatcher)
+- (FLFinisher*) startOperationInContext:(id) context 
+                             completion:(FLCompletionBlock) completion {
+                             
+    [self didMoveToContext:context];
+    [self.context operationDidStart:self];
+    
+    id<FLDispatching> dispatcher = nil;
+    
+    if([self.context respondsToSelector:@selector(operationDispatcher:)]) {
+        dispatcher = [self.context operationDispatcher:self];
+    }
+    
+    if(!dispatcher) {
+        dispatcher = FLDefaultDispatcher;
+    }
+    
+    return [dispatcher dispatchObject:self completion:completion];
 }
+
+
+
+
 
 @end
 

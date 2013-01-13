@@ -9,12 +9,12 @@
 #import "FLImageCacheService.h"
 #import "FLDatabase.h"
 #import "FLImageFolder.h"
-#import "FLServiceManagingContext.h"
+#import "FLServiceManager.h"
 #import "FLServiceKeys.h"
 #import "FLUserDataStorageService.h"
 
 
-//@implementation FLServiceManagingContext (FLImageCacheService)
+//@implementation FLServiceManager (FLImageCacheService)
 //FLSynthesizeSessionService(imageCacheService, setImageCacheService, FLImageCacheService*);
 //@end
 
@@ -70,12 +70,12 @@
     return image;
 }
 
-- (void) openService:(FLServiceManagingContext*) context {
+- (void) openService:(FLServiceManager*) context {
     self.cacheDatabase = [[self.context userStorageService] cacheDatabase];
     self.imageCacheFolder = [[self.context userStorageService] imageCacheFolder];
 }
 
-- (void) closeService:(FLServiceManagingContext*) context {
+- (void) closeService:(FLServiceManager*) context {
     self.cacheDatabase = nil;
     self.imageCacheFolder = nil;
 }

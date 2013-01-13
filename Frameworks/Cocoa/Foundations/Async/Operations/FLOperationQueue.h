@@ -10,7 +10,6 @@
 #import "FishLampCore.h"
 #import "FLOperation.h"
 #import "FLCollectionIterator.h"
-#import "FLContextuallyDispatchable.h"
 
 @class FLOperationQueue;
 
@@ -18,10 +17,9 @@ typedef void (^FLOperationQueueVisitor)(id operation, BOOL* stop);
 typedef id (^FLCreateOperationBlock)();
 
 
-@interface FLOperationQueue : FLObservable<FLContextuallyDispatchable, NSFastEnumeration> {
+@interface FLOperationQueue : FLOperation<FLContextual, NSFastEnumeration> {
 @private
 	NSMutableArray* _operations;
-    BOOL _cancelled;
     FLOperation* _currentOperation;
 }
 

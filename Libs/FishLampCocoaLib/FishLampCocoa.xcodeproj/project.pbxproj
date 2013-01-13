@@ -16,24 +16,6 @@
 		271E3E5E16939B2300FB62C9 /* FLContextuallyDispatchable.m in Sources */ = {isa = PBXBuildFile; fileRef = 271E3E5716939B2300FB62C9 /* FLContextuallyDispatchable.m */; };
 		271E3E5F16939B2300FB62C9 /* FLContextuallyDispatchable.m in Sources */ = {isa = PBXBuildFile; fileRef = 271E3E5716939B2300FB62C9 /* FLContextuallyDispatchable.m */; };
 		271E3E6016939B2300FB62C9 /* FLContextuallyDispatchable.m in Sources */ = {isa = PBXBuildFile; fileRef = 271E3E5716939B2300FB62C9 /* FLContextuallyDispatchable.m */; };
-		271E3E6516939BB000FB62C9 /* FLAuthenticatedContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 271E3E6116939BAB00FB62C9 /* FLAuthenticatedContext.h */; };
-		271E3E6616939BB000FB62C9 /* FLAuthenticatedContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 271E3E6116939BAB00FB62C9 /* FLAuthenticatedContext.h */; };
-		271E3E6716939BB000FB62C9 /* FLAuthenticatedContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 271E3E6116939BAB00FB62C9 /* FLAuthenticatedContext.h */; };
-		271E3E6816939BB000FB62C9 /* FLAuthenticatedContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 271E3E6116939BAB00FB62C9 /* FLAuthenticatedContext.h */; };
-		271E3E6916939BB000FB62C9 /* FLAuthenticatedContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 271E3E6216939BAB00FB62C9 /* FLAuthenticatedContext.m */; };
-		271E3E6A16939BB000FB62C9 /* FLAuthenticatedContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 271E3E6216939BAB00FB62C9 /* FLAuthenticatedContext.m */; };
-		271E3E6B16939BB000FB62C9 /* FLAuthenticatedContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 271E3E6216939BAB00FB62C9 /* FLAuthenticatedContext.m */; };
-		271E3E6C16939BB000FB62C9 /* FLAuthenticatedContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 271E3E6216939BAB00FB62C9 /* FLAuthenticatedContext.m */; };
-		271E3E6D16939BB000FB62C9 /* FLAuthenticatedContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 271E3E6216939BAB00FB62C9 /* FLAuthenticatedContext.m */; };
-		271E3E6E16939BB000FB62C9 /* FLDispatchableContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 271E3E6316939BAD00FB62C9 /* FLDispatchableContext.h */; };
-		271E3E6F16939BB000FB62C9 /* FLDispatchableContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 271E3E6316939BAD00FB62C9 /* FLDispatchableContext.h */; };
-		271E3E7016939BB000FB62C9 /* FLDispatchableContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 271E3E6316939BAD00FB62C9 /* FLDispatchableContext.h */; };
-		271E3E7116939BB000FB62C9 /* FLDispatchableContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 271E3E6316939BAD00FB62C9 /* FLDispatchableContext.h */; };
-		271E3E7216939BB000FB62C9 /* FLDispatchableContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 271E3E6416939BAE00FB62C9 /* FLDispatchableContext.m */; };
-		271E3E7316939BB000FB62C9 /* FLDispatchableContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 271E3E6416939BAE00FB62C9 /* FLDispatchableContext.m */; };
-		271E3E7416939BB000FB62C9 /* FLDispatchableContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 271E3E6416939BAE00FB62C9 /* FLDispatchableContext.m */; };
-		271E3E7516939BB000FB62C9 /* FLDispatchableContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 271E3E6416939BAE00FB62C9 /* FLDispatchableContext.m */; };
-		271E3E7616939BB000FB62C9 /* FLDispatchableContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 271E3E6416939BAE00FB62C9 /* FLDispatchableContext.m */; };
 		271E3E7816939C8900FB62C9 /* FLObjectAuthenticator.h in Headers */ = {isa = PBXBuildFile; fileRef = 271E3E7716939C8700FB62C9 /* FLObjectAuthenticator.h */; };
 		271E3E7916939C8900FB62C9 /* FLObjectAuthenticator.h in Headers */ = {isa = PBXBuildFile; fileRef = 271E3E7716939C8700FB62C9 /* FLObjectAuthenticator.h */; };
 		271E3E7A16939C8900FB62C9 /* FLObjectAuthenticator.h in Headers */ = {isa = PBXBuildFile; fileRef = 271E3E7716939C8700FB62C9 /* FLObjectAuthenticator.h */; };
@@ -110,15 +92,6 @@
 		27348DED168E24F200D4142E /* FLUserAuthenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = 27348DE6168E24F100D4142E /* FLUserAuthenticator.m */; };
 		27348DEE168E24F200D4142E /* FLUserAuthenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = 27348DE6168E24F100D4142E /* FLUserAuthenticator.m */; };
 		27348DEF168E24F200D4142E /* FLUserAuthenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = 27348DE6168E24F100D4142E /* FLUserAuthenticator.m */; };
-		27348DF2168E299100D4142E /* FLAuthenticatedServiceContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 27348DF0168E298B00D4142E /* FLAuthenticatedServiceContext.h */; };
-		27348DF3168E299100D4142E /* FLAuthenticatedServiceContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 27348DF0168E298B00D4142E /* FLAuthenticatedServiceContext.h */; };
-		27348DF4168E299100D4142E /* FLAuthenticatedServiceContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 27348DF0168E298B00D4142E /* FLAuthenticatedServiceContext.h */; };
-		27348DF5168E299100D4142E /* FLAuthenticatedServiceContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 27348DF0168E298B00D4142E /* FLAuthenticatedServiceContext.h */; };
-		27348DF6168E299100D4142E /* FLAuthenticatedServiceContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 27348DF1168E298D00D4142E /* FLAuthenticatedServiceContext.m */; };
-		27348DF7168E299100D4142E /* FLAuthenticatedServiceContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 27348DF1168E298D00D4142E /* FLAuthenticatedServiceContext.m */; };
-		27348DF8168E299100D4142E /* FLAuthenticatedServiceContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 27348DF1168E298D00D4142E /* FLAuthenticatedServiceContext.m */; };
-		27348DF9168E299100D4142E /* FLAuthenticatedServiceContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 27348DF1168E298D00D4142E /* FLAuthenticatedServiceContext.m */; };
-		27348DFA168E299100D4142E /* FLAuthenticatedServiceContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 27348DF1168E298D00D4142E /* FLAuthenticatedServiceContext.m */; };
 		2741E20A16793DB600CA87A9 /* FishLampCocoa.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DEAF16793DB500CA87A9 /* FishLampCocoa.h */; };
 		2741E20B16793DB600CA87A9 /* FishLampCocoa.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DEAF16793DB500CA87A9 /* FishLampCocoa.h */; };
 		2741E20C16793DB600CA87A9 /* FishLampCocoa.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DEAF16793DB500CA87A9 /* FishLampCocoa.h */; };
@@ -294,15 +267,10 @@
 		2741E33D16793DB600CA87A9 /* FLCancellable.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741DF0116793DB500CA87A9 /* FLCancellable.m */; };
 		2741E33E16793DB600CA87A9 /* FLCancellable.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741DF0116793DB500CA87A9 /* FLCancellable.m */; };
 		2741E33F16793DB600CA87A9 /* FLCancellable.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741DF0116793DB500CA87A9 /* FLCancellable.m */; };
-		2741E34016793DB600CA87A9 /* FLDispatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DF0216793DB500CA87A9 /* FLDispatcher.h */; };
-		2741E34116793DB600CA87A9 /* FLDispatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DF0216793DB500CA87A9 /* FLDispatcher.h */; };
-		2741E34216793DB600CA87A9 /* FLDispatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DF0216793DB500CA87A9 /* FLDispatcher.h */; };
-		2741E34316793DB600CA87A9 /* FLDispatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DF0216793DB500CA87A9 /* FLDispatcher.h */; };
-		2741E34416793DB600CA87A9 /* FLDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741DF0316793DB500CA87A9 /* FLDispatcher.m */; };
-		2741E34516793DB600CA87A9 /* FLDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741DF0316793DB500CA87A9 /* FLDispatcher.m */; };
-		2741E34616793DB600CA87A9 /* FLDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741DF0316793DB500CA87A9 /* FLDispatcher.m */; };
-		2741E34716793DB600CA87A9 /* FLDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741DF0316793DB500CA87A9 /* FLDispatcher.m */; };
-		2741E34816793DB600CA87A9 /* FLDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741DF0316793DB500CA87A9 /* FLDispatcher.m */; };
+		2741E34016793DB600CA87A9 /* FLDispatching.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DF0216793DB500CA87A9 /* FLDispatching.h */; };
+		2741E34116793DB600CA87A9 /* FLDispatching.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DF0216793DB500CA87A9 /* FLDispatching.h */; };
+		2741E34216793DB600CA87A9 /* FLDispatching.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DF0216793DB500CA87A9 /* FLDispatching.h */; };
+		2741E34316793DB600CA87A9 /* FLDispatching.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DF0216793DB500CA87A9 /* FLDispatching.h */; };
 		2741E34916793DB600CA87A9 /* FLDispatchQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DF0416793DB500CA87A9 /* FLDispatchQueue.h */; };
 		2741E34A16793DB600CA87A9 /* FLDispatchQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DF0416793DB500CA87A9 /* FLDispatchQueue.h */; };
 		2741E34B16793DB600CA87A9 /* FLDispatchQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DF0416793DB500CA87A9 /* FLDispatchQueue.h */; };
@@ -2783,15 +2751,6 @@
 		27493503169A1050008E8EC5 /* FLHttpServerService.m in Sources */ = {isa = PBXBuildFile; fileRef = 27493435169A1050008E8EC5 /* FLHttpServerService.m */; };
 		27493504169A1050008E8EC5 /* FLHttpServerService.m in Sources */ = {isa = PBXBuildFile; fileRef = 27493435169A1050008E8EC5 /* FLHttpServerService.m */; };
 		27493505169A1050008E8EC5 /* FLHttpServerService.m in Sources */ = {isa = PBXBuildFile; fileRef = 27493435169A1050008E8EC5 /* FLHttpServerService.m */; };
-		27493506169A1050008E8EC5 /* FLHttpSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 27493436169A1050008E8EC5 /* FLHttpSession.h */; };
-		27493507169A1050008E8EC5 /* FLHttpSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 27493436169A1050008E8EC5 /* FLHttpSession.h */; };
-		27493508169A1050008E8EC5 /* FLHttpSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 27493436169A1050008E8EC5 /* FLHttpSession.h */; };
-		27493509169A1050008E8EC5 /* FLHttpSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 27493436169A1050008E8EC5 /* FLHttpSession.h */; };
-		2749350A169A1050008E8EC5 /* FLHttpSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 27493437169A1050008E8EC5 /* FLHttpSession.m */; };
-		2749350B169A1050008E8EC5 /* FLHttpSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 27493437169A1050008E8EC5 /* FLHttpSession.m */; };
-		2749350C169A1050008E8EC5 /* FLHttpSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 27493437169A1050008E8EC5 /* FLHttpSession.m */; };
-		2749350D169A1050008E8EC5 /* FLHttpSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 27493437169A1050008E8EC5 /* FLHttpSession.m */; };
-		2749350E169A1050008E8EC5 /* FLHttpSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 27493437169A1050008E8EC5 /* FLHttpSession.m */; };
 		2749350F169A1050008E8EC5 /* FLNetworkServerContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 27493438169A1050008E8EC5 /* FLNetworkServerContext.h */; };
 		27493510169A1050008E8EC5 /* FLNetworkServerContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 27493438169A1050008E8EC5 /* FLNetworkServerContext.h */; };
 		27493511169A1050008E8EC5 /* FLNetworkServerContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 27493438169A1050008E8EC5 /* FLNetworkServerContext.h */; };
@@ -3682,6 +3641,42 @@
 		27E35E0016861F9000AF13BE /* FLLocalNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E35DF916861F9000AF13BE /* FLLocalNotification.m */; };
 		27E35E0116861F9000AF13BE /* FLLocalNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E35DF916861F9000AF13BE /* FLLocalNotification.m */; };
 		27E35E0216861F9000AF13BE /* FLLocalNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E35DF916861F9000AF13BE /* FLLocalNotification.m */; };
+		27FE49FE16A1CF7000C8F0FB /* FLDispatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 27FE49FC16A1CF7000C8F0FB /* FLDispatcher.h */; };
+		27FE49FF16A1CF7000C8F0FB /* FLDispatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 27FE49FC16A1CF7000C8F0FB /* FLDispatcher.h */; };
+		27FE4A0016A1CF7000C8F0FB /* FLDispatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 27FE49FC16A1CF7000C8F0FB /* FLDispatcher.h */; };
+		27FE4A0116A1CF7000C8F0FB /* FLDispatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 27FE49FC16A1CF7000C8F0FB /* FLDispatcher.h */; };
+		27FE4A0216A1CF7000C8F0FB /* FLDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FE49FD16A1CF7000C8F0FB /* FLDispatcher.m */; };
+		27FE4A0316A1CF7000C8F0FB /* FLDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FE49FD16A1CF7000C8F0FB /* FLDispatcher.m */; };
+		27FE4A0416A1CF7000C8F0FB /* FLDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FE49FD16A1CF7000C8F0FB /* FLDispatcher.m */; };
+		27FE4A0516A1CF7000C8F0FB /* FLDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FE49FD16A1CF7000C8F0FB /* FLDispatcher.m */; };
+		27FE4A0616A1CF7000C8F0FB /* FLDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FE49FD16A1CF7000C8F0FB /* FLDispatcher.m */; };
+		27FE4A1616A2060B00C8F0FB /* FLDispatchedObjectCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = 27FE4A1416A2060900C8F0FB /* FLDispatchedObjectCollection.h */; };
+		27FE4A1716A2060B00C8F0FB /* FLDispatchedObjectCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = 27FE4A1416A2060900C8F0FB /* FLDispatchedObjectCollection.h */; };
+		27FE4A1816A2060B00C8F0FB /* FLDispatchedObjectCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = 27FE4A1416A2060900C8F0FB /* FLDispatchedObjectCollection.h */; };
+		27FE4A1916A2060B00C8F0FB /* FLDispatchedObjectCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = 27FE4A1416A2060900C8F0FB /* FLDispatchedObjectCollection.h */; };
+		27FE4A1A16A2060B00C8F0FB /* FLDispatchedObjectCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FE4A1516A2060A00C8F0FB /* FLDispatchedObjectCollection.m */; };
+		27FE4A1B16A2060B00C8F0FB /* FLDispatchedObjectCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FE4A1516A2060A00C8F0FB /* FLDispatchedObjectCollection.m */; };
+		27FE4A1C16A2060B00C8F0FB /* FLDispatchedObjectCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FE4A1516A2060A00C8F0FB /* FLDispatchedObjectCollection.m */; };
+		27FE4A1D16A2060B00C8F0FB /* FLDispatchedObjectCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FE4A1516A2060A00C8F0FB /* FLDispatchedObjectCollection.m */; };
+		27FE4A1E16A2060B00C8F0FB /* FLDispatchedObjectCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FE4A1516A2060A00C8F0FB /* FLDispatchedObjectCollection.m */; };
+		27FE4A2116A20E3F00C8F0FB /* FLHttpRequestAuthenticator.h in Headers */ = {isa = PBXBuildFile; fileRef = 27FE4A1F16A20E3F00C8F0FB /* FLHttpRequestAuthenticator.h */; };
+		27FE4A2216A20E3F00C8F0FB /* FLHttpRequestAuthenticator.h in Headers */ = {isa = PBXBuildFile; fileRef = 27FE4A1F16A20E3F00C8F0FB /* FLHttpRequestAuthenticator.h */; };
+		27FE4A2316A20E3F00C8F0FB /* FLHttpRequestAuthenticator.h in Headers */ = {isa = PBXBuildFile; fileRef = 27FE4A1F16A20E3F00C8F0FB /* FLHttpRequestAuthenticator.h */; };
+		27FE4A2416A20E3F00C8F0FB /* FLHttpRequestAuthenticator.h in Headers */ = {isa = PBXBuildFile; fileRef = 27FE4A1F16A20E3F00C8F0FB /* FLHttpRequestAuthenticator.h */; };
+		27FE4A2516A20E3F00C8F0FB /* FLHttpRequestAuthenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FE4A2016A20E3F00C8F0FB /* FLHttpRequestAuthenticator.m */; };
+		27FE4A2616A20E3F00C8F0FB /* FLHttpRequestAuthenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FE4A2016A20E3F00C8F0FB /* FLHttpRequestAuthenticator.m */; };
+		27FE4A2716A20E3F00C8F0FB /* FLHttpRequestAuthenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FE4A2016A20E3F00C8F0FB /* FLHttpRequestAuthenticator.m */; };
+		27FE4A2816A20E3F00C8F0FB /* FLHttpRequestAuthenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FE4A2016A20E3F00C8F0FB /* FLHttpRequestAuthenticator.m */; };
+		27FE4A2916A20E3F00C8F0FB /* FLHttpRequestAuthenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FE4A2016A20E3F00C8F0FB /* FLHttpRequestAuthenticator.m */; };
+		27FE4A2C16A21A2F00C8F0FB /* FLHttpUserContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 27FE4A2A16A21A2E00C8F0FB /* FLHttpUserContext.h */; };
+		27FE4A2D16A21A2F00C8F0FB /* FLHttpUserContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 27FE4A2A16A21A2E00C8F0FB /* FLHttpUserContext.h */; };
+		27FE4A2E16A21A2F00C8F0FB /* FLHttpUserContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 27FE4A2A16A21A2E00C8F0FB /* FLHttpUserContext.h */; };
+		27FE4A2F16A21A2F00C8F0FB /* FLHttpUserContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 27FE4A2A16A21A2E00C8F0FB /* FLHttpUserContext.h */; };
+		27FE4A3016A21A2F00C8F0FB /* FLHttpUserContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FE4A2B16A21A2E00C8F0FB /* FLHttpUserContext.m */; };
+		27FE4A3116A21A2F00C8F0FB /* FLHttpUserContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FE4A2B16A21A2E00C8F0FB /* FLHttpUserContext.m */; };
+		27FE4A3216A21A2F00C8F0FB /* FLHttpUserContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FE4A2B16A21A2E00C8F0FB /* FLHttpUserContext.m */; };
+		27FE4A3316A21A2F00C8F0FB /* FLHttpUserContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FE4A2B16A21A2E00C8F0FB /* FLHttpUserContext.m */; };
+		27FE4A3416A21A2F00C8F0FB /* FLHttpUserContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FE4A2B16A21A2E00C8F0FB /* FLHttpUserContext.m */; };
 		27FE8D06168B56B60028D384 /* FLBatchDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = 27FE8D04168B56B60028D384 /* FLBatchDictionary.h */; };
 		27FE8D07168B56B60028D384 /* FLBatchDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = 27FE8D04168B56B60028D384 /* FLBatchDictionary.h */; };
 		27FE8D08168B56B60028D384 /* FLBatchDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = 27FE8D04168B56B60028D384 /* FLBatchDictionary.h */; };
@@ -3709,15 +3704,15 @@
 		27FE8D22168B84790028D384 /* FLDispatchable.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FE8D1F168B84790028D384 /* FLDispatchable.m */; };
 		27FE8D23168B84790028D384 /* FLDispatchable.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FE8D1F168B84790028D384 /* FLDispatchable.m */; };
 		27FE8D24168B84790028D384 /* FLDispatchable.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FE8D1F168B84790028D384 /* FLDispatchable.m */; };
-		27FE8D32168B935C0028D384 /* FLServiceManagingContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 27FE8D30168B935B0028D384 /* FLServiceManagingContext.h */; };
-		27FE8D33168B935C0028D384 /* FLServiceManagingContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 27FE8D30168B935B0028D384 /* FLServiceManagingContext.h */; };
-		27FE8D34168B935C0028D384 /* FLServiceManagingContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 27FE8D30168B935B0028D384 /* FLServiceManagingContext.h */; };
-		27FE8D35168B935C0028D384 /* FLServiceManagingContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 27FE8D30168B935B0028D384 /* FLServiceManagingContext.h */; };
-		27FE8D36168B935C0028D384 /* FLServiceManagingContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FE8D31168B935C0028D384 /* FLServiceManagingContext.m */; };
-		27FE8D37168B935C0028D384 /* FLServiceManagingContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FE8D31168B935C0028D384 /* FLServiceManagingContext.m */; };
-		27FE8D38168B935C0028D384 /* FLServiceManagingContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FE8D31168B935C0028D384 /* FLServiceManagingContext.m */; };
-		27FE8D39168B935C0028D384 /* FLServiceManagingContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FE8D31168B935C0028D384 /* FLServiceManagingContext.m */; };
-		27FE8D3A168B935C0028D384 /* FLServiceManagingContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FE8D31168B935C0028D384 /* FLServiceManagingContext.m */; };
+		27FE8D32168B935C0028D384 /* FLServiceManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 27FE8D30168B935B0028D384 /* FLServiceManager.h */; };
+		27FE8D33168B935C0028D384 /* FLServiceManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 27FE8D30168B935B0028D384 /* FLServiceManager.h */; };
+		27FE8D34168B935C0028D384 /* FLServiceManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 27FE8D30168B935B0028D384 /* FLServiceManager.h */; };
+		27FE8D35168B935C0028D384 /* FLServiceManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 27FE8D30168B935B0028D384 /* FLServiceManager.h */; };
+		27FE8D36168B935C0028D384 /* FLServiceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FE8D31168B935C0028D384 /* FLServiceManager.m */; };
+		27FE8D37168B935C0028D384 /* FLServiceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FE8D31168B935C0028D384 /* FLServiceManager.m */; };
+		27FE8D38168B935C0028D384 /* FLServiceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FE8D31168B935C0028D384 /* FLServiceManager.m */; };
+		27FE8D39168B935C0028D384 /* FLServiceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FE8D31168B935C0028D384 /* FLServiceManager.m */; };
+		27FE8D3A168B935C0028D384 /* FLServiceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FE8D31168B935C0028D384 /* FLServiceManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -3736,10 +3731,6 @@
 		27048EF0161CB58600C38ADA /* libFishLampCocoa-OSX-32-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoa-OSX-32-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		271E3E5616939B2300FB62C9 /* FLContextuallyDispatchable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLContextuallyDispatchable.h; sourceTree = "<group>"; };
 		271E3E5716939B2300FB62C9 /* FLContextuallyDispatchable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLContextuallyDispatchable.m; sourceTree = "<group>"; };
-		271E3E6116939BAB00FB62C9 /* FLAuthenticatedContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAuthenticatedContext.h; sourceTree = "<group>"; };
-		271E3E6216939BAB00FB62C9 /* FLAuthenticatedContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAuthenticatedContext.m; sourceTree = "<group>"; };
-		271E3E6316939BAD00FB62C9 /* FLDispatchableContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLDispatchableContext.h; sourceTree = "<group>"; };
-		271E3E6416939BAE00FB62C9 /* FLDispatchableContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLDispatchableContext.m; sourceTree = "<group>"; };
 		271E3E7716939C8700FB62C9 /* FLObjectAuthenticator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLObjectAuthenticator.h; sourceTree = "<group>"; };
 		27314C79165328400027850D /* libFishLampCocoa-OSX-64-ARC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoa-OSX-64-ARC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27329908168F80C100D1B91E /* FLXmlComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLXmlComment.h; sourceTree = "<group>"; };
@@ -3758,8 +3749,6 @@
 		27348D48168BAC3700D4142E /* FLServiceKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLServiceKeys.m; sourceTree = "<group>"; };
 		27348DE5168E24EF00D4142E /* FLUserAuthenticator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLUserAuthenticator.h; sourceTree = "<group>"; };
 		27348DE6168E24F100D4142E /* FLUserAuthenticator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLUserAuthenticator.m; sourceTree = "<group>"; };
-		27348DF0168E298B00D4142E /* FLAuthenticatedServiceContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAuthenticatedServiceContext.h; sourceTree = "<group>"; };
-		27348DF1168E298D00D4142E /* FLAuthenticatedServiceContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAuthenticatedServiceContext.m; sourceTree = "<group>"; };
 		2741DEAF16793DB500CA87A9 /* FishLampCocoa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishLampCocoa.h; sourceTree = "<group>"; };
 		2741DEBA16793DB500CA87A9 /* FLApplicationFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLApplicationFactory.h; sourceTree = "<group>"; };
 		2741DEBB16793DB500CA87A9 /* FLApplicationFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLApplicationFactory.m; sourceTree = "<group>"; };
@@ -3799,8 +3788,7 @@
 		2741DEFC16793DB500CA87A9 /* FLPerformSelectorOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLPerformSelectorOperation.m; sourceTree = "<group>"; };
 		2741DF0016793DB500CA87A9 /* FLCancellable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCancellable.h; sourceTree = "<group>"; };
 		2741DF0116793DB500CA87A9 /* FLCancellable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLCancellable.m; sourceTree = "<group>"; };
-		2741DF0216793DB500CA87A9 /* FLDispatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLDispatcher.h; sourceTree = "<group>"; };
-		2741DF0316793DB500CA87A9 /* FLDispatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLDispatcher.m; sourceTree = "<group>"; };
+		2741DF0216793DB500CA87A9 /* FLDispatching.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLDispatching.h; sourceTree = "<group>"; };
 		2741DF0416793DB500CA87A9 /* FLDispatchQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLDispatchQueue.h; sourceTree = "<group>"; };
 		2741DF0516793DB500CA87A9 /* FLDispatchQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLDispatchQueue.m; sourceTree = "<group>"; };
 		2741DF0816793DB500CA87A9 /* FLFinisher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLFinisher.h; sourceTree = "<group>"; };
@@ -4359,8 +4347,6 @@
 		27493433169A1050008E8EC5 /* FLHttpResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLHttpResponse.m; sourceTree = "<group>"; };
 		27493434169A1050008E8EC5 /* FLHttpServerService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLHttpServerService.h; sourceTree = "<group>"; };
 		27493435169A1050008E8EC5 /* FLHttpServerService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLHttpServerService.m; sourceTree = "<group>"; };
-		27493436169A1050008E8EC5 /* FLHttpSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLHttpSession.h; sourceTree = "<group>"; };
-		27493437169A1050008E8EC5 /* FLHttpSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLHttpSession.m; sourceTree = "<group>"; };
 		27493438169A1050008E8EC5 /* FLNetworkServerContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLNetworkServerContext.h; sourceTree = "<group>"; };
 		27493439169A1050008E8EC5 /* FLNetworkServerContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLNetworkServerContext.m; sourceTree = "<group>"; };
 		2749343A169A1050008E8EC5 /* FLUrlParameterParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLUrlParameterParser.h; sourceTree = "<group>"; };
@@ -4553,7 +4539,7 @@
 		27C4368B16894463005BD287 /* FLUserLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLUserLogin.m; sourceTree = "<group>"; };
 		27C4370A16894488005BD287 /* FLServiceRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLServiceRequest.h; sourceTree = "<group>"; };
 		27C4370B16894488005BD287 /* FLServiceRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLServiceRequest.m; sourceTree = "<group>"; };
-		27CBC1F416768BA600753D0A /* libFishLampCocoa-OSX-32-64-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoa-OSX-32-64-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		27CBC1F416768BA600753D0A /* libFishLampCocoa-OSX-32-64-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libFishLampCocoa-OSX-32-64-MRC.a"; path = "libFishLampCocoa-OSX-3264-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27D1E5C1166D355C00DB680E /* FishLampCocoa-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FishLampCocoa-Prefix.pch"; sourceTree = "<group>"; };
 		27DB1DD0167A5C0A00452AD3 /* FLColorUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLColorUtilities.h; sourceTree = "<group>"; };
 		27DB1DD1167A5C0A00452AD3 /* FLColorUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLColorUtilities.m; sourceTree = "<group>"; };
@@ -4569,14 +4555,22 @@
 		27DB1F8D167A93A300452AD3 /* FLCocoaRequired.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCocoaRequired.h; sourceTree = "<group>"; };
 		27E35DF816861F9000AF13BE /* FLLocalNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLLocalNotification.h; sourceTree = "<group>"; };
 		27E35DF916861F9000AF13BE /* FLLocalNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLLocalNotification.m; sourceTree = "<group>"; };
+		27FE49FC16A1CF7000C8F0FB /* FLDispatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLDispatcher.h; sourceTree = "<group>"; };
+		27FE49FD16A1CF7000C8F0FB /* FLDispatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLDispatcher.m; sourceTree = "<group>"; };
+		27FE4A1416A2060900C8F0FB /* FLDispatchedObjectCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLDispatchedObjectCollection.h; sourceTree = "<group>"; };
+		27FE4A1516A2060A00C8F0FB /* FLDispatchedObjectCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLDispatchedObjectCollection.m; sourceTree = "<group>"; };
+		27FE4A1F16A20E3F00C8F0FB /* FLHttpRequestAuthenticator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLHttpRequestAuthenticator.h; sourceTree = "<group>"; };
+		27FE4A2016A20E3F00C8F0FB /* FLHttpRequestAuthenticator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLHttpRequestAuthenticator.m; sourceTree = "<group>"; };
+		27FE4A2A16A21A2E00C8F0FB /* FLHttpUserContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLHttpUserContext.h; sourceTree = "<group>"; };
+		27FE4A2B16A21A2E00C8F0FB /* FLHttpUserContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLHttpUserContext.m; sourceTree = "<group>"; };
 		27FE8D04168B56B60028D384 /* FLBatchDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLBatchDictionary.h; sourceTree = "<group>"; };
 		27FE8D05168B56B60028D384 /* FLBatchDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLBatchDictionary.m; sourceTree = "<group>"; };
 		27FE8D0F168B69560028D384 /* FLDispatchable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLDispatchable.h; sourceTree = "<group>"; };
 		27FE8D14168B6CBE0028D384 /* FLArgumentList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLArgumentList.h; sourceTree = "<group>"; };
 		27FE8D15168B6CBF0028D384 /* FLArgumentList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLArgumentList.m; sourceTree = "<group>"; };
 		27FE8D1F168B84790028D384 /* FLDispatchable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLDispatchable.m; sourceTree = "<group>"; };
-		27FE8D30168B935B0028D384 /* FLServiceManagingContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLServiceManagingContext.h; sourceTree = "<group>"; };
-		27FE8D31168B935C0028D384 /* FLServiceManagingContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLServiceManagingContext.m; sourceTree = "<group>"; };
+		27FE8D30168B935B0028D384 /* FLServiceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLServiceManager.h; sourceTree = "<group>"; };
+		27FE8D31168B935C0028D384 /* FLServiceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLServiceManager.m; sourceTree = "<group>"; };
 		78329B61167E41260024E8DC /* FishLampProjectSettingsDebug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FishLampProjectSettingsDebug.xcconfig; sourceTree = "<group>"; };
 		78329B62167E41260024E8DC /* FishLampProjectSettingsRelease.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FishLampProjectSettingsRelease.xcconfig; sourceTree = "<group>"; };
 		78329B63167E41260024E8DC /* FishLampTargetSettings-iOS-ARC.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "FishLampTargetSettings-iOS-ARC.xcconfig"; sourceTree = "<group>"; };
@@ -4629,10 +4623,6 @@
 		271E3E5516939AF700FB62C9 /* Context */ = {
 			isa = PBXGroup;
 			children = (
-				271E3E6116939BAB00FB62C9 /* FLAuthenticatedContext.h */,
-				271E3E6216939BAB00FB62C9 /* FLAuthenticatedContext.m */,
-				271E3E6316939BAD00FB62C9 /* FLDispatchableContext.h */,
-				271E3E6416939BAE00FB62C9 /* FLDispatchableContext.m */,
 				271E3E5616939B2300FB62C9 /* FLContextuallyDispatchable.h */,
 				271E3E5716939B2300FB62C9 /* FLContextuallyDispatchable.m */,
 				271E3E7716939C8700FB62C9 /* FLObjectAuthenticator.h */,
@@ -4791,8 +4781,7 @@
 			children = (
 				2741DF0016793DB500CA87A9 /* FLCancellable.h */,
 				2741DF0116793DB500CA87A9 /* FLCancellable.m */,
-				2741DF0216793DB500CA87A9 /* FLDispatcher.h */,
-				2741DF0316793DB500CA87A9 /* FLDispatcher.m */,
+				2741DF0216793DB500CA87A9 /* FLDispatching.h */,
 				2741DF0416793DB500CA87A9 /* FLDispatchQueue.h */,
 				2741DF0516793DB500CA87A9 /* FLDispatchQueue.m */,
 				2741DF0816793DB500CA87A9 /* FLFinisher.h */,
@@ -4800,6 +4789,10 @@
 				2741DF0D16793DB500CA87A9 /* Results */,
 				27FE8D0F168B69560028D384 /* FLDispatchable.h */,
 				27FE8D1F168B84790028D384 /* FLDispatchable.m */,
+				27FE49FC16A1CF7000C8F0FB /* FLDispatcher.h */,
+				27FE49FD16A1CF7000C8F0FB /* FLDispatcher.m */,
+				27FE4A1416A2060900C8F0FB /* FLDispatchedObjectCollection.h */,
+				27FE4A1516A2060A00C8F0FB /* FLDispatchedObjectCollection.m */,
 			);
 			path = Workers;
 			sourceTree = "<group>";
@@ -5873,14 +5866,16 @@
 				27493433169A1050008E8EC5 /* FLHttpResponse.m */,
 				27493434169A1050008E8EC5 /* FLHttpServerService.h */,
 				27493435169A1050008E8EC5 /* FLHttpServerService.m */,
-				27493436169A1050008E8EC5 /* FLHttpSession.h */,
-				27493437169A1050008E8EC5 /* FLHttpSession.m */,
 				27493438169A1050008E8EC5 /* FLNetworkServerContext.h */,
 				27493439169A1050008E8EC5 /* FLNetworkServerContext.m */,
 				2749343A169A1050008E8EC5 /* FLUrlParameterParser.h */,
 				2749343B169A1050008E8EC5 /* FLUrlParameterParser.m */,
 				2749343C169A1050008E8EC5 /* NSURLRequest+HTTP.h */,
 				2749343D169A1050008E8EC5 /* NSURLRequest+HTTP.m */,
+				27FE4A1F16A20E3F00C8F0FB /* FLHttpRequestAuthenticator.h */,
+				27FE4A2016A20E3F00C8F0FB /* FLHttpRequestAuthenticator.m */,
+				27FE4A2A16A21A2E00C8F0FB /* FLHttpUserContext.h */,
+				27FE4A2B16A21A2E00C8F0FB /* FLHttpUserContext.m */,
 			);
 			path = HTTP;
 			sourceTree = "<group>";
@@ -6233,8 +6228,8 @@
 				27C4367B16894463005BD287 /* SessionObjects */,
 				27C4370A16894488005BD287 /* FLServiceRequest.h */,
 				27C4370B16894488005BD287 /* FLServiceRequest.m */,
-				27FE8D30168B935B0028D384 /* FLServiceManagingContext.h */,
-				27FE8D31168B935C0028D384 /* FLServiceManagingContext.m */,
+				27FE8D30168B935B0028D384 /* FLServiceManager.h */,
+				27FE8D31168B935C0028D384 /* FLServiceManager.m */,
 				27348D1E168B983F00D4142E /* FLServiceProvider.h */,
 				27348D1F168B983F00D4142E /* FLServiceProvider.m */,
 				27348D29168B98CD00D4142E /* NSError+FLServiceRequest.h */,
@@ -6243,8 +6238,6 @@
 				27348D48168BAC3700D4142E /* FLServiceKeys.m */,
 				27348DE5168E24EF00D4142E /* FLUserAuthenticator.h */,
 				27348DE6168E24F100D4142E /* FLUserAuthenticator.m */,
-				27348DF0168E298B00D4142E /* FLAuthenticatedServiceContext.h */,
-				27348DF1168E298D00D4142E /* FLAuthenticatedServiceContext.m */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -6356,7 +6349,7 @@
 				2741E31C16793DB600CA87A9 /* FLOperationQueue.h in Headers */,
 				2741E32516793DB600CA87A9 /* FLPerformSelectorOperation.h in Headers */,
 				2741E33716793DB600CA87A9 /* FLCancellable.h in Headers */,
-				2741E34016793DB600CA87A9 /* FLDispatcher.h in Headers */,
+				2741E34016793DB600CA87A9 /* FLDispatching.h in Headers */,
 				2741E34916793DB600CA87A9 /* FLDispatchQueue.h in Headers */,
 				2741E35B16793DB600CA87A9 /* FLFinisher.h in Headers */,
 				2741E37A16793DB600CA87A9 /* FLResult.h in Headers */,
@@ -6655,19 +6648,16 @@
 				27FE8D06168B56B60028D384 /* FLBatchDictionary.h in Headers */,
 				27FE8D10168B69560028D384 /* FLDispatchable.h in Headers */,
 				27FE8D16168B6CBF0028D384 /* FLArgumentList.h in Headers */,
-				27FE8D32168B935C0028D384 /* FLServiceManagingContext.h in Headers */,
+				27FE8D32168B935C0028D384 /* FLServiceManager.h in Headers */,
 				27348D20168B983F00D4142E /* FLServiceProvider.h in Headers */,
 				27348D2B168B98CD00D4142E /* NSError+FLServiceRequest.h in Headers */,
 				27348D49168BAC3700D4142E /* FLServiceKeys.h in Headers */,
 				27348DE7168E24F200D4142E /* FLUserAuthenticator.h in Headers */,
-				27348DF2168E299100D4142E /* FLAuthenticatedServiceContext.h in Headers */,
 				2732990A168F80C100D1B91E /* FLXmlComment.h in Headers */,
 				27329915168F81BB00D1B91E /* NSArray+FLXmlSerialization.h in Headers */,
 				27329920168F829E00D1B91E /* NSObject+FLXmlSerialization.h in Headers */,
 				2732992B168F8FB800D1B91E /* FLObjectXmlElement.h in Headers */,
 				271E3E5816939B2300FB62C9 /* FLContextuallyDispatchable.h in Headers */,
-				271E3E6516939BB000FB62C9 /* FLAuthenticatedContext.h in Headers */,
-				271E3E6E16939BB000FB62C9 /* FLDispatchableContext.h in Headers */,
 				271E3E7816939C8900FB62C9 /* FLObjectAuthenticator.h in Headers */,
 				274933EC169A04EE008E8EC5 /* __CocoaHeaders.h in Headers */,
 				2749349A169A1050008E8EC5 /* FLNetworkActivityConnectionObserver.h in Headers */,
@@ -6682,7 +6672,6 @@
 				274934EB169A1050008E8EC5 /* FLHttpRequestHeaders.h in Headers */,
 				274934F4169A1050008E8EC5 /* FLHttpResponse.h in Headers */,
 				274934FD169A1050008E8EC5 /* FLHttpServerService.h in Headers */,
-				27493506169A1050008E8EC5 /* FLHttpSession.h in Headers */,
 				2749350F169A1050008E8EC5 /* FLNetworkServerContext.h in Headers */,
 				27493518169A1050008E8EC5 /* FLUrlParameterParser.h in Headers */,
 				27493521169A1050008E8EC5 /* NSURLRequest+HTTP.h in Headers */,
@@ -6735,6 +6724,10 @@
 				275EE4FA169E641200D05DCB /* FLToolCommand.h in Headers */,
 				275EE505169E664B00D05DCB /* FLToolCommandOption.h in Headers */,
 				275EE50F169E6DE100D05DCB /* FLParseable.h in Headers */,
+				27FE49FE16A1CF7000C8F0FB /* FLDispatcher.h in Headers */,
+				27FE4A1616A2060B00C8F0FB /* FLDispatchedObjectCollection.h in Headers */,
+				27FE4A2116A20E3F00C8F0FB /* FLHttpRequestAuthenticator.h in Headers */,
+				27FE4A2C16A21A2F00C8F0FB /* FLHttpUserContext.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6795,7 +6788,7 @@
 				2741E31E16793DB600CA87A9 /* FLOperationQueue.h in Headers */,
 				2741E32716793DB600CA87A9 /* FLPerformSelectorOperation.h in Headers */,
 				2741E33916793DB600CA87A9 /* FLCancellable.h in Headers */,
-				2741E34216793DB600CA87A9 /* FLDispatcher.h in Headers */,
+				2741E34216793DB600CA87A9 /* FLDispatching.h in Headers */,
 				2741E34B16793DB600CA87A9 /* FLDispatchQueue.h in Headers */,
 				2741E35D16793DB600CA87A9 /* FLFinisher.h in Headers */,
 				2741E37C16793DB600CA87A9 /* FLResult.h in Headers */,
@@ -7095,19 +7088,16 @@
 				27FE8D08168B56B60028D384 /* FLBatchDictionary.h in Headers */,
 				27FE8D12168B69560028D384 /* FLDispatchable.h in Headers */,
 				27FE8D18168B6CBF0028D384 /* FLArgumentList.h in Headers */,
-				27FE8D34168B935C0028D384 /* FLServiceManagingContext.h in Headers */,
+				27FE8D34168B935C0028D384 /* FLServiceManager.h in Headers */,
 				27348D22168B983F00D4142E /* FLServiceProvider.h in Headers */,
 				27348D2D168B98CD00D4142E /* NSError+FLServiceRequest.h in Headers */,
 				27348D4B168BAC3700D4142E /* FLServiceKeys.h in Headers */,
 				27348DE9168E24F200D4142E /* FLUserAuthenticator.h in Headers */,
-				27348DF4168E299100D4142E /* FLAuthenticatedServiceContext.h in Headers */,
 				2732990C168F80C100D1B91E /* FLXmlComment.h in Headers */,
 				27329917168F81BB00D1B91E /* NSArray+FLXmlSerialization.h in Headers */,
 				27329922168F829E00D1B91E /* NSObject+FLXmlSerialization.h in Headers */,
 				2732992D168F8FB800D1B91E /* FLObjectXmlElement.h in Headers */,
 				271E3E5A16939B2300FB62C9 /* FLContextuallyDispatchable.h in Headers */,
-				271E3E6716939BB000FB62C9 /* FLAuthenticatedContext.h in Headers */,
-				271E3E7016939BB000FB62C9 /* FLDispatchableContext.h in Headers */,
 				271E3E7A16939C8900FB62C9 /* FLObjectAuthenticator.h in Headers */,
 				274933EE169A04EE008E8EC5 /* __CocoaHeaders.h in Headers */,
 				2749349C169A1050008E8EC5 /* FLNetworkActivityConnectionObserver.h in Headers */,
@@ -7122,7 +7112,6 @@
 				274934ED169A1050008E8EC5 /* FLHttpRequestHeaders.h in Headers */,
 				274934F6169A1050008E8EC5 /* FLHttpResponse.h in Headers */,
 				274934FF169A1050008E8EC5 /* FLHttpServerService.h in Headers */,
-				27493508169A1050008E8EC5 /* FLHttpSession.h in Headers */,
 				27493511169A1050008E8EC5 /* FLNetworkServerContext.h in Headers */,
 				2749351A169A1050008E8EC5 /* FLUrlParameterParser.h in Headers */,
 				27493523169A1050008E8EC5 /* NSURLRequest+HTTP.h in Headers */,
@@ -7175,6 +7164,10 @@
 				275EE4FC169E641200D05DCB /* FLToolCommand.h in Headers */,
 				275EE507169E664B00D05DCB /* FLToolCommandOption.h in Headers */,
 				275EE511169E6DE100D05DCB /* FLParseable.h in Headers */,
+				27FE4A0016A1CF7000C8F0FB /* FLDispatcher.h in Headers */,
+				27FE4A1816A2060B00C8F0FB /* FLDispatchedObjectCollection.h in Headers */,
+				27FE4A2316A20E3F00C8F0FB /* FLHttpRequestAuthenticator.h in Headers */,
+				27FE4A2E16A21A2F00C8F0FB /* FLHttpUserContext.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7235,7 +7228,7 @@
 				2741E31D16793DB600CA87A9 /* FLOperationQueue.h in Headers */,
 				2741E32616793DB600CA87A9 /* FLPerformSelectorOperation.h in Headers */,
 				2741E33816793DB600CA87A9 /* FLCancellable.h in Headers */,
-				2741E34116793DB600CA87A9 /* FLDispatcher.h in Headers */,
+				2741E34116793DB600CA87A9 /* FLDispatching.h in Headers */,
 				2741E34A16793DB600CA87A9 /* FLDispatchQueue.h in Headers */,
 				2741E35C16793DB600CA87A9 /* FLFinisher.h in Headers */,
 				2741E37B16793DB600CA87A9 /* FLResult.h in Headers */,
@@ -7535,19 +7528,16 @@
 				27FE8D07168B56B60028D384 /* FLBatchDictionary.h in Headers */,
 				27FE8D11168B69560028D384 /* FLDispatchable.h in Headers */,
 				27FE8D17168B6CBF0028D384 /* FLArgumentList.h in Headers */,
-				27FE8D33168B935C0028D384 /* FLServiceManagingContext.h in Headers */,
+				27FE8D33168B935C0028D384 /* FLServiceManager.h in Headers */,
 				27348D21168B983F00D4142E /* FLServiceProvider.h in Headers */,
 				27348D2C168B98CD00D4142E /* NSError+FLServiceRequest.h in Headers */,
 				27348D4A168BAC3700D4142E /* FLServiceKeys.h in Headers */,
 				27348DE8168E24F200D4142E /* FLUserAuthenticator.h in Headers */,
-				27348DF3168E299100D4142E /* FLAuthenticatedServiceContext.h in Headers */,
 				2732990B168F80C100D1B91E /* FLXmlComment.h in Headers */,
 				27329916168F81BB00D1B91E /* NSArray+FLXmlSerialization.h in Headers */,
 				27329921168F829E00D1B91E /* NSObject+FLXmlSerialization.h in Headers */,
 				2732992C168F8FB800D1B91E /* FLObjectXmlElement.h in Headers */,
 				271E3E5916939B2300FB62C9 /* FLContextuallyDispatchable.h in Headers */,
-				271E3E6616939BB000FB62C9 /* FLAuthenticatedContext.h in Headers */,
-				271E3E6F16939BB000FB62C9 /* FLDispatchableContext.h in Headers */,
 				271E3E7916939C8900FB62C9 /* FLObjectAuthenticator.h in Headers */,
 				274933ED169A04EE008E8EC5 /* __CocoaHeaders.h in Headers */,
 				2749349B169A1050008E8EC5 /* FLNetworkActivityConnectionObserver.h in Headers */,
@@ -7562,7 +7552,6 @@
 				274934EC169A1050008E8EC5 /* FLHttpRequestHeaders.h in Headers */,
 				274934F5169A1050008E8EC5 /* FLHttpResponse.h in Headers */,
 				274934FE169A1050008E8EC5 /* FLHttpServerService.h in Headers */,
-				27493507169A1050008E8EC5 /* FLHttpSession.h in Headers */,
 				27493510169A1050008E8EC5 /* FLNetworkServerContext.h in Headers */,
 				27493519169A1050008E8EC5 /* FLUrlParameterParser.h in Headers */,
 				27493522169A1050008E8EC5 /* NSURLRequest+HTTP.h in Headers */,
@@ -7615,6 +7604,10 @@
 				275EE4FB169E641200D05DCB /* FLToolCommand.h in Headers */,
 				275EE506169E664B00D05DCB /* FLToolCommandOption.h in Headers */,
 				275EE510169E6DE100D05DCB /* FLParseable.h in Headers */,
+				27FE49FF16A1CF7000C8F0FB /* FLDispatcher.h in Headers */,
+				27FE4A1716A2060B00C8F0FB /* FLDispatchedObjectCollection.h in Headers */,
+				27FE4A2216A20E3F00C8F0FB /* FLHttpRequestAuthenticator.h in Headers */,
+				27FE4A2D16A21A2F00C8F0FB /* FLHttpUserContext.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7675,7 +7668,7 @@
 				2741E31F16793DB600CA87A9 /* FLOperationQueue.h in Headers */,
 				2741E32816793DB600CA87A9 /* FLPerformSelectorOperation.h in Headers */,
 				2741E33A16793DB600CA87A9 /* FLCancellable.h in Headers */,
-				2741E34316793DB600CA87A9 /* FLDispatcher.h in Headers */,
+				2741E34316793DB600CA87A9 /* FLDispatching.h in Headers */,
 				2741E34C16793DB600CA87A9 /* FLDispatchQueue.h in Headers */,
 				2741E35E16793DB600CA87A9 /* FLFinisher.h in Headers */,
 				2741E37D16793DB600CA87A9 /* FLResult.h in Headers */,
@@ -7975,19 +7968,16 @@
 				27FE8D09168B56B60028D384 /* FLBatchDictionary.h in Headers */,
 				27FE8D13168B69560028D384 /* FLDispatchable.h in Headers */,
 				27FE8D19168B6CBF0028D384 /* FLArgumentList.h in Headers */,
-				27FE8D35168B935C0028D384 /* FLServiceManagingContext.h in Headers */,
+				27FE8D35168B935C0028D384 /* FLServiceManager.h in Headers */,
 				27348D23168B983F00D4142E /* FLServiceProvider.h in Headers */,
 				27348D2E168B98CD00D4142E /* NSError+FLServiceRequest.h in Headers */,
 				27348D4C168BAC3700D4142E /* FLServiceKeys.h in Headers */,
 				27348DEA168E24F200D4142E /* FLUserAuthenticator.h in Headers */,
-				27348DF5168E299100D4142E /* FLAuthenticatedServiceContext.h in Headers */,
 				2732990D168F80C100D1B91E /* FLXmlComment.h in Headers */,
 				27329918168F81BB00D1B91E /* NSArray+FLXmlSerialization.h in Headers */,
 				27329923168F829E00D1B91E /* NSObject+FLXmlSerialization.h in Headers */,
 				2732992E168F8FB800D1B91E /* FLObjectXmlElement.h in Headers */,
 				271E3E5B16939B2300FB62C9 /* FLContextuallyDispatchable.h in Headers */,
-				271E3E6816939BB000FB62C9 /* FLAuthenticatedContext.h in Headers */,
-				271E3E7116939BB000FB62C9 /* FLDispatchableContext.h in Headers */,
 				271E3E7B16939C8900FB62C9 /* FLObjectAuthenticator.h in Headers */,
 				274933EF169A04EE008E8EC5 /* __CocoaHeaders.h in Headers */,
 				2749349D169A1050008E8EC5 /* FLNetworkActivityConnectionObserver.h in Headers */,
@@ -8002,7 +7992,6 @@
 				274934EE169A1050008E8EC5 /* FLHttpRequestHeaders.h in Headers */,
 				274934F7169A1050008E8EC5 /* FLHttpResponse.h in Headers */,
 				27493500169A1050008E8EC5 /* FLHttpServerService.h in Headers */,
-				27493509169A1050008E8EC5 /* FLHttpSession.h in Headers */,
 				27493512169A1050008E8EC5 /* FLNetworkServerContext.h in Headers */,
 				2749351B169A1050008E8EC5 /* FLUrlParameterParser.h in Headers */,
 				27493524169A1050008E8EC5 /* NSURLRequest+HTTP.h in Headers */,
@@ -8055,6 +8044,10 @@
 				275EE4FD169E641200D05DCB /* FLToolCommand.h in Headers */,
 				275EE508169E664B00D05DCB /* FLToolCommandOption.h in Headers */,
 				275EE512169E6DE100D05DCB /* FLParseable.h in Headers */,
+				27FE4A0116A1CF7000C8F0FB /* FLDispatcher.h in Headers */,
+				27FE4A1916A2060B00C8F0FB /* FLDispatchedObjectCollection.h in Headers */,
+				27FE4A2416A20E3F00C8F0FB /* FLHttpRequestAuthenticator.h in Headers */,
+				27FE4A2F16A21A2F00C8F0FB /* FLHttpUserContext.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8129,9 +8122,9 @@
 			productReference = 27A43AC415CDCCCB001CB13E /* libFishLampCocoa-OSX-64-MRC.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		27CBBE2916768BA600753D0A /* FishLampCocoa-OSX-32-64-MRC */ = {
+		27CBBE2916768BA600753D0A /* FishLampCocoa-OSX-3264-MRC */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 27CBC1F116768BA600753D0A /* Build configuration list for PBXNativeTarget "FishLampCocoa-OSX-32-64-MRC" */;
+			buildConfigurationList = 27CBC1F116768BA600753D0A /* Build configuration list for PBXNativeTarget "FishLampCocoa-OSX-3264-MRC" */;
 			buildPhases = (
 				27CBBE2A16768BA600753D0A /* Sources */,
 				27CBBFEC16768BA600753D0A /* Frameworks */,
@@ -8141,7 +8134,7 @@
 			);
 			dependencies = (
 			);
-			name = "FishLampCocoa-OSX-32-64-MRC";
+			name = "FishLampCocoa-OSX-3264-MRC";
 			productName = FishLampCommandLine;
 			productReference = 27CBC1F416768BA600753D0A /* libFishLampCocoa-OSX-32-64-MRC.a */;
 			productType = "com.apple.product-type.library.static";
@@ -8172,7 +8165,7 @@
 				27048B70161CB58600C38ADA /* FishLampCocoa-OSX-32-MRC */,
 				27A43AC315CDCCCB001CB13E /* FishLampCocoa-OSX-64-MRC */,
 				273148B9165328400027850D /* FishLampCocoa-OSX-64-ARC */,
-				27CBBE2916768BA600753D0A /* FishLampCocoa-OSX-32-64-MRC */,
+				27CBBE2916768BA600753D0A /* FishLampCocoa-OSX-3264-MRC */,
 			);
 		};
 /* End PBXProject section */
@@ -8230,7 +8223,6 @@
 				2741E32116793DB600CA87A9 /* FLOperationQueue.m in Sources */,
 				2741E32A16793DB600CA87A9 /* FLPerformSelectorOperation.m in Sources */,
 				2741E33C16793DB600CA87A9 /* FLCancellable.m in Sources */,
-				2741E34516793DB600CA87A9 /* FLDispatcher.m in Sources */,
 				2741E34E16793DB600CA87A9 /* FLDispatchQueue.m in Sources */,
 				2741E36016793DB600CA87A9 /* FLFinisher.m in Sources */,
 				2741E38716793DB600CA87A9 /* FLResult.m in Sources */,
@@ -8506,19 +8498,16 @@
 				27FE8D0B168B56B60028D384 /* FLBatchDictionary.m in Sources */,
 				27FE8D1B168B6CBF0028D384 /* FLArgumentList.m in Sources */,
 				27FE8D21168B84790028D384 /* FLDispatchable.m in Sources */,
-				27FE8D37168B935C0028D384 /* FLServiceManagingContext.m in Sources */,
+				27FE8D37168B935C0028D384 /* FLServiceManager.m in Sources */,
 				27348D25168B983F00D4142E /* FLServiceProvider.m in Sources */,
 				27348D30168B98CD00D4142E /* NSError+FLServiceRequest.m in Sources */,
 				27348D4E168BAC3700D4142E /* FLServiceKeys.m in Sources */,
 				27348DEC168E24F200D4142E /* FLUserAuthenticator.m in Sources */,
-				27348DF7168E299100D4142E /* FLAuthenticatedServiceContext.m in Sources */,
 				2732990F168F80C100D1B91E /* FLXmlComment.m in Sources */,
 				2732991A168F81BB00D1B91E /* NSArray+FLXmlSerialization.m in Sources */,
 				27329925168F829E00D1B91E /* NSObject+FLXmlSerialization.m in Sources */,
 				27329930168F8FB800D1B91E /* FLObjectXmlElement.m in Sources */,
 				271E3E5D16939B2300FB62C9 /* FLContextuallyDispatchable.m in Sources */,
-				271E3E6A16939BB000FB62C9 /* FLAuthenticatedContext.m in Sources */,
-				271E3E7316939BB000FB62C9 /* FLDispatchableContext.m in Sources */,
 				2749349F169A1050008E8EC5 /* FLNetworkActivityConnectionObserver.m in Sources */,
 				274934A8169A1050008E8EC5 /* FLNetworkConnectionProgressObserver.m in Sources */,
 				274934B1169A1050008E8EC5 /* FLNetworkHost.m in Sources */,
@@ -8531,7 +8520,6 @@
 				274934F0169A1050008E8EC5 /* FLHttpRequestHeaders.m in Sources */,
 				274934F9169A1050008E8EC5 /* FLHttpResponse.m in Sources */,
 				27493502169A1050008E8EC5 /* FLHttpServerService.m in Sources */,
-				2749350B169A1050008E8EC5 /* FLHttpSession.m in Sources */,
 				27493514169A1050008E8EC5 /* FLNetworkServerContext.m in Sources */,
 				2749351D169A1050008E8EC5 /* FLUrlParameterParser.m in Sources */,
 				27493526169A1050008E8EC5 /* NSURLRequest+HTTP.m in Sources */,
@@ -8578,6 +8566,10 @@
 				275EE4F4169E45C800D05DCB /* FLParseableInput.m in Sources */,
 				275EE4FF169E641200D05DCB /* FLToolCommand.m in Sources */,
 				275EE50A169E664B00D05DCB /* FLToolCommandOption.m in Sources */,
+				27FE4A0316A1CF7000C8F0FB /* FLDispatcher.m in Sources */,
+				27FE4A1B16A2060B00C8F0FB /* FLDispatchedObjectCollection.m in Sources */,
+				27FE4A2616A20E3F00C8F0FB /* FLHttpRequestAuthenticator.m in Sources */,
+				27FE4A3116A21A2F00C8F0FB /* FLHttpUserContext.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8633,7 +8625,6 @@
 				2741E32316793DB600CA87A9 /* FLOperationQueue.m in Sources */,
 				2741E32C16793DB600CA87A9 /* FLPerformSelectorOperation.m in Sources */,
 				2741E33E16793DB600CA87A9 /* FLCancellable.m in Sources */,
-				2741E34716793DB600CA87A9 /* FLDispatcher.m in Sources */,
 				2741E35016793DB600CA87A9 /* FLDispatchQueue.m in Sources */,
 				2741E36216793DB600CA87A9 /* FLFinisher.m in Sources */,
 				2741E38916793DB600CA87A9 /* FLResult.m in Sources */,
@@ -8909,19 +8900,16 @@
 				27FE8D0D168B56B60028D384 /* FLBatchDictionary.m in Sources */,
 				27FE8D1D168B6CBF0028D384 /* FLArgumentList.m in Sources */,
 				27FE8D23168B84790028D384 /* FLDispatchable.m in Sources */,
-				27FE8D39168B935C0028D384 /* FLServiceManagingContext.m in Sources */,
+				27FE8D39168B935C0028D384 /* FLServiceManager.m in Sources */,
 				27348D27168B983F00D4142E /* FLServiceProvider.m in Sources */,
 				27348D32168B98CD00D4142E /* NSError+FLServiceRequest.m in Sources */,
 				27348D50168BAC3700D4142E /* FLServiceKeys.m in Sources */,
 				27348DEE168E24F200D4142E /* FLUserAuthenticator.m in Sources */,
-				27348DF9168E299100D4142E /* FLAuthenticatedServiceContext.m in Sources */,
 				27329911168F80C100D1B91E /* FLXmlComment.m in Sources */,
 				2732991C168F81BB00D1B91E /* NSArray+FLXmlSerialization.m in Sources */,
 				27329927168F829E00D1B91E /* NSObject+FLXmlSerialization.m in Sources */,
 				27329932168F8FB800D1B91E /* FLObjectXmlElement.m in Sources */,
 				271E3E5F16939B2300FB62C9 /* FLContextuallyDispatchable.m in Sources */,
-				271E3E6C16939BB000FB62C9 /* FLAuthenticatedContext.m in Sources */,
-				271E3E7516939BB000FB62C9 /* FLDispatchableContext.m in Sources */,
 				274934A1169A1050008E8EC5 /* FLNetworkActivityConnectionObserver.m in Sources */,
 				274934AA169A1050008E8EC5 /* FLNetworkConnectionProgressObserver.m in Sources */,
 				274934B3169A1050008E8EC5 /* FLNetworkHost.m in Sources */,
@@ -8934,7 +8922,6 @@
 				274934F2169A1050008E8EC5 /* FLHttpRequestHeaders.m in Sources */,
 				274934FB169A1050008E8EC5 /* FLHttpResponse.m in Sources */,
 				27493504169A1050008E8EC5 /* FLHttpServerService.m in Sources */,
-				2749350D169A1050008E8EC5 /* FLHttpSession.m in Sources */,
 				27493516169A1050008E8EC5 /* FLNetworkServerContext.m in Sources */,
 				2749351F169A1050008E8EC5 /* FLUrlParameterParser.m in Sources */,
 				27493528169A1050008E8EC5 /* NSURLRequest+HTTP.m in Sources */,
@@ -8981,6 +8968,10 @@
 				275EE4F6169E45C800D05DCB /* FLParseableInput.m in Sources */,
 				275EE501169E641200D05DCB /* FLToolCommand.m in Sources */,
 				275EE50C169E664B00D05DCB /* FLToolCommandOption.m in Sources */,
+				27FE4A0516A1CF7000C8F0FB /* FLDispatcher.m in Sources */,
+				27FE4A1D16A2060B00C8F0FB /* FLDispatchedObjectCollection.m in Sources */,
+				27FE4A2816A20E3F00C8F0FB /* FLHttpRequestAuthenticator.m in Sources */,
+				27FE4A3316A21A2F00C8F0FB /* FLHttpUserContext.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9036,7 +9027,6 @@
 				2741E32016793DB600CA87A9 /* FLOperationQueue.m in Sources */,
 				2741E32916793DB600CA87A9 /* FLPerformSelectorOperation.m in Sources */,
 				2741E33B16793DB600CA87A9 /* FLCancellable.m in Sources */,
-				2741E34416793DB600CA87A9 /* FLDispatcher.m in Sources */,
 				2741E34D16793DB600CA87A9 /* FLDispatchQueue.m in Sources */,
 				2741E35F16793DB600CA87A9 /* FLFinisher.m in Sources */,
 				2741E38616793DB600CA87A9 /* FLResult.m in Sources */,
@@ -9312,19 +9302,16 @@
 				27FE8D0A168B56B60028D384 /* FLBatchDictionary.m in Sources */,
 				27FE8D1A168B6CBF0028D384 /* FLArgumentList.m in Sources */,
 				27FE8D20168B84790028D384 /* FLDispatchable.m in Sources */,
-				27FE8D36168B935C0028D384 /* FLServiceManagingContext.m in Sources */,
+				27FE8D36168B935C0028D384 /* FLServiceManager.m in Sources */,
 				27348D24168B983F00D4142E /* FLServiceProvider.m in Sources */,
 				27348D2F168B98CD00D4142E /* NSError+FLServiceRequest.m in Sources */,
 				27348D4D168BAC3700D4142E /* FLServiceKeys.m in Sources */,
 				27348DEB168E24F200D4142E /* FLUserAuthenticator.m in Sources */,
-				27348DF6168E299100D4142E /* FLAuthenticatedServiceContext.m in Sources */,
 				2732990E168F80C100D1B91E /* FLXmlComment.m in Sources */,
 				27329919168F81BB00D1B91E /* NSArray+FLXmlSerialization.m in Sources */,
 				27329924168F829E00D1B91E /* NSObject+FLXmlSerialization.m in Sources */,
 				2732992F168F8FB800D1B91E /* FLObjectXmlElement.m in Sources */,
 				271E3E5C16939B2300FB62C9 /* FLContextuallyDispatchable.m in Sources */,
-				271E3E6916939BB000FB62C9 /* FLAuthenticatedContext.m in Sources */,
-				271E3E7216939BB000FB62C9 /* FLDispatchableContext.m in Sources */,
 				2749349E169A1050008E8EC5 /* FLNetworkActivityConnectionObserver.m in Sources */,
 				274934A7169A1050008E8EC5 /* FLNetworkConnectionProgressObserver.m in Sources */,
 				274934B0169A1050008E8EC5 /* FLNetworkHost.m in Sources */,
@@ -9337,7 +9324,6 @@
 				274934EF169A1050008E8EC5 /* FLHttpRequestHeaders.m in Sources */,
 				274934F8169A1050008E8EC5 /* FLHttpResponse.m in Sources */,
 				27493501169A1050008E8EC5 /* FLHttpServerService.m in Sources */,
-				2749350A169A1050008E8EC5 /* FLHttpSession.m in Sources */,
 				27493513169A1050008E8EC5 /* FLNetworkServerContext.m in Sources */,
 				2749351C169A1050008E8EC5 /* FLUrlParameterParser.m in Sources */,
 				27493525169A1050008E8EC5 /* NSURLRequest+HTTP.m in Sources */,
@@ -9384,6 +9370,10 @@
 				275EE4F3169E45C800D05DCB /* FLParseableInput.m in Sources */,
 				275EE4FE169E641200D05DCB /* FLToolCommand.m in Sources */,
 				275EE509169E664B00D05DCB /* FLToolCommandOption.m in Sources */,
+				27FE4A0216A1CF7000C8F0FB /* FLDispatcher.m in Sources */,
+				27FE4A1A16A2060B00C8F0FB /* FLDispatchedObjectCollection.m in Sources */,
+				27FE4A2516A20E3F00C8F0FB /* FLHttpRequestAuthenticator.m in Sources */,
+				27FE4A3016A21A2F00C8F0FB /* FLHttpUserContext.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9439,7 +9429,6 @@
 				2741E32216793DB600CA87A9 /* FLOperationQueue.m in Sources */,
 				2741E32B16793DB600CA87A9 /* FLPerformSelectorOperation.m in Sources */,
 				2741E33D16793DB600CA87A9 /* FLCancellable.m in Sources */,
-				2741E34616793DB600CA87A9 /* FLDispatcher.m in Sources */,
 				2741E34F16793DB600CA87A9 /* FLDispatchQueue.m in Sources */,
 				2741E36116793DB600CA87A9 /* FLFinisher.m in Sources */,
 				2741E38816793DB600CA87A9 /* FLResult.m in Sources */,
@@ -9715,19 +9704,16 @@
 				27FE8D0C168B56B60028D384 /* FLBatchDictionary.m in Sources */,
 				27FE8D1C168B6CBF0028D384 /* FLArgumentList.m in Sources */,
 				27FE8D22168B84790028D384 /* FLDispatchable.m in Sources */,
-				27FE8D38168B935C0028D384 /* FLServiceManagingContext.m in Sources */,
+				27FE8D38168B935C0028D384 /* FLServiceManager.m in Sources */,
 				27348D26168B983F00D4142E /* FLServiceProvider.m in Sources */,
 				27348D31168B98CD00D4142E /* NSError+FLServiceRequest.m in Sources */,
 				27348D4F168BAC3700D4142E /* FLServiceKeys.m in Sources */,
 				27348DED168E24F200D4142E /* FLUserAuthenticator.m in Sources */,
-				27348DF8168E299100D4142E /* FLAuthenticatedServiceContext.m in Sources */,
 				27329910168F80C100D1B91E /* FLXmlComment.m in Sources */,
 				2732991B168F81BB00D1B91E /* NSArray+FLXmlSerialization.m in Sources */,
 				27329926168F829E00D1B91E /* NSObject+FLXmlSerialization.m in Sources */,
 				27329931168F8FB800D1B91E /* FLObjectXmlElement.m in Sources */,
 				271E3E5E16939B2300FB62C9 /* FLContextuallyDispatchable.m in Sources */,
-				271E3E6B16939BB000FB62C9 /* FLAuthenticatedContext.m in Sources */,
-				271E3E7416939BB000FB62C9 /* FLDispatchableContext.m in Sources */,
 				274934A0169A1050008E8EC5 /* FLNetworkActivityConnectionObserver.m in Sources */,
 				274934A9169A1050008E8EC5 /* FLNetworkConnectionProgressObserver.m in Sources */,
 				274934B2169A1050008E8EC5 /* FLNetworkHost.m in Sources */,
@@ -9740,7 +9726,6 @@
 				274934F1169A1050008E8EC5 /* FLHttpRequestHeaders.m in Sources */,
 				274934FA169A1050008E8EC5 /* FLHttpResponse.m in Sources */,
 				27493503169A1050008E8EC5 /* FLHttpServerService.m in Sources */,
-				2749350C169A1050008E8EC5 /* FLHttpSession.m in Sources */,
 				27493515169A1050008E8EC5 /* FLNetworkServerContext.m in Sources */,
 				2749351E169A1050008E8EC5 /* FLUrlParameterParser.m in Sources */,
 				27493527169A1050008E8EC5 /* NSURLRequest+HTTP.m in Sources */,
@@ -9787,6 +9772,10 @@
 				275EE4F5169E45C800D05DCB /* FLParseableInput.m in Sources */,
 				275EE500169E641200D05DCB /* FLToolCommand.m in Sources */,
 				275EE50B169E664B00D05DCB /* FLToolCommandOption.m in Sources */,
+				27FE4A0416A1CF7000C8F0FB /* FLDispatcher.m in Sources */,
+				27FE4A1C16A2060B00C8F0FB /* FLDispatchedObjectCollection.m in Sources */,
+				27FE4A2716A20E3F00C8F0FB /* FLHttpRequestAuthenticator.m in Sources */,
+				27FE4A3216A21A2F00C8F0FB /* FLHttpUserContext.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9842,7 +9831,6 @@
 				2741E32416793DB600CA87A9 /* FLOperationQueue.m in Sources */,
 				2741E32D16793DB600CA87A9 /* FLPerformSelectorOperation.m in Sources */,
 				2741E33F16793DB600CA87A9 /* FLCancellable.m in Sources */,
-				2741E34816793DB600CA87A9 /* FLDispatcher.m in Sources */,
 				2741E35116793DB600CA87A9 /* FLDispatchQueue.m in Sources */,
 				2741E36316793DB600CA87A9 /* FLFinisher.m in Sources */,
 				2741E38A16793DB600CA87A9 /* FLResult.m in Sources */,
@@ -10118,19 +10106,16 @@
 				27FE8D0E168B56B60028D384 /* FLBatchDictionary.m in Sources */,
 				27FE8D1E168B6CBF0028D384 /* FLArgumentList.m in Sources */,
 				27FE8D24168B84790028D384 /* FLDispatchable.m in Sources */,
-				27FE8D3A168B935C0028D384 /* FLServiceManagingContext.m in Sources */,
+				27FE8D3A168B935C0028D384 /* FLServiceManager.m in Sources */,
 				27348D28168B983F00D4142E /* FLServiceProvider.m in Sources */,
 				27348D33168B98CD00D4142E /* NSError+FLServiceRequest.m in Sources */,
 				27348D51168BAC3700D4142E /* FLServiceKeys.m in Sources */,
 				27348DEF168E24F200D4142E /* FLUserAuthenticator.m in Sources */,
-				27348DFA168E299100D4142E /* FLAuthenticatedServiceContext.m in Sources */,
 				27329912168F80C100D1B91E /* FLXmlComment.m in Sources */,
 				2732991D168F81BB00D1B91E /* NSArray+FLXmlSerialization.m in Sources */,
 				27329928168F829E00D1B91E /* NSObject+FLXmlSerialization.m in Sources */,
 				27329933168F8FB800D1B91E /* FLObjectXmlElement.m in Sources */,
 				271E3E6016939B2300FB62C9 /* FLContextuallyDispatchable.m in Sources */,
-				271E3E6D16939BB000FB62C9 /* FLAuthenticatedContext.m in Sources */,
-				271E3E7616939BB000FB62C9 /* FLDispatchableContext.m in Sources */,
 				274934A2169A1050008E8EC5 /* FLNetworkActivityConnectionObserver.m in Sources */,
 				274934AB169A1050008E8EC5 /* FLNetworkConnectionProgressObserver.m in Sources */,
 				274934B4169A1050008E8EC5 /* FLNetworkHost.m in Sources */,
@@ -10143,7 +10128,6 @@
 				274934F3169A1050008E8EC5 /* FLHttpRequestHeaders.m in Sources */,
 				274934FC169A1050008E8EC5 /* FLHttpResponse.m in Sources */,
 				27493505169A1050008E8EC5 /* FLHttpServerService.m in Sources */,
-				2749350E169A1050008E8EC5 /* FLHttpSession.m in Sources */,
 				27493517169A1050008E8EC5 /* FLNetworkServerContext.m in Sources */,
 				27493520169A1050008E8EC5 /* FLUrlParameterParser.m in Sources */,
 				27493529169A1050008E8EC5 /* NSURLRequest+HTTP.m in Sources */,
@@ -10190,6 +10174,10 @@
 				275EE4F7169E45C800D05DCB /* FLParseableInput.m in Sources */,
 				275EE502169E641200D05DCB /* FLToolCommand.m in Sources */,
 				275EE50D169E664B00D05DCB /* FLToolCommandOption.m in Sources */,
+				27FE4A0616A1CF7000C8F0FB /* FLDispatcher.m in Sources */,
+				27FE4A1E16A2060B00C8F0FB /* FLDispatchedObjectCollection.m in Sources */,
+				27FE4A2916A20E3F00C8F0FB /* FLHttpRequestAuthenticator.m in Sources */,
+				27FE4A3416A21A2F00C8F0FB /* FLHttpUserContext.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -10341,7 +10329,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		27CBC1F116768BA600753D0A /* Build configuration list for PBXNativeTarget "FishLampCocoa-OSX-32-64-MRC" */ = {
+		27CBC1F116768BA600753D0A /* Build configuration list for PBXNativeTarget "FishLampCocoa-OSX-3264-MRC" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				27CBC1F216768BA600753D0A /* Debug */,

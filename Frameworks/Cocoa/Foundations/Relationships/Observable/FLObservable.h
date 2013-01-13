@@ -7,6 +7,7 @@
 //
 
 #import "FLCocoaRequired.h"
+#import "FLBatchDictionary.h"
 
 typedef void (^FLObservableBlock)(id observedObject, id object1, id object2);
 
@@ -43,7 +44,7 @@ typedef void (^FLObservableBlock)(id observedObject, id object1, id object2);
 
 @interface FLObservable : NSObject<FLObservable> {
 @private
-    NSMutableDictionary* _observers;
+    FLMutableBatchDictionary* _observers;
     __unsafe_unretained id _observed; // set to 'self' by default.
 }
 - (id) initWithObservedObject:(id) observed;

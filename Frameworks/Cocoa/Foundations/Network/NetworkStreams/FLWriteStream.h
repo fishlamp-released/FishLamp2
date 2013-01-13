@@ -20,6 +20,7 @@
 @property (readwrite, assign) id<FLWriteStreamDelegate> delegate;
 
 - (id) initWithWriteStream:(CFWriteStreamRef) streamRef;
+         
 + (id) writeStream:(CFWriteStreamRef) streamRef;
 
 - (BOOL) canAcceptBytes;

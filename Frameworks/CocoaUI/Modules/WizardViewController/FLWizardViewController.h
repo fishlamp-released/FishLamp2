@@ -23,8 +23,6 @@
     
     IBOutlet NSView* _breadcrumbEnclosureView;
     IBOutlet FLBreadcrumbBarView* _breadcrumbBarView;
-    IBOutlet NSView* _notificationViewEnclosure;
-    NSView* _notificationView;
     
     IBOutlet NSView* _wizardPanelEnclosureView;
     IBOutlet NSTextField* _titleTextField;
@@ -35,8 +33,6 @@
     IBOutlet NSButton* _otherButton;
     
     NSMutableArray* _wizardPanels;
-        
-    FLStatusBarViewController* _statusViewController;
         
 // temp    
     IBOutlet NSButton* _logoutButton;
@@ -49,8 +45,6 @@
 // views
 @property (readwrite, strong, nonatomic) NSView* backgroundView;
 @property (readwrite, strong, nonatomic) NSView* wizardPanelBackgroundView;
-@property (readonly, strong, nonatomic) UIView* notificationViewEnclosure;
-@property (readonly, strong, nonatomic) UIView* notificationView;
 
 // backgrounds
 @property (readonly, strong, nonatomic) NSButton* nextButton;
@@ -68,10 +62,12 @@
 
 // optional overrides
 - (void) setWizardPanelTitleFields:(FLWizardPanel*) wizardPanel;
-- (void) wizardPanelDidDissappear:(FLWizardPanel*) wizardPanel;
-- (void) wizardPanelWillDissappear:(FLWizardPanel*) wizardPanel;
-- (void) wizardPanelDidAppear:(FLWizardPanel*) wizardPanel;
-- (void) wizardPanelWillAppear:(FLWizardPanel*) wizardPanel;
+
+- (void) didHideWizardPanel:(FLWizardPanel*) wizardPanel;
+- (void) willHideWizardPanel:(FLWizardPanel*) wizardPanel;
+
+- (void) didShowWizardPanel:(FLWizardPanel*) wizardPanel;
+- (void) willShowWizardPanel:(FLWizardPanel*) wizardPanel;
 
 - (void) willStartWizardInWindow:(NSWindow*) window;
 - (void) didStartWizardInWindow:(NSWindow*) window;
@@ -79,7 +75,6 @@
 // utils
 - (void) updateBackButtonEnabledState;
 
-@property (readonly, strong, nonatomic) FLStatusBarViewController* statusBar;
 @end
 
 @interface FLWizardViewController (Navigation)
@@ -97,18 +92,8 @@
 - (void) popWizardPanelAnimated:(BOOL) animated
                      completion:(void (^)(FLWizardPanel*)) completion;
 
-
-
-//- (void) flipToNextNotificationViewWithDirection:(FLFlipAnimationDirection) direction 
-//                                        nextView:(UIView*) nextView
-//                                      completion:(void (^)()) completion;
-//
-//- (void) setNotificationView:(UIView*) notificationView 
-//                    animated:(BOOL) animated 
-//                  completion:(void (^)()) completion;
-//
-//- (void) hideNotificationViewAnimated:(BOOL) animated 
-//                  completion:(void (^)()) completion;
+- (void) pushNextWizardPanelAnimated:(BOOL) animated 
+                          completion:(void (^)(FLWizardPanel*)) completion;
 
 @end
 

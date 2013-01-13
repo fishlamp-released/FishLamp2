@@ -89,8 +89,7 @@
     
 #if DEBUG
     self.body.debugBody = [FLStringBuilder buildString:soapStringBuilder];
-    
-    FLLog([self description]);
+//    FLLog([self description]);
 #endif    
 }
 

@@ -41,7 +41,7 @@
 // Foundations/Async/Workers
 #import "FLCancellable.h"
 #import "FLDispatchable.h"
-#import "FLDispatcher.h"
+#import "FLDispatching.h"
 #import "FLDispatchQueue.h"
 #import "FLFinisher.h"
 
@@ -315,7 +315,7 @@
 #import "FLAuthenticatedServiceContext.h"
 #import "FLService.h"
 #import "FLServiceKeys.h"
-#import "FLServiceManagingContext.h"
+#import "FLServiceManager.h"
 #import "FLServiceProvider.h"
 #import "FLServiceRequest.h"
 #import "FLUserAuthenticator.h"

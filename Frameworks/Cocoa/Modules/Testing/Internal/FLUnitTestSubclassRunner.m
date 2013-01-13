@@ -57,7 +57,7 @@
     }
 }
 
-- (id) runTests {
+- (id) runOperation {
     
     NSMutableDictionary* groups = [NSMutableDictionary dictionary];
     
@@ -93,7 +93,7 @@
         
         for(Class aClass in classList) {
             FLUnitTest* test = FLAutorelease([[[aClass class] alloc] init]);
-            FLUnitTestResult* result = [test runSynchronously];
+            FLUnitTestResult* result = [test runSynchronouslyInContext:self.context];
             [resultArray addObject:result];
         }
     }

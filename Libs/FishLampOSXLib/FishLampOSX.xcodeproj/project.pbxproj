@@ -281,9 +281,9 @@
 			productReference = 27A43AC415CDCCCB001CB13E /* libFishLampOSX-64-MRC.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		27CBBE2916768BA600753D0A /* FishLampOSX-32-64-MRC */ = {
+		27CBBE2916768BA600753D0A /* FishLampOSX-3264-MRC */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 27CBC1F116768BA600753D0A /* Build configuration list for PBXNativeTarget "FishLampOSX-32-64-MRC" */;
+			buildConfigurationList = 27CBC1F116768BA600753D0A /* Build configuration list for PBXNativeTarget "FishLampOSX-3264-MRC" */;
 			buildPhases = (
 				27CBBE2A16768BA600753D0A /* Sources */,
 				27CBBFEC16768BA600753D0A /* Frameworks */,
@@ -293,7 +293,7 @@
 			);
 			dependencies = (
 			);
-			name = "FishLampOSX-32-64-MRC";
+			name = "FishLampOSX-3264-MRC";
 			productName = FishLampCommandLine;
 			productReference = 27CBC1F416768BA600753D0A /* libFishLampOSX-32-64-MRC.a */;
 			productType = "com.apple.product-type.library.static";
@@ -323,7 +323,7 @@
 				27048B70161CB58600C38ADA /* FishLampOSX-32-MRC */,
 				27A43AC315CDCCCB001CB13E /* FishLampOSX-64-MRC */,
 				273148B9165328400027850D /* FishLampOSX-64-ARC */,
-				27CBBE2916768BA600753D0A /* FishLampOSX-32-64-MRC */,
+				27CBBE2916768BA600753D0A /* FishLampOSX-3264-MRC */,
 			);
 		};
 /* End PBXProject section */
@@ -485,7 +485,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		27CBC1F116768BA600753D0A /* Build configuration list for PBXNativeTarget "FishLampOSX-32-64-MRC" */ = {
+		27CBC1F116768BA600753D0A /* Build configuration list for PBXNativeTarget "FishLampOSX-3264-MRC" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				27CBC1F216768BA600753D0A /* Debug */,

@@ -45,7 +45,7 @@
         }
         
         _semaphore = dispatch_semaphore_create(0);
-        FLLog(@"created semaphor for %X, thread %@", (void*) _semaphore, [NSThread currentThread]);
+//        FLLog(@"created semaphor for %X, thread %@", (void*) _semaphore, [NSThread currentThread]);
 
 #if DEBUG
         self.createdStackTrace = FLCreateStackTrace(YES);
@@ -110,9 +110,9 @@
             }
         } 
         else {
-            FLLog(@"waiting for semaphor for %X, thread %@", (void*) _semaphore, [NSThread currentThread]);
+//            FLLog(@"waiting for semaphor for %X, thread %@", (void*) _semaphore, [NSThread currentThread]);
             dispatch_semaphore_wait(_semaphore, DISPATCH_TIME_FOREVER);
-            FLLog(@"finished waiting for %X", (void*) _semaphore);
+//            FLLog(@"finished waiting for %X", (void*) _semaphore);
         } 
         
         FLThrowError(self.result);
@@ -139,7 +139,7 @@
     self.finished = YES;
 
     if(_semaphore) {
-        FLLog(@"releasing semaphor for %X, ont thread %@", (void*) _semaphore, [NSThread currentThread]);
+ //       FLLog(@"releasing semaphor for %X, ont thread %@", (void*) _semaphore, [NSThread currentThread]);
         dispatch_semaphore_signal(_semaphore);
     }
 }
@@ -221,7 +221,7 @@
 
 @end
 
-@implementation FLScheduledFinisher 
+@implementation FLMainThreadFinisher 
 - (id) initWithResultBlock:(FLResultBlock) completion {
     self = [super initWithResultBlock:completion];
     if(self) {

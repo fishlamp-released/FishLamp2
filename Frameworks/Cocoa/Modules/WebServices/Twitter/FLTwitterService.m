@@ -100,11 +100,11 @@
 	self.oauthSession = oauthSession;
 }
 
-- (void) openService:(FLServiceManagingContext*) context {
+- (void) openService:(FLServiceManager*) context {
     self.database = [self.context resourceForKey:FLUserDataPersistantDatabaseKey];
 }
 
-- (void) closeService:(FLServiceManagingContext*) context {
+- (void) closeService:(FLServiceManager*) context {
     self.database = nil;
     self.oauthSession = nil;
     self.oauthInfo = nil;

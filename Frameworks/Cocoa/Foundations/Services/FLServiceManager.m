@@ -1,12 +1,12 @@
 //
-//  FLServiceManagingContext.m
+//  FLServiceManager.m
 //  FishLampCocoa
 //
 //  Created by Mike Fullerton on 12/26/12.
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import "FLServiceManagingContext.h"
+#import "FLServiceManager.h"
 #import "FLKeyValuePair.h"
 #import "FLBatchDictionary.h"
 #import "FLCallback.h"
@@ -27,12 +27,12 @@
 #pragma GCC diagnostic ignored "-Warc-performSelector-leaks"
 
 
-@interface FLServiceManagingContext ()
+@interface FLServiceManager ()
 @property (readwrite, assign, getter=isOpen) BOOL open;
 @property (readwrite, strong) FLObservable* observable;
 @end
 
-@implementation FLServiceManagingContext
+@implementation FLServiceManager
 
 @synthesize open = _open;
 @synthesize observable = _observable;
@@ -49,7 +49,7 @@
     return self;
 }
 
-+ (id) serviceManagingContext {
++ (id) serviceManager {
     return FLAutorelease([[[self class] alloc] init]);
 }
 
@@ -199,11 +199,11 @@
 //#define __CATEGORY_FOR_SERVICE(__TYPE__) (__TYPE__##ServiceHeader)
 //
 //#define FLBeginPublishingService(__NAME__, __TYPE__) \
-//            @interface FLServiceManagingContext __CATEGORY_FOR_SERVICE(__TYPE__) \
+//            @interface FLServiceManager __CATEGORY_FOR_SERVICE(__TYPE__) \
 //                - (__TYPE__*) __NAME__
 //
 //#define FLBeginPublishingServiceForProtocol(__NAME__, __TYPE__) \
-//            @interface FLServiceManagingContext __CATEGORY_FOR_SERVICE(__TYPE__) \
+//            @interface FLServiceManager __CATEGORY_FOR_SERVICE(__TYPE__) \
 //                - (id<__TYPE__>) __NAME__ 
 //
 //#define FLPublishServiceProperty(__TYPE__, __NAME__) \
@@ -229,7 +229,7 @@
 //                } \
 //            @end \
 //            \
-//            @implementation FLServiceManagingContext __CATEGORY_FOR_SERVICE(__TYPE__) \
+//            @implementation FLServiceManager __CATEGORY_FOR_SERVICE(__TYPE__) \
 //            - (__TYPE__*) __NAME__ { \
 //                return [self serviceForServiceID:__SERVICE_TYPE__]; \
 //            } 

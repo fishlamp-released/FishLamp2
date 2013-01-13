@@ -14,7 +14,7 @@
 - (void) startWorking:(FLFinisher*) finisher;
 @end
 
-@interface NSObject (FLDispatchable) 
-- (id) runSynchronously;
+@protocol FLContextual <NSObject>
+- (void) didMoveToContext:(id) context;
+- (void) requestCancel;
 @end
-

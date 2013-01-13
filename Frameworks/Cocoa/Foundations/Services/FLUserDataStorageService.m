@@ -24,7 +24,7 @@
 #import "FLServiceKeys.h"
 
 
-//@implementation FLServiceManagingContext (FLUserDataStorageService) 
+//@implementation FLServiceManager (FLUserDataStorageService) 
 //FLSynthesizeSessionService(storageService, setStorageService, FLUserDataStorageService*)
 //FLSynthesizeSessionProperty(cacheFolder, FLFolder*, FLUserDataStorageService);
 //FLSynthesizeSessionProperty(cacheDatabase, FLDatabase*, FLUserDataStorageService);
@@ -340,7 +340,7 @@
         [_upgradeTaskList.progressController setTitle:[NSString stringWithFormat:(NSLocalizedString(@"Updating to Version: %@", nil)), [FLAppInfo appVersion]]];
 */        
 
-        id result = [_upgradeTaskList runSynchronously];
+        id result = [_upgradeTaskList runSynchronouslyInContext:self.context];
         
         if([result error]) {
             // TODO: Ok, now what?

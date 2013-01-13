@@ -25,6 +25,7 @@
 @end
 
 @interface FLAction ()
+@property (readwrite, strong) id context;
 @end
 
 @implementation FLAction
@@ -41,6 +42,8 @@
 @synthesize disableWarningNotifications = _disableWarningNotifications;
 @synthesize disableActivityTimer = _disableActivityTimer;
 @synthesize networkRequired = _networkRequired;
+@synthesize context = _context;
+
 
 static FLCallback_t s_failedCallback;
 static id<FLActionErrorDelegate> s_errorDisplayDelegate = nil;
@@ -200,7 +203,8 @@ TODO("MF: fix activity updater");
 
     [_operations removeObserver:self];
 
-#if FL_MRC    
+#if FL_MRC  
+    [_context release];
     [_actionDescription release];
     [_startingBlock release];
     [_operations release];
@@ -340,6 +344,8 @@ TODO("MF: fix activity updater");
 }
 
 - (void) startWorking:(FLFinisher*) finisher {
+    
+    [self.operations didMoveToContext:self.context];
 
     [FLForegroundQueue dispatchBlock:^{
         [self actionStarted];
@@ -352,8 +358,14 @@ TODO("MF: fix activity updater");
                 }];
             }];
     }];
+}
 
-
+- (FLResult) runSynchronouslyInContext:(id) context {
+    self.context = context;
+    
+    FLFinisher* finisher = [FLFinisher finisher:nil];
+    [self startWorking:finisher];
+    return [finisher waitUntilFinished];
 }
 
 //- (id) firstOperation {
