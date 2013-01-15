@@ -7,7 +7,6 @@
 //
 
 #import "FLLoginWizardPanel.h"
-#import "FLProgressWizardPanel.h"
 #import "NSObject+Blocks.h"
 #import "UIViewController+FLAdditions.h"
 
@@ -21,6 +20,7 @@
 @synthesize passwordEntryField = _passwordEntryField;
 @synthesize savePasswordCheckBox = _savePasswordCheckBox;
 @synthesize forgotPasswordButton = _forgotPasswordButton;
+@synthesize delegate = _delegate;
 
 - (id) init {
     return [self initWithDefaultNibName];
@@ -89,7 +89,7 @@
 		NSNumber *reason = [[note userInfo] objectForKey:@"NSTextMovement"];
 		if ([reason intValue] == NSReturnTextMovement) {
 			//	leave time for text field to clean up repainting
-			[self.wizard.nextButton performSelector:@selector(performClick:) withObject:nil afterDelay:0.1];
+			[_wizard.nextButton performSelector:@selector(performClick:) withObject:nil afterDelay:0.1];
 		}
 	}
 }
@@ -97,14 +97,14 @@
 
 - (void)controlTextDidChange:(NSNotification *)note {
 	if ( [note object] == self.userNameTextField || [note object] == self.passwordEntryField ) {
-        [self updateButtonSelectedState];
+        [self updateButtonSelectedState:_wizard];
     }
 }
 
 #endif
 
-- (void) updateButtonSelectedState {
-    self.wizard.nextButton.enabled = [self canLogin];
+- (void) updateButtonSelectedState:(FLWizardViewController*) wizard {
+    wizard.nextButton.enabled = [self canLogin];
 }
 
 - (IBAction)resetLogin:(id)sender {
@@ -136,10 +136,10 @@
 //    }
 //}
    
-- (void) respondToNextButton:(id) sender {
+- (BOOL) willRespondToNextButtonInWizard:(FLWizardViewController*) wizard {
 
-    if([ ((id)self.delegate) loginWizardPanelIsAuthenticated:self]) {
-        [super respondToNextButton:sender];
+    if([self.delegate loginWizardPanelIsAuthenticated:self]) {
+        return NO;
     }
     else {
         
@@ -153,8 +153,8 @@
 //        [textField setEditable:NO];
 //        [textField setAlignment:NSLeftTextAlignment];
 
-        self.wizard.nextButton.enabled = NO;
-        self.wizard.otherButton.enabled = NO;
+        wizard.nextButton.enabled = NO;
+        wizard.otherButton.enabled = NO;
         
 //        [self.wizard.statusBar setStatusView:textField animated:YES completion:^{
 //            self.wizard.otherButton.enabled = YES;
@@ -179,20 +179,15 @@
 //        
 //        [self.wizard pushWizardPanel:progress animated:YES completion:^(FLWizardPanel* panel) {
 //            }];
+
+        return YES;
     }
 }
 
-- (void) respondToOtherButton:(id) sender {
-    [super respondToOtherButton:(id) sender];
-    
-    FLPerformSelector1( self.delegate, 
-                        @selector(loginWizardPanelCancelAuthentication:), 
-                        self);
-}
 
-- (void) wizardPanelDidAppear {
-    [super wizardPanelDidAppear];
-    [self updateButtonSelectedState];
+- (void) wizardPanelDidAppearInWizard:(FLWizardViewController*) wizard {
+
+    [self updateButtonSelectedState:wizard];
 
     [self performBlockOnMainThread:^{
         if(FLStringIsEmpty(self.userName)) {
@@ -204,35 +199,24 @@
     }];
 }
 
-- (void) wizardPanelWillAppear {
-    [super wizardPanelWillAppear];
-    
-    self.wizard.otherButton.hidden = YES;
-    self.wizard.nextButton.enabled = NO;
-    self.wizard.backButton.enabled = NO;
+- (void) wizardPanelWillAppearInWizard:(FLWizardViewController*) wizard {
+    _wizard = wizard;
+    wizard.otherButton.hidden = YES;
+    wizard.nextButton.enabled = NO;
+    wizard.backButton.enabled = NO;
 }
 
-- (void) wizardPanelWillDisappear {
-    [super wizardPanelWillDisappear];
-    [self.wizard becomeFirstResponder];
-    
+- (void) wizardPanelWillDisappearInWizard:(FLWizardViewController*) wizard {
+    [wizard becomeFirstResponder];
     [self.userNameTextField resignFirstResponder];
     [self.passwordEntryField resignFirstResponder];
 }
 
-- (void) wizardPanelDidDisappear {
-    [super wizardPanelDidDisappear];
+- (void) wizardPanelDidDisappearInWizard:(FLWizardViewController*) wizard {
     if(!self.savePasswordInKeychain) {
         self.password = @"";
     }
+    _wizard = nil;
 }
-
-- (void) wizardPanelDidDisappear:(FLWizardPanel*) wizardPanel {
-
-// don't want it in the wizard stack.
-    [self.wizard removeWizardPanel:wizardPanel];
-}
-
-
 
 @end

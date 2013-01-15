@@ -83,7 +83,7 @@ NSString* const FLOperationFinishedEvent;
     id result = nil;
     
     @try {
-        [self postObservation:@selector(operationWillRun:)];
+//        [self postObservation:@selector(operationWillRun:)];
         
         if(self.runBlock) {
             result = self.runBlock(self);
@@ -100,7 +100,7 @@ NSString* const FLOperationFinishedEvent;
         result = [NSError cancelError];
     }
     
-    [self postObservation:@selector(operationDidFinish:withResult:) withObject:result];
+//    [self postObservation:@selector(operationDidFinish:withResult:) withObject:result];
 
     [finisher setFinishedWithResult:result];
     [self.context operationDidFinish:self];

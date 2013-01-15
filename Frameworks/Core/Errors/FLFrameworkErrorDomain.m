@@ -10,7 +10,7 @@
 
 @implementation FLFrameworkErrorDomain
 
-synthesize_singleton_(FLFrameworkErrorDomain);
+FLSynthesizeSingleton(FLFrameworkErrorDomain);
 
 - (NSString*) stringFromErrorCode:(int) errorCode {
 

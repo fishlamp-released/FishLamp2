@@ -10,7 +10,7 @@
 
 @implementation FLAssertionFailureErrorDomain
 
-synthesize_singleton_(FLAssertionFailureErrorDomain);
+FLSynthesizeSingleton(FLAssertionFailureErrorDomain);
 
 - (NSString*) stringFromErrorCode:(int) errorCode {
     switch(errorCode) {

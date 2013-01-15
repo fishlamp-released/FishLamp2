@@ -69,7 +69,7 @@
 
         self.completedCount++;
 
-        [self postObservation:@selector(batchOperation:didProccessObject:) withObject:object];
+//        [self postObservation:@selector(batchOperation:didProccessObject:) withObject:object];
     }
     
     return FLSuccessfullResult;

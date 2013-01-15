@@ -91,25 +91,25 @@ FLSynthesizeStructProperty(bottomItem, setBottomItem, FLViewContentItem, _flags)
 }
 
 + (FLViewContentsDescriptor*) emptyDescriptor {
-    FLReturnStaticObjectFromBlock(^{ 
-        return [FLViewContentsDescriptor viewContentsDescriptor]; 
-    });
+    FLReturnStaticObject(
+        [[FLViewContentsDescriptor alloc] init];
+    );
 }
 
 + (FLViewContentsDescriptor*) descriptorWithTopStatusAndToolbar {
-    FLReturnStaticObjectFromBlock(^{ return [FLViewContentsDescriptor viewContentsDescriptorWithTop:FLViewContentItemToolbar bottom:FLViewContentItemNone hasStatusBar:YES]; } );
+    FLReturnStaticObject([[FLViewContentsDescriptor alloc] initWithTop:FLViewContentItemToolbar bottom:FLViewContentItemNone hasStatusBar:YES]; );
 }
 
 + (FLViewContentsDescriptor*) descriptorWithTopStatusAndToolbarAndBottomTabBar {
-    FLReturnStaticObjectFromBlock(^{ return [FLViewContentsDescriptor viewContentsDescriptorWithTop:FLViewContentItemToolbar bottom:FLViewContentItemTabBar hasStatusBar:YES]; });
+    FLReturnStaticObject([[FLViewContentsDescriptor alloc] initWithTop:FLViewContentItemToolbar bottom:FLViewContentItemTabBar hasStatusBar:YES]; );
 }
 
 + (FLViewContentsDescriptor*) descriptorWithStatusBar {
-    FLReturnStaticObjectFromBlock(^{ return [FLViewContentsDescriptor viewContentsDescriptorWithTop:FLViewContentItemNone bottom:FLViewContentItemNone hasStatusBar:YES]; });
+    FLReturnStaticObject([[FLViewContentsDescriptor alloc] initWithTop:FLViewContentItemNone bottom:FLViewContentItemNone hasStatusBar:YES]; );
 }
 
 + (FLViewContentsDescriptor*) descriptorWithTopStatusAndToolbarAndBottomToolbar {
-    FLReturnStaticObjectFromBlock(^{ return [FLViewContentsDescriptor viewContentsDescriptorWithTop:FLViewContentItemToolbar bottom:FLViewContentItemToolbar hasStatusBar:YES]; });
+    FLReturnStaticObject([[FLViewContentsDescriptor alloc] initWithTop:FLViewContentItemToolbar bottom:FLViewContentItemToolbar hasStatusBar:YES]; );
 }
 
 - (BOOL)isEqual:(id)object {

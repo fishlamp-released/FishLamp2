@@ -8,7 +8,6 @@
 
 #import "FLCocoaRequired.h"
 #import "FLServiceProvider.h"
-#import "FLObservable.h"
 
 @class FLMutableBatchDictionary;
 
@@ -16,13 +15,12 @@ typedef id (^FLResourceProviderBlock)(id provider);
 
 typedef SEL FLServicePropertySelector;
 
-@interface FLServiceManager : NSObject<FLObservable> {
+@interface FLServiceManager : NSObject {
 @private
     NSMutableDictionary* _resourceProviders;
     FLMutableBatchDictionary* _resourceConsumers;
     NSMutableArray* _services;
     BOOL _open;
-    FLObservable* _observable;
 }
 
 @property (readonly, assign, getter=isOpen) BOOL open;

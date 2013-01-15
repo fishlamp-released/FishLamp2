@@ -30,15 +30,3 @@
         dispatch_once(&s_pred2##__class, ^{ FLReleaseWithNil(s_instance##__class); s_pred1##__class = 0; }); \
         }
 
-#define singleton_property_ FLSingletonProperty
-#define synthesize_singleton_ FLSynthesizeSingleton
-
-#define _use_macro_(__NAME__) FIXME(please use macro #__NAME__)
-
-#define singleton_property      _use_macro_(singleton_property_)
-#define synthesize_singleton    _use_macro_(synthesize_singleton_)
-
-//           \
-//    + (id)allocWithZone:(NSZone * const)notUsed { \
-//        return [self instance]; \
-//    }

@@ -154,7 +154,7 @@
 }
 
 - (void) readStreamHasBytesAvailable:(id<FLReadStream>) networkStream {
-    [self postObservation:@selector(readStreamHasBytesAvailable:)];
+//    [self postObservation:@selector(readStreamHasBytesAvailable:)];
     if(self.isOpen) {
         [self updateRequestQueue];
     }

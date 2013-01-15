@@ -7,7 +7,6 @@
 //
 
 #import "FLCocoaRequired.h"
-#import "FLObservable.h"
 #import "FLDispatching.h"
 #import "FLReadStream.h"
 #import "FLResult.h"
@@ -29,12 +28,13 @@
 - (void) httpRequestDidFinish:(FLHttpRequest*) request;
 @end
 
+@protocol FLHttpRequestDelegate;
 
-@interface FLHttpRequest : FLObservable<FLReadStreamDelegate, FLDispatchable, FLContextual> {
+@interface FLHttpRequest : NSObject<FLReadStreamDelegate, FLDispatchable> {
 @private
     FLHttpRequestHeaders* _headers;
     FLHttpRequestBody* _body;
-    FLFinisher* _finisher;
+    id _observer;
     FLMutableHttpResponse* _response;
     FLReadStream* _networkStream;
     id _context;
@@ -60,7 +60,6 @@
 
 + (id) httpRequest;
 
-
 @end
 
 @interface FLHttpRequest () // Sending
@@ -69,10 +68,17 @@
 // if the context provides a dispatcher, that one will be used instead.
 - (void) requestCancel;
 
+- (FLResult) sendSynchronouslyInContext:(id) context
+                         withObserver:(FLFinisher*) observer;
+
 - (FLResult) sendSynchronouslyInContext:(id) context;
 
 - (FLFinisher*) startRequestInContext:(id) context 
-                      completionBlock:(FLCompletionBlock) completionBlock;
+                         withObserver:(FLFinisher*) observer;
+
+- (FLFinisher*) startRequestInContext:(id) context;
+
+
 @end
 
 @interface FLHttpRequest () // optional overrides
@@ -93,14 +99,17 @@
 //
 // Redirects
 //
-
 /// this returns YES by default.
 - (BOOL) shouldRedirectToURL:(NSURL*) url;
 - (void) didMoveToContext:(id) context;
 @end
 
+@protocol FLHttpRequestDelegate <NSObject>
+@optional
 
-@protocol FLHttpRequestObserver <NSObject>
+- (void) httpRequestWillAuthenticate:(FLHttpRequest*) httpRequest;
+
+- (void) httpRequestDidAuthenticate:(FLHttpRequest*) httpRequest;
 
 - (void) httpRequestWillOpen:(FLHttpRequest*) httpRequest;
 
@@ -115,11 +124,38 @@
 - (void) httpRequest:(FLHttpRequest*) httpRequest
       didEncounterError:(NSError*) error;
 
-- (void) httpRequestDidReadBytes:(FLHttpRequest*) httpRequest;
+- (void) httpRequestDidReadBytes:(FLHttpRequest*) httpRequest amount:(unsigned long) amount;
 
-- (void) httpRequestDidWriteBytes:(FLHttpRequest*) httpRequest;
+- (void) httpRequestDidWriteBytes:(FLHttpRequest*) httpRequest amount:(unsigned long) amount;
 
 @end
 
+typedef void (^FLHttpRequestResultBlock)(FLResult result);
+typedef void (^FLHttpRequestErrorBlock)(NSError* result);
+typedef void (^FLHttpRequestByteBlock)(unsigned long count);
+
+@interface FLHttpRequestObserver : FLFinisher<FLHttpRequestDelegate> {
+@private
+    dispatch_block_t _willAuthenticate;
+    dispatch_block_t _didAuthenticate;
+    dispatch_block_t _willOpen;
+    dispatch_block_t _didOpen;
+    FLHttpRequestResultBlock _willClose;
+    FLHttpRequestResultBlock _didClose;
+    FLHttpRequestErrorBlock _encounteredError;
+    FLHttpRequestByteBlock _didWriteBytes;
+    FLHttpRequestByteBlock _didReadBytes;
+}
++ (id) httpRequestObserver;
+@property (readwrite, copy, nonatomic) dispatch_block_t willAuthenticate;
+@property (readwrite, copy, nonatomic) dispatch_block_t didAuthenticate;
+@property (readwrite, copy, nonatomic) dispatch_block_t willOpen;
+@property (readwrite, copy, nonatomic) dispatch_block_t didOpen;
+@property (readwrite, copy, nonatomic) FLHttpRequestResultBlock willClose;
+@property (readwrite, copy, nonatomic) FLHttpRequestResultBlock didClose;
+@property (readwrite, copy, nonatomic) FLHttpRequestErrorBlock encounteredError;
+@property (readwrite, copy, nonatomic) FLHttpRequestByteBlock didWriteBytes;
+@property (readwrite, copy, nonatomic) FLHttpRequestByteBlock didReadBytes;
+@end
 
 

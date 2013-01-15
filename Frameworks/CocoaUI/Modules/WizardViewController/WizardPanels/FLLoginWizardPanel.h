@@ -13,12 +13,14 @@
 
 @protocol FLLoginWizardPanelDelegate;
 
-@interface FLLoginWizardPanel : FLWizardPanel<NSControlTextEditingDelegate, FLWizardPanelDelegate> {
+@interface FLLoginWizardPanel : FLWizardPanel<NSControlTextEditingDelegate> {
 @private
     IBOutlet NSTextField* _userNameTextField;
     IBOutlet NSSecureTextField* _passwordEntryField;
     IBOutlet NSButton* _savePasswordCheckBox;
     IBOutlet NSButton* _forgotPasswordButton;
+    id<FLLoginWizardPanelDelegate> _delegate;
+    __unsafe_unretained FLWizardViewController* _wizard;
 }
 
 @property (readonly, strong, nonatomic) NSTextField* userNameTextField;
@@ -30,20 +32,16 @@
 @property (readwrite, strong, nonatomic) NSString* password;
 @property (readwrite, assign, nonatomic) BOOL savePasswordInKeychain; // doesn't actually save it, that's up to the delegate.
 
-+ (id) loginWizardPanel;
+@property (readwrite, assign, nonatomic) id<FLLoginWizardPanelDelegate> delegate;
 
-//- (void) didFinishAuthenticatingWithResult:(FLResult) result;
++ (id) loginWizardPanel;
 
 @end
 
-@protocol FLLoginWizardPanelDelegate <FLWizardPanelDelegate>
-@optional
+@protocol FLLoginWizardPanelDelegate <NSObject>
 - (void) loginWizardPanelStartAuthenticating:(FLLoginWizardPanel*) loginPanel;
-
 - (BOOL) loginWizardPanelIsAuthenticated:(FLLoginWizardPanel*) loginPanel;
-
 - (void) loginWizardPanelCancelAuthentication:(FLLoginWizardPanel*) panel;
-
 - (void) loginWizardPanelResetPassword:(FLLoginWizardPanel*) loginPanel;
 @end
 

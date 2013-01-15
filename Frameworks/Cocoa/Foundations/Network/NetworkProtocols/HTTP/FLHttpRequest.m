@@ -25,12 +25,11 @@
 @property (readwrite, strong) FLHttpResponse* httpResponse;
 @property (readwrite, strong) FLReadStream* networkStream;
 @property (readwrite, strong) id<FLDispatching> dispatcher;
-@property (readwrite, strong) FLFinisher* finisher;
+@property (readwrite, strong) id observer;
 @property (readwrite, strong) id context;
 
 - (void) readResponseHeadersIfNeeded;
 - (void) openHttpStreamWithURL:(NSURL*) url;
-
 @end
 
 @interface FLHttpResponse (Utils)
@@ -63,7 +62,6 @@
     return self.responseCodeIsRedirect && FLStringIsNotEmpty([self valueForHeader:@"Location"]); 
 }
 
-
 - (NSURL*) redirectURL {
     return [NSURL URLWithString:[self valueForHeader:@"Location"] relativeToURL:self.requestURL];
 }
@@ -71,9 +69,10 @@
 
 
 @implementation FLHttpRequest
+
 @synthesize httpResponse = _response;
 @synthesize networkStream = _networkStream;
-@synthesize finisher = _finisher;
+@synthesize observer = _observer;
 @synthesize body = _body;
 @synthesize context = _context;
 @synthesize headers = _headers;
@@ -117,7 +116,7 @@
     [_dispatcher release];
     [_headers release];
     [_context release];
-    [_finisher release];
+    [_observer release];
     [_body release];
     [_response release];
     [_networkStream release];
@@ -236,11 +235,11 @@
             [_response setResponseHeadersWithHttpMessage:message];
             
             if(!_response.redirectedFrom) {
-                [self postObservation:@selector(httpRequestDidOpen:)];
+                FLPerformSelector1(self.observer, @selector(httpRequestDidOpen:), self);
             }
             
-            [self postObservation:@selector(httpRequestDidWriteBytes:)];
-            [self postObservation:@selector(httpRequestDidReadBytes:)];
+//            [self postObservableEvent:FLHttpRequestDidWriteBytesEvent];
+//            [self postObservableEvent:FLHttpRequestDidReadBytesEvent];
         }
     }
 }
@@ -266,15 +265,15 @@
         result = ex.error;
     }
     @finally {
-        [self postObservation:@selector(httpRequest:didCloseWithResult:) withObject:result];
+        FLPerformSelector2(self.observer, @selector(httpRequest:didCloseWithResult:), self, result);
         
-        if(self.finisher) {
-            [self.finisher setFinishedWithResult:result];
+        if(self.observer) {
+            [self.observer setFinishedWithResult:result];
         }
         
         [self.context httpRequestDidFinish:self];
 
-        self.finisher = nil;
+        self.observer = nil;
         self.networkStream = nil;
         self.httpResponse = nil;
         
@@ -296,6 +295,7 @@
 }
 
 - (void) readStreamDidOpen:(FLReadStream*) networkStream {
+    
     [self.dispatcher dispatchBlock:^{
         [self readResponseHeadersIfNeeded];
     }];
@@ -350,18 +350,21 @@
 }
 
 - (void) readStream:(id<FLReadStream>) stream didReadBytes:(unsigned long) amountRead {
-    [self postObservation:@selector(httpRequestDidReadBytes:)];
+//    [self postObservableEvent:FLHttpRequestDidReadBytesEvent];
+
+//    FLPerformSelector1(self.observer, @selector(httpRequestDidReadBytes:amount::), self);
 }
 
 - (void) willAuthenticateHttpRequest:(id<FLHttpRequestAuthenticator>) authenticator {
-    
+    FLPerformSelector1(self.observer, @selector(httpRequestWillAuthenticate:), self);
 }
 
 - (void) didAuthenticateHttpRequest {
-
+    FLPerformSelector1(self.observer, @selector(httpRequestDidAuthenticate:), self);
 }
 
 - (void) sendRequest {
+    FLPerformSelector1(self.observer, @selector(httpRequestWillOpen:), self);
     self.dispatcher = [FLFifoDispatchQueue fifoDispatchQueue];
     [self.dispatcher dispatchBlock:^{
         [self willSendHttpRequest]; // this may set requestURL
@@ -369,10 +372,10 @@
     }];
 }
 
-- (void) startWorking:(FLFinisher*) finisher {
+- (void) startWorking:(FLFinisher*) observer {
 
     [self.context httpRequestDidStart:self];
-    self.finisher = finisher;
+    self.observer = observer;
 
     id<FLDispatching> dispatcher = nil;
     if([self.context respondsToSelector:@selector(httpRequestFifoDispatcher:)]) {
@@ -410,22 +413,27 @@
     return desc;
 }
 
-- (FLResult) sendSynchronouslyInContext:(id) context {
-    [self didMoveToContext:context];
-    
-    FLFinisher* finisher = [FLFinisher finisher:nil];
-    [self startWorking:finisher];
-    return [finisher waitUntilFinished];
+- (FLResult) sendSynchronouslyInContext:(id) context 
+                         withObserver:(FLFinisher*) observer {
+
+    return [[self startRequestInContext:context withObserver:observer] waitUntilFinished];
 }
 
+- (FLResult) sendSynchronouslyInContext:(id) context {
+    return [[self startRequestInContext:context withObserver:[FLFinisher finisher]] waitUntilFinished];
+}
+
+
 - (FLFinisher*) startRequestInContext:(id) context 
-                      completionBlock:(FLCompletionBlock) completionBlock {
+                         withObserver:(FLFinisher*) observer {
 
     [self didMoveToContext:context];
+    [self startWorking:observer];
+    return observer;
+}
 
-    FLFinisher* finisher = [FLFinisher finisher:completionBlock];
-    [self startWorking:finisher];
-    return finisher;
+- (FLFinisher*) startRequestInContext:(id) context {
+    return [self startRequestInContext:context withObserver:[FLFinisher finisher]];
 }
 
 
@@ -452,6 +460,80 @@
     return number.unsignedLongValue;
 }
 
+
+@end
+
+@implementation FLHttpRequestObserver 
+@synthesize willAuthenticate = _willAuthenticate;
+@synthesize didAuthenticate = _didAuthenticate;
+@synthesize willOpen = _willOpen;
+@synthesize didOpen = _didOpen;
+@synthesize willClose = _willClose;
+@synthesize didClose = _didClose;
+@synthesize encounteredError = _encounteredError;
+@synthesize didWriteBytes = _didWriteBytes;
+@synthesize didReadBytes = _didReadBytes;
+
+#if FL_MRC
+- (void) dealloc {
+    [_willAuthenticate release];
+    [_didAuthenticate release];
+    [_willOpen release];
+    [_didOpen release];
+    [_willClose release];
+    [_didClose release];
+    [_encounteredError release];
+    [_didWriteBytes release];
+    [_didReadBytes release];
+    [super dealloc];
+}
+#endif
+
+#define FLInvokeBlock(b, ...) \
+    if(b) { \
+        dispatch_async(dispatch_get_main_queue(), ^{ \
+            b(__VA_ARGS__); \
+        }); \
+    }
+
++ (id) httpRequestObserver {
+    return FLAutorelease([[[self class] alloc] init]);
+}
+
+- (void) httpRequestDidAuthenticate:(FLHttpRequest*) httpRequest {
+    FLInvokeBlock(self.didAuthenticate);
+}
+
+- (void) httpRequestWillOpen:(FLHttpRequest*) httpRequest {
+    FLInvokeBlock(self.willOpen);
+}
+
+- (void) httpRequestDidOpen:(FLHttpRequest*) httpRequest {
+    FLInvokeBlock(self.didOpen);
+}
+
+- (void) httpRequest:(FLHttpRequest*) httpRequest 
+   willCloseWithResult:(FLResult) result {
+    FLInvokeBlock(self.willClose, result);
+}   
+
+- (void) httpRequest:(FLHttpRequest*) httpRequest 
+    didCloseWithResult:(FLResult) result {
+    FLInvokeBlock(self.didClose, result);
+}    
+
+- (void) httpRequest:(FLHttpRequest*) httpRequest
+      didEncounterError:(NSError*) error {
+    FLInvokeBlock(self.encounteredError, error);
+}
+
+- (void) httpRequestDidReadBytes:(FLHttpRequest*) httpRequest  amount:(unsigned long) amount{
+    FLInvokeBlock(self.didReadBytes, amount);
+}
+
+- (void) httpRequestDidWriteBytes:(FLHttpRequest*) httpRequest  amount:(unsigned long) amount {
+    FLInvokeBlock(self.didWriteBytes, amount);
+}
 
 @end
 

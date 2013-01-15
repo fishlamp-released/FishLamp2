@@ -29,13 +29,11 @@
 
 @interface FLServiceManager ()
 @property (readwrite, assign, getter=isOpen) BOOL open;
-@property (readwrite, strong) FLObservable* observable;
 @end
 
 @implementation FLServiceManager
 
 @synthesize open = _open;
-@synthesize observable = _observable;
 
 - (id) init {
     self = [super init];
@@ -43,7 +41,6 @@
         _services = [[NSMutableArray alloc] init];
         _resourceProviders = [[NSMutableDictionary alloc] init];
         _resourceConsumers = [[FLMutableBatchDictionary alloc] init];
-        _observable = [[FLObservable alloc] initWithObservedObject:self];
     }
     
     return self;
@@ -55,7 +52,6 @@
 
 #if FL_MRC
 - (void) dealloc {
-    [_observable release];
     [_resourceConsumers release];
     [_resourceProviders release];
     [_services release];
@@ -63,13 +59,13 @@
 }
 #endif
 
-- (id)forwardingTargetForSelector:(SEL)aSelector { 
-    if([self.observable respondsToSelector:aSelector]) {
-        return self.observable;
-    }
-    
-    return self;
-}
+//- (id)forwardingTargetForSelector:(SEL)aSelector { 
+//    if([self.observable respondsToSelector:aSelector]) {
+//        return self.observable;
+//    }
+//    
+//    return self;
+//}
 
 //- (id) serviceForServiceID:(id) serviceID {
 //    FLAssertNotNil_(serviceID);

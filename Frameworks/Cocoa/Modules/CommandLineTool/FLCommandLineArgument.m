@@ -15,8 +15,8 @@
 
 @implementation FLCommandLineArgument
 
-synthesize_(values);
-synthesize_(key);
+@synthesize values = _values;
+@synthesize key = _key;
 
 - (id) initWithKey:(NSString*) key {
     self = [super init];

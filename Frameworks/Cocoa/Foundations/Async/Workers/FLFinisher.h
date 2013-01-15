@@ -17,7 +17,7 @@ typedef void (^FLFinishableBlock)(FLFinisher* finisher);
 @interface FLFinisher : NSObject {
 @private
     id _result;
-    FLResultBlock _resultBlock;
+    FLResultBlock _didFinish;
     dispatch_block_t _notificationCompletionBlock;
     dispatch_semaphore_t _semaphore;
     FLFinisherNotificationSchedulerBlock _scheduleNotificationBlock;
@@ -28,6 +28,8 @@ typedef void (^FLFinishableBlock)(FLFinisher* finisher);
     FLStackTrace* _finishedStackTrace;
 #endif    
 }
+
+@property (readwrite, strong) FLResultBlock didFinish;
 
 @property (readonly, strong) FLResult result;
 @property (readonly, assign, getter=isFinished) BOOL finished;

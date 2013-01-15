@@ -6,12 +6,11 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import "FLObservable.h"
 #import "FLSimplePhoto.h"
 
 @class FLOverlayCameraView;
 
-@interface FLSimpleCamera : FLObservable<CLLocationManagerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate> {
+@interface FLSimpleCamera : NSObject<CLLocationManagerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate> {
 @private
     UIImagePickerController* _picker;
 	FLOverlayCameraView* _overlayView;

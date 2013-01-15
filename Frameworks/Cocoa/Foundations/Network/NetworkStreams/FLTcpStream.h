@@ -14,7 +14,7 @@
 #import "FLTcpRequest.h"
 #import "FLDispatchQueue.h"
 
-@interface FLTcpStream : FLObservable<FLReadStreamDelegate, FLWriteStreamDelegate> {
+@interface FLTcpStream : NSObject<FLReadStreamDelegate, FLWriteStreamDelegate> {
 @private
     NSString* _remoteHost;
     int32_t _remotePort;

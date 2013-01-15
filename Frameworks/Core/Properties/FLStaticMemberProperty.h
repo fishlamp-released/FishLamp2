@@ -28,20 +28,20 @@ id _run_block_to_create_object(FLStaticCreateObjectBlock block) {
         }));
     }
  */
-#define FLReturnStaticObjectFromBlock(__BLOCK__) \
-        static dispatch_once_t pred = 0;; \
-        static id s_static_object = nil; \
-        dispatch_once(&pred, ^{ \
-            s_static_object = FLRetain(_run_block_to_create_object((FLStaticCreateObjectBlock) __BLOCK__)); \
-        }); \
-        return s_static_object
-
-/// return a object from a selector called only once.
-#define FLReturnStaticObjectFromSelector(TARGET, ACTION) \
-        static dispatch_once_t pred = 0; \
-        static id s_static_object = nil; \
-        dispatch_once(&pred, ^{ s_static_object = FLRetain([TARGET performSelector:ACTION]); }); \
-        return s_static_object
+//#define FLReturnStaticObjectFromBlock(__BLOCK__) \
+//        static dispatch_once_t pred = 0;; \
+//        static id s_static_object = nil; \
+//        dispatch_once(&pred, ^{ \
+//            s_static_object = FLRetain(_run_block_to_create_object((FLStaticCreateObjectBlock) __BLOCK__)); \
+//        }); \
+//        return s_static_object
+//
+///// return a object from a selector called only once.
+//#define FLReturnStaticObjectFromSelector(TARGET, ACTION) \
+//        static dispatch_once_t pred = 0; \
+//        static id s_static_object = nil; \
+//        dispatch_once(&pred, ^{ s_static_object = FLRetain([TARGET performSelector:ACTION]); }); \
+//        return s_static_object
         
 #define FLReturnStaticObject(...) \
         static dispatch_once_t pred = 0; \

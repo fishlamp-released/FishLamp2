@@ -307,9 +307,6 @@
 #import "FLMutableNotification.h"
 #import "NSNotification+FLExtras.h"
 
-// Foundations/Relationships/Observable
-#import "FLObservable.h"
-#import "FLOldObservable.h"
 
 // Foundations/Services
 #import "FLAuthenticatedServiceContext.h"

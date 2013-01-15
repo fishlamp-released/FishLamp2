@@ -6,7 +6,6 @@
 //	Copyright 2009 Greentongue Software. All rights reserved.
 //
 
-#import "FLObservable.h"
 #import "FLDispatching.h"
 #import "FLResult.h"
 
@@ -20,7 +19,7 @@ typedef FLResult (^FLRunOperationBlock)(FLOperation* operation);
 - (void) operationDidFinish:(FLOperation*) operation;
 @end
 
-@interface FLOperation : FLObservable<FLContextual, FLDispatchable> {
+@interface FLOperation : NSObject<FLContextual, FLDispatchable> {
 @private
 	id _operationID;
 	FLRunOperationBlock _runBlock;

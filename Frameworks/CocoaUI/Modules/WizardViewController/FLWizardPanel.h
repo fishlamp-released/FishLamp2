@@ -10,51 +10,43 @@
 #import "FLCocoaUIRequired.h"
 #import "FLObservable.h"
 #import "FLWizardViewController.h"
+#import "FLObservable.h"
 
-@class FLWizardPanel;
-@protocol FLWizardPanelDelegate;
+//@class FLWizardPanel;
+//@protocol FLWizardPanelDelegate;
 
-typedef void (^FLWizardPanelBlock)(FLWizardPanel* panel);
-typedef FLWizardPanel* (^FLWizardPanelNextPanelBlock)();
-
-@interface FLWizardPanel : UIViewController {
+@interface FLWizardPanel : UIViewController<FLObservable> {
 @private
-    __unsafe_unretained FLWizardViewController* _wizard;
-    __unsafe_unretained id<FLWizardPanelDelegate> _delegate;
+//    __unsafe_unretained FLWizardViewController* _wizard;
+//    __unsafe_unretained id<FLWizardPanelDelegate> _delegate;
+    FLObservable* _observable;
     NSString* _wizardPanelPrompt;
-    
-    FLWizardPanelNextPanelBlock _nextPanelBlock;
 }
 
-@property (readwrite, copy, nonatomic) FLWizardPanelNextPanelBlock nextPanelBlock;
- 
-@property (readonly, assign, nonatomic) FLWizardViewController* wizard;
-@property (readwrite, assign, nonatomic) id<FLWizardPanelDelegate> delegate;
 @property (readwrite, strong, nonatomic) NSString* wizardPanelPrompt;
 
-- (void) wizardPanelWillAppear;
-- (void) wizardPanelDidAppear;
-- (void) wizardPanelWillDisappear;
-- (void) wizardPanelDidDisappear;
+- (void) wizardPanelWillAppearInWizard:(FLWizardViewController*) wizard;
+- (void) wizardPanelDidAppearInWizard:(FLWizardViewController*) wizard;
+- (void) wizardPanelWillDisappearInWizard:(FLWizardViewController*) wizard;
+- (void) wizardPanelDidDisappearInWizard:(FLWizardViewController*) wizard;
 
-- (IBAction) respondToNextButton:(id) sender;
-- (IBAction) respondToBackButton:(id) sender;
-- (IBAction) respondToOtherButton:(id) sender;
+- (BOOL) willRespondToNextButtonInWizard:(FLWizardViewController*) wizard;
+- (BOOL) willRespondToBackButtonInWizard:(FLWizardViewController*) wizard;
+- (BOOL) willRespondToOtherButtonInWizard:(FLWizardViewController*) wizard;
 
-- (void) respondToError:(NSError*) error errorMessage:(NSString*) errorMessage;
-
-- (void) didMoveToWizard:(FLWizardViewController*) wizard;
+//- (void) didMoveToWizard:(FLWizardViewController*) wizard;
 @end
 
-@protocol FLWizardPanelDelegate <NSObject>
-@optional
-- (void) wizardPanelWillAppear:(FLWizardPanel*) wizardPanel;
-- (void) wizardPanelDidAppear:(FLWizardPanel*) wizardPanel;
-- (void) wizardPanelWillDisappear:(FLWizardPanel*) wizardPanel;
-- (void) wizardPanelDidDisappear:(FLWizardPanel*) wizardPanel;
-
-- (void) wizardPanelRespondToNextButton:(FLWizardPanel*) wizardPanel;
-- (void) wizardPanelRespondToBackButton:(FLWizardPanel*) wizardPanel;
-- (void) wizardPanelRespondToOtherButton:(FLWizardPanel*) wizardPanel;
-@end
+//@protocol FLWizardPanelDelegate <NSObject>
+//@optional
+//- (void) wizardPanel:(FLWizardPanel*) wizardPanel willAppearInWizard:(FLWizardViewController*) wizard;
+//- (void) wizardPanel:(FLWizardPanel*) wizardPanel didAppearInWizard:(FLWizardViewController*) wizard;
+//- (void) wizardPanel:(FLWizardPanel*) wizardPanel willDisappearInWizard:(FLWizardViewController*) wizard;
+//- (void) wizardPanel:(FLWizardPanel*) wizardPanel didDisappearInWizard:(FLWizardViewController*) wizard;
+//
+//- (BOOL) wizardPanel:(FLWizardPanel*) wizardPanel willRespondToNextButtonInWizard:(FLWizardViewController*) wizard;
+//- (BOOL) wizardPanel:(FLWizardPanel*) wizardPanel willRespondToBackButtonInWizard:(FLWizardViewController*) wizard;
+//- (BOOL) wizardPanel:(FLWizardPanel*) wizardPanel willRespondToOtherButtonInWizard:(FLWizardViewController*) wizard;
+//
+//@end
 

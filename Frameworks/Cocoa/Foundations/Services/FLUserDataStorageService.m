@@ -333,7 +333,7 @@
             [_upgradeTaskList.operations addOperation:[FLUpgradeDatabaseLengthyTask upgradeDatabaseLengthyTask:_documentsDatabase]];
         }
         
-        [self postObservation:@selector(userDataService:appVersionWillChange:) withObject:_upgradeTaskList];
+ //       [self postObservation:@selector(userDataService:appVersionWillChange:) withObject:_upgradeTaskList];
 
 /*        
         _upgradeTaskList.progressController = [[self class] createVersionUpgradeProgressViewController];
