@@ -1231,15 +1231,6 @@
 		2741E9BA16793DB600CA87A9 /* NSNotification+FLExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741E0AC16793DB600CA87A9 /* NSNotification+FLExtras.m */; };
 		2741E9BB16793DB600CA87A9 /* NSNotification+FLExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741E0AC16793DB600CA87A9 /* NSNotification+FLExtras.m */; };
 		2741E9BC16793DB600CA87A9 /* NSNotification+FLExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741E0AC16793DB600CA87A9 /* NSNotification+FLExtras.m */; };
-		2741E9BD16793DB600CA87A9 /* FLOldObservable.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741E0AE16793DB600CA87A9 /* FLOldObservable.h */; };
-		2741E9BE16793DB600CA87A9 /* FLOldObservable.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741E0AE16793DB600CA87A9 /* FLOldObservable.h */; };
-		2741E9BF16793DB600CA87A9 /* FLOldObservable.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741E0AE16793DB600CA87A9 /* FLOldObservable.h */; };
-		2741E9C016793DB600CA87A9 /* FLOldObservable.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741E0AE16793DB600CA87A9 /* FLOldObservable.h */; };
-		2741E9C116793DB600CA87A9 /* FLOldObservable.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741E0AF16793DB600CA87A9 /* FLOldObservable.m */; };
-		2741E9C216793DB600CA87A9 /* FLOldObservable.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741E0AF16793DB600CA87A9 /* FLOldObservable.m */; };
-		2741E9C316793DB600CA87A9 /* FLOldObservable.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741E0AF16793DB600CA87A9 /* FLOldObservable.m */; };
-		2741E9C416793DB600CA87A9 /* FLOldObservable.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741E0AF16793DB600CA87A9 /* FLOldObservable.m */; };
-		2741E9C516793DB600CA87A9 /* FLOldObservable.m in Sources */ = {isa = PBXBuildFile; fileRef = 2741E0AF16793DB600CA87A9 /* FLOldObservable.m */; };
 		2741E9C616793DB600CA87A9 /* FLObservable.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741E0B016793DB600CA87A9 /* FLObservable.h */; };
 		2741E9C716793DB600CA87A9 /* FLObservable.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741E0B016793DB600CA87A9 /* FLObservable.h */; };
 		2741E9C816793DB600CA87A9 /* FLObservable.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741E0B016793DB600CA87A9 /* FLObservable.h */; };
@@ -3677,6 +3668,15 @@
 		27FE4A3216A21A2F00C8F0FB /* FLHttpUserContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FE4A2B16A21A2E00C8F0FB /* FLHttpUserContext.m */; };
 		27FE4A3316A21A2F00C8F0FB /* FLHttpUserContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FE4A2B16A21A2E00C8F0FB /* FLHttpUserContext.m */; };
 		27FE4A3416A21A2F00C8F0FB /* FLHttpUserContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FE4A2B16A21A2E00C8F0FB /* FLHttpUserContext.m */; };
+		27FE76B816A4CD7A00C8F0FB /* FLHttpRequestResponder.h in Headers */ = {isa = PBXBuildFile; fileRef = 27FE76B616A4CD7700C8F0FB /* FLHttpRequestResponder.h */; };
+		27FE76B916A4CD7A00C8F0FB /* FLHttpRequestResponder.h in Headers */ = {isa = PBXBuildFile; fileRef = 27FE76B616A4CD7700C8F0FB /* FLHttpRequestResponder.h */; };
+		27FE76BA16A4CD7A00C8F0FB /* FLHttpRequestResponder.h in Headers */ = {isa = PBXBuildFile; fileRef = 27FE76B616A4CD7700C8F0FB /* FLHttpRequestResponder.h */; };
+		27FE76BB16A4CD7A00C8F0FB /* FLHttpRequestResponder.h in Headers */ = {isa = PBXBuildFile; fileRef = 27FE76B616A4CD7700C8F0FB /* FLHttpRequestResponder.h */; };
+		27FE76BC16A4CD7A00C8F0FB /* FLHttpRequestResponder.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FE76B716A4CD7800C8F0FB /* FLHttpRequestResponder.m */; };
+		27FE76BD16A4CD7A00C8F0FB /* FLHttpRequestResponder.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FE76B716A4CD7800C8F0FB /* FLHttpRequestResponder.m */; };
+		27FE76BE16A4CD7A00C8F0FB /* FLHttpRequestResponder.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FE76B716A4CD7800C8F0FB /* FLHttpRequestResponder.m */; };
+		27FE76BF16A4CD7A00C8F0FB /* FLHttpRequestResponder.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FE76B716A4CD7800C8F0FB /* FLHttpRequestResponder.m */; };
+		27FE76C016A4CD7A00C8F0FB /* FLHttpRequestResponder.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FE76B716A4CD7800C8F0FB /* FLHttpRequestResponder.m */; };
 		27FE8D06168B56B60028D384 /* FLBatchDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = 27FE8D04168B56B60028D384 /* FLBatchDictionary.h */; };
 		27FE8D07168B56B60028D384 /* FLBatchDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = 27FE8D04168B56B60028D384 /* FLBatchDictionary.h */; };
 		27FE8D08168B56B60028D384 /* FLBatchDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = 27FE8D04168B56B60028D384 /* FLBatchDictionary.h */; };
@@ -4005,8 +4005,6 @@
 		2741E0AA16793DB600CA87A9 /* FLMutableNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLMutableNotification.m; sourceTree = "<group>"; };
 		2741E0AB16793DB600CA87A9 /* NSNotification+FLExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotification+FLExtras.h"; sourceTree = "<group>"; };
 		2741E0AC16793DB600CA87A9 /* NSNotification+FLExtras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNotification+FLExtras.m"; sourceTree = "<group>"; };
-		2741E0AE16793DB600CA87A9 /* FLOldObservable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLOldObservable.h; sourceTree = "<group>"; };
-		2741E0AF16793DB600CA87A9 /* FLOldObservable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLOldObservable.m; sourceTree = "<group>"; };
 		2741E0B016793DB600CA87A9 /* FLObservable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLObservable.h; sourceTree = "<group>"; };
 		2741E0B116793DB600CA87A9 /* FLObservable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLObservable.m; sourceTree = "<group>"; };
 		2741E0B316793DB600CA87A9 /* FLDatabaseLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLDatabaseLink.h; sourceTree = "<group>"; };
@@ -4563,6 +4561,8 @@
 		27FE4A2016A20E3F00C8F0FB /* FLHttpRequestAuthenticator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLHttpRequestAuthenticator.m; sourceTree = "<group>"; };
 		27FE4A2A16A21A2E00C8F0FB /* FLHttpUserContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLHttpUserContext.h; sourceTree = "<group>"; };
 		27FE4A2B16A21A2E00C8F0FB /* FLHttpUserContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLHttpUserContext.m; sourceTree = "<group>"; };
+		27FE76B616A4CD7700C8F0FB /* FLHttpRequestResponder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLHttpRequestResponder.h; sourceTree = "<group>"; };
+		27FE76B716A4CD7800C8F0FB /* FLHttpRequestResponder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLHttpRequestResponder.m; sourceTree = "<group>"; };
 		27FE8D04168B56B60028D384 /* FLBatchDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLBatchDictionary.h; sourceTree = "<group>"; };
 		27FE8D05168B56B60028D384 /* FLBatchDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLBatchDictionary.m; sourceTree = "<group>"; };
 		27FE8D0F168B69560028D384 /* FLDispatchable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLDispatchable.h; sourceTree = "<group>"; };
@@ -5302,8 +5302,6 @@
 		2741E0AD16793DB600CA87A9 /* Observable */ = {
 			isa = PBXGroup;
 			children = (
-				2741E0AE16793DB600CA87A9 /* FLOldObservable.h */,
-				2741E0AF16793DB600CA87A9 /* FLOldObservable.m */,
 				2741E0B016793DB600CA87A9 /* FLObservable.h */,
 				2741E0B116793DB600CA87A9 /* FLObservable.m */,
 			);
@@ -5876,6 +5874,8 @@
 				27FE4A2016A20E3F00C8F0FB /* FLHttpRequestAuthenticator.m */,
 				27FE4A2A16A21A2E00C8F0FB /* FLHttpUserContext.h */,
 				27FE4A2B16A21A2E00C8F0FB /* FLHttpUserContext.m */,
+				27FE76B616A4CD7700C8F0FB /* FLHttpRequestResponder.h */,
+				27FE76B716A4CD7800C8F0FB /* FLHttpRequestResponder.m */,
 			);
 			path = HTTP;
 			sourceTree = "<group>";
@@ -6465,7 +6465,6 @@
 				2741E9A216793DB600CA87A9 /* FLWeakReference.h in Headers */,
 				2741E9AB16793DB600CA87A9 /* FLMutableNotification.h in Headers */,
 				2741E9B416793DB600CA87A9 /* NSNotification+FLExtras.h in Headers */,
-				2741E9BD16793DB600CA87A9 /* FLOldObservable.h in Headers */,
 				2741E9C616793DB600CA87A9 /* FLObservable.h in Headers */,
 				2741E9CF16793DB600CA87A9 /* FLDatabaseLink.h in Headers */,
 				2741E9D816793DB600CA87A9 /* FLImageFolder.h in Headers */,
@@ -6728,6 +6727,7 @@
 				27FE4A1616A2060B00C8F0FB /* FLDispatchedObjectCollection.h in Headers */,
 				27FE4A2116A20E3F00C8F0FB /* FLHttpRequestAuthenticator.h in Headers */,
 				27FE4A2C16A21A2F00C8F0FB /* FLHttpUserContext.h in Headers */,
+				27FE76B816A4CD7A00C8F0FB /* FLHttpRequestResponder.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6904,7 +6904,6 @@
 				2741E9A416793DB600CA87A9 /* FLWeakReference.h in Headers */,
 				2741E9AD16793DB600CA87A9 /* FLMutableNotification.h in Headers */,
 				2741E9B616793DB600CA87A9 /* NSNotification+FLExtras.h in Headers */,
-				2741E9BF16793DB600CA87A9 /* FLOldObservable.h in Headers */,
 				2741E9C816793DB600CA87A9 /* FLObservable.h in Headers */,
 				2741E9D116793DB600CA87A9 /* FLDatabaseLink.h in Headers */,
 				2741E9DA16793DB600CA87A9 /* FLImageFolder.h in Headers */,
@@ -7168,6 +7167,7 @@
 				27FE4A1816A2060B00C8F0FB /* FLDispatchedObjectCollection.h in Headers */,
 				27FE4A2316A20E3F00C8F0FB /* FLHttpRequestAuthenticator.h in Headers */,
 				27FE4A2E16A21A2F00C8F0FB /* FLHttpUserContext.h in Headers */,
+				27FE76BA16A4CD7A00C8F0FB /* FLHttpRequestResponder.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7344,7 +7344,6 @@
 				2741E9A316793DB600CA87A9 /* FLWeakReference.h in Headers */,
 				2741E9AC16793DB600CA87A9 /* FLMutableNotification.h in Headers */,
 				2741E9B516793DB600CA87A9 /* NSNotification+FLExtras.h in Headers */,
-				2741E9BE16793DB600CA87A9 /* FLOldObservable.h in Headers */,
 				2741E9C716793DB600CA87A9 /* FLObservable.h in Headers */,
 				2741E9D016793DB600CA87A9 /* FLDatabaseLink.h in Headers */,
 				2741E9D916793DB600CA87A9 /* FLImageFolder.h in Headers */,
@@ -7608,6 +7607,7 @@
 				27FE4A1716A2060B00C8F0FB /* FLDispatchedObjectCollection.h in Headers */,
 				27FE4A2216A20E3F00C8F0FB /* FLHttpRequestAuthenticator.h in Headers */,
 				27FE4A2D16A21A2F00C8F0FB /* FLHttpUserContext.h in Headers */,
+				27FE76B916A4CD7A00C8F0FB /* FLHttpRequestResponder.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7784,7 +7784,6 @@
 				2741E9A516793DB600CA87A9 /* FLWeakReference.h in Headers */,
 				2741E9AE16793DB600CA87A9 /* FLMutableNotification.h in Headers */,
 				2741E9B716793DB600CA87A9 /* NSNotification+FLExtras.h in Headers */,
-				2741E9C016793DB600CA87A9 /* FLOldObservable.h in Headers */,
 				2741E9C916793DB600CA87A9 /* FLObservable.h in Headers */,
 				2741E9D216793DB600CA87A9 /* FLDatabaseLink.h in Headers */,
 				2741E9DB16793DB600CA87A9 /* FLImageFolder.h in Headers */,
@@ -8048,6 +8047,7 @@
 				27FE4A1916A2060B00C8F0FB /* FLDispatchedObjectCollection.h in Headers */,
 				27FE4A2416A20E3F00C8F0FB /* FLHttpRequestAuthenticator.h in Headers */,
 				27FE4A2F16A21A2F00C8F0FB /* FLHttpUserContext.h in Headers */,
+				27FE76BB16A4CD7A00C8F0FB /* FLHttpRequestResponder.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8323,7 +8323,6 @@
 				2741E9A716793DB600CA87A9 /* FLWeakReference.m in Sources */,
 				2741E9B016793DB600CA87A9 /* FLMutableNotification.m in Sources */,
 				2741E9B916793DB600CA87A9 /* NSNotification+FLExtras.m in Sources */,
-				2741E9C216793DB600CA87A9 /* FLOldObservable.m in Sources */,
 				2741E9CB16793DB600CA87A9 /* FLObservable.m in Sources */,
 				2741E9D416793DB600CA87A9 /* FLDatabaseLink.m in Sources */,
 				2741E9DD16793DB600CA87A9 /* FLImageFolder.m in Sources */,
@@ -8570,6 +8569,7 @@
 				27FE4A1B16A2060B00C8F0FB /* FLDispatchedObjectCollection.m in Sources */,
 				27FE4A2616A20E3F00C8F0FB /* FLHttpRequestAuthenticator.m in Sources */,
 				27FE4A3116A21A2F00C8F0FB /* FLHttpUserContext.m in Sources */,
+				27FE76BD16A4CD7A00C8F0FB /* FLHttpRequestResponder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8725,7 +8725,6 @@
 				2741E9A916793DB600CA87A9 /* FLWeakReference.m in Sources */,
 				2741E9B216793DB600CA87A9 /* FLMutableNotification.m in Sources */,
 				2741E9BB16793DB600CA87A9 /* NSNotification+FLExtras.m in Sources */,
-				2741E9C416793DB600CA87A9 /* FLOldObservable.m in Sources */,
 				2741E9CD16793DB600CA87A9 /* FLObservable.m in Sources */,
 				2741E9D616793DB600CA87A9 /* FLDatabaseLink.m in Sources */,
 				2741E9DF16793DB600CA87A9 /* FLImageFolder.m in Sources */,
@@ -8972,6 +8971,7 @@
 				27FE4A1D16A2060B00C8F0FB /* FLDispatchedObjectCollection.m in Sources */,
 				27FE4A2816A20E3F00C8F0FB /* FLHttpRequestAuthenticator.m in Sources */,
 				27FE4A3316A21A2F00C8F0FB /* FLHttpUserContext.m in Sources */,
+				27FE76BF16A4CD7A00C8F0FB /* FLHttpRequestResponder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9127,7 +9127,6 @@
 				2741E9A616793DB600CA87A9 /* FLWeakReference.m in Sources */,
 				2741E9AF16793DB600CA87A9 /* FLMutableNotification.m in Sources */,
 				2741E9B816793DB600CA87A9 /* NSNotification+FLExtras.m in Sources */,
-				2741E9C116793DB600CA87A9 /* FLOldObservable.m in Sources */,
 				2741E9CA16793DB600CA87A9 /* FLObservable.m in Sources */,
 				2741E9D316793DB600CA87A9 /* FLDatabaseLink.m in Sources */,
 				2741E9DC16793DB600CA87A9 /* FLImageFolder.m in Sources */,
@@ -9374,6 +9373,7 @@
 				27FE4A1A16A2060B00C8F0FB /* FLDispatchedObjectCollection.m in Sources */,
 				27FE4A2516A20E3F00C8F0FB /* FLHttpRequestAuthenticator.m in Sources */,
 				27FE4A3016A21A2F00C8F0FB /* FLHttpUserContext.m in Sources */,
+				27FE76BC16A4CD7A00C8F0FB /* FLHttpRequestResponder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9529,7 +9529,6 @@
 				2741E9A816793DB600CA87A9 /* FLWeakReference.m in Sources */,
 				2741E9B116793DB600CA87A9 /* FLMutableNotification.m in Sources */,
 				2741E9BA16793DB600CA87A9 /* NSNotification+FLExtras.m in Sources */,
-				2741E9C316793DB600CA87A9 /* FLOldObservable.m in Sources */,
 				2741E9CC16793DB600CA87A9 /* FLObservable.m in Sources */,
 				2741E9D516793DB600CA87A9 /* FLDatabaseLink.m in Sources */,
 				2741E9DE16793DB600CA87A9 /* FLImageFolder.m in Sources */,
@@ -9776,6 +9775,7 @@
 				27FE4A1C16A2060B00C8F0FB /* FLDispatchedObjectCollection.m in Sources */,
 				27FE4A2716A20E3F00C8F0FB /* FLHttpRequestAuthenticator.m in Sources */,
 				27FE4A3216A21A2F00C8F0FB /* FLHttpUserContext.m in Sources */,
+				27FE76BE16A4CD7A00C8F0FB /* FLHttpRequestResponder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9931,7 +9931,6 @@
 				2741E9AA16793DB600CA87A9 /* FLWeakReference.m in Sources */,
 				2741E9B316793DB600CA87A9 /* FLMutableNotification.m in Sources */,
 				2741E9BC16793DB600CA87A9 /* NSNotification+FLExtras.m in Sources */,
-				2741E9C516793DB600CA87A9 /* FLOldObservable.m in Sources */,
 				2741E9CE16793DB600CA87A9 /* FLObservable.m in Sources */,
 				2741E9D716793DB600CA87A9 /* FLDatabaseLink.m in Sources */,
 				2741E9E016793DB600CA87A9 /* FLImageFolder.m in Sources */,
@@ -10178,6 +10177,7 @@
 				27FE4A1E16A2060B00C8F0FB /* FLDispatchedObjectCollection.m in Sources */,
 				27FE4A2916A20E3F00C8F0FB /* FLHttpRequestAuthenticator.m in Sources */,
 				27FE4A3416A21A2F00C8F0FB /* FLHttpUserContext.m in Sources */,
+				27FE76C016A4CD7A00C8F0FB /* FLHttpRequestResponder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -342,12 +342,12 @@ FIXME("attach to user sessions....");
 
 - (void) operationContextManager:(FLOperationContextManager*) manager
              contextWasActivated:(FLOperationContext*) queue {
-    [queue addObserver:self];
+//    [queue addObserver:self];
 }
 
 - (void) operationContextManager:(FLOperationContextManager*) manager
            contextWasDeactivated:(FLOperationContext*) queue {
-    [queue removeObserver:self];
+//    [queue removeObserver:self];
 }
 @end
 

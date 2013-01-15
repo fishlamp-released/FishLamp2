@@ -10,6 +10,8 @@
 #import "FLErrorDomain.h"
 #import "FLStackTrace.h"
 
+typedef void (^FLErrorBlock)(NSError* error);
+
 @interface NSError (FLExtras) 
 
 + (NSError*) errorWithDomain:(id) domainStringOrDomainObject

@@ -104,7 +104,7 @@
 
 - (void) _addConnection:(FLTcpStream*) connection {
 
-    [connection addObserver:self];
+//    [connection addObserver:self];
 
     @synchronized(self) {
     

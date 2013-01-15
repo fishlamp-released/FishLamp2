@@ -11,7 +11,6 @@
 #import "FLOperation.h"
 #import "FLOperationContext.h"
 #import "FLActionDescription.h"
-#import "FLObservable.h"
 #import "FLWeaklyReferenced.h"
 
 #define FLActionDefaultTimeBetweenActivityWarnings 30.0f
@@ -31,7 +30,7 @@ typedef void (^FLActionErrorBlock)(FLAction* action, NSError* error);
 @protocol FLActionErrorDelegate;
 @protocol FLActionDelegate;
 
-@interface FLAction : FLObservable<FLActionDescription, FLWeaklyReferenced, FLDispatchable> {
+@interface FLAction : NSObject<FLActionDescription, FLWeaklyReferenced, FLDispatchable> {
 @private
     FLOperationQueue* _operations;
 

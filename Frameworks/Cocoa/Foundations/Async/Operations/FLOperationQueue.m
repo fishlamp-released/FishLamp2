@@ -90,10 +90,10 @@
 
 - (void) operationWasAdded:(FLOperation*) operation {
     
-    [operation addObserver:self];
-    
-    
-    [self postObservation:@selector(operationQueue:operationWasAdded:) withObject:operation];
+//    [operation addObserver:self];
+//    
+//    
+//    [self postObservation:@selector(operationQueue:operationWasAdded:) withObject:operation];
 }
 
 - (void) addOperation:(FLOperation*) operation {
@@ -218,8 +218,8 @@
 }
 
 - (void) operationWasRemoved:(FLOperation*) operation {
-    [operation removeObserver:self];
-    [self postObservation:@selector(operationQueue:operationWasRemoved:) withObject:operation];
+//    [operation removeObserver:self];
+//    [self postObservation:@selector(operationQueue:operationWasRemoved:) withObject:operation];
 }
 
 - (void) removeOperation:(FLOperation*) operation {
@@ -261,15 +261,15 @@
 }
 
 - (void) operationWillRun:(FLOperation*) operation {
-    [self postObservation:@selector(operationQueue:operationWillRun:) withObject:operation];
+//    [self postObservation:@selector(operationQueue:operationWillRun:) withObject:operation];
 }
 
 - (void) operationDidFinish:(FLOperation*) operation {
-    [self postObservation:@selector(operationQueue:operationDidFinish:) withObject:operation];
+//    [self postObservation:@selector(operationQueue:operationDidFinish:) withObject:operation];
 }
 
 - (void) operationWasCancelled:(FLOperation*) operation {
-    [self postObservation:@selector(operationQueue:operationWasCancelled:) withObject:operation];
+//    [self postObservation:@selector(operationQueue:operationWasCancelled:) withObject:operation];
 }
 
 - (id) runOperation:(FLOperation*) operation {

@@ -43,8 +43,17 @@
 @synthesize backgroundView = _backgroundView;
 @synthesize wizardPanelEnclosureView = _wizardPanelEnclosureView;
 
-#if FL_MRC
+FLSynthesizeObservable();
+
 - (void) dealloc {
+//    for(FLWizardPanel* panel in _wizardPanels) {
+//        panel.delegate = nil;
+//    }
+//    for(FLWizardPanel* panel in _pendingPanels) {
+//        panel.delegate = nil;
+//    }
+
+#if FL_MRC
     [_wizardPanelBackgroundView release];
     [_backgroundView release];
     [_wizardPanelEnclosureView release];
@@ -54,9 +63,10 @@
     [_nextButton release];
     [_backButton release];
     [_otherButton release];
+    [_pendingPanels release];
     [super dealloc];
-}
 #endif
+}
 
 - (id) init {
     return [self initWithDefaultNibName];
@@ -67,6 +77,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         _wizardPanels = [[NSMutableArray alloc] init];
+        _pendingPanels = [[NSMutableArray alloc] init];
     }
     
     return self;
@@ -92,6 +103,10 @@
     view.frame = _wizardPanelEnclosureView.bounds;
     [self setViewToResize:view];
     [_wizardPanelEnclosureView addSubview:view positioned:NSWindowBelow relativeTo:nil];
+}
+
+- (void) addPendingPanel:(FLWizardPanel*) panel {
+    [_pendingPanels addObject:panel];
 }
 
 //- (void) presentNextWizardPanelAnimated:(BOOL) animated
@@ -143,19 +158,34 @@
 - (IBAction) respondToNextButton:(id) sender {
     [self.view.window makeFirstResponder:self];
     [self.view.window display];
-    
-    [self performBlockOnMainThread:^{
-        [self.visibleWizardPanel respondToNextButton:sender];
-    }];
+
+    BOOL handled = [self.visibleWizardPanel willRespondToNextButtonInWizard:self];
+//    if(!handled) {
+//        if([self.visibleWizardPanel.delegate respondsToSelector:@selector(wizardPanel:willRespondToNextButtonInWizard:)]) {
+//            handled = [self.delegate wizardPanel:self willRespondToNextButtonInWizard:inWizard];
+//        }
+//    }
+
+    if(!handled) {
+        [self pushNextWizardPanelAnimated:YES completion:nil];
+    }
 }
 
 - (IBAction) respondToBackButton:(id) sender {
     [self.view.window makeFirstResponder:self];
     [self.view.window display];
 
-    [self performBlockOnMainThread:^{
-        [self.visibleWizardPanel respondToBackButton:sender];
-    }];
+    BOOL handled = [self.visibleWizardPanel willRespondToBackButtonInWizard:self];
+
+//    if(!handled) {
+//        if([self.visibleWizardPanel.delegate respondsToSelector:@selector(wizardPanel:willRespondToBackButtonInWizard:)]) {
+//            handled = [self.delegate wizardPanel:self willRespondToBackButtonInWizard:inWizard];
+//        }
+//    }
+
+    if(!handled) {
+        [self popWizardPanelAnimated:YES completion:nil];
+    }
 }
 
 - (IBAction) respondToLogoutButton:(id) sender {
@@ -163,7 +193,11 @@
 }
 
 - (IBAction) respondToOtherButton:(id) sender {
-    [self.visibleWizardPanel respondToOtherButton:sender];
+//    if(![self.visibleWizardPanel willRespondToOtherButtonInWizard:self]) {
+//        if([self.visibleWizardPanel.delegate respondsToSelector:@selector(wizardPanel:willRespondToOtherButtonInWizard:)]) {
+//            [self.delegate wizardPanel:self willRespondToOtherButtonInWizard:inWizard];
+//        }
+//    }
 }
 
 - (FLWizardPanel*) nextWizardPanel {
@@ -183,53 +217,44 @@
     if(_wizardPanels.count == 1) {
         self.backButton.enabled = NO; // (_wizardPanels.count > 1);
     }
-
 }
 
 - (void) removeWizardPanel:(FLWizardPanel*) wizardPanel {
     [_wizardPanels removeObject:wizardPanel];
-    [wizardPanel didMoveToWizard:nil];
     [self updateBackButtonEnabledState];
 }
 
 - (void) willShowWizardPanel:(FLWizardPanel*) wizardPanel {
     if(wizardPanel) {
-        [wizardPanel wizardPanelWillAppear];
+        [wizardPanel wizardPanelWillAppearInWizard:self];
+//        FLPerformSelector2(wizardPanel.delegate, @selector(wizardPanel:willAppearInWizard:), wizardPanel, self);
         FLPerformSelector2(self.delegate, @selector(wizardViewController:wizardPanelWillAppear:), self, wizardPanel);
     }
 }
 
 - (void) didShowWizardPanel:(FLWizardPanel*) wizardPanel {
     if(wizardPanel) {
-        [wizardPanel wizardPanelDidAppear];
+        [wizardPanel wizardPanelDidAppearInWizard:self];
+//        FLPerformSelector2(wizardPanel.delegate, @selector(wizardPanel:didAppearInWizard:), wizardPanel, self);
         FLPerformSelector2(self.delegate, @selector(wizardViewController:wizardPanelDidAppear:), self, wizardPanel);
     }
 }
 
 - (void) willHideWizardPanel:(FLWizardPanel*) wizardPanel {
     if(wizardPanel) {
-        [wizardPanel wizardPanelWillDisappear];
+        [wizardPanel wizardPanelWillDisappearInWizard:self];
+//        FLPerformSelector2(wizardPanel.delegate, @selector(wizardPanel:willDisappearInWizard:), wizardPanel, self);
         FLPerformSelector2(self.delegate, @selector(wizardViewController:wizardPanelWillDisappear:), self, wizardPanel);
     }
 }
 
 - (void) didHideWizardPanel:(FLWizardPanel*) wizardPanel {
     if(wizardPanel) {
-        [wizardPanel wizardPanelDidDisappear];
+        [wizardPanel wizardPanelDidDisappearInWizard:self];
+//        FLPerformSelector2(wizardPanel.delegate, @selector(wizardPanel:didDisappearInWizard:), wizardPanel, self);
         FLPerformSelector2(self.delegate, @selector(wizardViewController:wizardPanelDidAppear:), self, wizardPanel);
     }
 }
-
-- (void) wizardPanelRespondToNextButton:(FLWizardPanel*) wizardPanel {
-
-}
-
-- (void) wizardPanelRespondToBackButton:(FLWizardPanel*) wizardPanel {
-}
-
-- (void) wizardPanelRespondToOtherButton:(FLWizardPanel*) wizardPanel {
-}
-
 
 - (void) setWizardPanelTitleFields:(FLWizardPanel*) wizardPanel {
 
@@ -249,8 +274,7 @@
     }
 }
 
-
-#define kDuration 0.2f
+//#define kDuration 0.2f
 
 - (void) pushWizardPanel:(FLWizardPanel*) toShow 
                 animated:(BOOL) animated 
@@ -264,7 +288,6 @@
     self.backButton.hidden = NO;
     self.backButton.enabled = NO; // (_wizardPanels.count > 0);
     self.otherButton.hidden = YES;
-    [toShow didMoveToWizard:self];
     
     toShow.view.frame = _wizardPanelEnclosureView.bounds;
     [self setViewToResize:toShow.view];
@@ -272,7 +295,8 @@
     [self willShowWizardPanel:toShow];
     
     [_wizardPanels addObject:toShow];
-
+    [toShow addObserver:self];
+    
     [self willHideWizardPanel:toHide];
     
     completion = FLCopyWithAutorelease(completion);
@@ -286,7 +310,6 @@
         if(completion) {
             completion(toShow);
         }
-        
 
         [self.view.window display];
     };
@@ -328,7 +351,7 @@
     dispatch_block_t finished = ^{
         
         [_wizardPanels removeObject:toHide];
-        
+        [_pendingPanels pushObject:toHide];
         [self didHideWizardPanel:toHide];
         [self updateBackButtonEnabledState];
         [self didShowWizardPanel:toShow];
@@ -337,6 +360,7 @@
             completion(toHide);
         }        
         [self.view.window display];
+        [toHide removeObserver:self];
     };
       
     if(animated) {
@@ -354,10 +378,10 @@
 - (void) pushNextWizardPanelAnimated:(BOOL) animated 
                           completion:(void (^)(FLWizardPanel*)) completion {
    
-    if(self.visibleWizardPanel.nextPanelBlock) {
-        [self pushWizardPanel:self.visibleWizardPanel.nextPanelBlock() animated:animated completion:completion];
-    }                          
-                                                                        
+    FLWizardPanel* panel = [_pendingPanels popFirstObject];
+    if(panel) {
+        [self pushWizardPanel:panel animated:animated completion:completion];
+    }
 }                          
 
 

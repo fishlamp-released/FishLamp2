@@ -11,7 +11,11 @@
 @interface FLColorRange (FLGradientColors)
 // utils
 // premade gradients
-+ (FLColorRange*) gradientColorsFromColor:(UIColor*) color                                  
+
+- (id) initWithStartColor:(UIColor*) color 
+                rangeSeperationPercentage:(CGFloat) percentage;
+
++ (id) gradientColorsFromColor:(UIColor*) color 
                 rangeSeperationPercentage:(CGFloat) percentage; // .3 is typical
 
 + (FLColorRange*) iPhoneBlueGradientColorRange;

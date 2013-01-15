@@ -15,16 +15,13 @@
 
 @implementation FLWizardPanel
 
-@synthesize wizard = _wizard;
-@synthesize delegate = _delegate;
 @synthesize wizardPanelPrompt = _wizardPanelPrompt;
-@synthesize nextPanelBlock = _nextPanelBlock;
+FLSynthesizeObservable();
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Initialization code here.
     }
     
     return self;
@@ -32,8 +29,8 @@
 
 #if FL_MRC
 - (void) dealloc {
-    [_nextPanelBlock release];
-    [_wizardPanelPrompt release];
+    [_observable release];
+     [_wizardPanelPrompt release];
     [super dealloc];
 }
 #endif
@@ -43,43 +40,33 @@
     self.view.wantsLayer = YES;
 }
 
-- (void) didMoveToWizard:(FLWizardViewController*) wizard {
-    _wizard = wizard;
+//- (void) didMoveToWizard:(FLWizardViewController*) wizard {
+//    _wizard = wizard;
+//}
+
+- (void) wizardPanelWillAppearInWizard:(FLWizardViewController*) wizard {
 }
 
-- (void) wizardPanelWillAppear {
-    FLPerformSelector1(self.delegate, @selector(wizardPanelWillAppear:), self);
+- (void) wizardPanelDidAppearInWizard:(FLWizardViewController*) wizard {
 }
 
-- (void) wizardPanelDidAppear {
-    FLPerformSelector1(self.delegate, @selector(wizardPanelDidAppear:), self);
+- (void) wizardPanelWillDisappearInWizard:(FLWizardViewController*) wizard {
 }
 
-- (void) wizardPanelWillDisappear {
-   FLPerformSelector1(self.delegate, @selector(wizardPanelWillDisappear:), self);
+- (void) wizardPanelDidDisappearInWizard:(FLWizardViewController*) wizard {
 }
 
-- (void) wizardPanelDidDisappear {
-   FLPerformSelector1(self.delegate, @selector(wizardPanelDidDisappear:), self);
+- (BOOL) willRespondToNextButtonInWizard:(FLWizardViewController*) wizard {
+    return NO;
 }
 
-- (void) respondToNextButton:(id) sender {
-    FLPerformSelector1(self.delegate, @selector(wizardPanelRespondToNextButton:), self);
-    [self.wizard pushNextWizardPanelAnimated:YES completion:nil];
+- (BOOL) willRespondToBackButtonInWizard:(FLWizardViewController*) wizard {
+    return NO;
 }
 
-- (void) respondToBackButton:(id) sender {
-    FLPerformSelector1(self.delegate, @selector(wizardPanelRespondToBackButton:), self);
-    
-    [self.wizard popWizardPanelAnimated:YES completion:nil];
+- (BOOL) willRespondToOtherButtonInWizard:(FLWizardViewController*) wizard {
+    return NO;
 }
 
-- (void) respondToOtherButton:(id) sender {
-    FLPerformSelector1(self.delegate, @selector(wizardPanelRespondToOtherButton:), self);
-}
-
-- (void) respondToError:(NSError*) error errorMessage:(NSString*) errorMessage {
-
-}
 
 @end

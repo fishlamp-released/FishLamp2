@@ -23,9 +23,9 @@
 }
 
 - (void) dealloc {
-    for(FLOperationContext* context in _contexts) {
-        [context removeObserver:self];
-    }
+//    for(FLOperationContext* context in _contexts) {
+//        [context removeObserver:self];
+//    }
 
 #if FL_MRC
     [_contexts release];
@@ -36,7 +36,7 @@
 - (void) activateContext:(FLOperationContext*) context {
     @synchronized(self) {
         if([_contexts indexOfObject:context] == NSNotFound ) {
-            [context addObserver:self];
+//            [context addObserver:self];
             [_contexts addObject:context];
         }
     }
@@ -45,7 +45,7 @@
 - (void) deactivateContext:(FLOperationContext*) context {
     @synchronized(self) {
         [context requestCancel];
-        [context removeObserver:self];
+//        [context removeObserver:self];
         [_contexts removeObject:context];
     }
 }

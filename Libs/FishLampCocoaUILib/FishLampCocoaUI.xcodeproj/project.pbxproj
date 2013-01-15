@@ -684,15 +684,6 @@
 		78329DFF167E97C20024E8DC /* FLLoginWizardPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329BFB167E97C20024E8DC /* FLLoginWizardPanel.m */; };
 		78329E00167E97C20024E8DC /* FLLoginWizardPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329BFB167E97C20024E8DC /* FLLoginWizardPanel.m */; };
 		78329E01167E97C20024E8DC /* FLLoginWizardPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329BFB167E97C20024E8DC /* FLLoginWizardPanel.m */; };
-		78329E02167E97C20024E8DC /* FLProgressWizardPanel.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329BFC167E97C20024E8DC /* FLProgressWizardPanel.h */; };
-		78329E03167E97C20024E8DC /* FLProgressWizardPanel.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329BFC167E97C20024E8DC /* FLProgressWizardPanel.h */; };
-		78329E04167E97C20024E8DC /* FLProgressWizardPanel.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329BFC167E97C20024E8DC /* FLProgressWizardPanel.h */; };
-		78329E05167E97C20024E8DC /* FLProgressWizardPanel.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329BFC167E97C20024E8DC /* FLProgressWizardPanel.h */; };
-		78329E06167E97C20024E8DC /* FLProgressWizardPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329BFD167E97C20024E8DC /* FLProgressWizardPanel.m */; };
-		78329E07167E97C20024E8DC /* FLProgressWizardPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329BFD167E97C20024E8DC /* FLProgressWizardPanel.m */; };
-		78329E08167E97C20024E8DC /* FLProgressWizardPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329BFD167E97C20024E8DC /* FLProgressWizardPanel.m */; };
-		78329E09167E97C20024E8DC /* FLProgressWizardPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329BFD167E97C20024E8DC /* FLProgressWizardPanel.m */; };
-		78329E0A167E97C20024E8DC /* FLProgressWizardPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329BFD167E97C20024E8DC /* FLProgressWizardPanel.m */; };
 		789EF0CB167EBD410019D6B2 /* FLView.h in Headers */ = {isa = PBXBuildFile; fileRef = 789EF0C9167EBD410019D6B2 /* FLView.h */; };
 		789EF0CC167EBD410019D6B2 /* FLView.h in Headers */ = {isa = PBXBuildFile; fileRef = 789EF0C9167EBD410019D6B2 /* FLView.h */; };
 		789EF0CD167EBD410019D6B2 /* FLView.h in Headers */ = {isa = PBXBuildFile; fileRef = 789EF0C9167EBD410019D6B2 /* FLView.h */; };
@@ -883,8 +874,6 @@
 		78329BF8167E97C20024E8DC /* FLWizardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLWizardViewController.m; sourceTree = "<group>"; };
 		78329BFA167E97C20024E8DC /* FLLoginWizardPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLLoginWizardPanel.h; sourceTree = "<group>"; };
 		78329BFB167E97C20024E8DC /* FLLoginWizardPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLLoginWizardPanel.m; sourceTree = "<group>"; };
-		78329BFC167E97C20024E8DC /* FLProgressWizardPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLProgressWizardPanel.h; sourceTree = "<group>"; };
-		78329BFD167E97C20024E8DC /* FLProgressWizardPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLProgressWizardPanel.m; sourceTree = "<group>"; };
 		789EF0C9167EBD410019D6B2 /* FLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLView.h; sourceTree = "<group>"; };
 		789EF0CA167EBD410019D6B2 /* FLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1349,8 +1338,6 @@
 			children = (
 				78329BFA167E97C20024E8DC /* FLLoginWizardPanel.h */,
 				78329BFB167E97C20024E8DC /* FLLoginWizardPanel.m */,
-				78329BFC167E97C20024E8DC /* FLProgressWizardPanel.h */,
-				78329BFD167E97C20024E8DC /* FLProgressWizardPanel.m */,
 			);
 			path = WizardPanels;
 			sourceTree = "<group>";
@@ -1415,7 +1402,6 @@
 				78329DE7167E97C20024E8DC /* FLWizardPanel.h in Headers */,
 				78329DF0167E97C20024E8DC /* FLWizardViewController.h in Headers */,
 				78329DF9167E97C20024E8DC /* FLLoginWizardPanel.h in Headers */,
-				78329E02167E97C20024E8DC /* FLProgressWizardPanel.h in Headers */,
 				789EF0CB167EBD410019D6B2 /* FLView.h in Headers */,
 				27348DB4168DF55B00D4142E /* FLDrawableGradient.h in Headers */,
 				27348DC0168DF8CE00D4142E /* FLDrawableShape.h in Headers */,
@@ -1502,7 +1488,6 @@
 				78329DE9167E97C20024E8DC /* FLWizardPanel.h in Headers */,
 				78329DF2167E97C20024E8DC /* FLWizardViewController.h in Headers */,
 				78329DFB167E97C20024E8DC /* FLLoginWizardPanel.h in Headers */,
-				78329E04167E97C20024E8DC /* FLProgressWizardPanel.h in Headers */,
 				789EF0CD167EBD410019D6B2 /* FLView.h in Headers */,
 				27348DB6168DF55B00D4142E /* FLDrawableGradient.h in Headers */,
 				27348DC2168DF8CE00D4142E /* FLDrawableShape.h in Headers */,
@@ -1589,7 +1574,6 @@
 				78329DE8167E97C20024E8DC /* FLWizardPanel.h in Headers */,
 				78329DF1167E97C20024E8DC /* FLWizardViewController.h in Headers */,
 				78329DFA167E97C20024E8DC /* FLLoginWizardPanel.h in Headers */,
-				78329E03167E97C20024E8DC /* FLProgressWizardPanel.h in Headers */,
 				789EF0CC167EBD410019D6B2 /* FLView.h in Headers */,
 				27348DB5168DF55B00D4142E /* FLDrawableGradient.h in Headers */,
 				27348DC1168DF8CE00D4142E /* FLDrawableShape.h in Headers */,
@@ -1676,7 +1660,6 @@
 				78329DEA167E97C20024E8DC /* FLWizardPanel.h in Headers */,
 				78329DF3167E97C20024E8DC /* FLWizardViewController.h in Headers */,
 				78329DFC167E97C20024E8DC /* FLLoginWizardPanel.h in Headers */,
-				78329E05167E97C20024E8DC /* FLProgressWizardPanel.h in Headers */,
 				789EF0CE167EBD410019D6B2 /* FLView.h in Headers */,
 				27348DB7168DF55B00D4142E /* FLDrawableGradient.h in Headers */,
 				27348DC3168DF8CE00D4142E /* FLDrawableShape.h in Headers */,
@@ -1880,7 +1863,6 @@
 				78329DEC167E97C20024E8DC /* FLWizardPanel.m in Sources */,
 				78329DF5167E97C20024E8DC /* FLWizardViewController.m in Sources */,
 				78329DFE167E97C20024E8DC /* FLLoginWizardPanel.m in Sources */,
-				78329E07167E97C20024E8DC /* FLProgressWizardPanel.m in Sources */,
 				789EF0D0167EBD410019D6B2 /* FLView.m in Sources */,
 				27348DC5168DF8CE00D4142E /* FLDrawableShape.m in Sources */,
 				27348DD0168DFCAF00D4142E /* FLDrawableGradient.m in Sources */,
@@ -1962,7 +1944,6 @@
 				78329DEE167E97C20024E8DC /* FLWizardPanel.m in Sources */,
 				78329DF7167E97C20024E8DC /* FLWizardViewController.m in Sources */,
 				78329E00167E97C20024E8DC /* FLLoginWizardPanel.m in Sources */,
-				78329E09167E97C20024E8DC /* FLProgressWizardPanel.m in Sources */,
 				789EF0D2167EBD410019D6B2 /* FLView.m in Sources */,
 				27348DC7168DF8CE00D4142E /* FLDrawableShape.m in Sources */,
 				27348DD2168DFCAF00D4142E /* FLDrawableGradient.m in Sources */,
@@ -2044,7 +2025,6 @@
 				78329DEB167E97C20024E8DC /* FLWizardPanel.m in Sources */,
 				78329DF4167E97C20024E8DC /* FLWizardViewController.m in Sources */,
 				78329DFD167E97C20024E8DC /* FLLoginWizardPanel.m in Sources */,
-				78329E06167E97C20024E8DC /* FLProgressWizardPanel.m in Sources */,
 				789EF0CF167EBD410019D6B2 /* FLView.m in Sources */,
 				27348DC4168DF8CE00D4142E /* FLDrawableShape.m in Sources */,
 				27348DCF168DFCAF00D4142E /* FLDrawableGradient.m in Sources */,
@@ -2126,7 +2106,6 @@
 				78329DED167E97C20024E8DC /* FLWizardPanel.m in Sources */,
 				78329DF6167E97C20024E8DC /* FLWizardViewController.m in Sources */,
 				78329DFF167E97C20024E8DC /* FLLoginWizardPanel.m in Sources */,
-				78329E08167E97C20024E8DC /* FLProgressWizardPanel.m in Sources */,
 				789EF0D1167EBD410019D6B2 /* FLView.m in Sources */,
 				27348DC6168DF8CE00D4142E /* FLDrawableShape.m in Sources */,
 				27348DD1168DFCAF00D4142E /* FLDrawableGradient.m in Sources */,
@@ -2208,7 +2187,6 @@
 				78329DEF167E97C20024E8DC /* FLWizardPanel.m in Sources */,
 				78329DF8167E97C20024E8DC /* FLWizardViewController.m in Sources */,
 				78329E01167E97C20024E8DC /* FLLoginWizardPanel.m in Sources */,
-				78329E0A167E97C20024E8DC /* FLProgressWizardPanel.m in Sources */,
 				789EF0D3167EBD410019D6B2 /* FLView.m in Sources */,
 				27348DC8168DF8CE00D4142E /* FLDrawableShape.m in Sources */,
 				27348DD3168DFCAF00D4142E /* FLDrawableGradient.m in Sources */,

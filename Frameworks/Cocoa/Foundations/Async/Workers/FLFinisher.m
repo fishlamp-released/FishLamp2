@@ -12,7 +12,6 @@
 @interface FLFinisher ()
 @property (readwrite, strong) FLResult result;
 @property (readwrite, copy) dispatch_block_t notificationCompletionBlock;
-@property (readwrite, copy) FLResultBlock resultBlock;
 @property (readwrite, assign, getter=isFinished) BOOL finished;
 - (void) finishFinishing;
 
@@ -25,10 +24,10 @@
 @end
 
 @implementation FLFinisher
+@synthesize didFinish = _didFinish;
 @synthesize result = _result;
 @synthesize scheduleNotificationBlock = _scheduleNotificationBlock;
 @synthesize notificationCompletionBlock = _notificationCompletionBlock;
-@synthesize resultBlock = _resultBlock;
 @synthesize finished = _finished;
 
 #if DEBUG
@@ -41,7 +40,7 @@
     self = [super init];
     if(self) {
         if(completion) {
-            _resultBlock = [completion copy];
+            _didFinish = [completion copy];
         }
         
         _semaphore = dispatch_semaphore_create(0);
@@ -72,8 +71,8 @@
     [_finishedStackTrace release];
 #endif    
 
-    if(_resultBlock) {
-        [_resultBlock release];
+    if(_didFinish) {
+        [_didFinish release];
     }
     if(_scheduleNotificationBlock) {
         [_scheduleNotificationBlock release];
@@ -126,9 +125,8 @@
 
 - (void) finishFinishing {
 
-    if(_resultBlock) {
-        _resultBlock(self.result);
-        self.resultBlock = nil;
+    if(_didFinish) {
+        _didFinish(self.result);
     }
 
     if(_notificationCompletionBlock) { 

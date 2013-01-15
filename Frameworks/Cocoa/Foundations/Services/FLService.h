@@ -9,13 +9,12 @@
 #import "FLCocoaRequired.h"
 #import "FLFinisher.h"
 #import "FLResult.h"
-#import "FLObservable.h"
 #import "FLServiceProvider.h"
 #import "FLServiceManager.h"
 
 @class FLServiceManager;
 
-@interface FLService : FLObservable<FLServiceProvider> {
+@interface FLService : NSObject<FLServiceProvider> {
 @private
     __unsafe_unretained id _context;
 }

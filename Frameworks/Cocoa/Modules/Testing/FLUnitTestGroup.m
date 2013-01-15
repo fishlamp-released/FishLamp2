@@ -57,33 +57,23 @@
 
 + (FLUnitTestGroup*) sanityTestGroup {
  
-    FLReturnStaticObjectFromBlock(^{
-        return [FLUnitTestGroup unitTestGroup:@"Sanity Checks" priority:FLUnitTestPrioritySanityCheck];
-    });
+    FLReturnStaticObject([[FLUnitTestGroup alloc] initWithGroupName:@"Sanity Checks" priority:FLUnitTestPrioritySanityCheck]);
 }
 
 + (FLUnitTestGroup*) frameworkTestGroup {
-    FLReturnStaticObjectFromBlock(^{
-        return [FLUnitTestGroup unitTestGroup:@"Framework Tests" priority:FLUnitTestPriorityFramework];
-    });
+    FLReturnStaticObject( [[FLUnitTestGroup alloc] initWithGroupName:@"Framework Tests" priority:FLUnitTestPriorityFramework]);
 }
 
 + (FLUnitTestGroup*) defaultTestGroup {
-    FLReturnStaticObjectFromBlock(^{
-        return [FLUnitTestGroup unitTestGroup:@"Normal Tests" priority:FLUnitTestPriorityNormal];
-    });
+    FLReturnStaticObject( [[FLUnitTestGroup alloc] initWithGroupName:@"Normal Tests" priority:FLUnitTestPriorityNormal]);
 }
 
 + (FLUnitTestGroup*) importantTestGroup {
-    FLReturnStaticObjectFromBlock(^{
-        return [FLUnitTestGroup unitTestGroup:@"Important Tests" priority:FLUnitTestPriorityHigh];
-    });
+    FLReturnStaticObject( [[FLUnitTestGroup alloc] initWithGroupName:@"Important Tests" priority:FLUnitTestPriorityHigh]);
 }
 
 + (FLUnitTestGroup*) lastTestGroup {
-    FLReturnStaticObjectFromBlock(^{
-        return [FLUnitTestGroup unitTestGroup:@"Last Tests" priority:FLUnitTestPriorityLow];
-    });
+    FLReturnStaticObject( [[FLUnitTestGroup alloc] initWithGroupName:@"Last Tests" priority:FLUnitTestPriorityLow]);
 }
 
 

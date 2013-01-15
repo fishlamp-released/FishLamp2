@@ -8,7 +8,6 @@
 
 #import "FLCocoaRequired.h"
 #import "FLOperationQueue.h"
-#import "FLObservable.h"
 
 @interface FLOperationContext : FLOperationQueue
 + (id) operationContext;
@@ -16,7 +15,7 @@
 @property (readonly, assign) BOOL isBusy;
 @end
 
-@interface FLOperationContextManager : FLObservable {
+@interface FLOperationContextManager : NSObject {
 @private
 	NSMutableArray* _contexts;
 }

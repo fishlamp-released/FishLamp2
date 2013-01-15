@@ -69,7 +69,7 @@ static id<FLActionErrorDelegate> s_errorDisplayDelegate = nil;
         _minimumTimeBetweenWarnings = FLActionMinimumTimeBetweenWarnings;
 		_actionDescription = [[FLActionDescription alloc] init];
         _operations = [[FLOperationQueue alloc] init];
-        [_operations addObserver:self];
+
 		if(FLStringIsNotEmpty(actionType)) {
             _actionDescription.actionType = actionType;
         }
@@ -201,7 +201,7 @@ TODO("MF: fix activity updater");
     FLSendDeallocNotification();
 #endif
 
-    [_operations removeObserver:self];
+//    [_operations removeObserver:self];
 
 #if FL_MRC  
     [_context release];

@@ -10,11 +10,14 @@
 #import "FLBreadcrumbBarView.h"
 #import "FLFlipTransition.h"
 #import "FLStatusBarViewController.h"
+#import "FLObservable.h"
 
 @class FLWizardPanel;
 @protocol FLWizardViewControllerDelegate;
 
-@interface FLWizardViewController : UIViewController {
+typedef void (^FLWizardPanelBlock)(FLWizardPanel* panel);
+
+@interface FLWizardViewController : UIViewController<FLObservable> {
 @private
     __unsafe_unretained id<FLWizardViewControllerDelegate> _delegate;
 
@@ -33,10 +36,13 @@
     IBOutlet NSButton* _otherButton;
     
     NSMutableArray* _wizardPanels;
+    
+    NSMutableArray* _pendingPanels;
         
 // temp    
     IBOutlet NSButton* _logoutButton;
 
+    FLObservable* _observable;
 }
 
 // delegate
@@ -74,6 +80,8 @@
 
 // utils
 - (void) updateBackButtonEnabledState;
+
+- (void) addPendingPanel:(FLWizardPanel*) panel;
 
 @end
 
@@ -120,6 +128,13 @@
 
 - (void) wizardViewController:(FLWizardViewController*) wizard 
       wizardPanelDidDisappear:(FLWizardPanel*) wizardPanel;
+
+//- (BOOL) wizardViewController:(FLWizardViewController*) wizard
+//wizardPanelWillRespondToNextButton:(FLWizardPanel*) wizardPanel;
+//
+//- (BOOL) wizardPanel:(FLWizardPanel*) wizardPanel willRespondToBackButtonInWizard:(FLWizardViewController*) wizard;
+//- (BOOL) wizardPanel:(FLWizardPanel*) wizardPanel willRespondToOtherButtonInWizard:(FLWizardViewController*) wizard;
+
 
 @end
 
