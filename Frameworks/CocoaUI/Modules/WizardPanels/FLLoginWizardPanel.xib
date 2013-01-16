@@ -51,9 +51,8 @@
 									<object class="NSTextField" id="1024145685">
 										<reference key="NSNextResponder" ref="667074340"/>
 										<int key="NSvFlags">268</int>
-										<string key="NSFrame">{{5, 119}, {98, 17}}</string>
+										<string key="NSFrame">{{5, 132}, {98, 17}}</string>
 										<reference key="NSSuperview" ref="667074340"/>
-										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="938653363"/>
 										<bool key="NSEnabled">YES</bool>
 										<object class="NSTextFieldCell" key="NSCell" id="308904108">
@@ -86,9 +85,8 @@
 									<object class="NSTextField" id="214007241">
 										<reference key="NSNextResponder" ref="667074340"/>
 										<int key="NSvFlags">268</int>
-										<string key="NSFrame">{{5, 147}, {98, 17}}</string>
+										<string key="NSFrame">{{5, 160}, {98, 17}}</string>
 										<reference key="NSSuperview" ref="667074340"/>
-										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="984608172"/>
 										<bool key="NSEnabled">YES</bool>
 										<object class="NSTextFieldCell" key="NSCell" id="54548622">
@@ -106,9 +104,8 @@
 									<object class="NSTextField" id="938653363">
 										<reference key="NSNextResponder" ref="667074340"/>
 										<int key="NSvFlags">268</int>
-										<string key="NSFrame">{{107, 120}, {263, 22}}</string>
+										<string key="NSFrame">{{107, 131}, {263, 22}}</string>
 										<reference key="NSSuperview" ref="667074340"/>
-										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="465360970"/>
 										<bool key="NSEnabled">YES</bool>
 										<object class="NSTextFieldCell" key="NSCell" id="861193114">
@@ -147,9 +144,8 @@
 									<object class="NSTextField" id="984608172">
 										<reference key="NSNextResponder" ref="667074340"/>
 										<int key="NSvFlags">268</int>
-										<string key="NSFrame">{{107, 146}, {263, 22}}</string>
+										<string key="NSFrame">{{107, 159}, {263, 22}}</string>
 										<reference key="NSSuperview" ref="667074340"/>
-										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="1024145685"/>
 										<bool key="NSEnabled">YES</bool>
 										<object class="NSTextFieldCell" key="NSCell" id="568549520">
@@ -167,17 +163,16 @@
 									</object>
 									<object class="NSButton" id="465360970">
 										<reference key="NSNextResponder" ref="667074340"/>
-										<int key="NSvFlags">268</int>
+										<int key="NSvFlags">-2147483380</int>
 										<array class="NSMutableArray" key="NSSubviews"/>
-										<string key="NSFrame">{{105, 94}, {190, 18}}</string>
+										<string key="NSFrame">{{105, 107}, {190, 18}}</string>
 										<reference key="NSSuperview" ref="667074340"/>
-										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="231246812"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="NSEnabled">YES</bool>
 										<object class="NSButtonCell" key="NSCell" id="922718770">
 											<int key="NSCellFlags">-2080374784</int>
-											<int key="NSCellFlags2">268435456</int>
+											<int key="NSCellFlags2">0</int>
 											<string key="NSContents">Save Password in Keychain</string>
 											<object class="NSFont" key="NSSupport">
 												<string key="NSName">MyriadPro-Bold</string>
@@ -206,30 +201,25 @@
 										<reference key="NSNextResponder" ref="667074340"/>
 										<int key="NSvFlags">268</int>
 										<array class="NSMutableArray" key="NSSubviews"/>
-										<string key="NSFrame">{{107, 34}, {129, 28}}</string>
+										<string key="NSFrame">{{107, 13}, {129, 17}}</string>
 										<reference key="NSSuperview" ref="667074340"/>
-										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView"/>
 										<string key="NSReuseIdentifierKey">_NS:22</string>
 										<bool key="NSEnabled">YES</bool>
 										<object class="NSButtonCell" key="NSCell" id="957219648">
-											<int key="NSCellFlags">-2080374784</int>
-											<int key="NSCellFlags2">134217728</int>
+											<int key="NSCellFlags">-2079326144</int>
+											<int key="NSCellFlags2">134251520</int>
 											<string key="NSContents">Forgot your login?</string>
-											<object class="NSFont" key="NSSupport">
-												<string key="NSName">LucidaGrande-Bold</string>
-												<double key="NSSize">11</double>
-												<int key="NSfFlags">3357</int>
+											<object class="NSFont" key="NSSupport" id="525540165">
+												<string key="NSName">MyriadPro-Regular</string>
+												<double key="NSSize">12</double>
+												<int key="NSfFlags">16</int>
 											</object>
 											<string key="NSCellIdentifier">_NS:22</string>
 											<reference key="NSControlView" ref="231246812"/>
 											<int key="NSButtonFlags">-2038022144</int>
 											<int key="NSButtonFlags2">134</int>
-											<object class="NSFont" key="NSAlternateImage">
-												<string key="NSName">MyriadPro-Regular</string>
-												<double key="NSSize">11</double>
-												<int key="NSfFlags">16</int>
-											</object>
+											<reference key="NSAlternateImage" ref="525540165"/>
 											<string key="NSAlternateContents"/>
 											<string key="NSKeyEquivalent"/>
 											<int key="NSPeriodicDelay">400</int>
@@ -238,16 +228,14 @@
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 									</object>
 								</array>
-								<string key="NSFrame">{{2, 2}, {402, 199}}</string>
+								<string key="NSFrame">{{2, 2}, {402, 212}}</string>
 								<reference key="NSSuperview" ref="331837960"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="214007241"/>
 								<string key="NSReuseIdentifierKey">_NS:11</string>
 							</object>
 						</array>
 						<string key="NSFrame">{{97, 42}, {406, 216}}</string>
 						<reference key="NSSuperview" ref="974686820"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="667074340"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<string key="NSOffsets">{0, 0}</string>
@@ -269,7 +257,7 @@
 						<reference key="NSContentView" ref="667074340"/>
 						<int key="NSBorderType">3</int>
 						<int key="NSBoxType">0</int>
-						<int key="NSTitlePosition">2</int>
+						<int key="NSTitlePosition">0</int>
 						<bool key="NSTransparent">NO</bool>
 						<object class="NSColor" key="NSFillColor2">
 							<int key="NSColorSpace">3</int>
@@ -279,7 +267,6 @@
 				</array>
 				<string key="NSFrameSize">{600, 300}</string>
 				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="331837960"/>
 				<string key="NSReuseIdentifierKey">_NS:20</string>
 			</object>
@@ -504,61 +491,7 @@
 			<nil key="sourceID"/>
 			<int key="maxID">291</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes">
-			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
-				<object class="IBPartialClassDescription">
-					<string key="className">FLLoginWizardPanel</string>
-					<string key="superclassName">FLWizardPanel</string>
-					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">resetLogin:</string>
-						<string key="NS.object.0">id</string>
-					</object>
-					<object class="NSMutableDictionary" key="actionInfosByName">
-						<string key="NS.key.0">resetLogin:</string>
-						<object class="IBActionInfo" key="NS.object.0">
-							<string key="name">resetLogin:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</object>
-					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="_forgotPasswordButton">NSButton</string>
-						<string key="_passwordEntryField">NSSecureTextField</string>
-						<string key="_savePasswordCheckBox">NSButton</string>
-						<string key="_userNameTextField">NSTextField</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="_forgotPasswordButton">
-							<string key="name">_forgotPasswordButton</string>
-							<string key="candidateClassName">NSButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="_passwordEntryField">
-							<string key="name">_passwordEntryField</string>
-							<string key="candidateClassName">NSSecureTextField</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="_savePasswordCheckBox">
-							<string key="name">_savePasswordCheckBox</string>
-							<string key="candidateClassName">NSButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="_userNameTextField">
-							<string key="name">_userNameTextField</string>
-							<string key="candidateClassName">NSTextField</string>
-						</object>
-					</dictionary>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/FLLoginWizardPanel.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">FLWizardPanel</string>
-					<string key="superclassName">NSViewController</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/FLWizardPanel.h</string>
-					</object>
-				</object>
-			</array>
-		</object>
+		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaFramework</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDependencies">

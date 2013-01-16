@@ -56,6 +56,13 @@
 }
 
 - (FLColorRangeColorValues) decimalColorRangeValues {
+//    FLColorRangeColorValues values = {
+//        
+//    
+//        
+//    };
+
+
     return FLColorRangeMakeDecimal(self.startColor.rgbColorValues, self.endColor.rgbColorValues);
 }
 

@@ -162,6 +162,131 @@ void FLCreateRectPathBackButtonShape(CGMutablePathRef path, CGRect rect, CGFloat
 
 }
 
+void FLCreateRectPathForwardButtonShape(CGMutablePathRef path, CGRect rect, CGFloat cornerRadius, CGFloat ptSize)
+{
+    rect = CGRectInset(rect, 0.5, 0.5);
+
+	CGPathMoveToPoint(path, NULL,
+		rect.origin.x + rect.size.width,
+		FLRectGetCenter(rect).y);
+            
+    CGPathAddLineToPoint(path, NULL,
+        rect.origin.x + rect.size.width - ptSize,
+        rect.origin.y);
+        
+    CGPathAddLineToPoint(path, NULL,
+        rect.origin.x,
+        rect.origin.y);
+
+    CGPathAddLineToPoint(path, NULL,
+        rect.origin.x,
+        rect.origin.y + rect.size.height);
+
+    CGPathAddLineToPoint(path, NULL,
+        rect.origin.x + rect.size.width - ptSize,
+        rect.origin.y + rect.size.height);
+
+    CGPathAddLineToPoint(path, NULL,
+		rect.origin.x + rect.size.width,
+		FLRectGetCenter(rect).y);
+
+	CGPathCloseSubpath(path);
+
+//// start at point.
+//	CGPathMoveToPoint(path, NULL,
+//		rect.origin.x + rect.size.width - 0.5,
+//		FLRectGetCenter(rect).y);
+//
+//// to origin
+//	CGPathAddArcToPoint(path, NULL,
+//		rect.origin.x + rect.size.width - ptSize,
+//		rect.origin.y,
+//		rect.origin.x,
+//		rect.origin.y,
+//		cornerRadius);
+//
+//	CGPathAddArcToPoint(path, NULL,
+//		rect.origin.x + rect.size.width,
+//		rect.origin.y,
+//		rect.origin.x + rect.size.width,
+//		rect.origin.y + rect.size.height + cornerRadius,
+//		cornerRadius);
+//
+//	// Bottom right corner
+//	CGPathAddArcToPoint(path, NULL,
+//		rect.origin.x + rect.size.width,
+//		rect.origin.y + rect.size.height,
+//		rect.origin.x + 0.5,
+//		rect.origin.y + rect.size.height,
+//		cornerRadius);
+//
+//	// Bottom left corner
+//	CGPathAddArcToPoint(path, NULL,
+//		rect.origin.x + ptSize,
+//		rect.origin.y + rect.size.height,
+//		rect.origin.x,
+//		FLRectGetCenter(rect).y - 0.5,
+//		cornerRadius);
+//
+//	// Close the path at the rounded rect
+//	CGPathCloseSubpath(path);
+//
+//
+//	// top left
+//
+//    rect = CGRectInset(rect, 0.5, 0.5);
+//
+//    // origin.
+//	CGPathMoveToPoint(path, NULL, 
+//        rect.origin.x + cornerRadius, 
+//        rect.origin.y);
+//        
+//    // to point (through top right), with curve
+//	CGPathAddArcToPoint(path, NULL,
+//    // curve through
+//        rect.origin.x + rect.size.width - ptSize, 
+//        rect.origin.y,
+//    // to point
+//        rect.origin.x + rect.size.width,
+//        rect.origin.y + (rect.size.height / 2),
+//        cornerRadius);
+//
+//    // to bottom left, from curve point
+//	CGPathAddArcToPoint(path, NULL,
+//    // curve through
+//        rect.origin.x + rect.size.width - ptSize, 
+//        rect.origin.y + rect.size.height,
+//    // to point
+//        rect.origin.x + cornerRadius,
+//        rect.origin.y + rect.size.height,
+//        cornerRadius);
+//
+//	CGPathAddArcToPoint(path, NULL,
+//    // curve through
+//        rect.origin.x, 
+//        rect.origin.y + rect.size.height - cornerRadius,
+//    // to point
+//        rect.origin.x,
+//        rect.origin.y + (rect.size.height / 2),
+//        cornerRadius);
+//
+//
+//    // back to start (allowing for curved corners)
+//	CGPathAddArcToPoint(path, NULL,
+//    // curve through
+//        rect.origin.x, 
+//        rect.origin.y + cornerRadius,
+//    // to point
+//        rect.origin.x + cornerRadius,
+//        rect.origin.y,
+//        cornerRadius);
+//        
+//    
+//	// Close the path at the rounded rect
+//	CGPathCloseSubpath(path);
+
+}
+
 
 void FLCreateRectPathWithRightArrow(CGMutablePathRef path, CGRect rect, CGPoint arrowPoint, CGFloat arrowSize, CGFloat cornerRadius)
 {

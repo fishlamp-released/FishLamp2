@@ -8,22 +8,16 @@
 
 
 #import "FLCocoaUIRequired.h"
-#import "FLObservable.h"
 #import "FLWizardViewController.h"
-#import "FLObservable.h"
 
-//@class FLWizardPanel;
-//@protocol FLWizardPanelDelegate;
-
-@interface FLWizardPanel : UIViewController<FLObservable> {
+@interface FLWizardPanel : UIViewController {
 @private
-//    __unsafe_unretained FLWizardViewController* _wizard;
-//    __unsafe_unretained id<FLWizardPanelDelegate> _delegate;
-    FLObservable* _observable;
-    NSString* _wizardPanelPrompt;
+    NSString* _breadcrumbTitle;
+    BOOL _enabled;
 }
 
-@property (readwrite, strong, nonatomic) NSString* wizardPanelPrompt;
+@property (readwrite, assign, nonatomic, getter=isEnabled) BOOL enabled;
+@property (readwrite, strong, nonatomic) NSString* breadcrumbTitle;
 
 - (void) wizardPanelWillAppearInWizard:(FLWizardViewController*) wizard;
 - (void) wizardPanelDidAppearInWizard:(FLWizardViewController*) wizard;
@@ -32,21 +26,6 @@
 
 - (BOOL) willRespondToNextButtonInWizard:(FLWizardViewController*) wizard;
 - (BOOL) willRespondToBackButtonInWizard:(FLWizardViewController*) wizard;
-- (BOOL) willRespondToOtherButtonInWizard:(FLWizardViewController*) wizard;
-
-//- (void) didMoveToWizard:(FLWizardViewController*) wizard;
 @end
 
-//@protocol FLWizardPanelDelegate <NSObject>
-//@optional
-//- (void) wizardPanel:(FLWizardPanel*) wizardPanel willAppearInWizard:(FLWizardViewController*) wizard;
-//- (void) wizardPanel:(FLWizardPanel*) wizardPanel didAppearInWizard:(FLWizardViewController*) wizard;
-//- (void) wizardPanel:(FLWizardPanel*) wizardPanel willDisappearInWizard:(FLWizardViewController*) wizard;
-//- (void) wizardPanel:(FLWizardPanel*) wizardPanel didDisappearInWizard:(FLWizardViewController*) wizard;
-//
-//- (BOOL) wizardPanel:(FLWizardPanel*) wizardPanel willRespondToNextButtonInWizard:(FLWizardViewController*) wizard;
-//- (BOOL) wizardPanel:(FLWizardPanel*) wizardPanel willRespondToBackButtonInWizard:(FLWizardViewController*) wizard;
-//- (BOOL) wizardPanel:(FLWizardPanel*) wizardPanel willRespondToOtherButtonInWizard:(FLWizardViewController*) wizard;
-//
-//@end
 

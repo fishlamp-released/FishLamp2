@@ -66,7 +66,9 @@ FLColorValues FLColorValuesLighten(FLColorValues values, CGFloat byPercent) {
         values.alpha = components[3];
 	}
 #else
-    [self getRed:&values.red green:&values.green blue:&values.blue alpha:&values.alpha];
+
+    NSColor* color = [self colorUsingColorSpaceName:NSCalibratedRGBColorSpace];
+    [color getRed:&values.red green:&values.green blue:&values.blue alpha:&values.alpha];
     
 #endif   
 

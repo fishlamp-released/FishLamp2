@@ -263,23 +263,23 @@ FLSynthesizeAssociatedProperty(retain_nonatomic, transitionAnimation, setTransit
 @end
 #endif
 
-@implementation UIViewController (FLNibLoading)
-
-- (NSString*) defaultNibName {
-#if OSX
-    return [NSString stringWithFormat:@"%@-OSX", NSStringFromClass([self class])];
-#else 
-    return [NSString stringWithFormat:@"%@-iOS", NSStringFromClass([self class])];
-#endif    
-}
-
-- (id) initWithDefaultNibName {
-    return [self initWithNibName:self.defaultNibName bundle:nil];
-}
-
-- (id) initWithDefaultNibName:(NSBundle *)nibBundleOrNil {
-    return [self initWithNibName:self.defaultNibName bundle:nibBundleOrNil];
-}
-
-
-@end
+//@implementation UIViewController (FLNibLoading)
+//
+//- (NSString*) defaultNibName {
+//#if OSX
+//    return [NSString stringWithFormat:@"%@-OSX", NSStringFromClass([self class])];
+//#else 
+//    return [NSString stringWithFormat:@"%@-iOS", NSStringFromClass([self class])];
+//#endif    
+//}
+//
+//- (id) initWithDefaultNibName {
+//    return [self initWithNibName:self.defaultNibName bundle:nil];
+//}
+//
+//- (id) initWithDefaultNibName:(NSBundle *)nibBundleOrNil {
+//    return [self initWithNibName:self.defaultNibName bundle:nibBundleOrNil];
+//}
+//
+//
+//@end

@@ -72,9 +72,9 @@ FLColorValues FLColorValuesRgbToDecimal(FLColorValues values) {
 NS_INLINE
 FLColorValues FLColorValuesDecimalToRgb(FLColorValues values) {
     if(!values.valuesAreRGB) {
-        values.red = FLRgbColorToDecimalColor(values.red);
-        values.green = FLRgbColorToDecimalColor(values.green);
-        values.blue = FLRgbColorToDecimalColor(values.blue);
+        values.red = FLDecimalColorToRgbColor(values.red);
+        values.green = FLDecimalColorToRgbColor(values.green);
+        values.blue = FLDecimalColorToRgbColor(values.blue);
         values.valuesAreRGB = YES;
     }
     return FLAssertColorValuesAreRGB(values);

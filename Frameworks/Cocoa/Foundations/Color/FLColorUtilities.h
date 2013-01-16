@@ -19,7 +19,7 @@ BOOL FLColorValueIsDecimal(CGFloat value) {
 
 NS_INLINE
 BOOL FLColorValueIsRGB(CGFloat value) {
-    return value >= 1.0f && value <= 255.0f;
+    return value >= 0.0f && value <= 255.0f;
 }
 
 #define FLAssertColorValueIsRGB(__VALUE__) \

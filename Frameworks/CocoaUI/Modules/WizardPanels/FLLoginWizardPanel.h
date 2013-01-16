@@ -35,6 +35,7 @@
 @property (readwrite, assign, nonatomic) id<FLLoginWizardPanelDelegate> delegate;
 
 + (id) loginWizardPanel;
++ (id) loginWizardPanel:(id<FLLoginWizardPanelDelegate>) delegate;
 
 @end
 

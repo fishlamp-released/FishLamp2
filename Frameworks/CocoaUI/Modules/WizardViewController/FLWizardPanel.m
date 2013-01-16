@@ -15,8 +15,8 @@
 
 @implementation FLWizardPanel
 
-@synthesize wizardPanelPrompt = _wizardPanelPrompt;
-FLSynthesizeObservable();
+@synthesize breadcrumbTitle = _breadcrumbTitle;
+@synthesize enabled = _enabled;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -29,8 +29,7 @@ FLSynthesizeObservable();
 
 #if FL_MRC
 - (void) dealloc {
-    [_observable release];
-     [_wizardPanelPrompt release];
+    [_breadcrumbTitle release];
     [super dealloc];
 }
 #endif
@@ -67,6 +66,5 @@ FLSynthesizeObservable();
 - (BOOL) willRespondToOtherButtonInWizard:(FLWizardViewController*) wizard {
     return NO;
 }
-
 
 @end

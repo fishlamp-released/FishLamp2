@@ -15,19 +15,32 @@
 	UIColor* _innerBorderColor;
 	CGFloat _lineWidth;
 	FLDrawableGradient* _borderGradient;
+    CGPathRef _path;
 }
+
+@property (readwrite, assign, nonatomic) CGPathRef pathRef;
 
 @property (readonly, strong, nonatomic) FLDrawableGradient* borderGradient;
 @property (readwrite, assign, nonatomic) CGFloat borderLineWidth;
 @property (readwrite, assign, nonatomic) CGFloat cornerRadius;
 @property (readwrite, strong, nonatomic) UIColor* innerBorderColor;
 
-// override this
+// override this if you don't set pathRef
 - (void) createPathForShapeInRect:(CGMutablePathRef) path rect:(CGRect) rect;
 @end
 
 
 @interface FLDrawableBackButtonShape : FLDrawableShape {
+@private
+    CGFloat _pointSize;
+}
+
+@property (readwrite, assign, nonatomic) CGFloat pointSize;
+- (id) initWithPointSize:(CGFloat) pointSize;
+
+@end
+
+@interface FLDrawableForwardButtonShape : FLDrawableShape {
 @private
     CGFloat _pointSize;
 }

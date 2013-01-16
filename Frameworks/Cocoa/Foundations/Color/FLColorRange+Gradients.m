@@ -92,6 +92,18 @@
 }
 
 
++ (FLColorRange*) silverGradientColorRange {
+	FLReturnStaticObject( 
+        [[FLColorRange alloc] initWithStartColor:FLColorCreateWithRGBColorValues(170,170,170,1.0)  endColor:FLColorCreateWithRGBColorValues(192,192,192,1.0)];
+        );
+}
+
+//Silver Chalice            172  172  172
+//Silver Sand               191  193  194
+//Silver Tree               102  181  143
+
+
+
 
 //+ (FLGradientColorPair*) grayGradientColors
 //{

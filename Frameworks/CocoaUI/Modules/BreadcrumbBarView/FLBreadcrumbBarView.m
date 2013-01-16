@@ -1,37 +1,35 @@
 //
 //  FLBreadcrumbBarView.m
-//  FishLamp-iOS-Lib
+//  FishLampCocoaUI
 //
-//  Created by Mike Fullerton on 1/29/12.
-//  Copyright (c) 2012 GreenTongue Software, LLC. All rights reserved.
+//  Created by Mike Fullerton on 1/15/13.
+//  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
 
 #import "FLBreadcrumbBarView.h"
 #import "FLCoreText.h"
+#import "FLColorRange+Gradients.h"
+
+@interface FLBreadcrumbBarView ()
+@property (readwrite, strong, nonatomic) NSTrackingArea* trackingArea;
+@end
 
 @implementation FLBreadcrumbBarView
 
-@synthesize strings = _strings;
-@synthesize verticalTextAlignment = _verticalTextAlignment;
-@synthesize enabledTextColor = _enabledTextColor;
-@synthesize disabledTextColor = _disabledTextColor;
-@synthesize highlightedTextColor = _highlightedTextColor;
-@synthesize textFont = _textFont;
+@synthesize trackingArea = _trackingArea;
+@synthesize title = _title;
+@synthesize touched = _touched;
 
-- (id) initWithFrame:(CGRect) frame {
-    if((self = [super initWithFrame:frame])) {
-        self.userInteractionEnabled = YES; 
-
-#if IOS
-        self.backgroundColor = [UIColor clearColor];
-#endif
+- (id)initWithFrame:(NSRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+    
+        _shape = [[FLDrawableForwardButtonShape alloc] init];
         
-        self.enabledTextColor = [UIColor blackColor];
-        self.disabledTextColor = [UIColor grayColor];
-        self.highlightedTextColor = [UIColor blueColor];
-        self.textFont = [UIFont boldSystemFontOfSize:[UIFont systemFontSize]];
-
-        _strings = [[FLOrderedCollection alloc] init];
+        _shape.borderLineWidth = 1.0;
+        _shape.cornerRadius = 1.0;
+        _shape.pointSize = 10.0;
     }
     
     return self;
@@ -39,312 +37,169 @@
 
 #if FL_MRC
 - (void) dealloc {
-    [_runFrames release];
-    [_enabledTextColor release];
-    [_disabledTextColor release];
-    [_highlightedTextColor release];
-    [_textFont release];
-    [_strings release];
-    [_runFrames release];
+    [_trackingArea release];
+    [_touched release];
+    [_title release];
     [super dealloc];
 }
 #endif
 
-- (FLAttributedString*) stringAtIndex:(NSUInteger) index {
-    return [_strings objectAtIndex:index];
+- (BOOL) isEnabled {
+    return _title.isEnabled;
 }
 
-- (FLAttributedString*) stringForKey:(NSString*) key {
-    return [_strings objectForKey:key];
+- (void) setEnabled:(BOOL) enabled {
+    _title.enabled = enabled;
+     [self setNeedsDisplay];
 }
 
-- (void) setString:(NSString*) string 
-          atIndex:(NSUInteger) stringIndex {
-    [[_strings objectAtIndex:stringIndex] setString:string];
-    [self setNeedsLayout];
+- (void) setEmphasized:(BOOL)representsVisibleView {
+    _title.emphasized = representsVisibleView;
+     [self setNeedsDisplay];
 }
 
-- (void) setString:(NSString*) string 
-            forKey:(NSString*) key {
-    [[_strings objectForKey:key] setString:string];
-    [self setNeedsLayout];
+- (BOOL) isEmphasized {
+    return _title.emphasized;
 }
 
-- (void) setAttributedString:(FLAttributedString*) string 
-                forKey:(NSString*) key  {
-
-    FLAssertStringIsNotEmpty_(key);
-    FLAssertNotNil_(string);
-                
-    if(!string.enabledColor) {
-        string.enabledColor = self.enabledTextColor;
-    }
-    if(!string.disabledColor) {
-        string.disabledColor = self.disabledTextColor;
-    }
-    if(!string.highlightedColor) {
-        string.highlightedColor = self.highlightedTextColor;
-    }
-    if(!string.textFont) {
-        string.textFont = self.textFont;
-    }
-
-    [_strings addOrReplaceObject:string forKey:key];
-    [self setNeedsLayout];
+- (void) setHighlighted:(BOOL)highlighted {
+    _title.highlighted = highlighted;
+     [self setNeedsDisplay];
 }
 
-- (void) setStringForAllStrings:(NSString*) aString {
-    for(FLAttributedString* string in _strings.forwardObjectEnumerator) {
-        string.string = aString;
-    }
-    
-    [self setNeedsLayout];
+- (BOOL) isHighlighted {
+    return _title.isHighlighted;
 }
 
-- (NSAttributedString*) buildAttributedString {
-    NSMutableAttributedString* outString = FLAutorelease([[NSMutableAttributedString alloc] init]);
-    for(FLAttributedString* string in _strings.forwardObjectEnumerator) {
-        if(FLStringIsEmpty(string.string) || string.isHidden) {
-            continue;
-        }
-    
-        [outString appendAttributedString:string.attributedString];
-    }
-    
-    return outString;
-}
+- (void) didLayout {
 
-- (void) setStringRunFrames:(CTFrameRef) frameRef 
-                      offset:(CGFloat) offset {
-
-    if(_runFrames) {
-        return;
-    }
-    _runFrames = [[FLMutableBatchDictionary alloc] init];
-
-    CFArrayRef lines = CTFrameGetLines(frameRef);
-    CFIndex lineCount = CFArrayGetCount(lines);
-    if(lineCount) {
-        CGPoint origins[lineCount];
-        
-        CTFrameGetLineOrigins(frameRef, CFRangeMake(0, 0), origins);
-
-        for(CFIndex lineIndex = 0; lineIndex < lineCount; lineIndex++) {
-            CTLineRef line = CFArrayGetValueAtIndex(lines, lineIndex);
-
-            CFArrayRef runs = CTLineGetGlyphRuns(line);
-            for(CFIndex j = 0; j < CFArrayGetCount(runs); j++) {
-                CTRunRef run = CFArrayGetValueAtIndex(runs, j);
-                CGRect runBounds = CGRectZero;
-
-                CGFloat ascent = 0;//height above the baseline
-                CGFloat descent = 0;//height below the baseline
-                runBounds.size.width = CTRunGetTypographicBounds(run, CFRangeMake(0, 0), &ascent, &descent, NULL);
-                runBounds.size.height = ascent + descent;
-
-                CGFloat xOffset = CTLineGetOffsetForStringIndex(line, CTRunGetStringRange(run).location, NULL);
-                runBounds.origin.x = origins[lineIndex].x /*+ bounds.origin.x*/ + xOffset;
-                runBounds.origin.y = origins[lineIndex].y /*+ bounds.origin.y*/;
-                runBounds.origin.y -= descent;
-
-#if IOS
-                // convert Rectangle back to view coordinates
-                CGRect bounds = self.bounds;
-                runBounds = CGRectApplyAffineTransform(runBounds, CGAffineTransformMakeScale(1, -1));
-                runBounds = FLRectMoveVertically(runBounds, (bounds.size.height - offset));
-#endif
-
-                NSDictionary* attributes = bridge_(NSDictionary*, CTRunGetAttributes(run));
-                FLAttributedString* str = [attributes objectForKey:@"com.fishlamp.string"];
-                if(str) {
-                    [_runFrames addObject:[NSValue valueWithCGRect:runBounds] forKey:str.string];
-                }
-            }
-         }
-    }
-}
-
-- (CTFrameRef) createFrameForCGContext:(CGContextRef) context {
-    NSAttributedString* attributedStringToDraw = [self buildAttributedString];
-
-    CGRect bounds = self.bounds;
-    
-    CTFramesetterRef framesetter = nil;
-    CGMutablePathRef path = CGPathCreateMutable();
-    if(!path) {
-        return nil;
+    if(self.trackingArea) {
+        [self removeTrackingArea:self.trackingArea];
+        self.trackingArea = nil;
     }
 
-    @try {
-    
-        CGPathAddRect(path, NULL, bounds);
-
-        framesetter = CTFramesetterCreateWithAttributedString(bridge_(CFAttributedStringRef, attributedStringToDraw));
-        if(!framesetter) {
-            return nil;
-        }
-   
-        // Create the frame and draw it into the graphics context
-        CTFrameRef frameRef = CTFramesetterCreateFrame(framesetter,
-                                          CFRangeMake(0, 0), path, NULL);
-    
-        if(!frameRef) {
-            return nil;
-        }
-        
-        CGFloat boxOffset = 0.0f;
-
-        CFArrayRef lines = CTFrameGetLines(frameRef);
-        CFIndex lineCount = CFArrayGetCount(lines);
-        if(lineCount) {
-            CGFloat size = 0;
-            
-            for(CFIndex lineIndex = 0; lineIndex < lineCount; lineIndex++) {
-                CTLineRef line = CFArrayGetValueAtIndex(lines, lineIndex);
-                CGRect lineBounds = CTLineGetImageBounds(line, context);
-                size += lineBounds.size.height;
-            }
-         
-            size = ceilf(size);
-            size += 2.0f;
-            
-            if(size < bounds.size.height) {
-                switch(_verticalTextAlignment) {
-                    case FLVerticalTextAlignmentTop:
-                    break;
-                    
-                    case FLVerticalTextAlignmentCenter:
-                        boxOffset = -((bounds.size.height / 2.0f) - (size / 2.0f));
-                    break;
-                    
-                    case FLVerticalTextAlignmentBottom:
-                        boxOffset = -(bounds.size.height - size);
-                    break;
-                }
-                
-                if(boxOffset != 0.0f) {
-                    CGContextTranslateCTM(context, 0.0, boxOffset);
-                }
-            }
-        }
-        
-        [self setStringRunFrames:frameRef offset:boxOffset];
-
-        return frameRef;
-    }
-    @finally {
-        if(path) {
-            CFRelease(path);
-        } 
-        if(framesetter) {
-            CFRelease(framesetter);
-        }
-    }
-
-    return nil;
-}
-
-//- (void) drawRect:(CGRect) drawRect {
-//    [super drawRect:drawRect];
-//
-//    CGContextRef context = UIGraphicsGetCurrentContext();
-//    CGContextSaveGState(context);
-//#if OSX
-//    CGContextSetTextMatrix(context, CGAffineTransformIdentity);
-//#endif
-//
-//
-//#if IOS
-//    // flip to context coordinates for drawing text.
-//    CGRect bounds = self.bounds;
-//    CGContextTranslateCTM(context, 0.0, bounds.size.height);
-//    CGContextScaleCTM(context, 1.0, -1.0);
-//#endif
-//
-//    CTFrameRef frameRef = [self createFrameForCGContext:context];
-//    @try {
-//        if(frameRef) {
-//            CTFrameDraw(frameRef, context);
-//        }
-//    }
-//    @finally {
-//        if(frameRef) {
-//            CFRelease(frameRef);
-//        }
-//        
-//        CGContextRestoreGState(context);
-//    }
-//     
-//}
-
-- (void) drawRect:(CGRect) rect {
-    FLTextAlignment align = { FLVerticalTextAlignmentCenter };
-    
-    [FLCoreText drawString:[self buildAttributedString] withTextAlignment:align inBounds:self.bounds];
-}
-
-- (FLAttributedString*) stringAtPoint:(CGPoint) point {
-
-    for(NSString* string in _runFrames) {
-        for(NSValue* value in [_runFrames objectsForKey:string]) {
-            if(CGRectContainsPoint([value CGRectValue], point)) {
-                return [self stringForKey:string];
-            }
-        }
-    }
-
-    return nil;
-}
-
-- (void) setNeedsLayout {
-    [super setNeedsLayout];
-    FLReleaseWithNil(_runFrames);
+    _trackingArea = [[NSTrackingArea alloc] initWithRect:[self bounds]
+                                                 options:
+                                                    NSTrackingMouseEnteredAndExited | 
+                                                    NSTrackingMouseMoved | 
+                                                    NSTrackingActiveAlways | 
+                                                    NSTrackingAssumeInside
+                                                   owner:self
+                                                userInfo:nil];
+    [self addTrackingArea:_trackingArea];
     [self setNeedsDisplay];
 }
 
 
-#if IOS
-- (void) _updateTouch:(NSSet *)touches 
-    withEvent:(UIEvent *)event 
-    isTouching:(BOOL) isTouching {
-    UITouch* touch = [touches anyObject];
-    CGPoint pt = [touch locationInView:self];
-    FLAttributedString* touchingstring = [self stringForPoint:pt];
+- (void)mouseEntered:(NSEvent *)event  {
+    NSPoint location = [self convertPoint:[event locationInWindow] fromView:nil];
+    // Do whatever you want to do in response to mouse entering
 
-	for(FLAttributedString* string in _strings.forwardObjectEnumerator) {
-        if(string.isHighlighted != isTouching) {
-            if(touchingstring == string && string.isTouchable) {
-                if(string.isTouchable) {
-                    touchingstring.highlighted = isTouching;
-                    FLAssert_v(touchingstring.highlighted == isTouching, @"switch failed");
-                    FLLog(@"touched %@", string.text);
-                }
-            }
-            else {
-                string.highlighted = NO;
-            }
+    if(CGRectContainsPoint(self.bounds, location)) {
+        if(self.isEnabled && !self.isEmphasized) {
+            _mouseIn = YES;
+            [self setNeedsDisplay];
         }
     }
+}
+- (void) updateMouseState {
+
+    if(self.isEnabled && !self.isEmphasized) {
+    FLLog(@"tracking mouse");
+        self.highlighted = _mouseIn && _mouseDown;
+    }
+}
+
+- (void)mouseDown:(NSEvent *)theEvent {
+    _mouseDown = YES;
+    [self updateMouseState];
+}
+
+- (void)mouseUp:(NSEvent *)theEvent {
+    _mouseDown = NO;
+    [self updateMouseState];
+
+    if(_mouseIn) {
+        if(_touched) {
+            _touched();
+        }
+    }
+}
+
+- (void) mouseDragged:(NSEvent *)event {
+
+    NSPoint location = [self convertPoint:[event locationInWindow] fromView:nil]; 
+    _mouseIn = CGRectContainsPoint(self.bounds, location);
+    [self updateMouseState];
+}
+
+- (void)mouseExited:(NSEvent *)event {
+    NSPoint location = [self convertPoint:[event locationInWindow] fromView:nil];
+    // Do whatever you want to do in response to mouse exiting
+    if(!CGRectContainsPoint(self.bounds, location)) {
+        _mouseIn = NO;
+        [self setNeedsDisplay];
+    }
+}
+//
+//- (void)mouseMoved:(NSEvent *)event {
+//    [self updateMouseState];
+//    NSPoint location = [self convertPoint:[event locationInWindow] fromView:nil];
+//    // Do whatever you want to do in response to mouse movements
+//
+////    if(CGRectContainsPoint(self.bounds, location)) {
+////    }
+//}
+
+- (void)drawRect:(NSRect)dirtyRect {
     
-    [self setNeedsLayout];
+    FLDrawRectWithDrawable(_shape, dirtyRect, self.bounds, self, ^{
+
+        UIColor* color = nil;
+//        if(_mouseIn && _mouseDown) {
+//            color = [NSColor whiteColor];
+//        }
+//        else 
+        if(self.isEmphasized) {
+            color = [NSColor lightGrayColor];
+        }
+        else if(self.isHighlighted) {
+            color = [NSColor grayColor];
+        }
+        else {
+            color = [NSColor gray85Color];
+        }
+
+        if(color) {
+            [color setFill];
+            NSRectFill(dirtyRect);
+        }
+        
+//        UIColor* bgColor = [NSColor lightGrayColor];
+//        if(bgColor) {
+//            [bgColor setFill];
+//            NSRectFill(dirtyRect);
+//        }
+    
+        FLTextAlignment align = { FLVerticalTextAlignmentCenter, FLHorizontalTextAlignmentCenter };
+        [FLCoreText drawString:[self.title attributedString] withTextAlignment:align inBounds:self.bounds];
+    
+    });
+
+
+    
+//    CGContextSaveGState(context);
+//    CGContextSetLineCap(context, kCGLineCapSquare);
+//    CGContextSetStrokeColorWithColor(context, color);
+//    CGContextSetLineWidth(context, 1.0);
+//    CGContextMoveToPoint(context, startPoint.x + 0.5, startPoint.y + 0.5);
+//    CGContextAddLineToPoint(context, endPoint.x + 0.5, endPoint.y + 0.5);
+//    CGContextStrokePath(context);
+//    CGContextRestoreGState(context);        
+ 
+    
 }
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    [self _updateTouch:touches withEvent:event isTouching:YES];
-}
-
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-    [self _updateTouch:touches withEvent:event isTouching:YES];
-}
-
-- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
-    [self _updateTouch:touches withEvent:event isTouching:NO];
-}
-
--(void) touchesEnded: (NSSet *) touches withEvent: (UIEvent *) event  {	
-    [self _updateTouch:touches withEvent:event isTouching:NO];
-}
-#endif
 
 
 @end

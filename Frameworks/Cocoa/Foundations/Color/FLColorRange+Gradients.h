@@ -29,4 +29,6 @@
 + (FLColorRange*) grayGradientColorRange;
 + (FLColorRange*) lightGrayGradientColorRange;
 + (FLColorRange*) lightLightGrayGradientColorRange;
+
++ (FLColorRange*) silverGradientColorRange;
 @end

@@ -16,9 +16,12 @@
     NSString* _string;
     
     UIColor* _enabledColor;
+    UIColor* _emphasizedColor;
     UIColor* _disabledColor;
     UIColor* _highlightedColor;
+
     UIColor* _enabledShadowColor;
+    UIColor* _emphasizedShadowColor;
     UIColor* _disabledShadowColor;
     UIColor* _highlightedShadowColor;
     UIFont* _textFont;
@@ -27,13 +30,18 @@
     BOOL _touchable;
     BOOL _enabled;
     BOOL _hidden;
+    BOOL _underlined;
+    BOOL _emphasized;
 }
 
+
 @property (readwrite, strong, nonatomic) UIColor* enabledColor;
+@property (readwrite, strong, nonatomic) UIColor* emphasizedColor;
 @property (readwrite, strong, nonatomic) UIColor* disabledColor;
 @property (readwrite, strong, nonatomic) UIColor* highlightedColor;
 
 @property (readwrite, strong, nonatomic) UIColor* enabledShadowColor;
+@property (readwrite, strong, nonatomic) UIColor* emphasizedShadowColor;
 @property (readwrite, strong, nonatomic) UIColor* disabledShadowColor;
 @property (readwrite, strong, nonatomic) UIColor* highlightedShadowColor;
 
@@ -42,7 +50,10 @@
 
 @property (readwrite, strong, nonatomic) UIFont* textFont;
 
+@property (readwrite, assign, nonatomic, getter=isUnderlined) BOOL underlined;
+
 // state
+@property (readwrite, assign, nonatomic, getter=isEmphasized) BOOL emphasized;
 @property (readwrite, assign, nonatomic, getter=isHidden) BOOL hidden;
 @property (readwrite, assign, nonatomic, getter=isHighlighted) BOOL highlighted;
 @property (readwrite, assign, nonatomic, getter=isTouchable) BOOL touchable;

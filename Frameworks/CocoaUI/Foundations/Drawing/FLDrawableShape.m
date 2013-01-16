@@ -15,6 +15,7 @@
 @synthesize cornerRadius = _cornerRadius;
 @synthesize borderLineWidth = _lineWidth;
 @synthesize borderGradient = _borderGradient;
+@synthesize pathRef = _pathRef;
 
 -(void) createPathForShapeInRect:(CGMutablePathRef) path rect:(CGRect) rect {
 
@@ -37,9 +38,22 @@
 #if FL_MRC
 - (void) dealloc {
     [_borderGradient release];
+    if(_path) {
+        CGPathRelease(_path);
+    }
     [super dealloc];
 }
 #endif
+
+- (void) setPathRef:(CGPathRef) ref {
+    if(_path) {
+        CGPathRelease(_path);
+        _path = nil;
+    }
+    if(ref) {
+        _path = CGPathRetain(ref);
+    }
+}
 
 
 - (void) drawRect:(CGRect) drawRect 
@@ -54,8 +68,11 @@ drawEnclosedBlock:(void (^)(void)) drawEnclosedBlock {
     CGRect innerRect = CGRectInset(frame, _lineWidth + 1.0f, _lineWidth + 1.0f);
     
     // draw gradient for border
-    CGMutablePathRef borderPath = CGPathCreateMutable();
-	[self createPathForShapeInRect:borderPath rect:rect];
+    CGPathRef borderPath = CGPathRetain(_path);
+	if(!borderPath) {
+        borderPath = CGPathCreateMutable();
+        [self createPathForShapeInRect:(CGMutablePathRef) borderPath rect:rect];
+    }
 	CGContextAddPath(context, borderPath);
 	CGContextClip(context);
     
@@ -120,3 +137,23 @@ drawEnclosedBlock:(void (^)(void)) drawEnclosedBlock {
 }
 
 @end
+
+@implementation FLDrawableForwardButtonShape
+
+@synthesize pointSize = _pointSize;
+
+- (id) initWithPointSize:(CGFloat) pointSize {
+    self = [super init];
+    if(self) {
+        self.pointSize = pointSize;
+    }
+    
+    return self;
+}
+
+-(void) createPathForShapeInRect:(CGMutablePathRef) path rect:(CGRect) rect {
+	FLCreateRectPathForwardButtonShape(path, rect, self.cornerRadius, _pointSize);
+}
+
+@end
+

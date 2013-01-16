@@ -16,12 +16,16 @@
 @synthesize enabledShadowColor = _enabledShadowColor;
 @synthesize disabledShadowColor = _disabledShadowColor;
 @synthesize highlightedShadowColor = _highlightedShadowColor;
+@synthesize emphasizedColor = _emphasizedColor;
+@synthesize emphasizedShadowColor = _emphasizedShadowColor;
 @synthesize textFont = _textFont;
 @synthesize string = _string;
 @synthesize highlighted = _highlighted;
 @synthesize touchable = _touchable;
 @synthesize enabled = _enabled;
 @synthesize hidden = _hidden;
+@synthesize underlined = _underlined;
+@synthesize emphasized = _emphasized;
 
 - (id) init {
     return [self initWithString:@""];
@@ -46,6 +50,8 @@
 
 #if FL_MRC
 - (void) dealloc {
+    [_emphasizedColor release];
+    [_emphasizedShadowColor release];
     [_enabledShadowColor release];
     [_disabledShadowColor release];
     [_highlightedShadowColor release];
@@ -59,9 +65,13 @@
 #endif
 
 - (UIColor*) colorForState {
+
     if(self.isEnabled) {
         if(self.isHighlighted) {
             return self.highlightedColor;
+        }
+        else if(self.isEmphasized) {
+            return self.emphasizedColor;
         }
         else {
             return self.enabledColor;
@@ -73,9 +83,13 @@
 }
 
 - (UIColor*) shadowColorForState {
+
     if(self.isEnabled) {
         if(self.isHighlighted) {
             return self.highlightedShadowColor;
+        }
+        else if(self.isEmphasized) {
+            return self.emphasizedShadowColor;
         }
         else {
             return self.enabledShadowColor;
@@ -126,6 +140,8 @@
         CFRelease(fontRef);
     }
 
+    FLAssertNotNil_v([self colorForState], @"color not set");
+
     [string addAttribute:(NSString*) kCTForegroundColorAttributeName 
         value:bridge_(id, [[self colorForState] CGColor])
         range:range];
@@ -137,6 +153,11 @@
             range:range];
     }
 
+    if(self.underlined) {
+        [string addAttribute:(NSString*) NSUnderlineStyleAttributeName 
+            value:bridge_(id, [NSNumber numberWithBool:YES])
+            range:range];
+    }
     
     [string addAttribute:@"com.fishlamp.string" value:self range:range];
     
