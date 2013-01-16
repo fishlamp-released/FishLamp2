@@ -7,10 +7,122 @@
 //
 
 #import "FLKeychain.h"
-#import "FLKeychain.h"
 #import <Security/Security.h>
 
 NSString *FLKeychainErrorDomain = @"FLKeychainErrorDomain";
+                                                                            
+
+OSStatus FLKeychainDeleteHttpPassword(NSString* userName, NSString* domain) {
+    FLAssertStringIsNotEmpty_(userName);
+    FLAssertStringIsNotEmpty_(domain);
+
+    SecKeychainItemRef itemRef = nil;
+	OSStatus err = FLKeychainFindHttpPassword(userName, domain, nil, &itemRef);
+    if ( err == 0 ) {
+		SecKeychainItemDelete(itemRef);
+	} 
+    return err;
+}
+
+OSStatus FLKeychainSetHttpPassword(     NSString* inUserName,
+                                        NSString* inDomain,
+                                        NSString* inPassword ) {
+
+    FLAssertStringIsNotEmpty_(inUserName);
+    FLAssertStringIsNotEmpty_(inDomain);
+
+	OSStatus err = FLKeychainDeleteHttpPassword(inUserName, inDomain);
+    
+    if(FLStringIsEmpty(inPassword)) {
+        return err;
+    }
+    
+    const char* domain = [inDomain UTF8String];
+    const char* username = [inUserName UTF8String];
+    const char* password = [inPassword UTF8String];
+    
+	//  add new password to default keychain
+	return SecKeychainAddInternetPassword (
+		NULL,								//  search default keychain
+		strlen(domain),
+		domain,								//  domain
+		0,
+		NULL,								//  security domain
+		strlen(username),
+		username,							//  username
+		strlen(""),
+		"",									//  path on domain
+		0,									//  port (0 == ignore)
+		kSecProtocolTypeHTTP,				//  http internet protocol
+		kSecAuthenticationTypeDefault,		//  default authentication type
+		strlen(password),
+		password,							//  password data (stores password)
+		NULL								//  ref to the actual item (not needed now)
+	);
+}
+
+OSStatus FLKeychainFindHttpPassword(    NSString* inUserName,
+                                        NSString* inDomain,
+                                        NSString** outPassword,
+                                        SecKeychainItemRef *outItemRef) {
+
+    FLAssertStringIsNotEmpty_(inUserName);
+    FLAssertStringIsNotEmpty_(inDomain);
+
+    if(outPassword) {
+        *outPassword = nil;
+    }
+
+    if(outItemRef) {
+        *outItemRef = nil;
+    }
+
+    if(FLStringIsEmpty(inUserName)) {
+        return 0;
+    }
+
+    const char* domain = [inDomain UTF8String];
+    const char* username = [inUserName UTF8String];
+    
+	void* passwordBytes = nil;
+	UInt32 passwordSize = 0;
+    SecKeychainItemRef itemRef;
+                                        
+	//  search the default keychain for a password
+	OSStatus err = SecKeychainFindInternetPassword (
+		NULL,								//  search default keychain
+		strlen(domain),
+		domain,								//  domain
+		0,
+		NULL,								//  security domain
+		strlen(username),
+		username,							//  username
+		strlen(""),
+		"",									//  path on domain
+		0,									//  port (0 == ignore)
+		kSecProtocolTypeHTTP,				//  http internet protocol
+		kSecAuthenticationTypeDefault,		//  default authentication type
+		&passwordSize,
+		&passwordBytes,                     //  password data (stores password)
+		&itemRef							//  ptr to the actual item
+	);
+
+	if ( err == noErr ) {
+    
+        if(outPassword) {
+            *outPassword = [[NSString alloc] initWithBytes:passwordBytes length:passwordSize encoding:NSUTF8StringEncoding];
+        }
+        if(outItemRef) {
+            *outItemRef = itemRef;
+        }
+    } 
+
+    if(passwordBytes) {
+		SecKeychainItemFreeContent(NULL, passwordBytes); 
+    }
+    return err;
+}
+
 
 @implementation FLKeychain
 	
@@ -298,5 +410,37 @@ NSString *FLKeychainErrorDomain = @"FLKeychainErrorDomain";
 	
 	return YES;
 }
+
++ (NSString*) httpPasswordForUserName:(NSString*) userName
+                           withDomain:(NSString*) domain
+{		
+	NSString *password = nil;	//  return value
+
+// handle error??
+//	OSStatus err = 
+    @synchronized(self) {
+        FLKeychainFindHttpPassword(userName, domain, &password, nil);
+    }
+
+	return FLAutorelease(password);
+}
+
++ (BOOL) setHttpPassword:(NSString*) password 
+         forUserName:(NSString*) userName 
+          withDomain:(NSString*) domain {
+
+	@synchronized(self) {
+        return FLKeychainSetHttpPassword(userName, domain, password) == 0;
+    }
+}
+
+
++ (void) removeHttpPasswordForUserName:(NSString*) userName 
+                            withDomain:(NSString*) domain {
+	@synchronized(self) {
+        FLKeychainDeleteHttpPassword(userName, domain);
+    }
+}
+
 
 @end

@@ -51,8 +51,9 @@
 									<object class="NSTextField" id="1024145685">
 										<reference key="NSNextResponder" ref="667074340"/>
 										<int key="NSvFlags">268</int>
-										<string key="NSFrame">{{5, 132}, {98, 17}}</string>
+										<string key="NSFrame">{{4, 132}, {98, 17}}</string>
 										<reference key="NSSuperview" ref="667074340"/>
+										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="938653363"/>
 										<bool key="NSEnabled">YES</bool>
 										<object class="NSTextFieldCell" key="NSCell" id="308904108">
@@ -75,9 +76,12 @@
 													<bytes key="NSWhite">MC42NjY2NjY2NjY3AA</bytes>
 												</object>
 											</object>
-											<object class="NSColor" key="NSTextColor" id="717979">
+											<object class="NSColor" key="NSTextColor" id="3194935">
 												<int key="NSColorSpace">3</int>
-												<bytes key="NSWhite">MC4zMzMzMzMzMzMzAA</bytes>
+												<bytes key="NSWhite">MAA</bytes>
+												<object class="NSColorSpace" key="NSCustomColorSpace" id="122766832">
+													<int key="NSID">2</int>
+												</object>
 											</object>
 										</object>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
@@ -85,8 +89,9 @@
 									<object class="NSTextField" id="214007241">
 										<reference key="NSNextResponder" ref="667074340"/>
 										<int key="NSvFlags">268</int>
-										<string key="NSFrame">{{5, 160}, {98, 17}}</string>
+										<string key="NSFrame">{{4, 160}, {98, 17}}</string>
 										<reference key="NSSuperview" ref="667074340"/>
+										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="984608172"/>
 										<bool key="NSEnabled">YES</bool>
 										<object class="NSTextFieldCell" key="NSCell" id="54548622">
@@ -97,27 +102,28 @@
 											<string key="NSPlaceholderString"/>
 											<reference key="NSControlView" ref="214007241"/>
 											<reference key="NSBackgroundColor" ref="761168538"/>
-											<reference key="NSTextColor" ref="717979"/>
+											<reference key="NSTextColor" ref="3194935"/>
 										</object>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 									</object>
 									<object class="NSTextField" id="938653363">
 										<reference key="NSNextResponder" ref="667074340"/>
 										<int key="NSvFlags">268</int>
-										<string key="NSFrame">{{107, 131}, {263, 22}}</string>
+										<string key="NSFrame">{{107, 130}, {263, 21}}</string>
 										<reference key="NSSuperview" ref="667074340"/>
+										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="465360970"/>
 										<bool key="NSEnabled">YES</bool>
 										<object class="NSTextFieldCell" key="NSCell" id="861193114">
 											<int key="NSCellFlags">-1805647807</int>
 											<int key="NSCellFlags2">272631872</int>
-											<string key="NSContents">Password</string>
-											<object class="NSFont" key="NSSupport" id="1063071394">
-												<string key="NSName">LucidaGrande</string>
-												<double key="NSSize">13</double>
-												<int key="NSfFlags">1044</int>
+											<string key="NSContents"/>
+											<object class="NSFont" key="NSSupport" id="181095169">
+												<string key="NSName">MyriadPro-Regular</string>
+												<double key="NSSize">14</double>
+												<int key="NSfFlags">16</int>
 											</object>
-											<string key="NSPlaceholderString"/>
+											<string key="NSPlaceholderString">Password</string>
 											<reference key="NSControlView" ref="938653363"/>
 											<bool key="NSDrawsBackground">YES</bool>
 											<object class="NSColor" key="NSBackgroundColor" id="606515007">
@@ -129,14 +135,10 @@
 													<bytes key="NSWhite">MQA</bytes>
 												</object>
 											</object>
-											<object class="NSColor" key="NSTextColor" id="834004018">
-												<int key="NSColorSpace">6</int>
-												<string key="NSCatalogName">System</string>
-												<string key="NSColorName">textColor</string>
-												<object class="NSColor" key="NSColor">
-													<int key="NSColorSpace">3</int>
-													<bytes key="NSWhite">MAA</bytes>
-												</object>
+											<object class="NSColor" key="NSTextColor" id="208837642">
+												<int key="NSColorSpace">3</int>
+												<bytes key="NSWhite">MC4yNQA</bytes>
+												<reference key="NSCustomColorSpace" ref="122766832"/>
 											</object>
 										</object>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
@@ -144,39 +146,41 @@
 									<object class="NSTextField" id="984608172">
 										<reference key="NSNextResponder" ref="667074340"/>
 										<int key="NSvFlags">268</int>
-										<string key="NSFrame">{{107, 159}, {263, 22}}</string>
+										<string key="NSFrame">{{107, 157}, {263, 22}}</string>
 										<reference key="NSSuperview" ref="667074340"/>
+										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="1024145685"/>
 										<bool key="NSEnabled">YES</bool>
 										<object class="NSTextFieldCell" key="NSCell" id="568549520">
 											<int key="NSCellFlags">-1804599231</int>
 											<int key="NSCellFlags2">272630784</int>
 											<string key="NSContents"/>
-											<reference key="NSSupport" ref="1063071394"/>
+											<reference key="NSSupport" ref="181095169"/>
 											<string key="NSPlaceholderString">Username or E-mail address</string>
 											<reference key="NSControlView" ref="984608172"/>
 											<bool key="NSDrawsBackground">YES</bool>
 											<reference key="NSBackgroundColor" ref="606515007"/>
-											<reference key="NSTextColor" ref="834004018"/>
+											<reference key="NSTextColor" ref="208837642"/>
 										</object>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 									</object>
 									<object class="NSButton" id="465360970">
 										<reference key="NSNextResponder" ref="667074340"/>
-										<int key="NSvFlags">-2147483380</int>
+										<int key="NSvFlags">268</int>
 										<array class="NSMutableArray" key="NSSubviews"/>
-										<string key="NSFrame">{{105, 107}, {190, 18}}</string>
+										<string key="NSFrame">{{105, 103}, {190, 18}}</string>
 										<reference key="NSSuperview" ref="667074340"/>
+										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="231246812"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="NSEnabled">YES</bool>
 										<object class="NSButtonCell" key="NSCell" id="922718770">
 											<int key="NSCellFlags">-2080374784</int>
 											<int key="NSCellFlags2">0</int>
-											<string key="NSContents">Save Password in Keychain</string>
-											<object class="NSFont" key="NSSupport">
-												<string key="NSName">MyriadPro-Bold</string>
-												<double key="NSSize">11</double>
+											<string key="NSContents">Save Password</string>
+											<object class="NSFont" key="NSSupport" id="525540165">
+												<string key="NSName">MyriadPro-Regular</string>
+												<double key="NSSize">12</double>
 												<int key="NSfFlags">16</int>
 											</object>
 											<string key="NSCellIdentifier">_NS:9</string>
@@ -201,20 +205,16 @@
 										<reference key="NSNextResponder" ref="667074340"/>
 										<int key="NSvFlags">268</int>
 										<array class="NSMutableArray" key="NSSubviews"/>
-										<string key="NSFrame">{{107, 13}, {129, 17}}</string>
+										<string key="NSFrame">{{107, 52}, {129, 20}}</string>
 										<reference key="NSSuperview" ref="667074340"/>
-										<reference key="NSNextKeyView"/>
+										<reference key="NSWindow"/>
 										<string key="NSReuseIdentifierKey">_NS:22</string>
 										<bool key="NSEnabled">YES</bool>
 										<object class="NSButtonCell" key="NSCell" id="957219648">
 											<int key="NSCellFlags">-2079326144</int>
 											<int key="NSCellFlags2">134251520</int>
 											<string key="NSContents">Forgot your login?</string>
-											<object class="NSFont" key="NSSupport" id="525540165">
-												<string key="NSName">MyriadPro-Regular</string>
-												<double key="NSSize">12</double>
-												<int key="NSfFlags">16</int>
-											</object>
+											<reference key="NSSupport" ref="525540165"/>
 											<string key="NSCellIdentifier">_NS:22</string>
 											<reference key="NSControlView" ref="231246812"/>
 											<int key="NSButtonFlags">-2038022144</int>
@@ -230,12 +230,14 @@
 								</array>
 								<string key="NSFrame">{{2, 2}, {402, 212}}</string>
 								<reference key="NSSuperview" ref="331837960"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="214007241"/>
 								<string key="NSReuseIdentifierKey">_NS:11</string>
 							</object>
 						</array>
 						<string key="NSFrame">{{97, 42}, {406, 216}}</string>
 						<reference key="NSSuperview" ref="974686820"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="667074340"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<string key="NSOffsets">{0, 0}</string>
@@ -267,6 +269,7 @@
 				</array>
 				<string key="NSFrameSize">{600, 300}</string>
 				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="331837960"/>
 				<string key="NSReuseIdentifierKey">_NS:20</string>
 			</object>
@@ -320,6 +323,14 @@
 						<reference key="destination" ref="465360970"/>
 					</object>
 					<int key="connectionID">279</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">passwordCheckboxToggled:</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="922718770"/>
+					</object>
+					<int key="connectionID">292</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -380,8 +391,8 @@
 							<reference ref="214007241"/>
 							<reference ref="938653363"/>
 							<reference ref="984608172"/>
-							<reference ref="465360970"/>
 							<reference ref="231246812"/>
+							<reference ref="465360970"/>
 						</array>
 						<reference key="parent" ref="974686820"/>
 					</object>
@@ -477,11 +488,15 @@
 				<string key="244.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="245.CustomClassName">NSSecureTextField</string>
 				<string key="245.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="250.CustomClassName">FLTextFieldCell</string>
 				<string key="250.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="251.CustomClassName">FLTextFieldCell</string>
 				<string key="251.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="252.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="253.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="255.CustomClassName">FLTextFieldCell</string>
 				<string key="255.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="256.CustomClassName">FLTextFieldCell</string>
 				<string key="256.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="291.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 			</dictionary>
@@ -489,9 +504,74 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">291</int>
+			<int key="maxID">292</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes"/>
+		<object class="IBClassDescriber" key="IBDocument.Classes">
+			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
+				<object class="IBPartialClassDescription">
+					<string key="className">FLLoginWizardPanel</string>
+					<string key="superclassName">FLWizardPanel</string>
+					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="passwordCheckboxToggled:">id</string>
+						<string key="resetLogin:">id</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="passwordCheckboxToggled:">
+							<string key="name">passwordCheckboxToggled:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="resetLogin:">
+							<string key="name">resetLogin:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="_forgotPasswordButton">NSButton</string>
+						<string key="_passwordEntryField">NSSecureTextField</string>
+						<string key="_savePasswordCheckBox">NSButton</string>
+						<string key="_userNameTextField">NSTextField</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="_forgotPasswordButton">
+							<string key="name">_forgotPasswordButton</string>
+							<string key="candidateClassName">NSButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="_passwordEntryField">
+							<string key="name">_passwordEntryField</string>
+							<string key="candidateClassName">NSSecureTextField</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="_savePasswordCheckBox">
+							<string key="name">_savePasswordCheckBox</string>
+							<string key="candidateClassName">NSButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="_userNameTextField">
+							<string key="name">_userNameTextField</string>
+							<string key="candidateClassName">NSTextField</string>
+						</object>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/FLLoginWizardPanel.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">FLTextFieldCell</string>
+					<string key="superclassName">NSTextFieldCell</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/FLTextFieldCell.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">FLWizardPanel</string>
+					<string key="superclassName">NSViewController</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/FLWizardPanel.h</string>
+					</object>
+				</object>
+			</array>
+		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaFramework</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDependencies">

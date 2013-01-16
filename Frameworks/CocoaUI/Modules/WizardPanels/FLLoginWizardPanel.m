@@ -9,10 +9,17 @@
 #import "FLLoginWizardPanel.h"
 #import "NSObject+Blocks.h"
 #import "UIViewController+FLAdditions.h"
+#import "FLKeychain.h"
 
 @interface FLLoginWizardPanel ()
 - (IBAction)resetLogin:(id)sender;
+- (IBAction) passwordCheckboxToggled:(id) sender;
+
+- (void) applicationWillTerminate:(id)sender;
 @end
+
+NSString* const FLDefaultsKeyWizardLastUserNameKey = @"com.fishlamp.wizard.username";
+NSString* const FLDefaultsKeyWizardSavePasswordKey = @"com.fishlamp.wizard.savepassword";
 
 @implementation FLLoginWizardPanel
 
@@ -32,6 +39,12 @@
     if (self) {
         self.breadcrumbTitle = NSLocalizedString(@"Login", nil);
         self.title =  NSLocalizedString(@"Login to your account", nil);
+    
+    [[NSNotificationCenter defaultCenter] 
+    addObserver: self
+       selector: @selector(applicationWillTerminate:)
+           name: NSApplicationWillTerminateNotification
+         object: [NSApplication sharedApplication]];
     }
     
     return self;
@@ -47,15 +60,17 @@
     return self;
 }
 
-#if FL_MRC
 - (void) dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+#if FL_MRC
     [_userNameTextField release];
     [_passwordEntryField release];
     [_savePasswordCheckBox release];
     [_forgotPasswordButton release];
     [super dealloc];
-}
 #endif
+}
 
 - (void) setUserName:(NSString*) userName {
     [self.userNameTextField setStringValue:userName];
@@ -141,6 +156,51 @@
 ////        [self.wizard.statusBar removeAllStatusViewsAnimated:YES  completion:nil];
 //    }
 //}
+
+- (void) updateVisibleCredentials {
+
+    NSString* userName = [[NSUserDefaults standardUserDefaults] objectForKey:FLDefaultsKeyWizardLastUserNameKey];
+    if(FLStringIsNotEmpty(userName)) {
+        self.userName = userName;
+     
+        NSNumber* rememberPW = [[NSUserDefaults standardUserDefaults] objectForKey:FLDefaultsKeyWizardSavePasswordKey];
+
+        if(rememberPW) {
+            [self setSavePasswordInKeychain:rememberPW.boolValue];
+         
+            if(rememberPW.boolValue) {
+                NSString* pw = [FLKeychain httpPasswordForUserName:userName withDomain:[self.delegate loginWizardPanelPasswordDomain:self]];
+                if(FLStringIsNotEmpty(pw)) {
+                    self.password = pw;
+                }
+            }
+        }
+        else {
+            [self setSavePasswordInKeychain:NO];
+        }
+    }
+}
+
+- (void) saveCredentials {
+    [[NSUserDefaults standardUserDefaults] setObject:self.userName forKey:FLDefaultsKeyWizardLastUserNameKey];
+    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:self.savePasswordInKeychain] forKey:FLDefaultsKeyWizardSavePasswordKey];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    if(self.savePasswordInKeychain) {
+        [FLKeychain setHttpPassword:self.password forUserName:self.userName withDomain:[self.delegate loginWizardPanelPasswordDomain:self]];
+    }
+    else {
+        [FLKeychain removeHttpPasswordForUserName:self.userName withDomain:[self.delegate loginWizardPanelPasswordDomain:self]];
+    }
+}
+
+- (IBAction) passwordCheckboxToggled:(id) sender {
+    [self saveCredentials];
+}
+
+- (void) applicationWillTerminate:(id)sender {
+    [self saveCredentials];
+}
    
 - (BOOL) willRespondToNextButtonInWizard:(FLWizardViewController*) wizard {
 
@@ -205,20 +265,23 @@
 }
 
 - (void) wizardPanelWillAppearInWizard:(FLWizardViewController*) wizard {
+    [self updateVisibleCredentials];
+
     _wizard = wizard;
+    FLPerformSelector1(self.delegate, @selector(loginWizardPanelWillAppear:), self);
+    
     wizard.backButton.enabled = NO;
 }
 
 - (void) wizardPanelWillDisappearInWizard:(FLWizardViewController*) wizard {
+    [self saveCredentials];
     [wizard becomeFirstResponder];
     [self.userNameTextField resignFirstResponder];
     [self.passwordEntryField resignFirstResponder];
 }
 
 - (void) wizardPanelDidDisappearInWizard:(FLWizardViewController*) wizard {
-    if(!self.savePasswordInKeychain) {
-        self.password = @"";
-    }
+    FLPerformSelector1(self.delegate, @selector(loginWizardPanelDidDisappear:), self);
     _wizard = nil;
 }
 
