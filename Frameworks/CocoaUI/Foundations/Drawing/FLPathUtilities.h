@@ -28,6 +28,7 @@ extern void FLCreatePartialRectPathRight(CGMutablePathRef path, CGRect rect, CGF
 extern void FLCreatePartialRectPathBottom(CGMutablePathRef path, CGRect rect, CGFloat cornerRadius);
 
 extern void FLCreateRectPathBackButtonShape(CGMutablePathRef path, CGRect rect, CGFloat cornerRadius, CGFloat pointSize);
+extern void FLCreateRectPathForwardButtonShape(CGMutablePathRef path, CGRect rect, CGFloat cornerRadius, CGFloat pointSize);
 
 typedef enum {
     FLTriangleCornerUpperLeft,

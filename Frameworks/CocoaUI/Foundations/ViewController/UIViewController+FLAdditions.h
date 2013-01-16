@@ -105,9 +105,3 @@ typedef void (^FLViewControllerDismissHandler)(UIViewController* viewController,
 #endif
 
 
-@interface UIViewController (FLNibLoading)
-@property (readonly, strong, nonatomic) NSString* defaultNibName;
-- (id) initWithDefaultNibName;
-- (id) initWithDefaultNibName:(NSBundle *)nibBundleOrNil;
-@end
-

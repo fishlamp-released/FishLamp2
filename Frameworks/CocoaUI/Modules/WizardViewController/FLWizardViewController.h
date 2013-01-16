@@ -10,22 +10,23 @@
 #import "FLBreadcrumbBarView.h"
 #import "FLFlipTransition.h"
 #import "FLStatusBarViewController.h"
-#import "FLObservable.h"
+#import "FLBreadcrumbBarViewController.h"
 
 @class FLWizardPanel;
 @protocol FLWizardViewControllerDelegate;
 
 typedef void (^FLWizardPanelBlock)(FLWizardPanel* panel);
 
-@interface FLWizardViewController : UIViewController<FLObservable> {
+typedef FLWizardPanel* (^FLWizardPanelFactory)();
+
+@interface FLWizardViewController : UIViewController<FLBreadcrumbBarViewControllerDelegate> {
 @private
     __unsafe_unretained id<FLWizardViewControllerDelegate> _delegate;
 
     NSView* _backgroundView;
     NSView* _wizardPanelBackgroundView;
     
-    IBOutlet NSView* _breadcrumbEnclosureView;
-    IBOutlet FLBreadcrumbBarView* _breadcrumbBarView;
+    IBOutlet NSView* _breadcrumbView;
     
     IBOutlet NSView* _wizardPanelEnclosureView;
     IBOutlet NSTextField* _titleTextField;
@@ -33,42 +34,62 @@ typedef void (^FLWizardPanelBlock)(FLWizardPanel* panel);
     IBOutlet NSView* _buttonEnclosureView;
     IBOutlet NSButton* _nextButton;
     IBOutlet NSButton* _backButton;
-    IBOutlet NSButton* _otherButton;
+    IBOutlet NSView* _modalShieldView;
     
-    NSMutableArray* _wizardPanels;
+    NSMutableArray* _visiblePanels;
+    NSMutableArray* _nextPanelQueue;
     
-    NSMutableArray* _pendingPanels;
-        
-// temp    
-    IBOutlet NSButton* _logoutButton;
-
-    FLObservable* _observable;
+    FLBreadcrumbBarViewController* _breadcrumbBar;
 }
 
 // delegate
 @property (readwrite, assign, nonatomic) IBOutlet id<FLWizardViewControllerDelegate> delegate;
 
-// views
-@property (readwrite, strong, nonatomic) NSView* backgroundView;
-@property (readwrite, strong, nonatomic) NSView* wizardPanelBackgroundView;
-
-// backgrounds
+// controls
 @property (readonly, strong, nonatomic) NSButton* nextButton;
 @property (readonly, strong, nonatomic) NSButton* backButton;
-@property (readonly, strong, nonatomic) NSButton* otherButton;
 @property (readonly, strong, nonatomic) NSTextField* titleTextField;
 
+// enclosures
 @property (readonly, strong, nonatomic) NSView* buttonEnclosureView;
 @property (readonly, strong, nonatomic) NSView* wizardPanelEnclosureView;
 
-- (void) startWizardInWindow:(NSWindow*) window;
+@property (readwrite, strong, nonatomic) NSView* backgroundView;
+@property (readwrite, strong, nonatomic) NSView* wizardPanelBackgroundView;
 
-// creation
 + (id) wizardViewController;
 
-// optional overrides
-- (void) setWizardPanelTitleFields:(FLWizardPanel*) wizardPanel;
+- (void) startWizardInWindow:(NSWindow*) window;
 
+// 
+// Panel creation
+// 
+//- (void) pushPanel:(FLWizardPanel*) panel;
+- (void) appendPanel:(FLWizardPanel*) panel;
+
+//
+// Visible Panel Stack
+//
+@property (readonly, strong, nonatomic) FLWizardPanel* visibleWizardPanel;
+
+- (void) showNextWizardPanelAnimated:(BOOL) animated 
+                      completion:(FLWizardPanelBlock) completion;
+
+- (void) hideVisibleWizardPanelAnimated:(BOOL) animated
+                             completion:(FLWizardPanelBlock) completion;
+
+- (void) removeWizardPanel:(FLWizardPanel*) wizardPanel;
+
+//
+// Utils
+//
+- (void) updateBackButtonEnabledState;
+- (void) showModalShield;
+- (void) hideModalShield;
+
+//
+// optional overrides
+//
 - (void) didHideWizardPanel:(FLWizardPanel*) wizardPanel;
 - (void) willHideWizardPanel:(FLWizardPanel*) wizardPanel;
 
@@ -78,30 +99,7 @@ typedef void (^FLWizardPanelBlock)(FLWizardPanel* panel);
 - (void) willStartWizardInWindow:(NSWindow*) window;
 - (void) didStartWizardInWindow:(NSWindow*) window;
 
-// utils
-- (void) updateBackButtonEnabledState;
 
-- (void) addPendingPanel:(FLWizardPanel*) panel;
-
-@end
-
-@interface FLWizardViewController (Navigation)
-
-@property (readonly, strong, nonatomic) NSArray* wizardPanels;
-
-@property (readonly, strong, nonatomic) FLWizardPanel* visibleWizardPanel;
-
-- (void) removeWizardPanel:(FLWizardPanel*) wizardPanel;
-
-- (void) pushWizardPanel:(FLWizardPanel*) viewController 
-                animated:(BOOL) animated 
-              completion:(void (^)(FLWizardPanel*)) completion;
-
-- (void) popWizardPanelAnimated:(BOOL) animated
-                     completion:(void (^)(FLWizardPanel*)) completion;
-
-- (void) pushNextWizardPanelAnimated:(BOOL) animated 
-                          completion:(void (^)(FLWizardPanel*)) completion;
 
 @end
 

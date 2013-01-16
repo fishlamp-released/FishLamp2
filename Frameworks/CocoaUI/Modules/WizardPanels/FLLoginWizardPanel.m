@@ -23,15 +23,15 @@
 @synthesize delegate = _delegate;
 
 - (id) init {
-    return [self initWithDefaultNibName];
+    return [self initWithNibName:@"FLLoginWizardPanel" bundle:nil];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.title = NSLocalizedString(@"Start", nil);
-        self.wizardPanelPrompt =  NSLocalizedString(@"Login to your account", nil);
+        self.breadcrumbTitle = NSLocalizedString(@"Login", nil);
+        self.title =  NSLocalizedString(@"Login to your account", nil);
     }
     
     return self;
@@ -39,6 +39,12 @@
 
 + (id) loginWizardPanel {
     return FLAutorelease([[[self class] alloc] init]);
+}
+
++ (id) loginWizardPanel:(id<FLLoginWizardPanelDelegate>) delegate {
+    FLLoginWizardPanel* panel = [self loginWizardPanel];
+    panel.delegate = delegate;
+    return self;
 }
 
 #if FL_MRC
@@ -154,7 +160,6 @@
 //        [textField setAlignment:NSLeftTextAlignment];
 
         wizard.nextButton.enabled = NO;
-        wizard.otherButton.enabled = NO;
         
 //        [self.wizard.statusBar setStatusView:textField animated:YES completion:^{
 //            self.wizard.otherButton.enabled = YES;
@@ -201,8 +206,6 @@
 
 - (void) wizardPanelWillAppearInWizard:(FLWizardViewController*) wizard {
     _wizard = wizard;
-    wizard.otherButton.hidden = YES;
-    wizard.nextButton.enabled = NO;
     wizard.backButton.enabled = NO;
 }
 

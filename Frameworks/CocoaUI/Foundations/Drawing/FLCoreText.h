@@ -14,9 +14,15 @@ typedef enum {
     FLVerticalTextAlignmentBottom
 } FLVerticalTextAlignment; 
 
+typedef enum { 
+    FLHorizontalTextAlignmentLeft,
+    FLHorizontalTextAlignmentCenter,
+    FLHorizontalTextAlignmentRight
+} FLHorizontalTextAlignment; 
+
 typedef struct {
     FLVerticalTextAlignment vertical;
-    
+    FLHorizontalTextAlignment horizontal;
 } FLTextAlignment;
 
 @interface FLCoreText : NSObject

@@ -1,58 +1,37 @@
 //
 //  FLBreadcrumbBarView.h
-//  FishLamp-iOS-Lib
+//  FishLampCocoaUI
 //
-//  Created by Mike Fullerton on 1/29/12.
-//  Copyright (c) 2012 GreenTongue Software, LLC. All rights reserved.
+//  Created by Mike Fullerton on 1/15/13.
+//  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
 
-#import "FLCocoaUIRequired.h"
+#import <Cocoa/Cocoa.h>
+
 #import "FLAttributedString.h"
 #import "FLOrderedCollection.h"
 #import "FLDrawableString.h"
-#import "FLBatchDictionary.h"
+#import "FLDrawableShape.h"
 
 @interface FLBreadcrumbBarView : UIView {
 @private
-    FLOrderedCollection* _strings;
-    FLVerticalTextAlignment _verticalTextAlignment;
-
-    UIColor* _enabledTextColor;
-    UIColor* _disabledTextColor;
-    UIColor* _highlightedTextColor;
-    UIFont* _textFont;
-
-    FLMutableBatchDictionary* _runFrames;
+    FLAttributedString* _title;
+    dispatch_block_t _touched;
+    
+    FLDrawableForwardButtonShape* _shape;
+    
+    NSTrackingArea* _trackingArea;
+    BOOL _mouseIn;
+    BOOL _mouseDown;
 }
 
-@property (readwrite, retain, nonatomic) UIColor* enabledTextColor;
-@property (readwrite, retain, nonatomic) UIColor* disabledTextColor;
-@property (readwrite, retain, nonatomic) UIColor* highlightedTextColor;
-@property (readwrite, retain, nonatomic) UIFont* textFont;
+@property (readwrite, assign, nonatomic, getter=isHighlighted) BOOL highlighted;
+@property (readwrite, assign, nonatomic, getter=isEnabled) BOOL enabled;
+@property (readwrite, assign, nonatomic, getter=isEmphasized) BOOL emphasized;
 
-@property (readwrite, assign, nonatomic) FLVerticalTextAlignment verticalTextAlignment;
+@property (readwrite, strong, nonatomic) FLAttributedString* title;
+@property (readwrite, copy, nonatomic) dispatch_block_t touched;
 
-@property (readonly, retain, nonatomic) FLOrderedCollection* strings;
-
-// returns complete string for whole stringBar
-- (NSAttributedString*) buildAttributedString;
-
-- (FLAttributedString*) stringAtPoint:(CGPoint) point;
-
-- (FLAttributedString*) stringAtIndex:(NSUInteger) index;
-
-- (FLAttributedString*) stringForKey:(NSString*) key;
-
-- (void) setAttributedString:(FLAttributedString*) string 
-                      forKey:(NSString*) key;
-
-- (void) setString:(NSString*) string 
-           atIndex:(NSUInteger) stringIndex;
-
-- (void) setString:(NSString*) string 
-            forKey:(NSString*) key;
-
-- (void) setStringForAllStrings:(NSString*) string; // e.g. @""
-
+- (void) didLayout;
 
 @end

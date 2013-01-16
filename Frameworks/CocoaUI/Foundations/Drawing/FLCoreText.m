@@ -113,11 +113,28 @@
             break;
             
             case FLVerticalTextAlignmentCenter:
-                offset.x = -((bounds.size.height / 2.0f) - (size.height / 2.0f));
+                offset.y = -((bounds.size.height / 2.0f) - (size.height / 2.0f));
             break;
             
             case FLVerticalTextAlignmentBottom:
-                offset.x = -(bounds.size.height - size.height);
+                offset.y = -(bounds.size.height - size.height);
+            break;
+        }
+    }
+    
+    
+    if(size.width < bounds.size.width) {
+        switch(textAlignment.horizontal) {
+            case FLHorizontalTextAlignmentLeft:
+                
+            break;
+
+            case FLHorizontalTextAlignmentCenter:
+                offset.x = FLRectGetCenter(bounds).x - (size.width / 2.0f);
+            break;
+
+            case FLHorizontalTextAlignmentRight:
+                offset.x = FLRectGetRight(bounds) - size.width;
             break;
         }
     }

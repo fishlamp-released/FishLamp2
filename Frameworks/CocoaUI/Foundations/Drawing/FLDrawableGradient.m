@@ -32,6 +32,8 @@
          inParent:(id) inParent
 drawEnclosedBlock:(void (^)(void)) drawEnclosedBlock {
 
+return;
+#if IOS
 	CGContextRef context = UIGraphicsGetCurrentContext();
 	CGContextSaveGState(context);
 
@@ -60,24 +62,58 @@ drawEnclosedBlock:(void (^)(void)) drawEnclosedBlock {
     
     CGGradientRelease(gradient);
     CGContextRestoreGState(context);
+#else 
 
-/*
+//    NSColor* startColor = [_colorRange startColor];
+//    NSColor* endColor = [_colorRange endColor];
 
-// some example code from apple.
-      
-    CGContextRef ctx = UIGraphicsGetCurrentContext();
-    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceGray();
+    CGContextRef context = UIGraphicsGetCurrentContext();
+CGContextSaveGState(context);
+
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
     CGFloat locations[2] = {0.0, 1.0};
-    NSMutableArray *colors = [NSMutableArray arrayWithObject:(id)[[UIColor darkGrayColor] CGColor]];
-    [colors addObject:(id)[[UIColor lightGrayColor] CGColor]];
-    CGGradientRef gradient = CGGradientCreateWithColors(colorSpace, (__bridge CFArrayRef)colors, locations);
+
+    NSMutableArray *colors = [NSMutableArray arrayWithObjects:
+        (id)[[UIColor darkGrayColor] CGColor],
+        (id)[[UIColor lightGrayColor] CGColor],
+        nil];
+
+//    NSMutableArray *colors = [NSMutableArray arrayWithObjects:
+//        (id)[[_colorRange endColor] CGColor],
+//        (id)[[_colorRange startColor] CGColor],
+//        nil];
+
+    
+    CGGradientRef gradient = CGGradientCreateWithColors(colorSpace, bridge_(CFArrayRef, colors), locations);
     CGColorSpaceRelease(colorSpace);  // Release owned Core Foundation object.
+    
+//    CGPoint startPoint = CGPointMake(0.0, 0.0);
+//    CGPoint endPoint = CGPointMake(CGRectGetMaxX(frame), CGRectGetMaxY(frame));
+//    CGContextDrawLinearGradient(context, gradient, startPoint, endPoint,
+//                                kCGGradientDrawsBeforeStartLocation | kCGGradientDrawsAfterEndLocation);
+
     CGPoint startPoint = CGPointMake(0.0, 0.0);
-    CGPoint endPoint = CGPointMake(CGRectGetMaxX(self.bounds), CGRectGetMaxY(self.bounds));
-    CGContextDrawLinearGradient(ctx, gradient, startPoint, endPoint,
-                                kCGGradientDrawsBeforeStartLocation | kCGGradientDrawsAfterEndLocation);
+    CGPoint endPoint = FLRectGetBottomLeft(frame);
+    CGContextDrawLinearGradient(context, gradient, startPoint, endPoint, 0); 
+//                                kCGGradientDrawsBeforeStartLocation | kCGGradientDrawsAfterEndLocation);
+
+
+//#if IOS
+//	CGContextDrawLinearGradient(context, gradient, 
+//		frame.origin, 
+//		CGPointMake(frame.origin.x, FLRectGetBottom(frame)),
+//		0);
+//#else
+//	CGContextDrawLinearGradient(context, gradient, 
+//        FLRectGetTopLeft(frame),
+//        FLRectGetBottomLeft(frame),
+//		kCGGradientDrawsBeforeStartLocation | kCGGradientDrawsAfterEndLocation);
+//#endif        
+
     CGGradientRelease(gradient);  // Release owned Core Foundation object.
-*/    
+CGContextRestoreGState(context);
+
+#endif
 }
 
 
