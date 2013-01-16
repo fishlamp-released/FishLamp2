@@ -115,44 +115,15 @@ BOOL FLIsValidUser(FLUserLogin* userLogin) {
 	{
 		userLogin.password = nil;
 
-		if(FLStringIsNotEmpty(userLogin.userName))
-		{
-			NSString* password = nil;
-			if([FLKeychain getPasswordForUsername:userLogin.userGuid
-								   andServiceName:[FLAppInfo appName]
-									  outPassword:&password
-											error:nil])
-			{
-				userLogin.password = password;
-				// ok if pw not loaded.
-			}
-			FLReleaseWithNil(password);
+		if(FLStringIsNotEmpty(userLogin.userName)) {
+			userLogin.password = [FLKeychain httpPasswordForUserName:userLogin.userName withDomain:[FLAppInfo appName]];
 		}
 	}
 }
 
-- (void) savePasswordForUserLogin:(FLUserLogin*) userLogin
-{
-	if(FLIsValidUser(userLogin))
-	{
-		if(FLStringIsNotEmpty(userLogin.password))
-		{
-			if([FLKeychain storeUsername: userLogin.userGuid
-								andPassword:userLogin.password
-								forServiceName:[FLAppInfo appName]
-								updateExisting:YES
-								error:nil])
-			{
-			}
-		}
-		else
-		{
-			if([FLKeychain deleteItemForUsername:userLogin.userGuid
-				andServiceName:[FLAppInfo appName]
-				error:nil])
-			{
-			}
-		}
+- (void) savePasswordForUserLogin:(FLUserLogin*) userLogin {
+	if(FLStringIsNotEmpty(userLogin.userName)) {
+        [FLKeychain setHttpPassword:userLogin.password forUserName:userLogin.userName withDomain:[FLAppInfo appName]];
 	}
 }
 
@@ -242,14 +213,9 @@ BOOL FLIsValidUser(FLUserLogin* userLogin) {
 	return nil;
 }
 
-- (void) deleteUserLogin:(FLUserLogin*) userLogin
-{
-	if(FLIsValidUser(userLogin))
-	{
-		[FLKeychain deleteItemForUsername:userLogin.userGuid
-			andServiceName:[FLAppInfo appName]
-			error:nil];
-		
+- (void) deleteUserLogin:(FLUserLogin*) userLogin {
+	if(FLIsValidUser(userLogin)){
+		[FLKeychain removeHttpPasswordForUserName:userLogin.userName withDomain:[FLAppInfo appName]];
 		[self.database deleteObject:userLogin];
 	}
 }

@@ -40,10 +40,17 @@
 @end
 
 @protocol FLLoginWizardPanelDelegate <NSObject>
+
+- (NSString*) loginWizardPanelPasswordDomain:(FLLoginWizardPanel*) loginPanel;
 - (void) loginWizardPanelStartAuthenticating:(FLLoginWizardPanel*) loginPanel;
 - (BOOL) loginWizardPanelIsAuthenticated:(FLLoginWizardPanel*) loginPanel;
 - (void) loginWizardPanelCancelAuthentication:(FLLoginWizardPanel*) panel;
 - (void) loginWizardPanelResetPassword:(FLLoginWizardPanel*) loginPanel;
+
+@optional
+- (void) loginWizardPanelWillAppear:(FLLoginWizardPanel*) loginPanel;
+- (void) loginWizardPanelDidDisappear:(FLLoginWizardPanel*) loginPanel;
+
 @end
 
 
