@@ -14,7 +14,9 @@
 @private
     NSString* _breadcrumbTitle;
     BOOL _enabled;
+    __unsafe_unretained FLWizardViewController* _wizard;
 }
+@property (readwrite, assign, nonatomic) id wizard;
 
 @property (readwrite, assign, nonatomic, getter=isEnabled) BOOL enabled;
 @property (readwrite, strong, nonatomic) NSString* breadcrumbTitle;
@@ -26,6 +28,8 @@
 
 - (BOOL) willRespondToNextButtonInWizard:(FLWizardViewController*) wizard;
 - (BOOL) willRespondToBackButtonInWizard:(FLWizardViewController*) wizard;
+
+- (void) didMoveToWizard:(FLWizardViewController*) wizard;
 @end
 
 

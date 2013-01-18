@@ -15,14 +15,14 @@
 -(void)drawInteriorWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
     NSAttributedString *attrString = self.attributedStringValue;
 
-//    /* if your values can be attributed strings, make them white when selected */
-//    if (self.isHighlighted && self.backgroundStyle==NSBackgroundStyleDark) {
-//        NSMutableAttributedString *whiteString = attrString.mutableCopy;
-//        [whiteString addAttribute: NSForegroundColorAttributeName
-//                            value: [NSColor whiteColor]
-//                            range: NSMakeRange(0, whiteString.length) ];
-//        attrString = whiteString;
-//    }
+    /* if your values can be attributed strings, make them white when selected */
+    if (self.isHighlighted && self.backgroundStyle==NSBackgroundStyleDark) {
+        NSMutableAttributedString *whiteString = attrString.mutableCopy;
+        [whiteString addAttribute: NSForegroundColorAttributeName
+                            value: [NSColor whiteColor]
+                            range: NSMakeRange(0, whiteString.length) ];
+        attrString = whiteString;
+    }
 
     [attrString drawWithRect: [self titleRectForBounds:cellFrame] 
                      options: NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin];
