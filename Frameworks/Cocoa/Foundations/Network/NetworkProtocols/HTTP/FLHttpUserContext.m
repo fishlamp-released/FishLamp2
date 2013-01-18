@@ -39,7 +39,7 @@
     [self.httpRequestAuthenticator setUserLogin:userLogin];
 }
 
-- (BOOL) isAuthenticated {
+- (BOOL) isContextAuthenticated {
     return self.httpRequestAuthenticator.isAuthenticated;
 }
 

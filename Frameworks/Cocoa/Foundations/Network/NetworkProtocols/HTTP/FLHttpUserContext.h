@@ -21,7 +21,7 @@
     FLDispatchedObjectCollection* _objects;
 }
 @property (readwrite, strong) FLUserLogin* userLogin;
-@property (readonly, assign) BOOL isAuthenticated;
+@property (readonly, assign) BOOL isContextAuthenticated;
 
 @property (readwrite, strong) FLHttpRequestAuthenticator* httpRequestAuthenticator;
 - (void) requestCancel;

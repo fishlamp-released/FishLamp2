@@ -17,6 +17,7 @@
 
 @synthesize breadcrumbTitle = _breadcrumbTitle;
 @synthesize enabled = _enabled;
+@synthesize wizard = _wizard;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -39,11 +40,17 @@
     self.view.wantsLayer = YES;
 }
 
-//- (void) didMoveToWizard:(FLWizardViewController*) wizard {
-//    _wizard = wizard;
-//}
+- (void) setWizard:(FLWizardViewController*) wizard {
+    _wizard = wizard;
+    [self didMoveToWizard:wizard];
+}
+
+- (void) didMoveToWizard:(FLWizardViewController*) wizard {
+}
 
 - (void) wizardPanelWillAppearInWizard:(FLWizardViewController*) wizard {
+    [self.wizard nextButton].enabled = YES;
+    [self.wizard backButton].enabled = YES;
 }
 
 - (void) wizardPanelDidAppearInWizard:(FLWizardViewController*) wizard {

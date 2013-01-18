@@ -110,7 +110,7 @@ NSString* const FLDefaultsKeyWizardSavePasswordKey = @"com.fishlamp.wizard.savep
 		NSNumber *reason = [[note userInfo] objectForKey:@"NSTextMovement"];
 		if ([reason intValue] == NSReturnTextMovement) {
 			//	leave time for text field to clean up repainting
-			[_wizard.nextButton performSelector:@selector(performClick:) withObject:nil afterDelay:0.1];
+			[[self.wizard nextButton] performSelector:@selector(performClick:) withObject:nil afterDelay:0.1];
 		}
 	}
 }
@@ -118,7 +118,7 @@ NSString* const FLDefaultsKeyWizardSavePasswordKey = @"com.fishlamp.wizard.savep
 
 - (void)controlTextDidChange:(NSNotification *)note {
 	if ( [note object] == self.userNameTextField || [note object] == self.passwordEntryField ) {
-        [self updateButtonSelectedState:_wizard];
+        [self updateButtonSelectedState:[self wizard]];
     }
 }
 
@@ -267,7 +267,6 @@ NSString* const FLDefaultsKeyWizardSavePasswordKey = @"com.fishlamp.wizard.savep
 - (void) wizardPanelWillAppearInWizard:(FLWizardViewController*) wizard {
     [self updateVisibleCredentials];
 
-    _wizard = wizard;
     FLPerformSelector1(self.delegate, @selector(loginWizardPanelWillAppear:), self);
     
     wizard.backButton.enabled = NO;
@@ -282,7 +281,6 @@ NSString* const FLDefaultsKeyWizardSavePasswordKey = @"com.fishlamp.wizard.savep
 
 - (void) wizardPanelDidDisappearInWizard:(FLWizardViewController*) wizard {
     FLPerformSelector1(self.delegate, @selector(loginWizardPanelDidDisappear:), self);
-    _wizard = nil;
 }
 
 @end

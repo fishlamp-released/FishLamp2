@@ -106,12 +106,7 @@
 - (void) appendPanel:(FLWizardPanel*) panel {
     [_nextPanelQueue addObject:panel];
     [_breadcrumbBar addBreadcrumb:panel.breadcrumbTitle];
-    
-    
-    if([panel respondsToSelector:@selector(setDelegate:)]) {
-        [((id)panel) setDelegate:self];
-    }
-    
+    panel.wizard = self;
 }
                     
 - (void) willStartWizardInWindow:(NSWindow*) window {
