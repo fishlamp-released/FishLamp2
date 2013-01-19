@@ -17,6 +17,7 @@
 @implementation FLBreadcrumbBarViewController
 
 @synthesize delegate = _delegate;
+@synthesize textFont = _textFont;
 
 - (id) init {
     self = [super init];
@@ -28,6 +29,7 @@
 
 #if FL_MRC
 - (void) dealloc {
+    [_textFont release];
     [_breadcrumbs release];
     [super dealloc];
 }
@@ -39,18 +41,20 @@
     self.view = view;
 }
 
+#define Size 100
+
 - (void) update {
     CGFloat left = -2;
     for(FLBreadcrumbBarView* view in _breadcrumbs) {
         CGRect frame = self.view.bounds;
         [view sendToBack];
         
-        view.enabled = [self.delegate breadcrumbBar:self breadcrumbIsEnabled:view.title.string];
-        view.emphasized = [self.delegate breadcrumbBar:self breadcrumbIsVisible:view.title.string];
+        view.enabled = [self.delegate breadcrumbBar:self breadcrumbIsEnabled:view.key];
+        view.emphasized = [self.delegate breadcrumbBar:self breadcrumbIsVisible:view.key];
         
         frame = CGRectInset(frame, 2, 2);
         
-        frame.size.width = 100;
+        frame.size.width = Size;
         frame.origin.x = left;
         frame.size.height += 8;
         frame.origin.y -= 4;
@@ -61,7 +65,7 @@
     [self.view setNeedsDisplay];
 }
 
-- (void) addBreadcrumb:(NSString*) title {
+- (void) addBreadcrumb:(NSString*) title forKey:(id) key {
 
     FLAssertStringIsNotEmpty_(title);
 
@@ -70,12 +74,13 @@
     string.enabledColor = [UIColor darkGrayColor];
     string.disabledColor = [UIColor grayColor];
     string.highlightedColor = [UIColor blueColor];
-    string.textFont = [UIFont boldSystemFontOfSize:[UIFont systemFontSize]];
+    string.textFont = _textFont ? _textFont : [UIFont boldSystemFontOfSize:[UIFont systemFontSize]];
 
     FLBreadcrumbBarView* view = FLAutorelease([[FLBreadcrumbBarView alloc] initWithFrame:CGRectZero]);
     view.title = string;
+    view.key = key;
     view.touched = ^{
-        [self.delegate breadcrumbBar:self  breadcrumbWasClicked:view.title.string];
+        [self.delegate breadcrumbBar:self  breadcrumbWasClicked:view.key];
     };
     [_breadcrumbs addObject:view];
     [self.view addSubview:view];

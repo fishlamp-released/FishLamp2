@@ -134,7 +134,7 @@ typedef void (^FLHttpRequestResultBlock)(FLResult result);
 typedef void (^FLHttpRequestErrorBlock)(NSError* result);
 typedef void (^FLHttpRequestByteBlock)(unsigned long count);
 
-@interface FLHttpRequestObserver : FLFinisher<FLHttpRequestDelegate> {
+@interface FLHttpRequestObserver : FLMainThreadFinisher<FLHttpRequestDelegate> {
 @private
     dispatch_block_t _willAuthenticate;
     dispatch_block_t _didAuthenticate;

@@ -11,25 +11,27 @@
 
 @implementation FLDrawableShape
 
-@synthesize innerBorderColor = _innerBorderColor;
+@synthesize edgeInsetColor = _edgeInsetColor;
+@synthesize edgeInset = _edgeInset;
 @synthesize cornerRadius = _cornerRadius;
-@synthesize borderLineWidth = _lineWidth;
 @synthesize borderGradient = _borderGradient;
-@synthesize pathRef = _pathRef;
+@synthesize backgroundColor = _backgroundColor;
 
 -(void) createPathForShapeInRect:(CGMutablePathRef) path rect:(CGRect) rect {
-
 }
 
 - (id) init {
     self = [super init];
     if(self) {
-        self.borderLineWidth = 1.0f;
-		
+        _edgeInset = 0.0f;
+        _cornerRadius = 1.0f;
+
+#if 0		
         // the border gradient is NOT a subwidget because we don't want it to be drawn
         // when we call [super drawRect], we're rendering it ourselves for the fram
 		_borderGradient = [[FLDrawableGradient alloc] init];
 		[_borderGradient setColorRange:[FLColorRange colorRange:[UIColor blackColor] endColor:[UIColor grayColor]]];
+#endif        
 
     }
     return self;
@@ -37,122 +39,154 @@
 
 #if FL_MRC
 - (void) dealloc {
+    [_backgroundColor release];
     [_borderGradient release];
-    if(_path) {
-        CGPathRelease(_path);
-    }
     [super dealloc];
 }
 #endif
 
-- (void) setPathRef:(CGPathRef) ref {
-    if(_path) {
-        CGPathRelease(_path);
-        _path = nil;
+- (void) drawBackgoundInRect:(CGRect) shapeRect withColor:(UIColor*) inColor {
+
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSaveGState(context);
+    
+    if(inColor) {
+        FLColorValues color = inColor.decimalColorValues;
+        
+        CGContextSetRGBFillColor(context, color.red, color.green, color.blue, color.alpha);
+        CGContextSetLineJoin(context, kCGLineJoinRound);
+        CGContextSetLineWidth(context, 1.0);
+        CGContextSetRGBStrokeColor(context, color.red, color.green, color.blue, color.alpha);
+    
+        CGMutablePathRef path = CGPathCreateMutable();
+        [self createPathForShapeInRect:path rect:shapeRect];
+        CGContextAddPath(context, path);
+        CGContextFillPath(context);
+        CGContextStrokePath(context);
+        CGPathRelease(path);
+    } 
+    else {
+        CGMutablePathRef path = CGPathCreateMutable();
+        [self createPathForShapeInRect:path rect:shapeRect];
+        CGContextAddPath(context, path);
+        CGContextClearRect(context, shapeRect);
+        CGPathRelease(path);
     }
-    if(ref) {
-        _path = CGPathRetain(ref);
-    }
+
+    CGContextRestoreGState(context);
 }
+
+//- (void) drawInsetInRect:(CGRect) shapeRect {
+//
+//    CGContextRef context = UIGraphicsGetCurrentContext();
+//    CGContextSaveGState(context);
+//    
+//    if(_backgroundColor) {
+//        FLColorValues color = _backgroundColor.decimalColorValues;
+//        
+//        CGContextSetRGBFillColor(context, color.red, color.green, color.blue, color.alpha);
+//        CGContextSetLineJoin(context, kCGLineJoinRound);
+//        CGContextSetLineWidth(context, 1.0);
+//        CGContextSetRGBStrokeColor(context, color.red, color.green, color.blue, color.alpha);
+//    
+//        CGMutablePathRef path = CGPathCreateMutable();
+//        [self createPathForShapeInRect:path rect:shapeRect];
+//        CGContextAddPath(context, path);
+//        CGContextFillPath(context);
+//        CGContextStrokePath(context);
+//        CGPathRelease(path);
+//    } 
+//    else {
+//        CGMutablePathRef path = CGPathCreateMutable();
+//        [self createPathForShapeInRect:path rect:shapeRect];
+//        CGContextAddPath(context, path);
+//        CGContextClearRect(context, shapeRect);
+//        CGPathRelease(path);
+//    }
+//
+//    CGContextRestoreGState(context);
+//
+//}
 
 
 - (void) drawRect:(CGRect) drawRect 
         withFrame:(CGRect) frame 
          inParent:(id) parent
 drawEnclosedBlock:(void (^)(void)) drawEnclosedBlock {
-
-	CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSaveGState(context);
-
-	CGRect rect = CGRectInset(frame, 1, 1);
-    CGRect innerRect = CGRectInset(frame, _lineWidth + 1.0f, _lineWidth + 1.0f);
+	
+    CGRect shapeRect = frame; //CGRectInset(frame, 1, 1);
     
-    // draw gradient for border
-    CGPathRef borderPath = CGPathRetain(_path);
-	if(!borderPath) {
-        borderPath = CGPathCreateMutable();
-        [self createPathForShapeInRect:(CGMutablePathRef) borderPath rect:rect];
+    if(_edgeInset > 0) {
+        [self drawBackgoundInRect:shapeRect withColor:_edgeInsetColor];;
+        shapeRect = CGRectInset(shapeRect, _edgeInset, _edgeInset);
     }
-	CGContextAddPath(context, borderPath);
-	CGContextClip(context);
     
-    [_borderGradient drawRect:drawRect withFrame:frame inParent:parent drawEnclosedBlock:nil];
-    CGPathRelease(borderPath);
+    [self drawBackgoundInRect:shapeRect withColor:_backgroundColor];;
     
-    // clip out contents
-    CGMutablePathRef innerPath = CGPathCreateMutable();
-    [self createPathForShapeInRect:innerPath rect:innerRect];
-	CGContextAddPath(context, innerPath);
-	CGContextClip(context);
-	CGContextClearRect(context, innerRect);
-    
-    // Now all we have is our nice gradient border, now we need to draw contents
-    
-    CGContextAddPath(context, innerPath);
-	CGContextClip(context);
-
     if(drawEnclosedBlock) {
-        drawEnclosedBlock();
-    }
-
-    CGContextRestoreGState(context);
-    
-    // now draw inner border around subWidgets if we have a border color
-    
-    if(_innerBorderColor) {
+        CGContextRef context = UIGraphicsGetCurrentContext();
         CGContextSaveGState(context);
-        
-        // TODO: use color components instead of UIColor+t
-        FLColorValues borderColorValues = _innerBorderColor.rgbColorValues;
-        CGContextSetRGBStrokeColor(context, borderColorValues.red, borderColorValues.green, borderColorValues.blue, borderColorValues.alpha);
-        CGContextSetLineWidth(context, _lineWidth);
-        CGContextAddPath(context, innerPath);
+        CGMutablePathRef path = CGPathCreateMutable();
+        [self createPathForShapeInRect:path rect:shapeRect];
+        CGContextAddPath(context, path);
         CGContextClip(context);
-        CGContextStrokePath(context);
-
+        drawEnclosedBlock();
+        CGPathRelease(path);
         CGContextRestoreGState(context);
     }
-    
-    CGPathRelease(innerPath);
 
+    
+// now draw inner border around subWidgets if we have a border color
+    
+//    if(_edgeInsetColor) {
+//        // TODO: use color components instead of UIColor+t
+//        FLColorValues borderColorValues = _edgeInsetColor.rgbColorValues;
+//        CGContextSetRGBStrokeColor(context, borderColorValues.red, borderColorValues.green, borderColorValues.blue, borderColorValues.alpha);
+//        CGContextSetLineWidth(context, _edgeInset);
+////        CGContextAddPath(context, innerShapePath);
+////        CGContextClip(context);
+//        CGContextStrokePath(context);
+//    }
+    
+//    CGPathRelease(shapePath);
 }      
 
 @end
 
 @implementation FLDrawableBackButtonShape
 
-@synthesize pointSize = _pointSize;
+@synthesize shapeSize = _shapeSize;
 
-- (id) initWithPointSize:(CGFloat) pointSize {
+- (id) initWithShapeSize:(CGFloat) shapeSize {
     self = [super init];
     if(self) {
-        self.pointSize = pointSize;
+        self.shapeSize = shapeSize;
     }
     
     return self;
 }
 
 -(void) createPathForShapeInRect:(CGMutablePathRef) path rect:(CGRect) rect {
-	FLCreateRectPathBackButtonShape(path, rect, self.cornerRadius, _pointSize);
+	FLCreateRectPathBackButtonShape(path, rect, self.cornerRadius, _shapeSize);
 }
 
 @end
 
 @implementation FLDrawableForwardButtonShape
 
-@synthesize pointSize = _pointSize;
+@synthesize shapeSize = _shapeSize;
 
-- (id) initWithPointSize:(CGFloat) pointSize {
+- (id) initWithShapeSize:(CGFloat) shapeSize {
     self = [super init];
     if(self) {
-        self.pointSize = pointSize;
+        self.shapeSize = shapeSize;
     }
     
     return self;
 }
 
 -(void) createPathForShapeInRect:(CGMutablePathRef) path rect:(CGRect) rect {
-	FLCreateRectPathForwardButtonShape(path, rect, self.cornerRadius, _pointSize);
+	FLCreateRectPathForwardButtonShape(path, rect, self.cornerRadius, _shapeSize);
 }
 
 @end

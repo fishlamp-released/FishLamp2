@@ -19,6 +19,8 @@
 @synthesize trackingArea = _trackingArea;
 @synthesize title = _title;
 @synthesize touched = _touched;
+@synthesize key = _key;
+
 
 - (id)initWithFrame:(NSRect)frame
 {
@@ -26,10 +28,10 @@
     if (self) {
     
         _shape = [[FLDrawableForwardButtonShape alloc] init];
-        
-        _shape.borderLineWidth = 1.0;
+        _shape.edgeInset = 1.0;
+        _shape.edgeInsetColor = [NSColor grayColor];
         _shape.cornerRadius = 1.0;
-        _shape.pointSize = 10.0;
+        _shape.shapeSize = 10.0;
     }
     
     return self;
@@ -37,6 +39,7 @@
 
 #if FL_MRC
 - (void) dealloc {
+    [_key release];
     [_trackingArea release];
     [_touched release];
     [_title release];
@@ -153,38 +156,20 @@
 
 - (void)drawRect:(NSRect)dirtyRect {
     
-    FLDrawRectWithDrawable(_shape, dirtyRect, self.bounds, self, ^{
-
-        UIColor* color = nil;
-//        if(_mouseIn && _mouseDown) {
-//            color = [NSColor whiteColor];
-//        }
-//        else 
-        if(self.isEmphasized) {
-            color = [NSColor lightGrayColor];
-        }
-        else if(self.isHighlighted) {
-            color = [NSColor grayColor];
-        }
-        else {
-            color = [NSColor gray85Color];
-        }
-
-        if(color) {
-            [color setFill];
-            NSRectFill(dirtyRect);
-        }
-        
-//        UIColor* bgColor = [NSColor lightGrayColor];
-//        if(bgColor) {
-//            [bgColor setFill];
-//            NSRectFill(dirtyRect);
-//        }
+    if(self.isEmphasized) {
+        _shape.backgroundColor = [NSColor gray85Color];
+    }
+    else if(self.isHighlighted) {
+        _shape.backgroundColor = [NSColor grayColor];
+    }
+    else {
+        _shape.backgroundColor = [NSColor gray95Color];
+    }
     
+    [_shape drawRect:dirtyRect withFrame:self.bounds inParent:self drawEnclosedBlock:^{
         FLTextAlignment align = { FLVerticalTextAlignmentCenter, FLHorizontalTextAlignmentCenter };
         [FLCoreText drawString:[self.title attributedString] withTextAlignment:align inBounds:self.bounds];
-    
-    });
+    }];
 
 
     

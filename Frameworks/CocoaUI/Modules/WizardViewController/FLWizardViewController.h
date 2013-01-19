@@ -36,11 +36,14 @@ typedef FLWizardPanel* (^FLWizardPanelFactory)();
     IBOutlet NSButton* _backButton;
     IBOutlet NSView* _modalShieldView;
     
-    NSMutableArray* _visiblePanels;
-    NSMutableArray* _nextPanelQueue;
+    NSMutableArray* _panels;
+    NSUInteger _currentPanel;
+    id _userContext;
     
     FLBreadcrumbBarViewController* _breadcrumbBar;
 }
+
+@property (readwrite, strong, nonatomic) id userContext;
 
 // delegate
 @property (readwrite, assign, nonatomic) IBOutlet id<FLWizardViewControllerDelegate> delegate;
@@ -49,11 +52,11 @@ typedef FLWizardPanel* (^FLWizardPanelFactory)();
 @property (readonly, strong, nonatomic) NSButton* nextButton;
 @property (readonly, strong, nonatomic) NSButton* backButton;
 @property (readonly, strong, nonatomic) NSTextField* titleTextField;
+@property (readonly, strong, nonatomic) FLBreadcrumbBarViewController* breadcrumbBar;
 
 // enclosures
 @property (readonly, strong, nonatomic) NSView* buttonEnclosureView;
 @property (readonly, strong, nonatomic) NSView* wizardPanelEnclosureView;
-
 @property (readwrite, strong, nonatomic) NSView* backgroundView;
 @property (readwrite, strong, nonatomic) NSView* wizardPanelBackgroundView;
 
@@ -65,21 +68,27 @@ typedef FLWizardPanel* (^FLWizardPanelFactory)();
 // Panel creation
 // 
 //- (void) pushPanel:(FLWizardPanel*) panel;
-- (void) appendPanel:(FLWizardPanel*) panel;
+- (void) appendPanel:(FLWizardPanel*) panel forKey:(id) key;
+- (FLWizardPanel*) panelForKey:(id) key;
+- (BOOL) panelIsEnabled:(id) key;
 
 //
 // Visible Panel Stack
 //
+@property (readonly, assign, nonatomic) NSUInteger panelCount;
+@property (readonly, assign, nonatomic) NSUInteger currentPanelIndex;
+
 @property (readonly, strong, nonatomic) FLWizardPanel* visibleWizardPanel;
 
 - (void) showNextWizardPanelAnimated:(BOOL) animated 
                       completion:(FLWizardPanelBlock) completion;
 
-- (void) hideVisibleWizardPanelAnimated:(BOOL) animated
+- (void) showPreviousWizardPanelAnimated:(BOOL) animated
                              completion:(FLWizardPanelBlock) completion;
 
-- (void) removeWizardPanel:(FLWizardPanel*) wizardPanel;
+- (void) showWizardPanelAnimated:(BOOL) animated withIndex:(NSUInteger) panelIndex completion:(FLWizardPanelBlock) completion;
 
+- (void) removeWizardPanel:(FLWizardPanel*) wizardPanel;
 //
 // Utils
 //
@@ -98,8 +107,6 @@ typedef FLWizardPanel* (^FLWizardPanelFactory)();
 
 - (void) willStartWizardInWindow:(NSWindow*) window;
 - (void) didStartWizardInWindow:(NSWindow*) window;
-
-
 
 @end
 

@@ -15,8 +15,11 @@
     NSString* _breadcrumbTitle;
     BOOL _enabled;
     __unsafe_unretained FLWizardViewController* _wizard;
+    id _key;
 }
+@property (readwrite, strong, nonatomic) id key;
 @property (readwrite, assign, nonatomic) id wizard;
+@property (readonly, strong, nonatomic) id userContext;
 
 @property (readwrite, assign, nonatomic, getter=isEnabled) BOOL enabled;
 @property (readwrite, strong, nonatomic) NSString* breadcrumbTitle;
