@@ -12,18 +12,19 @@
 @interface FLDrawableShape : NSObject<FLDrawable> {
 @private
 	CGFloat _cornerRadius;
-	UIColor* _innerBorderColor;
-	CGFloat _lineWidth;
+	UIColor* _edgeInsetColor;
+	CGFloat _edgeInset;
 	FLDrawableGradient* _borderGradient;
-    CGPathRef _path;
+    UIColor* _backgroundColor;
 }
-
-@property (readwrite, assign, nonatomic) CGPathRef pathRef;
-
+@property (readwrite, strong, nonatomic) UIColor* backgroundColor;
 @property (readonly, strong, nonatomic) FLDrawableGradient* borderGradient;
-@property (readwrite, assign, nonatomic) CGFloat borderLineWidth;
+@property (readwrite, strong, nonatomic) UIColor* edgeInsetColor;
+
+
+@property (readwrite, assign, nonatomic) CGFloat edgeInset; 
+
 @property (readwrite, assign, nonatomic) CGFloat cornerRadius;
-@property (readwrite, strong, nonatomic) UIColor* innerBorderColor;
 
 // override this if you don't set pathRef
 - (void) createPathForShapeInRect:(CGMutablePathRef) path rect:(CGRect) rect;
@@ -35,8 +36,8 @@
     CGFloat _pointSize;
 }
 
-@property (readwrite, assign, nonatomic) CGFloat pointSize;
-- (id) initWithPointSize:(CGFloat) pointSize;
+@property (readwrite, assign, nonatomic) CGFloat shapeSize;
+- (id) initWithShapeSize:(CGFloat) shapeSize;
 
 @end
 
@@ -45,7 +46,7 @@
     CGFloat _pointSize;
 }
 
-@property (readwrite, assign, nonatomic) CGFloat pointSize;
-- (id) initWithPointSize:(CGFloat) pointSize;
+@property (readwrite, assign, nonatomic) CGFloat shapeSize;
+- (id) initWithShapeSize:(CGFloat) shapeSize;
 
 @end

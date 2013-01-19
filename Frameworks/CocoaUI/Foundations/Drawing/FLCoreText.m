@@ -113,7 +113,7 @@
             break;
             
             case FLVerticalTextAlignmentCenter:
-                offset.y = -((bounds.size.height / 2.0f) - (size.height / 2.0f));
+                offset.y = (-((bounds.size.height / 2.0f) - (size.height / 2.0f)) - 2);
             break;
             
             case FLVerticalTextAlignmentBottom:

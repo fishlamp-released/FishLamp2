@@ -42,7 +42,6 @@
 				<string key="NSFrameSize">{485, 399}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView"/>
 				<bool key="NSViewIsLayerTreeHost">YES</bool>
 				<double key="NSViewAlphaValue">0.60000000000000009</double>
 				<object class="CIScreenBlendMode" key="NSViewCompositeFilter">
@@ -70,7 +69,7 @@
 					<object class="NSTextField" id="396995919">
 						<reference key="NSNextResponder" ref="1005"/>
 						<int key="NSvFlags">266</int>
-						<string key="NSFrame">{{17, 364}, {446, 22}}</string>
+						<string key="NSFrame">{{17, 365}, {446, 22}}</string>
 						<reference key="NSSuperview" ref="1005"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="639529674"/>
@@ -113,6 +112,17 @@
 						<reference key="NSNextResponder" ref="1005"/>
 						<int key="NSvFlags">290</int>
 						<array class="NSMutableArray" key="NSSubviews">
+							<object class="NSCustomView" id="999520791">
+								<reference key="NSNextResponder" ref="1018746906"/>
+								<int key="NSvFlags">290</int>
+								<array class="NSMutableArray" key="NSSubviews"/>
+								<string key="NSFrame">{{0, 2}, {313, 32}}</string>
+								<reference key="NSSuperview" ref="1018746906"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="1018746906"/>
+								<string key="NSReuseIdentifierKey">_NS:9</string>
+								<string key="NSClassName">NSView</string>
+							</object>
 							<object class="NSButton" id="671622157">
 								<reference key="NSNextResponder" ref="1018746906"/>
 								<int key="NSvFlags">289</int>
@@ -173,22 +183,11 @@
 								</object>
 								<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 							</object>
-							<object class="NSCustomView" id="999520791">
-								<reference key="NSNextResponder" ref="1018746906"/>
-								<int key="NSvFlags">274</int>
-								<array class="NSMutableArray" key="NSSubviews"/>
-								<string key="NSFrameSize">{308, 34}</string>
-								<reference key="NSSuperview" ref="1018746906"/>
-								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="726091005"/>
-								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<string key="NSClassName">NSView</string>
-							</object>
 						</array>
 						<string key="NSFrame">{{0, -2}, {480, 34}}</string>
 						<reference key="NSSuperview" ref="1005"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="999520791"/>
+						<reference key="NSNextKeyView" ref="726091005"/>
 						<bool key="NSViewIsLayerTreeHost">YES</bool>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<string key="NSClassName">NSView</string>
@@ -197,10 +196,10 @@
 						<reference key="NSNextResponder" ref="1005"/>
 						<int key="NSvFlags">274</int>
 						<array class="NSMutableArray" key="NSSubviews"/>
-						<string key="NSFrame">{{0, 31}, {480, 328}}</string>
+						<string key="NSFrame">{{0, 31}, {480, 333}}</string>
 						<reference key="NSSuperview" ref="1005"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="1018746906"/>
+						<reference key="NSNextKeyView" ref="999520791"/>
 						<bool key="NSViewIsLayerTreeHost">YES</bool>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<string key="NSClassName">NSView</string>
@@ -274,19 +273,19 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
-						<string key="label">_breadcrumbEnclosureView</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="999520791"/>
-					</object>
-					<int key="connectionID">93</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
 						<string key="label">_wizardPanelEnclosureView</string>
 						<reference key="source" ref="1001"/>
 						<reference key="destination" ref="639529674"/>
 					</object>
 					<int key="connectionID">78</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">_modalShieldView</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="510945427"/>
+					</object>
+					<int key="connectionID">99</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -298,11 +297,11 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
-						<string key="label">_modalShieldView</string>
+						<string key="label">_breadcrumbEnclosureView</string>
 						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="510945427"/>
+						<reference key="destination" ref="999520791"/>
 					</object>
-					<int key="connectionID">99</int>
+					<int key="connectionID">93</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -344,8 +343,8 @@
 						<reference key="object" ref="1005"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="639529674"/>
-							<reference ref="396995919"/>
 							<reference ref="1018746906"/>
+							<reference ref="396995919"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -389,16 +388,17 @@
 						<reference key="parent" ref="671622157"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">92</int>
-						<reference key="object" ref="999520791"/>
-						<array class="NSMutableArray" key="children"/>
-						<reference key="parent" ref="1018746906"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">4</int>
 						<reference key="object" ref="639529674"/>
+						<array class="NSMutableArray" key="children"/>
 						<reference key="parent" ref="1005"/>
 						<string key="objectName">WizardPanelHostView</string>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">95</int>
+						<reference key="object" ref="510945427"/>
+						<reference key="parent" ref="0"/>
+						<string key="objectName">Modal Shield View</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">36</int>
@@ -414,10 +414,9 @@
 						<reference key="parent" ref="396995919"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">95</int>
-						<reference key="object" ref="510945427"/>
-						<reference key="parent" ref="0"/>
-						<string key="objectName">Modal Shield View</string>
+						<int key="objectID">92</int>
+						<reference key="object" ref="999520791"/>
+						<reference key="parent" ref="1018746906"/>
 					</object>
 				</array>
 			</object>
@@ -441,13 +440,13 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">100</int>
+			<int key="maxID">101</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<object class="IBPartialClassDescription">
 					<string key="className">FLWizardViewController</string>
-					<string key="superclassName">UIViewController</string>
+					<string key="superclassName">NSViewController</string>
 					<dictionary class="NSMutableDictionary" key="actions">
 						<string key="respondToBackButton:">id</string>
 						<string key="respondToNextButton:">id</string>

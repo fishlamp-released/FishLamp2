@@ -23,8 +23,9 @@
     NSTrackingArea* _trackingArea;
     BOOL _mouseIn;
     BOOL _mouseDown;
+    id _key;
 }
-
+@property (readwrite, strong, nonatomic) id key;
 @property (readwrite, assign, nonatomic, getter=isHighlighted) BOOL highlighted;
 @property (readwrite, assign, nonatomic, getter=isEnabled) BOOL enabled;
 @property (readwrite, assign, nonatomic, getter=isEmphasized) BOOL emphasized;

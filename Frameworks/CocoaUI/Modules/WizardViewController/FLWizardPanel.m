@@ -18,11 +18,13 @@
 @synthesize breadcrumbTitle = _breadcrumbTitle;
 @synthesize enabled = _enabled;
 @synthesize wizard = _wizard;
+@synthesize key = _key;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        self.enabled = YES;
     }
     
     return self;
@@ -30,6 +32,7 @@
 
 #if FL_MRC
 - (void) dealloc {
+    [_key release];
     [_breadcrumbTitle release];
     [super dealloc];
 }
@@ -46,6 +49,10 @@
 }
 
 - (void) didMoveToWizard:(FLWizardViewController*) wizard {
+}
+
+- (id) userContext {
+    return [_wizard userContext];
 }
 
 - (void) wizardPanelWillAppearInWizard:(FLWizardViewController*) wizard {

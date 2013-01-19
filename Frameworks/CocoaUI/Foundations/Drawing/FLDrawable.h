@@ -22,4 +22,5 @@ drawEnclosedBlock:(void (^)(void)) drawEnclosedBlock;
 
 @end
 
-extern void FLDrawRectWithDrawable(id drawable, CGRect drawRect, CGRect frame, id parent, dispatch_block_t drawEnclosed);
+//extern void FLDrawRectWithDrawable(id drawable, CGRect drawRect, CGRect frame, id parent, dispatch_block_t drawEnclosed);
+

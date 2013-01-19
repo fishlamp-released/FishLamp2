@@ -208,47 +208,14 @@ NSString* const FLDefaultsKeyWizardSavePasswordKey = @"com.fishlamp.wizard.savep
         return NO;
     }
     else {
-        
-//        NSTextField* textField = FLAutorelease([[NSTextField alloc] initWithFrame:CGRectZero]);
-//        textField.font = [NSFont fontWithName:@"MyriadPro-Bold" size:12];
-//        textField.stringValue = @"Logging in…";
-//        textField.textColor = [NSColor grayColor];
-//        textField.drawsBackground = NO;
-//        textField.bordered = NO;
-//        [textField setBezeled:NO];
-//        [textField setEditable:NO];
-//        [textField setAlignment:NSLeftTextAlignment];
-
         wizard.nextButton.enabled = NO;
         
-//        [self.wizard.statusBar setStatusView:textField animated:YES completion:^{
-//            self.wizard.otherButton.enabled = YES;
-
-//        [self.wizard setNotificationView:textField animated:YES completion:^{
-//            self.wizard.otherButton.enabled = YES;
-//            self.wizard.nextButton.enabled = NO;
-//
-            FLPerformSelector1( self.delegate, 
+        FLPerformSelector1( self.delegate, 
                                 @selector(loginWizardPanelStartAuthenticating:), 
                                 self);
-//        }];
-    
-    
-//        FLProgressWizardPanel* progress = [FLProgressWizardPanel progressWizardPanel];
-//        progress.delegate = self;
-//        progress.nextPanelBlock = self.nextPanelBlock;
-//        
-//        FLProgressWizardPanelProgressView* progressView = progress.progressView1;
-//        progressView.progressText = @"Logging in...";
-//        [progress setInitialView:progressView];
-//        
-//        [self.wizard pushWizardPanel:progress animated:YES completion:^(FLWizardPanel* panel) {
-//            }];
-
         return YES;
     }
 }
-
 
 - (void) wizardPanelDidAppearInWizard:(FLWizardViewController*) wizard {
 
@@ -268,8 +235,6 @@ NSString* const FLDefaultsKeyWizardSavePasswordKey = @"com.fishlamp.wizard.savep
     [self updateVisibleCredentials];
 
     FLPerformSelector1(self.delegate, @selector(loginWizardPanelWillAppear:), self);
-    
-    wizard.backButton.enabled = NO;
 }
 
 - (void) wizardPanelWillDisappearInWizard:(FLWizardViewController*) wizard {
