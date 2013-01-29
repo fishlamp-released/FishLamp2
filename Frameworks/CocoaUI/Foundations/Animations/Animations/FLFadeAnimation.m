@@ -35,9 +35,9 @@
         CALayer* layer = [animation layerFromTarget:target];
         layer.opacity = fromOpacity;
         layer.hidden = NO;
-        [layer addAnimation:[FLFadeAnimation animationForLayer:layer fromOpacity:fromOpacity toOpacity:toOpacity] forKey:@"opacity"];
         
         self.commit = ^{
+            [layer addAnimation:[FLFadeAnimation animationForLayer:layer fromOpacity:fromOpacity toOpacity:toOpacity] forKey:@"opacity"];
             [layer setOpacity:toOpacity];
         };
     };

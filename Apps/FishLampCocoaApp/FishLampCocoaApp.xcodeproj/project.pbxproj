@@ -307,6 +307,7 @@
 		27B4F36B169A403F00D56DFA /* InstallFishLamp.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = InstallFishLamp.sh; path = ../../InstallFishLamp.sh; sourceTree = "<group>"; };
 		27B4F36C169A403F00D56DFA /* FishLampBuildSupport */ = {isa = PBXFileReference; lastKnownFileType = folder; name = FishLampBuildSupport; path = ../../FishLampBuildSupport; sourceTree = SOURCE_ROOT; };
 		27B4F36D169A403F00D56DFA /* Resources */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Resources; path = /Users/mike/Enlistments/Wingman/FishLamp/Libs/FishLampCoreLib/../../Resources; sourceTree = "<absolute>"; };
+		27EA1E9216B84D340018CDB2 /* FishLampConnect.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FishLampConnect.xcodeproj; path = ../../Libs/FishLampConnectLib/FishLampConnect.xcodeproj; sourceTree = "<group>"; };
 		27F1F47F16A0955600B10213 /* libZenLib-OSX-64-MRC.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libZenLib-OSX-64-MRC.a"; path = "../../../ZenLib/Lib/build/Release/libZenLib-OSX-64-MRC.a"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -343,6 +344,7 @@
 		27B4F2DA169A3E4500D56DFA = {
 			isa = PBXGroup;
 			children = (
+				27EA1E9216B84D340018CDB2 /* FishLampConnect.xcodeproj */,
 				27B4F2F9169A3E5500D56DFA /* FishLampCore.xcodeproj */,
 				27B4F2FC169A3E5500D56DFA /* FishLampCocoa.xcodeproj */,
 				27B4F2FF169A3E5500D56DFA /* FishLampCompatibility.xcodeproj */,
