@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<schema projectName="myZenfolio" companyName="GreenTongue Software, LLC">
+    <generatorOptions>
+        <typePrefix>FLZf</typePrefix>
+        <!--objectsFolderName>Generated</objectsFolderName-->
+    </generatorOptions>
+
+    <typeDefinitions>
+        <typeDefinition typeName="FLZfUploadGallery" dataType="object" import="FLZfUploadGallery.h"/>
+        <typeDefinition typeName="FLZfAccessDescriptor" dataType="object" import="FLZfAccessDescriptor.h"/>
+        <typeDefinition typeName="FLZfCategory" dataType="object" import="FLZfCategory.h"/>
+        <typeDefinition typeName="FLSlideshowOptions" dataType="object" import="FLSlideshowOptions.h"/>
+        <typeDefinition typeName="FLQueuedAsset" dataType="object" import="FLQueuedAsset.h"/>
+        <typeDefinition typeName="FLDatabaseObject" dataType="object" import="FLDatabaseObject.h"/>
+    </typeDefinitions>
+    <objects>
+        <object typeName="FLZfUploadGallery" superclass="FLDatabaseObject" protocols="NSCopying, NSCoding">
+            <properties>
+                <property type="string" name="name"/>
+                <property type="int" name="photoSetId"/>
+                <property type="string" name="uploadUrl"/>
+            </properties>
+        </object>
+        <object typeName="FLZfQueuedPhoto" superclass="FLQueuedAsset" protocols="NSCopying, NSCoding">
+            <properties>
+                <property type="FLZfAccessDescriptor" name="accessDescriptor"/>
+                <property type="NSMutableArray" name="categoryArray"/>
+                <property type="array" name="zenfolioCategories"/>
+                <property type="int" name="scaledUploadSize"/>
+                <property type="BOOL" name="saveToDeviceBeforeUpload"/>
+                <property type="BOOL" name="wasSavedToDeviceBeforeUpload"/>
+            </properties>
+        </object>
+        <object typeName="FLZfUploadablePhotoBase" superclass="FLZfPhotoUpdater" protocols="NSCopying, NSCoding">
+            <properties>
+                <property type="NSString" name="photoDataFileName"/>
+                <property type="int" name="uploadFileId"/>
+                <property type="int" name="sortId"/>
+                <property type="FLZfUploadGallery" name="uploadGallery"/>
+                <property type="NSInteger" name="uploadSize"/>
+                <property type="FLZfAccessDescriptor" name="accessDescriptor"/>
+                <property type="BOOL" name="saveToPhoneGalleryOnUpload"/>
+                <property type="BOOL" name="wasSavedToPhotoGallery"/>
+                <property type="BOOL" name="isCameraImage"/>
+                <property type="NSString" name="loginName"/>
+                <property type="NSString" name="originalFileName"/>
+                <property type="NSMutableArray" name="categoryArray"/>
+                <property type="unsigned long" name="uploadedPhotoId"/>
+                <property type="CGSize" name="dimensions"/>
+                <property type="BOOL" name="uploaded"/>
+                <property type="NSDate" name="takenDate"/>
+                <property type="NSDate" name="modifiedDate"/>
+            </properties>
+        </object>
+        <object typeName="FLZfSharedFavoritesSet" protocols="NSCopying, NSCoding">
+            <properties>
+                <property type="string" name="sharedFavoritesSetId">
+                    <storageOptions isPrimaryKey="YES"/>
+                </property>
+                <property type="string" name="sharerName"/>
+                <property type="string" name="sharerMessage"/>
+                <property type="string" name="sharerEmail"/>
+                <property type="string" name="photographerLogin"/>
+                <property type="string" name="favoritesSetName"/>
+                <property type="NSMutableSet" name="photoIds"/>
+            </properties>
+        </object>
+    </objects>
+</schema>
