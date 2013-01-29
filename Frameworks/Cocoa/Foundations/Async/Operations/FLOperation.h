@@ -72,6 +72,7 @@ typedef FLResult (^FLRunOperationBlock)(FLOperation* operation);
 @end
 
 @protocol FLOperationObserver <NSObject>
+@optional
 
 // these always happen in the thread the operation is running on
 - (void) operationWillRun:(FLOperation*) operation;
@@ -81,3 +82,13 @@ typedef FLResult (^FLRunOperationBlock)(FLOperation* operation);
 
 @end
 
+typedef void (^FLOperationResultBlock)(FLResult result);
+
+@interface FLOperationObserver : FLMainThreadFinisher<FLOperationObserver> {
+@private
+    dispatch_block_t _willRun;
+    FLOperationResultBlock _didFinish;
+}
+@property (readwrite, copy, nonatomic) dispatch_block_t willRun;
+
+@end

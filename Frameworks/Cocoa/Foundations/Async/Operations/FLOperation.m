@@ -146,45 +146,26 @@ NSString* const FLOperationFinishedEvent;
 }
 
 
-
-
-
 @end
 
-//
-//@interface FLOperationObserver ()
-//@property (readwrite, copy, nonatomic) FLOperationObserverBlock block;
-//@end
-//
-//@implementation FLOperationObserver
-//
-//synthesize_(block = _block;
-//
-//- (id) initWithBlock:(FLOperationObserverBlock) block {
-//    self = [super init];
-//    if(self) {
-//        self.block = block;
-//    }
-//    return self;
-//}
-//
-//+ (id) operationObserver:(FLOperationObserverBlock) block {
-//    return FLAutorelease([[[self class] alloc] initWithBlock:block]);
-//}
-//
-//#if FL_MRC
-//- (void) dealloc {
-//    [_block release];
-//    [super dealloc];
-//}
-//#endif
-//
-//- (void) invokeBlockWithOperation:(FLOperation*) operation {
-//    if(_block) {
-//        _block(operation);
-//    }
-//}
-//@end
+@implementation FLOperationObserver
+
+@synthesize willRun = _willRun;
+@synthesize didFinish = _didFinish;
+
++ (id) operationObserver {
+    return FLAutorelease([[[self class] alloc] init]);
+}
+
+#if FL_MRC
+- (void) dealloc {
+    [_willRun release];
+    [_didFinish release];
+    [super dealloc];
+}
+#endif
+
+@end
 //
 //@implementation FLOperationWillStartObserver
 //- (void) operationWillRun:(FLOperation*) operation {

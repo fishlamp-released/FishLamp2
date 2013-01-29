@@ -71,15 +71,10 @@
     [_finishedStackTrace release];
 #endif    
 
-    if(_didFinish) {
-        [_didFinish release];
-    }
-    if(_scheduleNotificationBlock) {
-        [_scheduleNotificationBlock release];
-    }
-    if(_notificationCompletionBlock) {
-        [_notificationCompletionBlock release];
-    }
+    [_willStart release];
+    [_didFinish release];
+    [_scheduleNotificationBlock release];
+    [_notificationCompletionBlock release];
     [_result release];
     [super dealloc];
 #endif

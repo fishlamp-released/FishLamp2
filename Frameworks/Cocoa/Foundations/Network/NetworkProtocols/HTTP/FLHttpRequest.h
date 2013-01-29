@@ -28,7 +28,7 @@
 - (void) httpRequestDidFinish:(FLHttpRequest*) request;
 @end
 
-@protocol FLHttpRequestDelegate;
+@protocol FLHttpRequestObserver;
 
 @interface FLHttpRequest : NSObject<FLReadStreamDelegate, FLDispatchable> {
 @private
@@ -104,7 +104,7 @@
 - (void) didMoveToContext:(id) context;
 @end
 
-@protocol FLHttpRequestDelegate <NSObject>
+@protocol FLHttpRequestObserver <NSObject>
 @optional
 
 - (void) httpRequestWillAuthenticate:(FLHttpRequest*) httpRequest;
@@ -134,7 +134,7 @@ typedef void (^FLHttpRequestResultBlock)(FLResult result);
 typedef void (^FLHttpRequestErrorBlock)(NSError* result);
 typedef void (^FLHttpRequestByteBlock)(unsigned long count);
 
-@interface FLHttpRequestObserver : FLMainThreadFinisher<FLHttpRequestDelegate> {
+@interface FLHttpRequestObserver : FLMainThreadFinisher<FLHttpRequestObserver> {
 @private
     dispatch_block_t _willAuthenticate;
     dispatch_block_t _didAuthenticate;

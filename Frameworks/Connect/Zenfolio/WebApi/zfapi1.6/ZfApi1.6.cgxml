@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project fileUrl="http://www.zenfolio.com/api/1.6/zfapi.asmx?WSDL" projectName="myZenfolio WebAPI" companyName="GreenTongue Software, LLC">
+    <generatorOptions>
+        <disabled>NO</disabled>
+        <generateAllIncludesFile>YES</generateAllIncludesFile>
+        <objectsFolderName>zfapi</objectsFolderName>
+        <codeFileFolderName>CodeFiles</codeFileFolderName>
+        <typePrefix>ZF</typePrefix>
+    </generatorOptions>
+    <defines>
+        <define define="ZFApiVersion1_6" value="1" isString="NO" comment=""/>
+    </defines>
+    <typeDefinitions>
+        <typeDefinition typeName="ZFParsedCategory" dataType="object" import="ZFParsedCategory.h"/>
+        <typeDefinition typeName="FLDatabaseObject" dataType="object" import="FLDatabaseObject.h"/>
+    </typeDefinitions>
+    <objects>
+        <object typeName="ZFPhoto">
+            <properties>
+                <property name="categoryArray" type="array">
+                    <arrayTypes>
+                        <arrayType name="parsedCategory" typeName="ZFParsedCategory"/>
+                    </arrayTypes>
+                </property>
+                <property name="Id">
+                    <storageOptions isPrimaryKey="YES"/>
+                </property>
+            </properties>
+        </object>
+        <object typeName="ZFGroupElement">
+            <properties>
+                <property name="Id">
+                    <storageOptions isPrimaryKey="YES"/>
+                </property>
+            </properties>
+        </object>
+        <object typeName="ZFUser">
+            <properties>
+                <property name="LoginName">
+                    <storageOptions isPrimaryKey="YES"/>
+                </property>
+            </properties>
+        </object>
+        <object typeName="ZFAccessDescriptor" superclass="FLDatabaseObject">
+            <properties>
+                <property name="password" type="string"/>
+                <property name="protectedObjectClassName" type="string"/>
+            </properties>
+        </object>
+    </objects>
+</project>

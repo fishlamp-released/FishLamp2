@@ -16,7 +16,6 @@
 
 - (void) addAnimationsForViewToShow:(UIView*) viewToShow 
                          viewToHide:(UIView*) viewToHide {
-
     [self addAnimation:[FLFadeOutAnimation animationWithTarget:viewToHide]];
     [self addAnimation:[FLDropBackAnimation animationWithTarget:viewToHide]];
     [self addAnimation:[FLSlideInFromRightAnimation animationWithTarget:viewToShow]];
