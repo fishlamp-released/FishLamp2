@@ -11,8 +11,6 @@
 #import "FLFolder.h"
 #import "FLImageCacheService.h"
 
-#import "FLZfStorageService.h"
-
 #import "FLZfGroup+More.h"
 #import "FLZfPhotoSet+More.h"
 #import "FLZfPhoto+More.h"

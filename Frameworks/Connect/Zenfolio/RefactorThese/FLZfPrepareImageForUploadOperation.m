@@ -1,6 +1,6 @@
 //
 //  FLZfPrepareImageForUploadOperation.m
-//  myZenfolio
+//  FishLamp
 //
 //  Created by Mike Fullerton on 9/1/11.
 //  Copyright (c) 2011 Greentongue Software. All rights reserved.
@@ -10,7 +10,7 @@
 #import "FLZfUtils.h"
 #import "ISO8601DateFormatter.h"
 #import "FLDatabase.h"
-#import "FLCocoaUIRequired.h"
+#import "FishLampCocoa.h"
 #import "FLZfUtils.h"
 #import "NSFileManager+FLExtras.h"
 #import "FLZfUploadGallery.h"

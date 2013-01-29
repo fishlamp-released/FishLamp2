@@ -1,6 +1,6 @@
 //
 //	FLZfUploadablePhoto.h
-//	MyZen
+//	FishLamp
 //
 //	Created by Mike Fullerton on 10/27/09.
 //	Copyright 2009 GreenTongue Software. All rights reserved.

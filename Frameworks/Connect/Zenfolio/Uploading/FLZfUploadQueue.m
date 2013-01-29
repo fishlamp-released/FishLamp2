@@ -1,6 +1,6 @@
 //
 //  FLZfUploadQueue.m
-//  myZenfolio
+//  FishLamp
 //
 //  Created by Mike Fullerton on 6/13/11.
 //  Copyright 2011 GreenTongue Software. All rights reserved.

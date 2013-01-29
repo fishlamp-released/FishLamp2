@@ -1,7 +1,7 @@
 //	This file was generated at 3/22/12 9:41 PM by PackMule. DO NOT MODIFY!!
 //
 //	FLZfApiSoapDeleteMessage.m
-//	Project: myZenfolio WebAPI
+//	Project: FishLamp WebAPI
 //	Schema: FLZfApi1_6
 //
 //	Copywrite 2011 GreenTongue Software, LLC. All rights reserved.

@@ -3,7 +3,7 @@
 //  ZenfolioDownloader
 //
 //  Created by patrickm on 19-11-07.
-//  Copyright 2007 Zenfolio, Inc.. All rights reserved.
+//  Copyright 2007 GreenTongue Software, LLC.. All rights reserved.
 //
 
 #import <Cocoa/Cocoa.h>

@@ -1,6 +1,6 @@
 //
 //  FLZfBatchPhotoUploader.h
-//  myZenfolio
+//  FishLamp
 //
 //  Created by Mike Fullerton on 8/31/11.
 //  Copyright (c) 2011 Greentongue Software. All rights reserved.

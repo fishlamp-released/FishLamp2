@@ -1,7 +1,7 @@
 //	This file was generated at 7/3/11 1:04 PM by PackMule. DO NOT MODIFY!!
 //
 //	FLZfUploadGallery.h
-//	Project: myZenfolio
+//	Project: FishLamp
 //	Schema: ZenObjects
 //
 //	Copywrite 2011 GreenTongue Software, LLC. All rights reserved.

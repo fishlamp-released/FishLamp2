@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project fileUrl="http://www.zenfolio.com/api/1.6/zfapi.asmx?WSDL" projectName="myZenfolio WebAPI" companyName="GreenTongue Software, LLC">
+<project fileUrl="http://www.zenfolio.com/api/1.6/zfapi.asmx?WSDL" projectName="FishLamp Connect Zenfolio API" companyName="GreenTongue Software, LLC">
     <generatorOptions>
         <disabled>NO</disabled>
         <generateAllIncludesFile>YES</generateAllIncludesFile>

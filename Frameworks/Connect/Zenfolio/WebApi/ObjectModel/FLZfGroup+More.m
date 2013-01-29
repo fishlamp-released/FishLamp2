@@ -1,6 +1,6 @@
 //
 //	FLZfZfGroup+More.m
-//	MyZen
+//	FishLamp
 //
 //	Created by Mike Fullerton on 10/24/09.
 //	Copyright 2009 GreenTongue Software. All rights reserved.

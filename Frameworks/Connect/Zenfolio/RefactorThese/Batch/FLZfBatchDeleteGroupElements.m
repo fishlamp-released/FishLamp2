@@ -1,6 +1,6 @@
 //
 //	FLZfBatchDeleteGroupElements.m
-//	MyZen
+//	FishLamp
 //
 //	Created by Mike Fullerton on 2/24/11.
 //	Copyright 2011 GreenTongue Software. All rights reserved.

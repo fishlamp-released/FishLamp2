@@ -1,6 +1,6 @@
 //
 //	FLBatchMovePhotos.h
-//	MyZen
+//	FishLamp
 //
 //	Created by Mike Fullerton on 2/25/11.
 //	Copyright 2011 GreenTongue Software. All rights reserved.

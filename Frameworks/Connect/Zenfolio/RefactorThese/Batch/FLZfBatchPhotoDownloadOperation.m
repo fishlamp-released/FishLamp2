@@ -3,10 +3,10 @@
 //  ZenfolioDownloader
 //
 //  Created by patrick machielse on 20-8-07.
-//  Copyright 2007 Zenfolio, Inc.. All rights reserved.
+//  Copyright 2007 GreenTongue Software, LLC.. All rights reserved.
 //
 
-#import "FLCocoaUIRequired.h"
+#import "FishLampCocoa.h"
 #import "FLZfBatchPhotoDownloadOperation.h"
 #import "FLZfUtilities.h"
 #import "FLAction.h"

@@ -1,6 +1,6 @@
 //
 //  FLZfUploadQueue.h
-//  ZenBrowser
+//  FishLamp
 //
 //  Created by Mike Fullerton on 8/11/12.
 //  Copyright (c) 2012 GreenTongue Software, LLC. All rights reserved.

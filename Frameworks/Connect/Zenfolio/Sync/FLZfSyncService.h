@@ -1,6 +1,6 @@
 //
 //	FLZfSyncService.h
-//	MyZen
+//	FishLamp
 //
 //	Created by Mike Fullerton on 7/18/10.
 //	Copyright 2010 GreenTongue Software. All rights reserved.

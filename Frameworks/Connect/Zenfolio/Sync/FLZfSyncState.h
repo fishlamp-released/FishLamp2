@@ -1,7 +1,7 @@
 //	This file was generated at 7/3/11 10:47 AM by PackMule. DO NOT MODIFY!!
 //
 //	FLZfSyncState.h
-//	Project: myZenfolio
+//	Project: FishLamp
 //	Schema: ZenObjects
 //
 //	Copywrite 2011 GreenTongue Software, LLC. All rights reserved.

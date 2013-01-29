@@ -1,6 +1,6 @@
 //
 //	FLZfSyncUpdateGroupSyncStatus.m
-//	MyZen
+//	FishLamp
 //
 //	Created by Mike Fullerton on 8/20/10.
 //	Copyright 2010 GreenTongue Software. All rights reserved.

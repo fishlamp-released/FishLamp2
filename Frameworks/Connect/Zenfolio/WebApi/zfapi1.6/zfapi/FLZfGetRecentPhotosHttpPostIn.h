@@ -1,7 +1,7 @@
 //	This file was generated at 3/10/12 1:14 PM by PackMule. DO NOT MODIFY!!
 //
 //	FLZfGetRecentPhotosHttpPostIn.h
-//	Project: myZenfolio WebAPI
+//	Project: FishLamp WebAPI
 //	Schema: FLZfApi1_6
 //
 //	Copywrite 2011 GreenTongue Software, LLC. All rights reserved.
