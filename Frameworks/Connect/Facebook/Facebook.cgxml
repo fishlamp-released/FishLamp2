@@ -5,7 +5,7 @@
         <disabled>NO</disabled>
         <generateAllIncludesFile>YES</generateAllIncludesFile>
         <objectsFolderName>GeneratedObjects</objectsFolderName>
-        <typePrefix>FL</typePrefix>
+        <typePrefix>FLFacebook</typePrefix>
     </generatorOptions>
     <typeDefinitions>
         <typeDefinition typeName="FLFacebookHttpRequest" dataType="Object"/>
