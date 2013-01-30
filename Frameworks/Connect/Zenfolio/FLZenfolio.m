@@ -1,27 +1,27 @@
 //
-//  FLZffLibraryMgr.m
+//  FLZenfoliofLibraryMgr.m
 //  FishLamp-iOS
 //
 //  Created by Fullerton Mike on 12/28/11.
 //  Copyright (c) 2011 GreenTongue Software, LLC. All rights reserved.
 //
 
-//#import "FLZfenfolioLibraryMgr.h"
+//#import "FLZenfolioenfolioLibraryMgr.h"
 //
 //#import "FLCachedImage.h"
-//#import "FLZfenfolioUtils.h"
+//#import "FLZenfolioenfolioUtils.h"
 //#import "FLCachedImageCacheBehavior.h"
-//#import "FLZfenfolioSyncState.h"
+//#import "FLZenfolioenfolioSyncState.h"
 //#import "FLAction.h"
 //#import "FLObjectCacheBehavior.h"
-//#import "FLZfenfolioRegisteredUserOperationAuthenticator.h"
+//#import "FLZenfolioenfolioRegisteredUserOperationAuthenticator.h"
 //#import "FLHttpImageDownloadNetworkResponseHandler.h"
 //#import "FLAction.h"
 //#import "FLReachableNetwork.h"
-//#import "FLZfenfolioSoapHttpRequestFactory.h"
+//#import "FLZenfolioenfolioSoapHttpRequestFactory.h"
 //#import "FLApplicationDataModel.h"
-//#import "FLZfenfolioErrors.h"
-//#import "FLUserLogin+FLZfAdditions.h"
+//#import "FLZenfolioenfolioErrors.h"
+//#import "FLUserLogin+ZenfolioAdditions.h"
 //
 //#if IOS
 //#import "UIDevice+FLExtras.h"
@@ -30,16 +30,16 @@
 #if MOVE_TO_MYZEN_APP
 FIXME("Move this to myZen iOS app");
 
-@implementation FLZfUser (Cache)
-FLSynthesizeCachedObjectHandlerProperty(FLZfUser);
+@implementation FLZenfolioUser (Cache)
+FLSynthesizeCachedObjectHandlerProperty(FLZenfolioUser);
 @end
 
-@implementation FLZfPhoto (Cache)
-FLSynthesizeCachedObjectHandlerProperty(FLZfPhoto);
+@implementation FLZenfolioPhoto (Cache)
+FLSynthesizeCachedObjectHandlerProperty(FLZenfolioPhoto);
 @end
 
-@implementation FLZfSyncState (Cache)
-FLSynthesizeCachedObjectHandlerProperty(FLZfSyncState);
+@implementation FLZenfolioSyncState (Cache)
+FLSynthesizeCachedObjectHandlerProperty(FLZenfolioSyncState);
 @end
 
 - (void) handleActionFailed:(FLAction*) action
@@ -68,21 +68,21 @@ FLSynthesizeCachedObjectHandlerProperty(FLZfSyncState);
 	[[FLReachableNetwork instance] startMonitoring];
 	
 // setup cache behaviors	
-	[FLZfGroup setSharedCacheBehavior:[FLObjectCacheBehavior objectCacheBehavior:5 cacheKey:[FLZfGroup IdKey]]];
-	[FLZfPhotoSet setSharedCacheBehavior:[FLObjectCacheBehavior objectCacheBehavior:5 cacheKey:[FLZfPhotoSet IdKey]]];
-	[FLZfUser setSharedCacheBehavior:[FLObjectCacheBehavior objectCacheBehavior:1 cacheKey:[FLZfUser LoginNameKey]]];
-	[FLZfPhoto setSharedCacheBehavior:[FLObjectCacheBehavior objectCacheBehavior:10 cacheKey:[FLZfPhoto IdKey]]];
-	[FLZfSyncState setSharedCacheBehavior:[FLObjectCacheBehavior objectCacheBehavior:25 cacheKey:[FLZfSyncState syncObjectIdKey]]];
-	[FLZfCachedCategories setSharedCacheBehavior:[FLObjectCacheBehavior objectCacheBehavior:1 cacheKey:[FLZfCachedCategories arrayIdKey]]];
+	[FLZenfolioGroup setSharedCacheBehavior:[FLObjectCacheBehavior objectCacheBehavior:5 cacheKey:[FLZenfolioGroup IdKey]]];
+	[FLZenfolioPhotoSet setSharedCacheBehavior:[FLObjectCacheBehavior objectCacheBehavior:5 cacheKey:[FLZenfolioPhotoSet IdKey]]];
+	[FLZenfolioUser setSharedCacheBehavior:[FLObjectCacheBehavior objectCacheBehavior:1 cacheKey:[FLZenfolioUser LoginNameKey]]];
+	[FLZenfolioPhoto setSharedCacheBehavior:[FLObjectCacheBehavior objectCacheBehavior:10 cacheKey:[FLZenfolioPhoto IdKey]]];
+	[FLZenfolioSyncState setSharedCacheBehavior:[FLObjectCacheBehavior objectCacheBehavior:25 cacheKey:[FLZenfolioSyncState syncObjectIdKey]]];
+	[FLZenfolioCachedCategories setSharedCacheBehavior:[FLObjectCacheBehavior objectCacheBehavior:1 cacheKey:[FLZenfolioCachedCategories arrayIdKey]]];
 
 #if DEBUG
-	[FLZfSyncState sharedCacheBehavior].warnOnMainThreadLoad = NO;
-	[FLZfSyncState sharedCacheBehavior].warnOnMainThreadWrite = NO;
-	[FLZfSyncState sharedCacheBehavior].warnOnMainThreadDelete = NO;
+	[FLZenfolioSyncState sharedCacheBehavior].warnOnMainThreadLoad = NO;
+	[FLZenfolioSyncState sharedCacheBehavior].warnOnMainThreadWrite = NO;
+	[FLZenfolioSyncState sharedCacheBehavior].warnOnMainThreadDelete = NO;
 #endif	  
 
-// set up zf stuff	
-	[FLZfPhotoInfo setPhotoSizes];
+// set up Zenfolio stuff	
+	[FLZenfolioPhotoInfo setPhotoSizes];
 	[FLAction setGlobalFailedCallback:self action:@selector(handleActionFailed:)];
 
 // setup user session
@@ -101,8 +101,8 @@ FLSynthesizeCachedObjectHandlerProperty(FLZfSyncState);
     [[FLApplicationDataModel instance] saveUserLogin:userLogin];
     [[FLUserLoginService instance].documentsDatabase saveObject:userLogin];
 
-    FLZfPreferences* prefs = [FLZfPreferences loadPreferences];
-    prefs.hasScrapbookPrivilegeValue = [userLogin isPrivilegeEnabled:FLZfScrapbookPrivilege];
+    FLZenfolioPreferences* prefs = [FLZenfolioPreferences loadPreferences];
+    prefs.hasScrapbookPrivilegeValue = [userLogin isPrivilegeEnabled:FLZenfolioScrapbookPrivilege];
     prefs.didCheckScrapbookPrivilegeValue = YES;
     [prefs savePreferences];
 }

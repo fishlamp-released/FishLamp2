@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<schema projectName="FishLamp Connect" companyName="GreenTongue Software, LLC">
+    <generatorOptions>
+        <typePrefix>FLZenfolio</typePrefix>
+    </generatorOptions>
+    <objects>
+        <object typeName="FLZenfolioSharedFavoritesSet" protocols="NSCopying, NSCoding">
+            <properties>
+                <property type="string" name="sharedFavoritesSetId">
+                    <storageOptions isPrimaryKey="YES"/>
+                </property>
+                <property type="string" name="sharerName"/>
+                <property type="string" name="sharerMessage"/>
+                <property type="string" name="sharerEmail"/>
+                <property type="string" name="photographerLogin"/>
+                <property type="string" name="favoritesSetName"/>
+                <property type="NSMutableSet" name="photoIds"/>
+            </properties>
+        </object>
+    </objects>
+</schema>

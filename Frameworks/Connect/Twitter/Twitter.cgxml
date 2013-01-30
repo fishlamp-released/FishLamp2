@@ -5,7 +5,7 @@
         <disabled>NO</disabled>
         <generateAllIncludesFile>YES</generateAllIncludesFile>
         <objectsFolderName>GeneratedObjects</objectsFolderName>
-        <typePrefix>FL</typePrefix>
+        <typePrefix>FLTwitter</typePrefix>
     </generatorOptions>
     <!--
     <enumTypes>

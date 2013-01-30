@@ -1,5 +1,5 @@
 //
-//  FLZfWebApi.h
+//  FLZenfolioWebApi.h
 //  FishLampConnect
 //
 //  Created by Mike Fullerton on 1/29/13.
@@ -8,14 +8,17 @@
 
 #import "FishLampCocoa.h"
 #import "FLUserLogin.h"
-#import "FLUserLogin+ZfAdditions.h"
+#import "FLUserLogin+ZenfolioAdditions.h"
 
-#import "ZfApi1_6All.h"
-#import "FLZfAccessDescriptor+More.h"
-#import "FLZfGroup+More.h"
-#import "FLZfGroupElement+More.h"
-#import "FLZfPhoto+More.h"
-#import "FLZfPhotoSet+More.h"
-#import "FLZfUploadGallery+More.h"
-#import "FLZfUtils.h"
+#import "FLZenfolioApi1_6All.h"
+#import "FLZenfolioAccessDescriptor+More.h"
+#import "FLZenfolioGroup+More.h"
+#import "FLZenfolioGroupElement+More.h"
+#import "FLZenfolioPhoto+More.h"
+#import "FLZenfolioPhotoSet+More.h"
+#import "FLZenfolioUploadGallery+More.h"
+
+#import "FLZenfolioUtils.h"
+#import "FLZenfolioHttpRequest.h"
+
 
