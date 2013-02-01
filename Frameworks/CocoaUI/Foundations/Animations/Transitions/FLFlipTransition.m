@@ -13,29 +13,28 @@
 @synthesize flipDirection = _flipDirection;
 @synthesize perspectiveDistance = _perspectiveDistance;
 
-- (id) init {
-    self = [super init];
+- (id) initWithViewToShow:(UIView*) viewToShow 
+               viewToHide:(UIView*) viewToHide {
+               
+    self = [super initWithViewToShow:viewToShow viewToHide:viewToHide];
     if(self) {
         _perspectiveDistance = FLFlipAnimationDefaultPerspectiveDistance;
         self.duration = 5.5;
+
+        FLFlipAnimation* show = [FLFlipAnimation animationWithTarget:viewToShow];
+        show.flipDirection = _flipDirection;
+        show.showBothSidesDuringFlip = NO;
+        show.perspectiveDistance = _perspectiveDistance;
+        [self addAnimation:show];
+
+        FLFlipAnimation* hide = [FLFlipAnimation animationWithTarget:viewToHide];
+        hide.flipDirection = FLFlipAnimationDirectionOpposite(_flipDirection);;
+        hide.showBothSidesDuringFlip = NO;
+        hide.perspectiveDistance = _perspectiveDistance;
+        [self addAnimation:hide];
     }
+    
     return self;
-}
-
-- (void) addAnimationsForViewToShow:(UIView*) viewToShow 
-                         viewToHide:(UIView*) viewToHide {
-
-    FLFlipAnimation* show = [FLFlipAnimation animationWithTarget:viewToShow];
-    show.flipDirection = _flipDirection;
-    show.showBothSidesDuringFlip = NO;
-    show.perspectiveDistance = _perspectiveDistance;
-    [self addAnimation:show];
-
-    FLFlipAnimation* hide = [FLFlipAnimation animationWithTarget:viewToHide];
-    hide.flipDirection = FLFlipAnimationDirectionOpposite(_flipDirection);;
-    hide.showBothSidesDuringFlip = NO;
-    hide.perspectiveDistance = _perspectiveDistance;
-    [self addAnimation:hide];
 }
 
 + (id) transitionWithViewToShow:(UIView*) viewToShow 

@@ -30,12 +30,10 @@
     return popInAnimation;
 }
 
-- (void) setTarget:(id) target {
-    self.prepare = ^(id animation){
-        self.commit = ^{
-            CALayer* layer = [animation layerFromTarget:target];
-            [layer addAnimation:[FLPopInAnimation animationForLayer:layer] forKey:@"transform.scale"];    
-        };
+
+- (void) prepareAnimator:(FLAnimator*) animator {
+    animator.commit = ^{
+        [self.layer addAnimation:[FLPopInAnimation animationForLayer:self.layer] forKey:@"transform.scale"];    
     };
 }
 @end

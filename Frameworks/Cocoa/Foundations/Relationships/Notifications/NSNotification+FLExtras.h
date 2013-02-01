@@ -7,17 +7,14 @@
 //
 
 #import "FLCocoaRequired.h"
-#import "FishLampCore.h"
-
-#import "FLCancellable.h"
 
 extern NSString* const NSNotificationCancellableOperationKey;
 
 @interface NSNotification (FLExtras)
 
-+ (id)notificationWithName:(NSString *)aName object:(id)anObject cancellableOperation:(id<FLCancellable>) operation;
++ (id)notificationWithName:(NSString *)aName object:(id)anObject cancellableOperation:(id) operation;
 
-- (id<FLCancellable>) cancellableOperation;
+- (id) cancellableOperation;
 
 
 @end

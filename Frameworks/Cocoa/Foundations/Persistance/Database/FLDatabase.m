@@ -16,6 +16,7 @@
 #import "FLDatabase.h"
 #import "FLAppInfo.h"
 #import "FLSqlStatement.h"
+#import "FLFinisher.h"
 
 @interface FLDatabase ()
 @property (readwrite, assign) sqlite3* sqlite3;

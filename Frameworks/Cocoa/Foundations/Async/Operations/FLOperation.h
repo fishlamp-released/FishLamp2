@@ -6,20 +6,22 @@
 //	Copyright 2009 Greentongue Software. All rights reserved.
 //
 
-#import "FLDispatching.h"
+#import "FLDispatcher.h"
 #import "FLResult.h"
+#import "FLObserver.h"
+#import "FLFinisher.h"
 
 @class FLOperation;
 
 typedef FLResult (^FLRunOperationBlock)(FLOperation* operation);
 
 @protocol FLOperationDispatchingContext <NSObject>
-- (id<FLDispatching>) operationDispatcher:(FLOperation*) operation;
+- (id<FLDispatcher>) operationDispatcher:(FLOperation*) operation;
 - (void) operationDidStart:(FLOperation*) operation;
 - (void) operationDidFinish:(FLOperation*) operation;
 @end
 
-@interface FLOperation : NSObject<FLContextual, FLDispatchable> {
+@interface FLOperation : NSObject<FLAsyncWorker> {
 @private
 	id _operationID;
 	FLRunOperationBlock _runBlock;
@@ -84,11 +86,12 @@ typedef FLResult (^FLRunOperationBlock)(FLOperation* operation);
 
 typedef void (^FLOperationResultBlock)(FLResult result);
 
-@interface FLOperationObserver : FLMainThreadFinisher<FLOperationObserver> {
+@interface FLOperationObserver : FLObserver<FLOperationObserver> {
 @private
     dispatch_block_t _willRun;
     FLOperationResultBlock _didFinish;
 }
 @property (readwrite, copy, nonatomic) dispatch_block_t willRun;
+@property (readwrite, copy, nonatomic) FLOperationResultBlock didFinish;
 
 @end

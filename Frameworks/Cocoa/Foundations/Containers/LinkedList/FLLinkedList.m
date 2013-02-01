@@ -271,7 +271,7 @@
 - (id) pushObject:(id) object {
 
     [self _addObject:object adder:^(FLLinkedList* list){ 
-        [list _insertObject:object beforeObject:self.firstObject];
+        [list _insertObject:object beforeObject:list.firstObject];
     }];
 
     return object;
@@ -280,7 +280,7 @@
 - (id) addObject:(id) object {
 
     [self _addObject:object adder:^(FLLinkedList* list){ 
-        [list _insertObject:object afterObject:self.lastObject];
+        [list _insertObject:object afterObject:list.lastObject];
     }];
     
     return object;

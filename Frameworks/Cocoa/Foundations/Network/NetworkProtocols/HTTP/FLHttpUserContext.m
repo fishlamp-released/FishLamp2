@@ -47,7 +47,7 @@
     [_objects requestCancel];
 }
 
-- (id<FLDispatching>) httpRequestFifoDispatcher:(FLHttpRequest*) request {
+- (id<FLDispatcher>) httpRequestFifoDispatcher:(FLHttpRequest*) request {
     return _httpRequestQueue;
 }
 
@@ -55,7 +55,7 @@
     return _httpRequestAuthenticator;
 }
 
-- (id<FLDispatching>) operationDispatcher:(FLOperation*) operation {
+- (id<FLDispatcher>) operationDispatcher:(FLOperation*) operation {
     return FLDefaultDispatcher;
 }
 

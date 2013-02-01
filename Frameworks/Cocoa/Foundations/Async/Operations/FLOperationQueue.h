@@ -17,7 +17,7 @@ typedef void (^FLOperationQueueVisitor)(id operation, BOOL* stop);
 typedef id (^FLCreateOperationBlock)();
 
 
-@interface FLOperationQueue : FLOperation<FLContextual, NSFastEnumeration> {
+@interface FLOperationQueue : FLOperation<NSFastEnumeration> {
 @private
 	NSMutableArray* _operations;
     FLOperation* _currentOperation;

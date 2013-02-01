@@ -12,14 +12,10 @@
 @interface FLMoveAnimation : FLAnimation {
 }
 
-- (void) setTarget:(id) target
-        fromOrigin:(CGPoint) fromOrigin 
-          toOrigin:(CGPoint) toOrigin;
-
 // for subclasses
-- (void) prepareAnimationWithLayer:(CALayer*) layer 
-                        fromOrigin:(CGPoint) fromOrigin 
-                          toOrigin:(CGPoint) toOrigin;
+- (void) prepareAnimator:(FLAnimator*) animator
+              fromOrigin:(CGPoint) fromOrigin 
+                toOrigin:(CGPoint) toOrigin;
 
 @end
 

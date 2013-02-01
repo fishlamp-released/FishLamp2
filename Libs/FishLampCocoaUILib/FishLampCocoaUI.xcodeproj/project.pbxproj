@@ -195,15 +195,6 @@
 		2753D49B1694AD1A001B8856 /* FLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D4941694AD1A001B8856 /* FLViewController.m */; };
 		2753D49C1694AD1A001B8856 /* FLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D4941694AD1A001B8856 /* FLViewController.m */; };
 		2753D49D1694AD1A001B8856 /* FLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D4941694AD1A001B8856 /* FLViewController.m */; };
-		2753D4AC1694D6CC001B8856 /* FLBatchAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D4AA1694D6CC001B8856 /* FLBatchAnimation.h */; };
-		2753D4AD1694D6CC001B8856 /* FLBatchAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D4AA1694D6CC001B8856 /* FLBatchAnimation.h */; };
-		2753D4AE1694D6CC001B8856 /* FLBatchAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D4AA1694D6CC001B8856 /* FLBatchAnimation.h */; };
-		2753D4AF1694D6CC001B8856 /* FLBatchAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D4AA1694D6CC001B8856 /* FLBatchAnimation.h */; };
-		2753D4B01694D6CC001B8856 /* FLBatchAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D4AB1694D6CC001B8856 /* FLBatchAnimation.m */; };
-		2753D4B11694D6CC001B8856 /* FLBatchAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D4AB1694D6CC001B8856 /* FLBatchAnimation.m */; };
-		2753D4B21694D6CC001B8856 /* FLBatchAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D4AB1694D6CC001B8856 /* FLBatchAnimation.m */; };
-		2753D4B31694D6CC001B8856 /* FLBatchAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D4AB1694D6CC001B8856 /* FLBatchAnimation.m */; };
-		2753D4B41694D6CC001B8856 /* FLBatchAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D4AB1694D6CC001B8856 /* FLBatchAnimation.m */; };
 		27CBBFEE16768BA600753D0A /* FishLampCocoa-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27D1E5C1166D355C00DB680E /* FishLampCocoa-Prefix.pch */; };
 		27D1E5C2166D355C00DB680E /* FishLampCocoa-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27D1E5C1166D355C00DB680E /* FishLampCocoa-Prefix.pch */; };
 		27D1E5C3166D355C00DB680E /* FishLampCocoa-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27D1E5C1166D355C00DB680E /* FishLampCocoa-Prefix.pch */; };
@@ -761,8 +752,6 @@
 		2753D47C1694AC1C001B8856 /* FLStatusBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLStatusBarViewController.m; sourceTree = "<group>"; };
 		2753D4931694AD1A001B8856 /* FLViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLViewController.h; sourceTree = "<group>"; };
 		2753D4941694AD1A001B8856 /* FLViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLViewController.m; sourceTree = "<group>"; };
-		2753D4AA1694D6CC001B8856 /* FLBatchAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLBatchAnimation.h; sourceTree = "<group>"; };
-		2753D4AB1694D6CC001B8856 /* FLBatchAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLBatchAnimation.m; sourceTree = "<group>"; };
 		2798DB81166D8A7F00A0863D /* SharedTargetSettings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = SharedTargetSettings.xcconfig; sourceTree = "<group>"; };
 		27A43AB415CDCC89001CB13E /* libFishLampCocoaUI-iOS-ARC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoaUI-iOS-ARC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27A43AC415CDCCCB001CB13E /* libFishLampCocoaUI-OSX-64-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoaUI-OSX-64-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1079,8 +1068,6 @@
 				271E3E12169373DA00FB62C9 /* Animations */,
 				78329B75167E97C10024E8DC /* FLAnimation.h */,
 				78329B76167E97C10024E8DC /* FLAnimation.m */,
-				2753D4AA1694D6CC001B8856 /* FLBatchAnimation.h */,
-				2753D4AB1694D6CC001B8856 /* FLBatchAnimation.m */,
 				271E3E341693743000FB62C9 /* FLTransition.h */,
 				271E3E351693743200FB62C9 /* FLTransition.m */,
 				271E3DFB169373B800FB62C9 /* Transitions */,
@@ -1437,7 +1424,6 @@
 				2753D4721694ABD6001B8856 /* FLStatusBarView.h in Headers */,
 				2753D47D1694AC1C001B8856 /* FLStatusBarViewController.h in Headers */,
 				2753D4951694AD1A001B8856 /* FLViewController.h in Headers */,
-				2753D4AC1694D6CC001B8856 /* FLBatchAnimation.h in Headers */,
 				2731CC951695FC6D00465E6C /* FLWidget.h in Headers */,
 				2731CCA616962E1900465E6C /* FLDrawableString.h in Headers */,
 				2731CCB11696552400465E6C /* FLCoreText.h in Headers */,
@@ -1524,7 +1510,6 @@
 				2753D4741694ABD6001B8856 /* FLStatusBarView.h in Headers */,
 				2753D47F1694AC1C001B8856 /* FLStatusBarViewController.h in Headers */,
 				2753D4971694AD1A001B8856 /* FLViewController.h in Headers */,
-				2753D4AE1694D6CC001B8856 /* FLBatchAnimation.h in Headers */,
 				2731CC971695FC6D00465E6C /* FLWidget.h in Headers */,
 				2731CCA816962E1900465E6C /* FLDrawableString.h in Headers */,
 				2731CCB31696552400465E6C /* FLCoreText.h in Headers */,
@@ -1611,7 +1596,6 @@
 				2753D4731694ABD6001B8856 /* FLStatusBarView.h in Headers */,
 				2753D47E1694AC1C001B8856 /* FLStatusBarViewController.h in Headers */,
 				2753D4961694AD1A001B8856 /* FLViewController.h in Headers */,
-				2753D4AD1694D6CC001B8856 /* FLBatchAnimation.h in Headers */,
 				2731CC961695FC6D00465E6C /* FLWidget.h in Headers */,
 				2731CCA716962E1900465E6C /* FLDrawableString.h in Headers */,
 				2731CCB21696552400465E6C /* FLCoreText.h in Headers */,
@@ -1698,7 +1682,6 @@
 				2753D4751694ABD6001B8856 /* FLStatusBarView.h in Headers */,
 				2753D4801694AC1C001B8856 /* FLStatusBarViewController.h in Headers */,
 				2753D4981694AD1A001B8856 /* FLViewController.h in Headers */,
-				2753D4AF1694D6CC001B8856 /* FLBatchAnimation.h in Headers */,
 				2731CC981695FC6D00465E6C /* FLWidget.h in Headers */,
 				2731CCA916962E1900465E6C /* FLDrawableString.h in Headers */,
 				2731CCB41696552400465E6C /* FLCoreText.h in Headers */,
@@ -1902,7 +1885,6 @@
 				2753D4771694ABD6001B8856 /* FLStatusBarView.m in Sources */,
 				2753D4821694AC1C001B8856 /* FLStatusBarViewController.m in Sources */,
 				2753D49A1694AD1A001B8856 /* FLViewController.m in Sources */,
-				2753D4B11694D6CC001B8856 /* FLBatchAnimation.m in Sources */,
 				2731CC9A1695FC6D00465E6C /* FLWidget.m in Sources */,
 				2731CCAB16962E1900465E6C /* FLDrawableString.m in Sources */,
 				2731CCB61696552400465E6C /* FLCoreText.m in Sources */,
@@ -1984,7 +1966,6 @@
 				2753D4791694ABD6001B8856 /* FLStatusBarView.m in Sources */,
 				2753D4841694AC1C001B8856 /* FLStatusBarViewController.m in Sources */,
 				2753D49C1694AD1A001B8856 /* FLViewController.m in Sources */,
-				2753D4B31694D6CC001B8856 /* FLBatchAnimation.m in Sources */,
 				2731CC9C1695FC6D00465E6C /* FLWidget.m in Sources */,
 				2731CCAD16962E1900465E6C /* FLDrawableString.m in Sources */,
 				2731CCB81696552400465E6C /* FLCoreText.m in Sources */,
@@ -2066,7 +2047,6 @@
 				2753D4761694ABD6001B8856 /* FLStatusBarView.m in Sources */,
 				2753D4811694AC1C001B8856 /* FLStatusBarViewController.m in Sources */,
 				2753D4991694AD1A001B8856 /* FLViewController.m in Sources */,
-				2753D4B01694D6CC001B8856 /* FLBatchAnimation.m in Sources */,
 				2731CC991695FC6D00465E6C /* FLWidget.m in Sources */,
 				2731CCAA16962E1900465E6C /* FLDrawableString.m in Sources */,
 				2731CCB51696552400465E6C /* FLCoreText.m in Sources */,
@@ -2148,7 +2128,6 @@
 				2753D4781694ABD6001B8856 /* FLStatusBarView.m in Sources */,
 				2753D4831694AC1C001B8856 /* FLStatusBarViewController.m in Sources */,
 				2753D49B1694AD1A001B8856 /* FLViewController.m in Sources */,
-				2753D4B21694D6CC001B8856 /* FLBatchAnimation.m in Sources */,
 				2731CC9B1695FC6D00465E6C /* FLWidget.m in Sources */,
 				2731CCAC16962E1900465E6C /* FLDrawableString.m in Sources */,
 				2731CCB71696552400465E6C /* FLCoreText.m in Sources */,
@@ -2230,7 +2209,6 @@
 				2753D47A1694ABD6001B8856 /* FLStatusBarView.m in Sources */,
 				2753D4851694AC1C001B8856 /* FLStatusBarViewController.m in Sources */,
 				2753D49D1694AD1A001B8856 /* FLViewController.m in Sources */,
-				2753D4B41694D6CC001B8856 /* FLBatchAnimation.m in Sources */,
 				2731CC9D1695FC6D00465E6C /* FLWidget.m in Sources */,
 				2731CCAE16962E1900465E6C /* FLDrawableString.m in Sources */,
 				2731CCB91696552400465E6C /* FLCoreText.m in Sources */,

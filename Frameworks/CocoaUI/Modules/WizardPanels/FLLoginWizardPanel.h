@@ -9,7 +9,6 @@
 #import "FishLampCocoa.h"
 #import "FLWizardPanel.h"
 #import "FLWizardViewController.h"
-#import "FLFinisher.h"
 
 @protocol FLLoginWizardPanelDelegate;
 
@@ -19,7 +18,7 @@
     IBOutlet NSSecureTextField* _passwordEntryField;
     IBOutlet NSButton* _savePasswordCheckBox;
     IBOutlet NSButton* _forgotPasswordButton;
-    id<FLLoginWizardPanelDelegate> _delegate;
+    __unsafe_unretained id<FLLoginWizardPanelDelegate> _delegate;
 }
 
 @property (readonly, strong, nonatomic) NSTextField* userNameTextField;

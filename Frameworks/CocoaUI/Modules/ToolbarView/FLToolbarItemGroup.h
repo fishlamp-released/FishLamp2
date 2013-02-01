@@ -21,7 +21,7 @@ typedef void (^FLButtonPress)(id button);
 @interface FLToolbarItemGroup : NSObject  {
 @private
     FLToolbarItemAlignment _viewAlignment;
-    __weak FLToolbarView* _parentToolbarView;
+    __unsafe_unretained FLToolbarView* _parentToolbarView;
     NSMutableArray* _items;
     CGRect _frame;
     FLArrangement* _itemArrangement;
@@ -29,7 +29,7 @@ typedef void (^FLButtonPress)(id button);
 
 @property (readwrite, strong, nonatomic) FLArrangement* itemArrangement;
 
-@property (readonly, weak, nonatomic) FLToolbarView* parentToolbarView;
+@property (readonly, assign, nonatomic) FLToolbarView* parentToolbarView;
 @property (readonly, assign, nonatomic) NSUInteger count;
 
 @property (readwrite, assign, nonatomic) FLToolbarItemAlignment viewAlignment;

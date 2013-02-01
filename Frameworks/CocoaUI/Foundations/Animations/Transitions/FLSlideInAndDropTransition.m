@@ -14,12 +14,18 @@
 
 @implementation FLSlideInAndDropTransition
 
-- (void) addAnimationsForViewToShow:(UIView*) viewToShow 
-                         viewToHide:(UIView*) viewToHide {
-    [self addAnimation:[FLFadeOutAnimation animationWithTarget:viewToHide]];
-    [self addAnimation:[FLDropBackAnimation animationWithTarget:viewToHide]];
-    [self addAnimation:[FLSlideInFromRightAnimation animationWithTarget:viewToShow]];
-    [self addAnimation:[FLFadeInAnimation animationWithTarget:viewToShow]];
+- (id) initWithViewToShow:(UIView*) viewToShow 
+               viewToHide:(UIView*) viewToHide {
+               
+    self = [super initWithViewToShow:viewToShow viewToHide:viewToHide];
+    if(self) {
+        [self addAnimation:[FLFadeOutAnimation animationWithTarget:viewToHide]];
+        [self addAnimation:[FLDropBackAnimation animationWithTarget:viewToHide]];
+        [self addAnimation:[FLSlideInFromRightAnimation animationWithTarget:viewToShow]];
+        [self addAnimation:[FLFadeInAnimation animationWithTarget:viewToShow]];
+    }
+    
+    return self;
 }
 
 @end

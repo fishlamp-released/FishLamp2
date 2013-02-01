@@ -27,39 +27,39 @@
     return fade;                      
 }                           
 
-- (void) setTarget:(id) target 
-       fromOpacity:(CGFloat) fromOpacity 
-         toOpacity:(CGFloat) toOpacity {
+- (void) prepareAnimator:(FLAnimator*) animator 
+             fromOpacity:(CGFloat) fromOpacity 
+               toOpacity:(CGFloat) toOpacity {
     
-    self.prepare = ^(id animation) {
-        CALayer* layer = [animation layerFromTarget:target];
-        layer.opacity = fromOpacity;
-        layer.hidden = NO;
-        
-        self.commit = ^{
-            [layer addAnimation:[FLFadeAnimation animationForLayer:layer fromOpacity:fromOpacity toOpacity:toOpacity] forKey:@"opacity"];
-            [layer setOpacity:toOpacity];
-        };
+    CALayer* layer = self.layer;
+    layer.opacity = fromOpacity;
+    layer.hidden = NO;
+
+    animator.commit = ^{
+        [layer addAnimation:[FLFadeAnimation animationForLayer:layer fromOpacity:fromOpacity toOpacity:toOpacity] forKey:@"opacity"];
+        [layer setOpacity:toOpacity];
     };
+
 }
 
 @end
 
 @implementation FLFadeInAnimation
 
-- (void) setTarget:(id) target {
-    [self setTarget:target fromOpacity:0.0 toOpacity:1.0];
+- (void) prepareAnimator:(FLAnimator*) animator {
+    [self prepareAnimator:animator fromOpacity:0.0 toOpacity:1.0];
 }
 
 @end
 
 @implementation FLFadeOutAnimation
 
-- (void) setTarget:(id) target {
-    [self setTarget:target fromOpacity:1.0 toOpacity:0.0];
-    CALayer* layer = [self layerFromTarget:target];
+- (void) prepareAnimator:(FLAnimator*) animator {
 
-    self.finish = ^{
+    [self prepareAnimator:animator fromOpacity:1.0 toOpacity:0.0];
+
+    CALayer* layer = self.layer;
+    animator.finish = ^{
         layer.hidden = YES;
         [layer setOpacity:1.0];
     };

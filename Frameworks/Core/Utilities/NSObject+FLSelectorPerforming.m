@@ -148,7 +148,6 @@ void FLConfirmNoReturnObject_(id obj) {
 
 @end
 
-extern
 BOOL FLPerformSelectorWithThreeObjects(id target, SEL selector, id withObject1, id withObject2, id withObject3) {
 
     if(target && selector && [target respondsToSelector:selector]) {
@@ -169,5 +168,32 @@ BOOL FLPerformSelectorWithThreeObjects(id target, SEL selector, id withObject1, 
 
     return NO;
 } 
+
+BOOL FLPerformSelectorWithArgCount(id target, SEL selector, int argCount, id object1, id object2, id object3) {
+
+    switch(argCount) {
+        case 0: 
+            return FLPerformSelector(target, selector);
+        break;
+
+        case 1: 
+            return FLPerformSelector1(target, selector, object1);
+        break;
+        
+        case 2: 
+            return FLPerformSelector2(target, selector, object1, object2);
+        break;
+
+        case 3: 
+            return FLPerformSelector3(target, selector, object1, object2, object3);
+        break;
+        
+        default:
+            FLAssertFailed_v(@"Unsupported arg count: %d", argCount);
+            break;
+    }
+    
+    return NO;
+}
 
 #pragma GCC diagnostic pop

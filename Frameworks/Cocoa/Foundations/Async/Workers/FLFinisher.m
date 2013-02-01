@@ -11,10 +11,9 @@
 
 @interface FLFinisher ()
 @property (readwrite, strong) FLResult result;
-@property (readwrite, copy) dispatch_block_t notificationCompletionBlock;
 @property (readwrite, assign, getter=isFinished) BOOL finished;
-- (void) finishFinishing;
-
+- (void) finishFinishing:(dispatch_block_t) completion;
+@property (readwrite, copy) FLFinisherResultBlock didFinish;
 
 #if DEBUG
 @property (readwrite, strong) FLStackTrace* createdStackTrace;
@@ -26,9 +25,8 @@
 @implementation FLFinisher
 @synthesize didFinish = _didFinish;
 @synthesize result = _result;
-@synthesize scheduleNotificationBlock = _scheduleNotificationBlock;
-@synthesize notificationCompletionBlock = _notificationCompletionBlock;
 @synthesize finished = _finished;
+@synthesize finishOnMainThread = _finishOnMainThread;
 
 #if DEBUG
 @synthesize createdStackTrace = _createdStackTrace;
@@ -70,11 +68,7 @@
     [_createdStackTrace release];
     [_finishedStackTrace release];
 #endif    
-
-    [_willStart release];
     [_didFinish release];
-    [_scheduleNotificationBlock release];
-    [_notificationCompletionBlock release];
     [_result release];
     [super dealloc];
 #endif
@@ -118,23 +112,26 @@
     return self.result;
 }
 
-- (void) finishFinishing {
+- (void) finishFinishing:(dispatch_block_t) finishedBlock {
 
     if(_didFinish) {
         _didFinish(self.result);
     }
 
-    if(_notificationCompletionBlock) { 
-        _notificationCompletionBlock();
-        self.notificationCompletionBlock = nil;
+    if(finishedBlock) { 
+        finishedBlock();
     }
 
     self.finished = YES;
+
+    [self postObservation:@selector(finisher:didFinishWithResult:) fromObject:self withObject:self.result];
 
     if(_semaphore) {
  //       FLLog(@"releasing semaphor for %X, ont thread %@", (void*) _semaphore, [NSThread currentThread]);
         dispatch_semaphore_signal(_semaphore);
     }
+    
+    
 }
 
 - (void) setFinishedWithResult:(id) result 
@@ -149,20 +146,18 @@
         self.result = result;
     }
     
-    self.notificationCompletionBlock = completion;
-
 #if DEBUG
     self.finishedStackTrace = FLCreateStackTrace(YES);
 #endif
     
-    if(_scheduleNotificationBlock) {
-        _scheduleNotificationBlock(^{
-            [self finishFinishing];
+    if(self.finishOnMainThread && ![NSThread isMainThread]) {
+        FLSafeguardBlock(completion);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self finishFinishing:completion];
         });
-        self.scheduleNotificationBlock = nil;
     }
     else {
-        [self finishFinishing];
+        [self finishFinishing:completion];
     } 
 }                    
 
@@ -174,23 +169,23 @@
     [self setFinishedWithResult:FLSuccessfullResult completion:nil];
 }
 
-+ (FLFinisherNotificationSchedulerBlock) scheduleNotificationInMainThreadBlock {
-    static FLFinisherNotificationSchedulerBlock s_block = ^(dispatch_block_t notifier) {
-        if(![NSThread isMainThread]) {
-            
-            FLSafeguardBlock(notifier);
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
-                notifier();
-            });    
-        }
-        else {
-            notifier();
-        }
-    }; 
-
-    return s_block;
-}
+//+ (FLFinisherNotificationSchedulerBlock) scheduleNotificationInMainThreadBlock {
+//    static FLFinisherNotificationSchedulerBlock s_block = ^(dispatch_block_t notifier) {
+//        if(![NSThread isMainThread]) {
+//            
+//            FLSafeguardBlock(notifier);
+//            
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                notifier();
+//            });    
+//        }
+//        else {
+//            notifier();
+//        }
+//    }; 
+//
+//    return s_block;
+//}
 
 #if DEBUG    
 - (NSString*) description {
@@ -206,27 +201,41 @@
             [string appendLine:[_finishedStackTrace description]];
         }];
     }
-    
-
     return string.string;
 }
 #endif
 
 @end
+//
+//@implementation FLMainThreadFinisher 
+//- (id) initWithResultBlock:(FLResultBlock) completion {
+//    self = [super initWithResultBlock:completion];
+//    if(self) {
+//        if([NSThread isMainThread]) {
+//            self.scheduleNotificationBlock = [FLFinisher scheduleNotificationInMainThreadBlock];
+//        }
+//    }
+//    return self;
+//}
+//
+//@end
 
-@implementation FLMainThreadFinisher 
-- (id) initWithResultBlock:(FLResultBlock) completion {
-    self = [super initWithResultBlock:completion];
-    if(self) {
-        if([NSThread isMainThread]) {
-            self.scheduleNotificationBlock = [FLFinisher scheduleNotificationInMainThreadBlock];
-        }
+@implementation FLFinisher (FLDispatcher)
+
+- (void) setWillStartInDispatcher:(id<FLDispatcher>) dispatcher {    
+    [self postObservation:@selector(finisher:willStartInDispatcher:) fromObject:self withObject:dispatcher];
+}
+
+- (void) setWillBeDispatchedByDispatcher:(id<FLDispatcher>) dispatcher {
+
+    if([NSThread isMainThread]) {
+        self.finishOnMainThread = YES;
     }
-    return self;
+
+    [self postObservation:@selector(finisher:wasDispatchedInDispatcher:) fromObject:self withObject:dispatcher];
 }
 
 @end
-
 
 
 

@@ -13,6 +13,8 @@
 
 static void * const s_queue_key = (void*)&s_queue_key;
 
+
+
 @implementation FLDispatchQueue
 
 @synthesize dispatch_queue_t = _dispatch_queue;
@@ -85,11 +87,15 @@ static void * const s_queue_key = (void*)&s_queue_key;
 
 
 - (void) dispatchBlockWithDelay:(NSTimeInterval) delay
-                                 block:(dispatch_block_t) block 
-                          withFinisher:(FLFinisher*) finisher {
+                          block:(FLDispatcherBlock) block 
+                   withFinisher:(FLFinisher*) finisher {
+
+    [finisher setWillBeDispatchedByDispatcher:self];
  
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (delay * NSEC_PER_SEC)), _dispatch_queue, ^{
         @try {
+            [finisher setWillStartInDispatcher:self];
+            
             if(block) {
                 block();
             }
@@ -102,11 +108,15 @@ static void * const s_queue_key = (void*)&s_queue_key;
 }                                 
 
 
-- (void) dispatchBlock:(dispatch_block_t) block 
+- (void) dispatchBlock:(FLDispatcherBlock) block 
           withFinisher:(FLFinisher*) finisher {
+
+    [finisher setWillBeDispatchedByDispatcher:self];
     
     dispatch_async(_dispatch_queue, ^{
         @try {
+            [finisher setWillStartInDispatcher:self];
+            
             if(block) {
                 block();
             }
@@ -118,11 +128,15 @@ static void * const s_queue_key = (void*)&s_queue_key;
     });
 }
 
-- (void) dispatchFinishableBlock:(FLFinishableBlock) block 
+- (void) dispatchFinishableBlock:(FLDispatcherFinisherBlock) block 
                     withFinisher:(FLFinisher*) finisher {
     
+    [finisher setWillBeDispatchedByDispatcher:self];
+
     dispatch_async(_dispatch_queue, ^{
         @try {
+            [finisher setWillStartInDispatcher:self];
+            
             if(block) {
                 block(finisher);
             }
@@ -150,9 +164,6 @@ static void * const s_queue_key = (void*)&s_queue_key;
 }    
 
 
-- (void) dispatchBlockSynchronously:(dispatch_block_t) block {
-
-}
 
 @end
 

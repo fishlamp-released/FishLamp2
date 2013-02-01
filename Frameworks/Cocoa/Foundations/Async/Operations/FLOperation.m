@@ -132,7 +132,7 @@ NSString* const FLOperationFinishedEvent;
     [self didMoveToContext:context];
     [self.context operationDidStart:self];
     
-    id<FLDispatching> dispatcher = nil;
+    id<FLDispatcher> dispatcher = nil;
     
     if([self.context respondsToSelector:@selector(operationDispatcher:)]) {
         dispatcher = [self.context operationDispatcher:self];
@@ -164,6 +164,20 @@ NSString* const FLOperationFinishedEvent;
     [super dealloc];
 }
 #endif
+
+- (void) operationWillRun:(FLOperation*) operation {
+    if(_willRun) {
+        _willRun();
+    }
+}
+
+- (void) operationDidFinish:(FLOperation*) operation 
+                 withResult:(FLResult) withResult {
+    if(_didFinish) {
+        _didFinish(withResult);
+    }
+}                 
+
 
 @end
 //

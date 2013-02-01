@@ -20,6 +20,7 @@
 #import "FLDatabaseColumnDecoder.h"
 #import "FLDatabaseStatement.h"
 #import "FLDispatchQueue.h"
+#import "FLFinisher.h"
 
 @interface FLDatabase : NSObject {
 @private

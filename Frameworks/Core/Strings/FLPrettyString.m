@@ -40,16 +40,20 @@
     return self;
 }
 
+- (id) init {
+    return [self initWithWhitespace:[FLPrettyString defaultWhitespace]];
+}
+
 + (id) prettyString:(FLWhitespace*) whitespace {
     return FLAutorelease([[[self class] alloc] initWithWhitespace:whitespace]);
 }
 
 + (id) prettyString {
-    return FLAutorelease([[[self class] alloc] initWithWhitespace:[self defaultWhitespace]]);
+    return FLAutorelease([[[self class] alloc] init]);
 }
 
 + (id) prettyStringWithString:(NSString*) string {
-    FLPrettyString* prettyString = FLAutorelease([[[self class] alloc] initWithWhitespace:[self defaultWhitespace]]);
+    FLPrettyString* prettyString = FLAutorelease([[[self class] alloc] init]);
     [prettyString appendString:string];
     return prettyString;
 }
@@ -76,6 +80,8 @@
 
 - (void) stringFormatter:(FLStringFormatter*) stringFormatter 
             appendString:(NSString*) string {
+    FLAssertNotNil_(_string);
+    FLAssertNotNil_(_whitespace);
     
     if(FLStringIsNotEmpty(string)) {
 
@@ -91,6 +97,7 @@
 }            
 
 - (NSString*) stringFormatterGetString:(FLStringFormatter*) stringFormatter {
+    FLAssertNotNil_(_string);
     return _string;
 }
 
