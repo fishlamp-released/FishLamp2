@@ -22,9 +22,11 @@
 //@property (readonly, strong, nonatomic) FLWizardPanel* nextWizardPanel;
 //@property (readonly, strong, nonatomic) FLWizardPanel* previousWizardPanel;
 @property (readonly, strong, nonatomic) NSArray* wizardPanels;
+@property (readwrite, strong, nonatomic) NSWindow* modalWindow;
 
 - (IBAction) respondToNextButton:(id) sender;
 - (IBAction) respondToBackButton:(id) sender;
+
 @end
 
 @implementation FLWizardViewController
@@ -41,6 +43,7 @@
 @synthesize breadcrumbBar = _breadcrumbBar;
 @synthesize currentPanelIndex = _currentPanel;
 @synthesize userContext = _context;
+@synthesize modalWindow = _modalWindow;
 
 - (NSUInteger) panelCount {
     return _panels.count;
@@ -63,7 +66,7 @@
     [_backButton release];
     [_breadcrumbBar release];
     [_userContext release];
-
+    [_modalWindow release];
     [_panels release];
     [super dealloc];
 #endif
@@ -465,6 +468,31 @@
     
     [self showWizardPanelAnimated:NO withIndex:[self indexForKey:key] completion:nil];
 }
+
+- (void) showModalSheet:(NSWindow*) sheet {
+    self.modalWindow = sheet;
+    
+    [[NSApplication sharedApplication] beginSheet:sheet  
+                                   modalForWindow:self.view.window
+                                   modalDelegate:self 
+                                   didEndSelector:@selector(sheetDidEnd:returnCode:contextInfo:) 
+                                      contextInfo:nil];
+                                      
+    _modalSession = [NSApp beginModalSessionForWindow:self.view.window];
+    [NSApp runModalSession:_modalSession];
+    [self.modalWindow makeFirstResponder:self.modalWindow];
+}
+
+- (void)sheetDidEnd:(NSWindow*)window 
+         returnCode:(NSInteger)returnCode 
+        contextInfo:(void*)contextInfo {
+
+    [NSApp endModalSession:_modalSession];
+    [self.modalWindow orderOut:self.modalWindow];
+    _modalSession = nil;
+    self.modalWindow = nil;
+}
+
 
 
 //- (void) flipToNextNotificationViewWithDirection:(FLFlipAnimationDirection) direction 

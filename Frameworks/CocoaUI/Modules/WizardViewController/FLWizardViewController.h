@@ -41,6 +41,9 @@ typedef FLWizardPanel* (^FLWizardPanelFactory)();
     id _userContext;
     
     FLBreadcrumbBarViewController* _breadcrumbBar;
+    
+    NSWindow* _modalWindow;
+    NSModalSession _modalSession;
 }
 
 @property (readwrite, strong, nonatomic) id userContext;
@@ -107,6 +110,9 @@ typedef FLWizardPanel* (^FLWizardPanelFactory)();
 
 - (void) willStartWizardInWindow:(NSWindow*) window;
 - (void) didStartWizardInWindow:(NSWindow*) window;
+
+- (void) showModalSheet:(NSWindow*) window;
+//    [self.window setDefaultButtonCell:[_button cell]];
 
 @end
 
