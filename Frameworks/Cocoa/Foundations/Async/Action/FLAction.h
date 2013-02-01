@@ -30,7 +30,7 @@ typedef void (^FLActionErrorBlock)(FLAction* action, NSError* error);
 @protocol FLActionErrorDelegate;
 @protocol FLActionDelegate;
 
-@interface FLAction : NSObject<FLActionDescription, FLWeaklyReferenced, FLDispatchable> {
+@interface FLAction : NSObject<FLActionDescription, FLWeaklyReferenced, FLAsyncWorker> {
 @private
     FLOperationQueue* _operations;
 

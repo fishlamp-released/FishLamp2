@@ -9,7 +9,7 @@
 #import "FLCocoaRequired.h"
 #import "FLTimeoutTimer.h"
 #import "FLResult.h"
-#import "FLDispatching.h"
+#import "FLDispatcher.h"
 
 @protocol FLStream <NSObject>
 @property (readonly, assign) BOOL isOpen;

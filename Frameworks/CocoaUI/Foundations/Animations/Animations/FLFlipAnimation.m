@@ -81,9 +81,9 @@
 
 }
 
-- (void) setTarget:(id) target {
+- (void) prepareAnimator:(FLAnimator*) animator  {
 
-    CALayer* layer = [self layerFromTarget:target];
+    CALayer* layer = self.layer;
 
     layer.doubleSided = _showBothSidesDuringFlip;
     
@@ -99,22 +99,18 @@
     
     CAAnimation* flipAnimation = [FLFlipAnimation createFlipAnimationForLayer:layer withFlipDirection:_flipDirection];
 
-    self.prepare = ^(id animation){
-
 //        [FLFlipAnimation addPerspectiveToLayer:layer withPerspectiveDistance:_perspectiveDistance];
     
-        self.commit = ^{
-            [layer addAnimation:flipAnimation forKey:@"flip"];    
-        };
-
-        self.finish = ^{
-            layer.anchorPoint = anchorPoint;
-            layer.position = position;
-        
-//            [self prepareLayerForFlip:FLFlipAnimationDirectionOpposite(_flipDirection)];
-        };  
-
+    animator.commit = ^{
+        [layer addAnimation:flipAnimation forKey:@"flip"];    
     };
+
+    animator.finish = ^{
+        layer.anchorPoint = anchorPoint;
+        layer.position = position;
+    
+//            [self prepareLayerForFlip:FLFlipAnimationDirectionOpposite(_flipDirection)];
+    };  
 }
 
 

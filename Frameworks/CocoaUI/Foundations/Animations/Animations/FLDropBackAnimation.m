@@ -31,9 +31,9 @@
 
 } 
 
-- (void) setTarget:(id) target {
+- (void) prepareAnimator:(FLAnimator*) animator {
 
-    CALayer* layer = [self layerFromTarget:target];     
+    CALayer* layer = self.layer;     
     layer.transform = CATransform3DIdentity;
     layer.hidden = NO;
     
@@ -44,12 +44,12 @@
     scale.toValue =     [NSValue valueWithCATransform3D:transform];
     scale.removedOnCompletion = YES;
 
-    self.commit = ^{
+    animator.commit = ^{
         [layer addAnimation:scale forKey:@"transform"];
         layer.transform = transform;
     };
 
-    self.finish = ^{
+    animator.finish = ^{
         layer.hidden = YES;
         layer.transform = CATransform3DIdentity;
     };

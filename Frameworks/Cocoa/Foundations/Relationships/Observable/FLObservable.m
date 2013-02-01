@@ -310,7 +310,7 @@
 }
 
 - (NSUInteger)hash {
-    return (NSUInteger) _selector;
+    return (NSUInteger) sel_getName(_selector);
 }
 
 - (NSString*) description {
@@ -514,7 +514,9 @@
                                 block(fromObject, data);
                             } 
                             else {
-                                [target performSelector:target.selector withObject:fromObject withObject:data];
+                                FLPerformSelector2(target, target.selector, fromObject, data);
+                            
+//                                [target performSelector:target.selector withObject:fromObject withObject:data];
                             }           
                         });
                     }

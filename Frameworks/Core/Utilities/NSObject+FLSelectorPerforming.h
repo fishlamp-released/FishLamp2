@@ -35,3 +35,10 @@ extern id FLReturnValueForOptionalProperty(id object, SEL property);
 #define FLPerformSelector1 FLPerformSelectorWithObject
 #define FLPerformSelector2 FLPerformSelectorWithTwoObjects
 #define FLPerformSelector3 FLPerformSelectorWithThreeObjects
+
+extern BOOL FLPerformSelectorWithArgCount(id target, 
+                                          SEL selector, 
+                                          int argCount, // 0-3 only
+                                          id object1, 
+                                          id object2, 
+                                          id object3);

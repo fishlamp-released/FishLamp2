@@ -12,12 +12,12 @@ NSString* const NSNotificationCancellableOperationKey = @"FLCancellable";
 
 @implementation NSNotification (FLExtras)
 
-+ (id)notificationWithName:(NSString *)aName object:(id)anObject cancellableOperation:(id<FLCancellable>) operation
++ (id)notificationWithName:(NSString *)aName object:(id)anObject cancellableOperation:(id) operation
 {
 	return [NSNotification notificationWithName:aName object:anObject userInfo:[NSDictionary dictionaryWithObject:operation forKey:NSNotificationCancellableOperationKey]];
 }
 
-- (id<FLCancellable>) cancellableOperation
+- (id) cancellableOperation
 {
 	return [self.userInfo objectForKey:NSNotificationCancellableOperationKey];
 }

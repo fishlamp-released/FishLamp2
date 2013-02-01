@@ -8,21 +8,23 @@
 
 #import "FLCocoaRequired.h"
 #import "FLResult.h"
+#import "FLObserver.h"
+#import "FLDispatcher.h"
+
 @class FLFinisher;
 @class FLStackTrace;
 
 typedef void (^FLFinisherNotificationSchedulerBlock)(dispatch_block_t notifier);
-typedef void (^FLFinishableBlock)(FLFinisher* finisher);
 typedef void (^FLFinisherResultBlock)(FLResult result);
 
-@interface FLFinisher : NSObject {
+@interface FLFinisher : FLObserver {
 @private
-    id _result;
-    dispatch_block_t _notificationCompletionBlock;
     dispatch_semaphore_t _semaphore;
-    FLFinisherNotificationSchedulerBlock _scheduleNotificationBlock;
+    id _result;
     BOOL _finished;
-    
+    BOOL _finishOnMainThread;
+    FLFinisherResultBlock _didFinish;
+
 #if DEBUG
     FLStackTrace* _createdStackTrace;
     FLStackTrace* _finishedStackTrace;
@@ -32,15 +34,19 @@ typedef void (^FLFinisherResultBlock)(FLResult result);
 @property (readonly, strong) FLResult result;
 @property (readonly, assign, getter=isFinished) BOOL finished;
 
-// for rescheduling finish on different threads. 
-@property (readwrite, copy) FLFinisherNotificationSchedulerBlock scheduleNotificationBlock;
+@property (readwrite, assign) BOOL finishOnMainThread;
 
+// designated initializer
 - (id) initWithResultBlock:(FLResultBlock) resultBlock;
 
+// class instantiators
 + (id) finisher;
+
 + (id) finisher:(FLResultBlock) resultBlock;
+
 + (id) finisherWithResultBlock:(FLResultBlock) resultBlock;
 
+// notify finish with one of these
 - (void) setFinished;
 
 - (void) setFinishedWithResult:(id) result;
@@ -50,15 +56,20 @@ typedef void (^FLFinisherResultBlock)(FLResult result);
 
 // blocks in current thread. Will @throw error if [self.result error] 
 - (id) waitUntilFinished;
+@end
 
-// optional stuff
-
-+ (FLFinisherNotificationSchedulerBlock) scheduleNotificationInMainThreadBlock;
-
+@interface FLFinisher (FLDispatcher)
+- (void) setWillStartInDispatcher:(id<FLDispatcher>) dispatcher;
+- (void) setWillBeDispatchedByDispatcher:(id<FLDispatcher>) dispatcher;
 @end
 
 
-@interface FLMainThreadFinisher : FLFinisher
+@protocol FLFinisherObserving <NSObject>
+- (void) finisher:(FLFinisher*) finisher wasDispatchedInDispatcher:(id<FLDispatcher>) dispatcher;
+- (void) finisher:(FLFinisher*) finisher willStartInDispatcher:(id<FLDispatcher>) dispatcher;
+- (void) finisher:(FLFinisher*) finisher didFinishWithResult:(FLResult) result;
 @end
 
-
+@protocol FLAsyncWorker <NSObject>
+- (void) startWorking:(FLFinisher*) finisher;
+@end

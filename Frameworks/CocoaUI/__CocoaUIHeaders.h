@@ -10,7 +10,6 @@
 
 // Foundations/Animations
 #import "FLAnimation.h"
-#import "FLBatchAnimation.h"
 #import "FLTransition.h"
 
 // Foundations/Animations/Transitions

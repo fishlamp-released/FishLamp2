@@ -7,11 +7,12 @@
 //
 
 #import "FLCocoaRequired.h"
-#import "FLDispatching.h"
+#import "FLDispatcher.h"
 #import "FLReadStream.h"
 #import "FLResult.h"
 #import "FLHttpResponse.h"
 #import "FLHttpRequestBody.h"
+#import "FLFinisher.h"
 
 @class FLHttpRequest;
 @class FLFinisher;
@@ -22,7 +23,7 @@
 @end
 
 @protocol FLHttpRequestDispatchingContext <NSObject>
-- (id<FLDispatching>) httpRequestFifoDispatcher:(FLHttpRequest*) request;
+- (id<FLDispatcher>) httpRequestFifoDispatcher:(FLHttpRequest*) request;
 - (id<FLHttpRequestAuthenticator>) httpRequestAuthenticator:(FLHttpRequest*) request;
 - (void) httpRequestDidStart:(FLHttpRequest*) request;
 - (void) httpRequestDidFinish:(FLHttpRequest*) request;
@@ -30,7 +31,7 @@
 
 @protocol FLHttpRequestObserver;
 
-@interface FLHttpRequest : NSObject<FLReadStreamDelegate, FLDispatchable> {
+@interface FLHttpRequest : NSObject<FLReadStreamDelegate, FLAsyncWorker> {
 @private
     FLHttpRequestHeaders* _headers;
     FLHttpRequestBody* _body;
@@ -38,7 +39,7 @@
     FLMutableHttpResponse* _response;
     FLReadStream* _networkStream;
     id _context;
-    id<FLDispatching> _dispatcher;
+    id<FLDispatcher> _dispatcher;
     BOOL _authenticationDisabled;
 }
 
@@ -134,7 +135,7 @@ typedef void (^FLHttpRequestResultBlock)(FLResult result);
 typedef void (^FLHttpRequestErrorBlock)(NSError* result);
 typedef void (^FLHttpRequestByteBlock)(unsigned long count);
 
-@interface FLHttpRequestObserver : FLMainThreadFinisher<FLHttpRequestObserver> {
+@interface FLHttpRequestObserver : FLFinisher<FLHttpRequestObserver> {
 @private
     dispatch_block_t _willAuthenticate;
     dispatch_block_t _didAuthenticate;

@@ -9,27 +9,26 @@
 #import <Foundation/Foundation.h>
 
 @protocol FLObserver <NSObject>
-- (void) postObservation:(SEL) selector fromObject:(id) object;
+- (void) postObservation:(SEL) selector 
+              fromObject:(id) object;
 
 - (void) postObservation:(SEL) selector 
-              withObject:(id) object
-               fromObject:(id) object;
+               fromObject:(id) object
+              withObject:(id) object;
 
 - (void) postObservation:(SEL) selector 
+               fromObject:(id) object
               withObject:(id) object1 
-              withObject:(id) object2
-               fromObject:(id) object;
+              withObject:(id) object2;
 @end              
 
+#define FLObserverMaxListeners 5 // if you have more than that, you're doing it wrong.
 @interface FLObserver : NSObject<FLObserver> {
 @private
-    id _listener;
+    id _listeners[FLObserverMaxListeners];
+    NSUInteger _listenerCount;
 }
-@property (readonly, strong) id listener
-
-- (id) initWithListener:(id) listener;
-+ (id) observer:(id) listener;
-
+- (void) addListener:(id) listener;
 @end
 
 

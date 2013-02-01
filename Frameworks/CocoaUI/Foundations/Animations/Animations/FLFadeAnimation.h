@@ -12,10 +12,10 @@
 @private
 }
 
-- (void) setTarget:(id) target 
-       fromOpacity:(CGFloat) fromOpacity 
-         toOpacity:(CGFloat) toOpacity;
-
+- (void) prepareAnimator:(FLAnimator*) animator 
+             fromOpacity:(CGFloat) fromOpacity 
+               toOpacity:(CGFloat) toOpacity;
+               
 + (CAAnimation*) animationForLayer:(CALayer*) layer 
                          fromOpacity:(CGFloat) fromOpacity 
                            toOpacity:(CGFloat) toOpacity;

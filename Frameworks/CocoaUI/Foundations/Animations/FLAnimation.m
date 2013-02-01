@@ -7,6 +7,7 @@
 //
 
 #import "FLAnimation.h"
+#import "FLFinisher.h"
 
 @implementation CALayer (FLAnimation)
 - (CALayer*) layer {
@@ -14,61 +15,98 @@
 }
 @end
 
-@interface FLAnimation ()
-@end
+@implementation FLAnimator 
 
-@implementation FLAnimation
++ (id) animator {
+    return FLAutorelease([[[self class] alloc] init]);
+}
 
 @synthesize prepare = _prepare;
 @synthesize commit = _commit;
 @synthesize finish = _finish;
+
+#if FL_MRC
+- (void) dealloc {
+    [_prepare release];
+    [_commit release];
+    [_finish release];
+    [super dealloc];
+}
+#endif
+
+
+@end
+
+@interface FLAnimation ()
+@property (readwrite, strong, nonatomic) id target;
+@end
+
+@implementation FLAnimation
+
 @synthesize duration = _duration;
 @synthesize timingFunction = _timingFunction;
+@synthesize target = _target;
 
-- (id) init {
+- (id) initWithTarget:(id) target {
     self = [super init];
     if(self) {
         self.duration = 0.3f;
+        self.target = target;
     }
     return self;
 }
 
+- (id) init {
+    return [self initWithTarget:nil];
+}
+
 + (id) animation {
-    return FLAutorelease([[[self class] alloc] init]);
+    return FLAutorelease([[[self class] alloc] initWithTarget:nil]);
 }
 
 + (id) animationWithTarget:(id) target {
-    FLAnimation* animation = FLAutorelease([[[self class] alloc] init]);
-    if(target) {
-        [animation setTarget:target];
-    }
-    
-    return animation;
+    return FLAutorelease([[[self class] alloc] initWithTarget:nil]);
 }
 
-- (void) setTarget:(id) target {
+- (void) prepareAnimator:(FLAnimator*) animator  {
 }
 
 #if FL_MRC
 - (void) dealloc {
+    [_target release];
     [_timingFunction release];
-    [_prepare release];
-    [_commit release];
-    [_finish release];
     [_animations release];
     [super dealloc];
 }
 #endif
 
-- (void) openAnimation {
+- (FLAnimator*) prepareAnimatorWithTarget:(id) target {
+    FLAnimator* animator = [FLAnimator animator];
+    [self prepareAnimator:animator];
+    return animator;
+}
 
-    if(self.prepare) {
-        self.prepare(self);
+- (NSArray*) openAnimation:(void (^)()) didStartBlock {
+    
+    id target = self.target;
+    FLAnimator* firstAnimator = [self prepareAnimatorWithTarget:target];
+    
+    NSMutableArray* animators = nil;
+    if(_animations && _animations.count) {
+        animators = [NSMutableArray arrayWithCapacity:_animations.count + 1];
+        [animators addObject:firstAnimator];
+
+        for(FLAnimation* animation in _animations) {
+            [animators addObject:[animation prepareAnimatorWithTarget:target]];
+        }
     }
-
-    for(FLAnimation* animation in _animations) {
-        if(animation.prepare) {
-            animation.prepare(animation);
+    else {
+        animators = [NSArray arrayWithObject:firstAnimator];
+    }
+    
+    for(FLAnimator* animator in animators) { 
+        if(animator.prepare) {
+            animator.prepare();
         }
     }
 
@@ -78,9 +116,17 @@
     if(self.timingFunction) {
         [CATransaction setAnimationTimingFunction:[CAMediaTimingFunction functionWithName:self.timingFunction]];
     }
+    
+    if(didStartBlock) {
+        didStartBlock();
+    }
+    
+    return animators;
 }
 
-- (void) closeAnimation:(void (^)()) completion {
+- (void) closeAnimation:(NSArray*) animators 
+             completion:(void (^)()) completion {
+
     FLSafeguardBlock(completion);
 
     [CATransaction setCompletionBlock:^{
@@ -88,14 +134,11 @@
         [CATransaction begin];
         [CATransaction setValue:[NSNumber numberWithBool:YES] forKey:kCATransactionDisableActions];
 
-        for(FLAnimation* animation in _animations) {
-            if(animation.finish) {
-                animation.finish();
+        // finish in reverse order, so enclosing animations runs after enclosed animations for finishing.
+        for(FLAnimator* animator in animators.reverseObjectEnumerator) {
+            if(animator.finish) {
+                animator.finish();
             }
-        }
-   
-        if(self.finish) {
-            self.finish();
         }
         
         [CATransaction commit];
@@ -104,51 +147,40 @@
             completion();
         }
     }];
-
     
-    for(FLAnimation* animation in _animations) {
-        if(animation.commit) {
-            animation.commit();
+    for(FLAnimator* animator in animators) {
+        if(animator.commit) {
+            animator.commit();
         }
     }
-
-    if(self.commit) {
-        self.commit();
-    }    
-    
+   
     [CATransaction commit];
 }
 
 - (void) startAnimating:(void (^)()) didStartBlock
              completion:(void (^)()) completion {
-
-    [self openAnimation];
-    if(didStartBlock) {
-        didStartBlock();
-    }
-    [self closeAnimation:completion];
+    [self closeAnimation:[self openAnimation:didStartBlock] completion:completion];
 }   
 
-- (void) startWorking:(FLFinisher*) finisher {
-    [self openAnimation];
-    [self closeAnimation:^{
-        [finisher setFinished];
-    }];
-}             
+//- (void) startWorking:(FLFinisher*) finisher {
+//    [self closeAnimation:[self openAnimation:nil] completion:^{
+//        [finisher setFinished];
+//    }];
+//}             
                 
 - (void) startAnimating:(void (^)()) completion {
-    [self startAnimating:nil completion:completion];
+    [self closeAnimation:[self openAnimation:nil] completion:completion];
 }
 
 - (void) startAnimating {
-    [self startAnimating:nil completion:nil];
+    [self closeAnimation:[self openAnimation:nil] completion:nil];
 }
 
-- (CALayer*) layerFromTarget:(id) target {
-    FLAssertNotNil_(target);
-    FLAssertNotNil_([target layer]);
-    FLAssertNotNil_([target layer].superlayer);
-    return [target layer];
+- (CALayer*) layer {
+    FLAssertNotNil_(_target);
+    FLAssertNotNil_([_target layer]);
+    FLAssertNotNil_([_target layer].superlayer);
+    return [_target layer];
 }
 
 - (void) addAnimation:(FLAnimation*) animation {

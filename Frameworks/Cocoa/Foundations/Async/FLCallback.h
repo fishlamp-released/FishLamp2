@@ -7,7 +7,6 @@
 //
 
 #import "FLCocoaRequired.h"
-#import "FLDispatchable.h"
 #import "FLArgumentList.h"
 
 typedef void (^FLCallbackBlock)(FLArgumentList* args);
@@ -36,17 +35,18 @@ typedef void (^FLCallbackBlock)(FLArgumentList* args);
 @end
 
 
-@interface FLStashedCallback : FLCallback<FLDispatchable> {
-@private
-    FLArgumentList* _arguments;
-}
+//@interface FLStashedCallback : FLCallback<FLAsyncWorker> {
+//@private
+//    FLArgumentList* _arguments;
+//}
+//
+//@property (readonly, strong, nonatomic) FLArgumentList* arguments;
+//
+//- (id) initWithTarget:(id) target action:(SEL) action arguments:(FLArgumentList*) arguments;
+//- (id) initWithBlock:(FLCallbackBlock) block arguments:(FLArgumentList*) arguments;
+//
+//+ (id) callbackWithTarget:(id) target action:(SEL) action arguments:(FLArgumentList*) arguments;
+//+ (id) callbackWithBlock:(FLCallbackBlock) block arguments:(FLArgumentList*) arguments;
+//
+//@end
 
-@property (readonly, strong, nonatomic) FLArgumentList* arguments;
-
-- (id) initWithTarget:(id) target action:(SEL) action arguments:(FLArgumentList*) arguments;
-- (id) initWithBlock:(FLCallbackBlock) block arguments:(FLArgumentList*) arguments;
-
-+ (id) callbackWithTarget:(id) target action:(SEL) action arguments:(FLArgumentList*) arguments;
-+ (id) callbackWithBlock:(FLCallbackBlock) block arguments:(FLArgumentList*) arguments;
-
-@end

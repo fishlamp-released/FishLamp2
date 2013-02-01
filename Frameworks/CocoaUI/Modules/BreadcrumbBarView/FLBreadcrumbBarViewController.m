@@ -80,7 +80,7 @@
     view.title = string;
     view.key = key;
     view.touched = ^{
-        [self.delegate breadcrumbBar:self  breadcrumbWasClicked:view.key];
+        [self.delegate breadcrumbBar:self  breadcrumbWasClicked:key];
     };
     [_breadcrumbs addObject:view];
     [self.view addSubview:view];

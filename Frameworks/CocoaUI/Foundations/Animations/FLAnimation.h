@@ -13,27 +13,37 @@
 typedef void (^FLAnimationPrepareBlock)(id animation);
 typedef void (^FLAnimationBlock)();
 
-@interface FLAnimation : NSObject<FLDispatchable> {
-@private
-    FLAnimationPrepareBlock _prepare;
+@interface FLAnimator : NSObject {
+    FLAnimationBlock _prepare;
     FLAnimationBlock _commit;
     FLAnimationBlock _finish;
-    CGFloat _duration;
-    NSString* _timingFunction;
-    
-    NSMutableArray* _animations;
 }
-
-@property (readwrite, copy, nonatomic) FLAnimationPrepareBlock prepare;
+@property (readwrite, copy, nonatomic) FLAnimationBlock prepare;
 @property (readwrite, copy, nonatomic) FLAnimationBlock commit;
 @property (readwrite, copy, nonatomic) FLAnimationBlock finish;
+@end
+
+@interface FLAnimation : NSObject {
+@private
+    CGFloat _duration;
+    NSString* _timingFunction;
+    NSMutableArray* _animations;
+    id _target;
+}
+
+@property (readonly, strong, nonatomic) id target;
+@property (readonly, strong, nonatomic) CALayer* layer; 
 
 // these only apply to the animation upon which beginAnimation was called.
 @property (readwrite, assign, nonatomic) CGFloat duration;
 @property (readwrite, strong, nonatomic) NSString* timingFunction;
 
-+ (id) animation;
+- (id) initWithTarget:(id) target;
 
++ (id) animation;
++ (id) animationWithTarget:(id) target;
+
+// to animated call one of these
 - (void) startAnimating;
 
 - (void) startAnimating:(void (^)()) completion;
@@ -41,13 +51,10 @@ typedef void (^FLAnimationBlock)();
 - (void) startAnimating:(void (^)()) didStartBlock
              completion:(void (^)()) completion;
 
-+ (id) animationWithTarget:(id) target;
+// override this and set the blocks in the animator
+- (void) prepareAnimator:(FLAnimator*) animator;
 
-- (void) setTarget:(id) target;
-
-// utils
-- (CALayer*) layerFromTarget:(id) target;
-
+// use this to add child animations
 - (void) addAnimation:(FLAnimation*) animation;
 
 @end

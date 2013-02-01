@@ -62,6 +62,9 @@
             
 #define FLDefaultDispatcher \
             [FLDispatchQueue sharedDefaultQueue]
+
+#define FLDefaultQueue \
+            FLDefaultDispatcher
             
 #define FLForegroundQueue \
             [FLDispatchQueue sharedForegroundQueue]
@@ -71,9 +74,10 @@
 
 
 
-@interface FLDispatchContext : NSObject {
-@private
-    NSMutableArray* _objects;
-}
+//@interface FLDispatchContext : NSObject {
+//@private
+//    NSMutableArray* _objects;
+//}
+//
+//@end
 
-@end

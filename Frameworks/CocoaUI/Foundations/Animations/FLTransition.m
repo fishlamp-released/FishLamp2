@@ -8,36 +8,48 @@
 
 #import "FLTransition.h"
 
+@interface FLTransition ()
+@property (readwrite, strong, nonatomic) UIView* viewToShow;
+@property (readwrite, strong, nonatomic) UIView* viewToHide; 
+@end
+
 @implementation FLTransition
 
-- (id) init {
+@synthesize viewToShow = _viewToShow;
+@synthesize viewToHide = _viewToHide;
 
-    self = [super init];
+- (id) initWithViewToShow:(UIView*) viewToShow 
+               viewToHide:(UIView*) viewToHide {
+
+    self = [super initWithTarget:nil];
     if(self) {
+        self.viewToShow = viewToShow;
+        self.viewToHide = viewToHide;
         self.timingFunction = kCAMediaTimingFunctionEaseInEaseOut;
         self.duration = 0.5;
-    
     }
 
     return self;
 }
 
-//- (id) initWithViewToShow:(UIView*) viewToShow 
-//               viewToHide:(UIView*) viewToHide {
-//
-//    self = [super init];
-//    if(self) {
-//        if(viewToShow) {
-//            [self setViewToShow:viewToShow viewToHide:viewToHide];
-//        }
-//    }
-//
-//    return self;
-//}
+#if FL_MRC
+- (void) dealloc {
+    [_viewToShow release];
+    [_viewToHide release];
+    [super dealloc];
+}
+#endif
 
 
++ (id) transitionWithViewToShow:(UIView*) viewToShow 
+                     viewToHide:(UIView*) viewToHide {
+    return FLAutorelease([[[self class] alloc] initWithViewToShow:viewToShow viewToHide:viewToHide]);
+}
 
-- (void) setViewToShow:(UIView*) viewToShow viewToHide:(UIView*) viewToHide {
+- (void) prepareAnimator:(FLAnimator*) animator {
+
+    UIView* viewToShow = self.viewToShow;
+    UIView* viewToHide = self.viewToHide;
 
     FLAssertNotNil_(viewToShow);
     FLAssertNotNil_(viewToHide);
@@ -55,28 +67,9 @@
                               relativeTo:viewToHide];
     }
 
-    self.finish = ^{
+    animator.finish = ^{
         [viewToHide removeFromSuperview];
     };
-
-    [self addAnimationsForViewToShow:viewToShow viewToHide:viewToHide];
 }
-
-+ (id) transitionWithViewToShow:(UIView*) viewToShow 
-                     viewToHide:(UIView*) viewToHide  {
-    FLTransition* transition = FLAutorelease([[[self class] alloc] init]);
-    if(viewToShow) {
-        [transition setViewToShow:viewToShow viewToHide:viewToHide];
-    }
-
-    return transition;
-}
-
-- (void) addAnimationsForViewToShow:(UIView*) viewToShow 
-                         viewToHide:(UIView*) viewToHide {
-                         
-}                         
-
-
 
 @end

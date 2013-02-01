@@ -24,6 +24,41 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		2739693916B9CAC700EFDA6C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27EA1E9216B84D340018CDB2 /* FishLampConnect.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 27A43AB415CDCC89001CB13E;
+			remoteInfo = "FishLampConnect-iOS-ARC";
+		};
+		2739693B16B9CAC700EFDA6C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27EA1E9216B84D340018CDB2 /* FishLampConnect.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 27048EF0161CB58600C38ADA;
+			remoteInfo = "FishLampConnect-OSX-32-MRC";
+		};
+		2739693D16B9CAC700EFDA6C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27EA1E9216B84D340018CDB2 /* FishLampConnect.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 27A43AC415CDCCCB001CB13E;
+			remoteInfo = "FishLampConnect-OSX-64-MRC";
+		};
+		2739693F16B9CAC700EFDA6C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27EA1E9216B84D340018CDB2 /* FishLampConnect.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 27314C79165328400027850D;
+			remoteInfo = "FishLampConnect-OSX-64-ARC";
+		};
+		2739694116B9CAC700EFDA6C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27EA1E9216B84D340018CDB2 /* FishLampConnect.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 27CBC1F416768BA600753D0A;
+			remoteInfo = "FishLampConnect-OSX-3264-MRC";
+		};
 		27F1F3DC16A0920000B10213 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 27B4F2F9169A3E5500D56DFA /* FishLampCore.xcodeproj */;
@@ -341,6 +376,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2739692916B9CAC700EFDA6C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2739693A16B9CAC700EFDA6C /* libFishLampConnect-iOS-ARC.a */,
+				2739693C16B9CAC700EFDA6C /* libFishLampConnect-OSX-32-MRC.a */,
+				2739693E16B9CAC700EFDA6C /* libFishLampConnect-OSX-64-MRC.a */,
+				2739694016B9CAC700EFDA6C /* libFishLampConnect-OSX-64-ARC.a */,
+				2739694216B9CAC700EFDA6C /* libFishLampConnect-OSX-3264-MRC.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		27B4F2DA169A3E4500D56DFA = {
 			isa = PBXGroup;
 			children = (
@@ -628,6 +675,10 @@
 					ProjectRef = 27B4F2FF169A3E5500D56DFA /* FishLampCompatibility.xcodeproj */;
 				},
 				{
+					ProductGroup = 2739692916B9CAC700EFDA6C /* Products */;
+					ProjectRef = 27EA1E9216B84D340018CDB2 /* FishLampConnect.xcodeproj */;
+				},
+				{
 					ProductGroup = 27F1F3D516A0920000B10213 /* Products */;
 					ProjectRef = 27B4F2F9169A3E5500D56DFA /* FishLampCore.xcodeproj */;
 				},
@@ -645,6 +696,41 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		2739693A16B9CAC700EFDA6C /* libFishLampConnect-iOS-ARC.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libFishLampConnect-iOS-ARC.a";
+			remoteRef = 2739693916B9CAC700EFDA6C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2739693C16B9CAC700EFDA6C /* libFishLampConnect-OSX-32-MRC.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libFishLampConnect-OSX-32-MRC.a";
+			remoteRef = 2739693B16B9CAC700EFDA6C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2739693E16B9CAC700EFDA6C /* libFishLampConnect-OSX-64-MRC.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libFishLampConnect-OSX-64-MRC.a";
+			remoteRef = 2739693D16B9CAC700EFDA6C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2739694016B9CAC700EFDA6C /* libFishLampConnect-OSX-64-ARC.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libFishLampConnect-OSX-64-ARC.a";
+			remoteRef = 2739693F16B9CAC700EFDA6C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2739694216B9CAC700EFDA6C /* libFishLampConnect-OSX-3264-MRC.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libFishLampConnect-OSX-3264-MRC.a";
+			remoteRef = 2739694116B9CAC700EFDA6C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		27F1F3DD16A0920000B10213 /* libFishLampCore-iOS-ARC.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;

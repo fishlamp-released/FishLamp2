@@ -155,7 +155,7 @@
 
     if(self.underlined) {
         [string addAttribute:(NSString*) NSUnderlineStyleAttributeName 
-            value:bridge_(id, [NSNumber numberWithBool:YES])
+            value:[NSNumber numberWithBool:YES]
             range:range];
     }
     

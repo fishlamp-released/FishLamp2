@@ -15,7 +15,7 @@
 //
 //typedef void (^FLToolTaskBlock)(FLParseableInput* argument);
 //
-//@interface FLToolTask : NSObject<FLParseable> {
+//@interface FLToolTask : NSObject<FLSimpleInputParser> {
 //@private
 //    NSMutableSet* _argumentKeys;
 //    NSString* _taskDescription; 

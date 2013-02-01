@@ -7,49 +7,58 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "FLDispatching.h"
+#import "FLResult.h"
 
-@protocol FLDispatcherDelegate;
+@class FLFinisher;
 
-@interface FLDispatcher : NSObject<FLDispatching> {
-@private
-    __unsafe_unretained id<FLDispatcherDelegate> _delegate;
+typedef void (^FLDispatcherBlock)();
+typedef void (^FLDispatcherFinisherBlock)(FLFinisher* finisher);
+typedef void (^FLDispatcherResultBlock)(FLResult result);
+
+@protocol FLDispatcher <NSObject>
+// 
+// block dispatching
+//
+- (FLFinisher*) dispatchBlockWithDelay:(NSTimeInterval) delay
+                                 block:(FLDispatcherBlock) block;
+
+- (FLFinisher*) dispatchBlock:(FLDispatcherBlock) block;
+
+- (FLFinisher*) dispatchBlock:(FLDispatcherBlock) block
+                   completion:(FLDispatcherResultBlock) completion;
+
+- (FLFinisher*) dispatchFinishableBlock:(FLDispatcherFinisherBlock) block;
+
+- (FLFinisher*) dispatchFinishableBlock:(FLDispatcherFinisherBlock) block
+                             completion:(FLDispatcherResultBlock) completion;
+
+// 
+// FLAsyncDispatchable dispatching
+// 
+
+- (FLFinisher*) dispatchObject:(id /*FLAsyncWorker*/) dispatchableObject;
+
+- (FLFinisher*) dispatchObject:(id /*FLAsyncWorker*/) dispatchableObject 
+                    completion:(FLDispatcherResultBlock) completion;
+                    
+@end                    
+
+@interface FLDispatcher : NSObject<FLDispatcher> {
 }
 
-@property (readwrite, assign) id<FLDispatcherDelegate> delegate;
-
 // required overrides. these are the bottlenecks
-- (void) dispatchBlock:(dispatch_block_t) block 
+- (void) dispatchBlock:(FLDispatcherBlock) block 
               withFinisher:(FLFinisher*) finisher;
 
-- (void) dispatchFinishableBlock:(FLFinishableBlock) block 
+- (void) dispatchFinishableBlock:(FLDispatcherFinisherBlock) block 
               withFinisher:(FLFinisher*) finisher;
 
 - (void) dispatchBlockWithDelay:(NSTimeInterval) delay
-                                 block:(dispatch_block_t) block 
+                                 block:(FLDispatcherBlock) block 
                           withFinisher:(FLFinisher*) finisher;
 
 // optional overrides
-- (FLFinisher*) createFinisher:(FLCompletionBlock) completionBlock;
-
-@end
-
-@protocol FLDispatcherDelegate <NSObject> 
-@optional
-
-- (void) dispatcher:(FLDispatcher*) dispatcher 
- willDispatchObject:(id) object;
-
-- (void) dispatcher:(FLDispatcher*) dispatcher 
-  didDispatchObject:(id) object;                                        
-
-- (void) dispatcher:(FLDispatcher*) dispatcher 
-dispatchFinishableBlock:(FLFinishableBlock) block 
-         withFinisher:(FLFinisher*) finisher;
-         
-- (void) dispatcher:(FLDispatcher*) dispatcher
-      dispatchBlock:(dispatch_block_t) block 
-       withFinisher:(FLFinisher*) finisher;         
+- (FLFinisher*) createFinisher:(FLDispatcherResultBlock) completionBlock;
 
 @end
 

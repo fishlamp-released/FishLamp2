@@ -13,8 +13,8 @@
 
 @synthesize scale = _scale;
 
-- (id) init {
-    self = [super init];
+- (id) initWithTarget:(id) target {
+    self = [super initWithTarget:target];
     if(self) {
         _scale = FLDropBackAnimationDefaultScale;
     }
@@ -29,21 +29,18 @@
     return scale;
 }
 
-- (void) setTarget:(id) target {
+- (void) prepareAnimator:(FLAnimator*) animator {
+
+    CALayer* layer = self.layer;
     
+    layer.transform = [FLDropBackAnimation transformForFrame:layer.frame withScale:_scale];
+    layer.hidden = NO;
     
-    self.prepare = ^(id animation) {
-        
-        CALayer* layer = [animation layerFromTarget:target];
-        layer.transform = [FLDropBackAnimation transformForFrame:layer.frame withScale:_scale];
-        layer.hidden = NO;
-        
-        CAAnimation* comeforward = [FLComeForwardAnimation animationForLayer:layer];
-        
-        self.commit = ^{
-            [layer addAnimation:comeforward forKey:@"transform"];
-            layer.transform =  CATransform3DIdentity;
-        };
+    CAAnimation* comeforward = [FLComeForwardAnimation animationForLayer:layer];
+    
+    animator.commit = ^{
+        [layer addAnimation:comeforward forKey:@"transform"];
+        layer.transform =  CATransform3DIdentity;
     };
 }
 

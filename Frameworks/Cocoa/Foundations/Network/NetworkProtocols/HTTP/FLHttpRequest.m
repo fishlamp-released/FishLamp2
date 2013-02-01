@@ -12,7 +12,7 @@
 #import "FLReadStream.h"
 #import "FishLampCore.h"
 #import "FLHttpMessage.h"
-#import "FLDispatching.h"
+#import "FLDispatcher.h"
 #import "FLDispatchQueue.h"
 
 //#if IOS
@@ -24,7 +24,7 @@
 @interface FLHttpRequest ()
 @property (readwrite, strong) FLHttpResponse* httpResponse;
 @property (readwrite, strong) FLReadStream* networkStream;
-@property (readwrite, strong) id<FLDispatching> dispatcher;
+@property (readwrite, strong) id<FLDispatcher> dispatcher;
 @property (readwrite, strong) id observer;
 @property (readwrite, strong) id context;
 
@@ -377,7 +377,7 @@
     [self.context httpRequestDidStart:self];
     self.observer = observer;
 
-    id<FLDispatching> dispatcher = nil;
+    id<FLDispatcher> dispatcher = nil;
     if([self.context respondsToSelector:@selector(httpRequestFifoDispatcher:)]) {
         dispatcher = [self.context httpRequestFifoDispatcher:self];
     }

@@ -17,9 +17,7 @@
 
 // Foundations/Async/Context
 #import "FLAuthenticatedContext.h"
-#import "FLContextuallyDispatchable.h"
 #import "FLDispatchableContext.h"
-#import "FLObjectAuthenticator.h"
 
 // Foundations/Async
 #import "FLArgumentList.h"
@@ -39,11 +37,9 @@
 #import "FLPerformSelectorOperation.h"
 
 // Foundations/Async/Workers
-#import "FLCancellable.h"
-#import "FLDispatchable.h"
-#import "FLDispatching.h"
-#import "FLDispatchQueue.h"
 #import "FLFinisher.h"
+#import "FLDispatcher.h"
+#import "FLDispatchQueue.h"
 
 // Foundations/Async/Workers/Results
 #import "FLResult.h"

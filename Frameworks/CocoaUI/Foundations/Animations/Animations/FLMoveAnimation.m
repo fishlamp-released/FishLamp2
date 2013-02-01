@@ -21,47 +21,38 @@
     return moveFrame;
 }
 
-- (void) prepareAnimationWithLayer:(CALayer*) layer
-        fromOrigin:(CGPoint) fromOrigin 
-          toOrigin:(CGPoint) toOrigin {
+- (void) prepareAnimator:(FLAnimator*) animator
+              fromOrigin:(CGPoint) fromOrigin 
+                toOrigin:(CGPoint) toOrigin {
 
-    self.prepare = ^(id animation){
+    CALayer* layer = self.layer;
+    CAAnimation* moveFrame = [FLMoveAnimation animationForLayer:layer fromOrigin:fromOrigin toOrigin:toOrigin];
     
-        CAAnimation* moveFrame = [FLMoveAnimation animationForLayer:layer fromOrigin:fromOrigin toOrigin:toOrigin];
-        
-        [layer addAnimation:moveFrame forKey:@"position"];
+    [layer addAnimation:moveFrame forKey:@"position"];
 //        [layer setFrame:FLRectSetOriginWithPoint([layer frame], fromOrigin)];
 
-        [layer setPosition:fromOrigin];
+    [layer setPosition:fromOrigin];
 
-        
-        [animation setCommit:^{
-            [layer setPosition:toOrigin];
-        
+    animator.commit = ^{
+        [layer setPosition:toOrigin];
+    
 //#if OSX
 //        [[layer animator] setFrame:destFrame];
 //#else
 //        [layer setFrame:destFrame];
 //#endif    
-    
-        }];
-    };          
-}          
 
-- (void) setTarget:(id) target
-        fromOrigin:(CGPoint) fromOrigin 
-          toOrigin:(CGPoint) toOrigin {
-    [self prepareAnimationWithLayer:[self layerFromTarget:target] fromOrigin:fromOrigin toOrigin:toOrigin];
-}          
+    };
+}                  
 
 @end
 
 @implementation FLSlideInFromRightAnimation
 
-- (void) setTarget:(id) target {
+- (void) prepareAnimator:(FLAnimator*) animator {
     
-    CALayer* layer = [self layerFromTarget:target];
-    [self prepareAnimationWithLayer:layer 
+    CALayer* layer = self.layer;
+    [self prepareAnimator:animator 
          fromOrigin:CGPointMake(FLRectGetRight(layer.superlayer.bounds), layer.frame.origin.y) 
            toOrigin:layer.frame.origin];
 }
@@ -70,10 +61,10 @@
 
 @implementation FLSlideOutToRightAnimation
 
-- (void) setTarget:(id) target {
-    CALayer* layer = [self layerFromTarget:target];
-    [self prepareAnimationWithLayer:layer 
-         fromOrigin:layer.frame.origin 
+- (void) prepareAnimator:(FLAnimator*) animator {
+    CALayer* layer = self.layer;
+    [self prepareAnimator:animator 
+          fromOrigin:layer.frame.origin 
            toOrigin:CGPointMake(FLRectGetRight(layer.superlayer.bounds), layer.frame.origin.y) ];
 }
 
