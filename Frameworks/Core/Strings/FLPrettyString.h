@@ -10,6 +10,12 @@
 #import "FLStringFormatter.h"
 #import "FLWhitespace.h"
 
+@class FLPrettyString;
+
+@protocol FLBuildableString <NSObject>
+- (void) appendLinesToPrettyString:(FLPrettyString*) prettyString;
+@end
+
 @interface FLPrettyString : FLStringFormatter<NSCopying, FLStringFormatterDelegate> {
 @private
     NSMutableString* _string;
@@ -32,16 +38,19 @@
 
 + (id) prettyStringWithString:(NSString*) string;
 
-- (void) indent;
-- (void) outdent;
+- (void) appendPrettyString:(FLPrettyString*) string;
 
-- (void) indent:(void (^)()) block;
+- (void) appendBuildableString:(id<FLBuildableString>) buildableString;
 
+@end
+
+@interface FLPrettyString (Whitespace)
 + (FLWhitespace*) defaultWhitespace;
-
 @end
 
 @interface NSObject (FLStringFormatter)
 - (void) describe:(FLPrettyString*) formatter;
 - (NSString*) prettyDescription;
 @end
+
+

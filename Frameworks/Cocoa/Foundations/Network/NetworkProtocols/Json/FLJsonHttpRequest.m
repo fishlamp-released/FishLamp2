@@ -32,7 +32,11 @@
 
 - (void) willSendHttpRequest {
 //    if(self.json && self.json.lines.count > 0) {
-        NSData* content = [[FLStringBuilder buildStringWithNoWhiteSpace:self.json] dataUsingEncoding:NSUTF8StringEncoding];
+
+        FLPrettyString* jsonString = [FLPrettyString prettyString:nil];
+        [jsonString appendBuildableString:self.json];
+        NSData* content = [jsonString.string dataUsingEncoding:NSUTF8StringEncoding];
+        
         [self.body setContentWithData:content typeContentHeader:@"application/json; charset=utf-8"];
 //    }
 }

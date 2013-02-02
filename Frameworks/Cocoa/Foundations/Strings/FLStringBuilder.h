@@ -6,16 +6,10 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import "FLRequired.h"
+#import "FLCocoaRequired.h"
 #import "FLWhitespace.h"
 #import "FLStringFormatter.h"
 #import "FLPrettyString.h"
-
-@class FLStringBuilderLine;
-
-@protocol FLBuildableString <NSObject>
-- (void) appendLinesToPrettyString:(FLPrettyString*) prettyString;
-@end
 
 @interface FLStringBuilder : FLStringFormatter<FLStringFormatterDelegate, FLBuildableString> {
 @private
@@ -34,15 +28,4 @@
 - (void) didMoveToParent:(id) parent;
 @end
 
-@interface FLStringBuilder (StringBuilding)
 
-+ (FLWhitespace*) defaultWhitespace;
-
-+ (NSString*) buildString:(id<FLBuildableString>) buildableString 
-           withWhitespace:(FLWhitespace*) whitespace;
-           
-+ (NSString*) buildStringWithNoWhiteSpace:(id<FLBuildableString>) buildableString;
-
-+ (NSString*) buildString:(id<FLBuildableString>) buildableString;
-
-@end

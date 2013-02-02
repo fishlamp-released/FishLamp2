@@ -7,7 +7,7 @@
 //
 
 #import "FLXmlElement.h"
-#import "FLXmlStringBuilder.h"
+#import "FLXmlDocumentBuilder.h"
 
 @interface FLXmlElement ()
 @property (readwrite, strong, nonatomic) NSString* xmlElementTag;

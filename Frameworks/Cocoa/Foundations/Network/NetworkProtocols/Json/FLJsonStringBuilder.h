@@ -10,9 +10,9 @@
 #import "FishLampCore.h"
 
 #import "FLDataEncoder.h"
-#import "FLStringBuilderStack.h"
+#import "FLDocumentBuilder.h"
 
-@interface FLJsonStringBuilder : FLScopedStringBuilder {
+@interface FLJsonStringBuilder : FLDocumentBuilder {
 @private
 	id<FLDataEncoder> _dataEncoder;
 }

@@ -9,7 +9,7 @@
 #import "FLCocoaRequired.h"
 #import "FishLampCore.h"
 
-#import "FLXmlStringBuilder.h"
+#import "FLXmlDocumentBuilder.h"
 #import "FLXmlElement.h"
 
 // html
@@ -23,7 +23,7 @@ extern NSString* const FLXmlDocTypeXHtml1_0Transitional;
 extern NSString* const FLXmlDocTypeXHtml1_0Frameset;
 extern NSString* const FLXMLDocTypeXHtml1_1;
 
-@interface FLHtmlStringBuilder : FLXmlStringBuilder {
+@interface FLHtmlStringBuilder : FLXmlDocumentBuilder {
 @private
     FLXmlElement* _htmlElement;
     FLXmlElement* _headElement;

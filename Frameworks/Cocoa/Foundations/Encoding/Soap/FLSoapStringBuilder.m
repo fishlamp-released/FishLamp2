@@ -59,7 +59,7 @@
                andEncodingHeader:(NSString*) encoding
                standalone:(BOOL) standalone {
     
-    [self.lines appendLineWithFormat:@"<?xml version=\"%@\" encoding=\"%@\"?>", version, encoding];
+    [self appendLineWithFormat:@"<?xml version=\"%@\" encoding=\"%@\"?>", version, encoding];
 }
 
 @end

@@ -13,8 +13,8 @@
 - (id) init {
     self = [super init];
     if(self) {
-        self.openBracket = @"{";
-        self.closeBracket = @"}";
+        self.openScopeString = @"{";
+        self.closeScopeString = @"}";
     }
     
     return self;

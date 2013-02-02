@@ -85,10 +85,17 @@
 	[soapStringBuilder addElement:element];
 
     [self.headers setValue:self.soapActionHeader forHTTPHeaderField:@"SOAPAction"]; 
-    [self.body setUtf8Content:[FLStringBuilder buildStringWithNoWhiteSpace:soapStringBuilder]];
+    
+    FLPrettyString* soapString = [FLPrettyString prettyString:nil];
+    [soapString appendBuildableString:soapStringBuilder];
+
+    [self.body setUtf8Content:soapString.string];
     
 #if DEBUG
-    self.body.debugBody = [FLStringBuilder buildString:soapStringBuilder];
+    FLPrettyString* debugString = [FLPrettyString prettyString];
+    [debugString appendBuildableString:soapStringBuilder];
+
+    self.body.debugBody = debugString.string;
 //    FLLog([self description]);
 #endif    
 }

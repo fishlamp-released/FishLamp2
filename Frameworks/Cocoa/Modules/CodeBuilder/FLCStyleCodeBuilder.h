@@ -8,7 +8,7 @@
 #import "FishLampCore.h"
 #import "FLCodeBuilder.h"
 
-@interface FLCStyleCodeBuilder : FLCodeBuilder {
+@interface FLCStyleCodeBuilder : FLCodeChunk {
 }
 
 @end

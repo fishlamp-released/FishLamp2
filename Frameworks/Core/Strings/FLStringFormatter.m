@@ -128,5 +128,24 @@
 		}
 	}
 }
-  
+
+- (void) deleteAllCharacters {
+    [self.delegate stringFormatterDeleteAllCharacters:self];
+}  
+
+- (void) indent {
+    [self.delegate stringFormatterIndent:self];
+}
+
+- (void) outdent {
+    [self.delegate stringFormatterOutdent:self];
+}
+
+- (void) indent:(void (^)()) block {
+    [self endLine];
+    [self indent];
+    block();
+    [self endLine];
+    [self outdent];
+}
 @end

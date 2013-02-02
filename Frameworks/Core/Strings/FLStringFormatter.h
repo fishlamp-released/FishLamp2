@@ -47,6 +47,12 @@
 
 - (NSString*) string;
 
+- (void) deleteAllCharacters;
+
+- (void) indent;
+- (void) outdent;
+- (void) indent:(void (^)()) block;
+
 @end
 
 
@@ -58,6 +64,11 @@
             appendString:(NSString*) string;
 
 - (NSString*) stringFormatterGetString:(FLStringFormatter*) stringFormatter;
+
+- (void) stringFormatterDeleteAllCharacters:(FLStringFormatter*) stringFormatter;
+
+- (void) stringFormatterIndent:(FLStringFormatter*) stringFormatter;
+- (void) stringFormatterOutdent:(FLStringFormatter*) stringFormatter;
 @end
 
 
