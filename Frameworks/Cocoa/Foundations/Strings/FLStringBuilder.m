@@ -69,7 +69,9 @@
 }            
 
 - (NSString*) stringFormatterGetString:(FLStringFormatter*) stringFormatter {
-    return [FLStringBuilder buildString:self];
+    FLPrettyString* str = [FLPrettyString prettyString];
+    [str appendBuildableString:self];
+    return str.string;
 }
 
 - (id) copyWithZone:(NSZone*) zone {
@@ -97,29 +99,17 @@
 - (void) didMoveToParent:(id) parent {
 }
 
-@end
-
-@implementation FLStringBuilder (StringBuilding)
-
-+ (FLWhitespace*) defaultWhitespace {
-    return [FLWhitespace tabbedWithSpacesWhitespace];
+- (void) stringFormatterDeleteAllCharacters:(FLStringFormatter*) formatter {
+    [_lines removeAllObjects];
 }
 
-+ (NSString*) buildString:(id<FLBuildableString>) buildableString 
-           withWhitespace:(FLWhitespace*) whitespace {
-    
-    FLPrettyString* prettyString = [FLPrettyString prettyString:whitespace];
-    [buildableString appendLinesToPrettyString:prettyString];
-    return [prettyString string];
+- (void) stringFormatterIndent:(FLStringFormatter*) stringFormatter {
 }
 
-+ (NSString*) buildStringWithNoWhiteSpace:(id<FLBuildableString>) buildableString {
-    return [self buildString:buildableString withWhitespace:nil];
+- (void) stringFormatterOutdent:(FLStringFormatter*) stringFormatter {
 }
 
-+ (NSString*) buildString:(id<FLBuildableString>) buildableString {
-    return [self buildString:buildableString withWhitespace:[FLStringBuilder defaultWhitespace]];
-}
+
 @end
 
 /*

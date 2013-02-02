@@ -1,5 +1,5 @@
 //
-//	FLXmlStringBuilder.h
+//	FLXmlDocumentBuilder.h
 //	FishLamp
 //
 //	Created by Mike Fullerton on 6/11/09.
@@ -8,12 +8,12 @@
 
 #import "FLCocoaRequired.h"
 #import "FishLampCore.h"
-#import "FLStringBuilderStack.h"
 #import "FLPropertyDescription.h"
 #import "FLXmlElement.h"
 #import "FLDataEncoder.h"
 #import "FLObjectDescriber.h"
 #import "FLXmlComment.h"
+#import "FLDocumentBuilder.h"
 
 // xml
 #define FLXmlVersion1_0                         @"1.0"
@@ -22,13 +22,15 @@
 
 @class FLXmlElement;
 
-@interface FLXmlStringBuilder : FLScopedStringBuilder {
+@interface FLXmlDocumentBuilder : FLDocumentBuilder {
 @private
     id<FLDataEncoder> _dataEncoder;
 }
 @property (readwrite, strong, nonatomic) id<FLDataEncoder> dataEncoder;
 
-+ (FLXmlStringBuilder*) xmlStringBuilder;
+@property (readonly, strong, nonatomic) id openedElement;
+
++ (FLXmlDocumentBuilder*) xmlStringBuilder;
 
 - (void) openElement:(FLXmlElement*) element;
 

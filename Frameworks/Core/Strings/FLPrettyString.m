@@ -10,6 +10,7 @@
 
 @interface FLPrettyString ()
 @property (readwrite, strong, nonatomic) NSString* string;
+@property (readwrite, strong, nonatomic) NSString* eolString;
 @end
 
 @implementation FLPrettyString
@@ -17,6 +18,7 @@
 @synthesize string = _string;
 @synthesize whitespace = _whitespace;
 @synthesize tabIndent = _tabIndent;
+@synthesize eolString = _eolString;
 
 + (FLWhitespace*) defaultWhitespace {
     return [FLWhitespace tabbedWithSpacesWhitespace];
@@ -31,11 +33,7 @@
         _whitespace = FLRetain(whitespace);
         _needsTabInset = YES;
         
-        NSString* eol = _whitespace.eolString;
-        
-        if(FLStringIsNotEmpty(eol)) {
-            _eolString = FLRetain(eol);
-        }
+        self.eolString = _whitespace ? _whitespace.eolString : @"";
     }
     return self;
 }
@@ -108,21 +106,31 @@
     return str;
 }
 
-- (void) indent {
+- (void) appendPrettyString:(FLPrettyString*) string {
+    [self appendLines:self.string trimWhitespace:YES];
+}
+
+- (void) deleteAllCharacters {
+    [_string deleteCharactersInRange:NSMakeRange(0, _string.length)];
+}
+
+- (void) appendBuildableString:(id<FLBuildableString>) buildableString {
+    [buildableString appendLinesToPrettyString:self];
+}
+
+- (void) stringFormatterDeleteAllCharacters:(FLStringFormatter*) stringFormatter {
+    [self deleteAllCharacters];
+}
+
+- (void) stringFormatterIndent:(FLStringFormatter*) stringFormatter {
     ++_tabIndent;
 }
 
-- (void) outdent {
+- (void) stringFormatterOutdent:(FLStringFormatter*) stringFormatter {
     --_tabIndent;
 }
 
-- (void) indent:(void (^)()) block {
-    [self endLine];
-    [self indent];
-    block();
-    [self endLine];
-    [self outdent];
-}
+
 
 @end
 

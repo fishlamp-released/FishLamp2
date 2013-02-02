@@ -1,23 +1,23 @@
 //
-//	FLXmlStringBuilder.m
+//	FLXmlDocumentBuilder.m
 //	FishLamp
 //
 //	Created by Mike Fullerton on 6/11/09.
 //	Copyright 2009 Greentongue Software. All rights reserved.
 //
 
-#import "FLXmlStringBuilder.h"
+#import "FLXmlDocumentBuilder.h"
 #import "FLStringUtils.h"
 #import "FLDataEncoder.h"
 #import "FLXmlElement.h"
 
 #define EOL @"\r\n"
 
-@interface FLXmlStringBuilder ()
+@interface FLXmlDocumentBuilder ()
  
 @end
 
-@implementation FLXmlStringBuilder
+@implementation FLXmlDocumentBuilder
 
 @synthesize dataEncoder = _dataEncoder;
 
@@ -28,7 +28,7 @@
     return self;
 }
 
-+ (FLXmlStringBuilder*) xmlStringBuilder {
++ (FLXmlDocumentBuilder*) xmlStringBuilder {
 	return FLAutorelease([[[self class] alloc] init]);
 }
 
@@ -51,15 +51,19 @@
 }
 
 - (void) openElement:(FLXmlElement*) element {
-    [self.stack push:element];
+    [self openSection:element];
 }
 
 - (void) addElement:(FLXmlElement*) element {
-    [self.stack.top addStringBuilder:element];
+    [self addSection:element];
 }
 
 - (void) closeElement {
-    [self.stack pop];
+    [self closeSection];
+}
+
+- (id) openedElement {
+    return [self openedSection];
 }
 
 

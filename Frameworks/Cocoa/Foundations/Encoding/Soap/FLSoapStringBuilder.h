@@ -9,10 +9,10 @@
 #import "FLCocoaRequired.h"
 #import "FishLampCore.h"
 
-#import "FLXmlStringBuilder.h"
+#import "FLXmlDocumentBuilder.h"
 #import "FLObjectXmlElement.h"
 
-@interface FLSoapStringBuilder : FLXmlStringBuilder {
+@interface FLSoapStringBuilder : FLXmlDocumentBuilder {
 @private
     FLXmlElement* _envelopeElement;
     FLXmlElement* _bodyElement;

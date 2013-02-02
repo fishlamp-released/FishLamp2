@@ -10,46 +10,55 @@
 
 @implementation FLCodeBuilder
 
-@synthesize openBracket = _openBracket;
-@synthesize closeBracket = _closeBracket;
-
-- (id) init {
-    self = [super init];
-    if(self) {
-//        self.header = [FLSingleLineToken singleLineToken:@""];
-//        self.footer = [FLSingleLineToken singleLineToken:@""];
-    }
-    return self;
-}
-
 + (id) codeBuilder {
     return FLAutorelease([[[self class] alloc] init]);
 }
 
-- (void) willBuildString:(FLPrettyString*) prettyString {
+- (void) addCodeChunk:(FLCodeChunk*) codeChunk {
+    [self addSection:codeChunk];
+}
 
-//    if(FLStringIsEmpty([self.header string])) {
-//        [self.header setToken:_openBracket];
-//    }
-//    else {
-//        [self.header setToken:[NSString stringWithFormat:@" %@", _openBracket]];
-//    }
-//
-//    [super buildStringWithPrettyString];
-//
-//    [self.footer setToken:_closeBracket];
+- (void) openCodeChunk:(FLCodeChunk*) codeChunk {
+    [self openSection:codeChunk];
+}
+
+- (void) closeCodeChunk {
+    [self closeSection];
+}
+
+@end
+
+@implementation FLCodeChunk
+
+@synthesize openScopeString = _openScopeString;
+@synthesize closeScopeString = _closeScopeString;
+
++ (id) codeChunk {
+    return FLAutorelease([[[self class] alloc] init]);
 }
 
 #if FL_MRC
 - (void) dealloc {
-    [_openBracket release];
-    [_closeBracket release];
+    [_openScopeString release];
+    [_closeScopeString release];
     [super dealloc];
 }
 #endif
 
-- (NSString*) buildString {
-    return [self string];
+- (void) appendLinesToPrettyString:(FLPrettyString*) prettyString {
+    if(FLStringIsNotEmpty(_openScopeString)) {
+        [prettyString appendLine:_openScopeString];
+        [prettyString indent:^{
+            [super appendLinesToPrettyString:prettyString];
+        }];
+        
+        if(FLStringIsNotEmpty(_closeScopeString)) {
+            [prettyString appendLine:_closeScopeString];
+        }
+    }
+    else {
+        [super appendLinesToPrettyString:prettyString];
+    }
 }
 
 @end

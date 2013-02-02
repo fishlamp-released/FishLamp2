@@ -8,18 +8,27 @@
 
 #import "FLCocoaRequired.h"
 #import "FLPrettyString.h"
+#import "FLDocumentBuilder.h"
 
-@interface FLCodeBuilder : FLPrettyString {
+@interface FLCodeChunk : FLStringBuilder {
 @private
-    NSString* _openBracket;
-    NSString* _closeBracket;
+    NSString* _openScopeString;
+    NSString* _closeScopeString;
+}
++ (id) codeChunk;
+
+@property (readwrite, strong, nonatomic) NSString* openScopeString;
+@property (readwrite, strong, nonatomic) NSString* closeScopeString;
+@end
+
+@interface FLCodeBuilder : FLDocumentBuilder {
+@private
 }
 
 + (id) codeBuilder;
 
-@property (readwrite, strong, nonatomic) NSString* openBracket;
-@property (readwrite, strong, nonatomic) NSString* closeBracket;
-
-- (NSString*) buildString;
-
+- (void) addCodeChunk:(FLCodeChunk*) codeChunk;
+- (void) openCodeChunk:(FLCodeChunk*) codeChunk;
+- (void) closeCodeChunk;
 @end
+

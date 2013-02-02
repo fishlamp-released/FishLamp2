@@ -100,7 +100,7 @@
 #import "FLXmlComment.h"
 #import "FLXmlElement.h"
 #import "FLXmlParser.h"
-#import "FLXmlStringBuilder.h"
+#import "FLXmlDocumentBuilder.h"
 #import "NSArray+FLXmlSerialization.h"
 #import "NSObject+FLXmlSerialization.h"
 #import "NSObject+XML.h"
@@ -340,7 +340,7 @@
 #import "NSString+Lists.h"
 
 // Foundations/Strings/StringBuilder
-#import "FLStringBuilderStack.h"
+#import "FLStringDocument.h"
 
 // Foundations/Utils
 #import "FLAnswerable.h"

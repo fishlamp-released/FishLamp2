@@ -11,10 +11,10 @@
 
 @protocol FLDataEncoder;
 @class FLPropertyDescription;
-@class FLXmlStringBuilder;
+@class FLXmlDocumentBuilder;
 @class FLXmlComment;
 
-// This is for WRITING Xml Elements only with the FLXmlStringBuilder.
+// This is for WRITING Xml Elements only with the FLXmlDocumentBuilder.
 @interface FLXmlElement : FLStringBuilder {
 @private
 	NSMutableDictionary* _attributes;

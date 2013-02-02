@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import "FLXmlStringBuilder.h"
+#import "FLXmlDocumentBuilder.h"
 
 @interface NSArray (FLXmlSerialization)
 @end
