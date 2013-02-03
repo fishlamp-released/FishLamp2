@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import "FLStringBuilder.h"
+#import "FLDocumentSection.h"
 
 
 //typedef enum {
@@ -40,7 +40,7 @@
 //
 //@end
 //
-//@interface FLBracketedStringBuilder : FLStringBuilder {
+//@interface FLBracketedStringBuilder : FLDocumentSection {
 //@private
 //    FLOpenBracketStyle _openStyle;
 //    FLCloseBracketStyle _closeStyle;

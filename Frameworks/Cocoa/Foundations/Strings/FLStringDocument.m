@@ -16,7 +16,7 @@
     self = [super init];
     if(self) {
         _stack = [[NSMutableArray alloc] init];
-        [_stack addObject:[FLStringBuilder stringBuilder]];
+        [_stack addObject:[FLDocumentSection stringBuilder]];
     }
     return self;
 }
@@ -32,29 +32,29 @@
 }
 #endif
 
-- (FLStringBuilder*) rootStringBuilder {
+- (FLDocumentSection*) rootStringBuilder {
     FLAssertNotNil_([_stack firstObject]);
     return [_stack firstObject];
 }
 
-- (FLStringBuilder*) openedStringBuilder {
+- (FLDocumentSection*) openedStringBuilder {
     FLAssertNotNil_([_stack lastObject]);
     return [_stack lastObject];
 }
 
-- (void) addStringBuilder:(FLStringBuilder*) stringBuilder {
+- (void) addStringBuilder:(FLDocumentSection*) stringBuilder {
     FLAssert_(_stack.count > 0)
     [self.openedStringBuilder addStringBuilder:stringBuilder];
 }
 
-- (void) openStringBuilder:(FLStringBuilder*) stringBuilder {
+- (void) openStringBuilder:(FLDocumentSection*) stringBuilder {
     [self addStringBuilder:stringBuilder];
     
     FLAssert_(_stack.count > 0)
     [_stack addObject:stringBuilder];
 }
 
-- (FLStringBuilder*) closeStringBuilder {
+- (FLDocumentSection*) closeStringBuilder {
     FLAssert_(_stack.count > 0)
     id last = FLRetainWithAutorelease(self.openedStringBuilder);
     [_stack removeLastObject];
@@ -69,18 +69,18 @@
 
 - (void) deleteAllStringBuilders {
     [_stack removeAllObjects];
-    [_stack addObject:[FLStringBuilder stringBuilder]];
+    [_stack addObject:[FLDocumentSection stringBuilder]];
 }
 
 @end
 
-//@interface FLStringBuilder (FLStringDocument)
+//@interface FLDocumentSection (FLStringDocument)
 //- (void) willMoveToStringBuilderStack:(FLStringDocument*) stack;
 //- (void) didMoveToStringBuilderStack:(FLStringDocument*) stack;
 //@end
 
 //
-//@implementation FLStringBuilder (FLStringDocument)
+//@implementation FLDocumentSection (FLStringDocument)
 //
 //- (void) willMoveToStringBuilderStack:(FLStringDocument*) stack {
 //}

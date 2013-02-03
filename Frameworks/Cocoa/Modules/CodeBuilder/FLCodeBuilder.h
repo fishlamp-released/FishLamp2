@@ -10,7 +10,7 @@
 #import "FLPrettyString.h"
 #import "FLDocumentBuilder.h"
 
-@interface FLCodeChunk : FLStringBuilder {
+@interface FLCodeChunk : FLDocumentSection {
 @private
     NSString* _openScopeString;
     NSString* _closeScopeString;

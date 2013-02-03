@@ -18,7 +18,6 @@
 
 @property (readwrite, assign, nonatomic) id<FLStringFormatterDelegate> delegate;
 
-
 - (void) startLine; 
 - (void) startLine:(NSString*) string;
 - (void) startLineWithFormat:(NSString*) format, ...;
@@ -36,14 +35,12 @@
 - (void) appendLine:(NSString*) line;  
 - (void) appendLineWithFormat:(NSString*) format, ...;
 
+- (void) appendLines:(NSString**) lines count:(NSInteger) count;
 - (void) appendLines:(NSString**) lines;
 - (void) appendLinesWithArray:(NSArray*) lines;
 
-/// Append array of strings.
-/// @param lines the array of strings
-/// @param trimWhitespace trim the whitespace of beginning and end of each line as it's added 
-- (void) appendLines:(NSString*) linesToParse
-      trimWhitespace:(BOOL) trimWhitespace;
+- (void) appendStringContainingMultipleLines:(NSString*) inLines;
+- (void) appendStringContainingMultipleLines:(NSString*) inLines trimWhitespace:(BOOL) trimWhitespace;
 
 - (NSString*) string;
 
