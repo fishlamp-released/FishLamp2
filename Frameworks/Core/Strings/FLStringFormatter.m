@@ -7,12 +7,15 @@
 //
 
 #import "FLStringFormatter.h"
+#import "NSArray+FLExtras.h"
 
 @implementation FLStringFormatter
 
 @synthesize delegate = _delegate;
 
 - (void) appendString:(NSString*) string {
+    FLAssertNotNil_(string);
+    
     _editingLine = YES;
     [self.delegate stringFormatter:self appendString:string];
 }
@@ -25,6 +28,8 @@
 }
 
 - (void) endLine:(NSString*) string {
+    FLAssertNotNil_(string);
+
     [self appendString:string];
     [self endLine];
 }
@@ -35,6 +40,8 @@
 }
 
 - (void) startLine:(NSString*) string {
+    FLAssertNotNil_(string);
+
     [self endLine];
     if(FLStringIsNotEmpty(string)) {
         [self startLine];
@@ -43,6 +50,8 @@
 }
 
 - (void) appendLine:(NSString*) line {
+    FLAssertNotNil_(line);
+
     [self endLine];
     [self startLine:line];
     [self endLine];
@@ -54,21 +63,27 @@
     [self endLine];
 }
 
-- (void) appendLines:(NSString**) lines {
-    if(lines) {
-        for(int i = 0; i < (sizeof(lines) / sizeof(NSString*)); i++) {
-            [self appendLine:lines[i]];
-        }
+- (void) appendLines:(NSString**) lines count:(NSInteger) count{
+    FLAssertNotNil_(lines);
+    for(int i = 0; i < count; i++) {
+        [self appendLine:lines[i]];
     }
 }
 
+- (void) appendLines:(NSString**) lines {
+    FLAssertNotNil_(lines);
+    [self appendLines:lines count:FLArrayLength(lines, NSString*)];
+}
+
 - (void) appendLinesWithArray:(NSArray*) lines {
+    FLAssertNotNil_(lines);
     for(NSString* line in lines) {
         [self appendLine:line];
     }
 }
 
 - (void) appendFormat:(NSString*) format, ... {
+    FLAssertNotNil_(format);
 	va_list va;
 	va_start(va, format);
 	NSString *string = FLAutorelease([[NSString alloc] initWithFormat:format arguments:va]);
@@ -78,6 +93,7 @@
 }
 
 - (void) appendLineWithFormat:(NSString*) format, ... {
+    FLAssertNotNil_(format);
 	va_list va;
 	va_start(va, format);
 	NSString *string = FLAutorelease([[NSString alloc] initWithFormat:format arguments:va]);
@@ -86,6 +102,7 @@
 }
 
 - (void) startLineWithFormat:(NSString*) format, ... {
+    FLAssertNotNil_(format);
 	va_list va;
 	va_start(va, format);
 	NSString *string = FLAutorelease([[NSString alloc] initWithFormat:format arguments:va]);
@@ -94,6 +111,7 @@
 }
 
 - (void) endLineWithFormat:(NSString*) format, ... {
+    FLAssertNotNil_(format);
 	va_list va;
 	va_start(va, format);
 	NSString *string = FLAutorelease([[NSString alloc] initWithFormat:format arguments:va]);
@@ -115,7 +133,9 @@
 	return string;
 }
 
-- (void) appendLines:(NSString*) inLines trimWhitespace:(BOOL) trimWhitespace {
+- (void) appendStringContainingMultipleLines:(NSString*) inLines trimWhitespace:(BOOL) trimWhitespace {
+    FLAssertNotNil_(inLines);
+
 	NSString* string = trimWhitespace ? [self _preprocessLines:inLines] : inLines;
 	if(FLStringIsNotEmpty(string)) {
 		NSArray* lines = [string componentsSeparatedByString:@"\n"];
@@ -127,6 +147,34 @@
             }
 		}
 	}
+}
+
+- (void) appendStringContainingMultipleLines:(NSString*) inLines {
+
+//    BOOL inLine = NO;
+//    NSRange lineRange = { 0, 0 };
+//    for(NSUInteger i = 0; i < inLines.count; i++) {
+//        unichar c = [inLines characterAtIndex:i];
+//        BOOL isWhitespace = [[NSCharacterSet whitespaceAndNewlineCharacterSet] characterIsMember:c];
+//        
+//        if(inLine) {
+//            if(isWhiteSpace) {
+//                [self appendLine:[inLines substringWithRange:lineRange]];
+//                inLine = NO;
+//            }
+//            else {
+//                lineRange.length++;
+//            }
+//        }
+//        else if(!isWhitespace) {
+//            lineRange.location = i
+//            lineRange.length = 1;
+//            inLine = YES;
+//        }
+//    }
+
+    [self appendStringContainingMultipleLines:inLines trimWhitespace:YES];
+
 }
 
 - (void) deleteAllCharacters {

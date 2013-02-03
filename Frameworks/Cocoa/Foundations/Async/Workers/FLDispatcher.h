@@ -40,7 +40,20 @@ typedef void (^FLDispatcherResultBlock)(FLResult result);
 
 - (FLFinisher*) dispatchObject:(id /*FLAsyncWorker*/) dispatchableObject 
                     completion:(FLDispatcherResultBlock) completion;
-                    
+
+//
+// Dispatching with finisher
+//
+- (void) dispatchBlock:(FLDispatcherBlock) block 
+          withFinisher:(FLFinisher*) finisher;
+
+- (void) dispatchFinishableBlock:(FLDispatcherFinisherBlock) block 
+                    withFinisher:(FLFinisher*) finisher;
+
+- (void) dispatchBlockWithDelay:(NSTimeInterval) delay
+                          block:(FLDispatcherBlock) block 
+                   withFinisher:(FLFinisher*) finisher;
+
 @end                    
 
 @interface FLDispatcher : NSObject<FLDispatcher> {

@@ -1,5 +1,5 @@
 //
-//  FLStringBuilder.h
+//  FLDocumentSection.h
 //  FishLampCocoa
 //
 //  Created by Mike Fullerton on 12/29/12.
@@ -11,21 +11,30 @@
 #import "FLStringFormatter.h"
 #import "FLPrettyString.h"
 
-@interface FLStringBuilder : FLStringFormatter<FLStringFormatterDelegate, FLBuildableString> {
+@interface FLDocumentSection : FLStringFormatter<FLStringFormatterDelegate, FLBuildableString> {
 @private
     NSMutableArray* _lines;
     BOOL _needsLine;
     __unsafe_unretained id _parent;
+    
+    NSMutableString* _openLine;
 }
 + (id) stringBuilder;
 
 @property (readonly, strong, nonatomic) NSArray* lines;
 @property (readwrite, assign, nonatomic) id parent;
 
-- (void) addStringBuilder:(FLStringBuilder*) stringBuilder;
+- (void) addStringBuilder:(FLDocumentSection*) stringBuilder;
 
-// optional override point
+// optional overrides
+- (NSMutableString*) willOpenLine;
+- (void) willCloseLine:(NSMutableString*) line;
+
+- (void) willBuildWithPrettyString:(FLPrettyString*) prettyString;
+- (void) didBuildWithPrettyString:(FLPrettyString*) prettyString;
+
 - (void) didMoveToParent:(id) parent;
+
 @end
 
 

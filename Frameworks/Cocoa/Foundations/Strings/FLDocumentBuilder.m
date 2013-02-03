@@ -46,7 +46,7 @@
     return [[self openedSection] string];
 }
 
-- (FLStringBuilder*) openedSection {
+- (FLDocumentSection*) openedSection {
     return [_document openedStringBuilder];
 }
 
@@ -54,11 +54,11 @@
     [_document.rootStringBuilder appendLinesToPrettyString:prettyString];
 }
 
-- (void) openSection:(FLStringBuilder*) element {
+- (void) openSection:(FLDocumentSection*) element {
     [self.document openStringBuilder:element];
 }
 
-- (void) addSection:(FLStringBuilder*) element {
+- (void) addSection:(FLDocumentSection*) element {
     [self.document addStringBuilder:element];
 }
 

@@ -10,7 +10,7 @@
 #import "FLCocoaRequired.h"
 #import "FLWhitespace.h"
 #import "FLStringFormatter.h"
-#import "FLStringBuilder.h"
+#import "FLDocumentSection.h"
 #import "FLPrettyString.h"
 #import "FLStringDocument.h"
 
@@ -21,10 +21,10 @@
 + (id) documentBuilder;
 
 @property (readonly, strong, nonatomic) FLStringDocument* document;
-@property (readonly, strong, nonatomic) FLStringBuilder* openedSection;
+@property (readonly, strong, nonatomic) FLDocumentSection* openedSection;
 
-- (void) openSection:(FLStringBuilder*) element;
-- (void) addSection:(FLStringBuilder*) element;
+- (void) openSection:(FLDocumentSection*) element;
+- (void) addSection:(FLDocumentSection*) element;
 - (void) closeSection;
 
 - (void) closeAllSections;

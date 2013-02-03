@@ -1,24 +1,29 @@
 //
-//  FLStringBuilder.m
+//  FLDocumentSection.m
 //  FishLampCocoa
 //
 //  Created by Mike Fullerton on 12/29/12.
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import "FLStringBuilder.h"
+#import "FLDocumentSection.h"
 #import "FLWhitespace.h"
 
-@implementation NSString (FLStringBuilder)
+@interface FLDocumentSection ()
+@property (readwrite, strong, nonatomic) NSMutableString* openLine;
+@end
+
+@implementation NSString (FLDocumentSection)
 - (void) appendLinesToPrettyString:(FLPrettyString*) prettyString {
     [prettyString appendLine:self];
 }
 @end
 
-@implementation FLStringBuilder 
+@implementation FLDocumentSection 
 
 @synthesize lines = _lines;
 @synthesize parent = _parent;
+@synthesize openLine = _openLine;
 
 - (id) init {
     self = [super init];
@@ -36,6 +41,7 @@
 
 #if FL_MRC
 - (void) dealloc {
+    [_openLine release];
     [_lines release];
     [super dealloc];
 }
@@ -50,16 +56,35 @@
     _needsLine = YES;
 }
 
+- (void) startNewLine:(id) line {
+    NSMutableString* openLine = self.openLine;
+    if(openLine) {
+        [self willCloseLine:openLine];
+        self.openLine = nil;
+    }
+    [_lines addObject:line];
+}
+
 - (void) appendBlankLine {
     [super appendBlankLine];
-    [_lines addObject:[NSMutableString string]];
+    _needsLine = YES;
+}
+
+- (NSMutableString*) willOpenLine {
+    return [NSMutableString string];
+}
+
+- (void) willCloseLine:(NSMutableString*) line {
+
 }
 
 - (void) stringFormatter:(FLStringFormatter*) stringFormatter 
             appendString:(NSString*) string {
     
     if(_needsLine) {
-        [_lines addObject:[NSMutableString string]];
+        NSMutableString* newOpenLine = [self willOpenLine];
+        [self startNewLine:newOpenLine];
+        self.openLine = newOpenLine;
         _needsLine = NO;
     }
     
@@ -79,14 +104,25 @@
     return nil;
 }
 
+- (void) willBuildWithPrettyString:(FLPrettyString*) prettyString {
+}
+
+- (void) didBuildWithPrettyString:(FLPrettyString*) prettyString {
+}
+
 - (void) appendLinesToPrettyString:(FLPrettyString*) prettyString {
+
+    [self willBuildWithPrettyString:prettyString];
+
     for(id<FLBuildableString> line in _lines) {
         [line appendLinesToPrettyString:prettyString];
     }
+
+    [self didBuildWithPrettyString:prettyString];
 }
 
-- (void) addStringBuilder:(FLStringBuilder*) stringBuilder {
-    [_lines addObject:stringBuilder];
+- (void) addStringBuilder:(FLDocumentSection*) stringBuilder {
+    [self startNewLine:stringBuilder];
     [stringBuilder setParent:self];
     _needsLine = YES;
 }

@@ -107,7 +107,7 @@
 }
 
 - (void) appendPrettyString:(FLPrettyString*) string {
-    [self appendLines:self.string trimWhitespace:YES];
+    [self appendStringContainingMultipleLines:self.string];
 }
 
 - (void) deleteAllCharacters {

@@ -9,13 +9,13 @@
 //#import "FLZenfolioSoapFaultUserNotificationErrorFormatter.h"
 //#import "FLZenfolioErrors.h"
 //#import "FLSoapError.h"
-//#import "FLStringBuilder.h"
+//#import "FLDocumentSection.h"
 //
 //@implementation FLZenfolioSoapFaultUserNotificationErrorFormatter
 //
 //- (NSString*) describeError:(NSError*) error
 //{
-//    FLStringBuilder* stringBuilder = [FLStringBuilder stringBuilder];
+//    FLDocumentSection* stringBuilder = [FLDocumentSection stringBuilder];
 //    
 //	switch(error.zenfolioFaultCode)
 //	{

@@ -7,7 +7,7 @@
 //
 
 #import "FLCocoaRequired.h"
-#import "FLStringBuilder.h"
+#import "FLDocumentSection.h"
 
 @protocol FLDataEncoder;
 @class FLPropertyDescription;
@@ -15,7 +15,7 @@
 @class FLXmlComment;
 
 // This is for WRITING Xml Elements only with the FLXmlDocumentBuilder.
-@interface FLXmlElement : FLStringBuilder {
+@interface FLXmlElement : FLDocumentSection {
 @private
 	NSMutableDictionary* _attributes;
     NSString* _openTag;
