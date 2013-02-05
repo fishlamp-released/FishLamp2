@@ -10,10 +10,13 @@
 #import "FLStringUtils.h"
 
 @interface FLPropertyDescription ()
-@property (readwrite, retain, nonatomic) NSString* propertyName;
+@property (readwrite, strong, nonatomic) NSString* propertyName;
 @property (readwrite, assign, nonatomic) Class propertyClass;
 @property (readwrite, assign, nonatomic) FLDataTypeID propertyType;
-@property (readwrite, retain, nonatomic) NSArray* arrayTypes;
+@property (readwrite, strong, nonatomic) NSArray* arrayTypes;
+@property (readwrite, assign, nonatomic, getter=isUnboundedArray) BOOL unboundedArray;
+@property (readwrite, assign, nonatomic, getter=isUnboundedArrayItem) BOOL unboundedArrayItem;
+
 @end
 
 @implementation FLPropertyDescription
@@ -23,10 +26,9 @@
 @synthesize arrayTypes = _arrayTypes;
 @synthesize getter = _getter;
 @synthesize setter = _setter;
-
-FLSynthesizeStructProperty(propertyType, setPropertyType, FLDataTypeID, _flags);
-FLSynthesizeStructProperty(isUnboundedArray, setUnboundedArray, BOOL, _flags);
-FLSynthesizeStructProperty(isUnboundedArrayItem, setUnboundedArrayItem, BOOL, _flags);
+@synthesize propertyType = _propertyType;
+@synthesize unboundedArray = _unboundedArray;
+@synthesize unboundedArrayItem = _unboundedArrayItem;
 
 - (id) initWithPropertyName:(NSString*) name
               propertyClass:(Class) aClass
@@ -57,7 +59,7 @@ FLSynthesizeStructProperty(isUnboundedArrayItem, setUnboundedArrayItem, BOOL, _f
         
 		if(self.isUnboundedArray) {
 			for(FLPropertyDescription* desc in self.arrayTypes) {
-				desc.unboundedArrayItem = YES;
+				self.unboundedArrayItem = YES;
 			}
 		}
 		

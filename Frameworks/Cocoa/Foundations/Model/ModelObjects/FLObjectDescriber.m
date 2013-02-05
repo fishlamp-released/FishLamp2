@@ -113,11 +113,11 @@
 	return [NSString stringWithFormat:@"%@:%@", [super description], [_properties description]];
 }
 
-- (void) visitAllProperties:(FLObjectDescriberPropertyVisitor) visitor {
-    for(FLPropertyDescription* property in _properties.objectEnumerator) {
-        visitor(property);
-    }
-}
+//- (void) visitAllProperties:(FLObjectDescriberPropertyVisitor) visitor {
+//    for(FLPropertyDescription* property in _properties.objectEnumerator) {
+//        visitor(property);
+//    }
+//}
 
 @end
 
@@ -130,6 +130,50 @@
 - (FLObjectDescriber*) objectDescriber {
     return [[self class] sharedObjectDescriber];
 }
+
+- (void) _visitDescribedPropertiesRecursive:(BOOL) recursive
+                                   visitor:(FLObjectDescriberPropertyVisitor) visitor {
+
+    FLObjectDescriber* describer = [[self class] sharedObjectDescriber];
+    BOOL stop = NO;
+
+    for(FLPropertyDescription* property in describer.propertyDescribers.objectEnumerator) {
+
+        id value = [property propertyValueForObject:self];
+        visitor(property, value, self, &stop);
+        
+        if(stop) {
+            FLThrowAbortException();
+        }
+        
+        if(recursive && value) {
+            if(property.isArray) {
+                for(id object in value) {
+                    visitor(property, object, self, &stop);
+
+                    [object _visitDescribedPropertiesRecursive:recursive visitor:visitor];
+                }
+            }
+            else {
+                [value _visitDescribedPropertiesRecursive:recursive visitor:visitor];
+            }
+            
+        }
+
+    
+    }
+}
+
+- (void) visitDescribedPropertiesRecursive:(BOOL) recursive
+                                   visitor:(FLObjectDescriberPropertyVisitor) visitor {
+
+    @try {                               
+        [self _visitDescribedPropertiesRecursive:recursive visitor:visitor];
+    }
+    @catch(FLAbortException* ex) {
+        
+    }
+}                                   
 
 @end
 
