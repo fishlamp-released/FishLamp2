@@ -11,7 +11,6 @@
 
 #import "FLPropertyDescription.h"
 
-typedef void (^FLObjectDescriberPropertyVisitor)(FLPropertyDescription* property);
 
 @interface FLObjectDescriber : NSObject<NSCopying> {
 @private 
@@ -24,21 +23,29 @@ typedef void (^FLObjectDescriberPropertyVisitor)(FLPropertyDescription* property
 @property (readonly, copy, nonatomic) NSDictionary* propertyDescribers;
 
 - (void) setPropertyDescriber:(FLPropertyDescription*) objectDescriber forPropertyName:(NSString*) propertyName;
+
 - (FLPropertyDescription*) propertyDescriberForPropertyName:(NSString*) propertyName;
 
 
 // this fills in all the properties for the class, including superclasses (Not including NSObject) using Objective-c runtime info.
 - (void) addPropertiesForClass:(Class) aClass;
 
-- (void) visitAllProperties:(FLObjectDescriberPropertyVisitor) visitor;
+//- (void) visitAllProperties:(FLObjectDescriberPropertyVisitor) visitor;
 
 @end
+
+typedef void (^FLObjectDescriberPropertyVisitor)(FLPropertyDescription* propertyDescription, id propertyObject, id parentObject, BOOL* stop);
 
 @interface NSObject (FLObjectDescriber)
 
 + (FLObjectDescriber*) sharedObjectDescriber;
 
 @property (readonly, assign, nonatomic) FLObjectDescriber* objectDescriber;
+
+- (void) visitDescribedPropertiesRecursive:(BOOL) recursive
+                                   visitor:(FLObjectDescriberPropertyVisitor) visitor;
+
+
 
 @end
 

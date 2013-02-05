@@ -19,11 +19,9 @@
 	SEL _getter;
     SEL _setter;
     
-	struct {
-		FLDataTypeID propertyType : 8;
-		unsigned int isUnboundedArray: 1;
-		unsigned int isUnboundedArrayItem: 1;
-	} _flags;
+    FLDataTypeID _propertyType;
+    BOOL _unboundedArray;
+    BOOL _unboundedArrayItem;
 }
 
 // When parsing XML, the element representing this property can be unbounded (we'd be an 
@@ -34,16 +32,16 @@
 //		[myObject setPhoneNumber:number]; 
 //		This would essentially add the phone number to the object's
 //		phone number array, which would be declared as:
-//		@property (readwrite, retain, nonatomic) NSMutableArray* phoneNumbers;
+//		@property (readwrite, strong, nonatomic) NSMutableArray* phoneNumbers;
 //
 // this is kind of a special case hack for XML parsing.
 @property (readonly, assign, nonatomic, getter=isUnboundedArray) BOOL unboundedArray;
 @property (readonly, assign, nonatomic, getter=isUnboundedArrayItem) BOOL unboundedArrayItem;
 
-@property (readonly, retain, nonatomic) NSString* propertyName;
+@property (readonly, strong, nonatomic) NSString* propertyName;
 @property (readonly, assign, nonatomic) Class propertyClass;
 @property (readonly, assign, nonatomic) FLDataTypeID propertyType;
-@property (readonly, retain, nonatomic) NSArray* arrayTypes;
+@property (readonly, strong, nonatomic) NSArray* arrayTypes;
 @property (readonly, assign, nonatomic) BOOL isArray;
 
 @property (readwrite, assign, nonatomic) SEL setter;
