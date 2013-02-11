@@ -18,64 +18,53 @@
 
 FLSynthesizeSingleton(FLJsonDataEncoder);
 
-- (id) init
-{
-	if((self = [super init]))
-	{
-		_numberFormatter = [[NSNumberFormatter alloc] init];
-	}
-	
-	return self;
-}
 
 // TODO: pretty sure this has never worked. Written and never used or tested
-
+/*
 - (void) encodeDataToString:(id) data 
-					forType:(FLDataTypeID) type
+					forType:(FLTypeDesc*) type
 		   outEncodedString:(NSString**) outString
 {
-	switch(type)
+	switch(type.specificType)
 	{
         
-		case FLDataTypeChar:
-		case FLDataTypeUnsignedChar:
-		case FLDataTypeShort:
-		case FLDataTypeUnsignedShort:
-		case FLDataTypeNSInteger:
-		case FLDataTypeInteger:
-		case FLDataTypeNSUInteger:
-		case FLDataTypeEnum:
-		case FLDataTypeUnsignedInteger:
-		case FLDataTypeLong:
-		case FLDataTypeUnsignedLong:
-		case FLDataTypeLongLong:
-		case FLDataTypeUnsignedLongLong:
-		case FLDataTypeFloat:
-		case FLDataTypeDouble:
+		case FLSpecificTypeChar:
+		case FLSpecificTypeUnsignedChar:
+		case FLSpecificTypeShort:
+		case FLSpecificTypeUnsignedShort:
+		case FLSpecificTypeInt:
+		case FLSpecificTypeUnsignedInt:
+		case FLSpecificTypeEnum:
+		case FLSpecificTypeLong:
+		case FLSpecificTypeUnsignedLong:
+		case FLSpecificTypeLongLong:
+		case FLSpecificTypeUnsignedLongLong:
+		case FLSpecificTypeFloat:
+		case FLSpecificTypeDouble:
 			FLAssert_v([data isKindOfClass:[NSNumber class]], @"expecting a NSNumber here");
 			*outString = FLRetain([_numberFormatter stringFromNumber:data]);
 		break;
 		
-		case FLDataTypeBool:
+		case FLSpecificTypeBool:
 			FLAssert_v([data isKindOfClass:[NSNumber class]], @"expecting a NSNumber here");
 			*outString = [data boolValue] ? @"true" : @"false";
 		break;
 		
-		case FLDataTypeString:
+		case FLSpecificTypeString:
 			*outString = [[NSString alloc] initWithFormat:@"\"%@\"", [data jsonEncode]];
 		break;
 		
-		case FLDataTypeData:
+		case FLSpecificTypeData:
 			*outString = [[NSString alloc] initWithBytes:[data bytes] 
 									length:[data length] 
 									encoding:NSUTF8StringEncoding];
 		break;
 		
-		case FLDataTypeDate:
+		case FLSpecificTypeDate:
 			*outString = [[NSString alloc] initWithFormat:@"\"%@\"", [[[FLDateMgr instance] ISO3339DateToString:(NSDate*) data] jsonEncode]]; 
 		break;
         
-        case FLDataTypeRect: {   
+        case FLSpecificTypeRect: {   
             CGRect r = [data CGRectValue];
             *outString = [NSString stringWithFormat:@"{\"x\"=%f,\"y\"=%f,\"width\"=%f,height=\"%f\"}",
                 r.origin.x,
@@ -84,7 +73,7 @@ FLSynthesizeSingleton(FLJsonDataEncoder);
                 r.size.height];
             break;
         }
-        case FLDataTypePoint: {
+        case FLSpecificTypePoint: {
             CGPoint pt = [data CGPointValue];
             *outString = [NSString stringWithFormat:@"{\"x\"=%f,\"y\"=%f}",
                 pt.x,
@@ -92,7 +81,7 @@ FLSynthesizeSingleton(FLJsonDataEncoder);
             break;
         }
         
-        case FLDataTypeSize:{   
+        case FLSpecificTypeSize:{   
             CGSize size = [data CGSizeValue];
             *outString = [NSString stringWithFormat:@"{\"width\"=%f,height=\"%f\"}",
                 size.width,
@@ -102,7 +91,7 @@ FLSynthesizeSingleton(FLJsonDataEncoder);
 
         break;
         
-        case FLDataTypeColor: {
+        case FLSpecificTypeColor: {
             FLColorValues color = [data rgbColorValues];
             *outString = [NSString stringWithFormat:@"{\"red\"=%d,\"green\"=%d,\"blue\"=%d,\"alpha=\"%f\"}",
                 (int)color.red,
@@ -112,22 +101,22 @@ FLSynthesizeSingleton(FLJsonDataEncoder);
         }
         break;
         
-        case FLDataTypeURL:
-        // TBD
+        case FLSpecificTypeURL:
+            *outString = FLRetain([data absoluteString]);
         break;
-        
-        case FLDataTypeValue:
-        case FLDataTypeObject:
+       
+        case FLSpecificTypeID:
             FLAssertFailed_v(@"don't know how to encode object");
         break;
         
-        case FLDataTypeUnknown:
+        case FLSpecificTypeUnknown:
             FLAssertFailed_v(@"unknown type!");
         break;
 		
 	}
 
 } 
+*/
 @end
 
 @implementation NSString (FLJsonDataEncoder)

@@ -12,7 +12,7 @@
 @interface FLPropertyDescription ()
 @property (readwrite, strong, nonatomic) NSString* propertyName;
 @property (readwrite, assign, nonatomic) Class propertyClass;
-@property (readwrite, assign, nonatomic) FLDataTypeID propertyType;
+@property (readwrite, strong, nonatomic) FLTypeDesc* propertyType;
 @property (readwrite, strong, nonatomic) NSArray* arrayTypes;
 @property (readwrite, assign, nonatomic, getter=isUnboundedArray) BOOL unboundedArray;
 @property (readwrite, assign, nonatomic, getter=isUnboundedArrayItem) BOOL unboundedArrayItem;
@@ -32,7 +32,7 @@
 
 - (id) initWithPropertyName:(NSString*) name
               propertyClass:(Class) aClass
-               propertyType:(FLDataTypeID) dataType
+               propertyType:(FLTypeDesc*) dataType
                  arrayTypes:(NSArray*) arrayTypes {
 
 	return [self initWithPropertyName:name propertyClass:aClass propertyType:dataType arrayTypes:arrayTypes isUnboundedArray:NO];
@@ -40,7 +40,7 @@
 
 - (id) initWithPropertyName:(NSString*) name
               propertyClass:(Class) aClass
-               propertyType:(FLDataTypeID) dataType
+               propertyType:(FLTypeDesc*) dataType
                  arrayTypes:(NSArray*) arrayTypes
            isUnboundedArray:(BOOL) isUnboundedArray {
 	if((self = [super init]))
@@ -70,14 +70,14 @@
 
 - (id) initWithPropertyName:(NSString*) name
               propertyClass:(Class) aClass
-               propertyType:(FLDataTypeID) dataType {
+               propertyType:(FLTypeDesc*) dataType {
 
 	return [self initWithPropertyName:name propertyClass:aClass propertyType:dataType arrayTypes:nil isUnboundedArray:NO];
 }
 
 + (FLPropertyDescription*) propertyDescription:(NSString*) name
                                  propertyClass:(Class) aClass
-                                  propertyType:(FLDataTypeID) dataType {
+                                  propertyType:(FLTypeDesc*) dataType {
 
 	return FLAutorelease([[FLPropertyDescription alloc] initWithPropertyName:name propertyClass:aClass propertyType:dataType arrayTypes:nil isUnboundedArray:NO]);
 }
@@ -85,7 +85,7 @@
 
 + (FLPropertyDescription*) propertyDescription:(NSString*) name
                                  propertyClass:(Class) aClass
-                                  propertyType:(FLDataTypeID) dataType
+                                  propertyType:(FLTypeDesc*) dataType
                                     arrayTypes:(NSArray*) arrayTypes
                               isUnboundedArray:(BOOL) isUnboundedArray {
 
@@ -94,11 +94,21 @@
 
 + (FLPropertyDescription*) propertyDescription:(NSString*) name
                                  propertyClass:(Class) aClass
-                                  propertyType:(FLDataTypeID) dataType
+                                  propertyType:(FLTypeDesc*) dataType
                                     arrayTypes:(NSArray*) arrayTypes {
 
 	return FLAutorelease([[FLPropertyDescription alloc] initWithPropertyName:name propertyClass:aClass propertyType:dataType arrayTypes:arrayTypes isUnboundedArray:NO]);
 }
+
+#if FL_MRC
+- (void) dealloc {
+    [_arrayTypes release];
+    [_name release];
+    [_propertyType release];
+    [super dealloc];
+}
+#endif
+
 
 - (void) dealloc {
 	FLRelease(_arrayTypes);
@@ -111,11 +121,11 @@
 }	
 
 - (NSString*) description {
-	return [NSString stringWithFormat:@"%@: Name: %@, Class: %@, Type: %d, isUnboundedArray: %d, isUnboundedArrayType: %d, ArrayTypes:\n%@",
+	return [NSString stringWithFormat:@"%@: Name: %@, Class: %@, Type: %@, isUnboundedArray: %d, isUnboundedArrayType: %d, ArrayTypes:\n%@",
 		[super description],
 		self.propertyName,
 		NSStringFromClass(self.propertyClass),
-		self.propertyType,
+		[self.propertyType description],
 		self.isUnboundedArray,
 		self.isUnboundedArrayItem,
 		[self.arrayTypes description]];

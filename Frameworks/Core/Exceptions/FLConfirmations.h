@@ -6,6 +6,8 @@
 //
 // this is meant to be included by FLAssertions.h
 
+extern void FLThrowConfirmationFailedException(FLAssertionFailure failure, NSString* description, NSString* comment, FLStackTrace* stackTrace);
+
 /// @brief: Assert that any condition is true
 #define FLConfirm_(__CONDITION__) \
     if((__CONDITION__) == NO) \
@@ -48,42 +50,35 @@
 /// @brief: Assert a pointer is nil
 #define FLConfirmIsNil_(__CONDITION__) \
     if((__CONDITION__) != nil) \
-        @throw [NSException exceptionWithError:[NSError errorWithDomain:[FLAssertionFailureErrorDomain instance] \
-            code:FLAssertionFailureIsNotNil \
-            userInfo:nil \
-            reason:FLStringWithFormatOrNil(@"Pointer unexpectedly not nil: %s", #__CONDITION__) \
-            comment:nil \
-            stackTrace:FLCreateStackTrace(YES)]]; 
+        FLThrowConfirmationFailedException( FLAssertionFailureIsNotNil, \
+                                            FLStringWithFormatOrNil(@"Pointer unexpectedly not nil: %s", #__CONDITION__), \
+                                            nil, \
+                                            FLCreateStackTrace(YES)) 
 
 /// @brief: Assert a pointer is nil
 #define FLConfirmIsNil_v(__CONDITION__, __COMMENT__, ...) \
     if((__CONDITION__) != nil) \
-        @throw [NSException exceptionWithError:[NSError errorWithDomain:[FLAssertionFailureErrorDomain instance] \
-            code:FLAssertionFailureIsNotNil \
-            userInfo:nil \
-            reason:FLStringWithFormatOrNil(@"Pointer unexpectedly not nil: %s", #__CONDITION__) \
-            comment: FLStringWithFormatOrNil(__COMMENT__, ##__VA_ARGS__) \
-            stackTrace:FLCreateStackTrace(YES)]]; 
+        FLThrowConfirmationFailedException( FLAssertionFailureIsNotNil, \
+                                            FLStringWithFormatOrNil(@"Pointer unexpectedly not nil: %s", #__CONDITION__), \
+                                            FLStringWithFormatOrNil(__COMMENT__, ##__VA_ARGS__), \
+                                            FLCreateStackTrace(YES)) 
 
 /// @brief: Assert a pointer is NOT nil
 #define FLConfirmIsNotNil_(__CONDITION__) \
     if((__CONDITION__) == nil) \
-        @throw [NSException exceptionWithError:[NSError errorWithDomain:[FLAssertionFailureErrorDomain instance] \
-            code:FLAssertionFailureIsNil \
-            userInfo:nil \
-            reason:FLStringWithFormatOrNil(@"\"%s == nil\"", #__CONDITION__) \
-            comment:nil \
-            stackTrace:FLCreateStackTrace(YES)]]; 
+        FLThrowConfirmationFailedException( FLAssertionFailureIsNil, \
+                                            FLStringWithFormatOrNil(@"\"%s == nil\"", #__CONDITION__), \
+                                            nil, \
+                                            FLCreateStackTrace(YES)) 
+
 
 /// @brief: Assert a pointer is NOT nil
 #define FLConfirmIsNotNil_v(__CONDITION__, __COMMENT__, ...) \
     if((__CONDITION__) == nil) \
-        @throw [NSException exceptionWithError:[NSError errorWithDomain:[FLAssertionFailureErrorDomain instance] \
-            code:FLAssertionFailureIsNil \
-            userInfo:nil \
-            reason:FLStringWithFormatOrNil(@"\"%s == nil\"", #__CONDITION__) \
-            comment: FLStringWithFormatOrNil(__COMMENT__, ##__VA_ARGS__) \
-            stackTrace:FLCreateStackTrace(YES)]]; 
+        FLThrowConfirmationFailedException( FLAssertionFailureIsNil, \
+                                            FLStringWithFormatOrNil(@"\"%s == nil\"", #__CONDITION__), \
+                                            FLStringWithFormatOrNil(__COMMENT__, ##__VA_ARGS__), \
+                                            FLCreateStackTrace(YES)) 
 
 /// @brief: Assert a string is empty (either nil or of length 0)
 /// empty is either nil or of zero length

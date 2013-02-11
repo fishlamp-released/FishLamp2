@@ -10,7 +10,7 @@
 #import "FishLampCore.h"
 #import "FLPropertyDescription.h"
 #import "FLXmlElement.h"
-#import "FLDataEncoder.h"
+#import "FLDataEncoding.h"
 #import "FLObjectDescriber.h"
 #import "FLXmlComment.h"
 #import "FLDocumentBuilder.h"
@@ -24,9 +24,9 @@
 
 @interface FLXmlDocumentBuilder : FLDocumentBuilder {
 @private
-    id<FLDataEncoder> _dataEncoder;
+    id<FLDataEncoding> _dataEncoder;
 }
-@property (readwrite, strong, nonatomic) id<FLDataEncoder> dataEncoder;
+@property (readwrite, strong, nonatomic) id<FLDataEncoding> dataEncoder;
 
 @property (readonly, strong, nonatomic) id openedElement;
 

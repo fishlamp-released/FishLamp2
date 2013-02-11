@@ -53,7 +53,7 @@ typedef FLResult (^FLRunOperationBlock)(FLOperation* operation);
 
 // async operations will run in:
 // 1. dispatcher provided by context
-// 2. global default dispatcher (FLDefaultDispatcher)
+// 2. global default dispatcher ([FLDispatchQueue sharedDefaultQueue])
 - (FLFinisher*) startOperationInContext:(id) context completion:(FLCompletionBlock) completion;
 
 // can be called from other thread. dispatcher context may call this.

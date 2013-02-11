@@ -58,7 +58,7 @@ static int s_count = 0;
 }
 
 - (FLResult) dispatchBlock:(dispatch_block_t) block {
-    return [[FLDefaultDispatcher dispatchBlock:block] waitUntilFinished];
+    return [[[FLDispatchQueue sharedDefaultQueue] dispatchBlock:block] waitUntilFinished];
 }
 
 - (FLResult) dispatchFifoBlock:(dispatch_block_t) block {

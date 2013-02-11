@@ -78,6 +78,8 @@
 @synthesize headers = _headers;
 @synthesize dispatcher = _dispatcher;
 @synthesize authenticationDisabled = _authenticationDisabled;
+@synthesize dataEncoder = _dataEncoder;
+@synthesize dataDecoder = _dataDecoder;
 
 - (id) init {
     self = [self initWithRequestURL:nil httpMethod:nil];
@@ -113,6 +115,8 @@
 - (void) dealloc {
     _networkStream.delegate = nil;
 #if FL_MRC
+    [_dataDecoder release];
+    [_dataEncoder release];
     [_dispatcher release];
     [_headers release];
     [_context release];
@@ -383,7 +387,7 @@
     }
     
     if(!dispatcher) {
-        dispatcher = FLFifoQueue;
+        dispatcher = [FLDispatchQueue sharedFifoQueue];
     }
     
     [dispatcher dispatchBlock:^{

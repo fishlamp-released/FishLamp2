@@ -34,7 +34,7 @@
 
 @end
 
-typedef void (^FLObjectDescriberPropertyVisitor)(FLPropertyDescription* propertyDescription, id propertyObject, id parentObject, BOOL* stop);
+typedef void (^FLObjectDescriberPropertyVisitor)(id object, FLPropertyDescription* propertyDescription, BOOL* stop);
 
 @interface NSObject (FLObjectDescriber)
 
@@ -42,10 +42,17 @@ typedef void (^FLObjectDescriberPropertyVisitor)(FLPropertyDescription* property
 
 @property (readonly, assign, nonatomic) FLObjectDescriber* objectDescriber;
 
-- (void) visitDescribedPropertiesRecursive:(BOOL) recursive
-                                   visitor:(FLObjectDescriberPropertyVisitor) visitor;
+- (void) visitDescribedObjectAndProperties:(FLObjectDescriberPropertyVisitor) visitor;
+
+- (void) performSelectorOnDescribedObjectAndProperties:(SEL) sel;
+- (void) performSelectorOnDescribedObjectAndProperties:(SEL) sel withObject:(id) object;
+- (void) performSelectorOnDescribedObjectAndProperties:(SEL) sel withObject:(id) object1 withObject:(id) object2;
+- (void) performSelectorOnDescribedObjectAndProperties:(SEL) sel withObject:(id) object1 withObject:(id) object2 withObject:(id) object3;
 
 
+// ovverride this in your collections or whatever
+- (void) visitSelf:(FLObjectDescriberPropertyVisitor) visitor
+              stop:(BOOL*) stop;
 
 @end
 

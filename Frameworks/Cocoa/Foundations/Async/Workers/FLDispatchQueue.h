@@ -37,40 +37,40 @@
 
 @end
 
-@interface FLDispatchQueue (SystemQueues)
+@interface FLDispatchQueue (SharedQueues)
 + (FLDispatchQueue*) sharedLowPriorityQueue;
 + (FLDispatchQueue*) sharedDefaultQueue;
 + (FLDispatchQueue*) sharedHighPriorityQueue;
 + (FLDispatchQueue*) sharedBackgroundQueue;
 + (FLDispatchQueue*) sharedForegroundQueue;
++ (FLDispatchQueue*) sharedFifoQueue;
 @end
 
 @interface FLFifoDispatchQueue : FLDispatchQueue
 + (id) fifoDispatchQueue;
-+ (FLDispatchQueue*) sharedFifoQueue;
 + (FLObjectPool*) pool;
 @end
 
-#define FLHighPriorityQueue \
-            [FLDispatchQueue sharedHighPriorityQueue]
-
-#define FLBackgroundQueue \
-            [FLDispatchQueue sharedBackgroundQueue]
-
-#define FLLowPriorityQueue \
-            [FLDispatchQueue sharedLowPriorityQueue]
-            
-#define FLDefaultDispatcher \
-            [FLDispatchQueue sharedDefaultQueue]
-
-#define FLDefaultQueue \
-            FLDefaultDispatcher
-            
-#define FLForegroundQueue \
-            [FLDispatchQueue sharedForegroundQueue]
-
-#define FLFifoQueue \
-            [FLFifoDispatchQueue sharedFifoQueue]
+//#define FLHighPriorityQueue \
+//            [FLDispatchQueue sharedHighPriorityQueue]
+//
+//#define FLBackgroundQueue \
+//            [FLDispatchQueue sharedBackgroundQueue]
+//
+//#define FLLowPriorityQueue \
+//            [FLDispatchQueue sharedLowPriorityQueue]
+//            
+//#define FLDefaultDispatcher \
+//            [FLDispatchQueue sharedDefaultQueue]
+//
+//#define FLDefaultQueue \
+//            FLDefaultDispatcher
+//            
+//#define FLForegroundQueue \
+//            [FLDispatchQueue sharedForegroundQueue]
+//
+//#define [FLFifoDispatchQueue sharedFifoQueue] \
+//            [FLFifoDispatchQueue sharedFifoQueue]
 
 
 

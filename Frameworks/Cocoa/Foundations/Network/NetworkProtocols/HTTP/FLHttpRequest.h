@@ -13,6 +13,8 @@
 #import "FLHttpResponse.h"
 #import "FLHttpRequestBody.h"
 #import "FLFinisher.h"
+#import "FLDataEncoding.h"
+#import "FLDataDecoding.h"
 
 @class FLHttpRequest;
 @class FLFinisher;
@@ -41,7 +43,14 @@
     id _context;
     id<FLDispatcher> _dispatcher;
     BOOL _authenticationDisabled;
+    
+    id<FLDataEncoding> _dataEncoder;
+    id<FLDataDecoding> _dataDecoder;
+    
 }
+
+@property (readwrite, strong) id<FLDataEncoding> dataEncoder;
+@property (readwrite, strong) id<FLDataDecoding> dataDecoder;
 
 @property (readwrite, assign, nonatomic) BOOL authenticationDisabled;
 

@@ -57,7 +57,7 @@
 	FLSuperDealloc();
 }
 
-- (id<FLDataDecoder>) onCreateDataDecoder {
+- (id<FLDataDecoding>) onCreateDataDecoder {
     return [FLSoapDataEncoder instance];
 }
 
@@ -130,19 +130,16 @@
 	
 		if(unparsedData.length > 0)
 		{
-			if(lastState.parsedDataType != FLDataTypeUnknown)
-			{	
-				id inflatedObject = nil;
+			if(lastState.parsedDataType) {
+
                 FLAssertIsNotNil_(self.dataDecoder);
                 
-				[self.dataDecoder decodeDataFromString:unparsedData forType:lastState.parsedDataType outObject:&inflatedObject]; 
+				id inflatedObject = [self.dataDecoder decodeDataFromString:unparsedData forType:lastState.parsedDataType]; 
 
-				if(inflatedObject)
-				{
+				if(inflatedObject) {
 					lastState.data = inflatedObject;
 				}
-				else
-				{
+				else {
 					lastState.data = unparsedData; // trimmed.
 				}
 				

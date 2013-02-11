@@ -347,13 +347,13 @@ TODO("MF: fix activity updater");
     
     [self.operations didMoveToContext:self.context];
 
-    [FLForegroundQueue dispatchBlock:^{
+    [[FLDispatchQueue sharedForegroundQueue] dispatchBlock:^{
         [self actionStarted];
         
-        [FLHighPriorityQueue dispatchObject:self.operations
+        [[FLDispatchQueue sharedHighPriorityQueue] dispatchObject:self.operations
                                  completion:^(FLResult result) {
                 
-                [FLForegroundQueue dispatchBlock:^{
+                [[FLDispatchQueue sharedForegroundQueue] dispatchBlock:^{
                     [finisher setFinishedWithResult:[self actionFinished:result]];
                 }];
             }];

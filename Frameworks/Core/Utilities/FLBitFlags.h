@@ -15,6 +15,8 @@
 
 typedef uint32_t FLBitFlags_t;
 typedef uint32_t FLBitMask_t;
+#define FLBitMask FLBitMask_t
+#define FLBitFlags FLBitFlags_t
 
 // non atomic
 

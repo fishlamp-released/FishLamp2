@@ -9,10 +9,6 @@
 #import "FLCocoaRequired.h"
 #import "FishLampCore.h"
 
-// this is basically an adaptor class. 
-// I'll have to dig through the memory banks to remember why we needed it... :-)
-// I think it had to do with the effing unbounded arrays in XML (hack).
-
 @class FLObjectDescriber;
 
 @interface FLObjectInflator : NSObject {

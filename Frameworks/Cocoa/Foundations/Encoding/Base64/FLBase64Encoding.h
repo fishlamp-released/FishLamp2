@@ -9,26 +9,21 @@
 #import "FLCocoaRequired.h"
 #import "FishLampCore.h"
 
-@interface NSData (Base64Encoding)
+@interface NSString (Base64Encoding)
+- (NSData*) asciiData;
++ (NSString*) stringWithAsciiData:(NSData*) data;
 
-
-- (NSData*) base64Decode; // returns autoreleased NSData
-- (void) base64Encode:(NSData**) outData;
-
-- (NSData*) base64Encode; // returns autoreleased NSData
-- (void) base64Decode:(NSData**) outData;
-
-// strings
-- (void) base64EncodeToString:(NSString**) outString;
-+ (void)base64DecodeString:(NSString*) str	outData:(NSData**) outData;
-
-+ (void) concatAndEncodeSHA256:(NSData*) lhs rhs:(NSData*) rhs outData:(NSData**) outData;
+- (NSData*) base64Decode;
 
 @end
 
-@interface NSString (Base64Encoding)
+@interface NSData (Base64Encoding)
 
-- (void) base64Encode:(NSString**) outString;
-- (void) base64Decode:(NSString**) outString;
+- (NSData*) base64Decode;
+- (NSData*) base64Encode;
+
+- (NSData*) SHA256Hash;
+
+- (NSData*) dataWithAppendedData:(NSData*) data;
 
 @end

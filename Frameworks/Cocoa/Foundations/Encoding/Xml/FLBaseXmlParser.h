@@ -14,7 +14,7 @@
 
 @interface FLBaseXmlParser : NSObject<FLDataParser, NSXMLParserDelegate> {
 @private
-   id<FLDataDecoder> _dataDecoder;
+   id<FLDataDecoding> _dataDecoder;
    NSError* _error;
    NSXMLParser* _parser;
 }
@@ -23,12 +23,12 @@
 - (void) setError:(NSError*) error errorHint:(NSString*) errorHint;
 
 @property (readonly, retain, nonatomic) NSXMLParser* parser; // only valid during parse
-@property (readwrite, retain, nonatomic) id<FLDataDecoder> dataDecoder;
+@property (readwrite, retain, nonatomic) id<FLDataDecoding> dataDecoder;
 
 - (void) parse:(NSData*) data;
 
 - (void) onConfigureParser:(NSXMLParser*) parser;
-- (id<FLDataDecoder>) onCreateDataDecoder;
+- (id<FLDataDecoding>) onCreateDataDecoder;
 
 + (NSString*) errorStringForCode:(NSXMLParserError) code;
 

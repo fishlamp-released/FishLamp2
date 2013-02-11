@@ -20,7 +20,6 @@
 
 - (id) init {
 	if((self = [super init])) {
-		self.parsedDataType = FLDataTypeUnknown;
 	}
 	
 	return self;
@@ -39,13 +38,17 @@
     return FLAutorelease([[FLObjectInflatorState alloc] initWithObject:object key:key]);
 }
 
+#if FL_MRC
 - (void) dealloc {
-    FLRelease(_parseInfo);
-	FLRelease(_describer);
-	FLRelease(_object);
-	FLRelease(_key);
-	FLRelease(_data);
-	FLSuperDealloc();
+    [_parseInfo release];
+    [_key release];
+    [_data release];
+    [_object release];
+    [_describer release];
+    [_dataType release];
+    
+    [super dealloc];
 }
+#endif
 
 @end

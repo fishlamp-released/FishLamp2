@@ -17,7 +17,7 @@
     self = [super init];
     if(self) {
         _objects = [[NSCountedSet alloc] init];
-        self.dispatcher = FLFifoQueue;
+        self.dispatcher = [FLDispatchQueue sharedFifoQueue];
     }
     
     return self;

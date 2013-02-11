@@ -9,7 +9,7 @@
 #import "FLCocoaRequired.h"
 #import "FishLampCore.h"
 
-#import "FLDataTypeID.h"
+#import "FLTypeDesc.h"
 
 @interface FLPropertyDescription :NSObject {
 @private
@@ -19,7 +19,7 @@
 	SEL _getter;
     SEL _setter;
     
-    FLDataTypeID _propertyType;
+    FLTypeDesc* _propertyType;
     BOOL _unboundedArray;
     BOOL _unboundedArrayItem;
 }
@@ -40,7 +40,7 @@
 
 @property (readonly, strong, nonatomic) NSString* propertyName;
 @property (readonly, assign, nonatomic) Class propertyClass;
-@property (readonly, assign, nonatomic) FLDataTypeID propertyType;
+@property (readonly, strong, nonatomic) FLTypeDesc* propertyType;
 @property (readonly, strong, nonatomic) NSArray* arrayTypes;
 @property (readonly, assign, nonatomic) BOOL isArray;
 
@@ -49,33 +49,33 @@
 
 - (id) initWithPropertyName:(NSString*) name
 	propertyClass:(Class) aClass
-	propertyType:(FLDataTypeID) dataType;
+	propertyType:(FLTypeDesc*) dataType;
 
 - (id) initWithPropertyName:(NSString*) name
               propertyClass:(Class) aClass
-               propertyType:(FLDataTypeID) dataType
+               propertyType:(FLTypeDesc*) dataType
                  arrayTypes:(NSArray*) arrayTypes;
 
 - (id) initWithPropertyName:(NSString*) name
               propertyClass:(Class) aClass
-               propertyType:(FLDataTypeID) dataType
+               propertyType:(FLTypeDesc*) dataType
                  arrayTypes:(NSArray*) arrayTypes
            isUnboundedArray:(BOOL) isUnboundedArray;
 
 + (FLPropertyDescription*) propertyDescription:(NSString*) name
                                  propertyClass:(Class) aClass
-                                  propertyType:(FLDataTypeID) dataType;
+                                  propertyType:(FLTypeDesc*) dataType;
 
 
 + (FLPropertyDescription*) propertyDescription:(NSString*) name
                                  propertyClass:(Class) aClass
-                                  propertyType:(FLDataTypeID) dataType
+                                  propertyType:(FLTypeDesc*) dataType
                                     arrayTypes:(NSArray*) arrayTypes;
 
 
 + (FLPropertyDescription*) propertyDescription:(NSString*) name
                                  propertyClass:(Class) aClass
-                                  propertyType:(FLDataTypeID) dataType
+                                  propertyType:(FLTypeDesc*) dataType
                                     arrayTypes:(NSArray*) arrayTypes
                               isUnboundedArray:(BOOL) isUnboundedArray;
     

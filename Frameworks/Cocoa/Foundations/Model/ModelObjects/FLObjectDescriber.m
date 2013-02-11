@@ -70,6 +70,8 @@
 	return [_properties objectForKey:propertyName];
 }
 
+
+
 - (void) addPropertiesForClass:(Class) class {
 	if(class == [NSObject class]) {
 		return;
@@ -88,15 +90,19 @@
 	//	printf("name: %s, attributes %s\n",name, attributes);
 		
 		if(className) {
-			Class c = objc_getClass(className);
+			Class theClass = objc_getClass(className);
 			
-			FLAssertIsNotNil_(c);
+			FLAssertIsNotNil_(theClass);
 			   
 			NSString* propertyName = [NSString stringWithCString:property_getName(properties[i]) encoding:NSASCIIStringEncoding];
+
+// TODO: build up FLTypeDesc
+
+            FLTypeDesc* propertyType = nil;
 			
 			[self setPropertyDescriber:[FLPropertyDescription propertyDescription:propertyName
-				propertyClass:c
-				propertyType:FLDataTypeUnknown
+				propertyClass:theClass
+				propertyType:propertyType
 				arrayTypes:nil] forPropertyName:propertyName];
 							 
 			free(className);
@@ -121,6 +127,50 @@
 
 @end
 
+@implementation NSArray (FLObjectDescriber)
+- (void) visitSelf:(FLObjectDescriberPropertyVisitor) visitor
+              stop:(BOOL*) stop {
+
+    for(id object in self) {
+        [object visitSelf:visitor stop:stop];
+
+        if(*stop) {
+            return;
+        }
+    }
+}
+@end
+
+@implementation NSDictionary (FLObjectDescriber)
+- (void) visitSelf:(FLObjectDescriberPropertyVisitor) visitor
+              stop:(BOOL*) stop {
+
+    for(id object in [self objectEnumerator]) {
+
+        [object visitSelf:visitor stop:stop];
+
+        if(*stop) {
+            return;
+        }
+    }
+}
+@end
+
+@implementation NSSet (FLObjectDescriber)
+- (void) visitSelf:(FLObjectDescriberPropertyVisitor) visitor
+              stop:(BOOL*) stop {
+
+    for(id object in [self objectEnumerator]) {
+
+        [object visitSelf:visitor stop:stop];
+
+        if(*stop) {
+            return;
+        }
+    }
+}
+@end
+
 @implementation NSObject (FLObjectDescriber)
 
 + (FLObjectDescriber*) sharedObjectDescriber {
@@ -131,49 +181,68 @@
     return [[self class] sharedObjectDescriber];
 }
 
-- (void) _visitDescribedPropertiesRecursive:(BOOL) recursive
-                                   visitor:(FLObjectDescriberPropertyVisitor) visitor {
+- (void) visitSelf:(FLObjectDescriberPropertyVisitor) visitor
+              stop:(BOOL*) stop {
+
+    visitor(self, nil, stop);
+
+    if(*stop) {
+        return;
+    }
 
     FLObjectDescriber* describer = [[self class] sharedObjectDescriber];
-    BOOL stop = NO;
 
     for(FLPropertyDescription* property in describer.propertyDescribers.objectEnumerator) {
 
         id value = [property propertyValueForObject:self];
-        visitor(property, value, self, &stop);
-        
-        if(stop) {
-            FLThrowAbortException();
-        }
-        
-        if(recursive && value) {
-            if(property.isArray) {
-                for(id object in value) {
-                    visitor(property, object, self, &stop);
 
-                    [object _visitDescribedPropertiesRecursive:recursive visitor:visitor];
-                }
-            }
-            else {
-                [value _visitDescribedPropertiesRecursive:recursive visitor:visitor];
-            }
-            
-        }
+        if(value) {
+            [value visitSelf:visitor stop:stop];
 
-    
+            if(*stop) {
+                return;
+            }
+        }
     }
 }
 
-- (void) visitDescribedPropertiesRecursive:(BOOL) recursive
-                                   visitor:(FLObjectDescriberPropertyVisitor) visitor {
+- (void) visitDescribedObjectAndProperties:(FLObjectDescriberPropertyVisitor) visitor {
+    BOOL stop = NO;
+    [self visitSelf:visitor stop:&stop];
+}
 
-    @try {                               
-        [self _visitDescribedPropertiesRecursive:recursive visitor:visitor];
-    }
-    @catch(FLAbortException* ex) {
-        
-    }
-}                                   
+
+- (void) performSelectorOnDescribedObjectAndProperties:(SEL) sel {
+    [self visitDescribedObjectAndProperties:^(id object, FLPropertyDescription* prop, BOOL* stop) {
+        FLPerformSelector(object, sel);
+    }];
+
+}
+- (void) performSelectorOnDescribedObjectAndProperties:(SEL) sel
+                                            withObject:(id) object1 {
+    [self visitDescribedObjectAndProperties:^(id object, FLPropertyDescription* prop, BOOL* stop) {
+        FLPerformSelector1(object, sel, object1);
+    }];
+
+}
+- (void) performSelectorOnDescribedObjectAndProperties:(SEL) sel
+                                            withObject:(id) object1
+                                            withObject:(id) object2{
+    [self visitDescribedObjectAndProperties:^(id object, FLPropertyDescription* prop, BOOL* stop) {
+        FLPerformSelector2(object, sel, object1, object2);
+    }];
+
+}
+- (void) performSelectorOnDescribedObjectAndProperties:(SEL) sel
+                                            withObject:(id) object1
+                                            withObject:(id) object2
+                                            withObject:(id) object3 {
+    [self visitDescribedObjectAndProperties:^(id object, FLPropertyDescription* prop, BOOL* stop) {
+        FLPerformSelector3(object, sel, object1, object2, object3);
+    }];
+
+}
+
 
 @end
 
@@ -213,7 +282,7 @@ void FLEqualValueHandler(id inner, id outer, FLMergeMode mergeMode, NSArray* arr
 
 void FLEqualMultiObjectHandler(id inner, id outer, FLMergeMode mergeMode, NSArray* arrayItemTypes) {
 	for(FLPropertyDescription* desc in arrayItemTypes) {
-		if([outer isKindOfClass:desc.propertyClass] && desc.propertyType == FLDataTypeObject) {
+		if([outer isKindOfClass:desc.propertyClass] && desc.propertyType) {
 			FLMergeObjects(inner, outer, mergeMode); 
 			break;
 		}
@@ -233,7 +302,7 @@ void FLMergeObjectArrays(NSMutableArray* dest,
                          NSArray* arrayItemTypes){
 
 	if(arrayItemTypes.count) {
-		if([[arrayItemTypes firstObject] propertyType] == FLDataTypeObject) {
+		if([[arrayItemTypes firstObject] propertyType].isObject) {
 			_FLMergeListsOfObjects(dest, src, mergeMode, arrayItemTypes, FLEqualObjectHandler);
 		}
 		else {
@@ -260,7 +329,7 @@ void FLMergeObjects(id dest, id src, FLMergeMode mergeMode) {
 				}
 				else {
 					FLPropertyDescription* srcProp = [srcDescriber propertyDescriberForPropertyName:srcPropName];
-					if(srcProp.propertyType != FLDataTypeObject) {
+					if(srcProp.propertyType.isObject) {
 					   if(mergeMode == FLMergeModeSourceWins) {
 							[dest setValue:srcObject forKey:srcPropName];
 					   }

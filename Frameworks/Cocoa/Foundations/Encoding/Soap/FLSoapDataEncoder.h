@@ -8,13 +8,11 @@
 
 #import "FLCocoaRequired.h"
 #import "FishLampCore.h"
-
 #import "FLDataEncoder.h"
+
 #import "NSString+XML.h"
 
-@interface FLSoapDataEncoder : NSObject<FLDataEncoder, FLDataDecoder> {
-@private
-	NSNumberFormatter* _numberFormatter;
+@interface FLSoapDataEncoder : FLDataEncoder {
 }
 
 FLSingletonProperty(FLSoapDataEncoder);

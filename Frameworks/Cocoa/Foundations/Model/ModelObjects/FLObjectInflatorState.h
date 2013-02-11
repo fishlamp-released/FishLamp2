@@ -19,7 +19,7 @@
 	id _object;
 	id _data;
     FLObjectDescriber* _describer;
-	FLDataTypeID _dataType;
+	FLTypeDesc* _dataType;
 	BOOL _dataIsAttribute;
     FLParseInfo* _parseInfo;
 }
@@ -35,7 +35,7 @@
 @property (readwrite, strong, nonatomic) FLObjectDescriber* objectDescriber;
 @property (readwrite, strong, nonatomic) FLParseInfo* parseInfo; // may or may not be available, depending on parser 
 
-@property (readwrite, assign, nonatomic) FLDataTypeID parsedDataType;
+@property (readwrite, strong, nonatomic) FLTypeDesc* parsedDataType;
 @property (readwrite, assign, nonatomic) BOOL dataIsAttribute;
 
 @end

@@ -56,7 +56,7 @@
 }
 
 - (id<FLDispatcher>) operationDispatcher:(FLOperation*) operation {
-    return FLDefaultDispatcher;
+    return [FLDispatchQueue sharedDefaultQueue];
 }
 
 - (void) operationDidStart:(FLOperation*) operation {

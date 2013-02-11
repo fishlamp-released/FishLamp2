@@ -11,9 +11,14 @@
 #import "FLDateMgr.h"
 
 @interface FLObjectBuilder ()
-- (void) buildObject:(id) object fromDictionary:(NSDictionary*) dictionary withObjectDescriber:(FLObjectDescriber*) describer;
+- (void) buildObject:(id) object 
+      fromDictionary:(NSDictionary*) dictionary 
+ withObjectDescriber:(FLObjectDescriber*) describer
+         withDecoder:(id<FLDataDecoding>) decoder;
+
 - (NSMutableArray*) addObjectsToArray:(NSMutableArray*) fromArray 
-	forProperty:(FLPropertyDescription*) propertyDescription;
+                          forProperty:(FLPropertyDescription*) propertyDescription
+                          withDecoder:(id<FLDataDecoding>) decoder;
 @end
 
 @implementation FLObjectBuilder
@@ -24,6 +29,7 @@
 
 - (NSMutableArray*) addObjectsToArray:(NSMutableArray*) fromArray 
 	forProperty:(FLPropertyDescription*) propertyDescription
+                              withDecoder:(id<FLDataDecoding>) decoder
 {
 	NSMutableArray* newArray = [NSMutableArray arrayWithCapacity:[fromArray count]];
 	
@@ -35,31 +41,45 @@
 		{
 			id newObject = FLAutorelease([[arrayItemDesc.propertyClass alloc] init]);
 			[newArray addObject:newObject];
-			[self buildObject:newObject fromDictionary:arrayItem withObjectDescriber:[[newObject class] sharedObjectDescriber]];
+			[self buildObject:newObject fromDictionary:arrayItem withObjectDescriber:[[newObject class] sharedObjectDescriber] withDecoder:decoder];
 		}
-//		else if([value isKindOfClass:[NSArray class]])
-//		{
-//			[newArray addObject:[self addObjectsToArray:value forProperty:prop] forKey:prop.propertyName];
-//		}
+		else if([arrayItem isKindOfClass:[NSArray class]]) {
+			[newArray addObject:[self addObjectsToArray:arrayItem forProperty:arrayItemDesc withDecoder:decoder]];
+		}
 		else
 		{
-			switch(arrayItemDesc.propertyType)
-			{
-				case FLDataTypeDate:
-					[newArray addObject: [[FLDateMgr instance] ISO8601StringToDate:arrayItem]];
-				break;
-				
-				default:
-                    [newArray addObject:arrayItem];
-				break;
-			}
+            if(decoder) {
+                [newArray addObject:[arrayItemDesc.propertyType stringToObject:arrayItem withDecoder:decoder]];
+            }
+            else {
+                [newArray addObject:arrayItem];
+            }
+
+
+//			switch(arrayItemDesc.propertyType.specificType)
+//			{
+//				case FLSpecificTypeDate:
+//					[newArray addObject: [[FLDateMgr instance] ISO8601StringToDate:arrayItem]];
+//				break;
+//				
+//				default:
+//                    [newArray addObject:arrayItem];
+//				break;
+//			}
+
+            
+
+
 		}
 	}
 	
 	return newArray;
 }
 
-- (void) buildObject:(id) object fromDictionary:(NSDictionary*) dictionary withObjectDescriber:(FLObjectDescriber*) describer
+- (void) buildObject:(id) object 
+      fromDictionary:(NSDictionary*) dictionary 
+ withObjectDescriber:(FLObjectDescriber*) describer
+         withDecoder:(id<FLDataDecoding>) decoder
 {
 	for(NSString* key in dictionary)
 	{
@@ -71,27 +91,30 @@
 			{
 				if([value isKindOfClass:[NSDictionary class]])
 				{
-					FLAssert_v(property.propertyType == FLDataTypeObject, @"not an object?");
+//					FLAssert_v(property.propertyType.generalType == FLGeneralTypeObject, @"not an object?");
 				
 					id newObject = FLAutorelease([[property.propertyClass alloc] init]);
 					[object setValue:newObject forKey:key];
-					[self buildObject:newObject fromDictionary:value withObjectDescriber:[[newObject class] sharedObjectDescriber]];
+					[self buildObject:newObject fromDictionary:value withObjectDescriber:[[newObject class] sharedObjectDescriber] withDecoder:decoder];
 				}
-				else if([value isKindOfClass:[NSArray class]])
-				{
-					[object setValue:[self addObjectsToArray:value forProperty:property] forKey:key];
+				else if([value isKindOfClass:[NSArray class]]) {
+					[object setValue:[self addObjectsToArray:value forProperty:property withDecoder:decoder] forKey:key];
 				}
-				else
-				{
-					switch(property.propertyType)
-					{
-						case FLDataTypeDate:
-							value = [[FLDateMgr instance] ISO8601StringToDate:value];
-						break;
-						
-						default:
-						break;
-					}
+				else {
+
+                    if(decoder) {
+                        value = [property.propertyType stringToObject:value withDecoder:decoder];
+                    }
+                
+//					switch(property.propertyType.specificType)
+//					{
+//						case FLSpecificTypeDate:
+//							value = [[FLDateMgr instance] ISO8601StringToDate:value];
+//						break;
+//						
+//						default:
+//						break;
+//					}
 					
 					[object setValue:value forKey:key];
 				}
@@ -105,9 +128,10 @@
 }
 
 
-- (void) buildObjectsFromDictionary:(NSDictionary*) dictionary withRootObject:(id) rootObject
-{
-	[self buildObject:rootObject fromDictionary:dictionary withObjectDescriber:[[rootObject class] sharedObjectDescriber]];
+- (void) buildObjectsFromDictionary:(NSDictionary*) dictionary 
+                     withRootObject:(id) rootObject
+                        withDecoder:(id<FLDataDecoding>) decoder {
+	[self buildObject:rootObject fromDictionary:dictionary withObjectDescriber:[[rootObject class] sharedObjectDescriber] withDecoder:decoder];
 }
 	
 @end

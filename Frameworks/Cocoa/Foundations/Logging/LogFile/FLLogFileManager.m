@@ -34,7 +34,7 @@ FLSynthesizeSingleton(FLLogFileManager);
     if(_logFile) {
         FLLogFile* closeMe = _logFile;
 
-        [FLFifoQueue dispatchBlock:^{
+        [[FLDispatchQueue sharedFifoQueue] dispatchBlock:^{
             [closeMe closeLogFile];
         }];
 
@@ -164,7 +164,7 @@ FLSynthesizeSingleton(FLLogFileManager);
 
 - (void) logString:(NSString*) string {
 
-    [FLFifoQueue dispatchBlock:^{
+    [[FLDispatchQueue sharedFifoQueue] dispatchBlock:^{
         if(!_logFile) {
             [self _openLogFile];
         }

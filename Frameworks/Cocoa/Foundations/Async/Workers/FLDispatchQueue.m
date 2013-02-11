@@ -167,7 +167,7 @@ static void * const s_queue_key = (void*)&s_queue_key;
 
 @end
 
-@implementation FLDispatchQueue (SystemQueues)
+@implementation FLDispatchQueue (SharedQueues)
 
 + (FLDispatchQueue*) sharedLowPriorityQueue {
     FLReturnStaticObject( [[FLDispatchQueue alloc] initWithDispatchQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)]);
@@ -184,6 +184,10 @@ static void * const s_queue_key = (void*)&s_queue_key;
 + (FLDispatchQueue*) sharedForegroundQueue {
     FLReturnStaticObject([[FLDispatchQueue alloc] initWithDispatchQueue:dispatch_get_main_queue()]);
 }
+
++ (FLDispatchQueue*) sharedFifoQueue {
+    FLReturnStaticObject([[FLFifoDispatchQueue alloc] init]);
+}
 @end
 
 @implementation FLFifoDispatchQueue  
@@ -195,10 +199,6 @@ static void * const s_queue_key = (void*)&s_queue_key;
 - (id) init {
     static int s_count = 0;
     return [super initWithLabel:[NSString stringWithFormat:@"com.fishlamp.queue.fifo%d", s_count++] attr:DISPATCH_QUEUE_SERIAL];
-}
-
-+ (FLDispatchQueue*) sharedFifoQueue {
-    FLReturnStaticObject([[FLFifoDispatchQueue alloc] init]);
 }
 
 + (FLObjectPool*) pool {

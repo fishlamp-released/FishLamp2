@@ -17,7 +17,7 @@
 	return prefix.length > 0 ? [elementName substringFromIndex:prefix.location+1] : elementName;
 }
 
-- (id<FLDataDecoder>) onCreateDataDecoder {
+- (id<FLDataDecoding>) onCreateDataDecoder {
     return [FLSoapDataEncoder instance];
 }
 

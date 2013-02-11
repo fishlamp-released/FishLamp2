@@ -32,7 +32,7 @@
 	if(prop) {
 		state.parsedDataType = prop.propertyType;
 	
-		if(prop.propertyType == FLDataTypeObject) {
+		if(prop.propertyType) {
 
             // this actually might return self or an inflator.
             // it relies on key value coding for setting the properties
@@ -107,7 +107,7 @@
 			if(FLStringsAreEqual(desc.propertyName, state.key)) {
 				state.parsedDataType = desc.propertyType;
 
-				if(desc.propertyType == FLDataTypeObject) {
+                if(desc.propertyType) {
 					FLAssertIsNotNil_(desc.propertyClass);
 				
 					id obj = [[desc.propertyClass alloc] init];
