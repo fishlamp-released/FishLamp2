@@ -8,6 +8,7 @@
 
 #import "FLCocoaRequired.h"
 #import "FLDocumentSection.h"
+#import "FLDataEncoding.h"
 
 @protocol FLDataEncoder;
 @class FLPropertyDescription;
@@ -20,11 +21,11 @@
 	NSMutableDictionary* _attributes;
     NSString* _openTag;
     NSString* _closeTag;
-    id<FLDataEncoder> _dataEncoder;
+    id<FLDataEncoding> _dataEncoder;
     FLXmlComment* _comments;
 }
 
-@property (readwrite, strong, nonatomic) id<FLDataEncoder> dataEncoder;
+@property (readwrite, strong, nonatomic) id<FLDataEncoding> dataEncoder;
 @property (readonly, strong, nonatomic) FLXmlComment* comments;
 
 @property (readonly, strong, nonatomic) NSString* xmlElementTag;

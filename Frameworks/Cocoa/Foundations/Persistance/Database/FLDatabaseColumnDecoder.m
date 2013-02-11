@@ -115,9 +115,9 @@ id FLLegacyDatabaseColumnDecoder(FLDatabase* database,
         case FLDatabaseTypeBlob:
             if(column.columnType == FLDatabaseTypeText) {
                 FLConfirmIsKindOfClass_(object, NSString);
-                NSData* newData = nil;
-                [NSData base64DecodeString:object outData:&newData];
-                object = FLAutorelease(newData);
+                object = [object base64Decode];
+//                [NSData base64DecodeString:object outData:&newData];
+//                object = FLAutorelease(newData);
 
 #if TRACE
                 FLDebugLog(@"converted base64encoded object");

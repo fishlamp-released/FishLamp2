@@ -77,7 +77,7 @@ FLSynthesizeAssociatedProperty(retain_nonatomic, objectPool, setObjectPool, FLOb
 - (void) requestPooledObject:(FLObjectPoolBlock) block {
     block = FLCopyWithAutorelease(block);
     
-    [FLFifoQueue dispatchBlock:^{
+    [[FLDispatchQueue sharedFifoQueue] dispatchBlock:^{
         [_requests addObject:block];
         [self fufillRequests];
 
@@ -85,7 +85,7 @@ FLSynthesizeAssociatedProperty(retain_nonatomic, objectPool, setObjectPool, FLOb
 }
 
 - (void) releasePooledObject:(id) objectForPool {
-    [FLFifoQueue dispatchBlock:^{
+    [[FLDispatchQueue sharedFifoQueue] dispatchBlock:^{
         [_objects addObject:objectForPool];
         [objectForPool setObjectPool:nil];
         [self fufillRequests];
@@ -93,7 +93,7 @@ FLSynthesizeAssociatedProperty(retain_nonatomic, objectPool, setObjectPool, FLOb
 }
 
 - (void) stockPool:(NSArray*) withObjects {
-    [FLFifoQueue dispatchBlock:^{
+    [[FLDispatchQueue sharedFifoQueue] dispatchBlock:^{
         [_objects addObjectsFromArray:withObjects];
     }];
 }

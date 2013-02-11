@@ -14,10 +14,10 @@
 
 @interface FLJsonStringBuilder : FLDocumentBuilder {
 @private
-	id<FLDataEncoder> _dataEncoder;
+	id<FLDataEncoding> _dataEncoder;
 }
 
-@property (readwrite, retain, nonatomic) id<FLDataEncoder> dataEncoder;
+@property (readwrite, retain, nonatomic) id<FLDataEncoding> dataEncoder;
 
 - (void) streamObject:(id) object;
 

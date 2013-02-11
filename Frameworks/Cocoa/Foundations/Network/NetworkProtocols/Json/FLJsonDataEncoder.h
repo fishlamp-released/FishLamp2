@@ -11,9 +11,8 @@
 
 #import "FLDataEncoder.h"
 
-@interface FLJsonDataEncoder : NSObject<FLDataEncoder> {
+@interface FLJsonDataEncoder : FLDataEncoder {
 @private
-	NSNumberFormatter* _numberFormatter;
 }
 
 FLSingletonProperty(FLJsonDataEncoder);

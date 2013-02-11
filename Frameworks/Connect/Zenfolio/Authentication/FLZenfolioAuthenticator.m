@@ -43,18 +43,17 @@
 	
 	const char* pw = [self.userLogin.password UTF8String]; // autoreleased
 	
-	NSData* pwData = [[NSData alloc] initWithBytes:pw length:strlen(pw)];
+	NSData* pwData = FLAutorelease([[NSData alloc] initWithBytes:pw length:strlen(pw)]);
 
-	NSData* hash1 = nil;
-	[NSData concatAndEncodeSHA256:decodedSalt rhs:pwData outData:&hash1];
-	FLReleaseWithNil(pwData);
+	NSData* hash1 = [decodedSalt concatAndEncodeSHA256WithData:pwData];
+//	[NSData concatAndEncodeSHA256:decodedSalt rhs:pwData outData:&hash1];
 	
 	// 3. combine challenge s hash1
 	// 4. encode
 	
-	NSData* hash2 =	 nil;
-	[NSData concatAndEncodeSHA256:decodedChallenge rhs:hash1 outData:&hash2]; 
-	FLRelease(hash1);
+	NSData* hash2 =	[decodedChallenge concatAndEncodeSHA256WithData:hash1];
+//	[NSData concatAndEncodeSHA256:decodedChallenge rhs:hash1 outData:&hash2]; 
+//	FLRelease(hash1);
     
 	// 5. convert challenge and hash back to base64 
 

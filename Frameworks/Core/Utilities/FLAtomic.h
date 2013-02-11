@@ -38,7 +38,7 @@
 // for use with pointers and NSInteger, etc.
 // LP64 = "Longs and Pointers are 64 bit"
 
-#if __LP64__
+#if FL_INT64
 
     #define FLAtomicGetInteger         FLAtomicGet64
 

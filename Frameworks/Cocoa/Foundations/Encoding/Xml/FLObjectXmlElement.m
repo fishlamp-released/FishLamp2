@@ -94,7 +94,7 @@
 //    FLAssertNotNil_v(self.document, @"must be added to document to serialize xml object");
 //            
 //	if(object) {
-//        id<FLDataEncoder> dataEncoder = [self.document dataEncoder];
+//        id<FLDataEncoding> dataEncoder = [self.document dataEncoder];
 //        FLConfirmNotNil_v(dataEncoder, @"Xml String builder requires a data encoder");
 //    
 //		NSString* string = nil;
@@ -115,13 +115,12 @@
                    propertyDescription:(FLPropertyDescription*) description {
 
     if(object) {
-        FLAssertNotNil_v(description, @"serialization requires property description")
+        FLAssertNotNil_v(description, @"serialization requires property description");
         
-        id<FLDataEncoder> dataEncoder = [self dataEncoder];
+        id<FLDataEncoding> dataEncoder = [self dataEncoder];
         FLConfirmNotNil_v(dataEncoder, @"Xml String builder requires a data encoder");
     
-		NSString* string = nil;
-        [dataEncoder encodeDataToString:object forType:description.propertyType outEncodedString:&string];
+		NSString* string = [dataEncoder encodeDataToString:object forType:description.propertyType];
         FLAssertNotNil_(string);
         FLConfirm_([string isKindOfClass:[NSString class]]);
         [self appendLine:string];
@@ -150,7 +149,7 @@
     
         FLAssertNotNil_([self dataEncoder]);
 
-        if(!_propertyDescription || _propertyDescription.propertyType == FLDataTypeObject) {
+        if(!_propertyDescription || _propertyDescription.propertyType.isObject) {
             [_object addToXmlElement:self propertyDescription:_propertyDescription];
         } 
         else {
@@ -211,7 +210,7 @@
     if(parent && _object) {
         FLAssertNotNil_v(_propertyDescription, @"serialization requires property description")
              
-        id<FLDataEncoder> dataEncoder = [[parent document] dataEncoder];
+        id<FLDataEncoding> dataEncoder = [[parent document] dataEncoder];
         FLConfirmNotNil_v(dataEncoder, @"Xml String builder requires a data encoder");
     
         NSString* encodedString = nil;

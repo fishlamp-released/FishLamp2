@@ -169,6 +169,37 @@
     [self setFinishedWithResult:FLSuccessfullResult completion:nil];
 }
 
+//- (FLResult) executeFinishableBlock:(FLDispatcherFinisherBlock) block {
+//    @try {
+//        [self setWillStartInDispatcher:self];
+//            
+//        if(block) {
+//            block(self);
+//        }
+//    }
+//    @catch(NSException* ex) {
+//        [self setFinishedWithResult:ex.error];
+//    }
+//    
+//    return self.result;
+//}
+//
+//- (FLResult) executeBlock:(dispatch_block_t) block {
+//    @try {
+//        [self setWillStartInDispatcher:self];
+//        
+//        if(block) {
+//            block();
+//        }
+//        [self setFinished];
+//    }
+//    @catch(NSException* ex) {
+//        [self setFinishedWithResult:ex.error];
+//    }
+//
+//    return self.result;
+//}
+
 //+ (FLFinisherNotificationSchedulerBlock) scheduleNotificationInMainThreadBlock {
 //    static FLFinisherNotificationSchedulerBlock s_block = ^(dispatch_block_t notifier) {
 //        if(![NSThread isMainThread]) {

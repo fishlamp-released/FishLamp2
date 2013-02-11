@@ -8,7 +8,7 @@
 
 #import "FLCocoaRequired.h"
 #import "FishLampCore.h"
-
+#import "FLDataDecoding.h"
 
 @interface FLObjectBuilder : NSObject {
 @private
@@ -16,6 +16,10 @@
 
 + (id) objectBuilder;
 
-- (void) buildObjectsFromDictionary:(NSDictionary*) dictionary withRootObject:(id) rootObject;
+// dictionary should only have arrays, dictionaries, and strings in it.
+
+- (void) buildObjectsFromDictionary:(NSDictionary*) dictionary 
+                     withRootObject:(id) rootObject
+                        withDecoder:(id<FLDataDecoding>) decoder;
 
 @end

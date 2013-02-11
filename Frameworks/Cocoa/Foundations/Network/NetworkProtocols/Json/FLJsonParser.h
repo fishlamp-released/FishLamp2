@@ -8,6 +8,7 @@
 
 #import "FLCocoaRequired.h"
 #import "FishLampCore.h"
+#import "FLDataDecoding.h"
 
 #define FLJsonParserErrorDomain @"FLJsonParserErrorDomain"
 #define FLJsonParserParseFailedErrorCode 1 
@@ -20,6 +21,8 @@
 
 + (FLJsonParser*) jsonParser;
 
-- (id) parseJsonData:(NSData *)data rootObject:(id) objectOrNil;
+- (id) parseJsonData:(NSData *)data 
+          rootObject:(id) objectOrNil 
+         withDecoder:(id<FLDataDecoding>) decoder;
 
 @end

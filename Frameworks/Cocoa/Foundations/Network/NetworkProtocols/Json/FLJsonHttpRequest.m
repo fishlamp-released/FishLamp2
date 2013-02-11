@@ -49,7 +49,7 @@
         _outputObject = [NSMutableDictionary dictionary];
     }
     
-    id result = [parser parseJsonData:[httpResponse responseData] rootObject:_outputObject];
+    id result = [parser parseJsonData:[httpResponse responseData] rootObject:_outputObject withDecoder:self.dataDecoder];
 
     FLThrowError(parser.error);
     

@@ -54,7 +54,7 @@
 	FLSuperDealloc();
 }
 
-- (id<FLDataDecoder>) onCreateDataDecoder {
+- (id<FLDataDecoding>) onCreateDataDecoder {
     return nil;
 }
 

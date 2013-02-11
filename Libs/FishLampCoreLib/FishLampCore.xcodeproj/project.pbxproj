@@ -374,6 +374,11 @@
 		27CBC19516768BA600753D0A /* NSDictionary+FLAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE13166D886500A0863D /* NSDictionary+FLAdditions.h */; };
 		27CBC19616768BA600753D0A /* NSObject+Blocks.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE15166D886500A0863D /* NSObject+Blocks.h */; };
 		27CBC19716768BA600753D0A /* NSObject+FLSelectorPerforming.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE17166D886500A0863D /* NSObject+FLSelectorPerforming.h */; };
+		27CBD28616C6ECCC00DC6C90 /* FLConfirmations.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CBD28516C6ECCC00DC6C90 /* FLConfirmations.m */; };
+		27CBD28716C6ECCC00DC6C90 /* FLConfirmations.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CBD28516C6ECCC00DC6C90 /* FLConfirmations.m */; };
+		27CBD28816C6ECCC00DC6C90 /* FLConfirmations.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CBD28516C6ECCC00DC6C90 /* FLConfirmations.m */; };
+		27CBD28916C6ECCC00DC6C90 /* FLConfirmations.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CBD28516C6ECCC00DC6C90 /* FLConfirmations.m */; };
+		27CBD28A16C6ECCC00DC6C90 /* FLConfirmations.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CBD28516C6ECCC00DC6C90 /* FLConfirmations.m */; };
 		27DB1E09167A7CBF00452AD3 /* FLFrameworkModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DB1E08167A7CBF00452AD3 /* FLFrameworkModule.h */; };
 		27DB1E0A167A7CBF00452AD3 /* FLFrameworkModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DB1E08167A7CBF00452AD3 /* FLFrameworkModule.h */; };
 		27DB1E0B167A7CBF00452AD3 /* FLFrameworkModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DB1E08167A7CBF00452AD3 /* FLFrameworkModule.h */; };
@@ -489,6 +494,7 @@
 		27A43AB415CDCC89001CB13E /* libFishLampCore-iOS-ARC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCore-iOS-ARC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27A43AC415CDCCCB001CB13E /* libFishLampCore-OSX-64-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCore-OSX-64-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27CBC1F416768BA600753D0A /* libFishLampCore-OSX-32-64-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libFishLampCore-OSX-32-64-MRC.a"; path = "libFishLampCore-OSX-3264-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		27CBD28516C6ECCC00DC6C90 /* FLConfirmations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLConfirmations.m; sourceTree = "<group>"; };
 		27DB1E08167A7CBF00452AD3 /* FLFrameworkModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLFrameworkModule.h; sourceTree = "<group>"; };
 		27F1F53D16A0A73E00B10213 /* NSObject+FLSelectorPerforming_Inlines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+FLSelectorPerforming_Inlines.h"; sourceTree = "<group>"; };
 		78CC1A80167D383200A37127 /* FishLampCore-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FishLampCore-Prefix.pch"; sourceTree = "<group>"; };
@@ -628,6 +634,7 @@
 				2798CDDA166D886500A0863D /* NSException+NSError.h */,
 				2798CDDB166D886500A0863D /* NSException+NSError.m */,
 				27544F9B1683F4B600C104D7 /* FLExceptions_Inlines.h */,
+				27CBD28516C6ECCC00DC6C90 /* FLConfirmations.m */,
 			);
 			path = Exceptions;
 			sourceTree = "<group>";
@@ -1170,6 +1177,7 @@
 				271E3D1816920FC800FB62C9 /* FLStringFormatter.m in Sources */,
 				271E3D2116920FC800FB62C9 /* FLStringUtils.m in Sources */,
 				271E3D2A16920FC800FB62C9 /* FLWhitespace.m in Sources */,
+				27CBD28716C6ECCC00DC6C90 /* FLConfirmations.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1208,6 +1216,7 @@
 				271E3D1A16920FC800FB62C9 /* FLStringFormatter.m in Sources */,
 				271E3D2316920FC800FB62C9 /* FLStringUtils.m in Sources */,
 				271E3D2C16920FC800FB62C9 /* FLWhitespace.m in Sources */,
+				27CBD28916C6ECCC00DC6C90 /* FLConfirmations.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1246,6 +1255,7 @@
 				271E3D1716920FC800FB62C9 /* FLStringFormatter.m in Sources */,
 				271E3D2016920FC800FB62C9 /* FLStringUtils.m in Sources */,
 				271E3D2916920FC800FB62C9 /* FLWhitespace.m in Sources */,
+				27CBD28616C6ECCC00DC6C90 /* FLConfirmations.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1284,6 +1294,7 @@
 				271E3D1916920FC800FB62C9 /* FLStringFormatter.m in Sources */,
 				271E3D2216920FC800FB62C9 /* FLStringUtils.m in Sources */,
 				271E3D2B16920FC800FB62C9 /* FLWhitespace.m in Sources */,
+				27CBD28816C6ECCC00DC6C90 /* FLConfirmations.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1322,6 +1333,7 @@
 				271E3D1B16920FC800FB62C9 /* FLStringFormatter.m in Sources */,
 				271E3D2416920FC800FB62C9 /* FLStringUtils.m in Sources */,
 				271E3D2D16920FC800FB62C9 /* FLWhitespace.m in Sources */,
+				27CBD28A16C6ECCC00DC6C90 /* FLConfirmations.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

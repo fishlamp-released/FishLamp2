@@ -26,7 +26,9 @@
     FLSuperDealloc();
 }
 
-- (NSError* )parseJsonData:(NSData *)data rootObject:(id) rootObject {
+- (NSError* )parseJsonData:(NSData *)data 
+                rootObject:(id) rootObject 
+               withDecoder:(id<FLDataDecoding>) decoder {
 #if FL_ARC
     SBJsonParser* parser = [[SBJsonParser alloc] init];
     
@@ -43,10 +45,9 @@
     }
     else
     {
-        if(rootObject)
-        {
-            FLObjectBuilder* builder = [[FLObjectBuilder alloc] init];
-            [builder buildObjectsFromDictionary:outObject withRootObject:rootObject];
+        if(rootObject) {
+            FLObjectBuilder* builder = [[FLObjectBuilder alloc] init];  
+            [builder buildObjectsFromDictionary:outObject withRootObject:rootObject withDecoder:decoder];
             FLRelease(builder);
             
             outObject = rootObject;

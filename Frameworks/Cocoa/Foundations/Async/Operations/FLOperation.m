@@ -125,7 +125,7 @@ NSString* const FLOperationFinishedEvent;
 
 // async operations will run in:
 // 1. dispatcher provided by context
-// 2. global default dispatcher (FLDefaultDispatcher)
+// 2. global default dispatcher ([FLDispatchQueue sharedDefaultQueue])
 - (FLFinisher*) startOperationInContext:(id) context 
                              completion:(FLCompletionBlock) completion {
                              
@@ -139,7 +139,7 @@ NSString* const FLOperationFinishedEvent;
     }
     
     if(!dispatcher) {
-        dispatcher = FLDefaultDispatcher;
+        dispatcher = [FLDispatchQueue sharedDefaultQueue];
     }
     
     return [dispatcher dispatchObject:self completion:completion];

@@ -11,6 +11,7 @@
 
 #import "FLRuntimeInfo.h"
 
+
 extern const char *getPropertyType(objc_property_t property);
 
 /**
@@ -22,9 +23,6 @@ extern char* copyTypeNameFromProperty(objc_property_t property);
 
 #define FLRuntimeGetSelectorName(__SEL__) sel_getName(__SEL__)
 #define FLSelectorsAreEqual(LHS, RHS) sel_isEqual(LHS, RHS)
-
-
-
 
 typedef void (^FLRuntimeClassVisitor)(FLRuntimeInfo info, BOOL* stop);
 typedef void (^FLRuntimeSelectorVisitor)(FLRuntimeInfo info, BOOL* stop);
