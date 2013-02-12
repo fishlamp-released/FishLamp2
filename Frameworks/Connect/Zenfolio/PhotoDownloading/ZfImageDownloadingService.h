@@ -7,15 +7,15 @@
 //
 
 #import "FLService.h"
-#import "ZFPhoto.h"
-#import "ZFPhotoInfo.h"
-#import "ZFImageSize.h"
+#import "FLZenfolioPhoto.h"
+#import "FLZenfolioPhotoInfo.h"
+#import "FLZenfolioImageSize.h"
 
 @interface ZFImageDownloadingService : FLService
 
 + (id) imageDownloadingService;
 
-- (id) downloadImageOperationForPhoto:(ZFPhoto*) photo imageSize:(ZFImageSize*) imageSize;
+- (id) downloadImageOperationForPhoto:(FLZenfolioPhoto*) photo imageSize:(FLZenfolioImageSize*) imageSize;
 
 @end
 

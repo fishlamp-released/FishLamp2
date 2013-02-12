@@ -7,7 +7,7 @@
 //
 
 #import "ZFImageDownloadingService.h"
-#import "ZFDownloadImageHttpRequest.h"
+#import "FLZenfolioDownloadImageHttpRequest.h"
 #import "FLHttpRequest.h"
 
 @implementation ZFImageDownloadingService
@@ -16,8 +16,8 @@
     return FLAutorelease([[[self class] alloc] init]);
 }
 
-- (id) downloadImageOperationForPhoto:(ZFPhoto*) photo imageSize:(ZFImageSize*) imageSize {
-    ZFDownloadImageHttpRequest* operation = [ZFDownloadImageHttpRequest downloadImageOperation:photo imageSize:imageSize];
+- (id) downloadImageOperationForPhoto:(FLZenfolioPhoto*) photo imageSize:(FLZenfolioImageSize*) imageSize {
+    FLZenfolioDownloadImageHttpRequest* operation = [FLZenfolioDownloadImageHttpRequest downloadImageOperation:photo imageSize:imageSize];
 //    operation.session = self.context;
     return operation;
 }

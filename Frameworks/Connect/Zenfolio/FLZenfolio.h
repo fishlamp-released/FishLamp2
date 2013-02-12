@@ -8,7 +8,7 @@
 #import "FishLampCocoa.h"
 
 #import "FLZenfolioErrors.h"
-#import "FLZenfolioUtils.h"
+
 #import "FLZenfolioHttpRequest.h"
 #import "FLZenfolioWebApi.h"
 #import "FLZenfolioHttpRequest.h"
@@ -16,5 +16,5 @@
 #import "NSFont+ZenfolioAdditions.h"
 #import "NSColor+ZenfolioAdditions.h"
 
-
-
+#import "FLUserLogin.h"
+#import "FLUserLogin+ZenfolioAdditions.h"

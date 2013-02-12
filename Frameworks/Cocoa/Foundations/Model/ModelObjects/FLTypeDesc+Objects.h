@@ -25,6 +25,7 @@ enum  {
 + (id) stringType;
 + (id) dateType;
 + (id) URLType;
++ (id) dataType;
 @end
 
 @interface FLGenericObjectTypeDesc : FLTypeDesc 
@@ -43,6 +44,9 @@ enum  {
 @end
 
 @interface FLURLTypeDesc : FLTypeDesc
+@end
+
+@interface FLDataTypeDesc : FLTypeDesc
 @end
 
 @protocol FLTypeDescObjectEncoding <NSObject>
@@ -67,5 +71,6 @@ enum  {
 #define FLDataTypeString [FLTypeDesc stringType]
 #define FLDataTypeDate [FLTypeDesc dateType]
 #define FLDataTypeURL [FLTypeDesc URLType]
+#define FLDataTypeData [FLTypeDesc dataType]
 
 

@@ -10,18 +10,18 @@
 #import "FLDatabase.h"
 #import "FLFolder.h"
 #import "FLUserDataStorageService.h"
-#import "FLZenfolioUtils.h"
 
-@class ZFUploadGallery;
-@class ZFAccessDescriptor;
+
+@class FLZenfolioUploadGallery;
+@class FLZenfolioAccessDescriptor;
 
 @interface FLUserDataStorageService (Zenfolio)
 
-- (ZFUploadGallery*) defaultUploadGallery;
-- (void) saveDefaultUploadGallery:(ZFUploadGallery*) uploadGallery;
+- (FLZenfolioUploadGallery*) defaultUploadGallery;
+- (void) saveDefaultUploadGallery:(FLZenfolioUploadGallery*) uploadGallery;
 
-- (ZFAccessDescriptor*) defaultAccessDescriptor;
-- (void) saveDefaultAccessDescriptor:(ZFAccessDescriptor*) accessDescriptor;
+- (FLZenfolioAccessDescriptor*) defaultAccessDescriptor;
+- (void) saveDefaultAccessDescriptor:(FLZenfolioAccessDescriptor*) accessDescriptor;
 
 //- (ZFBrowserViewOptions*) defaultBrowserViewOptions;
 //- (void) saveDefaultBrowserViewOptions:(ZFBrowserViewOptions*) options;

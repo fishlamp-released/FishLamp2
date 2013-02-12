@@ -19,7 +19,7 @@
 }
 @property (readwrite, strong, nonatomic) id key;
 @property (readwrite, assign, nonatomic) id wizard;
-@property (readonly, strong, nonatomic) id userContext;
+//@property (readonly, strong, nonatomic) id userContext;
 
 @property (readwrite, assign, nonatomic, getter=isEnabled) BOOL enabled;
 @property (readwrite, strong, nonatomic) NSString* breadcrumbTitle;

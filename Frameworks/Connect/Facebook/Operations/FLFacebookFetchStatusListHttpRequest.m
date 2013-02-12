@@ -8,7 +8,7 @@
 
 #import "FLFacebookFetchStatusListHttpRequest.h"
 #import "FLFacebookFetchStatusListResponse.h"
-#import "FLFacebookFacebookService.h"
+#import "FLFacebookService.h"
 #import "FLUserDataStorageService.h"
 
 @implementation FLFacebookFetchStatusListHttpRequest

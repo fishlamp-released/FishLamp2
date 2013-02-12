@@ -477,6 +477,7 @@
 @synthesize encounteredError = _encounteredError;
 @synthesize didWriteBytes = _didWriteBytes;
 @synthesize didReadBytes = _didReadBytes;
+@synthesize didFinish = _observerDidFinish;
 
 #if FL_MRC
 - (void) dealloc {
@@ -489,6 +490,7 @@
     [_encounteredError release];
     [_didWriteBytes release];
     [_didReadBytes release];
+    [_observerDidFinish release];
     [super dealloc];
 }
 #endif

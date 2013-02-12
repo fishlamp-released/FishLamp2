@@ -115,7 +115,6 @@
     return newData;
 }
 
-
 @end
 
 @implementation NSString (Base64Encoding)

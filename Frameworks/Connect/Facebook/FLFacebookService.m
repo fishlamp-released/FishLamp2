@@ -1,23 +1,23 @@
 //
-//  FLFacebookFacebookService.m
+//  FLFacebookService.m
 //  FishLamp
 //
 //  Created by Mike Fullerton on 5/13/11.
 //  Copyright 2011 GreenTongue Software. All rights reserved.
 //
 
-#import "FLFacebookFacebookService.h"
+#import "FLFacebookService.h"
 #import "NSString+URL.h"
 #import "FLUserDataStorageService.h"
 #import "FLService.h"
 #import "FLServiceKeys.h"
 
-@interface FLFacebookFacebookService ()
+@interface FLFacebookService ()
 @property (readwrite, strong) FLDatabase* database;
 
 @end
 
-@implementation FLFacebookFacebookService
+@implementation FLFacebookService
 
 @synthesize facebookNetworkSession = _facebookNetworkSession;
 @synthesize appId = _appId;
@@ -61,7 +61,7 @@
 	FLReleaseWithNil(_facebookNetworkSession);
     FLReleaseWithNil(_encodedToken);
     
-    [FLFacebookFacebookService clearHTTPCookies];
+    [FLFacebookService clearHTTPCookies];
 }
 
 + (void) clearHTTPCookies
