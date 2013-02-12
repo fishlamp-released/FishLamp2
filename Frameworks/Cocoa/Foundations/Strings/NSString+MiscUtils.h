@@ -10,7 +10,7 @@
 
 @interface NSString (MiscUtils)
 
-+ (NSString*) localizedStringForByteSize:(long long size);
++ (NSString*) localizedStringForByteSize:(long long) size;
 
 + (NSString*) localizedStringForTime:(int) seconds;
 

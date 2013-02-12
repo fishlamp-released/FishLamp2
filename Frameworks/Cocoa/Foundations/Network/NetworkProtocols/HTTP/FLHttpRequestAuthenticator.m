@@ -10,16 +10,18 @@
 #import "FLHttpRequest.h"
 #import "FLReachableNetwork.h"
 
+@interface FLHttpRequestAuthenticator ()
+@end
+
 @implementation FLHttpRequestAuthenticator
 @synthesize userLogin = _userLogin;
 @synthesize lastAuthenticationTimestamp = _lastAuthenticationTimestamp;
-@synthesize context = _context;
+@synthesize timeoutInterval = _timeoutInterval;
 
 - (id) initWithContext:(id) context authenticationTimeout:(NSTimeInterval) timeoutInterval {
     self = [super init];
     if(self) {
         _timeoutInterval = timeoutInterval;
-        _context = context;
     }
     return self;
 }
@@ -59,10 +61,6 @@
 	return ![self userLoginIsAuthenticated:userLogin];
 }
 
-- (void) resetAuthenticationTimestamp {
-	_lastAuthenticationTimestamp = 0;
-}
-
 - (void) authenticateHttpRequest:(FLHttpRequest*) httpRequest {
     FLUserLogin* userLogin = self.userLogin;
     if([self shouldAuthenticateUser:userLogin]) {
@@ -70,13 +68,22 @@
 
         userLogin = [self synchronouslyAuthenticateUser:userLogin];
         self.userLogin = userLogin;
-        _lastAuthenticationTimestamp = [NSDate timeIntervalSinceReferenceDate];
+
+        [self touchAuthenticationTimestamp];
     }
     [self authenticateHttpRequest:httpRequest withAuthenticatedUser:userLogin];
 }
 
 - (BOOL) isAuthenticated {
     return self.userLogin && ![self shouldAuthenticateUser:self.userLogin];
+}
+
+- (void) touchAuthenticationTimestamp {
+    _lastAuthenticationTimestamp = [NSDate timeIntervalSinceReferenceDate];
+}
+
+- (void) resetAuthenticationTimestamp {
+	_lastAuthenticationTimestamp = 0;
 }
 
 @end

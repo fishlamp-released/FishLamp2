@@ -30,7 +30,7 @@ typedef enum {
 	FLDatabaseColumnIndexProperties _indexMask;
 }
 
-@property (readonly, retain, nonatomic) NSString* columnName;
+@property (readonly, strong, nonatomic) NSString* columnName;
 @property (readonly, assign, nonatomic) FLDatabaseColumnIndexProperties indexProperties;
 
 - (id) initWithColumnName:(NSString*) columnName indexProperties:(FLDatabaseColumnIndexProperties) indexProperties;

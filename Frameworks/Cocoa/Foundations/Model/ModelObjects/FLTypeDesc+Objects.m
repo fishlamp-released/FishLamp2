@@ -34,7 +34,7 @@
 
 @implementation FLSpecificObjectTypeDesc
 
-@synthesize classForType = _classForType;
+@synthesize classForType = _typeClass;
 
 - (id) initWithClass:(Class) class {
     return [self initWithName:NSStringFromClass(class)];

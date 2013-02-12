@@ -55,7 +55,7 @@ NSString* func(id condition, ...) {
     }
     NSString* formattedString = first;
     if(count > 1) {
-        formattedString = [[NSString alloc] initWithFormat:first arguments: (void*) fake_list];
+        formattedString = FLAutorelease([[NSString alloc] initWithFormat:first arguments: (void*) fake_list]);
     }
  
     return [NSString stringWithFormat:@"%@ (%@)", condition, formattedString];

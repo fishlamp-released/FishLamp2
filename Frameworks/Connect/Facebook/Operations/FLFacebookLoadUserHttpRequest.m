@@ -8,7 +8,7 @@
 
 #import "FLFacebookLoadUserHttpRequest.h"
 #import "FLFacebookUser.h"
-#import "FLFacebookService.h"
+#import "FLFacebookFacebookService.h"
 #import "FLOperationCacheHandler.h"
 
 @implementation FLFacebookLoadUserHttpRequest

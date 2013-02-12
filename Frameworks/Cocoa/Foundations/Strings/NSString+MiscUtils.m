@@ -14,7 +14,7 @@
 
 @implementation NSString (MiscUtils)
 
-+ (NSString*) localizedStringForByteSize:(long long size) {
++ (NSString*) localizedStringForByteSize:(long long) size {
 	if ( size < KILO ) {
 		return [NSString stringWithFormat:@"%lld bytes", size];
 	} 

@@ -9,44 +9,52 @@
 #import "FLDatabaseIndex.h"
 #import "FLDatabase_Internal.h"
 
+@interface FLDatabaseIndex ()
+@property (readwrite, strong, nonatomic) NSString* columnName;
+@property (readwrite, assign, nonatomic) FLDatabaseColumnIndexProperties indexProperties;
+
+@end
+
 @implementation FLDatabaseIndex
 
 @synthesize columnName = _columnName;
 @synthesize indexProperties = _indexMask;
 
-- (id) initWithColumnName:(NSString*) columnName indexProperties:(FLDatabaseColumnIndexProperties) indexProperties
-{
-	if((self = [super init]))
-	{
-		_columnName = FLDatabaseNameEncode(FLRetain(columnName));
-		_indexMask = indexProperties;
+- (id) initWithColumnName:(NSString*) columnName indexProperties:(FLDatabaseColumnIndexProperties) indexProperties {
+	if((self = [super init])) {
+		self.columnName = columnName;
+		self.indexProperties = indexProperties;
 	}
 	
 	return self;
 }
 
-- (void) dealloc
-{
-	FLRelease(_columnName);
-	FLSuperDealloc();
+#if FL_MRC
+- (void) dealloc {
+    [_columnName release];
+    [super dealloc];
 }
+#endif
 
-+ (FLDatabaseIndex*) databaseIndex:(NSString*) columnName indexProperties:(FLDatabaseColumnIndexProperties) indexProperties
-{
++ (FLDatabaseIndex*) databaseIndex:(NSString*) columnName 
+                   indexProperties:(FLDatabaseColumnIndexProperties) indexProperties {
+
 	return FLAutorelease([[FLDatabaseIndex alloc] initWithColumnName:columnName indexProperties:indexProperties]);
 }
 
-- (id) copyWithZone:(NSZone *)zone
-{
-	FLDatabaseIndex* idx = [[FLDatabaseIndex alloc] initWithColumnName:self.columnName indexProperties:self.indexProperties];
-	return idx;
+- (void) setColumnName:(NSString*) columnName {
+    FLSetObjectWithRetain(_columnName, FLDatabaseNameEncode(columnName));
 }
 
-- (NSString*) createIndexSqlForTableName:(NSString*) tableName
-{
+- (id) copyWithZone:(NSZone *)zone {
+	return [[FLDatabaseIndex alloc] initWithColumnName:self.columnName indexProperties:self.indexProperties];
+}
+
+- (NSString*) createIndexSqlForTableName:(NSString*) tableName {
+
 	NSMutableString* sql = [NSMutableString stringWithString:@"CREATE"];
-	if(FLTestBits(_indexMask, FLDatabaseColumnIndexPropertyUnique))
-	{
+
+	if(FLTestBits(_indexMask, FLDatabaseColumnIndexPropertyUnique)) {
 		[sql appendString:@" UNIQUE"];
 	}
 
