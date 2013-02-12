@@ -51,9 +51,9 @@
 - (void) didMoveToWizard:(FLWizardViewController*) wizard {
 }
 
-- (id) userContext {
-    return [_wizard userContext];
-}
+//- (id) userContext {
+//    return [_wizard userContext];
+//}
 
 - (void) wizardPanelWillAppearInWizard:(FLWizardViewController*) wizard {
     [self.wizard nextButton].enabled = YES;

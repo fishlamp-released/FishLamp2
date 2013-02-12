@@ -7,7 +7,7 @@
 //
 
 #import "FLFacebookBeginAuthorizationHttpRequest.h"
-#import "FLFacebookFacebookService.h"
+#import "FLFacebookService.h"
 #import "NSString+URL.h"
 
 // - (FLFacebookAuthenticationResponse*) parseAuthenticationResponseFromURL:(NSURL*) url
@@ -91,13 +91,13 @@ static NSString* kRedirectURL = @"http://www.facebook.com/connect/login_success.
 
 - (id) didReceiveHttpResponse:(FLHttpResponse*) response {
 
-    [FLFacebookFacebookService clearHTTPCookies];
+    [FLFacebookService clearHTTPCookies];
 
 //    NSURL* url = [self buildOAuthUrl:self.permissions
-//                            forAppId:[[FLFacebookFacebookService serviceFromContext:self.context] appId]];
+//                            forAppId:[[FLFacebookService serviceFromContext:self.context] appId]];
 
 // FIXME
-//    FLFacebookFacebookService* facebook = [self.context facebookService];
+//    FLFacebookService* facebook = [self.context facebookService];
 
 
 //    FLHttpRequest* httpRequest = [FLHttpRequest httpRequestWithURL:url];

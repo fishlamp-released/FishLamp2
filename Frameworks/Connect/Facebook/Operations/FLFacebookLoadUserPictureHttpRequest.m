@@ -48,7 +48,7 @@
 //		break;
 //	}
 //
-//	if((self = [super initWithURL:[NSURL URLWithString:[FLFacebookFacebookService buildURL:encodedToken user:userId object:@"picture" params:@"type", sizeStr, nil]]]))
+//	if((self = [super initWithURL:[NSURL URLWithString:[FLFacebookService buildURL:encodedToken user:userId object:@"picture" params:@"type", sizeStr, nil]]]))
 //	{	
 //		self.userId = userId;
 //		self.operationInput = [FLCachedImage cachedImageWithUrlString:self.URL.absoluteString];

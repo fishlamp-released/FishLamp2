@@ -31,7 +31,7 @@ typedef enum {
 
 #define FLFacebookPostStatusOnlyPermissions [NSArray arrayWithObjects:kFLFacebookUserWritePermissionPublishStream, kFLFacebookUserWritePermissionOfflineAccess, nil ]
 
-@interface FLFacebookFacebookService : FLService {
+@interface FLFacebookService : FLService {
 @private
 	FLFacebookNetworkSession* _facebookNetworkSession; // 
 	NSString* _appId;

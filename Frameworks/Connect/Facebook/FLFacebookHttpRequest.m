@@ -11,7 +11,7 @@
 #import "FLObjectDescriber.h"
 #import "FLJsonParser.h"
 #import "FLObjectBuilder.h"
-#import "FLFacebookFacebookService.h"
+#import "FLFacebookService.h"
 #import "FLFacebookHttpRequest.h"
 
 
@@ -57,7 +57,7 @@
 
 // look for error
     FLJsonParser* parser = [FLJsonParser jsonParser];
-    NSDictionary* response = [parser parseJsonData:responseData rootObject:nil];
+    NSDictionary* response = [parser parseJsonData:responseData rootObject:nil withDecoder:self.dataDecoder];
     FLThrowError(parser.error);
 
     if([response objectForKey:@"error"]) {
@@ -84,7 +84,7 @@
 
 //
 //- (FLResult) runOperation {
-//    FLFacebookFacebookService* facebook = self.facebookService;
+//    FLFacebookService* facebook = self.facebookService;
 //
 //    NSString* userID = facebook.facebookNetworkSession.userId;
 //

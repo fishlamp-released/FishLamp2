@@ -60,11 +60,11 @@
 //#define FLLowPriorityQueue \
 //            [FLDispatchQueue sharedLowPriorityQueue]
 //            
-//#define FLDefaultDispatcher \
+//#define [FLDispatchQueue sharedDefaultQueue] \
 //            [FLDispatchQueue sharedDefaultQueue]
 //
 //#define FLDefaultQueue \
-//            FLDefaultDispatcher
+//            [FLDispatchQueue sharedDefaultQueue]
 //            
 //#define FLForegroundQueue \
 //            [FLDispatchQueue sharedForegroundQueue]
