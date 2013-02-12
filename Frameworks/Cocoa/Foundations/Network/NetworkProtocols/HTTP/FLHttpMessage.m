@@ -90,10 +90,12 @@
 
 - (id)copyWithZone:(NSZone *)zone {
     CFHTTPMessageRef ref = CFHTTPMessageCreateCopy(kCFAllocatorDefault, _message);
-    FLHttpMessage* wrapper = [[FLHttpMessage alloc] initWithHttpMessageRef:ref];
-    CFRelease(ref);
-    
-    return wrapper;
+    if(ref) {
+        FLHttpMessage* wrapper = [[FLHttpMessage alloc] initWithHttpMessageRef:ref];
+        CFRelease(ref);
+        return wrapper;
+    }
+    return nil;
 }
 
 - (BOOL) isRequest {

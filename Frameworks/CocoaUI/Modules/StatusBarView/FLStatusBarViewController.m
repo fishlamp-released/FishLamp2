@@ -33,7 +33,7 @@
 
 
 - (void)loadView {
-    FLView* rootView = [[FLView alloc] initWithFrame:CGRectMake(0,0,100,100)];
+    FLView* rootView = FLAutorelease([[FLView alloc] initWithFrame:CGRectMake(0,0,100,100)]);
     rootView.autoresizingMask = NSViewHeightSizable | NSViewWidthSizable;
     
     rootView.wantsLayer = YES;

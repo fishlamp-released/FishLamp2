@@ -144,7 +144,6 @@
 				}
 				
 				[lastState.object finishParsingFrom:self state:lastState];
-				FLRelease(inflatedObject);
 			}
 #if DEBUG	 
 			else

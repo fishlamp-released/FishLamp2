@@ -381,7 +381,7 @@ void TestEncoding()
 //	
 ////	baseUrl = [baseUrl urlEncodeString:NSUTF8StringEncoding];
 //		
-//	NSString* key = [sig buildHMAC_SHA1Signature:[NSString stringWithFormat:@"%@&", [FLTwitter instance].consumerSecret]];
+//	NSString* key = [sig buildHMAC_SHA1Signature:[NSString stringWithFormat:@"%@&", [FLT instance].consumerSecret]];
 //
 //	FLDebugCompareStrings(key, [@"TV9uaB7Wl4w9uRW4%2BQ6K%2FkEQeYg%3D" urlDecodeString:NSUTF8StringEncoding]);
 //	

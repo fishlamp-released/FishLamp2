@@ -109,13 +109,6 @@
 }
 #endif
 
-
-- (void) dealloc {
-	FLRelease(_arrayTypes);
-	FLRelease(_name);
-	FLSuperDealloc();
-}
-
 - (BOOL) isArray {
 	return _arrayTypes.count > 0;
 }	

@@ -13,23 +13,22 @@
 @interface FLHttpRequestAuthenticator : NSObject<FLHttpRequestAuthenticator> {
 @private
     FLUserLogin* _userLogin;
-    NSTimeInterval _authenticationTimeout;
+    NSTimeInterval _lastAuthenticationTimestamp;
     NSTimeInterval _timeoutInterval;
-    
-    __unsafe_unretained id _context;
 }
 
-@property (readonly, nonatomic, assign) id context;
-
-- (id) initWithContext:(id) context authenticationTimeout:(NSTimeInterval) timeoutInterval;
+@property (readwrite, assign, nonatomic) NSTimeInterval timeoutInterval;
 
 @property (readonly, assign, nonatomic, getter=isAuthenticated) BOOL authenticated;
 
 @property (readonly, assign, nonatomic) NSTimeInterval lastAuthenticationTimestamp;
 - (void) resetAuthenticationTimestamp;
+- (void) touchAuthenticationTimestamp;
 
 @property (readwrite, strong, nonatomic) FLUserLogin* userLogin;
 
+// called by the request when it needs to authenticate
+- (void) authenticateHttpRequest:(FLHttpRequest*) httpRequest;
 
 // required overrides
 - (FLUserLogin*) synchronouslyAuthenticateUser:(FLUserLogin*) userLogin;

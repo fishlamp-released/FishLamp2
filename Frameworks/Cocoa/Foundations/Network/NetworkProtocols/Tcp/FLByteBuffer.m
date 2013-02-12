@@ -25,7 +25,9 @@
 
 #if DEBUG
         _deadBeafPtr = ((uint32_t*)(self.content + self.capacity));
-        *(_deadBeafPtr) = 0xDEADBEAF;
+        if(_deadBeafPtr) {
+            *(_deadBeafPtr) = (uint32_t) 0xDEADBEAF;
+        }
 #endif        
        
        _contentLength = 0;

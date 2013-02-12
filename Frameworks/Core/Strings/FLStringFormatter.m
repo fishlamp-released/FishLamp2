@@ -65,8 +65,9 @@
 
 - (void) appendLines:(NSString**) lines count:(NSInteger) count{
     FLAssertNotNil_(lines);
-    for(int i = 0; i < count; i++) {
-        [self appendLine:lines[i]];
+        if(lines) {for(int i = 0; i < count; i++) {
+            [self appendLine:lines[i]];
+        }
     }
 }
 

@@ -55,7 +55,7 @@
 		2779DBD716A7223200EAB16A /* FLTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLTextFieldCell.m; sourceTree = "<group>"; };
 		2798DB81166D8A7F00A0863D /* SharedTargetSettings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = SharedTargetSettings.xcconfig; sourceTree = "<group>"; };
 		27A43AC415CDCCCB001CB13E /* libFishLampOSX-64-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampOSX-64-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		27CBC1F416768BA600753D0A /* libFishLampOSX-32-64-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libFishLampOSX-32-64-MRC.a"; path = "libFishLampOSX-3264-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		27CBC1F416768BA600753D0A /* libFishLampOSX-3264-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampOSX-3264-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27FC38141699F5E1001F4228 /* FLGlobalMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLGlobalMenuController.h; sourceTree = "<group>"; };
 		27FC38151699F5E1001F4228 /* FLGlobalMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLGlobalMenuController.m; sourceTree = "<group>"; };
 		27FC38171699F5E1001F4228 /* NSView+FLAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSView+FLAdditions.h"; sourceTree = "<group>"; };
@@ -129,7 +129,7 @@
 				27A43AC415CDCCCB001CB13E /* libFishLampOSX-64-MRC.a */,
 				27048EF0161CB58600C38ADA /* libFishLampOSX-32-MRC.a */,
 				27314C79165328400027850D /* libFishLampOSX-64-ARC.a */,
-				27CBC1F416768BA600753D0A /* libFishLampOSX-32-64-MRC.a */,
+				27CBC1F416768BA600753D0A /* libFishLampOSX-3264-MRC.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -311,7 +311,7 @@
 			);
 			name = "FishLampOSX-3264-MRC";
 			productName = FishLampCommandLine;
-			productReference = 27CBC1F416768BA600753D0A /* libFishLampOSX-32-64-MRC.a */;
+			productReference = 27CBC1F416768BA600753D0A /* libFishLampOSX-3264-MRC.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */

@@ -18,7 +18,6 @@
 @synthesize inputObject = _inputObject;
 @synthesize twitterURL = _twitterURL;
 
-
 #if FL_MRC
 - (void) dealloc {
     [_twitterURL release];
@@ -102,14 +101,14 @@
 //    FLJsonParser* parser = [FLJsonParser jsonParser];
 //    NSDictionary* twitterResponse = [parser parseJsonData:httpResponse.responseData rootObject:nil];
 //   
-//    FLThrowError(parser.error);
+//    FLTwitterhrowError(parser.error);
 //    
 //    if([twitterResponse objectForKey:@"error"]) {
-//        FLThrowError(
+//        FLTwitterhrowError(
 //            [NSError errorWithDomain:@"FLTwitterErrorDomain" code:1 localizedDescription:[twitterResponse objectForKey:@"error"]]);
 //    }
 //
-//    FLThrowError([httpResponse simpleHttpResponseErrorCheck]);
+//    FLTwitterhrowError([httpResponse simpleHttpResponseErrorCheck]);
 //    
 //    return twitterResponse;
 //}

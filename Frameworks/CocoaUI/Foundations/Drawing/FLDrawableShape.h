@@ -33,7 +33,7 @@
 
 @interface FLDrawableBackButtonShape : FLDrawableShape {
 @private
-    CGFloat _pointSize;
+    CGFloat _shapeSize;
 }
 
 @property (readwrite, assign, nonatomic) CGFloat shapeSize;
@@ -43,7 +43,7 @@
 
 @interface FLDrawableForwardButtonShape : FLDrawableShape {
 @private
-    CGFloat _pointSize;
+    CGFloat _shapeSize;
 }
 
 @property (readwrite, assign, nonatomic) CGFloat shapeSize;

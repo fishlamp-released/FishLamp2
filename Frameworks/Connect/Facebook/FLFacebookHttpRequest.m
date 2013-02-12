@@ -11,7 +11,7 @@
 #import "FLObjectDescriber.h"
 #import "FLJsonParser.h"
 #import "FLObjectBuilder.h"
-#import "FLFacebookService.h"
+#import "FLFacebookFacebookService.h"
 #import "FLFacebookHttpRequest.h"
 
 
@@ -84,7 +84,7 @@
 
 //
 //- (FLResult) runOperation {
-//    FLFacebookService* facebook = self.facebookService;
+//    FLFacebookFacebookService* facebook = self.facebookService;
 //
 //    NSString* userID = facebook.facebookNetworkSession.userId;
 //
