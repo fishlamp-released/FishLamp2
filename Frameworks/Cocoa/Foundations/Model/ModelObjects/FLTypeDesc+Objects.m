@@ -30,6 +30,11 @@
 + (id) objectTypeWithClass:(Class) typeClass {
     return FLAutorelease([[FLSpecificObjectTypeDesc alloc] initWithClass:typeClass]);
 }
+
++ (id) dataType {
+    FLReturnStaticObject([[FLDataTypeDesc alloc] init]);
+}
+
 @end
 
 @implementation FLSpecificObjectTypeDesc

@@ -7,7 +7,7 @@
 //
 
 #import "FLUnitTestRunner.h"
-#import "FLDispatchQueue.h"
+#import "FLGcdDispatcher.h"
 #import "FLSanityCheckRunner.h"
 #import "FLUnitTestSubclassRunner.h"
 #import "FLStaticTestMethodRunner.h"
@@ -47,7 +47,7 @@
     NSMutableArray* array = [NSMutableArray array];
     NSArray* workers = [self findTestWorkers];
     for(id worker in workers) {
-        FLResult result = [worker runSynchronouslyInContext:self.context];
+        FLResult result = [worker runSynchronously];
         [array addObject:result];
     }
     return array;

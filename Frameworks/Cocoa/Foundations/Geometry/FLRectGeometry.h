@@ -88,7 +88,9 @@ extern CGRect FLRectInsetTop(CGRect inRect, CGFloat delta);
 extern CGRect FLRectInsetBottom(CGRect inRect, CGFloat delta);
 extern CGRect FLRectInsetLeft(CGRect inRect, CGFloat delta);
 extern CGRect FLRectInsetRight(CGRect inRect, CGFloat delta);
+#if OSX
 extern CGRect FLRectInsetWithEdgeInsets(CGRect inRect, UIEdgeInsets insets);
+#endif
 
 // layout
 extern CGRect FLRectAlignRectsHorizonally(CGRect left, CGRect right);

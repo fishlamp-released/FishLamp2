@@ -13,9 +13,6 @@ typedef id FLResult;
 + (id) failedResultError;
 @end
 
-typedef void (^FLResultBlock)(FLResult result);
-typedef void (^FLCompletionBlock)(FLResult result);
-
 @protocol FLResultObject <NSObject>
 @property (readonly, strong) NSError* error;
 @property (readonly, strong) id result;
@@ -45,7 +42,6 @@ typedef void (^FLCompletionBlock)(FLResult result);
 + (id) mutableResult;
 
 @end
-
 
 // FLSuccessfulResult is a singleton.
 #define FLSuccessfullResult [FLSuccessfulResult successfullResult] 

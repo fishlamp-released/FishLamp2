@@ -8,13 +8,16 @@
 
 #import "FLCocoaUIRequired.h"
 
-#import "FLCocoaUIRequired.h"
 
 #if OSX
 #import "UIViewController+OSX.h"
 #endif 
 
+#if OSX 
 @interface FLViewController : NSViewController<UIViewControllerCompatibility> {
+#else 
+@interface FLViewController : UIViewController {
+#endif
 @private
 
 #if OSX

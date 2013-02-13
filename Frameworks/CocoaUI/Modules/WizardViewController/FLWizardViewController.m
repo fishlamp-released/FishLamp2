@@ -5,6 +5,7 @@
 //  Created by Mike Fullerton on 12/4/12.
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
+#if OSX
 
 #import "FLWizardViewController.h"
 #import "FLAnimation.h"
@@ -613,3 +614,4 @@
 //        [[toHide.view animator] setFrame:FLRectSetOriginWithPoint(_wizardPanelEnclosureView.bounds, FLRectGetTopRight(toHide.view.frame))];
 //        [[toShow.view animator] setAlphaValue:1.0f];
 //        [CATransaction commit];
+#endif

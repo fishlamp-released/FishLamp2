@@ -8,6 +8,7 @@
 
 #import "FLAnimation.h"
 
+
 @interface FLFadeAnimation : FLAnimation {
 @private
 }

@@ -10,7 +10,7 @@
 #import "FLKeyValuePair.h"
 #import "FLBatchDictionary.h"
 #import "FLCallback.h"
-#import "FLDispatchQueue.h"
+#import "FLGcdDispatcher.h"
 
 //
 // requests
@@ -21,7 +21,7 @@
 //- (FLFinisher*) sendServiceRequest:(FLServiceRequest*) request;
 //
 //- (FLFinisher*) sendServiceRequest:(FLServiceRequest*) request 
-//                        completion:(FLCompletionBlock) completion;
+//                        completion:(FLBlockWithResult) completion;
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Warc-performSelector-leaks"

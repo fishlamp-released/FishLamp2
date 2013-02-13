@@ -9,9 +9,12 @@
 #import "FLCocoaUIRequired.h"
 
 #import "FLToolbarItem.h"
+#if REFACTOR
 #if IOS
 #import "FLButton.h"
 #endif
+#endif
+
 #import "FLArrangement.h"
 
 typedef void (^FLButtonPress)(id button);

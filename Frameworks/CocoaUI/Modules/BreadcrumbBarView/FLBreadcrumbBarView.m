@@ -5,7 +5,7 @@
 //  Created by Mike Fullerton on 1/15/13.
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
-
+#if OSX
 #import "FLBreadcrumbBarView.h"
 #import "FLCoreText.h"
 #import "FLColorRange+Gradients.h"
@@ -188,3 +188,4 @@
 
 
 @end
+#endif

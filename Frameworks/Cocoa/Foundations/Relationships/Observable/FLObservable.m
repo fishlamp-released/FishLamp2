@@ -7,7 +7,7 @@
 //
 
 #import "FLObservable.h"
-#import "FLDispatchQueue.h"
+#import "FLGcdDispatcher.h"
 
 #define FLEventKeyFromSelector(SEL) [NSValue valueWithPointer:SEL]    
 

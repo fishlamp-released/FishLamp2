@@ -11,12 +11,4 @@
 #import "FLCoreFlags.h"
 #import "FLRequired.h"
 
-// WARNING: don't import anything here. This file is imported by FishLamp.  This is imported by everything.
-
-
-
-extern id FLCopyOrRetainObject(id src);
-
-extern float FLTimeBlock (dispatch_block_t block);
-
 

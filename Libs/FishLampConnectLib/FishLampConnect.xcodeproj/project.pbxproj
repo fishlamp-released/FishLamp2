@@ -995,15 +995,15 @@
 		2753DDD416C9A82B00A3880F /* FLStorableImage+ZenfolioCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D94116C9A82300A3880F /* FLStorableImage+ZenfolioCache.m */; };
 		2753DDD516C9A82B00A3880F /* FLStorableImage+ZenfolioCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D94116C9A82300A3880F /* FLStorableImage+ZenfolioCache.m */; };
 		2753DDD616C9A82B00A3880F /* FLStorableImage+ZenfolioCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D94116C9A82300A3880F /* FLStorableImage+ZenfolioCache.m */; };
-		2753DDD716C9A82B00A3880F /* FLZenfolioCacheService.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D94216C9A82300A3880F /* FLZenfolioCacheService.h */; };
-		2753DDD816C9A82B00A3880F /* FLZenfolioCacheService.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D94216C9A82300A3880F /* FLZenfolioCacheService.h */; };
-		2753DDD916C9A82B00A3880F /* FLZenfolioCacheService.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D94216C9A82300A3880F /* FLZenfolioCacheService.h */; };
-		2753DDDA16C9A82B00A3880F /* FLZenfolioCacheService.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D94216C9A82300A3880F /* FLZenfolioCacheService.h */; };
-		2753DDDB16C9A82B00A3880F /* FLZenfolioCacheService.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D94316C9A82300A3880F /* FLZenfolioCacheService.m */; };
-		2753DDDC16C9A82B00A3880F /* FLZenfolioCacheService.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D94316C9A82300A3880F /* FLZenfolioCacheService.m */; };
-		2753DDDD16C9A82B00A3880F /* FLZenfolioCacheService.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D94316C9A82300A3880F /* FLZenfolioCacheService.m */; };
-		2753DDDE16C9A82B00A3880F /* FLZenfolioCacheService.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D94316C9A82300A3880F /* FLZenfolioCacheService.m */; };
-		2753DDDF16C9A82B00A3880F /* FLZenfolioCacheService.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D94316C9A82300A3880F /* FLZenfolioCacheService.m */; };
+		2753DDD716C9A82B00A3880F /* FLZenfolioCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D94216C9A82300A3880F /* FLZenfolioCache.h */; };
+		2753DDD816C9A82B00A3880F /* FLZenfolioCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D94216C9A82300A3880F /* FLZenfolioCache.h */; };
+		2753DDD916C9A82B00A3880F /* FLZenfolioCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D94216C9A82300A3880F /* FLZenfolioCache.h */; };
+		2753DDDA16C9A82B00A3880F /* FLZenfolioCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D94216C9A82300A3880F /* FLZenfolioCache.h */; };
+		2753DDDB16C9A82B00A3880F /* FLZenfolioCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D94316C9A82300A3880F /* FLZenfolioCache.m */; };
+		2753DDDC16C9A82B00A3880F /* FLZenfolioCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D94316C9A82300A3880F /* FLZenfolioCache.m */; };
+		2753DDDD16C9A82B00A3880F /* FLZenfolioCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D94316C9A82300A3880F /* FLZenfolioCache.m */; };
+		2753DDDE16C9A82B00A3880F /* FLZenfolioCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D94316C9A82300A3880F /* FLZenfolioCache.m */; };
+		2753DDDF16C9A82B00A3880F /* FLZenfolioCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D94316C9A82300A3880F /* FLZenfolioCache.m */; };
 		2753DDE016C9A82B00A3880F /* FLZenfolioLoadGroupFromCacheOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D94416C9A82300A3880F /* FLZenfolioLoadGroupFromCacheOperation.h */; };
 		2753DDE116C9A82B00A3880F /* FLZenfolioLoadGroupFromCacheOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D94416C9A82300A3880F /* FLZenfolioLoadGroupFromCacheOperation.h */; };
 		2753DDE216C9A82B00A3880F /* FLZenfolioLoadGroupFromCacheOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D94416C9A82300A3880F /* FLZenfolioLoadGroupFromCacheOperation.h */; };
@@ -1175,15 +1175,6 @@
 		2753DE9116C9A82B00A3880F /* FLZenfolioRandomPhotoDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D97116C9A82300A3880F /* FLZenfolioRandomPhotoDownloader.m */; };
 		2753DE9216C9A82B00A3880F /* FLZenfolioRandomPhotoDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D97116C9A82300A3880F /* FLZenfolioRandomPhotoDownloader.m */; };
 		2753DE9316C9A82B00A3880F /* FLZenfolioRandomPhotoDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D97116C9A82300A3880F /* FLZenfolioRandomPhotoDownloader.m */; };
-		2753DE9416C9A82B00A3880F /* ZfImageDownloadingService.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D97216C9A82300A3880F /* ZfImageDownloadingService.h */; };
-		2753DE9516C9A82B00A3880F /* ZfImageDownloadingService.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D97216C9A82300A3880F /* ZfImageDownloadingService.h */; };
-		2753DE9616C9A82B00A3880F /* ZfImageDownloadingService.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D97216C9A82300A3880F /* ZfImageDownloadingService.h */; };
-		2753DE9716C9A82B00A3880F /* ZfImageDownloadingService.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D97216C9A82300A3880F /* ZfImageDownloadingService.h */; };
-		2753DE9816C9A82B00A3880F /* ZfImageDownloadingService.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D97316C9A82300A3880F /* ZfImageDownloadingService.m */; };
-		2753DE9916C9A82B00A3880F /* ZfImageDownloadingService.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D97316C9A82300A3880F /* ZfImageDownloadingService.m */; };
-		2753DE9A16C9A82B00A3880F /* ZfImageDownloadingService.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D97316C9A82300A3880F /* ZfImageDownloadingService.m */; };
-		2753DE9B16C9A82B00A3880F /* ZfImageDownloadingService.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D97316C9A82300A3880F /* ZfImageDownloadingService.m */; };
-		2753DE9C16C9A82B00A3880F /* ZfImageDownloadingService.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D97316C9A82300A3880F /* ZfImageDownloadingService.m */; };
 		2753DE9D16C9A82B00A3880F /* FLZenfolioUploadImageHttpRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D97616C9A82300A3880F /* FLZenfolioUploadImageHttpRequest.h */; };
 		2753DE9E16C9A82B00A3880F /* FLZenfolioUploadImageHttpRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D97616C9A82300A3880F /* FLZenfolioUploadImageHttpRequest.h */; };
 		2753DE9F16C9A82B00A3880F /* FLZenfolioUploadImageHttpRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D97616C9A82300A3880F /* FLZenfolioUploadImageHttpRequest.h */; };
@@ -1427,24 +1418,24 @@
 		2753DF9616C9A82B00A3880F /* FLZenfolioWebApiTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D9BC16C9A82300A3880F /* FLZenfolioWebApiTests.m */; };
 		2753DF9716C9A82B00A3880F /* FLZenfolioWebApiTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D9BC16C9A82300A3880F /* FLZenfolioWebApiTests.m */; };
 		2753DF9816C9A82B00A3880F /* FLZenfolioWebApiTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D9BC16C9A82300A3880F /* FLZenfolioWebApiTests.m */; };
-		2753DF9916C9A82B00A3880F /* NSColor+ZenfolioAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D9BE16C9A82300A3880F /* NSColor+ZenfolioAdditions.h */; };
-		2753DF9A16C9A82B00A3880F /* NSColor+ZenfolioAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D9BE16C9A82300A3880F /* NSColor+ZenfolioAdditions.h */; };
-		2753DF9B16C9A82B00A3880F /* NSColor+ZenfolioAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D9BE16C9A82300A3880F /* NSColor+ZenfolioAdditions.h */; };
-		2753DF9C16C9A82B00A3880F /* NSColor+ZenfolioAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D9BE16C9A82300A3880F /* NSColor+ZenfolioAdditions.h */; };
-		2753DF9D16C9A82B00A3880F /* NSColor+ZenfolioAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D9BF16C9A82300A3880F /* NSColor+ZenfolioAdditions.m */; };
-		2753DF9E16C9A82B00A3880F /* NSColor+ZenfolioAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D9BF16C9A82300A3880F /* NSColor+ZenfolioAdditions.m */; };
-		2753DF9F16C9A82B00A3880F /* NSColor+ZenfolioAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D9BF16C9A82300A3880F /* NSColor+ZenfolioAdditions.m */; };
-		2753DFA016C9A82B00A3880F /* NSColor+ZenfolioAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D9BF16C9A82300A3880F /* NSColor+ZenfolioAdditions.m */; };
-		2753DFA116C9A82B00A3880F /* NSColor+ZenfolioAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D9BF16C9A82300A3880F /* NSColor+ZenfolioAdditions.m */; };
-		2753DFA216C9A82B00A3880F /* NSFont+ZenfolioAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D9C016C9A82300A3880F /* NSFont+ZenfolioAdditions.h */; };
-		2753DFA316C9A82B00A3880F /* NSFont+ZenfolioAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D9C016C9A82300A3880F /* NSFont+ZenfolioAdditions.h */; };
-		2753DFA416C9A82B00A3880F /* NSFont+ZenfolioAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D9C016C9A82300A3880F /* NSFont+ZenfolioAdditions.h */; };
-		2753DFA516C9A82B00A3880F /* NSFont+ZenfolioAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D9C016C9A82300A3880F /* NSFont+ZenfolioAdditions.h */; };
-		2753DFA616C9A82B00A3880F /* NSFont+ZenfolioAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D9C116C9A82300A3880F /* NSFont+ZenfolioAdditions.m */; };
-		2753DFA716C9A82B00A3880F /* NSFont+ZenfolioAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D9C116C9A82300A3880F /* NSFont+ZenfolioAdditions.m */; };
-		2753DFA816C9A82B00A3880F /* NSFont+ZenfolioAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D9C116C9A82300A3880F /* NSFont+ZenfolioAdditions.m */; };
-		2753DFA916C9A82B00A3880F /* NSFont+ZenfolioAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D9C116C9A82300A3880F /* NSFont+ZenfolioAdditions.m */; };
-		2753DFAA16C9A82B00A3880F /* NSFont+ZenfolioAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D9C116C9A82300A3880F /* NSFont+ZenfolioAdditions.m */; };
+		2753DF9916C9A82B00A3880F /* UIColor+ZenfolioAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D9BE16C9A82300A3880F /* UIColor+ZenfolioAdditions.h */; };
+		2753DF9A16C9A82B00A3880F /* UIColor+ZenfolioAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D9BE16C9A82300A3880F /* UIColor+ZenfolioAdditions.h */; };
+		2753DF9B16C9A82B00A3880F /* UIColor+ZenfolioAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D9BE16C9A82300A3880F /* UIColor+ZenfolioAdditions.h */; };
+		2753DF9C16C9A82B00A3880F /* UIColor+ZenfolioAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D9BE16C9A82300A3880F /* UIColor+ZenfolioAdditions.h */; };
+		2753DF9D16C9A82B00A3880F /* UIColor+ZenfolioAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D9BF16C9A82300A3880F /* UIColor+ZenfolioAdditions.m */; };
+		2753DF9E16C9A82B00A3880F /* UIColor+ZenfolioAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D9BF16C9A82300A3880F /* UIColor+ZenfolioAdditions.m */; };
+		2753DF9F16C9A82B00A3880F /* UIColor+ZenfolioAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D9BF16C9A82300A3880F /* UIColor+ZenfolioAdditions.m */; };
+		2753DFA016C9A82B00A3880F /* UIColor+ZenfolioAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D9BF16C9A82300A3880F /* UIColor+ZenfolioAdditions.m */; };
+		2753DFA116C9A82B00A3880F /* UIColor+ZenfolioAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D9BF16C9A82300A3880F /* UIColor+ZenfolioAdditions.m */; };
+		2753DFA216C9A82B00A3880F /* UIFont+ZenfolioAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D9C016C9A82300A3880F /* UIFont+ZenfolioAdditions.h */; };
+		2753DFA316C9A82B00A3880F /* UIFont+ZenfolioAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D9C016C9A82300A3880F /* UIFont+ZenfolioAdditions.h */; };
+		2753DFA416C9A82B00A3880F /* UIFont+ZenfolioAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D9C016C9A82300A3880F /* UIFont+ZenfolioAdditions.h */; };
+		2753DFA516C9A82B00A3880F /* UIFont+ZenfolioAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D9C016C9A82300A3880F /* UIFont+ZenfolioAdditions.h */; };
+		2753DFA616C9A82B00A3880F /* UIFont+ZenfolioAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D9C116C9A82300A3880F /* UIFont+ZenfolioAdditions.m */; };
+		2753DFA716C9A82B00A3880F /* UIFont+ZenfolioAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D9C116C9A82300A3880F /* UIFont+ZenfolioAdditions.m */; };
+		2753DFA816C9A82B00A3880F /* UIFont+ZenfolioAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D9C116C9A82300A3880F /* UIFont+ZenfolioAdditions.m */; };
+		2753DFA916C9A82B00A3880F /* UIFont+ZenfolioAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D9C116C9A82300A3880F /* UIFont+ZenfolioAdditions.m */; };
+		2753DFAA16C9A82B00A3880F /* UIFont+ZenfolioAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D9C116C9A82300A3880F /* UIFont+ZenfolioAdditions.m */; };
 		2753DFAB16C9A82B00A3880F /* FLZenfolioWebApi.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D9C316C9A82300A3880F /* FLZenfolioWebApi.h */; };
 		2753DFAC16C9A82B00A3880F /* FLZenfolioWebApi.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D9C316C9A82300A3880F /* FLZenfolioWebApi.h */; };
 		2753DFAD16C9A82B00A3880F /* FLZenfolioWebApi.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D9C316C9A82300A3880F /* FLZenfolioWebApi.h */; };
@@ -5683,6 +5674,15 @@
 		27EA230716B84DCA0018CDB2 /* FishLampConnect-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27EA230516B84DCA0018CDB2 /* FishLampConnect-Prefix.pch */; };
 		27EA230816B84DCA0018CDB2 /* FishLampConnect-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27EA230516B84DCA0018CDB2 /* FishLampConnect-Prefix.pch */; };
 		27EA230916B84DCA0018CDB2 /* FishLampConnect-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27EA230516B84DCA0018CDB2 /* FishLampConnect-Prefix.pch */; };
+		27EE268716CAF0A000E4CC98 /* FLOperation+ZenfolioHttp.h in Headers */ = {isa = PBXBuildFile; fileRef = 27EE268516CAF0A000E4CC98 /* FLOperation+ZenfolioHttp.h */; };
+		27EE268816CAF0A000E4CC98 /* FLOperation+ZenfolioHttp.h in Headers */ = {isa = PBXBuildFile; fileRef = 27EE268516CAF0A000E4CC98 /* FLOperation+ZenfolioHttp.h */; };
+		27EE268916CAF0A000E4CC98 /* FLOperation+ZenfolioHttp.h in Headers */ = {isa = PBXBuildFile; fileRef = 27EE268516CAF0A000E4CC98 /* FLOperation+ZenfolioHttp.h */; };
+		27EE268A16CAF0A000E4CC98 /* FLOperation+ZenfolioHttp.h in Headers */ = {isa = PBXBuildFile; fileRef = 27EE268516CAF0A000E4CC98 /* FLOperation+ZenfolioHttp.h */; };
+		27EE268B16CAF0A000E4CC98 /* FLOperation+ZenfolioHttp.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EE268616CAF0A000E4CC98 /* FLOperation+ZenfolioHttp.m */; };
+		27EE268C16CAF0A000E4CC98 /* FLOperation+ZenfolioHttp.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EE268616CAF0A000E4CC98 /* FLOperation+ZenfolioHttp.m */; };
+		27EE268D16CAF0A000E4CC98 /* FLOperation+ZenfolioHttp.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EE268616CAF0A000E4CC98 /* FLOperation+ZenfolioHttp.m */; };
+		27EE268E16CAF0A000E4CC98 /* FLOperation+ZenfolioHttp.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EE268616CAF0A000E4CC98 /* FLOperation+ZenfolioHttp.m */; };
+		27EE268F16CAF0A000E4CC98 /* FLOperation+ZenfolioHttp.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EE268616CAF0A000E4CC98 /* FLOperation+ZenfolioHttp.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -5922,8 +5922,8 @@
 		2753D93E16C9A82300A3880F /* FLZenfolioBatchSavePhotosToDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLZenfolioBatchSavePhotosToDevice.m; sourceTree = "<group>"; };
 		2753D94016C9A82300A3880F /* FLStorableImage+ZenfolioCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FLStorableImage+ZenfolioCache.h"; sourceTree = "<group>"; };
 		2753D94116C9A82300A3880F /* FLStorableImage+ZenfolioCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FLStorableImage+ZenfolioCache.m"; sourceTree = "<group>"; };
-		2753D94216C9A82300A3880F /* FLZenfolioCacheService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLZenfolioCacheService.h; sourceTree = "<group>"; };
-		2753D94316C9A82300A3880F /* FLZenfolioCacheService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLZenfolioCacheService.m; sourceTree = "<group>"; };
+		2753D94216C9A82300A3880F /* FLZenfolioCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLZenfolioCache.h; sourceTree = "<group>"; };
+		2753D94316C9A82300A3880F /* FLZenfolioCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLZenfolioCache.m; sourceTree = "<group>"; };
 		2753D94416C9A82300A3880F /* FLZenfolioLoadGroupFromCacheOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLZenfolioLoadGroupFromCacheOperation.h; sourceTree = "<group>"; };
 		2753D94516C9A82300A3880F /* FLZenfolioLoadGroupFromCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLZenfolioLoadGroupFromCacheOperation.m; sourceTree = "<group>"; };
 		2753D94616C9A82300A3880F /* FLZenfolioLoadGroupsFromCacheOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLZenfolioLoadGroupsFromCacheOperation.h; sourceTree = "<group>"; };
@@ -5963,8 +5963,6 @@
 		2753D96F16C9A82300A3880F /* FLZenfolioDownloadImageHttpRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLZenfolioDownloadImageHttpRequest.m; sourceTree = "<group>"; };
 		2753D97016C9A82300A3880F /* FLZenfolioRandomPhotoDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLZenfolioRandomPhotoDownloader.h; sourceTree = "<group>"; };
 		2753D97116C9A82300A3880F /* FLZenfolioRandomPhotoDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLZenfolioRandomPhotoDownloader.m; sourceTree = "<group>"; };
-		2753D97216C9A82300A3880F /* ZfImageDownloadingService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZfImageDownloadingService.h; sourceTree = "<group>"; };
-		2753D97316C9A82300A3880F /* ZfImageDownloadingService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZfImageDownloadingService.m; sourceTree = "<group>"; };
 		2753D97616C9A82300A3880F /* FLZenfolioUploadImageHttpRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLZenfolioUploadImageHttpRequest.h; sourceTree = "<group>"; };
 		2753D97716C9A82300A3880F /* FLZenfolioUploadImageHttpRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLZenfolioUploadImageHttpRequest.m; sourceTree = "<group>"; };
 		2753D97916C9A82300A3880F /* __FLZenfolioQueuedPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __FLZenfolioQueuedPhoto.h; sourceTree = "<group>"; };
@@ -6021,10 +6019,10 @@
 		2753D9BA16C9A82300A3880F /* FLZenfolioSoapWebServiceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLZenfolioSoapWebServiceTests.m; sourceTree = "<group>"; };
 		2753D9BB16C9A82300A3880F /* FLZenfolioWebApiTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLZenfolioWebApiTests.h; sourceTree = "<group>"; };
 		2753D9BC16C9A82300A3880F /* FLZenfolioWebApiTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLZenfolioWebApiTests.m; sourceTree = "<group>"; };
-		2753D9BE16C9A82300A3880F /* NSColor+ZenfolioAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSColor+ZenfolioAdditions.h"; sourceTree = "<group>"; };
-		2753D9BF16C9A82300A3880F /* NSColor+ZenfolioAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSColor+ZenfolioAdditions.m"; sourceTree = "<group>"; };
-		2753D9C016C9A82300A3880F /* NSFont+ZenfolioAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFont+ZenfolioAdditions.h"; sourceTree = "<group>"; };
-		2753D9C116C9A82300A3880F /* NSFont+ZenfolioAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFont+ZenfolioAdditions.m"; sourceTree = "<group>"; };
+		2753D9BE16C9A82300A3880F /* UIColor+ZenfolioAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+ZenfolioAdditions.h"; sourceTree = "<group>"; };
+		2753D9BF16C9A82300A3880F /* UIColor+ZenfolioAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+ZenfolioAdditions.m"; sourceTree = "<group>"; };
+		2753D9C016C9A82300A3880F /* UIFont+ZenfolioAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+ZenfolioAdditions.h"; sourceTree = "<group>"; };
+		2753D9C116C9A82300A3880F /* UIFont+ZenfolioAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+ZenfolioAdditions.m"; sourceTree = "<group>"; };
 		2753D9C316C9A82300A3880F /* FLZenfolioWebApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLZenfolioWebApi.h; sourceTree = "<group>"; };
 		2753D9C416C9A82300A3880F /* FLZenfolioWebApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLZenfolioWebApi.m; sourceTree = "<group>"; };
 		2753D9C616C9A82300A3880F /* FLUserLogin+ZenfolioAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FLUserLogin+ZenfolioAdditions.h"; sourceTree = "<group>"; };
@@ -6973,6 +6971,8 @@
 		27EA1F6E16B84D800018CDB2 /* FLTwitterService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLTwitterService.h; sourceTree = "<group>"; };
 		27EA1F6F16B84D800018CDB2 /* FLTwitterService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLTwitterService.m; sourceTree = "<group>"; };
 		27EA230516B84DCA0018CDB2 /* FishLampConnect-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FishLampConnect-Prefix.pch"; sourceTree = "<group>"; };
+		27EE268516CAF0A000E4CC98 /* FLOperation+ZenfolioHttp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FLOperation+ZenfolioHttp.h"; sourceTree = "<group>"; };
+		27EE268616CAF0A000E4CC98 /* FLOperation+ZenfolioHttp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FLOperation+ZenfolioHttp.m"; sourceTree = "<group>"; };
 		78329B61167E41260024E8DC /* FishLampProjectSettingsDebug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FishLampProjectSettingsDebug.xcconfig; sourceTree = "<group>"; };
 		78329B62167E41260024E8DC /* FishLampProjectSettingsRelease.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FishLampProjectSettingsRelease.xcconfig; sourceTree = "<group>"; };
 		78329B63167E41260024E8DC /* FishLampTargetSettings-iOS-ARC.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "FishLampTargetSettings-iOS-ARC.xcconfig"; sourceTree = "<group>"; };
@@ -7333,18 +7333,11 @@
 		2753D93F16C9A82300A3880F /* Cache */ = {
 			isa = PBXGroup;
 			children = (
+				2795628416CB2976005A0133 /* Obsolete and Lame */,
 				2753D94016C9A82300A3880F /* FLStorableImage+ZenfolioCache.h */,
 				2753D94116C9A82300A3880F /* FLStorableImage+ZenfolioCache.m */,
-				2753D94216C9A82300A3880F /* FLZenfolioCacheService.h */,
-				2753D94316C9A82300A3880F /* FLZenfolioCacheService.m */,
-				2753D94416C9A82300A3880F /* FLZenfolioLoadGroupFromCacheOperation.h */,
-				2753D94516C9A82300A3880F /* FLZenfolioLoadGroupFromCacheOperation.m */,
-				2753D94616C9A82300A3880F /* FLZenfolioLoadGroupsFromCacheOperation.h */,
-				2753D94716C9A82300A3880F /* FLZenfolioLoadGroupsFromCacheOperation.m */,
-				2753D94816C9A82300A3880F /* FLZenfolioLoadPhotoFromCacheOperation.h */,
-				2753D94916C9A82300A3880F /* FLZenfolioLoadPhotoFromCacheOperation.m */,
-				2753D94A16C9A82300A3880F /* FLZenfolioLoadPhotoSetFromCacheOperation.h */,
-				2753D94B16C9A82300A3880F /* FLZenfolioLoadPhotoSetFromCacheOperation.m */,
+				2753D94216C9A82300A3880F /* FLZenfolioCache.h */,
+				2753D94316C9A82300A3880F /* FLZenfolioCache.m */,
 			);
 			path = Cache;
 			sourceTree = "<group>";
@@ -7398,6 +7391,8 @@
 				2753D96816C9A82300A3880F /* FLZenfolioLoadGroupHierarchyOperation.m */,
 				2753D96B16C9A82300A3880F /* ZfLoadGroupsFromCacheOperation.h */,
 				2753D96C16C9A82300A3880F /* ZfLoadGroupsFromCacheOperation.m */,
+				27EE268516CAF0A000E4CC98 /* FLOperation+ZenfolioHttp.h */,
+				27EE268616CAF0A000E4CC98 /* FLOperation+ZenfolioHttp.m */,
 			);
 			path = Operations;
 			sourceTree = "<group>";
@@ -7409,8 +7404,6 @@
 				2753D96F16C9A82300A3880F /* FLZenfolioDownloadImageHttpRequest.m */,
 				2753D97016C9A82300A3880F /* FLZenfolioRandomPhotoDownloader.h */,
 				2753D97116C9A82300A3880F /* FLZenfolioRandomPhotoDownloader.m */,
-				2753D97216C9A82300A3880F /* ZfImageDownloadingService.h */,
-				2753D97316C9A82300A3880F /* ZfImageDownloadingService.m */,
 			);
 			path = PhotoDownloading;
 			sourceTree = "<group>";
@@ -7573,10 +7566,10 @@
 		2753D9BD16C9A82300A3880F /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				2753D9BE16C9A82300A3880F /* NSColor+ZenfolioAdditions.h */,
-				2753D9BF16C9A82300A3880F /* NSColor+ZenfolioAdditions.m */,
-				2753D9C016C9A82300A3880F /* NSFont+ZenfolioAdditions.h */,
-				2753D9C116C9A82300A3880F /* NSFont+ZenfolioAdditions.m */,
+				2753D9BE16C9A82300A3880F /* UIColor+ZenfolioAdditions.h */,
+				2753D9BF16C9A82300A3880F /* UIColor+ZenfolioAdditions.m */,
+				2753D9C016C9A82300A3880F /* UIFont+ZenfolioAdditions.h */,
+				2753D9C116C9A82300A3880F /* UIFont+ZenfolioAdditions.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -8558,6 +8551,21 @@
 			path = Selection;
 			sourceTree = "<group>";
 		};
+		2795628416CB2976005A0133 /* Obsolete and Lame */ = {
+			isa = PBXGroup;
+			children = (
+				2753D94416C9A82300A3880F /* FLZenfolioLoadGroupFromCacheOperation.h */,
+				2753D94516C9A82300A3880F /* FLZenfolioLoadGroupFromCacheOperation.m */,
+				2753D94616C9A82300A3880F /* FLZenfolioLoadGroupsFromCacheOperation.h */,
+				2753D94716C9A82300A3880F /* FLZenfolioLoadGroupsFromCacheOperation.m */,
+				2753D94816C9A82300A3880F /* FLZenfolioLoadPhotoFromCacheOperation.h */,
+				2753D94916C9A82300A3880F /* FLZenfolioLoadPhotoFromCacheOperation.m */,
+				2753D94A16C9A82300A3880F /* FLZenfolioLoadPhotoSetFromCacheOperation.h */,
+				2753D94B16C9A82300A3880F /* FLZenfolioLoadPhotoSetFromCacheOperation.m */,
+			);
+			name = "Obsolete and Lame";
+			sourceTree = "<group>";
+		};
 		27A43A7115CDCC1B001CB13E = {
 			isa = PBXGroup;
 			children = (
@@ -8746,7 +8754,7 @@
 				2753DDBC16C9A82B00A3880F /* FLZenfolioBatchPhotoDownloadOperation.h in Headers */,
 				2753DDC516C9A82B00A3880F /* FLZenfolioBatchSavePhotosToDevice.h in Headers */,
 				2753DDCE16C9A82B00A3880F /* FLStorableImage+ZenfolioCache.h in Headers */,
-				2753DDD716C9A82B00A3880F /* FLZenfolioCacheService.h in Headers */,
+				2753DDD716C9A82B00A3880F /* FLZenfolioCache.h in Headers */,
 				2753DDE016C9A82B00A3880F /* FLZenfolioLoadGroupFromCacheOperation.h in Headers */,
 				2753DDE916C9A82B00A3880F /* FLZenfolioLoadGroupsFromCacheOperation.h in Headers */,
 				2753DDF216C9A82B00A3880F /* FLZenfolioLoadPhotoFromCacheOperation.h in Headers */,
@@ -8766,7 +8774,6 @@
 				2753DE7916C9A82B00A3880F /* ZfLoadGroupsFromCacheOperation.h in Headers */,
 				2753DE8216C9A82B00A3880F /* FLZenfolioDownloadImageHttpRequest.h in Headers */,
 				2753DE8B16C9A82B00A3880F /* FLZenfolioRandomPhotoDownloader.h in Headers */,
-				2753DE9416C9A82B00A3880F /* ZfImageDownloadingService.h in Headers */,
 				2753DE9D16C9A82B00A3880F /* FLZenfolioUploadImageHttpRequest.h in Headers */,
 				2753DEA616C9A82B00A3880F /* __FLZenfolioQueuedPhoto.h in Headers */,
 				2753DEAF16C9A82B00A3880F /* FLZenfolioQueuedPhoto.h in Headers */,
@@ -8794,8 +8801,8 @@
 				2753DF7516C9A82B00A3880F /* FLZenfolioSoapHttpRequestFactory.h in Headers */,
 				2753DF8716C9A82B00A3880F /* FLZenfolioSoapWebServiceTests.h in Headers */,
 				2753DF9016C9A82B00A3880F /* FLZenfolioWebApiTests.h in Headers */,
-				2753DF9916C9A82B00A3880F /* NSColor+ZenfolioAdditions.h in Headers */,
-				2753DFA216C9A82B00A3880F /* NSFont+ZenfolioAdditions.h in Headers */,
+				2753DF9916C9A82B00A3880F /* UIColor+ZenfolioAdditions.h in Headers */,
+				2753DFA216C9A82B00A3880F /* UIFont+ZenfolioAdditions.h in Headers */,
 				2753DFAB16C9A82B00A3880F /* FLZenfolioWebApi.h in Headers */,
 				2753DFB416C9A82B00A3880F /* FLUserLogin+ZenfolioAdditions.h in Headers */,
 				2753DFBD16C9A82B00A3880F /* FLZenfolioAccessDescriptor+More.h in Headers */,
@@ -9266,6 +9273,7 @@
 				2753F02316C9A82E00A3880F /* FLZenfolioUser.h in Headers */,
 				2753F02E16C9B26900A3880F /* FLUserDataStorageService+Zenfolio.h in Headers */,
 				2781094C16C9CC51005D1CE4 /* FLZenfolioGroupElementSelection.h in Headers */,
+				27EE268716CAF0A000E4CC98 /* FLOperation+ZenfolioHttp.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9387,7 +9395,7 @@
 				2753DDBE16C9A82B00A3880F /* FLZenfolioBatchPhotoDownloadOperation.h in Headers */,
 				2753DDC716C9A82B00A3880F /* FLZenfolioBatchSavePhotosToDevice.h in Headers */,
 				2753DDD016C9A82B00A3880F /* FLStorableImage+ZenfolioCache.h in Headers */,
-				2753DDD916C9A82B00A3880F /* FLZenfolioCacheService.h in Headers */,
+				2753DDD916C9A82B00A3880F /* FLZenfolioCache.h in Headers */,
 				2753DDE216C9A82B00A3880F /* FLZenfolioLoadGroupFromCacheOperation.h in Headers */,
 				2753DDEB16C9A82B00A3880F /* FLZenfolioLoadGroupsFromCacheOperation.h in Headers */,
 				2753DDF416C9A82B00A3880F /* FLZenfolioLoadPhotoFromCacheOperation.h in Headers */,
@@ -9407,7 +9415,6 @@
 				2753DE7B16C9A82B00A3880F /* ZfLoadGroupsFromCacheOperation.h in Headers */,
 				2753DE8416C9A82B00A3880F /* FLZenfolioDownloadImageHttpRequest.h in Headers */,
 				2753DE8D16C9A82B00A3880F /* FLZenfolioRandomPhotoDownloader.h in Headers */,
-				2753DE9616C9A82B00A3880F /* ZfImageDownloadingService.h in Headers */,
 				2753DE9F16C9A82B00A3880F /* FLZenfolioUploadImageHttpRequest.h in Headers */,
 				2753DEA816C9A82B00A3880F /* __FLZenfolioQueuedPhoto.h in Headers */,
 				2753DEB116C9A82B00A3880F /* FLZenfolioQueuedPhoto.h in Headers */,
@@ -9435,8 +9442,8 @@
 				2753DF7716C9A82B00A3880F /* FLZenfolioSoapHttpRequestFactory.h in Headers */,
 				2753DF8916C9A82B00A3880F /* FLZenfolioSoapWebServiceTests.h in Headers */,
 				2753DF9216C9A82B00A3880F /* FLZenfolioWebApiTests.h in Headers */,
-				2753DF9B16C9A82B00A3880F /* NSColor+ZenfolioAdditions.h in Headers */,
-				2753DFA416C9A82B00A3880F /* NSFont+ZenfolioAdditions.h in Headers */,
+				2753DF9B16C9A82B00A3880F /* UIColor+ZenfolioAdditions.h in Headers */,
+				2753DFA416C9A82B00A3880F /* UIFont+ZenfolioAdditions.h in Headers */,
 				2753DFAD16C9A82B00A3880F /* FLZenfolioWebApi.h in Headers */,
 				2753DFB616C9A82B00A3880F /* FLUserLogin+ZenfolioAdditions.h in Headers */,
 				2753DFBF16C9A82B00A3880F /* FLZenfolioAccessDescriptor+More.h in Headers */,
@@ -9907,6 +9914,7 @@
 				2753F02516C9A82E00A3880F /* FLZenfolioUser.h in Headers */,
 				2753F03016C9B26900A3880F /* FLUserDataStorageService+Zenfolio.h in Headers */,
 				2781094E16C9CC51005D1CE4 /* FLZenfolioGroupElementSelection.h in Headers */,
+				27EE268916CAF0A000E4CC98 /* FLOperation+ZenfolioHttp.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -10028,7 +10036,7 @@
 				2753DDBD16C9A82B00A3880F /* FLZenfolioBatchPhotoDownloadOperation.h in Headers */,
 				2753DDC616C9A82B00A3880F /* FLZenfolioBatchSavePhotosToDevice.h in Headers */,
 				2753DDCF16C9A82B00A3880F /* FLStorableImage+ZenfolioCache.h in Headers */,
-				2753DDD816C9A82B00A3880F /* FLZenfolioCacheService.h in Headers */,
+				2753DDD816C9A82B00A3880F /* FLZenfolioCache.h in Headers */,
 				2753DDE116C9A82B00A3880F /* FLZenfolioLoadGroupFromCacheOperation.h in Headers */,
 				2753DDEA16C9A82B00A3880F /* FLZenfolioLoadGroupsFromCacheOperation.h in Headers */,
 				2753DDF316C9A82B00A3880F /* FLZenfolioLoadPhotoFromCacheOperation.h in Headers */,
@@ -10048,7 +10056,6 @@
 				2753DE7A16C9A82B00A3880F /* ZfLoadGroupsFromCacheOperation.h in Headers */,
 				2753DE8316C9A82B00A3880F /* FLZenfolioDownloadImageHttpRequest.h in Headers */,
 				2753DE8C16C9A82B00A3880F /* FLZenfolioRandomPhotoDownloader.h in Headers */,
-				2753DE9516C9A82B00A3880F /* ZfImageDownloadingService.h in Headers */,
 				2753DE9E16C9A82B00A3880F /* FLZenfolioUploadImageHttpRequest.h in Headers */,
 				2753DEA716C9A82B00A3880F /* __FLZenfolioQueuedPhoto.h in Headers */,
 				2753DEB016C9A82B00A3880F /* FLZenfolioQueuedPhoto.h in Headers */,
@@ -10076,8 +10083,8 @@
 				2753DF7616C9A82B00A3880F /* FLZenfolioSoapHttpRequestFactory.h in Headers */,
 				2753DF8816C9A82B00A3880F /* FLZenfolioSoapWebServiceTests.h in Headers */,
 				2753DF9116C9A82B00A3880F /* FLZenfolioWebApiTests.h in Headers */,
-				2753DF9A16C9A82B00A3880F /* NSColor+ZenfolioAdditions.h in Headers */,
-				2753DFA316C9A82B00A3880F /* NSFont+ZenfolioAdditions.h in Headers */,
+				2753DF9A16C9A82B00A3880F /* UIColor+ZenfolioAdditions.h in Headers */,
+				2753DFA316C9A82B00A3880F /* UIFont+ZenfolioAdditions.h in Headers */,
 				2753DFAC16C9A82B00A3880F /* FLZenfolioWebApi.h in Headers */,
 				2753DFB516C9A82B00A3880F /* FLUserLogin+ZenfolioAdditions.h in Headers */,
 				2753DFBE16C9A82B00A3880F /* FLZenfolioAccessDescriptor+More.h in Headers */,
@@ -10548,6 +10555,7 @@
 				2753F02416C9A82E00A3880F /* FLZenfolioUser.h in Headers */,
 				2753F02F16C9B26900A3880F /* FLUserDataStorageService+Zenfolio.h in Headers */,
 				2781094D16C9CC51005D1CE4 /* FLZenfolioGroupElementSelection.h in Headers */,
+				27EE268816CAF0A000E4CC98 /* FLOperation+ZenfolioHttp.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -10669,7 +10677,7 @@
 				2753DDBF16C9A82B00A3880F /* FLZenfolioBatchPhotoDownloadOperation.h in Headers */,
 				2753DDC816C9A82B00A3880F /* FLZenfolioBatchSavePhotosToDevice.h in Headers */,
 				2753DDD116C9A82B00A3880F /* FLStorableImage+ZenfolioCache.h in Headers */,
-				2753DDDA16C9A82B00A3880F /* FLZenfolioCacheService.h in Headers */,
+				2753DDDA16C9A82B00A3880F /* FLZenfolioCache.h in Headers */,
 				2753DDE316C9A82B00A3880F /* FLZenfolioLoadGroupFromCacheOperation.h in Headers */,
 				2753DDEC16C9A82B00A3880F /* FLZenfolioLoadGroupsFromCacheOperation.h in Headers */,
 				2753DDF516C9A82B00A3880F /* FLZenfolioLoadPhotoFromCacheOperation.h in Headers */,
@@ -10689,7 +10697,6 @@
 				2753DE7C16C9A82B00A3880F /* ZfLoadGroupsFromCacheOperation.h in Headers */,
 				2753DE8516C9A82B00A3880F /* FLZenfolioDownloadImageHttpRequest.h in Headers */,
 				2753DE8E16C9A82B00A3880F /* FLZenfolioRandomPhotoDownloader.h in Headers */,
-				2753DE9716C9A82B00A3880F /* ZfImageDownloadingService.h in Headers */,
 				2753DEA016C9A82B00A3880F /* FLZenfolioUploadImageHttpRequest.h in Headers */,
 				2753DEA916C9A82B00A3880F /* __FLZenfolioQueuedPhoto.h in Headers */,
 				2753DEB216C9A82B00A3880F /* FLZenfolioQueuedPhoto.h in Headers */,
@@ -10717,8 +10724,8 @@
 				2753DF7816C9A82B00A3880F /* FLZenfolioSoapHttpRequestFactory.h in Headers */,
 				2753DF8A16C9A82B00A3880F /* FLZenfolioSoapWebServiceTests.h in Headers */,
 				2753DF9316C9A82B00A3880F /* FLZenfolioWebApiTests.h in Headers */,
-				2753DF9C16C9A82B00A3880F /* NSColor+ZenfolioAdditions.h in Headers */,
-				2753DFA516C9A82B00A3880F /* NSFont+ZenfolioAdditions.h in Headers */,
+				2753DF9C16C9A82B00A3880F /* UIColor+ZenfolioAdditions.h in Headers */,
+				2753DFA516C9A82B00A3880F /* UIFont+ZenfolioAdditions.h in Headers */,
 				2753DFAE16C9A82B00A3880F /* FLZenfolioWebApi.h in Headers */,
 				2753DFB716C9A82B00A3880F /* FLUserLogin+ZenfolioAdditions.h in Headers */,
 				2753DFC016C9A82B00A3880F /* FLZenfolioAccessDescriptor+More.h in Headers */,
@@ -11189,6 +11196,7 @@
 				2753F02616C9A82E00A3880F /* FLZenfolioUser.h in Headers */,
 				2753F03116C9B26900A3880F /* FLUserDataStorageService+Zenfolio.h in Headers */,
 				2781094F16C9CC51005D1CE4 /* FLZenfolioGroupElementSelection.h in Headers */,
+				27EE268A16CAF0A000E4CC98 /* FLOperation+ZenfolioHttp.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -11425,7 +11433,7 @@
 				2753DDC116C9A82B00A3880F /* FLZenfolioBatchPhotoDownloadOperation.m in Sources */,
 				2753DDCA16C9A82B00A3880F /* FLZenfolioBatchSavePhotosToDevice.m in Sources */,
 				2753DDD316C9A82B00A3880F /* FLStorableImage+ZenfolioCache.m in Sources */,
-				2753DDDC16C9A82B00A3880F /* FLZenfolioCacheService.m in Sources */,
+				2753DDDC16C9A82B00A3880F /* FLZenfolioCache.m in Sources */,
 				2753DDE516C9A82B00A3880F /* FLZenfolioLoadGroupFromCacheOperation.m in Sources */,
 				2753DDEE16C9A82B00A3880F /* FLZenfolioLoadGroupsFromCacheOperation.m in Sources */,
 				2753DDF716C9A82B00A3880F /* FLZenfolioLoadPhotoFromCacheOperation.m in Sources */,
@@ -11445,7 +11453,6 @@
 				2753DE7E16C9A82B00A3880F /* ZfLoadGroupsFromCacheOperation.m in Sources */,
 				2753DE8716C9A82B00A3880F /* FLZenfolioDownloadImageHttpRequest.m in Sources */,
 				2753DE9016C9A82B00A3880F /* FLZenfolioRandomPhotoDownloader.m in Sources */,
-				2753DE9916C9A82B00A3880F /* ZfImageDownloadingService.m in Sources */,
 				2753DEA216C9A82B00A3880F /* FLZenfolioUploadImageHttpRequest.m in Sources */,
 				2753DEAB16C9A82B00A3880F /* __FLZenfolioQueuedPhoto.m in Sources */,
 				2753DEB416C9A82B00A3880F /* FLZenfolioQueuedPhoto.m in Sources */,
@@ -11473,8 +11480,8 @@
 				2753DF7A16C9A82B00A3880F /* FLZenfolioSoapHttpRequestFactory.m in Sources */,
 				2753DF8C16C9A82B00A3880F /* FLZenfolioSoapWebServiceTests.m in Sources */,
 				2753DF9516C9A82B00A3880F /* FLZenfolioWebApiTests.m in Sources */,
-				2753DF9E16C9A82B00A3880F /* NSColor+ZenfolioAdditions.m in Sources */,
-				2753DFA716C9A82B00A3880F /* NSFont+ZenfolioAdditions.m in Sources */,
+				2753DF9E16C9A82B00A3880F /* UIColor+ZenfolioAdditions.m in Sources */,
+				2753DFA716C9A82B00A3880F /* UIFont+ZenfolioAdditions.m in Sources */,
 				2753DFB016C9A82B00A3880F /* FLZenfolioWebApi.m in Sources */,
 				2753DFB916C9A82B00A3880F /* FLUserLogin+ZenfolioAdditions.m in Sources */,
 				2753DFC216C9A82B00A3880F /* FLZenfolioAccessDescriptor+More.m in Sources */,
@@ -11944,6 +11951,7 @@
 				2753F02816C9A82E00A3880F /* FLZenfolioUser.m in Sources */,
 				2753F03316C9B26900A3880F /* FLUserDataStorageService+Zenfolio.m in Sources */,
 				2781095116C9CC51005D1CE4 /* FLZenfolioGroupElementSelection.m in Sources */,
+				27EE268C16CAF0A000E4CC98 /* FLOperation+ZenfolioHttp.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -12060,7 +12068,7 @@
 				2753DDC316C9A82B00A3880F /* FLZenfolioBatchPhotoDownloadOperation.m in Sources */,
 				2753DDCC16C9A82B00A3880F /* FLZenfolioBatchSavePhotosToDevice.m in Sources */,
 				2753DDD516C9A82B00A3880F /* FLStorableImage+ZenfolioCache.m in Sources */,
-				2753DDDE16C9A82B00A3880F /* FLZenfolioCacheService.m in Sources */,
+				2753DDDE16C9A82B00A3880F /* FLZenfolioCache.m in Sources */,
 				2753DDE716C9A82B00A3880F /* FLZenfolioLoadGroupFromCacheOperation.m in Sources */,
 				2753DDF016C9A82B00A3880F /* FLZenfolioLoadGroupsFromCacheOperation.m in Sources */,
 				2753DDF916C9A82B00A3880F /* FLZenfolioLoadPhotoFromCacheOperation.m in Sources */,
@@ -12080,7 +12088,6 @@
 				2753DE8016C9A82B00A3880F /* ZfLoadGroupsFromCacheOperation.m in Sources */,
 				2753DE8916C9A82B00A3880F /* FLZenfolioDownloadImageHttpRequest.m in Sources */,
 				2753DE9216C9A82B00A3880F /* FLZenfolioRandomPhotoDownloader.m in Sources */,
-				2753DE9B16C9A82B00A3880F /* ZfImageDownloadingService.m in Sources */,
 				2753DEA416C9A82B00A3880F /* FLZenfolioUploadImageHttpRequest.m in Sources */,
 				2753DEAD16C9A82B00A3880F /* __FLZenfolioQueuedPhoto.m in Sources */,
 				2753DEB616C9A82B00A3880F /* FLZenfolioQueuedPhoto.m in Sources */,
@@ -12108,8 +12115,8 @@
 				2753DF7C16C9A82B00A3880F /* FLZenfolioSoapHttpRequestFactory.m in Sources */,
 				2753DF8E16C9A82B00A3880F /* FLZenfolioSoapWebServiceTests.m in Sources */,
 				2753DF9716C9A82B00A3880F /* FLZenfolioWebApiTests.m in Sources */,
-				2753DFA016C9A82B00A3880F /* NSColor+ZenfolioAdditions.m in Sources */,
-				2753DFA916C9A82B00A3880F /* NSFont+ZenfolioAdditions.m in Sources */,
+				2753DFA016C9A82B00A3880F /* UIColor+ZenfolioAdditions.m in Sources */,
+				2753DFA916C9A82B00A3880F /* UIFont+ZenfolioAdditions.m in Sources */,
 				2753DFB216C9A82B00A3880F /* FLZenfolioWebApi.m in Sources */,
 				2753DFBB16C9A82B00A3880F /* FLUserLogin+ZenfolioAdditions.m in Sources */,
 				2753DFC416C9A82B00A3880F /* FLZenfolioAccessDescriptor+More.m in Sources */,
@@ -12579,6 +12586,7 @@
 				2753F02A16C9A82E00A3880F /* FLZenfolioUser.m in Sources */,
 				2753F03516C9B26900A3880F /* FLUserDataStorageService+Zenfolio.m in Sources */,
 				2781095316C9CC51005D1CE4 /* FLZenfolioGroupElementSelection.m in Sources */,
+				27EE268E16CAF0A000E4CC98 /* FLOperation+ZenfolioHttp.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -12695,7 +12703,7 @@
 				2753DDC016C9A82B00A3880F /* FLZenfolioBatchPhotoDownloadOperation.m in Sources */,
 				2753DDC916C9A82B00A3880F /* FLZenfolioBatchSavePhotosToDevice.m in Sources */,
 				2753DDD216C9A82B00A3880F /* FLStorableImage+ZenfolioCache.m in Sources */,
-				2753DDDB16C9A82B00A3880F /* FLZenfolioCacheService.m in Sources */,
+				2753DDDB16C9A82B00A3880F /* FLZenfolioCache.m in Sources */,
 				2753DDE416C9A82B00A3880F /* FLZenfolioLoadGroupFromCacheOperation.m in Sources */,
 				2753DDED16C9A82B00A3880F /* FLZenfolioLoadGroupsFromCacheOperation.m in Sources */,
 				2753DDF616C9A82B00A3880F /* FLZenfolioLoadPhotoFromCacheOperation.m in Sources */,
@@ -12715,7 +12723,6 @@
 				2753DE7D16C9A82B00A3880F /* ZfLoadGroupsFromCacheOperation.m in Sources */,
 				2753DE8616C9A82B00A3880F /* FLZenfolioDownloadImageHttpRequest.m in Sources */,
 				2753DE8F16C9A82B00A3880F /* FLZenfolioRandomPhotoDownloader.m in Sources */,
-				2753DE9816C9A82B00A3880F /* ZfImageDownloadingService.m in Sources */,
 				2753DEA116C9A82B00A3880F /* FLZenfolioUploadImageHttpRequest.m in Sources */,
 				2753DEAA16C9A82B00A3880F /* __FLZenfolioQueuedPhoto.m in Sources */,
 				2753DEB316C9A82B00A3880F /* FLZenfolioQueuedPhoto.m in Sources */,
@@ -12743,8 +12750,8 @@
 				2753DF7916C9A82B00A3880F /* FLZenfolioSoapHttpRequestFactory.m in Sources */,
 				2753DF8B16C9A82B00A3880F /* FLZenfolioSoapWebServiceTests.m in Sources */,
 				2753DF9416C9A82B00A3880F /* FLZenfolioWebApiTests.m in Sources */,
-				2753DF9D16C9A82B00A3880F /* NSColor+ZenfolioAdditions.m in Sources */,
-				2753DFA616C9A82B00A3880F /* NSFont+ZenfolioAdditions.m in Sources */,
+				2753DF9D16C9A82B00A3880F /* UIColor+ZenfolioAdditions.m in Sources */,
+				2753DFA616C9A82B00A3880F /* UIFont+ZenfolioAdditions.m in Sources */,
 				2753DFAF16C9A82B00A3880F /* FLZenfolioWebApi.m in Sources */,
 				2753DFB816C9A82B00A3880F /* FLUserLogin+ZenfolioAdditions.m in Sources */,
 				2753DFC116C9A82B00A3880F /* FLZenfolioAccessDescriptor+More.m in Sources */,
@@ -13214,6 +13221,7 @@
 				2753F02716C9A82E00A3880F /* FLZenfolioUser.m in Sources */,
 				2753F03216C9B26900A3880F /* FLUserDataStorageService+Zenfolio.m in Sources */,
 				2781095016C9CC51005D1CE4 /* FLZenfolioGroupElementSelection.m in Sources */,
+				27EE268B16CAF0A000E4CC98 /* FLOperation+ZenfolioHttp.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -13330,7 +13338,7 @@
 				2753DDC216C9A82B00A3880F /* FLZenfolioBatchPhotoDownloadOperation.m in Sources */,
 				2753DDCB16C9A82B00A3880F /* FLZenfolioBatchSavePhotosToDevice.m in Sources */,
 				2753DDD416C9A82B00A3880F /* FLStorableImage+ZenfolioCache.m in Sources */,
-				2753DDDD16C9A82B00A3880F /* FLZenfolioCacheService.m in Sources */,
+				2753DDDD16C9A82B00A3880F /* FLZenfolioCache.m in Sources */,
 				2753DDE616C9A82B00A3880F /* FLZenfolioLoadGroupFromCacheOperation.m in Sources */,
 				2753DDEF16C9A82B00A3880F /* FLZenfolioLoadGroupsFromCacheOperation.m in Sources */,
 				2753DDF816C9A82B00A3880F /* FLZenfolioLoadPhotoFromCacheOperation.m in Sources */,
@@ -13350,7 +13358,6 @@
 				2753DE7F16C9A82B00A3880F /* ZfLoadGroupsFromCacheOperation.m in Sources */,
 				2753DE8816C9A82B00A3880F /* FLZenfolioDownloadImageHttpRequest.m in Sources */,
 				2753DE9116C9A82B00A3880F /* FLZenfolioRandomPhotoDownloader.m in Sources */,
-				2753DE9A16C9A82B00A3880F /* ZfImageDownloadingService.m in Sources */,
 				2753DEA316C9A82B00A3880F /* FLZenfolioUploadImageHttpRequest.m in Sources */,
 				2753DEAC16C9A82B00A3880F /* __FLZenfolioQueuedPhoto.m in Sources */,
 				2753DEB516C9A82B00A3880F /* FLZenfolioQueuedPhoto.m in Sources */,
@@ -13378,8 +13385,8 @@
 				2753DF7B16C9A82B00A3880F /* FLZenfolioSoapHttpRequestFactory.m in Sources */,
 				2753DF8D16C9A82B00A3880F /* FLZenfolioSoapWebServiceTests.m in Sources */,
 				2753DF9616C9A82B00A3880F /* FLZenfolioWebApiTests.m in Sources */,
-				2753DF9F16C9A82B00A3880F /* NSColor+ZenfolioAdditions.m in Sources */,
-				2753DFA816C9A82B00A3880F /* NSFont+ZenfolioAdditions.m in Sources */,
+				2753DF9F16C9A82B00A3880F /* UIColor+ZenfolioAdditions.m in Sources */,
+				2753DFA816C9A82B00A3880F /* UIFont+ZenfolioAdditions.m in Sources */,
 				2753DFB116C9A82B00A3880F /* FLZenfolioWebApi.m in Sources */,
 				2753DFBA16C9A82B00A3880F /* FLUserLogin+ZenfolioAdditions.m in Sources */,
 				2753DFC316C9A82B00A3880F /* FLZenfolioAccessDescriptor+More.m in Sources */,
@@ -13849,6 +13856,7 @@
 				2753F02916C9A82E00A3880F /* FLZenfolioUser.m in Sources */,
 				2753F03416C9B26900A3880F /* FLUserDataStorageService+Zenfolio.m in Sources */,
 				2781095216C9CC51005D1CE4 /* FLZenfolioGroupElementSelection.m in Sources */,
+				27EE268D16CAF0A000E4CC98 /* FLOperation+ZenfolioHttp.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -13965,7 +13973,7 @@
 				2753DDC416C9A82B00A3880F /* FLZenfolioBatchPhotoDownloadOperation.m in Sources */,
 				2753DDCD16C9A82B00A3880F /* FLZenfolioBatchSavePhotosToDevice.m in Sources */,
 				2753DDD616C9A82B00A3880F /* FLStorableImage+ZenfolioCache.m in Sources */,
-				2753DDDF16C9A82B00A3880F /* FLZenfolioCacheService.m in Sources */,
+				2753DDDF16C9A82B00A3880F /* FLZenfolioCache.m in Sources */,
 				2753DDE816C9A82B00A3880F /* FLZenfolioLoadGroupFromCacheOperation.m in Sources */,
 				2753DDF116C9A82B00A3880F /* FLZenfolioLoadGroupsFromCacheOperation.m in Sources */,
 				2753DDFA16C9A82B00A3880F /* FLZenfolioLoadPhotoFromCacheOperation.m in Sources */,
@@ -13985,7 +13993,6 @@
 				2753DE8116C9A82B00A3880F /* ZfLoadGroupsFromCacheOperation.m in Sources */,
 				2753DE8A16C9A82B00A3880F /* FLZenfolioDownloadImageHttpRequest.m in Sources */,
 				2753DE9316C9A82B00A3880F /* FLZenfolioRandomPhotoDownloader.m in Sources */,
-				2753DE9C16C9A82B00A3880F /* ZfImageDownloadingService.m in Sources */,
 				2753DEA516C9A82B00A3880F /* FLZenfolioUploadImageHttpRequest.m in Sources */,
 				2753DEAE16C9A82B00A3880F /* __FLZenfolioQueuedPhoto.m in Sources */,
 				2753DEB716C9A82B00A3880F /* FLZenfolioQueuedPhoto.m in Sources */,
@@ -14013,8 +14020,8 @@
 				2753DF7D16C9A82B00A3880F /* FLZenfolioSoapHttpRequestFactory.m in Sources */,
 				2753DF8F16C9A82B00A3880F /* FLZenfolioSoapWebServiceTests.m in Sources */,
 				2753DF9816C9A82B00A3880F /* FLZenfolioWebApiTests.m in Sources */,
-				2753DFA116C9A82B00A3880F /* NSColor+ZenfolioAdditions.m in Sources */,
-				2753DFAA16C9A82B00A3880F /* NSFont+ZenfolioAdditions.m in Sources */,
+				2753DFA116C9A82B00A3880F /* UIColor+ZenfolioAdditions.m in Sources */,
+				2753DFAA16C9A82B00A3880F /* UIFont+ZenfolioAdditions.m in Sources */,
 				2753DFB316C9A82B00A3880F /* FLZenfolioWebApi.m in Sources */,
 				2753DFBC16C9A82B00A3880F /* FLUserLogin+ZenfolioAdditions.m in Sources */,
 				2753DFC516C9A82B00A3880F /* FLZenfolioAccessDescriptor+More.m in Sources */,
@@ -14484,6 +14491,7 @@
 				2753F02B16C9A82E00A3880F /* FLZenfolioUser.m in Sources */,
 				2753F03616C9B26900A3880F /* FLUserDataStorageService+Zenfolio.m in Sources */,
 				2781095416C9CC51005D1CE4 /* FLZenfolioGroupElementSelection.m in Sources */,
+				27EE268F16CAF0A000E4CC98 /* FLOperation+ZenfolioHttp.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

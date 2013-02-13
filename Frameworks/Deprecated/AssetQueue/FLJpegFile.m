@@ -11,7 +11,7 @@
 #import "FLJpegFile.h"
 #import "NSFileManager+FLExtras.h"
 #import "FLCoreFoundation.h"
-#import "FLDispatchQueue.h"
+#import "FLGcdDispatcher.h"
 
 @interface FLJpegFile ()
 @property (readwrite, strong, nonatomic) NSDictionary* properties;

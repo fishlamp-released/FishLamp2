@@ -11,6 +11,7 @@
 #import "FLOperation.h"
 #import "FLCommandLineArgument.h"
 
+#if OSX
 @interface FLShellCommand : FLOperation {
 @private
     NSString* _launchPath;
@@ -23,3 +24,4 @@
 - (void) addArgument:(FLCommandLineArgument*) arg;
 
 @end
+#endif

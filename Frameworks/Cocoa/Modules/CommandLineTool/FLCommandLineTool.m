@@ -15,6 +15,8 @@
 #import "FLUsageToolTask.h"
 #import "FLHelpToolTask.h"
 
+#if OSX
+
 @interface FLCommandLineTool ()
 //@property (readwrite, strong) NSString* startDirectory;
 @property (readwrite, strong, nonatomic) NSURL* toolPath;
@@ -391,3 +393,5 @@
 //        FLLog(@"EPIC FAIL: %@", [error description]);
 //    }
 //}
+
+#endif

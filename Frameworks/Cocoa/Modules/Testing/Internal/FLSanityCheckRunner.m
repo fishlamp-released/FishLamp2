@@ -10,7 +10,7 @@
 
 #import "FLWeakReference.h"
 #import "FLFinisher.h"
-#import "FLDispatchQueue.h"
+#import "FLGcdDispatcher.h"
 #import "FLTestCase.h"
 
 @implementation FLSanityCheckRunner
@@ -41,7 +41,7 @@
     [tests sortedArrayUsingSelector:@selector(compare:)];
     
     for(FLTestCase* test in tests) {
-        [test runSynchronouslyInContext:self.context];
+        [test runSynchronously];
     }
     
     return FLSuccessfullResult;

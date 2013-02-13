@@ -15,7 +15,7 @@
 #import "FLImageFolder.h"
 
 
-@interface FLUserDataStorageService : FLService {
+@interface FLUserDataStorageService : FLDataStoreService {
 @private
 
 // cache
@@ -33,8 +33,8 @@
 	FLVersionUpgradeLengthyTaskList* _upgradeTaskList;
     BOOL _willOpen;
     BOOL _isOpening;
-    BOOL _open;
     BOOL _upgrading;
+    BOOL _open;
 }
 
 // cache
@@ -65,12 +65,7 @@
 
 @end
 
-@protocol FLUserContextResponder <NSObject>
-- (void) userContextDidOpen:(FLUserDataStorageService*) service;
-- (void) userContextDidClose:(FLUserDataStorageService*) service;
-@end
 
-FLPublishService(userStorageService, FLUserDataStorageService*)
 
 //@interface FLServiceManager (FLUserDataStorageService) 
 //@property (readwrite, strong) FLUserDataStorageService* storageService;

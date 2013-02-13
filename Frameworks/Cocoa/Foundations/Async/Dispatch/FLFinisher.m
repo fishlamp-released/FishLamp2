@@ -7,13 +7,13 @@
 //
 
 #import "FLFinisher.h"
-#import "FLDispatchQueue.h"
+#import "FLGcdDispatcher.h"
 
 @interface FLFinisher ()
 @property (readwrite, strong) FLResult result;
 @property (readwrite, assign, getter=isFinished) BOOL finished;
-- (void) finishFinishing:(dispatch_block_t) completion;
-@property (readwrite, copy) FLFinisherResultBlock didFinish;
+- (void) finishFinishing:(FLBlock) completion;
+@property (readwrite, copy) FLBlockWithResult didFinish;
 
 #if DEBUG
 @property (readwrite, strong) FLStackTrace* createdStackTrace;
@@ -33,7 +33,7 @@
 @synthesize finishedStackTrace = _finishedStackTrace;
 #endif
 
-- (id) initWithResultBlock:(FLResultBlock) completion {
+- (id) initWithResultBlock:(FLBlockWithResult) completion {
     
     self = [super init];
     if(self) {
@@ -78,10 +78,10 @@
     return FLAutorelease([[[self class] alloc] init]);
 }
 
-+ (id) finisherWithResultBlock:(FLResultBlock) completion {
++ (id) finisherWithResultBlock:(FLBlockWithResult) completion {
     return FLAutorelease([[[self class] alloc] initWithResultBlock:completion]);
 }
-+ (id) finisher:(FLResultBlock) completion {
++ (id) finisher:(FLBlockWithResult) completion {
     return FLAutorelease([[[self class] alloc] initWithResultBlock:completion]);
 }
 
@@ -112,7 +112,7 @@
     return self.result;
 }
 
-- (void) finishFinishing:(dispatch_block_t) finishedBlock {
+- (void) finishFinishing:(FLBlock) finishedBlock {
 
     if(_didFinish) {
         _didFinish(self.result);
@@ -135,7 +135,7 @@
 }
 
 - (void) setFinishedWithResult:(id) result 
-                    completion:(dispatch_block_t) completion {
+                    completion:(FLBlock) completion {
     
     FLAssertIsNil_v(self.result, @"already finished");
 
@@ -169,7 +169,7 @@
     [self setFinishedWithResult:FLSuccessfullResult completion:nil];
 }
 
-//- (FLResult) executeFinishableBlock:(FLDispatcherFinisherBlock) block {
+//- (FLResult) executeFinishableBlock:(FLBlockWithFinisher) block {
 //    @try {
 //        [self setWillStartInDispatcher:self];
 //            
@@ -184,7 +184,7 @@
 //    return self.result;
 //}
 //
-//- (FLResult) executeBlock:(dispatch_block_t) block {
+//- (FLResult) executeBlock:(FLBlock) block {
 //    @try {
 //        [self setWillStartInDispatcher:self];
 //        
@@ -201,7 +201,7 @@
 //}
 
 //+ (FLFinisherNotificationSchedulerBlock) scheduleNotificationInMainThreadBlock {
-//    static FLFinisherNotificationSchedulerBlock s_block = ^(dispatch_block_t notifier) {
+//    static FLFinisherNotificationSchedulerBlock s_block = ^(FLBlock notifier) {
 //        if(![NSThread isMainThread]) {
 //            
 //            FLSafeguardBlock(notifier);
@@ -239,7 +239,7 @@
 @end
 //
 //@implementation FLMainThreadFinisher 
-//- (id) initWithResultBlock:(FLResultBlock) completion {
+//- (id) initWithResultBlock:(FLBlockWithResult) completion {
 //    self = [super initWithResultBlock:completion];
 //    if(self) {
 //        if([NSThread isMainThread]) {

@@ -9,10 +9,12 @@
 #import "FishLampCore.h"
 #import "FishLampCocoa.h"
 
+
 #if OSX
 #import <Quartz/Quartz.h>
 #else
-
+#import <QuartzCore/CoreAnimation.h>
+#import <CoreText/CoreText.h>
 #endif
 
 #import "NSObject+FLTheme.h"

@@ -13,8 +13,6 @@
 #import "FLServiceKeys.h"
 
 @interface FLFacebookService ()
-@property (readwrite, strong) FLDatabase* database;
-
 @end
 
 @implementation FLFacebookService
@@ -23,11 +21,9 @@
 @synthesize appId = _appId;
 @synthesize encodedToken = _encodedToken;
 @synthesize permissions = _permissions;
-@synthesize database = _database;
 
 #if FL_MRC
 - (void) dealloc {
-    [_database release];
     [_permissions release];
 	[_encodedToken release];
 	[_appId release];
@@ -40,24 +36,25 @@
     return FLAutorelease([[[self class] alloc] init]);
 }
 
-- (void) openService:(FLServiceManager*) context {
-    self.database = [self.context resourceForKey:FLUserDataPersistantDatabaseKey];
+- (void) openService:(id) opener {
+    FLPerformSelector1(opener, @selector(openFacebookService:), self);
+    [super openService:opener];
 }
 
-- (void) closeService:(FLServiceManager*) context {
-    self.database = nil;
+- (void) closeService:(id) closer {
+    FLPerformSelector1(closer, @selector(closeFacebookService:), self);
+    [super closeService:closer];
     self.appId = nil;
     self.encodedToken = nil;
     self.permissions = nil;
     self.facebookNetworkSession = nil;
 }
 
-- (void) logout
-{
+- (void) logout {
 	FLFacebookNetworkSession* input = [FLFacebookNetworkSession facebookNetworkSession];
 	input.appId = self.appId;
 
-	[self.database deleteObject:input];
+	[self.dataStore deleteObject:input];
 	FLReleaseWithNil(_facebookNetworkSession);
     FLReleaseWithNil(_encodedToken);
     
@@ -88,11 +85,11 @@
 		FLFacebookNetworkSession* input = [FLFacebookNetworkSession facebookNetworkSession];
 		input.appId = self.appId;
 		
-		FLSetObjectWithRetain(_facebookNetworkSession, [self.database loadObject:input]);
+		FLSetObjectWithRetain(_facebookNetworkSession, [self.dataStore readObject:input]);
 		
 		if(_facebookNetworkSession && FLStringIsEmpty(_facebookNetworkSession.userId))
 		{
-			[self.database deleteObject:_facebookNetworkSession];
+			[self.dataStore deleteObject:_facebookNetworkSession];
 			FLReleaseWithNil(_facebookNetworkSession);
 		}
 	}
@@ -156,7 +153,7 @@
 		}
 
 		self.encodedToken = [_facebookNetworkSession.access_token urlEncodeString:NSUTF8StringEncoding];
-		[self.database saveObject:_facebookNetworkSession];
+		[self.dataStore writeObject:_facebookNetworkSession];
 	}
 }
 

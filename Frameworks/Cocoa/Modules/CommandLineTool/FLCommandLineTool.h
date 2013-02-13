@@ -10,6 +10,7 @@
 #import "FLStringFormatter.h"
 #import "FLParseableInput.h"
 #import "FLToolCommand.h"
+#if OSX
 
 @interface FLCommandLineTool : NSObject {
 @private
@@ -56,3 +57,4 @@
 - (void) setExecutingInShellAtPath:(NSURL*) url;
 @end
 
+#endif

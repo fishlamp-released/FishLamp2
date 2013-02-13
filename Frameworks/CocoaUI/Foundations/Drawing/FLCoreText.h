@@ -8,6 +8,8 @@
 
 #import "FLCocoaUIRequired.h"
 
+#import <CoreText/CoreText.h>
+
 typedef enum { 
     FLVerticalTextAlignmentTop,
     FLVerticalTextAlignmentCenter,

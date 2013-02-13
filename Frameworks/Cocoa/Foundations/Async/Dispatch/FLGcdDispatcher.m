@@ -1,21 +1,19 @@
 //
-//  FLDispatchQueue.m
+//  FLGcdDispatcher.m
 //  FLCore
 //
 //  Created by Mike Fullerton on 10/29/12.
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import "FLDispatchQueue.h"
+#import "FLGcdDispatcher.h"
 
 #import "NSObject+FLSelectorPerforming.h"
 #import "FLFinisher.h"
 
 static void * const s_queue_key = (void*)&s_queue_key;
 
-
-
-@implementation FLDispatchQueue
+@implementation FLGcdDispatcher
 
 @synthesize dispatch_queue_t = _dispatch_queue;
 @synthesize label = _label;
@@ -52,19 +50,19 @@ static void * const s_queue_key = (void*)&s_queue_key;
     return self;
 }
 
-+ (FLDispatchQueue*) dispatchQueue:(dispatch_queue_t) queue {
++ (FLGcdDispatcher*) dispatchQueue:(dispatch_queue_t) queue {
     return FLAutorelease([[[self class] alloc] initWithDispatchQueue:queue]);
 }
 
-+ (FLDispatchQueue*) dispatchQueueWithLabel:(NSString*) label attr:(dispatch_queue_attr_t) attr {
++ (FLGcdDispatcher*) dispatchQueueWithLabel:(NSString*) label attr:(dispatch_queue_attr_t) attr {
     return FLAutorelease([[[self class] alloc] initWithLabel:label attr:attr]);
 }
 
-+ (FLDispatchQueue*) fifoDispatchQueue:(NSString*) label {
++ (FLGcdDispatcher*) fifoDispatchQueue:(NSString*) label {
     return FLAutorelease([[[self class] alloc] initWithLabel:label attr:DISPATCH_QUEUE_SERIAL]);
 }
 
-+ (FLDispatchQueue*) concurrentDispatchQueue:(NSString*) label {
++ (FLGcdDispatcher*) concurrentDispatchQueue:(NSString*) label {
     return FLAutorelease([[[self class] alloc] initWithLabel:label attr:DISPATCH_QUEUE_CONCURRENT]);
 }
 
@@ -80,14 +78,14 @@ static void * const s_queue_key = (void*)&s_queue_key;
 #endif
 }
 
-+ (FLDispatchQueue*) currentQueue {
-    return bridge_(FLDispatchQueue*, dispatch_queue_get_specific(dispatch_get_current_queue(), s_queue_key));
++ (FLGcdDispatcher*) currentQueue {
+    return bridge_(FLGcdDispatcher*, dispatch_queue_get_specific(dispatch_get_current_queue(), s_queue_key));
 }
 
 
 
 - (void) dispatchBlockWithDelay:(NSTimeInterval) delay
-                          block:(FLDispatcherBlock) block 
+                          block:(FLBlock) block 
                    withFinisher:(FLFinisher*) finisher {
 
     [finisher setWillBeDispatchedByDispatcher:self];
@@ -108,7 +106,7 @@ static void * const s_queue_key = (void*)&s_queue_key;
 }                                 
 
 
-- (void) dispatchBlock:(FLDispatcherBlock) block 
+- (void) dispatchBlock:(FLBlock) block 
           withFinisher:(FLFinisher*) finisher {
 
     [finisher setWillBeDispatchedByDispatcher:self];
@@ -128,7 +126,7 @@ static void * const s_queue_key = (void*)&s_queue_key;
     });
 }
 
-- (void) dispatchFinishableBlock:(FLDispatcherFinisherBlock) block 
+- (void) dispatchFinishableBlock:(FLBlockWithFinisher) block 
                     withFinisher:(FLFinisher*) finisher {
     
     [finisher setWillBeDispatchedByDispatcher:self];
@@ -167,49 +165,7 @@ static void * const s_queue_key = (void*)&s_queue_key;
 
 @end
 
-@implementation FLDispatchQueue (SharedQueues)
-
-+ (FLDispatchQueue*) sharedLowPriorityQueue {
-    FLReturnStaticObject( [[FLDispatchQueue alloc] initWithDispatchQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)]);
-}
-+ (FLDispatchQueue*) sharedDefaultQueue {
-    FLReturnStaticObject( [[FLDispatchQueue alloc] initWithDispatchQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)]);
-}
-+ (FLDispatchQueue*) sharedHighPriorityQueue {
-    FLReturnStaticObject([[FLDispatchQueue alloc] initWithDispatchQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)]);
-}
-+ (FLDispatchQueue*) sharedBackgroundQueue {
-    FLReturnStaticObject([[FLDispatchQueue alloc] initWithDispatchQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)]);
-}
-+ (FLDispatchQueue*) sharedForegroundQueue {
-    FLReturnStaticObject([[FLDispatchQueue alloc] initWithDispatchQueue:dispatch_get_main_queue()]);
-}
-
-+ (FLDispatchQueue*) sharedFifoQueue {
-    FLReturnStaticObject([[FLFifoDispatchQueue alloc] init]);
-}
-@end
-
-@implementation FLFifoDispatchQueue  
-
-+ (id) fifoDispatchQueue {
-    return FLAutorelease([[[self class] alloc] init]);
-}
-
-- (id) init {
-    static int s_count = 0;
-    return [super initWithLabel:[NSString stringWithFormat:@"com.fishlamp.queue.fifo%d", s_count++] attr:DISPATCH_QUEUE_SERIAL];
-}
-
-+ (FLObjectPool*) pool {
-    static FLObjectPoolFactory s_factory = ^{
-        return [FLFifoDispatchQueue fifoDispatchQueue];
-    };
-
-    FLReturnStaticObject([[FLObjectPool alloc] initWithObjectFactory:s_factory]); 
-}
 
 
-@end
 
 

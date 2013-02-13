@@ -15,6 +15,7 @@
 #include <sys/sysctl.h>
 #import "FLAppInfo.h"
 
+
 @interface FLHttpRequestHeaders ()
 @property (readwrite, strong, nonatomic) NSDictionary* allHeaders;
 @end
@@ -24,6 +25,7 @@
 @synthesize allHeaders = _headers;
 @synthesize requestURL = _requestURL;
 @synthesize postLength = _postLength;
+static NSString* s_defaultUserAgent = nil;
 
 -(id) initWithHttpMethod:(NSString*) httpMethod {
 
@@ -137,6 +139,8 @@
     return FLHttpRequestDefaultHTTPVersion;
 }
 
+#if OSX
+// TODO: move this to an OSX lib
 NSString* FLMachineModel()
 {
     size_t len = 0;
@@ -154,41 +158,30 @@ NSString* FLMachineModel()
     return @"UnknownMac"; //incase model name can't be read
 }
 
-static NSString* s_defaultUserAgent = nil;
 + (void) initialize {
-    if(!s_defaultUserAgent) {
+    if(![self defaultUserAgent]) {
         [self setDefaultUserAgent:[FLAppInfo userAgent]];
-        
-        if(!s_defaultUserAgent) {
-        
-#if IOS        
-            NSString* defaultUserAgent = [NSString stringWithFormat:@"%@/%@ (%@; %@; %@; %@; %@;)", 
-                [FLAppInfo appName], 
-                [FLAppInfo appVersion],
-                [FLAppInfo bundleIdentifier],
-
-                [UIDevice currentDevice].model,
-                [UIDevice currentDevice].machineName,
-                [UIDevice currentDevice].systemName,
-                [UIDevice currentDevice].systemVersion];
-#else
-            NSString* defaultUserAgent = [NSString stringWithFormat:@"%@/%@ (%@; %@; %@;)", 
-                [FLAppInfo appName], 
-                [FLAppInfo appVersion],
-                [FLAppInfo bundleIdentifier],
-                FLMachineModel(),
+    }
+    
+    if(![self defaultUserAgent]) {
+        NSString* defaultUserAgent = [NSString stringWithFormat:@"%@/%@ (%@; %@; %@;)", 
+            [FLAppInfo appName], 
+            [FLAppInfo appVersion],
+            [FLAppInfo bundleIdentifier],
+            FLMachineModel(),
 //                [UIDevice currentDevice].machineName,
 //                [UIDevice currentDevice].systemName,
 //                [UIDevice currentDevice].systemVersion];
-                FLStringFromVersion(FLGetOSVersion())];
-#endif                
-
-            [FLHttpRequestHeaders setDefaultUserAgent:defaultUserAgent];
-//            [NSURLRequest setDefaultUserAgent:defaultUserAgent];
+            FLStringFromVersion(FLGetOSVersion())];
         
-        }
+
+        [FLHttpRequestHeaders setDefaultUserAgent:defaultUserAgent];
+//            [NSURLRequest setDefaultUserAgent:defaultUserAgent];
+    
     }
+
 }
+#endif
 
 + (NSString*) defaultUserAgent {
     return s_defaultUserAgent;

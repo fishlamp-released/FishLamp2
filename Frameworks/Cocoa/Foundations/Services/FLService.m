@@ -10,21 +10,85 @@
 #import "FLServiceManager.h"
 
 @interface FLService ()
-@property (readwrite, assign) id context;
+@property (readwrite, assign, nonatomic, getter=isServiceOpen) BOOL serviceOpen;
+- (void) serviceWillOpen:(id) opener;
+- (void) serviceWillClose:(id) closer;
+- (void) serviceDidOpen:(id) opener;
+- (void) serviceDidClose:(id) closer;
 @end
 
 @implementation FLService
+@synthesize serviceOpen = _serviceOpen;
 
-@synthesize context = _context;
+#if FL_MRC
+- (void) dealloc {
+    [_services release];
+    [super dealloc];
+}
+#endif
 
-- (void) openService:(FLServiceManager*) context {
+- (void) openService:(id) opener {
+//    [self serviceWillOpen:opener];
+    for(FLService* service in _services) {
+        [service openService:opener];
+    }
+    self.serviceOpen = YES;
+//    [self serviceDidOpen:openner];
 }
 
-- (void) closeService:(FLServiceManager*) context {
+- (void) closeService:(id) closer {
+//    [self serviceWillClose:closer];
+    for(FLService* service in _services) {
+        [service closeService:closer];
+    }
+    self.serviceOpen = NO;
+//    [self serviceDidClose:closer];
 }
 
-- (void) didMoveToContext:(FLServiceManager*) context {
-    self.context = context;
+- (void) addService:(id) service {
+    if(!_services) {
+        _services = [[NSMutableArray alloc] init];
+    }
+    [_services addObject:service];
+}
+
+- (void) removeService:(id) service {
+    [_services removeObject:service];
+}
+
+- (void) serviceWillOpen:(id) opener {
+}
+- (void) serviceWillClose:(id) closer {
+}
+- (void) serviceDidOpen:(id) opener {
+}
+- (void) serviceDidClose:(id) closer {
+}
+@end
+
+@interface FLDataStoreService ()
+@end
+
+@implementation FLDataStoreService 
+@synthesize dataStore = _dataStore;
+
+#if FL_MRC
+- (void) dealloc {
+    [_dataStore release];
+    [super dealloc];
+}
+#endif
+
+- (void) openService:(id) opener {
+    FLPerformSelector1(opener, @selector(openDataStoreService:), self);
+    FLAssertNotNil_(self.dataStore);
+    [super openService:opener];
+}
+
+- (void) closeService:(id) closer {
+    FLPerformSelector1(closer, @selector(closeDataStoreService:), self);
+    [super closeService:closer];
+    self.dataStore = nil;
 }
 
 @end
@@ -60,7 +124,7 @@
 //}
 //
 //- (FLFinisher*) didReceiveServiceRequest:(FLServiceRequest*) request 
-//                              completion:(FLCompletionBlock) completion {
+//                              completion:(FLBlockWithResult) completion {
 //    
 //    FLFinisher* finisher = [FLFinisher finisher:completion];
 //
@@ -100,7 +164,7 @@
 //- (void) serviceDidCloseWithResult:(FLResult) result {
 //}
 //
-//- (FLFinisher*) openService:(FLCompletionBlock) completion {
+//- (FLFinisher*) openService:(FLBlockWithResult) completion {
 //    
 //    FLFinisher* finisher = [FLFinisher finisher:completion];
 //    
@@ -114,7 +178,7 @@
 //    return finisher;
 //}
 //
-//- (FLFinisher*) closeService:(FLCompletionBlock) completion {
+//- (FLFinisher*) closeService:(FLBlockWithResult) completion {
 //
 //    FLFinisher* finisher = [FLFinisher finisher:completion];
 //    

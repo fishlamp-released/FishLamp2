@@ -9,13 +9,11 @@
 #import "FLCocoaRequired.h"
 #import "FLResult.h"
 #import "FLObserver.h"
-#import "FLDispatcher.h"
+#import "FLDispatchTypes.h"
 
-@class FLFinisher;
-@class FLStackTrace;
-
-typedef void (^FLFinisherNotificationSchedulerBlock)(dispatch_block_t notifier);
-typedef void (^FLFinisherResultBlock)(FLResult result);
+#if DEBUG
+#import "FLStackTrace.h"
+#endif
 
 @interface FLFinisher : FLObserver {
 @private
@@ -23,7 +21,7 @@ typedef void (^FLFinisherResultBlock)(FLResult result);
     id _result;
     BOOL _finished;
     BOOL _finishOnMainThread;
-    FLFinisherResultBlock _didFinish;
+    FLBlockWithResult _didFinish;
 
 #if DEBUG
     FLStackTrace* _createdStackTrace;
@@ -37,14 +35,14 @@ typedef void (^FLFinisherResultBlock)(FLResult result);
 @property (readwrite, assign) BOOL finishOnMainThread;
 
 // designated initializer
-- (id) initWithResultBlock:(FLResultBlock) resultBlock;
+- (id) initWithResultBlock:(FLBlockWithResult) resultBlock;
 
 // class instantiators
 + (id) finisher;
 
-+ (id) finisher:(FLResultBlock) resultBlock;
++ (id) finisher:(FLBlockWithResult) resultBlock;
 
-+ (id) finisherWithResultBlock:(FLResultBlock) resultBlock;
++ (id) finisherWithResultBlock:(FLBlockWithResult) resultBlock;
 
 // notify finish with one of these
 - (void) setFinished;
@@ -52,7 +50,7 @@ typedef void (^FLFinisherResultBlock)(FLResult result);
 - (void) setFinishedWithResult:(id) result;
 
 - (void) setFinishedWithResult:(id) result 
-                    completion:(dispatch_block_t) notificationCompletionBlock;
+                    completion:(FLBlock) notificationCompletionBlock;
 
 // blocks in current thread. Will @throw error if [self.result error] 
 - (id) waitUntilFinished;
@@ -70,6 +68,3 @@ typedef void (^FLFinisherResultBlock)(FLResult result);
 - (void) finisher:(FLFinisher*) finisher didFinishWithResult:(FLResult) result;
 @end
 
-@protocol FLAsyncWorker <NSObject>
-- (void) startWorking:(FLFinisher*) finisher;
-@end

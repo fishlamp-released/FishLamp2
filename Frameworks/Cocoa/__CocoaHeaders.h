@@ -36,7 +36,7 @@
 #import "FLDispatchable.h"
 #import "FLDispatchedObjectCollection.h"
 #import "FLDispatcher.h"
-#import "FLDispatchQueue.h"
+#import "FLGcdDispatcher.h"
 #import "FLFinisher.h"
 
 // Foundations/Async/Workers/Results
@@ -44,7 +44,7 @@
 
 // Foundations/Caching
 #import "FLCacheManager.h"
-#import "FLImageCacheService.h"
+#import "FLImageCache.h"
 #import "FLInMemoryDataCache.h"
 #import "FLObjectCache.h"
 #import "FLObjectPool.h"
@@ -181,7 +181,6 @@
 #import "FLHttpRequestHeaders.h"
 #import "FLHttpRequestResponder.h"
 #import "FLHttpResponse.h"
-#import "FLHttpServerService.h"
 #import "FLHttpUserContext.h"
 #import "FLNetworkServerContext.h"
 #import "FLUrlParameterParser.h"

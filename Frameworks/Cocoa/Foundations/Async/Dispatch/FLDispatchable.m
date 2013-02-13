@@ -7,6 +7,8 @@
 //
 
 #import "FLDispatchable.h"
+#import "FLFinisher.h"
+#import "FLDispatcher.h"
 
 @implementation FLDispatchable
 @synthesize block = _block;

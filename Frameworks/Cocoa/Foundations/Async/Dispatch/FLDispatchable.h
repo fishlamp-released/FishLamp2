@@ -7,14 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-
-#import "FLFinisher.h"
+#import "FLDispatchTypes.h"
 
 @interface FLDispatchable : NSObject {
 @private
     FLFinisher* _finisher;
-    dispatch_block_t _block;
-    FLFinisherResultBlock _finishableBlock;
+    FLBlock _block;
+    FLBlockWithFinisher _finishableBlock;
     id _object;
 }
 
@@ -22,8 +21,8 @@
 + (id) dispatchable;
 
 @property (readwrite, strong, nonatomic) FLFinisher* finisher;
-@property (readwrite, copy, nonatomic) dispatch_block_t block;
-@property (readwrite, copy, nonatomic) FLFinisherResultBlock finishableBlock;
+@property (readwrite, copy, nonatomic) FLBlock block;
+@property (readwrite, copy, nonatomic) FLBlockWithFinisher finishableBlock;
 @property (readwrite, strong, nonatomic) id object;
 
 - (void) dispatch:(id<FLDispatcher>) dispatcher;

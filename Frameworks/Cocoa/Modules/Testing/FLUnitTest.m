@@ -15,7 +15,7 @@
 #import "FLUnitTestResult.h"
 #import "FLUnitTestResult_Internal.h"
 #import "FLOperationQueue.h"
-#import "FLDispatchQueue.h"
+#import "FLGcdDispatcher.h"
 
 
 @interface FLUnitTest ()
@@ -182,7 +182,7 @@
                     
                     FLLog(@"STARTING %@", testCase.testCaseName);
 
-                    [testCase runSynchronouslyInContext:self.context];
+                    [testCase runSynchronously];
                     [result setPassed];
                     FLLog(@"PASS!")
                 }

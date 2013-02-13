@@ -9,69 +9,69 @@
 #import "FLDispatcher.h"
 #import "FLFinisher.h"
 
-@protocol FLDispatcherDelegate <NSObject> 
-@optional
-
-- (void) dispatcher:(FLDispatcher*) dispatcher 
- willDispatchObject:(id) object;
-
-- (void) dispatcher:(FLDispatcher*) dispatcher 
-  didDispatchObject:(id) object;                                        
-
-- (void) dispatcher:(FLDispatcher*) dispatcher 
-dispatchFinishableBlock:(FLDispatcherFinisherBlock) block 
-         withFinisher:(FLFinisher*) finisher;
-         
-- (void) dispatcher:(FLDispatcher*) dispatcher
-      dispatchBlock:(FLDispatcherBlock) block 
-       withFinisher:(FLFinisher*) finisher;         
-
-@end
+//@protocol FLDispatcherDelegate <NSObject> 
+//@optional
+//
+//- (void) dispatcher:(FLDispatcher*) dispatcher 
+// willDispatchObject:(id) object;
+//
+//- (void) dispatcher:(FLDispatcher*) dispatcher 
+//  didDispatchObject:(id) object;                                        
+//
+//- (void) dispatcher:(FLDispatcher*) dispatcher 
+//dispatchFinishableBlock:(FLBlockWithFinisher) block 
+//         withFinisher:(FLFinisher*) finisher;
+//         
+//- (void) dispatcher:(FLDispatcher*) dispatcher
+//      dispatchBlock:(FLBlock) block 
+//       withFinisher:(FLFinisher*) finisher;         
+//
+//@end
 
 
 
 @interface FLDispatcher ()
-@property (readwrite, assign) id<FLDispatcherDelegate> delegate;
+//@property (readwrite, assign) id<FLDispatcherDelegate> delegate;
 @end
 
 @implementation FLDispatcher 
 
-@synthesize delegate = _delegate;
+//@synthesize delegate = _delegate;
 
-- (FLFinisher*) dispatchBlock:(FLDispatcherBlock) block {
+- (FLFinisher*) dispatchBlock:(FLBlock) block {
     return [self dispatchBlock:block completion:nil];
 }
 
 - (void) willDispatchObject:(id) object {
-    FLPerformSelector2(self.delegate, @selector(dispatcher:willDispatchObject:), self, object);
+//    FLPerformSelector2(self.delegate, @selector(dispatcher:willDispatchObject:), self, object);
 }
 
 - (void) didDispatchObject:(id) object {
-    FLPerformSelector2(self.delegate, @selector(dispatcher:didDispatchObject:), self, object);
+//    FLPerformSelector2(self.delegate, @selector(dispatcher:didDispatchObject:), self, object);
 }                                        
 
-- (void) dispatchBlock:(FLDispatcherBlock) block 
+- (void) dispatchBlock:(FLBlock) block 
               withFinisher:(FLFinisher*) finisher {
     
-    if(!FLPerformSelector2(self.delegate, @selector(dispatchBlock:withFinisher:), self, finisher)) {
+//    if(!FLPerformSelector2(self.delegate, @selector(dispatchBlock:withFinisher:), self, finisher)) {
         FLAssertIsImplemented_();
-    }
+//    }
 }
 
-- (FLFinisher*) createFinisher:(FLDispatcherResultBlock) completionBlock {
+- (FLFinisher*) createFinisher:(FLBlockWithResult) completionBlock {
     return [FLFinisher finisher:completionBlock];
 }
 
-- (void) dispatchFinishableBlock:(FLDispatcherFinisherBlock) block 
+- (void) dispatchFinishableBlock:(FLBlockWithFinisher) block 
               withFinisher:(FLFinisher*) finisher {
 
-    if(!FLPerformSelector2(self.delegate, @selector(dispatchFinishableBlock:withFinisher:), self, finisher)) {
+//    if(!FLPerformSelector2(self.delegate, @selector(dispatchFinishableBlock:withFinisher:), self, finisher)) {
         FLAssertIsImplemented_();
-    }
+//    }
 }
 
-- (FLFinisher*) dispatchBlock:(FLDispatcherBlock) block 
-                completion:(FLDispatcherResultBlock) completion {
+- (FLFinisher*) dispatchBlock:(FLBlock) block 
+                completion:(FLBlockWithResult) completion {
 
     FLFinisher* finisher = [self createFinisher:completion];
 
@@ -83,12 +83,12 @@ dispatchFinishableBlock:(FLDispatcherFinisherBlock) block
     return finisher;    
 }
 
-- (FLFinisher*) dispatchFinishableBlock:(FLDispatcherFinisherBlock) block {
+- (FLFinisher*) dispatchFinishableBlock:(FLBlockWithFinisher) block {
     return [self dispatchFinishableBlock:block completion:nil];
 }
 
-- (FLFinisher*) dispatchFinishableBlock:(FLDispatcherFinisherBlock) block 
-                             completion:(FLDispatcherResultBlock) completion {
+- (FLFinisher*) dispatchFinishableBlock:(FLBlockWithFinisher) block 
+                             completion:(FLBlockWithResult) completion {
 
     FLFinisher* finisher = [self createFinisher:completion];
     FLAssertNotNil_(block);
@@ -102,7 +102,7 @@ dispatchFinishableBlock:(FLDispatcherFinisherBlock) block
 }
 
 - (FLFinisher*) dispatchObject:(id) object 
-                    completion:(FLDispatcherResultBlock) completion {
+                    completion:(FLBlockWithResult) completion {
 
     FLAssertNotNil_(object);
 
@@ -117,7 +117,7 @@ dispatchFinishableBlock:(FLDispatcherFinisherBlock) block
         [self didDispatchObject:object];
     }];
 
-    FLDispatcherFinisherBlock block = ^(FLFinisher* theFinisher){
+    FLBlockWithFinisher block = ^(FLFinisher* theFinisher){
         
         [self willDispatchObject:object];
         @try {
@@ -134,13 +134,13 @@ dispatchFinishableBlock:(FLDispatcherFinisherBlock) block
 }
 
 - (void) dispatchBlockWithDelay:(NSTimeInterval) delay
-                                 block:(FLDispatcherBlock) block 
+                                 block:(FLBlock) block 
                           withFinisher:(FLFinisher*) finisher {
                           
 }                          
 
 - (FLFinisher*) dispatchBlockWithDelay:(NSTimeInterval) delay
-                                 block:(FLDispatcherBlock) block {
+                                 block:(FLBlock) block {
 
     FLFinisher* finisher = [self createFinisher:nil];
     [self dispatchBlockWithDelay:delay block:block withFinisher:finisher];
@@ -152,7 +152,7 @@ dispatchFinishableBlock:(FLDispatcherFinisherBlock) block
 @end
 
 //- (FLFinisher*) dispatchObject:(id) object 
-//                    completion:(FLDispatcherResultBlock) completion {
+//                    completion:(FLBlockWithResult) completion {
 //
 //    FLAssertNotNil_(object);
 //
@@ -216,25 +216,25 @@ dispatchFinishableBlock:(FLDispatcherFinisherBlock) block
 
 - (FLFinisher*) dispatchTarget:(id) target 
                       selector:(SEL) selector
-                    completion:(FLDispatcherResultBlock) completion;
+                    completion:(FLBlockWithResult) completion;
 
 - (FLFinisher*) dispatchTarget:(id) target 
                       selector:(SEL) selector
                     withObject:(id) object
-                    completion:(FLDispatcherResultBlock) completion;
+                    completion:(FLBlockWithResult) completion;
 
 - (FLFinisher*) dispatchTarget:(id) target 
                       selector:(SEL) selector
                     withObject:(id) object1
                     withObject:(id) object2
-                    completion:(FLDispatcherResultBlock) completion;
+                    completion:(FLBlockWithResult) completion;
 
 - (FLFinisher*) dispatchTarget:(id) target 
                       selector:(SEL) selector
                     withObject:(id) object1
                     withObject:(id) object2
                     withObject:(id) object3
-                    completion:(FLDispatcherResultBlock) completion;
+                    completion:(FLBlockWithResult) completion;
 
 @end
 
@@ -274,7 +274,7 @@ dispatchFinishableBlock:(FLDispatcherFinisherBlock) block
 
 - (FLFinisher*) dispatchTarget:(id) target 
                       selector:(SEL) selector
-                    completion:(FLDispatcherResultBlock) completion {
+                    completion:(FLBlockWithResult) completion {
     return [self dispatchBlock:^{
         FLPerformSelector(target, selector);
     }
@@ -284,7 +284,7 @@ dispatchFinishableBlock:(FLDispatcherFinisherBlock) block
 - (FLFinisher*) dispatchTarget:(id) target 
                       selector:(SEL) selector
                     withObject:(id) object
-                    completion:(FLDispatcherResultBlock) completion {
+                    completion:(FLBlockWithResult) completion {
     return [self dispatchBlock:^{
         FLPerformSelector1(target, selector, object);
     }
@@ -296,7 +296,7 @@ dispatchFinishableBlock:(FLDispatcherFinisherBlock) block
                       selector:(SEL) selector
                     withObject:(id) object1
                     withObject:(id) object2
-                    completion:(FLDispatcherResultBlock) completion {
+                    completion:(FLBlockWithResult) completion {
     return [self dispatchBlock:^{
         FLPerformSelector2(target, selector, object1, object2);
     }
@@ -309,7 +309,7 @@ dispatchFinishableBlock:(FLDispatcherFinisherBlock) block
                     withObject:(id) object1
                     withObject:(id) object2
                     withObject:(id) object3
-                    completion:(FLDispatcherResultBlock) completion {
+                    completion:(FLBlockWithResult) completion {
 
     return [self dispatchBlock:^{
         FLPerformSelector3(target, selector, object1, object2, object3);

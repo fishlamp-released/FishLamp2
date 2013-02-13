@@ -10,10 +10,7 @@
 #import "FLAppInfo.h"
 #import "FLCoreFoundation.h"
 #import "FLReadStream.h"
-#import "FishLampCore.h"
 #import "FLHttpMessage.h"
-#import "FLDispatcher.h"
-#import "FLDispatchQueue.h"
 
 //#if IOS
 //#import <UIKit/UIKit.h>
@@ -26,10 +23,20 @@
 @property (readwrite, strong) FLReadStream* networkStream;
 @property (readwrite, strong) id<FLDispatcher> dispatcher;
 @property (readwrite, strong) id observer;
-@property (readwrite, strong) id context;
 
 - (void) readResponseHeadersIfNeeded;
 - (void) openHttpStreamWithURL:(NSURL*) url;
+
+
+//- (FLResult) sendSynchronouslyInContext:(id) context
+//                         withObserver:(FLFinisher*) observer;
+//
+//- (FLResult) sendSynchronouslyInContext:(id) context;
+//
+//- (FLFinisher*) startRequestInContext:(id) context 
+//                         withObserver:(FLFinisher*) observer;
+//
+//- (FLFinisher*) startRequestInContext:(id) context;
 @end
 
 @interface FLHttpResponse (Utils)
@@ -74,12 +81,12 @@
 @synthesize networkStream = _networkStream;
 @synthesize observer = _observer;
 @synthesize body = _body;
-@synthesize context = _context;
 @synthesize headers = _headers;
 @synthesize dispatcher = _dispatcher;
-@synthesize authenticationDisabled = _authenticationDisabled;
 @synthesize dataEncoder = _dataEncoder;
 @synthesize dataDecoder = _dataDecoder;
+@synthesize authenticator = _authenticator;
+@synthesize interceptor = _interceptor;
 
 - (id) init {
     self = [self initWithRequestURL:nil httpMethod:nil];
@@ -115,23 +122,18 @@
 - (void) dealloc {
     _networkStream.delegate = nil;
 #if FL_MRC
+    [_cacheHandler release];
+    [_authenticator release];
     [_dataDecoder release];
     [_dataEncoder release];
     [_dispatcher release];
     [_headers release];
-    [_context release];
     [_observer release];
     [_body release];
     [_response release];
     [_networkStream release];
     [super dealloc];
 #endif
-}
-
-- (void) didMoveToContext:(id)context {
-    if(context != self.context) {
-        self.context = context;
-    }
 }
 
 + (id) httpGetRequest:(NSURL*) url {
@@ -162,6 +164,8 @@
 
 - (id)copyWithZone:(NSZone *)zone {
     FLHttpRequest* request = [[[self class] alloc] initWithRequestURL:self.headers.requestURL httpMethod:self.headers.httpMethod];
+
+// TODO: copy self
 //    [self copyTo:request];
     return request;
 }
@@ -269,14 +273,19 @@
         result = ex.error;
     }
     @finally {
+
+        if(self.interceptor) {
+            [self.interceptor httpRequest:self didFinishWithResult:result];
+        }
+
         FLPerformSelector2(self.observer, @selector(httpRequest:didCloseWithResult:), self, result);
         
         if(self.observer) {
             [self.observer setFinishedWithResult:result];
         }
         
-        [self.context httpRequestDidFinish:self];
-
+        [self.context removeObject:self];
+        
         self.observer = nil;
         self.networkStream = nil;
         self.httpResponse = nil;
@@ -310,7 +319,7 @@
 }
 
 - (void) readStream:(FLReadStream*) networkStream 
-    didCloseWithResult:(FLResult) result {
+ didCloseWithResult:(FLResult) result {
     
     [self.dispatcher dispatchBlock:^{
         if([result error]) {
@@ -369,45 +378,56 @@
 
 - (void) sendRequest {
     FLPerformSelector1(self.observer, @selector(httpRequestWillOpen:), self);
-    self.dispatcher = [FLFifoDispatchQueue fifoDispatchQueue];
+    self.dispatcher = [FLFifoGcdDispatcher fifoDispatchQueue];
     [self.dispatcher dispatchBlock:^{
-        [self willSendHttpRequest]; // this may set requestURL
-        [self openHttpStreamWithURL:self.headers.requestURL];
-    }];
-}
-
-- (void) startWorking:(FLFinisher*) observer {
-
-    [self.context httpRequestDidStart:self];
-    self.observer = observer;
-
-    id<FLDispatcher> dispatcher = nil;
-    if([self.context respondsToSelector:@selector(httpRequestFifoDispatcher:)]) {
-        dispatcher = [self.context httpRequestFifoDispatcher:self];
-    }
-    
-    if(!dispatcher) {
-        dispatcher = [FLDispatchQueue sharedFifoQueue];
-    }
-    
-    [dispatcher dispatchBlock:^{
         @try {
-            if(!self.authenticationDisabled) {
-                id<FLHttpRequestAuthenticator> authenticator = [self.context httpRequestAuthenticator:self];
-                if(authenticator) {
-                    [self willAuthenticateHttpRequest:authenticator];
-                    [authenticator authenticateHttpRequest:self];
-                    [self didAuthenticateHttpRequest];
-                }
-            }
-        
-            [self sendRequest];
+            [self willSendHttpRequest]; // this may set requestURL
+            [self openHttpStreamWithURL:self.headers.requestURL];
         }
         @catch(NSException* ex) {
             [self closeStreamWithResult:ex.error];
         }
     }];
-    
+}
+
+- (void) startWorking:(FLFinisher*) observer {
+
+    if(self.interceptor) {
+        [self.interceptor httpRequest:self willSendRequest:observer];
+    }
+
+    if(!observer.isFinished) {
+        self.observer = observer;
+
+        id<FLHttpRequestAuthenticator> authenticator = self.authenticator;
+        if(authenticator) {
+            [[authenticator httpRequestAuthenticationDispatcher:self] dispatchBlock:^{
+                @try {
+                    [self willAuthenticateHttpRequest:authenticator];
+                    [authenticator httpRequestAuthenticateSynchronously:self];
+                    [self didAuthenticateHttpRequest];
+                    [self sendRequest];
+                }
+                @catch(NSException* ex) {
+                    [self closeStreamWithResult:ex.error];
+                }
+            }];
+        }
+        else {
+            [self sendRequest];
+        }
+    }
+}
+
+- (FLResult) sendSynchronously {
+    FLFinisher* finisher = [FLFinisher finisher];
+    [self startWorking:finisher];
+    return [finisher result];
+}
+
+- (FLResult) sendSynchronouslyWithObserver:(FLHttpRequestObserver*) observer {
+    [self startWorking:observer];
+    return [observer result];
 }
 
 - (NSString*) description {
@@ -416,30 +436,6 @@
     [desc appendString:[self.body description]];
     return desc;
 }
-
-- (FLResult) sendSynchronouslyInContext:(id) context 
-                         withObserver:(FLFinisher*) observer {
-
-    return [[self startRequestInContext:context withObserver:observer] waitUntilFinished];
-}
-
-- (FLResult) sendSynchronouslyInContext:(id) context {
-    return [[self startRequestInContext:context withObserver:[FLFinisher finisher]] waitUntilFinished];
-}
-
-
-- (FLFinisher*) startRequestInContext:(id) context 
-                         withObserver:(FLFinisher*) observer {
-
-    [self didMoveToContext:context];
-    [self startWorking:observer];
-    return observer;
-}
-
-- (FLFinisher*) startRequestInContext:(id) context {
-    return [self startRequestInContext:context withObserver:[FLFinisher finisher]];
-}
-
 
 @end
 
@@ -467,79 +463,4 @@
 
 @end
 
-@implementation FLHttpRequestObserver 
-@synthesize willAuthenticate = _willAuthenticate;
-@synthesize didAuthenticate = _didAuthenticate;
-@synthesize willOpen = _willOpen;
-@synthesize didOpen = _didOpen;
-@synthesize willClose = _willClose;
-@synthesize didClose = _didClose;
-@synthesize encounteredError = _encounteredError;
-@synthesize didWriteBytes = _didWriteBytes;
-@synthesize didReadBytes = _didReadBytes;
-@synthesize didFinish = _observerDidFinish;
-
-#if FL_MRC
-- (void) dealloc {
-    [_willAuthenticate release];
-    [_didAuthenticate release];
-    [_willOpen release];
-    [_didOpen release];
-    [_willClose release];
-    [_didClose release];
-    [_encounteredError release];
-    [_didWriteBytes release];
-    [_didReadBytes release];
-    [_observerDidFinish release];
-    [super dealloc];
-}
-#endif
-
-#define FLInvokeBlock(b, ...) \
-    if(b) { \
-        dispatch_async(dispatch_get_main_queue(), ^{ \
-            b(__VA_ARGS__); \
-        }); \
-    }
-
-+ (id) httpRequestObserver {
-    return FLAutorelease([[[self class] alloc] init]);
-}
-
-- (void) httpRequestDidAuthenticate:(FLHttpRequest*) httpRequest {
-    FLInvokeBlock(self.didAuthenticate);
-}
-
-- (void) httpRequestWillOpen:(FLHttpRequest*) httpRequest {
-    FLInvokeBlock(self.willOpen);
-}
-
-- (void) httpRequestDidOpen:(FLHttpRequest*) httpRequest {
-    FLInvokeBlock(self.didOpen);
-}
-
-- (void) httpRequest:(FLHttpRequest*) httpRequest 
-   willCloseWithResult:(FLResult) result {
-    FLInvokeBlock(self.willClose, result);
-}   
-
-- (void) httpRequest:(FLHttpRequest*) httpRequest 
-    didCloseWithResult:(FLResult) result {
-    FLInvokeBlock(self.didClose, result);
-}    
-
-- (void) httpRequest:(FLHttpRequest*) httpRequest
-      didEncounterError:(NSError*) error {
-    FLInvokeBlock(self.encounteredError, error);
-}
-
-- (void) httpRequestDidReadBytes:(FLHttpRequest*) httpRequest  amount:(unsigned long) amount{
-    FLInvokeBlock(self.didReadBytes, amount);
-}
-
-- (void) httpRequestDidWriteBytes:(FLHttpRequest*) httpRequest  amount:(unsigned long) amount {
-    FLInvokeBlock(self.didWriteBytes, amount);
-}
-
-@end
 

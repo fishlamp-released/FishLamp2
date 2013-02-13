@@ -9,16 +9,13 @@
 #import "FLOperation.h"
 #import "FLTraceOff.h"
 #import "FLFinisher.h"
-#import "FLDispatchQueue.h"
+#import "FLGcdDispatcher.h"
 
 NSString* const FLOperationFinishedEvent;
 
 @interface FLOperation ()
-@property (readwrite, copy, nonatomic) FLRunOperationBlock runBlock;
+@property (readwrite, copy, nonatomic) FLBlockWithOperation runBlock;
 @property (readwrite, assign, getter=wasCancelled) BOOL cancelled;
-@property (readwrite, assign) FLOperation* parent;
-@property (readwrite, strong) id context;
-
 @end
 
 @implementation FLOperation
@@ -26,23 +23,20 @@ NSString* const FLOperationFinishedEvent;
 @synthesize operationID = _operationID;
 @synthesize runBlock = _runBlock;
 @synthesize cancelled = _cancelled;
-@synthesize context = _context;
-@synthesize parent = _parent;
 
-- (id) initWithRunBlock:(FLRunOperationBlock) callback {
+- (id) initWithRunBlock:(FLBlockWithOperation) callback {
     if((self = [self init])) {
         self.runBlock = callback;
     }
     return self;
 }
 
-+ (id) operation:(FLRunOperationBlock) callback {
++ (id) operation:(FLBlockWithOperation) callback {
     return FLAutorelease([[[self class] alloc] initWithRunBlock:callback]);
 }
 
 #if FL_MRC
 - (void) dealloc {
-    [_context release];
     [_runBlock release];
     [_operationID release];
     [super dealloc];
@@ -103,55 +97,43 @@ NSString* const FLOperationFinishedEvent;
 //    [self postObservation:@selector(operationDidFinish:withResult:) withObject:result];
 
     [finisher setFinishedWithResult:result];
-    [self.context operationDidFinish:self];
+    [self.context removeObject:self];
 }
 
 - (void) operationWasCancelled:(FLOperation*) operation {
     [self requestCancel];
 }
 
-- (void) didMoveToContext:(id)context {
-    self.context = context;
-}
-
-- (FLResult) runSynchronouslyInContext:(id) context {
-    [self didMoveToContext:context];
-    [self.context operationDidStart:self];
-    
+- (FLResult) runSynchronously {
     FLFinisher* finisher = [FLFinisher finisher];
     [self startWorking:finisher];
-    return [finisher waitUntilFinished];
+    return [finisher result];
 }
 
-// async operations will run in:
-// 1. dispatcher provided by context
-// 2. global default dispatcher ([FLDispatchQueue sharedDefaultQueue])
-- (FLFinisher*) startOperationInContext:(id) context 
-                             completion:(FLCompletionBlock) completion {
-                             
-    [self didMoveToContext:context];
-    [self.context operationDidStart:self];
-    
-    id<FLDispatcher> dispatcher = nil;
-    
-    if([self.context respondsToSelector:@selector(operationDispatcher:)]) {
-        dispatcher = [self.context operationDispatcher:self];
-    }
-    
-    if(!dispatcher) {
-        dispatcher = [FLDispatchQueue sharedDefaultQueue];
-    }
-    
-    return [dispatcher dispatchObject:self completion:completion];
+- (FLResult) runSynchronouslyWithObserver:(FLOperationObserver*) observer {
+    [self startWorking:observer];
+    return [observer result];
 }
 
+- (FLResult) runSubOperation:(FLOperation*) operation {
+    @try {
+        if(operation.context == nil) {
+            [self.context addObject:operation];
+        }
+        
+        return [operation runSynchronously];
+    }
+    @catch(NSException* ex) {
+        return [ex error];
+    }
+}
 
 @end
 
 @implementation FLOperationObserver
 
 @synthesize willRun = _willRun;
-@synthesize didFinish = _didFinish;
+//@synthesize didFinish = _didFinish;
 
 + (id) operationObserver {
     return FLAutorelease([[[self class] alloc] init]);
@@ -160,7 +142,7 @@ NSString* const FLOperationFinishedEvent;
 #if FL_MRC
 - (void) dealloc {
     [_willRun release];
-    [_didFinish release];
+//    [_didFinish release];
     [super dealloc];
 }
 #endif
@@ -173,9 +155,9 @@ NSString* const FLOperationFinishedEvent;
 
 - (void) operationDidFinish:(FLOperation*) operation 
                  withResult:(FLResult) withResult {
-    if(_didFinish) {
-        _didFinish(withResult);
-    }
+//    if(_didFinish) {
+//        _didFinish(withResult);
+//    }
 }                 
 
 

@@ -159,10 +159,6 @@
 
 
 
-- (BOOL) isServiceOpen {
-	return _open;
-}	 
- 
 - (void) deleteServiceData  {
 //    [self removeAppService:self.backgroundTasks];
 //    self.backgroundTasks = nil;
@@ -224,7 +220,7 @@
 }
 
 - (FLUserLogin*) userLogin {
-    return [self.context resourceForKey:FLUserLoginKey];
+    return nil; // [self.context resourceForKey:FLUserLoginKey];
 }
 
 - (void) initCache {
@@ -340,7 +336,9 @@
         [_upgradeTaskList.progressController setTitle:[NSString stringWithFormat:(NSLocalizedString(@"Updating to Version: %@", nil)), [FLAppInfo appVersion]]];
 */        
 
-        id result = [_upgradeTaskList runSynchronouslyInContext:self.context];
+//        [self.context addObject:_upgradeTaskList];
+
+        id result = [_upgradeTaskList runSynchronously];
         
         if([result error]) {
             // TODO: Ok, now what?

@@ -15,7 +15,10 @@
     FLUserLogin* _userLogin;
     NSTimeInterval _lastAuthenticationTimestamp;
     NSTimeInterval _timeoutInterval;
+    id<FLDispatcher> _requestAuthenticationDispatcher;
 }
+
+@property (readwrite, strong, nonatomic) id<FLDispatcher> httpRequestAuthenticationDispatcher; 
 
 @property (readwrite, assign, nonatomic) NSTimeInterval timeoutInterval;
 
@@ -28,12 +31,12 @@
 @property (readwrite, strong, nonatomic) FLUserLogin* userLogin;
 
 // called by the request when it needs to authenticate
-- (void) authenticateHttpRequest:(FLHttpRequest*) httpRequest;
+- (void) httpRequestAuthenticateSynchronously:(FLHttpRequest*) httpRequest;
 
 // required overrides
 - (FLUserLogin*) synchronouslyAuthenticateUser:(FLUserLogin*) userLogin;
 
-- (void) authenticateHttpRequest:(FLHttpRequest*) request 
+- (void) httpRequestAuthenticateSynchronously:(FLHttpRequest*) request 
            withAuthenticatedUser:(FLUserLogin*) userLogin;
 
 // optional

@@ -8,8 +8,8 @@
 
 #import "FishLampCocoa.h"
 #if IOS
-#import "FLWidgetView.h"
-#import "FLGradientWidget.h"
+//#import "FLWidgetView.h"
+//#import "FLGradientWidget.h"
 #endif
 
 #import "FLView.h"
@@ -17,7 +17,7 @@
 
 @interface FLGradientView : FLView {
 @private
-#if IOS
+#if REFACTOR
 	FLGradientWidget* _gradientWidget;
 #endif
 
@@ -37,8 +37,10 @@
 
 @property (readwrite, assign, nonatomic, getter=isHighlighted) BOOL highlighted;
 
+#if REFACTOR
 #if IOS
 @property (readonly, strong, nonatomic) FLGradientWidget* gradient;
+#endif
 #endif
 
 - (void) setColorRange:(FLColorRange*) range forControlState:(UIControlState) state;

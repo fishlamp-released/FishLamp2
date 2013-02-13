@@ -11,7 +11,7 @@
 @interface UIView (FLEnabled)
 
 - (void) disableSubviews:(BOOL)disable
-                  filter:(BOOL (^)(NSView *v))filter;
+                  filter:(BOOL (^)(UIView *v))filter;
 
 - (void) disableSubviews:(BOOL)disable
                   ofType:(Class)type;

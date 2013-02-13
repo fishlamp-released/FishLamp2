@@ -6,19 +6,18 @@
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
-
+#import "FLCocoaUIRequired.h"
 #import "FLOrderedCollection.h"
 
 @protocol FLBreadcrumbBarViewControllerDelegate;
 
-@interface FLBreadcrumbBarViewController : NSViewController {
+@interface FLBreadcrumbBarViewController : UIViewController {
 @private
     NSMutableArray* _breadcrumbs;
     __unsafe_unretained id<FLBreadcrumbBarViewControllerDelegate> _delegate;
-    NSFont* _textFont;
+    UIFont* _textFont;
 }
-@property (readwrite, strong, nonatomic) NSFont* textFont;
+@property (readwrite, strong, nonatomic) UIFont* textFont;
 @property (readwrite,assign,nonatomic) id<FLBreadcrumbBarViewControllerDelegate> delegate;
 
 - (void) addBreadcrumb:(NSString*) title forKey:(id) key;

@@ -57,7 +57,7 @@
 //	return [NSMutableString stringWithFormat:@"%@: UID: %@, URL: %@", [super description], self.assetUID, self.assetURL];
 //}
 //
-//- (FLFinisher*) startLoadingRepresentation:(FLResultBlock) completionBlock {
+//- (FLFinisher*) startLoadingRepresentation:(FLDispatchBlockWithResult) completionBlock {
 //    FLAssertIsImplemented_v(@"must override this");
 //    return nil;
 //}

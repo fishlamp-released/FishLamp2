@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
 
+#if OSX
 #import <Cocoa/Cocoa.h>
 
 #import "FLAttributedString.h"
@@ -36,3 +37,4 @@
 - (void) didLayout;
 
 @end
+#endif

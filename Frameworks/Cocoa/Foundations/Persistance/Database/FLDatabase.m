@@ -16,7 +16,7 @@
 #import "FLDatabase.h"
 #import "FLAppInfo.h"
 #import "FLSqlStatement.h"
-#import "FLFinisher.h"
+#import "FLDispatch.h"
 
 @interface FLDatabase ()
 @property (readwrite, assign) sqlite3* sqlite3;
@@ -58,7 +58,7 @@ static int s_count = 0;
 }
 
 - (FLResult) dispatchBlock:(dispatch_block_t) block {
-    return [[[FLDispatchQueue sharedDefaultQueue] dispatchBlock:block] waitUntilFinished];
+    return [[[FLGcdDispatcher sharedDefaultQueue] dispatchBlock:block] waitUntilFinished];
 }
 
 - (FLResult) dispatchFifoBlock:(dispatch_block_t) block {
@@ -75,7 +75,7 @@ static int s_count = 0;
 		_sqlite = nil;
         self.columnDecoder = s_decoder;
 
-        _dispatchQueue = [[FLDispatchQueue alloc] initWithLabel:[NSString stringWithFormat:@"com.fishlamp.queue.database-%d", ++s_count] 
+        _dispatchQueue = [[FLGcdDispatcher alloc] initWithLabel:[NSString stringWithFormat:@"com.fishlamp.queue.database-%d", ++s_count] 
             attr:DISPATCH_QUEUE_SERIAL];
 
 #if IOS

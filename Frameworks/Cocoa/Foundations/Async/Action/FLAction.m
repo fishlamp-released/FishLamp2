@@ -7,7 +7,7 @@
 //
 
 #import "FLAction.h"
-#import "FLDispatchQueue.h"
+#import "FLGcdDispatcher.h"
 #import "FLCallback_t.h"
 
 #define TIME_ALL_ACTIONS 0
@@ -25,7 +25,6 @@
 @end
 
 @interface FLAction ()
-@property (readwrite, strong) id context;
 @end
 
 @implementation FLAction
@@ -42,8 +41,6 @@
 @synthesize disableWarningNotifications = _disableWarningNotifications;
 @synthesize disableActivityTimer = _disableActivityTimer;
 @synthesize networkRequired = _networkRequired;
-@synthesize context = _context;
-
 
 static FLCallback_t s_failedCallback;
 static id<FLActionErrorDelegate> s_errorDisplayDelegate = nil;
@@ -204,7 +201,6 @@ TODO("MF: fix activity updater");
 //    [_operations removeObserver:self];
 
 #if FL_MRC  
-    [_context release];
     [_actionDescription release];
     [_startingBlock release];
     [_operations release];
@@ -345,24 +341,20 @@ TODO("MF: fix activity updater");
 
 - (void) startWorking:(FLFinisher*) finisher {
     
-    [self.operations didMoveToContext:self.context];
-
-    [[FLDispatchQueue sharedForegroundQueue] dispatchBlock:^{
+    [[FLGcdDispatcher sharedForegroundQueue] dispatchBlock:^{
         [self actionStarted];
         
-        [[FLDispatchQueue sharedHighPriorityQueue] dispatchObject:self.operations
+        [[FLGcdDispatcher sharedHighPriorityQueue] dispatchObject:self.operations
                                  completion:^(FLResult result) {
                 
-                [[FLDispatchQueue sharedForegroundQueue] dispatchBlock:^{
+                [[FLGcdDispatcher sharedForegroundQueue] dispatchBlock:^{
                     [finisher setFinishedWithResult:[self actionFinished:result]];
                 }];
             }];
     }];
 }
 
-- (FLResult) runSynchronouslyInContext:(id) context {
-    self.context = context;
-    
+- (FLResult) runSynchronously {
     FLFinisher* finisher = [FLFinisher finisher:nil];
     [self startWorking:finisher];
     return [finisher waitUntilFinished];

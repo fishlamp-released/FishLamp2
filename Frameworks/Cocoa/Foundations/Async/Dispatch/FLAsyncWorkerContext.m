@@ -1,15 +1,16 @@
 //
-//  FLDispatchedObjectCollection.m
+//  FLAsyncWorkerContext.m
 //  FishLampCocoa
 //
 //  Created by Mike Fullerton on 1/12/13.
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
 
-#import "FLDispatchedObjectCollection.h"
-#import "FLDispatchQueue.h"
+#import "FLAsyncWorkerContext.h"
+#import "FLGcdDispatcher.h"
+#import "FLDispatch.h"
 
-@implementation FLDispatchedObjectCollection
+@implementation FLAsyncWorkerContext
 
 @synthesize dispatcher = _dispatcher;
 
@@ -17,7 +18,7 @@
     self = [super init];
     if(self) {
         _objects = [[NSCountedSet alloc] init];
-        self.dispatcher = [FLDispatchQueue sharedFifoQueue];
+        self.dispatcher = [FLGcdDispatcher sharedFifoQueue];
     }
     
     return self;
@@ -31,12 +32,12 @@
 }
 #endif
 
-+ (id) dispatcherContext {
++ (id) context {
     return FLAutorelease([[[self class] alloc] init]);
 }
 
 - (FLFinisher*) visitObjects:(FLDispatchableObjectVisitor) visitor
-                  completion:(FLCompletionBlock) completion {
+                  completion:(FLBlockWithResult) completion {
 
     visitor = FLCopyWithAutorelease(visitor);
 

@@ -7,7 +7,7 @@
 //
 
 #import "FLCocoaRequired.h"
-#import "FLHttpRequest.h"
+#import "FLHttp.h"
 #import "FLOAuthAuthorizationHeader.h"
 
 @interface FLTwitterHttpRequest : FLHttpRequest {

@@ -5,7 +5,7 @@
 //	Created by Mike Fullerton on 6/6/10.
 //	Copyright 2010 GreenTongue Software. All rights reserved.
 //
-
+#if REFACTOR
 #if IOS
 #import "FLCocoaUIRequired.h"
 #import "FLDeprecatedButtonbarView.h"
@@ -21,4 +21,5 @@
 @end
 
 
+#endif
 #endif

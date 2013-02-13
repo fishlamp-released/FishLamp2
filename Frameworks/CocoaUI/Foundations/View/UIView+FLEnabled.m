@@ -11,13 +11,13 @@
 @implementation UIView (FLEnabled)
 
 - (void) disableSubviews:(BOOL)disable
-                  filter:(BOOL (^)(NSView *v))filter
+                  filter:(BOOL (^)(UIView *v))filter
 {
     if (!filter) {
-        filter = ^BOOL (NSView *v) { return YES; };
+        filter = ^BOOL (UIView *v) { return YES; };
     }
 
-    for (NSView *v in self.subviews) {
+    for (UIView *v in self.subviews) {
         [v disableSubviews:disable filter:filter];
         if (filter(v) && [v respondsToSelector:@selector(setEnabled:)]) {
             ((NSControl *) v).enabled = !disable;
@@ -29,7 +29,7 @@
                   ofType:(Class)type
 {
     [self disableSubviews:disable
-                   filter:^BOOL (NSView *v) {
+                   filter:^BOOL (UIView *v) {
                        return [v isKindOfClass:type];
                    }];
 }
@@ -38,7 +38,7 @@
               inTagRange:(NSRange)range
 {
     [self disableSubviews:disable
-                   filter:^BOOL (NSView *v) {
+                   filter:^BOOL (UIView *v) {
                        return NSLocationInRange(v.tag, range);
                    }];
 }
@@ -55,7 +55,7 @@
                 withTags:(NSArray *)tags
 {
     [self disableSubviews:disable
-                   filter:^BOOL (NSView *v) {
+                   filter:^BOOL (UIView *v) {
                        return [tags containsObject:[NSNumber numberWithInteger:v.tag]];
                    }];
 }
@@ -65,7 +65,7 @@
               inTagRange:(NSRange)range
 {
     [self disableSubviews:disable
-                   filter:^BOOL (NSView *v) {
+                   filter:^BOOL (UIView *v) {
                        return [v isKindOfClass:type] && NSLocationInRange(v.tag, range);
                    }];
 }
@@ -75,7 +75,7 @@
                 withTags:(NSArray *)tags
 {
     [self disableSubviews:disable
-                   filter:^BOOL (NSView *v) {
+                   filter:^BOOL (UIView *v) {
                        return [v isKindOfClass:type] &&
                               [tags containsObject:[NSNumber numberWithInteger:v.tag]];
                    }];

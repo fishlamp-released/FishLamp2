@@ -8,7 +8,6 @@
 
 #import "FLCocoaRequired.h"
 #import "FishLampCore.h"
-#import "FLBlocks.h"
 
 @protocol FLStorableObject <NSObject>
 

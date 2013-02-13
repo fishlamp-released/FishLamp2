@@ -1,5 +1,5 @@
 //
-//  FLDispatchedObjectCollection.h
+//  FLAsyncWorkerContext.h
 //  FishLampCocoa
 //
 //  Created by Mike Fullerton on 1/12/13.
@@ -12,7 +12,7 @@
 
 typedef void (^FLDispatchableObjectVisitor)(id object, BOOL* stop);
 
-@interface FLDispatchedObjectCollection : NSObject {
+@interface FLAsyncWorkerContext : NSObject {
 @private
     NSCountedSet* _objects;
     FLDispatcher* _dispatcher;
@@ -20,12 +20,12 @@ typedef void (^FLDispatchableObjectVisitor)(id object, BOOL* stop);
 
 @property (readwrite, strong, nonatomic) FLDispatcher* dispatcher;
 
-+ (id) dispatcherContext;
++ (id) context;
 
 - (void) requestCancel;
 
 - (FLFinisher*) visitObjects:(FLDispatchableObjectVisitor) visitor
-                  completion:(FLCompletionBlock) completion;
+                  completion:(FLBlockWithResult) completion;
 
 - (FLFinisher*) visitObjects:(FLDispatchableObjectVisitor) visitor;
 

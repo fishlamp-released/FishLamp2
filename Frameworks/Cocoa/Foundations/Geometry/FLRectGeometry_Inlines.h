@@ -105,6 +105,7 @@ CGRect FLRectJustifyRectInRectBottomLeft(CGRect container, CGRect containee) {
 	return containee;
 }
 
+#if OSX
 FL_SHIP_ONLY_INLINE 
 CGRect FLRectInsetWithEdgeInsets(CGRect inRect, UIEdgeInsets insets) {
 	inRect.size.height -= (insets.top + insets.bottom);
@@ -113,6 +114,7 @@ CGRect FLRectInsetWithEdgeInsets(CGRect inRect, UIEdgeInsets insets) {
     inRect.origin.y += insets.top;
     return inRect;
 }
+#endif
 
 FL_SHIP_ONLY_INLINE 
 CGRect FLRectInsetTop(CGRect inRect, CGFloat delta) {
