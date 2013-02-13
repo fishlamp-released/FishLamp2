@@ -16,7 +16,9 @@
 #import "FLUserDataStorageService+ZenfolioAdditions.h"
 
 #import "FLJpegFileImageAsset.h"
-#if IOS
+
+#if REFACTOR
+//#if IOS
 #import "FLAssetsLibraryImageAsset.h"
 #endif
 

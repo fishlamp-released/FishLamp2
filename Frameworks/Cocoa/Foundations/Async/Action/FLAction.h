@@ -12,6 +12,7 @@
 #import "FLOperationContext.h"
 #import "FLActionDescription.h"
 #import "FLWeaklyReferenced.h"
+#import "FLDispatch.h"
 
 #define FLActionDefaultTimeBetweenActivityWarnings 30.0f
 #define FLActionMinimumTimeBetweenWarnings 15.0
@@ -30,7 +31,7 @@ typedef void (^FLActionErrorBlock)(FLAction* action, NSError* error);
 @protocol FLActionErrorDelegate;
 @protocol FLActionDelegate;
 
-@interface FLAction : NSObject<FLActionDescription, FLWeaklyReferenced, FLAsyncWorker> {
+@interface FLAction : FLAsyncWorker<FLActionDescription, FLWeaklyReferenced> {
 @private
     FLOperationQueue* _operations;
 
@@ -50,13 +51,7 @@ typedef void (^FLActionErrorBlock)(FLAction* action, NSError* error);
     BOOL _disableWarningNotifications;
 	BOOL _disableActivityTimer;
     BOOL _networkRequired;
-    
-    id _context;
 }
-
-@property (readonly, strong) id context;
-
-//@property (readwrite, strong, nonatomic) id<FLActionDelegate> delegate;
 
 @property (readonly, strong) FLOperationQueue* operations;
 
@@ -93,7 +88,9 @@ typedef void (^FLActionErrorBlock)(FLAction* action, NSError* error);
 - (void) willHandleError:(NSError*) error;
 - (void) willReportError:(NSError*) error;
 
-- (FLResult) runSynchronouslyInContext:(id) context; 
+- (FLResult) runSynchronously; 
+
+// TODO: add observer support
 
 @end
 

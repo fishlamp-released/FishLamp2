@@ -11,22 +11,32 @@
 #import "FLResult.h"
 #import "FLServiceProvider.h"
 #import "FLServiceManager.h"
+#import "FLObjectDataStore.h"
 
 @class FLServiceManager;
 
-@interface FLService : NSObject<FLServiceProvider> {
+@interface FLService : NSObject {
 @private
-    __unsafe_unretained id _context;
+    NSMutableArray* _services;
+    BOOL _serviceOpen;
 }
-@end
-//
-//@interface FLRequestHandlingService : FLService {
-//@private
-//    NSMutableDictionary* _requestHandlers;
-//}
-//
-//- (void) setRequestHandler:(SEL) handler 
-//     forServiceRequestType:(id) serviceRequestType;
-//
-//@end
+@property (readonly, assign, nonatomic, getter=isServiceOpen) BOOL serviceOpen;
 
+- (void) addService:(FLService*) service;
+- (void) removeService:(FLService*) service;
+
+- (void) openService:(id) opener;
+- (void) closeService:(id) closer;
+@end
+
+@interface FLDataStoreService : FLService {
+@private
+    id<FLObjectDataStore> _dataStore;
+}
+@property (readwrite, strong) id<FLObjectDataStore> dataStore;
+@end
+
+@interface FLDataStoreOpener <NSObject>
+- (void) openDataStoreService:(FLDataStoreService*) cache;
+- (void) closeDataStoreService:(FLDataStoreService*) cache;
+@end

@@ -9,7 +9,7 @@
 #import "FLUnitTest.h"
 
 #import "FLUserLogin.h"
-#import "FLZenfolioHttpRequest.h"
+#import "FLZenfolioWebApi.h"
 
 //@interface FLZenfolioTestSession : FLZenfolioUserContext {
 //@private

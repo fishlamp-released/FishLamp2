@@ -6,40 +6,29 @@
 //	Copyright 2009 Greentongue Software. All rights reserved.
 //
 
-#import "FLDispatcher.h"
-#import "FLResult.h"
-#import "FLObserver.h"
-#import "FLFinisher.h"
+#import "FLDispatch.h"
 
 @class FLOperation;
 
-typedef FLResult (^FLRunOperationBlock)(FLOperation* operation);
+typedef FLResult (^FLBlockWithOperation)(FLOperation* operation);
 
-@protocol FLOperationDispatchingContext <NSObject>
-- (id<FLDispatcher>) operationDispatcher:(FLOperation*) operation;
-- (void) operationDidStart:(FLOperation*) operation;
-- (void) operationDidFinish:(FLOperation*) operation;
-@end
+@class FLOperationObserver;
 
-@interface FLOperation : NSObject<FLAsyncWorker> {
+@interface FLOperation : FLAsyncWorker {
 @private
 	id _operationID;
-	FLRunOperationBlock _runBlock;
+	FLBlockWithOperation _runBlock;
     BOOL _cancelled;
-    id _context;
-    __unsafe_unretained id _parent;
 }
-
-@property (readonly, strong) id context;
 
 // misc
 @property (readwrite, strong, nonatomic) id operationID;
 
 - (id) init;
-- (id) initWithRunBlock:(FLRunOperationBlock) block;
+- (id) initWithRunBlock:(FLBlockWithOperation) block;
 
 + (id) operation;
-+ (id) operation:(FLRunOperationBlock) block;
++ (id) operation:(FLBlockWithOperation) block;
 
 /// @brief Required override point (or use runBlock).
 /// Either override run or set the operation's run block.
@@ -48,13 +37,11 @@ typedef FLResult (^FLRunOperationBlock)(FLOperation* operation);
 
 @interface FLOperation (Execution)
 
-// running in current thread.
-- (FLResult) runSynchronouslyInContext:(id) context; 
+// runs in current thread.
+- (FLResult) runSynchronously; 
+- (FLResult) runSynchronouslyWithObserver:(FLOperationObserver*) observer; 
 
-// async operations will run in:
-// 1. dispatcher provided by context
-// 2. global default dispatcher ([FLDispatchQueue sharedDefaultQueue])
-- (FLFinisher*) startOperationInContext:(id) context completion:(FLCompletionBlock) completion;
+// to run async, run it async use FLDispatch.
 
 // can be called from other thread. dispatcher context may call this.
 - (void) requestCancel;
@@ -68,8 +55,8 @@ typedef FLResult (^FLRunOperationBlock)(FLOperation* operation);
 - (void) abortIfNeeded;
 - (BOOL) abortNeeded;
 
-// optional overides
-- (void) didMoveToContext:(id)context;
+// sub operation inherit context, etc.
+- (FLResult) runSubOperation:(FLOperation*) operation;
 
 @end
 
@@ -86,12 +73,11 @@ typedef FLResult (^FLRunOperationBlock)(FLOperation* operation);
 
 typedef void (^FLOperationResultBlock)(FLResult result);
 
-@interface FLOperationObserver : FLObserver<FLOperationObserver> {
+@interface FLOperationObserver : FLFinisher<FLOperationObserver> {
 @private
     dispatch_block_t _willRun;
-    FLOperationResultBlock _didFinish;
 }
 @property (readwrite, copy, nonatomic) dispatch_block_t willRun;
-@property (readwrite, copy, nonatomic) FLOperationResultBlock didFinish;
+//@property (readwrite, copy, nonatomic) FLOperationResultBlock didFinish;
 
 @end

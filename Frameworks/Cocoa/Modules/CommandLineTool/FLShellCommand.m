@@ -7,7 +7,7 @@
 //
 
 #import "FLShellCommand.h"
-
+#if OSX
 @implementation FLShellCommand
 
 - (id) initWithLaunchPath:(NSString*) path {
@@ -117,3 +117,4 @@
 }
 @end
 
+#endif

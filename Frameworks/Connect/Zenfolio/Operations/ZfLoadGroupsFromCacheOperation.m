@@ -8,7 +8,8 @@
 
 #import "ZFLoadGroupsFromCacheOperation.h"
 
-#import "FLZenfolioCacheService.h"
+#import "FLZenfolioCache.h"
+#import "FLZenfolioWebApi.h"
 
 @interface ZFLoadGroupsFromCacheOperation ()
 @end
@@ -38,7 +39,7 @@
     for(NSNumber* idObject in _groupList) {
         [self abortIfNeeded];
 		
-		FLZenfolioGroup* group = [[self.context cacheService] loadGroupWithID:idObject.intValue];
+		FLZenfolioGroup* group = [[self.userContext objectCache] loadGroupWithID:idObject.intValue];
 		if(group)  {	
 			[outputList addObject:group];
 		}

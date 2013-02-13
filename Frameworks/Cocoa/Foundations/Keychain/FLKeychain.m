@@ -7,10 +7,8 @@
 //
 
 #import "FLKeychain.h"
-#import <Security/Security.h>
-
+#import "FLCoreFoundation.h"
 NSString *FLKeychainErrorDomain = @"FLKeychainErrorDomain";
-                                                                            
 
 OSStatus FLKeychainDeleteHttpPassword(NSString* userName, NSString* domain) {
     FLAssertStringIsNotEmpty_(userName);
@@ -19,7 +17,9 @@ OSStatus FLKeychainDeleteHttpPassword(NSString* userName, NSString* domain) {
     SecKeychainItemRef itemRef = nil;
 	OSStatus err = FLKeychainFindHttpPassword(userName, domain, nil, &itemRef);
     if ( err == 0 ) {
+#if OSX
 		SecKeychainItemDelete(itemRef);
+#endif        
 	} 
     return err;
 }
@@ -37,6 +37,7 @@ OSStatus FLKeychainSetHttpPassword(     NSString* inUserName,
         return err;
     }
     
+#if OSX
     const char* domain = [inDomain UTF8String];
     const char* username = [inUserName UTF8String];
     const char* password = [inPassword UTF8String];
@@ -59,6 +60,9 @@ OSStatus FLKeychainSetHttpPassword(     NSString* inUserName,
 		password,							//  password data (stores password)
 		NULL								//  ref to the actual item (not needed now)
 	);
+#else 
+    return 1;
+#endif
 }
 
 OSStatus FLKeychainFindHttpPassword(    NSString* inUserName,
@@ -81,13 +85,15 @@ OSStatus FLKeychainFindHttpPassword(    NSString* inUserName,
         return 0;
     }
 
+
+#if OSX                                        
     const char* domain = [inDomain UTF8String];
     const char* username = [inUserName UTF8String];
     
 	void* passwordBytes = nil;
 	UInt32 passwordSize = 0;
     SecKeychainItemRef itemRef;
-                                        
+
 	//  search the default keychain for a password
 	OSStatus err = SecKeychainFindInternetPassword (
 		NULL,								//  search default keychain
@@ -120,6 +126,11 @@ OSStatus FLKeychainFindHttpPassword(    NSString* inUserName,
     if(passwordBytes) {
 		SecKeychainItemFreeContent(NULL, passwordBytes); 
     }
+#else 
+    OSStatus err = 1;
+#endif
+
+    
     return err;
 }
 
@@ -168,7 +179,8 @@ OSStatus FLKeychainFindHttpPassword(    NSString* inUserName,
 
 		OSStatus status = SecItemCopyMatching(bridge_(CFDictionaryRef, attributeQuery), &attributeResult);
 		// we only care about status, so delete the returned data.
-		FLReleaseWithNil(attributeResult);
+
+		FLReleaseCRef_(attributeResult);
 		FLReleaseWithNil(attributeQuery);
 
 		if (status != noErr) 

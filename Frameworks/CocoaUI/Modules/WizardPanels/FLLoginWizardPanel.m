@@ -5,7 +5,7 @@
 //  Created by Mike Fullerton on 12/2/12.
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
-
+#if OSX
 #import "FLLoginWizardPanel.h"
 #import "NSObject+Blocks.h"
 #import "UIViewController+FLAdditions.h"
@@ -249,3 +249,4 @@ NSString* const FLDefaultsKeyWizardSavePasswordKey = @"com.fishlamp.wizard.savep
 }
 
 @end
+#endif

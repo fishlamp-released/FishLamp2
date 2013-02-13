@@ -7,7 +7,7 @@
 //
 
 #import "FLCocoaRequired.h"
-#import "FLHttpRequest.h"
+#import "FLHttp.h"
 
 @class FLFacebookService;
 @class FLFacebookNetworkSession;

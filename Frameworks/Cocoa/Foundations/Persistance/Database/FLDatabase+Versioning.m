@@ -11,7 +11,7 @@
 #import "FLDatabase_Internal.h"
 #import "NSFileManager+FLExtras.h"
 #import "FLSqlBuilder.h"
-#import "FLBlocks.h"
+#import "FLDispatch.h"
 
 /*
 - (NSDictionary*) historyForName:(NSString*) name;
@@ -463,7 +463,7 @@ NSString* FLLegacyDecodeString(NSString* string) {
     progress = FLCopyWithAutorelease(progress);
     tableUpgraded = FLCopyWithAutorelease(tableUpgraded);
 
-    [[[FLDispatchQueue sharedDefaultQueue] dispatchBlock:^{
+    [[[FLGcdDispatcher sharedDefaultQueue] dispatchBlock:^{
             [self upgradeDatabaseToVersion:[[self class] currentRuntimeVersion]
                                   progress:progress
                              tableUpgraded:tableUpgraded];

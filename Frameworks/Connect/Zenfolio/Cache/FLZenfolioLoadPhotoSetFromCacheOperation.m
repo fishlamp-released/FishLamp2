@@ -7,46 +7,46 @@
 //
 
 #import "FLZenfolioLoadPhotoSetFromCacheOperation.h"
-#import "FLZenfolioCacheService.h"
-#import "FLZenfolioSyncService.h"
-#import "FLZenfolioHttpRequest.h"
+#import "FLZenfolioCache.h"
+#import "FLZenfolioWebApi.h"
 
-@implementation FLZenfolioLoadPhotoSetFromCacheOperation
+//@implementation FLZenfolioLoadPhotoSetFromCacheOperation
+//
+//- (id) initWithPhotoSetId:(int) photoSetId 
+//                   textCn:(int) textCn
+//              photoListCn:(int) photoListCn {
+//	if((self = [super init])) {
+//        _photoSetID = photoSetId;
+//    	_textCn = textCn;
+//        _photoListCn = photoListCn;
+//    }
+//	
+//	return self;
+//}
+//
+//- (id) loadObjectFromDatabase {
+//
+//    FLZenfolioCache* service = [self.userContext objectCache];
+//
+//    FLZenfolioPhotoSet* photoSet = [service loadPhotoSetWithID:_photoSetID];
+//    
+//    self.alwaysRunSubOperations = 
+//            photoSet && 
+//            [photoSet isStaleComparedTo:_textCn photoListCn:_photoListCn photoCount:-1];
+//
+//    return photoSet;
+//}
+//
+//- (FLResult) runSubOperations {
+//
+//    FLHttpRequest* request = [FLZenfolioHttpRequest loadPhotoSetHttpRequest:[NSNumber numberWithInt:_photoSetID]];
+//
+//    return FLConfirmResultType([self sendHttpRequest:request], FLZenfolioPhotoSet);
+//}
+//
+//- (void) saveObjectToDatabase:(id) object {
+//    [[self.userContext objectCache] saveObject:object];
+//}
+//
+//@end
 
-- (id) initWithPhotoSetId:(int) photoSetId 
-                   textCn:(int) textCn
-              photoListCn:(int) photoListCn {
-	if((self = [super init])) {
-        _photoSetID = photoSetId;
-    	_textCn = textCn;
-        _photoListCn = photoListCn;
-    }
-	
-	return self;
-}
-
-- (id) loadObjectFromDatabase {
-
-    FLZenfolioCacheService* service = [self.context cacheService];
-    FLZenfolioPhotoSet* photoSet = [service loadPhotoSetWithID:_photoSetID];
-    
-    self.alwaysRunSubOperations = 
-            photoSet && 
-            [photoSet isStaleComparedTo:_textCn photoListCn:_photoListCn photoCount:-1];
-
-    return photoSet;
-}
-
-- (FLResult) runSubOperations {
-
-    FLHttpRequest* request = [FLZenfolioHttpRequest loadPhotoSetHttpRequest:[NSNumber numberWithInt:_photoSetID]];
-
-    return FLConfirmResultType([request sendSynchronouslyInContext:self.context], FLZenfolioPhotoSet);
-}
-
-- (void) saveObjectToDatabase:(id) object {
-    FLZenfolioCacheService* cache = [self.context cacheService];
-    [cache savePhotoSet:object];
-}
-
-@end

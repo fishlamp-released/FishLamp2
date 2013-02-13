@@ -61,7 +61,7 @@
 	// If the image does not have an alpha layer, add one
 	UIImage *image = [self imageWithAlpha];
 	
-	CGRect newRect = FLRectMake(0, 0, image.size.width + borderSize * 2, image.size.height + borderSize * 2);
+	CGRect newRect = CGRectMake(0, 0, image.size.width + borderSize * 2, image.size.height + borderSize * 2);
 	
 	// Build a context that's the same dimensions as the new size
 	CGContextRef bitmap = CGBitmapContextCreate(NULL,
@@ -73,7 +73,7 @@
 												CGImageGetBitmapInfo(self.CGImage));
 	
 	// Draw the image in the center of the context, leaving a gap around the edges
-	CGRect imageLocation = FLRectMake(borderSize, borderSize, image.size.width, image.size.height);
+	CGRect imageLocation = CGRectMake(borderSize, borderSize, image.size.width, image.size.height);
 	CGContextDrawImage(bitmap, imageLocation, self.CGImage);
 	CGImageRef borderImageRef = CGBitmapContextCreateImage(bitmap);
 	

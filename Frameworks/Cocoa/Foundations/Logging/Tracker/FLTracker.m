@@ -8,7 +8,7 @@
 
 #import "FLTracker.h"
 #import "FLTrackerSink.h"
-#import "FLDispatchQueue.h"
+#import "FLDispatch.h"
 
 @implementation FLTracker
 
@@ -44,7 +44,7 @@ FLSynthesizeSingleton(FLTracker);
            eventType:(FLTrackerSinkEventMask) eventType
                block:(void (^)(FLTracker* tracker, id<FLTrackerSink> sink)) block {
 
-    [[FLDispatchQueue sharedFifoQueue] dispatchBlock:^{
+    [[FLGcdDispatcher sharedFifoQueue] dispatchBlock:^{
         if( !_disabled && 
             FLTestBits(_subscribedEvents, eventType) &&
             FLTestBits(_trackLevel, trackLevel)) {

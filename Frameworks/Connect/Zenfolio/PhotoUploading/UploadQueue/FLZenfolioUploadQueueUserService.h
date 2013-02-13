@@ -19,4 +19,3 @@
 
 @end
 
-FLPublishService(uploadService, FLZenfolioUploadQueueUserService*)

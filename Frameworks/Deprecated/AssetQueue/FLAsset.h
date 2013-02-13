@@ -21,7 +21,7 @@
 
 //- (void) deleteFromAssetStorage;
 
-//- (FLFinisher*) startLoadingRepresentation:(FLResultBlock) completionBlock;
+//- (FLFinisher*) startLoadingRepresentation:(FLDispatchBlockWithResult) completionBlock;
 
 @end
 

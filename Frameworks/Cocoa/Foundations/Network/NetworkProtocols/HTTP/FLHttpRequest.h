@@ -7,54 +7,52 @@
 //
 
 #import "FLCocoaRequired.h"
-#import "FLDispatcher.h"
+#import "FLDispatch.h"
 #import "FLReadStream.h"
-#import "FLResult.h"
 #import "FLHttpResponse.h"
 #import "FLHttpRequestBody.h"
-#import "FLFinisher.h"
 #import "FLDataEncoding.h"
 #import "FLDataDecoding.h"
+#import "FLHttpRequestObserver.h"
 
 @class FLHttpRequest;
-@class FLFinisher;
 
 @protocol FLHttpRequestAuthenticator <NSObject>
 // this needs to be synchronous for scheduling reasons amoung concurrent requests.
-- (void) authenticateHttpRequest:(FLHttpRequest*) httpRequest;
+- (void) httpRequestAuthenticateSynchronously:(FLHttpRequest*) httpRequest;
+- (id<FLDispatcher>) httpRequestAuthenticationDispatcher:(FLHttpRequest*) httpRequest;
 @end
 
-@protocol FLHttpRequestDispatchingContext <NSObject>
-- (id<FLDispatcher>) httpRequestFifoDispatcher:(FLHttpRequest*) request;
-- (id<FLHttpRequestAuthenticator>) httpRequestAuthenticator:(FLHttpRequest*) request;
-- (void) httpRequestDidStart:(FLHttpRequest*) request;
-- (void) httpRequestDidFinish:(FLHttpRequest*) request;
+@protocol FLHttpRequestInterceptor <NSObject>
+
+- (void) httpRequest:(FLHttpRequest*) httpRequest 
+     willSendRequest:(FLFinisher*) withFinisher;
+                                
+- (void) httpRequest:(FLHttpRequest*) httpRequest 
+ didFinishWithResult:(FLResult) result;
+
 @end
 
-@protocol FLHttpRequestObserver;
-
-@interface FLHttpRequest : NSObject<FLReadStreamDelegate, FLAsyncWorker> {
+@interface FLHttpRequest : FLAsyncWorker<FLReadStreamDelegate> {
 @private
     FLHttpRequestHeaders* _headers;
     FLHttpRequestBody* _body;
     id _observer;
     FLMutableHttpResponse* _response;
     FLReadStream* _networkStream;
-    id _context;
     id<FLDispatcher> _dispatcher;
-    BOOL _authenticationDisabled;
     
+    // helpers
     id<FLDataEncoding> _dataEncoder;
     id<FLDataDecoding> _dataDecoder;
-    
+    id<FLHttpRequestAuthenticator> _authenticator;
+    id<FLHttpRequestInterceptor> _cacheHandler;
 }
 
-@property (readwrite, strong) id<FLDataEncoding> dataEncoder;
-@property (readwrite, strong) id<FLDataDecoding> dataDecoder;
-
-@property (readwrite, assign, nonatomic) BOOL authenticationDisabled;
-
-@property (readonly, strong) id context;
+@property (readwrite, strong, nonatomic) id<FLDataEncoding> dataEncoder;
+@property (readwrite, strong, nonatomic) id<FLDataDecoding> dataDecoder;
+@property (readwrite, strong, nonatomic) id<FLHttpRequestAuthenticator> authenticator;
+@property (readwrite, strong, nonatomic) id<FLHttpRequestInterceptor> interceptor;
 
 // http
 @property (readonly, strong, nonatomic) FLHttpRequestHeaders* headers;
@@ -70,30 +68,26 @@
 
 + (id) httpRequest;
 
-@end
+// 
+// Sending
+//
 
-@interface FLHttpRequest () // Sending
+// Note: use FLDispatch to run async.
 
-// by default the request is run in global FIFO queue (FLFifoDispatchQueue) 
-// if the context provides a dispatcher, that one will be used instead.
+- (FLResult) sendSynchronously;
+- (FLResult) sendSynchronouslyWithObserver:(FLHttpRequestObserver*) observer;
+
 - (void) requestCancel;
 
-- (FLResult) sendSynchronouslyInContext:(id) context
-                         withObserver:(FLFinisher*) observer;
 
-- (FLResult) sendSynchronouslyInContext:(id) context;
+//
+// optional overrides
+//
 
-- (FLFinisher*) startRequestInContext:(id) context 
-                         withObserver:(FLFinisher*) observer;
-
-- (FLFinisher*) startRequestInContext:(id) context;
-
-
-@end
-
-@interface FLHttpRequest () // optional overrides
-
+/// called before authentication
 - (void) willAuthenticateHttpRequest:(id<FLHttpRequestAuthenticator>) authenticator;
+
+/// called after authentication (if no error)
 - (void) didAuthenticateHttpRequest;
 
 /// called before the request is started. You may set ALL of the
@@ -106,68 +100,10 @@
 /// else do it here and return it from from your override
 - (id) didReceiveHttpResponse:(FLHttpResponse*) httpResponse;
 
-//
-// Redirects
-//
 /// this returns YES by default.
 - (BOOL) shouldRedirectToURL:(NSURL*) url;
-- (void) didMoveToContext:(id) context;
 @end
 
-@protocol FLHttpRequestObserver <NSObject>
-@optional
 
-- (void) httpRequestWillAuthenticate:(FLHttpRequest*) httpRequest;
-
-- (void) httpRequestDidAuthenticate:(FLHttpRequest*) httpRequest;
-
-- (void) httpRequestWillOpen:(FLHttpRequest*) httpRequest;
-
-- (void) httpRequestDidOpen:(FLHttpRequest*) httpRequest;
-
-- (void) httpRequest:(FLHttpRequest*) httpRequest 
-   willCloseWithResult:(FLResult) result;
-
-- (void) httpRequest:(FLHttpRequest*) httpRequest 
-    didCloseWithResult:(FLResult) result;
-
-- (void) httpRequest:(FLHttpRequest*) httpRequest
-      didEncounterError:(NSError*) error;
-
-- (void) httpRequestDidReadBytes:(FLHttpRequest*) httpRequest amount:(unsigned long) amount;
-
-- (void) httpRequestDidWriteBytes:(FLHttpRequest*) httpRequest amount:(unsigned long) amount;
-
-@end
-
-typedef void (^FLHttpRequestResultBlock)(FLResult result);
-typedef void (^FLHttpRequestErrorBlock)(NSError* result);
-typedef void (^FLHttpRequestByteBlock)(unsigned long count);
-
-@interface FLHttpRequestObserver : FLFinisher<FLHttpRequestObserver> {
-@private
-    dispatch_block_t _willAuthenticate;
-    dispatch_block_t _didAuthenticate;
-    dispatch_block_t _willOpen;
-    dispatch_block_t _didOpen;
-    FLHttpRequestResultBlock _willClose;
-    FLHttpRequestResultBlock _didClose;
-    FLHttpRequestResultBlock _observerDidFinish;
-    FLHttpRequestErrorBlock _encounteredError;
-    FLHttpRequestByteBlock _didWriteBytes;
-    FLHttpRequestByteBlock _didReadBytes;
-}
-+ (id) httpRequestObserver;
-@property (readwrite, copy, nonatomic) dispatch_block_t willAuthenticate;
-@property (readwrite, copy, nonatomic) dispatch_block_t didAuthenticate;
-@property (readwrite, copy, nonatomic) dispatch_block_t willOpen;
-@property (readwrite, copy, nonatomic) dispatch_block_t didOpen;
-@property (readwrite, copy, nonatomic) FLHttpRequestResultBlock willClose;
-@property (readwrite, copy, nonatomic) FLHttpRequestResultBlock didClose;
-@property (readwrite, copy, nonatomic) FLHttpRequestResultBlock didFinish;
-@property (readwrite, copy, nonatomic) FLHttpRequestErrorBlock encounteredError;
-@property (readwrite, copy, nonatomic) FLHttpRequestByteBlock didWriteBytes;
-@property (readwrite, copy, nonatomic) FLHttpRequestByteBlock didReadBytes;
-@end
 
 

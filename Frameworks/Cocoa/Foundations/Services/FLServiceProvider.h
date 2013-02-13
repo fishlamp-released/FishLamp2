@@ -23,11 +23,11 @@
 - (void) requestCancel;
 @end
 
-#define FLPublishService(__NAME__, __TYPE__) \
-    \
-    @protocol __NAME__##PublishedService <NSObject> \
-        - (__TYPE__) __NAME__; \
-    @end
+//#define FLPublishService(__NAME__, __TYPE__) \
+//    \
+//    @protocol __NAME__##PublishedService <NSObject> \
+//        - (__TYPE__) __NAME__; \
+//    @end
 
 //#define FLPublishProperty(__TYPE__, __NAME__) \
 //    \

@@ -6,7 +6,7 @@
 //	Copyright 2009 GreenTongue Software. All rights reserved.
 //
 
-#import "FLHttpRequest.h"
+#import "FLHttp.h"
 #import "FLOperationQueue.h"
 #import "FLCachedObjectOperation.h"
 

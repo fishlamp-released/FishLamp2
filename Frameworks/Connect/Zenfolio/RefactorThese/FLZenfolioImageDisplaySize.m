@@ -13,7 +13,7 @@
 
 - (BOOL) isRetinaDevice {
 #if IOS
-    [UIScreen mainScreen].scale >= 2;
+    return [UIScreen mainScreen].scale >= 2;
 #else
     return NO;
 #endif    
@@ -29,6 +29,7 @@
     self = [super init];
     if(self) {
 
+#if REFACTOR
 #if IOS
 
         if(DeviceIsPad())
@@ -68,6 +69,7 @@
         
         }
 #endif        
+#endif
         
     }
     return self;
@@ -75,8 +77,8 @@
 
 + (FLZenfolioImageSize*) imageDisplaySizeEnclosingSize:(CGSize) size {
 #if IOS
-    size.width += [UIScreen mainScreen].scale;
-    height.width += [UIScreen mainScreen].scale;
+    size.width *= [UIScreen mainScreen].scale;
+    size.height *= [UIScreen mainScreen].scale;
 #endif
 
     return [FLZenfolioImageSize imageSizeEnclosingSize:size];

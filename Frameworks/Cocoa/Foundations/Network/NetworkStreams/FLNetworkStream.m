@@ -9,6 +9,7 @@
 #import "FLNetworkStream.h"
 #import "FLReadStream.h"
 #import "FLWriteStream.h"
+#import "FLReachableNetwork.h"
 
 #define kRunLoopMode NSDefaultRunLoopMode
 

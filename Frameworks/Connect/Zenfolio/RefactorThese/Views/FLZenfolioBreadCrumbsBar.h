@@ -6,6 +6,8 @@
 //  Copyright 2007 GreenTongue Software, LLC.. All rights reserved.
 //
 
+#if REFACTOR
+#if OSX
 #import <Cocoa/Cocoa.h>
 
 
@@ -25,3 +27,5 @@
 @property (readwrite, strong, nonatomic) NSArray* labels;
 
 @end
+#endif
+#endif

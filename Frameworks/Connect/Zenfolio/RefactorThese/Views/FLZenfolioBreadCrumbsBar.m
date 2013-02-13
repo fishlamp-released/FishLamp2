@@ -6,6 +6,8 @@
 //  Copyright 2007 GreenTongue Software, LLC.. All rights reserved.
 //
 
+#if OSX
+
 #import "FLZenfolioBreadCrumbsBar.h"
 
 
@@ -180,3 +182,4 @@
 }
 
 @end
+#endif

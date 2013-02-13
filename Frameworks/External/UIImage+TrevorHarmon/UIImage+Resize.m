@@ -69,10 +69,10 @@
     
 #if IOS
 	switch (self.imageOrientation) {
-		case FLImageOrientationLeft:
-		case FLImageOrientationLeftMirrored:
-		case FLImageOrientationRight:
-		case FLImageOrientationRightMirrored:
+		case UIImageOrientationLeft:
+		case UIImageOrientationLeftMirrored:
+		case UIImageOrientationRight:
+		case UIImageOrientationRightMirrored:
 			drawTransposed = YES;
 			break;
 			
@@ -117,7 +117,7 @@
 #pragma mark Private helper methods
 
 // Returns a copy of the image that has been transformed using the given affine transform and scaled to the new size
-// The new image's orientation will be FLImageOrientationUp, regardless of the current image's orientation
+// The new image's orientation will be UIImageOrientationUp, regardless of the current image's orientation
 // If the new size is not integral, it will be rounded up
 - (UIImage *)resizedImage:(CGSize)newSize
 				transform:(CGAffineTransform)transform
@@ -174,20 +174,20 @@
 	
 #if IOS
 	switch (self.imageOrientation) {
-		case FLImageOrientationDown:		   // EXIF = 3
-		case FLImageOrientationDownMirrored:   // EXIF = 4
+		case UIImageOrientationDown:		   // EXIF = 3
+		case UIImageOrientationDownMirrored:   // EXIF = 4
 			transform = CGAffineTransformTranslate(transform, newSize.width, newSize.height);
 			transform = CGAffineTransformRotate(transform, M_PI);
 			break;
 			
-		case FLImageOrientationLeft:		   // EXIF = 6
-		case FLImageOrientationLeftMirrored:   // EXIF = 5
+		case UIImageOrientationLeft:		   // EXIF = 6
+		case UIImageOrientationLeftMirrored:   // EXIF = 5
 			transform = CGAffineTransformTranslate(transform, newSize.width, 0);
 			transform = CGAffineTransformRotate(transform, M_PI_2);
 			break;
 			
-		case FLImageOrientationRight:		   // EXIF = 8
-		case FLImageOrientationRightMirrored: // EXIF = 7
+		case UIImageOrientationRight:		   // EXIF = 8
+		case UIImageOrientationRightMirrored: // EXIF = 7
 			transform = CGAffineTransformTranslate(transform, 0, newSize.height);
 			transform = CGAffineTransformRotate(transform, -M_PI_2);
 			break;
@@ -197,14 +197,14 @@
 	}
 	
 	switch (self.imageOrientation) {
-		case FLImageOrientationUpMirrored:	   // EXIF = 2
-		case FLImageOrientationDownMirrored:   // EXIF = 4
+		case UIImageOrientationUpMirrored:	   // EXIF = 2
+		case UIImageOrientationDownMirrored:   // EXIF = 4
 			transform = CGAffineTransformTranslate(transform, newSize.width, 0);
 			transform = CGAffineTransformScale(transform, -1, 1);
 			break;
 			
-		case FLImageOrientationLeftMirrored:   // EXIF = 5
-		case FLImageOrientationRightMirrored: // EXIF = 7
+		case UIImageOrientationLeftMirrored:   // EXIF = 5
+		case UIImageOrientationRightMirrored: // EXIF = 7
 			transform = CGAffineTransformTranslate(transform, newSize.height, 0);
 			transform = CGAffineTransformScale(transform, -1, 1);
 			break;

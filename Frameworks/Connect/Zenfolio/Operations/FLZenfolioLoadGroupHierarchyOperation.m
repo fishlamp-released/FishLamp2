@@ -8,7 +8,7 @@
 
 #import "FLZenfolioLoadGroupHierarchyOperation.h"
 #import "FLZenfolioDownloadPhotoSetsOperation.h"
-#import "FLZenfolioHttpRequest.h"
+#import "FLZenfolioWebApi.h"
 
 @interface FLZenfolioLoadGroupHierarchyOperation ()
 @property (readwrite, assign) int downloadedPhotoSetCount;
@@ -42,21 +42,21 @@
 
 - (FLResult) runOperation {
 
-    FLAssertNotNil_(self.context);
+    FLAssertNotNil_(self.userContext);
 
 //    [self postObservation:@selector(syncGroupHierarchy:willDownloadGroupListForUser:) withObject:_userLogin];
 
     FLHttpRequest* request = [FLZenfolioHttpRequest loadGroupHierarchyHttpRequest:_userLogin.userName];
     FLAssertNotNil_(request);
 
-    FLZenfolioGroup* group = [request sendSynchronouslyInContext:self.context];
+    FLZenfolioGroup* group = [self sendHttpRequest:request];
 
 //    [self postObservation:@selector(syncGroupHierarchy:didDownloadGroupList:) withObject:group];
 
     FLZenfolioDownloadPhotoSetsOperation* downloadPhotosets = [FLZenfolioDownloadPhotoSetsOperation downloadPhotoSetsWithGroup:group];
 //    [downloadPhotosets addObserver:self];
     
-    FLResult result = [downloadPhotosets runSynchronouslyInContext:self.context];
+    FLResult result = [self runSubOperation:downloadPhotosets];
     
 //    [downloadPhotosets removeObserver:self];
     

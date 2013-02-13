@@ -163,7 +163,7 @@ FLErrorLookup s_lookup[] = {
     { NSXMLParserStringNotStartedError, @"StringNotStartedError" },
     { NSXMLParserStringNotClosedError, @"StringNotClosedError" },
 #if IOS
-    { NSXMLParserNamespaceHeaderError, @"NamespaceHeaderError" },
+//    { NSXMLParserNamespaceHeaderError, @"NamespaceHeaderError" },
 #endif    
     { NSXMLParserEntityNotStartedError, @"EntityNotStartedError" },
     { NSXMLParserEntityNotFinishedError, @"EntityNotFinishedError" },
@@ -194,7 +194,7 @@ FLErrorLookup s_lookup[] = {
     { NSXMLParserMisplacedCDATAEndStringError, @"MisplacedCDATAEndStringError" },
     { NSXMLParserCDATANotFinishedError, @"CDATANotFinishedError" },
 #if IOS
-    { NSXMLParserMisplacedXMLHeaderError, @"MisplacedXMLHeaderError" },
+//    { NSXMLParserMisplacedXMLHeaderError, @"MisplacedXMLHeaderError" },
 #endif
     { NSXMLParserSpaceRequiredError, @"SpaceRequiredError" },
     { NSXMLParserSeparatorRequiredError, @"SeparatorRequiredError" },

@@ -34,7 +34,7 @@ FLSynthesizeCachedObjectHandlerProperty(ZFCachedCategories);
 		
 		_subOperation = [[FLZenfolioApiSoapGetCategories alloc] initWithServerContext:[FLZenfolioApiSoap instance]];
 		
-		self.cache = [[self.context userStorageService].cacheDatabase;
+		self.cache = [[self.userContext userStorageService].cacheDatabase;
 		self.canLoadFromCache = YES;
 		self.canSaveToCache = YES;
 	}

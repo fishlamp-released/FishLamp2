@@ -7,6 +7,9 @@
 //
 
 #import "FishLampCocoa.h"
+
+#import "FLHttp.h"
+
 #import "FLUserLogin.h"
 #import "FLUserLogin+ZenfolioAdditions.h"
 
@@ -18,9 +21,10 @@
 #import "FLZenfolioPhotoSet+More.h"
 #import "FLZenfolioUploadGallery+More.h"
 
-
 #import "FLZenfolioHttpRequest.h"
-
+#import "FLZenfolioUserContext.h"
+#import "FLOperation+ZenfolioHttp.h"
+#import "FLZenfolioHttpRequestAuthenticator.h"
 
 // these are misspelled in WSDL declaration so are misspelled in generated code
 #define kZenfolioInformationLevelLevel1     kZenfolioInformatonLevelLevel1 

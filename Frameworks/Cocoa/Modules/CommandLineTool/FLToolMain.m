@@ -10,6 +10,7 @@
 #import "FLCommandLineTool.h"
 #import "NSString+Lists.h"
 
+#if OSX
 int FLToolMain(Class toolClass) {
 
 #if FL_MRC    
@@ -43,3 +44,5 @@ int FLToolMain(Class toolClass) {
     }
 #endif    
 }
+
+#endif

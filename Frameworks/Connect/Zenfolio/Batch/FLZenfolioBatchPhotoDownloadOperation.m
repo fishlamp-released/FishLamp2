@@ -7,6 +7,7 @@
 //
 
 #import "FishLampCocoa.h"
+#import "FLZenfolioWebApi.h"
 #import "FLZenfolioBatchPhotoDownloadOperation.h"
 #import "FLZenfolioUtilities.h"
 #import "FLAction.h"
@@ -118,7 +119,9 @@
     NSError* error = nil;
     [[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:&error];
     FLThrowError(error);
+#if OSX
     [[NSWorkspace sharedWorkspace] noteFileSystemChanged:path];
+#endif    
 }
 
 - (NSString*)uniquePathForEntry:(FLZenfolioGroupElement *)entry 
@@ -142,7 +145,8 @@
 }
 
 - (void)downloadPhoto:(FLZenfolioPhoto *)photo toFolder:(NSString *)folder {
-	if ( ![[photo Owner] isEqualToString:[self.context userLogin].userName]) { //     [[NSApp delegate] loginName]] ) 
+	
+    if ( ![[photo Owner] isEqualToString:[self.userContext userLogin].userName]) { //     [[NSApp delegate] loginName]] ) 
         return;	//	photo must be from logged-in user
 	}
 	
@@ -157,7 +161,8 @@
             NSTimeInterval startTimestamp = [NSDate timeIntervalSinceReferenceDate];
 
             FLZenfolioDownloadImageHttpRequest* downloader = [FLZenfolioDownloadImageHttpRequest downloadImageOperation:photo imageSize:[FLZenfolioImageSize originalImageSize]];
-            image = FLThrowError([downloader sendSynchronouslyInContext:self.context]);
+            image = FLThrowError([self sendHttpRequest:downloader]);
+//            [downloader sendSynchronouslyInContext:self.userContext]);
             
             //	photo was loaded; save the photo to file
             image.imageProperties.fileName = FLZenfolioUniquePath([folder stringByAppendingPathComponent:[photo FileName]]);
@@ -235,7 +240,7 @@
     _totalPhotoCount = [self.rootGroup selectedPhotoBytesInSelection:self.selection];
 
     @try {
-        [[self.context rootGroup] visitAllElements:^(FLZenfolioGroupElement* element, BOOL* stop) {
+        [[self.userContext rootGroup] visitAllElements:^(FLZenfolioGroupElement* element, BOOL* stop) {
             [self downloadEntry:element toFolder:[self destination]];
         }];
     }

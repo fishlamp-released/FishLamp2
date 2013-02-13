@@ -7,7 +7,7 @@
 //
 
 #import "FLZenfolioBatchMovePhotosOperation.h"
-#import "FLZenfolioCacheService.h"
+#import "FLZenfolioCache.h"
 
 @interface FLZenfolioBatchMovePhotosOperation ()
 @property (readwrite, strong, nonatomic) FLZenfolioPhotoSet* sourcePhotoSet;
@@ -59,15 +59,15 @@
 //        operation = [FLZenfolioHttpRequest addPhotoToCollectionOperation:photo collection:_destPhotoSet];
 //    }
 //    
-//    FLThrowError([operation runSynchronouslyInContext:self.context]);
+//    FLThrowError([operation runSynchronouslyInContext:self.userContext]);
 //
 //    _destPhotoSet.PhotoCountValue = _destPhotoSet.PhotoCountValue + 1;
 //    [_destPhotoSet addPhoto:photo];
-//    [[[self.context cacheService] cacheDatabase] saveObject:_destPhotoSet];
+//    [[[self.userContext objectCache] cacheDatabase] saveObject:_destPhotoSet];
 //    
 //    if(_parentPhotoSet && _parentPhotoSet.isGalleryElement) {
 //        [_parentPhotoSet removePhoto:photo forceCountDecrement:YES];
-//        [[[self.context cacheService] cacheDatabase] saveObject:_parentPhotoSet];
+//        [[[self.userContext objectCache] cacheDatabase] saveObject:_parentPhotoSet];
 //    }
 }
 

@@ -27,3 +27,5 @@
 
 @end
 
+typedef void (^FLBlock)();
+typedef void (^FLBlockWithError)(NSError* error);

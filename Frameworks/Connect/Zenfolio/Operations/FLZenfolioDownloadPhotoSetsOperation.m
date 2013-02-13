@@ -7,7 +7,7 @@
 //
 
 #import "FLZenfolioDownloadPhotoSetsOperation.h"
-#import "FLZenfolioHttpRequest.h"
+#import "FLZenfolioWebApi.h"
 
 @interface FLZenfolioDownloadPhotoSetsOperation ()
 @property (readwrite, strong) FLZenfolioGroup* group;
@@ -48,7 +48,9 @@
         }
         else {
             FLHttpRequest* request = [FLZenfolioHttpRequest loadPhotoSetHttpRequest:element.Id level:kZenfolioInformatonLevelFull includePhotos:NO];
-            FLZenfolioPhotoSet* set = [request sendSynchronouslyInContext:self.context];
+            
+            
+            FLZenfolioPhotoSet* set = [self sendHttpRequest:request];
             FLAssertNotNil_(set);
             
             [newList addObject:set];

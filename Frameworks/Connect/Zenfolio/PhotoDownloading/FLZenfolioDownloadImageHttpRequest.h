@@ -9,33 +9,26 @@
 
 #import "FLCachedObjectOperation.h"
 #import "FLZenfolioImageSize.h"
-#import "FLDownloadImageHttpRequest.H"
+#import "FLDownloadImageHttpRequest.h"
 #import "FLStorableImage.h"
+#import "FLZenfolioCache.h"
 
 @interface FLZenfolioDownloadImageHttpRequest : FLDownloadImageHttpRequest {
 @private
 	FLZenfolioPhoto* _photo;
 	FLZenfolioImageSize* _imageSize;
+    FLZenfolioCache* _cache;
 }
 
-- (id) initWithPhoto:(FLZenfolioPhoto*) photo imageSize:(FLZenfolioImageSize*) imageSize;
+- (id) initWithPhoto:(FLZenfolioPhoto*) photo 
+           imageSize:(FLZenfolioImageSize*) imageSize 
+               cache:(FLZenfolioCache*) cache;
 
-+ (FLZenfolioDownloadImageHttpRequest*) downloadImageOperation:(FLZenfolioPhoto*) photo imageSize:(FLZenfolioImageSize*) imageSize;
++ (FLZenfolioDownloadImageHttpRequest*) downloadImageOperation:(FLZenfolioPhoto*) photo 
+                                                     imageSize:(FLZenfolioImageSize*) imageSize
+                                                         cache:(FLZenfolioCache*) cache;
+
+// NOTE: successful result returns a FLStorableImage.
 
 @end
 
-@interface FLZenfolioLoadImageFromCacheOperation : FLCachedObjectOperation<FLCacheObjectOperationSubclass> {
-@private
-	FLZenfolioPhoto* _photo;
-	FLZenfolioImageSize* _imageSize;
-    NSURL* _imageURL;
-}
-
-@property (readonly, strong) FLZenfolioPhoto* photo;
-@property (readonly, strong) FLZenfolioImageSize* imageSize;
-
-- (id) initWithPhoto:(FLZenfolioPhoto*) photo imageSize:(FLZenfolioImageSize*) imageSize;
-
-+ (id) downloadImageOperation:(FLZenfolioPhoto*) photo imageSize:(FLZenfolioImageSize*) imageSize;
-
-@end

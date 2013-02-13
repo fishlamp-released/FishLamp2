@@ -6,7 +6,7 @@
 //  Copyright (c) 2011 Greentongue Software. All rights reserved.
 //
 
-#import "FLHttpRequest.h"
+#import "FLHttp.h"
 #import "FLZenfolioQueuedPhoto.h"
 #import "FLJpegFile.h"
 

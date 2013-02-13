@@ -11,16 +11,15 @@
 #import "FLOauthApp.h"
 #import "FLOAuthSession.h"
 #import "FLService.h"
+#import "FLObjectDataStore.h"
 
-@class FLDatabase;
 
 #define FLTwitterDefaultUserID [NSString zeroGuidString]
 
-@interface FLTwitterService : FLService {
+@interface FLTwitterService : FLDataStoreService {
 @private
     FLOAuthApp* _oauthInfo;
 	FLOAuthSession* _oauthSession;
-    FLDatabase* _database;
 }
 
 + (FLTwitterService*) twitterService;
@@ -31,3 +30,7 @@
 + (void) clearTwitterCookies;
 @end
 
+@protocol FLTwitterServiceOpener <NSObject>
+- (void) openTwitterService:(FLTwitterService*) service;
+- (void) closeTwitterService:(FLTwitterService*) service;
+@end

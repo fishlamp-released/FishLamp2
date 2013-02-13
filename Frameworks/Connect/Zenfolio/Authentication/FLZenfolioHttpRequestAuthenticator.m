@@ -12,9 +12,10 @@
 #import "FLReachableNetwork.h"
 #import "FLTraceOn.h"
 
-#import "FLZenfolioHttpRequest.h"
+#import "FLZenfolioWebApi.h"
 #import "FLUserLogin+ZenfolioAdditions.h"
 #import "FLZenfolioErrors.h"
+#import "FLZenfolioUserContext.h"
 
 @implementation FLHttpRequest (ZenAuth)
 
@@ -26,7 +27,21 @@
 
 @implementation FLZenfolioHttpRequestAuthenticator
 
-- (void) authenticateHttpRequest:(FLHttpRequest*) httpRequest 
+@synthesize userContext = _userContext;
+
+- (id) initWithUserContext:(FLZenfolioUserContext*) userContext {
+    self = [super init];
+    if(self) {
+        _userContext = userContext;
+    }
+    return self;
+}
+
++ (id) httpRequestAuthenticator:(FLZenfolioUserContext*) userContext {
+    return FLAutorelease([[[self class] alloc] initWithUserContext:userContext]);
+}
+
+- (void) httpRequestAuthenticateSynchronously:(FLHttpRequest*) httpRequest 
            withAuthenticatedUser:(FLUserLogin*) userLogin {
     [httpRequest setAuthenticationToken:userLogin.authToken];
 }       
@@ -63,9 +78,9 @@
 - (FLResult) sendAuthenticatedRequest:(FLHttpRequest*) request 
                             userLogin:(FLUserLogin*) userLogin {
 
-    request.authenticationDisabled = YES;
     [request setAuthenticationToken:userLogin.authToken];
-    FLResult result = [request sendSynchronouslyInContext:self.context];
+
+    FLResult result = [self sendHttpRequest:request];
     FLAssertNotNil_(result);
     return result;
 }
@@ -81,7 +96,9 @@
         return NO;
     }
 
-#if IOS
+#if REFACTOR
+
+// if IOS
     int rootGroupId = userLogin.userValueValue; // YUCK. 
 
     if(rootGroupId == 0) {
@@ -113,21 +130,24 @@
                            localizedDescription:NSLocalizedString(@"Password is incorrect", nil)]);
     }
     
-    FLUserLogin* authenticatedUser = [[FLZenfolioAuthenticator userAuthenticator:userLogin] runSynchronouslyInContext:self.context];
+    FLZenfolioAuthenticator* authenticator = [FLZenfolioAuthenticator userAuthenticator:userLogin];
+    [self.userContext addObject:authenticator];
+    
+    FLUserLogin* authenticatedUser = [authenticator runSynchronously];
     
     FLZenfolioUser* privateProfile = [self sendAuthenticatedRequest:[FLZenfolioHttpRequest loadPrivateProfileHttpRequest] 
-                                                  userLogin:authenticatedUser];
+                                                          userLogin:authenticatedUser];
     
     FLZenfolioUser* publicProfile =  [self sendAuthenticatedRequest:[FLZenfolioHttpRequest loadPublicProfileHttpRequest:userLogin.userName] 
-                                                  userLogin:authenticatedUser];
+                                                          userLogin:authenticatedUser];
     
     NSNumber* videoBool =  [self sendAuthenticatedRequest:[FLZenfolioHttpRequest checkPrivilegeHttpRequest:authenticatedUser.userName
-                                                                                     privilegeName:FLZenfolioVideoPrivilege] 
-                                                  userLogin:authenticatedUser];
-                                                  
+                                                                                             privilegeName:FLZenfolioVideoPrivilege] 
+                                                userLogin:authenticatedUser];
+    
 
     NSNumber* scrapbookBool =  [self sendAuthenticatedRequest:[FLZenfolioHttpRequest checkPrivilegeHttpRequest:authenticatedUser.userName
-                                                                                         privilegeName:FLZenfolioScrapbookPrivilege] 
+                                                                                                 privilegeName:FLZenfolioScrapbookPrivilege] 
                                                     userLogin:authenticatedUser];
 
 
@@ -155,7 +175,7 @@
 - (FLUserLogin*) synchronouslyAuthenticateUser:(FLUserLogin*) userLogin {
     FLTrace(@"Authenticating %@:", userLogin.userName );
     FLHttpRequest* httpRequest = [FLZenfolioHttpRequest authenticateVisitorHttpRequest];
-    NSString* token = FLThrowError([httpRequest sendSynchronouslyInContext:self]);
+    NSString* token = FLThrowError([self sendHttpRequest:httpRequest]);
     userLogin.authTokenLastUpdateTimeValue = [NSDate timeIntervalSinceReferenceDate];
     userLogin.authToken = token;
     return userLogin;

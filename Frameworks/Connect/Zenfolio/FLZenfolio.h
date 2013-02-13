@@ -9,12 +9,10 @@
 
 #import "FLZenfolioErrors.h"
 
-#import "FLZenfolioHttpRequest.h"
 #import "FLZenfolioWebApi.h"
-#import "FLZenfolioHttpRequest.h"
 
-#import "NSFont+ZenfolioAdditions.h"
-#import "NSColor+ZenfolioAdditions.h"
+#import "UIFont+ZenfolioAdditions.h"
+#import "UIColor+ZenfolioAdditions.h"
 
 #import "FLUserLogin.h"
 #import "FLUserLogin+ZenfolioAdditions.h"

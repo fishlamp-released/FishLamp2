@@ -6,6 +6,7 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 #import "FLZenfolioHttpRequest.h"
+#import "FLZenfolioWebApi.h"
 
 @implementation FLZenfolioHttpRequest
 
@@ -38,8 +39,8 @@ static Class s_factoryClass = nil;
     return [s_factoryClass challengeHttpRequest:loginName];
 }
 
-+ (FLHttpRequest*) authenticateHttpRequest:(NSData*) challenge proof:(NSData*) proof {
-    return [s_factoryClass authenticateHttpRequest:challenge proof:proof];
++ (FLHttpRequest*) httpRequestAuthenticateSynchronously:(NSData*) challenge proof:(NSData*) proof {
+    return [s_factoryClass httpRequestAuthenticateSynchronously:challenge proof:proof];
 }
 
 + (FLHttpRequest*) loadPrivateProfileHttpRequest {

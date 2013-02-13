@@ -13,7 +13,7 @@
 @property (readwrite, strong) NSString* remoteHost;
 @property (readwrite, strong) FLReadStream* readStream;
 @property (readwrite, strong) FLWriteStream* writeStream;
-@property (readwrite, strong) FLDispatchQueue* dispatchQueue;
+@property (readwrite, strong) FLGcdDispatcher* dispatchQueue;
 @property (readwrite, assign, getter=wasTerminated) BOOL terminate;
 
 - (void) updateRequestQueue;
@@ -37,7 +37,7 @@
         _additions = [[NSMutableArray alloc] init];
         
         static int s_count = 0;
-        _dispatchQueue = [[FLDispatchQueue alloc] initWithLabel:[NSString stringWithFormat:@"com.fishlamp.queue.tcp-stream-%d", ++s_count] 
+        _dispatchQueue = [[FLGcdDispatcher alloc] initWithLabel:[NSString stringWithFormat:@"com.fishlamp.queue.tcp-stream-%d", ++s_count] 
             attr:DISPATCH_QUEUE_SERIAL];
  
     }

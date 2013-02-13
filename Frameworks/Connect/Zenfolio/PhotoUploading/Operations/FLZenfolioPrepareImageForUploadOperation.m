@@ -48,8 +48,9 @@
 {
 	if(_photo.scaledUploadSizeValue != kUploadOriginalSize)
 	{
-    
-#if IOS
+  
+#if REFACTOR      
+//#if IOS
 
 FIXME("needs to be abstracted for mac, etc..")
 
@@ -62,7 +63,7 @@ FIXME("needs to be abstracted for mac, etc..")
 			}
 			
 			FLJpegFile* uploadFile = FLAutorelease([[FLJpegFile alloc] initWithJpegData:nil 
-				folder:[self.context userStorageService].tempFolder 
+				folder:[self.userContext userStorageService].tempFolder 
 				fileName:CreateNewUploadFileName()] );
 			[[FLTempFileMgr instance] addFile:uploadFile];
             
@@ -103,7 +104,7 @@ FIXME("needs to be abstracted for mac, etc..")
 
 //    FLAssertIsNotNil_(_photo);
 //
-//    FLJpegFile* imageFile = [_photo.imageAsset.original createTempFileForStreamingInFolder:[[self.context userStorageService] tempFolder]
+//    FLJpegFile* imageFile = [_photo.imageAsset.original createTempFileForStreamingInFolder:[[self.userContext userStorageService] tempFolder]
 //        fileName:CreateNewUploadFileName()
 //        ];
 //		

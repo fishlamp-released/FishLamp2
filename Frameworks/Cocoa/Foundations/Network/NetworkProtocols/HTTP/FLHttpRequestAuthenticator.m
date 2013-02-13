@@ -9,25 +9,31 @@
 #import "FLHttpRequestAuthenticator.h"
 #import "FLHttpRequest.h"
 #import "FLReachableNetwork.h"
+#import "FLDispatch.h"
 
 @interface FLHttpRequestAuthenticator ()
 @end
 
 @implementation FLHttpRequestAuthenticator
+
 @synthesize userLogin = _userLogin;
 @synthesize lastAuthenticationTimestamp = _lastAuthenticationTimestamp;
 @synthesize timeoutInterval = _timeoutInterval;
+@synthesize httpRequestAuthenticationDispatcher = _requestAuthenticationDispatcher;
 
 - (id) initWithContext:(id) context authenticationTimeout:(NSTimeInterval) timeoutInterval {
     self = [super init];
     if(self) {
         _timeoutInterval = timeoutInterval;
+        
+        self.httpRequestAuthenticationDispatcher = [FLGcdDispatcher sharedFifoQueue];
     }
     return self;
 }
 
 #if FL_MRC
 - (void) dealloc {
+    [_requestAuthenticationDispatcher release];
     [_userLogin release];
     [super dealloc];
 }
@@ -38,7 +44,7 @@
     [self resetAuthenticationTimestamp];
 }
 
-- (void) authenticateHttpRequest:(FLHttpRequest*) request 
+- (void) httpRequestAuthenticateSynchronously:(FLHttpRequest*) request 
            withAuthenticatedUser:(FLUserLogin*) userLogin {
 }           
 
@@ -61,7 +67,7 @@
 	return ![self userLoginIsAuthenticated:userLogin];
 }
 
-- (void) authenticateHttpRequest:(FLHttpRequest*) httpRequest {
+- (void) httpRequestAuthenticateSynchronously:(FLHttpRequest*) httpRequest {
     FLUserLogin* userLogin = self.userLogin;
     if([self shouldAuthenticateUser:userLogin]) {
         [self resetAuthenticationTimestamp];
@@ -71,7 +77,7 @@
 
         [self touchAuthenticationTimestamp];
     }
-    [self authenticateHttpRequest:httpRequest withAuthenticatedUser:userLogin];
+    [self httpRequestAuthenticateSynchronously:httpRequest withAuthenticatedUser:userLogin];
 }
 
 - (BOOL) isAuthenticated {
@@ -84,6 +90,10 @@
 
 - (void) resetAuthenticationTimestamp {
 	_lastAuthenticationTimestamp = 0;
+}
+
+- (id<FLDispatcher>) httpRequestAuthenticationDispatcher:(FLHttpRequest*) httpRequest {
+    return self.httpRequestAuthenticationDispatcher;
 }
 
 @end

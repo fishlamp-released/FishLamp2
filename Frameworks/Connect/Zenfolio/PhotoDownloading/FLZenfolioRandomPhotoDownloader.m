@@ -8,6 +8,7 @@
 #if REFACTOR
 
 #import "FLZenfolioRandomPhotoDownloader.h"
+#import "FLZenfolioWebApi.h"
 
 #import "FLZenfolioSyncService.h"
 
@@ -117,9 +118,9 @@
     FLZenfolioDownloadImageHttpRequest* loadPhotoHttpRequest = FLAutorelease([[FLZenfolioDownloadImageHttpRequest alloc] initWithPhoto:photo 
         photoSize:kImageDownloadSize]);
     
-    FLZenfolioLoadImageFromCacheOperation* operation = FLAutorelease([[FLZenfolioLoadImageFromCacheOperation alloc] initWithSubOperation:loadPhotoHttpRequest]);
+    FLZenfolioDownloadHttpImageOperation* operation = FLAutorelease([[FLZenfolioDownloadHttpImageOperation alloc] initWithSubOperation:loadPhotoHttpRequest]);
     
-    operation.cache = [[self.context userStorageService].cacheDatabase;
+    operation.cache = [[self.userContext userStorageService].cacheDatabase;
     operation.canLoadFromCache = YES;
     operation.canSaveToCache = YES;
     [action addOperation:operation];
@@ -166,7 +167,7 @@
             }
             else
             {
-                FLZenfolioPhotoSet* photoSet = [[[self.context photoSetStorage] loadPhotoSetWithID:subElement.IdValue];
+                FLZenfolioPhotoSet* photoSet = [[[self.userContext photoSetStorage] loadPhotoSetWithID:subElement.IdValue];
                 if(photoSet)
                 {
                     if(photoSet.PhotoCountValue == 0)
@@ -266,7 +267,7 @@
     loadGroup.input.includeChildrenValue = YES;
     
     FLZenfolioLoadGroupFromCacheOperation* operation = FLAutorelease([[FLZenfolioLoadGroupFromCacheOperation alloc] initWithSubOperation:loadGroup]);
-    operation.cache = [[self.context userStorageService].cacheDatabase;
+    operation.cache = [[self.userContext userStorageService].cacheDatabase;
     operation.canLoadFromCache = YES;
     operation.canSaveToCache = YES;
  
@@ -294,7 +295,7 @@
 
     
     FLZenfolioLoadPhotoSetFromCacheOperation* operation = FLAutorelease([[FLZenfolioLoadPhotoSetFromCacheOperation alloc] initWithSubOperation:loadPhotoSet]);
-    operation.cache = [[self.context userStorageService].cacheDatabase;
+    operation.cache = [[self.userContext userStorageService].cacheDatabase;
     operation.canLoadFromCache = YES;
     operation.canSaveToCache = YES;
     [action addOperation:operation];

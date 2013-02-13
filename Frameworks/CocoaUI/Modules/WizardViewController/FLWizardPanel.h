@@ -5,7 +5,7 @@
 //  Created by Mike Fullerton on 12/7/12.
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
-
+#if OSX
 
 #import "FLCocoaUIRequired.h"
 #import "FLWizardViewController.h"
@@ -36,3 +36,4 @@
 @end
 
 
+#endif

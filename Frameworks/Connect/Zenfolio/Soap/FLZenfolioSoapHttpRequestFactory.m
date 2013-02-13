@@ -62,14 +62,10 @@
     soapHttpRequest.responseDecoder = ^(id response) {
         return [response valueForKey:outputName];
     };
-//    soapHttpRequest.requestContext = self.context.requestContext;
-//    soapHttpRequest.userContext = self.context;
+
     return soapHttpRequest;
 }
 
-//+ (id) loginOperation {
-//    return [FLZenfolioLoginHttpRequest loginHttpRequest:[self.context userLogin]];
-//}
 
 + (FLHttpRequest*) loadPhotoSetHttpRequest:(NSNumber*) photoSetID
                                  level:(NSString*) level
@@ -92,7 +88,7 @@
     return httpRequest;
 }
 
-+ (FLHttpRequest*) authenticateHttpRequest:(NSData*) challenge proof:(NSData*) proof  {
++ (FLHttpRequest*) httpRequestAuthenticateSynchronously:(NSData*) challenge proof:(NSData*) proof  {
     FLSoapHttpRequest* authenticate = FLZenfolioSoapHttpRequestFrom(FLZenfolioApiSoapAuthenticate, AuthenticateResult);
     [authenticate.soapRequest setChallenge:challenge];
     [authenticate.soapRequest setProof:proof];

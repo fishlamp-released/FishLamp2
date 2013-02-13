@@ -6,9 +6,11 @@
 //  Copyright 2007 GreenTongue Software, LLC.. All rights reserved.
 //
 
-#import "FLZenfolioWebApi.h"
 #import "FLOperation.h"
 #import "FLZenfolioGroupElementSelection.h"
+@class FLZenfolioPhotoSet;
+@class FLZenfolioPhoto;
+@class FLZenfolioGroup;
 
 @interface FLZenfolioBatchPhotoDownloadOperation : FLOperation {
 @private

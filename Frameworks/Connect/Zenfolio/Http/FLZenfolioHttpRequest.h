@@ -7,7 +7,7 @@
 //
 
 #import "FishLampCocoa.h"
-#import "FLHttpRequest.h"
+#import "FLHttp.h"
 
 @class FLZenfolioPhotoSet;
 @class FLZenfolioGroup;
@@ -23,7 +23,7 @@
 
 + (FLHttpRequest*) challengeHttpRequest:(NSString*) loginName;
 
-+ (FLHttpRequest*) authenticateHttpRequest:(NSData*) challenge proof:(NSData*) proof;
++ (FLHttpRequest*) httpRequestAuthenticateSynchronously:(NSData*) challenge proof:(NSData*) proof;
 
 + (FLHttpRequest*) loadPrivateProfileHttpRequest;
 

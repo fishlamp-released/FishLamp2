@@ -10,22 +10,18 @@
 
 #import "FLBase64Encoding.h"
 #import "FLZenfolioErrors.h"
-#import "FLUserLogin+ZenfolioAdditions.h"
 #import "FLFrameworkErrorDomain.h"
 #import "FLObjectDescriber.h" // for merge objects
-#import "FLHttpRequest.h"
-#import "FLZenfolioHttpRequest.h"
-#import "FLZenfolioUser.h"
-#import "FLUserLogin.h"
-#import "FLZenfolioHttpRequest.h"
+#import "FLZenfolioWebApi.h"
 
 @implementation FLZenfolioAuthenticator
 
 - (FLZenfolioAuthChallenge*) sendChallengeRequest {
     FLHttpRequest* challengeRequest = [FLZenfolioHttpRequest challengeHttpRequest:self.userLogin.userName];
-    challengeRequest.authenticationDisabled = YES;
     
-    return [challengeRequest sendSynchronouslyInContext:self.context];
+    [self.context addObject:challengeRequest];
+    
+    return [challengeRequest sendSynchronously];
 }
 
 - (NSString*) sendAuthenticateRequestWithChallenge:(FLZenfolioAuthChallenge*) challenge {
@@ -62,10 +58,8 @@
 
 	NSData* encodedChallenge = [decodedChallenge base64Encode];
     
-    FLHttpRequest* authRequest = [FLZenfolioHttpRequest  authenticateHttpRequest:encodedChallenge proof:encodedProof];
-    authRequest.authenticationDisabled = YES;
-
-    return [authRequest sendSynchronouslyInContext:self.context];
+    FLHttpRequest* authRequest = [FLZenfolioHttpRequest  httpRequestAuthenticateSynchronously:encodedChallenge proof:encodedProof];
+    return [authRequest sendSynchronously];
 }
 
 - (FLResult) runOperation  {

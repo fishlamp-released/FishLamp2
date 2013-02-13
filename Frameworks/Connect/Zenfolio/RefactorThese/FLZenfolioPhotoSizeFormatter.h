@@ -6,8 +6,7 @@
 //  Copyright 2007 GreenTongue Software, LLC.. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
-
+#import "FishLampCocoa.h"
 
 /*!
     @header		FLZenfolioPhotoSizeFormatter

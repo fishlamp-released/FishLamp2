@@ -7,38 +7,48 @@
 //
 
 #import "FishLampCocoa.h"
-#import "FLImageCacheService.h"
+#import "FLImageCache.h"
 
 #import "FLStorableImage+ZenfolioCache.h"
 #import "FLZenfolioDownloadImageHttpRequest.h"
 //#import "FLZenfolioImageDownloadingService.h"
+#import "FLZenfolioWebApi.h"
 
 @interface FLZenfolioDownloadImageHttpRequest ()
-@property (readwrite, strong) FLZenfolioPhoto* photo;
-@property (readwrite, strong) FLZenfolioImageSize* imageSize;
+@property (readwrite, strong, nonatomic) FLZenfolioPhoto* photo;
+@property (readwrite, strong, nonatomic) FLZenfolioImageSize* imageSize;
+@property (readwrite, strong, nonatomic) FLZenfolioCache* cache;
 @end
 
 @implementation FLZenfolioDownloadImageHttpRequest
 
 @synthesize photo = _photo;
 @synthesize imageSize = _imageSize;
+@synthesize cache = _cache;
 
-- (id) initWithPhoto:(FLZenfolioPhoto*) photo imageSize:(FLZenfolioImageSize*) imageSize {
+- (id) initWithPhoto:(FLZenfolioPhoto*) photo 
+           imageSize:(FLZenfolioImageSize*) imageSize 
+               cache:(FLZenfolioCache*) cache {
+               
 	self = [self initWithRequestURL:[_photo urlForImageWithSize:_imageSize]];
 	if(self) {
         self.imageSize = imageSize;
 		self.photo = photo;
+        self.cache = cache;
 	}
 	
 	return self;
 }
 
-+ (FLZenfolioDownloadImageHttpRequest*) downloadImageOperation:(FLZenfolioPhoto*) photo  imageSize:(FLZenfolioImageSize*) imageSize{
-    return FLAutorelease([[FLZenfolioDownloadImageHttpRequest alloc] initWithPhoto:photo  imageSize:imageSize]);
++ (FLZenfolioDownloadImageHttpRequest*) downloadImageOperation:(FLZenfolioPhoto*) photo 
+                                                     imageSize:(FLZenfolioImageSize*) imageSize
+                                                         cache:(FLZenfolioCache*) cache {
+    return FLAutorelease([[FLZenfolioDownloadImageHttpRequest alloc] initWithPhoto:photo  imageSize:imageSize cache:cache]);
 }
 
 #if FL_MRC
 - (void) dealloc {
+    [_cache release];
     [_photo release];
     [_imageSize release];
     [super dealloc];
@@ -48,68 +58,26 @@
 - (id) didReceiveHttpResponse:(FLHttpResponse*) httpResponse {
     FLStorableImage* image = [super didReceiveHttpResponse:httpResponse];
     image.imageProperties.imageVersion = self.photo.Sequence;
+    
+    if(self.cache) {
+        [self.cache writeObject:image];
+    }
+    
     return image;
 }
 
-@end
-
-@interface FLZenfolioLoadImageFromCacheOperation ()
-
-@property (readwrite, strong) FLZenfolioPhoto* photo;
-@property (readwrite, strong) FLZenfolioImageSize* imageSize;
-@property (readwrite, strong) NSURL* imageURL;
-@end
-
-@implementation FLZenfolioLoadImageFromCacheOperation
-
-@synthesize photo = _photo;
-@synthesize imageSize = _imageSize;
-@synthesize imageURL = _imageURL;
-
-- (id) initWithPhoto:(FLZenfolioPhoto*) photo imageSize:(FLZenfolioImageSize*) imageSize {
-	
-    self = [super init];
-	if(self) {
-        self.imageSize = imageSize;
-		self.photo = photo;
-        self.imageURL = [photo urlForImageWithSize:imageSize];
-    }
-	
-	return self;
-}
-
-- (id) loadObjectFromDatabase {
-    FLStorableImage* image = [[self.context imageCacheService] readImageWithURLKey:self.imageURL];
-    if(image) {
-        self.alwaysRunSubOperations = image && [image isStaleComparedToPhotoSequenceNumber:self.photo.Sequence];
-    }
-   
-    return image;
-}
-
-- (void) saveObjectToDatabase:(id) object {
-    [[self.context imageCacheService] updateImage:object];
-}
-
-- (FLResult) runSubOperations {
+- (void) startWorking:(FLFinisher*) observer {
     
-    FLZenfolioDownloadImageHttpRequest* request = 
-        [FLZenfolioDownloadImageHttpRequest downloadImageOperation:self.photo imageSize:self.imageSize];
-    
-    return [request sendSynchronouslyInContext:self.context];
+    if(self.cache) {
+        FLStorableImage* image = [self.cache loadCachedImageForPhoto:self.photo imageSize:self.imageSize];
+        if(image || [image isStaleComparedToPhotoSequenceNumber:self.photo.Sequence]) {
+            [super startWorking:observer];
+        }
+        else {
+            [observer setFinishedWithResult:image];
+        }
+    }
 }
-
-+ (id) downloadImageOperation:(FLZenfolioPhoto*) photo  imageSize:(FLZenfolioImageSize*) imageSize {
-    return FLAutorelease([[FLZenfolioLoadImageFromCacheOperation alloc] initWithPhoto:photo  imageSize:imageSize]);
-}
-
-#if FL_MRC
-- (void) dealloc {
-    [_imageURL release];
-    [_photo release];
-    [_imageSize release];
-    [super dealloc];
-}
-#endif
 
 @end
+

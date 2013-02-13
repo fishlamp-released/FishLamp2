@@ -8,18 +8,18 @@
 
 #import "FLZenfolioLoadAllUserInfoForAuthenticatedUserOperation.h"
 #import "FLObjectDescriber.h"
-#import "FLZenfolioCacheService.h"
-#import "FLZenfolioHttpRequest.h"
+#import "FLZenfolioCache.h"
+#import "FLZenfolioWebApi.h"
 
 @implementation FLZenfolioLoadAllUserInfoForAuthenticatedUserOperation
 
 - (FLResult) runSubOperations {
 
     FLHttpRequest* loadPrivate = [FLZenfolioHttpRequest loadPrivateProfileHttpRequest];
-    FLZenfolioUser* privateUser = FLConfirmResultType([loadPrivate sendSynchronouslyInContext:self.context], FLZenfolioUser);
+    FLZenfolioUser* privateUser = FLConfirmResultType([self sendHttpRequest:loadPrivate], FLZenfolioUser);
     
     FLHttpRequest* loadPublic = [FLZenfolioHttpRequest loadPublicProfileHttpRequest:privateUser.LoginName];
-    FLZenfolioUser* publicUser = FLConfirmResultType([loadPublic sendSynchronouslyInContext:self.context], FLZenfolioUser);
+    FLZenfolioUser* publicUser = FLConfirmResultType([self sendHttpRequest:loadPublic], FLZenfolioUser);
     
     FLMergeObjects(privateUser, publicUser, FLMergeModePreserveDestination);
 
@@ -29,13 +29,13 @@
 
 - (id) loadObjectFromDatabase {
     FLZenfolioUser* inputUser = [FLZenfolioUser user];
-    inputUser.LoginName = [[self context] userLogin].userName;
+    inputUser.LoginName = [self.userContext userLogin].userName;
     
-    return [[self.context cacheService] readObject:inputUser];
+    return [[self.userContext objectCache] readObject:inputUser];
 }
 
 - (void) saveObjectToDatabase:(id) object {
-    [[self.context cacheService] updateObject:object];
+    [[self.userContext objectCache] writeObject:object];
 }
 
 @end

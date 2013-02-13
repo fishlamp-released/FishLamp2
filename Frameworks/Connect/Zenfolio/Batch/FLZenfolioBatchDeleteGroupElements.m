@@ -37,7 +37,7 @@
 			[parentGroup saveInCache];
 		}
 	
-		[[[self.context userStorageService].cacheDatabase deleteObject:groupElement];
+		[[[self.userContext userStorageService].cacheDatabase deleteObject:groupElement];
 	}
 }
 

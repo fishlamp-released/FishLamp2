@@ -35,11 +35,11 @@
 //@interface FLObserver : NSObject {
 //@private
 //    dispatch_block_t _willStart;
-//    FLFinisherResultBlock _didFinish;
+//    FLBlockWithResult _didFinish;
 //}
 //
 //@property (readwrite, strong) dispatch_block_t willStart;
-//@property (readwrite, strong) FLFinisherResultBlock didFinish;
+//@property (readwrite, strong) FLBlockWithResult didFinish;
 //
 //@end
 

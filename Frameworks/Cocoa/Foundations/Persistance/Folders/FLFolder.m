@@ -8,7 +8,6 @@
 
 #import "FLFolder.h"
 #import "NSFileManager+FLExtras.h"
-#import "FLBlocks.h"
 
 @interface FLFolder ()
 @property (readwrite, strong) NSString* folderPath;

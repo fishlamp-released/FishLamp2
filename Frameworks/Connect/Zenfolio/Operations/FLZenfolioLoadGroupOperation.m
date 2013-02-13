@@ -8,6 +8,7 @@
 
 #import "FLZenfolioLoadGroupOperation.h"
 #import "FLZenfolioLoadGroupsFromCacheOperation.h"
+#import "FLZenfolioWebApi.h"
 
 @implementation FLZenfolioLoadGroupOperation
 
@@ -18,7 +19,7 @@
 //		[[FLZenfolioLoadGroupsFromCacheOperation alloc] initWithGroupId:groupId.intValue];
 ////			level:kZenfolioInformatonLevelFull
 ////			includeChildren:YES];
-//	operation.cache = [[self.context userStorageService].cacheDatabase;
+//	operation.cache = [[self.userContext userStorageService].cacheDatabase;
 //	operation.canLoadFromCache = YES;
 //	operation.canSaveToCache = YES;
 //	operation.alwaysRunSubOperations = YES;	 

@@ -19,7 +19,7 @@
 #import "FLDatabaseErrors.h"
 #import "FLDatabaseColumnDecoder.h"
 #import "FLDatabaseStatement.h"
-#import "FLDispatchQueue.h"
+#import "FLGcdDispatcher.h"
 #import "FLFinisher.h"
 
 @interface FLDatabase : NSObject {
@@ -28,7 +28,7 @@
 	NSString* _filePath;
 	NSMutableDictionary* _tables;
 	FLDatabaseColumnDecoder _columnDecoder;
-    FLDispatchQueue* _dispatchQueue;
+    FLGcdDispatcher* _dispatchQueue;
     BOOL _isOpen;
 }
 
@@ -89,7 +89,7 @@
 
 - (FLResult) dispatchBlock:(dispatch_block_t) block;
 - (FLResult) dispatchFifoBlock:(dispatch_block_t) block;
-@property (readonly, strong) FLDispatchQueue* dispatchQueue;
+@property (readonly, strong) FLGcdDispatcher* dispatchQueue;
 
 @end
 

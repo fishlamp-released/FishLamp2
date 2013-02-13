@@ -12,20 +12,22 @@
 @implementation FLHttpUserContext 
 
 @synthesize httpRequestAuthenticator = _httpRequestAuthenticator;
+@synthesize asyncDispatcher = _asyncDispatcher;
+@synthesize serviceManager = _serviceManager;
 
 - (id) init {
     self = [super init];
     if(self) {
-        _httpRequestQueue = [[FLFifoDispatchQueue alloc] init];
-        _objects = [[FLDispatchedObjectCollection alloc] init];
+        _asyncDispatcher = [[FLFifoGcdDispatcher alloc] init];
+        _serviceManager = [[FLServiceManager alloc] init];
       }
     return self;
 }
 
 #if FL_MRC
 - (void) dealloc {  
-    [_objects release];
-    [_httpRequestQueue release];
+    [_serviceManager release];
+    [_asyncDispatcher release];
     [_httpRequestAuthenticator release];
     [super dealloc];
 }
@@ -43,36 +45,8 @@
     return self.httpRequestAuthenticator.isAuthenticated;
 }
 
-- (void) requestCancel {
-    [_objects requestCancel];
-}
-
-- (id<FLDispatcher>) httpRequestFifoDispatcher:(FLHttpRequest*) request {
-    return _httpRequestQueue;
-}
-
 - (id<FLHttpRequestAuthenticator>) httpRequestAuthenticator:(FLHttpRequest*) request {
     return _httpRequestAuthenticator;
-}
-
-- (id<FLDispatcher>) operationDispatcher:(FLOperation*) operation {
-    return [FLDispatchQueue sharedDefaultQueue];
-}
-
-- (void) operationDidStart:(FLOperation*) operation {
-    [_objects addObject:operation];
-}
-
-- (void) operationDidFinish:(FLOperation*) operation {
-    [_objects removeObject:operation];
-}
-
-- (void) httpRequestDidStart:(FLHttpRequest*) request {
-    [_objects addObject:request];
-}
-
-- (void) httpRequestDidFinish:(FLHttpRequest*) request {
-    [_objects removeObject:request];
 }
 
 - (void) logoutUser {

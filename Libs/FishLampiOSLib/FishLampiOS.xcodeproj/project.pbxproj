@@ -661,6 +661,8 @@
 		27CA44E61677E5FD008D64BE /* FLTwoImageWidget.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA42541677E5FD008D64BE /* FLTwoImageWidget.m */; };
 		27CA44E71677E5FD008D64BE /* FLVerticalDragBarWidget.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA42561677E5FD008D64BE /* FLVerticalDragBarWidget.m */; };
 		27CA44E81677E5FD008D64BE /* FLVerticalDragBarWidget.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA42561677E5FD008D64BE /* FLVerticalDragBarWidget.m */; };
+		27EE26A716CB06DD00E4CC98 /* FLHttpRequestHeaders+iOS.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EE26A616CB06DD00E4CC98 /* FLHttpRequestHeaders+iOS.m */; };
+		27EE26A816CB06DD00E4CC98 /* FLHttpRequestHeaders+iOS.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EE26A616CB06DD00E4CC98 /* FLHttpRequestHeaders+iOS.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -1394,6 +1396,8 @@
 		27D1E5BF166D34DE00DB680E /* FishLampTargetSettings-OSX-64-ARC.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "FishLampTargetSettings-OSX-64-ARC.xcconfig"; sourceTree = "<group>"; };
 		27D1E5C0166D34DE00DB680E /* FishLampTargetSettings-OSX-64.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "FishLampTargetSettings-OSX-64.xcconfig"; sourceTree = "<group>"; };
 		27D1E5C1166D355C00DB680E /* FishLampCocoa-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FishLampCocoa-Prefix.pch"; sourceTree = "<group>"; };
+		27EE26A516CB06DD00E4CC98 /* FLHttpRequestHeaders+iOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FLHttpRequestHeaders+iOS.h"; sourceTree = "<group>"; };
+		27EE26A616CB06DD00E4CC98 /* FLHttpRequestHeaders+iOS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FLHttpRequestHeaders+iOS.m"; sourceTree = "<group>"; };
 		27EF7B38165A9C1E00EB7949 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		27EF7B39165A9C1E00EB7949 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		27EF7B3A165A9C1E00EB7949 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -2159,6 +2163,8 @@
 				27CA40B31677E5FD008D64BE /* FLNetworkConnectionIdleObserver.m */,
 				27CA40B41677E5FD008D64BE /* FLNetworkModuleiOS.h */,
 				27CA40B51677E5FD008D64BE /* FLNetworkModuleiOS.m */,
+				27EE26A516CB06DD00E4CC98 /* FLHttpRequestHeaders+iOS.h */,
+				27EE26A616CB06DD00E4CC98 /* FLHttpRequestHeaders+iOS.m */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -3343,6 +3349,7 @@
 				27CA44E61677E5FD008D64BE /* FLTwoImageWidget.m in Sources */,
 				27CA44E81677E5FD008D64BE /* FLVerticalDragBarWidget.m in Sources */,
 				2731CCA31695FD1D00465E6C /* FLWidget+FLiOSWidget.m in Sources */,
+				27EE26A816CB06DD00E4CC98 /* FLHttpRequestHeaders+iOS.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3677,6 +3684,7 @@
 				27CA44E51677E5FD008D64BE /* FLTwoImageWidget.m in Sources */,
 				27CA44E71677E5FD008D64BE /* FLVerticalDragBarWidget.m in Sources */,
 				2731CCA21695FD1D00465E6C /* FLWidget+FLiOSWidget.m in Sources */,
+				27EE26A716CB06DD00E4CC98 /* FLHttpRequestHeaders+iOS.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

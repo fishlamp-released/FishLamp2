@@ -9,7 +9,7 @@
 #import "FishLampCocoa.h"
 #import "FLWizardPanel.h"
 #import "FLWizardViewController.h"
-
+#if OSX
 @protocol FLLoginWizardPanelDelegate;
 
 @interface FLLoginWizardPanel : FLWizardPanel<NSControlTextEditingDelegate> {
@@ -52,3 +52,4 @@
 @end
 
 
+#endif

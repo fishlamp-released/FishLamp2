@@ -8,14 +8,15 @@
 
 #import "FLCachedObjectOperation.h"
 
-@interface FLZenfolioLoadPhotoSetFromCacheOperation : FLCachedObjectOperation<FLCacheObjectOperationSubclass> {
-@private
-    int _photoSetID;
-    int _textCn;
-    int _photoListCn;
-}
-- (id) initWithPhotoSetId:(int) photoSetId
-                   textCn:(int) textCn
-              photoListCn:(int) photoListCn;
+//@interface FLZenfolioLoadPhotoSetFromCacheOperation : FLCachedObjectOperation<FLCacheObjectOperationSubclass> {
+//@private
+//    int _photoSetID;
+//    int _textCn;
+//    int _photoListCn;
+//}
+//- (id) initWithPhotoSetId:(int) photoSetId
+//                   textCn:(int) textCn
+//              photoListCn:(int) photoListCn;
+//
+//@end
 
-@end

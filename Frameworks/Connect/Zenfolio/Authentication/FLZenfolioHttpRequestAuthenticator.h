@@ -7,10 +7,18 @@
 //
 
 #import "FLHttpRequestAuthenticator.h"
+@class FLZenfolioUserContext;
 
 #define FLZenfolioHttpAuthenticationTimeout ((60 * 60) * 12.0f)
 
-@interface FLZenfolioHttpRequestAuthenticator : FLHttpRequestAuthenticator
+@interface FLZenfolioHttpRequestAuthenticator : FLHttpRequestAuthenticator {
+@private
+    __unsafe_unretained FLZenfolioUserContext* _userContext;
+}
+@property (readwrite, assign) FLZenfolioUserContext* userContext;
+
++ (id) httpRequestAuthenticator:(FLZenfolioUserContext*) userContext;
+
 @end
 
 @interface FLZenfolioRegisteredUserHttpRequestAuthenticator : FLZenfolioHttpRequestAuthenticator

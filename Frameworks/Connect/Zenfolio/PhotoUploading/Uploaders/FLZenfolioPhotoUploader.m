@@ -117,7 +117,7 @@ FLAssertDefaultInitNotCalled_();
 - (void) _didUpdatePhotoMetaData:(FLZenfolioApiSoapUpdatePhoto*) operation {
 	if(operation.didSucceed) {
 		int photoSetId = self.photo.uploadDestinationIdValue;
-		FLZenfolioPhotoSet* photoSet = [[[self.context photoSetStorage] loadPhotoSetWithID:photoSetId];
+		FLZenfolioPhotoSet* photoSet = [[[self.userContext photoSetStorage] loadPhotoSetWithID:photoSetId];
 		[photoSet addPhoto:[operation.output UpdatePhotoResult]];
 		[photoSet saveInCache];
 	}

@@ -8,14 +8,13 @@
 
 #import "FLZenfolioUserContext.h"
 #import "FLZenfolioSoapHttpRequestFactory.h"
-#import "FLDispatchQueue.h"
+#import "FLGcdDispatcher.h"
 #import "FLOperation.h"
-
-
 
 @implementation FLZenfolioUserContext
 
 @synthesize rootGroup = _rootGroup;
+@synthesize objectCache = _objectCache;
 
 - (id) init {
     self = [super init];

@@ -6,6 +6,8 @@
 //	Copyright 2009 GreenTongue Software. All rights reserved.
 //
 #import "FishLampCore.h"
+#import <Security/Security.h>
+
 
 extern NSString *FLKeychainErrorDomain;
 
@@ -47,6 +49,13 @@ enum
                             withDomain:(NSString*) domain;
 @end
 
+#if IOS
+
+// REFACTOR
+// TODO: this file needs to be refactored for IOS
+
+#define SecKeychainItemRef void*
+#endif
 
 // non atomic wrappers around sec api
 
@@ -60,3 +69,4 @@ extern OSStatus FLKeychainFindHttpPassword(    NSString* inUserName,
                                         SecKeychainItemRef *outItemRef);
 
 extern OSStatus FLKeychainDeleteHttpPassword(NSString* userName, NSString* domain);                                                                                
+

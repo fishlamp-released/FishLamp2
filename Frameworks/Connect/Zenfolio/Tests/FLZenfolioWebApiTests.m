@@ -7,7 +7,7 @@
 //
 
 #import "FLZenfolioWebApiTests.h"
-#import "FLZenfolioHttpRequest.h"
+#import "FLZenfolioWebApi.h"
 #import "FLZenfolioAuthenticator.h"
 
 //@implementation FLZenfolioTestSession
@@ -51,7 +51,7 @@
 }
 
 - (void) setupTests {
-   FLConfirmNotNil_(self.context);
+   FLConfirmNotNil_(self.userContext);
 //   FLConfirmNotNil_(FLZenfolioHttpRequest);
 //   
    [self findTestCaseForSelector:@selector(testAuthentication)].priority = FLTestCasePriorityHigh;

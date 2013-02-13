@@ -7,5 +7,6 @@
 //
 
 #import "FLCocoaRequired.h"
-
+#if OSX
 extern int FLToolMain(Class delegateClass);
+#endif

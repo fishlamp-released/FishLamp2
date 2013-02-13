@@ -15,7 +15,7 @@
 @interface FLTwitterService ()
 @property (readwrite, strong) FLOAuthSession* oauthSession;
 @property (readwrite, strong) FLOAuthApp* oauthInfo;
-@property (readwrite, strong) FLDatabase* database;
+@property (readwrite, strong) id<FLObjectDataStore> dataStore;
 
 - (void) didAuthenticateForUserGuid:(NSString*) userGuid 
                        oauthSession:(FLOAuthSession*) oauthSession;
@@ -33,7 +33,6 @@
 
 @synthesize oauthInfo = _oauthInfo; 
 @synthesize oauthSession = _oauthSession; 
-@synthesize database = _database;
 
 - (id) init {
 	if((self = [super init])) {
@@ -56,7 +55,7 @@
 
 #if FL_MRC
 - (void) dealloc {
-    [_database release];
+    [_dataStore release];
     [_oauthInfo release];
     [_oauthSession release];
     [super dealloc];
@@ -80,7 +79,7 @@
 	FLOAuthSession* input = [FLOAuthSession oAuthSession];
 	input.userGuid = userGuid;
 	input.appName = @"twitter.com";
-	[self.database deleteObject:input];
+	[self.dataStore deleteObject:input];
     [FLTwitterService clearTwitterCookies];
 	self.oauthSession = nil;
 }
@@ -89,23 +88,25 @@
 	FLOAuthSession* input = [FLOAuthSession oAuthSession];
 	input.userGuid = userGuid;
 	input.appName = @"twitter.com";
-	self.oauthSession = [self.database loadObject:input];
+	self.oauthSession = [self.dataStore readObject:input];
 }
 
 - (void) didAuthenticateForUserGuid:(NSString*) userGuid oauthSession:(FLOAuthSession*) oauthSession {
 	oauthSession.userGuid = userGuid;
 	oauthSession.appName = @"twitter.com";
 	
-	[self.database saveObject:oauthSession];
+	[self.dataStore writeObject:oauthSession];
 	self.oauthSession = oauthSession;
 }
 
-- (void) openService:(FLServiceManager*) context {
-    self.database = [self.context resourceForKey:FLUserDataPersistantDatabaseKey];
+- (void) openService:(id) opener {
+    FLPerformSelector1(opener, @selector(openTwitterService:), self);
+    [super openService:opener];
 }
 
-- (void) closeService:(FLServiceManager*) context {
-    self.database = nil;
+- (void) closeService:(id) closer {
+    FLPerformSelector1(closer, @selector(closeTwitterService:), self);
+    [super closeService:closer];
     self.oauthSession = nil;
     self.oauthInfo = nil;
 }

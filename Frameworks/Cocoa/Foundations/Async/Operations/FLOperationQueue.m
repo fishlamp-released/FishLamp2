@@ -10,7 +10,7 @@
 #import "FLPerformSelectorOperation.h"
 #import "FLCollectionIterator.h"
 #import "FLFinisher.h"
-#import "FLDispatchQueue.h"
+#import "FLGcdDispatcher.h"
 
 #if DEBUG
 #define LOG 0
@@ -120,7 +120,7 @@
     [self addOperation:[FLPerformSelectorOperation performSelectorOperation:target action:action ]];
 }
 
-- (void) addOperationWithBlock:(FLRunOperationBlock) operationBlock {
+- (void) addOperationWithBlock:(FLBlockWithOperation) operationBlock {
     [self addOperation:[FLOperation operation:operationBlock]];
 }
 
@@ -276,7 +276,7 @@
 
     @try {
         self.currentOperation = operation;
-        return [self.currentOperation runSynchronouslyInContext:self.context];
+        return [self.currentOperation runSynchronously];
     }
     @catch(NSException* ex) {
         return ex.error;

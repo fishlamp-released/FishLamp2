@@ -9,12 +9,12 @@
 #import "FLTestToolMain.h"
 #import "FLUnitTestRunner.h"
 
-#import "FLDispatchQueue.h"
+#import "FLGcdDispatcher.h"
 
 int FLTestToolMain(int argc, const char *argv[]) {
     @autoreleasepool {
         @try {
-            [[FLUnitTestRunner unitTestRunner] runSynchronouslyInContext:nil];
+            [[FLUnitTestRunner unitTestRunner] runSynchronously];
             return 0;
         }
         @catch(NSException* ex) {
