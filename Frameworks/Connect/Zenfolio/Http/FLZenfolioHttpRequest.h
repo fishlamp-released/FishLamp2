@@ -23,7 +23,7 @@
 
 + (FLHttpRequest*) challengeHttpRequest:(NSString*) loginName;
 
-+ (FLHttpRequest*) httpRequestAuthenticateSynchronously:(NSData*) challenge proof:(NSData*) proof;
++ (FLHttpRequest*) authenticateRequest:(NSData*) challenge proof:(NSData*) proof;
 
 + (FLHttpRequest*) loadPrivateProfileHttpRequest;
 

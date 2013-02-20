@@ -81,7 +81,7 @@
 
 - (void) _willSaveToDevice:(FLSaveImageToUsersPhotoAlbumOperation*) saver
 {
-	FLZenfolioDownloadHttpImageOperation* downloader = (FLZenfolioDownloadHttpImageOperation*) saver.previousOperation;
+	FLZenfolioDownloadImageHttpRequest* downloader = (FLZenfolioDownloadImageHttpRequest*) saver.previousOperation;
 	FLCachedImage* image = downloader.output;
 	
 	[saver setImageInput:image.imageFile.image properties:image.imageFile.properties];
@@ -109,8 +109,8 @@
 	action.actionDescription.actionItemName = FLActionDescriptionItemNamePhoto;
 	action.actionDescription.actionType = FLActionTypeCopy;
 	
-	FLZenfolioDownloadHttpImageOperation* downloader = 
-        FLAutorelease([[FLZenfolioDownloadHttpImageOperation alloc] initWithSubOperation: FLAutorelease([[FLZenfolioDownloadImageHttpRequest alloc] initWithPhoto:photo photoSize:_downloadSize])]);
+	FLZenfolioDownloadImageHttpRequest* downloader = 
+        FLAutorelease([[FLZenfolioDownloadImageHttpRequest alloc] initWithSubOperation: FLAutorelease([[FLZenfolioDownloadImageHttpRequest alloc] initWithPhoto:photo photoSize:_downloadSize])]);
 	downloader.canLoadFromCache = YES;
 	downloader.canSaveToCache = YES;
 	downloader.cache = [[self.userContext userStorageService].cacheDatabase;
@@ -129,7 +129,7 @@
             exportedAsset.originalID = [NSString stringWithFormat:@"%d", photo.IdValue];
             exportedAsset.exportedDate = [NSDate date];
             exportedAsset.assetURL = [[theOperation operationOutput] absoluteString];
-            [[self.userContext userStorageService].documentsDatabase saveObject:exportedAsset];
+            [[self.userContext userStorageService].documentsDatabase writeObject:exportedAsset];
         }
     };
     

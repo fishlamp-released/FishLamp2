@@ -42,38 +42,20 @@
     return [self dispatchBlock:block completion:nil];
 }
 
-- (void) willDispatchObject:(id) object {
-//    FLPerformSelector2(self.delegate, @selector(dispatcher:willDispatchObject:), self, object);
-}
-
-- (void) didDispatchObject:(id) object {
-//    FLPerformSelector2(self.delegate, @selector(dispatcher:didDispatchObject:), self, object);
-}                                        
-
 - (void) dispatchBlock:(FLBlock) block 
               withFinisher:(FLFinisher*) finisher {
-    
-//    if(!FLPerformSelector2(self.delegate, @selector(dispatchBlock:withFinisher:), self, finisher)) {
-        FLAssertIsImplemented_();
-//    }
-}
-
-- (FLFinisher*) createFinisher:(FLBlockWithResult) completionBlock {
-    return [FLFinisher finisher:completionBlock];
+    FLAssertIsImplemented_();
 }
 
 - (void) dispatchFinishableBlock:(FLBlockWithFinisher) block 
               withFinisher:(FLFinisher*) finisher {
-
-//    if(!FLPerformSelector2(self.delegate, @selector(dispatchFinishableBlock:withFinisher:), self, finisher)) {
-        FLAssertIsImplemented_();
-//    }
+    FLAssertIsImplemented_();
 }
 
 - (FLFinisher*) dispatchBlock:(FLBlock) block 
                 completion:(FLBlockWithResult) completion {
 
-    FLFinisher* finisher = [self createFinisher:completion];
+    FLFinisher* finisher = [FLFinisher finisher:completion];
 
     FLAssertNotNil_(block);
     FLAssertNotNil_(finisher);
@@ -90,64 +72,26 @@
 - (FLFinisher*) dispatchFinishableBlock:(FLBlockWithFinisher) block 
                              completion:(FLBlockWithResult) completion {
 
-    FLFinisher* finisher = [self createFinisher:completion];
+    FLFinisher* finisher = [FLFinisher finisher:completion];
     FLAssertNotNil_(block);
     FLAssertNotNil_(finisher);
     [self dispatchFinishableBlock:block withFinisher:finisher];
     return finisher;
 }
 
-- (FLFinisher*) dispatchObject:(id) object {
-    return [self dispatchObject:object completion:nil];
-}
-
-- (FLFinisher*) dispatchObject:(id) object 
-                    completion:(FLBlockWithResult) completion {
-
-    FLAssertNotNil_(object);
-
-    FLSafeguardBlock(completion);
-
-    FLFinisher* finisher = [FLFinisher finisher:^(FLResult result) {
-    
-        if(completion) {
-            completion(result);
-        }
-    
-        [self didDispatchObject:object];
-    }];
-
-    FLBlockWithFinisher block = ^(FLFinisher* theFinisher){
-        
-        [self willDispatchObject:object];
-        @try {
-            [object startWorking:theFinisher];
-        }
-        @catch(NSException* ex) {
-            [theFinisher setFinishedWithResult:ex.error];
-        }
-    };
-
-    [self dispatchFinishableBlock:block withFinisher:finisher];
-
-    return finisher;
-}
-
 - (void) dispatchBlockWithDelay:(NSTimeInterval) delay
-                                 block:(FLBlock) block 
-                          withFinisher:(FLFinisher*) finisher {
+                          block:(FLBlock) block 
+                   withFinisher:(FLFinisher*) finisher {
                           
 }                          
 
 - (FLFinisher*) dispatchBlockWithDelay:(NSTimeInterval) delay
                                  block:(FLBlock) block {
 
-    FLFinisher* finisher = [self createFinisher:nil];
+    FLFinisher* finisher = [FLFinisher finisher];
     [self dispatchBlockWithDelay:delay block:block withFinisher:finisher];
     return finisher;
 }                          
-
-
 
 @end
 

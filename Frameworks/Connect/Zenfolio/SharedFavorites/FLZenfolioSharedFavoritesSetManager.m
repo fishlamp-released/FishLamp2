@@ -37,7 +37,7 @@ FLSynthesizeSingleton(FLZenfolioSharedFavoritesSetManager);
 		set.sharedFavoritesSetId = [NSString guidString];
 	}
 
-	[[[self.context userStorageService] documentsDatabase] saveObject:set];
+	[[[self.context userStorageService] documentsDatabase] writeObject:set];
 }
 
 - (NSArray*) loadAllSharedFavorites

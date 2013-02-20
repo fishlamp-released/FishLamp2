@@ -138,7 +138,7 @@ FLAssertDefaultInitNotCalled_v(@"hello");
     FLAssetQueueState* input = [FLAssetQueueState assetQueueState];
     input.queueUID = _queueUID;
     
-    FLAssetQueueState* state = [self.database loadObject:input];
+    FLAssetQueueState* state = [self.database readObject:input];
     if(!state) {
         state = input;
         state.firstQueuePositionValue = 0;
@@ -176,7 +176,7 @@ FLAssertDefaultInitNotCalled_v(@"hello");
     FLAssertIsNotNil_v(self.database, nil);
 
     asset.queueUID = self.queueUID;
-    [self.database saveObject:asset];
+    [self.database writeObject:asset];
 }
 
 #pragma GCC diagnostic push
@@ -241,8 +241,8 @@ FLAssertDefaultInitNotCalled_v(@"hello");
         [_assets exchangeObjectAtIndex:lhs withObjectAtIndex:rhs];
     }
 
-    [database saveObject:obj1];
-    [database saveObject:obj2];
+    [database writeObject:obj1];
+    [database writeObject:obj2];
 
     [self didChangeAssetQueue];
 } 
@@ -399,8 +399,8 @@ FIXME("asset q")
     }
 
 	
-    [database batchSaveObjects:assets];
-    [database saveObject:_state];
+    [database batchWriteObjects:assets];
+    [database writeObject:_state];
     
     [self didChangeAssetQueue];
 }
@@ -423,7 +423,7 @@ FIXME("asset q")
 	FLAssertIsNotNil_v(database, nil);
     
     [self saveAsset:asset];
-    [database saveObject:_state];
+    [database writeObject:_state];
 
     [self didChangeAssetQueue];
 	
@@ -518,7 +518,7 @@ FIXME("compatability")
     uploadedAsset.uploadedAssetURL = asset.uploadedAssetURL;
     uploadedAsset.uploadedDate = [NSDate date];
     FLAssertNotNil_(self.database);
-    [self.database	saveObject:uploadedAsset];
+    [self.database	writeObject:uploadedAsset];
     [self deleteAsset:asset];
 }
 
@@ -613,11 +613,11 @@ FIXME("compatability")
 	@synchronized(self) {
         if(_assets)
         {
-            [self.database batchSaveObjects:_assets];
+            [self.database batchWriteObjects:_assets];
         }
         if(_state)
         {
-            [self.database saveObject:_state];
+            [self.database writeObject:_state];
         }
     }
 	[self didChangeAssetQueue];
@@ -696,7 +696,7 @@ FIXME("compatability")
 }
 #endif
  
-- (FLResult) runOperation {
+- (FLResult) runOperationInContext:(id) context withObserver:(id) observer {
     
     // TODO: Load with sort. eg USE TSQL: ORDER BY
     NSArray* queue = nil;

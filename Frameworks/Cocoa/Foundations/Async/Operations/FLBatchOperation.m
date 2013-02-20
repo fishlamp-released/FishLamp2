@@ -47,7 +47,7 @@
 
 }
 
-- (FLResult) runOperation {
+- (FLResult) runOperationInContext:(id) context withObserver:(id) observer {
 
     while(YES) {
     

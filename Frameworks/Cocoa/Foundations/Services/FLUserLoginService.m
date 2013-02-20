@@ -24,7 +24,7 @@
     return FLAutorelease([[[self class] alloc] init]);
 }
 
-- (void) closeService:(FLServiceManager*) context {
+- (void) closeService:(id) closer {
     
 //    [self postObservation:@selector(userSessionWillClose:)];
 //    [super closeContext];
@@ -69,7 +69,7 @@
 //    }
 }
 
-- (void) openService:(FLServiceManager*) context {
+- (void) openService:(id) opener {
 //    FLAssert_v(!self.isContextOpen, @"session already open");
 //    FLAssert_v(FLStringIsNotEmpty(self.userLogin.userName), @"invalid userLogin");
 

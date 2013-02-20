@@ -56,7 +56,7 @@ BOOL FLPerformSelectorWithThreeObjects(id target, SEL selector, id withObject1, 
 
 
 FL_SHIP_ONLY_INLINE
-id FLReturnValueForOptionalProperty(id object, SEL property) {
+id FLPerformSelectorForPropertyGetter(id object, SEL property) {
 
     if(object && property && [object respondsToSelector:property]) {
         return [object valueForKey:NSStringFromSelector(property)];

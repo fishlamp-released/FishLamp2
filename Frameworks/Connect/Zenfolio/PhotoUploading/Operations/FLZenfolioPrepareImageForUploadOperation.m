@@ -98,7 +98,7 @@ FIXME("needs to be abstracted for mac, etc..")
 	return imageFile;
 }
 
-- (FLResult) runOperation {
+- (FLResult) runOperationInContext:(id) context withObserver:(id) observer {
 
 // FIXME
 

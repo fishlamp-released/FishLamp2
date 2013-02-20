@@ -7,7 +7,7 @@
 //
 
 #import "FLZenfolioBatchMovePhotosOperation.h"
-#import "FLZenfolioCache.h"
+#import "FLZenfolioCacheService.h"
 
 @interface FLZenfolioBatchMovePhotosOperation ()
 @property (readwrite, strong, nonatomic) FLZenfolioPhotoSet* sourcePhotoSet;
@@ -63,11 +63,11 @@
 //
 //    _destPhotoSet.PhotoCountValue = _destPhotoSet.PhotoCountValue + 1;
 //    [_destPhotoSet addPhoto:photo];
-//    [[[self.userContext objectCache] cacheDatabase] saveObject:_destPhotoSet];
+//    [[[self.userContext objectCache] cacheDatabase] writeObject:_destPhotoSet];
 //    
 //    if(_parentPhotoSet && _parentPhotoSet.isGalleryElement) {
 //        [_parentPhotoSet removePhoto:photo forceCountDecrement:YES];
-//        [[[self.userContext objectCache] cacheDatabase] saveObject:_parentPhotoSet];
+//        [[[self.userContext objectCache] cacheDatabase] writeObject:_parentPhotoSet];
 //    }
 }
 

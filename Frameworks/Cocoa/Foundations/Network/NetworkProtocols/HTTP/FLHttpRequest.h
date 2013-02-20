@@ -19,7 +19,10 @@
 
 @protocol FLHttpRequestAuthenticator <NSObject>
 // this needs to be synchronous for scheduling reasons amoung concurrent requests.
-- (void) httpRequestAuthenticateSynchronously:(FLHttpRequest*) httpRequest;
+- (void) httpRequest:(FLHttpRequest*) httpRequest 
+        authenticateSynchronouslyInContext:(id) context 
+        withObserver:(id) observer;
+
 - (id<FLDispatcher>) httpRequestAuthenticationDispatcher:(FLHttpRequest*) httpRequest;
 @end
 
@@ -33,11 +36,12 @@
 
 @end
 
-@interface FLHttpRequest : FLAsyncWorker<FLReadStreamDelegate> {
+@interface FLHttpRequest : NSObject<FLAsyncWorker, FLReadStreamDelegate> {
 @private
     FLHttpRequestHeaders* _headers;
     FLHttpRequestBody* _body;
     id _observer;
+    FLFinisher* _finisher;
     FLMutableHttpResponse* _response;
     FLReadStream* _networkStream;
     id<FLDispatcher> _dispatcher;
@@ -46,7 +50,7 @@
     id<FLDataEncoding> _dataEncoder;
     id<FLDataDecoding> _dataDecoder;
     id<FLHttpRequestAuthenticator> _authenticator;
-    id<FLHttpRequestInterceptor> _cacheHandler;
+    id<FLHttpRequestInterceptor> _interceptor;
 }
 
 @property (readwrite, strong, nonatomic) id<FLDataEncoding> dataEncoder;
@@ -67,18 +71,6 @@
         httpMethod:(NSString*) httpMethod;
 
 + (id) httpRequest;
-
-// 
-// Sending
-//
-
-// Note: use FLDispatch to run async.
-
-- (FLResult) sendSynchronously;
-- (FLResult) sendSynchronouslyWithObserver:(FLHttpRequestObserver*) observer;
-
-- (void) requestCancel;
-
 
 //
 // optional overrides
@@ -105,5 +97,14 @@
 @end
 
 
+
+//@interface FLExecutionContext (FLHttpRequest)
+//
+//- (FLResult) sendHttpRequestSynchronously:(FLHttpRequest*) request;
+//- (FLResult) sendHttpRequestSynchronously:(FLHttpRequest*) request 
+//                             withObserver:(FLHttpRequestObserver*) observer;
+//
+//
+//@end
 
 

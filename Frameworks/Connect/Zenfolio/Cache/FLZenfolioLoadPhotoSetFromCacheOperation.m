@@ -7,7 +7,7 @@
 //
 
 #import "FLZenfolioLoadPhotoSetFromCacheOperation.h"
-#import "FLZenfolioCache.h"
+#import "FLZenfolioCacheService.h"
 #import "FLZenfolioWebApi.h"
 
 //@implementation FLZenfolioLoadPhotoSetFromCacheOperation
@@ -26,7 +26,7 @@
 //
 //- (id) loadObjectFromDatabase {
 //
-//    FLZenfolioCache* service = [self.userContext objectCache];
+//    FLZenfolioCacheService* service = [self.userContext objectCache];
 //
 //    FLZenfolioPhotoSet* photoSet = [service loadPhotoSetWithID:_photoSetID];
 //    
@@ -45,7 +45,7 @@
 //}
 //
 //- (void) saveObjectToDatabase:(id) object {
-//    [[self.userContext objectCache] saveObject:object];
+//    [[self.userContext objectCache] writeObject:object];
 //}
 //
 //@end

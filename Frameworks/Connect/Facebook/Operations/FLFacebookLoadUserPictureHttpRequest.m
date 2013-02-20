@@ -70,7 +70,7 @@
 }
 
 //
-//- (FLResult) runOperation {
+//- (FLResult) runOperationInContext:(id) context withObserver:(id) observer {
 //
 //FIXME(@"need the behavior but not the operation");
 //  

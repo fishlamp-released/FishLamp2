@@ -48,7 +48,7 @@ FLAssertDefaultInitNotCalled_();
     if(!self.photo.hasUploadGallery)
     {
         self.photo.uploadGallery = [FLZenfolioUploadGallery defaultUploadGallery];
-        [self.uploadQueue.database saveObject:self.photo];
+        [self.uploadQueue.database writeObject:self.photo];
     }
     if(!self.photo.hasUploadGallery)
     {

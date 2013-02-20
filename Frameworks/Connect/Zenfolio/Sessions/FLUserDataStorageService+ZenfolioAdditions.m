@@ -19,20 +19,20 @@
 - (FLZenfolioUploadGallery*) defaultUploadGallery {
 	FLZenfolioUploadGallery* input = [FLZenfolioUploadGallery uploadGallery];
 	input.uid = [NSString zeroGuidString];
-	FLZenfolioUploadGallery* output = [self.documentsDatabase loadObject:input];
+	FLZenfolioUploadGallery* output = [self.documentsDatabase readObject:input];
 	return output ? output : input; 
 }
 
 - (void) saveDefaultUploadGallery:(FLZenfolioUploadGallery*) uploadGallery {
 	uploadGallery.uid = [NSString zeroGuidString];
-	[self.documentsDatabase saveObject:uploadGallery];
+	[self.documentsDatabase writeObject:uploadGallery];
 }
 
 - (FLZenfolioAccessDescriptor*) defaultAccessDescriptor {
 	
     FLZenfolioAccessDescriptor* input = [FLZenfolioAccessDescriptor accessDescriptor];
 	input.uid = [NSString zeroGuidString];
-	FLZenfolioAccessDescriptor* output = [self.documentsDatabase loadObject:input];
+	FLZenfolioAccessDescriptor* output = [self.documentsDatabase readObject:input];
 	
     if(!output) {
 		output = input;
@@ -46,7 +46,7 @@
 
 - (void) saveDefaultAccessDescriptor:(FLZenfolioAccessDescriptor*) accessDescriptor {
 	accessDescriptor.uid = [NSString zeroGuidString];
-	[self.documentsDatabase saveObject:self];
+	[self.documentsDatabase writeObject:self];
 }
 
 @end

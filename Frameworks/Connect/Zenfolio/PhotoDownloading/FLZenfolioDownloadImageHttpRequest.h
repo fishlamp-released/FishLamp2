@@ -11,22 +11,22 @@
 #import "FLZenfolioImageSize.h"
 #import "FLDownloadImageHttpRequest.h"
 #import "FLStorableImage.h"
-#import "FLZenfolioCache.h"
+#import "FLZenfolioCacheService.h"
 
 @interface FLZenfolioDownloadImageHttpRequest : FLDownloadImageHttpRequest {
 @private
 	FLZenfolioPhoto* _photo;
 	FLZenfolioImageSize* _imageSize;
-    FLZenfolioCache* _cache;
+    FLZenfolioCacheService* _cache;
 }
 
 - (id) initWithPhoto:(FLZenfolioPhoto*) photo 
            imageSize:(FLZenfolioImageSize*) imageSize 
-               cache:(FLZenfolioCache*) cache;
+               cache:(FLZenfolioCacheService*) cache;
 
-+ (FLZenfolioDownloadImageHttpRequest*) downloadImageOperation:(FLZenfolioPhoto*) photo 
++ (FLZenfolioDownloadImageHttpRequest*) downloadImageHttpRequest:(FLZenfolioPhoto*) photo 
                                                      imageSize:(FLZenfolioImageSize*) imageSize
-                                                         cache:(FLZenfolioCache*) cache;
+                                                         cache:(FLZenfolioCacheService*) cache;
 
 // NOTE: successful result returns a FLStorableImage.
 

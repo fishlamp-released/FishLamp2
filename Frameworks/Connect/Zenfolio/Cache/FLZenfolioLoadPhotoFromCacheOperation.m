@@ -8,7 +8,7 @@
 
 //#import "FLZenfolioLoadPhotoFromCacheOperation.h"
 //#import "FLZenfolioWebApi.h"
-//#import "FLZenfolioCache.h"
+//#import "FLZenfolioCacheService.h"
 //#import "FLZenfolioWebApi.h"
 //
 //@implementation FLZenfolioLoadPhotoFromCacheOperation 
@@ -42,7 +42,7 @@
 //}
 //
 //- (id) loadObjectFromDatabase {
-//    FLZenfolioCache* service = [self.userContext objectCache];
+//    FLZenfolioCacheService* service = [self.userContext objectCache];
 //    
 //    FLZenfolioPhoto* photo = [service loadPhotoWithID:_photoID];
 //    if(!photo) {
@@ -55,7 +55,7 @@
 //}
 //
 //- (void) saveObjectToDatabase:(id) object {
-//    [ [self.userContext objectCache] saveObject:object];
+//    [ [self.userContext objectCache] writeObject:object];
 //}
 //
 //@end

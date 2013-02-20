@@ -58,10 +58,10 @@ FLSynthesizeCachedObjectHandlerProperty(ZFCachedCategories);
 
 - (void) saveOutputToCache:(FLResult) result {
 	[self.input setCategoryArray: result];
-	[self.cache saveObject:_inputArray];
+	[self.cache writeObject:_inputArray];
 }
 
-- (FLResult) runOperation {
+- (FLResult) runOperationInContext:(id) context withObserver:(id) observer {
     [super runOperationWithInput];
 	if(!self.error) {
 		[_manager setCategoryArray:self.output];

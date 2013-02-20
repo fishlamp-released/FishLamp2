@@ -31,7 +31,7 @@ typedef void (^FLActionErrorBlock)(FLAction* action, NSError* error);
 @protocol FLActionErrorDelegate;
 @protocol FLActionDelegate;
 
-@interface FLAction : FLAsyncWorker<FLActionDescription, FLWeaklyReferenced> {
+@interface FLAction : NSObject<FLAsyncWorker, FLActionDescription, FLWeaklyReferenced> {
 @private
     FLOperationQueue* _operations;
 
@@ -87,10 +87,6 @@ typedef void (^FLActionErrorBlock)(FLAction* action, NSError* error);
 - (void) showProgress;
 - (void) willHandleError:(NSError*) error;
 - (void) willReportError:(NSError*) error;
-
-- (FLResult) runSynchronously; 
-
-// TODO: add observer support
 
 @end
 

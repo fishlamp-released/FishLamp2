@@ -36,7 +36,7 @@ id FLAtomicPropertyGet(id* addr) {
     return [value autorelease];
 }
 
-void FLAtomicPropertySet(id* addr, id newValue) {
+void FLAtomicPropertySet(id* addr, id newValue, dispatch_block_t setter) {
 
     if (*addr == newValue) {
         return;
@@ -47,18 +47,20 @@ void FLAtomicPropertySet(id* addr, id newValue) {
     OSSpinLock *slotlock = &FLPropertyLocks[GOODHASH(addr)];
     OSSpinLockLock(slotlock);
     id oldValue = *addr;
+    if(setter) setter();
     *addr = newValue;
     OSSpinLockUnlock(slotlock);
     [oldValue release];
 }
 
-void FLAtomicPropertyCopy(id* addr, id newValue) {
+void FLAtomicPropertyCopy(id* addr, id newValue, dispatch_block_t setter) {
 
     newValue = [newValue copyWithZone:NULL];
 
     OSSpinLock *slotlock = &FLPropertyLocks[GOODHASH(addr)];
     OSSpinLockLock(slotlock);
     id oldValue = *addr;
+    if(setter) setter();
     *addr = newValue;
     OSSpinLockUnlock(slotlock);
     [oldValue release];
@@ -74,17 +76,18 @@ id FLAtomicPropertyGet(id __strong * addr) {
     return value;
 }
 
-void FLAtomicPropertyCopy(id __strong * addr, id newValue) {
+void FLAtomicPropertyCopy(id __strong * addr, id newValue, dispatch_block_t setter) {
 
     newValue = [newValue copyWithZone:NULL];
     
     OSSpinLock *slotlock = &FLPropertyLocks[GOODHASH(addr)];
     OSSpinLockLock(slotlock);
+    if(setter) setter();
     *addr = newValue;
     OSSpinLockUnlock(slotlock);
 }
 
-void FLAtomicPropertySet(id __strong * addr, id newValue) {
+void FLAtomicPropertySet(id __strong * addr, id newValue, dispatch_block_t setter) {
 
     if (*addr == newValue) {
         return;
@@ -92,6 +95,7 @@ void FLAtomicPropertySet(id __strong * addr, id newValue) {
 
     OSSpinLock *slotlock = &FLPropertyLocks[GOODHASH(addr)];
     OSSpinLockLock(slotlock);
+    if(setter) setter();
     *addr = newValue;
     OSSpinLockUnlock(slotlock);
 }

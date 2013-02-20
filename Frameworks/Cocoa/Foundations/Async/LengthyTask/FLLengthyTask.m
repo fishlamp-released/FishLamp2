@@ -50,7 +50,7 @@
     return YES;
 }
 
-- (FLResult) runOperation {
+- (FLResult) runOperationInContext:(id) context withObserver:(id) observer {
 
     if([self shouldExecuteTask] && (!_delegate || [_delegate lengthyTaskShouldBegin:self])) {
         [self prepareTask];

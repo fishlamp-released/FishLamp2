@@ -9,7 +9,6 @@
 #import "FLFacebookFetchStatusListHttpRequest.h"
 #import "FLFacebookFetchStatusListResponse.h"
 #import "FLFacebookService.h"
-#import "FLUserDataStorageService.h"
 
 @implementation FLFacebookFetchStatusListHttpRequest
 
@@ -21,14 +20,14 @@
     return self;
 }
 
-//- (FLResult) runOperation {
+//- (FLResult) runOperationInContext:(id) context withObserver:(id) observer {
 //
 ////        self.userId = @"me";
 //
 //    FLFacebookFetchStatusListResponse* result = FLConfirmResultType([super runOperationWithInput:input], FLFacebookFetchStatusListResponse);
 //        
 ////    NSArray* messages = result.data;
-////    [[[self.context storageService] documentsDatabase] batchSaveObjects:messages];
+////    [[[self.context storageService] documentsDatabase] batchWriteObjects:messages];
 ////	
 //    return result;
 //}

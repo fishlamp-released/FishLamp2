@@ -102,7 +102,7 @@ NSString* const FLZenfolioUploadQueueDidChangeNotification = @"FLZenfolioUploadQ
 		}
 	}
 
-	[self.database batchSaveObjects:saveList];
+	[self.database batchWriteObjects:saveList];
 }
 
 - (BOOL) photosNeedUploadGallery
@@ -152,7 +152,7 @@ NSString* const FLZenfolioUploadQueueDidChangeNotification = @"FLZenfolioUploadQ
 
     if(saveList)
     {
-        [self.database batchSaveObjects:saveList];
+        [self.database batchWriteObjects:saveList];
     }
 }
 

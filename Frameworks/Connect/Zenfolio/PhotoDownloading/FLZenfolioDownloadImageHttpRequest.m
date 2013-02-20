@@ -7,7 +7,7 @@
 //
 
 #import "FishLampCocoa.h"
-#import "FLImageCache.h"
+#import "FLImageStoreService.h"
 
 #import "FLStorableImage+ZenfolioCache.h"
 #import "FLZenfolioDownloadImageHttpRequest.h"
@@ -17,7 +17,7 @@
 @interface FLZenfolioDownloadImageHttpRequest ()
 @property (readwrite, strong, nonatomic) FLZenfolioPhoto* photo;
 @property (readwrite, strong, nonatomic) FLZenfolioImageSize* imageSize;
-@property (readwrite, strong, nonatomic) FLZenfolioCache* cache;
+@property (readwrite, strong, nonatomic) FLZenfolioCacheService* cache;
 @end
 
 @implementation FLZenfolioDownloadImageHttpRequest
@@ -28,7 +28,7 @@
 
 - (id) initWithPhoto:(FLZenfolioPhoto*) photo 
            imageSize:(FLZenfolioImageSize*) imageSize 
-               cache:(FLZenfolioCache*) cache {
+               cache:(FLZenfolioCacheService*) cache {
                
 	self = [self initWithRequestURL:[_photo urlForImageWithSize:_imageSize]];
 	if(self) {
@@ -40,9 +40,9 @@
 	return self;
 }
 
-+ (FLZenfolioDownloadImageHttpRequest*) downloadImageOperation:(FLZenfolioPhoto*) photo 
++ (FLZenfolioDownloadImageHttpRequest*) downloadImageHttpRequest:(FLZenfolioPhoto*) photo 
                                                      imageSize:(FLZenfolioImageSize*) imageSize
-                                                         cache:(FLZenfolioCache*) cache {
+                                                         cache:(FLZenfolioCacheService*) cache {
     return FLAutorelease([[FLZenfolioDownloadImageHttpRequest alloc] initWithPhoto:photo  imageSize:imageSize cache:cache]);
 }
 
@@ -66,12 +66,12 @@
     return image;
 }
 
-- (void) startWorking:(FLFinisher*) observer {
+- (void) startWorkingInContext:(id) context withObserver:(id) observer finisher:(FLFinisher*) finisher {
     
     if(self.cache) {
         FLStorableImage* image = [self.cache loadCachedImageForPhoto:self.photo imageSize:self.imageSize];
         if(image || [image isStaleComparedToPhotoSequenceNumber:self.photo.Sequence]) {
-            [super startWorking:observer];
+            [super startWorkingInContext:context withObserver:observer finisher:finisher];
         }
         else {
             [observer setFinishedWithResult:image];

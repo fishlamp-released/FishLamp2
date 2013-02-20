@@ -24,23 +24,9 @@
 #import "FLServiceKeys.h"
 
 
-//@implementation FLServiceManager (FLUserDataStorageService) 
-//FLSynthesizeSessionService(storageService, setStorageService, FLUserDataStorageService*)
-//FLSynthesizeSessionProperty(cacheFolder, FLFolder*, FLUserDataStorageService);
-//FLSynthesizeSessionProperty(cacheDatabase, FLDatabase*, FLUserDataStorageService);
-//FLSynthesizeSessionProperty(imageCacheFolder, FLImageFolder*, FLUserDataStorageService);
-//FLSynthesizeSessionProperty(tempFolder, FLFolder*, FLUserDataStorageService);
-//FLSynthesizeSessionProperty(logFolder, FLFolder*, FLUserDataStorageService);
-//FLSynthesizeSessionProperty(documentsDatabase, FLDatabase*, FLUserDataStorageService);
-//FLSynthesizeSessionProperty(documentsFolder, FLFolder*, FLUserDataStorageService);
-//FLSynthesizeSessionProperty(imageFolder, FLImageFolder*, FLUserDataStorageService);
-//
-//@end
-
-
 
 @interface FLUserDataStorageService ()
-- (BOOL) _beginOpeningService;
+- (BOOL) beginOpeningServiceInContext:(id) context withObserver:(id) observer;
 - (void) finishUpgradeTasks;
 - (void) registerForEvents;
 @property (readonly, retain, nonatomic) FLVersionUpgradeLengthyTaskList* upgradeTaskList;
@@ -101,7 +87,9 @@
 
 - (void) _appWillBecomeActive:(id) sender {
 	if(!self.isServiceOpen && _willOpen) {
-        [self _beginOpeningService];
+// REFACTOR
+FLAssertFailed_v(@"refactor this");    
+//        [self _beginOpeningService];
     }
 }
 
@@ -306,12 +294,12 @@
 //    }];
 }
 
-- (BOOL) runUpgradeTasksIfNeeded {
+- (BOOL) runUpgradeTasksIfNeededInContext:(id) context withObserver:(id) observer {
     
     FLApplicationDataVersion* input = [FLApplicationDataVersion applicationDataVersion];
 		input.userGuid = [self userLogin].userGuid;
 		
-    FLApplicationDataVersion* dataVersion = [[FLApplicationDataModel instance].database loadObject:input];
+    FLApplicationDataVersion* dataVersion = [[FLApplicationDataModel instance].database readObject:input];
 		
     if( (dataVersion == nil) || 
         FLStringIsEmpty(dataVersion.versionString) ||
@@ -338,8 +326,8 @@
 
 //        [self.context addObject:_upgradeTaskList];
 
-        id result = [_upgradeTaskList runSynchronously];
-        
+        id result = [context runWorker:_upgradeTaskList withObserver:observer];
+                
         if([result error]) {
             // TODO: Ok, now what?
         }
@@ -355,7 +343,7 @@
 
 }
 
-- (BOOL) _beginOpeningService
+- (BOOL) beginOpeningServiceInContext:(id) context withObserver:(id) observer
 {
 	if([self userLogin] && _open == NO && !_isOpening && _willOpen)
 	{
@@ -363,7 +351,7 @@
 
 		[self initServiceObjectsIfNeeded];
 		
-        if(![self runUpgradeTasksIfNeeded]) {
+        if(![self runUpgradeTasksIfNeededInContext:context withObserver:observer]) {
             [self finishOpeningService];
 		}
 	}
@@ -371,14 +359,20 @@
 	return NO;
 }
 
-- (void) openService {
-	[self closeService];
+- (id) executionContext {
+FLAssertFailed_v(@"TODO refactor this");
+    return nil;
+}
+
+- (void) openService:(id) opener {
+
+    [super openService:opener];
     FLAssert_v(FLStringIsNotEmpty([self userLogin].userName), @"invalid userLogin");
     _willOpen = YES;
     _isOpening = NO;
     _open = NO;
     _upgrading = NO;
-    [self _beginOpeningService];
+    [self beginOpeningServiceInContext:[self executionContext] withObserver:nil];
 }
 
 - (void) finishUpgradeTasks {	
@@ -389,7 +383,7 @@
 		FLApplicationDataVersion* version = [FLApplicationDataVersion applicationDataVersion];
 		version.userGuid = [self userLogin].userGuid;
 		version.versionString = [FLAppInfo appVersion];
-		[[FLApplicationDataModel instance].database saveObject:version];
+		[[FLApplicationDataModel instance].database writeObject:version];
 
 		FLReleaseWithNil(_upgradeTaskList);
 		_upgrading = NO;

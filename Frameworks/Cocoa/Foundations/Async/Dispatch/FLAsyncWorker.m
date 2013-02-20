@@ -7,18 +7,3 @@
 //
 
 #import "FLAsyncWorker.h"
-#import "FLDispatch.h"
-
-@implementation FLAsyncWorker
-
-@synthesize context = _context;
-
-- (void) startWorking:(FLFinisher*) finisher {
-    [finisher setFinished];
-}
-
-- (void) didMoveToAsyncWorkerContext:(FLAsyncWorkerContext*) context {
-    self.context = context;
-}
-
-@end

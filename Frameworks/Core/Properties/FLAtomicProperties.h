@@ -25,8 +25,8 @@
     
     
 extern id FLAtomicPropertyGet(id __strong * addr);
-extern void FLAtomicPropertySet(id __strong * addr, id newValue);
-extern void FLAtomicPropertyCopy(id __strong * addr, id newValue);
+extern void FLAtomicPropertySet(id __strong * addr, id newValue, dispatch_block_t setter);
+extern void FLAtomicPropertyCopy(id __strong * addr, id newValue, dispatch_block_t setter);
 
 //- (NSString *) name {
 //    return FLAtomicGetPropertyValue(&_name);

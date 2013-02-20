@@ -8,9 +8,9 @@
 
 #import "FLZenfolioLoadAllUserInfoForAuthenticatedUserOperation.h"
 #import "FLObjectDescriber.h"
-#import "FLZenfolioCache.h"
+#import "FLZenfolioCacheService.h"
 #import "FLZenfolioWebApi.h"
-
+#if REFACTOR
 @implementation FLZenfolioLoadAllUserInfoForAuthenticatedUserOperation
 
 - (FLResult) runSubOperations {
@@ -31,11 +31,12 @@
     FLZenfolioUser* inputUser = [FLZenfolioUser user];
     inputUser.LoginName = [self.userContext userLogin].userName;
     
-    return [[self.userContext objectCache] readObject:inputUser];
+    return [[self.userContext cache] readObject:inputUser];
 }
 
 - (void) saveObjectToDatabase:(id) object {
-    [[self.userContext objectCache] writeObject:object];
+    [[self.userContext cache] writeObject:object];
 }
 
 @end
+#endif

@@ -88,7 +88,7 @@
     return httpRequest;
 }
 
-+ (FLHttpRequest*) httpRequestAuthenticateSynchronously:(NSData*) challenge proof:(NSData*) proof  {
++ (FLHttpRequest*) authenticateRequest:(NSData*) challenge proof:(NSData*) proof  {
     FLSoapHttpRequest* authenticate = FLZenfolioSoapHttpRequestFrom(FLZenfolioApiSoapAuthenticate, AuthenticateResult);
     [authenticate.soapRequest setChallenge:challenge];
     [authenticate.soapRequest setProof:proof];

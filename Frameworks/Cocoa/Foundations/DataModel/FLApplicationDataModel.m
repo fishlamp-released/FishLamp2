@@ -105,7 +105,7 @@ BOOL FLIsValidUser(FLUserLogin* userLogin) {
 	FLApplicationSession* input = [FLApplicationSession applicationSession];
 	input.sessionIdValue = 1;
 	
-	FLApplicationSession* output = [self.database loadObject:input];
+	FLApplicationSession* output = [self.database readObject:input];
 	return output ? output.userGuid : nil;
 }
 
@@ -155,7 +155,7 @@ BOOL FLIsValidUser(FLUserLogin* userLogin) {
 			userLogin.email = nil;
 		}
 	
-		[self.database saveObject:userLogin];
+		[self.database writeObject:userLogin];
 	}
 }
 
@@ -171,7 +171,7 @@ BOOL FLIsValidUser(FLUserLogin* userLogin) {
 	{
 		FLUserLogin* login = [FLUserLogin userLogin];
 		login.userGuid = guid;
-		return [self.database loadObject:login];
+		return [self.database readObject:login];
 	}
 	
 	return nil;
@@ -184,7 +184,7 @@ BOOL FLIsValidUser(FLUserLogin* userLogin) {
 	{
 		FLUserLogin* login = [FLUserLogin userLogin];
 		login.userGuid = currentGuid;
-		return [self.database loadObject:login];
+		return [self.database readObject:login];
 	}
 
 	return nil;
@@ -227,7 +227,7 @@ BOOL FLIsValidUser(FLUserLogin* userLogin) {
 		FLApplicationSession* session = [FLApplicationSession applicationSession];
 		session.sessionIdValue = 1;
 		session.userGuid = userLogin.userGuid;
-		[self.database saveObject:session];
+		[self.database writeObject:session];
 	}
 }
 

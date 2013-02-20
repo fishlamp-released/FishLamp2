@@ -11,7 +11,7 @@
 #import "FLUserLogin.h"
 #import "FLZenfolioWebApi.h"
 
-//@interface FLZenfolioTestSession : FLZenfolioUserContext {
+//@interface FLZenfolioTestSession : FLZenfolioUserService {
 //@private
 //}
 //@end

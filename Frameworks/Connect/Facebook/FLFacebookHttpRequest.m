@@ -83,7 +83,7 @@
 }
 
 //
-//- (FLResult) runOperation {
+//- (FLResult) runOperationInContext:(id) context withObserver:(id) observer {
 //    FLFacebookService* facebook = self.facebookService;
 //
 //    NSString* userID = facebook.facebookNetworkSession.userId;

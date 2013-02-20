@@ -39,8 +39,8 @@ static Class s_factoryClass = nil;
     return [s_factoryClass challengeHttpRequest:loginName];
 }
 
-+ (FLHttpRequest*) httpRequestAuthenticateSynchronously:(NSData*) challenge proof:(NSData*) proof {
-    return [s_factoryClass httpRequestAuthenticateSynchronously:challenge proof:proof];
++ (FLHttpRequest*) authenticateRequest:(NSData*) challenge proof:(NSData*) proof {
+    return [s_factoryClass authenticateRequest:challenge proof:proof];
 }
 
 + (FLHttpRequest*) loadPrivateProfileHttpRequest {

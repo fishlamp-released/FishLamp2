@@ -13,7 +13,7 @@
 #import "FLLengthyTaskList.h"
 #import "FLVersionUpgradeLengthyTaskList.h"
 #import "FLImageFolder.h"
-
+#import "FLDataStoreService.h"
 
 @interface FLUserDataStorageService : FLDataStoreService {
 @private
@@ -67,14 +67,3 @@
 
 
 
-//@interface FLServiceManager (FLUserDataStorageService) 
-//@property (readwrite, strong) FLUserDataStorageService* storageService;
-//@property (readonly, strong) FLFolder* cacheFolder;
-//@property (readonly, strong) FLDatabase* cacheDatabase;
-//@property (readonly, strong) FLImageFolder* imageCacheFolder;
-//@property (readonly, strong) FLFolder* tempFolder;
-//@property (readonly, strong) FLFolder* logFolder;
-//@property (readonly, strong) FLDatabase* documentsDatabase;
-//@property (readonly, strong) FLFolder* documentsFolder;
-//@property (readonly, strong) FLImageFolder* imageFolder;
-//@end

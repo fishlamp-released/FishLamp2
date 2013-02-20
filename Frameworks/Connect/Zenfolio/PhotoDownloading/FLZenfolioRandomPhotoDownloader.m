@@ -118,7 +118,7 @@
     FLZenfolioDownloadImageHttpRequest* loadPhotoHttpRequest = FLAutorelease([[FLZenfolioDownloadImageHttpRequest alloc] initWithPhoto:photo 
         photoSize:kImageDownloadSize]);
     
-    FLZenfolioDownloadHttpImageOperation* operation = FLAutorelease([[FLZenfolioDownloadHttpImageOperation alloc] initWithSubOperation:loadPhotoHttpRequest]);
+    FLZenfolioDownloadImageHttpRequest* operation = FLAutorelease([[FLZenfolioDownloadImageHttpRequest alloc] initWithSubOperation:loadPhotoHttpRequest]);
     
     operation.cache = [[self.userContext userStorageService].cacheDatabase;
     operation.canLoadFromCache = YES;

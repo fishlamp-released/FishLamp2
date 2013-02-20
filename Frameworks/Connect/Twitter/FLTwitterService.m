@@ -55,7 +55,6 @@
 
 #if FL_MRC
 - (void) dealloc {
-    [_dataStore release];
     [_oauthInfo release];
     [_oauthSession release];
     [super dealloc];

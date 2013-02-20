@@ -30,15 +30,6 @@
 - (FLFinisher*) dispatchFinishableBlock:(FLBlockWithFinisher) block
                              completion:(FLBlockWithResult) completion;
 
-// 
-// FLAsyncDispatchable dispatching
-// 
-
-- (FLFinisher*) dispatchObject:(id /*FLAsyncWorker*/) dispatchableObject;
-
-- (FLFinisher*) dispatchObject:(id /*FLAsyncWorker*/) dispatchableObject 
-                    completion:(FLBlockWithResult) completion;
-
 //
 // Dispatching with finisher
 //
@@ -59,17 +50,14 @@
 
 // required overrides. these are the bottlenecks
 - (void) dispatchBlock:(FLBlock) block 
-              withFinisher:(FLFinisher*) finisher;
+          withFinisher:(FLFinisher*) finisher;
 
 - (void) dispatchFinishableBlock:(FLBlockWithFinisher) block 
-              withFinisher:(FLFinisher*) finisher;
+                    withFinisher:(FLFinisher*) finisher;
 
 - (void) dispatchBlockWithDelay:(NSTimeInterval) delay
-                                 block:(FLBlock) block 
-                          withFinisher:(FLFinisher*) finisher;
-
-// optional overrides
-- (FLFinisher*) createFinisher:(FLBlockWithResult) completionBlock;
+                          block:(FLBlock) block 
+                   withFinisher:(FLFinisher*) finisher;
 
 @end
 

@@ -7,29 +7,27 @@
 //
 
 #import "FLService.h"
-#import "FLServiceManager.h"
 
 @interface FLService ()
-@property (readwrite, assign, nonatomic, getter=isServiceOpen) BOOL serviceOpen;
-- (void) serviceWillOpen:(id) opener;
-- (void) serviceWillClose:(id) closer;
-- (void) serviceDidOpen:(id) opener;
-- (void) serviceDidClose:(id) closer;
+@property (readwrite, assign, getter=isServiceOpen) BOOL serviceOpen;
+@property (readwrite, assign) id superService;
 @end
 
 @implementation FLService
 @synthesize serviceOpen = _serviceOpen;
+@synthesize superService = _superService;
+@synthesize subServices = _subServices;
 
 #if FL_MRC
 - (void) dealloc {
-    [_services release];
+    [_subServices release];
     [super dealloc];
 }
 #endif
 
 - (void) openService:(id) opener {
 //    [self serviceWillOpen:opener];
-    for(FLService* service in _services) {
+    for(FLService* service in _subServices) {
         [service openService:opener];
     }
     self.serviceOpen = YES;
@@ -38,60 +36,64 @@
 
 - (void) closeService:(id) closer {
 //    [self serviceWillClose:closer];
-    for(FLService* service in _services) {
+    for(FLService* service in _subServices) {
         [service closeService:closer];
     }
     self.serviceOpen = NO;
 //    [self serviceDidClose:closer];
 }
 
-- (void) addService:(id) service {
-    if(!_services) {
-        _services = [[NSMutableArray alloc] init];
+- (void) addSubService:(id) service {
+    if(!_subServices) {
+        _subServices = [[NSMutableArray alloc] init];
     }
-    [_services addObject:service];
+    [_subServices addObject:service];
+    
+    [service setSuperService:self];
+    [service didMoveToSuperService:self];
 }
 
-- (void) removeService:(id) service {
-    [_services removeObject:service];
+- (void) removeSubService:(id) service {
+    [_subServices removeObject:service];
+
+    [service setSuperService:nil];
+    [service didMoveToSuperService:nil];
 }
 
-- (void) serviceWillOpen:(id) opener {
-}
-- (void) serviceWillClose:(id) closer {
-}
-- (void) serviceDidOpen:(id) opener {
-}
-- (void) serviceDidClose:(id) closer {
-}
-@end
+- (void) didMoveToSuperService:(id) superService {
 
-@interface FLDataStoreService ()
-@end
-
-@implementation FLDataStoreService 
-@synthesize dataStore = _dataStore;
-
-#if FL_MRC
-- (void) dealloc {
-    [_dataStore release];
-    [super dealloc];
-}
-#endif
-
-- (void) openService:(id) opener {
-    FLPerformSelector1(opener, @selector(openDataStoreService:), self);
-    FLAssertNotNil_(self.dataStore);
-    [super openService:opener];
 }
 
-- (void) closeService:(id) closer {
-    FLPerformSelector1(closer, @selector(closeDataStoreService:), self);
-    [super closeService:closer];
-    self.dataStore = nil;
+- (id) rootService {
+    id superService = self.superService;
+    return superService == nil ? self : [superService rootService];
 }
+
+- (void) visitSubServices:(void (^)(id service, BOOL* stop)) visitor stop:(BOOL*) stop {
+    for(id service in _subServices) {
+        if(*stop) break;
+        visitor(service, stop);
+    }
+}
+
+- (void) visitSubServices:(void (^)(id service, BOOL* stop)) visitor {
+    BOOL stop = NO;
+    [self visitSubServices:visitor stop:&stop];
+}
+
 
 @end
+
+void FLAtomicAddServiceToService(id* ivar, FLService* newService, FLService* parentService) {
+    FLAtomicPropertySet(ivar, newService, ^{ 
+        if(*ivar) {
+            [parentService removeSubService:*ivar];
+        }
+        if(newService) {
+            [parentService addSubService:newService];
+        }
+    });
+}
 
 
 //

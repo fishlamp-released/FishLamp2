@@ -8,7 +8,7 @@
 
 #import "FLZenfolioWebApiTests.h"
 #import "FLZenfolioWebApi.h"
-#import "FLZenfolioAuthenticator.h"
+#import "FLZenfolioAuthenticateOperation.h"
 
 //@implementation FLZenfolioTestSession
 //
@@ -26,7 +26,7 @@
 - (id) init {
     self = [super init];
     if(self) {
-//        self.context = [FLZenfolioUserContext create];
+//        self.context = [FLZenfolioUserService create];
 
 //        FLUserLogin* user = [FLUserLogin userLogin];
 //        user.userName = @"zentester";
@@ -44,14 +44,14 @@
 - (void) testAuthentication {
     
 //    FLZenfolioAuthenticater* operation = [FLZenfolioAuthenticater loginOperation];
-//    FLThrowError([operation runSynchronously]);
+//    FLThrowError([operation runWorker]);
     
 //    FLConfirm_([self.context userService].isAuthenticated);
 //    FLConfirm_([self.context userService].userLogin.isAuthenticatedValue);
 }
 
 - (void) setupTests {
-   FLConfirmNotNil_(self.userContext);
+//   FLConfirmNotNil_(self.userContext);
 //   FLConfirmNotNil_(FLZenfolioHttpRequest);
 //   
    [self findTestCaseForSelector:@selector(testAuthentication)].priority = FLTestCasePriorityHigh;

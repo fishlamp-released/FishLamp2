@@ -144,9 +144,9 @@
 //    [self postObservation:@selector(batchPhotoDownloader:didDownloadPhoto:) withObject:photo];
 }
 
-- (void)downloadPhoto:(FLZenfolioPhoto *)photo toFolder:(NSString *)folder {
+- (void)downloadPhoto:(FLZenfolioPhoto *)photo toFolder:(NSString *)folder inContext:(id) context {
 	
-    if ( ![[photo Owner] isEqualToString:[self.userContext userLogin].userName]) { //     [[NSApp delegate] loginName]] ) 
+    if ( ![[photo Owner] isEqualToString:[context userLogin].userName]) { //     [[NSApp delegate] loginName]] ) 
         return;	//	photo must be from logged-in user
 	}
 	
@@ -160,8 +160,11 @@
             //	create the url request
             NSTimeInterval startTimestamp = [NSDate timeIntervalSinceReferenceDate];
 
-            FLZenfolioDownloadImageHttpRequest* downloader = [FLZenfolioDownloadImageHttpRequest downloadImageOperation:photo imageSize:[FLZenfolioImageSize originalImageSize]];
-            image = FLThrowError([self sendHttpRequest:downloader]);
+            FLZenfolioDownloadImageHttpRequest* downloader = [FLZenfolioDownloadImageHttpRequest downloadImageHttpRequest:photo imageSize:[FLZenfolioImageSize originalImageSize] cache:[context cache]];
+  
+            image = [context runWorker:downloader withObserver:nil];
+                                
+//            image = FLThrowError([self sendHttpRequest:downloader]);
 //            [downloader sendSynchronouslyInContext:self.userContext]);
             
             //	photo was loaded; save the photo to file
@@ -189,59 +192,60 @@
 }
 
 - (void)downloadEntry:(id)entry 
-             toFolder:(NSString *)folder {
+             toFolder:(NSString *)folder
+            inContext:(id) context {
              
-	if ( [entry isGroupElement] ) {
-		
-        //	check if this group contains photos
-		if ( [entry selectedPhotoCountInSelection:self.selection] == 0 ) {
-			return;
-		}
-		
-        NSString* uniquePath = [self uniquePathForEntry:entry inFolder:folder];
-        [self createFolderIfNeeded:uniquePath];
-        
-        for(FLZenfolioGroupElement* subEntry in [entry Elements]) {
-       		[self abortIfNeeded];
-            [self downloadEntry:subEntry toFolder:uniquePath];
-	    }
-    } 
-    else if ( [entry isSelected] ) {
-        @try {
-            self.currentSet = entry;
-            
-            //	check if this PhotoSet contains photos
-            if ( [entry PhotoCount] == 0 ) {
-                return;
-            }
-            
-            NSString* uniquePath = [self uniquePathForEntry:entry inFolder:folder];
-            [self createFolderIfNeeded:uniquePath];
-            
-            //	download the photo's
-            for (FLZenfolioPhoto* photo in [entry Photos]) {
-                [self abortIfNeeded];
-                [self downloadPhoto:photo toFolder:uniquePath];
-            }
-            
-            _totalSetCount++;
-		}
-        @finally {
-            self.currentSet = nil;
-        }
-	}
+//	if ( [entry isGroupElement] ) {
+//		
+//        //	check if this group contains photos
+//		if ( [entry selectedPhotoCountInSelection:self.selection] == 0 ) {
+//			return;
+//		}
+//		
+//        NSString* uniquePath = [self uniquePathForEntry:entry inFolder:folder];
+//        [self createFolderIfNeeded:uniquePath];
+//        
+//        for(FLZenfolioGroupElement* subEntry in [entry Elements]) {
+//       		[self abortIfNeeded];
+//            [self downloadEntry:subEntry toFolder:uniquePath];
+//	    }
+//    } 
+//    else if ( [entry isSelected] ) {
+//        @try {
+//            self.currentSet = entry;
+//            
+//            //	check if this PhotoSet contains photos
+//            if ( [entry PhotoCount] == 0 ) {
+//                return;
+//            }
+//            
+//            NSString* uniquePath = [self uniquePathForEntry:entry inFolder:folder];
+//            [self createFolderIfNeeded:uniquePath];
+//            
+//            //	download the photo's
+//            for (FLZenfolioPhoto* photo in [entry Photos]) {
+//                [self abortIfNeeded];
+//                [self downloadPhoto:photo toFolder:uniquePath];
+//            }
+//            
+//            _totalSetCount++;
+//		}
+//        @finally {
+//            self.currentSet = nil;
+//        }
+//	}
 }
 
-- (FLResult) runOperation {
+- (FLResult) runOperationInContext:(id) context withObserver:(id) observer {
     self.paused = NO;
 
-    _totalBytes = [self.rootGroup selectedPhotoBytesInSelection:self.selection];
-    _totalSetCount = [self.rootGroup photoSetsInSelection:self.selection].count;
-    _totalPhotoCount = [self.rootGroup selectedPhotoBytesInSelection:self.selection];
+//    _totalBytes = [self.rootGroup selectedPhotoBytesInSelection:self.selection];
+//    _totalSetCount = [self.rootGroup photoSetsInSelection:self.selection].count;
+//    _totalPhotoCount = [self.rootGroup selectedPhotoBytesInSelection:self.selection];
 
     @try {
-        [[self.userContext rootGroup] visitAllElements:^(FLZenfolioGroupElement* element, BOOL* stop) {
-            [self downloadEntry:element toFolder:[self destination]];
+        [[context rootGroup] visitAllElements:^(FLZenfolioGroupElement* element, BOOL* stop) {
+            [self downloadEntry:element toFolder:[self destination] inContext:context];
         }];
     }
     @catch(NSException* ex) {

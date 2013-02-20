@@ -1,5 +1,5 @@
 //
-//  UIImage+FLZenfolioCache.h
+//  UIImage+FLZenfolioCacheService.h
 //  Downloader
 //
 //  Created by Mike Fullerton on 11/27/12.

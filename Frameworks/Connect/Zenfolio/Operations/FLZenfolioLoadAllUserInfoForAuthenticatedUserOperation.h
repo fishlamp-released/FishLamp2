@@ -10,6 +10,7 @@
 #import "FLOperationQueue.h"
 #import "FLCachedObjectOperation.h"
 
+#if REFACTOR
 @interface FLZenfolioLoadAllUserInfoForAuthenticatedUserOperation : FLCachedObjectOperation<FLCacheObjectOperationSubclass> {
 @private
 }
@@ -18,3 +19,4 @@
 
 
 
+#endif

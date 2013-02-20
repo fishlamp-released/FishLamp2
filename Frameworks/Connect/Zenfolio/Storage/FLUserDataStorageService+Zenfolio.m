@@ -12,25 +12,25 @@
 #import "NSFileManager+FLExtras.h"
 #import "FLUserDataStorageService.h"
 
-@implementation FLUserDataStorageService (Zenfolio)
+@implementation FLDataStoreService (Zenfolio)
 
 - (FLZenfolioUploadGallery*) defaultUploadGallery {
 	FLZenfolioUploadGallery* input = [FLZenfolioUploadGallery uploadGallery];
 	input.uid = [NSString zeroGuidString];
-	FLZenfolioUploadGallery* output = [self.documentsDatabase loadObject:input];
+	FLZenfolioUploadGallery* output = [self readObject:input];
 	return output ? output : input; 
 }
 
 - (void) saveDefaultUploadGallery:(FLZenfolioUploadGallery*) uploadGallery {
 	uploadGallery.uid = [NSString zeroGuidString];
-	[self.documentsDatabase saveObject:uploadGallery];
+	[self writeObject:uploadGallery];
 }
 
 - (FLZenfolioAccessDescriptor*) defaultAccessDescriptor {
 	
     FLZenfolioAccessDescriptor* input = [FLZenfolioAccessDescriptor accessDescriptor];
 	input.uid = [NSString zeroGuidString];
-	FLZenfolioAccessDescriptor* output = [self.documentsDatabase loadObject:input];
+	FLZenfolioAccessDescriptor* output = [self readObject:input];
 	
     if(!output) {
 		output = input;
@@ -44,7 +44,7 @@
 
 - (void) saveDefaultAccessDescriptor:(FLZenfolioAccessDescriptor*) accessDescriptor {
 	accessDescriptor.uid = [NSString zeroGuidString];
-	[self.documentsDatabase saveObject:self];
+	[self writeObject:self];
 }
 
 

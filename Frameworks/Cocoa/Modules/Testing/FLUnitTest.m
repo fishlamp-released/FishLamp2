@@ -158,7 +158,7 @@
     return YES;
 }
 
-- (FLResult) runOperation {
+- (FLResult) runOperationInContext:(id) context withObserver:(id) observer {
     FLTestResultCollection* results = [FLTestResultCollection testResultCollection];
         
     if([self willRunTests]) {
@@ -180,9 +180,9 @@
                     
                     [[FLLogger instance] pushLoggerSink:result];
                     
-                    FLLog(@"STARTING %@", testCase.testCaseName);
 
-                    [testCase runSynchronously];
+                    FLLog(@"STARTING %@", testCase.testCaseName);
+                    [context runWorker:testCase withObserver:observer];
                     [result setPassed];
                     FLLog(@"PASS!")
                 }

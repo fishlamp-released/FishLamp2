@@ -23,6 +23,7 @@
 @property (readwrite, strong) FLReadStream* networkStream;
 @property (readwrite, strong) id<FLDispatcher> dispatcher;
 @property (readwrite, strong) id observer;
+@property (readwrite, strong) FLFinisher* finisher;
 
 - (void) readResponseHeadersIfNeeded;
 - (void) openHttpStreamWithURL:(NSURL*) url;
@@ -87,6 +88,7 @@
 @synthesize dataDecoder = _dataDecoder;
 @synthesize authenticator = _authenticator;
 @synthesize interceptor = _interceptor;
+@synthesize finisher = _finisher;
 
 - (id) init {
     self = [self initWithRequestURL:nil httpMethod:nil];
@@ -122,7 +124,8 @@
 - (void) dealloc {
     _networkStream.delegate = nil;
 #if FL_MRC
-    [_cacheHandler release];
+    [_finisher release];
+    [_interceptor release];
     [_authenticator release];
     [_dataDecoder release];
     [_dataEncoder release];
@@ -284,8 +287,6 @@
             [self.observer setFinishedWithResult:result];
         }
         
-        [self.context removeObject:self];
-        
         self.observer = nil;
         self.networkStream = nil;
         self.httpResponse = nil;
@@ -390,13 +391,15 @@
     }];
 }
 
-- (void) startWorking:(FLFinisher*) observer {
-
+- (void) startWorkingInContext:(id)context 
+                  withObserver:(id)observer 
+                      finisher:(FLFinisher *)finisher {
+    
     if(self.interceptor) {
         [self.interceptor httpRequest:self willSendRequest:observer];
     }
 
-    if(!observer.isFinished) {
+    if(!finisher.isFinished) {
         self.observer = observer;
 
         id<FLHttpRequestAuthenticator> authenticator = self.authenticator;
@@ -404,7 +407,7 @@
             [[authenticator httpRequestAuthenticationDispatcher:self] dispatchBlock:^{
                 @try {
                     [self willAuthenticateHttpRequest:authenticator];
-                    [authenticator httpRequestAuthenticateSynchronously:self];
+                    [authenticator httpRequest:self authenticateSynchronouslyInContext:context withObserver:observer];
                     [self didAuthenticateHttpRequest];
                     [self sendRequest];
                 }
@@ -417,17 +420,6 @@
             [self sendRequest];
         }
     }
-}
-
-- (FLResult) sendSynchronously {
-    FLFinisher* finisher = [FLFinisher finisher];
-    [self startWorking:finisher];
-    return [finisher result];
-}
-
-- (FLResult) sendSynchronouslyWithObserver:(FLHttpRequestObserver*) observer {
-    [self startWorking:observer];
-    return [observer result];
 }
 
 - (NSString*) description {

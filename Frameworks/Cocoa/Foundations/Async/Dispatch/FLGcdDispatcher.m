@@ -82,8 +82,6 @@ static void * const s_queue_key = (void*)&s_queue_key;
     return bridge_(FLGcdDispatcher*, dispatch_queue_get_specific(dispatch_get_current_queue(), s_queue_key));
 }
 
-
-
 - (void) dispatchBlockWithDelay:(NSTimeInterval) delay
                           block:(FLBlock) block 
                    withFinisher:(FLFinisher*) finisher {

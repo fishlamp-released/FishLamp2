@@ -10,15 +10,14 @@
 #import "FLDatabase.h"
 #import "FLFolder.h"
 
-#import "FLUserDataStorageService.h"
+#import "FLDataStoreService.h"
 
-@interface FLUserDataStorageService (Zenfolio)
+@interface FLDataStoreService (Zenfolio)
 
 - (FLZenfolioUploadGallery*) defaultUploadGallery;
 - (void) saveDefaultUploadGallery:(FLZenfolioUploadGallery*) uploadGallery;
 
 - (FLZenfolioAccessDescriptor*) defaultAccessDescriptor;
 - (void) saveDefaultAccessDescriptor:(FLZenfolioAccessDescriptor*) accessDescriptor;
-
 
 @end

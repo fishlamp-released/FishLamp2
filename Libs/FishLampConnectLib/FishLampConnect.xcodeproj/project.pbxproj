@@ -896,24 +896,24 @@
 		2753D92516C9A5C800A3880F /* FLFacebookLoadUserPictureHttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D5F516C9A5C800A3880F /* FLFacebookLoadUserPictureHttpRequest.m */; };
 		2753D92616C9A5C800A3880F /* FLFacebookLoadUserPictureHttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D5F516C9A5C800A3880F /* FLFacebookLoadUserPictureHttpRequest.m */; };
 		2753D92716C9A5C800A3880F /* FLFacebookLoadUserPictureHttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D5F516C9A5C800A3880F /* FLFacebookLoadUserPictureHttpRequest.m */; };
-		2753DD7416C9A82B00A3880F /* FLZenfolioAuthenticator.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D92A16C9A82300A3880F /* FLZenfolioAuthenticator.h */; };
-		2753DD7516C9A82B00A3880F /* FLZenfolioAuthenticator.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D92A16C9A82300A3880F /* FLZenfolioAuthenticator.h */; };
-		2753DD7616C9A82B00A3880F /* FLZenfolioAuthenticator.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D92A16C9A82300A3880F /* FLZenfolioAuthenticator.h */; };
-		2753DD7716C9A82B00A3880F /* FLZenfolioAuthenticator.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D92A16C9A82300A3880F /* FLZenfolioAuthenticator.h */; };
-		2753DD7816C9A82B00A3880F /* FLZenfolioAuthenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D92B16C9A82300A3880F /* FLZenfolioAuthenticator.m */; };
-		2753DD7916C9A82B00A3880F /* FLZenfolioAuthenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D92B16C9A82300A3880F /* FLZenfolioAuthenticator.m */; };
-		2753DD7A16C9A82B00A3880F /* FLZenfolioAuthenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D92B16C9A82300A3880F /* FLZenfolioAuthenticator.m */; };
-		2753DD7B16C9A82B00A3880F /* FLZenfolioAuthenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D92B16C9A82300A3880F /* FLZenfolioAuthenticator.m */; };
-		2753DD7C16C9A82B00A3880F /* FLZenfolioAuthenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D92B16C9A82300A3880F /* FLZenfolioAuthenticator.m */; };
-		2753DD7D16C9A82B00A3880F /* FLZenfolioHttpRequestAuthenticator.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D92C16C9A82300A3880F /* FLZenfolioHttpRequestAuthenticator.h */; };
-		2753DD7E16C9A82B00A3880F /* FLZenfolioHttpRequestAuthenticator.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D92C16C9A82300A3880F /* FLZenfolioHttpRequestAuthenticator.h */; };
-		2753DD7F16C9A82B00A3880F /* FLZenfolioHttpRequestAuthenticator.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D92C16C9A82300A3880F /* FLZenfolioHttpRequestAuthenticator.h */; };
-		2753DD8016C9A82B00A3880F /* FLZenfolioHttpRequestAuthenticator.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D92C16C9A82300A3880F /* FLZenfolioHttpRequestAuthenticator.h */; };
-		2753DD8116C9A82B00A3880F /* FLZenfolioHttpRequestAuthenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D92D16C9A82300A3880F /* FLZenfolioHttpRequestAuthenticator.m */; };
-		2753DD8216C9A82B00A3880F /* FLZenfolioHttpRequestAuthenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D92D16C9A82300A3880F /* FLZenfolioHttpRequestAuthenticator.m */; };
-		2753DD8316C9A82B00A3880F /* FLZenfolioHttpRequestAuthenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D92D16C9A82300A3880F /* FLZenfolioHttpRequestAuthenticator.m */; };
-		2753DD8416C9A82B00A3880F /* FLZenfolioHttpRequestAuthenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D92D16C9A82300A3880F /* FLZenfolioHttpRequestAuthenticator.m */; };
-		2753DD8516C9A82B00A3880F /* FLZenfolioHttpRequestAuthenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D92D16C9A82300A3880F /* FLZenfolioHttpRequestAuthenticator.m */; };
+		2753DD7416C9A82B00A3880F /* FLZenfolioAuthenticateOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D92A16C9A82300A3880F /* FLZenfolioAuthenticateOperation.h */; };
+		2753DD7516C9A82B00A3880F /* FLZenfolioAuthenticateOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D92A16C9A82300A3880F /* FLZenfolioAuthenticateOperation.h */; };
+		2753DD7616C9A82B00A3880F /* FLZenfolioAuthenticateOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D92A16C9A82300A3880F /* FLZenfolioAuthenticateOperation.h */; };
+		2753DD7716C9A82B00A3880F /* FLZenfolioAuthenticateOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D92A16C9A82300A3880F /* FLZenfolioAuthenticateOperation.h */; };
+		2753DD7816C9A82B00A3880F /* FLZenfolioAuthenticateOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D92B16C9A82300A3880F /* FLZenfolioAuthenticateOperation.m */; };
+		2753DD7916C9A82B00A3880F /* FLZenfolioAuthenticateOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D92B16C9A82300A3880F /* FLZenfolioAuthenticateOperation.m */; };
+		2753DD7A16C9A82B00A3880F /* FLZenfolioAuthenticateOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D92B16C9A82300A3880F /* FLZenfolioAuthenticateOperation.m */; };
+		2753DD7B16C9A82B00A3880F /* FLZenfolioAuthenticateOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D92B16C9A82300A3880F /* FLZenfolioAuthenticateOperation.m */; };
+		2753DD7C16C9A82B00A3880F /* FLZenfolioAuthenticateOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D92B16C9A82300A3880F /* FLZenfolioAuthenticateOperation.m */; };
+		2753DD7D16C9A82B00A3880F /* FLZenfolioAuthenticationService.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D92C16C9A82300A3880F /* FLZenfolioAuthenticationService.h */; };
+		2753DD7E16C9A82B00A3880F /* FLZenfolioAuthenticationService.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D92C16C9A82300A3880F /* FLZenfolioAuthenticationService.h */; };
+		2753DD7F16C9A82B00A3880F /* FLZenfolioAuthenticationService.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D92C16C9A82300A3880F /* FLZenfolioAuthenticationService.h */; };
+		2753DD8016C9A82B00A3880F /* FLZenfolioAuthenticationService.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D92C16C9A82300A3880F /* FLZenfolioAuthenticationService.h */; };
+		2753DD8116C9A82B00A3880F /* FLZenfolioAuthenticationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D92D16C9A82300A3880F /* FLZenfolioAuthenticationService.m */; };
+		2753DD8216C9A82B00A3880F /* FLZenfolioAuthenticationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D92D16C9A82300A3880F /* FLZenfolioAuthenticationService.m */; };
+		2753DD8316C9A82B00A3880F /* FLZenfolioAuthenticationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D92D16C9A82300A3880F /* FLZenfolioAuthenticationService.m */; };
+		2753DD8416C9A82B00A3880F /* FLZenfolioAuthenticationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D92D16C9A82300A3880F /* FLZenfolioAuthenticationService.m */; };
+		2753DD8516C9A82B00A3880F /* FLZenfolioAuthenticationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D92D16C9A82300A3880F /* FLZenfolioAuthenticationService.m */; };
 		2753DD8616C9A82B00A3880F /* FLZenfolioBatchDeleteGroupElements.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D92F16C9A82300A3880F /* FLZenfolioBatchDeleteGroupElements.h */; };
 		2753DD8716C9A82B00A3880F /* FLZenfolioBatchDeleteGroupElements.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D92F16C9A82300A3880F /* FLZenfolioBatchDeleteGroupElements.h */; };
 		2753DD8816C9A82B00A3880F /* FLZenfolioBatchDeleteGroupElements.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D92F16C9A82300A3880F /* FLZenfolioBatchDeleteGroupElements.h */; };
@@ -995,15 +995,15 @@
 		2753DDD416C9A82B00A3880F /* FLStorableImage+ZenfolioCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D94116C9A82300A3880F /* FLStorableImage+ZenfolioCache.m */; };
 		2753DDD516C9A82B00A3880F /* FLStorableImage+ZenfolioCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D94116C9A82300A3880F /* FLStorableImage+ZenfolioCache.m */; };
 		2753DDD616C9A82B00A3880F /* FLStorableImage+ZenfolioCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D94116C9A82300A3880F /* FLStorableImage+ZenfolioCache.m */; };
-		2753DDD716C9A82B00A3880F /* FLZenfolioCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D94216C9A82300A3880F /* FLZenfolioCache.h */; };
-		2753DDD816C9A82B00A3880F /* FLZenfolioCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D94216C9A82300A3880F /* FLZenfolioCache.h */; };
-		2753DDD916C9A82B00A3880F /* FLZenfolioCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D94216C9A82300A3880F /* FLZenfolioCache.h */; };
-		2753DDDA16C9A82B00A3880F /* FLZenfolioCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D94216C9A82300A3880F /* FLZenfolioCache.h */; };
-		2753DDDB16C9A82B00A3880F /* FLZenfolioCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D94316C9A82300A3880F /* FLZenfolioCache.m */; };
-		2753DDDC16C9A82B00A3880F /* FLZenfolioCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D94316C9A82300A3880F /* FLZenfolioCache.m */; };
-		2753DDDD16C9A82B00A3880F /* FLZenfolioCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D94316C9A82300A3880F /* FLZenfolioCache.m */; };
-		2753DDDE16C9A82B00A3880F /* FLZenfolioCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D94316C9A82300A3880F /* FLZenfolioCache.m */; };
-		2753DDDF16C9A82B00A3880F /* FLZenfolioCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D94316C9A82300A3880F /* FLZenfolioCache.m */; };
+		2753DDD716C9A82B00A3880F /* FLZenfolioCacheService.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D94216C9A82300A3880F /* FLZenfolioCacheService.h */; };
+		2753DDD816C9A82B00A3880F /* FLZenfolioCacheService.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D94216C9A82300A3880F /* FLZenfolioCacheService.h */; };
+		2753DDD916C9A82B00A3880F /* FLZenfolioCacheService.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D94216C9A82300A3880F /* FLZenfolioCacheService.h */; };
+		2753DDDA16C9A82B00A3880F /* FLZenfolioCacheService.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D94216C9A82300A3880F /* FLZenfolioCacheService.h */; };
+		2753DDDB16C9A82B00A3880F /* FLZenfolioCacheService.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D94316C9A82300A3880F /* FLZenfolioCacheService.m */; };
+		2753DDDC16C9A82B00A3880F /* FLZenfolioCacheService.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D94316C9A82300A3880F /* FLZenfolioCacheService.m */; };
+		2753DDDD16C9A82B00A3880F /* FLZenfolioCacheService.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D94316C9A82300A3880F /* FLZenfolioCacheService.m */; };
+		2753DDDE16C9A82B00A3880F /* FLZenfolioCacheService.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D94316C9A82300A3880F /* FLZenfolioCacheService.m */; };
+		2753DDDF16C9A82B00A3880F /* FLZenfolioCacheService.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D94316C9A82300A3880F /* FLZenfolioCacheService.m */; };
 		2753DDE016C9A82B00A3880F /* FLZenfolioLoadGroupFromCacheOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D94416C9A82300A3880F /* FLZenfolioLoadGroupFromCacheOperation.h */; };
 		2753DDE116C9A82B00A3880F /* FLZenfolioLoadGroupFromCacheOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D94416C9A82300A3880F /* FLZenfolioLoadGroupFromCacheOperation.h */; };
 		2753DDE216C9A82B00A3880F /* FLZenfolioLoadGroupFromCacheOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D94416C9A82300A3880F /* FLZenfolioLoadGroupFromCacheOperation.h */; };
@@ -1148,15 +1148,6 @@
 		2753DE6D16C9A82B00A3880F /* FLZenfolioLoadGroupHierarchyOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D96816C9A82300A3880F /* FLZenfolioLoadGroupHierarchyOperation.m */; };
 		2753DE6E16C9A82B00A3880F /* FLZenfolioLoadGroupHierarchyOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D96816C9A82300A3880F /* FLZenfolioLoadGroupHierarchyOperation.m */; };
 		2753DE6F16C9A82B00A3880F /* FLZenfolioLoadGroupHierarchyOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D96816C9A82300A3880F /* FLZenfolioLoadGroupHierarchyOperation.m */; };
-		2753DE7916C9A82B00A3880F /* ZfLoadGroupsFromCacheOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D96B16C9A82300A3880F /* ZfLoadGroupsFromCacheOperation.h */; };
-		2753DE7A16C9A82B00A3880F /* ZfLoadGroupsFromCacheOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D96B16C9A82300A3880F /* ZfLoadGroupsFromCacheOperation.h */; };
-		2753DE7B16C9A82B00A3880F /* ZfLoadGroupsFromCacheOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D96B16C9A82300A3880F /* ZfLoadGroupsFromCacheOperation.h */; };
-		2753DE7C16C9A82B00A3880F /* ZfLoadGroupsFromCacheOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D96B16C9A82300A3880F /* ZfLoadGroupsFromCacheOperation.h */; };
-		2753DE7D16C9A82B00A3880F /* ZfLoadGroupsFromCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D96C16C9A82300A3880F /* ZfLoadGroupsFromCacheOperation.m */; };
-		2753DE7E16C9A82B00A3880F /* ZfLoadGroupsFromCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D96C16C9A82300A3880F /* ZfLoadGroupsFromCacheOperation.m */; };
-		2753DE7F16C9A82B00A3880F /* ZfLoadGroupsFromCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D96C16C9A82300A3880F /* ZfLoadGroupsFromCacheOperation.m */; };
-		2753DE8016C9A82B00A3880F /* ZfLoadGroupsFromCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D96C16C9A82300A3880F /* ZfLoadGroupsFromCacheOperation.m */; };
-		2753DE8116C9A82B00A3880F /* ZfLoadGroupsFromCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D96C16C9A82300A3880F /* ZfLoadGroupsFromCacheOperation.m */; };
 		2753DE8216C9A82B00A3880F /* FLZenfolioDownloadImageHttpRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D96E16C9A82300A3880F /* FLZenfolioDownloadImageHttpRequest.h */; };
 		2753DE8316C9A82B00A3880F /* FLZenfolioDownloadImageHttpRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D96E16C9A82300A3880F /* FLZenfolioDownloadImageHttpRequest.h */; };
 		2753DE8416C9A82B00A3880F /* FLZenfolioDownloadImageHttpRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D96E16C9A82300A3880F /* FLZenfolioDownloadImageHttpRequest.h */; };
@@ -1355,15 +1346,15 @@
 		2753DF4E16C9A82B00A3880F /* FLUserDataStorageService+ZenfolioAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D9A516C9A82300A3880F /* FLUserDataStorageService+ZenfolioAdditions.m */; };
 		2753DF4F16C9A82B00A3880F /* FLUserDataStorageService+ZenfolioAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D9A516C9A82300A3880F /* FLUserDataStorageService+ZenfolioAdditions.m */; };
 		2753DF5016C9A82B00A3880F /* FLUserDataStorageService+ZenfolioAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D9A516C9A82300A3880F /* FLUserDataStorageService+ZenfolioAdditions.m */; };
-		2753DF5116C9A82B00A3880F /* FLZenfolioUserContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D9A616C9A82300A3880F /* FLZenfolioUserContext.h */; };
-		2753DF5216C9A82B00A3880F /* FLZenfolioUserContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D9A616C9A82300A3880F /* FLZenfolioUserContext.h */; };
-		2753DF5316C9A82B00A3880F /* FLZenfolioUserContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D9A616C9A82300A3880F /* FLZenfolioUserContext.h */; };
-		2753DF5416C9A82B00A3880F /* FLZenfolioUserContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D9A616C9A82300A3880F /* FLZenfolioUserContext.h */; };
-		2753DF5516C9A82B00A3880F /* FLZenfolioUserContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D9A716C9A82300A3880F /* FLZenfolioUserContext.m */; };
-		2753DF5616C9A82B00A3880F /* FLZenfolioUserContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D9A716C9A82300A3880F /* FLZenfolioUserContext.m */; };
-		2753DF5716C9A82B00A3880F /* FLZenfolioUserContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D9A716C9A82300A3880F /* FLZenfolioUserContext.m */; };
-		2753DF5816C9A82B00A3880F /* FLZenfolioUserContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D9A716C9A82300A3880F /* FLZenfolioUserContext.m */; };
-		2753DF5916C9A82B00A3880F /* FLZenfolioUserContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D9A716C9A82300A3880F /* FLZenfolioUserContext.m */; };
+		2753DF5116C9A82B00A3880F /* FLZenfolioUserService.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D9A616C9A82300A3880F /* FLZenfolioUserService.h */; };
+		2753DF5216C9A82B00A3880F /* FLZenfolioUserService.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D9A616C9A82300A3880F /* FLZenfolioUserService.h */; };
+		2753DF5316C9A82B00A3880F /* FLZenfolioUserService.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D9A616C9A82300A3880F /* FLZenfolioUserService.h */; };
+		2753DF5416C9A82B00A3880F /* FLZenfolioUserService.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D9A616C9A82300A3880F /* FLZenfolioUserService.h */; };
+		2753DF5516C9A82B00A3880F /* FLZenfolioUserService.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D9A716C9A82300A3880F /* FLZenfolioUserService.m */; };
+		2753DF5616C9A82B00A3880F /* FLZenfolioUserService.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D9A716C9A82300A3880F /* FLZenfolioUserService.m */; };
+		2753DF5716C9A82B00A3880F /* FLZenfolioUserService.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D9A716C9A82300A3880F /* FLZenfolioUserService.m */; };
+		2753DF5816C9A82B00A3880F /* FLZenfolioUserService.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D9A716C9A82300A3880F /* FLZenfolioUserService.m */; };
+		2753DF5916C9A82B00A3880F /* FLZenfolioUserService.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D9A716C9A82300A3880F /* FLZenfolioUserService.m */; };
 		2753DF5A16C9A82B00A3880F /* FLZenfolioSharedFavoritesSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D9AA16C9A82300A3880F /* FLZenfolioSharedFavoritesSet.h */; };
 		2753DF5B16C9A82B00A3880F /* FLZenfolioSharedFavoritesSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D9AA16C9A82300A3880F /* FLZenfolioSharedFavoritesSet.h */; };
 		2753DF5C16C9A82B00A3880F /* FLZenfolioSharedFavoritesSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D9AA16C9A82300A3880F /* FLZenfolioSharedFavoritesSet.h */; };
@@ -5661,6 +5652,33 @@
 		2781095216C9CC51005D1CE4 /* FLZenfolioGroupElementSelection.m in Sources */ = {isa = PBXBuildFile; fileRef = 2781094216C9CC51005D1CE4 /* FLZenfolioGroupElementSelection.m */; };
 		2781095316C9CC51005D1CE4 /* FLZenfolioGroupElementSelection.m in Sources */ = {isa = PBXBuildFile; fileRef = 2781094216C9CC51005D1CE4 /* FLZenfolioGroupElementSelection.m */; };
 		2781095416C9CC51005D1CE4 /* FLZenfolioGroupElementSelection.m in Sources */ = {isa = PBXBuildFile; fileRef = 2781094216C9CC51005D1CE4 /* FLZenfolioGroupElementSelection.m */; };
+		27A22B7316D42C750009C139 /* FLHttpRequest+ZenfolioAuthentication.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A22B7116D42C740009C139 /* FLHttpRequest+ZenfolioAuthentication.h */; };
+		27A22B7416D42C750009C139 /* FLHttpRequest+ZenfolioAuthentication.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A22B7116D42C740009C139 /* FLHttpRequest+ZenfolioAuthentication.h */; };
+		27A22B7516D42C750009C139 /* FLHttpRequest+ZenfolioAuthentication.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A22B7116D42C740009C139 /* FLHttpRequest+ZenfolioAuthentication.h */; };
+		27A22B7616D42C750009C139 /* FLHttpRequest+ZenfolioAuthentication.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A22B7116D42C740009C139 /* FLHttpRequest+ZenfolioAuthentication.h */; };
+		27A22B7716D42C750009C139 /* FLHttpRequest+ZenfolioAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A22B7216D42C740009C139 /* FLHttpRequest+ZenfolioAuthentication.m */; };
+		27A22B7816D42C750009C139 /* FLHttpRequest+ZenfolioAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A22B7216D42C740009C139 /* FLHttpRequest+ZenfolioAuthentication.m */; };
+		27A22B7916D42C750009C139 /* FLHttpRequest+ZenfolioAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A22B7216D42C740009C139 /* FLHttpRequest+ZenfolioAuthentication.m */; };
+		27A22B7A16D42C750009C139 /* FLHttpRequest+ZenfolioAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A22B7216D42C740009C139 /* FLHttpRequest+ZenfolioAuthentication.m */; };
+		27A22B7B16D42C750009C139 /* FLHttpRequest+ZenfolioAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A22B7216D42C740009C139 /* FLHttpRequest+ZenfolioAuthentication.m */; };
+		27A22B7E16D42E050009C139 /* FLZenfolioRegisteredUserAuthenticationService.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A22B7C16D42E040009C139 /* FLZenfolioRegisteredUserAuthenticationService.h */; };
+		27A22B7F16D42E050009C139 /* FLZenfolioRegisteredUserAuthenticationService.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A22B7C16D42E040009C139 /* FLZenfolioRegisteredUserAuthenticationService.h */; };
+		27A22B8016D42E050009C139 /* FLZenfolioRegisteredUserAuthenticationService.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A22B7C16D42E040009C139 /* FLZenfolioRegisteredUserAuthenticationService.h */; };
+		27A22B8116D42E050009C139 /* FLZenfolioRegisteredUserAuthenticationService.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A22B7C16D42E040009C139 /* FLZenfolioRegisteredUserAuthenticationService.h */; };
+		27A22B8216D42E050009C139 /* FLZenfolioRegisteredUserAuthenticationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A22B7D16D42E050009C139 /* FLZenfolioRegisteredUserAuthenticationService.m */; };
+		27A22B8316D42E050009C139 /* FLZenfolioRegisteredUserAuthenticationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A22B7D16D42E050009C139 /* FLZenfolioRegisteredUserAuthenticationService.m */; };
+		27A22B8416D42E050009C139 /* FLZenfolioRegisteredUserAuthenticationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A22B7D16D42E050009C139 /* FLZenfolioRegisteredUserAuthenticationService.m */; };
+		27A22B8516D42E050009C139 /* FLZenfolioRegisteredUserAuthenticationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A22B7D16D42E050009C139 /* FLZenfolioRegisteredUserAuthenticationService.m */; };
+		27A22B8616D42E050009C139 /* FLZenfolioRegisteredUserAuthenticationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A22B7D16D42E050009C139 /* FLZenfolioRegisteredUserAuthenticationService.m */; };
+		27A22B8916D42EEE0009C139 /* FLZenfolioGuestAuthenticationService.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A22B8716D42EED0009C139 /* FLZenfolioGuestAuthenticationService.h */; };
+		27A22B8A16D42EEE0009C139 /* FLZenfolioGuestAuthenticationService.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A22B8716D42EED0009C139 /* FLZenfolioGuestAuthenticationService.h */; };
+		27A22B8B16D42EEE0009C139 /* FLZenfolioGuestAuthenticationService.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A22B8716D42EED0009C139 /* FLZenfolioGuestAuthenticationService.h */; };
+		27A22B8C16D42EEE0009C139 /* FLZenfolioGuestAuthenticationService.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A22B8716D42EED0009C139 /* FLZenfolioGuestAuthenticationService.h */; };
+		27A22B8D16D42EEE0009C139 /* FLZenfolioGuestAuthenticationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A22B8816D42EEE0009C139 /* FLZenfolioGuestAuthenticationService.m */; };
+		27A22B8E16D42EEE0009C139 /* FLZenfolioGuestAuthenticationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A22B8816D42EEE0009C139 /* FLZenfolioGuestAuthenticationService.m */; };
+		27A22B8F16D42EEE0009C139 /* FLZenfolioGuestAuthenticationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A22B8816D42EEE0009C139 /* FLZenfolioGuestAuthenticationService.m */; };
+		27A22B9016D42EEE0009C139 /* FLZenfolioGuestAuthenticationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A22B8816D42EEE0009C139 /* FLZenfolioGuestAuthenticationService.m */; };
+		27A22B9116D42EEE0009C139 /* FLZenfolioGuestAuthenticationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A22B8816D42EEE0009C139 /* FLZenfolioGuestAuthenticationService.m */; };
 		27EA22B516B84D810018CDB2 /* FLTwitterService.h in Headers */ = {isa = PBXBuildFile; fileRef = 27EA1F6E16B84D800018CDB2 /* FLTwitterService.h */; };
 		27EA22B616B84D810018CDB2 /* FLTwitterService.h in Headers */ = {isa = PBXBuildFile; fileRef = 27EA1F6E16B84D800018CDB2 /* FLTwitterService.h */; };
 		27EA22B716B84D810018CDB2 /* FLTwitterService.h in Headers */ = {isa = PBXBuildFile; fileRef = 27EA1F6E16B84D800018CDB2 /* FLTwitterService.h */; };
@@ -5674,16 +5692,80 @@
 		27EA230716B84DCA0018CDB2 /* FishLampConnect-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27EA230516B84DCA0018CDB2 /* FishLampConnect-Prefix.pch */; };
 		27EA230816B84DCA0018CDB2 /* FishLampConnect-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27EA230516B84DCA0018CDB2 /* FishLampConnect-Prefix.pch */; };
 		27EA230916B84DCA0018CDB2 /* FishLampConnect-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27EA230516B84DCA0018CDB2 /* FishLampConnect-Prefix.pch */; };
-		27EE268716CAF0A000E4CC98 /* FLOperation+ZenfolioHttp.h in Headers */ = {isa = PBXBuildFile; fileRef = 27EE268516CAF0A000E4CC98 /* FLOperation+ZenfolioHttp.h */; };
-		27EE268816CAF0A000E4CC98 /* FLOperation+ZenfolioHttp.h in Headers */ = {isa = PBXBuildFile; fileRef = 27EE268516CAF0A000E4CC98 /* FLOperation+ZenfolioHttp.h */; };
-		27EE268916CAF0A000E4CC98 /* FLOperation+ZenfolioHttp.h in Headers */ = {isa = PBXBuildFile; fileRef = 27EE268516CAF0A000E4CC98 /* FLOperation+ZenfolioHttp.h */; };
-		27EE268A16CAF0A000E4CC98 /* FLOperation+ZenfolioHttp.h in Headers */ = {isa = PBXBuildFile; fileRef = 27EE268516CAF0A000E4CC98 /* FLOperation+ZenfolioHttp.h */; };
-		27EE268B16CAF0A000E4CC98 /* FLOperation+ZenfolioHttp.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EE268616CAF0A000E4CC98 /* FLOperation+ZenfolioHttp.m */; };
-		27EE268C16CAF0A000E4CC98 /* FLOperation+ZenfolioHttp.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EE268616CAF0A000E4CC98 /* FLOperation+ZenfolioHttp.m */; };
-		27EE268D16CAF0A000E4CC98 /* FLOperation+ZenfolioHttp.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EE268616CAF0A000E4CC98 /* FLOperation+ZenfolioHttp.m */; };
-		27EE268E16CAF0A000E4CC98 /* FLOperation+ZenfolioHttp.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EE268616CAF0A000E4CC98 /* FLOperation+ZenfolioHttp.m */; };
-		27EE268F16CAF0A000E4CC98 /* FLOperation+ZenfolioHttp.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EE268616CAF0A000E4CC98 /* FLOperation+ZenfolioHttp.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		27EC5F6E16D45E3300C5102D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2739006E16D45CFE00FC6453 /* FishLampCocoaUI.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 27A43AB415CDCC89001CB13E;
+			remoteInfo = "FishLampCocoaUI-iOS-ARC";
+		};
+		27EC5F7016D45E3300C5102D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2739006E16D45CFE00FC6453 /* FishLampCocoaUI.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 27048EF0161CB58600C38ADA;
+			remoteInfo = "FishLampCocoaUI-OSX-32-MRC";
+		};
+		27EC5F7216D45E3300C5102D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2739006E16D45CFE00FC6453 /* FishLampCocoaUI.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 27A43AC415CDCCCB001CB13E;
+			remoteInfo = "FishLampCocoaUI-OSX-64-MRC";
+		};
+		27EC5F7416D45E3300C5102D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2739006E16D45CFE00FC6453 /* FishLampCocoaUI.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 27314C79165328400027850D;
+			remoteInfo = "FishLampCocoaUI-OSX-64-ARC";
+		};
+		27EC5F7616D45E3300C5102D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2739006E16D45CFE00FC6453 /* FishLampCocoaUI.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 27CBC1F416768BA600753D0A;
+			remoteInfo = "FishLampCocoaUI-OSX-3264-MRC";
+		};
+		27EC5F7816D45E5100C5102D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2739006E16D45CFE00FC6453 /* FishLampCocoaUI.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 27048B70161CB58600C38ADA;
+			remoteInfo = "FishLampCocoaUI-OSX-32-MRC";
+		};
+		27EC5F7A16D45E5600C5102D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2739006E16D45CFE00FC6453 /* FishLampCocoaUI.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 27A43AB315CDCC89001CB13E;
+			remoteInfo = "FishLampCocoaUI-iOS-ARC";
+		};
+		27EC5F7C16D45E5F00C5102D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2739006E16D45CFE00FC6453 /* FishLampCocoaUI.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 27A43AC315CDCCCB001CB13E;
+			remoteInfo = "FishLampCocoaUI-OSX-64-MRC";
+		};
+		27EC5F7E16D45E6600C5102D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2739006E16D45CFE00FC6453 /* FishLampCocoaUI.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 273148B9165328400027850D;
+			remoteInfo = "FishLampCocoaUI-OSX-64-ARC";
+		};
+		27EC5F8016D45E6C00C5102D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2739006E16D45CFE00FC6453 /* FishLampCocoaUI.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 27CBBE2916768BA600753D0A;
+			remoteInfo = "FishLampCocoaUI-OSX-3264-MRC";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		27A43AB215CDCC89001CB13E /* CopyFiles */ = {
@@ -5700,6 +5782,7 @@
 /* Begin PBXFileReference section */
 		27048EF0161CB58600C38ADA /* libFishLampConnect-OSX-32-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampConnect-OSX-32-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27314C79165328400027850D /* libFishLampConnect-OSX-64-ARC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampConnect-OSX-64-ARC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2739006E16D45CFE00FC6453 /* FishLampCocoaUI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FishLampCocoaUI.xcodeproj; path = ../FishLampCocoaUILib/FishLampCocoaUI.xcodeproj; sourceTree = "<group>"; };
 		2753D48916C9A3AE00A3880F /* FishLampTwitter.flproj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = FishLampTwitter.flproj; sourceTree = "<group>"; };
 		2753D4E416C9A53E00A3880F /* __FLTwitterAll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __FLTwitterAll.h; sourceTree = "<group>"; };
 		2753D4E516C9A53E00A3880F /* __FLTwitterError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __FLTwitterError.h; sourceTree = "<group>"; };
@@ -5900,10 +5983,10 @@
 		2753D5F316C9A5C800A3880F /* FLFacebookLoadUserHttpRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLFacebookLoadUserHttpRequest.m; sourceTree = "<group>"; };
 		2753D5F416C9A5C800A3880F /* FLFacebookLoadUserPictureHttpRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLFacebookLoadUserPictureHttpRequest.h; sourceTree = "<group>"; };
 		2753D5F516C9A5C800A3880F /* FLFacebookLoadUserPictureHttpRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLFacebookLoadUserPictureHttpRequest.m; sourceTree = "<group>"; };
-		2753D92A16C9A82300A3880F /* FLZenfolioAuthenticator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLZenfolioAuthenticator.h; sourceTree = "<group>"; };
-		2753D92B16C9A82300A3880F /* FLZenfolioAuthenticator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLZenfolioAuthenticator.m; sourceTree = "<group>"; };
-		2753D92C16C9A82300A3880F /* FLZenfolioHttpRequestAuthenticator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLZenfolioHttpRequestAuthenticator.h; sourceTree = "<group>"; };
-		2753D92D16C9A82300A3880F /* FLZenfolioHttpRequestAuthenticator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLZenfolioHttpRequestAuthenticator.m; sourceTree = "<group>"; };
+		2753D92A16C9A82300A3880F /* FLZenfolioAuthenticateOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLZenfolioAuthenticateOperation.h; sourceTree = "<group>"; };
+		2753D92B16C9A82300A3880F /* FLZenfolioAuthenticateOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLZenfolioAuthenticateOperation.m; sourceTree = "<group>"; };
+		2753D92C16C9A82300A3880F /* FLZenfolioAuthenticationService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLZenfolioAuthenticationService.h; sourceTree = "<group>"; };
+		2753D92D16C9A82300A3880F /* FLZenfolioAuthenticationService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLZenfolioAuthenticationService.m; sourceTree = "<group>"; };
 		2753D92F16C9A82300A3880F /* FLZenfolioBatchDeleteGroupElements.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLZenfolioBatchDeleteGroupElements.h; sourceTree = "<group>"; };
 		2753D93016C9A82300A3880F /* FLZenfolioBatchDeleteGroupElements.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLZenfolioBatchDeleteGroupElements.m; sourceTree = "<group>"; };
 		2753D93116C9A82300A3880F /* FLZenfolioBatchDeletePhotos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLZenfolioBatchDeletePhotos.h; sourceTree = "<group>"; };
@@ -5922,8 +6005,8 @@
 		2753D93E16C9A82300A3880F /* FLZenfolioBatchSavePhotosToDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLZenfolioBatchSavePhotosToDevice.m; sourceTree = "<group>"; };
 		2753D94016C9A82300A3880F /* FLStorableImage+ZenfolioCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FLStorableImage+ZenfolioCache.h"; sourceTree = "<group>"; };
 		2753D94116C9A82300A3880F /* FLStorableImage+ZenfolioCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FLStorableImage+ZenfolioCache.m"; sourceTree = "<group>"; };
-		2753D94216C9A82300A3880F /* FLZenfolioCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLZenfolioCache.h; sourceTree = "<group>"; };
-		2753D94316C9A82300A3880F /* FLZenfolioCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLZenfolioCache.m; sourceTree = "<group>"; };
+		2753D94216C9A82300A3880F /* FLZenfolioCacheService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLZenfolioCacheService.h; sourceTree = "<group>"; };
+		2753D94316C9A82300A3880F /* FLZenfolioCacheService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLZenfolioCacheService.m; sourceTree = "<group>"; };
 		2753D94416C9A82300A3880F /* FLZenfolioLoadGroupFromCacheOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLZenfolioLoadGroupFromCacheOperation.h; sourceTree = "<group>"; };
 		2753D94516C9A82300A3880F /* FLZenfolioLoadGroupFromCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLZenfolioLoadGroupFromCacheOperation.m; sourceTree = "<group>"; };
 		2753D94616C9A82300A3880F /* FLZenfolioLoadGroupsFromCacheOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLZenfolioLoadGroupsFromCacheOperation.h; sourceTree = "<group>"; };
@@ -5957,8 +6040,6 @@
 		2753D96616C9A82300A3880F /* FLZenfolioLoadGroupOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLZenfolioLoadGroupOperation.m; sourceTree = "<group>"; };
 		2753D96716C9A82300A3880F /* FLZenfolioLoadGroupHierarchyOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLZenfolioLoadGroupHierarchyOperation.h; sourceTree = "<group>"; };
 		2753D96816C9A82300A3880F /* FLZenfolioLoadGroupHierarchyOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLZenfolioLoadGroupHierarchyOperation.m; sourceTree = "<group>"; };
-		2753D96B16C9A82300A3880F /* ZfLoadGroupsFromCacheOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZfLoadGroupsFromCacheOperation.h; sourceTree = "<group>"; };
-		2753D96C16C9A82300A3880F /* ZfLoadGroupsFromCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZfLoadGroupsFromCacheOperation.m; sourceTree = "<group>"; };
 		2753D96E16C9A82300A3880F /* FLZenfolioDownloadImageHttpRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLZenfolioDownloadImageHttpRequest.h; sourceTree = "<group>"; };
 		2753D96F16C9A82300A3880F /* FLZenfolioDownloadImageHttpRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLZenfolioDownloadImageHttpRequest.m; sourceTree = "<group>"; };
 		2753D97016C9A82300A3880F /* FLZenfolioRandomPhotoDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLZenfolioRandomPhotoDownloader.h; sourceTree = "<group>"; };
@@ -6004,8 +6085,8 @@
 		2753D9A216C9A82300A3880F /* FLZenfolioBreadCrumbsBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLZenfolioBreadCrumbsBar.m; sourceTree = "<group>"; };
 		2753D9A416C9A82300A3880F /* FLUserDataStorageService+ZenfolioAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FLUserDataStorageService+ZenfolioAdditions.h"; sourceTree = "<group>"; };
 		2753D9A516C9A82300A3880F /* FLUserDataStorageService+ZenfolioAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FLUserDataStorageService+ZenfolioAdditions.m"; sourceTree = "<group>"; };
-		2753D9A616C9A82300A3880F /* FLZenfolioUserContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLZenfolioUserContext.h; sourceTree = "<group>"; };
-		2753D9A716C9A82300A3880F /* FLZenfolioUserContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLZenfolioUserContext.m; sourceTree = "<group>"; };
+		2753D9A616C9A82300A3880F /* FLZenfolioUserService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLZenfolioUserService.h; sourceTree = "<group>"; };
+		2753D9A716C9A82300A3880F /* FLZenfolioUserService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLZenfolioUserService.m; sourceTree = "<group>"; };
 		2753D9A916C9A82300A3880F /* FLZenfolioSharedFavorites.flproj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = FLZenfolioSharedFavorites.flproj; sourceTree = "<group>"; };
 		2753D9AA16C9A82300A3880F /* FLZenfolioSharedFavoritesSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLZenfolioSharedFavoritesSet.h; sourceTree = "<group>"; };
 		2753D9AB16C9A82300A3880F /* FLZenfolioSharedFavoritesSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLZenfolioSharedFavoritesSet.m; sourceTree = "<group>"; };
@@ -6965,14 +7046,18 @@
 		2781094116C9CC51005D1CE4 /* FLZenfolioGroupElementSelection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLZenfolioGroupElementSelection.h; sourceTree = "<group>"; };
 		2781094216C9CC51005D1CE4 /* FLZenfolioGroupElementSelection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLZenfolioGroupElementSelection.m; sourceTree = "<group>"; };
 		2798DB81166D8A7F00A0863D /* SharedTargetSettings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = SharedTargetSettings.xcconfig; sourceTree = "<group>"; };
+		27A22B7116D42C740009C139 /* FLHttpRequest+ZenfolioAuthentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FLHttpRequest+ZenfolioAuthentication.h"; sourceTree = "<group>"; };
+		27A22B7216D42C740009C139 /* FLHttpRequest+ZenfolioAuthentication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FLHttpRequest+ZenfolioAuthentication.m"; sourceTree = "<group>"; };
+		27A22B7C16D42E040009C139 /* FLZenfolioRegisteredUserAuthenticationService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLZenfolioRegisteredUserAuthenticationService.h; sourceTree = "<group>"; };
+		27A22B7D16D42E050009C139 /* FLZenfolioRegisteredUserAuthenticationService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLZenfolioRegisteredUserAuthenticationService.m; sourceTree = "<group>"; };
+		27A22B8716D42EED0009C139 /* FLZenfolioGuestAuthenticationService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLZenfolioGuestAuthenticationService.h; sourceTree = "<group>"; };
+		27A22B8816D42EEE0009C139 /* FLZenfolioGuestAuthenticationService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLZenfolioGuestAuthenticationService.m; sourceTree = "<group>"; };
 		27A43AB415CDCC89001CB13E /* libFishLampConnect-iOS-ARC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampConnect-iOS-ARC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27A43AC415CDCCCB001CB13E /* libFishLampConnect-OSX-64-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampConnect-OSX-64-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27CBC1F416768BA600753D0A /* libFishLampConnect-OSX-3264-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampConnect-OSX-3264-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27EA1F6E16B84D800018CDB2 /* FLTwitterService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLTwitterService.h; sourceTree = "<group>"; };
 		27EA1F6F16B84D800018CDB2 /* FLTwitterService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLTwitterService.m; sourceTree = "<group>"; };
 		27EA230516B84DCA0018CDB2 /* FishLampConnect-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FishLampConnect-Prefix.pch"; sourceTree = "<group>"; };
-		27EE268516CAF0A000E4CC98 /* FLOperation+ZenfolioHttp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FLOperation+ZenfolioHttp.h"; sourceTree = "<group>"; };
-		27EE268616CAF0A000E4CC98 /* FLOperation+ZenfolioHttp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FLOperation+ZenfolioHttp.m"; sourceTree = "<group>"; };
 		78329B61167E41260024E8DC /* FishLampProjectSettingsDebug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FishLampProjectSettingsDebug.xcconfig; sourceTree = "<group>"; };
 		78329B62167E41260024E8DC /* FishLampProjectSettingsRelease.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FishLampProjectSettingsRelease.xcconfig; sourceTree = "<group>"; };
 		78329B63167E41260024E8DC /* FishLampTargetSettings-iOS-ARC.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "FishLampTargetSettings-iOS-ARC.xcconfig"; sourceTree = "<group>"; };
@@ -7299,10 +7384,16 @@
 		2753D92916C9A82300A3880F /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
-				2753D92A16C9A82300A3880F /* FLZenfolioAuthenticator.h */,
-				2753D92B16C9A82300A3880F /* FLZenfolioAuthenticator.m */,
-				2753D92C16C9A82300A3880F /* FLZenfolioHttpRequestAuthenticator.h */,
-				2753D92D16C9A82300A3880F /* FLZenfolioHttpRequestAuthenticator.m */,
+				2753D92A16C9A82300A3880F /* FLZenfolioAuthenticateOperation.h */,
+				2753D92B16C9A82300A3880F /* FLZenfolioAuthenticateOperation.m */,
+				2753D92C16C9A82300A3880F /* FLZenfolioAuthenticationService.h */,
+				2753D92D16C9A82300A3880F /* FLZenfolioAuthenticationService.m */,
+				27A22B7116D42C740009C139 /* FLHttpRequest+ZenfolioAuthentication.h */,
+				27A22B7216D42C740009C139 /* FLHttpRequest+ZenfolioAuthentication.m */,
+				27A22B7C16D42E040009C139 /* FLZenfolioRegisteredUserAuthenticationService.h */,
+				27A22B7D16D42E050009C139 /* FLZenfolioRegisteredUserAuthenticationService.m */,
+				27A22B8716D42EED0009C139 /* FLZenfolioGuestAuthenticationService.h */,
+				27A22B8816D42EEE0009C139 /* FLZenfolioGuestAuthenticationService.m */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -7336,8 +7427,8 @@
 				2795628416CB2976005A0133 /* Obsolete and Lame */,
 				2753D94016C9A82300A3880F /* FLStorableImage+ZenfolioCache.h */,
 				2753D94116C9A82300A3880F /* FLStorableImage+ZenfolioCache.m */,
-				2753D94216C9A82300A3880F /* FLZenfolioCache.h */,
-				2753D94316C9A82300A3880F /* FLZenfolioCache.m */,
+				2753D94216C9A82300A3880F /* FLZenfolioCacheService.h */,
+				2753D94316C9A82300A3880F /* FLZenfolioCacheService.m */,
 			);
 			path = Cache;
 			sourceTree = "<group>";
@@ -7389,10 +7480,6 @@
 				2753D96616C9A82300A3880F /* FLZenfolioLoadGroupOperation.m */,
 				2753D96716C9A82300A3880F /* FLZenfolioLoadGroupHierarchyOperation.h */,
 				2753D96816C9A82300A3880F /* FLZenfolioLoadGroupHierarchyOperation.m */,
-				2753D96B16C9A82300A3880F /* ZfLoadGroupsFromCacheOperation.h */,
-				2753D96C16C9A82300A3880F /* ZfLoadGroupsFromCacheOperation.m */,
-				27EE268516CAF0A000E4CC98 /* FLOperation+ZenfolioHttp.h */,
-				27EE268616CAF0A000E4CC98 /* FLOperation+ZenfolioHttp.m */,
 			);
 			path = Operations;
 			sourceTree = "<group>";
@@ -7514,8 +7601,8 @@
 			children = (
 				2753D9A416C9A82300A3880F /* FLUserDataStorageService+ZenfolioAdditions.h */,
 				2753D9A516C9A82300A3880F /* FLUserDataStorageService+ZenfolioAdditions.m */,
-				2753D9A616C9A82300A3880F /* FLZenfolioUserContext.h */,
-				2753D9A716C9A82300A3880F /* FLZenfolioUserContext.m */,
+				2753D9A616C9A82300A3880F /* FLZenfolioUserService.h */,
+				2753D9A716C9A82300A3880F /* FLZenfolioUserService.m */,
 			);
 			path = Sessions;
 			sourceTree = "<group>";
@@ -8591,6 +8678,7 @@
 		27A43A7E15CDCC1B001CB13E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2739006E16D45CFE00FC6453 /* FishLampCocoaUI.xcodeproj */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -8616,6 +8704,18 @@
 				27EA1F6F16B84D800018CDB2 /* FLTwitterService.m */,
 			);
 			path = Twitter;
+			sourceTree = "<group>";
+		};
+		27EC5F6716D45E3300C5102D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				27EC5F6F16D45E3300C5102D /* libFishLampCocoaUI-iOS-ARC.a */,
+				27EC5F7116D45E3300C5102D /* libFishLampCocoaUI-OSX-32-MRC.a */,
+				27EC5F7316D45E3300C5102D /* libFishLampCocoaUI-OSX-64-MRC.a */,
+				27EC5F7516D45E3300C5102D /* libFishLampCocoaUI-OSX-64-ARC.a */,
+				27EC5F7716D45E3300C5102D /* libFishLampCocoaUI-OSX-32-64-MRC.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		78329B60167E41260024E8DC /* XcodeConfigs */ = {
@@ -8743,8 +8843,8 @@
 				2753D90D16C9A5C800A3880F /* FLFacebookFetchStatusListHttpRequest.h in Headers */,
 				2753D91616C9A5C800A3880F /* FLFacebookLoadUserHttpRequest.h in Headers */,
 				2753D91F16C9A5C800A3880F /* FLFacebookLoadUserPictureHttpRequest.h in Headers */,
-				2753DD7416C9A82B00A3880F /* FLZenfolioAuthenticator.h in Headers */,
-				2753DD7D16C9A82B00A3880F /* FLZenfolioHttpRequestAuthenticator.h in Headers */,
+				2753DD7416C9A82B00A3880F /* FLZenfolioAuthenticateOperation.h in Headers */,
+				2753DD7D16C9A82B00A3880F /* FLZenfolioAuthenticationService.h in Headers */,
 				2753DD8616C9A82B00A3880F /* FLZenfolioBatchDeleteGroupElements.h in Headers */,
 				2753DD8F16C9A82B00A3880F /* FLZenfolioBatchDeletePhotos.h in Headers */,
 				2753DD9816C9A82B00A3880F /* FLZenfolioBatchMoveGroupElements.h in Headers */,
@@ -8754,7 +8854,7 @@
 				2753DDBC16C9A82B00A3880F /* FLZenfolioBatchPhotoDownloadOperation.h in Headers */,
 				2753DDC516C9A82B00A3880F /* FLZenfolioBatchSavePhotosToDevice.h in Headers */,
 				2753DDCE16C9A82B00A3880F /* FLStorableImage+ZenfolioCache.h in Headers */,
-				2753DDD716C9A82B00A3880F /* FLZenfolioCache.h in Headers */,
+				2753DDD716C9A82B00A3880F /* FLZenfolioCacheService.h in Headers */,
 				2753DDE016C9A82B00A3880F /* FLZenfolioLoadGroupFromCacheOperation.h in Headers */,
 				2753DDE916C9A82B00A3880F /* FLZenfolioLoadGroupsFromCacheOperation.h in Headers */,
 				2753DDF216C9A82B00A3880F /* FLZenfolioLoadPhotoFromCacheOperation.h in Headers */,
@@ -8771,7 +8871,6 @@
 				2753DE5516C9A82B00A3880F /* FLZenfolioLoadAllUserInfoForAuthenticatedUserOperation.h in Headers */,
 				2753DE5E16C9A82B00A3880F /* FLZenfolioLoadGroupOperation.h in Headers */,
 				2753DE6716C9A82B00A3880F /* FLZenfolioLoadGroupHierarchyOperation.h in Headers */,
-				2753DE7916C9A82B00A3880F /* ZfLoadGroupsFromCacheOperation.h in Headers */,
 				2753DE8216C9A82B00A3880F /* FLZenfolioDownloadImageHttpRequest.h in Headers */,
 				2753DE8B16C9A82B00A3880F /* FLZenfolioRandomPhotoDownloader.h in Headers */,
 				2753DE9D16C9A82B00A3880F /* FLZenfolioUploadImageHttpRequest.h in Headers */,
@@ -8794,7 +8893,7 @@
 				2753DF3616C9A82B00A3880F /* FLZenfolioUtilities.h in Headers */,
 				2753DF3F16C9A82B00A3880F /* FLZenfolioBreadCrumbsBar.h in Headers */,
 				2753DF4816C9A82B00A3880F /* FLUserDataStorageService+ZenfolioAdditions.h in Headers */,
-				2753DF5116C9A82B00A3880F /* FLZenfolioUserContext.h in Headers */,
+				2753DF5116C9A82B00A3880F /* FLZenfolioUserService.h in Headers */,
 				2753DF5A16C9A82B00A3880F /* FLZenfolioSharedFavoritesSet.h in Headers */,
 				2753DF6316C9A82B00A3880F /* FLZenfolioSharedFavoritesSetManager.h in Headers */,
 				2753DF6C16C9A82B00A3880F /* FLZenfolioSoapHttpRequest.h in Headers */,
@@ -9273,7 +9372,9 @@
 				2753F02316C9A82E00A3880F /* FLZenfolioUser.h in Headers */,
 				2753F02E16C9B26900A3880F /* FLUserDataStorageService+Zenfolio.h in Headers */,
 				2781094C16C9CC51005D1CE4 /* FLZenfolioGroupElementSelection.h in Headers */,
-				27EE268716CAF0A000E4CC98 /* FLOperation+ZenfolioHttp.h in Headers */,
+				27A22B7316D42C750009C139 /* FLHttpRequest+ZenfolioAuthentication.h in Headers */,
+				27A22B7E16D42E050009C139 /* FLZenfolioRegisteredUserAuthenticationService.h in Headers */,
+				27A22B8916D42EEE0009C139 /* FLZenfolioGuestAuthenticationService.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9384,8 +9485,8 @@
 				2753D90F16C9A5C800A3880F /* FLFacebookFetchStatusListHttpRequest.h in Headers */,
 				2753D91816C9A5C800A3880F /* FLFacebookLoadUserHttpRequest.h in Headers */,
 				2753D92116C9A5C800A3880F /* FLFacebookLoadUserPictureHttpRequest.h in Headers */,
-				2753DD7616C9A82B00A3880F /* FLZenfolioAuthenticator.h in Headers */,
-				2753DD7F16C9A82B00A3880F /* FLZenfolioHttpRequestAuthenticator.h in Headers */,
+				2753DD7616C9A82B00A3880F /* FLZenfolioAuthenticateOperation.h in Headers */,
+				2753DD7F16C9A82B00A3880F /* FLZenfolioAuthenticationService.h in Headers */,
 				2753DD8816C9A82B00A3880F /* FLZenfolioBatchDeleteGroupElements.h in Headers */,
 				2753DD9116C9A82B00A3880F /* FLZenfolioBatchDeletePhotos.h in Headers */,
 				2753DD9A16C9A82B00A3880F /* FLZenfolioBatchMoveGroupElements.h in Headers */,
@@ -9395,7 +9496,7 @@
 				2753DDBE16C9A82B00A3880F /* FLZenfolioBatchPhotoDownloadOperation.h in Headers */,
 				2753DDC716C9A82B00A3880F /* FLZenfolioBatchSavePhotosToDevice.h in Headers */,
 				2753DDD016C9A82B00A3880F /* FLStorableImage+ZenfolioCache.h in Headers */,
-				2753DDD916C9A82B00A3880F /* FLZenfolioCache.h in Headers */,
+				2753DDD916C9A82B00A3880F /* FLZenfolioCacheService.h in Headers */,
 				2753DDE216C9A82B00A3880F /* FLZenfolioLoadGroupFromCacheOperation.h in Headers */,
 				2753DDEB16C9A82B00A3880F /* FLZenfolioLoadGroupsFromCacheOperation.h in Headers */,
 				2753DDF416C9A82B00A3880F /* FLZenfolioLoadPhotoFromCacheOperation.h in Headers */,
@@ -9412,7 +9513,6 @@
 				2753DE5716C9A82B00A3880F /* FLZenfolioLoadAllUserInfoForAuthenticatedUserOperation.h in Headers */,
 				2753DE6016C9A82B00A3880F /* FLZenfolioLoadGroupOperation.h in Headers */,
 				2753DE6916C9A82B00A3880F /* FLZenfolioLoadGroupHierarchyOperation.h in Headers */,
-				2753DE7B16C9A82B00A3880F /* ZfLoadGroupsFromCacheOperation.h in Headers */,
 				2753DE8416C9A82B00A3880F /* FLZenfolioDownloadImageHttpRequest.h in Headers */,
 				2753DE8D16C9A82B00A3880F /* FLZenfolioRandomPhotoDownloader.h in Headers */,
 				2753DE9F16C9A82B00A3880F /* FLZenfolioUploadImageHttpRequest.h in Headers */,
@@ -9435,7 +9535,7 @@
 				2753DF3816C9A82B00A3880F /* FLZenfolioUtilities.h in Headers */,
 				2753DF4116C9A82B00A3880F /* FLZenfolioBreadCrumbsBar.h in Headers */,
 				2753DF4A16C9A82B00A3880F /* FLUserDataStorageService+ZenfolioAdditions.h in Headers */,
-				2753DF5316C9A82B00A3880F /* FLZenfolioUserContext.h in Headers */,
+				2753DF5316C9A82B00A3880F /* FLZenfolioUserService.h in Headers */,
 				2753DF5C16C9A82B00A3880F /* FLZenfolioSharedFavoritesSet.h in Headers */,
 				2753DF6516C9A82B00A3880F /* FLZenfolioSharedFavoritesSetManager.h in Headers */,
 				2753DF6E16C9A82B00A3880F /* FLZenfolioSoapHttpRequest.h in Headers */,
@@ -9914,7 +10014,9 @@
 				2753F02516C9A82E00A3880F /* FLZenfolioUser.h in Headers */,
 				2753F03016C9B26900A3880F /* FLUserDataStorageService+Zenfolio.h in Headers */,
 				2781094E16C9CC51005D1CE4 /* FLZenfolioGroupElementSelection.h in Headers */,
-				27EE268916CAF0A000E4CC98 /* FLOperation+ZenfolioHttp.h in Headers */,
+				27A22B7516D42C750009C139 /* FLHttpRequest+ZenfolioAuthentication.h in Headers */,
+				27A22B8016D42E050009C139 /* FLZenfolioRegisteredUserAuthenticationService.h in Headers */,
+				27A22B8B16D42EEE0009C139 /* FLZenfolioGuestAuthenticationService.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -10025,8 +10127,8 @@
 				2753D90E16C9A5C800A3880F /* FLFacebookFetchStatusListHttpRequest.h in Headers */,
 				2753D91716C9A5C800A3880F /* FLFacebookLoadUserHttpRequest.h in Headers */,
 				2753D92016C9A5C800A3880F /* FLFacebookLoadUserPictureHttpRequest.h in Headers */,
-				2753DD7516C9A82B00A3880F /* FLZenfolioAuthenticator.h in Headers */,
-				2753DD7E16C9A82B00A3880F /* FLZenfolioHttpRequestAuthenticator.h in Headers */,
+				2753DD7516C9A82B00A3880F /* FLZenfolioAuthenticateOperation.h in Headers */,
+				2753DD7E16C9A82B00A3880F /* FLZenfolioAuthenticationService.h in Headers */,
 				2753DD8716C9A82B00A3880F /* FLZenfolioBatchDeleteGroupElements.h in Headers */,
 				2753DD9016C9A82B00A3880F /* FLZenfolioBatchDeletePhotos.h in Headers */,
 				2753DD9916C9A82B00A3880F /* FLZenfolioBatchMoveGroupElements.h in Headers */,
@@ -10036,7 +10138,7 @@
 				2753DDBD16C9A82B00A3880F /* FLZenfolioBatchPhotoDownloadOperation.h in Headers */,
 				2753DDC616C9A82B00A3880F /* FLZenfolioBatchSavePhotosToDevice.h in Headers */,
 				2753DDCF16C9A82B00A3880F /* FLStorableImage+ZenfolioCache.h in Headers */,
-				2753DDD816C9A82B00A3880F /* FLZenfolioCache.h in Headers */,
+				2753DDD816C9A82B00A3880F /* FLZenfolioCacheService.h in Headers */,
 				2753DDE116C9A82B00A3880F /* FLZenfolioLoadGroupFromCacheOperation.h in Headers */,
 				2753DDEA16C9A82B00A3880F /* FLZenfolioLoadGroupsFromCacheOperation.h in Headers */,
 				2753DDF316C9A82B00A3880F /* FLZenfolioLoadPhotoFromCacheOperation.h in Headers */,
@@ -10053,7 +10155,6 @@
 				2753DE5616C9A82B00A3880F /* FLZenfolioLoadAllUserInfoForAuthenticatedUserOperation.h in Headers */,
 				2753DE5F16C9A82B00A3880F /* FLZenfolioLoadGroupOperation.h in Headers */,
 				2753DE6816C9A82B00A3880F /* FLZenfolioLoadGroupHierarchyOperation.h in Headers */,
-				2753DE7A16C9A82B00A3880F /* ZfLoadGroupsFromCacheOperation.h in Headers */,
 				2753DE8316C9A82B00A3880F /* FLZenfolioDownloadImageHttpRequest.h in Headers */,
 				2753DE8C16C9A82B00A3880F /* FLZenfolioRandomPhotoDownloader.h in Headers */,
 				2753DE9E16C9A82B00A3880F /* FLZenfolioUploadImageHttpRequest.h in Headers */,
@@ -10076,7 +10177,7 @@
 				2753DF3716C9A82B00A3880F /* FLZenfolioUtilities.h in Headers */,
 				2753DF4016C9A82B00A3880F /* FLZenfolioBreadCrumbsBar.h in Headers */,
 				2753DF4916C9A82B00A3880F /* FLUserDataStorageService+ZenfolioAdditions.h in Headers */,
-				2753DF5216C9A82B00A3880F /* FLZenfolioUserContext.h in Headers */,
+				2753DF5216C9A82B00A3880F /* FLZenfolioUserService.h in Headers */,
 				2753DF5B16C9A82B00A3880F /* FLZenfolioSharedFavoritesSet.h in Headers */,
 				2753DF6416C9A82B00A3880F /* FLZenfolioSharedFavoritesSetManager.h in Headers */,
 				2753DF6D16C9A82B00A3880F /* FLZenfolioSoapHttpRequest.h in Headers */,
@@ -10555,7 +10656,9 @@
 				2753F02416C9A82E00A3880F /* FLZenfolioUser.h in Headers */,
 				2753F02F16C9B26900A3880F /* FLUserDataStorageService+Zenfolio.h in Headers */,
 				2781094D16C9CC51005D1CE4 /* FLZenfolioGroupElementSelection.h in Headers */,
-				27EE268816CAF0A000E4CC98 /* FLOperation+ZenfolioHttp.h in Headers */,
+				27A22B7416D42C750009C139 /* FLHttpRequest+ZenfolioAuthentication.h in Headers */,
+				27A22B7F16D42E050009C139 /* FLZenfolioRegisteredUserAuthenticationService.h in Headers */,
+				27A22B8A16D42EEE0009C139 /* FLZenfolioGuestAuthenticationService.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -10666,8 +10769,8 @@
 				2753D91016C9A5C800A3880F /* FLFacebookFetchStatusListHttpRequest.h in Headers */,
 				2753D91916C9A5C800A3880F /* FLFacebookLoadUserHttpRequest.h in Headers */,
 				2753D92216C9A5C800A3880F /* FLFacebookLoadUserPictureHttpRequest.h in Headers */,
-				2753DD7716C9A82B00A3880F /* FLZenfolioAuthenticator.h in Headers */,
-				2753DD8016C9A82B00A3880F /* FLZenfolioHttpRequestAuthenticator.h in Headers */,
+				2753DD7716C9A82B00A3880F /* FLZenfolioAuthenticateOperation.h in Headers */,
+				2753DD8016C9A82B00A3880F /* FLZenfolioAuthenticationService.h in Headers */,
 				2753DD8916C9A82B00A3880F /* FLZenfolioBatchDeleteGroupElements.h in Headers */,
 				2753DD9216C9A82B00A3880F /* FLZenfolioBatchDeletePhotos.h in Headers */,
 				2753DD9B16C9A82B00A3880F /* FLZenfolioBatchMoveGroupElements.h in Headers */,
@@ -10677,7 +10780,7 @@
 				2753DDBF16C9A82B00A3880F /* FLZenfolioBatchPhotoDownloadOperation.h in Headers */,
 				2753DDC816C9A82B00A3880F /* FLZenfolioBatchSavePhotosToDevice.h in Headers */,
 				2753DDD116C9A82B00A3880F /* FLStorableImage+ZenfolioCache.h in Headers */,
-				2753DDDA16C9A82B00A3880F /* FLZenfolioCache.h in Headers */,
+				2753DDDA16C9A82B00A3880F /* FLZenfolioCacheService.h in Headers */,
 				2753DDE316C9A82B00A3880F /* FLZenfolioLoadGroupFromCacheOperation.h in Headers */,
 				2753DDEC16C9A82B00A3880F /* FLZenfolioLoadGroupsFromCacheOperation.h in Headers */,
 				2753DDF516C9A82B00A3880F /* FLZenfolioLoadPhotoFromCacheOperation.h in Headers */,
@@ -10694,7 +10797,6 @@
 				2753DE5816C9A82B00A3880F /* FLZenfolioLoadAllUserInfoForAuthenticatedUserOperation.h in Headers */,
 				2753DE6116C9A82B00A3880F /* FLZenfolioLoadGroupOperation.h in Headers */,
 				2753DE6A16C9A82B00A3880F /* FLZenfolioLoadGroupHierarchyOperation.h in Headers */,
-				2753DE7C16C9A82B00A3880F /* ZfLoadGroupsFromCacheOperation.h in Headers */,
 				2753DE8516C9A82B00A3880F /* FLZenfolioDownloadImageHttpRequest.h in Headers */,
 				2753DE8E16C9A82B00A3880F /* FLZenfolioRandomPhotoDownloader.h in Headers */,
 				2753DEA016C9A82B00A3880F /* FLZenfolioUploadImageHttpRequest.h in Headers */,
@@ -10717,7 +10819,7 @@
 				2753DF3916C9A82B00A3880F /* FLZenfolioUtilities.h in Headers */,
 				2753DF4216C9A82B00A3880F /* FLZenfolioBreadCrumbsBar.h in Headers */,
 				2753DF4B16C9A82B00A3880F /* FLUserDataStorageService+ZenfolioAdditions.h in Headers */,
-				2753DF5416C9A82B00A3880F /* FLZenfolioUserContext.h in Headers */,
+				2753DF5416C9A82B00A3880F /* FLZenfolioUserService.h in Headers */,
 				2753DF5D16C9A82B00A3880F /* FLZenfolioSharedFavoritesSet.h in Headers */,
 				2753DF6616C9A82B00A3880F /* FLZenfolioSharedFavoritesSetManager.h in Headers */,
 				2753DF6F16C9A82B00A3880F /* FLZenfolioSoapHttpRequest.h in Headers */,
@@ -11196,7 +11298,9 @@
 				2753F02616C9A82E00A3880F /* FLZenfolioUser.h in Headers */,
 				2753F03116C9B26900A3880F /* FLUserDataStorageService+Zenfolio.h in Headers */,
 				2781094F16C9CC51005D1CE4 /* FLZenfolioGroupElementSelection.h in Headers */,
-				27EE268A16CAF0A000E4CC98 /* FLOperation+ZenfolioHttp.h in Headers */,
+				27A22B7616D42C750009C139 /* FLHttpRequest+ZenfolioAuthentication.h in Headers */,
+				27A22B8116D42E050009C139 /* FLZenfolioRegisteredUserAuthenticationService.h in Headers */,
+				27A22B8C16D42EEE0009C139 /* FLZenfolioGuestAuthenticationService.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -11214,6 +11318,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				27EC5F7916D45E5100C5102D /* PBXTargetDependency */,
 			);
 			name = "FishLampConnect-OSX-32-MRC";
 			productName = FishLampCocoaApp;
@@ -11231,6 +11336,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				27EC5F7F16D45E6600C5102D /* PBXTargetDependency */,
 			);
 			name = "FishLampConnect-OSX-64-ARC";
 			productName = FishLampCommandLine;
@@ -11248,6 +11354,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				27EC5F7B16D45E5600C5102D /* PBXTargetDependency */,
 			);
 			name = "FishLampConnect-iOS-ARC";
 			productName = FishLampiOS;
@@ -11265,6 +11372,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				27EC5F7D16D45E5F00C5102D /* PBXTargetDependency */,
 			);
 			name = "FishLampConnect-OSX-64-MRC";
 			productName = FishLampCommandLine;
@@ -11282,6 +11390,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				27EC5F8116D45E6C00C5102D /* PBXTargetDependency */,
 			);
 			name = "FishLampConnect-OSX-3264-MRC";
 			productName = FishLampCommandLine;
@@ -11308,6 +11417,12 @@
 			mainGroup = 27A43A7115CDCC1B001CB13E;
 			productRefGroup = 27A43A7D15CDCC1B001CB13E /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 27EC5F6716D45E3300C5102D /* Products */;
+					ProjectRef = 2739006E16D45CFE00FC6453 /* FishLampCocoaUI.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				27A43AB315CDCC89001CB13E /* FishLampConnect-iOS-ARC */,
@@ -11318,6 +11433,44 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		27EC5F6F16D45E3300C5102D /* libFishLampCocoaUI-iOS-ARC.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libFishLampCocoaUI-iOS-ARC.a";
+			remoteRef = 27EC5F6E16D45E3300C5102D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		27EC5F7116D45E3300C5102D /* libFishLampCocoaUI-OSX-32-MRC.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libFishLampCocoaUI-OSX-32-MRC.a";
+			remoteRef = 27EC5F7016D45E3300C5102D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		27EC5F7316D45E3300C5102D /* libFishLampCocoaUI-OSX-64-MRC.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libFishLampCocoaUI-OSX-64-MRC.a";
+			remoteRef = 27EC5F7216D45E3300C5102D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		27EC5F7516D45E3300C5102D /* libFishLampCocoaUI-OSX-64-ARC.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libFishLampCocoaUI-OSX-64-ARC.a";
+			remoteRef = 27EC5F7416D45E3300C5102D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		27EC5F7716D45E3300C5102D /* libFishLampCocoaUI-OSX-32-64-MRC.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libFishLampCocoaUI-OSX-32-64-MRC.a";
+			remoteRef = 27EC5F7616D45E3300C5102D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXSourcesBuildPhase section */
 		27048B71161CB58600C38ADA /* Sources */ = {
@@ -11422,8 +11575,8 @@
 				2753D91216C9A5C800A3880F /* FLFacebookFetchStatusListHttpRequest.m in Sources */,
 				2753D91B16C9A5C800A3880F /* FLFacebookLoadUserHttpRequest.m in Sources */,
 				2753D92416C9A5C800A3880F /* FLFacebookLoadUserPictureHttpRequest.m in Sources */,
-				2753DD7916C9A82B00A3880F /* FLZenfolioAuthenticator.m in Sources */,
-				2753DD8216C9A82B00A3880F /* FLZenfolioHttpRequestAuthenticator.m in Sources */,
+				2753DD7916C9A82B00A3880F /* FLZenfolioAuthenticateOperation.m in Sources */,
+				2753DD8216C9A82B00A3880F /* FLZenfolioAuthenticationService.m in Sources */,
 				2753DD8B16C9A82B00A3880F /* FLZenfolioBatchDeleteGroupElements.m in Sources */,
 				2753DD9416C9A82B00A3880F /* FLZenfolioBatchDeletePhotos.m in Sources */,
 				2753DD9D16C9A82B00A3880F /* FLZenfolioBatchMoveGroupElements.m in Sources */,
@@ -11433,7 +11586,7 @@
 				2753DDC116C9A82B00A3880F /* FLZenfolioBatchPhotoDownloadOperation.m in Sources */,
 				2753DDCA16C9A82B00A3880F /* FLZenfolioBatchSavePhotosToDevice.m in Sources */,
 				2753DDD316C9A82B00A3880F /* FLStorableImage+ZenfolioCache.m in Sources */,
-				2753DDDC16C9A82B00A3880F /* FLZenfolioCache.m in Sources */,
+				2753DDDC16C9A82B00A3880F /* FLZenfolioCacheService.m in Sources */,
 				2753DDE516C9A82B00A3880F /* FLZenfolioLoadGroupFromCacheOperation.m in Sources */,
 				2753DDEE16C9A82B00A3880F /* FLZenfolioLoadGroupsFromCacheOperation.m in Sources */,
 				2753DDF716C9A82B00A3880F /* FLZenfolioLoadPhotoFromCacheOperation.m in Sources */,
@@ -11450,7 +11603,6 @@
 				2753DE5A16C9A82B00A3880F /* FLZenfolioLoadAllUserInfoForAuthenticatedUserOperation.m in Sources */,
 				2753DE6316C9A82B00A3880F /* FLZenfolioLoadGroupOperation.m in Sources */,
 				2753DE6C16C9A82B00A3880F /* FLZenfolioLoadGroupHierarchyOperation.m in Sources */,
-				2753DE7E16C9A82B00A3880F /* ZfLoadGroupsFromCacheOperation.m in Sources */,
 				2753DE8716C9A82B00A3880F /* FLZenfolioDownloadImageHttpRequest.m in Sources */,
 				2753DE9016C9A82B00A3880F /* FLZenfolioRandomPhotoDownloader.m in Sources */,
 				2753DEA216C9A82B00A3880F /* FLZenfolioUploadImageHttpRequest.m in Sources */,
@@ -11473,7 +11625,7 @@
 				2753DF3B16C9A82B00A3880F /* FLZenfolioUtilities.m in Sources */,
 				2753DF4416C9A82B00A3880F /* FLZenfolioBreadCrumbsBar.m in Sources */,
 				2753DF4D16C9A82B00A3880F /* FLUserDataStorageService+ZenfolioAdditions.m in Sources */,
-				2753DF5616C9A82B00A3880F /* FLZenfolioUserContext.m in Sources */,
+				2753DF5616C9A82B00A3880F /* FLZenfolioUserService.m in Sources */,
 				2753DF5F16C9A82B00A3880F /* FLZenfolioSharedFavoritesSet.m in Sources */,
 				2753DF6816C9A82B00A3880F /* FLZenfolioSharedFavoritesSetManager.m in Sources */,
 				2753DF7116C9A82B00A3880F /* FLZenfolioSoapHttpRequest.m in Sources */,
@@ -11951,7 +12103,9 @@
 				2753F02816C9A82E00A3880F /* FLZenfolioUser.m in Sources */,
 				2753F03316C9B26900A3880F /* FLUserDataStorageService+Zenfolio.m in Sources */,
 				2781095116C9CC51005D1CE4 /* FLZenfolioGroupElementSelection.m in Sources */,
-				27EE268C16CAF0A000E4CC98 /* FLOperation+ZenfolioHttp.m in Sources */,
+				27A22B7816D42C750009C139 /* FLHttpRequest+ZenfolioAuthentication.m in Sources */,
+				27A22B8316D42E050009C139 /* FLZenfolioRegisteredUserAuthenticationService.m in Sources */,
+				27A22B8E16D42EEE0009C139 /* FLZenfolioGuestAuthenticationService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -12057,8 +12211,8 @@
 				2753D91416C9A5C800A3880F /* FLFacebookFetchStatusListHttpRequest.m in Sources */,
 				2753D91D16C9A5C800A3880F /* FLFacebookLoadUserHttpRequest.m in Sources */,
 				2753D92616C9A5C800A3880F /* FLFacebookLoadUserPictureHttpRequest.m in Sources */,
-				2753DD7B16C9A82B00A3880F /* FLZenfolioAuthenticator.m in Sources */,
-				2753DD8416C9A82B00A3880F /* FLZenfolioHttpRequestAuthenticator.m in Sources */,
+				2753DD7B16C9A82B00A3880F /* FLZenfolioAuthenticateOperation.m in Sources */,
+				2753DD8416C9A82B00A3880F /* FLZenfolioAuthenticationService.m in Sources */,
 				2753DD8D16C9A82B00A3880F /* FLZenfolioBatchDeleteGroupElements.m in Sources */,
 				2753DD9616C9A82B00A3880F /* FLZenfolioBatchDeletePhotos.m in Sources */,
 				2753DD9F16C9A82B00A3880F /* FLZenfolioBatchMoveGroupElements.m in Sources */,
@@ -12068,7 +12222,7 @@
 				2753DDC316C9A82B00A3880F /* FLZenfolioBatchPhotoDownloadOperation.m in Sources */,
 				2753DDCC16C9A82B00A3880F /* FLZenfolioBatchSavePhotosToDevice.m in Sources */,
 				2753DDD516C9A82B00A3880F /* FLStorableImage+ZenfolioCache.m in Sources */,
-				2753DDDE16C9A82B00A3880F /* FLZenfolioCache.m in Sources */,
+				2753DDDE16C9A82B00A3880F /* FLZenfolioCacheService.m in Sources */,
 				2753DDE716C9A82B00A3880F /* FLZenfolioLoadGroupFromCacheOperation.m in Sources */,
 				2753DDF016C9A82B00A3880F /* FLZenfolioLoadGroupsFromCacheOperation.m in Sources */,
 				2753DDF916C9A82B00A3880F /* FLZenfolioLoadPhotoFromCacheOperation.m in Sources */,
@@ -12085,7 +12239,6 @@
 				2753DE5C16C9A82B00A3880F /* FLZenfolioLoadAllUserInfoForAuthenticatedUserOperation.m in Sources */,
 				2753DE6516C9A82B00A3880F /* FLZenfolioLoadGroupOperation.m in Sources */,
 				2753DE6E16C9A82B00A3880F /* FLZenfolioLoadGroupHierarchyOperation.m in Sources */,
-				2753DE8016C9A82B00A3880F /* ZfLoadGroupsFromCacheOperation.m in Sources */,
 				2753DE8916C9A82B00A3880F /* FLZenfolioDownloadImageHttpRequest.m in Sources */,
 				2753DE9216C9A82B00A3880F /* FLZenfolioRandomPhotoDownloader.m in Sources */,
 				2753DEA416C9A82B00A3880F /* FLZenfolioUploadImageHttpRequest.m in Sources */,
@@ -12108,7 +12261,7 @@
 				2753DF3D16C9A82B00A3880F /* FLZenfolioUtilities.m in Sources */,
 				2753DF4616C9A82B00A3880F /* FLZenfolioBreadCrumbsBar.m in Sources */,
 				2753DF4F16C9A82B00A3880F /* FLUserDataStorageService+ZenfolioAdditions.m in Sources */,
-				2753DF5816C9A82B00A3880F /* FLZenfolioUserContext.m in Sources */,
+				2753DF5816C9A82B00A3880F /* FLZenfolioUserService.m in Sources */,
 				2753DF6116C9A82B00A3880F /* FLZenfolioSharedFavoritesSet.m in Sources */,
 				2753DF6A16C9A82B00A3880F /* FLZenfolioSharedFavoritesSetManager.m in Sources */,
 				2753DF7316C9A82B00A3880F /* FLZenfolioSoapHttpRequest.m in Sources */,
@@ -12586,7 +12739,9 @@
 				2753F02A16C9A82E00A3880F /* FLZenfolioUser.m in Sources */,
 				2753F03516C9B26900A3880F /* FLUserDataStorageService+Zenfolio.m in Sources */,
 				2781095316C9CC51005D1CE4 /* FLZenfolioGroupElementSelection.m in Sources */,
-				27EE268E16CAF0A000E4CC98 /* FLOperation+ZenfolioHttp.m in Sources */,
+				27A22B7A16D42C750009C139 /* FLHttpRequest+ZenfolioAuthentication.m in Sources */,
+				27A22B8516D42E050009C139 /* FLZenfolioRegisteredUserAuthenticationService.m in Sources */,
+				27A22B9016D42EEE0009C139 /* FLZenfolioGuestAuthenticationService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -12692,8 +12847,8 @@
 				2753D91116C9A5C800A3880F /* FLFacebookFetchStatusListHttpRequest.m in Sources */,
 				2753D91A16C9A5C800A3880F /* FLFacebookLoadUserHttpRequest.m in Sources */,
 				2753D92316C9A5C800A3880F /* FLFacebookLoadUserPictureHttpRequest.m in Sources */,
-				2753DD7816C9A82B00A3880F /* FLZenfolioAuthenticator.m in Sources */,
-				2753DD8116C9A82B00A3880F /* FLZenfolioHttpRequestAuthenticator.m in Sources */,
+				2753DD7816C9A82B00A3880F /* FLZenfolioAuthenticateOperation.m in Sources */,
+				2753DD8116C9A82B00A3880F /* FLZenfolioAuthenticationService.m in Sources */,
 				2753DD8A16C9A82B00A3880F /* FLZenfolioBatchDeleteGroupElements.m in Sources */,
 				2753DD9316C9A82B00A3880F /* FLZenfolioBatchDeletePhotos.m in Sources */,
 				2753DD9C16C9A82B00A3880F /* FLZenfolioBatchMoveGroupElements.m in Sources */,
@@ -12703,7 +12858,7 @@
 				2753DDC016C9A82B00A3880F /* FLZenfolioBatchPhotoDownloadOperation.m in Sources */,
 				2753DDC916C9A82B00A3880F /* FLZenfolioBatchSavePhotosToDevice.m in Sources */,
 				2753DDD216C9A82B00A3880F /* FLStorableImage+ZenfolioCache.m in Sources */,
-				2753DDDB16C9A82B00A3880F /* FLZenfolioCache.m in Sources */,
+				2753DDDB16C9A82B00A3880F /* FLZenfolioCacheService.m in Sources */,
 				2753DDE416C9A82B00A3880F /* FLZenfolioLoadGroupFromCacheOperation.m in Sources */,
 				2753DDED16C9A82B00A3880F /* FLZenfolioLoadGroupsFromCacheOperation.m in Sources */,
 				2753DDF616C9A82B00A3880F /* FLZenfolioLoadPhotoFromCacheOperation.m in Sources */,
@@ -12720,7 +12875,6 @@
 				2753DE5916C9A82B00A3880F /* FLZenfolioLoadAllUserInfoForAuthenticatedUserOperation.m in Sources */,
 				2753DE6216C9A82B00A3880F /* FLZenfolioLoadGroupOperation.m in Sources */,
 				2753DE6B16C9A82B00A3880F /* FLZenfolioLoadGroupHierarchyOperation.m in Sources */,
-				2753DE7D16C9A82B00A3880F /* ZfLoadGroupsFromCacheOperation.m in Sources */,
 				2753DE8616C9A82B00A3880F /* FLZenfolioDownloadImageHttpRequest.m in Sources */,
 				2753DE8F16C9A82B00A3880F /* FLZenfolioRandomPhotoDownloader.m in Sources */,
 				2753DEA116C9A82B00A3880F /* FLZenfolioUploadImageHttpRequest.m in Sources */,
@@ -12743,7 +12897,7 @@
 				2753DF3A16C9A82B00A3880F /* FLZenfolioUtilities.m in Sources */,
 				2753DF4316C9A82B00A3880F /* FLZenfolioBreadCrumbsBar.m in Sources */,
 				2753DF4C16C9A82B00A3880F /* FLUserDataStorageService+ZenfolioAdditions.m in Sources */,
-				2753DF5516C9A82B00A3880F /* FLZenfolioUserContext.m in Sources */,
+				2753DF5516C9A82B00A3880F /* FLZenfolioUserService.m in Sources */,
 				2753DF5E16C9A82B00A3880F /* FLZenfolioSharedFavoritesSet.m in Sources */,
 				2753DF6716C9A82B00A3880F /* FLZenfolioSharedFavoritesSetManager.m in Sources */,
 				2753DF7016C9A82B00A3880F /* FLZenfolioSoapHttpRequest.m in Sources */,
@@ -13221,7 +13375,9 @@
 				2753F02716C9A82E00A3880F /* FLZenfolioUser.m in Sources */,
 				2753F03216C9B26900A3880F /* FLUserDataStorageService+Zenfolio.m in Sources */,
 				2781095016C9CC51005D1CE4 /* FLZenfolioGroupElementSelection.m in Sources */,
-				27EE268B16CAF0A000E4CC98 /* FLOperation+ZenfolioHttp.m in Sources */,
+				27A22B7716D42C750009C139 /* FLHttpRequest+ZenfolioAuthentication.m in Sources */,
+				27A22B8216D42E050009C139 /* FLZenfolioRegisteredUserAuthenticationService.m in Sources */,
+				27A22B8D16D42EEE0009C139 /* FLZenfolioGuestAuthenticationService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -13327,8 +13483,8 @@
 				2753D91316C9A5C800A3880F /* FLFacebookFetchStatusListHttpRequest.m in Sources */,
 				2753D91C16C9A5C800A3880F /* FLFacebookLoadUserHttpRequest.m in Sources */,
 				2753D92516C9A5C800A3880F /* FLFacebookLoadUserPictureHttpRequest.m in Sources */,
-				2753DD7A16C9A82B00A3880F /* FLZenfolioAuthenticator.m in Sources */,
-				2753DD8316C9A82B00A3880F /* FLZenfolioHttpRequestAuthenticator.m in Sources */,
+				2753DD7A16C9A82B00A3880F /* FLZenfolioAuthenticateOperation.m in Sources */,
+				2753DD8316C9A82B00A3880F /* FLZenfolioAuthenticationService.m in Sources */,
 				2753DD8C16C9A82B00A3880F /* FLZenfolioBatchDeleteGroupElements.m in Sources */,
 				2753DD9516C9A82B00A3880F /* FLZenfolioBatchDeletePhotos.m in Sources */,
 				2753DD9E16C9A82B00A3880F /* FLZenfolioBatchMoveGroupElements.m in Sources */,
@@ -13338,7 +13494,7 @@
 				2753DDC216C9A82B00A3880F /* FLZenfolioBatchPhotoDownloadOperation.m in Sources */,
 				2753DDCB16C9A82B00A3880F /* FLZenfolioBatchSavePhotosToDevice.m in Sources */,
 				2753DDD416C9A82B00A3880F /* FLStorableImage+ZenfolioCache.m in Sources */,
-				2753DDDD16C9A82B00A3880F /* FLZenfolioCache.m in Sources */,
+				2753DDDD16C9A82B00A3880F /* FLZenfolioCacheService.m in Sources */,
 				2753DDE616C9A82B00A3880F /* FLZenfolioLoadGroupFromCacheOperation.m in Sources */,
 				2753DDEF16C9A82B00A3880F /* FLZenfolioLoadGroupsFromCacheOperation.m in Sources */,
 				2753DDF816C9A82B00A3880F /* FLZenfolioLoadPhotoFromCacheOperation.m in Sources */,
@@ -13355,7 +13511,6 @@
 				2753DE5B16C9A82B00A3880F /* FLZenfolioLoadAllUserInfoForAuthenticatedUserOperation.m in Sources */,
 				2753DE6416C9A82B00A3880F /* FLZenfolioLoadGroupOperation.m in Sources */,
 				2753DE6D16C9A82B00A3880F /* FLZenfolioLoadGroupHierarchyOperation.m in Sources */,
-				2753DE7F16C9A82B00A3880F /* ZfLoadGroupsFromCacheOperation.m in Sources */,
 				2753DE8816C9A82B00A3880F /* FLZenfolioDownloadImageHttpRequest.m in Sources */,
 				2753DE9116C9A82B00A3880F /* FLZenfolioRandomPhotoDownloader.m in Sources */,
 				2753DEA316C9A82B00A3880F /* FLZenfolioUploadImageHttpRequest.m in Sources */,
@@ -13378,7 +13533,7 @@
 				2753DF3C16C9A82B00A3880F /* FLZenfolioUtilities.m in Sources */,
 				2753DF4516C9A82B00A3880F /* FLZenfolioBreadCrumbsBar.m in Sources */,
 				2753DF4E16C9A82B00A3880F /* FLUserDataStorageService+ZenfolioAdditions.m in Sources */,
-				2753DF5716C9A82B00A3880F /* FLZenfolioUserContext.m in Sources */,
+				2753DF5716C9A82B00A3880F /* FLZenfolioUserService.m in Sources */,
 				2753DF6016C9A82B00A3880F /* FLZenfolioSharedFavoritesSet.m in Sources */,
 				2753DF6916C9A82B00A3880F /* FLZenfolioSharedFavoritesSetManager.m in Sources */,
 				2753DF7216C9A82B00A3880F /* FLZenfolioSoapHttpRequest.m in Sources */,
@@ -13856,7 +14011,9 @@
 				2753F02916C9A82E00A3880F /* FLZenfolioUser.m in Sources */,
 				2753F03416C9B26900A3880F /* FLUserDataStorageService+Zenfolio.m in Sources */,
 				2781095216C9CC51005D1CE4 /* FLZenfolioGroupElementSelection.m in Sources */,
-				27EE268D16CAF0A000E4CC98 /* FLOperation+ZenfolioHttp.m in Sources */,
+				27A22B7916D42C750009C139 /* FLHttpRequest+ZenfolioAuthentication.m in Sources */,
+				27A22B8416D42E050009C139 /* FLZenfolioRegisteredUserAuthenticationService.m in Sources */,
+				27A22B8F16D42EEE0009C139 /* FLZenfolioGuestAuthenticationService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -13962,8 +14119,8 @@
 				2753D91516C9A5C800A3880F /* FLFacebookFetchStatusListHttpRequest.m in Sources */,
 				2753D91E16C9A5C800A3880F /* FLFacebookLoadUserHttpRequest.m in Sources */,
 				2753D92716C9A5C800A3880F /* FLFacebookLoadUserPictureHttpRequest.m in Sources */,
-				2753DD7C16C9A82B00A3880F /* FLZenfolioAuthenticator.m in Sources */,
-				2753DD8516C9A82B00A3880F /* FLZenfolioHttpRequestAuthenticator.m in Sources */,
+				2753DD7C16C9A82B00A3880F /* FLZenfolioAuthenticateOperation.m in Sources */,
+				2753DD8516C9A82B00A3880F /* FLZenfolioAuthenticationService.m in Sources */,
 				2753DD8E16C9A82B00A3880F /* FLZenfolioBatchDeleteGroupElements.m in Sources */,
 				2753DD9716C9A82B00A3880F /* FLZenfolioBatchDeletePhotos.m in Sources */,
 				2753DDA016C9A82B00A3880F /* FLZenfolioBatchMoveGroupElements.m in Sources */,
@@ -13973,7 +14130,7 @@
 				2753DDC416C9A82B00A3880F /* FLZenfolioBatchPhotoDownloadOperation.m in Sources */,
 				2753DDCD16C9A82B00A3880F /* FLZenfolioBatchSavePhotosToDevice.m in Sources */,
 				2753DDD616C9A82B00A3880F /* FLStorableImage+ZenfolioCache.m in Sources */,
-				2753DDDF16C9A82B00A3880F /* FLZenfolioCache.m in Sources */,
+				2753DDDF16C9A82B00A3880F /* FLZenfolioCacheService.m in Sources */,
 				2753DDE816C9A82B00A3880F /* FLZenfolioLoadGroupFromCacheOperation.m in Sources */,
 				2753DDF116C9A82B00A3880F /* FLZenfolioLoadGroupsFromCacheOperation.m in Sources */,
 				2753DDFA16C9A82B00A3880F /* FLZenfolioLoadPhotoFromCacheOperation.m in Sources */,
@@ -13990,7 +14147,6 @@
 				2753DE5D16C9A82B00A3880F /* FLZenfolioLoadAllUserInfoForAuthenticatedUserOperation.m in Sources */,
 				2753DE6616C9A82B00A3880F /* FLZenfolioLoadGroupOperation.m in Sources */,
 				2753DE6F16C9A82B00A3880F /* FLZenfolioLoadGroupHierarchyOperation.m in Sources */,
-				2753DE8116C9A82B00A3880F /* ZfLoadGroupsFromCacheOperation.m in Sources */,
 				2753DE8A16C9A82B00A3880F /* FLZenfolioDownloadImageHttpRequest.m in Sources */,
 				2753DE9316C9A82B00A3880F /* FLZenfolioRandomPhotoDownloader.m in Sources */,
 				2753DEA516C9A82B00A3880F /* FLZenfolioUploadImageHttpRequest.m in Sources */,
@@ -14013,7 +14169,7 @@
 				2753DF3E16C9A82B00A3880F /* FLZenfolioUtilities.m in Sources */,
 				2753DF4716C9A82B00A3880F /* FLZenfolioBreadCrumbsBar.m in Sources */,
 				2753DF5016C9A82B00A3880F /* FLUserDataStorageService+ZenfolioAdditions.m in Sources */,
-				2753DF5916C9A82B00A3880F /* FLZenfolioUserContext.m in Sources */,
+				2753DF5916C9A82B00A3880F /* FLZenfolioUserService.m in Sources */,
 				2753DF6216C9A82B00A3880F /* FLZenfolioSharedFavoritesSet.m in Sources */,
 				2753DF6B16C9A82B00A3880F /* FLZenfolioSharedFavoritesSetManager.m in Sources */,
 				2753DF7416C9A82B00A3880F /* FLZenfolioSoapHttpRequest.m in Sources */,
@@ -14491,11 +14647,41 @@
 				2753F02B16C9A82E00A3880F /* FLZenfolioUser.m in Sources */,
 				2753F03616C9B26900A3880F /* FLUserDataStorageService+Zenfolio.m in Sources */,
 				2781095416C9CC51005D1CE4 /* FLZenfolioGroupElementSelection.m in Sources */,
-				27EE268F16CAF0A000E4CC98 /* FLOperation+ZenfolioHttp.m in Sources */,
+				27A22B7B16D42C750009C139 /* FLHttpRequest+ZenfolioAuthentication.m in Sources */,
+				27A22B8616D42E050009C139 /* FLZenfolioRegisteredUserAuthenticationService.m in Sources */,
+				27A22B9116D42EEE0009C139 /* FLZenfolioGuestAuthenticationService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		27EC5F7916D45E5100C5102D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "FishLampCocoaUI-OSX-32-MRC";
+			targetProxy = 27EC5F7816D45E5100C5102D /* PBXContainerItemProxy */;
+		};
+		27EC5F7B16D45E5600C5102D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "FishLampCocoaUI-iOS-ARC";
+			targetProxy = 27EC5F7A16D45E5600C5102D /* PBXContainerItemProxy */;
+		};
+		27EC5F7D16D45E5F00C5102D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "FishLampCocoaUI-OSX-64-MRC";
+			targetProxy = 27EC5F7C16D45E5F00C5102D /* PBXContainerItemProxy */;
+		};
+		27EC5F7F16D45E6600C5102D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "FishLampCocoaUI-OSX-64-ARC";
+			targetProxy = 27EC5F7E16D45E6600C5102D /* PBXContainerItemProxy */;
+		};
+		27EC5F8116D45E6C00C5102D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "FishLampCocoaUI-OSX-3264-MRC";
+			targetProxy = 27EC5F8016D45E6C00C5102D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		27048EEC161CB58600C38ADA /* Debug */ = {

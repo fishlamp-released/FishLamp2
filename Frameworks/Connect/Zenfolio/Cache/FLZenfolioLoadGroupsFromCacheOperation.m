@@ -8,7 +8,7 @@
 //
 //#import "FLZenfolioLoadGroupsFromCacheOperation.h"
 //
-//#import "FLZenfolioCache.h"
+//#import "FLZenfolioCacheService.h"
 //#import "FLZenfolioWebApi.h"
 //
 //@interface FLZenfolioLoadGroupsFromCacheOperation ()
@@ -33,7 +33,7 @@
 //}
 //#endif
 //
-//- (FLResult) runOperation {
+//- (FLResult) runOperationInContext:(id) context withObserver:(id) observer {
 //    
 //    NSMutableArray* outputList = [NSMutableArray array];
 //    for(NSNumber* idObject in _groupList) {

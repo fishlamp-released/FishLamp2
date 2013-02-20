@@ -39,18 +39,17 @@
     return FLAutorelease([[[self class] alloc] initWithGroup:group]);
 }
 
-- (void) runForGroup:(FLZenfolioGroup*) group {
+- (void) runForGroup:(FLZenfolioGroup*) group inContext:(id) context withObserver:(id) observer {
     NSMutableArray* newList = [NSMutableArray array];
     for(FLZenfolioGroupElement* element in group.Elements) {
         if(element.isGroupElement) {
-            [self runForGroup:(FLZenfolioGroup*) element];
+            [self runForGroup:(FLZenfolioGroup*) element inContext:context withObserver:observer];
             [newList addObject:element];
         }
         else {
             FLHttpRequest* request = [FLZenfolioHttpRequest loadPhotoSetHttpRequest:element.Id level:kZenfolioInformatonLevelFull includePhotos:NO];
             
-            
-            FLZenfolioPhotoSet* set = [self sendHttpRequest:request];
+            FLZenfolioPhotoSet* set = [context runWorker:request withObserver:observer];
             FLAssertNotNil_(set);
             
             [newList addObject:set];
@@ -61,8 +60,8 @@
     group.Elements = newList;
 }
 
-- (FLResult) runOperation {
-    [self runForGroup:_group];
+- (FLResult) runOperationInContext:(id) context withObserver:(id) observer {
+    [self runForGroup:_group inContext:context withObserver:observer];
     return _group;
 }
 
