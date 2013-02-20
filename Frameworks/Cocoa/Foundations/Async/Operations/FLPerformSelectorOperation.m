@@ -22,7 +22,7 @@
 	return FLAutorelease([[[self class] alloc] initWithTarget:target action:action]);
 }
 
-- (FLResult) runOperation {
+- (FLResult) runOperationInContext:(id) context withObserver:(id) observer {
     FLPerformSelector1(_target, _action, self);
 
     return FLSuccessfullResult;

@@ -49,7 +49,7 @@
 //    [[NSNotificationCenter defaultCenter] removeObserver:self name:NSFileHandleReadToEndOfFileCompletionNotification object:[notification object]];
 //}
 //
-- (FLResult) runOperation {
+- (FLResult) runOperationInContext:(id) context withObserver:(id) observer {
 
     NSTask* task = [[NSTask alloc] init];
     @try {

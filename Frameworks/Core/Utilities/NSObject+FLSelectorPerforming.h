@@ -23,7 +23,8 @@ extern BOOL FLPerformSelector(id target, SEL selector);
 extern BOOL FLPerformSelectorWithObject(id target, SEL selector, id withObject);
 extern BOOL FLPerformSelectorWithTwoObjects(id target, SEL selector, id withObject1, id withObject2);
 extern BOOL FLPerformSelectorWithThreeObjects(id target, SEL selector, id withObject1, id withObject2, id withObject3);
-extern id FLReturnValueForOptionalProperty(id object, SEL property);
+
+extern id FLPerformSelectorForPropertyGetter(id object, SEL property);
 
 #else
 #define __INLINES__

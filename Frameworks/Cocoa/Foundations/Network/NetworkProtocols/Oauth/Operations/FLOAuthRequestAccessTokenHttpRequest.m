@@ -96,7 +96,7 @@
     return session;
 }
 
-//- (FLResult) runOperation {
+//- (FLResult) runOperationInContext:(id) context withObserver:(id) observer {
 //
 //
 //    FLHttpRequest* request = [FLHttpRequest httpPostRequestWithURL:_url];

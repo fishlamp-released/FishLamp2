@@ -43,18 +43,15 @@
     return workers;
 }
 
-- (NSArray*) runTestWorkers:(NSArray*) testWorkers {
+- (FLResult) runOperationInContext:(id) context withObserver:(id) observer {
+
     NSMutableArray* array = [NSMutableArray array];
     NSArray* workers = [self findTestWorkers];
     for(id worker in workers) {
-        FLResult result = [worker runSynchronously];
-        [array addObject:result];
+        [array addObject:[context runWorker:worker withObserver:observer]];
     }
-    return array;
-}
 
-- (NSArray*) runOperation {
-    return [self runTestWorkers:[self findTestWorkers]];
+    return array;
 }
 
 @end

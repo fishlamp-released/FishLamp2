@@ -9,18 +9,9 @@
 #import <Foundation/Foundation.h>
 
 @class FLFinisher;
-@class FLAsyncWorkerContext;
 
 @protocol FLAsyncWorker <NSObject>
-- (void) startWorking:(FLFinisher*) finisher;
-- (void) didMoveToAsyncWorkerContext:(FLAsyncWorkerContext*) context;
+- (void) startWorkingInContext:(id) context withObserver:(id) observer finisher:(FLFinisher*) finisher;
+- (void) requestCancel;
 @end
 
-@interface FLAsyncWorker : NSObject<FLAsyncWorker> {
-@private
-    __unsafe_unretained id _context;
-}
-
-@property (readwrite, assign) id context;
-
-@end

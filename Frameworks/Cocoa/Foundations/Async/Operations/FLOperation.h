@@ -7,21 +7,22 @@
 //
 
 #import "FLDispatch.h"
+#import "FLExecutionContext.h"
+#import "FLAsyncWorker.h"
 
 @class FLOperation;
 
-typedef FLResult (^FLBlockWithOperation)(FLOperation* operation);
+typedef FLResult (^FLBlockWithOperation)(FLOperation* operation, id context, id observer);
 
 @class FLOperationObserver;
 
-@interface FLOperation : FLAsyncWorker {
+@interface FLOperation : NSObject<FLAsyncWorker> {
 @private
 	id _operationID;
 	FLBlockWithOperation _runBlock;
     BOOL _cancelled;
 }
 
-// misc
 @property (readwrite, strong, nonatomic) id operationID;
 
 - (id) init;
@@ -32,20 +33,7 @@ typedef FLResult (^FLBlockWithOperation)(FLOperation* operation);
 
 /// @brief Required override point (or use runBlock).
 /// Either override run or set the operation's run block.
-- (FLResult) runOperation;
-@end
-
-@interface FLOperation (Execution)
-
-// runs in current thread.
-- (FLResult) runSynchronously; 
-- (FLResult) runSynchronouslyWithObserver:(FLOperationObserver*) observer; 
-
-// to run async, run it async use FLDispatch.
-
-// can be called from other thread. dispatcher context may call this.
-- (void) requestCancel;
-
+- (FLResult) runOperationInContext:(id) context withObserver:(id) observer;
 @end
 
 @interface FLOperation (SubclassUtils)
@@ -54,9 +42,6 @@ typedef FLResult (^FLBlockWithOperation)(FLOperation* operation);
 // only for subclasses to call while executing operation.
 - (void) abortIfNeeded;
 - (BOOL) abortNeeded;
-
-// sub operation inherit context, etc.
-- (FLResult) runSubOperation:(FLOperation*) operation;
 
 @end
 

@@ -13,7 +13,7 @@
 
 @implementation FLFacebookLoadUserHttpRequest
 
-//- (FLResult) runOperation {
+//- (FLResult) runOperationInContext:(id) context withObserver:(id) observer {
 //
 //
 //	FLFacebookUser* user = [FLFacebookUser facebookUser];

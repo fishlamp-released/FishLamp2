@@ -13,8 +13,9 @@
 
 int FLTestToolMain(int argc, const char *argv[]) {
     @autoreleasepool {
+        FLExecutionContext* context = FLAutorelease([[FLExecutionContext alloc] init]);
         @try {
-            [[FLUnitTestRunner unitTestRunner] runSynchronously];
+            [context runWorker:[FLUnitTestRunner unitTestRunner] withObserver:nil];
             return 0;
         }
         @catch(NSException* ex) {

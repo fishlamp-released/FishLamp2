@@ -9,8 +9,8 @@
 #import "FLOperation.h"
 #import "FLHttpRequest.h"
 
-@interface FLOperation (HttpRequest)
-
-- (FLResult) sendHttpRequest:(FLHttpRequest*) request;
-- (FLResult) sendHttpRequest:(FLHttpRequest*) request withObserver:(FLHttpRequestObserver*) observer;
-@end
+//@interface FLOperation (HttpRequest)
+//
+//- (FLResult) sendHttpRequest:(FLHttpRequest*) request;
+//- (FLResult) sendHttpRequest:(FLHttpRequest*) request withObserver:(FLHttpRequestObserver*) observer;
+//@end

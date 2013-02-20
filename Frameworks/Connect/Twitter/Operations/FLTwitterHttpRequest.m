@@ -88,7 +88,7 @@
 }
 
 
-//- (FLResult) runOperation {
+//- (FLResult) runOperationInContext:(id) context withObserver:(id) observer {
 //
 //    FLHttpRequest* httpRequest = [FLHttpRequest httpPostRequestWithURL:self.twitterURL];
 //

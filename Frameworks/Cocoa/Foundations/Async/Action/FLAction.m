@@ -339,26 +339,26 @@ TODO("MF: fix activity updater");
     return [self.operations requestCancel];
 }
 
-- (void) startWorking:(FLFinisher*) finisher {
+- (void) startWorkingInContext:(id) context withObserver:(id) observer finisher:(FLFinisher*) finisher {
     
-    [[FLGcdDispatcher sharedForegroundQueue] dispatchBlock:^{
-        [self actionStarted];
-        
-        [[FLGcdDispatcher sharedHighPriorityQueue] dispatchObject:self.operations
-                                 completion:^(FLResult result) {
-                
-                [[FLGcdDispatcher sharedForegroundQueue] dispatchBlock:^{
-                    [finisher setFinishedWithResult:[self actionFinished:result]];
-                }];
-            }];
-    }];
+//    [[FLGcdDispatcher sharedForegroundQueue] dispatchBlock:^{
+//        [self actionStarted];
+//        
+//        [[FLGcdDispatcher sharedHighPriorityQueue] dispatchObject:self.operations
+//                                 completion:^(FLResult result) {
+//                
+//                [[FLGcdDispatcher sharedForegroundQueue] dispatchBlock:^{
+//                    [finisher setFinishedWithResult:[self actionFinished:result]];
+//                }];
+//            }];
+//    }];
 }
 
-- (FLResult) runSynchronously {
-    FLFinisher* finisher = [FLFinisher finisher:nil];
-    [self startWorking:finisher];
-    return [finisher waitUntilFinished];
-}
+//- (FLResult) runWorker {
+//    FLFinisher* finisher = [FLFinisher finisher:nil];
+//    [self startWorking:finisher];
+//    return [finisher waitUntilFinished];
+//}
 
 //- (id) firstOperation {
 //    return self.operations.firstOperation;

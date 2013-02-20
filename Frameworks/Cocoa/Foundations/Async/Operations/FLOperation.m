@@ -60,7 +60,7 @@ NSString* const FLOperationFinishedEvent;
     self.cancelled = YES;
 }
 
-- (FLResult) runOperation {
+- (FLResult) runOperationInContext:(id) context withObserver:(id) observer {
     return FLSuccessfullResult;
 }
 
@@ -72,7 +72,7 @@ NSString* const FLOperationFinishedEvent;
     return self.wasCancelled;
 }
 
-- (void) startWorking:(FLFinisher*) finisher {
+- (void) startWorkingInContext:(id) context withObserver:(id) observer finisher:(FLFinisher*) finisher {
     self.cancelled = NO;
     id result = nil;
     
@@ -80,10 +80,10 @@ NSString* const FLOperationFinishedEvent;
 //        [self postObservation:@selector(operationWillRun:)];
         
         if(self.runBlock) {
-            result = self.runBlock(self);
+            result = self.runBlock(self, context, observer);
         }
         else {
-            result = [self runOperation];
+            result = [self runOperationInContext:context withObserver:observer];
         }
     }
     @catch(NSException* ex) {
@@ -97,35 +97,10 @@ NSString* const FLOperationFinishedEvent;
 //    [self postObservation:@selector(operationDidFinish:withResult:) withObject:result];
 
     [finisher setFinishedWithResult:result];
-    [self.context removeObject:self];
 }
 
 - (void) operationWasCancelled:(FLOperation*) operation {
     [self requestCancel];
-}
-
-- (FLResult) runSynchronously {
-    FLFinisher* finisher = [FLFinisher finisher];
-    [self startWorking:finisher];
-    return [finisher result];
-}
-
-- (FLResult) runSynchronouslyWithObserver:(FLOperationObserver*) observer {
-    [self startWorking:observer];
-    return [observer result];
-}
-
-- (FLResult) runSubOperation:(FLOperation*) operation {
-    @try {
-        if(operation.context == nil) {
-            [self.context addObject:operation];
-        }
-        
-        return [operation runSynchronously];
-    }
-    @catch(NSException* ex) {
-        return [ex error];
-    }
 }
 
 @end

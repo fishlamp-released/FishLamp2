@@ -12,5 +12,6 @@
 - (void) writeObject:(id) object;
 - (id) readObject:(id) inputObject;
 - (void) deleteObject:(id) object;
+- (BOOL) containsObject:(id) object;
 @end
 

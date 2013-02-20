@@ -7,36 +7,33 @@
 //
 
 #import "FLCocoaRequired.h"
-#import "FLFinisher.h"
-#import "FLResult.h"
-#import "FLServiceProvider.h"
-#import "FLServiceManager.h"
-#import "FLObjectDataStore.h"
-
-@class FLServiceManager;
 
 @interface FLService : NSObject {
 @private
-    NSMutableArray* _services;
+    NSMutableArray* _subServices;
     BOOL _serviceOpen;
+    __unsafe_unretained id _superService;
 }
-@property (readonly, assign, nonatomic, getter=isServiceOpen) BOOL serviceOpen;
 
-- (void) addService:(FLService*) service;
-- (void) removeService:(FLService*) service;
+@property (readonly, assign, getter=isServiceOpen) BOOL serviceOpen;
 
+@property (readonly, assign) id superService;
+@property (readonly, assign) id rootService;
+
+@property (readonly, strong) NSArray* subServices; 
+- (void) addSubService:(FLService*) service;
+- (void) removeSubService:(FLService*) service;
+- (void) visitSubServices:(void (^)(id service, BOOL* stop)) visitor;
+
+// optional overrides
 - (void) openService:(id) opener;
 - (void) closeService:(id) closer;
+- (void) didMoveToSuperService:(id) superService;
+
 @end
 
-@interface FLDataStoreService : FLService {
-@private
-    id<FLObjectDataStore> _dataStore;
-}
-@property (readwrite, strong) id<FLObjectDataStore> dataStore;
-@end
+#define FLSynthesizeServiceProperty(__GETTER__, __SETTER__, __SERVICE_TYPE__, __IVAR_NAME__) \
+    - (__SERVICE_TYPE__) __GETTER__ { return FLAtomicPropertyGet(&__IVAR_NAME__); } \
+    - (void) __SETTER__:(__SERVICE_TYPE__) newValue { FLAtomicAddServiceToService(&__IVAR_NAME__, newValue, self); } 
 
-@interface FLDataStoreOpener <NSObject>
-- (void) openDataStoreService:(FLDataStoreService*) cache;
-- (void) closeDataStoreService:(FLDataStoreService*) cache;
-@end
+extern void FLAtomicAddServiceToService(id* ivar, FLService* newService, FLService* parentService);

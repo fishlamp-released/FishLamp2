@@ -9,7 +9,6 @@
 #import "FLTwitterLoadProfileImageHttpRequest.h"
 #import "FLTwitterService.h"
 #import "FLOperationCacheHandler.h"
-#import "FLUserDataStorageService.h"
 
 @implementation FLTwitterLoadProfileImageHttpRequest
 
@@ -38,7 +37,7 @@
 	FLSuperDealloc();
 }
 
-//- (FLResult) runOperation {
+//- (FLResult) runOperationInContext:(id) context withObserver:(id) observer {
 //    self.twitterURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://api.twitter.com/1/users/profile_image/%@.json?size=%@", _username, _imageSize]];
 //    FLAssertNotNil_(self.httpRequestURL);
 //    
