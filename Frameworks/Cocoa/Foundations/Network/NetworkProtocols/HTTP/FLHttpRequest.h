@@ -98,7 +98,7 @@
 
 
 
-//@interface FLExecutionContext (FLHttpRequest)
+//@interface FLWorkerContext (FLHttpRequest)
 //
 //- (FLResult) sendHttpRequestSynchronously:(FLHttpRequest*) request;
 //- (FLResult) sendHttpRequestSynchronously:(FLHttpRequest*) request 

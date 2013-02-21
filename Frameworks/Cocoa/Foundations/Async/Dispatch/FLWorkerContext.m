@@ -1,16 +1,16 @@
 //
-//  FLExecutionContext.m
+//  FLWorkerContext.m
 //  FishLampCocoa
 //
 //  Created by Mike Fullerton on 1/12/13.
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
 
-#import "FLExecutionContext.h"
+#import "FLWorkerContext.h"
 #import "FLGcdDispatcher.h"
 #import "FLDispatch.h"
 
-@implementation FLExecutionContext
+@implementation FLWorkerContext
 @synthesize dispatcher = _dispatcher;
 
 - (id) init {
@@ -30,7 +30,7 @@
 }
 #endif
 
-+ (id) context {
++ (id) workerContext {
     return FLAutorelease([[[self class] alloc] init]);
 }
 
@@ -134,7 +134,7 @@
 
 //@implementation FLExecutable
 //
-//@synthesize executionContext = _executionContext;
+//@synthesize workerContext = _workScheduler;
 //
 //- (void) startWorking:(FLFinisher*) finisher {
 //    [finisher setFinished];
@@ -144,28 +144,28 @@
 ////    self.context = context;
 ////}
 //
-////- (void) setExecutionContext:(id<FLExecutionContext>) executionContext {
+////- (void) setExecutionContext:(id<FLWorkerContext>) workerContext {
 ////    @synchronized(self) {
-////        if(_executionContext == executionContext) {
+////        if(_workScheduler == workerContext) {
 ////            return;
 ////        }
-////        id prev = _executionContext;
-////        _executionContext = nil;
+////        id prev = _workScheduler;
+////        _workScheduler = nil;
 ////
 ////        if(prev) {
 ////            [prev removeObject:self];
 ////        }
 ////        
-////        if(executionContext) {
-////            [executionContext addObject:self];
-////            _executionContext = executionContext;
+////        if(workerContext) {
+////            [workerContext addObject:self];
+////            _workScheduler = workerContext;
 ////        }
 ////    }
 ////}
 ////
-////- (id<FLExecutionContext>) executionContext {
+////- (id<FLWorkerContext>) workerContext {
 ////    @synchronized(self) {
-////        return _executionContext;
+////        return _workScheduler;
 ////    }
 ////}
 //

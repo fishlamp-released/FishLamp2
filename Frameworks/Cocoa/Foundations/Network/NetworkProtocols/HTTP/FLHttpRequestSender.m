@@ -15,12 +15,12 @@
 //@end
 //
 //@interface FLAbstractHttpRequestSender ()
-//@property (readwrite, assign, nonatomic) id<FLExecutionContext> executionContext;
+//@property (readwrite, assign, nonatomic) id<FLWorkerContext> workerContext;
 //@property (readwrite, strong, nonatomic) FLHttpRequest* httpRequest;
 //@end
 //
 //@implementation FLAbstractHttpRequestSender
-//@synthesize executionContext = _executionContext;
+//@synthesize workerContext = _workScheduler;
 //@synthesize httpRequest = _httpRequest;
 //@synthesize observer = _observer;
 //
@@ -54,8 +54,8 @@
 //
 //@implementation FLHttpRequestSender
 //
-//- (FLResult) sendRequestInContext:(id<FLExecutionContext>) context {
-//    self.executionContext = context;
+//- (FLResult) sendRequestInContext:(id<FLWorkerContext>) context {
+//    self.workerContext = context;
 //    [self sendRequest];
 //}
 //

@@ -43,7 +43,7 @@
     }
 }
 
-- (void) processBatchObject:(id) object {
+- (void) processBatchObject:(id) object inContext:(id) context withObserver:(id) observer {
 
 }
 
@@ -65,7 +65,7 @@
         
         [self abortIfNeeded];
         
-        [self processBatchObject:object];
+        [self processBatchObject:object inContext:context withObserver:observer];
 
         self.completedCount++;
 

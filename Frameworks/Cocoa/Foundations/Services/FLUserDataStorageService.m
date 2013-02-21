@@ -359,7 +359,7 @@ FLAssertFailed_v(@"refactor this");
 	return NO;
 }
 
-- (id) executionContext {
+- (id) workerContext {
 FLAssertFailed_v(@"TODO refactor this");
     return nil;
 }
@@ -372,7 +372,7 @@ FLAssertFailed_v(@"TODO refactor this");
     _isOpening = NO;
     _open = NO;
     _upgrading = NO;
-    [self beginOpeningServiceInContext:[self executionContext] withObserver:nil];
+    [self beginOpeningServiceInContext:[self workerContext] withObserver:nil];
 }
 
 - (void) finishUpgradeTasks {	

@@ -1346,15 +1346,6 @@
 		2753DF4E16C9A82B00A3880F /* FLUserDataStorageService+ZenfolioAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D9A516C9A82300A3880F /* FLUserDataStorageService+ZenfolioAdditions.m */; };
 		2753DF4F16C9A82B00A3880F /* FLUserDataStorageService+ZenfolioAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D9A516C9A82300A3880F /* FLUserDataStorageService+ZenfolioAdditions.m */; };
 		2753DF5016C9A82B00A3880F /* FLUserDataStorageService+ZenfolioAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D9A516C9A82300A3880F /* FLUserDataStorageService+ZenfolioAdditions.m */; };
-		2753DF5116C9A82B00A3880F /* FLZenfolioUserService.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D9A616C9A82300A3880F /* FLZenfolioUserService.h */; };
-		2753DF5216C9A82B00A3880F /* FLZenfolioUserService.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D9A616C9A82300A3880F /* FLZenfolioUserService.h */; };
-		2753DF5316C9A82B00A3880F /* FLZenfolioUserService.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D9A616C9A82300A3880F /* FLZenfolioUserService.h */; };
-		2753DF5416C9A82B00A3880F /* FLZenfolioUserService.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D9A616C9A82300A3880F /* FLZenfolioUserService.h */; };
-		2753DF5516C9A82B00A3880F /* FLZenfolioUserService.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D9A716C9A82300A3880F /* FLZenfolioUserService.m */; };
-		2753DF5616C9A82B00A3880F /* FLZenfolioUserService.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D9A716C9A82300A3880F /* FLZenfolioUserService.m */; };
-		2753DF5716C9A82B00A3880F /* FLZenfolioUserService.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D9A716C9A82300A3880F /* FLZenfolioUserService.m */; };
-		2753DF5816C9A82B00A3880F /* FLZenfolioUserService.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D9A716C9A82300A3880F /* FLZenfolioUserService.m */; };
-		2753DF5916C9A82B00A3880F /* FLZenfolioUserService.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D9A716C9A82300A3880F /* FLZenfolioUserService.m */; };
 		2753DF5A16C9A82B00A3880F /* FLZenfolioSharedFavoritesSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D9AA16C9A82300A3880F /* FLZenfolioSharedFavoritesSet.h */; };
 		2753DF5B16C9A82B00A3880F /* FLZenfolioSharedFavoritesSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D9AA16C9A82300A3880F /* FLZenfolioSharedFavoritesSet.h */; };
 		2753DF5C16C9A82B00A3880F /* FLZenfolioSharedFavoritesSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D9AA16C9A82300A3880F /* FLZenfolioSharedFavoritesSet.h */; };
@@ -6085,8 +6076,6 @@
 		2753D9A216C9A82300A3880F /* FLZenfolioBreadCrumbsBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLZenfolioBreadCrumbsBar.m; sourceTree = "<group>"; };
 		2753D9A416C9A82300A3880F /* FLUserDataStorageService+ZenfolioAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FLUserDataStorageService+ZenfolioAdditions.h"; sourceTree = "<group>"; };
 		2753D9A516C9A82300A3880F /* FLUserDataStorageService+ZenfolioAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FLUserDataStorageService+ZenfolioAdditions.m"; sourceTree = "<group>"; };
-		2753D9A616C9A82300A3880F /* FLZenfolioUserService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLZenfolioUserService.h; sourceTree = "<group>"; };
-		2753D9A716C9A82300A3880F /* FLZenfolioUserService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLZenfolioUserService.m; sourceTree = "<group>"; };
 		2753D9A916C9A82300A3880F /* FLZenfolioSharedFavorites.flproj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = FLZenfolioSharedFavorites.flproj; sourceTree = "<group>"; };
 		2753D9AA16C9A82300A3880F /* FLZenfolioSharedFavoritesSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLZenfolioSharedFavoritesSet.h; sourceTree = "<group>"; };
 		2753D9AB16C9A82300A3880F /* FLZenfolioSharedFavoritesSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLZenfolioSharedFavoritesSet.m; sourceTree = "<group>"; };
@@ -7601,8 +7590,6 @@
 			children = (
 				2753D9A416C9A82300A3880F /* FLUserDataStorageService+ZenfolioAdditions.h */,
 				2753D9A516C9A82300A3880F /* FLUserDataStorageService+ZenfolioAdditions.m */,
-				2753D9A616C9A82300A3880F /* FLZenfolioUserService.h */,
-				2753D9A716C9A82300A3880F /* FLZenfolioUserService.m */,
 			);
 			path = Sessions;
 			sourceTree = "<group>";
@@ -8893,7 +8880,6 @@
 				2753DF3616C9A82B00A3880F /* FLZenfolioUtilities.h in Headers */,
 				2753DF3F16C9A82B00A3880F /* FLZenfolioBreadCrumbsBar.h in Headers */,
 				2753DF4816C9A82B00A3880F /* FLUserDataStorageService+ZenfolioAdditions.h in Headers */,
-				2753DF5116C9A82B00A3880F /* FLZenfolioUserService.h in Headers */,
 				2753DF5A16C9A82B00A3880F /* FLZenfolioSharedFavoritesSet.h in Headers */,
 				2753DF6316C9A82B00A3880F /* FLZenfolioSharedFavoritesSetManager.h in Headers */,
 				2753DF6C16C9A82B00A3880F /* FLZenfolioSoapHttpRequest.h in Headers */,
@@ -9535,7 +9521,6 @@
 				2753DF3816C9A82B00A3880F /* FLZenfolioUtilities.h in Headers */,
 				2753DF4116C9A82B00A3880F /* FLZenfolioBreadCrumbsBar.h in Headers */,
 				2753DF4A16C9A82B00A3880F /* FLUserDataStorageService+ZenfolioAdditions.h in Headers */,
-				2753DF5316C9A82B00A3880F /* FLZenfolioUserService.h in Headers */,
 				2753DF5C16C9A82B00A3880F /* FLZenfolioSharedFavoritesSet.h in Headers */,
 				2753DF6516C9A82B00A3880F /* FLZenfolioSharedFavoritesSetManager.h in Headers */,
 				2753DF6E16C9A82B00A3880F /* FLZenfolioSoapHttpRequest.h in Headers */,
@@ -10177,7 +10162,6 @@
 				2753DF3716C9A82B00A3880F /* FLZenfolioUtilities.h in Headers */,
 				2753DF4016C9A82B00A3880F /* FLZenfolioBreadCrumbsBar.h in Headers */,
 				2753DF4916C9A82B00A3880F /* FLUserDataStorageService+ZenfolioAdditions.h in Headers */,
-				2753DF5216C9A82B00A3880F /* FLZenfolioUserService.h in Headers */,
 				2753DF5B16C9A82B00A3880F /* FLZenfolioSharedFavoritesSet.h in Headers */,
 				2753DF6416C9A82B00A3880F /* FLZenfolioSharedFavoritesSetManager.h in Headers */,
 				2753DF6D16C9A82B00A3880F /* FLZenfolioSoapHttpRequest.h in Headers */,
@@ -10819,7 +10803,6 @@
 				2753DF3916C9A82B00A3880F /* FLZenfolioUtilities.h in Headers */,
 				2753DF4216C9A82B00A3880F /* FLZenfolioBreadCrumbsBar.h in Headers */,
 				2753DF4B16C9A82B00A3880F /* FLUserDataStorageService+ZenfolioAdditions.h in Headers */,
-				2753DF5416C9A82B00A3880F /* FLZenfolioUserService.h in Headers */,
 				2753DF5D16C9A82B00A3880F /* FLZenfolioSharedFavoritesSet.h in Headers */,
 				2753DF6616C9A82B00A3880F /* FLZenfolioSharedFavoritesSetManager.h in Headers */,
 				2753DF6F16C9A82B00A3880F /* FLZenfolioSoapHttpRequest.h in Headers */,
@@ -11625,7 +11608,6 @@
 				2753DF3B16C9A82B00A3880F /* FLZenfolioUtilities.m in Sources */,
 				2753DF4416C9A82B00A3880F /* FLZenfolioBreadCrumbsBar.m in Sources */,
 				2753DF4D16C9A82B00A3880F /* FLUserDataStorageService+ZenfolioAdditions.m in Sources */,
-				2753DF5616C9A82B00A3880F /* FLZenfolioUserService.m in Sources */,
 				2753DF5F16C9A82B00A3880F /* FLZenfolioSharedFavoritesSet.m in Sources */,
 				2753DF6816C9A82B00A3880F /* FLZenfolioSharedFavoritesSetManager.m in Sources */,
 				2753DF7116C9A82B00A3880F /* FLZenfolioSoapHttpRequest.m in Sources */,
@@ -12261,7 +12243,6 @@
 				2753DF3D16C9A82B00A3880F /* FLZenfolioUtilities.m in Sources */,
 				2753DF4616C9A82B00A3880F /* FLZenfolioBreadCrumbsBar.m in Sources */,
 				2753DF4F16C9A82B00A3880F /* FLUserDataStorageService+ZenfolioAdditions.m in Sources */,
-				2753DF5816C9A82B00A3880F /* FLZenfolioUserService.m in Sources */,
 				2753DF6116C9A82B00A3880F /* FLZenfolioSharedFavoritesSet.m in Sources */,
 				2753DF6A16C9A82B00A3880F /* FLZenfolioSharedFavoritesSetManager.m in Sources */,
 				2753DF7316C9A82B00A3880F /* FLZenfolioSoapHttpRequest.m in Sources */,
@@ -12897,7 +12878,6 @@
 				2753DF3A16C9A82B00A3880F /* FLZenfolioUtilities.m in Sources */,
 				2753DF4316C9A82B00A3880F /* FLZenfolioBreadCrumbsBar.m in Sources */,
 				2753DF4C16C9A82B00A3880F /* FLUserDataStorageService+ZenfolioAdditions.m in Sources */,
-				2753DF5516C9A82B00A3880F /* FLZenfolioUserService.m in Sources */,
 				2753DF5E16C9A82B00A3880F /* FLZenfolioSharedFavoritesSet.m in Sources */,
 				2753DF6716C9A82B00A3880F /* FLZenfolioSharedFavoritesSetManager.m in Sources */,
 				2753DF7016C9A82B00A3880F /* FLZenfolioSoapHttpRequest.m in Sources */,
@@ -13533,7 +13513,6 @@
 				2753DF3C16C9A82B00A3880F /* FLZenfolioUtilities.m in Sources */,
 				2753DF4516C9A82B00A3880F /* FLZenfolioBreadCrumbsBar.m in Sources */,
 				2753DF4E16C9A82B00A3880F /* FLUserDataStorageService+ZenfolioAdditions.m in Sources */,
-				2753DF5716C9A82B00A3880F /* FLZenfolioUserService.m in Sources */,
 				2753DF6016C9A82B00A3880F /* FLZenfolioSharedFavoritesSet.m in Sources */,
 				2753DF6916C9A82B00A3880F /* FLZenfolioSharedFavoritesSetManager.m in Sources */,
 				2753DF7216C9A82B00A3880F /* FLZenfolioSoapHttpRequest.m in Sources */,
@@ -14169,7 +14148,6 @@
 				2753DF3E16C9A82B00A3880F /* FLZenfolioUtilities.m in Sources */,
 				2753DF4716C9A82B00A3880F /* FLZenfolioBreadCrumbsBar.m in Sources */,
 				2753DF5016C9A82B00A3880F /* FLUserDataStorageService+ZenfolioAdditions.m in Sources */,
-				2753DF5916C9A82B00A3880F /* FLZenfolioUserService.m in Sources */,
 				2753DF6216C9A82B00A3880F /* FLZenfolioSharedFavoritesSet.m in Sources */,
 				2753DF6B16C9A82B00A3880F /* FLZenfolioSharedFavoritesSetManager.m in Sources */,
 				2753DF7416C9A82B00A3880F /* FLZenfolioSoapHttpRequest.m in Sources */,
