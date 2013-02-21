@@ -22,7 +22,6 @@
 #import "FLZenfolioUploadGallery+More.h"
 
 #import "FLZenfolioHttpRequest.h"
-#import "FLZenfolioUserService.h"
 #import "FLZenfolioAuthenticationService.h"
 
 // these are misspelled in WSDL declaration so are misspelled in generated code

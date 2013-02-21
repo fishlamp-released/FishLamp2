@@ -11,15 +11,14 @@
 #import "FLOperation.h"
 #import "FLGcdDispatcher.h"
 #import "FLHttpRequestAuthenticationService.h"
-#import "FLExecutionContext.h"
+#import "FLWorkerContext.h"
 #import "FLImageStoreService.h"
-#import "FLService.h"
+#import "FLWorkerContext.h"
 
-@interface FLHttpUserService :  FLService {
+@interface FLHttpUserService :  FLWorkerContext {
 @private
     FLHttpRequestAuthenticationService* _httpRequestAuthenticator;
     FLFifoGcdDispatcher* _asyncDispatcher;
-    FLExecutionContext* _context;
 }
 
 @property (readwrite, strong) FLUserLogin* userLogin;

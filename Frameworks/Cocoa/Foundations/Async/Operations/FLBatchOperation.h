@@ -22,7 +22,7 @@
 
 - (void) addBatchObjects:(NSArray*) batchObjects;
 
-- (void) processBatchObject:(id) object;
+- (void) processBatchObject:(id) object inContext:(id) context withObserver:(id) observer;
 
 @end
 

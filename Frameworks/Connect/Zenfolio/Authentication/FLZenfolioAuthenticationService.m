@@ -7,16 +7,12 @@
 //
 
 #import "FLZenfolioAuthenticationService.h"
-#import "FLZenfolioAuthenticateOperation.h"
-
-#import "FLReachableNetwork.h"
 #import "FLTraceOn.h"
-
 #import "FLZenfolioWebApi.h"
-#import "FLUserLogin+ZenfolioAdditions.h"
+//#import "FLUserLogin+ZenfolioAdditions.h"
 #import "FLZenfolioErrors.h"
-#import "FLZenfolioUserService.h"
 #import "FLHttpRequest+ZenfolioAuthentication.h"
+#import "FLReachableNetwork.h"
 
 @implementation FLZenfolioAuthenticationService
 

@@ -18,8 +18,8 @@
 //                withObserver:(FLHttpRequestObserver*) observer {
 //                
 //    @try {
-//        if(request.executionContext == nil) {
-//            request.executionContext = self.executionContext;
+//        if(request.workerContext == nil) {
+//            request.workerContext = self.workerContext;
 //        }
 //        
 //        return [request sendSynchronouslyWithObserver:observer];

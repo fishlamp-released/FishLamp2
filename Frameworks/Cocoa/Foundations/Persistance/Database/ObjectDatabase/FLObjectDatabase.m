@@ -179,6 +179,21 @@
     [self executeStatement:statement];
 }
 
+- (NSUInteger) objectCountForClass:(Class) aClass {
+    return [self rowCountForTable:[aClass sharedDatabaseTable]];
+}
+
+- (void) removeAllObjectsWithClass:(Class) aClass {
+    [self dropTable:[aClass sharedDatabaseTable]];
+}
+
+- (NSArray*) readObjectsForClass:(Class) aClass {
+    NSArray* list = nil;
+	[self loadAllObjectsForTypeWithClass:aClass outObjects:&list];
+    
+    return FLAutorelease(list);
+}
+
 @end
 
 //@implementation FLObjectDatabase (FLAsyncJob) 

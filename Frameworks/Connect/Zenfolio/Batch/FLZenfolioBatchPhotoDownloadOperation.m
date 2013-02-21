@@ -160,7 +160,7 @@
             //	create the url request
             NSTimeInterval startTimestamp = [NSDate timeIntervalSinceReferenceDate];
 
-            FLZenfolioDownloadImageHttpRequest* downloader = [FLZenfolioDownloadImageHttpRequest downloadImageHttpRequest:photo imageSize:[FLZenfolioImageSize originalImageSize] cache:[context cache]];
+            FLZenfolioDownloadImageHttpRequest* downloader = [FLZenfolioDownloadImageHttpRequest downloadImageHttpRequest:photo imageSize:[FLZenfolioImageSize originalImageSize] cache:nil];
   
             image = [context runWorker:downloader withObserver:nil];
                                 

@@ -48,27 +48,29 @@
 	FLSuperDealloc();
 }
 
-- (void) processBatchObject:(FLZenfolioPhoto*) photo {
+- (void) processBatchObject:(id) object inContext:(id) context withObserver:(id) observer {
 
-//    FLOperation* operation = nil;
-//
-//	if(_destPhotoSet.TypeValue == FLZenfolioPhotoSetTypeGallery) {
-//        operation = [[self httpRequestFactory] movePhotoOperation:photo fromPhotoSet:_parentPhotoSet toPhotoSet:_destPhotoSet];
-//    }
-//	else {
-//        operation = [FLZenfolioHttpRequest addPhotoToCollectionOperation:photo collection:_destPhotoSet];
-//    }
-//    
-//    FLThrowError([operation runSynchronouslyInContext:self.userContext]);
-//
-//    _destPhotoSet.PhotoCountValue = _destPhotoSet.PhotoCountValue + 1;
-//    [_destPhotoSet addPhoto:photo];
-//    [[[self.userContext objectCache] cacheDatabase] writeObject:_destPhotoSet];
-//    
-//    if(_parentPhotoSet && _parentPhotoSet.isGalleryElement) {
-//        [_parentPhotoSet removePhoto:photo forceCountDecrement:YES];
-//        [[[self.userContext objectCache] cacheDatabase] writeObject:_parentPhotoSet];
-//    }
+#if REFACTOR
+    FLOperation* operation = nil;
+
+	if(_destPhotoSet.TypeValue == FLZenfolioPhotoSetTypeGallery) {
+        operation = [[self httpRequestFactory] movePhotoOperation:photo fromPhotoSet:_parentPhotoSet toPhotoSet:_destPhotoSet];
+    }
+	else {
+        operation = [FLZenfolioHttpRequest addPhotoToCollectionOperation:photo collection:_destPhotoSet];
+    }
+    
+    FLThrowError([operation runSynchronouslyInContext:self.userContext]);
+
+    _destPhotoSet.PhotoCountValue = _destPhotoSet.PhotoCountValue + 1;
+    [_destPhotoSet addPhoto:photo];
+    [[[self.userContext objectCache] cacheDatabase] writeObject:_destPhotoSet];
+    
+    if(_parentPhotoSet && _parentPhotoSet.isGalleryElement) {
+        [_parentPhotoSet removePhoto:photo forceCountDecrement:YES];
+        [[[self.userContext objectCache] cacheDatabase] writeObject:_parentPhotoSet];
+    }
+#endif    
 }
 
 @end

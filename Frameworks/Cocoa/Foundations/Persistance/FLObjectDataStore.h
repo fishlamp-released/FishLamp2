@@ -15,3 +15,8 @@
 - (BOOL) containsObject:(id) object;
 @end
 
+@protocol FLObjectDataStoreExtended <FLObjectDataStore>
+- (NSUInteger) objectCountForClass:(Class) aClass;
+- (void) removeAllObjectsWithClass:(Class) aClass;
+- (NSArray*) readObjectsForClass:(Class) aClass;
+@end

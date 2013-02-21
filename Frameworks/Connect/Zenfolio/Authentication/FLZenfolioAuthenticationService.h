@@ -7,7 +7,6 @@
 //
 
 #import "FLHttpRequestAuthenticationService.h"
-@class FLZenfolioUserService;
 
 #define FLZenfolioHttpAuthenticationTimeout ((60 * 60) * 12.0f)
 
