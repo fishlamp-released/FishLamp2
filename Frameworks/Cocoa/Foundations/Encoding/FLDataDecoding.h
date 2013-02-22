@@ -12,7 +12,7 @@
 #import "FishLampCore.h"
 #import "FLTypeDesc.h"
 
-@protocol FLDataDecoding <NSObject, FLTypeDescObjectEncoding, FLTypeDescNumberEncoding, FLTypeDescBoxedStructEncoding>
+@protocol FLDataDecoding <NSObject, FLTypeDescCoreTypesEncoding>
 - (id) decodeDataFromString:(NSString*) inEncodedString 
                     forType:(FLTypeDesc*) type;
 @end

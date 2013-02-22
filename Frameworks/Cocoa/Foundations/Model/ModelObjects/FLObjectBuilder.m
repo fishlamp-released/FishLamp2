@@ -49,7 +49,7 @@
 		else
 		{
             if(decoder) {
-                [newArray addObject:[arrayItemDesc.propertyType stringToObject:arrayItem withDecoder:decoder]];
+                [newArray addObject:[arrayItemDesc.propertyType decodeStringToObject:arrayItem withDecoder:decoder]];
             }
             else {
                 [newArray addObject:arrayItem];
@@ -103,7 +103,7 @@
 				else {
 
                     if(decoder) {
-                        value = [property.propertyType stringToObject:value withDecoder:decoder];
+                        value = [property.propertyType decodeStringToObject:value withDecoder:decoder];
                     }
                 
 //					switch(property.propertyType.specificType)
