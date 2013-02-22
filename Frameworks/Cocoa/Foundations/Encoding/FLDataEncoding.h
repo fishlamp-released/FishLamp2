@@ -11,7 +11,7 @@
 
 #import "FLTypeDesc.h"
 
-@protocol FLDataEncoding <NSObject, FLTypeDescObjectEncoding, FLTypeDescNumberEncoding, FLTypeDescBoxedStructEncoding>
+@protocol FLDataEncoding <NSObject, FLTypeDescCoreTypesEncoding>
 
 - (NSString*) encodeDataToString:(id) data 
                          forType:(FLTypeDesc*) type;

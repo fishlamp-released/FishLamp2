@@ -35,87 +35,99 @@
 - (NSString*) encodeDataToString:(id) data 
 				forType:(FLTypeDesc*) type {
               
-    return [type objectToString:data withEncoder:self];
+    return [type encodeObjectToString:data withEncoder:self];
 } 
 
 - (id) decodeDataFromString:(NSString*) string
 				forType:(FLTypeDesc*) type {
-    return [type stringToObject:string withDecoder:self];
+    return [type decodeStringToObject:string withDecoder:self];
 }
 
 // specific decoders for types.
 
-- (NSString*) encodeStringWithString:(NSString*) string {
+- (NSString*) typeDesc:(FLTypeDesc*) typeDesc encodeStringWithNSString:(NSString*) string {
     return string;
 }
 
-- (NSString*) decodeStringFromString:(NSString*) string {
+- (NSString*) typeDesc:(FLTypeDesc*) typeDesc decodeNSStringFromString:(NSString*) string {
     return string;
 }
 
-- (NSString*) encodeStringWithDate:(NSDate*) date {
+- (NSString*) typeDesc:(FLTypeDesc*) typeDesc encodeStringWithNSDate:(NSDate*) date {
     return [[FLDateMgr instance] ISO8601DateToString:date];
 }
 
-- (NSDate*) decodeDateFromString:(NSString*) string {
+- (NSDate*) typeDesc:(FLTypeDesc*) typeDesc decodeNSDateFromString:(NSString*) string {
     return [[FLDateMgr instance] ISO8601StringToDate:string];
 }
 
-- (NSString*) encodeStringWithURL:(NSURL*) URL {
-    return [self encodeStringWithString:[URL absoluteString]];
+- (NSString*) typeDesc:(FLTypeDesc*) typeDesc encodeStringWithNSURL:(NSURL*) URL {
+    return [self typeDesc:typeDesc encodeStringWithNSString:[URL absoluteString]];
 }
 
-- (NSURL*) decodeURLFromString:(NSString*) string {
-    return [NSURL URLWithString:[self decodeStringFromString:string]];
+- (NSURL*) typeDesc:(FLTypeDesc*) typeDesc decodeNSURLFromString:(NSString*) string {
+    return [NSURL URLWithString:[self typeDesc:typeDesc decodeNSStringFromString:string]];
 }
 
-- (NSString*) encodeStringWithRectValue:(NSValue*) value {
-    return NSStringFromCGRect([value CGRectValue]);
+- (NSString*) typeDesc:(FLTypeDesc*) typeDesc encodeStringWithNSValue:(NSValue*) value {
+    switch(typeDesc.typeID) {
+        case FLTypeIDRect:
+            return NSStringFromCGRect([value CGRectValue]);
+        break;
+        
+        case FLTypeIDPoint:
+            return NSStringFromCGPoint([value CGPointValue]);
+        break;
+        
+        case FLTypeIDSize:
+            return NSStringFromCGSize([value CGSizeValue]);
+        break;
+    }
+    
+    return @"";
 }
 
-- (NSValue*) decodeRectValueFromString:(NSString*) string {
-    return [NSValue valueWithCGRect:CGRectFromString(string)];
+- (NSValue*) typeDesc:(FLTypeDesc*) typeDesc decodeNSValueFromString:(NSString*) string {
+    switch(typeDesc.typeID) {
+        case FLTypeIDRect:
+            return [NSValue valueWithCGRect:CGRectFromString(string)];
+        break;
+        
+        case FLTypeIDPoint:
+            return [NSValue valueWithCGPoint:CGPointFromString(string)];
+        break;
+        
+        case FLTypeIDSize:
+            return [NSValue valueWithCGSize:CGSizeFromString(string)];
+        break;
+    }
+    
+    return nil;
 }
 
-- (NSString*) encodeStringWithPointValue:(NSValue*) value {
-    return NSStringFromCGPoint([value CGPointValue]);
-}
-
-- (NSValue*) decodePointValueFromString:(NSString*) string {
-    return [NSValue valueWithCGPoint:CGPointFromString(string)];
-}
-
-- (NSString*) encodeStringWithSizeValue:(NSValue*) value {
-    return NSStringFromCGSize([value CGSizeValue]);
-}
-
-- (NSValue*) decodeSizeValueFromString:(NSString*) string {
-    return [NSValue valueWithCGSize:CGSizeFromString(string)];
-}
-
-- (NSString*) encodeStringWithNumber:(NSNumber*) number {
+- (NSString*) typeDesc:(FLTypeDesc*) typeDesc encodeStringWithNSNumber:(NSNumber*) number {
     return [_numberFormatter stringFromNumber:number];
 }
 
-- (NSNumber*) decodeNumberFromString:(NSString*) string {
+- (NSNumber*) typeDesc:(FLTypeDesc*) typeDesc decodeNSNumberFromString:(NSString*) string {
     return [_numberFormatter numberFromString:string];
 }
 
-- (NSData*) decodeDataFromString:(NSString*) string {
+- (NSData*) typeDesc:(FLTypeDesc*) typeDesc decodeNSDataFromString:(NSString*) string {
     FLAssertFailed_v(@"need to override this");
     return nil;
 }
 
-- (NSString*) encodeStringWithData:(NSString*) string {
+- (NSString*) typeDesc:(FLTypeDesc*) typeDesc encodeStringWithNSData:(NSString*) string {
     FLAssertFailed_v(@"need to override this");
     return nil;
 }
 
-- (UIColor*) decodeColorFromString:(NSString*) string {
+- (UIColor*) typeDesc:(FLTypeDesc*) typeDesc decodeUIColorFromString:(NSString*) string {
     return FLColorFromRGBString(string);
 }
 
-- (NSString*) encodeStringWithColor:(UIColor*) color {
+- (NSString*) typeDesc:(FLTypeDesc*) typeDesc encodeStringWithUIColor:(UIColor*) color {
     return FLRgbStringFromColor(color);
 }
 

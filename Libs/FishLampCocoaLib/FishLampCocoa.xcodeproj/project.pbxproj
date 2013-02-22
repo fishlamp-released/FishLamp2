@@ -7,33 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		272D808616C84F9B006052E5 /* FLTypeDesc+Numbers.h in Headers */ = {isa = PBXBuildFile; fileRef = 272D808416C84F9A006052E5 /* FLTypeDesc+Numbers.h */; };
-		272D808716C84F9B006052E5 /* FLTypeDesc+Numbers.h in Headers */ = {isa = PBXBuildFile; fileRef = 272D808416C84F9A006052E5 /* FLTypeDesc+Numbers.h */; };
-		272D808816C84F9B006052E5 /* FLTypeDesc+Numbers.h in Headers */ = {isa = PBXBuildFile; fileRef = 272D808416C84F9A006052E5 /* FLTypeDesc+Numbers.h */; };
-		272D808916C84F9B006052E5 /* FLTypeDesc+Numbers.h in Headers */ = {isa = PBXBuildFile; fileRef = 272D808416C84F9A006052E5 /* FLTypeDesc+Numbers.h */; };
-		272D808A16C84F9B006052E5 /* FLTypeDesc+Numbers.m in Sources */ = {isa = PBXBuildFile; fileRef = 272D808516C84F9B006052E5 /* FLTypeDesc+Numbers.m */; };
-		272D808B16C84F9B006052E5 /* FLTypeDesc+Numbers.m in Sources */ = {isa = PBXBuildFile; fileRef = 272D808516C84F9B006052E5 /* FLTypeDesc+Numbers.m */; };
-		272D808C16C84F9B006052E5 /* FLTypeDesc+Numbers.m in Sources */ = {isa = PBXBuildFile; fileRef = 272D808516C84F9B006052E5 /* FLTypeDesc+Numbers.m */; };
-		272D808D16C84F9B006052E5 /* FLTypeDesc+Numbers.m in Sources */ = {isa = PBXBuildFile; fileRef = 272D808516C84F9B006052E5 /* FLTypeDesc+Numbers.m */; };
-		272D808E16C84F9B006052E5 /* FLTypeDesc+Numbers.m in Sources */ = {isa = PBXBuildFile; fileRef = 272D808516C84F9B006052E5 /* FLTypeDesc+Numbers.m */; };
-		272D809116C8501C006052E5 /* FLTypeDesc+Objects.h in Headers */ = {isa = PBXBuildFile; fileRef = 272D808F16C85019006052E5 /* FLTypeDesc+Objects.h */; };
-		272D809216C8501C006052E5 /* FLTypeDesc+Objects.h in Headers */ = {isa = PBXBuildFile; fileRef = 272D808F16C85019006052E5 /* FLTypeDesc+Objects.h */; };
-		272D809316C8501C006052E5 /* FLTypeDesc+Objects.h in Headers */ = {isa = PBXBuildFile; fileRef = 272D808F16C85019006052E5 /* FLTypeDesc+Objects.h */; };
-		272D809416C8501C006052E5 /* FLTypeDesc+Objects.h in Headers */ = {isa = PBXBuildFile; fileRef = 272D808F16C85019006052E5 /* FLTypeDesc+Objects.h */; };
-		272D809516C8501C006052E5 /* FLTypeDesc+Objects.m in Sources */ = {isa = PBXBuildFile; fileRef = 272D809016C8501A006052E5 /* FLTypeDesc+Objects.m */; };
-		272D809616C8501C006052E5 /* FLTypeDesc+Objects.m in Sources */ = {isa = PBXBuildFile; fileRef = 272D809016C8501A006052E5 /* FLTypeDesc+Objects.m */; };
-		272D809716C8501C006052E5 /* FLTypeDesc+Objects.m in Sources */ = {isa = PBXBuildFile; fileRef = 272D809016C8501A006052E5 /* FLTypeDesc+Objects.m */; };
-		272D809816C8501C006052E5 /* FLTypeDesc+Objects.m in Sources */ = {isa = PBXBuildFile; fileRef = 272D809016C8501A006052E5 /* FLTypeDesc+Objects.m */; };
-		272D809916C8501C006052E5 /* FLTypeDesc+Objects.m in Sources */ = {isa = PBXBuildFile; fileRef = 272D809016C8501A006052E5 /* FLTypeDesc+Objects.m */; };
-		272D809C16C8508D006052E5 /* FLTypeDesc+BoxedStructs.h in Headers */ = {isa = PBXBuildFile; fileRef = 272D809A16C8508B006052E5 /* FLTypeDesc+BoxedStructs.h */; };
-		272D809D16C8508D006052E5 /* FLTypeDesc+BoxedStructs.h in Headers */ = {isa = PBXBuildFile; fileRef = 272D809A16C8508B006052E5 /* FLTypeDesc+BoxedStructs.h */; };
-		272D809E16C8508D006052E5 /* FLTypeDesc+BoxedStructs.h in Headers */ = {isa = PBXBuildFile; fileRef = 272D809A16C8508B006052E5 /* FLTypeDesc+BoxedStructs.h */; };
-		272D809F16C8508D006052E5 /* FLTypeDesc+BoxedStructs.h in Headers */ = {isa = PBXBuildFile; fileRef = 272D809A16C8508B006052E5 /* FLTypeDesc+BoxedStructs.h */; };
-		272D80A016C8508D006052E5 /* FLTypeDesc+BoxedStructs.m in Sources */ = {isa = PBXBuildFile; fileRef = 272D809B16C8508C006052E5 /* FLTypeDesc+BoxedStructs.m */; };
-		272D80A116C8508D006052E5 /* FLTypeDesc+BoxedStructs.m in Sources */ = {isa = PBXBuildFile; fileRef = 272D809B16C8508C006052E5 /* FLTypeDesc+BoxedStructs.m */; };
-		272D80A216C8508D006052E5 /* FLTypeDesc+BoxedStructs.m in Sources */ = {isa = PBXBuildFile; fileRef = 272D809B16C8508C006052E5 /* FLTypeDesc+BoxedStructs.m */; };
-		272D80A316C8508D006052E5 /* FLTypeDesc+BoxedStructs.m in Sources */ = {isa = PBXBuildFile; fileRef = 272D809B16C8508C006052E5 /* FLTypeDesc+BoxedStructs.m */; };
-		272D80A416C8508D006052E5 /* FLTypeDesc+BoxedStructs.m in Sources */ = {isa = PBXBuildFile; fileRef = 272D809B16C8508C006052E5 /* FLTypeDesc+BoxedStructs.m */; };
 		272D80A616C8604E006052E5 /* FLDataEncoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 272D80A516C8604E006052E5 /* FLDataEncoding.h */; };
 		272D80A716C8604E006052E5 /* FLDataEncoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 272D80A516C8604E006052E5 /* FLDataEncoding.h */; };
 		272D80A816C8604E006052E5 /* FLDataEncoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 272D80A516C8604E006052E5 /* FLDataEncoding.h */; };
@@ -3022,12 +2995,6 @@
 /* Begin PBXFileReference section */
 		27048EF0161CB58600C38ADA /* libFishLampCocoa-OSX-32-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoa-OSX-32-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		272D807816C84313006052E5 /* AssetQueueObjects.flproj */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = AssetQueueObjects.flproj; sourceTree = "<group>"; };
-		272D808416C84F9A006052E5 /* FLTypeDesc+Numbers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FLTypeDesc+Numbers.h"; sourceTree = "<group>"; };
-		272D808516C84F9B006052E5 /* FLTypeDesc+Numbers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FLTypeDesc+Numbers.m"; sourceTree = "<group>"; };
-		272D808F16C85019006052E5 /* FLTypeDesc+Objects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FLTypeDesc+Objects.h"; sourceTree = "<group>"; };
-		272D809016C8501A006052E5 /* FLTypeDesc+Objects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FLTypeDesc+Objects.m"; sourceTree = "<group>"; };
-		272D809A16C8508B006052E5 /* FLTypeDesc+BoxedStructs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FLTypeDesc+BoxedStructs.h"; sourceTree = "<group>"; };
-		272D809B16C8508C006052E5 /* FLTypeDesc+BoxedStructs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FLTypeDesc+BoxedStructs.m"; sourceTree = "<group>"; };
 		272D80A516C8604E006052E5 /* FLDataEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLDataEncoding.h; sourceTree = "<group>"; };
 		272D80AA16C86081006052E5 /* FLDataEncoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLDataEncoder.h; sourceTree = "<group>"; };
 		272D80AB16C86081006052E5 /* FLDataEncoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLDataEncoder.m; sourceTree = "<group>"; };
@@ -4182,12 +4149,6 @@
 				2741DFB316793DB600CA87A9 /* NSObject+Copying.m */,
 				2741DFB416793DB600CA87A9 /* NSObject+FLParseable.h */,
 				2741DFB516793DB600CA87A9 /* NSObject+FLParseable.m */,
-				272D808416C84F9A006052E5 /* FLTypeDesc+Numbers.h */,
-				272D808516C84F9B006052E5 /* FLTypeDesc+Numbers.m */,
-				272D808F16C85019006052E5 /* FLTypeDesc+Objects.h */,
-				272D809016C8501A006052E5 /* FLTypeDesc+Objects.m */,
-				272D809A16C8508B006052E5 /* FLTypeDesc+BoxedStructs.h */,
-				272D809B16C8508C006052E5 /* FLTypeDesc+BoxedStructs.m */,
 			);
 			path = ModelObjects;
 			sourceTree = "<group>";
@@ -5447,9 +5408,6 @@
 				276AF66016BC4D1500205E0F /* FLDocumentBuilder.h in Headers */,
 				276AF66816BC4D1500205E0F /* FLStringDocument.h in Headers */,
 				276AF67416BC4DC500205E0F /* FLDocumentSection.h in Headers */,
-				272D808616C84F9B006052E5 /* FLTypeDesc+Numbers.h in Headers */,
-				272D809116C8501C006052E5 /* FLTypeDesc+Objects.h in Headers */,
-				272D809C16C8508D006052E5 /* FLTypeDesc+BoxedStructs.h in Headers */,
 				272D80A616C8604E006052E5 /* FLDataEncoding.h in Headers */,
 				272D80AC16C86081006052E5 /* FLDataEncoder.h in Headers */,
 				272D80B616C8882A006052E5 /* FLDataDecoding.h in Headers */,
@@ -5798,9 +5756,6 @@
 				276AF66216BC4D1500205E0F /* FLDocumentBuilder.h in Headers */,
 				276AF66A16BC4D1500205E0F /* FLStringDocument.h in Headers */,
 				276AF67616BC4DC500205E0F /* FLDocumentSection.h in Headers */,
-				272D808816C84F9B006052E5 /* FLTypeDesc+Numbers.h in Headers */,
-				272D809316C8501C006052E5 /* FLTypeDesc+Objects.h in Headers */,
-				272D809E16C8508D006052E5 /* FLTypeDesc+BoxedStructs.h in Headers */,
 				272D80A816C8604E006052E5 /* FLDataEncoding.h in Headers */,
 				272D80AE16C86081006052E5 /* FLDataEncoder.h in Headers */,
 				272D80B816C8882A006052E5 /* FLDataDecoding.h in Headers */,
@@ -6149,9 +6104,6 @@
 				276AF66116BC4D1500205E0F /* FLDocumentBuilder.h in Headers */,
 				276AF66916BC4D1500205E0F /* FLStringDocument.h in Headers */,
 				276AF67516BC4DC500205E0F /* FLDocumentSection.h in Headers */,
-				272D808716C84F9B006052E5 /* FLTypeDesc+Numbers.h in Headers */,
-				272D809216C8501C006052E5 /* FLTypeDesc+Objects.h in Headers */,
-				272D809D16C8508D006052E5 /* FLTypeDesc+BoxedStructs.h in Headers */,
 				272D80A716C8604E006052E5 /* FLDataEncoding.h in Headers */,
 				272D80AD16C86081006052E5 /* FLDataEncoder.h in Headers */,
 				272D80B716C8882A006052E5 /* FLDataDecoding.h in Headers */,
@@ -6500,9 +6452,6 @@
 				276AF66316BC4D1500205E0F /* FLDocumentBuilder.h in Headers */,
 				276AF66B16BC4D1500205E0F /* FLStringDocument.h in Headers */,
 				276AF67716BC4DC500205E0F /* FLDocumentSection.h in Headers */,
-				272D808916C84F9B006052E5 /* FLTypeDesc+Numbers.h in Headers */,
-				272D809416C8501C006052E5 /* FLTypeDesc+Objects.h in Headers */,
-				272D809F16C8508D006052E5 /* FLTypeDesc+BoxedStructs.h in Headers */,
 				272D80A916C8604E006052E5 /* FLDataEncoding.h in Headers */,
 				272D80AF16C86081006052E5 /* FLDataEncoder.h in Headers */,
 				272D80B916C8882A006052E5 /* FLDataDecoding.h in Headers */,
@@ -6993,9 +6942,6 @@
 				276AF66C16BC4D1500205E0F /* FLStringDocument.m in Sources */,
 				276AF67816BC4DC500205E0F /* FLDocumentSection.m in Sources */,
 				276AFD0216C59C4400205E0F /* FLTypeDesc.m in Sources */,
-				272D808B16C84F9B006052E5 /* FLTypeDesc+Numbers.m in Sources */,
-				272D809616C8501C006052E5 /* FLTypeDesc+Objects.m in Sources */,
-				272D80A116C8508D006052E5 /* FLTypeDesc+BoxedStructs.m in Sources */,
 				272D80B116C86081006052E5 /* FLDataEncoder.m in Sources */,
 				272D838716C99A26006052E5 /* NSString+MiscUtils.m in Sources */,
 				27EE25F716CAD1B200E4CC98 /* FLHttpRequestObserver.m in Sources */,
@@ -7310,9 +7256,6 @@
 				276AF66E16BC4D1500205E0F /* FLStringDocument.m in Sources */,
 				276AF67A16BC4DC500205E0F /* FLDocumentSection.m in Sources */,
 				276AFD0416C59C4400205E0F /* FLTypeDesc.m in Sources */,
-				272D808D16C84F9B006052E5 /* FLTypeDesc+Numbers.m in Sources */,
-				272D809816C8501C006052E5 /* FLTypeDesc+Objects.m in Sources */,
-				272D80A316C8508D006052E5 /* FLTypeDesc+BoxedStructs.m in Sources */,
 				272D80B316C86081006052E5 /* FLDataEncoder.m in Sources */,
 				272D838916C99A26006052E5 /* NSString+MiscUtils.m in Sources */,
 				27EE25F916CAD1B200E4CC98 /* FLHttpRequestObserver.m in Sources */,
@@ -7626,9 +7569,6 @@
 				276AF67116BC4D2300205E0F /* FLStringDocument.m in Sources */,
 				276AF67C16BC4DCA00205E0F /* FLDocumentSection.m in Sources */,
 				276AFD0116C59C4400205E0F /* FLTypeDesc.m in Sources */,
-				272D808A16C84F9B006052E5 /* FLTypeDesc+Numbers.m in Sources */,
-				272D809516C8501C006052E5 /* FLTypeDesc+Objects.m in Sources */,
-				272D80A016C8508D006052E5 /* FLTypeDesc+BoxedStructs.m in Sources */,
 				272D80B016C86081006052E5 /* FLDataEncoder.m in Sources */,
 				272D838616C99A26006052E5 /* NSString+MiscUtils.m in Sources */,
 				27EE25F616CAD1B200E4CC98 /* FLHttpRequestObserver.m in Sources */,
@@ -7943,9 +7883,6 @@
 				276AF66D16BC4D1500205E0F /* FLStringDocument.m in Sources */,
 				276AF67916BC4DC500205E0F /* FLDocumentSection.m in Sources */,
 				276AFD0316C59C4400205E0F /* FLTypeDesc.m in Sources */,
-				272D808C16C84F9B006052E5 /* FLTypeDesc+Numbers.m in Sources */,
-				272D809716C8501C006052E5 /* FLTypeDesc+Objects.m in Sources */,
-				272D80A216C8508D006052E5 /* FLTypeDesc+BoxedStructs.m in Sources */,
 				272D80B216C86081006052E5 /* FLDataEncoder.m in Sources */,
 				272D838816C99A26006052E5 /* NSString+MiscUtils.m in Sources */,
 				27EE25F816CAD1B200E4CC98 /* FLHttpRequestObserver.m in Sources */,
@@ -8260,9 +8197,6 @@
 				276AF66F16BC4D1500205E0F /* FLStringDocument.m in Sources */,
 				276AF67B16BC4DC500205E0F /* FLDocumentSection.m in Sources */,
 				276AFD0516C59C4400205E0F /* FLTypeDesc.m in Sources */,
-				272D808E16C84F9B006052E5 /* FLTypeDesc+Numbers.m in Sources */,
-				272D809916C8501C006052E5 /* FLTypeDesc+Objects.m in Sources */,
-				272D80A416C8508D006052E5 /* FLTypeDesc+BoxedStructs.m in Sources */,
 				272D80B416C86081006052E5 /* FLDataEncoder.m in Sources */,
 				272D838A16C99A26006052E5 /* NSString+MiscUtils.m in Sources */,
 				27EE25FA16CAD1B200E4CC98 /* FLHttpRequestObserver.m in Sources */,
