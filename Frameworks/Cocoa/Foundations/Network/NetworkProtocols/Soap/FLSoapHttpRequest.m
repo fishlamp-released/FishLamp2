@@ -7,10 +7,11 @@
 //
 
 #import "FLSoapHttpRequest.h"
-#import "FLSoapParser.h"
+#import "FLSoapObjectBuilder.h"
 #import "FLSoapError.h"
 #import "FLSoapFault11.h"
 #import "FLSoapStringBuilder.h"
+#import "FLSoapDataEncoder.h"
 
 @implementation FLSoapHttpRequest 
 
@@ -39,31 +40,15 @@
 	if(data && data.length >0 ) {
 		char* first = strnstr((const char*) [data bytes], "Fault", MIN([data length], (unsigned int) MAX_ERR_LEN));
 		if(first) {
-			FLSoapFault11* soapFault = [FLSoapFault11 soapFault11];
-			FLSoapParser* soapParser = [[FLSoapParser alloc] initWithXmlData:data];
-
-			@try {
-				[soapParser buildObjects:soapFault];
-				FLDebugLog(@"Soap Fault:%@/%@", [soapFault faultcode], [soapFault faultstring]);
-			}
-			@finally {
-				FLRelease(soapParser);
-			}
+			FLSoapObjectBuilder* soapParser = [FLSoapObjectBuilder soapObjectBuilder];
+			FLSoapFault11* soapFault = [soapParser buildObjectWithClass:[FLSoapFault11 class] withData:data withDataDecoder:[FLSoapDataEncoder instance]];
+            
+			FLDebugLog(@"Soap Fault:%@/%@", [soapFault faultcode], [soapFault faultstring]);
             return soapFault;
 		}
 	}
 
 	return nil;
-}
-
-- (void) parseXmlResponse:(NSData*) data object:(id) object {
-	FLSoapParser* soapParser = [[FLSoapParser alloc] initWithXmlData:data];
-	@try {
-		[soapParser buildObjects:object];
-	}
-	@finally {
-		FLRelease(soapParser);
-	}
 }
 
 - (void) handleSoapFault:(FLSoapFault11*) fault {
@@ -113,9 +98,11 @@
     id result = data;
    
     if(self.soapResponse) {
-        [self parseXmlResponse:data object:self.soapResponse];
-        result = self.soapResponse;
-        
+        FLSoapObjectBuilder* soapParser = [FLSoapObjectBuilder soapObjectBuilder];
+        result = [soapParser buildObjectWithClass:[self.soapResponse class] 
+                                         withData:data 
+                                  withDataDecoder:[FLSoapDataEncoder instance]];
+    
 #if DEBUG
         httpResponse.debugResponseData = result;
 #endif        

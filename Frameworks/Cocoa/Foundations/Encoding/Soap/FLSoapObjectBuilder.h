@@ -1,5 +1,5 @@
 //
-//	FLSoapParser.h
+//	FLSoapObjectBuilder.h
 //	FishLamp
 //
 //	Created by Mike Fullerton on 8/11/09.
@@ -9,16 +9,16 @@
 #import "FLCocoaRequired.h"
 #import "FishLampCore.h"
 
-#import "FLXmlParser.h"
+#import "FLXmlObjectBuilder.h"
 
-@interface FLSoapParser : FLXmlParser {
+@interface FLSoapObjectBuilder : FLXmlObjectBuilder {
 	struct {
 		unsigned int foundBody: 1;
 		unsigned int foundEnvelope: 1;
 	} _soapFlags;
 }
 
-+ (id) soapParser:(NSData*) data;
++ (id) soapObjectBuilder;
 
 + (NSString*) stringWithDeletedNamespacePrefix:(NSString*) inStringWithNamespace; /* eg. 's:int' */
 @end

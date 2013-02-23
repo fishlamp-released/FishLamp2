@@ -16,6 +16,14 @@
 
 @implementation FLZenfolioAuthenticationService
 
+- (id) init {
+    self = [super init];
+    if(self) {
+        self.timeoutInterval = FLZenfolioHttpAuthenticationTimeout;
+    }
+    return self;
+}
+
 + (id) authenticationService {
     return FLAutorelease([[[self class] alloc] init]);
 }

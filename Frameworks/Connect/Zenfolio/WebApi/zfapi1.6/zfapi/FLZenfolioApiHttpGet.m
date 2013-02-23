@@ -43,7 +43,7 @@ FLSynthesizeSingleton(FLZenfolioApiHttpGet);
 		[self.properties setObject:@"/GetDownloadOriginalKey" forKey:@"GetDownloadOriginalKey"];
 		[self.properties setObject:@"/GetPopularSets" forKey:@"GetPopularSets"];
 		[self.properties setObject:@"/AuthenticateVisitor" forKey:@"AuthenticateVisitor"];
-		[self.properties setObject:@"http://www.zenfolio.com/api/1.6/Zenfolioapi.asmx" forKey:@"url"];
+		[self.properties setObject:@"http://www.zenfolio.com/api/1.6/zfapi.asmx" forKey:@"url"];
 		[self.properties setObject:@"/LoadPhotoSet" forKey:@"LoadPhotoSet"];
 		[self.properties setObject:@"/LoadMessages" forKey:@"LoadMessages"];
 		[self.properties setObject:@"/AuthenticatePlain" forKey:@"AuthenticatePlain"];

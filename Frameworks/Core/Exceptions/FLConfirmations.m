@@ -73,7 +73,7 @@ void test() {
 
 void FLThrowConfirmationFailedException(FLAssertionFailure failure, NSString* description, NSString* comment, FLStackTrace* stackTrace) {
     
-    test();
+//    test();
 
     @throw [NSException exceptionWithError:[NSError errorWithDomain:[FLAssertionFailureErrorDomain instance] 
             code:failure

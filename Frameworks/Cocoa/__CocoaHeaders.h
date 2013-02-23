@@ -93,7 +93,7 @@
 
 // Foundations/Encoding/Soap
 #import "FLSoapDataEncoder.h"
-#import "FLSoapParser.h"
+#import "FLSoapObjectBuilder.h"
 #import "FLSoapStringBuilder.h"
 
 // Foundations/Encoding/Xml
@@ -103,7 +103,7 @@
 #import "FLXmlComment.h"
 #import "FLXmlDocumentBuilder.h"
 #import "FLXmlElement.h"
-#import "FLXmlParser.h"
+#import "FLXmlObjectBuilder.h"
 #import "NSArray+FLXmlSerialization.h"
 #import "NSObject+FLXmlSerialization.h"
 #import "NSObject+XML.h"

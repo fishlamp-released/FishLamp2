@@ -8,7 +8,6 @@
 
 #import "FLSoapStringBuilder.h"
 #import "FLSoapDataEncoder.h"
-#import "NSObject+XML.h"
 #import "FLObjectXmlElement.h"
 
 @interface FLSoapStringBuilder ()

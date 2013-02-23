@@ -78,20 +78,18 @@
 
 - (NSError*) simpleHttpResponseErrorCheck {
 	NSInteger statusCode = self.responseStatusCode;
-	if(statusCode >= 400)
-	{
-		NSDictionary *errorInfo
-		  = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:
+	if(statusCode >= 400) {
+	
+        NSString* errorString = [NSString stringWithFormat:
 			  (NSLocalizedString(@"Server returned error code:%d (%@). Status line: %@",nil)),
 				statusCode,
 				[NSHTTPURLResponse localizedStringForStatusCode:statusCode],
-                _responseStatusLine == nil ? @"" : _responseStatusLine
-				]
-				forKey:NSLocalizedDescriptionKey];
-	
-	   return FLAutorelease([[NSError alloc] initWithDomain:[FLFrameworkErrorDomain instance]
-			code:statusCode
-			userInfo:errorInfo]);
+                _responseStatusLine == nil ? @"" : _responseStatusLine];
+
+    
+	   return [NSError errorWithDomain:[FLFrameworkErrorDomain instance]
+                                  code:statusCode
+                  localizedDescription:errorString];
 	}
 
 	return nil;

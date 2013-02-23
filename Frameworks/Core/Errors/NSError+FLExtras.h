@@ -29,8 +29,6 @@ typedef void (^FLErrorBlock)(NSError* error);
 
 @end
 
-
-
 /** 
     To throw an error, see FLExceptions.h
     Use FLThrowErrorCode_v.
@@ -43,18 +41,18 @@ typedef void (^FLErrorBlock)(NSError* error);
 @property (readonly, strong, nonatomic) FLStackTrace* stackTrace;
 
 - (id) initWithDomain:(id) domainStringOrDomainObject
-                       code:(NSInteger) code
-                   userInfo:(NSDictionary *)dict
-                     reason:(NSString*) reason
-                    comment:(NSString*) comment
-                 stackTrace:(FLStackTrace*) stackTrace;
+                 code:(NSInteger) code
+             userInfo:(NSDictionary *)dict
+               reason:(NSString*) reason
+              comment:(NSString*) comment
+           stackTrace:(FLStackTrace*) stackTrace;
 
 + (NSError*) errorWithDomain:(id) domainStringOrDomainObject
-                              code:(NSInteger)code
-                          userInfo:(NSDictionary *)dict
-                            reason:(NSString*) reasonOrNil
-                           comment:(NSString*) commentOrNil
-                        stackTrace:(FLStackTrace*) stackTrace;
+                        code:(NSInteger)code
+                    userInfo:(NSDictionary *)dict
+                      reason:(NSString*) reasonOrNil
+                     comment:(NSString*) commentOrNil
+                  stackTrace:(FLStackTrace*) stackTrace;
 
 
 @end

@@ -90,9 +90,11 @@
     }
     @catch(NSException* ex) {
         [finisher setFinishedWithResult:ex.error];
+    }
+    @finally {
         [self removeObject:worker];
     }
-    return [finisher result];
+    return [[finisher waitUntilFinished] result];
 }
 
 - (FLFinisher*) scheduleWorker:(id<FLAsyncWorker>) worker

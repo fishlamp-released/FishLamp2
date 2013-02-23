@@ -47,7 +47,7 @@
 	// 5. convert challenge and hash back to base64 
 
 	NSData* encodedProof = [hash2 base64Encode];
-    FLRelease(hash2);
+//    FLRelease(hash2);
 
 	NSData* encodedChallenge = [decodedChallenge base64Encode];
     
@@ -57,11 +57,13 @@
 - (FLResult) runOperationInContext:(id) context withObserver:(id) observer {
     
     FLHttpRequest* challengeRequest = [FLZenfolioHttpRequest challengeHttpRequest:self.userLogin.userName];
+    challengeRequest.disableAuthenticator = YES;
     
     FLZenfolioAuthChallenge* response = [context runWorker:challengeRequest withObserver:observer];
    
     FLHttpRequest* authenticateRequest = [self authenticateRequestWithAuthChallenge:response];
-   
+    authenticateRequest.disableAuthenticator = YES;
+    
     NSString* token = [context runWorker:authenticateRequest withObserver:observer];
     
     if(FLStringIsNotEmpty(token)) {

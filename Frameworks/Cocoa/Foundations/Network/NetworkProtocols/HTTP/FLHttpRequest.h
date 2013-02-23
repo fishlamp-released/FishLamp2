@@ -27,13 +27,15 @@
 @end
 
 @protocol FLHttpRequestInterceptor <NSObject>
-
 - (void) httpRequest:(FLHttpRequest*) httpRequest 
      willSendRequest:(FLFinisher*) withFinisher;
                                 
 - (void) httpRequest:(FLHttpRequest*) httpRequest 
  didFinishWithResult:(FLResult) result;
+@end
 
+@protocol FLHttpRequestContext <NSObject>
+- (void) httpRequestWillBeginWorking:(FLHttpRequest*) request;
 @end
 
 @interface FLHttpRequest : NSObject<FLAsyncWorker, FLReadStreamDelegate> {
@@ -51,12 +53,16 @@
     id<FLDataDecoding> _dataDecoder;
     id<FLHttpRequestAuthenticator> _authenticator;
     id<FLHttpRequestInterceptor> _interceptor;
+    
+    BOOL _disableAuthenticator;
 }
 
 @property (readwrite, strong, nonatomic) id<FLDataEncoding> dataEncoder;
 @property (readwrite, strong, nonatomic) id<FLDataDecoding> dataDecoder;
 @property (readwrite, strong, nonatomic) id<FLHttpRequestAuthenticator> authenticator;
 @property (readwrite, strong, nonatomic) id<FLHttpRequestInterceptor> interceptor;
+
+@property (readwrite, assign, nonatomic) BOOL disableAuthenticator;
 
 // http
 @property (readonly, strong, nonatomic) FLHttpRequestHeaders* headers;

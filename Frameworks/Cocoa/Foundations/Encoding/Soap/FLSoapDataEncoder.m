@@ -17,28 +17,28 @@
 
 FLSynthesizeSingleton(FLSoapDataEncoder);
 
-- (NSString*) encodeStringWithString:(NSString*) string {
+- (NSString*) typeDesc:(FLTypeDesc*) typeDesc encodeStringWithNSString:(NSString*) string {
     return [string xmlEncode];
 }
 
-- (NSString*) decodeStringFromString:(NSString*) string {
+- (NSString*) typeDesc:(FLTypeDesc*) typeDesc decodeNSStringFromString:(NSString*) string {
     return [string xmlDecode];
 }
 
-- (NSString*) encodeStringWithDate:(NSDate*) date {
+- (NSString*) typeDesc:(FLTypeDesc*) typeDesc encodeStringWithNSDate:(NSDate*) date {
     return [[FLDateMgr instance] ISO8601DateToString:(NSDate*) date];
 }
 
-- (NSDate*) decodeDateFromString:(NSString*) string {
+- (NSDate*) typeDesc:(FLTypeDesc*) typeDesc decodeNSDateFromString:(NSString*) string {
     return [[FLDateMgr instance] ISO8601StringToDate:string];
 }
 
-- (NSData*) decodeDataFromString:(NSString*) string {
+- (NSData*) typeDesc:(FLTypeDesc*) typeDesc decodeNSDataFromString:(NSString*) string {
     return [string base64Decode];
 }
 
 // TODO: why is this UTF8??? 
-- (NSString*) encodeStringWithData:(NSData*) data {
+- (NSString*) typeDesc:(FLTypeDesc*) typeDesc encodeStringWithNSData:(NSData*) data {
     return FLAutorelease([[NSString alloc] initWithBytes:[data bytes] 
                                     length:[data length] 
                                     encoding:NSUTF8StringEncoding]);

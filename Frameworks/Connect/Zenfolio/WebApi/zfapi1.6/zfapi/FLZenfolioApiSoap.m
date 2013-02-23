@@ -46,7 +46,7 @@ FLSynthesizeSingleton(FLZenfolioApiSoap);
 		[self.properties setObject:@"http://www.zenfolio.com/api/1.6/GetDownloadOriginalKey" forKey:@"GetDownloadOriginalKey"];
 		[self.properties setObject:@"http://www.zenfolio.com/api/1.6/GetPopularSets" forKey:@"GetPopularSets"];
 		[self.properties setObject:@"http://www.zenfolio.com/api/1.6/AuthenticateVisitor" forKey:@"AuthenticateVisitor"];
-		[self.properties setObject:@"http://www.zenfolio.com/api/1.6/Zenfolioapi.asmx" forKey:@"url"];
+		[self.properties setObject:@"http://www.zenfolio.com/api/1.6/zfapi.asmx" forKey:@"url"];
 		[self.properties setObject:@"http://www.zenfolio.com/api/1.6/LoadPhotoSet" forKey:@"LoadPhotoSet"];
 		[self.properties setObject:@"http://www.zenfolio.com/api/1.6/LoadMessages" forKey:@"LoadMessages"];
 		[self.properties setObject:@"http://www.zenfolio.com/api/1.6/AuthenticatePlain" forKey:@"AuthenticatePlain"];

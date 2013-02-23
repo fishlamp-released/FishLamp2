@@ -21,11 +21,20 @@
 @synthesize timeoutInterval = _timeoutInterval;
 @synthesize httpRequestAuthenticationDispatcher = _requestAuthenticationDispatcher;
 
-- (id) initWithContext:(id) context authenticationTimeout:(NSTimeInterval) timeoutInterval {
+//
+//- (id) initWithContext:(id) context authenticationTimeout:(NSTimeInterval) timeoutInterval {
+//    self = [super init];
+//    if(self) {
+//        _timeoutInterval = timeoutInterval;
+//        self.httpRequestAuthenticationDispatcher = [FLGcdDispatcher sharedFifoQueue];
+//    }
+//    return self;
+//}
+
+- (id) init {
     self = [super init];
     if(self) {
-        _timeoutInterval = timeoutInterval;
-        self.httpRequestAuthenticationDispatcher = [FLGcdDispatcher sharedFifoQueue];
+        _timeoutInterval = 60 * 60;
     }
     return self;
 }
@@ -91,6 +100,11 @@
 }
 
 - (id<FLDispatcher>) httpRequestAuthenticationDispatcher:(FLHttpRequest*) httpRequest {
+
+    if(!self.httpRequestAuthenticationDispatcher) {
+        self.httpRequestAuthenticationDispatcher = [FLGcdDispatcher sharedFifoQueue];
+    }
+
     return self.httpRequestAuthenticationDispatcher;
 }
 

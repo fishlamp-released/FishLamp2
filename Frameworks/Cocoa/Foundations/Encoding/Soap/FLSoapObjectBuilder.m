@@ -1,16 +1,20 @@
 //
-//	FLSoapParser.m
+//	FLSoapObjectBuilder.m
 //	FishLamp
 //
 //	Created by Mike Fullerton on 8/11/09.
 //	Copyright 2009 Greentongue Software. All rights reserved.
 //
 
-#import "FLSoapParser.h"
+#import "FLSoapObjectBuilder.h"
 #import "NSString+XML.h"
 #import "FLSoapDataEncoder.h"
 
-@implementation FLSoapParser
+@implementation FLSoapObjectBuilder
+
++ (id) soapObjectBuilder {
+    return FLAutorelease([[[self class] alloc] init]);
+}
 
 + (NSString*) stringWithDeletedNamespacePrefix:(NSString*) elementName {
 	NSRange prefix = [elementName rangeOfString:@":"];
@@ -21,7 +25,7 @@
     return [FLSoapDataEncoder instance];
 }
 
-- (void) onConfigureParser:(NSXMLParser*) parser {
+- (void) willParseXMLData:(NSData*) data withXMLParser:(NSXMLParser*) parser {
 	[parser setShouldProcessNamespaces:YES];
 	[parser setShouldReportNamespacePrefixes:NO];
 	[parser setShouldResolveExternalEntities:NO];
@@ -51,14 +55,6 @@ didStartElement:(NSString *)elementName
 	if(![elementName isEqualToString:@"Envelope"] && ![elementName isEqualToString:@"Body"]) {
 		[super parser:parser didEndElement:elementName namespaceURI:namespaceURI qualifiedName:qName];
 	}
-}
-
-- (NSString*) decodeString:(NSString*) string {
-	return [string xmlDecode];
-}
-
-+ (id) soapParser:(NSData*) data {
-    return [self xmlParser:data];
 }
 
 @end

@@ -18,7 +18,9 @@
                             inContext:(id) context 
                          withObserver:(id) observer  {
 
+    request.disableAuthenticator = YES;
     [request setAuthenticationToken:userLogin.authToken];
+    
     return [context runWorker:request withObserver:observer];
 }
 
