@@ -43,7 +43,6 @@
 @synthesize wizardPanelEnclosureView = _wizardPanelEnclosureView;
 @synthesize breadcrumbBar = _breadcrumbBar;
 @synthesize currentPanelIndex = _currentPanel;
-@synthesize userContext = _userContext;
 @synthesize modalWindow = _modalWindow;
 
 - (NSUInteger) panelCount {
@@ -66,7 +65,6 @@
     [_nextButton release];
     [_backButton release];
     [_breadcrumbBar release];
-    [_userContext release];
     [_modalWindow release];
     [_panels release];
     [super dealloc];

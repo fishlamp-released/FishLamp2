@@ -17,8 +17,8 @@ typedef uint32_t FLTypeID;
 @private
     Class _typeClass;
     FLTypeID _typeID;
-    SEL _encoder;
-    SEL _decoder;
+    SEL _encodeSelector;
+    SEL _decodeSelector;
 }
 
 @property (readonly, assign, nonatomic) FLTypeID typeID;

@@ -65,7 +65,7 @@
 }
 
 + (id) animationWithTarget:(id) target {
-    return FLAutorelease([[[self class] alloc] initWithTarget:nil]);
+    return FLAutorelease([[[self class] alloc] initWithTarget:target]);
 }
 
 - (void) prepareAnimator:(FLAnimator*) animator  {

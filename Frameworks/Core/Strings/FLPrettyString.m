@@ -79,7 +79,7 @@
 - (void) stringFormatter:(FLStringFormatter*) stringFormatter 
             appendString:(NSString*) string {
     FLAssertNotNil_(_string);
-    FLAssertNotNil_(_whitespace);
+//    FLAssertNotNil_(_whitespace);
     
     if(FLStringIsNotEmpty(string)) {
 

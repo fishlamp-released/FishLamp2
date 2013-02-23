@@ -11,7 +11,9 @@
 @class FLFinisher;
 
 @protocol FLAsyncWorker <NSObject>
-- (void) startWorkingInContext:(id) context withObserver:(id) observer finisher:(FLFinisher*) finisher;
+- (void) startWorkingInContext:(id) context 
+                  withObserver:(id) observer 
+                      finisher:(FLFinisher*) finisher;
 - (void) requestCancel;
 @end
 

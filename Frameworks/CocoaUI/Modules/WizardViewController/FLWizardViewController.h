@@ -38,15 +38,11 @@ typedef FLWizardPanel* (^FLWizardPanelFactory)();
     
     NSMutableArray* _panels;
     NSUInteger _currentPanel;
-    id _userContext;
-    
     FLBreadcrumbBarViewController* _breadcrumbBar;
     
     NSWindow* _modalWindow;
     NSModalSession _modalSession;
 }
-
-@property (readwrite, strong, nonatomic) id userContext;
 
 // delegate
 @property (readwrite, assign, nonatomic) IBOutlet id<FLWizardViewControllerDelegate> delegate;

@@ -89,6 +89,7 @@
 @synthesize authenticator = _authenticator;
 @synthesize interceptor = _interceptor;
 @synthesize finisher = _finisher;
+@synthesize disableAuthenticator = _disableAuthenticator;
 
 - (id) init {
     self = [self initWithRequestURL:nil httpMethod:nil];
@@ -395,12 +396,18 @@
                   withObserver:(id)observer 
                       finisher:(FLFinisher *)finisher {
     
+    FLPerformSelector1(context, @selector(httpRequestWillBeginWorking:), self);
+    
     if(self.interceptor) {
         [self.interceptor httpRequest:self willSendRequest:observer];
     }
 
     if(!finisher.isFinished) {
         self.observer = observer;
+        
+        if(self.disableAuthenticator) {
+            self.authenticator = nil;
+        }
 
         id<FLHttpRequestAuthenticator> authenticator = self.authenticator;
         if(authenticator) {

@@ -22,14 +22,15 @@
             
             FLPropertyDescription* desc = [objectDescriber propertyDescriberForPropertyName:key];
            
-//            if(desc.propertyType == FLDataTypeObject) {
+            if(desc.propertyType.isObject) {
                 [xmlElement addElement:
                     [FLObjectXmlElement objectXmlElement:object xmlElementTag:key propertyDescription:desc]];
-//            }
-//            else {
-//                [xmlElement addStringBuilderLine:
+            }
+            else {
+                [xmlElement appendLine:object];
+//                addStringBuilderLine:
 //                    [FLXmlElementStringBuilderLine xmlElementStringBuilderLine:object propertyDescription:desc]];
-//            }
+            }
         }
 	}
 }

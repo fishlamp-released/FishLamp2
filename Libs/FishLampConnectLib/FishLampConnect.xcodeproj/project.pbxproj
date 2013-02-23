@@ -5643,6 +5643,15 @@
 		2781095216C9CC51005D1CE4 /* FLZenfolioGroupElementSelection.m in Sources */ = {isa = PBXBuildFile; fileRef = 2781094216C9CC51005D1CE4 /* FLZenfolioGroupElementSelection.m */; };
 		2781095316C9CC51005D1CE4 /* FLZenfolioGroupElementSelection.m in Sources */ = {isa = PBXBuildFile; fileRef = 2781094216C9CC51005D1CE4 /* FLZenfolioGroupElementSelection.m */; };
 		2781095416C9CC51005D1CE4 /* FLZenfolioGroupElementSelection.m in Sources */ = {isa = PBXBuildFile; fileRef = 2781094216C9CC51005D1CE4 /* FLZenfolioGroupElementSelection.m */; };
+		2781A93C16D82E6C00BD7EED /* FLZenfolioUserContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 2781A93A16D82E6C00BD7EED /* FLZenfolioUserContext.h */; };
+		2781A93D16D82E6C00BD7EED /* FLZenfolioUserContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 2781A93A16D82E6C00BD7EED /* FLZenfolioUserContext.h */; };
+		2781A93E16D82E6C00BD7EED /* FLZenfolioUserContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 2781A93A16D82E6C00BD7EED /* FLZenfolioUserContext.h */; };
+		2781A93F16D82E6C00BD7EED /* FLZenfolioUserContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 2781A93A16D82E6C00BD7EED /* FLZenfolioUserContext.h */; };
+		2781A94016D82E6C00BD7EED /* FLZenfolioUserContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 2781A93B16D82E6C00BD7EED /* FLZenfolioUserContext.m */; };
+		2781A94116D82E6C00BD7EED /* FLZenfolioUserContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 2781A93B16D82E6C00BD7EED /* FLZenfolioUserContext.m */; };
+		2781A94216D82E6C00BD7EED /* FLZenfolioUserContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 2781A93B16D82E6C00BD7EED /* FLZenfolioUserContext.m */; };
+		2781A94316D82E6C00BD7EED /* FLZenfolioUserContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 2781A93B16D82E6C00BD7EED /* FLZenfolioUserContext.m */; };
+		2781A94416D82E6C00BD7EED /* FLZenfolioUserContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 2781A93B16D82E6C00BD7EED /* FLZenfolioUserContext.m */; };
 		27A22B7316D42C750009C139 /* FLHttpRequest+ZenfolioAuthentication.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A22B7116D42C740009C139 /* FLHttpRequest+ZenfolioAuthentication.h */; };
 		27A22B7416D42C750009C139 /* FLHttpRequest+ZenfolioAuthentication.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A22B7116D42C740009C139 /* FLHttpRequest+ZenfolioAuthentication.h */; };
 		27A22B7516D42C750009C139 /* FLHttpRequest+ZenfolioAuthentication.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A22B7116D42C740009C139 /* FLHttpRequest+ZenfolioAuthentication.h */; };
@@ -7034,6 +7043,8 @@
 		2753F02D16C9B26900A3880F /* FLUserDataStorageService+Zenfolio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FLUserDataStorageService+Zenfolio.m"; sourceTree = "<group>"; };
 		2781094116C9CC51005D1CE4 /* FLZenfolioGroupElementSelection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLZenfolioGroupElementSelection.h; sourceTree = "<group>"; };
 		2781094216C9CC51005D1CE4 /* FLZenfolioGroupElementSelection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLZenfolioGroupElementSelection.m; sourceTree = "<group>"; };
+		2781A93A16D82E6C00BD7EED /* FLZenfolioUserContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLZenfolioUserContext.h; sourceTree = "<group>"; };
+		2781A93B16D82E6C00BD7EED /* FLZenfolioUserContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLZenfolioUserContext.m; sourceTree = "<group>"; };
 		2798DB81166D8A7F00A0863D /* SharedTargetSettings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = SharedTargetSettings.xcconfig; sourceTree = "<group>"; };
 		27A22B7116D42C740009C139 /* FLHttpRequest+ZenfolioAuthentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FLHttpRequest+ZenfolioAuthentication.h"; sourceTree = "<group>"; };
 		27A22B7216D42C740009C139 /* FLHttpRequest+ZenfolioAuthentication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FLHttpRequest+ZenfolioAuthentication.m"; sourceTree = "<group>"; };
@@ -7590,6 +7601,8 @@
 			children = (
 				2753D9A416C9A82300A3880F /* FLUserDataStorageService+ZenfolioAdditions.h */,
 				2753D9A516C9A82300A3880F /* FLUserDataStorageService+ZenfolioAdditions.m */,
+				2781A93A16D82E6C00BD7EED /* FLZenfolioUserContext.h */,
+				2781A93B16D82E6C00BD7EED /* FLZenfolioUserContext.m */,
 			);
 			path = Sessions;
 			sourceTree = "<group>";
@@ -9361,6 +9374,7 @@
 				27A22B7316D42C750009C139 /* FLHttpRequest+ZenfolioAuthentication.h in Headers */,
 				27A22B7E16D42E050009C139 /* FLZenfolioRegisteredUserAuthenticationService.h in Headers */,
 				27A22B8916D42EEE0009C139 /* FLZenfolioGuestAuthenticationService.h in Headers */,
+				2781A93C16D82E6C00BD7EED /* FLZenfolioUserContext.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -10002,6 +10016,7 @@
 				27A22B7516D42C750009C139 /* FLHttpRequest+ZenfolioAuthentication.h in Headers */,
 				27A22B8016D42E050009C139 /* FLZenfolioRegisteredUserAuthenticationService.h in Headers */,
 				27A22B8B16D42EEE0009C139 /* FLZenfolioGuestAuthenticationService.h in Headers */,
+				2781A93E16D82E6C00BD7EED /* FLZenfolioUserContext.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -10643,6 +10658,7 @@
 				27A22B7416D42C750009C139 /* FLHttpRequest+ZenfolioAuthentication.h in Headers */,
 				27A22B7F16D42E050009C139 /* FLZenfolioRegisteredUserAuthenticationService.h in Headers */,
 				27A22B8A16D42EEE0009C139 /* FLZenfolioGuestAuthenticationService.h in Headers */,
+				2781A93D16D82E6C00BD7EED /* FLZenfolioUserContext.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -11284,6 +11300,7 @@
 				27A22B7616D42C750009C139 /* FLHttpRequest+ZenfolioAuthentication.h in Headers */,
 				27A22B8116D42E050009C139 /* FLZenfolioRegisteredUserAuthenticationService.h in Headers */,
 				27A22B8C16D42EEE0009C139 /* FLZenfolioGuestAuthenticationService.h in Headers */,
+				2781A93F16D82E6C00BD7EED /* FLZenfolioUserContext.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -12088,6 +12105,7 @@
 				27A22B7816D42C750009C139 /* FLHttpRequest+ZenfolioAuthentication.m in Sources */,
 				27A22B8316D42E050009C139 /* FLZenfolioRegisteredUserAuthenticationService.m in Sources */,
 				27A22B8E16D42EEE0009C139 /* FLZenfolioGuestAuthenticationService.m in Sources */,
+				2781A94116D82E6C00BD7EED /* FLZenfolioUserContext.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -12723,6 +12741,7 @@
 				27A22B7A16D42C750009C139 /* FLHttpRequest+ZenfolioAuthentication.m in Sources */,
 				27A22B8516D42E050009C139 /* FLZenfolioRegisteredUserAuthenticationService.m in Sources */,
 				27A22B9016D42EEE0009C139 /* FLZenfolioGuestAuthenticationService.m in Sources */,
+				2781A94316D82E6C00BD7EED /* FLZenfolioUserContext.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -13358,6 +13377,7 @@
 				27A22B7716D42C750009C139 /* FLHttpRequest+ZenfolioAuthentication.m in Sources */,
 				27A22B8216D42E050009C139 /* FLZenfolioRegisteredUserAuthenticationService.m in Sources */,
 				27A22B8D16D42EEE0009C139 /* FLZenfolioGuestAuthenticationService.m in Sources */,
+				2781A94016D82E6C00BD7EED /* FLZenfolioUserContext.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -13993,6 +14013,7 @@
 				27A22B7916D42C750009C139 /* FLHttpRequest+ZenfolioAuthentication.m in Sources */,
 				27A22B8416D42E050009C139 /* FLZenfolioRegisteredUserAuthenticationService.m in Sources */,
 				27A22B8F16D42EEE0009C139 /* FLZenfolioGuestAuthenticationService.m in Sources */,
+				2781A94216D82E6C00BD7EED /* FLZenfolioUserContext.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -14628,6 +14649,7 @@
 				27A22B7B16D42C750009C139 /* FLHttpRequest+ZenfolioAuthentication.m in Sources */,
 				27A22B8616D42E050009C139 /* FLZenfolioRegisteredUserAuthenticationService.m in Sources */,
 				27A22B9116D42EEE0009C139 /* FLZenfolioGuestAuthenticationService.m in Sources */,
+				2781A94416D82E6C00BD7EED /* FLZenfolioUserContext.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
