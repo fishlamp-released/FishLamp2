@@ -95,7 +95,7 @@
 	return nil;
 }
 - (void) throwHttpErrorIfNeeded {
-    FLThrowError([self simpleHttpResponseErrorCheck]);
+    FLThrowIfError([self simpleHttpResponseErrorCheck]);
 }
 
 - (NSString*) valueForHeader:(NSString*) header {

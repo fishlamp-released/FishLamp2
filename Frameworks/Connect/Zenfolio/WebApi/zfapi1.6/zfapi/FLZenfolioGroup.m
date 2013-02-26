@@ -232,22 +232,22 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"Caption" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"Caption"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"CreatedOn" propertyClass:[NSDate class] propertyType:FLDataTypeDate] forPropertyName:@"CreatedOn"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"ModifiedOn" propertyClass:[NSDate class] propertyType:FLDataTypeDate] forPropertyName:@"ModifiedOn"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"CollectionCount" propertyClass:[NSNumber class] propertyType:FLDataTypeInteger] forPropertyName:@"CollectionCount"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"SubGroupCount" propertyClass:[NSNumber class] propertyType:FLDataTypeInteger] forPropertyName:@"SubGroupCount"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"GalleryCount" propertyClass:[NSNumber class] propertyType:FLDataTypeInteger] forPropertyName:@"GalleryCount"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"PhotoCount" propertyClass:[NSNumber class] propertyType:FLDataTypeInteger] forPropertyName:@"PhotoCount"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"ImageCount" propertyClass:[NSNumber class] propertyType:FLDataTypeInteger] forPropertyName:@"ImageCount"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"VideoCount" propertyClass:[NSNumber class] propertyType:FLDataTypeInteger] forPropertyName:@"VideoCount"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"ParentGroups" propertyClass:[NSMutableArray class] propertyType:FLDataTypeObject arrayTypes:[NSArray arrayWithObjects:[FLPropertyDescription propertyDescription:@"Id" propertyClass:[NSNumber class] propertyType:FLDataTypeInteger arrayTypes:nil], nil] isUnboundedArray:NO] forPropertyName:@"ParentGroups"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"Elements" propertyClass:[NSMutableArray class] propertyType:FLDataTypeObject arrayTypes:[NSArray arrayWithObjects:[FLPropertyDescription propertyDescription:@"Group" propertyClass:[FLZenfolioGroup class] propertyType:FLDataTypeObject arrayTypes:nil], [FLPropertyDescription propertyDescription:@"PhotoSet" propertyClass:[FLZenfolioPhotoSet class] propertyType:FLDataTypeObject arrayTypes:nil], nil] isUnboundedArray:NO] forPropertyName:@"Elements"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"PageUrl" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"PageUrl"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"TitlePhoto" propertyClass:[FLZenfolioPhoto class] propertyType:FLDataTypeObject] forPropertyName:@"TitlePhoto"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"MailboxId" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"MailboxId"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"TextCn" propertyClass:[NSNumber class] propertyType:FLDataTypeInteger] forPropertyName:@"TextCn"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"ImmediateChildrenCount" propertyClass:[NSNumber class] propertyType:FLDataTypeInteger] forPropertyName:@"ImmediateChildrenCount"];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"Caption" propertyClass:[NSString class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"CreatedOn" propertyClass:[NSDate class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"ModifiedOn" propertyClass:[NSDate class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"CollectionCount" propertyClass:[FLIntegerNumber class]] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"SubGroupCount" propertyClass:[FLIntegerNumber class]] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"GalleryCount" propertyClass:[FLIntegerNumber class]] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"PhotoCount" propertyClass:[FLIntegerNumber class]] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"ImageCount" propertyClass:[FLIntegerNumber class]] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"VideoCount" propertyClass:[FLIntegerNumber class]] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"ParentGroups" propertyClass:[NSMutableArray class]  arrayTypes:[NSArray arrayWithObjects:[FLPropertyDescription propertyDescription:@"Id" propertyClass:[FLIntegerNumber class] arrayTypes:nil], nil] isUnboundedArray:NO] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"Elements" propertyClass:[NSMutableArray class]  arrayTypes:[NSArray arrayWithObjects:[FLPropertyDescription propertyDescription:@"Group" propertyClass:[FLZenfolioGroup class]], [FLPropertyDescription propertyDescription:@"PhotoSet" propertyClass:[FLZenfolioPhotoSet class]], nil] isUnboundedArray:NO] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"PageUrl" propertyClass:[NSString class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"TitlePhoto" propertyClass:[FLZenfolioPhoto class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"MailboxId" propertyClass:[NSString class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"TextCn" propertyClass:[FLIntegerNumber class]] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"ImmediateChildrenCount" propertyClass:[FLIntegerNumber class]] ];
 	});
 	return s_describer;
 }

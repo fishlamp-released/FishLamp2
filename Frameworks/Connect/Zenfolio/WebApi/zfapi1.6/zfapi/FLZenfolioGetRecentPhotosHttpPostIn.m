@@ -88,8 +88,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"offset" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"offset"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"limit" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"limit"];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"offset" propertyClass:[NSString class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"limit" propertyClass:[NSString class] ] ];
 	});
 	return s_describer;
 }

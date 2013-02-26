@@ -74,7 +74,7 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"UpdateGroupResult" propertyClass:[FLZenfolioGroup class] propertyType:FLDataTypeObject] forPropertyName:@"UpdateGroupResult"];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"UpdateGroupResult" propertyClass:[FLZenfolioGroup class] ] ];
 	});
 	return s_describer;
 }

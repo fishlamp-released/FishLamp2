@@ -79,7 +79,7 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"CreatePhotoSetResult" propertyClass:[FLZenfolioPhotoSet class] propertyType:FLDataTypeObject] forPropertyName:@"CreatePhotoSetResult"];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"CreatePhotoSetResult" propertyClass:[FLZenfolioPhotoSet class] ] ];
 	});
 	return s_describer;
 }

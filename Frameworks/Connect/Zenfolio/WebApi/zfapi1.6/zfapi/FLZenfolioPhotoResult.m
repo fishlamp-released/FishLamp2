@@ -89,8 +89,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"Photos" propertyClass:[NSMutableArray class] propertyType:FLDataTypeObject arrayTypes:[NSArray arrayWithObjects:[FLPropertyDescription propertyDescription:@"Photo" propertyClass:[FLZenfolioPhoto class] propertyType:FLDataTypeObject arrayTypes:nil], nil] isUnboundedArray:NO] forPropertyName:@"Photos"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"TotalCount" propertyClass:[NSNumber class] propertyType:FLDataTypeInteger] forPropertyName:@"TotalCount"];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"Photos" propertyClass:[NSMutableArray class]  arrayTypes:[NSArray arrayWithObjects:[FLPropertyDescription propertyDescription:@"Photo" propertyClass:[FLZenfolioPhoto class]], nil] isUnboundedArray:NO] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"TotalCount" propertyClass:[FLIntegerNumber class]] ];
 	});
 	return s_describer;
 }

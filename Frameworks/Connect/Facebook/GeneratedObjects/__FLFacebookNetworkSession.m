@@ -120,11 +120,11 @@
         {
             s_describer = [[FLObjectDescriber alloc] init];
         }
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"userId" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"userId"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"appId" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"appId"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"access_token" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"access_token"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"expiration_date" propertyClass:[NSDate class] propertyType:FLDataTypeDate] forPropertyName:@"expiration_date"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"permissions" propertyClass:[NSMutableArray class] propertyType:FLDataTypeObject arrayTypes:[NSArray arrayWithObjects:[FLPropertyDescription propertyDescription:@"permission" propertyClass:[NSString class] propertyType:FLDataTypeString arrayTypes:nil], nil] isUnboundedArray:NO] forPropertyName:@"permissions"];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"userId" propertyClass:[NSString class] ] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"appId" propertyClass:[NSString class] ] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"access_token" propertyClass:[NSString class] ] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"expiration_date" propertyClass:[NSDate class] ] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"permissions" propertyClass:[NSMutableArray class]  arrayTypes:[NSArray arrayWithObjects:[FLPropertyDescription propertyDescription:@"permission" propertyClass:[NSString class]  arrayTypes:nil], nil] isUnboundedArray:NO] ];
     });
     return s_describer;
 }

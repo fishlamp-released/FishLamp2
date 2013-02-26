@@ -84,8 +84,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"photoSetId" propertyClass:[NSNumber class] propertyType:FLDataTypeInteger] forPropertyName:@"photoSetId"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"updater" propertyClass:[FLZenfolioAccessUpdater class] propertyType:FLDataTypeObject] forPropertyName:@"updater"];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"photoSetId" propertyClass:[FLIntegerNumber class]] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"updater" propertyClass:[FLZenfolioAccessUpdater class] ] ];
 	});
 	return s_describer;
 }

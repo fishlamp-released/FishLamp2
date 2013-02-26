@@ -140,13 +140,13 @@
         {
             s_describer = [[FLObjectDescriber alloc] init];
         }
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"fileName" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"fileName"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"url" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"url"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"imageId" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"imageId"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"photoUrl" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"photoUrl"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"host" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"host"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"imageVersion" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"imageVersion"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"canCacheInMemory" propertyClass:[NSNumber class] propertyType:FLDataTypeBool] forPropertyName:@"canCacheInMemory"];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"fileName" propertyClass:[NSString class] ] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"url" propertyClass:[NSString class] ] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"imageId" propertyClass:[NSString class] ] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"photoUrl" propertyClass:[NSString class] ] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"host" propertyClass:[NSString class] ] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"imageVersion" propertyClass:[NSString class] ] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"canCacheInMemory" propertyClass:[FLBoolNumber class]] ];
     });
     return s_describer;
 }

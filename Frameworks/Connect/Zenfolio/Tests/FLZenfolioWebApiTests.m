@@ -44,7 +44,7 @@
 - (void) testAuthentication {
     
 //    FLZenfolioAuthenticater* operation = [FLZenfolioAuthenticater loginOperation];
-//    FLThrowError([operation runWorker]);
+//    FLThrowIfError([operation runWorker]);
     
 //    FLConfirm_([self.context userService].isAuthenticated);
 //    FLConfirm_([self.context userService].userLogin.isAuthenticatedValue);

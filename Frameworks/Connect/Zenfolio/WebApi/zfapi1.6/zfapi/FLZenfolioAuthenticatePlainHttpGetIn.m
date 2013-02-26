@@ -88,8 +88,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"loginName" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"loginName"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"password" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"password"];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"loginName" propertyClass:[NSString class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"password" propertyClass:[NSString class] ] ];
 	});
 	return s_describer;
 }

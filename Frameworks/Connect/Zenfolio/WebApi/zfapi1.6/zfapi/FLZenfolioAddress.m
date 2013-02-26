@@ -218,21 +218,21 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"FirstName" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"FirstName"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"LastName" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"LastName"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"CompanyName" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"CompanyName"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"Street" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"Street"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"Street2" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"Street2"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"City" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"City"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"Zip" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"Zip"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"State" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"State"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"Country" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"Country"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"Phone" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"Phone"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"Phone2" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"Phone2"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"Fax" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"Fax"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"Url" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"Url"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"Email" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"Email"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"Other" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"Other"];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"FirstName" propertyClass:[NSString class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"LastName" propertyClass:[NSString class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"CompanyName" propertyClass:[NSString class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"Street" propertyClass:[NSString class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"Street2" propertyClass:[NSString class] ] forPropertyName:@"Street2"];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"City" propertyClass:[NSString class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"Zip" propertyClass:[NSString class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"State" propertyClass:[NSString class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"Country" propertyClass:[NSString class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"Phone" propertyClass:[NSString class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"Phone2" propertyClass:[NSString class] ] forPropertyName:@"Phone2"];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"Fax" propertyClass:[NSString class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"Url" propertyClass:[NSString class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"Email" propertyClass:[NSString class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"Other" propertyClass:[NSString class] ] ];
 	});
 	return s_describer;
 }

@@ -88,8 +88,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"originalId" propertyClass:[NSNumber class] propertyType:FLDataTypeInteger] forPropertyName:@"originalId"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"replacedId" propertyClass:[NSNumber class] propertyType:FLDataTypeInteger] forPropertyName:@"replacedId"];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"originalId" propertyClass:[FLIntegerNumber class]] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"replacedId" propertyClass:[FLIntegerNumber class]] ];
 	});
 	return s_describer;
 }

@@ -79,7 +79,7 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"LoadPublicProfileResult" propertyClass:[FLZenfolioUser class] propertyType:FLDataTypeObject] forPropertyName:@"LoadPublicProfileResult"];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"LoadPublicProfileResult" propertyClass:[FLZenfolioUser class] ] ];
 	});
 	return s_describer;
 }

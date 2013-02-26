@@ -85,8 +85,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"input" propertyClass:[FLZenfolioKeyringGetUnlockedRealms class] propertyType:FLDataTypeObject] forPropertyName:@"input"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"output" propertyClass:[FLZenfolioKeyringGetUnlockedRealmsResponse class] propertyType:FLDataTypeObject] forPropertyName:@"output"];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"input" propertyClass:[FLZenfolioKeyringGetUnlockedRealms class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"output" propertyClass:[FLZenfolioKeyringGetUnlockedRealmsResponse class] ] ];
 	});
 	return s_describer;
 }

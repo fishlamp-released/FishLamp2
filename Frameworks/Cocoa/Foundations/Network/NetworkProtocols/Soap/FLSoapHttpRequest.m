@@ -15,21 +15,18 @@
 
 @implementation FLSoapHttpRequest 
 
-@synthesize soapRequest = _soapRequest;
-@synthesize soapResponse = _soapResponse;
+@synthesize soapInput = _soapInput;
 @synthesize soapActionHeader = _soapActionHeader;
 @synthesize soapNamespace = _soapNamespace;
 @synthesize operationName = _operationName;
-@synthesize responseDecoder = _responseDecoder;
 
 #if FL_MRC
 - (void) dealloc {
-    [_soapRequest release];
-    [_soapResponse release];
-    [_responseDecoder release];
+    [_soapInput release];
     [_soapActionHeader release];
     [_operationName release];
     [_soapNamespace release];
+    [_xmlDataPath release];
     [super dealloc];
 }
 #endif
@@ -52,7 +49,7 @@
 }
 
 - (void) handleSoapFault:(FLSoapFault11*) fault {
-    FLThrowError([NSError errorWithSoapFault:fault]);
+    FLThrowIfError([NSError errorWithSoapFault:fault]);
 }
 
 - (void) willSendHttpRequest {
@@ -63,7 +60,7 @@
 // wehre is http request url?
     FLSoapStringBuilder* soapStringBuilder = [FLSoapStringBuilder soapStringBuilder];
     
-    FLObjectXmlElement* element = [FLObjectXmlElement soapXmlElementWithObject:self.soapRequest 
+    FLObjectXmlElement* element = [FLObjectXmlElement soapXmlElementWithObject:self.soapInput 
                                                                  xmlElementTag:self.operationName
                                                                   xmlNamespace:self.soapNamespace];
             
@@ -95,24 +92,33 @@
     
     [httpResponse throwHttpErrorIfNeeded];
    
-    id result = data;
-   
-    if(self.soapResponse) {
-        FLSoapObjectBuilder* soapParser = [FLSoapObjectBuilder soapObjectBuilder];
-        result = [soapParser buildObjectWithClass:[self.soapResponse class] 
-                                         withData:data 
-                                  withDataDecoder:[FLSoapDataEncoder instance]];
+    FLSoapXmlParser* parser = [FLSoapXmlParser soapXmlParser];
+    FLResult result = [parser parseData:data];
+    FLThrowIfError(result);
     
-#if DEBUG
-        httpResponse.debugResponseData = result;
-#endif        
+    if(_xmlDataPath) {
+        NSDictionary* resultObject = [result objectAtPath:_xmlDataPath];
+        if(resultObject) {
+            result = resultObject;
+        }
+        
+        if(_type) {
+            id object = FLAutorelease([[_type alloc] init]);
+    
+            FLObjectBuilder* objectBuilder = [FLObjectBuilder objectBuilder];
+            [objectBuilder buildObjectsFromDictionary:result withRootObject:object withDecoder:[FLSoapDataEncoder instance]];
+        
+            result = object;
+        }
     }
-    
-    if(self.responseDecoder) {
-        result = self.responseDecoder(result);
-    }
-    
+
     return result;
+}
+
+- (void) setXmlPath:(NSString*) path withClassToInflate:(Class) aClass {
+    FLSetObjectWithRetain(_xmlDataPath, path);
+    _type = aClass;
+
 }
 
 @end

@@ -9,7 +9,7 @@
 #ifdef __INLINES__
 
 FL_SHIP_ONLY_INLINE
-id FLThrowError(id object) {
+id FLThrowIfError(id object) {
     NSError* error = [object error];
     if(error) { 
         @throw [NSException exceptionWithError:[FLMutableError mutableErrorWithError:error stackTrace:FLCreateStackTrace(__INCLUDE_STACK_TRACE__)]];

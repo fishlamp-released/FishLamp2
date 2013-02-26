@@ -122,11 +122,11 @@
         {
             s_describer = [[FLObjectDescriber alloc] init];
         }
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"employer" propertyClass:[FLFacebookNamedObject class] propertyType:FLDataTypeObject] forPropertyName:@"employer"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"location" propertyClass:[FLFacebookNamedObject class] propertyType:FLDataTypeObject] forPropertyName:@"location"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"position" propertyClass:[FLFacebookNamedObject class] propertyType:FLDataTypeObject] forPropertyName:@"position"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"start_date" propertyClass:[NSDate class] propertyType:FLDataTypeDate] forPropertyName:@"start_date"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"end_date" propertyClass:[NSDate class] propertyType:FLDataTypeDate] forPropertyName:@"end_date"];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"employer" propertyClass:[FLFacebookNamedObject class] ] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"location" propertyClass:[FLFacebookNamedObject class] ] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"position" propertyClass:[FLFacebookNamedObject class] ] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"start_date" propertyClass:[NSDate class] ] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"end_date" propertyClass:[NSDate class] ] ];
     });
     return s_describer;
 }

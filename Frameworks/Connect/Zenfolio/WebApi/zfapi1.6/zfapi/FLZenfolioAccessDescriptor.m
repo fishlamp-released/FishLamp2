@@ -161,15 +161,15 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"RealmId" propertyClass:[NSNumber class] propertyType:FLDataTypeInteger] forPropertyName:@"RealmId"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"AccessType" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"AccessType"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"IsDerived" propertyClass:[NSNumber class] propertyType:FLDataTypeBool] forPropertyName:@"IsDerived"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"AccessMask" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"AccessMask"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"Viewers" propertyClass:[NSMutableArray class] propertyType:FLDataTypeObject arrayTypes:[NSArray arrayWithObjects:[FLPropertyDescription propertyDescription:@"Viewer" propertyClass:[NSString class] propertyType:FLDataTypeString arrayTypes:nil], nil] isUnboundedArray:NO] forPropertyName:@"Viewers"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"PasswordHint" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"PasswordHint"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"SrcPasswordHint" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"SrcPasswordHint"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"protectedObjectClassName" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"protectedObjectClassName"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"password" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"password"];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"RealmId" propertyClass:[FLIntegerNumber class]] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"AccessType" propertyClass:[NSString class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"IsDerived" propertyClass:[FLBoolNumber class]] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"AccessMask" propertyClass:[NSString class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"Viewers" propertyClass:[NSMutableArray class]  arrayTypes:[NSArray arrayWithObjects:[FLPropertyDescription propertyDescription:@"Viewer" propertyClass:[NSString class]  arrayTypes:nil], nil] isUnboundedArray:NO] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"PasswordHint" propertyClass:[NSString class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"SrcPasswordHint" propertyClass:[NSString class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"protectedObjectClassName" propertyClass:[NSString class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"password" propertyClass:[NSString class] ] ];
 	});
 	return s_describer;
 }

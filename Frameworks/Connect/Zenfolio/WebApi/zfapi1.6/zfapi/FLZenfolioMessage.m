@@ -158,15 +158,15 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"MailboxId" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"MailboxId"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"Index" propertyClass:[NSNumber class] propertyType:FLDataTypeInteger] forPropertyName:@"Index"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"PostedOn" propertyClass:[NSDate class] propertyType:FLDataTypeDate] forPropertyName:@"PostedOn"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"PosterName" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"PosterName"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"PosterLoginNane" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"PosterLoginNane"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"PosterUrl" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"PosterUrl"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"PosterEmail" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"PosterEmail"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"Body" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"Body"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"IsPrivate" propertyClass:[NSNumber class] propertyType:FLDataTypeBool] forPropertyName:@"IsPrivate"];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"MailboxId" propertyClass:[NSString class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"Index" propertyClass:[FLIntegerNumber class]] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"PostedOn" propertyClass:[NSDate class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"PosterName" propertyClass:[NSString class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"PosterLoginNane" propertyClass:[NSString class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"PosterUrl" propertyClass:[NSString class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"PosterEmail" propertyClass:[NSString class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"Body" propertyClass:[NSString class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"IsPrivate" propertyClass:[FLBoolNumber class]] ];
 	});
 	return s_describer;
 }

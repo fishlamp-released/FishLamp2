@@ -98,9 +98,9 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"galleryId" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"galleryId"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"url" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"url"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"cookies" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"cookies"];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"galleryId" propertyClass:[NSString class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"url" propertyClass:[NSString class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"cookies" propertyClass:[NSString class] ] ];
 	});
 	return s_describer;
 }

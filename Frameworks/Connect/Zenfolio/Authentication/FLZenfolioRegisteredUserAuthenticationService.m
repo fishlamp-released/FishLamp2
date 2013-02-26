@@ -64,7 +64,7 @@
 
         FLTrace(@"auth failed because password is empty");
         
-        FLThrowError( [NSError errorWithDomain:FLZenfolioErrorDomain
+        FLThrowIfError( [NSError errorWithDomain:FLZenfolioErrorDomain
                                            code:FLZenfolioErrorCodeInvalidCredentials
                            localizedDescription:NSLocalizedString(@"Password is incorrect", nil)]);
     }

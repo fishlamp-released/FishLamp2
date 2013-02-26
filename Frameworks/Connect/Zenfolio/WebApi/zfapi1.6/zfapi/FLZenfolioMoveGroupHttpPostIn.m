@@ -98,9 +98,9 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"groupId" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"groupId"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"destGroupId" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"destGroupId"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"index" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"index"];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"groupId" propertyClass:[NSString class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"destGroupId" propertyClass:[NSString class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"index" propertyClass:[NSString class] ] ];
 	});
 	return s_describer;
 }

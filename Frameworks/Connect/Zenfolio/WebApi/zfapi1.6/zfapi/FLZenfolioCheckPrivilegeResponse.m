@@ -78,7 +78,7 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"CheckPrivilegeResult" propertyClass:[NSNumber class] propertyType:FLDataTypeBool] forPropertyName:@"CheckPrivilegeResult"];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"CheckPrivilegeResult" propertyClass:[FLBoolNumber class]] ];
 	});
 	return s_describer;
 }

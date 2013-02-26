@@ -118,11 +118,11 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"favoritesSetId" propertyClass:[NSNumber class] propertyType:FLDataTypeInteger] forPropertyName:@"favoritesSetId"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"favoritesSetName" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"favoritesSetName"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"sharerName" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"sharerName"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"sharerEmail" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"sharerEmail"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"sharerMessage" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"sharerMessage"];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"favoritesSetId" propertyClass:[FLIntegerNumber class]] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"favoritesSetName" propertyClass:[NSString class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"sharerName" propertyClass:[NSString class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"sharerEmail" propertyClass:[NSString class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"sharerMessage" propertyClass:[NSString class] ] ];
 	});
 	return s_describer;
 }

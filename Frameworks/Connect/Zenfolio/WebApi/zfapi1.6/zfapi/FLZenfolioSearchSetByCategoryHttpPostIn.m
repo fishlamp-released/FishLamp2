@@ -128,12 +128,12 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"searchId" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"searchId"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"type" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"type"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"sortOrder" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"sortOrder"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"categoryCode" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"categoryCode"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"offset" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"offset"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"limit" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"limit"];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"searchId" propertyClass:[NSString class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"type" propertyClass:[NSString class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"sortOrder" propertyClass:[NSString class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"categoryCode" propertyClass:[NSString class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"offset" propertyClass:[NSString class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"limit" propertyClass:[NSString class] ] ];
 	});
 	return s_describer;
 }

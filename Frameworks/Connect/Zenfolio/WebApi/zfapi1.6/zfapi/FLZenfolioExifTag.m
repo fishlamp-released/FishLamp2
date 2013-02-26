@@ -98,9 +98,9 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"Id" propertyClass:[NSNumber class] propertyType:FLDataTypeInteger] forPropertyName:@"Id"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"Value" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"Value"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"DisplayValue" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"DisplayValue"];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"Id" propertyClass:[FLIntegerNumber class]] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"Value" propertyClass:[NSString class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"DisplayValue" propertyClass:[NSString class] ] ];
 	});
 	return s_describer;
 }

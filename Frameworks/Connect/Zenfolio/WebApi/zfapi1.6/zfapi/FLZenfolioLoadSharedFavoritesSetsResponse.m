@@ -79,7 +79,7 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"LoadSharedFavoritesSetsResult" propertyClass:[NSMutableArray class] propertyType:FLDataTypeObject arrayTypes:[NSArray arrayWithObjects:[FLPropertyDescription propertyDescription:@"FavoritesSet" propertyClass:[FLZenfolioFavoritesSet class] propertyType:FLDataTypeObject arrayTypes:nil], nil] isUnboundedArray:NO] forPropertyName:@"LoadSharedFavoritesSetsResult"];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"LoadSharedFavoritesSetsResult" propertyClass:[NSMutableArray class]  arrayTypes:[NSArray arrayWithObjects:[FLPropertyDescription propertyDescription:@"FavoritesSet" propertyClass:[FLZenfolioFavoritesSet class]], nil] isUnboundedArray:NO] ];
 	});
 	return s_describer;
 }

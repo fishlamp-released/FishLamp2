@@ -60,7 +60,7 @@
         operation = [FLZenfolioHttpRequest addPhotoToCollectionOperation:photo collection:_destPhotoSet];
     }
     
-    FLThrowError([operation runSynchronouslyInContext:self.userContext]);
+    FLThrowIfError([operation runSynchronouslyInContext:self.userContext]);
 
     _destPhotoSet.PhotoCountValue = _destPhotoSet.PhotoCountValue + 1;
     [_destPhotoSet addPhoto:photo];

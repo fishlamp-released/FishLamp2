@@ -98,9 +98,9 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"photoSetId" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"photoSetId"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"startingIndex" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"startingIndex"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"numberOfPhotos" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"numberOfPhotos"];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"photoSetId" propertyClass:[NSString class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"startingIndex" propertyClass:[NSString class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"numberOfPhotos" propertyClass:[NSString class] ] ];
 	});
 	return s_describer;
 }

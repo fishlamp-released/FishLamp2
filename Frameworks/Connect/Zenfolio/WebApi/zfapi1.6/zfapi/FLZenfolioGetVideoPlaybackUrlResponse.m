@@ -78,7 +78,7 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"GetVideoPlaybackUrlResult" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"GetVideoPlaybackUrlResult"];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"GetVideoPlaybackUrlResult" propertyClass:[NSString class] ] ];
 	});
 	return s_describer;
 }

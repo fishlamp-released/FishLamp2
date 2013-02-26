@@ -236,23 +236,23 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"photoDataFileName" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"photoDataFileName"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"uploadFileId" propertyClass:[NSNumber class] propertyType:FLDataTypeInteger] forPropertyName:@"uploadFileId"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"sortId" propertyClass:[NSNumber class] propertyType:FLDataTypeInteger] forPropertyName:@"sortId"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"uploadGallery" propertyClass:[FLZenfolioUploadGallery class] propertyType:FLDataTypeObject] forPropertyName:@"uploadGallery"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"uploadSize" propertyClass:[NSNumber class] propertyType:FLDataTypeUnsignedLong] forPropertyName:@"uploadSize"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"accessDescriptor" propertyClass:[FLZenfolioAccessDescriptor class] propertyType:FLDataTypeObject] forPropertyName:@"accessDescriptor"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"saveToPhoneGalleryOnUpload" propertyClass:[NSNumber class] propertyType:FLDataTypeBool] forPropertyName:@"saveToPhoneGalleryOnUpload"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"wasSavedToPhotoGallery" propertyClass:[NSNumber class] propertyType:FLDataTypeBool] forPropertyName:@"wasSavedToPhotoGallery"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"isCameraImage" propertyClass:[NSNumber class] propertyType:FLDataTypeBool] forPropertyName:@"isCameraImage"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"loginName" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"loginName"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"originalFileName" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"originalFileName"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"categoryArray" propertyClass:[NSMutableArray class] propertyType:FLDataTypeObject] forPropertyName:@"categoryArray"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"uploadedPhotoId" propertyClass:[NSNumber class] propertyType:FLDataTypeUnsignedLong] forPropertyName:@"uploadedPhotoId"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"dimensions" propertyClass:[NSValue class] propertyType:FLDataTypeSize] forPropertyName:@"dimensions"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"uploaded" propertyClass:[NSNumber class] propertyType:FLDataTypeBool] forPropertyName:@"uploaded"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"takenDate" propertyClass:[NSDate class] propertyType:FLDataTypeDate] forPropertyName:@"takenDate"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"modifiedDate" propertyClass:[NSDate class] propertyType:FLDataTypeDate] forPropertyName:@"modifiedDate"];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"photoDataFileName" propertyClass:[NSString class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"uploadFileId" propertyClass:[FLIntegerNumber class]] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"sortId" propertyClass:[FLIntegerNumber class]] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"uploadGallery" propertyClass:[FLZenfolioUploadGallery class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"uploadSize" propertyClass:[FLUnsignedLongNumber class]] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"accessDescriptor" propertyClass:[FLZenfolioAccessDescriptor class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"saveToPhoneGalleryOnUpload" propertyClass:[FLBoolNumber class]] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"wasSavedToPhotoGallery" propertyClass:[FLBoolNumber class]] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"isCameraImage" propertyClass:[FLBoolNumber class]] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"loginName" propertyClass:[NSString class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"originalFileName" propertyClass:[NSString class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"categoryArray" propertyClass:[NSMutableArray class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"uploadedPhotoId" propertyClass:[FLUnsignedLongNumber class]] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"dimensions" propertyClass:[FLGeometrySize class]] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"uploaded" propertyClass:[FLBoolNumber class]] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"takenDate" propertyClass:[NSDate class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"modifiedDate" propertyClass:[NSDate class] ] ];
 	});
 	return s_describer;
 }

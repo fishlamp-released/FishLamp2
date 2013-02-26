@@ -9,25 +9,18 @@
 #import "FLHttpRequest.h"
 #import "FLSoapFault11.h"
 
-typedef id (^FLSoapResponseDecoder)(id soapResponse);
-
 @interface FLSoapHttpRequest : FLHttpRequest {
 @private
 // for sending request
     NSString* _soapNamespace;
     NSString* _soapActionHeader;
     NSString* _operationName;
-    id _soapRequest;
-
-// output
-    id _soapResponse;
-    FLSoapResponseDecoder _responseDecoder;
+    id _soapInput;
+    NSString* _xmlDataPath;
+    Class _type;
 }
 
-@property (readwrite, strong) id soapRequest;
-@property (readwrite, strong) id soapResponse;
-    
-@property (readwrite, copy) FLSoapResponseDecoder responseDecoder;
+@property (readwrite, strong) id soapInput;
 
 @property (readwrite, strong) NSString* soapActionHeader;
 @property (readwrite, strong) NSString* soapNamespace;
@@ -36,5 +29,7 @@ typedef id (^FLSoapResponseDecoder)(id soapResponse);
 - (void) handleSoapFault:(FLSoapFault11*) fault;
 
 + (FLSoapFault11*) checkForSoapFaultInData:(NSData*) data;
+
+- (void) setXmlPath:(NSString*) path withClassToInflate:(Class) aClass;
 
 @end

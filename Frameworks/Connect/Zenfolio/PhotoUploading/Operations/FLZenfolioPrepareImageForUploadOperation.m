@@ -87,7 +87,7 @@ FIXME("needs to be abstracted for mac, etc..")
 			[NSFileManager getFileSize:uploadFile.filePath outSize:&_finalSize outError:&error];
             if(error)
             {   
-                FLThrowError(FLAutorelease(error));
+                FLThrowIfError(FLAutorelease(error));
             }
 			
 			return uploadFile;
@@ -116,7 +116,7 @@ FIXME("needs to be abstracted for mac, etc..")
 //    [NSFileManager getFileSize:imageFile.filePath outSize:&_startSize outError:&error];
 //    if(error)
 //    {
-//        FLThrowError(FLAutorelease(error));
+//        FLThrowIfError(FLAutorelease(error));
 //    }
 //    
 //    _finalSize = _startSize;

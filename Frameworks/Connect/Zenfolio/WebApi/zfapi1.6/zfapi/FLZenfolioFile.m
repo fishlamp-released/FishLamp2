@@ -138,13 +138,13 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"Id" propertyClass:[NSNumber class] propertyType:FLDataTypeInteger] forPropertyName:@"Id"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"Width" propertyClass:[NSNumber class] propertyType:FLDataTypeUnsignedInteger] forPropertyName:@"Width"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"Height" propertyClass:[NSNumber class] propertyType:FLDataTypeUnsignedInteger] forPropertyName:@"Height"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"Sequence" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"Sequence"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"MimeType" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"MimeType"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"UrlCore" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"UrlCore"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"UrlHost" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"UrlHost"];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"Id" propertyClass:[FLIntegerNumber class]] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"Width" propertyClass:[FLUnsignedIntegerNumber class]] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"Height" propertyClass:[FLUnsignedIntegerNumber class]] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"Sequence" propertyClass:[NSString class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"MimeType" propertyClass:[NSString class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"UrlCore" propertyClass:[NSString class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"UrlHost" propertyClass:[NSString class] ] ];
 	});
 	return s_describer;
 }

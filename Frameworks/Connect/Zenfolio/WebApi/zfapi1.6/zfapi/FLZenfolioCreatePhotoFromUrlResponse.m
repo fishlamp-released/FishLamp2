@@ -78,7 +78,7 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"CreatePhotoFromUrlResult" propertyClass:[NSNumber class] propertyType:FLDataTypeInteger] forPropertyName:@"CreatePhotoFromUrlResult"];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"CreatePhotoFromUrlResult" propertyClass:[FLIntegerNumber class]] ];
 	});
 	return s_describer;
 }

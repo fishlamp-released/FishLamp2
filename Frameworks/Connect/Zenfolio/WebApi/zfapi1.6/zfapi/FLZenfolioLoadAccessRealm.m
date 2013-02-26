@@ -78,7 +78,7 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"realmId" propertyClass:[NSNumber class] propertyType:FLDataTypeInteger] forPropertyName:@"realmId"];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"realmId" propertyClass:[FLIntegerNumber class]] ];
 	});
 	return s_describer;
 }

@@ -34,7 +34,7 @@
 //			id newObject = [self valueForKey:key];
 //			if(!newObject)
 //			{
-//				newObject = FLAutorelease([[desc.propertyClass alloc] init]);
+//				newObject = FLAutorelease([[desc.propertyType.typeClass alloc] init]);
 //				[self setValue:newObject forKey:key];
 //			}
 //		
@@ -110,12 +110,14 @@
 		{
 		//	if(FLStringsAreEqual(property.propertyName, arrayItemKey))
 			{
-				if(property.propertyType.isObject)
+                FLAssertIsNotNil_(property.propertyType.typeClass);
+                FLObjectDescriber* propDescriber = [property.propertyType.typeClass sharedObjectDescriber];
+            
+				if(propDescriber)
 				{
-					FLAssertIsNotNil_(property.propertyClass);
-
-					id obj = [[property.propertyClass alloc] init];
-					FLAssert_v(obj != nil, @"Unable to created object of type: %@", NSStringFromClass(property.propertyClass));
+					
+					id obj = [[property.propertyType.typeClass alloc] init];
+					FLAssert_v(obj != nil, @"Unable to created object of type: %@", NSStringFromClass(property.propertyType.typeClass));
 
 					FLAssertIsNotNil_(obj);
 					[self addObject:obj];

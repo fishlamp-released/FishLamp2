@@ -18,22 +18,21 @@ typedef enum {
 
 typedef enum {
     FLXmlParserParseErrorHint,
-    FLXmlParserValidationErrorHint
+    FLXmlParserValidationErrorHint,
 } FLXmlParserErrorHint;
+
+typedef enum {
+    FLXmlPropertyInflationIsAttribute = 1
+} FLXmlPropertyInflation;
 
 @interface FLXmlObjectBuilder : NSObject<NSXMLParserDelegate, FLObjectBuilderDelegate> {
 @private
     FLObjectBuilder* _objectBuilder;
-    NSString* _fileName;
-    BOOL _saveParsePositions;
 	BOOL _gotFirstElement;
     NSXMLParser* _parser;
 }
 
 + (id) xmlObjectBuilder;
-
-@property (readwrite, retain, nonatomic) NSString* fileName;
-@property (readwrite, assign, nonatomic) BOOL saveParsePositions;
 
 - (id) buildObjectWithClass:(Class) aClass 
                      withData:(NSData*) data 
@@ -50,3 +49,30 @@ typedef enum {
                    withDataDecoder:(id<FLDataDecoding>) decoder;
 
 @end
+
+
+@interface FLXmlParser : NSObject<NSXMLParserDelegate> {
+@private
+	BOOL _gotFirstElement;
+    NSXMLParser* _parser;
+    NSMutableArray* _stack;
+    NSError* _error;
+}
+
++ (id) xmlParser;
+
+- (FLResult) parseData:(NSData*) data;
+
+- (void) willParseXMLData:(NSData*) data withXMLParser:(NSXMLParser*) parser;
+
+//- (id) buildObjectWithDictionary:(NSDictionary*) dictionary
+//                        forClass:(Class) aClass 
+//                     withDecoder:(id<FLDataDecoding>) decoder;
+
+@end
+
+@interface NSDictionary (FLXmlParsing)
+- (id) objectAtPath:(NSString*) path; // e.g. @"Envelope/Body/Foo"
+@end
+
+

@@ -152,7 +152,7 @@
 #import "FLObjectBuilder.h"
 #import "FLObjectDescriber.h"
 #import "FLObjectInflator.h"
-#import "FLObjectInflatorState.h"
+#import "FLPropertyInflator.h"
 #import "FLPropertyDescription.h"
 #import "FLStorageAttribute.h"
 #import "FLTypeDesc+BoxedStructs.h"

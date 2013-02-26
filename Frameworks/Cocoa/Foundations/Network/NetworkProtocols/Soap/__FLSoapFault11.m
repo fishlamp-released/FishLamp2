@@ -105,10 +105,10 @@
         {
             s_describer = [[FLObjectDescriber alloc] init];
         }
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"faultcode" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"faultcode"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"faultstring" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"faultstring"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"faultactor" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"faultactor"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"detail" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"detail"];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"faultcode" propertyClass:[NSString class] ] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"faultstring" propertyClass:[NSString class] ] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"faultactor" propertyClass:[NSString class] ] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"detail" propertyClass:[NSString class] ] ];
     });
     return s_describer;
 }

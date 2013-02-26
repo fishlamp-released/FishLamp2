@@ -91,8 +91,8 @@
         {
             s_describer = [[FLObjectDescriber alloc] init];
         }
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"category" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"category"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"likes" propertyClass:[NSNumber class] propertyType:FLDataTypeInteger] forPropertyName:@"likes"];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"category" propertyClass:[NSString class] ] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"likes" propertyClass:[FLIntegerNumber class]] ];
     });
     return s_describer;
 }

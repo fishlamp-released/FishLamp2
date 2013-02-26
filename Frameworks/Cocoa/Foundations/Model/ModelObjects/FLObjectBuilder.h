@@ -9,7 +9,8 @@
 #import "FLCocoaRequired.h"
 #import "FishLampCore.h"
 #import "FLDataDecoding.h"
-#import "FLObjectInflatorState.h"
+#import "FLResult.h"
+#import "FLPropertyInflator.h"
 
 @protocol FLObjectBuilderDelegate;
 
@@ -25,6 +26,7 @@
 
 + (id) objectBuilder;
 
+
 @property (readwrite, assign, nonatomic) id<FLObjectBuilderDelegate> delegate;
 
 // dictionary should only have arrays, dictionaries, and strings in it.
@@ -33,38 +35,43 @@
                      withRootObject:(id) rootObject
                         withDecoder:(id<FLDataDecoding>) decoder;
 
+// iterative building
 - (void) openWithRootObjectClass:(Class) theClass withDataDecoder:(id<FLDataDecoding>) decoder;
-- (id) finishBuilding;
+- (FLResult) finishBuilding;
 
-- (FLObjectInflatorState*) firstObject;
-- (FLObjectInflatorState*) lastObject;
+- (FLPropertyInflator*) firstInflator;
+- (FLPropertyInflator*) lastInflator;
 
-- (FLObjectInflatorState*) openObject:(NSString*) objectKey;
-- (void) appendString:(NSString*) string; // TODO: move to state object
-- (void) closeObject:(FLObjectInflatorState*) object;
+- (FLPropertyInflator*) startInflatingPropertyWithName:(NSString*) propertyName withState:(int) state;
+- (void) finishInflatingProperty;
 
-- (void) addObject:(NSString*) name data:(NSString*) data;
-- (void) addAttribute:(NSString*) name data:(NSString*) data;
+- (void) addProperty:(NSString*) propertyName 
+   withEncodedString:(NSString*) data 
+           withState:(int) state;
 
 // debugging/errors
-@property (readwrite, retain, nonatomic) NSError* error;
 - (void) setError:(NSError*) error errorHint:(int) errorHint;
 - (NSString*) stateString;
 
-@end
+- (FLPropertyInflator*) previousStateForState:(FLPropertyInflator*) state;
 
+@end
 
 @protocol FLObjectBuilderDelegate <NSObject>
-- (void) objectBuilder:(FLObjectBuilder*) objectBuilder willOpenObject:(FLObjectInflatorState*)object;
-@end
-
-@protocol FLBuildableObject <NSObject>
-- (BOOL) objectBuilder:(FLObjectBuilder*) builder 
-        willOpenObject:(FLObjectInflatorState*) state;
-
-- (void) objectBuilder:(FLObjectBuilder*) builder 
+@optional
+- (void) objectBuilder:(FLObjectBuilder*) objectBuilder 
+   willInflateProperty:(FLPropertyInflator*) propertyInflator;
+   
+- (void) objectBuilder:(FLObjectBuilder*) objectBuilder 
             encounteredError:(NSError*) error 
             errorHint:(int) errorHint
             errorHelp:(FLPrettyString*) errorHelp;
+
 @end
+
+//@protocol FLBuildableObject <NSObject>
+//- (BOOL) objectBuilder:(FLObjectBuilder*) builder 
+//        willInflateProperty:(FLPropertyInflator*) state;
+//
+//@end
 

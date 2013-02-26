@@ -89,8 +89,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"mailboxId" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"mailboxId"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"updater" propertyClass:[FLZenfolioMessageUpdater class] propertyType:FLDataTypeObject] forPropertyName:@"updater"];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"mailboxId" propertyClass:[NSString class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"updater" propertyClass:[FLZenfolioMessageUpdater class] ] ];
 	});
 	return s_describer;
 }

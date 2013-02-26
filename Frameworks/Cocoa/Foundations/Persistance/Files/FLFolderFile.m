@@ -72,7 +72,7 @@
 
 	if(!self.fileExists)
 	{
-		FLThrowError([NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorFileDoesNotExist 
+		FLThrowIfError([NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorFileDoesNotExist 
 			userInfo:[NSDictionary dictionaryWithObject:@"file is missing - can't create read stream" forKey:NSLocalizedFailureReasonErrorKey]]);
 	}
 

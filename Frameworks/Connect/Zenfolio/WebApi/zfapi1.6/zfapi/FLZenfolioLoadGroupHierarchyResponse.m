@@ -79,7 +79,7 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"LoadGroupHierarchyResult" propertyClass:[FLZenfolioGroup class] propertyType:FLDataTypeObject] forPropertyName:@"LoadGroupHierarchyResult"];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"LoadGroupHierarchyResult" propertyClass:[FLZenfolioGroup class] ] ];
 	});
 	return s_describer;
 }

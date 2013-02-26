@@ -88,8 +88,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"groupId" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"groupId"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"shiftOrder" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"shiftOrder"];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"groupId" propertyClass:[NSString class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"shiftOrder" propertyClass:[NSString class] ] ];
 	});
 	return s_describer;
 }

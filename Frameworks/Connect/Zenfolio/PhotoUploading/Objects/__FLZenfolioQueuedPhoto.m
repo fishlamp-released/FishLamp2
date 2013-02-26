@@ -130,12 +130,12 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"accessDescriptor" propertyClass:[FLZenfolioAccessDescriptor class] propertyType:FLDataTypeObject] forPropertyName:@"accessDescriptor"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"categoryArray" propertyClass:[NSMutableArray class] propertyType:FLDataTypeObject] forPropertyName:@"categoryArray"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"zenfolioCategories" propertyClass:[NSMutableArray class] propertyType:FLDataTypeObject] forPropertyName:@"zenfolioCategories"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"scaledUploadSize" propertyClass:[NSNumber class] propertyType:FLDataTypeInteger] forPropertyName:@"scaledUploadSize"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"saveToDeviceBeforeUpload" propertyClass:[NSNumber class] propertyType:FLDataTypeBool] forPropertyName:@"saveToDeviceBeforeUpload"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"wasSavedToDeviceBeforeUpload" propertyClass:[NSNumber class] propertyType:FLDataTypeBool] forPropertyName:@"wasSavedToDeviceBeforeUpload"];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"accessDescriptor" propertyClass:[FLZenfolioAccessDescriptor class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"categoryArray" propertyClass:[NSMutableArray class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"zenfolioCategories" propertyClass:[NSMutableArray class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"scaledUploadSize" propertyClass:[FLIntegerNumber class]] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"saveToDeviceBeforeUpload" propertyClass:[FLBoolNumber class]] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"wasSavedToDeviceBeforeUpload" propertyClass:[FLBoolNumber class]] ];
 	});
 	return s_describer;
 }

@@ -103,7 +103,7 @@
 //            FLLog(@"finished waiting for %X", (void*) _semaphore);
         } 
         
-        FLThrowError(self.result);
+        FLThrowIfError(self.result);
     }
     @finally {
         FLAutoreleaseObject(self);

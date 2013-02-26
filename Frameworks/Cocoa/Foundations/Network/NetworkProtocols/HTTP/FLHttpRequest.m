@@ -266,6 +266,9 @@
 }
 
 - (void) didCloseWithResult:(FLResult) result {
+    
+    FLAssertNotNil_(result);
+
     [self releaseStream];
     
     @try {
@@ -284,8 +287,8 @@
 
         FLPerformSelector2(self.observer, @selector(httpRequest:didCloseWithResult:), self, result);
         
-        if(self.observer) {
-            [self.observer setFinishedWithResult:result];
+        if(self.finisher) {
+            [self.finisher setFinishedWithResult:result];
         }
         
         self.observer = nil;
@@ -322,6 +325,8 @@
 
 - (void) readStream:(FLReadStream*) networkStream 
  didCloseWithResult:(FLResult) result {
+    
+    FLAssertNotNil_(result);
     
     [self.dispatcher dispatchBlock:^{
         if([result error]) {

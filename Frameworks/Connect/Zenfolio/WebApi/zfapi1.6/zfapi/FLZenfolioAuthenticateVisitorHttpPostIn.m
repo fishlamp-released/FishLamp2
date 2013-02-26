@@ -78,7 +78,7 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"visitorKey" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"visitorKey"];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"visitorKey" propertyClass:[NSString class] ] ];
 	});
 	return s_describer;
 }

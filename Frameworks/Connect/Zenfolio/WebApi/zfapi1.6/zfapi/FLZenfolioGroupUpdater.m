@@ -98,9 +98,9 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"Title" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"Title"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"Caption" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"Caption"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"CustomReference" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"CustomReference"];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"Title" propertyClass:[NSString class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"Caption" propertyClass:[NSString class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"CustomReference" propertyClass:[NSString class] ] ];
 	});
 	return s_describer;
 }

@@ -116,7 +116,7 @@ static int s_count = 0;
 	[self dispatchFifoBlock:^{
         NSError* error = nil;
         [[NSFileManager defaultManager] removeItemAtPath:[self filePath] error:&error];
-        FLThrowError(FLAutorelease(error));
+        FLThrowIfError(FLAutorelease(error));
     }];
 }
 
@@ -129,7 +129,7 @@ static int s_count = 0;
 	NSError* error = nil;
 	[NSFileManager getFileSize:self.filePath outSize:&size outError:&error];
     if(error){
-        FLThrowError(FLAutorelease(error));
+        FLThrowIfError(FLAutorelease(error));
     }
 
 	return size;
@@ -267,7 +267,7 @@ static int s_count = 0;
     FLDbLog(@"%@ -> ERROR: %@", self.fileName, [error localizedDescription]);
     FLDbLogIf(sql != nil, @"\"%s\"", sql);
 
-	FLThrowError(error);
+	FLThrowIfError(error);
 }
 
 - (void) runQueryWithString:(NSString*) statementString

@@ -69,40 +69,28 @@
     return [NSURL URLWithString:[self typeDesc:typeDesc decodeNSStringFromString:string]];
 }
 
-- (NSString*) typeDesc:(FLTypeDesc*) typeDesc encodeStringWithNSValue:(NSValue*) value {
-    switch(typeDesc.typeID) {
-        case FLTypeIDRect:
-            return NSStringFromCGRect([value CGRectValue]);
-        break;
-        
-        case FLTypeIDPoint:
-            return NSStringFromCGPoint([value CGPointValue]);
-        break;
-        
-        case FLTypeIDSize:
-            return NSStringFromCGSize([value CGSizeValue]);
-        break;
-    }
-    
-    return @"";
+- (NSString*) typeDesc:(FLTypeDesc*) typeDesc encodeStringWithCGRect:(NSValue*) value {
+    return NSStringFromCGRect([value CGRectValue]);
 }
 
-- (NSValue*) typeDesc:(FLTypeDesc*) typeDesc decodeNSValueFromString:(NSString*) string {
-    switch(typeDesc.typeID) {
-        case FLTypeIDRect:
-            return [NSValue valueWithCGRect:CGRectFromString(string)];
-        break;
-        
-        case FLTypeIDPoint:
-            return [NSValue valueWithCGPoint:CGPointFromString(string)];
-        break;
-        
-        case FLTypeIDSize:
-            return [NSValue valueWithCGSize:CGSizeFromString(string)];
-        break;
-    }
-    
-    return nil;
+- (NSString*) typeDesc:(FLTypeDesc*) typeDesc encodeStringWithCGPoint:(NSValue*) value {
+    return NSStringFromCGPoint([value CGPointValue]);
+}
+
+- (NSString*) typeDesc:(FLTypeDesc*) typeDesc encodeStringWithCGSize:(NSValue*) value {
+    return NSStringFromCGSize([value CGSizeValue]);
+}
+
+- (NSValue*) typeDesc:(FLTypeDesc*) typeDesc decodeCGPointFromString:(NSString*) string {
+    return [NSValue valueWithCGPoint:CGPointFromString(string)];
+}
+
+- (NSValue*) typeDesc:(FLTypeDesc*) typeDesc decodeCGRectFromString:(NSString*) string {
+    return [NSValue valueWithCGRect:CGRectFromString(string)];
+}
+
+- (NSValue*) typeDesc:(FLTypeDesc*) typeDesc decodeCGSizeFromString:(NSString*) string {
+    return [NSValue valueWithCGSize:CGSizeFromString(string)];;
 }
 
 - (NSString*) typeDesc:(FLTypeDesc*) typeDesc encodeStringWithNSNumber:(NSNumber*) number {

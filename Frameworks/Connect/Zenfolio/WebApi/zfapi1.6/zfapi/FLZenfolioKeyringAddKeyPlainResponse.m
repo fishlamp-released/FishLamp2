@@ -78,7 +78,7 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"KeyringAddKeyPlainResult" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"KeyringAddKeyPlainResult"];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"KeyringAddKeyPlainResult" propertyClass:[NSString class] ] ];
 	});
 	return s_describer;
 }

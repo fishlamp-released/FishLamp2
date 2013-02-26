@@ -90,8 +90,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"Group" propertyClass:[FLZenfolioGroup class] propertyType:FLDataTypeObject] forPropertyName:@"Group"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"PhotoSet" propertyClass:[FLZenfolioPhotoSet class] propertyType:FLDataTypeObject] forPropertyName:@"PhotoSet"];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"Group" propertyClass:[FLZenfolioGroup class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"PhotoSet" propertyClass:[FLZenfolioPhotoSet class] ] ];
 	});
 	return s_describer;
 }

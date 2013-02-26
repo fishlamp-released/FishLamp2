@@ -88,8 +88,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"mailboxId" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"mailboxId"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"messageIndex" propertyClass:[NSNumber class] propertyType:FLDataTypeInteger] forPropertyName:@"messageIndex"];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"mailboxId" propertyClass:[NSString class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"messageIndex" propertyClass:[FLIntegerNumber class]] ];
 	});
 	return s_describer;
 }

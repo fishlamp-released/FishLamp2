@@ -8,15 +8,17 @@
 
 #import <Foundation/Foundation.h>
 #import "FLObjectBuilder.h"
-#import "FLObjectInflatorState.h"
+#import "FLPropertyInflator.h"
+#import "FLTypeDesc.h"
+#import "FLCoreTypes.h"
 
 @interface NSObject (FLObjectBuilder)
 
 - (BOOL) objectBuilder:(FLObjectBuilder*) builder 
-         beginBuilding:(FLObjectInflatorState*) state;
+         beginBuilding:(FLPropertyInflator*) state;
 
 - (void) objectBuilder:(FLObjectBuilder*) builder 
-        finishBuilding:(FLObjectInflatorState*) state;
+        finishBuilding:(FLPropertyInflator*) state;
 
 @end
 

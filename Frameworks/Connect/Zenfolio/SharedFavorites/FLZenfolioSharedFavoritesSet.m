@@ -138,13 +138,13 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"sharedFavoritesSetId" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"sharedFavoritesSetId"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"sharerName" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"sharerName"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"sharerMessage" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"sharerMessage"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"sharerEmail" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"sharerEmail"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"photographerLogin" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"photographerLogin"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"favoritesSetName" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"favoritesSetName"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"photoIds" propertyClass:[NSMutableSet class] propertyType:FLDataTypeObject] forPropertyName:@"photoIds"];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"sharedFavoritesSetId" propertyClass:[NSString class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"sharerName" propertyClass:[NSString class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"sharerMessage" propertyClass:[NSString class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"sharerEmail" propertyClass:[NSString class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"photographerLogin" propertyClass:[NSString class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"favoritesSetName" propertyClass:[NSString class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"photoIds" propertyClass:[NSMutableSet class] ] ];
 	});
 	return s_describer;
 }

@@ -73,7 +73,7 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"UpdateGroupAccessResult" propertyClass:[NSNumber class] propertyType:FLDataTypeInteger] forPropertyName:@"UpdateGroupAccessResult"];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"UpdateGroupAccessResult" propertyClass:[FLIntegerNumber class]] ];
 	});
 	return s_describer;
 }

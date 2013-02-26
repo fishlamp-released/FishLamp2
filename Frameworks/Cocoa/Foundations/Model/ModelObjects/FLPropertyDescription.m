@@ -11,7 +11,6 @@
 
 @interface FLPropertyDescription ()
 @property (readwrite, strong, nonatomic) NSString* propertyName;
-@property (readwrite, assign, nonatomic) Class propertyClass;
 @property (readwrite, strong, nonatomic) FLTypeDesc* propertyType;
 @property (readwrite, strong, nonatomic) NSArray* arrayTypes;
 @property (readwrite, assign, nonatomic, getter=isUnboundedArray) BOOL unboundedArray;
@@ -22,40 +21,35 @@
 @implementation FLPropertyDescription
 
 @synthesize propertyName = _name;
-@synthesize propertyClass = _class;
 @synthesize arrayTypes = _arrayTypes;
-@synthesize getter = _getter;
-@synthesize setter = _setter;
+//@synthesize getter = _getter;
+//@synthesize setter = _setter;
 @synthesize propertyType = _propertyType;
 @synthesize unboundedArray = _unboundedArray;
 @synthesize unboundedArrayItem = _unboundedArrayItem;
 
 - (id) initWithPropertyName:(NSString*) name
-              propertyClass:(Class) aClass
-               propertyType:(FLTypeDesc*) dataType
+               propertyClass:(Class) propertyClass
                  arrayTypes:(NSArray*) arrayTypes {
 
-	return [self initWithPropertyName:name propertyClass:aClass propertyType:dataType arrayTypes:arrayTypes isUnboundedArray:NO];
+	return [self initWithPropertyName:name propertyClass:propertyClass arrayTypes:arrayTypes isUnboundedArray:NO];
 }
 
 - (id) initWithPropertyName:(NSString*) name
-              propertyClass:(Class) aClass
-               propertyType:(FLTypeDesc*) dataType
+               propertyClass:(Class) propertyClass
                  arrayTypes:(NSArray*) arrayTypes
            isUnboundedArray:(BOOL) isUnboundedArray {
-	if((self = [super init]))
-	{
+
+	if((self = [super init])) {
 		FLAssertStringIsNotEmpty_(name);
-	
         self.propertyName = name;
-		self.propertyClass = aClass;
-		self.propertyType = dataType;
+        self.propertyType = [propertyClass typeDesc];
 		self.arrayTypes = arrayTypes;
 		self.unboundedArray = isUnboundedArray;
 
-		self.setter = NSSelectorFromString([NSString stringWithFormat:@"set%@:", [name stringWithUpperCaseFirstLetter]]);
-
-        self.getter = NSSelectorFromString(name);
+//		self.setter = NSSelectorFromString([NSString stringWithFormat:@"set%@:", [name stringWithUpperCaseFirstLetter]]);
+//
+//        self.getter = NSSelectorFromString(name);
         
 		if(self.isUnboundedArray) {
 			for(FLPropertyDescription* desc in self.arrayTypes) {
@@ -69,35 +63,31 @@
 }
 
 - (id) initWithPropertyName:(NSString*) name
-              propertyClass:(Class) aClass
-               propertyType:(FLTypeDesc*) dataType {
-
-	return [self initWithPropertyName:name propertyClass:aClass propertyType:dataType arrayTypes:nil isUnboundedArray:NO];
-}
-
-+ (FLPropertyDescription*) propertyDescription:(NSString*) name
-                                 propertyClass:(Class) aClass
-                                  propertyType:(FLTypeDesc*) dataType {
-
-	return FLAutorelease([[FLPropertyDescription alloc] initWithPropertyName:name propertyClass:aClass propertyType:dataType arrayTypes:nil isUnboundedArray:NO]);
+              propertyClass:(Class) propertyClass {
+    return [self initWithPropertyName:name propertyClass:propertyClass arrayTypes:nil isUnboundedArray:NO];
 }
 
 
 + (FLPropertyDescription*) propertyDescription:(NSString*) name
-                                 propertyClass:(Class) aClass
-                                  propertyType:(FLTypeDesc*) dataType
+                                  propertyClass:(Class) propertyClass {
+
+	return FLAutorelease([[FLPropertyDescription alloc] initWithPropertyName:name propertyClass:propertyClass arrayTypes:nil isUnboundedArray:NO]);
+}
+
+
++ (FLPropertyDescription*) propertyDescription:(NSString*) name
+                                  propertyClass:(Class) propertyClass
                                     arrayTypes:(NSArray*) arrayTypes
                               isUnboundedArray:(BOOL) isUnboundedArray {
 
-	return FLAutorelease([[FLPropertyDescription alloc] initWithPropertyName:name propertyClass:aClass propertyType:dataType arrayTypes:arrayTypes isUnboundedArray:isUnboundedArray]);
+	return FLAutorelease([[FLPropertyDescription alloc] initWithPropertyName:name propertyClass:propertyClass arrayTypes:arrayTypes isUnboundedArray:isUnboundedArray]);
 }
 
 + (FLPropertyDescription*) propertyDescription:(NSString*) name
-                                 propertyClass:(Class) aClass
-                                  propertyType:(FLTypeDesc*) dataType
+                                  propertyClass:(Class) propertyClass
                                     arrayTypes:(NSArray*) arrayTypes {
 
-	return FLAutorelease([[FLPropertyDescription alloc] initWithPropertyName:name propertyClass:aClass propertyType:dataType arrayTypes:arrayTypes isUnboundedArray:NO]);
+	return FLAutorelease([[FLPropertyDescription alloc] initWithPropertyName:name propertyClass:propertyClass arrayTypes:arrayTypes isUnboundedArray:NO]);
 }
 
 #if FL_MRC
@@ -117,7 +107,7 @@
 	return [NSString stringWithFormat:@"%@: Name: %@, Class: %@, Type: %@, isUnboundedArray: %d, isUnboundedArrayType: %d, ArrayTypes:\n%@",
 		[super description],
 		self.propertyName,
-		NSStringFromClass(self.propertyClass),
+		NSStringFromClass(self.propertyType.typeClass),
 		[self.propertyType description],
 		self.isUnboundedArray,
 		self.isUnboundedArrayItem,
@@ -127,11 +117,13 @@
 #pragma GCC diagnostic ignored "-Warc-performSelector-leaks"
 
 - (void) setPropertyValue:(id) value forObject:(id) object {
-    [object performSelector:self.setter withObject:value];
+    [object setValue:value forKey:self.propertyName];
+//    [object performSelector:self.setter withObject:value];
 }
 
 - (id) propertyValueForObject:(id) object {
-    return [object performSelector:self.getter];
+    return [object valueForKey:self.propertyName];
+//    return [object performSelector:self.getter];
 }
 
 #pragma GCC diagnostic pop
@@ -139,3 +131,5 @@
 
 
 @end
+
+

@@ -58,7 +58,7 @@
 // look for error
     FLJsonParser* parser = [FLJsonParser jsonParser];
     NSDictionary* response = [parser parseJsonData:responseData rootObject:nil withDecoder:self.dataDecoder];
-    FLThrowError(parser.error);
+    FLThrowIfError(parser.error);
 
     if([response objectForKey:@"error"]) {
         FLDebugLog(@"Got facebookService error: %@", [response description]);

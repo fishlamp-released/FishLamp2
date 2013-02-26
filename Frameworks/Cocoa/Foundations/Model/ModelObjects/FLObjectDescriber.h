@@ -8,9 +8,7 @@
 
 #import "FLCocoaRequired.h"
 #import "FishLampCore.h"
-
 #import "FLPropertyDescription.h"
-
 
 @interface FLObjectDescriber : NSObject<NSCopying> {
 @private 
@@ -22,7 +20,8 @@
 
 @property (readonly, copy, nonatomic) NSDictionary* propertyDescribers;
 
-- (void) setPropertyDescriber:(FLPropertyDescription*) objectDescriber forPropertyName:(NSString*) propertyName;
+- (void) addPropertyDescriber:(FLPropertyDescription*) propertyDescriber forPropertyName:(NSString*) propertyName;
+- (void) addPropertyDescriber:(FLPropertyDescription*) propertyDescriber;
 
 - (FLPropertyDescription*) propertyDescriberForPropertyName:(NSString*) propertyName;
 

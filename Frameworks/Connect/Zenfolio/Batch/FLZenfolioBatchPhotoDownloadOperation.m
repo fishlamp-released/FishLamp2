@@ -118,7 +118,7 @@
 - (void) createFolderIfNeeded:(NSString*) path {
     NSError* error = nil;
     [[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:&error];
-    FLThrowError(error);
+    FLThrowIfError(error);
 #if OSX
     [[NSWorkspace sharedWorkspace] noteFileSystemChanged:path];
 #endif    
@@ -164,7 +164,7 @@
   
             image = [context runWorker:downloader withObserver:nil];
                                 
-//            image = FLThrowError([self sendHttpRequest:downloader]);
+//            image = FLThrowIfError([self sendHttpRequest:downloader]);
 //            [downloader sendSynchronouslyInContext:self.userContext]);
             
             //	photo was loaded; save the photo to file

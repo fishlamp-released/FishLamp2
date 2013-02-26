@@ -80,7 +80,7 @@
         {
             s_describer = [[FLObjectDescriber alloc] init];
         }
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"uid" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"uid"];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"uid" propertyClass:[NSString class] ] ];
     });
     return s_describer;
 }

@@ -145,14 +145,14 @@
         {
             s_describer = [[FLObjectDescriber alloc] init];
         }
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"userGuid" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"userGuid"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"userName" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"userName"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"password" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"password"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"isAuthenticated" propertyClass:[NSNumber class] propertyType:FLDataTypeBool] forPropertyName:@"isAuthenticated"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"authToken" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"authToken"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"email" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"email"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"authTokenLastUpdateTime" propertyClass:[NSNumber class] propertyType:FLDataTypeDouble] forPropertyName:@"authTokenLastUpdateTime"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"userValue" propertyClass:[NSNumber class] propertyType:FLDataTypeLong] forPropertyName:@"userValue"];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"userGuid" propertyClass:[NSString class] ] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"userName" propertyClass:[NSString class] ] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"password" propertyClass:[NSString class] ] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"isAuthenticated" propertyClass:[FLBoolNumber class]] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"authToken" propertyClass:[NSString class] ] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"email" propertyClass:[NSString class] ] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"authTokenLastUpdateTime" propertyClass:[FLDoubleNumber class]] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"userValue" propertyClass:[FLLongNumber class]] ];
     });
     return s_describer;
 }

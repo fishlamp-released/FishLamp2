@@ -88,8 +88,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"Code" propertyClass:[NSNumber class] propertyType:FLDataTypeInteger] forPropertyName:@"Code"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"DisplayName" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"DisplayName"];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"Code" propertyClass:[FLIntegerNumber class]] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"DisplayName" propertyClass:[NSString class] ] ];
 	});
 	return s_describer;
 }

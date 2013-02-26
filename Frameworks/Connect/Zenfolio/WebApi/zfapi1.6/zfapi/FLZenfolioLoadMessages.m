@@ -98,9 +98,9 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"mailboxId" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"mailboxId"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"postedSince" propertyClass:[NSDate class] propertyType:FLDataTypeDate] forPropertyName:@"postedSince"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"includeDeleted" propertyClass:[NSNumber class] propertyType:FLDataTypeBool] forPropertyName:@"includeDeleted"];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"mailboxId" propertyClass:[NSString class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"postedSince" propertyClass:[NSDate class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"includeDeleted" propertyClass:[FLBoolNumber class]] ];
 	});
 	return s_describer;
 }

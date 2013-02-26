@@ -120,11 +120,11 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"AccessMask" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"AccessMask"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"Password" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"Password"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"AccessType" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"AccessType"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"Viewers" propertyClass:[NSMutableArray class] propertyType:FLDataTypeObject arrayTypes:[NSArray arrayWithObjects:[FLPropertyDescription propertyDescription:@"Viewer" propertyClass:[NSString class] propertyType:FLDataTypeString arrayTypes:nil], nil] isUnboundedArray:NO] forPropertyName:@"Viewers"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"IsDerived" propertyClass:[NSNumber class] propertyType:FLDataTypeBool] forPropertyName:@"IsDerived"];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"AccessMask" propertyClass:[NSString class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"Password" propertyClass:[NSString class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"AccessType" propertyClass:[NSString class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"Viewers" propertyClass:[NSMutableArray class]  arrayTypes:[NSArray arrayWithObjects:[FLPropertyDescription propertyDescription:@"Viewer" propertyClass:[NSString class]  arrayTypes:nil], nil] isUnboundedArray:NO] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"IsDerived" propertyClass:[FLBoolNumber class]] ];
 	});
 	return s_describer;
 }

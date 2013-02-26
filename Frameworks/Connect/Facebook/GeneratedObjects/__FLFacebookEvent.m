@@ -151,14 +151,14 @@
         {
             s_describer = [[FLObjectDescriber alloc] init];
         }
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"owner" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"owner"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"description" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"description"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"start_time" propertyClass:[NSDate class] propertyType:FLDataTypeDate] forPropertyName:@"start_time"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"end_time" propertyClass:[NSDate class] propertyType:FLDataTypeDate] forPropertyName:@"end_time"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"location" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"location"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"venue" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"venue"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"privacy" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"privacy"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"updated_time" propertyClass:[NSDate class] propertyType:FLDataTypeDate] forPropertyName:@"updated_time"];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"owner" propertyClass:[NSString class] ] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"description" propertyClass:[NSString class] ] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"start_time" propertyClass:[NSDate class] ] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"end_time" propertyClass:[NSDate class] ] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"location" propertyClass:[NSString class] ] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"venue" propertyClass:[NSString class] ] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"privacy" propertyClass:[NSString class] ] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"updated_time" propertyClass:[NSDate class] ] ];
     });
     return s_describer;
 }

@@ -88,8 +88,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"challenge" propertyClass:[NSData class] propertyType:FLDataTypeData] forPropertyName:@"challenge"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"proof" propertyClass:[NSData class] propertyType:FLDataTypeData] forPropertyName:@"proof"];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"challenge" propertyClass:[NSData class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"proof" propertyClass:[NSData class] ] ];
 	});
 	return s_describer;
 }

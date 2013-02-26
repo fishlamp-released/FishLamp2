@@ -73,7 +73,7 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"UpdatePhotoAccessResult" propertyClass:[NSNumber class] propertyType:FLDataTypeInteger] forPropertyName:@"UpdatePhotoAccessResult"];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"UpdatePhotoAccessResult" propertyClass:[FLIntegerNumber class]] ];
 	});
 	return s_describer;
 }

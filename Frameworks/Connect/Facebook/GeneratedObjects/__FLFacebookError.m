@@ -110,10 +110,10 @@
         {
             s_describer = [[FLObjectDescriber alloc] init];
         }
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"error_reason" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"error_reason"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"error" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"error"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"error_description" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"error_description"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"externalUrl" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"externalUrl"];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"error_reason" propertyClass:[NSString class] ] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"error" propertyClass:[NSString class] ] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"error_description" propertyClass:[NSString class] ] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"externalUrl" propertyClass:[NSString class] ] ];
     });
     return s_describer;
 }

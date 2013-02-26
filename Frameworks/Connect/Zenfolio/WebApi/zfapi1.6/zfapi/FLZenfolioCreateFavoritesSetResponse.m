@@ -78,7 +78,7 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"CreateFavoritesSetResult" propertyClass:[NSNumber class] propertyType:FLDataTypeInteger] forPropertyName:@"CreateFavoritesSetResult"];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"CreateFavoritesSetResult" propertyClass:[FLIntegerNumber class]] ];
 	});
 	return s_describer;
 }

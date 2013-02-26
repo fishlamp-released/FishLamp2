@@ -15,10 +15,26 @@
 
 #import "FLZenfolioApi1_6All.h"
 
-#define FLZenfolioSoapHttpRequestFrom(__NAME__, __OUTPUT__) \
-    [FLZenfolioSoapHttpRequestFactory convertToSoapHttpRequest:FLAutorelease([[__NAME__ alloc] init]) outputName:@#__OUTPUT__]
+#define FLZenfolioSoapHttpRequestFrom(__NAME__, __PATH__, __CLASS__) \
+    [FLZenfolioSoapHttpRequestFactory soapHttpRequest:FLAutorelease([[__NAME__ alloc] init]) path:@"Envelope/Body/"\
+        __PATH__ \
+        class:[__CLASS__ class]] 
 
-#define FLZenfolioForceCompilerToSetLevel(obj, level) FLPerformSelector1(obj, @selector(setLevel:), level)
+@implementation FLZenfolioLoadPhotoSet (NSObject)
+- (void) setRequestedResponseLevel:(NSString*) level {
+    [self setLevel:level];
+}
+@end
+@implementation FLZenfolioLoadPhoto (NSObject)
+- (void) setRequestedResponseLevel:(NSString*) level {
+    [self setLevel:level];
+}
+@end
+@implementation FLZenfolioLoadGroup (NSObject)
+- (void) setRequestedResponseLevel:(NSString*) level {
+    [self setLevel:level];
+}
+@end
 
 //@interface FLZenfolioSoapHttpRequestFactory ()
 //@property (readwrite, strong) FLZenfolioApiSoap* soapServer;
@@ -47,8 +63,9 @@
 //}
 //#endif
 
-+ (FLSoapHttpRequest*) convertToSoapHttpRequest:(id) operationDescriptor 
-                                     outputName:(NSString*) outputName {
++ (FLSoapHttpRequest*) soapHttpRequest:(id) operationDescriptor 
+                                  path:(NSString*) path 
+                                 class:(Class) class{
 
     static FLZenfolioApiSoap* s_soapServer = nil;
     static dispatch_once_t onceToken;
@@ -56,13 +73,10 @@
         s_soapServer = [[FLZenfolioApiSoap alloc] init];
     });
 
-
     FLZenfolioSoapHttpRequest* soapHttpRequest = [FLZenfolioSoapHttpRequest soapHttpRequestWithGeneratedObject:operationDescriptor 
                                                                                     serverInfo:s_soapServer];
-    soapHttpRequest.responseDecoder = ^(id response) {
-        return [response valueForKey:outputName];
-    };
-
+    [soapHttpRequest setXmlPath:path withClassToInflate:class];
+    
     return soapHttpRequest;
 }
 
@@ -71,10 +85,10 @@
                                  level:(NSString*) level
                          includePhotos:(BOOL) includePhotos {
 
-    FLSoapHttpRequest* httpRequest = FLZenfolioSoapHttpRequestFrom(FLZenfolioApiSoapLoadPhotoSet, LoadPhotoSetResult);
-    [httpRequest.soapRequest setPhotoSetId:photoSetID];
-    FLZenfolioForceCompilerToSetLevel(httpRequest.soapRequest, level);
-    [httpRequest.soapRequest setIncludePhotosValue:includePhotos];
+    FLSoapHttpRequest* httpRequest = FLZenfolioSoapHttpRequestFrom(FLZenfolioApiSoapLoadPhotoSet, @"LoadPhotoSet/LoadPhotoSetResult",  FLZenfolioPhotoSet);
+    [httpRequest.soapInput setPhotoSetId:photoSetID];
+    [httpRequest.soapInput setRequestedResponseLevel:level];
+    [httpRequest.soapInput setIncludePhotosValue:includePhotos];
     return httpRequest;
 }
 
@@ -83,73 +97,71 @@
 }
 
 + (FLHttpRequest*) challengeHttpRequest:(NSString*) loginName {
-    FLSoapHttpRequest* httpRequest = FLZenfolioSoapHttpRequestFrom(FLZenfolioApiSoapGetChallenge, GetChallengeResult);
-    [httpRequest.soapRequest setLoginName:loginName];
+    FLSoapHttpRequest* httpRequest = FLZenfolioSoapHttpRequestFrom(FLZenfolioApiSoapGetChallenge, @"GetChallengeResponse/GetChallengeResult", FLZenfolioAuthChallenge);
+    [httpRequest.soapInput setLoginName:loginName];
     return httpRequest;
 }
 
 + (FLHttpRequest*) authenticateRequest:(NSData*) challenge proof:(NSData*) proof  {
-    FLSoapHttpRequest* authenticate = FLZenfolioSoapHttpRequestFrom(FLZenfolioApiSoapAuthenticate, AuthenticateResult);
-    [authenticate.soapRequest setChallenge:challenge];
-    [authenticate.soapRequest setProof:proof];
+    FLSoapHttpRequest* authenticate = FLZenfolioSoapHttpRequestFrom(FLZenfolioApiSoapAuthenticate, @"AuthenticateResponse", NSString);
+    [authenticate.soapInput setChallenge:challenge];
+    [authenticate.soapInput setProof:proof];
     return authenticate;
 }
 
 + (FLHttpRequest*) loadPrivateProfileHttpRequest {
-    return FLZenfolioSoapHttpRequestFrom(FLZenfolioApiSoapLoadPrivateProfile, LoadPrivateProfileResult);
+    return FLZenfolioSoapHttpRequestFrom(FLZenfolioApiSoapLoadPrivateProfile, @"LoadPrivateProfileResponse/LoadPrivateProfileResult", FLZenfolioUser);
 }
 
 + (FLHttpRequest*) loadPublicProfileHttpRequest:(NSString*) userName {
-    FLSoapHttpRequest* httpRequest = FLZenfolioSoapHttpRequestFrom(FLZenfolioApiSoapLoadPublicProfile, LoadPublicProfileResult);
-    [httpRequest.soapRequest setLoginName:userName];
+    FLSoapHttpRequest* httpRequest = FLZenfolioSoapHttpRequestFrom(FLZenfolioApiSoapLoadPublicProfile, @"LoadPublicProfileResponse/LoadPublicProfileResult", FLZenfolioUser);
+    [httpRequest.soapInput setLoginName:userName];
     return httpRequest;
 }
 
 + (FLHttpRequest*) checkPrivilegeHttpRequest:(NSString*) loginName 
                             privilegeName:(NSString*) privilegeName {
-    FLSoapHttpRequest* httpRequest = FLZenfolioSoapHttpRequestFrom(FLZenfolioApiSoapCheckPrivilege, CheckPrivilegeResult);
-    [httpRequest.soapRequest setLoginName:loginName];
-    [httpRequest.soapRequest setPrivilegeName:privilegeName];
+    FLSoapHttpRequest* httpRequest = FLZenfolioSoapHttpRequestFrom(FLZenfolioApiSoapCheckPrivilege, @"CheckPrivilegeResponse/CheckPrivilegeResult", NSNumber);
+    [httpRequest.soapInput setLoginName:loginName];
+    [httpRequest.soapInput setPrivilegeName:privilegeName];
     return httpRequest;
 }
 
 + (FLHttpRequest*) authenticateVisitorHttpRequest {
-    FLSoapHttpRequest* authHttpRequest = FLZenfolioSoapHttpRequestFrom(FLZenfolioApiSoapAuthenticateVisitor, AuthenticateVisitorResult);
+    FLSoapHttpRequest* authHttpRequest = FLZenfolioSoapHttpRequestFrom(FLZenfolioApiSoapAuthenticateVisitor, @"AuthenticateVisitorResponse/AuthenticateVisitorResult", NSString);
     return authHttpRequest;
 }
 
 + (FLHttpRequest*) loadPhotoHttpRequest:(NSNumber*) photoID
                    level:(NSString*) level {
-    FLSoapHttpRequest* httpRequest = FLZenfolioSoapHttpRequestFrom(FLZenfolioApiSoapLoadPhoto, LoadPhotoResult);
-    [httpRequest.soapRequest setPhotoId:photoID];
-    
-    FLZenfolioForceCompilerToSetLevel(httpRequest.soapRequest, level);
-    
+    FLSoapHttpRequest* httpRequest = FLZenfolioSoapHttpRequestFrom(FLZenfolioApiSoapLoadPhoto, @"LoadPhotoResponse/LoadPhotoResult", FLZenfolioPhoto);
+    [httpRequest.soapInput setPhotoId:photoID];
+    [httpRequest.soapInput setRequestedResponseLevel:level];
     return httpRequest;
 }
 
 + (FLHttpRequest*) movePhotoHttpRequest:(FLZenfolioPhoto*) photo
              fromPhotoSet:(FLZenfolioPhotoSet*) fromPhotoSet
                toPhotoSet:(FLZenfolioPhotoSet*) toPhotoSet {
-    FLSoapHttpRequest* httpRequest = FLZenfolioSoapHttpRequestFrom(FLZenfolioApiSoapMovePhoto, MovePhotoResult);
-    [httpRequest.soapRequest setSrcSetId:fromPhotoSet.Id];
-    [httpRequest.soapRequest setPhotoId:photo.Id];
-    [httpRequest.soapRequest setDestSetId:toPhotoSet.Id];
-    [httpRequest.soapRequest setIndexValue:toPhotoSet.PhotoCountValue];
+    FLSoapHttpRequest* httpRequest = FLZenfolioSoapHttpRequestFrom(FLZenfolioApiSoapMovePhoto, "MovePhotoResponse/MovePhotoResult", NSString);
+    [httpRequest.soapInput setSrcSetId:fromPhotoSet.Id];
+    [httpRequest.soapInput setPhotoId:photo.Id];
+    [httpRequest.soapInput setDestSetId:toPhotoSet.Id];
+    [httpRequest.soapInput setIndexValue:toPhotoSet.PhotoCountValue];
     return httpRequest;
 }
 
 + (FLHttpRequest*) addPhotoToCollectionHttpRequest:(FLZenfolioPhoto*) photo
                           collection:(FLZenfolioPhotoSet*) toCollection {
-    FLSoapHttpRequest* httpRequest = FLZenfolioSoapHttpRequestFrom(FLZenfolioApiSoapCollectionAddPhoto, CollectionAddPhotoResult);
-    [httpRequest.soapRequest setCollectionId:toCollection.Id];
-    [httpRequest.soapRequest setPhotoId:photo.Id];
+    FLSoapHttpRequest* httpRequest = FLZenfolioSoapHttpRequestFrom(FLZenfolioApiSoapCollectionAddPhoto, @"CollectionAddPhotoResponse/CollectionAddPhotoResult", NSString);
+    [httpRequest.soapInput setCollectionId:toCollection.Id];
+    [httpRequest.soapInput setPhotoId:photo.Id];
     return httpRequest;
 }
 
 + (FLHttpRequest*) loadGroupHierarchyHttpRequest:(NSString*) loginName {
-    FLSoapHttpRequest* httpRequest = FLZenfolioSoapHttpRequestFrom(FLZenfolioApiSoapLoadGroupHierarchy, LoadGroupHierarchyResult);
-    [httpRequest.soapRequest setLoginName:loginName];
+    FLSoapHttpRequest* httpRequest = FLZenfolioSoapHttpRequestFrom(FLZenfolioApiSoapLoadGroupHierarchy, @"LoadGroupHierarchyResponse/LoadGroupHierarchyResult", FLZenfolioGroup);
+    [httpRequest.soapInput setLoginName:loginName];
     return httpRequest;
 }
 
@@ -157,11 +169,11 @@
                     level:(NSString*) level
           includeChildren:(BOOL) includeChildren {
 
-    FLSoapHttpRequest* httpRequest = FLZenfolioSoapHttpRequestFrom(FLZenfolioApiSoapLoadGroup, LoadGroupResult);
-    [httpRequest.soapRequest setGroupId:groupID];
-    FLZenfolioForceCompilerToSetLevel(httpRequest.soapRequest, level);
+    FLSoapHttpRequest* httpRequest = FLZenfolioSoapHttpRequestFrom(FLZenfolioApiSoapLoadGroup, @"LoadGroupResponse/LoadGroupResult", FLZenfolioGroup);
+    [httpRequest.soapInput setGroupId:groupID];
+    [httpRequest.soapInput setRequestedResponseLevel:level];
 
-    [httpRequest.soapRequest setIncludeChildrenValue:YES];
+    [httpRequest.soapInput setIncludeChildrenValue:YES];
     return httpRequest;
 }
 @end

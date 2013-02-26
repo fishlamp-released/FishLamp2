@@ -39,8 +39,8 @@
         FLAssertNotNil_(info);
         
         self.operationName = [httpRequest operationName];
-        self.soapRequest = [httpRequest input];
-        self.soapResponse = [httpRequest output];
+        self.soapInput = [httpRequest input];
+//        self.soapResponse = [httpRequest output];
         self.soapNamespace = [info soapNamespace];
         self.soapActionHeader = [info soapActionHeaderForHttpRequestName:self.operationName];
         self.headers.requestURL = [NSURL URLWithString:[info serverURL]];
@@ -53,7 +53,7 @@
 }
 
 - (void) handleSoapFault:(FLSoapFault11*) fault {
-    FLThrowError([NSError errorWithZenfolioSoapFault:fault]);
+    FLThrowIfError([NSError errorWithZenfolioSoapFault:fault]);
 }
 
 @end

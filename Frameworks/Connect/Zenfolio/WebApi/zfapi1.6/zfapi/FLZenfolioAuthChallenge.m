@@ -88,8 +88,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"PasswordSalt" propertyClass:[NSData class] propertyType:FLDataTypeData] forPropertyName:@"PasswordSalt"];
-		[s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"Challenge" propertyClass:[NSData class] propertyType:FLDataTypeData] forPropertyName:@"Challenge"];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"PasswordSalt" propertyClass:[NSData class] ] ];
+		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"Challenge" propertyClass:[NSData class] ] ];
 	});
 	return s_describer;
 }
