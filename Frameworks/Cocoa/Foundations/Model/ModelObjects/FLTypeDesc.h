@@ -43,6 +43,9 @@ typedef uint32_t FLTypeID;
 // optional overrides.
 - (NSString*) encodeObjectToString:(id) object withEncoder:(id) encoder;
 - (id) decodeStringToObject:(NSString*) object withDecoder:(id) decoder;
+
++ (SEL) decodeSelectorForClass:(Class) aClass;
++ (SEL) encodeSelectorForClass:(Class) aClass;
 @end
 
 // Enum Type (special case for a number)
@@ -53,29 +56,32 @@ typedef uint32_t FLTypeID;
 // encoding
 
 @protocol FLTypeDescCoreTypesEncoding <NSObject>
-- (NSString*) typeDesc:(FLTypeDesc*) typeDesc encodeStringWithCGRect:(NSValue*) value;
-- (NSString*) typeDesc:(FLTypeDesc*) typeDesc encodeStringWithCGPoint:(NSValue*) value;
-- (NSString*) typeDesc:(FLTypeDesc*) typeDesc encodeStringWithCGSize:(NSValue*) value;
+- (NSString*) encodeStringWithCGRect:(NSValue*) value;
+- (NSString*) encodeStringWithCGPoint:(NSValue*) value;
+- (NSString*) encodeStringWithCGSize:(NSValue*) value;
 
-- (NSString*) typeDesc:(FLTypeDesc*) typeDesc encodeStringWithNSNumber:(NSNumber*) number;
-- (NSString*) typeDesc:(FLTypeDesc*) typeDesc encodeStringWithNSString:(NSString*) string;
-- (NSString*) typeDesc:(FLTypeDesc*) typeDesc encodeStringWithNSDate:(NSDate*) date;
-- (NSString*) typeDesc:(FLTypeDesc*) typeDesc encodeStringWithNSData:(NSData*) data;
-- (NSString*) typeDesc:(FLTypeDesc*) typeDesc encodeStringWithNSURL:(NSURL*) URL;
+- (NSString*) encodeStringWithNSNumber:(NSNumber*) number;
+- (NSString*) encodeStringWithNSString:(NSString*) string;
+- (NSString*) encodeStringWithNSDate:(NSDate*) date;
+- (NSString*) encodeStringWithNSData:(NSData*) data;
+- (NSString*) encodeStringWithNSURL:(NSURL*) URL;
+
+- (NSString*) encodeStringWithBOOL:(NSNumber*) number;
 @end
 
 // decoding
 
 @protocol FLTypeDescCoreTypesDecoding <NSObject>
-- (NSValue*) typeDesc:(FLTypeDesc*) typeDesc decodeCGPointFromString:(NSString*) string;
-- (NSValue*) typeDesc:(FLTypeDesc*) typeDesc decodeCGRectFromString:(NSString*) string;
-- (NSValue*) typeDesc:(FLTypeDesc*) typeDesc decodeCGSizeFromString:(NSString*) string;
+- (NSValue*) decodeCGPointFromString:(NSString*) string;
+- (NSValue*) decodeCGRectFromString:(NSString*) string;
+- (NSValue*) decodeCGSizeFromString:(NSString*) string;
 
-- (NSNumber*) typeDesc:(FLTypeDesc*) typeDesc decodeNSNumberFromString:(NSString*) string;
-- (NSString*) typeDesc:(FLTypeDesc*) typeDesc decodeNSStringFromString:(NSString*) string;
-- (NSDate*) typeDesc:(FLTypeDesc*) typeDesc decodeNSDateFromString:(NSString*) string;
-- (NSData*) typeDesc:(FLTypeDesc*) typeDesc decodeNSDataFromString:(NSString*) string;
-- (NSURL*) typeDesc:(FLTypeDesc*) typeDesc decodeNSURLFromString:(NSString*) string;
+- (NSNumber*) decodeBOOLFromString:(NSString*) string;
+- (NSNumber*) decodeNSNumberFromString:(NSString*) string;
+- (NSString*) decodeNSStringFromString:(NSString*) string;
+- (NSDate*) decodeNSDateFromString:(NSString*) string;
+- (NSData*) decodeNSDataFromString:(NSString*) string;
+- (NSURL*) decodeNSURLFromString:(NSString*) string;
 @end
 
 @interface NSObject (FLTypeDesc)

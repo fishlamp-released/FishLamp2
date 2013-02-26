@@ -45,79 +45,86 @@
 
 // specific decoders for types.
 
-- (NSString*) typeDesc:(FLTypeDesc*) typeDesc encodeStringWithNSString:(NSString*) string {
+- (NSString*) encodeStringWithNSString:(NSString*) string {
     return string;
 }
 
-- (NSString*) typeDesc:(FLTypeDesc*) typeDesc decodeNSStringFromString:(NSString*) string {
+- (NSString*) decodeNSStringFromString:(NSString*) string {
     return string;
 }
 
-- (NSString*) typeDesc:(FLTypeDesc*) typeDesc encodeStringWithNSDate:(NSDate*) date {
+- (NSString*) encodeStringWithNSDate:(NSDate*) date {
     return [[FLDateMgr instance] ISO8601DateToString:date];
 }
 
-- (NSDate*) typeDesc:(FLTypeDesc*) typeDesc decodeNSDateFromString:(NSString*) string {
+- (NSDate*) decodeNSDateFromString:(NSString*) string {
     return [[FLDateMgr instance] ISO8601StringToDate:string];
 }
 
-- (NSString*) typeDesc:(FLTypeDesc*) typeDesc encodeStringWithNSURL:(NSURL*) URL {
-    return [self typeDesc:typeDesc encodeStringWithNSString:[URL absoluteString]];
+- (NSString*) encodeStringWithNSURL:(NSURL*) URL {
+    return [self encodeStringWithNSString:[URL absoluteString]];
 }
 
-- (NSURL*) typeDesc:(FLTypeDesc*) typeDesc decodeNSURLFromString:(NSString*) string {
-    return [NSURL URLWithString:[self typeDesc:typeDesc decodeNSStringFromString:string]];
+- (NSURL*) decodeNSURLFromString:(NSString*) string {
+    return [NSURL URLWithString:[self decodeNSStringFromString:string]];
 }
 
-- (NSString*) typeDesc:(FLTypeDesc*) typeDesc encodeStringWithCGRect:(NSValue*) value {
+- (NSString*) encodeStringWithCGRect:(NSValue*) value {
     return NSStringFromCGRect([value CGRectValue]);
 }
 
-- (NSString*) typeDesc:(FLTypeDesc*) typeDesc encodeStringWithCGPoint:(NSValue*) value {
+- (NSString*) encodeStringWithCGPoint:(NSValue*) value {
     return NSStringFromCGPoint([value CGPointValue]);
 }
 
-- (NSString*) typeDesc:(FLTypeDesc*) typeDesc encodeStringWithCGSize:(NSValue*) value {
+- (NSString*) encodeStringWithCGSize:(NSValue*) value {
     return NSStringFromCGSize([value CGSizeValue]);
 }
 
-- (NSValue*) typeDesc:(FLTypeDesc*) typeDesc decodeCGPointFromString:(NSString*) string {
+- (NSValue*) decodeCGPointFromString:(NSString*) string {
     return [NSValue valueWithCGPoint:CGPointFromString(string)];
 }
 
-- (NSValue*) typeDesc:(FLTypeDesc*) typeDesc decodeCGRectFromString:(NSString*) string {
+- (NSValue*) decodeCGRectFromString:(NSString*) string {
     return [NSValue valueWithCGRect:CGRectFromString(string)];
 }
 
-- (NSValue*) typeDesc:(FLTypeDesc*) typeDesc decodeCGSizeFromString:(NSString*) string {
+- (NSValue*) decodeCGSizeFromString:(NSString*) string {
     return [NSValue valueWithCGSize:CGSizeFromString(string)];;
 }
 
-- (NSString*) typeDesc:(FLTypeDesc*) typeDesc encodeStringWithNSNumber:(NSNumber*) number {
+- (NSString*) encodeStringWithNSNumber:(NSNumber*) number {
     return [_numberFormatter stringFromNumber:number];
 }
 
-- (NSNumber*) typeDesc:(FLTypeDesc*) typeDesc decodeNSNumberFromString:(NSString*) string {
+- (NSNumber*) decodeNSNumberFromString:(NSString*) string {
     return [_numberFormatter numberFromString:string];
 }
 
-- (NSData*) typeDesc:(FLTypeDesc*) typeDesc decodeNSDataFromString:(NSString*) string {
-    FLAssertFailed_v(@"need to override this");
-    return nil;
+- (NSData*) decodeNSDataFromString:(NSString*) string {
+    return [string dataUsingEncoding:NSUTF8StringEncoding];
 }
 
-- (NSString*) typeDesc:(FLTypeDesc*) typeDesc encodeStringWithNSData:(NSString*) string {
-    FLAssertFailed_v(@"need to override this");
-    return nil;
+- (NSString*) encodeStringWithNSData:(NSData*) data {
+    return FLAutorelease([[NSString alloc] initWithBytes:[data bytes] 
+                                    length:[data length] 
+                                    encoding:NSUTF8StringEncoding]);
 }
 
-- (UIColor*) typeDesc:(FLTypeDesc*) typeDesc decodeUIColorFromString:(NSString*) string {
+- (UIColor*) decodeUIColorFromString:(NSString*) string {
     return FLColorFromRGBString(string);
 }
 
-- (NSString*) typeDesc:(FLTypeDesc*) typeDesc encodeStringWithUIColor:(UIColor*) color {
+- (NSString*) encodeStringWithUIColor:(UIColor*) color {
     return FLRgbStringFromColor(color);
 }
 
+- (NSNumber*) decodeBOOLFromString:(NSString*) string {
+    return [NSNumber numberWithBool:[string boolValue]];
+}
+
+- (NSString*) encodeStringWithBOOL:(NSNumber*) number {
+    return [number boolValue] ? @"true" : @"false";
+}
 
 @end

@@ -8,6 +8,7 @@
 
 #import "FLHttpRequest.h"
 #import "FLSoapFault11.h"
+#import "FLTypeDesc.h"
 
 @interface FLSoapHttpRequest : FLHttpRequest {
 @private
@@ -17,7 +18,7 @@
     NSString* _operationName;
     id _soapInput;
     NSString* _xmlDataPath;
-    Class _type;
+    FLTypeDesc* _decodedType;
 }
 
 @property (readwrite, strong) id soapInput;
@@ -30,6 +31,6 @@
 
 + (FLSoapFault11*) checkForSoapFaultInData:(NSData*) data;
 
-- (void) setXmlPath:(NSString*) path withClassToInflate:(Class) aClass;
+- (void) setXmlPath:(NSString*) path withDecodedType:(FLTypeDesc*) desc;
 
 @end

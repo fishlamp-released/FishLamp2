@@ -20,9 +20,7 @@
             
             id object = [self valueForKey:property.propertyName];
             if(object) {
-                FLObjectXmlElement* element = [FLObjectXmlElement objectXmlElement:object xmlElementTag:property.propertyName propertyDescription:property];
-                [xmlElement addElement:element];
-                [object addToXmlElement:element propertyDescription:property];
+                [xmlElement addElement:[FLObjectXmlElement objectXmlElement:object xmlElementTag:property.propertyName propertyDescription:property]];
             }
         }
     }

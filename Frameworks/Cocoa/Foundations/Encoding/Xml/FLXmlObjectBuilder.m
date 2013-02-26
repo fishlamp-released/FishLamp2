@@ -391,18 +391,18 @@ FLErrorLookup s_lookup[] = {
 	[parser setShouldResolveExternalEntities:NO];
 }
 
-- (void) addElement:(NSDictionary*) newElement toElement:(NSMutableDictionary*) parentElement {
-    
-    NSString* name = [newElement objectForKey:@"elementName"];
-    NSMutableArray* elementList = [parentElement objectForKey:@"elements"];
-    if(elementList) {
-        [elementList addObject:name];
-    }
-    else {
-        [parentElement setObject:[NSMutableArray arrayWithObject:name] forKey:@"elements"];
-    }
-    [parentElement setObject:newElement forKey:name];
-}
+//- (void) addElement:(NSDictionary*) newElement toElement:(NSMutableDictionary*) parentElement {
+//    
+//    NSString* name = [newElement objectForKey:@"elementName"];
+//    NSMutableArray* elementList = [parentElement objectForKey:@"elements"];
+//    if(elementList) {
+//        [elementList addObject:name];
+//    }
+//    else {
+//        [parentElement setObject:[NSMutableArray arrayWithObject:name] forKey:@"elements"];
+//    }
+//    [parentElement setObject:newElement forKey:name];
+//}
 
 - (void)parser:(NSXMLParser *)parser 
 didStartElement:(NSString *)elementName 
@@ -410,29 +410,21 @@ didStartElement:(NSString *)elementName
  qualifiedName:(NSString *)qName 
     attributes:(NSDictionary *)attributes {
         
-    NSMutableDictionary* newElement = [NSMutableDictionary dictionary];
-    [newElement setObject:elementName forKey:@"elementName"];
-    [newElement setObject:namespaceURI forKey:@"namespace"];
-    [newElement setObject:qName forKey:@"qName"];
+    FLParsedXmlElement* newElement = [FLParsedXmlElement parsedXmlElement];
+    newElement.elementName = elementName;
+    newElement.namespaceURI = namespaceURI;
+    newElement.qualifiedName = qName;
+    
     if(attributes && attributes.count) {
-        [newElement setObject:attributes forKey:@"attributes"];
+        newElement.attributes = attributes;
     }
 
-    [self addElement:newElement toElement:[self.stack lastObject]];
+    [[self.stack lastObject] addElement:newElement];
     [self.stack addObject:newElement];
 }
 
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string {
-    string = [string trimmedString];
-    if(FLStringIsNotEmpty(string)) {
-        NSMutableString* value = [[self.stack lastObject] objectForKey:@"value"];
-        if(value) {
-            [value appendString:string];
-        }
-        else {
-            [[self.stack lastObject] setObject:FLMutableCopyWithAutorelease(string) forKey:@"value"];
-        }
-    }
+    [[self.stack lastObject] appendStringToValue:string];
 }
 
 - (void)parser:(NSXMLParser *)parser 
@@ -440,8 +432,8 @@ didStartElement:(NSString *)elementName
 	namespaceURI:(NSString *)namespaceURI 
 	qualifiedName:(NSString *)qName {
     
-    NSMutableDictionary* lastElement = FLRetainWithAutorelease([self.stack lastObject]);
-    FLAssertObjectsAreEqual_(elementName, [lastElement objectForKey:@"elementName"]);
+    FLParsedXmlElement* lastElement = FLRetainWithAutorelease([self.stack lastObject]);
+    FLAssertObjectsAreEqual_(elementName, lastElement.elementName);
     [self.stack removeLastObject];
 }
 
@@ -458,7 +450,7 @@ didStartElement:(NSString *)elementName
 - (FLResult) parseData:(NSData*) data {
 
     self.stack = [NSMutableArray array];
-    [self.stack addObject:[NSMutableDictionary dictionary]];
+    [self.stack addObject:[FLParsedXmlElement parsedXmlElement]];
 
     
     @try {
@@ -482,126 +474,222 @@ didStartElement:(NSString *)elementName
         self.error = nil;
     }
 }
+@end
 
-//- (NSMutableArray*) addObjectsToArray:(NSMutableArray*) fromArray 
-//	forProperty:(FLPropertyDescription*) propertyDescription
-//                              withDecoder:(id<FLDataDecoding>) decoder
-//{
-//	NSMutableArray* newArray = [NSMutableArray arrayWithCapacity:[fromArray count]];
-//	
-//	FLPropertyDescription* arrayItemDesc = [[propertyDescription arrayTypes] objectAtIndex:0];
-//		
-//	for(id arrayItem in fromArray)
-//	{			
-//		if([arrayItem isKindOfClass:[NSDictionary class]])
-//		{
-//			id newObject = FLAutorelease([[arrayItemDesc.propertyType.typeClass alloc] init]);
-//			[newArray addObject:newObject];
-//			[self buildObject:newObject fromDictionary:arrayItem withObjectDescriber:[[newObject class] sharedObjectDescriber] withDecoder:decoder];
-//		}
-//		else if([arrayItem isKindOfClass:[NSArray class]]) {
-//			[newArray addObject:[self addObjectsToArray:arrayItem forProperty:arrayItemDesc withDecoder:decoder]];
-//		}
-//		else
-//		{
-//            if(decoder) {
-//                [newArray addObject:[arrayItemDesc.propertyType decodeStringToObject:arrayItem withDecoder:decoder]];
-//            }
-//            else {
-//                [newArray addObject:arrayItem];
-//            }
-//
-//
-////			switch(arrayItemDesc.propertyType.specificType)
-////			{
-////				case FLSpecificTypeDate:
-////					[newArray addObject: [[FLDateMgr instance] ISO8601StringToDate:arrayItem]];
-////				break;
-////				
-////				default:
-////                    [newArray addObject:arrayItem];
-////				break;
-////			}
-//
-//            
-//
-//
-//		}
-//	}
-//	
-//	return newArray;
-//}
-//
-//- (void) buildObject:(id) object 
-//      fromDictionary:(NSDictionary*) dictionary 
-// withObjectDescriber:(FLObjectDescriber*) describer
-//         withDecoder:(id<FLDataDecoding>) decoder {
-//
-//    for(NSString* key in dictionary) {
-//
-//		id value = [dictionary objectForKey:key];
-//		if(value)
-//		{
-//			FLPropertyDescription* property = [describer.propertyDescribers objectForKey:key];
-//			if(property)
-//			{
-//				if([value isKindOfClass:[NSDictionary class]])
-//				{
-////					FLAssert_v(property.propertyType.generalType == FLGeneralTypeObject, @"not an object?");
-//				
-//					id newObject = FLAutorelease([[property.propertyType.typeClass alloc] init]);
-//					[object setValue:newObject forKey:key];
-//					[self buildObject:newObject fromDictionary:value withObjectDescriber:[[newObject class] sharedObjectDescriber] withDecoder:decoder];
-//				}
-//				else if([value isKindOfClass:[NSArray class]]) {
-//					[object setValue:[self addObjectsToArray:value forProperty:property withDecoder:decoder] forKey:key];
-//				}
-//				else {
-//
-//                    if(decoder) {
-//                        value = [property.propertyType decodeStringToObject:value withDecoder:decoder];
-//                    }
-//                
-////					switch(property.propertyType.specificType)
-////					{
-////						case FLSpecificTypeDate:
-////							value = [[FLDateMgr instance] ISO8601StringToDate:value];
-////						break;
-////						
-////						default:
-////						break;
-////					}
-//					
-//					[object setValue:value forKey:key];
-//				}
-//			}
-//			else
-//			{
-//				FLDebugLog(@"Warning: unknown property for key: %@, value: %@", key, [value description]);
-//			}
-//		}
-//	}
-//}
-//
-//- (id) buildObjectWithDictionary:(NSDictionary*) dictionary
-//                        forClass:(Class) aClass 
-//                     withDecoder:(id<FLDataDecoding>) decoder {
-//    id rootObject = FLAutorelease([[aClass alloc] init]);
-//                     
-//	[self buildObject:rootObject fromDictionary:dictionary withObjectDescriber:[aClass sharedObjectDescriber] withDecoder:decoder];
-//}
-
-
+@interface FLParsedXmlElement ()
+@property (readwrite, assign, nonatomic) FLParsedXmlElement* parent;
+- (id) inflateObjectWithPropertyDescription:(FLPropertyDescription*) property  withDecoder:(id<FLDataDecoding>) decoder ;
+- (void) addPropertiesToObject:(id) object withDecoder:(id<FLDataDecoding>) decoder;
 
 @end
 
-@implementation NSDictionary (FLXmlParsing)
-- (id) objectAtPath:(NSString*) path {
-    id obj = self;
+@implementation FLParsedXmlElement
+
+@synthesize attributes = _attributes;
+@synthesize namespaceURI = _namespace;
+@synthesize elementName = _elementName;
+@synthesize qualifiedName = _qualifiedName;
+@synthesize value = _value;
+@synthesize elements = _elements;
+@synthesize parent = _parent;
+
++ (id) parsedXmlElement {
+    return FLAutorelease([[[self class] alloc] init]);
+}
+
+- (void) appendStringToValue:(NSString*) string {
+    string = [string trimmedString];
+    if(FLStringIsNotEmpty(string)) {
+        if(_value) {
+            [_value appendString:string];
+        }
+        else {
+            _value = [string mutableCopy];
+        }
+    }
+}
+
+- (void) addElement:(FLParsedXmlElement*) element {
+    if(!_elements) {
+        _elements = [[NSMutableDictionary alloc] init];
+    }
+    id existing = [_elements objectForKey:element.elementName];
+    if(!existing) {
+        [_elements setObject:element forKey:element.elementName];
+    }
+    else if([existing isKindOfClass:[NSMutableArray class]]) {
+        [existing addObject:element];
+    }
+    else {
+        NSMutableArray* array = [NSMutableArray arrayWithObjects:existing, element, nil];
+        [_elements setObject:array forKey:element.elementName];
+    }
+    element.parent = self;
+}
+
+- (FLParsedXmlElement*) elementForElementName:(NSString*) name {
+    return [_elements objectForKey:name];
+}
+
+#if FL_MRC
+- (void) dealloc {
+    [_attributes release];
+    [_namespace release];
+    [_elementName release];
+    [_qualifiedName release];
+    [_value release];
+    [_elements release];
+    [super dealloc];
+}
+#endif
+
+- (FLParsedXmlElement*) elementAtPath:(NSString*) path {
+    FLParsedXmlElement* obj = self;
     NSArray* pathComponents = [path pathComponents];
     for(NSString* component in pathComponents) {
-        obj = [obj objectForKey:component];
+        obj = [obj elementForElementName:component];
     }
     return obj;
 }
+
+- (NSString*) description {
+
+    return [NSString stringWithFormat:@"elementName:%@, namespace:%@, qualifiedName:%@, attributes:%@, value:%@, elements:%@ \n",
+        FLEmptyStringOrString(self.elementName),
+        FLEmptyStringOrString(self.namespaceURI),
+        FLEmptyStringOrString(self.qualifiedName),
+        FLEmptyStringOrString([self.attributes description]),
+        FLEmptyStringOrString(self.value),
+        FLEmptyStringOrString([self.elements description])
+    ];
+}
+
+- (id) inflateObjectWithType:(FLTypeDesc*) typeToInflate withDecoder:(id<FLDataDecoding>) decoder {
+
+    FLAssertNotNil_(decoder);
+    FLAssertNotNil_(typeToInflate);
+
+    FLObjectDescriber* describer = [[typeToInflate.typeClass class] sharedObjectDescriber];
+    if(describer) {
+        id rootObject = FLAutorelease([[typeToInflate.typeClass alloc] init]);
+        FLAssertNotNil_v(rootObject, @"unabled to create object of type: %@", NSStringFromClass(typeToInflate.typeClass));
+        
+        [self addPropertiesToObject:rootObject withDecoder:decoder];
+        return rootObject;
+    }
+    
+    id object = [decoder decodeDataFromString:self.value forType:typeToInflate];
+    FLAssertNotNil_(object);
+    
+    return object;
+}
+
+- (FLPropertyDescription*) arrayTypeForName:(NSString*) name
+                    withPropertyDescription:(FLPropertyDescription*) propertyDescription {
+
+   for(FLPropertyDescription* arrayType in propertyDescription.arrayTypes) {
+        if(FLStringsAreEqual(name, arrayType.propertyName)) {
+            return arrayType;
+        }
+    }
+
+    return nil;
+}                            
+
+- (void) inflateElementsIntoArray:(NSMutableArray*) newArray
+          withPropertyDescription:(FLPropertyDescription*) propertyDescription
+                      withDecoder:(id<FLDataDecoding>) decoder {
+    FLAssertNotNil_(newArray);
+    FLAssertNotNil_(decoder);
+    FLAssertNotNil_(propertyDescription);
+    FLConfirm_v(propertyDescription.isArray, @"expecting an array property");
+
+    for(id elementName in self.elements) {
+        id elementOrArray = [self.elements objectForKey:elementName];
+
+        FLPropertyDescription* arrayType = [self arrayTypeForName:elementName withPropertyDescription:propertyDescription];
+        FLConfirmNotNil_v(arrayType, @"arrayType for element \"%@\" not found", elementName);
+        
+        if([elementOrArray isKindOfClass:[NSArray class]]) {
+            for(FLParsedXmlElement* element in elementOrArray) {			
+                [newArray addObject:[element inflateObjectWithPropertyDescription:arrayType withDecoder:decoder]];
+            }
+        }
+        else {
+            FLAssert_([elementOrArray isKindOfClass:[FLParsedXmlElement class]]);
+            [newArray addObject:[elementOrArray inflateObjectWithPropertyDescription:arrayType withDecoder:decoder]];
+        }
+    }
+}
+
+- (void) addPropertiesToObject:(id) object 
+                 withDecoder:(id<FLDataDecoding>) decoder {
+    
+    FLAssertNotNil_(object);
+    FLAssertNotNil_(decoder);
+
+    FLObjectDescriber* describer = [[object class] sharedObjectDescriber];
+    FLAssertNotNil_(describer);
+
+    for(id elementName in self.elements) {
+        id elementOrArray = [self.elements objectForKey:elementName];
+
+        FLPropertyDescription* propertyDescription = [describer.propertyDescribers objectForKey:elementName];
+        FLAssertNotNil_(propertyDescription);
+
+        id propertyValue = nil;
+        
+        if(propertyDescription.isArray) {
+            propertyValue = [NSMutableArray array];
+
+            if([elementOrArray isKindOfClass:[FLParsedXmlElement class]]) {
+                [elementOrArray inflateElementsIntoArray:propertyValue 
+                                 withPropertyDescription:propertyDescription 
+                                             withDecoder:decoder];
+            }
+            else {
+            
+                FLAssert_([elementOrArray isKindOfClass:[NSArray class]]);
+                for(FLParsedXmlElement* element in elementOrArray) {
+                    [element inflateElementsIntoArray:propertyValue 
+                              withPropertyDescription:propertyDescription 
+                                          withDecoder:decoder];
+                }
+
+            }
+        }
+        else {
+            FLAssert_([elementOrArray isKindOfClass:[FLParsedXmlElement class]]);
+            propertyValue = [elementOrArray inflateObjectWithPropertyDescription:propertyDescription 
+                                                                     withDecoder:decoder];
+        }
+        
+        if(propertyValue) {
+            [object setValue:propertyValue forKey:propertyDescription.propertyName];
+        }
+    }
+}
+
+
+- (id) inflateObjectWithPropertyDescription:(FLPropertyDescription*) property  
+                                withDecoder:(id<FLDataDecoding>) decoder {
+    FLAssertNotNil_(property);
+    FLAssertNotNil_(decoder);
+    
+    id object = nil;
+    if([property.propertyType.typeClass sharedObjectDescriber]) {
+        object = FLAutorelease([[property.propertyType.typeClass alloc] init]);
+        [self addPropertiesToObject:object withDecoder:decoder];
+        
+        // NOTE: what if there is a value?? 
+        
+    }
+    else if(self.value) {
+        object = [decoder decodeDataFromString:self.value forType:property.propertyType];
+    }
+    
+    return object;
+}
+
+
 @end

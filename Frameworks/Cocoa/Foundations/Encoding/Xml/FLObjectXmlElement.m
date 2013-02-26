@@ -66,21 +66,21 @@
 }
 #endif
 
-- (void) appendLineWithEncodedObject:(id) object
-                   propertyDescription:(FLPropertyDescription*) description {
-
-    if(object) {
-        FLAssertNotNil_v(description, @"serialization requires property description");
-        
-        id<FLDataEncoding> dataEncoder = [self dataEncoder];
-        FLConfirmNotNil_v(dataEncoder, @"Xml String builder requires a data encoder");
-    
-		NSString* string = [dataEncoder encodeDataToString:object forType:description.propertyType];
-        FLAssertNotNil_(string);
-        FLConfirm_([string isKindOfClass:[NSString class]]);
-        [self appendLine:string];
-	}
-}
+//- (void) appendLineWithEncodedObject:(id) object
+//                   propertyDescription:(FLPropertyDescription*) description {
+//
+//    if(object) {
+//        FLAssertNotNil_v(description, @"serialization requires property description");
+//        
+//        id<FLDataEncoding> dataEncoder = [self dataEncoder];
+//        FLConfirmNotNil_v(dataEncoder, @"Xml String builder requires a data encoder");
+//    
+//		NSString* string = [dataEncoder encodeDataToString:object forType:description.propertyType];
+//        FLAssertNotNil_(string);
+//        FLConfirm_([string isKindOfClass:[NSString class]]);
+//        [self appendLine:string];
+//	}
+//}
 
 - (void) didMoveToParent:(id) parent {
 
