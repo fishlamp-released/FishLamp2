@@ -14,11 +14,12 @@
 //#import "FLNetworkServerContext.h"
 
 #import "FLZenfolioApi1_6All.h"
+#import "FLCoreTypes.h"
 
 #define FLZenfolioSoapHttpRequestFrom(__NAME__, __PATH__, __CLASS__) \
     [FLZenfolioSoapHttpRequestFactory soapHttpRequest:FLAutorelease([[__NAME__ alloc] init]) path:@"Envelope/Body/"\
         __PATH__ \
-        class:[__CLASS__ class]] 
+decodedType:[__CLASS__ typeDesc]] 
 
 @implementation FLZenfolioLoadPhotoSet (NSObject)
 - (void) setRequestedResponseLevel:(NSString*) level {
@@ -65,7 +66,7 @@
 
 + (FLSoapHttpRequest*) soapHttpRequest:(id) operationDescriptor 
                                   path:(NSString*) path 
-                                 class:(Class) class{
+                           decodedType:(FLTypeDesc*) type {
 
     static FLZenfolioApiSoap* s_soapServer = nil;
     static dispatch_once_t onceToken;
@@ -75,7 +76,7 @@
 
     FLZenfolioSoapHttpRequest* soapHttpRequest = [FLZenfolioSoapHttpRequest soapHttpRequestWithGeneratedObject:operationDescriptor 
                                                                                     serverInfo:s_soapServer];
-    [soapHttpRequest setXmlPath:path withClassToInflate:class];
+    [soapHttpRequest setXmlPath:path withDecodedType:type];
     
     return soapHttpRequest;
 }
@@ -103,7 +104,7 @@
 }
 
 + (FLHttpRequest*) authenticateRequest:(NSData*) challenge proof:(NSData*) proof  {
-    FLSoapHttpRequest* authenticate = FLZenfolioSoapHttpRequestFrom(FLZenfolioApiSoapAuthenticate, @"AuthenticateResponse", NSString);
+    FLSoapHttpRequest* authenticate = FLZenfolioSoapHttpRequestFrom(FLZenfolioApiSoapAuthenticate, @"AuthenticateResponse/AuthenticateResult", NSString);
     [authenticate.soapInput setChallenge:challenge];
     [authenticate.soapInput setProof:proof];
     return authenticate;
@@ -121,7 +122,7 @@
 
 + (FLHttpRequest*) checkPrivilegeHttpRequest:(NSString*) loginName 
                             privilegeName:(NSString*) privilegeName {
-    FLSoapHttpRequest* httpRequest = FLZenfolioSoapHttpRequestFrom(FLZenfolioApiSoapCheckPrivilege, @"CheckPrivilegeResponse/CheckPrivilegeResult", NSNumber);
+    FLSoapHttpRequest* httpRequest = FLZenfolioSoapHttpRequestFrom(FLZenfolioApiSoapCheckPrivilege, @"CheckPrivilegeResponse/CheckPrivilegeResult", FLBoolNumber);
     [httpRequest.soapInput setLoginName:loginName];
     [httpRequest.soapInput setPrivilegeName:privilegeName];
     return httpRequest;

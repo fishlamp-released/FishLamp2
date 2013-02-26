@@ -15,6 +15,7 @@
 @protocol FLDataDecoding <NSObject, FLTypeDescCoreTypesEncoding>
 - (id) decodeDataFromString:(NSString*) inEncodedString 
                     forType:(FLTypeDesc*) type;
+
 @end
 
 

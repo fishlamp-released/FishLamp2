@@ -46,6 +46,11 @@ enum {
 @end
 
 @implementation FLBoolNumber 
+- (id) init {
+    return [self initWithClass:[NSNumber class] 
+                       encoder:NSSelectorFromString(@"encodeStringWithBOOL:") 
+                       decoder:NSSelectorFromString(@"decodeBOOLFromString:")];
+}
 + (id) boolNumber {
     return [self typeDesc];
 }

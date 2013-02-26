@@ -57,7 +57,6 @@
     FLAssertStringIsNotEmpty_(self.soapNamespace);
     FLAssertStringIsNotEmpty_(self.operationName);
 
-// wehre is http request url?
     FLSoapStringBuilder* soapStringBuilder = [FLSoapStringBuilder soapStringBuilder];
     
     FLObjectXmlElement* element = [FLObjectXmlElement soapXmlElementWithObject:self.soapInput 
@@ -97,17 +96,14 @@
     FLThrowIfError(result);
     
     if(_xmlDataPath) {
-        NSDictionary* resultObject = [result objectAtPath:_xmlDataPath];
-        if(resultObject) {
-            result = resultObject;
+        FLParsedXmlElement* element = [result elementAtPath:_xmlDataPath];
+        if(element) {
+            result = element;
         }
         
-        if(_type) {
-            id object = FLAutorelease([[_type alloc] init]);
-    
-            FLObjectBuilder* objectBuilder = [FLObjectBuilder objectBuilder];
-            [objectBuilder buildObjectsFromDictionary:result withRootObject:object withDecoder:[FLSoapDataEncoder instance]];
-        
+        if(_decodedType) {
+            id object = [element inflateObjectWithType:_decodedType withDecoder:[FLSoapDataEncoder instance]];
+            FLAssertNotNil_(object);
             result = object;
         }
     }
@@ -115,10 +111,9 @@
     return result;
 }
 
-- (void) setXmlPath:(NSString*) path withClassToInflate:(Class) aClass {
+- (void) setXmlPath:(NSString*) path withDecodedType:(FLTypeDesc*) decodedType {
     FLSetObjectWithRetain(_xmlDataPath, path);
-    _type = aClass;
-
+    FLSetObjectWithRetain(_decodedType, decodedType);
 }
 
 @end

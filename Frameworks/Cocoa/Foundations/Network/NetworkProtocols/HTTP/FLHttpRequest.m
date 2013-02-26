@@ -287,15 +287,14 @@
 
         FLPerformSelector2(self.observer, @selector(httpRequest:didCloseWithResult:), self, result);
         
-        if(self.finisher) {
-            [self.finisher setFinishedWithResult:result];
-        }
-        
+        FLFinisher* finisher = FLRetainWithAutorelease(self.finisher);
+        self.finisher = nil;
         self.observer = nil;
         self.networkStream = nil;
         self.httpResponse = nil;
-        
         self.dispatcher = nil;
+        
+        [finisher setFinishedWithResult:result];
     }
 }
 
@@ -409,6 +408,7 @@
 
     if(!finisher.isFinished) {
         self.observer = observer;
+        self.finisher = finisher;
         
         if(self.disableAuthenticator) {
             self.authenticator = nil;

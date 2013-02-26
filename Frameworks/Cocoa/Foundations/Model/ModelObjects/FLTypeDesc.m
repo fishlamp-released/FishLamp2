@@ -57,15 +57,22 @@ static NSMutableDictionary* s_typeRegistry = nil;
     return self;
 }
 
++ (SEL) decodeSelectorForClass:(Class) aClass {
+    return NSSelectorFromString([NSString stringWithFormat:@"decode%@FromString:", NSStringFromClass(aClass)]);
+}
+
++ (SEL) encodeSelectorForClass:(Class) aClass {
+    return NSSelectorFromString([NSString stringWithFormat:@"encodeStringWith%@:", NSStringFromClass(aClass)]);
+}
+
 - (id) initWithClass:(Class) class {
 
     SEL encoder = nil;
     SEL decoder = nil;
     
     if(class) {
-        NSString* name = NSStringFromClass(class);
-        encoder = NSSelectorFromString([NSString stringWithFormat:@"typeDesc:encodeStringWith%@:", name]);
-        decoder = NSSelectorFromString([NSString stringWithFormat:@"typeDesc:decode%@FromString:", name]);
+        encoder = [FLTypeDesc encodeSelectorForClass:class];
+        decoder = [FLTypeDesc decodeSelectorForClass:class];
     }
     
     return [self initWithClass:class encoder: encoder decoder: decoder];
@@ -76,11 +83,11 @@ static NSMutableDictionary* s_typeRegistry = nil;
 }
 
 - (NSString*) encodeObjectToString:(id) object withEncoder:(id) encoder {
-    return [encoder performSelector:self.encodeSelector withObject:self withObject:object];
+    return [encoder performSelector:self.encodeSelector withObject:object];
 }
 
 - (id) decodeStringToObject:(NSString*) string withDecoder:(id) decoder {
-    return [decoder performSelector:self.decodeSelector withObject:self withObject:string];
+    return [decoder performSelector:self.decodeSelector withObject:string];
 }
 
 - (NSString*) typeName {
