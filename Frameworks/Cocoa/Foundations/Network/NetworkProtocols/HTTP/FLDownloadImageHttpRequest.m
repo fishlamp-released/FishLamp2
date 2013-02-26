@@ -50,7 +50,7 @@
 //        
 //    [super runOperation];
 ////
-////    FLThrowError([self.httpResponse simpleHttpResponseErrorCheck]);
+////    FLThrowIfError([self.httpResponse simpleHttpResponseErrorCheck]);
 ////    if(!self.error) {
 ////    
 ////        FLCachedImage* photo = [FLCachedImage cachedImage];

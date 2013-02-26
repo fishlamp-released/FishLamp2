@@ -27,11 +27,6 @@
 
 @end
 
-//@interface FLXmlElement (XMLSerialization) 
-//- (void) appendLineWithEncodedObject:(id) object
-//                 propertyDescription:(FLPropertyDescription*) description;
-//@end
-
 @protocol FLXMLSeriliazable <NSObject>
 - (void) addToXmlElement:(FLXmlElement*) xmlElement
      propertyDescription:(FLPropertyDescription*) description;

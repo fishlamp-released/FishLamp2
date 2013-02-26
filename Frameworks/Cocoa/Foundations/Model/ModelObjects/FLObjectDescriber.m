@@ -30,7 +30,7 @@
 	if((self = [super init])) {
 		_properties = [[NSMutableDictionary alloc] init];
 		for(FLPropertyDescription* prop in describers.objectEnumerator) {
-			[self setPropertyDescriber:prop forPropertyName:prop.propertyName];
+			[self addPropertyDescriber:prop forPropertyName:prop.propertyName];
 		}
 	}
 	
@@ -55,7 +55,7 @@
 	return desc;
 }
 
-- (void) setPropertyDescriber:(FLPropertyDescription*) objectDescriber forPropertyName:(NSString*) propertyName {
+- (void) addPropertyDescriber:(FLPropertyDescription*) objectDescriber forPropertyName:(NSString*) propertyName {
 	[_properties setObject:objectDescriber forKey:propertyName];
 	
 	if(objectDescriber.isUnboundedArray) {
@@ -64,6 +64,10 @@
 			[_properties setObject:prop forKey:prop.propertyName];
 		}
 	}
+}
+
+- (void) addPropertyDescriber:(FLPropertyDescription*) propertyDescriber {
+    [self addPropertyDescriber:propertyDescriber forPropertyName:propertyDescriber.propertyName];
 }
 
 - (FLPropertyDescription*) propertyDescriberForPropertyName:(NSString*) propertyName {
@@ -98,12 +102,7 @@
 
 // TODO: build up FLTypeDesc
 
-            FLTypeDesc* propertyType = nil;
-			
-			[self setPropertyDescriber:[FLPropertyDescription propertyDescription:propertyName
-				propertyClass:theClass
-				propertyType:propertyType
-				arrayTypes:nil] forPropertyName:propertyName];
+            [self addPropertyDescriber:[FLPropertyDescription propertyDescription:propertyName propertyClass:theClass]];
 							 
 			free(className);
 	
@@ -247,71 +246,96 @@
 @end
 
 
-typedef void (*CompareCallback) (id, id, FLMergeMode, NSArray* arrayItemTypes); 
-
-void _FLMergeListsOfObjects(NSMutableArray* dest, 
-                            NSArray* src, 
-                            FLMergeMode mergeMode, 
-                            NSArray* arrayItemTypes,
-                            CompareCallback handleEqual) {
-	
-    for(NSInteger i = (NSInteger) src.count - 1; i >= 0; i--) {	
-		id outer = [src objectAtIndex:i];
-		bool foundIt = NO;
-		for(NSInteger j = (NSInteger) dest.count - 1; j >= 0; j--) {
-			id inner = [dest objectAtIndex:j];
-			if([inner isEqual:outer]) {	
-				handleEqual(inner, outer, mergeMode, arrayItemTypes);
-				foundIt = YES;
-				break;
-			}
-		}
-		if(!foundIt) {
-			[dest addObject:outer];
-		}
-	}
-}
-
-void FLEqualObjectHandler(id inner, id outer, FLMergeMode mergeMode, NSArray* arrayItemTypes) {
-	FLMergeObjects(inner, outer, mergeMode); 
-}
-
-void FLEqualValueHandler(id inner, id outer, FLMergeMode mergeMode, NSArray* arrayItemTypes) {
-	// already equal, so nothing to do.
-}
-
-void FLEqualMultiObjectHandler(id inner, id outer, FLMergeMode mergeMode, NSArray* arrayItemTypes) {
-	for(FLPropertyDescription* desc in arrayItemTypes) {
-		if([outer isKindOfClass:desc.propertyClass] && desc.propertyType) {
-			FLMergeObjects(inner, outer, mergeMode); 
-			break;
-		}
-	}
-	
-
-//	FLDataTypeStruct* itemType = FLGetTypeForClass(arrayItemTypes, [outer class]);
-//	if(itemType && itemType->typeID == FLDataTypeObject)
-//	{
-//		FLMergeObjects(inner, outer, mergeMode); 
+//typedef void (*CompareCallback) (id, id, FLMergeMode, NSArray* arrayItemTypes); 
+//
+//void _FLMergeListsOfObjects(NSMutableArray* dest, 
+//                            NSArray* src, 
+//                            FLMergeMode mergeMode, 
+//                            NSArray* arrayItemTypes,
+//                            CompareCallback handleEqual) {
+//	
+//    for(NSInteger i = (NSInteger) src.count - 1; i >= 0; i--) {	
+//		id outer = [src objectAtIndex:i];
+//		bool foundIt = NO;
+//		for(NSInteger j = (NSInteger) dest.count - 1; j >= 0; j--) {
+//			id inner = [dest objectAtIndex:j];
+//			if([inner isEqual:outer]) {	
+//				handleEqual(inner, outer, mergeMode, arrayItemTypes);
+//				foundIt = YES;
+//				break;
+//			}
+//		}
+//		if(!foundIt) {
+//			[dest addObject:outer];
+//		}
 //	}
-}
+//}
+//
+//void FLEqualObjectHandler(id inner, id outer, FLMergeMode mergeMode, NSArray* arrayItemTypes) {
+//	FLMergeObjects(inner, outer, mergeMode); 
+//}
+//
+//void FLEqualValueHandler(id inner, id outer, FLMergeMode mergeMode, NSArray* arrayItemTypes) {
+//	// already equal, so nothing to do.
+//}
+//
+//void FLEqualMultiObjectHandler(id inner, id outer, FLMergeMode mergeMode, NSArray* arrayItemTypes) {
+//	for(FLPropertyDescription* desc in arrayItemTypes) {
+//		if([outer isKindOfClass:desc.propertyType.typeClass]) {
+//			FLMergeObjects(inner, outer, mergeMode); 
+//			break;
+//		}
+//	}
+//	
+//
+////	FLDataTypeStruct* itemType = FLGetTypeForClass(arrayItemTypes, [outer class]);
+////	if(itemType && itemType->typeID == FLDataTypeObject)
+////	{
+////		FLMergeObjects(inner, outer, mergeMode); 
+////	}
+//}
 
 void FLMergeObjectArrays(NSMutableArray* dest, 
                          NSArray* src, 
                          FLMergeMode mergeMode, 
                          NSArray* arrayItemTypes){
 
-	if(arrayItemTypes.count) {
-		if([[arrayItemTypes firstObject] propertyType].isObject) {
-			_FLMergeListsOfObjects(dest, src, mergeMode, arrayItemTypes, FLEqualObjectHandler);
+    for(NSInteger i = (NSInteger) src.count - 1; i >= 0; i--) {	
+		id outer = [src objectAtIndex:i];
+		bool foundIt = NO;
+		for(NSInteger j = (NSInteger) dest.count - 1; j >= 0; j--) {
+			id inner = [dest objectAtIndex:j];
+			if([inner isEqual:outer]) {	
+                
+                for(FLPropertyDescription* desc in arrayItemTypes) {
+                    if([outer isKindOfClass:desc.propertyType.typeClass]) {
+                        FLMergeObjects(inner, outer, mergeMode); 
+                        foundIt = YES;
+				        break;
+                    }
+                }
+                
+                break;
+			}
 		}
-		else {
-			_FLMergeListsOfObjects(dest, src, mergeMode, arrayItemTypes, FLEqualValueHandler);
+		if(!foundIt) {
+			[dest addObject:outer];
 		}
 	}
-	else {
-		_FLMergeListsOfObjects(dest, src, mergeMode, arrayItemTypes, FLEqualMultiObjectHandler);
-	}
+
+
+
+//	if(arrayItemTypes.count) {
+//		if([[arrayItemTypes firstObject] propertyType].isObjectWithObjectProperties) {
+//			_FLMergeListsOfObjects(dest, src, mergeMode, arrayItemTypes, FLEqualObjectHandler);
+//		}
+//		else {
+//			_FLMergeListsOfObjects(dest, src, mergeMode, arrayItemTypes, FLEqualValueHandler);
+//		}
+//	}
+//	else {
+//		_FLMergeListsOfObjects(dest, src, mergeMode, arrayItemTypes, FLEqualMultiObjectHandler);
+//	}
 }
 
 void FLMergeObjects(id dest, id src, FLMergeMode mergeMode) {
@@ -319,6 +343,10 @@ void FLMergeObjects(id dest, id src, FLMergeMode mergeMode) {
 		FLAssert_v([dest isKindOfClass:[src class]], @"objects are different classes");
 
 		FLObjectDescriber* srcDescriber = [[src class] sharedObjectDescriber];
+        if(!srcDescriber) {
+            return;
+        }   
+        
 		for(NSString* srcPropName in srcDescriber.propertyDescribers) {
 			id srcObject = [src valueForKey:srcPropName];
 			
@@ -329,7 +357,9 @@ void FLMergeObjects(id dest, id src, FLMergeMode mergeMode) {
 				}
 				else {
 					FLPropertyDescription* srcProp = [srcDescriber propertyDescriberForPropertyName:srcPropName];
-					if(srcProp.propertyType.isObject) {
+					FLObjectDescriber* propDescriber = [srcProp.propertyType.typeClass sharedObjectDescriber];
+                    
+                    if(!propDescriber) {
 					   if(mergeMode == FLMergeModeSourceWins) {
 							[dest setValue:srcObject forKey:srcPropName];
 					   }

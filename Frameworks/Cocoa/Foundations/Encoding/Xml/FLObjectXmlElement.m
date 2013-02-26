@@ -66,51 +66,6 @@
 }
 #endif
 
-//- (void) addElementWithObject:(id) object {
-//    [object addToXmlElement:self propertyDescription:nil];
-//}
-
-//- (void) addElementWithObject:(id) object
-//          propertyDescription:(FLPropertyDescription*) description {
-//
-//    FLAssertNotNil_v(self.document, @"must be added to document to serialize xml object");
-//	FLAssertNotNil_v(description, @"serializtion requires property description")
-//    
-//    if(description.propertyType == FLDataTypeObject) {
-//		[object addToXmlElement:self propertyDescription:description];
-//	} 
-//    else {
-//		[self appendStringWithObject:object propertyDescription:description];
-//	}
-//}
-//
-
-
-//
-//- (void) addObjectAsXML:(id) object
-//    propertyDescription:(FLPropertyDescription*) description
-//            elementName:(NSString*) elementName {
-//
-//    FLAssertNotNil_v(self.document, @"must be added to document to serialize xml object");
-//            
-//	if(object) {
-//        id<FLDataEncoding> dataEncoder = [self.document dataEncoder];
-//        FLConfirmNotNil_v(dataEncoder, @"Xml String builder requires a data encoder");
-//    
-//		NSString* string = nil;
-//		[dataEncoder encodeDataToString:object forType:description.propertyType outEncodedString:&string];
-//		@try {
-//            FLXmlElement* element = [FLXmlElement xmlElement:elementName];
-//            [element appendString:string];
-//            [self addElement:element];
-//		}
-//		@finally {
-//			FLRelease(string);
-//		}
-//	}
-//}
-
-
 - (void) appendLineWithEncodedObject:(id) object
                    propertyDescription:(FLPropertyDescription*) description {
 
@@ -148,13 +103,8 @@
         }
     
         FLAssertNotNil_([self dataEncoder]);
-
-        if(!_propertyDescription || _propertyDescription.propertyType.isObject) {
-            [_object addToXmlElement:self propertyDescription:_propertyDescription];
-        } 
-        else {
-            [self appendLineWithEncodedObject:_object propertyDescription:_propertyDescription];
-        }
+        
+        [_object addToXmlElement:self propertyDescription:_propertyDescription];
     }
 }
 

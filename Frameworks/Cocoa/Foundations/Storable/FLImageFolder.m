@@ -259,7 +259,7 @@ static NSDictionary* s_suffixes = nil;
 //	[self _throwIfNotConfigured];
 //	
 //	if(!_image && !_jpegData) {
-//		FLThrowError([NSError errorWithDomain:[FLFrameworkErrorDomain instance] code:FLErrorNoDataToSave
+//		FLThrowIfError([NSError errorWithDomain:[FLFrameworkErrorDomain instance] code:FLErrorNoDataToSave
 //			userInfo:[NSDictionary dictionaryWithObject:@"No image data to save" forKey:NSLocalizedDescriptionKey]]);
 // 
 //	}

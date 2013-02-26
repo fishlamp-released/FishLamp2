@@ -49,4 +49,4 @@ typedef id FLResult;
 #define FLFailedResult      [NSError failedResultError]
 
 #define FLConfirmResultType(__RESULT__, __EXPECTED_RESULT_TYPE__) \
-            FLAssertObjectIsType(FLThrowError(__RESULT__), __EXPECTED_RESULT_TYPE__)
+            FLAssertObjectIsType(FLThrowIfError(__RESULT__), __EXPECTED_RESULT_TYPE__)

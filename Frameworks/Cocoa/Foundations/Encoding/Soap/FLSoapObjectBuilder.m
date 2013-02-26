@@ -58,3 +58,24 @@ didStartElement:(NSString *)elementName
 }
 
 @end
+
+@implementation FLSoapXmlParser 
+
++ (id) soapXmlParser {
+    return FLAutorelease([[[self class] alloc] init]);
+}
+
+- (void) willParseXMLData:(NSData*) data withXMLParser:(NSXMLParser*) parser {
+	[parser setShouldProcessNamespaces:YES];
+	[parser setShouldReportNamespacePrefixes:NO];
+	[parser setShouldResolveExternalEntities:NO];
+}
+
+- (NSDictionary*) bodyContentsForDictionary:(NSDictionary*) soap {
+    NSDictionary* outDict = [soap objectForKey:@"Envelope"];
+    outDict = [outDict objectForKey:@"Body"];
+    outDict = [[outDict allValues] firstObject];
+    return outDict;
+}
+
+@end

@@ -9,52 +9,55 @@
 #import "NSObject+FLObjectBuilder.h"
 #import "FLObjectInflator.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflatorState.h"
+#import "FLPropertyInflator.h"
 #import "FLPropertyDescription.h"
+
+#import "FLXmlObjectBuilder.h"
+#import "FLCoreTypes.h"
 
 @implementation NSObject (FLObjectBuilder)
 
 - (void) objectBuilder:(FLObjectBuilder*) builder 
-        finishBuilding:(FLObjectInflatorState*) state {
+        finishBuilding:(FLPropertyInflator*) propertyInflator {
         
 	@try {
-		[self setValue:state.data forKey:state.key];
+		[self setValue:propertyInflator.inflatedPropertyObject forKey:propertyInflator.propertyName];
 	}
 	@catch(NSException* ex) {
-		FLDebugLog(@"unable to set value for %@: %@: %@", state.key, state.data, [ex description]);
+		FLDebugLog(@"unable to set value for %@: %@: %@", propertyInflator.propertyName, propertyInflator.encodedString, [ex description]);
 	}
 }
 
 - (BOOL) objectBuilder:(FLObjectBuilder*) builder 
-         beginBuilding:(FLObjectInflatorState*) state {
+         beginBuilding:(FLPropertyInflator*) propertyInflator {
                     
-	FLPropertyDescription* prop = [state.objectDescriber propertyDescriberForPropertyName:state.key];
-	if(prop) {
-		state.parsedDataType = prop.propertyType;
-	
-		if(prop.propertyType.isObject) {
-
-            // this actually might return self or an inflator.
-            // it relies on key value coding for setting the properties
+    FLObjectDescriber* describer = [self objectDescriber];
+    if(!describer) {
+        return NO;
+    }
+                    
+	FLPropertyDescription* prop = [describer propertyDescriberForPropertyName:propertyInflator.propertyName];
+    
+	if(prop && [prop.propertyType.typeClass sharedObjectDescriber]) {
+		    // this actually might return self or an inflator.
+            // it relies on propertyName value coding for setting the properties
             // <Foundation/NSKeyValueCoding.h>
 			id inflator = [self objectInflator];
 			
-			id object = FLRetainWithAutorelease([inflator valueForKey:state.key forObject:self]);
+			id object = FLRetainWithAutorelease([inflator valueForKey:propertyInflator.propertyName forObject:self]);
 			if(!object) {
-				FLAssertIsNotNil_(prop.propertyClass);
+				FLAssertIsNotNil_(prop.propertyType.typeClass);
 
-				object = [[prop.propertyClass alloc] init];
-				[inflator setValue:object forKey:state.key forObject:self];
+				object = FLAutorelease([[prop.propertyType.typeClass alloc] init]);
+                FLAssertNotNil_(object);
+                
+				[inflator setValue:object forKey:propertyInflator.propertyName forObject:self];
 			}
-		
-            // i guess progate this?
-            if(state.parseInfo) {
-                [object setParseInfo:state.parseInfo];
-            }
-        
+		        
 			FLAssertIsNotNil_(object);
-			state.object = object;
-         }
+// setting this here, so next messages go to new object.            
+			propertyInflator.containingObject = object;
+         
 		
 		return YES;
 	}
@@ -67,46 +70,40 @@
 @implementation NSMutableArray (FLObjectBuilder)
 
 - (void) objectBuilder:(FLObjectBuilder*) builder 
-        finishBuilding:(FLObjectInflatorState*) state {
+        finishBuilding:(FLPropertyInflator*) propertyInflator {
         
-	if(!state.dataIsAttribute) {
-		[self addObject:state.data];
+	if(propertyInflator.state != FLXmlPropertyInflationIsAttribute) {
+		[self addObject:propertyInflator.inflatedPropertyObject];
 	}
 }
 
 - (BOOL) objectBuilder:(FLObjectBuilder*) builder 
-         beginBuilding:(FLObjectInflatorState*) state {
+         beginBuilding:(FLPropertyInflator*) propertyInflator {
          
-	if(!state.dataIsAttribute) {
+	if(propertyInflator.state != FLXmlPropertyInflationIsAttribute) {
 		
-        FLObjectInflatorState* prev = state.previousObjectInLinkedList;
+        FLPropertyInflator* prev = [builder previousStateForState:propertyInflator];
         
-		FLObjectDescriber* objectDescriber = prev.objectDescriber;
-		FLPropertyDescription* parentDesc = [objectDescriber propertyDescriberForPropertyName:prev.key];
+		FLObjectDescriber* objectDescriber = [prev.containingObject objectDescriber];
+		
+        FLPropertyDescription* parentDesc = [objectDescriber propertyDescriberForPropertyName:prev.propertyName];
 		NSArray* arrayTypes = parentDesc.arrayTypes;
-		
-        FLParseInfo* parseInfo = state.parseInfo;
-        
-		for(FLPropertyDescription* desc in arrayTypes) {
-			if(FLStringsAreEqual(desc.propertyName, state.key)) {
-				state.parsedDataType = desc.propertyType;
-
-                if(desc.propertyType.isObject) {
-					FLAssertIsNotNil_(desc.propertyClass);
+		        
+		for(FLPropertyDescription* propertyDescription in arrayTypes) {
+			
+            if(FLStringsAreEqual(propertyDescription.propertyName, propertyInflator.propertyName)) {
 				
-					id obj = FLAutorelease([[desc.propertyClass alloc] init]);
-					
-                    if(parseInfo) {
-                        [obj setParseInfo:parseInfo];
-                    }   
-                    
+				propertyInflator.propertyType = propertyDescription.propertyType;
+
+                FLAssertIsNotNil_(propertyDescription.propertyType.typeClass);
+
+                FLObjectDescriber* arrayItemDescriber = [propertyDescription.propertyType.typeClass sharedObjectDescriber]; 
+                if(arrayItemDescriber) {
+                    id obj = FLAutorelease([[propertyDescription.propertyType.typeClass alloc] init]);
                     FLAssertIsNotNil_(obj);
 					[self addObject:obj];
 
-// TODO: this seems wrong - always setting the state object to the most recent element
-// in the list???	
-// NOTE: removing it breaks the parsing, so whatever, but it still seems weird.
-                    state.object = obj;
+                    self = obj;
                 }
 				return YES;
 			}
@@ -117,3 +114,8 @@
 }
 
 @end
+
+
+
+
+

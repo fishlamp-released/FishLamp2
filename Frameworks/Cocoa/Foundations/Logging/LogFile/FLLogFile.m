@@ -46,7 +46,7 @@
                 [empty writeToFile:_filePath atomically:NO encoding:NSUTF8StringEncoding error:&error ];
 
                 if(error) {
-                    FLThrowError(FLAutorelease(error));
+                    FLThrowIfError(FLAutorelease(error));
                 }
             }
 

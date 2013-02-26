@@ -23,3 +23,9 @@
 + (NSString*) stringWithDeletedNamespacePrefix:(NSString*) inStringWithNamespace; /* eg. 's:int' */
 @end
 
+
+@interface FLSoapXmlParser : FLXmlParser 
++ (id) soapXmlParser;
+
+- (NSDictionary*) bodyContentsForDictionary:(NSDictionary*) soap;
+@end

@@ -135,12 +135,12 @@
         {
             s_describer = [[FLObjectDescriber alloc] init];
         }
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"from" propertyClass:[FLFacebookObject class] propertyType:FLDataTypeObject] forPropertyName:@"from"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"tags" propertyClass:[FLFacebookDataList class] propertyType:FLDataTypeObject] forPropertyName:@"tags"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"place" propertyClass:[FLFacebookPlace class] propertyType:FLDataTypeObject] forPropertyName:@"place"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"message" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"message"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"application" propertyClass:[FLFacebookNamedObject class] propertyType:FLDataTypeObject] forPropertyName:@"application"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"created_time" propertyClass:[NSDate class] propertyType:FLDataTypeDate] forPropertyName:@"created_time"];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"from" propertyClass:[FLFacebookObject class]] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"tags" propertyClass:[FLFacebookDataList class]] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"place" propertyClass:[FLFacebookPlace class]] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"message" propertyClass:[NSString class] ] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"application" propertyClass:[FLFacebookNamedObject class]] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"created_time" propertyClass:[NSDate class] ] ];
     });
     return s_describer;
 }

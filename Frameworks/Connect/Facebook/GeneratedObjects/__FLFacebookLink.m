@@ -152,14 +152,14 @@
         {
             s_describer = [[FLObjectDescriber alloc] init];
         }
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"from" propertyClass:[FLFacebookObject class] propertyType:FLDataTypeObject] forPropertyName:@"from"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"link" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"link"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"caption" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"caption"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"description" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"description"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"icon" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"icon"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"picture" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"picture"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"message" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"message"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"created_time" propertyClass:[NSDate class] propertyType:FLDataTypeDate] forPropertyName:@"created_time"];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"from" propertyClass:[FLFacebookObject class] ] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"link" propertyClass:[NSString class] ] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"caption" propertyClass:[NSString class] ] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"description" propertyClass:[NSString class] ] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"icon" propertyClass:[NSString class] ] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"picture" propertyClass:[NSString class] ] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"message" propertyClass:[NSString class] ] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"created_time" propertyClass:[NSDate class] ] ];
     });
     return s_describer;
 }

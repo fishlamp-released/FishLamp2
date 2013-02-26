@@ -90,8 +90,8 @@
         {
             s_describer = [[FLObjectDescriber alloc] init];
         }
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"sessionId" propertyClass:[NSNumber class] propertyType:FLDataTypeInteger] forPropertyName:@"sessionId"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"userGuid" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"userGuid"];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"sessionId" propertyClass:[FLIntegerNumber class]] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"userGuid" propertyClass:[NSString class] ] ];
     });
     return s_describer;
 }

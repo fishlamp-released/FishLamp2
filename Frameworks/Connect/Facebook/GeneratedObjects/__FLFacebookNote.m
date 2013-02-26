@@ -132,12 +132,12 @@
         {
             s_describer = [[FLObjectDescriber alloc] init];
         }
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"from" propertyClass:[FLFacebookNamedObject class] propertyType:FLDataTypeObject] forPropertyName:@"from"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"subject" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"subject"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"message" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"message"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"icon" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"icon"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"updated_time" propertyClass:[NSDate class] propertyType:FLDataTypeDate] forPropertyName:@"updated_time"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"created_time" propertyClass:[NSDate class] propertyType:FLDataTypeDate] forPropertyName:@"created_time"];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"from" propertyClass:[FLFacebookNamedObject class] ] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"subject" propertyClass:[NSString class] ] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"message" propertyClass:[NSString class] ] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"icon" propertyClass:[NSString class] ] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"updated_time" propertyClass:[NSDate class] ] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"created_time" propertyClass:[NSDate class] ] ];
     });
     return s_describer;
 }

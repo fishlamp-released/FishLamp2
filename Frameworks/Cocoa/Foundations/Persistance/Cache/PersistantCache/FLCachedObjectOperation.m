@@ -57,7 +57,7 @@
     if(!object || self.alwaysRunSubOperations) {
 		self.wasLoadedFromCache = NO;
 	
-        object = FLThrowError([self runSubOperations]);
+        object = FLThrowIfError([self runSubOperations]);
 
         if(self.canSaveToCache) {
             [self saveObjectToDatabase:object];

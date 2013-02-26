@@ -83,7 +83,7 @@
 
 	if(![[NSFileManager defaultManager] fileExistsAtPath:myPath])
 	{
-		FLThrowError([NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorFileDoesNotExist 
+		FLThrowIfError([NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorFileDoesNotExist 
 			userInfo:[NSDictionary dictionaryWithObject:@"Image file is missing - can't create read stream for upload" forKey:NSLocalizedFailureReasonErrorKey]]);
 	}
 

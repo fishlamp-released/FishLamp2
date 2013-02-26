@@ -100,9 +100,9 @@
         {
             s_describer = [[FLObjectDescriber alloc] init];
         }
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"originalID" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"originalID"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"assetURL" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"assetURL"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"exportedDate" propertyClass:[NSDate class] propertyType:FLDataTypeDate] forPropertyName:@"exportedDate"];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"originalID" propertyClass:[NSString class] ] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"assetURL" propertyClass:[NSString class] ] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"exportedDate" propertyClass:[NSDate class] ] ];
     });
     return s_describer;
 }

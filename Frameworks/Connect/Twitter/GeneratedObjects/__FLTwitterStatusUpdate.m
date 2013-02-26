@@ -125,12 +125,12 @@
         {
             s_describer = [[FLObjectDescriber alloc] init];
         }
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"status" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"status"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"in_reply_to_status_id" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"in_reply_to_status_id"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"place_id" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"place_id"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"display_coordinates" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"display_coordinates"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"trim_user" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"trim_user"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"include_entities" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"include_entities"];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"status" propertyClass:[NSString class] ] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"in_reply_to_status_id" propertyClass:[NSString class] ] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"place_id" propertyClass:[NSString class] ] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"display_coordinates" propertyClass:[NSString class] ] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"trim_user" propertyClass:[NSString class] ] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"include_entities" propertyClass:[NSString class] ] ];
     });
     return s_describer;
 }

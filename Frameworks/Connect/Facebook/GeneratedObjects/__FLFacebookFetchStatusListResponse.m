@@ -92,8 +92,8 @@
         {
             s_describer = [[FLObjectDescriber alloc] init];
         }
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"paging" propertyClass:[FLFacebookPagingResponse class] propertyType:FLDataTypeObject] forPropertyName:@"paging"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"data" propertyClass:[NSMutableArray class] propertyType:FLDataTypeObject arrayTypes:[NSArray arrayWithObjects:[FLPropertyDescription propertyDescription:@"post" propertyClass:[FLFacebookPost class] propertyType:FLDataTypeObject arrayTypes:nil], nil] isUnboundedArray:NO] forPropertyName:@"data"];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"paging" propertyClass:[FLFacebookPagingResponse class] ] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"data" propertyClass:[NSMutableArray class]  arrayTypes:[NSArray arrayWithObjects:[FLPropertyDescription propertyDescription:@"post" propertyClass:[FLFacebookPost class]], nil] isUnboundedArray:NO] ];
     });
     return s_describer;
 }

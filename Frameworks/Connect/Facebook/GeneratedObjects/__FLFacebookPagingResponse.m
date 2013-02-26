@@ -90,8 +90,8 @@
         {
             s_describer = [[FLObjectDescriber alloc] init];
         }
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"previous" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"previous"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"next" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"next"];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"previous" propertyClass:[NSString class] ] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"next" propertyClass:[NSString class] ] ];
     });
     return s_describer;
 }

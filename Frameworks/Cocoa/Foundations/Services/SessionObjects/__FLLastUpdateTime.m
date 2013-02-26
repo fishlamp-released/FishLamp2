@@ -90,8 +90,8 @@
         {
             s_describer = [[FLObjectDescriber alloc] init];
         }
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"lastUpdateId" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"lastUpdateId"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"lastUpdate" propertyClass:[NSDate class] propertyType:FLDataTypeDate] forPropertyName:@"lastUpdate"];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"lastUpdateId" propertyClass:[NSString class] ] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"lastUpdate" propertyClass:[NSDate class] ] ];
     });
     return s_describer;
 }

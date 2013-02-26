@@ -120,11 +120,11 @@
         {
             s_describer = [[FLObjectDescriber alloc] init];
         }
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"value" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"value"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"friends" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"friends"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"networks" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"networks"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"deny" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"deny"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"description" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"description"];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"value" propertyClass:[NSString class] ] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"friends" propertyClass:[NSString class] ] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"networks" propertyClass:[NSString class] ] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"deny" propertyClass:[NSString class] ] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"description" propertyClass:[NSString class] ] ];
     });
     return s_describer;
 }

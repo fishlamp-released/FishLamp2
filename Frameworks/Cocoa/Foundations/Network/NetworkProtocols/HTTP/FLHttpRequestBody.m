@@ -115,7 +115,7 @@
             self.requestHeaders.postLength = [[[NSFileManager defaultManager] attributesOfItemAtPath:self.postBodyFilePath error:&err] fileSize];
         
         if(err) {
-           FLThrowError(FLAutorelease(err));
+           FLThrowIfError(FLAutorelease(err));
         }
         self.requestHeaders.httpMethod = @"POST";
 	}

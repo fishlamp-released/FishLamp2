@@ -19,7 +19,7 @@
 #endif
 
 #if DEBUG
-extern id FLThrowError(id object);
+extern id FLThrowIfError(id object);
 #else
 #define __INLINES__
 #include "FLExceptions_Inlines.h"
@@ -73,4 +73,4 @@ extern id FLThrowError(id object);
 
 
 #define FLCThrowFailure_ FLThrowFailure_
-#define FLCThrowError_ FLThrowError
+#define FLCThrowError_ FLThrowIfError

@@ -66,12 +66,12 @@
            
             host = CFHostCreateWithName(NULL, bridge_(void*,self.remoteHost));
             if(!host) {
-                FLThrowError([NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorCannotFindHost localizedDescription:@"Unable to find to host"]);
+                FLThrowIfError([NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorCannotFindHost localizedDescription:@"Unable to find to host"]);
             }
             
             CFStreamCreatePairWithSocketToCFHost(NULL, host, self.remotePort, &readStream, &writeStream);
             if(!readStream || !writeStream) {
-                FLThrowError([NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorNetworkConnectionLost localizedDescription:@"Unable to connect to host"]);
+                FLThrowIfError([NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorNetworkConnectionLost localizedDescription:@"Unable to connect to host"]);
             }
                     
             self.readStream = [FLReadStream readStream:readStream];

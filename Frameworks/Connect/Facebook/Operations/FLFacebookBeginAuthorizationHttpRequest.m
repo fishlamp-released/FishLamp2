@@ -72,7 +72,7 @@ static NSString* kRedirectURL = @"http://www.facebook.com/connect/login_success.
 	else {
 		FLFacebookError* fberror = [self errorFromURLParams:params];
 		if(fberror) {
-			FLThrowError([NSError errorWithDomain:FLFacebookErrorDomain 
+			FLThrowIfError([NSError errorWithDomain:FLFacebookErrorDomain 
 					code:FLFacebookErrorCodeAuthenticationFailed 
 					userInfo:[NSDictionary dictionaryWithObject:fberror forKey:FLFacebookErrorKey]]);
 		}
@@ -110,7 +110,7 @@ static NSString* kRedirectURL = @"http://www.facebook.com/connect/login_success.
 //    NSError* error = nil;
 //    result = [self parseAuthenticationResponseFromURL:httpResponse.requestURL];
 //    if(error) {
-//        FLThrowError(error);
+//        FLThrowIfError(error);
 //    }
 //
 //    

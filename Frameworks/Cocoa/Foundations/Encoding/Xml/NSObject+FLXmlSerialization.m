@@ -15,24 +15,68 @@
      propertyDescription:(FLPropertyDescription*) description {
       
 	FLObjectDescriber* objectDescriber = [[self class] sharedObjectDescriber];
-	
-	for(NSString* key in objectDescriber.propertyDescribers) {
-		id object = [self valueForKey:key];
-		if(object) {
+	if(objectDescriber) {
+        for(FLPropertyDescription* property in [objectDescriber.propertyDescribers objectEnumerator]) {
             
-            FLPropertyDescription* desc = [objectDescriber propertyDescriberForPropertyName:key];
-           
-            if(desc.propertyType.isObject) {
-                [xmlElement addElement:
-                    [FLObjectXmlElement objectXmlElement:object xmlElementTag:key propertyDescription:desc]];
-            }
-            else {
-                [xmlElement appendLine:object];
-//                addStringBuilderLine:
-//                    [FLXmlElementStringBuilderLine xmlElementStringBuilderLine:object propertyDescription:desc]];
+            id object = [self valueForKey:property.propertyName];
+            if(object) {
+                FLObjectXmlElement* element = [FLObjectXmlElement objectXmlElement:object xmlElementTag:property.propertyName propertyDescription:property];
+                [xmlElement addElement:element];
+                [object addToXmlElement:element propertyDescription:property];
             }
         }
-	}
+    }
+    else {
+        FLAssertNotNil_(description);
+        
+        FLTypeDesc* typeDesc = description.propertyType;
+        FLAssertNotNil_(typeDesc);
+        
+        id<FLDataEncoding> encoder = xmlElement.dataEncoder;
+        FLAssertNotNil_(encoder);
+        
+        NSString* line = [typeDesc encodeObjectToString:self withEncoder:encoder];
+
+        [xmlElement appendLine:line];
+    }
 }
 
 @end
+
+
+@implementation NSArray (FLXmlSerialization)
+
+- (void) addToXmlElement:(FLXmlElement*) xmlElement
+     propertyDescription:(FLPropertyDescription*) description {
+    
+	if(description && self.count) {
+		NSArray* arrayTypes = description.arrayTypes;
+		      
+		if(arrayTypes.count == 1) {
+			FLPropertyDescription* elementDesc = [arrayTypes lastObject];
+
+			for(id obj in self){
+                [xmlElement addElement:[FLObjectXmlElement objectXmlElement:obj xmlElementTag:elementDesc.propertyName propertyDescription:elementDesc]];
+			}
+		}
+		else {
+			for(id obj in self) {
+				// hmm. expensive. need to decide for each item.
+				
+				for(FLPropertyDescription* elementDesc in arrayTypes) {
+					if([obj isKindOfClass:elementDesc.propertyType.typeClass]) {
+                        [xmlElement addElement:[FLObjectXmlElement objectXmlElement:obj xmlElementTag:elementDesc.propertyName propertyDescription:elementDesc]];
+						break;
+					}
+				}
+			}		
+		}
+	}
+#if DEBUG
+	else if(!description) {
+		FLDebugLog(@"Warning not streaming object of type: %@", NSStringFromClass([self class]));
+	}
+#endif	
+}
+@end
+

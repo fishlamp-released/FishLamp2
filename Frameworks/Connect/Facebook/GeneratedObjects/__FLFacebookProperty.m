@@ -100,9 +100,9 @@
         {
             s_describer = [[FLObjectDescriber alloc] init];
         }
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"text" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"text"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"name" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"name"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"href" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"href"];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"text" propertyClass:[NSString class] ] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"name" propertyClass:[NSString class] ] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"href" propertyClass:[NSString class] ] ];
     });
     return s_describer;
 }

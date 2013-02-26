@@ -81,7 +81,7 @@
         {
             s_describer = [[FLObjectDescriber alloc] init];
         }
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"location" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"location"];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"location" propertyClass:[NSString class] ] ];
     });
     return s_describer;
 }

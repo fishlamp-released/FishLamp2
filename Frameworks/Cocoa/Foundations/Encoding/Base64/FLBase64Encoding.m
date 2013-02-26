@@ -43,7 +43,7 @@
             return FLAutorelease([[NSData alloc] initWithBytes:buffer length:encodedSize]);
         }
 		
-        FLThrowError([NSError errorWithDomain:NSCocoaErrorDomain code:NSFormattingError userInfo:nil]);
+        FLThrowIfError([NSError errorWithDomain:NSCocoaErrorDomain code:NSFormattingError userInfo:nil]);
 	}
 	@finally {
 		if(buffer){
@@ -66,7 +66,7 @@
             return FLAutorelease([[NSData alloc] initWithBytes:buffer length:decodedSize]);
 		}
 
-        FLThrowError([NSError errorWithDomain:NSCocoaErrorDomain code:NSFormattingError userInfo:nil]);
+        FLThrowIfError([NSError errorWithDomain:NSCocoaErrorDomain code:NSFormattingError userInfo:nil]);
 	}
 	@finally {
 		if(buffer) {

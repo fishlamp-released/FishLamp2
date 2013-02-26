@@ -130,12 +130,12 @@
         {
             s_describer = [[FLObjectDescriber alloc] init];
         }
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"userGuid" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"userGuid"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"appName" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"appName"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"oauth_token" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"oauth_token"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"oauth_token_secret" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"oauth_token_secret"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"user_id" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"user_id"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"screen_name" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"screen_name"];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"userGuid" propertyClass:[NSString class] ] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"appName" propertyClass:[NSString class] ] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"oauth_token" propertyClass:[NSString class] ] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"oauth_token_secret" propertyClass:[NSString class] ] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"user_id" propertyClass:[NSString class] ] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"screen_name" propertyClass:[NSString class] ] ];
     });
     return s_describer;
 }

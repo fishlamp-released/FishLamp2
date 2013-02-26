@@ -136,13 +136,13 @@
         {
             s_describer = [[FLObjectDescriber alloc] init];
         }
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"speed" propertyClass:[NSNumber class] propertyType:FLDataTypeFloat] forPropertyName:@"speed"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"repeat" propertyClass:[NSNumber class] propertyType:FLDataTypeBool] forPropertyName:@"repeat"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"autoStart" propertyClass:[NSNumber class] propertyType:FLDataTypeBool] forPropertyName:@"autoStart"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"autoShowCaptions" propertyClass:[NSNumber class] propertyType:FLDataTypeBool] forPropertyName:@"autoShowCaptions"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"random" propertyClass:[NSNumber class] propertyType:FLDataTypeBool] forPropertyName:@"random"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"playMusic" propertyClass:[NSNumber class] propertyType:FLDataTypeBool] forPropertyName:@"playMusic"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"mediaItemList" propertyClass:[NSMutableArray class] propertyType:FLDataTypeObject] forPropertyName:@"mediaItemList"];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"speed" propertyClass:[FLFloatNumber class]] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"repeat" propertyClass:[FLBoolNumber class]] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"autoStart" propertyClass:[FLBoolNumber class]] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"autoShowCaptions" propertyClass:[FLBoolNumber class]] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"random" propertyClass:[FLBoolNumber class]] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"playMusic" propertyClass:[FLBoolNumber class]] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"mediaItemList" propertyClass:[NSMutableArray class] ] ];
     });
     return s_describer;
 }

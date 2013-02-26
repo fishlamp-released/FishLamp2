@@ -51,7 +51,7 @@
     
     id result = [parser parseJsonData:[httpResponse responseData] rootObject:_outputObject withDecoder:self.dataDecoder];
 
-    FLThrowError(parser.error);
+    FLThrowIfError(parser.error);
     
     [httpResponse throwHttpErrorIfNeeded];
     

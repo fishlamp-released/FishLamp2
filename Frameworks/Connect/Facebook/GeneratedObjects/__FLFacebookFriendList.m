@@ -82,7 +82,7 @@
         {
             s_describer = [[FLObjectDescriber alloc] init];
         }
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"friends" propertyClass:[NSMutableArray class] propertyType:FLDataTypeObject arrayTypes:[NSArray arrayWithObjects:[FLPropertyDescription propertyDescription:@"friend" propertyClass:[FLFacebookNamedObject class] propertyType:FLDataTypeObject arrayTypes:nil], nil] isUnboundedArray:NO] forPropertyName:@"friends"];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"friends" propertyClass:[NSMutableArray class]  arrayTypes:[NSArray arrayWithObjects:[FLPropertyDescription propertyDescription:@"friend" propertyClass:[FLFacebookNamedObject class]], nil] isUnboundedArray:NO] ];
     });
     return s_describer;
 }

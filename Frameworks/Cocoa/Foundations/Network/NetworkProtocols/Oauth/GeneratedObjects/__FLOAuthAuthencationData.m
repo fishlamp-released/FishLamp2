@@ -74,10 +74,10 @@
         {
             s_describer = [[FLObjectDescriber alloc] init];
         }
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"oauth_token_secret" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"oauth_token_secret"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"oauth_callback_confirmed" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"oauth_callback_confirmed"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"oauth_token" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"oauth_token"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"oauth_verifier" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"oauth_verifier"];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"oauth_token_secret" propertyClass:[NSString class] ] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"oauth_callback_confirmed" propertyClass:[NSString class] ] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"oauth_token" propertyClass:[NSString class] ] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"oauth_verifier" propertyClass:[NSString class] ] ];
     });
     return s_describer;
 }

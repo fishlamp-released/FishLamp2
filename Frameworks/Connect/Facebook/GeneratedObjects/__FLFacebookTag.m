@@ -68,9 +68,9 @@
         {
             s_describer = [[FLObjectDescriber alloc] init];
         }
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"user" propertyClass:[FLFacebookNamedObject class] propertyType:FLDataTypeObject] forPropertyName:@"user"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"x" propertyClass:[NSNumber class] propertyType:FLDataTypeInteger] forPropertyName:@"x"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"y" propertyClass:[NSNumber class] propertyType:FLDataTypeInteger] forPropertyName:@"y"];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"user" propertyClass:[FLFacebookNamedObject class] ] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"x" propertyClass:[FLIntegerNumber class]] ];
+        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"y" propertyClass:[FLIntegerNumber class]] ];
     });
     return s_describer;
 }
