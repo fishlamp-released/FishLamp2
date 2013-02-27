@@ -10,9 +10,11 @@
 
 @implementation FLZenfolioUserContext
 @synthesize rootGroup = _rootGroup;
+@synthesize selection = _selection;
 
 #if FL_MRC
 - (void) dealloc {
+    [_selection release];
     [_rootGroup release];
     [super dealloc];
 }

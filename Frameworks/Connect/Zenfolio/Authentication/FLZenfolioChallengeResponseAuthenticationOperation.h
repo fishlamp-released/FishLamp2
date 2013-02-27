@@ -6,7 +6,7 @@
 //	Copyright 2009 Greentongue Software. All rights reserved.
 //
 
-#import "FLUserAuthenticatorOperation.h"
+#import "FLZenfolioAuthenticationOperation.h"
 
-@interface FLZenfolioAuthenticateOperation : FLUserAuthenticatorOperation
+@interface FLZenfolioChallengeResponseAuthenticationOperation : FLZenfolioAuthenticationOperation
 @end

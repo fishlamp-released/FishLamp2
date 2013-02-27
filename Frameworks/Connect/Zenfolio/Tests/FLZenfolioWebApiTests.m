@@ -8,7 +8,7 @@
 
 #import "FLZenfolioWebApiTests.h"
 #import "FLZenfolioWebApi.h"
-#import "FLZenfolioAuthenticateOperation.h"
+#import "FLZenfolioChallengeResponseAuthenticationOperation.h"
 
 //@implementation FLZenfolioTestSession
 //

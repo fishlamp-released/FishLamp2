@@ -7,6 +7,7 @@
 //
 
 #import "FLZenfolioGroupElement+More.h"
+#import "NSString+MiscUtils.h"
 
 @implementation FLZenfolioGroupElement (More)
 
@@ -103,9 +104,9 @@
     return self.Title;
 }
 
-//- (NSString *)sizeText {
-//	return FLZenfolioSizeString([self photoBytes]);
-//}
+- (NSString *)sizeText {
+	return [NSString localizedStringForByteSize:self.photoBytes];
+}
 
 //const NSString *dateFormat = @"%Y-%m-%dT%H:%M:%S.0000000%z";
 //		NSString *createdStr = [entryDict valueForKey:@"CreatedOn"];

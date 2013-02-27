@@ -33,7 +33,7 @@ typedef enum {
 - (NSDate*) createdOn;
 - (NSDate*) modifiedOn;
 - (NSString*) title;
-//- (NSString*) sizeText;
+- (NSString*) sizeText;
 
 - (int) groupElementID;
 

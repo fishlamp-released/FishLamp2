@@ -23,7 +23,6 @@
 //@property (readonly, strong, nonatomic) FLWizardPanel* nextWizardPanel;
 //@property (readonly, strong, nonatomic) FLWizardPanel* previousWizardPanel;
 @property (readonly, strong, nonatomic) NSArray* wizardPanels;
-@property (readwrite, strong, nonatomic) NSWindow* modalWindow;
 
 - (IBAction) respondToNextButton:(id) sender;
 - (IBAction) respondToBackButton:(id) sender;
@@ -43,7 +42,6 @@
 @synthesize wizardPanelEnclosureView = _wizardPanelEnclosureView;
 @synthesize breadcrumbBar = _breadcrumbBar;
 @synthesize currentPanelIndex = _currentPanel;
-@synthesize modalWindow = _modalWindow;
 
 - (NSUInteger) panelCount {
     return _panels.count;
@@ -468,32 +466,6 @@
     [self showWizardPanelAnimated:NO withIndex:[self indexForKey:key] completion:nil];
 }
 
-- (void) showModalSheet:(NSWindow*) sheet {
-    self.modalWindow = sheet;
-    
-    [[NSApplication sharedApplication] beginSheet:sheet  
-                                   modalForWindow:self.view.window
-                                   modalDelegate:self 
-                                   didEndSelector:@selector(sheetDidEnd:returnCode:contextInfo:) 
-                                      contextInfo:nil];
-                                      
-    _modalSession = [NSApp beginModalSessionForWindow:self.view.window];
-    [NSApp runModalSession:_modalSession];
-    [self.modalWindow makeFirstResponder:self.modalWindow];
-}
-
-- (void)sheetDidEnd:(NSWindow*)window 
-         returnCode:(NSInteger)returnCode 
-        contextInfo:(void*)contextInfo {
-
-    [NSApp endModalSession:_modalSession];
-    [self.modalWindow orderOut:self.modalWindow];
-    _modalSession = nil;
-    self.modalWindow = nil;
-}
-
-
-
 //- (void) flipToNextNotificationViewWithDirection:(FLFlipAnimationDirection) direction 
 //                                        nextView:(UIView*) nextView
 //                                      completion:(void (^)()) completion {
@@ -548,6 +520,64 @@
 
 
 @end
+
+@implementation NSWindow (FLModalAdditions)
+FLSynthesizeAssociatedProperty(retain_nonatomic, modalWindowController, setModalWindowController, NSWindowController*);
+
+- (void) closeModalWindowController {
+    [self.modalWindowController closeIfModalInWindow:self];
+}
+
+@end
+
+@implementation NSWindowController (FLModalAdditions)
+
+FLSynthesizeAssociatedProperty(assign_nonatomic, modalInWindow, setModalInWindow, NSWindow*);
+FLSynthesizeAssociatedProperty(retain_nonatomic, modalSession, setModalSession, NSValue*);
+
+- (IBAction) closeIfModalInWindow:(id) sender {
+    if(self.modalInWindow) {
+        [[NSApplication sharedApplication] endSheet:self.window];
+    }
+}
+
+- (void) showModallyInWindow:(NSWindow*) window 
+           withDefaultButton:(NSButton*) button {
+    
+    self.modalInWindow = window;
+    window.modalWindowController = self;
+
+    [[NSApplication sharedApplication] beginSheet:self.window  
+                                   modalForWindow:window
+                                   modalDelegate:self 
+                                   didEndSelector:@selector(sheetDidEnd:returnCode:contextInfo:) 
+                                      contextInfo:nil];
+                                      
+    NSModalSession modalSession = [NSApp beginModalSessionForWindow:self.window];
+    self.modalSession = [NSValue valueWithPointer:modalSession];
+    
+    [NSApp runModalSession:modalSession];
+    [self.window makeFirstResponder:self.window];
+    
+    if(button) {
+        [self.window setDefaultButtonCell:[button cell]];
+    }
+}
+
+- (void)sheetDidEnd:(NSAlert*)alert 
+         returnCode:(NSInteger)returnCode 
+        contextInfo:(void*)contextInfo {
+
+    [NSApp endModalSession:[[self modalSession] pointerValue]];
+    [self.window orderOut:self.window];
+    
+    self.modalInWindow.modalWindowController = nil;
+    self.modalInWindow = nil;
+    self.modalSession = nil;
+}
+
+@end
+
 
 //        CABasicAnimation *controlPosAnim = [CABasicAnimation animationWithKeyPath:@"frame"];
 //        [controlPosAnim setFromValue:[NSValue valueWithPoint:toShow.view.frame.origin]];

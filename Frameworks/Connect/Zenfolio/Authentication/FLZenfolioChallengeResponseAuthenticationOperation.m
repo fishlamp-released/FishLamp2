@@ -6,7 +6,7 @@
 //	Copyright 2009 Greentongue Software. All rights reserved.
 //
 
-#import "FLZenfolioAuthenticateOperation.h"
+#import "FLZenfolioChallengeResponseAuthenticationOperation.h"
 
 #import "FLBase64Encoding.h"
 #import "FLZenfolioErrors.h"
@@ -14,8 +14,7 @@
 #import "FLObjectDescriber.h" // for merge objects
 #import "FLZenfolioWebApi.h"
 
-@implementation FLZenfolioAuthenticateOperation
-
+@implementation FLZenfolioChallengeResponseAuthenticationOperation
 
 - (FLHttpRequest*) authenticateRequestWithAuthChallenge:(FLZenfolioAuthChallenge*) challenge {
 
@@ -35,19 +34,15 @@
 	NSData* pwData = FLAutorelease([[NSData alloc] initWithBytes:pw length:strlen(pw)]);
 
 	NSData* hash1 = [[decodedSalt dataWithAppendedData:pwData] SHA256Hash];
-//	[NSData concatAndEncodeSHA256:decodedSalt rhs:pwData outData:&hash1];
 	
 	// 3. combine challenge s hash1
 	// 4. encode
 	
 	NSData* hash2 =	[[decodedChallenge dataWithAppendedData:hash1] SHA256Hash];
-//	[NSData concatAndEncodeSHA256:decodedChallenge rhs:hash1 outData:&hash2]; 
-//	FLRelease(hash1);
     
 	// 5. convert challenge and hash back to base64 
 
 	NSData* encodedProof = [hash2 base64Encode];
-//    FLRelease(hash2);
 
 	NSData* encodedChallenge = [decodedChallenge base64Encode];
     
@@ -55,6 +50,19 @@
 }
 
 - (FLResult) runOperationInContext:(id) context withObserver:(id) observer {
+    
+    FLTrace(@"Authenticating %@:", self.userLogin.userName );
+
+    if(FLStringIsEmpty(self.userLogin.password)) {
+    // can't authenticate because we don't have a pw. So put an error in the httpRequestFactory so ui can prompt for password.
+
+        FLTrace(@"auth failed because password is empty");
+        
+        FLThrowIfError( [NSError errorWithDomain:FLZenfolioErrorDomain
+                                           code:FLZenfolioErrorCodeInvalidCredentials
+                           localizedDescription:NSLocalizedString(@"Password is incorrect", nil)]);
+    }
+    
     
     FLHttpRequest* challengeRequest = [FLZenfolioHttpRequest challengeHttpRequest:self.userLogin.userName];
     challengeRequest.disableAuthenticator = YES;
@@ -68,16 +76,13 @@
     
     if(FLStringIsNotEmpty(token)) {
         self.userLogin.authToken = token;
-        self.userLogin.isAuthenticatedValue = YES;
         self.userLogin.authTokenLastUpdateTimeValue = [NSDate timeIntervalSinceReferenceDate];
     }
     else {
         FLThrowErrorCode_v(NSURLErrorDomain, NSURLErrorBadServerResponse, @"empty token from server");
     }
 
-    FLLog(@"Authentication completed: %@", token);
-
-    return self.userLogin;
+    return [super runOperationInContext:context withObserver:observer];
 }
 
 @end

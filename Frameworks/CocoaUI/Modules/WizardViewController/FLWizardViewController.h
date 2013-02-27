@@ -40,7 +40,7 @@ typedef FLWizardPanel* (^FLWizardPanelFactory)();
     NSUInteger _currentPanel;
     FLBreadcrumbBarViewController* _breadcrumbBar;
     
-    NSWindow* _modalWindow;
+    NSWindowController* _modalWindow;
     NSModalSession _modalSession;
 }
 
@@ -92,8 +92,6 @@ typedef FLWizardPanel* (^FLWizardPanelFactory)();
 // Utils
 //
 - (void) updateBackButtonEnabledState;
-- (void) showModalShield;
-- (void) hideModalShield;
 
 //
 // optional overrides
@@ -107,7 +105,6 @@ typedef FLWizardPanel* (^FLWizardPanelFactory)();
 - (void) willStartWizardInWindow:(NSWindow*) window;
 - (void) didStartWizardInWindow:(NSWindow*) window;
 
-- (void) showModalSheet:(NSWindow*) window;
 //    [self.window setDefaultButtonCell:[_button cell]];
 
 @end
@@ -143,6 +140,20 @@ typedef FLWizardPanel* (^FLWizardPanelFactory)();
 //- (BOOL) wizardPanel:(FLWizardPanel*) wizardPanel willRespondToOtherButtonInWizard:(FLWizardViewController*) wizard;
 
 
+@end
+
+@interface NSWindowController (FLModalAdditions)
+@property (readonly, assign, nonatomic) NSWindow* modalInWindow;
+
+- (void) showModallyInWindow:(NSWindow*) window 
+           withDefaultButton:(NSButton*) button;
+
+- (IBAction) closeIfModalInWindow:(id) sender;
+@end
+
+@interface NSWindow (FLModalAdditions)
+- (void) closeModalWindowController;
+@property (readonly, strong, nonatomic) NSWindowController* modalWindowController;
 @end
 
 #endif
