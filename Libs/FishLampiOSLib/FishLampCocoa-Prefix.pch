@@ -1,4 +1,4 @@
 
 #ifdef __OBJC__
-    #import "FLCocoa.h"
+    #import "FishLampCocoa.h"
 #endif

@@ -35,6 +35,7 @@ typedef FLWizardPanel* (^FLWizardPanelFactory)();
     IBOutlet NSButton* _nextButton;
     IBOutlet NSButton* _backButton;
     IBOutlet NSView* _modalShieldView;
+    IBOutlet NSProgressIndicator* _spinner;
     
     NSMutableArray* _panels;
     NSUInteger _currentPanel;
@@ -52,6 +53,8 @@ typedef FLWizardPanel* (^FLWizardPanelFactory)();
 @property (readonly, strong, nonatomic) NSButton* backButton;
 @property (readonly, strong, nonatomic) NSTextField* titleTextField;
 @property (readonly, strong, nonatomic) FLBreadcrumbBarViewController* breadcrumbBar;
+
+- (void) showSpinner:(BOOL) show;
 
 // enclosures
 @property (readonly, strong, nonatomic) NSView* buttonEnclosureView;

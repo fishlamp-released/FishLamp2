@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "FLCore.h"
+#import "FishLampCore.h"
 #import "UIViewController+FLPresentationBehavior.h"
 
 @interface FLModalPresentationBehavior : NSObject<FLPresentationBehavior> {
