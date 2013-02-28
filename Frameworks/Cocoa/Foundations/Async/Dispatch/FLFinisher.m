@@ -124,7 +124,7 @@
 
     self.finished = YES;
 
-    [self postObservation:@selector(finisher:didFinishWithResult:) fromObject:self withObject:self.result];
+//    [self postObservation:@selector(finisher:didFinishWithResult:) withObject:self withObject:self.result];
 
     if(_semaphore) {
  //       FLLog(@"releasing semaphor for %X, ont thread %@", (void*) _semaphore, [NSThread currentThread]);
@@ -254,7 +254,7 @@
 @implementation FLFinisher (FLDispatcher)
 
 - (void) setWillStartInDispatcher:(id<FLDispatcher>) dispatcher {    
-    [self postObservation:@selector(finisher:willStartInDispatcher:) fromObject:self withObject:dispatcher];
+//    [self postObservation:@selector(finisher:willStartInDispatcher:) withObject:self withObject:dispatcher];
 }
 
 - (void) setWillBeDispatchedByDispatcher:(id<FLDispatcher>) dispatcher {
@@ -263,7 +263,7 @@
         self.finishOnMainThread = YES;
     }
 
-    [self postObservation:@selector(finisher:wasDispatchedInDispatcher:) fromObject:self withObject:dispatcher];
+//    [self postObservation:@selector(finisher:wasDispatchedInDispatcher:) withObject:self withObject:dispatcher];
 }
 
 @end

@@ -13,7 +13,9 @@
 
 @implementation FLZenfolioRegisteredUserAuthenticationService
 
-
++ (id) registeredUserAuthenticationService {
+    return FLAutorelease([[[self class] alloc] init]);
+}
 
 - (BOOL) userLoginIsAuthenticated:(FLUserLogin*) userLogin {
     if(![super userLoginIsAuthenticated:userLogin]) {

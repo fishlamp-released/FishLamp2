@@ -9,6 +9,7 @@
 #import "FLDispatch.h"
 #import "FLWorkerContext.h"
 #import "FLAsyncWorker.h"
+#import "FLObserver.h"
 
 @class FLOperation;
 

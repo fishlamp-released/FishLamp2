@@ -9,5 +9,5 @@
 #import <Cocoa/Cocoa.h>
 
 @interface FLZenfolioRegisteredUserAuthenticationService : FLZenfolioAuthenticationService
-
++ (id) registeredUserAuthenticationService;
 @end

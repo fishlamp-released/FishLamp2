@@ -41,7 +41,6 @@
 
 @interface FLZenfolioGroupElementSelection()
 @property (readwrite, strong, nonatomic) NSArray* selectedPhotoSets;
-
 @end
 
 @implementation FLZenfolioGroupElementSelection
@@ -55,6 +54,10 @@
         _selection = [[NSMutableDictionary alloc] init];
     }
     return self;
+}
+
++ (id) groupElementSelection {
+    return FLAutorelease([[[self class] alloc] init]);
 }
 
 - (NSIndexSet*) indexSetForSelectionsInGroup:(FLZenfolioGroup*) group {
@@ -110,6 +113,18 @@
         self.selectedPhotoSets = selectedSets;
     }
 	return _selectedPhotoSets;
+}
+
+- (id) initWithSelection:(NSDictionary*) selection {
+    self = [super init];
+    if(self) {
+        _selection = [selection mutableCopy];
+    }
+    return self;
+}
+
+- (id) copyWithZone:(NSZone *)zone {
+    return [[FLZenfolioGroupElementSelection alloc] initWithSelection:_selection];
 }
 
 @end

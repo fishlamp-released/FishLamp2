@@ -10,11 +10,12 @@
 
 #import "FLZenfolioGroupElement.h"
 
-@interface FLZenfolioGroupElementSelection : NSObject {
+@interface FLZenfolioGroupElementSelection : NSObject<NSCopying> {
 @private
     NSMutableDictionary* _selection;
     NSArray* _selectedPhotoSets;
 }
++ (id) groupElementSelection;
 
 @property (readonly, strong, nonatomic) NSDictionary* selectedGroupElements;
 

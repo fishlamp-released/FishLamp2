@@ -8,14 +8,13 @@
 
 #import "FLCocoaRequired.h"
 #import "FLResult.h"
-#import "FLObserver.h"
 #import "FLDispatchTypes.h"
 
 #if DEBUG
 #import "FLStackTrace.h"
 #endif
 
-@interface FLFinisher : FLObserver {
+@interface FLFinisher : NSObject {
 @private
     dispatch_semaphore_t _semaphore;
     id _result;
@@ -59,12 +58,5 @@
 @interface FLFinisher (FLDispatcher)
 - (void) setWillStartInDispatcher:(id<FLDispatcher>) dispatcher;
 - (void) setWillBeDispatchedByDispatcher:(id<FLDispatcher>) dispatcher;
-@end
-
-
-@protocol FLFinisherObserving <NSObject>
-- (void) finisher:(FLFinisher*) finisher wasDispatchedInDispatcher:(id<FLDispatcher>) dispatcher;
-- (void) finisher:(FLFinisher*) finisher willStartInDispatcher:(id<FLDispatcher>) dispatcher;
-- (void) finisher:(FLFinisher*) finisher didFinishWithResult:(FLResult) result;
 @end
 

@@ -8,38 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol FLObserver <NSObject>
+@interface NSObject (FLObserving) 
 - (void) postObservation:(SEL) selector 
-              fromObject:(id) object;
-
-- (void) postObservation:(SEL) selector 
-               fromObject:(id) object
               withObject:(id) object;
 
 - (void) postObservation:(SEL) selector 
-               fromObject:(id) object
-              withObject:(id) object1 
+               withObject:(id) object1
               withObject:(id) object2;
-@end              
 
-#define FLObserverMaxListeners 5 // if you have more than that, you're doing it wrong.
-@interface FLObserver : NSObject<FLObserver> {
-@private
-    id _listeners[FLObserverMaxListeners];
-    NSUInteger _listenerCount;
-}
-- (void) addListener:(id) listener;
+- (void) postObservation:(SEL) selector 
+              withObject:(id) object1
+              withObject:(id) object2 
+              withObject:(id) object3;
 @end
 
-
-//@interface FLObserver : NSObject {
-//@private
-//    dispatch_block_t _willStart;
-//    FLBlockWithResult _didFinish;
-//}
-//
-//@property (readwrite, strong) dispatch_block_t willStart;
-//@property (readwrite, strong) FLBlockWithResult didFinish;
-//
-//@end
 

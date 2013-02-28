@@ -29,18 +29,18 @@
 	}
 }
 
-+ (NSString*) localizedStringForTime:(int) secs
-{
++ (NSString*) localizedStringForTime:(NSTimeInterval) secs {
+
 	NSMutableString *time = [NSMutableString string];
 	if ( secs > 3600 ) {
-		[time appendFormat:@"%d %@ ", secs / 3600, NSLocalizedString(@"hours", nil)];
-		secs = secs % 3600;
+		[time appendFormat:@"%ld %@ ", lrint(floor(secs / 3600.0)), NSLocalizedString(@"hours", nil)];
+		secs = fmod(secs, 3600.0);
 	}
 	if ( secs > 60 ) {
-		[time appendFormat:@"%d %@ ", secs / 60, NSLocalizedString(@"minutes", nil)];
-		secs = secs % 60;
+		[time appendFormat:@"%ld %@ ", lrint(floor(secs / 60.0)), NSLocalizedString(@"minutes", nil)];
+		secs = fmod(secs, 60.0);
 	}
-	[time appendFormat:@"%d %@", secs, NSLocalizedString(@"seconds", nil)];
+	[time appendFormat:@"%ld %@", lround(secs), NSLocalizedString(@"seconds", nil)];
 	return time;
 }
 

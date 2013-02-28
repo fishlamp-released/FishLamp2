@@ -15,13 +15,16 @@
 
 FLSynthesizeServiceProperty(httpRequestAuthenticator, setHttpRequestAuthenticator, FLHttpRequestAuthenticationService*, _httpRequestAuthenticator);
 
-
 - (id) init {
     self = [super init];
     if(self) {
         _asyncDispatcher = [[FLFifoGcdDispatcher alloc] init];
     }
     return self;
+}
+
++ (id) httpUserService {
+    return FLAutorelease([[[self class] alloc] init]);
 }
 
 #if FL_MRC

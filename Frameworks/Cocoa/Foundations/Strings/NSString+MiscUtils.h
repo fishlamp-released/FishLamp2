@@ -12,6 +12,6 @@
 
 + (NSString*) localizedStringForByteSize:(long long) size;
 
-+ (NSString*) localizedStringForTime:(int) seconds;
++ (NSString*) localizedStringForTime:(NSTimeInterval) seconds;
 
 @end
