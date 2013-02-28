@@ -287,6 +287,17 @@
     return NSNotFound;
 }
 
+- (void) showSpinner:(BOOL) show {
+    [_spinner setHidden:!show];
+    if(show) {
+        [_spinner startAnimation:self];
+    }
+    else {
+        [_spinner stopAnimation:self];
+    }
+        
+}
+
 
 - (void) setWizardPanelTitleFields:(FLWizardPanel*) wizardPanel {
     self.titleTextField.hidden = NO;
@@ -313,7 +324,8 @@
 
     self.nextButton.enabled = NO;
     self.backButton.enabled = NO; // (_panels.count > 0);
-
+    [self showSpinner:NO];
+    
     if(toHide) {
         [self willHideWizardPanel:toHide];
     }

@@ -9,7 +9,7 @@
 #import "FLApplicationDelegate.h"
 #import "FLMobileTheme.h"
 #import "FLViewController.h"
-#import "FLCore.h"
+#import "FishLampCore.h"
 #import "FLApplicationDataModel.h"
 #import "FLViewControllerStack.h"
 
