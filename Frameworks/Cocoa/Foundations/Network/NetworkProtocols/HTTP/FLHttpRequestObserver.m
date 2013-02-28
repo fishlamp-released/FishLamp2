@@ -74,11 +74,11 @@
     FLInvokeBlock(self.encounteredError, error);
 }
 
-- (void) httpRequestDidReadBytes:(FLHttpRequest*) httpRequest  amount:(unsigned long) amount{
+- (void) httpRequestDidReadBytes:(FLHttpRequest*) httpRequest  amount:(NSNumber*) amount{
     FLInvokeBlock(self.didReadBytes, amount);
 }
 
-- (void) httpRequestDidWriteBytes:(FLHttpRequest*) httpRequest  amount:(unsigned long) amount {
+- (void) httpRequestDidWriteBytes:(FLHttpRequest*) httpRequest  amount:(NSNumber*) amount {
     FLInvokeBlock(self.didWriteBytes, amount);
 }
 

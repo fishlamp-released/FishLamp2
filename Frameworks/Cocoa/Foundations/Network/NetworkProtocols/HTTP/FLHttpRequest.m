@@ -247,7 +247,7 @@
             [_response setResponseHeadersWithHttpMessage:message];
             
             if(!_response.redirectedFrom) {
-                FLPerformSelector1(self.observer, @selector(httpRequestDidOpen:), self);
+                [self.observer postObservation:@selector(httpRequestDidOpen:) withObject:self];
             }
             
 //            [self postObservableEvent:FLHttpRequestDidWriteBytesEvent];
@@ -285,7 +285,7 @@
             [self.interceptor httpRequest:self didFinishWithResult:result];
         }
 
-        FLPerformSelector2(self.observer, @selector(httpRequest:didCloseWithResult:), self, result);
+        [self.observer postObservation:@selector(httpRequest:didCloseWithResult:) withObject:self withObject:result];
         
         FLFinisher* finisher = FLRetainWithAutorelease(self.finisher);
         self.finisher = nil;
@@ -355,9 +355,8 @@
     }];      
 }
 
-- (void) readStream:(FLReadStream*) readStream
-   didEncounterError:(NSError*) error {
-
+- (void) readStream:(FLReadStream*) readStream didEncounterError:(NSError*) error {
+    [self.observer postObservation:@selector(httpRequest:didEncounterError:) withObject:self withObject:error];
     [self closeStreamWithResult:error];
 }
 
@@ -369,21 +368,20 @@
 }
 
 - (void) readStream:(id<FLReadStream>) stream didReadBytes:(unsigned long) amountRead {
-//    [self postObservableEvent:FLHttpRequestDidReadBytesEvent];
-
-//    FLPerformSelector1(self.observer, @selector(httpRequestDidReadBytes:amount::), self);
+    [self.observer postObservation:@selector(httpRequest:didReadBytes:) withObject:self withObject:[NSNumber numberWithUnsignedLong:amountRead]];
 }
 
 - (void) willAuthenticateHttpRequest:(id<FLHttpRequestAuthenticator>) authenticator {
-    FLPerformSelector1(self.observer, @selector(httpRequestWillAuthenticate:), self);
+    [self.observer postObservation:@selector(httpRequestWillAuthenticate:) withObject:self];
 }
 
 - (void) didAuthenticateHttpRequest {
-    FLPerformSelector1(self.observer, @selector(httpRequestDidAuthenticate:), self);
+    [self.observer postObservation:@selector(httpRequestDidAuthenticate:) withObject:self];
 }
 
 - (void) sendRequest {
-    FLPerformSelector1(self.observer, @selector(httpRequestWillOpen:), self);
+    [self.observer postObservation:@selector(httpRequestWillOpen:) withObject:self];
+    
     self.dispatcher = [FLFifoGcdDispatcher fifoDispatchQueue];
     [self.dispatcher dispatchBlock:^{
         @try {

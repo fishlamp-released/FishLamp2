@@ -97,7 +97,7 @@
     return [[finisher waitUntilFinished] result];
 }
 
-- (FLFinisher*) scheduleWorker:(id<FLAsyncWorker>) worker
+- (FLFinisher*) startWorker:(id<FLAsyncWorker>) worker
                   inDispatcher:(id<FLDispatcher>) dispatcher
                   withObserver:(id) observer 
                     completion:(FLBlockWithResult) completion {
@@ -130,6 +130,10 @@
     [dispatcher dispatchFinishableBlock:block withFinisher:finisher];
 
     return finisher;
+}
+
+- (FLFinisher*) startWorker:(id<FLAsyncWorker>) worker withObserver:(id) observer {
+    return [self startWorker:worker inDispatcher:[FLGcdDispatcher sharedDefaultQueue] withObserver:observer completion:nil];
 }
    
 @end

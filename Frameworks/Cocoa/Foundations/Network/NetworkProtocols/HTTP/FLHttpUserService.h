@@ -21,6 +21,8 @@
     FLFifoGcdDispatcher* _asyncDispatcher;
 }
 
++ (id) httpUserService;
+
 @property (readwrite, strong) FLUserLogin* userLogin;
 @property (readonly, assign) BOOL isContextAuthenticated;
 

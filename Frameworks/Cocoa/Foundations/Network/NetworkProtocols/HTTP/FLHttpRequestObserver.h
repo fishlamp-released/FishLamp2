@@ -22,17 +22,16 @@
 - (void) httpRequestDidOpen:(FLHttpRequest*) httpRequest;
 
 - (void) httpRequest:(FLHttpRequest*) httpRequest 
-   willCloseWithResult:(FLResult) result;
-
-- (void) httpRequest:(FLHttpRequest*) httpRequest 
     didCloseWithResult:(FLResult) result;
 
 - (void) httpRequest:(FLHttpRequest*) httpRequest
       didEncounterError:(NSError*) error;
 
-- (void) httpRequestDidReadBytes:(FLHttpRequest*) httpRequest amount:(unsigned long) amount;
+// TODO: these need a little love
 
-- (void) httpRequestDidWriteBytes:(FLHttpRequest*) httpRequest amount:(unsigned long) amount;
+- (void) httpRequest:(FLHttpRequest*) httpRequest didReadBytes:(NSNumber*) amount;
+
+- (void) httpRequest:(FLHttpRequest*) httpRequest didWriteBytes:(NSNumber*) amount;
 
 @end
 

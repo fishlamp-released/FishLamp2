@@ -22,10 +22,14 @@ typedef void (^FLDispatchableObjectVisitor)(id object, BOOL* stop);
 - (FLResult) runWorker:(id<FLAsyncWorker>) worker 
           withObserver:(id) observer;
                  
-- (FLFinisher*) scheduleWorker:(id<FLAsyncWorker>) worker
+- (FLFinisher*) startWorker:(id<FLAsyncWorker>) worker
                   inDispatcher:(id<FLDispatcher>) dispatcher
                   withObserver:(id) observer 
                     completion:(FLBlockWithResult) completion;
+
+- (FLFinisher*) startWorker:(id<FLAsyncWorker>) worker withObserver:(id) observer;
+
+
 @end
 
 @interface FLWorkerContext : FLService<FLWorkerContext> {
