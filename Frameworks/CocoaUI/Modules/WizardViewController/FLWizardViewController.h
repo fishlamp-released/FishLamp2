@@ -34,7 +34,6 @@ typedef FLWizardPanel* (^FLWizardPanelFactory)();
     IBOutlet NSView* _buttonEnclosureView;
     IBOutlet NSButton* _nextButton;
     IBOutlet NSButton* _backButton;
-    IBOutlet NSView* _modalShieldView;
     IBOutlet NSProgressIndicator* _spinner;
     
     NSMutableArray* _panels;

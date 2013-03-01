@@ -81,7 +81,7 @@
 #endif    
 }
 
-- (id) didReceiveHttpResponse:(FLHttpResponse*) httpResponse {
+- (FLResult) resultFromHttpResponse:(FLHttpResponse*) httpResponse {
     NSData* data = httpResponse.responseData;
     
     FLSoapFault11* fault = [FLSoapHttpRequest checkForSoapFaultInData:data];
@@ -97,13 +97,14 @@
     
     if(_xmlDataPath) {
         FLParsedXmlElement* element = [result elementAtPath:_xmlDataPath];
+        FLAssertNotNil_v(element, @"Element not found in result: %@", _xmlDataPath);
         if(element) {
             result = element;
         }
         
         if(_decodedType) {
             id object = [element inflateObjectWithType:_decodedType withDecoder:[FLSoapDataEncoder instance]];
-            FLAssertNotNil_(object);
+            FLAssertNotNil_v(object, @"object not inflated for type: %@", NSStringFromClass(_decodedType.typeClass));
             result = object;
         }
     }

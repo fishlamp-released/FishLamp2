@@ -40,6 +40,7 @@
 	self.host = url.host;
 	self.imageId = [NSString stringWithFormat:@"%@%@", url.host, url.path];
 	self.photoUrl = url.path;
+    self.fileName = [[url path] lastPathComponent];
 }
 
 + (NSString*) databaseTableName {

@@ -49,7 +49,7 @@
 
 }
 
-- (id) didReceiveHttpResponse:(FLHttpResponse*) httpResponse {
+- (FLResult) resultFromHttpResponse:(FLHttpResponse*) httpResponse {
 
     NSData* data = [httpResponse responseData];
     

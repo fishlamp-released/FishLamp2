@@ -154,7 +154,6 @@
     _nextButton.hidden = NO;
     _nextButton.enabled = NO;
     _backButton.enabled = NO;
-    _modalShieldView.hidden = YES;
     
     FLPerformSelector1(self.delegate, @selector(wizardViewControllerCanStart:), self);
     _wizardPanelEnclosureView.wantsLayer = YES;
@@ -164,6 +163,8 @@
     _breadcrumbBar.delegate = self;
     
     [_breadcrumbView addSubview:_breadcrumbBar.view];
+    
+    [self showSpinner:NO];
 }
 
 - (BOOL)acceptsFirstResponder {
@@ -324,7 +325,6 @@
 
     self.nextButton.enabled = NO;
     self.backButton.enabled = NO; // (_panels.count > 0);
-    [self showSpinner:NO];
     
     if(toHide) {
         [self willHideWizardPanel:toHide];
@@ -420,10 +420,15 @@
     };
       
     if(animated) {
+
+        FLSlideInAndDropTransition* transition = 
+            [FLSlideInAndDropTransition transitionWithViewToShow:[toShow view] 
+                                                      viewToHide:toHide ? [toHide view] : nil];
+
         
-        FLSlideOutAndComeForwardTransition* transition = 
-            [FLSlideOutAndComeForwardTransition transitionWithViewToShow:[toShow view] 
-                                                              viewToHide:toHide != nil ? [toHide view] : nil];
+//        FLSlideOutAndComeForwardTransition* transition = 
+//            [FLSlideOutAndComeForwardTransition transitionWithViewToShow:[toShow view] 
+//                                                              viewToHide:toHide != nil ? [toHide view] : nil];
 
         [transition startAnimating:^{
             finished();
@@ -463,14 +468,6 @@
         _currentPanel = idx;
     }
 }                             
-
-- (void) showModalShield {
-    _modalShieldView.hidden = NO;
-}
-
-- (void) hideModalShield {
-    _modalShieldView.hidden = YES;
-}
                    
 - (void) breadcrumbBar:(FLBreadcrumbBarViewController*) breadcrumbBar 
     breadcrumbWasClicked:(NSString*) key {

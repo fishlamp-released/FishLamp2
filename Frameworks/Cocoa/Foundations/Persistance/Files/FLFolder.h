@@ -27,9 +27,9 @@ typedef void (^FLFileVisitorBlock)(NSString* fileName, BOOL* stop);
 
 - (id) initWithURL:(NSURL*) url;
 
-+ (FLFolder*) folder:(NSString*) path;
++ (id) folderWithPath:(NSString*) path;
 
-+ (FLFolder*) folderWithURL:(NSURL*) url;
++ (id) folderWithURL:(NSURL*) url;
 
 - (unsigned long long) calculateFolderSize:(FLFileVisitorBlock) operation 
                               outItemCount:(NSUInteger*) outItemCount;

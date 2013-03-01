@@ -100,6 +100,9 @@
 }
 
 -(id) initWithRequestURL:(NSURL*) url httpMethod:(NSString*) httpMethod {
+
+    FLAssertNotNil_(url);
+
     if((self = [super init])) {
         _headers = [[FLHttpRequestHeaders alloc] init];
         _body = [[FLHttpRequestBody alloc] initWithHeaders:_headers];
@@ -188,17 +191,18 @@
             
             NSInputStream* inputStream = self.body.bodyStream;
             if(inputStream) {
-                // I don't quite get why we're making a read stream for a networkStream???
                 ref = CFReadStreamCreateForStreamedHTTPRequest(kCFAllocatorDefault,
                                         message.messageRef,
                                         bridge_(CFReadStreamRef, inputStream));
             }
-            else if(self.body.bodyData) {
-                message.bodyData = self.body.bodyData;
+            else {
+                if(self.body.bodyData) {
+                    message.bodyData = self.body.bodyData;
+                }
                 ref = CFReadStreamCreateForHTTPRequest(kCFAllocatorDefault, message.messageRef);
             }
             
-            FLConfirmNotNil_v(ref, @"unable to create CFReadStreamRef - HTTPBody or HTTPBodyStream required");
+            FLConfirmNotNil_v(ref, @"unable to create CFReadStreamRef");
                     
             networkStream = [FLReadStream readStream:ref];
         }
@@ -261,7 +265,7 @@
     self.networkStream = nil;
 }
 
-- (id) didReceiveHttpResponse:(FLHttpResponse*) httpResponse {
+- (FLResult) resultFromHttpResponse:(FLHttpResponse*) httpResponse {
     return httpResponse;
 }
 
@@ -273,7 +277,7 @@
     
     @try {
         if(![result error]) {
-            result = [self didReceiveHttpResponse:self.httpResponse];
+            result = [self resultFromHttpResponse:self.httpResponse];
         }
     }
     @catch(NSException* ex) {
@@ -417,7 +421,7 @@
             [[authenticator httpRequestAuthenticationDispatcher:self] dispatchBlock:^{
                 @try {
                     [self willAuthenticateHttpRequest:authenticator];
-                    [authenticator httpRequest:self authenticateSynchronouslyInContext:context withObserver:observer];
+                    [authenticator httpRequest:self authenticateSynchronouslyInContext:context withObserver:nil];
                     [self didAuthenticateHttpRequest];
                     [self sendRequest];
                 }

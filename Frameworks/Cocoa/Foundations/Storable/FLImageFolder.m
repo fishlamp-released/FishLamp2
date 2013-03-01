@@ -60,11 +60,17 @@ static NSDictionary* s_suffixes = nil;
 
     NSString* fileUTI = [self fileUTI:pathToFile];
 
+
+
     if (UTTypeConformsTo(bridge_(CFStringRef, fileUTI), kUTTypeImage)) {
         NSData* data = [self readDataFromFile:name];
         FLStorableImage* image = [FLStorableImage imageWithData:data];
-        image.storableType = fileUTI;
-        image.storageKey = name;
+
+FLAssertFailed_v(@"confirm this");
+        
+//        FLImageProperties* props = [FLImageProperties imageProperties];
+//        image.storableType = fileUTI;
+//        image.storageKey = name;
         return image;
     }
     else if (UTTypeConformsTo(bridge_(CFStringRef, fileUTI), kUTTypeMovie)) {
@@ -86,9 +92,12 @@ static NSDictionary* s_suffixes = nil;
     NSData* data = [self readDataFromFile:fileName];
     if(data) {
         FLStorableImage* image = [FLStorableImage imageWithData:data];
-        image.storableSubType = subType;
-        image.storableType = [self fileUTI:fileName];
-        image.storageKey = storageKey;
+
+FLAssertFailed_v(@"confirm this");
+
+//        image.storableSubType = subType;
+//        image.storableType = [self fileUTI:fileName];
+//        image.storageKey = storageKey;
         return image;
     }
     
@@ -177,9 +186,9 @@ static NSDictionary* s_suffixes = nil;
         imageSourceRef = CGImageSourceCreateWithData(bridge_(void*, bytes), nil);
         FLConfirmIsNotNil_(imageSourceRef);
         
-        if(properties) {
+//        if(properties) {
             CGImageDestinationAddImageFromSource(imageDestRef, imageSourceRef, 0, bridge_(void*,properties));
-        }
+//        }
         
         if(!CGImageDestinationFinalize(imageDestRef)){
              FLDebugLog(@"wth - image finalize failed");

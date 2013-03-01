@@ -56,8 +56,8 @@
 //}
 
 - (void) wizardPanelWillAppearInWizard:(FLWizardViewController*) wizard {
-    [self.wizard nextButton].enabled = YES;
-    [self.wizard backButton].enabled = YES;
+    [self nextButton].enabled = YES;
+    [self backButton].enabled = NO;
 }
 
 - (void) wizardPanelDidAppearInWizard:(FLWizardViewController*) wizard {
@@ -80,6 +80,22 @@
 - (BOOL) willRespondToOtherButtonInWizard:(FLWizardViewController*) wizard {
     return NO;
 }
+
+- (NSButton*) nextButton {
+    return [self.wizard nextButton];
+}
+
+- (NSButton*) backButton {
+    return [self.wizard backButton];
+}
+
+- (void) enableBackButton:(BOOL) enable {
+    self.backButton.enabled = enable;
+}
+- (void) enableNextButton:(BOOL) enable {
+    self.nextButton.enabled = enable;
+}
+
 
 @end
 #endif

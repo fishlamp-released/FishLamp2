@@ -61,9 +61,11 @@ typedef void (^FLOperationResultBlock)(FLResult result);
 
 @interface FLOperationObserver : FLFinisher<FLOperationObserver> {
 @private
-    dispatch_block_t _willRun;
+    dispatch_block_t _willRunBlock;
+    FLOperationResultBlock _didFinishBlock;
 }
-@property (readwrite, copy, nonatomic) dispatch_block_t willRun;
-//@property (readwrite, copy, nonatomic) FLOperationResultBlock didFinish;
++ (FLOperationObserver*) operationObserver;
+@property (readwrite, copy, nonatomic) dispatch_block_t willRunBlock;
+@property (readwrite, copy, nonatomic) FLOperationResultBlock didFinishBlock;
 
 @end

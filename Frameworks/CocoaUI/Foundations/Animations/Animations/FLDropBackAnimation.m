@@ -12,8 +12,8 @@
 
 @synthesize scale = _scale;
 
-- (id) init {
-    self = [super init];
+- (id) initWithTarget:(id) target {
+    self = [super initWithTarget:target];
     if(self) {
         _scale = FLDropBackAnimationDefaultScale;
     }

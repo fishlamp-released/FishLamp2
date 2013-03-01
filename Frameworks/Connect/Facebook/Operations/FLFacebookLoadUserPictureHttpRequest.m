@@ -64,7 +64,7 @@
 }
 
 
-- (id) didReceiveHttpResponse:(FLHttpResponse*) response {
+- (FLResult) resultFromHttpResponse:(FLHttpResponse*) response {
 
     return response;
 }
