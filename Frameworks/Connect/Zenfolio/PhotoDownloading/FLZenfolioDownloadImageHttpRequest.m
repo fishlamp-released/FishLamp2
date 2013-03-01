@@ -29,8 +29,11 @@
 - (id) initWithPhoto:(FLZenfolioPhoto*) photo 
            imageSize:(FLZenfolioImageSize*) imageSize 
                cache:(FLZenfolioCacheService*) cache {
-               
-	self = [self initWithRequestURL:[_photo urlForImageWithSize:_imageSize]];
+    
+    FLAssertNotNil_(photo);
+    FLAssertNotNil_(imageSize);
+                                     
+	self = [self initWithRequestURL:[photo urlForImageWithSize:imageSize]];
 	if(self) {
         self.imageSize = imageSize;
 		self.photo = photo;
@@ -55,8 +58,9 @@
 }
 #endif
 
-- (id) didReceiveHttpResponse:(FLHttpResponse*) httpResponse {
-    FLStorableImage* image = [super didReceiveHttpResponse:httpResponse];
+- (FLResult) resultFromHttpResponse:(FLHttpResponse*) httpResponse {
+    FLStorableImage* image = [super resultFromHttpResponse:httpResponse];
+    
     image.imageProperties.imageVersion = self.photo.Sequence;
     
     if(self.cache) {
@@ -76,6 +80,9 @@
         else {
             [observer setFinishedWithResult:image];
         }
+    }
+    else {
+        [super startWorkingInContext:context withObserver:observer finisher:finisher];
     }
 }
 

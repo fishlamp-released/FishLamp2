@@ -10,6 +10,9 @@
 #import "FLGcdDispatcher.h"
 #import "FLDispatch.h"
 
+NSString* const FLWorkerContextStarting = @"FLWorkerContextStarting";
+NSString* const FLWorkerContextFinished = @"FLWorkerContextFinished";
+
 @implementation FLWorkerContext
 @synthesize dispatcher = _dispatcher;
 
@@ -60,24 +63,38 @@
 
 - (void) requestCancel {
     
-    [self.dispatcher dispatchBlock:^{
-        for(id worker in _objects) {
-            FLPerformSelector(worker, @selector(requestCancel));
-        }
-    }];
-    
+    NSArray* toCancel = nil;
+    @synchronized(self) {
+        toCancel = FLAutorelease([_objects copy]);
+    }
+    for(id worker in toCancel) {
+        FLPerformSelector(worker, @selector(requestCancel));
+    }
 }
 
-- (void) addObject:(id) worker {
-    [self.dispatcher dispatchBlock:^{
+- (void) addObject:(id) worker  {
+    
+    @synchronized(self) {
+        if(_objects.count == 0) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [[NSNotificationCenter defaultCenter] postNotificationName:FLWorkerContextStarting object:self];
+            });
+        }
+    
         [_objects addObject:worker];
-    }];
+    }
 }
 
 - (void) removeObject:(id) worker {
-    [self.dispatcher dispatchBlock:^{
+    @synchronized(self) {
         [_objects removeObject:worker];
-    }];
+
+        if(_objects.count == 0) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [[NSNotificationCenter defaultCenter] postNotificationName:FLWorkerContextFinished object:self];
+            });
+        }
+    }
 }
 
 - (FLResult) runWorker:(id<FLAsyncWorker>) worker 
@@ -86,6 +103,7 @@
     FLFinisher* finisher = [FLFinisher finisher];
     @try {
         [self addObject:worker];
+        
         [worker startWorkingInContext:self withObserver:observer finisher:finisher];
     }
     @catch(NSException* ex) {
@@ -94,7 +112,8 @@
     @finally {
         [self removeObject:worker];
     }
-    return [[finisher waitUntilFinished] result];
+
+    return FLThrowIfError([[finisher waitUntilFinished] result]);
 }
 
 - (FLFinisher*) startWorker:(id<FLAsyncWorker>) worker
@@ -128,7 +147,7 @@
     [self addObject:worker];
     
     [dispatcher dispatchFinishableBlock:block withFinisher:finisher];
-
+    
     return finisher;
 }
 

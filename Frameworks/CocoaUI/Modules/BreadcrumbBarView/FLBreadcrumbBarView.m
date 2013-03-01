@@ -21,22 +21,6 @@
 @synthesize touched = _touched;
 @synthesize key = _key;
 
-
-- (id)initWithFrame:(NSRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-    
-        _shape = [[FLDrawableForwardButtonShape alloc] init];
-        _shape.edgeInset = 1.0;
-        _shape.edgeInsetColor = [NSColor grayColor];
-        _shape.cornerRadius = 1.0;
-        _shape.shapeSize = 10.0;
-    }
-    
-    return self;
-}
-
 #if FL_MRC
 - (void) dealloc {
     [_key release];
@@ -155,6 +139,46 @@
 //}
 
 - (void)drawRect:(NSRect)dirtyRect {
+
+    if(self.isEmphasized) {
+        UIColor* bgColor = [NSColor whiteColor];
+        if(bgColor) {
+            [bgColor setFill];
+            NSRectFill(dirtyRect);
+        }
+    }
+
+    FLTextAlignment align = { FLVerticalTextAlignmentCenter, FLHorizontalTextAlignmentCenter };
+    [FLCoreText drawString:[self.title attributedString] withTextAlignment:align inBounds:self.bounds];
+}
+
+
+@end
+
+@implementation FLHorizontalBreadcrumbBarView
+
+- (id)initWithFrame:(NSRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        _shape = FLAutorelease([[FLDrawableForwardButtonShape alloc] init]);
+        _shape.edgeInset = 1.0;
+        _shape.edgeInsetColor = [NSColor grayColor];
+        _shape.cornerRadius = 1.0;
+        _shape.shapeSize = 10.0;
+    }
+    
+    return self;
+}
+
+#if FL_MRC
+- (void) dealloc {
+    [_shape release];
+    [super dealloc];
+}
+#endif
+
+- (void)drawRect:(NSRect)dirtyRect {
     
     if(self.isEmphasized) {
         _shape.backgroundColor = [NSColor gray85Color];
@@ -184,8 +208,5 @@
  
     
 }
-
-
-
 @end
 #endif

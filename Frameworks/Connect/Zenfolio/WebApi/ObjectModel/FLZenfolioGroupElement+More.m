@@ -141,7 +141,7 @@
 
 - (int) galleryCount {
     __block int count = 0;
-    [self visitAllElements:^(FLZenfolioGroupElement* element, BOOL* stop) {
+    [self visitAllElements:^(FLZenfolioGroupElement* element, NSUInteger idx, BOOL* stop) {
         if(!element.isGroupElement) {
             ++count;
         }
@@ -150,26 +150,35 @@
     return count;
 }
 
-- (BOOL) visitAllElements:(void (^)(FLZenfolioGroupElement* element, BOOL* stop)) visitor {
+- (BOOL) visitAllElements:(FLGroupElementVisitor) visitor elementIndex:(NSUInteger*) elementIndex {
 
-    for(id element in self.elements) {
+    BOOL stop = NO;
+    visitor(self, (*elementIndex)++, &stop);
+    if(stop) {
+        return YES;
+    }
     
+    for(id element in self.elements) {
+        
         if([element isGroupElement]) {
-            if([element visitAllElements:visitor]) {
+            if([element visitAllElements:visitor elementIndex:elementIndex] ) {
                 return YES;
             }
         }
-    
-        BOOL stop = NO;
-        visitor(element, &stop);
-        
-        if(stop) {
-            return YES;
+        else {
+            visitor(element, (*elementIndex)++, &stop);
+            if(stop) {
+                return YES;
+            }
         }
-        
     }
     
     return NO;
+}
+
+- (BOOL) visitAllElements:(FLGroupElementVisitor) visitor {
+    NSUInteger idx = 0;
+    return [self visitAllElements:visitor elementIndex:&idx];
 }
 
 - (int) VideoCountValue {

@@ -9,77 +9,76 @@
 #import "FLHttpRequestObserver.h"
 
 @implementation FLHttpRequestObserver 
-@synthesize willAuthenticate = _willAuthenticate;
-@synthesize didAuthenticate = _didAuthenticate;
-@synthesize willOpen = _willOpen;
-@synthesize didOpen = _didOpen;
-@synthesize willClose = _willClose;
-@synthesize didClose = _didClose;
-@synthesize encounteredError = _encounteredError;
-@synthesize didWriteBytes = _didWriteBytes;
-@synthesize didReadBytes = _didReadBytes;
-@synthesize didFinish = _observerDidFinish;
+
++ (id) httpRequestObserver {
+    return FLAutorelease([[[self class] alloc] init]);
+}
+
+@synthesize willAuthenticateBlock = _willAuthenticateBlock;
+@synthesize didAuthenticateBlock = _didAuthenticateBlock;
+@synthesize willOpenBlock = _willOpenBlock;
+@synthesize didOpenBlock = _didOpenBlock;
+@synthesize willCloseBlock = _willCloseBlock;
+@synthesize didCloseBlock = _didCloseBlock;
+@synthesize encounteredErrorBlock = _encounteredErrorBlock;
+@synthesize didWriteBytesBlock = _didWriteBytesBlock;
+@synthesize didReadBytesBlock = _didReadBytesBlock;
+@synthesize didFinishBlock = _observerDidFinishBlock;
 
 #if FL_MRC
 - (void) dealloc {
-    [_willAuthenticate release];
-    [_didAuthenticate release];
-    [_willOpen release];
-    [_didOpen release];
-    [_willClose release];
-    [_didClose release];
-    [_encounteredError release];
-    [_didWriteBytes release];
-    [_didReadBytes release];
-    [_observerDidFinish release];
+    [_willAuthenticateBlock release];
+    [_didAuthenticateBlock release];
+    [_willOpenBlock release];
+    [_didOpenBlock release];
+    [_willCloseBlock release];
+    [_didCloseBlock release];
+    [_encounteredErrorBlock release];
+    [_didWriteBytesBlock release];
+    [_didReadBytesBlock release];
+    [_observerDidFinishBlock release];
     [super dealloc];
 }
 #endif
 
 #define FLInvokeBlock(b, ...) \
     if(b) { \
-        dispatch_async(dispatch_get_main_queue(), ^{ \
-            b(__VA_ARGS__); \
-        }); \
+        b(__VA_ARGS__); \
     }
 
-+ (id) httpRequestObserver {
-    return FLAutorelease([[[self class] alloc] init]);
-}
-
 - (void) httpRequestDidAuthenticate:(FLHttpRequest*) httpRequest {
-    FLInvokeBlock(self.didAuthenticate);
+    FLInvokeBlock(self.didAuthenticateBlock);
 }
 
 - (void) httpRequestWillOpen:(FLHttpRequest*) httpRequest {
-    FLInvokeBlock(self.willOpen);
+    FLInvokeBlock(self.willOpenBlock);
 }
 
 - (void) httpRequestDidOpen:(FLHttpRequest*) httpRequest {
-    FLInvokeBlock(self.didOpen);
+    FLInvokeBlock(self.didOpenBlock);
 }
 
 - (void) httpRequest:(FLHttpRequest*) httpRequest 
    willCloseWithResult:(FLResult) result {
-    FLInvokeBlock(self.willClose, result);
+    FLInvokeBlock(self.willCloseBlock, result);
 }   
 
 - (void) httpRequest:(FLHttpRequest*) httpRequest 
     didCloseWithResult:(FLResult) result {
-    FLInvokeBlock(self.didClose, result);
+    FLInvokeBlock(self.didCloseBlock, result);
 }    
 
 - (void) httpRequest:(FLHttpRequest*) httpRequest
       didEncounterError:(NSError*) error {
-    FLInvokeBlock(self.encounteredError, error);
+    FLInvokeBlock(self.encounteredErrorBlock, error);
 }
 
 - (void) httpRequestDidReadBytes:(FLHttpRequest*) httpRequest  amount:(NSNumber*) amount{
-    FLInvokeBlock(self.didReadBytes, amount);
+    FLInvokeBlock(self.didReadBytesBlock, amount);
 }
 
 - (void) httpRequestDidWriteBytes:(FLHttpRequest*) httpRequest  amount:(NSNumber*) amount {
-    FLInvokeBlock(self.didWriteBytes, amount);
+    FLInvokeBlock(self.didWriteBytesBlock, amount);
 }
 
 @end

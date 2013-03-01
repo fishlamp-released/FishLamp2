@@ -19,17 +19,15 @@
 
 #if FL_MRC
 - (void) dealloc {
-
     [_group release];
-      [super dealloc];
+    [super dealloc];
 }
 #endif
-
 
 - (id) initWithGroup:(FLZenfolioGroup*) group {
     self = [super init];
     if(self) {
-        self.group = group;
+        _group = [group copy];
     }   
 
     return self;
@@ -40,24 +38,24 @@
 }
 
 - (void) runForGroup:(FLZenfolioGroup*) group inContext:(id) context withObserver:(id) observer {
-    NSMutableArray* newList = [NSMutableArray array];
-    for(FLZenfolioGroupElement* element in group.Elements) {
+    NSArray* elements = FLAutorelease([group.Elements copy]);
+    
+    for(FLZenfolioGroupElement* element in elements) {
         if(element.isGroupElement) {
             [self runForGroup:(FLZenfolioGroup*) element inContext:context withObserver:observer];
-            [newList addObject:element];
         }
         else {
             FLHttpRequest* request = [FLZenfolioHttpRequest loadPhotoSetHttpRequest:element.Id level:kZenfolioInformatonLevelFull includePhotos:NO];
             
             FLZenfolioPhotoSet* set = [context runWorker:request withObserver:observer];
             FLAssertNotNil_(set);
+            [group replaceGroupElement:set];
             
-            [newList addObject:set];
-            
-//            [self postObservation:@selector(photoSetDownloader:didDownloadPhotoSet:) withObject:set];
+            [observer postObservation:@selector(photoSetDownloader:didDownloadPhotoSet:) withObject:self withObject:set];
         }
+        
+        [self abortIfNeeded];
     }
-    group.Elements = newList;
 }
 
 - (FLResult) runOperationInContext:(id) context withObserver:(id) observer {

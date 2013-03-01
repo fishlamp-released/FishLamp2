@@ -88,6 +88,8 @@
 
 - (NSArray*) openAnimation:(void (^)()) didStartBlock {
     
+    FLAssert_v([NSThread isMainThread], @"not on main thread");
+    
     id target = self.target;
     FLAnimator* firstAnimator = [self prepareAnimatorWithTarget:target];
     

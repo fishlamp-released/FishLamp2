@@ -11,6 +11,7 @@
 #import "FLFadeAnimation.h"
 #import "FLMoveAnimation.h"
 #import "FLDropBackAnimation.h"
+#import "FLComeForwardAnimation.h"
 
 @implementation FLSlideInAndDropTransition
 
@@ -21,7 +22,8 @@
     if(self) {
         [self addAnimation:[FLFadeOutAnimation animationWithTarget:viewToHide]];
         [self addAnimation:[FLDropBackAnimation animationWithTarget:viewToHide]];
-        [self addAnimation:[FLSlideInFromRightAnimation animationWithTarget:viewToShow]];
+//        [self addAnimation:[FLSlideInFromRightAnimation animationWithTarget:viewToShow]];
+        [self addAnimation:[FLComeForwardAnimation animationWithTarget:viewToShow]];
         [self addAnimation:[FLFadeInAnimation animationWithTarget:viewToShow]];
     }
     

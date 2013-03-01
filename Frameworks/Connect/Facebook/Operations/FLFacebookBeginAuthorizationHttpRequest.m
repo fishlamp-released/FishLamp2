@@ -89,7 +89,7 @@ static NSString* kRedirectURL = @"http://www.facebook.com/connect/login_success.
 }
 
 
-- (id) didReceiveHttpResponse:(FLHttpResponse*) response {
+- (FLResult) resultFromHttpResponse:(FLHttpResponse*) response {
 
     [FLFacebookService clearHTTPCookies];
 

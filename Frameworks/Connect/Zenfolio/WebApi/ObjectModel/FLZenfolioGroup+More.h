@@ -33,4 +33,6 @@
 // orders of the subElements
 - (id) elementAtIndex:(NSInteger) index;
 
+- (NSArray*) pathComponentsToGroupElement:(FLZenfolioGroupElement*) element;
+
 @end

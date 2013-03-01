@@ -96,7 +96,7 @@
 /// not be called.
 /// if you want to convert the httpRespose.responseData into something
 /// else do it here and return it from from your override
-- (id) didReceiveHttpResponse:(FLHttpResponse*) httpResponse;
+- (FLResult) resultFromHttpResponse:(FLHttpResponse*) httpResponse;
 
 /// this returns YES by default.
 - (BOOL) shouldRedirectToURL:(NSURL*) url;

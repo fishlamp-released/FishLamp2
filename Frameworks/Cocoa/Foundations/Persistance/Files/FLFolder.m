@@ -40,11 +40,11 @@
     return self;
 }
 
-+ (id) folder:(NSString*) path  {
++ (id) folderWithPath:(NSString*) path  {
     return FLAutorelease([[[self class] alloc] initWithFolderPath:path]);
 }
 
-+ (FLFolder*) folderWithURL:(NSURL*) url {
++ (id) folderWithURL:(NSURL*) url {
     return FLAutorelease([[[self class] alloc] initWithURL:url]);
 }
 

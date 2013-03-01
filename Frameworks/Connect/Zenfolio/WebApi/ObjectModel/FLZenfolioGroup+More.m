@@ -34,30 +34,29 @@
 
 FLSynthesizeCachedObjectHandlerProperty(FLZenfolioGroup);
 
-- (FLZenfolioGroupElement*) findByIdInternal:(NSUInteger) groupId
-{
-	if(groupId == self.IdValue)
-	{
+- (FLZenfolioGroupElement*) findByIdInternal:(NSUInteger) groupId 
+                                        path:(NSMutableArray*) path {
+	if(groupId == self.IdValue) {
 		return self;
 	}
 	
-	if(self.Elements)
-	{
-		for(FLZenfolioGroupElement* element in self.Elements)
-		{
+	if(self.Elements) {
+		for(FLZenfolioGroupElement* element in self.Elements) {
 			FLZenfolioGroupElement* value = nil; 
 			
-			if( element.IdValue == groupId)
-			{
+			if( element.IdValue == groupId) {
 				value = element;
+                [path addObject:element];
 			}
-			else if([element isKindOfClass:[FLZenfolioGroup class]])
-			{
-				value = [((FLZenfolioGroup*) element) findByIdInternal:groupId];
+			else if([element isGroupElement]){
+				value = [((FLZenfolioGroup*) element) findByIdInternal:groupId path:path];
+                
+                if(path.count) {
+                    [path insertObject:element atIndex:0];
+                }
 			}
 			
-			if(value)
-			{
+			if(value) {
 				return value;
 			}
 		}
@@ -66,61 +65,57 @@ FLSynthesizeCachedObjectHandlerProperty(FLZenfolioGroup);
 	return nil;
 }
 
-- (FLZenfolioGroupElement*) findById:(NSUInteger) groupId
-{
-	return [self findByIdInternal:groupId];
+- (NSArray*) pathComponentsToGroupElement:(FLZenfolioGroupElement*) element {
+    NSMutableArray* path = [NSMutableArray array];
+    [self findByIdInternal:element.IdValue path:path];
+    if(path.count) {
+        [path insertObject:self atIndex:0];
+    }
+    return path;
 }
 
-- (FLZenfolioGroupElement*) findByIdNumber:(NSNumber*) groupId
-{
+- (FLZenfolioGroupElement*) findById:(NSUInteger) groupId {
+	return [self findByIdInternal:groupId path:nil];
+}
+
+- (FLZenfolioGroupElement*) findByIdNumber:(NSNumber*) groupId {
 	return [self findById:[groupId unsignedIntegerValue]];
 }
 
-- (FLZenfolioGroup*) findParentForElement:(FLZenfolioGroupElement*) inElement group:(FLZenfolioGroup*) inGroup
-{
-	if(inGroup.Elements)
-	{
-		for(FLZenfolioGroupElement* element in inGroup.Elements)
-		{
-			if(element.IdValue == inElement.IdValue)
-			{
+- (FLZenfolioGroup*) findParentForElement:(FLZenfolioGroupElement*) inElement 
+                                    group:(FLZenfolioGroup*) inGroup {
+
+	if(inGroup.Elements) {
+		for(FLZenfolioGroupElement* element in inGroup.Elements) {
+			if(element.IdValue == inElement.IdValue) {
 				return inGroup;
 			}
 			
-			if([element isKindOfClass:[FLZenfolioGroup class]])
-			{
+			if([element isGroupElement]) {
 				FLZenfolioGroup* parentGroup = [self findParentForElement:inElement group:(FLZenfolioGroup*)element];
-				if(parentGroup)
-				{
+				if(parentGroup) {
 					return parentGroup;
 				}
 			}
-		
 		}
 	}
 	
 	return nil;
 }
 
-- (FLZenfolioGroup*) findParentForElement:(FLZenfolioGroupElement*) element
-{
+- (FLZenfolioGroup*) findParentForElement:(FLZenfolioGroupElement*) element {
 	return [self findParentForElement:element group:self];
 }
 
-+ (int) countPhotosRecursively:(FLZenfolioGroupElement*) groupElement value:(int*) value
-{
-	if([groupElement isKindOfClass:[FLZenfolioPhotoSet class]])
-	{
++ (int) countPhotosRecursively:(FLZenfolioGroupElement*) groupElement value:(int*) value {
+	if([groupElement isKindOfClass:[FLZenfolioPhotoSet class]]) {
 		FLZenfolioPhotoSet* photoSet = (FLZenfolioPhotoSet*) groupElement;
-	
 		*value += photoSet.PhotoCountValue ? photoSet.PhotoCountValue : 0;
 	}
-	else
-	{
+	else {
 		FLZenfolioGroup* group = (FLZenfolioGroup*) groupElement;
 	
-		for(FLZenfolioGroupElement* element in group.Elements)
-		{
+		for(FLZenfolioGroupElement* element in group.Elements) {
 			[FLZenfolioGroup countPhotosRecursively:element value:value];
 		}
 	}
@@ -128,33 +123,30 @@ FLSynthesizeCachedObjectHandlerProperty(FLZenfolioGroup);
 	return *value;
 }
 
-- (BOOL) replaceGroupElement:(FLZenfolioGroupElement*) replacingElement
-{
+- (BOOL) replaceGroupElement:(FLZenfolioGroupElement*) replacingElement {
 	FLAssertIsNotNil_(self.Elements);
 
-	if(self.Elements)
-	{
-		NSMutableArray* array = self.Elements;
-		for(NSUInteger i = 0; i < array.count; i++)
-		{
-			FLZenfolioGroupElement* element = [array objectAtIndex:i];
-		
-			if(element.IdValue == replacingElement.IdValue)
-			{
-				[array replaceObjectAtIndex:i withObject:replacingElement];
-				return YES;
-			}
-		}
+    FLZenfolioGroup* parent = [self findParentForElement:replacingElement];
+
+	NSMutableArray* array = parent.Elements;
+    if(array) {
+        for(NSUInteger i = 0; i < array.count; i++) {
+            FLZenfolioGroupElement* element = [array objectAtIndex:i];
+        
+            if(element.IdValue == replacingElement.IdValue)
+            {
+                [array replaceObjectAtIndex:i withObject:replacingElement];
+                return YES;
+            }
+        }
 	}
 	
 	return NO;
 }
 
-- (BOOL) replaceElement:(FLZenfolioGroupElement*) newElement parentId:(unsigned long) parentId
-{
+- (BOOL) replaceElement:(FLZenfolioGroupElement*) newElement parentId:(unsigned long) parentId {
 	FLZenfolioGroup* parent = (FLZenfolioGroup*) [self findById:parentId];
-	if(parent)
-	{
+	if(parent) {
 		return [parent replaceGroupElement:newElement];
 	}
 	
@@ -242,13 +234,14 @@ FLSynthesizeCachedObjectHandlerProperty(FLZenfolioGroup);
 	[self addParentToElement:element newParent:self];
 }
 
-- (void) addGroupElement:(FLZenfolioGroupElement*) element parentId:(unsigned long) parentId
-{
+- (void) addGroupElement:(FLZenfolioGroupElement*) element parentId:(unsigned long) parentId {
 	FLZenfolioGroup* parent = (FLZenfolioGroup*) [self findById:parentId];
 
 	FLAssertIsNotNil_(parent);
 	[parent addGroupElement:element];
 }
+
+
 
 - (void) removeGroupElement:(FLZenfolioGroupElement*) inElement
 {
@@ -287,29 +280,21 @@ FLSynthesizeCachedObjectHandlerProperty(FLZenfolioGroup);
 	}
 }
 
-- (void) removeGroupElement:(FLZenfolioGroupElement*) removeThisElement parentId:(unsigned long) parentId
-{
+- (void) removeGroupElement:(FLZenfolioGroupElement*) removeThisElement parentId:(unsigned long) parentId {
 	FLZenfolioGroup* parent = (FLZenfolioGroup*) [self findById:parentId];
-
-	FLAssertIsNotNil_(parent);
-
-	[parent removeGroupElement:removeThisElement];
+    FLAssertIsNotNil_(parent);
+    [parent removeGroupElement:removeThisElement];
 }
 
-- (BOOL) isRootGroup
-{
+- (BOOL) isRootGroup {
 	return	!self.ParentGroups || self.ParentGroups.count == 0;
 }
 
-- (BOOL) hasDirectDecendent:(FLZenfolioGroupElement*) inElement
-{
-	for(FLZenfolioGroupElement* element in self.Elements)
-	{
-		if(element.IdValue == inElement.IdValue)
-		{
+- (BOOL) hasDirectDecendent:(FLZenfolioGroupElement*) inElement {
+	for(FLZenfolioGroupElement* element in self.Elements){
+		if(element.IdValue == inElement.IdValue){
 			return YES;
 		}
-	
 	}
 
 	return NO;

@@ -47,7 +47,6 @@
 @synthesize selectedGroupElements = _selectedGroupElements;
 @synthesize selectedPhotoSets = _selectedPhotoSets;
 
-
 - (id) init {
     self = [super init];
     if(self) {
@@ -64,6 +63,20 @@
     return [group indexSetForSelection:self];
 }
 
+- (void) setSelectionInGroup:(FLZenfolioGroup*) group withIndexSet:(NSIndexSet*) set {
+    [_selection removeAllObjects];
+    
+    [group visitAllElements:^(FLZenfolioGroupElement* element, NSUInteger idx, BOOL* stop) {
+        if([set containsIndex:idx]) {
+            [self selectGroupElement:element selected:YES];
+        }
+    }];
+}
+
+- (NSUInteger) selectionCount {
+    return _selection.count;
+}
+
 - (void) selectGroupElement:(FLZenfolioGroupElement*) groupElement 
                    selected:(BOOL) selected {
                         
@@ -72,6 +85,12 @@
     }
     else {
         [_selection removeObjectForKey:groupElement.Id];
+    }
+
+    if([groupElement isGroupElement]) {
+        for(id element in [groupElement elements]) {
+            [self selectGroupElement:element selected:selected];
+        }
     }
 
 // reset cache of selected photo sets.    
@@ -100,7 +119,7 @@
         
         for(id element in [_selection objectEnumerator]) {
             if([element isGroupElement]) {
-                [element visitAllElements:^(FLZenfolioGroupElement* subElement, BOOL* stop) {
+                [element visitAllElements:^(FLZenfolioGroupElement* subElement, NSUInteger idx, BOOL* stop) {
                     if(!subElement.isGroupElement) {
                         [selectedSets addObject:subElement];
                     }

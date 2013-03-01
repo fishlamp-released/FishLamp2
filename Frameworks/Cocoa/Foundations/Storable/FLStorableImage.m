@@ -15,7 +15,6 @@ NSString* const FLImageTypeOriginal =   @"com.fishlamp.image.original";
 @interface FLStorableImage ()
 @property (readwrite, strong, nonatomic) UIImage* image;
 @property (readwrite, strong, nonatomic) NSData* imageData;
-//@property (readwrite, strong, nonatomic) NSDictionary* exifDictionary;
 @end
 
 @implementation FLStorableImage
@@ -25,6 +24,7 @@ NSString* const FLImageTypeOriginal =   @"com.fishlamp.image.original";
 @synthesize exifDictionary = _exifDictionary;
 @synthesize imageProperties = _imageProperties;
 @synthesize storageStrategy = _storageStrategy;
+@synthesize storableSubType = _storableSubType;
 
 - (id) init {
     return [self initWithImage:nil exifDictionary:nil imageData:nil];
@@ -53,6 +53,15 @@ NSString* const FLImageTypeOriginal =   @"com.fishlamp.image.original";
     return self;
 }
 
+- (id) copyWithZone:(NSZone *)zone {
+    FLStorableImage* image = [[FLStorableImage alloc] initWithImageProperties:FLAutorelease([self.imageProperties copy])];
+    [image setImage:self.image exifDictionary:FLAutorelease([_exifDictionary copy]) imageData:_imageData];
+    image.storableSubType = self.storableSubType;
+    image.storageStrategy = self.storageStrategy;
+    return image;
+}
+
+
 + (id) imageWithImageProperties:(FLImageProperties*) imageProperties 
                storageStrategy:(id<FLImageStorageStrategy>) storageStrategy {
     return FLAutorelease([[[self class] alloc] initWithImageProperties:imageProperties storageStrategy:storageStrategy]);
@@ -67,6 +76,39 @@ NSString* const FLImageTypeOriginal =   @"com.fishlamp.image.original";
             imageData:(NSData*) imageData {
     return FLAutorelease([[[self class] alloc] initWithImage:image exifDictionary:exifDictionary imageData:imageData]);
 }            
+
+#if FL_MRC
+- (void) dealloc { 
+    [_storageStrategy release];
+    [_imageProperties release];
+    [_image release];
+    [_imageData release];
+    [_exifDictionary release];
+    [_storableSubType release];
+    [super dealloc];
+}
+#endif
+
+- (NSString*) fileName {
+    FLAssertNotNil_(_imageProperties);
+    return _imageProperties.fileName;
+}
+
+- (id) storageKey {
+    return self.fileName;
+}
+
+- (NSString*) storableType {
+
+    NSString* extension = [self.fileName pathExtension];
+    FLConfirmStringIsNotEmpty_v(extension, @"failed to get file extension for %@", self.fileName);
+    
+    NSString* UTI = FLAutorelease(bridge_transfer_(NSString*, UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension,  bridge_(CFStringRef, extension), NULL)));
+
+    FLConfirmNotNil_v(UTI, @"failed to get UTI for extension for file %@", self.fileName);
+
+    return UTI;
+}
 
 - (void) setImage:(UIImage*) image 
    exifDictionary:(NSDictionary*) exifDictionary 
@@ -86,16 +128,6 @@ NSString* const FLImageTypeOriginal =   @"com.fishlamp.image.original";
 //    [self setImage:nil imageData:nil exifDictionary:nil];
 //}
 
-#if FL_MRC
-- (void) dealloc { 
-    [_storageStrategy release];
-    [_imageProperties release];
-    [_image release];
-    [_imageData release];
-    [_exifDictionary release];
-    [super dealloc];
-}
-#endif
 
 //- (void) setImageData:(NSData*) data {
 //    [self setImage:nil imageData:data exifDictionary:nil];

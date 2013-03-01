@@ -209,7 +209,6 @@ NSString* const FLDefaultsKeyWizardSavePasswordKey = @"com.fishlamp.wizard.savep
     }
     else {
         wizard.nextButton.enabled = NO;
-        [wizard showSpinner:YES];
         FLPerformSelector1( self.delegate, 
                                 @selector(loginWizardPanelStartAuthenticating:), 
                                 self);

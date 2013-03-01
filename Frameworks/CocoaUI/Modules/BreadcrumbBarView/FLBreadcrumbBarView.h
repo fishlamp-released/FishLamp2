@@ -18,9 +18,6 @@
 @private
     FLAttributedString* _title;
     dispatch_block_t _touched;
-    
-    FLDrawableForwardButtonShape* _shape;
-    
     NSTrackingArea* _trackingArea;
     BOOL _mouseIn;
     BOOL _mouseDown;
@@ -35,6 +32,13 @@
 @property (readwrite, copy, nonatomic) dispatch_block_t touched;
 
 - (void) didLayout;
+
+@end
+
+@interface FLHorizontalBreadcrumbBarView : FLBreadcrumbBarView {
+@private
+    FLDrawableForwardButtonShape* _shape;
+}
 
 @end
 #endif

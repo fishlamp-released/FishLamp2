@@ -41,28 +41,53 @@
     self.view = view;
 }
 
-#define Size 100
+#define kWideWidth 100
+#define kTallHeight 40
 
-- (void) update {
-    CGFloat left = -2;
+- (void) finishUpdate {
     for(FLBreadcrumbBarView* view in _breadcrumbs) {
-        CGRect frame = self.view.bounds;
-        [view sendToBack];
-        
         view.enabled = [self.delegate breadcrumbBar:self breadcrumbIsEnabled:view.key];
         view.emphasized = [self.delegate breadcrumbBar:self breadcrumbIsVisible:view.key];
-        
+        [view didLayout];
+    }
+    
+    [self.view setNeedsDisplay];
+}
+
+
+- (void) updateVertical {
+    CGFloat verticalOffset = FLRectGetBottom(self.view.bounds) - kTallHeight;
+    for(FLBreadcrumbBarView* view in _breadcrumbs) {
+        CGRect frame = self.view.bounds;
+        frame.size.height = kTallHeight;
+        frame.origin.y = verticalOffset;
+        verticalOffset -= kTallHeight;
+        view.frame = frame;
+    }
+}
+
+- (void) updateHorizontal {
+
+    CGFloat left = -2;
+    for(FLBreadcrumbBarView* view in _breadcrumbs) {
+        [view sendToBack];
+
+        CGRect frame = self.view.bounds;
         frame = CGRectInset(frame, 2, 2);
         
-        frame.size.width = Size;
+        frame.size.width = kWideWidth;
         frame.origin.x = left;
         frame.size.height += 8;
         frame.origin.y -= 4;
         view.frame = frame;
         left += (view.frame.size.width - 14);
-        [view didLayout];
     }
-    [self.view setNeedsDisplay];
+
+}
+
+- (void) update {
+    [self updateVertical];
+    [self finishUpdate];
 }
 
 - (void) addBreadcrumb:(NSString*) title forKey:(id) key {

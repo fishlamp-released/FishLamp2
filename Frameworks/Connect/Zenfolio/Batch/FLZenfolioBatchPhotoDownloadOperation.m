@@ -244,7 +244,7 @@
 //    _totalPhotoCount = [self.rootGroup selectedPhotoBytesInSelection:self.selection];
 
     @try {
-        [[context rootGroup] visitAllElements:^(FLZenfolioGroupElement* element, BOOL* stop) {
+        [[context rootGroup] visitAllElements:^(FLZenfolioGroupElement* element, NSUInteger idx, BOOL* stop) {
             [self downloadEntry:element toFolder:[self destination] inContext:context];
         }];
     }

@@ -86,7 +86,7 @@ decodedType:[__CLASS__ typeDesc]]
                                  level:(NSString*) level
                          includePhotos:(BOOL) includePhotos {
 
-    FLSoapHttpRequest* httpRequest = FLZenfolioSoapHttpRequestFrom(FLZenfolioApiSoapLoadPhotoSet, @"LoadPhotoSet/LoadPhotoSetResult",  FLZenfolioPhotoSet);
+    FLSoapHttpRequest* httpRequest = FLZenfolioSoapHttpRequestFrom(FLZenfolioApiSoapLoadPhotoSet, @"LoadPhotoSetResponse/LoadPhotoSetResult",  FLZenfolioPhotoSet);
     [httpRequest.soapInput setPhotoSetId:photoSetID];
     [httpRequest.soapInput setRequestedResponseLevel:level];
     [httpRequest.soapInput setIncludePhotosValue:includePhotos];

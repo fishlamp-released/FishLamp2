@@ -17,11 +17,14 @@
 }
 + (id) groupElementSelection;
 
+@property (readonly, assign, nonatomic) NSUInteger selectionCount;
+
 @property (readonly, strong, nonatomic) NSDictionary* selectedGroupElements;
 
 @property (readonly, strong, nonatomic) NSArray* selectedPhotoSets;
 
 - (NSIndexSet*) indexSetForSelectionsInGroup:(FLZenfolioGroup*) group;
+- (void) setSelectionInGroup:(FLZenfolioGroup*) group withIndexSet:(NSIndexSet*) set;
 
 - (void) selectGroupElement:(FLZenfolioGroupElement*) groupElement 
                    selected:(BOOL) selected;
@@ -30,6 +33,7 @@
 
 - (void) toggleSelectionForGroupElement:(FLZenfolioGroupElement*) element;
 
+// misc utils
 - (long long) selectedPhotoBytes;
 
 - (int) selectedPhotoCount;

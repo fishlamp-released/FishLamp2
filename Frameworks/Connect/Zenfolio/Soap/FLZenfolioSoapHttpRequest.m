@@ -33,7 +33,11 @@
 @implementation FLZenfolioSoapHttpRequest
 
 - (id) initWithGeneratedObject:(id) httpRequest serverInfo:(FLZenfolioApiSoap*) info {
-    self = [super init];
+
+    FLAssertNotNil_(httpRequest);
+    FLAssertNotNil_(info);
+
+    self = [super initWithRequestURL:[NSURL URLWithString:[info serverURL]]];
     if(self) {
         FLAssertNotNil_(httpRequest);
         FLAssertNotNil_(info);
@@ -43,8 +47,7 @@
 //        self.soapResponse = [httpRequest output];
         self.soapNamespace = [info soapNamespace];
         self.soapActionHeader = [info soapActionHeaderForHttpRequestName:self.operationName];
-        self.headers.requestURL = [NSURL URLWithString:[info serverURL]];
-     }
+    }
     return self;
 }
 

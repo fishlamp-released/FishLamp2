@@ -107,8 +107,8 @@ NSString* const FLOperationFinishedEvent;
 
 @implementation FLOperationObserver
 
-@synthesize willRun = _willRun;
-//@synthesize didFinish = _didFinish;
+@synthesize willRunBlock = _willRunBlock;
+@synthesize didFinishBlock = _didFinishBlock;
 
 + (id) operationObserver {
     return FLAutorelease([[[self class] alloc] init]);
@@ -116,25 +116,24 @@ NSString* const FLOperationFinishedEvent;
 
 #if FL_MRC
 - (void) dealloc {
-    [_willRun release];
-//    [_didFinish release];
+    [_willRunBlock release];
+    [_didFinishBlock release];
     [super dealloc];
 }
 #endif
 
 - (void) operationWillRun:(FLOperation*) operation {
-    if(_willRun) {
-        _willRun();
+    if(_willRunBlock) {
+        _willRunBlock();
     }
 }
 
 - (void) operationDidFinish:(FLOperation*) operation 
                  withResult:(FLResult) withResult {
-//    if(_didFinish) {
-//        _didFinish(withResult);
-//    }
+    if(_didFinishBlock) {
+        _didFinishBlock(withResult);
+    }
 }                 
-
 
 @end
 //

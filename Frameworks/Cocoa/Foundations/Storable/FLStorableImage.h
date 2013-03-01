@@ -18,14 +18,17 @@ extern NSString* const FLImageTypeThumbnail;
 extern NSString* const FLImageTypePreview;
 extern NSString* const FLImageTypeOriginal;
 
-@interface FLStorableImage : FLStorable {
+@interface FLStorableImage : NSObject<FLStorable> {
 @private
 	UIImage* _image;
 	NSData* _imageData;
 	NSDictionary* _exifDictionary;
     FLImageProperties* _imageProperties;
     id<FLImageStorageStrategy> _storageStrategy;
+    NSString* _subType;
 }
+
+@property (readonly, strong, nonatomic) NSString* fileName;
 
 @property (readwrite, strong) FLImageProperties* imageProperties;
 @property (readwrite, strong) id<FLImageStorageStrategy>  storageStrategy;

@@ -22,7 +22,7 @@
 
 @end
 
-@protocol  FLZenfolioPhotoSetDownloaderObserver <NSObject>
+@protocol  FLZenfolioDownloadPhotoSetsOperationObserver <NSObject>
 @optional
 - (void) photoSetDownloader:(FLZenfolioDownloadPhotoSetsOperation*) operation didDownloadPhotoSet:(FLZenfolioPhotoSet*) photoSet; 
 @end

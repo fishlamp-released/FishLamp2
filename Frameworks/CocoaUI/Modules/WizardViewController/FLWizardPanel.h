@@ -17,6 +17,12 @@
     __unsafe_unretained FLWizardViewController* _wizard;
     id _key;
 }
+@property (readonly, strong, nonatomic) NSButton* nextButton;
+@property (readonly, strong, nonatomic) NSButton* backButton;
+
+- (void) enableBackButton:(BOOL) enable;
+- (void) enableNextButton:(BOOL) enable;
+
 @property (readwrite, strong, nonatomic) id key;
 @property (readwrite, assign, nonatomic) id wizard;
 //@property (readonly, strong, nonatomic) id userContext;

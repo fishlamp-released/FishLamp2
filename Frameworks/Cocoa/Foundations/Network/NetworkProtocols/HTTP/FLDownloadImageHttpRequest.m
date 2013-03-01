@@ -20,7 +20,7 @@
     return FLAutorelease([[[self class] alloc] initWithURL:imageURL]);
 }
 
-- (id) didSendHttpRequest:(FLHttpResponse*) response {
+- (FLResult) resultFromHttpResponse:(FLHttpResponse*) response {
     [response throwHttpErrorIfNeeded];
     
     FLStorableImage* image = [FLStorableImage imageWithData:response.responseData];

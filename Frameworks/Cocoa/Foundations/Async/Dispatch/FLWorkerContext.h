@@ -15,6 +15,9 @@
 
 typedef void (^FLDispatchableObjectVisitor)(id object, BOOL* stop);
 
+extern NSString* const FLWorkerContextStarting;
+extern NSString* const FLWorkerContextFinished;
+
 @protocol FLWorkerContext <NSObject>
 
 - (void) requestCancel;

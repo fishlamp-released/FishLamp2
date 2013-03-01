@@ -9,6 +9,7 @@
 #import "FLOperation.h"
 #import "FLZenfolioPhotoSet.h"
 #import "FLUserLogin.h"
+#import "FLZenfolioDownloadPhotoSetsOperation.h"
 
 @interface FLZenfolioLoadGroupHierarchyOperation : FLOperation {
 @private    
@@ -17,17 +18,17 @@
     FLUserLogin* _userLogin;
 }
 - (id) initWithUserLogin:(FLUserLogin*) userLogin;
-+ (id) syncGroupHierarchyOperation:(FLUserLogin*) userLogin;
++ (id) loadGroupHierarchyOperation:(FLUserLogin*) userLogin;
 
 @property (readonly, assign) int downloadedPhotoSetCount;
 @property (readonly, assign) int totalPhotoSetCount;
 
 @end
 
-@protocol  FLZenfolioSyncGroupHierarchyObserver <NSObject>
+@protocol  FLZenfolioSyncGroupHierarchyObserver <FLZenfolioDownloadPhotoSetsOperationObserver>
 @optional
-- (void) syncGroupHierarchy:(FLZenfolioLoadGroupHierarchyOperation*) operation willDownloadGroupListForUser:(FLUserLogin*) login;
-- (void) syncGroupHierarchy:(FLZenfolioLoadGroupHierarchyOperation*) operation didDownloadGroupList:(FLZenfolioGroup*) group;
+- (void) loadGroupHierarchyOperation:(FLZenfolioLoadGroupHierarchyOperation*) operation willDownloadGroupListForUser:(FLUserLogin*) login;
 
-- (void) syncGroupHierarchy:(FLZenfolioLoadGroupHierarchyOperation*) operation didDownloadPhotoSet:(FLZenfolioPhotoSet*) photoSet; 
+- (void) loadGroupHierarchyOperation:(FLZenfolioLoadGroupHierarchyOperation*) operation didDownloadGroupList:(FLZenfolioGroup*) group;
+
 @end

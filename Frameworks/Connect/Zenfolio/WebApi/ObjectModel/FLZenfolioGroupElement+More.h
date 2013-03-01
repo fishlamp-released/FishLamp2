@@ -15,6 +15,8 @@ typedef enum {
 	FLZenfolioGroupElementTypeCollection
 } FLZenfolioGroupElementType;
 
+typedef void (^FLGroupElementVisitor)(FLZenfolioGroupElement* element, NSUInteger index, BOOL* stop);
+
 @interface FLZenfolioGroupElement (More)
 
 @property (readonly, assign, nonatomic) BOOL isGalleryElement;
@@ -38,7 +40,7 @@ typedef enum {
 - (int) groupElementID;
 
 - (NSArray*) elements;
-- (BOOL) visitAllElements:(void (^)(FLZenfolioGroupElement* element, BOOL* stop)) visitor;
+- (BOOL) visitAllElements:(FLGroupElementVisitor) visitor;
 - (int) photoCount;
 - (int) videoCount;
 - (unsigned long long) photoBytes;

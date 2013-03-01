@@ -36,33 +36,29 @@
 #endif
 
 
-+ (id) syncGroupHierarchyOperation:(FLUserLogin*) userLogin {
++ (id) loadGroupHierarchyOperation:(FLUserLogin*) userLogin {
     return FLAutorelease([[[self class] alloc] initWithUserLogin:userLogin]);
 }
 
 - (FLResult) runOperationInContext:(id) context withObserver:(id) observer {
 
-//    [self postObservation:@selector(syncGroupHierarchy:willDownloadGroupListForUser:) withObject:_userLogin];
+    [observer postObservation:@selector(loadGroupHierarchyOperation:willDownloadGroupListForUser:) withObject:self withObject:_userLogin];
 
     FLHttpRequest* request = [FLZenfolioHttpRequest loadGroupHierarchyHttpRequest:_userLogin.userName];
     FLAssertNotNil_(request);
 
-    FLZenfolioGroup* group = [context runWorker:request withObserver:observer];
+    [self abortIfNeeded];
 
-//    FLZenfolioGroup* group = [self sendHttpRequest:request];
+    FLZenfolioGroup* group = FLThrowIfError([context runWorker:request withObserver:nil]);
 
-//    [self postObservation:@selector(syncGroupHierarchy:didDownloadGroupList:) withObject:group];
+    [observer postObservation:@selector(loadGroupHierarchyOperation:didDownloadGroupList:) withObject:self withObject:group];
 
     FLZenfolioDownloadPhotoSetsOperation* downloadPhotosets = [FLZenfolioDownloadPhotoSetsOperation downloadPhotoSetsWithGroup:group];
-//    [downloadPhotosets addObserver:self];
     
     FLResult result = [context runWorker:downloadPhotosets withObserver:observer];
+    FLThrowIfError(result);
     
-//    [self runSubOperation:downloadPhotosets];
-    
-//    [downloadPhotosets removeObserver:self];
-    
-    return result;
+    return group;
 }
 
 //- (void) photoSetDownloader:(FLZenfolioDownloadPhotoSetsOperation*) operation didDownloadPhotoSet:(FLZenfolioPhotoSet*) photoSet {
