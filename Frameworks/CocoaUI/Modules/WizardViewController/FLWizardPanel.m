@@ -16,7 +16,7 @@
 @implementation FLWizardPanel
 
 @synthesize breadcrumbTitle = _breadcrumbTitle;
-@synthesize enabled = _enabled;
+@synthesize canOpenNextPanel = _canOpenNextPanel;
 @synthesize wizard = _wizard;
 @synthesize key = _key;
 
@@ -24,7 +24,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.enabled = YES;
+        self.canOpenNextPanel = NO;
     }
     
     return self;
@@ -43,6 +43,11 @@
     self.view.wantsLayer = YES;
 }
 
+- (void) setCanOpenNextPanel:(BOOL) can {
+    _canOpenNextPanel = can;
+    [_wizard updateButtonEnabledStates];
+}
+
 - (void) setWizard:(FLWizardViewController*) wizard {
     _wizard = wizard;
     [self didMoveToWizard:wizard];
@@ -56,8 +61,6 @@
 //}
 
 - (void) wizardPanelWillAppearInWizard:(FLWizardViewController*) wizard {
-    [self nextButton].enabled = YES;
-    [self backButton].enabled = NO;
 }
 
 - (void) wizardPanelDidAppearInWizard:(FLWizardViewController*) wizard {
@@ -92,9 +95,7 @@
 - (void) enableBackButton:(BOOL) enable {
     self.backButton.enabled = enable;
 }
-- (void) enableNextButton:(BOOL) enable {
-    self.nextButton.enabled = enable;
-}
+
 
 
 @end

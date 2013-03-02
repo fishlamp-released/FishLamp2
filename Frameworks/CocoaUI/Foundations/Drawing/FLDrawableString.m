@@ -40,7 +40,7 @@ drawEnclosedBlock:(void (^)(void)) drawEnclosedBlock {
 
         [self.string drawInRect:frame withFont:self.textFont lineBreakMode:_lineBreakMode alignment:_textAlignment];
 #else 
-        [FLCoreText drawString:self.attributedString withTextAlignment:_textAlignment inBounds:frame];
+        [FLCoreText drawString:[self buildAttributedString] withTextAlignment:_textAlignment inBounds:frame];
 #endif        
         CGContextRestoreGState(context);
 	}

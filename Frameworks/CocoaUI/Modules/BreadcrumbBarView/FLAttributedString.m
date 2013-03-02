@@ -8,24 +8,148 @@
 
 #import "FLAttributedString.h"
 
-@implementation FLAttributedString
+@interface FLTextStyle ()
+@end
 
-@synthesize enabledColor = _enabledColor;
-@synthesize disabledColor = _disabledColor;
-@synthesize highlightedColor = _highlightedColor;
-@synthesize enabledShadowColor = _enabledShadowColor;
-@synthesize disabledShadowColor = _disabledShadowColor;
-@synthesize highlightedShadowColor = _highlightedShadowColor;
-@synthesize emphasizedColor = _emphasizedColor;
-@synthesize emphasizedShadowColor = _emphasizedShadowColor;
-@synthesize textFont = _textFont;
-@synthesize string = _string;
-@synthesize highlighted = _highlighted;
-@synthesize touchable = _touchable;
-@synthesize enabled = _enabled;
-@synthesize hidden = _hidden;
+@implementation FLTextStyle
+@synthesize textColor = _textColor;
+@synthesize shadowColor = _shadowColor;
 @synthesize underlined = _underlined;
-@synthesize emphasized = _emphasized;
+@synthesize textFont = _textFont;
+
+- (id) init {
+    self = [super init];
+    if(self) {
+        self.textColor = [NSColor blackColor];
+        self.shadowColor = [NSColor whiteColor];
+    }
+    return self;
+}
+
+- (id) initWithTextColor:(UIColor*) textColor shadowColor:(UIColor*) shadowColor {
+    self = [super init];
+    if(self) {
+        self.textColor = textColor;
+        self.shadowColor = shadowColor;
+    }
+    return self;
+}
+
++ (id) textStyle {
+    return FLAutorelease([[[self class] alloc] init]);
+}
+
++ (id) textStyle:(UIColor*) textColor shadowColor:(UIColor*) shadowColor {
+    return FLAutorelease([[[self class] alloc] initWithTextColor:textColor shadowColor:shadowColor]);
+}
+
+#if FL_MRC
+- (void) dealloc {
+    [_textColor release];
+    [_shadowColor release];
+    [_textFont release];
+    [super dealloc];
+}
+#endif
+
+- (id) copyWithZone:(NSZone *)zone {
+    FLTextStyle* style = [FLTextStyle textStyle];
+    style.textColor = self.textColor;
+    style.shadowColor = self.shadowColor;
+    style.textFont = self.textFont;
+    style.underlined = self.isUnderlined;
+    return style;
+}
+
+@end
+
+@implementation FLStringDisplayStyle 
+
+@synthesize enabledStyle = _enabledStyle;
+@synthesize disabledStyle = _disabledStyle;
+@synthesize highlightedStyle = _highlightedStyle;
+@synthesize emphasizedStyle = _emphasizedStyle;
+@synthesize hoveringStyle = _hoveringStyle;
+@synthesize selectedStyle = _selectedStyle;
+
++ (id) stringDisplayStyle {
+    return FLAutorelease([[[self class] alloc] init]);
+}
+
+- (id) init {
+    self = [super init];
+    if(self) {
+        _selectedStyle = [[FLTextStyle alloc] init];
+        _enabledStyle = [[FLTextStyle alloc] init];
+        _disabledStyle = [[FLTextStyle alloc] init];
+        _highlightedStyle = [[FLTextStyle alloc] init];
+        _emphasizedStyle = [[FLTextStyle alloc] init];
+        _hoveringStyle = [[FLTextStyle alloc] init];
+    }
+    return self;
+}
+
+- (void) setToControlDefaults {
+    [self setTextFont:[UIFont systemFontOfSize:[UIFont systemFontSize]]];
+
+#if OSX
+    [self visitStyles:^(FLTextStyle* style){
+        style.shadowColor = [UIColor shadowColor];
+    }];
+
+    self.enabledStyle.textColor = [NSColor textColor];
+    self.disabledStyle.textColor = [NSColor disabledControlTextColor];
+    self.selectedStyle.textColor = [NSColor selectedControlTextColor];
+    self.highlightedStyle.textColor = [NSColor highlightColor];
+    self.hoveringStyle = self.highlightedStyle;
+
+#endif       
+
+}
+
+#if FL_MRC
+- (void) dealloc {
+    [_selectedStyle release];
+    [_enabledStyle release];
+    [_disabledStyle release];
+    [_highlightedStyle release];
+    [_emphasizedStyle release];
+    [_hoveringStyle release];
+    [super dealloc];
+}
+#endif
+
+- (id) copyWithZone:(NSZone*) zone {
+    FLStringDisplayStyle* colors = [[FLStringDisplayStyle alloc] init];
+    colors.enabledStyle = self.enabledStyle;
+    colors.disabledStyle = self.disabledStyle;
+    colors.highlightedStyle = self.highlightedStyle;
+    colors.emphasizedStyle = self.emphasizedStyle;
+    colors.hoveringStyle = self.hoveringStyle;
+    colors.selectedStyle = self.selectedStyle;
+    return colors;
+}
+
+- (void) visitStyles:(void (^)(FLTextStyle* style)) visitor {
+    visitor(self.selectedStyle);
+    visitor(self.enabledStyle);
+    visitor(self.disabledStyle);
+    visitor(self.highlightedStyle);
+    visitor(self.emphasizedStyle);
+    visitor(self.hoveringStyle);
+}
+
+- (void) setTextFont:(UIFont*) font {
+    [self visitStyles:^(FLTextStyle* style){
+        style.textFont = font;
+    }];
+}
+
+@end
+
+@implementation FLAttributedString
+@synthesize string = _string;
+@synthesize textStyle = _textStyle;
 
 - (id) init {
     return [self initWithString:@""];
@@ -50,55 +174,12 @@
 
 #if FL_MRC
 - (void) dealloc {
-    [_emphasizedColor release];
-    [_emphasizedShadowColor release];
-    [_enabledShadowColor release];
-    [_disabledShadowColor release];
-    [_highlightedShadowColor release];
-    [_enabledColor release];
-    [_disabledColor release];
-    [_highlightedColor release];
-    [_textFont release];
+    [_textStyle release];
     [_string release];
     [super dealloc];
 }
 #endif
 
-- (UIColor*) colorForState {
-
-    if(self.isEnabled) {
-        if(self.isHighlighted) {
-            return self.highlightedColor;
-        }
-        else if(self.isEmphasized) {
-            return self.emphasizedColor;
-        }
-        else {
-            return self.enabledColor;
-        }
-    }
-    else {
-        return self.disabledColor;
-    }
-}
-
-- (UIColor*) shadowColorForState {
-
-    if(self.isEnabled) {
-        if(self.isHighlighted) {
-            return self.highlightedShadowColor;
-        }
-        else if(self.isEmphasized) {
-            return self.emphasizedShadowColor;
-        }
-        else {
-            return self.enabledShadowColor;
-        }
-    }
-    else {
-        return self.disabledShadowColor;
-    }
-}
 //- (NSDictionary*) attributes {
 //    MSMutableDictionary* attributes = [MSMutableDictionary dictionary];
 //    if(self.textFont) {
@@ -122,14 +203,26 @@
 //    return attributes;
 //}
 
+- (NSAttributedString*) buildAttributedString {
+    return [self.string buildAttributedStringWithTextStyle:self.textStyle];
+}
+@end
 
-- (NSAttributedString*) attributedString {
-    NSRange range = NSMakeRange(0, self.string.length);
+@implementation NSString (FLAttributedString)
 
-    NSMutableAttributedString* string =
-        FLAutorelease([[NSMutableAttributedString alloc] initWithString:self.string]);
+- (NSAttributedString*) buildAttributedStringWithTextStyle:(FLTextStyle*) textStyle {
+
+    FLAssertNotNil_v(textStyle, @"no text style attributed string");
+
+    NSRange range = NSMakeRange(0, self.length);
     
-    CTFontRef fontRef = CTFontCreateWithName(bridge_(CFStringRef, self.textFont.fontName), self.textFont.pointSize, NULL);
+    NSFont* font = textStyle.textFont;
+    FLAssertNotNil_v(font, @"font is nil");
+    
+    NSMutableAttributedString* string =
+        FLAutorelease([[NSMutableAttributedString alloc] initWithString:self]);
+    
+    CTFontRef fontRef = CTFontCreateWithName(bridge_(CFStringRef, font.fontName), font.pointSize, NULL);
     FLAssertIsNotNil_(fontRef);
     
     if(fontRef) {
@@ -140,20 +233,18 @@
         CFRelease(fontRef);
     }
 
-    FLAssertNotNil_v([self colorForState], @"color not set");
-
     [string addAttribute:(NSString*) kCTForegroundColorAttributeName 
-        value:bridge_(id, [[self colorForState] CGColor])
+        value:bridge_(id, [NSColor NSColorToCGColor:textStyle.textColor])
         range:range];
 
-    NSColor* shadowColor = self.shadowColorForState;
+    NSColor* shadowColor = textStyle.shadowColor;
     if(shadowColor) {
         [string addAttribute:(NSString*) NSShadowAttributeName 
-            value:bridge_(id, [shadowColor CGColor])
+            value:bridge_(id, [NSColor NSColorToCGColor:shadowColor])
             range:range];
     }
 
-    if(self.underlined) {
+    if(textStyle.isUnderlined) {
         [string addAttribute:(NSString*) NSUnderlineStyleAttributeName 
             value:[NSNumber numberWithBool:YES]
             range:range];

@@ -63,7 +63,10 @@
         frame.origin.y = verticalOffset;
         verticalOffset -= kTallHeight;
         view.frame = frame;
+        view.drawTopLine = NO;
     }
+    
+    [[_breadcrumbs objectAtIndex:0] setDrawTopLine:YES];
 }
 
 - (void) updateHorizontal {
@@ -94,28 +97,35 @@
 
     FLAssertStringIsNotEmpty_(title);
 
-    FLAttributedString* string = [FLAttributedString attributedString:title];
-    string.emphasizedColor = [UIColor colorWithRGBRed:203 green:102 blue:10 alpha:1.0];
-    string.enabledColor = [UIColor darkGrayColor];
-    string.disabledColor = [UIColor grayColor];
-    string.highlightedColor = [UIColor blueColor];
-    string.textFont = _textFont ? _textFont : [UIFont boldSystemFontOfSize:[UIFont systemFontSize]];
+    FLStringDisplayStyle* stringStyles = [FLStringDisplayStyle stringDisplayStyle];
+    
+//    stringStyles.enabledStyle.textColor = [UIColor colorWithRGBRed:203 green:102 blue:10 alpha:1.0];
+  
+    stringStyles.emphasizedStyle.textColor = [UIColor colorWithRGBRed:203 green:102 blue:10 alpha:1.0];
+    stringStyles.enabledStyle.textColor = [UIColor darkGrayColor];
+    stringStyles.disabledStyle.textColor = [UIColor lightGrayColor];
+    stringStyles.highlightedStyle.textColor = [UIColor whiteColor];
+    stringStyles.hoveringStyle.textColor = [UIColor whiteColor];
+
+    if(_textFont) {
+        [stringStyles setTextFont:_textFont];
+    }
+    else {
+        [stringStyles setTextFont:[UIFont boldSystemFontOfSize:[UIFont systemFontSize]]];
+    }
 
     FLBreadcrumbBarView* view = FLAutorelease([[FLBreadcrumbBarView alloc] initWithFrame:CGRectZero]);
-    view.title = string;
+    view.lineColor = [NSColor gray85Color];
+    view.title = title;
+    view.titleStyle = stringStyles;
     view.key = key;
-    view.touched = ^{
-        [self.delegate breadcrumbBar:self  breadcrumbWasClicked:key];
+    view.touchedBlock = ^(FLBreadcrumbBarView* clickedView){
+        [self.delegate breadcrumbBar:self  breadcrumbWasClicked:clickedView.key];
+        [self update];
     };
     [_breadcrumbs addObject:view];
     [self.view addSubview:view];
     [self update];
-}
-
-- (void) setBreadcrumbDisabled:(BOOL) disabled forTitle:(NSString*) title {
-//    FLBreadcrumbBarView* view = [_breadcrumbs objectForKey:title];
-//    view.title.enabled = !disabled;
-//    [self update];
 }
 
 - (void) setBreadcrumbActive:(BOOL) active forTitle:(NSString*) title {
@@ -124,7 +134,7 @@
     for(FLBreadcrumbBarView* view in _breadcrumbs) {
         view.enabled = !foundActive;
         
-        if(FLStringsAreEqual(view.title.string, title)) {
+        if(FLStringsAreEqual(view.title, title)) {
             foundActive = YES;
             view.emphasized = YES;
         }

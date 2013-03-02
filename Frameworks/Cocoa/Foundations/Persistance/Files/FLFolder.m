@@ -298,7 +298,17 @@
 
     NSError* error = nil;
 	NSData* data = [NSData dataWithContentsOfFile:path options:0 error:&error];
-    FLThrowIfError(FLAutorelease(error));
+
+    if(error) {
+    
+// TODO: WTF: this is already autoreleased???
+/*        FLAutorelease(error); */ 
+        
+        if(![error isErrorCode:NSFileReadNoSuchFileError domain:NSCocoaErrorDomain]) {
+            FLThrowIfError(error);
+        }
+    }
+    
     
     return data;
 }

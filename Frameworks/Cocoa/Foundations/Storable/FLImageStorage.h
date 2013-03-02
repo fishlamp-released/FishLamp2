@@ -22,6 +22,9 @@
 - (FLStorableImage*) readOriginalImageForStorageKey:(id) storageKey;
 - (FLStorableImage*) readThumbnailImageForStorageKey:(id) storageKey;
 
+- (FLStorableImage*) readImageWithFileName:(NSString*) fileName;
+- (void) writeImage:(FLStorableImage*) image withFileName:(NSString*) fileName;
+
 - (void) writeImage:(FLStorableImage*) image withCompression:(CGFloat) compression;
 - (void) writeImage:(FLStorableImage*) image;
 

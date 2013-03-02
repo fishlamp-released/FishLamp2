@@ -11,62 +11,71 @@
 
 @class FLAttributedString;
 
+@interface FLTextStyle : NSObject<NSCopying> {
+@private
+    UIColor* _textColor;
+    UIColor* _shadowColor;
+    UIFont* _font;
+    BOOL _underlined;
+}
+@property (readwrite, assign, nonatomic, getter=isUnderlined) BOOL underlined;
+@property (readwrite, strong, nonatomic) UIFont* textFont;
+@property (readwrite, strong, nonatomic) UIColor* textColor;
+@property (readwrite, strong, nonatomic) UIColor* shadowColor;
+
+- (id) initWithTextColor:(UIColor*) textColor shadowColor:(UIColor*) shadowColor;
+
++ (id) textStyle:(UIColor*) textColor shadowColor:(UIColor*) shadowColor;
++ (id) textStyle;
+
+@end
+
+@interface FLStringDisplayStyle : NSObject<NSCopying> {
+@private
+    FLTextStyle* _selectedStyle;
+    FLTextStyle* _enabledStyle;
+    FLTextStyle* _disabledStyle;
+    FLTextStyle* _highlightedStyle;
+    FLTextStyle* _emphasizedStyle;
+    FLTextStyle* _hoveringStyle;
+}
+- (void) setTextFont:(UIFont*) font;
+
+@property (readwrite, copy, nonatomic) FLTextStyle* selectedStyle;
+@property (readwrite, copy, nonatomic) FLTextStyle* enabledStyle;
+@property (readwrite, copy, nonatomic) FLTextStyle* disabledStyle;
+@property (readwrite, copy, nonatomic) FLTextStyle* highlightedStyle;
+@property (readwrite, copy, nonatomic) FLTextStyle* emphasizedStyle;
+@property (readwrite, copy, nonatomic) FLTextStyle* hoveringStyle;
+
+- (void) visitStyles:(void (^)(FLTextStyle* style)) visitor;
+
+- (void) setToControlDefaults;
+
++ (id) stringDisplayStyle;
+
+@end
+
+
 @interface FLAttributedString : NSObject {
 @private
     NSString* _string;
-    
-    UIColor* _enabledColor;
-    UIColor* _emphasizedColor;
-    UIColor* _disabledColor;
-    UIColor* _highlightedColor;
-
-    UIColor* _enabledShadowColor;
-    UIColor* _emphasizedShadowColor;
-    UIColor* _disabledShadowColor;
-    UIColor* _highlightedShadowColor;
-    UIFont* _textFont;
-
-    BOOL _highlighted;
-    BOOL _touchable;
-    BOOL _enabled;
-    BOOL _hidden;
-    BOOL _underlined;
-    BOOL _emphasized;
+    FLTextStyle* _style;
 }
 
-
-@property (readwrite, strong, nonatomic) UIColor* enabledColor;
-@property (readwrite, strong, nonatomic) UIColor* emphasizedColor;
-@property (readwrite, strong, nonatomic) UIColor* disabledColor;
-@property (readwrite, strong, nonatomic) UIColor* highlightedColor;
-
-@property (readwrite, strong, nonatomic) UIColor* enabledShadowColor;
-@property (readwrite, strong, nonatomic) UIColor* emphasizedShadowColor;
-@property (readwrite, strong, nonatomic) UIColor* disabledShadowColor;
-@property (readwrite, strong, nonatomic) UIColor* highlightedShadowColor;
-
-@property (readonly, strong, nonatomic) UIColor* colorForState;
-@property (readonly, strong, nonatomic) UIColor* shadowColorForState;
-
-@property (readwrite, strong, nonatomic) UIFont* textFont;
-
-@property (readwrite, assign, nonatomic, getter=isUnderlined) BOOL underlined;
-
-// state
-@property (readwrite, assign, nonatomic, getter=isEmphasized) BOOL emphasized;
-@property (readwrite, assign, nonatomic, getter=isHidden) BOOL hidden;
-@property (readwrite, assign, nonatomic, getter=isHighlighted) BOOL highlighted;
-@property (readwrite, assign, nonatomic, getter=isTouchable) BOOL touchable;
-@property (readwrite, assign, nonatomic, getter=isEnabled) BOOL enabled;
-
-// string
+@property (readwrite, strong, nonatomic) FLTextStyle* textStyle;
 @property (readwrite, strong, nonatomic) NSString* string;
-
-@property (readonly, strong, nonatomic) NSAttributedString* attributedString; 
 
 - (id) initWithString:(NSString*) string;
 
 + (FLAttributedString*) attributedString;
 + (FLAttributedString*) attributedString:(NSString*) string;
+
+- (NSAttributedString*) buildAttributedString;
+
+@end
+
+@interface NSString (FLAttributedString)
+- (NSAttributedString*) buildAttributedStringWithTextStyle:(FLTextStyle*) textStyle;
 @end
 
