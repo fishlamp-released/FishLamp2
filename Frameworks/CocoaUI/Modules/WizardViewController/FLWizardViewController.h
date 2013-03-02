@@ -23,11 +23,10 @@ typedef FLWizardPanel* (^FLWizardPanelFactory)();
 @private
     __unsafe_unretained id<FLWizardViewControllerDelegate> _delegate;
 
-    NSView* _backgroundView;
-    NSView* _wizardPanelBackgroundView;
+//    NSView* _backgroundView;
+//    NSView* _wizardPanelBackgroundView;
     
-    IBOutlet NSView* _breadcrumbView;
-    
+    IBOutlet NSView* _navigationViewEnclosure;
     IBOutlet NSView* _wizardPanelEnclosureView;
     IBOutlet NSTextField* _titleTextField;
     
@@ -39,9 +38,6 @@ typedef FLWizardPanel* (^FLWizardPanelFactory)();
     NSMutableArray* _panels;
     NSUInteger _currentPanel;
     FLBreadcrumbBarViewController* _breadcrumbBar;
-    
-    NSWindowController* _modalWindow;
-    NSModalSession _modalSession;
 }
 
 // delegate
@@ -58,8 +54,6 @@ typedef FLWizardPanel* (^FLWizardPanelFactory)();
 // enclosures
 @property (readonly, strong, nonatomic) NSView* buttonEnclosureView;
 @property (readonly, strong, nonatomic) NSView* wizardPanelEnclosureView;
-@property (readwrite, strong, nonatomic) NSView* backgroundView;
-@property (readwrite, strong, nonatomic) NSView* wizardPanelBackgroundView;
 
 + (id) wizardViewController;
 
@@ -71,7 +65,8 @@ typedef FLWizardPanel* (^FLWizardPanelFactory)();
 //- (void) pushPanel:(FLWizardPanel*) panel;
 - (void) appendPanel:(FLWizardPanel*) panel forKey:(id) key;
 - (FLWizardPanel*) panelForKey:(id) key;
-- (BOOL) panelIsEnabled:(id) key;
+
+- (BOOL) canShowPanelForPanelKey:(id) key;
 
 //
 // Visible Panel Stack
@@ -93,7 +88,7 @@ typedef FLWizardPanel* (^FLWizardPanelFactory)();
 //
 // Utils
 //
-- (void) updateBackButtonEnabledState;
+- (void) updateButtonEnabledStates;
 
 //
 // optional overrides

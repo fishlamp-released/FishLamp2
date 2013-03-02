@@ -22,6 +22,7 @@ BOOL FLColorValueIsRGB(CGFloat value) {
     return value >= 0.0f && value <= 255.0f;
 }
 
+
 #define FLAssertColorValueIsRGB(__VALUE__) \
             FLAssert_v(FLColorValueIsRGB(__VALUE__), @"%f should be between 1 and 255", __VALUE__)
 
@@ -64,3 +65,13 @@ extern NSString* FLCssColorStringFromColor(UIColor* color); // #AABBCC
 extern UIColor* FLColorFromCssColorString(NSString* string);
 
 extern NSString* FLHexColorStringFromColor(UIColor* color); // AABBCC
+
+#if OSX
+@interface NSColor (FLColorConversions)
+// use [NSColor CGColorRef] on 10.8
+
++(CGColorRef) CIColorToCGColor: (CIColor *) ciColor;
++(CGColorRef) NSColorToCGColor: (NSColor *) nsColor;
++(NSColor *) CGColorToNSColor: (CGColorRef) cgColor;
+@end
+#endif

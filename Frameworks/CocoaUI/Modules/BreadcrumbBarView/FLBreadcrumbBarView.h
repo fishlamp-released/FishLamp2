@@ -14,22 +14,42 @@
 #import "FLDrawableString.h"
 #import "FLDrawableShape.h"
 
+@class FLBreadcrumbBarView;
+
+typedef void (^FLBreadcrumbBarViewTouchedBlock)(FLBreadcrumbBarView* view);
+
 @interface FLBreadcrumbBarView : UIView {
 @private
-    FLAttributedString* _title;
-    dispatch_block_t _touched;
+    NSString* _title;
+    FLStringDisplayStyle* _titleStyle;
+    FLBreadcrumbBarViewTouchedBlock _touchedBlock;
     NSTrackingArea* _trackingArea;
+
     BOOL _mouseIn;
     BOOL _mouseDown;
+    BOOL _enabled;
+    BOOL _emphasized;
+    BOOL _highlighted;
     id _key;
+
+    NSColor* _lineColor;
+    BOOL _drawTopLine;
+    
 }
+
+@property (readwrite, strong, nonatomic) NSColor* lineColor;
+@property (readwrite, assign, nonatomic) BOOL drawTopLine;
+
 @property (readwrite, strong, nonatomic) id key;
 @property (readwrite, assign, nonatomic, getter=isHighlighted) BOOL highlighted;
 @property (readwrite, assign, nonatomic, getter=isEnabled) BOOL enabled;
 @property (readwrite, assign, nonatomic, getter=isEmphasized) BOOL emphasized;
 
-@property (readwrite, strong, nonatomic) FLAttributedString* title;
-@property (readwrite, copy, nonatomic) dispatch_block_t touched;
+@property (readwrite, strong, nonatomic) NSString* title;
+
+@property (readwrite, strong, nonatomic) FLStringDisplayStyle* titleStyle;
+
+@property (readwrite, copy, nonatomic) FLBreadcrumbBarViewTouchedBlock touchedBlock;
 
 - (void) didLayout;
 

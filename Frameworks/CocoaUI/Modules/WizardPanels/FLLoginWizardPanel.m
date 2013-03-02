@@ -100,6 +100,10 @@ NSString* const FLDefaultsKeyWizardSavePasswordKey = @"com.fishlamp.wizard.savep
 	return	FLStringIsNotEmpty(self.userName) && FLStringIsNotEmpty(self.password);
 }
 
+- (void) updateNextButton {
+    self.canOpenNextPanel = self.canLogin;
+}
+
 #if OSX
 - (void)controlTextDidEndEditing:(NSNotification *)note {
 	if ( [note object] == self.userNameTextField || [note object] == self.passwordEntryField ) {
@@ -118,15 +122,12 @@ NSString* const FLDefaultsKeyWizardSavePasswordKey = @"com.fishlamp.wizard.savep
 
 - (void)controlTextDidChange:(NSNotification *)note {
 	if ( [note object] == self.userNameTextField || [note object] == self.passwordEntryField ) {
-        [self updateButtonSelectedState:[self wizard]];
+        [self updateNextButton];
     }
 }
 
 #endif
 
-- (void) updateButtonSelectedState:(FLWizardViewController*) wizard {
-    wizard.nextButton.enabled = [self canLogin];
-}
 
 - (IBAction)resetLogin:(id)sender {
     FLPerformSelector1(self.delegate, @selector(loginWizardPanelResetPassword:), self);
@@ -182,16 +183,20 @@ NSString* const FLDefaultsKeyWizardSavePasswordKey = @"com.fishlamp.wizard.savep
 }
 
 - (void) saveCredentials {
-    [[NSUserDefaults standardUserDefaults] setObject:self.userName forKey:FLDefaultsKeyWizardLastUserNameKey];
-    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:self.savePasswordInKeychain] forKey:FLDefaultsKeyWizardSavePasswordKey];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    
-    if(self.savePasswordInKeychain) {
-        [FLKeychain setHttpPassword:self.password forUserName:self.userName withDomain:[self.delegate loginWizardPanelPasswordDomain:self]];
+    if(FLStringIsNotEmpty(self.userName)) {
+        [[NSUserDefaults standardUserDefaults] setObject:self.userName forKey:FLDefaultsKeyWizardLastUserNameKey];
+        if(self.savePasswordInKeychain && !FLStringIsEmpty(self.password)) {
+            [FLKeychain setHttpPassword:self.password forUserName:self.userName withDomain:[self.delegate loginWizardPanelPasswordDomain:self]];
+        }
+        else {
+            [FLKeychain removeHttpPasswordForUserName:self.userName withDomain:[self.delegate loginWizardPanelPasswordDomain:self]];
+        }
     }
     else {
-        [FLKeychain removeHttpPasswordForUserName:self.userName withDomain:[self.delegate loginWizardPanelPasswordDomain:self]];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:FLDefaultsKeyWizardLastUserNameKey];
     }
+    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:self.savePasswordInKeychain] forKey:FLDefaultsKeyWizardSavePasswordKey];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (IBAction) passwordCheckboxToggled:(id) sender {
@@ -218,7 +223,7 @@ NSString* const FLDefaultsKeyWizardSavePasswordKey = @"com.fishlamp.wizard.savep
 
 - (void) wizardPanelDidAppearInWizard:(FLWizardViewController*) wizard {
 
-    [self updateButtonSelectedState:wizard];
+    [self updateNextButton];
 
     [self performBlockOnMainThread:^{
         if(FLStringIsEmpty(self.userName)) {
@@ -232,8 +237,9 @@ NSString* const FLDefaultsKeyWizardSavePasswordKey = @"com.fishlamp.wizard.savep
 
 - (void) wizardPanelWillAppearInWizard:(FLWizardViewController*) wizard {
     [self updateVisibleCredentials];
-
     FLPerformSelector1(self.delegate, @selector(loginWizardPanelWillAppear:), self);
+    
+    [self updateNextButton];
 }
 
 - (void) wizardPanelWillDisappearInWizard:(FLWizardViewController*) wizard {

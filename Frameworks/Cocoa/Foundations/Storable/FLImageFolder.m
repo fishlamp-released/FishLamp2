@@ -104,6 +104,16 @@ FLAssertFailed_v(@"confirm this");
     return nil;
 }
 
+- (FLStorableImage*) readImageWithFileName:(NSString*) fileName {
+    NSData* data = [self readDataFromFile:fileName];
+    if(data) {
+        FLStorableImage* image = [FLStorableImage imageWithData:data];
+        return image;
+    }
+    
+    return nil;
+}
+
 - (FLStorableImage*) readOriginalImageForStorageKey:(id) storageKey {
 	return [self readImageForStorageKey:storageKey subType:FLImageTypeOriginal];
 }
@@ -154,13 +164,14 @@ FLAssertFailed_v(@"confirm this");
     return nil;
 }
 
-- (void) writeImage:(FLStorableImage*) image withCompression:(CGFloat) compression {
+- (void) writeImage:(FLStorableImage*) image withCompression:(CGFloat) compression withFileName:(NSString*) fileName {
 
+    FLAssertStringIsNotEmpty_(fileName);
+    FLAssertNotNil_(image);
     FLAssert_(compression >= 0.0 && compression <= 1.0);
 
     NSData* bytes = image.imageData;
     NSString* uti = image.storableType;
-    NSString* fileName = image.storageKey;
     NSDictionary* properties = image.exifDictionary;
 
     NSString* filePath = [self pathForFile:fileName];
@@ -202,8 +213,21 @@ FLAssertFailed_v(@"confirm this");
 }
 
 - (void) writeImage:(FLStorableImage*) image {
-    [self writeImage:image withCompression:1.0f];
+    FLAssertNotNil_(image);
+    [self writeImage:image withCompression:1.0f withFileName:image.storageKey];
 }
+
+- (void) writeImage:(FLStorableImage*) image withCompression:(CGFloat) compression {
+    FLAssertNotNil_(image);
+    [self writeImage:image withCompression:compression withFileName:image.storageKey];
+}
+
+- (void) writeImage:(FLStorableImage*) image withFileName:(NSString*) fileName {
+    FLAssertNotNil_(image);
+    FLAssertStringIsNotEmpty_(fileName);
+    [self writeImage:image withCompression:1.0f withFileName:fileName];
+}
+
 
 - (void) writePhoto:(FLPhoto*) photo {
 
