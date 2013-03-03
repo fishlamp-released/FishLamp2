@@ -45,19 +45,19 @@
 }
 #endif
 
-- (void) appendLinesToPrettyString:(FLPrettyString*) prettyString {
+- (void) appendLinesToStringFormatter:(id<FLStringFormatter>) stringFormatter {
     if(FLStringIsNotEmpty(_openScopeString)) {
-        [prettyString appendLine:_openScopeString];
-        [prettyString indent:^{
-            [super appendLinesToPrettyString:prettyString];
+        [stringFormatter appendLine:_openScopeString];
+        [stringFormatter indent:^{
+            [super appendLinesToStringFormatter:stringFormatter];
         }];
         
         if(FLStringIsNotEmpty(_closeScopeString)) {
-            [prettyString appendLine:_closeScopeString];
+            [stringFormatter appendLine:_closeScopeString];
         }
     }
     else {
-        [super appendLinesToPrettyString:prettyString];
+        [super appendLinesToStringFormatter:stringFormatter];
     }
 }
 

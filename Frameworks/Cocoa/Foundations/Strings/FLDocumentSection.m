@@ -10,12 +10,12 @@
 #import "FLWhitespace.h"
 
 @interface FLDocumentSection ()
-@property (readwrite, strong, nonatomic) NSMutableString* openLine;
+//@property (readwrite, strong, nonatomic) NSMutableString* openLine;
 @end
 
 @implementation NSString (FLDocumentSection)
-- (void) appendLinesToPrettyString:(FLPrettyString*) prettyString {
-    [prettyString appendLine:self];
+- (void) appendLinesToStringFormatter:(id<FLStringFormatter>) stringFormatter {
+    [stringFormatter appendLine:self];
 }
 @end
 
@@ -23,12 +23,12 @@
 
 @synthesize lines = _lines;
 @synthesize parent = _parent;
-@synthesize openLine = _openLine;
+//@synthesize openLine = _openLine;
 
 - (id) init {
     self = [super init];
     if(self) {
-        _needsLine = YES;
+//        _needsLine = YES;
         _lines = [[NSMutableArray alloc] init];
         self.delegate = self;
     }    
@@ -41,7 +41,7 @@
 
 #if FL_MRC
 - (void) dealloc {
-    [_openLine release];
+//    [_openLine release];
     [_lines release];
     [super dealloc];
 }
@@ -52,77 +52,84 @@
     return [_lines lastObject];
 }
 
-- (void) stringFormatterAppendEOL:(FLStringFormatter*) stringFormatter {
-    _needsLine = YES;
-}
+//- (void) stringFormatterAppendEOL:(FLStringFormatter*) stringFormatter {
+//    _needsLine = YES;
+//}
 
-- (void) startNewLine:(id) line {
-    NSMutableString* openLine = self.openLine;
-    if(openLine) {
-        [self willCloseLine:openLine];
-        self.openLine = nil;
-    }
-    [_lines addObject:line];
-}
+//- (void) openLine:(id) line {
+//    NSMutableString* openLine = self.openLine;
+//    if(openLine) {
+//        [self willCloseLine:openLine];
+//        self.openLine = nil;
+//    }
+//    [_lines addObject:line];
+//}
 
-- (void) appendBlankLine {
-    [super appendBlankLine];
-    _needsLine = YES;
-}
+//- (void) appendBlankLine {
+//    [super appendBlankLine];
+////    _needsLine = YES;
+//}
 
-- (NSMutableString*) willOpenLine {
-    return [NSMutableString string];
-}
+//- (NSMutableString*) willOpenLine {
+//    return [NSMutableString string];
+//}
 
-- (void) willCloseLine:(NSMutableString*) line {
-
-}
+//- (void) willCloseLine:(NSMutableString*) line {
+//
+//}
 
 - (void) stringFormatter:(FLStringFormatter*) stringFormatter 
-            appendString:(NSString*) string {
+            appendString:(NSString*) string
+  appendAttributedString:(NSAttributedString*) attributedString
+              lineUpdate:(FLStringFormatterLineUpdate) lineUpdate {
+
+// NOTE: we're ignoring lineUpdate.openLine and closeLine since our lines are
+// in an array. 
     
-    if(_needsLine) {
-        NSMutableString* newOpenLine = [self willOpenLine];
-        [self startNewLine:newOpenLine];
-        self.openLine = newOpenLine;
-        _needsLine = NO;
+    if(lineUpdate.prependBlankLine) {
+        [_lines addObject:@""];
     }
     
-    FLAssert_([self.lastLine isKindOfClass:[NSMutableString class]]);
+    if(attributedString) {
+        string = attributedString.string;
+    }
     
-    [self.lastLine appendString:string];
+    if(lineUpdate.openLine || _needsLine) {
+        [_lines addObject:FLAutorelease([string mutableCopy])];
+        _needsLine = NO;
+    }
+    else if(string) {
+        FLAssert_([self.lastLine isKindOfClass:[NSMutableString class]]);
+        [self.lastLine appendString:string];
+    }
+    
 }            
 
-- (NSString*) stringFormatterGetString:(FLStringFormatter*) stringFormatter {
+- (NSString*) description {
     FLPrettyString* str = [FLPrettyString prettyString];
     [str appendBuildableString:self];
     return str.string;
 }
 
-- (id) copyWithZone:(NSZone*) zone {
-    FLAssertFailed_v(@"need to implement this");
-    return nil;
+- (void) willBuildWithStringFormatter:(id<FLStringFormatter>) stringFormatter {
 }
 
-- (void) willBuildWithPrettyString:(FLPrettyString*) prettyString {
+- (void) didBuildWithStringFormatter:(id<FLStringFormatter>) stringFormatter {
 }
 
-- (void) didBuildWithPrettyString:(FLPrettyString*) prettyString {
-}
+- (void) appendLinesToStringFormatter:(id<FLStringFormatter>) stringFormatter {
 
-- (void) appendLinesToPrettyString:(FLPrettyString*) prettyString {
-
-    [self willBuildWithPrettyString:prettyString];
+    [self willBuildWithStringFormatter:stringFormatter];
 
     for(id<FLBuildableString> line in _lines) {
-        [line appendLinesToPrettyString:prettyString];
+        [line appendLinesToStringFormatter:stringFormatter];
     }
 
-    [self didBuildWithPrettyString:prettyString];
+    [self didBuildWithStringFormatter:stringFormatter];
 }
 
 - (void) addStringBuilder:(FLDocumentSection*) stringBuilder {
-    [self startNewLine:stringBuilder];
+    [_lines addObject:stringBuilder];
     [stringBuilder setParent:self];
     _needsLine = YES;
 }
@@ -145,6 +152,8 @@
 - (void) stringFormatterOutdent:(FLStringFormatter*) stringFormatter {
 }
 
+- (void) stringFormatter:(FLStringFormatter*) stringFormatter setIndentLevel:(NSInteger) indentLevel {
+}
 
 @end
 
@@ -208,7 +217,7 @@
     return line;
 }
 
-- (void) appendLinesToPrettyString:(FLPrettyString*) prettyString {
+- (void) appendLinesToStringFormatter:(id<FLStringFormatter>) stringFormatter {
     if(FLStringIsNotEmpty(_string)) {
         [prettyString appendLine:_string];
     }

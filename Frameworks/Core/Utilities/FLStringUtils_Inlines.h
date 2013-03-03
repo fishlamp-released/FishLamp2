@@ -8,13 +8,13 @@
 #ifdef __INLINES__
 
 FL_SHIP_ONLY_INLINE
-BOOL FLStringIsEmpty(NSString* string) {
-	return string == nil || string.length == 0;
+BOOL FLStringIsEmpty(id string) {
+	return string == nil || [string length] == 0;
 }
 
 FL_SHIP_ONLY_INLINE
-BOOL FLStringIsNotEmpty(NSString* string) {
-	return string != nil && string.length > 0;
+BOOL FLStringIsNotEmpty(id string) {
+	return string != nil && [string length] > 0;
 }
 
 FL_SHIP_ONLY_INLINE

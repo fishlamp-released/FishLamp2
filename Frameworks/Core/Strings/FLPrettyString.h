@@ -10,25 +10,17 @@
 #import "FLStringFormatter.h"
 #import "FLWhitespace.h"
 
-@class FLPrettyString;
-
-@protocol FLBuildableString <NSObject>
-- (void) appendLinesToPrettyString:(FLPrettyString*) prettyString;
-@end
-
-@interface FLPrettyString : FLStringFormatter<NSCopying, FLStringFormatterDelegate> {
+@interface FLPrettyString : FLStringFormatter<FLStringFormatterDelegate> {
 @private
-    NSMutableString* _string;
+    id _storage;
+    id _eolString;
     FLWhitespace* _whitespace;
-    BOOL _needsTabInset;
-    NSInteger _tabIndent;
-    NSString* _eolString;
+    NSInteger _indentLevel;
 }
 
+@property (readonly, assign, nonatomic) NSInteger indentLevel;
 @property (readonly, assign, nonatomic) NSUInteger length;
-@property (readwrite, strong, nonatomic) FLWhitespace* whitespace;
-@property (readwrite, assign, nonatomic) NSInteger tabIndent;
-
+@property (readonly, strong, nonatomic) FLWhitespace* whitespace;
 @property (readonly, strong, nonatomic) NSString* string;
 
 - (id) initWithWhitespace:(FLWhitespace*) whitespace;
@@ -42,6 +34,8 @@
 
 - (void) appendBuildableString:(id<FLBuildableString>) buildableString;
 
+- (void) deleteAllCharacters;
+
 @end
 
 @interface FLPrettyString (Whitespace)
@@ -51,6 +45,15 @@
 @interface NSObject (FLStringFormatter)
 - (void) describe:(FLPrettyString*) formatter;
 - (NSString*) prettyDescription;
+@end
+
+
+@interface FLPrettyAttributedString : FLPrettyString {
+@private
+}
+
+@property (readonly, strong, nonatomic) NSAttributedString* attributedString;
+
 @end
 
 

@@ -17,7 +17,7 @@
 //                        eol:(NSString*) eol
 //                   lineInfo:(FLLineInfo) lineInfo {
 //    
-//    if(lineInfo.isEndOfLine) {
+//    if(lineInfo.closeLine) {
 //        [destString appendFormat:@"%@%@ \\%@", tabs, string, eol];
 //    }
 //    else {
@@ -39,7 +39,7 @@
 //                        eol:(NSString*) eol
 //                 lineInfo:(FLLineInfo) lineInfo{
 //    
-//    if(lineInfo.isStartOfLine) {
+//    if(lineInfo.openLine) {
 //        [destString appendFormat:@"%@// %@%@", tabs, string, eol];
 //    }
 //    else {
@@ -59,7 +59,7 @@
 //                        eol:(NSString*) eol
 //                 lineInfo:(FLLineInfo) lineInfo{
 //    
-//    if(lineInfo.isStartOfLine) {
+//    if(lineInfo.openLine) {
 //        [destString appendFormat:@"%@/// %@%@", tabs, string, eol];
 //    }
 //    else {

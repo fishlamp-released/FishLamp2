@@ -9,6 +9,14 @@
 #import "FLZenfolioGroupElementSelection.h"
 
 
+@implementation FLZenfolioPhoto (Selection)
+- (void) addSelectionsToIndexedSet:(NSMutableIndexSet*) set 
+                     fromSelection:(FLZenfolioGroupElementSelection*) selection 
+                     currentIndex:(NSUInteger*) currentIndex {
+}
+@end
+
+
 @implementation FLZenfolioGroupElement (Selection)
 
 - (void) addSelectionsToIndexedSet:(NSMutableIndexSet*) set 

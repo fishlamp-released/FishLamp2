@@ -14,17 +14,17 @@
     return FLAutorelease([[[self class] alloc] init]);
 }
 
-- (void) appendLinesToPrettyString:(FLPrettyString*) prettyString {
+- (void) appendLinesToStringFormatter:(id<FLStringFormatter>) stringFormatter {
     
     BOOL hasLines = self.lines.count > 0;
     if(hasLines) {
-        [prettyString appendLine:@"<--"];
+        [stringFormatter appendLine:@"<--"];
 
-        [prettyString indent:^{
-            [super appendLinesToPrettyString:prettyString];
+        [stringFormatter indent:^{
+            [super appendLinesToStringFormatter:stringFormatter];
         }];
         
-        [prettyString appendLine:@"-->"];
+        [stringFormatter appendLine:@"-->"];
     }
     
 }                           

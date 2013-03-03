@@ -56,6 +56,9 @@
 - (void) didMoveToWizard:(FLWizardViewController*) wizard {
 }
 
+- (void) respondToOtherButton:(FLWizardViewController*) wizard {
+}
+
 //- (id) userContext {
 //    return [_wizard userContext];
 //}
@@ -72,11 +75,11 @@
 - (void) wizardPanelDidDisappearInWizard:(FLWizardViewController*) wizard {
 }
 
-- (BOOL) willRespondToNextButtonInWizard:(FLWizardViewController*) wizard {
+- (BOOL) respondToNextButton:(FLWizardViewController*) wizard {
     return NO;
 }
 
-- (BOOL) willRespondToBackButtonInWizard:(FLWizardViewController*) wizard {
+- (BOOL) respondToBackButton:(FLWizardViewController*) wizard {
     return NO;
 }
 
@@ -91,6 +94,11 @@
 - (NSButton*) backButton {
     return [self.wizard backButton];
 }
+
+- (NSButton*) otherButton {
+    return [self.wizard otherButton];
+}
+
 
 - (void) enableBackButton:(BOOL) enable {
     self.backButton.enabled = enable;

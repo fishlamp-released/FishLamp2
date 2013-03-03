@@ -18,7 +18,7 @@
 @synthesize folderPath = _folderPath;
 
 - (NSURL*) folderURL {
-    return [NSURL URLWithString:_folderPath];
+    return [NSURL fileURLWithPath:self.folderPath isDirectory:YES];
 }
 
 - (id) init {

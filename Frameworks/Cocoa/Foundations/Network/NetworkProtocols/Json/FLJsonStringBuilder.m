@@ -34,7 +34,7 @@
 //	if(type->typeID == FLDataTypeObject)
 //	{
 //		[self appendFormat:@"\"%@\": {", type->key];
-//		[self endLine];
+//		[self closeLine];
 //	}
 //	else
 //	{
@@ -78,7 +78,7 @@
 //	{
 //		[self appendString:@"}"];
 //	}
-//	[self endLine];
+//	[self closeLine];
 //}
 //
 - (void) streamObject:(id) object

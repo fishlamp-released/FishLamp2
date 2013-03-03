@@ -26,26 +26,26 @@
     
         case NSURLErrorTimedOut:
             [text appendLine:NSLocalizedString(@"The server is not responding.", nil)];
-//			[text endLine];
+//			[text closeLine];
 //			[text appendLine:MovePhone];
             break;
 
         case kCFURLErrorNotConnectedToInternet:
             [text appendLine:NSLocalizedString(@"A network connection can't be found.", nil)];
-            [text endLine];
+            [text closeLine];
             [text appendLine:NSLocalizedString(@"Please try again when you have a network connection.", nil)];
             break;
             
         case NSURLErrorNetworkConnectionLost:
             [text appendLine:NSLocalizedString(@"The network connection was lost.", nil)];
-//			[text endLine];
+//			[text closeLine];
 //			[text appendLine:MovePhone];
             break;
 
         case NSURLErrorCannotFindHost:
         case NSURLErrorCannotConnectToHost:		
             [text appendLine:NSLocalizedString(@"Unable to connect to server.", nil)];
-//			[text endLine];
+//			[text closeLine];
             break;
 
         default:

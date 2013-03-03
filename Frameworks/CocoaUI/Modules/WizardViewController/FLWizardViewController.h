@@ -33,6 +33,7 @@ typedef FLWizardPanel* (^FLWizardPanelFactory)();
     IBOutlet NSView* _buttonEnclosureView;
     IBOutlet NSButton* _nextButton;
     IBOutlet NSButton* _backButton;
+    IBOutlet NSButton* _otherButton;
     IBOutlet NSProgressIndicator* _spinner;
     
     NSMutableArray* _panels;
@@ -46,6 +47,7 @@ typedef FLWizardPanel* (^FLWizardPanelFactory)();
 // controls
 @property (readonly, strong, nonatomic) NSButton* nextButton;
 @property (readonly, strong, nonatomic) NSButton* backButton;
+@property (readonly, strong, nonatomic) NSButton* otherButton;
 @property (readonly, strong, nonatomic) NSTextField* titleTextField;
 @property (readonly, strong, nonatomic) FLBreadcrumbBarViewController* breadcrumbBar;
 
@@ -133,7 +135,7 @@ typedef FLWizardPanel* (^FLWizardPanelFactory)();
 //- (BOOL) wizardViewController:(FLWizardViewController*) wizard
 //wizardPanelWillRespondToNextButton:(FLWizardPanel*) wizardPanel;
 //
-//- (BOOL) wizardPanel:(FLWizardPanel*) wizardPanel willRespondToBackButtonInWizard:(FLWizardViewController*) wizard;
+//- (BOOL) wizardPanel:(FLWizardPanel*) wizardPanel respondToBackButton:(FLWizardViewController*) wizard;
 //- (BOOL) wizardPanel:(FLWizardPanel*) wizardPanel willRespondToOtherButtonInWizard:(FLWizardViewController*) wizard;
 
 
