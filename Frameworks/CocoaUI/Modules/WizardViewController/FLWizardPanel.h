@@ -19,6 +19,7 @@
 }
 @property (readonly, strong, nonatomic) NSButton* nextButton;
 @property (readonly, strong, nonatomic) NSButton* backButton;
+@property (readonly, strong, nonatomic) NSButton* otherButton;
 
 //- (void) enableBackButton:(BOOL) enable;
 //- (void) enableNextButton:(BOOL) enable;
@@ -35,8 +36,9 @@
 - (void) wizardPanelWillDisappearInWizard:(FLWizardViewController*) wizard;
 - (void) wizardPanelDidDisappearInWizard:(FLWizardViewController*) wizard;
 
-- (BOOL) willRespondToNextButtonInWizard:(FLWizardViewController*) wizard;
-- (BOOL) willRespondToBackButtonInWizard:(FLWizardViewController*) wizard;
+- (BOOL) respondToNextButton:(FLWizardViewController*) wizard;
+- (BOOL) respondToBackButton:(FLWizardViewController*) wizard;
+- (void) respondToOtherButton:(FLWizardViewController*) wizard;
 
 - (void) didMoveToWizard:(FLWizardViewController*) wizard;
 @end

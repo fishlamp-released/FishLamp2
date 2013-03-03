@@ -118,20 +118,20 @@
     
 }
 
-- (void) appendLinesToPrettyString:(FLPrettyString *)prettyString {
+- (void)appendLinesToStringFormatter:(id<FLStringFormatter>)stringFormatter {
 
     if(_comments) {
-        [_comments appendLinesToPrettyString:prettyString];
+        [_comments appendLinesToStringFormatter:stringFormatter];
     }
     
     BOOL hasLines = self.lines.count > 0;
-    [prettyString appendLine:[self xmlOpenTag:!hasLines]];
+    [stringFormatter appendLine:[self xmlOpenTag:!hasLines]];
     if(hasLines) {
-        [prettyString indent:^{
-            [super appendLinesToPrettyString:prettyString];
+        [stringFormatter indent:^{
+            [super appendLinesToStringFormatter:stringFormatter];
         }];
 
-        [prettyString appendLine:[NSString stringWithFormat:@"</%@>", self.xmlElementCloseTag]];
+        [stringFormatter appendLine:[NSString stringWithFormat:@"</%@>", self.xmlElementCloseTag]];
     }
 }      
 

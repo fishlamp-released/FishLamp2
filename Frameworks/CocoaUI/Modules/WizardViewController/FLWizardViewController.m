@@ -23,6 +23,7 @@
 @property (readonly, strong, nonatomic) NSArray* wizardPanels;
 - (IBAction) respondToNextButton:(id) sender;
 - (IBAction) respondToBackButton:(id) sender;
+- (IBAction) respondToOtherButton:(id) sender;
 @end
 
 @implementation FLWizardViewController
@@ -35,6 +36,8 @@
 @synthesize wizardPanelEnclosureView = _wizardPanelEnclosureView;
 @synthesize breadcrumbBar = _breadcrumbBar;
 @synthesize currentPanelIndex = _currentPanel;
+@synthesize otherButton = _otherButton;
+
 
 - (NSUInteger) panelCount {
     return _panels.count;
@@ -168,16 +171,20 @@
 
 - (IBAction) respondToNextButton:(id) sender {
 
-    BOOL handled = [self.visibleWizardPanel willRespondToNextButtonInWizard:self];
+    BOOL handled = [self.visibleWizardPanel respondToNextButton:self];
 
     if(!handled) {
         [self showNextWizardPanelAnimated:YES completion:nil];
     }
 }
 
+- (IBAction) respondToOtherButton:(id) sender {
+    [self.visibleWizardPanel respondToOtherButton:self];
+}
+
 - (IBAction) respondToBackButton:(id) sender {
 
-    BOOL handled = [self.visibleWizardPanel willRespondToBackButtonInWizard:self];
+    BOOL handled = [self.visibleWizardPanel respondToBackButton:self];
 
     if(!handled) {
         [self showPreviousWizardPanelAnimated:YES completion:nil];
@@ -331,6 +338,7 @@
 
     self.nextButton.enabled = NO;
     self.backButton.enabled = NO; // (_panels.count > 0);
+    self.otherButton.hidden = YES;
     
     if(toHide) {
         [self willHideWizardPanel:toHide];
@@ -401,6 +409,7 @@
 
     self.nextButton.enabled = NO;
     self.backButton.enabled = NO;
+    self.otherButton.hidden = YES;
 
     [self setPanelFrame:toShow];
             

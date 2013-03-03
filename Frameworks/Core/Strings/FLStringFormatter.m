@@ -9,58 +9,140 @@
 #import "FLStringFormatter.h"
 #import "NSArray+FLExtras.h"
 
+NS_INLINE
+FLStringFormatterLineUpdate MakeInfo(BOOL closePreviousLine, 
+                                   BOOL prependBlankLine, 
+                                   BOOL openLine, 
+                                   BOOL closeLine) {
+                                   
+    FLStringFormatterLineUpdate info = { 
+        closePreviousLine, 
+        prependBlankLine, 
+        openLine, 
+        closeLine }; 
+
+    return info; 
+}
+
+#define str_or_nil(str) (str == nil || str.length == 0) ? nil : str
+#define closeLineInfo() MakeInfo(_editingLine, NO, NO, YES)
+#define openLineInfo() MakeInfo(_editingLine, NO, YES, NO)
+#define appendLineInfo() MakeInfo(NO, NO, !_editingLine, YES)
+#define appendStringInfo() MakeInfo(NO, NO, !_editingLine, NO)
+
 @implementation FLStringFormatter
 
 @synthesize delegate = _delegate;
 
+
 - (void) appendString:(NSString*) string {
     FLAssertNotNil_(string);
     
+    [self.delegate stringFormatter:self 
+                      appendString:string
+            appendAttributedString:nil
+                        lineUpdate:appendStringInfo()];
+        
     _editingLine = YES;
-    [self.delegate stringFormatter:self appendString:string];
 }
 
-- (void) endLine {
+
+- (void) appendAttributedString:(NSAttributedString*) string {
+    FLAssertNotNil_(string);
+    
+    [self.delegate stringFormatter:self 
+                      appendString:nil
+            appendAttributedString:str_or_nil(string)
+                        lineUpdate:appendStringInfo()];
+        
+    _editingLine = YES;
+}
+
+
+- (void) closeLine {
+    FLAssert_(_editingLine);
     if(_editingLine) {
-        [self.delegate stringFormatterAppendEOL:self];
-        _editingLine = NO;
+        [self.delegate stringFormatter:self 
+                          appendString:nil
+                appendAttributedString:nil
+                            lineUpdate:closeLineInfo()];
     }
+    _editingLine = NO;
 }
 
-- (void) endLine:(NSString*) string {
+- (void) closeLineWithString:(NSString*) string {
+    FLAssert_(_editingLine);
+    if(_editingLine) {
+        [self.delegate stringFormatter:self 
+                          appendString:str_or_nil(string)
+                appendAttributedString:nil
+                            lineUpdate:closeLineInfo()];
+    }
+    _editingLine = NO;
+}
+
+- (void) closeLineWithAttributedString:(NSAttributedString*) string {
+    FLAssert_(_editingLine);
+    if(_editingLine) {
+        [self.delegate stringFormatter:self 
+                          appendString:nil
+                appendAttributedString:str_or_nil(string)
+                            lineUpdate:closeLineInfo()];
+    }
+    _editingLine = NO;
+}
+
+- (void) openLineWithString:(NSString*) string {
     FLAssertNotNil_(string);
+    [self.delegate stringFormatter:self 
+                      appendString:str_or_nil(string)
+            appendAttributedString:nil
+                        lineUpdate:openLineInfo()];
+                      
 
-    [self appendString:string];
-    [self endLine];
-}
-
-- (void) startLine {
-    [self endLine];
     _editingLine = YES;
 }
 
-- (void) startLine:(NSString*) string {
-    FLAssertNotNil_(string);
 
-    [self endLine];
-    if(FLStringIsNotEmpty(string)) {
-        [self startLine];
-        [self appendString:string];
-    }
+- (void) openLineWithAttributedString:(NSAttributedString*) string {
+    FLAssertNotNil_(string);
+    [self.delegate stringFormatter:self 
+                      appendString:nil
+            appendAttributedString:str_or_nil(string)
+                        lineUpdate:openLineInfo()];
+                      
+
+    _editingLine = YES;
 }
 
-- (void) appendLine:(NSString*) line {
-    FLAssertNotNil_(line);
 
-    [self endLine];
-    [self startLine:line];
-    [self endLine];
+- (void) appendLineWithAttributedString:(NSAttributedString*) string {
+    FLAssertNotNil_(string);
+    [self.delegate stringFormatter:self 
+                      appendString:nil
+            appendAttributedString:str_or_nil(string)
+                        lineUpdate:appendLineInfo()];
+                      
+
+    _editingLine = NO;
+}
+
+
+- (void) appendLine:(NSString*) string {
+    [self.delegate stringFormatter:self 
+                      appendString:str_or_nil(string)
+            appendAttributedString:nil
+                        lineUpdate:appendLineInfo()];
+
+    _editingLine = NO;
 }
 
 - (void) appendBlankLine {
-    [self endLine];
-    [self startLine];
-    [self endLine];
+    [self.delegate stringFormatter:self 
+                      appendString:nil
+            appendAttributedString:nil
+                        lineUpdate:MakeInfo(_editingLine, YES, NO, NO)];
+    _editingLine = NO;
 }
 
 - (void) appendLines:(NSString**) lines count:(NSInteger) count{
@@ -102,30 +184,22 @@
 	[self appendLine:string];
 }
 
-- (void) startLineWithFormat:(NSString*) format, ... {
+- (void) openLineWithFormat:(NSString*) format, ... {
     FLAssertNotNil_(format);
 	va_list va;
 	va_start(va, format);
 	NSString *string = FLAutorelease([[NSString alloc] initWithFormat:format arguments:va]);
 	va_end(va);
-	[self startLine:string];
+	[self openLineWithString:string];
 }
 
-- (void) endLineWithFormat:(NSString*) format, ... {
+- (void) closeLineWithFormat:(NSString*) format, ... {
     FLAssertNotNil_(format);
 	va_list va;
 	va_start(va, format);
 	NSString *string = FLAutorelease([[NSString alloc] initWithFormat:format arguments:va]);
 	va_end(va);
-	[self endLine:string];
-}
-
-- (NSString*) description {
-    return [self string];
-}
-
-- (NSString*) string {
-    return [self.delegate stringFormatterGetString:self];
+	[self closeLineWithString:string];
 }
 
 - (NSString*) _preprocessLines:(NSString*) lines {
@@ -178,23 +252,27 @@
 
 }
 
-- (void) deleteAllCharacters {
-    [self.delegate stringFormatterDeleteAllCharacters:self];
-}  
-
 - (void) indent {
-    [self.delegate stringFormatterIndent:self];
+    if([self.delegate respondsToSelector:@selector(stringFormatterIndent:)]) {
+        [self.delegate stringFormatterIndent:self];
+    }
 }
 
 - (void) outdent {
-    [self.delegate stringFormatterOutdent:self];
+    if([self.delegate respondsToSelector:@selector(stringFormatterOutdent:)]) {
+        [self.delegate stringFormatterOutdent:self];;
+    }
 }
 
 - (void) indent:(void (^)()) block {
-    [self endLine];
+    if(_editingLine) {
+        [self closeLine];
+    }
     [self indent];
     block();
-    [self endLine];
+    if(_editingLine) {
+        [self closeLine];
+    }
     [self outdent];
 }
 @end

@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 GreenTongue Software, LLC. All rights reserved.
 //
 
-#import "FLCocoaUIRequired.h"
+#import "FLCocoaRequired.h"
 #import "FishLampCocoa.h"
 
 @class FLAttributedString;
@@ -76,6 +76,31 @@
 @end
 
 @interface NSString (FLAttributedString)
-- (NSAttributedString*) buildAttributedStringWithTextStyle:(FLTextStyle*) textStyle;
+- (NSAttributedString*) attributedStringWithTextStyle:(FLTextStyle*) textStyle;
+@end
+
+@interface NSAttributedString (FLAdditions)
+- (NSRange) entireRange;
+@end
+
+@interface NSMutableAttributedString (FLAdditions)
+
+- (void) setAttribute:(id) object forName:(NSString*) name forRange:(NSRange) range; // nil ojbect removes it.
+
+- (void) setFont:(NSFont*) font forRange:(NSRange) range;
+- (void) setColor:(NSColor*) color forRange:(NSRange) range;
+- (void) setShadowColor:(NSColor*) color forRange:(NSRange) range;
+- (void) setUnderlined:(BOOL) underlined forRange:(NSRange) range;
+- (void) setTextStyle:(FLTextStyle*) style forRange:(NSRange) range;
+- (void) setURL:(NSURL*) url forRange:(NSRange) range;
+
++ (id) mutableAttributedString;
++ (id) mutableAttributedString:(NSString*) string;
+
+
+// makes a link
+- (id) initWithString:(NSString*) string url:(NSURL*) url color:(NSColor*) color underline:(BOOL) underline;
++ (id) mutableAttributedString:(NSString*) string url:(NSURL*) url color:(NSColor*) color underline:(BOOL) underline;
+
 @end
 

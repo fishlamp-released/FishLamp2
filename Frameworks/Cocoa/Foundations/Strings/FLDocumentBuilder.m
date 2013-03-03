@@ -33,25 +33,20 @@
 }
 #endif
 
-- (void) stringFormatterAppendEOL:(FLStringFormatter*) stringFormatter {
-    [[self openedSection] endLine];
-}
-
 - (void) stringFormatter:(FLStringFormatter*) stringFormatter 
-            appendString:(NSString*) string {
-    [[self openedSection] appendString:string];
-}            
+            appendString:(NSString*) string
+  appendAttributedString:(NSAttributedString*) attributedString
+              lineUpdate:(FLStringFormatterLineUpdate) lineUpdate {
 
-- (NSString*) stringFormatterGetString:(FLStringFormatter*) stringFormatter {
-    return [[self openedSection] string];
-}
+    [[self openedSection] stringFormatter:stringFormatter appendString:string appendAttributedString:attributedString lineUpdate:lineUpdate];
+}                                                 
 
 - (FLDocumentSection*) openedSection {
     return [_document openedStringBuilder];
 }
 
-- (void) appendLinesToPrettyString:(FLPrettyString*) prettyString {
-    [_document.rootStringBuilder appendLinesToPrettyString:prettyString];
+- (void) appendLinesToStringFormatter:(id<FLStringFormatter>) stringFormatter {
+    [_document.rootStringBuilder appendLinesToStringFormatter:stringFormatter];
 }
 
 - (void) openSection:(FLDocumentSection*) element {
@@ -70,15 +65,8 @@
     [self.document closeAllStringBuilders];
 }
 
-- (void) stringFormatterDeleteAllCharacters:(FLStringFormatter*) stringFormatter {
-    [self.document deleteAllStringBuilders];
-}
+- (void) stringFormatter:(FLStringFormatter*) stringFormatter setIndentLevel:(NSInteger) indentLevel {
 
-- (void) stringFormatterIndent:(FLStringFormatter*) stringFormatter {
 }
-
-- (void) stringFormatterOutdent:(FLStringFormatter*) stringFormatter {
-}
-
 
 @end

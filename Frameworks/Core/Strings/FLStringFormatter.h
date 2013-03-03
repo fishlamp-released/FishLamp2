@@ -8,66 +8,90 @@
 
 #import "FLRequired.h"
 
-@protocol FLStringFormatterDelegate;
+@protocol FLStringFormatter <NSObject>
 
-@interface FLStringFormatter : NSObject {
-@private
-    BOOL _editingLine;
-    __unsafe_unretained id<FLStringFormatterDelegate> _delegate;
-}
+/// ends currently open line, opens a new one.
+- (void) openLineWithString:(NSString*) string;
+- (void) openLineWithFormat:(NSString*) format, ...;
+- (void) openLineWithAttributedString:(NSAttributedString*) string;
 
-@property (readwrite, assign, nonatomic) id<FLStringFormatterDelegate> delegate;
-
-- (void) startLine; 
-- (void) startLine:(NSString*) string;
-- (void) startLineWithFormat:(NSString*) format, ...;
-
+/// append to open line. Opens a news line if no line is open.
 - (void) appendString:(NSString*) string; 
 - (void) appendFormat:(NSString*) format, ...;
+- (void) appendAttributedString:(NSAttributedString*) string; 
 
 // end current line with EOF (only if it hasn't already been ended)
-- (void) endLine; 
-- (void) endLine:(NSString*) string;
-- (void) endLineWithFormat:(NSString*) format, ...;
+- (void) closeLine; 
+- (void) closeLineWithString:(NSString*) string;
+- (void) closeLineWithFormat:(NSString*) format, ...;
+- (void) closeLineWithAttributedString:(NSAttributedString*) format;
 
-/// endLine, Append a string, then a EOL
+/// Ends currently open line, then adds a blank line. Leaves no open line.
 - (void) appendBlankLine;
+
+/// AppendLine: Append a string, then a EOL. Ends currently open line first.
 - (void) appendLine:(NSString*) line;  
 - (void) appendLineWithFormat:(NSString*) format, ...;
+- (void) appendLineWithAttributedString:(NSAttributedString*) line;  
 
+/// AppendLine is called for each line
 - (void) appendLines:(NSString**) lines count:(NSInteger) count;
 - (void) appendLines:(NSString**) lines;
 - (void) appendLinesWithArray:(NSArray*) lines;
 
+/// incoming string is chopped into lines and then fed through appendLines
 - (void) appendStringContainingMultipleLines:(NSString*) inLines;
 - (void) appendStringContainingMultipleLines:(NSString*) inLines trimWhitespace:(BOOL) trimWhitespace;
 
-- (NSString*) string;
-
-- (void) deleteAllCharacters;
-
+/// indent the string (optionally implemented by delegate)
 - (void) indent;
 - (void) outdent;
+
+// if delegate doesn't implement indentLevel, then the block is executed anyway and resulting
+// text will not be indented.
 - (void) indent:(void (^)()) block;
 
 @end
 
+/// concrete base class.
+
+@protocol FLStringFormatterDelegate;
+
+@interface FLStringFormatter : NSObject<FLStringFormatter> {
+@private
+    BOOL _editingLine;
+    __unsafe_unretained id<FLStringFormatterDelegate> _delegate;
+}
+@property (readwrite, assign, nonatomic) id<FLStringFormatterDelegate> delegate;
+@end
+
+/// For delegates.
+
+/// this describes state of open openLine. Uses one method (stringFormatter:appendString:lineInfo) to allow
+/// for optimizations.
+typedef struct {
+    BOOL closePreviousLine; 
+    BOOL prependBlankLine; // closePreviousLine may be YES or NO
+    BOOL openLine; // Note: openLine will always have non-empty string if YES.
+    BOOL closeLine; // Any of other options may be set
+} FLStringFormatterLineUpdate;
 
 @protocol FLStringFormatterDelegate <NSObject>
 
-- (void) stringFormatterAppendEOL:(FLStringFormatter*) stringFormatter; 
-
 - (void) stringFormatter:(FLStringFormatter*) stringFormatter 
-            appendString:(NSString*) string;
+            appendString:(NSString*) string
+  appendAttributedString:(NSAttributedString*) string
+              lineUpdate:(FLStringFormatterLineUpdate) lineUpdate;
 
-- (NSString*) stringFormatterGetString:(FLStringFormatter*) stringFormatter;
-
-- (void) stringFormatterDeleteAllCharacters:(FLStringFormatter*) stringFormatter;
-
+@optional
 - (void) stringFormatterIndent:(FLStringFormatter*) stringFormatter;
 - (void) stringFormatterOutdent:(FLStringFormatter*) stringFormatter;
+
 @end
 
 
+@protocol FLBuildableString <NSObject>
+- (void) appendLinesToStringFormatter:(id<FLStringFormatter>) stringFormatter;
+@end
 
 

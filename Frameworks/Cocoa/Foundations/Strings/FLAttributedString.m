@@ -204,55 +204,137 @@
 //}
 
 - (NSAttributedString*) buildAttributedString {
-    return [self.string buildAttributedStringWithTextStyle:self.textStyle];
+    return [self.string attributedStringWithTextStyle:self.textStyle];
 }
 @end
 
 @implementation NSString (FLAttributedString)
 
-- (NSAttributedString*) buildAttributedStringWithTextStyle:(FLTextStyle*) textStyle {
+- (NSAttributedString*) attributedStringWithTextStyle:(FLTextStyle*) textStyle {
 
     FLAssertNotNil_v(textStyle, @"no text style attributed string");
-
-    NSRange range = NSMakeRange(0, self.length);
-    
-    NSFont* font = textStyle.textFont;
-    FLAssertNotNil_v(font, @"font is nil");
-    
     NSMutableAttributedString* string =
         FLAutorelease([[NSMutableAttributedString alloc] initWithString:self]);
+
+    [string setTextStyle:textStyle forRange:string.entireRange];
+    return string;
+}
+
+@end
+
+@implementation NSAttributedString (FLAdditions)
+- (NSRange) entireRange {
+    return NSMakeRange(0, self.length);
+}
+@end
+
+@implementation NSMutableAttributedString (FLAdditions)
+
+
+- (void) setTextStyle:(FLTextStyle*) style forRange:(NSRange) range {
+    if(style.textFont) {
+        [self setFont:style.textFont forRange:range];
+    }
+    if(style.textColor) {
+        [self setColor:style.textColor forRange:range];
+    }
+    if(style.shadowColor) {
+        [self setShadowColor:style.shadowColor forRange:range];
+    }
+    if(style.isUnderlined) {
+        [self setUnderlined:YES forRange:range];
+    }
+    [self addAttribute:@"com.fishlamp.string" value:self range:range];
+}
+
+- (void) setAttribute:(id) object forName:(NSString*) name forRange:(NSRange) range {
+    if(object) {
+        [self addAttribute:name value:object range:range];
+    }
+    else {
+        [self removeAttribute:name range:range];
+    }
+}
+
+- (void) setFont:(NSFont*) font forRange:(NSRange) range {
+    FLAssertNotNil_(font); 
     
     CTFontRef fontRef = CTFontCreateWithName(bridge_(CFStringRef, font.fontName), font.pointSize, NULL);
     FLAssertIsNotNil_(fontRef);
     
     if(fontRef) {
-        [string addAttribute:(NSString*) kCTFontAttributeName
-            value:bridge_(id, fontRef) 
-            range:range];
+        [self setAttribute:bridge_(id, fontRef) forName:(NSString*) kCTFontAttributeName forRange:range];
+    
+//        [self addAttribute:(NSString*) kCTFontAttributeName
+//            value:bridge_(id, fontRef) 
+//            range:range];
 
         CFRelease(fontRef);
     }
+}
 
-    [string addAttribute:(NSString*) kCTForegroundColorAttributeName 
-        value:bridge_(id, [NSColor NSColorToCGColor:textStyle.textColor])
-        range:range];
+- (void) setColor:(NSColor*) color forRange:(NSRange) range{
 
-    NSColor* shadowColor = textStyle.shadowColor;
-    if(shadowColor) {
-        [string addAttribute:(NSString*) NSShadowAttributeName 
-            value:bridge_(id, [NSColor NSColorToCGColor:shadowColor])
-            range:range];
+    [self setAttribute:color forName:(NSString*) kCTForegroundColorAttributeName forRange:range];
+
+//    if(color) {
+//        [self addAttribute:(NSString*) kCTForegroundColorAttributeName 
+//        value:bridge_(id, [NSColor NSColorToCGColor:color])
+//        range:range];
+//    }
+//    else {
+//    
+//    }
+}
+
+- (void) setShadowColor:(NSColor*) color forRange:(NSRange) range {
+
+    [self setAttribute:color forName:(NSString*) NSShadowAttributeName forRange:range];
+
+//    if(color) {
+//        [self addAttribute:(NSString*) NSShadowAttributeName 
+//        value:bridge_(id, [NSColor NSColorToCGColor:color])
+//        range:range];
+//    }
+//    else {
+//        [self removeAttribute:(NSString*) NSShadowAttributeName forRange:range];
+//    }
+}
+
+- (void) setUnderlined:(BOOL) underlined forRange:(NSRange) range {
+
+    [self setAttribute:underlined ? [NSNumber numberWithBool:YES] : nil forName:(NSString*) NSUnderlineStyleAttributeName  forRange:range];
+
+
+//    [self addAttribute:(NSString*) NSUnderlineStyleAttributeName 
+//        value:[NSNumber numberWithBool:YES]
+//        range:range];
+}
+
+- (void) setURL:(NSURL*) url forRange:(NSRange) range {
+    [self setAttribute:url forName:(NSString*) NSLinkAttributeName forRange:range];
+}
+
++ (id) mutableAttributedString {
+    return FLAutorelease([[[self class] alloc] init]);
+}
++ (id) mutableAttributedString:(NSString*) string {
+    return FLAutorelease([[[self class] alloc] initWithString:string]);
+}
+
+- (id) initWithString:(NSString*) string url:(NSURL*) url color:(NSColor*) color underline:(BOOL) underline {
+    self = [self initWithString:string];
+    if(self) {
+        NSRange range = self.entireRange;
+        [self setURL:url forRange:range];
+        [self setColor:color forRange:range];
+        [self setUnderlined:underline forRange:range];
     }
+    return self;
+}
 
-    if(textStyle.isUnderlined) {
-        [string addAttribute:(NSString*) NSUnderlineStyleAttributeName 
-            value:[NSNumber numberWithBool:YES]
-            range:range];
-    }
-    
-    [string addAttribute:@"com.fishlamp.string" value:self range:range];
-    
-    return string;
++ (id) mutableAttributedString:(NSString*) string url:(NSURL*) url color:(NSColor*) color underline:(BOOL) underline {
+    return FLAutorelease([[[self class] alloc] initWithString:string url:url color:color underline:underline]);
 }
 
 @end

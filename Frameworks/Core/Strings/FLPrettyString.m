@@ -9,33 +9,39 @@
 #import "FLPrettyString.h"
 
 @interface FLPrettyString ()
-@property (readwrite, strong, nonatomic) NSString* string;
-@property (readwrite, strong, nonatomic) NSString* eolString;
+@property (readwrite, strong, nonatomic) id storage;
+@property (readwrite, strong, nonatomic) id eolString;
+@property (readwrite, strong, nonatomic) FLWhitespace* whitespace;
 @end
 
 @implementation FLPrettyString
 
-@synthesize string = _string;
+@synthesize storage = _storage;
 @synthesize whitespace = _whitespace;
-@synthesize tabIndent = _tabIndent;
 @synthesize eolString = _eolString;
+@synthesize indentLevel = _indentLevel;
 
 + (FLWhitespace*) defaultWhitespace {
     return [FLWhitespace tabbedWithSpacesWhitespace];
 }
 
-- (id) initWithWhitespace:(FLWhitespace*) whitespace {
+- (NSString*) string {
+    return _storage;
+}
+
+- (id) initWithWhitespace:(FLWhitespace*) whitespace withStorage:(id) storage {
     self = [super init];
     if(self) {
         self.delegate = self;
-    
-        _string = [[NSMutableString alloc] init];
-        _whitespace = FLRetain(whitespace);
-        _needsTabInset = YES;
-        
+        self.whitespace = whitespace;
         self.eolString = _whitespace ? _whitespace.eolString : @"";
+        self.storage = storage;
     }
     return self;
+}
+
+- (id) initWithWhitespace:(FLWhitespace*) whitespace {
+    return [self initWithWhitespace:whitespace withStorage:[NSMutableString string]];
 }
 
 - (id) init {
@@ -57,77 +63,87 @@
 }
 
 - (NSUInteger) length {
-    return _string.length;
+    return [_storage length];
 }
 
 #if FL_DEALLOC
 - (void) dealloc {
     [_eolString release];
     [_whitespace release];
-    [_string release];
+    [_storage release];
     [super dealloc];
 }
 #endif
 
-- (void) stringFormatterAppendEOL:(FLStringFormatter*) stringFormatter {
+- (void) appendStringToStorage:(NSString*) string {
+    [_storage appendString:string];
+}
+
+- (void) appendAttributedStringToStorage:(NSAttributedString*) string {
+    [_storage appendString:[string string]];
+}
+
+- (void) appendEOL {
     if(_eolString) { 
-        [_string appendString:_eolString]; 
+        [self appendStringToStorage:_eolString];
     } 
-    _needsTabInset = YES;
 }
 
 - (void) stringFormatter:(FLStringFormatter*) stringFormatter 
-            appendString:(NSString*) string {
-    FLAssertNotNil_(_string);
-//    FLAssertNotNil_(_whitespace);
-    
-    if(FLStringIsNotEmpty(string)) {
+            appendString:(NSString*) string
+  appendAttributedString:(NSAttributedString*) attributedString
+              lineUpdate:(FLStringFormatterLineUpdate) lineUpdate {
 
-// only apply inset if the string is not empty
-        if(_needsTabInset) {
-            if(_whitespace) { 
-                [_string appendString:[_whitespace tabStringForScope:self.tabIndent]]; 
-            } 
-            _needsTabInset = NO;
-        }
-        [_string appendString:string];
+
+    if(lineUpdate.closePreviousLine) {
+        [self appendEOL];
+    }
+
+    if(lineUpdate.prependBlankLine) {
+        [self appendEOL];
+    }
+
+    if(lineUpdate.openLine) {
+        if(_whitespace) { 
+            [self appendStringToStorage:[_whitespace tabStringForScope:self.indentLevel]];
+        } 
+    }
+    
+    if(string) {
+        [self appendStringToStorage:string];
+    }
+    
+    if(attributedString) {
+        [self appendAttributedStringToStorage:attributedString];
+    }
+    
+    if(lineUpdate.closeLine) {
+        [self appendEOL];
     }
 }            
 
-- (NSString*) stringFormatterGetString:(FLStringFormatter*) stringFormatter {
-    FLAssertNotNil_(_string);
-    return _string;
-}
-
-- (id) copyWithZone:(NSZone*) zone {
-    FLPrettyString* str = [[FLPrettyString alloc] initWithWhitespace:self.whitespace];
-    str.string = FLAutorelease([_string mutableCopy]);
-    str.tabIndent = self.tabIndent;
-    return str;
-}
-
 - (void) appendPrettyString:(FLPrettyString*) string {
-    [self appendStringContainingMultipleLines:self.string];
+    [self appendStringContainingMultipleLines:string.string];
 }
 
 - (void) deleteAllCharacters {
-    [_string deleteCharactersInRange:NSMakeRange(0, _string.length)];
+    [_storage deleteCharactersInRange:NSMakeRange(0, [_storage length])];
 }
 
 - (void) appendBuildableString:(id<FLBuildableString>) buildableString {
-    [buildableString appendLinesToPrettyString:self];
+    [buildableString appendLinesToStringFormatter:self];
 }
 
-- (void) stringFormatterDeleteAllCharacters:(FLStringFormatter*) stringFormatter {
-    [self deleteAllCharacters];
+- (NSString*) description {
+    return [self string];
 }
 
 - (void) stringFormatterIndent:(FLStringFormatter*) stringFormatter {
-    ++_tabIndent;
+    ++_indentLevel;
 }
 
 - (void) stringFormatterOutdent:(FLStringFormatter*) stringFormatter {
-    --_tabIndent;
+    --_indentLevel;
 }
 
 
@@ -149,3 +165,49 @@
 @end
 
 
+@interface FLPrettyAttributedString ()
+@end
+
+@implementation FLPrettyAttributedString
+
+- (id) initWithWhitespace:(FLWhitespace*) whitespace withStorage:(id) storage {
+    self = [super initWithWhitespace:whitespace withStorage:storage];
+    if(self) {
+        if(self.eolString) {
+            self.eolString = FLAutorelease([[NSAttributedString alloc] initWithString:self.eolString]);
+        }
+    }
+    return self;
+}
+
+- (id) initWithWhitespace:(FLWhitespace*) whitespace {
+    return [self initWithWhitespace:whitespace withStorage:FLAutorelease([[NSMutableAttributedString alloc] init])];
+}
+
+- (NSString*) string {
+    return [[self storage] string];
+}
+
+- (NSAttributedString*) attributedString {
+    return [self storage];
+}
+
+- (void) appendEOL {
+    if(self.eolString) { 
+        [[self storage] appendAttributedString:self.eolString];
+    } 
+}
+
+- (void) appendStringToStorage:(NSString*) string {
+    [[self storage] appendAttributedString:[[NSAttributedString alloc] initWithString:string]];
+}
+
+- (void) appendAttributedStringToStorage:(NSAttributedString*) string {
+    [[self storage] appendAttributedString:string];
+}
+           
+- (void) appendPrettyString:(FLPrettyString*) string {
+    [self appendStringContainingMultipleLines:string.string];
+}
+
+@end

@@ -32,7 +32,7 @@
 //        [self.output appendFormat:@"[%@] ", [task buildUsageString]];
 //    }
 //    
-//    [self.output endLine];
+//    [self.output closeLine];
 //    
 //    [self.output appendLineWithFormat:@"%@[<args>]", [@"" stringWithPadding:leader.length]];
 

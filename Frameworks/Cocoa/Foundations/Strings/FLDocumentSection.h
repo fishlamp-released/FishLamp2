@@ -27,11 +27,11 @@
 - (void) addStringBuilder:(FLDocumentSection*) stringBuilder;
 
 // optional overrides
-- (NSMutableString*) willOpenLine;
-- (void) willCloseLine:(NSMutableString*) line;
+//- (NSMutableString*) willOpenLine;
+//- (void) willCloseLine:(NSMutableString*) line;
 
-- (void) willBuildWithPrettyString:(FLPrettyString*) prettyString;
-- (void) didBuildWithPrettyString:(FLPrettyString*) prettyString;
+- (void) willBuildWithStringFormatter:(id<FLStringFormatter>) stringFormatter;
+- (void) didBuildWithStringFormatter:(id<FLStringFormatter>) stringFormatter;
 
 - (void) didMoveToParent:(id) parent;
 

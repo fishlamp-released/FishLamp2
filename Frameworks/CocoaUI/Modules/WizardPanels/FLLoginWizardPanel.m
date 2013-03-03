@@ -207,7 +207,7 @@ NSString* const FLDefaultsKeyWizardSavePasswordKey = @"com.fishlamp.wizard.savep
     [self saveCredentials];
 }
    
-- (BOOL) willRespondToNextButtonInWizard:(FLWizardViewController*) wizard {
+- (BOOL) respondToNextButton:(FLWizardViewController*) wizard {
 
     if([self.delegate loginWizardPanelIsAuthenticated:self]) {
         return NO;

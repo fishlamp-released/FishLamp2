@@ -175,7 +175,7 @@
 
 - (void) drawTitle:(NSRect) dirtyRect {
     FLTextAlignment align = { FLVerticalTextAlignmentCenter, FLHorizontalTextAlignmentCenter };
-    [FLCoreText drawString:[self.title buildAttributedStringWithTextStyle:[self textStyleForState]] 
+    [FLCoreText drawString:[self.title attributedStringWithTextStyle:[self textStyleForState]] 
          withTextAlignment:align 
                   inBounds:self.bounds];
 
@@ -219,7 +219,7 @@
     }
 
     FLTextAlignment align = { FLVerticalTextAlignmentCenter, FLHorizontalTextAlignmentCenter };
-    [FLCoreText drawString:[self.title buildAttributedStringWithTextStyle:textStyle] 
+    [FLCoreText drawString:[self.title attributedStringWithTextStyle:textStyle] 
          withTextAlignment:align 
                   inBounds:self.bounds];
 
