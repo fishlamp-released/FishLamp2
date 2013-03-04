@@ -11,21 +11,12 @@
 #import "FLAttributedString.h"
 
 @interface FLBreadcrumbBarViewController ()
-
 @end
 
 @implementation FLBreadcrumbBarViewController
 
 @synthesize delegate = _delegate;
 @synthesize textFont = _textFont;
-
-- (id) init {
-    self = [super init];
-    if(self) {
-        _breadcrumbs = [[NSMutableArray alloc] init];
-    }
-    return self;
-}
 
 #if FL_MRC
 - (void) dealloc {
@@ -94,6 +85,10 @@
 }
 
 - (void) addBreadcrumb:(NSString*) title forKey:(id) key {
+
+    if(!_breadcrumbs) {
+        _breadcrumbs = [[NSMutableArray alloc] init];
+    }
 
     FLAssertStringIsNotEmpty_(title);
 

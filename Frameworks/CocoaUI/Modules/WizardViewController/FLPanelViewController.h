@@ -1,5 +1,5 @@
 //
-//  FLWizardPanel.h
+//  FLPanelViewController.h
 //  FishLampCocoa
 //
 //  Created by Mike Fullerton on 12/7/12.
@@ -8,9 +8,9 @@
 #if OSX
 
 #import "FLCocoaUIRequired.h"
-#import "FLWizardViewController.h"
 
-@interface FLWizardPanel : UIViewController {
+@class FLWizardViewController;
+@interface FLPanelViewController : UIViewController {
 @private
     NSString* _breadcrumbTitle;
     BOOL _canOpenNextPanel;
@@ -31,10 +31,10 @@
 
 @property (readwrite, strong, nonatomic) NSString* breadcrumbTitle;
 
-- (void) wizardPanelWillAppearInWizard:(FLWizardViewController*) wizard;
-- (void) wizardPanelDidAppearInWizard:(FLWizardViewController*) wizard;
-- (void) wizardPanelWillDisappearInWizard:(FLWizardViewController*) wizard;
-- (void) wizardPanelDidDisappearInWizard:(FLWizardViewController*) wizard;
+- (void) panelWillAppearInWizard:(FLWizardViewController*) wizard;
+- (void) panelDidAppearInWizard:(FLWizardViewController*) wizard;
+- (void) panelWillDisappearInWizard:(FLWizardViewController*) wizard;
+- (void) panelDidDisappearInWizard:(FLWizardViewController*) wizard;
 
 - (BOOL) respondToNextButton:(FLWizardViewController*) wizard;
 - (BOOL) respondToBackButton:(FLWizardViewController*) wizard;

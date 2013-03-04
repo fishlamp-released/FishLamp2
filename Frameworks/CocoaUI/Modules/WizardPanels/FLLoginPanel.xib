@@ -27,7 +27,7 @@
 		</object>
 		<array class="NSMutableArray" key="IBDocument.RootObjects" id="1000">
 			<object class="NSCustomObject" id="1001">
-				<string key="NSClassName">FLLoginWizardPanel</string>
+				<string key="NSClassName">FLLoginPanel</string>
 			</object>
 			<object class="NSCustomObject" id="1003">
 				<string key="NSClassName">FirstResponder</string>
@@ -43,9 +43,8 @@
 						<reference key="NSNextResponder" ref="442673046"/>
 						<int key="NSvFlags">268</int>
 						<array class="NSMutableArray" key="NSSubviews"/>
-						<string key="NSFrame">{{120, 20}, {129, 20}}</string>
+						<string key="NSFrame">{{120, 20}, {129, 25}}</string>
 						<reference key="NSSuperview" ref="442673046"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:22</string>
 						<bool key="NSEnabled">YES</bool>
@@ -76,7 +75,6 @@
 						<array class="NSMutableArray" key="NSSubviews"/>
 						<string key="NSFrame">{{118, 71}, {190, 18}}</string>
 						<reference key="NSSuperview" ref="442673046"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="231246812"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="NSEnabled">YES</bool>
@@ -84,7 +82,11 @@
 							<int key="NSCellFlags">-2080374784</int>
 							<int key="NSCellFlags2">0</int>
 							<string key="NSContents">Save Password</string>
-							<reference key="NSSupport" ref="525540165"/>
+							<object class="NSFont" key="NSSupport">
+								<string key="NSName">MyriadPro-Bold</string>
+								<double key="NSSize">12</double>
+								<int key="NSfFlags">16</int>
+							</object>
 							<string key="NSCellIdentifier">_NS:9</string>
 							<reference key="NSControlView" ref="465360970"/>
 							<int key="NSButtonFlags">1211912448</int>
@@ -108,7 +110,6 @@
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{120, 125}, {263, 22}}</string>
 						<reference key="NSSuperview" ref="442673046"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="1024145685"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="568549520">
@@ -147,7 +148,6 @@
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{120, 98}, {263, 21}}</string>
 						<reference key="NSSuperview" ref="442673046"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="465360970"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="861193114">
@@ -168,7 +168,6 @@
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{17, 128}, {98, 17}}</string>
 						<reference key="NSSuperview" ref="442673046"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="984608172"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="54548622">
@@ -204,7 +203,6 @@
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{17, 100}, {98, 17}}</string>
 						<reference key="NSSuperview" ref="442673046"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="938653363"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="308904108">
@@ -222,10 +220,9 @@
 				</array>
 				<string key="NSFrameSize">{409, 173}</string>
 				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="214007241"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
-				<string key="NSClassName">FLSmallWizardPanelView</string>
+				<string key="NSClassName">FLSmallPanelView</string>
 			</object>
 		</array>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
@@ -437,6 +434,7 @@
 				<string key="250.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="251.CustomClassName">FLTextFieldCell</string>
 				<string key="251.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="252.CustomClassName">FLSwitchButtonCell</string>
 				<string key="252.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="253.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="255.CustomClassName">FLTextFieldCell</string>
@@ -451,88 +449,7 @@
 			<nil key="sourceID"/>
 			<int key="maxID">295</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes">
-			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
-				<object class="IBPartialClassDescription">
-					<string key="className">FLFramedView</string>
-					<string key="superclassName">NSView</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/FLFramedView.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">FLLoginWizardPanel</string>
-					<string key="superclassName">FLWizardPanel</string>
-					<dictionary class="NSMutableDictionary" key="actions">
-						<string key="passwordCheckboxToggled:">id</string>
-						<string key="resetLogin:">id</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="actionInfosByName">
-						<object class="IBActionInfo" key="passwordCheckboxToggled:">
-							<string key="name">passwordCheckboxToggled:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="resetLogin:">
-							<string key="name">resetLogin:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="_forgotPasswordButton">NSButton</string>
-						<string key="_passwordEntryField">NSSecureTextField</string>
-						<string key="_savePasswordCheckBox">NSButton</string>
-						<string key="_userNameTextField">NSTextField</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="_forgotPasswordButton">
-							<string key="name">_forgotPasswordButton</string>
-							<string key="candidateClassName">NSButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="_passwordEntryField">
-							<string key="name">_passwordEntryField</string>
-							<string key="candidateClassName">NSSecureTextField</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="_savePasswordCheckBox">
-							<string key="name">_savePasswordCheckBox</string>
-							<string key="candidateClassName">NSButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="_userNameTextField">
-							<string key="name">_userNameTextField</string>
-							<string key="candidateClassName">NSTextField</string>
-						</object>
-					</dictionary>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/FLLoginWizardPanel.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">FLSmallWizardPanelView</string>
-					<string key="superclassName">FLFramedView</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/FLSmallWizardPanelView.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">FLTextFieldCell</string>
-					<string key="superclassName">NSTextFieldCell</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/FLTextFieldCell.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">FLWizardPanel</string>
-					<string key="superclassName">UIViewController</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/FLWizardPanel.h</string>
-					</object>
-				</object>
-			</array>
-		</object>
+		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaFramework</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDependencies">

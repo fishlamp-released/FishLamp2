@@ -114,6 +114,10 @@ FLSynthesizeAssociatedProperty(assign_nonatomic, needsLayoutNumber, setNeedsLayo
     }
 }
 
+- (void) bringToFront {
+    [self.superview bringSubviewToFront:self];
+}
+
 - (void)sendToBack {
     id superView = [self superview]; 
     if (superView) {

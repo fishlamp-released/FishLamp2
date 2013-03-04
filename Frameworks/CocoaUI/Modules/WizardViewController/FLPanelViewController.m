@@ -1,19 +1,19 @@
 //
-//  FLWizardPanel.m
+//  FLPanelViewController.m
 //  FishLampCocoa
 //
 //  Created by Mike Fullerton on 12/7/12.
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 #if OSX
-#import "FLWizardPanel.h"
+#import "FLPanelViewController.h"
 #import "FLWizardViewController.h"
 
-@interface FLWizardPanel ()
+@interface FLPanelViewController ()
 
 @end
 
-@implementation FLWizardPanel
+@implementation FLPanelViewController
 
 @synthesize breadcrumbTitle = _breadcrumbTitle;
 @synthesize canOpenNextPanel = _canOpenNextPanel;
@@ -40,7 +40,6 @@
 
 - (void) loadView {
     [super loadView];
-    self.view.wantsLayer = YES;
 }
 
 - (void) setCanOpenNextPanel:(BOOL) can {
@@ -53,6 +52,10 @@
     [self didMoveToWizard:wizard];
 }
 
+- (BOOL)acceptsFirstResponder {
+    return YES;
+}
+
 - (void) didMoveToWizard:(FLWizardViewController*) wizard {
 }
 
@@ -63,16 +66,16 @@
 //    return [_wizard userContext];
 //}
 
-- (void) wizardPanelWillAppearInWizard:(FLWizardViewController*) wizard {
+- (void) panelWillAppearInWizard:(FLWizardViewController*) wizard {
 }
 
-- (void) wizardPanelDidAppearInWizard:(FLWizardViewController*) wizard {
+- (void) panelDidAppearInWizard:(FLWizardViewController*) wizard {
 }
 
-- (void) wizardPanelWillDisappearInWizard:(FLWizardViewController*) wizard {
+- (void) panelWillDisappearInWizard:(FLWizardViewController*) wizard {
 }
 
-- (void) wizardPanelDidDisappearInWizard:(FLWizardViewController*) wizard {
+- (void) panelDidDisappearInWizard:(FLWizardViewController*) wizard {
 }
 
 - (BOOL) respondToNextButton:(FLWizardViewController*) wizard {
@@ -99,11 +102,9 @@
     return [self.wizard otherButton];
 }
 
-
 - (void) enableBackButton:(BOOL) enable {
     self.backButton.enabled = enable;
 }
-
 
 
 @end

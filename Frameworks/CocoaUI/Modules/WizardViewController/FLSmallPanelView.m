@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
 
-#import "FLSmallWizardPanelView.h"
+#import "FLSmallPanelView.h"
 
-@implementation FLSmallWizardPanelView
+@implementation FLSmallPanelView
 
 - (void) setup {
     self.autoresizingMask = NSViewMaxXMargin | NSViewMaxYMargin | NSViewMinXMargin | NSViewMinYMargin; 

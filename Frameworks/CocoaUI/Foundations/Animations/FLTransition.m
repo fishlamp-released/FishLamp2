@@ -9,8 +9,8 @@
 #import "FLTransition.h"
 
 @interface FLTransition ()
-@property (readwrite, strong, nonatomic) UIView* viewToShow;
-@property (readwrite, strong, nonatomic) UIView* viewToHide; 
+//@property (readwrite, strong, nonatomic) UIView* viewToShow;
+//@property (readwrite, strong, nonatomic) UIView* viewToHide; 
 @end
 
 @implementation FLTransition

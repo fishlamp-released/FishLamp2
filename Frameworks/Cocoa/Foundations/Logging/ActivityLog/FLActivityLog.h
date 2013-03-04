@@ -22,6 +22,8 @@
 
 FLSingletonProperty(FLActivityLog);
 
+- (NSError*) exportToPath:(NSURL*) url;
+
 @end
 
 @protocol FLActivityLogDelegate <NSObject>

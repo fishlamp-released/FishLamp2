@@ -45,7 +45,8 @@
         titleFrame.origin.y = theRect.origin.y + (theRect.size.height - textRect.size.height) / 2.0;
         titleFrame.size.height = textRect.size.height;
     }
-    return titleFrame;
+
+    return FLRectOptimizedForViewSize(titleFrame);
 }
 
 @end

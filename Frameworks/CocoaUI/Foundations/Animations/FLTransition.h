@@ -14,8 +14,8 @@
     UIView* _viewToHide;
 }
 
-@property (readonly, strong, nonatomic) UIView* viewToShow;
-@property (readonly, strong, nonatomic) UIView* viewToHide; 
+@property (readwrite, strong, nonatomic) UIView* viewToShow;
+@property (readwrite, strong, nonatomic) UIView* viewToHide; 
 
 - (id) initWithViewToShow:(UIView*) viewToShow 
                viewToHide:(UIView*) viewToHide;
