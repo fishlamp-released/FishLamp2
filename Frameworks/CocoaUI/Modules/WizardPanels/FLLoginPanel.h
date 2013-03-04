@@ -1,5 +1,5 @@
 //
-//  FLLoginWizardPanel.h
+//  FLLoginPanel.h
 //  Zenfolio Downloader
 //
 //  Created by Mike Fullerton on 12/2/12.
@@ -7,18 +7,18 @@
 //
 
 #import "FishLampCocoa.h"
-#import "FLWizardPanel.h"
+#import "FLPanelViewController.h"
 #import "FLWizardViewController.h"
 #if OSX
-@protocol FLLoginWizardPanelDelegate;
+@protocol FLLoginPanelDelegate;
 
-@interface FLLoginWizardPanel : FLWizardPanel<NSControlTextEditingDelegate> {
+@interface FLLoginPanel : FLPanelViewController<NSControlTextEditingDelegate> {
 @private
     IBOutlet NSTextField* _userNameTextField;
     IBOutlet NSSecureTextField* _passwordEntryField;
     IBOutlet NSButton* _savePasswordCheckBox;
     IBOutlet NSButton* _forgotPasswordButton;
-    __unsafe_unretained id<FLLoginWizardPanelDelegate> _delegate;
+    __unsafe_unretained id<FLLoginPanelDelegate> _delegate;
 }
 
 @property (readonly, strong, nonatomic) NSTextField* userNameTextField;
@@ -30,24 +30,24 @@
 @property (readwrite, strong, nonatomic) NSString* password;
 @property (readwrite, assign, nonatomic) BOOL savePasswordInKeychain; // doesn't actually save it, that's up to the delegate.
 
-@property (readwrite, assign, nonatomic) id<FLLoginWizardPanelDelegate> delegate;
+@property (readwrite, assign, nonatomic) id<FLLoginPanelDelegate> delegate;
 
-+ (id) loginWizardPanel;
-+ (id) loginWizardPanel:(id<FLLoginWizardPanelDelegate>) delegate;
++ (id) loginPanel;
++ (id) loginPanel:(id<FLLoginPanelDelegate>) delegate;
 
 @end
 
-@protocol FLLoginWizardPanelDelegate <NSObject>
+@protocol FLLoginPanelDelegate <NSObject>
 
-- (NSString*) loginWizardPanelPasswordDomain:(FLLoginWizardPanel*) loginPanel;
-- (void) loginWizardPanelStartAuthenticating:(FLLoginWizardPanel*) loginPanel;
-- (BOOL) loginWizardPanelIsAuthenticated:(FLLoginWizardPanel*) loginPanel;
-- (void) loginWizardPanelCancelAuthentication:(FLLoginWizardPanel*) panel;
-- (void) loginWizardPanelResetPassword:(FLLoginWizardPanel*) loginPanel;
+- (NSString*) loginPanelPasswordDomain:(FLLoginPanel*) loginPanel;
+- (void) loginPanelStartAuthenticating:(FLLoginPanel*) loginPanel;
+- (BOOL) loginPanelIsAuthenticated:(FLLoginPanel*) loginPanel;
+- (void) loginPanelCancelAuthentication:(FLLoginPanel*) panel;
+- (void) loginPanelResetPassword:(FLLoginPanel*) loginPanel;
 
 @optional
-- (void) loginWizardPanelWillAppear:(FLLoginWizardPanel*) loginPanel;
-- (void) loginWizardPanelDidDisappear:(FLLoginWizardPanel*) loginPanel;
+- (void) loginPanelWillAppear:(FLLoginPanel*) loginPanel;
+- (void) loginPanelDidDisappear:(FLLoginPanel*) loginPanel;
 
 @end
 

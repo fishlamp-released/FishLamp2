@@ -27,6 +27,14 @@
 		2779DBDD16A7223200EAB16A /* FLTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2779DBD716A7223200EAB16A /* FLTextFieldCell.m */; };
 		2779DBDE16A7223200EAB16A /* FLTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2779DBD716A7223200EAB16A /* FLTextFieldCell.m */; };
 		2779DBDF16A7223200EAB16A /* FLTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2779DBD716A7223200EAB16A /* FLTextFieldCell.m */; };
+		277AF47216E3B54400C284BF /* FLButtonCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 277AF47016E3B54400C284BF /* FLButtonCell.h */; };
+		277AF47316E3B54400C284BF /* FLButtonCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 277AF47016E3B54400C284BF /* FLButtonCell.h */; };
+		277AF47416E3B54400C284BF /* FLButtonCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 277AF47016E3B54400C284BF /* FLButtonCell.h */; };
+		277AF47516E3B54400C284BF /* FLButtonCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 277AF47016E3B54400C284BF /* FLButtonCell.h */; };
+		277AF47616E3B54400C284BF /* FLButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 277AF47116E3B54400C284BF /* FLButtonCell.m */; };
+		277AF47716E3B54400C284BF /* FLButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 277AF47116E3B54400C284BF /* FLButtonCell.m */; };
+		277AF47816E3B54400C284BF /* FLButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 277AF47116E3B54400C284BF /* FLButtonCell.m */; };
+		277AF47916E3B54400C284BF /* FLButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 277AF47116E3B54400C284BF /* FLButtonCell.m */; };
 		27FC38191699F5E1001F4228 /* FLGlobalMenuController.h in Headers */ = {isa = PBXBuildFile; fileRef = 27FC38141699F5E1001F4228 /* FLGlobalMenuController.h */; };
 		27FC381A1699F5E1001F4228 /* FLGlobalMenuController.h in Headers */ = {isa = PBXBuildFile; fileRef = 27FC38141699F5E1001F4228 /* FLGlobalMenuController.h */; };
 		27FC381B1699F5E1001F4228 /* FLGlobalMenuController.h in Headers */ = {isa = PBXBuildFile; fileRef = 27FC38141699F5E1001F4228 /* FLGlobalMenuController.h */; };
@@ -119,6 +127,8 @@
 		2749340B169A0D74008E8EC5 /* __OSXHeaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __OSXHeaders.h; sourceTree = "<group>"; };
 		2779DBD616A7223200EAB16A /* FLTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLTextFieldCell.h; sourceTree = "<group>"; };
 		2779DBD716A7223200EAB16A /* FLTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLTextFieldCell.m; sourceTree = "<group>"; };
+		277AF47016E3B54400C284BF /* FLButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLButtonCell.h; sourceTree = "<group>"; };
+		277AF47116E3B54400C284BF /* FLButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLButtonCell.m; sourceTree = "<group>"; };
 		2798DB81166D8A7F00A0863D /* SharedTargetSettings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = SharedTargetSettings.xcconfig; sourceTree = "<group>"; };
 		27A43AC415CDCCCB001CB13E /* libFishLampOSX-64-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampOSX-64-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27CBC1F416768BA600753D0A /* libFishLampOSX-3264-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampOSX-3264-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -249,6 +259,8 @@
 				27FC38181699F5E1001F4228 /* NSView+FLAdditions.m */,
 				2779DBD616A7223200EAB16A /* FLTextFieldCell.h */,
 				2779DBD716A7223200EAB16A /* FLTextFieldCell.m */,
+				277AF47016E3B54400C284BF /* FLButtonCell.h */,
+				277AF47116E3B54400C284BF /* FLButtonCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -281,6 +293,7 @@
 				2749338B1699FADD008E8EC5 /* FishLampOSX.h in Headers */,
 				2749340C169A0D74008E8EC5 /* __OSXHeaders.h in Headers */,
 				2779DBD816A7223200EAB16A /* FLTextFieldCell.h in Headers */,
+				277AF47216E3B54400C284BF /* FLButtonCell.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,6 +307,7 @@
 				2749338D1699FADD008E8EC5 /* FishLampOSX.h in Headers */,
 				2749340E169A0D74008E8EC5 /* __OSXHeaders.h in Headers */,
 				2779DBDA16A7223200EAB16A /* FLTextFieldCell.h in Headers */,
+				277AF47416E3B54400C284BF /* FLButtonCell.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,6 +321,7 @@
 				2749338C1699FADD008E8EC5 /* FishLampOSX.h in Headers */,
 				2749340D169A0D74008E8EC5 /* __OSXHeaders.h in Headers */,
 				2779DBD916A7223200EAB16A /* FLTextFieldCell.h in Headers */,
+				277AF47316E3B54400C284BF /* FLButtonCell.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -320,6 +335,7 @@
 				2749338E1699FADD008E8EC5 /* FishLampOSX.h in Headers */,
 				2749340F169A0D74008E8EC5 /* __OSXHeaders.h in Headers */,
 				2779DBDB16A7223200EAB16A /* FLTextFieldCell.h in Headers */,
+				277AF47516E3B54400C284BF /* FLButtonCell.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -480,6 +496,7 @@
 				27FC381D1699F5E1001F4228 /* FLGlobalMenuController.m in Sources */,
 				27FC38251699F5E1001F4228 /* NSView+FLAdditions.m in Sources */,
 				2779DBDC16A7223200EAB16A /* FLTextFieldCell.m in Sources */,
+				277AF47616E3B54400C284BF /* FLButtonCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -490,6 +507,7 @@
 				27FC381F1699F5E1001F4228 /* FLGlobalMenuController.m in Sources */,
 				27FC38271699F5E1001F4228 /* NSView+FLAdditions.m in Sources */,
 				2779DBDE16A7223200EAB16A /* FLTextFieldCell.m in Sources */,
+				277AF47816E3B54400C284BF /* FLButtonCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -500,6 +518,7 @@
 				27FC381E1699F5E1001F4228 /* FLGlobalMenuController.m in Sources */,
 				27FC38261699F5E1001F4228 /* NSView+FLAdditions.m in Sources */,
 				2779DBDD16A7223200EAB16A /* FLTextFieldCell.m in Sources */,
+				277AF47716E3B54400C284BF /* FLButtonCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -510,6 +529,7 @@
 				27FC38201699F5E1001F4228 /* FLGlobalMenuController.m in Sources */,
 				27FC38281699F5E1001F4228 /* NSView+FLAdditions.m in Sources */,
 				2779DBDF16A7223200EAB16A /* FLTextFieldCell.m in Sources */,
+				277AF47916E3B54400C284BF /* FLButtonCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

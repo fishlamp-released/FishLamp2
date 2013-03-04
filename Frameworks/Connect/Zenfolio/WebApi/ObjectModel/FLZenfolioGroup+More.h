@@ -31,8 +31,15 @@
 // this is a bit wierd, since we're dealign with a tree here.
 // this is a straighforward search through the heirarchy and obviously depends on sorts 
 // orders of the subElements
-- (id) elementAtIndex:(NSInteger) index;
+- (id) recursiveElementAtIndex:(NSInteger) index;
 
 - (NSArray*) pathComponentsToGroupElement:(FLZenfolioGroupElement*) element;
+
+- (NSUInteger) elementCountWithFilter:(NSDictionary*) filter;
+- (FLZenfolioGroupElement*) elementAtIndex:(NSInteger) index withFilter:(NSDictionary*) filter;
+
+- (BOOL) visitParentsForElement:(FLZenfolioGroupElement*) element visitor:(void (^)(FLZenfolioGroup* parent)) visitor;
+
+- (BOOL) findMatchesForFilter:(NSString*) filter results:(NSMutableDictionary*) results;
 
 @end

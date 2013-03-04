@@ -45,6 +45,7 @@ typedef NSUInteger UIViewAnimationOptions;
 
 - (void) bringSubviewToFront:(UIView*) view;
 - (void) sendToBack;
+- (void) bringToFront;
 
 - (void) layoutSubviews;
 @end

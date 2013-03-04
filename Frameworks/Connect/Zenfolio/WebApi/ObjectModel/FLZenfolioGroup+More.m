@@ -12,13 +12,13 @@
 
 @implementation FLZenfolioGroupElement (Index)
 
-- (FLZenfolioGroupElement*) elementAtIndex:(NSInteger) elementIndex counter:(NSInteger*) counter {
+- (FLZenfolioGroupElement*) recursiveElementAtIndex:(NSInteger) elementIndex counter:(NSInteger*) counter {
     if(elementIndex == (*counter)++) {
         return self;
     }
     
     for(FLZenfolioGroupElement* element in self.elements) {
-        FLZenfolioGroupElement* found = [element elementAtIndex:elementIndex counter:counter];
+        FLZenfolioGroupElement* found = [element recursiveElementAtIndex:elementIndex counter:counter];
         if(found) {
             return found;
         }
@@ -26,6 +26,7 @@
     
     return nil;
 }
+
 
 @end
 
@@ -322,32 +323,168 @@ FLSynthesizeCachedObjectHandlerProperty(FLZenfolioGroup);
 	return size;
 }
 
-- (int) videoCount {
-	NSArray *elem = [self elements];
-	return elem ? [[elem valueForKeyPath:@"@sum.videoCount"] longLongValue] : 0;
+- (NSUInteger) videoCount {
+
+//    NSInteger videoCount = 0;
+//    for(FLZenfolioGroupElement* element in self.elements) {
+//        videoCount  += [element videoCount];
+//    }
+//	return videoCount;
+
+    return [self VideoCountValue];
 }
 
 - (NSArray*) elements {
     return self.Elements;
 }
 
-- (int) photoCount {
-    if(self.PhotoCount == nil) {
-        NSUInteger count = 0;
-        for(FLZenfolioGroupElement* element in self.elements) {
-            count += element.photoCount;
+- (NSUInteger) photoCount {
+//    if(self.PhotoCount == nil) {
+//        NSUInteger count = 0;
+//        for(FLZenfolioGroupElement* element in self.elements) {
+//            count += element.photoCount;
+//        }
+//        
+//        self.PhotoCount = [NSNumber numberWithUnsignedInteger:count];
+//    }
+//    
+//    return [super photoCount];
+    
+    return [self PhotoCountValue];
+}
+
+
+- (FLZenfolioGroupElement*) recursiveElementAtIndex:(NSInteger) index {
+    NSInteger counter = 0;
+    return [self recursiveElementAtIndex:index counter:&counter];
+}
+
+- (NSUInteger) galleryCount {
+    __block int count = 0;
+    [self visitAllElements:^(FLZenfolioGroupElement* element, NSUInteger idx, BOOL* stop) {
+        if(!element.isGroupElement) {
+            ++count;
         }
-        
-        self.PhotoCount = [NSNumber numberWithUnsignedInteger:count];
+    }];
+    
+    return count;
+}
+
+- (BOOL) isGroupElement {
+	return YES;
+}
+
+//- (BOOL) groupContainsFilter:(NSString*) filter {
+//    if( TestElement(self, filter)) {
+//        return YES;
+//    }
+//    
+//    for(id element in self.elements) {
+//        if([element isGroupElement]) {
+//            if([element groupContainsFilter:filter]) {
+//                return YES;
+//            }
+//        }
+//        else 
+//        if([element titleMatchesFilter:filter]) {
+//            return YES;
+//        }
+//    }
+//    return NO;
+//}
+
+- (NSUInteger) elementCountWithFilter:(NSDictionary*) filter {
+    if(filter == nil) {
+        return [self.elements count];
+    }
+
+    NSUInteger count = 0;
+    for(FLZenfolioGroupElement* element in self.elements) {
+        if([filter objectForKey:element.Id]) {
+            ++count;
+        }
     }
     
-    return [super photoCount];
+    return count;
+}
+
+- (FLZenfolioGroupElement*) elementAtIndex:(NSInteger) index withFilter:(NSDictionary*) filter {
+    if(filter == nil) {
+        return [self.elements objectAtIndex:index];
+    }
+    
+    NSInteger idx = -1;
+    for(FLZenfolioGroupElement* element in self.elements) {
+        if([filter objectForKey:element.Id]) {
+            idx++;
+        }
+        if(idx == index) {
+            return element;
+        }
+    }
+    return nil;
 }
 
 
-- (FLZenfolioGroupElement*) elementAtIndex:(NSInteger) index {
-    NSInteger counter = 0;
-    return [self elementAtIndex:index counter:&counter];
+- (BOOL) visitParentsForElement:(FLZenfolioGroupElement*) childElement visitor:(void (^)(FLZenfolioGroup* parent)) visitor {
+    for(id element in self.elements) {
+        if([element IdValue] == childElement.IdValue) {
+            visitor(self);
+            return YES;
+        }
+        if([element isGroupElement] && [element visitParentsForElement:childElement visitor:visitor]) {
+            return YES;
+        }
+    }
+    
+    return NO;
 }
+
+//- (BOOL) visitParentsForElement:(FLZenfolioGroupElement*) element visitor:(void (^)(FLZenfolioGroup* parent)) visitor {
+//    BOOL foundChild = NO;
+//    [element visitParentsForElement:childElement visitor:visitor foundChild:foundChild];
+//
+//}
+
+- (void) addToResult:(NSMutableDictionary*) results {
+    [results setObject:self forKey:self.Id];
+    for(id element in self.elements) {
+        if([element isGroupElement]) {
+            [element addToResult:results];
+        }
+        else {
+           [results setObject:element forKey:[element Id]];
+        }
+    }
+}
+
+#define TestElement(element,filter) ([[element Title] rangeOfString:filter options:NSCaseInsensitiveSearch].length > 0)
+
+- (BOOL) findMatchesForFilter:(NSString*) filter results:(NSMutableDictionary*) results {
+    BOOL foundMatch = NO;
+    if(FLStringIsEmpty(filter) || TestElement(self, filter)) {
+        [self addToResult:results];
+        foundMatch = YES;
+    }
+    else {
+        for(id element in self.elements) {
+            if([element isGroupElement]) {
+                if([element findMatchesForFilter:filter results:results]) {
+                    foundMatch = YES;
+                }
+            }
+            else if(TestElement(element, filter)) {
+                [results setObject:element forKey:[element Id]];
+                foundMatch = YES;
+            }
+        }
+        if(foundMatch) {
+            [results setObject:self forKey:[self Id]];
+        }
+    }
+
+    return foundMatch;
+}
+
 
 @end

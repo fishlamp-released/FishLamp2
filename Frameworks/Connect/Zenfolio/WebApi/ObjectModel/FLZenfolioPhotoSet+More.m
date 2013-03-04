@@ -74,7 +74,6 @@ FLSynthesizeCachedObjectHandlerProperty(FLZenfolioPhotoSet);
 	return self.Photos.count == (NSUInteger) self.PhotoCountValue;
 }
 
-
 - (BOOL) isStaleComparedTo:(int) anotherTextCn 
                photoListCn:(int) anotherPhotoListCn
                 photoCount:(int) photoCount {
@@ -98,26 +97,19 @@ FLSynthesizeCachedObjectHandlerProperty(FLZenfolioPhotoSet);
     return self.PhotoBytesValue;
 }
 
-- (int) videoCount {
+- (NSUInteger) videoCount {
     return self.VideoCountValue;
 }
 
-//- (long long)photoBytes
-//{
-//	//	NOTE: we can't expect 0 for [nil longLongValue] on ppc
-//	NSArray *elem = [self elements];
-//	switch ( _type ) {
-//		case kZenfolioGroupType:
-//			//	for groups return sum from contained entry sizes
-//			return elem ? [[elem valueForKeyPath:@"@sum.photoBytes"] longLongValue] : 0;
-//		case kZenfolioCollectionType:
-//			//	for collections return the size of owned photos
-//			return elem ? [[elem valueForKeyPath:@"@sum.size"] longLongValue] : 0;
-//		default:
-//			//	this is a gallery: return reported size
-//			return _photoBytes;
-//	}
-//}
+- (NSUInteger) photoCount {
+	return [[self PhotoCount] intValue];
+}
 
+- (BOOL) isGalleryElement {
+	return self.TypeValue == FLZenfolioPhotoSetTypeGallery;
+}
 
+- (BOOL) isCollectionElement {
+	return self.TypeValue == FLZenfolioPhotoSetTypeCollection;
+}
 @end

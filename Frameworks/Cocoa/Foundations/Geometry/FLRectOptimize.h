@@ -19,8 +19,6 @@
 */ 
 
 
-#if IOS
-
 #if DEBUG
 
 extern CGSize FLSizeOptimizeForView(CGSize aSize);
@@ -47,14 +45,11 @@ extern CGRect FLRectOptimizedForViewLocation(CGRect r);
 
 #endif
 
-#else 
-
-#define FLSizeOptimizeForView(aSize) aSize
-#define FLRectWidthIsOptimizedForView(r) YES
-#define FLRectHeightIsOptimizedForView(r) YES
-#define FLRectIsOptimizedForView(r) YES
-#define FLRectOptimizedForViewSize(r) r
-#define FLRectOptimizedForViewLocation(r) r
-#define FLWarnIfRectIsNotOptimizedForView(r)
-#define FLAssertRectOptimizedForView_v(r)
-#endif
+//#define FLSizeOptimizeForView(aSize) aSize
+//#define FLRectWidthIsOptimizedForView(r) YES
+//#define FLRectHeightIsOptimizedForView(r) YES
+//#define FLRectIsOptimizedForView(r) YES
+//#define FLRectOptimizedForViewSize(r) r
+//#define FLRectOptimizedForViewLocation(r) r
+//#define FLWarnIfRectIsNotOptimizedForView(r)
+//#define FLAssertRectOptimizedForView_v(r)

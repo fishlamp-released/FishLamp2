@@ -13,43 +13,27 @@
 #import "FLMoveAnimation.h"
 #import "FLDropBackAnimation.h"
 #import "UIViewController+FLAdditions.h"
-#import "FLWizardPanel.h"
+#import "FLPanelViewController.h"
 #import "FLStatusBarViewController.h"
 
 #import "FLSlideInAndDropTransition.h"
 #import "FLSlideOutAndComeForwardTransition.h"
 
 @interface FLWizardViewController ()
-@property (readonly, strong, nonatomic) NSArray* wizardPanels;
 - (IBAction) respondToNextButton:(id) sender;
 - (IBAction) respondToBackButton:(id) sender;
 - (IBAction) respondToOtherButton:(id) sender;
 @end
 
 @implementation FLWizardViewController
-@synthesize nextButton = _nextButton;
-@synthesize backButton = _backButton;
+
 @synthesize delegate = _delegate;
-@synthesize wizardPanels = _panels;
-@synthesize titleTextField = _titleTextField;
-@synthesize buttonEnclosureView = _buttonEnclosureView;
-@synthesize wizardPanelEnclosureView = _wizardPanelEnclosureView;
-@synthesize breadcrumbBar = _breadcrumbBar;
-@synthesize currentPanelIndex = _currentPanel;
-@synthesize otherButton = _otherButton;
 
-
-- (NSUInteger) panelCount {
-    return _panels.count;
-}
-
-#if FL_MRC
-- (void) dealloc {
-    [_breadcrumbBar release];
-    [_panels release];
-    [super dealloc];
-}
-#endif
+// views
+@synthesize buttonViewController = _buttonViewController;
+@synthesize headerViewController = _headerViewController;
+@synthesize navigationViewController = _navigationViewController;
+@synthesize panelManager = _panelManager;
 
 - (id) init {
     return [self initWithNibName:@"FLWizardViewController" bundle:nil];
@@ -59,8 +43,6 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        _panels = [[NSMutableArray alloc] init];
-        _currentPanel = INT_MAX;
     }
     
     return self;
@@ -70,43 +52,13 @@
     return FLAutorelease([[[self class] alloc] init]);
 }
 
-- (void) setPanelFrame:(FLWizardPanel*) panel {
-
-    CGRect frame = panel.view.frame;
-    CGRect bounds = _wizardPanelEnclosureView.bounds;
-    bounds = CGRectInset(bounds, 1.0, 1.0);
-    
-    NSUInteger originalMask = panel.view.autoresizingMask;
-    
-    if(FLBitTest(originalMask, (NSViewWidthSizable))) {
-        frame.size.width = bounds.size.width;
-        frame.origin.x = bounds.origin.x;
-    }
-    else {
-        frame = FLRectCenterRectInRectHorizontally(bounds, frame);
-    }
-
-    if(FLBitTest(originalMask, (NSViewHeightSizable))) {
-        frame.size.height = bounds.size.height;
-        frame.origin.y = bounds.origin.y;
-    }
-    else {
-//        frame = FLRectPositionRectInRectVerticallyBottomThird(bounds, frame);
-        frame = FLRectCenterRectInRectVertically(bounds, frame);
-    }
-
-    panel.view.frame = frame;
-}
-
-- (void) appendPanel:(FLWizardPanel*) panel 
-              forKey:(id) key{
-              
+- (void) addPanel:(FLPanelViewController*) panel forKey:(id) key {
     panel.key = key;
-    [_panels addObject:panel];
-    [_breadcrumbBar addBreadcrumb:panel.breadcrumbTitle forKey:key];
     panel.wizard = self;
+    [self.panelManager addPanel:panel];
+    [self.navigationViewController addBreadcrumb:panel.breadcrumbTitle forKey:key];
 }
-                    
+
 - (void) willStartWizardInWindow:(NSWindow*) window {
    FLPerformSelector1(self.delegate, @selector(wizardViewControllerWillStartWizard:), self);
 }
@@ -118,384 +70,163 @@
 - (void) startWizardInWindow:(NSWindow*) window {
     [self willStartWizardInWindow:window];
 
-    [self.view setWantsLayer:YES];
     [window setContentView:self.view];
-    [window setDefaultButtonCell:[self.nextButton cell]];
-      
-    FLWizardPanel* toShow = [_panels objectAtIndex:0];
-    _currentPanel = 0;
-    [self setPanelFrame:toShow];
-    [self willShowWizardPanel:toShow];
-    [_wizardPanelEnclosureView addSubview:[toShow view]];
-    [self setWizardPanelTitleFields:toShow];
-    [self didShowWizardPanel:toShow];
-    [self didStartWizardInWindow:window];
-    [self.view.window display];
-    [self updateButtonEnabledStates];
+    [window setDefaultButtonCell:[self.buttonViewController.nextButton cell]];
+
+    self.panelManager.delegate = self; 
+    [self.panelManager showFirstPanel];  
 }
 
 - (void)loadView {
     [super loadView];
     [self view];
-    _backButton.hidden = NO;
-    _nextButton.hidden = NO;
-    _nextButton.enabled = NO;
-    _backButton.enabled = NO;
     
     FLPerformSelector1(self.delegate, @selector(wizardViewControllerCanStart:), self);
-    _wizardPanelEnclosureView.wantsLayer = YES;
     
-    _breadcrumbBar = [[FLBreadcrumbBarViewController alloc] init];
-    _breadcrumbBar.view.frame = _navigationViewEnclosure.bounds;
-    _breadcrumbBar.delegate = self;
-    
-    [_navigationViewEnclosure addSubview:_breadcrumbBar.view];
-    
-    [self showSpinner:NO];
-    
-    [self.view addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:nil];
-}
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-
-    [self setPanelFrame:self.visibleWizardPanel];
+    _navigationViewController.delegate = self;
+//    
+//    [self.navigationViewController.view bringToFront];
+//    [self.panelManager.view sendToBack];
+//    
+//    CGRect managerFrame = self.panelManager.view.frame;
+//    
+//    managerFrame.origin.y = FLRectGetBottom(self.buttonViewController.view.frame);
+//    managerFrame.origin.x = FLRectGetRight(self.navigationViewController.view.frame) - 5;
+//    managerFrame.size.height = self.headerViewController.view.frame.origin.y - FLRectGetBottom(self.buttonViewController.view.frame);
+//    
+//    
+//    self.panelManager.view.frame = managerFrame;
 }
 
 - (BOOL)acceptsFirstResponder {
     return YES;
 }
 
-- (BOOL)becomeFirstResponder {
-    return YES;
-}
-
 - (IBAction) respondToNextButton:(id) sender {
 
-    BOOL handled = [self.visibleWizardPanel respondToNextButton:self];
+    BOOL handled = [self.panelManager.visiblePanel respondToNextButton:self];
 
     if(!handled) {
-        [self showNextWizardPanelAnimated:YES completion:nil];
+        [self.panelManager showNextPanelAnimated:YES completion:nil];
     }
 }
 
 - (IBAction) respondToOtherButton:(id) sender {
-    [self.visibleWizardPanel respondToOtherButton:self];
+    [self.panelManager.visiblePanel respondToOtherButton:self];
 }
 
 - (IBAction) respondToBackButton:(id) sender {
 
-    BOOL handled = [self.visibleWizardPanel respondToBackButton:self];
+    BOOL handled = [self.panelManager.visiblePanel respondToBackButton:self];
 
     if(!handled) {
-        [self showPreviousWizardPanelAnimated:YES completion:nil];
+        [self.panelManager showPreviousPanelAnimated:YES completion:nil];
     }
-}
-
-- (FLWizardPanel*) visibleWizardPanel {
-    return _panels.count > _currentPanel ? [_panels objectAtIndex:_currentPanel] : nil;
 }
 
 - (void) updateButtonEnabledStates {
-    self.backButton.enabled = _currentPanel > 0;
-    self.nextButton.enabled = [self visibleWizardPanel].canOpenNextPanel;
-    [_breadcrumbBar update];
+    self.buttonViewController.backButton.enabled = 
+        !self.panelManager.isShowingFirstPanel;
+        
+    self.buttonViewController.nextButton.enabled = 
+        [self.panelManager visiblePanel].canOpenNextPanel &&
+        ![self.panelManager isShowingLastPanel];
+        
+    [self.navigationViewController update];
 }
 
-- (void) removeWizardPanel:(FLWizardPanel*) wizardPanel {
-    [_panels removeObject:wizardPanel];
+- (void) removePanel:(FLPanelViewController*) panel {
+    [self.panelManager removePanel:panel];
     [self updateButtonEnabledStates];
 }
 
-- (void) willShowWizardPanel:(FLWizardPanel*) wizardPanel {
-    if(wizardPanel) {
-        [wizardPanel wizardPanelWillAppearInWizard:self];
-        FLPerformSelector2(self.delegate, @selector(wizardViewController:wizardPanelWillAppear:), self, wizardPanel);
+- (void) willShowPanel:(FLPanelViewController*) panel {
+    [self.headerViewController removePanelViews];
+
+    if(panel) {
+        [panel panelWillAppearInWizard:self];
+        FLPerformSelector2(self.delegate, @selector(wizardViewController:panelWillAppear:), self, panel);
     }
     [self updateButtonEnabledStates];
 }
 
-- (void) didShowWizardPanel:(FLWizardPanel*) wizardPanel {
-    if(wizardPanel) {
-        [wizardPanel wizardPanelDidAppearInWizard:self];
-        FLPerformSelector2(self.delegate, @selector(wizardViewController:wizardPanelDidAppear:), self, wizardPanel);
+- (void) didShowPanel:(FLPanelViewController*) panel {
+    if(panel) {
+        [panel panelDidAppearInWizard:self];
+        FLPerformSelector2(self.delegate, @selector(wizardViewController:panelDidAppear:), self, panel);
     }
     [self updateButtonEnabledStates];
+    
+    [self.view.window makeFirstResponder:panel];
+    [panel setNextResponder:self];
 }
 
-- (void) willHideWizardPanel:(FLWizardPanel*) wizardPanel {
-    if(wizardPanel) {
-        [wizardPanel wizardPanelWillDisappearInWizard:self];
-        FLPerformSelector2(self.delegate, @selector(wizardViewController:wizardPanelWillDisappear:), self, wizardPanel);
+- (void) willHidePanel:(FLPanelViewController*) panel {
+    if(panel) {
+        [panel panelWillDisappearInWizard:self];
+        FLPerformSelector2(self.delegate, @selector(wizardViewController:panelWillDisappear:), self, panel);
     }
 }
 
-- (void) didHideWizardPanel:(FLWizardPanel*) wizardPanel {
-    if(wizardPanel) {
-        [wizardPanel wizardPanelDidDisappearInWizard:self];
-        FLPerformSelector2(self.delegate, @selector(wizardViewController:wizardPanelDidAppear:), self, wizardPanel);
+- (void) didHidePanel:(FLPanelViewController*) panel {
+    if(panel) {
+        [panel panelDidDisappearInWizard:self];
+        FLPerformSelector2(self.delegate, @selector(wizardViewController:panelDidAppear:), self, panel);
     }
 }
 
 - (BOOL) breadcrumbBar:(FLBreadcrumbBarViewController*) breadcrumbBar breadcrumbIsVisible:(id) key {
-    return [key isEqual:[self.visibleWizardPanel key]];
+    return [key isEqual:[self.panelManager.visiblePanel key]];
 }
 
 - (BOOL) breadcrumbBar:(FLBreadcrumbBarViewController*) breadcrumbBar breadcrumbIsEnabled:(id) key {
-
-    if([self.visibleWizardPanel.key isEqual:key]) {
-        return YES;
-    }
-
-    NSUInteger idx = NSNotFound;
-    for(NSUInteger i = 0; i < _panels.count; i++) {
-        if([key isEqual:[[_panels objectAtIndex:i] key]]) {
-            idx = i;
-            break;
-        }
-    }
-    if(idx == NSNotFound) {
-        return NO;
-    }
-    
-    for(NSUInteger i = 0; i < idx; i++) {
-        FLWizardPanel* panel = [_panels objectAtIndex:i];
-        if(panel.canOpenNextPanel == NO) {
-            return NO;
-        }
-    }
-
-    return YES;
+    return [self.panelManager canOpenPanelForKey:key];
 }
 
-- (BOOL) canShowPanelForPanelKey:(id) key {
-
-    for(FLWizardPanel* panel in _panels) {
-        if(panel.canOpenNextPanel == NO) {
-            return NO;
-        }
-        if([key isEqual:[panel key]]) {
-            return panel.canOpenNextPanel;
-        }
-    }
-    
-    return NO;
+- (void) setPanelTitleFields:(FLPanelViewController*) panel {
+    [self.headerViewController setTitle:panel.title];
+    [self.navigationViewController update];
 }
+                 
+- (void) breadcrumbBar:(FLBreadcrumbBarViewController*) breadcrumbBar 
+    breadcrumbWasClicked:(NSString*) key {
+    [self.panelManager showPanelForKey:key animated:YES completion:nil];
+}
+       
+- (void) panelManager:(FLWizardViewController*) wizard 
+                              willHidePanel:(FLPanelViewController*) toHide
+                              willShowPanel:(FLPanelViewController*) toShow {
 
-- (FLWizardPanel*) panelForKey:(id) key {
-    for(FLWizardPanel* panel in _panels) {
-        if([key isEqual:[panel key]]) {
-            return panel;
-        }
+    if(toHide) {
+        [self willHidePanel:toHide];
     }
-    
+    [self willShowPanel:toShow];
+
+    self.buttonViewController.nextButton.enabled = NO;
+    self.buttonViewController.backButton.enabled = NO;
+    self.buttonViewController.otherButton.hidden = YES;
+     
+}     
+
+- (void) panelManager:(FLWizardViewController*) wizard 
+                              didHidePanel:(FLPanelViewController*) toHide
+                              didShowPanel:(FLPanelViewController*) toShow {
+
+    if(toHide) {
+        [self didHidePanel:toHide];
+    }
+    [self setPanelTitleFields:toShow];
+    [self didShowPanel:toShow];
+    [self updateButtonEnabledStates];
+}                              
+
+- (Class) panelManagerGetForwardTransitionClass:(FLPanelManager*) controller {
     return nil;
 }
 
-- (NSInteger) indexForKey:(id) key {
-    for(NSInteger i = 0; i < _panels.count; i++) {
-        if([key isEqual:[[_panels objectAtIndex:i] key]]) {
-            return i;
-        }
-    }
-    
-    return NSNotFound;
+- (Class) panelManagerGetBackwardTransitionClass:(FLPanelManager*) controller {
+    return nil;
 }
-
-- (void) showSpinner:(BOOL) show {
-    [_spinner setHidden:!show];
-    if(show) {
-        [_spinner startAnimation:self];
-    }
-    else {
-        [_spinner stopAnimation:self];
-    }
-        
-}
-
-
-- (void) setWizardPanelTitleFields:(FLWizardPanel*) wizardPanel {
-    self.titleTextField.hidden = NO;
-    self.titleTextField.stringValue = wizardPanel.title;
-    [_breadcrumbBar update];
-}
-
-//#define kDuration 0.2f
-
-- (void) setFirstResponder {
-//    [[self.view.window firstResponder] resignFirstResponder];
-    [self.view.window makeFirstResponder:self];
-}
-
-- (void) showWizardPanelAnimated:(BOOL) animated 
-                            show:(FLWizardPanel*) toShow
-                            hide:(FLWizardPanel*) toHide
-                      completion:(void (^)(FLWizardPanel*)) completion {
-
-    FLAssertNotNil_(toShow);
-//    FLAssertNotNil_(toHide);
-    
-    [self setFirstResponder];
-
-    self.nextButton.enabled = NO;
-    self.backButton.enabled = NO; // (_panels.count > 0);
-    self.otherButton.hidden = YES;
-    
-    if(toHide) {
-        [self willHideWizardPanel:toHide];
-    }
-    
-    [self setPanelFrame:toShow];
-    [self willShowWizardPanel:toShow];
-              
-    completion = FLCopyWithAutorelease(completion);
-    
-    dispatch_block_t finished = ^{
-        [self setWizardPanelTitleFields:toShow];
-        if(toHide) {
-            [self didHideWizardPanel:toHide];
-        }
-        [self didShowWizardPanel:toShow];
-        [self updateButtonEnabledStates];
-        
-        if(completion) {
-            completion(toShow);
-        }
-
-        [self.view.window display];
-    };
-
-    [_wizardPanelEnclosureView addSubview:[toShow view]];
-
-    if(0 && animated) {
-        FLSlideInAndDropTransition* transition = 
-            [FLSlideInAndDropTransition transitionWithViewToShow:[toShow view] 
-                                                      viewToHide:toHide ? [toHide view] : nil];
-
-        [transition startAnimating:^{
-            finished();
-        }];
-    }
-    else {
-        [toHide.view removeFromSuperview];
-        finished();
-    }
-}
-
-- (void) showNextWizardPanelAnimated:(BOOL) animated 
-                      completion:(void (^)(FLWizardPanel*)) completion {
-
-    [self.view.window makeFirstResponder:self];
-    [self.view.window display];
- 
-    FLAssert_v(_panels.count > _currentPanel + 1, @"order not set");
-       
-    FLWizardPanel* toHide = [_panels objectAtIndex:_currentPanel];
-    FLWizardPanel* toShow = [_panels objectAtIndex:++_currentPanel];
-    FLAssertNotNil_(toShow);
-    FLAssertNotNil_(toHide);
-    
-    [self showWizardPanelAnimated:animated  show:toShow hide:toHide completion:completion];
-}
-
-                             
-- (void) hideWizardPanelAnimated:(BOOL) animated 
-                            hide:(FLWizardPanel*) toHide
-                            show:(FLWizardPanel*) toShow
-                      completion:(FLWizardPanelBlock) completion {                            
-
-    FLAssertNotNil_(toShow);
-
-    [self setFirstResponder];
-
-    self.nextButton.enabled = NO;
-    self.backButton.enabled = NO;
-    self.otherButton.hidden = YES;
-
-    [self setPanelFrame:toShow];
-            
-    if(toHide) {
-        [self willHideWizardPanel:toHide];
-    }
-    [self willShowWizardPanel:toShow];
-    
-    completion = FLCopyWithAutorelease(completion);
-    [_wizardPanelEnclosureView addSubview:[toShow view]];
-        
-    dispatch_block_t finished = ^{
-    // this executes after animation is finished.
-    
-        if(toHide) {
-            [self didHideWizardPanel:toHide];
-        }
-        [self setWizardPanelTitleFields:toShow];
-        [self didShowWizardPanel:toShow];
-        [self updateButtonEnabledStates];
-         
-        if(completion) {
-            completion(toShow);
-        }        
-        [self.view.window display];
-    };
-      
-    if(0 && animated) {
-
-        FLSlideInAndDropTransition* transition = 
-            [FLSlideInAndDropTransition transitionWithViewToShow:[toShow view] 
-                                                      viewToHide:toHide ? [toHide view] : nil];
-
-        
-//        FLSlideOutAndComeForwardTransition* transition = 
-//            [FLSlideOutAndComeForwardTransition transitionWithViewToShow:[toShow view] 
-//                                                              viewToHide:toHide != nil ? [toHide view] : nil];
-
-        [transition startAnimating:^{
-            finished();
-        }];
-    }
-    else {
-        [toHide.view removeFromSuperview];
-        finished();
-    }
-}
-
-- (void) showPreviousWizardPanelAnimated:(BOOL) animated 
-                             completion:(FLWizardPanelBlock) completion {
-    [self.view.window makeFirstResponder:self];
-    [self.view.window display];
-
-    FLAssert_v(_panels.count >= 2, @"must be at least two panels to hide visible");
-
-    FLWizardPanel* toHide = [_panels objectAtIndex:_currentPanel];
-    FLWizardPanel* toShow = [_panels objectAtIndex:--_currentPanel];
-    FLAssertNotNil_(toShow);
-    FLAssertNotNil_(toHide);
-
-    [self hideWizardPanelAnimated:animated 
-                             hide:toHide 
-                             show:toShow 
-                       completion:completion];
-}                             
-
-- (void) showWizardPanelAnimated:(BOOL) animated withIndex:(NSUInteger) idx completion:(FLWizardPanelBlock) completion {
-
-    if(idx < _currentPanel) {
-        [self hideWizardPanelAnimated:YES hide:self.visibleWizardPanel show:[_panels objectAtIndex:idx] completion:nil];
-        
-        _currentPanel = idx;
-    }
-    else if (idx > _currentPanel) {
-        [self showWizardPanelAnimated:YES show:[_panels objectAtIndex:idx] hide:self.visibleWizardPanel completion:nil];
-
-        _currentPanel = idx;
-    }
-}                             
-                   
-- (void) breadcrumbBar:(FLBreadcrumbBarViewController*) breadcrumbBar 
-    breadcrumbWasClicked:(NSString*) key {
-    
-    [self showWizardPanelAnimated:YES withIndex:[self indexForKey:key] completion:nil];
-}
-
 
 
 
@@ -585,7 +316,7 @@ FLSynthesizeAssociatedProperty(retain_nonatomic, modalSession, setModalSession, 
 //        [CATransaction begin];
 //        [CATransaction setAnimationDuration:kDuration];
 //        [CATransaction setCompletionBlock:finished];
-//        [[toShow.view animator] setFrame:_wizardPanelEnclosureView.bounds];
+//        [[toShow.view animator] setFrame:_panelManager.bounds];
 //        [[toHide.view animator] setAlphaValue:0.0f];
 //        [toHide.view.layer addAnimation:scale forKey:@"transform"];
 ////        toHide.view.layer.transform = CATransform3DMakeScale(0.5, 0.5, 1.0);
@@ -619,7 +350,7 @@ FLSynthesizeAssociatedProperty(retain_nonatomic, modalSession, setModalSession, 
 //        [CATransaction setAnimationDuration:kDuration];
 //        [CATransaction setCompletionBlock:finished];
 //        [toShow.view.layer addAnimation:scale forKey:@"transform"];
-//        [[toHide.view animator] setFrame:FLRectSetOriginWithPoint(_wizardPanelEnclosureView.bounds, FLRectGetTopRight(toHide.view.frame))];
+//        [[toHide.view animator] setFrame:FLRectSetOriginWithPoint(_panelManager.bounds, FLRectGetTopRight(toHide.view.frame))];
 //        [[toShow.view animator] setAlphaValue:1.0f];
 //        [CATransaction commit];
 #endif

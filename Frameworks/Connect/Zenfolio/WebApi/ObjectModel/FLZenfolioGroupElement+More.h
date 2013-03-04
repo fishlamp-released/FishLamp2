@@ -32,18 +32,23 @@ typedef void (^FLGroupElementVisitor)(FLZenfolioGroupElement* element, NSUIntege
 @property (readonly, retain, nonatomic) NSString* Caption;
 @property (readonly, retain, nonatomic) FLZenfolioPhoto* TitlePhoto;
 
+
+// helpers
+- (unsigned long long) photoBytes;
+- (int) groupElementID;
 - (NSDate*) createdOn;
 - (NSDate*) modifiedOn;
 - (NSString*) title;
 - (NSString*) sizeText;
-
-- (int) groupElementID;
-
 - (NSArray*) elements;
+- (NSUInteger) galleryCount;
+- (NSUInteger) photoCount;
+- (NSUInteger) videoCount;
+
+// utils
+
+/// recursively visit everything
 - (BOOL) visitAllElements:(FLGroupElementVisitor) visitor;
-- (int) photoCount;
-- (int) videoCount;
-- (unsigned long long) photoBytes;
-- (int) galleryCount;
+
 @end
 

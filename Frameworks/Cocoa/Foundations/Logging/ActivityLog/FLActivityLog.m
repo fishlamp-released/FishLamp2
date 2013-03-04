@@ -70,5 +70,13 @@ FLSynthesizeSingleton(FLActivityLog);
     return [_log description];
 }
 
+- (NSError*) exportToPath:(NSURL*) url {
+    NSString* log = [self string];
+    NSError* err = nil;
+    [log writeToURL:url atomically:YES encoding:NSUTF8StringEncoding error:&err];
+    return FLAutorelease(err);
+}
+
+
 
 @end

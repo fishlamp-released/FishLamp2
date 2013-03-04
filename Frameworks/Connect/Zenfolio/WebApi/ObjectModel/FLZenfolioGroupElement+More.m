@@ -11,9 +11,7 @@
 
 @implementation FLZenfolioGroupElement (More)
 
-
-- (NSNumber*) parentGroupId
-{
+- (NSNumber*) parentGroupId {
 	return [self.ParentGroups lastObject];
 }
 
@@ -26,76 +24,45 @@
     return nil;
 }
 
-- (BOOL) isGalleryElement
-{
-	if([self isKindOfClass:[FLZenfolioPhotoSet class]])
-	{
-		FLZenfolioPhotoSet* set = (FLZenfolioPhotoSet*) self;
-		
-		FLAssertStringIsNotEmpty_(set.Type);
-
-		return set.TypeValue == FLZenfolioPhotoSetTypeGallery;
-	}
-
+- (BOOL) isGalleryElement {
 	return NO;
 }
 
-- (BOOL) isCollectionElement
-{
-	if([self isKindOfClass:[FLZenfolioPhotoSet class]])
-	{
-		FLZenfolioPhotoSet* set = (FLZenfolioPhotoSet*) self;
-		
-		FLAssertStringIsNotEmpty_(set.Type);
-		
-		return set.TypeValue == FLZenfolioPhotoSetTypeCollection;
-	}
-
+- (BOOL) isCollectionElement {
 	return NO;
 }
 
-- (BOOL) isGroupElement
-{
-	return [self isKindOfClass:[FLZenfolioGroup class]];
+- (BOOL) isGroupElement {
+	return NO;
 }
 
-// here for polymorphic use, overriden in FLZenfolioPhotoSet and FLZenfolioGroup
-- (NSString*) PageUrl
-{
+- (NSString*) PageUrl {
 	return nil;
 }
 
-// here for polymorphic use, overriden in FLZenfolioPhotoSet and FLZenfolioGroup
-- (NSDate*) ModifiedOn
-{
+- (NSDate*) ModifiedOn {
 	return nil;
 }
 
-- (void) setModifiedOn:(NSDate*) date
-{
+- (void) setModifiedOn:(NSDate*) date {
 }
 
 // here for polymorphic use, overriden in FLZenfolioPhotoSet and FLZenfolioGroup
-- (void) setPageUrl:(NSString*) url
-{
+- (void) setPageUrl:(NSString*) url {
 }
 
-- (NSMutableArray*) ParentGroups
-{
+- (NSMutableArray*) ParentGroups {
 	return nil;
 }
 
-- (void) setParentGroups:(NSMutableArray*) array
-{
+- (void) setParentGroups:(NSMutableArray*) array {
 }
 
-- (FLZenfolioPhoto*) TitlePhoto
-{
+- (FLZenfolioPhoto*) TitlePhoto {
 	return nil;
 }
 
 - (FLZenfolioGroupElementType) groupElementType {
-    
     return [self isGroupElement] ? FLZenfolioGroupElementTypeGroup :
                 [self isGalleryElement] ? FLZenfolioGroupElementTypeGallery : FLZenfolioGroupElementTypeCollection;
 }
@@ -131,23 +98,12 @@
     return self.IdValue;
 }
 
-- (NSNumber*) PhotoCount {
-    return nil;
+- (NSUInteger) photoCount {
+	return 0;
 }
 
-- (int) photoCount {
-	return [[self PhotoCount] intValue];
-}
-
-- (int) galleryCount {
-    __block int count = 0;
-    [self visitAllElements:^(FLZenfolioGroupElement* element, NSUInteger idx, BOOL* stop) {
-        if(!element.isGroupElement) {
-            ++count;
-        }
-    }];
-    
-    return count;
+- (NSUInteger) galleryCount {
+    return 0;
 }
 
 - (BOOL) visitAllElements:(FLGroupElementVisitor) visitor elementIndex:(NSUInteger*) elementIndex {
@@ -189,7 +145,7 @@
 	return 0;
 }
 
-- (int) videoCount {
+- (NSUInteger) videoCount {
     return 0;
 }
 
