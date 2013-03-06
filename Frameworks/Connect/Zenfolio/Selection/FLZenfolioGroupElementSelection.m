@@ -103,6 +103,18 @@
     }];
 }
 
+- (void) removeSelectedElementsNotInFilter:(NSDictionary*) filter {
+    if(filter == nil) { 
+        return;
+    }
+    NSArray* keys = [_selection allKeys];
+    for(id key in keys) {
+        if([filter objectForKey:key] == nil) {
+            [_selection removeObjectForKey:key];
+        }
+    }
+}
+
 - (NSUInteger) selectionCount {
     return _selection.count;
 }

@@ -19,9 +19,13 @@
 
 @property (readonly, strong, nonatomic) NSArray* selectedPhotoSets;
 
+/// get/set selection with dictionary of indexes.
+/// this is weird, since we're essentially a tree, but we need it to work
+/// with the NSOutlineView
 - (NSIndexSet*) indexSetForSelectionsInGroup:(FLZenfolioGroup*) group;
 - (void) setSelectionInGroup:(FLZenfolioGroup*) group withIndexSet:(NSIndexSet*) set;
 
+/// select/unselect a groupElement
 - (void) selectGroupElement:(FLZenfolioGroupElement*) groupElement 
                    selected:(BOOL) selected;
 
@@ -30,7 +34,9 @@
 - (void) toggleSelectionForGroupElement:(FLZenfolioGroupElement*) element;
 
 // misc utils
-- (long long) selectedPhotoBytes;
+- (void) removeSelectedElementsNotInFilter:(NSDictionary*) filter;
+
+//- (long long) selectedPhotoBytes;
 
 - (int) selectedPhotoCount;
 
