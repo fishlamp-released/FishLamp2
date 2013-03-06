@@ -11,7 +11,7 @@
 #import "FLStringFormatter.h"
 #import "FLPrettyString.h"
 
-@interface FLDocumentSection : FLStringFormatter<FLStringFormatterDelegate, FLBuildableString> {
+@interface FLDocumentSection : FLStringFormatter<FLBuildableString> {
 @private
     NSMutableArray* _lines;
     BOOL _needsLine;

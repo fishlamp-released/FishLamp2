@@ -29,7 +29,7 @@
     
     ++(*currentIndex);
     
-    for(FLZenfolioGroupElement* element in self.elements) {
+    for(FLZenfolioGroupElement* element in self.Elements) {
         [element addSelectionsToIndexedSet:set fromSelection:selection currentIndex:currentIndex];
     }
 }     
@@ -49,9 +49,16 @@
 
 @interface FLZenfolioGroupElementSelection()
 @property (readwrite, strong, nonatomic) NSArray* selectedPhotoSets;
+@property (readwrite, strong, nonatomic) NSIndexSet* cachedSet;
 @end
 
-@implementation FLZenfolioGroupElementSelection
+@implementation FLZenfolioGroupElementSelection {
+@private
+    NSMutableDictionary* _selection;
+    NSArray* _selectedPhotoSets;
+    NSIndexSet* _cachedSet;
+}
+@synthesize cachedSet = _cachedSet;
 @synthesize selectedGroupElements = _selectedGroupElements;
 @synthesize selectedPhotoSets = _selectedPhotoSets;
 
@@ -63,15 +70,30 @@
     return self;
 }
 
+#if FL_MRC
+- (void) dealloc {
+    [_selection release];
+    [_cachedSet release];
+    [_selectedPhotoSets release];
+    [super dealloc];
+}
+#endif
+
 + (id) groupElementSelection {
     return FLAutorelease([[[self class] alloc] init]);
 }
 
 - (NSIndexSet*) indexSetForSelectionsInGroup:(FLZenfolioGroup*) group {
-    return [group indexSetForSelection:self];
+    if(!self.cachedSet) {
+        self.cachedSet = [group indexSetForSelection:self];
+    }
+    return self.cachedSet;
 }
 
 - (void) setSelectionInGroup:(FLZenfolioGroup*) group withIndexSet:(NSIndexSet*) set {
+    self.cachedSet = nil;
+    self.selectedPhotoSets = nil;
+    
     [_selection removeAllObjects];
     
     [group visitAllElements:^(FLZenfolioGroupElement* element, NSUInteger idx, BOOL* stop) {
@@ -96,13 +118,14 @@
     }
 
     if([groupElement isGroupElement]) {
-        for(id element in [groupElement elements]) {
+        for(id element in [groupElement Elements]) {
             [self selectGroupElement:element selected:selected];
         }
     }
 
 // reset cache of selected photo sets.    
     self.selectedPhotoSets = nil;
+    self.cachedSet = nil;
 }
 
 - (BOOL) isGroupElementSelected:(FLZenfolioGroupElement*) element {
@@ -119,6 +142,11 @@
 
 - (int) selectedPhotoCount {
 	return [[[self selectedPhotoSets] valueForKeyPath:@"@sum.photoCount"] intValue];
+}
+
+- (void) clearCachedSearchData {
+    self.selectedPhotoSets = nil;
+    self.cachedSet = nil;
 }
 
 - (NSArray *) selectedPhotoSets {
@@ -152,6 +180,10 @@
 
 - (id) copyWithZone:(NSZone *)zone {
     return [[FLZenfolioGroupElementSelection alloc] initWithSelection:_selection];
+}
+
+- (NSString*) description {
+    return [NSString stringWithFormat:@"Group Element Selection: %@", [_selection description]];
 }
 
 @end

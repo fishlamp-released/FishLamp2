@@ -21,7 +21,6 @@
 @synthesize trackingArea = _trackingArea;
 @synthesize title = _title;
 @synthesize touchedBlock = _touchedBlock;
-@synthesize key = _key;
 @synthesize enabled = _enabled;
 @synthesize emphasized = _emphasized;
 @synthesize highlighted = _highlighted;
@@ -43,7 +42,6 @@
 - (void) dealloc {
     [_lineColor release];
     [_titleStyle release];
-    [_key release];
     [_trackingArea release];
     [_touchedBlock release];
     [_title release];

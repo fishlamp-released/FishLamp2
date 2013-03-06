@@ -69,7 +69,6 @@
 								<string key="NSFrame">{{262, 4}, {92, 32}}</string>
 								<reference key="NSSuperview" ref="1018746906"/>
 								<reference key="NSWindow"/>
-								<bool key="NSViewIsLayerTreeHost">YES</bool>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="NSEnabled">YES</bool>
 								<object class="NSButtonCell" key="NSCell" id="311563633">
@@ -95,12 +94,12 @@
 							</object>
 							<object class="NSButton" id="779489388">
 								<reference key="NSNextResponder" ref="1018746906"/>
-								<int key="NSvFlags">-2147483356</int>
+								<int key="NSvFlags">292</int>
 								<array class="NSMutableArray" key="NSSubviews"/>
 								<string key="NSFrame">{{14, 4}, {92, 32}}</string>
 								<reference key="NSSuperview" ref="1018746906"/>
 								<reference key="NSWindow"/>
-								<bool key="NSViewIsLayerTreeHost">YES</bool>
+								<reference key="NSNextKeyView" ref="726091005"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="NSEnabled">YES</bool>
 								<object class="NSButtonCell" key="NSCell" id="463085271">
@@ -127,7 +126,7 @@
 								<string key="NSFrame">{{167, 4}, {92, 32}}</string>
 								<reference key="NSSuperview" ref="1018746906"/>
 								<reference key="NSWindow"/>
-								<bool key="NSViewIsLayerTreeHost">YES</bool>
+								<reference key="NSNextKeyView" ref="671622157"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="NSEnabled">YES</bool>
 								<object class="NSButtonCell" key="NSCell" id="664023844">
@@ -152,7 +151,6 @@
 						<reference key="NSSuperview" ref="1005"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="779489388"/>
-						<bool key="NSViewIsLayerTreeHost">YES</bool>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<string key="NSClassName">NSView</string>
 					</object>
@@ -164,7 +162,6 @@
 						<reference key="NSSuperview" ref="1005"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="1018746906"/>
-						<bool key="NSViewIsLayerTreeHost">YES</bool>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<string key="NSClassName">FLFramedView</string>
 					</object>
@@ -212,17 +209,6 @@
 									</object>
 								</object>
 								<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
-							</object>
-							<object class="NSCustomView" id="537984462">
-								<reference key="NSNextResponder" ref="2603366"/>
-								<int key="NSvFlags">258</int>
-								<array class="NSMutableArray" key="NSSubviews"/>
-								<string key="NSFrameSize">{480, 58}</string>
-								<reference key="NSSuperview" ref="2603366"/>
-								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="752423629"/>
-								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<string key="NSClassName">NSView</string>
 							</object>
 							<object class="NSProgressIndicator" id="151070969">
 								<reference key="NSNextResponder" ref="2603366"/>
@@ -272,7 +258,7 @@
 						<string key="NSFrame">{{0, 341}, {480, 58}}</string>
 						<reference key="NSSuperview" ref="1005"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="537984462"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<string key="NSClassName">NSView</string>
 					</object>
@@ -287,36 +273,12 @@
 		<object class="IBObjectContainer" key="IBDocument.Objects">
 			<array class="NSMutableArray" key="connectionRecords">
 				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">respondToNextButton:</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="671622157"/>
-					</object>
-					<int key="connectionID">51</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">view</string>
 						<reference key="source" ref="1001"/>
 						<reference key="destination" ref="1005"/>
 					</object>
 					<int key="connectionID">80</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">respondToBackButton:</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="726091005"/>
-					</object>
-					<int key="connectionID">82</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">respondToOtherButton:</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="463085271"/>
-					</object>
-					<int key="connectionID">142</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -392,14 +354,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
-						<string key="label">_hostView</string>
-						<reference key="source" ref="652440259"/>
-						<reference key="destination" ref="537984462"/>
-					</object>
-					<int key="connectionID">166</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
 						<string key="label">_titleView</string>
 						<reference key="source" ref="652440259"/>
 						<reference key="destination" ref="396995919"/>
@@ -453,6 +407,30 @@
 						<reference key="destination" ref="779489388"/>
 					</object>
 					<int key="connectionID">176</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">respondToBackButton:</string>
+						<reference key="source" ref="650783416"/>
+						<reference key="destination" ref="726091005"/>
+					</object>
+					<int key="connectionID">185</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">respondToOtherButton:</string>
+						<reference key="source" ref="650783416"/>
+						<reference key="destination" ref="779489388"/>
+					</object>
+					<int key="connectionID">186</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">respondToNextButton:</string>
+						<reference key="source" ref="650783416"/>
+						<reference key="destination" ref="671622157"/>
+					</object>
+					<int key="connectionID">187</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -576,7 +554,6 @@
 						<array class="NSMutableArray" key="children">
 							<reference ref="752423629"/>
 							<reference ref="396995919"/>
-							<reference ref="537984462"/>
 							<reference ref="151070969"/>
 						</array>
 						<reference key="parent" ref="1005"/>
@@ -606,12 +583,6 @@
 						<int key="objectID">37</int>
 						<reference key="object" ref="748337894"/>
 						<reference key="parent" ref="396995919"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">148</int>
-						<reference key="object" ref="537984462"/>
-						<array class="NSMutableArray" key="children"/>
-						<reference key="parent" ref="2603366"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">102</int>
@@ -652,7 +623,6 @@
 				<string key="143.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="144.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="145.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
-				<string key="148.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="164.CustomClassName">FLWizardHeaderViewController</string>
 				<string key="164.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="171.CustomClassName">FLWizardButtonViewController</string>
@@ -675,13 +645,13 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">184</int>
+			<int key="maxID">187</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<object class="IBPartialClassDescription">
 					<string key="className">FLBreadcrumbBarViewController</string>
-					<string key="superclassName">UIViewController</string>
+					<string key="superclassName">NSViewController</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/FLBreadcrumbBarViewController.h</string>
@@ -706,6 +676,25 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">FLWizardButtonViewController</string>
 					<string key="superclassName">NSViewController</string>
+					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="respondToBackButton:">id</string>
+						<string key="respondToNextButton:">id</string>
+						<string key="respondToOtherButton:">id</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="respondToBackButton:">
+							<string key="name">respondToBackButton:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="respondToNextButton:">
+							<string key="name">respondToNextButton:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="respondToOtherButton:">
+							<string key="name">respondToOtherButton:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="_backButton">NSButton</string>
 						<string key="_nextButton">NSButton</string>
@@ -734,16 +723,11 @@
 					<string key="className">FLWizardHeaderViewController</string>
 					<string key="superclassName">NSViewController</string>
 					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="_hostView">NSView</string>
 						<string key="_logoView">NSView</string>
 						<string key="_spinner">NSProgressIndicator</string>
 						<string key="_titleView">NSTextField</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="_hostView">
-							<string key="name">_hostView</string>
-							<string key="candidateClassName">NSView</string>
-						</object>
 						<object class="IBToOneOutletInfo" key="_logoView">
 							<string key="name">_logoView</string>
 							<string key="candidateClassName">NSView</string>
@@ -772,26 +756,7 @@
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">FLWizardViewController</string>
-					<string key="superclassName">UIViewController</string>
-					<dictionary class="NSMutableDictionary" key="actions">
-						<string key="respondToBackButton:">id</string>
-						<string key="respondToNextButton:">id</string>
-						<string key="respondToOtherButton:">id</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="actionInfosByName">
-						<object class="IBActionInfo" key="respondToBackButton:">
-							<string key="name">respondToBackButton:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="respondToNextButton:">
-							<string key="name">respondToNextButton:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="respondToOtherButton:">
-							<string key="name">respondToOtherButton:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</dictionary>
+					<string key="superclassName">NSViewController</string>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="_buttonViewController">FLWizardButtonViewController</string>
 						<string key="_headerViewController">FLWizardHeaderViewController</string>

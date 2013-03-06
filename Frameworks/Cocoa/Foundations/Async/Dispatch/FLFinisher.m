@@ -102,12 +102,12 @@
             dispatch_semaphore_wait(_semaphore, DISPATCH_TIME_FOREVER);
 //            FLLog(@"finished waiting for %X", (void*) _semaphore);
         } 
-        
-        FLThrowIfError(self.result);
     }
     @finally {
         FLAutoreleaseObject(self);
     }   
+
+    FLAssertNotNil_v(self.result, @"result should not be nil!!");
 
     return self.result;
 }

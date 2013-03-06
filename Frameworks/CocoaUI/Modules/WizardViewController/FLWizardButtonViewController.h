@@ -8,16 +8,28 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface FLWizardButtonViewController : NSViewController {
+#import "FLPanelViewController.h"
+
+@protocol FLWizardButtonViewControllerDelegate;
+@interface FLWizardButtonViewController : NSViewController<FLPanelButtons> {
 @private
     IBOutlet NSButton* _nextButton;
     IBOutlet NSButton* _backButton;
     IBOutlet NSButton* _otherButton;
-
+    __unsafe_unretained id<FLWizardButtonViewControllerDelegate> _delegate;
 }
-
+@property (readwrite, assign, nonatomic) id<FLWizardButtonViewControllerDelegate> delegate;
 @property (readonly, strong, nonatomic) NSButton* nextButton;
 @property (readonly, strong, nonatomic) NSButton* backButton;
 @property (readonly, strong, nonatomic) NSButton* otherButton;
 
+- (void) updateButtons;
+
+@end
+
+@protocol FLWizardButtonViewControllerDelegate <NSObject>
+- (void) wizardButtonViewControllerUpdateButtonStates:(FLWizardButtonViewController*) controller;
+- (void) wizardButtonViewControllerRespondToNextButton:(FLWizardButtonViewController*) controller;
+- (void) wizardButtonViewControllerRespondToBackButton:(FLWizardButtonViewController*) controller;
+- (void) wizardButtonViewControllerRespondToOtherButton:(FLWizardButtonViewController*) controller;
 @end

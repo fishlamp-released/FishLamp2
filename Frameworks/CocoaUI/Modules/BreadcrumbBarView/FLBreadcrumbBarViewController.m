@@ -37,14 +37,18 @@
 
 - (void) finishUpdate {
     for(FLBreadcrumbBarView* view in _breadcrumbs) {
-        view.enabled = [self.delegate breadcrumbBar:self breadcrumbIsEnabled:view.key];
-        view.emphasized = [self.delegate breadcrumbBar:self breadcrumbIsVisible:view.key];
+        view.enabled = [self.delegate breadcrumbBar:self breadcrumbIsEnabled:view.title];
+        view.emphasized = [self.delegate breadcrumbBar:self breadcrumbIsVisible:view.title];
         [view didLayout];
     }
     
     [self.view setNeedsDisplay];
 }
 
+
+- (BOOL)acceptsFirstResponder {
+    return YES;
+}
 
 - (void) updateVertical {
     CGFloat verticalOffset = FLRectGetBottom(self.view.bounds) - kTallHeight;
@@ -84,7 +88,7 @@
     [self finishUpdate];
 }
 
-- (void) addBreadcrumb:(NSString*) title forKey:(id) key {
+- (void) addBreadcrumb:(NSString*) title {
 
     if(!_breadcrumbs) {
         _breadcrumbs = [[NSMutableArray alloc] init];
@@ -113,14 +117,17 @@
     view.lineColor = [NSColor gray85Color];
     view.title = title;
     view.titleStyle = stringStyles;
-    view.key = key;
     view.touchedBlock = ^(FLBreadcrumbBarView* clickedView){
-        [self.delegate breadcrumbBar:self  breadcrumbWasClicked:clickedView.key];
+        [self.delegate breadcrumbBar:self  breadcrumbWasClicked:title];
         [self update];
     };
     [_breadcrumbs addObject:view];
     [self.view addSubview:view];
     [self update];
+}
+
+- (void) removeBreadcrumb:(NSString*) title {
+
 }
 
 - (void) setBreadcrumbActive:(BOOL) active forTitle:(NSString*) title {

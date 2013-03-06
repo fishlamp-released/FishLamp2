@@ -27,10 +27,13 @@
 @property (readwrite, strong) NSString* soapNamespace;
 @property (readwrite, strong) NSString* operationName;
 
-- (void) handleSoapFault:(FLSoapFault11*) fault;
 
 + (FLSoapFault11*) checkForSoapFaultInData:(NSData*) data;
 
 - (void) setXmlPath:(NSString*) path withDecodedType:(FLTypeDesc*) desc;
+
+// optionally override
+- (NSError*) createErrorForSoapFault:(FLSoapFault11*) fault;
+
 
 @end

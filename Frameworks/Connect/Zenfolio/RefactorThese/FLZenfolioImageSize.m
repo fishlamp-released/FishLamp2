@@ -7,7 +7,7 @@
 //
 
 #import "FLZenfolioImageSize.h"
-
+#import "FLZenfolioWebApi.h"
 
 
 @interface FLZenfolioImageSize ()
@@ -281,54 +281,9 @@ typedef enum PhotoSizeEnum
     return [self imageSizeFromSizeEnum:[self smallestSizeEnumEnclosingSize:size]];
 }
 
-
-//
-//+ (FLZenfolioImageSize*) smallestSizeEnclosingSize:(CGSize) size {
-//
-//    FLSizeEnum outSize = kSmallThumbnail80x80;
-//
-//    if(size.width <= 80 && size.height <= 80)
-//    {
-//        outSize = kSmallThumbnail80x80;
-//    }
-//    else if(size.width <= 120 && size.height <= 120)
-//    {
-//        outSize = kMediumThumbnail120x120;
-//    }
-//    else if(size.width <= 200 && size.height <= 200)
-//    {
-//        outSize = kLargeThumbnail200x200;
-//    }
-//    else if(size.width <= 400 && size.height <= 400)
-//    {
-//        outSize = kSmallImage400x400;
-//    }
-//    else if(size.width <= 450 && size.height <= 450)
-//    {
-//        outSize = kMediumImage580x450;
-//    }
-//    else if(size.width <= 630 && size.height <= 630)
-//    {
-//        outSize = kLargeImage800x630;
-//    }
-//    else if(size.width <= 850 && size.height <= 850)
-//    {
-//        outSize = kXLargeImage1100x850;
-//    }
-//    else
-//    {
-//        outSize = kXXLargeImage1550x960;
-//    }
-//    
-//
-//    
-//    return nil;
-//}
-
-//#define URL_FORMAT @"http://www.zenfolio.com%@-%d.jpg?sn=%@&tk=%@"
-
-- (NSURL*) urlForImage:(FLZenfolioPhoto*) photo {
-	FLAssertStringIsNotEmpty_(photo.UrlCore);
+- (NSURL*) URLWithPhoto:(FLZenfolioPhoto*) photo {
+   
+     FLAssertStringIsNotEmpty_(photo.UrlCore);
 	
     if(FLStringIsNotEmpty(photo.UrlToken)) {
         return [NSURL URLWithString:[NSString stringWithFormat:@"http://%@%@-%d.jpg?sn=%@&tk=%@",
@@ -345,31 +300,17 @@ typedef enum PhotoSizeEnum
             self.sizeEnum,
             FLStringIsEmpty(photo.Sequence) ? @"" : photo.Sequence]];
     }
-		
-}	
 
-//- (NSURL*) linkForPhoto:(FLZenfolioPhoto*) photo {
-//	return [NSURL URLWithString:[NSString stringWithFormat:@"http://%@%@-%d.jpg", self.UrlHost, self.UrlCore, photoSize]];
-//}
+}
+
 @end
 
 @implementation FLZenfolioOriginalImageSize
-- (NSURL*) urlForImage:(FLZenfolioPhoto*) photo {
+- (NSURL*) URLWithPhoto:(FLZenfolioPhoto*) photo {
     return [NSURL URLWithString:[photo OriginalUrl]];
 }
 @end
 
-@implementation FLZenfolioPhoto (FLZenfolioImageSize)
-
-- (NSURL*) urlForImageWithSize:(FLZenfolioImageSize*) size {
-    return [size urlForImage:self];
-}
-
-//- (NSURL*) urlForPhoto:(FLZenfolioImageSize*) size {
-//    return [size linkForPhoto:self];
-//}
-
-@end
 
 
 

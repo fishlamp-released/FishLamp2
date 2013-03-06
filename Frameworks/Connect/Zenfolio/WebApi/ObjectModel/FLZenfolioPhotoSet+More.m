@@ -89,20 +89,8 @@ FLSynthesizeCachedObjectHandlerProperty(FLZenfolioPhotoSet);
     return [self isStaleComparedTo:photoSet.TextCnValue photoListCn:photoSet.PhotoListCnValue photoCount:photoSet.PhotoCountValue];
 }
 
-- (NSArray*) elements {
+- (NSArray*) Elements {
     return self.Photos;
-}
-
-- (unsigned long long) photoBytes {
-    return self.PhotoBytesValue;
-}
-
-- (NSUInteger) videoCount {
-    return self.VideoCountValue;
-}
-
-- (NSUInteger) photoCount {
-	return [[self PhotoCount] intValue];
 }
 
 - (BOOL) isGalleryElement {

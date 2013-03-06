@@ -8,22 +8,19 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface FLWizardHeaderViewController : NSViewController {
+#import "FLPanelViewController.h"
+
+@interface FLWizardHeaderViewController : NSViewController<FLPanelHeader> {
 @private
-    IBOutlet NSView* _hostView;
     IBOutlet NSTextField* _titleView;
     IBOutlet NSProgressIndicator* _spinner;
     IBOutlet NSView* _logoView;
 }
 
-@property (readonly, strong, nonatomic) NSTextField* titleView;
-@property (readonly, strong, nonatomic) NSView* hostView;
+@property (readonly, strong, nonatomic) NSTextField* promptTextField;
 @property (readonly, strong, nonatomic) NSProgressIndicator* spinner;
 
-- (void) addPanelView:(NSView*) view;
-- (void) removePanelViews;
-
-- (void) setTitle:(NSString*) title;
+- (void) setPrompt:(NSString*) title animationDuration:(CGFloat) animationDuration;
 
 - (void) showSpinner:(BOOL) show;
 @end

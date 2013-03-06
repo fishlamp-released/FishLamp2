@@ -34,6 +34,7 @@
 - (id) recursiveElementAtIndex:(NSInteger) index;
 
 - (NSArray*) pathComponentsToGroupElement:(FLZenfolioGroupElement*) element;
+- (NSString*) pathToGroupElement:(FLZenfolioGroupElement*) element withDelimiter:(NSString*) delimiter;
 
 - (NSUInteger) elementCountWithFilter:(NSDictionary*) filter;
 - (FLZenfolioGroupElement*) elementAtIndex:(NSInteger) index withFilter:(NSDictionary*) filter;

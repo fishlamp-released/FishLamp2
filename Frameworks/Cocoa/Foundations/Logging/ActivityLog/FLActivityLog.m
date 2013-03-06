@@ -9,6 +9,9 @@
 #import "FLActivityLog.h"
 #import "FLAttributedString.H"
 
+NSString* const FLActivityLogUpdated = @"FLActivityLogUpdated";
+NSString* const FLActivityLogStringKey = @"FLActivityLogStringKey";
+
 @implementation FLActivityLog
 
 FLSynthesizeSingleton(FLActivityLog);
@@ -17,17 +20,18 @@ FLSynthesizeSingleton(FLActivityLog);
     self = [super init];
     if(self) {
         _log = [[FLPrettyAttributedString alloc] init];
-        self.delegate = self;
+        _log.delegate = self;
     }
     return self;
 }
 
-#if FL_MRC
 - (void) dealloc {
+    _log.delegate = nil;
+#if FL_MRC
     [_log release];
     [super dealloc];
-}
 #endif
+}
 
 - (void) stringFormatter:(FLStringFormatter*) stringFormatter 
             appendString:(NSString*) string
@@ -50,12 +54,12 @@ FLSynthesizeSingleton(FLActivityLog);
     [_log stringFormatter:stringFormatter appendString:string appendAttributedString:attributedString lineUpdate:lineUpdate];
 }   
 
-- (void) stringFormatterIndent:(FLStringFormatter*) stringFormatter {
-    [_log stringFormatterIndent:stringFormatter];
+- (void) indent {
+    [_log indent];
 }
 
-- (void) stringFormatterOutdent:(FLStringFormatter*) stringFormatter {
-    [_log stringFormatterOutdent:stringFormatter];
+- (void) outdent {
+    [_log outdent];
 }
 
 - (NSString*) string {
@@ -77,6 +81,25 @@ FLSynthesizeSingleton(FLActivityLog);
     return FLAutorelease(err);
 }
 
+- (void) prettyString:(FLPrettyString*) prettyString didAppendAttributedString:(NSAttributedString*) string {
+    [[NSNotificationCenter defaultCenter] postNotificationName:FLActivityLogUpdated object:self userInfo:[NSDictionary dictionaryWithObject:string forKey:FLActivityLogStringKey]];
+}
+
+- (void) appendURL:(NSURL*) url string:(NSString*) string {
+    NSMutableAttributedString* urlString = [NSMutableAttributedString mutableAttributedString:string 
+                                                                                          url:url 
+                                                                                        color:[NSColor blackColor] 
+                                                                                    underline:YES];
+    [self appendAttributedString:urlString];
+}
+
+- (void) appendLineWithURL:(NSURL*) url string:(NSString*) string {
+    NSMutableAttributedString* urlString = [NSMutableAttributedString mutableAttributedString:string 
+                                                                                          url:url 
+                                                                                        color:[NSColor blackColor] 
+                                                                                    underline:YES];
+    [self appendLineWithAttributedString:urlString];
+}
 
 
 @end

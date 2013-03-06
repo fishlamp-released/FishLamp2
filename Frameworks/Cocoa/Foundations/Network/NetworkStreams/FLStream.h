@@ -27,10 +27,8 @@
 @property (readonly, assign) BOOL hasBytesAvailable;
 @property (readonly, assign) unsigned long bytesRead;
 
-/** this repeatedly calls readblock until there is no more available bytes, or the STOP is set to YES */
-//- (void) readAvailableBytesWithBlock:(void (^)(BOOL* stop)) readblock;
-
-- (NSInteger) readAvailableBytes:(NSMutableData*) data;
+- (NSUInteger) readBytes:(uint8_t*) bytes 
+               maxLength:(NSUInteger) maxLength;
 @end
 
 @protocol FLStreamRequiredOverrides <NSObject>
@@ -42,7 +40,6 @@
 
 @interface FLStream : NSObject<FLStream, FLStreamRequiredOverrides> {
 @private
-    BOOL _cancelled;;
     FLTimeoutTimer* _timeoutTimer;
     NSTimeInterval _timeoutInterval;
 }
@@ -50,30 +47,5 @@
 @property (readwrite, assign) NSTimeInterval timeoutInterval;
 @property (readonly, strong) FLTimeoutTimer* timeoutTimer;
 - (void) touchTimestamp;
-
-// requried overrides
-
 @end
 
-//@protocol FLStreamObserver <NSObject>
-//- (void) streamWillOpen:(id<FLStream>) stream;
-//
-//- (void) streamDidOpen:(id<FLStream>) stream;
-//
-//- (void) stream:(id<FLStream>) stream 
-//   willCloseWithResult:(FLResult) result;
-//
-//- (void) stream:(id<FLStream>) stream 
-//    didCloseWithResult:(FLResult) result;
-//
-//- (void) stream:(id<FLStream>) stream
-//      didEncounterError:(NSError*) error;
-//
-//- (void) streamHasBytesAvailable:(id<FLReadStream>) stream;
-//
-//- (void) streamDidReadBytes:(id<FLReadStream>) stream;
-//
-//- (void) streamCanAcceptBytes:(id<FLWriteStream>) stream;
-//
-//- (void) streamDidWriteBytes:(id<FLWriteStream>) stream;
-//@end

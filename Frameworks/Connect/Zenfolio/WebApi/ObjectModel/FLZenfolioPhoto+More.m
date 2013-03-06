@@ -39,4 +39,8 @@
     return [self isStaleComparedTo:photo.TextCnValue sequence:photo.Sequence];
 }
 
+- (NSURL*) urlForImageWithSize:(FLZenfolioImageSize*) size {
+    return [size URLWithPhoto:self];
+}
+
 @end

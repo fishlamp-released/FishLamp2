@@ -14,7 +14,7 @@
 #import "FLPrettyString.h"
 #import "FLStringDocument.h"
 
-@interface FLDocumentBuilder : FLStringFormatter<FLStringFormatterDelegate, FLBuildableString> {
+@interface FLDocumentBuilder : FLStringFormatter<FLBuildableString> {
 @private
     FLStringDocument* _document;
 }

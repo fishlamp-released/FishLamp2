@@ -9,25 +9,30 @@
 #import <Foundation/Foundation.h>
 #import "FLStringFormatter.h"
 
+extern NSString* const FLActivityLogUpdated;
+extern NSString* const FLActivityLogStringKey;
+
 @protocol FLActivityLog <FLStringFormatter>
 
 @property (readonly, strong, nonatomic) NSString* string;
 @property (readonly, strong, nonatomic) NSAttributedString* attributedString;
+
+- (void) appendURL:(NSURL*) url string:(NSString*) text;
+- (void) appendLineWithURL:(NSURL*) url string:(NSString*) text;
+
+- (NSError*) exportToPath:(NSURL*) url;
+
 @end
 
-@interface FLActivityLog : FLStringFormatter<FLActivityLog, FLStringFormatterDelegate> {
+
+@interface FLActivityLog : FLStringFormatter<FLActivityLog, FLPrettyStringDelegate> {
 @private 
     FLPrettyAttributedString* _log;
 }
 
 FLSingletonProperty(FLActivityLog);
 
-- (NSError*) exportToPath:(NSURL*) url;
-
 @end
 
-@protocol FLActivityLogDelegate <NSObject>
-- (void) activityLog:(FLActivityLog*) activityLog wasUpdated:(NSString*) line;
-@end
 
 

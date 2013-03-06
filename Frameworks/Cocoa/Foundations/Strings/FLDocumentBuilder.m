@@ -15,7 +15,6 @@
 - (id) init {
     self = [super init];
     if(self) {
-        self.delegate = self;
         _document = [[FLStringDocument alloc] init];
         _document.rootStringBuilder.parent = self;
     }

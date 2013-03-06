@@ -20,10 +20,6 @@
 	return @"";
 }
 
-- (NSArray*) elements {
-    return nil;
-}
-
 - (BOOL) isGalleryElement {
 	return NO;
 }
@@ -44,15 +40,38 @@
 	return nil;
 }
 
+- (NSDate*) CreatedOn {
+    return nil;
+}
+
 - (void) setModifiedOn:(NSDate*) date {
 }
 
-// here for polymorphic use, overriden in FLZenfolioPhotoSet and FLZenfolioGroup
+- (NSNumber*) VideoCount {
+    return nil;
+}
+
 - (void) setPageUrl:(NSString*) url {
 }
 
 - (NSMutableArray*) ParentGroups {
 	return nil;
+}
+
+- (NSArray*) Elements { 
+    return nil;
+}
+
+- (NSNumber*) PhotoCount {
+    return nil;
+}
+
+- (NSNumber*) GalleryCount {
+    return nil;
+}
+
+- (NSNumber*) PhotoBytes {
+    return nil;
 }
 
 - (void) setParentGroups:(NSMutableArray*) array {
@@ -67,43 +86,12 @@
                 [self isGalleryElement] ? FLZenfolioGroupElementTypeGallery : FLZenfolioGroupElementTypeCollection;
 }
 
-- (NSString*) title {
-    return self.Title;
-}
+- (unsigned long long) PhotoBytesValue {
+    return 0;
+}   
 
 - (NSString *)sizeText {
-	return [NSString localizedStringForByteSize:self.photoBytes];
-}
-
-//const NSString *dateFormat = @"%Y-%m-%dT%H:%M:%S.0000000%z";
-//		NSString *createdStr = [entryDict valueForKey:@"CreatedOn"];
-//		[self setCreatedOn:[NSCalendarDate dateWithString:createdStr calendarFormat:dateFormat]];
-//		NSString *modifiedStr = [entryDict valueForKey:@"ModifiedOn"];
-//		[self setModifiedOn:[NSCalendarDate dateWithString:modifiedStr calendarFormat:dateFormat]];
-//		
-
-- (NSDate*) CreatedOn {
-    return nil;
-}
-
--(NSDate*) createdOn {
-    return self.CreatedOn;
-}
-
--(NSDate*) modifiedOn {
-    return self.ModifiedOn;
-}
-
-- (int) groupElementID {
-    return self.IdValue;
-}
-
-- (NSUInteger) photoCount {
-	return 0;
-}
-
-- (NSUInteger) galleryCount {
-    return 0;
+	return [NSString localizedStringForByteSize:self.PhotoBytesValue];
 }
 
 - (BOOL) visitAllElements:(FLGroupElementVisitor) visitor elementIndex:(NSUInteger*) elementIndex {
@@ -114,7 +102,7 @@
         return YES;
     }
     
-    for(id element in self.elements) {
+    for(id element in self.Elements) {
         
         if([element isGroupElement]) {
             if([element visitAllElements:visitor elementIndex:elementIndex] ) {
@@ -137,16 +125,12 @@
     return [self visitAllElements:visitor elementIndex:&idx];
 }
 
-- (int) VideoCountValue {
-    return 0;
-}
+//- (int) VideoCountValue {
+//    return 0;
+//}
 
-- (unsigned long long) photoBytes {
-	return 0;
-}
-
-- (NSUInteger) videoCount {
-    return 0;
+- (NSString*) description {
+    return [NSString stringWithFormat:@"%@: %@: %@", [super description], [self Title], [self Id]];
 }
 
 @end

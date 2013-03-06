@@ -55,8 +55,8 @@
     return FLAutorelease([[[self class] alloc] initWithGeneratedObject:httpRequest serverInfo:info]);
 }
 
-- (void) handleSoapFault:(FLSoapFault11*) fault {
-    FLThrowIfError([NSError errorWithZenfolioSoapFault:fault]);
+- (NSError*) createErrorForSoapFault:(FLSoapFault11*) fault {
+    return [NSError errorWithZenfolioSoapFault:fault];
 }
 
 @end

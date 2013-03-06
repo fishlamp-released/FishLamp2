@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #import "FLZenfolioPhoto.h"
+#import "FLZenfolioImageSize.h"
 
 @interface FLZenfolioPhoto (More)
 - (NSString*) displayName;
@@ -19,5 +20,7 @@
                   sequence:(NSString*) sequence; // nil seq skip that check
 
 - (BOOL) isStaleComparedToPhoto:(FLZenfolioPhoto*) photo;
+
+- (NSURL*) urlForImageWithSize:(FLZenfolioImageSize*) size;
 
 @end

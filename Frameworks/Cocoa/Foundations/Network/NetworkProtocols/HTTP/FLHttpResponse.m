@@ -15,24 +15,16 @@
 @property (readwrite, strong, nonatomic) NSString* responseStatusLine;
 @property (readwrite, strong, nonatomic) FLHttpResponse* redirectedFrom;
 @property (readwrite, strong, nonatomic) NSURL* requestURL;
-@property (readwrite, strong, nonatomic) NSMutableData* mutableResponseData;
 @end
 
 @implementation FLHttpResponse
 
-@synthesize mutableResponseData = _data;
 @synthesize responseStatusCode = _responseStatusCode;
 @synthesize responseHeaders = _responseHeaders;
 @synthesize responseStatusLine = _responseStatusLine;
 @synthesize requestURL = _requestURL;
 @synthesize redirectedFrom = _redirectedFrom;
-#if DEBUG
-@synthesize debugResponseData = _debugResponseData;
-#endif
-
-- (NSData*) responseData {
-    return self.mutableResponseData;
-}
+@synthesize responseReceiver = _responseReceiver;
 
 - (id) initWithRequestURL:(NSURL*) url {
     return [self initWithRequestURL:url redirectedFrom:nil];
@@ -40,7 +32,6 @@
 
 - (id) initWithRequestURL:(NSURL*) url redirectedFrom:(FLHttpResponse*) redirectedFrom {
     if((self = [super init])) {
-        _data = [[NSMutableData alloc] init];
         self.requestURL = url;
         self.redirectedFrom = redirectedFrom;
     }
@@ -56,21 +47,20 @@
     return FLAutorelease([[[self class] alloc] initWithRequestURL:requestURL redirectedFrom:redirectedFrom]);
 }
 
-
 #if FL_MRC
 - (void) dealloc {
     [_redirectedFrom release];
     [_requestURL release];
     [_responseStatusLine release];
     [_responseHeaders release];
-    [_data release];
-#if DEBUG
-    [_debugResponseData release];
-#endif    
+    [_responseReceiver release];
     [super dealloc];
 }
 #endif
 
+- (NSData*) responseData {
+    return [self.responseReceiver data];
+}
 
 + (id) httpRespose {
     return FLAutorelease([[[self class] alloc] init]);
@@ -102,25 +92,15 @@
     return [_responseHeaders objectForKey:header];
 }
 
-- (id)copyWithZone:(NSZone *)zone {
-    FLHttpResponse* response = [[FLHttpResponse alloc] initWithRequestURL:self.requestURL];
-    response.responseHeaders = self.responseHeaders;
-    response.responseStatusCode = self.responseStatusCode;
-    response.redirectedFrom = self.redirectedFrom;
-    response.mutableResponseData = FLAutorelease([self.mutableResponseData mutableCopy]);
-    response.responseStatusLine = self.responseStatusLine;
-    return response;
-}
-
-- (id)mutableCopyWithZone:(NSZone *)zone {
-    FLHttpResponse* response = [[FLMutableHttpResponse alloc] initWithRequestURL:self.requestURL];
-    response.responseHeaders = self.responseHeaders;
-    response.responseStatusCode = self.responseStatusCode;
-    response.redirectedFrom = self.redirectedFrom;
-    response.mutableResponseData = FLAutorelease([self.mutableResponseData mutableCopy]);
-    response.responseStatusLine = self.responseStatusLine;
-    return response;
-}
+//- (id)copyWithZone:(NSZone *)zone {
+//    FLHttpResponse* response = [[FLHttpResponse alloc] initWithRequestURL:self.requestURL];
+//    response.responseHeaders = self.responseHeaders;
+//    response.responseStatusCode = self.responseStatusCode;
+//    response.redirectedFrom = self.redirectedFrom;
+//    response.responseReceiver = FLAutorelease([self.responseReceiver copyWithNoData]);
+//    response.responseStatusLine = self.responseStatusLine;
+//    return response;
+//}
 
 - (NSString*) description {
 //    NSMutableString* string = [self headers]
@@ -130,36 +110,11 @@
     [desc appendFormat:@"response status line: \"%@\"\r\nresponse code: %d\r\n", _responseStatusLine, (int)_responseStatusCode];
     [desc appendFormat:@"response headers: %@\r\n",  [_responseHeaders description]];
     
-#if DEBUG
-    if(_debugResponseData) {
-        [desc appendFormat:@"response data:\r\n%@\r\n", [_debugResponseData description]];
-    }
-#endif    
-
     if(self.redirectedFrom) {
         [desc appendFormat:@"redirected from: %@\r\n", [self.redirectedFrom description]];
     }
 
     return desc;
-}
-
-@end
-
-@implementation FLMutableHttpResponse 
-
-@dynamic mutableResponseData;
-
-- (void) appendBytes:(const void *)bytes length:(NSUInteger)length {
-
-    if(!self.mutableResponseData) {
-        self.mutableResponseData = [NSMutableData dataWithCapacity:length];
-    }
-
-    [self.mutableResponseData appendBytes:bytes length:length];
-}
-
-- (void) appendBytes:(FLByteBuffer*) buffer {
-    [self appendBytes:buffer.content length:buffer.length];
 }
 
 - (void) setResponseHeadersWithHttpMessage:(FLHttpMessage*) message {
@@ -169,3 +124,4 @@
 }
 
 @end
+

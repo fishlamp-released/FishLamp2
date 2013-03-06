@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "FLZenfolioPhoto.h"
+@class FLZenfolioPhoto;
 
 typedef uint32_t FLSizeEnum;
 
@@ -46,12 +46,8 @@ typedef uint32_t FLSizeEnum;
 + (FLZenfolioImageSize*) imageSizeEnclosingSize:(CGSize) size;
 + (FLSizeEnum) smallestSizeEnumEnclosingSize:(CGSize) size;
 
+- (NSURL*) URLWithPhoto:(FLZenfolioPhoto*) photo;
 
-@end
-
-@interface FLZenfolioPhoto (FLZenfolioImageSize)
-- (NSURL*) urlForImageWithSize:(FLZenfolioImageSize*) size;
-//- (NSURL*) urlForUserBrowserWithSize:(FLZenfolioImageSize*) size;
 @end
 
 

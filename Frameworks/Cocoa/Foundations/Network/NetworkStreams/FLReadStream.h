@@ -11,21 +11,11 @@
 
 @protocol FLReadStreamDelegate;
 
-@interface FLReadStream : FLNetworkStream<FLReadStream>  {
-@private
-    CFReadStreamRef _streamRef;
-    __unsafe_unretained id<FLReadStreamDelegate> _delegate;
-    BOOL _isOpen;
-}
+@interface FLReadStream : FLNetworkStream<FLReadStream> 
 @property (readwrite, assign) id<FLReadStreamDelegate> delegate;
 @property (readonly, assign, nonatomic) CFReadStreamRef streamRef;
 
-- (BOOL) hasBytesAvailable;
-
-- (unsigned long) bytesRead;
-
 - (id) initWithReadStream:(CFReadStreamRef) writeStream;
-
 + (id) readStream:(CFReadStreamRef) writeStream;
 
 @end

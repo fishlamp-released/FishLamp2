@@ -10,11 +10,7 @@
 
 #import "FLZenfolioGroupElement.h"
 
-@interface FLZenfolioGroupElementSelection : NSObject<NSCopying> {
-@private
-    NSMutableDictionary* _selection;
-    NSArray* _selectedPhotoSets;
-}
+@interface FLZenfolioGroupElementSelection : NSObject<NSCopying> 
 + (id) groupElementSelection;
 
 @property (readonly, assign, nonatomic) NSUInteger selectionCount;
@@ -37,5 +33,7 @@
 - (long long) selectedPhotoBytes;
 
 - (int) selectedPhotoCount;
+
+- (void) clearCachedSearchData;
 
 @end

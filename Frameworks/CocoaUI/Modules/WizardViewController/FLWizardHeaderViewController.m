@@ -14,8 +14,7 @@
 
 @implementation FLWizardHeaderViewController
 
-@synthesize hostView = _hostView;
-@synthesize titleView = _titleView;
+@synthesize promptTextField = _titleView;
 @synthesize spinner = _spinner;
 
 - (void)awakeFromNib {
@@ -27,41 +26,10 @@
     [self.view addSubview:_titleView positioned:NSWindowAbove relativeTo:_logoView];
 }
 
-
-- (void) loadView {
-    [super loadView];
-    [self view];
-    
-}
-
-- (void) addPanelView:(NSView*) view {
-    [_hostView addSubview:view];
-}
-
-- (void) removePanelViews {
-    for(NSView* view in _hostView.subviews) {
-        [view removeFromSuperview];
-    }
-}
-
-
-//static NSComparisonResult myCustomViewAboveSiblingViewsComparator( NSView * view1, NSView * view2, void * context )
-//{    
-//    if ([view1 isKindOfClass:[MyCustomView class]])    
-//        return NSOrderedDescending;    
-//    else if ([view2 isKindOfClass:[MyCustomView class]])    
-//        return NSOrderedAscending;    
-//
-//    return NSOrderedSame;
-//}
-
-- (void) setTitle:(NSString*) title {
+- (void) setPrompt:(NSString*) title animationDuration:(CGFloat) animationDuration {
     [_logoView sendToBack];
     _titleView.stringValue = title;
     [_titleView bringToFront];
-    
-    
-    
 }
 
 - (void) showSpinner:(BOOL) show {

@@ -13,12 +13,21 @@
 
 @end
 
-@implementation FLPanelViewController
+@implementation FLPanelViewController {
+@private
+    NSString* _prompt;
+    BOOL _canOpenNextPanel;
+    __unsafe_unretained FLPanelManager* _panelManager;
+    __unsafe_unretained FLPanelManager* _wizardViewController;
+    id<FLPanelButtons> _buttons;
+    id<FLPanelHeader> _header;
+}
 
-@synthesize breadcrumbTitle = _breadcrumbTitle;
+@synthesize wizardViewController = _wizardViewController;
+@synthesize prompt = _prompt;
 @synthesize canOpenNextPanel = _canOpenNextPanel;
-@synthesize wizard = _wizard;
-@synthesize key = _key;
+@synthesize buttons = _buttons;
+@synthesize header = _header;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -32,8 +41,9 @@
 
 #if FL_MRC
 - (void) dealloc {
-    [_key release];
-    [_breadcrumbTitle release];
+    [_header release];
+    [_buttons release];
+    [_prompt release];
     [super dealloc];
 }
 #endif
@@ -42,68 +52,53 @@
     [super loadView];
 }
 
-- (void) setCanOpenNextPanel:(BOOL) can {
-    _canOpenNextPanel = can;
-    [_wizard updateButtonEnabledStates];
-}
-
-- (void) setWizard:(FLWizardViewController*) wizard {
-    _wizard = wizard;
-    [self didMoveToWizard:wizard];
-}
-
 - (BOOL)acceptsFirstResponder {
     return YES;
 }
 
-- (void) didMoveToWizard:(FLWizardViewController*) wizard {
+- (BOOL)becomeFirstResponder {
+    NSLog(@"panel becomeFirstResponder: %@", [self title]);
+    return YES;
 }
 
-- (void) respondToOtherButton:(FLWizardViewController*) wizard {
+- (BOOL)resignFirstResponder {
+    NSLog(@"panel resignFirstResponder: %@", [self title]);
+    return YES;
 }
 
-//- (id) userContext {
-//    return [_wizard userContext];
-//}
 
-- (void) panelWillAppearInWizard:(FLWizardViewController*) wizard {
+- (void) panelWillAppear {
 }
 
-- (void) panelDidAppearInWizard:(FLWizardViewController*) wizard {
+- (void) panelDidAppear {
 }
 
-- (void) panelWillDisappearInWizard:(FLWizardViewController*) wizard {
+- (void) panelWillDisappear {
 }
 
-- (void) panelDidDisappearInWizard:(FLWizardViewController*) wizard {
+- (void) panelDidDisappear {
 }
 
-- (BOOL) respondToNextButton:(FLWizardViewController*) wizard {
-    return NO;
+- (void) respondToOtherButton:(BOOL*) handledIt {
 }
 
-- (BOOL) respondToBackButton:(FLWizardViewController*) wizard {
-    return NO;
+- (void) respondToNextButton:(BOOL*) handledIt {
 }
 
-- (BOOL) willRespondToOtherButtonInWizard:(FLWizardViewController*) wizard {
-    return NO;
+- (void) respondToBackButton:(BOOL*) handledIt {
 }
 
-- (NSButton*) nextButton {
-    return [self.wizard nextButton];
+- (void) addPanelView:(NSView*) panelView toPanelArea:(id<FLPanelArea>) panelArea animated:(BOOL) animated {
+    [_panelManager addPanelView:panelView toView:panelArea.view animated:animated];
 }
 
-- (NSButton*) backButton {
-    return [self.wizard backButton];
-}
-
-- (NSButton*) otherButton {
-    return [self.wizard otherButton];
-}
-
-- (void) enableBackButton:(BOOL) enable {
-    self.backButton.enabled = enable;
+- (void) didMoveToPanelManager:(FLPanelManager*) manager {
+    _panelManager = manager;
+    
+    if(!_panelManager) {
+        self.buttons = nil;
+        self.header = nil;
+    }
 }
 
 

@@ -25,25 +25,27 @@ typedef void (^FLGroupElementVisitor)(FLZenfolioGroupElement* element, NSUIntege
 @property (readonly, assign, nonatomic) FLZenfolioGroupElementType groupElementType;
 
 // here for polymorphic use, overridden in FLZenfolioPhotoSet and FLZenfolioGroup
-@property (readwrite, retain, nonatomic) NSString* PageUrl;
-@property (readwrite, retain, nonatomic) NSMutableArray* ParentGroups;
-@property (readwrite, retain, nonatomic) NSDate* ModifiedOn;
-@property (readonly, retain, nonatomic) NSNumber* parentGroupId;
-@property (readonly, retain, nonatomic) NSString* Caption;
-@property (readonly, retain, nonatomic) FLZenfolioPhoto* TitlePhoto;
+@property (readwrite, strong, nonatomic) NSString* PageUrl;
 
+@property (readwrite, strong, nonatomic) NSMutableArray* ParentGroups;
+
+@property (readonly, strong, nonatomic) NSDate* CreatedOn;
+@property (readwrite, strong, nonatomic) NSDate* ModifiedOn;
+
+@property (readonly, strong, nonatomic) FLZenfolioPhoto* TitlePhoto;
+@property (readonly, strong, nonatomic) NSNumber* GalleryCount;
+@property (readonly, strong, nonatomic) NSNumber* PhotoCount;
+@property (readonly, strong, nonatomic) NSNumber* VideoCount;
+@property (readonly, strong, nonatomic) NSArray* Elements;
+@property (readonly, strong, nonatomic) NSString* Caption;
+@property (readonly, strong, nonatomic) NSNumber* PhotoBytes;
+
+@property (readonly, assign, nonatomic) unsigned long long PhotoBytesValue;
 
 // helpers
-- (unsigned long long) photoBytes;
-- (int) groupElementID;
-- (NSDate*) createdOn;
-- (NSDate*) modifiedOn;
-- (NSString*) title;
+@property (readonly, strong, nonatomic) NSNumber* parentGroupId;
+
 - (NSString*) sizeText;
-- (NSArray*) elements;
-- (NSUInteger) galleryCount;
-- (NSUInteger) photoCount;
-- (NSUInteger) videoCount;
 
 // utils
 

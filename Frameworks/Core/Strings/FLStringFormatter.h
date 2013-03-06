@@ -55,18 +55,6 @@
 
 /// concrete base class.
 
-@protocol FLStringFormatterDelegate;
-
-@interface FLStringFormatter : NSObject<FLStringFormatter> {
-@private
-    BOOL _editingLine;
-    __unsafe_unretained id<FLStringFormatterDelegate> _delegate;
-}
-@property (readwrite, assign, nonatomic) id<FLStringFormatterDelegate> delegate;
-@end
-
-/// For delegates.
-
 /// this describes state of open openLine. Uses one method (stringFormatter:appendString:lineInfo) to allow
 /// for optimizations.
 typedef struct {
@@ -76,19 +64,23 @@ typedef struct {
     BOOL closeLine; // Any of other options may be set
 } FLStringFormatterLineUpdate;
 
-@protocol FLStringFormatterDelegate <NSObject>
+@interface FLStringFormatter : NSObject<FLStringFormatter> {
+@private
+    BOOL _editingLine;
+}
 
+// required override
 - (void) stringFormatter:(FLStringFormatter*) stringFormatter 
             appendString:(NSString*) string
   appendAttributedString:(NSAttributedString*) string
               lineUpdate:(FLStringFormatterLineUpdate) lineUpdate;
 
-@optional
-- (void) stringFormatterIndent:(FLStringFormatter*) stringFormatter;
-- (void) stringFormatterOutdent:(FLStringFormatter*) stringFormatter;
+// optional overrides
+- (void) indent;
+- (void) outdent;
+
 
 @end
-
 
 @protocol FLBuildableString <NSObject>
 - (void) appendLinesToStringFormatter:(id<FLStringFormatter>) stringFormatter;

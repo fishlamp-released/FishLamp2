@@ -14,12 +14,12 @@
 #import "FLPanelManager.h"
 
 @class FLPanelViewController;
-@protocol FLWizardViewControllerDelegate;
+//@protocol FLWizardViewControllerDelegate;
 
 
-@interface FLWizardViewController : UIViewController<FLBreadcrumbBarViewControllerDelegate, FLPanelManagerDelegate> {
+@interface FLWizardViewController : UIViewController<FLBreadcrumbBarViewControllerDelegate, FLPanelManagerDelegate, FLWizardButtonViewControllerDelegate> {
 @private
-    __unsafe_unretained id<FLWizardViewControllerDelegate> _delegate;
+//    __unsafe_unretained id<FLWizardViewControllerDelegate> _delegate;
 
     IBOutlet FLWizardHeaderViewController* _headerViewController;
     IBOutlet FLWizardButtonViewController* _buttonViewController;
@@ -27,8 +27,6 @@
     IBOutlet FLPanelManager* _panelManager;
 }
 
-// delegate
-@property (readwrite, assign, nonatomic) IBOutlet id<FLWizardViewControllerDelegate> delegate;
 
 // views
 @property (readonly, strong, nonatomic) FLWizardHeaderViewController* headerViewController;
@@ -40,61 +38,49 @@
 
 - (void) startWizardInWindow:(NSWindow*) window;
 
-- (void) addPanel:(FLPanelViewController*) panel forKey:(id) key;
-
-//
-// Utils
-//
-- (void) updateButtonEnabledStates;
+- (void) addPanel:(FLPanelViewController*) panel;
+- (void) removePanelForTitle:(NSString*) title;
 
 //
 // optional overrides
 //
-- (void) willHidePanel:(FLPanelViewController*) panel;
-- (void) didHidePanel:(FLPanelViewController*) panel;
 
-- (void) willShowPanel:(FLPanelViewController*) panel;
-- (void) didShowPanel:(FLPanelViewController*) panel;
+- (void) willShowPanel:(FLPanelViewController*) toShow 
+         willHidePanel:(FLPanelViewController*) toHide;
 
-- (void) willStartWizardInWindow:(NSWindow*) window;
-- (void) didStartWizardInWindow:(NSWindow*) window;
-
-//    [self.window setDefaultButtonCell:[_button cell]];
+- (void) didShowPanel:(FLPanelViewController*) toShow 
+         didHidePanel:(FLPanelViewController*) toHide;
 
 @end
 
 
-@protocol FLWizardViewControllerDelegate <NSObject>
-@optional
-- (void) wizardViewControllerCanStart:(FLWizardViewController*) wizard;
+// delegate
+//@property (readwrite, assign, nonatomic) IBOutlet id<FLWizardViewControllerDelegate> delegate;
 
-- (void) wizardViewControllerWillStartWizard:(FLWizardViewController*) wizard;
-
-- (void) wizardViewControllerDidStartWizard:(FLWizardViewController*) wizard;
-
-- (void) wizardViewController:(FLWizardViewController*) wizard 
-     didFinishWithPanel:(FLPanelViewController*) panel;
-
-- (void) wizardViewController:(FLWizardViewController*) wizard 
-        panelWillAppear:(FLPanelViewController*) panel;
-
-- (void) wizardViewController:(FLWizardViewController*) wizard 
-         panelDidAppear:(FLPanelViewController*) panel;
-
-- (void) wizardViewController:(FLWizardViewController*) wizard 
-     panelWillDisappear:(FLPanelViewController*) panel;
-
-- (void) wizardViewController:(FLWizardViewController*) wizard 
-      panelDidDisappear:(FLPanelViewController*) panel;
-
-//- (BOOL) wizardViewController:(FLWizardViewController*) wizard
-//panelWillRespondToNextButton:(FLPanelViewController*) panel;
+//@protocol FLWizardViewControllerDelegate <NSObject>
+//@optional
+////- (void) wizardViewControllerCanStart:(FLWizardViewController*) wizard;
 //
-//- (BOOL) panel:(FLPanelViewController*) panel respondToBackButton:(FLWizardViewController*) wizard;
-//- (BOOL) panel:(FLPanelViewController*) panel willRespondToOtherButtonInWizard:(FLWizardViewController*) wizard;
-
-
-@end
+////- (void) wizardViewControllerWillStartWizard:(FLWizardViewController*) wizard;
+//
+////- (void) wizardViewControllerDidStartWizard:(FLWizardViewController*) wizard;
+//
+////- (void) wizardViewController:(FLWizardViewController*) wizard 
+////     didFinishWithPanel:(FLPanelViewController*) panel;
+//
+////- (void) wizardViewController:(FLWizardViewController*) wizard 
+////        panelWillAppear:(FLPanelViewController*) panel;
+//
+////- (void) wizardViewController:(FLWizardViewController*) wizard 
+////         panelDidAppear:(FLPanelViewController*) panel;
+//
+////- (void) wizardViewController:(FLWizardViewController*) wizard 
+////     panelWillDisappear:(FLPanelViewController*) panel;
+//
+////- (void) wizardViewController:(FLWizardViewController*) wizard 
+////      panelDidDisappear:(FLPanelViewController*) panel;
+//
+//@end
 
 @interface NSWindowController (FLModalAdditions)
 @property (readonly, assign, nonatomic) NSWindow* modalInWindow;
