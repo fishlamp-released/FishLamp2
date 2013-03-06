@@ -25,20 +25,17 @@ FLStringFormatterLineUpdate MakeInfo(BOOL closePreviousLine,
 }
 
 #define str_or_nil(str) (str == nil || str.length == 0) ? nil : str
-#define closeLineInfo() MakeInfo(_editingLine, NO, NO, YES)
+#define closeLineInfo() MakeInfo(_editingLine, NO, NO, NO)
 #define openLineInfo() MakeInfo(_editingLine, NO, YES, NO)
 #define appendLineInfo() MakeInfo(NO, NO, !_editingLine, YES)
 #define appendStringInfo() MakeInfo(NO, NO, !_editingLine, NO)
 
 @implementation FLStringFormatter
 
-@synthesize delegate = _delegate;
-
-
 - (void) appendString:(NSString*) string {
     FLAssertNotNil_(string);
     
-    [self.delegate stringFormatter:self 
+    [self stringFormatter:self 
                       appendString:string
             appendAttributedString:nil
                         lineUpdate:appendStringInfo()];
@@ -50,7 +47,7 @@ FLStringFormatterLineUpdate MakeInfo(BOOL closePreviousLine,
 - (void) appendAttributedString:(NSAttributedString*) string {
     FLAssertNotNil_(string);
     
-    [self.delegate stringFormatter:self 
+    [self stringFormatter:self 
                       appendString:nil
             appendAttributedString:str_or_nil(string)
                         lineUpdate:appendStringInfo()];
@@ -62,7 +59,7 @@ FLStringFormatterLineUpdate MakeInfo(BOOL closePreviousLine,
 - (void) closeLine {
     FLAssert_(_editingLine);
     if(_editingLine) {
-        [self.delegate stringFormatter:self 
+        [self stringFormatter:self 
                           appendString:nil
                 appendAttributedString:nil
                             lineUpdate:closeLineInfo()];
@@ -73,7 +70,7 @@ FLStringFormatterLineUpdate MakeInfo(BOOL closePreviousLine,
 - (void) closeLineWithString:(NSString*) string {
     FLAssert_(_editingLine);
     if(_editingLine) {
-        [self.delegate stringFormatter:self 
+        [self stringFormatter:self 
                           appendString:str_or_nil(string)
                 appendAttributedString:nil
                             lineUpdate:closeLineInfo()];
@@ -84,7 +81,7 @@ FLStringFormatterLineUpdate MakeInfo(BOOL closePreviousLine,
 - (void) closeLineWithAttributedString:(NSAttributedString*) string {
     FLAssert_(_editingLine);
     if(_editingLine) {
-        [self.delegate stringFormatter:self 
+        [self stringFormatter:self 
                           appendString:nil
                 appendAttributedString:str_or_nil(string)
                             lineUpdate:closeLineInfo()];
@@ -94,7 +91,7 @@ FLStringFormatterLineUpdate MakeInfo(BOOL closePreviousLine,
 
 - (void) openLineWithString:(NSString*) string {
     FLAssertNotNil_(string);
-    [self.delegate stringFormatter:self 
+    [self stringFormatter:self 
                       appendString:str_or_nil(string)
             appendAttributedString:nil
                         lineUpdate:openLineInfo()];
@@ -106,7 +103,7 @@ FLStringFormatterLineUpdate MakeInfo(BOOL closePreviousLine,
 
 - (void) openLineWithAttributedString:(NSAttributedString*) string {
     FLAssertNotNil_(string);
-    [self.delegate stringFormatter:self 
+    [self stringFormatter:self 
                       appendString:nil
             appendAttributedString:str_or_nil(string)
                         lineUpdate:openLineInfo()];
@@ -118,7 +115,7 @@ FLStringFormatterLineUpdate MakeInfo(BOOL closePreviousLine,
 
 - (void) appendLineWithAttributedString:(NSAttributedString*) string {
     FLAssertNotNil_(string);
-    [self.delegate stringFormatter:self 
+    [self stringFormatter:self 
                       appendString:nil
             appendAttributedString:str_or_nil(string)
                         lineUpdate:appendLineInfo()];
@@ -129,7 +126,7 @@ FLStringFormatterLineUpdate MakeInfo(BOOL closePreviousLine,
 
 
 - (void) appendLine:(NSString*) string {
-    [self.delegate stringFormatter:self 
+    [self stringFormatter:self 
                       appendString:str_or_nil(string)
             appendAttributedString:nil
                         lineUpdate:appendLineInfo()];
@@ -138,7 +135,7 @@ FLStringFormatterLineUpdate MakeInfo(BOOL closePreviousLine,
 }
 
 - (void) appendBlankLine {
-    [self.delegate stringFormatter:self 
+    [self stringFormatter:self 
                       appendString:nil
             appendAttributedString:nil
                         lineUpdate:MakeInfo(_editingLine, YES, NO, NO)];
@@ -171,7 +168,6 @@ FLStringFormatterLineUpdate MakeInfo(BOOL closePreviousLine,
 	va_start(va, format);
 	NSString *string = FLAutorelease([[NSString alloc] initWithFormat:format arguments:va]);
 	va_end(va);
-    _editingLine = YES;
     [self appendString:string];
 }
 
@@ -252,16 +248,17 @@ FLStringFormatterLineUpdate MakeInfo(BOOL closePreviousLine,
 
 }
 
+- (void) stringFormatter:(FLStringFormatter*) stringFormatter 
+            appendString:(NSString*) string
+  appendAttributedString:(NSAttributedString*) attributedString
+              lineUpdate:(FLStringFormatterLineUpdate) lineUpdate {
+              
+}              
+
 - (void) indent {
-    if([self.delegate respondsToSelector:@selector(stringFormatterIndent:)]) {
-        [self.delegate stringFormatterIndent:self];
-    }
 }
 
 - (void) outdent {
-    if([self.delegate respondsToSelector:@selector(stringFormatterOutdent:)]) {
-        [self.delegate stringFormatterOutdent:self];;
-    }
 }
 
 - (void) indent:(void (^)()) block {

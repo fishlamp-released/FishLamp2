@@ -90,6 +90,7 @@
 @synthesize interceptor = _interceptor;
 @synthesize finisher = _finisher;
 @synthesize disableAuthenticator = _disableAuthenticator;
+@synthesize responseReceiver = _responseReceiver;
 
 - (id) init {
     self = [self initWithRequestURL:nil httpMethod:nil];
@@ -128,6 +129,7 @@
 - (void) dealloc {
     _networkStream.delegate = nil;
 #if FL_MRC
+    [_responseReceiver release];
     [_finisher release];
     [_interceptor release];
     [_authenticator release];
@@ -147,8 +149,8 @@
     return FLAutorelease([[[self class] alloc] initWithRequestURL:url httpMethod:@"GET"]);
 }
 
-+ (id) httpRequest {
-    return FLAutorelease([[[self class] alloc] init]);
++ (id) httpRequest:(NSURL*) url {
+    return FLAutorelease([[[self class] alloc] initWithRequestURL:url httpMethod:@"GET"]);
 }
 
 + (id) httpRequest:(NSURL*) url httpMethod:(NSString*) httpMethod {
@@ -220,19 +222,23 @@
 
 - (void) openHttpStreamWithURL:(NSURL*) url {
 
-    FLMutableHttpResponse* newResponse = nil;
+    FLHttpResponse* newResponse = nil;
     FLHttpResponse* prev = self.httpResponse;
     
     if(prev && prev.wantsRedirect) {
-        newResponse  = [FLMutableHttpResponse httpResponse:url redirectedFrom:prev];
+        newResponse  = [FLHttpResponse httpResponse:url redirectedFrom:prev];
     }
     else {
         // what if there is a response already, but it's not a redirect??? 
         FLAssertIsNil_(prev);
-        newResponse  = [FLMutableHttpResponse httpResponse:url];
+        newResponse  = [FLHttpResponse httpResponse:url];
     }
 
-    newResponse.mutableResponseData = [NSMutableData dataWithCapacity:kStreamReadChunkSize]; 
+    if(!self.responseReceiver) {
+        self.responseReceiver = [FLDataResponseReceiver dataResponseReceiver];
+    }
+
+    newResponse.responseReceiver = self.responseReceiver;
     self.httpResponse = newResponse;
     self.networkStream = [self createNetworkStreamToURL:url];
     self.networkStream.delegate = self;
@@ -269,13 +275,21 @@
     return httpResponse;
 }
 
+- (NSError*) checkHttpResponseForError:(FLHttpResponse*) httpResponse {
+    return [httpResponse simpleHttpResponseErrorCheck];
+}
+
 - (void) didCloseWithResult:(FLResult) result {
     
     FLAssertNotNil_(result);
 
-    [self releaseStream];
-    
     @try {
+        if(![result error]) {
+            NSError* error = [self checkHttpResponseForError:self.httpResponse];
+            if(error) {
+                result = error;
+            }
+        }
         if(![result error]) {
             result = [self resultFromHttpResponse:self.httpResponse];
         }
@@ -285,6 +299,8 @@
     }
     @finally {
 
+        [self releaseStream];
+        
         if(self.interceptor) {
             [self.interceptor httpRequest:self didFinishWithResult:result];
         }
@@ -338,6 +354,11 @@
         else {
 
             [self readResponseHeadersIfNeeded];
+            NSError* error = [self.responseReceiver closeWithResult:result];
+            if(error) {
+                // TODO: this means deleting a partially downloaded file failed. 
+                // Not sure how to handle that...
+            }
             
             // FIXME: there was an issue here with progress getting fouled up on redirects.
             //    [self connectionGotTimerEvent];
@@ -367,7 +388,7 @@
 - (void) readStreamHasBytesAvailable:(id<FLReadStream>) networkStream {
     [self.dispatcher dispatchBlock:^{
         [self readResponseHeadersIfNeeded];
-        [self.networkStream readAvailableBytes:_response.mutableResponseData];
+        [self.responseReceiver readBytesFromStream:self.networkStream];
     }];
 }
 
@@ -448,7 +469,7 @@
 @implementation FLReadStream (Http)
 - (FLHttpMessage*) readResponseHeaders {
     
-    CFHTTPMessageRef ref = (CFHTTPMessageRef)CFReadStreamCopyProperty(_streamRef, kCFStreamPropertyHTTPResponseHeader);
+    CFHTTPMessageRef ref = (CFHTTPMessageRef)CFReadStreamCopyProperty(self.streamRef, kCFStreamPropertyHTTPResponseHeader);
     @try {
         return [FLHttpMessage httpMessageWithHttpMessageRef:ref];
     }
@@ -461,7 +482,7 @@
 
 - (unsigned long) bytesWritten {
     NSNumber* number = FLAutorelease(bridge_transfer_(NSNumber*,
-        CFReadStreamCopyProperty(_streamRef, kCFStreamPropertyHTTPRequestBytesWrittenCount)));
+        CFReadStreamCopyProperty(self.streamRef, kCFStreamPropertyHTTPRequestBytesWrittenCount)));
     
     return number.unsignedLongValue;
 }

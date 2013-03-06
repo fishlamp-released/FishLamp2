@@ -9,7 +9,6 @@
 #import "FLCocoaRequired.h"
 
 #import "FLStorable.h"
-#import "FLImageStorageStrategy.h"
 #import "FLImageProperties.h"
 
 @protocol FLImageStorage;
@@ -24,21 +23,21 @@ extern NSString* const FLImageTypeOriginal;
 	NSData* _imageData;
 	NSDictionary* _exifDictionary;
     FLImageProperties* _imageProperties;
-    id<FLImageStorageStrategy> _storageStrategy;
     NSString* _subType;
+    NSURL* _fileURL;
 }
 
 @property (readonly, strong, nonatomic) NSString* fileName;
+@property (readonly, strong, nonatomic) NSURL* fileURL;
 
 @property (readwrite, strong) FLImageProperties* imageProperties;
-@property (readwrite, strong) id<FLImageStorageStrategy>  storageStrategy;
 
 @property (readonly, strong, nonatomic) UIImage* image;
 @property (readonly, strong, nonatomic) NSData* imageData;
 @property (readwrite, strong, nonatomic) NSDictionary* exifDictionary;
 
 - (id) initWithImageProperties:(FLImageProperties*) imageProperties 
-               storageStrategy:(id<FLImageStorageStrategy>) storageStrategy;
+                       fileURL:(NSURL*) fileURL;
 
 - (id) initWithImage:(UIImage*) imageOrNil
       exifDictionary:(NSDictionary*) exifDictionaryOrNil 
@@ -51,7 +50,7 @@ extern NSString* const FLImageTypeOriginal;
             imageData:(NSData*) imageData;
 
 + (id) imageWithImageProperties:(FLImageProperties*) imageProperties 
-                storageStrategy:(id<FLImageStorageStrategy>) storageStrategy;
+                        fileURL:(NSURL*) fileURL;
 
 - (void) setImage:(UIImage*) image 
    exifDictionary:(NSDictionary*) exifDictionary

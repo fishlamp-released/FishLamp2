@@ -48,8 +48,8 @@
 	return nil;
 }
 
-- (void) handleSoapFault:(FLSoapFault11*) fault {
-    FLThrowIfError([NSError errorWithSoapFault:fault]);
+- (NSError*) createErrorForSoapFault:(FLSoapFault11*) fault {
+    return nil;
 }
 
 - (void) willSendHttpRequest {
@@ -81,16 +81,25 @@
 #endif    
 }
 
-- (FLResult) resultFromHttpResponse:(FLHttpResponse*) httpResponse {
+- (NSError*) checkHttpResponseForError:(FLHttpResponse*) httpResponse {
     NSData* data = httpResponse.responseData;
     
     FLSoapFault11* fault = [FLSoapHttpRequest checkForSoapFaultInData:data];
     if(fault) {
-        [self handleSoapFault:fault];
+        NSError* error = [self createErrorForSoapFault:fault];
+        if(!error) {
+            error = [NSError errorWithSoapFault:fault];
+        }
+        
+        return error;
     }
     
-    [httpResponse throwHttpErrorIfNeeded];
-   
+    return [super checkHttpResponseForError:httpResponse];
+}
+
+- (FLResult) resultFromHttpResponse:(FLHttpResponse*) httpResponse {
+    NSData* data = httpResponse.responseData;
+
     FLSoapXmlParser* parser = [FLSoapXmlParser soapXmlParser];
     FLResult result = [parser parseData:data];
     FLThrowIfError(result);

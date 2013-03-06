@@ -8,32 +8,26 @@
 
 #import "FLCocoaRequired.h"
 #import "FishLampCore.h"
-#import "FLByteBuffer.h"
+#import "FLResponseReceiver.h"
 
 @class FLHttpMessage;
 
-@interface FLHttpResponse : NSObject<NSCopying, NSMutableCopying> {
+@interface FLHttpResponse : NSObject {
 @private
     NSURL* _requestURL;
     NSInteger _responseStatusCode;
     NSString* _responseStatusLine;
-    NSMutableData* _data;
     NSDictionary* _responseHeaders;
+    id<FLResponseReceiver> _responseReceiver;
     FLHttpResponse* _redirectedFrom;
-    
-#if DEBUG
-    id _debugResponseData;
-#endif    
 }
-
+@property (readwrite, strong, nonatomic) id<FLResponseReceiver> responseReceiver;
 @property (readonly, strong, nonatomic) NSURL* requestURL;
 @property (readonly, strong, nonatomic) NSDictionary* responseHeaders;
 @property (readonly, strong, nonatomic) NSString* responseStatusLine;
 @property (readonly, strong, nonatomic) FLHttpResponse* redirectedFrom;
 
 @property (readonly, assign, nonatomic) NSInteger responseStatusCode;
-
-@property (readonly, strong, nonatomic) NSData* responseData;
 
 + (id) httpResponse:(NSURL*) requestURL;
 + (id) httpResponse:(NSURL*) requestURL redirectedFrom:(FLHttpResponse*) redirectedFrom;
@@ -44,18 +38,14 @@
 - (NSError*) simpleHttpResponseErrorCheck;
 - (void) throwHttpErrorIfNeeded;
 
-#if DEBUG
-@property (readwrite, strong, nonatomic) id debugResponseData;
-#endif    
-
-
-@end
-
-@interface FLMutableHttpResponse : FLHttpResponse {
-}
-@property (readwrite, strong, nonatomic) NSMutableData* mutableResponseData;
-
-- (void) appendBytes:(const void *)bytes length:(NSUInteger)length;
-- (void) appendBytes:(FLByteBuffer*) buffer;
 - (void) setResponseHeadersWithHttpMessage:(FLHttpMessage*) message;
+
+// convieience methods
+
+// careful - if this response is a big stream - the whole file will 
+// get loaded into the NSData.
+@property (readonly, strong, nonatomic) NSData* responseData;
+
 @end
+
+

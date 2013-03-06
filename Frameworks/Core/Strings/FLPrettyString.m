@@ -7,6 +7,7 @@
 //
 
 #import "FLPrettyString.h"
+#import "NSObject+FLSelectorPerforming.h"
 
 @interface FLPrettyString ()
 @property (readwrite, strong, nonatomic) id storage;
@@ -20,6 +21,7 @@
 @synthesize whitespace = _whitespace;
 @synthesize eolString = _eolString;
 @synthesize indentLevel = _indentLevel;
+@synthesize delegate = _delegate;
 
 + (FLWhitespace*) defaultWhitespace {
     return [FLWhitespace tabbedWithSpacesWhitespace];
@@ -32,7 +34,6 @@
 - (id) initWithWhitespace:(FLWhitespace*) whitespace withStorage:(id) storage {
     self = [super init];
     if(self) {
-        self.delegate = self;
         self.whitespace = whitespace;
         self.eolString = _whitespace ? _whitespace.eolString : @"";
         self.storage = storage;
@@ -77,10 +78,11 @@
 
 - (void) appendStringToStorage:(NSString*) string {
     [_storage appendString:string];
+    FLPerformSelector2(self, @selector(prettyString:didAppendString:), self, string); 
 }
 
 - (void) appendAttributedStringToStorage:(NSAttributedString*) string {
-    [_storage appendString:[string string]];
+    [self appendStringToStorage:[string string]];
 }
 
 - (void) appendEOL {
@@ -138,11 +140,11 @@
     return [self string];
 }
 
-- (void) stringFormatterIndent:(FLStringFormatter*) stringFormatter {
+- (void) indent {
     ++_indentLevel;
 }
 
-- (void) stringFormatterOutdent:(FLStringFormatter*) stringFormatter {
+- (void) outdent {
     --_indentLevel;
 }
 
@@ -194,16 +196,17 @@
 
 - (void) appendEOL {
     if(self.eolString) { 
-        [[self storage] appendAttributedString:self.eolString];
+        [self appendAttributedStringToStorage:self.eolString];
     } 
 }
 
 - (void) appendStringToStorage:(NSString*) string {
-    [[self storage] appendAttributedString:[[NSAttributedString alloc] initWithString:string]];
+    [self appendAttributedStringToStorage:FLAutorelease([[NSAttributedString alloc] initWithString:string])];
 }
 
 - (void) appendAttributedStringToStorage:(NSAttributedString*) string {
     [[self storage] appendAttributedString:string];
+    FLPerformSelector2(self.delegate, @selector(prettyString:didAppendAttributedString:), self, string); 
 }
            
 - (void) appendPrettyString:(FLPrettyString*) string {

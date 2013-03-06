@@ -20,16 +20,12 @@
 #import "FLSlideOutAndComeForwardTransition.h"
 
 @interface FLWizardViewController ()
-- (IBAction) respondToNextButton:(id) sender;
-- (IBAction) respondToBackButton:(id) sender;
-- (IBAction) respondToOtherButton:(id) sender;
 @end
 
 @implementation FLWizardViewController
 
-@synthesize delegate = _delegate;
+//@synthesize delegate = _delegate;
 
-// views
 @synthesize buttonViewController = _buttonViewController;
 @synthesize headerViewController = _headerViewController;
 @synthesize navigationViewController = _navigationViewController;
@@ -52,183 +48,147 @@
     return FLAutorelease([[[self class] alloc] init]);
 }
 
-- (void) addPanel:(FLPanelViewController*) panel forKey:(id) key {
-    panel.key = key;
-    panel.wizard = self;
+- (void) updateButtonEnabledStates {
+    [self.buttonViewController updateButtons];
+    [self.navigationViewController update];
+}
+
+- (void) addPanel:(FLPanelViewController*) panel {
     [self.panelManager addPanel:panel];
-    [self.navigationViewController addBreadcrumb:panel.breadcrumbTitle forKey:key];
 }
 
-- (void) willStartWizardInWindow:(NSWindow*) window {
-   FLPerformSelector1(self.delegate, @selector(wizardViewControllerWillStartWizard:), self);
+- (void) removePanelForTitle:(id) title {
+    [self.panelManager removePanelForTitle:title];
 }
 
-- (void) didStartWizardInWindow:(NSWindow*) window {
-    FLPerformSelector1(self.delegate, @selector(wizardViewControllerDidStartWizard:), self);
+- (void) willShowPanel:(FLPanelViewController*) toShow willHidePanel:(FLPanelViewController*) toHide {
+}
+
+- (void) didShowPanel:(FLPanelViewController*) toShow didHidePanel:(FLPanelViewController*) toHide {
 }
 
 - (void) startWizardInWindow:(NSWindow*) window {
-    [self willStartWizardInWindow:window];
-
     [window setContentView:self.view];
     [window setDefaultButtonCell:[self.buttonViewController.nextButton cell]];
-
-    self.panelManager.delegate = self; 
     [self.panelManager showFirstPanel];  
 }
 
 - (void)loadView {
     [super loadView];
     [self view];
-    
-    FLPerformSelector1(self.delegate, @selector(wizardViewControllerCanStart:), self);
-    
-    _navigationViewController.delegate = self;
-//    
-//    [self.navigationViewController.view bringToFront];
-//    [self.panelManager.view sendToBack];
-//    
-//    CGRect managerFrame = self.panelManager.view.frame;
-//    
-//    managerFrame.origin.y = FLRectGetBottom(self.buttonViewController.view.frame);
-//    managerFrame.origin.x = FLRectGetRight(self.navigationViewController.view.frame) - 5;
-//    managerFrame.size.height = self.headerViewController.view.frame.origin.y - FLRectGetBottom(self.buttonViewController.view.frame);
-//    
-//    
-//    self.panelManager.view.frame = managerFrame;
+    self.navigationViewController.delegate = self;
+    self.buttonViewController.delegate = self;
+    self.panelManager.delegate = self;
 }
 
 - (BOOL)acceptsFirstResponder {
     return YES;
 }
 
-- (IBAction) respondToNextButton:(id) sender {
+- (BOOL)becomeFirstResponder {
+    return YES;
+}
 
-    BOOL handled = [self.panelManager.visiblePanel respondToNextButton:self];
+- (void) removePanel:(FLPanelViewController*) panel {
+    [self.panelManager removePanelForTitle:panel.title];
+    [self updateButtonEnabledStates];
+}
+
+#pragma mark button view controller delegate
+
+- (void) wizardButtonViewControllerRespondToNextButton:(FLWizardButtonViewController*) controller {
+    BOOL handled = NO;
+    [self.panelManager.visiblePanel respondToNextButton:&handled];
 
     if(!handled) {
         [self.panelManager showNextPanelAnimated:YES completion:nil];
     }
 }
 
-- (IBAction) respondToOtherButton:(id) sender {
-    [self.panelManager.visiblePanel respondToOtherButton:self];
-}
-
-- (IBAction) respondToBackButton:(id) sender {
-
-    BOOL handled = [self.panelManager.visiblePanel respondToBackButton:self];
+- (void) wizardButtonViewControllerRespondToBackButton:(FLWizardButtonViewController*) controller {
+    BOOL handled = NO;
+    [self.panelManager.visiblePanel respondToBackButton:&handled];
 
     if(!handled) {
         [self.panelManager showPreviousPanelAnimated:YES completion:nil];
     }
 }
 
-- (void) updateButtonEnabledStates {
+- (void) wizardButtonViewControllerRespondToOtherButton:(FLWizardButtonViewController*) controller {
+    BOOL handled = NO;
+    [self.panelManager.visiblePanel respondToOtherButton:&handled];
+}
+
+- (void) wizardButtonViewControllerUpdateButtonStates:(FLWizardButtonViewController*) controller {
     self.buttonViewController.backButton.enabled = 
         !self.panelManager.isShowingFirstPanel;
         
     self.buttonViewController.nextButton.enabled = 
         [self.panelManager visiblePanel].canOpenNextPanel &&
         ![self.panelManager isShowingLastPanel];
-        
-    [self.navigationViewController update];
 }
 
-- (void) removePanel:(FLPanelViewController*) panel {
-    [self.panelManager removePanel:panel];
-    [self updateButtonEnabledStates];
+#pragma mark breadcrumb bar delegate
+
+- (BOOL) breadcrumbBar:(FLBreadcrumbBarViewController*) breadcrumbBar breadcrumbIsVisible:(id) title {
+    return [title isEqual:[self.panelManager.visiblePanel title]];
 }
 
-- (void) willShowPanel:(FLPanelViewController*) panel {
-    [self.headerViewController removePanelViews];
-
-    if(panel) {
-        [panel panelWillAppearInWizard:self];
-        FLPerformSelector2(self.delegate, @selector(wizardViewController:panelWillAppear:), self, panel);
-    }
-    [self updateButtonEnabledStates];
+- (BOOL) breadcrumbBar:(FLBreadcrumbBarViewController*) breadcrumbBar breadcrumbIsEnabled:(id) title {
+    return [self.panelManager canOpenPanelForTitle:title];
 }
-
-- (void) didShowPanel:(FLPanelViewController*) panel {
-    if(panel) {
-        [panel panelDidAppearInWizard:self];
-        FLPerformSelector2(self.delegate, @selector(wizardViewController:panelDidAppear:), self, panel);
-    }
-    [self updateButtonEnabledStates];
-    
-    [self.view.window makeFirstResponder:panel];
-    [panel setNextResponder:self];
-}
-
-- (void) willHidePanel:(FLPanelViewController*) panel {
-    if(panel) {
-        [panel panelWillDisappearInWizard:self];
-        FLPerformSelector2(self.delegate, @selector(wizardViewController:panelWillDisappear:), self, panel);
-    }
-}
-
-- (void) didHidePanel:(FLPanelViewController*) panel {
-    if(panel) {
-        [panel panelDidDisappearInWizard:self];
-        FLPerformSelector2(self.delegate, @selector(wizardViewController:panelDidAppear:), self, panel);
-    }
-}
-
-- (BOOL) breadcrumbBar:(FLBreadcrumbBarViewController*) breadcrumbBar breadcrumbIsVisible:(id) key {
-    return [key isEqual:[self.panelManager.visiblePanel key]];
-}
-
-- (BOOL) breadcrumbBar:(FLBreadcrumbBarViewController*) breadcrumbBar breadcrumbIsEnabled:(id) key {
-    return [self.panelManager canOpenPanelForKey:key];
-}
-
-- (void) setPanelTitleFields:(FLPanelViewController*) panel {
-    [self.headerViewController setTitle:panel.title];
-    [self.navigationViewController update];
-}
-                 
+                
 - (void) breadcrumbBar:(FLBreadcrumbBarViewController*) breadcrumbBar 
-    breadcrumbWasClicked:(NSString*) key {
-    [self.panelManager showPanelForKey:key animated:YES completion:nil];
+    breadcrumbWasClicked:(NSString*) title {
+    [self.panelManager showPanelForTitle:title animated:YES completion:nil];
+}
+
+#pragma mark panel manager delegate
+
+- (void) panelManager:(FLPanelManager*) controller panelStateDidChange:(FLPanelViewController*) panel {
+    [self updateButtonEnabledStates];
+}
+
+- (void) panelManager:(FLPanelManager*) controller didAddPanel:(FLPanelViewController*) panel {
+    panel.buttons = self.buttonViewController;
+    panel.header = self.headerViewController;
+    panel.wizardViewController = self;
+    [self.navigationViewController addBreadcrumb:panel.title];
+}
+
+- (void) panelManager:(FLPanelManager*) controller didRemovePanel:(FLPanelViewController*) panel {
+    [self.navigationViewController removeBreadcrumb:panel.title];
 }
        
 - (void) panelManager:(FLWizardViewController*) wizard 
-                              willHidePanel:(FLPanelViewController*) toHide
-                              willShowPanel:(FLPanelViewController*) toShow {
+        willShowPanel:(FLPanelViewController*) toShow
+        willHidePanel:(FLPanelViewController*) toHide
+    animationDuration:(CGFloat) animationDuration {
 
-    if(toHide) {
-        [self willHidePanel:toHide];
-    }
-    [self willShowPanel:toShow];
-
+    [self.headerViewController setPrompt:toShow.prompt animationDuration:animationDuration];
     self.buttonViewController.nextButton.enabled = NO;
     self.buttonViewController.backButton.enabled = NO;
     self.buttonViewController.otherButton.hidden = YES;
-     
+    [self willShowPanel:toShow willHidePanel:toHide];
 }     
 
 - (void) panelManager:(FLWizardViewController*) wizard 
-                              didHidePanel:(FLPanelViewController*) toHide
-                              didShowPanel:(FLPanelViewController*) toShow {
+         didShowPanel:(FLPanelViewController*) toHide
+         didHidePanel:(FLPanelViewController*) toShow {
+    [self didShowPanel:toShow didHidePanel:toHide];
 
-    if(toHide) {
-        [self didHidePanel:toHide];
+    [self.panelManager setNextResponder:self];
+    [self setNextResponder:self.navigationViewController];
+    [self.navigationViewController setNextResponder:self.view.window];
+    
+    id responder = self.view.window.firstResponder;
+    while(responder) {
+        FLLog(@"first responder: %@", [responder description]);
+        responder = [responder nextResponder];
     }
-    [self setPanelTitleFields:toShow];
-    [self didShowPanel:toShow];
-    [self updateButtonEnabledStates];
+    
+    
 }                              
-
-- (Class) panelManagerGetForwardTransitionClass:(FLPanelManager*) controller {
-    return nil;
-}
-
-- (Class) panelManagerGetBackwardTransitionClass:(FLPanelManager*) controller {
-    return nil;
-}
-
-
 
 @end
 

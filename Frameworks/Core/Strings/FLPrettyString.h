@@ -10,13 +10,17 @@
 #import "FLStringFormatter.h"
 #import "FLWhitespace.h"
 
-@interface FLPrettyString : FLStringFormatter<FLStringFormatterDelegate> {
+@protocol FLPrettyStringDelegate;
+
+@interface FLPrettyString : FLStringFormatter {
 @private
     id _storage;
     id _eolString;
     FLWhitespace* _whitespace;
     NSInteger _indentLevel;
+    id<FLPrettyStringDelegate> _delegate;
 }
+@property (readwrite, assign, nonatomic) id<FLPrettyStringDelegate> delegate;
 
 @property (readonly, assign, nonatomic) NSInteger indentLevel;
 @property (readonly, assign, nonatomic) NSUInteger length;
@@ -36,7 +40,16 @@
 
 - (void) deleteAllCharacters;
 
+// for subclasses
+- (void) appendStringToStorage:(NSString*) string;
+- (void) appendAttributedStringToStorage:(NSAttributedString*) string;
+
 @end
+@protocol FLPrettyStringDelegate <NSObject>
+@optional
+- (void) prettyString:(FLPrettyString*) prettyString didAppendString:(NSString*) string;
+@end
+
 
 @interface FLPrettyString (Whitespace)
 + (FLWhitespace*) defaultWhitespace;
@@ -53,7 +66,9 @@
 }
 
 @property (readonly, strong, nonatomic) NSAttributedString* attributedString;
-
 @end
 
-
+@protocol FLPrettyAttributedStringDelegate <NSObject>
+@optional
+- (void) prettyString:(FLPrettyString*) prettyString didAppendAttributedString:(NSAttributedString*) string;
+@end

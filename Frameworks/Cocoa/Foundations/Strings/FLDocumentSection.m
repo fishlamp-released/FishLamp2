@@ -23,14 +23,11 @@
 
 @synthesize lines = _lines;
 @synthesize parent = _parent;
-//@synthesize openLine = _openLine;
 
 - (id) init {
     self = [super init];
     if(self) {
-//        _needsLine = YES;
         _lines = [[NSMutableArray alloc] init];
-        self.delegate = self;
     }    
     return self;
 }
@@ -41,7 +38,6 @@
 
 #if FL_MRC
 - (void) dealloc {
-//    [_openLine release];
     [_lines release];
     [super dealloc];
 }
@@ -51,32 +47,6 @@
     FLAssertNotNil_([_lines lastObject]);
     return [_lines lastObject];
 }
-
-//- (void) stringFormatterAppendEOL:(FLStringFormatter*) stringFormatter {
-//    _needsLine = YES;
-//}
-
-//- (void) openLine:(id) line {
-//    NSMutableString* openLine = self.openLine;
-//    if(openLine) {
-//        [self willCloseLine:openLine];
-//        self.openLine = nil;
-//    }
-//    [_lines addObject:line];
-//}
-
-//- (void) appendBlankLine {
-//    [super appendBlankLine];
-////    _needsLine = YES;
-//}
-
-//- (NSMutableString*) willOpenLine {
-//    return [NSMutableString string];
-//}
-
-//- (void) willCloseLine:(NSMutableString*) line {
-//
-//}
 
 - (void) stringFormatter:(FLStringFormatter*) stringFormatter 
             appendString:(NSString*) string
@@ -144,15 +114,6 @@
 
 - (void) stringFormatterDeleteAllCharacters:(FLStringFormatter*) formatter {
     [_lines removeAllObjects];
-}
-
-- (void) stringFormatterIndent:(FLStringFormatter*) stringFormatter {
-}
-
-- (void) stringFormatterOutdent:(FLStringFormatter*) stringFormatter {
-}
-
-- (void) stringFormatter:(FLStringFormatter*) stringFormatter setIndentLevel:(NSInteger) indentLevel {
 }
 
 @end

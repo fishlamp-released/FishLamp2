@@ -20,15 +20,16 @@
 @property (readwrite, strong, nonatomic) UIFont* textFont;
 @property (readwrite,assign,nonatomic) id<FLBreadcrumbBarViewControllerDelegate> delegate;
 
-- (void) addBreadcrumb:(NSString*) title forKey:(id) key;
+- (void) addBreadcrumb:(NSString*) title;
+- (void) removeBreadcrumb:(NSString*) title;
 
 - (void) update;
 
 @end
 
 @protocol FLBreadcrumbBarViewControllerDelegate <NSObject>
-- (BOOL) breadcrumbBar:(FLBreadcrumbBarViewController*) breadcrumbBar breadcrumbIsVisible:(id) key;
-- (BOOL) breadcrumbBar:(FLBreadcrumbBarViewController*) breadcrumbBar breadcrumbIsEnabled:(id) key;
-- (void) breadcrumbBar:(FLBreadcrumbBarViewController*) breadcrumbBar breadcrumbWasClicked:(id) key;
+- (BOOL) breadcrumbBar:(FLBreadcrumbBarViewController*) breadcrumbBar breadcrumbIsVisible:(NSString*) title;
+- (BOOL) breadcrumbBar:(FLBreadcrumbBarViewController*) breadcrumbBar breadcrumbIsEnabled:(NSString*) title;
+- (void) breadcrumbBar:(FLBreadcrumbBarViewController*) breadcrumbBar breadcrumbWasClicked:(NSString*) title;
 @end
 

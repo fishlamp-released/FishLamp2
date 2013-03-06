@@ -44,9 +44,10 @@
     FLHttpRequestBody* _body;
     id _observer;
     FLFinisher* _finisher;
-    FLMutableHttpResponse* _response;
+    FLHttpResponse* _response;
     FLReadStream* _networkStream;
     id<FLDispatcher> _dispatcher;
+    id<FLResponseReceiver> _responseReceiver;
     
     // helpers
     id<FLDataEncoding> _dataEncoder;
@@ -68,6 +69,9 @@
 @property (readonly, strong, nonatomic) FLHttpRequestHeaders* headers;
 @property (readonly, strong, nonatomic) FLHttpRequestBody* body;
 
+// by default this is a FLDataResponseReciever.
+@property (readwrite, strong, nonatomic) id<FLResponseReceiver> responseReceiver;
+
 - (id) initWithRequestURL:(NSURL*) requestURL;
 
 - (id) initWithRequestURL:(NSURL*) requestURL
@@ -76,7 +80,7 @@
 + (id) httpRequest:(NSURL*) url 
         httpMethod:(NSString*) httpMethod;
 
-+ (id) httpRequest;
++ (id) httpRequest:(NSURL*) url;
 
 //
 // optional overrides
@@ -97,6 +101,8 @@
 /// if you want to convert the httpRespose.responseData into something
 /// else do it here and return it from from your override
 - (FLResult) resultFromHttpResponse:(FLHttpResponse*) httpResponse;
+
+- (NSError*) checkHttpResponseForError:(FLHttpResponse*) httpResponse;
 
 /// this returns YES by default.
 - (BOOL) shouldRedirectToURL:(NSURL*) url;

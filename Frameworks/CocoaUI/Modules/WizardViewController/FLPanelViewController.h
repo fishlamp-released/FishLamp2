@@ -9,38 +9,43 @@
 
 #import "FLCocoaUIRequired.h"
 
-@class FLWizardViewController;
-@interface FLPanelViewController : UIViewController {
-@private
-    NSString* _breadcrumbTitle;
-    BOOL _canOpenNextPanel;
-    __unsafe_unretained FLWizardViewController* _wizard;
-    id _key;
-}
+@class FLPanelManager;
+
+@protocol FLPanelArea <NSObject>
+- (NSView*) view;
+@end
+
+@protocol FLPanelButtons <FLPanelArea>
 @property (readonly, strong, nonatomic) NSButton* nextButton;
 @property (readonly, strong, nonatomic) NSButton* backButton;
 @property (readonly, strong, nonatomic) NSButton* otherButton;
+@end
 
-//- (void) enableBackButton:(BOOL) enable;
-//- (void) enableNextButton:(BOOL) enable;
+@protocol FLPanelHeader <FLPanelArea>
+@property (readonly, strong, nonatomic) NSTextField* promptTextField;
+@end
 
-@property (readwrite, strong, nonatomic) id key;
-@property (readwrite, assign, nonatomic) id wizard;
+@interface FLPanelViewController : UIViewController
 
+@property (readwrite, assign, nonatomic) id wizardViewController;
+@property (readwrite, strong, nonatomic) id<FLPanelButtons> buttons;
+@property (readwrite, strong, nonatomic) id<FLPanelHeader> header;
+@property (readwrite, strong, nonatomic) NSString* prompt;
 @property (readwrite, assign, nonatomic) BOOL canOpenNextPanel;
 
-@property (readwrite, strong, nonatomic) NSString* breadcrumbTitle;
+- (void) panelWillAppear;
+- (void) panelDidAppear;
+- (void) panelWillDisappear;
+- (void) panelDidDisappear;
 
-- (void) panelWillAppearInWizard:(FLWizardViewController*) wizard;
-- (void) panelDidAppearInWizard:(FLWizardViewController*) wizard;
-- (void) panelWillDisappearInWizard:(FLWizardViewController*) wizard;
-- (void) panelDidDisappearInWizard:(FLWizardViewController*) wizard;
+- (void) respondToNextButton:(BOOL*) handledIt;
+- (void) respondToBackButton:(BOOL*) handledIt;
+- (void) respondToOtherButton:(BOOL*) handledIt;
 
-- (BOOL) respondToNextButton:(FLWizardViewController*) wizard;
-- (BOOL) respondToBackButton:(FLWizardViewController*) wizard;
-- (void) respondToOtherButton:(FLWizardViewController*) wizard;
+- (void) didMoveToPanelManager:(FLPanelManager*) manager;
 
-- (void) didMoveToWizard:(FLWizardViewController*) wizard;
+- (void) addPanelView:(NSView*) panelView toPanelArea:(id<FLPanelArea>) panelArea animated:(BOOL) animated;
+
 @end
 
 

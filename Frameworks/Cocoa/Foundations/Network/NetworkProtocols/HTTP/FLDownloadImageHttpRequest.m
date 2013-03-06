@@ -21,8 +21,6 @@
 }
 
 - (FLResult) resultFromHttpResponse:(FLHttpResponse*) response {
-    [response throwHttpErrorIfNeeded];
-    
     FLStorableImage* image = [FLStorableImage imageWithData:response.responseData];
 
 // TODO: could be a redirected URL for image???   

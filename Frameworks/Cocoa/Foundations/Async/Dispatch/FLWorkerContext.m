@@ -113,7 +113,10 @@ NSString* const FLWorkerContextFinished = @"FLWorkerContextFinished";
         [self removeObject:worker];
     }
 
-    return FLThrowIfError([[finisher waitUntilFinished] result]);
+    id result = [finisher waitUntilFinished];
+    FLAssertNotNil_v(result, @"result should not be nil!!");
+
+    return result;
 }
 
 - (FLFinisher*) startWorker:(id<FLAsyncWorker>) worker

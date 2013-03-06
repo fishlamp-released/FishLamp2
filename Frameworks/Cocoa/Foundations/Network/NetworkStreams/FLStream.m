@@ -10,7 +10,6 @@
 
 @interface FLStream ()
 @property (readwrite, strong) FLTimeoutTimer* timeoutTimer;
-@property (readwrite, assign, getter=wasCancelled) BOOL cancelled;
 
 - (void) openStream;
 - (void) closeStreamWithResult:(id) result;
@@ -19,7 +18,6 @@
 @implementation FLStream
 
 @synthesize timeoutTimer = _timeoutTimer;
-@synthesize cancelled = _cancelled;
 @synthesize timeoutInterval = _timeoutInterval;
 
 - (id) init {
@@ -92,7 +90,6 @@
 
 
 - (void) openStreamWithInput:(id) input {
-    self.cancelled = NO;
     if(self.timeoutInterval) {
         self.timeoutTimer = [FLTimeoutTimer timeoutTimer:self.timeoutInterval];
         [self.timeoutTimer addObserver:self forEvent:@selector(timeoutTimerDidTimeout:)];
@@ -105,7 +102,6 @@
 }
 
 - (void) requestCancel {
-    self.cancelled = YES;
     if(self.isOpen) {   
         [self didEncounterError:[NSError cancelError]];
     }

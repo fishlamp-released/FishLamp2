@@ -18,23 +18,31 @@ typedef void (^FLPanelViewControllerBlock)(FLPanelViewController* panel);
 @interface FLPanelManager : NSViewController {
 @private
     NSMutableArray* _panels;
+    NSMutableArray* _panelViews;
     NSUInteger _currentPanel;
     BOOL _started;
     id<FLPanelManagerDelegate> _delegate;
+
+    Class _showTransition;
+    Class _hideTransition;
 }
 @property (readwrite, assign, nonatomic) id<FLPanelManagerDelegate> delegate;
 @property (readonly, assign, nonatomic) NSUInteger panelCount;
 @property (readonly, strong, nonatomic) FLPanelViewController* visiblePanel;
 
+@property (readwrite, assign, nonatomic) Class showTransition;
+@property (readwrite, assign, nonatomic) Class hideTransition;
+
+
 - (void) addPanel:(FLPanelViewController*) panel;
 
-- (FLPanelViewController*) panelForKey:(id) key;
+- (FLPanelViewController*) panelForTitle:(id) title;
 
-- (void) removePanel:(FLPanelViewController*) panel;
+- (void) removePanelForTitle:(id) title;
 
-- (BOOL) canShowPanelForPanelKey:(id) key;
+- (BOOL) canShowPanelForPanelTitle:(id) title;
 
-- (BOOL) canOpenPanelForKey:(id) key;
+- (BOOL) canOpenPanelForTitle:(id) title;
 
 //
 // panel switching
@@ -45,7 +53,7 @@ typedef void (^FLPanelViewControllerBlock)(FLPanelViewController* panel);
 - (void) showPreviousPanelAnimated:(BOOL) animated
                         completion:(void (^)(FLPanelViewController*)) completion;
 
-- (void) showPanelForKey:(id) key 
+- (void) showPanelForTitle:(id) title 
                 animated:(BOOL) animated
               completion:(FLPanelViewControllerBlock) completion;
 
@@ -53,28 +61,30 @@ typedef void (^FLPanelViewControllerBlock)(FLPanelViewController* panel);
 - (BOOL) isShowingFirstPanel;
 - (BOOL) isShowingLastPanel;
 
+- (void) addPanelView:(NSView*) panelView toView:(NSView*) superview animated:(BOOL) animated;
+- (void) removePanelViews:(BOOL) animated;
+
 @end
 
 @protocol FLPanelManagerDelegate <NSObject>
 
 - (void) panelManager:(FLPanelManager*) controller
-                       willHidePanel:(FLPanelViewController*) panel
-                       willShowPanel:(FLPanelViewController*) panel;
+        willShowPanel:(FLPanelViewController*) panel
+        willHidePanel:(FLPanelViewController*) panel
+    animationDuration:(CGFloat) animationDuration;
 
 - (void) panelManager:(FLPanelManager*) controller 
-                        didHidePanel:(FLPanelViewController*) panel
-                        didShowPanel:(FLPanelViewController*) panel;
+         didShowPanel:(FLPanelViewController*) panel
+         didHidePanel:(FLPanelViewController*) panel;
 
-- (Class) panelManagerGetForwardTransitionClass:(FLPanelManager*) controller; 
+- (void) panelManager:(FLPanelManager*) controller 
+  panelStateDidChange:(FLPanelViewController*) panel;
 
-- (Class) panelManagerGetBackwardTransitionClass:(FLPanelManager*) controller; 
+- (void) panelManager:(FLPanelManager*) controller 
+          didAddPanel:(FLPanelViewController*) panel;
 
-
-//- (BOOL) wizardViewController:(FLWizardViewController*) wizard
-//panelWillRespondToNextButton:(FLPanelViewController*) panel;
-//
-//- (BOOL) panel:(FLPanelViewController*) panel respondToBackButton:(FLWizardViewController*) wizard;
-//- (BOOL) panel:(FLPanelViewController*) panel willRespondToOtherButtonInWizard:(FLWizardViewController*) wizard;
+- (void) panelManager:(FLPanelManager*) controller 
+       didRemovePanel:(FLPanelViewController*) panel;
 
 
 @end
