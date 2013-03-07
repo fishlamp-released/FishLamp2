@@ -20,7 +20,7 @@
     request.disableAuthenticator = YES;
     [request setAuthenticationToken:userLogin.authToken];
     
-    return [context runWorker:request withObserver:observer];
+    return FLThrowIfError([context runWorker:request withObserver:observer]);
 }
 
 - (FLResult) runOperationInContext:(id) context withObserver:(id) observer {

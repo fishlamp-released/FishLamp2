@@ -55,8 +55,8 @@
 
     FLZenfolioDownloadPhotoSetsOperation* downloadPhotosets = [FLZenfolioDownloadPhotoSetsOperation downloadPhotoSetsWithGroup:group];
     
-    FLResult result = [context runWorker:downloadPhotosets withObserver:observer];
-    FLThrowIfError(result);
+/*    FLResult result =  */
+    FLThrowIfError([context runWorker:downloadPhotosets withObserver:observer]);
     
     return group;
 }

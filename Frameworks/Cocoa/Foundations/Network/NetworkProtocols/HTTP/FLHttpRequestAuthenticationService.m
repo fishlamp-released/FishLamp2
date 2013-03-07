@@ -91,6 +91,11 @@
     return self.userLogin && ![self shouldAuthenticateUser:self.userLogin];
 }
 
+- (void) logoutUser {
+    [self resetAuthenticationTimestamp];
+    self.userLogin = nil;
+}
+
 - (void) touchAuthenticationTimestamp {
     _lastAuthenticationTimestamp = [NSDate timeIntervalSinceReferenceDate];
 }

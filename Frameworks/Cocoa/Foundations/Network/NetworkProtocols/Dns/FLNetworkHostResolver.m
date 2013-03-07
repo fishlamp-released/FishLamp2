@@ -123,7 +123,7 @@ static void HostResolutionCallback(CFHostRef theHost, CFHostInfoType typeInfo, c
 }
 
 - (FLResult) resolveHostSynchronously:(FLNetworkHost*) host {
-    return [[self startResolvingHost:host] waitUntilFinished];
+    return FLThrowIfError([[self startResolvingHost:host] waitUntilFinished]);
 }
 
 - (FLFinisher*) startResolvingHost:(FLNetworkHost*) host {

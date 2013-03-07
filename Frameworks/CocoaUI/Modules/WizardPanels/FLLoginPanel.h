@@ -25,11 +25,13 @@
 
 + (id) loginPanel;
 
-// required ovveriddees
+// required overides
 - (void) startAuthenticating;
 - (void) resetPassword;
 - (void) requestCancel;
 - (BOOL) isAuthenticated;
+
+- (void) logoutUser;
 
 @end
 

@@ -30,15 +30,7 @@ typedef enum {
 } FLZenfolioErrorCode;
 
 
-@interface FLZenfolioErrors : NSObject {
-	NSDictionary* _errors;
-}
-
-FLSingletonProperty(FLZenfolioErrors);
-
-- (FLZenfolioErrorCode) errorCodeFromString:(NSString*) errorString;
-
-@end
+extern FLZenfolioErrorCode FLZenfolioErrorCodeFromString(NSString* errorString);
 
 @interface NSError (ZenfolioError)
 @property (readonly, assign) FLZenfolioErrorCode zenfolioErrorCode;

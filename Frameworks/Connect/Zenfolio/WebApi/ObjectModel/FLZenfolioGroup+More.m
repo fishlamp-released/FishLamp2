@@ -30,6 +30,17 @@
 
 @end
 
+@implementation FLZenfolioGroupElement (FLVisitor)
+- (BOOL) visitAllElements:(FLGroupElementVisitor) visitor {
+    BOOL stop = NO;
+    visitor(self, &stop);
+    if(stop) {
+        return YES;
+    }
+
+    return NO;
+}
+@end
 
 @implementation FLZenfolioGroup (More)
 
@@ -80,7 +91,7 @@ FLSynthesizeCachedObjectHandlerProperty(FLZenfolioGroup);
     if(components && components.count) {
         NSMutableString* path = [NSMutableString stringWithString:[[components objectAtIndex:0] Title]];
         for(int i = 1; i < components.count; i++) {
-            [path appendFormat:@"%@%@", [[components objectAtIndex:i] Title], delimiter];
+            [path appendFormat:@"%@%@", delimiter, [[components objectAtIndex:i] Title]];
         }
         return path;
     }
@@ -312,11 +323,11 @@ FLSynthesizeCachedObjectHandlerProperty(FLZenfolioGroup);
 	return NO;
 }
 
-
-- (FLZenfolioGroupElement*) recursiveElementAtIndex:(NSInteger) index {
-    NSInteger counter = 0;
-    return [self recursiveElementAtIndex:index counter:&counter];
-}
+//
+//- (FLZenfolioGroupElement*) recursiveElementAtIndex:(NSInteger) index {
+//    NSInteger counter = 0;
+//    return [self recursiveElementAtIndex:index counter:&counter];
+//}
 
 //- (NSUInteger) GalleryCount {
 //    __block int count = 0;
@@ -351,38 +362,42 @@ FLSynthesizeCachedObjectHandlerProperty(FLZenfolioGroup);
 //    }
 //    return NO;
 //}
+//// this is a bit wierd, since we're dealign with a tree here.
+//// this is a straighforward search through the heirarchy and obviously depends on sorts 
+//// orders of the subElements
+//- (id) recursiveElementAtIndex:(NSInteger) index;
 
-- (NSUInteger) elementCountWithFilter:(NSDictionary*) filter {
-    if(filter == nil) {
-        return [self.Elements count];
-    }
+//- (NSUInteger) elementCountWithFilter:(NSDictionary*) filter {
+//    if(filter == nil) {
+//        return [self.Elements count];
+//    }
+//
+//    NSUInteger count = 0;
+//    for(FLZenfolioGroupElement* element in self.Elements) {
+//        if([filter objectForKey:element.Id]) {
+//            ++count;
+//        }
+//    }
+//    
+//    return count;
+//}
 
-    NSUInteger count = 0;
-    for(FLZenfolioGroupElement* element in self.Elements) {
-        if([filter objectForKey:element.Id]) {
-            ++count;
-        }
-    }
-    
-    return count;
-}
-
-- (FLZenfolioGroupElement*) elementAtIndex:(NSInteger) index withFilter:(NSDictionary*) filter {
-    if(filter == nil) {
-        return [self.Elements objectAtIndex:index];
-    }
-    
-    NSInteger idx = -1;
-    for(FLZenfolioGroupElement* element in self.Elements) {
-        if([filter objectForKey:element.Id]) {
-            idx++;
-        }
-        if(idx == index) {
-            return element;
-        }
-    }
-    return nil;
-}
+//- (FLZenfolioGroupElement*) elementAtIndex:(NSInteger) index withFilter:(NSDictionary*) filter {
+//    if(filter == nil) {
+//        return [self.Elements objectAtIndex:index];
+//    }
+//    
+//    NSInteger idx = -1;
+//    for(FLZenfolioGroupElement* element in self.Elements) {
+//        if([filter objectForKey:element.Id]) {
+//            idx++;
+//        }
+//        if(idx == index) {
+//            return element;
+//        }
+//    }
+//    return nil;
+//}
 
 
 - (BOOL) visitParentsForElement:(FLZenfolioGroupElement*) childElement visitor:(void (^)(FLZenfolioGroup* parent)) visitor {
@@ -399,67 +414,92 @@ FLSynthesizeCachedObjectHandlerProperty(FLZenfolioGroup);
     return NO;
 }
 
-- (void) addToResult:(NSMutableDictionary*) results {
-    [results setObject:self forKey:self.Id];
-    for(id element in self.Elements) {
-        if([element isGroupElement]) {
-            [element addToResult:results];
-        }
-        else {
-           [results setObject:element forKey:[element Id]];
-        }
-    }
-}
 
-#define TestElement(element,filter) ([[element Title] rangeOfString:filter options:NSCaseInsensitiveSearch].length > 0)
-
-- (BOOL) findMatchesForFilter:(NSString*) filter results:(NSMutableDictionary*) results {
-    BOOL foundMatch = NO;
-    if(FLStringIsEmpty(filter) || TestElement(self, filter)) {
-        [self addToResult:results];
-        foundMatch = YES;
-    }
-    else {
-        for(id element in self.Elements) {
-            if([element isGroupElement]) {
-                if([element findMatchesForFilter:filter results:results]) {
-                    foundMatch = YES;
-                }
-            }
-            else if(TestElement(element, filter)) {
-                [results setObject:element forKey:[element Id]];
-                foundMatch = YES;
-            }
-        }
-        if(foundMatch) {
-            [results setObject:self forKey:[self Id]];
-        }
-    }
-
-    return foundMatch;
-}
-
-//- (NSNumber*) PhotoBytes {
+//- (NSUInteger) elementCountWithFilter:(NSDictionary*) filter;
+//- (FLZenfolioGroupElement*) elementAtIndex:(NSInteger) index withFilter:(NSDictionary*) filter;
+//- (BOOL) findMatchesForFilter:(NSString*) filter results:(NSMutableDictionary*) results;
 //
-////	//	NOTE: we can't expect 0 for [nil longLongValue] on ppc
-////	NSArray *elem = [self elements];
-////	switch ( _type ) {
-////		case kZenfolioGroupType:
-////			//	for groups return sum from contained entry sizes
-////			return elem ? [[elem valueForKeyPath:@"@sum.photoBytes"] longLongValue] : 0;
-////		case kZenfolioCollectionType:
-////			//	for collections return the size of owned photos
-////			return elem ? [[elem valueForKeyPath:@"@sum.size"] longLongValue] : 0;
-////		default:
-////			//	this is a gallery: return reported size
-////			return _photoBytes;
-////	}
-//    unsigned long long size = 0;
-//    for(FLZenfolioGroupElement* element in self.Elements) {
-//        size += element.PhotoBytesValue;
+//
+//- (void) addToResult:(NSMutableDictionary*) results {
+//    [results setObject:self forKey:self.Id];
+//    for(id element in self.Elements) {
+//        if([element isGroupElement]) {
+//            [element addToResult:results];
+//        }
+//        else {
+//           [results setObject:element forKey:[element Id]];
+//        }
 //    }
-//	return [NSNumber numberWithUnsignedLongLong:size];
 //}
+//
+//#define TestElement(element,filter) ([[element Title] rangeOfString:filter options:NSCaseInsensitiveSearch].length > 0)
+//
+//- (BOOL) findMatchesForFilter:(NSString*) filter results:(NSMutableDictionary*) results {
+//    BOOL foundMatch = NO;
+//    if(FLStringIsEmpty(filter) || TestElement(self, filter)) {
+//        [self addToResult:results];
+//        foundMatch = YES;
+//    }
+//    else {
+//        for(id element in self.Elements) {
+//            if([element isGroupElement]) {
+//                if([element findMatchesForFilter:filter results:results]) {
+//                    foundMatch = YES;
+//                }
+//            }
+//            else if(TestElement(element, filter)) {
+//                [results setObject:element forKey:[element Id]];
+//                foundMatch = YES;
+//            }
+//        }
+//        if(foundMatch) {
+//            [results setObject:self forKey:[self Id]];
+//        }
+//    }
+//
+//    return foundMatch;
+//}
+
+#if OSX
+- (void) sort:(NSSortDescriptor*) descriptor {
+    NSMutableArray* elements = self.Elements;
+    
+    id sortKey = descriptor.key;
+    
+    [elements sortUsingComparator:^NSComparisonResult (id lhs, id rhs) {
+        [lhs sort:descriptor];
+        [rhs sort:descriptor];
+        id lhsValue = [lhs valueForKey:sortKey];
+        id rhsValue = [rhs valueForKey:sortKey];
+
+        if([lhsValue respondsToSelector:@selector(localizedCaseInsensitiveCompare:)]) {
+        
+            return descriptor.ascending ?   [lhsValue localizedCaseInsensitiveCompare:rhsValue]: 
+                                            [rhsValue localizedCaseInsensitiveCompare:lhsValue];
+        }
+        return descriptor.ascending ? [lhsValue compare:rhsValue] : [rhsValue compare:lhsValue];
+    }];
+}
+#endif
+
+- (BOOL) visitAllElements:(FLGroupElementVisitor) visitor {
+    BOOL stop = [super visitAllElements:visitor];
+    if(stop) {
+        return YES;
+    }
+    return [self visitAllSubElements:visitor];
+}
+
+- (BOOL) visitAllSubElements:(FLGroupElementVisitor) visitor {
+    
+    for(id element in self.Elements) {
+        if([element visitAllElements:visitor] ) {
+            return YES;
+        }
+    }
+    
+    return NO;
+}
 
 
 @end

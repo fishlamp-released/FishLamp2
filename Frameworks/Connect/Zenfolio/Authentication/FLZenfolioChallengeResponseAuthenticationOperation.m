@@ -67,12 +67,12 @@
     FLHttpRequest* challengeRequest = [FLZenfolioHttpRequest challengeHttpRequest:self.userLogin.userName];
     challengeRequest.disableAuthenticator = YES;
     
-    FLZenfolioAuthChallenge* response = [context runWorker:challengeRequest withObserver:observer];
+    FLZenfolioAuthChallenge* response = FLThrowIfError([context runWorker:challengeRequest withObserver:observer]);
    
-    FLHttpRequest* authenticateRequest = [self authenticateRequestWithAuthChallenge:response];
+    FLHttpRequest* authenticateRequest = FLThrowIfError([self authenticateRequestWithAuthChallenge:response]);
     authenticateRequest.disableAuthenticator = YES;
     
-    NSString* token = [context runWorker:authenticateRequest withObserver:observer];
+    NSString* token = FLThrowIfError([context runWorker:authenticateRequest withObserver:observer]);
     
     if(FLStringIsNotEmpty(token)) {
         self.userLogin.authToken = token;

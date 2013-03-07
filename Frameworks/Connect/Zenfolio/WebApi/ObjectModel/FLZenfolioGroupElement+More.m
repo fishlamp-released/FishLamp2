@@ -9,6 +9,7 @@
 #import "FLZenfolioGroupElement+More.h"
 #import "NSString+MiscUtils.h"
 
+
 @implementation FLZenfolioGroupElement (More)
 
 - (NSNumber*) parentGroupId {
@@ -94,36 +95,31 @@
 	return [NSString localizedStringForByteSize:self.PhotoBytesValue];
 }
 
-- (BOOL) visitAllElements:(FLGroupElementVisitor) visitor elementIndex:(NSUInteger*) elementIndex {
-
-    BOOL stop = NO;
-    visitor(self, (*elementIndex)++, &stop);
-    if(stop) {
-        return YES;
-    }
-    
-    for(id element in self.Elements) {
-        
-        if([element isGroupElement]) {
-            if([element visitAllElements:visitor elementIndex:elementIndex] ) {
-                return YES;
-            }
-        }
-        else {
-            visitor(element, (*elementIndex)++, &stop);
-            if(stop) {
-                return YES;
-            }
-        }
-    }
-    
-    return NO;
-}
-
-- (BOOL) visitAllElements:(FLGroupElementVisitor) visitor {
-    NSUInteger idx = 0;
-    return [self visitAllElements:visitor elementIndex:&idx];
-}
+//- (BOOL) visitAllElements:(FLGroupElementVisitor) visitor elementIndex:(NSUInteger*) elementIndex {
+//
+//    BOOL stop = NO;
+//    visitor(self, (*elementIndex)++, &stop);
+//    if(stop) {
+//        return YES;
+//    }
+//    
+//    for(id element in self.Elements) {
+//        
+//        if([element isGroupElement]) {
+//            if([element visitAllElements:visitor elementIndex:elementIndex] ) {
+//                return YES;
+//            }
+//        }
+//        else {
+//            visitor(element, (*elementIndex)++, &stop);
+//            if(stop) {
+//                return YES;
+//            }
+//        }
+//    }
+//    
+//    return NO;
+//}
 
 //- (int) VideoCountValue {
 //    return 0;
@@ -132,6 +128,12 @@
 - (NSString*) description {
     return [NSString stringWithFormat:@"%@: %@: %@", [super description], [self Title], [self Id]];
 }
+
+
+#if OSX
+- (void) sort:(NSSortDescriptor*) descriptor {
+}
+#endif
 
 @end
 

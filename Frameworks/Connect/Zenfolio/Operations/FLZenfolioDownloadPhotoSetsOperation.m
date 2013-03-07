@@ -47,7 +47,7 @@
         else {
             FLHttpRequest* request = [FLZenfolioHttpRequest loadPhotoSetHttpRequest:element.Id level:kZenfolioInformatonLevelFull includePhotos:NO];
             
-            FLZenfolioPhotoSet* set = [context runWorker:request withObserver:observer];
+            FLZenfolioPhotoSet* set = FLThrowIfError([context runWorker:request withObserver:observer]);
             FLAssertNotNil_(set);
             [group replaceGroupElement:set];
             

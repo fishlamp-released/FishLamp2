@@ -53,62 +53,51 @@
 //extern NSString * const E_UNSPECIFIEDERROR;
 //// An unspecified error has occured.
 
-NSString * const FLZenfolioErrorDomain                  = @"FLZenfolioErrorDomain";
-NSString * const E_ACCOUNTLOCKED                = @"E_ACCOUNTLOCKED";
-NSString * const E_CONNECTIONISNOTSECURE        = @"E_CONNECTIONISNOTSECURE";
-NSString * const E_DUPLICATEEMAIL               = @"E_DUPLICATEEMAIL";
-NSString * const E_DUPLICATELOGINNAME           = @"E_DUPLICATELOGINNAME";
-NSString * const E_INVALIDCREDENTIALS           = @"E_INVALIDCREDENTIALS";
-NSString * const E_INVALIDPARAM                 = @"E_INVALIDPARAM";
-NSString * const E_NOSUCHOBJECT                 = @"E_NOSUCHOBJECT";
-NSString * const E_NOTAUTHENTICATED             = @"E_NOTAUTHENTICATED";
-NSString * const E_NOTAUTHORIZED                = @"E_NOTAUTHORIZED";
-NSString * const E_UNSPECIFIEDERROR             = @"E_UNSPECIFIEDERROR";
+NSString * const FLZenfolioErrorDomain           = @"FLZenfolioErrorDomain";
 
-@implementation FLZenfolioErrors
+#define  E_ACCOUNTLOCKED                 @"accountlocked"
+#define E_CONNECTIONISNOTSECURE        @"connectionisnotsecure"
+#define E_DUPLICATEEMAIL               @"duplicateemail"
+#define E_DUPLICATELOGINNAME           @"duplicateloginname"
+#define E_INVALIDCREDENTIALS           @"invalidcredentials"
+#define E_INVALIDPARAM                 @"invalidparam"
+#define  E_NOSUCHOBJECT                 @"nosuchobject"
+#define E_NOTAUTHENTICATED             @"notauthenticated"
+#define E_NOTAUTHORIZED                @"notauthorized"
+#define E_UNSPECIFIEDERROR             @"unspecifiederror"
 
-FLSynthesizeSingleton(FLZenfolioErrors);
+typedef struct {
+    int code;
+    __unsafe_unretained NSString* name;
+} ZFErrorStruct;
+  
+ZFErrorStruct s_errors[] = {
+    { FLZenfolioErrorCodeInvalidCredentials, E_INVALIDCREDENTIALS }, 
+    { FLZenfolioErrorCodeAccountLocked, E_ACCOUNTLOCKED }, 
+    { FLZenfolioErrorCodeConnectionIsNotSecure, E_CONNECTIONISNOTSECURE }, 
+    { FLZenfolioErrorCodeDuplicateEmail, E_DUPLICATEEMAIL }, 
+    { FLZenfolioErrorCodeDuplicateLoginName, E_DUPLICATELOGINNAME }, 
+    { FLZenfolioErrorCodeInvalidParam, E_INVALIDPARAM }, 
+    { FLZenfolioErrorCodeNoSuchObject, E_NOSUCHOBJECT }, 
+    { FLZenfolioErrorCodeNotAuthenticated, E_NOTAUTHENTICATED }, 
+    { FLZenfolioErrorCodeNotAuthorized, E_NOTAUTHORIZED },
+    { FLZenfolioErrorCodeUnspecified, E_UNSPECIFIEDERROR },
+};
 
-- (id) init {
-	if((self = [super init])) {
-		_errors = [[NSDictionary alloc] initWithObjectsAndKeys:
-			[NSNumber numberWithInt:FLZenfolioErrorCodeInvalidCredentials], E_INVALIDCREDENTIALS, 
-			[NSNumber numberWithInt:FLZenfolioErrorCodeAccountLocked], E_ACCOUNTLOCKED, 
-			[NSNumber numberWithInt:FLZenfolioErrorCodeConnectionIsNotSecure], E_CONNECTIONISNOTSECURE, 
-			[NSNumber numberWithInt:FLZenfolioErrorCodeDuplicateEmail], E_DUPLICATEEMAIL, 
-			[NSNumber numberWithInt:FLZenfolioErrorCodeDuplicateLoginName], E_DUPLICATELOGINNAME, 
-			[NSNumber numberWithInt:FLZenfolioErrorCodeInvalidParam], E_INVALIDPARAM, 
-			[NSNumber numberWithInt:FLZenfolioErrorCodeNoSuchObject], E_NOSUCHOBJECT, 
-			[NSNumber numberWithInt:FLZenfolioErrorCodeNotAuthenticated], E_NOTAUTHENTICATED, 
-			[NSNumber numberWithInt:FLZenfolioErrorCodeNotAuthorized], E_NOTAUTHORIZED,
-			[NSNumber numberWithInt:FLZenfolioErrorCodeUnspecified], E_UNSPECIFIEDERROR, 
-		 nil];
-	}
-	
-	return self;
-}
-
-- (void) dealloc {
-	FLRelease(_errors);
-	FLSuperDealloc();
-}
-
-#define kSoapPrefix @"Zenfolio:"
-
-- (FLZenfolioErrorCode) errorCodeFromString:(NSString*) errorString {
-
-    if([errorString hasPrefix:kSoapPrefix]) {
-        errorString = [errorString substringFromIndex:kSoapPrefix.length];
+FLZenfolioErrorCode FLZenfolioErrorCodeFromString(NSString* errorString) {
+    
+    errorString = [errorString lowercaseString];
+    
+    for(int i = 0; i < (sizeof(s_errors) / sizeof(ZFErrorStruct)); i++) {
+        
+        if([errorString rangeOfString:s_errors[i].name].length > 0) {
+            return s_errors[i].code;
+        }
     }
 
-	NSNumber* num = [_errors objectForKey:errorString];
-	if(!num) { 
-		return FLZenfolioErrorCodeErrorIsNotZenfolioError;
-	} 
-	return [num unsignedIntValue];
+	return FLZenfolioErrorCodeErrorIsNotZenfolioError;
 }
 
-@end
 
 @implementation NSError (ZenfolioError)
 

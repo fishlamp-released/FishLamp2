@@ -15,7 +15,7 @@
 
 + (NSError*) errorWithZenfolioSoapFault:(FLSoapFault11*) fault {
 
-    FLZenfolioErrorCode error = [[FLZenfolioErrors instance] errorCodeFromString:fault.faultcode];
+    FLZenfolioErrorCode error = FLZenfolioErrorCodeFromString(fault.faultcode);
 
     FLPrettyString* stringBuilder = [FLPrettyString prettyString];
     

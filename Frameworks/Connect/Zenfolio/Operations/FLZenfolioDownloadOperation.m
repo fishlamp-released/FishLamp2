@@ -165,7 +165,7 @@
 
     request.responseReceiver = [FLFileResponseReceiver fileResponseReceiver:[NSURL fileURLWithPath:[imageFolder pathForFile:photo.FileName]]];
                                                                
-    return [context runWorker:request withObserver:nil];
+    return FLThrowIfError([context runWorker:request withObserver:nil]);
 }
 
 - (FLResult) downloadPhotoToFile:(FLZenfolioPhoto*) photo
@@ -178,7 +178,7 @@
 
     request.responseReceiver = [FLFileResponseReceiver fileResponseReceiver:[NSURL fileURLWithPath:[imageFolder pathForFile:photo.FileName]]];
                                                                
-    return [context runWorker:request withObserver:nil];
+    return FLThrowIfError([context runWorker:request withObserver:nil]);
 
 }
 
@@ -269,6 +269,10 @@
 
 - (void) updateNumbers {
     _state.photoSetTotal = _photoSets.count;
+    _state.videoTotal = 0;
+    _state.photoTotal = 0;
+    _state.byteTotal = 0;
+    
     for(FLZenfolioPhotoSet* set in _photoSets) {
         for(FLZenfolioPhoto* photo in set.Photos) {
             if(self.downloadVideos && photo.IsVideoValue) {

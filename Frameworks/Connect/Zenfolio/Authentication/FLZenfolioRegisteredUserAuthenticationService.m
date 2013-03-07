@@ -50,7 +50,7 @@
 
 - (FLUserLogin*) synchronouslyAuthenticateUser:(FLUserLogin*) userLogin inContext:(id) context withObserver:(id) observer {
     FLOperation* authenticator = [FLZenfolioChallengeResponseAuthenticationOperation userAuthenticationOperation:userLogin];
-    return [context runWorker:authenticator withObserver:observer];
+    return FLThrowIfError([context runWorker:authenticator withObserver:observer]);
 }
 
 @end

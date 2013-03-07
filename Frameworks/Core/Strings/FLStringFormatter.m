@@ -57,7 +57,6 @@ FLStringFormatterLineUpdate MakeInfo(BOOL closePreviousLine,
 
 
 - (void) closeLine {
-    FLAssert_(_editingLine);
     if(_editingLine) {
         [self stringFormatter:self 
                           appendString:nil
@@ -68,7 +67,6 @@ FLStringFormatterLineUpdate MakeInfo(BOOL closePreviousLine,
 }
 
 - (void) closeLineWithString:(NSString*) string {
-    FLAssert_(_editingLine);
     if(_editingLine) {
         [self stringFormatter:self 
                           appendString:str_or_nil(string)
@@ -79,7 +77,6 @@ FLStringFormatterLineUpdate MakeInfo(BOOL closePreviousLine,
 }
 
 - (void) closeLineWithAttributedString:(NSAttributedString*) string {
-    FLAssert_(_editingLine);
     if(_editingLine) {
         [self stringFormatter:self 
                           appendString:nil

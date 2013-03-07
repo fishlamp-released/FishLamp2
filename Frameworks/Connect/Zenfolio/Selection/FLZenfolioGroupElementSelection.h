@@ -10,20 +10,21 @@
 
 #import "FLZenfolioGroupElement.h"
 
-@interface FLZenfolioGroupElementSelection : NSObject<NSCopying> 
-+ (id) groupElementSelection;
+@protocol ZFZenfolioGroupElementSelectionDelegate;
 
+@interface FLZenfolioGroupElementSelection : NSObject
+
+- (id) initWithRootGroup:(FLZenfolioGroup*) rootGroup;
++ (id) groupElementSelection:(FLZenfolioGroup*) rootGroup;
+
+@property (readonly, strong, nonatomic) FLZenfolioGroup* rootGroup;
+@property (readwrite, assign, nonatomic) id<ZFZenfolioGroupElementSelectionDelegate> delegate;
+
+/// selection
+//@property (readonly, strong, nonatomic) NSSet* selected;
 @property (readonly, assign, nonatomic) NSUInteger selectionCount;
-
-@property (readonly, strong, nonatomic) NSDictionary* selectedGroupElements;
-
 @property (readonly, strong, nonatomic) NSArray* selectedPhotoSets;
-
-/// get/set selection with dictionary of indexes.
-/// this is weird, since we're essentially a tree, but we need it to work
-/// with the NSOutlineView
-- (NSIndexSet*) indexSetForSelectionsInGroup:(FLZenfolioGroup*) group;
-- (void) setSelectionInGroup:(FLZenfolioGroup*) group withIndexSet:(NSIndexSet*) set;
+- (int) selectedPhotoCount;
 
 /// select/unselect a groupElement
 - (void) selectGroupElement:(FLZenfolioGroupElement*) groupElement 
@@ -33,13 +34,42 @@
 
 - (void) toggleSelectionForGroupElement:(FLZenfolioGroupElement*) element;
 
-// misc utils
-- (void) removeSelectedElementsNotInFilter:(NSDictionary*) filter;
 
-//- (long long) selectedPhotoBytes;
+/// filtering
+- (void) updateFilterWithString:(NSString*) string;
 
-- (int) selectedPhotoCount;
+/// expansion
+- (void) setAllExpanded:(BOOL) expanded;
+- (BOOL) elementIsExpanded:(id) item;
+- (BOOL) expandElement:(id) element expanded:(BOOL) expanded ;
+- (void) updateExpansions;
+- (void) setElementWasExpanded:(id) element wasExpanded:(BOOL) wasExpanded;
 
-- (void) clearCachedSearchData;
+/// sorting
+- (void) sortWithDescriptor:(NSSortDescriptor*) descriptor;
 
+/// misc utils
+- (void) replaceGroupElement:(id) element;
+
+/// indexed operations
+- (id) childElementForGroup:(FLZenfolioGroup*) parent atIndex:(NSUInteger) index;
+- (NSUInteger) childCountForGroup:(FLZenfolioGroup*) element;
+
+/// selection by indexes
+
+    // get/set selection with dictionary of indexes.
+    // this is weird, since we're essentially a tree, but we need it to work
+    // with the NSOutlineView
+@property (readwrite, strong, nonatomic) NSIndexSet* selectedIndexSet;
+
+- (id) elementForID:(id) idObject;
+
+@end
+
+@protocol ZFZenfolioGroupElementSelectionDelegate <NSObject>
+- (void) groupElementSelection:(FLZenfolioGroupElementSelection*) selection 
+            setElementExpanded:(FLZenfolioGroup*) group 
+                    isExpanded:(BOOL) isExpanded;
+                   
+                   
 @end

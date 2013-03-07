@@ -52,6 +52,7 @@ FLSynthesizeServiceProperty(httpRequestAuthenticator, setHttpRequestAuthenticato
 }
 
 - (void) logoutUser {
+    [self.httpRequestAuthenticator logoutUser];
 }
 
 - (void) httpRequestWillBeginWorking:(FLHttpRequest*) request {

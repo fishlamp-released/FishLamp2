@@ -15,8 +15,6 @@ typedef enum {
 	FLZenfolioGroupElementTypeCollection
 } FLZenfolioGroupElementType;
 
-typedef void (^FLGroupElementVisitor)(FLZenfolioGroupElement* element, NSUInteger index, BOOL* stop);
-
 @interface FLZenfolioGroupElement (More)
 
 @property (readonly, assign, nonatomic) BOOL isGalleryElement;
@@ -46,11 +44,6 @@ typedef void (^FLGroupElementVisitor)(FLZenfolioGroupElement* element, NSUIntege
 @property (readonly, strong, nonatomic) NSNumber* parentGroupId;
 
 - (NSString*) sizeText;
-
-// utils
-
-/// recursively visit everything
-- (BOOL) visitAllElements:(FLGroupElementVisitor) visitor;
 
 @end
 

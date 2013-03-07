@@ -32,6 +32,8 @@
 
 @property (readwrite, strong, nonatomic) FLUserLogin* userLogin;
 
+- (void) logoutUser;
+
 // required overrides
 - (FLUserLogin*) synchronouslyAuthenticateUser:(FLUserLogin*) userLogin 
                                      inContext:(id) context
