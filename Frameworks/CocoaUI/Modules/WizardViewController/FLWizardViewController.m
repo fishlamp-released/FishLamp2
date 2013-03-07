@@ -205,17 +205,22 @@ FLSynthesizeAssociatedProperty(retain_nonatomic, modalWindowController, setModal
 
 FLSynthesizeAssociatedProperty(assign_nonatomic, modalInWindow, setModalInWindow, NSWindow*);
 FLSynthesizeAssociatedProperty(retain_nonatomic, modalSession, setModalSession, NSValue*);
+FLSynthesizeAssociatedProperty(assign_nonatomic, previousFirstResponderForModal, setPreviousFirstResponderForModal, id);
 
 - (IBAction) closeIfModalInWindow:(id) sender {
     if(self.modalInWindow) {
         [[NSApplication sharedApplication] endSheet:self.window];
     }
+    
+    [self.window makeFirstResponder:self.previousFirstResponderForModal];
 }
 
 - (void) showModallyInWindow:(NSWindow*) window 
            withDefaultButton:(NSButton*) button {
     
     self.modalInWindow = window;
+    self.previousFirstResponderForModal = self.window.firstResponder;
+    
     window.modalWindowController = self;
 
     [[NSApplication sharedApplication] beginSheet:self.window  
@@ -228,7 +233,7 @@ FLSynthesizeAssociatedProperty(retain_nonatomic, modalSession, setModalSession, 
     self.modalSession = [NSValue valueWithPointer:modalSession];
     
     [NSApp runModalSession:modalSession];
-    [self.window makeFirstResponder:self.window];
+    [window makeFirstResponder:window];
     
     if(button) {
         [self.window setDefaultButtonCell:[button cell]];

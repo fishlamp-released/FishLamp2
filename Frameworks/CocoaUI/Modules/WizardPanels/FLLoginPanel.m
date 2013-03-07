@@ -33,7 +33,6 @@ NSString* const FLDefaultsKeyWizardSavePasswordKey = @"com.fishlamp.wizard.savep
 @synthesize forgotPasswordButton = _forgotPasswordButton;
 @synthesize passwordKeychainKey = _passwordKeychainKey;
 
-
 - (id) init {
     return [self initWithNibName:@"FLLoginPanel" bundle:nil];
 }
@@ -121,6 +120,9 @@ NSString* const FLDefaultsKeyWizardSavePasswordKey = @"com.fishlamp.wizard.savep
 
 - (void)controlTextDidChange:(NSNotification *)note {
 	if ( [note object] == self.userNameTextField || [note object] == self.passwordEntryField ) {
+        if([self isAuthenticated]) {
+            [self logoutUser];
+        }
         [self updateNextButton];
     }
 }
@@ -142,6 +144,10 @@ NSString* const FLDefaultsKeyWizardSavePasswordKey = @"com.fishlamp.wizard.savep
 }
 
 - (void) resetPassword {
+}
+
+- (void) logoutUser {
+
 }
 
 - (void) updateVisibleCredentials {
@@ -198,6 +204,7 @@ NSString* const FLDefaultsKeyWizardSavePasswordKey = @"com.fishlamp.wizard.savep
    
 - (void) respondToNextButton:(BOOL*) handledIt {
 
+    [self saveCredentials];
     if(self.isAuthenticated) {
         *handledIt = NO;
     }
@@ -222,12 +229,21 @@ NSString* const FLDefaultsKeyWizardSavePasswordKey = @"com.fishlamp.wizard.savep
     }];
 }
 
+- (BOOL) becomeFirstResponder {
+    [self updateNextButton];
+    return YES;
+}
+
 - (void) panelWillAppear {
     [super panelWillAppear];
     
     FLAssertStringIsNotEmpty_v(self.passwordKeychainKey, @"domain for password in keychain not set");
     [self updateVisibleCredentials];
     [self updateNextButton];
+    
+    if(!self.savePasswordInKeychain && [self isAuthenticated]) {
+        [self logoutUser];
+    }
 }
 
 - (void) panelWillDisappear {
@@ -235,6 +251,10 @@ NSString* const FLDefaultsKeyWizardSavePasswordKey = @"com.fishlamp.wizard.savep
     [self saveCredentials];
     [self.userNameTextField resignFirstResponder];
     [self.passwordEntryField resignFirstResponder];
+    
+    if(!self.savePasswordInKeychain) {
+        self.passwordEntryField.stringValue = @"";
+    }
 }
 
 @end

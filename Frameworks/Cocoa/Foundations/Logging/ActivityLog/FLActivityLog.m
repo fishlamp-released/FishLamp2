@@ -101,5 +101,9 @@ FLSynthesizeSingleton(FLActivityLog);
     [self appendLineWithAttributedString:urlString];
 }
 
+- (void) clear {
+    [_log deleteAllCharacters];
+}
+
 
 @end

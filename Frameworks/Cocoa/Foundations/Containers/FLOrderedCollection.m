@@ -45,10 +45,13 @@
 }
 
 - (NSString*) description {
-    NSMutableString* description = [NSMutableString string];
+    NSMutableString* description = [NSMutableString stringWithFormat:@"%@: {\n", [super description]];
+    
     for(int i = 0; i < _keys.count; i++) {
-        [description appendFormat:@"[%d:%@]: %@", i, [_keys objectAtIndex:i], [_objectArray objectAtIndex:i]]; 
+        [description appendFormat:@"[index: %d: key: %@]: { %@ }\n", i, [_keys objectAtIndex:i], [_objectArray objectAtIndex:i]]; 
     }
+    
+    [description appendString:@"}\n"];
     
     return description;
 }
@@ -78,6 +81,8 @@
 //}
 
 - (void) addObject:(id) object forKey:(id) key {
+    FLAssertNotNil_(object);
+    FLAssertNotNil_(key);
 	FLAssertIsNil_v([_objectDictionary objectForKey:key], nil);
     ++_mutatationCount;
     [_objectDictionary setObject:object forKey:key];
@@ -86,7 +91,9 @@
     [_indexes setObject:[NSNumber numberWithUnsignedInteger:_objectArray.count - 1] forKey:key];
 }
 
-- (void) addOrReplaceObject:(id) object forKey:(id) key {
+- (void) setObject:(id) object forKey:(id) key {
+    FLAssertNotNil_(object);
+    FLAssertNotNil_(key);
     id existingObject = [_objectDictionary objectForKey:key];
     if(existingObject) {
         ++_mutatationCount;
@@ -152,7 +159,7 @@
     [_keys replaceObjectAtIndex:atIndex withObject:key];
     [_objectArray replaceObjectAtIndex:atIndex withObject:object];
     [_objectDictionary setObject:object forKey:key];
-    [_indexes setObject:key forKey:[NSNumber numberWithUnsignedInteger:atIndex]];
+    [_indexes setObject:[NSNumber numberWithUnsignedInteger:atIndex] forKey:key];
 }
 
 - (void) removeObjectAtIndex:(NSUInteger) idx {

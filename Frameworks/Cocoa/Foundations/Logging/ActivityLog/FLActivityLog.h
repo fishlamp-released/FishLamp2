@@ -22,6 +22,8 @@ extern NSString* const FLActivityLogStringKey;
 
 - (NSError*) exportToPath:(NSURL*) url;
 
+- (void) clear;
+
 @end
 
 

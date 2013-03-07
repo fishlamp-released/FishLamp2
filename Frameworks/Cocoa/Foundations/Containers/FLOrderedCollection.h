@@ -33,9 +33,9 @@
 
 // setting an object will add it to the end of the array if it's not already in collection
 
-- (void) addObject:(id) object forKey:(id) key;
-- (void) addOrReplaceObject:(id) object forKey:(id) key;
+//- (void) addOrReplaceObject:(id) object forKey:(id) key;
 
+- (void) setObject:(id) object forKey:(id) key;
 - (id) objectForKey:(id) key;
 - (id) objectAtIndex:(NSUInteger) idx;
 

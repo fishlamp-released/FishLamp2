@@ -253,7 +253,7 @@ FLSplitKeyPath FLSplitKeyPathFromString(NSString* keyPathString)
 
 - (void) dataSourceManager:(FLLegacyDataSource*) dataSourceManager setObject:(id) object forKey:(id) key
 {
-	[self addOrReplaceObject:object forKey:key];
+	[self setObject:object forKey:key];
 }
 
 - (void) dataSourceManager:(FLLegacyDataSource*) dataSourceManager removeObjectForKey:(id) key
