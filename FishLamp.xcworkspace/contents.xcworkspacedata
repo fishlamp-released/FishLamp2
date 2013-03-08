@@ -75,9 +75,9 @@
       </Group>
    </Group>
    <FileRef
-      location = "group:Tools/CocoaTests/CocoaTests.xcodeproj">
+      location = "group:Apps/FishLampCocoaApp/FishLampCocoaApp.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:Apps/FishLampCocoaApp/FishLampCocoaApp.xcodeproj">
+      location = "group:Libs/FishLampiOSLib/FishLampiOS.xcodeproj">
    </FileRef>
 </Workspace>
