@@ -7,23 +7,27 @@
 //
 
 #import "FLCocoaUIRequired.h"
-#import "FLOrderedCollection.h"
+#import "FLBreadcrumbBarView.h"
 
 @protocol FLBreadcrumbBarViewControllerDelegate;
 
-@interface FLBreadcrumbBarViewController : UIViewController {
+@interface FLBreadcrumbBarViewController : FLCompatibleViewController<FLBreadcrumbBarViewDelegate> {
 @private
-    NSMutableArray* _breadcrumbs;
     __unsafe_unretained id<FLBreadcrumbBarViewControllerDelegate> _delegate;
     UIFont* _textFont;
+    FLStringDisplayStyle* _titleStyle;
+    IBOutlet NSView* _contentView;
 }
+
 @property (readwrite, strong, nonatomic) UIFont* textFont;
 @property (readwrite,assign,nonatomic) id<FLBreadcrumbBarViewControllerDelegate> delegate;
+
+@property (readwrite, strong, nonatomic) NSView* contentView;
 
 - (void) addBreadcrumb:(NSString*) title;
 - (void) removeBreadcrumb:(NSString*) title;
 
-- (void) update;
+- (void) updateViewsAnimated:(BOOL) animated;
 
 @end
 

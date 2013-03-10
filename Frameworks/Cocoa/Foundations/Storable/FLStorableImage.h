@@ -23,7 +23,7 @@ extern NSString* const FLImageTypeOriginal;
 	NSData* _imageData;
 	NSDictionary* _exifDictionary;
     FLImageProperties* _imageProperties;
-    NSString* _subType;
+    NSString* _storableSubType;
     NSURL* _fileURL;
 }
 

@@ -229,10 +229,10 @@ NSString* const FLDefaultsKeyWizardSavePasswordKey = @"com.fishlamp.wizard.savep
     }];
 }
 
-- (BOOL) becomeFirstResponder {
-    [self updateNextButton];
-    return YES;
-}
+//- (BOOL) becomeFirstResponder {
+//    [self updateNextButton];
+//    return YES;
+//}
 
 - (void) panelWillAppear {
     [super panelWillAppear];

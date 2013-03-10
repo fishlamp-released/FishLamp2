@@ -11,7 +11,14 @@
 
 @protocol FLReadStreamDelegate;
 
-@interface FLReadStream : FLNetworkStream<FLReadStream> 
+@interface FLReadStream : FLNetworkStream<FLReadStream>  {
+@private
+    CFReadStreamRef _streamRef;
+    __unsafe_unretained id<FLReadStreamDelegate> _delegate;
+    BOOL _isOpen;
+    NSError* _error;
+}
+
 @property (readwrite, assign) id<FLReadStreamDelegate> delegate;
 @property (readonly, assign, nonatomic) CFReadStreamRef streamRef;
 

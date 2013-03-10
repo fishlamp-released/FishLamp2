@@ -47,7 +47,6 @@
 #import "FLDrawableBorder.h"
 #import "FLDrawableGradient.h"
 #import "FLDrawableShape.h"
-#import "FLDrawableString.h"
 #import "FLDrawingUtils.h"
 #import "FLPathUtilities.h"
 

@@ -48,9 +48,9 @@
     return FLAutorelease([[[self class] alloc] init]);
 }
 
-- (void) updateButtonEnabledStates {
+- (void) updateButtonEnabledStates:(BOOL) animated {
     [self.buttonViewController updateButtons];
-    [self.navigationViewController update];
+    [self.navigationViewController updateViewsAnimated:animated];
 }
 
 - (void) addPanel:(FLPanelViewController*) panel {
@@ -91,7 +91,7 @@
 
 - (void) removePanel:(FLPanelViewController*) panel {
     [self.panelManager removePanelForTitle:panel.title];
-    [self updateButtonEnabledStates];
+    [self updateButtonEnabledStates:NO];
 }
 
 #pragma mark button view controller delegate
@@ -146,7 +146,7 @@
 #pragma mark panel manager delegate
 
 - (void) panelManager:(FLPanelManager*) controller panelStateDidChange:(FLPanelViewController*) panel {
-    [self updateButtonEnabledStates];
+    [self updateButtonEnabledStates:YES];
 }
 
 - (void) panelManager:(FLPanelManager*) controller didAddPanel:(FLPanelViewController*) panel {

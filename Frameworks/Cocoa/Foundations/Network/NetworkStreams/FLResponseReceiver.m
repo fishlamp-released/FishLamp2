@@ -110,7 +110,6 @@
 #endif
 
 #define kBufferSize 1024
-
 - (void) readBytesFromStream:(FLReadStream*) stream {
     uint8_t buffer[kBufferSize];
     [self readBytesFromStream:stream withBuffer:buffer bufferSize:kBufferSize];
@@ -142,18 +141,12 @@
 @interface FLFileResponseReceiver ()
 @property (readwrite, strong, nonatomic) NSOutputStream* outputStream;
 @property (readwrite, strong, nonatomic) NSURL* fileURL;
-@property (readwrite, strong, nonatomic) NSMutableData* buffer;
 @end
 
-#define kFileBufferSize 32768
-
-@implementation FLFileResponseReceiver {
-    uint8_t _bufferHunk[kFileBufferSize];
-}
+@implementation FLFileResponseReceiver
 
 @synthesize outputStream = _outputStream;
 @synthesize fileURL = _fileURL;
-@synthesize buffer = _buffer;
 
 - (id) initWithFileURL:(NSURL*) fileURL {
     self = [super init];
@@ -184,7 +177,7 @@
 }
 
 - (void) readBytesFromStream:(FLReadStream*) stream {
-    [self readBytesFromStream:stream withBuffer:_bufferHunk bufferSize:kFileBufferSize];
+    [self readBytesFromStream:stream withBuffer:_bufferHunk bufferSize:FLFileResponseReceiverFileBufferSize];
 }
 
 - (NSError*) closeWithResult:(id) result {

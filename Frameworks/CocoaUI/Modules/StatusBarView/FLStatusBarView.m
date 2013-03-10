@@ -13,13 +13,13 @@
 - (id) init {
     self = [super init];
     if(self) {
-        _string = [[FLDrawableString alloc] initWithString:@"Hello world"]; 
+//        _string = [[FLDrawableString alloc] initWithString:@"Hello world"]; 
     }
     return self;
 }
 
 - (void) drawRect:(CGRect) rect {
-    [_string drawRect:rect withFrame:self.bounds inParent:self drawEnclosedBlock:nil];
+  //  [_string drawRect:rect withFrame:self.bounds inParent:self drawEnclosedBlock:nil];
 }
 
 @end

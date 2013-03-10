@@ -20,20 +20,24 @@ NSString* FLRgbStringFromColor(UIColor* color) { //rgb(11,11,11,0.5)
         colorValues.alpha];
 }
 
-CGColorRef FLCreateCGColorFromNSColor(NSColor *color, CGColorSpaceRef colorSpace) {
-
-    if(!colorSpace) {
-        colorSpace = [[color colorSpace] CGColorSpace];
-    }
-
-    NSColor *deviceColor = [color colorUsingColorSpaceName:NSDeviceRGBColorSpace];
-
-    CGFloat components[4];
-    [deviceColor getRed: &components[0] green: &components[1] blue:
-    &components[2] alpha: &components[3]];
-
-    return CGColorCreate (colorSpace, components);
-}
+//#if OSX
+//CGColorRef FLCreateCGColorFromNSColor(NSColor *color, CGColorSpaceRef colorSpace) {
+//
+//    if(!colorSpace) {
+//        colorSpace = [[color colorSpace] CGColorSpace];
+//    }
+//
+//    NSColor *deviceColor = [color colorUsingColorSpaceName:NSDeviceRGBColorSpace];
+//
+//    CGFloat components[4];
+//    [deviceColor getRed: &components[0] green: &components[1] blue:
+//    &components[2] alpha: &components[3]];
+//
+//    return CGColorCreate (colorSpace, components);
+//#else
+//    return color.CGColor;
+//#endif
+//}
 
 UIColor*  FLColorFromRGBString(NSString* string) {
     CGFloat rgb[4] = {
@@ -130,21 +134,22 @@ NSString* FLHexColorStringFromColor(UIColor* color) {
 }
 
 #if OSX
+@implementation CIColor (FLColorConversions)
+ -(CGColorRef) copyCGColorRef {
+    CGColorSpaceRef colorSpace = [self colorSpace];
+    const CGFloat *components = [self components];
+    
+    return CGColorCreate (colorSpace, components);
+}
+@end
+
 @implementation NSColor (FLColorConversions)
-+(CGColorRef) CIColorToCGColor: (CIColor *) ciColor {
-    CGColorSpaceRef colorSpace = [ciColor colorSpace];
-    const CGFloat *components = [ciColor components];
-    CGColorRef cgColor = CGColorCreate (colorSpace, components);
-    CGColorSpaceRelease(colorSpace);
-    return cgColor;
+
+- (CGColorRef) copyCGColorRef {
+    return [FLAutorelease([[CIColor alloc] initWithColor: self]) copyCGColorRef];
 }
-+(CGColorRef) NSColorToCGColor: (NSColor *) nsColor {
-    CIColor *ciColor = [[CIColor alloc] initWithColor: nsColor];
-    CGColorRef cgColor = [NSColor CIColorToCGColor: ciColor];
-    [ciColor release];
-    return cgColor;
-}
-+(NSColor *) CGColorToNSColor: (CGColorRef) cgColor {
+
++(NSColor *) colorWithCGColorRef: (CGColorRef) cgColor {
     return [NSColor colorWithCIColor: [CIColor colorWithCGColor: cgColor]];
 }
 @end

@@ -8,16 +8,23 @@
 
 #import "FLDropBackAnimation.h"
 
-@implementation FLDropBackAnimation
+@implementation FLDropBackAnimation {
+@private
+    CGFloat _scale;
+}
 
 @synthesize scale = _scale;
 
-- (id) initWithTarget:(id) target {
-    self = [super initWithTarget:target];
+- (id) init {
+    self = [super init];
     if(self) {
         _scale = FLDropBackAnimationDefaultScale;
     }
     return self;
+}
+
++ (id) dropBackAnimation {
+    return FLAutorelease([[[self class] alloc] init]);
 }
 
 + (CATransform3D) transformForFrame:(CGRect) frame 
@@ -31,12 +38,13 @@
 
 } 
 
-- (void) prepareAnimator:(FLAnimator*) animator {
 
-    CALayer* layer = self.layer;     
+- (void) prepareLayer:(CALayer*) layer {
     layer.transform = CATransform3DIdentity;
     layer.hidden = NO;
-    
+}
+
+- (void) commitAnimation:(CALayer*) layer {
     CATransform3D transform = [FLDropBackAnimation transformForFrame:layer.frame withScale:_scale];
 
     CABasicAnimation *scale = [CABasicAnimation animationWithKeyPath:@"transform"];
@@ -44,15 +52,13 @@
     scale.toValue =     [NSValue valueWithCATransform3D:transform];
     scale.removedOnCompletion = YES;
 
-    animator.commit = ^{
-        [layer addAnimation:scale forKey:@"transform"];
-        layer.transform = transform;
-    };
+    [layer addAnimation:scale forKey:@"transform"];
+    layer.transform = transform;
+}
 
-    animator.finish = ^{
-        layer.hidden = YES;
-        layer.transform = CATransform3DIdentity;
-    };
+- (void) finishAnimation:(CALayer*) layer {
+    layer.hidden = YES;
+    layer.transform = CATransform3DIdentity;
 }
 
 @end

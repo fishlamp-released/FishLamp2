@@ -11,10 +11,10 @@
 #import "FLTraceOff.h"
 
 @interface FLReadStream ()
-- (void) handleStreamEvent:(CFStreamEventType) eventType;
 @property (readwrite, assign) BOOL isOpen;
-- (NSError*) readStreamError;
 @property (readwrite, strong) NSError* error;
+- (void) handleStreamEvent:(CFStreamEventType) eventType;
+- (NSError*) readStreamError;
 @end
 
 #if DEBUG
@@ -33,13 +33,7 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
 }
 
 
-@implementation FLReadStream {
-@private
-    CFReadStreamRef _streamRef;
-    __unsafe_unretained id<FLReadStreamDelegate> _delegate;
-    BOOL _isOpen;
-    NSError* _error;
-}
+@implementation FLReadStream
 
 @synthesize streamRef = _streamRef;
 @synthesize isOpen = _isOpen;

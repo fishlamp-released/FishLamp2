@@ -15,4 +15,5 @@
 
 @property (readwrite, assign, nonatomic) CGFloat scale;
 
++ (id) comeForwardAnimation;
 @end

@@ -43,6 +43,24 @@
 		2704B1A416E3FC4400201754 /* FLWizardHeaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2704B19D16E3FC4400201754 /* FLWizardHeaderViewController.m */; };
 		2704B1A516E3FC4400201754 /* FLWizardHeaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2704B19D16E3FC4400201754 /* FLWizardHeaderViewController.m */; };
 		2704B1A616E3FC4400201754 /* FLWizardHeaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2704B19D16E3FC4400201754 /* FLWizardHeaderViewController.m */; };
+		2709A0F516EBD93200C59905 /* FLBarTitleLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 2709A0F316EBD93200C59905 /* FLBarTitleLayer.h */; };
+		2709A0F616EBD93200C59905 /* FLBarTitleLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 2709A0F316EBD93200C59905 /* FLBarTitleLayer.h */; };
+		2709A0F716EBD93200C59905 /* FLBarTitleLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 2709A0F316EBD93200C59905 /* FLBarTitleLayer.h */; };
+		2709A0F816EBD93200C59905 /* FLBarTitleLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 2709A0F316EBD93200C59905 /* FLBarTitleLayer.h */; };
+		2709A0F916EBD93200C59905 /* FLBarTitleLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2709A0F416EBD93200C59905 /* FLBarTitleLayer.m */; };
+		2709A0FA16EBD93200C59905 /* FLBarTitleLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2709A0F416EBD93200C59905 /* FLBarTitleLayer.m */; };
+		2709A0FB16EBD93200C59905 /* FLBarTitleLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2709A0F416EBD93200C59905 /* FLBarTitleLayer.m */; };
+		2709A0FC16EBD93200C59905 /* FLBarTitleLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2709A0F416EBD93200C59905 /* FLBarTitleLayer.m */; };
+		2709A0FD16EBD93200C59905 /* FLBarTitleLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2709A0F416EBD93200C59905 /* FLBarTitleLayer.m */; };
+		2709A10016EBD98400C59905 /* FLMouseTrackingView.h in Headers */ = {isa = PBXBuildFile; fileRef = 2709A0FE16EBD98400C59905 /* FLMouseTrackingView.h */; };
+		2709A10116EBD98400C59905 /* FLMouseTrackingView.h in Headers */ = {isa = PBXBuildFile; fileRef = 2709A0FE16EBD98400C59905 /* FLMouseTrackingView.h */; };
+		2709A10216EBD98400C59905 /* FLMouseTrackingView.h in Headers */ = {isa = PBXBuildFile; fileRef = 2709A0FE16EBD98400C59905 /* FLMouseTrackingView.h */; };
+		2709A10316EBD98400C59905 /* FLMouseTrackingView.h in Headers */ = {isa = PBXBuildFile; fileRef = 2709A0FE16EBD98400C59905 /* FLMouseTrackingView.h */; };
+		2709A10416EBD98400C59905 /* FLMouseTrackingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2709A0FF16EBD98400C59905 /* FLMouseTrackingView.m */; };
+		2709A10516EBD98400C59905 /* FLMouseTrackingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2709A0FF16EBD98400C59905 /* FLMouseTrackingView.m */; };
+		2709A10616EBD98400C59905 /* FLMouseTrackingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2709A0FF16EBD98400C59905 /* FLMouseTrackingView.m */; };
+		2709A10716EBD98400C59905 /* FLMouseTrackingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2709A0FF16EBD98400C59905 /* FLMouseTrackingView.m */; };
+		2709A10816EBD98400C59905 /* FLMouseTrackingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2709A0FF16EBD98400C59905 /* FLMouseTrackingView.m */; };
 		271E3E00169373BE00FB62C9 /* FLFlipTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 271E3DFC169373BE00FB62C9 /* FLFlipTransition.h */; };
 		271E3E01169373BE00FB62C9 /* FLFlipTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 271E3DFC169373BE00FB62C9 /* FLFlipTransition.h */; };
 		271E3E02169373BE00FB62C9 /* FLFlipTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 271E3DFC169373BE00FB62C9 /* FLFlipTransition.h */; };
@@ -115,15 +133,6 @@
 		2731CC9B1695FC6D00465E6C /* FLWidget.m in Sources */ = {isa = PBXBuildFile; fileRef = 2731CC941695FC6D00465E6C /* FLWidget.m */; };
 		2731CC9C1695FC6D00465E6C /* FLWidget.m in Sources */ = {isa = PBXBuildFile; fileRef = 2731CC941695FC6D00465E6C /* FLWidget.m */; };
 		2731CC9D1695FC6D00465E6C /* FLWidget.m in Sources */ = {isa = PBXBuildFile; fileRef = 2731CC941695FC6D00465E6C /* FLWidget.m */; };
-		2731CCA616962E1900465E6C /* FLDrawableString.h in Headers */ = {isa = PBXBuildFile; fileRef = 2731CCA416962E1900465E6C /* FLDrawableString.h */; };
-		2731CCA716962E1900465E6C /* FLDrawableString.h in Headers */ = {isa = PBXBuildFile; fileRef = 2731CCA416962E1900465E6C /* FLDrawableString.h */; };
-		2731CCA816962E1900465E6C /* FLDrawableString.h in Headers */ = {isa = PBXBuildFile; fileRef = 2731CCA416962E1900465E6C /* FLDrawableString.h */; };
-		2731CCA916962E1900465E6C /* FLDrawableString.h in Headers */ = {isa = PBXBuildFile; fileRef = 2731CCA416962E1900465E6C /* FLDrawableString.h */; };
-		2731CCAA16962E1900465E6C /* FLDrawableString.m in Sources */ = {isa = PBXBuildFile; fileRef = 2731CCA516962E1900465E6C /* FLDrawableString.m */; };
-		2731CCAB16962E1900465E6C /* FLDrawableString.m in Sources */ = {isa = PBXBuildFile; fileRef = 2731CCA516962E1900465E6C /* FLDrawableString.m */; };
-		2731CCAC16962E1900465E6C /* FLDrawableString.m in Sources */ = {isa = PBXBuildFile; fileRef = 2731CCA516962E1900465E6C /* FLDrawableString.m */; };
-		2731CCAD16962E1900465E6C /* FLDrawableString.m in Sources */ = {isa = PBXBuildFile; fileRef = 2731CCA516962E1900465E6C /* FLDrawableString.m */; };
-		2731CCAE16962E1900465E6C /* FLDrawableString.m in Sources */ = {isa = PBXBuildFile; fileRef = 2731CCA516962E1900465E6C /* FLDrawableString.m */; };
 		2731CCB11696552400465E6C /* FLCoreText.h in Headers */ = {isa = PBXBuildFile; fileRef = 2731CCAF1696552400465E6C /* FLCoreText.h */; };
 		2731CCB21696552400465E6C /* FLCoreText.h in Headers */ = {isa = PBXBuildFile; fileRef = 2731CCAF1696552400465E6C /* FLCoreText.h */; };
 		2731CCB31696552400465E6C /* FLCoreText.h in Headers */ = {isa = PBXBuildFile; fileRef = 2731CCAF1696552400465E6C /* FLCoreText.h */; };
@@ -253,6 +262,15 @@
 		27D1E5C2166D355C00DB680E /* FishLampCocoa-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27D1E5C1166D355C00DB680E /* FishLampCocoa-Prefix.pch */; };
 		27D1E5C3166D355C00DB680E /* FishLampCocoa-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27D1E5C1166D355C00DB680E /* FishLampCocoa-Prefix.pch */; };
 		27D1E5C4166D355C00DB680E /* FishLampCocoa-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27D1E5C1166D355C00DB680E /* FishLampCocoa-Prefix.pch */; };
+		27FB507516EBEC48004FC64F /* FLBarHighlightBackgoundLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 27FB507316EBEC47004FC64F /* FLBarHighlightBackgoundLayer.h */; };
+		27FB507616EBEC48004FC64F /* FLBarHighlightBackgoundLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 27FB507316EBEC47004FC64F /* FLBarHighlightBackgoundLayer.h */; };
+		27FB507716EBEC48004FC64F /* FLBarHighlightBackgoundLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 27FB507316EBEC47004FC64F /* FLBarHighlightBackgoundLayer.h */; };
+		27FB507816EBEC48004FC64F /* FLBarHighlightBackgoundLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 27FB507316EBEC47004FC64F /* FLBarHighlightBackgoundLayer.h */; };
+		27FB507916EBEC48004FC64F /* FLBarHighlightBackgoundLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FB507416EBEC47004FC64F /* FLBarHighlightBackgoundLayer.m */; };
+		27FB507A16EBEC48004FC64F /* FLBarHighlightBackgoundLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FB507416EBEC47004FC64F /* FLBarHighlightBackgoundLayer.m */; };
+		27FB507B16EBEC48004FC64F /* FLBarHighlightBackgoundLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FB507416EBEC47004FC64F /* FLBarHighlightBackgoundLayer.m */; };
+		27FB507C16EBEC48004FC64F /* FLBarHighlightBackgoundLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FB507416EBEC47004FC64F /* FLBarHighlightBackgoundLayer.m */; };
+		27FB507D16EBEC48004FC64F /* FLBarHighlightBackgoundLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FB507416EBEC47004FC64F /* FLBarHighlightBackgoundLayer.m */; };
 		27FD17B816A5E7EC006A9F1D /* FLBreadcrumbBarViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 27FD17B616A5E7EC006A9F1D /* FLBreadcrumbBarViewController.h */; };
 		27FD17B916A5E7EC006A9F1D /* FLBreadcrumbBarViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 27FD17B616A5E7EC006A9F1D /* FLBreadcrumbBarViewController.h */; };
 		27FD17BA16A5E7EC006A9F1D /* FLBreadcrumbBarViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 27FD17B616A5E7EC006A9F1D /* FLBreadcrumbBarViewController.h */; };
@@ -741,75 +759,75 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		27EC5F5D16D45E3300C5102D /* PBXContainerItemProxy */ = {
+		2709A0D316EBAC8700C59905 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 2739007116D45D4100FC6453 /* FishLampCompatibility.xcodeproj */;
+			containerPortal = 270BC95716EBAB5100416D62 /* FishLampCocoa.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 27A43AB415CDCC89001CB13E;
-			remoteInfo = "FishLampCompatibility-iOS-ARC";
+			remoteInfo = "FishLampCocoa-iOS-ARC";
 		};
-		27EC5F5F16D45E3300C5102D /* PBXContainerItemProxy */ = {
+		2709A0D516EBAC8700C59905 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 2739007116D45D4100FC6453 /* FishLampCompatibility.xcodeproj */;
+			containerPortal = 270BC95716EBAB5100416D62 /* FishLampCocoa.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 27048EF0161CB58600C38ADA;
-			remoteInfo = "FishLampCompatibility-OSX-32-MRC";
+			remoteInfo = "FishLampCocoa-OSX-32-MRC";
 		};
-		27EC5F6116D45E3300C5102D /* PBXContainerItemProxy */ = {
+		2709A0D716EBAC8700C59905 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 2739007116D45D4100FC6453 /* FishLampCompatibility.xcodeproj */;
+			containerPortal = 270BC95716EBAB5100416D62 /* FishLampCocoa.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 27A43AC415CDCCCB001CB13E;
-			remoteInfo = "FishLampCompatibility-OSX-64-MRC";
+			remoteInfo = "FishLampCocoa-OSX-64-MRC";
 		};
-		27EC5F6316D45E3300C5102D /* PBXContainerItemProxy */ = {
+		2709A0D916EBAC8700C59905 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 2739007116D45D4100FC6453 /* FishLampCompatibility.xcodeproj */;
+			containerPortal = 270BC95716EBAB5100416D62 /* FishLampCocoa.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 27314C79165328400027850D;
-			remoteInfo = "FishLampCompatibility-OSX-64-ARC";
+			remoteInfo = "FishLampCocoa-OSX-64-ARC";
 		};
-		27EC5F6516D45E3300C5102D /* PBXContainerItemProxy */ = {
+		2709A0DB16EBAC8700C59905 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 2739007116D45D4100FC6453 /* FishLampCompatibility.xcodeproj */;
+			containerPortal = 270BC95716EBAB5100416D62 /* FishLampCocoa.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 27CBC1F416768BA600753D0A;
-			remoteInfo = "FishLampCompatibility-OSX-3264-MRC";
+			remoteInfo = "FishLampCocoa-OSX-3264-MRC";
 		};
-		27EC5F9616D45ED400C5102D /* PBXContainerItemProxy */ = {
+		2709A0DD16EBACA100C59905 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 2739007116D45D4100FC6453 /* FishLampCompatibility.xcodeproj */;
+			containerPortal = 270BC95716EBAB5100416D62 /* FishLampCocoa.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 27A43AB315CDCC89001CB13E;
-			remoteInfo = "FishLampCompatibility-iOS-ARC";
+			remoteInfo = "FishLampCocoa-iOS-ARC";
 		};
-		27EC5F9816D45EDC00C5102D /* PBXContainerItemProxy */ = {
+		2709A0DF16EBACA800C59905 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 2739007116D45D4100FC6453 /* FishLampCompatibility.xcodeproj */;
+			containerPortal = 270BC95716EBAB5100416D62 /* FishLampCocoa.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 27048B70161CB58600C38ADA;
-			remoteInfo = "FishLampCompatibility-OSX-32-MRC";
+			remoteInfo = "FishLampCocoa-OSX-32-MRC";
 		};
-		27EC5F9A16D45EE300C5102D /* PBXContainerItemProxy */ = {
+		2709A0E116EBACAE00C59905 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 2739007116D45D4100FC6453 /* FishLampCompatibility.xcodeproj */;
+			containerPortal = 270BC95716EBAB5100416D62 /* FishLampCocoa.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 27A43AC315CDCCCB001CB13E;
-			remoteInfo = "FishLampCompatibility-OSX-64-MRC";
+			remoteInfo = "FishLampCocoa-OSX-64-MRC";
 		};
-		27EC5F9C16D45EE900C5102D /* PBXContainerItemProxy */ = {
+		2709A0E316EBACB400C59905 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 2739007116D45D4100FC6453 /* FishLampCompatibility.xcodeproj */;
+			containerPortal = 270BC95716EBAB5100416D62 /* FishLampCocoa.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 273148B9165328400027850D;
-			remoteInfo = "FishLampCompatibility-OSX-64-ARC";
+			remoteInfo = "FishLampCocoa-OSX-64-ARC";
 		};
-		27EC5F9E16D45EEE00C5102D /* PBXContainerItemProxy */ = {
+		2709A0E516EBACBB00C59905 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 2739007116D45D4100FC6453 /* FishLampCompatibility.xcodeproj */;
+			containerPortal = 270BC95716EBAB5100416D62 /* FishLampCocoa.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 27CBBE2916768BA600753D0A;
-			remoteInfo = "FishLampCompatibility-OSX-3264-MRC";
+			remoteInfo = "FishLampCocoa-OSX-3264-MRC";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -835,6 +853,11 @@
 		2704B19216E3F8CA00201754 /* FLPanelManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLPanelManager.m; sourceTree = "<group>"; };
 		2704B19C16E3FC4300201754 /* FLWizardHeaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLWizardHeaderViewController.h; sourceTree = "<group>"; };
 		2704B19D16E3FC4400201754 /* FLWizardHeaderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLWizardHeaderViewController.m; sourceTree = "<group>"; };
+		2709A0F316EBD93200C59905 /* FLBarTitleLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLBarTitleLayer.h; sourceTree = "<group>"; };
+		2709A0F416EBD93200C59905 /* FLBarTitleLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLBarTitleLayer.m; sourceTree = "<group>"; };
+		2709A0FE16EBD98400C59905 /* FLMouseTrackingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLMouseTrackingView.h; sourceTree = "<group>"; };
+		2709A0FF16EBD98400C59905 /* FLMouseTrackingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLMouseTrackingView.m; sourceTree = "<group>"; };
+		270BC95716EBAB5100416D62 /* FishLampCocoa.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FishLampCocoa.xcodeproj; path = ../FishLampCocoaLib/FishLampCocoa.xcodeproj; sourceTree = "<group>"; };
 		271E3DFC169373BE00FB62C9 /* FLFlipTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLFlipTransition.h; sourceTree = "<group>"; };
 		271E3DFD169373BE00FB62C9 /* FLFlipTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLFlipTransition.m; sourceTree = "<group>"; };
 		271E3E13169373DB00FB62C9 /* FLDropBackAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLDropBackAnimation.h; sourceTree = "<group>"; };
@@ -852,8 +875,6 @@
 		27314C79165328400027850D /* libFishLampCocoaUI-OSX-64-ARC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoaUI-OSX-64-ARC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2731CC931695FC6D00465E6C /* FLWidget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLWidget.h; sourceTree = "<group>"; };
 		2731CC941695FC6D00465E6C /* FLWidget.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLWidget.m; sourceTree = "<group>"; };
-		2731CCA416962E1900465E6C /* FLDrawableString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLDrawableString.h; sourceTree = "<group>"; };
-		2731CCA516962E1900465E6C /* FLDrawableString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLDrawableString.m; sourceTree = "<group>"; };
 		2731CCAF1696552400465E6C /* FLCoreText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCoreText.h; sourceTree = "<group>"; };
 		2731CCB01696552400465E6C /* FLCoreText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLCoreText.m; sourceTree = "<group>"; };
 		2731CCBA1697346800465E6C /* FLPopInAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLPopInAnimation.h; sourceTree = "<group>"; };
@@ -866,7 +887,6 @@
 		27348DD4168DFEAE00D4142E /* FLDrawable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLDrawable.m; sourceTree = "<group>"; };
 		27348DDA168E05F100D4142E /* FLDrawableBorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLDrawableBorder.h; sourceTree = "<group>"; };
 		27348DDB168E05F200D4142E /* FLDrawableBorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLDrawableBorder.m; sourceTree = "<group>"; };
-		2739007116D45D4100FC6453 /* FishLampCompatibility.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FishLampCompatibility.xcodeproj; path = ../FishLampCompatibilityLib/FishLampCompatibility.xcodeproj; sourceTree = "<group>"; };
 		274933F5169A0608008E8EC5 /* __CocoaUIHeaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = __CocoaUIHeaders.h; path = ../../Frameworks/CocoaUI/__CocoaUIHeaders.h; sourceTree = "<group>"; };
 		27493732169A175D008E8EC5 /* FishLampCocoaUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FishLampCocoaUI.h; path = ../../Frameworks/CocoaUI/FishLampCocoaUI.h; sourceTree = "<group>"; };
 		2753D4581693DDB5001B8856 /* FLSlideOutAndComeForwardTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLSlideOutAndComeForwardTransition.h; sourceTree = "<group>"; };
@@ -888,6 +908,8 @@
 		27A43AC415CDCCCB001CB13E /* libFishLampCocoaUI-OSX-64-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoaUI-OSX-64-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27CBC1F416768BA600753D0A /* libFishLampCocoaUI-OSX-32-64-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoaUI-OSX-32-64-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27D1E5C1166D355C00DB680E /* FishLampCocoa-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FishLampCocoa-Prefix.pch"; sourceTree = "<group>"; };
+		27FB507316EBEC47004FC64F /* FLBarHighlightBackgoundLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLBarHighlightBackgoundLayer.h; sourceTree = "<group>"; };
+		27FB507416EBEC47004FC64F /* FLBarHighlightBackgoundLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLBarHighlightBackgoundLayer.m; sourceTree = "<group>"; };
 		27FD17B616A5E7EC006A9F1D /* FLBreadcrumbBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLBreadcrumbBarViewController.h; sourceTree = "<group>"; };
 		27FD17B716A5E7EC006A9F1D /* FLBreadcrumbBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLBreadcrumbBarViewController.m; sourceTree = "<group>"; };
 		27FD17C216A5EB14006A9F1D /* FLBreadcrumbBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLBreadcrumbBarView.h; sourceTree = "<group>"; };
@@ -1048,6 +1070,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2709A0BD16EBAC8700C59905 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2709A0D416EBAC8700C59905 /* libFishLampCocoa-iOS-ARC.a */,
+				2709A0D616EBAC8700C59905 /* libFishLampCocoa-OSX-32-MRC.a */,
+				2709A0D816EBAC8700C59905 /* libFishLampCocoa-OSX-64-MRC.a */,
+				2709A0DA16EBAC8700C59905 /* libFishLampCocoa-OSX-64-ARC.a */,
+				2709A0DC16EBAC8700C59905 /* libFishLampCocoa-OSX-3264-MRC.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		271E3DFB169373B800FB62C9 /* Transitions */ = {
 			isa = PBXGroup;
 			children = (
@@ -1139,21 +1173,9 @@
 		27A43A7E15CDCC1B001CB13E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				2739007116D45D4100FC6453 /* FishLampCompatibility.xcodeproj */,
+				270BC95716EBAB5100416D62 /* FishLampCocoa.xcodeproj */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		27EC5F5616D45E3300C5102D /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				27EC5F5E16D45E3300C5102D /* libFishLampCompatibility-iOS-ARC.a */,
-				27EC5F6016D45E3300C5102D /* libFishLampCompatibility-OSX-32-MRC.a */,
-				27EC5F6216D45E3300C5102D /* libFishLampCompatibility-OSX-64-MRC.a */,
-				27EC5F6416D45E3300C5102D /* libFishLampCompatibility-OSX-64-ARC.a */,
-				27EC5F6616D45E3300C5102D /* libFishLampCompatibility-OSX-3264-MRC.a */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		27FE76CC16A5B91400C8F0FB /* WizardPanels */ = {
@@ -1291,8 +1313,6 @@
 				27348DD4168DFEAE00D4142E /* FLDrawable.m */,
 				27348DDA168E05F100D4142E /* FLDrawableBorder.h */,
 				27348DDB168E05F200D4142E /* FLDrawableBorder.m */,
-				2731CCA416962E1900465E6C /* FLDrawableString.h */,
-				2731CCA516962E1900465E6C /* FLDrawableString.m */,
 				2731CCAF1696552400465E6C /* FLCoreText.h */,
 				2731CCB01696552400465E6C /* FLCoreText.m */,
 			);
@@ -1352,6 +1372,8 @@
 				789EF0CA167EBD410019D6B2 /* FLView.m */,
 				27FE4A3B16A2499200C8F0FB /* UIView+FLEnabled.h */,
 				27FE4A3C16A2499200C8F0FB /* UIView+FLEnabled.m */,
+				2709A0FE16EBD98400C59905 /* FLMouseTrackingView.h */,
+				2709A0FF16EBD98400C59905 /* FLMouseTrackingView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1398,6 +1420,10 @@
 				27FD17B716A5E7EC006A9F1D /* FLBreadcrumbBarViewController.m */,
 				27FD17C216A5EB14006A9F1D /* FLBreadcrumbBarView.h */,
 				27FD17C316A5EB14006A9F1D /* FLBreadcrumbBarView.m */,
+				2709A0F316EBD93200C59905 /* FLBarTitleLayer.h */,
+				2709A0F416EBD93200C59905 /* FLBarTitleLayer.m */,
+				27FB507316EBEC47004FC64F /* FLBarHighlightBackgoundLayer.h */,
+				27FB507416EBEC47004FC64F /* FLBarHighlightBackgoundLayer.m */,
 			);
 			path = BreadcrumbBarView;
 			sourceTree = "<group>";
@@ -1574,7 +1600,6 @@
 				2753D47D1694AC1C001B8856 /* FLStatusBarViewController.h in Headers */,
 				2753D4951694AD1A001B8856 /* FLViewController.h in Headers */,
 				2731CC951695FC6D00465E6C /* FLWidget.h in Headers */,
-				2731CCA616962E1900465E6C /* FLDrawableString.h in Headers */,
 				2731CCB11696552400465E6C /* FLCoreText.h in Headers */,
 				2731CCBC1697346800465E6C /* FLPopInAnimation.h in Headers */,
 				274933F6169A0608008E8EC5 /* __CocoaUIHeaders.h in Headers */,
@@ -1589,6 +1614,9 @@
 				2704B18816E3F64700201754 /* FLWizardNavigationViewController.h in Headers */,
 				2704B19316E3F8CA00201754 /* FLPanelManager.h in Headers */,
 				2704B19E16E3FC4400201754 /* FLWizardHeaderViewController.h in Headers */,
+				2709A0F516EBD93200C59905 /* FLBarTitleLayer.h in Headers */,
+				2709A10016EBD98400C59905 /* FLMouseTrackingView.h in Headers */,
+				27FB507516EBEC48004FC64F /* FLBarHighlightBackgoundLayer.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1665,7 +1693,6 @@
 				2753D47F1694AC1C001B8856 /* FLStatusBarViewController.h in Headers */,
 				2753D4971694AD1A001B8856 /* FLViewController.h in Headers */,
 				2731CC971695FC6D00465E6C /* FLWidget.h in Headers */,
-				2731CCA816962E1900465E6C /* FLDrawableString.h in Headers */,
 				2731CCB31696552400465E6C /* FLCoreText.h in Headers */,
 				2731CCBE1697346800465E6C /* FLPopInAnimation.h in Headers */,
 				274933F8169A0608008E8EC5 /* __CocoaUIHeaders.h in Headers */,
@@ -1680,6 +1707,9 @@
 				2704B18A16E3F64700201754 /* FLWizardNavigationViewController.h in Headers */,
 				2704B19516E3F8CA00201754 /* FLPanelManager.h in Headers */,
 				2704B1A016E3FC4400201754 /* FLWizardHeaderViewController.h in Headers */,
+				2709A0F716EBD93200C59905 /* FLBarTitleLayer.h in Headers */,
+				2709A10216EBD98400C59905 /* FLMouseTrackingView.h in Headers */,
+				27FB507716EBEC48004FC64F /* FLBarHighlightBackgoundLayer.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1756,7 +1786,6 @@
 				2753D47E1694AC1C001B8856 /* FLStatusBarViewController.h in Headers */,
 				2753D4961694AD1A001B8856 /* FLViewController.h in Headers */,
 				2731CC961695FC6D00465E6C /* FLWidget.h in Headers */,
-				2731CCA716962E1900465E6C /* FLDrawableString.h in Headers */,
 				2731CCB21696552400465E6C /* FLCoreText.h in Headers */,
 				2731CCBD1697346800465E6C /* FLPopInAnimation.h in Headers */,
 				274933F7169A0608008E8EC5 /* __CocoaUIHeaders.h in Headers */,
@@ -1771,6 +1800,9 @@
 				2704B18916E3F64700201754 /* FLWizardNavigationViewController.h in Headers */,
 				2704B19416E3F8CA00201754 /* FLPanelManager.h in Headers */,
 				2704B19F16E3FC4400201754 /* FLWizardHeaderViewController.h in Headers */,
+				2709A0F616EBD93200C59905 /* FLBarTitleLayer.h in Headers */,
+				2709A10116EBD98400C59905 /* FLMouseTrackingView.h in Headers */,
+				27FB507616EBEC48004FC64F /* FLBarHighlightBackgoundLayer.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1847,7 +1879,6 @@
 				2753D4801694AC1C001B8856 /* FLStatusBarViewController.h in Headers */,
 				2753D4981694AD1A001B8856 /* FLViewController.h in Headers */,
 				2731CC981695FC6D00465E6C /* FLWidget.h in Headers */,
-				2731CCA916962E1900465E6C /* FLDrawableString.h in Headers */,
 				2731CCB41696552400465E6C /* FLCoreText.h in Headers */,
 				2731CCBF1697346800465E6C /* FLPopInAnimation.h in Headers */,
 				274933F9169A0608008E8EC5 /* __CocoaUIHeaders.h in Headers */,
@@ -1862,6 +1893,9 @@
 				2704B18B16E3F64700201754 /* FLWizardNavigationViewController.h in Headers */,
 				2704B19616E3F8CA00201754 /* FLPanelManager.h in Headers */,
 				2704B1A116E3FC4400201754 /* FLWizardHeaderViewController.h in Headers */,
+				2709A0F816EBD93200C59905 /* FLBarTitleLayer.h in Headers */,
+				2709A10316EBD98400C59905 /* FLMouseTrackingView.h in Headers */,
+				27FB507816EBEC48004FC64F /* FLBarHighlightBackgoundLayer.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1879,7 +1913,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				27EC5F9916D45EDC00C5102D /* PBXTargetDependency */,
+				2709A0E016EBACA800C59905 /* PBXTargetDependency */,
 			);
 			name = "FishLampCocoaUI-OSX-32-MRC";
 			productName = FishLampCocoaApp;
@@ -1897,7 +1931,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				27EC5F9D16D45EE900C5102D /* PBXTargetDependency */,
+				2709A0E416EBACB400C59905 /* PBXTargetDependency */,
 			);
 			name = "FishLampCocoaUI-OSX-64-ARC";
 			productName = FishLampCommandLine;
@@ -1915,7 +1949,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				27EC5F9716D45ED400C5102D /* PBXTargetDependency */,
+				2709A0DE16EBACA100C59905 /* PBXTargetDependency */,
 			);
 			name = "FishLampCocoaUI-iOS-ARC";
 			productName = FishLampiOS;
@@ -1933,7 +1967,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				27EC5F9B16D45EE300C5102D /* PBXTargetDependency */,
+				2709A0E216EBACAE00C59905 /* PBXTargetDependency */,
 			);
 			name = "FishLampCocoaUI-OSX-64-MRC";
 			productName = FishLampCommandLine;
@@ -1951,7 +1985,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				27EC5F9F16D45EEE00C5102D /* PBXTargetDependency */,
+				2709A0E616EBACBB00C59905 /* PBXTargetDependency */,
 			);
 			name = "FishLampCocoaUI-OSX-3264-MRC";
 			productName = FishLampCommandLine;
@@ -1980,8 +2014,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 27EC5F5616D45E3300C5102D /* Products */;
-					ProjectRef = 2739007116D45D4100FC6453 /* FishLampCompatibility.xcodeproj */;
+					ProductGroup = 2709A0BD16EBAC8700C59905 /* Products */;
+					ProjectRef = 270BC95716EBAB5100416D62 /* FishLampCocoa.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -1996,39 +2030,39 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		27EC5F5E16D45E3300C5102D /* libFishLampCompatibility-iOS-ARC.a */ = {
+		2709A0D416EBAC8700C59905 /* libFishLampCocoa-iOS-ARC.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = "libFishLampCompatibility-iOS-ARC.a";
-			remoteRef = 27EC5F5D16D45E3300C5102D /* PBXContainerItemProxy */;
+			path = "libFishLampCocoa-iOS-ARC.a";
+			remoteRef = 2709A0D316EBAC8700C59905 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		27EC5F6016D45E3300C5102D /* libFishLampCompatibility-OSX-32-MRC.a */ = {
+		2709A0D616EBAC8700C59905 /* libFishLampCocoa-OSX-32-MRC.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = "libFishLampCompatibility-OSX-32-MRC.a";
-			remoteRef = 27EC5F5F16D45E3300C5102D /* PBXContainerItemProxy */;
+			path = "libFishLampCocoa-OSX-32-MRC.a";
+			remoteRef = 2709A0D516EBAC8700C59905 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		27EC5F6216D45E3300C5102D /* libFishLampCompatibility-OSX-64-MRC.a */ = {
+		2709A0D816EBAC8700C59905 /* libFishLampCocoa-OSX-64-MRC.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = "libFishLampCompatibility-OSX-64-MRC.a";
-			remoteRef = 27EC5F6116D45E3300C5102D /* PBXContainerItemProxy */;
+			path = "libFishLampCocoa-OSX-64-MRC.a";
+			remoteRef = 2709A0D716EBAC8700C59905 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		27EC5F6416D45E3300C5102D /* libFishLampCompatibility-OSX-64-ARC.a */ = {
+		2709A0DA16EBAC8700C59905 /* libFishLampCocoa-OSX-64-ARC.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = "libFishLampCompatibility-OSX-64-ARC.a";
-			remoteRef = 27EC5F6316D45E3300C5102D /* PBXContainerItemProxy */;
+			path = "libFishLampCocoa-OSX-64-ARC.a";
+			remoteRef = 2709A0D916EBAC8700C59905 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		27EC5F6616D45E3300C5102D /* libFishLampCompatibility-OSX-3264-MRC.a */ = {
+		2709A0DC16EBAC8700C59905 /* libFishLampCocoa-OSX-3264-MRC.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = "libFishLampCompatibility-OSX-3264-MRC.a";
-			remoteRef = 27EC5F6516D45E3300C5102D /* PBXContainerItemProxy */;
+			path = "libFishLampCocoa-OSX-3264-MRC.a";
+			remoteRef = 2709A0DB16EBAC8700C59905 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -2104,7 +2138,6 @@
 				2753D4821694AC1C001B8856 /* FLStatusBarViewController.m in Sources */,
 				2753D49A1694AD1A001B8856 /* FLViewController.m in Sources */,
 				2731CC9A1695FC6D00465E6C /* FLWidget.m in Sources */,
-				2731CCAB16962E1900465E6C /* FLDrawableString.m in Sources */,
 				2731CCB61696552400465E6C /* FLCoreText.m in Sources */,
 				2731CCC11697346800465E6C /* FLPopInAnimation.m in Sources */,
 				27FE4A4216A2499200C8F0FB /* UIView+FLEnabled.m in Sources */,
@@ -2117,6 +2150,9 @@
 				2704B18D16E3F64700201754 /* FLWizardNavigationViewController.m in Sources */,
 				2704B19816E3F8CA00201754 /* FLPanelManager.m in Sources */,
 				2704B1A316E3FC4400201754 /* FLWizardHeaderViewController.m in Sources */,
+				2709A0FA16EBD93200C59905 /* FLBarTitleLayer.m in Sources */,
+				2709A10516EBD98400C59905 /* FLMouseTrackingView.m in Sources */,
+				27FB507A16EBEC48004FC64F /* FLBarHighlightBackgoundLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2190,7 +2226,6 @@
 				2753D4841694AC1C001B8856 /* FLStatusBarViewController.m in Sources */,
 				2753D49C1694AD1A001B8856 /* FLViewController.m in Sources */,
 				2731CC9C1695FC6D00465E6C /* FLWidget.m in Sources */,
-				2731CCAD16962E1900465E6C /* FLDrawableString.m in Sources */,
 				2731CCB81696552400465E6C /* FLCoreText.m in Sources */,
 				2731CCC31697346800465E6C /* FLPopInAnimation.m in Sources */,
 				27FE4A4416A2499200C8F0FB /* UIView+FLEnabled.m in Sources */,
@@ -2203,6 +2238,9 @@
 				2704B18F16E3F64700201754 /* FLWizardNavigationViewController.m in Sources */,
 				2704B19A16E3F8CA00201754 /* FLPanelManager.m in Sources */,
 				2704B1A516E3FC4400201754 /* FLWizardHeaderViewController.m in Sources */,
+				2709A0FC16EBD93200C59905 /* FLBarTitleLayer.m in Sources */,
+				2709A10716EBD98400C59905 /* FLMouseTrackingView.m in Sources */,
+				27FB507C16EBEC48004FC64F /* FLBarHighlightBackgoundLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2276,7 +2314,6 @@
 				2753D4811694AC1C001B8856 /* FLStatusBarViewController.m in Sources */,
 				2753D4991694AD1A001B8856 /* FLViewController.m in Sources */,
 				2731CC991695FC6D00465E6C /* FLWidget.m in Sources */,
-				2731CCAA16962E1900465E6C /* FLDrawableString.m in Sources */,
 				2731CCB51696552400465E6C /* FLCoreText.m in Sources */,
 				2731CCC01697346800465E6C /* FLPopInAnimation.m in Sources */,
 				27FE4A4116A2499200C8F0FB /* UIView+FLEnabled.m in Sources */,
@@ -2289,6 +2326,9 @@
 				2704B18C16E3F64700201754 /* FLWizardNavigationViewController.m in Sources */,
 				2704B19716E3F8CA00201754 /* FLPanelManager.m in Sources */,
 				2704B1A216E3FC4400201754 /* FLWizardHeaderViewController.m in Sources */,
+				2709A0F916EBD93200C59905 /* FLBarTitleLayer.m in Sources */,
+				2709A10416EBD98400C59905 /* FLMouseTrackingView.m in Sources */,
+				27FB507916EBEC48004FC64F /* FLBarHighlightBackgoundLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2362,7 +2402,6 @@
 				2753D4831694AC1C001B8856 /* FLStatusBarViewController.m in Sources */,
 				2753D49B1694AD1A001B8856 /* FLViewController.m in Sources */,
 				2731CC9B1695FC6D00465E6C /* FLWidget.m in Sources */,
-				2731CCAC16962E1900465E6C /* FLDrawableString.m in Sources */,
 				2731CCB71696552400465E6C /* FLCoreText.m in Sources */,
 				2731CCC21697346800465E6C /* FLPopInAnimation.m in Sources */,
 				27FE4A4316A2499200C8F0FB /* UIView+FLEnabled.m in Sources */,
@@ -2375,6 +2414,9 @@
 				2704B18E16E3F64700201754 /* FLWizardNavigationViewController.m in Sources */,
 				2704B19916E3F8CA00201754 /* FLPanelManager.m in Sources */,
 				2704B1A416E3FC4400201754 /* FLWizardHeaderViewController.m in Sources */,
+				2709A0FB16EBD93200C59905 /* FLBarTitleLayer.m in Sources */,
+				2709A10616EBD98400C59905 /* FLMouseTrackingView.m in Sources */,
+				27FB507B16EBEC48004FC64F /* FLBarHighlightBackgoundLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2448,7 +2490,6 @@
 				2753D4851694AC1C001B8856 /* FLStatusBarViewController.m in Sources */,
 				2753D49D1694AD1A001B8856 /* FLViewController.m in Sources */,
 				2731CC9D1695FC6D00465E6C /* FLWidget.m in Sources */,
-				2731CCAE16962E1900465E6C /* FLDrawableString.m in Sources */,
 				2731CCB91696552400465E6C /* FLCoreText.m in Sources */,
 				2731CCC41697346800465E6C /* FLPopInAnimation.m in Sources */,
 				27FE4A4516A2499200C8F0FB /* UIView+FLEnabled.m in Sources */,
@@ -2461,36 +2502,39 @@
 				2704B19016E3F64700201754 /* FLWizardNavigationViewController.m in Sources */,
 				2704B19B16E3F8CA00201754 /* FLPanelManager.m in Sources */,
 				2704B1A616E3FC4400201754 /* FLWizardHeaderViewController.m in Sources */,
+				2709A0FD16EBD93200C59905 /* FLBarTitleLayer.m in Sources */,
+				2709A10816EBD98400C59905 /* FLMouseTrackingView.m in Sources */,
+				27FB507D16EBEC48004FC64F /* FLBarHighlightBackgoundLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		27EC5F9716D45ED400C5102D /* PBXTargetDependency */ = {
+		2709A0DE16EBACA100C59905 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = "FishLampCompatibility-iOS-ARC";
-			targetProxy = 27EC5F9616D45ED400C5102D /* PBXContainerItemProxy */;
+			name = "FishLampCocoa-iOS-ARC";
+			targetProxy = 2709A0DD16EBACA100C59905 /* PBXContainerItemProxy */;
 		};
-		27EC5F9916D45EDC00C5102D /* PBXTargetDependency */ = {
+		2709A0E016EBACA800C59905 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = "FishLampCompatibility-OSX-32-MRC";
-			targetProxy = 27EC5F9816D45EDC00C5102D /* PBXContainerItemProxy */;
+			name = "FishLampCocoa-OSX-32-MRC";
+			targetProxy = 2709A0DF16EBACA800C59905 /* PBXContainerItemProxy */;
 		};
-		27EC5F9B16D45EE300C5102D /* PBXTargetDependency */ = {
+		2709A0E216EBACAE00C59905 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = "FishLampCompatibility-OSX-64-MRC";
-			targetProxy = 27EC5F9A16D45EE300C5102D /* PBXContainerItemProxy */;
+			name = "FishLampCocoa-OSX-64-MRC";
+			targetProxy = 2709A0E116EBACAE00C59905 /* PBXContainerItemProxy */;
 		};
-		27EC5F9D16D45EE900C5102D /* PBXTargetDependency */ = {
+		2709A0E416EBACB400C59905 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = "FishLampCompatibility-OSX-64-ARC";
-			targetProxy = 27EC5F9C16D45EE900C5102D /* PBXContainerItemProxy */;
+			name = "FishLampCocoa-OSX-64-ARC";
+			targetProxy = 2709A0E316EBACB400C59905 /* PBXContainerItemProxy */;
 		};
-		27EC5F9F16D45EEE00C5102D /* PBXTargetDependency */ = {
+		2709A0E616EBACBB00C59905 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = "FishLampCompatibility-OSX-3264-MRC";
-			targetProxy = 27EC5F9E16D45EEE00C5102D /* PBXContainerItemProxy */;
+			name = "FishLampCocoa-OSX-3264-MRC";
+			targetProxy = 2709A0E516EBACBB00C59905 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

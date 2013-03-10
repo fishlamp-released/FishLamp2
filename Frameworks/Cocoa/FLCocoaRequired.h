@@ -5,13 +5,13 @@
 //  Created by Mike Fullerton on 12/11/12.
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
+#import <Foundation/Foundation.h>
+
+#import <dispatch/dispatch.h>
 
 #import "FishLampCore.h"
-#import <dispatch/dispatch.h>
+#import "FishLampCompatibility.h"
 
 #import "NSObject+Copying.h"
 #import "FLAbortException.h"
 
-#if OSX
-#import "UIKitModule.h"
-#endif

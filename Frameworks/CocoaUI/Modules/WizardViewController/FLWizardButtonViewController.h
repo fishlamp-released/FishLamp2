@@ -11,7 +11,7 @@
 #import "FLPanelViewController.h"
 
 @protocol FLWizardButtonViewControllerDelegate;
-@interface FLWizardButtonViewController : NSViewController<FLPanelButtons> {
+@interface FLWizardButtonViewController : FLCompatibleViewController<FLPanelButtons> {
 @private
     IBOutlet NSButton* _nextButton;
     IBOutlet NSButton* _backButton;

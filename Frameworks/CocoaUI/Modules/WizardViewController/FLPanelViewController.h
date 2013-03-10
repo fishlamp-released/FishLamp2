@@ -12,7 +12,7 @@
 @class FLPanelManager;
 
 @protocol FLPanelArea <NSObject>
-- (NSView*) view;
+- (FLCompatibleView*) view;
 @end
 
 @protocol FLPanelButtons <FLPanelArea>
@@ -25,7 +25,15 @@
 @property (readonly, strong, nonatomic) NSTextField* promptTextField;
 @end
 
-@interface FLPanelViewController : UIViewController
+@interface FLPanelViewController : FLCompatibleViewController  {
+@private
+    NSString* _prompt;
+    BOOL _canOpenNextPanel;
+    __unsafe_unretained FLPanelManager* _panelManager;
+    __unsafe_unretained FLPanelManager* _wizardViewController;
+    id<FLPanelButtons> _buttons;
+    id<FLPanelHeader> _header;
+}
 
 @property (readwrite, assign, nonatomic) id wizardViewController;
 @property (readwrite, strong, nonatomic) id<FLPanelButtons> buttons;
@@ -44,7 +52,7 @@
 
 - (void) didMoveToPanelManager:(FLPanelManager*) manager;
 
-- (void) addPanelView:(NSView*) panelView toPanelArea:(id<FLPanelArea>) panelArea animated:(BOOL) animated;
+- (void) addPanelView:(FLCompatibleView*) panelView toPanelArea:(id<FLPanelArea>) panelArea animated:(BOOL) animated;
 
 @end
 

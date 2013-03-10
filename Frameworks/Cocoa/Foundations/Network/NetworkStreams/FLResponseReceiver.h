@@ -17,30 +17,35 @@
 // internal, don't call these.
 - (NSError*) closeWithResult:(id) result;
 - (void) readBytesFromStream:(FLReadStream*) stream;
-
 @end
+
+/// concrete base case
 @interface FLResponseReceiver : NSObject<FLResponseReceiver> {
 @private
 }
 - (void) appendBytes:(const void *)bytes length:(NSUInteger)length;
 @end
 
-@interface FLDataResponseReceiver : FLResponseReceiver {
+/// read into a NSData
+@interface FLDataResponseReceiver : FLResponseReceiver  {
 @private
     NSMutableData* _responseData;
     NSData* _data;
 }
+
 + (id) dataResponseReceiver;
 @end
 
-@interface FLFileResponseReceiver : FLResponseReceiver {
+/// read into a file with a stream
+#define FLFileResponseReceiverFileBufferSize 32768
+@interface FLFileResponseReceiver : FLResponseReceiver  {
 @private
     NSURL* _fileURL;
     NSOutputStream* _outputStream;
+    uint8_t _bufferHunk[FLFileResponseReceiverFileBufferSize];
 }
 
 - (id) initWithFileURL:(NSURL*) fileURL;
 + (id) fileResponseReceiver:(NSURL*) fileURL;
-
 @end
 

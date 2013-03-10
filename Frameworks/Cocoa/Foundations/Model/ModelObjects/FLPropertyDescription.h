@@ -15,8 +15,8 @@
 	NSString* _name;
     FLTypeDesc* _propertyType;
 
-	SEL _getter;
-    SEL _setter;
+//	SEL _getter;
+//    SEL _setter;
     
 	NSArray* _arrayTypes;
     BOOL _unboundedArray;

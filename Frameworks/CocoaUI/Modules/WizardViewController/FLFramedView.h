@@ -8,7 +8,7 @@
 
 #import "FishLampCocoa.h"
 
-@interface FLFramedView : NSView {
+@interface FLFramedView : FLCompatibleView {
 @private
     NSColor* _frameColor;
     NSColor* _backgroundColor;

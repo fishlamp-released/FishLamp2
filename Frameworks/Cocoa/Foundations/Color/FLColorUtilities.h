@@ -67,11 +67,12 @@ extern UIColor* FLColorFromCssColorString(NSString* string);
 extern NSString* FLHexColorStringFromColor(UIColor* color); // AABBCC
 
 #if OSX
-@interface NSColor (FLColorConversions)
-// use [NSColor CGColorRef] on 10.8
+@interface CIColor (FLColorConversions)
+- (CGColorRef) copyCGColorRef;
+@end
 
-+(CGColorRef) CIColorToCGColor: (CIColor *) ciColor;
-+(CGColorRef) NSColorToCGColor: (NSColor *) nsColor;
-+(NSColor *) CGColorToNSColor: (CGColorRef) cgColor;
+@interface NSColor (FLColorConversions)
+- (CGColorRef) copyCGColorRef;
++ (NSColor *) colorWithCGColorRef: (CGColorRef) cgColor;
 @end
 #endif

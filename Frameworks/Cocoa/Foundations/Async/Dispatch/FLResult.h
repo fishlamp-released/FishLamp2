@@ -50,3 +50,5 @@ typedef id FLResult;
 
 #define FLConfirmResultType(__RESULT__, __EXPECTED_RESULT_TYPE__) \
             FLAssertObjectIsType(FLThrowIfError(__RESULT__), __EXPECTED_RESULT_TYPE__)
+
+#define FLResultType(__TYPE__) FLResult

@@ -9,20 +9,17 @@
 #import "FLCocoaUIRequired.h"
 #import "FLAnimation.h"
 
-@interface FLMoveAnimation : FLAnimation {
-}
-
-// for subclasses
-- (void) prepareAnimator:(FLAnimator*) animator
-              fromOrigin:(CGPoint) fromOrigin 
-                toOrigin:(CGPoint) toOrigin;
-
+@interface FLMoveAnimation : FLAnimation
+@property (readwrite, assign, nonatomic) CGPoint startPoint;
+@property (readwrite, assign, nonatomic) CGPoint finishPoint;
++ (id) moveAnimation:(CGPoint) destination;
 @end
 
-@interface FLSlideInFromRightAnimation : FLMoveAnimation {
-}
+@interface FLSlideInAnimation : FLMoveAnimation
++ (id) slideInAnimation;
 @end
 
-@interface FLSlideOutToRightAnimation : FLMoveAnimation {
-}
+@interface FLSlideOutAnimation : FLMoveAnimation
++ (id) slideOutAnimation;
 @end
+

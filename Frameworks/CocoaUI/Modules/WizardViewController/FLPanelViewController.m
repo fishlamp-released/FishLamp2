@@ -13,15 +13,7 @@
 
 @end
 
-@implementation FLPanelViewController {
-@private
-    NSString* _prompt;
-    BOOL _canOpenNextPanel;
-    __unsafe_unretained FLPanelManager* _panelManager;
-    __unsafe_unretained FLPanelManager* _wizardViewController;
-    id<FLPanelButtons> _buttons;
-    id<FLPanelHeader> _header;
-}
+@implementation FLPanelViewController
 
 @synthesize wizardViewController = _wizardViewController;
 @synthesize prompt = _prompt;
@@ -88,7 +80,7 @@
 - (void) respondToBackButton:(BOOL*) handledIt {
 }
 
-- (void) addPanelView:(NSView*) panelView toPanelArea:(id<FLPanelArea>) panelArea animated:(BOOL) animated {
+- (void) addPanelView:(FLCompatibleView*) panelView toPanelArea:(id<FLPanelArea>) panelArea animated:(BOOL) animated {
     [_panelManager addPanelView:panelView toView:panelArea.view animated:animated];
 }
 

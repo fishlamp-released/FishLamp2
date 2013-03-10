@@ -18,7 +18,7 @@
     id _eolString;
     FLWhitespace* _whitespace;
     NSInteger _indentLevel;
-    id<FLPrettyStringDelegate> _delegate;
+    __unsafe_unretained id<FLPrettyStringDelegate> _delegate;
 }
 @property (readwrite, assign, nonatomic) id<FLPrettyStringDelegate> delegate;
 

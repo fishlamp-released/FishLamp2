@@ -31,6 +31,16 @@
 #define bridge_retain(__TO__, __FROM__) \
             ((__bridge_retained __TO__) __FROM__)
 
+#define FLBridge(__TO__, __FROM__) \
+            ((__bridge __TO__) __FROM__)
+            
+#define FLBridgeTransfer(__TO__, __FROM__) \
+            ((__bridge_transfer __TO__) __FROM__)
+
+#define FLBridgeRetain(__TO__, __FROM__) \
+            ((__bridge_retained __TO__) __FROM__)
+
+
 #define FLReleaseBlockWithNil(__BLOCK__) __BLOCK__ = nil
 
 NS_INLINE

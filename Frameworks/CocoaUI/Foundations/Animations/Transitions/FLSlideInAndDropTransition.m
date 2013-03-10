@@ -20,11 +20,11 @@
                
     self = [super initWithViewToShow:viewToShow viewToHide:viewToHide];
     if(self) {
-        [self addAnimation:[FLFadeOutAnimation animationWithTarget:viewToHide]];
-        [self addAnimation:[FLDropBackAnimation animationWithTarget:viewToHide]];
-//        [self addAnimation:[FLSlideInFromRightAnimation animationWithTarget:viewToShow]];
-        [self addAnimation:[FLComeForwardAnimation animationWithTarget:viewToShow]];
-        [self addAnimation:[FLFadeInAnimation animationWithTarget:viewToShow]];
+        [self addAnimation:[FLFadeOutAnimation fadeOutAnimation]];
+        [self addAnimation:[FLDropBackAnimation dropBackAnimation]];
+//        [self addAnimation:[FLSlideInAnimation animationWithTarget:viewToShow]];
+        [self addAnimation:[FLComeForwardAnimation comeForwardAnimation]];
+        [self addAnimation:[FLFadeInAnimation fadeInAnimation]];
     }
     
     return self;

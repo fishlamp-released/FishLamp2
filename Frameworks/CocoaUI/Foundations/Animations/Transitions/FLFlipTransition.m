@@ -21,13 +21,13 @@
         _perspectiveDistance = FLFlipAnimationDefaultPerspectiveDistance;
         self.duration = 5.5;
 
-        FLFlipAnimation* show = [FLFlipAnimation animationWithTarget:viewToShow];
+        FLFlipAnimation* show = [FLFlipAnimation animation];
         show.flipDirection = _flipDirection;
         show.showBothSidesDuringFlip = NO;
         show.perspectiveDistance = _perspectiveDistance;
         [self addAnimation:show];
 
-        FLFlipAnimation* hide = [FLFlipAnimation animationWithTarget:viewToHide];
+        FLFlipAnimation* hide = [FLFlipAnimation animation];
         hide.flipDirection = FLFlipAnimationDirectionOpposite(_flipDirection);;
         hide.showBothSidesDuringFlip = NO;
         hide.perspectiveDistance = _perspectiveDistance;

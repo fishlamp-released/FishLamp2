@@ -9,21 +9,22 @@
 #import "FLAnimation.h"
 
 
-@interface FLFadeAnimation : FLAnimation {
-@private
-}
+@interface FLFadeAnimation : FLAnimation
 
-- (void) prepareAnimator:(FLAnimator*) animator 
-             fromOpacity:(CGFloat) fromOpacity 
-               toOpacity:(CGFloat) toOpacity;
++ (id) fadeAnimation;
                
-+ (CAAnimation*) animationForLayer:(CALayer*) layer 
-                         fromOpacity:(CGFloat) fromOpacity 
-                           toOpacity:(CGFloat) toOpacity;
+@property (readwrite, assign, nonatomic) CGFloat fromOpacity;
+@property (readwrite, assign, nonatomic) CGFloat toOpacity;
+                           
+- (void) setFadeToOpacity:(CGFloat) toOpacity 
+              fromOpacity:(CGFloat) fromOpacity;                           
+                           
 @end
 
 @interface FLFadeOutAnimation : FLFadeAnimation
++ (id) fadeOutAnimation;
 @end
 
 @interface FLFadeInAnimation : FLFadeAnimation
++ (id) fadeInAnimation;; 
 @end

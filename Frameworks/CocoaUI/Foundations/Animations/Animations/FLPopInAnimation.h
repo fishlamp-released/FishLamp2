@@ -10,6 +10,6 @@
 
 @interface FLPopInAnimation : FLAnimation
 
-+ (CAAnimation*) animationForLayer:(CALayer *) layer;
++ (id) popInAnimation;
 
 @end

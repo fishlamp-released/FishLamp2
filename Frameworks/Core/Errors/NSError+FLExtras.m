@@ -77,7 +77,7 @@ NS_INLINE
 NSString* makeDescriptionString(NSString* reason, NSString* comment) {
 
     if(FLStringIsNotEmpty(reason) && FLStringIsNotEmpty(comment)) {
-        return [NSString stringWithFormat:@"%@ (%@)", reason, comment];
+        return [NSString stringWithFormat:@"\nDBG %@ (%@)", reason, comment];
     }
     
     return reason;
@@ -95,10 +95,10 @@ NSString* makeDescriptionString(NSString* reason, NSString* comment) {
 
     NSString* commentAddOn = nil;
     if(errorDomain) {
-        commentAddOn = [NSString stringWithFormat:@"[%@ (%ld)]", [errorDomain stringFromErrorCode:code], (long) code];
+        commentAddOn = [NSString stringWithFormat:@"[%@: %@ (%ld)]", [errorDomain errorDomainString], [errorDomain stringFromErrorCode:code], (long) code];
     }
     else {
-        commentAddOn = [NSString stringWithFormat:@"[%ld]", (long)code];
+        commentAddOn = [NSString stringWithFormat:@"[%@: %ld]", domainStringOrObject, (long)code];
     }
 
     if(comment) {
@@ -113,7 +113,7 @@ NSString* makeDescriptionString(NSString* reason, NSString* comment) {
         { reason, NSLocalizedFailureReasonErrorKey },
         { comment, FLErrorCommentKey },
         { stackTrace, FLErrorStackTraceKey },
-        { makeDescriptionString(reason, comment), NSLocalizedDescriptionKey },
+        { reason, NSLocalizedDescriptionKey },
         FLDictionaryEntryNil
     };
 

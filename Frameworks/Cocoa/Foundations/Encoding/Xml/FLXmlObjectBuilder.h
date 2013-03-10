@@ -25,35 +25,35 @@ typedef enum {
     FLXmlPropertyInflationIsAttribute = 1
 } FLXmlPropertyInflation;
 
-@interface FLXmlObjectBuilder : NSObject<NSXMLParserDelegate, FLObjectBuilderDelegate> {
-@private
-    FLObjectBuilder* _objectBuilder;
-	BOOL _gotFirstElement;
-    NSXMLParser* _parser;
-}
 
-+ (id) xmlObjectBuilder;
-
-- (id) buildObjectWithClass:(Class) aClass 
-                     withData:(NSData*) data 
-              withDataDecoder:(id<FLDataDecoding>) decoder;
-
-// optional override
-- (void) willParseXMLData:(NSData*) data withXMLParser:(NSXMLParser*) parser;
-
-@end
-
-@interface NSObject (FLXmlObjectBuilder)
-
-+ (id) objectWithContentsOfXMLFile:(NSString*) path 
-                   withDataDecoder:(id<FLDataDecoding>) decoder;
-
-@end
+//@interface FLXmlObjectBuilder : NSObject<NSXMLParserDelegate, FLObjectBuilderDelegate> {
+//@private
+//    FLObjectBuilder* _objectBuilder;
+//	BOOL _gotFirstElement;
+//    NSXMLParser* _parser;
+//}
+//
+//+ (id) xmlObjectBuilder;
+//
+//- (id) buildObjectWithClass:(Class) aClass 
+//                     withData:(NSData*) data 
+//              withDataDecoder:(id<FLDataDecoding>) decoder;
+//
+//// optional override
+//- (void) willParseXMLData:(NSData*) data withXMLParser:(NSXMLParser*) parser;
+//
+//@end
+//
+//@interface NSObject (FLXmlObjectBuilder)
+//
+//+ (id) objectWithContentsOfXMLFile:(NSString*) path 
+//                   withDataDecoder:(id<FLDataDecoding>) decoder;
+//
+//@end
 
 
 @interface FLXmlParser : NSObject<NSXMLParserDelegate> {
 @private
-	BOOL _gotFirstElement;
     NSXMLParser* _parser;
     NSMutableArray* _stack;
     NSError* _error;
@@ -61,20 +61,10 @@ typedef enum {
 
 + (id) xmlParser;
 
-- (FLResult) parseData:(NSData*) data;
+- (FLResultType(FLParsedXmlElement*)) parseData:(NSData*) data;
 
 - (void) willParseXMLData:(NSData*) data withXMLParser:(NSXMLParser*) parser;
-
-//- (id) inflateObject:(Class) objectClass 
-//              atPath:(NSString*) path 
-//        inDictionary:(NSDictionary*) dictionary;
-
-
 @end
-
-//@interface NSDictionary (FLXmlParsing)
-//- (id) objectAtPath:(NSString*) path; // e.g. @"Envelope/Body/Foo"
-//@end
 
 @interface FLParsedXmlElement : NSObject {
 @private
@@ -104,4 +94,8 @@ typedef enum {
 
 - (id) inflateObjectWithType:(FLTypeDesc*) typeToInflate withDecoder:(id<FLDataDecoding>) decoder;
 
+@end
+
+@interface NSObject (FLXMLParsing) 
++ (id) objectWithXML:(FLParsedXmlElement*) xml withDecoder:(id<FLDataDecoding>) decoder;
 @end

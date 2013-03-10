@@ -8,66 +8,67 @@
 
 #import "FLCoreText.h"
 
-@implementation FLCoreText 
 
-+ (CGSize) lineSize:(CTLineRef) line {
+//+ (CGSize) lineSize:(CTLineRef) line {
+//	CGFloat ascent = 0;
+//    CGFloat descent = 0; 
+//    CGFloat leading = 0;
+//    
+//	CGFloat width = CTLineGetTypographicBounds(line, &ascent, &descent, &leading);
+//	CGFloat height = ascent + descent + leading;
+//	
+//    return CGSizeMake(ceil(width), ceil(height));
+//}
+
+CGSize CTLineGetSize(CTLineRef line) {
 	CGFloat ascent = 0;
     CGFloat descent = 0; 
     CGFloat leading = 0;
     
 	CGFloat width = CTLineGetTypographicBounds(line, &ascent, &descent, &leading);
-	CGFloat height = ascent + descent + leading;
+	CGFloat height = ascent + descent; // + leading;
 	
-    return CGSizeMake(ceil(width), ceil(height));
+    return CGSizeMake(width, height);
 }
 
 // see http://lists.apple.com/archives/quartz-dev/2008/Mar/msg00079.html
 
-+ (CGFloat) frameWidth:(CTFrameRef) frameRef {
+
+CGSize CTFrameGetSize(CTFrameRef frameRef) {
     CFArrayRef lines = CTFrameGetLines(frameRef);
     CFIndex lineCount = CFArrayGetCount(lines);
     if(lineCount == 0) {
-        return 0;
+        return CGSizeZero;
     }
 
-    CGFloat width = 0;
+    CGSize outSize = { 0, 0 };
     for(int i = 0; i < lineCount; i++) {
         CTLineRef line = CFArrayGetValueAtIndex(lines, i);
-        CGSize size = [self lineSize:line];
-        width = MAX(size.width, width);
+        CGSize size = CTLineGetSize(line);
+        outSize.width = MAX(size.width, outSize.width);
+        outSize.height += size.height;
     }
-    
-    return ceil(width); 
-}
-	
-+ (CGFloat) frameHeight:(CTFrameRef) frameRef {
-    
-    CFArrayRef lines = CTFrameGetLines(frameRef);
-    CFIndex lineCount = CFArrayGetCount(lines);
-    if(lineCount == 0) {
-        return 0;
-    }
+    return outSize;
 
-    CGFloat ascent = 0;
-    CGFloat descent = 0; 
-    CGFloat leading = 0;
-    CTLineGetTypographicBounds(CFArrayGetValueAtIndex(lines, lineCount - 1), &ascent, &descent, &leading);
-
-    CGPoint lastLineOrigin = { 0, 0 };
-    CTFrameGetLineOrigins(frameRef, CFRangeMake(lineCount - 1, 0), &lastLineOrigin);
-    CGRect frameRect = CGPathGetBoundingBox(CTFrameGetPath(frameRef));
+//    CGFloat ascent = 0;
+//    CGFloat descent = 0; 
+//    CGFloat leading = 0;
+//    CTLineGetTypographicBounds(CFArrayGetValueAtIndex(lines, lineCount - 1), &ascent, &descent, &leading);
+//
+//    CGFloat lineHeight = ascent + descent + leading;
+//
+//    CGPoint lastLineOrigin = { 0, 0 };
+//    CTFrameGetLineOrigins(frameRef, CFRangeMake(lineCount - 1, 0), &lastLineOrigin);
+//    CGRect frameRect = CGPathGetBoundingBox(CTFrameGetPath(frameRef));
 
     // The height needed to draw the text is from the bottom of the last line
     // to the top of the frame.
-    return ceil(CGRectGetMaxY(frameRect) - lastLineOrigin.y + descent);
+//    return CGSizeMake(ceil(width), ceil(frameRect.size.height - (lastLineOrigin.y + lineHeight)));
+
+
 }
 
-+ (CGSize) frameSize:(CTFrameRef) frameRef {
-    return CGSizeMake([self frameWidth:frameRef], [self frameHeight:frameRef]);
-}
-
-+ (CTFrameRef) frameForString:(NSAttributedString*) string
-                      inBounds:(CGRect) bounds {
+CTFrameRef CTAttributedStringGetFrame(NSAttributedString* string, CGRect bounds) {
        
     CTFramesetterRef framesetter = nil;
     CGMutablePathRef path = CGPathCreateMutable();
@@ -98,57 +99,40 @@
     return nil;
 }
 
-+ (CGPoint) offsetForTextAlignment:(FLTextAlignment) textAlignment 
-                         withFrame:(CTFrameRef) frameRef 
-                          inBounds:(CGRect) bounds {
-
-    CGSize size = [self frameSize:frameRef];
+CGSize CTRunGetSize(CTRunRef run) {    
+    CGFloat ascent = 0;//height above the baseline
+    CGFloat descent = 0;//height below the baseline
     
-    size.height += 2.0f;
-            
-    CGPoint offset = { 0, 0 };        
-    if(size.height < bounds.size.height) {
-        switch(textAlignment.vertical) {
-            case FLVerticalTextAlignmentTop:
-            break;
-            
-            case FLVerticalTextAlignmentCenter:
-                offset.y = (-((bounds.size.height / 2.0f) - (size.height / 2.0f)) - 2);
-            break;
-            
-            case FLVerticalTextAlignmentBottom:
-                offset.y = -(bounds.size.height - size.height);
-            break;
-        }
-    }
-    
-    
-    if(size.width < bounds.size.width) {
-        switch(textAlignment.horizontal) {
-            case FLHorizontalTextAlignmentLeft:
-                
-            break;
-
-            case FLHorizontalTextAlignmentCenter:
-                offset.x = FLRectGetCenter(bounds).x - (size.width / 2.0f);
-            break;
-
-            case FLHorizontalTextAlignmentRight:
-                offset.x = FLRectGetRight(bounds) - size.width;
-            break;
-        }
-    }
-    
-    // TODO: horizontal.
-    
-    return offset;
+    CGSize size;
+    size.width = CTRunGetTypographicBounds(run, CFRangeMake(0, 0), &ascent, &descent, NULL);
+    size.height = ascent + descent;
+    return size;
 }
 
-+ (void) drawString:(NSAttributedString*) string 
- withTextAlignment:(FLTextAlignment) textAlignment 
-          inBounds:(CGRect) bounds {
+CGRect CTRunGetRect(CTRunRef run, CTLineRef line, CGPoint origin) {
 
-    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGFloat ascent = 0;//height above the baseline
+    CGFloat descent = 0;//height below the baseline
+    
+    CGFloat width = CTRunGetTypographicBounds(run, CFRangeMake(0, 0), &ascent, &descent, NULL);
+
+    CGRect bounds;
+    bounds.origin.x = origin.x + CTLineGetOffsetForStringIndex(line, CTRunGetStringRange(run).location, NULL);
+    bounds.origin.y = origin.y - descent;
+    bounds.size.width = width;
+    bounds.size.height = ascent + descent;
+    return bounds;
+}
+
+CGSize CTAttributedStringGetSize(NSAttributedString* string, CGRect inBounds) {
+    CTFrameRef frameRef = CTAttributedStringGetFrame(string, inBounds);
+    CGSize size = CTFrameGetSize(frameRef);
+    CFRelease(frameRef);
+    return size;
+}
+
+void CGContextDrawAttributedString(CGContextRef context, NSAttributedString* string, NSRect rect) {
+
     CGContextSaveGState(context);
 
 #if OSX
@@ -157,61 +141,34 @@
 
 #if IOS
     // flip to context coordinates for drawing text.
-    CGRect bounds = self.bounds;
-    CGContextTranslateCTM(context, 0.0, bounds.size.height);
+    CGRect bounds = rect;
+    CGContextTranslateCTM(context, 0.0, rect.size.height);
     CGContextScaleCTM(context, 1.0, -1.0);
 #endif
-
-    CTFrameRef frameRef = [self frameForString:string inBounds:bounds];
-          
-    CGPoint offset = [self offsetForTextAlignment:textAlignment withFrame:frameRef inBounds:bounds];      
     
-    // dunno why you can't just move the frame?? 
-    if(offset.y != 0.0 || offset.x != 0.0) {
-        CGContextTranslateCTM(context, offset.x, offset.y);
-    }          
-          
-    @try {
-        if(frameRef) {
-            CTFrameDraw(frameRef, context);
-        }
+    CTFrameRef frameRef = CTAttributedStringGetFrame(string, rect);
+    if(frameRef) {
+        CTFrameDraw(frameRef, context);
+        CFRelease(frameRef);
     }
-    @finally {
-        if(frameRef) {
-            CFRelease(frameRef);
-        }
-        
-        CGContextRestoreGState(context);
-    }
+
+    CGContextRestoreGState(context);
 }
 
-- (CGSize) runSize:(CTRunRef) run {
-    CGFloat ascent = 0;//height above the baseline
-    CGFloat descent = 0;//height below the baseline
-    
-    CGSize size;
-    size.width = ceil(CTRunGetTypographicBounds(run, CFRangeMake(0, 0), &ascent, &descent, NULL));
-    size.height = ceil(ascent + descent);
-    return size;
+
+@implementation NSAttributedString (FLCoreText)
+       
+- (CGSize) sizeForDrawingInBounds:(CGRect) bounds {
+    return CTAttributedStringGetSize(self, bounds);
+}                   
+
+- (void) drawInRect:(CGRect) rect {
+    CGContextDrawAttributedString(UIGraphicsGetCurrentContext(), self, rect);
 }
 
-- (CGRect) runBounds:(CTRunRef) run 
-              inLine:(CTLineRef) line 
-          lineOrigin:(CGPoint) origin {
+@end
 
 
-    CGFloat ascent = 0;//height above the baseline
-    CGFloat descent = 0;//height below the baseline
-    
-    CGFloat width = CTRunGetTypographicBounds(run, CFRangeMake(0, 0), &ascent, &descent, NULL);
-
-    CGRect bounds;
-    bounds.origin.x = ceil(origin.x + CTLineGetOffsetForStringIndex(line, CTRunGetStringRange(run).location, NULL));
-    bounds.origin.y = ceil(origin.y - descent);
-    bounds.size.width = ceil(width);
-    bounds.size.height = ceil(ascent + descent);
-    return bounds;
-}
 
 //#define max_buf_size 128
 //
@@ -264,5 +221,54 @@
 //    }
 //}
 
-
-@end
+//+ (CGRect) rectForTextAlignment:(FLTextAlignment) textAlignment 
+//                         withFrame:(CTFrameRef) frameRef 
+//                          inBounds:(CGRect) bounds {
+//
+//    CGSize size = [self frameSize:frameRef];
+////    size.height += 2.0f;
+//    
+//    CGRect frame = CGRectMake(bounds.origin.x, bounds.origin.y, size.width, size.height);
+//            
+//    if(size.height < bounds.size.height) {
+//        switch(textAlignment.vertical) {
+//            case FLVerticalTextAlignmentTop:
+//            
+//            break;
+//            
+//            case FLVerticalTextAlignmentCenter:
+//                frame = FLRectCenterRectInRectVertically(bounds, frame);
+//            
+//            
+////                offset.y = (-((bounds.size.height / 2.0f) - (size.height / 2.0f)) - 2);
+//            break;
+//            
+//            case FLVerticalTextAlignmentBottom:
+//                frame.origin.y = FLRectGetBottom(bounds) - frame.size.height;
+//            
+////                offset.y = -(bounds.size.height - size.height);
+//            break;
+//        }
+//    }
+//    
+//    
+//    if(size.width < bounds.size.width) {
+//        switch(textAlignment.horizontal) {
+//            case FLHorizontalTextAlignmentLeft:
+//                
+//            break;
+//
+//            case FLHorizontalTextAlignmentCenter:
+//                frame = FLRectCenterRectInRectHorizontally(bounds, frame);
+//            
+////                offset.x = FLRectGetCenter(bounds).x - (size.width / 2.0f);
+//            break;
+//
+//            case FLHorizontalTextAlignmentRight:
+//                frame.origin.x = FLRectGetRight(bounds) - frame.size.width;
+//            break;
+//        }
+//    }
+//    
+//    return frame;
+//}

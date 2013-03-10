@@ -10,48 +10,19 @@
 
 #import <CoreText/CoreText.h>
 
-typedef enum { 
-    FLVerticalTextAlignmentTop,
-    FLVerticalTextAlignmentCenter,
-    FLVerticalTextAlignmentBottom
-} FLVerticalTextAlignment; 
+extern CGSize CTLineGetSize(CTLineRef line);
+extern CGSize CTFrameGetSize(CTFrameRef frameRef);
+extern CGSize CTRunGetSize(CTRunRef run);
+extern CGRect CTRunGetRect(CTRunRef run, CTLineRef line, CGPoint origin);
 
-typedef enum { 
-    FLHorizontalTextAlignmentLeft,
-    FLHorizontalTextAlignmentCenter,
-    FLHorizontalTextAlignmentRight
-} FLHorizontalTextAlignment; 
 
-typedef struct {
-    FLVerticalTextAlignment vertical;
-    FLHorizontalTextAlignment horizontal;
-} FLTextAlignment;
+// attributed string drawing
+extern CTFrameRef CTAttributedStringGetFrame(NSAttributedString* string, CGRect inBounds);
+extern CGSize CTAttributedStringGetSize(NSAttributedString* string, CGRect inBounds);
+extern void CGContextDrawAttributedString(CGContextRef context, NSAttributedString* string, NSRect rect);
 
-@interface FLCoreText : NSObject
-
-+ (CGSize) lineSize:(CTLineRef) line;
-
-+ (CGFloat) frameHeight:(CTFrameRef) frameRef;
-
-+ (CGFloat) frameWidth:(CTFrameRef) frameRef;
-
-+ (CGSize) frameSize:(CTFrameRef) frameRef;
-
-+ (CTFrameRef) frameForString:(NSAttributedString*) string
-                     inBounds:(CGRect) bounds;
-                      
-+ (CGPoint) offsetForTextAlignment:(FLTextAlignment) textAlignment 
-                         withFrame:(CTFrameRef) frame 
-                          inBounds:(CGRect) bounds;
-
-- (CGRect) runBounds:(CTRunRef) run 
-              inLine:(CTLineRef) line 
-          lineOrigin:(CGPoint) origin;
-
-- (CGSize) runSize:(CTRunRef) run;
-
-+ (void) drawString:(NSAttributedString*) string 
-  withTextAlignment:(FLTextAlignment) textAlignment 
-           inBounds:(CGRect) bounds;
-          
+@interface NSAttributedString (FLCoreText)
+- (CGSize) sizeForDrawingInBounds:(CGRect) bounds;
+- (void) drawInRect:(CGRect) rect;
 @end
+

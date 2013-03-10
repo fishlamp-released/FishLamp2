@@ -28,24 +28,34 @@ extern void FLThrowConfirmationFailedException(FLAssertionFailure failure, NSStr
             comment: FLStringWithFormatOrNil(__COMMENT__, ##__VA_ARGS__) \
             stackTrace:FLCreateStackTrace(YES)]]; 
 
+extern BOOL __FLConfirmationDidFail();
+
 /// @brief: This will throw an diction failure exception
 #define FLConfirmationFailure_() \
-        @throw [NSException exceptionWithError:[NSError errorWithDomain:[FLAssertionFailureErrorDomain instance] \
-            code:FLAssertionFailureCondition \
-            userInfo:nil \
-            reason:nil \
-            comment:nil \
-            stackTrace:FLCreateStackTrace(YES)]]; 
+            FLConfirm_(__FLConfirmationDidFail())
+
+//        if(YES) \
+//            @throw [NSException exceptionWithError:[NSError errorWithDomain:[FLAssertionFailureErrorDomain instance] \
+//            code:FLAssertionFailureCondition \
+//            userInfo:nil \
+//            reason:nil \
+//            comment:nil \
+//            stackTrace:FLCreateStackTrace(YES)]] 
+        
 
 /// @brief: This will throw an diction failure exception
 #define FLConfirmationFailure_v(__COMMENT__, ...) \
-        @throw [NSException exceptionWithError: \
-                    [NSError errorWithDomain:[FLAssertionFailureErrorDomain instance] \
-                                               code:FLAssertionFailureCondition \
-                                           userInfo:nil \
-                                             reason:nil \
-                                            comment:FLStringWithFormatOrNil(__COMMENT__, ##__VA_ARGS__) \
-                                         stackTrace:FLCreateStackTrace(YES)]]; 
+            FLConfirm_v(__FLConfirmationDidFail(), __COMMENT__, ##__VA_ARGS__)
+
+//        if(YES) \
+//        @throw [NSException exceptionWithError: \
+//                    [NSError errorWithDomain:[FLAssertionFailureErrorDomain instance] \
+//                                               code:FLAssertionFailureCondition \
+//                                           userInfo:nil \
+//                                             reason:nil \
+//                                            comment:FLStringWithFormatOrNil(__COMMENT__, ##__VA_ARGS__) \
+//                                         stackTrace:FLCreateStackTrace(YES)]] 
+                                         
 
 /// @brief: Assert a pointer is nil
 #define FLConfirmIsNil_(__CONDITION__) \

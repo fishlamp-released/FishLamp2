@@ -103,7 +103,7 @@
                     FLAssertIsNotNil_(obj);
 					[self addObject:obj];
 
-                    self = obj;
+//                    self = obj;
                 }
 				return YES;
 			}

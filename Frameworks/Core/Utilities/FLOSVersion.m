@@ -8,6 +8,10 @@
 
 #import "FLOSVersion.h"
 
+#if IOS
+#import <UIKit/UIKit.h>
+#endif
+
 FLVersion FLGetOSVersion()  {
     static FLVersion s_osVersion = { 0, 0, 0, 0 };
     static dispatch_once_t once = 0;

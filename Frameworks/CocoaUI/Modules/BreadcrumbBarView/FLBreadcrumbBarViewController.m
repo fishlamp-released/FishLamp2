@@ -9,144 +9,175 @@
 #import "FLBreadcrumbBarViewController.h"
 #import "FLBreadcrumbBarView.h"
 #import "FLAttributedString.h"
+#import "FLMoveAnimation.h"
+#import "FLBarHighlightBackgoundLayer.h"
 
 @interface FLBreadcrumbBarViewController ()
 @end
 
 @implementation FLBreadcrumbBarViewController
 
+- (void) initSelf {
+    
+    if(!_titleStyle) {
+        _titleStyle = [[FLStringDisplayStyle alloc] init];
+        _titleStyle.emphasizedStyle.textColor = [UIColor colorWithRGBRed:203 green:102 blue:10 alpha:1.0];
+        _titleStyle.enabledStyle.textColor = [UIColor darkGrayColor];
+        _titleStyle.disabledStyle.textColor = [UIColor lightGrayColor];
+        _titleStyle.highlightedStyle.textColor = [UIColor whiteColor];
+        _titleStyle.hoveringStyle.textColor = [UIColor whiteColor];
+        [_titleStyle setTextFont:[UIFont boldSystemFontOfSize:[UIFont systemFontSize]]];
+    }
+}
+
 @synthesize delegate = _delegate;
 @synthesize textFont = _textFont;
+@synthesize contentView = _contentView;
 
 #if FL_MRC
 - (void) dealloc {
     [_textFont release];
-    [_breadcrumbs release];
+    [_titleStyle release];
     [super dealloc];
 }
 #endif
 
-- (void) loadView {
-    NSView* view = FLAutorelease([[NSView alloc] initWithFrame:CGRectMake(0,0,100,20)]);
-    view.autoresizingMask = NSViewHeightSizable | NSViewWidthSizable;
-    self.view = view;
+- (FLBreadcrumbBarView*) breadcrumbView {
+    return (FLBreadcrumbBarView*) self.view; 
 }
+
+- (void) awakeFromNib {
+    [super awakeFromNib];
+    [self initSelf];
+    self.breadcrumbView.delegate = self;
+}
+
+- (void) setTextFont:(NSFont*) font {
+    FLSetObjectWithRetain(_textFont, font);
+    [_titleStyle setTextFont:font];
+}
+
 
 #define kWideWidth 100
 #define kTallHeight 40
 
-- (void) finishUpdate {
-    for(FLBreadcrumbBarView* view in _breadcrumbs) {
-        view.enabled = [self.delegate breadcrumbBar:self breadcrumbIsEnabled:view.title];
-        view.emphasized = [self.delegate breadcrumbBar:self breadcrumbIsVisible:view.title];
-        [view didLayout];
-    }
-    
-    [self.view setNeedsDisplay];
-}
-
-
 - (BOOL)acceptsFirstResponder {
     return YES;
-}
+}                          
 
-- (void) updateVertical {
-    CGFloat verticalOffset = FLRectGetBottom(self.view.bounds) - kTallHeight;
-    for(FLBreadcrumbBarView* view in _breadcrumbs) {
-        CGRect frame = self.view.bounds;
-        frame.size.height = kTallHeight;
-        frame.origin.y = verticalOffset;
-        verticalOffset -= kTallHeight;
-        view.frame = frame;
-        view.drawTopLine = NO;
+- (void) updateViewsAnimated:(BOOL) animated {
+
+    for(FLBarTitleLayer* title in self.breadcrumbView.titles) {
+        title.enabled = [self.delegate breadcrumbBar:self breadcrumbIsEnabled:title.title];
+        title.emphasized = [self.delegate breadcrumbBar:self breadcrumbIsVisible:title.title];
     }
     
-    [[_breadcrumbs objectAtIndex:0] setDrawTopLine:YES];
+    [self.breadcrumbView updateHighlightedTitle:animated];
 }
 
-- (void) updateHorizontal {
-
-    CGFloat left = -2;
-    for(FLBreadcrumbBarView* view in _breadcrumbs) {
-        [view sendToBack];
-
-        CGRect frame = self.view.bounds;
-        frame = CGRectInset(frame, 2, 2);
-        
-        frame.size.width = kWideWidth;
-        frame.origin.x = left;
-        frame.size.height += 8;
-        frame.origin.y -= 4;
-        view.frame = frame;
-        left += (view.frame.size.width - 14);
-    }
-
-}
-
-- (void) update {
-    [self updateVertical];
-    [self finishUpdate];
-}
 
 - (void) addBreadcrumb:(NSString*) title {
 
-    if(!_breadcrumbs) {
-        _breadcrumbs = [[NSMutableArray alloc] init];
-    }
-
     FLAssertStringIsNotEmpty_(title);
 
-    FLStringDisplayStyle* stringStyles = [FLStringDisplayStyle stringDisplayStyle];
-    
-//    stringStyles.enabledStyle.textColor = [UIColor colorWithRGBRed:203 green:102 blue:10 alpha:1.0];
-  
-    stringStyles.emphasizedStyle.textColor = [UIColor colorWithRGBRed:203 green:102 blue:10 alpha:1.0];
-    stringStyles.enabledStyle.textColor = [UIColor darkGrayColor];
-    stringStyles.disabledStyle.textColor = [UIColor lightGrayColor];
-    stringStyles.highlightedStyle.textColor = [UIColor whiteColor];
-    stringStyles.hoveringStyle.textColor = [UIColor whiteColor];
-
-    if(_textFont) {
-        [stringStyles setTextFont:_textFont];
-    }
-    else {
-        [stringStyles setTextFont:[UIFont boldSystemFontOfSize:[UIFont systemFontSize]]];
-    }
-
-    FLBreadcrumbBarView* view = FLAutorelease([[FLBreadcrumbBarView alloc] initWithFrame:CGRectZero]);
-    view.lineColor = [NSColor gray85Color];
-    view.title = title;
-    view.titleStyle = stringStyles;
-    view.touchedBlock = ^(FLBreadcrumbBarView* clickedView){
-        [self.delegate breadcrumbBar:self  breadcrumbWasClicked:title];
-        [self update];
-    };
-    [_breadcrumbs addObject:view];
-    [self.view addSubview:view];
-    [self update];
+    FLBarTitleLayer* titleLayer = [FLBarTitleLayer layer];
+    titleLayer.title = title;
+    titleLayer.titleStyle = _titleStyle;
+    [self.breadcrumbView addTitle:titleLayer];
+    [self updateViewsAnimated:NO];
 }
 
 - (void) removeBreadcrumb:(NSString*) title {
 
 }
 
-- (void) setBreadcrumbActive:(BOOL) active forTitle:(NSString*) title {
-    BOOL foundActive = NO;
-    
-    for(FLBreadcrumbBarView* view in _breadcrumbs) {
-        view.enabled = !foundActive;
-        
-        if(FLStringsAreEqual(view.title, title)) {
-            foundActive = YES;
-            view.emphasized = YES;
-        }
-        else {
-            view.emphasized = NO;
-        }
+- (void) breadcrumbBar:(FLBreadcrumbBarView*) view layoutTitles:(NSArray*) titles {
+    CGRect frame = CGRectMake(0, FLRectGetBottom(self.view.bounds) - (kTallHeight*2), self.contentView.frame.origin.x, kTallHeight);
+    for(FLBarTitleLayer* layer in titles) {
+        layer.frame = frame;
+        frame.origin.y -= frame.size.height;
     }
-
-    [self update];
 }
+
+- (void) breadcrumbBar:(FLBreadcrumbBarView*) view handleMousedownInTitle:(FLBarTitleLayer*) title {
+    [self.delegate breadcrumbBar:self breadcrumbWasClicked:title.title];
+    [self updateViewsAnimated:YES];
+}
+
+
+//- (void) updateVertical:(BOOL) animated {
+//    CGFloat verticalOffset = FLRectGetBottom(self.view.bounds) - kTallHeight;
+//    NSView* targetView = nil;
+//    for(FLBreadcrumbBarView* view in _breadcrumbs) {
+//        CGRect frame = self.view.bounds;
+//        frame.size.height = kTallHeight;
+//        frame.origin.y = verticalOffset;
+//        verticalOffset -= kTallHeight;
+//        view.frame = frame;
+//        
+//            
+//        if(view.emphasized) {
+//            targetView = view;
+//        }
+//    }
+//    
+//    if(!targetView) {
+//        targetView = [_breadcrumbs objectAtIndex:0];
+//    }
+//
+//    if(targetView) {
+//        [_empasizedView sendToBack];
+//            animated = NO;
+//            
+//            if(animated) {
+//                _empasizedView.frame = FLRectSetSizeWithSize(_empasizedView.frame, targetView.frame.size);
+//                FLMoveAnimation* animation = [FLMoveAnimation moveAnimation:targetView.frame.origin];
+//                [animation startAnimating:_empasizedView];
+//            }
+//            else {
+//            _empasizedView.frame = targetView.frame;
+//            }
+//    }
+//
+//}
+
+//- (void) updateHorizontal {
+//
+//    CGFloat left = -2;
+//    for(FLBreadcrumbBarView* view in _breadcrumbs) {
+//        [view sendToBack];
+//
+//        CGRect frame = self.view.bounds;
+//        frame = CGRectInset(frame, 2, 2);
+//        
+//        frame.size.width = kWideWidth;
+//        frame.origin.x = left;
+//        frame.size.height += 8;
+//        frame.origin.y -= 4;
+//        view.frame = frame;
+//        left += (view.frame.size.width - 14);
+//    }
+//
+//}
+
+
+//- (void) setBreadcrumbActive:(BOOL) active forTitle:(NSString*) title {
+//    BOOL foundActive = NO;
+//    
+//    for(FLBarTitleLayer* titles in self.breadcrumbView.titles) {
+//        title.enabled = !foundActive;
+//        
+//        if(FLStringsAreEqual(view.title, title)) {
+//            foundActive = YES;
+//            title.emphasized = YES;
+//        }
+//        else {
+//            title.emphasized = NO;
+//        }
+//    }
+//
+//    [self updateViewsAnimated:YES];
+//}
 
 
 @end
