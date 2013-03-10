@@ -15,7 +15,7 @@
 
 typedef void (^FLPanelViewControllerBlock)(FLPanelViewController* panel);
 
-@interface FLPanelManager : NSViewController {
+@interface FLPanelManager : FLCompatibleViewController {
 @private
     NSMutableArray* _panels;
     NSMutableArray* _panelViews;
@@ -61,7 +61,7 @@ typedef void (^FLPanelViewControllerBlock)(FLPanelViewController* panel);
 - (BOOL) isShowingFirstPanel;
 - (BOOL) isShowingLastPanel;
 
-- (void) addPanelView:(NSView*) panelView toView:(NSView*) superview animated:(BOOL) animated;
+- (void) addPanelView:(FLCompatibleView*) panelView toView:(FLCompatibleView*) superview animated:(BOOL) animated;
 - (void) removePanelViews:(BOOL) animated;
 
 @end

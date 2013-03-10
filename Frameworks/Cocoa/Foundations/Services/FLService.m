@@ -84,7 +84,7 @@
 
 @end
 
-void FLAtomicAddServiceToService(id* ivar, FLService* newService, FLService* parentService) {
+void FLAtomicAddServiceToService(__strong id* ivar, FLService* newService, FLService* parentService) {
     FLAtomicPropertySet(ivar, newService, ^{ 
         if(*ivar) {
             [parentService removeSubService:*ivar];

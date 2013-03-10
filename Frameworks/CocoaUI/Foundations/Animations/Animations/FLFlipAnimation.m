@@ -8,7 +8,14 @@
 
 #import "FLFlipAnimation.h"
 
-@implementation FLFlipAnimation
+@implementation FLFlipAnimation {
+@private
+    FLFlipAnimationDirection _flipDirection;
+    BOOL _showBothSidesDuringFlip;
+    CGFloat _perspectiveDistance;
+    CGPoint _position;
+    CGPoint _anchorPoint;
+}
 
 @synthesize flipDirection = _flipDirection;
 @synthesize showBothSidesDuringFlip = _showBothSidesDuringFlip;
@@ -23,6 +30,18 @@
     return self;
 }
 
+- (id) initWithFlipDirection:(FLFlipAnimationDirection) direction {
+    self = [self init];
+    if(self) {
+        _flipDirection = direction;
+    }
+    return self;
+}
+
++ (id) flipAnimation:(FLFlipAnimationDirection) direction {
+    return FLAutorelease([[[self class] alloc] initWithFlipDirection:direction]);
+}
+
 + (void) addPerspectiveToLayer:(CALayer*) layer 
        withPerspectiveDistance:(CGFloat) distance {
  
@@ -33,19 +52,13 @@
     }
 }
 
-+ (void) prepareLayerForFlip:(CALayer*) layer 
-             inFlipDirection:(FLFlipAnimationDirection) flipDirection {
-
-}
-
-+ (CAAnimation*) createFlipAnimationForLayer:(CALayer*) layer 
-                           withFlipDirection:(FLFlipAnimationDirection) flipDirection {
+- (CAAnimation*) CAAnimation {
     
     CGFloat start = 0.0f;
     CGFloat finish = 0.0f;
     NSString* keyPath = nil;
 
-    switch(flipDirection) {
+    switch(_flipDirection) {
         case FLFlipAnimationDirectionUp:
             keyPath = @"transform.rotation.x";
             start = M_PI;
@@ -81,37 +94,30 @@
 
 }
 
-- (void) prepareAnimator:(FLAnimator*) animator  {
 
-    CALayer* layer = self.layer;
-
+- (void) prepareLayer:(CALayer*) layer {
     layer.doubleSided = _showBothSidesDuringFlip;
     
-    CGPoint position = layer.position;
-    CGPoint newPosition = position;
-    CGPoint anchorPoint = layer.anchorPoint;
+    _position = layer.position;
+    _anchorPoint = layer.anchorPoint;
 
     CGRect frame = layer.frame;
+    CGPoint newPosition = _position;
     newPosition.y += (frame.size.height/ 2);
     newPosition.x += (frame.size.width / 2);
     layer.anchorPoint = CGPointMake(0.5, 0.5);
     layer.position = newPosition;
-    
-    CAAnimation* flipAnimation = [FLFlipAnimation createFlipAnimationForLayer:layer withFlipDirection:_flipDirection];
-
-//        [FLFlipAnimation addPerspectiveToLayer:layer withPerspectiveDistance:_perspectiveDistance];
-    
-    animator.commit = ^{
-        [layer addAnimation:flipAnimation forKey:@"flip"];    
-    };
-
-    animator.finish = ^{
-        layer.anchorPoint = anchorPoint;
-        layer.position = position;
-    
-//            [self prepareLayerForFlip:FLFlipAnimationDirectionOpposite(_flipDirection)];
-    };  
 }
+
+- (void) commitAnimation:(CALayer*) layer {
+    [layer addAnimation:[self CAAnimation] forKey:@"flip"];    
+}
+
+- (void) finishAnimation:(CALayer*) layer {
+    layer.anchorPoint = _anchorPoint;
+    layer.position = _position;
+}
+
 
 
 @end

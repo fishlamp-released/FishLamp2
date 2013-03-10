@@ -10,7 +10,7 @@
 
 @implementation FLPopInAnimation
 
-+ (CAAnimation*) animationForLayer:(CALayer *) layer {
++ (CAAnimation*) CAAnimation {
     
     CAKeyframeAnimation* popInAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform.scale"];
 	
@@ -31,9 +31,18 @@
 }
 
 
-- (void) prepareAnimator:(FLAnimator*) animator {
-    animator.commit = ^{
-        [self.layer addAnimation:[FLPopInAnimation animationForLayer:self.layer] forKey:@"transform.scale"];    
-    };
++ (id) popInAnimation {
+    return FLAutorelease([[[self class] alloc] init]);
 }
+
+- (void) prepareLayer:(CALayer*) layer {
+}
+
+- (void) commitAnimation:(CALayer*) layer {
+    [layer addAnimation:[FLPopInAnimation CAAnimation] forKey:@"transform.scale"];    
+}
+
+- (void) finishAnimation:(CALayer*) layer {
+}
+
 @end

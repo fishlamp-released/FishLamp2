@@ -191,7 +191,7 @@
     
     for(FLPropertyInflator* state in _stack) {
         
-        NSString* key = state.key;
+        NSString* key = state.propertyName;
         if(!key) {
             key = NSStringFromClass([state.containingObject class]);
         }

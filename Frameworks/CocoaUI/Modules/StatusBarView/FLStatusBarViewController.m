@@ -61,7 +61,7 @@
             [fuckyoupieceofshit startAnimating:completion];
         }
         else {
-            [[FLPopInAnimation animationWithTarget:view] startAnimating:completion];
+            [[FLPopInAnimation popInAnimation] startAnimating:view completion:completion];
         }
     }   
     else {
@@ -119,7 +119,7 @@
         
             FLSafeguardBlock(completion);
         
-            [[FLFadeOutAnimation animationWithTarget:toHide] startAnimating:^(FLResult result) {
+            [[FLFadeOutAnimation fadeOutAnimation] startAnimating:toHide completion:^(FLResult result) {
                 [toHide removeFromSuperview];
 
                 if(completion) {

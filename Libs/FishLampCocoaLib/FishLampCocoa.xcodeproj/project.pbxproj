@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2709A0EA16EBB1A600C59905 /* AppKit+iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 2709A0E816EBB1A600C59905 /* AppKit+iOS.h */; };
+		2709A0EB16EBB1A600C59905 /* AppKit+iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 2709A0E816EBB1A600C59905 /* AppKit+iOS.h */; };
+		2709A0EC16EBB1A600C59905 /* AppKit+iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 2709A0E816EBB1A600C59905 /* AppKit+iOS.h */; };
+		2709A0ED16EBB1A600C59905 /* AppKit+iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 2709A0E816EBB1A600C59905 /* AppKit+iOS.h */; };
+		2709A0EE16EBB1A600C59905 /* AppKit+iOS.m in Sources */ = {isa = PBXBuildFile; fileRef = 2709A0E916EBB1A600C59905 /* AppKit+iOS.m */; };
+		2709A0EF16EBB1A600C59905 /* AppKit+iOS.m in Sources */ = {isa = PBXBuildFile; fileRef = 2709A0E916EBB1A600C59905 /* AppKit+iOS.m */; };
+		2709A0F016EBB1A600C59905 /* AppKit+iOS.m in Sources */ = {isa = PBXBuildFile; fileRef = 2709A0E916EBB1A600C59905 /* AppKit+iOS.m */; };
+		2709A0F116EBB1A600C59905 /* AppKit+iOS.m in Sources */ = {isa = PBXBuildFile; fileRef = 2709A0E916EBB1A600C59905 /* AppKit+iOS.m */; };
+		2709A0F216EBB1A600C59905 /* AppKit+iOS.m in Sources */ = {isa = PBXBuildFile; fileRef = 2709A0E916EBB1A600C59905 /* AppKit+iOS.m */; };
 		270B8D0116E2F8A800C95B0D /* FLAttributedString.h in Headers */ = {isa = PBXBuildFile; fileRef = 270B8CFF16E2F8A800C95B0D /* FLAttributedString.h */; };
 		270B8D0216E2F8A800C95B0D /* FLAttributedString.h in Headers */ = {isa = PBXBuildFile; fileRef = 270B8CFF16E2F8A800C95B0D /* FLAttributedString.h */; };
 		270B8D0316E2F8A800C95B0D /* FLAttributedString.h in Headers */ = {isa = PBXBuildFile; fileRef = 270B8CFF16E2F8A800C95B0D /* FLAttributedString.h */; };
@@ -16,6 +25,154 @@
 		270B8D0716E2F8A800C95B0D /* FLAttributedString.m in Sources */ = {isa = PBXBuildFile; fileRef = 270B8D0016E2F8A800C95B0D /* FLAttributedString.m */; };
 		270B8D0816E2F8A800C95B0D /* FLAttributedString.m in Sources */ = {isa = PBXBuildFile; fileRef = 270B8D0016E2F8A800C95B0D /* FLAttributedString.m */; };
 		270B8D0916E2F8A800C95B0D /* FLAttributedString.m in Sources */ = {isa = PBXBuildFile; fileRef = 270B8D0016E2F8A800C95B0D /* FLAttributedString.m */; };
+		270BC8AF16EBAA5F00416D62 /* FishLampCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC88716EBAA5F00416D62 /* FishLampCompatibility.h */; };
+		270BC8B016EBAA5F00416D62 /* FishLampCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC88716EBAA5F00416D62 /* FishLampCompatibility.h */; };
+		270BC8B116EBAA5F00416D62 /* FishLampCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC88716EBAA5F00416D62 /* FishLampCompatibility.h */; };
+		270BC8B216EBAA5F00416D62 /* FishLampCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC88716EBAA5F00416D62 /* FishLampCompatibility.h */; };
+		270BC8B316EBAA5F00416D62 /* FishLampCompatibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC88816EBAA5F00416D62 /* FishLampCompatibility.m */; };
+		270BC8B416EBAA5F00416D62 /* FishLampCompatibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC88816EBAA5F00416D62 /* FishLampCompatibility.m */; };
+		270BC8B516EBAA5F00416D62 /* FishLampCompatibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC88816EBAA5F00416D62 /* FishLampCompatibility.m */; };
+		270BC8B616EBAA5F00416D62 /* FishLampCompatibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC88816EBAA5F00416D62 /* FishLampCompatibility.m */; };
+		270BC8B716EBAA5F00416D62 /* FishLampCompatibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC88816EBAA5F00416D62 /* FishLampCompatibility.m */; };
+		270BC8B816EBAA5F00416D62 /* CGContext+UIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC88A16EBAA5F00416D62 /* CGContext+UIKit.h */; };
+		270BC8B916EBAA5F00416D62 /* CGContext+UIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC88A16EBAA5F00416D62 /* CGContext+UIKit.h */; };
+		270BC8BA16EBAA5F00416D62 /* CGContext+UIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC88A16EBAA5F00416D62 /* CGContext+UIKit.h */; };
+		270BC8BB16EBAA5F00416D62 /* CGContext+UIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC88A16EBAA5F00416D62 /* CGContext+UIKit.h */; };
+		270BC8BC16EBAA5F00416D62 /* CGContext+UIKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC88B16EBAA5F00416D62 /* CGContext+UIKit.m */; };
+		270BC8BD16EBAA5F00416D62 /* CGContext+UIKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC88B16EBAA5F00416D62 /* CGContext+UIKit.m */; };
+		270BC8BE16EBAA5F00416D62 /* CGContext+UIKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC88B16EBAA5F00416D62 /* CGContext+UIKit.m */; };
+		270BC8BF16EBAA5F00416D62 /* CGContext+UIKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC88B16EBAA5F00416D62 /* CGContext+UIKit.m */; };
+		270BC8C016EBAA5F00416D62 /* CGContext+UIKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC88B16EBAA5F00416D62 /* CGContext+UIKit.m */; };
+		270BC8C116EBAA5F00416D62 /* NSValue+UIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC88D16EBAA5F00416D62 /* NSValue+UIKit.h */; };
+		270BC8C216EBAA5F00416D62 /* NSValue+UIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC88D16EBAA5F00416D62 /* NSValue+UIKit.h */; };
+		270BC8C316EBAA5F00416D62 /* NSValue+UIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC88D16EBAA5F00416D62 /* NSValue+UIKit.h */; };
+		270BC8C416EBAA5F00416D62 /* NSValue+UIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC88D16EBAA5F00416D62 /* NSValue+UIKit.h */; };
+		270BC8C516EBAA5F00416D62 /* NSValue+UIKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC88E16EBAA5F00416D62 /* NSValue+UIKit.m */; };
+		270BC8C616EBAA5F00416D62 /* NSValue+UIKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC88E16EBAA5F00416D62 /* NSValue+UIKit.m */; };
+		270BC8C716EBAA5F00416D62 /* NSValue+UIKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC88E16EBAA5F00416D62 /* NSValue+UIKit.m */; };
+		270BC8C816EBAA5F00416D62 /* NSValue+UIKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC88E16EBAA5F00416D62 /* NSValue+UIKit.m */; };
+		270BC8C916EBAA5F00416D62 /* NSValue+UIKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC88E16EBAA5F00416D62 /* NSValue+UIKit.m */; };
+		270BC8CA16EBAA5F00416D62 /* UIColor+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC88F16EBAA5F00416D62 /* UIColor+OSX.h */; };
+		270BC8CB16EBAA5F00416D62 /* UIColor+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC88F16EBAA5F00416D62 /* UIColor+OSX.h */; };
+		270BC8CC16EBAA5F00416D62 /* UIColor+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC88F16EBAA5F00416D62 /* UIColor+OSX.h */; };
+		270BC8CD16EBAA5F00416D62 /* UIColor+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC88F16EBAA5F00416D62 /* UIColor+OSX.h */; };
+		270BC8CE16EBAA5F00416D62 /* UIColor+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC89016EBAA5F00416D62 /* UIColor+OSX.m */; };
+		270BC8CF16EBAA5F00416D62 /* UIColor+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC89016EBAA5F00416D62 /* UIColor+OSX.m */; };
+		270BC8D016EBAA5F00416D62 /* UIColor+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC89016EBAA5F00416D62 /* UIColor+OSX.m */; };
+		270BC8D116EBAA5F00416D62 /* UIColor+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC89016EBAA5F00416D62 /* UIColor+OSX.m */; };
+		270BC8D216EBAA5F00416D62 /* UIColor+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC89016EBAA5F00416D62 /* UIColor+OSX.m */; };
+		270BC8D316EBAA5F00416D62 /* UIControl+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC89116EBAA5F00416D62 /* UIControl+OSX.h */; };
+		270BC8D416EBAA5F00416D62 /* UIControl+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC89116EBAA5F00416D62 /* UIControl+OSX.h */; };
+		270BC8D516EBAA5F00416D62 /* UIControl+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC89116EBAA5F00416D62 /* UIControl+OSX.h */; };
+		270BC8D616EBAA5F00416D62 /* UIControl+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC89116EBAA5F00416D62 /* UIControl+OSX.h */; };
+		270BC8D716EBAA5F00416D62 /* UIControl+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC89216EBAA5F00416D62 /* UIControl+OSX.m */; };
+		270BC8D816EBAA5F00416D62 /* UIControl+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC89216EBAA5F00416D62 /* UIControl+OSX.m */; };
+		270BC8D916EBAA5F00416D62 /* UIControl+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC89216EBAA5F00416D62 /* UIControl+OSX.m */; };
+		270BC8DA16EBAA5F00416D62 /* UIControl+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC89216EBAA5F00416D62 /* UIControl+OSX.m */; };
+		270BC8DB16EBAA5F00416D62 /* UIControl+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC89216EBAA5F00416D62 /* UIControl+OSX.m */; };
+		270BC8DC16EBAA5F00416D62 /* UIDevice+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC89316EBAA5F00416D62 /* UIDevice+OSX.h */; };
+		270BC8DD16EBAA5F00416D62 /* UIDevice+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC89316EBAA5F00416D62 /* UIDevice+OSX.h */; };
+		270BC8DE16EBAA5F00416D62 /* UIDevice+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC89316EBAA5F00416D62 /* UIDevice+OSX.h */; };
+		270BC8DF16EBAA5F00416D62 /* UIDevice+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC89316EBAA5F00416D62 /* UIDevice+OSX.h */; };
+		270BC8E016EBAA6000416D62 /* UIDevice+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC89416EBAA5F00416D62 /* UIDevice+OSX.m */; };
+		270BC8E116EBAA6000416D62 /* UIDevice+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC89416EBAA5F00416D62 /* UIDevice+OSX.m */; };
+		270BC8E216EBAA6000416D62 /* UIDevice+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC89416EBAA5F00416D62 /* UIDevice+OSX.m */; };
+		270BC8E316EBAA6000416D62 /* UIDevice+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC89416EBAA5F00416D62 /* UIDevice+OSX.m */; };
+		270BC8E416EBAA6000416D62 /* UIDevice+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC89416EBAA5F00416D62 /* UIDevice+OSX.m */; };
+		270BC8E516EBAA6000416D62 /* UIEvent+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC89516EBAA5F00416D62 /* UIEvent+OSX.h */; };
+		270BC8E616EBAA6000416D62 /* UIEvent+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC89516EBAA5F00416D62 /* UIEvent+OSX.h */; };
+		270BC8E716EBAA6000416D62 /* UIEvent+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC89516EBAA5F00416D62 /* UIEvent+OSX.h */; };
+		270BC8E816EBAA6000416D62 /* UIEvent+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC89516EBAA5F00416D62 /* UIEvent+OSX.h */; };
+		270BC8E916EBAA6000416D62 /* UIEvent+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC89616EBAA5F00416D62 /* UIEvent+OSX.m */; };
+		270BC8EA16EBAA6000416D62 /* UIEvent+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC89616EBAA5F00416D62 /* UIEvent+OSX.m */; };
+		270BC8EB16EBAA6000416D62 /* UIEvent+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC89616EBAA5F00416D62 /* UIEvent+OSX.m */; };
+		270BC8EC16EBAA6000416D62 /* UIEvent+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC89616EBAA5F00416D62 /* UIEvent+OSX.m */; };
+		270BC8ED16EBAA6000416D62 /* UIEvent+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC89616EBAA5F00416D62 /* UIEvent+OSX.m */; };
+		270BC8EE16EBAA6000416D62 /* UIFont+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC89716EBAA5F00416D62 /* UIFont+OSX.h */; };
+		270BC8EF16EBAA6000416D62 /* UIFont+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC89716EBAA5F00416D62 /* UIFont+OSX.h */; };
+		270BC8F016EBAA6000416D62 /* UIFont+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC89716EBAA5F00416D62 /* UIFont+OSX.h */; };
+		270BC8F116EBAA6000416D62 /* UIFont+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC89716EBAA5F00416D62 /* UIFont+OSX.h */; };
+		270BC8F216EBAA6000416D62 /* UIFont+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC89816EBAA5F00416D62 /* UIFont+OSX.m */; };
+		270BC8F316EBAA6000416D62 /* UIFont+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC89816EBAA5F00416D62 /* UIFont+OSX.m */; };
+		270BC8F416EBAA6000416D62 /* UIFont+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC89816EBAA5F00416D62 /* UIFont+OSX.m */; };
+		270BC8F516EBAA6000416D62 /* UIFont+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC89816EBAA5F00416D62 /* UIFont+OSX.m */; };
+		270BC8F616EBAA6000416D62 /* UIFont+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC89816EBAA5F00416D62 /* UIFont+OSX.m */; };
+		270BC8F716EBAA6000416D62 /* UIGeometry+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC89916EBAA5F00416D62 /* UIGeometry+OSX.h */; };
+		270BC8F816EBAA6000416D62 /* UIGeometry+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC89916EBAA5F00416D62 /* UIGeometry+OSX.h */; };
+		270BC8F916EBAA6000416D62 /* UIGeometry+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC89916EBAA5F00416D62 /* UIGeometry+OSX.h */; };
+		270BC8FA16EBAA6000416D62 /* UIGeometry+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC89916EBAA5F00416D62 /* UIGeometry+OSX.h */; };
+		270BC8FB16EBAA6000416D62 /* UIGeometry+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC89A16EBAA5F00416D62 /* UIGeometry+OSX.m */; };
+		270BC8FC16EBAA6000416D62 /* UIGeometry+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC89A16EBAA5F00416D62 /* UIGeometry+OSX.m */; };
+		270BC8FD16EBAA6000416D62 /* UIGeometry+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC89A16EBAA5F00416D62 /* UIGeometry+OSX.m */; };
+		270BC8FE16EBAA6000416D62 /* UIGeometry+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC89A16EBAA5F00416D62 /* UIGeometry+OSX.m */; };
+		270BC8FF16EBAA6000416D62 /* UIGeometry+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC89A16EBAA5F00416D62 /* UIGeometry+OSX.m */; };
+		270BC90016EBAA6000416D62 /* UIImage+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC89B16EBAA5F00416D62 /* UIImage+OSX.h */; };
+		270BC90116EBAA6000416D62 /* UIImage+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC89B16EBAA5F00416D62 /* UIImage+OSX.h */; };
+		270BC90216EBAA6000416D62 /* UIImage+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC89B16EBAA5F00416D62 /* UIImage+OSX.h */; };
+		270BC90316EBAA6000416D62 /* UIImage+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC89B16EBAA5F00416D62 /* UIImage+OSX.h */; };
+		270BC90416EBAA6000416D62 /* UIImage+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC89C16EBAA5F00416D62 /* UIImage+OSX.m */; };
+		270BC90516EBAA6000416D62 /* UIImage+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC89C16EBAA5F00416D62 /* UIImage+OSX.m */; };
+		270BC90616EBAA6000416D62 /* UIImage+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC89C16EBAA5F00416D62 /* UIImage+OSX.m */; };
+		270BC90716EBAA6000416D62 /* UIImage+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC89C16EBAA5F00416D62 /* UIImage+OSX.m */; };
+		270BC90816EBAA6000416D62 /* UIImage+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC89C16EBAA5F00416D62 /* UIImage+OSX.m */; };
+		270BC90916EBAA6000416D62 /* UIImageView+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC89D16EBAA5F00416D62 /* UIImageView+OSX.h */; };
+		270BC90A16EBAA6000416D62 /* UIImageView+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC89D16EBAA5F00416D62 /* UIImageView+OSX.h */; };
+		270BC90B16EBAA6000416D62 /* UIImageView+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC89D16EBAA5F00416D62 /* UIImageView+OSX.h */; };
+		270BC90C16EBAA6000416D62 /* UIImageView+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC89D16EBAA5F00416D62 /* UIImageView+OSX.h */; };
+		270BC90D16EBAA6000416D62 /* UIImageView+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC89E16EBAA5F00416D62 /* UIImageView+OSX.m */; };
+		270BC90E16EBAA6000416D62 /* UIImageView+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC89E16EBAA5F00416D62 /* UIImageView+OSX.m */; };
+		270BC90F16EBAA6000416D62 /* UIImageView+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC89E16EBAA5F00416D62 /* UIImageView+OSX.m */; };
+		270BC91016EBAA6000416D62 /* UIImageView+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC89E16EBAA5F00416D62 /* UIImageView+OSX.m */; };
+		270BC91116EBAA6000416D62 /* UIImageView+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC89E16EBAA5F00416D62 /* UIImageView+OSX.m */; };
+		270BC91216EBAA6000416D62 /* UIKit+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC89F16EBAA5F00416D62 /* UIKit+OSX.h */; };
+		270BC91316EBAA6000416D62 /* UIKit+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC89F16EBAA5F00416D62 /* UIKit+OSX.h */; };
+		270BC91416EBAA6000416D62 /* UIKit+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC89F16EBAA5F00416D62 /* UIKit+OSX.h */; };
+		270BC91516EBAA6000416D62 /* UIKit+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC89F16EBAA5F00416D62 /* UIKit+OSX.h */; };
+		270BC91616EBAA6000416D62 /* UIKit+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC8A016EBAA5F00416D62 /* UIKit+OSX.m */; };
+		270BC91716EBAA6000416D62 /* UIKit+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC8A016EBAA5F00416D62 /* UIKit+OSX.m */; };
+		270BC91816EBAA6000416D62 /* UIKit+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC8A016EBAA5F00416D62 /* UIKit+OSX.m */; };
+		270BC91916EBAA6000416D62 /* UIKit+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC8A016EBAA5F00416D62 /* UIKit+OSX.m */; };
+		270BC91A16EBAA6000416D62 /* UIKit+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC8A016EBAA5F00416D62 /* UIKit+OSX.m */; };
+		270BC91F16EBAA6000416D62 /* UILabel+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC8A216EBAA5F00416D62 /* UILabel+OSX.h */; };
+		270BC92016EBAA6000416D62 /* UILabel+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC8A216EBAA5F00416D62 /* UILabel+OSX.h */; };
+		270BC92116EBAA6000416D62 /* UILabel+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC8A216EBAA5F00416D62 /* UILabel+OSX.h */; };
+		270BC92216EBAA6000416D62 /* UILabel+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC8A216EBAA5F00416D62 /* UILabel+OSX.h */; };
+		270BC92316EBAA6000416D62 /* UILabel+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC8A316EBAA5F00416D62 /* UILabel+OSX.m */; };
+		270BC92416EBAA6000416D62 /* UILabel+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC8A316EBAA5F00416D62 /* UILabel+OSX.m */; };
+		270BC92516EBAA6000416D62 /* UILabel+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC8A316EBAA5F00416D62 /* UILabel+OSX.m */; };
+		270BC92616EBAA6000416D62 /* UILabel+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC8A316EBAA5F00416D62 /* UILabel+OSX.m */; };
+		270BC92716EBAA6000416D62 /* UILabel+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC8A316EBAA5F00416D62 /* UILabel+OSX.m */; };
+		270BC92816EBAA6000416D62 /* UITextField+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC8A416EBAA5F00416D62 /* UITextField+OSX.h */; };
+		270BC92916EBAA6000416D62 /* UITextField+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC8A416EBAA5F00416D62 /* UITextField+OSX.h */; };
+		270BC92A16EBAA6000416D62 /* UITextField+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC8A416EBAA5F00416D62 /* UITextField+OSX.h */; };
+		270BC92B16EBAA6000416D62 /* UITextField+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC8A416EBAA5F00416D62 /* UITextField+OSX.h */; };
+		270BC92C16EBAA6000416D62 /* UITextField+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC8A516EBAA5F00416D62 /* UITextField+OSX.m */; };
+		270BC92D16EBAA6000416D62 /* UITextField+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC8A516EBAA5F00416D62 /* UITextField+OSX.m */; };
+		270BC92E16EBAA6000416D62 /* UITextField+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC8A516EBAA5F00416D62 /* UITextField+OSX.m */; };
+		270BC92F16EBAA6000416D62 /* UITextField+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC8A516EBAA5F00416D62 /* UITextField+OSX.m */; };
+		270BC93016EBAA6000416D62 /* UITextField+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC8A516EBAA5F00416D62 /* UITextField+OSX.m */; };
+		270BC93116EBAA6000416D62 /* UIView+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC8A616EBAA5F00416D62 /* UIView+OSX.h */; };
+		270BC93216EBAA6000416D62 /* UIView+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC8A616EBAA5F00416D62 /* UIView+OSX.h */; };
+		270BC93316EBAA6000416D62 /* UIView+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC8A616EBAA5F00416D62 /* UIView+OSX.h */; };
+		270BC93416EBAA6000416D62 /* UIView+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC8A616EBAA5F00416D62 /* UIView+OSX.h */; };
+		270BC93516EBAA6000416D62 /* UIView+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC8A716EBAA5F00416D62 /* UIView+OSX.m */; };
+		270BC93616EBAA6000416D62 /* UIView+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC8A716EBAA5F00416D62 /* UIView+OSX.m */; };
+		270BC93716EBAA6000416D62 /* UIView+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC8A716EBAA5F00416D62 /* UIView+OSX.m */; };
+		270BC93816EBAA6000416D62 /* UIView+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC8A716EBAA5F00416D62 /* UIView+OSX.m */; };
+		270BC93916EBAA6000416D62 /* UIView+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC8A716EBAA5F00416D62 /* UIView+OSX.m */; };
+		270BC93A16EBAA6000416D62 /* UIView+OSX_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC8A816EBAA5F00416D62 /* UIView+OSX_Internal.h */; };
+		270BC93B16EBAA6000416D62 /* UIView+OSX_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC8A816EBAA5F00416D62 /* UIView+OSX_Internal.h */; };
+		270BC93C16EBAA6000416D62 /* UIView+OSX_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC8A816EBAA5F00416D62 /* UIView+OSX_Internal.h */; };
+		270BC93D16EBAA6000416D62 /* UIView+OSX_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC8A816EBAA5F00416D62 /* UIView+OSX_Internal.h */; };
+		270BC93E16EBAA6000416D62 /* UIViewController+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC8A916EBAA5F00416D62 /* UIViewController+OSX.h */; };
+		270BC93F16EBAA6000416D62 /* UIViewController+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC8A916EBAA5F00416D62 /* UIViewController+OSX.h */; };
+		270BC94016EBAA6000416D62 /* UIViewController+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC8A916EBAA5F00416D62 /* UIViewController+OSX.h */; };
+		270BC94116EBAA6000416D62 /* UIViewController+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC8A916EBAA5F00416D62 /* UIViewController+OSX.h */; };
+		270BC94216EBAA6000416D62 /* UIViewController+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC8AA16EBAA5F00416D62 /* UIViewController+OSX.m */; };
+		270BC94316EBAA6000416D62 /* UIViewController+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC8AA16EBAA5F00416D62 /* UIViewController+OSX.m */; };
+		270BC94416EBAA6000416D62 /* UIViewController+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC8AA16EBAA5F00416D62 /* UIViewController+OSX.m */; };
+		270BC94516EBAA6000416D62 /* UIViewController+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC8AA16EBAA5F00416D62 /* UIViewController+OSX.m */; };
+		270BC94616EBAA6000416D62 /* UIViewController+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC8AA16EBAA5F00416D62 /* UIViewController+OSX.m */; };
 		271687C116E5564E0026AA4F /* FLResponseReceiver.h in Headers */ = {isa = PBXBuildFile; fileRef = 271687BF16E5564D0026AA4F /* FLResponseReceiver.h */; };
 		271687C216E5564E0026AA4F /* FLResponseReceiver.h in Headers */ = {isa = PBXBuildFile; fileRef = 271687BF16E5564D0026AA4F /* FLResponseReceiver.h */; };
 		271687C316E5564E0026AA4F /* FLResponseReceiver.h in Headers */ = {isa = PBXBuildFile; fileRef = 271687BF16E5564D0026AA4F /* FLResponseReceiver.h */; };
@@ -3017,8 +3174,44 @@
 
 /* Begin PBXFileReference section */
 		27048EF0161CB58600C38ADA /* libFishLampCocoa-OSX-32-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoa-OSX-32-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2709A0E816EBB1A600C59905 /* AppKit+iOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppKit+iOS.h"; sourceTree = "<group>"; };
+		2709A0E916EBB1A600C59905 /* AppKit+iOS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppKit+iOS.m"; sourceTree = "<group>"; };
 		270B8CFF16E2F8A800C95B0D /* FLAttributedString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAttributedString.h; sourceTree = "<group>"; };
 		270B8D0016E2F8A800C95B0D /* FLAttributedString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAttributedString.m; sourceTree = "<group>"; };
+		270BC88716EBAA5F00416D62 /* FishLampCompatibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishLampCompatibility.h; sourceTree = "<group>"; };
+		270BC88816EBAA5F00416D62 /* FishLampCompatibility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FishLampCompatibility.m; sourceTree = "<group>"; };
+		270BC88A16EBAA5F00416D62 /* CGContext+UIKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CGContext+UIKit.h"; sourceTree = "<group>"; };
+		270BC88B16EBAA5F00416D62 /* CGContext+UIKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CGContext+UIKit.m"; sourceTree = "<group>"; };
+		270BC88C16EBAA5F00416D62 /* fishlamp-module.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "fishlamp-module.json"; sourceTree = "<group>"; };
+		270BC88D16EBAA5F00416D62 /* NSValue+UIKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSValue+UIKit.h"; sourceTree = "<group>"; };
+		270BC88E16EBAA5F00416D62 /* NSValue+UIKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSValue+UIKit.m"; sourceTree = "<group>"; };
+		270BC88F16EBAA5F00416D62 /* UIColor+OSX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+OSX.h"; sourceTree = "<group>"; };
+		270BC89016EBAA5F00416D62 /* UIColor+OSX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+OSX.m"; sourceTree = "<group>"; };
+		270BC89116EBAA5F00416D62 /* UIControl+OSX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIControl+OSX.h"; sourceTree = "<group>"; };
+		270BC89216EBAA5F00416D62 /* UIControl+OSX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIControl+OSX.m"; sourceTree = "<group>"; };
+		270BC89316EBAA5F00416D62 /* UIDevice+OSX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+OSX.h"; sourceTree = "<group>"; };
+		270BC89416EBAA5F00416D62 /* UIDevice+OSX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+OSX.m"; sourceTree = "<group>"; };
+		270BC89516EBAA5F00416D62 /* UIEvent+OSX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIEvent+OSX.h"; sourceTree = "<group>"; };
+		270BC89616EBAA5F00416D62 /* UIEvent+OSX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIEvent+OSX.m"; sourceTree = "<group>"; };
+		270BC89716EBAA5F00416D62 /* UIFont+OSX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+OSX.h"; sourceTree = "<group>"; };
+		270BC89816EBAA5F00416D62 /* UIFont+OSX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+OSX.m"; sourceTree = "<group>"; };
+		270BC89916EBAA5F00416D62 /* UIGeometry+OSX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIGeometry+OSX.h"; sourceTree = "<group>"; };
+		270BC89A16EBAA5F00416D62 /* UIGeometry+OSX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIGeometry+OSX.m"; sourceTree = "<group>"; };
+		270BC89B16EBAA5F00416D62 /* UIImage+OSX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+OSX.h"; sourceTree = "<group>"; };
+		270BC89C16EBAA5F00416D62 /* UIImage+OSX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+OSX.m"; sourceTree = "<group>"; };
+		270BC89D16EBAA5F00416D62 /* UIImageView+OSX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+OSX.h"; sourceTree = "<group>"; };
+		270BC89E16EBAA5F00416D62 /* UIImageView+OSX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+OSX.m"; sourceTree = "<group>"; };
+		270BC89F16EBAA5F00416D62 /* UIKit+OSX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIKit+OSX.h"; sourceTree = "<group>"; };
+		270BC8A016EBAA5F00416D62 /* UIKit+OSX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIKit+OSX.m"; sourceTree = "<group>"; };
+		270BC8A216EBAA5F00416D62 /* UILabel+OSX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+OSX.h"; sourceTree = "<group>"; };
+		270BC8A316EBAA5F00416D62 /* UILabel+OSX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+OSX.m"; sourceTree = "<group>"; };
+		270BC8A416EBAA5F00416D62 /* UITextField+OSX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+OSX.h"; sourceTree = "<group>"; };
+		270BC8A516EBAA5F00416D62 /* UITextField+OSX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+OSX.m"; sourceTree = "<group>"; };
+		270BC8A616EBAA5F00416D62 /* UIView+OSX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+OSX.h"; sourceTree = "<group>"; };
+		270BC8A716EBAA5F00416D62 /* UIView+OSX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+OSX.m"; sourceTree = "<group>"; };
+		270BC8A816EBAA5F00416D62 /* UIView+OSX_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+OSX_Internal.h"; sourceTree = "<group>"; };
+		270BC8A916EBAA5F00416D62 /* UIViewController+OSX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+OSX.h"; sourceTree = "<group>"; };
+		270BC8AA16EBAA5F00416D62 /* UIViewController+OSX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+OSX.m"; sourceTree = "<group>"; };
 		271687BF16E5564D0026AA4F /* FLResponseReceiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLResponseReceiver.h; sourceTree = "<group>"; };
 		271687C016E5564D0026AA4F /* FLResponseReceiver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLResponseReceiver.m; sourceTree = "<group>"; };
 		272D807816C84313006052E5 /* AssetQueueObjects.flproj */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = AssetQueueObjects.flproj; sourceTree = "<group>"; };
@@ -3732,6 +3925,65 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2709A0E716EBB18800C59905 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				2709A0E816EBB1A600C59905 /* AppKit+iOS.h */,
+				2709A0E916EBB1A600C59905 /* AppKit+iOS.m */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		270BC88516EBAA5F00416D62 /* Compatibility */ = {
+			isa = PBXGroup;
+			children = (
+				2709A0E716EBB18800C59905 /* iOS */,
+				270BC88716EBAA5F00416D62 /* FishLampCompatibility.h */,
+				270BC88816EBAA5F00416D62 /* FishLampCompatibility.m */,
+				270BC88916EBAA5F00416D62 /* OSX */,
+			);
+			path = Compatibility;
+			sourceTree = "<group>";
+		};
+		270BC88916EBAA5F00416D62 /* OSX */ = {
+			isa = PBXGroup;
+			children = (
+				270BC88A16EBAA5F00416D62 /* CGContext+UIKit.h */,
+				270BC88B16EBAA5F00416D62 /* CGContext+UIKit.m */,
+				270BC88C16EBAA5F00416D62 /* fishlamp-module.json */,
+				270BC88D16EBAA5F00416D62 /* NSValue+UIKit.h */,
+				270BC88E16EBAA5F00416D62 /* NSValue+UIKit.m */,
+				270BC88F16EBAA5F00416D62 /* UIColor+OSX.h */,
+				270BC89016EBAA5F00416D62 /* UIColor+OSX.m */,
+				270BC89116EBAA5F00416D62 /* UIControl+OSX.h */,
+				270BC89216EBAA5F00416D62 /* UIControl+OSX.m */,
+				270BC89316EBAA5F00416D62 /* UIDevice+OSX.h */,
+				270BC89416EBAA5F00416D62 /* UIDevice+OSX.m */,
+				270BC89516EBAA5F00416D62 /* UIEvent+OSX.h */,
+				270BC89616EBAA5F00416D62 /* UIEvent+OSX.m */,
+				270BC89716EBAA5F00416D62 /* UIFont+OSX.h */,
+				270BC89816EBAA5F00416D62 /* UIFont+OSX.m */,
+				270BC89916EBAA5F00416D62 /* UIGeometry+OSX.h */,
+				270BC89A16EBAA5F00416D62 /* UIGeometry+OSX.m */,
+				270BC89B16EBAA5F00416D62 /* UIImage+OSX.h */,
+				270BC89C16EBAA5F00416D62 /* UIImage+OSX.m */,
+				270BC89D16EBAA5F00416D62 /* UIImageView+OSX.h */,
+				270BC89E16EBAA5F00416D62 /* UIImageView+OSX.m */,
+				270BC89F16EBAA5F00416D62 /* UIKit+OSX.h */,
+				270BC8A016EBAA5F00416D62 /* UIKit+OSX.m */,
+				270BC8A216EBAA5F00416D62 /* UILabel+OSX.h */,
+				270BC8A316EBAA5F00416D62 /* UILabel+OSX.m */,
+				270BC8A416EBAA5F00416D62 /* UITextField+OSX.h */,
+				270BC8A516EBAA5F00416D62 /* UITextField+OSX.m */,
+				270BC8A616EBAA5F00416D62 /* UIView+OSX.h */,
+				270BC8A716EBAA5F00416D62 /* UIView+OSX.m */,
+				270BC8A816EBAA5F00416D62 /* UIView+OSX_Internal.h */,
+				270BC8A916EBAA5F00416D62 /* UIViewController+OSX.h */,
+				270BC8AA16EBAA5F00416D62 /* UIViewController+OSX.m */,
+			);
+			path = OSX;
+			sourceTree = "<group>";
+		};
 		2731477B1652D2D30027850D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -3755,6 +4007,7 @@
 		2741DEAE16793DB500CA87A9 /* Cocoa */ = {
 			isa = PBXGroup;
 			children = (
+				270BC88516EBAA5F00416D62 /* Compatibility */,
 				274933EB169A04EE008E8EC5 /* __CocoaHeaders.h */,
 				27DB1F8D167A93A300452AD3 /* FLCocoaRequired.h */,
 				2741DEAF16793DB500CA87A9 /* FishLampCocoa.h */,
@@ -5547,6 +5800,24 @@
 				2785FBBA16E287AB0029D496 /* FLActivityLog.h in Headers */,
 				270B8D0116E2F8A800C95B0D /* FLAttributedString.h in Headers */,
 				271687C116E5564E0026AA4F /* FLResponseReceiver.h in Headers */,
+				270BC8AF16EBAA5F00416D62 /* FishLampCompatibility.h in Headers */,
+				270BC8B816EBAA5F00416D62 /* CGContext+UIKit.h in Headers */,
+				270BC8C116EBAA5F00416D62 /* NSValue+UIKit.h in Headers */,
+				270BC8CA16EBAA5F00416D62 /* UIColor+OSX.h in Headers */,
+				270BC8D316EBAA5F00416D62 /* UIControl+OSX.h in Headers */,
+				270BC8DC16EBAA5F00416D62 /* UIDevice+OSX.h in Headers */,
+				270BC8E516EBAA6000416D62 /* UIEvent+OSX.h in Headers */,
+				270BC8EE16EBAA6000416D62 /* UIFont+OSX.h in Headers */,
+				270BC8F716EBAA6000416D62 /* UIGeometry+OSX.h in Headers */,
+				270BC90016EBAA6000416D62 /* UIImage+OSX.h in Headers */,
+				270BC90916EBAA6000416D62 /* UIImageView+OSX.h in Headers */,
+				270BC91216EBAA6000416D62 /* UIKit+OSX.h in Headers */,
+				270BC91F16EBAA6000416D62 /* UILabel+OSX.h in Headers */,
+				270BC92816EBAA6000416D62 /* UITextField+OSX.h in Headers */,
+				270BC93116EBAA6000416D62 /* UIView+OSX.h in Headers */,
+				270BC93A16EBAA6000416D62 /* UIView+OSX_Internal.h in Headers */,
+				270BC93E16EBAA6000416D62 /* UIViewController+OSX.h in Headers */,
+				2709A0EA16EBB1A600C59905 /* AppKit+iOS.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5897,6 +6168,24 @@
 				2785FBBC16E287AB0029D496 /* FLActivityLog.h in Headers */,
 				270B8D0316E2F8A800C95B0D /* FLAttributedString.h in Headers */,
 				271687C316E5564E0026AA4F /* FLResponseReceiver.h in Headers */,
+				270BC8B116EBAA5F00416D62 /* FishLampCompatibility.h in Headers */,
+				270BC8BA16EBAA5F00416D62 /* CGContext+UIKit.h in Headers */,
+				270BC8C316EBAA5F00416D62 /* NSValue+UIKit.h in Headers */,
+				270BC8CC16EBAA5F00416D62 /* UIColor+OSX.h in Headers */,
+				270BC8D516EBAA5F00416D62 /* UIControl+OSX.h in Headers */,
+				270BC8DE16EBAA5F00416D62 /* UIDevice+OSX.h in Headers */,
+				270BC8E716EBAA6000416D62 /* UIEvent+OSX.h in Headers */,
+				270BC8F016EBAA6000416D62 /* UIFont+OSX.h in Headers */,
+				270BC8F916EBAA6000416D62 /* UIGeometry+OSX.h in Headers */,
+				270BC90216EBAA6000416D62 /* UIImage+OSX.h in Headers */,
+				270BC90B16EBAA6000416D62 /* UIImageView+OSX.h in Headers */,
+				270BC91416EBAA6000416D62 /* UIKit+OSX.h in Headers */,
+				270BC92116EBAA6000416D62 /* UILabel+OSX.h in Headers */,
+				270BC92A16EBAA6000416D62 /* UITextField+OSX.h in Headers */,
+				270BC93316EBAA6000416D62 /* UIView+OSX.h in Headers */,
+				270BC93C16EBAA6000416D62 /* UIView+OSX_Internal.h in Headers */,
+				270BC94016EBAA6000416D62 /* UIViewController+OSX.h in Headers */,
+				2709A0EC16EBB1A600C59905 /* AppKit+iOS.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6247,6 +6536,24 @@
 				2785FBBB16E287AB0029D496 /* FLActivityLog.h in Headers */,
 				270B8D0216E2F8A800C95B0D /* FLAttributedString.h in Headers */,
 				271687C216E5564E0026AA4F /* FLResponseReceiver.h in Headers */,
+				270BC8B016EBAA5F00416D62 /* FishLampCompatibility.h in Headers */,
+				270BC8B916EBAA5F00416D62 /* CGContext+UIKit.h in Headers */,
+				270BC8C216EBAA5F00416D62 /* NSValue+UIKit.h in Headers */,
+				270BC8CB16EBAA5F00416D62 /* UIColor+OSX.h in Headers */,
+				270BC8D416EBAA5F00416D62 /* UIControl+OSX.h in Headers */,
+				270BC8DD16EBAA5F00416D62 /* UIDevice+OSX.h in Headers */,
+				270BC8E616EBAA6000416D62 /* UIEvent+OSX.h in Headers */,
+				270BC8EF16EBAA6000416D62 /* UIFont+OSX.h in Headers */,
+				270BC8F816EBAA6000416D62 /* UIGeometry+OSX.h in Headers */,
+				270BC90116EBAA6000416D62 /* UIImage+OSX.h in Headers */,
+				270BC90A16EBAA6000416D62 /* UIImageView+OSX.h in Headers */,
+				270BC91316EBAA6000416D62 /* UIKit+OSX.h in Headers */,
+				270BC92016EBAA6000416D62 /* UILabel+OSX.h in Headers */,
+				270BC92916EBAA6000416D62 /* UITextField+OSX.h in Headers */,
+				270BC93216EBAA6000416D62 /* UIView+OSX.h in Headers */,
+				270BC93B16EBAA6000416D62 /* UIView+OSX_Internal.h in Headers */,
+				270BC93F16EBAA6000416D62 /* UIViewController+OSX.h in Headers */,
+				2709A0EB16EBB1A600C59905 /* AppKit+iOS.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6597,6 +6904,24 @@
 				2785FBBD16E287AB0029D496 /* FLActivityLog.h in Headers */,
 				270B8D0416E2F8A800C95B0D /* FLAttributedString.h in Headers */,
 				271687C416E5564E0026AA4F /* FLResponseReceiver.h in Headers */,
+				270BC8B216EBAA5F00416D62 /* FishLampCompatibility.h in Headers */,
+				270BC8BB16EBAA5F00416D62 /* CGContext+UIKit.h in Headers */,
+				270BC8C416EBAA5F00416D62 /* NSValue+UIKit.h in Headers */,
+				270BC8CD16EBAA5F00416D62 /* UIColor+OSX.h in Headers */,
+				270BC8D616EBAA5F00416D62 /* UIControl+OSX.h in Headers */,
+				270BC8DF16EBAA5F00416D62 /* UIDevice+OSX.h in Headers */,
+				270BC8E816EBAA6000416D62 /* UIEvent+OSX.h in Headers */,
+				270BC8F116EBAA6000416D62 /* UIFont+OSX.h in Headers */,
+				270BC8FA16EBAA6000416D62 /* UIGeometry+OSX.h in Headers */,
+				270BC90316EBAA6000416D62 /* UIImage+OSX.h in Headers */,
+				270BC90C16EBAA6000416D62 /* UIImageView+OSX.h in Headers */,
+				270BC91516EBAA6000416D62 /* UIKit+OSX.h in Headers */,
+				270BC92216EBAA6000416D62 /* UILabel+OSX.h in Headers */,
+				270BC92B16EBAA6000416D62 /* UITextField+OSX.h in Headers */,
+				270BC93416EBAA6000416D62 /* UIView+OSX.h in Headers */,
+				270BC93D16EBAA6000416D62 /* UIView+OSX_Internal.h in Headers */,
+				270BC94116EBAA6000416D62 /* UIViewController+OSX.h in Headers */,
+				2709A0ED16EBB1A600C59905 /* AppKit+iOS.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7083,6 +7408,23 @@
 				2785FBBF16E287AB0029D496 /* FLActivityLog.m in Sources */,
 				270B8D0616E2F8A800C95B0D /* FLAttributedString.m in Sources */,
 				271687C616E5564E0026AA4F /* FLResponseReceiver.m in Sources */,
+				270BC8B416EBAA5F00416D62 /* FishLampCompatibility.m in Sources */,
+				270BC8BD16EBAA5F00416D62 /* CGContext+UIKit.m in Sources */,
+				270BC8C616EBAA5F00416D62 /* NSValue+UIKit.m in Sources */,
+				270BC8CF16EBAA5F00416D62 /* UIColor+OSX.m in Sources */,
+				270BC8D816EBAA5F00416D62 /* UIControl+OSX.m in Sources */,
+				270BC8E116EBAA6000416D62 /* UIDevice+OSX.m in Sources */,
+				270BC8EA16EBAA6000416D62 /* UIEvent+OSX.m in Sources */,
+				270BC8F316EBAA6000416D62 /* UIFont+OSX.m in Sources */,
+				270BC8FC16EBAA6000416D62 /* UIGeometry+OSX.m in Sources */,
+				270BC90516EBAA6000416D62 /* UIImage+OSX.m in Sources */,
+				270BC90E16EBAA6000416D62 /* UIImageView+OSX.m in Sources */,
+				270BC91716EBAA6000416D62 /* UIKit+OSX.m in Sources */,
+				270BC92416EBAA6000416D62 /* UILabel+OSX.m in Sources */,
+				270BC92D16EBAA6000416D62 /* UITextField+OSX.m in Sources */,
+				270BC93616EBAA6000416D62 /* UIView+OSX.m in Sources */,
+				270BC94316EBAA6000416D62 /* UIViewController+OSX.m in Sources */,
+				2709A0EF16EBB1A600C59905 /* AppKit+iOS.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7400,6 +7742,23 @@
 				2785FBC116E287AB0029D496 /* FLActivityLog.m in Sources */,
 				270B8D0816E2F8A800C95B0D /* FLAttributedString.m in Sources */,
 				271687C816E5564E0026AA4F /* FLResponseReceiver.m in Sources */,
+				270BC8B616EBAA5F00416D62 /* FishLampCompatibility.m in Sources */,
+				270BC8BF16EBAA5F00416D62 /* CGContext+UIKit.m in Sources */,
+				270BC8C816EBAA5F00416D62 /* NSValue+UIKit.m in Sources */,
+				270BC8D116EBAA5F00416D62 /* UIColor+OSX.m in Sources */,
+				270BC8DA16EBAA5F00416D62 /* UIControl+OSX.m in Sources */,
+				270BC8E316EBAA6000416D62 /* UIDevice+OSX.m in Sources */,
+				270BC8EC16EBAA6000416D62 /* UIEvent+OSX.m in Sources */,
+				270BC8F516EBAA6000416D62 /* UIFont+OSX.m in Sources */,
+				270BC8FE16EBAA6000416D62 /* UIGeometry+OSX.m in Sources */,
+				270BC90716EBAA6000416D62 /* UIImage+OSX.m in Sources */,
+				270BC91016EBAA6000416D62 /* UIImageView+OSX.m in Sources */,
+				270BC91916EBAA6000416D62 /* UIKit+OSX.m in Sources */,
+				270BC92616EBAA6000416D62 /* UILabel+OSX.m in Sources */,
+				270BC92F16EBAA6000416D62 /* UITextField+OSX.m in Sources */,
+				270BC93816EBAA6000416D62 /* UIView+OSX.m in Sources */,
+				270BC94516EBAA6000416D62 /* UIViewController+OSX.m in Sources */,
+				2709A0F116EBB1A600C59905 /* AppKit+iOS.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7716,6 +8075,23 @@
 				2785FBBE16E287AB0029D496 /* FLActivityLog.m in Sources */,
 				270B8D0516E2F8A800C95B0D /* FLAttributedString.m in Sources */,
 				271687C516E5564E0026AA4F /* FLResponseReceiver.m in Sources */,
+				270BC8B316EBAA5F00416D62 /* FishLampCompatibility.m in Sources */,
+				270BC8BC16EBAA5F00416D62 /* CGContext+UIKit.m in Sources */,
+				270BC8C516EBAA5F00416D62 /* NSValue+UIKit.m in Sources */,
+				270BC8CE16EBAA5F00416D62 /* UIColor+OSX.m in Sources */,
+				270BC8D716EBAA5F00416D62 /* UIControl+OSX.m in Sources */,
+				270BC8E016EBAA6000416D62 /* UIDevice+OSX.m in Sources */,
+				270BC8E916EBAA6000416D62 /* UIEvent+OSX.m in Sources */,
+				270BC8F216EBAA6000416D62 /* UIFont+OSX.m in Sources */,
+				270BC8FB16EBAA6000416D62 /* UIGeometry+OSX.m in Sources */,
+				270BC90416EBAA6000416D62 /* UIImage+OSX.m in Sources */,
+				270BC90D16EBAA6000416D62 /* UIImageView+OSX.m in Sources */,
+				270BC91616EBAA6000416D62 /* UIKit+OSX.m in Sources */,
+				270BC92316EBAA6000416D62 /* UILabel+OSX.m in Sources */,
+				270BC92C16EBAA6000416D62 /* UITextField+OSX.m in Sources */,
+				270BC93516EBAA6000416D62 /* UIView+OSX.m in Sources */,
+				270BC94216EBAA6000416D62 /* UIViewController+OSX.m in Sources */,
+				2709A0EE16EBB1A600C59905 /* AppKit+iOS.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8033,6 +8409,23 @@
 				2785FBC016E287AB0029D496 /* FLActivityLog.m in Sources */,
 				270B8D0716E2F8A800C95B0D /* FLAttributedString.m in Sources */,
 				271687C716E5564E0026AA4F /* FLResponseReceiver.m in Sources */,
+				270BC8B516EBAA5F00416D62 /* FishLampCompatibility.m in Sources */,
+				270BC8BE16EBAA5F00416D62 /* CGContext+UIKit.m in Sources */,
+				270BC8C716EBAA5F00416D62 /* NSValue+UIKit.m in Sources */,
+				270BC8D016EBAA5F00416D62 /* UIColor+OSX.m in Sources */,
+				270BC8D916EBAA5F00416D62 /* UIControl+OSX.m in Sources */,
+				270BC8E216EBAA6000416D62 /* UIDevice+OSX.m in Sources */,
+				270BC8EB16EBAA6000416D62 /* UIEvent+OSX.m in Sources */,
+				270BC8F416EBAA6000416D62 /* UIFont+OSX.m in Sources */,
+				270BC8FD16EBAA6000416D62 /* UIGeometry+OSX.m in Sources */,
+				270BC90616EBAA6000416D62 /* UIImage+OSX.m in Sources */,
+				270BC90F16EBAA6000416D62 /* UIImageView+OSX.m in Sources */,
+				270BC91816EBAA6000416D62 /* UIKit+OSX.m in Sources */,
+				270BC92516EBAA6000416D62 /* UILabel+OSX.m in Sources */,
+				270BC92E16EBAA6000416D62 /* UITextField+OSX.m in Sources */,
+				270BC93716EBAA6000416D62 /* UIView+OSX.m in Sources */,
+				270BC94416EBAA6000416D62 /* UIViewController+OSX.m in Sources */,
+				2709A0F016EBB1A600C59905 /* AppKit+iOS.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8350,6 +8743,23 @@
 				2785FBC216E287AB0029D496 /* FLActivityLog.m in Sources */,
 				270B8D0916E2F8A800C95B0D /* FLAttributedString.m in Sources */,
 				271687C916E5564E0026AA4F /* FLResponseReceiver.m in Sources */,
+				270BC8B716EBAA5F00416D62 /* FishLampCompatibility.m in Sources */,
+				270BC8C016EBAA5F00416D62 /* CGContext+UIKit.m in Sources */,
+				270BC8C916EBAA5F00416D62 /* NSValue+UIKit.m in Sources */,
+				270BC8D216EBAA5F00416D62 /* UIColor+OSX.m in Sources */,
+				270BC8DB16EBAA5F00416D62 /* UIControl+OSX.m in Sources */,
+				270BC8E416EBAA6000416D62 /* UIDevice+OSX.m in Sources */,
+				270BC8ED16EBAA6000416D62 /* UIEvent+OSX.m in Sources */,
+				270BC8F616EBAA6000416D62 /* UIFont+OSX.m in Sources */,
+				270BC8FF16EBAA6000416D62 /* UIGeometry+OSX.m in Sources */,
+				270BC90816EBAA6000416D62 /* UIImage+OSX.m in Sources */,
+				270BC91116EBAA6000416D62 /* UIImageView+OSX.m in Sources */,
+				270BC91A16EBAA6000416D62 /* UIKit+OSX.m in Sources */,
+				270BC92716EBAA6000416D62 /* UILabel+OSX.m in Sources */,
+				270BC93016EBAA6000416D62 /* UITextField+OSX.m in Sources */,
+				270BC93916EBAA6000416D62 /* UIView+OSX.m in Sources */,
+				270BC94616EBAA6000416D62 /* UIViewController+OSX.m in Sources */,
+				2709A0F216EBB1A600C59905 /* AppKit+iOS.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

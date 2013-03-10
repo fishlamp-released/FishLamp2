@@ -82,6 +82,9 @@ static NSMutableDictionary* s_typeRegistry = nil;
     return FLAutorelease([[[self class] alloc] initWithClass:aClass]);
 }
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Warc-performSelector-leaks"
+
 - (NSString*) encodeObjectToString:(id) object withEncoder:(id) encoder {
     return [encoder performSelector:self.encodeSelector withObject:object];
 }
@@ -89,6 +92,8 @@ static NSMutableDictionary* s_typeRegistry = nil;
 - (id) decodeStringToObject:(NSString*) string withDecoder:(id) decoder {
     return [decoder performSelector:self.decodeSelector withObject:string];
 }
+
+#pragma GCC diagnostic pop
 
 - (NSString*) typeName {
     return NSStringFromClass(_typeClass);

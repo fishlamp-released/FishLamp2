@@ -9,7 +9,6 @@
 #import "FLCocoaUIRequired.h"
 #import "FLAttributedString.h"
 #import "FLOrderedCollection.h"
-#import "FLDrawableString.h"
 #import "FLBatchDictionary.h"
 
 //@interface FLBreadcrumbBarViewOld : UIView {

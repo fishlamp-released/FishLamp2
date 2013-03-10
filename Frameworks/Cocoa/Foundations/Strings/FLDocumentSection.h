@@ -16,8 +16,6 @@
     NSMutableArray* _lines;
     BOOL _needsLine;
     __unsafe_unretained id _parent;
-    
-    NSMutableString* _openLine;
 }
 + (id) stringBuilder;
 

@@ -11,10 +11,9 @@
 
 #define FLDropBackAnimationDefaultScale 0.95f
 
-@interface FLDropBackAnimation : FLAnimation {
-@private
-    CGFloat _scale;
-}
+@interface FLDropBackAnimation : FLAnimation 
+
++ (id) dropBackAnimation;
 
 @property (readwrite, assign, nonatomic) CGFloat scale;
 

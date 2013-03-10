@@ -20,7 +20,7 @@
 @synthesize encodedString = _encodedString;
 @synthesize propertyType = _propertyType;
 @synthesize state = _state;
-@synthesize inflatedPropertyObject = _inflatedObject;
+@synthesize inflatedPropertyObject = _inflatedPropertyObject;
 
 - (id) init {
 	if((self = [super init])) {
@@ -53,7 +53,7 @@
 
 #if FL_MRC
 - (void) dealloc {
-    [_inflatedObject release];
+    [_inflatedPropertyObject release];
 //    [_parseInfo release];
     [_propertyName release];
     [_encodedString release];

@@ -8,64 +8,100 @@
 
 #import "FLMoveAnimation.h"
 
-@implementation FLMoveAnimation
+@interface FLMoveAnimation ()
 
-+ (CAAnimation*) animationForLayer:(CALayer*) layer 
-                        fromOrigin:(CGPoint) fromOrigin 
-                          toOrigin:(CGPoint) toOrigin {
-    
+// for subclasses
+- (CAAnimation*) CAAnimation;
+@end
+
+@implementation FLMoveAnimation {
+@private
+    CGPoint _startPoint;
+    CGPoint _finishPoint;
+    BOOL _setStartPoint;
+    BOOL _setFinishPoint;
+}
+@synthesize startPoint = _startPoint;
+@synthesize finishPoint = _finishPoint;
+
+- (id) initWithDestination:(CGPoint) point {
+    self = [super init];
+    if(self) {
+        self.finishPoint = point;
+    }
+    return self;
+}
+
++ (id) moveAnimation:(CGPoint) destination  {
+    return FLAutorelease([[[self class] alloc] init]);
+}
+
+- (void) setStartPoint: (CGPoint) point {
+    _startPoint = point;
+    _setStartPoint = YES;
+}
+
+- (void) setFinishPoint: (CGPoint) point {
+    _finishPoint = point;
+    _setFinishPoint = YES;
+}
+
+
+
+- (CAAnimation*) CAAnimation {
     CABasicAnimation *moveFrame = [CABasicAnimation animationWithKeyPath:@"position"];
-    [moveFrame setFromValue:[NSValue valueWithPoint:fromOrigin]];
-    [moveFrame setToValue:[NSValue valueWithPoint:toOrigin]];
+    [moveFrame setFromValue:[NSValue valueWithPoint:_startPoint]];
+    [moveFrame setToValue:[NSValue valueWithPoint:_finishPoint]];
     moveFrame.removedOnCompletion = NO;
     return moveFrame;
 }
 
-- (void) prepareAnimator:(FLAnimator*) animator
-              fromOrigin:(CGPoint) fromOrigin 
-                toOrigin:(CGPoint) toOrigin {
+- (void) prepareLayer:(CALayer*) layer {
+    if(_setStartPoint) {
+        [layer setPosition:_startPoint];
+    }
+    else {
+        _startPoint = layer.position;
+    }
+}
 
-    CALayer* layer = self.layer;
-    CAAnimation* moveFrame = [FLMoveAnimation animationForLayer:layer fromOrigin:fromOrigin toOrigin:toOrigin];
+- (void) commitAnimation:(CALayer*) layer {
+    FLAssert_(_setFinishPoint);
     
-    [layer addAnimation:moveFrame forKey:@"position"];
-//        [layer setFrame:FLRectSetOriginWithPoint([layer frame], fromOrigin)];
+    [layer addAnimation:[self CAAnimation] forKey:@"position"];
+    [layer setPosition:_finishPoint];
+}
 
-    [layer setPosition:fromOrigin];
-
-    animator.commit = ^{
-        [layer setPosition:toOrigin];
-    
-//#if OSX
-//        [[layer animator] setFrame:destFrame];
-//#else
-//        [layer setFrame:destFrame];
-//#endif    
-
-    };
-}                  
-
-@end
-
-@implementation FLSlideInFromRightAnimation
-
-- (void) prepareAnimator:(FLAnimator*) animator {
-    
-    CALayer* layer = self.layer;
-    [self prepareAnimator:animator 
-         fromOrigin:CGPointMake(FLRectGetRight(layer.superlayer.bounds), layer.frame.origin.y) 
-           toOrigin:layer.frame.origin];
+- (void) finishAnimation:(CALayer*) layer {
 }
 
 @end
 
-@implementation FLSlideOutToRightAnimation
+@implementation FLSlideInAnimation 
 
-- (void) prepareAnimator:(FLAnimator*) animator {
-    CALayer* layer = self.layer;
-    [self prepareAnimator:animator 
-          fromOrigin:layer.frame.origin 
-           toOrigin:CGPointMake(FLRectGetRight(layer.superlayer.bounds), layer.frame.origin.y) ];
++ (id) slideInAnimation {
+    return FLAutorelease([[[self class] alloc] init]);
+}
+
+- (void) prepareLayer:(CALayer*) layer {
+    self.startPoint = CGPointMake(FLRectGetRight(layer.superlayer.bounds), layer.frame.origin.y);
+    self.finishPoint = layer.frame.origin;
+    [super prepareLayer:layer];
 }
 
 @end
+
+@implementation FLSlideOutAnimation 
+
++ (id) slideOutAnimation {
+    return FLAutorelease([[[self class] alloc] init]);
+}
+
+- (void) prepareLayer:(CALayer*) layer {
+    self.startPoint = layer.frame.origin;
+    self.finishPoint = CGPointMake(FLRectGetRight(layer.superlayer.bounds), layer.frame.origin.y) ;
+    [super prepareLayer:layer];
+}
+
+@end
+

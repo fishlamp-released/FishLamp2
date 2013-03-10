@@ -10,7 +10,7 @@
 
 #import "FLPanelViewController.h"
 
-@interface FLWizardHeaderViewController : NSViewController<FLPanelHeader> {
+@interface FLWizardHeaderViewController : FLCompatibleViewController<FLPanelHeader> {
 @private
     IBOutlet NSTextField* _titleView;
     IBOutlet NSProgressIndicator* _spinner;

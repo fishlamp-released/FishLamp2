@@ -36,4 +36,4 @@
     - (__SERVICE_TYPE__) __GETTER__ { return FLAtomicPropertyGet(&__IVAR_NAME__); } \
     - (void) __SETTER__:(__SERVICE_TYPE__) newValue { FLAtomicAddServiceToService(&__IVAR_NAME__, newValue, self); } 
 
-extern void FLAtomicAddServiceToService(id* ivar, FLService* newService, FLService* parentService);
+extern void FLAtomicAddServiceToService(__strong id* ivar, FLService* newService, FLService* parentService);

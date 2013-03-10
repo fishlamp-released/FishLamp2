@@ -21,7 +21,7 @@
 - (id) initWithViewToShow:(UIView*) viewToShow 
                viewToHide:(UIView*) viewToHide {
 
-    self = [super initWithTarget:nil];
+    self = [super init];
     if(self) {
         self.viewToShow = viewToShow;
         self.viewToHide = viewToHide;
@@ -46,7 +46,7 @@
     return FLAutorelease([[[self class] alloc] initWithViewToShow:viewToShow viewToHide:viewToHide]);
 }
 
-- (void) prepareAnimator:(FLAnimator*) animator {
+- (void) prepareLayer:(CALayer*) layer  {
 
     UIView* viewToShow = self.viewToShow;
     UIView* viewToHide = self.viewToHide;
@@ -66,10 +66,10 @@
                               positioned:NSWindowBelow 
                               relativeTo:viewToHide];
     }
+}
 
-    animator.finish = ^{
-        [viewToHide removeFromSuperview];
-    };
+- (void) finishAnimation:(CALayer*) layer {
+    [self.viewToHide removeFromSuperview];
 }
 
 @end

@@ -42,9 +42,7 @@
     if(self) {
         FLAssertStringIsNotEmpty_(name);
         _hostRef = CFHostCreateWithName(nil, bridge_(CFStringRef, name));
-        if(!_hostRef) {
-            return nil;
-        }
+        FLAssertNotNil_(_hostRef);
         self.hostName = name;
     }
     
@@ -55,9 +53,7 @@
     self = [super init];
     if(self) {
         _hostRef = CFHostCreateWithAddress(NULL, bridge_(CFDataRef, address));
-        if(!_hostRef) {
-            return nil;
-        }
+        FLAssertNotNil_(_hostRef);
         self.addressData = address;
     }
     
@@ -93,9 +89,7 @@
             _hostRef = CFHostCreateWithAddress(NULL, bridge_(CFDataRef, data));
         }
         
-        if(!_hostRef) {
-            return nil;
-        }
+        FLAssertNotNil_(_hostRef);
         
         self.addressData = data;
         

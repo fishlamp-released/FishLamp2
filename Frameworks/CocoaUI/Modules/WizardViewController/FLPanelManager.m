@@ -67,7 +67,7 @@
         frame = FLRectCenterRectInRectVertically(bounds, frame);
     }
 
-    panel.view.frame = FLRectOptimizedForViewSize(frame);
+    panel.view.frame = FLRectOptimizedForViewLocation(frame);
 }
 
 - (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
@@ -296,7 +296,9 @@
     return _started && self.currentPanelIndex == (_panels.count - 1);
 }
           
-- (void) addPanelView:(NSView*) panelView toView:(NSView*) superview animated:(BOOL) animated {
+- (void) addPanelView:(FLCompatibleView*) panelView toView:(FLCompatibleView*) superview animated:(BOOL) animated {
+
+    panelView.wantsLayer = YES;
     if(!_panelViews) {
         _panelViews = [[NSMutableArray alloc] init];
     }
@@ -305,7 +307,7 @@
 }
 
 - (void) removePanelViews:(BOOL) animated {
-    for(NSView* view in _panelViews) {
+    for(FLCompatibleView* view in _panelViews) {
         [view removeFromSuperview];
     }
 

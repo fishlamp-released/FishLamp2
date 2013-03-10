@@ -21,17 +21,14 @@
 #define FLRetain(__OBJ__)   \
             [__OBJ__ retain]
 
-
 #define FLRelease(__OBJ__) \
             [__OBJ__ release]
 
 #define FLAutorelease(__OBJ__) \
             [__OBJ__ autorelease] 
 
-NS_INLINE
-void FLAutoreleaseObject(id object) {
-    [object autorelease];
-}
+#define FLAutoreleaseObject(__OBJ__) \
+            [__OBJ__ autorelease];
 
 NS_INLINE
 void FLRetainObject(id object) {
@@ -48,8 +45,18 @@ void FLRetainObject(id object) {
 #define bridge_transfer_(__TO__, __FROM__) \
             ((__TO__) __FROM__)
 
-#define bridge_FLRetain(__TO__, __FROM__) \
+#define bridge_retain_(__TO__, __FROM__) \
             ((__TO__) [__FROM__ retain])
+
+#define FLBridge(__TO__, __FROM__) \
+            ((__TO__) __FROM__)
+
+#define FLBridgeTransfer(__TO__, __FROM__) \
+            ((__TO__) __FROM__)
+
+#define FLBrideRetain(__TO__, __FROM__) \
+            ((__TO__) [__FROM__ retain])
+
 
 // mrc utils
 

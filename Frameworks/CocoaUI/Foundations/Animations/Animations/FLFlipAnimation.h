@@ -15,6 +15,24 @@ typedef enum {
     FLFlipAnimationDirectionRight
 } FLFlipAnimationDirection;
 
+#define FLFlipAnimationDefaultPerspectiveDistance 1500.0f
+
+@interface FLFlipAnimation : FLAnimation
+
+@property (readwrite, assign, nonatomic) FLFlipAnimationDirection flipDirection;
+
+// defaults to yes
+@property (readwrite, assign, nonatomic) BOOL showBothSidesDuringFlip; 
+
+// defaults to FLFlipAnimationDefaultPerspectiveDistance
+@property (readwrite, assign, nonatomic) CGFloat perspectiveDistance;  
+
+- (id) initWithFlipDirection:(FLFlipAnimationDirection) direction;
++ (id) flipAnimation:(FLFlipAnimationDirection) direction;
+
+@end
+
+
 NS_INLINE
 FLFlipAnimationDirection FLFlipAnimationDirectionOpposite(FLFlipAnimationDirection direction) {
     switch(direction) {
@@ -28,32 +46,3 @@ FLFlipAnimationDirection FLFlipAnimationDirectionOpposite(FLFlipAnimationDirecti
             return FLFlipAnimationDirectionLeft;
     }
 }
-
-#define FLFlipAnimationDefaultPerspectiveDistance 1500.0f
-
-@interface FLFlipAnimation : FLAnimation {
-@private
-    FLFlipAnimationDirection _flipDirection;
-    BOOL _showBothSidesDuringFlip;
-    CGFloat _perspectiveDistance;
-}
-
-@property (readwrite, assign, nonatomic) FLFlipAnimationDirection flipDirection;
-
-@property (readwrite, assign, nonatomic) BOOL showBothSidesDuringFlip; // defaults to yes
-
-@property (readwrite, assign, nonatomic) CGFloat perspectiveDistance;  // defaults to FLFlipAnimationDefaultPerspectiveDistance
-
-
-// utils
-
-+ (void) addPerspectiveToLayer:(CALayer*) layer 
-       withPerspectiveDistance:(CGFloat) distance;
-       
-+ (void) prepareLayerForFlip:(CALayer*) layer 
-             inFlipDirection:(FLFlipAnimationDirection) flipDirection;
-   
-+ (CAAnimation*) createFlipAnimationForLayer:(CALayer*) layer 
-                           withFlipDirection:(FLFlipAnimationDirection) flipDirection;
-
-@end

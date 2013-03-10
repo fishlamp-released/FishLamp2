@@ -82,3 +82,7 @@ void FLThrowConfirmationFailedException(FLAssertionFailure failure, NSString* de
             comment:comment 
             stackTrace:stackTrace]]; 
 }
+
+BOOL __FLConfirmationDidFail() {
+    return YES;
+}

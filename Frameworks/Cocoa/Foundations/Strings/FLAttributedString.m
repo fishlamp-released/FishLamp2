@@ -53,7 +53,7 @@
 #endif
 
 - (id) copyWithZone:(NSZone *)zone {
-    FLTextStyle* style = [FLTextStyle textStyle];
+    FLTextStyle* style = [[FLTextStyle alloc] init];
     style.textColor = self.textColor;
     style.shadowColor = self.shadowColor;
     style.textFont = self.textFont;
@@ -147,86 +147,42 @@
 
 @end
 
-@implementation FLAttributedString
-@synthesize string = _string;
-@synthesize textStyle = _textStyle;
-
-- (id) init {
-    return [self initWithString:@""];
-}
-
-- (id) initWithString:(NSString*) string {
-    self = [super init];
-    if(self) {
-        self.string = string;
-    }
-    
-    return self;
-}
-
-+ (FLAttributedString*) attributedString {
-    return FLAutorelease([[FLAttributedString alloc] initWithString:@""]);
-}
-
-+ (FLAttributedString*) attributedString:(NSString*) string {
-    return FLAutorelease([[FLAttributedString alloc] initWithString:string]);
-}
-
-#if FL_MRC
-- (void) dealloc {
-    [_textStyle release];
-    [_string release];
-    [super dealloc];
-}
-#endif
-
-//- (NSDictionary*) attributes {
-//    MSMutableDictionary* attributes = [MSMutableDictionary dictionary];
-//    if(self.textFont) {
-//        CTFontRef fontRef = CTFontCreateWithName(bridge_(CFStringRef, self.textFont.fontName), self.textFont.pointSize, NULL);
-//        FLAssertIsNotNil_(fontRef);
-//    
-//    
-//        [attributes setObject:fontRef forKey:(NSString*) kCTFontAttributeName];
-//    }
-//    
-//    NSColor* color = self.colorForState;
-//    if(color) {
-//        [attributes setObject:color forKey:(NSString*) kCTForegroundColorAttributeName];
-//    }
-//    
-//    NSColor* shadowColor = self.shadowColorForState;
-//    if(color) {
-//        [attributes setObject:shadowColor forKey:(NSString*) NSShadowAttributeName ];
-//    }
-//    
-//    return attributes;
-//}
-
-- (NSAttributedString*) buildAttributedString {
-    return [self.string attributedStringWithTextStyle:self.textStyle];
-}
-@end
-
-@implementation NSString (FLAttributedString)
-
-- (NSAttributedString*) attributedStringWithTextStyle:(FLTextStyle*) textStyle {
-
-    FLAssertNotNil_v(textStyle, @"no text style attributed string");
-    NSMutableAttributedString* string =
-        FLAutorelease([[NSMutableAttributedString alloc] initWithString:self]);
-
-    [string setTextStyle:textStyle forRange:string.entireRange];
-    return string;
-}
-
-@end
-
 @implementation NSAttributedString (FLAdditions)
 - (NSRange) entireRange {
     return NSMakeRange(0, self.length);
 }
+
++ (id) attributedStringWithString:(NSString*) string 
+                    withTextStyle:(FLTextStyle*) textStyle {
+
+    FLAssertNotNil_v(textStyle, @"no text style attributed string");
+    NSMutableAttributedString* attrString =
+        FLAutorelease([[NSMutableAttributedString alloc] initWithString:string]);
+
+    [attrString setTextStyle:textStyle forRange:attrString.entireRange];
+    return attrString;
+}
+
+- (CGColorRef) colorForRange:(NSRange) range {
+
+    return FLBridge(CGColorRef, [self attribute:(NSString*) kCTForegroundColorAttributeName 
+        atIndex:0 effectiveRange:&range]);
+}
+
+- (CTFontRef) fontForRange:(NSRange) range {
+    return FLBridge(CTFontRef, [self attribute:(NSString*) kCTFontAttributeName 
+        atIndex:0 effectiveRange:&range]);
+}
+
 @end
+
+//CTFontRef CTFontCreateFromUIFont(NSFont *font)
+//{
+//    CTFontRef ctFont = CTFontCreateWithName((__bridge CFStringRef)font.fontName, 
+//                                            font.pointSize, 
+//                                            NULL);
+//    return ctFont;
+//}
 
 @implementation NSMutableAttributedString (FLAdditions)
 
@@ -275,7 +231,9 @@
 
 - (void) setColor:(NSColor*) color forRange:(NSRange) range{
 
-    [self setAttribute:color forName:(NSString*) kCTForegroundColorAttributeName forRange:range];
+    CGColorRef colorRef = [color copyCGColorRef];
+    [self setAttribute:FLBridge(id, colorRef) forName:(NSString*) kCTForegroundColorAttributeName forRange:range];
+    CFRelease(colorRef);
 
 //    if(color) {
 //        [self addAttribute:(NSString*) kCTForegroundColorAttributeName 
@@ -289,7 +247,9 @@
 
 - (void) setShadowColor:(NSColor*) color forRange:(NSRange) range {
 
-    [self setAttribute:color forName:(NSString*) NSShadowAttributeName forRange:range];
+    CGColorRef colorRef = [color copyCGColorRef];
+    [self setAttribute:FLBridge(id, colorRef) forName:(NSString*) NSShadowAttributeName forRange:range];
+    CFRelease(colorRef);
 
 //    if(color) {
 //        [self addAttribute:(NSString*) NSShadowAttributeName 

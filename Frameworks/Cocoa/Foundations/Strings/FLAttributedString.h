@@ -15,7 +15,7 @@
 @private
     UIColor* _textColor;
     UIColor* _shadowColor;
-    UIFont* _font;
+    UIFont* _textFont;
     BOOL _underlined;
 }
 @property (readwrite, assign, nonatomic, getter=isUnderlined) BOOL underlined;
@@ -56,31 +56,14 @@
 
 @end
 
-
-@interface FLAttributedString : NSObject {
-@private
-    NSString* _string;
-    FLTextStyle* _style;
-}
-
-@property (readwrite, strong, nonatomic) FLTextStyle* textStyle;
-@property (readwrite, strong, nonatomic) NSString* string;
-
-- (id) initWithString:(NSString*) string;
-
-+ (FLAttributedString*) attributedString;
-+ (FLAttributedString*) attributedString:(NSString*) string;
-
-- (NSAttributedString*) buildAttributedString;
-
-@end
-
-@interface NSString (FLAttributedString)
-- (NSAttributedString*) attributedStringWithTextStyle:(FLTextStyle*) textStyle;
-@end
-
 @interface NSAttributedString (FLAdditions)
++ (id) attributedStringWithString:(NSString*) string withTextStyle:(FLTextStyle*) style;
+
 - (NSRange) entireRange;
+
+- (CGColorRef) colorForRange:(NSRange) range;
+- (CTFontRef) fontForRange:(NSRange) range;
+
 @end
 
 @interface NSMutableAttributedString (FLAdditions)
@@ -103,4 +86,6 @@
 + (id) mutableAttributedString:(NSString*) string url:(NSURL*) url color:(NSColor*) color underline:(BOOL) underline;
 
 @end
+
+
 

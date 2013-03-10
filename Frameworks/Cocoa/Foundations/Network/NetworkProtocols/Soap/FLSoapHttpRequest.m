@@ -36,9 +36,17 @@
 + (FLSoapFault11*) checkForSoapFaultInData:(NSData*) data {
 	if(data && data.length >0 ) {
 		char* first = strnstr((const char*) [data bytes], "Fault", MIN([data length], (unsigned int) MAX_ERR_LEN));
-		if(first) {
-			FLSoapObjectBuilder* soapParser = [FLSoapObjectBuilder soapObjectBuilder];
-			FLSoapFault11* soapFault = [soapParser buildObjectWithClass:[FLSoapFault11 class] withData:data withDataDecoder:[FLSoapDataEncoder instance]];
+        if(first) {
+            FLSoapXmlParser* parser = [FLSoapXmlParser soapXmlParser];
+
+            FLParsedXmlElement* xml = FLThrowIfError([parser parseData:data]);
+    
+            FLSoapFault11* soapFault = [FLSoapFault11 objectWithSoap:xml];
+            FLAssertNotNil_(soapFault);
+    
+        
+//			FLSoapObjectBuilder* soapParser = [FLSoapObjectBuilder soapObjectBuilder];
+//			FLSoapFault11* soapFault = [soapParser buildObjectWithClass:[FLSoapFault11 class] withData:data withDataDecoder:[FLSoapDataEncoder instance]];
             
 			FLDebugLog(@"Soap Fault:%@/%@", [soapFault faultcode], [soapFault faultstring]);
             return soapFault;
