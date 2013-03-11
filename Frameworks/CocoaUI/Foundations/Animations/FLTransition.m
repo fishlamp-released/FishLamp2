@@ -25,7 +25,6 @@
     if(self) {
         self.viewToShow = viewToShow;
         self.viewToHide = viewToHide;
-        self.timingFunction = kCAMediaTimingFunctionEaseInEaseOut;
         self.duration = 0.5;
     }
 
@@ -39,6 +38,10 @@
     [super dealloc];
 }
 #endif
+
+- (void) startTransition:(FLAnimationCompletionBlock) completion {
+
+}
 
 
 + (id) transitionWithViewToShow:(UIView*) viewToShow 

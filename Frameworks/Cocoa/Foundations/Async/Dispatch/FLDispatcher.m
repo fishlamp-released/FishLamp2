@@ -104,7 +104,7 @@
 //
 //    id context = self.context;
 //    if(context) {
-//        FLSafeguardBlock(completion);
+//       completion = FLCopyWithAutorelease(completion);
 //    
 //         finisher = [self createFinisher:^(FLResult result) {
 //            if(completion) {

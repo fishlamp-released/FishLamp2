@@ -27,4 +27,15 @@
     return userLogin;
 }
 
+- (void) setPropertiesWithUserLogin:(FLUserLogin*) login {
+    self.userName = login.userName;
+    self.authToken = login.authToken;
+    self.email = login.email;
+    self.isAuthenticated = login.isAuthenticated;
+    self.authTokenLastUpdateTime = login.authTokenLastUpdateTime;
+    self.password = login.password;
+    self.userGuid = login.userGuid;
+    self.userValue = login.userValue;
+}
+
 @end

@@ -64,7 +64,7 @@
         frame.origin.y = bounds.origin.y;
     }
     else {
-        frame = FLRectCenterRectInRectVertically(bounds, frame);
+        frame.origin.y = FLRectGetBottom(bounds) - frame.size.height - 100.0f; // = FLRectCenterRectInRectVertically(bounds, frame);
     }
 
     panel.view.frame = FLRectOptimizedForViewLocation(frame);
@@ -258,7 +258,7 @@
         
     if(transition) {
         completion = FLCopyWithAutorelease(completion);
-        [transition startAnimating:^{
+        [transition startTransition:^{
             [self didShowPanel:toShow didHidePanel:toHide];
                 
             if(completion) {

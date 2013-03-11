@@ -59,7 +59,7 @@
 
 + (NSString*) userValueKey;
 
-+ (FLUserLogin*) userLogin; 
++ (id) userLogin; 
 
 @end
 

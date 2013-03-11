@@ -195,9 +195,9 @@
     return s_table;
 }
 
-+ (FLUserLogin*) userLogin
++ (id) userLogin
 {
-    return FLAutorelease([[FLUserLogin alloc] init]);
+    return FLAutorelease([[[self class] alloc] init]);
 }
 
 @end

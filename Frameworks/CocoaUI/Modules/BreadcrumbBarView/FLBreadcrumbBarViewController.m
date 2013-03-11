@@ -66,7 +66,6 @@
 }                          
 
 - (void) updateViewsAnimated:(BOOL) animated {
-
     for(FLBarTitleLayer* title in self.breadcrumbView.titles) {
         title.enabled = [self.delegate breadcrumbBar:self breadcrumbIsEnabled:title.title];
         title.emphasized = [self.delegate breadcrumbBar:self breadcrumbIsVisible:title.title];
@@ -91,94 +90,24 @@
 
 }
 
-- (void) breadcrumbBar:(FLBreadcrumbBarView*) view layoutTitles:(NSArray*) titles {
+- (void) breadcrumbBar:(FLBreadcrumbBarView*) view updateLayoutWithTitles:(NSArray*) titles {
+  
+    [CATransaction begin];
+    [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
+
     CGRect frame = CGRectMake(0, FLRectGetBottom(self.view.bounds) - (kTallHeight*2), self.contentView.frame.origin.x, kTallHeight);
     for(FLBarTitleLayer* layer in titles) {
         layer.frame = frame;
         frame.origin.y -= frame.size.height;
     }
+
+    [CATransaction commit];
 }
 
 - (void) breadcrumbBar:(FLBreadcrumbBarView*) view handleMousedownInTitle:(FLBarTitleLayer*) title {
     [self.delegate breadcrumbBar:self breadcrumbWasClicked:title.title];
     [self updateViewsAnimated:YES];
 }
-
-
-//- (void) updateVertical:(BOOL) animated {
-//    CGFloat verticalOffset = FLRectGetBottom(self.view.bounds) - kTallHeight;
-//    NSView* targetView = nil;
-//    for(FLBreadcrumbBarView* view in _breadcrumbs) {
-//        CGRect frame = self.view.bounds;
-//        frame.size.height = kTallHeight;
-//        frame.origin.y = verticalOffset;
-//        verticalOffset -= kTallHeight;
-//        view.frame = frame;
-//        
-//            
-//        if(view.emphasized) {
-//            targetView = view;
-//        }
-//    }
-//    
-//    if(!targetView) {
-//        targetView = [_breadcrumbs objectAtIndex:0];
-//    }
-//
-//    if(targetView) {
-//        [_empasizedView sendToBack];
-//            animated = NO;
-//            
-//            if(animated) {
-//                _empasizedView.frame = FLRectSetSizeWithSize(_empasizedView.frame, targetView.frame.size);
-//                FLMoveAnimation* animation = [FLMoveAnimation moveAnimation:targetView.frame.origin];
-//                [animation startAnimating:_empasizedView];
-//            }
-//            else {
-//            _empasizedView.frame = targetView.frame;
-//            }
-//    }
-//
-//}
-
-//- (void) updateHorizontal {
-//
-//    CGFloat left = -2;
-//    for(FLBreadcrumbBarView* view in _breadcrumbs) {
-//        [view sendToBack];
-//
-//        CGRect frame = self.view.bounds;
-//        frame = CGRectInset(frame, 2, 2);
-//        
-//        frame.size.width = kWideWidth;
-//        frame.origin.x = left;
-//        frame.size.height += 8;
-//        frame.origin.y -= 4;
-//        view.frame = frame;
-//        left += (view.frame.size.width - 14);
-//    }
-//
-//}
-
-
-//- (void) setBreadcrumbActive:(BOOL) active forTitle:(NSString*) title {
-//    BOOL foundActive = NO;
-//    
-//    for(FLBarTitleLayer* titles in self.breadcrumbView.titles) {
-//        title.enabled = !foundActive;
-//        
-//        if(FLStringsAreEqual(view.title, title)) {
-//            foundActive = YES;
-//            title.emphasized = YES;
-//        }
-//        else {
-//            title.emphasized = NO;
-//        }
-//    }
-//
-//    [self updateViewsAnimated:YES];
-//}
-
 
 @end
 

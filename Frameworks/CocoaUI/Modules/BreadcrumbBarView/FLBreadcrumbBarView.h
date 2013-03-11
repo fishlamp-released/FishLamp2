@@ -42,7 +42,7 @@
 
 
 @protocol FLBreadcrumbBarViewDelegate <NSObject>
-- (void) breadcrumbBar:(FLBreadcrumbBarView*) view layoutTitles:(NSArray*) titles;
+- (void) breadcrumbBar:(FLBreadcrumbBarView*) view updateLayoutWithTitles:(NSArray*) titles;
 - (void) breadcrumbBar:(FLBreadcrumbBarView*) view handleMousedownInTitle:(FLBarTitleLayer*) title;
 
 @end

@@ -9,41 +9,72 @@
 #import "FLCocoaUIRequired.h"
 
 
-@class FLAnimation;
+typedef enum {
+    FLAnimationDirectionForward,
+    FLAnimationDirectionBackward,
+} FLAnimationDirection;
 
-//typedef void (^FLAnimationBlock)(CALayer* layer);
+typedef enum {
+    FLAnimationAxisX,
+    FLAnimationAxisY,
+    FLAnimationAxisZ
+} FLAnimationAxis;
 
-//@interface FLAnimator : NSObject
-//@property (readwrite, copy, nonatomic) FLAnimationBlock prepare;
-//@property (readwrite, copy, nonatomic) FLAnimationBlock commit;
-//@property (readwrite, copy, nonatomic) FLAnimationBlock finish;
-//@end
+typedef enum {
+    FLAnimationTimingDefault,
+    FLAnimationTimingLinear,
+    FLAnimationTimingEaseIn,
+    FLAnimationTimingEaseOut,
+    FLAnimationTimingEaseInEaseOut,
+    FLAnimationTimingCustom   
+} FLAnimationTiming;
 
-@interface FLAnimation : NSObject
+typedef void (^FLAnimationCompletionBlock)();
+
+@interface FLAnimation : NSObject {
+@private
+    CGFloat _duration;
+    BOOL _repeat;
+    BOOL _animating;
+    NSMutableArray* _animations;
+    
+    FLAnimationAxis _animationAxis;
+    FLAnimationDirection _animationDirection;
+    FLAnimationTiming _animationTiming;
+}
 
 // these only apply to the animation upon which beginAnimation was called.
 @property (readwrite, assign, nonatomic) CGFloat duration;
-@property (readwrite, strong, nonatomic) NSString* timingFunction;
+@property (readwrite, assign, nonatomic) BOOL repeat;
+@property (readwrite, assign, nonatomic) FLAnimationDirection direction;
+@property (readwrite, assign, nonatomic) FLAnimationAxis axis;
+@property (readwrite, assign, nonatomic) FLAnimationTiming timing;
+@property (readonly, assign, nonatomic, getter=isAnimating) BOOL animating;
 
 + (id) animation;
 
-// to animated call one of these
-- (void) startAnimating:(id) target;
-
 - (void) startAnimating:(id) target
-             completion:(void (^)()) completion;
-
-- (void) startAnimating:(id) target
-          didStartBlock:(void (^)()) didStartBlock
-             completion:(void (^)()) completion;
+             completion:(FLAnimationCompletionBlock) completion;
 
 // use this to add child animations
 - (void) addAnimation:(FLAnimation*) animation;
 
+// overrides
+// animations are disabled during prepare and finish,
+// commit is where you apply the animations
 - (void) prepareLayer:(CALayer*) layer;
 - (void) commitAnimation:(CALayer*) layer;
 - (void) finishAnimation:(CALayer*) layer;
 
+- (void) stopAnimating;
+
+
+// subclass utils
+- (CAMediaTimingFunction*) timingFunction;
+- (void) prepareAnimation:(CAAnimation*) animation;
+
 @end
+
+CAMediaTimingFunction* FLAnimationGetTimingFunction(FLAnimationTiming functionEnum);
 
 

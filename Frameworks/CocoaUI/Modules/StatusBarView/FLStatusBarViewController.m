@@ -53,16 +53,16 @@
     [rootView addSubview:view];
 
     if(animated) {
-        FLSafeguardBlock(completion);
+       completion = FLCopyWithAutorelease(completion);
 
-        UIView* lastView = [_stack lastObject];
-        if(lastView) {
-            FLFlipTransition* fuckyoupieceofshit = [FLFlipTransition transitionWithViewToShow:view viewToHide:lastView flipDirection:FLFlipAnimationDirectionUp];
-            [fuckyoupieceofshit startAnimating:completion];
-        }
-        else {
-            [[FLPopInAnimation popInAnimation] startAnimating:view completion:completion];
-        }
+//        UIView* lastView = [_stack lastObject];
+//        if(lastView) {
+//            FLFlipTransition* fuckyoupieceofshit = [FLFlipTransition transitionWithViewToShow:view viewToHide:lastView flipDirection:FLFlipAnimationDirectionUp];
+//            [fuckyoupieceofshit startAnimating:completion];
+//        }
+//        else {
+//            [[FLPopInAnimation popInAnimation] startAnimating:view completion:completion];
+//        }
     }   
     else {
         if(completion) {
@@ -76,7 +76,7 @@
               animated:(BOOL) animated 
               completion:(void (^)()) completion {
 
-    FLSafeguardBlock(completion);
+   completion = FLCopyWithAutorelease(completion);
 
     __unsafe_unretained id SELF = self;
     [SELF addStatusView:view animated:animated completion:^{
@@ -94,7 +94,7 @@
                animated:(BOOL) animated 
                completion:(void (^)()) completion{
 
-    FLSafeguardBlock(completion);
+   completion = FLCopyWithAutorelease(completion);
 
     __unsafe_unretained id SELF = self;
     [SELF addStatusView:view animated:animated completion:^{
@@ -113,11 +113,11 @@
     if(animated) {
         if(_stack.count >= 2) {
             UIView* toShow = [_stack lastObject];
-            [[FLFlipTransition transitionWithViewToShow:toShow viewToHide:toHide flipDirection:FLFlipAnimationDirectionDown] startAnimating:completion];
+            [[FLFlipTransition transitionWithViewToShow:toShow viewToHide:toHide flipDirection:FLFlipAnimationDirectionDown] startTransition:completion];
         }
         else {
         
-            FLSafeguardBlock(completion);
+           completion = FLCopyWithAutorelease(completion);
         
             [[FLFadeOutAnimation fadeOutAnimation] startAnimating:toHide completion:^(FLResult result) {
                 [toHide removeFromSuperview];

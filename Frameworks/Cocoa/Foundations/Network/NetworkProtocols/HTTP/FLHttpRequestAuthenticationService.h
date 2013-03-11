@@ -10,16 +10,18 @@
 #import "FLUserLogin.h"
 #import "FLHttpRequest.h"
 #import "FLService.h"
-#import "FLDataStoreService.h"
 
-@interface FLHttpRequestAuthenticationService : FLDataStoreService<FLHttpRequestAuthenticator> {
+@protocol FLHttpRequestAuthenticationServiceDelegate;
+
+@interface FLHttpRequestAuthenticationService : FLService<FLHttpRequestAuthenticator> {
 @private
-    FLUserLogin* _userLogin;
     NSTimeInterval _lastAuthenticationTimestamp;
     NSTimeInterval _timeoutInterval;
     id<FLDispatcher> _requestAuthenticationDispatcher;
+    __unsafe_unretained id<FLHttpRequestAuthenticationServiceDelegate> _delegate;
 }
 
+@property (readwrite, assign, nonatomic) id<FLHttpRequestAuthenticationServiceDelegate> delegate;
 @property (readwrite, strong, nonatomic) id<FLDispatcher> httpRequestAuthenticationDispatcher; 
 
 @property (readwrite, assign, nonatomic) NSTimeInterval timeoutInterval;
@@ -29,8 +31,6 @@
 @property (readonly, assign, nonatomic) NSTimeInterval lastAuthenticationTimestamp;
 - (void) resetAuthenticationTimestamp;
 - (void) touchAuthenticationTimestamp;
-
-@property (readwrite, strong, nonatomic) FLUserLogin* userLogin;
 
 - (void) logoutUser;
 
@@ -45,6 +45,17 @@
 // optional
 - (BOOL) userLoginIsAuthenticated:(FLUserLogin*) userLogin;
 
+@end
+
+@protocol FLHttpRequestAuthenticationServiceDelegate <NSObject>
+
+- (FLUserLogin*) httpRequestAuthenticationServiceGetUserLogin:(FLHttpRequestAuthenticationService*) service;
+
+- (void) httpRequestAuthenticationService:(FLHttpRequestAuthenticationService*) service 
+                      didAuthenticateUser:(FLUserLogin*) userLogin;
+
+- (void) httpRequestAuthenticationService:(FLHttpRequestAuthenticationService*) service 
+                            didLogoutUser:(FLUserLogin*) userLogin;
 @end
 
 

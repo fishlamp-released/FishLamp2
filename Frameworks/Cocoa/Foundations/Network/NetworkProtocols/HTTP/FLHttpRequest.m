@@ -422,7 +422,7 @@
 - (void) startWorkingInContext:(id)context 
                   withObserver:(id)observer 
                       finisher:(FLFinisher *)finisher {
-    
+
     FLPerformSelector1(context, @selector(httpRequestWillBeginWorking:), self);
     
     if(self.interceptor) {

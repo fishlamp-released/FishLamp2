@@ -51,5 +51,10 @@ extern NSString* const FLWorkerContextFinished;
 
 - (FLFinisher*) visitObjects:(FLDispatchableObjectVisitor) visitor;
 
+- (void) didStartWorking;
+- (void) didStopWorking;
+
+- (void) didAddWorker:(id) object;
+- (void) didRemoveWorker:(id) object;
 @end
 

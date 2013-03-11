@@ -303,8 +303,6 @@
 		27CA437A1677E5FD008D64BE /* MKMapView+FLExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA40AB1677E5FD008D64BE /* MKMapView+FLExtras.m */; };
 		27CA437B1677E5FD008D64BE /* FLModalAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA40AE1677E5FD008D64BE /* FLModalAction.m */; };
 		27CA437C1677E5FD008D64BE /* FLModalAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA40AE1677E5FD008D64BE /* FLModalAction.m */; };
-		27CA437D1677E5FD008D64BE /* FLNetworkActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA40B11677E5FD008D64BE /* FLNetworkActivityIndicator.m */; };
-		27CA437E1677E5FD008D64BE /* FLNetworkActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA40B11677E5FD008D64BE /* FLNetworkActivityIndicator.m */; };
 		27CA437F1677E5FD008D64BE /* FLNetworkConnectionIdleObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA40B31677E5FD008D64BE /* FLNetworkConnectionIdleObserver.m */; };
 		27CA43801677E5FD008D64BE /* FLNetworkConnectionIdleObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA40B31677E5FD008D64BE /* FLNetworkConnectionIdleObserver.m */; };
 		27CA43811677E5FD008D64BE /* FLNetworkModuleiOS.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA40B51677E5FD008D64BE /* FLNetworkModuleiOS.m */; };
@@ -1019,8 +1017,6 @@
 		27CA40AB1677E5FD008D64BE /* MKMapView+FLExtras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKMapView+FLExtras.m"; sourceTree = "<group>"; };
 		27CA40AD1677E5FD008D64BE /* FLModalAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLModalAction.h; sourceTree = "<group>"; };
 		27CA40AE1677E5FD008D64BE /* FLModalAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLModalAction.m; sourceTree = "<group>"; };
-		27CA40B01677E5FD008D64BE /* FLNetworkActivityIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLNetworkActivityIndicator.h; sourceTree = "<group>"; };
-		27CA40B11677E5FD008D64BE /* FLNetworkActivityIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLNetworkActivityIndicator.m; sourceTree = "<group>"; };
 		27CA40B21677E5FD008D64BE /* FLNetworkConnectionIdleObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLNetworkConnectionIdleObserver.h; sourceTree = "<group>"; };
 		27CA40B31677E5FD008D64BE /* FLNetworkConnectionIdleObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLNetworkConnectionIdleObserver.m; sourceTree = "<group>"; };
 		27CA40B41677E5FD008D64BE /* FLNetworkModuleiOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLNetworkModuleiOS.h; sourceTree = "<group>"; };
@@ -2157,8 +2153,6 @@
 		27CA40AF1677E5FD008D64BE /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				27CA40B01677E5FD008D64BE /* FLNetworkActivityIndicator.h */,
-				27CA40B11677E5FD008D64BE /* FLNetworkActivityIndicator.m */,
 				27CA40B21677E5FD008D64BE /* FLNetworkConnectionIdleObserver.h */,
 				27CA40B31677E5FD008D64BE /* FLNetworkConnectionIdleObserver.m */,
 				27CA40B41677E5FD008D64BE /* FLNetworkModuleiOS.h */,
@@ -3169,7 +3163,6 @@
 				27CA43781677E5FD008D64BE /* FLKeyboardManager.m in Sources */,
 				27CA437A1677E5FD008D64BE /* MKMapView+FLExtras.m in Sources */,
 				27CA437C1677E5FD008D64BE /* FLModalAction.m in Sources */,
-				27CA437E1677E5FD008D64BE /* FLNetworkActivityIndicator.m in Sources */,
 				27CA43801677E5FD008D64BE /* FLNetworkConnectionIdleObserver.m in Sources */,
 				27CA43821677E5FD008D64BE /* FLNetworkModuleiOS.m in Sources */,
 				27CA43841677E5FD008D64BE /* FLSaveImageAssetToStorageOperation.m in Sources */,
@@ -3504,7 +3497,6 @@
 				27CA43771677E5FD008D64BE /* FLKeyboardManager.m in Sources */,
 				27CA43791677E5FD008D64BE /* MKMapView+FLExtras.m in Sources */,
 				27CA437B1677E5FD008D64BE /* FLModalAction.m in Sources */,
-				27CA437D1677E5FD008D64BE /* FLNetworkActivityIndicator.m in Sources */,
 				27CA437F1677E5FD008D64BE /* FLNetworkConnectionIdleObserver.m in Sources */,
 				27CA43811677E5FD008D64BE /* FLNetworkModuleiOS.m in Sources */,
 				27CA43831677E5FD008D64BE /* FLSaveImageAssetToStorageOperation.m in Sources */,

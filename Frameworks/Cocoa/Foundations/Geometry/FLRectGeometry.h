@@ -16,7 +16,17 @@
 #endif
 
 #define FLRectMake                  CGRectMake
-#define FLRectIntegral              CGRectIntegral
+//#define FLRectIntegral(r)           
+
+NS_INLINE
+CGRect FLRectIntegral(CGRect r) {
+    r.origin.x = floor(r.origin.x);
+    r.origin.y = floor(r.origin.y);
+    r.size.width = ceil(r.size.width);
+    r.size.height = ceil(r.size.height);
+    return r;
+}
+
 #define FLRectGetMidX               CGRectGetMidX
 #define FLRectGetMidY               CGRectGetMidY
 #define FLRectEqualToRect           CGRectEqualToRect

@@ -8,16 +8,60 @@
 
 #import "FLGlobalNetworkActivityIndicator.h"
 
-static id<FLGlobalNetworkActivityIndicator> s_globalIndicator = nil;
+NSString* const FLGlobalNetworkActivityShow = @"FLGlobalNetworkActivityShow";
+NSString* const FLGlobalNetworkActivityHide = @"FLGlobalNetworkActivityHide";
+
+@interface FLGlobalNetworkActivityIndicator()
+@property (readwrite, assign) NSInteger busyCount;
+@end
+
+#define kPostDelay 1.0f
 
 @implementation FLGlobalNetworkActivityIndicator
 
-+ (void) setInstance:(id<FLGlobalNetworkActivityIndicator>) indicator {
-    FLSetObjectWithRetain(s_globalIndicator, indicator);
+@synthesize busyCount = _busyCount;
+
+FLSynthesizeSingleton(FLGlobalNetworkActivityIndicator);
+
+- (BOOL) isNetworkBusy {
+    return self.busyCount > 0;
 }
 
-+ (id<FLGlobalNetworkActivityIndicator>) instance {
-    return s_globalIndicator;
+- (void) postShowMessage {
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+    if(!_showing) {
+        FLLog(@"posting show");
+        [[NSNotificationCenter defaultCenter] postNotificationName:FLGlobalNetworkActivityShow object:self];
+        _showing = YES;
+    }
+}
+
+- (void) delayedHidePost {
+    FLLog(@"posting hide");
+    [[NSNotificationCenter defaultCenter] postNotificationName:FLGlobalNetworkActivityHide object:self];
+}
+
+- (void) postHideMessage {
+    
+    if(_showing) {
+        [self performSelector:@selector(delayedHidePost) withObject:nil afterDelay:kPostDelay];
+        _showing = NO;
+    }
+}
+
+- (void) setNetworkBusy:(BOOL) busy {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if(busy) {
+            if(_busyCount++ == 0) {
+                [self postShowMessage];
+            }
+        }
+        else {
+            if(--_busyCount == 0) {
+                [self postHideMessage];
+            }
+        }
+    });
 }
 
 @end
