@@ -95,7 +95,7 @@ id _FLReleaseWithNil(id __strong * obj) {
             __VALUE__ = __PROP_TEMP__; \
         } while(0)
 
-#define FLSafeguardBlock(__BLOCK__) do { __BLOCK__ = FLCopyWithAutorelease(__BLOCK__); } while(0)
+//#define FLSafeguardBlock(__BLOCK__) do { __BLOCK__ = FLCopyWithAutorelease(__BLOCK__); } while(0)
 
 //
 // AutoreleasePool

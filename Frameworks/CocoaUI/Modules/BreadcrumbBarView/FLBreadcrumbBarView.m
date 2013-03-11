@@ -34,6 +34,7 @@
         _titles = [[NSMutableArray alloc] init];
     }
     self.wantsLayer = YES;
+    self.layer = [CALayer layer];
     
     return self;
 }
@@ -52,7 +53,7 @@
 }
 
 - (void) updateLayout {
-    [self.delegate breadcrumbBar:self layoutTitles:_titles];
+    [self.delegate breadcrumbBar:self updateLayoutWithTitles:_titles];
     [self updateHighlightedTitle:NO];
     [self setNeedsDisplay];
 }
@@ -80,7 +81,15 @@
 
 - (void) handleMouseMoved:(CGPoint) location mouseIn:(BOOL) mouseIn mouseDown:(BOOL) mouseDown {
     for(FLBarTitleLayer* title in _titles) {
-        [title handleMouseMoved:location mouseIn:CGRectContainsPoint(title.frame, location) mouseDown:mouseDown];
+        BOOL mouseInTitle = CGRectContainsPoint(title.frame, location);
+        
+        if(mouseInTitle) {
+            [title handleMouseMoved:location mouseIn:YES mouseDown:mouseDown];
+        }
+        else {
+            [title handleMouseMoved:location mouseIn:NO mouseDown:NO];
+        }
+    
     }
 }
 
@@ -100,16 +109,25 @@
 
 - (void) updateHighlightedTitle:(BOOL) animated {
 
+    if(!animated) {
+        [CATransaction begin];
+        [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
+    }
+
     for(FLBarTitleLayer* title in self.titles) {
         if(title.emphasized) {
             _highlightLayer.hidden = NO;
-            _highlightLayer.frame = FLRectSetWidth(title.frame, title.frame.size.width + 12);
+            _highlightLayer.frame = FLRectSetWidth(title.frame, title.frame.size.width + 11);
             [_highlightLayer setNeedsDisplay];
             return;
         }
     }
     
     _highlightLayer.hidden = YES;
+
+    if(!animated) {
+        [CATransaction commit];
+    }
 }
 
 - (void) drawRect:(NSRect)dirtyRect {

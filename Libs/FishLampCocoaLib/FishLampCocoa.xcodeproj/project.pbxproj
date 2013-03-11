@@ -1504,15 +1504,6 @@
 		274933ED169A04EE008E8EC5 /* __CocoaHeaders.h in Headers */ = {isa = PBXBuildFile; fileRef = 274933EB169A04EE008E8EC5 /* __CocoaHeaders.h */; };
 		274933EE169A04EE008E8EC5 /* __CocoaHeaders.h in Headers */ = {isa = PBXBuildFile; fileRef = 274933EB169A04EE008E8EC5 /* __CocoaHeaders.h */; };
 		274933EF169A04EE008E8EC5 /* __CocoaHeaders.h in Headers */ = {isa = PBXBuildFile; fileRef = 274933EB169A04EE008E8EC5 /* __CocoaHeaders.h */; };
-		2749349A169A1050008E8EC5 /* FLNetworkActivityConnectionObserver.h in Headers */ = {isa = PBXBuildFile; fileRef = 2749341B169A1050008E8EC5 /* FLNetworkActivityConnectionObserver.h */; };
-		2749349B169A1050008E8EC5 /* FLNetworkActivityConnectionObserver.h in Headers */ = {isa = PBXBuildFile; fileRef = 2749341B169A1050008E8EC5 /* FLNetworkActivityConnectionObserver.h */; };
-		2749349C169A1050008E8EC5 /* FLNetworkActivityConnectionObserver.h in Headers */ = {isa = PBXBuildFile; fileRef = 2749341B169A1050008E8EC5 /* FLNetworkActivityConnectionObserver.h */; };
-		2749349D169A1050008E8EC5 /* FLNetworkActivityConnectionObserver.h in Headers */ = {isa = PBXBuildFile; fileRef = 2749341B169A1050008E8EC5 /* FLNetworkActivityConnectionObserver.h */; };
-		2749349E169A1050008E8EC5 /* FLNetworkActivityConnectionObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 2749341C169A1050008E8EC5 /* FLNetworkActivityConnectionObserver.m */; };
-		2749349F169A1050008E8EC5 /* FLNetworkActivityConnectionObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 2749341C169A1050008E8EC5 /* FLNetworkActivityConnectionObserver.m */; };
-		274934A0169A1050008E8EC5 /* FLNetworkActivityConnectionObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 2749341C169A1050008E8EC5 /* FLNetworkActivityConnectionObserver.m */; };
-		274934A1169A1050008E8EC5 /* FLNetworkActivityConnectionObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 2749341C169A1050008E8EC5 /* FLNetworkActivityConnectionObserver.m */; };
-		274934A2169A1050008E8EC5 /* FLNetworkActivityConnectionObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 2749341C169A1050008E8EC5 /* FLNetworkActivityConnectionObserver.m */; };
 		274934A3169A1050008E8EC5 /* FLNetworkConnectionProgressObserver.h in Headers */ = {isa = PBXBuildFile; fileRef = 2749341D169A1050008E8EC5 /* FLNetworkConnectionProgressObserver.h */; };
 		274934A4169A1050008E8EC5 /* FLNetworkConnectionProgressObserver.h in Headers */ = {isa = PBXBuildFile; fileRef = 2749341D169A1050008E8EC5 /* FLNetworkConnectionProgressObserver.h */; };
 		274934A5169A1050008E8EC5 /* FLNetworkConnectionProgressObserver.h in Headers */ = {isa = PBXBuildFile; fileRef = 2749341D169A1050008E8EC5 /* FLNetworkConnectionProgressObserver.h */; };
@@ -1992,6 +1983,15 @@
 		2752BB6D16D9534E00076017 /* NSObject+FLObjectBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2752BB6616D9534E00076017 /* NSObject+FLObjectBuilder.m */; };
 		2752BB6E16D9534E00076017 /* NSObject+FLObjectBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2752BB6616D9534E00076017 /* NSObject+FLObjectBuilder.m */; };
 		2752BB6F16D9534E00076017 /* NSObject+FLObjectBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2752BB6616D9534E00076017 /* NSObject+FLObjectBuilder.m */; };
+		275D6F4316ED876A0059EF66 /* FLStorableUserLogin.h in Headers */ = {isa = PBXBuildFile; fileRef = 275D6F4116ED876A0059EF66 /* FLStorableUserLogin.h */; };
+		275D6F4416ED876A0059EF66 /* FLStorableUserLogin.h in Headers */ = {isa = PBXBuildFile; fileRef = 275D6F4116ED876A0059EF66 /* FLStorableUserLogin.h */; };
+		275D6F4516ED876A0059EF66 /* FLStorableUserLogin.h in Headers */ = {isa = PBXBuildFile; fileRef = 275D6F4116ED876A0059EF66 /* FLStorableUserLogin.h */; };
+		275D6F4616ED876A0059EF66 /* FLStorableUserLogin.h in Headers */ = {isa = PBXBuildFile; fileRef = 275D6F4116ED876A0059EF66 /* FLStorableUserLogin.h */; };
+		275D6F4716ED876A0059EF66 /* FLStorableUserLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 275D6F4216ED876A0059EF66 /* FLStorableUserLogin.m */; };
+		275D6F4816ED876A0059EF66 /* FLStorableUserLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 275D6F4216ED876A0059EF66 /* FLStorableUserLogin.m */; };
+		275D6F4916ED876A0059EF66 /* FLStorableUserLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 275D6F4216ED876A0059EF66 /* FLStorableUserLogin.m */; };
+		275D6F4A16ED876A0059EF66 /* FLStorableUserLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 275D6F4216ED876A0059EF66 /* FLStorableUserLogin.m */; };
+		275D6F4B16ED876A0059EF66 /* FLStorableUserLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 275D6F4216ED876A0059EF66 /* FLStorableUserLogin.m */; };
 		275EE4D9169DE20100D05DCB /* FLHelpToolTask.h in Headers */ = {isa = PBXBuildFile; fileRef = 275EE4D7169DE20000D05DCB /* FLHelpToolTask.h */; };
 		275EE4DA169DE20100D05DCB /* FLHelpToolTask.h in Headers */ = {isa = PBXBuildFile; fileRef = 275EE4D7169DE20000D05DCB /* FLHelpToolTask.h */; };
 		275EE4DB169DE20100D05DCB /* FLHelpToolTask.h in Headers */ = {isa = PBXBuildFile; fileRef = 275EE4D7169DE20000D05DCB /* FLHelpToolTask.h */; };
@@ -3514,8 +3514,6 @@
 		27489B6C16DC19C7007DA98A /* FLObjectDeserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLObjectDeserializer.h; sourceTree = "<group>"; };
 		27489B6D16DC19CA007DA98A /* FLObjectDeserializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLObjectDeserializer.m; sourceTree = "<group>"; };
 		274933EB169A04EE008E8EC5 /* __CocoaHeaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __CocoaHeaders.h; sourceTree = "<group>"; };
-		2749341B169A1050008E8EC5 /* FLNetworkActivityConnectionObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLNetworkActivityConnectionObserver.h; sourceTree = "<group>"; };
-		2749341C169A1050008E8EC5 /* FLNetworkActivityConnectionObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLNetworkActivityConnectionObserver.m; sourceTree = "<group>"; };
 		2749341D169A1050008E8EC5 /* FLNetworkConnectionProgressObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLNetworkConnectionProgressObserver.h; sourceTree = "<group>"; };
 		2749341E169A1050008E8EC5 /* FLNetworkConnectionProgressObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLNetworkConnectionProgressObserver.m; sourceTree = "<group>"; };
 		27493421169A1050008E8EC5 /* FLNetworkHost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLNetworkHost.h; sourceTree = "<group>"; };
@@ -3625,6 +3623,8 @@
 		27493691169A10CF008E8EC5 /* __ExternalHeaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __ExternalHeaders.h; sourceTree = "<group>"; };
 		2752BB6516D9534D00076017 /* NSObject+FLObjectBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+FLObjectBuilder.h"; sourceTree = "<group>"; };
 		2752BB6616D9534E00076017 /* NSObject+FLObjectBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+FLObjectBuilder.m"; sourceTree = "<group>"; };
+		275D6F4116ED876A0059EF66 /* FLStorableUserLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLStorableUserLogin.h; sourceTree = "<group>"; };
+		275D6F4216ED876A0059EF66 /* FLStorableUserLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLStorableUserLogin.m; sourceTree = "<group>"; };
 		275EE4D7169DE20000D05DCB /* FLHelpToolTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLHelpToolTask.h; sourceTree = "<group>"; };
 		275EE4D8169DE20100D05DCB /* FLHelpToolTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLHelpToolTask.m; sourceTree = "<group>"; };
 		275EE4E2169DE22E00D05DCB /* FLUsageToolTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLUsageToolTask.h; sourceTree = "<group>"; };
@@ -4317,6 +4317,8 @@
 			children = (
 				2741DF8116793DB600CA87A9 /* FLKeychain.h */,
 				2741DF8216793DB600CA87A9 /* FLKeychain.m */,
+				275D6F4116ED876A0059EF66 /* FLStorableUserLogin.h */,
+				275D6F4216ED876A0059EF66 /* FLStorableUserLogin.m */,
 			);
 			path = Keychain;
 			sourceTree = "<group>";
@@ -4733,8 +4735,6 @@
 		2749341A169A1050008E8EC5 /* NetworkConnection */ = {
 			isa = PBXGroup;
 			children = (
-				2749341B169A1050008E8EC5 /* FLNetworkActivityConnectionObserver.h */,
-				2749341C169A1050008E8EC5 /* FLNetworkActivityConnectionObserver.m */,
 				2749341D169A1050008E8EC5 /* FLNetworkConnectionProgressObserver.h */,
 				2749341E169A1050008E8EC5 /* FLNetworkConnectionProgressObserver.m */,
 			);
@@ -5661,7 +5661,6 @@
 				27329920168F829E00D1B91E /* NSObject+FLXmlSerialization.h in Headers */,
 				2732992B168F8FB800D1B91E /* FLObjectXmlElement.h in Headers */,
 				274933EC169A04EE008E8EC5 /* __CocoaHeaders.h in Headers */,
-				2749349A169A1050008E8EC5 /* FLNetworkActivityConnectionObserver.h in Headers */,
 				274934A3169A1050008E8EC5 /* FLNetworkConnectionProgressObserver.h in Headers */,
 				274934AC169A1050008E8EC5 /* FLNetworkHost.h in Headers */,
 				274934B5169A1050008E8EC5 /* FLNetworkHostResolver.h in Headers */,
@@ -5818,6 +5817,7 @@
 				270BC93A16EBAA6000416D62 /* UIView+OSX_Internal.h in Headers */,
 				270BC93E16EBAA6000416D62 /* UIViewController+OSX.h in Headers */,
 				2709A0EA16EBB1A600C59905 /* AppKit+iOS.h in Headers */,
+				275D6F4316ED876A0059EF66 /* FLStorableUserLogin.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6029,7 +6029,6 @@
 				27329922168F829E00D1B91E /* NSObject+FLXmlSerialization.h in Headers */,
 				2732992D168F8FB800D1B91E /* FLObjectXmlElement.h in Headers */,
 				274933EE169A04EE008E8EC5 /* __CocoaHeaders.h in Headers */,
-				2749349C169A1050008E8EC5 /* FLNetworkActivityConnectionObserver.h in Headers */,
 				274934A5169A1050008E8EC5 /* FLNetworkConnectionProgressObserver.h in Headers */,
 				274934AE169A1050008E8EC5 /* FLNetworkHost.h in Headers */,
 				274934B7169A1050008E8EC5 /* FLNetworkHostResolver.h in Headers */,
@@ -6186,6 +6185,7 @@
 				270BC93C16EBAA6000416D62 /* UIView+OSX_Internal.h in Headers */,
 				270BC94016EBAA6000416D62 /* UIViewController+OSX.h in Headers */,
 				2709A0EC16EBB1A600C59905 /* AppKit+iOS.h in Headers */,
+				275D6F4516ED876A0059EF66 /* FLStorableUserLogin.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6397,7 +6397,6 @@
 				27329921168F829E00D1B91E /* NSObject+FLXmlSerialization.h in Headers */,
 				2732992C168F8FB800D1B91E /* FLObjectXmlElement.h in Headers */,
 				274933ED169A04EE008E8EC5 /* __CocoaHeaders.h in Headers */,
-				2749349B169A1050008E8EC5 /* FLNetworkActivityConnectionObserver.h in Headers */,
 				274934A4169A1050008E8EC5 /* FLNetworkConnectionProgressObserver.h in Headers */,
 				274934AD169A1050008E8EC5 /* FLNetworkHost.h in Headers */,
 				274934B6169A1050008E8EC5 /* FLNetworkHostResolver.h in Headers */,
@@ -6554,6 +6553,7 @@
 				270BC93B16EBAA6000416D62 /* UIView+OSX_Internal.h in Headers */,
 				270BC93F16EBAA6000416D62 /* UIViewController+OSX.h in Headers */,
 				2709A0EB16EBB1A600C59905 /* AppKit+iOS.h in Headers */,
+				275D6F4416ED876A0059EF66 /* FLStorableUserLogin.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6765,7 +6765,6 @@
 				27329923168F829E00D1B91E /* NSObject+FLXmlSerialization.h in Headers */,
 				2732992E168F8FB800D1B91E /* FLObjectXmlElement.h in Headers */,
 				274933EF169A04EE008E8EC5 /* __CocoaHeaders.h in Headers */,
-				2749349D169A1050008E8EC5 /* FLNetworkActivityConnectionObserver.h in Headers */,
 				274934A6169A1050008E8EC5 /* FLNetworkConnectionProgressObserver.h in Headers */,
 				274934AF169A1050008E8EC5 /* FLNetworkHost.h in Headers */,
 				274934B8169A1050008E8EC5 /* FLNetworkHostResolver.h in Headers */,
@@ -6922,6 +6921,7 @@
 				270BC93D16EBAA6000416D62 /* UIView+OSX_Internal.h in Headers */,
 				270BC94116EBAA6000416D62 /* UIViewController+OSX.h in Headers */,
 				2709A0ED16EBB1A600C59905 /* AppKit+iOS.h in Headers */,
+				275D6F4616ED876A0059EF66 /* FLStorableUserLogin.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7281,7 +7281,6 @@
 				2732990F168F80C100D1B91E /* FLXmlComment.m in Sources */,
 				27329925168F829E00D1B91E /* NSObject+FLXmlSerialization.m in Sources */,
 				27329930168F8FB800D1B91E /* FLObjectXmlElement.m in Sources */,
-				2749349F169A1050008E8EC5 /* FLNetworkActivityConnectionObserver.m in Sources */,
 				274934A8169A1050008E8EC5 /* FLNetworkConnectionProgressObserver.m in Sources */,
 				274934B1169A1050008E8EC5 /* FLNetworkHost.m in Sources */,
 				274934BA169A1050008E8EC5 /* FLNetworkHostResolver.m in Sources */,
@@ -7425,6 +7424,7 @@
 				270BC93616EBAA6000416D62 /* UIView+OSX.m in Sources */,
 				270BC94316EBAA6000416D62 /* UIViewController+OSX.m in Sources */,
 				2709A0EF16EBB1A600C59905 /* AppKit+iOS.m in Sources */,
+				275D6F4816ED876A0059EF66 /* FLStorableUserLogin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7615,7 +7615,6 @@
 				27329911168F80C100D1B91E /* FLXmlComment.m in Sources */,
 				27329927168F829E00D1B91E /* NSObject+FLXmlSerialization.m in Sources */,
 				27329932168F8FB800D1B91E /* FLObjectXmlElement.m in Sources */,
-				274934A1169A1050008E8EC5 /* FLNetworkActivityConnectionObserver.m in Sources */,
 				274934AA169A1050008E8EC5 /* FLNetworkConnectionProgressObserver.m in Sources */,
 				274934B3169A1050008E8EC5 /* FLNetworkHost.m in Sources */,
 				274934BC169A1050008E8EC5 /* FLNetworkHostResolver.m in Sources */,
@@ -7759,6 +7758,7 @@
 				270BC93816EBAA6000416D62 /* UIView+OSX.m in Sources */,
 				270BC94516EBAA6000416D62 /* UIViewController+OSX.m in Sources */,
 				2709A0F116EBB1A600C59905 /* AppKit+iOS.m in Sources */,
+				275D6F4A16ED876A0059EF66 /* FLStorableUserLogin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7948,7 +7948,6 @@
 				2732990E168F80C100D1B91E /* FLXmlComment.m in Sources */,
 				27329924168F829E00D1B91E /* NSObject+FLXmlSerialization.m in Sources */,
 				2732992F168F8FB800D1B91E /* FLObjectXmlElement.m in Sources */,
-				2749349E169A1050008E8EC5 /* FLNetworkActivityConnectionObserver.m in Sources */,
 				274934A7169A1050008E8EC5 /* FLNetworkConnectionProgressObserver.m in Sources */,
 				274934B0169A1050008E8EC5 /* FLNetworkHost.m in Sources */,
 				274934B9169A1050008E8EC5 /* FLNetworkHostResolver.m in Sources */,
@@ -8092,6 +8091,7 @@
 				270BC93516EBAA6000416D62 /* UIView+OSX.m in Sources */,
 				270BC94216EBAA6000416D62 /* UIViewController+OSX.m in Sources */,
 				2709A0EE16EBB1A600C59905 /* AppKit+iOS.m in Sources */,
+				275D6F4716ED876A0059EF66 /* FLStorableUserLogin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8282,7 +8282,6 @@
 				27329910168F80C100D1B91E /* FLXmlComment.m in Sources */,
 				27329926168F829E00D1B91E /* NSObject+FLXmlSerialization.m in Sources */,
 				27329931168F8FB800D1B91E /* FLObjectXmlElement.m in Sources */,
-				274934A0169A1050008E8EC5 /* FLNetworkActivityConnectionObserver.m in Sources */,
 				274934A9169A1050008E8EC5 /* FLNetworkConnectionProgressObserver.m in Sources */,
 				274934B2169A1050008E8EC5 /* FLNetworkHost.m in Sources */,
 				274934BB169A1050008E8EC5 /* FLNetworkHostResolver.m in Sources */,
@@ -8426,6 +8425,7 @@
 				270BC93716EBAA6000416D62 /* UIView+OSX.m in Sources */,
 				270BC94416EBAA6000416D62 /* UIViewController+OSX.m in Sources */,
 				2709A0F016EBB1A600C59905 /* AppKit+iOS.m in Sources */,
+				275D6F4916ED876A0059EF66 /* FLStorableUserLogin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8616,7 +8616,6 @@
 				27329912168F80C100D1B91E /* FLXmlComment.m in Sources */,
 				27329928168F829E00D1B91E /* NSObject+FLXmlSerialization.m in Sources */,
 				27329933168F8FB800D1B91E /* FLObjectXmlElement.m in Sources */,
-				274934A2169A1050008E8EC5 /* FLNetworkActivityConnectionObserver.m in Sources */,
 				274934AB169A1050008E8EC5 /* FLNetworkConnectionProgressObserver.m in Sources */,
 				274934B4169A1050008E8EC5 /* FLNetworkHost.m in Sources */,
 				274934BD169A1050008E8EC5 /* FLNetworkHostResolver.m in Sources */,
@@ -8760,6 +8759,7 @@
 				270BC93916EBAA6000416D62 /* UIView+OSX.m in Sources */,
 				270BC94616EBAA6000416D62 /* UIViewController+OSX.m in Sources */,
 				2709A0F216EBB1A600C59905 /* AppKit+iOS.m in Sources */,
+				275D6F4B16ED876A0059EF66 /* FLStorableUserLogin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

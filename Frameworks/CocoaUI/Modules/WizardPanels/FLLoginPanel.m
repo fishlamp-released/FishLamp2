@@ -15,23 +15,13 @@
 - (void) applicationWillTerminate:(id)sender;
 @end
 
-NSString* const FLDefaultsKeyWizardLastUserNameKey = @"com.fishlamp.wizard.username";
-NSString* const FLDefaultsKeyWizardSavePasswordKey = @"com.fishlamp.wizard.savepassword";
-
-@implementation FLLoginPanel {
-@private
-    IBOutlet NSTextField* _userNameTextField;
-    IBOutlet NSSecureTextField* _passwordEntryField;
-    IBOutlet NSButton* _savePasswordCheckBox;
-    IBOutlet NSButton* _forgotPasswordButton;
-    NSString* _passwordKeychainKey;
-}
+@implementation FLLoginPanel
 
 @synthesize userNameTextField = _userNameTextField;
 @synthesize passwordEntryField = _passwordEntryField;
 @synthesize savePasswordCheckBox = _savePasswordCheckBox;
 @synthesize forgotPasswordButton = _forgotPasswordButton;
-@synthesize passwordKeychainKey = _passwordKeychainKey;
+@synthesize userLogin = _userLogin;
 
 - (id) init {
     return [self initWithNibName:@"FLLoginPanel" bundle:nil];
@@ -62,6 +52,7 @@ NSString* const FLDefaultsKeyWizardSavePasswordKey = @"com.fishlamp.wizard.savep
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
 #if FL_MRC
+    [_userLogin release];
     [_userNameTextField release];
     [_passwordEntryField release];
     [_savePasswordCheckBox release];
@@ -71,7 +62,7 @@ NSString* const FLDefaultsKeyWizardSavePasswordKey = @"com.fishlamp.wizard.savep
 }
 
 - (void) setUserName:(NSString*) userName {
-    [self.userNameTextField setStringValue:userName];
+    [self.userNameTextField setStringValue:FLEmptyStringOrString(userName)];
 }
 
 - (NSString *)userName {
@@ -79,7 +70,7 @@ NSString* const FLDefaultsKeyWizardSavePasswordKey = @"com.fishlamp.wizard.savep
 }
 
 - (void) setPassword:(NSString*) password {
-    [self.passwordEntryField setStringValue:password];
+    [self.passwordEntryField setStringValue:FLEmptyStringOrString(password)];
 }
 
 - (NSString *)password {
@@ -147,51 +138,24 @@ NSString* const FLDefaultsKeyWizardSavePasswordKey = @"com.fishlamp.wizard.savep
 }
 
 - (void) logoutUser {
-
 }
 
 - (void) updateVisibleCredentials {
-    FLAssertStringIsNotEmpty_v(self.passwordKeychainKey, @"domain for password in keychain not set");
-    
-    NSString* userName = [[NSUserDefaults standardUserDefaults] objectForKey:FLDefaultsKeyWizardLastUserNameKey];
-    if(FLStringIsNotEmpty(userName)) {
-        self.userName = userName;
-     
-        NSNumber* rememberPW = [[NSUserDefaults standardUserDefaults] objectForKey:FLDefaultsKeyWizardSavePasswordKey];
-
-        if(rememberPW) {
-            [self setSavePasswordInKeychain:rememberPW.boolValue];
-         
-            if(rememberPW.boolValue) {
-                NSString* pw = [FLKeychain httpPasswordForUserName:userName withDomain:self.passwordKeychainKey];
-                if(FLStringIsNotEmpty(pw)) {
-                    self.password = pw;
-                }
-            }
-        }
-        else {
-            [self setSavePasswordInKeychain:NO];
-        }
+    if(!self.userLogin) {
+        [self.userLogin loadFromStorage];
     }
+    [self setSavePasswordInKeychain:self.userLogin.rememberPassword];
+    [self setUserName:self.userLogin.userName];
+    [self setPassword:self.userLogin.password];
 }
 
-- (void) saveCredentials {
-    FLAssertStringIsNotEmpty_v(self.passwordKeychainKey, @"domain for password in keychain not set");
-    
-    if(FLStringIsNotEmpty(self.userName)) {
-        [[NSUserDefaults standardUserDefaults] setObject:self.userName forKey:FLDefaultsKeyWizardLastUserNameKey];
-        if(self.savePasswordInKeychain && !FLStringIsEmpty(self.password)) {
-            [FLKeychain setHttpPassword:self.password forUserName:self.userName withDomain:self.passwordKeychainKey];
-        }
-        else {
-            [FLKeychain removeHttpPasswordForUserName:self.userName withDomain:self.passwordKeychainKey];
-        }
-    }
-    else {
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:FLDefaultsKeyWizardLastUserNameKey];
-    }
-    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:self.savePasswordInKeychain] forKey:FLDefaultsKeyWizardSavePasswordKey];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+- (void) saveCredentials {  
+
+    self.userLogin.userName = self.userName;
+    self.userLogin.password = self.password;
+    self.userLogin.rememberPassword = self.savePasswordInKeychain;
+
+    [self.userLogin saveToStorage];
 }
 
 - (IBAction) passwordCheckboxToggled:(id) sender {
@@ -237,7 +201,6 @@ NSString* const FLDefaultsKeyWizardSavePasswordKey = @"com.fishlamp.wizard.savep
 - (void) panelWillAppear {
     [super panelWillAppear];
     
-    FLAssertStringIsNotEmpty_v(self.passwordKeychainKey, @"domain for password in keychain not set");
     [self updateVisibleCredentials];
     [self updateNextButton];
     
@@ -258,4 +221,5 @@ NSString* const FLDefaultsKeyWizardSavePasswordKey = @"com.fishlamp.wizard.savep
 }
 
 @end
+
 #endif

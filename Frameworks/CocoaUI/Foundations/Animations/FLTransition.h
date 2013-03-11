@@ -23,4 +23,6 @@
 + (id) transitionWithViewToShow:(UIView*) viewToShow 
                      viewToHide:(UIView*) viewToHide;
 
+- (void) startTransition:(FLAnimationCompletionBlock) completion;
+
 @end

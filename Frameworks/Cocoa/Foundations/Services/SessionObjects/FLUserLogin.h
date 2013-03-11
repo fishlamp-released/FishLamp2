@@ -18,4 +18,6 @@
 
 + (id) userLogin:(NSString*) userName password:(NSString*) password;
 
+- (void) setPropertiesWithUserLogin:(FLUserLogin*) login;
+
 @end

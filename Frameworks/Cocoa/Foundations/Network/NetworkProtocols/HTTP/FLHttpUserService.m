@@ -7,7 +7,7 @@
 //
 
 #import "FLHttpUserService.h"
-
+#import "FLGlobalNetworkActivityIndicator.h"
 
 @implementation FLHttpUserService 
 
@@ -35,13 +35,13 @@ FLSynthesizeServiceProperty(httpRequestAuthenticator, setHttpRequestAuthenticato
 }
 #endif
 
-- (FLUserLogin*) userLogin {
-    return self.httpRequestAuthenticator.userLogin;
-}
-
-- (void) setUserLogin:(FLUserLogin*) userLogin {
-    [self.httpRequestAuthenticator setUserLogin:userLogin];
-}
+//- (FLUserLogin*) userLogin {
+//    return self.httpRequestAuthenticator.userLogin;
+//}
+//
+//- (void) setUserLogin:(FLUserLogin*) userLogin {
+//    [self.httpRequestAuthenticator setUserLogin:userLogin];
+//}
 
 - (BOOL) isContextAuthenticated {
     return self.httpRequestAuthenticator.isAuthenticated;
@@ -57,6 +57,16 @@ FLSynthesizeServiceProperty(httpRequestAuthenticator, setHttpRequestAuthenticato
 
 - (void) httpRequestWillBeginWorking:(FLHttpRequest*) request {
     request.authenticator = self.httpRequestAuthenticator;
+}
+
+- (void) didStartWorking {
+    [super didStartWorking];
+    [FLGlobalNetworkActivityIndicator instance].networkBusy = YES;
+}
+
+- (void) didStopWorking {
+    [super didStopWorking];
+    [FLGlobalNetworkActivityIndicator instance].networkBusy = NO;
 }
 
 @end

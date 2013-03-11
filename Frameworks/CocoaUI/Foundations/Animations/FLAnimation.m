@@ -15,46 +15,17 @@
 }
 @end
 
-//@implementation FLAnimator  {
-//@private
-//    FLAnimationBlock _prepare;
-//    FLAnimationBlock _commit;
-//    FLAnimationBlock _finish;
-//}
-//
-//+ (id) animation {
-//    return FLAutorelease([[[self class] alloc] init]);
-//}
-//
-//@synthesize prepare = _prepare;
-//@synthesize commit = _commit;
-//@synthesize finish = _finish;
-//
-//#if FL_MRC
-//- (void) dealloc {
-//    [_prepare release];
-//    [_commit release];
-//    [_finish release];
-//    [super dealloc];
-//}
-//#endif
-//
-//
-//@end
-
 @interface FLAnimation ()
-//@property (readwrite, strong, nonatomic) id target;
 @end
 
-@implementation FLAnimation  {
-@private
-    CGFloat _duration;
-    NSString* _timingFunction;
-    NSMutableArray* _animations;
-}
+@implementation FLAnimation
 
 @synthesize duration = _duration;
-@synthesize timingFunction = _timingFunction;
+@synthesize repeat = _repeat;
+@synthesize direction = _direction;
+@synthesize axis = _axis;
+@synthesize timing = _timing;
+@synthesize animating = _animating;
 
 - (id) init {
     self = [super init];
@@ -64,21 +35,12 @@
     return self;
 }
 
-//- (id) init {
-//    return [self initWithTarget:nil];
-//}
-
 + (id) animation {
     return FLAutorelease([[[self class] alloc] init]);
 }
 
-//+ (id) animationWithTarget:(id) target {
-//    return FLAutorelease([[[self class] alloc] initWithTarget:target]);
-//}
-
 #if FL_MRC
 - (void) dealloc {
-    [_timingFunction release];
     [_animations release];
     [super dealloc];
 }
@@ -94,56 +56,40 @@
 }
 
 
-- (void) openAnimation:(CALayer*) layer
-         didStartBlock:(void (^)()) didStartBlock {
-    
-    FLAssertNotNil_v(layer, @"layer is nil");
-    
-    FLAssert_v([NSThread isMainThread], @"not on main thread");
-    
+- (void) prepareAnimationsForLayer:(CALayer*) layer {
+    [CATransaction begin];
+    [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
+
     [self prepareLayer:layer];
     for(FLAnimation* animation in _animations) {
         [animation prepareLayer:layer];
     }
     
-    [CATransaction begin];
-    [CATransaction setAnimationDuration:self.duration];
-    
-    if(self.timingFunction) {
-        [CATransaction setAnimationTimingFunction:[CAMediaTimingFunction functionWithName:self.timingFunction]];
-    }
-    
-    if(didStartBlock) {
-        didStartBlock();
-    }
+    [CATransaction setValue:(id)kCFBooleanFalse forKey:kCATransactionDisableActions];
+    [CATransaction commit];
 }
 
-- (void) closeAnimation:(CALayer*) layer
-             completion:(void (^)()) completion {
 
-    FLSafeguardBlock(completion);
+- (void) finishAnimationsForLayer:(CALayer*) layer {
+    [CATransaction begin];
+    [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
 
-    [CATransaction setCompletionBlock:^{
-
-        [CATransaction begin];
-        [CATransaction setValue:[NSNumber numberWithBool:YES] forKey:kCATransactionDisableActions];
-
-        // finish in reverse order, so enclosing animations runs after enclosed animations for finishing.
-        if(_animations) {
-            for(FLAnimation* animation in _animations.reverseObjectEnumerator) {
-                [animation finishAnimation:layer];
-            }
+    // finish in reverse order, so enclosing animations runs after enclosed animations for finishing.
+    if(_animations) {
+        for(FLAnimation* animation in _animations.reverseObjectEnumerator) {
+            [animation finishAnimation:layer];
         }
-        
-        [self finishAnimation:layer];
-        
-        [CATransaction commit];
-        
-        if(completion) {
-            completion();
-        }
-    }];
+    }
+    
+    [self finishAnimation:layer];
+    
+    [CATransaction setValue:(id)kCFBooleanFalse forKey:kCATransactionDisableActions];
+    [CATransaction commit];
+    
+    _animating = NO;
+}
 
+- (void) commitAnimationsForLayer:(CALayer*) layer {
     [self commitAnimation:layer];
     
     if(_animations) {
@@ -151,28 +97,49 @@
             [animation commitAnimation:layer];
         }
     }
+}
+
+- (void) startAnimatingLayer:(CALayer*) layer 
+                  completion:(FLAnimationCompletionBlock) completion {
+
+    FLAssert_v([NSThread isMainThread], @"not on main thread");
+    
+    [self prepareAnimationsForLayer:layer];
+
+    [CATransaction setCompletionBlock:^{
+        [self finishAnimationsForLayer:layer];
+        
+        if(_repeat) {
+            [self startAnimatingLayer:layer completion:completion];
+        }
+        else if(completion) {
+            completion();
+        }
+
+    }];
+    
+    [CATransaction begin];
+    [CATransaction setValue:(id)kCFBooleanFalse forKey:kCATransactionDisableActions];
+    [CATransaction setAnimationDuration:self.duration];
+    [CATransaction setAnimationTimingFunction:self.timingFunction];
+    
+    [self commitAnimationsForLayer:layer];
    
     [CATransaction commit];
 }
 
-- (void) startAnimating:(id) target
-          didStartBlock:(void (^)()) didStartBlock
-             completion:(void (^)()) completion {
+- (void) startAnimating:(id) target 
+             completion:(FLAnimationCompletionBlock) completion {
+    _animating = YES;
 
     CALayer* layer = [target layer];
-             
-    [self openAnimation:layer didStartBlock:didStartBlock]; 
+    
+    FLAssertNotNil_v(layer, @"layer is nil");
+    
+    FLAssert_v([NSThread isMainThread], @"not on main thread");
+    completion = FLCopyWithAutorelease(completion);
 
-    [self closeAnimation:layer completion:completion];
-}             
-                
-- (void) startAnimating:(id) target 
-             completion:(void (^)()) completion {
-    [self startAnimating:target didStartBlock:nil completion:completion];
-}
-
-- (void) startAnimating:(id) target {
-    [self startAnimating:target didStartBlock:nil completion:nil];
+    [self startAnimatingLayer:layer completion:completion];
 }
 
 - (void) addAnimation:(FLAnimation*) animation {
@@ -183,6 +150,43 @@
     [_animations addObject:animation];
 }
 
+- (void) stopAnimating {
+    _repeat = NO;
+}
+
+- (CAMediaTimingFunction*) timingFunction {
+    return FLAnimationGetTimingFunction(self.timing);
+}
+
+- (void) prepareAnimation:(CAAnimation*) animation {
+    [animation setDuration:self.duration];
+    [animation setTimingFunction:self.timingFunction];
+}
 
 @end
+
+CAMediaTimingFunction* FLAnimationGetTimingFunction(FLAnimationTiming functionEnum) {
+    switch(functionEnum) {
+        case FLAnimationTimingDefault:
+            return [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+        break;
+        case FLAnimationTimingLinear:
+            return [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
+        break;
+        case FLAnimationTimingEaseIn:
+            return [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
+        break;
+        case FLAnimationTimingEaseOut:
+            return [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
+        break;
+        case FLAnimationTimingEaseInEaseOut:
+            return [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+        break;
+        case FLAnimationTimingCustom:   
+            return nil;
+        break;
+    }
+    
+    return nil;
+}
 

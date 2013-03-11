@@ -79,6 +79,8 @@
     self.navigationViewController.delegate = self;
     self.buttonViewController.delegate = self;
     self.panelManager.delegate = self;
+    
+    [_progressView setRespondsToGlobalNetworkActivity:YES];
 }
 
 - (BOOL)acceptsFirstResponder {
@@ -181,12 +183,11 @@
     [self setNextResponder:self.navigationViewController];
     [self.navigationViewController setNextResponder:self.view.window];
     
-    id responder = self.view.window.firstResponder;
-    while(responder) {
-        FLLog(@"first responder: %@", [responder description]);
-        responder = [responder nextResponder];
-    }
-    
+//    id responder = self.view.window.firstResponder;
+//    while(responder) {
+//        FLLog(@"first responder: %@", [responder description]);
+//        responder = [responder nextResponder];
+//    }
     
 }                              
 
@@ -253,69 +254,4 @@ FLSynthesizeAssociatedProperty(assign_nonatomic, previousFirstResponderForModal,
 }
 
 @end
-
-
-//        CABasicAnimation *controlPosAnim = [CABasicAnimation animationWithKeyPath:@"frame"];
-//        [controlPosAnim setFromValue:[NSValue valueWithPoint:toShow.view.frame.origin]];
-//        [controlPosAnim setToValue:[NSValue valueWithPoint:CGPointZero]];
-//        controlPosAnim.removedOnCompletion = YES;
-//        [toShow.view setAnimations:[NSDictionary dictionaryWithObjectsAndKeys:controlPosAnim, @"frame", nil]];
-
-
-
-//        CABasicAnimation *scale = [CABasicAnimation animationWithKeyPath:@"transform"];
-//        scale.fromValue =   [NSValue valueWithCATransform3D:CATransform3DMakeScale(1.0, 1.0, 1)];
-//        scale.toValue =     [NSValue valueWithCATransform3D:FLShrunkTransform(toHide.view)];
-//        scale.removedOnCompletion = YES;
-//        toHide.view.layer.transform = FLShrunkTransform(toHide.view);
-
-//        CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"alphaValue"];
-//        animation.fromValue = [NSNumber numberWithFloat:1.0f];
-//        animation.toValue = [NSNumber numberWithFloat:0.0f];
-//        animation.removedOnCompletion = YES;
-//        animation.fillMode = kCAFillModeBoth;
-//        animation.additive = NO;
-//        [toHide.view setAnimations:[NSDictionary dictionaryWithObjectsAndKeys:animation, @"alphaValue", nil]];
-
-        
-//        [CATransaction begin];
-//        [CATransaction setAnimationDuration:kDuration];
-//        [CATransaction setCompletionBlock:finished];
-//        [[toShow.view animator] setFrame:_panelManager.bounds];
-//        [[toHide.view animator] setAlphaValue:0.0f];
-//        [toHide.view.layer addAnimation:scale forKey:@"transform"];
-////        toHide.view.layer.transform = CATransform3DMakeScale(0.5, 0.5, 1.0);
-//        [CATransaction commit];
-
-        
-//        toShow.view.alphaValue = 0.0f;
-//       //    
-//        
-//        CABasicAnimation *controlPosAnim = [CABasicAnimation animationWithKeyPath:@"frame"];
-//        [controlPosAnim setFromValue:[NSValue valueWithPoint:CGPointZero]];
-//        [controlPosAnim setToValue:[NSValue valueWithPoint:FLRectGetTopRight(toHide.view.frame)]];
-//        controlPosAnim.removedOnCompletion = YES;
-//        [toHide.view setAnimations:[NSDictionary dictionaryWithObjectsAndKeys:controlPosAnim, @"frame", nil]];
-//
-//        CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"alphaValue"];
-//        animation.fromValue = [NSNumber numberWithFloat:0.0f];
-//        animation.toValue = [NSNumber numberWithFloat:1.0f];
-//        animation.removedOnCompletion = YES;
-//        animation.fillMode = kCAFillModeBoth;
-//        animation.additive = NO;
-//        [toShow.view setAnimations:[NSDictionary dictionaryWithObjectsAndKeys:animation, @"alphaValue", nil]];
-//
-//
-//        CABasicAnimation *scale = [CABasicAnimation animationWithKeyPath:@"transform"];
-//        scale.fromValue =   [NSValue valueWithCATransform3D:FLShrunkTransform(toHide.view)];
-//        scale.toValue =     [NSValue valueWithCATransform3D:FLUnshrunkTransform(toShow.view)];
-//        scale.removedOnCompletion = YES;
-// 
-//        [CATransaction begin];
-//        [CATransaction setAnimationDuration:kDuration];
-//        [CATransaction setCompletionBlock:finished];
-//        [toShow.view.layer addAnimation:scale forKey:@"transform"];
-//        [[toHide.view animator] setFrame:FLRectSetOriginWithPoint(_panelManager.bounds, FLRectGetTopRight(toHide.view.frame))];
-//        [[toShow.view animator] setAlphaValue:1.0f];
-//        [CATransaction commit];
 #endif

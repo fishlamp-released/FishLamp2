@@ -12,21 +12,19 @@
 #import "FLWizardButtonViewController.h"
 #import "FLWizardNavigationViewController.h"
 #import "FLPanelManager.h"
+#import "FLSpinningProgressView.h"
 
 @class FLPanelViewController;
-//@protocol FLWizardViewControllerDelegate;
-
 
 @interface FLWizardViewController : UIViewController<FLBreadcrumbBarViewControllerDelegate, FLPanelManagerDelegate, FLWizardButtonViewControllerDelegate> {
 @private
-//    __unsafe_unretained id<FLWizardViewControllerDelegate> _delegate;
-
     IBOutlet FLWizardHeaderViewController* _headerViewController;
     IBOutlet FLWizardButtonViewController* _buttonViewController;
     IBOutlet FLWizardNavigationViewController* _navigationViewController;
     IBOutlet FLPanelManager* _panelManager;
+    
+    IBOutlet FLSpinningProgressView* _progressView;
 }
-
 
 // views
 @property (readonly, strong, nonatomic) FLWizardHeaderViewController* headerViewController;
@@ -52,35 +50,6 @@
          didHidePanel:(FLPanelViewController*) toHide;
 
 @end
-
-
-// delegate
-//@property (readwrite, assign, nonatomic) IBOutlet id<FLWizardViewControllerDelegate> delegate;
-
-//@protocol FLWizardViewControllerDelegate <NSObject>
-//@optional
-////- (void) wizardViewControllerCanStart:(FLWizardViewController*) wizard;
-//
-////- (void) wizardViewControllerWillStartWizard:(FLWizardViewController*) wizard;
-//
-////- (void) wizardViewControllerDidStartWizard:(FLWizardViewController*) wizard;
-//
-////- (void) wizardViewController:(FLWizardViewController*) wizard 
-////     didFinishWithPanel:(FLPanelViewController*) panel;
-//
-////- (void) wizardViewController:(FLWizardViewController*) wizard 
-////        panelWillAppear:(FLPanelViewController*) panel;
-//
-////- (void) wizardViewController:(FLWizardViewController*) wizard 
-////         panelDidAppear:(FLPanelViewController*) panel;
-//
-////- (void) wizardViewController:(FLWizardViewController*) wizard 
-////     panelWillDisappear:(FLPanelViewController*) panel;
-//
-////- (void) wizardViewController:(FLWizardViewController*) wizard 
-////      panelDidDisappear:(FLPanelViewController*) panel;
-//
-//@end
 
 @interface NSWindowController (FLModalAdditions)
 @property (readonly, assign, nonatomic) NSWindow* modalInWindow;

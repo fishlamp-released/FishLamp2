@@ -72,17 +72,33 @@ NSString* const FLWorkerContextFinished = @"FLWorkerContextFinished";
     }
 }
 
+- (void) didAddWorker:(id) object {
+}
+
+- (void) didRemoveWorker:(id) object {
+}
+
+- (void) didStartWorking {
+    [[NSNotificationCenter defaultCenter] postNotificationName:FLWorkerContextStarting object:self];
+}
+
+- (void) didStopWorking {
+    [[NSNotificationCenter defaultCenter] postNotificationName:FLWorkerContextFinished object:self];
+}
+
 - (void) addObject:(id) worker  {
     
     @synchronized(self) {
         if(_objects.count == 0) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                [[NSNotificationCenter defaultCenter] postNotificationName:FLWorkerContextStarting object:self];
+                [self didStartWorking];
             });
         }
     
         [_objects addObject:worker];
     }
+
+    [self didAddWorker:worker];
 }
 
 - (void) removeObject:(id) worker {
@@ -91,10 +107,11 @@ NSString* const FLWorkerContextFinished = @"FLWorkerContextFinished";
 
         if(_objects.count == 0) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                [[NSNotificationCenter defaultCenter] postNotificationName:FLWorkerContextFinished object:self];
+                [self didStopWorking];
             });
         }
     }
+    [self didRemoveWorker:worker];
 }
 
 - (FLResult) runWorker:(id<FLAsyncWorker>) worker 
@@ -126,7 +143,7 @@ NSString* const FLWorkerContextFinished = @"FLWorkerContextFinished";
 
     FLAssertNotNil_(worker);
 
-    FLSafeguardBlock(completion);
+    completion = FLCopyWithAutorelease(completion);
 
     FLFinisher* finisher = [FLFinisher finisher:^(FLResult result) {
     

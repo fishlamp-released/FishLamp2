@@ -9,16 +9,17 @@
 #import "FLCocoaRequired.h"
 #import "FishLampCore.h"
 
-@protocol FLGlobalNetworkActivityIndicator <NSObject>
-- (void) showNetworkActivityIndicator:(id) startedBy;
-- (void) hideNetworkActivityIndicator:(id) stoppedBy;
-@property (readonly, assign, nonatomic) BOOL isVisible;
-@end
+extern NSString* const FLGlobalNetworkActivityShow;
+extern NSString* const FLGlobalNetworkActivityHide;
 
 @interface FLGlobalNetworkActivityIndicator : NSObject {
+@private
+    NSInteger _busyCount;
+    BOOL _showing;
 }
+FLSingletonProperty(FLGlobalNetworkActivityIndicator);
 
-+ (void) setInstance:(id<FLGlobalNetworkActivityIndicator>) indicator;
-+ (id<FLGlobalNetworkActivityIndicator>) instance;
+@property (readwrite, assign, getter=isNetworkBusy) BOOL networkBusy;
 
 @end
+

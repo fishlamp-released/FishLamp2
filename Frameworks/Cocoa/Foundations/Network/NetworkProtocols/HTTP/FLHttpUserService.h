@@ -23,7 +23,7 @@
 
 + (id) httpUserService;
 
-@property (readwrite, strong) FLUserLogin* userLogin;
+//@property (readwrite, strong) FLUserLogin* userLogin;
 @property (readonly, assign) BOOL isContextAuthenticated;
 
 @property (readwrite, strong) FLHttpRequestAuthenticationService* httpRequestAuthenticator;

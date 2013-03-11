@@ -22,7 +22,7 @@
     [FLNetworkModuleCore initializeModule];
 
 // wire core networkOperation up to mobile networkActivityIndicator	   
-	[FLGlobalNetworkActivityIndicator setInstance: [FLNetworkActivityIndicator instance]];
+//	[FLGlobalNetworkActivityIndicator setInstance: [FLNetworkActivityIndicator instance]];
 
     NSString* defaultUserAgent = [NSString stringWithFormat:@"%@/%@ (%@; %@; %@; %@;)", 
                 [NSFileManager appName], 

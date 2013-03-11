@@ -12,9 +12,9 @@ BOOL FLIsIntegralValue(CGFloat coord) {
     return round(coord) == coord;
 }
 
-#define FLRadiansToDegrees(__radians__) ((__radians__) * (180.0 / M_PI))
+#define FLRadiansToDegrees(__radians__) ((__radians__) * (180.0f / M_PI))
 
-#define FLDegreesToRadians(__degrees__) ((__degrees__) * (M_PI / 180.0))
+#define FLDegreesToRadians(__degrees__) ((__degrees__) * (M_PI / 180.0f))
 
 #define FLFloatEqualToFloat(a,b) (fabs((a) - (b)) < FLT_EPSILON)
 #define FLFloatEqualToZero(a) (fabs(a) < FLT_EPSILON)

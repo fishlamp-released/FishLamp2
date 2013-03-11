@@ -164,7 +164,6 @@
 #import "NSObject+FLParseable.h"
 
 // Foundations/Network/NetworkConnection
-#import "FLNetworkActivityConnectionObserver.h"
 #import "FLNetworkConnectionProgressObserver.h"
 
 // Foundations/Network/NetworkProtocols/Dns
