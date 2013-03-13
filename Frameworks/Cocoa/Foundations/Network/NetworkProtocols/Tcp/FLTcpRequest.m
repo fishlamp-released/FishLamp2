@@ -7,14 +7,16 @@
 //
 
 #import "FLTcpRequest.h"
+#import "FLReadStream.h"
+#import "FLWriteStream.h"
 
 @implementation FLTcpRequest
 
-- (BOOL) readData:(id<FLReadStream>) reader {
+- (BOOL) readData:(FLReadStream*) reader {
     return NO;
 }
 
-- (BOOL) writeData:(id<FLReadStream>) writer {
+- (BOOL) writeData:(FLReadStream*) writer {
     return NO;
 }
 

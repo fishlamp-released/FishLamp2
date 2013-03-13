@@ -7,21 +7,28 @@
 //
 
 #import "FLCocoaRequired.h"
-
+#import "FLResult.h"
 #import "FLNetworkHost.h"
-#import "FLNetworkStream.h"
+#import "FLTimedObject.h"
+#import "FLTimer.h"
+#import "FLFinisher.h"
 
-@interface FLNetworkHostResolver : FLNetworkStream {
+@interface FLNetworkHostResolver : FLTimedObject {
 @private
     FLNetworkHost* _networkHost;
+    BOOL _open;
+    
     FLFinisher* _finisher;
-    BOOL _isOpen;
 }
+
+@property (readonly, assign, nonatomic, getter=isOpen) BOOL open;
 
 + (id) networkHostResolver;
 
 - (FLResult) resolveHostSynchronously:(FLNetworkHost*) host;
 - (FLFinisher*) startResolvingHost:(FLNetworkHost*) host;
+
+- (void) closeWithResult:(FLResult) result;
 
 
 @end

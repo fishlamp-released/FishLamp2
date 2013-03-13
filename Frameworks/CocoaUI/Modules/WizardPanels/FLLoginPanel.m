@@ -121,7 +121,7 @@
 #endif
 
 
-- (void) resetLogin {
+- (IBAction) resetLogin:(id) sender {
 }
 
 - (BOOL) isAuthenticated {

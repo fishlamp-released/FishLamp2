@@ -10,34 +10,22 @@
 
 @protocol FLWriteStreamDelegate;
 
-@interface FLWriteStream : FLNetworkStream<FLWriteStream> {
+@interface FLWriteStream : FLNetworkStream {
 @private
  	CFWriteStreamRef _streamRef;
-    BOOL _isOpen;
-    __unsafe_unretained id<FLWriteStreamDelegate> _delegate;
 }
-@property (readonly, assign) CFWriteStreamRef streamRef;
-@property (readwrite, assign) id<FLWriteStreamDelegate> delegate;
+
+@property (readonly, assign) BOOL canAcceptBytes;
+@property (readonly, assign, nonatomic) CFWriteStreamRef streamRef;
+@property (readonly, assign) unsigned long bytesWritten;
+@property (readonly, assign, getter=isOpen) BOOL open;
 
 - (id) initWithWriteStream:(CFWriteStreamRef) streamRef;
-         
 + (id) writeStream:(CFWriteStreamRef) streamRef;
 
-- (BOOL) canAcceptBytes;
 
-@end
+- (void) writeData:(NSData*) data;
+- (void) writeBytes:(const uint8_t*) bytes length:(unsigned long) length;
 
-@protocol FLWriteStreamDelegate <NSObject>
-- (void) writeStreamDidOpen:(FLWriteStream*) networkStream;
-
-- (void) writeStream:(FLWriteStream*) networkStream 
-    didCloseWithResult:(FLResult) result;
-
-- (void) writeStream:(FLWriteStream*) writeStream
-      didEncounterError:(NSError*) error;
-
-- (void) writeStreamCanAcceptBytes:(id<FLWriteStream>) networkStream;
-
-- (void) writeStream:(id<FLWriteStream>) stream didWriteBytes:(unsigned long) amountWritten;
 
 @end

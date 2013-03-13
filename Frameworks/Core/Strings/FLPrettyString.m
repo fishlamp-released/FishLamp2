@@ -205,7 +205,13 @@
 }
 
 - (void) appendAttributedStringToStorage:(NSAttributedString*) string {
+
+    if([self.delegate respondsToSelector:@selector(prettyString:willAppendAttributedString:)]) {
+        string = [((id)self.delegate) prettyString:self willAppendAttributedString:string];
+    }
+
     [[self storage] appendAttributedString:string];
+    
     FLPerformSelector2(self.delegate, @selector(prettyString:didAppendAttributedString:), self, string); 
 }
            

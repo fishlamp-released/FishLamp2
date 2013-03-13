@@ -20,6 +20,15 @@
               withObject:(id) object1
               withObject:(id) object2 
               withObject:(id) object3;
+
+// optional override (bottleneck)
+- (void) postObservation:(SEL) selector 
+              withObject:(id) object1 
+              withObject:(id) object2
+              withObject:(id) object3
+              argCount:(NSInteger) argCount;
+
+
 @end
 
 

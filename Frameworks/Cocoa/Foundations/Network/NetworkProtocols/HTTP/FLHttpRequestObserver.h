@@ -25,7 +25,7 @@
     didCloseWithResult:(FLResult) result;
 
 - (void) httpRequest:(FLHttpRequest*) httpRequest
-      didEncounterError:(NSError*) error;
+      encounteredError:(NSError*) error;
 
 // TODO: these need a little love
 

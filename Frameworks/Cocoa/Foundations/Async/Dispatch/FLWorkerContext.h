@@ -17,21 +17,29 @@ typedef void (^FLDispatchableObjectVisitor)(id object, BOOL* stop);
 
 extern NSString* const FLWorkerContextStarting;
 extern NSString* const FLWorkerContextFinished;
+extern NSString* const FLWorkerContextClosed;
+extern NSString* const FLWorkerContextOpened;
 
 @protocol FLWorkerContext <NSObject>
 
-- (void) requestCancel;
+@property (readonly, assign, getter=isContextOpen) BOOL contextOpen; 
+- (void) openContext;
+- (void) closeContext;
 
 - (FLResult) runWorker:(id<FLAsyncWorker>) worker 
           withObserver:(id) observer;
                  
-- (FLFinisher*) startWorker:(id<FLAsyncWorker>) worker
-                  inDispatcher:(id<FLDispatcher>) dispatcher
-                  withObserver:(id) observer 
-                    completion:(FLBlockWithResult) completion;
+//- (FLFinisher*) startWorker:(id<FLAsyncWorker>) worker
+//                  inDispatcher:(id<FLDispatcher>) dispatcher
+//                  withObserver:(id) observer 
+//                    completion:(FLBlockWithResult) completion;
 
-- (FLFinisher*) startWorker:(id<FLAsyncWorker>) worker withObserver:(id) observer;
+//- (FLFinisher*) startWorker:(id<FLAsyncWorker>) worker withObserver:(id) observer;
+- (void) startWorker:(id<FLAsyncWorker>) worker withFinisher:(FLFinisher*) finisher;
+- (void) startWorker:(id<FLAsyncWorker>) worker withObserver:(id) observer completion:(FLBlockWithResult) completion;
 
+//- (void) startWorker:(id<FLAsyncWorker>) worker withObserver:(id) observer withFinisher:(FLFinisher*) finisher;
+//- (void) startWorker:(id<FLAsyncWorker>) worker withObserver:(id) observer completion:(FLBlockWithResult) completion;
 
 @end
 
@@ -39,6 +47,7 @@ extern NSString* const FLWorkerContextFinished;
 @private
     NSMutableSet* _objects;
     FLDispatcher* _dispatcher;
+    BOOL _contextOpen;
 }
 
 // shared FIFO queue by default.

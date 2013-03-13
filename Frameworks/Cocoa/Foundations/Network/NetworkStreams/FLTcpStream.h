@@ -7,13 +7,13 @@
 //
 
 #import "FLCocoaRequired.h"
-#import "FLNetworkStream.h"
 #import "FLFinisher.h"
 #import "FLReadStream.h"
 #import "FLWriteStream.h"
 #import "FLTcpRequest.h"
 #import "FLGcdDispatcher.h"
 
+#if REFACTOR
 @interface FLTcpStream : NSObject<FLReadStreamDelegate, FLWriteStreamDelegate> {
 @private
     NSString* _remoteHost;
@@ -54,3 +54,4 @@ extern NSString* const FLTcpStreamReadErrorKey;
 @property (readonly, strong, nonatomic) NSError* readError;
 + (NSError*) tcpStreamError:(NSError*) readError writeError:(NSError*) writeError;
 @end
+#endif

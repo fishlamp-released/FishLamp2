@@ -9,11 +9,35 @@
 #import <Foundation/Foundation.h>
 
 @class FLFinisher;
+@protocol FLDispatcher;
+@protocol FLWorkerContext;
 
 @protocol FLAsyncWorker <NSObject>
-- (void) startWorkingInContext:(id) context 
-                  withObserver:(id) observer 
-                      finisher:(FLFinisher*) finisher;
+
+- (void) startWorking:(FLFinisher*) finisher;
+
 - (void) requestCancel;
+
+- (id<FLDispatcher>) dispatcher;
+
+@property (readonly, assign) id<FLWorkerContext> workerContext;
+
+- (void) didMoveToContext:(id<FLWorkerContext>) context;
+
 @end
 
+
+@interface FLAsyncWorker : NSObject<FLAsyncWorker> {
+@private
+    __unsafe_unretained id<FLWorkerContext> _workerContext;
+}
+
+@end
+
+@interface FLAsyncWorkerQueue : NSObject<FLAsyncWorker> 
+
++ (id) asyncWorkerQueue;
+
+- (void) addWorker:(id<FLAsyncWorker>) worker;
+
+@end

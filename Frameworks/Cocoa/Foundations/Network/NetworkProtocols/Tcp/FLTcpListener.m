@@ -5,7 +5,7 @@
 //  Created by Mike Fullerton on 5/19/12.
 //  Copyright (c) 2012 GreenTongue Software. All rights reserved.
 //
-
+#if REFACTOR
 
 #import "FLTcpListener.h"
 #import <sys/socket.h>
@@ -278,3 +278,4 @@ void FLTcpServerAcceptCallBack(
 
 
 @end
+#endif

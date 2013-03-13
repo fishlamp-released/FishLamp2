@@ -15,7 +15,7 @@
 #import "FLImageStoreService.h"
 #import "FLWorkerContext.h"
 
-@interface FLHttpUserService :  FLWorkerContext {
+@interface FLHttpUserService :  FLWorkerContext<FLHttpRequestContext> {
 @private
     FLHttpRequestAuthenticationService* _httpRequestAuthenticator;
     FLFifoGcdDispatcher* _asyncDispatcher;

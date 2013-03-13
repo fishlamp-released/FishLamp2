@@ -9,24 +9,19 @@
 #import "FLWriteStream.h"
 
 @interface FLWriteStream ()
-- (void) handleStreamEvent:(CFStreamEventType) eventType;
-@property (readwrite, assign) BOOL isOpen;
-
+@property (readwrite, assign) CFWriteStreamRef streamRef;
 @end
 
-static void WriteStreamClientCallBack(CFWriteStreamRef readStream, 
+static void WriteStreamClientCallBack(CFWriteStreamRef writeStream, 
                                       CFStreamEventType eventType, 
-                                      void *clientCallBackInfo){
-    FLWriteStream* connection = bridge_(FLWriteStream*, clientCallBackInfo);
-    FLConfirmIsNotNil_(connection);
-    [connection handleStreamEvent:eventType];
+                                      void *clientCallBackInfo) {
+    
+    [FLNetworkStream handleStreamEvent:eventType withStream:FLBridge(FLWriteStream*, clientCallBackInfo)];
 }
 
 @implementation FLWriteStream
 
 @synthesize streamRef = _streamRef;
-@synthesize isOpen = _isOpen;
-@synthesize delegate = _delegate;
 
 - (id) initWithWriteStream:(CFWriteStreamRef) streamRef {
     
@@ -71,80 +66,39 @@ static void WriteStreamClientCallBack(CFWriteStreamRef readStream,
 #endif    
 }
 
-- (void) didEncounterError:(NSError*) error {
-    [self.delegate writeStream:self didEncounterError:error];
-}
-
-- (void) handleStreamEvent:(CFStreamEventType) eventType {
-
-//    FLAssert_v([NSThread currentThread] == self.thread, @"tcp operation on wrong thread");
-
-//#if TRACE
-//    FLDebugLog(@"Write Stream got event %d", eventType);
-//#endif
-
-    switch (eventType)  {
-        case kCFStreamEventOpenCompleted: {
-            [self.timeoutTimer touchTimestamp];
-            self.isOpen = YES;
-            [self.delegate writeStreamDidOpen:self];
+- (void) setStreamRef:(CFWriteStreamRef) streamRef {
+    if(streamRef != _streamRef) {
+        if(_streamRef) {
+            CFRelease(_streamRef);
         }
-        break;
-
-        case kCFStreamEventErrorOccurred: {
-            [self.timeoutTimer touchTimestamp];
-            NSError* error = FLAutorelease(bridge_transfer_(NSError*,CFWriteStreamCopyError(self.streamRef)));
-            [self didEncounterError:error];
-        }
-        break;
         
-        case kCFStreamEventEndEncountered:{
-            [self.timeoutTimer touchTimestamp];
-            [self.delegate writeStream:self didCloseWithResult:FLSuccessfullResult];
-        }
-        break;
+        _streamRef = streamRef;
         
-        case kCFStreamEventNone:
-            // wtf? why would we get this?
-            break;
-        
-        case kCFStreamEventHasBytesAvailable: {
-            FLAssertFailed_v(@"this is a write stream");
-        }
-        break;
-            
-        case kCFStreamEventCanAcceptBytes: {
-            [self.timeoutTimer touchTimestamp];
-            [self.delegate writeStreamCanAcceptBytes:self];
-            break;
+        if(_streamRef) {
+            CFRetain(_streamRef);
         }
     }
 }
 
-- (void) openSelfWithInput:(id) input {
+- (NSError*) streamError {
+    return FLAutorelease(bridge_transfer_(NSError*,CFWriteStreamCopyError(self.streamRef)));
+}
+
+- (void) openStream {
     FLAssertIsNotNil_(_streamRef);
-    self.isOpen = NO;
+    [self willOpen];
     CFWriteStreamScheduleWithRunLoop(_streamRef, CFRunLoopGetMain(), bridge_(void*,NSDefaultRunLoopMode));
     CFWriteStreamOpen(_streamRef);
 }
 
-- (void) closeSelfWithResult:(id) result {
+- (void) closeStream {
+    [self willClose];
+
     FLAssertIsNotNil_(_streamRef);
     CFWriteStreamUnscheduleFromRunLoop(_streamRef, CFRunLoopGetMain(), bridge_(void*,NSDefaultRunLoopMode));
     CFWriteStreamClose(_streamRef);
-    self.isOpen = NO;
+    [self didClose];
 }
-
-
-
-//- (id) result {
-//    NSError* error = FLAutorelease(bridge_transfer_(NSError*,CFWriteStreamCopyError(self.streamRef)));
-//    if(error) {
-//        return error;
-//    }
-//    
-//    return [FLSuccessfullResult successfulResult];
-//}
 
 - (BOOL) canAcceptBytes {
     return CFWriteStreamCanAcceptBytes(_streamRef);
@@ -164,8 +118,7 @@ static void WriteStreamClientCallBack(CFWriteStreamRef readStream,
         buffer += amt;
     }
     
-    [self touchTimestamp];
-    [self.delegate writeStream:self didWriteBytes:length];
+    FLPerformSelector2(self.delegate, @selector(networkStream:didWriteBytes:), self, [NSNumber numberWithUnsignedLong:length]);
 }
 
 - (void) writeData:(NSData*) data {

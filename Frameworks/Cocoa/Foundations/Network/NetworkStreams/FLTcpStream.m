@@ -6,6 +6,7 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
+#if REFACTOR
 #import "FLTcpStream.h"
 
 @interface FLTcpStream ()
@@ -51,52 +52,53 @@
 
 - (FLFinisher*) openConnection {
 
-    return [self.dispatchQueue dispatchBlock:^{
-        
-        FLAssertIsNil_(self.readStream);
-        FLAssertIsNil_(self.writeStream);
+//    return [self.dispatchQueue dispatchBlock:^{
+//        
+//        FLAssertIsNil_(self.readStream);
+//        FLAssertIsNil_(self.writeStream);
+//
+//        CFReadStreamRef readStream = nil;
+//        CFWriteStreamRef writeStream = nil;
+//        CFHostRef host = nil;
+//        
+//        @try {
+//            FLAssert_v(self.remotePort != 0, @"remote port can't be zero");
+//            FLAssertStringIsNotEmpty_(self.remoteHost);
+//           
+//            host = CFHostCreateWithName(NULL, bridge_(void*,self.remoteHost));
+//            if(!host) {
+//                FLThrowIfError([NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorCannotFindHost localizedDescription:@"Unable to find to host"]);
+//            }
+//            
+//            CFStreamCreatePairWithSocketToCFHost(NULL, host, self.remotePort, &readStream, &writeStream);
+//            if(!readStream || !writeStream) {
+//                FLThrowIfError([NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorNetworkConnectionLost localizedDescription:@"Unable to connect to host"]);
+//            }
+//                    
+//            self.readStream = [FLReadStream readStream:readStream];
+//            [self.readStream setDelegate:self];
+//            
+//            self.writeStream = [FLWriteStream writeStream:writeStream];
+//            [self.writeStream setDelegate:self];
+//            
+//            [self.readStream openStream];
+//            [self.writeStream openStream];
+//        }
+//        @finally {
+//            if(host) {
+//                CFRelease(host);
+//            }
+//            if(readStream) {
+//                CFRelease(readStream);
+//            }
+//            if(writeStream) {
+//                CFRelease(writeStream);
+//            }
+//        }
+//   
+//    }];
 
-        CFReadStreamRef readStream = nil;
-        CFWriteStreamRef writeStream = nil;
-        CFHostRef host = nil;
-        
-        @try {
-            FLAssert_v(self.remotePort != 0, @"remote port can't be zero");
-            FLAssertStringIsNotEmpty_(self.remoteHost);
-           
-            host = CFHostCreateWithName(NULL, bridge_(void*,self.remoteHost));
-            if(!host) {
-                FLThrowIfError([NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorCannotFindHost localizedDescription:@"Unable to find to host"]);
-            }
-            
-            CFStreamCreatePairWithSocketToCFHost(NULL, host, self.remotePort, &readStream, &writeStream);
-            if(!readStream || !writeStream) {
-                FLThrowIfError([NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorNetworkConnectionLost localizedDescription:@"Unable to connect to host"]);
-            }
-                    
-            self.readStream = [FLReadStream readStream:readStream];
-            [self.readStream setDelegate:self];
-            
-            self.writeStream = [FLWriteStream writeStream:writeStream];
-            [self.writeStream setDelegate:self];
-            
-            [self.readStream openStreamWithInput:nil];
-            [self.writeStream openStreamWithInput:nil];
-        }
-        @finally {
-            if(host) {
-                CFRelease(host);
-            }
-            if(readStream) {
-                CFRelease(readStream);
-            }
-            if(writeStream) {
-                CFRelease(writeStream);
-            }
-        }
-   
-    }];
-
+    return nil;
 }
 
 - (void) dealloc {
@@ -118,16 +120,16 @@
     self.terminate = YES;
     
     [self.dispatchQueue dispatchBlock:^{
-        if(_readStream) {
-            [_readStream setDelegate:nil];
-            [_readStream closeStreamWithResult:result];
-            self.readStream = nil;
-        }
-        if(_writeStream) {
-            [_writeStream setDelegate:nil];
-            [_writeStream closeStreamWithResult:result];
-            self.writeStream = nil;
-        }
+//        if(_readStream) {
+//            [_readStream setDelegate:nil];
+//            [_readStream closeStreamWithResult:result];
+//            self.readStream = nil;
+//        }
+//        if(_writeStream) {
+//            [_writeStream setDelegate:nil];
+//            [_writeStream closeStreamWithResult:result];
+//            self.writeStream = nil;
+//        }
     }];
 }
 
@@ -148,19 +150,19 @@
 }
 
 - (void) readStream:(FLReadStream*) readStream
-      didEncounterError:(NSError*) error {
+      encounteredError:(NSError*) error {
     
     [self closeConnectionWithResult:error];
 }
 
-- (void) readStreamHasBytesAvailable:(id<FLReadStream>) networkStream {
+- (void) readStreamHasBytesAvailable:(FLReadStream*) networkStream {
 //    [self postObservation:@selector(readStreamHasBytesAvailable:)];
     if(self.isOpen) {
         [self updateRequestQueue];
     }
 }
 
-- (void) readStream:(id<FLReadStream>) stream didReadBytes:(unsigned long) amountRead {
+- (void) readStream:(FLReadStream*) stream didReadBytes:(NSNumber*) amountRead {
 //    [self postObservation:@selector(readStreamDidReadBytes:)];
 }
 
@@ -179,12 +181,12 @@
 }
 
 - (void) writeStream:(FLWriteStream*) writeStream
-   didEncounterError:(NSError*) error {
+   encounteredError:(NSError*) error {
     
     [self closeConnectionWithResult:error];
 }      
 
-- (void) writeStreamCanAcceptBytes:(id<FLWriteStream>) networkStream {
+- (void) writeStreamCanAcceptBytes:(FLWriteStream*) networkStream {
 //    [self postObservation:@selector(writeStreamCanAcceptBytes:)];
 
     if(self.isOpen) {
@@ -192,7 +194,7 @@
     }
 }
 
-- (void) writeStream:(id<FLWriteStream>) stream didWriteBytes:(unsigned long) amountWritten {
+- (void) writeStream:(FLWriteStream*) stream didWriteBytes:(NSNumber*) amountWritten {
 //    [self postObservation:@selector(writeStreamDidWriteBytes:)];
 
 }
@@ -340,3 +342,4 @@ NSString* const FLTcpStreamReadErrorKey = @"FLTcpStreamReadErrorKey";
 }
 
 @end
+#endif

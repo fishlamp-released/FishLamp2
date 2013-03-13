@@ -27,6 +27,7 @@
 @synthesize result = _result;
 @synthesize finished = _finished;
 @synthesize finishOnMainThread = _finishOnMainThread;
+@synthesize observer = _observer;
 
 #if DEBUG
 @synthesize createdStackTrace = _createdStackTrace;
@@ -63,7 +64,8 @@
     }
     
 #if FL_MRC
-
+    [_observer release];
+    
 #if DEBUG
     [_createdStackTrace release];
     [_finishedStackTrace release];
@@ -235,6 +237,14 @@
     return string.string;
 }
 #endif
+
+- (void) postObservation:(SEL) selector 
+              withObject:(id) object1 
+              withObject:(id) object2
+              withObject:(id) object3
+              argCount:(NSInteger) argCount {
+    [self.observer postObservation:selector withObject:object1 withObject:object2 withObject:object3 argCount:argCount];
+}              
 
 @end
 //

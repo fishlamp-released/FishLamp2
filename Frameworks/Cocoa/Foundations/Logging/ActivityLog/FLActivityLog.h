@@ -24,15 +24,24 @@ extern NSString* const FLActivityLogStringKey;
 
 - (void) clear;
 
-@end
+@property (readonly, strong, nonatomic) NSFont* textFont;
+@property (readonly, strong, nonatomic) NSColor* textColor;
 
+@end
 
 @interface FLActivityLog : FLStringFormatter<FLActivityLog, FLPrettyStringDelegate> {
 @private 
     FLPrettyAttributedString* _log;
+    NSFont* _textFont;
+    NSColor* _textColor;
 }
 
-FLSingletonProperty(FLActivityLog);
++ (id) activityLog;
+
+@property (readwrite, strong, nonatomic) NSFont* textFont;
+@property (readwrite, strong, nonatomic) NSColor* textColor;
+
+//FLSingletonProperty(FLActivityLog);
 
 @end
 

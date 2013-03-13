@@ -69,7 +69,7 @@
 }    
 
 - (void) httpRequest:(FLHttpRequest*) httpRequest
-      didEncounterError:(NSError*) error {
+      encounteredError:(NSError*) error {
     FLInvokeBlock(self.encounteredErrorBlock, error);
 }
 

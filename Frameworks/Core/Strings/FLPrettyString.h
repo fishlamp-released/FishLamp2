@@ -70,5 +70,6 @@
 
 @protocol FLPrettyAttributedStringDelegate <NSObject>
 @optional
+- (NSAttributedString*) prettyString:(FLPrettyString*) prettyString willAppendAttributedString:(NSAttributedString*) string;
 - (void) prettyString:(FLPrettyString*) prettyString didAppendAttributedString:(NSAttributedString*) string;
 @end

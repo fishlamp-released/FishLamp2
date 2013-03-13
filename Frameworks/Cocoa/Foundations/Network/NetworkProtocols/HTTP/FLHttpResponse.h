@@ -48,4 +48,11 @@
 
 @end
 
+@interface FLHttpResponse (Utils)
+// http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html
+@property (readonly, assign, nonatomic) BOOL wantsRedirect;
+@property (readonly, assign, nonatomic) BOOL responseCodeIsRedirect;
+- (NSURL*) redirectURL;
+@end
+
 

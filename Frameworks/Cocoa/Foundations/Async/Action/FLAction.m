@@ -41,6 +41,8 @@
 @synthesize disableWarningNotifications = _disableWarningNotifications;
 @synthesize disableActivityTimer = _disableActivityTimer;
 @synthesize networkRequired = _networkRequired;
+@synthesize workerContext = _workerContext;
+
 
 static FLCallback_t s_failedCallback;
 static id<FLActionErrorDelegate> s_errorDisplayDelegate = nil;
@@ -55,6 +57,10 @@ static id<FLActionErrorDelegate> s_errorDisplayDelegate = nil;
 
 - (id) init {
     return [self initWithActionType:nil];
+}
+
+- (id<FLDispatcher>) dispatcher {
+    return [FLGcdDispatcher sharedDefaultQueue];
 }
 
 - (id) initWithActionType:(NSString*) actionType {
@@ -92,6 +98,11 @@ static id<FLActionErrorDelegate> s_errorDisplayDelegate = nil;
 + (void) setGlobalFailedCallback:(id) target action:(SEL) action {
 	s_failedCallback = FLCallbackMake(target, action);
 }
+
+- (void) didMoveToContext:(id<FLWorkerContext>) context {
+    _workerContext = context;
+}
+
 
 - (void) closeNotification {
 //    id errorNotification = self.errorNotificationForUser;
@@ -339,7 +350,8 @@ TODO("MF: fix activity updater");
     return [self.operations requestCancel];
 }
 
-- (void) startWorkingInContext:(id) context withObserver:(id) observer finisher:(FLFinisher*) finisher {
+- (void) startWorking:(FLFinisher*) finisher {
+    
     
 //    [[FLGcdDispatcher sharedForegroundQueue] dispatchBlock:^{
 //        [self actionStarted];

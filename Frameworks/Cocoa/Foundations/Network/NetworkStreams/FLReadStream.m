@@ -11,10 +11,7 @@
 #import "FLTraceOff.h"
 
 @interface FLReadStream ()
-@property (readwrite, assign) BOOL isOpen;
-@property (readwrite, strong) NSError* error;
-- (void) handleStreamEvent:(CFStreamEventType) eventType;
-- (NSError*) readStreamError;
+//@property (readwrite, assign, nonatomic) CFReadStreamRef streamRef;
 @end
 
 #if DEBUG
@@ -26,46 +23,12 @@ CFIndex _FLReadStreamRead(CFReadStreamRef stream, UInt8 *buffer, CFIndex bufferL
 #endif
 
 static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventType eventType, void *clientCallBackInfo) {
-    FLReadStream* connection = bridge_(FLReadStream*, clientCallBackInfo);
-    
-    FLConfirmIsNotNil_(connection);
-    [connection handleStreamEvent:eventType];
+    [FLNetworkStream handleStreamEvent:eventType withStream:bridge_(FLReadStream*, clientCallBackInfo)];
 }
-
 
 @implementation FLReadStream
 
 @synthesize streamRef = _streamRef;
-@synthesize isOpen = _isOpen;
-@synthesize delegate = _delegate;
-@synthesize error = _error;
-
-- (id) initWithReadStream:(CFReadStreamRef) streamRef {
-    if(!streamRef) {
-        return nil;
-    }
-    self = [super init];
-    if(self) {
-        _streamRef = streamRef;
-        CFRetain(_streamRef);
-        
-        if(_streamRef) {
-            CFOptionFlags flags =
-                    kCFStreamEventOpenCompleted | 
-                    kCFStreamEventHasBytesAvailable | 
-                    kCFStreamEventEndEncountered | 
-                    kCFStreamEventErrorOccurred;
-
-            CFStreamClientContext ctxt = {0, bridge_(void*, self), NULL, NULL, NULL};
-            CFReadStreamSetClient(_streamRef, flags, ReadStreamClientCallBack, &ctxt);
-        }
-    }
-    return self;
-}
-
-+ (id) readStream:(CFReadStreamRef) streamRef {
-    return FLAutorelease([[[self class] alloc] initWithReadStream:streamRef]);
-}
 
 - (void) dealloc {
     if(_streamRef) {
@@ -74,76 +37,55 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
     }
     
 #if FL_MRC
-    [_error release];
     [super dealloc];
 #endif
 }
 
-- (void) handleStreamEvent:(CFStreamEventType) eventType {
-
-//    FLAssert_v([NSThread currentThread] == self.thread, @"tcp operation on wrong thread");
-
-//#if TRACE
-//    FLDebugLog(@"Read Stream got event %d", eventType);
-//#endif
-
-    switch (eventType)  {
-        case kCFStreamEventOpenCompleted: {
-            self.isOpen = YES;
-            [self.delegate readStreamDidOpen:self];
+- (void) setStreamRef:(CFReadStreamRef) readStreamRef {
+    if(readStreamRef != _streamRef) {
+        if(_streamRef) {
+            CFRelease(_streamRef);
         }
-        break;
-
-        case kCFStreamEventErrorOccurred: {
-            [self didEncounterError:[self readStreamError]];
-        }
-        break;
         
-        case kCFStreamEventEndEncountered:{
-            [self.delegate readStream:self didCloseWithResult:FLSuccessfullResult];
-        }
-        break;
+        _streamRef = readStreamRef;
         
-        case kCFStreamEventNone:
-            // wtf? why would we get this?
-            break;
-        
-        case kCFStreamEventHasBytesAvailable: {
-            [self.delegate readStreamHasBytesAvailable:self];
-        }
-        break;
-            
-        case kCFStreamEventCanAcceptBytes: {
-            FLAssertFailed_v(@"this is a read stream");
-            break;
+        if(_streamRef) {
+            CFRetain(_streamRef);
         }
     }
 }
 
-- (NSError*) readStreamError {
+- (NSError*) streamError {
     return FLAutorelease(bridge_transfer_(NSError*, CFReadStreamCopyError(self.streamRef)));
 }
 
-- (void) didEncounterError:(NSError*) error {
-    [self.delegate readStream:self didEncounterError:error];
-    self.error = error;
-}
-
-- (void) openSelfWithInput:(id) input {
-    self.error = nil;
-    self.isOpen = NO;
-    FLAssertNotNil_(_streamRef);
+- (void) openStream {
+    FLAssertIsNotNil_(self.streamRef);
     
+    [self willOpen];
+          
+    CFOptionFlags flags =
+            kCFStreamEventOpenCompleted | 
+            kCFStreamEventHasBytesAvailable | 
+            kCFStreamEventEndEncountered | 
+            kCFStreamEventErrorOccurred;
+
+    CFStreamClientContext ctxt = {0, bridge_(void*, self), NULL, NULL, NULL};
+    CFReadStreamSetClient(_streamRef, flags, ReadStreamClientCallBack, &ctxt);
+
     CFReadStreamOpen(_streamRef);
     CFReadStreamScheduleWithRunLoop(_streamRef, CFRunLoopGetMain(), bridge_(void*,NSDefaultRunLoopMode));
 }
 
-- (void) closeSelfWithResult:(id) result {
-    self.error = nil;
+- (void) closeStream {
+    [self willClose];
+
     FLAssertNotNil_(_streamRef);
-    CFReadStreamUnscheduleFromRunLoop(_streamRef, CFRunLoopGetMain(), bridge_(void*,NSDefaultRunLoopMode));
     CFReadStreamClose(_streamRef);
-    self.isOpen = NO;
+    CFReadStreamUnscheduleFromRunLoop(_streamRef, CFRunLoopGetMain(), bridge_(void*,NSDefaultRunLoopMode));
+    self.streamRef = nil;
+    
+    [self didClose];
 }
 
 - (BOOL) hasBytesAvailable {
@@ -158,27 +100,13 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
     }
 
     if(bytesRead < 0) {
-        [self didEncounterError:[NSError errorWithDomain:(NSString*) kCFErrorDomainCFNetwork code:kCFURLErrorBadServerResponse localizedDescription:NSLocalizedString(@"Read networkbytes failed: %d", bytesRead)]];
+        [self encounteredError:[NSError errorWithDomain:(NSString*) kCFErrorDomainCFNetwork code:kCFURLErrorBadServerResponse localizedDescription:NSLocalizedString(@"Read networkbytes failed: %d", bytesRead)]];
     
         return YES;
     }
     
     return NO;
 }
-
-//- (void) readAvailableBytesWithByteBuffer:(FLByteBuffer*) buffer {
-//    FLAssertNotNil_(_streamRef);
-//
-//    while(!buffer.isFull && [self hasBytesAvailable]]) {
-//        
-//        NSInteger bytesRead = CFReadStreamRead(_streamRef, buffer.unusedContent, buffer.unusedContentLength);
-//        if([self readResultIsError:bytesRead]) {
-//            break;
-//        }
-//
-//        [buffer incrementContentLength:bytesRead];
-//    }
-//}
 
 - (NSUInteger) readBytes:(uint8_t*) bytes 
                maxLength:(NSUInteger) maxLength {
@@ -208,7 +136,7 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
     }
 
     if(readTotal > 0) {
-        [self.delegate readStream:self didReadBytes:readTotal];
+        FLPerformSelector2(self.delegate, @selector(networkStream:didReadBytes:), self, [NSNumber numberWithUnsignedInteger:readTotal]);
     }
 
     return readTotal;
@@ -221,10 +149,6 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
     return [number unsignedLongValue];
 }
 
-- (void) requestCancel {
-    
-    [self.delegate readStream:self didEncounterError:[NSError cancelError]];
-}
 
 @end
 

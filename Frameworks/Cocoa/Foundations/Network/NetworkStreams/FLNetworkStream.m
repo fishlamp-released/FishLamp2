@@ -1,112 +1,117 @@
 //
-//  FLStreamController.m
-//  FishLamp
+//  FLNetworkStream.m
+//  FishLampCocoa
 //
-//  Created by Mike Fullerton on 10/27/12.
-//  Copyright (c) 2012 Mike Fullerton. All rights reserved.
+//  Created by Mike Fullerton on 3/12/13.
+//  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
 
 #import "FLNetworkStream.h"
-#import "FLReadStream.h"
-#import "FLWriteStream.h"
-#import "FLReachableNetwork.h"
 
-#define kRunLoopMode NSDefaultRunLoopMode
+@interface FLNetworkStream ()
+@property (readwrite, assign, getter=isOpen) BOOL open;
+@end
 
 @implementation FLNetworkStream
 
-- (id) init {
-    self = [super init];
-    if(self) {
-        self.timeoutInterval = FLNetworkStreamDefaultTimeout;
-    }
-    return self;
+@synthesize open = _open;
+@synthesize error = _error;
+@synthesize delegate = _delegate;
+
+#if FL_MRC
+- (void) dealloc {
+    [_error release];
+    [super dealloc];
 }
-
-- (void) connectionGotTimerEvent {
-// TODO: ("MF: fix http delegate");
-
-//    if([self.delegate respondsToSelector:@selector(httpConnection:sentBytes:totalSentBytes:totalBytesExpectedToSend:)])
-//    {
-//        unsigned long long bytesSent = _inputStream.bytesSent;
-//        if(bytesSent > self.totalBytesSent)
-//        {
-//            self.lastBytesSent =  bytesSent - self.totalBytesSent;
-//            self.totalBytesSent = bytesSent;
-//
-//#if TRACE
-//            FLDebugLog(@"bytes this time: %qu, total bytes sent: %qu, expected to send: %qu",  
-//                self.lastBytesSent,
-//                self.totalBytesSent, 
-//                [[_requestQueue lastObject] postLength]);
-//#endif
-//            [self.delegate httpConnection:self 
-//                sentBytes:self.lastBytesSent 
-//                totalSentBytes:self.totalBytesSent 
-//                totalBytesExpectedToSend:[[_requestQueue lastObject] postLength]];
-//       }
-//    }
-}
-
-- (BOOL) checkReachability {
-#if IOS
-	return [FLReachableNetwork instance].isReachable;
-#else
-//   FLAssertIsImplemented_();
-// TODO: this needs implementing
-    return YES;
-    
 #endif
+
+- (void) encounteredError:(NSError*) error {
+    self.error = error;
+    FLPerformSelector2(self.delegate, @selector(networkStream:encounteredError:), self, error);
 }
 
-- (void) failIfUnreachable {
-   if(![self checkReachability]) {
-        NSError* error = [NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorNotConnectedToInternet localizedDescription:NSLocalizedString(@"Not Connected to Network", nil)];
-        [self didEncounterError:error];
+- (void) willOpen {
+    self.open = NO;
+    self.error = nil;
+    FLPerformSelector1(self.delegate, @selector(networkStreamWillOpen:), self);
+}
+
+- (void) didOpen {
+    self.open = YES;
+    FLPerformSelector1(self.delegate, @selector(networkStreamDidOpen:), self);
+}
+
+- (void) willClose {
+    FLPerformSelector2(self.delegate, @selector(networkStream:willCloseWithError:), self, self.error);
+}
+
+- (void) didClose {
+    self.open = NO;
+    FLPerformSelector1(self.delegate, @selector(networkStreamDidClose:), self);
+}
+
+- (void) encounteredBytesAvailable {
+    FLPerformSelector1(self.delegate, @selector(networkStreamHasBytesAvailable:), self);
+}
+
+- (void) encounteredCanAcceptBytes {
+    FLPerformSelector1(self.delegate, @selector(networkStreamCanAcceptBytes:), self);
+}
+
+- (void) encounteredOpen {
+    [self didOpen];
+}
+
+- (void) encounteredEnd {
+    [self closeStream];
+}
+
+- (NSError*) streamError {
+    return nil;
+}
+
+- (void) openStream {
+}
+
+- (void) closeStream {
+}
+
++ (void) handleStreamEvent:(CFStreamEventType) eventType withStream:(FLNetworkStream*) stream {
+
+    FLConfirmIsNotNil_(stream);
+
+
+//    FLAssert_v([NSThread currentThread] == self.thread, @"tcp operation on wrong thread");
+
+//#if TRACE
+//    FLDebugLog(@"Read Stream got event %d", eventType);
+//#endif
+
+    switch (eventType)  {
+        case kCFStreamEventOpenCompleted:
+            [stream encounteredOpen];
+        break;
+
+        case kCFStreamEventErrorOccurred: 
+            [stream encounteredError:[stream streamError]];
+        break;
+        
+        case kCFStreamEventEndEncountered:
+            [stream encounteredEnd];
+        break;
+        
+        case kCFStreamEventNone:
+            // wtf? why would we get this?
+            break;
+        
+        case kCFStreamEventHasBytesAvailable:
+            [stream encounteredBytesAvailable];
+        break;
+            
+        case kCFStreamEventCanAcceptBytes: 
+            [stream encounteredCanAcceptBytes];
+            break;
     }
 }
-
 
 @end
-
-//typedef struct {
-//    unsigned long lastChunkCount;
-//    unsigned long totalCount;
-//    unsigned long totalExpectedCount;
-//} FLNetworkConnectionByteCount;
-//
-//extern const FLNetworkConnectionByteCount FLNetworkConnectionByteCountZero;
-//
-
-//
-//@synthesize writeByteCount = _writeByteCount;
-//@synthesize readByteCount = _readByteCount;
-//
-//const FLNetworkConnectionByteCount FLNetworkConnectionByteCountZero = {0, 0, 0};
-//
-//- (void) networkStreamDidWriteBytes:(id<FLWriteStream>) stream {
-//
-//    unsigned long bytes = stream.bytesWritten; 
-//
-//    FLNetworkConnectionByteCount byteCount = self.writeByteCount;
-//    byteCount.lastChunkCount = bytes - byteCount.totalCount;
-//    byteCount.totalCount = bytes;
-//    self.writeByteCount = byteCount;
-//
-//    [self postObservation:@selector(networkConnectionDidSendData:)];
-//
-//}
-//
-//- (void) networkStreamDidReadBytes:(id<FLReadStream>) stream {
-//
-//    unsigned long bytes = stream.bytesRead; 
-//
-//    FLNetworkConnectionByteCount byteCount = self.readByteCount;
-//    byteCount.lastChunkCount = bytes - byteCount.totalCount;
-//    byteCount.totalCount = bytes;
-//    self.readByteCount = byteCount;
-//
-//    [self postObservation:@selector(networkConnectionDidReadData:)];
-//
-//}
-
