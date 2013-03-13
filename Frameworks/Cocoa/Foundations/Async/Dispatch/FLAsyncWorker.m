@@ -7,3 +7,26 @@
 //
 
 #import "FLAsyncWorker.h"
+
+
+@implementation FLAsyncWorker
+
+@synthesize workerContext = _workerContext;
+
+- (void) startWorking:(FLFinisher*) finisher {
+                      
+}                      
+
+- (void) requestCancel {
+
+}
+
+- (id<FLDispatcher>) dispatcher {
+    return nil;
+}
+
+- (void) didMoveToContext:(id<FLWorkerContext>) context {
+    _workerContext = context;
+}
+
+@end

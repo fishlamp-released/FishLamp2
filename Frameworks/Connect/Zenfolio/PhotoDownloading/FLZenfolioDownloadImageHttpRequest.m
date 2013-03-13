@@ -70,19 +70,19 @@
     return image;
 }
 
-- (void) startWorkingInContext:(id) context withObserver:(id) observer finisher:(FLFinisher*) finisher {
+- (void) startWorking:(FLFinisher*) finisher {
     
     if(self.cache) {
         FLStorableImage* image = [self.cache loadCachedImageForPhoto:self.photo imageSize:self.imageSize];
         if(image || [image isStaleComparedToPhotoSequenceNumber:self.photo.Sequence]) {
-            [super startWorkingInContext:context withObserver:observer finisher:finisher];
+            [super startWorking:finisher];
         }
         else {
-            [observer setFinishedWithResult:image];
+            [finisher setFinishedWithResult:image];
         }
     }
     else {
-        [super startWorkingInContext:context withObserver:observer finisher:finisher];
+        [super startWorking:finisher];
     }
 }
 

@@ -37,11 +37,12 @@
 
 // required overides
 - (void) startAuthenticating;
-- (void) resetPassword;
 - (void) requestCancel;
 - (BOOL) isAuthenticated;
 
 - (void) logoutUser;
+
+- (IBAction) resetLogin:(id) sender;
 
 @end
 

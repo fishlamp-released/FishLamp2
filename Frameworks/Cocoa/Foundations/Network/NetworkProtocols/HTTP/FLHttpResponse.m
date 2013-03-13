@@ -125,3 +125,28 @@
 
 @end
 
+
+@implementation  FLHttpResponse (Utils)
+- (BOOL) responseCodeIsRedirect
+{
+    switch(self.responseStatusCode)
+    {
+        case 301: // Moved Permanently.
+        case 302: // Found.
+        case 304: // Not Modified.
+        case 307: // Temporary Redirect.
+            return YES;
+            break;
+    }
+    
+    return NO;
+}        
+
+- (BOOL) wantsRedirect {
+    return self.responseCodeIsRedirect && FLStringIsNotEmpty([self valueForHeader:@"Location"]); 
+}
+
+- (NSURL*) redirectURL {
+    return [NSURL URLWithString:[self valueForHeader:@"Location"] relativeToURL:self.requestURL];
+}
+@end

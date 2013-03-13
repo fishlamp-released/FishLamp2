@@ -16,20 +16,20 @@
 @property (readonly, assign, nonatomic) CFHTTPMessageRef messageRef; 
 
 @property (readonly, assign, nonatomic) BOOL isHeaderComplete;
-@property (readonly, retain, nonatomic) NSString* httpVersion;
+@property (readonly, strong, nonatomic) NSString* httpVersion;
 @property (readonly, copy, nonatomic) NSDictionary* allHeaders;
 
 /** request */ 
 @property (readonly, assign, nonatomic) BOOL isRequest;
-@property (readonly, retain, nonatomic) NSURL* requestURL;
-@property (readonly, retain, nonatomic) NSString* httpMethod;
+@property (readonly, strong, nonatomic) NSURL* requestURL;
+@property (readonly, strong, nonatomic) NSString* httpMethod;
 
 /** response */
 @property (readonly, assign, nonatomic) NSInteger responseStatusCode;
-@property (readonly, retain, nonatomic) NSString* responseStatusLine;
+@property (readonly, strong, nonatomic) NSString* responseStatusLine;
 
 /** body */
-@property (readwrite, retain, nonatomic) NSData* bodyData;
+@property (readwrite, strong, nonatomic) NSData* bodyData;
 
 - (id) initWithHttpMessageRef:(CFHTTPMessageRef) ref; // takes ownership
 - (id) initWithURL:(NSURL*) url httpMethod:(NSString*) httpMethodOrNil; // defaults to GET if nil

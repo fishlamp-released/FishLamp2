@@ -6,16 +6,16 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 #import "FLCocoaRequired.h"
-@protocol FLReadStream;
-@protocol FLWriteStream;
+@class FLReadStream;
+@class FLWriteStream;
 
 @interface FLTcpRequest : NSObject {
 @private
 }
 
-- (BOOL) readData:(id<FLReadStream>) stream;
+- (BOOL) readData:(FLReadStream*) stream;
 
-- (BOOL) writeData:(id<FLWriteStream>) stream;
+- (BOOL) writeData:(FLWriteStream*) stream;
 
 @end
 

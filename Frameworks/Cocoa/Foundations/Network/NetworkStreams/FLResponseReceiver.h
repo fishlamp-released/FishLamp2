@@ -13,16 +13,21 @@
 @property (readonly, strong, nonatomic) NSData* data;
 @property (readonly, strong, nonatomic) NSInputStream* readStream;
 @property (readonly, strong, nonatomic) NSURL* fileURL;
+@property (readonly, assign, getter=isClosed) BOOL closed;
 
 // internal, don't call these.
-- (NSError*) closeWithResult:(id) result;
+- (void) openReceiver;
 - (void) readBytesFromStream:(FLReadStream*) stream;
+- (NSError*) closeReceiverWithError:(NSError*) error;
 @end
 
 /// concrete base case
 @interface FLResponseReceiver : NSObject<FLResponseReceiver> {
 @private
+    BOOL _closed;
 }
+@property (readwrite, assign, getter=isClosed) BOOL closed;
+
 - (void) appendBytes:(const void *)bytes length:(NSUInteger)length;
 @end
 

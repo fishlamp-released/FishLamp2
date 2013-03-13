@@ -23,6 +23,7 @@ NSString* const FLOperationFinishedEvent;
 @synthesize operationID = _operationID;
 @synthesize runBlock = _runBlock;
 @synthesize cancelled = _cancelled;
+@synthesize workerContext = _workerContext;
 
 - (id) initWithRunBlock:(FLBlockWithOperation) callback {
     if((self = [self init])) {
@@ -34,6 +35,11 @@ NSString* const FLOperationFinishedEvent;
 + (id) operation:(FLBlockWithOperation) callback {
     return FLAutorelease([[[self class] alloc] initWithRunBlock:callback]);
 }
+
+- (void) didMoveToContext:(id<FLWorkerContext>) context {
+    _workerContext = context;
+}
+
 
 #if FL_MRC
 - (void) dealloc {
@@ -72,18 +78,24 @@ NSString* const FLOperationFinishedEvent;
     return self.wasCancelled;
 }
 
-- (void) startWorkingInContext:(id) context withObserver:(id) observer finisher:(FLFinisher*) finisher {
-    self.cancelled = NO;
+- (id<FLDispatcher>) dispatcher {
+    return [FLGcdDispatcher sharedDefaultQueue];
+}
+
+- (void) startWorking:(FLFinisher*) finisher {
+
     id result = nil;
     
     @try {
-        [observer postObservation:@selector(operationWillRun:) withObject:self];
+        [self abortIfNeeded];
+        
+        [finisher postObservation:@selector(operationWillRun:) withObject:self];
         
         if(self.runBlock) {
-            result = self.runBlock(self, context, observer);
+            result = self.runBlock(self, self.workerContext, finisher.observer);
         }
         else {
-            result = [self runOperationInContext:context withObserver:observer];
+            result = [self runOperationInContext:self.workerContext withObserver:finisher.observer];
         }
     }
     @catch(NSException* ex) {
@@ -96,7 +108,9 @@ NSString* const FLOperationFinishedEvent;
     
     [finisher setFinishedWithResult:result];
 
-    [observer postObservation:@selector(operationDidFinish:withResult:) withObject:self withObject:result];
+    [finisher postObservation:@selector(operationDidFinish:withResult:) withObject:self withObject:result];
+    
+    self.cancelled = NO;
 }
 
 - (void) operationWasCancelled:(FLOperation*) operation {

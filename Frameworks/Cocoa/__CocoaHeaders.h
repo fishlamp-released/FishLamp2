@@ -223,9 +223,7 @@
 #import "FLParserStack.h"
 
 // Foundations/Network/NetworkStreams
-#import "FLNetworkStream.h"
 #import "FLReadStream.h"
-#import "FLStream.h"
 #import "FLTcpStream.h"
 #import "FLWriteStream.h"
 #import "NSError+FLNetworkStream.h"
@@ -371,7 +369,7 @@
 #import "FLStateMachine.h"
 
 // Foundations/Utils/Timer
-#import "FLTimeoutTimer.h"
+#import "FLTimer.h"
 #import "FLTimer.h"
 
 // Modules/CodeBuilder

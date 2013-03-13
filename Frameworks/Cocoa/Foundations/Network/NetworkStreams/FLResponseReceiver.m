@@ -40,6 +40,8 @@
 
 @implementation FLResponseReceiver 
 
+@synthesize closed = _closed;
+
 - (NSData*) data {
     return nil;
 }
@@ -52,7 +54,6 @@
     return nil;
 }
 
-
 - (void) appendBytes:(const void *)bytes length:(NSUInteger)length {
 }
 
@@ -60,7 +61,7 @@
                   withBuffer:(uint8_t*) buffer 
                   bufferSize:(NSUInteger) bufferSize {
 
-    while([stream hasBytesAvailable]) {
+    while(!self.closed && [stream hasBytesAvailable]) {
         NSUInteger bytesRead = [stream readBytes:buffer maxLength:bufferSize];
         if(bytesRead) {
             [self appendBytes:buffer length:bytesRead];
@@ -72,7 +73,10 @@
 - (void) readBytesFromStream:(FLReadStream*) stream {
 }
 
-- (NSError*) closeWithResult:(id) result {
+- (void) openReceiver {
+}
+
+- (NSError*) closeReceiverWithError:(NSError*) error {
     return nil;
 }
 
@@ -93,12 +97,16 @@
     return FLAutorelease([[[self class] alloc] init]);
 }
 
+- (void) openReceiver {
+    self.closed = NO;
+    self.responseData = [NSMutableData data];
+    self.data = nil;
+}
+
 - (void) appendBytes:(const void *)bytes length:(NSUInteger)length {
-    if(!_responseData) {
-        _responseData = [[NSMutableData alloc] init];
-        self.data = nil;
+    if(!self.isClosed) {
+        [self.responseData appendBytes:bytes length:length];
     }
-    [_responseData appendBytes:bytes length:length];
 }
 
 #if FL_MRC
@@ -111,12 +119,15 @@
 
 #define kBufferSize 1024
 - (void) readBytesFromStream:(FLReadStream*) stream {
-    uint8_t buffer[kBufferSize];
-    [self readBytesFromStream:stream withBuffer:buffer bufferSize:kBufferSize];
+    if(!self.isClosed) {
+        uint8_t buffer[kBufferSize];
+        [self readBytesFromStream:stream withBuffer:buffer bufferSize:kBufferSize];
+    }
 }
 
-- (NSError*) closeWithResult:(id) result {
-    if([result error]) {
+- (NSError*) closeReceiverWithError:(NSError*) error {
+    self.closed = YES;
+    if(error) {
         self.data = nil;
         self.responseData = nil;
     }
@@ -160,34 +171,34 @@
     return FLAutorelease([[[self class] alloc] initWithFileURL:fileURL]);
 }
 
-- (void) open {
+- (void) openReceiver {
+    self.closed = NO;
     self.outputStream = [NSOutputStream outputStreamWithURL:self.fileURL append:NO];
     [self.outputStream open];
 }
 
 - (void) appendBytes:(const void *)bytes length:(NSUInteger)length {
-   
-    if(!_outputStream) {
-        [self open];
+    if(!self.closed) {
+        NSInteger amountWritten = [self.outputStream write:bytes maxLength:length];
+        FLAssert_(amountWritten == length);
     }
-     
-    NSInteger amountWritten = [self.outputStream write:bytes maxLength:length];
-    FLAssert_(amountWritten == length);
-    
 }
 
 - (void) readBytesFromStream:(FLReadStream*) stream {
-    [self readBytesFromStream:stream withBuffer:_bufferHunk bufferSize:FLFileResponseReceiverFileBufferSize];
+    if(!self.closed) {
+        [self readBytesFromStream:stream withBuffer:_bufferHunk bufferSize:FLFileResponseReceiverFileBufferSize];
+    }
 }
 
-- (NSError*) closeWithResult:(id) result {
+- (NSError*) closeReceiverWithError:(NSError*) error {
+    self.closed = YES;
     [self.outputStream close];
     self.outputStream = nil;
     
-    if([result error]) {
-        NSError* error = nil;
-        [[NSFileManager defaultManager] removeItemAtURL:self.fileURL error:&error];
-        return FLAutorelease(error);
+    if(error) {
+        NSError* fileError = nil;
+        [[NSFileManager defaultManager] removeItemAtURL:self.fileURL error:&fileError];
+        return FLAutorelease(fileError);
     }
     
     return nil;

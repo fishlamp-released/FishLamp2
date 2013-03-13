@@ -14,7 +14,8 @@ NSString* const FLActivityLogStringKey = @"FLActivityLogStringKey";
 
 @implementation FLActivityLog
 
-FLSynthesizeSingleton(FLActivityLog);
+@synthesize textFont = _textFont;
+@synthesize textColor = _textColor;
 
 - (id) init {
     self = [super init];
@@ -28,9 +29,15 @@ FLSynthesizeSingleton(FLActivityLog);
 - (void) dealloc {
     _log.delegate = nil;
 #if FL_MRC
+    [_textFont release];
+    [_textColor release];
     [_log release];
     [super dealloc];
 #endif
+}
+
++ (id) activityLog {
+    return FLAutorelease([[[self class] alloc] init]);
 }
 
 - (void) stringFormatter:(FLStringFormatter*) stringFormatter 
@@ -79,6 +86,23 @@ FLSynthesizeSingleton(FLActivityLog);
     NSError* err = nil;
     [log writeToURL:url atomically:YES encoding:NSUTF8StringEncoding error:&err];
     return FLAutorelease(err);
+}
+
+- (NSAttributedString*) prettyString:(FLPrettyString*) prettyString willAppendAttributedString:(NSAttributedString*) string {
+    if(_textFont || _textColor) {
+        NSMutableAttributedString* mutableString = FLAutorelease([string mutableCopy]);
+        
+        if(_textFont) {
+            [mutableString setFont:_textFont forRange:string.entireRange];
+        }
+        if(_textColor) {
+            [mutableString setColor:_textColor forRange:string.entireRange];
+        }
+        
+        return mutableString;
+    }
+    
+    return string;
 }
 
 - (void) prettyString:(FLPrettyString*) prettyString didAppendAttributedString:(NSAttributedString*) string {

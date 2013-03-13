@@ -17,6 +17,8 @@
 //	SERVER_STATE_STOPPING
 //} FLServerState;
 
+#if REFACTOR
+
 @interface FLTcpListener : NSObject {
 @private
 //	FLServerState _state;
@@ -39,3 +41,5 @@
 - (void) startListeningInBackground;
 
 @end
+
+#endif

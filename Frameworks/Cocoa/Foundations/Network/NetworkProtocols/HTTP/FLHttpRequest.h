@@ -14,6 +14,11 @@
 #import "FLDataEncoding.h"
 #import "FLDataDecoding.h"
 #import "FLHttpRequestObserver.h"
+#import "FLTimer.h"
+#import "FLTimedObject.h"
+#import "FLHttpStream.h"
+
+#define FLWriteStreamDefaultTimeout 120.0f
 
 @class FLHttpRequest;
 
@@ -26,42 +31,29 @@
 - (id<FLDispatcher>) httpRequestAuthenticationDispatcher:(FLHttpRequest*) httpRequest;
 @end
 
-@protocol FLHttpRequestInterceptor <NSObject>
-- (void) httpRequest:(FLHttpRequest*) httpRequest 
-     willSendRequest:(FLFinisher*) withFinisher;
-                                
-- (void) httpRequest:(FLHttpRequest*) httpRequest 
- didFinishWithResult:(FLResult) result;
-@end
-
 @protocol FLHttpRequestContext <NSObject>
-- (void) httpRequestWillBeginWorking:(FLHttpRequest*) request;
+- (id<FLHttpRequestAuthenticator>) httpRequestAuthenticator;
 @end
 
-@interface FLHttpRequest : NSObject<FLAsyncWorker, FLReadStreamDelegate> {
+@interface FLHttpRequest : FLTimedObject<FLAsyncWorker> {
 @private
     FLHttpRequestHeaders* _headers;
     FLHttpRequestBody* _body;
-    id _observer;
-    FLFinisher* _finisher;
-    FLHttpResponse* _response;
-    FLReadStream* _networkStream;
-    id<FLDispatcher> _dispatcher;
-    id<FLResponseReceiver> _responseReceiver;
     
     // helpers
+    id<FLResponseReceiver> _responseReceiver;
     id<FLDataEncoding> _dataEncoder;
     id<FLDataDecoding> _dataDecoder;
     id<FLHttpRequestAuthenticator> _authenticator;
-    id<FLHttpRequestInterceptor> _interceptor;
-    
     BOOL _disableAuthenticator;
+    __unsafe_unretained id<FLWorkerContext> _workerContext;
 }
 
+// by default this is a FLDataResponseReciever.
+@property (readwrite, strong, nonatomic) id<FLResponseReceiver> responseReceiver;
 @property (readwrite, strong, nonatomic) id<FLDataEncoding> dataEncoder;
 @property (readwrite, strong, nonatomic) id<FLDataDecoding> dataDecoder;
 @property (readwrite, strong, nonatomic) id<FLHttpRequestAuthenticator> authenticator;
-@property (readwrite, strong, nonatomic) id<FLHttpRequestInterceptor> interceptor;
 
 @property (readwrite, assign, nonatomic) BOOL disableAuthenticator;
 
@@ -69,8 +61,6 @@
 @property (readonly, strong, nonatomic) FLHttpRequestHeaders* headers;
 @property (readonly, strong, nonatomic) FLHttpRequestBody* body;
 
-// by default this is a FLDataResponseReciever.
-@property (readwrite, strong, nonatomic) id<FLResponseReceiver> responseReceiver;
 
 - (id) initWithRequestURL:(NSURL*) requestURL;
 
@@ -82,19 +72,11 @@
 
 + (id) httpRequest:(NSURL*) url;
 
-//
-// optional overrides
-//
-
-/// called before authentication
-- (void) willAuthenticateHttpRequest:(id<FLHttpRequestAuthenticator>) authenticator;
-
-/// called after authentication (if no error)
-- (void) didAuthenticateHttpRequest;
-
 /// called before the request is started. You may set ALL of the
 /// request info here, including the URL
 - (void) willSendHttpRequest;
+- (void) willAuthenticate;
+- (void) didAuthenticate;
 
 /// did receive the response. If there was an error, this will
 /// not be called.
@@ -104,19 +86,14 @@
 
 - (NSError*) checkHttpResponseForError:(FLHttpResponse*) httpResponse;
 
+
+
 /// this returns YES by default.
 - (BOOL) shouldRedirectToURL:(NSURL*) url;
 @end
 
 
 
-//@interface FLWorkerContext (FLHttpRequest)
-//
-//- (FLResult) sendHttpRequestSynchronously:(FLHttpRequest*) request;
-//- (FLResult) sendHttpRequestSynchronously:(FLHttpRequest*) request 
-//                             withObserver:(FLHttpRequestObserver*) observer;
-//
-//
-//@end
+
 
 

@@ -13,8 +13,13 @@
 NSString* const FLWorkerContextStarting = @"FLWorkerContextStarting";
 NSString* const FLWorkerContextFinished = @"FLWorkerContextFinished";
 
+@interface FLWorkerContext ()
+@property (readwrite, assign, getter=isContextOpen) BOOL contextOpen; 
+@end
+
 @implementation FLWorkerContext
 @synthesize dispatcher = _dispatcher;
+@synthesize contextOpen = _contextOpen;
 
 - (id) init {
     self = [super init];
@@ -61,7 +66,13 @@ NSString* const FLWorkerContextFinished = @"FLWorkerContextFinished";
     return [self visitObjects:visitor completion:nil];
 }
 
-- (void) requestCancel {
+- (void) openContext {
+    self.contextOpen = YES;
+    [[NSNotificationCenter defaultCenter] postNotificationName:FLWorkerContextOpened object:self];
+}
+
+- (void) closeContext {
+    self.contextOpen = NO;
     
     NSArray* toCancel = nil;
     @synchronized(self) {
@@ -70,6 +81,9 @@ NSString* const FLWorkerContextFinished = @"FLWorkerContextFinished";
     for(id worker in toCancel) {
         FLPerformSelector(worker, @selector(requestCancel));
     }
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:FLWorkerContextClosed object:self];
+    
 }
 
 - (void) didAddWorker:(id) object {
@@ -96,6 +110,11 @@ NSString* const FLWorkerContextFinished = @"FLWorkerContextFinished";
         }
     
         [_objects addObject:worker];
+        [worker didMoveToContext:self];
+        
+        if(!self.isContextOpen) {
+            [worker requestCancel];
+        }
     }
 
     [self didAddWorker:worker];
@@ -104,6 +123,7 @@ NSString* const FLWorkerContextFinished = @"FLWorkerContextFinished";
 - (void) removeObject:(id) worker {
     @synchronized(self) {
         [_objects removeObject:worker];
+        [worker didMoveToContext:nil];
 
         if(_objects.count == 0) {
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -115,13 +135,15 @@ NSString* const FLWorkerContextFinished = @"FLWorkerContextFinished";
 }
 
 - (FLResult) runWorker:(id<FLAsyncWorker>) worker 
-                 withObserver:(id) observer {
+          withObserver:(id) observer {
 
     FLFinisher* finisher = [FLFinisher finisher];
+    finisher.observer = observer;
+    
     @try {
         [self addObject:worker];
         
-        [worker startWorkingInContext:self withObserver:observer finisher:finisher];
+        [worker startWorking:finisher];
     }
     @catch(NSException* ex) {
         [finisher setFinishedWithResult:ex.error];
@@ -136,44 +158,87 @@ NSString* const FLWorkerContextFinished = @"FLWorkerContextFinished";
     return result;
 }
 
-- (FLFinisher*) startWorker:(id<FLAsyncWorker>) worker
-                  inDispatcher:(id<FLDispatcher>) dispatcher
-                  withObserver:(id) observer 
-                    completion:(FLBlockWithResult) completion {
+//- (FLFinisher*) startWorker:(id<FLAsyncWorker>) worker
+//                  inDispatcher:(id<FLDispatcher>) dispatcher
+//                  withObserver:(id) observer 
+//                    completion:(FLBlockWithResult) completion {
+//
+//    FLAssertNotNil_(worker);
+//
+//    completion = FLCopyWithAutorelease(completion);
+//
+//    FLFinisher* finisher = [FLFinisher finisher:^(FLResult result) {
+//    
+//        if(completion) {
+//            completion(result);
+//        }
+//    
+//        [self removeObject:worker];
+//    }];
+//
+//    finisher.observer = observer;
+//    
+//    FLBlockWithFinisher block = ^(FLFinisher* theFinisher){
+//        
+//        @try {
+//            [worker startWorking:finisher];
+//        }
+//        @catch(NSException* ex) {
+//            [theFinisher setFinishedWithResult:ex.error];
+//        }
+//    };
+//
+//    [self addObject:worker];
+//    
+//    [dispatcher dispatchFinishableBlock:block withFinisher:finisher];
+//    
+//    return finisher;
+//}
+
+- (void) startWorker:(id<FLAsyncWorker>) worker withObserver:(id) observer completion:(FLBlockWithResult) completion {
+    FLFinisher* finisher = [FLFinisher finisher:completion];
+    finisher.observer = observer;
+    [self startWorker:worker withFinisher:finisher];
+}
+
+- (void) startWorker:(id<FLAsyncWorker>) worker withFinisher:(FLFinisher*) finisher {
 
     FLAssertNotNil_(worker);
 
-    completion = FLCopyWithAutorelease(completion);
-
-    FLFinisher* finisher = [FLFinisher finisher:^(FLResult result) {
-    
-        if(completion) {
-            completion(result);
-        }
-    
-        [self removeObject:worker];
-    }];
-
-    FLBlockWithFinisher block = ^(FLFinisher* theFinisher){
-        
-        @try {
-            [worker startWorkingInContext:self withObserver:observer finisher:theFinisher];
-        }
-        @catch(NSException* ex) {
-            [theFinisher setFinishedWithResult:ex.error];
-        }
-    };
-
     [self addObject:worker];
     
-    [dispatcher dispatchFinishableBlock:block withFinisher:finisher];
+    id<FLDispatcher> dispatcher = worker.dispatcher;
+    if(!dispatcher) {
+        dispatcher = [FLGcdDispatcher sharedDefaultQueue];
+    }
     
-    return finisher;
+    [dispatcher dispatchBlock:^{
+        
+        @try {
+            [worker startWorking:finisher];
+        }
+        @catch(NSException* ex) {
+            [finisher setFinishedWithResult:ex.error];
+        }
+
+        [self removeObject:worker];
+    }];
 }
 
-- (FLFinisher*) startWorker:(id<FLAsyncWorker>) worker withObserver:(id) observer {
-    return [self startWorker:worker inDispatcher:[FLGcdDispatcher sharedDefaultQueue] withObserver:observer completion:nil];
-}
+//- (FLFinisher*) startWorker:(id<FLAsyncWorker>) worker withObserver:(id) observer {
+//    return [self startWorker:worker inDispatcher:[FLGcdDispatcher sharedDefaultQueue] withObserver:observer completion:nil];
+//}
+//
+//- (void) startWorker:(id<FLAsyncWorker>) worker withObserver:(id) observer withFinisher:(FLFinisher*) finisher {
+//    [self startWorker:worker inDispatcher:worker.dispatcher withObserver:observer completion:^(FLResult result) {
+//        [finisher setFinishedWithResult:result];
+//    }];
+//}   
+//
+//- (void) startWorker:(id<FLAsyncWorker>) worker withObserver:(id) observer completion:(FLBlockWithResult) completion {
+//    [self startWorker:worker inDispatcher:worker.dispatcher withObserver:observer completion:completion];
+//}
+
    
 @end
 

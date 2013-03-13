@@ -276,6 +276,15 @@
 		276F1CE116ED1397007937E9 /* FLRotateAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 276F1CDA16ED1396007937E9 /* FLRotateAnimation.m */; };
 		276F1CE216ED1397007937E9 /* FLRotateAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 276F1CDA16ED1396007937E9 /* FLRotateAnimation.m */; };
 		276F1CE316ED1397007937E9 /* FLRotateAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 276F1CDA16ED1396007937E9 /* FLRotateAnimation.m */; };
+		278DB49316EE75B40087374D /* FLAnimatedImageView.h in Headers */ = {isa = PBXBuildFile; fileRef = 278DB49116EE75B40087374D /* FLAnimatedImageView.h */; };
+		278DB49416EE75B40087374D /* FLAnimatedImageView.h in Headers */ = {isa = PBXBuildFile; fileRef = 278DB49116EE75B40087374D /* FLAnimatedImageView.h */; };
+		278DB49516EE75B40087374D /* FLAnimatedImageView.h in Headers */ = {isa = PBXBuildFile; fileRef = 278DB49116EE75B40087374D /* FLAnimatedImageView.h */; };
+		278DB49616EE75B40087374D /* FLAnimatedImageView.h in Headers */ = {isa = PBXBuildFile; fileRef = 278DB49116EE75B40087374D /* FLAnimatedImageView.h */; };
+		278DB49716EE75B40087374D /* FLAnimatedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 278DB49216EE75B40087374D /* FLAnimatedImageView.m */; };
+		278DB49816EE75B40087374D /* FLAnimatedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 278DB49216EE75B40087374D /* FLAnimatedImageView.m */; };
+		278DB49916EE75B40087374D /* FLAnimatedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 278DB49216EE75B40087374D /* FLAnimatedImageView.m */; };
+		278DB49A16EE75B40087374D /* FLAnimatedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 278DB49216EE75B40087374D /* FLAnimatedImageView.m */; };
+		278DB49B16EE75B40087374D /* FLAnimatedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 278DB49216EE75B40087374D /* FLAnimatedImageView.m */; };
 		27CBBFEE16768BA600753D0A /* FishLampCocoa-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27D1E5C1166D355C00DB680E /* FishLampCocoa-Prefix.pch */; };
 		27D1E5C2166D355C00DB680E /* FishLampCocoa-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27D1E5C1166D355C00DB680E /* FishLampCocoa-Prefix.pch */; };
 		27D1E5C3166D355C00DB680E /* FishLampCocoa-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27D1E5C1166D355C00DB680E /* FishLampCocoa-Prefix.pch */; };
@@ -925,6 +934,8 @@
 		276F1CCB16ED0AE6007937E9 /* FLSpinningProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLSpinningProgressView.m; sourceTree = "<group>"; };
 		276F1CD916ED1396007937E9 /* FLRotateAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLRotateAnimation.h; sourceTree = "<group>"; };
 		276F1CDA16ED1396007937E9 /* FLRotateAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLRotateAnimation.m; sourceTree = "<group>"; };
+		278DB49116EE75B40087374D /* FLAnimatedImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAnimatedImageView.h; sourceTree = "<group>"; };
+		278DB49216EE75B40087374D /* FLAnimatedImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAnimatedImageView.m; sourceTree = "<group>"; };
 		2798DB81166D8A7F00A0863D /* SharedTargetSettings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = SharedTargetSettings.xcconfig; sourceTree = "<group>"; };
 		27A43AB415CDCC89001CB13E /* libFishLampCocoaUI-iOS-ARC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoaUI-iOS-ARC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27A43AC415CDCCCB001CB13E /* libFishLampCocoaUI-OSX-64-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoaUI-OSX-64-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1471,6 +1482,8 @@
 				78329BD8167E97C20024E8DC /* FLProgressViewController.m */,
 				276F1CCA16ED0AE6007937E9 /* FLSpinningProgressView.h */,
 				276F1CCB16ED0AE6007937E9 /* FLSpinningProgressView.m */,
+				278DB49116EE75B40087374D /* FLAnimatedImageView.h */,
+				278DB49216EE75B40087374D /* FLAnimatedImageView.m */,
 			);
 			path = Progress;
 			sourceTree = "<group>";
@@ -1645,6 +1658,7 @@
 				27FB507516EBEC48004FC64F /* FLBarHighlightBackgoundLayer.h in Headers */,
 				276F1CCC16ED0AE6007937E9 /* FLSpinningProgressView.h in Headers */,
 				276F1CDB16ED1397007937E9 /* FLRotateAnimation.h in Headers */,
+				278DB49316EE75B40087374D /* FLAnimatedImageView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1740,6 +1754,7 @@
 				27FB507716EBEC48004FC64F /* FLBarHighlightBackgoundLayer.h in Headers */,
 				276F1CCE16ED0AE6007937E9 /* FLSpinningProgressView.h in Headers */,
 				276F1CDD16ED1397007937E9 /* FLRotateAnimation.h in Headers */,
+				278DB49516EE75B40087374D /* FLAnimatedImageView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1835,6 +1850,7 @@
 				27FB507616EBEC48004FC64F /* FLBarHighlightBackgoundLayer.h in Headers */,
 				276F1CCD16ED0AE6007937E9 /* FLSpinningProgressView.h in Headers */,
 				276F1CDC16ED1397007937E9 /* FLRotateAnimation.h in Headers */,
+				278DB49416EE75B40087374D /* FLAnimatedImageView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1930,6 +1946,7 @@
 				27FB507816EBEC48004FC64F /* FLBarHighlightBackgoundLayer.h in Headers */,
 				276F1CCF16ED0AE6007937E9 /* FLSpinningProgressView.h in Headers */,
 				276F1CDE16ED1397007937E9 /* FLRotateAnimation.h in Headers */,
+				278DB49616EE75B40087374D /* FLAnimatedImageView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2189,6 +2206,7 @@
 				27FB507A16EBEC48004FC64F /* FLBarHighlightBackgoundLayer.m in Sources */,
 				276F1CD116ED0AE6007937E9 /* FLSpinningProgressView.m in Sources */,
 				276F1CE016ED1397007937E9 /* FLRotateAnimation.m in Sources */,
+				278DB49816EE75B40087374D /* FLAnimatedImageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2279,6 +2297,7 @@
 				27FB507C16EBEC48004FC64F /* FLBarHighlightBackgoundLayer.m in Sources */,
 				276F1CD316ED0AE6007937E9 /* FLSpinningProgressView.m in Sources */,
 				276F1CE216ED1397007937E9 /* FLRotateAnimation.m in Sources */,
+				278DB49A16EE75B40087374D /* FLAnimatedImageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2369,6 +2388,7 @@
 				27FB507916EBEC48004FC64F /* FLBarHighlightBackgoundLayer.m in Sources */,
 				276F1CD016ED0AE6007937E9 /* FLSpinningProgressView.m in Sources */,
 				276F1CDF16ED1397007937E9 /* FLRotateAnimation.m in Sources */,
+				278DB49716EE75B40087374D /* FLAnimatedImageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2459,6 +2479,7 @@
 				27FB507B16EBEC48004FC64F /* FLBarHighlightBackgoundLayer.m in Sources */,
 				276F1CD216ED0AE6007937E9 /* FLSpinningProgressView.m in Sources */,
 				276F1CE116ED1397007937E9 /* FLRotateAnimation.m in Sources */,
+				278DB49916EE75B40087374D /* FLAnimatedImageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2549,6 +2570,7 @@
 				27FB507D16EBEC48004FC64F /* FLBarHighlightBackgoundLayer.m in Sources */,
 				276F1CD416ED0AE6007937E9 /* FLSpinningProgressView.m in Sources */,
 				276F1CE316ED1397007937E9 /* FLRotateAnimation.m in Sources */,
+				278DB49B16EE75B40087374D /* FLAnimatedImageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

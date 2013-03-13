@@ -1,79 +1,71 @@
 //
-//	FLTimer.h
-//	FishLamp
+//  FLTimer.h
+//  FishLamp
 //
-//	Created by Mike Fullerton on 9/14/10.
-//	Copyright 2010 GreenTongue Software. All rights reserved.
+//  Created by Mike Fullerton on 10/25/12.
+//  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
 #import "FLCocoaRequired.h"
-#import "FishLampCore.h"
-#import "FLCallback_t.h"
-#import "FLWeakReference.h" 
-#import "FLCallback_t.h"
+#import "NSError+FLTimeout.h"
 
-@interface FLWeaklyReferencedTimer : NSObject {
-@private
-	FLWeakReference* _target;
-	SEL _action;
-	NSTimer* _timer;
-}
+extern NSString* const FLTimedOutNotification;
 
-- (id) initWithWeaklyReferencedTarget:(id) target action:(SEL) action;
+#define FLTimerDefaultCheckTimestampInterval 1.0f
 
-- (void)startTimerWithTimeInterval:(NSTimeInterval) interval 
-	repeats:(BOOL) repeats
-	inRunLoop:(NSRunLoop*) runLoop;
-	
-- (void) stopTimer;
-
-@end 
-
-@protocol FLTimerDelegate;
- 
 @interface FLTimer : NSObject {
 @private
-	NSTimeInterval _startTime;
-	NSTimeInterval _endTime;
-	NSTimeInterval _lastUpdateTimeStamp;
-	NSTimeInterval _timeoutInterval;
-	NSTimeInterval _lastTimeoutCheck;
-	FLCallback_t _timeoutCallback;
-	FLWeaklyReferencedTimer* _timer;
-	
-    __unsafe_unretained id<FLTimerDelegate> _delegate;
-	struct {
-		unsigned int isTiming:1;
-		unsigned int logEvents:1;
-	} _timerFlags;
+    NSTimeInterval _timestamp;
+    NSTimeInterval _timeoutInterval;
+    NSTimeInterval _checkTimestampInterval;
+    NSTimeInterval _startTime;
+    NSTimeInterval _endTime;
+    
+    BOOL _timedOut;
+    BOOL _timing;
+    BOOL _postNotifications;
+    dispatch_source_t _timer;
+    
+    __unsafe_unretained id _delegate;
+    SEL _timerDidTimeout;
+    SEL _timerWasUpdated;
 }
 
-@property (readwrite, assign) id<FLTimerDelegate> delegate;	 
- 
-@property (readwrite, assign) BOOL logEvents;
+// config
+@property (readwrite, assign) NSTimeInterval timeoutInterval;
+@property (readwrite, assign) NSTimeInterval checkTimestampInterval;
 
-@property (readonly, assign) NSTimeInterval timeoutInterval;
+/// this will post to the NSNotificationCenter when timed out.
+@property (readwrite, assign, nonatomic) BOOL postNotifications;
+
+// info
 @property (readonly, assign) NSTimeInterval startTime;
-@property (readonly, assign) NSTimeInterval endTime;
-@property (readonly, assign) NSTimeInterval lastUpdateTimeStamp;
-@property (readonly, assign) BOOL isTiming;
 @property (readonly, assign) NSTimeInterval elapsedTime;
+@property (readonly, assign, getter=hasTimedOut) BOOL timedOut;
 
-- (void) startTiming:(NSRunLoop*) inRunLoop;
-- (void) startTimeoutTimer:(NSRunLoop*) inRunLoop timeout:(NSTimeInterval) timeout target:(id) target action:(SEL) action;
-- (void) stopTiming;
+// delegate
+@property (readwrite, assign, nonatomic) id delegate;
+@property (readwrite, assign, nonatomic) SEL timerDidTimeout;
+@property (readwrite, assign, nonatomic) SEL timerWasUpdated;
 
-- (void) updateTimeStamp;
+// timer control
+@property (readonly, assign, getter=isTiming) BOOL timing;
+- (void) startTimer;
+- (void) stopTimer;
+- (void) restartTimer;
 
-// only need to call this to manually restart timer after callback (from your timeout callback).
-- (void) restartTimeoutTimer:(NSRunLoop*) inRunLoop;
+// last activity
+@property (readonly, assign) NSTimeInterval timestamp;
+- (void) touchTimestamp;
 
+// construction
+- (id) initWithTimeoutInterval:(NSTimeInterval) interval;
++ (FLTimer*) timeoutTimer;
++ (FLTimer*) timeoutTimer:(NSTimeInterval) timeoutInterval;
 @end
 
 @protocol FLTimerDelegate <NSObject>
 @optional
-//- (void) timer:(FLTimer*) timer describeTimedObjectToBuilder:(FLFancyString*) builder;
-
-@end 
-
-extern float FLTimeBlock (dispatch_block_t block);
+- (void) timerDidTimeout:(FLTimer*) timer;
+- (void) timerWasUpdated:(FLTimer*) timer;
+@end

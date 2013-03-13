@@ -51,6 +51,8 @@ typedef void (^FLActionErrorBlock)(FLAction* action, NSError* error);
     BOOL _disableWarningNotifications;
 	BOOL _disableActivityTimer;
     BOOL _networkRequired;
+    
+    __unsafe_unretained id<FLWorkerContext> _workerContext;
 }
 
 @property (readonly, strong) FLOperationQueue* operations;
