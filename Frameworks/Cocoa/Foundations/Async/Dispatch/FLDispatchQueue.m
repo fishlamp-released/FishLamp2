@@ -180,9 +180,35 @@ static void * const s_queue_key = (void*)&s_queue_key;
     FLReturnStaticObject([[FLDispatchQueue alloc] initWithDispatchQueue:dispatch_get_main_queue()]);
 }
 
-+ (FLDispatchQueue*) fifoQueue {
++ (FLFifoAsyncQueue*) fifoQueue {
     FLReturnStaticObject([[FLFifoAsyncQueue alloc] init]);
 }
+
+@end
+
+@implementation FLFifoAsyncQueue  
+
++ (id) fifoAsyncQueue {
+    return FLAutorelease([[[self class] alloc] init]);
+}
+
+- (id) init {
+    static int s_count = 0;
+    return [super initWithLabel:[NSString stringWithFormat:@"com.fishlamp.queue.fifo%d", s_count++] attr:DISPATCH_QUEUE_SERIAL];
+}
+
++ (FLObjectPool*) pool {
+    static FLObjectPoolFactory s_factory = ^{
+        return [FLFifoAsyncQueue fifoAsyncQueue];
+    };
+
+    FLReturnStaticObject([[FLObjectPool alloc] initWithObjectFactory:s_factory]); 
+}
+
+- (void) releaseToPool {
+
+}
+
 
 @end
 

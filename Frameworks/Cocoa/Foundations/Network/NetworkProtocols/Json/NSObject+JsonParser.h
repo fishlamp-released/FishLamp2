@@ -5,6 +5,7 @@
 //  Created by Mike Fullerton on 5/17/11.
 //  Copyright 2011 GreenTongue Software. All rights reserved.
 //
+#if REFACTOR
 
 #import "FLCocoaRequired.h"
 #import "FishLampCore.h"
@@ -19,3 +20,5 @@
 - (BOOL) setJsonData:(id) data forKey:(NSString*) key;
 
 @end
+
+#endif

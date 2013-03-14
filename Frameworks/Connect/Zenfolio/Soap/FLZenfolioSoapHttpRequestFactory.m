@@ -7,14 +7,10 @@
 //
 
 #import "FLZenfolioSoapHttpRequestFactory.h"
-//#import "NSError+FLExtras.h"
 #import "FLZenfolioSoapHttpRequest.h"
-//#import "FLUserLoginService.h"
-
-//#import "FLNetworkServerContext.h"
-
 #import "FLZenfolioApi1_6All.h"
 #import "FLCoreTypes.h"
+#import "FLSoapObjectBuilder.h"
 
 #define FLZenfolioSoapHttpRequestFrom(__NAME__, __PATH__, __CLASS__) \
     [FLZenfolioSoapHttpRequestFactory soapHttpRequest:FLAutorelease([[__NAME__ alloc] init]) path:@"Envelope/Body/"\
@@ -64,6 +60,26 @@ decodedType:[__CLASS__ class]]
 //}
 //#endif
 
++ (FLResult) zenfolioResultFromSoapResponse:(FLParsedItem*) parsedSoap pathToObject:(NSString*) pathToObject objectType:(FLType*) type {
+    FLAssertNotNil_(parsedSoap);
+    FLAssertNotNil_(pathToObject);
+    FLAssertNotNil_(type);
+    
+    FLParsedItem* objectXml = [parsedSoap elementAtPath:pathToObject];
+    FLConfirmNotNil_(objectXml);
+    
+    FLLog(@"object xml: %@, object type: %@", pathToObject, [type description]);
+     
+    id zenfolioObject = [[FLSoapObjectBuilder instance] buildObjectWithType:type withXml:objectXml];
+
+    FLConfirmNotNil_v(zenfolioObject, @"object not inflated for type: %@", [type description]);
+    FLAssertIsClass(zenfolioObject, type.classForType); // ([object class] == _expectedObjectType, @"built %@, expecting %@", NSStringFromClass([object class]), NSStringFromClass(_expectedObjectType));
+
+
+    return zenfolioObject;
+}
+
+
 + (FLSoapHttpRequest*) soapHttpRequest:(id) operationDescriptor 
                                   path:(NSString*) path 
                            decodedType:(Class) decodedClass {
@@ -76,8 +92,10 @@ decodedType:[__CLASS__ class]]
 
     FLZenfolioSoapHttpRequest* soapHttpRequest = [FLZenfolioSoapHttpRequest soapHttpRequestWithGeneratedObject:operationDescriptor 
                                                                                     serverInfo:s_soapServer];
-
-    [soapHttpRequest setExpectedResultAtXmlPath:path expectedObjectClass:decodedClass];
+    
+    soapHttpRequest.handleSoapResponseBlock = (FLResult) ^(FLParsedItem* item) {
+        return [self zenfolioResultFromSoapResponse:item pathToObject:path objectType:[decodedClass type]];
+    };
     
     
     return soapHttpRequest;

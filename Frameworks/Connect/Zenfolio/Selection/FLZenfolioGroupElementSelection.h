@@ -6,13 +6,38 @@
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
+#import "FishLampCocoaUI.h"
 #import "FLZenfolioGroupElement.h"
+#import "FLOrderedCollection.h"
 
 @protocol ZFZenfolioGroupElementSelectionDelegate;
 
-@interface FLZenfolioGroupElementSelection : NSObject
+@interface FLZenfolioGroupElementSelection : NSObject {
+@private
+    FLZenfolioGroup* _rootGroup;
+
+// these only hold object ids
+    NSMutableSet* _filtered;
+    NSMutableSet* _expanded;
+    NSMutableSet* _selected;
+
+    NSString* _filterString;
+
+// cached
+    NSMutableArray* _selectedPhotoSets;
+
+// all elements, flattened.
+    FLOrderedCollection* _elements;
+
+// indexable list for outline view
+    NSMutableArray* _displayList;
+
+// cached selection
+    NSMutableIndexSet* _cachedIndexSet;
+
+    __unsafe_unretained id<ZFZenfolioGroupElementSelectionDelegate> _delegate;
+}
+
 
 - (id) initWithRootGroup:(FLZenfolioGroup*) rootGroup;
 + (id) groupElementSelection:(FLZenfolioGroup*) rootGroup;
@@ -49,7 +74,7 @@
 - (void) sortWithDescriptor:(NSSortDescriptor*) descriptor;
 
 /// misc utils
-- (void) replaceGroupElement:(id) element;
+- (void) replaceGroupElement:(id) element atIndex:(NSUInteger) index;
 
 /// indexed operations
 - (id) childElementForGroup:(FLZenfolioGroup*) parent atIndex:(NSUInteger) index;

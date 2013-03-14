@@ -8,11 +8,3 @@
 
 #import "FLDispatchQueue.h"
 
-@interface FLFifoAsyncQueue : FLDispatchQueue
-+ (id) fifoDispatchQueue;
-+ (FLObjectPool*) pool;
-@end
-
-// TODO: make the pool a dispatcher. queue the block get the dispatcher back.
-
-

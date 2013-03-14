@@ -8,25 +8,3 @@
 
 #import "FLFifoAsyncQueue.h"
 
-@implementation FLFifoAsyncQueue  
-
-+ (id) fifoDispatchQueue {
-    return FLAutorelease([[[self class] alloc] init]);
-}
-
-- (id) init {
-    static int s_count = 0;
-    return [super initWithLabel:[NSString stringWithFormat:@"com.fishlamp.queue.fifo%d", s_count++] attr:DISPATCH_QUEUE_SERIAL];
-}
-
-+ (FLObjectPool*) pool {
-    static FLObjectPoolFactory s_factory = ^{
-        return [FLFifoAsyncQueue fifoDispatchQueue];
-    };
-
-    FLReturnStaticObject([[FLObjectPool alloc] initWithObjectFactory:s_factory]); 
-}
-
-
-@end
-

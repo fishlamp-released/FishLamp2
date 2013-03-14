@@ -159,10 +159,10 @@
     return foundIt;
 }
 
-- (void) loadAllObjectsForTypeWithClass:(Class) objectClass
+- (void) loadAllObjectsForTypeWithClass:(Class) classForType
                              outObjects:(NSArray**) outObjects {
 
-	[self loadAllObjectsForTypeWithTable:[objectClass sharedDatabaseTable] outObjects:outObjects];
+	[self loadAllObjectsForTypeWithTable:[classForType sharedDatabaseTable] outObjects:outObjects];
 }
 
 - (void) loadAllObjectsForTypeWithTable:(FLDatabaseTable*) table

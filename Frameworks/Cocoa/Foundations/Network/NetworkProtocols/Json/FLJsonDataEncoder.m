@@ -22,7 +22,7 @@ FLSynthesizeSingleton(FLJsonDataEncoder);
 // TODO: pretty sure this has never worked. Written and never used or tested
 /*
 - (void) encodeDataToString:(id) data 
-					forType:(FLTypeDesc*) type
+					forType:(FLType*) type
 		   outEncodedString:(NSString**) outString
 {
 	switch(type.specificType)

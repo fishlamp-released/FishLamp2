@@ -146,7 +146,7 @@
         observation.receiver = observer;
         observation.sender = self;
         observation.observation = observationObj;
-        observation.parameterCount = 0; 
+        observation.parameterCount = 1; 
         observation.cacheable = YES;         
         [observation postObservationToListener:observer];
     }
@@ -164,7 +164,7 @@
         observation.sender = self;
         observation.observation = observationObj;
         observation.parameter1 = object1;
-        observation.parameterCount = 1; 
+        observation.parameterCount = 2; 
         observation.cacheable = YES;         
         [observation postObservationToListener:observer];
     }
@@ -182,7 +182,7 @@
         observation.observation = observationObj;
         observation.parameter1 = object1;
         observation.parameter1 = object2;
-        observation.parameterCount = 2; 
+        observation.parameterCount = 3; 
         observation.cacheable = YES;         
         [observation postObservationToListener:observer];
     }

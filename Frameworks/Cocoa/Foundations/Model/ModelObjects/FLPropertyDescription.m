@@ -11,7 +11,7 @@
 
 @interface FLPropertyDescription ()
 @property (readwrite, strong, nonatomic) NSString* propertyName;
-@property (readwrite, strong, nonatomic) FLTypeDesc* propertyType;
+@property (readwrite, strong, nonatomic) FLType* propertyType;
 @property (readwrite, strong, nonatomic) NSArray* arrayTypes;
 @property (readwrite, assign, nonatomic, getter=isUnboundedArray) BOOL unboundedArray;
 @property (readwrite, assign, nonatomic, getter=isUnboundedArrayItem) BOOL unboundedArrayItem;
@@ -43,7 +43,7 @@
 	if((self = [super init])) {
 		FLAssertStringIsNotEmpty_(name);
         self.propertyName = name;
-        self.propertyType = [propertyClass typeDesc];
+        self.propertyType = [propertyClass type];
 		self.arrayTypes = arrayTypes;
 		self.unboundedArray = isUnboundedArray;
 
@@ -107,7 +107,7 @@
 	return [NSString stringWithFormat:@"%@: Name: %@, Class: %@, Type: %@, isUnboundedArray: %d, isUnboundedArrayType: %d, ArrayTypes:\n%@",
 		[super description],
 		self.propertyName,
-		NSStringFromClass(self.propertyType.typeClass),
+		NSStringFromClass(self.propertyType.classForType),
 		[self.propertyType description],
 		self.isUnboundedArray,
 		self.isUnboundedArrayItem,

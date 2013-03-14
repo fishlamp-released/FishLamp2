@@ -7,7 +7,7 @@
 //
 
 #import "FLCocoaRequired.h"
-#import "FLParsedXmlElement.h"
+#import "FLParsedItem.h"
 
 #define FLXmlParserDomain @"FLXmlParserDomain"
 
@@ -30,7 +30,7 @@ typedef enum {
 
 + (id) xmlParser;
 
-- (FLParsedXmlElement*) parseData:(NSData*) data;
+- (FLParsedItem*) parseData:(NSData*) data;
 
 // optional override
 - (void) willParseXMLData:(NSData*) data withXMLParser:(NSXMLParser*) parser;

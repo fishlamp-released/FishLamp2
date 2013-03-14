@@ -75,21 +75,7 @@
 - (BOOL) elementInFilter:(id) element;
 @end
 
-@implementation FLZenfolioGroupElementSelection {
-@private
-    FLZenfolioGroup* _rootGroup;
-    NSMutableSet* _filtered;
-    NSMutableSet* _expanded;
-    NSMutableSet* _selected;
-    NSString* _filterString;
-    NSMutableArray* _selectedPhotoSets;
-    FLOrderedCollection* _elements;
-    NSMutableArray* _displayList;
-
-    NSMutableIndexSet* _cachedIndexSet;
-
-    __unsafe_unretained id<ZFZenfolioGroupElementSelectionDelegate> _delegate;
-}
+@implementation FLZenfolioGroupElementSelection 
 
 @synthesize expanded = _expanded;
 @synthesize filtered = _filtered;
@@ -170,9 +156,15 @@
     return [self.elements objectForKey:idObject];
 }
 
-- (void) replaceGroupElement:(id) element {
+- (void) replaceGroupElement:(id) element atIndex:(NSUInteger) row { 
+    
     [self.rootGroup replaceGroupElement:element];
     [self.elements replaceObjectAtIndex:[self.elements indexForKey:[element Id]] withObject:element forKey:[element Id]];
+
+    if(row < _displayList.count) {
+        FLAssert_([[_displayList objectAtIndex:row] IdValue] == [element IdValue]);
+        [_displayList replaceObjectAtIndex:row withObject:element];
+    }
 }
 
 - (id) childElementForGroup:(FLZenfolioGroup*) parent atIndex:(NSUInteger) index {

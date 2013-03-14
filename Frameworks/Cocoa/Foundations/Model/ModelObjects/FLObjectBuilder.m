@@ -67,7 +67,7 @@
 	{			
 		if([arrayItem isKindOfClass:[NSDictionary class]])
 		{
-			id newObject = FLAutorelease([[arrayItemDesc.propertyType.typeClass alloc] init]);
+			id newObject = FLAutorelease([[arrayItemDesc.propertyType.classForType alloc] init]);
 			[newArray addObject:newObject];
 			[self buildObject:newObject fromDictionary:arrayItem withObjectDescriber:[[newObject class] sharedObjectDescriber] withDecoder:decoder];
 		}
@@ -121,7 +121,7 @@
 				{
 //					FLAssert_v(property.propertyType.generalType == FLGeneralTypeObject, @"not an object?");
 				
-					id newObject = FLAutorelease([[property.propertyType.typeClass alloc] init]);
+					id newObject = FLAutorelease([[property.propertyType.classForType alloc] init]);
 					[object setValue:newObject forKey:key];
 					[self buildObject:newObject fromDictionary:value withObjectDescriber:[[newObject class] sharedObjectDescriber] withDecoder:decoder];
 				}

@@ -111,7 +111,7 @@
 }
 
 - (void) startWorking:(FLFinisher*) finisher {
-    FLHttpStreamWorker* worker = [FLHttpStreamWorker httpRequestWorker:self];
+    FLHttpStreamWorker* worker = [FLHttpStreamWorker httpRequestWorker:self asyncQueue:[FLFifoAsyncQueue fifoAsyncQueue]];
     [self.workerContext startWorker:worker withFinisher:finisher];
 }
 

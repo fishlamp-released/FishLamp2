@@ -1,19 +1,19 @@
 //
-//  FLParsedXmlElement.m
+//  FLParsedItem.m
 //  FishLampCocoa
 //
 //  Created by Mike Fullerton on 3/13/13.
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
 
-#import "FLParsedXmlElement.h"
+#import "FLParsedItem.h"
 
-@interface FLParsedXmlElement ()
-@property (readwrite, assign, nonatomic) FLParsedXmlElement* parent;
+@interface FLParsedItem ()
+@property (readwrite, assign, nonatomic) FLParsedItem* parent;
 
 @end
 
-@implementation FLParsedXmlElement
+@implementation FLParsedItem
 
 @synthesize attributes = _attributes;
 @synthesize namespaceURI = _namespace;
@@ -23,7 +23,7 @@
 @synthesize elements = _elements;
 @synthesize parent = _parent;
 
-+ (id) parsedXmlElement {
++ (id) parsedItem {
     return FLAutorelease([[[self class] alloc] init]);
 }
 
@@ -39,7 +39,7 @@
     }
 }
 
-- (void) addElement:(FLParsedXmlElement*) element {
+- (void) addElement:(FLParsedItem*) element {
     if(!_elements) {
         _elements = [[NSMutableDictionary alloc] init];
     }
@@ -57,7 +57,7 @@
     element.parent = self;
 }
 
-- (FLParsedXmlElement*) elementForElementName:(NSString*) name {
+- (FLParsedItem*) elementForElementName:(NSString*) name {
     return [_elements objectForKey:name];
 }
 
@@ -73,8 +73,8 @@
 }
 #endif
 
-- (FLParsedXmlElement*) elementAtPath:(NSString*) path {
-    FLParsedXmlElement* obj = self;
+- (FLParsedItem*) elementAtPath:(NSString*) path {
+    FLParsedItem* obj = self;
     NSArray* pathComponents = [path pathComponents];
     for(NSString* component in pathComponents) {
         obj = [obj elementForElementName:component];

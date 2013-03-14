@@ -7,10 +7,10 @@
 //
 
 #import "FLXmlDocumentBuilder.h"
-#import "FLTypeDesc.h"
+#import "FLType.h"
 #import "FLCoreTypes.h"
 
-@interface FLTypeDesc (FLXmlSerialization)
+@interface FLType (FLXmlSerialization)
 - (void) addToXmlElement:(FLXmlElement*) xmlElement
      propertyDescription:(FLPropertyDescription*) description
                    value:(id) value;

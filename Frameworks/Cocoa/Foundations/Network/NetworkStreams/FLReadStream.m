@@ -49,6 +49,7 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
 
 - (void) willOpen {
     [super willOpen];
+    FLAssert_([NSThread currentThread] != [NSThread mainThread]);
      
     _streamRef = [self createReadStreamRef];         
          
@@ -67,9 +68,12 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
     CFReadStreamScheduleWithRunLoop(_streamRef, CFRunLoopGetMain(), bridge_(void*,NSDefaultRunLoopMode));
 }
 
-- (void) closeStream {
+- (void) willClose {
+
+    FLAssert_([NSThread currentThread] != [NSThread mainThread]);
+
     if(_streamRef) {
-        [self willClose];
+        [super willClose];
 
         FLAssertNotNil_(_streamRef);
         CFReadStreamClose(_streamRef);
@@ -103,7 +107,9 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
 
 - (NSUInteger) readBytes:(uint8_t*) bytes 
                maxLength:(NSUInteger) maxLength {
-    
+   
+    FLAssert_([NSThread currentThread] != [NSThread mainThread]);
+      
     FLAssertNotNil_(_streamRef);
     
 

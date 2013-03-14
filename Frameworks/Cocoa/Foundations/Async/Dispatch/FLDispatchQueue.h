@@ -45,6 +45,13 @@
 
 @end
 
+@interface FLFifoAsyncQueue : FLDispatchQueue
++ (id) fifoAsyncQueue;
++ (FLObjectPool*) pool;
+
+- (void) releaseToPool;
+@end
+
 @interface FLAsyncQueue (SharedDispatchQueues) 
 + (FLDispatchQueue*) veryLowPriorityQueue;
 + (FLDispatchQueue*) lowPriorityQueue;
@@ -53,5 +60,10 @@
 
 + (FLDispatchQueue*) mainThreadQueue;
 
-+ (FLDispatchQueue*) fifoQueue;
++ (FLFifoAsyncQueue*) fifoQueue;
 @end
+
+
+// TODO: make the pool a dispatcher. queue the block get the dispatcher back.
+
+

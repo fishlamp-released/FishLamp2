@@ -8,7 +8,10 @@
 
 #import "FLHttpRequest.h"
 #import "FLSoapFault11.h"
-#import "FLTypeDesc.h"
+#import "FLType.h"
+#import "FLParsedItem.h"
+
+typedef FLResult (^FLHandleSoapResponseBlock)(FLParsedItem* parsedSoap);
 
 @interface FLSoapHttpRequest : FLHttpRequest {
 @private
@@ -17,20 +20,18 @@
     NSString* _soapActionHeader;
     NSString* _operationName;
     id _soapInput;
-    NSString* _xmlDataPath;
-    Class _expectedObjectClass;
+    FLHandleSoapResponseBlock _handleSoapResponseBlock;
 }
 
-@property (readwrite, strong) id soapInput;
+@property (readwrite, strong, nonatomic) id soapInput;
 
-@property (readwrite, strong) NSString* soapActionHeader;
-@property (readwrite, strong) NSString* soapNamespace;
-@property (readwrite, strong) NSString* operationName;
+@property (readwrite, strong, nonatomic) NSString* soapActionHeader;
+@property (readwrite, strong, nonatomic) NSString* soapNamespace;
+@property (readwrite, strong, nonatomic) NSString* operationName;
 
+@property (readwrite, copy, nonatomic) FLHandleSoapResponseBlock handleSoapResponseBlock;
 
 + (FLSoapFault11*) checkForSoapFaultInData:(NSData*) data;
-
-- (void) setExpectedResultAtXmlPath:(NSString*) path expectedObjectClass:(Class) expectedObjectClass;
 
 // optionally override
 - (NSError*) createErrorForSoapFault:(FLSoapFault11*) fault;

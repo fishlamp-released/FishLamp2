@@ -7,6 +7,7 @@
 //
 
 #import "FLCocoaRequired.h"
+#import "FLDispatch.h"
 
 @protocol FLNetworkStreamDelegate;
 
@@ -16,41 +17,45 @@
     NSError* _error;
     
     __unsafe_unretained id<FLNetworkStreamDelegate> _delegate;
-    
-//    NSMutableArray* _delegates;
+    FLFifoAsyncQueue* _asyncQueue;
 }
 @property (readonly, assign, nonatomic) id<FLNetworkStreamDelegate> delegate;
-
-//@property (readonly, strong) NSArray* delegates;
-//- (void) addDelegate:(id<FLNetworkStreamDelegate>) delegate;
-//- (void) removeDelegate:(id<FLNetworkStreamDelegate>) delegate;
+@property (readonly, strong) FLFifoAsyncQueue* asyncQueue;
 
 @property (readonly, assign, getter=isOpen) BOOL open;
-@property (readwrite, strong) NSError* error;
+@property (readonly, strong) NSError* error;
+
+- (void) openStreamWithDelegate:(id<FLNetworkStreamDelegate>) delegate 
+                     asyncQueue:(FLFifoAsyncQueue*) asyncQueue;
+- (void) closeStream;
+- (void) closeStreamWithError:(NSError*) error;
+
+// all of these are called on the async queue.
+
+// required overrides
+- (void) willOpen;
+- (void) willClose;
+- (NSError*) streamError;
 
 // optional overrides
-- (void) willOpen;
 - (void) didOpen;
-- (void) willClose;
 - (void) didClose;
 
-// stream events. All of these do nothing by default.
+// stream events. All of these do nothing by default. They are called on the 
+// async queue.
 - (void) encounteredOpen;
 - (void) encounteredCanAcceptBytes;
 - (void) encounteredBytesAvailable;
 - (void) encounteredError:(NSError*) error;
 - (void) encounteredEnd;
 
+@end
 
-// required overrides
-- (NSError*) streamError;
-- (void) openStreamWithDelegate:(id<FLNetworkStreamDelegate>) delegate;
-- (void) closeStream;
-
-// for CFStream subclasses
-
+@interface FLNetworkStream (SubclassUtils)
 + (void) handleStreamEvent:(CFStreamEventType) eventType withStream:(FLNetworkStream*) stream;
-
+- (void) queueBlock:(dispatch_block_t) block;
+- (void) queueSelector:(SEL) selector;
+- (void) queueSelector:(SEL) selector withObject:(id) object;
 @end
 
 @protocol FLNetworkStreamDelegate <NSObject>

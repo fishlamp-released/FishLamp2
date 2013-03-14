@@ -7,13 +7,13 @@
 //
 
 #import "FLCocoaRequired.h"
-#import "FLTypeDesc.h"
+#import "FLType.h"
 #import "FLCoreTypes.h"
 
 @interface FLPropertyDescription :NSObject {
 @private
 	NSString* _name;
-    FLTypeDesc* _propertyType;
+    FLType* _propertyType;
 
 //	SEL _getter;
 //    SEL _setter;
@@ -38,7 +38,7 @@
 @property (readonly, assign, nonatomic, getter=isUnboundedArrayItem) BOOL unboundedArrayItem;
 
 @property (readonly, strong, nonatomic) NSString* propertyName;
-@property (readonly, strong, nonatomic) FLTypeDesc* propertyType;
+@property (readonly, strong, nonatomic) FLType* propertyType;
 
 @property (readonly, strong, nonatomic) NSArray* arrayTypes;
 @property (readonly, assign, nonatomic) BOOL isArray;

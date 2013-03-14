@@ -27,13 +27,13 @@
     else {
         FLAssertNotNil_(description);
         
-        FLTypeDesc* typeDesc = description.propertyType;
-        FLAssertNotNil_(typeDesc);
+        FLType* type = description.propertyType;
+        FLAssertNotNil_(type);
         
         id<FLDataEncoding> encoder = xmlElement.dataEncoder;
         FLAssertNotNil_(encoder);
         
-        NSString* line = [typeDesc encodeObjectToString:self withEncoder:encoder];
+        NSString* line = [type encodeObjectToString:self withEncoder:encoder];
 
         [xmlElement appendLine:line];
     }
@@ -62,7 +62,7 @@
 				// hmm. expensive. need to decide for each item.
 				
 				for(FLPropertyDescription* elementDesc in arrayTypes) {
-					if([obj isKindOfClass:elementDesc.propertyType.typeClass]) {
+					if([obj isKindOfClass:elementDesc.propertyType.classForType]) {
                         [xmlElement addElement:[FLObjectXmlElement objectXmlElement:obj xmlElementTag:elementDesc.propertyName propertyDescription:elementDesc]];
 						break;
 					}

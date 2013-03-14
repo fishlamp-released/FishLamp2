@@ -12,6 +12,7 @@
 
 @interface FLHttpRequestWorker ()
 @property (readwrite, strong, nonatomic) FLHttpRequest* httpRequest;
+@property (readwrite, strong, nonatomic) id<FLAsyncQueue> asyncQueue;
 @end
 
 @implementation FLHttpRequestWorker 
@@ -19,37 +20,41 @@
 @synthesize httpRequest = _httpRequest;
 @synthesize asyncQueue = _asyncQueue;
 
-- (id) initWithHttpRequest:(FLHttpRequest*) request {
+- (id) initWithHttpRequest:(FLHttpRequest*) request asyncQueue:(FLFifoAsyncQueue*) asyncQueue {
     self = [super init];
     if(self) {
         self.httpRequest = request;
-        self.asyncQueue = [FLFifoAsyncQueue fifoDispatchQueue];
+        self.asyncQueue = asyncQueue;
     }
         
     return self;
 }
 
-+ (id) httpRequestWorker:(FLHttpRequest*) request {
-    return FLAutorelease([[[self class] alloc] initWithHttpRequest:request]);
++ (id) httpRequestWorker:(FLHttpRequest*) request asyncQueue:(FLFifoAsyncQueue*) asyncQueue{
+    return FLAutorelease([[[self class] alloc] initWithHttpRequest:request asyncQueue:asyncQueue]);
 }
+
+- (void) dealloc {
+    [_asyncQueue releaseToPool];
 
 #if FL_MRC
-- (void) dealloc {
-    [_asyncQueue release];
     [_httpRequest release];
     [super dealloc];
-}
 #endif
+}
 @end
 
-@implementation FLHttpRequestAuthenticatorWorker 
+@implementation FLHttpRequestAuthenticationWorker 
 
 - (id) initWithHttpRequest:(FLHttpRequest*) request {
-    self = [super initWithHttpRequest:request];
+    self = [super initWithHttpRequest:request asyncQueue:[request.authenticator httpRequestAuthenticationDispatcher:request]];
     if(self) {
-        self.asyncQueue = [self.httpRequest.authenticator httpRequestAuthenticationDispatcher:self.httpRequest];
     }
     return self;
+}
+
++ (id) httpRequestAuthenticationWorker:(FLHttpRequest*) request {
+    return FLAutorelease([[[self class] alloc] initWithHttpRequest:request]);
 }
 
 - (void) startWorking:(FLFinisher*) finisher {
@@ -79,12 +84,12 @@
 @synthesize finisher = _finisher;
 @synthesize httpStream = _httpStream;
 
-- (id) initWithHttpRequest:(FLHttpRequest*) request {
-    self = [super initWithHttpRequest:request];
-    if(self) {
-    }
-    return self;
-}
+//- (id) initWithHttpRequest:(FLHttpRequest*) request {
+//    self = [super initWithHttpRequest:request];
+//    if(self) {
+//    }
+//    return self;
+//}
 
 #if FL_MRC
 - (void) dealloc {
@@ -160,7 +165,7 @@
     }
     
     self.httpStream  = [FLHttpStream httpStream:cfRequest withBodyStream:request.body.bodyStream];
-    [self.httpStream openStreamWithDelegate:self];
+    [self.httpStream openStreamWithDelegate:self asyncQueue:self.asyncQueue];
 
 //    FLStreamOpener* opener = [FLStreamOpener streamOpener:httpStream];
 //
@@ -178,7 +183,7 @@
 
 - (void) openAuthenticatedStreamWithURL:(NSURL*) url {
     if(self.httpRequest.authenticator && !self.httpRequest.disableAuthenticator) {
-        FLHttpRequestAuthenticatorWorker* auth = [FLHttpRequestAuthenticatorWorker httpRequestWorker:self.httpRequest];
+        FLHttpRequestAuthenticationWorker* auth = [FLHttpRequestAuthenticationWorker httpRequestAuthenticationWorker:self.httpRequest];
         [self.workerContext startWorker:auth withObserver:_finisher.observer completion:^(FLResult result) {
             [self openStreamWithURL:url];
         }];
@@ -218,7 +223,6 @@
     [self readResponseHeadersIfNeeded];
     [self.httpRequest.responseReceiver readBytesFromStream:_httpStream];
 }
-
 
 - (void) didCloseWithResult:(FLResult) result {
     

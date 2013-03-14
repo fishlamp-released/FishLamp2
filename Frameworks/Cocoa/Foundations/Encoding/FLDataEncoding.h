@@ -9,12 +9,12 @@
 #import "FLCocoaRequired.h"
 #import "FishLampCore.h"
 
-#import "FLTypeDesc.h"
+#import "FLType.h"
 
-@protocol FLDataEncoding <NSObject, FLTypeDescCoreTypesEncoding>
+@protocol FLDataEncoding <NSObject, FLTypeCoreTypesEncoding>
 
 - (NSString*) encodeDataToString:(id) data 
-                         forType:(FLTypeDesc*) type;
+                         forType:(FLType*) type;
 
 @end
 
