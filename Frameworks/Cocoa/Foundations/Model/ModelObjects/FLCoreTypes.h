@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "FLTypeDesc.h"
+#import "FLType.h"
 
-@interface FLSimpleTypeDesc : FLTypeDesc
+@interface FLSimpleType : FLType
 @end
 
 // numbers
@@ -27,93 +27,93 @@ typedef enum {
 	FLTypeIDUnsignedLongLong  = _C_ULNG_LNG,
 	FLTypeIDFloat             = _C_FLT,
 	FLTypeIDDouble            = _C_DBL,
-} FLTypeDescNumberType;
+} FLTypeNumberType;
 
-@interface FLNumberTypeDesc : FLSimpleTypeDesc
-@property (readonly, assign, nonatomic) FLTypeDescNumberType numberType;
+@interface FLNumberType : FLSimpleType
+@property (readonly, assign, nonatomic) FLTypeNumberType numberType;
 @end
 
-@interface FLBoolNumber : FLNumberTypeDesc
+@interface FLBoolNumber : FLNumberType
 + (id) boolNumber;
 @end
 
-@interface FLCharNumber : FLNumberTypeDesc
+@interface FLCharNumber : FLNumberType
 + (id) charNumber;
 @end
 
-@interface FLUnsignedCharNumber : FLNumberTypeDesc
+@interface FLUnsignedCharNumber : FLNumberType
 + (id) unsignedCharNumber;
 @end
 
-@interface FLShortNumber : FLNumberTypeDesc
+@interface FLShortNumber : FLNumberType
 + (id) shortNumber;
 @end
 
-@interface FLUnsignedShortNumber : FLNumberTypeDesc
+@interface FLUnsignedShortNumber : FLNumberType
 + (id) unsignedShortNumber;
 @end
 
-@interface FLIntNumber : FLNumberTypeDesc
+@interface FLIntNumber : FLNumberType
 + (id) intNumber;
 @end
 
-@interface FLUnsignedIntNumber : FLNumberTypeDesc
+@interface FLUnsignedIntNumber : FLNumberType
 + (id) unsignedIntNumber;
 @end
 
-@interface FLLongNumber : FLNumberTypeDesc
+@interface FLLongNumber : FLNumberType
 + (id) longNumber;
 @end
 
-@interface FLUnsignedLongNumber : FLNumberTypeDesc
+@interface FLUnsignedLongNumber : FLNumberType
 + (id) unsignedLongNumber;
 @end
 
-@interface FLLongLongNumber : FLNumberTypeDesc
+@interface FLLongLongNumber : FLNumberType
 + (id) longLongNumber;
 @end
 
-@interface FLUnsignedLongLongNumber : FLNumberTypeDesc
+@interface FLUnsignedLongLongNumber : FLNumberType
 + (id) unsignedLongLongNumber;
 @end
 
-@interface FLFloatNumber : FLNumberTypeDesc
+@interface FLFloatNumber : FLNumberType
 + (id) floatNumber;
 @end
 
-@interface FLDoubleNumber : FLNumberTypeDesc
+@interface FLDoubleNumber : FLNumberType
 + (id) doubleNumber;
 @end
 
-@interface FLIntegerNumber : FLNumberTypeDesc
+@interface FLIntegerNumber : FLNumberType
 + (id) integerNumber;
 @end
 
-@interface FLUnsignedIntegerNumber : FLNumberTypeDesc
+@interface FLUnsignedIntegerNumber : FLNumberType
 + (id) unsignedIntegerNumber;
 @end
 
 // values
 
-@interface FLValueTypeDesc : FLSimpleTypeDesc
+@interface FLValueType : FLSimpleType
 @end
 
-@interface FLGeometrySize : FLValueTypeDesc
+@interface FLGeometrySize : FLValueType
 + (id) geometrySize;
 @end
 
-@interface FLGeometryRect : FLValueTypeDesc
+@interface FLGeometryRect : FLValueType
 + (id) geometryRect;
 @end
 
-@interface FLGeometryPoint : FLValueTypeDesc
+@interface FLGeometryPoint : FLValueType
 + (id) geometryPoint;
 @end
 
-@interface FLMutableArrayType : FLTypeDesc
+@interface FLMutableArrayType : FLType
 @end
 
-// simple objects that return FLTypeDescs
+// simple objects that return FLTypes
 @interface NSString (FLCoreTypes)
 @end
 

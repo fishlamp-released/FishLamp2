@@ -10,7 +10,7 @@
 #import <Foundation/Foundation.h>
 #import "FLObjectBuilder.h"
 #import "FLPropertyInflator.h"
-#import "FLTypeDesc.h"
+#import "FLType.h"
 #import "FLCoreTypes.h"
 
 @interface NSObject (FLObjectBuilder)

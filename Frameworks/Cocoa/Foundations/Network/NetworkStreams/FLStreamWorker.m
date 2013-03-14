@@ -28,8 +28,7 @@
 }
 
 - (void) requestCancel {
-    [self.networkStream setError:[NSError cancelError]];
-    [self.networkStream closeStream];
+    [self.networkStream closeStreamWithError:[NSError cancelError]];
 }
 
 + (id) streamWorker:(FLNetworkStream*) networkStream {
@@ -73,7 +72,7 @@
 
 - (void) startWorking:(FLFinisher*) finisher {
     [super startWorking:finisher];
-    [self.networkStream openStreamWithDelegate:self];
+    [self.networkStream openStreamWithDelegate:self asyncQueue:self.asyncQueue];
 }
 
 - (void) networkStreamDidOpen:(FLNetworkStream*) networkStream {

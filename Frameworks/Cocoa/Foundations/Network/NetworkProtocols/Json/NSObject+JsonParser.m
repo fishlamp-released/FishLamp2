@@ -6,10 +6,12 @@
 //  Copyright 2011 GreenTongue Software. All rights reserved.
 //
 
+#if REFACTOR
+
 #import "NSObject+JsonParser.h"
 #import "FLDateMgr.h"
 #import "FLObjectDescriber.h"
-#import "FLTypeDesc.h"
+#import "FLType.h"
 
 @implementation NSObject (FLJsonParser)
 
@@ -34,7 +36,7 @@
 //			id newObject = [self valueForKey:key];
 //			if(!newObject)
 //			{
-//				newObject = FLAutorelease([[desc.propertyType.typeClass alloc] init]);
+//				newObject = FLAutorelease([[desc.propertyType.classForType alloc] init]);
 //				[self setValue:newObject forKey:key];
 //			}
 //		
@@ -110,14 +112,14 @@
 		{
 		//	if(FLStringsAreEqual(property.propertyName, arrayItemKey))
 			{
-                FLAssertIsNotNil_(property.propertyType.typeClass);
-                FLObjectDescriber* propDescriber = [property.propertyType.typeClass sharedObjectDescriber];
+                FLAssertIsNotNil_(property.propertyType.classForType);
+                FLObjectDescriber* propDescriber = [property.propertyType.classForType sharedObjectDescriber];
             
 				if(propDescriber)
 				{
 					
-					id obj = [[property.propertyType.typeClass alloc] init];
-					FLAssert_v(obj != nil, @"Unable to created object of type: %@", NSStringFromClass(property.propertyType.typeClass));
+					id obj = [[property.propertyType.classForType alloc] init];
+					FLAssert_v(obj != nil, @"Unable to created object of type: %@", NSStringFromClass(property.propertyType.classForType));
 
 					FLAssertIsNotNil_(obj);
 					[self addObject:obj];
@@ -178,3 +180,5 @@
 	return YES;
 }
 @end
+
+#endif

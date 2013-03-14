@@ -71,7 +71,10 @@ FLSynthesizeSingleton(FLSoapObjectBuilder);
     return self;
 }
 
-- (id) buildObjectWithClass:(Class) aClass withSoap:(FLParsedXmlElement*) element {
+- (id) buildObjectWithType:(FLType*) type withSoap:(FLParsedItem*) element {
+    FLAssertNotNil_(type);
+    FLAssertNotNil_(element);
+
     NSDictionary* children = [element childrenAtPath:@"Envelope/Body"];
 
     FLConfirm_v(children.count == 1, @"Unable to parse object from SOAP");
@@ -80,7 +83,7 @@ FLSynthesizeSingleton(FLSoapObjectBuilder);
     __unsafe_unretained id keys[1];
     [children getObjects:objects andKeys:keys];
     
-    return [self buildObjectWithClass:aClass withXml:objects[0]];
+    return [self buildObjectWithType:type withXml:objects[0]];
 }
 
 

@@ -15,13 +15,13 @@
 @interface FLHttpRequestWorker : FLContextWorker<FLNetworkStreamDelegate> {
 @private
     FLHttpRequest* _httpRequest;
-    id<FLAsyncQueue> _asyncQueue;
+    FLFifoAsyncQueue* _asyncQueue;
 }
 @property (readonly, strong, nonatomic) FLHttpRequest* httpRequest;
-@property (readwrite, strong, nonatomic) id<FLAsyncQueue> asyncQueue;
+@property (readonly, strong, nonatomic) FLFifoAsyncQueue* asyncQueue;
 
-- (id) initWithHttpRequest:(FLHttpRequest*) request;
-+ (id) httpRequestWorker:(FLHttpRequest*) request;
+- (id) initWithHttpRequest:(FLHttpRequest*) request asyncQueue:(FLFifoAsyncQueue*) asyncQueue;
++ (id) httpRequestWorker:(FLHttpRequest*) request asyncQueue:(FLFifoAsyncQueue*) asyncQueue;
 
 @end
 
@@ -36,5 +36,9 @@
 @property (readonly, strong, nonatomic) FLHttpResponse* httpResponse;
 @end
 
-@interface FLHttpRequestAuthenticatorWorker : FLHttpRequestWorker
+@interface FLHttpRequestAuthenticationWorker : FLHttpRequestWorker
+
+// this gets queue from httpRequet's authenticator
+- (id) initWithHttpRequest:(FLHttpRequest*) request;
++ (id) httpRequestAuthenticationWorker:(FLHttpRequest*) request;
 @end

@@ -8,7 +8,7 @@
 
 #import "FLCocoaRequired.h"
 #import "FLDataEncoder.h"
-#import "FLParsedXmlElement.h"
+#import "FLParsedItem.h"
 
 @interface FLXmlObjectBuilder : NSObject {
 @private
@@ -19,6 +19,6 @@
 - (id) initWithDataDecoder:(id<FLDataDecoding>) decoder;
 + (id) xmlObjectBuilder:(id<FLDataDecoding>) decoder;
 
-- (id) buildObjectWithClass:(Class) aClass withXml:(FLParsedXmlElement*) element;
+- (id) buildObjectWithType:(FLType*) type withXml:(FLParsedItem*) element;
 
 @end

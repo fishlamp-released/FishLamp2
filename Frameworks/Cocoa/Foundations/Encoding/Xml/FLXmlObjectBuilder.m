@@ -13,7 +13,7 @@
 #import "FLObjectDescriber.h"
 
 @interface FLXmlObjectBuilder ()
-- (id) inflateObjectWithPropertyDescription:(FLPropertyDescription*) property withElement:(FLParsedXmlElement*) element;
+- (id) inflateObjectWithPropertyDescription:(FLPropertyDescription*) property withElement:(FLParsedItem*) element;
 @end
 
 @implementation FLXmlObjectBuilder
@@ -50,7 +50,7 @@
     return nil;
 } 
 
-- (void) inflateElement:(FLParsedXmlElement*) element 
+- (void) inflateElement:(FLParsedItem*) element 
               intoArray:(NSMutableArray*) newArray
 withPropertyDescription:(FLPropertyDescription*) propertyDescription {
 
@@ -65,24 +65,24 @@ withPropertyDescription:(FLPropertyDescription*) propertyDescription {
         FLConfirmNotNil_v(arrayType, @"arrayType for element \"%@\" not found", elementName);
         
         if([elementOrArray isKindOfClass:[NSArray class]]) {
-            for(FLParsedXmlElement* child in elementOrArray) {			
+            for(FLParsedItem* child in elementOrArray) {			
                 [newArray addObject:[self inflateObjectWithPropertyDescription:arrayType withElement:child]];
             }
         }
         else {
-            FLAssert_([elementOrArray isKindOfClass:[FLParsedXmlElement class]]);
+            FLAssert_([elementOrArray isKindOfClass:[FLParsedItem class]]);
             [newArray addObject:[self inflateObjectWithPropertyDescription:arrayType withElement:elementOrArray]];
         }
     }
 }
 
 
-- (id) inflateObjectWithPropertyDescription:(FLPropertyDescription*) property withElement:(FLParsedXmlElement*) element {
+- (id) inflateObjectWithPropertyDescription:(FLPropertyDescription*) property withElement:(FLParsedItem*) element {
     FLAssertNotNil_(property);
     
     id object = nil;
-    if([property.propertyType.typeClass sharedObjectDescriber]) {
-        object = FLAutorelease([[property.propertyType.typeClass alloc] init]);
+    if([property.propertyType.classForType sharedObjectDescriber]) {
+        object = FLAutorelease([[property.propertyType.classForType alloc] init]);
         [self addPropertiesToObject:object withElement:element];
         
         // NOTE: what if there is a value?? 
@@ -96,26 +96,27 @@ withPropertyDescription:(FLPropertyDescription*) propertyDescription {
 }
 
 
-- (id) inflateObjectFromXMLWithType:(FLTypeDesc*) typeToInflate withElement:(FLParsedXmlElement*) element {
+- (id) buildObjectWithType:(FLType*) type withXml:(FLParsedItem*) element {
+    FLAssertNotNil_(self.decoder);
+    FLAssertNotNil_(type);
+    FLAssertNotNil_(element);
 
-    FLAssertNotNil_(typeToInflate);
-
-    FLObjectDescriber* describer = [[typeToInflate.typeClass class] sharedObjectDescriber];
+    FLObjectDescriber* describer = [[type.classForType class] sharedObjectDescriber];
     if(describer) {
-        id rootObject = FLAutorelease([[typeToInflate.typeClass alloc] init]);
-        FLAssertNotNil_v(rootObject, @"unabled to create object of type: %@", NSStringFromClass(typeToInflate.typeClass));
+        id rootObject = FLAutorelease([[type.classForType alloc] init]);
+        FLAssertNotNil_v(rootObject, @"unabled to create object of type: %@", NSStringFromClass(type.classForType));
         
         [self addPropertiesToObject:rootObject withElement:element];
         return rootObject;
     }
     
-    id object = [self.decoder decodeDataFromString:[element value] forType:typeToInflate];
+    id object = [self.decoder decodeDataFromString:[element value] forType:type];
     FLAssertNotNil_(object);
     
     return object;
 }
 
-- (void) addPropertiesToObject:(id) object withElement:(FLParsedXmlElement*) element {
+- (void) addPropertiesToObject:(id) object withElement:(FLParsedItem*) element {
     
     FLAssertNotNil_(object);
 
@@ -133,7 +134,7 @@ withPropertyDescription:(FLPropertyDescription*) propertyDescription {
         if(propertyDescription.isArray) {
             propertyValue = [NSMutableArray array];
 
-            if([elementOrArray isKindOfClass:[FLParsedXmlElement class]]) {
+            if([elementOrArray isKindOfClass:[FLParsedItem class]]) {
                 [self inflateElement:elementOrArray
                            intoArray:propertyValue 
              withPropertyDescription:propertyDescription];
@@ -141,7 +142,7 @@ withPropertyDescription:(FLPropertyDescription*) propertyDescription {
             else {
             
                 FLAssert_([elementOrArray isKindOfClass:[NSArray class]]);
-                for(FLParsedXmlElement* child in elementOrArray) {
+                for(FLParsedItem* child in elementOrArray) {
                     [self inflateElement:child
                                intoArray:propertyValue 
                               withPropertyDescription:propertyDescription];
@@ -151,7 +152,7 @@ withPropertyDescription:(FLPropertyDescription*) propertyDescription {
             }
         }
         else {
-            FLAssert_([elementOrArray isKindOfClass:[FLParsedXmlElement class]]);
+            FLAssert_([elementOrArray isKindOfClass:[FLParsedItem class]]);
             propertyValue = [self inflateObjectWithPropertyDescription:propertyDescription 
                                                                      withElement:elementOrArray];
         }
@@ -162,11 +163,6 @@ withPropertyDescription:(FLPropertyDescription*) propertyDescription {
     }
 }
 
-- (id) buildObjectWithClass:(Class) aClass withXml:(FLParsedXmlElement*) element {
-    FLAssertNotNil_(self.decoder);
-
-    return [self inflateObjectFromXMLWithType:[aClass typeDesc] withElement:element];
-}
 @end
 
 

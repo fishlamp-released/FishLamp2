@@ -6,19 +6,19 @@
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
 
-#import "FLTypeDesc.h"
+#import "FLType.h"
 
-@interface FLTypeDesc ()
+@interface FLType ()
 //@property (readwrite, assign, nonatomic) FLTypeID typeID;
 @property (readwrite, assign, nonatomic) SEL encodeSelector;
 @property (readwrite, assign, nonatomic) SEL decodeSelector;
-@property (readwrite, assign, nonatomic) Class typeClass;
+@property (readwrite, assign, nonatomic) Class classForType;
 @end
 
-@implementation FLTypeDesc
+@implementation FLType
 
 //@synthesize typeID = _typeID;
-@synthesize typeClass = _typeClass;
+@synthesize classForType = _classForType;
 @synthesize encodeSelector = _encodeSelector;
 @synthesize decodeSelector = _decodeSelector;
 
@@ -30,27 +30,34 @@ static NSMutableDictionary* s_typeRegistry = nil;
     }
 }
 
-+ (FLTypeDesc*) registeredTypeForName:(NSString*) string {
++ (FLType*) registeredTypeForName:(NSString*) string {
     @synchronized(s_typeRegistry) {
         return [s_typeRegistry objectForKey:string];
     }
 }
 
-+ (void) registerTypeDesc:(FLTypeDesc*) desc {
++ (void) registerType:(FLType*) desc {
     @synchronized(s_typeRegistry) {
         [s_typeRegistry setObject:desc forKey:desc.typeName];
     }
 }
 
 - (void) registerSelf {
-    [FLTypeDesc registerTypeDesc:self];
+    [FLType registerType:self];
 }
 
+- (FLType*) type {
+    return self;
+}
+
++ (FLType*) type {
+    return nil;
+}
 
 - (id) initWithClass:(Class) aClass encoder:(SEL) encoder decoder:(SEL) decoder {
     self = [super init];
     if(self) {
-        self.typeClass = aClass;
+        self.classForType = aClass;
         self.encodeSelector = encoder;
         self.decodeSelector = decoder;
     }
@@ -71,16 +78,34 @@ static NSMutableDictionary* s_typeRegistry = nil;
     SEL decoder = nil;
     
     if(class) {
-        encoder = [FLTypeDesc encodeSelectorForClass:class];
-        decoder = [FLTypeDesc decodeSelectorForClass:class];
+        encoder = [FLType encodeSelectorForClass:class];
+        decoder = [FLType decodeSelectorForClass:class];
     }
     
     return [self initWithClass:class encoder: encoder decoder: decoder];
 }    
 
-+ (id) typeDescWithClass:(Class) aClass   {
++ (id) typeWithClass:(Class) aClass   {
     return FLAutorelease([[[self class] alloc] initWithClass:aClass]);
 }
+
+- (NSString*) description {
+    return [NSString stringWithFormat:@"%@ (%@)", [super description], NSStringFromClass(_classForType)];
+}
+
+- (id) copyWithZone:(NSZone*) zone {
+    return FLRetain(self);
+}
+
+- (BOOL) isEqual:(id) another {
+    if(self == another) return YES;
+    return (self.class == [another class]) && (self.classForType == [another classForType]);
+}
+
+- (NSUInteger) hash {
+    return [NSStringFromClass([self class]) hash];
+}
+
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Warc-performSelector-leaks"
@@ -96,13 +121,16 @@ static NSMutableDictionary* s_typeRegistry = nil;
 #pragma GCC diagnostic pop
 
 - (NSString*) typeName {
-    return NSStringFromClass(_typeClass);
+    return NSStringFromClass(_classForType);
 }
 @end
 
-@implementation NSObject (FLTypeDesc)
-+ (FLTypeDesc*) typeDesc {
-    return [FLTypeDesc typeDescWithClass:[self class]];
+@implementation NSObject (FLType)
++ (FLType*) type {
+    return [FLType typeWithClass:[self class]];
+}
+- (FLType*) type {
+    return [FLType typeWithClass:[self class]];
 }
 @end
 

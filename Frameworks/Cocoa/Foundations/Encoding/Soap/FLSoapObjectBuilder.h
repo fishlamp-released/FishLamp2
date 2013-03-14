@@ -16,8 +16,8 @@ FLSingletonProperty(FLSoapObjectBuilder);
 
 
 // this removes envelope/body elements before trying to build object
-// if already removed call buildObjectWithClass:withXml:
-- (id) buildObjectWithClass:(Class) aClass withSoap:(FLParsedXmlElement*) element;
+// if already removed call buildObjectWithType:withXml:
+- (id) buildObjectWithType:(FLType*) type withSoap:(FLParsedItem*) element;
 
 @end
 

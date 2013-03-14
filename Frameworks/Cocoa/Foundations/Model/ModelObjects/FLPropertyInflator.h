@@ -15,7 +15,7 @@
 @interface FLPropertyInflator : NSObject {
 @private
 	NSString* _propertyName;
-	FLTypeDesc* _propertyType;
+	FLType* _propertyType;
 	id _containingObject;
 	
     NSMutableString* _encodedString;
@@ -30,7 +30,7 @@
 @property (readonly, strong, nonatomic) NSString* encodedString;
 - (void) appendEncodedString:(NSString*) string; 
 
-@property (readwrite, strong, nonatomic) FLTypeDesc* propertyType;
+@property (readwrite, strong, nonatomic) FLType* propertyType;
 @property (readwrite, assign, nonatomic) int state;
 
 - (id) initWithContainingObject:(id) containingObject propertyName:(id) propertyName state:(int) state;

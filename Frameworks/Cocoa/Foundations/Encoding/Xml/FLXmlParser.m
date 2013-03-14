@@ -61,7 +61,7 @@ didStartElement:(NSString *)elementName
  qualifiedName:(NSString *)qName 
     attributes:(NSDictionary *)attributes {
         
-    FLParsedXmlElement* newElement = [FLParsedXmlElement parsedXmlElement];
+    FLParsedItem* newElement = [FLParsedItem parsedItem];
     newElement.elementName = elementName;
     newElement.namespaceURI = namespaceURI;
     newElement.qualifiedName = qName;
@@ -83,7 +83,7 @@ didStartElement:(NSString *)elementName
 	namespaceURI:(NSString *)namespaceURI 
 	qualifiedName:(NSString *)qName {
     
-    FLParsedXmlElement* lastElement = FLRetainWithAutorelease([self.stack lastObject]);
+    FLParsedItem* lastElement = FLRetainWithAutorelease([self.stack lastObject]);
     FLAssertObjectsAreEqual_(elementName, lastElement.elementName);
     [self.stack removeLastObject];
 }
@@ -98,10 +98,10 @@ didStartElement:(NSString *)elementName
     [parser abortParsing];
 }
 
-- (FLParsedXmlElement*) parseData:(NSData*) data {
+- (FLParsedItem*) parseData:(NSData*) data {
 
     self.stack = [NSMutableArray array];
-    [self.stack addObject:[FLParsedXmlElement parsedXmlElement]];
+    [self.stack addObject:[FLParsedItem parsedItem]];
 
     @try {
         FLAutoreleasePool(

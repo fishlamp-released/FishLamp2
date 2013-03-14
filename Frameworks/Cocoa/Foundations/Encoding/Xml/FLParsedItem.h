@@ -1,5 +1,5 @@
 //
-//  FLParsedXmlElement.h
+//  FLParsedItem.h
 //  FishLampCocoa
 //
 //  Created by Mike Fullerton on 3/13/13.
@@ -8,7 +8,7 @@
 
 #import "FLCocoaRequired.h"
 
-@interface FLParsedXmlElement : NSObject {
+@interface FLParsedItem : NSObject {
 @private
     NSDictionary* _attributes;
     NSString* _namespace;
@@ -16,23 +16,30 @@
     NSString* _qualifiedName;
     NSMutableString* _value;
     NSMutableDictionary* _elements;
-    __unsafe_unretained FLParsedXmlElement* _parent;
+    __unsafe_unretained FLParsedItem* _parent;
 }
-+ (id) parsedXmlElement;
+
++ (id) parsedItem;
 
 @property (readwrite, strong, nonatomic) NSDictionary* attributes;
 @property (readwrite, strong, nonatomic) NSString* namespaceURI;
-@property (readwrite, strong, nonatomic) NSString* elementName;
 @property (readwrite, strong, nonatomic) NSString* qualifiedName;
+
+@property (readwrite, strong, nonatomic) NSString* elementName;
+
 @property (readonly, strong, nonatomic) NSString* value;
+
 @property (readonly, strong, nonatomic) NSDictionary* elements;
-@property (readonly, assign, nonatomic) FLParsedXmlElement* parent;
+
+@property (readonly, assign, nonatomic) FLParsedItem* parent;
 
 - (void) appendStringToValue:(NSString*) string;
-- (void) addElement:(FLParsedXmlElement*) element;
 
-- (FLParsedXmlElement*) elementAtPath:(NSString*) path;
-- (FLParsedXmlElement*) elementForElementName:(NSString*) name;
+- (void) addElement:(FLParsedItem*) element;
+
+- (FLParsedItem*) elementAtPath:(NSString*) path;
+- (FLParsedItem*) elementForElementName:(NSString*) name;
+
 - (NSDictionary*) childrenAtPath:(NSString*) parentalPath;
 
 @end

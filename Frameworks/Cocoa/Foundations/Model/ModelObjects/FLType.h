@@ -7,33 +7,32 @@
 //
 
 #import "FishLampCore.h"
-#import "FLTypeDesc.h"
+#import "FLType.h"
 
 #import <objc/runtime.h>
 
 typedef uint32_t FLTypeID;
 
-@interface FLTypeDesc : NSObject {
+@interface FLType : NSObject<NSCopying> {
 @private
-    Class _typeClass;
+    Class _classForType;
 //    FLTypeID _typeID;
     SEL _encodeSelector;
     SEL _decodeSelector;
 }
 
-//@property (readonly, assign, nonatomic) FLTypeID typeID;
 @property (readonly, strong, nonatomic) NSString* typeName;
-@property (readonly, assign, nonatomic) Class typeClass;
+@property (readonly, assign, nonatomic) Class classForType;
 
 - (id) initWithClass:(Class) aClass ;
 - (id) initWithClass:(Class) aClass encoder:(SEL) encoder decoder:(SEL) decoder;
 
-+ (id) typeDescWithClass:(Class) aClass;
-//+ (id) typeDescWithClass:(Class) aClass typeID:(FLTypeID) typeID;
++ (id) typeWithClass:(Class) aClass;
+//+ (id) typeWithClass:(Class) aClass typeID:(FLTypeID) typeID;
 
 // inflation helpers
 + (id) registeredTypeForName:(NSString*) string;
-+ (void) registerTypeDesc:(FLTypeDesc*) desc;
++ (void) registerType:(FLType*) desc;
 - (void) registerSelf;
 
 // encoding overrides (by default these call the encode/decoder selectors
@@ -50,12 +49,12 @@ typedef uint32_t FLTypeID;
 
 // Enum Type (special case for a number)
 
-//@interface FLEnumTypeDesc : FLTypeDesc
+//@interface FLEnumType : FLType
 //@end
 
 // encoding
 
-@protocol FLTypeDescCoreTypesEncoding <NSObject>
+@protocol FLTypeCoreTypesEncoding <NSObject>
 - (NSString*) encodeStringWithCGRect:(NSValue*) value;
 - (NSString*) encodeStringWithCGPoint:(NSValue*) value;
 - (NSString*) encodeStringWithCGSize:(NSValue*) value;
@@ -71,7 +70,7 @@ typedef uint32_t FLTypeID;
 
 // decoding
 
-@protocol FLTypeDescCoreTypesDecoding <NSObject>
+@protocol FLTypeCoreTypesDecoding <NSObject>
 - (NSValue*) decodeCGPointFromString:(NSString*) string;
 - (NSValue*) decodeCGRectFromString:(NSString*) string;
 - (NSValue*) decodeCGSizeFromString:(NSString*) string;
@@ -84,8 +83,9 @@ typedef uint32_t FLTypeID;
 - (NSURL*) decodeNSURLFromString:(NSString*) string;
 @end
 
-@interface NSObject (FLTypeDesc)
-+ (FLTypeDesc*) typeDesc;
+@interface NSObject (FLType)
++ (FLType*) type;
+- (FLType*) type;
 @end
 
 

@@ -100,7 +100,7 @@
 			   
 			NSString* propertyName = [NSString stringWithCString:property_getName(properties[i]) encoding:NSASCIIStringEncoding];
 
-// TODO: build up FLTypeDesc
+// TODO: build up FLType
 
             [self addPropertyDescriber:[FLPropertyDescription propertyDescription:propertyName propertyClass:theClass]];
 							 
@@ -281,7 +281,7 @@
 //
 //void FLEqualMultiObjectHandler(id inner, id outer, FLMergeMode mergeMode, NSArray* arrayItemTypes) {
 //	for(FLPropertyDescription* desc in arrayItemTypes) {
-//		if([outer isKindOfClass:desc.propertyType.typeClass]) {
+//		if([outer isKindOfClass:desc.propertyType.classForType]) {
 //			FLMergeObjects(inner, outer, mergeMode); 
 //			break;
 //		}
@@ -308,7 +308,7 @@ void FLMergeObjectArrays(NSMutableArray* dest,
 			if([inner isEqual:outer]) {	
                 
                 for(FLPropertyDescription* desc in arrayItemTypes) {
-                    if([outer isKindOfClass:desc.propertyType.typeClass]) {
+                    if([outer isKindOfClass:desc.propertyType.classForType]) {
                         FLMergeObjects(inner, outer, mergeMode); 
                         foundIt = YES;
 				        break;
@@ -357,7 +357,7 @@ void FLMergeObjects(id dest, id src, FLMergeMode mergeMode) {
 				}
 				else {
 					FLPropertyDescription* srcProp = [srcDescriber propertyDescriberForPropertyName:srcPropName];
-					FLObjectDescriber* propDescriber = [srcProp.propertyType.typeClass sharedObjectDescriber];
+					FLObjectDescriber* propDescriber = [srcProp.propertyType.classForType sharedObjectDescriber];
                     
                     if(!propDescriber) {
 					   if(mergeMode == FLMergeModeSourceWins) {
