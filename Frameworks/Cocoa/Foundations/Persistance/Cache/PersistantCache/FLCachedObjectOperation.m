@@ -50,7 +50,7 @@
         
         if(object) {
         	self.wasLoadedFromCache = YES;
- //           [self postObservation:@selector(cachedObjectOperation:didLoadObjectFromDatabase:) withObject:object];
+ //           [self postObservation:@"cachedObjectOperation:didLoadObjectFromDatabase:" withObject:object];
         }
 	}
 	

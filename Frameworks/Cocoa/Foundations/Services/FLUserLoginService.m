@@ -26,9 +26,9 @@
 
 - (void) closeService:(id) closer {
     
-//    [self postObservation:@selector(userSessionWillClose:)];
+//    [self postObservation:@"userSessionWillClose:"];
 //    [super closeContext];
-//    [self postObservation:@selector(userSessionDidClose:)];
+//    [self postObservation:@"userSessionDidClose:"];
 
 //    id<FLProgressViewController> progress = nil;
 //    
@@ -73,9 +73,9 @@
 //    FLAssert_v(!self.isContextOpen, @"session already open");
 //    FLAssert_v(FLStringIsNotEmpty(self.userLogin.userName), @"invalid userLogin");
 
-//    [self postObservation:@selector(userSessionWillOpen:)];
+//    [self postObservation:@"userSessionWillOpen:"];
 //    [super openService];
-//    [self postObservation:@selector(userSessionDidOpen:)];
+//    [self postObservation:@"userSessionDidOpen:"];
 }
 
 - (void) saveUserLogin {

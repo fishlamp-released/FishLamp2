@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "FLFinisher.h"
-#import "FLDispatcher.h"
+#import "FLAsyncQueue.h"
 #import "FLObserver.h"
 #import "FLAsyncWorker.h"
 #import "FLService.h"
@@ -22,36 +22,36 @@ extern NSString* const FLWorkerContextOpened;
 
 @protocol FLWorkerContext <NSObject>
 
+@property (readonly, assign) NSUInteger contextID;
+
 @property (readonly, assign, getter=isContextOpen) BOOL contextOpen; 
 - (void) openContext;
 - (void) closeContext;
 
-- (FLResult) runWorker:(id<FLAsyncWorker>) worker 
+- (FLResult) runWorker:(id<FLContextWorker>) worker 
           withObserver:(id) observer;
                  
-//- (FLFinisher*) startWorker:(id<FLAsyncWorker>) worker
-//                  inDispatcher:(id<FLDispatcher>) dispatcher
-//                  withObserver:(id) observer 
-//                    completion:(FLBlockWithResult) completion;
+- (void) startWorker:(id<FLContextWorker>) worker 
+        withFinisher:(FLFinisher*) finisher;
 
-//- (FLFinisher*) startWorker:(id<FLAsyncWorker>) worker withObserver:(id) observer;
-- (void) startWorker:(id<FLAsyncWorker>) worker withFinisher:(FLFinisher*) finisher;
-- (void) startWorker:(id<FLAsyncWorker>) worker withObserver:(id) observer completion:(FLBlockWithResult) completion;
-
-//- (void) startWorker:(id<FLAsyncWorker>) worker withObserver:(id) observer withFinisher:(FLFinisher*) finisher;
-//- (void) startWorker:(id<FLAsyncWorker>) worker withObserver:(id) observer completion:(FLBlockWithResult) completion;
-
+- (void) startWorker:(id<FLContextWorker>) worker 
+        withObserver:(id) observer 
+          completion:(FLBlockWithResult) completion;
+          
+- (void) requestCancel;          
+          
 @end
 
 @interface FLWorkerContext : FLService<FLWorkerContext> {
 @private
     NSMutableSet* _objects;
-    FLDispatcher* _dispatcher;
+    FLAsyncQueue* _asyncQueue;
     BOOL _contextOpen;
+    NSUInteger _contextID;
 }
 
 // shared FIFO queue by default.
-@property (readwrite, strong, nonatomic) FLDispatcher* dispatcher;
+@property (readwrite, strong, nonatomic) FLAsyncQueue* asyncQueue;
 
 + (id) workerContext;
 

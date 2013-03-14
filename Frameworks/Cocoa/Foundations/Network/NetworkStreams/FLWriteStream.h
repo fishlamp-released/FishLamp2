@@ -18,11 +18,9 @@
 @property (readonly, assign) BOOL canAcceptBytes;
 @property (readonly, assign, nonatomic) CFWriteStreamRef streamRef;
 @property (readonly, assign) unsigned long bytesWritten;
-@property (readonly, assign, getter=isOpen) BOOL open;
 
 - (id) initWithWriteStream:(CFWriteStreamRef) streamRef;
 + (id) writeStream:(CFWriteStreamRef) streamRef;
-
 
 - (void) writeData:(NSData*) data;
 - (void) writeBytes:(const uint8_t*) bytes length:(unsigned long) length;

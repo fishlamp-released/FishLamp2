@@ -51,7 +51,7 @@
             FLAssertNotNil_(set);
             [group replaceGroupElement:set];
             
-            [observer postObservation:@selector(photoSetDownloader:didDownloadPhotoSet:) withObject:self withObject:set];
+            [self postObservation:@"photoSetDownloader:didDownloadPhotoSet:" toObserver:observer withObject:set];
         }
         
         [self abortIfNeeded];

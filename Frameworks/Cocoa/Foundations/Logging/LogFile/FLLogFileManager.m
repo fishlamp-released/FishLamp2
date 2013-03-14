@@ -7,7 +7,7 @@
 //
 
 #import "FLLogFileManager.h"
-#import "FLGcdDispatcher.h"
+#import "FLAsyncQueue.h"
 #import "NSFileManager+FLExtras.h"
 #import "FLAppInfo.h"
 #import "FLDispatch.h"
@@ -35,7 +35,7 @@ FLSynthesizeSingleton(FLLogFileManager);
     if(_logFile) {
         FLLogFile* closeMe = _logFile;
 
-        [[FLGcdDispatcher sharedFifoQueue] dispatchBlock:^{
+        [[FLAsyncQueue fifoQueue] queueBlock:^{
             [closeMe closeLogFile];
         }];
 
@@ -165,7 +165,7 @@ FLSynthesizeSingleton(FLLogFileManager);
 
 - (void) logString:(NSString*) string {
 
-    [[FLGcdDispatcher sharedFifoQueue] dispatchBlock:^{
+    [[FLAsyncQueue fifoQueue] queueBlock:^{
         if(!_logFile) {
             [self _openLogFile];
         }

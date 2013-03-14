@@ -57,8 +57,8 @@
 - (id) waitUntilFinished;
 @end
 
-@interface FLFinisher (FLDispatcher)
-- (void) setWillStartInDispatcher:(id<FLDispatcher>) dispatcher;
-- (void) setWillBeDispatchedByDispatcher:(id<FLDispatcher>) dispatcher;
+@interface FLFinisher (FLAsyncQueue)
+- (void) setWillStartInDispatcher:(id<FLAsyncQueue>) asyncQueue;
+- (void) setWillBeDispatchedByDispatcher:(id<FLAsyncQueue>) asyncQueue;
 @end
 

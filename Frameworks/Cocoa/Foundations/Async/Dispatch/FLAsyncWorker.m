@@ -7,26 +7,33 @@
 //
 
 #import "FLAsyncWorker.h"
+#import "FLWorkerContext.h"
 
-
-@implementation FLAsyncWorker
+@implementation FLContextWorker
 
 @synthesize workerContext = _workerContext;
+@synthesize contextID = _contextID;
 
 - (void) startWorking:(FLFinisher*) finisher {
-                      
+    FLLog(@"Context worker did nothing.");
+    [finisher setFinished];
 }                      
 
 - (void) requestCancel {
 
 }
 
-- (id<FLDispatcher>) dispatcher {
+- (id<FLAsyncQueue>) asyncQueue {
     return nil;
 }
 
 - (void) didMoveToContext:(id<FLWorkerContext>) context {
     _workerContext = context;
+    _contextID = [context contextID];
+}
+
+- (void) contextDidChange:(id<FLWorkerContext>) context {
+    
 }
 
 @end

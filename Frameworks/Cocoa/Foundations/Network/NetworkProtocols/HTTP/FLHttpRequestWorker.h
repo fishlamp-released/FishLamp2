@@ -12,13 +12,13 @@
 #import "FLHttpResponse.h"
 #import "FLHttpRequest.h"
 
-@interface FLHttpRequestWorker : FLAsyncWorker<FLNetworkStreamDelegate> {
+@interface FLHttpRequestWorker : FLContextWorker<FLNetworkStreamDelegate> {
 @private
     FLHttpRequest* _httpRequest;
-    id<FLDispatcher> _dispatcher;
+    id<FLAsyncQueue> _asyncQueue;
 }
 @property (readonly, strong, nonatomic) FLHttpRequest* httpRequest;
-@property (readwrite, strong, nonatomic) id<FLDispatcher> dispatcher;
+@property (readwrite, strong, nonatomic) id<FLAsyncQueue> asyncQueue;
 
 - (id) initWithHttpRequest:(FLHttpRequest*) request;
 + (id) httpRequestWorker:(FLHttpRequest*) request;
@@ -29,7 +29,7 @@
 @interface FLHttpStreamWorker : FLHttpRequestWorker {
 @private
     FLHttpStream* _httpStream;
-    FLHttpResponse* _response;
+    FLHttpResponse* _httpResponse;
     FLFinisher* _finisher;
 }
 

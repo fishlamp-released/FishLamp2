@@ -18,7 +18,7 @@
     NSString* _operationName;
     id _soapInput;
     NSString* _xmlDataPath;
-    FLTypeDesc* _decodedType;
+    Class _expectedObjectClass;
 }
 
 @property (readwrite, strong) id soapInput;
@@ -30,7 +30,7 @@
 
 + (FLSoapFault11*) checkForSoapFaultInData:(NSData*) data;
 
-- (void) setXmlPath:(NSString*) path withDecodedType:(FLTypeDesc*) desc;
+- (void) setExpectedResultAtXmlPath:(NSString*) path expectedObjectClass:(Class) expectedObjectClass;
 
 // optionally override
 - (NSError*) createErrorForSoapFault:(FLSoapFault11*) fault;

@@ -11,6 +11,7 @@
 #import "FLTraceOff.h"
 
 @interface FLReadStream ()
+// CFStream
 //@property (readwrite, assign, nonatomic) CFReadStreamRef streamRef;
 @end
 
@@ -31,39 +32,28 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
 @synthesize streamRef = _streamRef;
 
 - (void) dealloc {
-    if(_streamRef) {
-        CFReadStreamSetClient(_streamRef, kCFStreamEventNone, NULL, NULL);
-        FLReleaseCRef_(_streamRef);
-    }
+    FLAssert_(_streamRef == nil)
     
 #if FL_MRC
     [super dealloc];
 #endif
 }
 
-- (void) setStreamRef:(CFReadStreamRef) readStreamRef {
-    if(readStreamRef != _streamRef) {
-        if(_streamRef) {
-            CFRelease(_streamRef);
-        }
-        
-        _streamRef = readStreamRef;
-        
-        if(_streamRef) {
-            CFRetain(_streamRef);
-        }
-    }
-}
-
 - (NSError*) streamError {
     return FLAutorelease(bridge_transfer_(NSError*, CFReadStreamCopyError(self.streamRef)));
 }
 
-- (void) openStream {
-    FLAssertIsNotNil_(self.streamRef);
-    
-    [self willOpen];
-          
+- (CFReadStreamRef) createReadStreamRef {
+    return nil;
+}
+
+- (void) willOpen {
+    [super willOpen];
+     
+    _streamRef = [self createReadStreamRef];         
+         
+    FLAssertIsNotNil_(_streamRef);
+
     CFOptionFlags flags =
             kCFStreamEventOpenCompleted | 
             kCFStreamEventHasBytesAvailable | 
@@ -78,18 +68,21 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
 }
 
 - (void) closeStream {
-    [self willClose];
+    if(_streamRef) {
+        [self willClose];
 
-    FLAssertNotNil_(_streamRef);
-    CFReadStreamClose(_streamRef);
-    CFReadStreamUnscheduleFromRunLoop(_streamRef, CFRunLoopGetMain(), bridge_(void*,NSDefaultRunLoopMode));
-    self.streamRef = nil;
-    
-    [self didClose];
+        FLAssertNotNil_(_streamRef);
+        CFReadStreamClose(_streamRef);
+        CFReadStreamUnscheduleFromRunLoop(_streamRef, CFRunLoopGetMain(), bridge_(void*,NSDefaultRunLoopMode));
+        CFRelease(_streamRef);
+        _streamRef = nil;
+        
+        [self didClose];
+    }
 }
 
 - (BOOL) hasBytesAvailable {
-    return CFReadStreamHasBytesAvailable(self.streamRef) && !self.error;
+    return CFReadStreamHasBytesAvailable(_streamRef) && !self.error;
 }
 
 - (BOOL) readResultIsError:(NSInteger) bytesRead {

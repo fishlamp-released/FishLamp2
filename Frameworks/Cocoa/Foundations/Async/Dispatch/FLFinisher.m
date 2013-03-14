@@ -7,7 +7,7 @@
 //
 
 #import "FLFinisher.h"
-#import "FLGcdDispatcher.h"
+#import "FLAsyncQueue.h"
 
 @interface FLFinisher ()
 @property (readwrite, strong) FLResult result;
@@ -126,7 +126,7 @@
 
     self.finished = YES;
 
-//    [self postObservation:@selector(finisher:didFinishWithResult:) withObject:self withObject:self.result];
+//    [self postObservation:@"finisher:didFinishWithResult:" withObject:self withObject:self.result];
 
     if(_semaphore) {
  //       FLLog(@"releasing semaphor for %X, ont thread %@", (void*) _semaphore, [NSThread currentThread]);
@@ -261,19 +261,19 @@
 //
 //@end
 
-@implementation FLFinisher (FLDispatcher)
+@implementation FLFinisher (FLAsyncQueue)
 
-- (void) setWillStartInDispatcher:(id<FLDispatcher>) dispatcher {    
-//    [self postObservation:@selector(finisher:willStartInDispatcher:) withObject:self withObject:dispatcher];
+- (void) setWillStartInDispatcher:(id<FLAsyncQueue>) asyncQueue {    
+//    [self postObservation:@"finisher:willStartInDispatcher:" withObject:self withObject:asyncQueue];
 }
 
-- (void) setWillBeDispatchedByDispatcher:(id<FLDispatcher>) dispatcher {
+- (void) setWillBeDispatchedByDispatcher:(id<FLAsyncQueue>) asyncQueue {
 
     if([NSThread isMainThread]) {
         self.finishOnMainThread = YES;
     }
 
-//    [self postObservation:@selector(finisher:wasDispatchedInDispatcher:) withObject:self withObject:dispatcher];
+//    [self postObservation:@"finisher:wasDispatchedInDispatcher:" withObject:self withObject:asyncQueue];
 }
 
 @end

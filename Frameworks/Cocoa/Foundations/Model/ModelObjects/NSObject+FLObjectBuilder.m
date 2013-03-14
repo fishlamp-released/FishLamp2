@@ -5,6 +5,7 @@
 //  Created by Mike Fullerton on 2/23/13.
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
+#if REFACTOR
 
 #import "NSObject+FLObjectBuilder.h"
 #import "FLObjectInflator.h"
@@ -119,3 +120,4 @@
 
 
 
+#endif

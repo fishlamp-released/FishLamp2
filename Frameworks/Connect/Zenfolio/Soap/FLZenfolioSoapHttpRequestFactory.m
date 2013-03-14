@@ -19,7 +19,7 @@
 #define FLZenfolioSoapHttpRequestFrom(__NAME__, __PATH__, __CLASS__) \
     [FLZenfolioSoapHttpRequestFactory soapHttpRequest:FLAutorelease([[__NAME__ alloc] init]) path:@"Envelope/Body/"\
         __PATH__ \
-decodedType:[__CLASS__ typeDesc]] 
+decodedType:[__CLASS__ class]] 
 
 @implementation FLZenfolioLoadPhotoSet (NSObject)
 - (void) setRequestedResponseLevel:(NSString*) level {
@@ -66,7 +66,7 @@ decodedType:[__CLASS__ typeDesc]]
 
 + (FLSoapHttpRequest*) soapHttpRequest:(id) operationDescriptor 
                                   path:(NSString*) path 
-                           decodedType:(FLTypeDesc*) type {
+                           decodedType:(Class) decodedClass {
 
     static FLZenfolioApiSoap* s_soapServer = nil;
     static dispatch_once_t onceToken;
@@ -76,7 +76,9 @@ decodedType:[__CLASS__ typeDesc]]
 
     FLZenfolioSoapHttpRequest* soapHttpRequest = [FLZenfolioSoapHttpRequest soapHttpRequestWithGeneratedObject:operationDescriptor 
                                                                                     serverInfo:s_soapServer];
-    [soapHttpRequest setXmlPath:path withDecodedType:type];
+
+    [soapHttpRequest setExpectedResultAtXmlPath:path expectedObjectClass:decodedClass];
+    
     
     return soapHttpRequest;
 }

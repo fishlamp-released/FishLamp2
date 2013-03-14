@@ -28,14 +28,14 @@
         authenticateSynchronouslyInContext:(id) context 
         withObserver:(id) observer;
 
-- (id<FLDispatcher>) httpRequestAuthenticationDispatcher:(FLHttpRequest*) httpRequest;
+- (id<FLAsyncQueue>) httpRequestAuthenticationDispatcher:(FLHttpRequest*) httpRequest;
 @end
 
 @protocol FLHttpRequestContext <NSObject>
 - (id<FLHttpRequestAuthenticator>) httpRequestAuthenticator;
 @end
 
-@interface FLHttpRequest : FLTimedObject<FLAsyncWorker> {
+@interface FLHttpRequest : FLContextWorker {
 @private
     FLHttpRequestHeaders* _headers;
     FLHttpRequestBody* _body;
@@ -46,7 +46,6 @@
     id<FLDataDecoding> _dataDecoder;
     id<FLHttpRequestAuthenticator> _authenticator;
     BOOL _disableAuthenticator;
-    __unsafe_unretained id<FLWorkerContext> _workerContext;
 }
 
 // by default this is a FLDataResponseReciever.

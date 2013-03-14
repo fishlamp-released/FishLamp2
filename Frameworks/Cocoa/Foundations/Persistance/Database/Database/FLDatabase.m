@@ -57,12 +57,12 @@ static int s_count = 0;
     }
 }
 
-- (FLResult) dispatchBlock:(dispatch_block_t) block {
-    return [[[FLGcdDispatcher sharedDefaultQueue] dispatchBlock:block] waitUntilFinished];
+- (FLResult) queueBlock:(dispatch_block_t) block {
+    return [[[FLAsyncQueue defaultQueue] queueBlock:block] waitUntilFinished];
 }
 
 - (FLResult) dispatchFifoBlock:(dispatch_block_t) block {
-    return [[_dispatchQueue dispatchBlock:block] waitUntilFinished];
+    return [[_dispatchQueue queueBlock:block] waitUntilFinished];
 }
 
 - (void) handleLowMemory:(id)sender {
@@ -75,7 +75,7 @@ static int s_count = 0;
 		_sqlite = nil;
         self.columnDecoder = s_decoder;
 
-        _dispatchQueue = [[FLGcdDispatcher alloc] initWithLabel:[NSString stringWithFormat:@"com.fishlamp.queue.database-%d", ++s_count] 
+        _dispatchQueue = [[FLDispatchQueue alloc] initWithLabel:[NSString stringWithFormat:@"com.fishlamp.queue.database-%d", ++s_count] 
             attr:DISPATCH_QUEUE_SERIAL];
 
 #if IOS

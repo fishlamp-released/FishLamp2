@@ -11,7 +11,7 @@
 #import "NSObject+Copying.h"
 #import "FLBlocks.h"
 #import "FLResult.h"
-#import "FLGcdDispatcher.h"
+#import "FLAsyncQueue.h"
 
 #import "FLColorModule.h"
 

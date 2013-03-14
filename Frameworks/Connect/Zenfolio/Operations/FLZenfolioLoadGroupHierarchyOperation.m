@@ -42,7 +42,7 @@
 
 - (FLResult) runOperationInContext:(id) context withObserver:(id) observer {
 
-    [observer postObservation:@selector(loadGroupHierarchyOperation:willDownloadGroupListForUser:) withObject:self withObject:_userLogin];
+    [self postObservation:@"loadGroupHierarchyOperation:willDownloadGroupListForUser:" toObserver:observer withObject:_userLogin];
 
     FLHttpRequest* request = [FLZenfolioHttpRequest loadGroupHierarchyHttpRequest:_userLogin.userName];
     FLAssertNotNil_(request);
@@ -51,7 +51,7 @@
 
     FLZenfolioGroup* group = FLThrowIfError([context runWorker:request withObserver:nil]);
 
-    [observer postObservation:@selector(loadGroupHierarchyOperation:didDownloadGroupList:) withObject:self withObject:group];
+    [self postObservation:@"loadGroupHierarchyOperation:didDownloadGroupList:" toObserver:observer withObject:group];
 
     FLZenfolioDownloadPhotoSetsOperation* downloadPhotosets = [FLZenfolioDownloadPhotoSetsOperation downloadPhotoSetsWithGroup:group];
     
@@ -62,7 +62,7 @@
 }
 
 //- (void) photoSetDownloader:(FLZenfolioDownloadPhotoSetsOperation*) operation didDownloadPhotoSet:(FLZenfolioPhotoSet*) photoSet {
-//    [self postObservation:@selector(syncGroupHierarchy:didDownloadPhotoSet:) withObject:photoSet];
+//    [self postObservation:@"syncGroupHierarchy:didDownloadPhotoSet:" withObject:photoSet];
 //}
 
 @end

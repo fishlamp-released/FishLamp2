@@ -231,9 +231,16 @@
 
 - (void) setColor:(NSColor*) color forRange:(NSRange) range{
 
+#if OSX
     CGColorRef colorRef = [color copyCGColorRef];
+#else
+    CGColorRef colorRef  = [color CGColor];
+#endif
     [self setAttribute:FLBridge(id, colorRef) forName:(NSString*) kCTForegroundColorAttributeName forRange:range];
+
+#if OSX
     CFRelease(colorRef);
+#endif    
 
 //    if(color) {
 //        [self addAttribute:(NSString*) kCTForegroundColorAttributeName 
@@ -247,10 +254,16 @@
 
 - (void) setShadowColor:(NSColor*) color forRange:(NSRange) range {
 
+#if OSX
     CGColorRef colorRef = [color copyCGColorRef];
-    [self setAttribute:FLBridge(id, colorRef) forName:(NSString*) NSShadowAttributeName forRange:range];
-    CFRelease(colorRef);
+#else
+    CGColorRef colorRef  = [color CGColor];
+#endif
 
+    [self setAttribute:FLBridge(id, colorRef) forName:(NSString*) NSShadowAttributeName forRange:range];
+#if OSX
+    CFRelease(colorRef);
+#endif    
 //    if(color) {
 //        [self addAttribute:(NSString*) NSShadowAttributeName 
 //        value:bridge_(id, [NSColor NSColorToCGColor:color])

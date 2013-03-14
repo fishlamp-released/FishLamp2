@@ -9,7 +9,7 @@
 #import "FLTestToolMain.h"
 #import "FLUnitTestRunner.h"
 
-#import "FLGcdDispatcher.h"
+#import "FLAsyncQueue.h"
 
 int FLTestToolMain(int argc, const char *argv[]) {
     @autoreleasepool {

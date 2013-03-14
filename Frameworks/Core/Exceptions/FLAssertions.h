@@ -59,11 +59,11 @@
     #define FLAssertIsOverridden_           FLConfirmIsOverridden_ 
     #define FLAssertIsOverridden_v          FLConfirmIsOverridden_v
 
-    extern id _FLAssertObjectIsType(id object, NSString* className);
+    extern id _FLAssertIsClass(id object, Class class);
     extern id _FLAssertConformsToProtocol(id object, Protocol* proto);
 
-    #define FLAssertObjectIsType(__OBJ__, __TYPE__) \
-        _FLAssertObjectIsType(__OBJ__, @#__TYPE__)
+    #define FLAssertIsClass(__OBJ__, __CLASS__) \
+        _FLAssertIsClass(__OBJ__, __CLASS__)
 
     #define FLAssertConformsToProtocol(__OBJ__, __PROTOCOL__) \
         _FLAssertConformsToProtocol(__OBJ__, NSProtocolFromString(@#__PROTOCOL__))

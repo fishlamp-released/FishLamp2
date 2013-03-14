@@ -18,7 +18,7 @@ FLSynthesizeServiceProperty(httpRequestAuthenticator, setHttpRequestAuthenticato
 - (id) init {
     self = [super init];
     if(self) {
-        _asyncDispatcher = [[FLFifoGcdDispatcher alloc] init];
+        _asyncDispatcher = [[FLFifoAsyncQueue alloc] init];
     }
     return self;
 }

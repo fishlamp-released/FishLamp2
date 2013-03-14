@@ -28,7 +28,6 @@
 @synthesize authenticator = _authenticator;
 @synthesize disableAuthenticator = _disableAuthenticator;
 @synthesize responseReceiver = _responseReceiver;
-@synthesize workerContext = _workerContext;
 
 - (id) init {
     return [self initWithRequestURL:nil httpMethod:nil];
@@ -99,19 +98,20 @@
 - (void) requestCancel {
 }
 
-- (id<FLDispatcher>) dispatcher {
+- (id<FLAsyncQueue>) asyncQueue {
     return nil;
 }
 
 - (void) didMoveToContext:(id<FLWorkerContext>) context {
-    _workerContext = context;
-    if(_workerContext && !self.authenticator && [_workerContext respondsToSelector:@selector(httpRequestAuthenticator)]) {
-        self.authenticator = [((id)_workerContext) httpRequestAuthenticator];
+    [super didMoveToContext:context];
+    
+    if(context && !self.authenticator && [context respondsToSelector:@selector(httpRequestAuthenticator)]) {
+        self.authenticator = [((id)context) httpRequestAuthenticator];
     }
 }
 
 - (void) startWorking:(FLFinisher*) finisher {
-    FLHttpRequestWorker* worker = [FLHttpRequestWorker httpRequestWorker:self];
+    FLHttpStreamWorker* worker = [FLHttpStreamWorker httpRequestWorker:self];
     [self.workerContext startWorker:worker withFinisher:finisher];
 }
 

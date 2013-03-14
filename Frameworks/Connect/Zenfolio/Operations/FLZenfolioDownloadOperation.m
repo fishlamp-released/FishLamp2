@@ -129,15 +129,15 @@
 }
 
 - (void) updateProgress:(id) observer {
-    [observer postObservation:@selector(downloadOperation:updateDownloadInfo:) 
-                   withObject:self 
+    [self postObservation:@"downloadOperation:updateDownloadInfo:" 
+                   toObserver:observer 
                    withObject:FLAutorelease([_state copy])];
 }
 
 - (FLZenfolioPhotoSet*) downloadLatestPhotoSet:(FLZenfolioPhotoSet*) photoSet inContext:(id) context withObserver:(id) observer {
 
-    [observer postObservation:@selector(downloadOperation:willUpdatePhotoSet:) 
-                   withObject:self 
+    [self postObservation:@"downloadOperation:willUpdatePhotoSet:" 
+                   toObserver:observer 
                    withObject:photoSet];
 
     FLHttpRequest* request = [FLZenfolioHttpRequest loadPhotoSetHttpRequest:photoSet.Id level:kZenfolioInformatonLevelFull includePhotos:YES];
@@ -146,8 +146,8 @@
     
     _state.photoSetCount++;
 
-    [observer postObservation:@selector(downloadOperation:didUpdatePhotoSet:) 
-                   withObject:self 
+    [self postObservation:@"downloadOperation:didUpdatePhotoSet:" 
+                   toObserver:observer 
                    withObject:latestPhotoSet];
     
     return latestPhotoSet;
@@ -204,8 +204,8 @@
             [info setObject:photo forKey:ZFDownloadedPhotoKey];
             [info setObject:pathToContent forKey:ZFDownloadedDestinationPathKey];
         
-            [observer postObservation:@selector(downloadOperation:willDownloadPhoto:) 
-                           withObject:self 
+            [self postObservation:@"downloadOperation:willDownloadPhoto:" 
+                           toObserver:observer 
                            withObject:info];
 
             if([imageFolder fileExistsInFolder:photo.FileName]) {
@@ -222,8 +222,8 @@
                     }
                 }            
                 
-                [observer postObservation:@selector(downloadOperation:didSkipPhoto:) 
-                               withObject:self 
+                [self postObservation:@"downloadOperation:didSkipPhoto:" 
+                               toObserver:observer 
                                withObject:info];
             }
             else {
@@ -249,8 +249,8 @@
 
                 [self abortIfNeeded];
             
-                [observer postObservation:@selector(downloadOperation:didDownloadPhoto:) 
-                               withObject:self 
+                [self postObservation:@"downloadOperation:didDownloadPhoto:" 
+                               toObserver:observer 
                                withObject:info];
             }
             
@@ -291,7 +291,7 @@
 
     self.state = [FLZenfolioDownloadState downloadState];
 
-    [observer postObservation:@selector(downloadOperationWillBeginDownload:) withObject:self];
+    [self postObservation:@"downloadOperationWillBeginDownload:" toObserver:observer];
     [self updateNumbers];
     [self updateProgress:observer];
 
@@ -314,18 +314,18 @@
         [info setObject:photoSet forKey:ZFDownloadedPhotoSetKey];
         [info setObject:imageFolder forKey:ZFDownloadFolderKey];
 
-        [observer postObservation:@selector(downloadOperation:willStartDownloadingPhotosInPhotoSet:) withObject:self withObject:info];
+        [self postObservation:@"downloadOperation:willStartDownloadingPhotosInPhotoSet:" toObserver:observer withObject:info];
 
         [self downloadPhotosInPhotoSet:photoSet imageFolder:imageFolder inContext:context observer:observer];
 
-        [observer postObservation:@selector(downloadOperation:didDownloadPhotosInPhotoSet:) withObject:self withObject:info];
+        [self postObservation:@"downloadOperation:didDownloadPhotosInPhotoSet:" toObserver:observer withObject:info];
 
         [self updateProgress:observer];
         [self abortIfNeeded];
     }
     
     [self updateProgress:observer];
-    [observer postObservation:@selector(downloadOperation:didFinishWithResult:) withObject:self withObject:_photoSets];
+    [self postObservation:@"downloadOperation:didFinishWithResult:" toObserver:observer withObject:_photoSets];
     
     return _photoSets;
 }

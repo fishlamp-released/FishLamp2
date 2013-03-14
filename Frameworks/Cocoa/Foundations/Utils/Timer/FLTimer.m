@@ -8,8 +8,7 @@
 
 #import "FLTimer.h"
 
-NSString* const FLTimerCheckEvent = @"com.fishlamp.timer.check";
-NSString* const FLTimerTimeOutNotification = @"FLTimerTimeOutNotification";
+NSString* const FLTimedOutNotification = @"FLTimedOutNotification";
 
 @interface FLTimer ()
 @property (readwrite, assign) NSTimeInterval startTime;

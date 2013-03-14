@@ -17,13 +17,11 @@ typedef FLResult (^FLBlockWithOperation)(FLOperation* operation, id context, id 
 
 @class FLOperationObserver;
 
-@interface FLOperation : NSObject<FLAsyncWorker> {
+@interface FLOperation : FLContextWorker {
 @private
 	id _operationID;
 	FLBlockWithOperation _runBlock;
     BOOL _cancelled;
-    
-    __unsafe_unretained id<FLWorkerContext> _workerContext;
 }
 
 @property (readwrite, strong, nonatomic) id operationID;

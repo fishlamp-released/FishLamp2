@@ -7,7 +7,7 @@
 //
 
 #import "FLAction.h"
-#import "FLGcdDispatcher.h"
+#import "FLAsyncQueue.h"
 #import "FLCallback_t.h"
 
 #define TIME_ALL_ACTIONS 0
@@ -41,8 +41,6 @@
 @synthesize disableWarningNotifications = _disableWarningNotifications;
 @synthesize disableActivityTimer = _disableActivityTimer;
 @synthesize networkRequired = _networkRequired;
-@synthesize workerContext = _workerContext;
-
 
 static FLCallback_t s_failedCallback;
 static id<FLActionErrorDelegate> s_errorDisplayDelegate = nil;
@@ -59,8 +57,8 @@ static id<FLActionErrorDelegate> s_errorDisplayDelegate = nil;
     return [self initWithActionType:nil];
 }
 
-- (id<FLDispatcher>) dispatcher {
-    return [FLGcdDispatcher sharedDefaultQueue];
+- (id<FLAsyncQueue>) asyncQueue {
+    return [FLAsyncQueue defaultQueue];
 }
 
 - (id) initWithActionType:(NSString*) actionType {
@@ -99,9 +97,7 @@ static id<FLActionErrorDelegate> s_errorDisplayDelegate = nil;
 	s_failedCallback = FLCallbackMake(target, action);
 }
 
-- (void) didMoveToContext:(id<FLWorkerContext>) context {
-    _workerContext = context;
-}
+
 
 
 - (void) closeNotification {
@@ -353,13 +349,13 @@ TODO("MF: fix activity updater");
 - (void) startWorking:(FLFinisher*) finisher {
     
     
-//    [[FLGcdDispatcher sharedForegroundQueue] dispatchBlock:^{
+//    [[FLAsyncQueue sharedForegroundQueue] queueBlock:^{
 //        [self actionStarted];
 //        
-//        [[FLGcdDispatcher sharedHighPriorityQueue] dispatchObject:self.operations
+//        [[FLAsyncQueue sharedHighPriorityQueue] dispatchObject:self.operations
 //                                 completion:^(FLResult result) {
 //                
-//                [[FLGcdDispatcher sharedForegroundQueue] dispatchBlock:^{
+//                [[FLAsyncQueue sharedForegroundQueue] queueBlock:^{
 //                    [finisher setFinishedWithResult:[self actionFinished:result]];
 //                }];
 //            }];

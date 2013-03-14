@@ -7,7 +7,7 @@
 //
 
 #import "FLUnitTestRunner.h"
-#import "FLGcdDispatcher.h"
+#import "FLAsyncQueue.h"
 #import "FLSanityCheckRunner.h"
 #import "FLUnitTestSubclassRunner.h"
 #import "FLStaticTestMethodRunner.h"

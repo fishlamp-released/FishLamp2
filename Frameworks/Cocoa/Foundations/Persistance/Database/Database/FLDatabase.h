@@ -19,7 +19,7 @@
 #import "FLDatabaseErrors.h"
 #import "FLDatabaseColumnDecoder.h"
 #import "FLDatabaseStatement.h"
-#import "FLGcdDispatcher.h"
+#import "FLAsyncQueue.h"
 #import "FLFinisher.h"
 #import "FLObjectDataStore.h"
 
@@ -29,7 +29,7 @@
 	NSString* _filePath;
 	NSMutableDictionary* _tables;
 	FLDatabaseColumnDecoder _columnDecoder;
-    FLGcdDispatcher* _dispatchQueue;
+    FLAsyncQueue* _dispatchQueue;
     BOOL _isOpen;
 }
 
@@ -88,9 +88,9 @@
 + (FLDatabaseColumnDecoder) defaultColumnDecoder;
 + (void) setDefaultColumnDecoder:(FLDatabaseColumnDecoder) decoder;
 
-- (FLResult) dispatchBlock:(dispatch_block_t) block;
+- (FLResult) queueBlock:(dispatch_block_t) block;
 - (FLResult) dispatchFifoBlock:(dispatch_block_t) block;
-@property (readonly, strong) FLGcdDispatcher* dispatchQueue;
+@property (readonly, strong) FLAsyncQueue* dispatchQueue;
 
 @end
 

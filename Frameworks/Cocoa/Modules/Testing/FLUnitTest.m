@@ -15,7 +15,7 @@
 #import "FLUnitTestResult.h"
 #import "FLUnitTestResult_Internal.h"
 #import "FLOperationQueue.h"
-#import "FLGcdDispatcher.h"
+#import "FLAsyncQueue.h"
 
 
 @interface FLUnitTest ()

@@ -17,12 +17,12 @@
 
 @synthesize networkStream = _networkStream;
 @synthesize finisher = _finisher;
-@synthesize dispatcher = _dispatcher;
+@synthesize asyncQueue = _asyncQueue;
 
-- (id) initWithNetworkStream:(FLNetworkStream*) stream {
+- (id) initWithNetworkStream:(FLNetworkStream*) networkStream {
     self = [super init];
     if(self) {
-        self.networkStream = stream;
+        self.networkStream = networkStream;
     }
     return self;
 }
@@ -32,8 +32,8 @@
     [self.networkStream closeStream];
 }
 
-+ (id) streamWorker:(FLNetworkStream*) stream {
-   return FLAutorelease([[[self class] alloc] initWithNetworkStream:stream]);
++ (id) streamWorker:(FLNetworkStream*) networkStream {
+   return FLAutorelease([[[self class] alloc] initWithNetworkStream:networkStream]);
 }
 
 #if FL_MRC
@@ -54,26 +54,8 @@
     }
 }
 
-- (void) streamWillOpen:(FLNetworkStream*) networkStream {
-}
-
-- (void) streamDidOpen:(FLNetworkStream*) networkStream {
-}
-
-- (void) stream:(FLNetworkStream*) networkStream willCloseWithError:(NSError*) error {
-}
-
-- (void) streamDidClose:(FLNetworkStream*) networkStream {
+- (void) networkStreamDidClose:(FLNetworkStream*) networkStream {
     [self setFinished];
-}
-
-- (void) stream:(FLNetworkStream*) stream encounteredError:(NSError*) error {
-}
-
-- (void) streamHasBytesAvailable:(FLNetworkStream*) networkStream {
-}
-
-- (void) stream:(FLNetworkStream*) stream didReadBytes:(NSNumber*) amountRead {
 }
 
 - (void) startWorking:(FLFinisher*) finisher {
@@ -85,16 +67,16 @@
 
 @implementation FLStreamOpener 
 
-+ (id) streamOpener:(FLNetworkStream*) stream {
-    return FLAutorelease([[[self class] alloc] initWithNetworkStream:stream]);
++ (id) streamOpener:(FLNetworkStream*) networkStream {
+    return FLAutorelease([[[self class] alloc] initWithNetworkStream:networkStream]);
 }
 
 - (void) startWorking:(FLFinisher*) finisher {
     [super startWorking:finisher];
-    [self.networkStream openStream];
+    [self.networkStream openStreamWithDelegate:self];
 }
 
-- (void) streamDidOpen:(FLNetworkStream*) networkStream {
+- (void) networkStreamDidOpen:(FLNetworkStream*) networkStream {
     [self setFinished];
 }
 

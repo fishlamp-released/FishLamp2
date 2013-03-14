@@ -103,10 +103,10 @@ authenticateSynchronouslyInContext:(id) context
 	_lastAuthenticationTimestamp = 0;
 }
 
-- (id<FLDispatcher>) httpRequestAuthenticationDispatcher:(FLHttpRequest*) httpRequest {
+- (id<FLAsyncQueue>) httpRequestAuthenticationDispatcher:(FLHttpRequest*) httpRequest {
 
     if(!self.httpRequestAuthenticationDispatcher) {
-        self.httpRequestAuthenticationDispatcher = [FLGcdDispatcher sharedFifoQueue];
+        self.httpRequestAuthenticationDispatcher = [FLAsyncQueue fifoQueue];
     }
 
     return self.httpRequestAuthenticationDispatcher;

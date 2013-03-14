@@ -14,9 +14,7 @@
 @private
     CFReadStreamRef _streamRef;
 }
-
-// CFStream
-@property (readwrite, assign, nonatomic) CFReadStreamRef streamRef;
+@property (readonly, assign, nonatomic) CFReadStreamRef streamRef;
 
 // info
 @property (readonly, assign) BOOL hasBytesAvailable;
@@ -26,5 +24,6 @@
 - (NSUInteger) readBytes:(uint8_t*) bytes 
                maxLength:(NSUInteger) maxLength;
 
+- (CFReadStreamRef) createReadStreamRef;
 
 @end

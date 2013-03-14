@@ -383,6 +383,15 @@
 		27DB1E0A167A7CBF00452AD3 /* FLFrameworkModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DB1E08167A7CBF00452AD3 /* FLFrameworkModule.h */; };
 		27DB1E0B167A7CBF00452AD3 /* FLFrameworkModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DB1E08167A7CBF00452AD3 /* FLFrameworkModule.h */; };
 		27DB1E0C167A7CBF00452AD3 /* FLFrameworkModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DB1E08167A7CBF00452AD3 /* FLFrameworkModule.h */; };
+		27EC4ECC16F0F87300E38A05 /* FLSelector.h in Headers */ = {isa = PBXBuildFile; fileRef = 27EC4ECA16F0F87300E38A05 /* FLSelector.h */; };
+		27EC4ECD16F0F87300E38A05 /* FLSelector.h in Headers */ = {isa = PBXBuildFile; fileRef = 27EC4ECA16F0F87300E38A05 /* FLSelector.h */; };
+		27EC4ECE16F0F87300E38A05 /* FLSelector.h in Headers */ = {isa = PBXBuildFile; fileRef = 27EC4ECA16F0F87300E38A05 /* FLSelector.h */; };
+		27EC4ECF16F0F87300E38A05 /* FLSelector.h in Headers */ = {isa = PBXBuildFile; fileRef = 27EC4ECA16F0F87300E38A05 /* FLSelector.h */; };
+		27EC4ED016F0F87300E38A05 /* FLSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EC4ECB16F0F87300E38A05 /* FLSelector.m */; };
+		27EC4ED116F0F87300E38A05 /* FLSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EC4ECB16F0F87300E38A05 /* FLSelector.m */; };
+		27EC4ED216F0F87300E38A05 /* FLSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EC4ECB16F0F87300E38A05 /* FLSelector.m */; };
+		27EC4ED316F0F87300E38A05 /* FLSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EC4ECB16F0F87300E38A05 /* FLSelector.m */; };
+		27EC4ED416F0F87300E38A05 /* FLSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EC4ECB16F0F87300E38A05 /* FLSelector.m */; };
 		27F1F53E16A0A73E00B10213 /* NSObject+FLSelectorPerforming_Inlines.h in Headers */ = {isa = PBXBuildFile; fileRef = 27F1F53D16A0A73E00B10213 /* NSObject+FLSelectorPerforming_Inlines.h */; };
 		27F1F53F16A0A73E00B10213 /* NSObject+FLSelectorPerforming_Inlines.h in Headers */ = {isa = PBXBuildFile; fileRef = 27F1F53D16A0A73E00B10213 /* NSObject+FLSelectorPerforming_Inlines.h */; };
 		27F1F54016A0A73E00B10213 /* NSObject+FLSelectorPerforming_Inlines.h in Headers */ = {isa = PBXBuildFile; fileRef = 27F1F53D16A0A73E00B10213 /* NSObject+FLSelectorPerforming_Inlines.h */; };
@@ -496,6 +505,8 @@
 		27CBC1F416768BA600753D0A /* libFishLampCore-OSX-3264-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCore-OSX-3264-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27CBD28516C6ECCC00DC6C90 /* FLConfirmations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLConfirmations.m; sourceTree = "<group>"; };
 		27DB1E08167A7CBF00452AD3 /* FLFrameworkModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLFrameworkModule.h; sourceTree = "<group>"; };
+		27EC4ECA16F0F87300E38A05 /* FLSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLSelector.h; sourceTree = "<group>"; };
+		27EC4ECB16F0F87300E38A05 /* FLSelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLSelector.m; sourceTree = "<group>"; };
 		27F1F53D16A0A73E00B10213 /* NSObject+FLSelectorPerforming_Inlines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+FLSelectorPerforming_Inlines.h"; sourceTree = "<group>"; };
 		78CC1A80167D383200A37127 /* FishLampCore-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FishLampCore-Prefix.pch"; sourceTree = "<group>"; };
 		78CC1A88167D4B9900A37127 /* FishLampPaths.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = FishLampPaths.xcconfig; path = FishLampBuildSupport/FishLampPaths.xcconfig; sourceTree = "<group>"; };
@@ -698,6 +709,8 @@
 				2798CE02166D886500A0863D /* FLObjcRuntime.m */,
 				2798CE03166D886500A0863D /* FLRuntimeInfo.h */,
 				2798CE04166D886500A0863D /* FLRuntimeInfo.m */,
+				27EC4ECA16F0F87300E38A05 /* FLSelector.h */,
+				27EC4ECB16F0F87300E38A05 /* FLSelector.m */,
 			);
 			path = Runtime;
 			sourceTree = "<group>";
@@ -833,6 +846,7 @@
 				271E3D2516920FC800FB62C9 /* FLWhitespace.h in Headers */,
 				274933F1169A051E008E8EC5 /* __CoreHeaders.h in Headers */,
 				27F1F53E16A0A73E00B10213 /* NSObject+FLSelectorPerforming_Inlines.h in Headers */,
+				27EC4ECC16F0F87300E38A05 /* FLSelector.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -895,6 +909,7 @@
 				271E3D2716920FC800FB62C9 /* FLWhitespace.h in Headers */,
 				274933F3169A051E008E8EC5 /* __CoreHeaders.h in Headers */,
 				27F1F54016A0A73E00B10213 /* NSObject+FLSelectorPerforming_Inlines.h in Headers */,
+				27EC4ECE16F0F87300E38A05 /* FLSelector.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -957,6 +972,7 @@
 				271E3D2616920FC800FB62C9 /* FLWhitespace.h in Headers */,
 				274933F2169A051E008E8EC5 /* __CoreHeaders.h in Headers */,
 				27F1F53F16A0A73E00B10213 /* NSObject+FLSelectorPerforming_Inlines.h in Headers */,
+				27EC4ECD16F0F87300E38A05 /* FLSelector.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1019,6 +1035,7 @@
 				271E3D2816920FC800FB62C9 /* FLWhitespace.h in Headers */,
 				274933F4169A051E008E8EC5 /* __CoreHeaders.h in Headers */,
 				27F1F54116A0A73E00B10213 /* NSObject+FLSelectorPerforming_Inlines.h in Headers */,
+				27EC4ECF16F0F87300E38A05 /* FLSelector.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1178,6 +1195,7 @@
 				271E3D2116920FC800FB62C9 /* FLStringUtils.m in Sources */,
 				271E3D2A16920FC800FB62C9 /* FLWhitespace.m in Sources */,
 				27CBD28716C6ECCC00DC6C90 /* FLConfirmations.m in Sources */,
+				27EC4ED116F0F87300E38A05 /* FLSelector.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1217,6 +1235,7 @@
 				271E3D2316920FC800FB62C9 /* FLStringUtils.m in Sources */,
 				271E3D2C16920FC800FB62C9 /* FLWhitespace.m in Sources */,
 				27CBD28916C6ECCC00DC6C90 /* FLConfirmations.m in Sources */,
+				27EC4ED316F0F87300E38A05 /* FLSelector.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1256,6 +1275,7 @@
 				271E3D2016920FC800FB62C9 /* FLStringUtils.m in Sources */,
 				271E3D2916920FC800FB62C9 /* FLWhitespace.m in Sources */,
 				27CBD28616C6ECCC00DC6C90 /* FLConfirmations.m in Sources */,
+				27EC4ED016F0F87300E38A05 /* FLSelector.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1295,6 +1315,7 @@
 				271E3D2216920FC800FB62C9 /* FLStringUtils.m in Sources */,
 				271E3D2B16920FC800FB62C9 /* FLWhitespace.m in Sources */,
 				27CBD28816C6ECCC00DC6C90 /* FLConfirmations.m in Sources */,
+				27EC4ED216F0F87300E38A05 /* FLSelector.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1334,6 +1355,7 @@
 				271E3D2416920FC800FB62C9 /* FLStringUtils.m in Sources */,
 				271E3D2D16920FC800FB62C9 /* FLWhitespace.m in Sources */,
 				27CBD28A16C6ECCC00DC6C90 /* FLConfirmations.m in Sources */,
+				27EC4ED416F0F87300E38A05 /* FLSelector.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

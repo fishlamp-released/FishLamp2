@@ -17,12 +17,12 @@
 @private
     NSTimeInterval _lastAuthenticationTimestamp;
     NSTimeInterval _timeoutInterval;
-    id<FLDispatcher> _requestAuthenticationDispatcher;
+    id<FLAsyncQueue> _requestAuthenticationDispatcher;
     __unsafe_unretained id<FLHttpRequestAuthenticationServiceDelegate> _delegate;
 }
 
 @property (readwrite, assign, nonatomic) id<FLHttpRequestAuthenticationServiceDelegate> delegate;
-@property (readwrite, strong, nonatomic) id<FLDispatcher> httpRequestAuthenticationDispatcher; 
+@property (readwrite, strong, nonatomic) id<FLAsyncQueue> httpRequestAuthenticationDispatcher; 
 
 @property (readwrite, assign, nonatomic) NSTimeInterval timeoutInterval;
 

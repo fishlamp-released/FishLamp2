@@ -14,7 +14,7 @@
 @property (readwrite, strong) NSString* remoteHost;
 @property (readwrite, strong) FLReadStream* readStream;
 @property (readwrite, strong) FLWriteStream* writeStream;
-@property (readwrite, strong) FLGcdDispatcher* dispatchQueue;
+@property (readwrite, strong) FLAsyncQueue* dispatchQueue;
 @property (readwrite, assign, getter=wasTerminated) BOOL terminate;
 
 - (void) updateRequestQueue;
@@ -38,7 +38,7 @@
         _additions = [[NSMutableArray alloc] init];
         
         static int s_count = 0;
-        _dispatchQueue = [[FLGcdDispatcher alloc] initWithLabel:[NSString stringWithFormat:@"com.fishlamp.queue.tcp-stream-%d", ++s_count] 
+        _dispatchQueue = [[FLAsyncQueue alloc] initWithLabel:[NSString stringWithFormat:@"com.fishlamp.queue.tcp-stream-%d", ++s_count] 
             attr:DISPATCH_QUEUE_SERIAL];
  
     }
@@ -52,7 +52,7 @@
 
 - (FLFinisher*) openConnection {
 
-//    return [self.dispatchQueue dispatchBlock:^{
+//    return [self.dispatchQueue queueBlock:^{
 //        
 //        FLAssertIsNil_(self.readStream);
 //        FLAssertIsNil_(self.writeStream);
@@ -119,7 +119,7 @@
 - (void) closeConnectionWithResult:(id) result {
     self.terminate = YES;
     
-    [self.dispatchQueue dispatchBlock:^{
+    [self.dispatchQueue queueBlock:^{
 //        if(_readStream) {
 //            [_readStream setDelegate:nil];
 //            [_readStream closeStreamWithResult:result];
@@ -139,7 +139,7 @@
 
 - (void) readStreamDidOpen:(FLReadStream*) networkStream {
     if(self.isOpen) {
-//        [self postObservation:@selector(networkStreamDidOpen:)];
+//        [self postObservation:@"networkStreamDidOpen:"];
     }
 }
 
@@ -156,19 +156,19 @@
 }
 
 - (void) readStreamHasBytesAvailable:(FLReadStream*) networkStream {
-//    [self postObservation:@selector(readStreamHasBytesAvailable:)];
+//    [self postObservation:@"readStreamHasBytesAvailable:"];
     if(self.isOpen) {
         [self updateRequestQueue];
     }
 }
 
 - (void) readStream:(FLReadStream*) stream didReadBytes:(NSNumber*) amountRead {
-//    [self postObservation:@selector(readStreamDidReadBytes:)];
+//    [self postObservation:@"readStreamDidReadBytes:"];
 }
 
 - (void) writeStreamDidOpen:(FLWriteStream*) networkStream {
     if(self.isOpen) {
-//        [self postObservation:@selector(networkStreamDidOpen:)];
+//        [self postObservation:@"networkStreamDidOpen:"];
 
         [self updateRequestQueue];
     }
@@ -187,7 +187,7 @@
 }      
 
 - (void) writeStreamCanAcceptBytes:(FLWriteStream*) networkStream {
-//    [self postObservation:@selector(writeStreamCanAcceptBytes:)];
+//    [self postObservation:@"writeStreamCanAcceptBytes:"];
 
     if(self.isOpen) {
         [self updateRequestQueue];
@@ -195,7 +195,7 @@
 }
 
 - (void) writeStream:(FLWriteStream*) stream didWriteBytes:(NSNumber*) amountWritten {
-//    [self postObservation:@selector(writeStreamDidWriteBytes:)];
+//    [self postObservation:@"writeStreamDidWriteBytes:"];
 
 }
 
@@ -264,7 +264,7 @@
 }
 
 - (void) updateRequestQueue {
-    [self.dispatchQueue dispatchBlock:^{
+    [self.dispatchQueue queueBlock:^{
         [self updateQueue];
     }];
 }

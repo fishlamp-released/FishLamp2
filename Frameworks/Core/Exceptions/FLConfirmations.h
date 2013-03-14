@@ -11,22 +11,22 @@ extern void FLThrowConfirmationFailedException(FLAssertionFailure failure, NSStr
 /// @brief: Assert that any condition is true
 #define FLConfirm_(__CONDITION__) \
     if((__CONDITION__) == NO) \
-        @throw [NSException exceptionWithError:[NSError errorWithDomain:[FLAssertionFailureErrorDomain instance] \
+        [[NSException exceptionWithError:[NSError errorWithDomain:[FLAssertionFailureErrorDomain instance] \
             code:FLAssertionFailureCondition \
             userInfo:nil \
             reason:FLStringWithFormatOrNil(@"Condition unexpectedly false: %s", #__CONDITION__) \
             comment:nil \
-            stackTrace:FLCreateStackTrace(YES)]]; 
+            stackTrace:FLCreateStackTrace(YES)]] raise]; 
 
 /// @brief: Assert that any condition is true
 #define FLConfirm_v(__CONDITION__, __COMMENT__, ...) \
     if((__CONDITION__) == NO) \
-        @throw [NSException exceptionWithError:[NSError errorWithDomain:[FLAssertionFailureErrorDomain instance] \
+        [[NSException exceptionWithError:[NSError errorWithDomain:[FLAssertionFailureErrorDomain instance] \
             code:FLAssertionFailureCondition \
             userInfo:nil \
             reason:FLStringWithFormatOrNil(@"Condition unexpectedly false: %s", #__CONDITION__) \
             comment: FLStringWithFormatOrNil(__COMMENT__, ##__VA_ARGS__) \
-            stackTrace:FLCreateStackTrace(YES)]]; 
+            stackTrace:FLCreateStackTrace(YES)]] raise]; 
 
 extern BOOL __FLConfirmationDidFail();
 

@@ -9,35 +9,37 @@
 #import <Foundation/Foundation.h>
 
 @class FLFinisher;
-@protocol FLDispatcher;
+@protocol FLAsyncQueue;
 @protocol FLWorkerContext;
 
 @protocol FLAsyncWorker <NSObject>
-
 - (void) startWorking:(FLFinisher*) finisher;
-
-- (void) requestCancel;
-
-- (id<FLDispatcher>) dispatcher;
-
-@property (readonly, assign) id<FLWorkerContext> workerContext;
-
-- (void) didMoveToContext:(id<FLWorkerContext>) context;
-
 @end
 
+@protocol FLContextWorker <FLAsyncWorker>
+@property (readonly, assign) id<FLWorkerContext> workerContext;
+@property (readonly, assign) NSUInteger contextID;
+- (void) requestCancel;
+- (id<FLAsyncQueue>) asyncQueue;
+- (void) didMoveToContext:(id<FLWorkerContext>) context;
+- (void) contextDidChange:(id<FLWorkerContext>) context;
+@end
 
-@interface FLAsyncWorker : NSObject<FLAsyncWorker> {
+@interface FLContextWorker : NSObject<FLContextWorker> {
 @private
     __unsafe_unretained id<FLWorkerContext> _workerContext;
+    NSUInteger _contextID;
 }
 
 @end
 
-@interface FLAsyncWorkerQueue : NSObject<FLAsyncWorker> 
 
-+ (id) asyncWorkerQueue;
 
-- (void) addWorker:(id<FLAsyncWorker>) worker;
+//@interface FLContextWorkerQueue : NSObject<FLAsyncWorker> 
+//
+//+ (id) asyncWorkerQueue;
+//
+//- (void) addWorker:(id<FLAsyncWorker>) worker;
+//
+//@end
 
-@end

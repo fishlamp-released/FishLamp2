@@ -59,30 +59,29 @@
 //
 //@end
 
-@implementation FLSoapXmlParser 
 
-+ (id) soapXmlParser {
-    return FLAutorelease([[[self class] alloc] init]);
+@implementation FLSoapObjectBuilder 
+
+FLSynthesizeSingleton(FLSoapObjectBuilder);
+
+- (id) init {
+    self = [super initWithDataDecoder:[FLSoapDataEncoder instance]];
+    if(self) {
+    }
+    return self;
 }
 
-- (void) willParseXMLData:(NSData*) data withXMLParser:(NSXMLParser*) parser {
-	[parser setShouldProcessNamespaces:YES];
-	[parser setShouldReportNamespacePrefixes:NO];
-	[parser setShouldResolveExternalEntities:NO];
+- (id) buildObjectWithClass:(Class) aClass withSoap:(FLParsedXmlElement*) element {
+    NSDictionary* children = [element childrenAtPath:@"Envelope/Body"];
+
+    FLConfirm_v(children.count == 1, @"Unable to parse object from SOAP");
+    
+    __unsafe_unretained id objects[1];
+    __unsafe_unretained id keys[1];
+    [children getObjects:objects andKeys:keys];
+    
+    return [self buildObjectWithClass:aClass withXml:objects[0]];
 }
 
-- (NSDictionary*) bodyContentsForDictionary:(NSDictionary*) soap {
-    NSDictionary* outDict = [soap objectForKey:@"Envelope"];
-    outDict = [outDict objectForKey:@"Body"];
-    outDict = [[outDict allValues] firstObject];
-    return outDict;
-}
 
-@end
-
-
-@implementation NSObject (FLSoapParser)
-+ (id) objectWithSoap:(FLParsedXmlElement*) soap {
-    return [self objectWithXML:soap withDecoder:[FLSoapDataEncoder instance]];
-}
 @end
