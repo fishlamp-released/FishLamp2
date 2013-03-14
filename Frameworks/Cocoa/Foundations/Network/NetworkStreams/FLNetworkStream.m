@@ -18,6 +18,13 @@
 @synthesize error = _error;
 @synthesize delegate = _delegate;
 
+- (id) init {
+    self = [super init];
+    if(self) {
+    }
+    return self;
+}
+
 #if FL_MRC
 - (void) dealloc {
     [_error release];
@@ -25,9 +32,20 @@
 }
 #endif
 
+//- (void) addDelegate:(id<FLNetworkStreamDelegate>) delegate {
+//    if(!_delegates) {
+//        _delegates = [[NSMutableArray alloc] initWithCapacity:3];
+//    }
+//
+//    [_delegates addObject: [NSValue valueWithNonretainedObject:delegate]];
+//}
+//- (void) removeDelegate:(id<FLNetworkStreamDelegate>) delegate {
+//    [_delegates removeObject: [NSValue valueWithNonretainedObject:delegate]];
+//}
+
 - (void) encounteredError:(NSError*) error {
     self.error = error;
-    FLPerformSelector2(self.delegate, @selector(networkStream:encounteredError:), self, error);
+        FLPerformSelector2(self.delegate, @selector(networkStream:encounteredError:), self, error);
 }
 
 - (void) willOpen {
@@ -42,12 +60,13 @@
 }
 
 - (void) willClose {
-    FLPerformSelector2(self.delegate, @selector(networkStream:willCloseWithError:), self, self.error);
+    FLPerformSelector2(self.delegate, @selector(networkStreamWillClose:), self, self.error);
 }
 
 - (void) didClose {
     self.open = NO;
     FLPerformSelector1(self.delegate, @selector(networkStreamDidClose:), self);
+    _delegate = nil;
 }
 
 - (void) encounteredBytesAvailable {
@@ -70,7 +89,9 @@
     return nil;
 }
 
-- (void) openStream {
+- (void) openStreamWithDelegate:(id<FLNetworkStreamDelegate>) delegate {
+    _delegate = delegate;
+    [self willOpen];
 }
 
 - (void) closeStream {
@@ -88,6 +109,8 @@
 //#endif
 
     switch (eventType)  {
+
+        // NOTE: HttpStream doesn't get this event.
         case kCFStreamEventOpenCompleted:
             [stream encounteredOpen];
         break;

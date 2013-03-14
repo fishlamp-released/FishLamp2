@@ -11,7 +11,7 @@
 #import "FLReadStream.h"
 #import "FLWriteStream.h"
 #import "FLTcpRequest.h"
-#import "FLGcdDispatcher.h"
+#import "FLAsyncQueue.h"
 
 #if REFACTOR
 @interface FLTcpStream : NSObject<FLReadStreamDelegate, FLWriteStreamDelegate> {
@@ -20,7 +20,7 @@
     int32_t _remotePort;
     FLReadStream* _readStream;
 	FLWriteStream* _writeStream;
-    FLGcdDispatcher* _dispatchQueue;
+    FLAsyncQueue* _dispatchQueue;
   
     BOOL _terminate;
   

@@ -16,9 +16,14 @@
     NSError* _error;
     
     __unsafe_unretained id<FLNetworkStreamDelegate> _delegate;
+    
+//    NSMutableArray* _delegates;
 }
+@property (readonly, assign, nonatomic) id<FLNetworkStreamDelegate> delegate;
 
-@property (readwrite, assign, nonatomic) id<FLNetworkStreamDelegate> delegate;
+//@property (readonly, strong) NSArray* delegates;
+//- (void) addDelegate:(id<FLNetworkStreamDelegate>) delegate;
+//- (void) removeDelegate:(id<FLNetworkStreamDelegate>) delegate;
 
 @property (readonly, assign, getter=isOpen) BOOL open;
 @property (readwrite, strong) NSError* error;
@@ -39,7 +44,7 @@
 
 // required overrides
 - (NSError*) streamError;
-- (void) openStream;
+- (void) openStreamWithDelegate:(id<FLNetworkStreamDelegate>) delegate;
 - (void) closeStream;
 
 // for CFStream subclasses
@@ -55,7 +60,7 @@
 
 - (void) networkStreamDidOpen:(FLNetworkStream*) networkStream;
 
-- (void) networkStream:(FLNetworkStream*) networkStream willCloseWithError:(NSError*) error;
+- (void) networkStreamWillClose:(FLNetworkStream*) stream;
 
 - (void) networkStreamDidClose:(FLNetworkStream*) networkStream;
 

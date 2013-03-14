@@ -10,7 +10,7 @@
 #import "FLPerformSelectorOperation.h"
 #import "FLCollectionIterator.h"
 #import "FLFinisher.h"
-#import "FLGcdDispatcher.h"
+#import "FLAsyncQueue.h"
 
 #if DEBUG
 #define LOG 0
@@ -93,7 +93,7 @@
 //    [operation addObserver:self];
 //    
 //    
-//    [self postObservation:@selector(operationQueue:operationWasAdded:) withObject:operation];
+//    [self postObservation:@"operationQueue:operationWasAdded:" withObject:operation];
 }
 
 - (void) addOperation:(FLOperation*) operation {
@@ -219,7 +219,7 @@
 
 - (void) operationWasRemoved:(FLOperation*) operation {
 //    [operation removeObserver:self];
-//    [self postObservation:@selector(operationQueue:operationWasRemoved:) withObject:operation];
+//    [self postObservation:@"operationQueue:operationWasRemoved:" withObject:operation];
 }
 
 - (void) removeOperation:(FLOperation*) operation {
@@ -261,15 +261,15 @@
 }
 
 - (void) operationWillRun:(FLOperation*) operation {
-//    [self postObservation:@selector(operationQueue:operationWillRun:) withObject:operation];
+//    [self postObservation:@"operationQueue:operationWillRun:" withObject:operation];
 }
 
 - (void) operationDidFinish:(FLOperation*) operation {
-//    [self postObservation:@selector(operationQueue:operationDidFinish:) withObject:operation];
+//    [self postObservation:@"operationQueue:operationDidFinish:" withObject:operation];
 }
 
 - (void) operationWasCancelled:(FLOperation*) operation {
-//    [self postObservation:@selector(operationQueue:operationWasCancelled:) withObject:operation];
+//    [self postObservation:@"operationQueue:operationWasCancelled:" withObject:operation];
 }
 
 - (id) runOperation:(FLOperation*) operation inContext:(id) context withObserver:(id) observer {

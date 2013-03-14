@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "FLHttp.h"
 #import "FLOperation.h"
-#import "FLGcdDispatcher.h"
+#import "FLAsyncQueue.h"
 #import "FLHttpRequestAuthenticationService.h"
 #import "FLWorkerContext.h"
 #import "FLImageStoreService.h"
@@ -18,7 +18,7 @@
 @interface FLHttpUserService :  FLWorkerContext<FLHttpRequestContext> {
 @private
     FLHttpRequestAuthenticationService* _httpRequestAuthenticator;
-    FLFifoGcdDispatcher* _asyncDispatcher;
+    FLFifoAsyncQueue* _asyncDispatcher;
 }
 
 + (id) httpUserService;
@@ -27,7 +27,7 @@
 @property (readonly, assign) BOOL isContextAuthenticated;
 
 @property (readwrite, strong) FLHttpRequestAuthenticationService* httpRequestAuthenticator;
-@property (readwrite, strong) id<FLDispatcher> asyncDispatcher;
+@property (readwrite, strong) id<FLAsyncQueue> asyncDispatcher;
 
 - (void) logoutUser;
 

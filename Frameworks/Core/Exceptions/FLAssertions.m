@@ -7,10 +7,9 @@
 //
 
 #import "FLAssertions.h"
-id _FLAssertObjectIsType(id object, NSString* className) {
+id _FLAssertIsClass(id object, Class aClass) {
     if(object) {
-        Class aClass = NSClassFromString(className);
-        FLAssertNotNil_v(aClass, @"class for %@ is nil", className);
+        FLAssertNotNil_v(aClass, @"class for %@ is nil", NSStringFromClass(aClass));
         FLAssert_v([object isKindOfClass:aClass], 
             @"expecting type of %@ but got %@", 
             NSStringFromClass(aClass), 

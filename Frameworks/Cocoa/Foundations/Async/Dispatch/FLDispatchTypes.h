@@ -12,7 +12,7 @@
 #import "FLAsyncWorker.h"
 
 @class FLFinisher;
-@protocol FLDispatcher;
+@protocol FLAsyncQueue;
 
 typedef void (^FLBlockWithResult)(FLResult result);
 typedef void (^FLBlockWithFinisher)(FLFinisher* result);

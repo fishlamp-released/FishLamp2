@@ -5,6 +5,7 @@
 //  Created by Mike Fullerton on 7/9/11.
 //  Copyright 2011 GreenTongue Software, LLC. All rights reserved.
 //
+#if REFACTOR
 
 #import "FLObjectBuilder.h"
 #import "FLObjectDescriber.h"
@@ -291,3 +292,4 @@
 
     
 @end
+#endif

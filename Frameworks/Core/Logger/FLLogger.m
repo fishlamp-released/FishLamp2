@@ -28,7 +28,7 @@
 
 - (void) raiseAndLog {
 
-    [[FLLogger instance] sendStringToSinks:[self reason]
+    [[FLLogger instance] sendStringToSinks:[[self error] localizedDescription]
                                    logType:FLLogTypeException
                                 stackTrace:self.error.stackTrace];
 

@@ -93,6 +93,8 @@ NSString* makeDescriptionString(NSString* reason, NSString* comment) {
 
     id<FLErrorDomain> errorDomain = FLErrorDomainFromObject(domainStringOrObject);
 
+
+
     NSString* commentAddOn = nil;
     if(errorDomain) {
         commentAddOn = [NSString stringWithFormat:@"[%@: %@ (%ld)]", [errorDomain errorDomainString], [errorDomain stringFromErrorCode:code], (long) code];
@@ -102,11 +104,14 @@ NSString* makeDescriptionString(NSString* reason, NSString* comment) {
     }
 
     if(comment) {
+        reason = [NSString stringWithFormat:@"%@ (%@)", reason, comment];
         comment = [NSString stringWithFormat:@"%@ %@", comment, commentAddOn];
     }
     else {
         comment = commentAddOn;
     }
+    
+    
 
     FLDictionaryEntry objects[] = {
         { errorDomain, FLErrorDomainKey },

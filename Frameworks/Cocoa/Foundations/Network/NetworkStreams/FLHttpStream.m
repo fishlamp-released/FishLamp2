@@ -8,100 +8,82 @@
 
 #import "FLHttpStream.h"
 
-#import "FLHttpMessage.h"
-
 @implementation FLHttpStream
 
-- (FLHttpMessage*) readResponseHeaders {
-    
-    CFHTTPMessageRef ref = (CFHTTPMessageRef)CFReadStreamCopyProperty(self.streamRef, kCFStreamPropertyHTTPResponseHeader);
-    @try {
-        return [FLHttpMessage httpMessageWithHttpMessageRef:ref];
+- (id) initWithHttpMessage:(FLHttpMessage*) request {
+    self = [super init];
+    if(self ) {
+        _request = FLRetain(request);
     }
-    @finally {
-        if(ref) {
-            CFRelease(ref);
-        }
-    }
+    return self;
 }
+
+- (id) initWithHttpMessage:(FLHttpMessage*) request withBodyStream:(NSInputStream*) bodyStream {
+    self = [super init];
+    if(self ) {
+        _request = FLRetain(request);
+        _bodyStream = FLRetain(bodyStream);
+    }
+    return self;
+}
+
+#if FL_MRC
+- (void) dealloc {
+    [_request release];
+    [_bodyStream release];
+    [_responseHeaders release];
+    [super dealloc];
+}
+#endif
+
+- (void) willOpen {
+    FLReleaseWithNil(_responseHeaders);
+    [super willOpen];
+}
+
+- (CFReadStreamRef) createReadStreamRef {
+    if(_bodyStream) {
+        return CFReadStreamCreateForStreamedHTTPRequest(kCFAllocatorDefault, _request.messageRef, bridge_(CFReadStreamRef, _bodyStream));
+    }
+    
+    return CFReadStreamCreateForHTTPRequest(kCFAllocatorDefault, _request.messageRef);
+}
+
++ (id) httpStream:(FLHttpMessage*) request {
+    return FLAutorelease([[[self class] alloc] initWithHttpMessage:request]);
+}
+
++ (id) httpStream:(FLHttpMessage*) request 
+            withBodyStream:(NSInputStream*) bodyStream {
+    return FLAutorelease([[[self class] alloc] initWithHttpMessage:request withBodyStream:bodyStream]);
+}            
+
+- (FLHttpMessage*) responseHeaders {
+    
+    if(!_responseHeaders) {
+        CFHTTPMessageRef ref = (CFHTTPMessageRef)CFReadStreamCopyProperty(self.streamRef, kCFStreamPropertyHTTPResponseHeader);
+        @try {
+            if(CFHTTPMessageIsHeaderComplete(ref)) {
+                _responseHeaders = [[FLHttpMessage alloc] initWithHttpMessageRef:ref];
+            }
+        }
+        @finally {
+            if(ref) {
+                CFRelease(ref);
+            }
+        }
+        
+    }
+    
+    return _responseHeaders;
+}
+
 
 - (unsigned long) bytesWritten {
     NSNumber* number = FLAutorelease(bridge_transfer_(NSNumber*,
         CFReadStreamCopyProperty(self.streamRef, kCFStreamPropertyHTTPRequestBytesWrittenCount)));
     
     return number.unsignedLongValue;
-}
-
-- (id) initWithURL:(NSURL*) url
-        httpMethod:(NSString*) httpMethod
-           headers:(NSDictionary*) headers
-          bodyData:(NSData*) bodyData {
-
-    self = [super init];
-    if(self) {
-        FLHttpMessage* message = [FLHttpMessage httpMessageWithURL:url httpMethod:httpMethod];
-        message.headers = headers;
-        message.bodyData = bodyData;
-    
-        CFReadStreamRef readStreamRef = CFReadStreamCreateForHTTPRequest(kCFAllocatorDefault, message.messageRef);
-        self.streamRef = readStreamRef;
-        CFRelease(readStreamRef);
-        
-        FLConfirmNotNil_v(readStreamRef, @"unable to create CFReadStreamRef");
-    }
-    
-    return self;
-}                     
-
-- (id) initWithURL:(NSURL*) url
-        httpMethod:(NSString*) httpMethod
-           headers:(NSDictionary*) headers
-        bodyStream:(NSInputStream*) bodyStream  {
-
-    self = [super init];
-    if(self) {
-        FLHttpMessage* message = [FLHttpMessage httpMessageWithURL:url 
-                                                        httpMethod:httpMethod];
-        message.headers = headers;
-        
-        CFReadStreamRef readStreamRef = CFReadStreamCreateForStreamedHTTPRequest(kCFAllocatorDefault, message.messageRef, bridge_(CFReadStreamRef, bodyStream));
-        self.streamRef = readStreamRef;
-        CFRelease(readStreamRef);
-        
-        FLConfirmNotNil_v(readStreamRef, @"unable to create CFReadStreamRef");
-    }
-    
-    return self;
-}      
-
-- (id) initWithHeaders:(FLHttpRequestHeaders*) headers withBodyStream:(NSInputStream*) inputStream {
-    return [self initWithURL:headers.requestURL httpMethod:headers.httpMethod headers:headers.allHeaders bodyStream:inputStream];
-}             
-
-- (id) initWithHeaders:(FLHttpRequestHeaders*) headers withBodyData:(NSData*) bodyData {
-    return [self initWithURL:headers.requestURL httpMethod:headers.httpMethod headers:headers.allHeaders bodyData:bodyData];
-}             
-
-+ (id) httpStream:(NSURL*) url
-                   httpMethod:(NSString*) method
-                      headers:(NSDictionary*) headers
-                     bodyData:(NSData*) bodyData {
-    return FLAutorelease([[[self class] alloc] initWithURL:url httpMethod:method headers:headers bodyData:bodyData]);
-}
-
-+ (id) httpStream:(NSURL*) url
-                   httpMethod:(NSString*) method
-                      headers:(NSDictionary*) headers
-                   bodyStream:(NSInputStream*) bodyStream {
-    return FLAutorelease([[[self class] alloc] initWithURL:url httpMethod:method headers:headers bodyStream:bodyStream]);
-}
-
-+ (id) httpStream:(FLHttpRequestHeaders*) headers withBodyStream:(NSInputStream*) inputStream {
-    return FLAutorelease([[[self class] alloc] initWithHeaders:headers withBodyStream:inputStream]);
-}
-
-+ (id) httpStream:(FLHttpRequestHeaders*) headers withBodyData:(NSData*) bodyData {
-    return FLAutorelease([[[self class] alloc] initWithHeaders:headers withBodyData:bodyData]);
 }
 
 @end

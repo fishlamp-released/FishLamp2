@@ -12,14 +12,14 @@
 #import "FLNetworkStream.h"
 #import "FLFinisher.h"
 
-@interface FLStreamWorker : FLAsyncWorker<FLNetworkStreamDelegate> {
+@interface FLStreamWorker : FLContextWorker<FLNetworkStreamDelegate> {
 @private
     FLNetworkStream* _networkStream;
     FLFinisher* _finisher;
-    id<FLDispatcher> _dispatcher;
+    id<FLAsyncQueue> _asyncQueue;
 }
 
-@property (readwrite, strong, nonatomic) id<FLDispatcher> dispatcher;
+@property (readwrite, strong, nonatomic) id<FLAsyncQueue> asyncQueue;
 @property (readonly, strong, nonatomic) FLFinisher* finisher;
 @property (readonly, strong, nonatomic) id networkStream;
 
@@ -33,5 +33,6 @@
 @interface FLStreamOpener : FLStreamWorker {
 @private
 }
+
 + (id) streamOpener:(FLNetworkStream*) stream;
 @end

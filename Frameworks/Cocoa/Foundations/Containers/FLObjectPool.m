@@ -7,7 +7,7 @@
 //
 
 #import "FLObjectPool.h"
-#import "FLGcdDispatcher.h"
+#import "FLAsyncQueue.h"
 #import "FLDispatch.h"
 
 @implementation NSObject (FLObjectPool)
@@ -78,7 +78,7 @@ FLSynthesizeAssociatedProperty(retain_nonatomic, objectPool, setObjectPool, FLOb
 - (void) requestPooledObject:(FLObjectPoolBlock) block {
     block = FLCopyWithAutorelease(block);
     
-    [[FLGcdDispatcher sharedFifoQueue] dispatchBlock:^{
+    [[FLAsyncQueue fifoQueue] queueBlock:^{
         [_requests addObject:block];
         [self fufillRequests];
 
@@ -86,7 +86,7 @@ FLSynthesizeAssociatedProperty(retain_nonatomic, objectPool, setObjectPool, FLOb
 }
 
 - (void) releasePooledObject:(id) objectForPool {
-    [[FLGcdDispatcher sharedFifoQueue] dispatchBlock:^{
+    [[FLAsyncQueue fifoQueue] queueBlock:^{
         [_objects addObject:objectForPool];
         [objectForPool setObjectPool:nil];
         [self fufillRequests];
@@ -94,7 +94,7 @@ FLSynthesizeAssociatedProperty(retain_nonatomic, objectPool, setObjectPool, FLOb
 }
 
 - (void) stockPool:(NSArray*) withObjects {
-    [[FLGcdDispatcher sharedFifoQueue] dispatchBlock:^{
+    [[FLAsyncQueue fifoQueue] queueBlock:^{
         [_objects addObjectsFromArray:withObjects];
     }];
 }

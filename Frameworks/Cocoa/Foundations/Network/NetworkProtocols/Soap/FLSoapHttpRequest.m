@@ -12,6 +12,8 @@
 #import "FLSoapFault11.h"
 #import "FLSoapStringBuilder.h"
 #import "FLSoapDataEncoder.h"
+#import "FLSoapParser.h"
+
 
 @implementation FLSoapHttpRequest 
 
@@ -37,14 +39,11 @@
 	if(data && data.length >0 ) {
 		char* first = strnstr((const char*) [data bytes], "Fault", MIN([data length], (unsigned int) MAX_ERR_LEN));
         if(first) {
-            FLSoapXmlParser* parser = [FLSoapXmlParser soapXmlParser];
-
-            FLParsedXmlElement* xml = FLThrowIfError([parser parseData:data]);
+            FLParsedXmlElement* soap = [[FLSoapParser soapParser] parseData:data];
     
-            FLSoapFault11* soapFault = [FLSoapFault11 objectWithSoap:xml];
+            FLSoapFault11* soapFault = [[FLSoapObjectBuilder instance] buildObjectWithClass:[FLSoapFault11 class] withSoap:soap];
             FLAssertNotNil_(soapFault);
     
-        
 //			FLSoapObjectBuilder* soapParser = [FLSoapObjectBuilder soapObjectBuilder];
 //			FLSoapFault11* soapFault = [soapParser buildObjectWithClass:[FLSoapFault11 class] withData:data withDataDecoder:[FLSoapDataEncoder instance]];
             
@@ -108,30 +107,31 @@
 - (FLResult) resultFromHttpResponse:(FLHttpResponse*) httpResponse {
     NSData* data = httpResponse.responseData;
 
-    FLSoapXmlParser* parser = [FLSoapXmlParser soapXmlParser];
-    FLResult result = [parser parseData:data];
-    FLThrowIfError(result);
+    FLParsedXmlElement* parsedSoap = [[FLSoapParser soapParser] parseData:data];
     
-    if(_xmlDataPath) {
-        FLParsedXmlElement* element = [result elementAtPath:_xmlDataPath];
-        FLAssertNotNil_v(element, @"Element not found in result: %@", _xmlDataPath);
-        if(element) {
-            result = element;
-        }
-        
-        if(_decodedType) {
-            id object = [element inflateObjectWithType:_decodedType withDecoder:[FLSoapDataEncoder instance]];
-            FLAssertNotNil_v(object, @"object not inflated for type: %@", NSStringFromClass(_decodedType.typeClass));
-            result = object;
-        }
+    if(!_xmlDataPath) {
+        return parsedSoap;
     }
+    
+    FLParsedXmlElement* objectXml = [parsedSoap elementAtPath:_xmlDataPath];
+    FLConfirmNotNil_v(objectXml, @"Element not found in result: %@", _xmlDataPath);
+    
+    if(!_expectedObjectClass) {
+        return objectXml;
+    }
+    FLLog(@"object xml: %@, object type: %@", _xmlDataPath, NSStringFromClass(_expectedObjectClass));
+     
+    id object = [[FLSoapObjectBuilder instance] buildObjectWithClass:_expectedObjectClass withXml:objectXml];
 
-    return result;
+    FLConfirmNotNil_v(object, @"object not inflated for type: %@", NSStringFromClass(_expectedObjectClass));
+    FLAssertIsClass(object, _expectedObjectClass); // ([object class] == _expectedObjectClass, @"built %@, expecting %@", NSStringFromClass([object class]), NSStringFromClass(_expectedObjectClass));
+
+    return object;
 }
 
-- (void) setXmlPath:(NSString*) path withDecodedType:(FLTypeDesc*) decodedType {
+- (void) setExpectedResultAtXmlPath:(NSString*) path expectedObjectClass:(Class) expectedObjectClass {
     FLSetObjectWithRetain(_xmlDataPath, path);
-    FLSetObjectWithRetain(_decodedType, decodedType);
+    _expectedObjectClass = expectedObjectClass;
 }
 
 @end

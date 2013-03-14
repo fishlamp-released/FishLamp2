@@ -17,13 +17,13 @@
 @implementation FLHttpRequestWorker 
 
 @synthesize httpRequest = _httpRequest;
-@synthesize dispatcher = _dispatcher;
+@synthesize asyncQueue = _asyncQueue;
 
 - (id) initWithHttpRequest:(FLHttpRequest*) request {
     self = [super init];
     if(self) {
         self.httpRequest = request;
-        self.dispatcher = [FLFifoGcdDispatcher fifoDispatchQueue];
+        self.asyncQueue = [FLFifoAsyncQueue fifoDispatchQueue];
     }
         
     return self;
@@ -35,7 +35,7 @@
 
 #if FL_MRC
 - (void) dealloc {
-    [_dispatcher release];
+    [_asyncQueue release];
     [_httpRequest release];
     [super dealloc];
 }
@@ -47,20 +47,21 @@
 - (id) initWithHttpRequest:(FLHttpRequest*) request {
     self = [super initWithHttpRequest:request];
     if(self) {
-        self.dispatcher = [self.httpRequest.authenticator httpRequestAuthenticationDispatcher:self.httpRequest];
+        self.asyncQueue = [self.httpRequest.authenticator httpRequestAuthenticationDispatcher:self.httpRequest];
     }
     return self;
 }
 
 - (void) startWorking:(FLFinisher*) finisher {
     id<FLHttpRequestAuthenticator> authenticator = self.httpRequest.authenticator;
-    [finisher postObservation:@selector(httpRequestWillAuthenticate:) withObject:self.httpRequest];
+    
+    [self.httpRequest postObservation:@"httpRequestWillAuthenticate:" toObserver:finisher];
     [self.httpRequest willAuthenticate];
     
     [authenticator httpRequest:self.httpRequest authenticateSynchronouslyInContext:self.workerContext withObserver:finisher.observer];
     
     [self.httpRequest didAuthenticate];
-    [finisher postObservation:@selector(httpRequestDidAuthenticate:) withObject:self];
+    [self.httpRequest postObservation:@"httpRequestDidAuthenticate:" toObserver:finisher];
     [finisher setFinished];
 }
 
@@ -85,24 +86,24 @@
     return self;
 }
 
-- (void) dealloc {
-    _httpStream.delegate = nil;
 #if FL_MRC
-    [_response release];
+- (void) dealloc {
+    [_httpResponse release];
     [_finisher release];
     [_httpStream release];
     [super dealloc];
-#endif
 }
+#endif
+
 - (void) readResponseHeadersIfNeeded  {
     
-    if(!_response.responseHeaders) {
-        FLHttpMessage* message = [_httpStream readResponseHeaders];
-        if(message.isHeaderComplete) {
-            [_response setResponseHeadersWithHttpMessage:message];
+    if(!_httpResponse.responseHeaders) {
+        FLHttpMessage* message = [_httpStream responseHeaders];
+        if(message) {
+            [_httpResponse setResponseHeadersWithHttpMessage:message];
             
-            if(!_response.redirectedFrom) {
-                [_finisher postObservation:@selector(httpRequestDidOpen:) withObject:self.httpRequest];
+            if(!_httpResponse.redirectedFrom) {
+                [self.httpRequest postObservation:@"httpRequestDidOpen:" toObserver:self.finisher];
             }
             
 //            [self postObservableEvent:FLHttpRequestDidWriteBytesEvent];
@@ -111,21 +112,15 @@
     }
 }
 
-- (void) readStreamDidOpen:(FLHttpStream*) networkStream {
-    [self readResponseHeadersIfNeeded];
-}
-
 - (void) requestCancel {
-//    if(self.networkStream) {
-//        [self.networkStream requestCancel];
-//    }
+    [super requestCancel];
+
     if(self.httpRequest.responseReceiver) {
         [self.httpRequest.responseReceiver closeReceiverWithError:[NSError cancelError]];
     }
 }
 
 - (void) closeStream {
-    _httpStream.delegate = nil;
     [_httpStream closeStream];
     self.httpStream = nil;
 }
@@ -133,7 +128,7 @@
 - (void) openStreamWithURL:(NSURL*) url {
 
     FLHttpRequest* request = self.httpRequest;
-    [_finisher postObservation:@selector(httpRequestWillOpen:) withObject:request];
+    [request postObservation:@"httpRequestWillOpen:" toObserver:self.finisher];
     
     [request willSendHttpRequest]; // this may set requestURL so needs to be before createStreamOpenerWithURL
 
@@ -156,27 +151,29 @@
     newResponse.responseReceiver = request.responseReceiver;
     self.httpResponse = newResponse;
     [request.responseReceiver openReceiver];
-
-    FLHttpStream* httpStream = nil;
-    if(request.body.bodyStream != nil) {
-        httpStream = [FLHttpStream httpStream:request.headers withBodyStream:request.body.bodyStream];
-    }
-    else {
-        httpStream = [FLHttpStream httpStream:request.headers withBodyData:request.body.bodyData];
+    
+    FLHttpMessage* cfRequest = [FLHttpMessage httpMessageWithURL:request.headers.requestURL httpMethod:request.headers.httpMethod];
+    cfRequest.headers = request.headers.allHeaders;
+    
+    if(request.body.bodyData) {
+        cfRequest.bodyData = request.body.bodyData;
     }
     
-    FLStreamOpener* opener = [FLStreamOpener streamOpener:httpStream];
+    self.httpStream  = [FLHttpStream httpStream:cfRequest withBodyStream:request.body.bodyStream];
+    [self.httpStream openStreamWithDelegate:self];
 
-    [self.workerContext startWorker:opener withObserver:_finisher.observer completion:^(FLResult result){
-
-        if([result error]) {
-            [_finisher setFinishedWithResult:result];
-        }
-        else {
-            self.httpStream = httpStream;
-            self.httpStream.delegate = self;
-        }
-    }];
+//    FLStreamOpener* opener = [FLStreamOpener streamOpener:httpStream];
+//
+//    [self.workerContext startWorker:opener withObserver:_finisher.observer completion:^(FLResult result){
+//
+//        if([result error]) {
+//            [_finisher setFinishedWithResult:result];
+//        }
+//        else {
+//            self.httpStream = httpStream;
+//            [self.httpStream addDelegate:self];
+//        }
+//    }];
 }
 
 - (void) openAuthenticatedStreamWithURL:(NSURL*) url {
@@ -197,6 +194,10 @@
 }
 
 - (void) networkStreamWillOpen:(FLHttpStream*) networkStream {
+    if(networkStream.error) {
+        [self.finisher setFinishedWithResult:networkStream.error];
+        [networkStream closeStream];
+    }
 }
 
 - (void) networkStreamDidOpen:(FLHttpStream*) networkStream {
@@ -205,12 +206,12 @@
 
 - (void) networkStream:(FLHttpStream*) readStream encounteredError:(NSError*) error {
     [self closeStream];
-    [_finisher postObservation:@selector(httpRequest:encounteredError:) withObject:self.httpRequest withObject:error];
+    [self.httpRequest postObservation:@"httpRequest:encounteredError:" toObserver:self.finisher withObject:error];
     [_finisher setFinishedWithResult:error];
 }
 
 - (void) networkStream:(FLHttpStream*) stream didReadBytes:(NSNumber*) amountRead {
-    [_finisher postObservation:@selector(httpRequest:didReadBytes:) withObject:_httpStream withObject:amountRead];
+    [self.httpRequest postObservation:@"httpRequest:didReadBytes:" toObserver:self.finisher withObject:amountRead];
 }
 
 - (void) networkStreamHasBytesAvailable:(FLHttpStream*) networkStream {
@@ -241,7 +242,7 @@
 
         [self closeStream];
         
-        [_finisher postObservation:@selector(httpRequest:didCloseWithResult:) withObject:self.httpRequest withObject:result];
+        [self.httpRequest postObservation:@"httpRequest:didCloseWithResult:" toObserver:self.finisher withObject:result];
         
         FLFinisher* finisher = FLRetainWithAutorelease(self.finisher);
         self.finisher = nil;
@@ -272,7 +273,7 @@
         // FIXME: there was an issue here with progress getting fouled up on redirects.
         //    [self connectionGotTimerEvent];
 
-        BOOL redirect = _response.wantsRedirect;
+        BOOL redirect = _httpResponse.wantsRedirect;
         if(redirect) {
             NSURL* redirectURL = self.httpResponse.redirectURL;
             redirect = [self.httpRequest shouldRedirectToURL:redirectURL];

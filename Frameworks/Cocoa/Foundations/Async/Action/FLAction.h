@@ -31,7 +31,7 @@ typedef void (^FLActionErrorBlock)(FLAction* action, NSError* error);
 @protocol FLActionErrorDelegate;
 @protocol FLActionDelegate;
 
-@interface FLAction : NSObject<FLAsyncWorker, FLActionDescription, FLWeaklyReferenced> {
+@interface FLAction : FLContextWorker<FLActionDescription, FLWeaklyReferenced> {
 @private
     FLOperationQueue* _operations;
 
@@ -51,8 +51,6 @@ typedef void (^FLActionErrorBlock)(FLAction* action, NSError* error);
     BOOL _disableWarningNotifications;
 	BOOL _disableActivityTimer;
     BOOL _networkRequired;
-    
-    __unsafe_unretained id<FLWorkerContext> _workerContext;
 }
 
 @property (readonly, strong) FLOperationQueue* operations;

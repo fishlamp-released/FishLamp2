@@ -33,10 +33,9 @@
 #import "FLPerformSelectorOperation.h"
 
 // Foundations/Async/Workers
-#import "FLDispatchable.h"
 #import "FLDispatchedObjectCollection.h"
-#import "FLDispatcher.h"
-#import "FLGcdDispatcher.h"
+#import "FLAsyncQueue.h"
+#import "FLAsyncQueue.h"
 #import "FLFinisher.h"
 
 // Foundations/Async/Workers/Results
@@ -316,7 +315,6 @@
 // Foundations/Services
 #import "FLService.h"
 #import "FLServiceKeys.h"
-#import "FLServiceProvider.h"
 #import "FLServiceRequest.h"
 #import "FLUserAuthenticatorOperation.h"
 #import "FLUserDataStorageService.h"

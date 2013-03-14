@@ -9,7 +9,7 @@
 #import "FLOperation.h"
 #import "FLTraceOff.h"
 #import "FLFinisher.h"
-#import "FLGcdDispatcher.h"
+#import "FLAsyncQueue.h"
 
 NSString* const FLOperationFinishedEvent;
 
@@ -23,7 +23,6 @@ NSString* const FLOperationFinishedEvent;
 @synthesize operationID = _operationID;
 @synthesize runBlock = _runBlock;
 @synthesize cancelled = _cancelled;
-@synthesize workerContext = _workerContext;
 
 - (id) initWithRunBlock:(FLBlockWithOperation) callback {
     if((self = [self init])) {
@@ -35,11 +34,6 @@ NSString* const FLOperationFinishedEvent;
 + (id) operation:(FLBlockWithOperation) callback {
     return FLAutorelease([[[self class] alloc] initWithRunBlock:callback]);
 }
-
-- (void) didMoveToContext:(id<FLWorkerContext>) context {
-    _workerContext = context;
-}
-
 
 #if FL_MRC
 - (void) dealloc {
@@ -78,8 +72,8 @@ NSString* const FLOperationFinishedEvent;
     return self.wasCancelled;
 }
 
-- (id<FLDispatcher>) dispatcher {
-    return [FLGcdDispatcher sharedDefaultQueue];
+- (id<FLAsyncQueue>) asyncQueue {
+    return [FLAsyncQueue defaultQueue];
 }
 
 - (void) startWorking:(FLFinisher*) finisher {
@@ -89,8 +83,8 @@ NSString* const FLOperationFinishedEvent;
     @try {
         [self abortIfNeeded];
         
-        [finisher postObservation:@selector(operationWillRun:) withObject:self];
-        
+        [self postObservation:@"operationWillRun:" toObserver:finisher];
+       
         if(self.runBlock) {
             result = self.runBlock(self, self.workerContext, finisher.observer);
         }
@@ -108,8 +102,8 @@ NSString* const FLOperationFinishedEvent;
     
     [finisher setFinishedWithResult:result];
 
-    [finisher postObservation:@selector(operationDidFinish:withResult:) withObject:self withObject:result];
-    
+    [self postObservation:@"operationDidFinish:withResult:" toObserver:finisher withObject:self withObject:result];
+   
     self.cancelled = NO;
 }
 

@@ -1,14 +1,14 @@
 //
-//  FLFifoGcdDispatcher.m
+//  FLFifoAsyncQueue.m
 //  FishLampCocoa
 //
 //  Created by Mike Fullerton on 2/12/13.
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
 
-#import "FLFifoGcdDispatcher.h"
+#import "FLFifoAsyncQueue.h"
 
-@implementation FLFifoGcdDispatcher  
+@implementation FLFifoAsyncQueue  
 
 + (id) fifoDispatchQueue {
     return FLAutorelease([[[self class] alloc] init]);
@@ -21,7 +21,7 @@
 
 + (FLObjectPool*) pool {
     static FLObjectPoolFactory s_factory = ^{
-        return [FLFifoGcdDispatcher fifoDispatchQueue];
+        return [FLFifoAsyncQueue fifoDispatchQueue];
     };
 
     FLReturnStaticObject([[FLObjectPool alloc] initWithObjectFactory:s_factory]); 
@@ -29,3 +29,4 @@
 
 
 @end
+

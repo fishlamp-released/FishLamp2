@@ -11,44 +11,26 @@
 #import "FLHttpRequestHeaders.h"
 #import "FLStreamWorker.h"
 
-@interface FLHttpStream : FLReadStream
+@interface FLHttpStream : FLReadStream {
+@private
+    FLHttpMessage* _request;
+    FLHttpMessage* _responseHeaders;
+    NSInputStream* _bodyStream;
+}
+@property (readonly, strong, nonatomic) FLHttpMessage* responseHeaders;
+@property (readonly, assign, nonatomic) unsigned long bytesWritten;
 
 
-- (id) initWithURL:(NSURL*) url
-        httpMethod:(NSString*) method
-           headers:(NSDictionary*) headers
-          bodyData:(NSData*) data;
+// if bodyStream == nil, it will use bodyData in request.
+- (id) initWithHttpMessage:(FLHttpMessage*) request 
+            withBodyStream:(NSInputStream*) bodyStream;
 
-- (id) initWithURL:(NSURL*) url
-        httpMethod:(NSString*) method
-           headers:(NSDictionary*) headers
-        bodyStream:(NSInputStream*) data;
++ (id) httpStream:(FLHttpMessage*) request 
+            withBodyStream:(NSInputStream*) bodyStream;
 
-- (id) initWithHeaders:(FLHttpRequestHeaders*) headers 
-        withBodyStream:(NSInputStream*) inputStream;
-
-- (id) initWithHeaders:(FLHttpRequestHeaders*) headers 
-         withBodyData:(NSData*) bodyData;
-
-+ (id) httpStream:(NSURL*) url
-             httpMethod:(NSString*) method
-                headers:(NSDictionary*) headers
-               bodyData:(NSData*) data;
-
-+ (id) httpStream:(NSURL*) url
-             httpMethod:(NSString*) method
-                headers:(NSDictionary*) headers
-             bodyStream:(NSInputStream*) data;
-
-+ (id) httpStream:(FLHttpRequestHeaders*) headers 
-         withBodyStream:(NSInputStream*) inputStream;
-
-+ (id) httpStream:(FLHttpRequestHeaders*) headers 
-           withBodyData:(NSData*) bodyData;
-
-- (FLHttpMessage*) readResponseHeaders;
-
-- (unsigned long) bytesWritten;
 
 @end
+
+
+
 
