@@ -136,19 +136,10 @@
 
 - (FLZenfolioPhotoSet*) downloadLatestPhotoSet:(FLZenfolioPhotoSet*) photoSet inContext:(id) context withObserver:(id) observer {
 
-    [self postObservation:@"downloadOperation:willUpdatePhotoSet:" 
-                   toObserver:observer 
-                   withObject:photoSet];
 
     FLHttpRequest* request = [FLZenfolioHttpRequest loadPhotoSetHttpRequest:photoSet.Id level:kZenfolioInformatonLevelFull includePhotos:YES];
     FLZenfolioPhotoSet* latestPhotoSet = FLThrowIfError([context runWorker:request withObserver:nil]);
     FLAssertNotNil_(latestPhotoSet);
-    
-    _state.photoSetCount++;
-
-    [self postObservation:@"downloadOperation:didUpdatePhotoSet:" 
-                   toObserver:observer 
-                   withObject:latestPhotoSet];
     
     return latestPhotoSet;
 }
@@ -296,18 +287,34 @@
     [self updateProgress:observer];
 
     for(NSUInteger i = 0; i < _photoSets.count; i++) {
+        
+        FLZenfolioPhotoSet* photoSet = [_photoSets objectAtIndex:i];
+        
+        [self postObservation:@"downloadOperation:willUpdatePhotoSet:" 
+                       toObserver:observer 
+                       withObject:photoSet];
+
+        photoSet = [self downloadLatestPhotoSet:photoSet inContext:context withObserver:observer];
+
     
     // first update the photoset
-        FLZenfolioPhotoSet* photoSet = [self downloadLatestPhotoSet:[_photoSets objectAtIndex:i] inContext:context withObserver:observer];
         [_photoSets replaceObjectAtIndex:i withObject:photoSet];
         [self.rootGroup replaceGroupElement:photoSet];
         
         [self updateNumbers];
         [self updateProgress:observer];
         [self abortIfNeeded];
+
+        [self postObservation:@"downloadOperation:didUpdatePhotoSet:" 
+                       toObserver:observer 
+                       withObject:photoSet];
+    }
    
     // now start downloading all the photos and videos 
 
+    for(NSUInteger i = 0; i < _photoSets.count; i++) {
+        FLZenfolioPhotoSet* photoSet = [_photoSets objectAtIndex:i];
+    
         FLImageFolder* imageFolder = [self createFolderForPhotoSet:photoSet];
     
         NSMutableDictionary* info = [NSMutableDictionary dictionary];
@@ -319,6 +326,8 @@
         [self downloadPhotosInPhotoSet:photoSet imageFolder:imageFolder inContext:context observer:observer];
 
         [self postObservation:@"downloadOperation:didDownloadPhotosInPhotoSet:" toObserver:observer withObject:info];
+
+        _state.photoSetCount++;
 
         [self updateProgress:observer];
         [self abortIfNeeded];

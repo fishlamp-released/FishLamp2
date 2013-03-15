@@ -8,31 +8,31 @@
 
 #import <Foundation/Foundation.h>
 
-#import "FLAsyncWorker.h"
-#import "FLNetworkStream.h"
-#import "FLFinisher.h"
-
-@interface FLStreamWorker : FLContextWorker<FLNetworkStreamDelegate> {
-@private
-    FLNetworkStream* _networkStream;
-    FLFinisher* _finisher;
-    id<FLAsyncQueue> _asyncQueue;
-}
-
-@property (readwrite, strong, nonatomic) id<FLAsyncQueue> asyncQueue;
-@property (readonly, strong, nonatomic) FLFinisher* finisher;
-@property (readonly, strong, nonatomic) id networkStream;
-
-- (id) initWithNetworkStream:(FLNetworkStream*) stream;
-+ (id) streamWorker:(FLNetworkStream*) stream;
-
-- (void) setFinished;
-@end
-
-
-@interface FLStreamOpener : FLStreamWorker {
-@private
-}
-
-+ (id) streamOpener:(FLNetworkStream*) stream;
-@end
+//#import "FLAsyncWorker.h"
+//#import "FLNetworkStream.h"
+//#import "FLFinisher.h"
+//#import "FLDispatch.h"
+//
+//@interface FLStreamWorker : FLContextWorker<FLNetworkStreamDelegate> {
+//@private
+//    FLNetworkStream* _networkStream;
+//    FLFinisher* _finisher;
+//    FLFifoAsyncQueue* _asyncQueue;
+//}
+//
+//@property (readonly, strong, nonatomic) id<FLAsyncQueue> asyncQueue;
+//@property (readonly, strong, nonatomic) FLFinisher* finisher;
+//@property (readonly, strong, nonatomic) id networkStream;
+//
+//- (id) initWithNetworkStream:(FLNetworkStream*) stream asyncQueue:(FLFifoAsyncQueue*) asyncQueue;
+//
+//- (void) setFinished;
+//@end
+//
+//
+//@interface FLStreamOpener : FLStreamWorker {
+//@private
+//}
+//
+//+ (id) streamOpener:(FLNetworkStream*) stream;
+//@end

@@ -17,7 +17,7 @@
 @private
     NSTimeInterval _lastAuthenticationTimestamp;
     NSTimeInterval _timeoutInterval;
-    id<FLAsyncQueue> _requestAuthenticationDispatcher;
+    FLFifoAsyncQueue* _asyncQueue;
     __unsafe_unretained id<FLHttpRequestAuthenticationServiceDelegate> _delegate;
 }
 
@@ -36,8 +36,7 @@
 
 // required overrides
 - (FLUserLogin*) synchronouslyAuthenticateUser:(FLUserLogin*) userLogin 
-                                     inContext:(id) context
-                                  withObserver:(id) observer;
+                                     inContext:(id) context;
 
 - (void) updateHttpRequest:(FLHttpRequest*) request 
      withAuthenticatedUser:(FLUserLogin*) userLogin;

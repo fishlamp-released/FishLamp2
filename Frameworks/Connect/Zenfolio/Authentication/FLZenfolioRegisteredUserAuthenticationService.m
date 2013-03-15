@@ -49,11 +49,10 @@
 }
 
 - (FLUserLogin*) synchronouslyAuthenticateUser:(FLUserLogin*) userLogin 
-                                     inContext:(id) context 
-                                  withObserver:(id) observer {
+                                     inContext:(id) context {
 
     FLOperation* authenticator = [FLZenfolioChallengeResponseAuthenticationOperation userAuthenticationOperation:userLogin];
-    return FLThrowIfError([context runWorker:authenticator withObserver:observer]);
+    return FLThrowIfError([context runWorker:authenticator withObserver:nil]);
 }
 
 @end

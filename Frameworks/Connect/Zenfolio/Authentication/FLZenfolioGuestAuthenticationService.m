@@ -10,11 +10,11 @@
 
 @implementation FLZenfolioGuestAuthenticationService
 
-- (FLUserLogin*) synchronouslyAuthenticateUser:(FLUserLogin*) userLogin inContext:(id) context withObserver:(id) observer{
+- (FLUserLogin*) synchronouslyAuthenticateUser:(FLUserLogin*) userLogin inContext:(id) context {
                                     
     FLTrace(@"Authenticating %@:", userLogin.userName );
     
-    NSString* token = FLThrowIfError([context runWorker:[FLZenfolioHttpRequest authenticateVisitorHttpRequest] withObserver:observer]);
+    NSString* token = FLThrowIfError([context runWorker:[FLZenfolioHttpRequest authenticateVisitorHttpRequest] withObserver:nil]);
     userLogin.authTokenLastUpdateTimeValue = [NSDate timeIntervalSinceReferenceDate];
     userLogin.authToken = token;
     return userLogin;

@@ -10,12 +10,13 @@
 
 @interface FLImagePlaceholderView ()
 @property (readwrite, strong, nonatomic) NSString* loadingPath;
+@property (readwrite, assign, nonatomic) CGFloat borderWidth;
 @end
 
 @implementation FLImagePlaceholderView
 
 @synthesize imageView = _imageView;
-@synthesize frameSize = _frameSize;
+@synthesize borderWidth = _borderWidth;
 @synthesize loadingPath = _loadingPath;
 
 @synthesize alwaysProportionallyResize = _alwaysProportionallyResize;
@@ -27,7 +28,8 @@
         self.autoresizesSubviews = NO;
         
         _alwaysProportionallyResize = YES;
-        _frameSize = 4.0;
+        _borderWidth = 4.0;
+        self.autoresizesSubviews = NO;
         
 //        self.backgroundColor = [NSColor gray95Color];
         _progress = [[FLSpinningProgressView alloc] initWithFrame:CGRectMake(0,0,20,20)];
@@ -59,17 +61,19 @@
     [super setFrame:frame];
     
     _progress.frame = FLRectOptimizedForViewLocation(FLRectCenterRectInRect(self.bounds, _progress.frame));
-    _imageView.frame = CGRectMake(_frameSize, _frameSize, self.bounds.size.width - _frameSize, self.bounds.size.height - _frameSize);
+    _imageView.frame = CGRectMake(_borderWidth, _borderWidth, self.bounds.size.width - (_borderWidth*2), self.bounds.size.height - (_borderWidth*2));
 }
 
 - (void) resizeToProportionalImageSize {
     if(_imageView.image) {
-        CGRect imageRect = FLRectFitInRectInRectProportionally(self.bounds, CGRectMake(0,0,_imageView.image.size.width, _imageView.image.size.height));
-        CGPoint pt = FLRectGetCenter(self.frame);
-        
-        CGRect newFrame = CGRectInset(imageRect, -_frameSize, -_frameSize);
-        newFrame = FLRectOptimizedForViewLocation(FLRectCenterOnPoint(newFrame, pt));
-        self.frame = newFrame;
+        CGRect frame = CGRectInset(self.superview.bounds, _borderWidth, _borderWidth);
+        frame = FLRectFitInRectInRectProportionally(frame,CGRectMake(0,0,_imageView.image.size.width, _imageView.image.size.height));
+        frame.size.width += (_borderWidth*2);
+        frame.size.height += (_borderWidth*2);
+        frame = FLRectOptimizedForViewLocation(FLRectCenterRectInRect(self.superview.bounds, frame));
+
+    // image view frame is set in self setFrame
+        self.frame = frame;
     }
 }
 
@@ -81,6 +85,12 @@
 - (void) stopAnimating {
     [_progress stopAnimating];
     _imageView.hidden = NO;
+}
+
+- (void) didMoveToSuperview {
+    if(self.superview) {
+        self.frame = self.superview.bounds;
+    }
 }
 
 - (void) setImage:(NSImage*) image {

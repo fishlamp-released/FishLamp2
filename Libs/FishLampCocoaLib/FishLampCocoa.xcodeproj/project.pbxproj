@@ -298,15 +298,6 @@
 		274193E816EFB40B004F53B7 /* FLTimeUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 274193E116EFB40A004F53B7 /* FLTimeUtilities.m */; };
 		274193E916EFB40B004F53B7 /* FLTimeUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 274193E116EFB40A004F53B7 /* FLTimeUtilities.m */; };
 		274193EA16EFB40B004F53B7 /* FLTimeUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 274193E116EFB40A004F53B7 /* FLTimeUtilities.m */; };
-		274193ED16EFD966004F53B7 /* FLHttpRequestWorker.h in Headers */ = {isa = PBXBuildFile; fileRef = 274193EB16EFD965004F53B7 /* FLHttpRequestWorker.h */; };
-		274193EE16EFD966004F53B7 /* FLHttpRequestWorker.h in Headers */ = {isa = PBXBuildFile; fileRef = 274193EB16EFD965004F53B7 /* FLHttpRequestWorker.h */; };
-		274193EF16EFD966004F53B7 /* FLHttpRequestWorker.h in Headers */ = {isa = PBXBuildFile; fileRef = 274193EB16EFD965004F53B7 /* FLHttpRequestWorker.h */; };
-		274193F016EFD966004F53B7 /* FLHttpRequestWorker.h in Headers */ = {isa = PBXBuildFile; fileRef = 274193EB16EFD965004F53B7 /* FLHttpRequestWorker.h */; };
-		274193F116EFD966004F53B7 /* FLHttpRequestWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = 274193EC16EFD965004F53B7 /* FLHttpRequestWorker.m */; };
-		274193F216EFD966004F53B7 /* FLHttpRequestWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = 274193EC16EFD965004F53B7 /* FLHttpRequestWorker.m */; };
-		274193F316EFD966004F53B7 /* FLHttpRequestWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = 274193EC16EFD965004F53B7 /* FLHttpRequestWorker.m */; };
-		274193F416EFD966004F53B7 /* FLHttpRequestWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = 274193EC16EFD965004F53B7 /* FLHttpRequestWorker.m */; };
-		274193F516EFD966004F53B7 /* FLHttpRequestWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = 274193EC16EFD965004F53B7 /* FLHttpRequestWorker.m */; };
 		274193F816EFDC3A004F53B7 /* FLStreamWorker.h in Headers */ = {isa = PBXBuildFile; fileRef = 274193F616EFDC39004F53B7 /* FLStreamWorker.h */; };
 		274193F916EFDC3A004F53B7 /* FLStreamWorker.h in Headers */ = {isa = PBXBuildFile; fileRef = 274193F616EFDC39004F53B7 /* FLStreamWorker.h */; };
 		274193FA16EFDC3A004F53B7 /* FLStreamWorker.h in Headers */ = {isa = PBXBuildFile; fileRef = 274193F616EFDC39004F53B7 /* FLStreamWorker.h */; };
@@ -3288,8 +3279,6 @@
 		274193D616EFB3A9004F53B7 /* NSError+FLTimeout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+FLTimeout.m"; sourceTree = "<group>"; };
 		274193E016EFB40A004F53B7 /* FLTimeUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLTimeUtilities.h; sourceTree = "<group>"; };
 		274193E116EFB40A004F53B7 /* FLTimeUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLTimeUtilities.m; sourceTree = "<group>"; };
-		274193EB16EFD965004F53B7 /* FLHttpRequestWorker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLHttpRequestWorker.h; sourceTree = "<group>"; };
-		274193EC16EFD965004F53B7 /* FLHttpRequestWorker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLHttpRequestWorker.m; sourceTree = "<group>"; };
 		274193F616EFDC39004F53B7 /* FLStreamWorker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLStreamWorker.h; sourceTree = "<group>"; };
 		274193F716EFDC3A004F53B7 /* FLStreamWorker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLStreamWorker.m; sourceTree = "<group>"; };
 		2741DEAF16793DB500CA87A9 /* FishLampCocoa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishLampCocoa.h; sourceTree = "<group>"; };
@@ -4859,8 +4848,6 @@
 				27EE269016CAF32E00E4CC98 /* FLOperation+HttpRequest.h */,
 				27EE269116CAF32F00E4CC98 /* FLOperation+HttpRequest.m */,
 				27EE269B16CAF43E00E4CC98 /* FLHttp.h */,
-				274193EB16EFD965004F53B7 /* FLHttpRequestWorker.h */,
-				274193EC16EFD965004F53B7 /* FLHttpRequestWorker.m */,
 			);
 			path = HTTP;
 			sourceTree = "<group>";
@@ -5882,7 +5869,6 @@
 				274193CC16EFB34A004F53B7 /* FLTimedObject.h in Headers */,
 				274193D716EFB3A9004F53B7 /* NSError+FLTimeout.h in Headers */,
 				274193E216EFB40B004F53B7 /* FLTimeUtilities.h in Headers */,
-				274193ED16EFD966004F53B7 /* FLHttpRequestWorker.h in Headers */,
 				274193F816EFDC3A004F53B7 /* FLStreamWorker.h in Headers */,
 				27EC4ED716F10DE100E38A05 /* FLAsyncQueue+AsyncWorker.h in Headers */,
 				277FE78E16F15C6200D4B851 /* FLXmlParser.h in Headers */,
@@ -6255,7 +6241,6 @@
 				274193CE16EFB34A004F53B7 /* FLTimedObject.h in Headers */,
 				274193D916EFB3A9004F53B7 /* NSError+FLTimeout.h in Headers */,
 				274193E416EFB40B004F53B7 /* FLTimeUtilities.h in Headers */,
-				274193EF16EFD966004F53B7 /* FLHttpRequestWorker.h in Headers */,
 				274193FA16EFDC3A004F53B7 /* FLStreamWorker.h in Headers */,
 				27EC4ED916F10DE100E38A05 /* FLAsyncQueue+AsyncWorker.h in Headers */,
 				277FE79016F15C6200D4B851 /* FLXmlParser.h in Headers */,
@@ -6628,7 +6613,6 @@
 				274193CD16EFB34A004F53B7 /* FLTimedObject.h in Headers */,
 				274193D816EFB3A9004F53B7 /* NSError+FLTimeout.h in Headers */,
 				274193E316EFB40B004F53B7 /* FLTimeUtilities.h in Headers */,
-				274193EE16EFD966004F53B7 /* FLHttpRequestWorker.h in Headers */,
 				274193F916EFDC3A004F53B7 /* FLStreamWorker.h in Headers */,
 				27EC4ED816F10DE100E38A05 /* FLAsyncQueue+AsyncWorker.h in Headers */,
 				277FE78F16F15C6200D4B851 /* FLXmlParser.h in Headers */,
@@ -7001,7 +6985,6 @@
 				274193CF16EFB34A004F53B7 /* FLTimedObject.h in Headers */,
 				274193DA16EFB3A9004F53B7 /* NSError+FLTimeout.h in Headers */,
 				274193E516EFB40B004F53B7 /* FLTimeUtilities.h in Headers */,
-				274193F016EFD966004F53B7 /* FLHttpRequestWorker.h in Headers */,
 				274193FB16EFDC3A004F53B7 /* FLStreamWorker.h in Headers */,
 				27EC4EDA16F10DE100E38A05 /* FLAsyncQueue+AsyncWorker.h in Headers */,
 				277FE79116F15C6200D4B851 /* FLXmlParser.h in Headers */,
@@ -7509,7 +7492,6 @@
 				274193D116EFB34A004F53B7 /* FLTimedObject.m in Sources */,
 				274193DC16EFB3A9004F53B7 /* NSError+FLTimeout.m in Sources */,
 				274193E716EFB40B004F53B7 /* FLTimeUtilities.m in Sources */,
-				274193F216EFD966004F53B7 /* FLHttpRequestWorker.m in Sources */,
 				274193FD16EFDC3A004F53B7 /* FLStreamWorker.m in Sources */,
 				27EC4EDC16F10DE100E38A05 /* FLAsyncQueue+AsyncWorker.m in Sources */,
 				277FE79316F15C6200D4B851 /* FLXmlParser.m in Sources */,
@@ -7848,7 +7830,6 @@
 				274193D316EFB34A004F53B7 /* FLTimedObject.m in Sources */,
 				274193DE16EFB3A9004F53B7 /* NSError+FLTimeout.m in Sources */,
 				274193E916EFB40B004F53B7 /* FLTimeUtilities.m in Sources */,
-				274193F416EFD966004F53B7 /* FLHttpRequestWorker.m in Sources */,
 				274193FF16EFDC3A004F53B7 /* FLStreamWorker.m in Sources */,
 				27EC4EDE16F10DE100E38A05 /* FLAsyncQueue+AsyncWorker.m in Sources */,
 				277FE79516F15C6200D4B851 /* FLXmlParser.m in Sources */,
@@ -8186,7 +8167,6 @@
 				274193D016EFB34A004F53B7 /* FLTimedObject.m in Sources */,
 				274193DB16EFB3A9004F53B7 /* NSError+FLTimeout.m in Sources */,
 				274193E616EFB40B004F53B7 /* FLTimeUtilities.m in Sources */,
-				274193F116EFD966004F53B7 /* FLHttpRequestWorker.m in Sources */,
 				274193FC16EFDC3A004F53B7 /* FLStreamWorker.m in Sources */,
 				27EC4EDB16F10DE100E38A05 /* FLAsyncQueue+AsyncWorker.m in Sources */,
 				277FE79216F15C6200D4B851 /* FLXmlParser.m in Sources */,
@@ -8525,7 +8505,6 @@
 				274193D216EFB34A004F53B7 /* FLTimedObject.m in Sources */,
 				274193DD16EFB3A9004F53B7 /* NSError+FLTimeout.m in Sources */,
 				274193E816EFB40B004F53B7 /* FLTimeUtilities.m in Sources */,
-				274193F316EFD966004F53B7 /* FLHttpRequestWorker.m in Sources */,
 				274193FE16EFDC3A004F53B7 /* FLStreamWorker.m in Sources */,
 				27EC4EDD16F10DE100E38A05 /* FLAsyncQueue+AsyncWorker.m in Sources */,
 				277FE79416F15C6200D4B851 /* FLXmlParser.m in Sources */,
@@ -8864,7 +8843,6 @@
 				274193D416EFB34A004F53B7 /* FLTimedObject.m in Sources */,
 				274193DF16EFB3A9004F53B7 /* NSError+FLTimeout.m in Sources */,
 				274193EA16EFB40B004F53B7 /* FLTimeUtilities.m in Sources */,
-				274193F516EFD966004F53B7 /* FLHttpRequestWorker.m in Sources */,
 				2741940016EFDC3A004F53B7 /* FLStreamWorker.m in Sources */,
 				27EC4EDF16F10DE100E38A05 /* FLAsyncQueue+AsyncWorker.m in Sources */,
 				277FE79616F15C6200D4B851 /* FLXmlParser.m in Sources */,

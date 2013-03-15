@@ -123,7 +123,7 @@
 }
 
 - (void) postObservationToListener:(id) observer {
-    [[FLAsyncQueue defaultQueue] queueAsyncWorker:self completion:^(FLResult result) {
+    [[FLAsyncQueue mainThreadQueue] queueAsyncWorker:self completion:^(FLResult result) {
         [self releaseToCache];
     }];
 }

@@ -23,22 +23,22 @@
 @class FLHttpRequest;
 
 @protocol FLHttpRequestAuthenticator <NSObject>
-// this needs to be synchronous for scheduling reasons amoung concurrent requests.
-- (void) httpRequest:(FLHttpRequest*) httpRequest 
-        authenticateSynchronouslyInContext:(id) context 
-        withObserver:(id) observer;
-
-- (id<FLAsyncQueue>) httpRequestAuthenticationDispatcher:(FLHttpRequest*) httpRequest;
+//// this needs to be synchronous for scheduling reasons amoung concurrent requests.
+- (FLResult) authenticateHttpRequest:(FLHttpRequest*) request;
 @end
 
 @protocol FLHttpRequestContext <NSObject>
 - (id<FLHttpRequestAuthenticator>) httpRequestAuthenticator;
 @end
 
-@interface FLHttpRequest : FLContextWorker {
+@interface FLHttpRequest : FLContextWorker<FLNetworkStreamDelegate> {
 @private
     FLHttpRequestHeaders* _headers;
     FLHttpRequestBody* _body;
+    FLFifoAsyncQueue* _asyncQueue;
+    FLFinisher* _finisher;
+    FLHttpResponse* _httpResponse;
+    FLHttpStream* _httpStream;
     
     // helpers
     id<FLResponseReceiver> _responseReceiver;
@@ -84,7 +84,6 @@
 - (FLResult) resultFromHttpResponse:(FLHttpResponse*) httpResponse;
 
 - (NSError*) checkHttpResponseForError:(FLHttpResponse*) httpResponse;
-
 
 
 /// this returns YES by default.
