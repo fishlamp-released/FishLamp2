@@ -25,24 +25,25 @@
     self = [super init];
     if(self) {
         _timeoutInterval = 60 * 60;
+        _asyncQueue = [[FLFifoAsyncQueue alloc] init];
     }
     return self;
 }
 
-#if FL_MRC
 - (void) dealloc {
-    [_requestAuthenticationDispatcher release];
+    [_asyncQueue releaseToPool];
+    
+#if FL_MRC
     [super dealloc];
-}
 #endif
+}
 
 - (void) updateHttpRequest:(FLHttpRequest*) request 
            withAuthenticatedUser:(FLUserLogin*) userLogin {
 }    
        
 - (FLUserLogin*) synchronouslyAuthenticateUser:(FLUserLogin*) userLogin 
-                                     inContext:(id) context 
-                                  withObserver:(id) observer {
+                                     inContext:(id) context {
     return nil;
 }
 
@@ -66,24 +67,6 @@
     return [self.delegate httpRequestAuthenticationServiceGetUserLogin:self];
 }
 
-- (void) httpRequest:(FLHttpRequest*) httpRequest 
-authenticateSynchronouslyInContext:(id) context 
-        withObserver:(id) observer {
-    
-    FLUserLogin* userLogin = self.userLogin;
-    FLAssertNotNil_(userLogin); 
-    
-    if([self shouldAuthenticateUser:userLogin]) {
-        [self resetAuthenticationTimestamp];
-
-        userLogin = [self synchronouslyAuthenticateUser:userLogin inContext:context withObserver:observer];
-        [self touchAuthenticationTimestamp];
-        [self.delegate httpRequestAuthenticationService:self didAuthenticateUser:userLogin];
-    }
-    
-    [self updateHttpRequest:httpRequest withAuthenticatedUser:userLogin];
-}
-
 - (BOOL) isAuthenticated {
     FLUserLogin* userLogin = self.userLogin;
 
@@ -103,15 +86,6 @@ authenticateSynchronouslyInContext:(id) context
 	_lastAuthenticationTimestamp = 0;
 }
 
-- (id<FLAsyncQueue>) httpRequestAuthenticationDispatcher:(FLHttpRequest*) httpRequest {
-
-    if(!self.httpRequestAuthenticationDispatcher) {
-        self.httpRequestAuthenticationDispatcher = [FLAsyncQueue fifoQueue];
-    }
-
-    return self.httpRequestAuthenticationDispatcher;
-}
-
 - (void) openService:(id) opener {
     [self resetAuthenticationTimestamp];
     FLPerformSelector(opener, @selector(httpRequestAuthenticatorServiceOpen:));
@@ -122,6 +96,28 @@ authenticateSynchronouslyInContext:(id) context
     FLPerformSelector(closer, @selector(httpRequestAuthenticatorServiceClose:));
     [super closeService:closer];
     [self resetAuthenticationTimestamp];
+}
+
+- (FLResult) authenticateHttpRequest:(FLHttpRequest*) request {
+
+    return [[_asyncQueue queueBlock:^{
+        FLUserLogin* userLogin = self.userLogin;
+        FLAssertNotNil_(userLogin); 
+        
+        if([self shouldAuthenticateUser:userLogin]) {
+            [self resetAuthenticationTimestamp];
+
+            userLogin = [self synchronouslyAuthenticateUser:userLogin 
+                                                  inContext:request.workerContext  ];
+                                               
+            [self touchAuthenticationTimestamp];
+            [self.delegate httpRequestAuthenticationService:self didAuthenticateUser:userLogin];
+        }
+        
+        [self updateHttpRequest:request withAuthenticatedUser:userLogin];
+    
+    }] waitUntilFinished];
+
 }
 
 @end
