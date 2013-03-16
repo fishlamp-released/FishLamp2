@@ -16,7 +16,6 @@
     __unsafe_unretained id<FLBreadcrumbBarViewControllerDelegate> _delegate;
     UIFont* _textFont;
     FLStringDisplayStyle* _titleStyle;
-    IBOutlet NSView* _contentView;
 }
 
 @property (readwrite, strong, nonatomic) UIFont* textFont;

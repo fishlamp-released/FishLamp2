@@ -22,17 +22,7 @@
 @property (readwrite, assign, nonatomic) unsigned long long byteTotal;
 @end
 
-@implementation FLZenfolioDownloadState  {
-@private
-    NSUInteger _videoCount;
-    NSUInteger _videoTotal;
-    NSUInteger _photoCount;
-    NSUInteger _photoTotal;
-    NSUInteger _photoSetCount;
-    NSUInteger _photoSetTotal;
-    unsigned long long _byteTotal;
-    unsigned long long _byteCount;
-}
+@implementation FLZenfolioDownloadState  
 @synthesize photoCount = _photoCount;
 @synthesize videoCount = _videoCount;
 @synthesize byteCount = _byteCount;
@@ -65,16 +55,7 @@
 @property (readwrite, strong, nonatomic) FLZenfolioDownloadState* state;
 @end
 
-@implementation FLZenfolioDownloadOperation  {
-@private
-    FLZenfolioGroup* _rootGroup;
-    NSString* _destinationPath;
-    NSMutableArray* _photoSets; 
-    BOOL _downloadVideos;
-    BOOL _downloadImages;
-    
-    FLZenfolioDownloadState* _state;
-}
+@implementation FLZenfolioDownloadOperation  
 
 @synthesize rootGroup = _rootGroup;
 @synthesize photoSets = _photoSets;
@@ -129,8 +110,8 @@
 }
 
 - (void) updateProgress:(id) observer {
-    [self postObservation:@"downloadOperation:updateDownloadInfo:" 
-                   toObserver:observer 
+    [self sendMessage:@selector(downloadOperation:updateDownloadInfo:) 
+                   toListener:observer 
                    withObject:FLAutorelease([_state copy])];
 }
 
@@ -154,7 +135,7 @@
                                                            imageSize:[FLZenfolioImageSize originalImageSize] 
                                                                cache:nil];
 
-    request.responseReceiver = [FLFileResponseReceiver fileResponseReceiver:[NSURL fileURLWithPath:[imageFolder pathForFile:photo.FileName]]];
+    request.networkStreamSink = [FLFileStreamSink fileStreamSink:[NSURL fileURLWithPath:[imageFolder pathForFile:photo.FileName]]];
                                                                
     return FLThrowIfError([context runWorker:request withObserver:nil]);
 }
@@ -167,7 +148,7 @@
     FLHttpRequest* request = 
         [FLHttpRequest httpRequest:[photo urlForImageWithSize:[FLZenfolioImageSize originalImageSize]]];
 
-    request.responseReceiver = [FLFileResponseReceiver fileResponseReceiver:[NSURL fileURLWithPath:[imageFolder pathForFile:photo.FileName]]];
+    request.networkStreamSink = [FLFileStreamSink fileStreamSink:[NSURL fileURLWithPath:[imageFolder pathForFile:photo.FileName]]];
                                                                
     return FLThrowIfError([context runWorker:request withObserver:nil]);
 
@@ -195,8 +176,8 @@
             [info setObject:photo forKey:ZFDownloadedPhotoKey];
             [info setObject:pathToContent forKey:ZFDownloadedDestinationPathKey];
         
-            [self postObservation:@"downloadOperation:willDownloadPhoto:" 
-                           toObserver:observer 
+            [self sendMessage:@selector(downloadOperation:willDownloadPhoto:) 
+                           toListener:observer 
                            withObject:info];
 
             if([imageFolder fileExistsInFolder:photo.FileName]) {
@@ -213,8 +194,8 @@
                     }
                 }            
                 
-                [self postObservation:@"downloadOperation:didSkipPhoto:" 
-                               toObserver:observer 
+                [self sendMessage:@selector(downloadOperation:didSkipPhoto:) 
+                               toListener:observer 
                                withObject:info];
             }
             else {
@@ -240,8 +221,8 @@
 
                 [self abortIfNeeded];
             
-                [self postObservation:@"downloadOperation:didDownloadPhoto:" 
-                               toObserver:observer 
+                [self sendMessage:@selector(downloadOperation:didDownloadPhoto:) 
+                               toListener:observer 
                                withObject:info];
             }
             
@@ -280,9 +261,11 @@
 
 - (FLResult) runOperationInContext:(id) context withObserver:(id) observer {
 
+    FLAssertNotNil_(self.rootGroup);
+
     self.state = [FLZenfolioDownloadState downloadState];
 
-    [self postObservation:@"downloadOperationWillBeginDownload:" toObserver:observer];
+    [self sendMessage:@selector(downloadOperationWillBeginDownload:) toListener:observer];
     [self updateNumbers];
     [self updateProgress:observer];
 
@@ -290,12 +273,12 @@
         
         FLZenfolioPhotoSet* photoSet = [_photoSets objectAtIndex:i];
         
-        [self postObservation:@"downloadOperation:willUpdatePhotoSet:" 
-                       toObserver:observer 
+        [self sendMessage:@selector(downloadOperation:willUpdatePhotoSet:)
+                       toListener:observer 
                        withObject:photoSet];
 
         photoSet = [self downloadLatestPhotoSet:photoSet inContext:context withObserver:observer];
-
+        FLAssertNotNil_(photoSet);
     
     // first update the photoset
         [_photoSets replaceObjectAtIndex:i withObject:photoSet];
@@ -305,8 +288,8 @@
         [self updateProgress:observer];
         [self abortIfNeeded];
 
-        [self postObservation:@"downloadOperation:didUpdatePhotoSet:" 
-                       toObserver:observer 
+        [self sendMessage:@selector(downloadOperation:didUpdatePhotoSet:)
+                       toListener:observer 
                        withObject:photoSet];
     }
    
@@ -321,11 +304,11 @@
         [info setObject:photoSet forKey:ZFDownloadedPhotoSetKey];
         [info setObject:imageFolder forKey:ZFDownloadFolderKey];
 
-        [self postObservation:@"downloadOperation:willStartDownloadingPhotosInPhotoSet:" toObserver:observer withObject:info];
+        [self sendMessage:@selector(downloadOperation:willStartDownloadingPhotosInPhotoSet:) toListener:observer withObject:info];
 
         [self downloadPhotosInPhotoSet:photoSet imageFolder:imageFolder inContext:context observer:observer];
 
-        [self postObservation:@"downloadOperation:didDownloadPhotosInPhotoSet:" toObserver:observer withObject:info];
+        [self sendMessage:@selector(downloadOperation:didDownloadPhotosInPhotoSet:) toListener:observer withObject:info];
 
         _state.photoSetCount++;
 
@@ -334,7 +317,7 @@
     }
     
     [self updateProgress:observer];
-    [self postObservation:@"downloadOperation:didFinishWithResult:" toObserver:observer withObject:_photoSets];
+    [self sendMessage:@selector(downloadOperation:didFinishWithResult:) toListener:observer withObject:_photoSets];
     
     return _photoSets;
 }

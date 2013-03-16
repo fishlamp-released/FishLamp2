@@ -166,7 +166,7 @@ FLAssertFailed_v(@"refactor this");
 {
 	FLReleaseWithNil(_upgradeTaskList);
 	
-//    [self postObservation:@"userServiceWillClose:"];
+//    [self sendMessage:@"userServiceWillClose:"];
 
 //    id<FLProgressViewController> progress = nil;
     
@@ -203,7 +203,7 @@ FLAssertFailed_v(@"refactor this");
 		_open = NO;
 		_willOpen = NO;
 		_isOpening = NO;
-//        [self postObservation:@"userServiceDidClose:"];
+//        [self sendMessage:@"userServiceDidClose:"];
     }
 }
 
@@ -290,7 +290,7 @@ FLAssertFailed_v(@"refactor this");
 //    [self addAppService:_backgroundTasks];
 
 //    [self.backgroundTasks startOpeningService:^(id result) {
-//        [self postObservation:@"userServiceDidOpen:"];
+//        [self sendMessage:@"userServiceDidOpen:"];
 //    }];
 }
 
@@ -317,7 +317,7 @@ FLAssertFailed_v(@"refactor this");
             [_upgradeTaskList.operations addOperation:[FLUpgradeDatabaseLengthyTask upgradeDatabaseLengthyTask:_documentsDatabase]];
         }
         
- //       [self postObservation:@"userDataService:appVersionWillChange:" withObject:_upgradeTaskList];
+ //       [self sendMessage:@"userDataService:appVersionWillChange:" withObject:_upgradeTaskList];
 
 /*        
         _upgradeTaskList.progressController = [[self class] createVersionUpgradeProgressViewController];

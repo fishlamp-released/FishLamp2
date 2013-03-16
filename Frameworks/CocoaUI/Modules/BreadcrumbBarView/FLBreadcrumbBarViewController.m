@@ -57,10 +57,6 @@
     [_titleStyle setTextFont:font];
 }
 
-
-#define kWideWidth 100
-#define kTallHeight 40
-
 - (BOOL)acceptsFirstResponder {
     return YES;
 }                          
@@ -88,20 +84,6 @@
 
 - (void) removeBreadcrumb:(NSString*) title {
 
-}
-
-- (void) breadcrumbBar:(FLBreadcrumbBarView*) view updateLayoutWithTitles:(NSArray*) titles {
-  
-    [CATransaction begin];
-    [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
-
-    CGRect frame = CGRectMake(0, FLRectGetBottom(self.view.bounds) - (kTallHeight*2), self.contentView.frame.origin.x, kTallHeight);
-    for(FLBarTitleLayer* layer in titles) {
-        layer.frame = frame;
-        frame.origin.y -= frame.size.height;
-    }
-
-    [CATransaction commit];
 }
 
 - (void) breadcrumbBar:(FLBreadcrumbBarView*) view handleMousedownInTitle:(FLBarTitleLayer*) title {

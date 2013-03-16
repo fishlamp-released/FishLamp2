@@ -141,7 +141,7 @@
 
 
 //    [[NSUserDefaults standardUserDefaults] setInteger:speed forKey:FLZenfolioDownloadSpeed];
-//    [self postObservation:@"batchPhotoDownloader:didDownloadPhoto:" withObject:photo];
+//    [self sendMessage:@"batchPhotoDownloader:didDownloadPhoto:" withObject:photo];
 }
 
 - (void)downloadPhoto:(FLZenfolioPhoto *)photo toFolder:(NSString *)folder inContext:(id) context {

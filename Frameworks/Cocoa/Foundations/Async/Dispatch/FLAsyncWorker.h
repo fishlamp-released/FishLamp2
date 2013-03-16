@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "FLObservable.h"
 
 @class FLFinisher;
 @protocol FLAsyncQueue;
@@ -25,7 +26,7 @@
 - (void) contextDidChange:(id<FLWorkerContext>) context;
 @end
 
-@interface FLContextWorker : NSObject<FLContextWorker> {
+@interface FLContextWorker : FLObservable<FLContextWorker> {
 @private
     __unsafe_unretained id<FLWorkerContext> _workerContext;
     NSUInteger _contextID;

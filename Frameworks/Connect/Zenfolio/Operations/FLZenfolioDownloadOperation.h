@@ -8,7 +8,17 @@
 
 #import "FLOperation.h"
 
-@interface FLZenfolioDownloadState : NSObject<NSCopying>
+@interface FLZenfolioDownloadState : NSObject<NSCopying> {
+@private
+    NSUInteger _videoCount;
+    NSUInteger _videoTotal;
+    NSUInteger _photoCount;
+    NSUInteger _photoTotal;
+    NSUInteger _photoSetCount;
+    NSUInteger _photoSetTotal;
+    unsigned long long _byteTotal;
+    unsigned long long _byteCount;
+}
 + (id) downloadState;
 @property (readonly, assign, nonatomic) NSUInteger videoCount;
 @property (readonly, assign, nonatomic) NSUInteger photoSetCount;
@@ -20,7 +30,16 @@
 @property (readonly, assign, nonatomic) unsigned long long byteTotal;
 @end
 
-@interface FLZenfolioDownloadOperation : FLOperation
+@interface FLZenfolioDownloadOperation : FLOperation {
+@private
+    FLZenfolioGroup* _rootGroup;
+    NSString* _destinationPath;
+    NSMutableArray* _photoSets; 
+    BOOL _downloadVideos;
+    BOOL _downloadImages;
+    
+    FLZenfolioDownloadState* _state;
+}
 
 @property (readwrite, assign, nonatomic) BOOL downloadVideos;
 @property (readwrite, assign, nonatomic) BOOL downloadImages;
