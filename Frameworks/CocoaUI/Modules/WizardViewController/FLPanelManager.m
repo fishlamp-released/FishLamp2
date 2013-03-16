@@ -45,9 +45,14 @@
 
 - (void) setPanelFrame:(FLPanelViewController*) panel {
 
+    CGRect myFrame = CGRectInset(self.view.superview.bounds, 1, 1);
+    
+    if(!CGRectEqualToRect(self.view.frame, myFrame)) {
+        self.view.frame = myFrame;
+    }
+    
     CGRect frame = panel.view.frame;
     CGRect bounds = self.view.bounds;
-    bounds = CGRectInset(bounds, 1.0, 1.0);
     
     NSUInteger originalMask = panel.view.autoresizingMask;
     

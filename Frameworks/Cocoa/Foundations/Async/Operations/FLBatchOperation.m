@@ -69,7 +69,7 @@
 
         self.completedCount++;
 
-//        [self postObservation:@"batchOperation:didProccessObject:" withObject:object];
+//        [self sendMessage:@"batchOperation:didProccessObject:" withObject:object];
     }
     
     return FLSuccessfullResult;

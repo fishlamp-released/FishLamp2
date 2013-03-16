@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "FLFinisher.h"
 #import "FLAsyncQueue.h"
-#import "FLObserver.h"
+#import "FLMessageBroadcaster.h"
 #import "FLAsyncWorker.h"
 #import "FLService.h"
 

@@ -12,6 +12,8 @@
 #import "FLColorUtilities.h"
 
 #define ArrowWidth 10.0f
+#define kWideWidth 100
+#define kTallHeight 60
 
 @interface FLBreadcrumbBarView ()
 @end
@@ -50,10 +52,25 @@
 - (void) awakeFromNib {
     [super awakeFromNib];
     [self initSelf];
+    
+    _contentEnclosure.autoresizesSubviews = NO;
+    _contentView.autoresizesSubviews = NO;
 }
 
 - (void) updateLayout {
-    [self.delegate breadcrumbBar:self updateLayoutWithTitles:_titles];
+
+
+    [CATransaction begin];
+    [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
+
+    CGRect frame = CGRectMake(0, FLRectGetBottom(self.bounds) - (kTallHeight*2), _contentEnclosure.frame.origin.x, kTallHeight);
+    for(FLBarTitleLayer* layer in _titles) {
+        layer.frame = frame;
+        frame.origin.y -= frame.size.height;
+    }
+
+    [CATransaction commit];
+
     [self updateHighlightedTitle:NO];
     [self setNeedsDisplay];
 }
@@ -104,6 +121,8 @@
 
 - (void) setFrame:(CGRect) frame {
     [super setFrame:frame];
+    _contentView.frame = CGRectInset(self.bounds, 1, 1);
+
     [self updateLayout];
 }
 

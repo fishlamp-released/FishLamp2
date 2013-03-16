@@ -310,7 +310,7 @@
 
 // Foundations/Relationships/Observable
 #import "FLObservable.h"
-#import "FLObserver.h"
+#import "FLMessageBroadcaster.h"
 
 // Foundations/Services
 #import "FLService.h"

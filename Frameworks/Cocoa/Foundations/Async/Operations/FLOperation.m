@@ -83,7 +83,7 @@ NSString* const FLOperationFinishedEvent;
     @try {
         [self abortIfNeeded];
         
-        [self postObservation:@"operationWillRun:" toObserver:finisher];
+        [self sendMessage:@selector(operationWillRun:) toListener:finisher];
        
         if(self.runBlock) {
             result = self.runBlock(self, self.workerContext, finisher.observer);
@@ -102,7 +102,7 @@ NSString* const FLOperationFinishedEvent;
     
     [finisher setFinishedWithResult:result];
 
-    [self postObservation:@"operationDidFinish:withResult:" toObserver:finisher withObject:self withObject:result];
+    [self sendMessage:@selector(operationDidFinish:withResult:) toListener:finisher withObject:self withObject:result];
    
     self.cancelled = NO;
 }

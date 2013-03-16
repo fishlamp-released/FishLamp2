@@ -9,7 +9,6 @@
 #import "FLDispatchQueue.h"
 
 #import "NSObject+FLSelectorPerforming.h"
-#import "FLFifoAsyncQueue.h"
 #import "FLFinisher.h"
 
 static void * const s_queue_key = (void*)&s_queue_key;

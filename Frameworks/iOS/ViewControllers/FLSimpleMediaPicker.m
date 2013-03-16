@@ -98,7 +98,7 @@
     if(!_hidden) {
         _hidden = YES;
         [self.viewController hideViewController:_animated completion:^{
-            [self postObservation:@"simpleMediaPickerDidClose:"];
+            [self sendMessage:@"simpleMediaPickerDidClose:"];
         }];
     }
 
@@ -118,7 +118,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
                                                    assetURL:[info objectForKey:UIImagePickerControllerReferenceURL]];
     
     
-    [self postObservation:@"simpleMediaPicker:didPickPhoto:" withObject:simplePhoto];
+    [self sendMessage:@"simpleMediaPicker:didPickPhoto:" withObject:simplePhoto];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {

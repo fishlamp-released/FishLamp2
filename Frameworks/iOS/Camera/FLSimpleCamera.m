@@ -206,7 +206,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
                 
     FLSimplePhoto* simplePhoto = [FLSimplePhoto simplePhoto:[info objectForKey:UIImagePickerControllerOriginalImage] exif:exif];
     
-    [self postObservation:@"simpleCamera:tookPhoto:" withObject:simplePhoto];
+    [self sendMessage:@"simpleCamera:tookPhoto:" withObject:simplePhoto];
 
 }
 
@@ -244,7 +244,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
     if(!_hidden) {
         _hidden = YES;
         [self.viewController hideViewController:_animated completion:^{
-            [self postObservation:@"simpleCameraDidClose:"];
+            [self sendMessage:@"simpleCameraDidClose:"];
         }];
     }
 }
