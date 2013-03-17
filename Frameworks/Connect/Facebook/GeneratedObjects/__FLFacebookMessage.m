@@ -12,7 +12,7 @@
 #import "FLFacebookMessage.h"
 #import "FLFacebookEmailObject.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLFacebookMessage

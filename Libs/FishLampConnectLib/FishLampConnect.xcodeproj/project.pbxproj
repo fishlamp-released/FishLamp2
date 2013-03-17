@@ -7181,8 +7181,7 @@
 				2753D54216C9A5C700A3880F /* GeneratedObjects */,
 				2753D5ED16C9A5C800A3880F /* Operations */,
 			);
-			name = Facebook;
-			path = ../../Facebook;
+			path = Facebook;
 			sourceTree = "<group>";
 		};
 		2753D54216C9A5C700A3880F /* GeneratedObjects */ = {
@@ -7680,7 +7679,6 @@
 		2753D9BD16C9A82300A3880F /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				2753D53C16C9A5C700A3880F /* Facebook */,
 				2753D9BE16C9A82300A3880F /* UIColor+ZenfolioAdditions.h */,
 				2753D9BF16C9A82300A3880F /* UIColor+ZenfolioAdditions.m */,
 				2753D9C016C9A82300A3880F /* UIFont+ZenfolioAdditions.h */,
@@ -8714,6 +8712,7 @@
 		27EA1EB216B84D7F0018CDB2 /* Connect */ = {
 			isa = PBXGroup;
 			children = (
+				2753D53C16C9A5C700A3880F /* Facebook */,
 				2753D92816C9A82300A3880F /* Zenfolio */,
 				27EA1F6D16B84D800018CDB2 /* Twitter */,
 			);

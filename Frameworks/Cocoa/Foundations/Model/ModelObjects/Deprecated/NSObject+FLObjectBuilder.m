@@ -39,7 +39,7 @@
                     
 	FLPropertyType* prop = [describer propertyDescriberForPropertyName:propertyInflator.propertyName];
     
-	if(prop && [prop.propertyType.classForType sharedObjectDescriber]) {
+	if(prop && [prop.classForType sharedObjectDescriber]) {
 		    // this actually might return self or an inflator.
             // it relies on propertyName value coding for setting the properties
             // <Foundation/NSKeyValueCoding.h>
@@ -47,9 +47,9 @@
 			
 			id object = FLRetainWithAutorelease([inflator valueForKey:propertyInflator.propertyName forObject:self]);
 			if(!object) {
-				FLAssertIsNotNil_(prop.propertyType.classForType);
+				FLAssertIsNotNil_(prop.classForType);
 
-				object = FLAutorelease([[prop.propertyType.classForType alloc] init]);
+				object = FLAutorelease([[prop.classForType alloc] init]);
                 FLAssertNotNil_(object);
                 
 				[inflator setValue:object forKey:propertyInflator.propertyName forObject:self];
@@ -94,13 +94,13 @@
 			
             if(FLStringsAreEqual(propertyType.propertyName, propertyInflator.propertyName)) {
 				
-				propertyInflator.propertyType = propertyType.propertyType;
+				propertyInflator = propertyType;
 
-                FLAssertIsNotNil_(propertyType.propertyType.classForType);
+                FLAssertIsNotNil_(propertyType.classForType);
 
-                FLObjectDescriber* arrayItemDescriber = [propertyType.propertyType.classForType sharedObjectDescriber]; 
+                FLObjectDescriber* arrayItemDescriber = [propertyType.classForType sharedObjectDescriber]; 
                 if(arrayItemDescriber) {
-                    id obj = FLAutorelease([[propertyType.propertyType.classForType alloc] init]);
+                    id obj = FLAutorelease([[propertyType.classForType alloc] init]);
                     FLAssertIsNotNil_(obj);
 					[self addObject:obj];
 

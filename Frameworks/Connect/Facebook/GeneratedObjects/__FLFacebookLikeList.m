@@ -11,7 +11,7 @@
 
 #import "FLFacebookLikeList.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 #import "FLFacebookNamedObject.h"
 
@@ -92,7 +92,7 @@
             s_describer = [[FLObjectDescriber alloc] init];
         }
         [s_describer addProperty:@"count" withClass:[FLIntegerNumber class] ];
-        [s_describer addArrayProperty:@"data" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"like" propertyClass:[FLFacebookNamedObject class]], nil]];
+        [s_describer addProperty:@"data" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"like" propertyClass:[FLFacebookNamedObject class]], nil]];
     });
     return s_describer;
 }

@@ -11,49 +11,32 @@
 
 @interface FLPropertyType ()
 @property (readwrite, strong, nonatomic) NSString* propertyName;
-@property (readwrite, strong, nonatomic) FLNamedType* propertyType;
 @property (readwrite, strong, nonatomic) NSArray* arrayTypes;
-@property (readwrite, assign, nonatomic, getter=isUnboundedArray) BOOL unboundedArray;
-@property (readwrite, assign, nonatomic, getter=isUnboundedArrayItem) BOOL unboundedArrayItem;
-
+@property (readwrite, strong, nonatomic) FLType* propertyType;
 @end
 
 @implementation FLPropertyType
 
-@synthesize propertyName = _name;
 @synthesize arrayTypes = _arrayTypes;
 @synthesize propertyType = _propertyType;
-@synthesize unboundedArray = _unboundedArray;
-@synthesize unboundedArrayItem = _unboundedArrayItem;
+@synthesize propertyName = _propertyName;
 
 - (id) initWithPropertyName:(NSString*) name
-               propertyClass:(Class) propertyClass
+              propertyClass:(Class) propertyClass
                  arrayTypes:(NSArray*) arrayTypes {
-
-	return [self initWithPropertyName:name propertyClass:propertyClass arrayTypes:arrayTypes];
-}
-
-- (id) initWithPropertyName:(NSString*) name
-               propertyClass:(Class) propertyClass
-                 arrayTypes:(NSArray*) arrayTypes
-           isUnboundedArray:(BOOL) isUnboundedArray {
 
 	if((self = [super init])) {
 		FLAssertStringIsNotEmpty_(name);
         self.propertyName = name;
-        self.propertyType = [propertyClass type];
-		self.arrayTypes = arrayTypes;
-		self.unboundedArray = isUnboundedArray;
-
-		if(self.isUnboundedArray) {
-			for(FLPropertyType* desc in self.arrayTypes) {
-				self.unboundedArrayItem = YES;
-			}
-		}
-		
+		self.propertyType = [propertyClass type];
+        self.arrayTypes = arrayTypes;
 	}
 	
 	return self;
+}
+
+- (Class) propertyClass {
+    return _propertyType.classForType;
 }
 
 - (id) initWithPropertyName:(NSString*) name
@@ -63,32 +46,24 @@
 
 
 + (FLPropertyType*) propertyType:(NSString*) name
-                                  propertyClass:(Class) propertyClass {
+                   propertyClass:(Class) propertyClass {
 
 	return FLAutorelease([[FLPropertyType alloc] initWithPropertyName:name propertyClass:propertyClass arrayTypes:nil]);
 }
 
 
 + (FLPropertyType*) propertyType:(NSString*) name
-                                  propertyClass:(Class) propertyClass
-                                    arrayTypes:(NSArray*) arrayTypes
-                              isUnboundedArray:(BOOL) isUnboundedArray {
-
-	return FLAutorelease([[FLPropertyType alloc] initWithPropertyName:name propertyClass:propertyClass arrayTypes:arrayTypes isUnboundedArray:isUnboundedArray]);
-}
-
-+ (FLPropertyType*) propertyType:(NSString*) name
-                                  propertyClass:(Class) propertyClass
-                                    arrayTypes:(NSArray*) arrayTypes {
+                   propertyClass:(Class) propertyClass
+                      arrayTypes:(NSArray*) arrayTypes {
 
 	return FLAutorelease([[FLPropertyType alloc] initWithPropertyName:name propertyClass:propertyClass arrayTypes:arrayTypes]);
 }
 
 #if FL_MRC
 - (void) dealloc {
-    [_arrayTypes release];
-    [_name release];
     [_propertyType release];
+    [_arrayTypes release];
+    [_propertyName release];
     [super dealloc];
 }
 #endif
@@ -98,31 +73,20 @@
 }	
 
 - (NSString*) description {
-	return [NSString stringWithFormat:@"%@: Name: %@, Class: %@, Type: %@, isUnboundedArray: %d, isUnboundedArrayType: %d, ArrayTypes:\n%@",
+	return [NSString stringWithFormat:@"%@: Name: %@, Class: %@, ArrayTypes:\n%@",
 		[super description],
 		self.propertyName,
-		NSStringFromClass(self.propertyType.classForType),
-		[self.propertyType description],
-		self.isUnboundedArray,
-		self.isUnboundedArrayItem,
+		NSStringFromClass(self.propertyClass),
 		[self.arrayTypes description]];
 }
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Warc-performSelector-leaks"
 
 - (void) setPropertyValue:(id) value forObject:(id) object {
     [object setValue:value forKey:self.propertyName];
-//    [object performSelector:self.setter withObject:value];
 }
 
 - (id) propertyValueForObject:(id) object {
     return [object valueForKey:self.propertyName];
-//    return [object performSelector:self.getter];
 }
-
-#pragma GCC diagnostic pop
-
-
 
 @end
 

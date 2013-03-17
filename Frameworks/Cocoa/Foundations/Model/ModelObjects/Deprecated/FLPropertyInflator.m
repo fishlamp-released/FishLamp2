@@ -5,6 +5,7 @@
 //	Created by Mike Fullerton on 3/8/10.
 //	Copyright 2010 GreenTongue Software. All rights reserved.
 //
+#if REFACTOR
 
 #import "FLPropertyInflator.h"
 
@@ -108,3 +109,4 @@
 }
 
 @end
+#endif

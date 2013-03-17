@@ -11,7 +11,7 @@
 
 #import "FLFacebookNetworkSession.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLFacebookNetworkSession
@@ -124,7 +124,7 @@
         [s_describer addProperty:@"appId" withClass:[NSString class]];
         [s_describer addProperty:@"access_token" withClass:[NSString class]];
         [s_describer addProperty:@"expiration_date" withClass:[NSDate class]];
-        [s_describer addArrayProperty:@"permissions" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"permission" propertyClass:[NSString class] ], nil]];
+        [s_describer addProperty:@"permissions" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"permission" propertyClass:[NSString class] ], nil]];
     });
     return s_describer;
 }

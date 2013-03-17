@@ -8,7 +8,14 @@
 
 #import "FLObjectInflator.h"
 #import "FLObjectDescriber.h"
+@implementation FLObjectInflator
+- (id) initWithObjectDescriber:(FLObjectDescriber*) objectDescriber {
+    return self;
+}
 
+@end
+
+#if REFACTOR
 @implementation FLObjectInflator
 
 - (void) setValue:(id) value forKey:(id) key forObject:(id) object
@@ -113,3 +120,4 @@
 	return shared != nil ? shared : self;
 }
 @end
+#endif

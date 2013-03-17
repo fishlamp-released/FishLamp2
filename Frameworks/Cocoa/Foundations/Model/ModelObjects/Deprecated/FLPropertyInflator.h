@@ -5,6 +5,7 @@
 //	Created by Mike Fullerton on 3/8/10.
 //	Copyright 2010 GreenTongue Software. All rights reserved.
 //
+#if REFACTOR
 
 #import "FLCocoaRequired.h"
 #import "FishLampCore.h"
@@ -30,7 +31,7 @@
 @property (readonly, strong, nonatomic) NSString* encodedString;
 - (void) appendEncodedString:(NSString*) string; 
 
-@property (readwrite, strong, nonatomic) FLType* propertyType;
+@property (readwrite, strong, nonatomic) FLPropertyType* propertyType;
 @property (readwrite, assign, nonatomic) int state;
 
 - (id) initWithContainingObject:(id) containingObject propertyName:(id) propertyName state:(int) state;
@@ -39,3 +40,4 @@
 
 - (void) inflatePropertyWithDataDecoder:(id<FLDataDecoding>) decoder;
 @end
+#endif

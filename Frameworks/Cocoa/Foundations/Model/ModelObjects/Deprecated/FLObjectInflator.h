@@ -11,6 +11,13 @@
 
 @class FLObjectDescriber;
 
+@interface FLObjectInflator : NSObject
+- (id) initWithObjectDescriber:(FLObjectDescriber*) objectDescriber;
+@end
+
+#if REFACTOR
+@class FLObjectDescriber;
+
 @interface FLObjectInflator : NSObject {
 @private
 	NSMutableDictionary* _unboundedArrays;
@@ -31,3 +38,4 @@
 @property (readonly, retain, nonatomic) id objectInflator;
 + (FLObjectInflator*) sharedObjectInflator;
 @end
+#endif

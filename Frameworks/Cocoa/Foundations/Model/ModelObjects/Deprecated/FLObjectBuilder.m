@@ -67,7 +67,7 @@
 	{			
 		if([arrayItem isKindOfClass:[NSDictionary class]])
 		{
-			id newObject = FLAutorelease([[arrayItemDesc.propertyType.classForType alloc] init]);
+			id newObject = FLAutorelease([[arrayItemDesc.classForType alloc] init]);
 			[newArray addObject:newObject];
 			[self buildObject:newObject fromDictionary:arrayItem withObjectDescriber:[[newObject class] sharedObjectDescriber] withDecoder:decoder];
 		}
@@ -77,14 +77,14 @@
 		else
 		{
             if(decoder) {
-                [newArray addObject:[arrayItemDesc.propertyType decodeStringToObject:arrayItem withDecoder:decoder]];
+                [newArray addObject:[arrayItemDesc decodeStringToObject:arrayItem withDecoder:decoder]];
             }
             else {
                 [newArray addObject:arrayItem];
             }
 
 
-//			switch(arrayItemDesc.propertyType.specificType)
+//			switch(arrayItemDesc.specificType)
 //			{
 //				case FLSpecificTypeDate:
 //					[newArray addObject: [[FLDateMgr instance] ISO8601StringToDate:arrayItem]];
@@ -119,9 +119,9 @@
 			{
 				if([value isKindOfClass:[NSDictionary class]])
 				{
-//					FLAssert_v(property.propertyType.generalType == FLGeneralTypeObject, @"not an object?");
+//					FLAssert_v(property.generalType == FLGeneralTypeObject, @"not an object?");
 				
-					id newObject = FLAutorelease([[property.propertyType.classForType alloc] init]);
+					id newObject = FLAutorelease([[property.classForType alloc] init]);
 					[object setValue:newObject forKey:key];
 					[self buildObject:newObject fromDictionary:value withObjectDescriber:[[newObject class] sharedObjectDescriber] withDecoder:decoder];
 				}
@@ -131,10 +131,10 @@
 				else {
 
                     if(decoder) {
-                        value = [property.propertyType decodeStringToObject:value withDecoder:decoder];
+                        value = [property decodeStringToObject:value withDecoder:decoder];
                     }
                 
-//					switch(property.propertyType.specificType)
+//					switch(property.specificType)
 //					{
 //						case FLSpecificTypeDate:
 //							value = [[FLDateMgr instance] ISO8601StringToDate:value];

@@ -9,6 +9,37 @@
 #import <Foundation/Foundation.h>
 #import "FLType.h"
 
+
+@protocol FLTypeCoreTypesEncoding <NSObject>
+- (NSString*) encodeStringWithCGRect:(NSValue*) value;
+- (NSString*) encodeStringWithCGPoint:(NSValue*) value;
+- (NSString*) encodeStringWithCGSize:(NSValue*) value;
+
+- (NSString*) encodeStringWithNSNumber:(NSNumber*) number;
+- (NSString*) encodeStringWithNSString:(NSString*) string;
+- (NSString*) encodeStringWithNSDate:(NSDate*) date;
+- (NSString*) encodeStringWithNSData:(NSData*) data;
+- (NSString*) encodeStringWithNSURL:(NSURL*) URL;
+
+- (NSString*) encodeStringWithBOOL:(NSNumber*) number;
+@end
+
+// decoding
+
+@protocol FLTypeCoreTypesDecoding <NSObject>
+- (NSValue*) decodeCGPointFromString:(NSString*) string;
+- (NSValue*) decodeCGRectFromString:(NSString*) string;
+- (NSValue*) decodeCGSizeFromString:(NSString*) string;
+
+- (NSNumber*) decodeBOOLFromString:(NSString*) string;
+- (NSNumber*) decodeNSNumberFromString:(NSString*) string;
+- (NSString*) decodeNSStringFromString:(NSString*) string;
+- (NSDate*) decodeNSDateFromString:(NSString*) string;
+- (NSData*) decodeNSDataFromString:(NSString*) string;
+- (NSURL*) decodeNSURLFromString:(NSString*) string;
+@end
+
+
 @interface FLSimpleType : FLType
 @end
 

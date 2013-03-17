@@ -12,7 +12,7 @@
 #import "FLFacebookUpdateStatusOperation.h"
 #import "FLFacebookStatusMessage.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLFacebookUpdateStatusOperation
