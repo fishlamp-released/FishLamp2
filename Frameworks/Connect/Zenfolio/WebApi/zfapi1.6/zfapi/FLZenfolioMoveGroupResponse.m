@@ -9,7 +9,7 @@
 
 #import "FLZenfolioMoveGroupResponse.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioMoveGroupResponse

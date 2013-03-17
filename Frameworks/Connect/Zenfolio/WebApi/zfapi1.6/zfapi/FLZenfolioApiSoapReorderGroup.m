@@ -11,7 +11,7 @@
 #import "FLZenfolioReorderGroup.h"
 #import "FLZenfolioReorderGroupResponse.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioApiSoapReorderGroup

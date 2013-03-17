@@ -10,7 +10,7 @@
 #import "FLZenfolioApiHttpPostKeyringAddKeyPlain.h"
 #import "FLZenfolioKeyringAddKeyPlainHttpPostIn.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioApiHttpPostKeyringAddKeyPlain

@@ -10,7 +10,7 @@
 #import "FLZenfolioApiHttpGetGetVisitorKey.h"
 #import "FLZenfolioGetVisitorKeyHttpGetIn.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioApiHttpGetGetVisitorKey

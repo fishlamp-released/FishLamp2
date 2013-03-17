@@ -11,7 +11,7 @@
 #import "FLZenfolioReplacePhotoHttpGetIn.h"
 #import "FLZenfolioReplacePhotoHttpGetOut.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioApiHttpGetReplacePhoto

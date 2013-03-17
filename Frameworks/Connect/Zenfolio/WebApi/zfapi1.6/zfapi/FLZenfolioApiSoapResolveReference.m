@@ -11,7 +11,7 @@
 #import "FLZenfolioResolveReference.h"
 #import "FLZenfolioResolveReferenceResponse.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioApiSoapResolveReference

@@ -11,7 +11,7 @@
 #import "FLZenfolioLoadGroup.h"
 #import "FLZenfolioLoadGroupResponse.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioApiSoapLoadGroup

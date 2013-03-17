@@ -11,7 +11,7 @@
 #import "FLZenfolioReplacePhoto.h"
 #import "FLZenfolioReplacePhotoResponse.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioApiSoapReplacePhoto

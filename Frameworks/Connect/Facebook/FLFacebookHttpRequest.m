@@ -39,7 +39,7 @@
 		
         FLObjectDescriber* describer = [[self.inputObject class] sharedObjectDescriber];
 	
-		for(NSString* propertyName in describer.propertyDescribers) {
+		for(NSString* propertyName in describer.properties) {
 			id obj = [self.inputObject valueForKey:propertyName];
 			if(obj) {
 				FLAssert_v([obj isKindOfClass:[NSString class]], @"not a string"); 

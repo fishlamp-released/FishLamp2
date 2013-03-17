@@ -11,7 +11,7 @@
 
 #import "FLFacebookInsights.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 #import "FLFacebookInsight.h"
 
@@ -93,7 +93,7 @@
             s_describer = [[FLObjectDescriber alloc] init];
         }
         [s_describer addProperty:@"period" withClass:[NSString class]];
-        [s_describer addArrayProperty:@"values" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"insights" propertyClass:[FLFacebookInsight class]], nil]];
+        [s_describer addProperty:@"values" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"insights" propertyClass:[FLFacebookInsight class]], nil]];
     });
     return s_describer;
 }

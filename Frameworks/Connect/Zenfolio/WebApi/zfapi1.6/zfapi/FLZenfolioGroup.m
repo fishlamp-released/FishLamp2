@@ -10,7 +10,7 @@
 #import "FLZenfolioGroup.h"
 #import "FLZenfolioPhoto.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 #import "FLZenfolioGroup.h"
 #import "FLZenfolioPhotoSet.h"
@@ -241,8 +241,8 @@
 		[s_describer addProperty:@"PhotoCount" withClass:[FLIntegerNumber class] ];
 		[s_describer addProperty:@"ImageCount" withClass:[FLIntegerNumber class] ];
 		[s_describer addProperty:@"VideoCount" withClass:[FLIntegerNumber class] ];
-		[s_describer addArrayProperty:@"ParentGroups" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"Id" propertyClass:[FLIntegerNumber class]], nil]];
-		[s_describer addArrayProperty:@"Elements" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"Group" propertyClass:[FLZenfolioGroup class]], [FLPropertyType propertyType:@"PhotoSet" propertyClass:[FLZenfolioPhotoSet class]], nil]];
+		[s_describer addProperty:@"ParentGroups" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"Id" propertyClass:[FLIntegerNumber class]], nil]];
+		[s_describer addProperty:@"Elements" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"Group" propertyClass:[FLZenfolioGroup class]], [FLPropertyType propertyType:@"PhotoSet" propertyClass:[FLZenfolioPhotoSet class]], nil]];
 		[s_describer addProperty:@"PageUrl" withClass:[NSString class]];
 		[s_describer addProperty:@"TitlePhoto" withClass:[FLZenfolioPhoto class]];
 		[s_describer addProperty:@"MailboxId" withClass:[NSString class]];

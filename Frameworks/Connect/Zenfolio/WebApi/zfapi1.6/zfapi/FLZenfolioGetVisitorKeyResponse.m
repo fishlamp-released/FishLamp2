@@ -9,7 +9,7 @@
 
 #import "FLZenfolioGetVisitorKeyResponse.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioGetVisitorKeyResponse

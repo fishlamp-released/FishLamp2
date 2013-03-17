@@ -11,7 +11,7 @@
 #import "FLZenfolioReindexPhotoSet.h"
 #import "FLZenfolioReindexPhotoSetResponse.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioApiSoapReindexPhotoSet

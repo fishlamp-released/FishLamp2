@@ -9,7 +9,7 @@
 
 #import "FLZenfolioKeyringGetUnlockedRealmsHttpPostIn.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioKeyringGetUnlockedRealmsHttpPostIn

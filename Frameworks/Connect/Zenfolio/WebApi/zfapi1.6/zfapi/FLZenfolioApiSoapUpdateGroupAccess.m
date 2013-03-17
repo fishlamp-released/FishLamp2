@@ -11,7 +11,7 @@
 #import "FLZenfolioUpdateGroupAccess.h"
 #import "FLZenfolioUpdateGroupAccessResponse.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioApiSoapUpdateGroupAccess

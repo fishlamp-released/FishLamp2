@@ -10,7 +10,7 @@
 #import "FLZenfolioApiHttpGetGetVersion.h"
 #import "FLZenfolioGetVersionHttpGetIn.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioApiHttpGetGetVersion

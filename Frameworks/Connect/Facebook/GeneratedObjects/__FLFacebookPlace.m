@@ -11,7 +11,7 @@
 
 #import "FLFacebookPlace.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLFacebookPlace

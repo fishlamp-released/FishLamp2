@@ -11,7 +11,7 @@
 
 #import "FLFacebookCommentList.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 #import "FLFacebookComment.h"
 
@@ -92,19 +92,9 @@
             s_describer = [[FLObjectDescriber alloc] init];
         }
         [s_describer addProperty:@"count" withClass:[FLIntegerNumber class] ];
-        [s_describer addArrayProperty:@"data" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"comment" propertyClass:[FLFacebookComment class] ], nil]];
+        [s_describer addProperty:@"data" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"comment" propertyClass:[FLFacebookComment class] ], nil]];
     });
     return s_describer;
-}
-
-+ (FLObjectInflator*) sharedObjectInflator
-{
-    static FLObjectInflator* s_inflator = nil;
-    static dispatch_once_t pred = 0;
-    dispatch_once(&pred, ^{
-        s_inflator = [[FLObjectInflator alloc] initWithObjectDescriber:[[self class] sharedObjectDescriber]];
-    });
-    return s_inflator;
 }
 
 + (FLDatabaseTable*) sharedDatabaseTable

@@ -12,7 +12,7 @@
 #import "FLFacebookFetchStatusListResponse.h"
 #import "FLFacebookPagingResponse.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 #import "FLFacebookPost.h"
 
@@ -93,7 +93,7 @@
             s_describer = [[FLObjectDescriber alloc] init];
         }
         [s_describer addProperty:@"paging" withClass:[FLFacebookPagingResponse class]];
-        [s_describer addArrayProperty:@"data" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"post" propertyClass:[FLFacebookPost class]], nil]];
+        [s_describer addProperty:@"data" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"post" propertyClass:[FLFacebookPost class]], nil]];
     });
     return s_describer;
 }

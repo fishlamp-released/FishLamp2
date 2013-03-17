@@ -11,7 +11,7 @@
 #import "FLZenfolioGetVersion.h"
 #import "FLZenfolioGetVersionResponse.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioApiSoapGetVersion

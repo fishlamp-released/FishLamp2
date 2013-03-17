@@ -10,7 +10,7 @@
 #import "FLZenfolioApiHttpPostGetDownloadOriginalKey.h"
 #import "FLZenfolioGetDownloadOriginalKeyHttpPostIn.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioApiHttpPostGetDownloadOriginalKey

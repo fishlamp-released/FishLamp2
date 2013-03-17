@@ -11,7 +11,7 @@
 #import "FLZenfolioApi1_6Enums.h"
 #import "FLZenfolioApi1_6Enums.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioAccessUpdater
@@ -123,7 +123,7 @@
 		[s_describer addProperty:@"AccessMask" withClass:[NSString class]];
 		[s_describer addProperty:@"Password" withClass:[NSString class]];
 		[s_describer addProperty:@"AccessType" withClass:[NSString class]];
-		[s_describer addArrayProperty:@"Viewers" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"Viewer" propertyClass:[NSString class] ], nil]];
+		[s_describer addProperty:@"Viewers" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"Viewer" propertyClass:[NSString class] ], nil]];
 		[s_describer addProperty:@"IsDerived" withClass:[FLBoolNumber class] ];
 	});
 	return s_describer;

@@ -12,7 +12,7 @@
 #import "FLFacebookPhoto.h"
 #import "FLFacebookNamedObject.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 #import "FLFacebookTag.h"
 
@@ -171,7 +171,7 @@
         [s_describer addProperty:@"source" withClass:[NSString class]];
         [s_describer addProperty:@"height" withClass:[FLIntegerNumber class] ];
         [s_describer addProperty:@"width" withClass:[FLIntegerNumber class] ];
-        [s_describer addArrayProperty:@"tags" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"tag" propertyClass:[FLFacebookTag class]], nil]];
+        [s_describer addProperty:@"tags" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"tag" propertyClass:[FLFacebookTag class]], nil]];
     });
     return s_describer;
 }

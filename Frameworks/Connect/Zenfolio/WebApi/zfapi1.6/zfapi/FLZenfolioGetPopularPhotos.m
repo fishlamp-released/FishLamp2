@@ -9,7 +9,7 @@
 
 #import "FLZenfolioGetPopularPhotos.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioGetPopularPhotos

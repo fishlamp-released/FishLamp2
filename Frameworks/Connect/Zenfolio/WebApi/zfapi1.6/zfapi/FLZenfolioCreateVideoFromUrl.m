@@ -9,7 +9,7 @@
 
 #import "FLZenfolioCreateVideoFromUrl.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioCreateVideoFromUrl

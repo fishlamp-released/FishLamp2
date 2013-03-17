@@ -9,7 +9,7 @@
 
 #import "FLZenfolioCollectionRemovePhotoHttpPostIn.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioCollectionRemovePhotoHttpPostIn

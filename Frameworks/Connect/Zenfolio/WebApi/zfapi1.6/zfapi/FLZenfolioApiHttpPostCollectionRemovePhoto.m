@@ -11,7 +11,7 @@
 #import "FLZenfolioCollectionRemovePhotoHttpPostIn.h"
 #import "FLZenfolioCollectionRemovePhotoHttpPostOut.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioApiHttpPostCollectionRemovePhoto

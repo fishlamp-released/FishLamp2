@@ -11,7 +11,7 @@
 
 #import "FLViewColors.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLViewColors
@@ -105,10 +105,10 @@
         {
             s_describer = [[FLObjectDescriber alloc] init];
         }
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"normalColor" propertyClass:[UIColor class] propertyType:FLDataTypeColor] forPropertyName:@"normalColor"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"selectedColor" propertyClass:[UIColor class] propertyType:FLDataTypeColor] forPropertyName:@"selectedColor"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"highlightedColor" propertyClass:[UIColor class] propertyType:FLDataTypeColor] forPropertyName:@"highlightedColor"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"disabledColor" propertyClass:[UIColor class] propertyType:FLDataTypeColor] forPropertyName:@"disabledColor"];
+        [s_describer setPropertyDescriber:[FLPropertyType propertyType:@"normalColor" propertyClass:[UIColor class] propertyType:FLDataTypeColor] forPropertyName:@"normalColor"];
+        [s_describer setPropertyDescriber:[FLPropertyType propertyType:@"selectedColor" propertyClass:[UIColor class] propertyType:FLDataTypeColor] forPropertyName:@"selectedColor"];
+        [s_describer setPropertyDescriber:[FLPropertyType propertyType:@"highlightedColor" propertyClass:[UIColor class] propertyType:FLDataTypeColor] forPropertyName:@"highlightedColor"];
+        [s_describer setPropertyDescriber:[FLPropertyType propertyType:@"disabledColor" propertyClass:[UIColor class] propertyType:FLDataTypeColor] forPropertyName:@"disabledColor"];
     });
     return s_describer;
 }

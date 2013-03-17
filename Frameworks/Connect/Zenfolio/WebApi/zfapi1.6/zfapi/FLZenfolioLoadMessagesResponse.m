@@ -9,7 +9,7 @@
 
 #import "FLZenfolioLoadMessagesResponse.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 #import "FLZenfolioMessage.h"
 
@@ -79,7 +79,7 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer addArrayProperty:@"LoadMessagesResult" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"Message" propertyClass:[FLZenfolioMessage class]], nil]];
+		[s_describer addProperty:@"LoadMessagesResult" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"Message" propertyClass:[FLZenfolioMessage class]], nil]];
 	});
 	return s_describer;
 }

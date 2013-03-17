@@ -11,7 +11,7 @@
 #import "FLZenfolioDeleteMessageHttpPostIn.h"
 #import "FLZenfolioDeleteMessageHttpPostOut.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioApiHttpPostDeleteMessage

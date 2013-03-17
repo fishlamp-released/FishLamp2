@@ -11,7 +11,7 @@
 #import "FLZenfolioMovePhotoHttpPostIn.h"
 #import "FLZenfolioMovePhotoHttpPostOut.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioApiHttpPostMovePhoto

@@ -11,7 +11,7 @@
 #import "FLZenfolioApi1_6Enums.h"
 #import "FLZenfolioApi1_6Enums.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioSearchSetByText

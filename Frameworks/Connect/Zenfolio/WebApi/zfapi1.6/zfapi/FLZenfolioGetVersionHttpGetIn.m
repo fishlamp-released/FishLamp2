@@ -9,7 +9,7 @@
 
 #import "FLZenfolioGetVersionHttpGetIn.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioGetVersionHttpGetIn

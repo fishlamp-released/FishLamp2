@@ -11,7 +11,7 @@
 #import "FLZenfolioCreateVideoFromUrl.h"
 #import "FLZenfolioCreateVideoFromUrlResponse.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioApiSoapCreateVideoFromUrl

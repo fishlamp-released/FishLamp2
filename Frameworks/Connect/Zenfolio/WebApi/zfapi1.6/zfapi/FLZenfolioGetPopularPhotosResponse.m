@@ -9,7 +9,7 @@
 
 #import "FLZenfolioGetPopularPhotosResponse.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 #import "FLZenfolioPhoto.h"
 
@@ -79,7 +79,7 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer addArrayProperty:@"GetPopularPhotosResult" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"Photo" propertyClass:[FLZenfolioPhoto class]], nil]];
+		[s_describer addProperty:@"GetPopularPhotosResult" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"Photo" propertyClass:[FLZenfolioPhoto class]], nil]];
 	});
 	return s_describer;
 }

@@ -11,7 +11,7 @@
 #import "FLZenfolioLoadPublicProfile.h"
 #import "FLZenfolioLoadPublicProfileResponse.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioApiSoapLoadPublicProfile

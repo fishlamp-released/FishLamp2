@@ -11,7 +11,7 @@
 #import "FLZenfolioLoadAccessRealm.h"
 #import "FLZenfolioLoadAccessRealmResponse.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioApiSoapLoadAccessRealm

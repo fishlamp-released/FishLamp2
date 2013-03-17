@@ -10,7 +10,7 @@
 #import "FLZenfolioApiHttpGetLoadSharedFavoritesSets.h"
 #import "FLZenfolioLoadSharedFavoritesSetsHttpGetIn.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 #import "FLZenfolioFavoritesSet.h"
 
@@ -86,7 +86,7 @@
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
 		[s_describer addProperty:@"input" withClass:[FLZenfolioLoadSharedFavoritesSetsHttpGetIn class]];
-		[s_describer addArrayProperty:@"output" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"FavoritesSet" propertyClass:[FLZenfolioFavoritesSet class]], nil]];
+		[s_describer addProperty:@"output" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"FavoritesSet" propertyClass:[FLZenfolioFavoritesSet class]], nil]];
 	});
 	return s_describer;
 }

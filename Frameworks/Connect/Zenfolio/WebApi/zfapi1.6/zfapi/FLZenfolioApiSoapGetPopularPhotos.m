@@ -11,7 +11,7 @@
 #import "FLZenfolioGetPopularPhotos.h"
 #import "FLZenfolioGetPopularPhotosResponse.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioApiSoapGetPopularPhotos

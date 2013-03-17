@@ -11,7 +11,7 @@
 #import "FLZenfolioLoadMessages.h"
 #import "FLZenfolioLoadMessagesResponse.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioApiSoapLoadMessages

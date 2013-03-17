@@ -11,7 +11,7 @@
 #import "FLZenfolioReorderGroupHttpGetIn.h"
 #import "FLZenfolioReorderGroupHttpGetOut.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioApiHttpGetReorderGroup

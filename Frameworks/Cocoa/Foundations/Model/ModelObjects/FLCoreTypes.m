@@ -9,10 +9,6 @@
 #import "FLCoreTypes.h"
 #import "FLType.h"
 
-
-
-// core types
-
 // objects
 enum  {
     FLTypeIDObject              = _C_CLASS,
@@ -35,11 +31,15 @@ enum {
 @end
 
 @implementation FLNumberType 
-- (id) init {
+
+- (id) initNumberWithTypeName:(NSString*) typeName {
     return [self initWithClass:[NSNumber class] 
+                      withTypeName:(NSString*) typeName
                        encoder:NSSelectorFromString(@"encodeStringWithNSNumber:") 
                        decoder:NSSelectorFromString(@"decodeNSNumberFromString:")];
 }
+
+
 - (FLTypeNumberType) numberType {
     return 0;
 }
@@ -48,6 +48,7 @@ enum {
 @implementation FLBoolNumber 
 - (id) init {
     return [self initWithClass:[NSNumber class] 
+                      withTypeName:@"BOOL"
                        encoder:NSSelectorFromString(@"encodeStringWithBOOL:") 
                        decoder:NSSelectorFromString(@"decodeBOOLFromString:")];
 }
@@ -60,12 +61,15 @@ enum {
 + (FLType*) type {
     FLReturnStaticObject([[[self class] alloc] init]);
 }
-- (NSString*) typeName {
-    return @"BOOL";
-}
+
 @end
 
 @implementation FLCharNumber 
+
+- (id) init {
+    return [super initNumberWithTypeName:@"char"];
+}
+
 + (id) charNumber {
     return [self type];
 }
@@ -75,12 +79,15 @@ enum {
 + (FLType*) type {
     FLReturnStaticObject([[[self class] alloc] init]);
 }
-- (NSString*) typeName {
-    return @"char";
-}
+
 @end
 
 @implementation FLUnsignedCharNumber 
+
+- (id) init {
+    return [super initNumberWithTypeName:@"unsigned char"];
+}
+
 + (id) unsignedCharNumber {
     return [self type];
 }
@@ -90,13 +97,13 @@ enum {
 + (FLType*) type {
     FLReturnStaticObject([[[self class] alloc] init]);
 }
-- (NSString*) typeName {
-    return @"unsigned char";
-}
 
 @end
 
 @implementation FLShortNumber 
+- (id) init {
+    return [super initNumberWithTypeName:@"short"];
+}
 + (id) shortNumber {
     return [self type];
 }
@@ -106,13 +113,12 @@ enum {
 + (FLType*) type {
     FLReturnStaticObject([[[self class] alloc] init]);
 }
-- (NSString*) typeName {
-    return @"short";
-}
-
 @end
 
 @implementation FLUnsignedShortNumber 
+- (id) init {
+    return [super initNumberWithTypeName:@"unsigned short"];
+}
 + (id) unsignedShortNumber {
     return [self type];
 }
@@ -122,13 +128,13 @@ enum {
 + (FLType*) type {
     FLReturnStaticObject([[[self class] alloc] init]);
 }
-- (NSString*) typeName {
-    return @"unsigned short";
-}
+
 @end
 
 @implementation FLIntNumber 
-+ (id) intNumber {
+- (id) init {
+    return [super initNumberWithTypeName:@"int"];
+}+ (id) intNumber {
     return [self type];
 }
 - (FLTypeNumberType) numberType {
@@ -137,12 +143,14 @@ enum {
 + (FLType*) type {
     FLReturnStaticObject([[[self class] alloc] init]);
 }
-- (NSString*) typeName {
-    return @"int";
-}
+
 @end
 
 @implementation FLUnsignedIntNumber 
+- (id) init {
+    return [super initNumberWithTypeName:@"unsigned int"];
+}
+
 + (id) unsignedIntNumber {
     return [self type];
 }
@@ -152,13 +160,14 @@ enum {
 + (FLType*) type {
     FLReturnStaticObject([[[self class] alloc] init]);
 }
-- (NSString*) typeName {
-    return @"unsigned int";
-}
+
 
 @end
 
 @implementation FLLongNumber 
+- (id) init {
+    return [super initNumberWithTypeName:@"long"];
+}
 + (id) longNumber {
     return [self type];
 }
@@ -168,13 +177,14 @@ enum {
 + (FLType*) type {
     FLReturnStaticObject([[[self class] alloc] init]);
 }
-- (NSString*) typeName {
-    return @"long";
-}
 
 @end
 
 @implementation FLUnsignedLongNumber 
+- (id) init {
+    return [super initNumberWithTypeName:@"unsigned long"];
+}
+
 + (FLType*) type {
     FLReturnStaticObject([[[self class] alloc] init]);
 }
@@ -184,13 +194,14 @@ enum {
 + (id) unsignedLongNumber {
     return [self type];
 }
-- (NSString*) typeName {
-    return @"unsigned long";
-}
 
 @end
 
 @implementation FLLongLongNumber 
+- (id) init {
+    return [super initNumberWithTypeName:@"long long"];
+}
+
 + (FLType*) type {
     FLReturnStaticObject([[[self class] alloc] init]);
 }
@@ -200,12 +211,13 @@ enum {
 + (id) longLongNumber {
     return [self type];
 }
-- (NSString*) typeName {
-    return @"long long";
-}
+
 @end
 
 @implementation FLUnsignedLongLongNumber 
+- (id) init {
+    return [super initNumberWithTypeName:@"unsigned long long"];
+}
 + (id) unsignedLongLongNumber {
     return [self type];
 }
@@ -215,12 +227,13 @@ enum {
 + (FLType*) type {
     FLReturnStaticObject([[[self class] alloc] init]);
 }
-- (NSString*) typeName {
-    return @"unsigned long long";
-}
+
 @end
 
 @implementation FLFloatNumber 
+- (id) init {
+    return [super initNumberWithTypeName:@"float"];
+}
 + (id) floatNumber {
     return [self type];
 }
@@ -230,13 +243,14 @@ enum {
 + (FLType*) type {
     FLReturnStaticObject([[[self class] alloc] init]);
 }
-- (NSString*) typeName {
-    return @"float";
-}
+
 
 @end
 
 @implementation FLDoubleNumber 
+- (id) init {
+    return [super initNumberWithTypeName:@"double"];
+}
 + (id) doubleNumber {
     return [self type];
 }
@@ -247,13 +261,12 @@ enum {
 + (FLType*) type {
     FLReturnStaticObject([[[self class] alloc] init]);
 }
-- (NSString*) typeName {
-    return @"double";
-}
-
 @end
 
 @implementation FLIntegerNumber 
+- (id) init {
+    return [super initNumberWithTypeName:@"NSInteger"];
+}
 + (id) integerNumber {
     return [self type];
 }
@@ -263,12 +276,12 @@ enum {
 - (FLTypeNumberType) numberType {
     return FLTypeIDLong;
 }
-- (NSString*) typeName {
-    return @"NSInteger";
-}
 @end
 
 @implementation FLUnsignedIntegerNumber 
+- (id) init {
+    return [super initNumberWithTypeName:@"NSUInteger"];
+}
 + (id) unsignedIntegerNumber {
     return [self type];
 }
@@ -277,9 +290,6 @@ enum {
 }
 - (FLTypeNumberType) numberType {
     return FLTypeIDUnsignedLong;
-}
-- (NSString*) typeName {
-    return @"NSUInteger";
 }
 
 @end
@@ -297,13 +307,8 @@ enum {
 }
 
 - (id) init {
-    return [self initWithClass:[NSValue class]];
+    return [self initWithClass:[NSValue class] withTypeName:@"CGSize"];
 }
-
-- (NSString*) typeName {
-    return @"CGSize";
-}
-
 
 @end
 
@@ -314,15 +319,11 @@ enum {
 }
 
 - (id) init {
-    return [self initWithClass:[NSValue class]];
+    return [self initWithClass:[NSValue class] withTypeName:@"CGRect"];
 }
 
 + (FLType*) type {
     FLReturnStaticObject([[[self class] alloc] init]);
-}
-
-- (NSString*) typeName {
-    return @"CGRect";
 }
 
 @end
@@ -334,16 +335,13 @@ enum {
 }
 
 - (id) init {
-    return [self initWithClass:[NSValue class]];
+    return [self initWithClass:[NSValue class] withTypeName:@"CGPoint"];
 }
 
 + (FLType*) type {
     FLReturnStaticObject([[[self class] alloc] init]);
 }
 
-- (NSString*) typeName {
-    return @"CGPoint";
-}
 @end
 
 @implementation FLMutableArrayType

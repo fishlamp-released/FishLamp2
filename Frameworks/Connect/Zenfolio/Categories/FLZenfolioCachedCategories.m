@@ -9,7 +9,7 @@
 
 #import "FLZenfolioCachedCategories.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 #import "FLZenfolioCategory.h"
 
@@ -90,7 +90,7 @@
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
 		[s_describer addProperty:@"arrayId" withClass:[FLIntegerNumber class] ];
-		[s_describer addArrayProperty:@"categoryArray" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"category" propertyClass:[FLZenfolioCategory class]], nil]];
+		[s_describer addProperty:@"categoryArray" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"category" propertyClass:[FLZenfolioCategory class]], nil]];
 	});
 	return s_describer;
 }

@@ -10,7 +10,7 @@
 #import "FLZenfolioApiHttpPostCheckPrivilege.h"
 #import "FLZenfolioCheckPrivilegeHttpPostIn.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioApiHttpPostCheckPrivilege

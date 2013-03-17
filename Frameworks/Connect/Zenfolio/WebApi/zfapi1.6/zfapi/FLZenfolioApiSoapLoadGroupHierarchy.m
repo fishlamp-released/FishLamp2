@@ -11,7 +11,7 @@
 #import "FLZenfolioLoadGroupHierarchy.h"
 #import "FLZenfolioLoadGroupHierarchyResponse.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioApiSoapLoadGroupHierarchy

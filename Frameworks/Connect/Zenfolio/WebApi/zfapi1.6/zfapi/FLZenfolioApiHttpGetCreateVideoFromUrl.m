@@ -10,7 +10,7 @@
 #import "FLZenfolioApiHttpGetCreateVideoFromUrl.h"
 #import "FLZenfolioCreateVideoFromUrlHttpGetIn.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioApiHttpGetCreateVideoFromUrl

@@ -11,7 +11,7 @@
 #import "FLZenfolioLoadGroupHttpPostIn.h"
 #import "FLZenfolioGroup.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioApiHttpPostLoadGroup

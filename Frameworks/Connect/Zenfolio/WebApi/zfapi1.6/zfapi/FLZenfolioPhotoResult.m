@@ -9,7 +9,7 @@
 
 #import "FLZenfolioPhotoResult.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 #import "FLZenfolioPhoto.h"
 
@@ -89,7 +89,7 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer addArrayProperty:@"Photos" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"Photo" propertyClass:[FLZenfolioPhoto class]], nil]];
+		[s_describer addProperty:@"Photos" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"Photo" propertyClass:[FLZenfolioPhoto class]], nil]];
 		[s_describer addProperty:@"TotalCount" withClass:[FLIntegerNumber class] ];
 	});
 	return s_describer;

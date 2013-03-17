@@ -11,7 +11,7 @@
 #import "FLZenfolioReorderPhotoSetHttpGetIn.h"
 #import "FLZenfolioReorderPhotoSetHttpGetOut.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioApiHttpGetReorderPhotoSet

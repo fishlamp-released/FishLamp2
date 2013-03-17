@@ -11,7 +11,7 @@
 #import "FLZenfolioDeleteMessage.h"
 #import "FLZenfolioDeleteMessageResponse.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioApiSoapDeleteMessage

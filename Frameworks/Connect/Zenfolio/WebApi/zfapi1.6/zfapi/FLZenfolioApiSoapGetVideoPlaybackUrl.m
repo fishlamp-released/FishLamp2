@@ -11,7 +11,7 @@
 #import "FLZenfolioGetVideoPlaybackUrl.h"
 #import "FLZenfolioGetVideoPlaybackUrlResponse.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioApiSoapGetVideoPlaybackUrl

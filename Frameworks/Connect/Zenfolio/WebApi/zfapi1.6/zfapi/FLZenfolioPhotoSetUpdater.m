@@ -9,7 +9,7 @@
 
 #import "FLZenfolioPhotoSetUpdater.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioPhotoSetUpdater
@@ -120,8 +120,8 @@
 		}
 		[s_describer addProperty:@"Title" withClass:[NSString class]];
 		[s_describer addProperty:@"Caption" withClass:[NSString class]];
-		[s_describer addArrayProperty:@"Keywords" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"Keyword" propertyClass:[NSString class] ], nil]];
-		[s_describer addArrayProperty:@"Categories" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"Category" propertyClass:[FLIntegerNumber class]], nil]];
+		[s_describer addProperty:@"Keywords" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"Keyword" propertyClass:[NSString class] ], nil]];
+		[s_describer addProperty:@"Categories" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"Category" propertyClass:[FLIntegerNumber class]], nil]];
 		[s_describer addProperty:@"CustomReference" withClass:[NSString class]];
 	});
 	return s_describer;

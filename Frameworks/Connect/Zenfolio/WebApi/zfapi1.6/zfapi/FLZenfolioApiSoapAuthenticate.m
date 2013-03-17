@@ -11,7 +11,7 @@
 #import "FLZenfolioAuthenticate.h"
 #import "FLZenfolioAuthenticateResponse.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioApiSoapAuthenticate

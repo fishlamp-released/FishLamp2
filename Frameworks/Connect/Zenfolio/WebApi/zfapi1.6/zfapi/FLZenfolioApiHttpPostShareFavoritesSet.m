@@ -11,7 +11,7 @@
 #import "FLZenfolioShareFavoritesSetHttpPostIn.h"
 #import "FLZenfolioShareFavoritesSetHttpPostOut.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioApiHttpPostShareFavoritesSet

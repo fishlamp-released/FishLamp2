@@ -81,8 +81,8 @@ withPropertyDescription:(FLPropertyType*) propertyType {
     FLAssertNotNil_(property);
     
     id object = nil;
-    if([property.propertyType.classForType sharedObjectDescriber]) {
-        object = FLAutorelease([[property.propertyType.classForType alloc] init]);
+    if([property.propertyClass sharedObjectDescriber]) {
+        object = FLAutorelease([[property.propertyClass alloc] init]);
         [self addPropertiesToObject:object withElement:element];
         
         // NOTE: what if there is a value?? 
@@ -126,7 +126,7 @@ withPropertyDescription:(FLPropertyType*) propertyType {
     for(id elementName in element.elements) {
         id elementOrArray = [element.elements objectForKey:elementName];
 
-        FLPropertyType* propertyType = [describer.propertyDescribers objectForKey:elementName];
+        FLPropertyType* propertyType = [describer.properties objectForKey:elementName];
         FLAssertNotNil_(propertyType);
 
         id propertyValue = nil;
@@ -276,11 +276,11 @@ withPropertyDescription:(FLPropertyType*) propertyType {
 ////		unparsedData = [unparsedData stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 ////	
 ////		if(unparsedData.length > 0) {
-////			if(lastState.propertyType) {
+////			if(lastState) {
 ////
 ////                FLAssertIsNotNil_(self.dataDecoder);
 ////                
-////				id inflatedPropertyObject = [self.dataDecoder decodeDataFromString:unparsedData forType:lastState.propertyType]; 
+////				id inflatedPropertyObject = [self.dataDecoder decodeDataFromString:unparsedData forType:lastState]; 
 ////
 ////				if(inflatedPropertyObject) {
 ////					lastState.data = inflatedPropertyObject;

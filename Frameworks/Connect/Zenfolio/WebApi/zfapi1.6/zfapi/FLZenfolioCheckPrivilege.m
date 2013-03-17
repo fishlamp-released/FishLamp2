@@ -9,7 +9,7 @@
 
 #import "FLZenfolioCheckPrivilege.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioCheckPrivilege

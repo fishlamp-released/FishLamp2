@@ -10,7 +10,7 @@
 #import "FLZenfolioApiHttpPostAuthenticate.h"
 #import "FLZenfolioAuthenticateHttpPostIn.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioApiHttpPostAuthenticate

@@ -9,7 +9,7 @@
 
 #import "FLZenfolioReindexPhotoSetHttpGetIn.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioReindexPhotoSetHttpGetIn
@@ -100,7 +100,7 @@
 		}
 		[s_describer addProperty:@"photoSetId" withClass:[NSString class]];
 		[s_describer addProperty:@"startIndex" withClass:[NSString class]];
-		[s_describer addArrayProperty:@"mapping" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"String" propertyClass:[NSString class] ], nil]];
+		[s_describer addProperty:@"mapping" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"String" propertyClass:[NSString class] ], nil]];
 	});
 	return s_describer;
 }

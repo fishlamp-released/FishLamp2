@@ -12,7 +12,7 @@
 #import "FLFacebookUser.h"
 #import "FLFacebookNamedObject.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 #import "FLFacebookWorkHistory.h"
 
@@ -336,7 +336,7 @@
         [s_describer addProperty:@"religion" withClass:[NSString class]];
         [s_describer addProperty:@"significant_other" withClass:[FLFacebookNamedObject class]];
         [s_describer addProperty:@"website" withClass:[NSString class]];
-        [s_describer addArrayProperty:@"work" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"work_history" propertyClass:[FLFacebookWorkHistory class]], nil]];
+        [s_describer addProperty:@"work" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"work_history" propertyClass:[FLFacebookWorkHistory class]], nil]];
     });
     return s_describer;
 }

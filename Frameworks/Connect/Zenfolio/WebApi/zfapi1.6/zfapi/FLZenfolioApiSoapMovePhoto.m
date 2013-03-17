@@ -11,7 +11,7 @@
 #import "FLZenfolioMovePhoto.h"
 #import "FLZenfolioMovePhotoResponse.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioApiSoapMovePhoto

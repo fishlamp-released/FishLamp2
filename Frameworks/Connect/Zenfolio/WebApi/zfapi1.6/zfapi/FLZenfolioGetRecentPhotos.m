@@ -9,7 +9,7 @@
 
 #import "FLZenfolioGetRecentPhotos.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioGetRecentPhotos

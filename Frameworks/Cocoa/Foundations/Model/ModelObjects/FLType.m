@@ -13,37 +13,102 @@
 @property (readwrite, assign, nonatomic) SEL encodeSelector;
 @property (readwrite, assign, nonatomic) SEL decodeSelector;
 @property (readwrite, assign, nonatomic) Class classForType;
+@property (readwrite, strong, nonatomic) NSString* typeName;
+
+//// inflation helpers
+//+ (id) registeredTypeForName:(NSString*) string;
+//+ (void) registerType:(FLType*) desc;
+//- (void) registerSelf;
+
 @end
 
-@implementation FLType
 
-//@synthesize typeID = _typeID;
+
+@implementation FLType
 @synthesize classForType = _classForType;
 @synthesize encodeSelector = _encodeSelector;
 @synthesize decodeSelector = _decodeSelector;
+@synthesize typeName = _typeName;
 
-static NSMutableDictionary* s_typeRegistry = nil;
+//static NSMutableDictionary* s_typeRegistry = nil;
+//
+//+ (void) initialize {
+//    if(!s_typeRegistry) {
+//        s_typeRegistry = [[NSMutableDictionary alloc] init];
+//    }
+//}
+//
+//+ (FLType*) registeredTypeForName:(NSString*) string {
+//    @synchronized(s_typeRegistry) {
+//        return [s_typeRegistry objectForKey:string];
+//    }
+//}
+//
+//+ (void) registerType:(FLType*) desc {
+//    @synchronized(s_typeRegistry) {
+//        [s_typeRegistry setObject:desc forKey:desc.typeName];
+//    }
+//}
+//
+//- (void) registerSelf {
+//    [FLType registerType:self];
+//}
 
-+ (void) initialize {
-    if(!s_typeRegistry) {
-        s_typeRegistry = [[NSMutableDictionary alloc] init];
+
+- (id) initWithClass:(Class) aClass 
+        withTypeName:(NSString*) typeName 
+             encoder:(SEL) encoder 
+             decoder:(SEL) decoder {
+    self = [super init];
+    if(self) {
+        self.typeName = typeName;
+        self.classForType = aClass;
+        self.encodeSelector = encoder;
+        self.decodeSelector = decoder;
     }
+    return self;
 }
 
-+ (FLType*) registeredTypeForName:(NSString*) string {
-    @synchronized(s_typeRegistry) {
-        return [s_typeRegistry objectForKey:string];
-    }
+- (id) initWithClass:(Class) aClass encoder:(SEL) encoder decoder:(SEL) decoder {
+    return [self initWithClass:aClass withTypeName:NSStringFromClass(aClass) encoder:encoder decoder:decoder];
 }
 
-+ (void) registerType:(FLType*) desc {
-    @synchronized(s_typeRegistry) {
-        [s_typeRegistry setObject:desc forKey:desc.typeName];
+- (id) initWithClass:(Class) class withTypeName:(NSString*) typeName{
+
+    SEL encoder = nil;
+    SEL decoder = nil;
+    
+    if(class) {
+        encoder = [FLType encodeSelectorForClass:class];
+        decoder = [FLType decodeSelectorForClass:class];
     }
+    
+    return [self initWithClass:class withTypeName:typeName encoder: encoder decoder: decoder];
+}    
+
+- (id) initWithClass:(Class) aClass {
+    return [self initWithClass:aClass withTypeName:NSStringFromClass(aClass)];
 }
 
-- (void) registerSelf {
-    [FLType registerType:self];
+
++ (id) typeWithClass:(Class) aClass   {
+    return FLAutorelease([[[self class] alloc] initWithClass:aClass]);
+}
+
+
+#if FL_MRC
+- (void) dealloc {
+    [_typeName release];
+    [super dealloc];
+}
+#endif
+
++ (SEL) decodeSelectorForClass:(Class) aClass {
+    return NSSelectorFromString([NSString stringWithFormat:@"decode%@FromString:", NSStringFromClass(aClass)]);
+}
+
++ (SEL) encodeSelectorForClass:(Class) aClass {
+    return NSSelectorFromString([NSString stringWithFormat:@"encodeStringWith%@:", NSStringFromClass(aClass)]);
 }
 
 - (FLType*) type {
@@ -54,43 +119,8 @@ static NSMutableDictionary* s_typeRegistry = nil;
     return nil;
 }
 
-- (id) initWithClass:(Class) aClass encoder:(SEL) encoder decoder:(SEL) decoder {
-    self = [super init];
-    if(self) {
-        self.classForType = aClass;
-        self.encodeSelector = encoder;
-        self.decodeSelector = decoder;
-    }
-    return self;
-}
-
-+ (SEL) decodeSelectorForClass:(Class) aClass {
-    return NSSelectorFromString([NSString stringWithFormat:@"decode%@FromString:", NSStringFromClass(aClass)]);
-}
-
-+ (SEL) encodeSelectorForClass:(Class) aClass {
-    return NSSelectorFromString([NSString stringWithFormat:@"encodeStringWith%@:", NSStringFromClass(aClass)]);
-}
-
-- (id) initWithClass:(Class) class {
-
-    SEL encoder = nil;
-    SEL decoder = nil;
-    
-    if(class) {
-        encoder = [FLType encodeSelectorForClass:class];
-        decoder = [FLType decodeSelectorForClass:class];
-    }
-    
-    return [self initWithClass:class encoder: encoder decoder: decoder];
-}    
-
-+ (id) typeWithClass:(Class) aClass   {
-    return FLAutorelease([[[self class] alloc] initWithClass:aClass]);
-}
-
 - (NSString*) description {
-    return [NSString stringWithFormat:@"%@ (%@)", [super description], NSStringFromClass(_classForType)];
+    return [NSString stringWithFormat:@"%@ { typeName=%@, classFoType=%@)", [super description], self.typeName, NSStringFromClass(_classForType)];
 }
 
 - (id) copyWithZone:(NSZone*) zone {
@@ -99,13 +129,12 @@ static NSMutableDictionary* s_typeRegistry = nil;
 
 - (BOOL) isEqual:(id) another {
     if(self == another) return YES;
-    return (self.class == [another class]) && (self.classForType == [another classForType]);
+    return [self isKindOfClass:[another class]] && (self.classForType == [another classForType]) && FLStringsAreEqual(self.typeName, [another typeName]);
 }
 
 - (NSUInteger) hash {
-    return [NSStringFromClass([self class]) hash];
+    return [self.typeName hash];
 }
-
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Warc-performSelector-leaks"
@@ -119,10 +148,6 @@ static NSMutableDictionary* s_typeRegistry = nil;
 }
 
 #pragma GCC diagnostic pop
-
-- (NSString*) typeName {
-    return NSStringFromClass(_classForType);
-}
 @end
 
 @implementation NSObject (FLType)
@@ -134,42 +159,5 @@ static NSMutableDictionary* s_typeRegistry = nil;
 }
 @end
 
-@implementation FLNamedType 
 
-@synthesize typeName = _name;
-
-- (id) initWithName:(NSString*) name withType:(FLType*) type;
-+ (id) namedType:(NSString*) name withClass:(Class) aClass
-+ (id) namedType:(NSString*) name withType:(FLType*) type;
-
-- (id) initWithName:(NSString*) name withClass:(Class) aClass {
-    self = [super initWithClass:aClass];
-    if(self) {
-        self.name = name;
-    }
-    return self;
-}
-- (id) initWithName:(NSString*) name withType:(Class) aClass {
-    self = [super initWithClass:aClass];
-    if(self) {
-        self.name = name;
-    }
-    return self;
-}
-
-
-
-+ (id) namedType:(Class) aClass name:(NSString*) name {
-    return FLAutorelease([[[self class] alloc] initWithClass:aClass name:name]);
-}
-
-#if FL_MRC
-- (void) dealloc {
-    [_name release];
-    [super dealloc];
-}
-#endif
-
-
-@end
 

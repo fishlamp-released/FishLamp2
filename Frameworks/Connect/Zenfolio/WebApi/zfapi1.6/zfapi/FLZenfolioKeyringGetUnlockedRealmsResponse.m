@@ -9,7 +9,7 @@
 
 #import "FLZenfolioKeyringGetUnlockedRealmsResponse.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioKeyringGetUnlockedRealmsResponse
@@ -78,7 +78,7 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer addArrayProperty:@"KeyringGetUnlockedRealmsResult" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"int" propertyClass:[FLIntegerNumber class]], nil]];
+		[s_describer addProperty:@"KeyringGetUnlockedRealmsResult" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"int" propertyClass:[FLIntegerNumber class]], nil]];
 	});
 	return s_describer;
 }

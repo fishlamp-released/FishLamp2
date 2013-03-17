@@ -11,7 +11,7 @@
 #import "FLZenfolioGetDownloadOriginalKey.h"
 #import "FLZenfolioGetDownloadOriginalKeyResponse.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioApiSoapGetDownloadOriginalKey

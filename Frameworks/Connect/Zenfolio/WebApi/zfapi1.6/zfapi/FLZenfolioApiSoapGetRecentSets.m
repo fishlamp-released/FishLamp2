@@ -11,7 +11,7 @@
 #import "FLZenfolioGetRecentSets.h"
 #import "FLZenfolioGetRecentSetsResponse.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioApiSoapGetRecentSets

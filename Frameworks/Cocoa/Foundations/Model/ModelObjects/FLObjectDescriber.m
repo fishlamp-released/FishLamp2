@@ -11,12 +11,12 @@
 #import "FLObjcRuntime.h"
 
 @interface FLObjectDescriber ()
-@property (readwrite, copy, nonatomic) NSDictionary* propertyDescribers;
+@property (readwrite, copy, nonatomic) NSDictionary* properties;
 @end
 
 @implementation FLObjectDescriber
 
-@synthesize propertyDescribers = _properties;
+@synthesize properties = _properties;
 
 - (id) init {
 	if((self = [super init])) {
@@ -26,11 +26,11 @@
 	return self;
 }
 
-- (id) initWithPropertyDescribers:(NSDictionary*) describers {
+- (id) initWithProperties:(NSDictionary*) describers {
 	if((self = [super init])) {
 		_properties = [[NSMutableDictionary alloc] init];
 		for(FLPropertyType* prop in describers.objectEnumerator) {
-			[self addPropertyDescriber:prop forPropertyName:prop.propertyName];
+			[self addProperty:prop forPropertyName:prop.propertyName];
 		}
 	}
 	
@@ -51,31 +51,20 @@
 }
 
 - (id) copyWithZone:(NSZone *)zone {
-	FLObjectDescriber* desc = [[FLObjectDescriber alloc] _initWithDictionaryForCopy:self.propertyDescribers];
+	FLObjectDescriber* desc = [[FLObjectDescriber alloc] _initWithDictionaryForCopy:self.properties];
 	return desc;
 }
 
-- (void) addPropertyDescriber:(FLPropertyType*) objectDescriber forPropertyName:(NSString*) propertyName {
+- (void) addProperty:(FLPropertyType*) objectDescriber forPropertyName:(NSString*) propertyName {
 	[_properties setObject:objectDescriber forKey:propertyName];
-	
-	if(objectDescriber.isUnboundedArray) {
-		for(FLPropertyType* prop in objectDescriber.arrayTypes) {
-			FLAssertIsNil_([_properties objectForKey:prop.propertyName]);
-			[_properties setObject:prop forKey:prop.propertyName];
-		}
-	}
 }
 
-- (void) addPropertyDescriber:(FLPropertyType*) propertyDescriber {
-    [self addPropertyDescriber:propertyDescriber forPropertyName:propertyDescriber.propertyName];
+- (void) addProperty:(FLPropertyType*) property {
+    [self addProperty:property forPropertyName:property.propertyName];
 }
 
-- (FLPropertyType*) propertyDescriberForPropertyName:(NSString*) propertyName {
+- (FLPropertyType*) propertyForName:(NSString*) propertyName {
 	return [_properties objectForKey:propertyName];
-}
-
-- (void) addProperty:(NSString*) name withClass:(Class) propertyClass {
-    [self addPropertyDescriber:[FLPropertyType propertyType:name propertyClass:propertyClass]];
 }
 
 - (void) addPropertiesForClass:(Class) class {
@@ -104,7 +93,7 @@
 
 // TODO: build up FLType
 
-            [self addPropertyDescriber:[FLPropertyType propertyType:propertyName propertyClass:theClass]];
+            [self addProperty:[FLPropertyType propertyType:propertyName propertyClass:theClass]];
 							 
 			free(className);
 	
@@ -116,18 +105,29 @@
     free(properties);
 }
 
+- (id) initWithClass:(Class) aClass {
+    self = [super init];
+    if(self) {
+        [self addPropertiesForClass:aClass];
+    }
+    
+    return self;
+}
+
 - (NSString*) description {
 	return [NSString stringWithFormat:@"%@:%@", [super description], [_properties description]];
 }
 
-//- (void) visitAllProperties:(FLObjectDescriberPropertyVisitor) visitor {
-//    for(FLPropertyType* property in _properties.objectEnumerator) {
-//        visitor(property);
-//    }
-//}
+- (void) addProperty:(NSString*) name withClass:(Class) propertyClass {
+    [self addProperty:[FLPropertyType propertyType:name propertyClass:propertyClass]];
+}
 
-- (void) addArrayProperty:(NSString*) name withFoopyName:(NSString*) name withFoopyType:(Class) aClass {
+- (void) addProperty:(NSString*) name withArrayType:(FLPropertyType*) arrayType {
+    [self addProperty:name withArrayTypes:[NSArray arrayWithObject:arrayType]];
+}
 
+- (void) addProperty:(NSString*) name withArrayTypes:(NSArray*) types {
+    [self addProperty:[FLPropertyType propertyType:name propertyClass:[NSMutableArray class] arrayTypes:types]];
 }
 
 @end
@@ -197,7 +197,7 @@
 
     FLObjectDescriber* describer = [[self class] sharedObjectDescriber];
 
-    for(FLPropertyType* property in describer.propertyDescribers.objectEnumerator) {
+    for(FLPropertyType* property in describer.properties.objectEnumerator) {
 
         id value = [property propertyValueForObject:self];
 
@@ -287,7 +287,7 @@
 //
 //void FLEqualMultiObjectHandler(id inner, id outer, FLMergeMode mergeMode, NSArray* arrayItemTypes) {
 //	for(FLPropertyType* desc in arrayItemTypes) {
-//		if([outer isKindOfClass:desc.propertyType.classForType]) {
+//		if([outer isKindOfClass:desc.classForType]) {
 //			FLMergeObjects(inner, outer, mergeMode); 
 //			break;
 //		}
@@ -314,7 +314,7 @@ void FLMergeObjectArrays(NSMutableArray* dest,
 			if([inner isEqual:outer]) {	
                 
                 for(FLPropertyType* desc in arrayItemTypes) {
-                    if([outer isKindOfClass:desc.propertyType.classForType]) {
+                    if([outer isKindOfClass:desc.propertyClass]) {
                         FLMergeObjects(inner, outer, mergeMode); 
                         foundIt = YES;
 				        break;
@@ -353,7 +353,7 @@ void FLMergeObjects(id dest, id src, FLMergeMode mergeMode) {
             return;
         }   
         
-		for(NSString* srcPropName in srcDescriber.propertyDescribers) {
+		for(NSString* srcPropName in srcDescriber.properties) {
 			id srcObject = [src valueForKey:srcPropName];
 			
             if(srcObject) {
@@ -362,8 +362,8 @@ void FLMergeObjects(id dest, id src, FLMergeMode mergeMode) {
 					[dest setValue:srcObject forKey:srcPropName];
 				}
 				else {
-					FLPropertyType* srcProp = [srcDescriber propertyDescriberForPropertyName:srcPropName];
-					FLObjectDescriber* propDescriber = [srcProp.propertyType.classForType sharedObjectDescriber];
+					FLPropertyType* srcProp = [srcDescriber propertyForName:srcPropName];
+					FLObjectDescriber* propDescriber = [srcProp.propertyClass sharedObjectDescriber];
                     
                     if(!propDescriber) {
 					   if(mergeMode == FLMergeModeSourceWins) {

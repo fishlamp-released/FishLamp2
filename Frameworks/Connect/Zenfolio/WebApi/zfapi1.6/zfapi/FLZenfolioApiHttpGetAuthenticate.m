@@ -10,7 +10,7 @@
 #import "FLZenfolioApiHttpGetAuthenticate.h"
 #import "FLZenfolioAuthenticateHttpGetIn.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioApiHttpGetAuthenticate

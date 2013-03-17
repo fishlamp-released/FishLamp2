@@ -25,7 +25,7 @@
 //	FLObjectDescriber* describer = [[self class] sharedObjectDescriber];
 //	FLAssertIsNotNil_(describer);
 //
-//	FLPropertyType* desc = [describer propertyDescriberForPropertyName:key];
+//	FLPropertyType* desc = [describer propertyForName:key];
 ////	FLAssertIsNotNil_(desc);
 //
 //	if(desc)
@@ -65,7 +65,7 @@
 //	FLObjectDescriber* describer = [[self class] sharedObjectDescriber];
 //	FLAssertIsNotNil_(describer);
 //
-//	FLPropertyType* desc = [describer propertyDescriberForPropertyName:key];
+//	FLPropertyType* desc = [describer propertyForName:key];
 ////	FLAssertIsNotNil_(desc);
 //
 //	if(desc) {
@@ -103,7 +103,7 @@
 	FLObjectDescriber* describer = [[parentObject class] sharedObjectDescriber];
 	FLAssertIsNotNil_(describer);
 
-	FLPropertyType* desc = [describer propertyDescriberForPropertyName:arrayItemKey];
+	FLPropertyType* desc = [describer propertyForName:arrayItemKey];
 	FLAssertIsNotNil_(desc);
 	
 	if(desc)

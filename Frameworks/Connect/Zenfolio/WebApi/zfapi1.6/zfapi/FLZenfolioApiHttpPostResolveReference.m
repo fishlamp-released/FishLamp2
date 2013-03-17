@@ -11,7 +11,7 @@
 #import "FLZenfolioResolveReferenceHttpPostIn.h"
 #import "FLZenfolioResolveResult.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioApiHttpPostResolveReference

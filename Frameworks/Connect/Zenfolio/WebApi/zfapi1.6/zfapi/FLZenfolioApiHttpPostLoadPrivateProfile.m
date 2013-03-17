@@ -11,7 +11,7 @@
 #import "FLZenfolioLoadPrivateProfileHttpPostIn.h"
 #import "FLZenfolioUser.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioApiHttpPostLoadPrivateProfile

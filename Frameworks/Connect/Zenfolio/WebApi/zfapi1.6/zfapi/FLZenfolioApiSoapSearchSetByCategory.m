@@ -11,7 +11,7 @@
 #import "FLZenfolioSearchSetByCategory.h"
 #import "FLZenfolioSearchSetByCategoryResponse.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioApiSoapSearchSetByCategory

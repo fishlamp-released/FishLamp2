@@ -12,7 +12,7 @@
 #import "FLZenfolioAddress.h"
 #import "FLZenfolioGroup.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 #import "FLZenfolioPhotoSet.h"
 
@@ -363,8 +363,8 @@
 		[s_describer addProperty:@"LastUpdated" withClass:[NSDate class]];
 		[s_describer addProperty:@"PublicAddress" withClass:[FLZenfolioAddress class]];
 		[s_describer addProperty:@"PersonalAddress" withClass:[FLZenfolioAddress class]];
-		[s_describer addArrayProperty:@"RecentPhotoSets" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"PhotoSet" propertyClass:[FLZenfolioPhotoSet class]], nil]];
-		[s_describer addArrayProperty:@"FeaturedPhotoSets" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"PhotoSet" propertyClass:[FLZenfolioPhotoSet class]], nil]];
+		[s_describer addProperty:@"RecentPhotoSets" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"PhotoSet" propertyClass:[FLZenfolioPhotoSet class]], nil]];
+		[s_describer addProperty:@"FeaturedPhotoSets" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"PhotoSet" propertyClass:[FLZenfolioPhotoSet class]], nil]];
 		[s_describer addProperty:@"RootGroup" withClass:[FLZenfolioGroup class]];
 		[s_describer addProperty:@"ReferralCode" withClass:[NSString class]];
 		[s_describer addProperty:@"ExpiresOn" withClass:[NSDate class]];

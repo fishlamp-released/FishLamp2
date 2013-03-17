@@ -10,7 +10,7 @@
 #import "FLZenfolioApiHttpPostCreatePhotoFromUrl.h"
 #import "FLZenfolioCreatePhotoFromUrlHttpPostIn.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioApiHttpPostCreatePhotoFromUrl

@@ -10,7 +10,7 @@
 #import "FLZenfolioUpdatePhotoAccess.h"
 #import "FLZenfolioAccessUpdater.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioUpdatePhotoAccess

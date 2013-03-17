@@ -9,7 +9,7 @@
 
 #import "FLZenfolioLoadSharedFavoritesSetsResponse.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 #import "FLZenfolioFavoritesSet.h"
 
@@ -79,7 +79,7 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer addArrayProperty:@"LoadSharedFavoritesSetsResult" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"FavoritesSet" propertyClass:[FLZenfolioFavoritesSet class]], nil]];
+		[s_describer addProperty:@"LoadSharedFavoritesSetsResult" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"FavoritesSet" propertyClass:[FLZenfolioFavoritesSet class]], nil]];
 	});
 	return s_describer;
 }

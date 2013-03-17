@@ -11,7 +11,7 @@
 #import "FLZenfolioSearchPhotoByText.h"
 #import "FLZenfolioSearchPhotoByTextResponse.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioApiSoapSearchPhotoByText

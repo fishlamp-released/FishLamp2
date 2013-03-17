@@ -11,7 +11,7 @@
 #import "FLZenfolioGetChallenge.h"
 #import "FLZenfolioGetChallengeResponse.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioApiSoapGetChallenge

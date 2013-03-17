@@ -11,7 +11,7 @@
 #import "FLZenfolioUpdatePhotoSet.h"
 #import "FLZenfolioUpdatePhotoSetResponse.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioApiSoapUpdatePhotoSet

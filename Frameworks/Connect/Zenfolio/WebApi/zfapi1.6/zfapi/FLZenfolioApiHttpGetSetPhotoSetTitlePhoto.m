@@ -11,7 +11,7 @@
 #import "FLZenfolioSetPhotoSetTitlePhotoHttpGetIn.h"
 #import "FLZenfolioSetPhotoSetTitlePhotoHttpGetOut.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioApiHttpGetSetPhotoSetTitlePhoto

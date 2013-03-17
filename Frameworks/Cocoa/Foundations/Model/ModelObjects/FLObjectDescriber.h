@@ -14,27 +14,25 @@
 @private 
 	NSMutableDictionary* _properties;
 }
+@property (readonly, copy, nonatomic) NSDictionary* properties;
 
-- (id) init;
-- (id) initWithPropertyDescribers:(NSDictionary*) dictionary;
+- (id) initWithClass:(Class) aClass;
+- (id) initWithProperties:(NSDictionary*) dictionary;
 
-@property (readonly, copy, nonatomic) NSDictionary* propertyDescribers;
+- (FLPropertyType*) propertyForName:(NSString*) propertyName;
 
-- (void) addPropertyDescriber:(FLPropertyType*) propertyDescriber forPropertyName:(NSString*) propertyName;
 
-- (void) addPropertyDescriber:(FLPropertyType*) propertyDescriber;
+- (void) addProperty:(FLPropertyType*) property;
 
-- (FLPropertyType*) propertyDescriberForPropertyName:(NSString*) propertyName;
+- (void) addProperty:(NSString*) name withClass:(Class) propertyClass;
+
+- (void) addProperty:(NSString*) name withArrayType:(FLPropertyType*) namedType;
+
+- (void) addProperty:(NSString*) name withArrayTypes:(NSArray*) types;
 
 
 // this fills in all the properties for the class, including superclasses (Not including NSObject) using Objective-c runtime info.
 - (void) addPropertiesForClass:(Class) aClass;
-
-- (void) addProperty:(NSString*) name withClass:(Class) propertyClass;
-
-- (void) addArrayProperty:(NSString*) name withFoopyName:(NSString*) name withFoopyType:(Class) aClass;
-
-- (void) addArrayProperty:(NSString*) name withArrayTypes:(NSArray*) types;
 
 @end
 

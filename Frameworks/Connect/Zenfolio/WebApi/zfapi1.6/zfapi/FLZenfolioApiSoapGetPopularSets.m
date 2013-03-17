@@ -11,7 +11,7 @@
 #import "FLZenfolioGetPopularSets.h"
 #import "FLZenfolioGetPopularSetsResponse.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioApiSoapGetPopularSets

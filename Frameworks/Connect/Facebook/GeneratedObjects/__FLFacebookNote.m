@@ -12,7 +12,7 @@
 #import "FLFacebookNote.h"
 #import "FLFacebookNamedObject.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLFacebookNote

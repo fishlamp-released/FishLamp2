@@ -10,7 +10,7 @@
 #import "FLZenfolioApiHttpPostCreateFavoritesSet.h"
 #import "FLZenfolioCreateFavoritesSetHttpPostIn.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioApiHttpPostCreateFavoritesSet

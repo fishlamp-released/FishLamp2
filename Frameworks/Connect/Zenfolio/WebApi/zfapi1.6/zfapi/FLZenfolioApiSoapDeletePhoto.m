@@ -11,7 +11,7 @@
 #import "FLZenfolioDeletePhoto.h"
 #import "FLZenfolioDeletePhotoResponse.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioApiSoapDeletePhoto

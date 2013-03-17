@@ -11,7 +11,7 @@
 
 #import "FLSavedThemeInfo.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLSavedThemeInfo
@@ -101,9 +101,9 @@
         {
             s_describer = [[FLObjectDescriber alloc] init];
         }
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"name" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"name"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"className" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"className"];
-        [s_describer setPropertyDescriber:[FLPropertyDescription propertyDescription:@"fontSize" propertyClass:[NSNumber class] propertyType:FLDataTypeInteger] forPropertyName:@"fontSize"];
+        [s_describer setPropertyDescriber:[FLPropertyType propertyType:@"name" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"name"];
+        [s_describer setPropertyDescriber:[FLPropertyType propertyType:@"className" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"className"];
+        [s_describer setPropertyDescriber:[FLPropertyType propertyType:@"fontSize" propertyClass:[NSNumber class] propertyType:FLDataTypeInteger] forPropertyName:@"fontSize"];
     });
     return s_describer;
 }

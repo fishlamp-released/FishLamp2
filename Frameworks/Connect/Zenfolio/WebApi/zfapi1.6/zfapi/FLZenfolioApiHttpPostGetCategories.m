@@ -10,7 +10,7 @@
 #import "FLZenfolioApiHttpPostGetCategories.h"
 #import "FLZenfolioGetCategoriesHttpPostIn.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 #import "FLZenfolioCategory.h"
 
@@ -86,7 +86,7 @@
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
 		[s_describer addProperty:@"input" withClass:[FLZenfolioGetCategoriesHttpPostIn class]];
-		[s_describer addArrayProperty:@"output" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"Category" propertyClass:[FLZenfolioCategory class]], nil]];
+		[s_describer addProperty:@"output" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"Category" propertyClass:[FLZenfolioCategory class]], nil]];
 	});
 	return s_describer;
 }

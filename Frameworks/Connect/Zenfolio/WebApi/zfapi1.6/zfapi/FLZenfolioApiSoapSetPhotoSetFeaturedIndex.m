@@ -11,7 +11,7 @@
 #import "FLZenfolioSetPhotoSetFeaturedIndex.h"
 #import "FLZenfolioSetPhotoSetFeaturedIndexResponse.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioApiSoapSetPhotoSetFeaturedIndex

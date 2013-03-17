@@ -9,7 +9,7 @@
 
 #import "FLZenfolioCreateFavoritesSetHttpPostIn.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioCreateFavoritesSetHttpPostIn
@@ -100,7 +100,7 @@
 		}
 		[s_describer addProperty:@"name" withClass:[NSString class]];
 		[s_describer addProperty:@"photographerLogin" withClass:[NSString class]];
-		[s_describer addArrayProperty:@"photoIds" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"String" propertyClass:[NSString class] ], nil]];
+		[s_describer addProperty:@"photoIds" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"String" propertyClass:[NSString class] ], nil]];
 	});
 	return s_describer;
 }

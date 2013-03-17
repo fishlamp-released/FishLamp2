@@ -10,7 +10,7 @@
 #import "FLZenfolioResolveReferenceResponse.h"
 #import "FLZenfolioResolveResult.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioResolveReferenceResponse

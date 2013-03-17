@@ -10,6 +10,7 @@
 #import "FishLampCore.h"
 
 #import "FLType.h"
+#import "FLCoreTypes.h"
 
 @protocol FLDataEncoding <NSObject, FLTypeCoreTypesEncoding>
 

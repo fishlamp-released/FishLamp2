@@ -9,7 +9,7 @@
 
 #import "FLZenfolioReorderGroupHttpPostIn.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioReorderGroupHttpPostIn

@@ -9,7 +9,7 @@
 
 #import "FLZenfolioDeleteGroupHttpPostIn.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioDeleteGroupHttpPostIn

@@ -10,7 +10,7 @@
 #import "FLZenfolioApiHttpPostGetPopularSets.h"
 #import "FLZenfolioGetPopularSetsHttpPostIn.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 #import "FLZenfolioPhotoSet.h"
 
@@ -87,7 +87,7 @@
 		}
 		[s_describer addProperty:@"input" withClass:[FLZenfolioGetPopularSetsHttpPostIn class]];
 		
-        [s_describer addArrayProperty:@"output" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"PhotoSet" propertyClass:[FLZenfolioPhotoSet class]], nil]];
+        [s_describer addProperty:@"output" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"PhotoSet" propertyClass:[FLZenfolioPhotoSet class]], nil]];
 	});
 	return s_describer;
 }

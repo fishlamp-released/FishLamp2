@@ -10,7 +10,7 @@
 #import "FLZenfolioLoadGroupHierarchyResponse.h"
 #import "FLZenfolioGroup.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioLoadGroupHierarchyResponse

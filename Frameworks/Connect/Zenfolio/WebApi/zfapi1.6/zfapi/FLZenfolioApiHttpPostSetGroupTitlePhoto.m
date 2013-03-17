@@ -11,7 +11,7 @@
 #import "FLZenfolioSetGroupTitlePhotoHttpPostIn.h"
 #import "FLZenfolioSetGroupTitlePhotoHttpPostOut.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioApiHttpPostSetGroupTitlePhoto

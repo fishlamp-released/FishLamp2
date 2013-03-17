@@ -9,7 +9,7 @@
 
 #import "FLZenfolioSetPhotoSetTitlePhotoHttpPostIn.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioSetPhotoSetTitlePhotoHttpPostIn

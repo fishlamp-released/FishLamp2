@@ -10,7 +10,7 @@
 #import "FLZenfolioApiHttpPostKeyringGetUnlockedRealms.h"
 #import "FLZenfolioKeyringGetUnlockedRealmsHttpPostIn.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioApiHttpPostKeyringGetUnlockedRealms
@@ -85,7 +85,7 @@
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
 		[s_describer addProperty:@"input" withClass:[FLZenfolioKeyringGetUnlockedRealmsHttpPostIn class]];
-		[s_describer addArrayProperty:@"output" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"int" propertyClass:[FLIntegerNumber class]], nil]];
+		[s_describer addProperty:@"output" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"int" propertyClass:[FLIntegerNumber class]], nil]];
 	});
 	return s_describer;
 }

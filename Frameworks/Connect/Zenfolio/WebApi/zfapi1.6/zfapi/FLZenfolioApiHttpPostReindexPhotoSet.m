@@ -11,7 +11,7 @@
 #import "FLZenfolioReindexPhotoSetHttpPostIn.h"
 #import "FLZenfolioReindexPhotoSetHttpPostOut.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioApiHttpPostReindexPhotoSet

@@ -10,7 +10,7 @@
 #import "FLZenfolioApiHttpPostLoadMessages.h"
 #import "FLZenfolioLoadMessagesHttpPostIn.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 #import "FLZenfolioMessage.h"
 
@@ -86,7 +86,7 @@
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
 		[s_describer addProperty:@"input" withClass:[FLZenfolioLoadMessagesHttpPostIn class]];
-		[s_describer addArrayProperty:@"output" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"Message" propertyClass:[FLZenfolioMessage class]], nil]];
+		[s_describer addProperty:@"output" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"Message" propertyClass:[FLZenfolioMessage class]], nil]];
 	});
 	return s_describer;
 }

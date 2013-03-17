@@ -11,6 +11,7 @@
 #import "FLCocoaRequired.h"
 #import "FishLampCore.h"
 #import "FLType.h"
+#import "FLCoreTypes.h"
 
 @protocol FLDataDecoding <NSObject, FLTypeCoreTypesEncoding>
 - (id) decodeDataFromString:(NSString*) inEncodedString 

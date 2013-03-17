@@ -9,7 +9,7 @@
 
 #import "FLZenfolioReplacePhotoHttpGetIn.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioReplacePhotoHttpGetIn

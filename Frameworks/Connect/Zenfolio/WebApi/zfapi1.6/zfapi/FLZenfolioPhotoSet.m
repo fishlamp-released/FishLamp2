@@ -11,7 +11,7 @@
 #import "FLZenfolioApi1_6Enums.h"
 #import "FLZenfolioPhoto.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioPhotoSet
@@ -303,10 +303,10 @@
 		[s_describer addProperty:@"FeaturedIndex" withClass:[FLIntegerNumber class] ];
 		[s_describer addProperty:@"TitlePhoto" withClass:[FLZenfolioPhoto class]];
 		[s_describer addProperty:@"IsRandomTitlePhoto" withClass:[FLBoolNumber class] ];
-		[s_describer addArrayProperty:@"ParentGroups" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"Id" propertyClass:[FLIntegerNumber class]], nil]];
-		[s_describer addArrayProperty:@"Photos" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"Photo" propertyClass:[FLZenfolioPhoto class]], nil]];
-		[s_describer addArrayProperty:@"Keywords" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"Keyword" propertyClass:[NSString class] ], nil]];
-		[s_describer addArrayProperty:@"Categories" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"Category" propertyClass:[FLIntegerNumber class]], nil]];
+		[s_describer addProperty:@"ParentGroups" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"Id" propertyClass:[FLIntegerNumber class]], nil]];
+		[s_describer addProperty:@"Photos" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"Photo" propertyClass:[FLZenfolioPhoto class]], nil]];
+		[s_describer addProperty:@"Keywords" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"Keyword" propertyClass:[NSString class] ], nil]];
+		[s_describer addProperty:@"Categories" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"Category" propertyClass:[FLIntegerNumber class]], nil]];
 		[s_describer addProperty:@"UploadUrl" withClass:[NSString class]];
 		[s_describer addProperty:@"VideoUploadUrl" withClass:[NSString class]];
 		[s_describer addProperty:@"PageUrl" withClass:[NSString class]];

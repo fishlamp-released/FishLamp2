@@ -10,7 +10,7 @@
 #import "FLZenfolioAddMessageResponse.h"
 #import "FLZenfolioMessage.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioAddMessageResponse

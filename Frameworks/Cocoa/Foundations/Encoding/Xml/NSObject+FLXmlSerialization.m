@@ -12,11 +12,11 @@
 @implementation NSObject (FLXmlSerialization)
 
 - (void) addToXmlElement:(FLXmlElement*) xmlElement
-     propertyType:(FLPropertyType*) description {
+            propertyType:(FLPropertyType*) propertyType {
       
 	FLObjectDescriber* objectDescriber = [[self class] sharedObjectDescriber];
 	if(objectDescriber) {
-        for(FLPropertyType* property in [objectDescriber.propertyDescribers objectEnumerator]) {
+        for(FLPropertyType* property in [objectDescriber.properties objectEnumerator]) {
             
             id object = [self valueForKey:property.propertyName];
             if(object) {
@@ -25,15 +25,10 @@
         }
     }
     else {
-        FLAssertNotNil_(description);
-        
-        FLType* type = description.propertyType;
-        FLAssertNotNil_(type);
-        
         id<FLDataEncoding> encoder = xmlElement.dataEncoder;
         FLAssertNotNil_(encoder);
         
-        NSString* line = [type encodeObjectToString:self withEncoder:encoder];
+        NSString* line = [propertyType.propertyType encodeObjectToString:self withEncoder:encoder];
 
         [xmlElement appendLine:line];
     }
@@ -61,9 +56,9 @@
 			for(id obj in self) {
 				// hmm. expensive. need to decide for each item.
 				
-				for(FLPropertyType* elementDesc in arrayTypes) {
-					if([obj isKindOfClass:elementDesc.propertyType.classForType]) {
-                        [xmlElement addElement:[FLObjectXmlElement objectXmlElement:obj xmlElementTag:elementDesc.propertyName propertyType:elementDesc]];
+				for(FLPropertyType* subType in arrayTypes) {
+					if([obj isKindOfClass:subType.propertyClass]) {
+                        [xmlElement addElement:[FLObjectXmlElement objectXmlElement:obj xmlElementTag:subType.propertyName propertyType:subType]];
 						break;
 					}
 				}

@@ -10,7 +10,7 @@
 #import "FLZenfolioLoadPrivateProfileResponse.h"
 #import "FLZenfolioUser.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectInflator.h"
+
 #import "FLDatabaseTable.h"
 
 @implementation FLZenfolioLoadPrivateProfileResponse
