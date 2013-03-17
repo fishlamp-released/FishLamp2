@@ -119,6 +119,10 @@
     return FLColorFromRGBString(string);
 }
 
+- (UIColor*) decodeNSColorFromString:(NSString*) string {
+    return FLColorFromRGBString(string);
+}
+
 - (NSString*) encodeStringWithUIColor:(UIColor*) color {
     return FLRgbStringFromColor(color);
 }

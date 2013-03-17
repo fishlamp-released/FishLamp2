@@ -91,3 +91,10 @@
 @end
 
 
+@implementation NSObject (FLNamedType) 
+
++ (FLPropertyType*) namedType:(NSString*) name {
+    return [FLPropertyType propertyType:name propertyClass:[self class]];
+}
+
+@end

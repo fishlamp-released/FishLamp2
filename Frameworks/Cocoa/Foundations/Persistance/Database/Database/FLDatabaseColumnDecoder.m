@@ -35,7 +35,7 @@ id FLDefaultDatabaseColumnDecoder( FLDatabase* database,
         
         case FLDatabaseTypeText:{
             FLConfirmIsKindOfClass_(inObject, NSString);
-            FLObjectDescriber* objectDescriber = [[table classRepresentedByTable] sharedObjectDescriber];
+            FLObjectDescriber* objectDescriber = [[table classRepresentedByTable] objectDescriber];
             if(objectDescriber) {
                 FLPropertyType* property = [objectDescriber propertyForName:column.decodedColumnName];
                 if(property) {
@@ -73,7 +73,7 @@ id FLDefaultDatabaseColumnDecoder( FLDatabase* database,
         break;
 			           
         case FLDatabaseTypeObject: {
-            FLObjectDescriber* objectDescriber = [[table classRepresentedByTable] sharedObjectDescriber];
+            FLObjectDescriber* objectDescriber = [[table classRepresentedByTable] objectDescriber];
             if(objectDescriber) {
                 FLPropertyType* property = [objectDescriber propertyForName:column.decodedColumnName];
                 if(property) {

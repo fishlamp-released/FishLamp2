@@ -114,7 +114,10 @@ didStartElement:(NSString *)elementName
 
         FLThrowIfError(self.error);
         
-        return [self.stack firstObject];
+        NSDictionary* rootElementContainer = [[self.stack firstObject] elements];
+        FLAssert_v(rootElementContainer.count == 1, @"expecting only 1 root element")
+        
+        return [[rootElementContainer allValues] firstObject];
     }
     @finally {
 		_parser.delegate = nil;
@@ -122,5 +125,17 @@ didStartElement:(NSString *)elementName
         self.stack = nil;
         self.error = nil;
     }
+}
+
+- (FLParsedItem*) parseFileAtPath:(NSString*) path {
+    return [self parseFileAtURL:[NSURL fileURLWithPath:path]];
+}
+
+- (FLParsedItem*) parseFileAtURL:(NSURL*) url {
+    NSError* err = nil;
+    NSData* data = [NSData dataWithContentsOfURL:url options:0  error:&err];
+    FLThrowIfError(FLAutorelease(err));
+        
+    return [self parseData:data];
 }
 @end

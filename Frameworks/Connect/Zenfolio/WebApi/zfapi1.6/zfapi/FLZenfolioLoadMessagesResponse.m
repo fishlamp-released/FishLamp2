@@ -69,12 +69,12 @@
 	return FLAutorelease([[FLZenfolioLoadMessagesResponse alloc] init]);
 }
 
-+ (FLObjectDescriber*) sharedObjectDescriber
++ (FLObjectDescriber*) objectDescriber
 {
 	static FLObjectDescriber* s_describer = nil;
 	static dispatch_once_t pred = 0;
 	dispatch_once(&pred, ^{
-		s_describer = [[super sharedObjectDescriber] copy];
+		
 		if(!s_describer)
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
@@ -89,7 +89,7 @@
 	static FLObjectInflator* s_inflator = nil;
 	static dispatch_once_t pred = 0;
 	dispatch_once(&pred, ^{
-		s_inflator = [[FLObjectInflator alloc] initWithObjectDescriber:[[self class] sharedObjectDescriber]];
+		s_inflator = [[FLObjectInflator alloc] initWithObjectDescriber:[[self class] objectDescriber]];
 	});
 	return s_inflator;
 }
