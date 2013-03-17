@@ -195,19 +195,19 @@
         {
             s_describer = [[FLObjectDescriber alloc] init];
         }
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"queueUID" propertyClass:[NSString class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"uploadedAssetUID" propertyClass:[NSString class]  ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"assetType" propertyClass:[FLIntegerNumber class]] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"assetURL" propertyClass:[NSString class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"assetUID" propertyClass:[NSString class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"uploadedAssetURL" propertyClass:[NSString class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"uploadedAssetId" propertyClass:[FLLongNumber class]] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"uploadDestinationId" propertyClass:[FLLongNumber class]] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"uploadDestinationName" propertyClass:[NSString class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"uploadDestinationURL" propertyClass:[NSString class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"assetName" propertyClass:[NSString class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"thumbnail" propertyClass:[UIImage class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"uploadedDate" propertyClass:[NSDate class] ] ];
+        [s_describer addProperty:@"queueUID" withClass:[NSString class]];
+        [s_describer addProperty:@"uploadedAssetUID" withClass:[NSString class]];
+        [s_describer addProperty:@"assetType" withClass:[FLIntegerNumber class] ];
+        [s_describer addProperty:@"assetURL" withClass:[NSString class]];
+        [s_describer addProperty:@"assetUID" withClass:[NSString class]];
+        [s_describer addProperty:@"uploadedAssetURL" withClass:[NSString class]];
+        [s_describer addProperty:@"uploadedAssetId" withClass:[FLLongNumber class] ];
+        [s_describer addProperty:@"uploadDestinationId" withClass:[FLLongNumber class] ];
+        [s_describer addProperty:@"uploadDestinationName" withClass:[NSString class]];
+        [s_describer addProperty:@"uploadDestinationURL" withClass:[NSString class]];
+        [s_describer addProperty:@"assetName" withClass:[NSString class]];
+        [s_describer addProperty:@"thumbnail" withClass:[UIImage class]];
+        [s_describer addProperty:@"uploadedDate" withClass:[NSDate class]];
     });
     return s_describer;
 }

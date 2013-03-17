@@ -98,9 +98,9 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"galleryId" propertyClass:[FLIntegerNumber class]] ];
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"url" propertyClass:[NSString class] ] ];
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"cookies" propertyClass:[NSString class] ] ];
+		[s_describer addProperty:@"galleryId" withClass:[FLIntegerNumber class] ];
+		[s_describer addProperty:@"url" withClass:[NSString class]];
+		[s_describer addProperty:@"cookies" withClass:[NSString class]];
 	});
 	return s_describer;
 }

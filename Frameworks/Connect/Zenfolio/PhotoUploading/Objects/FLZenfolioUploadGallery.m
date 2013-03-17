@@ -94,9 +94,9 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"name" propertyClass:[NSString class] ] ];
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"photoSetId" propertyClass:[FLIntegerNumber class]] ];
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"uploadUrl" propertyClass:[NSString class] ] ];
+		[s_describer addProperty:@"name" withClass:[NSString class]];
+		[s_describer addProperty:@"photoSetId" withClass:[FLIntegerNumber class] ];
+		[s_describer addProperty:@"uploadUrl" withClass:[NSString class]];
 	});
 	return s_describer;
 }

@@ -79,7 +79,7 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"AddMessageResult" propertyClass:[FLZenfolioMessage class] ] ];
+		[s_describer addProperty:@"AddMessageResult" withClass:[FLZenfolioMessage class]];
 	});
 	return s_describer;
 }

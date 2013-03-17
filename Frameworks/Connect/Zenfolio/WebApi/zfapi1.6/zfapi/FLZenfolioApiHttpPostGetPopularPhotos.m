@@ -85,8 +85,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"input" propertyClass:[FLZenfolioGetPopularPhotosHttpPostIn class] ] ];
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"output" propertyClass:[NSMutableArray class]  arrayTypes:[NSArray arrayWithObjects:[FLPropertyDescription propertyDescription:@"Photo" propertyClass:[FLZenfolioPhoto class]], nil] isUnboundedArray:NO] ];
+		[s_describer addProperty:@"input" withClass:[FLZenfolioGetPopularPhotosHttpPostIn class]];
+		[s_describer addArrayProperty:@"output" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"Photo" propertyClass:[FLZenfolioPhoto class]], nil]];
 	});
 	return s_describer;
 }

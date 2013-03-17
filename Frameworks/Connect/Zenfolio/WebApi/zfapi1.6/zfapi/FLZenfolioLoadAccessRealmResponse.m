@@ -79,7 +79,7 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"LoadAccessRealmResult" propertyClass:[FLZenfolioAccessDescriptor class] ] ];
+		[s_describer addProperty:@"LoadAccessRealmResult" withClass:[FLZenfolioAccessDescriptor class]];
 	});
 	return s_describer;
 }

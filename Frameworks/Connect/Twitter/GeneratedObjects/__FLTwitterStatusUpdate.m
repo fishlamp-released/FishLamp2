@@ -125,12 +125,12 @@
         {
             s_describer = [[FLObjectDescriber alloc] init];
         }
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"status" propertyClass:[NSString class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"in_reply_to_status_id" propertyClass:[NSString class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"place_id" propertyClass:[NSString class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"display_coordinates" propertyClass:[NSString class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"trim_user" propertyClass:[NSString class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"include_entities" propertyClass:[NSString class] ] ];
+        [s_describer addProperty:@"status" withClass:[NSString class]];
+        [s_describer addProperty:@"in_reply_to_status_id" withClass:[NSString class]];
+        [s_describer addProperty:@"place_id" withClass:[NSString class]];
+        [s_describer addProperty:@"display_coordinates" withClass:[NSString class]];
+        [s_describer addProperty:@"trim_user" withClass:[NSString class]];
+        [s_describer addProperty:@"include_entities" withClass:[NSString class]];
     });
     return s_describer;
 }

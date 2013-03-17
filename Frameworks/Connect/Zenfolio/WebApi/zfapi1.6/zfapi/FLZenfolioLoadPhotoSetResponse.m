@@ -79,7 +79,7 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"LoadPhotoSetResult" propertyClass:[FLZenfolioPhotoSet class] ] ];
+		[s_describer addProperty:@"LoadPhotoSetResult" withClass:[FLZenfolioPhotoSet class]];
 	});
 	return s_describer;
 }

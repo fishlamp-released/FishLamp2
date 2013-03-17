@@ -78,7 +78,7 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"KeyringGetUnlockedRealmsResult" propertyClass:[NSMutableArray class]  arrayTypes:[NSArray arrayWithObjects:[FLPropertyDescription propertyDescription:@"int" propertyClass:[FLIntegerNumber class] arrayTypes:nil], nil] isUnboundedArray:NO] ];
+		[s_describer addArrayProperty:@"KeyringGetUnlockedRealmsResult" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"int" propertyClass:[FLIntegerNumber class]], nil]];
 	});
 	return s_describer;
 }

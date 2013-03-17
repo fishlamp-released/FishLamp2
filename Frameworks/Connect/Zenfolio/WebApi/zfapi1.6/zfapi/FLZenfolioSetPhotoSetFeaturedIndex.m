@@ -88,8 +88,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"photoSetId" propertyClass:[FLIntegerNumber class]] ];
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"index" propertyClass:[FLIntegerNumber class]] ];
+		[s_describer addProperty:@"photoSetId" withClass:[FLIntegerNumber class] ];
+		[s_describer addProperty:@"index" withClass:[FLIntegerNumber class] ];
 	});
 	return s_describer;
 }

@@ -98,9 +98,9 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"groupId" propertyClass:[NSString class] ] ];
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"level" propertyClass:[NSString class] ] ];
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"includeChildren" propertyClass:[NSString class] ] ];
+		[s_describer addProperty:@"groupId" withClass:[NSString class]];
+		[s_describer addProperty:@"level" withClass:[NSString class]];
+		[s_describer addProperty:@"includeChildren" withClass:[NSString class]];
 	});
 	return s_describer;
 }

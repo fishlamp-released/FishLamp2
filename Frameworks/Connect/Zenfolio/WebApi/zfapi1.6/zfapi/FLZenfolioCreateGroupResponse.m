@@ -79,7 +79,7 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"CreateGroupResult" propertyClass:[FLZenfolioGroup class] ] ];
+		[s_describer addProperty:@"CreateGroupResult" withClass:[FLZenfolioGroup class]];
 	});
 	return s_describer;
 }

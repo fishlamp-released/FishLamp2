@@ -85,8 +85,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"input" propertyClass:[FLZenfolioLoadMessagesHttpGetIn class] ] ];
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"output" propertyClass:[NSMutableArray class]  arrayTypes:[NSArray arrayWithObjects:[FLPropertyDescription propertyDescription:@"Message" propertyClass:[FLZenfolioMessage class]], nil] isUnboundedArray:NO] ];
+		[s_describer addProperty:@"input" withClass:[FLZenfolioLoadMessagesHttpGetIn class]];
+		[s_describer addArrayProperty:@"output" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"Message" propertyClass:[FLZenfolioMessage class]], nil]];
 	});
 	return s_describer;
 }

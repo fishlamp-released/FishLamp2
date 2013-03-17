@@ -88,8 +88,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"originalId" propertyClass:[FLIntegerNumber class]] ];
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"replacedId" propertyClass:[FLIntegerNumber class]] ];
+		[s_describer addProperty:@"originalId" withClass:[FLIntegerNumber class] ];
+		[s_describer addProperty:@"replacedId" withClass:[FLIntegerNumber class] ];
 	});
 	return s_describer;
 }

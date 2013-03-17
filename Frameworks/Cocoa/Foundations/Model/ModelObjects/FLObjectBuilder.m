@@ -19,7 +19,7 @@
          withDecoder:(id<FLDataDecoding>) decoder;
 
 - (NSMutableArray*) addObjectsToArray:(NSMutableArray*) fromArray 
-                          forProperty:(FLPropertyDescription*) propertyDescription
+                          forProperty:(FLPropertyType*) propertyType
                           withDecoder:(id<FLDataDecoding>) decoder;
 
 @property (readwrite, strong, nonatomic) id<FLDataDecoding> dataDecoder;
@@ -56,12 +56,12 @@
 
 
 - (NSMutableArray*) addObjectsToArray:(NSMutableArray*) fromArray 
-	forProperty:(FLPropertyDescription*) propertyDescription
+	forProperty:(FLPropertyType*) propertyType
                               withDecoder:(id<FLDataDecoding>) decoder
 {
 	NSMutableArray* newArray = [NSMutableArray arrayWithCapacity:[fromArray count]];
 	
-	FLPropertyDescription* arrayItemDesc = [[propertyDescription arrayTypes] objectAtIndex:0];
+	FLPropertyType* arrayItemDesc = [[propertyType arrayTypes] objectAtIndex:0];
 		
 	for(id arrayItem in fromArray)
 	{			
@@ -114,7 +114,7 @@
 		id value = [dictionary objectForKey:key];
 		if(value)
 		{
-			FLPropertyDescription* property = [describer.propertyDescribers objectForKey:key];
+			FLPropertyType* property = [describer.propertyDescribers objectForKey:key];
 			if(property)
 			{
 				if([value isKindOfClass:[NSDictionary class]])

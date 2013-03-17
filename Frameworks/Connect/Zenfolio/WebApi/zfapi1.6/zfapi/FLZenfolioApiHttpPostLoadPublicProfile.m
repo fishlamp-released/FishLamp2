@@ -85,8 +85,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"input" propertyClass:[FLZenfolioLoadPublicProfileHttpPostIn class] ] ];
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"output" propertyClass:[FLZenfolioUser class] ] ];
+		[s_describer addProperty:@"input" withClass:[FLZenfolioLoadPublicProfileHttpPostIn class]];
+		[s_describer addProperty:@"output" withClass:[FLZenfolioUser class]];
 	});
 	return s_describer;
 }

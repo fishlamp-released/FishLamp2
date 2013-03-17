@@ -143,13 +143,13 @@
         {
             s_describer = [[FLObjectDescriber alloc] init];
         }
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"from" propertyClass:[FLFacebookNamedObject class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"updated_time" propertyClass:[NSDate class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"created_time" propertyClass:[NSDate class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"embed_html" propertyClass:[NSString class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"icon" propertyClass:[NSString class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"source" propertyClass:[NSString class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"tags" propertyClass:[NSMutableArray class]  arrayTypes:[NSArray arrayWithObjects:[FLPropertyDescription propertyDescription:@"tag" propertyClass:[FLFacebookTag class]], nil] isUnboundedArray:NO] ];
+        [s_describer addProperty:@"from" withClass:[FLFacebookNamedObject class]];
+        [s_describer addProperty:@"updated_time" withClass:[NSDate class]];
+        [s_describer addProperty:@"created_time" withClass:[NSDate class]];
+        [s_describer addProperty:@"embed_html" withClass:[NSString class]];
+        [s_describer addProperty:@"icon" withClass:[NSString class]];
+        [s_describer addProperty:@"source" withClass:[NSString class]];
+        [s_describer addArrayProperty:@"tags" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"tag" propertyClass:[FLFacebookTag class]], nil]];
     });
     return s_describer;
 }

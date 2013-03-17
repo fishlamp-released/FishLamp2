@@ -88,8 +88,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"challenge" propertyClass:[NSMutableArray class]  arrayTypes:[NSArray arrayWithObjects:[FLPropertyDescription propertyDescription:@"String" propertyClass:[NSString class]  arrayTypes:nil], nil] isUnboundedArray:NO] ];
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"proof" propertyClass:[NSMutableArray class]  arrayTypes:[NSArray arrayWithObjects:[FLPropertyDescription propertyDescription:@"String" propertyClass:[NSString class]  arrayTypes:nil], nil] isUnboundedArray:NO] ];
+		[s_describer addArrayProperty:@"challenge" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"String" propertyClass:[NSString class] ], nil]];
+		[s_describer addArrayProperty:@"proof" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"String" propertyClass:[NSString class] ], nil]];
 	});
 	return s_describer;
 }

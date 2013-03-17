@@ -85,8 +85,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"input" propertyClass:[FLZenfolioReorderGroupHttpPostIn class] ] ];
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"output" propertyClass:[FLZenfolioReorderGroupHttpPostOut class] ] ];
+		[s_describer addProperty:@"input" withClass:[FLZenfolioReorderGroupHttpPostIn class]];
+		[s_describer addProperty:@"output" withClass:[FLZenfolioReorderGroupHttpPostOut class]];
 	});
 	return s_describer;
 }

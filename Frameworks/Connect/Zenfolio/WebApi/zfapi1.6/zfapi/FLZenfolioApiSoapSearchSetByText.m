@@ -85,8 +85,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"input" propertyClass:[FLZenfolioSearchSetByText class] ] ];
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"output" propertyClass:[FLZenfolioSearchSetByTextResponse class] ] ];
+		[s_describer addProperty:@"input" withClass:[FLZenfolioSearchSetByText class]];
+		[s_describer addProperty:@"output" withClass:[FLZenfolioSearchSetByTextResponse class]];
 	});
 	return s_describer;
 }

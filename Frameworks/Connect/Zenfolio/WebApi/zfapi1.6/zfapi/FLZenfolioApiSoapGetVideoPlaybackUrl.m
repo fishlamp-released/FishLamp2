@@ -85,8 +85,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"input" propertyClass:[FLZenfolioGetVideoPlaybackUrl class] ] ];
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"output" propertyClass:[FLZenfolioGetVideoPlaybackUrlResponse class] ] ];
+		[s_describer addProperty:@"input" withClass:[FLZenfolioGetVideoPlaybackUrl class]];
+		[s_describer addProperty:@"output" withClass:[FLZenfolioGetVideoPlaybackUrlResponse class]];
 	});
 	return s_describer;
 }

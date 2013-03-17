@@ -92,8 +92,8 @@
         {
             s_describer = [[FLObjectDescriber alloc] init];
         }
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"period" propertyClass:[NSString class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"values" propertyClass:[NSMutableArray class]  arrayTypes:[NSArray arrayWithObjects:[FLPropertyDescription propertyDescription:@"insights" propertyClass:[FLFacebookInsight class]], nil] isUnboundedArray:NO] ];
+        [s_describer addProperty:@"period" withClass:[NSString class]];
+        [s_describer addArrayProperty:@"values" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"insights" propertyClass:[FLFacebookInsight class]], nil]];
     });
     return s_describer;
 }

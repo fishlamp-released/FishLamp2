@@ -81,7 +81,7 @@
         {
             s_describer = [[FLObjectDescriber alloc] init];
         }
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"email" propertyClass:[NSString class] ] ];
+        [s_describer addProperty:@"email" withClass:[NSString class]];
     });
     return s_describer;
 }

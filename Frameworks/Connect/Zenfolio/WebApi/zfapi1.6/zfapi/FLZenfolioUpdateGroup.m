@@ -84,8 +84,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"groupId" propertyClass:[FLIntegerNumber class]] ];
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"updater" propertyClass:[FLZenfolioGroupUpdater class] ] ];
+		[s_describer addProperty:@"groupId" withClass:[FLIntegerNumber class] ];
+		[s_describer addProperty:@"updater" withClass:[FLZenfolioGroupUpdater class]];
 	});
 	return s_describer;
 }

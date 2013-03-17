@@ -128,12 +128,12 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"Title" propertyClass:[NSString class] ] ];
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"Caption" propertyClass:[NSString class] ] ];
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"Keywords" propertyClass:[NSMutableArray class]  arrayTypes:[NSArray arrayWithObjects:[FLPropertyDescription propertyDescription:@"Keyword" propertyClass:[NSString class]  arrayTypes:nil], nil] isUnboundedArray:NO] ];
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"Categories" propertyClass:[NSMutableArray class]  arrayTypes:[NSArray arrayWithObjects:[FLPropertyDescription propertyDescription:@"Category" propertyClass:[FLIntegerNumber class] arrayTypes:nil], nil] isUnboundedArray:NO] ];
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"Copyright" propertyClass:[NSString class] ] ];
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"FileName" propertyClass:[NSString class] ] ];
+		[s_describer addProperty:@"Title" withClass:[NSString class]];
+		[s_describer addProperty:@"Caption" withClass:[NSString class]];
+		[s_describer addArrayProperty:@"Keywords" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"Keyword" propertyClass:[NSString class] ], nil]];
+		[s_describer addArrayProperty:@"Categories" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"Category" propertyClass:[FLIntegerNumber class]], nil]];
+		[s_describer addProperty:@"Copyright" withClass:[NSString class]];
+		[s_describer addProperty:@"FileName" withClass:[NSString class]];
 	});
 	return s_describer;
 }

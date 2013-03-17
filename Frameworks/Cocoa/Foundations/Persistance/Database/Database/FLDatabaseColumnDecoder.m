@@ -37,7 +37,7 @@ id FLDefaultDatabaseColumnDecoder( FLDatabase* database,
             FLConfirmIsKindOfClass_(inObject, NSString);
             FLObjectDescriber* objectDescriber = [[table classRepresentedByTable] sharedObjectDescriber];
             if(objectDescriber) {
-                FLPropertyDescription* desc = [objectDescriber propertyDescriberForPropertyName:column.decodedColumnName];
+                FLPropertyType* desc = [objectDescriber propertyDescriberForPropertyName:column.decodedColumnName];
                 if(desc) {
                     newObject = [desc.propertyType.classForType decodeObjectWithSqliteColumnString:inObject];
                 }
@@ -75,7 +75,7 @@ id FLDefaultDatabaseColumnDecoder( FLDatabase* database,
         case FLDatabaseTypeObject: {
             FLObjectDescriber* objectDescriber = [[table classRepresentedByTable] sharedObjectDescriber];
             if(objectDescriber) {
-                FLPropertyDescription* desc = [objectDescriber propertyDescriberForPropertyName:column.decodedColumnName];
+                FLPropertyType* desc = [objectDescriber propertyDescriberForPropertyName:column.decodedColumnName];
                 if(desc) {
                     FLConfirmIsKindOfClass_(inObject, NSData);
                     newObject = [desc.propertyType.classForType decodeObjectWithSqliteColumnData:inObject];

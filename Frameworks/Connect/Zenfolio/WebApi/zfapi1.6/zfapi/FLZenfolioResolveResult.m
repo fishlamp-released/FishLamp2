@@ -90,8 +90,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"Group" propertyClass:[FLZenfolioGroup class] ] ];
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"PhotoSet" propertyClass:[FLZenfolioPhotoSet class] ] ];
+		[s_describer addProperty:@"Group" withClass:[FLZenfolioGroup class]];
+		[s_describer addProperty:@"PhotoSet" withClass:[FLZenfolioPhotoSet class]];
 	});
 	return s_describer;
 }

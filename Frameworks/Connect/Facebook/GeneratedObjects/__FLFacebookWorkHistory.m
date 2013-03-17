@@ -122,11 +122,11 @@
         {
             s_describer = [[FLObjectDescriber alloc] init];
         }
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"employer" propertyClass:[FLFacebookNamedObject class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"location" propertyClass:[FLFacebookNamedObject class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"position" propertyClass:[FLFacebookNamedObject class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"start_date" propertyClass:[NSDate class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"end_date" propertyClass:[NSDate class] ] ];
+        [s_describer addProperty:@"employer" withClass:[FLFacebookNamedObject class]];
+        [s_describer addProperty:@"location" withClass:[FLFacebookNamedObject class]];
+        [s_describer addProperty:@"position" withClass:[FLFacebookNamedObject class]];
+        [s_describer addProperty:@"start_date" withClass:[NSDate class]];
+        [s_describer addProperty:@"end_date" withClass:[NSDate class]];
     });
     return s_describer;
 }

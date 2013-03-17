@@ -85,8 +85,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"input" propertyClass:[FLZenfolioRotatePhotoHttpGetIn class] ] ];
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"output" propertyClass:[FLZenfolioPhoto class] ] ];
+		[s_describer addProperty:@"input" withClass:[FLZenfolioRotatePhotoHttpGetIn class]];
+		[s_describer addProperty:@"output" withClass:[FLZenfolioPhoto class]];
 	});
 	return s_describer;
 }

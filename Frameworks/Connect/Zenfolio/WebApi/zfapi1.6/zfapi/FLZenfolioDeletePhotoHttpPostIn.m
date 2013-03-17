@@ -78,7 +78,7 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"photoId" propertyClass:[NSString class] ] ];
+		[s_describer addProperty:@"photoId" withClass:[NSString class]];
 	});
 	return s_describer;
 }

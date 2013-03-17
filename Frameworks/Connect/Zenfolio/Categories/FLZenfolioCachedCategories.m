@@ -89,8 +89,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"arrayId" propertyClass:[FLIntegerNumber class]] ];
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"categoryArray" propertyClass:[NSMutableArray class]  arrayTypes:[NSArray arrayWithObjects:[FLPropertyDescription propertyDescription:@"category" propertyClass:[FLZenfolioCategory class]], nil] isUnboundedArray:NO] ];
+		[s_describer addProperty:@"arrayId" withClass:[FLIntegerNumber class] ];
+		[s_describer addArrayProperty:@"categoryArray" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"category" propertyClass:[FLZenfolioCategory class]], nil]];
 	});
 	return s_describer;
 }

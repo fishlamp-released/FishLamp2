@@ -91,8 +91,8 @@
         {
             s_describer = [[FLObjectDescriber alloc] init];
         }
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"category" propertyClass:[NSString class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"likes" propertyClass:[FLIntegerNumber class]] ];
+        [s_describer addProperty:@"category" withClass:[NSString class]];
+        [s_describer addProperty:@"likes" withClass:[FLIntegerNumber class] ];
     });
     return s_describer;
 }

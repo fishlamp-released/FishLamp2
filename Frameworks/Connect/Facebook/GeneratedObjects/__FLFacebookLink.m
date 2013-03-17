@@ -152,14 +152,14 @@
         {
             s_describer = [[FLObjectDescriber alloc] init];
         }
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"from" propertyClass:[FLFacebookObject class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"link" propertyClass:[NSString class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"caption" propertyClass:[NSString class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"description" propertyClass:[NSString class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"icon" propertyClass:[NSString class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"picture" propertyClass:[NSString class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"message" propertyClass:[NSString class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"created_time" propertyClass:[NSDate class] ] ];
+        [s_describer addProperty:@"from" withClass:[FLFacebookObject class]];
+        [s_describer addProperty:@"link" withClass:[NSString class]];
+        [s_describer addProperty:@"caption" withClass:[NSString class]];
+        [s_describer addProperty:@"description" withClass:[NSString class]];
+        [s_describer addProperty:@"icon" withClass:[NSString class]];
+        [s_describer addProperty:@"picture" withClass:[NSString class]];
+        [s_describer addProperty:@"message" withClass:[NSString class]];
+        [s_describer addProperty:@"created_time" withClass:[NSDate class]];
     });
     return s_describer;
 }

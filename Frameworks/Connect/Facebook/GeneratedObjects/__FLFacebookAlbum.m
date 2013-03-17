@@ -172,16 +172,16 @@
         {
             s_describer = [[FLObjectDescriber alloc] init];
         }
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"description" propertyClass:[NSString class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"from" propertyClass:[FLFacebookNamedObject class]] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"location" propertyClass:[NSString class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"link" propertyClass:[NSString class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"cover_photo" propertyClass:[NSString class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"privacy" propertyClass:[NSString class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"count" propertyClass:[NSString class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"type" propertyClass:[NSString class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"created_time" propertyClass:[NSDate class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"updated_time" propertyClass:[NSDate class] ] ];
+        [s_describer addProperty:@"description" withClass:[NSString class]];
+        [s_describer addProperty:@"from" withClass:[FLFacebookNamedObject class] ];
+        [s_describer addProperty:@"location" withClass:[NSString class]];
+        [s_describer addProperty:@"link" withClass:[NSString class]];
+        [s_describer addProperty:@"cover_photo" withClass:[NSString class]];
+        [s_describer addProperty:@"privacy" withClass:[NSString class]];
+        [s_describer addProperty:@"count" withClass:[NSString class]];
+        [s_describer addProperty:@"type" withClass:[NSString class]];
+        [s_describer addProperty:@"created_time" withClass:[NSDate class]];
+        [s_describer addProperty:@"updated_time" withClass:[NSDate class]];
     });
     return s_describer;
 }

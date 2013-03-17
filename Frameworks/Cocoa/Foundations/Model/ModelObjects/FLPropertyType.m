@@ -6,24 +6,22 @@
 //  Copyright 2011 GreenTongue Software, LLC. All rights reserved.
 //
 
-#import "FLPropertyDescription.h"
+#import "FLPropertyType.h"
 #import "FLStringUtils.h"
 
-@interface FLPropertyDescription ()
+@interface FLPropertyType ()
 @property (readwrite, strong, nonatomic) NSString* propertyName;
-@property (readwrite, strong, nonatomic) FLType* propertyType;
+@property (readwrite, strong, nonatomic) FLNamedType* propertyType;
 @property (readwrite, strong, nonatomic) NSArray* arrayTypes;
 @property (readwrite, assign, nonatomic, getter=isUnboundedArray) BOOL unboundedArray;
 @property (readwrite, assign, nonatomic, getter=isUnboundedArrayItem) BOOL unboundedArrayItem;
 
 @end
 
-@implementation FLPropertyDescription
+@implementation FLPropertyType
 
 @synthesize propertyName = _name;
 @synthesize arrayTypes = _arrayTypes;
-//@synthesize getter = _getter;
-//@synthesize setter = _setter;
 @synthesize propertyType = _propertyType;
 @synthesize unboundedArray = _unboundedArray;
 @synthesize unboundedArrayItem = _unboundedArrayItem;
@@ -32,7 +30,7 @@
                propertyClass:(Class) propertyClass
                  arrayTypes:(NSArray*) arrayTypes {
 
-	return [self initWithPropertyName:name propertyClass:propertyClass arrayTypes:arrayTypes isUnboundedArray:NO];
+	return [self initWithPropertyName:name propertyClass:propertyClass arrayTypes:arrayTypes];
 }
 
 - (id) initWithPropertyName:(NSString*) name
@@ -47,12 +45,8 @@
 		self.arrayTypes = arrayTypes;
 		self.unboundedArray = isUnboundedArray;
 
-//		self.setter = NSSelectorFromString([NSString stringWithFormat:@"set%@:", [name stringWithUpperCaseFirstLetter]]);
-//
-//        self.getter = NSSelectorFromString(name);
-        
 		if(self.isUnboundedArray) {
-			for(FLPropertyDescription* desc in self.arrayTypes) {
+			for(FLPropertyType* desc in self.arrayTypes) {
 				self.unboundedArrayItem = YES;
 			}
 		}
@@ -64,30 +58,30 @@
 
 - (id) initWithPropertyName:(NSString*) name
               propertyClass:(Class) propertyClass {
-    return [self initWithPropertyName:name propertyClass:propertyClass arrayTypes:nil isUnboundedArray:NO];
+    return [self initWithPropertyName:name propertyClass:propertyClass arrayTypes:nil];
 }
 
 
-+ (FLPropertyDescription*) propertyDescription:(NSString*) name
++ (FLPropertyType*) propertyType:(NSString*) name
                                   propertyClass:(Class) propertyClass {
 
-	return FLAutorelease([[FLPropertyDescription alloc] initWithPropertyName:name propertyClass:propertyClass arrayTypes:nil isUnboundedArray:NO]);
+	return FLAutorelease([[FLPropertyType alloc] initWithPropertyName:name propertyClass:propertyClass arrayTypes:nil]);
 }
 
 
-+ (FLPropertyDescription*) propertyDescription:(NSString*) name
++ (FLPropertyType*) propertyType:(NSString*) name
                                   propertyClass:(Class) propertyClass
                                     arrayTypes:(NSArray*) arrayTypes
                               isUnboundedArray:(BOOL) isUnboundedArray {
 
-	return FLAutorelease([[FLPropertyDescription alloc] initWithPropertyName:name propertyClass:propertyClass arrayTypes:arrayTypes isUnboundedArray:isUnboundedArray]);
+	return FLAutorelease([[FLPropertyType alloc] initWithPropertyName:name propertyClass:propertyClass arrayTypes:arrayTypes isUnboundedArray:isUnboundedArray]);
 }
 
-+ (FLPropertyDescription*) propertyDescription:(NSString*) name
++ (FLPropertyType*) propertyType:(NSString*) name
                                   propertyClass:(Class) propertyClass
                                     arrayTypes:(NSArray*) arrayTypes {
 
-	return FLAutorelease([[FLPropertyDescription alloc] initWithPropertyName:name propertyClass:propertyClass arrayTypes:arrayTypes isUnboundedArray:NO]);
+	return FLAutorelease([[FLPropertyType alloc] initWithPropertyName:name propertyClass:propertyClass arrayTypes:arrayTypes]);
 }
 
 #if FL_MRC

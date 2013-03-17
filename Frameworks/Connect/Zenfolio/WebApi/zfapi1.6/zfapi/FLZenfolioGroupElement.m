@@ -129,12 +129,12 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"Id" propertyClass:[FLIntegerNumber class]] ];
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"GroupIndex" propertyClass:[FLIntegerNumber class]] ];
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"Title" propertyClass:[NSString class] ] ];
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"AccessDescriptor" propertyClass:[FLZenfolioAccessDescriptor class] ] ];
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"Owner" propertyClass:[NSString class] ] ];
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"HideBranding" propertyClass:[FLBoolNumber class]] ];
+		[s_describer addProperty:@"Id" withClass:[FLIntegerNumber class] ];
+		[s_describer addProperty:@"GroupIndex" withClass:[FLIntegerNumber class] ];
+		[s_describer addProperty:@"Title" withClass:[NSString class]];
+		[s_describer addProperty:@"AccessDescriptor" withClass:[FLZenfolioAccessDescriptor class]];
+		[s_describer addProperty:@"Owner" withClass:[NSString class]];
+		[s_describer addProperty:@"HideBranding" withClass:[FLBoolNumber class] ];
 	});
 	return s_describer;
 }

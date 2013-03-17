@@ -90,8 +90,8 @@
         {
             s_describer = [[FLObjectDescriber alloc] init];
         }
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"link" propertyClass:[NSString class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"name" propertyClass:[NSString class] ] ];
+        [s_describer addProperty:@"link" withClass:[NSString class]];
+        [s_describer addProperty:@"name" withClass:[NSString class]];
     });
     return s_describer;
 }

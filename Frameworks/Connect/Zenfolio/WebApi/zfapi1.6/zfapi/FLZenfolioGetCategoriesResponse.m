@@ -79,7 +79,7 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"GetCategoriesResult" propertyClass:[NSMutableArray class]  arrayTypes:[NSArray arrayWithObjects:[FLPropertyDescription propertyDescription:@"Category" propertyClass:[FLZenfolioCategory class]], nil] isUnboundedArray:NO] ];
+		[s_describer addArrayProperty:@"GetCategoriesResult" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"Category" propertyClass:[FLZenfolioCategory class]], nil]];
 	});
 	return s_describer;
 }

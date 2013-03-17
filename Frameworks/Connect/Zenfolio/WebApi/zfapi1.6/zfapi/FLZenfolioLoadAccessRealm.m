@@ -78,7 +78,7 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"realmId" propertyClass:[FLIntegerNumber class]] ];
+		[s_describer addProperty:@"realmId" withClass:[FLIntegerNumber class] ];
 	});
 	return s_describer;
 }

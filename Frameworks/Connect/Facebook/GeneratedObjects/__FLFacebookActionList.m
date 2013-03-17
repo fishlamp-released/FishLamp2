@@ -91,8 +91,8 @@
         {
             s_describer = [[FLObjectDescriber alloc] init];
         }
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"count" propertyClass:[FLIntegerNumber class]] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"data" propertyClass:[NSMutableArray class]  arrayTypes:[NSArray arrayWithObjects:[FLPropertyDescription propertyDescription:@"like" propertyClass:[FLFacebookAction class] ], nil] isUnboundedArray:NO] ];
+        [s_describer addProperty:@"count" withClass:[FLIntegerNumber class] ];
+        [s_describer addArrayProperty:@"data" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"like" propertyClass:[FLFacebookAction class] ], nil]];
     });
     return s_describer;
 }

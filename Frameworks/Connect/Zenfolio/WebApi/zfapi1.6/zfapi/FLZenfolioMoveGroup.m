@@ -98,9 +98,9 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"groupId" propertyClass:[FLIntegerNumber class]] ];
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"destGroupId" propertyClass:[FLIntegerNumber class]] ];
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"index" propertyClass:[FLIntegerNumber class]] ];
+		[s_describer addProperty:@"groupId" withClass:[FLIntegerNumber class] ];
+		[s_describer addProperty:@"destGroupId" withClass:[FLIntegerNumber class] ];
+		[s_describer addProperty:@"index" withClass:[FLIntegerNumber class] ];
 	});
 	return s_describer;
 }

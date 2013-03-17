@@ -98,9 +98,9 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"photoSetId" propertyClass:[NSString class] ] ];
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"destGroupId" propertyClass:[NSString class] ] ];
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"index" propertyClass:[NSString class] ] ];
+		[s_describer addProperty:@"photoSetId" withClass:[NSString class]];
+		[s_describer addProperty:@"destGroupId" withClass:[NSString class]];
+		[s_describer addProperty:@"index" withClass:[NSString class]];
 	});
 	return s_describer;
 }

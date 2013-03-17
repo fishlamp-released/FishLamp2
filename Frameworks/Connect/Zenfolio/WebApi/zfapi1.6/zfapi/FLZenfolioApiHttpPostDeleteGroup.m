@@ -85,8 +85,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"input" propertyClass:[FLZenfolioDeleteGroupHttpPostIn class] ] ];
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"output" propertyClass:[FLZenfolioDeleteGroupHttpPostOut class] ] ];
+		[s_describer addProperty:@"input" withClass:[FLZenfolioDeleteGroupHttpPostIn class]];
+		[s_describer addProperty:@"output" withClass:[FLZenfolioDeleteGroupHttpPostOut class]];
 	});
 	return s_describer;
 }

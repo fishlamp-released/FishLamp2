@@ -90,8 +90,8 @@
         {
             s_describer = [[FLObjectDescriber alloc] init];
         }
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"type" propertyClass:[NSString class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"pictureSize" propertyClass:[NSString class] ] ];
+        [s_describer addProperty:@"type" withClass:[NSString class]];
+        [s_describer addProperty:@"pictureSize" withClass:[NSString class]];
     });
     return s_describer;
 }

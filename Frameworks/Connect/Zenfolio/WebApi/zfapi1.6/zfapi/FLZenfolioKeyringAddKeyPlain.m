@@ -98,9 +98,9 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"keyring" propertyClass:[NSString class] ] ];
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"realmId" propertyClass:[FLIntegerNumber class]] ];
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"password" propertyClass:[NSString class] ] ];
+		[s_describer addProperty:@"keyring" withClass:[NSString class]];
+		[s_describer addProperty:@"realmId" withClass:[FLIntegerNumber class] ];
+		[s_describer addProperty:@"password" withClass:[NSString class]];
 	});
 	return s_describer;
 }

@@ -85,8 +85,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"input" propertyClass:[FLZenfolioKeyringGetUnlockedRealms class] ] ];
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"output" propertyClass:[FLZenfolioKeyringGetUnlockedRealmsResponse class] ] ];
+		[s_describer addProperty:@"input" withClass:[FLZenfolioKeyringGetUnlockedRealms class]];
+		[s_describer addProperty:@"output" withClass:[FLZenfolioKeyringGetUnlockedRealmsResponse class]];
 	});
 	return s_describer;
 }

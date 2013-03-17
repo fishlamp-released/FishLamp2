@@ -85,8 +85,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"input" propertyClass:[FLZenfolioSearchPhotoByCategory class] ] ];
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"output" propertyClass:[FLZenfolioSearchPhotoByCategoryResponse class] ] ];
+		[s_describer addProperty:@"input" withClass:[FLZenfolioSearchPhotoByCategory class]];
+		[s_describer addProperty:@"output" withClass:[FLZenfolioSearchPhotoByCategoryResponse class]];
 	});
 	return s_describer;
 }

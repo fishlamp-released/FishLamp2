@@ -78,7 +78,7 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"GetVersionResult" propertyClass:[NSString class] ] ];
+		[s_describer addProperty:@"GetVersionResult" withClass:[NSString class]];
 	});
 	return s_describer;
 }

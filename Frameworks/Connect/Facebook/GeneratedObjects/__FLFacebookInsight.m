@@ -60,8 +60,8 @@
         {
             s_describer = [[FLObjectDescriber alloc] init];
         }
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"value" propertyClass:[FLIntegerNumber class]] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"end_time" propertyClass:[NSDate class] ] ];
+        [s_describer addProperty:@"value" withClass:[FLIntegerNumber class] ];
+        [s_describer addProperty:@"end_time" withClass:[NSDate class]];
     });
     return s_describer;
 }

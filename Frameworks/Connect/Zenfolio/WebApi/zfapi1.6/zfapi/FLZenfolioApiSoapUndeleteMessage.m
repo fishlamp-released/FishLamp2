@@ -85,8 +85,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"input" propertyClass:[FLZenfolioUndeleteMessage class] ] ];
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"output" propertyClass:[FLZenfolioUndeleteMessageResponse class] ] ];
+		[s_describer addProperty:@"input" withClass:[FLZenfolioUndeleteMessage class]];
+		[s_describer addProperty:@"output" withClass:[FLZenfolioUndeleteMessageResponse class]];
 	});
 	return s_describer;
 }

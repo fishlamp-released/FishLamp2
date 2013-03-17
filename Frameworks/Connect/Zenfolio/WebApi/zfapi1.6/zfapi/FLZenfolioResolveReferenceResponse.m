@@ -79,7 +79,7 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"ResolveReferenceResult" propertyClass:[FLZenfolioResolveResult class] ] ];
+		[s_describer addProperty:@"ResolveReferenceResult" withClass:[FLZenfolioResolveResult class]];
 	});
 	return s_describer;
 }

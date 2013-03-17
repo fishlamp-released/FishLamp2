@@ -79,7 +79,7 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"RotatePhotoResult" propertyClass:[FLZenfolioPhoto class] ] ];
+		[s_describer addProperty:@"RotatePhotoResult" withClass:[FLZenfolioPhoto class]];
 	});
 	return s_describer;
 }

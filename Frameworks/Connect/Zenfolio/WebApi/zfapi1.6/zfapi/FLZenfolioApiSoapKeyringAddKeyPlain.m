@@ -85,8 +85,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"input" propertyClass:[FLZenfolioKeyringAddKeyPlain class] ] ];
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"output" propertyClass:[FLZenfolioKeyringAddKeyPlainResponse class] ] ];
+		[s_describer addProperty:@"input" withClass:[FLZenfolioKeyringAddKeyPlain class]];
+		[s_describer addProperty:@"output" withClass:[FLZenfolioKeyringAddKeyPlainResponse class]];
 	});
 	return s_describer;
 }

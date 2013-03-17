@@ -151,14 +151,14 @@
         {
             s_describer = [[FLObjectDescriber alloc] init];
         }
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"owner" propertyClass:[NSString class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"description" propertyClass:[NSString class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"start_time" propertyClass:[NSDate class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"end_time" propertyClass:[NSDate class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"location" propertyClass:[NSString class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"venue" propertyClass:[NSString class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"privacy" propertyClass:[NSString class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"updated_time" propertyClass:[NSDate class] ] ];
+        [s_describer addProperty:@"owner" withClass:[NSString class]];
+        [s_describer addProperty:@"description" withClass:[NSString class]];
+        [s_describer addProperty:@"start_time" withClass:[NSDate class]];
+        [s_describer addProperty:@"end_time" withClass:[NSDate class]];
+        [s_describer addProperty:@"location" withClass:[NSString class]];
+        [s_describer addProperty:@"venue" withClass:[NSString class]];
+        [s_describer addProperty:@"privacy" withClass:[NSString class]];
+        [s_describer addProperty:@"updated_time" withClass:[NSDate class]];
     });
     return s_describer;
 }

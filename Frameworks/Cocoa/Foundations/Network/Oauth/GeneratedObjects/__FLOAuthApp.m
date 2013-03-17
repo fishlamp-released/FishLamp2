@@ -102,14 +102,14 @@
         {
             s_describer = [[FLObjectDescriber alloc] init];
         }
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"appId" propertyClass:[NSString class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"apiKey" propertyClass:[NSString class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"consumerKey" propertyClass:[NSString class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"consumerSecret" propertyClass:[NSString class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"requestTokenUrl" propertyClass:[NSString class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"accessTokenUrl" propertyClass:[NSString class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"authorizeUrl" propertyClass:[NSString class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"callback" propertyClass:[NSString class] ] ];
+        [s_describer addProperty:@"appId" withClass:[NSString class]];
+        [s_describer addProperty:@"apiKey" withClass:[NSString class]];
+        [s_describer addProperty:@"consumerKey" withClass:[NSString class]];
+        [s_describer addProperty:@"consumerSecret" withClass:[NSString class]];
+        [s_describer addProperty:@"requestTokenUrl" withClass:[NSString class]];
+        [s_describer addProperty:@"accessTokenUrl" withClass:[NSString class]];
+        [s_describer addProperty:@"authorizeUrl" withClass:[NSString class]];
+        [s_describer addProperty:@"callback" withClass:[NSString class]];
     });
     return s_describer;
 }

@@ -120,11 +120,11 @@
         {
             s_describer = [[FLObjectDescriber alloc] init];
         }
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"queueUID" propertyClass:[NSString class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"sortOrder" propertyClass:[FLIntegerNumber class]] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"totalAssetsAdded" propertyClass:[FLLongNumber class]] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"firstQueuePosition" propertyClass:[FLIntegerNumber class]] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"lastQueuePosition" propertyClass:[FLIntegerNumber class]] ];
+        [s_describer addProperty:@"queueUID" withClass:[NSString class]];
+        [s_describer addProperty:@"sortOrder" withClass:[FLIntegerNumber class] ];
+        [s_describer addProperty:@"totalAssetsAdded" withClass:[FLLongNumber class] ];
+        [s_describer addProperty:@"firstQueuePosition" withClass:[FLIntegerNumber class] ];
+        [s_describer addProperty:@"lastQueuePosition" withClass:[FLIntegerNumber class] ];
     });
     return s_describer;
 }

@@ -79,7 +79,7 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"GetChallengeResult" propertyClass:[FLZenfolioAuthChallenge class] ] ];
+		[s_describer addProperty:@"GetChallengeResult" withClass:[FLZenfolioAuthChallenge class]];
 	});
 	return s_describer;
 }

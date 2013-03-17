@@ -85,8 +85,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"input" propertyClass:[FLZenfolioMovePhotoSetHttpPostIn class] ] ];
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"output" propertyClass:[FLZenfolioMovePhotoSetHttpPostOut class] ] ];
+		[s_describer addProperty:@"input" withClass:[FLZenfolioMovePhotoSetHttpPostIn class]];
+		[s_describer addProperty:@"output" withClass:[FLZenfolioMovePhotoSetHttpPostOut class]];
 	});
 	return s_describer;
 }

@@ -74,8 +74,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"input" propertyClass:[FLZenfolioAuthenticateHttpGetIn class] ] ];
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"output" propertyClass:[NSString class] ] ];
+		[s_describer addProperty:@"input" withClass:[FLZenfolioAuthenticateHttpGetIn class]];
+		[s_describer addProperty:@"output" withClass:[NSString class]];
 	});
 	return s_describer;
 }

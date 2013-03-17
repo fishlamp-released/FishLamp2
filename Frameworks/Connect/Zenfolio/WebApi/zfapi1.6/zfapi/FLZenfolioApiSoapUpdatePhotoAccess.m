@@ -85,8 +85,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"input" propertyClass:[FLZenfolioUpdatePhotoAccess class] ] ];
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"output" propertyClass:[FLZenfolioUpdatePhotoAccessResponse class] ] ];
+		[s_describer addProperty:@"input" withClass:[FLZenfolioUpdatePhotoAccess class]];
+		[s_describer addProperty:@"output" withClass:[FLZenfolioUpdatePhotoAccessResponse class]];
 	});
 	return s_describer;
 }

@@ -85,8 +85,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"input" propertyClass:[FLZenfolioLoadAccessRealmHttpPostIn class] ] ];
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"output" propertyClass:[FLZenfolioAccessDescriptor class] ] ];
+		[s_describer addProperty:@"input" withClass:[FLZenfolioLoadAccessRealmHttpPostIn class]];
+		[s_describer addProperty:@"output" withClass:[FLZenfolioAccessDescriptor class]];
 	});
 	return s_describer;
 }

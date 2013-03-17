@@ -130,12 +130,12 @@
         {
             s_describer = [[FLObjectDescriber alloc] init];
         }
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"userGuid" propertyClass:[NSString class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"appName" propertyClass:[NSString class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"oauth_token" propertyClass:[NSString class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"oauth_token_secret" propertyClass:[NSString class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"user_id" propertyClass:[NSString class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"screen_name" propertyClass:[NSString class] ] ];
+        [s_describer addProperty:@"userGuid" withClass:[NSString class]];
+        [s_describer addProperty:@"appName" withClass:[NSString class]];
+        [s_describer addProperty:@"oauth_token" withClass:[NSString class]];
+        [s_describer addProperty:@"oauth_token_secret" withClass:[NSString class]];
+        [s_describer addProperty:@"user_id" withClass:[NSString class]];
+        [s_describer addProperty:@"screen_name" withClass:[NSString class]];
     });
     return s_describer;
 }

@@ -85,8 +85,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"input" propertyClass:[FLZenfolioGetRecentSets class] ] ];
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"output" propertyClass:[FLZenfolioGetRecentSetsResponse class] ] ];
+		[s_describer addProperty:@"input" withClass:[FLZenfolioGetRecentSets class]];
+		[s_describer addProperty:@"output" withClass:[FLZenfolioGetRecentSetsResponse class]];
 	});
 	return s_describer;
 }

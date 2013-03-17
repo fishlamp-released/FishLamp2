@@ -74,7 +74,7 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"UpdatePhotoSetResult" propertyClass:[FLZenfolioPhotoSet class] ] ];
+		[s_describer addProperty:@"UpdatePhotoSetResult" withClass:[FLZenfolioPhotoSet class]];
 	});
 	return s_describer;
 }

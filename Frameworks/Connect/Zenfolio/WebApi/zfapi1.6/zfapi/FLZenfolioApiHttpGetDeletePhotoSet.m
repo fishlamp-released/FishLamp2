@@ -85,8 +85,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"input" propertyClass:[FLZenfolioDeletePhotoSetHttpGetIn class] ] ];
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"output" propertyClass:[FLZenfolioDeletePhotoSetHttpGetOut class] ] ];
+		[s_describer addProperty:@"input" withClass:[FLZenfolioDeletePhotoSetHttpGetIn class]];
+		[s_describer addProperty:@"output" withClass:[FLZenfolioDeletePhotoSetHttpGetOut class]];
 	});
 	return s_describer;
 }

@@ -267,25 +267,25 @@
         {
             s_describer = [[FLObjectDescriber alloc] init];
         }
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"object_id" propertyClass:[NSString class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"from" propertyClass:[FLFacebookNamedObject class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"to" propertyClass:[FLFacebookNamedObjectList class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"message" propertyClass:[NSString class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"picture" propertyClass:[NSString class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"link" propertyClass:[NSString class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"caption" propertyClass:[NSString class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"description" propertyClass:[NSString class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"source" propertyClass:[NSString class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"icon" propertyClass:[NSString class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"properties" propertyClass:[NSMutableArray class]  arrayTypes:[NSArray arrayWithObjects:[FLPropertyDescription propertyDescription:@"property" propertyClass:[FLFacebookProperty class]], nil] isUnboundedArray:NO] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"application" propertyClass:[FLFacebookNamedObject class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"privacy" propertyClass:[FLFacebookPrivacy class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"comments" propertyClass:[FLFacebookCommentList class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"likes" propertyClass:[FLFacebookNamedObjectList class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"actions" propertyClass:[NSMutableArray class]  arrayTypes:[NSArray arrayWithObjects:[FLPropertyDescription propertyDescription:@"action" propertyClass:[FLFacebookAction class]], nil] isUnboundedArray:NO] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"type" propertyClass:[NSString class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"updated_time" propertyClass:[NSDate class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"created_time" propertyClass:[NSDate class] ] ];
+        [s_describer addProperty:@"object_id" withClass:[NSString class]];
+        [s_describer addProperty:@"from" withClass:[FLFacebookNamedObject class]];
+        [s_describer addProperty:@"to" withClass:[FLFacebookNamedObjectList class]];
+        [s_describer addProperty:@"message" withClass:[NSString class]];
+        [s_describer addProperty:@"picture" withClass:[NSString class]];
+        [s_describer addProperty:@"link" withClass:[NSString class]];
+        [s_describer addProperty:@"caption" withClass:[NSString class]];
+        [s_describer addProperty:@"description" withClass:[NSString class]];
+        [s_describer addProperty:@"source" withClass:[NSString class]];
+        [s_describer addProperty:@"icon" withClass:[NSString class]];
+        [s_describer addArrayProperty:@"properties" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"property" propertyClass:[FLFacebookProperty class]], nil]];
+        [s_describer addProperty:@"application" withClass:[FLFacebookNamedObject class]];
+        [s_describer addProperty:@"privacy" withClass:[FLFacebookPrivacy class]];
+        [s_describer addProperty:@"comments" withClass:[FLFacebookCommentList class]];
+        [s_describer addProperty:@"likes" withClass:[FLFacebookNamedObjectList class]];
+        [s_describer addArrayProperty:@"actions" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"action" propertyClass:[FLFacebookAction class]], nil]];
+        [s_describer addProperty:@"type" withClass:[NSString class]];
+        [s_describer addProperty:@"updated_time" withClass:[NSDate class]];
+        [s_describer addProperty:@"created_time" withClass:[NSDate class]];
     });
     return s_describer;
 }

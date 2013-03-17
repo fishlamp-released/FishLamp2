@@ -74,8 +74,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"input" propertyClass:[FLZenfolioCreateFavoritesSetHttpPostIn class] ] ];
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"output" propertyClass:[FLIntegerNumber class]] ];
+		[s_describer addProperty:@"input" withClass:[FLZenfolioCreateFavoritesSetHttpPostIn class]];
+		[s_describer addProperty:@"output" withClass:[FLIntegerNumber class] ];
 	});
 	return s_describer;
 }

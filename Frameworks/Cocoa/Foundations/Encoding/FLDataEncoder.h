@@ -14,6 +14,8 @@
 @private
     NSNumberFormatter* _numberFormatter;
 }
++ (id) dataEncoder;
+
 @property (readonly, strong, nonatomic) NSNumberFormatter* numberFormatter;
 
 @end

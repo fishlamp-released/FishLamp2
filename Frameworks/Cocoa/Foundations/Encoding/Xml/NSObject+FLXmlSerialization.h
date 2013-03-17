@@ -12,7 +12,7 @@
 
 @interface FLType (FLXmlSerialization)
 - (void) addToXmlElement:(FLXmlElement*) xmlElement
-     propertyDescription:(FLPropertyDescription*) description
+     propertyType:(FLPropertyType*) description
                    value:(id) value;
 @end
 

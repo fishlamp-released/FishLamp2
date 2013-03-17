@@ -118,11 +118,11 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"searchId" propertyClass:[NSString class] ] ];
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"sortOrder" propertyClass:[NSString class] ] ];
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"query" propertyClass:[NSString class] ] ];
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"offset" propertyClass:[NSString class] ] ];
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"limit" propertyClass:[NSString class] ] ];
+		[s_describer addProperty:@"searchId" withClass:[NSString class]];
+		[s_describer addProperty:@"sortOrder" withClass:[NSString class]];
+		[s_describer addProperty:@"query" withClass:[NSString class]];
+		[s_describer addProperty:@"offset" withClass:[NSString class]];
+		[s_describer addProperty:@"limit" withClass:[NSString class]];
 	});
 	return s_describer;
 }

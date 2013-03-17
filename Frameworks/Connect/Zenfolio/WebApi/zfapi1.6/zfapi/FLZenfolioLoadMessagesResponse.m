@@ -79,7 +79,7 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"LoadMessagesResult" propertyClass:[NSMutableArray class]  arrayTypes:[NSArray arrayWithObjects:[FLPropertyDescription propertyDescription:@"Message" propertyClass:[FLZenfolioMessage class]], nil] isUnboundedArray:NO] ];
+		[s_describer addArrayProperty:@"LoadMessagesResult" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"Message" propertyClass:[FLZenfolioMessage class]], nil]];
 	});
 	return s_describer;
 }

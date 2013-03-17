@@ -98,9 +98,9 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"name" propertyClass:[NSString class] ] ];
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"photographerLogin" propertyClass:[NSString class] ] ];
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"photoIds" propertyClass:[NSMutableArray class]  arrayTypes:[NSArray arrayWithObjects:[FLPropertyDescription propertyDescription:@"int" propertyClass:[FLIntegerNumber class] arrayTypes:nil], nil] isUnboundedArray:NO] ];
+		[s_describer addProperty:@"name" withClass:[NSString class]];
+		[s_describer addProperty:@"photographerLogin" withClass:[NSString class]];
+		[s_describer addArrayProperty:@"photoIds" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"int" propertyClass:[FLIntegerNumber class]], nil]];
 	});
 	return s_describer;
 }

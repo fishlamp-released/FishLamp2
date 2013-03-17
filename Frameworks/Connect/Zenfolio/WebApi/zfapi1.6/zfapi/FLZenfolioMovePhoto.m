@@ -108,10 +108,10 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] init];
 		}
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"srcSetId" propertyClass:[FLIntegerNumber class]] ];
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"photoId" propertyClass:[FLIntegerNumber class]] ];
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"destSetId" propertyClass:[FLIntegerNumber class]] ];
-		[s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"index" propertyClass:[FLIntegerNumber class]] ];
+		[s_describer addProperty:@"srcSetId" withClass:[FLIntegerNumber class] ];
+		[s_describer addProperty:@"photoId" withClass:[FLIntegerNumber class] ];
+		[s_describer addProperty:@"destSetId" withClass:[FLIntegerNumber class] ];
+		[s_describer addProperty:@"index" withClass:[FLIntegerNumber class] ];
 	});
 	return s_describer;
 }
