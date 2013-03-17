@@ -112,10 +112,10 @@
         {
             s_describer = [[FLObjectDescriber alloc] init];
         }
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"from" propertyClass:[FLFacebookEmailObject class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"to" propertyClass:[FLFacebookEmailObject class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"message" propertyClass:[NSString class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"created_time" propertyClass:[NSDate class] ] ];
+        [s_describer addProperty:@"from" withClass:[FLFacebookEmailObject class]];
+        [s_describer addProperty:@"to" withClass:[FLFacebookEmailObject class]];
+        [s_describer addProperty:@"message" withClass:[NSString class]];
+        [s_describer addProperty:@"created_time" withClass:[NSDate class]];
     });
     return s_describer;
 }

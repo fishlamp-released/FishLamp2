@@ -134,5 +134,42 @@ static NSMutableDictionary* s_typeRegistry = nil;
 }
 @end
 
+@implementation FLNamedType 
 
+@synthesize typeName = _name;
+
+- (id) initWithName:(NSString*) name withType:(FLType*) type;
++ (id) namedType:(NSString*) name withClass:(Class) aClass
++ (id) namedType:(NSString*) name withType:(FLType*) type;
+
+- (id) initWithName:(NSString*) name withClass:(Class) aClass {
+    self = [super initWithClass:aClass];
+    if(self) {
+        self.name = name;
+    }
+    return self;
+}
+- (id) initWithName:(NSString*) name withType:(Class) aClass {
+    self = [super initWithClass:aClass];
+    if(self) {
+        self.name = name;
+    }
+    return self;
+}
+
+
+
++ (id) namedType:(Class) aClass name:(NSString*) name {
+    return FLAutorelease([[[self class] alloc] initWithClass:aClass name:name]);
+}
+
+#if FL_MRC
+- (void) dealloc {
+    [_name release];
+    [super dealloc];
+}
+#endif
+
+
+@end
 

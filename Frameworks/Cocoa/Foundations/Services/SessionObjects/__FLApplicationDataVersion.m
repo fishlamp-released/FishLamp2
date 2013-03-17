@@ -60,8 +60,8 @@
         {
             s_describer = [[FLObjectDescriber alloc] init];
         }
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"userGuid" propertyClass:[NSString class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"versionString" propertyClass:[NSString class] ] ];
+        [s_describer addProperty:@"userGuid" withClass:[NSString class]];
+        [s_describer addProperty:@"versionString" withClass:[NSString class]];
     });
     return s_describer;
 }

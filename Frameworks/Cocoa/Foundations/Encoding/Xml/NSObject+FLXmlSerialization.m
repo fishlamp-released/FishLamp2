@@ -12,15 +12,15 @@
 @implementation NSObject (FLXmlSerialization)
 
 - (void) addToXmlElement:(FLXmlElement*) xmlElement
-     propertyDescription:(FLPropertyDescription*) description {
+     propertyType:(FLPropertyType*) description {
       
 	FLObjectDescriber* objectDescriber = [[self class] sharedObjectDescriber];
 	if(objectDescriber) {
-        for(FLPropertyDescription* property in [objectDescriber.propertyDescribers objectEnumerator]) {
+        for(FLPropertyType* property in [objectDescriber.propertyDescribers objectEnumerator]) {
             
             id object = [self valueForKey:property.propertyName];
             if(object) {
-                [xmlElement addElement:[FLObjectXmlElement objectXmlElement:object xmlElementTag:property.propertyName propertyDescription:property]];
+                [xmlElement addElement:[FLObjectXmlElement objectXmlElement:object xmlElementTag:property.propertyName propertyType:property]];
             }
         }
     }
@@ -45,25 +45,25 @@
 @implementation NSArray (FLXmlSerialization)
 
 - (void) addToXmlElement:(FLXmlElement*) xmlElement
-     propertyDescription:(FLPropertyDescription*) description {
+     propertyType:(FLPropertyType*) description {
     
 	if(description && self.count) {
 		NSArray* arrayTypes = description.arrayTypes;
 		      
 		if(arrayTypes.count == 1) {
-			FLPropertyDescription* elementDesc = [arrayTypes lastObject];
+			FLPropertyType* elementDesc = [arrayTypes lastObject];
 
 			for(id obj in self){
-                [xmlElement addElement:[FLObjectXmlElement objectXmlElement:obj xmlElementTag:elementDesc.propertyName propertyDescription:elementDesc]];
+                [xmlElement addElement:[FLObjectXmlElement objectXmlElement:obj xmlElementTag:elementDesc.propertyName propertyType:elementDesc]];
 			}
 		}
 		else {
 			for(id obj in self) {
 				// hmm. expensive. need to decide for each item.
 				
-				for(FLPropertyDescription* elementDesc in arrayTypes) {
+				for(FLPropertyType* elementDesc in arrayTypes) {
 					if([obj isKindOfClass:elementDesc.propertyType.classForType]) {
-                        [xmlElement addElement:[FLObjectXmlElement objectXmlElement:obj xmlElementTag:elementDesc.propertyName propertyDescription:elementDesc]];
+                        [xmlElement addElement:[FLObjectXmlElement objectXmlElement:obj xmlElementTag:elementDesc.propertyName propertyType:elementDesc]];
 						break;
 					}
 				}

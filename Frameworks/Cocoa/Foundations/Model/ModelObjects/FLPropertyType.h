@@ -10,18 +10,47 @@
 #import "FLType.h"
 #import "FLCoreTypes.h"
 
-@interface FLPropertyDescription :NSObject {
+@interface FLPropertyType : FLType {
 @private
-	NSString* _name;
-    FLType* _propertyType;
+    NSString* _propertyName;
+    NSArray* _arrayTypes;
+}
 
-//	SEL _getter;
-//    SEL _setter;
-    
-	NSArray* _arrayTypes;
+@property (readonly, strong, nonatomic) NSString* propertyName;
+
+@property (readonly, strong, nonatomic) NSArray* arrayTypes;
+@property (readonly, assign, nonatomic) BOOL isArray;
+
+- (id) initWithPropertyName:(NSString*) name
+              propertyClass:(Class) propertyClass;
+
+- (id) initWithPropertyName:(NSString*) name
+              propertyClass:(Class) propertyClass
+                 arrayTypes:(NSArray*) arrayTypes;
+
++ (FLPropertyType*) propertyType:(NSString*) name
+                                 propertyClass:(Class) propertyClass;
+
++ (FLPropertyType*) propertyType:(NSString*) name
+                                 propertyClass:(Class) propertyClass
+                                    arrayTypes:(NSArray*) arrayTypes;
+
+- (void) setPropertyValue:(id) value forObject:(id) object; 
+
+- (id) propertyValueForObject:(id) object;    
+
+@end
+
+
+
+@interface FLPropertyType () {
+@private
     BOOL _unboundedArray;
     BOOL _unboundedArrayItem;
 }
+
+
+// deprecated
 
 // When parsing XML, the element representing this property can be unbounded (we'd be an 
 // array in this case).
@@ -37,43 +66,15 @@
 @property (readonly, assign, nonatomic, getter=isUnboundedArray) BOOL unboundedArray;
 @property (readonly, assign, nonatomic, getter=isUnboundedArrayItem) BOOL unboundedArrayItem;
 
-@property (readonly, strong, nonatomic) NSString* propertyName;
-@property (readonly, strong, nonatomic) FLType* propertyType;
-
-@property (readonly, strong, nonatomic) NSArray* arrayTypes;
-@property (readonly, assign, nonatomic) BOOL isArray;
-
-//@property (readwrite, assign, nonatomic) SEL setter;
-//@property (readwrite, assign, nonatomic) SEL getter;
-
-- (id) initWithPropertyName:(NSString*) name
-              propertyClass:(Class) propertyClass;
-
-- (id) initWithPropertyName:(NSString*) name
-              propertyClass:(Class) propertyClass
-                 arrayTypes:(NSArray*) arrayTypes;
-
 - (id) initWithPropertyName:(NSString*) name
               propertyClass:(Class) propertyClass
                  arrayTypes:(NSArray*) arrayTypes
            isUnboundedArray:(BOOL) isUnboundedArray;
 
-+ (FLPropertyDescription*) propertyDescription:(NSString*) name
-              propertyClass:(Class) propertyClass;
-
-+ (FLPropertyDescription*) propertyDescription:(NSString*) name
-                                 propertyClass:(Class) propertyClass
-                                    arrayTypes:(NSArray*) arrayTypes;
-
-
-+ (FLPropertyDescription*) propertyDescription:(NSString*) name
++ (FLPropertyType*) propertyType:(NSString*) name
                                  propertyClass:(Class) propertyClass
                                     arrayTypes:(NSArray*) arrayTypes
                               isUnboundedArray:(BOOL) isUnboundedArray;
-    
-    
-- (void) setPropertyValue:(id) value forObject:(id) object; 
 
-- (id) propertyValueForObject:(id) object;    
 
 @end

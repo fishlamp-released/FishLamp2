@@ -68,9 +68,9 @@
         {
             s_describer = [[FLObjectDescriber alloc] init];
         }
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"user" propertyClass:[FLFacebookNamedObject class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"x" propertyClass:[FLIntegerNumber class]] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"y" propertyClass:[FLIntegerNumber class]] ];
+        [s_describer addProperty:@"user" withClass:[FLFacebookNamedObject class]];
+        [s_describer addProperty:@"x" withClass:[FLIntegerNumber class] ];
+        [s_describer addProperty:@"y" withClass:[FLIntegerNumber class] ];
     });
     return s_describer;
 }

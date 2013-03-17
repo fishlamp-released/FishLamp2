@@ -9,11 +9,11 @@
 #import "FLXmlObjectBuilder.h"
 #import "FLBase64Encoding.h"
 #import "FLDataEncoder.h"
-#import "FLPropertyDescription.h"
+#import "FLPropertyType.h"
 #import "FLObjectDescriber.h"
 
 @interface FLXmlObjectBuilder ()
-- (id) inflateObjectWithPropertyDescription:(FLPropertyDescription*) property withElement:(FLParsedItem*) element;
+- (id) inflateObjectWithPropertyDescription:(FLPropertyType*) property withElement:(FLParsedItem*) element;
 @end
 
 @implementation FLXmlObjectBuilder
@@ -38,10 +38,10 @@
     return FLAutorelease([[[self class] alloc] initWithDataDecoder:decoder]);
 }
 
-- (FLPropertyDescription*) arrayTypeForName:(NSString*) name
-                    withPropertyDescription:(FLPropertyDescription*) propertyDescription {
+- (FLPropertyType*) arrayTypeForName:(NSString*) name
+                    withPropertyDescription:(FLPropertyType*) propertyType {
 
-   for(FLPropertyDescription* arrayType in propertyDescription.arrayTypes) {
+   for(FLPropertyType* arrayType in propertyType.arrayTypes) {
         if(FLStringsAreEqual(name, arrayType.propertyName)) {
             return arrayType;
         }
@@ -52,16 +52,16 @@
 
 - (void) inflateElement:(FLParsedItem*) element 
               intoArray:(NSMutableArray*) newArray
-withPropertyDescription:(FLPropertyDescription*) propertyDescription {
+withPropertyDescription:(FLPropertyType*) propertyType {
 
     FLAssertNotNil_(newArray);
-    FLAssertNotNil_(propertyDescription);
-    FLConfirm_v(propertyDescription.isArray, @"expecting an array property");
+    FLAssertNotNil_(propertyType);
+    FLConfirm_v(propertyType.isArray, @"expecting an array property");
 
     for(id elementName in element.elements) {
         id elementOrArray = [element.elements objectForKey:elementName];
 
-        FLPropertyDescription* arrayType = [self arrayTypeForName:elementName withPropertyDescription:propertyDescription];
+        FLPropertyType* arrayType = [self arrayTypeForName:elementName withPropertyDescription:propertyType];
         FLConfirmNotNil_v(arrayType, @"arrayType for element \"%@\" not found", elementName);
         
         if([elementOrArray isKindOfClass:[NSArray class]]) {
@@ -77,7 +77,7 @@ withPropertyDescription:(FLPropertyDescription*) propertyDescription {
 }
 
 
-- (id) inflateObjectWithPropertyDescription:(FLPropertyDescription*) property withElement:(FLParsedItem*) element {
+- (id) inflateObjectWithPropertyDescription:(FLPropertyType*) property withElement:(FLParsedItem*) element {
     FLAssertNotNil_(property);
     
     id object = nil;
@@ -126,18 +126,18 @@ withPropertyDescription:(FLPropertyDescription*) propertyDescription {
     for(id elementName in element.elements) {
         id elementOrArray = [element.elements objectForKey:elementName];
 
-        FLPropertyDescription* propertyDescription = [describer.propertyDescribers objectForKey:elementName];
-        FLAssertNotNil_(propertyDescription);
+        FLPropertyType* propertyType = [describer.propertyDescribers objectForKey:elementName];
+        FLAssertNotNil_(propertyType);
 
         id propertyValue = nil;
         
-        if(propertyDescription.isArray) {
+        if(propertyType.isArray) {
             propertyValue = [NSMutableArray array];
 
             if([elementOrArray isKindOfClass:[FLParsedItem class]]) {
                 [self inflateElement:elementOrArray
                            intoArray:propertyValue 
-             withPropertyDescription:propertyDescription];
+             withPropertyDescription:propertyType];
             }
             else {
             
@@ -145,7 +145,7 @@ withPropertyDescription:(FLPropertyDescription*) propertyDescription {
                 for(FLParsedItem* child in elementOrArray) {
                     [self inflateElement:child
                                intoArray:propertyValue 
-                              withPropertyDescription:propertyDescription];
+                              withPropertyDescription:propertyType];
                                 
                 }
 
@@ -153,12 +153,12 @@ withPropertyDescription:(FLPropertyDescription*) propertyDescription {
         }
         else {
             FLAssert_([elementOrArray isKindOfClass:[FLParsedItem class]]);
-            propertyValue = [self inflateObjectWithPropertyDescription:propertyDescription 
+            propertyValue = [self inflateObjectWithPropertyDescription:propertyType 
                                                                      withElement:elementOrArray];
         }
         
         if(propertyValue) {
-            [object setValue:propertyValue forKey:propertyDescription.propertyName];
+            [object setValue:propertyValue forKey:propertyType.propertyName];
         }
     }
 }

@@ -24,6 +24,10 @@
 	return self;
 }
 
++ (id) dataEncoder {
+    return FLAutorelease([[[self class] alloc] init]);
+}
+
 #if FL_MRC
 - (void) dealloc {
     [_numberFormatter release];

@@ -131,12 +131,12 @@
         {
             s_describer = [[FLObjectDescriber alloc] init];
         }
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"owner" propertyClass:[NSString class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"icon" propertyClass:[NSString class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"description" propertyClass:[NSString class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"link" propertyClass:[NSString class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"privacy" propertyClass:[NSString class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"updated_time" propertyClass:[NSDate class] ] ];
+        [s_describer addProperty:@"owner" withClass:[NSString class]];
+        [s_describer addProperty:@"icon" withClass:[NSString class]];
+        [s_describer addProperty:@"description" withClass:[NSString class]];
+        [s_describer addProperty:@"link" withClass:[NSString class]];
+        [s_describer addProperty:@"privacy" withClass:[NSString class]];
+        [s_describer addProperty:@"updated_time" withClass:[NSDate class]];
     });
     return s_describer;
 }

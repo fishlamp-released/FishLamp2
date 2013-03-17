@@ -136,13 +136,13 @@
         {
             s_describer = [[FLObjectDescriber alloc] init];
         }
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"speed" propertyClass:[FLFloatNumber class]] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"repeat" propertyClass:[FLBoolNumber class]] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"autoStart" propertyClass:[FLBoolNumber class]] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"autoShowCaptions" propertyClass:[FLBoolNumber class]] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"random" propertyClass:[FLBoolNumber class]] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"playMusic" propertyClass:[FLBoolNumber class]] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"mediaItemList" propertyClass:[NSMutableArray class] ] ];
+        [s_describer addProperty:@"speed" withClass:[FLFloatNumber class] ];
+        [s_describer addProperty:@"repeat" withClass:[FLBoolNumber class] ];
+        [s_describer addProperty:@"autoStart" withClass:[FLBoolNumber class] ];
+        [s_describer addProperty:@"autoShowCaptions" withClass:[FLBoolNumber class] ];
+        [s_describer addProperty:@"random" withClass:[FLBoolNumber class] ];
+        [s_describer addProperty:@"playMusic" withClass:[FLBoolNumber class] ];
+        [s_describer addProperty:@"mediaItemList" withClass:[NSMutableArray class]];
     });
     return s_describer;
 }

@@ -85,8 +85,8 @@
         {
             s_describer = [[FLObjectDescriber alloc] init];
         }
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"error" propertyClass:[NSString class] ] ];
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"request" propertyClass:[NSString class] ] ];
+        [s_describer addProperty:@"error" withClass:[NSString class]];
+        [s_describer addProperty:@"request" withClass:[NSString class]];
     });
     return s_describer;
 }

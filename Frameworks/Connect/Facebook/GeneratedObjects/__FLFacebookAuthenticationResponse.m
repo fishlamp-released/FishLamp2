@@ -91,9 +91,9 @@
         {
             s_describer = [[FLObjectDescriber alloc] init];
         }
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"session" propertyClass:[FLFacebookNetworkSession class]] ];
+        [s_describer addProperty:@"session" withClass:[FLFacebookNetworkSession class] ];
         
-        [s_describer addPropertyDescriber:[FLPropertyDescription propertyDescription:@"redirectURL" propertyClass:[NSURL class]]];
+        [s_describer addProperty:@"redirectURL" withClass:[NSURL class]];
     });
     return s_describer;
 }

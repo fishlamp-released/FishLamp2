@@ -11,7 +11,7 @@
 #import "FLObjectInflator.h"
 #import "FLObjectDescriber.h"
 #import "FLPropertyInflator.h"
-#import "FLPropertyDescription.h"
+#import "FLPropertyType.h"
 
 #import "FLXmlObjectBuilder.h"
 #import "FLCoreTypes.h"
@@ -37,7 +37,7 @@
         return NO;
     }
                     
-	FLPropertyDescription* prop = [describer propertyDescriberForPropertyName:propertyInflator.propertyName];
+	FLPropertyType* prop = [describer propertyDescriberForPropertyName:propertyInflator.propertyName];
     
 	if(prop && [prop.propertyType.classForType sharedObjectDescriber]) {
 		    // this actually might return self or an inflator.
@@ -87,20 +87,20 @@
         
 		FLObjectDescriber* objectDescriber = [prev.containingObject objectDescriber];
 		
-        FLPropertyDescription* parentDesc = [objectDescriber propertyDescriberForPropertyName:prev.propertyName];
+        FLPropertyType* parentDesc = [objectDescriber propertyDescriberForPropertyName:prev.propertyName];
 		NSArray* arrayTypes = parentDesc.arrayTypes;
 		        
-		for(FLPropertyDescription* propertyDescription in arrayTypes) {
+		for(FLPropertyType* propertyType in arrayTypes) {
 			
-            if(FLStringsAreEqual(propertyDescription.propertyName, propertyInflator.propertyName)) {
+            if(FLStringsAreEqual(propertyType.propertyName, propertyInflator.propertyName)) {
 				
-				propertyInflator.propertyType = propertyDescription.propertyType;
+				propertyInflator.propertyType = propertyType.propertyType;
 
-                FLAssertIsNotNil_(propertyDescription.propertyType.classForType);
+                FLAssertIsNotNil_(propertyType.propertyType.classForType);
 
-                FLObjectDescriber* arrayItemDescriber = [propertyDescription.propertyType.classForType sharedObjectDescriber]; 
+                FLObjectDescriber* arrayItemDescriber = [propertyType.propertyType.classForType sharedObjectDescriber]; 
                 if(arrayItemDescriber) {
-                    id obj = FLAutorelease([[propertyDescription.propertyType.classForType alloc] init]);
+                    id obj = FLAutorelease([[propertyType.propertyType.classForType alloc] init]);
                     FLAssertIsNotNil_(obj);
 					[self addObject:obj];
 

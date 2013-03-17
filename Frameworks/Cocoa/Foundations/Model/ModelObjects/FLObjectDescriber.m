@@ -29,7 +29,7 @@
 - (id) initWithPropertyDescribers:(NSDictionary*) describers {
 	if((self = [super init])) {
 		_properties = [[NSMutableDictionary alloc] init];
-		for(FLPropertyDescription* prop in describers.objectEnumerator) {
+		for(FLPropertyType* prop in describers.objectEnumerator) {
 			[self addPropertyDescriber:prop forPropertyName:prop.propertyName];
 		}
 	}
@@ -55,26 +55,28 @@
 	return desc;
 }
 
-- (void) addPropertyDescriber:(FLPropertyDescription*) objectDescriber forPropertyName:(NSString*) propertyName {
+- (void) addPropertyDescriber:(FLPropertyType*) objectDescriber forPropertyName:(NSString*) propertyName {
 	[_properties setObject:objectDescriber forKey:propertyName];
 	
 	if(objectDescriber.isUnboundedArray) {
-		for(FLPropertyDescription* prop in objectDescriber.arrayTypes) {
+		for(FLPropertyType* prop in objectDescriber.arrayTypes) {
 			FLAssertIsNil_([_properties objectForKey:prop.propertyName]);
 			[_properties setObject:prop forKey:prop.propertyName];
 		}
 	}
 }
 
-- (void) addPropertyDescriber:(FLPropertyDescription*) propertyDescriber {
+- (void) addPropertyDescriber:(FLPropertyType*) propertyDescriber {
     [self addPropertyDescriber:propertyDescriber forPropertyName:propertyDescriber.propertyName];
 }
 
-- (FLPropertyDescription*) propertyDescriberForPropertyName:(NSString*) propertyName {
+- (FLPropertyType*) propertyDescriberForPropertyName:(NSString*) propertyName {
 	return [_properties objectForKey:propertyName];
 }
 
-
+- (void) addProperty:(NSString*) name withClass:(Class) propertyClass {
+    [self addPropertyDescriber:[FLPropertyType propertyType:name propertyClass:propertyClass]];
+}
 
 - (void) addPropertiesForClass:(Class) class {
 	if(class == [NSObject class]) {
@@ -102,7 +104,7 @@
 
 // TODO: build up FLType
 
-            [self addPropertyDescriber:[FLPropertyDescription propertyDescription:propertyName propertyClass:theClass]];
+            [self addPropertyDescriber:[FLPropertyType propertyType:propertyName propertyClass:theClass]];
 							 
 			free(className);
 	
@@ -119,10 +121,14 @@
 }
 
 //- (void) visitAllProperties:(FLObjectDescriberPropertyVisitor) visitor {
-//    for(FLPropertyDescription* property in _properties.objectEnumerator) {
+//    for(FLPropertyType* property in _properties.objectEnumerator) {
 //        visitor(property);
 //    }
 //}
+
+- (void) addArrayProperty:(NSString*) name withFoopyName:(NSString*) name withFoopyType:(Class) aClass {
+
+}
 
 @end
 
@@ -191,7 +197,7 @@
 
     FLObjectDescriber* describer = [[self class] sharedObjectDescriber];
 
-    for(FLPropertyDescription* property in describer.propertyDescribers.objectEnumerator) {
+    for(FLPropertyType* property in describer.propertyDescribers.objectEnumerator) {
 
         id value = [property propertyValueForObject:self];
 
@@ -212,14 +218,14 @@
 
 
 - (void) performSelectorOnDescribedObjectAndProperties:(SEL) sel {
-    [self visitDescribedObjectAndProperties:^(id object, FLPropertyDescription* prop, BOOL* stop) {
+    [self visitDescribedObjectAndProperties:^(id object, FLPropertyType* prop, BOOL* stop) {
         FLPerformSelector(object, sel);
     }];
 
 }
 - (void) performSelectorOnDescribedObjectAndProperties:(SEL) sel
                                             withObject:(id) object1 {
-    [self visitDescribedObjectAndProperties:^(id object, FLPropertyDescription* prop, BOOL* stop) {
+    [self visitDescribedObjectAndProperties:^(id object, FLPropertyType* prop, BOOL* stop) {
         FLPerformSelector1(object, sel, object1);
     }];
 
@@ -227,7 +233,7 @@
 - (void) performSelectorOnDescribedObjectAndProperties:(SEL) sel
                                             withObject:(id) object1
                                             withObject:(id) object2{
-    [self visitDescribedObjectAndProperties:^(id object, FLPropertyDescription* prop, BOOL* stop) {
+    [self visitDescribedObjectAndProperties:^(id object, FLPropertyType* prop, BOOL* stop) {
         FLPerformSelector2(object, sel, object1, object2);
     }];
 
@@ -236,7 +242,7 @@
                                             withObject:(id) object1
                                             withObject:(id) object2
                                             withObject:(id) object3 {
-    [self visitDescribedObjectAndProperties:^(id object, FLPropertyDescription* prop, BOOL* stop) {
+    [self visitDescribedObjectAndProperties:^(id object, FLPropertyType* prop, BOOL* stop) {
         FLPerformSelector3(object, sel, object1, object2, object3);
     }];
 
@@ -280,7 +286,7 @@
 //}
 //
 //void FLEqualMultiObjectHandler(id inner, id outer, FLMergeMode mergeMode, NSArray* arrayItemTypes) {
-//	for(FLPropertyDescription* desc in arrayItemTypes) {
+//	for(FLPropertyType* desc in arrayItemTypes) {
 //		if([outer isKindOfClass:desc.propertyType.classForType]) {
 //			FLMergeObjects(inner, outer, mergeMode); 
 //			break;
@@ -307,7 +313,7 @@ void FLMergeObjectArrays(NSMutableArray* dest,
 			id inner = [dest objectAtIndex:j];
 			if([inner isEqual:outer]) {	
                 
-                for(FLPropertyDescription* desc in arrayItemTypes) {
+                for(FLPropertyType* desc in arrayItemTypes) {
                     if([outer isKindOfClass:desc.propertyType.classForType]) {
                         FLMergeObjects(inner, outer, mergeMode); 
                         foundIt = YES;
@@ -356,7 +362,7 @@ void FLMergeObjects(id dest, id src, FLMergeMode mergeMode) {
 					[dest setValue:srcObject forKey:srcPropName];
 				}
 				else {
-					FLPropertyDescription* srcProp = [srcDescriber propertyDescriberForPropertyName:srcPropName];
+					FLPropertyType* srcProp = [srcDescriber propertyDescriberForPropertyName:srcPropName];
 					FLObjectDescriber* propDescriber = [srcProp.propertyType.classForType sharedObjectDescriber];
                     
                     if(!propDescriber) {

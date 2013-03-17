@@ -16,7 +16,6 @@ typedef uint32_t FLTypeID;
 @interface FLType : NSObject<NSCopying> {
 @private
     Class _classForType;
-//    FLTypeID _typeID;
     SEL _encodeSelector;
     SEL _decodeSelector;
 }
@@ -28,7 +27,6 @@ typedef uint32_t FLTypeID;
 - (id) initWithClass:(Class) aClass encoder:(SEL) encoder decoder:(SEL) decoder;
 
 + (id) typeWithClass:(Class) aClass;
-//+ (id) typeWithClass:(Class) aClass typeID:(FLTypeID) typeID;
 
 // inflation helpers
 + (id) registeredTypeForName:(NSString*) string;
@@ -88,4 +86,13 @@ typedef uint32_t FLTypeID;
 - (FLType*) type;
 @end
 
-
+@interface FLNamedTyped : FLType {
+@private
+    NSString* _name;
+}
+@property (readonly, strong, nonatomic) NSString* name;
+- (id) initWithName:(NSString*) name withClass:(Class) aClass;
+- (id) initWithName:(NSString*) name withType:(FLType*) type;
++ (id) namedType:(NSString*) name withClass:(Class) aClass;
++ (id) namedType:(NSString*) name withType:(FLType*) type;
+@end

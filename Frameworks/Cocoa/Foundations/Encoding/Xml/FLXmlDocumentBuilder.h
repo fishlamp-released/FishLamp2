@@ -8,7 +8,7 @@
 
 #import "FLCocoaRequired.h"
 #import "FishLampCore.h"
-#import "FLPropertyDescription.h"
+#import "FLPropertyType.h"
 #import "FLXmlElement.h"
 #import "FLDataEncoding.h"
 #import "FLObjectDescriber.h"

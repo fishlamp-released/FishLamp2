@@ -8,7 +8,7 @@
 
 #import "FLCocoaRequired.h"
 #import "FishLampCore.h"
-#import "FLPropertyDescription.h"
+#import "FLPropertyType.h"
 
 @interface FLObjectDescriber : NSObject<NSCopying> {
 @private 
@@ -20,20 +20,25 @@
 
 @property (readonly, copy, nonatomic) NSDictionary* propertyDescribers;
 
-- (void) addPropertyDescriber:(FLPropertyDescription*) propertyDescriber forPropertyName:(NSString*) propertyName;
-- (void) addPropertyDescriber:(FLPropertyDescription*) propertyDescriber;
+- (void) addPropertyDescriber:(FLPropertyType*) propertyDescriber forPropertyName:(NSString*) propertyName;
 
-- (FLPropertyDescription*) propertyDescriberForPropertyName:(NSString*) propertyName;
+- (void) addPropertyDescriber:(FLPropertyType*) propertyDescriber;
+
+- (FLPropertyType*) propertyDescriberForPropertyName:(NSString*) propertyName;
 
 
 // this fills in all the properties for the class, including superclasses (Not including NSObject) using Objective-c runtime info.
 - (void) addPropertiesForClass:(Class) aClass;
 
-//- (void) visitAllProperties:(FLObjectDescriberPropertyVisitor) visitor;
+- (void) addProperty:(NSString*) name withClass:(Class) propertyClass;
+
+- (void) addArrayProperty:(NSString*) name withFoopyName:(NSString*) name withFoopyType:(Class) aClass;
+
+- (void) addArrayProperty:(NSString*) name withArrayTypes:(NSArray*) types;
 
 @end
 
-typedef void (^FLObjectDescriberPropertyVisitor)(id object, FLPropertyDescription* propertyDescription, BOOL* stop);
+typedef void (^FLObjectDescriberPropertyVisitor)(id object, FLPropertyType* propertyType, BOOL* stop);
 
 @interface NSObject (FLObjectDescriber)
 
