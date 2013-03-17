@@ -92,12 +92,12 @@
     return FLAutorelease([[FLOAuthApp alloc] init]);
 }
 
-+ (FLObjectDescriber*) sharedObjectDescriber
++ (FLObjectDescriber*) objectDescriber
 {
     static FLObjectDescriber* s_describer = nil;
     static dispatch_once_t pred = 0;
     dispatch_once(&pred, ^{
-        s_describer = [[super sharedObjectDescriber] copy];
+        
         if(!s_describer)
         {
             s_describer = [[FLObjectDescriber alloc] init];

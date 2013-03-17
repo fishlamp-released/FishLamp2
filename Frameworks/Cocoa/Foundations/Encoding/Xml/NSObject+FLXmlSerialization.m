@@ -14,7 +14,7 @@
 - (void) addToXmlElement:(FLXmlElement*) xmlElement
             propertyType:(FLPropertyType*) propertyType {
       
-	FLObjectDescriber* objectDescriber = [[self class] sharedObjectDescriber];
+	FLObjectDescriber* objectDescriber = [[self class] objectDescriber];
 	if(objectDescriber) {
         for(FLPropertyType* property in [objectDescriber.properties objectEnumerator]) {
             

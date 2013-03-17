@@ -22,7 +22,7 @@
 {
 //	FLAssertStringIsNotEmpty_(key);
 //
-//	FLObjectDescriber* describer = [[self class] sharedObjectDescriber];
+//	FLObjectDescriber* describer = [[self class] objectDescriber];
 //	FLAssertIsNotNil_(describer);
 //
 //	FLPropertyType* desc = [describer propertyForName:key];
@@ -62,7 +62,7 @@
 {
 //	FLAssertStringIsNotEmpty_(key);
 //
-//	FLObjectDescriber* describer = [[self class] sharedObjectDescriber];
+//	FLObjectDescriber* describer = [[self class] objectDescriber];
 //	FLAssertIsNotNil_(describer);
 //
 //	FLPropertyType* desc = [describer propertyForName:key];
@@ -100,7 +100,7 @@
 	FLAssertStringIsNotEmpty_(arrayItemKey);
 
 
-	FLObjectDescriber* describer = [[parentObject class] sharedObjectDescriber];
+	FLObjectDescriber* describer = [[parentObject class] objectDescriber];
 	FLAssertIsNotNil_(describer);
 
 	FLPropertyType* desc = [describer propertyForName:arrayItemKey];
@@ -113,7 +113,7 @@
 		//	if(FLStringsAreEqual(property.propertyName, arrayItemKey))
 			{
                 FLAssertIsNotNil_(property.propertyType.classForType);
-                FLObjectDescriber* propDescriber = [property.propertyType.classForType sharedObjectDescriber];
+                FLObjectDescriber* propDescriber = [property.propertyType.classForType objectDescriber];
             
 				if(propDescriber)
 				{

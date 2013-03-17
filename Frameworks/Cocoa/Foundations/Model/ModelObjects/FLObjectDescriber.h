@@ -10,17 +10,19 @@
 #import "FishLampCore.h"
 #import "FLPropertyType.h"
 
-@interface FLObjectDescriber : NSObject<NSCopying> {
+@interface FLObjectDescriber : NSObject {
 @private 
+    Class _describingClass;
 	NSMutableDictionary* _properties;
 }
 @property (readonly, copy, nonatomic) NSDictionary* properties;
+@property (readonly, assign, nonatomic) Class describingClass;
 
 - (id) initWithClass:(Class) aClass;
-- (id) initWithProperties:(NSDictionary*) dictionary;
+
++ (id) objectDescriber:(Class) aClass;
 
 - (FLPropertyType*) propertyForName:(NSString*) propertyName;
-
 
 - (void) addProperty:(FLPropertyType*) property;
 
@@ -30,17 +32,13 @@
 
 - (void) addProperty:(NSString*) name withArrayTypes:(NSArray*) types;
 
-
-// this fills in all the properties for the class, including superclasses (Not including NSObject) using Objective-c runtime info.
-- (void) addPropertiesForClass:(Class) aClass;
-
 @end
 
 typedef void (^FLObjectDescriberPropertyVisitor)(id object, FLPropertyType* propertyType, BOOL* stop);
 
 @interface NSObject (FLObjectDescriber)
 
-+ (FLObjectDescriber*) sharedObjectDescriber;
++ (FLObjectDescriber*) objectDescriber;
 
 @property (readonly, assign, nonatomic) FLObjectDescriber* objectDescriber;
 
@@ -67,3 +65,9 @@ typedef enum {
 // this only works for objects with valid describers.
 extern void FLMergeObjects(id dest, id src, FLMergeMode mergeMode);
 extern void FLMergeObjectArrays(NSMutableArray* dest, NSArray* src, FLMergeMode mergeMode, NSArray* arrayItemTypes);
+
+
+@interface FLDescribeableObject : NSObject {
+@private
+}
+@end

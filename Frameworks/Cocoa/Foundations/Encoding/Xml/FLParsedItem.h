@@ -43,3 +43,17 @@
 - (NSDictionary*) childrenAtPath:(NSString*) parentalPath;
 
 @end
+
+//@interface FLParsedItemIterator : NSObject {
+//@private
+//    FLParsedItem* _item;
+//    FLParsedItem* _top;
+//}
+//
+//@property (readonly, strong, nonatomic) FLParsedItem* item;
+//
+//- (void) openItem:(NSString*) name;
+//- (void) closeItem;
+//
+//
+//@end

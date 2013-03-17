@@ -30,6 +30,10 @@ typedef enum {
 
 + (id) xmlParser;
 
+- (FLParsedItem*) parseFileAtPath:(NSString*) path;
+- (FLParsedItem*) parseFileAtURL:(NSURL*) url;
+
+
 - (FLParsedItem*) parseData:(NSData*) data;
 
 // optional override

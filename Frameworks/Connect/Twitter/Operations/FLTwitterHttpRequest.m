@@ -50,7 +50,7 @@
 	
 	if(input && [self willAddParametersToRequestContent:oauthHeader]) {
         int count = 0;
-        FLObjectDescriber* describer = [[input class] sharedObjectDescriber];
+        FLObjectDescriber* describer = [[input class] objectDescriber];
         for(NSString* propertyName in describer.properties)
         {
             id obj = [input valueForKey:propertyName];

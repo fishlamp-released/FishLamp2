@@ -13,7 +13,7 @@
 
 + (BOOL) _setDataInObject:(id) object key:(NSString*) key data:(id) data strict:(BOOL)strict
 {
-//	FLObjectDescriber* describer = [[object class] sharedObjectDescriber];
+//	FLObjectDescriber* describer = [[object class] objectDescriber];
 //	FLAssertIsNotNil_(describer);
 //
 //	FLPropertyType* desc = [describer propertyForName:key];

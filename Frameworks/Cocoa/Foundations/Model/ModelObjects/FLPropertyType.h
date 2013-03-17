@@ -44,6 +44,12 @@
 
 @end
 
+@interface NSObject (FLNamedType)
+
++ (FLPropertyType*) namedType:(NSString*) name;
+
+@end
+
 
 
 //@interface FLPropertyType () {

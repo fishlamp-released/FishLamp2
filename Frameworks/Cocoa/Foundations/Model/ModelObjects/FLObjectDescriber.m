@@ -12,37 +12,45 @@
 
 @interface FLObjectDescriber ()
 @property (readwrite, copy, nonatomic) NSDictionary* properties;
+@property (readwrite, assign, nonatomic) Class describingClass;
+- (void) addSuperclassProperties;
+- (void) discoverProperties;
 @end
 
 @implementation FLObjectDescriber
 
 @synthesize properties = _properties;
+@synthesize describingClass = _describingClass;
 
-- (id) init {
+//+ (void) addPropertiesForClass:(Class) class dictionary:(NSMutableDictionary*) dictionary {
+//	if(class) {
+//        FLObjectDescriber* describer = [class objectDescriber];
+//        if(describer) {
+//            [self addPropertiesForClass:[class superclass] dictionary:dictionary];
+//            [dictionary addEntriesFromDictionary:describer.properties];
+//        }
+//    }
+//}
+
+- (id) initWithClass:(Class) aClass withProperties:(NSDictionary*) properties {
+    FLAssertNotNil_(aClass);
 	if((self = [super init])) {
-		_properties = [[NSMutableDictionary alloc] init];
+        _describingClass = aClass;
+        _properties = [properties mutableCopy];
 	}
 	
 	return self;
 }
 
-- (id) initWithProperties:(NSDictionary*) describers {
+- (id) initWithClass:(Class) aClass {
+    FLAssertNotNil_(aClass);
 	if((self = [super init])) {
-		_properties = [[NSMutableDictionary alloc] init];
-		for(FLPropertyType* prop in describers.objectEnumerator) {
-			[self addProperty:prop forPropertyName:prop.propertyName];
-		}
+        _describingClass = aClass;
+        _properties = [[NSMutableDictionary alloc] init];
+        [self addSuperclassProperties];
+        [self discoverProperties];
 	}
-	
-	return self;
-}
-
-- (id) _initWithDictionaryForCopy:(NSDictionary*) dictionary {
-	if((self = [super init])) {
-		_properties = [dictionary mutableCopy];
-	}
-	
-	return self;
+    return self;
 }
 
 - (void) dealloc {
@@ -51,8 +59,7 @@
 }
 
 - (id) copyWithZone:(NSZone *)zone {
-	FLObjectDescriber* desc = [[FLObjectDescriber alloc] _initWithDictionaryForCopy:self.properties];
-	return desc;
+	return [[FLObjectDescriber alloc] initWithClass:self.class withProperties:self.properties];
 }
 
 - (void) addProperty:(FLPropertyType*) objectDescriber forPropertyName:(NSString*) propertyName {
@@ -67,18 +74,17 @@
 	return [_properties objectForKey:propertyName];
 }
 
-- (void) addPropertiesForClass:(Class) class {
-	if(class == [NSObject class]) {
-		return;
-	}
+- (void) addSuperclassProperties {
+    FLObjectDescriber* describer = [[_describingClass superclass] objectDescriber];
+    if(describer) {
+        [_properties addEntriesFromDictionary:describer.properties];
+    }
+}
 
-	Class superclass = class_getSuperclass(class);
-	if(superclass) {
-		[self addPropertiesForClass:superclass];
-	}
-
-	unsigned int propertyCount = 0;
-	objc_property_t* properties = class_copyPropertyList(class, &propertyCount);
+- (void) discoverProperties {
+    
+    unsigned int propertyCount = 0;
+	objc_property_t* properties = class_copyPropertyList(_describingClass, &propertyCount);
 
 	for(unsigned int i = 0; i < propertyCount; i++) {
 		char* className = copyTypeNameFromProperty(properties[i]);
@@ -93,8 +99,10 @@
 
 // TODO: build up FLType
 
-            [self addProperty:[FLPropertyType propertyType:propertyName propertyClass:theClass]];
-							 
+            FLPropertyType* property = [FLPropertyType propertyType:propertyName propertyClass:theClass];
+
+            [self addProperty:property];
+						 
 			free(className);
 	
 		//	printf("\tname: %s, value: '%s'\n", attrList[j].name, attrList[j].value);
@@ -105,13 +113,8 @@
     free(properties);
 }
 
-- (id) initWithClass:(Class) aClass {
-    self = [super init];
-    if(self) {
-        [self addPropertiesForClass:aClass];
-    }
-    
-    return self;
++ (id) objectDescriber:(Class) aClass {
+    return FLAutorelease([[[self class] alloc] initWithClass:aClass]);
 }
 
 - (NSString*) description {
@@ -176,14 +179,25 @@
 }
 @end
 
-@implementation NSObject (FLObjectDescriber)
+@implementation FLDescribeableObject
 
-+ (FLObjectDescriber*) sharedObjectDescriber {
++ (FLObjectDescriber*) objectDescriber {
+    @synchronized(self) {
+        return [FLObjectDescriber objectDescriber:[self class]];
+    }
 	return nil;
 }
 
+@end
+
+@implementation NSObject (FLObjectDescriber)
+
++ (FLObjectDescriber*) objectDescriber {
+    return nil;
+}
+
 - (FLObjectDescriber*) objectDescriber {
-    return [[self class] sharedObjectDescriber];
+    return [[self class] objectDescriber];
 }
 
 - (void) visitSelf:(FLObjectDescriberPropertyVisitor) visitor
@@ -195,7 +209,7 @@
         return;
     }
 
-    FLObjectDescriber* describer = [[self class] sharedObjectDescriber];
+    FLObjectDescriber* describer = [[self class] objectDescriber];
 
     for(FLPropertyType* property in describer.properties.objectEnumerator) {
 
@@ -348,7 +362,7 @@ void FLMergeObjects(id dest, id src, FLMergeMode mergeMode) {
 	if(dest && src) {
 		FLAssert_v([dest isKindOfClass:[src class]], @"objects are different classes");
 
-		FLObjectDescriber* srcDescriber = [[src class] sharedObjectDescriber];
+		FLObjectDescriber* srcDescriber = [[src class] objectDescriber];
         if(!srcDescriber) {
             return;
         }   
@@ -363,7 +377,7 @@ void FLMergeObjects(id dest, id src, FLMergeMode mergeMode) {
 				}
 				else {
 					FLPropertyType* srcProp = [srcDescriber propertyForName:srcPropName];
-					FLObjectDescriber* propDescriber = [srcProp.propertyClass sharedObjectDescriber];
+					FLObjectDescriber* propDescriber = [srcProp.propertyClass objectDescriber];
                     
                     if(!propDescriber) {
 					   if(mergeMode == FLMergeModeSourceWins) {

@@ -37,7 +37,7 @@
 - (void) addParametersToURLString:(NSMutableString*) url {
 	if(self.inputObject) {
 		
-        FLObjectDescriber* describer = [[self.inputObject class] sharedObjectDescriber];
+        FLObjectDescriber* describer = [[self.inputObject class] objectDescriber];
 	
 		for(NSString* propertyName in describer.properties) {
 			id obj = [self.inputObject valueForKey:propertyName];
