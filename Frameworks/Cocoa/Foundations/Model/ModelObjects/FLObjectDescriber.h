@@ -44,25 +44,9 @@
 
 @end
 
-typedef void (^FLObjectDescriberPropertyVisitor)(id object, FLObjectDescriber* objectDescriber, BOOL* stop);
-
 @interface NSObject (FLObjectDescriber)
-
 + (FLObjectDescriber*) objectDescriber;
 - (FLObjectDescriber*) objectDescriber;
-
-//- (void) visitDescribedObjectAndProperties:(FLObjectDescriberPropertyVisitor) visitor;
-//
-//- (void) performSelectorOnDescribedObjectAndProperties:(SEL) sel;
-//- (void) performSelectorOnDescribedObjectAndProperties:(SEL) sel withObject:(id) object;
-//- (void) performSelectorOnDescribedObjectAndProperties:(SEL) sel withObject:(id) object1 withObject:(id) object2;
-//- (void) performSelectorOnDescribedObjectAndProperties:(SEL) sel withObject:(id) object1 withObject:(id) object2 withObject:(id) object3;
-//
-//
-//// ovverride this in your collections or whatever
-//- (void) visitSelf:(FLObjectDescriberPropertyVisitor) visitor
-//              stop:(BOOL*) stop;
-
 @end
 
 typedef enum {

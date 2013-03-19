@@ -10,6 +10,7 @@
 
 #import "FLObjcRuntime.h"
 #import "FLPropertyAttributes.h"
+typedef void (^FLObjectDescriberPropertyVisitor)(id object, FLObjectDescriber* objectDescriber, BOOL* stop);
 
 @interface FLObjectDescriber ()
 @property (readwrite, copy, nonatomic) NSDictionary* properties;

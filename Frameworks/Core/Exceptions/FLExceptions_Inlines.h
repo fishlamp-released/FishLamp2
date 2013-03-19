@@ -12,7 +12,7 @@ FL_SHIP_ONLY_INLINE
 id FLThrowIfError(id object) {
     NSError* error = [object error];
     if(error) { 
-        @throw [NSException exceptionWithError:[FLMutableError mutableErrorWithError:error stackTrace:FLCreateStackTrace(__INCLUDE_STACK_TRACE__)]];
+        [[NSException exceptionWithError:[FLMutableError mutableErrorWithError:error stackTrace:FLCreateStackTrace(__INCLUDE_STACK_TRACE__)]] raise];
     }
     return object;
 }
