@@ -123,6 +123,8 @@ FLStringFormatterLineUpdate MakeInfo(BOOL closePreviousLine,
 
 
 - (void) appendLine:(NSString*) string {
+    FLAssertNotNil_(string);
+    
     [self stringFormatter:self 
                       appendString:str_or_nil(string)
             appendAttributedString:nil

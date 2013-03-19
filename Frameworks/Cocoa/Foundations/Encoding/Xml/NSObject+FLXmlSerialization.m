@@ -12,25 +12,25 @@
 @implementation NSObject (FLXmlSerialization)
 
 - (void) addToXmlElement:(FLXmlElement*) xmlElement
-            propertyType:(FLPropertyType*) propertyType {
+            objectDescriber:(FLObjectDescriber*) parentObject {
       
 	FLObjectDescriber* objectDescriber = [[self class] objectDescriber];
 	if(objectDescriber) {
-        for(FLPropertyType* property in [objectDescriber.properties objectEnumerator]) {
-            
-            id object = [self valueForKey:property.propertyName];
-            if(object) {
-                [xmlElement addElement:[FLObjectXmlElement objectXmlElement:object xmlElementTag:property.propertyName propertyType:property]];
+        for(FLObjectDescriber* property in [objectDescriber.properties objectEnumerator]) {
+            if(property.objectEncoder) {
+                id object = [self valueForKey:property.objectName];
+                if(object) {
+                    [xmlElement addElement:[FLObjectXmlElement objectXmlElement:object xmlElementTag:property.objectName objectDescriber:property]];
+                }
             }
         }
     }
     else {
-        id<FLDataEncoding> encoder = xmlElement.dataEncoder;
-        FLAssertNotNil_(encoder);
-        
-        NSString* line = [propertyType.propertyType encodeObjectToString:self withEncoder:encoder];
-
-        [xmlElement appendLine:line];
+        FLObjectEncoder* objectEncoder = [parentObject objectEncoder];
+        if(objectEncoder) {
+            NSString* line = [objectEncoder encodeObjectToString:self withEncoder:xmlElement.dataEncoder];
+            [xmlElement appendLine:line];
+        }
     }
 }
 
@@ -40,25 +40,25 @@
 @implementation NSArray (FLXmlSerialization)
 
 - (void) addToXmlElement:(FLXmlElement*) xmlElement
-     propertyType:(FLPropertyType*) description {
+     objectDescriber:(FLObjectDescriber*) description {
     
 	if(description && self.count) {
-		NSArray* arrayTypes = description.arrayTypes;
+		NSDictionary* arrayTypes = description.properties;
 		      
 		if(arrayTypes.count == 1) {
-			FLPropertyType* elementDesc = [arrayTypes lastObject];
+			FLObjectDescriber* elementDesc = [[arrayTypes allValues] lastObject];
 
 			for(id obj in self){
-                [xmlElement addElement:[FLObjectXmlElement objectXmlElement:obj xmlElementTag:elementDesc.propertyName propertyType:elementDesc]];
+                [xmlElement addElement:[FLObjectXmlElement objectXmlElement:obj xmlElementTag:elementDesc.objectName objectDescriber:elementDesc]];
 			}
 		}
 		else {
 			for(id obj in self) {
 				// hmm. expensive. need to decide for each item.
 				
-				for(FLPropertyType* subType in arrayTypes) {
-					if([obj isKindOfClass:subType.propertyClass]) {
-                        [xmlElement addElement:[FLObjectXmlElement objectXmlElement:obj xmlElementTag:subType.propertyName propertyType:subType]];
+				for(FLObjectDescriber* subType in [arrayTypes objectEnumerator]) {
+					if([obj isKindOfClass:subType.objectClass]) {
+                        [xmlElement addElement:[FLObjectXmlElement objectXmlElement:obj xmlElementTag:subType.objectName objectDescriber:subType]];
 						break;
 					}
 				}

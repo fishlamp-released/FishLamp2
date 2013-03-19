@@ -7,7 +7,7 @@
 //
 
 #import "FLCoreTypes.h"
-#import "FLType.h"
+#import "FLObjectEncoder.h"
 
 // objects
 enum  {
@@ -26,19 +26,12 @@ enum {
 	FLTypeIDSize                = 'size',
 };
 
-@implementation FLSimpleType
 
-@end
+@implementation FLNumberEncoder 
 
-@implementation FLNumberType 
-
-- (id) initNumberWithTypeName:(NSString*) typeName {
-    return [self initWithClass:[NSNumber class] 
-                      withTypeName:(NSString*) typeName
-                       encoder:NSSelectorFromString(@"encodeStringWithNSNumber:") 
-                       decoder:NSSelectorFromString(@"decodeNSNumberFromString:")];
+- (id) init {
+    return [self initWithEncodingKey:@"NSNumber"];
 }
-
 
 - (FLTypeNumberType) numberType {
     return 0;
@@ -47,18 +40,18 @@ enum {
 
 @implementation FLBoolNumber 
 - (id) init {
-    return [self initWithClass:[NSNumber class] 
-                      withTypeName:@"BOOL"
-                       encoder:NSSelectorFromString(@"encodeStringWithBOOL:") 
-                       decoder:NSSelectorFromString(@"decodeBOOLFromString:")];
+    return [self initWithEncodingKey:@"BOOL"];
 }
+
 + (id) boolNumber {
-    return [self type];
+    return [self objectEncoder];
 }
+
 - (FLTypeNumberType) numberType {
     return FLTypeIDBool;
 }
-+ (FLType*) type {
+
++ (FLObjectEncoder*) objectEncoder {
     FLReturnStaticObject([[[self class] alloc] init]);
 }
 
@@ -66,17 +59,13 @@ enum {
 
 @implementation FLCharNumber 
 
-- (id) init {
-    return [super initNumberWithTypeName:@"char"];
-}
-
 + (id) charNumber {
-    return [self type];
+    return [self objectEncoder];
 }
 - (FLTypeNumberType) numberType {
     return FLTypeIDChar;
 }
-+ (FLType*) type {
++ (FLObjectEncoder*) objectEncoder {
     FLReturnStaticObject([[[self class] alloc] init]);
 }
 
@@ -84,80 +73,69 @@ enum {
 
 @implementation FLUnsignedCharNumber 
 
-- (id) init {
-    return [super initNumberWithTypeName:@"unsigned char"];
-}
 
 + (id) unsignedCharNumber {
-    return [self type];
+    return [self objectEncoder];
 }
 - (FLTypeNumberType) numberType {
     return FLTypeIDUnsignedChar;
 }
-+ (FLType*) type {
++ (FLObjectEncoder*) objectEncoder {
     FLReturnStaticObject([[[self class] alloc] init]);
 }
 
 @end
 
 @implementation FLShortNumber 
-- (id) init {
-    return [super initNumberWithTypeName:@"short"];
-}
+
 + (id) shortNumber {
-    return [self type];
+    return [self objectEncoder];
 }
 - (FLTypeNumberType) numberType {
     return FLTypeIDShort;
 }
-+ (FLType*) type {
++ (FLObjectEncoder*) objectEncoder {
     FLReturnStaticObject([[[self class] alloc] init]);
 }
 @end
 
 @implementation FLUnsignedShortNumber 
-- (id) init {
-    return [super initNumberWithTypeName:@"unsigned short"];
-}
+
 + (id) unsignedShortNumber {
-    return [self type];
+    return [self objectEncoder];
 }
 - (FLTypeNumberType) numberType {
     return FLTypeIDUnsignedShort;
 }
-+ (FLType*) type {
++ (FLObjectEncoder*) objectEncoder {
     FLReturnStaticObject([[[self class] alloc] init]);
 }
 
 @end
 
 @implementation FLIntNumber 
-- (id) init {
-    return [super initNumberWithTypeName:@"int"];
-}+ (id) intNumber {
-    return [self type];
+
++ (id) intNumber {
+    return [self objectEncoder];
 }
 - (FLTypeNumberType) numberType {
     return FLTypeIDInt;
 }
-+ (FLType*) type {
++ (FLObjectEncoder*) objectEncoder {
     FLReturnStaticObject([[[self class] alloc] init]);
 }
 
 @end
 
 @implementation FLUnsignedIntNumber 
-- (id) init {
-    return [super initNumberWithTypeName:@"unsigned int"];
-}
 
 + (id) unsignedIntNumber {
-    return [self type];
+    return [self objectEncoder];
 }
 - (FLTypeNumberType) numberType {
     return FLTypeIDUnsignedInt;
 }
-+ (FLType*) type {
++ (FLObjectEncoder*) objectEncoder {
     FLReturnStaticObject([[[self class] alloc] init]);
 }
 
@@ -165,82 +143,71 @@ enum {
 @end
 
 @implementation FLLongNumber 
-- (id) init {
-    return [super initNumberWithTypeName:@"long"];
-}
+
 + (id) longNumber {
-    return [self type];
+    return [self objectEncoder];
 }
 - (FLTypeNumberType) numberType {
     return FLTypeIDLong;
 }
-+ (FLType*) type {
++ (FLObjectEncoder*) objectEncoder {
     FLReturnStaticObject([[[self class] alloc] init]);
 }
 
 @end
 
 @implementation FLUnsignedLongNumber 
-- (id) init {
-    return [super initNumberWithTypeName:@"unsigned long"];
-}
 
-+ (FLType*) type {
+
++ (FLObjectEncoder*) objectEncoder {
     FLReturnStaticObject([[[self class] alloc] init]);
 }
 - (FLTypeNumberType) numberType {
     return FLTypeIDUnsignedLong;
 }
 + (id) unsignedLongNumber {
-    return [self type];
+    return [self objectEncoder];
 }
 
 @end
 
 @implementation FLLongLongNumber 
-- (id) init {
-    return [super initNumberWithTypeName:@"long long"];
-}
 
-+ (FLType*) type {
++ (FLObjectEncoder*) objectEncoder {
     FLReturnStaticObject([[[self class] alloc] init]);
 }
 - (FLTypeNumberType) numberType {
     return FLTypeIDLongLong;
 }
 + (id) longLongNumber {
-    return [self type];
+    return [self objectEncoder];
 }
 
 @end
 
 @implementation FLUnsignedLongLongNumber 
-- (id) init {
-    return [super initNumberWithTypeName:@"unsigned long long"];
-}
+
 + (id) unsignedLongLongNumber {
-    return [self type];
+    return [self objectEncoder];
 }
 - (FLTypeNumberType) numberType {
     return FLTypeIDUnsignedLongLong;
 }
-+ (FLType*) type {
++ (FLObjectEncoder*) objectEncoder {
     FLReturnStaticObject([[[self class] alloc] init]);
 }
 
 @end
 
 @implementation FLFloatNumber 
-- (id) init {
-    return [super initNumberWithTypeName:@"float"];
-}
+
 + (id) floatNumber {
-    return [self type];
+    return [self objectEncoder];
 }
 - (FLTypeNumberType) numberType {
     return FLTypeIDFloat;
 }
-+ (FLType*) type {
++ (FLObjectEncoder*) objectEncoder {
     FLReturnStaticObject([[[self class] alloc] init]);
 }
 
@@ -248,29 +215,25 @@ enum {
 @end
 
 @implementation FLDoubleNumber 
-- (id) init {
-    return [super initNumberWithTypeName:@"double"];
-}
+
 + (id) doubleNumber {
-    return [self type];
+    return [self objectEncoder];
 }
 - (FLTypeNumberType) numberType {
     return FLTypeIDDouble;
 }
 
-+ (FLType*) type {
++ (FLObjectEncoder*) objectEncoder {
     FLReturnStaticObject([[[self class] alloc] init]);
 }
 @end
 
 @implementation FLIntegerNumber 
-- (id) init {
-    return [super initNumberWithTypeName:@"NSInteger"];
-}
+
 + (id) integerNumber {
-    return [self type];
+    return [self objectEncoder];
 }
-+ (FLType*) type {
++ (FLObjectEncoder*) objectEncoder {
     FLReturnStaticObject([[[self class] alloc] init]);
 }
 - (FLTypeNumberType) numberType {
@@ -279,13 +242,11 @@ enum {
 @end
 
 @implementation FLUnsignedIntegerNumber 
-- (id) init {
-    return [super initNumberWithTypeName:@"NSUInteger"];
-}
+
 + (id) unsignedIntegerNumber {
-    return [self type];
+    return [self objectEncoder];
 }
-+ (FLType*) type {
++ (FLObjectEncoder*) objectEncoder {
     FLReturnStaticObject([[[self class] alloc] init]);
 }
 - (FLTypeNumberType) numberType {
@@ -299,15 +260,15 @@ enum {
 
 @implementation FLGeometrySize 
 + (id) geometrySize {
-    return [self type];
+    return [self objectEncoder];
 }
 
-+ (FLType*) type {
++ (FLObjectEncoder*) objectEncoder {
     FLReturnStaticObject([[[self class] alloc] init]);
 }
 
 - (id) init {
-    return [self initWithClass:[NSValue class] withTypeName:@"CGSize"];
+    return [self initWithEncodingKey:@"CGSize"];
 }
 
 @end
@@ -315,14 +276,14 @@ enum {
 @implementation FLGeometryRect 
 
 + (id) geometryRect {
-    return [self type];
+    return [self objectEncoder];
 }
 
 - (id) init {
-    return [self initWithClass:[NSValue class] withTypeName:@"CGRect"];
+    return [self initWithEncodingKey:@"CGRect"];
 }
 
-+ (FLType*) type {
++ (FLObjectEncoder*) objectEncoder {
     FLReturnStaticObject([[[self class] alloc] init]);
 }
 
@@ -331,14 +292,14 @@ enum {
 @implementation FLGeometryPoint 
 
 + (id) geometryPoint {
-    return [self type];
+    return [self objectEncoder];
 }
 
 - (id) init {
-    return [self initWithClass:[NSValue class] withTypeName:@"CGPoint"];
+    return [self initWithEncodingKey:@"CGPoint"];
 }
 
-+ (FLType*) type {
++ (FLObjectEncoder*) objectEncoder {
     FLReturnStaticObject([[[self class] alloc] init]);
 }
 
@@ -348,50 +309,53 @@ enum {
 @end
 
 @implementation NSString (FLCoreTypes)
-+ (FLType*) type {
-    FLReturnStaticObject([[FLSimpleType alloc] initWithClass:[NSString class] ]);
++ (FLObjectEncoder*) objectEncoder {
+    FLReturnStaticObject([[FLObjectEncoder alloc] initWithClass:[NSString class] ]);
+}
+- (NSString*) encodingKey {
+    return @"NSString";
 }
 @end
 
-@implementation NSMutableString (FLCoreTypes)
-+ (FLType*) type {
-    FLReturnStaticObject([[FLSimpleType alloc] initWithClass:[NSMutableString class] ]);
-}
-@end
+//@implementation NSMutableString (FLCoreTypes)
+//+ (FLObjectEncoder*) objectEncoder {
+//    FLReturnStaticObject([[FLObjectEncoder alloc] initWithClass:[NSMutableString class] ]);
+//}
+//@end
 
 @implementation NSArray (FLCoreTypes)
-+ (FLType*) type {
-    FLReturnStaticObject([[FLSimpleType alloc] initWithClass:[NSArray class] ]);
++ (FLObjectEncoder*) objectEncoder {
+    FLReturnStaticObject([[FLObjectEncoder alloc] initWithClass:[NSArray class] ]);
 }
 @end
 
 @implementation NSMutableArray (FLCoreTypes)
-+ (FLType*) type {
++ (FLObjectEncoder*) objectEncoder {
     FLReturnStaticObject([[FLMutableArrayType alloc] initWithClass:[NSMutableArray class] ]);
 }
 @end
 
 @implementation NSURL (FLCoreTypes)
-+ (FLType*) type {
-    FLReturnStaticObject([[FLSimpleType alloc] initWithClass:[NSURL class] ]);
++ (FLObjectEncoder*) objectEncoder {
+    FLReturnStaticObject([[FLObjectEncoder alloc] initWithClass:[NSURL class] ]);
 }
 @end
 
 @implementation NSData (FLCoreTypes)
-+ (FLType*) type {
-    FLReturnStaticObject([[FLSimpleType alloc] initWithClass:[NSData class] ]);
++ (FLObjectEncoder*) objectEncoder {
+    FLReturnStaticObject([[FLObjectEncoder alloc] initWithClass:[NSData class] ]);
 }
 @end
 
-@implementation NSMutableData (FLCoreTypes)
-+ (FLType*) type {
-    FLReturnStaticObject([[FLSimpleType alloc] initWithClass:[NSMutableData class] ]);
-}
-@end
+//@implementation NSMutableData (FLCoreTypes)
+//+ (FLObjectEncoder*) objectEncoder {
+//    FLReturnStaticObject([[FLObjectEncoder alloc] initWithClass:[NSMutableData class] ]);
+//}
+//@end
 
 @implementation NSDate (FLCoreTypes)
-+ (FLType*) type {
-    FLReturnStaticObject([[FLSimpleType alloc] initWithClass:[NSDate class] ]);
++ (FLObjectEncoder*) objectEncoder {
+    FLReturnStaticObject([[FLObjectEncoder alloc] initWithClass:[NSDate class] ]);
 }
 @end
 

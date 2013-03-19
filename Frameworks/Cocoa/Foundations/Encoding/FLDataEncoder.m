@@ -37,13 +37,13 @@
 
 // top hooks
 - (NSString*) encodeDataToString:(id) data 
-				forType:(FLType*) type {
+				forType:(FLObjectEncoder*) type {
               
     return [type encodeObjectToString:data withEncoder:self];
 } 
 
 - (id) decodeDataFromString:(NSString*) string
-				forType:(FLType*) type {
+				forType:(FLObjectEncoder*) type {
     return [type decodeStringToObject:string withDecoder:self];
 }
 

@@ -118,13 +118,13 @@
         
         if(!s_describer)
         {
-            s_describer = [[FLObjectDescriber alloc] init];
+            s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
         }
         [s_describer addProperty:@"userId" withClass:[NSString class]];
         [s_describer addProperty:@"appId" withClass:[NSString class]];
         [s_describer addProperty:@"access_token" withClass:[NSString class]];
         [s_describer addProperty:@"expiration_date" withClass:[NSDate class]];
-        [s_describer addProperty:@"permissions" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"permission" propertyClass:[NSString class] ], nil]];
+        [s_describer addProperty:@"permissions" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"permission" objectClass:[NSString class] ], nil]];
     });
     return s_describer;
 }

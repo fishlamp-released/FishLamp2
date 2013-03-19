@@ -90,10 +90,10 @@
         
         if(!s_describer)
         {
-            s_describer = [[FLObjectDescriber alloc] init];
+            s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
         }
         [s_describer addProperty:@"paging" withClass:[FLFacebookPagingResponse class]];
-        [s_describer addProperty:@"data" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"post" propertyClass:[FLFacebookPost class]], nil]];
+        [s_describer addProperty:@"data" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"post" objectClass:[FLFacebookPost class]], nil]];
     });
     return s_describer;
 }

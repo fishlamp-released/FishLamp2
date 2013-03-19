@@ -73,6 +73,26 @@
 }
 #endif
 
+- (FLParsedItem*) findElementWithName:(NSString*) name maxDepth:(NSInteger) maxDepth {
+    FLParsedItem* item = [_elements objectForKey:name];
+    if(item) {
+        return item;
+    }
+
+    if(maxDepth > 0) {
+        maxDepth--;
+        
+        for(FLParsedItem* subElement in [_elements objectEnumerator]) {
+            FLParsedItem* found = [subElement findElementWithName:name maxDepth:maxDepth];
+            if(found) {
+                return found;
+            }
+        }
+    }
+    
+    return nil;
+}
+
 - (FLParsedItem*) elementAtPath:(NSString*) path {
     FLParsedItem* obj = self;
     NSArray* pathComponents = [path pathComponents];

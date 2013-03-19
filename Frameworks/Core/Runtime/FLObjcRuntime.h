@@ -11,16 +11,6 @@
 
 #import "FLRuntimeInfo.h"
 
-
-extern const char *getPropertyType(objc_property_t property);
-
-/**
-    @brief Copies type name from @encoded string
-    for example NT@"NSMutableArray" results in NSMutableArray
-    if this returns a string, call free on it.
- */
-extern char* copyTypeNameFromProperty(objc_property_t property);
-
 #define FLRuntimeGetSelectorName(__SEL__) sel_getName(__SEL__)
 #define FLSelectorsAreEqual(LHS, RHS) sel_isEqual(LHS, RHS)
 
@@ -75,4 +65,6 @@ void FLSelectorSwizzle(Class c, SEL originalSelector, SEL newSelector);
     ([self getImplementationOf:_cmd \
         after:impOfCallingMethod(self, _cmd)]) \
             (self, _cmd)
+
+
 

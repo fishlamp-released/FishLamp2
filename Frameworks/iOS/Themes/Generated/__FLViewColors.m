@@ -103,12 +103,12 @@
         
         if(!s_describer)
         {
-            s_describer = [[FLObjectDescriber alloc] init];
+            s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
         }
-        [s_describer setPropertyDescriber:[FLPropertyType propertyType:@"normalColor" propertyClass:[UIColor class] propertyType:FLDataTypeColor] forPropertyName:@"normalColor"];
-        [s_describer setPropertyDescriber:[FLPropertyType propertyType:@"selectedColor" propertyClass:[UIColor class] propertyType:FLDataTypeColor] forPropertyName:@"selectedColor"];
-        [s_describer setPropertyDescriber:[FLPropertyType propertyType:@"highlightedColor" propertyClass:[UIColor class] propertyType:FLDataTypeColor] forPropertyName:@"highlightedColor"];
-        [s_describer setPropertyDescriber:[FLPropertyType propertyType:@"disabledColor" propertyClass:[UIColor class] propertyType:FLDataTypeColor] forPropertyName:@"disabledColor"];
+        [s_describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"normalColor" objectClass:[UIColor class] objectDescriber:FLDataTypeColor] forPropertyName:@"normalColor"];
+        [s_describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"selectedColor" objectClass:[UIColor class] objectDescriber:FLDataTypeColor] forPropertyName:@"selectedColor"];
+        [s_describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"highlightedColor" objectClass:[UIColor class] objectDescriber:FLDataTypeColor] forPropertyName:@"highlightedColor"];
+        [s_describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"disabledColor" objectClass:[UIColor class] objectDescriber:FLDataTypeColor] forPropertyName:@"disabledColor"];
     });
     return s_describer;
 }

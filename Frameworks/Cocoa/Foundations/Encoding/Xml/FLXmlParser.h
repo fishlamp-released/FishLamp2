@@ -26,6 +26,8 @@ typedef enum {
     NSXMLParser* _parser;
     NSMutableArray* _stack;
     NSError* _error;
+    
+    FLParsedItem* _rootElement;
 }
 
 + (id) xmlParser;

@@ -1,0 +1,43 @@
+//
+//  FLCharString.h
+//  FishLampCore
+//
+//  Created by Mike Fullerton on 3/18/13.
+//  Copyright (c) 2013 Mike Fullerton. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+typedef struct {
+    const char* string;
+    NSUInteger length;
+} FLCharString;
+
+NS_INLINE
+FLCharString FLCharStringFromCString(const char* string, char stopChar) {
+    FLCharString charString = { string, 0 };
+    while(*string && *string++ != stopChar) {
+        charString.length++;
+    }
+    return charString;
+}
+
+NS_INLINE 
+const char* FLCStringCopyWithLength(const char* str, int len) {
+    char* copy = malloc(len + 1);
+    memcpy(copy, str, len);
+    copy[len] = 0;
+    return copy;
+}
+
+NS_INLINE 
+const char* FLCStringCopy(const char* str) {
+    return FLCStringCopyWithLength(str, strlen(str));
+}
+
+NS_INLINE
+const char* FLCStringCopyCharString(FLCharString charString) {
+    return FLCStringCopyWithLength(charString.string, charString.length);
+}
+
+

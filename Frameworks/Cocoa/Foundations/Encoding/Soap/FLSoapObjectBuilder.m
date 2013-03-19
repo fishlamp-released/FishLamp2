@@ -71,7 +71,7 @@ FLSynthesizeSingleton(FLSoapObjectBuilder);
     return self;
 }
 
-//- (id) objectFromSoap:(FLParsedItem*) element withObjectType:(FLType*) type{
+//- (id) objectFromSoap:(FLParsedItem*) element withObjectType:(FLObjectEncoder*) type{
 //    FLAssertNotNil_(type);
 //    FLAssertNotNil_(element);
 //
@@ -90,7 +90,7 @@ FLSynthesizeSingleton(FLSoapObjectBuilder);
     FLAssertNotNil_(xmlElement);
     FLAssertNotNil_(properties);
     
-    FLParsedItem* body = [xmlElement elementAtPath:@"Envelope/Body"];
+    FLParsedItem* body = [xmlElement elementAtPath:@"Body/"];
     if(body) {
         return [super objectsFromXML:body withObjectTypes:properties];
     }

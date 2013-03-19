@@ -89,9 +89,6 @@
 }
 
 - (void) performOnTarget:(id) target {
-
-    FLLog(@"Sending selector event: %@", NSStringFromSelector(self.selector));
-
     FLPerformSelectorWithArgCount(target, 
                                   self.selector, 
                                   self.parameterCount, // + sender 

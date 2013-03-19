@@ -12,6 +12,7 @@
 @property (readwrite, strong, nonatomic) NSMutableArray* stack;
 @property (readwrite, strong, nonatomic) NSXMLParser* parser; // only valid during parse
 @property (readwrite, strong, nonatomic) NSError* error; // only valid during parse
+@property (readwrite, strong, nonatomic) FLParsedItem* rootElement;
 @end
 
 
@@ -20,6 +21,8 @@
 @synthesize stack = _stack;
 @synthesize parser = _parser;
 @synthesize error = _error;
+@synthesize rootElement = _rootElement;
+
 
 + (id) xmlParser {
     return FLAutorelease([[[self class] alloc] init]);
@@ -29,6 +32,7 @@
 	_parser.delegate = nil;
 
 #if FL_MRC
+    [_rootElement release];
     [_parser release];
     [_stack release];
     [_error release];
@@ -42,18 +46,20 @@
 	[parser setShouldResolveExternalEntities:NO];
 }
 
-//- (void) addElement:(NSDictionary*) newElement toElement:(NSMutableDictionary*) parentElement {
-//    
-//    NSString* name = [newElement objectForKey:@"elementName"];
-//    NSMutableArray* elementList = [parentElement objectForKey:@"elements"];
-//    if(elementList) {
-//        [elementList addObject:name];
-//    }
-//    else {
-//        [parentElement setObject:[NSMutableArray arrayWithObject:name] forKey:@"elements"];
-//    }
-//    [parentElement setObject:newElement forKey:name];
-//}
+- (void) pushElement:(FLParsedItem*) newElement {
+    if(!_rootElement) {
+        self.rootElement = newElement;
+    }
+    else {
+        [[self.stack lastObject] addElement:newElement];
+    }
+    
+    [self.stack addObject:newElement];
+}
+
+- (void) popElement {
+    [self.stack removeLastObject];
+}
 
 - (void)parser:(NSXMLParser *)parser 
 didStartElement:(NSString *)elementName 
@@ -70,8 +76,7 @@ didStartElement:(NSString *)elementName
         newElement.attributes = attributes;
     }
 
-    [[self.stack lastObject] addElement:newElement];
-    [self.stack addObject:newElement];
+    [self pushElement:newElement];
 }
 
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string {
@@ -83,9 +88,12 @@ didStartElement:(NSString *)elementName
 	namespaceURI:(NSString *)namespaceURI 
 	qualifiedName:(NSString *)qName {
     
+#if DEBUG    
     FLParsedItem* lastElement = FLRetainWithAutorelease([self.stack lastObject]);
     FLAssertObjectsAreEqual_(elementName, lastElement.elementName);
-    [self.stack removeLastObject];
+#endif
+    
+    [self popElement];
 }
 
 - (void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError {
@@ -101,7 +109,7 @@ didStartElement:(NSString *)elementName
 - (FLParsedItem*) parseData:(NSData*) data {
 
     self.stack = [NSMutableArray array];
-    [self.stack addObject:[FLParsedItem parsedItem]];
+//    [self.stack addObject:[FLParsedItem parsedItem]];
 
     @try {
         FLAutoreleasePool(
@@ -114,16 +122,14 @@ didStartElement:(NSString *)elementName
 
         FLThrowIfError(self.error);
         
-        NSDictionary* rootElementContainer = [[self.stack firstObject] elements];
-        FLAssert_v(rootElementContainer.count == 1, @"expecting only 1 root element")
-        
-        return [[rootElementContainer allValues] firstObject];
+        return FLRetainWithAutorelease(self.rootElement);
     }
     @finally {
 		_parser.delegate = nil;
         self.parser = nil;
         self.stack = nil;
         self.error = nil;
+        self.rootElement = nil;
     }
 }
 

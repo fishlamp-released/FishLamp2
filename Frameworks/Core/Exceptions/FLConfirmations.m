@@ -75,12 +75,12 @@ void FLThrowConfirmationFailedException(FLAssertionFailure failure, NSString* de
     
 //    test();
 
-    @throw [NSException exceptionWithError:[NSError errorWithDomain:[FLAssertionFailureErrorDomain instance] 
+    [[NSException exceptionWithError:[NSError errorWithDomain:[FLAssertionFailureErrorDomain instance] 
             code:failure
             userInfo:nil
             reason:description
             comment:comment 
-            stackTrace:stackTrace]]; 
+            stackTrace:stackTrace]] raise]; 
 }
 
 BOOL __FLConfirmationDidFail() {

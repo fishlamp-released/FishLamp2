@@ -16,7 +16,7 @@
 //	FLObjectDescriber* describer = [[object class] objectDescriber];
 //	FLAssertIsNotNil_(describer);
 //
-//	FLPropertyType* desc = [describer propertyForName:key];
+//	FLObjectDescriber* desc = [describer propertyForName:key];
 //	FLAssertIsNotNil_(desc);
 
 	@try

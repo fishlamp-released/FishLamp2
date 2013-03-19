@@ -64,6 +64,8 @@
         string = attributedString.string;
     }
     
+    FLAssertNotNil_(string);
+    
     if(lineUpdate.openLine || _needsLine) {
         [_lines addObject:FLAutorelease([string mutableCopy])];
         _needsLine = NO;

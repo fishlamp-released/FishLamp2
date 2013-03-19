@@ -90,10 +90,10 @@
         
         if(!s_describer)
         {
-            s_describer = [[FLObjectDescriber alloc] init];
+            s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
         }
         [s_describer addProperty:@"period" withClass:[NSString class]];
-        [s_describer addProperty:@"values" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"insights" propertyClass:[FLFacebookInsight class]], nil]];
+        [s_describer addProperty:@"values" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"insights" objectClass:[FLFacebookInsight class]], nil]];
     });
     return s_describer;
 }
