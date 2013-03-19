@@ -230,7 +230,7 @@
 		
 		if(!s_describer)
 		{
-			s_describer = [[FLObjectDescriber alloc] init];
+			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
 		[s_describer addProperty:@"Caption" withClass:[NSString class]];
 		[s_describer addProperty:@"CreatedOn" withClass:[NSDate class]];
@@ -241,8 +241,8 @@
 		[s_describer addProperty:@"PhotoCount" withClass:[FLIntegerNumber class] ];
 		[s_describer addProperty:@"ImageCount" withClass:[FLIntegerNumber class] ];
 		[s_describer addProperty:@"VideoCount" withClass:[FLIntegerNumber class] ];
-		[s_describer addProperty:@"ParentGroups" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"Id" propertyClass:[FLIntegerNumber class]], nil]];
-		[s_describer addProperty:@"Elements" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"Group" propertyClass:[FLZenfolioGroup class]], [FLPropertyType propertyType:@"PhotoSet" propertyClass:[FLZenfolioPhotoSet class]], nil]];
+		[s_describer addProperty:@"ParentGroups" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"Id" objectClass:[FLIntegerNumber class]], nil]];
+		[s_describer addProperty:@"Elements" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"Group" objectClass:[FLZenfolioGroup class]], [FLObjectDescriber objectDescriber:@"PhotoSet" objectClass:[FLZenfolioPhotoSet class]], nil]];
 		[s_describer addProperty:@"PageUrl" withClass:[NSString class]];
 		[s_describer addProperty:@"TitlePhoto" withClass:[FLZenfolioPhoto class]];
 		[s_describer addProperty:@"MailboxId" withClass:[NSString class]];

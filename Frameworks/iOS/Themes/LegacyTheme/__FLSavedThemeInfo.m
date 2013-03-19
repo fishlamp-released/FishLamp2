@@ -99,11 +99,11 @@
         
         if(!s_describer)
         {
-            s_describer = [[FLObjectDescriber alloc] init];
+            s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
         }
-        [s_describer setPropertyDescriber:[FLPropertyType propertyType:@"name" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"name"];
-        [s_describer setPropertyDescriber:[FLPropertyType propertyType:@"className" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"className"];
-        [s_describer setPropertyDescriber:[FLPropertyType propertyType:@"fontSize" propertyClass:[NSNumber class] propertyType:FLDataTypeInteger] forPropertyName:@"fontSize"];
+        [s_describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"name" objectClass:[NSString class] objectDescriber:FLDataTypeString] forPropertyName:@"name"];
+        [s_describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"className" objectClass:[NSString class] objectDescriber:FLDataTypeString] forPropertyName:@"className"];
+        [s_describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"fontSize" objectClass:[NSNumber class] objectDescriber:FLDataTypeInteger] forPropertyName:@"fontSize"];
     });
     return s_describer;
 }

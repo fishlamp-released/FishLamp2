@@ -9,10 +9,13 @@
 #import "FLObjectDescriber.h"
 
 #import "FLObjcRuntime.h"
+#import "FLPropertyAttributes.h"
 
 @interface FLObjectDescriber ()
 @property (readwrite, copy, nonatomic) NSDictionary* properties;
-@property (readwrite, assign, nonatomic) Class describingClass;
+@property (readwrite, assign, nonatomic) Class objectClass;
+@property (readwrite, strong, nonatomic) NSString* objectName;
+
 - (void) addSuperclassProperties;
 - (void) discoverProperties;
 @end
@@ -20,7 +23,11 @@
 @implementation FLObjectDescriber
 
 @synthesize properties = _properties;
-@synthesize describingClass = _describingClass;
+@synthesize objectClass = _objectClass;
+@synthesize objectName = _objectName;
+@synthesize objectEncoder = _objectEncoder;
+
+FLAssertDefaultInitNotCalled_();
 
 //+ (void) addPropertiesForClass:(Class) class dictionary:(NSMutableDictionary*) dictionary {
 //	if(class) {
@@ -32,82 +39,109 @@
 //    }
 //}
 
-- (id) initWithClass:(Class) aClass withProperties:(NSDictionary*) properties {
-    FLAssertNotNil_(aClass);
-	if((self = [super init])) {
-        _describingClass = aClass;
-        _properties = [properties mutableCopy];
-	}
-	
-	return self;
-}
+//- (id) initWithClass:(Class) aClass 
+//      withProperties:(NSDictionary*) properties {
+//    FLAssertNotNil_(aClass);
+//	if((self = [super init])) {
+//        _objectClass = aClass;
+//        _properties = [properties mutableCopy];
+//	}
+//	
+//	return self;
+//}
 
-- (id) initWithClass:(Class) aClass {
+
+
+- (id) initWithClass:(Class) aClass 
+            withName:(NSString*) name {
     FLAssertNotNil_(aClass);
 	if((self = [super init])) {
-        _describingClass = aClass;
+        self.objectName = name; 
+        _objectClass = aClass;
         _properties = [[NSMutableDictionary alloc] init];
         [self addSuperclassProperties];
         [self discoverProperties];
-	}
+        self.objectEncoder = [self.objectClass objectEncoder];
+    }
+    return self;
+}
+
+- (id) initWithClass:(Class) aClass {
+    return [self initWithClass:aClass withName:nil];
+}
+
++ (id) objectDescriber:(NSString*) name objectClass:(Class) aClass {
+	return FLAutorelease([[[self class] alloc] initWithClass:aClass withName:name]);
+}
+
++ (id) objectDescriberWithRuntimeProperty:(objc_property_t) property {
+	return FLAutorelease([[[self class] alloc] initWithRuntimeProperty:property]);
+}
+
+- (id) initWithRuntimeProperty:(objc_property_t) runtimeProperty {
+    self = [super init];
+    if(self) {
+        _properties = [[NSMutableDictionary alloc] init];
+
+        FLPropertyAttributesDecodeWithCopy(runtimeProperty, &_attributes);
+        self.objectName = [NSString stringWithCString:_attributes.propertyName encoding:NSASCIIStringEncoding];
+        
+        if(_attributes.className.string) {
+            self.objectClass = NSClassFromString([NSString stringWithCharString:_attributes.className]);
+            self.objectEncoder = [self.objectClass objectEncoder];
+        }
+    }
     return self;
 }
 
 - (void) dealloc {
-	FLRelease(_properties);
-	FLSuperDealloc();
+    FLPropertyAttributesFree(&_attributes);
+
+#if FL_MRC
+    [_objectName release];
+    [_properties release];
+	[super dealloc];
+#endif
 }
 
-- (id) copyWithZone:(NSZone *)zone {
-	return [[FLObjectDescriber alloc] initWithClass:self.class withProperties:self.properties];
-}
+- (BOOL) hasProperties {
+	return _properties.count > 0;
+}	
 
-- (void) addProperty:(FLPropertyType*) objectDescriber forPropertyName:(NSString*) propertyName {
-	[_properties setObject:objectDescriber forKey:propertyName];
-}
+//- (id) copyWithZone:(NSZone *)zone {
+//	return [[FLObjectDescriber alloc] initWithClass:self.class withProperties:self.properties];
+//}
 
-- (void) addProperty:(FLPropertyType*) property {
-    [self addProperty:property forPropertyName:property.propertyName];
-}
-
-- (FLPropertyType*) propertyForName:(NSString*) propertyName {
+- (FLObjectDescriber*) propertyForName:(NSString*) propertyName {
 	return [_properties objectForKey:propertyName];
 }
 
 - (void) addSuperclassProperties {
-    FLObjectDescriber* describer = [[_describingClass superclass] objectDescriber];
+    FLObjectDescriber* describer = [[_objectClass superclass] objectDescriber];
     if(describer) {
         [_properties addEntriesFromDictionary:describer.properties];
     }
 }
 
+- (void) addProperty:(FLObjectDescriber*) property {
+    FLAssertNotNil_(property);
+    if(property.objectClass) {
+        [_properties setObject:property forKey:property.objectName];
+    }
+//    else {
+//        FLLog(@"skipping property %@", property.objectName);
+//    }
+}
+
 - (void) discoverProperties {
     
+    NSLog(@"discovering properties for %@", NSStringFromClass(_objectClass));
+    
     unsigned int propertyCount = 0;
-	objc_property_t* properties = class_copyPropertyList(_describingClass, &propertyCount);
+	objc_property_t* properties = class_copyPropertyList(_objectClass, &propertyCount);
 
 	for(unsigned int i = 0; i < propertyCount; i++) {
-		char* className = copyTypeNameFromProperty(properties[i]);
-	//	printf("name: %s, attributes %s\n",name, attributes);
-		
-		if(className) {
-			Class theClass = objc_getClass(className);
-			
-			FLAssertIsNotNil_(theClass);
-			   
-			NSString* propertyName = [NSString stringWithCString:property_getName(properties[i]) encoding:NSASCIIStringEncoding];
-
-// TODO: build up FLType
-
-            FLPropertyType* property = [FLPropertyType propertyType:propertyName propertyClass:theClass];
-
-            [self addProperty:property];
-						 
-			free(className);
-	
-		//	printf("\tname: %s, value: '%s'\n", attrList[j].name, attrList[j].value);
-		}
-		
+        [self addProperty:[FLObjectDescriber objectDescriberWithRuntimeProperty:properties[i]]];
 	}
 
     free(properties);
@@ -118,19 +152,33 @@
 }
 
 - (NSString*) description {
-	return [NSString stringWithFormat:@"%@:%@", [super description], [_properties description]];
+	return [NSString stringWithFormat:@"%@: { name=%@, class=%@, encoder=%@, properties:%@", [super description], self.objectName, NSStringFromClass(self.objectClass), [self.objectEncoder description], [_properties description]];
 }
 
-- (void) addProperty:(NSString*) name withClass:(Class) propertyClass {
-    [self addProperty:[FLPropertyType propertyType:name propertyClass:propertyClass]];
+- (void) addProperty:(NSString*) name withClass:(Class) objectClass {
+    FLObjectDescriber* describer = [_properties objectForKey:name];
+    if(!describer) {
+        [self addProperty:[FLObjectDescriber objectDescriber:name objectClass:objectClass]];
+    }
+    else {
+        describer.objectEncoder = [objectClass objectEncoder];
+    }
 }
 
-- (void) addProperty:(NSString*) name withArrayType:(FLPropertyType*) arrayType {
+- (void) addProperty:(NSString*) name withArrayType:(FLObjectDescriber*) arrayType {
     [self addProperty:name withArrayTypes:[NSArray arrayWithObject:arrayType]];
 }
 
 - (void) addProperty:(NSString*) name withArrayTypes:(NSArray*) types {
-    [self addProperty:[FLPropertyType propertyType:name propertyClass:[NSMutableArray class] arrayTypes:types]];
+    FLObjectDescriber* describer = [_properties objectForKey:name];
+    if(!describer) {
+        describer = [FLObjectDescriber objectDescriber:name objectClass:[NSMutableArray class]];
+        [self addProperty:describer];
+    }
+
+    for(FLObjectDescriber* obj in types) {
+        [describer addProperty:obj];
+    }
 }
 
 @end
@@ -179,7 +227,7 @@
 }
 @end
 
-@implementation FLDescribeableObject
+@implementation FLSelfDescribingObject
 
 + (FLObjectDescriber*) objectDescriber {
     @synchronized(self) {
@@ -211,9 +259,9 @@
 
     FLObjectDescriber* describer = [[self class] objectDescriber];
 
-    for(FLPropertyType* property in describer.properties.objectEnumerator) {
+    for(FLObjectDescriber* property in describer.properties.objectEnumerator) {
 
-        id value = [property propertyValueForObject:self];
+        id value = [self valueForKey:property.objectName]; //[property propertyValueForObject:self];
 
         if(value) {
             [value visitSelf:visitor stop:stop];
@@ -232,14 +280,14 @@
 
 
 - (void) performSelectorOnDescribedObjectAndProperties:(SEL) sel {
-    [self visitDescribedObjectAndProperties:^(id object, FLPropertyType* prop, BOOL* stop) {
+    [self visitDescribedObjectAndProperties:^(id object, FLObjectDescriber* prop, BOOL* stop) {
         FLPerformSelector(object, sel);
     }];
 
 }
 - (void) performSelectorOnDescribedObjectAndProperties:(SEL) sel
                                             withObject:(id) object1 {
-    [self visitDescribedObjectAndProperties:^(id object, FLPropertyType* prop, BOOL* stop) {
+    [self visitDescribedObjectAndProperties:^(id object, FLObjectDescriber* prop, BOOL* stop) {
         FLPerformSelector1(object, sel, object1);
     }];
 
@@ -247,7 +295,7 @@
 - (void) performSelectorOnDescribedObjectAndProperties:(SEL) sel
                                             withObject:(id) object1
                                             withObject:(id) object2{
-    [self visitDescribedObjectAndProperties:^(id object, FLPropertyType* prop, BOOL* stop) {
+    [self visitDescribedObjectAndProperties:^(id object, FLObjectDescriber* prop, BOOL* stop) {
         FLPerformSelector2(object, sel, object1, object2);
     }];
 
@@ -256,7 +304,7 @@
                                             withObject:(id) object1
                                             withObject:(id) object2
                                             withObject:(id) object3 {
-    [self visitDescribedObjectAndProperties:^(id object, FLPropertyType* prop, BOOL* stop) {
+    [self visitDescribedObjectAndProperties:^(id object, FLObjectDescriber* prop, BOOL* stop) {
         FLPerformSelector3(object, sel, object1, object2, object3);
     }];
 
@@ -300,8 +348,8 @@
 //}
 //
 //void FLEqualMultiObjectHandler(id inner, id outer, FLMergeMode mergeMode, NSArray* arrayItemTypes) {
-//	for(FLPropertyType* desc in arrayItemTypes) {
-//		if([outer isKindOfClass:desc.classForType]) {
+//	for(FLObjectDescriber* desc in arrayItemTypes) {
+//		if([outer isKindOfClass:desc.actualClass]) {
 //			FLMergeObjects(inner, outer, mergeMode); 
 //			break;
 //		}
@@ -327,8 +375,8 @@ void FLMergeObjectArrays(NSMutableArray* dest,
 			id inner = [dest objectAtIndex:j];
 			if([inner isEqual:outer]) {	
                 
-                for(FLPropertyType* desc in arrayItemTypes) {
-                    if([outer isKindOfClass:desc.propertyClass]) {
+                for(FLObjectDescriber* desc in arrayItemTypes) {
+                    if([outer isKindOfClass:desc.objectClass]) {
                         FLMergeObjects(inner, outer, mergeMode); 
                         foundIt = YES;
 				        break;
@@ -346,7 +394,7 @@ void FLMergeObjectArrays(NSMutableArray* dest,
 
 
 //	if(arrayItemTypes.count) {
-//		if([[arrayItemTypes firstObject] propertyType].isObjectWithObjectProperties) {
+//		if([[arrayItemTypes firstObject] objectDescriber].isObjectWithObjectProperties) {
 //			_FLMergeListsOfObjects(dest, src, mergeMode, arrayItemTypes, FLEqualObjectHandler);
 //		}
 //		else {
@@ -376,16 +424,16 @@ void FLMergeObjects(id dest, id src, FLMergeMode mergeMode) {
 					[dest setValue:srcObject forKey:srcPropName];
 				}
 				else {
-					FLPropertyType* srcProp = [srcDescriber propertyForName:srcPropName];
-					FLObjectDescriber* propDescriber = [srcProp.propertyClass objectDescriber];
+					FLObjectDescriber* srcProp = [srcDescriber propertyForName:srcPropName];
+					FLObjectDescriber* propDescriber = [srcProp.objectClass objectDescriber];
                     
                     if(!propDescriber) {
 					   if(mergeMode == FLMergeModeSourceWins) {
 							[dest setValue:srcObject forKey:srcPropName];
 					   }
 					}
-					else if(srcProp.arrayTypes.count > 0) {
-						FLMergeObjectArrays(destObject, srcObject, mergeMode, srcProp.arrayTypes);
+					else if(srcProp.properties.count > 0) {
+						FLMergeObjectArrays(destObject, srcObject, mergeMode, [srcProp.properties allValues]);
 					}
 					else {
 						FLMergeObjects(destObject, srcObject, mergeMode);

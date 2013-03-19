@@ -76,11 +76,11 @@
 {
 	if((self = [super init]))
 	{
-		for(FLPropertyType* desc in objectDescriber.propertyDescribers.objectEnumerator)
+		for(FLObjectDescriber* desc in objectDescriber.objectDescribers.objectEnumerator)
 		{
 			if(desc.isUnboundedArray)
 			{
-				for(FLPropertyType* arrayItem in desc.arrayTypes)
+				for(FLObjectDescriber* arrayItem in desc.arrayTypes)
 				{
 					[self addUnboundedArraySetter:arrayItem.propertyName arrayPropertyName:desc.propertyName];
 				}

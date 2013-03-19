@@ -77,9 +77,9 @@
 		
 		if(!s_describer)
 		{
-			s_describer = [[FLObjectDescriber alloc] init];
+			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addProperty:@"GetCategoriesResult" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"Category" propertyClass:[FLZenfolioCategory class]], nil]];
+		[s_describer addProperty:@"GetCategoriesResult" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"Category" objectClass:[FLZenfolioCategory class]], nil]];
 	});
 	return s_describer;
 }

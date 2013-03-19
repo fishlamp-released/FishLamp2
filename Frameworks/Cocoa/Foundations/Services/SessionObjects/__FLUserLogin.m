@@ -143,7 +143,7 @@
         
         if(!s_describer)
         {
-            s_describer = [[FLObjectDescriber alloc] init];
+            s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
         }
         [s_describer addProperty:@"userGuid" withClass:[NSString class]];
         [s_describer addProperty:@"userName" withClass:[NSString class]];

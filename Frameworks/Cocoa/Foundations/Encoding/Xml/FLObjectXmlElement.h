@@ -7,12 +7,12 @@
 //
 
 #import "FLXmlElement.h"
-#import "FLPropertyType.h"
+#import "FLObjectDescriber.h"
 
 @interface FLObjectXmlElement : FLXmlElement {
 @private
     id _object;
-    FLPropertyType* _propertyType;
+    FLObjectDescriber* _objectDescriber;
 }
 
 - (id) initWithObject:(id) object 
@@ -23,12 +23,12 @@
 
 + (id) objectXmlElement:(id) object 
           xmlElementTag:(NSString*) xmlElementTag
-          propertyType:(FLPropertyType*) description;
+          objectDescriber:(FLObjectDescriber*) description;
 
 @end
 
 @protocol FLXMLSeriliazable <NSObject>
 - (void) addToXmlElement:(FLXmlElement*) xmlElement
-     propertyType:(FLPropertyType*) description;
+     objectDescriber:(FLObjectDescriber*) description;
 @end
 

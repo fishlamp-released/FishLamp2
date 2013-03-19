@@ -289,7 +289,7 @@
 		
 		if(!s_describer)
 		{
-			s_describer = [[FLObjectDescriber alloc] init];
+			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
 		[s_describer addProperty:@"Caption" withClass:[NSString class]];
 		[s_describer addProperty:@"CreatedOn" withClass:[NSDate class]];
@@ -303,10 +303,10 @@
 		[s_describer addProperty:@"FeaturedIndex" withClass:[FLIntegerNumber class] ];
 		[s_describer addProperty:@"TitlePhoto" withClass:[FLZenfolioPhoto class]];
 		[s_describer addProperty:@"IsRandomTitlePhoto" withClass:[FLBoolNumber class] ];
-		[s_describer addProperty:@"ParentGroups" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"Id" propertyClass:[FLIntegerNumber class]], nil]];
-		[s_describer addProperty:@"Photos" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"Photo" propertyClass:[FLZenfolioPhoto class]], nil]];
-		[s_describer addProperty:@"Keywords" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"Keyword" propertyClass:[NSString class] ], nil]];
-		[s_describer addProperty:@"Categories" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"Category" propertyClass:[FLIntegerNumber class]], nil]];
+		[s_describer addProperty:@"ParentGroups" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"Id" objectClass:[FLIntegerNumber class]], nil]];
+		[s_describer addProperty:@"Photos" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"Photo" objectClass:[FLZenfolioPhoto class]], nil]];
+		[s_describer addProperty:@"Keywords" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"Keyword" objectClass:[NSString class] ], nil]];
+		[s_describer addProperty:@"Categories" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"Category" objectClass:[FLIntegerNumber class]], nil]];
 		[s_describer addProperty:@"UploadUrl" withClass:[NSString class]];
 		[s_describer addProperty:@"VideoUploadUrl" withClass:[NSString class]];
 		[s_describer addProperty:@"PageUrl" withClass:[NSString class]];

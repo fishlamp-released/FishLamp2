@@ -39,6 +39,7 @@
 
 - (FLParsedItem*) elementAtPath:(NSString*) path;
 - (FLParsedItem*) elementForElementName:(NSString*) name;
+- (FLParsedItem*) findElementWithName:(NSString*) name maxDepth:(NSInteger) maxDepth;
 
 - (NSDictionary*) childrenAtPath:(NSString*) parentalPath;
 

@@ -11,7 +11,7 @@
 #import "FLDataEncoding.h"
 
 @protocol FLDataEncoder;
-@class FLPropertyType;
+@class FLObjectDescriber;
 @class FLXmlDocumentBuilder;
 @class FLXmlComment;
 

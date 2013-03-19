@@ -77,9 +77,9 @@
 		
 		if(!s_describer)
 		{
-			s_describer = [[FLObjectDescriber alloc] init];
+			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addProperty:@"LoadSharedFavoritesSetsResult" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"FavoritesSet" propertyClass:[FLZenfolioFavoritesSet class]], nil]];
+		[s_describer addProperty:@"LoadSharedFavoritesSetsResult" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"FavoritesSet" objectClass:[FLZenfolioFavoritesSet class]], nil]];
 	});
 	return s_describer;
 }

@@ -345,7 +345,7 @@
 		
 		if(!s_describer)
 		{
-			s_describer = [[FLObjectDescriber alloc] init];
+			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
 		[s_describer addProperty:@"LoginName" withClass:[NSString class]];
 		[s_describer addProperty:@"DisplayName" withClass:[NSString class]];
@@ -363,8 +363,8 @@
 		[s_describer addProperty:@"LastUpdated" withClass:[NSDate class]];
 		[s_describer addProperty:@"PublicAddress" withClass:[FLZenfolioAddress class]];
 		[s_describer addProperty:@"PersonalAddress" withClass:[FLZenfolioAddress class]];
-		[s_describer addProperty:@"RecentPhotoSets" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"PhotoSet" propertyClass:[FLZenfolioPhotoSet class]], nil]];
-		[s_describer addProperty:@"FeaturedPhotoSets" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"PhotoSet" propertyClass:[FLZenfolioPhotoSet class]], nil]];
+		[s_describer addProperty:@"RecentPhotoSets" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"PhotoSet" objectClass:[FLZenfolioPhotoSet class]], nil]];
+		[s_describer addProperty:@"FeaturedPhotoSets" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"PhotoSet" objectClass:[FLZenfolioPhotoSet class]], nil]];
 		[s_describer addProperty:@"RootGroup" withClass:[FLZenfolioGroup class]];
 		[s_describer addProperty:@"ReferralCode" withClass:[NSString class]];
 		[s_describer addProperty:@"ExpiresOn" withClass:[NSDate class]];

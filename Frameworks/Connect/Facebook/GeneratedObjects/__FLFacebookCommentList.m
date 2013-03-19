@@ -89,10 +89,10 @@
         
         if(!s_describer)
         {
-            s_describer = [[FLObjectDescriber alloc] init];
+            s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
         }
         [s_describer addProperty:@"count" withClass:[FLIntegerNumber class] ];
-        [s_describer addProperty:@"data" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"comment" propertyClass:[FLFacebookComment class] ], nil]];
+        [s_describer addProperty:@"data" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"comment" objectClass:[FLFacebookComment class] ], nil]];
     });
     return s_describer;
 }

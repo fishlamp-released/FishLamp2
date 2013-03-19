@@ -87,9 +87,9 @@
 		
 		if(!s_describer)
 		{
-			s_describer = [[FLObjectDescriber alloc] init];
+			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addProperty:@"Photos" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"Photo" propertyClass:[FLZenfolioPhoto class]], nil]];
+		[s_describer addProperty:@"Photos" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"Photo" objectClass:[FLZenfolioPhoto class]], nil]];
 		[s_describer addProperty:@"TotalCount" withClass:[FLIntegerNumber class] ];
 	});
 	return s_describer;

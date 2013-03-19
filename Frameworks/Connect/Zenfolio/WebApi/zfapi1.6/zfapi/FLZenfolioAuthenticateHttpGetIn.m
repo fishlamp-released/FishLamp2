@@ -86,10 +86,10 @@
 		
 		if(!s_describer)
 		{
-			s_describer = [[FLObjectDescriber alloc] init];
+			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addProperty:@"challenge" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"String" propertyClass:[NSString class] ], nil]];
-		[s_describer addProperty:@"proof" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"String" propertyClass:[NSString class] ], nil]];
+		[s_describer addProperty:@"challenge" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"String" objectClass:[NSString class] ], nil]];
+		[s_describer addProperty:@"proof" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"String" objectClass:[NSString class] ], nil]];
 	});
 	return s_describer;
 }

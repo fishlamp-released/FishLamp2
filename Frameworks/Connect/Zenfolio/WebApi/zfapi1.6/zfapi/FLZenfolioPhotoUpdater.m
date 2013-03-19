@@ -126,12 +126,12 @@
 		
 		if(!s_describer)
 		{
-			s_describer = [[FLObjectDescriber alloc] init];
+			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
 		[s_describer addProperty:@"Title" withClass:[NSString class]];
 		[s_describer addProperty:@"Caption" withClass:[NSString class]];
-		[s_describer addProperty:@"Keywords" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"Keyword" propertyClass:[NSString class] ], nil]];
-		[s_describer addProperty:@"Categories" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"Category" propertyClass:[FLIntegerNumber class]], nil]];
+		[s_describer addProperty:@"Keywords" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"Keyword" objectClass:[NSString class] ], nil]];
+		[s_describer addProperty:@"Categories" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"Category" objectClass:[FLIntegerNumber class]], nil]];
 		[s_describer addProperty:@"Copyright" withClass:[NSString class]];
 		[s_describer addProperty:@"FileName" withClass:[NSString class]];
 	});

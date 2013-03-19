@@ -96,11 +96,11 @@
 		
 		if(!s_describer)
 		{
-			s_describer = [[FLObjectDescriber alloc] init];
+			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
 		[s_describer addProperty:@"name" withClass:[NSString class]];
 		[s_describer addProperty:@"photographerLogin" withClass:[NSString class]];
-		[s_describer addProperty:@"photoIds" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"int" propertyClass:[FLIntegerNumber class]], nil]];
+		[s_describer addProperty:@"photoIds" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"int" objectClass:[FLIntegerNumber class]], nil]];
 	});
 	return s_describer;
 }

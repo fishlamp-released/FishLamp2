@@ -141,7 +141,7 @@
         
         if(!s_describer)
         {
-            s_describer = [[FLObjectDescriber alloc] init];
+            s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
         }
         [s_describer addProperty:@"from" withClass:[FLFacebookNamedObject class]];
         [s_describer addProperty:@"updated_time" withClass:[NSDate class]];
@@ -149,7 +149,7 @@
         [s_describer addProperty:@"embed_html" withClass:[NSString class]];
         [s_describer addProperty:@"icon" withClass:[NSString class]];
         [s_describer addProperty:@"source" withClass:[NSString class]];
-        [s_describer addProperty:@"tags" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"tag" propertyClass:[FLFacebookTag class]], nil]];
+        [s_describer addProperty:@"tags" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"tag" objectClass:[FLFacebookTag class]], nil]];
     });
     return s_describer;
 }

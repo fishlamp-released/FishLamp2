@@ -149,16 +149,16 @@
         
         if(!s_describer)
         {
-            s_describer = [[FLObjectDescriber alloc] init];
+            s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
         }
-        [s_describer setPropertyDescriber:[FLPropertyType propertyType:@"normalGradientEnum" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"normalGradientEnum"];
-        [s_describer setPropertyDescriber:[FLPropertyType propertyType:@"selectedGradientEnum" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"selectedGradientEnum"];
-        [s_describer setPropertyDescriber:[FLPropertyType propertyType:@"highlightedGradientEnum" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"highlightedGradientEnum"];
-        [s_describer setPropertyDescriber:[FLPropertyType propertyType:@"disabledGradientEnum" propertyClass:[NSString class] propertyType:FLDataTypeString] forPropertyName:@"disabledGradientEnum"];
-        [s_describer setPropertyDescriber:[FLPropertyType propertyType:@"normalGradient" propertyClass:[FLColorRange class] propertyType:FLDataTypeObject] forPropertyName:@"normalGradient"];
-        [s_describer setPropertyDescriber:[FLPropertyType propertyType:@"selectedGradient" propertyClass:[FLColorRange class] propertyType:FLDataTypeObject] forPropertyName:@"selectedGradient"];
-        [s_describer setPropertyDescriber:[FLPropertyType propertyType:@"highlightedGradient" propertyClass:[FLColorRange class] propertyType:FLDataTypeObject] forPropertyName:@"highlightedGradient"];
-        [s_describer setPropertyDescriber:[FLPropertyType propertyType:@"disabledGradient" propertyClass:[FLColorRange class] propertyType:FLDataTypeObject] forPropertyName:@"disabledGradient"];
+        [s_describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"normalGradientEnum" objectClass:[NSString class] objectDescriber:FLDataTypeString] forPropertyName:@"normalGradientEnum"];
+        [s_describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"selectedGradientEnum" objectClass:[NSString class] objectDescriber:FLDataTypeString] forPropertyName:@"selectedGradientEnum"];
+        [s_describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"highlightedGradientEnum" objectClass:[NSString class] objectDescriber:FLDataTypeString] forPropertyName:@"highlightedGradientEnum"];
+        [s_describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"disabledGradientEnum" objectClass:[NSString class] objectDescriber:FLDataTypeString] forPropertyName:@"disabledGradientEnum"];
+        [s_describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"normalGradient" objectClass:[FLColorRange class] objectDescriber:FLDataTypeObject] forPropertyName:@"normalGradient"];
+        [s_describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"selectedGradient" objectClass:[FLColorRange class] objectDescriber:FLDataTypeObject] forPropertyName:@"selectedGradient"];
+        [s_describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"highlightedGradient" objectClass:[FLColorRange class] objectDescriber:FLDataTypeObject] forPropertyName:@"highlightedGradient"];
+        [s_describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"disabledGradient" objectClass:[FLColorRange class] objectDescriber:FLDataTypeObject] forPropertyName:@"disabledGradient"];
     });
     return s_describer;
 }

@@ -10,6 +10,7 @@
 
 // NOTE: see NSScanner.h
 
+
 @interface NSString (FLStringUtilities)
 
 - (BOOL)isEqualToString:(NSString *)aString caseSensitive:(BOOL) caseSensitive;
@@ -40,6 +41,7 @@
 
 - (NSArray*) componentsSeparatedByCharactersInSet:(NSCharacterSet*) set 
                                 allowEmptyStrings:(BOOL) allowEmptyStrings;
+
 
 
 @end

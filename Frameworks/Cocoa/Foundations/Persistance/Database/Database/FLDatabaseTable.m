@@ -11,6 +11,7 @@
 
 #import "FLObjcRuntime.h"
 #import "FLSqlStatement.h"
+#import "FLPropertyAttributes.h"
 
 @interface FLDatabaseColumn (Internal)
 - (void) setIndexed:(BOOL) isIndexed;
@@ -177,25 +178,31 @@
 	objc_property_t* properties = class_copyPropertyList(class, &propertyCount);
 
 	for(unsigned int i = 0; i < propertyCount; i++)	{
-		char* className = copyTypeNameFromProperty(properties[i]);
-	//	printf("name: %s, attributes %s\n",name, attributes);
-		
-		if(className) {
-			Class c = objc_getClass(className);
-			
-			FLAssertIsNotNil_(c);
-			   
-			const char* propertyName = property_getName(properties[i]);
-			FLDatabaseColumn* col = [FLDatabaseColumn databaseColumnWithName:[NSString stringWithCString:propertyName encoding:NSASCIIStringEncoding]
-				columnType:[c sqlType] 
-				columnConstraints:nil];
-				
-			[self addColumn:col];
-							 
-			free(className);
-	
-		//	printf("\tname: %s, value: '%s'\n", attrList[j].name, attrList[j].value);
-		}
+  
+// TODO: refactor this into object describer?     
+        
+//        FLPropertyAttributes_t attributes = FLPropertyAttributesMake(properties[i], NO);
+    
+    
+//		char* className = copyTypeNameFromProperty(properties[i]);
+//	//	printf("name: %s, attributes %s\n",name, attributes);
+//		
+//		if(className) {
+//			Class c = objc_getClass(className);
+//			
+//			FLAssertIsNotNil_(c);
+//			   
+//			const char* propertyName = property_getName(properties[i]);
+//			FLDatabaseColumn* col = [FLDatabaseColumn databaseColumnWithName:[NSString stringWithCString:propertyName encoding:NSASCIIStringEncoding]
+//				columnType:[c sqlType] 
+//				columnConstraints:nil];
+//				
+//			[self addColumn:col];
+//							 
+//			free(className);
+//	
+//		//	printf("\tname: %s, value: '%s'\n", attrList[j].name, attrList[j].value);
+//		}
 	}
 
     free(properties);

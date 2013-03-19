@@ -311,7 +311,7 @@
         
         if(!s_describer)
         {
-            s_describer = [[FLObjectDescriber alloc] init];
+            s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
         }
         [s_describer addProperty:@"first_name" withClass:[NSString class]];
         [s_describer addProperty:@"last_name" withClass:[NSString class]];
@@ -336,7 +336,7 @@
         [s_describer addProperty:@"religion" withClass:[NSString class]];
         [s_describer addProperty:@"significant_other" withClass:[FLFacebookNamedObject class]];
         [s_describer addProperty:@"website" withClass:[NSString class]];
-        [s_describer addProperty:@"work" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"work_history" propertyClass:[FLFacebookWorkHistory class]], nil]];
+        [s_describer addProperty:@"work" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"work_history" objectClass:[FLFacebookWorkHistory class]], nil]];
     });
     return s_describer;
 }

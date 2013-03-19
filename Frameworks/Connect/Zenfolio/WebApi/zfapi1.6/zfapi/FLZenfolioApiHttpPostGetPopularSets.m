@@ -83,11 +83,11 @@
 		
 		if(!s_describer)
 		{
-			s_describer = [[FLObjectDescriber alloc] init];
+			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
 		[s_describer addProperty:@"input" withClass:[FLZenfolioGetPopularSetsHttpPostIn class]];
 		
-        [s_describer addProperty:@"output" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"PhotoSet" propertyClass:[FLZenfolioPhotoSet class]], nil]];
+        [s_describer addProperty:@"output" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"PhotoSet" objectClass:[FLZenfolioPhotoSet class]], nil]];
 	});
 	return s_describer;
 }

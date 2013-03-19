@@ -11,7 +11,7 @@
 #import "NSObject+JsonParser.h"
 #import "FLDateMgr.h"
 #import "FLObjectDescriber.h"
-#import "FLType.h"
+#import "FLObjectEncoder.h"
 
 @implementation NSObject (FLJsonParser)
 
@@ -25,18 +25,18 @@
 //	FLObjectDescriber* describer = [[self class] objectDescriber];
 //	FLAssertIsNotNil_(describer);
 //
-//	FLPropertyType* desc = [describer propertyForName:key];
+//	FLObjectDescriber* desc = [describer propertyForName:key];
 ////	FLAssertIsNotNil_(desc);
 //
 //	if(desc)
 //	{
-//		FLAssert_v(desc.propertyType.isObject, @"opening object thats a simple type");
-//		if(FLDataTypeIsObject(desc.propertyType))
+//		FLAssert_v(desc.objectDescriber.isObject, @"opening object thats a simple type");
+//		if(FLDataTypeIsObject(desc.objectDescriber))
 //		{
 //			id newObject = [self valueForKey:key];
 //			if(!newObject)
 //			{
-//				newObject = FLAutorelease([[desc.propertyType.classForType alloc] init]);
+//				newObject = FLAutorelease([[desc.objectDescriber.actualClass alloc] init]);
 //				[self setValue:newObject forKey:key];
 //			}
 //		
@@ -65,11 +65,11 @@
 //	FLObjectDescriber* describer = [[self class] objectDescriber];
 //	FLAssertIsNotNil_(describer);
 //
-//	FLPropertyType* desc = [describer propertyForName:key];
+//	FLObjectDescriber* desc = [describer propertyForName:key];
 ////	FLAssertIsNotNil_(desc);
 //
 //	if(desc) {
-//		switch(desc.propertyType.specificType) {
+//		switch(desc.objectDescriber.specificType) {
 //			case FLSpecificTypeDate: {
 //				data = [[FLDateMgr instance] ISO3339StringToDate:data];
 //			}
@@ -103,23 +103,23 @@
 	FLObjectDescriber* describer = [[parentObject class] objectDescriber];
 	FLAssertIsNotNil_(describer);
 
-	FLPropertyType* desc = [describer propertyForName:arrayItemKey];
+	FLObjectDescriber* desc = [describer propertyForName:arrayItemKey];
 	FLAssertIsNotNil_(desc);
 	
 	if(desc)
 	{
-		for(FLPropertyType* property in desc.arrayTypes)
+		for(FLObjectDescriber* property in desc.arrayTypes)
 		{
-		//	if(FLStringsAreEqual(property.propertyName, arrayItemKey))
+		//	if(FLStringsAreEqual(property.objectName, arrayItemKey))
 			{
-                FLAssertIsNotNil_(property.propertyType.classForType);
-                FLObjectDescriber* propDescriber = [property.propertyType.classForType objectDescriber];
+                FLAssertIsNotNil_(property.objectDescriber.actualClass);
+                FLObjectDescriber* propDescriber = [property.objectDescriber.actualClass objectDescriber];
             
 				if(propDescriber)
 				{
 					
-					id obj = [[property.propertyType.classForType alloc] init];
-					FLAssert_v(obj != nil, @"Unable to created object of type: %@", NSStringFromClass(property.propertyType.classForType));
+					id obj = [[property.objectDescriber.actualClass alloc] init];
+					FLAssert_v(obj != nil, @"Unable to created object of type: %@", NSStringFromClass(property.objectDescriber.actualClass));
 
 					FLAssertIsNotNil_(obj);
 					[self addObject:obj];

@@ -23,71 +23,78 @@
 //extern BOOL FLRuntimeClassIsSubclassOfClass(Class subclass, Class superclass);
 //extern void FLRuntimeVisitEachInstanceMethodInClass(Class aClass, Class toSuperclassOrNil, FLRuntimeSelectorVisitor visitor);
 
+/**
+    @brief Copies type name from @encoded string
+    for example NT@"NSMutableArray" results in NSMutableArray
+    if this returns a string, call free on it.
+ */
+//extern char* copyTypeNameFromProperty(objc_property_t property);
 
-char* copyTypeNameFromProperty(objc_property_t property)
-{
-	const char* attr = property_getAttributes(property);
-	
-//	printf("%s", attr);
-	
-	for(int i = 0; attr[i] != 0; i++)
-	{
-		if(attr[i] == '@')
-		{
-			if(attr[i + 1] == '\"')
-			{
-				i += 2;
-				
-				for(int j = i; attr[j] != 0; j++)
-				{
-					if(attr[j] == '\"')
-					{
-						int len = j - i;
-                        char* str = malloc(len + 1);
-                        memcpy(str, attr+i, len);
-						str[len] = 0;
-						return str;
-					}
-				}
-			}
-		}
-	
-	}
-
-	return nil;
-	
-/*
-objc_property_attribute_t* attrList = property_copyAttributeList(properties[i], &attrCount);
-		for(unsigned int j = 0; j < attrCount; j++)
-		{
-			const char* value = attrList[j].value;
-			const char* name = attrList[j].name;
-
-			if(name[0] == 'T' && value[0] == '@')
-			{
-				int len = strlen(value);
-				char* className = malloc(len);
-				strncpy(className, value + 2, len - 3);
-				className[len-3] = 0;
-				
-				Class c = objc_getClass(className);
-					free(attrList);
-	
-*/
-}
-
-const char *getPropertyType(objc_property_t property) {
-    const char *attributes = property_getAttributes(property);
-    char buffer[1 + strlen(attributes)];
-    strcpy(buffer, attributes);
-    char *state = buffer, *attribute;
-    while ((attribute = strsep(&state, ",")) != NULL) {
-        if (attribute[0] == 'T') {
-            return (const char *)[[NSData dataWithBytes:(attribute + 3) length:strlen(attribute) - 4] bytes];
-        }
-    }
-    return "@";
-}
+//char* copyTypeNameFromProperty(objc_property_t property)
+//{
+//	const char* attr = property_getAttributes(property);
+//	
+////	printf("%s", attr);
+//	
+//	for(int i = 0; attr[i] != 0; i++)
+//	{
+//		if(attr[i] == '@')
+//		{
+//			if(attr[i + 1] == '\"')
+//			{
+//				i += 2;
+//				
+//				for(int j = i; attr[j] != 0; j++)
+//				{
+//					if(attr[j] == '\"')
+//					{
+//						int len = j - i;
+//                        char* str = malloc(len + 1);
+//                        memcpy(str, attr+i, len);
+//						str[len] = 0;
+//						return str;
+//					}
+//				}
+//			}
+//		}
+//	
+//	}
+//
+//	return nil;
+//	
+///*
+//objc_property_attribute_t* attrList = property_copyAttributeList(properties[i], &attrCount);
+//		for(unsigned int j = 0; j < attrCount; j++)
+//		{
+//			const char* value = attrList[j].value;
+//			const char* name = attrList[j].name;
+//
+//			if(name[0] == 'T' && value[0] == '@')
+//			{
+//				int len = strlen(value);
+//				char* className = malloc(len);
+//				strncpy(className, value + 2, len - 3);
+//				className[len-3] = 0;
+//				
+//				Class c = objc_getClass(className);
+//					free(attrList);
+//	
+//*/
+//}
+//extern const char *getobjectDescriber(objc_property_t property);
+//
+//const char *getobjectDescriber(objc_property_t property) {
+//    const char *attributes = property_getAttributes(property);
+//    char buffer[1 + strlen(attributes)];
+//    strcpy(buffer, attributes);
+//    char *state = buffer, *attribute;
+//    while ((attribute = strsep(&state, ",")) != NULL) {
+//        if (attribute[0] == 'T') {
+//            return (const char *)[[NSData dataWithBytes:(attribute + 3) length:strlen(attribute) - 4] bytes];
+//        }
+//    }
+//    return "@";
+//}
 
 void FLSelectorSwizzle(Class c, SEL originalSelector, SEL newSelector) {
     Method origMethod = class_getInstanceMethod(c, originalSelector);
@@ -612,6 +619,7 @@ void FLSelectorSwizzle(Class c, SEL originalSelector, SEL newSelector) {
     return nil;
 }
  
+
 
 @end
 

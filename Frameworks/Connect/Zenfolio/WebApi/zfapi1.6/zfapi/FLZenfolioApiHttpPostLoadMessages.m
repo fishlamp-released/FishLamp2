@@ -83,10 +83,10 @@
 		
 		if(!s_describer)
 		{
-			s_describer = [[FLObjectDescriber alloc] init];
+			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
 		[s_describer addProperty:@"input" withClass:[FLZenfolioLoadMessagesHttpPostIn class]];
-		[s_describer addProperty:@"output" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"Message" propertyClass:[FLZenfolioMessage class]], nil]];
+		[s_describer addProperty:@"output" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"Message" objectClass:[FLZenfolioMessage class]], nil]];
 	});
 	return s_describer;
 }

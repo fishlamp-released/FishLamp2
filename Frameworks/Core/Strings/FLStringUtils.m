@@ -177,8 +177,6 @@ NSString* FLStringWithFormatOrNil(NSString* format, ...) {
 }                                
 
 
-
-
 @end
 
 @implementation NSMutableString (FLStringUtilities)

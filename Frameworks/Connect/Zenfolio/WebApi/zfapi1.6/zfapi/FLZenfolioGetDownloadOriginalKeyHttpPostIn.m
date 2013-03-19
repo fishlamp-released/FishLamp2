@@ -86,9 +86,9 @@
 		
 		if(!s_describer)
 		{
-			s_describer = [[FLObjectDescriber alloc] init];
+			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addProperty:@"photoIds" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"String" propertyClass:[NSString class] ], nil]];
+		[s_describer addProperty:@"photoIds" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"String" objectClass:[NSString class] ], nil]];
 		[s_describer addProperty:@"password" withClass:[NSString class]];
 	});
 	return s_describer;

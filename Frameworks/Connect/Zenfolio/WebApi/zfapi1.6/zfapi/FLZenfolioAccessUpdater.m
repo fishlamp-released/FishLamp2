@@ -118,12 +118,12 @@
 		
 		if(!s_describer)
 		{
-			s_describer = [[FLObjectDescriber alloc] init];
+			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
 		[s_describer addProperty:@"AccessMask" withClass:[NSString class]];
 		[s_describer addProperty:@"Password" withClass:[NSString class]];
 		[s_describer addProperty:@"AccessType" withClass:[NSString class]];
-		[s_describer addProperty:@"Viewers" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"Viewer" propertyClass:[NSString class] ], nil]];
+		[s_describer addProperty:@"Viewers" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"Viewer" objectClass:[NSString class] ], nil]];
 		[s_describer addProperty:@"IsDerived" withClass:[FLBoolNumber class] ];
 	});
 	return s_describer;

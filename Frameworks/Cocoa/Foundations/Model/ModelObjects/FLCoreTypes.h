@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "FLType.h"
+#import "FLObjectEncoder.h"
 
 
 @protocol FLTypeCoreTypesEncoding <NSObject>
@@ -39,10 +39,6 @@
 - (NSURL*) decodeNSURLFromString:(NSString*) string;
 @end
 
-
-@interface FLSimpleType : FLType
-@end
-
 // numbers
 typedef enum {
     FLTypeIDBool              = _C_BOOL,
@@ -60,73 +56,73 @@ typedef enum {
 	FLTypeIDDouble            = _C_DBL,
 } FLTypeNumberType;
 
-@interface FLNumberType : FLSimpleType
+@interface FLNumberEncoder : FLObjectEncoder
 @property (readonly, assign, nonatomic) FLTypeNumberType numberType;
 @end
 
-@interface FLBoolNumber : FLNumberType
+@interface FLBoolNumber : FLNumberEncoder
 + (id) boolNumber;
 @end
 
-@interface FLCharNumber : FLNumberType
+@interface FLCharNumber : FLNumberEncoder
 + (id) charNumber;
 @end
 
-@interface FLUnsignedCharNumber : FLNumberType
+@interface FLUnsignedCharNumber : FLNumberEncoder
 + (id) unsignedCharNumber;
 @end
 
-@interface FLShortNumber : FLNumberType
+@interface FLShortNumber : FLNumberEncoder
 + (id) shortNumber;
 @end
 
-@interface FLUnsignedShortNumber : FLNumberType
+@interface FLUnsignedShortNumber : FLNumberEncoder
 + (id) unsignedShortNumber;
 @end
 
-@interface FLIntNumber : FLNumberType
+@interface FLIntNumber : FLNumberEncoder
 + (id) intNumber;
 @end
 
-@interface FLUnsignedIntNumber : FLNumberType
+@interface FLUnsignedIntNumber : FLNumberEncoder
 + (id) unsignedIntNumber;
 @end
 
-@interface FLLongNumber : FLNumberType
+@interface FLLongNumber : FLNumberEncoder
 + (id) longNumber;
 @end
 
-@interface FLUnsignedLongNumber : FLNumberType
+@interface FLUnsignedLongNumber : FLNumberEncoder
 + (id) unsignedLongNumber;
 @end
 
-@interface FLLongLongNumber : FLNumberType
+@interface FLLongLongNumber : FLNumberEncoder
 + (id) longLongNumber;
 @end
 
-@interface FLUnsignedLongLongNumber : FLNumberType
+@interface FLUnsignedLongLongNumber : FLNumberEncoder
 + (id) unsignedLongLongNumber;
 @end
 
-@interface FLFloatNumber : FLNumberType
+@interface FLFloatNumber : FLNumberEncoder
 + (id) floatNumber;
 @end
 
-@interface FLDoubleNumber : FLNumberType
+@interface FLDoubleNumber : FLNumberEncoder
 + (id) doubleNumber;
 @end
 
-@interface FLIntegerNumber : FLNumberType
+@interface FLIntegerNumber : FLNumberEncoder
 + (id) integerNumber;
 @end
 
-@interface FLUnsignedIntegerNumber : FLNumberType
+@interface FLUnsignedIntegerNumber : FLNumberEncoder
 + (id) unsignedIntegerNumber;
 @end
 
 // values
 
-@interface FLValueType : FLSimpleType
+@interface FLValueType : FLObjectEncoder
 @end
 
 @interface FLGeometrySize : FLValueType
@@ -141,7 +137,7 @@ typedef enum {
 + (id) geometryPoint;
 @end
 
-@interface FLMutableArrayType : FLType
+@interface FLMutableArrayType : FLObjectEncoder
 @end
 
 // simple objects that return FLTypes

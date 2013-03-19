@@ -13,7 +13,7 @@
 #import "FLSoapStringBuilder.h"
 #import "FLSoapDataEncoder.h"
 #import "FLSoapParser.h"
-#import "FLPropertyType.h"
+#import "FLObjectDescriber.h"
 
 @implementation FLSoapHttpRequest 
 
@@ -42,9 +42,9 @@
         if(first) {
             FLParsedItem* soap = [[FLSoapParser soapParser] parseData:data];
     
-//            FLPropertyType* type = [FLPropertyType ]
+//            FLObjectDescriber* type = [FLObjectDescriber ]
         
-            FLPropertyType* type = [FLPropertyType propertyType:@"Fault" propertyClass:[FLSoapFault11 class]];
+            FLObjectDescriber* type = [FLObjectDescriber objectDescriber:@"Fault" objectClass:[FLSoapFault11 class]];
     
             FLSoapFault11* soapFault = [[FLSoapObjectBuilder instance] objectFromXML:soap withObjectType:type];
             
@@ -115,6 +115,8 @@
 - (FLResult) resultFromHttpResponse:(FLHttpResponse*) httpResponse {
     NSData* data = httpResponse.responseData;
     FLAssertNotNil_(data);
+
+    //FLLog(@"%@", FLAutorelease([[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]));
 
     FLParsedItem* parsedSoap = [[FLSoapParser soapParser] parseData:data];
     

@@ -158,17 +158,17 @@
         
         if(!s_describer)
         {
-            s_describer = [[FLObjectDescriber alloc] init];
+            s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
         }
-        [s_describer setPropertyDescriber:[FLPropertyType propertyType:@"captureDevicePosition" propertyClass:[NSNumber class] propertyType:FLDataTypeNSInteger] forPropertyName:@"captureDevicePosition"];
-        [s_describer setPropertyDescriber:[FLPropertyType propertyType:@"captureFlashMode" propertyClass:[NSNumber class] propertyType:FLDataTypeNSInteger] forPropertyName:@"captureFlashMode"];
-        [s_describer setPropertyDescriber:[FLPropertyType propertyType:@"captureTorchMode" propertyClass:[NSNumber class] propertyType:FLDataTypeNSInteger] forPropertyName:@"captureTorchMode"];
-        [s_describer setPropertyDescriber:[FLPropertyType propertyType:@"captureFocusMode" propertyClass:[NSNumber class] propertyType:FLDataTypeNSInteger] forPropertyName:@"captureFocusMode"];
-        [s_describer setPropertyDescriber:[FLPropertyType propertyType:@"captureWhiteBalanceMode" propertyClass:[NSNumber class] propertyType:FLDataTypeNSInteger] forPropertyName:@"captureWhiteBalanceMode"];
-        [s_describer setPropertyDescriber:[FLPropertyType propertyType:@"showGuidelines" propertyClass:[NSNumber class] propertyType:FLDataTypeBool] forPropertyName:@"showGuidelines"];
-        [s_describer setPropertyDescriber:[FLPropertyType propertyType:@"showStabityTracker" propertyClass:[NSNumber class] propertyType:FLDataTypeBool] forPropertyName:@"showStabityTracker"];
-        [s_describer setPropertyDescriber:[FLPropertyType propertyType:@"showZoom" propertyClass:[NSNumber class] propertyType:FLDataTypeBool] forPropertyName:@"showZoom"];
-        [s_describer setPropertyDescriber:[FLPropertyType propertyType:@"foo" propertyClass:[NSNumber class] propertyType:FLDataTypeBool] forPropertyName:@"foo"];
+        [s_describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"captureDevicePosition" objectClass:[NSNumber class] objectDescriber:FLDataTypeNSInteger] forPropertyName:@"captureDevicePosition"];
+        [s_describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"captureFlashMode" objectClass:[NSNumber class] objectDescriber:FLDataTypeNSInteger] forPropertyName:@"captureFlashMode"];
+        [s_describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"captureTorchMode" objectClass:[NSNumber class] objectDescriber:FLDataTypeNSInteger] forPropertyName:@"captureTorchMode"];
+        [s_describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"captureFocusMode" objectClass:[NSNumber class] objectDescriber:FLDataTypeNSInteger] forPropertyName:@"captureFocusMode"];
+        [s_describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"captureWhiteBalanceMode" objectClass:[NSNumber class] objectDescriber:FLDataTypeNSInteger] forPropertyName:@"captureWhiteBalanceMode"];
+        [s_describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"showGuidelines" objectClass:[NSNumber class] objectDescriber:FLDataTypeBool] forPropertyName:@"showGuidelines"];
+        [s_describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"showStabityTracker" objectClass:[NSNumber class] objectDescriber:FLDataTypeBool] forPropertyName:@"showStabityTracker"];
+        [s_describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"showZoom" objectClass:[NSNumber class] objectDescriber:FLDataTypeBool] forPropertyName:@"showZoom"];
+        [s_describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"foo" objectClass:[NSNumber class] objectDescriber:FLDataTypeBool] forPropertyName:@"foo"];
     });
     return s_describer;
 }

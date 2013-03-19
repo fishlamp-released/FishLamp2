@@ -9,11 +9,11 @@
 #import "FLXmlObjectBuilder.h"
 #import "FLBase64Encoding.h"
 #import "FLDataEncoder.h"
-#import "FLPropertyType.h"
+#import "FLObjectDescriber.h"
 #import "FLObjectDescriber.h"
 
 @interface FLXmlObjectBuilder ()
-- (id) inflateObjectWithPropertyDescription:(FLPropertyType*) property withElement:(FLParsedItem*) element;
+- (id) inflateObjectWithPropertyDescription:(FLObjectDescriber*) property withElement:(FLParsedItem*) element;
 - (void) addPropertiesToObject:(id) object withElement:(FLParsedItem*) element  objectDescriber:(FLObjectDescriber*) describer;
 @end
 
@@ -47,30 +47,32 @@
     return FLAutorelease([[[self class] alloc] init]);
 }
 
-- (FLPropertyType*) arrayTypeForName:(NSString*) name
-                    withPropertyDescription:(FLPropertyType*) propertyType {
+- (FLObjectDescriber*) arrayTypeForName:(NSString*) name
+                    withPropertyDescription:(FLObjectDescriber*) property {
 
-   for(FLPropertyType* arrayType in propertyType.arrayTypes) {
-        if(FLStringsAreEqual(name, arrayType.propertyName)) {
-            return arrayType;
-        }
-    }
+    return [property propertyForName:name];
 
-    return nil;
+//   for(FLObjectDescriber* arrayType in [property.properties) {
+//        if(FLStringsAreEqual(name, arrayType.objectName)) {
+//            return arrayType;
+//        }
+//    }
+//
+//    return nil;
 } 
 
 - (void) inflateElement:(FLParsedItem*) element 
               intoArray:(NSMutableArray*) newArray
-withPropertyDescription:(FLPropertyType*) propertyType {
+withPropertyDescription:(FLObjectDescriber*) property {
 
     FLAssertNotNil_(newArray);
-    FLAssertNotNil_(propertyType);
-    FLConfirm_v(propertyType.isArray, @"expecting an array property");
+    FLAssertNotNil_(property);
+    FLConfirm_v(property.properties, @"expecting an array property");
 
     for(id elementName in element.elements) {
         id elementOrArray = [element.elements objectForKey:elementName];
 
-        FLPropertyType* arrayType = [self arrayTypeForName:elementName withPropertyDescription:propertyType];
+        FLObjectDescriber* arrayType = [self arrayTypeForName:elementName withPropertyDescription:property];
         FLConfirmNotNil_v(arrayType, @"arrayType for element \"%@\" not found", elementName);
         
         if([elementOrArray isKindOfClass:[NSArray class]]) {
@@ -86,45 +88,58 @@ withPropertyDescription:(FLPropertyType*) propertyType {
 }
 
 
-- (id) inflateObjectWithPropertyDescription:(FLPropertyType*) property withElement:(FLParsedItem*) element  {
+- (id) inflateObjectWithPropertyDescription:(FLObjectDescriber*) property withElement:(FLParsedItem*) element  {
     FLAssertNotNil_(property);
     
     id object = nil;
-    FLObjectDescriber* describer = [property.propertyClass objectDescriber];
+    Class objectClass = property.objectClass;
+    if(!objectClass) {
+        return nil;
+    }
+    
+    FLObjectDescriber* describer = [objectClass objectDescriber];
     if(describer) {
-        object = FLAutorelease([[property.propertyClass alloc] init]);
+        object = FLAutorelease([[objectClass alloc] init]);
         [self addPropertiesToObject:object withElement:element objectDescriber:describer];
         
         // NOTE: what if there is a value?? 
         
     }
     else if([element value]) {
-        object = [self.decoder decodeDataFromString:[element value] forType:property.propertyType];
+        FLObjectEncoder* encoder = property.objectEncoder;
+        if(encoder) {
+            object = [self.decoder decodeDataFromString:[element value] forType:encoder];
+        }
     }
     
     return object;
 }
 
 
-- (void) addPropertiesToObject:(id) object withElement:(FLParsedItem*) element  objectDescriber:(FLObjectDescriber*) describer {
+- (void) addPropertiesToObject:(id) object 
+                   withElement:(FLParsedItem*) element  
+               objectDescriber:(FLObjectDescriber*) describer {
     
     FLAssertNotNil_(object);
 
     for(id elementName in element.elements) {
         id elementOrArray = [element.elements objectForKey:elementName];
 
-        FLPropertyType* propertyType = [describer.properties objectForKey:elementName];
-        FLAssertNotNil_(propertyType);
-
+        FLObjectDescriber* property = [describer.properties objectForKey:elementName];
+        if(!property) {
+            FLLog(@"object builder skipped missing property named: %@", elementName);
+            continue;
+        }
+        
         id propertyValue = nil;
         
-        if(propertyType.isArray) {
+        if(property.hasProperties) {
             propertyValue = [NSMutableArray array];
 
             if([elementOrArray isKindOfClass:[FLParsedItem class]]) {
                 [self inflateElement:elementOrArray
                            intoArray:propertyValue 
-             withPropertyDescription:propertyType];
+             withPropertyDescription:property];
             }
             else {
             
@@ -132,7 +147,7 @@ withPropertyDescription:(FLPropertyType*) propertyType {
                 for(FLParsedItem* child in elementOrArray) {
                     [self inflateElement:child
                                intoArray:propertyValue 
-                              withPropertyDescription:propertyType];
+                              withPropertyDescription:property];
                                 
                 }
 
@@ -140,33 +155,41 @@ withPropertyDescription:(FLPropertyType*) propertyType {
         }
         else {
             FLAssert_([elementOrArray isKindOfClass:[FLParsedItem class]]);
-            propertyValue = [self inflateObjectWithPropertyDescription:propertyType 
+            propertyValue = [self inflateObjectWithPropertyDescription:property 
                                                                      withElement:elementOrArray];
         }
         
         if(propertyValue) {
-            [object setValue:propertyValue forKey:propertyType.propertyName];
+            [object setValue:propertyValue forKey:property.objectName];
         }
     }
 }
 
-- (id) buildObjectFromXML:(FLParsedItem*) element withObjectType:(FLType*) type {
+- (id) objectFromXML:(FLParsedItem*) element withObjectType:(FLObjectDescriber*) property {
     FLAssertNotNil_(self.decoder);
-    FLAssertNotNil_(type);
     FLAssertNotNil_(element);
+    FLAssertNotNil_(property);
 
-    FLObjectDescriber* describer = [type.classForType objectDescriber];
-    FLAssertNotNil_(describer);
+    Class objectClass = property.objectClass;
+    if(!objectClass) {
+        return nil;
+    }
 
+    FLObjectDescriber* describer = [objectClass objectDescriber];
     if(describer) {
-        id rootObject = FLAutorelease([[type.classForType alloc] init]);
-        FLAssertNotNil_v(rootObject, @"unabled to create object of type: %@", NSStringFromClass(type.classForType));
+        id rootObject = FLAutorelease([[objectClass alloc] init]);
+        FLAssertNotNil_v(rootObject, @"unabled to create object of type: %@", NSStringFromClass(objectClass));
         
         [self addPropertiesToObject:rootObject withElement:element objectDescriber:describer];
         return rootObject;
     }
     
-    id object = [self.decoder decodeDataFromString:[element value] forType:type];
+    FLObjectEncoder* encoder = property.objectEncoder;
+    if(!encoder) {
+        return nil;
+    }
+    
+    id object = [self.decoder decodeDataFromString:[element value] forType:encoder];
     FLAssertNotNil_(object);
     
     return object;
@@ -178,13 +201,13 @@ withPropertyDescription:(FLPropertyType*) propertyType {
     
     for(id elementName in xmlElement.elements) {
         
-        for(FLPropertyType* property in properties) {
+        for(FLObjectDescriber* property in properties) {
 
-            if(FLStringsAreEqual(property.propertyName, elementName)) {
+            if(FLStringsAreEqual(property.objectName, elementName)) {
             
                 id objectXML = [xmlElement.elements objectForKey:elementName];
             
-                id object = [self buildObjectFromXML:objectXML withObjectType:property.propertyType];
+                id object = [self objectFromXML:objectXML withObjectType:property];
                 
                 if(object) {
                     [array addObject:object];
@@ -196,17 +219,22 @@ withPropertyDescription:(FLPropertyType*) propertyType {
     return array;
 }
 
-- (NSArray*) objectsFromXML:(FLParsedItem*) xmlElement withObjectType:(FLPropertyType*) type {
+- (NSArray*) objectsFromXML:(FLParsedItem*) xmlElement withObjectType:(FLObjectDescriber*) type {
     return [self objectsFromXML:xmlElement withObjectTypes:[NSArray arrayWithObject:type]];
 }
 
-- (id) objectFromXML:(FLParsedItem*) element withObjectType:(FLPropertyType*) type {
-    NSArray* objects = [self objectsFromXML:element withObjectType:type];
-
-    FLConfirm_v(objects.count == 1, @"expecting 1 object, got %d", objects.count);
-    
-    return [objects count] > 0 ? [objects objectAtIndex:0] : nil;
-}
+//- (id) objectFromXML:(FLParsedItem*) objectXML withObjectType:(FLObjectDescriber*) type {
+//    
+//    return [self buildObjectFromXML:objectXML withPropertyDescriber:type];
+//                
+//                
+//    
+//    NSArray* objects = [self objectsFromXML:element withObjectType:type];
+//
+//    FLConfirm_v(objects.count == 1, @"expecting 1 object, got %d", objects.count);
+//    
+//    return [objects count] > 0 ? [objects objectAtIndex:0] : nil;
+//}
 
 
 @end

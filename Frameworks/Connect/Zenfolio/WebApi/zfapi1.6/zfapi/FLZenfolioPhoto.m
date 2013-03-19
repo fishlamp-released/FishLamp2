@@ -411,7 +411,7 @@
 		
 		if(!s_describer)
 		{
-			s_describer = [[FLObjectDescriber alloc] init];
+			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
 		[s_describer addProperty:@"Id" withClass:[FLIntegerNumber class] ];
 		[s_describer addProperty:@"Width" withClass:[FLUnsignedIntegerNumber class] ];
@@ -428,8 +428,8 @@
 		[s_describer addProperty:@"Views" withClass:[FLIntegerNumber class] ];
 		[s_describer addProperty:@"Size" withClass:[FLIntegerNumber class] ];
 		[s_describer addProperty:@"Rotation" withClass:[NSString class]];
-		[s_describer addProperty:@"Keywords" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"Keyword" propertyClass:[NSString class] ], nil]];
-		[s_describer addProperty:@"Categories" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"Category" propertyClass:[FLIntegerNumber class]], nil]];
+		[s_describer addProperty:@"Keywords" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"Keyword" objectClass:[NSString class] ], nil]];
+		[s_describer addProperty:@"Categories" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"Category" objectClass:[FLIntegerNumber class]], nil]];
 		[s_describer addProperty:@"Flags" withClass:[NSString class]];
 		[s_describer addProperty:@"TextCn" withClass:[FLIntegerNumber class] ];
 		[s_describer addProperty:@"PricingKey" withClass:[FLLongNumber class] ];
@@ -441,12 +441,12 @@
 		[s_describer addProperty:@"Copyright" withClass:[NSString class]];
 		[s_describer addProperty:@"FileHash" withClass:[NSData class]];
 		[s_describer addProperty:@"PageUrl" withClass:[NSString class]];
-		[s_describer addProperty:@"ExifTagsArray" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"ExifTags" propertyClass:[FLZenfolioExifTag class]], nil]];
+		[s_describer addProperty:@"ExifTagsArray" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"ExifTags" objectClass:[FLZenfolioExifTag class]], nil]];
 		[s_describer addProperty:@"ShortExif" withClass:[NSString class]];
 		[s_describer addProperty:@"MailboxId" withClass:[NSString class]];
 		[s_describer addProperty:@"IsVideo" withClass:[FLBoolNumber class] ];
 		[s_describer addProperty:@"Duration" withClass:[FLIntegerNumber class] ];
-		[s_describer addProperty:@"categoryArray" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyType propertyType:@"parsedCategory" propertyClass:[FLZenfolioParsedCategory class]], nil]];
+		[s_describer addProperty:@"categoryArray" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"parsedCategory" objectClass:[FLZenfolioParsedCategory class]], nil]];
 	});
 	return s_describer;
 }
