@@ -13,7 +13,7 @@
 
 #define ArrowWidth 10.0f
 #define kWideWidth 100
-#define kTallHeight 60
+#define kTallHeight 50
 
 @interface FLBreadcrumbBarView ()
 @end
