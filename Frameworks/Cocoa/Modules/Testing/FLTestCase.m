@@ -200,7 +200,7 @@ FLTestCaseFlagPair s_flagPairs[] = {
         }
     }
     
-    FLAssertIsTrue_v(passed, @"Didn't catch expected exception");
+    FLAssertIsTrueWithComment(passed, @"Didn't catch expected exception");
 }
 
 
@@ -228,7 +228,7 @@ FLTestCaseFlagPair s_flagPairs[] = {
 //        gotReasonString = [failure.info loca]
     }
     
-//    FLAssertAreEqual_v(failed, failureType, nil);
+//    FLAssertAreEqualWithComment(failed, failureType, nil);
 }
 
 @end

@@ -12,7 +12,7 @@
 #import "UIColor+FLUtils.h"
 #import "FLColorRange.h"
 #import "FLColorValues.h"
-#import "UIViewController+FLAdditions.h"
+#import "FLViewController.h"
 #import "FLViewContentsDescriptor.h"
 #import "FLViewControllerTransitionAnimation.h"
 #import "UIViewController+FLPresentationBehavior.h"

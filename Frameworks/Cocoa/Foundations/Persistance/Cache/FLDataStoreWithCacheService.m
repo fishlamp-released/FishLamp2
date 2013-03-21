@@ -19,7 +19,7 @@
 #endif
 
 - (void) openService:(id) opener {
-    FLAssertNotNil_(self.cache);
+    FLAssertNotNil(self.cache);
     [super openService:opener];
 }
 

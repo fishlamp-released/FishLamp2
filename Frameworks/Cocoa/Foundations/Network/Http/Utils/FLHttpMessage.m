@@ -32,7 +32,7 @@
         _message = CFHTTPMessageCreateRequest(kCFAllocatorDefault, 
             bridge_(void*,httpMethod), bridge_(void*,url), kCFHTTPVersion1_1);
             
-        FLConfirmNotNil_(_message);    
+        FLConfirmNotNil(_message);    
     }
     return self;
 }

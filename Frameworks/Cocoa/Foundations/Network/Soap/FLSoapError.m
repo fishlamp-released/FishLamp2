@@ -17,7 +17,7 @@
 		fault, FLUnderlyingSoapFaultKey, 
         [NSString stringWithFormat:@"%@:%@", fault.faultcode, fault.faultstring], NSLocalizedDescriptionKey, nil];
 
-	if((self = [self initWithDomain:[FLFrameworkErrorDomain instance]
+	if((self = [self initWithDomain:FLFrameworkErrorDomain
 							   code:FLSoapFaultError
 						   userInfo:userInfo]))
 	{

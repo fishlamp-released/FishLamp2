@@ -99,7 +99,7 @@
 	
 	if(FLStringIsNotEmpty(_text))
 	{
-		FLAssertIsNotNil_(_textDescriptor.font);
+		FLAssertIsNotNil(_textDescriptor.font);
 		[_text drawInRect:self.frame withFont:_textDescriptor.font lineBreakMode:_lineBreakMode alignment:_textAlignment];
 	}
 	 
@@ -126,7 +126,7 @@
 
 - (CGSize) sizeThatFitsText:(CGSize) size
 {
-	FLAssertIsNotNil_(self.textDescriptor.font);
+	FLAssertIsNotNil(self.textDescriptor.font);
 	return FLSizeOptimizeForView(	[self.text sizeWithFont:self.textDescriptor.font
 									constrainedToSize:size
 									lineBreakMode:self.lineBreakMode] );
@@ -156,7 +156,7 @@
 
 - (CGFloat) heightOfTextForWidth:(CGFloat) width andString:(NSString*) string
 {
-	FLAssertIsNotNil_(self.textDescriptor.font);
+	FLAssertIsNotNil(self.textDescriptor.font);
 
 	return [string sizeWithFont:self.textDescriptor.font
 									constrainedToSize:CGSizeMake(width, 2048.0)
@@ -174,7 +174,7 @@
     
     switch(fillMode) {
         case FLArrangeableGrowModeGrowWidth:
-            FLAssertIsImplemented_();
+            FLAssertIsImplemented();
         break;
 
         case FLArrangeableGrowModeGrowHeight:

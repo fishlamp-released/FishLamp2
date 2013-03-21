@@ -8,7 +8,6 @@
 
 #import "FLSimpleNotifier.h"
 #import "FLDeallocNotifier.h"
-#import "FLAbortException.h"
 
 @implementation FLSimpleNotifier
 
@@ -33,7 +32,7 @@
 
 - (void) addNotifier:(FLSimpleNotifier*) notifier {
 
-    FLAssertIsNotNil_(notifier);
+    FLAssertIsNotNil(notifier);
 
     @synchronized(self) {
         if(!_notifiers) {
@@ -70,11 +69,8 @@
         @try {
             visitor(value, &stop);
         }
-        @catch(FLAbortException* ex) {
-            stop = YES;
-        }
         @catch(NSException* ex) {
-            FLConfirmationFailure_v(@"do not throw exceptions from notifiers");
+            FLConfirmationFailureWithComment(@"do not throw exceptions from notifiers");
         }
         
         if(stop) {

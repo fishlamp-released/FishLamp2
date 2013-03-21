@@ -144,7 +144,7 @@
 //                }
 //            } 
 //            @catch(NSException* ex) {  
-//                FLAssertFailed_v(@"Not allowed to throw exceptions from object: %@", ex.reason);  
+//                FLAssertFailedWithComment(@"Not allowed to throw exceptions from object: %@", ex.reason);  
 //            } 
 //        };
 //    }
@@ -245,7 +245,7 @@
 //@implementation FLObservableEvent 
 //
 //- (void) setArgument:(id) arg atIndex:(NSUInteger) idx {
-//    FLConfirm_(idx < FLObservableEventMaxArguments);
+//    FLConfirm(idx < FLObservableEventMaxArguments);
 //    FLSetObjectWithRetain(_arguments[idx], arg);
 //}
 //
@@ -269,7 +269,7 @@
 //}
 //
 //- (id) argumentAtIndex:(NSUInteger) idx {
-//    FLConfirm_(idx < FLObservableEventMaxArguments);
+//    FLConfirm(idx < FLObservableEventMaxArguments);
 //    return _arguments[idx];
 //}
 //
@@ -302,7 +302,7 @@
 //
 //    switch(self.argumentCount) {
 //        default:
-//            FLAssertFailed_v(@"observer event selectors should have 1 - 3 parameters")
+//            FLAssertFailedWithComment(@"observer event selectors should have 1 - 3 parameters")
 //        break;
 //
 //        case 1:
@@ -456,7 +456,7 @@
 //                }
 //            } 
 //            @catch(NSException* ex) {  
-//                FLAssertFailed_v(@"Not allowed to throw exceptions from object: %@", ex.reason);  
+//                FLAssertFailedWithComment(@"Not allowed to throw exceptions from object: %@", ex.reason);  
 //            } 
 //        };
 //    }

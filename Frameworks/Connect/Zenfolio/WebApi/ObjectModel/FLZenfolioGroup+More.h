@@ -23,7 +23,7 @@ typedef void (^FLGroupElementVisitor)(FLZenfolioGroupElement* element, BOOL* sto
 
 - (void) removeGroupElement:(FLZenfolioGroupElement*) element;
 - (void) addGroupElement:(FLZenfolioGroupElement*) element;
-- (BOOL) replaceGroupElement:(FLZenfolioGroupElement*) replacingElement;
+//- (BOOL) replaceGroupElement:(FLZenfolioGroupElement*) replacingElement;
 
 // not needed anymore?
 - (void) addGroupElement:(FLZenfolioGroupElement*) element parentId:(unsigned long) parentId;

@@ -57,7 +57,7 @@ FLColorValues FLColorValuesLighten(FLColorValues values, CGFloat byPercent) {
 	}
 	else
 	{
-		FLAssert_v(numComponents == 4, @"didn't get 4 componants");
+		FLAssertWithComment(numComponents == 4, @"didn't get 4 componants");
 	
 		const CGFloat *components = CGColorGetComponents(color);
 		values.red = components[0];

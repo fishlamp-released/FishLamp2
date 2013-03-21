@@ -7,7 +7,7 @@
 //
 #import "FLCocoaUIRequired.h"
 #import "FLProgressViewController.h"
-#import "UIViewController+FLAdditions.h"
+#import "FLViewController.h"
 #import "UIViewController+FLPresentationBehavior.h"
 
 @interface FLProgressViewController ()
@@ -47,18 +47,17 @@
 }
 
 - (id) init {
-    FLAssert_v([NSThread currentThread] == [NSThread mainThread], @"Not on main thread");
+    FLAssertWithComment([NSThread currentThread] == [NSThread mainThread], @"Not on main thread");
 
     self = [super init];
     if(self) {
-        self.transitionAnimation = [UIViewController defaultTransitionAnimation];
+#if IOS
+        self.transitionAnimation = [FLViewController defaultTransitionAnimation];
 
 // default handlers
         self.onShowProgress = ^(id progress) {
 
-#if IOS
         [[UIApplication visibleViewController] showChildViewController:progress];
-#endif
         };
         
         self.onHideProgress = ^(id progress) {
@@ -66,6 +65,7 @@
         };
         
         _progressProxy = [[FLProgressViewOwner alloc] init];
+#endif
     }
     
     return self;
@@ -82,7 +82,7 @@
 
 #if FL_MRC
 - (void) dealloc {
-    FLAssert_v([NSThread currentThread] == [NSThread mainThread], @"Not on main thread");
+    FLAssertWithComment([NSThread currentThread] == [NSThread mainThread], @"Not on main thread");
 
     FLRelease(_progressProxy);
     FLRelease(_onHideProgress);
@@ -153,7 +153,7 @@
 }
 
 - (void) hideProgress {
-    FLAssertIsNotNil_(_onHideProgress);
+    FLAssertIsNotNil(_onHideProgress);
     if(_onHideProgress) {
         _onHideProgress(self);
         FLReleaseBlockWithNil(_onHideProgress);
@@ -161,7 +161,7 @@
 }
 
 - (void) showProgress {
-    FLAssertIsNotNil_(_onShowProgress);
+    FLAssertIsNotNil(_onShowProgress);
     if(_onShowProgress) {
         _onShowProgress(self);
     }
@@ -252,7 +252,7 @@
 @synthesize onHideProgress = _onHideProgress;
 
 - (id) init {
-    FLAssert_v([NSThread currentThread] == [NSThread mainThread], @"Not on main thread");
+    FLAssertWithComment([NSThread currentThread] == [NSThread mainThread], @"Not on main thread");
 
     self = [super init];
     if(self) {
@@ -285,7 +285,7 @@
 }
 
 - (void) dealloc  {
-    FLAssert_v([NSThread currentThread] == [NSThread mainThread], @"Not on main thread");
+    FLAssertWithComment([NSThread currentThread] == [NSThread mainThread], @"Not on main thread");
     [_progressView removeFromSuperview];
 #if FL_MRC    
     FLRelease(_onShowProgress);
@@ -344,14 +344,14 @@
 }
 
 - (void) hideProgress {
-    FLAssertIsNotNil_(_onHideProgress);
+    FLAssertIsNotNil(_onHideProgress);
     if(_onHideProgress) {
         _onHideProgress(self);
     }
 }
 
 - (void) showProgress {
-    FLAssertIsNotNil_(_onShowProgress);
+    FLAssertIsNotNil(_onShowProgress);
     if(_onShowProgress) {
         _onShowProgress(self);
     }

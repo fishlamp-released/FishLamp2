@@ -40,7 +40,7 @@
 	_delegate.object = delegate;
 }
 
-FLAssertDefaultInitNotCalled_();
+FLAssertDefaultInitNotCalled();
 
 - (id) initWithUploadQueue:(FLZenfolioUploadQueue*) uploadQueue {
 	if((self = [super init])) {
@@ -84,7 +84,7 @@ FLAssertDefaultInitNotCalled_();
 }
 
 - (void) _updateProgress {
-	FLAssert_v([NSThread isMainThread], @"updating progress on wrong thread");
+	FLAssertWithComment([NSThread isMainThread], @"updating progress on wrong thread");
 
 	[self.progressController updateProgress:self.bytesUploaded totalAmount:self.uploadSize]; // for the bar
 }
@@ -139,7 +139,7 @@ FLAssertDefaultInitNotCalled_();
     
     if(!canSkipUpload) {
         if(self.photo.uploadedAssetId == 0) {
-            FLThrowErrorCode_v(FLZenfolioErrorDomain, errUnknownObjectId, @"Photo id is zero");
+            FLThrowErrorCodeWithComment(FLZenfolioErrorDomain, errUnknownObjectId, @"Photo id is zero");
         }
         
         // upload meta-data (perform update on Photo snapshot)
@@ -198,7 +198,7 @@ FLAssertDefaultInitNotCalled_();
         break;
     }
 
-    FLAssertFailed_v(@"should have returned a new state");
+    FLAssertFailedWithComment(@"should have returned a new state");
     
     return _state;
 }
@@ -280,7 +280,7 @@ FLAssertDefaultInitNotCalled_();
     if([operation didSucceed]) {
         self.photo.uploadedAssetIdValue = [[operation operationOutput] unsignedLongValue];
         if(self.photo.uploadedAssetId == 0) {
-            FLThrowErrorCode_v(FLZenfolioErrorDomain, errUnknownObjectId, @"Photo id is zero");
+            FLThrowErrorCodeWithComment(FLZenfolioErrorDomain, errUnknownObjectId, @"Photo id is zero");
         }
 		[_uploadQueue saveAsset:self.photo];
 	}
@@ -292,8 +292,8 @@ FLAssertDefaultInitNotCalled_();
 }
 
 - (void) _beginUploadingBytes {
-    FLAssertIsNotNil_(self.photo);
-    FLAssertIsNotNil_(self.imageFile);
+    FLAssertIsNotNil(self.photo);
+    FLAssertIsNotNil(self.imageFile);
 
     FLAction* action = [self createAction];
     FLZenfolioUploadImageOperation* uploadImage = FLAutorelease([[FLZenfolioUploadImageOperation alloc] initWithUploadablePhoto:self.photo preparedImage:self.imageFile]) ;

@@ -53,7 +53,7 @@
 // FIXME @"image needs themeing");
 
     UIImage* image = [UIImage whiteImageNamed:imageName];
-    FLAssertIsNotNil_(image);
+    FLAssertIsNotNil(image);
 
     return [self initWithImage:image onChosenBlock:onChosenBlock];
 }

@@ -15,10 +15,6 @@
 #import "FLJpegFileImageAsset.h"
 #import "FLStorableImageProtocol.h"
 
-// Notifications
-#import "FLNotification.h"
-#import "FLNotificationListener.h"
-
 // ObjectContainer
 #import "FLCallbackObject.h"
 #import "FLFunctor.h"

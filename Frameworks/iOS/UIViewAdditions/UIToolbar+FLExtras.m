@@ -16,8 +16,8 @@
 //	  animated:(BOOL) animated
 //	  outNewItem:(UIBarButtonItem**) outNewItem
 //{
-//		FLAssertIsNotNil_(oldItem);
-//	  FLAssertIsNotNil_(newView);
+//		FLAssertIsNotNil(oldItem);
+//	  FLAssertIsNotNil(newView);
 //
 //	  BOOL foundIt = NO;
 //	  

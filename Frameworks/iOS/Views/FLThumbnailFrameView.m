@@ -170,7 +170,7 @@ CGFloat kFrameSize = 0; //5.0f
 
 - (void) _updateThumbnailFrame:(UIImage*) image {
 	
-    FLAssert_v(_maxSize.width != 0.0f && _maxSize.height != 0.0f, @"invalid max size");
+    FLAssertWithComment(_maxSize.width != 0.0f && _maxSize.height != 0.0f, @"invalid max size");
 	
     CGRect thumbnailFrame =[image proportionalBoundsWithMaxSize:_maxSize];
 	CGPoint thumbOrigin = {0.0f, 0.0f};

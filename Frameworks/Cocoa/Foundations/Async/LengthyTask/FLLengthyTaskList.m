@@ -53,7 +53,7 @@
 //}
 //
 //- (void) setTaskName:(NSString*) taskName {
-//	FLAssertFailed_v(@"setting task name not support for list");
+//	FLAssertFailedWithComment(@"setting task name not support for list");
 //}
 //
 //- (void) lengthyTaskDidFinish:(FLLengthyTask*) task {

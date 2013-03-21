@@ -29,7 +29,7 @@
 		}
 		
 		_action = action;
-		FLAssert_v([self.target respondsToSelector:_action], @"target doesn't respond to selector");
+		FLAssertWithComment([self.target respondsToSelector:_action], @"target doesn't respond to selector");
 	}
 	return self;
 }
@@ -38,7 +38,7 @@
 	if((self = [super init])) {	
 		_targetContainer = targetInContainer;
 		_action = action;
-		FLAssert_v([self.target respondsToSelector:_action], @"target doesn't respond to selector");
+		FLAssertWithComment([self.target respondsToSelector:_action], @"target doesn't respond to selector");
 	}
 	return self;
 }

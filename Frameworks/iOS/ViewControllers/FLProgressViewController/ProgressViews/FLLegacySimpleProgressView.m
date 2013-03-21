@@ -122,7 +122,7 @@ FLSynthesizeStructProperty(maximizeWidth, setMaximizeWidth, BOOL, _style);
 {
 	CGRect progressFrame = CGRectMake(0,0,0,0);
 
-	FLAssertIsNotNil_(_textLabel);
+	FLAssertIsNotNil(_textLabel);
 	
 	if(_dragBar)
 	{
@@ -357,7 +357,7 @@ FLSynthesizeStructProperty(maximizeWidth, setMaximizeWidth, BOOL, _style);
             totalAmount:(unsigned long long) totalAmount {
 	if(_progressBar)
 	{	
-		FLAssert_v([NSThread isMainThread], @"not on main thread, use updateProgress:(FLProgressValue*) value");
+		FLAssertWithComment([NSThread isMainThread], @"not on main thread, use updateProgress:(FLProgressValue*) value");
    
 		_progressBar.progress = ((float) amountWritten) / ((float) totalAmount);
 	}

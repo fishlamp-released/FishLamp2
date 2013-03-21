@@ -115,7 +115,7 @@
     {
         FLVisibleCellRanges visible = self.visibleCellCollection.visibleRanges;
     
-        FLAssert_v(visible.count == 1, @"only expecting one range here");
+        FLAssertWithComment(visible.count == 1, @"only expecting one range here");
     
         [self beginLoadingPageAtIndex:visible.ranges[0].location];
     }
@@ -172,7 +172,7 @@
         if([self.galleryContainer subItemCount] && ([self.galleryContainer subItemCount] > self.cellCollection.count)) {
             FLVisibleCellRanges visible = self.visibleCellCollection.visibleRanges;
     
-            FLAssert_v(visible.count == 1, @"only expecting one range here");
+            FLAssertWithComment(visible.count == 1, @"only expecting one range here");
     
             [self beginLoadingPageAtIndex:FLRangeLastIndex(visible.ranges[0]) + 1];
         }

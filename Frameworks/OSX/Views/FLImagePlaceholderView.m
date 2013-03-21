@@ -51,7 +51,6 @@
 
 #if FL_MRC
 - (void) dealloc {
-    [_loadingPath release];
     [_progress release];
     [super dealloc];
 }
@@ -107,31 +106,6 @@
     else {
         _imageView.hidden = YES;
         [self startAnimating];
-    }
-}
-
-- (void) loadLatestImage {
-    NSString* imagePath = self.loadingPath;
-
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSImage* image = FLAutorelease([[NSImage alloc] initWithContentsOfFile:imagePath]);
-        if(image) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self setImage:image];
-            });
-        }
-    }); 
-}
-
-- (void) setImageWithFilePath:(NSString*) imagePath {
-    self.loadingPath = imagePath;
-    
-    if(_imageView.image == nil) {
-        [self loadLatestImage];
-    }
-    else {
-        [NSObject cancelPreviousPerformRequestsWithTarget:self];
-        [self performSelector:@selector(loadLatestImage) withObject:nil afterDelay:0.3];
     }
 }
 

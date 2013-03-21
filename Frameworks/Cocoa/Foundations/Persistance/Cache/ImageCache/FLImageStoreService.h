@@ -8,7 +8,7 @@
 
 #import "FLService.h"
 #import "FLStorableImage.h"
-#import "FLObjectDataStore.h"
+#import "FLObjectStorage.h"
 #import "FLImageFolder.h"
 #import "FLDataStoreService.h"
 

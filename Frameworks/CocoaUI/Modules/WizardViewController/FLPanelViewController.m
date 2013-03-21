@@ -49,15 +49,12 @@
 }
 
 - (BOOL)becomeFirstResponder {
-    NSLog(@"panel becomeFirstResponder: %@", [self title]);
     return YES;
 }
 
 - (BOOL)resignFirstResponder {
-    NSLog(@"panel resignFirstResponder: %@", [self title]);
     return YES;
 }
-
 
 - (void) panelWillAppear {
 }
@@ -80,7 +77,7 @@
 - (void) respondToBackButton:(BOOL*) handledIt {
 }
 
-- (void) addPanelView:(FLCompatibleView*) panelView toPanelArea:(id<FLPanelArea>) panelArea animated:(BOOL) animated {
+- (void) addPanelView:(SDKView*) panelView toPanelArea:(id<FLPanelArea>) panelArea animated:(BOOL) animated {
     [_panelManager addPanelView:panelView toView:panelArea.view animated:animated];
 }
 
@@ -92,6 +89,35 @@
         self.header = nil;
     }
 }
+
+- (void) showAlertWithTitle:(NSString*) title {
+
+}
+
+- (void) showAlertWithTitle:(NSString*) title withCaption:(NSString*) caption {
+
+}
+
+- (void) showAlertWithError:(NSError*) error {
+    [self showAlertWithError:error withTitle:nil withCaption:nil];
+}
+
+- (void) showAlertWithError:(NSError*) error withTitle:(NSString*) title {
+    [self showAlertWithError:error withTitle:title withCaption:nil];
+}
+
+- (void) showAlertWithError:(NSError*) error withTitle:(NSString*) title withCaption:(NSString*) caption {
+    [[self wizardViewController] showErrorAlert:title caption:caption error:error];
+}
+
+
+- (void) showErrorAlert:(NSString*) title caption:(NSString*) caption error:(NSError*) error {
+    [[self wizardViewController] showErrorAlert:title caption:caption error:error];
+}
+
+- (void) didHideAlertWithError:(NSError*) error {
+}
+
 
 
 @end

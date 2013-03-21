@@ -12,7 +12,7 @@
 #import "FLFadeAnimation.h"
 #import "FLMoveAnimation.h"
 #import "FLDropBackAnimation.h"
-#import "UIViewController+FLAdditions.h"
+#import "FLViewController.h"
 #import "FLPanelViewController.h"
 #import "FLStatusBarViewController.h"
 
@@ -190,6 +190,51 @@
 //    }
     
 }                              
+- (void) didHideErrorAlertForError:(NSError*) error {
+    [self.view.window makeFirstResponder:self];
+    [[self.panelManager visiblePanel] didHideAlertWithError:error];
+}
+
+- (void)didPresentErrorWithRecovery:(BOOL)didRecover contextInfo:(void *)contextInfo {
+    
+    NSError* error = FLAutorelease(FLBridgeTransfer(NSError*, contextInfo));
+
+    [self didHideErrorAlertForError:error];
+}
+
+- (void) showErrorAlert:(NSString*) title caption:(NSString*) caption error:(NSError*) error {
+
+    if(error.isCancelError) {
+        return;
+    }
+
+    FLMutableError* theError = [FLMutableError mutableErrorWithError:error];
+
+    NSMutableString* errorString = [NSMutableString string];
+    if(title) {
+        [errorString appendString:title];
+    
+        if(caption) {
+            [errorString appendFormat:@"\n\n%@", caption];
+        }
+        
+        theError.localizedDescription = errorString;
+    }
+    
+
+    NSBeep();
+    
+    void* context = FLBridgeRetain(void*, error);
+    
+    [self presentError:error modalForWindow:self.view.window delegate:self didPresentSelector:@selector(didPresentErrorWithRecovery:contextInfo:) contextInfo:context];
+    
+//    FLLocalNotification* notification = [FLLocalNotification localNotificationWithName:@"Authentication Failed"];
+//    notification.subtitle = @"Please try again";
+//    [notification deliverNotification];
+
+    [NSApp requestUserAttention:NSCriticalRequest];
+}
+
 
 @end
 

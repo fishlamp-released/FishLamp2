@@ -99,7 +99,7 @@
 }
 
 - (Class) viewClassForCellState:(FLGridCellState) state {
-    FLAssertIsOverridden_v(nil);
+    FLAssertIsOverriddenWithComment(nil);
     return nil;
 }
 
@@ -131,7 +131,7 @@
         [self.superview addSubview:view];
     }
 
-    FLAssertIsNotNil_(view);
+    FLAssertIsNotNil(view);
     return view;
 }
 

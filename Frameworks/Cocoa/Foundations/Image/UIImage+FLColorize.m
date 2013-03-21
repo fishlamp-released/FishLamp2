@@ -33,14 +33,14 @@
 	UIGraphicsEndImageContext();
 	return newImage;
 #else 
-    FLAssertIsImplemented_v(nil);
+    FLAssertIsImplementedWithComment(nil);
     return nil;
 #endif
 }
 
 + (UIImage*) imageNamed:(NSString*) name withColor:(UIColor*) color blendMode:(CGBlendMode) blendMode {
     UIImage* image = [UIImage imageNamed:name];
-    FLAssertIsNotNil_v(image, nil);
+    FLAssertIsNotNilWithComment(image, nil);
 
 	return [image colorizeImage:color blendMode:blendMode];
 }
@@ -81,7 +81,7 @@
 		return image;
 	}
 #else
-    FLAssertIsImplemented_v(nil);
+    FLAssertIsImplementedWithComment(nil);
     
 #endif
 

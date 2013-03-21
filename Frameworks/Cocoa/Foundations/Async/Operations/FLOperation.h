@@ -10,6 +10,7 @@
 #import "FLWorkerContext.h"
 #import "FLAsyncWorker.h"
 #import "FLMessageBroadcaster.h"
+#import "FLObjectStorage.h"
 
 @class FLOperation;
 
@@ -22,11 +23,17 @@ typedef FLResult (^FLBlockWithOperation)(FLOperation* operation, id context, id 
 	id _operationID;
 	FLBlockWithOperation _runBlock;
     BOOL _cancelled;
+    id<FLObjectStorage> _objectStorage;
+    
+    __unsafe_unretained id _observer;
 }
-
+@property (readwrite, strong, nonatomic) id<FLObjectStorage> objectStorage;
 @property (readwrite, strong, nonatomic) id operationID;
 
+@property (readonly, assign, nonatomic) id observer;
+
 - (id) init;
+- (id) initWithObjectStorage:(id<FLObjectStorage>) objectStorage;
 - (id) initWithRunBlock:(FLBlockWithOperation) block;
 
 + (id) operation;

@@ -115,12 +115,10 @@
 }
 
 - (void) showNetworkProgress:(id) sender {
-    FLLog(@"got start message");
     [self startAnimating];
 }
 
 - (void) hideNetworkProgress:(id) sender {
-    FLLog(@"got stop message");
     [self stopAnimating];
 }
 

@@ -12,13 +12,13 @@
 
 + (UIFont *)zenfolioFontOfSize:(CGFloat)fontSize {
     UIFont* font = [UIFont fontWithName:@"MyriadPro-Regular" size:fontSize];
-    FLAssertNotNil_(font);
+    FLAssertNotNil(font);
     return font;
 }
 
 + (UIFont *)boldZenfolioFontOfSize:(CGFloat)fontSize {
     UIFont* font = [UIFont fontWithName:@"MyriadPro-Bold" size:fontSize];
-    FLAssertNotNil_(font);
+    FLAssertNotNil(font);
     return font;
 }
 

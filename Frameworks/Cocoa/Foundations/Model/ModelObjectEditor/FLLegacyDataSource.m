@@ -58,7 +58,7 @@ FLSplitKeyPath FLSplitKeyPathFromString(NSString* keyPathString)
 
 - (void) setDataSource:(id) dataSource forKey:(NSString*) key
 {   
-    FLAssertStringIsNotEmpty_(key);
+    FLAssertStringIsNotEmpty(key);
 
     if(dataSource)
     {

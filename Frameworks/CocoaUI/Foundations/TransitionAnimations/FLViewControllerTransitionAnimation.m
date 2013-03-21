@@ -7,7 +7,7 @@
 //
 
 #import "FLViewControllerTransitionAnimation.h"
-#import "UIViewController+FLAdditions.h"
+#import "FLViewController.h"
 
 @implementation FLViewControllerTransitionAnimation
 

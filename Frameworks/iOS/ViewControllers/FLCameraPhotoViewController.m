@@ -122,7 +122,7 @@
 - (FLAction*) photoViewController:(FLPhotoViewController*) photoViewController 
 	createLoadAction:(FLPhotoViewLoadingState*) loadingState
 {
-FLAssertFailed_v(@"incomment and fix this");
+FLAssertFailedWithComment(@"incomment and fix this");
 //	  BOOL showProgress = YES;
 //	FLCameraPhoto* photo = (FLCameraPhoto*) loadingState.photoView.displayPhoto;
 //	  if(photo.original.hasImage)

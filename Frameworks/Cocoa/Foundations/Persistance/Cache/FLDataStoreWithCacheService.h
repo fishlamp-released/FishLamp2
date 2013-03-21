@@ -10,8 +10,8 @@
 
 @interface FLDataStoreWithCacheService : FLDataStoreService {
 @private
-    id<FLObjectDataStore> _cache;
+    id<FLObjectStorage> _cache;
 }
-@property (readwrite, strong) id<FLObjectDataStore> cache;
+@property (readwrite, strong) id<FLObjectStorage> cache;
 @end
 

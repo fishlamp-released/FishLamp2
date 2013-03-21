@@ -100,8 +100,8 @@
 
 - (void) addImageButton:(UIImage*) image buttonPress:(FLButtonPress) buttonPress
 {
-    FLAssertIsNotNil_(image);
-    FLAssertIsNotNil_(buttonPress);
+    FLAssertIsNotNil(image);
+    FLAssertIsNotNil(buttonPress);
 
 	[self addToolbarItem:[FLImageButtonToolbarItem imageButtonToolbarItemWithImage:image onChosenBlock:buttonPress]];
 }

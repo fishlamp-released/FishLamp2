@@ -103,7 +103,7 @@ static int s_count = 0;
   	[[NSNotificationCenter defaultCenter] removeObserver:self];
 #endif
 
-	FLAssertIsNil_v(_sqlite, nil);
+	FLAssertIsNilWithComment(_sqlite, nil);
     
 #if FL_MRC    
     [_dispatchQueue release];
@@ -171,7 +171,7 @@ static int s_count = 0;
     sqlite3* sqlite3 = self.sqlite3;
     
     if(sqlite3 != nil || self.isOpen) {
-        FLThrowErrorCode_v( 
+        FLThrowErrorCodeWithComment( 
         FLDatabaseErrorDomain,
         FLDatabaseErrorDatabaseAlreadyOpen, 
         @"Database is already open");
@@ -199,7 +199,7 @@ static int s_count = 0;
     __block BOOL needsUpgrade = NO;
 
     if(self.sqlite3 != nil || self.isOpen) {
-        FLThrowErrorCode_v( 
+        FLThrowErrorCodeWithComment( 
         FLDatabaseErrorDomain,
         FLDatabaseErrorDatabaseAlreadyOpen, 
         @"Database is already open");
@@ -225,7 +225,7 @@ static int s_count = 0;
         self.sqlite3 = nil;
     
         if(sqlite3 == nil) {
-            FLThrowErrorCode_v( 
+            FLThrowErrorCodeWithComment( 
                 FLDatabaseErrorDomain,
                 FLDatabaseErrorDatabaseAlreadyOpen, 
                 @"Database is already closed");
@@ -355,7 +355,7 @@ static int s_count = 0;
 - (void) executeStatement:(FLDatabaseStatement*) statement {
     
     [self dispatchFifoBlock:^{
-        FLAssertNotNil_(statement);
+        FLAssertNotNil(statement);
 
         FLDecodeColumnObjectBlock decoder = nil;
         if(statement.table && self.columnDecoder) {
@@ -389,7 +389,7 @@ static int s_count = 0;
                         statement.rowResultBlock(row, &stop);
                     }
                     if(statement.objectResultBlock) {
-                        FLAssertIsNotNil_v(statement.table, @"table is required in statement to decode object");
+                        FLAssertIsNotNilWithComment(statement.table, @"table is required in statement to decode object");
                         statement.objectResultBlock([statement.table objectForRow:row], &stop);
                     }
                 }

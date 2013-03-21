@@ -7,7 +7,7 @@
 //
 
 #import "FLService.h"
-#import "FLObjectDataStore.h"
+#import "FLObjectStorage.h"
 #import "FLImageStoreService.h"
 #import "FLZenfolioImageSize.h"
 
@@ -24,7 +24,7 @@
 
 @protocol FLZenfolioDataStorage;
 
-@interface FLZenfolioCacheService : FLImageStoreService<FLObjectDataStore> {
+@interface FLZenfolioCacheService : FLImageStoreService<FLObjectStorage> {
 @private
     
 }

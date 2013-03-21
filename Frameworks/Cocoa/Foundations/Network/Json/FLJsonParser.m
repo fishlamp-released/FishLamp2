@@ -58,7 +58,7 @@
     return outObject;
 #endif
     
-    FLAssertIsImplemented_v(@"SBJson requires ARC");
+    FLAssertIsImplementedWithComment(@"SBJson requires ARC");
     
     return nil;
 }

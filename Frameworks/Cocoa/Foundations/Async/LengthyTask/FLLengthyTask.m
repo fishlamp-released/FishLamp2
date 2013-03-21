@@ -93,7 +93,7 @@
 
         [self abortIfNeeded];
         
-        FLAssert_v(_currentStep <= _totalStepCount - 1, @"current step exceeded total");
+        FLAssertWithComment(_currentStep <= _totalStepCount - 1, @"current step exceeded total");
         [_delegate lengthyTaskDidIncrementStep:self];
 
     #if SLOW

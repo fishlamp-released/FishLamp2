@@ -47,8 +47,8 @@
 
 - (BOOL) runOneSelector:(FLSelectorInfo*) info {
     
-    FLConfirmIsNotNil_(info.target);
-    FLConfirmIsNotNil_(info.selector);
+    FLConfirmIsNotNil(info.target);
+    FLConfirmIsNotNil(info.selector);
     
     int selectorArgCount = info.argumentCount;
     NSLog([info prettyString]);
@@ -103,9 +103,9 @@
 }
 
 - (void) startWorking:(id) asyncTask {
-//    FLAssert_([self runBatchOfMethods:_sanityChecks haltOnFail:YES]);
-//    FLAssert_([self runBatchOfMethods:_finishSanityChecks haltOnFail:YES]);
-//    FLAssert_([self runBatchOfMethods:_selfTests haltOnFail:NO]);
+//    FLAssert([self runBatchOfMethods:_sanityChecks haltOnFail:YES]);
+//    FLAssert([self runBatchOfMethods:_finishSanityChecks haltOnFail:YES]);
+//    FLAssert([self runBatchOfMethods:_selfTests haltOnFail:NO]);
     [asyncTask setFinished];
 
 }

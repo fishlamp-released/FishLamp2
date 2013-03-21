@@ -74,6 +74,9 @@ didStartElement:(NSString *)elementName
     
     if(attributes && attributes.count) {
         newElement.attributes = attributes;
+        for(NSString* attributeName in attributes) {
+            [newElement addElement:[FLParsedItem parsedItem:attributeName value:[attributes objectForKey:attributeName]]];
+        }
     }
 
     [self pushElement:newElement];
@@ -90,7 +93,7 @@ didStartElement:(NSString *)elementName
     
 #if DEBUG    
     FLParsedItem* lastElement = FLRetainWithAutorelease([self.stack lastObject]);
-    FLAssertObjectsAreEqual_(elementName, lastElement.elementName);
+    FLAssertObjectsAreEqual(elementName, lastElement.elementName);
 #endif
     
     [self popElement];

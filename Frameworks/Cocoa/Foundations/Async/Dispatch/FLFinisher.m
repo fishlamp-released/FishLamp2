@@ -109,7 +109,7 @@
         FLAutoreleaseObject(self);
     }   
 
-    FLAssertNotNil_v(self.result, @"result should not be nil!!");
+    FLAssertNotNilWithComment(self.result, @"result should not be nil!!");
 
     return self.result;
 }
@@ -139,7 +139,7 @@
 - (void) setFinishedWithResult:(id) result 
                     completion:(FLBlock) completion {
     
-    FLAssertIsNil_v(self.result, @"already finished");
+    FLAssertIsNilWithComment(self.result, @"already finished");
 
     if(result == nil) {
         self.result = FLFailedResult;

@@ -21,7 +21,7 @@
 #import "FLDatabaseStatement.h"
 #import "FLAsyncQueue.h"
 #import "FLFinisher.h"
-#import "FLObjectDataStore.h"
+#import "FLObjectStorage.h"
 
 @interface FLDatabase : NSObject {
 @private

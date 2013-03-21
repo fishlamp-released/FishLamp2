@@ -93,7 +93,7 @@
 		}
 	}
 	
-	FLAssert_v(selectedCell.checked, @"not checked");
+	FLAssertWithComment(selectedCell.checked, @"not checked");
 }
 
 - (void) dealloc

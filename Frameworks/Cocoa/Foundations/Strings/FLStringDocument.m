@@ -33,29 +33,32 @@
 #endif
 
 - (FLDocumentSection*) rootStringBuilder {
-    FLAssertNotNil_([_stack firstObject]);
+    FLAssertNotNil([_stack firstObject]);
     return [_stack firstObject];
 }
 
 - (FLDocumentSection*) openedStringBuilder {
-    FLAssertNotNil_([_stack lastObject]);
+    FLAssertNotNil([_stack lastObject]);
     return [_stack lastObject];
 }
 
 - (void) addStringBuilder:(FLDocumentSection*) stringBuilder {
-    FLAssert_(_stack.count > 0)
+    FLAssert(_stack.count > 0);
+    
     [self.openedStringBuilder addStringBuilder:stringBuilder];
 }
 
 - (void) openStringBuilder:(FLDocumentSection*) stringBuilder {
     [self addStringBuilder:stringBuilder];
     
-    FLAssert_(_stack.count > 0)
+    FLAssert(_stack.count > 0);
+    
     [_stack addObject:stringBuilder];
 }
 
 - (FLDocumentSection*) closeStringBuilder {
-    FLAssert_(_stack.count > 0)
+    FLAssert(_stack.count > 0);
+    
     id last = FLRetainWithAutorelease(self.openedStringBuilder);
     [_stack removeLastObject];
     return last;

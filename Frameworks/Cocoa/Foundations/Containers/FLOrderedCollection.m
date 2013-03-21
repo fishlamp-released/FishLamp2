@@ -81,9 +81,9 @@
 //}
 
 - (void) addObject:(id) object forKey:(id) key {
-    FLAssertNotNil_(object);
-    FLAssertNotNil_(key);
-	FLAssertIsNil_v([_objectDictionary objectForKey:key], nil);
+    FLAssertNotNil(object);
+    FLAssertNotNil(key);
+	FLAssertIsNilWithComment([_objectDictionary objectForKey:key], nil);
     ++_mutatationCount;
     [_objectDictionary setObject:object forKey:key];
     [_objectArray addObject:object];
@@ -92,8 +92,8 @@
 }
 
 - (void) setObject:(id) object forKey:(id) key {
-    FLAssertNotNil_(object);
-    FLAssertNotNil_(key);
+    FLAssertNotNil(object);
+    FLAssertNotNil(key);
     id existingObject = [_objectDictionary objectForKey:key];
     if(existingObject) {
         ++_mutatationCount;

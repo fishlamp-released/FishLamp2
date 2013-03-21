@@ -4,19 +4,18 @@
 #import "FLDebug.h"
 
 // Errors
-#import "FLErrorDomain.h"
+#import "FLErrorDomainInfo.h"
 #import "FLFrameworkErrorDomain.h"
 #import "FLMutableError.h"
 #import "FLStackTrace.h"
 #import "NSError+FLExtras.h"
 
 // Exceptions
-#import "FLAbortException.h"
 #import "FLAssertionFailureErrorDomain.h"
 #import "FLAssertions.h"
 #import "FLConfirmations.h"
 #import "FLExceptions.h"
-#import "NSException+NSError.h"
+#import "FLErrorException.h"
 
 // Logger
 #import "FLLog.h"

@@ -22,7 +22,7 @@
 	_thumbnailBarItem = [[UIBarButtonItem alloc] initWithCustomView:_thumbnailBar];
 
     UIImage* rewind = [UIImage imageNamed:@"rewind.png"];
-    FLAssertIsNotNil_(rewind);
+    FLAssertIsNotNil(rewind);
 
 	_backButton =	[[UIBarButtonItem alloc] initWithImage:rewind 
 		style:UIBarButtonItemStylePlain 
@@ -30,7 +30,7 @@
 		action:@selector(selectPrevThumbnail:)];
 
     UIImage* ff = [UIImage imageNamed:@"fast_forward.png"];
-    FLAssertIsNotNil_(ff);
+    FLAssertIsNotNil(ff);
 
 	_nextButton =	[[UIBarButtonItem alloc] initWithImage:ff 
 		style:UIBarButtonItemStylePlain 

@@ -36,10 +36,10 @@ static NSNumberFormatter* s_formatter = nil;
 
 //- (FLResult) runOperationInContext:(id) context withObserver:(id) observer {
 //    if(FLStringIsEmpty(_photo.uploadGallery.uploadUrl)) {
-//        FLThrowErrorCode_v(FLZenfolioErrorDomain, FLZenfolioErrorCodeUploadPhotoSetNotFound, @"PhotoSet not found: %@", _photo.uploadGallery.name);
+//        FLThrowErrorCodeWithComment(FLZenfolioErrorDomain, FLZenfolioErrorCodeUploadPhotoSetNotFound, @"PhotoSet not found: %@", _photo.uploadGallery.name);
 //    }
 //    if(FLStringIsEmpty(_photo.assetFileName)) {
-//        FLThrowErrorCode_v(FLZenfolioErrorDomain, FLZenfolioErrorCodeUploadFileNameEmpty, @"FileName is empty");
+//        FLThrowErrorCodeWithComment(FLZenfolioErrorDomain, FLZenfolioErrorCodeUploadFileNameEmpty, @"FileName is empty");
 //    }
 //
 //    FLHttpRequest* httpRequest = [FLHttpRequest httpPostRequestWithURL:[_photo buildUploadURL:YES]];
@@ -54,7 +54,7 @@ static NSNumberFormatter* s_formatter = nil;
 //            return photoId;
 //        }
 //        else {
-//            FLThrowErrorCode_v(FLZenfolioErrorDomain, FLZenfolioErrorCodeUnknownObjectId, @"invalid photo id returned from server");
+//            FLThrowErrorCodeWithComment(FLZenfolioErrorDomain, FLZenfolioErrorCodeUnknownObjectId, @"invalid photo id returned from server");
 //        }
 //    }
 //    

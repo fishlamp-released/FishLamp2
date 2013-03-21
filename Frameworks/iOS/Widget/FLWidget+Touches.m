@@ -185,7 +185,7 @@ static FLWidget* s_lastEnteredWidget = nil;
 	if(	!self.isDisabled && 
 		!self.isHidden)
 	{
-		FLAssertIsNotNil_(self.superview);
+		FLAssertIsNotNil(self.superview);
 		
 		if(view != self.superview)
 		{
@@ -272,7 +272,7 @@ static FLWidget* s_lastEnteredWidget = nil;
 
 - (void) _touchesMoved:(NSSet*) touches withEvent:(UIEvent*) event
 {
-    FLAssertIsNotNil_(self.superview);
+    FLAssertIsNotNil(self.superview);
     UITouch* touch = [touches anyObject];
 		
     BOOL touchIsInside = CGRectContainsPoint(self.frame, [touch locationInView:self.superview]);
@@ -318,7 +318,7 @@ static FLWidget* s_lastEnteredWidget = nil;
 
 - (void) _touchesEnded:(NSSet*) touches withEvent:(UIEvent*) event
 {
-    FLAssertIsNotNil_(self.superview);
+    FLAssertIsNotNil(self.superview);
     UITouch* touch = [touches anyObject];
 	
 	if(_state.gotFirstTouch || _state.isTouching)
@@ -379,8 +379,8 @@ static FLWidget* s_lastEnteredWidget = nil;
 {
 	if( event.type == UIEventTypeTouches)
 	{
-        FLAssertIsNotNil_(self.superview);
-        FLAssertIsNotNil_(self.superwidget);
+        FLAssertIsNotNil(self.superview);
+        FLAssertIsNotNil(self.superwidget);
 
         if(self.isDisabled || self.isHidden || CGRectEqualToRect(self.frame, CGRectZero))
         {

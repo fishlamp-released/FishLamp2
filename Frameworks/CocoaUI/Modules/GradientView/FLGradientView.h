@@ -7,6 +7,7 @@
 //
 
 #import "FishLampCocoa.h"
+#import "FLCompatibleView.h"
 #if IOS
 //#import "FLWidgetView.h"
 //#import "FLGradientWidget.h"
@@ -15,7 +16,7 @@
 #import "FLView.h"
 #import "FLColorRange.h"
 
-@interface FLGradientView : FLView {
+@interface FLGradientView : FLCompatibleView {
 @private
 #if REFACTOR
 	FLGradientWidget* _gradientWidget;
@@ -51,5 +52,5 @@
 
 @end
 
-@interface FLBlackGradientView : UIView
+@interface FLBlackGradientView : FLCompatibleView
 @end

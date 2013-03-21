@@ -21,11 +21,11 @@
 
 @implementation FLZenfolioSinglePhotoUploader
 
-FLAssertDefaultInitNotCalled_();
+FLAssertDefaultInitNotCalled();
 
 - (id) initWithPhoto:(FLZenfolioQueuedPhoto*) photo uploadQueue:(FLZenfolioUploadQueue*) uploadQueue
 {
-    FLAssertIsNotNil_(photo);
+    FLAssertIsNotNil(photo);
 
 	if((self = [super initWithUploadQueue:uploadQueue]))
 	{

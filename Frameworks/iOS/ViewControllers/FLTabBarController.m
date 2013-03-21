@@ -20,7 +20,7 @@ FLSynthesizeStructProperty(animateOnShow, setAnimateOnShow, BOOL, _flags);
 
 - (void) loadTabBar
 {
-	FLAssertIsNil_(_tabBar);
+	FLAssertIsNil(_tabBar);
 
 	_tabBar = [[UITabBar alloc] initWithFrame:CGRectMake(0,0,self.view.bounds.size.width,49)];
 	_tabBar.autoresizingMask = UIViewAutoresizingPositioned | UIViewAutoresizingFlexibleWidth;
@@ -77,7 +77,7 @@ FLSynthesizeStructProperty(animateOnShow, setAnimateOnShow, BOOL, _flags);
 	if(!_tabBar)
 	{
 		[self loadTabBar];
-		FLAssertIsNotNil_(_tabBar);
+		FLAssertIsNotNil(_tabBar);
 	}
 	
 	return _tabBar;
@@ -87,7 +87,7 @@ FLSynthesizeStructProperty(animateOnShow, setAnimateOnShow, BOOL, _flags);
 //{
 //	if(viewController == self.selectedViewController)
 //	{
-//		FLAssertIsNotNil_(self.selectedViewController);
+//		FLAssertIsNotNil(self.selectedViewController);
 //
 //		if( self.tabBar.superview == nil ||
 //            self.tabBar.superview != self.selectedViewController.view)
@@ -127,12 +127,12 @@ FLSynthesizeStructProperty(animateOnShow, setAnimateOnShow, BOOL, _flags);
 
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
 {
-	FLAssertIsNotNil_(_tabBar);
-	FLAssert_v(_tabBar == tabBar, @"different tabBar?");
+	FLAssertIsNotNil(_tabBar);
+	FLAssertWithComment(_tabBar == tabBar, @"different tabBar?");
 
 	NSUInteger idx = [_tabBar indexForTabBarItem:item];
 	
-	FLAssert_v(idx >= 0 && idx < tabBar.items.count, @"didn't find item");
+	FLAssertWithComment(idx >= 0 && idx < tabBar.items.count, @"didn't find item");
 
 	if(idx != NSNotFound)
 	{

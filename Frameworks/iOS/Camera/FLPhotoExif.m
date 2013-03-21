@@ -204,7 +204,7 @@
             }
             
             
-            FLAssertFailed_v(@"unable to decode date");
+            FLAssertFailedWithComment(@"unable to decode date");
         }
     }
 

@@ -42,6 +42,8 @@
 
 - (void) logoutUser;
 
+- (void) updateNextButton;
+
 - (IBAction) resetLogin:(id) sender;
 
 @end

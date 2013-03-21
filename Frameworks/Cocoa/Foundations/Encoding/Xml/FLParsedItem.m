@@ -23,8 +23,21 @@
 @synthesize elements = _elements;
 @synthesize parent = _parent;
 
+- (id) initWithName:(NSString*) name value:(NSString*) value {	
+	self = [super init];
+	if(self) {
+		self.elementName = name;
+        _value = [value mutableCopy];
+	}
+	return self;
+}
+
 + (id) parsedItem {
     return FLAutorelease([[[self class] alloc] init]);
+}
+
++ (id) parsedItem:(NSString*) name value:(NSString*) value {
+    return FLAutorelease([[[self class] alloc] initWithName:name value:value]);
 }
 
 - (void) appendStringToValue:(NSString*) string {

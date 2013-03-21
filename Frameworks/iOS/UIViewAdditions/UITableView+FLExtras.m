@@ -32,8 +32,8 @@
 	alpha:(CGFloat) alpha
 	context:(CGContextRef) ctx
 {
-	FLAssertIsNotNil_(color);
-	FLAssertIsNotNil_(ctx);
+	FLAssertIsNotNil(color);
+	FLAssertIsNotNil(ctx);
 
 	CGFloat r = 0;
 	CGFloat g = 0;

@@ -23,7 +23,7 @@
 }
 
 + (id) readFromFolder:(FLFolder*) folder {
-    FLAssertNotNil_(folder);
+    FLAssertNotNil(folder);
     
     FLUserPreferences* prefs = [folder readObjectFromFile:kFileName];
     if(!prefs) {

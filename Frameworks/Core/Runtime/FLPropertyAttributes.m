@@ -234,7 +234,7 @@ void FLParsePropertyAttributes(FLPropertyAttributes_t* attributes) {
             case ':':
             case 'b':
             case '#':
-                FLAssertFailed_v(@"unsupported type: %c", c);
+                FLAssertFailedWithComment(@"unsupported type: %c", c);
                 break;
             
             // array
@@ -278,8 +278,8 @@ done:;
 }
 
 void FLPropertyAttributesDecode(objc_property_t property, FLPropertyAttributes_t* attributes, BOOL withCopy) {
-    FLAssertNotNil_(property);
-    FLAssertNotNil_(attributes);
+    FLAssertNotNil(property);
+    FLAssertNotNil(attributes);
     
     if(attributes && property) {
         memset(attributes, 0, sizeof(FLPropertyAttributes_t));

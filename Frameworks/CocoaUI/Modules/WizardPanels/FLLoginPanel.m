@@ -8,7 +8,7 @@
 #if OSX
 #import "FLLoginPanel.h"
 #import "NSObject+Blocks.h"
-#import "UIViewController+FLAdditions.h"
+#import "FLViewController.h"
 #import "FLKeychain.h"
 
 @interface FLLoginPanel ()
@@ -167,16 +167,15 @@
 }
    
 - (void) respondToNextButton:(BOOL*) handledIt {
-
     [self saveCredentials];
-    if(self.isAuthenticated) {
-        *handledIt = NO;
-    }
-    else {
-        self.buttons.nextButton.enabled = NO;
-        [self startAuthenticating];
-        *handledIt = YES;
-    }
+//    if(self.isAuthenticated) {
+//        *handledIt = NO;
+//    }
+//    else {
+//        self.buttons.nextButton.enabled = NO;
+//        [self startAuthenticating];
+//        *handledIt = YES;
+//    }
 }
 
 - (void) panelDidAppear {

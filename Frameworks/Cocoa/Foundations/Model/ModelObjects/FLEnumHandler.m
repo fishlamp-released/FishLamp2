@@ -34,7 +34,7 @@
 - (NSInteger) enumFromString:(NSString*) inString {
     NSNumber* num = [_enums objectForKey:inString];
     if(!num) { 
-        FLThrowErrorCode_v([FLFrameworkErrorDomain instance], FLErrorUnknownEnumValue, 
+        FLThrowErrorCodeWithComment(FLFrameworkErrorDomain, FLErrorUnknownEnumValue, 
             [NSString stringWithFormat:(NSLocalizedString(@"Unknown enum value (case sensitive): %@", nil)), inString]); 
     } 
     return [num intValue];
@@ -44,7 +44,7 @@
 {
     NSString* str = [_enums objectForKey:[NSNumber numberWithInteger:enumValue]];
     if(!str) {
-        FLThrowErrorCode_v([FLFrameworkErrorDomain instance], FLErrorUnknownEnumValue, 
+        FLThrowErrorCodeWithComment(FLFrameworkErrorDomain, FLErrorUnknownEnumValue, 
             [NSString stringWithFormat:(NSLocalizedString(@"Unknown enum value: %d", nil)), enumValue]); 
     }
     
@@ -53,8 +53,8 @@
 
 - (NSSet*) enumsFromString:(NSString*) stringList  
 {
-    FLAssertIsNotNil_(stringList);
-    FLAssertIsNotNil_(self.delimiter);
+    FLAssertIsNotNil(stringList);
+    FLAssertIsNotNil(self.delimiter);
 
     NSMutableSet* set = nil;
     
@@ -67,7 +67,7 @@
                 if(FLStringIsNotEmpty(key)) {
                     NSNumber* num = [_enums objectForKey:key];
                     if(!num) {
-                        FLThrowErrorCode_v([FLFrameworkErrorDomain instance], FLErrorUnknownEnumValue, 
+                        FLThrowErrorCodeWithComment(FLFrameworkErrorDomain, FLErrorUnknownEnumValue, 
                             [NSString stringWithFormat:(NSLocalizedString(@"Unknown enum value (case sensitive): %@", nil)), key]); 
                     }
                     [set addObject:num];
@@ -81,7 +81,7 @@
 
 - (NSString*) stringFromEnumSet:(NSSet*) enums
 {
-    FLAssertIsNotNil_(enums);
+    FLAssertIsNotNil(enums);
     
     NSMutableString* string = [NSMutableString string];
     for(NSNumber* number in enums) {
@@ -98,7 +98,7 @@
 }                  
 
 - (NSString*) stringFromEnumArray:(NSInteger*) enums {
-    FLAssertIsNotNil_(enums);
+    FLAssertIsNotNil(enums);
     
     NSMutableString* string = [NSMutableString string];
     if(enums) {
@@ -122,7 +122,7 @@
                    enums:(NSInteger*) enums 
                 maxCount:(NSUInteger*) maxCount 
 {
-    FLAssertIsNotNil_(string);
+    FLAssertIsNotNil(string);
    
     NSInteger count = 0;
 
@@ -134,11 +134,11 @@
                 if(FLStringIsNotEmpty(key)) {
                     NSNumber* num = [_enums objectForKey:key];
                     if(!num) {
-                        FLThrowErrorCode_v([FLFrameworkErrorDomain instance], FLErrorUnknownEnumValue, (NSLocalizedString(@"Unknown enum value (case sensitive): %@", nil)), key); 
+                        FLThrowErrorCodeWithComment(FLFrameworkErrorDomain, FLErrorUnknownEnumValue, (NSLocalizedString(@"Unknown enum value (case sensitive): %@", nil)), key); 
                     }
                     
                     if(count + 1 >= *maxCount) {
-                        FLThrowErrorCode_v([FLFrameworkErrorDomain instance], FLErrorTooManyEnumsErrorCode, (NSLocalizedString(@"TooMany enums for buffer", nil)));
+                        FLThrowErrorCodeWithComment(FLFrameworkErrorDomain, FLErrorTooManyEnumsErrorCode, (NSLocalizedString(@"TooMany enums for buffer", nil)));
                     }
                     
                     enums[count++] = [num intValue];

@@ -22,7 +22,7 @@ NSString* const FLDefaultsKeyWizardSavePasswordKey = @"com.fishlamp.wizard.savep
 @synthesize rememberPassword = _rememberPassword;
 
 - (void) loadFromStorage {
-    FLAssertStringIsNotEmpty_v(self.authenticationDomain, @"domain for password in keychain not set");
+    FLAssertStringIsNotEmptyWithComment(self.authenticationDomain, @"domain for password in keychain not set");
     
     self.userName = [[NSUserDefaults standardUserDefaults] objectForKey:FLDefaultsKeyWizardLastUserNameKey];
     if(FLStringIsNotEmpty(self.userName)) {
@@ -42,7 +42,7 @@ NSString* const FLDefaultsKeyWizardSavePasswordKey = @"com.fishlamp.wizard.savep
 }
 
 - (void) saveToStorage {
-    FLAssertStringIsNotEmpty_v(self.authenticationDomain, @"domain for password in keychain not set");
+    FLAssertStringIsNotEmptyWithComment(self.authenticationDomain, @"domain for password in keychain not set");
     
     if(FLStringIsNotEmpty(self.userName)) {
         [[NSUserDefaults standardUserDefaults] setObject:self.userName forKey:FLDefaultsKeyWizardLastUserNameKey];

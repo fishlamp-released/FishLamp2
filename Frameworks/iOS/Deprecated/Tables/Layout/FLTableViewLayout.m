@@ -14,7 +14,7 @@
 @synthesize currentTabIndex = _currentTabIndex;
 @synthesize cellDataSource = _cellDataSource;
 
-FLAssertDefaultInitNotCalled_();
+FLAssertDefaultInitNotCalled();
 
 - (id) initWithCellDataSouce:(id<FLTableViewCellDataSource>) dataSource
 {

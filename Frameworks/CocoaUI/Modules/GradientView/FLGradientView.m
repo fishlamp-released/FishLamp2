@@ -23,10 +23,6 @@
 }
 #endif
 
-- (void) applyTheme:(FLTheme*) theme {
-
-//	[self setColorRange:[FLColorRange colorRange:self.gradientStartColor endColor:self.gradientEndColor] forControlState:UIControlStateNormal];
-}
 
 - (id)initWithFrame:(CGRect)frame {
 	if ((self = [super initWithFrame:frame])) {	

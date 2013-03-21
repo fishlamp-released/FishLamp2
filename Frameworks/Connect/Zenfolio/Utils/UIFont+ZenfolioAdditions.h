@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import "FishLampCompatibility.h"
+#import "FLCompatibility.h"
 
 @interface UIFont (ZenfolioAdditions)
 

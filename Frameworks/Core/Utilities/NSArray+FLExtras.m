@@ -143,8 +143,8 @@
 @implementation NSMutableArray (FLExtras)
 
 - (void) moveObjectToNewIndex:(NSUInteger) fromIndex toIndex:(NSUInteger) toIndex {
-	FLAssert_v(fromIndex < (NSUInteger)self.count, @"bad from idx");
-	FLAssert_v(toIndex < (NSUInteger)self.count, @"bad from idx");
+	FLAssertWithComment(fromIndex < (NSUInteger)self.count, @"bad from idx");
+	FLAssertWithComment(toIndex < (NSUInteger)self.count, @"bad from idx");
 
 	if(fromIndex != toIndex) {
 		id object = FLAutorelease(FLRetain([self objectAtIndex:fromIndex]));

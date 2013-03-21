@@ -17,8 +17,8 @@
 - (id) initWithFolder:(FLFolder*) folder 
              fileName:(NSString*) fileName {
 	if((self = [super init])) {
-		FLAssertIsNotNil_(folder);
-		FLAssertStringIsNotEmpty_(fileName);
+		FLAssertIsNotNil(folder);
+		FLAssertStringIsNotEmpty(fileName);
 		
         self.folder = folder;
 		self.fileName = fileName;

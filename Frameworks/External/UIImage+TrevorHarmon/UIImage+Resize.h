@@ -8,6 +8,7 @@
 
 @interface UIImage (Resize)
 
+#if IOS
 - (UIImage *)croppedImage:(CGRect)bounds;
 
 - (UIImage *)thumbnailImage:(NSInteger)thumbnailSize
@@ -22,6 +23,8 @@
 - (UIImage *)resizedImageWithContentMode:(UIViewContentMode)contentMode
 								  bounds:(CGSize)bounds
 					interpolationQuality:(CGInterpolationQuality)quality;
+
+#endif
 
 - (CGRect) proportionalBoundsWithMaxSize:(CGSize) maxSize;
 

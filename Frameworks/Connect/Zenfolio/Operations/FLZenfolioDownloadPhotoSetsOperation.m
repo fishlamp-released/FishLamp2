@@ -24,17 +24,19 @@
 }
 #endif
 
-- (id) initWithGroup:(FLZenfolioGroup*) group {
-    self = [super init];
+- (id) initWithGroup:(FLZenfolioGroup*) group  objectStorage:(id<FLObjectStorage>) objectStorage{
+    self = [super initWithObjectStorage:objectStorage];
     if(self) {
+        FLAssertNotNil(objectStorage);
+
         _group = [group copy];
     }   
 
     return self;
 }
 
-+ (id) downloadPhotoSetsWithGroup:(FLZenfolioGroup*) group {
-    return FLAutorelease([[[self class] alloc] initWithGroup:group]);
++ (id) downloadPhotoSetsWithGroup:(FLZenfolioGroup*) group objectStorage:(id<FLObjectStorage>) objectStorage {
+    return FLAutorelease([[[self class] alloc] initWithGroup:group objectStorage:objectStorage]);
 }
 
 - (void) runForGroup:(FLZenfolioGroup*) group inContext:(id) context withObserver:(id) observer {
@@ -48,8 +50,8 @@
             FLHttpRequest* request = [FLZenfolioHttpRequest loadPhotoSetHttpRequest:element.Id level:kZenfolioInformatonLevelFull includePhotos:NO];
             
             FLZenfolioPhotoSet* set = FLThrowIfError([context runWorker:request withObserver:observer]);
-            FLAssertNotNil_(set);
-            [group replaceGroupElement:set];
+            FLAssertNotNil(set);
+            [self.objectStorage writeObject:set];
             
             [self sendMessage:@selector(photoSetDownloader:didDownloadPhotoSet:) toListener:observer withObject:set];
         }

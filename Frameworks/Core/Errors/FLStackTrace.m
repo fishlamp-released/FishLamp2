@@ -9,17 +9,17 @@
 #import "FLStackTrace.h"
 #import "FLPrettyString.h"
 
-const FLStackTrace_t FLStaceTraceEmpty = { 0, 0, 0, 0, {0, 0}};
+const FLStackTrace_t FLStaceTraceEmpty = { { 0, 0, 0, 0 }, {0, 0}};
 
 void FLStackTraceFree(FLStackTrace_t* trace) {
     if(trace) {
         if(trace->stack.lines) free((void*)trace->stack.lines);
-        if(trace->filePath) free((void*)trace->filePath);
-        if(trace->function) free((void*)trace->function);
+//        if(trace->location.filePath) free((void*)trace->location.filePath);
+//        if(trace->location.function) free((void*)trace->location.function);
         
-        trace->filePath = nil;
-        trace->function = nil;
-        trace->fileName = nil;
+        trace->location.filePath = nil;
+        trace->location.function = nil;
+        trace->location.fileName = nil;
         trace->stack.lines = nil;
         trace->stack.depth = 0;
     }
@@ -40,29 +40,30 @@ const char* __copy_str(const char* str, int* len) {
 
 // [NSThread callStackSymbols]
 
-FLStackTrace_t FLStackTraceMake(    const char* filePath, 
-                                    const char* function, 
-                                    int lineNumber, 
-                                    BOOL withCallStack) {
+
+
+FLStackTrace_t FLStackTraceMake(FLLocationInSourceFile_t loc, BOOL withCallStack) {
     void* callstack[128];
     
-    FLStackTrace_t trace;
-    int len = 0;
-    trace.function = __copy_str(function, &len);
-
-    trace.filePath = __copy_str(filePath, &len);
+    FLStackTrace_t trace = { loc, { nil, 0 } };
     
-    trace.fileName = trace.filePath;
-    if(trace.fileName) {
-        trace.fileName += len;
-        
-        while(trace.fileName > trace.filePath) {
-            if(*(trace.fileName-1) == '/') {
-                break;
-            } 
-            --trace.fileName;
-        }
-    }
+//    int len = 0;
+//    trace.function = __copy_str(function, &len);
+//    trace.filePath = __copy_str(filePath, &len);
+//    trace.lineNumber = lineNumber;
+//    trace.fileName = nil;
+    
+//    trace.fileName = trace.filePath;
+//    if(trace.fileName) {
+//        trace.fileName += len;
+//        
+//        while(trace.fileName > trace.filePath) {
+//            if(*(trace.fileName-1) == '/') {
+//                break;
+//            } 
+//            --trace.fileName;
+//        }
+//    }
     
     if(withCallStack) {
         trace.stack.depth = backtrace(callstack, 128) - 1; // minus 1 because we don't want _FLStackTraceMake on the stack.
@@ -79,19 +80,19 @@ FLStackTrace_t FLStackTraceMake(    const char* filePath,
 @implementation FLStackTrace
 
 - (const char*) fileName {
-    return _stackTrace.fileName;
+    return FLFileNameFromLocation(&(_stackTrace.location));
 }
 
 - (const char*) filePath {
-    return _stackTrace.fileName;
+    return _stackTrace.location.filePath;
 }
 
 - (const char*) function {
-    return _stackTrace.function;
+    return _stackTrace.location.function;
 }
 
 - (int) lineNumber {
-    return _stackTrace.lineNumber;
+    return _stackTrace.location.line;
 }
 
 - (id) initWithStackTrace:(FLStackTrace_t) stackTrace {
@@ -118,7 +119,7 @@ FLStackTrace_t FLStackTraceMake(    const char* filePath,
     return FLStackEntryAtIndex(_stackTrace.stack, idx);
 }
 
-- (FLCallStack) callStack {
+- (FLCallStack_t) callStack {
     return _stackTrace.stack;
 }
 
@@ -128,9 +129,10 @@ FLStackTrace_t FLStackTraceMake(    const char* filePath,
 
 - (void) describe:(FLPrettyString*) string {
     [string appendLine:[NSString stringWithFormat:@"%s:%d, %s", 
-                          _stackTrace.fileName, 
-                          _stackTrace.lineNumber, 
-                          _stackTrace.function]];
+                            FLFileNameFromLocation(&_stackTrace.location),
+                            _stackTrace.location.line, 
+                            _stackTrace.location.function]];
+
     [string indent:^{
         for(int i = 0; i < self.stackDepth; i++) {
             [string appendLine:[NSString stringWithFormat:@"%s", [self stackEntryAtIndex:i]]];

@@ -16,23 +16,23 @@
 FLSynthesizeSingleton(FLBelowAuxiliaryViewBehavior);
 
 - (UIViewController*) parentControllerForAuxiliaryViewController:(FLAuxiliaryViewController*) viewController {
-    FLAssertIsNotNil_(viewController);
+    FLAssertIsNotNil(viewController);
     
     return viewController.parentViewController.parentViewController;
 }
 
 - (void) addContainerViewToParentViewController:(FLAuxiliaryViewController*) childController {
 
-    FLAssertIsNotNil_(childController);
+    FLAssertIsNotNil(childController);
 
 // This is a little confusing - using child/parent/grandparent metaphor.
 
     UIViewController* parent = childController.parentViewController;
-    FLAssertIsNotNil_(parent);
+    FLAssertIsNotNil(parent);
 
 // parent's parent    
     UIViewController* grandParent = parent.parentViewController;
-    FLAssertIsNotNil_(grandParent);
+    FLAssertIsNotNil(grandParent);
 
 // we're inserting child below parent, e.g. IN grandparent
     [grandParent addChildViewController:childController.viewController];
@@ -46,7 +46,7 @@ FLSynthesizeSingleton(FLBelowAuxiliaryViewBehavior);
 
 - (CGRect) scrollDestinationRectForBelowStyle:(FLAuxiliaryViewController*) viewController {
 
-    FLAssertIsNotNil_(viewController);
+    FLAssertIsNotNil(viewController);
 
     CGRect onScreenFrame = [viewController onscreenFrame];
     UIView* view = viewController.parentViewController.view;
@@ -74,7 +74,7 @@ FLSynthesizeSingleton(FLBelowAuxiliaryViewBehavior);
 
 - (void) showViewControllerAnimated:(BOOL) animated viewController:(FLAuxiliaryViewController*) viewController {
 
-    FLAssertIsNotNil_(viewController);
+    FLAssertIsNotNil(viewController);
 
     if(viewController.revealSide == FLAuxiliaryViewControllerPinnedSideBottom) {
         [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
@@ -87,7 +87,7 @@ FLSynthesizeSingleton(FLBelowAuxiliaryViewBehavior);
 
 - (void) hideViewController:(BOOL) animated viewController:(FLAuxiliaryViewController*) viewController {
 
-    FLAssertIsNotNil_(viewController);
+    FLAssertIsNotNil(viewController);
 
     if(viewController.revealSide == FLAuxiliaryViewControllerPinnedSideBottom) {
         [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
@@ -101,7 +101,7 @@ FLSynthesizeSingleton(FLBelowAuxiliaryViewBehavior);
 - (void) didFinishDraggingWithResults:(FLViewDraggerResults) results 
                        viewController:(FLAuxiliaryViewController*) viewController {    
 
-    FLAssertIsNotNil_(viewController);
+    FLAssertIsNotNil(viewController);
 
     CGRect frame = [viewController.dragController touchableViewFrameInHostView];
     
@@ -131,7 +131,7 @@ FLSynthesizeSingleton(FLBelowAuxiliaryViewBehavior);
 
 - (CGRect) initialFrameForContainerView:(FLAuxiliaryViewController*) viewController {
 
-    FLAssertIsNotNil_(viewController);
+    FLAssertIsNotNil(viewController);
 
     return [viewController onscreenFrame];
 }
@@ -140,7 +140,7 @@ FLSynthesizeSingleton(FLBelowAuxiliaryViewBehavior);
                          event:(UIEvent*) event 
                 viewController:(FLAuxiliaryViewController*) viewController {
 
-    FLAssertIsNotNil_(viewController);
+    FLAssertIsNotNil(viewController);
 
     return YES;
 }

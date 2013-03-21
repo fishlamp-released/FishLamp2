@@ -27,10 +27,10 @@
 
 - (void) _createTableIfNotInDatabase:(FLDatabaseTable*) table {
 
-	FLAssertIsNotNil_(table);
-	FLAssertIsNotNil_(table.columns);
-	FLAssert_v([self isOpen], @"Database isn't open");
-	FLAssert_v([table.columns count] > 0, @"no columns in the table, bub");
+	FLAssertIsNotNil(table);
+	FLAssertIsNotNil(table.columns);
+	FLAssertWithComment([self isOpen], @"Database isn't open");
+	FLAssertWithComment([table.columns count] > 0, @"no columns in the table, bub");
 
     if(![self tableExists:table]) {
         [self execute:[table createTableSql]];
@@ -87,7 +87,7 @@
 
 - (BOOL) tableExistsByName:(NSString*) tableName
 {
-	FLAssertStringIsNotEmpty_(tableName);
+	FLAssertStringIsNotEmpty(tableName);
     
     __block BOOL exists = NO;
 
@@ -105,7 +105,7 @@
 }
 
 - (void) dropTableByName:(NSString*) tableName {
-	FLAssertStringIsNotEmpty_(tableName);
+	FLAssertStringIsNotEmpty(tableName);
 
 	@try  {
 		[self execute:[NSString stringWithFormat:@"DROP TABLE %@", tableName]];

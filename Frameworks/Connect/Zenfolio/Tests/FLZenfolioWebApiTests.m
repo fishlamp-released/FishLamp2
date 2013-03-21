@@ -46,13 +46,13 @@
 //    FLZenfolioAuthenticater* operation = [FLZenfolioAuthenticater loginOperation];
 //    FLThrowIfError([operation runWorker]);
     
-//    FLConfirm_([self.context userService].isAuthenticated);
-//    FLConfirm_([self.context userService].userLogin.isAuthenticatedValue);
+//    FLConfirm([self.context userService].isAuthenticated);
+//    FLConfirm([self.context userService].userLogin.isAuthenticatedValue);
 }
 
 - (void) setupTests {
-//   FLConfirmNotNil_(self.userContext);
-//   FLConfirmNotNil_(FLZenfolioHttpRequest);
+//   FLConfirmNotNil(self.userContext);
+//   FLConfirmNotNil(FLZenfolioHttpRequest);
 //   
    [self findTestCaseForSelector:@selector(testAuthentication)].priority = FLTestCasePriorityHigh;
 }

@@ -30,8 +30,8 @@
            imageSize:(FLZenfolioImageSize*) imageSize 
                cache:(FLZenfolioCacheService*) cache {
     
-    FLAssertNotNil_(photo);
-    FLAssertNotNil_(imageSize);
+    FLAssertNotNil(photo);
+    FLAssertNotNil(imageSize);
                                      
 	self = [self initWithRequestURL:[photo urlForImageWithSize:imageSize]];
 	if(self) {

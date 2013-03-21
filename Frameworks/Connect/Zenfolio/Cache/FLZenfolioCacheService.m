@@ -171,8 +171,8 @@
 }
 
 - (void) deleteObject:(id) object {
-    FLAssert_(self.isServiceOpen);
-    FLAssertNotNil_(self.dataStore);
+    FLAssert(self.isServiceOpen);
+    FLAssertNotNil(self.dataStore);
     FLPerformSelector1(self, [object deleteSelectorForCache], object);
 }
 

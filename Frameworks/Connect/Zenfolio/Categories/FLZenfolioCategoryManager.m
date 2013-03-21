@@ -118,7 +118,7 @@ FLSynthesizeCachedObjectHandlerProperty(ZFCachedCategories);
 - (FLZenfolioParsedCategory*) parsedCategoryFromServerCategoryId:(NSNumber*) categoryId
 {
 	if(!_categories) {
-		FLThrowErrorCode_v(FLZenfolioErrorDomain, FLZenfolioErrorCodeCategoriesNotLoaded, @"Categories not loaded");
+		FLThrowErrorCodeWithComment(FLZenfolioErrorDomain, FLZenfolioErrorCodeCategoriesNotLoaded, @"Categories not loaded");
 	}
 	
 	return [_categories objectForKey:categoryId];
@@ -128,7 +128,7 @@ FLSynthesizeCachedObjectHandlerProperty(ZFCachedCategories);
 - (NSString*) lookupCategoryName:(NSNumber*) categoryId
 {
 	if(!_categories) {
-		FLThrowErrorCode_v(FLZenfolioErrorDomain, FLZenfolioErrorCodeCategoriesNotLoaded, @"Categories not loaded");
+		FLThrowErrorCodeWithComment(FLZenfolioErrorDomain, FLZenfolioErrorCodeCategoriesNotLoaded, @"Categories not loaded");
 	}
 	
 	return [[_categories objectForKey:categoryId] displayName];
@@ -345,7 +345,7 @@ FLSynthesizeCachedObjectHandlerProperty(ZFCachedCategories);
 	}
 	else
 	{
-		FLAssertFailed_v(@"unknown category container");
+		FLAssertFailedWithComment(@"unknown category container");
 	}
 	
 	return outString && outString.length > 0 ? outString: EMPTY;

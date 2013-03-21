@@ -57,9 +57,6 @@
 #import "FLPresentationBehavior.h"
 #import "UIViewController+FLPresentationBehavior.h"
 
-// Foundations/Theme
-#import "NSObject+FLTheme.h"
-
 // Foundations/TransitionAnimations
 #import "FLViewControllerTransitionAnimation.h"
 
@@ -75,7 +72,7 @@
 #import "FLAutoPositionedViewController.h"
 #import "FLViewContentsDescriptor.h"
 #import "FLViewController.h"
-#import "UIViewController+FLAdditions.h"
+#import "FLViewController.h"
 
 // Foundations/Widgets
 #import "FLWidget.h"

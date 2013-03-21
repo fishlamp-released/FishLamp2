@@ -157,13 +157,9 @@
 }
 
 - (void) visitWidgets:(void (^)(id widget, BOOL* stop)) visitor {
-	FLAssertIsNotNil_(visitor);
+	FLAssertIsNotNil(visitor);
     BOOL stop = NO;
     [self visitWidgets:visitor stop:&stop];
-}
-
-- (void) didApplyTheme {
-    [self setNeedsLayout];
 }
 
 - (NSString*) description {
@@ -297,8 +293,8 @@
 		_subWidgets = [[NSMutableArray alloc] init];
 	}
 	
-    FLAssert_v(widget != self, @"can't add yourself to your subWidgets!");
-    FLAssert_v(widget != self.parent, @"can't add your parent to your subWidgets!");
+    FLAssertWithComment(widget != self, @"can't add yourself to your subWidgets!");
+    FLAssertWithComment(widget != self.parent, @"can't add your parent to your subWidgets!");
     
 	[_subWidgets insertObject:widget atIndex:index];
 	if(widget.parent) {
@@ -315,7 +311,7 @@
 }
 
 - (void) removeWidget:(FLWidget*) widget {
-	FLAssert_v(widget.parent == self, @"attempting to remove subwidget from non-owning superwidget");
+	FLAssertWithComment(widget.parent == self, @"attempting to remove subwidget from non-owning superwidget");
     if(_subWidgets && widget.parent == self) {
         [self willRemoveSubWidget:widget];
         [_subWidgets removeObject:FLRetainWithAutorelease(widget)];
@@ -377,7 +373,7 @@ TODO("MF: optimize this.")
 }
 
 - (void) drawWidget:(CGRect) drawRect {
-    FLAssertIsNotNil_(self.view);
+    FLAssertIsNotNil(self.view);
 
 // TODO: investigate coordinate system
 //                    CGContextTranslateCTM(context, 0.0, boxOffset);

@@ -77,10 +77,10 @@ static ISO8601DateFormatter* s_formatter = nil;
 - (NSURL*) buildUploadURL:(BOOL) includeParameters
 {
     if(FLStringIsEmpty(self.uploadGallery.uploadUrl)) {
-        FLThrowErrorCode_v(FLZenfolioErrorDomain, FLZenfolioErrorCodeUploadPhotoSetNotFound, @"PhotoSet not found: %@", self.uploadGallery.name);
+        FLThrowErrorCodeWithComment(FLZenfolioErrorDomain, FLZenfolioErrorCodeUploadPhotoSetNotFound, @"PhotoSet not found: %@", self.uploadGallery.name);
     }
     if(FLStringIsEmpty(self.assetFileName)) {
-        FLThrowErrorCode_v(FLZenfolioErrorDomain, FLZenfolioErrorCodeUploadFileNameEmpty, @"FileName is empty");
+        FLThrowErrorCodeWithComment(FLZenfolioErrorDomain, FLZenfolioErrorCodeUploadFileNameEmpty, @"FileName is empty");
     }
 	
 	NSString* uploadUrl = nil;
@@ -108,7 +108,7 @@ static ISO8601DateFormatter* s_formatter = nil;
     }
 	
     NSURL* url = [NSURL URLWithString:[uploadUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-    FLAssertIsNotNil_(url);
+    FLAssertIsNotNil(url);
 
 	return url;
 }

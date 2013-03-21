@@ -14,7 +14,7 @@
 
 
 @interface FLImageStoreService ()
-//@property (readwrite, strong) id<FLObjectDataStore> dataStore;
+//@property (readwrite, strong) id<FLObjectStorage> dataStore;
 //@property (readwrite, strong) FLImageFolder* imageFolder;
 //
 //- (void) deleteImage:(FLServiceRequest*) serviceRequest 
@@ -39,20 +39,20 @@
 #endif
 
 - (void) updateImage:(FLStorableImage*) image {
-    FLAssert_(self.isServiceOpen);
+    FLAssert(self.isServiceOpen);
     
     [self.dataStore writeObject:image.imageProperties];
     [self.imageFolder writeImage:image];
 }
 
 - (void) deleteImage:(FLStorableImage*) image {
-    FLAssert_(self.isServiceOpen);
+    FLAssert(self.isServiceOpen);
     [self.imageFolder deleteImage:image];
     [self.dataStore deleteObject:image];
 }
 
 - (FLStorableImage*) readImageWithURLKey:(NSURL*) url {
-    FLAssert_(self.isServiceOpen);
+    FLAssert(self.isServiceOpen);
 
     FLImageProperties* props = [self.dataStore readObject:[FLImageProperties imagePropertiesWithImageURL:url]];
     FLStorableImage* image = nil; 
@@ -67,8 +67,8 @@
 - (void) openService:(id) opener {
     FLPerformSelector(opener, @selector(imageStoreServiceOpen:));
     [super openService:opener];
-    FLAssertNotNil_(self.dataStore);
-    FLAssertNotNil_(self.imageFolder);
+    FLAssertNotNil(self.dataStore);
+    FLAssertNotNil(self.imageFolder);
 }
 
 - (void) closeService:(id) closer {

@@ -12,7 +12,7 @@
 @implementation FLUnretained
 
 //- (void) setToNil:(FLDeletedObjectReference*) sender {
-//    FLAssert_v(sender.deletedObject == _object, @"message sent to wrong unretained?");
+//    FLAssertWithComment(sender.deletedObject == _object, @"message sent to wrong unretained?");
 //    self.object = nil;
 //    _deadObject = sender.deletedObject;
 //}

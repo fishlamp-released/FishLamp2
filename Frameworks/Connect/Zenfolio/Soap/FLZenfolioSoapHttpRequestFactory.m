@@ -62,17 +62,19 @@
 
 + (FLResult) zenfolioResultFromSoapResponse:(FLParsedItem*) parsedSoap 
                                     element:(FLObjectDescriber*) element {
-    FLAssertNotNil_(parsedSoap);
-    FLAssertNotNil_(element);
+    FLAssertNotNil(parsedSoap);
+    FLAssertNotNil(element);
     
     FLParsedItem* objectXML = [parsedSoap findElementWithName:element.objectName maxDepth:2];
-    FLConfirmNotNil_(objectXML);
-    
+    FLConfirmNotNil(objectXML);
+
+#if 0    
     FLLog(@"element: %@", [element description]);
+#endif
      
     id zenfolioObject = [[FLSoapObjectBuilder instance] objectFromXML:objectXML withObjectType:element];
 
-    FLConfirmNotNil_v(zenfolioObject, @"object not inflated for type: %@", [element description]);
+    FLConfirmNotNilWithComment(zenfolioObject, @"object not inflated for type: %@", [element description]);
 //    FLAssertIsClass(zenfolioObject, element.objectClass);
     
     return zenfolioObject;

@@ -48,7 +48,7 @@
     
             FLSoapFault11* soapFault = [[FLSoapObjectBuilder instance] objectFromXML:soap withObjectType:type];
             
-            FLAssertNotNil_(soapFault);
+            FLAssertNotNil(soapFault);
     
 //			FLSoapObjectBuilder* soapParser = [FLSoapObjectBuilder soapObjectBuilder];
 //			FLSoapFault11* soapFault = [soapParser buildObjectWithClass:[FLSoapFault11 class] withData:data withDataDecoder:[FLSoapDataEncoder instance]];
@@ -66,9 +66,9 @@
 }
 
 - (void) willSendHttpRequest {
-    FLAssertStringIsNotEmpty_(self.headers.requestURL.absoluteString);
-    FLAssertStringIsNotEmpty_(self.soapNamespace);
-    FLAssertStringIsNotEmpty_(self.operationName);
+    FLAssertStringIsNotEmpty(self.headers.requestURL.absoluteString);
+    FLAssertStringIsNotEmpty(self.soapNamespace);
+    FLAssertStringIsNotEmpty(self.operationName);
 
     FLSoapStringBuilder* soapStringBuilder = [FLSoapStringBuilder soapStringBuilder];
     
@@ -96,7 +96,7 @@
 
 - (NSError*) checkHttpResponseForError:(FLHttpResponse*) httpResponse {
     NSData* data = httpResponse.responseData;
-    FLAssertNotNil_(data);
+    FLAssertNotNil(data);
     
     FLSoapFault11* fault = [FLSoapHttpRequest checkForSoapFaultInData:data];
     if(fault) {
@@ -114,7 +114,7 @@
 
 - (FLResult) resultFromHttpResponse:(FLHttpResponse*) httpResponse {
     NSData* data = httpResponse.responseData;
-    FLAssertNotNil_(data);
+    FLAssertNotNil(data);
 
     //FLLog(@"%@", FLAutorelease([[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]));
 

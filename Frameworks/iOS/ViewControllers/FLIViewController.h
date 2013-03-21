@@ -15,7 +15,7 @@
 #import "FLWeakReference.h"
 #import "FLBackgroundTaskMgr.h"
 #import "FLViewContentsDescriptor.h"
-#import "UIViewController+FLAdditions.h"
+#import "FLViewController.h"
 #import "FLFinisher.h"
 
 

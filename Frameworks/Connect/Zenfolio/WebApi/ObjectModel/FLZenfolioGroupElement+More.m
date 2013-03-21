@@ -83,8 +83,7 @@
 }
 
 - (FLZenfolioGroupElementType) groupElementType {
-    return [self isGroupElement] ? FLZenfolioGroupElementTypeGroup :
-                [self isGalleryElement] ? FLZenfolioGroupElementTypeGallery : FLZenfolioGroupElementTypeCollection;
+    return 0;
 }
 
 - (unsigned long long) PhotoBytesValue {
@@ -94,6 +93,11 @@
 - (NSString *)sizeText {
 	return [NSString localizedStringForByteSize:self.PhotoBytesValue];
 }
+
+- (id) objectStorageKey_fl {
+    return [NSString stringWithFormat:@"%d:%@", [self groupElementType], [self Id]];
+}
+
 
 //- (BOOL) visitAllElements:(FLGroupElementVisitor) visitor elementIndex:(NSUInteger*) elementIndex {
 //

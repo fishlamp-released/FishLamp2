@@ -50,3 +50,18 @@
         } \
         return obj; \
     }
+
+
+#define FLSynthesizeAssociatedNumberProperty(__ASSOCIATION_POLICY__, __GETTER__, __SETTER__, __TYPE__, __INIT__, __VALUE__) \
+    FLSynthesizeAssociatedObjectKey_(__KEYNAME__(__GETTER__)); \
+    \
+    - (void) __SETTER__:(__TYPE__) number { \
+        objc_setAssociatedObject(self, __KEYNAME__(__GETTER__), [NSNumber __INIT__:number], __ASSOCIATION_POLICY__); \
+    } \
+    - (__TYPE__) __GETTER__ { \
+        NSNumber* number = (NSNumber*) objc_getAssociatedObject(self, __KEYNAME__(__GETTER__)); \
+        return [number __VALUE__]; \
+    }
+      
+#define FLSynthesizeAssociatedBOOLProperty(__GETTER__, __SETTER__) \
+            FLSynthesizeAssociatedNumberProperty(OBJC_ASSOCIATION_RETAIN, __GETTER__, __SETTER__, BOOL, numberWithBool, boolValue)

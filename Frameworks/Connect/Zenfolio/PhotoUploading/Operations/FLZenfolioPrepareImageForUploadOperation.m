@@ -102,14 +102,14 @@ FIXME("needs to be abstracted for mac, etc..")
 
 // FIXME
 
-//    FLAssertIsNotNil_(_photo);
+//    FLAssertIsNotNil(_photo);
 //
 //    FLJpegFile* imageFile = [_photo.imageAsset.original createTempFileForStreamingInFolder:[[self.userContext userStorageService] tempFolder]
 //        fileName:CreateNewUploadFileName()
 //        ];
 //		
 //	if(!imageFile) {
-//        FLThrowErrorCode_v(FLZenfolioErrorDomain, FLZenfolioErrorCodeUploadMissingImage, @"Image is missing for upload");
+//        FLThrowErrorCodeWithComment(FLZenfolioErrorDomain, FLZenfolioErrorCodeUploadMissingImage, @"Image is missing for upload");
 //	}
 //    
 //    NSError* error = nil;

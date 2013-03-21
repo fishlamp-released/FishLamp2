@@ -12,10 +12,10 @@
 
 @synthesize object = _object;
 
-FLAssertDefaultInitNotCalled_();
+FLAssertDefaultInitNotCalled();
 
 - (id) initWithObject:(id) object {
-	FLAssertIsNotNil_v(object, nil);
+	FLAssertIsNotNilWithComment(object, nil);
 
 	if((self = [super init])) {
 		_object = object;

@@ -65,7 +65,9 @@
 /// @brief a useful property for debugging views
 /// sets/gets the background color for debugging, but is an error in release code and makes it easy to remove
 /// debugging code later.
+#if IOS
 @property (readwrite, strong, nonatomic) UIColor* debugBackgroundColor;
+#endif
 #endif
 
 @end

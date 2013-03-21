@@ -12,7 +12,7 @@
 - (void) overrideViewPositionIfNeeded:(FLRectLayout*) position; // does nothing by default.
 @end
 
-@interface FLAutoPositionedViewController : UIViewController {
+@interface FLAutoPositionedViewController : FLCompatibleViewController {
 @private
     FLRectLayout _viewPosition;
     CGFloat _viewAlpha;

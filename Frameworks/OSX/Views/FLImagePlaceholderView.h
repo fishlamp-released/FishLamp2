@@ -16,7 +16,6 @@
     IBOutlet NSImageView* _imageView;
     CGFloat _borderWidth;
     BOOL _alwaysProportionallyResize;
-    NSString* _loadingPath;
 }
 
 @property (readwrite, strong, nonatomic) NSImageView* imageView;
@@ -28,7 +27,6 @@
 - (void) resizeToProportionalImageSize;
 
 - (void) setImage:(NSImage*) image;
-- (void) setImageWithFilePath:(NSString*) path;
 
 - (void) removeImage;
 

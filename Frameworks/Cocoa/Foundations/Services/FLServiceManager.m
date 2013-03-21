@@ -68,13 +68,13 @@
 ////}
 //
 ////- (id) serviceForServiceID:(id) serviceID {
-////    FLAssertNotNil_(serviceID);
+////    FLAssertNotNil(serviceID);
 ////    return [_services objectForKey:serviceID];
 ////} 
 //
 ////- (void) removeServiceForServiceType:(id) serviceID {
 ////
-////    FLAssertNotNil_(serviceID);
+////    FLAssertNotNil(serviceID);
 ////
 ////    id service = [self serviceForServiceID:serviceID];
 ////    if(service) {
@@ -88,10 +88,10 @@
 ////
 ////- (void) setService:(id) service forServiceID:(id) serviceID {
 ////
-////    FLAssertNotNil_(serviceID);
-////    FLAssertNotNil_(service);
+////    FLAssertNotNil(serviceID);
+////    FLAssertNotNil(service);
 ////    
-////    FLConfirm_v([_services objectForKey:serviceID] == nil, @"service type already registered: %@", serviceID);
+////    FLConfirmWithComment([_services objectForKey:serviceID] == nil, @"service type already registered: %@", serviceID);
 ////    
 ////    [_services setObject:service forKey:serviceID];
 ////
@@ -124,7 +124,7 @@
 //                      forKey:(id) resourceKey
 //               providerBlock:(FLResourceProviderBlock) providerBlock {
 //
-//    FLConfirm_v([_resourceProviders objectForKey:resourceKey] == nil, @"resource provider for %@ already set", resourceKey);
+//    FLConfirmWithComment([_resourceProviders objectForKey:resourceKey] == nil, @"resource provider for %@ already set", resourceKey);
 //    
 //    [_resourceProviders setObject:[FLKeyValuePair keyValuePair:provider value:FLCopyWithAutorelease(providerBlock)] forKey:resourceKey];
 //}

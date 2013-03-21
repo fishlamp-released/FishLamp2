@@ -106,6 +106,8 @@
 @implementation NSObject (FLObjectMessage)
 
 - (void) sendObjectMessage:(FLObjectMessage*) message toListener:(id) listener {
+    FLRetainWithAutorelease(message);
+    FLRetainWithAutorelease(listener);
     [listener receiveObjectMessage:message];
 }
 
@@ -117,6 +119,8 @@
 
 @implementation NSArray (FLObjectMessage)
 - (void) sendObjectMessage:(FLObjectMessage*) message toListener:(id) listener {
+    FLRetainWithAutorelease(message);
+    FLRetainWithAutorelease(listener);
     for(id object in self) {
         [object sendObjectMessage:message toListener:listener];
     }
@@ -125,6 +129,8 @@
 
 @implementation NSDictionary (FLObjectMessage)
 - (void) sendObjectMessage:(FLObjectMessage*) message toListener:(id) listener {
+    FLRetainWithAutorelease(message);
+    FLRetainWithAutorelease(listener);
     for(id object in [self objectEnumerator]) {
         [object sendObjectMessage:message toListener:listener];
     }

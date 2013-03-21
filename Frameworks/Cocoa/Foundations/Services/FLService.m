@@ -195,13 +195,13 @@ void FLAtomicAddServiceToService(__strong id* ivar, FLService* newService, FLSer
 //}
 
 //- (void) openService {
-//    FLAssertNotNil_v(self.context, @"service not in a context");
-//    FLAssert_v([self.context isContextOpen], @"opening a service in a closed context");
+//    FLAssertNotNilWithComment(self.context, @"service not in a context");
+//    FLAssertWithComment([self.context isContextOpen], @"opening a service in a closed context");
 //    _isServiceOpen = YES;
 //}
 //
 //- (void) closeService {
-//    FLAssertNotNil_v(self.context, @"service not in a context");
+//    FLAssertNotNilWithComment(self.context, @"service not in a context");
 //    _isServiceOpen = NO;
 //}
 //@interface FLService()

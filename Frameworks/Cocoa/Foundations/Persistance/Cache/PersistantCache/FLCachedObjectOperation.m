@@ -22,7 +22,7 @@
 
 - (id) init {
 	if((self = [super init])) {
-        FLAssert_v([self conformsToProtocol:@protocol(FLCacheObjectOperationSubclass)], @"subclass must implement FLCacheObjectOperationSubclass protocol");
+        FLAssertWithComment([self conformsToProtocol:@protocol(FLCacheObjectOperationSubclass)], @"subclass must implement FLCacheObjectOperationSubclass protocol");
     
         self.canLoadFromCache = YES;
         self.canSaveToCache = YES;

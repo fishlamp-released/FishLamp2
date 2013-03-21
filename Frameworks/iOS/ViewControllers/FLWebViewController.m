@@ -30,7 +30,7 @@ FLSynthesizeStructProperty(autoSetTitle, setAutoSetTitle, BOOL, _webViewFlags);
 @synthesize startURL = _startURL;
 @synthesize webViewDelegate = _delegate;
 
-FLAssertDefaultInitNotCalled_()
+FLAssertDefaultInitNotCalled()
 
 - (id) initWithButtonMode:(FLWebViewControllerButtonMode) buttonMode {
 	if((self = [super initWithNibName:nil bundle:nil])) {

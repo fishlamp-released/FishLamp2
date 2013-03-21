@@ -58,12 +58,12 @@
 		return NO;
 	}
 
-	FLAssertIsNotNil_(userLogin);
+	FLAssertIsNotNil(userLogin);
 	return ![self userLoginIsAuthenticated:userLogin];
 }
 
 - (FLUserLogin*) userLogin {
-    FLAssertNotNil_(self.delegate); 
+    FLAssertNotNil(self.delegate); 
     return [self.delegate httpRequestAuthenticationServiceGetUserLogin:self];
 }
 
@@ -102,7 +102,7 @@
 
     return [[_asyncQueue queueBlock:^{
         FLUserLogin* userLogin = self.userLogin;
-        FLAssertNotNil_(userLogin); 
+        FLAssertNotNil(userLogin); 
         
         if([self shouldAuthenticateUser:userLogin]) {
             [self resetAuthenticationTimestamp];

@@ -7,8 +7,9 @@
 //
 
 #import "FLCocoaUIRequired.h"
+#import "FLCompatibleView.h"
 
-@interface FLView : UIView {
+@interface FLView : FLCompatibleView {
 }
 
 @end

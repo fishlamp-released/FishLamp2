@@ -374,9 +374,9 @@ FLSynthesizeStructProperty(automaticallyShowBackButton, setAutomaticallyShowBack
                                target:(id) target 
                                action:(SEL) action
 {
-    FLAssertIsNotNil_(image);
-    FLAssertIsNotNil_(target);
-    FLAssertIsNotNil_(action);
+    FLAssertIsNotNil(image);
+    FLAssertIsNotNil(target);
+    FLAssertIsNotNil(action);
 
 	UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
 	button.frame = CGRectMake(0,0, image.size.width, image.size.height);
@@ -481,7 +481,7 @@ FLSynthesizeStructProperty(automaticallyShowBackButton, setAutomaticallyShowBack
 
 - (void) addBackButton:(NSString*) title target:(id) target action:(SEL) action 
 {
-    FLAssertIsNil_(self.backButton);
+    FLAssertIsNil(self.backButton);
 
 	FLBackButtonDeprecated* backButton = [FLBackButtonDeprecated backButton:title target:target action:action];
 	backButton.tag = NO;

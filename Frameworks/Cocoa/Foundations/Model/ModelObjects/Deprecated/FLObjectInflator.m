@@ -98,13 +98,13 @@
 
 - (void) setValue:(id) value forKey:(id) forKey forObject:(id) object
 {
-	FLAssert_v(object == self, @"object should == self");
+	FLAssertWithComment(object == self, @"object should == self");
 	[self setValue:value forKey:forKey];
 }
 
 - (id) valueForKey:(id) key forObject:(id) object
 {
-	FLAssert_v(object == self, @"object should == self");
+	FLAssertWithComment(object == self, @"object should == self");
 	return [self valueForKey:key];
 }
 

@@ -84,7 +84,7 @@ responseDataFileURL:responseDataFileURL {
                 _responseStatusLine == nil ? @"" : _responseStatusLine];
 
     
-	   return [NSError errorWithDomain:[FLFrameworkErrorDomain instance]
+	   return [NSError errorWithDomain:FLFrameworkErrorDomain
                                   code:statusCode
                   localizedDescription:errorString];
 	}

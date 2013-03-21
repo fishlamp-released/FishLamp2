@@ -226,7 +226,7 @@ static NSString* LegacyKeys[] = {
 	NSError* internalError = nil;
 	NSString* password = nil;
 	
-	FLAssertIsNotNil_(login);
+	FLAssertIsNotNil(login);
 	
 	BOOL ok = [FLUserDefaults loadDefaultData:login outError:&internalError];
 	if(!ok)
@@ -240,7 +240,7 @@ static NSString* LegacyKeys[] = {
 		goto Exit;
 	}
 	
-	FLAssertStringIsNotEmpty_(login.userName);
+	FLAssertStringIsNotEmpty(login.userName);
 
 	FLGotoExitOnFail
 		([FLKeychain getPasswordForUsername:login.userName
@@ -285,8 +285,8 @@ Exit:
 + (BOOL) saveToUserDefaults:(FLUserLogin*) login
 			  outError:(NSError**) error
 {
-	FLAssertIsNotNil_(login);
-	FLAssertStringIsNotEmpty_(login.userName);
+	FLAssertIsNotNil(login);
+	FLAssertStringIsNotEmpty(login.userName);
 
 	NSError* internalError = nil;
 	
@@ -390,8 +390,8 @@ Exit:
 	NSArray* keys = nil;
     
     [FLUserDefaults loadAllData:&keys outData:&userDefaultData];
-    FLAssertIsNotNil_(keys);
-    FLAssertIsNotNil_(userDefaultData);
+    FLAssertIsNotNil(keys);
+    FLAssertIsNotNil(userDefaultData);
     
     FLReleaseWithNil(keys);
 	FLReleaseWithNil(userDefaultData);

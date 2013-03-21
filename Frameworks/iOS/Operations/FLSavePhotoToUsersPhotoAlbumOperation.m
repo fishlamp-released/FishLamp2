@@ -13,7 +13,7 @@
 
 - (id) initWithImageInput:(UIImage*) image	properties:(NSDictionary*) properties
 {
-	FLAssertIsNotNil_(image);
+	FLAssertIsNotNil(image);
 
 	if((self = [super init]))
 	{
@@ -53,13 +53,13 @@
 - (void) saveImage:(UIImage*) image	 properties:(NSDictionary*) properties
 {
 
-	FLAssertIsNotNil_(image);
+	FLAssertIsNotNil(image);
 
 	_lock = [[NSConditionLock alloc] initWithCondition:YES]; 
 	@try
 	{
         _assetsLibrary = [[ALAssetsLibrary alloc] init];
-        FLAssertIsNotNil_(_assetsLibrary);
+        FLAssertIsNotNil(_assetsLibrary);
 	
         [_assetsLibrary writeImageToSavedPhotosAlbum:image.CGImage 
             metadata:properties 
@@ -75,7 +75,7 @@
 		[_lock lockWhenCondition:NO];
 
 #if DEBUG
-		FLAssert_v(_savedImage, @"lock appears to have failed");
+		FLAssertWithComment(_savedImage, @"lock appears to have failed");
 #endif
 	}
 	@finally
@@ -101,7 +101,7 @@
 
 - (id) initWithPhotoInput:(id<FLImageAsset>) photoData
 {
-	FLAssertIsNotNil_(photoData);
+	FLAssertIsNotNil(photoData);
 
 	if((self = [super init]))
 	{
@@ -113,7 +113,7 @@
 - (void) runOperation {
 	id<FLImageAsset> photo = self.input;
 	@try {
-		FLAssertIsNotNil_(photo.original);
+		FLAssertIsNotNil(photo.original);
     	[photo.original readFromStorage];
 		[self saveImage:photo.original.image properties:photo.original.properties];
 	}

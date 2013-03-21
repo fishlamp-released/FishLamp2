@@ -145,7 +145,7 @@
 - (void) updateWidget:(FLImageAssetCellWidget*) widget forDataItemIndex:(NSUInteger) itemIndex
 {
 	widget.asset = [_assets objectAtIndex:itemIndex];
-	FLAssertIsNotNil_v(widget.asset, nil);
+	FLAssertIsNotNilWithComment(widget.asset, nil);
 	
 	[widget setAssetIndex:itemIndex + 1]; // display indexes are 1 based
 }

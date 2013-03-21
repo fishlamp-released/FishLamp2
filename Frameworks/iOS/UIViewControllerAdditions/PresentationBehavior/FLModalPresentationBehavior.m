@@ -44,7 +44,7 @@ FLSynthesizeSingleton(FLModalPresentationBehavior);
 - (void) willPresentViewController:(UIViewController*) viewController
             inParentViewController:(UIViewController*) parentViewController
 {
-    FLAssert_v([NSThread currentThread] == [NSThread mainThread], @"not in main thread");
+    FLAssertWithComment([NSThread currentThread] == [NSThread mainThread], @"not in main thread");
 
     if(!_shieldViewController) {
         _shieldViewController = [self createShieldViewController];
@@ -59,7 +59,7 @@ FLSynthesizeSingleton(FLModalPresentationBehavior);
     [_shieldViewController addChildViewController:viewController];
     [_shieldViewController.view addSubview:viewController.view];
 
-    FLAssertIsFixed_v(@"needs to be themed");
+    FLAssertIsFixedWithComment(@"needs to be themed");
     [self addShadow:[UIColor grayColor] toView:viewController.view];
 }
 
@@ -71,9 +71,9 @@ FLSynthesizeSingleton(FLModalPresentationBehavior);
 - (void) willHideViewController:(UIViewController*) viewController
           fromParentViewController:(UIViewController*) parentViewController
 {
-    FLAssert_v(parentViewController == _shieldViewController, @"expecting parent to be shield view");
+    FLAssertWithComment(parentViewController == _shieldViewController, @"expecting parent to be shield view");
 
-    FLAssert_v([NSThread currentThread] == [NSThread mainThread], @"not in main thread");
+    FLAssertWithComment([NSThread currentThread] == [NSThread mainThread], @"not in main thread");
 
     mrc_retain_(viewController);
     [[viewController view] removeFromSuperview];

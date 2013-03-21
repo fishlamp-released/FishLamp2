@@ -28,7 +28,7 @@ typedef void (^FLObjectDescriberPropertyVisitor)(id object, FLObjectDescriber* o
 @synthesize objectName = _objectName;
 @synthesize objectEncoder = _objectEncoder;
 
-FLAssertDefaultInitNotCalled_();
+FLAssertDefaultInitNotCalled();
 
 //+ (void) addPropertiesForClass:(Class) class dictionary:(NSMutableDictionary*) dictionary {
 //	if(class) {
@@ -42,7 +42,7 @@ FLAssertDefaultInitNotCalled_();
 
 //- (id) initWithClass:(Class) aClass 
 //      withProperties:(NSDictionary*) properties {
-//    FLAssertNotNil_(aClass);
+//    FLAssertNotNil(aClass);
 //	if((self = [super init])) {
 //        _objectClass = aClass;
 //        _properties = [properties mutableCopy];
@@ -55,7 +55,7 @@ FLAssertDefaultInitNotCalled_();
 
 - (id) initWithClass:(Class) aClass 
             withName:(NSString*) name {
-    FLAssertNotNil_(aClass);
+    FLAssertNotNil(aClass);
 	if((self = [super init])) {
         self.objectName = name; 
         _objectClass = aClass;
@@ -125,7 +125,7 @@ FLAssertDefaultInitNotCalled_();
 }
 
 - (void) addProperty:(FLObjectDescriber*) property {
-    FLAssertNotNil_(property);
+    FLAssertNotNil(property);
     if(property.objectClass) {
         [_properties setObject:property forKey:property.objectName];
     }
@@ -136,7 +136,7 @@ FLAssertDefaultInitNotCalled_();
 
 - (void) discoverProperties {
     
-    NSLog(@"discovering properties for %@", NSStringFromClass(_objectClass));
+//    NSLog(@"discovering properties for %@", NSStringFromClass(_objectClass));
     
     unsigned int propertyCount = 0;
 	objc_property_t* properties = class_copyPropertyList(_objectClass, &propertyCount);
@@ -409,7 +409,7 @@ void FLMergeObjectArrays(NSMutableArray* dest,
 
 void FLMergeObjects(id dest, id src, FLMergeMode mergeMode) {
 	if(dest && src) {
-		FLAssert_v([dest isKindOfClass:[src class]], @"objects are different classes");
+		FLAssertWithComment([dest isKindOfClass:[src class]], @"objects are different classes");
 
 		FLObjectDescriber* srcDescriber = [[src class] objectDescriber];
         if(!srcDescriber) {

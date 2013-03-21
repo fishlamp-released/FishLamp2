@@ -8,6 +8,7 @@
 
 #import "FLCocoaUIRequired.h"
 #import "FLBreadcrumbBarView.h"
+#import "FLCompatibleViewController.h"
 
 @protocol FLBreadcrumbBarViewControllerDelegate;
 

@@ -9,11 +9,14 @@
 #import "FishLampCocoaUI.h"
 #import "FLZenfolioGroupElement.h"
 #import "FLOrderedCollection.h"
+#import "FLObjectStorage.h"
 
 @protocol ZFZenfolioGroupElementSelectionDelegate;
 
 @interface FLZenfolioGroupElementSelection : NSObject {
 @private
+    id<FLObjectStorage> _objectStorage;
+
     FLZenfolioGroup* _rootGroup;
 
 // these only hold object ids
@@ -33,23 +36,24 @@
     NSMutableArray* _displayList;
 
 // cached selection
-    NSMutableIndexSet* _cachedIndexSet;
+    NSMutableIndexSet* _cachedSelectionSet;
 
     __unsafe_unretained id<ZFZenfolioGroupElementSelectionDelegate> _delegate;
 }
 
+- (id) initWithObjectStorage:(id<FLObjectStorage>) objectStorage;
++ (id) groupElementSelection:(id<FLObjectStorage>) objectStorage;
 
-- (id) initWithRootGroup:(FLZenfolioGroup*) rootGroup;
-+ (id) groupElementSelection:(FLZenfolioGroup*) rootGroup;
+@property (readonly, strong, nonatomic) id<FLObjectStorage> objectStorage;
 
-@property (readonly, strong, nonatomic) FLZenfolioGroup* rootGroup;
+@property (readwrite, strong, nonatomic) FLZenfolioGroup* rootGroup;
 @property (readwrite, assign, nonatomic) id<ZFZenfolioGroupElementSelectionDelegate> delegate;
 
 /// selection
 //@property (readonly, strong, nonatomic) NSSet* selected;
 @property (readonly, assign, nonatomic) NSUInteger selectionCount;
 @property (readonly, strong, nonatomic) NSArray* selectedPhotoSets;
-- (int) selectedPhotoCount;
+//- (int) selectedPhotoCount;
 
 /// select/unselect a groupElement
 - (void) selectGroupElement:(FLZenfolioGroupElement*) groupElement 
@@ -74,7 +78,7 @@
 - (void) sortWithDescriptor:(NSSortDescriptor*) descriptor;
 
 /// misc utils
-- (void) replaceGroupElement:(id) element atIndex:(NSUInteger) index;
+- (void) replaceGroupElement:(id) element;
 
 /// indexed operations
 - (id) childElementForGroup:(FLZenfolioGroup*) parent atIndex:(NSUInteger) index;
@@ -87,7 +91,7 @@
     // with the NSOutlineView
 @property (readwrite, strong, nonatomic) NSIndexSet* selectedIndexSet;
 
-- (id) elementForID:(id) idObject;
+- (id) elementForID:(NSNumber*) idObject;
 
 @end
 

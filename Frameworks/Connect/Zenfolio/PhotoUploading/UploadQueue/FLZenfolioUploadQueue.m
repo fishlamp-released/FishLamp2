@@ -87,9 +87,9 @@ NSString* const FLZenfolioUploadQueueDidChangeNotification = @"FLZenfolioUploadQ
 - (void) changeUploadGalleriesTo:(FLZenfolioUploadGallery*) gallery 
                   forMissingOnly:(BOOL) forMissingOnly
 {
-	FLAssertIsNotNil_(gallery);
+	FLAssertIsNotNil(gallery);
 
-	FLAssertIsNotNil_(self.database);
+	FLAssertIsNotNil(self.database);
 
 	NSMutableArray* saveList = [NSMutableArray array]; 
 	for(FLZenfolioQueuedPhoto* asset in self)
@@ -122,7 +122,7 @@ NSString* const FLZenfolioUploadQueueDidChangeNotification = @"FLZenfolioUploadQ
 {
     FLZenfolioUploadGallery* defaultUploadGallery = nil; 
     
-	FLAssertIsNotNil_(self.database);
+	FLAssertIsNotNil(self.database);
 
 	NSMutableArray* saveList = nil; 
 	for(FLZenfolioQueuedPhoto* asset in self)
@@ -161,7 +161,7 @@ NSString* const FLZenfolioUploadQueueDidChangeNotification = @"FLZenfolioUploadQ
 - (void) _updateAsset:(FLZenfolioQueuedPhoto*) photo
            fileNumber:(NSUInteger) fileNumber
 {
-	FLAssertIsNotNil_(self.database);
+	FLAssertIsNotNil(self.database);
 
 	FLZenfolioUploadGallery* gallery = [self.delegate defaultUploadGallery];
 	FLZenfolioAccessDescriptor* accessDesc = [self.delegate defaultAccessDescriptor];
@@ -194,7 +194,7 @@ FIXME("asset stuff")
 }
 
 - (void) batchAddAssets:(NSArray*) assets {
-	FLAssertIsNotNil_(self.database);
+	FLAssertIsNotNil(self.database);
 
 	NSUInteger fileCount = self.totalAssetsAdded;
 		

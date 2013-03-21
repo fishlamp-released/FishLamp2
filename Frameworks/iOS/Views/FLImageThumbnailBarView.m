@@ -238,7 +238,7 @@
 		
 //		FLLog(@"Set image index %d of %d, thumbnail index: %d, converts back to %d, scale: %f", view.index, _thumbCount, count, ImageToThumbnailIndex(view.index), _indexScale);
 		
-		FLAssert_v(count == ImageToThumbnailIndex(view.index), @"thumbnail indexes not roundtripping");
+		FLAssertWithComment(count == ImageToThumbnailIndex(view.index), @"thumbnail indexes not roundtripping");
 		
 		//ScaledThumbnailIndex(count);
 		view.frame = FLRectSetOrigin(_widgetFrame, left, 12.0f);

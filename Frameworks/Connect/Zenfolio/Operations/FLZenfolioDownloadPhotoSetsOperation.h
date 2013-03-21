@@ -17,8 +17,8 @@
     FLZenfolioGroup* _group;
 }
 
-- (id) initWithGroup:(FLZenfolioGroup*) group;
-+ (id) downloadPhotoSetsWithGroup:(FLZenfolioGroup*) group;
+- (id) initWithGroup:(FLZenfolioGroup*) group objectStorage:(id<FLObjectStorage>) objectStorage;
++ (id) downloadPhotoSetsWithGroup:(FLZenfolioGroup*) group objectStorage:(id<FLObjectStorage>) objectStorage;
 
 @end
 

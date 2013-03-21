@@ -29,8 +29,8 @@
 //	isCameraImage:(BOOL) isCameraImage 
 //	prefs:(FLZenfolioPreferences*) prefs
 //{
-//	FLAssertIsNotNil_(photo);
-//	FLAssertIsNotNil_(prefs);
+//	FLAssertIsNotNil(photo);
+//	FLAssertIsNotNil(prefs);
 //
 //	if((self = [super init]))
 //	{
@@ -144,7 +144,7 @@
 //	
 //	[FLZenfolioUploadablePhoto loadFromDisk:self.photo outPhoto:&photo];
 //	
-//	FLAssertIsNotNil_(photo);
+//	FLAssertIsNotNil(photo);
 //	if(photo)
 //	{
 //		[self copyContentsFromObject:photo];

@@ -17,10 +17,10 @@ int FLToolMain(Class toolClass) {
     @autoreleasepool {
 #endif    
         @try {
-            FLConfirmNotNil_v(toolClass, @"FLCommandLineTool needs a tool class type to instatiate");
+            FLConfirmNotNilWithComment(toolClass, @"FLCommandLineTool needs a tool class type to instatiate");
             
             FLCommandLineTool* tool = FLAutorelease([[toolClass alloc] init]);
-            FLConfirmNotNil_v(tool, @"unable to create tool class: %@", NSStringFromClass(toolClass)); 
+            FLConfirmNotNilWithComment(tool, @"unable to create tool class: %@", NSStringFromClass(toolClass)); 
                         
             NSArray* args = [[NSProcessInfo processInfo] arguments];
 
@@ -31,7 +31,7 @@ int FLToolMain(Class toolClass) {
 
             NSString* string = [NSString concatStringArray:argsWithoutPath delimiter:@" "];
 
-            FLConfirmationFailure_v(@"need a live output to printf");
+            FLConfirmationFailureWithComment(@"need a live output to printf");
             [tool parseInput:[FLParseableInput parseableInput:string] output:nil];
         }
         @catch(NSException* ex) {

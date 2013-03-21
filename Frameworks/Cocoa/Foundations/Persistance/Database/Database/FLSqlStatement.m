@@ -13,7 +13,7 @@
 
 NS_INLINE
 sqlite3_stmt* FLStatmentFailed(	sqlite3_stmt* stmt) {
-    FLConfirmationFailure_v(@"sqlite statement is nil");
+    FLConfirmationFailureWithComment(@"sqlite statement is nil");
     return stmt;
 }
 
@@ -40,7 +40,7 @@ sqlite3_stmt* FLStatmentFailed(	sqlite3_stmt* stmt) {
         self.database = database;
         self.columnDecoder = columnDecoder;
         
-        FLAssertNotNil_(_database);
+        FLAssertNotNil(_database);
     }
     return self;
 }
@@ -55,8 +55,8 @@ sqlite3_stmt* FLStatmentFailed(	sqlite3_stmt* stmt) {
 
 - (void) prepareWithSql:(FLSqlBuilder*) sql {
 
-    FLAssertNotNil_v(sql, @"empty sql");
-    FLAssertIsNil_v(_sqlite3_stmt, @"statement already open");
+    FLAssertNotNilWithComment(sql, @"empty sql");
+    FLAssertIsNilWithComment(_sqlite3_stmt, @"statement already open");
 
     const char* sql_c = [[sql sqlString] UTF8String];
     
@@ -256,17 +256,17 @@ sqlite3_stmt* FLStatmentFailed(	sqlite3_stmt* stmt) {
             {
                 case SQLITE_INTEGER:
                     data = [self integerForColumn:i];
-                    FLAssertIsNotNil_(data);
+                    FLAssertIsNotNil(data);
                 break;
                 
                 case SQLITE_FLOAT:
                     data = [self doubleForColumn:i];
-                    FLAssertIsNotNil_(data);
+                    FLAssertIsNotNil(data);
                 break;
                 
                 case SQLITE_BLOB:
                     data = [self blobForColumn:i];
-                    FLAssertIsNotNil_(data);
+                    FLAssertIsNotNil(data);
                 break;
                 
                 case SQLITE_NULL:
@@ -275,11 +275,11 @@ sqlite3_stmt* FLStatmentFailed(	sqlite3_stmt* stmt) {
                 
                 case SQLITE_TEXT:
                     data = [self textForColumn:i];
-                    FLAssertIsNotNil_(data);
+                    FLAssertIsNotNil(data);
                 break;
                 
                 default:
-                    FLAssertFailed_v(@"Unknown data type from sqlite: %d", type);
+                    FLAssertFailedWithComment(@"Unknown data type from sqlite: %d", type);
                     break;
             }
         
@@ -318,7 +318,7 @@ sqlite3_stmt* FLStatmentFailed(	sqlite3_stmt* stmt) {
         break;
 
         case SQLITE_OK:
-            FLAssertFailed_v(@"not expecting SQLITE_OK here");
+            FLAssertFailedWithComment(@"not expecting SQLITE_OK here");
             break;
             
         default:
@@ -342,7 +342,7 @@ sqlite3_stmt* FLStatmentFailed(	sqlite3_stmt* stmt) {
 - (NSString*) nameForColumn:(int) column {
     const char* c_colName = sqlite3_column_name(statement_, column);
     NSString* colName = [NSString stringWithCString:c_colName encoding:NSUTF8StringEncoding];
-    FLAssertStringIsNotEmpty_v(colName, nil);
+    FLAssertStringIsNotEmptyWithComment(colName, nil);
                 
     return colName;
 }
@@ -486,7 +486,7 @@ sqlite3_stmt* FLStatmentFailed(	sqlite3_stmt* stmt) {
 	return [NSKeyedUnarchiver unarchiveObjectWithData:data];
 }
 + (id) decodeObjectWithSqliteColumnString:(NSString*) string {
-    FLAssertFailed_v(@"can't decode an object with a string");
+    FLAssertFailedWithComment(@"can't decode an object with a string");
     return nil;
 }
 - (void) bindToStatement:(FLSqlStatement*) statement parameterIndex:(int) parameterIndex {

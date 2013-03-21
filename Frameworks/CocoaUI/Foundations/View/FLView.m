@@ -20,14 +20,14 @@
 }
 
 #if OSX
-- (void)drawRect:(NSRect)dirtyRect {
-    // set any NSColor for filling, say white:
-    UIColor* bgColor = self.backgroundColor;
-    if(bgColor) {
-        [bgColor setFill];
-        NSRectFill(dirtyRect);
-    }
-}
+//- (void)drawRect:(NSRect)dirtyRect {
+//    // set any NSColor for filling, say white:
+//    UIColor* bgColor = self.backgroundColor;
+//    if(bgColor) {
+//        [bgColor setFill];
+//        NSRectFill(dirtyRect);
+//    }
+//}
 #endif
 
 //- (void) didAddSubview:(NSView*) view {

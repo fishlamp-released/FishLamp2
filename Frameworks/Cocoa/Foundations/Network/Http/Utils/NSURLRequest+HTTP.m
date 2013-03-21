@@ -77,7 +77,7 @@ static NSString* s_defaultUserAgent = nil;
 
 
 - (void) setUserAgentHeader:(NSString*) userAgent {
-	FLAssertStringIsNotEmpty_v(userAgent, nil);
+	FLAssertStringIsNotEmptyWithComment(userAgent, nil);
 	[self setHeader:@"User-Agent" data:userAgent];
 }
 
@@ -150,7 +150,7 @@ static NSString* s_defaultUserAgent = nil;
 
 - (void) setHostHeader:(NSString*) host
 {
-	FLAssertStringIsNotEmpty_v(host, nil);
+	FLAssertStringIsNotEmptyWithComment(host, nil);
 	[self setHeader:@"HOST" data:host];
 }
 
@@ -162,20 +162,20 @@ static NSString* s_defaultUserAgent = nil;
 
 - (void) setImageContentWithFilePath:(NSString*) filePath
 {
-	FLAssertStringIsNotEmpty_v(filePath, nil);
+	FLAssertStringIsNotEmptyWithComment(filePath, nil);
 	[self setContentWithFilePath:filePath typeContentHeader:@"image/jpeg"];
 }
 
 - (void) setImageContentWithData:(NSData*) imageData
 {
-	FLAssertIsNotNil_v(imageData, nil);
-	FLAssert_v(imageData.length > 0, @"Empty data");
+	FLAssertIsNotNilWithComment(imageData, nil);
+	FLAssertWithComment(imageData.length > 0, @"Empty data");
 	[self setContentWithData:imageData typeContentHeader:@"image/jpeg"];
 }
 
 - (void) setImageContentWithInputStream:(NSInputStream*) stream   inputSize:(NSUInteger) size
 {
-	FLAssertIsNotNil_v(stream, nil);
+	FLAssertIsNotNilWithComment(stream, nil);
 	[self setContentWithInputStream:stream typeContentHeader:@"image/jpeg" inputSize:size];
 }
 

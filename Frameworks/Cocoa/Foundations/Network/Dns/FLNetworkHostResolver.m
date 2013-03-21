@@ -52,8 +52,8 @@
     
     [self touchTimestamp];
     
-    FLAssertAreEqual_v(self.networkHost.hostRef, theHost, nil);
-    FLAssertAreEqual_v(self.networkHost.hostInfoType, typeInfo, nil);
+    FLAssertAreEqualWithComment(self.networkHost.hostRef, theHost, nil);
+    FLAssertAreEqualWithComment(self.networkHost.hostInfoType, typeInfo, nil);
     
     FLResult result = nil;
     
@@ -70,7 +70,7 @@
 
 static void HostResolutionCallback(CFHostRef theHost, CFHostInfoType typeInfo, const CFStreamError *error, void *info) {
     FLNetworkHostResolver* resolver = bridge_(id, info);
-    FLAssertIsKindOfClass_v(resolver, FLNetworkHostResolver, nil);
+    FLAssertIsKindOfClassWithComment(resolver, FLNetworkHostResolver, nil);
     [resolver resolutionCallback:theHost typeInfo:typeInfo error:error];
 }
 
@@ -99,14 +99,14 @@ static void HostResolutionCallback(CFHostRef theHost, CFHostInfoType typeInfo, c
 
 - (FLFinisher*) startResolvingHost:(FLNetworkHost*) host {
     self.finisher = [FLFinisher finisher];
-    FLAssert_v(!self.isOpen, @"already running");
+    FLAssertWithComment(!self.isOpen, @"already running");
     self.open = YES;
     self.networkHost = host;
     
     CFHostClientContext context = { 0, bridge_(void*, self), NULL, NULL, NULL };
   
     CFHostRef cfhost = self.networkHost.hostRef;
-    FLAssertIsNotNil_v(cfhost, nil);
+    FLAssertIsNotNilWithComment(cfhost, nil);
 
     if (!CFHostSetClient(cfhost, HostResolutionCallback, &context)) {
         [self closeWithResult:[NSError errorWithDomain:NSPOSIXErrorDomain code:EINVAL userInfo:nil]];

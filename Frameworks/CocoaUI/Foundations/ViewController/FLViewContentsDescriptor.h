@@ -8,6 +8,7 @@
 
 #import "FLCocoaUIRequired.h"
 #import "FLRectLayout.h"
+#import "FLCompatibleViewController.h"
 
 typedef enum { 
 	FLViewContentItemInvalid,
@@ -86,7 +87,7 @@ typedef enum {
 
 @end
 
-@interface UIViewController (FLViewContentsDescriptor)
+@interface SDKViewController (FLViewContentsDescriptor)
 
 @property (readwrite, retain, nonatomic) FLViewContentsDescriptor* viewContentsDescriptor; // if not set, will get it from parentViewController or return emptyContentsDescriptor.
 

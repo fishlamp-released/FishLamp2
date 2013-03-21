@@ -17,7 +17,6 @@
 #import <CoreText/CoreText.h>
 #endif
 
-#import "NSObject+FLTheme.h"
 #import "UIView+FLViewGeometry.h"
 
 #define FLWidgetView UIView

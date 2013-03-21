@@ -18,13 +18,13 @@
 
 - (FLHttpRequest*) authenticateRequestWithAuthChallenge:(FLZenfolioAuthChallenge*) challenge {
 
-    FLAssertIsNotNil_(challenge);
+    FLAssertIsNotNil(challenge);
 	
     NSData* decodedChallenge = [challenge Challenge];
     NSData* decodedSalt = [challenge PasswordSalt];
 
-	FLAssertIsNotNil_(decodedChallenge);
-	FLAssertIsNotNil_(decodedSalt);
+	FLAssertIsNotNil(decodedChallenge);
+	FLAssertIsNotNil(decodedSalt);
 	
 	// 1. combine salt + pw
 	// 2. encode 
@@ -79,7 +79,7 @@
         self.userLogin.authTokenLastUpdateTimeValue = [NSDate timeIntervalSinceReferenceDate];
     }
     else {
-        FLThrowErrorCode_v(NSURLErrorDomain, NSURLErrorBadServerResponse, @"empty token from server");
+        FLThrowErrorCodeWithComment(NSURLErrorDomain, NSURLErrorBadServerResponse, @"empty token from server");
     }
 
     return [super runOperationInContext:context withObserver:observer];

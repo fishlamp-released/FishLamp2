@@ -34,7 +34,7 @@
 }
 
 - (BOOL) isStaleComparedToPhoto:(FLZenfolioPhoto*) photo {
-    FLAssert_v(photo.IdValue == self.IdValue, @"photos have different ids");
+    FLAssertWithComment(photo.IdValue == self.IdValue, @"photos have different ids");
     
     return [self isStaleComparedTo:photo.TextCnValue sequence:photo.Sequence];
 }

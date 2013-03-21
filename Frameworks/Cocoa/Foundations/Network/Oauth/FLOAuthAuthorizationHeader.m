@@ -57,8 +57,8 @@ extern void FLDebugCompareHeaders(NSString* lhs, NSString* rhs);
 #endif
 
 - (void) setParameter:(NSString*) parameter value:(NSString*) value {
-	FLAssertStringIsNotEmpty_(parameter);
-	FLAssertStringIsNotEmpty_(value);
+	FLAssertStringIsNotEmpty(parameter);
+	FLAssertStringIsNotEmpty(value);
 
 	[_parameters setObject:value forKey:parameter];
 }
@@ -67,8 +67,8 @@ extern void FLDebugCompareHeaders(NSString* lhs, NSString* rhs);
 	NSArray* parameters = [_parameters allKeys];
     
     NSComparator sorter = ^NSComparisonResult(id lhs, id rhs) {
-        FLAssertStringIsNotEmpty_(lhs);
-        FLAssertStringIsNotEmpty_(rhs);
+        FLAssertStringIsNotEmpty(lhs);
+        FLAssertStringIsNotEmpty(rhs);
 
     // order first by param
         NSComparisonResult result = [lhs compare:rhs];
@@ -111,7 +111,7 @@ extern void FLDebugCompareHeaders(NSString* lhs, NSString* rhs);
 
 - (NSString *) buildHMAC_SHA1SignatureWithBaseURL:(NSString*) baseURL withSecret:(NSString*) secret {
 
-    FLConfirmStringIsNotEmpty_v(secret, @"secret is empty");
+    FLConfirmStringIsNotEmptyWithComment(secret, @"secret is empty");
 
 	NSData *secretData = [secret dataUsingEncoding:NSUTF8StringEncoding];
 	NSData *textData = [baseURL dataUsingEncoding:NSUTF8StringEncoding];

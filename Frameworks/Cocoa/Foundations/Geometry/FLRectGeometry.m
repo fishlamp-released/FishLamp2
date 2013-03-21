@@ -66,8 +66,8 @@ CGRect FLRectEnsureRectInRect(CGRect container, CGRect containee) {
 #endif
  
 CGRect FLRectInset(CGRect rect, CGFloat dx, CGFloat dy) {
-    FLAssert_v(rect.size.width >= (dx * 2), @"trying to inset too narrow of a rect");
-    FLAssert_v(rect.size.height >= (dy * 2), @"trying to inset too short of a rect");
+    FLAssertWithComment(rect.size.width >= (dx * 2), @"trying to inset too narrow of a rect");
+    FLAssertWithComment(rect.size.height >= (dy * 2), @"trying to inset too short of a rect");
     
 #if IOS
     return CGRectInset(rect, dx, dy);

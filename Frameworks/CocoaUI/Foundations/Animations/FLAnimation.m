@@ -102,7 +102,7 @@
 - (void) startAnimatingLayer:(CALayer*) layer 
                   completion:(FLAnimationCompletionBlock) completion {
 
-    FLAssert_v([NSThread isMainThread], @"not on main thread");
+    FLAssertWithComment([NSThread isMainThread], @"not on main thread");
     
     [self prepareAnimationsForLayer:layer];
 
@@ -134,9 +134,9 @@
 
     CALayer* layer = [target layer];
     
-    FLAssertNotNil_v(layer, @"layer is nil");
+    FLAssertNotNilWithComment(layer, @"layer is nil");
     
-    FLAssert_v([NSThread isMainThread], @"not on main thread");
+    FLAssertWithComment([NSThread isMainThread], @"not on main thread");
     completion = FLCopyWithAutorelease(completion);
 
     [self startAnimatingLayer:layer completion:completion];

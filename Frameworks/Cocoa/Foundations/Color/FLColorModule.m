@@ -11,8 +11,3 @@
 //
 
 #import "FLColorModule.h"
-
-@implementation FLColorModule
-+ (void) initializeModule {
-}
-@end

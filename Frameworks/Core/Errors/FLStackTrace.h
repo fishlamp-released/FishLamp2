@@ -12,30 +12,63 @@
 #import <execinfo.h>
 #import <objc/runtime.h>
 
+NS_INLINE
+const char* FLFileNameFromPathNoCopy(const char* filePath) {
+    if(filePath) {
+        const char* lastComponent = nil;
 
-typedef struct {
-    const char** lines;
-    NSUInteger depth;
-} FLCallStack;
+        while(*filePath) {
+            if(*filePath++ == '/') {
+                lastComponent = filePath;
+            }
+        }
+        
+        return lastComponent;
+    }
+    return nil;
+}
 
 typedef struct {
     const char* filePath;
     const char* fileName;
     const char* function;
-    int lineNumber;
-    FLCallStack stack;
+    int line;
+} FLLocationInSourceFile_t;
+
+NS_INLINE
+const char* FLFileNameFromLocation(FLLocationInSourceFile_t* loc) {
+    if(!loc->fileName) {
+        loc->fileName = FLFileNameFromPathNoCopy(loc->filePath);
+    }
+    return loc->fileName;
+}
+
+
+NS_INLINE
+FLLocationInSourceFile_t FLLocationInSourceFileMake(const char* filePath, const char* function, int line) {
+    FLLocationInSourceFile_t loc = { filePath, nil, function, line };
+    return loc;
+}
+
+#define __FILE_LOCATION__ FLLocationInSourceFileMake(__FILE__, __PRETTY_FUNCTION__, __LINE__)
+
+typedef struct {
+    const char** lines;
+    NSUInteger depth;
+} FLCallStack_t;
+
+typedef struct {
+    FLLocationInSourceFile_t location;
+    FLCallStack_t stack;
 } FLStackTrace_t;
 
 extern void FLStackTraceInit(FLStackTrace_t* stackTrace, void* callstack);
 extern void FLStackTraceFree(FLStackTrace_t* trace);
 
-extern FLStackTrace_t FLStackTraceMake( const char* filePath, 
-                                        const char* function, 
-                                        int lineNumber, 
-                                        BOOL withCallStack);
+extern FLStackTrace_t FLStackTraceMake( FLLocationInSourceFile_t loc, BOOL withCallStack);
 
 NS_INLINE
-const char* FLStackEntryAtIndex(FLCallStack stack, NSUInteger index) {
+const char* FLStackEntryAtIndex(FLCallStack_t stack, NSUInteger index) {
     return (index < stack.depth) ? stack.lines[index] : nil;
 }
 
@@ -55,7 +88,7 @@ const char* FLStackEntryAtIndex(FLCallStack stack, NSUInteger index) {
 @property (readonly, assign, nonatomic) const char* function;
 @property (readonly, assign, nonatomic) int lineNumber;
 
-@property (readonly, assign, nonatomic) FLCallStack callStack;
+@property (readonly, assign, nonatomic) FLCallStack_t callStack;
 
 @property (readonly, assign, nonatomic) int stackDepth;
 - (const char*) stackEntryAtIndex:(int) idx;
@@ -63,7 +96,7 @@ const char* FLStackEntryAtIndex(FLCallStack stack, NSUInteger index) {
 
 
 #define FLStackTraceToHere(__WITH_STACK_TRACE__) \
-            FLStackTraceMake(__FILE__, __PRETTY_FUNCTION__, __LINE__, __WITH_STACK_TRACE__)
+            FLStackTraceMake(__FILE_LOCATION__, __WITH_STACK_TRACE__)
 
 #define FLCreateStackTrace(__WITH_STACK_TRACE__) \
             [FLStackTrace stackTrace:FLStackTraceToHere(__WITH_STACK_TRACE__)]

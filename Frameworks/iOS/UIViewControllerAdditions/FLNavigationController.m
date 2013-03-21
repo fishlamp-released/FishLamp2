@@ -519,7 +519,7 @@ static CGFloat s_prevAlpha;
         }
         else
         {
-            FLAssert_v(navController.visibleViewController == dismissMe, @"popping wrong view controller");
+            FLAssertWithComment(navController.visibleViewController == dismissMe, @"popping wrong view controller");
             [navController popViewControllerAnimated:NO];
         }
     };

@@ -13,7 +13,7 @@
 #import "FLFloatingViewController.h"
 #import "FLTableViewCell.h"
 
-#import "UIViewController+FLAdditions.h"
+#import "FLViewController.h"
 #import "UIView+FLViewGeometry.h"
 
 @implementation FLTableViewController
@@ -147,7 +147,7 @@
 {
 	[super viewDidLoad];
 	
-	FLAssertIsNotNil_(self.tableView);
+	FLAssertIsNotNil(self.tableView);
 
 //	self.view.backgroundColor = [self defaultBackgroundColor];
 //	  self.tableView.backgroundColor = [self defaultTableBackgroundColor];

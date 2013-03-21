@@ -28,6 +28,11 @@
 #define FLSynthesizeLazyCreateGetter(__NAME__, __TYPE__) \
             FLSynthesizeLazyCreateGetterWithInit(__NAME__, __TYPE__, [[__TYPE alloc] init])
 
+#define FLSynthesizeDictionaryGetterProperty(__GETTER__, __TYPE__, __KEY__, __DICTIONARY__) \
+    - (__TYPE__) __GETTER__ { \
+        return [__DICTIONARY__ objectForKey:__KEY__]; \
+    } 
+
 #define FLSynthesizeDictionaryProperty(__GETTER__, __SETTER__, __TYPE__, __KEY__, __DICTIONARY__) \
     - (__TYPE__) __GETTER__ { \
         return [__DICTIONARY__ objectForKey:__KEY__]; \

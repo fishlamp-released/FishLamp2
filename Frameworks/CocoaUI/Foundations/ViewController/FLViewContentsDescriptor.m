@@ -8,7 +8,7 @@
 
 #import "FLViewContentsDescriptor.h"
 #import "FLProperties.h"
-#import "UIViewController+FLAdditions.h"
+#import "FLViewController.h"
 
 @interface FLViewContentsDescriptor ()
 @property (readwrite, assign, nonatomic) UIEdgeInsets padding;
@@ -177,7 +177,7 @@ FLSynthesizeStructProperty(bottomItem, setBottomItem, FLViewContentItem, _flags)
 @dynamic hasStatusBar;
 @end
 
-@implementation UIViewController (FLViewContentsDescriptor)
+@implementation SDKViewController (FLViewContentsDescriptor)
 
 FLSynthesizeAssociatedProperty(retain_nonatomic, _viewContentsDescriptor, setViewContentsDescriptor, FLViewContentsDescriptor*);
 
@@ -341,7 +341,7 @@ CGFloat FLViewContentsDescriptorCalculateBottom( FLViewContentsDescriptor conten
 	{
 		case FLViewContentItemNavigationBarAndStatusBar:
 		case FLViewContentItemToolbarAndStatusBar:
-			FLAssertFailed_v(@"can't have status bar on bottom");
+			FLAssertFailedWithComment(@"can't have status bar on bottom");
 			break;
 		
 		case FLViewContentItemToolbar:

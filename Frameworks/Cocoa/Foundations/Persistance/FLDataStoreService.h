@@ -7,12 +7,12 @@
 //
 
 #import "FLService.h"
-#import "FLObjectDataStore.h"
+#import "FLObjectStorage.h"
 
-@interface FLDataStoreService : FLService<FLObjectDataStore> {
+@interface FLDataStoreService : FLService<FLObjectStorage> {
 @private
-    id<FLObjectDataStore> _dataStore;
+    id<FLObjectStorage> _objectStorage;
 }
-@property (readwrite, strong) id<FLObjectDataStore> dataStore;
+@property (readwrite, strong) id<FLObjectStorage> dataStore;
 @end
 

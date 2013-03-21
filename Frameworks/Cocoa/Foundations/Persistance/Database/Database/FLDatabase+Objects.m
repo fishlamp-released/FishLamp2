@@ -17,11 +17,11 @@
 		outputObject:(id*) outputObject {
 	
     if(!inputObject) {
-		FLThrowErrorCode_v(FLObjectDatabaseErrorDomain, FLDatabaseErrorInvalidInputObject, @"null input object");
+		FLThrowErrorCodeWithComment(FLObjectDatabaseErrorDomain, FLDatabaseErrorInvalidInputObject, @"null input object");
 	}
 	
     if(!outputObject) {
-		FLThrowErrorCode_v(FLObjectDatabaseErrorDomain, FLDatabaseErrorInvalidOutputObject, @"null output object");
+		FLThrowErrorCodeWithComment(FLObjectDatabaseErrorDomain, FLDatabaseErrorInvalidOutputObject, @"null output object");
 	}
 
 	NSArray* array = nil;
@@ -33,7 +33,7 @@
 		}
 		else if(array.count > 1) {
 			FLRelease(array);
-			FLThrowErrorCode_v(FLObjectDatabaseErrorDomain, FLDatabaseErrorTooManyObjectsReturned,
+			FLThrowErrorCodeWithComment(FLObjectDatabaseErrorDomain, FLDatabaseErrorTooManyObjectsReturned,
                              ([NSString stringWithFormat:@"Too many objects returned for input object of type: %@", NSStringFromClass([inputObject class])]));
 		}
 		FLRelease(array);
@@ -75,10 +75,10 @@
 						resultColumnNames:(NSArray*) resultColumnNames
 						resultObjects:(NSArray**) outObjects {
 	if(!inputObject) {
-		FLThrowErrorCode_v(FLObjectDatabaseErrorDomain, FLDatabaseErrorInvalidInputObject, @"null input object");
+		FLThrowErrorCodeWithComment(FLObjectDatabaseErrorDomain, FLDatabaseErrorInvalidInputObject, @"null input object");
 	}
 	if(!outObjects) {
-		FLThrowErrorCode_v(FLObjectDatabaseErrorDomain, FLDatabaseErrorInvalidOutputObject, @"null output object");
+		FLThrowErrorCodeWithComment(FLObjectDatabaseErrorDomain, FLDatabaseErrorInvalidOutputObject, @"null output object");
 	}
 
 	FLDatabaseTable* table = [[inputObject class] sharedDatabaseTable];
@@ -111,7 +111,7 @@
 - (BOOL) containsObject:(id) inputObject
 {
 	if(!inputObject) {
-		FLThrowErrorCode_v(FLObjectDatabaseErrorDomain, FLDatabaseErrorInvalidInputObject, @"null input object");
+		FLThrowErrorCodeWithComment(FLObjectDatabaseErrorDomain, FLDatabaseErrorInvalidInputObject, @"null input object");
 	}
 
     __block BOOL foundIt = NO;
@@ -126,7 +126,7 @@
     
     if(![statement appendWhereClauseForSelectingObject:inputObject]) {
 
-        FLAssertFailed_v(@"No.")
+        FLAssertFailedWithComment(@"No.");
     }
     
     statement.rowResultBlock = ^(NSDictionary* row, BOOL* stop) {
@@ -169,10 +169,10 @@
                              outObjects:(NSArray**) outObjects
 {
 	if(!table) {
-		FLThrowErrorCode_v(FLObjectDatabaseErrorDomain, FLDatabaseErrorInvalidInputObject, @"null input object");
+		FLThrowErrorCodeWithComment(FLObjectDatabaseErrorDomain, FLDatabaseErrorInvalidInputObject, @"null input object");
 	}
 	if(!outObjects) {
-		FLThrowErrorCode_v(FLObjectDatabaseErrorDomain, FLDatabaseErrorInvalidOutputObject, @"null output object");
+		FLThrowErrorCodeWithComment(FLObjectDatabaseErrorDomain, FLDatabaseErrorInvalidOutputObject, @"null output object");
 	}
 	
     
@@ -205,7 +205,7 @@
 - (void) deleteObject:(id) inputObject
 {
     [self executeTransaction:^{
-        FLAssertIsNotNil_v(inputObject, nil);
+        FLAssertIsNotNilWithComment(inputObject, nil);
             
         FLDatabaseTable* table = [[inputObject class] sharedDatabaseTable];
         
@@ -214,7 +214,7 @@
         [statement appendString:SQL_FROM andString:table.tableName];
 
         if(![statement appendWhereClauseForSelectingObject:inputObject]) {
-            FLThrowErrorCode_v(FLObjectDatabaseErrorDomain, FLDatabaseErrorNoParametersSpecified, @"No parameters specified");
+            FLThrowErrorCodeWithComment(FLObjectDatabaseErrorDomain, FLDatabaseErrorNoParametersSpecified, @"No parameters specified");
         }
 
         [self executeStatement:statement];

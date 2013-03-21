@@ -85,7 +85,7 @@ FLSynthesizeCachedObjectHandlerProperty(FLZenfolioPhotoSet);
 }
 
 - (BOOL) isStaleComparedToPhotoSet:(FLZenfolioPhotoSet*) photoSet {
-    FLAssert_v(photoSet.IdValue == self.IdValue, @"different photoSets");
+    FLAssertWithComment(photoSet.IdValue == self.IdValue, @"different photoSets");
     return [self isStaleComparedTo:photoSet.TextCnValue photoListCn:photoSet.PhotoListCnValue photoCount:photoSet.PhotoCountValue];
 }
 
@@ -99,5 +99,9 @@ FLSynthesizeCachedObjectHandlerProperty(FLZenfolioPhotoSet);
 
 - (BOOL) isCollectionElement {
 	return self.TypeValue == FLZenfolioPhotoSetTypeCollection;
+}
+
+- (FLZenfolioGroupElementType) groupElementType {
+    return self.TypeValue == FLZenfolioPhotoSetTypeCollection ? FLZenfolioGroupElementTypeCollection : FLZenfolioGroupElementTypeGallery;
 }
 @end

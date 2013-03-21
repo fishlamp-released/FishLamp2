@@ -66,7 +66,7 @@ FLSynthesizeAssociatedProperty(assign_nonatomic, _auxiliaryViewController, setAu
     if((self = [super init])) {
         self.revealSide = side;
         self.behavior = behavior;
-        FLAssertIsNotNil_(_behavior);
+        FLAssertIsNotNil(_behavior);
         
         _dragController = [[FLDragController alloc] init];
         _dragController.delegate = self;
@@ -105,7 +105,7 @@ FLSynthesizeAssociatedProperty(assign_nonatomic, _auxiliaryViewController, setAu
 - (void) _createViewControllerIfNeeded {
     if(!self.viewController) {
         self.viewController = [self createViewController];
-        FLAssertIsNotNil_(self.viewController);
+        FLAssertIsNotNil(self.viewController);
         __block id me = self;
         self.viewController.dismissHandler = ^(UIViewController* controller, BOOL animated) {
             [me hideViewController:animated];
@@ -289,7 +289,7 @@ FLSynthesizeAssociatedProperty(assign_nonatomic, _auxiliaryViewController, setAu
 }
 
 - (void) setViewController:(UIViewController*) viewController  {   
-    FLAssertIsNotNil_(viewController);
+    FLAssertIsNotNil(viewController);
     FLSetObjectWithRetain(_viewController, viewController);
 
     viewController.auxiliaryViewController = self;

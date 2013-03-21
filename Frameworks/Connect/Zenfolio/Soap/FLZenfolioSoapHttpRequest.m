@@ -24,7 +24,7 @@
 }
 
 - (NSString*) soapActionHeaderForHttpRequestName:(NSString*) operationName {
-    FLAssertStringIsNotEmpty_v(operationName, nil);
+    FLAssertStringIsNotEmptyWithComment(operationName, nil);
 	return [self.properties objectForKey:operationName];
 }
 @end
@@ -34,13 +34,13 @@
 
 - (id) initWithGeneratedObject:(id) httpRequest serverInfo:(FLZenfolioApiSoap*) info {
 
-    FLAssertNotNil_(httpRequest);
-    FLAssertNotNil_(info);
+    FLAssertNotNil(httpRequest);
+    FLAssertNotNil(info);
 
     self = [super initWithRequestURL:[NSURL URLWithString:[info serverURL]]];
     if(self) {
-        FLAssertNotNil_(httpRequest);
-        FLAssertNotNil_(info);
+        FLAssertNotNil(httpRequest);
+        FLAssertNotNil(info);
         
         self.operationName = [httpRequest operationName];
         self.soapInput = [httpRequest input];

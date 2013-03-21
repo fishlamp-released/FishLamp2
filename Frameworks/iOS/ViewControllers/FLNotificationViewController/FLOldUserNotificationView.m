@@ -269,10 +269,10 @@ return NO;
 //		viewControllerOrNil = [[FLMobileNotificationDisplayManager defaultDisplayManager] defaultViewController];
 //	}
 //	
-//	FLAssertIsNotNil_(viewControllerOrNil);
+//	FLAssertIsNotNil(viewControllerOrNil);
 //
 //	FLViewController* controller = (FLViewController*) [viewControllerOrNil.navigationController parentControllerForController:viewControllerOrNil];
-//	FLAssertIsNotNil_(controller);
+//	FLAssertIsNotNil(controller);
 //	
 //	[controller addDidAppearCallback:[FLDeferUserNotificationShow deferUserNotificationShow:self]];
 }

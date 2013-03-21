@@ -12,7 +12,9 @@
 #define FLXmlParserDomain @"FLXmlParserDomain"
 
 typedef enum {
-	FLXmlParserErrorCodeUnknownElement = 1
+	FLXmlParserErrorCodeUnknownElement = 1,
+    FLXmlParserErrorCodeObjectNotFound
+    
 } FLXmlParserErrorCode;
 
 typedef enum {
@@ -33,8 +35,8 @@ typedef enum {
 + (id) xmlParser;
 
 - (FLParsedItem*) parseFileAtPath:(NSString*) path;
-- (FLParsedItem*) parseFileAtURL:(NSURL*) url;
 
+- (FLParsedItem*) parseFileAtURL:(NSURL*) url;
 
 - (FLParsedItem*) parseData:(NSData*) data;
 

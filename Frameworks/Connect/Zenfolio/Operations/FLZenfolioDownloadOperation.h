@@ -7,46 +7,57 @@
 //
 
 #import "FLOperation.h"
+#import "FLObjectStorage.h"
+
+typedef struct {
+    NSUInteger videoCount;
+    NSUInteger videoTotal;
+    NSUInteger photoCount;
+    NSUInteger photoTotal;
+    NSUInteger photoSetCount;
+    NSUInteger photoSetTotal;
+    unsigned long long byteTotal;
+    unsigned long long byteCount;
+    NSTimeInterval startedTime;
+    
+    NSTimeInterval downloadingTime;
+    unsigned long long downloadedBytes;
+    unsigned long long currentPhotoBytes;
+    
+} FLZenfolioDownloadState_t;
 
 @interface FLZenfolioDownloadState : NSObject<NSCopying> {
 @private
-    NSUInteger _videoCount;
-    NSUInteger _videoTotal;
-    NSUInteger _photoCount;
-    NSUInteger _photoTotal;
-    NSUInteger _photoSetCount;
-    NSUInteger _photoSetTotal;
-    unsigned long long _byteTotal;
-    unsigned long long _byteCount;
+    FLZenfolioDownloadState_t _values;
 }
-+ (id) downloadState;
-@property (readonly, assign, nonatomic) NSUInteger videoCount;
-@property (readonly, assign, nonatomic) NSUInteger photoSetCount;
-@property (readonly, assign, nonatomic) NSUInteger photoCount;
-@property (readonly, assign, nonatomic) NSUInteger videoTotal;
-@property (readonly, assign, nonatomic) NSUInteger photoSetTotal;
-@property (readonly, assign, nonatomic) NSUInteger photoTotal;
-@property (readonly, assign, nonatomic) unsigned long long byteCount;
-@property (readonly, assign, nonatomic) unsigned long long byteTotal;
+@property (readonly, assign, nonatomic) FLZenfolioDownloadState_t values;
 @end
 
 @interface FLZenfolioDownloadOperation : FLOperation {
 @private
     FLZenfolioGroup* _rootGroup;
+    
     NSString* _destinationPath;
     NSMutableArray* _photoSets; 
     BOOL _downloadVideos;
     BOOL _downloadImages;
     
-    FLZenfolioDownloadState* _state;
+    FLZenfolioDownloadState_t _state;
+    
+    NSTimeInterval _lastProgress;
 }
 
-@property (readwrite, assign, nonatomic) BOOL downloadVideos;
-@property (readwrite, assign, nonatomic) BOOL downloadImages;
++ (id) downloadOperation:(NSArray*) photoSets 
+               rootGroup:(FLZenfolioGroup*) rootGroup
+           objectStorage:(id<FLObjectStorage>) storage 
+         destinationPath:(NSString*) destinationPath
+          downloadVideos:(BOOL) downloadVideos
+          downloadImages:(BOOL) downloadImages;
 
-@property (readwrite, copy, nonatomic) FLZenfolioGroup* rootGroup;
-@property (readwrite, copy, nonatomic) NSArray* photoSets;
-@property (readwrite, copy, nonatomic) NSString* destinationPath;
+@property (readonly, assign, nonatomic) BOOL downloadVideos;
+@property (readonly, assign, nonatomic) BOOL downloadImages;
+@property (readonly, copy, nonatomic) NSArray* photoSets;
+@property (readonly, copy, nonatomic) NSString* destinationPath;
 @end
 
 #define ZFDownloadedPhotoKey @"photo"

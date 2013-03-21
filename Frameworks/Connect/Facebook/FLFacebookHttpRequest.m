@@ -42,7 +42,7 @@
 		for(NSString* propertyName in describer.properties) {
 			id obj = [self.inputObject valueForKey:propertyName];
 			if(obj) {
-				FLAssert_v([obj isKindOfClass:[NSString class]], @"not a string"); 
+				FLAssertWithComment([obj isKindOfClass:[NSString class]], @"not a string"); 
 				if(FLStringIsNotEmpty(obj)) {
 					[url appendAndEncodeURLParameter:obj name:propertyName seperator:@"&"];
 				}
@@ -63,7 +63,7 @@
     if([response objectForKey:@"error"]) {
         FLDebugLog(@"Got facebookService error: %@", [response description]);
     
-        FLThrowErrorCode_v(@"Facebook", 1,
+        FLThrowErrorCodeWithComment(@"Facebook", 1,
             @"%@ = \"%@\"",
             NSLocalizedString(@"Unexpected Facebook Response", nil),
             [response objectForKey:@"error"]);
@@ -95,7 +95,7 @@
 //	}
 //	
 //	NSURL* URL = [NSURL URLWithString:url];
-//	FLAssertIsNotNil_v(URL, nil);
+//	FLAssertIsNotNilWithComment(URL, nil);
 //    
 //    FLHttpRequest* httpRequest = [FLHttpRequest httpPostRequestWithURL:URL];
 //

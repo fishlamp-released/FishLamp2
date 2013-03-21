@@ -11,8 +11,8 @@
 NSString *FLKeychainErrorDomain = @"FLKeychainErrorDomain";
 
 OSStatus FLKeychainDeleteHttpPassword(NSString* userName, NSString* domain) {
-    FLAssertStringIsNotEmpty_(userName);
-    FLAssertStringIsNotEmpty_(domain);
+    FLAssertStringIsNotEmpty(userName);
+    FLAssertStringIsNotEmpty(domain);
 
     SecKeychainItemRef itemRef = nil;
 	OSStatus err = FLKeychainFindHttpPassword(userName, domain, nil, &itemRef);
@@ -28,8 +28,8 @@ OSStatus FLKeychainSetHttpPassword(     NSString* inUserName,
                                         NSString* inDomain,
                                         NSString* inPassword ) {
 
-    FLAssertStringIsNotEmpty_(inUserName);
-    FLAssertStringIsNotEmpty_(inDomain);
+    FLAssertStringIsNotEmpty(inUserName);
+    FLAssertStringIsNotEmpty(inDomain);
 
 	OSStatus err = FLKeychainDeleteHttpPassword(inUserName, inDomain);
     
@@ -70,8 +70,8 @@ OSStatus FLKeychainFindHttpPassword(    NSString* inUserName,
                                         NSString** outPassword,
                                         SecKeychainItemRef *outItemRef) {
 
-    FLAssertStringIsNotEmpty_(inUserName);
-    FLAssertStringIsNotEmpty_(inDomain);
+    FLAssertStringIsNotEmpty(inUserName);
+    FLAssertStringIsNotEmpty(inDomain);
 
     if(outPassword) {
         *outPassword = nil;
@@ -142,9 +142,9 @@ OSStatus FLKeychainFindHttpPassword(    NSString* inUserName,
 						  outPassword: (NSString**) outPassword
 								error: (NSError **) error 
 {
-	FLAssertStringIsNotEmpty_(username);
-	FLAssertStringIsNotEmpty_(serviceName);
-	FLAssertIsNotNil_(outPassword);
+	FLAssertStringIsNotEmpty(username);
+	FLAssertStringIsNotEmpty(serviceName);
+	FLAssertIsNotNil(outPassword);
 	
 #if IOS
 	@synchronized(self) {
@@ -267,9 +267,9 @@ OSStatus FLKeychainFindHttpPassword(    NSString* inUserName,
 		updateExisting: (BOOL) updateExisting 
 				 error: (NSError **) error 
 {		
-	FLAssertStringIsNotEmpty_(username);
-	FLAssertIsNotNil_(password);
-	FLAssertStringIsNotEmpty_(serviceName);
+	FLAssertStringIsNotEmpty(username);
+	FLAssertIsNotNil(password);
+	FLAssertStringIsNotEmpty(serviceName);
 #if IOS	
 	
 	@synchronized(self) {
@@ -395,8 +395,8 @@ OSStatus FLKeychainFindHttpPassword(    NSString* inUserName,
 #if IOS
 	
 	@synchronized(self) {
-		FLAssertStringIsNotEmpty_(username);
-		FLAssertStringIsNotEmpty_(serviceName);
+		FLAssertStringIsNotEmpty(username);
+		FLAssertStringIsNotEmpty(serviceName);
 		
 		NSArray *keys = [[NSArray alloc] initWithObjects: bridge_(id, kSecClass), kSecAttrAccount, kSecAttrService, kSecReturnAttributes, nil];
 		NSArray *objects = [[NSArray alloc] initWithObjects: bridge_(id, kSecClassGenericPassword), username, serviceName, kCFBooleanTrue, nil];

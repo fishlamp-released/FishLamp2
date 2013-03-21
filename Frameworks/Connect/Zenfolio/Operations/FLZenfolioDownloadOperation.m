@@ -12,71 +12,79 @@
 #import "FLZenfolioDownloadImageHttpRequest.h"
 
 @interface FLZenfolioDownloadState ()
-@property (readwrite, assign, nonatomic) NSUInteger videoCount;
-@property (readwrite, assign, nonatomic) NSUInteger photoSetCount;
-@property (readwrite, assign, nonatomic) NSUInteger photoCount;
-@property (readwrite, assign, nonatomic) NSUInteger videoTotal;
-@property (readwrite, assign, nonatomic) NSUInteger photoSetTotal;
-@property (readwrite, assign, nonatomic) NSUInteger photoTotal;
-@property (readwrite, assign, nonatomic) unsigned long long byteCount;
-@property (readwrite, assign, nonatomic) unsigned long long byteTotal;
+@property (readwrite, assign, nonatomic) FLZenfolioDownloadState_t values;
 @end
 
 @implementation FLZenfolioDownloadState  
-@synthesize photoCount = _photoCount;
-@synthesize videoCount = _videoCount;
-@synthesize byteCount = _byteCount;
-@synthesize photoSetCount = _photoSetCount;
-@synthesize photoTotal = _photoTotal;
-@synthesize videoTotal = _videoTotal;
-@synthesize byteTotal = _byteTotal;
-@synthesize photoSetTotal = _photoSetTotal;
+@synthesize values = _values;
 
 - (id) copyWithZone:(NSZone*) zone {
     FLZenfolioDownloadState* copy = [[FLZenfolioDownloadState alloc] init];
-    copy.photoCount = self.photoCount;
-    copy.videoCount = self.videoCount;
-    copy.byteCount = self.byteCount;
-    copy.photoSetCount = self.photoSetCount;
-    copy.photoTotal = self.photoTotal;
-    copy.videoTotal = self.videoTotal;
-    copy.byteTotal = self.byteTotal;
-    copy.photoSetTotal = self.photoSetTotal;
+    copy.values = self.values;
     return copy;
 }
 
-+ (id) downloadState {
-    return FLAutorelease([[[self class] alloc] init]);
+- (id) initWithState:(FLZenfolioDownloadState_t) state {	
+	self = [super init];
+	if(self) {
+		_values = state;
+	}
+	return self;
+}
+
++ (id) downloadState:(FLZenfolioDownloadState_t) state {
+    return FLAutorelease([[[self class] alloc] initWithState:state]);
 }
 
 @end
 
 @interface FLZenfolioDownloadOperation ()
-@property (readwrite, strong, nonatomic) FLZenfolioDownloadState* state;
+@property (readwrite, strong, nonatomic) id<FLObjectStorage> objectStorage;
+@property (readwrite, strong, nonatomic) FLZenfolioGroup* rootGroup;
+@property (readwrite, copy, nonatomic) NSArray* photoSets;
+@property (readwrite, copy, nonatomic) NSString* destinationPath;
+@property (readwrite, assign, nonatomic) BOOL downloadVideos;
+@property (readwrite, assign, nonatomic) BOOL downloadImages;
 @end
 
 @implementation FLZenfolioDownloadOperation  
 
-@synthesize rootGroup = _rootGroup;
 @synthesize photoSets = _photoSets;
 @synthesize destinationPath = _destinationPath;
 @synthesize downloadVideos = _downloadVideos;
 @synthesize downloadImages = _downloadImages;
-@synthesize state = _state;
+@synthesize rootGroup = _rootGroup;
+
++ (id) downloadOperation:(NSArray*) photoSets 
+               rootGroup:(FLZenfolioGroup*) rootGroup 
+           objectStorage:(id<FLObjectStorage>) objectStorage 
+         destinationPath:(NSString*) destinationPath 
+        downloadVideos:(BOOL) downloadVideos
+         downloadImages:(BOOL) downloadImages {
+    
+    FLAssertNotNil(objectStorage);
+    FLAssertNotNil(rootGroup);
+    FLAssertNotNil(photoSets);
+    FLAssertNotNil(destinationPath);
+    
+    FLZenfolioDownloadOperation* operation = FLAutorelease([[[self class] alloc] initWithObjectStorage:objectStorage]);
+    operation.rootGroup = rootGroup;
+    operation.photoSets = photoSets;
+    operation.destinationPath = destinationPath;
+    operation.downloadImages = downloadImages;
+    operation.downloadVideos = downloadVideos;
+    return operation;
+}
+
 
 #if FL_MRC
 - (void) dealloc {
-    [_state release];
-    [_destinationPath release];
     [_rootGroup release];
+    [_destinationPath release];
     [_photoSets release];
     [super dealloc];
 }
 #endif
-
-- (void) setPhotoSets:(NSArray*) selection {
-    FLSetObjectWithMutableCopy(_photoSets, selection);
-}
 
 - (NSString*) relativePathForPhotoSet:(FLZenfolioPhotoSet*) photoSet {
     
@@ -109,27 +117,34 @@
     return [FLImageFolder folderWithPath:folderPath];
 }
 
-- (void) updateProgress:(id) observer {
-    [self sendMessage:@selector(downloadOperation:updateDownloadInfo:) 
-                   toListener:observer 
-                   withObject:FLAutorelease([_state copy])];
+- (void) updateProgress:(BOOL) canDefer {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSTimeInterval now = [NSDate timeIntervalSinceReferenceDate];
+        if(!canDefer || ([NSDate timeIntervalSinceReferenceDate] - _lastProgress) > 0.3) {
+
+            [self sendMessage:@selector(downloadOperation:updateDownloadInfo:) 
+                           toListener:self.observer 
+                           withObject:[FLZenfolioDownloadState downloadState:_state]];
+
+            _lastProgress = now;
+        }
+    });
+
 }
 
-- (FLZenfolioPhotoSet*) downloadLatestPhotoSet:(FLZenfolioPhotoSet*) photoSet inContext:(id) context withObserver:(id) observer {
+- (FLZenfolioPhotoSet*) downloadLatestPhotoSet:(FLZenfolioPhotoSet*) photoSet {
 
 
     FLHttpRequest* request = [FLZenfolioHttpRequest loadPhotoSetHttpRequest:photoSet.Id level:kZenfolioInformatonLevelFull includePhotos:YES];
-    FLZenfolioPhotoSet* latestPhotoSet = FLThrowIfError([context runWorker:request withObserver:nil]);
-    FLAssertNotNil_(latestPhotoSet);
+    FLZenfolioPhotoSet* latestPhotoSet = FLThrowIfError([self.workerContext runWorker:request withObserver:nil]);
+    FLAssertNotNil(latestPhotoSet);
     
     return latestPhotoSet;
 }
 
 - (FLResult) downloadPhoto:(FLZenfolioPhoto*) photo
-           imageFolder:(FLImageFolder*) imageFolder 
-             inContext:(id) context 
-              observer:(id) observer {
-
+           imageFolder:(FLImageFolder*) imageFolder {
+           
     FLZenfolioDownloadImageHttpRequest* request = 
         [FLZenfolioDownloadImageHttpRequest downloadImageHttpRequest:photo 
                                                            imageSize:[FLZenfolioImageSize originalImageSize] 
@@ -137,20 +152,23 @@
 
     request.networkStreamSink = [FLFileStreamSink fileStreamSink:[NSURL fileURLWithPath:[imageFolder pathForFile:photo.FileName]]];
                                                                
-    return FLThrowIfError([context runWorker:request withObserver:nil]);
+    return FLThrowIfError([self.workerContext runWorker:request withObserver:self]);
+}
+
+- (void) httpRequest:(FLHttpRequest*) httpRequest didReadBytes:(NSNumber*) amount {
+    _state.currentPhotoBytes += [amount longLongValue];
+    _state.byteCount += [amount longLongValue];
+    [self updateProgress:YES];
 }
 
 - (FLResult) downloadPhotoToFile:(FLZenfolioPhoto*) photo
-           imageFolder:(FLImageFolder*) imageFolder 
-             inContext:(id) context 
-              observer:(id) observer {
-
+           imageFolder:(FLImageFolder*) imageFolder {
     FLHttpRequest* request = 
         [FLHttpRequest httpRequest:[photo urlForImageWithSize:[FLZenfolioImageSize originalImageSize]]];
 
     request.networkStreamSink = [FLFileStreamSink fileStreamSink:[NSURL fileURLWithPath:[imageFolder pathForFile:photo.FileName]]];
                                                                
-    return FLThrowIfError([context runWorker:request withObserver:nil]);
+    return FLThrowIfError([self.workerContext runWorker:request withObserver:self]);
 
 }
 
@@ -158,16 +176,14 @@
     return ( (photo.IsVideoValue && self.downloadVideos) || (!photo.IsVideoValue && self.downloadImages));
 }
 
-- (void) downloadPhotosInPhotoSet:(FLZenfolioPhotoSet*) photoSet imageFolder:(FLImageFolder*) imageFolder inContext:(id) context observer:(id) observer {
+- (void) downloadPhotosInPhotoSet:(FLZenfolioPhotoSet*) photoSet imageFolder:(FLImageFolder*) imageFolder {
     [self abortIfNeeded];
     
-
     for(FLZenfolioPhoto* photo in photoSet.Photos) {
         [self abortIfNeeded];
         if(![self willDownloadPhoto:photo]) {
             continue;
         }
-        
         
         NSMutableDictionary* info = [[NSMutableDictionary alloc] init];
         @try {
@@ -177,7 +193,7 @@
             [info setObject:pathToContent forKey:ZFDownloadedDestinationPathKey];
         
             [self sendMessage:@selector(downloadOperation:willDownloadPhoto:) 
-                           toListener:observer 
+                           toListener:self.observer 
                            withObject:info];
 
             if([imageFolder fileExistsInFolder:photo.FileName]) {
@@ -195,25 +211,35 @@
                 }            
                 
                 [self sendMessage:@selector(downloadOperation:didSkipPhoto:) 
-                               toListener:observer 
+                               toListener:self.observer 
                                withObject:info];
             }
             else {
                 [self abortIfNeeded];
-                
+
+
+                NSTimeInterval downloadStart = [NSDate timeIntervalSinceReferenceDate];
+
+                _state.currentPhotoBytes = 0;
+
                 FLResult result = nil;
                 if(photo.IsVideoValue) {
                     if(self.downloadVideos) {
-                        result  = [self downloadPhotoToFile:photo imageFolder:imageFolder inContext:context observer:observer];
+                        result  = [self downloadPhotoToFile:photo imageFolder:imageFolder];
                         _state.videoCount++;
                     }
                 }
                 else {
                     if(self.downloadImages) {
-                        result  = [self downloadPhotoToFile:photo imageFolder:imageFolder inContext:context observer:observer];
+                        result  = [self downloadPhotoToFile:photo imageFolder:imageFolder];
                         _state.photoCount++;
                     }
                 }
+
+                _state.downloadingTime += ([NSDate timeIntervalSinceReferenceDate] - downloadStart);
+                _state.downloadedBytes += _state.currentPhotoBytes;
+                _state.byteCount -= _state.currentPhotoBytes;
+                _state.currentPhotoBytes = 0;
                 
                 if([result error]) {
                     [info setObject:[result error] forKey:ZFDownloadPhotoErrorKey];
@@ -222,13 +248,13 @@
                 [self abortIfNeeded];
             
                 [self sendMessage:@selector(downloadOperation:didDownloadPhoto:) 
-                               toListener:observer 
+                               toListener:self.observer 
                                withObject:info];
             }
             
             _state.byteCount += photo.SizeValue;
 
-            [self updateProgress:observer];
+            [self updateProgress:YES];
         }
         @catch(NSException* ex) {
             @throw;
@@ -239,13 +265,13 @@
     }
 }
 
-- (void) updateNumbers {
+- (void) updateNumbers:(NSArray*) photoSets {
     _state.photoSetTotal = _photoSets.count;
     _state.videoTotal = 0;
     _state.photoTotal = 0;
     _state.byteTotal = 0;
     
-    for(FLZenfolioPhotoSet* set in _photoSets) {
+    for(FLZenfolioPhotoSet* set in photoSets) {
         for(FLZenfolioPhoto* photo in set.Photos) {
             if(self.downloadVideos && photo.IsVideoValue) {
                 _state.videoTotal++;
@@ -261,31 +287,34 @@
 
 - (FLResult) runOperationInContext:(id) context withObserver:(id) observer {
 
-    FLAssertNotNil_(self.rootGroup);
+    FLAssertNotNil(self.rootGroup);
 
-    self.state = [FLZenfolioDownloadState downloadState];
+    memset(&_state, 0, sizeof(FLZenfolioDownloadState_t));
 
-    [self sendMessage:@selector(downloadOperationWillBeginDownload:) toListener:observer];
-    [self updateNumbers];
-    [self updateProgress:observer];
+    NSMutableArray* photoSets = [NSMutableArray array];
 
+    [self sendMessage:@selector(downloadOperationWillBeginDownload:) toListener:self.observer];
+    [self updateNumbers:photoSets];
+    [self updateProgress:YES];
+    
     for(NSUInteger i = 0; i < _photoSets.count; i++) {
         
         FLZenfolioPhotoSet* photoSet = [_photoSets objectAtIndex:i];
         
         [self sendMessage:@selector(downloadOperation:willUpdatePhotoSet:)
-                       toListener:observer 
+                       toListener:self.observer 
                        withObject:photoSet];
 
-        photoSet = [self downloadLatestPhotoSet:photoSet inContext:context withObserver:observer];
-        FLAssertNotNil_(photoSet);
+        photoSet = [self downloadLatestPhotoSet:photoSet];
+        FLAssertNotNil(photoSet);
+    
+        [self.objectStorage writeObject:photoSet];
+        [photoSets addObject:photoSet];
     
     // first update the photoset
-        [_photoSets replaceObjectAtIndex:i withObject:photoSet];
-        [self.rootGroup replaceGroupElement:photoSet];
         
-        [self updateNumbers];
-        [self updateProgress:observer];
+        [self updateNumbers:photoSets];
+        [self updateProgress:YES];
         [self abortIfNeeded];
 
         [self sendMessage:@selector(downloadOperation:didUpdatePhotoSet:)
@@ -293,10 +322,11 @@
                        withObject:photoSet];
     }
    
+    _state.startedTime = [NSDate timeIntervalSinceReferenceDate];
+   
     // now start downloading all the photos and videos 
 
-    for(NSUInteger i = 0; i < _photoSets.count; i++) {
-        FLZenfolioPhotoSet* photoSet = [_photoSets objectAtIndex:i];
+    for(FLZenfolioPhotoSet* photoSet in photoSets) {
     
         FLImageFolder* imageFolder = [self createFolderForPhotoSet:photoSet];
     
@@ -306,18 +336,18 @@
 
         [self sendMessage:@selector(downloadOperation:willStartDownloadingPhotosInPhotoSet:) toListener:observer withObject:info];
 
-        [self downloadPhotosInPhotoSet:photoSet imageFolder:imageFolder inContext:context observer:observer];
+        [self downloadPhotosInPhotoSet:photoSet imageFolder:imageFolder];
 
         [self sendMessage:@selector(downloadOperation:didDownloadPhotosInPhotoSet:) toListener:observer withObject:info];
 
         _state.photoSetCount++;
 
-        [self updateProgress:observer];
+        [self updateProgress:YES];
         [self abortIfNeeded];
     }
     
-    [self updateProgress:observer];
-    [self sendMessage:@selector(downloadOperation:didFinishWithResult:) toListener:observer withObject:_photoSets];
+    [self updateProgress:NO];
+    [self sendMessage:@selector(downloadOperation:didFinishWithResult:) toListener:observer withObject:photoSets];
     
     return _photoSets;
 }

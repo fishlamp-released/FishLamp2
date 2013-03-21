@@ -14,10 +14,10 @@
 + (BOOL) _setDataInObject:(id) object key:(NSString*) key data:(id) data strict:(BOOL)strict
 {
 //	FLObjectDescriber* describer = [[object class] objectDescriber];
-//	FLAssertIsNotNil_(describer);
+//	FLAssertIsNotNil(describer);
 //
 //	FLObjectDescriber* desc = [describer propertyForName:key];
-//	FLAssertIsNotNil_(desc);
+//	FLAssertIsNotNil(desc);
 
 	@try
 	{
@@ -31,7 +31,7 @@
 
 	if(strict)
 	{
-		FLThrowErrorCode_v(FLUrlParamenterParserErrorDomain, FLUrlParameterParserErrorCodeUnexpectedData, ([NSString stringWithFormat:@"FLUrlParameterParser got unexpected data for key: %@", key]));
+		FLThrowErrorCodeWithComment(FLUrlParamenterParserErrorDomain, FLUrlParameterParserErrorCodeUnexpectedData, ([NSString stringWithFormat:@"FLUrlParameterParser got unexpected data for key: %@", key]));
 	}
 	else
 	{
@@ -79,7 +79,7 @@
 		}
 		else
 		{
-			FLThrowErrorCode_v(FLUrlParamenterParserErrorDomain, FLUrlParameterParserErrorCodeMissingRequiredKey, ([NSString stringWithFormat:@"FLUrlParameterParser missing data for key: %@", key]));
+			FLThrowErrorCodeWithComment(FLUrlParamenterParserErrorDomain, FLUrlParameterParserErrorCodeMissingRequiredKey, ([NSString stringWithFormat:@"FLUrlParameterParser missing data for key: %@", key]));
 		}
 	}
 	for(NSString* key in values)

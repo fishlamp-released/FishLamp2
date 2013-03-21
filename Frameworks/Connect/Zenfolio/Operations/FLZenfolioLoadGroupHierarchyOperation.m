@@ -20,9 +20,10 @@
 @synthesize downloadedPhotoSetCount = _downloadedPhotoSetCount;
 @synthesize totalPhotoSetCount = _totalPhotoSetCount;
 
-- (id) initWithUserLogin:(FLUserLogin*) userLogin {
-    self = [super init];
+- (id) initWithUserLogin:(FLUserLogin*) userLogin objectStorage:(id<FLObjectStorage>) objectStorage {
+    self = [super initWithObjectStorage:objectStorage];
     if(self) {
+        FLAssertNotNil(objectStorage);
         _userLogin = FLRetain(userLogin);
     }
     return self;
@@ -36,8 +37,8 @@
 #endif
 
 
-+ (id) loadGroupHierarchyOperation:(FLUserLogin*) userLogin {
-    return FLAutorelease([[[self class] alloc] initWithUserLogin:userLogin]);
++ (id) loadGroupHierarchyOperation:(FLUserLogin*) userLogin objectStorage:(id<FLObjectStorage>) objectStorage {
+    return FLAutorelease([[[self class] alloc] initWithUserLogin:userLogin objectStorage:objectStorage]);
 }
 
 - (FLResult) runOperationInContext:(id) context withObserver:(id) observer {
@@ -45,16 +46,18 @@
     [self sendMessage:@selector(loadGroupHierarchyOperation:willDownloadGroupListForUser:) toListener:observer withObject:_userLogin];
 
     FLHttpRequest* request = [FLZenfolioHttpRequest loadGroupHierarchyHttpRequest:_userLogin.userName];
-    FLAssertNotNil_(request);
+    FLAssertNotNil(request);
 
     [self abortIfNeeded];
 
     FLZenfolioGroup* group = FLThrowIfError([context runWorker:request withObserver:nil]);
-    FLAssertNotNil_(group);
+    FLAssertNotNil(group);
+    
+    [self.objectStorage writeObject:group];
 
     [self sendMessage:@selector(loadGroupHierarchyOperation:didDownloadGroupList:) toListener:observer withObject:group];
 
-    FLZenfolioDownloadPhotoSetsOperation* downloadPhotosets = [FLZenfolioDownloadPhotoSetsOperation downloadPhotoSetsWithGroup:group];
+    FLZenfolioDownloadPhotoSetsOperation* downloadPhotosets = [FLZenfolioDownloadPhotoSetsOperation downloadPhotoSetsWithGroup:group objectStorage:self.objectStorage];
     
 /*    FLResult result =  */
     FLThrowIfError([context runWorker:downloadPhotosets withObserver:observer]);

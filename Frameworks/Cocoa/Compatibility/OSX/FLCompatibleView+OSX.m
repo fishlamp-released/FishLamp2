@@ -1,0 +1,189 @@
+//
+//  FLView.m
+//  FishLampCocoa
+//
+//  Created by Mike Fullerton on 12/6/12.
+//  Copyright (c) 2012 Mike Fullerton. All rights reserved.
+//
+
+#if OSX
+#import "FLCompatibleView+OSX.h"
+#import "FLCompatibleViewController+OSX.h"
+
+
+@implementation NSView (FLCompatibility)
+
+FLSynthesizeAssociatedBOOLProperty(needsLayout, setNeedsLayout);
+
+- (void) setNeedsDisplay {
+    [self setNeedsDisplay:YES];
+}
+
+- (void) insertSubview:(UIView*) view 
+          belowSubview:(UIView*) subview {
+    [self addSubview:view positioned:NSWindowBelow relativeTo:subview];
+}
+
+- (void) insertSubview:(UIView*) view 
+          aboveSubview:(UIView*) subview {
+    [self addSubview:view positioned:NSWindowAbove relativeTo:subview];
+}
+
+- (void) insertSubview:(UIView*) view 
+               atIndex:(NSUInteger) atIndex {
+
+    [self addSubview:view positioned:NSWindowAbove relativeTo:[self.subviews objectAtIndex:atIndex]];
+}
+
+- (void) bringSubviewToFront:(UIView*) view {
+    id superView = [self superview]; 
+    if (superView) {
+        FLAutoreleaseObject(FLRetain(self));
+        [self removeFromSuperview];
+        [superView addSubview:self];
+    }
+}
+
+- (void) bringToFront {
+    [self.superview bringSubviewToFront:self];
+}
+
+- (void)sendToBack {
+    id superView = [self superview]; 
+    if (superView) {
+        FLAutoreleaseObject(FLRetain(self));
+        [self removeFromSuperview];
+        [superView addSubview:self positioned:NSWindowBelow relativeTo:nil];
+    }
+}
+
+- (void) layoutSubviews {
+    for(NSView* view in self.subviews) {
+        if([view respondsToSelector:@selector(layoutSubviews)]) {
+            [view layoutSubviews];
+        }
+    }
+}
+
+@end
+
+@implementation FLCompatibleView 
+
+@synthesize backgroundColor = _backgroundColor;
+
+//- (void)drawRect:(NSRect)dirtyRect {
+//    // set any NSColor for filling, say white:
+//    UIColor* bgColor = self.backgroundColor;
+//    if(bgColor) {
+//        [bgColor setFill];
+//        NSRectFill(dirtyRect);
+//    }
+//}
+
+//- (void) setNeedsLayout {
+//    [self setNeedsDisplay:YES];
+//}
+
+- (void) setNeedsDisplay {
+    [self setNeedsDisplay:YES];
+}
+
+- (void) layoutIfNeeded {
+    if(_needsLayout) {
+        _needsLayout = NO;
+        
+//        UIViewController* controller = self.viewController;
+//        if(controller) {
+//            [controller viewWillLayoutSubviews];
+//        }
+        [self layoutSubviews];
+//        if(controller) {
+//            [controller viewDidLayoutSubviews];
+//        }
+    }
+}
+
+- (void) setNeedsLayout {
+    _needsLayout = YES;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self layoutIfNeeded];
+    });
+
+}
+
+- (BOOL) setFrameIfChanged:(CGRect) newFrame {
+	
+    if(!CGRectEqualToRect(newFrame, self.frame)) {
+		self.frame = newFrame;
+		return YES;
+	}
+	
+	return NO;
+}
+
+- (CGFloat) alpha {
+    return self.alphaValue;
+}
+
+- (void) setAlpha:(CGFloat) alpha {
+    self.alphaValue = alpha;
+}
+
+- (void) setBackgroundColor:(NSColor*) color {
+    if(color) {
+//        self.wantsLayer = YES;
+//        
+//        
+//        
+//        self.layer.backgroundColor = color;
+    }
+}
+
+- (NSColor*) backgroundColor {
+    return nil;
+//    return self.layer ? self.layer.backgroundColor : nil;
+}
+
+- (BOOL) userInteractionEnabled {
+    return NO;
+}
+
+- (void) setUserInteractionEnabled:(BOOL) enabled {
+}
+
+
+@end
+
+
+
+//@implementation NSView (FLCompatibleView)
+//- (void) bringSubviewToFront:(UIView*) view {
+//    id superView = [self superview]; 
+//    if (superView) {
+//        FLAutoreleaseObject(FLRetain(self));
+//        [self removeFromSuperview];
+//        [superView addSubview:self];
+//    }
+//}
+//
+//- (void) bringToFront {
+//    [self.superview bringSubviewToFront:self];
+//}
+//
+//- (void)sendToBack {
+//    id superView = [self superview]; 
+//    if (superView) {
+//        FLAutoreleaseObject(FLRetain(self));
+//        [self removeFromSuperview];
+//        [superView addSubview:self positioned:NSWindowBelow relativeTo:nil];
+//    }
+//}
+//@end
+
+//@implementation FLCompatibleView 
+//
+//@end
+
+#endif
+
+

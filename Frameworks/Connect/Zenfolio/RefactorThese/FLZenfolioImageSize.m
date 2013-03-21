@@ -283,7 +283,7 @@ typedef enum PhotoSizeEnum
 
 - (NSURL*) URLWithPhoto:(FLZenfolioPhoto*) photo {
    
-     FLAssertStringIsNotEmpty_(photo.UrlCore);
+     FLAssertStringIsNotEmpty(photo.UrlCore);
 	
     if(FLStringIsNotEmpty(photo.UrlToken)) {
         return [NSURL URLWithString:[NSString stringWithFormat:@"http://%@%@-%d.jpg?sn=%@&tk=%@",

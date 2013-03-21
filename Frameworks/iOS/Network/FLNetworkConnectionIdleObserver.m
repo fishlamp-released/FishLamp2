@@ -68,8 +68,8 @@
 //                [self showWarning];
 //            }
 //            
-//            FLAssertIsNotNil_(self.onFormatWarningString);
-//            FLAssertIsNotNil_(self.alertViewController);
+//            FLAssertIsNotNil(self.onFormatWarningString);
+//            FLAssertIsNotNil(self.alertViewController);
 //            self.alertViewController.title = self.onFormatWarningString(self, connection, idleDuration, lastActivityTimeStamp);
 //        }
 //        else if(_alertViewController) {
@@ -81,9 +81,9 @@
 //
 //- (void) showWarning {
 //    if(!_alertViewController) {
-//        FLAssertIsNotNil_(self.onCreateAlert);
+//        FLAssertIsNotNil(self.onCreateAlert);
 //        self.alertViewController = self.onCreateAlert(self);
-//        FLAssertIsNotNil_(self.alertViewController);
+//        FLAssertIsNotNil(self.alertViewController);
 //        [self.alertViewController showViewControllerAnimated:YES];
 //    }
 //}

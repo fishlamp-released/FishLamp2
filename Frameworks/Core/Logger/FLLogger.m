@@ -56,7 +56,7 @@ FLSynthesizeSingleton(FLLogger);
     if(self) {
         _sinks = [[NSMutableArray alloc] init];
 #if DEBUG
-        [self addLoggerSink:[FLPrintfLogSink logSink:FLLogOutputSimple]];
+        [self addLoggerSink:[FLPrintfLogSink logSink:FLLogOutputSimple|FLLogOutputWithLocation]];
 #endif
     }
     

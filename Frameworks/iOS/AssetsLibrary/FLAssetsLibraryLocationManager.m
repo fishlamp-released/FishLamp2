@@ -73,7 +73,7 @@
     if( [CLLocationManager locationServicesEnabled] && 
         [CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined)
     {
-        FLAssertIsNil_v(_locationManager, nil);
+        FLAssertIsNilWithComment(_locationManager, nil);
         
         _locationManager = [[CLLocationManager alloc] init];
         _locationManager.delegate = self;

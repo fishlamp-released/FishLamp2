@@ -17,8 +17,8 @@
     int _totalPhotoSetCount;
     FLUserLogin* _userLogin;
 }
-- (id) initWithUserLogin:(FLUserLogin*) userLogin;
-+ (id) loadGroupHierarchyOperation:(FLUserLogin*) userLogin;
+- (id) initWithUserLogin:(FLUserLogin*) userLogin objectStorage:(id<FLObjectStorage>) objectStorage;
++ (id) loadGroupHierarchyOperation:(FLUserLogin*) userLogin objectStorage:(id<FLObjectStorage>) objectStorage;
 
 @property (readonly, assign) int downloadedPhotoSetCount;
 @property (readonly, assign) int totalPhotoSetCount;

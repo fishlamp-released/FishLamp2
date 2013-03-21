@@ -77,7 +77,7 @@ FLSynthesizeStructProperty(canScrollTiles, setCanScrollTiles, BOOL, _tilingScrol
 
 - (void) initScrollView
 {
-	FLAssert_v(self != nil, @"scroll view is nil");
+	FLAssertWithComment(self != nil, @"scroll view is nil");
 	
 	self.pagingEnabled = NO;
 	self.directionalLockEnabled = YES;
@@ -140,8 +140,8 @@ FLSynthesizeStructProperty(canScrollTiles, setCanScrollTiles, BOOL, _tilingScrol
 
 - (void) _removeTiledViewAtIndex:(NSUInteger) which
 {
-	FLAssert_v(which >= 0 && which < _tiledViews.count, @"bad idx");
-	FLAssertIsNotNil_(_tilingScrollViewDelegate);
+	FLAssertWithComment(which >= 0 && which < _tiledViews.count, @"bad idx");
+	FLAssertIsNotNil(_tilingScrollViewDelegate);
 	
 	UIView* view = [_tiledViews objectAtIndex:which];
 	if([_tilingScrollViewDelegate respondsToSelector:@selector(tilingScrollView:willRemoveView:)])
@@ -438,7 +438,7 @@ FLSynthesizeStructProperty(canScrollTiles, setCanScrollTiles, BOOL, _tilingScrol
 
 - (CGRect) scrollViewPageRectForViewAtIndex:(NSInteger) idx
 {
-	FLAssert_v(idx >= 0, @"view not found in arrangement");
+	FLAssertWithComment(idx >= 0, @"view not found in arrangement");
 	
 	CGRect bounds = FLRectSetOrigin(self.frame, 0, 0);
 	if(idx > 0)
@@ -469,9 +469,9 @@ FLSynthesizeStructProperty(canScrollTiles, setCanScrollTiles, BOOL, _tilingScrol
 
 - (void) createTiles:(NSUInteger) tileCount
 {
-	FLAssert_v(tileCount >= 3, @"expecting at least 3 tiles");
-	FLAssert_v(tileCount % 2 == 1, @"expecting odd number of tiles");
-	FLAssertIsNotNil_(_tilingScrollViewDelegate);
+	FLAssertWithComment(tileCount >= 3, @"expecting at least 3 tiles");
+	FLAssertWithComment(tileCount % 2 == 1, @"expecting odd number of tiles");
+	FLAssertIsNotNil(_tilingScrollViewDelegate);
 		
 	[self tearDown];
 
@@ -504,8 +504,8 @@ FLSynthesizeStructProperty(canScrollTiles, setCanScrollTiles, BOOL, _tilingScrol
 
 - (void) setTiledView:(UIView*) view atIndex:(NSUInteger) which 
 {
-	FLAssert_v(which >= 0 && which < _tiledViews.count, @"bad idx");
-	FLAssertIsNotNil_(view);
+	FLAssertWithComment(which >= 0 && which < _tiledViews.count, @"bad idx");
+	FLAssertIsNotNil(view);
 	
 	if([_tiledViews objectAtIndex:which] != view)
 	{
@@ -520,13 +520,13 @@ FLSynthesizeStructProperty(canScrollTiles, setCanScrollTiles, BOOL, _tilingScrol
 
 - (UIView*) tiledViewAtIndex:(NSUInteger) which
 {
-	FLAssert_v(which >= 0 && which < _tiledViews.count, @"bad idx");
+	FLAssertWithComment(which >= 0 && which < _tiledViews.count, @"bad idx");
 	return [_tiledViews objectAtIndex:which];
 }
 
 - (BOOL) removeTiledView:(id) view
 {
-	FLAssertIsNotNil_(view);
+	FLAssertIsNotNil(view);
 	NSInteger idx = [self indexForTiledView:view];
 	if(idx != NSNotFound)
 	{
@@ -539,8 +539,8 @@ FLSynthesizeStructProperty(canScrollTiles, setCanScrollTiles, BOOL, _tilingScrol
 
 - (NSInteger) indexForTiledView:(UIView*) viewToFind
 {
-	FLAssertIsNotNil_(viewToFind);
-	FLAssertIsNotNil_(_tilingScrollViewDelegate);
+	FLAssertIsNotNil(viewToFind);
+	FLAssertIsNotNil(_tilingScrollViewDelegate);
 
 	NSInteger i = 0;
 	for(UIView* view in _tiledViews)
@@ -558,7 +558,7 @@ FLSynthesizeStructProperty(canScrollTiles, setCanScrollTiles, BOOL, _tilingScrol
 
 //- (void) cancelLoadingForAllTiledViewsExceptViewAtIndex:(NSUInteger) idx
 //{
-//	  FLAssertIsNotNil_(_tilingScrollViewDelegate);
+//	  FLAssertIsNotNil(_tilingScrollViewDelegate);
 //
 //	  for(NSUInteger i = 0; i < _tileCount; i++)
 //	  {

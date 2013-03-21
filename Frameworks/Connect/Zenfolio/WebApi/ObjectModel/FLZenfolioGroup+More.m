@@ -46,6 +46,11 @@
 
 FLSynthesizeCachedObjectHandlerProperty(FLZenfolioGroup);
 
+
+- (FLZenfolioGroupElementType) groupElementType {
+    return FLZenfolioGroupElementTypeGroup; 
+}
+
 - (FLZenfolioGroupElement*) findByIdInternal:(NSUInteger) groupId 
                                         path:(NSMutableArray*) path {
 	if(groupId == self.IdValue) {
@@ -149,7 +154,7 @@ FLSynthesizeCachedObjectHandlerProperty(FLZenfolioGroup);
 }
 
 - (BOOL) replaceGroupElement:(FLZenfolioGroupElement*) replacingElement {
-	FLAssertIsNotNil_(self.Elements);
+	FLAssertIsNotNil(self.Elements);
 
     FLZenfolioGroup* parent = [self findParentForElement:replacingElement];
 
@@ -262,7 +267,7 @@ FLSynthesizeCachedObjectHandlerProperty(FLZenfolioGroup);
 - (void) addGroupElement:(FLZenfolioGroupElement*) element parentId:(unsigned long) parentId {
 	FLZenfolioGroup* parent = (FLZenfolioGroup*) [self findById:parentId];
 
-	FLAssertIsNotNil_(parent);
+	FLAssertIsNotNil(parent);
 	[parent addGroupElement:element];
 }
 
@@ -305,7 +310,7 @@ FLSynthesizeCachedObjectHandlerProperty(FLZenfolioGroup);
 
 - (void) removeGroupElement:(FLZenfolioGroupElement*) removeThisElement parentId:(unsigned long) parentId {
 	FLZenfolioGroup* parent = (FLZenfolioGroup*) [self findById:parentId];
-    FLAssertIsNotNil_(parent);
+    FLAssertIsNotNil(parent);
     [parent removeGroupElement:removeThisElement];
 }
 

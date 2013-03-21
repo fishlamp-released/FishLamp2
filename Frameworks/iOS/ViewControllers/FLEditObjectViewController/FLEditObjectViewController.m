@@ -151,10 +151,10 @@ FLSynthesizeStructProperty(saveChangesImmediately, setSaveChangesImmediately, BO
 {
     [super viewDidLoad];
 	
-    FLAssertIsNotNil_(self.tableView);
+    FLAssertIsNotNil(self.tableView);
 
-	FLAssert_v(self.tableView.style == UITableViewStylePlain, @"TableView must be UITableViewStylePlain");
-	FLAssert_v(self.tableView.separatorStyle == UITableViewCellSeparatorStyleNone, @"TableView.seperatorStyle must be UITableViewCellSeparatorStyleNone");
+	FLAssertWithComment(self.tableView.style == UITableViewStylePlain, @"TableView must be UITableViewStylePlain");
+	FLAssertWithComment(self.tableView.separatorStyle == UITableViewCellSeparatorStyleNone, @"TableView.seperatorStyle must be UITableViewCellSeparatorStyleNone");
 	
 	self.tableView.backgroundColor = [UIColor clearColor];
 	self.tableView.cellSeparatorLine = FLTableViewCellSeparatorLineSingleLineEtched;
@@ -185,7 +185,7 @@ FLSynthesizeStructProperty(saveChangesImmediately, setSaveChangesImmediately, BO
 		_tabBar.selectedItem = [_tabBar.items objectAtIndex:0];
 	}
 	
-	FLAssert_v([self.tableView isKindOfClass:[FLTableView class]], @"TableView needs to be a FLTableView");
+	FLAssertWithComment([self.tableView isKindOfClass:[FLTableView class]], @"TableView needs to be a FLTableView");
 
     self.contentSizeForViewInFloatingView = CGSizeMake( 500, MIN(600, self.view.frame.size.height));
 }
@@ -657,7 +657,7 @@ FLSynthesizeStructProperty(saveChangesImmediately, setSaveChangesImmediately, BO
 - (void) tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
 	FLEditObjectTableViewCell* row = [self.tableLayout.currentTab cellForIndexPath:indexPath];
-	FLAssertIsNotNil_(row);
+	FLAssertIsNotNil(row);
 	if(row)
     {
         row.viewController = self;
@@ -685,7 +685,7 @@ FLSynthesizeStructProperty(saveChangesImmediately, setSaveChangesImmediately, BO
 
 - (void) updateCellStateForRow:(FLEditObjectTableViewCell*) row indexPath:(NSIndexPath*) indexPath
 {
-	FLAssertIsNotNil_(row);
+	FLAssertIsNotNil(row);
 	[row applyThemeIfNeeded];
 
 	if([row isKindOfClass:[FLEditObjectTableViewCell class]])
@@ -716,10 +716,10 @@ FLSynthesizeStructProperty(saveChangesImmediately, setSaveChangesImmediately, BO
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath 
 {
-	FLAssertIsNotNil_(_layout);
+	FLAssertIsNotNil(_layout);
 
 	FLEditObjectTableViewCell* cell = [self.tableLayout.currentTab cellForIndexPath:indexPath];
-	FLAssertIsNotNil_(cell);
+	FLAssertIsNotNil(cell);
 
     if(cell)
     {
@@ -755,7 +755,7 @@ FLSynthesizeStructProperty(saveChangesImmediately, setSaveChangesImmediately, BO
 	}
 
 	FLTableViewSection* group = [[self.tableLayout currentTab] sectionAtIndex:section];
-	FLAssertIsNotNil_(group);
+	FLAssertIsNotNil(group);
 	return [group cellCount];
 }
 
@@ -778,11 +778,11 @@ FLSynthesizeStructProperty(saveChangesImmediately, setSaveChangesImmediately, BO
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	FLAssertIsNotNil_(_layout);
+	FLAssertIsNotNil(_layout);
 
 	FLEditObjectTableViewCell* row = [self.tableLayout.currentTab cellForIndexPath:indexPath];
-	FLAssertIsNotNil_(row);
-	FLAssertIsNotNil_(row);	
+	FLAssertIsNotNil(row);
+	FLAssertIsNotNil(row);	
 	[self updateCellStateForRow:row indexPath:indexPath];
 	
 	CGFloat height = 0;
@@ -968,7 +968,7 @@ FLSynthesizeStructProperty(saveChangesImmediately, setSaveChangesImmediately, BO
 	if(self.requiresNetworkToEdit && !_editFlags.loadedNetworkData)
 	{
 		FLEditObjectTableViewCell* row = [self.tableLayout.currentTab cellForIndexPath:indexPath];
-		FLAssertIsNotNil_(row);
+		FLAssertIsNotNil(row);
 		
         if(row)
         {
@@ -990,7 +990,7 @@ FLSynthesizeStructProperty(saveChangesImmediately, setSaveChangesImmediately, BO
 	else if(self.loaded) 
 	{
 		FLEditObjectTableViewCell* row = [self.tableLayout.currentTab cellForIndexPath:indexPath];
-		FLAssertIsNotNil_(row);
+		FLAssertIsNotNil(row);
 		
         if(row && ![row disabled])
 		{

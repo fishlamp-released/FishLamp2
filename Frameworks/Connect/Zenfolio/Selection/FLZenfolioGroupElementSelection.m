@@ -65,12 +65,13 @@
 @property (readwrite, strong, nonatomic) NSMutableSet* filtered;
 @property (readwrite, strong, nonatomic) NSArray* displayList;
 @property (readwrite, strong, nonatomic) FLOrderedCollection* elements;
-@property (readwrite, strong, nonatomic) FLZenfolioGroup* rootGroup;
+//@property (readwrite, strong, nonatomic) FLZenfolioGroup* rootGroup;
 
 @property (readwrite, strong, nonatomic) NSMutableSet* expanded;
 @property (readwrite, strong, nonatomic) NSMutableSet* selected;
 @property (readwrite, strong, nonatomic) NSMutableIndexSet* cachedIndexSet;
 
+@property (readwrite, strong, nonatomic) id<FLObjectStorage> objectStorage;
 
 - (BOOL) elementInFilter:(id) element;
 @end
@@ -86,23 +87,23 @@
 @synthesize displayList = _displayList;
 @synthesize elements = _elements;
 @synthesize selected = _selected;
-@synthesize cachedIndexSet = _cachedIndexSet;
+@synthesize cachedIndexSet = _cachedSelectionSet;
+@synthesize objectStorage = _objectStorage;
 
-
-- (id) initWithRootGroup:(FLZenfolioGroup*) rootGroup {
+- (id) initWithObjectStorage:(id<FLObjectStorage>) objectStorage {
     self = [super init];
     if(self) {
-        self.rootGroup = rootGroup;
+        self.objectStorage = objectStorage;
     }
     return self;
 }
-+ (id) groupElementSelection:(FLZenfolioGroup*) rootGroup {
-    return FLAutorelease([[[self class] alloc] initWithRootGroup:rootGroup]);
++ (id) groupElementSelection:(id<FLObjectStorage>) objectStorage {
+    return FLAutorelease([[[self class] alloc] initWithObjectStorage:objectStorage]);
 }
 
 #if FL_MRC
 - (void) dealloc {
-    [_cachedIndexSet release];
+    [_cachedSelectionSet release];
     [_elements release];
     [_filtered release];
     [_filterString release];
@@ -152,25 +153,24 @@
     return [self.elements indexForKey:[element Id]];
 }
 
-- (id) elementForID:(id) idObject {
-    return [self.elements objectForKey:idObject];
+- (id) elementForID:(NSNumber*) idObject {
+    return idObject != nil ? [self.elements objectForKey:idObject] : nil;
 }
 
-- (void) replaceGroupElement:(id) element atIndex:(NSUInteger) row { 
-    
-    [self.rootGroup replaceGroupElement:element];
+- (void) replaceGroupElement:(id) element { 
+    [self.objectStorage writeObject:element];
     [self.elements replaceObjectAtIndex:[self.elements indexForKey:[element Id]] withObject:element forKey:[element Id]];
 
-    if(row < _displayList.count) {
-        FLAssert_([[_displayList objectAtIndex:row] IdValue] == [element IdValue]);
-        [_displayList replaceObjectAtIndex:row withObject:element];
-    }
+//    if(row < _displayList.count) {
+//        FLAssert([[_displayList objectAtIndex:row] IdValue] == [element IdValue]);
+//        [_displayList replaceObjectAtIndex:row withObject:element];
+//    }
 }
 
 - (id) childElementForGroup:(FLZenfolioGroup*) parent atIndex:(NSUInteger) index {
 
     if(self.filtered == nil) {
-        return [[parent Elements] objectAtIndex:index];
+        return [self elementForID:[[[parent Elements] objectAtIndex:index] Id]];
     }
     
     NSInteger idx = -1;
@@ -179,7 +179,7 @@
             idx++;
         }
         if(idx == index) {
-            return element;
+            return [self elementForID:[element Id]];
         }
     }
     return nil;
@@ -211,7 +211,7 @@
                  withGroup:(FLZenfolioGroup*) group {
     
     if( [self elementInFilter:group] ) {
-        [list addObject:group];
+        [list addObject:[group Id]];
     
         if( [self elementIsExpanded:group]) {
             for(id subElement in [group Elements]) {
@@ -219,8 +219,7 @@
                     [self updateDisplayList:list withGroup:(FLZenfolioGroup *)subElement];
                 }
                 else if([self elementInFilter:subElement]) {
-                    [list addObject:subElement];
-                    
+                    [list addObject:[subElement Id]];
                 }
             }
         }
@@ -228,7 +227,7 @@
 }
 
 - (NSArray*) displayList {
-    if(!_displayList) {
+    if(!_displayList && self.rootGroup) {
         _displayList = [[NSMutableArray alloc] init];
         [self updateDisplayList:_displayList withGroup:self.rootGroup];
     }
@@ -266,18 +265,18 @@
 }                   
 
 - (NSIndexSet*) selectedIndexSet {
-    if(!_cachedIndexSet) {
-        _cachedIndexSet = [[NSMutableIndexSet alloc] init];
+    if(!_cachedSelectionSet) {
+        _cachedSelectionSet = [[NSMutableIndexSet alloc] init];
         NSUInteger idx = 0;
-        for(id element in self.displayList) {
-            if([self.selected containsObject:[element Id]]) {
-                [_cachedIndexSet addIndex:idx];
+        for(NSNumber* elementID in self.displayList) {
+            if([self.selected containsObject:elementID]) {
+                [_cachedSelectionSet addIndex:idx];
             }
             idx++;
         }
     }
     
-    return _cachedIndexSet;
+    return _cachedSelectionSet;
 }
 
 - (void) setSelectedIndexSet:(NSIndexSet *)selectedIndexSet {
@@ -285,7 +284,8 @@
     self.selected = nil;
 
     [selectedIndexSet enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop) {
-        [self selectGroupElement:[self.displayList objectAtIndex:idx] selected:YES];
+        id element = [self elementForID:[self.displayList objectAtIndex:idx]];
+        [self selectGroupElement:element selected:YES];
     }];
 }
 
@@ -297,25 +297,31 @@
     [self selectGroupElement:element selected:![self isGroupElementSelected:element]];
 }
 
-- (long long) selectedPhotoBytes {
-	return [[[self selectedPhotoSets] valueForKeyPath:@"@sum.photoBytes"] longLongValue];
-}
-
-- (int) selectedPhotoCount {
-	return [[[self selectedPhotoSets] valueForKeyPath:@"@sum.photoCount"] intValue];
-}
+//- (long long) selectedPhotoBytes {
+//	return [[[self selectedPhotoSets] valueForKeyPath:@"@sum.photoBytes"] longLongValue];
+//}
+//
+//- (int) selectedPhotoCount {
+//	return [[[self selectedPhotoSets] valueForKeyPath:@"@sum.photoCount"] intValue];
+//}
 
 - (NSArray *) selectedPhotoSets {
-    if(!_selectedPhotoSets) {
-        _selectedPhotoSets = [[NSMutableArray alloc] init];
-        FLOrderedCollection* elements = self.elements;
-        for(id element in [elements forwardObjectEnumerator]) {
-            if([element isGalleryElement] && [self.selected containsObject:[element Id]]) {
-                [_selectedPhotoSets addObject:element];
-            }
+    NSMutableArray* selectedSets = [[NSMutableArray alloc] init];
+//    FLOrderedCollection* elements = self.elements;
+//    for(id element in [elements forwardObjectEnumerator]) {
+//        if([element isGalleryElement] && [self.selected containsObject:[element Id]]) {
+//            [_selectedPhotoSets addObject:element];
+//        }
+//    }
+
+    for(NSNumber* anId in self.selected) {
+        id element = [self elementForID:anId];
+        if(![element isGroupElement]) {
+            [selectedSets addObject:element];
         }
     }
-	return _selectedPhotoSets;
+    
+    return selectedSets;
 }
 
 
@@ -362,23 +368,14 @@
 
 - (void) updateExpansions {
     
-    for(id element in self.displayList) {
+    for(NSNumber* elementID in self.displayList) {
+        id element = [self elementForID:elementID];
         if([element isGroupElement]) {
             [self.delegate groupElementSelection:self 
                               setElementExpanded:(FLZenfolioGroup*)element 
                                       isExpanded:[self elementIsExpanded:element]];
         }
     }
-
-
-//    [self.rootGroup visitAllElements:^(FLZenfolioGroupElement *element, NSUInteger index, BOOL *stop) {
-//        if([element isGroupElement]) {
-//            [self.delegate groupElementSelection:self 
-//                              setElementExpanded:(FLZenfolioGroup*)element 
-//                                      isExpanded:[self elementIsExpanded:element]];
-//        }
-//    }];
-
 }
 
 - (void) setAllExpanded:(BOOL) expanded {
@@ -387,11 +384,6 @@
     for(id element in [self.elements forwardObjectEnumerator]) {
         [self expandElement:element expanded:expanded];
     }
-
-
-//    [self.rootGroup visitAllElements:^(FLZenfolioGroupElement *element, NSUInteger index, BOOL *stop) {
-//        [self expandElement:element expanded:expanded];
-//    }];
 }
 
 #pragma mark - filtering
