@@ -29,16 +29,16 @@ typedef struct {
         FLAssertColorValueIsRGB(values.red);
         FLAssertColorValueIsRGB(values.green);
         FLAssertColorValueIsRGB(values.blue);
-        FLAssert_(values.valuesAreRGB);
+        FLAssert(values.valuesAreRGB);
         return values;
     }
 
     NS_INLINE
     FLColorValues FLAssertColorValuesAreDecimal(FLColorValues values) {
-        FLAssertColorValueIsDecimal(values.red)
-        FLAssertColorValueIsDecimal(values.green)
-        FLAssertColorValueIsDecimal(values.blue)
-        FLAssert_(!values.valuesAreRGB);
+        FLAssertColorValueIsDecimal(values.red);
+        FLAssertColorValueIsDecimal(values.green);
+        FLAssertColorValueIsDecimal(values.blue);
+        FLAssert(!values.valuesAreRGB);
         return values;
     }
 #else 

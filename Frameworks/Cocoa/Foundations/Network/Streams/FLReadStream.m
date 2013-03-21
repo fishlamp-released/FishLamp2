@@ -33,7 +33,7 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
 @synthesize sink = _sink;
 
 - (void) dealloc {
-    FLAssert_(_streamRef == nil)
+    FLAssert(_streamRef == nil);
     
 #if FL_MRC  
     [_sink release];
@@ -51,11 +51,11 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
 
 - (void) willOpen {
     [super willOpen];
-    FLAssert_([NSThread currentThread] != [NSThread mainThread]);
+    FLAssert([NSThread currentThread] != [NSThread mainThread]);
      
     _streamRef = [self createReadStreamRef];         
          
-    FLAssertIsNotNil_(_streamRef);
+    FLAssertIsNotNil(_streamRef);
 
     CFOptionFlags flags =
             kCFStreamEventOpenCompleted | 
@@ -72,12 +72,12 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
 
 - (void) willClose {
 
-    FLAssert_([NSThread currentThread] != [NSThread mainThread]);
+    FLAssert([NSThread currentThread] != [NSThread mainThread]);
 
     if(_streamRef) {
         [super willClose];
 
-        FLAssertNotNil_(_streamRef);
+        FLAssertNotNil(_streamRef);
         CFReadStreamClose(_streamRef);
         CFReadStreamUnscheduleFromRunLoop(_streamRef, CFRunLoopGetMain(), bridge_(void*,NSDefaultRunLoopMode));
         CFRelease(_streamRef);
@@ -110,9 +110,9 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
 - (NSUInteger) readBytes:(uint8_t*) bytes 
                maxLength:(NSUInteger) maxLength {
    
-    FLAssert_([NSThread currentThread] != [NSThread mainThread]);
+    FLAssert([NSThread currentThread] != [NSThread mainThread]);
       
-    FLAssertNotNil_(_streamRef);
+    FLAssertNotNil(_streamRef);
     
 
 #if DEBUG   
@@ -123,7 +123,7 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
     while(maxLength > 0 && [self hasBytesAvailable]) {
 
 #if DEBUG
-        FLAssert_v(readPtr + maxLength <= lastBytePtr, @"buffer overrun!!!! Warning warning warning!!!!");
+        FLAssertWithComment(readPtr + maxLength <= lastBytePtr, @"buffer overrun!!!! Warning warning warning!!!!");
 #endif
         NSInteger bytesRead = CFReadStreamRead(_streamRef, readPtr, maxLength);
         if([self readResultIsError:bytesRead]) {
@@ -175,7 +175,7 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
 ////        CFIndex result = CFReadStreamRead(_streamRef, data.bytes + amount, maxLength);
 ////        if(result <= 0) 
 ////        {   
-////            FLThrowErrorCode_v((NSString*) kCFErrorDomainCFNetwork, kCFURLErrorBadServerResponse, NSLocalizedString(@"Read networkbytes failed: %d", result));
+////            FLThrowErrorCodeWithComment((NSString*) kCFErrorDomainCFNetwork, kCFURLErrorBadServerResponse, NSLocalizedString(@"Read networkbytes failed: %d", result));
 ////        }
 ////        
 ////        maxLength -= amount;

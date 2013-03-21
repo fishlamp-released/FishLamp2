@@ -92,7 +92,7 @@ NSString* const FLImageTypeOriginal =   @"com.fishlamp.image.original";
 #endif
 
 - (NSString*) fileName {
-    FLAssertNotNil_(_imageProperties);
+    FLAssertNotNil(_imageProperties);
     return _imageProperties.fileName;
 }
 
@@ -103,11 +103,11 @@ NSString* const FLImageTypeOriginal =   @"com.fishlamp.image.original";
 - (NSString*) storableType {
 
     NSString* extension = [self.fileName pathExtension];
-    FLConfirmStringIsNotEmpty_v(extension, @"failed to get file extension for %@", self.fileName);
+    FLConfirmStringIsNotEmptyWithComment(extension, @"failed to get file extension for %@", self.fileName);
     
     NSString* UTI = FLAutorelease(bridge_transfer_(NSString*, UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension,  bridge_(CFStringRef, extension), NULL)));
 
-    FLConfirmNotNil_v(UTI, @"failed to get UTI for extension for file %@", self.fileName);
+    FLConfirmNotNilWithComment(UTI, @"failed to get UTI for extension for file %@", self.fileName);
 
     return UTI;
 }

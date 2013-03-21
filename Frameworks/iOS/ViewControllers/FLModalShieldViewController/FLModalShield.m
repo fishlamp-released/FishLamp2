@@ -65,9 +65,9 @@
 }
 
 - (void) showShieldInViewController:(UIViewController*) viewController {
-	FLAssertIsNil_(_viewShield);
-	FLAssertIsNil_(_barShield);
-	FLAssertIsNotNil_(viewController);
+	FLAssertIsNil(_viewShield);
+	FLAssertIsNil(_barShield);
+	FLAssertIsNotNil(viewController);
 
 	[self _shieldView:viewController.view];
 	[self _shieldNavigationBar:viewController];
@@ -118,7 +118,7 @@
 	static UIImage* s_image = nil;
 	if(!s_image) {
 		s_image = [UIImage imageNamed:@"thumbprint-white.png"];
-        FLAssertIsNotNil_(s_image);
+        FLAssertIsNotNil(s_image);
         
         s_image = [s_image colorizeImage:[UIColor darkGrayColor] blendMode:kCGBlendModeOverlay];
         mrc_retain_(s_image);

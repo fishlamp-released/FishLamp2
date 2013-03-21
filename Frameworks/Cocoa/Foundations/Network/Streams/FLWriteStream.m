@@ -53,7 +53,7 @@ static void WriteStreamClientCallBack(CFWriteStreamRef writeStream,
 }
 
 - (void) dealloc {
-    FLAssertNotNil_(_streamRef);
+    FLAssertNotNil(_streamRef);
 
     if(_streamRef) {
         CFWriteStreamSetClient(_streamRef, kCFStreamEventNone, NULL, NULL);
@@ -87,7 +87,7 @@ static void WriteStreamClientCallBack(CFWriteStreamRef writeStream,
 - (void) willOpen {
     [super willOpen];
     
-    FLAssertIsNotNil_(_streamRef);
+    FLAssertIsNotNil(_streamRef);
     CFWriteStreamScheduleWithRunLoop(_streamRef, CFRunLoopGetMain(), bridge_(void*,NSDefaultRunLoopMode));
     CFWriteStreamOpen(_streamRef);
 }
@@ -95,7 +95,7 @@ static void WriteStreamClientCallBack(CFWriteStreamRef writeStream,
 - (void) willClose {
     [super willClose];
 
-    FLAssertIsNotNil_(_streamRef);
+    FLAssertIsNotNil(_streamRef);
     CFWriteStreamUnscheduleFromRunLoop(_streamRef, CFRunLoopGetMain(), bridge_(void*,NSDefaultRunLoopMode));
     CFWriteStreamClose(_streamRef);
     [self didClose];
@@ -106,13 +106,13 @@ static void WriteStreamClientCallBack(CFWriteStreamRef writeStream,
 }
 
 - (void) writeBytes:(const uint8_t*) bytes length:(unsigned long) length {
-    FLAssertIsNotNil_(_streamRef);
+    FLAssertIsNotNil(_streamRef);
 
     const uint8_t *buffer = bytes;
     while(length > 0) {
         CFIndex amt = CFWriteStreamWrite(_streamRef, buffer, length);
         if(amt <= 0) {   
-            FLThrowErrorCode_v((NSString*) kCFErrorDomainCFNetwork, kCFURLErrorBadServerResponse, NSLocalizedString(@"writing networkbytes failed: %d", result));
+            FLThrowErrorCodeWithComment((NSString*) kCFErrorDomainCFNetwork, kCFURLErrorBadServerResponse, NSLocalizedString(@"writing networkbytes failed: %d", result));
         }
         
         length -= amt;

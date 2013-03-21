@@ -56,6 +56,7 @@
 	}
 }
 
+#if IOS
 - (UIColor*) debugBackgroundColor {
     return self.backgroundColor;
 }
@@ -63,6 +64,7 @@
 - (void) setDebugBackgroundColor:(UIColor*) color {
     self.backgroundColor = color;
 }
+#endif
 
 #endif
 
@@ -155,10 +157,6 @@
 
 - (BOOL) setViewSizeToContentSize {
 	return NO;
-}
-
-- (void) didApplyTheme {
-    [self setNeedsLayout];
 }
 
 - (id) objectByMoniker:(id) aMoniker {

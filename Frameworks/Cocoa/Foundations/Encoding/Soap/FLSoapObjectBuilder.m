@@ -71,33 +71,23 @@ FLSynthesizeSingleton(FLSoapObjectBuilder);
     return self;
 }
 
-//- (id) objectFromSoap:(FLParsedItem*) element withObjectType:(FLObjectEncoder*) type{
-//    FLAssertNotNil_(type);
-//    FLAssertNotNil_(element);
-//
-//    NSDictionary* children = [element childrenAtPath:@"Envelope/Body"];
-//
-//    FLConfirm_v(children.count == 1, @"Unable to parse object from SOAP");
-//    
-//    __unsafe_unretained id objects[1];
-//    __unsafe_unretained id keys[1];
-//    [children getObjects:objects andKeys:keys];
-//    
-//    return [self objectFromXML:objects[0] withObjectType:type];
-//}
-
-- (NSArray*) objectsFromXML:(FLParsedItem*) xmlElement withObjectTypes:(NSArray*) properties {
-    FLAssertNotNil_(xmlElement);
-    FLAssertNotNil_(properties);
-    
-    FLParsedItem* body = [xmlElement elementAtPath:@"Body/"];
-    if(body) {
-        return [super objectsFromXML:body withObjectTypes:properties];
-    }
-
-    return [super objectsFromXML:xmlElement withObjectTypes:properties];
+- (FLParsedItem*) willBuildObjectsWithXML:(FLParsedItem*) element {
+    FLParsedItem* item = [element elementForElementName:@"Body"];
+    return item ? item : element;
 }
 
+//- (NSArray*) objectsFromXML:(FLParsedItem*) xmlElement withObjectTypes:(NSArray*) properties {
+//    FLAssertNotNil(xmlElement);
+//    FLAssertNotNil(properties);
+//    
+//    FLParsedItem* body = [xmlElement elementAtPath:@"Body/"];
+//    if(body) {
+//        return [super objectsFromXML:body withObjectTypes:properties];
+//    }
+//
+//    return [super objectsFromXML:xmlElement withObjectTypes:properties];
+//}
+//
 
 
 

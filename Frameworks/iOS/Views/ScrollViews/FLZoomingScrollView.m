@@ -397,7 +397,7 @@ FLSynthesizeStructProperty(animating, setAnimating, BOOL, _zoomingScrollViewFlag
 
 - (void)setZoomScale:(float)scale animated:(BOOL)animated
 {
-	FLAssertFailed_v(@"Call setZoomingScrollViewZoomScale instead of setZoomScale");
+	FLAssertFailedWithComment(@"Call setZoomingScrollViewZoomScale instead of setZoomScale");
 }
 
 - (void) setZoomingScrollViewZoomScale:(float) scale translateToPoint:(CGPoint) point animated:(BOOL) animated

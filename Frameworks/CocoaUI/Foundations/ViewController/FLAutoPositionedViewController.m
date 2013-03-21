@@ -8,7 +8,7 @@
 
 #import "FLAutoPositionedViewController.h"
 #import "FLViewContentsDescriptor.h"
-#import "UIViewController+FLAdditions.h"
+#import "FLViewController.h"
 
 #if IOS
 #import "FLKeyboardManager.h"

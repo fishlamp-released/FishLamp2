@@ -24,7 +24,7 @@
 
 - (void) _performInForeground
 {
-	FLAssert_v([NSThread isMainThread], @"performing action on main thread");
+	FLAssertWithComment([NSThread isMainThread], @"performing action on main thread");
 
     @try {
         FLAutoreleasePool(
@@ -38,7 +38,7 @@
 
 - (void) _performInBackground {
     FLAutoreleasePool(
-        FLAssert_v(![NSThread isMainThread], @"performing action on main thread");
+        FLAssertWithComment(![NSThread isMainThread], @"performing action on main thread");
 
         [_target performSelector:_backgroundAction];
         [self performSelectorOnMainThread:@selector(_performInForeground) withObject:nil waitUntilDone:NO];

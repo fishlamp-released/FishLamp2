@@ -34,7 +34,7 @@
 
 
 - (id) init  {
-    FLAssert_v([NSThread currentThread] == [NSThread mainThread], @"Not on main thread");
+    FLAssertWithComment([NSThread currentThread] == [NSThread mainThread], @"Not on main thread");
 
     self = [super init];
     if(self) {
@@ -98,7 +98,7 @@
 }
 
 - (void) viewDidLoad {
-    FLAssert_v([NSThread currentThread] == [NSThread mainThread], @"Not on main thread");
+    FLAssertWithComment([NSThread currentThread] == [NSThread mainThread], @"Not on main thread");
     [super viewDidLoad];
 }
 

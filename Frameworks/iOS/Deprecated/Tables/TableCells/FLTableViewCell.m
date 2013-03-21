@@ -223,7 +223,7 @@
 			text = @"Ty";
 		}
 		
-		FLAssertIsNotNil_(label.font);
+		FLAssertIsNotNil(label.font);
 		
 		CGSize textSize = [text sizeWithFont:label.font
 							constrainedToSize:CGSizeMake(layoutRectWidth,CGFLOAT_MAX)

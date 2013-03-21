@@ -11,26 +11,31 @@
 #import "FLStringUtils.h"
 #import "FLDebug.h"
 #import "FLMutableError.h"
-#import "FLErrorDomain.h"
+#import "FLErrorDomainInfo.h"
 #import "NSDictionary+FLAdditions.h"
+#import "FLErrorException.h"
 
-NSString* const FLErrorStackTraceKey = @"com.fishlamp.error.stackTrace";
 NSString* const FLErrorCommentKey = @"com.fishlamp.error.comment";;
-NSString* const FLErrorReasonKey = @"com.fishlamp.error.reason";
 NSString* const FLErrorDomainKey = @"com.fishlamp.error.domain";
 
 @implementation NSError (FLExtras)
 
-+ (NSError*) errorWithDomain:(id) domainStringOrDomainObject
+FLSynthesizeDictionaryGetterProperty(underlyingError, NSError*, NSUnderlyingErrorKey, self.userInfo)
+FLSynthesizeDictionaryGetterProperty(stringEncoding, NSArray*, NSStringEncodingErrorKey, self.userInfo)
+FLSynthesizeDictionaryGetterProperty(URL, NSURL*, NSURLErrorKey, self.userInfo)
+FLSynthesizeDictionaryGetterProperty(filePath, NSString*, NSFilePathErrorKey, self.userInfo)
+FLSynthesizeDictionaryGetterProperty(comment, NSString*, FLErrorCommentKey, self.userInfo)
+FLSynthesizeAssociatedProperty(retain_nonatomic, stackTrace, setStackTrace, FLStackTrace*);
+
++ (NSError*) errorWithDomain:(id) domain
                         code:(NSInteger) code
         localizedDescription:(NSString*) localizedDescription {
 
-    return [FLMutableError errorWithDomain:domainStringOrDomainObject 
-                code:code
-                userInfo:nil
-                reason:localizedDescription
-                comment:nil
-                stackTrace:nil];
+    return [[[self class] alloc] initWithDomain:domain 
+                                           code:code
+                                         localizedDescription:localizedDescription
+                                       userInfo:nil
+                                        comment:nil];
 }
 
 - (BOOL) isErrorCode:(NSInteger) code domain:(NSString*) domain {
@@ -41,140 +46,65 @@ NSString* const FLErrorDomainKey = @"com.fishlamp.error.domain";
 	return FLStringsAreEqual(domain, self.domain);
 }
 
-// TODO(move these network errors into a NSError category in the network code)
-
-- (BOOL) didLoseNetwork {
-	return	FLStringsAreEqual(NSURLErrorDomain, self.domain) &&
-			((self.code == NSURLErrorNetworkConnectionLost) || 
-			(self.code == NSURLErrorNotConnectedToInternet));
-}
-
-
-- (BOOL) isNotConnectedToInternetError {
-	return FLStringsAreEqual(NSURLErrorDomain, self.domain) && self.code == NSURLErrorNotConnectedToInternet;
-}
-@end
-
-@implementation NSError (FLErrorDomain)
-
-- (FLStackTrace*) stackTrace {
-    return [self.userInfo objectForKey:FLErrorStackTraceKey];
-}
-
-- (NSString*) reason {
-    return [self.userInfo objectForKey:FLErrorReasonKey];
-}
-
-- (NSString*) comment {
-    return [self.userInfo objectForKey:FLErrorCommentKey];
-}
-
-- (id<FLErrorDomain>) errorDomain {
-    return [self.userInfo objectForKey:FLErrorDomainKey];
-}
-
-NS_INLINE
-NSString* makeDescriptionString(NSString* reason, NSString* comment) {
-
-    if(FLStringIsNotEmpty(reason) && FLStringIsNotEmpty(comment)) {
-        return [NSString stringWithFormat:@"\nDBG %@ (%@)", reason, comment];
-    }
-    
-    return reason;
-
-}
-
-- (id) initWithDomain:(id) domainStringOrObject
+- (id) initWithDomain:(NSString*) domain
                  code:(NSInteger) code
-             userInfo:(NSDictionary *)dict
-               reason:(NSString*) reason
-              comment:(NSString*) comment
-         stackTrace:(FLStackTrace*) stackTrace {
+ localizedDescription:(NSString*) localizedDescription
+             userInfo:(NSDictionary *) userInfo
+              comment:(NSString*) comment {
 
-    id<FLErrorDomain> errorDomain = FLErrorDomainFromObject(domainStringOrObject);
-
-
+    NSString* errorCodeString = [[FLErrorDomainInfo instance] stringFromErrorCode:code withDomain:domain];
 
     NSString* commentAddOn = nil;
-    if(errorDomain) {
-        commentAddOn = [NSString stringWithFormat:@"[%@: %@ (%ld)]", [errorDomain errorDomainString], [errorDomain stringFromErrorCode:code], (long) code];
+    if(errorCodeString) {
+        commentAddOn = [NSString stringWithFormat:@"[%@: %@ (%ld)]", domain, errorCodeString, (long) code];
     }
     else {
-        commentAddOn = [NSString stringWithFormat:@"[%@: %ld]", domainStringOrObject, (long)code];
+        commentAddOn = [NSString stringWithFormat:@"[%@: %ld]", domain, (long)code];
     }
 
     if(comment) {
-        reason = [NSString stringWithFormat:@"%@ (%@)", reason, comment];
+#if DEBUG
+        localizedDescription = [NSString stringWithFormat:@"%@ DEBUG(%@)", localizedDescription, comment];
+#endif        
         comment = [NSString stringWithFormat:@"%@ %@", comment, commentAddOn];
     }
     else {
         comment = commentAddOn;
     }
     
+    if(userInfo) {
+        NSMutableDictionary* newUserInfo = FLMutableCopyWithAutorelease(userInfo);
+    
+//        [userInfo setObject:reason forKey:NSLocalizedFailureReasonErrorKey];
+        [newUserInfo setObject:comment forKey:FLErrorCommentKey];
+        [newUserInfo setObject:localizedDescription forKey:NSLocalizedDescriptionKey];
+        
+        userInfo = newUserInfo;
+    }
+    else {
+        userInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+//                                    reason, NSLocalizedFailureReasonErrorKey, 
+                                    comment,  FLErrorCommentKey,
+                                    localizedDescription, NSLocalizedDescriptionKey,
+                                    nil];
+    }
     
 
-    FLDictionaryEntry objects[] = {
-        { errorDomain, FLErrorDomainKey },
-        { reason, NSLocalizedFailureReasonErrorKey },
-        { comment, FLErrorCommentKey },
-        { stackTrace, FLErrorStackTraceKey },
-        { reason, NSLocalizedDescriptionKey },
-        FLDictionaryEntryNil
-    };
-
-    return [self initWithDomain:FLErrorDomainNameFromObject(domainStringOrObject)
-                           code:code
-                       userInfo:[NSDictionary combineDictionary:dict withEntryArray:objects]];
+    return [self initWithDomain:domain code:code userInfo:userInfo];
 }
 
 + (NSError*) errorWithDomain:(id) domain
                           code:(NSInteger)code
+                        localizedDescription:localizedDescription
                       userInfo:(NSDictionary *)dict
-                        reason:(NSString*) reasonOrNil
-                       comment:(NSString*) commentOrNil
-                  stackTrace:(FLStackTrace*) stackTrace {
+                       comment:(NSString*) commentOrNil  {
 
     return FLAutorelease([[[self class] alloc] initWithDomain:domain
                                                         code:code
+                                         localizedDescription:localizedDescription
                                                     userInfo:dict
-                                                      reason:reasonOrNil
-                                                     comment:commentOrNil
-                                                  stackTrace:stackTrace]);
+                                                     comment:commentOrNil]);
 }
-
-
-//+ (FLMutableError*) errorWithDomain:(NSString*) domain
-//                            code:(NSInteger) code
-//                        userInfo:(NSDictionary*) dict
-//                          reason:(NSString*) reason
-//                         comment:(NSString*) comment
-//                    stackTrace:(FLStackTrace*) stackTrace {
-//    
-//    return FLAutorelease([[[self class] alloc] initWithDomain:domain
-//                                                                code:code
-//                                                            userInfo:dict
-//                                                              reason:reason
-//                                                             comment:comment
-//                                                        stackTrace:stackTrace]);
-//}
-
-
-
 @end
 
-@implementation NSError (FLCancelling)
-
-+ (NSError*) cancelError {
-    return [NSError errorWithDomain:[FLFrameworkErrorDomain instance]
-                               code:FLCancelErrorCode
-               localizedDescription:NSLocalizedString(@"Cancelled", @"used in cancel error localized description")];
-
-}
-
-- (BOOL) isCancelError {
-	return	FLStringsAreEqual([[FLFrameworkErrorDomain instance] errorDomainString], self.domain) &&
-			self.code == FLCancelErrorCode; 
-}
-
-@end
 

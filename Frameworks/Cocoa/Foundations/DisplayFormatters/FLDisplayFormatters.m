@@ -154,7 +154,7 @@ static NSDateFormatter* s_formatter = nil;
 }
 
 + (id) displayFormatterStringToData:(NSString*) string {
-	FLAssert_v(NO, @"not supported");
+	FLAssertWithComment(NO, @"not supported");
 	return nil;
 }
 
@@ -175,7 +175,7 @@ static NSDateFormatter* s_formatter = nil;
 }
 
 + (id) displayFormatterStringToData:(NSString*) string {
-	FLAssert_v(NO, @"not supported");
+	FLAssertWithComment(NO, @"not supported");
 	return nil;
 }
 

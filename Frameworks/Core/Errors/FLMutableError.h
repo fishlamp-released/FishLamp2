@@ -8,25 +8,34 @@
 
 #import "FLRequired.h"
 
-#import "FLErrorDomain.h"
+#import "FLErrorDomainInfo.h"
 #import "NSError+FLExtras.h"
 
 extern NSString* const FLErrorStackTraceKey;
-extern NSString* const FLErrorCommentKey;
-extern NSString* const FLErrorReasonKey;
-extern NSString* const FLErrorDomainKey;
 
 @interface FLMutableError : NSError<NSMutableCopying> {
 @private
     NSMutableDictionary* _mutableUserInfo;
 }
 
-@property (readwrite, strong, nonatomic) NSString* reason;
+@property (readwrite, copy, nonatomic) NSDictionary* userInfo;
+
+// these all set properties in the userInfo
+
+// fishlamp properties
 @property (readwrite, strong, nonatomic) NSString* comment;
-@property (readwrite, strong, nonatomic) id<FLErrorDomain> errorDomain;
 @property (readwrite, strong, nonatomic) FLStackTrace* stackTrace;
 
-@property (readwrite, copy, nonatomic) NSDictionary* userInfo;
+// sdk properties
+@property (readwrite, strong, nonatomic) NSError* underlyingError;
+@property (readwrite, strong, nonatomic) NSString* localizedDescription;
+@property (readwrite, strong, nonatomic) NSString* recoverySuggestion;
+@property (readwrite, strong, nonatomic) NSString* localizedFailureReason;
+@property (readwrite, strong, nonatomic) NSArray* localizedRecoveryOptions;
+@property (readwrite, strong, nonatomic) id recoveryAttempter;
+@property (readwrite, strong, nonatomic) NSString* stringEncoding;
+@property (readwrite, strong, nonatomic) NSURL* URL;
+@property (readwrite, strong, nonatomic) NSString* filePath; 
 
 - (void) setObject:(id) object forKey:(id) key;
 - (id) objectForKey:(id) key;

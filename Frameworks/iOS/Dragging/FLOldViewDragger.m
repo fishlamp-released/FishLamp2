@@ -43,8 +43,8 @@
 {
     [self stopWatchingTouches];
 
-    FLAssertIsNotNil_(item.touchableView);
-    FLAssertIsNotNil_(item.touchableView.window);
+    FLAssertIsNotNil(item.touchableView);
+    FLAssertIsNotNil(item.touchableView.window);
     _item = FLRetain(item);
 
    [[FLApplication sharedApplication] addEventInterceptor:self];

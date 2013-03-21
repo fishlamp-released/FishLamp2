@@ -16,8 +16,8 @@
 	folder:(FLFolder*) folder
 	saveOptions:(FLSaveScaledImagesWithOriginalImageOption) options
 {
-	FLAssertIsNotNil_(photo);
-	FLAssertIsNotNil_(folder);
+	FLAssertIsNotNil(photo);
+	FLAssertIsNotNil(folder);
 	
 	if((self = [super init]))
 	{
@@ -45,7 +45,7 @@
 - (void) runOperation
 {
 	id<FLImageAsset> input = (FLJpegFileImageAsset*) self.input;
-	FLAssertIsNotNil_(input);
+	FLAssertIsNotNil(input);
 	
 	BOOL loadedOriginal = NO;
 	BOOL loadedFull = NO;

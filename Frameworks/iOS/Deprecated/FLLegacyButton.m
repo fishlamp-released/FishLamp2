@@ -298,8 +298,8 @@
 		_imageView.frameOptimizedForLocation = FLRectCenterRectInRect(rectUsedForCenteringSubviews, _imageView.frame);
 	}
 		
-//	  FLAssert_v(_imageView.isFrameOptimized, @"image view frame not optimized");	
-//	  FLAssert_v(_titleLabel.isFrameOptimized, @"title view frame not optimized");	 
+//	  FLAssertWithComment(_imageView.isFrameOptimized, @"image view frame not optimized");	
+//	  FLAssertWithComment(_titleLabel.isFrameOptimized, @"title view frame not optimized");	 
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event

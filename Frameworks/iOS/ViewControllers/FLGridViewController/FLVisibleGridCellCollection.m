@@ -150,7 +150,7 @@ FIXME("MF: This looks ass slow. Self, try again.")
             }
         }
         
-        FLAssert_v(newFirstIndex != NSNotFound, @"didn't find first cell");
+        FLAssertWithComment(newFirstIndex != NSNotFound, @"didn't find first cell");
         
 #if TRACE
         s_searchTally += thisSearch;
@@ -209,7 +209,7 @@ FIXME("MF: This looks ass slow. Self, try again.")
     for(int i = 0; i < count; i++) {
         FLGridCell* cell = [cells cellAtIndex:i];
     
-        FLAssert_v(cell.visible == CGRectIntersectsRect(cell.frame, visibleBounds), @"Rect visibility for cell %d is wrong", i);
+        FLAssertWithComment(cell.visible == CGRectIntersectsRect(cell.frame, visibleBounds), @"Rect visibility for cell %d is wrong", i);
     }
 #endif
 

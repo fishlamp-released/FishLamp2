@@ -81,7 +81,7 @@
     FLSetObjectWithRetain(_arguments[_count++], first);
     id obj = nil;
     while ((obj = va_arg(valist, id))) { 
-        FLAssert_v(_count < FLArgumentListMaxArgumentCount, @"too many arguments");
+        FLAssertWithComment(_count < FLArgumentListMaxArgumentCount, @"too many arguments");
         FLSetObjectWithRetain(_arguments[_count++], obj);
     }
 }

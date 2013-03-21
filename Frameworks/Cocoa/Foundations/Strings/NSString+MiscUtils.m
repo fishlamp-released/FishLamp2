@@ -8,9 +8,9 @@
 
 #import "NSString+MiscUtils.h"
 
-#define KILO (1 << 10)
-#define MEGA (1 << 20)
-#define GIGA ((unsigned)1 << 30)
+#define KILO 1024 
+#define MEGA 1048576 
+#define GIGA 1073741824
 
 @implementation NSString (MiscUtils)
 
@@ -33,14 +33,14 @@
 
 	NSMutableString *time = [NSMutableString string];
 	if ( secs > 3600 ) {
-		[time appendFormat:@"%ld %@ ", lrint(floor(secs / 3600.0)), NSLocalizedString(@"hours", nil)];
+		[time appendFormat:@"%.0F %@ ", floor(secs / 3600.0), NSLocalizedString(@"hours", nil)];
 		secs = fmod(secs, 3600.0);
 	}
 	if ( secs > 60 ) {
-		[time appendFormat:@"%ld %@ ", lrint(floor(secs / 60.0)), NSLocalizedString(@"minutes", nil)];
+		[time appendFormat:@"%.0F %@ ", floor(secs / 60.0), NSLocalizedString(@"minutes", nil)];
 		secs = fmod(secs, 60.0);
 	}
-	[time appendFormat:@"%ld %@", lround(secs), NSLocalizedString(@"seconds", nil)];
+	[time appendFormat:@"%.0F %@", ceil(secs), NSLocalizedString(@"seconds", nil)];
 	return time;
 }
 

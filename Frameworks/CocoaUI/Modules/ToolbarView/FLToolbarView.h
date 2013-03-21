@@ -7,14 +7,14 @@
 //
 
 #import "FLCocoaUIRequired.h"
-
 #import "FLToolbarItemGroup.h"
+#import "FLCompatibleView.h"
 
 #define kDefaultHorizontalPadding 30.0f
 
 @class FLToolbarView;
 
-@interface FLToolbarView : UIView  {
+@interface FLToolbarView : FLCompatibleView  {
 @private
     FLToolbarItemGroup* _leftItems;
     FLToolbarItemGroup* _rightItems;

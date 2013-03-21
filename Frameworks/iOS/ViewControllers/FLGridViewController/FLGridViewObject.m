@@ -11,17 +11,17 @@
 @implementation NSObject (FLGridViewObject)
 
 - (id) dataRefKey {
-    FLAssertIsOverridden_v(nil);
+    FLAssertIsOverriddenWithComment(nil);
     return nil;
 }
 
 - (NSString*) gridViewDisplayName {
-    FLAssertIsOverridden_v(nil);
+    FLAssertIsOverriddenWithComment(nil);
     return nil;
 }
 
 - (id) createGridViewCell {
-    FLAssertIsOverridden_v(nil);
+    FLAssertIsOverriddenWithComment(nil);
     return nil;
 }
 

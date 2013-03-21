@@ -19,7 +19,7 @@
 - (id) initWithImageAsset:(id<FLImageAsset>) photo 	   
                 assetType:(FLAssetType) assetType
 {
-	FLAssertIsNotNil_v(photo, nil);
+	FLAssertIsNotNilWithComment(photo, nil);
 
     self = [super init];
 	if(self) {
@@ -63,7 +63,7 @@
 }
 
 - (id<FLImageAsset>) imageAsset {
-	FLAssertIsNotNil_v(self.assetObject, nil);
+	FLAssertIsNotNilWithComment(self.assetObject, nil);
 
 	return (id<FLImageAsset>) self.assetObject;
 }

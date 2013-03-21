@@ -11,7 +11,7 @@
 #import "FLOauthApp.h"
 #import "FLOAuthSession.h"
 #import "FLService.h"
-#import "FLObjectDataStore.h"
+#import "FLObjectStorage.h"
 
 
 #define FLTwitterDefaultUserID [NSString zeroGuidString]

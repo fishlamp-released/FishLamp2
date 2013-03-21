@@ -29,7 +29,7 @@
 {
 	FLRelease(_error);
 	
-	FLAssert_v(_session == nil, @"must call stop before deleting camera"); 
+	FLAssertWithComment(_session == nil, @"must call stop before deleting camera"); 
 	
 	FLSuperDealloc();
 }

@@ -102,7 +102,7 @@ static FLViewController* s_presentingModalViewController = nil;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
 	
-    FLAssert_v([NSThread currentThread] == [NSThread mainThread], @"Not on main thread");
+    FLAssertWithComment([NSThread currentThread] == [NSThread mainThread], @"Not on main thread");
     
     if((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
         [self _subscribeToEvents];
@@ -116,7 +116,7 @@ static FLViewController* s_presentingModalViewController = nil;
 }
 
 - (UIView*) createView {
-    FLAssert_v([NSThread currentThread] == [NSThread mainThread], @"Not on main thread");
+    FLAssertWithComment([NSThread currentThread] == [NSThread mainThread], @"Not on main thread");
 
 	UIView* view = FLAutorelease([[UIView alloc] initWithFrame:CGRectMake(0,0,0,0)]);
 	view.backgroundColor = [UIColor blackColor];
@@ -126,7 +126,7 @@ static FLViewController* s_presentingModalViewController = nil;
 }
 
 - (void) loadView {
-    FLAssert_v([NSThread currentThread] == [NSThread mainThread], @"Not on main thread");
+    FLAssertWithComment([NSThread currentThread] == [NSThread mainThread], @"Not on main thread");
 
 	if(FLStringIsNotEmpty(self.nibName)) {
 		[super loadView];
@@ -156,7 +156,7 @@ static FLViewController* s_presentingModalViewController = nil;
 }
 
 - (void)didMoveToParentViewController:(UIViewController *)parent {
-    FLAssert_v([NSThread currentThread] == [NSThread mainThread], @"Not on main thread");
+    FLAssertWithComment([NSThread currentThread] == [NSThread mainThread], @"Not on main thread");
 
     [super didMoveToParentViewController:parent];
     [self updateViewContentsDescriptor];
@@ -241,7 +241,7 @@ static FLViewController* s_presentingModalViewController = nil;
 
 - (void) viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
-    FLAssert_v([NSThread currentThread] == [NSThread mainThread], @"Not on main thread");
+    FLAssertWithComment([NSThread currentThread] == [NSThread mainThread], @"Not on main thread");
 
     
 //    [self bringBarToFront:self.topBarView];
@@ -249,7 +249,7 @@ static FLViewController* s_presentingModalViewController = nil;
 }
  
 - (void) viewWillAppear:(BOOL) animated {
-    FLAssert_v([NSThread currentThread] == [NSThread mainThread], @"Not on main thread");
+    FLAssertWithComment([NSThread currentThread] == [NSThread mainThread], @"Not on main thread");
 
 	[super viewWillAppear:animated];
     [self barWillAppear:self.topBarView];
@@ -271,7 +271,7 @@ static FLViewController* s_presentingModalViewController = nil;
 }
 
 - (void) viewDidAppear:(BOOL)animated {
-    FLAssert_v([NSThread currentThread] == [NSThread mainThread], @"Not on main thread");
+    FLAssertWithComment([NSThread currentThread] == [NSThread mainThread], @"Not on main thread");
 
 	_viewIsVisible = YES;
 
@@ -311,7 +311,7 @@ static FLViewController* s_presentingModalViewController = nil;
 }
 
 - (void) viewDidDisappear:(BOOL)animated {
-    FLAssert_v([NSThread currentThread] == [NSThread mainThread], @"Not on main thread");
+    FLAssertWithComment([NSThread currentThread] == [NSThread mainThread], @"Not on main thread");
 
 	_viewIsVisible = NO;
 	[super viewDidDisappear:animated];
@@ -371,10 +371,10 @@ static FLViewController* s_presentingModalViewController = nil;
 + (void) setPresentingModalViewController:(FLViewController*) viewController {
 #if DEBUG
     if(viewController) {
-        FLAssertIsNil_(s_presentingModalViewController);
+        FLAssertIsNil(s_presentingModalViewController);
     }
     else {
-        FLAssertIsNotNil_(s_presentingModalViewController);
+        FLAssertIsNotNil(s_presentingModalViewController);
     }
 #endif
     s_presentingModalViewController= viewController;
@@ -389,7 +389,7 @@ static FLViewController* s_presentingModalViewController = nil;
 }
 
 - (void)presentModalViewController:(UIViewController *)modalViewController animated:(BOOL)animated {
-    FLAssert_v([NSThread currentThread] == [NSThread mainThread], @"Not on main thread");
+    FLAssertWithComment([NSThread currentThread] == [NSThread mainThread], @"Not on main thread");
 
     [modalViewController willBePresentedModallyInViewController:self];
     [FLViewController setPresentingModalViewController:self];
@@ -398,11 +398,11 @@ static FLViewController* s_presentingModalViewController = nil;
 }
 
 - (void)dismissModalViewControllerAnimated:(BOOL)animated {
-    FLAssert_v([NSThread currentThread] == [NSThread mainThread], @"Not on main thread");
+    FLAssertWithComment([NSThread currentThread] == [NSThread mainThread], @"Not on main thread");
 
-	FLAssert_v([FLViewController presentingModalViewController] == self, @"dismissing with wrong view controller");
+	FLAssertWithComment([FLViewController presentingModalViewController] == self, @"dismissing with wrong view controller");
 	
-	FLAssertIsNotNil_(self.modalViewController); 
+	FLAssertIsNotNil(self.modalViewController); 
 	FLAutorelease(FLReturnRetain(self.modalViewController));
 	
 	[super dismissModalViewControllerAnimated:animated];

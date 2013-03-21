@@ -8,6 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
+#import "FLCompatibleViewController.h"
 #import "FLPanelViewController.h"
 
 @interface FLWizardHeaderViewController : FLCompatibleViewController<FLPanelHeader> {

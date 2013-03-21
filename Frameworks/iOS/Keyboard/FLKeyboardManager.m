@@ -46,13 +46,13 @@ FLSynthesizeSingleton(FLKeyboardManager);
 - (void) keyboardDidShow:(id)sender {
 	_showing = YES;
 	_keyboardRect = [[[sender userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
-	FLAssert_v(!CGRectEqualToRect(_keyboardRect, CGRectZero), @"empty keyboard rect");
+	FLAssertWithComment(!CGRectEqualToRect(_keyboardRect, CGRectZero), @"empty keyboard rect");
 	[self performSelector:@selector(_checkForVisibleKeyboard) withObject:nil afterDelay:0.25];
 }
 
 - (void) keyboardWillShow:(id)sender {
 	_keyboardRect = [[[sender userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
-	FLAssert_v(!CGRectEqualToRect(_keyboardRect, CGRectZero), @"empty keyboard rect");
+	FLAssertWithComment(!CGRectEqualToRect(_keyboardRect, CGRectZero), @"empty keyboard rect");
 	[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:FLKeyboardWillShowNotification object:nil
 			userInfo:nil]];
 }

@@ -10,7 +10,7 @@
 #import "FLArrangement.h"
 #import "UIImage+FLColorize.h"
 #import "FLGradientView.h"
-#import "UIViewController+FLAdditions.h"
+#import "FLViewController.h"
 
 #import "FLGradientView.h"
 #import "FLSingleRowColumnArrangement.h"
@@ -30,8 +30,8 @@
 - (id) initWithFrame:(CGRect) frame
 {
 	if((self = [super initWithFrame:frame])) {
-		self.backgroundColor = [UIColor clearColor];
 #if IOS
+		self.backgroundColor = [UIColor clearColor];
 		self.autoresizingMask = UIViewAutoresizingFlexibleWidth |
                                 UIViewAutoresizingFlexibleRightMargin;
 		self.exclusiveTouch = YES;

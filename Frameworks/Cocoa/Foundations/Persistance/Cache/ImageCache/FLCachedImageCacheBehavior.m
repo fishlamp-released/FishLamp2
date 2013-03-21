@@ -73,8 +73,8 @@ FIXME("attach to user sessions....");
 
 - (BOOL) willSaveObjectToDatabaseCache:(FLImageProperties*) cachedImage
 {
-	FLAssertIsNotNil_v(cachedImage, nil);
-	FLAssert_v([cachedImage isKindOfClass:[FLImageProperties class]], @"wrong type of class for image cache");
+	FLAssertIsNotNilWithComment(cachedImage, nil);
+	FLAssertWithComment([cachedImage isKindOfClass:[FLImageProperties class]], @"wrong type of class for image cache");
 	
 	if(!cachedImage.imageFile || !cachedImage.imageFile.hasImage)
 	{
@@ -123,8 +123,8 @@ FIXME("attach to user sessions....");
 
 - (BOOL) didSaveObjectToDatabaseCache:(FLImageProperties*) cachedImage
 {
-	FLAssertIsNotNil_v(cachedImage, nil);
-	FLAssert_v([cachedImage isKindOfClass:[FLImageProperties class]], @"wrong type of class for image cache");
+	FLAssertIsNotNilWithComment(cachedImage, nil);
+	FLAssertWithComment([cachedImage isKindOfClass:[FLImageProperties class]], @"wrong type of class for image cache");
 	
 	if(!cachedImage.imageFile || !cachedImage.imageFile.hasImage)
 	{
@@ -142,8 +142,8 @@ FIXME("attach to user sessions....");
 
 - (id) loadObjectFromMemoryCache:(FLImageProperties*) inputObject
 {
-	FLAssertIsNotNil_v(inputObject, nil);
-	FLAssert_v([inputObject isKindOfClass:[FLImageProperties class]], @"wrong type of class for image cache");
+	FLAssertIsNotNilWithComment(inputObject, nil);
+	FLAssertWithComment([inputObject isKindOfClass:[FLImageProperties class]], @"wrong type of class for image cache");
 
 	FLImageProperties* cachedImage = [_memoryCache objectForKey:inputObject.imageId];
 	if(cachedImage)
@@ -163,8 +163,8 @@ FIXME("attach to user sessions....");
 
 - (void) didRemoveObjectFromCache:(FLImageProperties*) cachedImage
 {
-	FLAssertIsNotNil_v(cachedImage, nil);
-	FLAssert_v([cachedImage isKindOfClass:[FLImageProperties class]], @"wrong type of class for image cache");
+	FLAssertIsNotNilWithComment(cachedImage, nil);
+	FLAssertWithComment([cachedImage isKindOfClass:[FLImageProperties class]], @"wrong type of class for image cache");
 
 	[_memoryCache removeObjectForKey:cachedImage.imageId];
 
@@ -178,8 +178,8 @@ FIXME("attach to user sessions....");
 
 - (BOOL) didLoadObjectFromDatabaseCache:(FLImageProperties*) cachedImage
 {
-	FLAssertIsNotNil_v(cachedImage, nil);
-	FLAssert_v([cachedImage isKindOfClass:[FLImageProperties class]], @"wrong class in image cache");
+	FLAssertIsNotNilWithComment(cachedImage, nil);
+	FLAssertWithComment([cachedImage isKindOfClass:[FLImageProperties class]], @"wrong class in image cache");
    
 	// need to set this in the cached object and load the image from disk.
 	FLJpegFile* imageFile = [[FLJpegFile alloc] initWithJpegData:nil folder:[self _imageCacheFolder] fileName:cachedImage.fileName];

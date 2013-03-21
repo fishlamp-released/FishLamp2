@@ -173,7 +173,7 @@ NSString* const FLWorkerContextOpened = @"FLWorkerContextOpened";
     }
 
     id result = [finisher waitUntilFinished];
-    FLAssertNotNil_v(result, @"result should not be nil!!");
+    FLAssertNotNilWithComment(result, @"result should not be nil!!");
 
     return result;
 }
@@ -183,7 +183,7 @@ NSString* const FLWorkerContextOpened = @"FLWorkerContextOpened";
 //                  withObserver:(id) observer 
 //                    completion:(FLBlockWithResult) completion {
 //
-//    FLAssertNotNil_(worker);
+//    FLAssertNotNil(worker);
 //
 //    completion = FLCopyWithAutorelease(completion);
 //
@@ -223,7 +223,7 @@ NSString* const FLWorkerContextOpened = @"FLWorkerContextOpened";
 
 - (void) startWorker:(id<FLContextWorker>) worker withFinisher:(FLFinisher*) finisher {
 
-    FLAssertNotNil_(worker);
+    FLAssertNotNil(worker);
 
     [self addObject:worker];
     

@@ -32,12 +32,12 @@ extern CGRect FLRectOptimizedForViewLocation(CGRect r);
 
 
 #define FLWarnIfRectIsNotOptimizedForView(r) if(!FLRectIsOptimizedForView(r)) FLDebugLog(@"%s is not optimized for view", #r)
-#define FLAssertRectOptimizedForView_v(r) FLAssert_v(FLRectIsOptimizedForView(r), @"%s is not optimized for view", #r) 
+#define FLAssertRectOptimizedForViewWithComment(r) FLAssertWithComment(FLRectIsOptimizedForView(r), @"%s is not optimized for view", #r) 
 
 #else
 
 #define FLWarnIfRectIsNotOptimizedForView(r)
-#define FLAssertRectOptimizedForView_v(r)
+#define FLAssertRectOptimizedForViewWithComment(r)
 
 #define __INLINES__
 #import "FLRectOptimize_Inlines.h"
@@ -52,4 +52,4 @@ extern CGRect FLRectOptimizedForViewLocation(CGRect r);
 //#define FLRectOptimizedForViewSize(r) r
 //#define FLRectOptimizedForViewLocation(r) r
 //#define FLWarnIfRectIsNotOptimizedForView(r)
-//#define FLAssertRectOptimizedForView_v(r)
+//#define FLAssertRectOptimizedForViewWithComment(r)

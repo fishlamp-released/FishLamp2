@@ -91,7 +91,7 @@
 {
 	NSString* startText = self.valueLabelText;
 	
-	FLAssertIsNil_(_textView);
+	FLAssertIsNil(_textView);
 	
 	_textView = [[FLTextView alloc] initWithFrame:[self _rectForTextView]];
 	_textView.autoresizingMask = UIViewAutoresizingNone;

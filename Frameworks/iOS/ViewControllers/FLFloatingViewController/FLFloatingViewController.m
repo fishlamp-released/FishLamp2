@@ -13,7 +13,7 @@
 #import "FLApplication.h"
 #import "FLFloatingViewController.h"
 #import "FLKeyboardManager.h"
-#import "UIViewController+FLAdditions.h"
+#import "FLViewController.h"
 
 #define kAnimationDuration 0.1
 
@@ -510,8 +510,8 @@ FLSynthesizeStructProperty(contentViewIsModal, setContentViewIsModal, BOOL, _sta
 		{
 			id<FLFloatingViewTargetProvider> provider = (id<FLFloatingViewTargetProvider>) _positionProvider;
 
-			FLAssert_v([provider respondsToSelector:@selector(frame)], @"must implement frame");
-			FLAssert_v([provider respondsToSelector:@selector(superview)], @"must implement frame");
+			FLAssertWithComment([provider respondsToSelector:@selector(frame)], @"must implement frame");
+			FLAssertWithComment([provider respondsToSelector:@selector(superview)], @"must implement frame");
 			
 			CGRect fromFrame = [view.superview convertRect:provider.floatingViewTargetFrame fromView:provider.floatingViewTargetView];
 		
@@ -611,9 +611,9 @@ FLSynthesizeStructProperty(contentViewIsModal, setContentViewIsModal, BOOL, _sta
 
 - (void) setContentViewSize:(CGSize)size animated:(BOOL)animated
 {
-    FLAssert_v(!FLSizeIsEmpty(size), @"empty size");
-    FLAssert_v(size.height > 0, @"invalid height");
-    FLAssert_v(size.width > 0, @"invalid width");
+    FLAssertWithComment(!FLSizeIsEmpty(size), @"empty size");
+    FLAssertWithComment(size.height > 0, @"invalid height");
+    FLAssertWithComment(size.width > 0, @"invalid width");
 
     _contentViewSize = size;
 	[self resizeToContentSizeAnimated:animated];
@@ -706,14 +706,14 @@ FLSynthesizeAssociatedProperty(retain_nonatomic, contentSizeForViewInFloatingVie
 - (FLFloatingViewController*) presentFloatingViewController:(UIViewController*) controller
     animated:(BOOL) animated
 {
-    FLAssertIsImplemented_();
+    FLAssertIsImplemented();
     
     return nil;
 }
 - (FLFloatingViewController*) presentModalFloatingViewController:(UIViewController*) controller
     animated:(BOOL) animated
 {
-    FLAssertIsImplemented_();
+    FLAssertIsImplemented();
     
     return nil;
 }

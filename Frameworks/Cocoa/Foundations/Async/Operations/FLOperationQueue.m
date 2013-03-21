@@ -97,7 +97,7 @@
 }
 
 - (void) addOperation:(FLOperation*) operation {
-    FLAssertIsNotNil_(operation);
+    FLAssertIsNotNil(operation);
     @synchronized(self) {
         [_operations addObject:operation];
     }
@@ -127,8 +127,8 @@
 //- (void) insertOperation:(FLOperation*) newOperation
 //          afterOperation:(FLOperation*) afterOperation {
 //
-//    FLAssertIsNotNil_v(newOperation, nil);
-//    FLAssertIsNotNil_v(afterOperation, nil);
+//    FLAssertIsNotNilWithComment(newOperation, nil);
+//    FLAssertIsNotNilWithComment(afterOperation, nil);
 //
 ////	if(self.wasCancelled) {
 ////		[newOperation requestCancel];
@@ -139,7 +139,7 @@
 //}
 
 //- (id) operationByTag:(NSInteger) tag {
-//    FLAssert_v(tag != 0, @"tag must be nonzero");
+//    FLAssertWithComment(tag != 0, @"tag must be nonzero");
 //
 //    @synchronized(self) {
 //        for(FLOperation* operation in _operations){
@@ -153,7 +153,7 @@
 //}
 
 - (id) operationByID:(id) operationID {
-    FLAssertIsNotNil_v(operationID, nil);
+    FLAssertIsNotNilWithComment(operationID, nil);
     @synchronized(self) {
         if(operationID) {
             for(FLOperation* operation in _operations) {

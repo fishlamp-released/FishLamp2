@@ -56,7 +56,7 @@
 
 - (void) didLoadTabBar:(UITabBar*) tabBar
 {
-	FLAssertIsNotNil_v(tabBar, nil);
+	FLAssertIsNotNilWithComment(tabBar, nil);
 
 	tabBar.items = [NSArray arrayWithObjects:
 			FLAutorelease([[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"All Photos", nil) image:[UIImage imageNamed:@"image.png"] tag: 0]),

@@ -73,8 +73,8 @@
 //- (void) setAttributedString:(FLAttributedString*) string 
 //                forKey:(NSString*) key  {
 //
-//    FLAssertStringIsNotEmpty_(key);
-//    FLAssertNotNil_(string);
+//    FLAssertStringIsNotEmpty(key);
+//    FLAssertNotNil(string);
 //                
 ////    if(!string.enabledColor) {
 ////        string.enabledColor = self.enabledTextColor;
@@ -316,7 +316,7 @@
 //            if(touchingstring == string && string.isTouchable) {
 //                if(string.isTouchable) {
 //                    touchingstring.highlighted = isTouching;
-//                    FLAssert_v(touchingstring.highlighted == isTouching, @"switch failed");
+//                    FLAssertWithComment(touchingstring.highlighted == isTouching, @"switch failed");
 //                    FLLog(@"touched %@", string.text);
 //                }
 //            }

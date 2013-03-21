@@ -7,8 +7,8 @@
 //
 
 #if OSX
-#import "UIView+OSX.h"
-#import "UIViewController+OSX.h"
+#import "FLCompatibleView+OSX.h"
+#import "FLCompatibleViewController+OSX.h"
 
 @interface UIView ()
 @property (readwrite, assign, nonatomic) UIViewController* viewController;

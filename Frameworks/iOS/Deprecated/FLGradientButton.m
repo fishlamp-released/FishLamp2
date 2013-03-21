@@ -226,7 +226,7 @@ void FLGradientButtonColorLightGray(id button)
 
 - (void) setShapeWidget:(FLShapeWidget*) widget
 {
-    FLAssertIsNotNil_(widget);
+    FLAssertIsNotNil(widget);
 
 	if(_backgroundWidget)
 	{
@@ -234,7 +234,7 @@ void FLGradientButtonColorLightGray(id button)
 	}
 	widget.contentMode = FLRectLayoutFill;
 	FLSetObjectWithRetain(_shapeWidget, widget);
-    FLAssertIsNotNil_(self.rootWidget);
+    FLAssertIsNotNil(self.rootWidget);
 
     [self.rootWidget addWidget:_shapeWidget];
 	

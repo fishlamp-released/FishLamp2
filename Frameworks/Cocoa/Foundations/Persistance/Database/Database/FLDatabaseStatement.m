@@ -28,7 +28,7 @@
 - (id) initWithDatabaseTable:(FLDatabaseTable*) table {
     self = [super init];
     if(self) {
-        FLAssertNotNil_(table);
+        FLAssertNotNil(table);
         self.table = table;
     }
     

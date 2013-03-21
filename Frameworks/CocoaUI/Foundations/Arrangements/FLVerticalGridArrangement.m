@@ -51,7 +51,7 @@
 - (CGSize) layoutArrangeableObjects:(NSArray*) objects
                            inBounds:(CGRect) bounds {
 
-    FLAssert_v(_columnCount > 0, @"can't have zero columns");
+    FLAssertWithComment(_columnCount > 0, @"can't have zero columns");
     
     if(_columnCount == 0) {
         return bounds.size;

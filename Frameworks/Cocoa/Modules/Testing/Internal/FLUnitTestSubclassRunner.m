@@ -40,7 +40,7 @@
             BOOL bottomDependsOnTop = [bottom unitTestClassDependsOnUnitTestClass:top];
             BOOL topDependsOnBottom = [top unitTestClassDependsOnUnitTestClass:bottom];
             
-            FLConfirm_v(bottomDependsOnTop == NO || topDependsOnBottom == NO, @"%@ and %@ can't depend on each other", NSStringFromClass(top), NSStringFromClass(bottom));
+            FLConfirmWithComment(bottomDependsOnTop == NO || topDependsOnBottom == NO, @"%@ and %@ can't depend on each other", NSStringFromClass(top), NSStringFromClass(bottom));
             
             if(topDependsOnBottom) {
                 newIndex = j;

@@ -72,11 +72,11 @@
 		outputObject:(id*) outputObject {
 	
     if(!inputObject) {
-		FLThrowErrorCode_v(FLObjectDatabaseErrorDomain, FLDatabaseErrorInvalidInputObject, @"null input object");
+		FLThrowErrorCodeWithComment(FLObjectDatabaseErrorDomain, FLDatabaseErrorInvalidInputObject, @"null input object");
 	}
 	
     if(!outputObject) {
-		FLThrowErrorCode_v(FLObjectDatabaseErrorDomain, FLDatabaseErrorInvalidOutputObject, @"null output object");
+		FLThrowErrorCodeWithComment(FLObjectDatabaseErrorDomain, FLDatabaseErrorInvalidOutputObject, @"null output object");
 	}
 
 	id<FLCacheBehavior> behavior = [inputObject cacheBehavior];
@@ -108,10 +108,10 @@
 						resultColumnNames:(NSArray*) resultColumnNames
 						resultObjects:(NSArray**) outObjects {
 	if(!inputObject) {
-		FLThrowErrorCode_v(FLObjectDatabaseErrorDomain, FLDatabaseErrorInvalidInputObject, @"null input object");
+		FLThrowErrorCodeWithComment(FLObjectDatabaseErrorDomain, FLDatabaseErrorInvalidInputObject, @"null input object");
 	}
 	if(!outObjects) {
-		FLThrowErrorCode_v(FLObjectDatabaseErrorDomain, FLDatabaseErrorInvalidOutputObject, @"null output object");
+		FLThrowErrorCodeWithComment(FLObjectDatabaseErrorDomain, FLDatabaseErrorInvalidOutputObject, @"null output object");
 	}
 	id<FLCacheBehavior> behavior = [inputObject cacheBehavior];
 
@@ -125,7 +125,7 @@
     [statement appendString:SQL_SELECT andString:resultColumns];
     [statement appendString:SQL_FROM andString:table.tableName];
     
-    FLAssert_([statement appendWhereClauseForSelectingObject:inputObject] != NO);
+    FLAssert([statement appendWhereClauseForSelectingObject:inputObject] != NO);
     
     statement.objectResultBlock = ^(id object, BOOL* stop) {
         if(behavior && [behavior didLoadObjectFromDatabaseCache:object]) {
@@ -148,10 +148,10 @@
 - (void) loadAllObjectsForTypeWithTable:(FLDatabaseTable*) table outObjects:(NSArray**) outObjects
 {
 	if(!table) {
-		FLThrowErrorCode_v(FLObjectDatabaseErrorDomain, FLDatabaseErrorInvalidInputObject, @"null input object");
+		FLThrowErrorCodeWithComment(FLObjectDatabaseErrorDomain, FLDatabaseErrorInvalidInputObject, @"null input object");
 	}
 	if(!outObjects) {
-		FLThrowErrorCode_v(FLObjectDatabaseErrorDomain, FLDatabaseErrorInvalidOutputObject, @"null output object");
+		FLThrowErrorCodeWithComment(FLObjectDatabaseErrorDomain, FLDatabaseErrorInvalidOutputObject, @"null output object");
 	}
 	
 	id<FLCacheBehavior> behavior = [[table classRepresentedByTable] sharedCacheBehavior];

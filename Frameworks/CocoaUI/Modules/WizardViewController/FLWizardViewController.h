@@ -39,6 +39,11 @@
 - (void) addPanel:(FLPanelViewController*) panel;
 - (void) removePanelForTitle:(NSString*) title;
 
+
+- (void) showErrorAlert:(NSString*) title caption:(NSString*) caption error:(NSError*) error;
+
+- (void) didHideErrorAlertForError:(NSError*) error;
+
 //
 // optional overrides
 //

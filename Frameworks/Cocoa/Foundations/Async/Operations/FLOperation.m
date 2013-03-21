@@ -10,12 +10,14 @@
 #import "FLTraceOff.h"
 #import "FLFinisher.h"
 #import "FLAsyncQueue.h"
+#import "FLObjectStorage.h"
 
 NSString* const FLOperationFinishedEvent;
 
 @interface FLOperation ()
 @property (readwrite, copy, nonatomic) FLBlockWithOperation runBlock;
 @property (readwrite, assign, getter=wasCancelled) BOOL cancelled;
+@property (readwrite, assign, nonatomic) id observer;
 @end
 
 @implementation FLOperation
@@ -23,10 +25,19 @@ NSString* const FLOperationFinishedEvent;
 @synthesize operationID = _operationID;
 @synthesize runBlock = _runBlock;
 @synthesize cancelled = _cancelled;
+@synthesize objectStorage = _objectStorage;
+@synthesize observer = _observer;
 
 - (id) initWithRunBlock:(FLBlockWithOperation) callback {
     if((self = [self init])) {
         self.runBlock = callback;
+    }
+    return self;
+}
+
+- (id) initWithObjectStorage:(id<FLObjectStorage>) objectStorage {
+    if((self = [self init])) {
+        self.objectStorage = objectStorage;
     }
     return self;
 }
@@ -37,6 +48,7 @@ NSString* const FLOperationFinishedEvent;
 
 #if FL_MRC
 - (void) dealloc {
+    [_objectStorage release];
     [_runBlock release];
     [_operationID release];
     [super dealloc];
@@ -65,7 +77,9 @@ NSString* const FLOperationFinishedEvent;
 }
 
 - (void) abortIfNeeded {
-    FLThrowAbortExeptionIf(self.wasCancelled);
+    if(self.wasCancelled) {
+        FLThrowError([NSError cancelError]);
+    }
 }
 
 - (BOOL) abortNeeded {
@@ -79,17 +93,19 @@ NSString* const FLOperationFinishedEvent;
 - (void) startWorking:(FLFinisher*) finisher {
 
     id result = nil;
-    
+    self.observer = finisher.observer;
+
     @try {
+        
         [self abortIfNeeded];
         
         [self sendMessage:@selector(operationWillRun:) toListener:finisher];
        
         if(self.runBlock) {
-            result = self.runBlock(self, self.workerContext, finisher.observer);
+            result = self.runBlock(self, self.workerContext, self.observer);
         }
         else {
-            result = [self runOperationInContext:self.workerContext withObserver:finisher.observer];
+            result = [self runOperationInContext:self.workerContext withObserver:self.observer];
         }
     }
     @catch(NSException* ex) {
@@ -102,8 +118,9 @@ NSString* const FLOperationFinishedEvent;
     
     [finisher setFinishedWithResult:result];
 
-    [self sendMessage:@selector(operationDidFinish:withResult:) toListener:finisher withObject:self withObject:result];
-   
+    [self sendMessage:@selector(operationDidFinish:withResult:) toListener:self.observer withObject:self withObject:result];
+    
+    _observer = nil;
     self.cancelled = NO;
 }
 

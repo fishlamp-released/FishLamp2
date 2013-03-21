@@ -23,7 +23,7 @@
 //}
 //
 //- (void) setDataRefValue:(id) value {
-//    FLAssertFailed_v(@"can't set data ref value here");
+//    FLAssertFailedWithComment(@"can't set data ref value here");
 //}
 //
 

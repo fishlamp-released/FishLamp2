@@ -46,8 +46,8 @@
 }                           
 
 - (void) commitAnimation:(CALayer*) layer {
-    FLAssert_(_fromOpacity >= 0.0);
-    FLAssert_(_toOpacity >= 0.0);
+    FLAssert(_fromOpacity >= 0.0);
+    FLAssert(_toOpacity >= 0.0);
 
     [layer addAnimation:[self CAAnimation] forKey:@"opacity"];
     [layer setOpacity:_toOpacity];

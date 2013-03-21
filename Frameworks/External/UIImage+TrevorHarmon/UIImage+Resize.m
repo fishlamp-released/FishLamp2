@@ -8,6 +8,7 @@
 #import "UIImage+Alpha.h"
 #import "FLGeometry.h"
 
+#if IOS
 // Private helper methods
 @interface UIImage (ResizeUtils)
 - (UIImage *)resizedImage:(CGSize)newSize
@@ -16,8 +17,10 @@
 	 interpolationQuality:(CGInterpolationQuality)quality;
 - (CGAffineTransform)transformForOrientation:(CGSize)newSize;
 @end
+#endif
 
 @implementation UIImage (ResizeUtils)
+#if IOS
 
 // Returns a copy of this image that is cropped to the given bounds.
 // The bounds will be adjusted using CGRectIntegral.
@@ -215,6 +218,7 @@
 	
 	return transform;
 }
+#endif
 
 - (CGRect) proportionalBoundsWithMaxSize:(CGSize) maxSize
 {

@@ -606,9 +606,9 @@ FLSynthesizeStructProperty(isFullScreenTapDisabled, setFullScreenTapDisabled, BO
 	oldItem:(UIBarButtonItem*) oldItem
 	newView:(UIView*) newView
 {
-	FLAssertIsNotNil_(toolbar);
-	FLAssertIsNotNil_(oldItem);
-	FLAssertIsNotNil_(newView);
+	FLAssertIsNotNil(toolbar);
+	FLAssertIsNotNil(oldItem);
+	FLAssertIsNotNil(newView);
 
 	BOOL foundIt = NO;
 	
@@ -634,7 +634,7 @@ FLSynthesizeStructProperty(isFullScreenTapDisabled, setFullScreenTapDisabled, BO
 
 	toolbar.items = items;
 	
-	FLAssert_v(foundIt, @"didn't find item");
+	FLAssertWithComment(foundIt, @"didn't find item");
 	
 	return foundIt;
 }
@@ -702,7 +702,7 @@ FLSynthesizeStructProperty(isFullScreenTapDisabled, setFullScreenTapDisabled, BO
 		}
         else
         {
-            FLAssertFailed_v(@"How do I show the gps map?");
+            FLAssertFailedWithComment(@"How do I show the gps map?");
         }
         
 		[controller addPin:NSLocalizedString(@"Taken Here:", nil) coordinate:exif.coordinate];
@@ -1489,7 +1489,7 @@ FLSynthesizeStructProperty(isFullScreenTapDisabled, setFullScreenTapDisabled, BO
 		break;
 		
 		default:
-			FLAssertFailed_v(@"wtf?");
+			FLAssertFailedWithComment(@"wtf?");
 			break;
 	}
 

@@ -24,7 +24,7 @@
 				]
 				forKey:NSLocalizedDescriptionKey];
 	
-	   return FLAutorelease([[NSError alloc] initWithDomain:[FLFrameworkErrorDomain instance] 
+	   return FLAutorelease([[NSError alloc] initWithDomain:FLFrameworkErrorDomain 
 			code:statusCode
 			userInfo:errorInfo]);
 	}

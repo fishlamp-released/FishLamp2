@@ -10,9 +10,6 @@
 #import <dispatch/dispatch.h>
 
 #import "FishLampCore.h"
-#import "FishLampCompatibility.h"
-
+#import "FLCompatibility.h"
 #import "NSObject+Copying.h"
-#import "FLAbortException.h"
-
 

@@ -29,7 +29,7 @@
 
 - (id) initWithALAsset:(ALAsset*) asset 
              imageSize:(FLAssetsLibraryImageSize) imageSize {
-	FLAssertIsNotNil_v(asset, nil);
+	FLAssertIsNotNilWithComment(asset, nil);
 
 	if((self = [super init]))
 	{
@@ -42,7 +42,7 @@
 - (id) initWithAssetURL:(NSURL*) assetURL  
               imageSize:(FLAssetsLibraryImageSize) imageSize
 {
-	FLAssertIsNotNil_v(assetURL, nil);
+	FLAssertIsNotNilWithComment(assetURL, nil);
 
 	if((self = [super init]))
 	{
@@ -55,7 +55,7 @@
 - (id) initWithOriginalImage:(UIImage*) image 
                     exifData:(NSDictionary*) exif 
 {
-	FLAssertIsNotNil_v(image, nil);
+	FLAssertIsNotNilWithComment(image, nil);
 
 	if((self = [super init]))
 	{
@@ -87,7 +87,7 @@
 
 - (NSDictionary*) properties
 {
-	FLAssertIsNotNil_v(self.asset, nil);
+	FLAssertIsNotNilWithComment(self.asset, nil);
 
 	if(!_properties)
 	{
@@ -245,7 +245,7 @@
 
 - (void) readFromStorage
 {
-    FLAssertIsNotNil_v(_asset, nil);
+    FLAssertIsNotNilWithComment(_asset, nil);
 	
 	if(self.asset)
 	{
@@ -326,13 +326,13 @@
 
 - (unsigned long long) sizeInStorage
 {
-    FLAssertIsNotNil_v(self.asset, nil);
+    FLAssertIsNotNilWithComment(self.asset, nil);
 	return _asset.defaultRepresentation.size;
 }
 
 - (BOOL) existsInStorage
 {
-    FLAssertIsNotNil_v(self.asset, nil);
+    FLAssertIsNotNilWithComment(self.asset, nil);
 	return self.asset != nil;
 }
 

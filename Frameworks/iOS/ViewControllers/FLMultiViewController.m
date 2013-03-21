@@ -90,7 +90,7 @@
 
 - (void) createViewControllerIfNeededInViewController:(UIViewController*) inViewController
 {
-    FLAssertIsNotNil_(inViewController);
+    FLAssertIsNotNil(inViewController);
     
     if(!_viewController)
     {
@@ -150,7 +150,7 @@
 
 - (id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-	FLAssertIsNil_(nibNameOrNil);
+	FLAssertIsNil(nibNameOrNil);
 
 	if((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]))
 	{
@@ -282,7 +282,7 @@
 
 - (id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-	FLAssertIsNil_(nibNameOrNil);
+	FLAssertIsNil(nibNameOrNil);
 
 	if((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]))
 	{

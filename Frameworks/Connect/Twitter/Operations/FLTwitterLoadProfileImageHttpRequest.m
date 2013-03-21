@@ -39,7 +39,7 @@
 
 //- (FLResult) runOperationInContext:(id) context withObserver:(id) observer {
 //    self.twitterURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://api.twitter.com/1/users/profile_image/%@.json?size=%@", _username, _imageSize]];
-//    FLAssertNotNil_(self.httpRequestURL);
+//    FLAssertNotNil(self.httpRequestURL);
 //    
 //FIXME(@"need the behavior but not the operation");
 //  

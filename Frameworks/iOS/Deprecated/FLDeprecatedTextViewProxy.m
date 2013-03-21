@@ -85,17 +85,17 @@
 
 - (UILabel*) labelView
 {
-	FLAssert_v([_proxiedView isKindOfClass:[UILabel class]], @"not a UILabel");
+	FLAssertWithComment([_proxiedView isKindOfClass:[UILabel class]], @"not a UILabel");
 	return (UILabel*) _proxiedView;
 }
 - (UITextField*) textField
 {
-	FLAssert_v([_proxiedView isKindOfClass:[UITextField class]], @"not a UITextField");
+	FLAssertWithComment([_proxiedView isKindOfClass:[UITextField class]], @"not a UITextField");
 	return (UITextField*) _proxiedView;
 }
 - (UITextView*) textView
 {
-	FLAssert_v([_proxiedView isKindOfClass:[UITextView class]], @"not a UITextView");
+	FLAssertWithComment([_proxiedView isKindOfClass:[UITextView class]], @"not a UITextView");
 	return (UITextView*) _proxiedView;
 }
 

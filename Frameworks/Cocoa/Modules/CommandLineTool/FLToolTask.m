@@ -178,7 +178,7 @@
 //    for(NSString* key in task.argumentKeys) {
 //        if(FLStringIsNotEmpty(key)) {
 //            id existing = [_tasks objectForKey:[key lowercaseString]];
-//            FLConfirmIsNil_v(existing, @"task already installed for key: %@", key);
+//            FLConfirmIsNilWithComment(existing, @"task already installed for key: %@", key);
 //            [_tasks setObject:task forKey:key];
 //        }
 //    }
@@ -240,7 +240,7 @@
 //
 ////- (void) addCompatibleParameter:(NSString*) parameter {
 ////    
-////    FLAssertIsNotNil_(parameter);
+////    FLAssertIsNotNil(parameter);
 ////
 ////    if(!_compatibleParameters) {
 ////        _compatibleParameters = [[NSMutableArray alloc] init];

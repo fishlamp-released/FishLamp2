@@ -16,8 +16,8 @@
 {
 	if((self = [super init]))
 	{
-		FLAssertIsNotNil_v(database, nil);
-		FLAssertIsNotNil_v(input, nil);
+		FLAssertIsNotNilWithComment(database, nil);
+		FLAssertIsNotNilWithComment(input, nil);
 		
         _database = FLRetain(database);
         _input = FLRetain(input);
@@ -48,7 +48,7 @@
         case gtLoadFromDatabaseOperation:
         case gtSaveToDatabaseOperation:
         case gtDeleteFromDatabase:
-            FLAssertFailed_v(@"not implemented");
+            FLAssertFailedWithComment(@"not implemented");
             break;
             
     }

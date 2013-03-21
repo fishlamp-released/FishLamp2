@@ -128,7 +128,7 @@
 	UIGraphicsEndImageContext();
 	*outImage = FLRetain(newImage);
 #else 
-    FLAssertIsImplemented_v(nil);
+    FLAssertIsImplementedWithComment(nil);
 #endif
 }
 - (void) shrinkImagePrivate:(FLImageOperationData*) shrinkData
@@ -195,7 +195,7 @@
 #endif    
 		NSData* data = UIImageJPEGRepresentation(self, imageData.compression);
 		if(data == nil || [data length] == 0) {
-            FLThrowErrorCode_v(@"FLImageErrorDomain", 1, @"Conversion to Jpeg failed");
+            FLThrowErrorCodeWithComment(@"FLImageErrorDomain", 1, @"Conversion to Jpeg failed");
         }
 		
 		imageData.outputData = data;
@@ -203,7 +203,7 @@
 	});
 #endif    
 #else 
-    FLAssertIsImplemented_v(nil);
+    FLAssertIsImplementedWithComment(nil);
 #endif
 }
 
@@ -251,7 +251,7 @@
 	*outImage = FLRetain(UIGraphicsGetImageFromCurrentImageContext());
 	UIGraphicsEndImageContext();
 #else 
-    FLAssertIsImplemented_v(nil);
+    FLAssertIsImplementedWithComment(nil);
 #endif
 }
 
@@ -288,7 +288,7 @@
 	*outImage = FLRetain(UIGraphicsGetImageFromCurrentImageContext());
 	UIGraphicsEndImageContext();
 #else
-    FLAssertIsImplemented_v(nil);
+    FLAssertIsImplementedWithComment(nil);
 #endif
 
 }
@@ -314,7 +314,7 @@ static void FLAddRoundedRectToPath(CGContextRef context, CGRect rect, float oval
 	CGContextClosePath(context);
 	CGContextRestoreGState(context);
 #else 
-    FLAssertIsImplemented_();
+    FLAssertIsImplemented();
 #endif
 }
  

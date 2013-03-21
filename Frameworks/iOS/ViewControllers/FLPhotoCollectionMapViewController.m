@@ -32,7 +32,7 @@
 	coordinate:(CLLocationCoordinate2D) coordinate
 	thumbnail:(UIImage*) thumbnail
 {
-	FLAssertIsNotNil_(thumbnail);
+	FLAssertIsNotNil(thumbnail);
 
 	FLPhotoMapAnnotation* annotation = [[FLPhotoMapAnnotation alloc] init];
 	annotation.coordinate = coordinate; 

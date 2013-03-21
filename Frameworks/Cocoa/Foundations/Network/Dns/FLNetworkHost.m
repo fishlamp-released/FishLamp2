@@ -40,9 +40,9 @@
 - (id) initWithName:(NSString*) name {
     self = [super init];
     if(self) {
-        FLAssertStringIsNotEmpty_(name);
+        FLAssertStringIsNotEmpty(name);
         _hostRef = CFHostCreateWithName(nil, bridge_(CFStringRef, name));
-        FLAssertNotNil_(_hostRef);
+        FLAssertNotNil(_hostRef);
         self.hostName = name;
     }
     
@@ -53,7 +53,7 @@
     self = [super init];
     if(self) {
         _hostRef = CFHostCreateWithAddress(NULL, bridge_(CFDataRef, address));
-        FLAssertNotNil_(_hostRef);
+        FLAssertNotNil(_hostRef);
         self.addressData = address;
     }
     
@@ -89,7 +89,7 @@
             _hostRef = CFHostCreateWithAddress(NULL, bridge_(CFDataRef, data));
         }
         
-        FLAssertNotNil_(_hostRef);
+        FLAssertNotNil(_hostRef);
         
         self.addressData = data;
         
@@ -111,7 +111,7 @@
 }
 
 - (NSArray *) resolvedAddresses {
-    FLAssertIsNotNil_v(_hostRef, nil);
+    FLAssertIsNotNilWithComment(_hostRef, nil);
     
     if(!_resolvedAddresses && _hostRef) {
         NSArray* result = bridge_(id, CFHostGetAddressing(_hostRef, (Boolean*) &_resolved));
@@ -123,7 +123,7 @@
 }
 
 - (NSArray *) resolvedAddressStrings {
-    FLAssertIsNotNil_v(_hostRef, nil);
+    FLAssertIsNotNilWithComment(_hostRef, nil);
     
     if(!_resolvedAddressStrings && _hostRef) {
     
@@ -136,7 +136,7 @@
                 int         err;
                 char        addrStr[NI_MAXHOST];
                 
-                FLAssertIsKindOfClass_v(address, NSData, nil);
+                FLAssertIsKindOfClassWithComment(address, NSData, nil);
                                
                 err = getnameinfo((const struct sockaddr *) [address bytes], (socklen_t) [address length], addrStr, sizeof(addrStr), NULL, 0, NI_NUMERICHOST);
                 if (err == 0) {
@@ -156,7 +156,7 @@
 }
 
 - (NSArray *)resolvedHostNames {
-    FLAssertIsNotNil_v(_hostRef, nil);
+    FLAssertIsNotNilWithComment(_hostRef, nil);
     
     if(!_resolvedHostNames && _hostRef) {
         NSArray* result = bridge_(id, CFHostGetNames(_hostRef, (Boolean*) &_resolved));

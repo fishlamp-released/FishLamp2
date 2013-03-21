@@ -25,15 +25,10 @@
 		270B8D0716E2F8A800C95B0D /* FLAttributedString.m in Sources */ = {isa = PBXBuildFile; fileRef = 270B8D0016E2F8A800C95B0D /* FLAttributedString.m */; };
 		270B8D0816E2F8A800C95B0D /* FLAttributedString.m in Sources */ = {isa = PBXBuildFile; fileRef = 270B8D0016E2F8A800C95B0D /* FLAttributedString.m */; };
 		270B8D0916E2F8A800C95B0D /* FLAttributedString.m in Sources */ = {isa = PBXBuildFile; fileRef = 270B8D0016E2F8A800C95B0D /* FLAttributedString.m */; };
-		270BC8AF16EBAA5F00416D62 /* FishLampCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC88716EBAA5F00416D62 /* FishLampCompatibility.h */; };
-		270BC8B016EBAA5F00416D62 /* FishLampCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC88716EBAA5F00416D62 /* FishLampCompatibility.h */; };
-		270BC8B116EBAA5F00416D62 /* FishLampCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC88716EBAA5F00416D62 /* FishLampCompatibility.h */; };
-		270BC8B216EBAA5F00416D62 /* FishLampCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC88716EBAA5F00416D62 /* FishLampCompatibility.h */; };
-		270BC8B316EBAA5F00416D62 /* FishLampCompatibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC88816EBAA5F00416D62 /* FishLampCompatibility.m */; };
-		270BC8B416EBAA5F00416D62 /* FishLampCompatibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC88816EBAA5F00416D62 /* FishLampCompatibility.m */; };
-		270BC8B516EBAA5F00416D62 /* FishLampCompatibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC88816EBAA5F00416D62 /* FishLampCompatibility.m */; };
-		270BC8B616EBAA5F00416D62 /* FishLampCompatibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC88816EBAA5F00416D62 /* FishLampCompatibility.m */; };
-		270BC8B716EBAA5F00416D62 /* FishLampCompatibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC88816EBAA5F00416D62 /* FishLampCompatibility.m */; };
+		270BC8AF16EBAA5F00416D62 /* FLCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC88716EBAA5F00416D62 /* FLCompatibility.h */; };
+		270BC8B016EBAA5F00416D62 /* FLCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC88716EBAA5F00416D62 /* FLCompatibility.h */; };
+		270BC8B116EBAA5F00416D62 /* FLCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC88716EBAA5F00416D62 /* FLCompatibility.h */; };
+		270BC8B216EBAA5F00416D62 /* FLCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC88716EBAA5F00416D62 /* FLCompatibility.h */; };
 		270BC8B816EBAA5F00416D62 /* CGContext+UIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC88A16EBAA5F00416D62 /* CGContext+UIKit.h */; };
 		270BC8B916EBAA5F00416D62 /* CGContext+UIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC88A16EBAA5F00416D62 /* CGContext+UIKit.h */; };
 		270BC8BA16EBAA5F00416D62 /* CGContext+UIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC88A16EBAA5F00416D62 /* CGContext+UIKit.h */; };
@@ -124,15 +119,6 @@
 		270BC90F16EBAA6000416D62 /* UIImageView+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC89E16EBAA5F00416D62 /* UIImageView+OSX.m */; };
 		270BC91016EBAA6000416D62 /* UIImageView+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC89E16EBAA5F00416D62 /* UIImageView+OSX.m */; };
 		270BC91116EBAA6000416D62 /* UIImageView+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC89E16EBAA5F00416D62 /* UIImageView+OSX.m */; };
-		270BC91216EBAA6000416D62 /* UIKit+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC89F16EBAA5F00416D62 /* UIKit+OSX.h */; };
-		270BC91316EBAA6000416D62 /* UIKit+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC89F16EBAA5F00416D62 /* UIKit+OSX.h */; };
-		270BC91416EBAA6000416D62 /* UIKit+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC89F16EBAA5F00416D62 /* UIKit+OSX.h */; };
-		270BC91516EBAA6000416D62 /* UIKit+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC89F16EBAA5F00416D62 /* UIKit+OSX.h */; };
-		270BC91616EBAA6000416D62 /* UIKit+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC8A016EBAA5F00416D62 /* UIKit+OSX.m */; };
-		270BC91716EBAA6000416D62 /* UIKit+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC8A016EBAA5F00416D62 /* UIKit+OSX.m */; };
-		270BC91816EBAA6000416D62 /* UIKit+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC8A016EBAA5F00416D62 /* UIKit+OSX.m */; };
-		270BC91916EBAA6000416D62 /* UIKit+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC8A016EBAA5F00416D62 /* UIKit+OSX.m */; };
-		270BC91A16EBAA6000416D62 /* UIKit+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC8A016EBAA5F00416D62 /* UIKit+OSX.m */; };
 		270BC91F16EBAA6000416D62 /* UILabel+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC8A216EBAA5F00416D62 /* UILabel+OSX.h */; };
 		270BC92016EBAA6000416D62 /* UILabel+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC8A216EBAA5F00416D62 /* UILabel+OSX.h */; };
 		270BC92116EBAA6000416D62 /* UILabel+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC8A216EBAA5F00416D62 /* UILabel+OSX.h */; };
@@ -151,28 +137,61 @@
 		270BC92E16EBAA6000416D62 /* UITextField+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC8A516EBAA5F00416D62 /* UITextField+OSX.m */; };
 		270BC92F16EBAA6000416D62 /* UITextField+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC8A516EBAA5F00416D62 /* UITextField+OSX.m */; };
 		270BC93016EBAA6000416D62 /* UITextField+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC8A516EBAA5F00416D62 /* UITextField+OSX.m */; };
-		270BC93116EBAA6000416D62 /* UIView+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC8A616EBAA5F00416D62 /* UIView+OSX.h */; };
-		270BC93216EBAA6000416D62 /* UIView+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC8A616EBAA5F00416D62 /* UIView+OSX.h */; };
-		270BC93316EBAA6000416D62 /* UIView+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC8A616EBAA5F00416D62 /* UIView+OSX.h */; };
-		270BC93416EBAA6000416D62 /* UIView+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC8A616EBAA5F00416D62 /* UIView+OSX.h */; };
-		270BC93516EBAA6000416D62 /* UIView+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC8A716EBAA5F00416D62 /* UIView+OSX.m */; };
-		270BC93616EBAA6000416D62 /* UIView+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC8A716EBAA5F00416D62 /* UIView+OSX.m */; };
-		270BC93716EBAA6000416D62 /* UIView+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC8A716EBAA5F00416D62 /* UIView+OSX.m */; };
-		270BC93816EBAA6000416D62 /* UIView+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC8A716EBAA5F00416D62 /* UIView+OSX.m */; };
-		270BC93916EBAA6000416D62 /* UIView+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC8A716EBAA5F00416D62 /* UIView+OSX.m */; };
+		270BC93116EBAA6000416D62 /* FLCompatibleView+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC8A616EBAA5F00416D62 /* FLCompatibleView+OSX.h */; };
+		270BC93216EBAA6000416D62 /* FLCompatibleView+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC8A616EBAA5F00416D62 /* FLCompatibleView+OSX.h */; };
+		270BC93316EBAA6000416D62 /* FLCompatibleView+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC8A616EBAA5F00416D62 /* FLCompatibleView+OSX.h */; };
+		270BC93416EBAA6000416D62 /* FLCompatibleView+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC8A616EBAA5F00416D62 /* FLCompatibleView+OSX.h */; };
+		270BC93616EBAA6000416D62 /* FLCompatibleView+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC8A716EBAA5F00416D62 /* FLCompatibleView+OSX.m */; };
+		270BC93716EBAA6000416D62 /* FLCompatibleView+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC8A716EBAA5F00416D62 /* FLCompatibleView+OSX.m */; };
+		270BC93816EBAA6000416D62 /* FLCompatibleView+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC8A716EBAA5F00416D62 /* FLCompatibleView+OSX.m */; };
+		270BC93916EBAA6000416D62 /* FLCompatibleView+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC8A716EBAA5F00416D62 /* FLCompatibleView+OSX.m */; };
 		270BC93A16EBAA6000416D62 /* UIView+OSX_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC8A816EBAA5F00416D62 /* UIView+OSX_Internal.h */; };
 		270BC93B16EBAA6000416D62 /* UIView+OSX_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC8A816EBAA5F00416D62 /* UIView+OSX_Internal.h */; };
 		270BC93C16EBAA6000416D62 /* UIView+OSX_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC8A816EBAA5F00416D62 /* UIView+OSX_Internal.h */; };
 		270BC93D16EBAA6000416D62 /* UIView+OSX_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC8A816EBAA5F00416D62 /* UIView+OSX_Internal.h */; };
-		270BC93E16EBAA6000416D62 /* UIViewController+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC8A916EBAA5F00416D62 /* UIViewController+OSX.h */; };
-		270BC93F16EBAA6000416D62 /* UIViewController+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC8A916EBAA5F00416D62 /* UIViewController+OSX.h */; };
-		270BC94016EBAA6000416D62 /* UIViewController+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC8A916EBAA5F00416D62 /* UIViewController+OSX.h */; };
-		270BC94116EBAA6000416D62 /* UIViewController+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 270BC8A916EBAA5F00416D62 /* UIViewController+OSX.h */; };
-		270BC94216EBAA6000416D62 /* UIViewController+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC8AA16EBAA5F00416D62 /* UIViewController+OSX.m */; };
-		270BC94316EBAA6000416D62 /* UIViewController+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC8AA16EBAA5F00416D62 /* UIViewController+OSX.m */; };
-		270BC94416EBAA6000416D62 /* UIViewController+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC8AA16EBAA5F00416D62 /* UIViewController+OSX.m */; };
-		270BC94516EBAA6000416D62 /* UIViewController+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC8AA16EBAA5F00416D62 /* UIViewController+OSX.m */; };
-		270BC94616EBAA6000416D62 /* UIViewController+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 270BC8AA16EBAA5F00416D62 /* UIViewController+OSX.m */; };
+		271303CF16F8C87500DA94F7 /* FLNotificationListener.h in Headers */ = {isa = PBXBuildFile; fileRef = 271303CD16F8C87400DA94F7 /* FLNotificationListener.h */; };
+		271303D016F8C87500DA94F7 /* FLNotificationListener.h in Headers */ = {isa = PBXBuildFile; fileRef = 271303CD16F8C87400DA94F7 /* FLNotificationListener.h */; };
+		271303D116F8C87500DA94F7 /* FLNotificationListener.h in Headers */ = {isa = PBXBuildFile; fileRef = 271303CD16F8C87400DA94F7 /* FLNotificationListener.h */; };
+		271303D216F8C87500DA94F7 /* FLNotificationListener.h in Headers */ = {isa = PBXBuildFile; fileRef = 271303CD16F8C87400DA94F7 /* FLNotificationListener.h */; };
+		271303D316F8C87500DA94F7 /* FLNotificationListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 271303CE16F8C87500DA94F7 /* FLNotificationListener.m */; };
+		271303D416F8C87500DA94F7 /* FLNotificationListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 271303CE16F8C87500DA94F7 /* FLNotificationListener.m */; };
+		271303D516F8C87500DA94F7 /* FLNotificationListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 271303CE16F8C87500DA94F7 /* FLNotificationListener.m */; };
+		271303D616F8C87500DA94F7 /* FLNotificationListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 271303CE16F8C87500DA94F7 /* FLNotificationListener.m */; };
+		271303D716F8C87500DA94F7 /* FLNotificationListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 271303CE16F8C87500DA94F7 /* FLNotificationListener.m */; };
+		271303E516F8E7DE00DA94F7 /* FLCompatibleViewController+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 271303E316F8E7DD00DA94F7 /* FLCompatibleViewController+OSX.h */; };
+		271303E616F8E7DE00DA94F7 /* FLCompatibleViewController+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 271303E316F8E7DD00DA94F7 /* FLCompatibleViewController+OSX.h */; };
+		271303E716F8E7DE00DA94F7 /* FLCompatibleViewController+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 271303E316F8E7DD00DA94F7 /* FLCompatibleViewController+OSX.h */; };
+		271303E816F8E7DE00DA94F7 /* FLCompatibleViewController+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 271303E316F8E7DD00DA94F7 /* FLCompatibleViewController+OSX.h */; };
+		271303EA16F8E7DE00DA94F7 /* FLCompatibleViewController+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 271303E416F8E7DD00DA94F7 /* FLCompatibleViewController+OSX.m */; };
+		271303EB16F8E7DE00DA94F7 /* FLCompatibleViewController+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 271303E416F8E7DD00DA94F7 /* FLCompatibleViewController+OSX.m */; };
+		271303EC16F8E7DE00DA94F7 /* FLCompatibleViewController+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 271303E416F8E7DD00DA94F7 /* FLCompatibleViewController+OSX.m */; };
+		271303ED16F8E7DE00DA94F7 /* FLCompatibleViewController+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 271303E416F8E7DD00DA94F7 /* FLCompatibleViewController+OSX.m */; };
+		271303F016F8EACD00DA94F7 /* FLCompatibility+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 271303EE16F8EACC00DA94F7 /* FLCompatibility+OSX.h */; };
+		271303F116F8EACD00DA94F7 /* FLCompatibility+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 271303EE16F8EACC00DA94F7 /* FLCompatibility+OSX.h */; };
+		271303F216F8EACD00DA94F7 /* FLCompatibility+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 271303EE16F8EACC00DA94F7 /* FLCompatibility+OSX.h */; };
+		271303F316F8EACD00DA94F7 /* FLCompatibility+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 271303EE16F8EACC00DA94F7 /* FLCompatibility+OSX.h */; };
+		271303FA16F8ED6600DA94F7 /* FLCompatibleView.h in Headers */ = {isa = PBXBuildFile; fileRef = 271303F816F8ED6400DA94F7 /* FLCompatibleView.h */; };
+		271303FB16F8ED6600DA94F7 /* FLCompatibleView.h in Headers */ = {isa = PBXBuildFile; fileRef = 271303F816F8ED6400DA94F7 /* FLCompatibleView.h */; };
+		271303FC16F8ED6600DA94F7 /* FLCompatibleView.h in Headers */ = {isa = PBXBuildFile; fileRef = 271303F816F8ED6400DA94F7 /* FLCompatibleView.h */; };
+		271303FD16F8ED6600DA94F7 /* FLCompatibleView.h in Headers */ = {isa = PBXBuildFile; fileRef = 271303F816F8ED6400DA94F7 /* FLCompatibleView.h */; };
+		271303FE16F8ED6600DA94F7 /* FLCompatibleViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 271303F916F8ED6500DA94F7 /* FLCompatibleViewController.h */; };
+		271303FF16F8ED6600DA94F7 /* FLCompatibleViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 271303F916F8ED6500DA94F7 /* FLCompatibleViewController.h */; };
+		2713040016F8ED6600DA94F7 /* FLCompatibleViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 271303F916F8ED6500DA94F7 /* FLCompatibleViewController.h */; };
+		2713040116F8ED6600DA94F7 /* FLCompatibleViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 271303F916F8ED6500DA94F7 /* FLCompatibleViewController.h */; };
+		2713040F16F924C500DA94F7 /* FLDictionaryObjectStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 2713040D16F924C500DA94F7 /* FLDictionaryObjectStorage.h */; };
+		2713041016F924C500DA94F7 /* FLDictionaryObjectStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 2713040D16F924C500DA94F7 /* FLDictionaryObjectStorage.h */; };
+		2713041116F924C500DA94F7 /* FLDictionaryObjectStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 2713040D16F924C500DA94F7 /* FLDictionaryObjectStorage.h */; };
+		2713041216F924C500DA94F7 /* FLDictionaryObjectStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 2713040D16F924C500DA94F7 /* FLDictionaryObjectStorage.h */; };
+		2713041316F924C500DA94F7 /* FLDictionaryObjectStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2713040E16F924C500DA94F7 /* FLDictionaryObjectStorage.m */; };
+		2713041416F924C500DA94F7 /* FLDictionaryObjectStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2713040E16F924C500DA94F7 /* FLDictionaryObjectStorage.m */; };
+		2713041516F924C500DA94F7 /* FLDictionaryObjectStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2713040E16F924C500DA94F7 /* FLDictionaryObjectStorage.m */; };
+		2713041616F924C500DA94F7 /* FLDictionaryObjectStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2713040E16F924C500DA94F7 /* FLDictionaryObjectStorage.m */; };
+		2713041716F924C500DA94F7 /* FLDictionaryObjectStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2713040E16F924C500DA94F7 /* FLDictionaryObjectStorage.m */; };
+		2713042416F925D700DA94F7 /* FLObjectStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2713042316F925D500DA94F7 /* FLObjectStorage.m */; };
+		2713042516F925D700DA94F7 /* FLObjectStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2713042316F925D500DA94F7 /* FLObjectStorage.m */; };
+		2713042616F925D700DA94F7 /* FLObjectStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2713042316F925D500DA94F7 /* FLObjectStorage.m */; };
+		2713042716F925D700DA94F7 /* FLObjectStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2713042316F925D500DA94F7 /* FLObjectStorage.m */; };
+		2713042816F925D700DA94F7 /* FLObjectStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2713042316F925D500DA94F7 /* FLObjectStorage.m */; };
 		272D80A616C8604E006052E5 /* FLDataEncoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 272D80A516C8604E006052E5 /* FLDataEncoding.h */; };
 		272D80A716C8604E006052E5 /* FLDataEncoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 272D80A516C8604E006052E5 /* FLDataEncoding.h */; };
 		272D80A816C8604E006052E5 /* FLDataEncoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 272D80A516C8604E006052E5 /* FLDataEncoding.h */; };
@@ -827,6 +846,15 @@
 		27348DED168E24F200D4142E /* FLUserAuthenticatorOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 27348DE6168E24F100D4142E /* FLUserAuthenticatorOperation.m */; };
 		27348DEE168E24F200D4142E /* FLUserAuthenticatorOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 27348DE6168E24F100D4142E /* FLUserAuthenticatorOperation.m */; };
 		27348DEF168E24F200D4142E /* FLUserAuthenticatorOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 27348DE6168E24F100D4142E /* FLUserAuthenticatorOperation.m */; };
+		2736988016FA156A009CCE77 /* NSError+FLNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 2736987E16FA156A009CCE77 /* NSError+FLNetworking.h */; };
+		2736988116FA156A009CCE77 /* NSError+FLNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 2736987E16FA156A009CCE77 /* NSError+FLNetworking.h */; };
+		2736988216FA156A009CCE77 /* NSError+FLNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 2736987E16FA156A009CCE77 /* NSError+FLNetworking.h */; };
+		2736988316FA156A009CCE77 /* NSError+FLNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 2736987E16FA156A009CCE77 /* NSError+FLNetworking.h */; };
+		2736988416FA156A009CCE77 /* NSError+FLNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 2736987F16FA156A009CCE77 /* NSError+FLNetworking.m */; };
+		2736988516FA156A009CCE77 /* NSError+FLNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 2736987F16FA156A009CCE77 /* NSError+FLNetworking.m */; };
+		2736988616FA156A009CCE77 /* NSError+FLNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 2736987F16FA156A009CCE77 /* NSError+FLNetworking.m */; };
+		2736988716FA156A009CCE77 /* NSError+FLNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 2736987F16FA156A009CCE77 /* NSError+FLNetworking.m */; };
+		2736988816FA156A009CCE77 /* NSError+FLNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 2736987F16FA156A009CCE77 /* NSError+FLNetworking.m */; };
 		2739699F16B9E66300EFDA6C /* FLStringTokenizer.h in Headers */ = {isa = PBXBuildFile; fileRef = 2739699916B9E66000EFDA6C /* FLStringTokenizer.h */; };
 		273969A016B9E66300EFDA6C /* FLStringTokenizer.h in Headers */ = {isa = PBXBuildFile; fileRef = 2739699916B9E66000EFDA6C /* FLStringTokenizer.h */; };
 		273969A116B9E66300EFDA6C /* FLStringTokenizer.h in Headers */ = {isa = PBXBuildFile; fileRef = 2739699916B9E66000EFDA6C /* FLStringTokenizer.h */; };
@@ -2265,20 +2293,6 @@
 		2798DAB3166D886500A0863D /* FLSimpleTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE3E166D886500A0863D /* FLSimpleTask.m */; };
 		2798DAB4166D886500A0863D /* FLSimpleTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE3E166D886500A0863D /* FLSimpleTask.m */; };
 		2798DAB5166D886500A0863D /* FLSimpleTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE3E166D886500A0863D /* FLSimpleTask.m */; };
-		2798DAB6166D886500A0863D /* FLNotification.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE40166D886500A0863D /* FLNotification.h */; };
-		2798DAB7166D886500A0863D /* FLNotification.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE40166D886500A0863D /* FLNotification.h */; };
-		2798DAB8166D886500A0863D /* FLNotification.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE40166D886500A0863D /* FLNotification.h */; };
-		2798DAB9166D886500A0863D /* FLNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE41166D886500A0863D /* FLNotification.m */; };
-		2798DABA166D886500A0863D /* FLNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE41166D886500A0863D /* FLNotification.m */; };
-		2798DABB166D886500A0863D /* FLNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE41166D886500A0863D /* FLNotification.m */; };
-		2798DABC166D886500A0863D /* FLNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE41166D886500A0863D /* FLNotification.m */; };
-		2798DABD166D886500A0863D /* FLNotificationListener.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE42166D886500A0863D /* FLNotificationListener.h */; };
-		2798DABE166D886500A0863D /* FLNotificationListener.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE42166D886500A0863D /* FLNotificationListener.h */; };
-		2798DABF166D886500A0863D /* FLNotificationListener.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE42166D886500A0863D /* FLNotificationListener.h */; };
-		2798DAC0166D886500A0863D /* FLNotificationListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE43166D886500A0863D /* FLNotificationListener.m */; };
-		2798DAC1166D886500A0863D /* FLNotificationListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE43166D886500A0863D /* FLNotificationListener.m */; };
-		2798DAC2166D886500A0863D /* FLNotificationListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE43166D886500A0863D /* FLNotificationListener.m */; };
-		2798DAC3166D886500A0863D /* FLNotificationListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE43166D886500A0863D /* FLNotificationListener.m */; };
 		2798DAC4166D886500A0863D /* FLCallbackObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE45166D886500A0863D /* FLCallbackObject.h */; };
 		2798DAC5166D886500A0863D /* FLCallbackObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE45166D886500A0863D /* FLCallbackObject.h */; };
 		2798DAC6166D886500A0863D /* FLCallbackObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE45166D886500A0863D /* FLCallbackObject.h */; };
@@ -2729,10 +2743,10 @@
 		27A22B5F16D40D960009C139 /* FLDataStoreService.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A22A0216D40D950009C139 /* FLDataStoreService.m */; };
 		27A22B6016D40D960009C139 /* FLDataStoreService.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A22A0216D40D950009C139 /* FLDataStoreService.m */; };
 		27A22B6116D40D960009C139 /* FLDataStoreService.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A22A0216D40D950009C139 /* FLDataStoreService.m */; };
-		27A22B6216D40D960009C139 /* FLObjectDataStore.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A22A0316D40D950009C139 /* FLObjectDataStore.h */; };
-		27A22B6316D40D960009C139 /* FLObjectDataStore.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A22A0316D40D950009C139 /* FLObjectDataStore.h */; };
-		27A22B6416D40D960009C139 /* FLObjectDataStore.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A22A0316D40D950009C139 /* FLObjectDataStore.h */; };
-		27A22B6516D40D960009C139 /* FLObjectDataStore.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A22A0316D40D950009C139 /* FLObjectDataStore.h */; };
+		27A22B6216D40D960009C139 /* FLObjectStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A22A0316D40D950009C139 /* FLObjectStorage.h */; };
+		27A22B6316D40D960009C139 /* FLObjectStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A22A0316D40D950009C139 /* FLObjectStorage.h */; };
+		27A22B6416D40D960009C139 /* FLObjectStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A22A0316D40D950009C139 /* FLObjectStorage.h */; };
+		27A22B6516D40D960009C139 /* FLObjectStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A22A0316D40D950009C139 /* FLObjectStorage.h */; };
 		27A22B6816D40E180009C139 /* FLDataStoreWithCacheService.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A22B6616D40E180009C139 /* FLDataStoreWithCacheService.h */; };
 		27A22B6916D40E180009C139 /* FLDataStoreWithCacheService.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A22B6616D40E180009C139 /* FLDataStoreWithCacheService.h */; };
 		27A22B6A16D40E180009C139 /* FLDataStoreWithCacheService.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A22B6616D40E180009C139 /* FLDataStoreWithCacheService.h */; };
@@ -2866,8 +2880,6 @@
 		27CBBFB116768BA600753D0A /* FLDefaultErrorHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE3A166D886500A0863D /* FLDefaultErrorHandler.m */; };
 		27CBBFB216768BA600753D0A /* FLErrorDescriber.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE3C166D886500A0863D /* FLErrorDescriber.m */; };
 		27CBBFB316768BA600753D0A /* FLSimpleTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE3E166D886500A0863D /* FLSimpleTask.m */; };
-		27CBBFB416768BA600753D0A /* FLNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE41166D886500A0863D /* FLNotification.m */; };
-		27CBBFB516768BA600753D0A /* FLNotificationListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE43166D886500A0863D /* FLNotificationListener.m */; };
 		27CBBFB616768BA600753D0A /* FLCallbackObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE46166D886500A0863D /* FLCallbackObject.m */; };
 		27CBBFB716768BA600753D0A /* FLFunctor.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE48166D886500A0863D /* FLFunctor.m */; };
 		27CBBFB816768BA600753D0A /* FLNonRetainedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE4A166D886500A0863D /* FLNonRetainedObject.m */; };
@@ -2898,8 +2910,6 @@
 		27CBC1A716768BA600753D0A /* FLDefaultErrorHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE39166D886500A0863D /* FLDefaultErrorHandler.h */; };
 		27CBC1A816768BA600753D0A /* FLErrorDescriber.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE3B166D886500A0863D /* FLErrorDescriber.h */; };
 		27CBC1A916768BA600753D0A /* FLSimpleTask.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE3D166D886500A0863D /* FLSimpleTask.h */; };
-		27CBC1AA16768BA600753D0A /* FLNotification.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE40166D886500A0863D /* FLNotification.h */; };
-		27CBC1AB16768BA600753D0A /* FLNotificationListener.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE42166D886500A0863D /* FLNotificationListener.h */; };
 		27CBC1AC16768BA600753D0A /* FLCallbackObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE45166D886500A0863D /* FLCallbackObject.h */; };
 		27CBC1AD16768BA600753D0A /* FLFunctor.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE47166D886500A0863D /* FLFunctor.h */; };
 		27CBC1AE16768BA600753D0A /* FLNonRetainedObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE49166D886500A0863D /* FLNonRetainedObject.h */; };
@@ -3169,8 +3179,7 @@
 		2709A0E916EBB1A600C59905 /* AppKit+iOS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppKit+iOS.m"; sourceTree = "<group>"; };
 		270B8CFF16E2F8A800C95B0D /* FLAttributedString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAttributedString.h; sourceTree = "<group>"; };
 		270B8D0016E2F8A800C95B0D /* FLAttributedString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAttributedString.m; sourceTree = "<group>"; };
-		270BC88716EBAA5F00416D62 /* FishLampCompatibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishLampCompatibility.h; sourceTree = "<group>"; };
-		270BC88816EBAA5F00416D62 /* FishLampCompatibility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FishLampCompatibility.m; sourceTree = "<group>"; };
+		270BC88716EBAA5F00416D62 /* FLCompatibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCompatibility.h; sourceTree = "<group>"; };
 		270BC88A16EBAA5F00416D62 /* CGContext+UIKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CGContext+UIKit.h"; sourceTree = "<group>"; };
 		270BC88B16EBAA5F00416D62 /* CGContext+UIKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CGContext+UIKit.m"; sourceTree = "<group>"; };
 		270BC88C16EBAA5F00416D62 /* fishlamp-module.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "fishlamp-module.json"; sourceTree = "<group>"; };
@@ -3192,17 +3201,23 @@
 		270BC89C16EBAA5F00416D62 /* UIImage+OSX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+OSX.m"; sourceTree = "<group>"; };
 		270BC89D16EBAA5F00416D62 /* UIImageView+OSX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+OSX.h"; sourceTree = "<group>"; };
 		270BC89E16EBAA5F00416D62 /* UIImageView+OSX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+OSX.m"; sourceTree = "<group>"; };
-		270BC89F16EBAA5F00416D62 /* UIKit+OSX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIKit+OSX.h"; sourceTree = "<group>"; };
-		270BC8A016EBAA5F00416D62 /* UIKit+OSX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIKit+OSX.m"; sourceTree = "<group>"; };
 		270BC8A216EBAA5F00416D62 /* UILabel+OSX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+OSX.h"; sourceTree = "<group>"; };
 		270BC8A316EBAA5F00416D62 /* UILabel+OSX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+OSX.m"; sourceTree = "<group>"; };
 		270BC8A416EBAA5F00416D62 /* UITextField+OSX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+OSX.h"; sourceTree = "<group>"; };
 		270BC8A516EBAA5F00416D62 /* UITextField+OSX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+OSX.m"; sourceTree = "<group>"; };
-		270BC8A616EBAA5F00416D62 /* UIView+OSX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+OSX.h"; sourceTree = "<group>"; };
-		270BC8A716EBAA5F00416D62 /* UIView+OSX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+OSX.m"; sourceTree = "<group>"; };
+		270BC8A616EBAA5F00416D62 /* FLCompatibleView+OSX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FLCompatibleView+OSX.h"; sourceTree = "<group>"; };
+		270BC8A716EBAA5F00416D62 /* FLCompatibleView+OSX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FLCompatibleView+OSX.m"; sourceTree = "<group>"; };
 		270BC8A816EBAA5F00416D62 /* UIView+OSX_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+OSX_Internal.h"; sourceTree = "<group>"; };
-		270BC8A916EBAA5F00416D62 /* UIViewController+OSX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+OSX.h"; sourceTree = "<group>"; };
-		270BC8AA16EBAA5F00416D62 /* UIViewController+OSX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+OSX.m"; sourceTree = "<group>"; };
+		271303CD16F8C87400DA94F7 /* FLNotificationListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLNotificationListener.h; sourceTree = "<group>"; };
+		271303CE16F8C87500DA94F7 /* FLNotificationListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLNotificationListener.m; sourceTree = "<group>"; };
+		271303E316F8E7DD00DA94F7 /* FLCompatibleViewController+OSX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FLCompatibleViewController+OSX.h"; sourceTree = "<group>"; };
+		271303E416F8E7DD00DA94F7 /* FLCompatibleViewController+OSX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FLCompatibleViewController+OSX.m"; sourceTree = "<group>"; };
+		271303EE16F8EACC00DA94F7 /* FLCompatibility+OSX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FLCompatibility+OSX.h"; sourceTree = "<group>"; };
+		271303F816F8ED6400DA94F7 /* FLCompatibleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCompatibleView.h; sourceTree = "<group>"; };
+		271303F916F8ED6500DA94F7 /* FLCompatibleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCompatibleViewController.h; sourceTree = "<group>"; };
+		2713040D16F924C500DA94F7 /* FLDictionaryObjectStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLDictionaryObjectStorage.h; sourceTree = "<group>"; };
+		2713040E16F924C500DA94F7 /* FLDictionaryObjectStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLDictionaryObjectStorage.m; sourceTree = "<group>"; };
+		2713042316F925D500DA94F7 /* FLObjectStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLObjectStorage.m; sourceTree = "<group>"; };
 		272D807816C84313006052E5 /* AssetQueueObjects.flproj */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = AssetQueueObjects.flproj; sourceTree = "<group>"; };
 		272D80A516C8604E006052E5 /* FLDataEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLDataEncoding.h; sourceTree = "<group>"; };
 		272D80AA16C86081006052E5 /* FLDataEncoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLDataEncoder.h; sourceTree = "<group>"; };
@@ -3353,6 +3368,8 @@
 		27348D48168BAC3700D4142E /* FLServiceKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLServiceKeys.m; sourceTree = "<group>"; };
 		27348DE5168E24EF00D4142E /* FLUserAuthenticatorOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLUserAuthenticatorOperation.h; sourceTree = "<group>"; };
 		27348DE6168E24F100D4142E /* FLUserAuthenticatorOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLUserAuthenticatorOperation.m; sourceTree = "<group>"; };
+		2736987E16FA156A009CCE77 /* NSError+FLNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+FLNetworking.h"; sourceTree = "<group>"; };
+		2736987F16FA156A009CCE77 /* NSError+FLNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+FLNetworking.m"; sourceTree = "<group>"; };
 		2739006F16D45D1F00FC6453 /* FishLampCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FishLampCore.xcodeproj; path = ../FishLampCoreLib/FishLampCore.xcodeproj; sourceTree = "<group>"; };
 		2739699916B9E66000EFDA6C /* FLStringTokenizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLStringTokenizer.h; sourceTree = "<group>"; };
 		2739699A16B9E66100EFDA6C /* FLStringTokenizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLStringTokenizer.m; sourceTree = "<group>"; };
@@ -3685,10 +3702,6 @@
 		2798CE3C166D886500A0863D /* FLErrorDescriber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLErrorDescriber.m; sourceTree = "<group>"; };
 		2798CE3D166D886500A0863D /* FLSimpleTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLSimpleTask.h; sourceTree = "<group>"; };
 		2798CE3E166D886500A0863D /* FLSimpleTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLSimpleTask.m; sourceTree = "<group>"; };
-		2798CE40166D886500A0863D /* FLNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLNotification.h; sourceTree = "<group>"; };
-		2798CE41166D886500A0863D /* FLNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLNotification.m; sourceTree = "<group>"; };
-		2798CE42166D886500A0863D /* FLNotificationListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLNotificationListener.h; sourceTree = "<group>"; };
-		2798CE43166D886500A0863D /* FLNotificationListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLNotificationListener.m; sourceTree = "<group>"; };
 		2798CE45166D886500A0863D /* FLCallbackObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCallbackObject.h; sourceTree = "<group>"; };
 		2798CE46166D886500A0863D /* FLCallbackObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLCallbackObject.m; sourceTree = "<group>"; };
 		2798CE47166D886500A0863D /* FLFunctor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLFunctor.h; sourceTree = "<group>"; };
@@ -3797,7 +3810,7 @@
 		27A22A0016D40D950009C139 /* FLTempFolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLTempFolder.m; sourceTree = "<group>"; };
 		27A22A0116D40D950009C139 /* FLDataStoreService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLDataStoreService.h; sourceTree = "<group>"; };
 		27A22A0216D40D950009C139 /* FLDataStoreService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLDataStoreService.m; sourceTree = "<group>"; };
-		27A22A0316D40D950009C139 /* FLObjectDataStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLObjectDataStore.h; sourceTree = "<group>"; };
+		27A22A0316D40D950009C139 /* FLObjectStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLObjectStorage.h; sourceTree = "<group>"; };
 		27A22B6616D40E180009C139 /* FLDataStoreWithCacheService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLDataStoreWithCacheService.h; sourceTree = "<group>"; };
 		27A22B6716D40E180009C139 /* FLDataStoreWithCacheService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLDataStoreWithCacheService.m; sourceTree = "<group>"; };
 		27A43AB415CDCC89001CB13E /* libFishLampCocoa-iOS-ARC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoa-iOS-ARC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -3926,9 +3939,11 @@
 		270BC88516EBAA5F00416D62 /* Compatibility */ = {
 			isa = PBXGroup;
 			children = (
+				271303F816F8ED6400DA94F7 /* FLCompatibleView.h */,
+				271303F916F8ED6500DA94F7 /* FLCompatibleViewController.h */,
+				271303EE16F8EACC00DA94F7 /* FLCompatibility+OSX.h */,
 				2709A0E716EBB18800C59905 /* iOS */,
-				270BC88716EBAA5F00416D62 /* FishLampCompatibility.h */,
-				270BC88816EBAA5F00416D62 /* FishLampCompatibility.m */,
+				270BC88716EBAA5F00416D62 /* FLCompatibility.h */,
 				270BC88916EBAA5F00416D62 /* OSX */,
 			);
 			path = Compatibility;
@@ -3958,17 +3973,15 @@
 				270BC89C16EBAA5F00416D62 /* UIImage+OSX.m */,
 				270BC89D16EBAA5F00416D62 /* UIImageView+OSX.h */,
 				270BC89E16EBAA5F00416D62 /* UIImageView+OSX.m */,
-				270BC89F16EBAA5F00416D62 /* UIKit+OSX.h */,
-				270BC8A016EBAA5F00416D62 /* UIKit+OSX.m */,
 				270BC8A216EBAA5F00416D62 /* UILabel+OSX.h */,
 				270BC8A316EBAA5F00416D62 /* UILabel+OSX.m */,
 				270BC8A416EBAA5F00416D62 /* UITextField+OSX.h */,
 				270BC8A516EBAA5F00416D62 /* UITextField+OSX.m */,
-				270BC8A616EBAA5F00416D62 /* UIView+OSX.h */,
-				270BC8A716EBAA5F00416D62 /* UIView+OSX.m */,
+				270BC8A616EBAA5F00416D62 /* FLCompatibleView+OSX.h */,
+				270BC8A716EBAA5F00416D62 /* FLCompatibleView+OSX.m */,
 				270BC8A816EBAA5F00416D62 /* UIView+OSX_Internal.h */,
-				270BC8A916EBAA5F00416D62 /* UIViewController+OSX.h */,
-				270BC8AA16EBAA5F00416D62 /* UIViewController+OSX.m */,
+				271303E316F8E7DD00DA94F7 /* FLCompatibleViewController+OSX.h */,
+				271303E416F8E7DD00DA94F7 /* FLCompatibleViewController+OSX.m */,
 			);
 			path = OSX;
 			sourceTree = "<group>";
@@ -4221,6 +4234,8 @@
 				2731E71416F3A98A00BB1E83 /* NSURLErrorDomainGenericDescriber.m */,
 				2731E71516F3A98A00BB1E83 /* NSURLResponse+Extras.h */,
 				2731E71616F3A98A00BB1E83 /* NSURLResponse+Extras.m */,
+				2736987E16FA156A009CCE77 /* NSError+FLNetworking.h */,
+				2736987F16FA156A009CCE77 /* NSError+FLNetworking.m */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -4244,6 +4259,8 @@
 				2731E93C16F3CDD900BB1E83 /* FLOldObservable.m */,
 				2731E93D16F3CDD900BB1E83 /* NSNotification+FLExtras.h */,
 				2731E93E16F3CDD900BB1E83 /* NSNotification+FLExtras.m */,
+				271303CD16F8C87400DA94F7 /* FLNotificationListener.h */,
+				271303CE16F8C87500DA94F7 /* FLNotificationListener.m */,
 			);
 			path = Notifications;
 			sourceTree = "<group>";
@@ -4979,7 +4996,6 @@
 				2798CE3C166D886500A0863D /* FLErrorDescriber.m */,
 				2798CE3D166D886500A0863D /* FLSimpleTask.h */,
 				2798CE3E166D886500A0863D /* FLSimpleTask.m */,
-				2798CE3F166D886500A0863D /* Notifications */,
 				2798CE44166D886500A0863D /* ObjectContainer */,
 				2749368C169A1098008E8EC5 /* __DeprecatedHeaders.h */,
 			);
@@ -5029,17 +5045,6 @@
 				2798CE2C166D886500A0863D /* FLUploadedAsset.m */,
 			);
 			path = AssetQueue;
-			sourceTree = "<group>";
-		};
-		2798CE3F166D886500A0863D /* Notifications */ = {
-			isa = PBXGroup;
-			children = (
-				2798CE40166D886500A0863D /* FLNotification.h */,
-				2798CE41166D886500A0863D /* FLNotification.m */,
-				2798CE42166D886500A0863D /* FLNotificationListener.h */,
-				2798CE43166D886500A0863D /* FLNotificationListener.m */,
-			);
-			path = Notifications;
 			sourceTree = "<group>";
 		};
 		2798CE44166D886500A0863D /* ObjectContainer */ = {
@@ -5121,7 +5126,10 @@
 				27A229F616D40D950009C139 /* Files */,
 				27A22A0116D40D950009C139 /* FLDataStoreService.h */,
 				27A22A0216D40D950009C139 /* FLDataStoreService.m */,
-				27A22A0316D40D950009C139 /* FLObjectDataStore.h */,
+				27A22A0316D40D950009C139 /* FLObjectStorage.h */,
+				2713040D16F924C500DA94F7 /* FLDictionaryObjectStorage.h */,
+				2713040E16F924C500DA94F7 /* FLDictionaryObjectStorage.m */,
+				2713042316F925D500DA94F7 /* FLObjectStorage.m */,
 			);
 			path = Persistance;
 			sourceTree = "<group>";
@@ -5431,8 +5439,6 @@
 				2798DAA2166D886500A0863D /* FLDefaultErrorHandler.h in Headers */,
 				2798DAA9166D886500A0863D /* FLErrorDescriber.h in Headers */,
 				2798DAB0166D886500A0863D /* FLSimpleTask.h in Headers */,
-				2798DAB7166D886500A0863D /* FLNotification.h in Headers */,
-				2798DABE166D886500A0863D /* FLNotificationListener.h in Headers */,
 				2798DAC5166D886500A0863D /* FLCallbackObject.h in Headers */,
 				2798DACC166D886500A0863D /* FLFunctor.h in Headers */,
 				2798DAD3166D886500A0863D /* FLNonRetainedObject.h in Headers */,
@@ -5674,12 +5680,12 @@
 				27A22B4716D40D960009C139 /* FLTempFileMgr.h in Headers */,
 				27A22B5016D40D960009C139 /* FLTempFolder.h in Headers */,
 				27A22B5916D40D960009C139 /* FLDataStoreService.h in Headers */,
-				27A22B6216D40D960009C139 /* FLObjectDataStore.h in Headers */,
+				27A22B6216D40D960009C139 /* FLObjectStorage.h in Headers */,
 				27A22B6816D40E180009C139 /* FLDataStoreWithCacheService.h in Headers */,
 				27489B6116DAD0D5007DA98A /* FLCoreTypes.h in Headers */,
 				2785FBBA16E287AB0029D496 /* FLActivityLog.h in Headers */,
 				270B8D0116E2F8A800C95B0D /* FLAttributedString.h in Headers */,
-				270BC8AF16EBAA5F00416D62 /* FishLampCompatibility.h in Headers */,
+				270BC8AF16EBAA5F00416D62 /* FLCompatibility.h in Headers */,
 				270BC8B816EBAA5F00416D62 /* CGContext+UIKit.h in Headers */,
 				270BC8C116EBAA5F00416D62 /* NSValue+UIKit.h in Headers */,
 				270BC8CA16EBAA5F00416D62 /* UIColor+OSX.h in Headers */,
@@ -5690,12 +5696,10 @@
 				270BC8F716EBAA6000416D62 /* UIGeometry+OSX.h in Headers */,
 				270BC90016EBAA6000416D62 /* UIImage+OSX.h in Headers */,
 				270BC90916EBAA6000416D62 /* UIImageView+OSX.h in Headers */,
-				270BC91216EBAA6000416D62 /* UIKit+OSX.h in Headers */,
 				270BC91F16EBAA6000416D62 /* UILabel+OSX.h in Headers */,
 				270BC92816EBAA6000416D62 /* UITextField+OSX.h in Headers */,
-				270BC93116EBAA6000416D62 /* UIView+OSX.h in Headers */,
+				270BC93116EBAA6000416D62 /* FLCompatibleView+OSX.h in Headers */,
 				270BC93A16EBAA6000416D62 /* UIView+OSX_Internal.h in Headers */,
-				270BC93E16EBAA6000416D62 /* UIViewController+OSX.h in Headers */,
 				2709A0EA16EBB1A600C59905 /* AppKit+iOS.h in Headers */,
 				275D6F4316ED876A0059EF66 /* FLStorableUserLogin.h in Headers */,
 				274193CC16EFB34A004F53B7 /* FLTimedObject.h in Headers */,
@@ -5772,6 +5776,13 @@
 				2731E97E16F3CDD900BB1E83 /* NSNotification+FLExtras.h in Headers */,
 				2731E98916F3DEDB00BB1E83 /* FLNetworkStreamSink.h in Headers */,
 				27E0747716F6517000CE3F81 /* FLObjectInflator.h in Headers */,
+				271303CF16F8C87500DA94F7 /* FLNotificationListener.h in Headers */,
+				271303E516F8E7DE00DA94F7 /* FLCompatibleViewController+OSX.h in Headers */,
+				271303F016F8EACD00DA94F7 /* FLCompatibility+OSX.h in Headers */,
+				271303FA16F8ED6600DA94F7 /* FLCompatibleView.h in Headers */,
+				271303FE16F8ED6600DA94F7 /* FLCompatibleViewController.h in Headers */,
+				2713040F16F924C500DA94F7 /* FLDictionaryObjectStorage.h in Headers */,
+				2736988016FA156A009CCE77 /* NSError+FLNetworking.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5798,8 +5809,6 @@
 				2798DAA3166D886500A0863D /* FLDefaultErrorHandler.h in Headers */,
 				2798DAAA166D886500A0863D /* FLErrorDescriber.h in Headers */,
 				2798DAB1166D886500A0863D /* FLSimpleTask.h in Headers */,
-				2798DAB8166D886500A0863D /* FLNotification.h in Headers */,
-				2798DABF166D886500A0863D /* FLNotificationListener.h in Headers */,
 				2798DAC6166D886500A0863D /* FLCallbackObject.h in Headers */,
 				2798DACD166D886500A0863D /* FLFunctor.h in Headers */,
 				2798DAD4166D886500A0863D /* FLNonRetainedObject.h in Headers */,
@@ -6041,12 +6050,12 @@
 				27A22B4916D40D960009C139 /* FLTempFileMgr.h in Headers */,
 				27A22B5216D40D960009C139 /* FLTempFolder.h in Headers */,
 				27A22B5B16D40D960009C139 /* FLDataStoreService.h in Headers */,
-				27A22B6416D40D960009C139 /* FLObjectDataStore.h in Headers */,
+				27A22B6416D40D960009C139 /* FLObjectStorage.h in Headers */,
 				27A22B6A16D40E180009C139 /* FLDataStoreWithCacheService.h in Headers */,
 				27489B6316DAD0D5007DA98A /* FLCoreTypes.h in Headers */,
 				2785FBBC16E287AB0029D496 /* FLActivityLog.h in Headers */,
 				270B8D0316E2F8A800C95B0D /* FLAttributedString.h in Headers */,
-				270BC8B116EBAA5F00416D62 /* FishLampCompatibility.h in Headers */,
+				270BC8B116EBAA5F00416D62 /* FLCompatibility.h in Headers */,
 				270BC8BA16EBAA5F00416D62 /* CGContext+UIKit.h in Headers */,
 				270BC8C316EBAA5F00416D62 /* NSValue+UIKit.h in Headers */,
 				270BC8CC16EBAA5F00416D62 /* UIColor+OSX.h in Headers */,
@@ -6057,12 +6066,10 @@
 				270BC8F916EBAA6000416D62 /* UIGeometry+OSX.h in Headers */,
 				270BC90216EBAA6000416D62 /* UIImage+OSX.h in Headers */,
 				270BC90B16EBAA6000416D62 /* UIImageView+OSX.h in Headers */,
-				270BC91416EBAA6000416D62 /* UIKit+OSX.h in Headers */,
 				270BC92116EBAA6000416D62 /* UILabel+OSX.h in Headers */,
 				270BC92A16EBAA6000416D62 /* UITextField+OSX.h in Headers */,
-				270BC93316EBAA6000416D62 /* UIView+OSX.h in Headers */,
+				270BC93316EBAA6000416D62 /* FLCompatibleView+OSX.h in Headers */,
 				270BC93C16EBAA6000416D62 /* UIView+OSX_Internal.h in Headers */,
-				270BC94016EBAA6000416D62 /* UIViewController+OSX.h in Headers */,
 				2709A0EC16EBB1A600C59905 /* AppKit+iOS.h in Headers */,
 				275D6F4516ED876A0059EF66 /* FLStorableUserLogin.h in Headers */,
 				274193CE16EFB34A004F53B7 /* FLTimedObject.h in Headers */,
@@ -6139,6 +6146,13 @@
 				2731E98016F3CDD900BB1E83 /* NSNotification+FLExtras.h in Headers */,
 				2731E98B16F3DEDB00BB1E83 /* FLNetworkStreamSink.h in Headers */,
 				27E0747916F6517000CE3F81 /* FLObjectInflator.h in Headers */,
+				271303D116F8C87500DA94F7 /* FLNotificationListener.h in Headers */,
+				271303E716F8E7DE00DA94F7 /* FLCompatibleViewController+OSX.h in Headers */,
+				271303F216F8EACD00DA94F7 /* FLCompatibility+OSX.h in Headers */,
+				271303FC16F8ED6600DA94F7 /* FLCompatibleView.h in Headers */,
+				2713040016F8ED6600DA94F7 /* FLCompatibleViewController.h in Headers */,
+				2713041116F924C500DA94F7 /* FLDictionaryObjectStorage.h in Headers */,
+				2736988216FA156A009CCE77 /* NSError+FLNetworking.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6165,8 +6179,6 @@
 				2798DAA1166D886500A0863D /* FLDefaultErrorHandler.h in Headers */,
 				2798DAA8166D886500A0863D /* FLErrorDescriber.h in Headers */,
 				2798DAAF166D886500A0863D /* FLSimpleTask.h in Headers */,
-				2798DAB6166D886500A0863D /* FLNotification.h in Headers */,
-				2798DABD166D886500A0863D /* FLNotificationListener.h in Headers */,
 				2798DAC4166D886500A0863D /* FLCallbackObject.h in Headers */,
 				2798DACB166D886500A0863D /* FLFunctor.h in Headers */,
 				2798DAD2166D886500A0863D /* FLNonRetainedObject.h in Headers */,
@@ -6408,12 +6420,12 @@
 				27A22B4816D40D960009C139 /* FLTempFileMgr.h in Headers */,
 				27A22B5116D40D960009C139 /* FLTempFolder.h in Headers */,
 				27A22B5A16D40D960009C139 /* FLDataStoreService.h in Headers */,
-				27A22B6316D40D960009C139 /* FLObjectDataStore.h in Headers */,
+				27A22B6316D40D960009C139 /* FLObjectStorage.h in Headers */,
 				27A22B6916D40E180009C139 /* FLDataStoreWithCacheService.h in Headers */,
 				27489B6216DAD0D5007DA98A /* FLCoreTypes.h in Headers */,
 				2785FBBB16E287AB0029D496 /* FLActivityLog.h in Headers */,
 				270B8D0216E2F8A800C95B0D /* FLAttributedString.h in Headers */,
-				270BC8B016EBAA5F00416D62 /* FishLampCompatibility.h in Headers */,
+				270BC8B016EBAA5F00416D62 /* FLCompatibility.h in Headers */,
 				270BC8B916EBAA5F00416D62 /* CGContext+UIKit.h in Headers */,
 				270BC8C216EBAA5F00416D62 /* NSValue+UIKit.h in Headers */,
 				270BC8CB16EBAA5F00416D62 /* UIColor+OSX.h in Headers */,
@@ -6424,12 +6436,10 @@
 				270BC8F816EBAA6000416D62 /* UIGeometry+OSX.h in Headers */,
 				270BC90116EBAA6000416D62 /* UIImage+OSX.h in Headers */,
 				270BC90A16EBAA6000416D62 /* UIImageView+OSX.h in Headers */,
-				270BC91316EBAA6000416D62 /* UIKit+OSX.h in Headers */,
 				270BC92016EBAA6000416D62 /* UILabel+OSX.h in Headers */,
 				270BC92916EBAA6000416D62 /* UITextField+OSX.h in Headers */,
-				270BC93216EBAA6000416D62 /* UIView+OSX.h in Headers */,
+				270BC93216EBAA6000416D62 /* FLCompatibleView+OSX.h in Headers */,
 				270BC93B16EBAA6000416D62 /* UIView+OSX_Internal.h in Headers */,
-				270BC93F16EBAA6000416D62 /* UIViewController+OSX.h in Headers */,
 				2709A0EB16EBB1A600C59905 /* AppKit+iOS.h in Headers */,
 				275D6F4416ED876A0059EF66 /* FLStorableUserLogin.h in Headers */,
 				274193CD16EFB34A004F53B7 /* FLTimedObject.h in Headers */,
@@ -6506,6 +6516,13 @@
 				2731E97F16F3CDD900BB1E83 /* NSNotification+FLExtras.h in Headers */,
 				2731E98A16F3DEDB00BB1E83 /* FLNetworkStreamSink.h in Headers */,
 				27E0747816F6517000CE3F81 /* FLObjectInflator.h in Headers */,
+				271303D016F8C87500DA94F7 /* FLNotificationListener.h in Headers */,
+				271303E616F8E7DE00DA94F7 /* FLCompatibleViewController+OSX.h in Headers */,
+				271303F116F8EACD00DA94F7 /* FLCompatibility+OSX.h in Headers */,
+				271303FB16F8ED6600DA94F7 /* FLCompatibleView.h in Headers */,
+				271303FF16F8ED6600DA94F7 /* FLCompatibleViewController.h in Headers */,
+				2713041016F924C500DA94F7 /* FLDictionaryObjectStorage.h in Headers */,
+				2736988116FA156A009CCE77 /* NSError+FLNetworking.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6532,8 +6549,6 @@
 				27CBC1A716768BA600753D0A /* FLDefaultErrorHandler.h in Headers */,
 				27CBC1A816768BA600753D0A /* FLErrorDescriber.h in Headers */,
 				27CBC1A916768BA600753D0A /* FLSimpleTask.h in Headers */,
-				27CBC1AA16768BA600753D0A /* FLNotification.h in Headers */,
-				27CBC1AB16768BA600753D0A /* FLNotificationListener.h in Headers */,
 				27CBC1AC16768BA600753D0A /* FLCallbackObject.h in Headers */,
 				27CBC1AD16768BA600753D0A /* FLFunctor.h in Headers */,
 				27CBC1AE16768BA600753D0A /* FLNonRetainedObject.h in Headers */,
@@ -6775,12 +6790,12 @@
 				27A22B4A16D40D960009C139 /* FLTempFileMgr.h in Headers */,
 				27A22B5316D40D960009C139 /* FLTempFolder.h in Headers */,
 				27A22B5C16D40D960009C139 /* FLDataStoreService.h in Headers */,
-				27A22B6516D40D960009C139 /* FLObjectDataStore.h in Headers */,
+				27A22B6516D40D960009C139 /* FLObjectStorage.h in Headers */,
 				27A22B6B16D40E180009C139 /* FLDataStoreWithCacheService.h in Headers */,
 				27489B6416DAD0D5007DA98A /* FLCoreTypes.h in Headers */,
 				2785FBBD16E287AB0029D496 /* FLActivityLog.h in Headers */,
 				270B8D0416E2F8A800C95B0D /* FLAttributedString.h in Headers */,
-				270BC8B216EBAA5F00416D62 /* FishLampCompatibility.h in Headers */,
+				270BC8B216EBAA5F00416D62 /* FLCompatibility.h in Headers */,
 				270BC8BB16EBAA5F00416D62 /* CGContext+UIKit.h in Headers */,
 				270BC8C416EBAA5F00416D62 /* NSValue+UIKit.h in Headers */,
 				270BC8CD16EBAA5F00416D62 /* UIColor+OSX.h in Headers */,
@@ -6791,12 +6806,10 @@
 				270BC8FA16EBAA6000416D62 /* UIGeometry+OSX.h in Headers */,
 				270BC90316EBAA6000416D62 /* UIImage+OSX.h in Headers */,
 				270BC90C16EBAA6000416D62 /* UIImageView+OSX.h in Headers */,
-				270BC91516EBAA6000416D62 /* UIKit+OSX.h in Headers */,
 				270BC92216EBAA6000416D62 /* UILabel+OSX.h in Headers */,
 				270BC92B16EBAA6000416D62 /* UITextField+OSX.h in Headers */,
-				270BC93416EBAA6000416D62 /* UIView+OSX.h in Headers */,
+				270BC93416EBAA6000416D62 /* FLCompatibleView+OSX.h in Headers */,
 				270BC93D16EBAA6000416D62 /* UIView+OSX_Internal.h in Headers */,
-				270BC94116EBAA6000416D62 /* UIViewController+OSX.h in Headers */,
 				2709A0ED16EBB1A600C59905 /* AppKit+iOS.h in Headers */,
 				275D6F4616ED876A0059EF66 /* FLStorableUserLogin.h in Headers */,
 				274193CF16EFB34A004F53B7 /* FLTimedObject.h in Headers */,
@@ -6873,6 +6886,13 @@
 				2731E98116F3CDD900BB1E83 /* NSNotification+FLExtras.h in Headers */,
 				2731E98C16F3DEDB00BB1E83 /* FLNetworkStreamSink.h in Headers */,
 				27E0747A16F6517000CE3F81 /* FLObjectInflator.h in Headers */,
+				271303D216F8C87500DA94F7 /* FLNotificationListener.h in Headers */,
+				271303E816F8E7DE00DA94F7 /* FLCompatibleViewController+OSX.h in Headers */,
+				271303F316F8EACD00DA94F7 /* FLCompatibility+OSX.h in Headers */,
+				271303FD16F8ED6600DA94F7 /* FLCompatibleView.h in Headers */,
+				2713040116F8ED6600DA94F7 /* FLCompatibleViewController.h in Headers */,
+				2713041216F924C500DA94F7 /* FLDictionaryObjectStorage.h in Headers */,
+				2736988316FA156A009CCE77 /* NSError+FLNetworking.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7065,8 +7085,6 @@
 				2798DAA6166D886500A0863D /* FLDefaultErrorHandler.m in Sources */,
 				2798DAAD166D886500A0863D /* FLErrorDescriber.m in Sources */,
 				2798DAB4166D886500A0863D /* FLSimpleTask.m in Sources */,
-				2798DABB166D886500A0863D /* FLNotification.m in Sources */,
-				2798DAC2166D886500A0863D /* FLNotificationListener.m in Sources */,
 				2798DAC9166D886500A0863D /* FLCallbackObject.m in Sources */,
 				2798DAD0166D886500A0863D /* FLFunctor.m in Sources */,
 				2798DAD7166D886500A0863D /* FLNonRetainedObject.m in Sources */,
@@ -7287,7 +7305,6 @@
 				27489B6616DAD0D5007DA98A /* FLCoreTypes.m in Sources */,
 				2785FBBF16E287AB0029D496 /* FLActivityLog.m in Sources */,
 				270B8D0616E2F8A800C95B0D /* FLAttributedString.m in Sources */,
-				270BC8B416EBAA5F00416D62 /* FishLampCompatibility.m in Sources */,
 				270BC8BD16EBAA5F00416D62 /* CGContext+UIKit.m in Sources */,
 				270BC8C616EBAA5F00416D62 /* NSValue+UIKit.m in Sources */,
 				270BC8CF16EBAA5F00416D62 /* UIColor+OSX.m in Sources */,
@@ -7298,11 +7315,9 @@
 				270BC8FC16EBAA6000416D62 /* UIGeometry+OSX.m in Sources */,
 				270BC90516EBAA6000416D62 /* UIImage+OSX.m in Sources */,
 				270BC90E16EBAA6000416D62 /* UIImageView+OSX.m in Sources */,
-				270BC91716EBAA6000416D62 /* UIKit+OSX.m in Sources */,
 				270BC92416EBAA6000416D62 /* UILabel+OSX.m in Sources */,
 				270BC92D16EBAA6000416D62 /* UITextField+OSX.m in Sources */,
-				270BC93616EBAA6000416D62 /* UIView+OSX.m in Sources */,
-				270BC94316EBAA6000416D62 /* UIViewController+OSX.m in Sources */,
+				270BC93616EBAA6000416D62 /* FLCompatibleView+OSX.m in Sources */,
 				2709A0EF16EBB1A600C59905 /* AppKit+iOS.m in Sources */,
 				275D6F4816ED876A0059EF66 /* FLStorableUserLogin.m in Sources */,
 				274193D116EFB34A004F53B7 /* FLTimedObject.m in Sources */,
@@ -7375,6 +7390,11 @@
 				2731E98316F3CDD900BB1E83 /* NSNotification+FLExtras.m in Sources */,
 				2731E98E16F3DEDB00BB1E83 /* FLNetworkStreamSink.m in Sources */,
 				27E0747C16F6517000CE3F81 /* FLObjectInflator.m in Sources */,
+				271303D416F8C87500DA94F7 /* FLNotificationListener.m in Sources */,
+				271303EA16F8E7DE00DA94F7 /* FLCompatibleViewController+OSX.m in Sources */,
+				2713041416F924C500DA94F7 /* FLDictionaryObjectStorage.m in Sources */,
+				2713042516F925D700DA94F7 /* FLObjectStorage.m in Sources */,
+				2736988516FA156A009CCE77 /* NSError+FLNetworking.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7398,8 +7418,6 @@
 				2798DAA7166D886500A0863D /* FLDefaultErrorHandler.m in Sources */,
 				2798DAAE166D886500A0863D /* FLErrorDescriber.m in Sources */,
 				2798DAB5166D886500A0863D /* FLSimpleTask.m in Sources */,
-				2798DABC166D886500A0863D /* FLNotification.m in Sources */,
-				2798DAC3166D886500A0863D /* FLNotificationListener.m in Sources */,
 				2798DACA166D886500A0863D /* FLCallbackObject.m in Sources */,
 				2798DAD1166D886500A0863D /* FLFunctor.m in Sources */,
 				2798DAD8166D886500A0863D /* FLNonRetainedObject.m in Sources */,
@@ -7620,7 +7638,6 @@
 				27489B6816DAD0D5007DA98A /* FLCoreTypes.m in Sources */,
 				2785FBC116E287AB0029D496 /* FLActivityLog.m in Sources */,
 				270B8D0816E2F8A800C95B0D /* FLAttributedString.m in Sources */,
-				270BC8B616EBAA5F00416D62 /* FishLampCompatibility.m in Sources */,
 				270BC8BF16EBAA5F00416D62 /* CGContext+UIKit.m in Sources */,
 				270BC8C816EBAA5F00416D62 /* NSValue+UIKit.m in Sources */,
 				270BC8D116EBAA5F00416D62 /* UIColor+OSX.m in Sources */,
@@ -7631,11 +7648,9 @@
 				270BC8FE16EBAA6000416D62 /* UIGeometry+OSX.m in Sources */,
 				270BC90716EBAA6000416D62 /* UIImage+OSX.m in Sources */,
 				270BC91016EBAA6000416D62 /* UIImageView+OSX.m in Sources */,
-				270BC91916EBAA6000416D62 /* UIKit+OSX.m in Sources */,
 				270BC92616EBAA6000416D62 /* UILabel+OSX.m in Sources */,
 				270BC92F16EBAA6000416D62 /* UITextField+OSX.m in Sources */,
-				270BC93816EBAA6000416D62 /* UIView+OSX.m in Sources */,
-				270BC94516EBAA6000416D62 /* UIViewController+OSX.m in Sources */,
+				270BC93816EBAA6000416D62 /* FLCompatibleView+OSX.m in Sources */,
 				2709A0F116EBB1A600C59905 /* AppKit+iOS.m in Sources */,
 				275D6F4A16ED876A0059EF66 /* FLStorableUserLogin.m in Sources */,
 				274193D316EFB34A004F53B7 /* FLTimedObject.m in Sources */,
@@ -7708,6 +7723,11 @@
 				2731E98516F3CDD900BB1E83 /* NSNotification+FLExtras.m in Sources */,
 				2731E99016F3DEDB00BB1E83 /* FLNetworkStreamSink.m in Sources */,
 				27E0747E16F6517000CE3F81 /* FLObjectInflator.m in Sources */,
+				271303D616F8C87500DA94F7 /* FLNotificationListener.m in Sources */,
+				271303EC16F8E7DE00DA94F7 /* FLCompatibleViewController+OSX.m in Sources */,
+				2713041616F924C500DA94F7 /* FLDictionaryObjectStorage.m in Sources */,
+				2713042716F925D700DA94F7 /* FLObjectStorage.m in Sources */,
+				2736988716FA156A009CCE77 /* NSError+FLNetworking.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7731,8 +7751,6 @@
 				2798DAA4166D886500A0863D /* FLDefaultErrorHandler.m in Sources */,
 				2798DAAB166D886500A0863D /* FLErrorDescriber.m in Sources */,
 				2798DAB2166D886500A0863D /* FLSimpleTask.m in Sources */,
-				2798DAB9166D886500A0863D /* FLNotification.m in Sources */,
-				2798DAC0166D886500A0863D /* FLNotificationListener.m in Sources */,
 				2798DAC7166D886500A0863D /* FLCallbackObject.m in Sources */,
 				2798DACE166D886500A0863D /* FLFunctor.m in Sources */,
 				2798DAD5166D886500A0863D /* FLNonRetainedObject.m in Sources */,
@@ -7952,7 +7970,6 @@
 				27489B6516DAD0D5007DA98A /* FLCoreTypes.m in Sources */,
 				2785FBBE16E287AB0029D496 /* FLActivityLog.m in Sources */,
 				270B8D0516E2F8A800C95B0D /* FLAttributedString.m in Sources */,
-				270BC8B316EBAA5F00416D62 /* FishLampCompatibility.m in Sources */,
 				270BC8BC16EBAA5F00416D62 /* CGContext+UIKit.m in Sources */,
 				270BC8C516EBAA5F00416D62 /* NSValue+UIKit.m in Sources */,
 				270BC8CE16EBAA5F00416D62 /* UIColor+OSX.m in Sources */,
@@ -7963,11 +7980,8 @@
 				270BC8FB16EBAA6000416D62 /* UIGeometry+OSX.m in Sources */,
 				270BC90416EBAA6000416D62 /* UIImage+OSX.m in Sources */,
 				270BC90D16EBAA6000416D62 /* UIImageView+OSX.m in Sources */,
-				270BC91616EBAA6000416D62 /* UIKit+OSX.m in Sources */,
 				270BC92316EBAA6000416D62 /* UILabel+OSX.m in Sources */,
 				270BC92C16EBAA6000416D62 /* UITextField+OSX.m in Sources */,
-				270BC93516EBAA6000416D62 /* UIView+OSX.m in Sources */,
-				270BC94216EBAA6000416D62 /* UIViewController+OSX.m in Sources */,
 				2709A0EE16EBB1A600C59905 /* AppKit+iOS.m in Sources */,
 				275D6F4716ED876A0059EF66 /* FLStorableUserLogin.m in Sources */,
 				274193D016EFB34A004F53B7 /* FLTimedObject.m in Sources */,
@@ -8040,6 +8054,10 @@
 				2731E98216F3CDD900BB1E83 /* NSNotification+FLExtras.m in Sources */,
 				2731E98D16F3DEDB00BB1E83 /* FLNetworkStreamSink.m in Sources */,
 				27E0747B16F6517000CE3F81 /* FLObjectInflator.m in Sources */,
+				271303D316F8C87500DA94F7 /* FLNotificationListener.m in Sources */,
+				2713041316F924C500DA94F7 /* FLDictionaryObjectStorage.m in Sources */,
+				2713042416F925D700DA94F7 /* FLObjectStorage.m in Sources */,
+				2736988416FA156A009CCE77 /* NSError+FLNetworking.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8063,8 +8081,6 @@
 				2798DAA5166D886500A0863D /* FLDefaultErrorHandler.m in Sources */,
 				2798DAAC166D886500A0863D /* FLErrorDescriber.m in Sources */,
 				2798DAB3166D886500A0863D /* FLSimpleTask.m in Sources */,
-				2798DABA166D886500A0863D /* FLNotification.m in Sources */,
-				2798DAC1166D886500A0863D /* FLNotificationListener.m in Sources */,
 				2798DAC8166D886500A0863D /* FLCallbackObject.m in Sources */,
 				2798DACF166D886500A0863D /* FLFunctor.m in Sources */,
 				2798DAD6166D886500A0863D /* FLNonRetainedObject.m in Sources */,
@@ -8285,7 +8301,6 @@
 				27489B6716DAD0D5007DA98A /* FLCoreTypes.m in Sources */,
 				2785FBC016E287AB0029D496 /* FLActivityLog.m in Sources */,
 				270B8D0716E2F8A800C95B0D /* FLAttributedString.m in Sources */,
-				270BC8B516EBAA5F00416D62 /* FishLampCompatibility.m in Sources */,
 				270BC8BE16EBAA5F00416D62 /* CGContext+UIKit.m in Sources */,
 				270BC8C716EBAA5F00416D62 /* NSValue+UIKit.m in Sources */,
 				270BC8D016EBAA5F00416D62 /* UIColor+OSX.m in Sources */,
@@ -8296,11 +8311,9 @@
 				270BC8FD16EBAA6000416D62 /* UIGeometry+OSX.m in Sources */,
 				270BC90616EBAA6000416D62 /* UIImage+OSX.m in Sources */,
 				270BC90F16EBAA6000416D62 /* UIImageView+OSX.m in Sources */,
-				270BC91816EBAA6000416D62 /* UIKit+OSX.m in Sources */,
 				270BC92516EBAA6000416D62 /* UILabel+OSX.m in Sources */,
 				270BC92E16EBAA6000416D62 /* UITextField+OSX.m in Sources */,
-				270BC93716EBAA6000416D62 /* UIView+OSX.m in Sources */,
-				270BC94416EBAA6000416D62 /* UIViewController+OSX.m in Sources */,
+				270BC93716EBAA6000416D62 /* FLCompatibleView+OSX.m in Sources */,
 				2709A0F016EBB1A600C59905 /* AppKit+iOS.m in Sources */,
 				275D6F4916ED876A0059EF66 /* FLStorableUserLogin.m in Sources */,
 				274193D216EFB34A004F53B7 /* FLTimedObject.m in Sources */,
@@ -8373,6 +8386,11 @@
 				2731E98416F3CDD900BB1E83 /* NSNotification+FLExtras.m in Sources */,
 				2731E98F16F3DEDB00BB1E83 /* FLNetworkStreamSink.m in Sources */,
 				27E0747D16F6517000CE3F81 /* FLObjectInflator.m in Sources */,
+				271303D516F8C87500DA94F7 /* FLNotificationListener.m in Sources */,
+				271303EB16F8E7DE00DA94F7 /* FLCompatibleViewController+OSX.m in Sources */,
+				2713041516F924C500DA94F7 /* FLDictionaryObjectStorage.m in Sources */,
+				2713042616F925D700DA94F7 /* FLObjectStorage.m in Sources */,
+				2736988616FA156A009CCE77 /* NSError+FLNetworking.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8396,8 +8414,6 @@
 				27CBBFB116768BA600753D0A /* FLDefaultErrorHandler.m in Sources */,
 				27CBBFB216768BA600753D0A /* FLErrorDescriber.m in Sources */,
 				27CBBFB316768BA600753D0A /* FLSimpleTask.m in Sources */,
-				27CBBFB416768BA600753D0A /* FLNotification.m in Sources */,
-				27CBBFB516768BA600753D0A /* FLNotificationListener.m in Sources */,
 				27CBBFB616768BA600753D0A /* FLCallbackObject.m in Sources */,
 				27CBBFB716768BA600753D0A /* FLFunctor.m in Sources */,
 				27CBBFB816768BA600753D0A /* FLNonRetainedObject.m in Sources */,
@@ -8618,7 +8634,6 @@
 				27489B6916DAD0D5007DA98A /* FLCoreTypes.m in Sources */,
 				2785FBC216E287AB0029D496 /* FLActivityLog.m in Sources */,
 				270B8D0916E2F8A800C95B0D /* FLAttributedString.m in Sources */,
-				270BC8B716EBAA5F00416D62 /* FishLampCompatibility.m in Sources */,
 				270BC8C016EBAA5F00416D62 /* CGContext+UIKit.m in Sources */,
 				270BC8C916EBAA5F00416D62 /* NSValue+UIKit.m in Sources */,
 				270BC8D216EBAA5F00416D62 /* UIColor+OSX.m in Sources */,
@@ -8629,11 +8644,9 @@
 				270BC8FF16EBAA6000416D62 /* UIGeometry+OSX.m in Sources */,
 				270BC90816EBAA6000416D62 /* UIImage+OSX.m in Sources */,
 				270BC91116EBAA6000416D62 /* UIImageView+OSX.m in Sources */,
-				270BC91A16EBAA6000416D62 /* UIKit+OSX.m in Sources */,
 				270BC92716EBAA6000416D62 /* UILabel+OSX.m in Sources */,
 				270BC93016EBAA6000416D62 /* UITextField+OSX.m in Sources */,
-				270BC93916EBAA6000416D62 /* UIView+OSX.m in Sources */,
-				270BC94616EBAA6000416D62 /* UIViewController+OSX.m in Sources */,
+				270BC93916EBAA6000416D62 /* FLCompatibleView+OSX.m in Sources */,
 				2709A0F216EBB1A600C59905 /* AppKit+iOS.m in Sources */,
 				275D6F4B16ED876A0059EF66 /* FLStorableUserLogin.m in Sources */,
 				274193D416EFB34A004F53B7 /* FLTimedObject.m in Sources */,
@@ -8706,6 +8719,11 @@
 				2731E98616F3CDD900BB1E83 /* NSNotification+FLExtras.m in Sources */,
 				2731E99116F3DEDB00BB1E83 /* FLNetworkStreamSink.m in Sources */,
 				27E0747F16F6517000CE3F81 /* FLObjectInflator.m in Sources */,
+				271303D716F8C87500DA94F7 /* FLNotificationListener.m in Sources */,
+				271303ED16F8E7DE00DA94F7 /* FLCompatibleViewController+OSX.m in Sources */,
+				2713041716F924C500DA94F7 /* FLDictionaryObjectStorage.m in Sources */,
+				2713042816F925D700DA94F7 /* FLObjectStorage.m in Sources */,
+				2736988816FA156A009CCE77 /* NSError+FLNetworking.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

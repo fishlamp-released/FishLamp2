@@ -207,9 +207,9 @@ FLSynthesizeStructProperty(allowMultipleSelections, setAllowMultipleSelections, 
 }
 
 - (void) reflowCellsInBounds:(CGRect) bounds {
-    FLAssertIsNotNil_(self.arrangement);
-    FLAssertIsNotNil_(self.visibleCellCollection);
-    FLAssertIsNotNil_(self.scrollView);
+    FLAssertIsNotNil(self.arrangement);
+    FLAssertIsNotNil(self.visibleCellCollection);
+    FLAssertIsNotNil(self.scrollView);
 
     self.scrollView.contentSize = [self.arrangement performArrangement:self.cellCollection.objectArray inBounds:bounds];
     
@@ -219,7 +219,7 @@ FLSynthesizeStructProperty(allowMultipleSelections, setAllowMultipleSelections, 
 - (void) visibleCellsChanged {
     FLVisibleCellRanges visible = _visibleCellCollection.visibleRanges;
 
-    FLAssert_v(visible.count == 1, @"expecting only one range");
+    FLAssertWithComment(visible.count == 1, @"expecting only one range");
 
     NSRange range = visible.ranges[0];
 
@@ -243,7 +243,7 @@ FLSynthesizeStructProperty(allowMultipleSelections, setAllowMultipleSelections, 
 
 - (void) scrollToCell:(FLGridCell*) cell    
              animated:(BOOL) animated {
-    FLAssertIsNotNil_(cell);
+    FLAssertIsNotNil(cell);
     [self.scrollView scrollRectToVisible:cell.frame animated:animated];
 }
 
@@ -391,7 +391,7 @@ FLSynthesizeStructProperty(allowMultipleSelections, setAllowMultipleSelections, 
             cell = [self createGridViewCellForObject:object];
         }
 
-        FLAssertIsNotNil_(cell);
+        FLAssertIsNotNil(cell);
         [newCollection addObject:cell forKey:dataRefKey];
     }
     
@@ -408,7 +408,7 @@ FLSynthesizeStructProperty(allowMultipleSelections, setAllowMultipleSelections, 
     for(id object in dataRefArray) {
         id dataRefKey = [object dataRefKey];
         FLGridCell* cell = [self createGridViewCellForObject:object];
-        FLAssertIsNotNil_(cell);
+        FLAssertIsNotNil(cell);
         [newCollection addObject:cell forKey:dataRefKey];
     }
     
@@ -424,7 +424,7 @@ FLSynthesizeStructProperty(allowMultipleSelections, setAllowMultipleSelections, 
     }
     else {
         cell = [self createGridViewCellForObject:object];
-        FLAssertIsNotNil_(cell);
+        FLAssertIsNotNil(cell);
 
         [_cellCollection addObject:cell forKey:dataRefKey];
     }

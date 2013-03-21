@@ -169,7 +169,7 @@ static float s_thumbnailSize = 0.0;
 		startImage = self.fullScreen.image;
 	}
 
-	FLAssertIsNotNil_v(startImage, nil);
+	FLAssertIsNotNilWithComment(startImage, nil);
 
 	[self.thumbnail setImage:[startImage thumbnailImage:s_thumbnailSize 
 			transparentBorder:0 
@@ -179,7 +179,7 @@ static float s_thumbnailSize = 0.0;
 		exifDictionary:nil
 		];
 	
-//	  FLAssert_v(startImage != nil, @"no image to create thumbnail with");
+//	  FLAssertWithComment(startImage != nil, @"no image to create thumbnail with");
 //	
 //	[startImage shrinkImage:&thumb maxLongSide:s_thumbnailSize makeSquare:YES];
 //	
@@ -195,7 +195,7 @@ static float s_thumbnailSize = 0.0;
 	{
 //		[original shrinkImage:&fullSized maxLongSide:s_fullSize makeSquare:NO];
 
-		FLAssert_v(self.original.hasImage, @"no image to create full screen version");
+		FLAssertWithComment(self.original.hasImage, @"no image to create full screen version");
 
 		[self.fullScreen setImage:[self.original.image resizedImageWithContentMode:UIViewContentModeScaleAspectFit 
 			bounds:CGSizeMake(s_fullSize, s_fullSize) 

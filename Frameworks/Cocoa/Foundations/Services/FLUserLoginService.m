@@ -59,8 +59,8 @@
 //	@finally {
 //		[self deleteSessionData];
 //
-//		FLAssertIsNil_v(_cacheDatabase, nil);
-//		FLAssertIsNil_v(_documentsDatabase, nil);
+//		FLAssertIsNilWithComment(_cacheDatabase, nil);
+//		FLAssertIsNilWithComment(_documentsDatabase, nil);
 //		
 //		_state.open = NO;
 //		_state.willOpen = NO;
@@ -70,8 +70,8 @@
 }
 
 - (void) openService:(id) opener {
-//    FLAssert_v(!self.isContextOpen, @"session already open");
-//    FLAssert_v(FLStringIsNotEmpty(self.userLogin.userName), @"invalid userLogin");
+//    FLAssertWithComment(!self.isContextOpen, @"session already open");
+//    FLAssertWithComment(FLStringIsNotEmpty(self.userLogin.userName), @"invalid userLogin");
 
 //    [self sendMessage:@"userSessionWillOpen:"];
 //    [super openService];

@@ -83,7 +83,7 @@
 //
 //- (void) beginLoadingFileInBundle:(NSString*) fileName anchor:(NSString*) anchorNameOrNil
 //{
-//	FLAssertStringIsNotEmpty_(fileName);
+//	FLAssertStringIsNotEmpty(fileName);
 //	
 //	NSURLRequest *request = [NSURLRequest requestWithURL:fileUrl];
 //	[self.webView loadRequest:request];

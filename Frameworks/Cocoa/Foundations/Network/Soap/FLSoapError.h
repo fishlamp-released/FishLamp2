@@ -8,7 +8,7 @@
 #import "FishLampCore.h"
 #import "FLFrameworkErrorDomain.h"
 #import "FLSoapFault11.h"
-#import "FLErrorDomain.h"
+#import "FLErrorDomainInfo.h"
 #import "NSError+FLExtras.h"
 
 #define FLUnderlyingSoapFaultKey @"FLUnderlyingSoapFaultKey"

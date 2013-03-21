@@ -61,6 +61,33 @@
 		2709A10616EBD98400C59905 /* FLMouseTrackingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2709A0FF16EBD98400C59905 /* FLMouseTrackingView.m */; };
 		2709A10716EBD98400C59905 /* FLMouseTrackingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2709A0FF16EBD98400C59905 /* FLMouseTrackingView.m */; };
 		2709A10816EBD98400C59905 /* FLMouseTrackingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2709A0FF16EBD98400C59905 /* FLMouseTrackingView.m */; };
+		271303B916F8C5D200DA94F7 /* FLTheme.h in Headers */ = {isa = PBXBuildFile; fileRef = 271303B716F8C5D200DA94F7 /* FLTheme.h */; };
+		271303BA16F8C5D200DA94F7 /* FLTheme.h in Headers */ = {isa = PBXBuildFile; fileRef = 271303B716F8C5D200DA94F7 /* FLTheme.h */; };
+		271303BB16F8C5D200DA94F7 /* FLTheme.h in Headers */ = {isa = PBXBuildFile; fileRef = 271303B716F8C5D200DA94F7 /* FLTheme.h */; };
+		271303BC16F8C5D200DA94F7 /* FLTheme.h in Headers */ = {isa = PBXBuildFile; fileRef = 271303B716F8C5D200DA94F7 /* FLTheme.h */; };
+		271303BD16F8C5D200DA94F7 /* FLTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 271303B816F8C5D200DA94F7 /* FLTheme.m */; };
+		271303BE16F8C5D200DA94F7 /* FLTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 271303B816F8C5D200DA94F7 /* FLTheme.m */; };
+		271303BF16F8C5D200DA94F7 /* FLTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 271303B816F8C5D200DA94F7 /* FLTheme.m */; };
+		271303C016F8C5D200DA94F7 /* FLTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 271303B816F8C5D200DA94F7 /* FLTheme.m */; };
+		271303C116F8C5D200DA94F7 /* FLTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 271303B816F8C5D200DA94F7 /* FLTheme.m */; };
+		271303C416F8C5F300DA94F7 /* FLThemeManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 271303C216F8C5F300DA94F7 /* FLThemeManager.h */; };
+		271303C516F8C5F300DA94F7 /* FLThemeManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 271303C216F8C5F300DA94F7 /* FLThemeManager.h */; };
+		271303C616F8C5F300DA94F7 /* FLThemeManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 271303C216F8C5F300DA94F7 /* FLThemeManager.h */; };
+		271303C716F8C5F300DA94F7 /* FLThemeManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 271303C216F8C5F300DA94F7 /* FLThemeManager.h */; };
+		271303C816F8C5F300DA94F7 /* FLThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 271303C316F8C5F300DA94F7 /* FLThemeManager.m */; };
+		271303C916F8C5F300DA94F7 /* FLThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 271303C316F8C5F300DA94F7 /* FLThemeManager.m */; };
+		271303CA16F8C5F300DA94F7 /* FLThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 271303C316F8C5F300DA94F7 /* FLThemeManager.m */; };
+		271303CB16F8C5F300DA94F7 /* FLThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 271303C316F8C5F300DA94F7 /* FLThemeManager.m */; };
+		271303CC16F8C5F300DA94F7 /* FLThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 271303C316F8C5F300DA94F7 /* FLThemeManager.m */; };
+		271303DA16F8DB6F00DA94F7 /* FLThemeChangedListener.h in Headers */ = {isa = PBXBuildFile; fileRef = 271303D816F8DB6F00DA94F7 /* FLThemeChangedListener.h */; };
+		271303DB16F8DB6F00DA94F7 /* FLThemeChangedListener.h in Headers */ = {isa = PBXBuildFile; fileRef = 271303D816F8DB6F00DA94F7 /* FLThemeChangedListener.h */; };
+		271303DC16F8DB6F00DA94F7 /* FLThemeChangedListener.h in Headers */ = {isa = PBXBuildFile; fileRef = 271303D816F8DB6F00DA94F7 /* FLThemeChangedListener.h */; };
+		271303DD16F8DB6F00DA94F7 /* FLThemeChangedListener.h in Headers */ = {isa = PBXBuildFile; fileRef = 271303D816F8DB6F00DA94F7 /* FLThemeChangedListener.h */; };
+		271303DE16F8DB6F00DA94F7 /* FLThemeChangedListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 271303D916F8DB6F00DA94F7 /* FLThemeChangedListener.m */; };
+		271303DF16F8DB6F00DA94F7 /* FLThemeChangedListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 271303D916F8DB6F00DA94F7 /* FLThemeChangedListener.m */; };
+		271303E016F8DB6F00DA94F7 /* FLThemeChangedListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 271303D916F8DB6F00DA94F7 /* FLThemeChangedListener.m */; };
+		271303E116F8DB6F00DA94F7 /* FLThemeChangedListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 271303D916F8DB6F00DA94F7 /* FLThemeChangedListener.m */; };
+		271303E216F8DB6F00DA94F7 /* FLThemeChangedListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 271303D916F8DB6F00DA94F7 /* FLThemeChangedListener.m */; };
 		271E3E00169373BE00FB62C9 /* FLFlipTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 271E3DFC169373BE00FB62C9 /* FLFlipTransition.h */; };
 		271E3E01169373BE00FB62C9 /* FLFlipTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 271E3DFC169373BE00FB62C9 /* FLFlipTransition.h */; };
 		271E3E02169373BE00FB62C9 /* FLFlipTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 271E3DFC169373BE00FB62C9 /* FLFlipTransition.h */; };
@@ -240,15 +267,6 @@
 		2753D4831694AC1C001B8856 /* FLStatusBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D47C1694AC1C001B8856 /* FLStatusBarViewController.m */; };
 		2753D4841694AC1C001B8856 /* FLStatusBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D47C1694AC1C001B8856 /* FLStatusBarViewController.m */; };
 		2753D4851694AC1C001B8856 /* FLStatusBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D47C1694AC1C001B8856 /* FLStatusBarViewController.m */; };
-		2753D4951694AD1A001B8856 /* FLViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D4931694AD1A001B8856 /* FLViewController.h */; };
-		2753D4961694AD1A001B8856 /* FLViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D4931694AD1A001B8856 /* FLViewController.h */; };
-		2753D4971694AD1A001B8856 /* FLViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D4931694AD1A001B8856 /* FLViewController.h */; };
-		2753D4981694AD1A001B8856 /* FLViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D4931694AD1A001B8856 /* FLViewController.h */; };
-		2753D4991694AD1A001B8856 /* FLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D4941694AD1A001B8856 /* FLViewController.m */; };
-		2753D49A1694AD1A001B8856 /* FLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D4941694AD1A001B8856 /* FLViewController.m */; };
-		2753D49B1694AD1A001B8856 /* FLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D4941694AD1A001B8856 /* FLViewController.m */; };
-		2753D49C1694AD1A001B8856 /* FLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D4941694AD1A001B8856 /* FLViewController.m */; };
-		2753D49D1694AD1A001B8856 /* FLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D4941694AD1A001B8856 /* FLViewController.m */; };
 		276B47C716E148D000CFDB7D /* FLFramedView.h in Headers */ = {isa = PBXBuildFile; fileRef = 276B47C516E148CF00CFDB7D /* FLFramedView.h */; };
 		276B47C816E148D000CFDB7D /* FLFramedView.h in Headers */ = {isa = PBXBuildFile; fileRef = 276B47C516E148CF00CFDB7D /* FLFramedView.h */; };
 		276B47C916E148D000CFDB7D /* FLFramedView.h in Headers */ = {isa = PBXBuildFile; fileRef = 276B47C516E148CF00CFDB7D /* FLFramedView.h */; };
@@ -545,15 +563,6 @@
 		78329CED167E97C20024E8DC /* UIViewController+FLPresentationBehavior.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329BAF167E97C20024E8DC /* UIViewController+FLPresentationBehavior.m */; };
 		78329CEE167E97C20024E8DC /* UIViewController+FLPresentationBehavior.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329BAF167E97C20024E8DC /* UIViewController+FLPresentationBehavior.m */; };
 		78329CEF167E97C20024E8DC /* UIViewController+FLPresentationBehavior.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329BAF167E97C20024E8DC /* UIViewController+FLPresentationBehavior.m */; };
-		78329CF0167E97C20024E8DC /* NSObject+FLTheme.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329BB1167E97C20024E8DC /* NSObject+FLTheme.h */; };
-		78329CF1167E97C20024E8DC /* NSObject+FLTheme.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329BB1167E97C20024E8DC /* NSObject+FLTheme.h */; };
-		78329CF2167E97C20024E8DC /* NSObject+FLTheme.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329BB1167E97C20024E8DC /* NSObject+FLTheme.h */; };
-		78329CF3167E97C20024E8DC /* NSObject+FLTheme.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329BB1167E97C20024E8DC /* NSObject+FLTheme.h */; };
-		78329CF4167E97C20024E8DC /* NSObject+FLTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329BB2167E97C20024E8DC /* NSObject+FLTheme.m */; };
-		78329CF5167E97C20024E8DC /* NSObject+FLTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329BB2167E97C20024E8DC /* NSObject+FLTheme.m */; };
-		78329CF6167E97C20024E8DC /* NSObject+FLTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329BB2167E97C20024E8DC /* NSObject+FLTheme.m */; };
-		78329CF7167E97C20024E8DC /* NSObject+FLTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329BB2167E97C20024E8DC /* NSObject+FLTheme.m */; };
-		78329CF8167E97C20024E8DC /* NSObject+FLTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329BB2167E97C20024E8DC /* NSObject+FLTheme.m */; };
 		78329CF9167E97C20024E8DC /* FLViewControllerTransitionAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329BB4167E97C20024E8DC /* FLViewControllerTransitionAnimation.h */; };
 		78329CFA167E97C20024E8DC /* FLViewControllerTransitionAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329BB4167E97C20024E8DC /* FLViewControllerTransitionAnimation.h */; };
 		78329CFB167E97C20024E8DC /* FLViewControllerTransitionAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329BB4167E97C20024E8DC /* FLViewControllerTransitionAnimation.h */; };
@@ -617,15 +626,15 @@
 		78329D3E167E97C20024E8DC /* FLViewContentsDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329BC5167E97C20024E8DC /* FLViewContentsDescriptor.m */; };
 		78329D3F167E97C20024E8DC /* FLViewContentsDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329BC5167E97C20024E8DC /* FLViewContentsDescriptor.m */; };
 		78329D40167E97C20024E8DC /* FLViewContentsDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329BC5167E97C20024E8DC /* FLViewContentsDescriptor.m */; };
-		78329D4A167E97C20024E8DC /* UIViewController+FLAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329BC8167E97C20024E8DC /* UIViewController+FLAdditions.h */; };
-		78329D4B167E97C20024E8DC /* UIViewController+FLAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329BC8167E97C20024E8DC /* UIViewController+FLAdditions.h */; };
-		78329D4C167E97C20024E8DC /* UIViewController+FLAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329BC8167E97C20024E8DC /* UIViewController+FLAdditions.h */; };
-		78329D4D167E97C20024E8DC /* UIViewController+FLAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329BC8167E97C20024E8DC /* UIViewController+FLAdditions.h */; };
-		78329D4E167E97C20024E8DC /* UIViewController+FLAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329BC9167E97C20024E8DC /* UIViewController+FLAdditions.m */; };
-		78329D4F167E97C20024E8DC /* UIViewController+FLAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329BC9167E97C20024E8DC /* UIViewController+FLAdditions.m */; };
-		78329D50167E97C20024E8DC /* UIViewController+FLAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329BC9167E97C20024E8DC /* UIViewController+FLAdditions.m */; };
-		78329D51167E97C20024E8DC /* UIViewController+FLAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329BC9167E97C20024E8DC /* UIViewController+FLAdditions.m */; };
-		78329D52167E97C20024E8DC /* UIViewController+FLAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329BC9167E97C20024E8DC /* UIViewController+FLAdditions.m */; };
+		78329D4A167E97C20024E8DC /* FLViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329BC8167E97C20024E8DC /* FLViewController.h */; };
+		78329D4B167E97C20024E8DC /* FLViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329BC8167E97C20024E8DC /* FLViewController.h */; };
+		78329D4C167E97C20024E8DC /* FLViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329BC8167E97C20024E8DC /* FLViewController.h */; };
+		78329D4D167E97C20024E8DC /* FLViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329BC8167E97C20024E8DC /* FLViewController.h */; };
+		78329D4E167E97C20024E8DC /* FLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329BC9167E97C20024E8DC /* FLViewController.m */; };
+		78329D4F167E97C20024E8DC /* FLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329BC9167E97C20024E8DC /* FLViewController.m */; };
+		78329D50167E97C20024E8DC /* FLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329BC9167E97C20024E8DC /* FLViewController.m */; };
+		78329D51167E97C20024E8DC /* FLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329BC9167E97C20024E8DC /* FLViewController.m */; };
+		78329D52167E97C20024E8DC /* FLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329BC9167E97C20024E8DC /* FLViewController.m */; };
 		78329D5C167E97C20024E8DC /* FLBreadcrumbBarViewOld.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329BCE167E97C20024E8DC /* FLBreadcrumbBarViewOld.h */; };
 		78329D5D167E97C20024E8DC /* FLBreadcrumbBarViewOld.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329BCE167E97C20024E8DC /* FLBreadcrumbBarViewOld.h */; };
 		78329D5E167E97C20024E8DC /* FLBreadcrumbBarViewOld.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329BCE167E97C20024E8DC /* FLBreadcrumbBarViewOld.h */; };
@@ -894,6 +903,12 @@
 		2709A0FE16EBD98400C59905 /* FLMouseTrackingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLMouseTrackingView.h; sourceTree = "<group>"; };
 		2709A0FF16EBD98400C59905 /* FLMouseTrackingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLMouseTrackingView.m; sourceTree = "<group>"; };
 		270BC95716EBAB5100416D62 /* FishLampCocoa.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FishLampCocoa.xcodeproj; path = ../FishLampCocoaLib/FishLampCocoa.xcodeproj; sourceTree = "<group>"; };
+		271303B716F8C5D200DA94F7 /* FLTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLTheme.h; sourceTree = "<group>"; };
+		271303B816F8C5D200DA94F7 /* FLTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLTheme.m; sourceTree = "<group>"; };
+		271303C216F8C5F300DA94F7 /* FLThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLThemeManager.h; sourceTree = "<group>"; };
+		271303C316F8C5F300DA94F7 /* FLThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLThemeManager.m; sourceTree = "<group>"; };
+		271303D816F8DB6F00DA94F7 /* FLThemeChangedListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLThemeChangedListener.h; sourceTree = "<group>"; };
+		271303D916F8DB6F00DA94F7 /* FLThemeChangedListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLThemeChangedListener.m; sourceTree = "<group>"; };
 		271E3DFC169373BE00FB62C9 /* FLFlipTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLFlipTransition.h; sourceTree = "<group>"; };
 		271E3DFD169373BE00FB62C9 /* FLFlipTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLFlipTransition.m; sourceTree = "<group>"; };
 		271E3E13169373DB00FB62C9 /* FLDropBackAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLDropBackAnimation.h; sourceTree = "<group>"; };
@@ -935,8 +950,6 @@
 		2753D4711694ABD6001B8856 /* FLStatusBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLStatusBarView.m; sourceTree = "<group>"; };
 		2753D47B1694AC1C001B8856 /* FLStatusBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLStatusBarViewController.h; sourceTree = "<group>"; };
 		2753D47C1694AC1C001B8856 /* FLStatusBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLStatusBarViewController.m; sourceTree = "<group>"; };
-		2753D4931694AD1A001B8856 /* FLViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLViewController.h; sourceTree = "<group>"; };
-		2753D4941694AD1A001B8856 /* FLViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLViewController.m; sourceTree = "<group>"; };
 		276B47C516E148CF00CFDB7D /* FLFramedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLFramedView.h; sourceTree = "<group>"; };
 		276B47C616E148CF00CFDB7D /* FLFramedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLFramedView.m; sourceTree = "<group>"; };
 		276B47D016E1589100CFDB7D /* FLSmallPanelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLSmallPanelView.h; sourceTree = "<group>"; };
@@ -1016,8 +1029,6 @@
 		78329BAD167E97C20024E8DC /* FLPresentationBehavior.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLPresentationBehavior.m; sourceTree = "<group>"; };
 		78329BAE167E97C20024E8DC /* UIViewController+FLPresentationBehavior.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+FLPresentationBehavior.h"; sourceTree = "<group>"; };
 		78329BAF167E97C20024E8DC /* UIViewController+FLPresentationBehavior.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+FLPresentationBehavior.m"; sourceTree = "<group>"; };
-		78329BB1167E97C20024E8DC /* NSObject+FLTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+FLTheme.h"; sourceTree = "<group>"; };
-		78329BB2167E97C20024E8DC /* NSObject+FLTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+FLTheme.m"; sourceTree = "<group>"; };
 		78329BB4167E97C20024E8DC /* FLViewControllerTransitionAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLViewControllerTransitionAnimation.h; sourceTree = "<group>"; };
 		78329BB5167E97C20024E8DC /* FLViewControllerTransitionAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLViewControllerTransitionAnimation.m; sourceTree = "<group>"; };
 		78329BB9167E97C20024E8DC /* UIImageView+FLViewGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+FLViewGeometry.h"; sourceTree = "<group>"; };
@@ -1032,8 +1043,8 @@
 		78329BC3167E97C20024E8DC /* FLAutoPositionedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAutoPositionedViewController.m; sourceTree = "<group>"; };
 		78329BC4167E97C20024E8DC /* FLViewContentsDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLViewContentsDescriptor.h; sourceTree = "<group>"; };
 		78329BC5167E97C20024E8DC /* FLViewContentsDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLViewContentsDescriptor.m; sourceTree = "<group>"; };
-		78329BC8167E97C20024E8DC /* UIViewController+FLAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+FLAdditions.h"; sourceTree = "<group>"; };
-		78329BC9167E97C20024E8DC /* UIViewController+FLAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+FLAdditions.m"; sourceTree = "<group>"; };
+		78329BC8167E97C20024E8DC /* FLViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLViewController.h; sourceTree = "<group>"; };
+		78329BC9167E97C20024E8DC /* FLViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLViewController.m; sourceTree = "<group>"; };
 		78329BCE167E97C20024E8DC /* FLBreadcrumbBarViewOld.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLBreadcrumbBarViewOld.h; sourceTree = "<group>"; };
 		78329BCF167E97C20024E8DC /* FLBreadcrumbBarViewOld.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLBreadcrumbBarViewOld.m; sourceTree = "<group>"; };
 		78329BD1167E97C20024E8DC /* FLGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLGradientView.h; sourceTree = "<group>"; };
@@ -1387,8 +1398,12 @@
 		78329BB0167E97C20024E8DC /* Theme */ = {
 			isa = PBXGroup;
 			children = (
-				78329BB1167E97C20024E8DC /* NSObject+FLTheme.h */,
-				78329BB2167E97C20024E8DC /* NSObject+FLTheme.m */,
+				271303B716F8C5D200DA94F7 /* FLTheme.h */,
+				271303B816F8C5D200DA94F7 /* FLTheme.m */,
+				271303C216F8C5F300DA94F7 /* FLThemeManager.h */,
+				271303C316F8C5F300DA94F7 /* FLThemeManager.m */,
+				271303D816F8DB6F00DA94F7 /* FLThemeChangedListener.h */,
+				271303D916F8DB6F00DA94F7 /* FLThemeChangedListener.m */,
 			);
 			path = Theme;
 			sourceTree = "<group>";
@@ -1430,10 +1445,8 @@
 				78329BC3167E97C20024E8DC /* FLAutoPositionedViewController.m */,
 				78329BC4167E97C20024E8DC /* FLViewContentsDescriptor.h */,
 				78329BC5167E97C20024E8DC /* FLViewContentsDescriptor.m */,
-				78329BC8167E97C20024E8DC /* UIViewController+FLAdditions.h */,
-				78329BC9167E97C20024E8DC /* UIViewController+FLAdditions.m */,
-				2753D4931694AD1A001B8856 /* FLViewController.h */,
-				2753D4941694AD1A001B8856 /* FLViewController.m */,
+				78329BC8167E97C20024E8DC /* FLViewController.h */,
+				78329BC9167E97C20024E8DC /* FLViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1605,7 +1618,6 @@
 				78329CD5167E97C20024E8DC /* FLFrame.h in Headers */,
 				78329CDE167E97C20024E8DC /* FLPresentationBehavior.h in Headers */,
 				78329CE7167E97C20024E8DC /* UIViewController+FLPresentationBehavior.h in Headers */,
-				78329CF0167E97C20024E8DC /* NSObject+FLTheme.h in Headers */,
 				78329CF9167E97C20024E8DC /* FLViewControllerTransitionAnimation.h in Headers */,
 				78329D0B167E97C20024E8DC /* UIImageView+FLViewGeometry.h in Headers */,
 				78329D14167E97C20024E8DC /* UILabel+FLExtras.h in Headers */,
@@ -1613,7 +1625,7 @@
 				78329D26167E97C20024E8DC /* UIView+ViewAnimation.h in Headers */,
 				78329D2F167E97C20024E8DC /* FLAutoPositionedViewController.h in Headers */,
 				78329D38167E97C20024E8DC /* FLViewContentsDescriptor.h in Headers */,
-				78329D4A167E97C20024E8DC /* UIViewController+FLAdditions.h in Headers */,
+				78329D4A167E97C20024E8DC /* FLViewController.h in Headers */,
 				78329D5C167E97C20024E8DC /* FLBreadcrumbBarViewOld.h in Headers */,
 				78329D65167E97C20024E8DC /* FLGradientView.h in Headers */,
 				78329D6E167E97C20024E8DC /* FLProgressFactory.h in Headers */,
@@ -1648,7 +1660,6 @@
 				2753D4661693DE41001B8856 /* FLComeForwardAnimation.h in Headers */,
 				2753D4721694ABD6001B8856 /* FLStatusBarView.h in Headers */,
 				2753D47D1694AC1C001B8856 /* FLStatusBarViewController.h in Headers */,
-				2753D4951694AD1A001B8856 /* FLViewController.h in Headers */,
 				2731CC951695FC6D00465E6C /* FLWidget.h in Headers */,
 				2731CCB11696552400465E6C /* FLCoreText.h in Headers */,
 				2731CCBC1697346800465E6C /* FLPopInAnimation.h in Headers */,
@@ -1671,6 +1682,9 @@
 				276F1CDB16ED1397007937E9 /* FLRotateAnimation.h in Headers */,
 				278DB49316EE75B40087374D /* FLAnimatedImageView.h in Headers */,
 				2731E9B516F4138600BB1E83 /* FLPanelHostView.h in Headers */,
+				271303B916F8C5D200DA94F7 /* FLTheme.h in Headers */,
+				271303C416F8C5F300DA94F7 /* FLThemeManager.h in Headers */,
+				271303DA16F8DB6F00DA94F7 /* FLThemeChangedListener.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1702,7 +1716,6 @@
 				78329CD7167E97C20024E8DC /* FLFrame.h in Headers */,
 				78329CE0167E97C20024E8DC /* FLPresentationBehavior.h in Headers */,
 				78329CE9167E97C20024E8DC /* UIViewController+FLPresentationBehavior.h in Headers */,
-				78329CF2167E97C20024E8DC /* NSObject+FLTheme.h in Headers */,
 				78329CFB167E97C20024E8DC /* FLViewControllerTransitionAnimation.h in Headers */,
 				78329D0D167E97C20024E8DC /* UIImageView+FLViewGeometry.h in Headers */,
 				78329D16167E97C20024E8DC /* UILabel+FLExtras.h in Headers */,
@@ -1710,7 +1723,7 @@
 				78329D28167E97C20024E8DC /* UIView+ViewAnimation.h in Headers */,
 				78329D31167E97C20024E8DC /* FLAutoPositionedViewController.h in Headers */,
 				78329D3A167E97C20024E8DC /* FLViewContentsDescriptor.h in Headers */,
-				78329D4C167E97C20024E8DC /* UIViewController+FLAdditions.h in Headers */,
+				78329D4C167E97C20024E8DC /* FLViewController.h in Headers */,
 				78329D5E167E97C20024E8DC /* FLBreadcrumbBarViewOld.h in Headers */,
 				78329D67167E97C20024E8DC /* FLGradientView.h in Headers */,
 				78329D70167E97C20024E8DC /* FLProgressFactory.h in Headers */,
@@ -1745,7 +1758,6 @@
 				2753D4681693DE41001B8856 /* FLComeForwardAnimation.h in Headers */,
 				2753D4741694ABD6001B8856 /* FLStatusBarView.h in Headers */,
 				2753D47F1694AC1C001B8856 /* FLStatusBarViewController.h in Headers */,
-				2753D4971694AD1A001B8856 /* FLViewController.h in Headers */,
 				2731CC971695FC6D00465E6C /* FLWidget.h in Headers */,
 				2731CCB31696552400465E6C /* FLCoreText.h in Headers */,
 				2731CCBE1697346800465E6C /* FLPopInAnimation.h in Headers */,
@@ -1768,6 +1780,9 @@
 				276F1CDD16ED1397007937E9 /* FLRotateAnimation.h in Headers */,
 				278DB49516EE75B40087374D /* FLAnimatedImageView.h in Headers */,
 				2731E9B716F4138600BB1E83 /* FLPanelHostView.h in Headers */,
+				271303BB16F8C5D200DA94F7 /* FLTheme.h in Headers */,
+				271303C616F8C5F300DA94F7 /* FLThemeManager.h in Headers */,
+				271303DC16F8DB6F00DA94F7 /* FLThemeChangedListener.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1799,7 +1814,6 @@
 				78329CD6167E97C20024E8DC /* FLFrame.h in Headers */,
 				78329CDF167E97C20024E8DC /* FLPresentationBehavior.h in Headers */,
 				78329CE8167E97C20024E8DC /* UIViewController+FLPresentationBehavior.h in Headers */,
-				78329CF1167E97C20024E8DC /* NSObject+FLTheme.h in Headers */,
 				78329CFA167E97C20024E8DC /* FLViewControllerTransitionAnimation.h in Headers */,
 				78329D0C167E97C20024E8DC /* UIImageView+FLViewGeometry.h in Headers */,
 				78329D15167E97C20024E8DC /* UILabel+FLExtras.h in Headers */,
@@ -1807,7 +1821,7 @@
 				78329D27167E97C20024E8DC /* UIView+ViewAnimation.h in Headers */,
 				78329D30167E97C20024E8DC /* FLAutoPositionedViewController.h in Headers */,
 				78329D39167E97C20024E8DC /* FLViewContentsDescriptor.h in Headers */,
-				78329D4B167E97C20024E8DC /* UIViewController+FLAdditions.h in Headers */,
+				78329D4B167E97C20024E8DC /* FLViewController.h in Headers */,
 				78329D5D167E97C20024E8DC /* FLBreadcrumbBarViewOld.h in Headers */,
 				78329D66167E97C20024E8DC /* FLGradientView.h in Headers */,
 				78329D6F167E97C20024E8DC /* FLProgressFactory.h in Headers */,
@@ -1842,7 +1856,6 @@
 				2753D4671693DE41001B8856 /* FLComeForwardAnimation.h in Headers */,
 				2753D4731694ABD6001B8856 /* FLStatusBarView.h in Headers */,
 				2753D47E1694AC1C001B8856 /* FLStatusBarViewController.h in Headers */,
-				2753D4961694AD1A001B8856 /* FLViewController.h in Headers */,
 				2731CC961695FC6D00465E6C /* FLWidget.h in Headers */,
 				2731CCB21696552400465E6C /* FLCoreText.h in Headers */,
 				2731CCBD1697346800465E6C /* FLPopInAnimation.h in Headers */,
@@ -1865,6 +1878,9 @@
 				276F1CDC16ED1397007937E9 /* FLRotateAnimation.h in Headers */,
 				278DB49416EE75B40087374D /* FLAnimatedImageView.h in Headers */,
 				2731E9B616F4138600BB1E83 /* FLPanelHostView.h in Headers */,
+				271303BA16F8C5D200DA94F7 /* FLTheme.h in Headers */,
+				271303C516F8C5F300DA94F7 /* FLThemeManager.h in Headers */,
+				271303DB16F8DB6F00DA94F7 /* FLThemeChangedListener.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1896,7 +1912,6 @@
 				78329CD8167E97C20024E8DC /* FLFrame.h in Headers */,
 				78329CE1167E97C20024E8DC /* FLPresentationBehavior.h in Headers */,
 				78329CEA167E97C20024E8DC /* UIViewController+FLPresentationBehavior.h in Headers */,
-				78329CF3167E97C20024E8DC /* NSObject+FLTheme.h in Headers */,
 				78329CFC167E97C20024E8DC /* FLViewControllerTransitionAnimation.h in Headers */,
 				78329D0E167E97C20024E8DC /* UIImageView+FLViewGeometry.h in Headers */,
 				78329D17167E97C20024E8DC /* UILabel+FLExtras.h in Headers */,
@@ -1904,7 +1919,7 @@
 				78329D29167E97C20024E8DC /* UIView+ViewAnimation.h in Headers */,
 				78329D32167E97C20024E8DC /* FLAutoPositionedViewController.h in Headers */,
 				78329D3B167E97C20024E8DC /* FLViewContentsDescriptor.h in Headers */,
-				78329D4D167E97C20024E8DC /* UIViewController+FLAdditions.h in Headers */,
+				78329D4D167E97C20024E8DC /* FLViewController.h in Headers */,
 				78329D5F167E97C20024E8DC /* FLBreadcrumbBarViewOld.h in Headers */,
 				78329D68167E97C20024E8DC /* FLGradientView.h in Headers */,
 				78329D71167E97C20024E8DC /* FLProgressFactory.h in Headers */,
@@ -1939,7 +1954,6 @@
 				2753D4691693DE41001B8856 /* FLComeForwardAnimation.h in Headers */,
 				2753D4751694ABD6001B8856 /* FLStatusBarView.h in Headers */,
 				2753D4801694AC1C001B8856 /* FLStatusBarViewController.h in Headers */,
-				2753D4981694AD1A001B8856 /* FLViewController.h in Headers */,
 				2731CC981695FC6D00465E6C /* FLWidget.h in Headers */,
 				2731CCB41696552400465E6C /* FLCoreText.h in Headers */,
 				2731CCBF1697346800465E6C /* FLPopInAnimation.h in Headers */,
@@ -1962,6 +1976,9 @@
 				276F1CDE16ED1397007937E9 /* FLRotateAnimation.h in Headers */,
 				278DB49616EE75B40087374D /* FLAnimatedImageView.h in Headers */,
 				2731E9B816F4138600BB1E83 /* FLPanelHostView.h in Headers */,
+				271303BC16F8C5D200DA94F7 /* FLTheme.h in Headers */,
+				271303C716F8C5F300DA94F7 /* FLThemeManager.h in Headers */,
+				271303DD16F8DB6F00DA94F7 /* FLThemeChangedListener.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2160,7 +2177,6 @@
 				78329CDA167E97C20024E8DC /* FLFrame.m in Sources */,
 				78329CE3167E97C20024E8DC /* FLPresentationBehavior.m in Sources */,
 				78329CEC167E97C20024E8DC /* UIViewController+FLPresentationBehavior.m in Sources */,
-				78329CF5167E97C20024E8DC /* NSObject+FLTheme.m in Sources */,
 				78329CFE167E97C20024E8DC /* FLViewControllerTransitionAnimation.m in Sources */,
 				78329D10167E97C20024E8DC /* UIImageView+FLViewGeometry.m in Sources */,
 				78329D19167E97C20024E8DC /* UILabel+FLExtras.m in Sources */,
@@ -2168,7 +2184,7 @@
 				78329D2B167E97C20024E8DC /* UIView+ViewAnimation.m in Sources */,
 				78329D34167E97C20024E8DC /* FLAutoPositionedViewController.m in Sources */,
 				78329D3D167E97C20024E8DC /* FLViewContentsDescriptor.m in Sources */,
-				78329D4F167E97C20024E8DC /* UIViewController+FLAdditions.m in Sources */,
+				78329D4F167E97C20024E8DC /* FLViewController.m in Sources */,
 				78329D61167E97C20024E8DC /* FLBreadcrumbBarViewOld.m in Sources */,
 				78329D6A167E97C20024E8DC /* FLGradientView.m in Sources */,
 				78329D73167E97C20024E8DC /* FLProgressFactory.m in Sources */,
@@ -2202,7 +2218,6 @@
 				2753D46B1693DE41001B8856 /* FLComeForwardAnimation.m in Sources */,
 				2753D4771694ABD6001B8856 /* FLStatusBarView.m in Sources */,
 				2753D4821694AC1C001B8856 /* FLStatusBarViewController.m in Sources */,
-				2753D49A1694AD1A001B8856 /* FLViewController.m in Sources */,
 				2731CC9A1695FC6D00465E6C /* FLWidget.m in Sources */,
 				2731CCB61696552400465E6C /* FLCoreText.m in Sources */,
 				2731CCC11697346800465E6C /* FLPopInAnimation.m in Sources */,
@@ -2223,6 +2238,9 @@
 				276F1CE016ED1397007937E9 /* FLRotateAnimation.m in Sources */,
 				278DB49816EE75B40087374D /* FLAnimatedImageView.m in Sources */,
 				2731E9BA16F4138600BB1E83 /* FLPanelHostView.m in Sources */,
+				271303BE16F8C5D200DA94F7 /* FLTheme.m in Sources */,
+				271303C916F8C5F300DA94F7 /* FLThemeManager.m in Sources */,
+				271303DF16F8DB6F00DA94F7 /* FLThemeChangedListener.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2252,7 +2270,6 @@
 				78329CDC167E97C20024E8DC /* FLFrame.m in Sources */,
 				78329CE5167E97C20024E8DC /* FLPresentationBehavior.m in Sources */,
 				78329CEE167E97C20024E8DC /* UIViewController+FLPresentationBehavior.m in Sources */,
-				78329CF7167E97C20024E8DC /* NSObject+FLTheme.m in Sources */,
 				78329D00167E97C20024E8DC /* FLViewControllerTransitionAnimation.m in Sources */,
 				78329D12167E97C20024E8DC /* UIImageView+FLViewGeometry.m in Sources */,
 				78329D1B167E97C20024E8DC /* UILabel+FLExtras.m in Sources */,
@@ -2260,7 +2277,7 @@
 				78329D2D167E97C20024E8DC /* UIView+ViewAnimation.m in Sources */,
 				78329D36167E97C20024E8DC /* FLAutoPositionedViewController.m in Sources */,
 				78329D3F167E97C20024E8DC /* FLViewContentsDescriptor.m in Sources */,
-				78329D51167E97C20024E8DC /* UIViewController+FLAdditions.m in Sources */,
+				78329D51167E97C20024E8DC /* FLViewController.m in Sources */,
 				78329D63167E97C20024E8DC /* FLBreadcrumbBarViewOld.m in Sources */,
 				78329D6C167E97C20024E8DC /* FLGradientView.m in Sources */,
 				78329D75167E97C20024E8DC /* FLProgressFactory.m in Sources */,
@@ -2294,7 +2311,6 @@
 				2753D46D1693DE41001B8856 /* FLComeForwardAnimation.m in Sources */,
 				2753D4791694ABD6001B8856 /* FLStatusBarView.m in Sources */,
 				2753D4841694AC1C001B8856 /* FLStatusBarViewController.m in Sources */,
-				2753D49C1694AD1A001B8856 /* FLViewController.m in Sources */,
 				2731CC9C1695FC6D00465E6C /* FLWidget.m in Sources */,
 				2731CCB81696552400465E6C /* FLCoreText.m in Sources */,
 				2731CCC31697346800465E6C /* FLPopInAnimation.m in Sources */,
@@ -2315,6 +2331,9 @@
 				276F1CE216ED1397007937E9 /* FLRotateAnimation.m in Sources */,
 				278DB49A16EE75B40087374D /* FLAnimatedImageView.m in Sources */,
 				2731E9BC16F4138600BB1E83 /* FLPanelHostView.m in Sources */,
+				271303C016F8C5D200DA94F7 /* FLTheme.m in Sources */,
+				271303CB16F8C5F300DA94F7 /* FLThemeManager.m in Sources */,
+				271303E116F8DB6F00DA94F7 /* FLThemeChangedListener.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2344,7 +2363,6 @@
 				78329CD9167E97C20024E8DC /* FLFrame.m in Sources */,
 				78329CE2167E97C20024E8DC /* FLPresentationBehavior.m in Sources */,
 				78329CEB167E97C20024E8DC /* UIViewController+FLPresentationBehavior.m in Sources */,
-				78329CF4167E97C20024E8DC /* NSObject+FLTheme.m in Sources */,
 				78329CFD167E97C20024E8DC /* FLViewControllerTransitionAnimation.m in Sources */,
 				78329D0F167E97C20024E8DC /* UIImageView+FLViewGeometry.m in Sources */,
 				78329D18167E97C20024E8DC /* UILabel+FLExtras.m in Sources */,
@@ -2352,7 +2370,7 @@
 				78329D2A167E97C20024E8DC /* UIView+ViewAnimation.m in Sources */,
 				78329D33167E97C20024E8DC /* FLAutoPositionedViewController.m in Sources */,
 				78329D3C167E97C20024E8DC /* FLViewContentsDescriptor.m in Sources */,
-				78329D4E167E97C20024E8DC /* UIViewController+FLAdditions.m in Sources */,
+				78329D4E167E97C20024E8DC /* FLViewController.m in Sources */,
 				78329D60167E97C20024E8DC /* FLBreadcrumbBarViewOld.m in Sources */,
 				78329D69167E97C20024E8DC /* FLGradientView.m in Sources */,
 				78329D72167E97C20024E8DC /* FLProgressFactory.m in Sources */,
@@ -2386,7 +2404,6 @@
 				2753D46A1693DE41001B8856 /* FLComeForwardAnimation.m in Sources */,
 				2753D4761694ABD6001B8856 /* FLStatusBarView.m in Sources */,
 				2753D4811694AC1C001B8856 /* FLStatusBarViewController.m in Sources */,
-				2753D4991694AD1A001B8856 /* FLViewController.m in Sources */,
 				2731CC991695FC6D00465E6C /* FLWidget.m in Sources */,
 				2731CCB51696552400465E6C /* FLCoreText.m in Sources */,
 				2731CCC01697346800465E6C /* FLPopInAnimation.m in Sources */,
@@ -2407,6 +2424,9 @@
 				276F1CDF16ED1397007937E9 /* FLRotateAnimation.m in Sources */,
 				278DB49716EE75B40087374D /* FLAnimatedImageView.m in Sources */,
 				2731E9B916F4138600BB1E83 /* FLPanelHostView.m in Sources */,
+				271303BD16F8C5D200DA94F7 /* FLTheme.m in Sources */,
+				271303C816F8C5F300DA94F7 /* FLThemeManager.m in Sources */,
+				271303DE16F8DB6F00DA94F7 /* FLThemeChangedListener.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2436,7 +2456,6 @@
 				78329CDB167E97C20024E8DC /* FLFrame.m in Sources */,
 				78329CE4167E97C20024E8DC /* FLPresentationBehavior.m in Sources */,
 				78329CED167E97C20024E8DC /* UIViewController+FLPresentationBehavior.m in Sources */,
-				78329CF6167E97C20024E8DC /* NSObject+FLTheme.m in Sources */,
 				78329CFF167E97C20024E8DC /* FLViewControllerTransitionAnimation.m in Sources */,
 				78329D11167E97C20024E8DC /* UIImageView+FLViewGeometry.m in Sources */,
 				78329D1A167E97C20024E8DC /* UILabel+FLExtras.m in Sources */,
@@ -2444,7 +2463,7 @@
 				78329D2C167E97C20024E8DC /* UIView+ViewAnimation.m in Sources */,
 				78329D35167E97C20024E8DC /* FLAutoPositionedViewController.m in Sources */,
 				78329D3E167E97C20024E8DC /* FLViewContentsDescriptor.m in Sources */,
-				78329D50167E97C20024E8DC /* UIViewController+FLAdditions.m in Sources */,
+				78329D50167E97C20024E8DC /* FLViewController.m in Sources */,
 				78329D62167E97C20024E8DC /* FLBreadcrumbBarViewOld.m in Sources */,
 				78329D6B167E97C20024E8DC /* FLGradientView.m in Sources */,
 				78329D74167E97C20024E8DC /* FLProgressFactory.m in Sources */,
@@ -2478,7 +2497,6 @@
 				2753D46C1693DE41001B8856 /* FLComeForwardAnimation.m in Sources */,
 				2753D4781694ABD6001B8856 /* FLStatusBarView.m in Sources */,
 				2753D4831694AC1C001B8856 /* FLStatusBarViewController.m in Sources */,
-				2753D49B1694AD1A001B8856 /* FLViewController.m in Sources */,
 				2731CC9B1695FC6D00465E6C /* FLWidget.m in Sources */,
 				2731CCB71696552400465E6C /* FLCoreText.m in Sources */,
 				2731CCC21697346800465E6C /* FLPopInAnimation.m in Sources */,
@@ -2499,6 +2517,9 @@
 				276F1CE116ED1397007937E9 /* FLRotateAnimation.m in Sources */,
 				278DB49916EE75B40087374D /* FLAnimatedImageView.m in Sources */,
 				2731E9BB16F4138600BB1E83 /* FLPanelHostView.m in Sources */,
+				271303BF16F8C5D200DA94F7 /* FLTheme.m in Sources */,
+				271303CA16F8C5F300DA94F7 /* FLThemeManager.m in Sources */,
+				271303E016F8DB6F00DA94F7 /* FLThemeChangedListener.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2528,7 +2549,6 @@
 				78329CDD167E97C20024E8DC /* FLFrame.m in Sources */,
 				78329CE6167E97C20024E8DC /* FLPresentationBehavior.m in Sources */,
 				78329CEF167E97C20024E8DC /* UIViewController+FLPresentationBehavior.m in Sources */,
-				78329CF8167E97C20024E8DC /* NSObject+FLTheme.m in Sources */,
 				78329D01167E97C20024E8DC /* FLViewControllerTransitionAnimation.m in Sources */,
 				78329D13167E97C20024E8DC /* UIImageView+FLViewGeometry.m in Sources */,
 				78329D1C167E97C20024E8DC /* UILabel+FLExtras.m in Sources */,
@@ -2536,7 +2556,7 @@
 				78329D2E167E97C20024E8DC /* UIView+ViewAnimation.m in Sources */,
 				78329D37167E97C20024E8DC /* FLAutoPositionedViewController.m in Sources */,
 				78329D40167E97C20024E8DC /* FLViewContentsDescriptor.m in Sources */,
-				78329D52167E97C20024E8DC /* UIViewController+FLAdditions.m in Sources */,
+				78329D52167E97C20024E8DC /* FLViewController.m in Sources */,
 				78329D64167E97C20024E8DC /* FLBreadcrumbBarViewOld.m in Sources */,
 				78329D6D167E97C20024E8DC /* FLGradientView.m in Sources */,
 				78329D76167E97C20024E8DC /* FLProgressFactory.m in Sources */,
@@ -2570,7 +2590,6 @@
 				2753D46E1693DE41001B8856 /* FLComeForwardAnimation.m in Sources */,
 				2753D47A1694ABD6001B8856 /* FLStatusBarView.m in Sources */,
 				2753D4851694AC1C001B8856 /* FLStatusBarViewController.m in Sources */,
-				2753D49D1694AD1A001B8856 /* FLViewController.m in Sources */,
 				2731CC9D1695FC6D00465E6C /* FLWidget.m in Sources */,
 				2731CCB91696552400465E6C /* FLCoreText.m in Sources */,
 				2731CCC41697346800465E6C /* FLPopInAnimation.m in Sources */,
@@ -2591,6 +2610,9 @@
 				276F1CE316ED1397007937E9 /* FLRotateAnimation.m in Sources */,
 				278DB49B16EE75B40087374D /* FLAnimatedImageView.m in Sources */,
 				2731E9BD16F4138600BB1E83 /* FLPanelHostView.m in Sources */,
+				271303C116F8C5D200DA94F7 /* FLTheme.m in Sources */,
+				271303CC16F8C5F300DA94F7 /* FLThemeManager.m in Sources */,
+				271303E216F8DB6F00DA94F7 /* FLThemeChangedListener.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

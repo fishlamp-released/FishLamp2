@@ -61,7 +61,7 @@ static NSString* s_defaultUserAgent = nil;
 }
 
 -(void) setContentTypeHeader:(NSString*) contentType {
-	FLAssertStringIsNotEmpty_v(contentType, nil);
+	FLAssertStringIsNotEmptyWithComment(contentType, nil);
     
 	[self setValue:contentType forHTTPHeaderField:@"Content-Type"];
 }
@@ -98,8 +98,8 @@ static NSString* s_defaultUserAgent = nil;
 }
 
 - (void) setValue:(NSString *)value forHTTPHeaderField:(NSString *)field {
-	FLAssertStringIsNotEmpty_v(field, nil);
-    FLAssertIsNotNil_v(value, nil);
+	FLAssertStringIsNotEmptyWithComment(field, nil);
+    FLAssertIsNotNilWithComment(value, nil);
     [_headers setObject:value forKey:field];
 }
 
@@ -108,7 +108,7 @@ static NSString* s_defaultUserAgent = nil;
 }
 
 - (BOOL) hasHTTPHeaderField:(NSString*) header {
-    FLAssertStringIsNotEmpty_v(header, nil);
+    FLAssertStringIsNotEmptyWithComment(header, nil);
 
 	return [_headers objectForKey:header] != nil;
 }

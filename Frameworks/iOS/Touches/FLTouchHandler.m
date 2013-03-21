@@ -93,7 +93,7 @@ static id s_touchedObject = nil;
 
 - (BOOL) didInterceptEvent:(UIEvent*) event {
 	if( event.type == UIEventTypeTouches) {
-        FLAssertIsNotNil_([self.touchableObject view]);
+        FLAssertIsNotNil([self.touchableObject view]);
        
         NSSet* touches = event.allTouches;
         UITouch* touch = [touches anyObject];
@@ -255,7 +255,7 @@ static id s_lastEnteredObject = nil;
     [super touchesMoved:touches withEvent:event];
 
     if(self.gotTouchDown) {
-        FLAssertIsNotNil_([self.touchableObject view]);
+        FLAssertIsNotNil([self.touchableObject view]);
         UITouch* touch = [touches anyObject];
             
         BOOL touchIsInside = CGRectContainsPoint([self.touchableObject frame], [touch locationInView:[self.touchableObject view]]);
@@ -286,7 +286,7 @@ static id s_lastEnteredObject = nil;
 
 - (void) touchesEnded:(NSSet*) touches withEvent:(UIEvent*) event {
 
-    FLAssertIsNotNil_([self.touchableObject view]);
+    FLAssertIsNotNil([self.touchableObject view]);
 	
 //	if(_state.gotFirstTouch || _state.isTouching)
     

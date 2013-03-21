@@ -66,7 +66,7 @@
 //}
 //readObject:(id) inputObject
 //{
-//	FLAssertIsNotNil_(inputObject);
+//	FLAssertIsNotNil(inputObject);
 //	
 //	FLSqlDatabaseOperation* sqlOperation = FLAutorelease([[FLSqlDatabaseOperation alloc] init]);
 //	FLSqlQuery* query = FLAutorelease([[FLSqlSelectQuery alloc] init]);
@@ -90,7 +90,7 @@
 //		[self.database performQuery:[query string] operation:sqlOperation];
 //
 //#if DEBUG
-//		FLAssert_v(sqlOperation.rows.count <= 1, @"loaded too many objects for single cached object");
+//		FLAssertWithComment(sqlOperation.rows.count <= 1, @"loaded too many objects for single cached object");
 //#endif
 //		if(sqlOperation.rows.count == 1)
 //		{
@@ -149,7 +149,7 @@
 //
 //- (void) deleteObject:(id) object
 //{
-//	FLAssertIsNotNil_(object);
+//	FLAssertIsNotNil(object);
 //	FLRetain(object);
 //		
 //	@try

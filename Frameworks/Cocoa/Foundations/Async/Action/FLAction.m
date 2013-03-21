@@ -284,7 +284,7 @@ TODO("MF: fix activity updater");
 //	if(_progress) {
 //		if(_actionDescription) {
 //			NSString* title = _actionDescription.title;
-//			FLAssertStringIsNotEmpty_v(title,nil);
+//			FLAssertStringIsNotEmptyWithComment(title,nil);
 //			
 //			if(FLStringIsNotEmpty(title)) {
 //				[_progress setTitle:title];
@@ -326,7 +326,7 @@ TODO("MF: fix activity updater");
         }
     }
     @catch(NSException* ex) {
-        FLAssertFailed_v(@"should never get exception in action finished: %@", [ex description]);
+        FLAssertFailedWithComment(@"should never get exception in action finished: %@", [ex description]);
         @throw;
     }
     

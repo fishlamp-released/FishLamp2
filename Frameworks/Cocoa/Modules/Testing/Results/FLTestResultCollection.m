@@ -47,12 +47,12 @@
 
 - (void) setTestResult:(id<FLTestResult>) result forKey:(id) key {
 
-    FLConfirmIsNotNil_(result);
-    FLConfirmIsNotNil_(key);
+    FLConfirmIsNotNil(result);
+    FLConfirmIsNotNil(key);
 
     @synchronized(self) {
     
-        FLConfirm_v([_results objectForKey:key] == nil,
+        FLConfirmWithComment([_results objectForKey:key] == nil,
                         @"test results '%@' already in expected list",
                         key);
 
@@ -85,7 +85,7 @@
     @synchronized(self) {
         result = [_results objectForKey:key];
     }
-    FLConfirmIsNotNil_v(result, @"can't find result for %@", [key description]);
+    FLConfirmIsNotNilWithComment(result, @"can't find result for %@", [key description]);
     return result;
 }
 

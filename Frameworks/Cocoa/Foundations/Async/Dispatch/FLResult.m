@@ -122,12 +122,11 @@
 
 @implementation NSError (FLResult)
 + (id) failedResultError {
-    return [NSError errorWithDomain:[FLFrameworkErrorDomain instance]
+    return [NSError errorWithDomain:FLFrameworkErrorDomain
                                code:FLErrorResultFailed
-                               userInfo:nil
-                               reason:@"Result failed"
-                               comment:@"derp"
-                               stackTrace:nil];
+               localizedDescription:NSLocalizedString(@"An operation failed.", nil)
+                           userInfo:nil
+                            comment:nil];
 }
 @end
 

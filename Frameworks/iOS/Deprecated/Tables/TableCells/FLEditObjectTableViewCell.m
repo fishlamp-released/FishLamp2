@@ -89,7 +89,7 @@
 
 - (id) dataSourceObject
 {
-    FLAssertIsNotNil_(_dataSource);
+    FLAssertIsNotNil(_dataSource);
 
 	return [_dataSource tableViewCellGetCellData:self];
 }

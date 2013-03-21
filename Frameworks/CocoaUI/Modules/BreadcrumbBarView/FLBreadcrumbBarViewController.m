@@ -73,7 +73,7 @@
 
 - (void) addBreadcrumb:(NSString*) title {
 
-    FLAssertStringIsNotEmpty_(title);
+    FLAssertStringIsNotEmpty(title);
 
     FLBarTitleLayer* titleLayer = [FLBarTitleLayer layer];
     titleLayer.title = title;

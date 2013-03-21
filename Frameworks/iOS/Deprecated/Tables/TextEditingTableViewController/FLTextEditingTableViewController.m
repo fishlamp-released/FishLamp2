@@ -190,7 +190,7 @@ FLSynthesizeStructProperty(keyboardWillShowInView, setKeyboardWillShowInView, BO
 
 - (void) _scrollTextEditCellIntoView:(FLTextEditCell*) cell animated:(BOOL) animated
 {
-	FLAssertIsNotNil_(cell);
+	FLAssertIsNotNil(cell);
 
     if(cell)
     {
@@ -392,7 +392,7 @@ FLSynthesizeStructProperty(keyboardWillShowInView, setKeyboardWillShowInView, BO
 
 - (void)textEditCellDidEndEditingText:(FLTextEditCell *)cell withDoneButtonPress:(BOOL) donePress
 {
-	FLAssert_v(cell == self.currentCell, @"wrong cell");
+	FLAssertWithComment(cell == self.currentCell, @"wrong cell");
    
 	[self stopEditingText:donePress	 deferShutdown:donePress ? NO : YES];
 }
@@ -494,7 +494,7 @@ FLSynthesizeStructProperty(keyboardWillShowInView, setKeyboardWillShowInView, BO
 
 - (void) beginEditingTextInCell:(FLTextEditCell*) cell
 {
-	FLAssertIsNotNil_(cell);
+	FLAssertIsNotNil(cell);
 	if(self.viewIsVisible)
 	{
 		if(![FLTextEditCell inGlobalEditingMode])

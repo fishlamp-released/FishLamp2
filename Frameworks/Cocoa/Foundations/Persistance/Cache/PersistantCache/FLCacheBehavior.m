@@ -105,7 +105,7 @@
 
 + (void) setSharedCacheBehavior:(id<FLCacheBehavior>) behavior
 {
-	FLAssertFailed_v(@"Can't set cache behavior on NSObject. Subclass '%@' needs to define FLSynthesizeCachedObjectHandlerProperty in its .m file. See FLCacheBehavior.h", NSStringFromClass([self class]));
+	FLAssertFailedWithComment(@"Can't set cache behavior on NSObject. Subclass '%@' needs to define FLSynthesizeCachedObjectHandlerProperty in its .m file. See FLCacheBehavior.h", NSStringFromClass([self class]));
 }
 
 + (id<FLCacheBehavior>) sharedCacheBehavior

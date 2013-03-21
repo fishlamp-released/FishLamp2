@@ -10,6 +10,7 @@
 #import "FLFramedView.h"
 #import "FLPanelViewController.h"
 #import "FLTransition.h"
+#import "FLCompatibleViewController.h"
 
 @protocol FLPanelManagerDelegate;
 
@@ -61,7 +62,7 @@ typedef void (^FLPanelViewControllerBlock)(FLPanelViewController* panel);
 - (BOOL) isShowingFirstPanel;
 - (BOOL) isShowingLastPanel;
 
-- (void) addPanelView:(FLCompatibleView*) panelView toView:(FLCompatibleView*) superview animated:(BOOL) animated;
+- (void) addPanelView:(SDKView*) panelView toView:(SDKView*) superview animated:(BOOL) animated;
 - (void) removePanelViews:(BOOL) animated;
 
 @end

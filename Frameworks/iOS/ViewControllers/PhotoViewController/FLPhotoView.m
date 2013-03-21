@@ -186,8 +186,8 @@ FLSynthesizeStructProperty(didShowError, setDidShowError, BOOL, _photoViewFlags)
 
 - (void) setImage:(UIImage*) image forImageSize:(FLPhotoViewImageSize) imageSize
 {
-	FLAssertIsNotNil_(image);
-	FLAssert_v(imageSize != FLPhotoViewImageSizeNone, @"can't set to FLPhotoViewImageSizeNone");
+	FLAssertIsNotNil(image);
+	FLAssertWithComment(imageSize != FLPhotoViewImageSizeNone, @"can't set to FLPhotoViewImageSizeNone");
 	if(image)
 	{
 		[self clearError];

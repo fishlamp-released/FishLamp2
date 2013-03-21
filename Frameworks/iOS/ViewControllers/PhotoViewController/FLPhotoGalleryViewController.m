@@ -95,7 +95,7 @@ FLSynthesizeSingleton(FLZoomAnimation);
     NSInteger photoIndex = [self.cellCollection indexForKey:cell.cellDataRefKey];
     [newController setCurrentPhotoIndex:photoIndex animated:NO];
     
-    FLAssertIsNotNil_(self.viewControllerStack);
+    FLAssertIsNotNil(self.viewControllerStack);
     
     [self.viewControllerStack pushViewController:newController withAnimation:[self selectionAnimationForCell:cell]];
 }

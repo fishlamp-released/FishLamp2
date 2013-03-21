@@ -13,8 +13,8 @@
 - (id) initWithDatabaseObjectInput:(FLDatabase*) database 
 							 input:(id) input {
 	if((self = [self init])) {
-		FLAssertIsNotNil_(database);
-		FLAssertIsNotNil_(input);
+		FLAssertIsNotNil(database);
+		FLAssertIsNotNil(input);
         _input = FLRetain(input);
 		_database = FLRetain(database);
 	}
@@ -31,8 +31,8 @@
 
 
 - (FLResult) runOperationInContext:(id) context withObserver:(id) observer {
-	FLAssertIsNotNil_(_database);
-	FLAssertIsNotNil_(_input);
+	FLAssertIsNotNil(_database);
+	FLAssertIsNotNil(_input);
 	[_database writeObject:_input];
     return FLSuccessfullResult;
 }

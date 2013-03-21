@@ -14,8 +14,8 @@
 							  input:(id) input {
 	self = [self init];
     if(self) {
-		FLAssertIsNotNil_(database);
-		FLAssertIsNotNil_(input);
+		FLAssertIsNotNil(database);
+		FLAssertIsNotNil(input);
         _input = FLRetain(input);
 		_database = FLRetain(database);
 	}
@@ -23,8 +23,8 @@
 } 
 
 - (FLResult) runOperationInContext:(id) context withObserver:(id) observer {
-	FLAssertIsNotNil_(_input);
-    FLAssertIsNotNil_(_database);
+	FLAssertIsNotNil(_input);
+    FLAssertIsNotNil(_database);
 	return [_database readObject:_input];
 }
 

@@ -54,16 +54,16 @@
 
 //    return [self.dispatchQueue queueBlock:^{
 //        
-//        FLAssertIsNil_(self.readStream);
-//        FLAssertIsNil_(self.writeStream);
+//        FLAssertIsNil(self.readStream);
+//        FLAssertIsNil(self.writeStream);
 //
 //        CFReadStreamRef readStream = nil;
 //        CFWriteStreamRef writeStream = nil;
 //        CFHostRef host = nil;
 //        
 //        @try {
-//            FLAssert_v(self.remotePort != 0, @"remote port can't be zero");
-//            FLAssertStringIsNotEmpty_(self.remoteHost);
+//            FLAssertWithComment(self.remotePort != 0, @"remote port can't be zero");
+//            FLAssertStringIsNotEmpty(self.remoteHost);
 //           
 //            host = CFHostCreateWithName(NULL, bridge_(void*,self.remoteHost));
 //            if(!host) {
@@ -103,7 +103,7 @@
 
 - (void) dealloc {
 
-    FLAssert_(!self.isOpen);
+    FLAssert(!self.isOpen);
     
 #if FL_MRC
     [_requests release];
@@ -313,7 +313,7 @@ NSString* const FLTcpStreamReadErrorKey = @"FLTcpStreamReadErrorKey";
                                      [NSString stringWithFormat:@"readError: %@, writeError %@", [readError localizedDescription], [writeError localizedDescription]], NSLocalizedDescriptionKey, 
                                      nil];
     
-        return [FLTcpStreamError errorWithDomain:[FLFrameworkErrorDomain instance] code:FLFrameworkTcpStreamErrorCode userInfo:dict];
+        return [FLTcpStreamError errorWithDomain:FLFrameworkErrorDomain code:FLFrameworkTcpStreamErrorCode userInfo:dict];
     }
     if(readError) {
         return readError;

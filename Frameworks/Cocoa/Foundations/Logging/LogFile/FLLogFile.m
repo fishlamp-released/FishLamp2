@@ -34,7 +34,7 @@
 
 - (void) openLogFile {
     
-    FLAssertIsNil_v(_fileHandle, nil);
+    FLAssertIsNilWithComment(_fileHandle, nil);
     
     if(!_fileHandle) {
 

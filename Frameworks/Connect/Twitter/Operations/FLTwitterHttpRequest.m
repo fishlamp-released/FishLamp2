@@ -56,7 +56,7 @@
             id obj = [input valueForKey:propertyName];
             if(obj)
             {
-                FLAssert_v([obj isKindOfClass:[NSString class]], @"not a string"); 
+                FLAssertWithComment([obj isKindOfClass:[NSString class]], @"not a string"); 
                 if(FLStringIsNotEmpty(obj))
                 {
                     [content appendAndEncodeURLParameter:obj name:propertyName seperator:(count++ == 0 ? @"" : @"&")];

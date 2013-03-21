@@ -106,7 +106,7 @@
 
 - (void) addVisitable:(id) object {
 
-    FLAssertIsNotNil_(object);
+    FLAssertIsNotNil(object);
 
     @synchronized(self) {
         if(!_children) {

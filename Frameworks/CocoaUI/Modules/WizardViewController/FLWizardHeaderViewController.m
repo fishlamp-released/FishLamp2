@@ -21,15 +21,15 @@
     [super awakeFromNib];
 
     _spinner.hidden = YES;
-    [_logoView sendToBack];
+//    [_logoView sendToBack];
     [_titleView removeFromSuperview];
     [self.view addSubview:_titleView positioned:NSWindowAbove relativeTo:_logoView];
 }
 
 - (void) setPrompt:(NSString*) title animationDuration:(CGFloat) animationDuration {
-    [_logoView sendToBack];
+//    [_logoView sendToBack];
     _titleView.stringValue = title;
-    [_titleView bringToFront];
+//    [_titleView bringToFront];
 }
 
 - (void) showSpinner:(BOOL) show {

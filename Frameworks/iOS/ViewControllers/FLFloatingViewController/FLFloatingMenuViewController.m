@@ -24,7 +24,7 @@
 
 @implementation FLFloatingMenuViewController
 
-FLAssertDefaultInitNotCalled_();
+FLAssertDefaultInitNotCalled();
 
 - (id) initWithTitle:(NSString*) title
 {

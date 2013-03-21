@@ -7,58 +7,49 @@
 //
 
 #import "FLRequired.h"
-#import "FLErrorDomain.h"
+#import "FLErrorDomainInfo.h"
 #import "FLStackTrace.h"
 
-typedef void (^FLErrorBlock)(NSError* error);
+extern NSString* const FLErrorCommentKey;
 
 @interface NSError (FLExtras) 
+
+// this is stored as an associated object.
+
+// fishlamp properties
+@property (readonly, strong, nonatomic) NSString* comment;
+@property (readwrite, strong, nonatomic) FLStackTrace* stackTrace;
+
+// sdk helpers
+@property (readonly, strong, nonatomic) NSError* underlyingError;
+@property (readonly, strong, nonatomic) NSString* stringEncoding;
+@property (readonly, strong, nonatomic) NSURL* URL;
+@property (readonly, strong, nonatomic) NSString* filePath; 
+
+- (id) initWithDomain:(NSString*) domain
+                 code:(NSInteger) code
+ localizedDescription:(NSString*) localizedDescription
+             userInfo:(NSDictionary *)dict
+              comment:(NSString*) comment;
 
 + (NSError*) errorWithDomain:(id) domainStringOrDomainObject
                         code:(NSInteger) code
         localizedDescription:(NSString*) localizedDescription;
 
++ (NSError*) errorWithDomain:(id) domainStringOrDomainObject
+                        code:(NSInteger)code
+        localizedDescription:(NSString*) localizedDescription
+                    userInfo:(NSDictionary *)dict
+                     comment:(NSString*) commentOrNil;
+
+
+// utils.
+
 - (BOOL) isErrorCode:(NSInteger) code domain:(NSString*) domain;
 
 - (BOOL) errorDomainEqualsDomain:(NSString*) domain;
 
-// Network errors 
-// TODO move these
-@property (readonly, nonatomic) BOOL didLoseNetwork;
-@property (readonly, nonatomic) BOOL isNotConnectedToInternetError;
 
 @end
 
-/** 
-    To throw an error, see FLExceptions.h
-    Use FLThrowErrorCode_v.
- */
-@interface NSError (FLErrorDomain)
-
-@property (readonly, strong, nonatomic) NSString* reason;
-@property (readonly, strong, nonatomic) NSString* comment;
-@property (readonly, strong, nonatomic) id<FLErrorDomain> errorDomain;
-@property (readonly, strong, nonatomic) FLStackTrace* stackTrace;
-
-- (id) initWithDomain:(id) domainStringOrDomainObject
-                 code:(NSInteger) code
-             userInfo:(NSDictionary *)dict
-               reason:(NSString*) reason
-              comment:(NSString*) comment
-           stackTrace:(FLStackTrace*) stackTrace;
-
-+ (NSError*) errorWithDomain:(id) domainStringOrDomainObject
-                        code:(NSInteger)code
-                    userInfo:(NSDictionary *)dict
-                      reason:(NSString*) reasonOrNil
-                     comment:(NSString*) commentOrNil
-                  stackTrace:(FLStackTrace*) stackTrace;
-
-
-@end
-
-@interface NSError (FLCancelling)
-+ (NSError*) cancelError;
-@property (readonly, nonatomic, assign) BOOL isCancelError;
-@end
 

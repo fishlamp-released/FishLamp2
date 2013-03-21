@@ -20,17 +20,17 @@
 	parentObject:(id) parentObject 
 	outObject:(id*) outObject
 {
-//	FLAssertStringIsNotEmpty_(key);
+//	FLAssertStringIsNotEmpty(key);
 //
 //	FLObjectDescriber* describer = [[self class] objectDescriber];
-//	FLAssertIsNotNil_(describer);
+//	FLAssertIsNotNil(describer);
 //
 //	FLObjectDescriber* desc = [describer propertyForName:key];
-////	FLAssertIsNotNil_(desc);
+////	FLAssertIsNotNil(desc);
 //
 //	if(desc)
 //	{
-//		FLAssert_v(desc.objectDescriber.isObject, @"opening object thats a simple type");
+//		FLAssertWithComment(desc.objectDescriber.isObject, @"opening object thats a simple type");
 //		if(FLDataTypeIsObject(desc.objectDescriber))
 //		{
 //			id newObject = [self valueForKey:key];
@@ -40,7 +40,7 @@
 //				[self setValue:newObject forKey:key];
 //			}
 //		
-//			FLAssertIsNotNil_(newObject);
+//			FLAssertIsNotNil(newObject);
 //			if(outObject)
 //			{
 //				*outObject = FLRetain(newObject);
@@ -60,13 +60,13 @@
 }
 - (BOOL) setJsonData:(id) data forKey:(NSString*) key
 {
-//	FLAssertStringIsNotEmpty_(key);
+//	FLAssertStringIsNotEmpty(key);
 //
 //	FLObjectDescriber* describer = [[self class] objectDescriber];
-//	FLAssertIsNotNil_(describer);
+//	FLAssertIsNotNil(describer);
 //
 //	FLObjectDescriber* desc = [describer propertyForName:key];
-////	FLAssertIsNotNil_(desc);
+////	FLAssertIsNotNil(desc);
 //
 //	if(desc) {
 //		switch(desc.objectDescriber.specificType) {
@@ -97,14 +97,14 @@
 	parentObject:(id) parentObject 
 	outObject:(id*) outObject
 {
-	FLAssertStringIsNotEmpty_(arrayItemKey);
+	FLAssertStringIsNotEmpty(arrayItemKey);
 
 
 	FLObjectDescriber* describer = [[parentObject class] objectDescriber];
-	FLAssertIsNotNil_(describer);
+	FLAssertIsNotNil(describer);
 
 	FLObjectDescriber* desc = [describer propertyForName:arrayItemKey];
-	FLAssertIsNotNil_(desc);
+	FLAssertIsNotNil(desc);
 	
 	if(desc)
 	{
@@ -112,16 +112,16 @@
 		{
 		//	if(FLStringsAreEqual(property.objectName, arrayItemKey))
 			{
-                FLAssertIsNotNil_(property.objectDescriber.actualClass);
+                FLAssertIsNotNil(property.objectDescriber.actualClass);
                 FLObjectDescriber* propDescriber = [property.objectDescriber.actualClass objectDescriber];
             
 				if(propDescriber)
 				{
 					
 					id obj = [[property.objectDescriber.actualClass alloc] init];
-					FLAssert_v(obj != nil, @"Unable to created object of type: %@", NSStringFromClass(property.objectDescriber.actualClass));
+					FLAssertWithComment(obj != nil, @"Unable to created object of type: %@", NSStringFromClass(property.objectDescriber.actualClass));
 
-					FLAssertIsNotNil_(obj);
+					FLAssertIsNotNil(obj);
 					[self addObject:obj];
 					FLRelease(obj);
 					

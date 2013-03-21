@@ -39,8 +39,8 @@ static NSDictionary* s_destinationProperties = nil;
 	fileName:(NSString*) fileName {
 
 	if((self = [super init])) {
-		FLAssertIsNotNil_v(folder, nil);
-		FLAssertStringIsNotEmpty_v(fileName, nil);
+		FLAssertIsNotNilWithComment(folder, nil);
+		FLAssertStringIsNotEmptyWithComment(fileName, nil);
 
 		[self setImage:image exifDictionary:exifDictionary];
 		self.folder = folder;
@@ -56,8 +56,8 @@ static NSDictionary* s_destinationProperties = nil;
 	fileName:(NSString*) fileName {
 
 	if((self = [super init])) {
-		FLAssertIsNotNil_v(folder, nil);
-		FLAssertStringIsNotEmpty_v(fileName, nil);
+		FLAssertIsNotNilWithComment(folder, nil);
+		FLAssertStringIsNotEmptyWithComment(fileName, nil);
 
 		self.jpegData = jpeg;
 		self.folder = folder;
@@ -125,7 +125,7 @@ static NSDictionary* s_destinationProperties = nil;
 
 - (void) readFromStorage {
     self.jpegData = [self readDataFromFile]; 
-	FLAssertIsNotNil_v(_jpegData, nil);
+	FLAssertIsNotNilWithComment(_jpegData, nil);
 }
 
 - (void) setJpegData:(NSData*) data {
@@ -162,37 +162,37 @@ static NSDictionary* s_destinationProperties = nil;
 {
 	if(!self.folder)
 	{
-		FLThrowIfError([NSError errorWithDomain:[FLFrameworkErrorDomain instance] code:FLErrorInvalidFolder
+		FLThrowIfError([NSError errorWithDomain:FLFrameworkErrorDomain code:FLErrorInvalidFolder
 			userInfo:[NSDictionary dictionaryWithObject:@"No Folder Set in FLJpegFile" forKey:NSLocalizedDescriptionKey]]);
 	}
 	if(FLStringIsEmpty(self.fileName))
 	{
-		FLThrowIfError([NSError errorWithDomain:[FLFrameworkErrorDomain instance] code:FLErrorInvalidName
+		FLThrowIfError([NSError errorWithDomain:FLFrameworkErrorDomain code:FLErrorInvalidName
 			userInfo:[NSDictionary dictionaryWithObject:@"No FileName Set in FLJpegFile" forKey:NSLocalizedDescriptionKey]]);
 	}
 }
 
 - (void) writeJpegToStorage
 {
-    FLAssertStringIsNotEmpty_v(self.filePath, nil);
+    FLAssertStringIsNotEmptyWithComment(self.filePath, nil);
 
     NSURL* url = [[NSURL alloc] initFileURLWithPath:self.filePath];
-    FLAssertIsNotNil_v(url, nil);
+    FLAssertIsNotNilWithComment(url, nil);
     
     CGImageDestinationRef imageDestRef = nil;
     CGImageSourceRef imageSourceRef = nil;
     @try {
         NSData* jpgData = self.jpegData;
-        FLAssertIsNotNil_v(jpgData, nil);
-        FLAssert_v(jpgData.length > 0, @"image is of size zero");
+        FLAssertIsNotNilWithComment(jpgData, nil);
+        FLAssertWithComment(jpgData.length > 0, @"image is of size zero");
     
         imageDestRef = CGImageDestinationCreateWithURL(bridge_(void*,url), kUTTypeJPEG, 1, nil /* always nil */);
-        FLConfirmIsNotNil_(imageDestRef);
+        FLConfirmIsNotNil(imageDestRef);
 
         CGImageDestinationSetProperties(imageDestRef, bridge_(void*,s_destinationProperties));
 
         imageSourceRef = CGImageSourceCreateWithData(bridge_(void*,jpgData), nil);
-        FLConfirmIsNotNil_(imageSourceRef);
+        FLConfirmIsNotNil(imageSourceRef);
         
         CGImageDestinationAddImageFromSource(imageDestRef, imageSourceRef, 0, bridge_(void*,self.properties));
         
@@ -208,15 +208,15 @@ static NSDictionary* s_destinationProperties = nil;
 }
 
 - (void) writeImageToStorage {
-    FLAssertStringIsNotEmpty_v(self.filePath, nil);
+    FLAssertStringIsNotEmptyWithComment(self.filePath, nil);
 
     NSURL* url = [[NSURL alloc] initFileURLWithPath:self.filePath];
-    FLAssertIsNotNil_v(url, nil);
+    FLAssertIsNotNilWithComment(url, nil);
     
     CGImageDestinationRef imageSourceRef = nil;
     @try {
         UIImage* image = self.image;
-        FLAssertIsNotNil_v(image, nil);
+        FLAssertIsNotNilWithComment(image, nil);
 
 #if IOS        
         CGImageRef imageRef = image.CGImage;
@@ -225,12 +225,12 @@ static NSDictionary* s_destinationProperties = nil;
         
         CGImageRef imageRef = nil;
         
-        FLAssertIsImplemented_v(nil);
+        FLAssertIsImplementedWithComment(nil);
         
         #pragma unused (image)
 #endif        
         
-        FLAssertIsNotNil_v(imageRef, nil);
+        FLAssertIsNotNilWithComment(imageRef, nil);
     
         imageSourceRef = CGImageDestinationCreateWithURL(bridge_(void*,url), kUTTypeJPEG, 1, nil /* always nil */);
         
@@ -256,7 +256,7 @@ static NSDictionary* s_destinationProperties = nil;
 	[self _throwIfNotConfigured];
 	
 	if(!_image && !_jpegData) {
-		FLThrowIfError([NSError errorWithDomain:[FLFrameworkErrorDomain instance] code:FLErrorNoDataToSave
+		FLThrowIfError([NSError errorWithDomain:FLFrameworkErrorDomain code:FLErrorNoDataToSave
 			userInfo:[NSDictionary dictionaryWithObject:@"No image data to save" forKey:NSLocalizedDescriptionKey]]);
  
 	}

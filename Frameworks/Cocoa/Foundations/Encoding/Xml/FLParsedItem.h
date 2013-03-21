@@ -18,8 +18,10 @@
     NSMutableDictionary* _elements;
     __unsafe_unretained FLParsedItem* _parent;
 }
+- (id) initWithName:(NSString*) name value:(NSString*) value;
 
 + (id) parsedItem;
++ (id) parsedItem:(NSString*) name value:(NSString*) value;
 
 @property (readwrite, strong, nonatomic) NSDictionary* attributes;
 @property (readwrite, strong, nonatomic) NSString* namespaceURI;

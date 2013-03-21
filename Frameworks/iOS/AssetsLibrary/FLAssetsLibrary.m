@@ -124,7 +124,7 @@ NSError* DisplayDiagnosticError(NSError* error)
         
         case kCLAuthorizationStatusNotDetermined:
             
-            FLAssertFailed_v(@"Should never get here!");
+            FLAssertFailedWithComment(@"Should never get here!");
             
             return NO;
         break;
@@ -154,8 +154,8 @@ NSError* DisplayDiagnosticError(NSError* error)
                             doneBlock:(FLLoadedAssetsBlock) doneBlock  
                          shouldCancel:(FLShouldCancelBlock) shouldCancel
 {
-    FLAssertIsNotNil_v(doneBlock, nil);
-    FLAssertIsNotNil_v(shouldCancel, nil);
+    FLAssertIsNotNilWithComment(doneBlock, nil);
+    FLAssertIsNotNilWithComment(shouldCancel, nil);
     
     if(![self locationServicesAreAuthorized])
     {
@@ -204,8 +204,8 @@ NSError* DisplayDiagnosticError(NSError* error)
                        shouldCancel:(FLShouldCancelBlock) shouldCancel
                         loadedAsset:(FLAssetBlock) loadedAsset
 {
-    FLAssertIsNotNil_v(doneBlock, nil);
-    FLAssertIsNotNil_v(shouldCancel, nil);
+    FLAssertIsNotNilWithComment(doneBlock, nil);
+    FLAssertIsNotNilWithComment(shouldCancel, nil);
 
     if(![self locationServicesAreAuthorized])
     {
@@ -271,8 +271,8 @@ NSError* DisplayDiagnosticError(NSError* error)
                          shouldCancel:(FLShouldCancelBlock) shouldCancel
                           loadedAsset:(FLAssetBlock) loadedAsset
 {
-    FLAssertIsNotNil_v(doneBlock, nil);
-    FLAssertIsNotNil_v(shouldCancel, nil);
+    FLAssertIsNotNilWithComment(doneBlock, nil);
+    FLAssertIsNotNilWithComment(shouldCancel, nil);
     
     if(![self locationServicesAreAuthorized])
     {
@@ -406,8 +406,8 @@ NSError* DisplayDiagnosticError(NSError* error)
                           doneBlock:(FLLoadedAssetsBlock) doneBlock  
                        shouldCancel:(FLShouldCancelBlock) shouldCancel
 {
-    FLAssertIsNotNil_v(doneBlock, nil);
-    FLAssertIsNotNil_v(shouldCancel, nil);
+    FLAssertIsNotNilWithComment(doneBlock, nil);
+    FLAssertIsNotNilWithComment(shouldCancel, nil);
 
     if(![self locationServicesAreAuthorized])
     {
@@ -439,8 +439,8 @@ NSError* DisplayDiagnosticError(NSError* error)
                   doneBlock:(FLLoadedAssetsBlock) doneBlock  
                shouldCancel:(FLShouldCancelBlock) shouldCancel
 {
-    FLAssertIsNotNil_v(doneBlock, nil);
-    FLAssertIsNotNil_v(shouldCancel, nil);
+    FLAssertIsNotNilWithComment(doneBlock, nil);
+    FLAssertIsNotNilWithComment(shouldCancel, nil);
 
     if(![self locationServicesAreAuthorized])
     {
@@ -472,8 +472,8 @@ NSError* DisplayDiagnosticError(NSError* error)
                            doneBlock:(FLLoadedAssetsBlock) doneBlock
                         shouldCancel:(FLShouldCancelBlock) shouldCancel
 {
-    FLAssertIsNotNil_v(doneBlock, nil);
-    FLAssertIsNotNil_v(shouldCancel, nil);
+    FLAssertIsNotNilWithComment(doneBlock, nil);
+    FLAssertIsNotNilWithComment(shouldCancel, nil);
     
     if(![self locationServicesAreAuthorized])
     {

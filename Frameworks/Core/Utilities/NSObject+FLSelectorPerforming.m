@@ -19,12 +19,12 @@
 #pragma GCC diagnostic ignored "-Warc-performSelector-leaks"
 
 //NS_INLINE
-void FLConfirmNoReturnObject_(id obj) {
-    FLConfirmIsNil_v(obj, @"selector must return nil (or ARC will leak the object). Selector returned: %@", [obj description]); \
+void FLConfirmNoReturnObject(id obj) {
+    FLConfirmIsNilWithComment(obj, @"selector must return nil (or ARC will leak the object). Selector returned: %@", [obj description]); \
 }
 
 
-#define FLAssertNotMetaClass_(c) FLAssert_v(!class_isMetaClass(c), @"attempting to execute selector on a meta class");
+#define FLAssertNotMetaClass(c) FLAssertWithComment(!class_isMetaClass(c), @"attempting to execute selector on a meta class");
 
 @implementation NSObject (FLSelectorPerforming)
 
@@ -33,7 +33,7 @@ void FLConfirmNoReturnObject_(id obj) {
               withObject:(id) object2 
               withObject:(id) object3 {
     
-    FLConfirmIsNotNil_(selector);
+    FLConfirmIsNotNil(selector);
     NSMethodSignature *signature  = [self methodSignatureForSelector:selector];
     NSInvocation      *invocation = [NSInvocation invocationWithMethodSignature:signature];
 
@@ -45,7 +45,7 @@ void FLConfirmNoReturnObject_(id obj) {
     [invocation retainArguments];
     [invocation invoke];
 
-    FLAssert_v([[invocation methodSignature] methodReturnLength] == 0, @"returned objects will leak so it's not supported (blame ARC)." );
+    FLAssertWithComment([[invocation methodSignature] methodReturnLength] == 0, @"returned objects will leak so it's not supported (blame ARC)." );
 }              
 
 @end
@@ -91,7 +91,7 @@ BOOL FLPerformSelectorWithArgCount(id target, SEL selector, int argCount, id obj
         break;
         
         default:
-            FLAssertFailed_v(@"Unsupported arg count: %d", argCount);
+            FLAssertFailedWithComment(@"Unsupported arg count: %d", argCount);
             break;
     }
     

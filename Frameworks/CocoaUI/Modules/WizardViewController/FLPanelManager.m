@@ -215,7 +215,7 @@
                completion:(FLPanelViewControllerBlock) completion {
     
     FLPanelViewController* toShow = [_panels objectAtIndex:idx];
-    FLAssertNotNil_(toShow);
+    FLAssertNotNil(toShow);
     
     FLPanelViewController* toHide = [self visiblePanel];
     if(toShow == toHide) {
@@ -301,7 +301,7 @@
     return _started && self.currentPanelIndex == (_panels.count - 1);
 }
           
-- (void) addPanelView:(FLCompatibleView*) panelView toView:(FLCompatibleView*) superview animated:(BOOL) animated {
+- (void) addPanelView:(SDKView*) panelView toView:(SDKView*) superview animated:(BOOL) animated {
 
     panelView.wantsLayer = YES;
     if(!_panelViews) {
@@ -312,7 +312,7 @@
 }
 
 - (void) removePanelViews:(BOOL) animated {
-    for(FLCompatibleView* view in _panelViews) {
+    for(SDKView* view in _panelViews) {
         [view removeFromSuperview];
     }
 
@@ -333,7 +333,7 @@
 //                            show:(FLPanelViewController*) toShow
 //                      completion:(FLPanelViewControllerBlock) completion {                            
 //
-//    FLAssertNotNil_(toShow);
+//    FLAssertNotNil(toShow);
 //
 //    [self setFirstResponder];
 //    [self setPanelFrame:toShow];

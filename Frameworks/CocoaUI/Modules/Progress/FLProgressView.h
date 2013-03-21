@@ -7,7 +7,7 @@
 //
 
 #import "FLCocoaUIRequired.h"
-#import "FLCocoaUIRequired.h"
+#import "FLCompatibleView.h"
 
 @protocol FLProgressView <NSObject>
 @optional
@@ -44,4 +44,4 @@
 
 @end
 
-typedef UIView<FLProgressView> FLProgressView;
+typedef FLCompatibleView<FLProgressView> FLProgressView;

@@ -40,14 +40,14 @@ FLSynthesizeAssociatedProperty(retain_nonatomic, _deallocNotifier, _setDeallocNo
 }
 
 - (void) removeDeallocNotifier:(FLSimpleNotifier*) notifier {
-    FLAssertIsNotNil_(notifier);
+    FLAssertIsNotNil(notifier);
     @synchronized(self) {
         [[self deallocNotifier] removeNotifier:notifier];
     }
 }
 
 - (void) addDeallocNotifier:(FLSimpleNotifier*) notifier {
-    FLAssertIsNotNil_(notifier);
+    FLAssertIsNotNil(notifier);
     [[self deallocNotifier] addNotifier:notifier];
 }
 
@@ -127,7 +127,7 @@ static void (*originalDealloc)(id,SEL);
 }
 
 - (void) addNotifier:(FLSimpleNotifier*) notifier {
-    FLAssertIsNotNil_(notifier);
+    FLAssertIsNotNil(notifier);
     @synchronized(self) {
 //        [[notifier deallocNotifier] _addNotifier:_notifierDied];
         [_notifiers addObject:notifier];

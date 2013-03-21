@@ -29,4 +29,7 @@
 // this will fail if number of return objects != 1
 - (id) objectFromXML:(FLParsedItem*) element withObjectType:(FLObjectDescriber*) type;
 
+// optional overrides
+- (FLParsedItem*) willBuildObjectsWithXML:(FLParsedItem*) element;
+
 @end

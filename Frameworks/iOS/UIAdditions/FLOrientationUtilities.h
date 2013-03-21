@@ -45,7 +45,7 @@ UIImageOrientation UIImageOrientationFlip(UIImageOrientation interfaceOrientatio
 		case UIImageOrientationLeft: return UIImageOrientationRight;
 		case UIImageOrientationRight: return UIImageOrientationLeft; 
 		default:
-//			FLAssertFailed_v(@"Unsupported orientation");
+//			FLAssertFailedWithComment(@"Unsupported orientation");
 			break;
 	}
 	
@@ -71,7 +71,7 @@ UIDeviceOrientation UIDeviceOrientationFlip(UIDeviceOrientation interfaceOrienta
 		case UIDeviceOrientationLandscapeRight: 
 			return UIDeviceOrientationLandscapeLeft; 
 		default:
-//			FLAssertFailed_v(@"Unsupported orientation");
+//			FLAssertFailedWithComment(@"Unsupported orientation");
 			break;
 	}
 	
@@ -142,7 +142,7 @@ UIInterfaceOrientation UIConvertImageToInterfaceOrientation(UIImageOrientation i
 			return UIInterfaceOrientationPortrait;
 
 		default:
-//			FLAssertFailed_v(@"Unsupported orientation");
+//			FLAssertFailedWithComment(@"Unsupported orientation");
 			break;
 	}
 	

@@ -21,9 +21,11 @@
     return self;
 }
 
-- (void) _addViewController:(UIViewController*) viewController {
+- (void) _addViewController:(FLViewController*) viewController {
     [self addChildViewController:viewController];
-    viewController.dismissHandler = ^(UIViewController* controller, BOOL animated) {
+
+#if IOS
+    viewController.dismissHandler = ^(FLViewController* controller, BOOL animated) {
         FLViewControllerStack* stack = controller.viewControllerStack;
         if(stack.viewControllers.count == 1) {
             [stack hideViewController:animated];
@@ -32,11 +34,12 @@
             [stack popViewControllerAnimated:YES];
         }
     };
+#endif
     
     [_viewControllers addObject:viewController];
 }
 
-- (id) initWithRootViewController:(UIViewController*) rootViewController {
+- (id) initWithRootViewController:(FLViewController*) rootViewController {
     if((self = [super init])) {
         _viewControllers = [[NSMutableArray alloc] init];
         FLSetObjectWithRetain(_rootViewController, rootViewController);
@@ -46,7 +49,7 @@
     return self;
 }
 
-+ (FLViewControllerStack*) viewControllerStack:(UIViewController*) rootViewController {
++ (FLViewControllerStack*) viewControllerStack:(FLViewController*) rootViewController {
     return FLAutorelease([[FLViewControllerStack alloc] initWithRootViewController:rootViewController]);
 }
 
@@ -59,7 +62,7 @@
 - (void) viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     
-    for(UIViewController* controller in _viewControllers) {
+    for(FLViewController* controller in _viewControllers) {
         if([controller isViewLoaded]) {
             controller.view.frame = self.view.bounds;
         }
@@ -69,7 +72,11 @@
 - (void) viewDidLoad {
     [super viewDidLoad];
     
+#if IOS
     self.view.backgroundColor = [UIColor clearColor];
+#else 
+    self.view.wantsLayer = YES;
+#endif    
    	self.view.layer.shadowColor = [UIColor blackColor].CGColor;
 	self.view.layer.shadowOpacity = .8;
 	self.view.layer.shadowRadius = 20.0;
@@ -83,20 +90,21 @@
     [self.view addSubview:_rootViewController.view];
 }  
 
-- (void)pushViewController:(UIViewController *)viewController 
+- (void)pushViewController:(FLCompatibleViewController *)viewController 
              withAnimation:(id<FLViewControllerTransitionAnimation>) animation {
     
-    FLAssertIsNotNil_(_rootViewController);
-    FLAssertIsNotNil_(_viewControllers);
+    FLAssertIsNotNil(_rootViewController);
+    FLAssertIsNotNil(_viewControllers);
     
+#if IOS    
     if(!animation) {
         animation = [[self class] defaultTransitionAnimation];
     }
 
-    FLAssertIsNotNil_(viewController);
-    FLAssertIsNotNil_(animation);
+    FLAssertIsNotNil(viewController);
+    FLAssertIsNotNil(animation);
     
-    UIViewController* parent =  _viewControllers.lastObject;
+    FLCompatibleViewController* parent =  _viewControllers.lastObject;
         
     if(viewController.transitionAnimation != animation) {
         viewController.transitionAnimation = animation;
@@ -109,19 +117,21 @@
     
     [animation beginShowAnimationForViewController:viewController
      parentViewController:parent
-        finishedBlock:^(UIViewController* theViewController, id theParent){
+        finishedBlock:^(FLViewController* theViewController, id theParent){
             if(theParent != self) {
                 [[theParent view] removeFromSuperview];
             }
             [theViewController wasPushedOnViewControllerStack:self];
             }];
+#endif    
+
 }
 
-- (void) pushViewController:(UIViewController *)viewController {
+- (void) pushViewController:(FLViewController *)viewController {
     [self pushViewController:viewController withAnimation:nil];
 }
 
-- (UIViewController*) visibleViewController	 {
+- (FLViewController*) visibleViewController	 {
     return _viewControllers.lastObject;
 }
 
@@ -129,7 +139,7 @@
     if(visitor) {
         BOOL stop = NO;
         
-        for(UIViewController* viewController in _viewControllers.reverseObjectEnumerator) {
+        for(FLViewController* viewController in _viewControllers.reverseObjectEnumerator) {
             visitor(viewController, &stop);
             
             if(stop) {
@@ -139,13 +149,13 @@
     }
 }
 
-- (void) visitViewControllersStartingWithViewController:(UIViewController*) aViewController 
+- (void) visitViewControllersStartingWithViewController:(FLViewController*) aViewController 
                                                 visitor:(FLViewControllerStackVisitor) visitor {
     if(visitor) {
         BOOL foundIt = NO;
         BOOL stop = NO;
         
-        for(UIViewController* viewController in _viewControllers) {
+        for(FLViewController* viewController in _viewControllers) {
             if(viewController == aViewController) {
                 foundIt = YES;
             }
@@ -161,7 +171,8 @@
     }
 }                                                
 
-- (void) _removeViewController:(UIViewController*) viewController {
+- (void) _removeViewController:(FLViewController*) viewController {
+#if IOS
     for(int i = _viewControllers.count - 1; i >=0; i--) {
         if([_viewControllers objectAtIndex:i] == viewController) {
             viewController.transitionAnimation = nil;
@@ -172,11 +183,13 @@
             break;
         }
     }
+#endif    
 }
 
 - (void) popViewControllerAnimated:(BOOL) animated
 {
-    FLAssert_v(_viewControllers.count, @"no controllers on stack");
+#if IOS
+    FLAssertWithComment(_viewControllers.count, @"no controllers on stack");
     
     if(_viewControllers.count) {
         id<FLViewControllerTransitionAnimation> animation = animated ? 
@@ -185,15 +198,16 @@
     
         [self popViewControllerWithAnimation:animation]; 
     }
+#endif
 }
 
 - (void) popViewControllerWithAnimation:(id<FLViewControllerTransitionAnimation>) animation {
-    FLAssertIsNotNil_(animation);
-
-    UIViewController* visibleController = self.visibleViewController;
+    FLAssertIsNotNil(animation);
+#if IOS
+    FLViewController* visibleController = self.visibleViewController;
     
-    UIViewController* parent = [self parentControllerForController:visibleController];
-    FLAssertIsNotNil_(parent);
+    FLViewController* parent = [self parentControllerForController:visibleController];
+    FLAssertIsNotNil(parent);
 
     if(parent != visibleController) {
         [visibleController willBePoppedFromViewControllerStack:self];
@@ -209,16 +223,17 @@
                 }];
     
     }
+#endif
 }
 
-- (void) popToViewController:(UIViewController*) viewController 
+- (void) popToViewController:(FLViewController*) viewController 
                withAnimation:(id<FLViewControllerTransitionAnimation>) animation {
-    FLAssertIsImplemented_();
+    FLAssertIsImplemented();
 }
 
-- (UIViewController*) parentControllerForController:(UIViewController*) aController {
-    UIViewController* last = nil;
-    for(UIViewController* viewController in _viewControllers) {
+- (FLViewController*) parentControllerForController:(FLViewController*) aController {
+    FLViewController* last = nil;
+    for(FLViewController* viewController in _viewControllers) {
         if(viewController == aController) {
             return last;
         }
@@ -229,8 +244,8 @@
     return nil;
 }
 	
-- (BOOL) containsViewController:(UIViewController*) aController {
-    for(UIViewController* viewController in _viewControllers) {
+- (BOOL) containsViewController:(FLViewController*) aController {
+    for(FLViewController* viewController in _viewControllers) {
         if(viewController == aController) {
             return YES;
         }
@@ -245,7 +260,7 @@
 
 @end
 
-@implementation UIViewController (FLViewControllerStack)
+@implementation SDKViewController (FLViewControllerStack)
 
 - (void) willBePushedOnViewControllerStack:(FLViewControllerStack*) controller {
 }

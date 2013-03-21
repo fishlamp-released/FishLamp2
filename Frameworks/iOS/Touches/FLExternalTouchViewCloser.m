@@ -29,8 +29,8 @@
 
 - (void) beginWatchingTouchesForView:(UIView*) view
 {
-    FLAssertIsNotNil_(view);
-    FLAssertIsNotNil_(view.window);
+    FLAssertIsNotNil(view);
+    FLAssertIsNotNil(view.window);
 
     [self addPrimaryView:view];
     

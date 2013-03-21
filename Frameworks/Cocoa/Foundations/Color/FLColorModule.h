@@ -21,5 +21,3 @@
 #import "UIColor+FLMoreColors.h"
 #import "UIColor+FLUtils.h"
 
-@interface FLColorModule : NSObject<FLFrameworkModule>
-@end

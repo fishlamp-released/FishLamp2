@@ -105,7 +105,7 @@
     }
     @catch (NSException* ex) {
         FLLog(@"Exception: %@", [ex description]);
-        FLAssert_v(!task.isRunning, @"task is still running but we got an exception: %@", [ex description])
+        FLAssertWithComment(!task.isRunning, @"task is still running but we got an exception: %@", [ex description]);
         @throw;
     }
     @finally {

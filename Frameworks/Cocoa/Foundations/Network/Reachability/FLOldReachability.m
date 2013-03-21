@@ -210,8 +210,8 @@ static FLReachability* s_default = nil;
 
 static void ReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReachabilityFlags flags, void* info)
 {
-	FLAssert_v(info != NULL, @"info was NULL in ReachabilityCallback");
-	FLAssert_v([(NSObject*) info isKindOfClass: [FLReachability class]], @"info was wrong class in ReachabilityCallback");
+	FLAssertWithComment(info != NULL, @"info was NULL in ReachabilityCallback");
+	FLAssertWithComment([(NSObject*) info isKindOfClass: [FLReachability class]], @"info was wrong class in ReachabilityCallback");
 
 	FLReachability* noteObject = (FLReachability*) info;
 	[noteObject onReachabilityCallback];
@@ -254,7 +254,7 @@ static void ReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReach
 
 - (SCNetworkReachabilityFlags) currentReachabilityFlags
 {
-	FLAssert_v(_reachabilityRef != NULL, @"currentReachabilityFlags called with NULL _reachabilityRef");
+	FLAssertWithComment(_reachabilityRef != NULL, @"currentReachabilityFlags called with NULL _reachabilityRef");
 	SCNetworkReachabilityFlags flags = 0;
 	if (SCNetworkReachabilityGetFlags(_reachabilityRef, &flags))
 	{

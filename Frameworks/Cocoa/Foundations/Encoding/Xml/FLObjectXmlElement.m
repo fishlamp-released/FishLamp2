@@ -70,14 +70,14 @@
 //                   objectDescriber:(FLObjectDescriber*) description {
 //
 //    if(object) {
-//        FLAssertNotNil_v(description, @"serialization requires property description");
+//        FLAssertNotNilWithComment(description, @"serialization requires property description");
 //        
 //        id<FLDataEncoding> dataEncoder = [self dataEncoder];
-//        FLConfirmNotNil_v(dataEncoder, @"Xml String builder requires a data encoder");
+//        FLConfirmNotNilWithComment(dataEncoder, @"Xml String builder requires a data encoder");
 //    
 //		NSString* string = [dataEncoder encodeDataToString:object forType:description.objectDescriber];
-//        FLAssertNotNil_(string);
-//        FLConfirm_([string isKindOfClass:[NSString class]]);
+//        FLAssertNotNil(string);
+//        FLConfirm([string isKindOfClass:[NSString class]]);
 //        [self appendLine:string];
 //	}
 //}
@@ -102,7 +102,7 @@
             }
         }
     
-        FLAssertNotNil_([self dataEncoder]);
+        FLAssertNotNil([self dataEncoder]);
         
         [_object addToXmlElement:self objectDescriber:_objectDescriber];
     }
@@ -137,8 +137,8 @@
 
 + (id) xmlElementStringBuilderLine:(id) object objectDescriber:(FLObjectDescriber*) description {
 
-    FLAssertNotNil_(object);
-    FLAssertNotNil_v(description, @"serialization as token requires property description")
+    FLAssertNotNil(object);
+    FLAssertNotNilWithComment(description, @"serialization as token requires property description")
 
     FLXmlElementStringBuilderLine* token = FLAutorelease([[[self class] alloc] init]);
     token.object = object;
@@ -158,15 +158,15 @@
 - (void) didMoveToParent:(id)parent {
             
     if(parent && _object) {
-        FLAssertNotNil_v(_objectDescriber, @"serialization requires property description")
+        FLAssertNotNilWithComment(_objectDescriber, @"serialization requires property description")
              
         id<FLDataEncoding> dataEncoder = [[parent document] dataEncoder];
-        FLConfirmNotNil_v(dataEncoder, @"Xml String builder requires a data encoder");
+        FLConfirmNotNilWithComment(dataEncoder, @"Xml String builder requires a data encoder");
     
         NSString* encodedString = nil;
         [dataEncoder encodeDataToString:_object forType:_objectDescriber.objectDescriber outEncodedString:&encodedString];
-        FLAssertNotNil_(encodedString);
-        FLConfirm_([encodedString isKindOfClass:[NSString class]]);
+        FLAssertNotNil(encodedString);
+        FLConfirm([encodedString isKindOfClass:[NSString class]]);
         
         self.string = encodedString;
     }

@@ -7,7 +7,9 @@
 //
 
 #import "FLRequired.h"
-#import "FLErrorDomain.h"
+#import "FLErrorDomainInfo.h"
+
+extern NSString* const FLFrameworkErrorDomain;
 
 typedef enum {
     FLErrorCodeNone,
@@ -33,6 +35,7 @@ typedef enum {
     FLFrameworkTcpStreamErrorCode
 } FLFrameworkErrorCode;
 
-@interface FLFrameworkErrorDomain : NSObject<FLErrorDomain>
+@interface FLFrameworkErrorDomainInfo : NSObject<FLErrorDomainInfo>
++ (id) frameworkErrorDomainInfo;
 @end
 

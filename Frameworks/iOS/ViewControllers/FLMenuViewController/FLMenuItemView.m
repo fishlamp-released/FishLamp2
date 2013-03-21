@@ -99,7 +99,7 @@
     
     if(self.superview)
     {
-        FLAssert_v([self.superview isKindOfClass:[FLMenuView class]], @"expecting to be in a FLMenuView");
+        FLAssertWithComment([self.superview isKindOfClass:[FLMenuView class]], @"expecting to be in a FLMenuView");
     }
     _menuView = (FLMenuView*) self.superview;
 }

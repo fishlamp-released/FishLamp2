@@ -70,13 +70,13 @@
 
 //synthesize_(locks);
 
-FLAssertDefaultInitNotCalled_v(@"hello");
+FLAssertDefaultInitNotCalledWithComment(@"hello");
 
 - (id) initWithQueueUID:(NSString*) uid
 {
 	if((self = [super init]))
 	{	
-		FLAssertIsNotNil_v(uid, nil);
+		FLAssertIsNotNilWithComment(uid, nil);
 		_queueUID = FLRetain(uid);
 	}
 	
@@ -131,7 +131,7 @@ FLAssertDefaultInitNotCalled_v(@"hello");
 - (void) loadQueue:(FLDatabase*) database {
     self.database = database;
 
-    FLConfirmNotNil_(self.database);
+    FLConfirmNotNil(self.database);
     
     self.state = nil;
     
@@ -150,7 +150,7 @@ FLAssertDefaultInitNotCalled_v(@"hello");
 }
 
 - (NSUInteger) count {
-    FLAssertNotNil_(self.database);
+    FLAssertNotNil(self.database);
 
     if(_assets) {
         return _assets.count;
@@ -173,7 +173,7 @@ FLAssertDefaultInitNotCalled_v(@"hello");
 
 - (void) saveAsset:(FLQueuedAsset*) asset
 {
-    FLAssertIsNotNil_v(self.database, nil);
+    FLAssertIsNotNilWithComment(self.database, nil);
 
     asset.queueUID = self.queueUID;
     [self.database writeObject:asset];
@@ -184,7 +184,7 @@ FLAssertDefaultInitNotCalled_v(@"hello");
 
 - (void) sort:(FLAssetQueueSortOrder) sortOrder assetSortPropertySelector:(SEL) selector
 {
-    FLAssertIsNotNil_v(self.database, nil);
+    FLAssertIsNotNilWithComment(self.database, nil);
 
     if(_assets && _assets.count)
     {
@@ -226,7 +226,7 @@ FLAssertDefaultInitNotCalled_v(@"hello");
    	FLQueuedAsset* obj2 = nil;
 
     FLDatabase* database = self.database;
-	FLAssertIsNotNil_v(database, nil);
+	FLAssertIsNotNilWithComment(database, nil);
 
 	@synchronized(self) {
 		obj1 = [_assets objectAtIndex:lhs];
@@ -268,8 +268,8 @@ FLAssertDefaultInitNotCalled_v(@"hello");
 - (id) assetAtIndex:(NSUInteger) idx
 {
 	@synchronized(self) {
-		FLAssert_v(self.isLoaded, @"queue not loaded");
-		FLAssert_v(idx >= 0 && idx < _assets.count, @"bad idx");
+		FLAssertWithComment(self.isLoaded, @"queue not loaded");
+		FLAssertWithComment(idx >= 0 && idx < _assets.count, @"bad idx");
 		
 		if(idx < _assets.count)
 		{
@@ -282,8 +282,8 @@ FLAssertDefaultInitNotCalled_v(@"hello");
 
 - (void) deleteAsset:(FLQueuedAsset*) asset
 {	
-    FLAssertIsNotNil_v(asset, nil);
-    FLAssertIsNotNil_v(asset.assetObject, nil);
+    FLAssertIsNotNilWithComment(asset, nil);
+    FLAssertIsNotNilWithComment(asset.assetObject, nil);
 
     if(_assets)
     {
@@ -306,8 +306,8 @@ FIXME("asset q")
 
 - (void) deleteAssetAtIndex:(NSUInteger) idx
 {
-    FLAssert_v(self.isLoaded, @"queue not loaded");
-    FLAssert_v(idx >= 0 && idx < _assets.count, @"bad idx");
+    FLAssertWithComment(self.isLoaded, @"queue not loaded");
+    FLAssertWithComment(idx >= 0 && idx < _assets.count, @"bad idx");
 
     FLQueuedAsset* asset = nil;
 		
@@ -332,10 +332,10 @@ FIXME("asset q")
 {
 	@synchronized(self) {
     
-		FLAssert_v(self.isLoaded, @"queue not loaded");
+		FLAssertWithComment(self.isLoaded, @"queue not loaded");
         
         FLDatabase* database = self.database;
-        FLAssertIsNotNil_v(database, nil);
+        FLAssertIsNotNilWithComment(database, nil);
 
         for(int i = _assets.count - 1; i >= 0; i--)
         {
@@ -387,7 +387,7 @@ FIXME("asset q")
     NSDate* date = [NSDate date];
 
     FLDatabase* database = self.database;
-	FLAssertIsNotNil_v(database, nil);
+	FLAssertIsNotNilWithComment(database, nil);
 		
 	@synchronized(self) {
 		for(FLQueuedAsset* asset in assets)
@@ -420,7 +420,7 @@ FIXME("asset q")
     FLRelease(date);
 
     FLDatabase* database = self.database;
-	FLAssertIsNotNil_v(database, nil);
+	FLAssertIsNotNilWithComment(database, nil);
     
     [self saveAsset:asset];
     [database writeObject:_state];
@@ -442,7 +442,7 @@ FIXME("load first asset")
     completionBlock = FLAutorelease([completionBlock copy]);
     
     FLDatabase* database = self.database;
-	FLAssertIsNotNil_v(database, nil);
+	FLAssertIsNotNilWithComment(database, nil);
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), 
     ^{
@@ -517,7 +517,7 @@ FIXME("compatability")
     uploadedAsset.uploadedAssetId = asset.uploadedAssetId;
     uploadedAsset.uploadedAssetURL = asset.uploadedAssetURL;
     uploadedAsset.uploadedDate = [NSDate date];
-    FLAssertNotNil_(self.database);
+    FLAssertNotNil(self.database);
     [self.database	writeObject:uploadedAsset];
     [self deleteAsset:asset];
 }
@@ -568,7 +568,7 @@ FIXME("compatability")
 
 - (void) replaceAssetAtIndex:(NSUInteger) idx asset:(FLQueuedAsset*) asset
 {
-	FLAssert_v(self.isLoaded, @"queue not loaded");
+	FLAssertWithComment(self.isLoaded, @"queue not loaded");
 
 	@synchronized(self) {
 		FLQueuedAsset* oldAsset = [_assets objectAtIndex:idx];
@@ -608,7 +608,7 @@ FIXME("compatability")
 }
 
 - (void) saveQueueToDatabase {
-    FLAssertNotNil_(self.database);
+    FLAssertNotNil(self.database);
 
 	@synchronized(self) {
         if(_assets)
@@ -632,7 +632,7 @@ FIXME("compatability")
 
 #if QUEUE_LOCKING
 - (id) loadLock {
-    FLAssert_v(self.isLoaded, @"can't get a load lock on an unloaded queue");
+    FLAssertWithComment(self.isLoaded, @"can't get a load lock on an unloaded queue");
 //
 //    if(!_locks)
 //    {

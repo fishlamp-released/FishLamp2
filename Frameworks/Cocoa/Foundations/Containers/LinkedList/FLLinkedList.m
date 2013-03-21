@@ -69,7 +69,7 @@
 }
 
 - (NSEnumerator*) mutableEnumerator {
-    FLAssertIsNil_v(_mutableEnumerator, nil);
+    FLAssertIsNilWithComment(_mutableEnumerator, nil);
 
     _mutableEnumerator = [FLLinkedListMutableEnumerator linkedListMutableEnumerator:self];
     return _mutableEnumerator;
@@ -79,16 +79,16 @@
 
 - (void) assertIsInList:(id) object
 {
-//	  FLAssertIsNotNil_(object.linkedList);
+//	  FLAssertIsNotNil(object.linkedList);
 	if(object != self.firstObject && object != self.lastObject) {
-		FLAssertIsNotNil_v([object nextObjectInLinkedList], nil);
-		FLAssertIsNotNil_v([object previousObjectInLinkedList], nil);
+		FLAssertIsNotNilWithComment([object nextObjectInLinkedList], nil);
+		FLAssertIsNotNilWithComment([object previousObjectInLinkedList], nil);
 	}
 	else if(object == self.firstObject) {
-		FLAssertIsNil_v([object previousObjectInLinkedList], nil); 
+		FLAssertIsNilWithComment([object previousObjectInLinkedList], nil); 
 	}
 	else if(object == self.lastObject) {
-		FLAssertIsNil_v([object nextObjectInLinkedList], nil);
+		FLAssertIsNilWithComment([object nextObjectInLinkedList], nil);
 	}
 }
 
@@ -98,7 +98,7 @@
 		[self assertIsInList:object];
 		++count;
 	}
-	FLAssert_v(_count == count, @"wrong count");
+	FLAssertWithComment(_count == count, @"wrong count");
 	
 	count = 0;
 	id walker = self.firstObject;
@@ -107,7 +107,7 @@
 	   ++count;
 		walker = [walker nextObjectInLinkedList];
 	}
-	FLAssert_v(_count == count, @"wrong count");
+	FLAssertWithComment(_count == count, @"wrong count");
 	
 	count = 0;
 	walker = self.lastObject;
@@ -117,10 +117,10 @@
 		walker = [walker previousObjectInLinkedList];
 	}
 
-	FLAssert_v(_count == count, @"wrong count");
+	FLAssertWithComment(_count == count, @"wrong count");
 	if(_count == 0) {
-		FLAssertIsNil_v(self.firstObject, nil);
-		FLAssertIsNil_v(self.lastObject, nil);
+		FLAssertIsNilWithComment(self.firstObject, nil);
+		FLAssertIsNilWithComment(self.lastObject, nil);
 	}
 }
 
@@ -130,11 +130,11 @@
 - (void) _insertObject:(id) object 
           beforeObject:(id) beforeObject
 {
-	FLAssertIsNotNil_v(object, nil);
-	FLAssert_v(beforeObject != object, @"can't push before self!");
+	FLAssertIsNotNilWithComment(object, nil);
+	FLAssertWithComment(beforeObject != object, @"can't push before self!");
 	
-	FLAssert_v([object nextObjectInLinkedList] == nil, @"already in a list");
-	FLAssert_v([object previousObjectInLinkedList] == nil, @"already in a list");
+	FLAssertWithComment([object nextObjectInLinkedList] == nil, @"already in a list");
+	FLAssertWithComment([object previousObjectInLinkedList] == nil, @"already in a list");
 	
 	++_mutatationCount;
     
@@ -167,10 +167,10 @@
 
 - (void) _insertObject:(id) object 
            afterObject:(id) afterObject {
-	FLAssertIsNotNil_v(object, nil);
-	FLAssert_v(afterObject != object, @"can't append after self!");
-	FLAssert_v([object nextObjectInLinkedList] == nil, @"already in a list");
-	FLAssert_v([object previousObjectInLinkedList] == nil, @"already in a list");
+	FLAssertIsNotNilWithComment(object, nil);
+	FLAssertWithComment(afterObject != object, @"can't append after self!");
+	FLAssertWithComment([object nextObjectInLinkedList] == nil, @"already in a list");
+	FLAssertWithComment([object previousObjectInLinkedList] == nil, @"already in a list");
 	
     ++_mutatationCount;
 
@@ -203,7 +203,7 @@
 
 - (void) _removeObject:(id) object {
 
-	FLAssertIsNotNil_v(object, nil);
+	FLAssertIsNotNilWithComment(object, nil);
     
 	++_mutatationCount;
 
@@ -229,13 +229,13 @@
 	[object setNextObjectInLinkedList:nil];
 	[object setPreviousObjectInLinkedList:nil];
     
-	FLAssert_v(_count > 0, @"count is invalid");
+	FLAssertWithComment(_count > 0, @"count is invalid");
     
 }
 
 - (void) _addObject:(id) object adder:(void (^)(FLLinkedList* list)) adder {
 
-    FLAssert_v([object linkedList] == nil, @"object already in a list");
+    FLAssertWithComment([object linkedList] == nil, @"object already in a list");
     
     if(![object linkedList]) {
         adder(self);
@@ -364,11 +364,11 @@
 }
 
 - (void) swapListPositions:(id) firstObject secondObject:(id) secondObject {
-    FLAssertIsNotNil_v(firstObject, nil);
-    FLAssertIsNotNil_v(secondObject, nil);
-    FLAssert_v([firstObject linkedList] == self, @"first object is not in linked list");
-    FLAssert_v([secondObject linkedList] == self, @"second object is not in linked list");
-    FLAssert_v(firstObject != secondObject, @"first and second object are the same");
+    FLAssertIsNotNilWithComment(firstObject, nil);
+    FLAssertIsNotNilWithComment(secondObject, nil);
+    FLAssertWithComment([firstObject linkedList] == self, @"first object is not in linked list");
+    FLAssertWithComment([secondObject linkedList] == self, @"second object is not in linked list");
+    FLAssertWithComment(firstObject != secondObject, @"first and second object are the same");
 
     ++_mutatationCount;
     
@@ -419,9 +419,9 @@
         --_count;
     }
     
-    FLAssertIsNil_v(_firstObject, nil);
-    FLAssertIsNil_v(_lastObject, nil);
-    FLAssert_v(_count == 0, @"count is not zero");
+    FLAssertIsNilWithComment(_firstObject, nil);
+    FLAssertIsNilWithComment(_lastObject, nil);
+    FLAssertWithComment(_count == 0, @"count is not zero");
 	
 #if HARDCORE_CHECKING_ACTION
 	[self check];

@@ -30,7 +30,7 @@
 @synthesize columnDecoder = _columnDecoder;
 
 - (void) setTableName:(NSString*) tableName {
-    FLAssertStringIsNotEmpty_(tableName);
+    FLAssertStringIsNotEmpty(tableName);
 	
     FLSetObjectWithRetain(_tableName, FLDatabaseNameEncode(tableName));
 	FLSetObjectWithRetain(_decodedTableName, FLDatabaseNameDecode(_tableName));
@@ -190,7 +190,7 @@
 //		if(className) {
 //			Class c = objc_getClass(className);
 //			
-//			FLAssertIsNotNil_(c);
+//			FLAssertIsNotNil(c);
 //			   
 //			const char* propertyName = property_getName(properties[i]);
 //			FLDatabaseColumn* col = [FLDatabaseColumn databaseColumnWithName:[NSString stringWithCString:propertyName encoding:NSASCIIStringEncoding]
@@ -259,7 +259,7 @@
 - (id) objectForRow:(NSDictionary*) row {
 
     id newObject = FLAutorelease([[self.classRepresentedByTable alloc] init]);
-    FLAssertIsNotNil_(newObject);
+    FLAssertIsNotNil(newObject);
     
     for(NSString* columnName in row) {
         id data = [row objectForKey:columnName];

@@ -106,7 +106,7 @@
    forKey:(NSString*) dataKeyOrNil
    configureCell:(FLTableViewLayoutCreateCell) callback
 {
-	FLAssertIsNotNil_(callback);
+	FLAssertIsNotNil(callback);
 	if(callback)
 	{
 		if(FLStringIsNotEmpty(dataKeyOrNil))

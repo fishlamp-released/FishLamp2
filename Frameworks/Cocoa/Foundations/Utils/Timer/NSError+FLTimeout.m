@@ -10,7 +10,7 @@
 
 @implementation NSError (FLTimeout)
 + (NSError*) timeoutError {
-    return [NSError errorWithDomain:[FLFrameworkErrorDomain instance]
+    return [NSError errorWithDomain:FLFrameworkErrorDomain
                                    code:FLCancelErrorCode
                    localizedDescription:NSLocalizedString(@"Cancelled", @"used in cancel error localized description")];
 }

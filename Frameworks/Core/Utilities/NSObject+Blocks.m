@@ -7,8 +7,8 @@
 //
 
 #import "NSObject+Blocks.h"
-#import "NSException+NSError.h"
-#import "FLAbortException.h"
+#import "FLErrorException.h"
+#import "FLCancelError.h"
 
 @implementation NSObject (FLBlocks)
 
@@ -17,8 +17,6 @@
         if(block) {
             block();
         }
-    }
-    @catch(FLAbortException* abortAbortAbort) {
     }
     @catch(NSException* ex) {
         if(!ex.error.isCancelError) {

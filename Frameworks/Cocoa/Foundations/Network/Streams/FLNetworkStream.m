@@ -36,7 +36,7 @@
 }
 
 - (void) willOpen {
-    FLAssert_([NSThread currentThread] != [NSThread mainThread]);
+    FLAssert([NSThread currentThread] != [NSThread mainThread]);
 
     self.open = NO;
     self.error = nil;
@@ -44,47 +44,47 @@
 }
 
 - (void) didOpen {
-    FLAssert_([NSThread currentThread] != [NSThread mainThread]);
+    FLAssert([NSThread currentThread] != [NSThread mainThread]);
 
     self.open = YES;
     [self sendMessageToListeners:@selector(networkStreamDidOpen:)];
 }
 
 - (void) willClose {
-    FLAssert_([NSThread currentThread] != [NSThread mainThread]);
+    FLAssert([NSThread currentThread] != [NSThread mainThread]);
 
     [self sendMessageToListeners:@selector(networkStreamWillClose:)];
 }
 
 - (void) didClose {
-    FLAssert_([NSThread currentThread] != [NSThread mainThread]);
+    FLAssert([NSThread currentThread] != [NSThread mainThread]);
 
     self.open = NO;
     [self sendMessageToListeners:@selector(networkStreamDidClose:)];
 }
 
 - (void) encounteredBytesAvailable {
-    FLAssert_([NSThread currentThread] != [NSThread mainThread]);
+    FLAssert([NSThread currentThread] != [NSThread mainThread]);
     [self sendMessageToListeners:@selector(networkStreamHasBytesAvailable:)];
 }
 
 - (void) encounteredCanAcceptBytes {
-    FLAssert_([NSThread currentThread] != [NSThread mainThread]);
+    FLAssert([NSThread currentThread] != [NSThread mainThread]);
     [self sendMessageToListeners:@selector(networkStreamCanAcceptBytes:)];
 }
 
 - (void) encounteredOpen {
-    FLAssert_([NSThread currentThread] != [NSThread mainThread]);
+    FLAssert([NSThread currentThread] != [NSThread mainThread]);
     [self didOpen];
 }
 
 - (void) encounteredEnd {
-    FLAssert_([NSThread currentThread] != [NSThread mainThread]);
+    FLAssert([NSThread currentThread] != [NSThread mainThread]);
     [self willClose];
 }
 
 - (void) encounteredError:(NSError*) error {
-    FLAssert_([NSThread currentThread] != [NSThread mainThread]);
+    FLAssert([NSThread currentThread] != [NSThread mainThread]);
     self.error = error;
     [self sendMessageToListeners:@selector(networkStream:encounteredError:) withObject:error];
 }
@@ -131,10 +131,10 @@
 
 + (void) handleStreamEvent:(CFStreamEventType) eventType withStream:(FLNetworkStream*) stream {
 
-    FLConfirmIsNotNil_(stream);
+    FLConfirmIsNotNil(stream);
 
 
-//    FLAssert_v([NSThread currentThread] == self.thread, @"tcp operation on wrong thread");
+//    FLAssertWithComment([NSThread currentThread] == self.thread, @"tcp operation on wrong thread");
 
 //#if TRACE
 //    FLDebugLog(@"Read Stream got event %d", eventType);

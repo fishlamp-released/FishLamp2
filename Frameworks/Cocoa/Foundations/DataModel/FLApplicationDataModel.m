@@ -70,7 +70,7 @@ FLSynthesizeSingleton(FLApplicationDataModel);
     NSArray* paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
     NSString* directory = [paths lastObject];
 
-    FLAssertFailed_v(@"set app support/app name folder");
+    FLAssertFailedWithComment(@"set app support/app name folder");
 
 // TODO(not implemented)
 
@@ -129,7 +129,7 @@ BOOL FLIsValidUser(FLUserLogin* userLogin) {
 
 - (void) saveUserLogin:(FLUserLogin*) userLogin
 {
-	FLAssertIsNotNil_(userLogin);
+	FLAssertIsNotNil(userLogin);
 	if(userLogin)
 	{
 		if(FLStringIsEmpty(userLogin.userGuid))
@@ -165,7 +165,7 @@ BOOL FLIsValidUser(FLUserLogin* userLogin) {
 
 - (FLUserLogin*) loadUserLoginWithGuid:(NSString*) guid
 {
-	FLAssertStringIsNotEmpty_v(guid, nil);
+	FLAssertStringIsNotEmptyWithComment(guid, nil);
 
 	if(FLStringIsNotEmpty(guid))
 	{
@@ -192,7 +192,7 @@ BOOL FLIsValidUser(FLUserLogin* userLogin) {
 
 - (FLUserLogin*) loadUserLoginWithUserName:(NSString*) name
 {
-	FLAssertStringIsNotEmpty_v(name, nil);
+	FLAssertStringIsNotEmptyWithComment(name, nil);
 	
     NSArray* users = nil;
     [self.database loadAllObjectsForTypeWithTable:[FLUserLogin sharedDatabaseTable] outObjects:&users];

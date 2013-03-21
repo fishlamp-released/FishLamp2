@@ -33,7 +33,7 @@ FLStringFormatterLineUpdate MakeInfo(BOOL closePreviousLine,
 @implementation FLStringFormatter
 
 - (void) appendString:(NSString*) string {
-    FLAssertNotNil_(string);
+    FLAssertNotNil(string);
     
     [self stringFormatter:self 
                       appendString:string
@@ -45,7 +45,7 @@ FLStringFormatterLineUpdate MakeInfo(BOOL closePreviousLine,
 
 
 - (void) appendAttributedString:(NSAttributedString*) string {
-    FLAssertNotNil_(string);
+    FLAssertNotNil(string);
     
     [self stringFormatter:self 
                       appendString:nil
@@ -87,7 +87,7 @@ FLStringFormatterLineUpdate MakeInfo(BOOL closePreviousLine,
 }
 
 - (void) openLineWithString:(NSString*) string {
-    FLAssertNotNil_(string);
+    FLAssertNotNil(string);
     [self stringFormatter:self 
                       appendString:str_or_nil(string)
             appendAttributedString:nil
@@ -99,7 +99,7 @@ FLStringFormatterLineUpdate MakeInfo(BOOL closePreviousLine,
 
 
 - (void) openLineWithAttributedString:(NSAttributedString*) string {
-    FLAssertNotNil_(string);
+    FLAssertNotNil(string);
     [self stringFormatter:self 
                       appendString:nil
             appendAttributedString:str_or_nil(string)
@@ -111,7 +111,7 @@ FLStringFormatterLineUpdate MakeInfo(BOOL closePreviousLine,
 
 
 - (void) appendLineWithAttributedString:(NSAttributedString*) string {
-    FLAssertNotNil_(string);
+    FLAssertNotNil(string);
     [self stringFormatter:self 
                       appendString:nil
             appendAttributedString:str_or_nil(string)
@@ -123,7 +123,7 @@ FLStringFormatterLineUpdate MakeInfo(BOOL closePreviousLine,
 
 
 - (void) appendLine:(NSString*) string {
-    FLAssertNotNil_(string);
+    FLAssertNotNil(string);
     
     [self stringFormatter:self 
                       appendString:str_or_nil(string)
@@ -142,7 +142,7 @@ FLStringFormatterLineUpdate MakeInfo(BOOL closePreviousLine,
 }
 
 - (void) appendLines:(NSString**) lines count:(NSInteger) count{
-    FLAssertNotNil_(lines);
+    FLAssertNotNil(lines);
         if(lines) {for(int i = 0; i < count; i++) {
             [self appendLine:lines[i]];
         }
@@ -150,19 +150,19 @@ FLStringFormatterLineUpdate MakeInfo(BOOL closePreviousLine,
 }
 
 - (void) appendLines:(NSString**) lines {
-    FLAssertNotNil_(lines);
+    FLAssertNotNil(lines);
     [self appendLines:lines count:FLArrayLength(lines, NSString*)];
 }
 
 - (void) appendLinesWithArray:(NSArray*) lines {
-    FLAssertNotNil_(lines);
+    FLAssertNotNil(lines);
     for(NSString* line in lines) {
         [self appendLine:line];
     }
 }
 
 - (void) appendFormat:(NSString*) format, ... {
-    FLAssertNotNil_(format);
+    FLAssertNotNil(format);
 	va_list va;
 	va_start(va, format);
 	NSString *string = FLAutorelease([[NSString alloc] initWithFormat:format arguments:va]);
@@ -171,7 +171,7 @@ FLStringFormatterLineUpdate MakeInfo(BOOL closePreviousLine,
 }
 
 - (void) appendLineWithFormat:(NSString*) format, ... {
-    FLAssertNotNil_(format);
+    FLAssertNotNil(format);
 	va_list va;
 	va_start(va, format);
 	NSString *string = FLAutorelease([[NSString alloc] initWithFormat:format arguments:va]);
@@ -180,7 +180,7 @@ FLStringFormatterLineUpdate MakeInfo(BOOL closePreviousLine,
 }
 
 - (void) openLineWithFormat:(NSString*) format, ... {
-    FLAssertNotNil_(format);
+    FLAssertNotNil(format);
 	va_list va;
 	va_start(va, format);
 	NSString *string = FLAutorelease([[NSString alloc] initWithFormat:format arguments:va]);
@@ -189,7 +189,7 @@ FLStringFormatterLineUpdate MakeInfo(BOOL closePreviousLine,
 }
 
 - (void) closeLineWithFormat:(NSString*) format, ... {
-    FLAssertNotNil_(format);
+    FLAssertNotNil(format);
 	va_list va;
 	va_start(va, format);
 	NSString *string = FLAutorelease([[NSString alloc] initWithFormat:format arguments:va]);
@@ -204,7 +204,7 @@ FLStringFormatterLineUpdate MakeInfo(BOOL closePreviousLine,
 }
 
 - (void) appendStringContainingMultipleLines:(NSString*) inLines trimWhitespace:(BOOL) trimWhitespace {
-    FLAssertNotNil_(inLines);
+    FLAssertNotNil(inLines);
 
 	NSString* string = trimWhitespace ? [self _preprocessLines:inLines] : inLines;
 	if(FLStringIsNotEmpty(string)) {

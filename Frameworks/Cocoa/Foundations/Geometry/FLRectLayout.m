@@ -60,7 +60,7 @@ CGRect FLRectLayoutRectVerticallyInRect(
 			break;
             
         case FLRectLayoutVerticalFit:
-            FLAssertIsFixed_v(@"vertical fit");
+            FLAssertIsFixedWithComment(@"vertical fit");
             break;
 	
 	}	
@@ -112,7 +112,7 @@ CGRect FLRectLayoutRectHorizonallyInRect(
 			break;
             
         case FLRectLayoutHorizontalFit:
-            FLAssertIsFixed_v(@"horizontal fit");
+            FLAssertIsFixedWithComment(@"horizontal fit");
         break;
 		
 	}

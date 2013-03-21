@@ -9,10 +9,10 @@
 #import "FLByteBuffer.h"
 
 #if DEBUG
-#define FLAssertDeadBeaf_v() \
-            FLAssert_v((*_deadBeafPtr) == 0xDEADBEAF, @"buffer overrun detected");
+#define FLAssertDeadBeafWithComment() \
+            FLAssertWithComment((*_deadBeafPtr) == 0xDEADBEAF, @"buffer overrun detected");
 #else
-#define FLAssertDeadBeaf_v()
+#define FLAssertDeadBeafWithComment()
 #endif            
 
 @implementation FLByteBuffer
@@ -53,9 +53,9 @@
 }
 
 - (void) incrementContentLength:(NSUInteger) byAmount {
-    FLAssertDeadBeaf_v();
+    FLAssertDeadBeafWithComment();
     _contentLength += byAmount;
-    FLConfirm_v(_contentLength < self.capacity, @"buffer overrun");
+    FLConfirmWithComment(_contentLength < self.capacity, @"buffer overrun");
 }
 
 - (uint8_t*) content {
@@ -81,7 +81,7 @@
         _contentLength += amount;
     }
     
-    FLAssertDeadBeaf_v();
+    FLAssertDeadBeafWithComment();
     return amount;
 }
 
@@ -93,7 +93,7 @@
 
 @implementation FLAllocatedByteBuffer
 
-FLAssertDefaultInitNotCalled_();
+FLAssertDefaultInitNotCalled();
 
 - (id) initWithCapacity:(NSUInteger) capacity {
     self = [super init];

@@ -85,7 +85,7 @@
 //@property (readonly, strong) NSArray* compatibleInputKeys;
 //
 //
-//// use FLInputHandlerCompatableWithAll to be compatabile with all, for example in a --verbose key
+//// use FLInputHandlerFLCompatibleWithAll to be compatabile with all, for example in a --verbose key
 //- (void) addCompatibleParameter:(NSString*) parameter; 
 //
 //// check both for compatibility with each other

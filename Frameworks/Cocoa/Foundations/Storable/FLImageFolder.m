@@ -66,7 +66,7 @@ static NSDictionary* s_suffixes = nil;
         NSData* data = [self readDataFromFile:name];
         FLStorableImage* image = [FLStorableImage imageWithData:data];
 
-FLAssertFailed_v(@"confirm this");
+FLAssertFailedWithComment(@"confirm this");
         
 //        FLImageProperties* props = [FLImageProperties imageProperties];
 //        image.storableType = fileUTI;
@@ -82,7 +82,7 @@ FLAssertFailed_v(@"confirm this");
 - (FLStorableImage*) readImageForStorageKey:(id) storageKey subType:(NSString*) subType {
 
     NSString* suffix = [s_suffixes objectForKey:subType];
-    FLConfirmStringIsNotEmpty_v(subType, @"Unknown subtype: %@", subType);
+    FLConfirmStringIsNotEmptyWithComment(subType, @"Unknown subtype: %@", subType);
     
 // TODO: MUST WORK WITH ALL IMAGE TYPES!!    
     NSString* extension = @"JPG";
@@ -93,7 +93,7 @@ FLAssertFailed_v(@"confirm this");
     if(data) {
         FLStorableImage* image = [FLStorableImage imageWithData:data];
 
-FLAssertFailed_v(@"confirm this");
+FLAssertFailedWithComment(@"confirm this");
 
 //        image.storableSubType = subType;
 //        image.storableType = [self fileUTI:fileName];
@@ -166,9 +166,9 @@ FLAssertFailed_v(@"confirm this");
 
 - (void) writeImage:(FLStorableImage*) image withCompression:(CGFloat) compression withFileName:(NSString*) fileName {
 
-    FLAssertStringIsNotEmpty_(fileName);
-    FLAssertNotNil_(image);
-    FLAssert_(compression >= 0.0 && compression <= 1.0);
+    FLAssertStringIsNotEmpty(fileName);
+    FLAssertNotNil(image);
+    FLAssert(compression >= 0.0 && compression <= 1.0);
 
     NSData* bytes = image.imageData;
     NSString* uti = image.storableType;
@@ -176,26 +176,26 @@ FLAssertFailed_v(@"confirm this");
 
     NSString* filePath = [self pathForFile:fileName];
 
-    FLAssertStringIsNotEmpty_(filePath);
+    FLAssertStringIsNotEmpty(filePath);
 
     NSURL* url = [[NSURL alloc] initFileURLWithPath:filePath];
-    FLAssertIsNotNil_(url);
+    FLAssertIsNotNil(url);
     
     CGImageDestinationRef imageDestRef = nil;
     CGImageSourceRef imageSourceRef = nil;
     @try {
-        FLAssertIsNotNil_(bytes);
-        FLAssert_v(bytes.length > 0, @"image is of size zero");
+        FLAssertIsNotNil(bytes);
+        FLAssertWithComment(bytes.length > 0, @"image is of size zero");
     
         imageDestRef = CGImageDestinationCreateWithURL(bridge_(void*,url), bridge_(CFStringRef, uti), 1, nil /* always nil */);
-        FLConfirmIsNotNil_(imageDestRef);
+        FLConfirmIsNotNil(imageDestRef);
 
         NSDictionary* compressionInfo = [NSDictionary dictionaryWithObject:[NSNumber numberWithFloat:compression] forKey: bridge_(NSString*, kCGImageDestinationLossyCompressionQuality)];
 
         CGImageDestinationSetProperties(imageDestRef, bridge_(CFDictionaryRef, compressionInfo));
 
         imageSourceRef = CGImageSourceCreateWithData(bridge_(void*, bytes), nil);
-        FLConfirmIsNotNil_(imageSourceRef);
+        FLConfirmIsNotNil(imageSourceRef);
         
 //        if(properties) {
             CGImageDestinationAddImageFromSource(imageDestRef, imageSourceRef, 0, bridge_(void*,properties));
@@ -213,18 +213,18 @@ FLAssertFailed_v(@"confirm this");
 }
 
 - (void) writeImage:(FLStorableImage*) image {
-    FLAssertNotNil_(image);
+    FLAssertNotNil(image);
     [self writeImage:image withCompression:1.0f withFileName:image.storageKey];
 }
 
 - (void) writeImage:(FLStorableImage*) image withCompression:(CGFloat) compression {
-    FLAssertNotNil_(image);
+    FLAssertNotNil(image);
     [self writeImage:image withCompression:compression withFileName:image.storageKey];
 }
 
 - (void) writeImage:(FLStorableImage*) image withFileName:(NSString*) fileName {
-    FLAssertNotNil_(image);
-    FLAssertStringIsNotEmpty_(fileName);
+    FLAssertNotNil(image);
+    FLAssertStringIsNotEmpty(fileName);
     [self writeImage:image withCompression:1.0f withFileName:fileName];
 }
 
@@ -244,15 +244,15 @@ FLAssertFailed_v(@"confirm this");
 
 //
 //- (void) writeImageToStorage {
-//    FLAssertStringIsNotEmpty_v(self.filePath, nil);
+//    FLAssertStringIsNotEmptyWithComment(self.filePath, nil);
 //
 //    NSURL* url = [[NSURL alloc] initFileURLWithPath:self.filePath];
-//    FLAssertIsNotNil_v(url, nil);
+//    FLAssertIsNotNilWithComment(url, nil);
 //    
 //    CGImageDestinationRef imageSourceRef = nil;
 //    @try {
 //        FLStorableImage* image = self.image;
-//        FLAssertIsNotNil_v(image, nil);
+//        FLAssertIsNotNilWithComment(image, nil);
 //
 //#if IOS        
 //        CGImageRef imageRef = image.CGImage;
@@ -261,12 +261,12 @@ FLAssertFailed_v(@"confirm this");
 //        
 //        CGImageRef imageRef = nil;
 //        
-//        FLAssertIsImplemented_v(nil);
+//        FLAssertIsImplementedWithComment(nil);
 //        
 //        #pragma unused (image)
 //#endif        
 //        
-//        FLAssertIsNotNil_v(imageRef, nil);
+//        FLAssertIsNotNilWithComment(imageRef, nil);
 //    
 //        imageSourceRef = CGImageDestinationCreateWithURL(bridge_(void*,url), kUTTypeJPEG, 1, nil /* always nil */);
 //        
@@ -292,7 +292,7 @@ FLAssertFailed_v(@"confirm this");
 //	[self _throwIfNotConfigured];
 //	
 //	if(!_image && !_jpegData) {
-//		FLThrowIfError([NSError errorWithDomain:[FLFrameworkErrorDomain instance] code:FLErrorNoDataToSave
+//		FLThrowIfError([NSError errorWithDomain:FLFrameworkErrorDomain code:FLErrorNoDataToSave
 //			userInfo:[NSDictionary dictionaryWithObject:@"No image data to save" forKey:NSLocalizedDescriptionKey]]);
 // 
 //	}

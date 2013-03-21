@@ -41,16 +41,16 @@
 //void debug_retain(id object,  FLDebugTrackerState* state)
 //{
 //    init_state_if_needed(state);
-//    FLAssert_v(!state->did_dealloc, @"dealloc already called for class: %@",  NSStringFromClass([object class]));
-//    FLAssert_v(state->retainCount >= 1, @"retain count < 1"); 
+//    FLAssertWithComment(!state->did_dealloc, @"dealloc already called for class: %@",  NSStringFromClass([object class]));
+//    FLAssertWithComment(state->retainCount >= 1, @"retain count < 1"); 
 //    add_msg_to_state([NSString stringWithFormat:@"retain: %d", state->retainCount++], state);
 //}
 //
 //void debug_release(id object,  FLDebugTrackerState* state)
 //{
 //    init_state_if_needed(state);
-//    FLAssert_v(!state->did_dealloc, @"dealloc already called for class: %@",  NSStringFromClass([object class]));
-//    FLAssert_v(state->retainCount >= 1, @"retain count <= 1"); 
+//    FLAssertWithComment(!state->did_dealloc, @"dealloc already called for class: %@",  NSStringFromClass([object class]));
+//    FLAssertWithComment(state->retainCount >= 1, @"retain count <= 1"); 
 //    if(--state->retainCount == 0)
 //    {
 //        state->did_dealloc = YES;
@@ -65,8 +65,8 @@
 //void debug_autorelease(id object,  FLDebugTrackerState* state)
 //{
 //    init_state_if_needed(state);
-//    FLAssert_v(!state->did_dealloc, @"dealloc already called for class: %@",  NSStringFromClass([object class]));
-//    FLAssert_v(state->retainCount >= 1, @"retain count <= 1 in autorelease"); 
+//    FLAssertWithComment(!state->did_dealloc, @"dealloc already called for class: %@",  NSStringFromClass([object class]));
+//    FLAssertWithComment(state->retainCount >= 1, @"retain count <= 1 in autorelease"); 
 //    add_msg_to_state([NSString stringWithFormat:@"auto-release: %d", state->retainCount], state);
 //}
 //

@@ -18,7 +18,7 @@
 
 - (id) initWithEncodingKey:(NSString*) encodingKey {
 
-    FLAssert_([encodingKey rangeOfString:@"_"].length == 0)
+    FLAssert([encodingKey rangeOfString:@"_"].length == 0);
 
     self = [super init];
     if(self) {

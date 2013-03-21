@@ -8,9 +8,13 @@
 
 #import "FLFrameworkErrorDomain.h"
 
-@implementation FLFrameworkErrorDomain
+NSString* const FLFrameworkErrorDomain = @"com.fishlamp.error";
 
-FLSynthesizeSingleton(FLFrameworkErrorDomain);
+@implementation FLFrameworkErrorDomainInfo
+
++ (id) frameworkErrorDomainInfo {
+    return FLAutorelease([[[self class] alloc] init]);
+}
 
 - (NSString*) stringFromErrorCode:(int) errorCode {
 
@@ -83,9 +87,6 @@ FLSynthesizeSingleton(FLFrameworkErrorDomain);
     return @"";
 }
 
-- (NSString*) errorDomainString {
-    return @"com.fishlamp.error";
-}
 @end
 
 

@@ -44,7 +44,7 @@
 #endif
 
 - (id) lastLine {
-    FLAssertNotNil_([_lines lastObject]);
+    FLAssertNotNil([_lines lastObject]);
     return [_lines lastObject];
 }
 
@@ -64,14 +64,14 @@
         string = attributedString.string;
     }
     
-    FLAssertNotNil_(string);
+    FLAssertNotNil(string);
     
     if(lineUpdate.openLine || _needsLine) {
         [_lines addObject:FLAutorelease([string mutableCopy])];
         _needsLine = NO;
     }
     else if(string) {
-        FLAssert_([self.lastLine isKindOfClass:[NSMutableString class]]);
+        FLAssert([self.lastLine isKindOfClass:[NSMutableString class]]);
         [self.lastLine appendString:string];
     }
     

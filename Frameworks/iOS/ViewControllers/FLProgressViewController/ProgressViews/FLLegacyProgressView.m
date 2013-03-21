@@ -106,7 +106,7 @@
 			[self willStartUpdatingProgressBar];
 		}
 	
-		FLAssert_v([NSThread isMainThread], @"not on main thread, use updateProgress:(FLProgressValue*) value");
+		FLAssertWithComment([NSThread isMainThread], @"not on main thread, use updateProgress:(FLProgressValue*) value");
    
 		_progressBar.progress = ((float) amountWritten) / ((float) totalAmount);
 	}

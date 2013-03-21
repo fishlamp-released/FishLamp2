@@ -155,7 +155,7 @@
 + (id) attributedStringWithString:(NSString*) string 
                     withTextStyle:(FLTextStyle*) textStyle {
 
-    FLAssertNotNil_v(textStyle, @"no text style attributed string");
+    FLAssertNotNilWithComment(textStyle, @"no text style attributed string");
     NSMutableAttributedString* attrString =
         FLAutorelease([[NSMutableAttributedString alloc] initWithString:string]);
 
@@ -213,10 +213,10 @@
 }
 
 - (void) setFont:(NSFont*) font forRange:(NSRange) range {
-    FLAssertNotNil_(font); 
+    FLAssertNotNil(font); 
     
     CTFontRef fontRef = CTFontCreateWithName(bridge_(CFStringRef, font.fontName), font.pointSize, NULL);
-    FLAssertIsNotNil_(fontRef);
+    FLAssertIsNotNil(fontRef);
     
     if(fontRef) {
         [self setAttribute:bridge_(id, fontRef) forName:(NSString*) kCTFontAttributeName forRange:range];

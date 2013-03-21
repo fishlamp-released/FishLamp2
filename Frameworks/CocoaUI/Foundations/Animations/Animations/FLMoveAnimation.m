@@ -66,7 +66,7 @@
 }
 
 - (void) commitAnimation:(CALayer*) layer {
-    FLAssert_(_setFinishPoint);
+    FLAssert(_setFinishPoint);
     
     [layer addAnimation:[self CAAnimation] forKey:@"position"];
     [layer setPosition:_finishPoint];

@@ -30,14 +30,12 @@ FLSynthesizeSingleton(FLGlobalNetworkActivityIndicator);
 - (void) postShowMessage {
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
     if(!_showing) {
-        FLLog(@"posting show");
         [[NSNotificationCenter defaultCenter] postNotificationName:FLGlobalNetworkActivityShow object:self];
         _showing = YES;
     }
 }
 
 - (void) delayedHidePost {
-    FLLog(@"posting hide");
     [[NSNotificationCenter defaultCenter] postNotificationName:FLGlobalNetworkActivityHide object:self];
 }
 

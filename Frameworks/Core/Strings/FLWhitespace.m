@@ -50,7 +50,7 @@
 #endif
 
 - (NSString*) tabStringForScope:(NSUInteger) indent {
-    FLAssert_v(indent < FLWhitespaceMaxIndent, @"too many indents");
+    FLAssertWithComment(indent < FLWhitespaceMaxIndent, @"too many indents");
     
     if( indent > 0 && 
         _tabString && 

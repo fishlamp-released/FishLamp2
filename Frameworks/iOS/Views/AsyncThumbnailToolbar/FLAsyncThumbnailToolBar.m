@@ -188,9 +188,9 @@
     
     }
     
-    FLAssertIsNotNil_(image);
-    FLAssertIsNotNil_(target);
-    FLAssertIsNotNil_(action);
+    FLAssertIsNotNil(image);
+    FLAssertIsNotNil(target);
+    FLAssertIsNotNil(action);
 
 	UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
 	button.frame = CGRectMake(0,0, image.size.width, image.size.height);

@@ -39,7 +39,7 @@
 
 - (void) cacheObject:(id) object {
     if(object) {
-        FLAssert_v([NSThread isMainThread], @"not main thread");
+        FLAssertWithComment([NSThread isMainThread], @"not main thread");
 
         if(!_cache) {
             _cache = [[NSMutableDictionary alloc] init];
@@ -61,7 +61,7 @@
 
 - (id) uncacheObjectForClass:(Class) cacheKey {
 
-    FLAssert_v([NSThread isMainThread], @"not main thread");
+    FLAssertWithComment([NSThread isMainThread], @"not main thread");
     id object = nil;
     
     NSMutableArray* cache = [_cache objectForKey:cacheKey];

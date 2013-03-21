@@ -139,7 +139,7 @@
 
 - (void) addCell:(FLEditObjectTableViewCell*) cell
 {
-    FLAssertStringIsNotEmpty_(cell.dataKeyPath);
+    FLAssertStringIsNotEmpty(cell.dataKeyPath);
     
 	if(FLStringIsEmpty(cell.rowKey))
 	{

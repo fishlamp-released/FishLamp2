@@ -54,9 +54,9 @@
     UIView* viewToShow = self.viewToShow;
     UIView* viewToHide = self.viewToHide;
 
-    FLAssertNotNil_(viewToShow);
-    FLAssertNotNil_(viewToHide);
-    FLAssertNotNil_(viewToHide.superview);
+    FLAssertNotNil(viewToShow);
+    FLAssertNotNil(viewToHide);
+    FLAssertNotNil(viewToHide.superview);
 
     if(!CGRectEqualToRect(viewToShow.frame, viewToHide.frame)) {
         viewToShow.frame = viewToHide.frame;

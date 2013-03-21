@@ -317,14 +317,8 @@
 		27CA438A1677E5FD008D64BE /* FLSlideShowOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA40BF1677E5FD008D64BE /* FLSlideShowOptionsViewController.m */; };
 		27CA438B1677E5FD008D64BE /* FLTestFlightTrackerSink.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA40C21677E5FD008D64BE /* FLTestFlightTrackerSink.m */; };
 		27CA438C1677E5FD008D64BE /* FLTestFlightTrackerSink.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA40C21677E5FD008D64BE /* FLTestFlightTrackerSink.m */; };
-		27CA438D1677E5FD008D64BE /* NSObject+FLTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA40C51677E5FD008D64BE /* NSObject+FLTheme.m */; };
-		27CA438E1677E5FD008D64BE /* NSObject+FLTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA40C51677E5FD008D64BE /* NSObject+FLTheme.m */; };
 		27CA438F1677E5FD008D64BE /* FLColorRange+FLThemes.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA40C81677E5FD008D64BE /* FLColorRange+FLThemes.m */; };
 		27CA43901677E5FD008D64BE /* FLColorRange+FLThemes.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA40C81677E5FD008D64BE /* FLColorRange+FLThemes.m */; };
-		27CA43911677E5FD008D64BE /* FLTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA40CA1677E5FD008D64BE /* FLTheme.m */; };
-		27CA43921677E5FD008D64BE /* FLTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA40CA1677E5FD008D64BE /* FLTheme.m */; };
-		27CA43931677E5FD008D64BE /* FLThemeModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA40CC1677E5FD008D64BE /* FLThemeModule.m */; };
-		27CA43941677E5FD008D64BE /* FLThemeModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA40CC1677E5FD008D64BE /* FLThemeModule.m */; };
 		27CA43951677E5FD008D64BE /* __FLThemeObjectsEnums.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA40D01677E5FD008D64BE /* __FLThemeObjectsEnums.m */; };
 		27CA43961677E5FD008D64BE /* __FLThemeObjectsEnums.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA40D01677E5FD008D64BE /* __FLThemeObjectsEnums.m */; };
 		27CA43971677E5FD008D64BE /* __FLViewColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA40D21677E5FD008D64BE /* __FLViewColors.m */; };
@@ -343,8 +337,6 @@
 		27CA43A41677E5FD008D64BE /* FLLegacyTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA40DF1677E5FD008D64BE /* FLLegacyTheme.m */; };
 		27CA43A51677E5FD008D64BE /* FLSavedThemeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA40E11677E5FD008D64BE /* FLSavedThemeInfo.m */; };
 		27CA43A61677E5FD008D64BE /* FLSavedThemeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA40E11677E5FD008D64BE /* FLSavedThemeInfo.m */; };
-		27CA43A71677E5FD008D64BE /* FLThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA40E41677E5FD008D64BE /* FLThemeManager.m */; };
-		27CA43A81677E5FD008D64BE /* FLThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA40E41677E5FD008D64BE /* FLThemeManager.m */; };
 		27CA43A91677E5FD008D64BE /* FLDarkMobileTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA40E71677E5FD008D64BE /* FLDarkMobileTheme.m */; };
 		27CA43AA1677E5FD008D64BE /* FLDarkMobileTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA40E71677E5FD008D64BE /* FLDarkMobileTheme.m */; };
 		27CA43AB1677E5FD008D64BE /* FLMobileTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA40E91677E5FD008D64BE /* FLMobileTheme.m */; };
@@ -1031,14 +1023,8 @@
 		27CA40BF1677E5FD008D64BE /* FLSlideShowOptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLSlideShowOptionsViewController.m; sourceTree = "<group>"; };
 		27CA40C11677E5FD008D64BE /* FLTestFlightTrackerSink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLTestFlightTrackerSink.h; sourceTree = "<group>"; };
 		27CA40C21677E5FD008D64BE /* FLTestFlightTrackerSink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLTestFlightTrackerSink.m; sourceTree = "<group>"; };
-		27CA40C41677E5FD008D64BE /* NSObject+FLTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+FLTheme.h"; sourceTree = "<group>"; };
-		27CA40C51677E5FD008D64BE /* NSObject+FLTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+FLTheme.m"; sourceTree = "<group>"; };
 		27CA40C71677E5FD008D64BE /* FLColorRange+FLThemes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FLColorRange+FLThemes.h"; sourceTree = "<group>"; };
 		27CA40C81677E5FD008D64BE /* FLColorRange+FLThemes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FLColorRange+FLThemes.m"; sourceTree = "<group>"; };
-		27CA40C91677E5FD008D64BE /* FLTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLTheme.h; sourceTree = "<group>"; };
-		27CA40CA1677E5FD008D64BE /* FLTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLTheme.m; sourceTree = "<group>"; };
-		27CA40CB1677E5FD008D64BE /* FLThemeModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLThemeModule.h; sourceTree = "<group>"; };
-		27CA40CC1677E5FD008D64BE /* FLThemeModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLThemeModule.m; sourceTree = "<group>"; };
 		27CA40CD1677E5FD008D64BE /* FLThemeObjects.cgxml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = FLThemeObjects.cgxml; sourceTree = "<group>"; };
 		27CA40CF1677E5FD008D64BE /* __FLThemeObjectsEnums.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __FLThemeObjectsEnums.h; sourceTree = "<group>"; };
 		27CA40D01677E5FD008D64BE /* __FLThemeObjectsEnums.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = __FLThemeObjectsEnums.m; sourceTree = "<group>"; };
@@ -1059,8 +1045,6 @@
 		27CA40E01677E5FD008D64BE /* FLSavedThemeInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLSavedThemeInfo.h; sourceTree = "<group>"; };
 		27CA40E11677E5FD008D64BE /* FLSavedThemeInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLSavedThemeInfo.m; sourceTree = "<group>"; };
 		27CA40E21677E5FD008D64BE /* FLSaveThemeInfo.cgxml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = FLSaveThemeInfo.cgxml; sourceTree = "<group>"; };
-		27CA40E31677E5FD008D64BE /* FLThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLThemeManager.h; sourceTree = "<group>"; };
-		27CA40E41677E5FD008D64BE /* FLThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLThemeManager.m; sourceTree = "<group>"; };
 		27CA40E61677E5FD008D64BE /* FLDarkMobileTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLDarkMobileTheme.h; sourceTree = "<group>"; };
 		27CA40E71677E5FD008D64BE /* FLDarkMobileTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLDarkMobileTheme.m; sourceTree = "<group>"; };
 		27CA40E81677E5FD008D64BE /* FLMobileTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLMobileTheme.h; sourceTree = "<group>"; };
@@ -1518,7 +1502,6 @@
 				27CA40B61677E5FD008D64BE /* Operations */,
 				27CA40BD1677E5FD008D64BE /* Slideshow */,
 				27CA40C01677E5FD008D64BE /* TestFlightTrackerSink */,
-				27CA40C31677E5FD008D64BE /* Theme */,
 				27CA40C61677E5FD008D64BE /* Themes */,
 				27CA40F91677E5FD008D64BE /* Touches */,
 				27CA41001677E5FD008D64BE /* UIAdditions */,
@@ -2194,24 +2177,11 @@
 			path = TestFlightTrackerSink;
 			sourceTree = "<group>";
 		};
-		27CA40C31677E5FD008D64BE /* Theme */ = {
-			isa = PBXGroup;
-			children = (
-				27CA40C41677E5FD008D64BE /* NSObject+FLTheme.h */,
-				27CA40C51677E5FD008D64BE /* NSObject+FLTheme.m */,
-			);
-			path = Theme;
-			sourceTree = "<group>";
-		};
 		27CA40C61677E5FD008D64BE /* Themes */ = {
 			isa = PBXGroup;
 			children = (
 				27CA40C71677E5FD008D64BE /* FLColorRange+FLThemes.h */,
 				27CA40C81677E5FD008D64BE /* FLColorRange+FLThemes.m */,
-				27CA40C91677E5FD008D64BE /* FLTheme.h */,
-				27CA40CA1677E5FD008D64BE /* FLTheme.m */,
-				27CA40CB1677E5FD008D64BE /* FLThemeModule.h */,
-				27CA40CC1677E5FD008D64BE /* FLThemeModule.m */,
 				27CA40CD1677E5FD008D64BE /* FLThemeObjects.cgxml */,
 				27CA40CE1677E5FD008D64BE /* Generated */,
 				27CA40DB1677E5FD008D64BE /* LegacyTheme */,
@@ -2252,8 +2222,6 @@
 				27CA40E01677E5FD008D64BE /* FLSavedThemeInfo.h */,
 				27CA40E11677E5FD008D64BE /* FLSavedThemeInfo.m */,
 				27CA40E21677E5FD008D64BE /* FLSaveThemeInfo.cgxml */,
-				27CA40E31677E5FD008D64BE /* FLThemeManager.h */,
-				27CA40E41677E5FD008D64BE /* FLThemeManager.m */,
 			);
 			path = LegacyTheme;
 			sourceTree = "<group>";
@@ -3170,10 +3138,7 @@
 				27CA43881677E5FD008D64BE /* FLSaveScaledImagesWithOriginalImage.m in Sources */,
 				27CA438A1677E5FD008D64BE /* FLSlideShowOptionsViewController.m in Sources */,
 				27CA438C1677E5FD008D64BE /* FLTestFlightTrackerSink.m in Sources */,
-				27CA438E1677E5FD008D64BE /* NSObject+FLTheme.m in Sources */,
 				27CA43901677E5FD008D64BE /* FLColorRange+FLThemes.m in Sources */,
-				27CA43921677E5FD008D64BE /* FLTheme.m in Sources */,
-				27CA43941677E5FD008D64BE /* FLThemeModule.m in Sources */,
 				27CA43961677E5FD008D64BE /* __FLThemeObjectsEnums.m in Sources */,
 				27CA43981677E5FD008D64BE /* __FLViewColors.m in Sources */,
 				27CA439A1677E5FD008D64BE /* __FLViewGradients.m in Sources */,
@@ -3183,7 +3148,6 @@
 				27CA43A21677E5FD008D64BE /* __FLSavedThemeInfo.m in Sources */,
 				27CA43A41677E5FD008D64BE /* FLLegacyTheme.m in Sources */,
 				27CA43A61677E5FD008D64BE /* FLSavedThemeInfo.m in Sources */,
-				27CA43A81677E5FD008D64BE /* FLThemeManager.m in Sources */,
 				27CA43AA1677E5FD008D64BE /* FLDarkMobileTheme.m in Sources */,
 				27CA43AC1677E5FD008D64BE /* FLMobileTheme.m in Sources */,
 				27CA43AE1677E5FD008D64BE /* FLThemeChooserViewController.m in Sources */,
@@ -3504,10 +3468,7 @@
 				27CA43871677E5FD008D64BE /* FLSaveScaledImagesWithOriginalImage.m in Sources */,
 				27CA43891677E5FD008D64BE /* FLSlideShowOptionsViewController.m in Sources */,
 				27CA438B1677E5FD008D64BE /* FLTestFlightTrackerSink.m in Sources */,
-				27CA438D1677E5FD008D64BE /* NSObject+FLTheme.m in Sources */,
 				27CA438F1677E5FD008D64BE /* FLColorRange+FLThemes.m in Sources */,
-				27CA43911677E5FD008D64BE /* FLTheme.m in Sources */,
-				27CA43931677E5FD008D64BE /* FLThemeModule.m in Sources */,
 				27CA43951677E5FD008D64BE /* __FLThemeObjectsEnums.m in Sources */,
 				27CA43971677E5FD008D64BE /* __FLViewColors.m in Sources */,
 				27CA43991677E5FD008D64BE /* __FLViewGradients.m in Sources */,
@@ -3517,7 +3478,6 @@
 				27CA43A11677E5FD008D64BE /* __FLSavedThemeInfo.m in Sources */,
 				27CA43A31677E5FD008D64BE /* FLLegacyTheme.m in Sources */,
 				27CA43A51677E5FD008D64BE /* FLSavedThemeInfo.m in Sources */,
-				27CA43A71677E5FD008D64BE /* FLThemeManager.m in Sources */,
 				27CA43A91677E5FD008D64BE /* FLDarkMobileTheme.m in Sources */,
 				27CA43AB1677E5FD008D64BE /* FLMobileTheme.m in Sources */,
 				27CA43AD1677E5FD008D64BE /* FLThemeChooserViewController.m in Sources */,

@@ -94,7 +94,7 @@
 
 - (void) beginImporting:(dispatch_block_t) completedBlock
 {
-    FLAssert_v(_delegate != nil, @"a delegate is required.");
+    FLAssertWithComment(_delegate != nil, @"a delegate is required.");
 
     completedBlock = FLAutorelease([completedBlock copy]);
     
@@ -104,8 +104,8 @@
     FLSetObjectWithRetain(_assetQueue, [_delegate assetLibraryAutoPhotoImporterGetAssetQueue:self]);
     FLSetObjectWithRetain(_startDate, [_delegate assetLibraryAutoPhotoImporterGetLastImportDate:self]);
     
-    FLAssertIsNotNil_v(_assetQueue, nil);
-    FLAssertIsNotNil_v(_startDate, nil);
+    FLAssertIsNotNilWithComment(_assetQueue, nil);
+    FLAssertIsNotNilWithComment(_startDate, nil);
 
 
 #if TRACE

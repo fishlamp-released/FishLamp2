@@ -44,12 +44,12 @@
 
 - (void) queueBlock:(FLBlock) block 
               withFinisher:(FLFinisher*) finisher {
-    FLAssertIsImplemented_();
+    FLAssertIsImplemented();
 }
 
 - (void) queueFinishableBlock:(FLBlockWithFinisher) block 
               withFinisher:(FLFinisher*) finisher {
-    FLAssertIsImplemented_();
+    FLAssertIsImplemented();
 }
 
 - (FLFinisher*) queueBlock:(FLBlock) block 
@@ -57,8 +57,8 @@
 
     FLFinisher* finisher = [FLFinisher finisher:completion];
 
-    FLAssertNotNil_(block);
-    FLAssertNotNil_(finisher);
+    FLAssertNotNil(block);
+    FLAssertNotNil(finisher);
 
     [self queueBlock:block withFinisher:finisher];
 
@@ -73,8 +73,8 @@
                              completion:(FLBlockWithResult) completion {
 
     FLFinisher* finisher = [FLFinisher finisher:completion];
-    FLAssertNotNil_(block);
-    FLAssertNotNil_(finisher);
+    FLAssertNotNil(block);
+    FLAssertNotNil(finisher);
     [self queueFinishableBlock:block withFinisher:finisher];
     return finisher;
 }
@@ -98,7 +98,7 @@
 //- (FLFinisher*) dispatchObject:(id) object 
 //                    completion:(FLBlockWithResult) completion {
 //
-//    FLAssertNotNil_(object);
+//    FLAssertNotNil(object);
 //
 //    FLFinisher* finisher = nil;
 //

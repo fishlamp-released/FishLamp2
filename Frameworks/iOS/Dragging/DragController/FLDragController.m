@@ -43,8 +43,8 @@ FLSynthesizeStructProperty(dragWatcherIsRunning, setDragWatcherIsRunning, BOOL, 
 {
     [self stopDragWatcher];
 
-//    FLAssertIsNotNil_([FLWindow topWindow]);
-//    FLAssert_v([[FLWindow topWindow] isKindOfClass:[FLWindow class]], @"not a gtwindow");
+//    FLAssertIsNotNil([FLWindow topWindow]);
+//    FLAssertWithComment([[FLWindow topWindow] isKindOfClass:[FLWindow class]], @"not a gtwindow");
 
     [[FLApplication sharedApplication] addEventInterceptor:self];
     self.dragWatcherIsRunning = YES;
@@ -87,7 +87,7 @@ FLSynthesizeStructProperty(dragWatcherIsRunning, setDragWatcherIsRunning, BOOL, 
         _draggableObjects = [[NSMutableArray alloc] init];
     }
     
-    FLAssert_v([_draggableObjects indexOfObject:dragResponder] == NSNotFound, @"responder already installed");
+    FLAssertWithComment([_draggableObjects indexOfObject:dragResponder] == NSNotFound, @"responder already installed");
     
     [_draggableObjects addObject:dragResponder];
 }
@@ -105,7 +105,7 @@ FLSynthesizeStructProperty(dragWatcherIsRunning, setDragWatcherIsRunning, BOOL, 
         _dragDestinations = [[NSMutableArray alloc] init];
     }
 
-    FLAssert_v([_dragDestinations indexOfObject:destination] == NSNotFound, @"destination already installed");
+    FLAssertWithComment([_dragDestinations indexOfObject:destination] == NSNotFound, @"destination already installed");
     
     [_dragDestinations addObject:destination];
 }
@@ -117,21 +117,21 @@ FLSynthesizeStructProperty(dragWatcherIsRunning, setDragWatcherIsRunning, BOOL, 
 
 - (CGRect) touchableViewFrameInHostView
 {   
-    FLAssertIsNotNil_(self.hostView);
+    FLAssertIsNotNil(self.hostView);
     
     return [self.hostView convertRect:_touchableView.frame fromView:_touchableView.superview];
 }
 
 - (CGRect) viewFrameInHostView:(UIView*) view
 {
-    FLAssertIsNotNil_(self.hostView);
+    FLAssertIsNotNil(self.hostView);
     
     return [self.hostView convertRect:view.frame fromView:view.superview];
 }
 
 - (void) _didFinishTouching
 {
-    FLAssert_v(self.isDragging, @"not dragging");
+    FLAssertWithComment(self.isDragging, @"not dragging");
     
     _dragResults.amountMoved = FLPointSubtractPointFromPoint([self touchableViewFrameInHostView].origin, _dragResults.startFrame.origin);
     self.dragging = NO;
@@ -162,8 +162,8 @@ FLSynthesizeStructProperty(dragWatcherIsRunning, setDragWatcherIsRunning, BOOL, 
 
 - (void) _didBeginTouching
 {
-    FLAssertIsNotNil_(self.hostView);
-    FLAssert_v(!self.isDragging, @"dragging");
+    FLAssertIsNotNil(self.hostView);
+    FLAssertWithComment(!self.isDragging, @"dragging");
     self.dragging = YES;
     _dragResults.touchOffset = CGPointZero;
     _dragResults.userDidTouchView = NO;

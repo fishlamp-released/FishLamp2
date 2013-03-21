@@ -13,11 +13,11 @@
 @end
 
 @implementation FLDataStoreService 
-@synthesize dataStore = _dataStore;
+@synthesize dataStore = _objectStorage;
 
 #if FL_MRC
 - (void) dealloc {
-    [_dataStore release];
+    [_objectStorage release];
     [super dealloc];
 }
 #endif
@@ -27,26 +27,26 @@
 }
 
 - (void) writeObject:(id) object {
-    FLAssert_(self.isServiceOpen);
-    FLAssertNotNil_(self.dataStore);
+    FLAssert(self.isServiceOpen);
+    FLAssertNotNil(self.dataStore);
     [self.dataStore writeObject:object];
 }
 
 - (id) readObject:(id) inputObject {
-    FLAssert_(self.isServiceOpen);
-    FLAssertNotNil_(self.dataStore);
+    FLAssert(self.isServiceOpen);
+    FLAssertNotNil(self.dataStore);
     return [self.dataStore readObject:inputObject];
 }
 
 - (void) deleteObject:(id) object {
-    FLAssert_(self.isServiceOpen);
-    FLAssertNotNil_(self.dataStore);
+    FLAssert(self.isServiceOpen);
+    FLAssertNotNil(self.dataStore);
     [self.dataStore deleteObject:object];
 }
 
 - (BOOL) containsObject:(id) object {
-    FLAssert_(self.isServiceOpen);
-    FLAssertNotNil_(self.dataStore);
+    FLAssert(self.isServiceOpen);
+    FLAssertNotNil(self.dataStore);
     return [self.dataStore containsObject:object];
 }
 

@@ -204,7 +204,7 @@
             }
         }
         
-        FLConfirmIsYes_v([results allTestsPassed], @"tests failed");
+        FLConfirmIsYesWithComment([results allTestsPassed], @"tests failed");
      }
     
     return results;
@@ -226,7 +226,7 @@
 
 + (BOOL) unitTestClassDependsOnUnitTestClass:(Class) class {
 
-    FLConfirm_v([self class] != class, @"%@ can't depend on self", NSStringFromClass([self class]));
+    FLConfirmWithComment([self class] != class, @"%@ can't depend on self", NSStringFromClass([self class]));
 
     NSArray* dependencies = [self unitTestDependencies]; 
     if(!dependencies) {
@@ -234,7 +234,7 @@
     }
     
     for(Class aClass in dependencies) {
-        FLConfirm_v([self class] != aClass, @"%@ can't depend on self", NSStringFromClass([self class]));
+        FLConfirmWithComment([self class] != aClass, @"%@ can't depend on self", NSStringFromClass([self class]));
    
         if(aClass == class) {
             return YES;

@@ -68,7 +68,7 @@
 
 - (id) objectForPath:(NSString*) path {
 	id container = [self containerForPath:path];
-    FLAssertIsNotNil_v(container, nil);
+    FLAssertIsNotNilWithComment(container, nil);
 
 	return container ? [container objectForPath:[path lastPathComponent]] : nil;
 }
@@ -104,7 +104,7 @@
            forPath:(NSString*) path {
 	
     id container = [self containerForPath:path];
-    FLAssertIsNotNil_(container);
+    FLAssertIsNotNil(container);
 
 	if(container) {
         NSString* key = [path lastPathComponent];

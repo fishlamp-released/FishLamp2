@@ -6,8 +6,8 @@
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
-
+#import "FLCocoaUIRequired.h"
+#import "FLCompatibleViewController.h"
 #import "FLPanelViewController.h"
 
 @protocol FLWizardButtonViewControllerDelegate;

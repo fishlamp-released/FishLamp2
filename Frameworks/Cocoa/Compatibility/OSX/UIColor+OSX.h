@@ -10,7 +10,8 @@
 #import <Cocoa/Cocoa.h>
 #import <AppKit/AppKit.h>
 
-#define UIColor                     NSColor
+#define UIColor NSColor
+#define SDKColor NSColor
 
 @interface NSColor (FLCompatibility)
 + (NSColor*) colorWithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue alpha:(CGFloat)alpha;

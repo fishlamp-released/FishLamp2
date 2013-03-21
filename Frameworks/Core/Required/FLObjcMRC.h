@@ -54,7 +54,7 @@ void FLRetainObject(id object) {
 #define FLBridgeTransfer(__TO__, __FROM__) \
             ((__TO__) __FROM__)
 
-#define FLBrideRetain(__TO__, __FROM__) \
+#define FLBridgeRetain(__TO__, __FROM__) \
             ((__TO__) [__FROM__ retain])
 
 

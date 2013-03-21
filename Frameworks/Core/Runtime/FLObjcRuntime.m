@@ -541,7 +541,7 @@ void FLSelectorSwizzle(Class c, SEL originalSelector, SEL newSelector) {
         return method_getNumberOfArguments(method);
     }
     
-    FLAssertFailed_v(@"couldn't get argument count");
+    FLAssertFailedWithComment(@"couldn't get argument count");
     
     return -1;
 }

@@ -22,7 +22,7 @@
 		}
 		
         if([object arrangeableGrowMode] == FLArrangeableGrowModeFlexibleWidth) {
-			FLAssert_v(adjustableView == nil, @"only one flexible object supported");
+			FLAssertWithComment(adjustableView == nil, @"only one flexible object supported");
 			adjustableView = object;
 		}
         else {

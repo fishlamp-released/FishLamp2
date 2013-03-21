@@ -22,7 +22,7 @@
 
 
 //- (id) initWithQueuedAsset:(FLQueuedAsset *)asset {
-//    FLAssertIsOverridden_v(nil);
+//    FLAssertIsOverriddenWithComment(nil);
 //    return self;
 //}
 //
@@ -58,7 +58,7 @@
 //}
 //
 //- (FLFinisher*) startLoadingRepresentation:(FLDispatchBlockWithResult) completionBlock {
-//    FLAssertIsImplemented_v(@"must override this");
+//    FLAssertIsImplementedWithComment(@"must override this");
 //    return nil;
 //}
 //

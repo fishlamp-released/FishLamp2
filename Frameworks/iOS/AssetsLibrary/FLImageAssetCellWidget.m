@@ -104,7 +104,7 @@
 
 - (void) setAsset:(id<FLImageAsset>) asset
 {
-	FLAssertIsNotNil_(asset);
+	FLAssertIsNotNil(asset);
 	
 	FLSetObjectWithRetain(_asset, asset);
 	

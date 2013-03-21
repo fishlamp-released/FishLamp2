@@ -134,7 +134,7 @@
 }
 
 //- (NSInputStream*) readStream {
-//    FLConfirm_v(_responseData == nil, @"can't get data from an open receiver");
+//    FLConfirmWithComment(_responseData == nil, @"can't get data from an open receiver");
 //    return [NSInputStream inputStreamWithData:self.data];
 //}
 
@@ -172,7 +172,7 @@
 
 - (void) appendBytes:(const void *)bytes length:(NSUInteger)length {
     NSInteger amountWritten = [self.outputStream write:bytes maxLength:length];
-    FLAssert_(amountWritten == length);
+    FLAssert(amountWritten == length);
 }
 
 - (void) networkStreamHasBytesAvailable:(FLReadStream *)networkStream {
@@ -204,7 +204,7 @@
 #endif
 
 - (NSData*) data {
-    FLConfirm_v(_outputStream == nil, @"can't get data from an open receiver");
+    FLConfirmWithComment(_outputStream == nil, @"can't get data from an open receiver");
     
     NSError* error = nil;
     NSData* data = [NSData dataWithContentsOfURL:self.fileURL options:nil error:&error];
@@ -214,7 +214,7 @@
 }
 
 //- (NSInputStream*) readStream {
-//    FLConfirm_v(_outputStream == nil, @"can't get data from an open receiver");
+//    FLConfirmWithComment(_outputStream == nil, @"can't get data from an open receiver");
 //    return [NSInputStream inputStreamWithURL:self.fileURL];
 //}
 @end

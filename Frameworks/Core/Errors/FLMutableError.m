@@ -12,15 +12,26 @@
 @interface FLMutableError ()
 @end
 
+NSString* const FLErrorStackTraceKey = @"FLErrorStackTraceKey";
 
 @implementation FLMutableError
 
 @synthesize userInfo = _mutableUserInfo;
 
-FLSynthesizeDictionaryProperty(reason, setReason, NSString*, FLErrorReasonKey, _mutableUserInfo)
 FLSynthesizeDictionaryProperty(comment, setComment, NSString*, FLErrorCommentKey, _mutableUserInfo)
 FLSynthesizeDictionaryProperty(stackTrace, setStackTrace, FLStackTrace*, FLErrorStackTraceKey, _mutableUserInfo)
-FLSynthesizeDictionaryProperty(errorDomain, setErrorDomain, id<FLErrorDomain>, FLErrorDomainKey, _mutableUserInfo)
+
+// sdk properies
+FLSynthesizeDictionaryProperty(underlyingError, setUnderlyingError, NSError*, NSUnderlyingErrorKey, _mutableUserInfo)
+FLSynthesizeDictionaryProperty(localizedDescription, setLocalizedDescription, NSString*, NSLocalizedDescriptionKey, _mutableUserInfo)
+FLSynthesizeDictionaryProperty(recoverySuggestion, setRecoverySuggestion, NSString*, NSLocalizedRecoverySuggestionErrorKey, _mutableUserInfo)
+FLSynthesizeDictionaryProperty(localizedFailureReason, setLocalizedFailureReason, NSString*, NSLocalizedFailureReasonErrorKey, _mutableUserInfo)
+FLSynthesizeDictionaryProperty(localizedRecoveryOptions, setLocalizedRecoveryOptions, NSArray*, NSLocalizedRecoveryOptionsErrorKey, _mutableUserInfo)
+FLSynthesizeDictionaryProperty(recoveryAttempter, setRecoveryAttempter, id, NSRecoveryAttempterErrorKey, _mutableUserInfo)
+FLSynthesizeDictionaryProperty(helpAnchor, setHelpAnchor, NSArray*, NSHelpAnchorErrorKey, _mutableUserInfo)
+FLSynthesizeDictionaryProperty(stringEncoding, setStringEncoding, NSArray*, NSStringEncodingErrorKey, _mutableUserInfo)
+FLSynthesizeDictionaryProperty(URL, setURL, NSURL*, NSURLErrorKey, _mutableUserInfo)
+FLSynthesizeDictionaryProperty(filePath, setFilePath, NSString*, NSFilePathErrorKey, _mutableUserInfo)
 
 //- (NSString*) description {
 //    return _FLAssembleFailureReason(self.domain, self.reason, self.comment, self.stackTrace);

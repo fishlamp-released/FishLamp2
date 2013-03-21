@@ -61,7 +61,7 @@ FIXME("attach to user sessions....");
 #if IOS
 FIXME("operation context");
 
-        FLAssertFailed_v(@"need to register for context events");
+        FLAssertFailedWithComment(@"need to register for context events");
 
 //        [[FLApplication instance].operationContextManager addObserver:self];
 
@@ -135,7 +135,7 @@ FIXME("attach to user sessions....");
 
 - (void) _handleReadyState
 {
-    FLAssert_v([NSThread isMainThread], @"not main thread");
+    FLAssertWithComment([NSThread isMainThread], @"not main thread");
     
     if([NSDate timeIntervalSinceReferenceDate] - _timestamp > kDelay && !_cancelling)
     {
@@ -232,7 +232,7 @@ FIXME("attach to user sessions....");
 - (void) _handleCancelState {
 
     FLTrace(@"cancelling tasks");
-    FLAssert_v([NSThread isMainThread], @"not main thread");
+    FLAssertWithComment([NSThread isMainThread], @"not main thread");
 	
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(_handleReadyState) object:nil];
     for(id<FLBackgroundTask> task in _queue)
@@ -324,7 +324,7 @@ FIXME("attach to user sessions....");
 
 - (void) resetAllTasks
 {
-    FLAssert_v(!self.isExecutingBackgroundTask, @"can't reset while executing");
+    FLAssertWithComment(!self.isExecutingBackgroundTask, @"can't reset while executing");
 
     for(id<FLBackgroundTask> task in _queue)
     {
