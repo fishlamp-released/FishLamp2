@@ -132,6 +132,17 @@
 
 }
 
+- (NSString*) downloadFileNameForPhoto:(FLZenfolioPhoto*) photo {
+    NSMutableString* name = [NSMutableString stringWithFormat:@"%@-%@", [photo.FileName stringByDeletingPathExtension], [photo Id]]; //, [photo.Sequence];
+            
+    if(FLStringIsNotEmpty(photo.Sequence)) {
+        [name appendFormat:@"-%@", photo.Sequence];
+    }
+    
+    [name appendFormat:@".%@", [photo.FileName pathExtension]];
+    return name;        
+}
+
 - (FLZenfolioPhotoSet*) downloadLatestPhotoSet:(FLZenfolioPhotoSet*) photoSet {
 
 
@@ -166,7 +177,7 @@
     FLHttpRequest* request = 
         [FLHttpRequest httpRequest:[photo urlForImageWithSize:[FLZenfolioImageSize originalImageSize]]];
 
-    request.networkStreamSink = [FLFileStreamSink fileStreamSink:[NSURL fileURLWithPath:[imageFolder pathForFile:photo.FileName]]];
+    request.networkStreamSink = [FLFileStreamSink fileStreamSink:[NSURL fileURLWithPath:[imageFolder pathForFile:[self downloadFileNameForPhoto:photo]]]];
                                                                
     return FLThrowIfError([self.workerContext runWorker:request withObserver:self]);
 
@@ -187,7 +198,9 @@
         
         NSMutableDictionary* info = [[NSMutableDictionary alloc] init];
         @try {
-            NSString* pathToContent = [imageFolder pathForFile:photo.FileName];
+        
+            
+            NSString* pathToContent = [imageFolder pathForFile:[self downloadFileNameForPhoto:photo]];
             
             [info setObject:photo forKey:ZFDownloadedPhotoKey];
             [info setObject:pathToContent forKey:ZFDownloadedDestinationPathKey];
@@ -196,7 +209,7 @@
                            toListener:self.observer 
                            withObject:info];
 
-            if([imageFolder fileExistsInFolder:photo.FileName]) {
+            if([imageFolder fileExistsInFolder:pathToContent]) {
             
                 if(photo.IsVideoValue) {
                     if(self.downloadVideos) {
