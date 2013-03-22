@@ -6,10 +6,10 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import "FLTransition.h"
+#import "FLViewTransition.h"
 #import "FLFlipAnimation.h"
 
-@interface FLFlipTransition : FLTransition {
+@interface FLFlipTransition : FLViewTransition {
 @private
     FLFlipAnimationDirection _flipDirection;
     CGFloat _perspectiveDistance;

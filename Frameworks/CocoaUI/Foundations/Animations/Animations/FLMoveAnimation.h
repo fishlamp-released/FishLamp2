@@ -7,9 +7,9 @@
 //
 
 #import "FLCocoaUIRequired.h"
-#import "FLAnimation.h"
+#import "FLLayerAnimation.h"
 
-@interface FLMoveAnimation : FLAnimation
+@interface FLMoveAnimation : FLLayerAnimation
 @property (readwrite, assign, nonatomic) CGPoint startPoint;
 @property (readwrite, assign, nonatomic) CGPoint finishPoint;
 + (id) moveAnimation:(CGPoint) destination;

@@ -13,11 +13,11 @@
 @private
     CALayer* _rotationLayer;
     BOOL _animating;
-    FLAnimation* _animation;
+    FLLayerAnimation* _animation;
     BOOL _displayedWhenStopped;
 } 
 
-@property (readwrite, assign, nonatomic) FLAnimation* animation; // FLSomersaultAnimation by default
+@property (readwrite, assign, nonatomic) FLLayerAnimation* animation; // FLSomersaultAnimation by default
 @property (readwrite, assign, nonatomic, getter=isDisplayedWhenStopped) BOOL displayedWhenStopped;
 @property (readonly, assign, nonatomic, getter=isAnimating) BOOL animating;
 

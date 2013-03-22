@@ -6,8 +6,8 @@
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
 
-#import "FLTransition.h"
+#import "FLViewTransition.h"
 
-@interface FLSlideInAndDropTransition : FLTransition
+@interface FLSlideInAndDropTransition : FLViewTransition
 
 @end
