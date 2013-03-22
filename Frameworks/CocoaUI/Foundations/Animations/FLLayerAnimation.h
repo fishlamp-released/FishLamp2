@@ -20,7 +20,7 @@
 // overrides
 // animations are disabled during prepare and finish,
 // commit is where you apply the animations
-- (void) prepareLayer:(CALayer*) layer;
+- (void) prepareAnimation:(CALayer*) layer;
 - (void) commitAnimation:(CALayer*) layer;
 - (void) finishAnimation:(CALayer*) layer;
 @end

@@ -12,14 +12,15 @@
 @interface FLAnimatedImageView : NSView {
 @private
     CALayer* _rotationLayer;
-    BOOL _animating;
+    BOOL _animate;
+    BOOL _animationIsAnimating;
     FLLayerAnimation* _animation;
     BOOL _displayedWhenStopped;
 } 
 
 @property (readwrite, assign, nonatomic) FLLayerAnimation* animation; // FLSomersaultAnimation by default
 @property (readwrite, assign, nonatomic, getter=isDisplayedWhenStopped) BOOL displayedWhenStopped;
-@property (readonly, assign, nonatomic, getter=isAnimating) BOOL animating;
+@property (readonly, assign, nonatomic, getter=isAnimating) BOOL animate;
 
 - (void) startAnimating;
 - (void) stopAnimating;

@@ -8,90 +8,91 @@
 
 #import "FLRotateAnimation.h"
 
-@implementation FLRotateAnimation
-//CGFloat GetNextDegree(CGFloat inDegree, CGFloat increment) {
+//@implementation FLRotateAnimation
+////CGFloat GetNextDegree(CGFloat inDegree, CGFloat increment) {
+////
+////    CGFloat degree = inDegree + increment;
+////
+////    if(degree >= 360.0f) {
+////        degree = 360.0f - degree;
+////    }
+////    else if(degree < 0.0) {
+////        degree = 360.0f + degree;
+////        
+////    }
+////
+////    FLLog(@"next: %f, prev: %f", degree, inDegree);
+////
+////    return degree;
+////}
 //
-//    CGFloat degree = inDegree + increment;
+////- (void) somersault;
+////{
+////
+////    CALayer* layer = [self layer];
+////    NSMutableArray* keyFrameValues = [NSMutableArray array];
+////    [keyFrameValues addObject:[NSNumber numberWithFloat:0.0]];
+////    //[values addObject:[NSNumber numberWithFloat:M_PI*0.5]];
+////    [keyFrameValues addObject:[NSNumber numberWithFloat:M_PI]];
+////    [keyFrameValues addObject:[NSNumber numberWithFloat:M_PI*1.5]];
+////    [keyFrameValues addObject:[NSNumber numberWithFloat:M_PI*2.0]];
+////
+////    CAKeyframeAnimation* animation = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
+////    [animation setValues:keyFrameValues];
+////    [animation setValueFunction:[CAValueFunction functionWithName: kCAValueFunctionRotateX]];// kCAValueFunctionRotateZ]];
+////
+////    [animation setDuration:0.9];
+////    //[animation setTimingFunction: [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+////
+////    [layer addAnimation:animation forKey:nil];
+////
+////    return;
+////}
 //
-//    if(degree >= 360.0f) {
-//        degree = 360.0f - degree;
-//    }
-//    else if(degree < 0.0) {
-//        degree = 360.0f + degree;
-//        
-//    }
-//
-//    FLLog(@"next: %f, prev: %f", degree, inDegree);
-//
-//    return degree;
+//- (CAAnimation*) CAAnimation:(FLAnimationFlags) flags {
+//    CABasicAnimation *rotationAnimation =[CABasicAnimation animationWithKeyPath:@"transform.rotation.z"]; //Rotate about z-axis
+//    [rotationAnimation setFromValue:[NSNumber numberWithFloat:FLDegreesToRadians(_fromDegree)]];
+//    [rotationAnimation setToValue:[NSNumber numberWithFloat:FLDegreesToRadians(_toDegree)]];
+//    
+////    [rotationAnimation setByValue:[NSNumber numberWithFloat:FLDegreesToRadians(_deltaAmount)]];
+//    [rotationAnimation setDuration:4.0];
+//    rotationAnimation.cumulative = NO;
+//    [rotationAnimation setRemovedOnCompletion:YES];
+////    [rotationAnimation setFillMode:kCAFillModeForwards];
+//    return rotationAnimation;
 //}
-
-//- (void) somersault;
-//{
 //
-//    CALayer* layer = [self layer];
-//    NSMutableArray* keyFrameValues = [NSMutableArray array];
-//    [keyFrameValues addObject:[NSNumber numberWithFloat:0.0]];
-//    //[values addObject:[NSNumber numberWithFloat:M_PI*0.5]];
-//    [keyFrameValues addObject:[NSNumber numberWithFloat:M_PI]];
-//    [keyFrameValues addObject:[NSNumber numberWithFloat:M_PI*1.5]];
-//    [keyFrameValues addObject:[NSNumber numberWithFloat:M_PI*2.0]];
-//
-//    CAKeyframeAnimation* animation = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
-//    [animation setValues:keyFrameValues];
-//    [animation setValueFunction:[CAValueFunction functionWithName: kCAValueFunctionRotateX]];// kCAValueFunctionRotateZ]];
-//
-//    [animation setDuration:0.9];
-//    //[animation setTimingFunction: [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
-//
-//    [layer addAnimation:animation forKey:nil];
-//
-//    return;
+//- (void) commitAnimation:(CALayer*) layer withAnimationFlags:(FLAnimationFlags) flags {
+//    [layer addAnimation:[self CAAnimation:flags] forKey:@"transform.rotation.z"];
 //}
-
-- (CAAnimation*) CAAnimation {
-    CABasicAnimation *rotationAnimation =[CABasicAnimation animationWithKeyPath:@"transform.rotation.z"]; //Rotate about z-axis
-    [rotationAnimation setFromValue:[NSNumber numberWithFloat:FLDegreesToRadians(_fromDegree)]];
-    [rotationAnimation setToValue:[NSNumber numberWithFloat:FLDegreesToRadians(_toDegree)]];
-    
-//    [rotationAnimation setByValue:[NSNumber numberWithFloat:FLDegreesToRadians(_deltaAmount)]];
-    [rotationAnimation setDuration:4.0];
-    rotationAnimation.cumulative = NO;
-    [rotationAnimation setRemovedOnCompletion:YES];
-//    [rotationAnimation setFillMode:kCAFillModeForwards];
-    return rotationAnimation;
-}
-
-- (void) commitAnimation:(CALayer*) layer {
-    [layer addAnimation:[self CAAnimation] forKey:@"transform.rotation.z"];
-}
-
-- (void) startRotating:(id) target 
-            fromDegree:(CGFloat) from 
-              toDegree:(CGFloat) toDegree 
-            completion:(FLBlock) completion {
-    _fromDegree = from;
-    _toDegree = toDegree;
-    
-    FLLog(@"Start rotating: from %f to %f", _fromDegree, _toDegree);
-    
-    [self startAnimating:target completion:completion];
-}            
-
-- (void) startRotating:(id) target 
-       degreesToRotate:(CGFloat) degrees 
-            completion:(FLBlock) completion {
-    
-    _deltaAmount = degrees;
-    
-    FLLog(@"Start rotating by degrees: %f", _deltaAmount);
-    
-    [self startAnimating:target completion:completion];
-            
-}            
-
-
-@end
+//
+//- (void) startRotating:(id) target 
+//        startFlags:(FLAnimationStartFlags) startFlags
+//            fromDegree:(CGFloat) from 
+//              toDegree:(CGFloat) toDegree 
+//            completion:(FLBlock) completion {
+//    _fromDegree = from;
+//    _toDegree = toDegree;
+//    
+//    FLLog(@"Start rotating: from %f to %f", _fromDegree, _toDegree);
+//    
+//    [self startAnimating:target startFlags:startFlags completion:completion];
+//}            
+//
+//- (void) startRotating:(id) target 
+//       degreesToRotate:(CGFloat) degrees 
+//            completion:(FLBlock) completion {
+//    
+//    _deltaAmount = degrees;
+//    
+//    FLLog(@"Start rotating by degrees: %f", _deltaAmount);
+//    
+//    [self startAnimating:target completion:completion];
+//            
+//}            
+//
+//
+//@end
 
 @implementation FLSomersaultAnimation
 
@@ -127,7 +128,7 @@
 - (void) commitAnimation:(CALayer *)layer {
 
     CAKeyframeAnimation* animation = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
-    [animation setValues:self.direction == FLAnimationDirectionRight ? [self forwardKeyFrames] : [self backwardKeyFrames]];
+    [animation setValues:self.direction == FLAnimationDirectionRight ? [self forwardKeyFrames]  : [self backwardKeyFrames]];
     
     NSString* axis = nil;
     switch(self.axis) {
@@ -143,7 +144,7 @@
     }
     
     [animation setValueFunction:[CAValueFunction functionWithName: axis]];
-    [self prepareAnimation:animation];
+    [self configureAnimation:animation];
     [layer addAnimation:animation forKey:nil];
 }
 

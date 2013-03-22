@@ -15,4 +15,21 @@
     [self addSubview:view positioned:NSWindowBelow relativeTo:nil];
 }
 
+- (NSString*) description {
+    return [NSString stringWithFormat:@"%@ { frame: %@ }", [super description], NSStringFromRect(self.frame)];
+}
+
+- (void) addSubviews:(NSMutableArray*) array {
+    [array addObjectsFromArray:self.subviews];
+    for(NSView* view in self.subviews) {
+        [view addSubviews:array];
+    }
+}
+
+- (NSArray*) allSubviews {
+    NSMutableArray* subviews = [NSMutableArray array];
+    [self addSubviews:subviews];
+    return subviews;
+}
+
 @end

@@ -12,16 +12,17 @@
 
 @synthesize scale = _scale;
 
-- (id) init {
+- (id) initWithStartScale:(CGFloat) startScale finishScale:(CGFloat) finishScale {
     self = [super init];
     if(self) {
-        _scale = FLDropBackAnimationDefaultScale;
+        _startScale = startScale;
+        _finishScale = finishScale;
     }
     return self;
 }
 
-+ (id) distanceAnimation {
-    return FLAutorelease([[[self class] alloc] init]);
++ (id) distanceAnimation:(CGFloat) startScale finishScale:(CGFloat) finishScale {
+    return FLAutorelease([[[self class] alloc] initWithStartScale:startScale finishScale:finishScale]);
 }
 
 - (CATransform3D) transformForFrame:(CGRect) frame withScale:(CGFloat) scaleAmount {
@@ -33,38 +34,31 @@
     return CATransform3DConcat(translateTransform, scaleTransform);
 } 
 
-- (void) prepareLayer:(CALayer*) layer {
+- (void) prepareAnimation:(CALayer*) layer {
 
-    _startFrame = layer.frame;
+    _originalTransform = layer.transform;
 
-    if(self.direction == FLAnimationDirectionRight) {
-        _start = [self transformForFrame:layer.frame withScale:_scale];
-        _finish = CATransform3DIdentity;
+    _startTransform = [self transformForFrame:layer.bounds withScale:_startScale];
+    _finishTransform = [self transformForFrame:layer.bounds withScale:_finishScale]; 
+
+    if(_startScale != 1.0f) {
+        layer.transform = CATransform3DConcat(_originalTransform, _startTransform);
     }
-    else {
-        _start = CATransform3DIdentity;
-        _finish = [self transformForFrame:layer.frame withScale:_scale];
-    }
-
-    layer.transform = _start;
     layer.hidden = NO;
 }
 
 - (void) commitAnimation:(CALayer *)layer {
     CABasicAnimation *scale = [CABasicAnimation animationWithKeyPath:@"transform"];
-    scale.fromValue =   [NSValue valueWithCATransform3D:_start];
-    scale.toValue =     [NSValue valueWithCATransform3D:_finish];
+    scale.fromValue =   [NSValue valueWithCATransform3D:layer.transform];
+    scale.toValue =     [NSValue valueWithCATransform3D:_finishTransform];
     scale.removedOnCompletion = YES;
-    [self prepareAnimation:scale];
-
+    [self configureAnimation:scale];
     [layer addAnimation:scale forKey:@"transform"];
+    layer.transform = _finishTransform;
 }
 
 - (void) finishAnimation:(CALayer*) layer {
-    layer.frame = _startFrame;
-    if(self.removeTransforms) {
-        layer.transform = CATransform3DIdentity;
-    }
+    layer.transform = _originalTransform;
 }
 
 @end

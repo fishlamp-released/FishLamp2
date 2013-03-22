@@ -12,7 +12,7 @@
 @implementation FLAnimatedImageView
 
 @synthesize image = _image;
-@synthesize animating = _animating;
+@synthesize animate = _animate;
 @synthesize displayedWhenStopped = _displayedWhenStopped;
 @synthesize animation = _animation;
 
@@ -54,7 +54,7 @@
         self.hidden = NO;
     }
     else {
-        self.hidden = !_animating;
+        self.hidden = !_animate;
     }
 }
 
@@ -82,18 +82,20 @@
 - (void) viewDidMoveToSuperview {
     [super viewDidMoveToSuperview];
     
-    if(_animating) {
+    if(_animate) {
         [self performSelector:@selector(startAnimating) withObject:nil afterDelay:1.0];
     }
 }
 
 - (void) startAnimating {
-    _animating = YES;
+    _animate = YES;
     self.hidden = NO;
           
-    if(!_animation.isAnimating) {
+    if(!_animationIsAnimating) {
+        _animationIsAnimating = YES;
         [_animation startAnimating:_rotationLayer completion:^{
-            if(_animating) {
+            _animationIsAnimating = NO;
+            if(_animate) {
                 [self startAnimating];
             }
             else {
@@ -106,7 +108,7 @@
 }
 
 - (void) stopAnimating {
-    _animating = NO;
+    _animate = NO;
     if(!_displayedWhenStopped) {
         self.hidden = YES;
     }

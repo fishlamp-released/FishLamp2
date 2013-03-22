@@ -50,7 +50,7 @@
     CGFloat finish = 0.0f;
     NSString* keyPath = nil;
 
-    switch(self.directionWithPossibleReversing) {
+    switch(self.direction) {
         case FLAnimationDirectionUp:
             keyPath = @"transform.rotation.x";
             start = M_PI;
@@ -86,7 +86,7 @@
 }
 
 
-- (void) prepareLayer:(CALayer*) layer {
+- (void) prepareAnimation:(CALayer*) layer {
     layer.doubleSided = _showBothSidesDuringFlip;
     
     _position = layer.position;

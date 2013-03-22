@@ -24,13 +24,15 @@ typedef void (^FLPanelViewControllerBlock)(FLPanelViewController* panel);
     BOOL _started;
     id<FLPanelManagerDelegate> _delegate;
 
-    FLViewTransition* _showTransition;
+    FLViewTransition* _forwardTransition;
+    FLViewTransition* _backwardTransition;
 }
 @property (readwrite, assign, nonatomic) id<FLPanelManagerDelegate> delegate;
 @property (readonly, assign, nonatomic) NSUInteger panelCount;
 @property (readonly, strong, nonatomic) FLPanelViewController* visiblePanel;
 
-@property (readwrite, strong, nonatomic) FLViewTransition* viewTransition;
+@property (readwrite, strong, nonatomic) FLViewTransition* forwardTransition;
+@property (readwrite, strong, nonatomic) FLViewTransition* backwardTransition;
 
 - (void) addPanel:(FLPanelViewController*) panel;
 

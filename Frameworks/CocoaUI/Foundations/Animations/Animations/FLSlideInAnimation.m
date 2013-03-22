@@ -9,65 +9,117 @@
 #import "FLSlideInAnimation.h"
 
 
-@implementation FLSlideInAnimation
+@implementation FLSlideAnimation
+
+@synthesize slideDirection = _slideDirection;
 
 - (id) initWithSlideDirection:(FLAnimationDirection) direction {
     self = [super init];
     if(self) {
         _slideDirection = direction;
+        
+        self.timing = FLAnimationTimingEaseInEaseOut;
     }
     return self;
 }
 
-+ (id) slideInAnimation:(FLAnimationDirection)slideInDirection {
-    return FLAutorelease([[[self class] alloc] initWithSlideDirection:slideDirection]);
-}
 
-- (void) prepareLayer:(CALayer*) layer {
+- (CGPoint) offscreenOrigin:(CALayer*) layer {
 
-    _onScreenOrigin = layer.frame.origin;
-    
     CGRect frame = layer.frame;
     CGRect bounds = layer.superlayer.bounds;
-    
+
     switch(self.direction) {
         case FLAnimationDirectionUp:
-            _offScreenOrigin = CGPointMake(frame.origin.x, bounds.origin.y);
+            return CGPointMake(frame.origin.x, bounds.origin.y);
         break;
 
         case FLAnimationDirectionDown:
-            _offScreenOrigin = CGPointMake(frame.origin.x, FLRectGetBottom(bounds) - frame.size.height);
+            return CGPointMake(frame.origin.x, FLRectGetBottom(bounds) - frame.size.height);
         break;
         
         case FLAnimationDirectionLeft:
-            _offScreenOrigin = CGPointMake(bounds.origin.x - frame.size.width, frame.origin.y);
+            return CGPointMake(bounds.origin.x - frame.size.width, frame.origin.y);
         break;
         
-        
         case FLAnimationDirectionRight:
-            _offScreenOrigin = CGPointMake(FLRectGetRight(bounds) + frame.size.width, frame.origin.y);
+            return CGPointMake(FLRectGetRight(bounds) + frame.size.width, frame.origin.y);
         break;
     
     }
-
     
-
-
-    [super prepareLayer:layer];
+    return CGPointZero;
 }
+@end
+
+
+@implementation FLSlideInAnimation
+
+
++ (id) slideInAnimation:(FLAnimationDirection)slideInDirection {
+    return FLAutorelease([[[self class] alloc] initWithSlideDirection:slideInDirection]);
+}
+
+- (void) prepareAnimation:(CALayer*) layer {
+    _onScreenOrigin = layer.position;
+    [layer setPosition:[self offscreenOrigin:layer]];
+    layer.hidden = NO;
+}
+
+- (void) commitAnimation:(CALayer*) layer {
+    CABasicAnimation *moveFrame = [CABasicAnimation animationWithKeyPath:@"position"];
+    [moveFrame setFromValue:[NSValue valueWithPoint:layer.position]];
+    [moveFrame setToValue:[NSValue valueWithPoint:_onScreenOrigin]];
+    moveFrame.removedOnCompletion = YES;
+    [self configureAnimation:moveFrame];
+    [layer addAnimation:moveFrame forKey:@"position"];
+}
+
+- (void) finishAnimation:(CALayer*) layer {
+    [layer setPosition:_onScreenOrigin];
+}
+
 
 @end
 
-@implementation FLSlideOutAnimation 
+@implementation FLSlideOutAnimation
 
-+ (id) slideOutAnimation {
-    return FLAutorelease([[[self class] alloc] init]);
+
++ (id) slideOutAnimation:(FLAnimationDirection)slideInDirection {
+    return FLAutorelease([[[self class] alloc] initWithSlideDirection:slideInDirection]);
 }
 
-- (void) prepareLayer:(CALayer*) layer {
-    self.startPoint = layer.frame.origin;
-    self.finishPoint = CGPointMake(FLRectGetRight(layer.superlayer.bounds), layer.frame.origin.y) ;
-    [super prepareLayer:layer];
+- (void) prepareAnimation:(CALayer*) layer {
+    _onScreenOrigin = layer.position;
+    layer.hidden = NO;
 }
+
+- (void) commitAnimation:(CALayer*) layer {
+    CABasicAnimation *moveFrame = [CABasicAnimation animationWithKeyPath:@"position"];
+    [moveFrame setFromValue:[NSValue valueWithPoint:layer.position]];
+    [moveFrame setToValue:[NSValue valueWithPoint:[self offscreenOrigin:layer]]];
+    moveFrame.removedOnCompletion = YES;
+    [self configureAnimation:moveFrame];
+    [layer addAnimation:moveFrame forKey:@"position"];
+}
+
+- (void) finishAnimation:(CALayer*) layer {
+    [layer setPosition:_onScreenOrigin];
+}
+
 
 @end
+
+//@implementation FLSlideOutAnimation 
+//
+//+ (id) slideOutAnimation {
+//    return FLAutorelease([[[self class] alloc] init]);
+//}
+//
+//- (void) prepareAnimation:(CALayer*) layer {
+//    self.startPoint = layer.frame.origin;
+//    self.finishPoint = CGPointMake(FLRectGetRight(layer.superlayer.bounds), layer.frame.origin.y) ;
+//    [super prepareAnimation:layer];
+//}
+//
+//@end

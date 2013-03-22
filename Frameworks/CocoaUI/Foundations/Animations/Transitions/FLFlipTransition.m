@@ -24,7 +24,7 @@
         FLFlipAnimation* flip = [FLFlipAnimation layerAnimation];
         flip.showBothSidesDuringFlip = NO;
         flip.perspectiveDistance = _perspectiveDistance;
-        [self addAnimation:flip];
+//        [self addAnimation:flip];
     }
     
     return self;

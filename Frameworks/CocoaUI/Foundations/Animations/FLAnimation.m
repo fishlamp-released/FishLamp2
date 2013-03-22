@@ -13,8 +13,6 @@
 @synthesize direction = _direction;
 @synthesize timing = _timing;
 @synthesize axis = _axis;
-@synthesize removeTransforms = _removeTransforms;
-@synthesize reverse = _reverse;
 
 - (id) init {
     self = [super init];
@@ -24,15 +22,12 @@
     return self;
 }
 
-- (void) directionWithPossibleReversing {
-    return _reversed ? FLAnimationDirectionGetOppositeDirection(_direction) : _direction;
-}
+- (void) startAnimationWithPrepareBlock:(FLBlock) prepare
+                          commitBlock:(FLBlock) commit
+                          finishBlock:(FLBlock) finish
+                      completionBlock:(FLBlock) completion {
 
-- (void) startAnimating:(FLBlock) prepare
-                 commit:(FLBlock) commit
-                 finish:(FLBlock) finish
-             completion:(FLBlock) completion {
-
+  
     completion = FLCopyWithAutorelease(completion);
 
     FLAssertWithComment([NSThread isMainThread], @"not on main thread");
@@ -82,7 +77,7 @@
     return FLAnimationGetTimingFunction(self.timing);
 }
 
-- (void) prepareAnimation:(CAAnimation*) animation {
+- (void) configureAnimation:(CAAnimation*) animation {
     [animation setDuration:self.duration];
     [animation setTimingFunction:self.timingFunction];
 }

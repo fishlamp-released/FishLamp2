@@ -35,7 +35,7 @@
     return FLAutorelease([[[self class] alloc] init]);
 }
 
-- (void) prepareLayer:(CALayer*) layer {
+- (void) prepareAnimation:(CALayer*) layer {
 }
 
 - (void) commitAnimation:(CALayer*) layer {

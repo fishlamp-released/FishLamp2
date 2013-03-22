@@ -10,4 +10,5 @@
 
 @interface NSView (FLAdditions)
 - (void) addBackgroundView:(NSView*) view;
+- (NSArray*) allSubviews;
 @end
