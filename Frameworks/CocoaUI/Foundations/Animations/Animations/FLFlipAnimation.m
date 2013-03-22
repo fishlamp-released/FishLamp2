@@ -50,26 +50,26 @@
     CGFloat finish = 0.0f;
     NSString* keyPath = nil;
 
-    switch(_flipDirection) {
-        case FLFlipAnimationDirectionUp:
+    switch(self.directionWithPossibleReversing) {
+        case FLAnimationDirectionUp:
             keyPath = @"transform.rotation.x";
             start = M_PI;
             finish = 0.0;
         break;
         
-        case FLFlipAnimationDirectionDown:
+        case FLAnimationDirectionDown:
             keyPath = @"transform.rotation.x";
             start = 0.0f;
             finish = -M_PI;
         break;
 
-        case FLFlipAnimationDirectionLeft:
+        case FLAnimationDirectionLeft:
             keyPath = @"transform.rotation.y";
             start = M_PI;
             finish = 0.0f;
         break;
 
-        case FLFlipAnimationDirectionRight:
+        case FLAnimationDirectionRight:
             keyPath = @"transform.rotation.y";
             start = 0.0f;
             finish = -M_PI;

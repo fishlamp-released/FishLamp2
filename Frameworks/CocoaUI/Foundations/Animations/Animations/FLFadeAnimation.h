@@ -21,10 +21,6 @@
                            
 @end
 
-@interface FLFadeOutAnimation : FLFadeAnimation
-+ (id) fadeOutAnimation;
-@end
-
 @interface FLFadeInAnimation : FLFadeAnimation
 + (id) fadeInAnimation;; 
 @end

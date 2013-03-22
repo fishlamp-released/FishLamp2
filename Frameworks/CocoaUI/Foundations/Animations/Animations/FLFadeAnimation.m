@@ -78,28 +78,25 @@
 
 - (void) prepareLayer:(CALayer*) layer {
     [super prepareLayer:layer];
-    if(self.toOpacity < 0) {
-        self.toOpacity = 1.0f;
+    
+    if(self.isReversed) {
+        if(self.toOpacity < 0) {
+            self.toOpacity = 0.0f;
+        }
     }
-}
-
-@end
-
-@implementation FLFadeOutAnimation
-+ (id) fadeOutAnimation {
-    return FLAutorelease([[[self class] alloc] init]);
-}
-
-- (void) prepareLayer:(CALayer*) layer {
-    [super prepareLayer:layer];
-    if(self.toOpacity < 0) {
-        self.toOpacity = 0.0f;
+    else {
+        if(self.toOpacity < 0) {
+            self.toOpacity = 1.0f;
+        }
     }
 }
 
 - (void) finishAnimation:(CALayer*) layer {
-    layer.hidden = YES;
+    layer.hidden = self.isReversed;
     [super finishAnimation:layer];
 }
 
+
 @end
+
+

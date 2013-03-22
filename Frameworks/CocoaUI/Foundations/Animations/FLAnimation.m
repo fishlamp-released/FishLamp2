@@ -14,6 +14,7 @@
 @synthesize timing = _timing;
 @synthesize axis = _axis;
 @synthesize removeTransforms = _removeTransforms;
+@synthesize reverse = _reverse;
 
 - (id) init {
     self = [super init];
@@ -21,6 +22,10 @@
         self.duration = 0.3f;
     }
     return self;
+}
+
+- (void) directionWithPossibleReversing {
+    return _reversed ? FLAnimationDirectionGetOppositeDirection(_direction) : _direction;
 }
 
 - (void) startAnimating:(FLBlock) prepare

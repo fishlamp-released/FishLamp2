@@ -59,7 +59,7 @@
 
 //        UIView* lastView = [_stack lastObject];
 //        if(lastView) {
-//            FLFlipTransition* fuckyoupieceofshit = [FLFlipTransition transitionWithViewToShow:view viewToHide:lastView flipDirection:FLFlipAnimationDirectionUp];
+//            FLFlipTransition* fuckyoupieceofshit = [FLFlipTransition transitionWithViewToShow:view viewToHide:lastView flipDirection:FLAnimationDirectionUp];
 //            [fuckyoupieceofshit startAnimating:completion];
 //        }
 //        else {
@@ -115,7 +115,7 @@
     if(animated) {
         if(_stack.count >= 2) {
             UIView* toShow = [_stack lastObject];
-            [[FLFlipTransition transitionWithViewToShow:toShow viewToHide:toHide flipDirection:FLFlipAnimationDirectionDown] startTransition:completion];
+            [[FLFlipTransition transitionWithViewToShow:toShow viewToHide:toHide flipDirection:FLAnimationDirectionDown] startTransition:completion];
         }
         else {
         
@@ -175,7 +175,7 @@
 //    notificationView.frame = self.notificationViewEnclosure.bounds;
 //    if(self.notificationView) {
 //        if(animated) {
-//            [self flipToNextNotificationViewWithDirection:FLFlipAnimationDirectionDown nextView:notificationView completion:completion];
+//            [self flipToNextNotificationViewWithDirection:FLAnimationDirectionDown nextView:notificationView completion:completion];
 //        }
 //        else {
 //            [self.notificationView removeFromSuperview];

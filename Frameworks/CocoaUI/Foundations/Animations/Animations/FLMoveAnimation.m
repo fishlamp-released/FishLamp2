@@ -14,13 +14,7 @@
 - (CAAnimation*) CAAnimation;
 @end
 
-@implementation FLMoveAnimation {
-@private
-    CGPoint _startPoint;
-    CGPoint _finishPoint;
-    BOOL _setStartPoint;
-    BOOL _setFinishPoint;
-}
+@implementation FLMoveAnimation 
 @synthesize startPoint = _startPoint;
 @synthesize finishPoint = _finishPoint;
 
@@ -46,13 +40,18 @@
     _setFinishPoint = YES;
 }
 
-
-
 - (CAAnimation*) CAAnimation {
     CABasicAnimation *moveFrame = [CABasicAnimation animationWithKeyPath:@"position"];
-    [moveFrame setFromValue:[NSValue valueWithPoint:_startPoint]];
-    [moveFrame setToValue:[NSValue valueWithPoint:_finishPoint]];
-    moveFrame.removedOnCompletion = NO;
+    if(self.isReversed) {
+        [moveFrame setFromValue:[NSValue valueWithPoint:_startPoint]];
+        [moveFrame setToValue:[NSValue valueWithPoint:_finishPoint]];
+    }
+    else {
+        [moveFrame setFromValue:[NSValue valueWithPoint:_finishPoint]];
+        [moveFrame setToValue:[NSValue valueWithPoint:_startPoint]];
+    }
+    moveFrame.removedOnCompletion = YES;
+    [self prepareAnimation:moveFrame];
     return moveFrame;
 }
 
@@ -73,37 +72,10 @@
 }
 
 - (void) finishAnimation:(CALayer*) layer {
-}
 
-@end
-
-@implementation FLSlightInFromRightAnimation 
-
-+ (id) slideInFromRightAnimation {
-    return FLAutorelease([[[self class] alloc] init]);
-}
-
-- (void) prepareLayer:(CALayer*) layer {
-    if(self.direction == FLAnimationDirectionForward) {
-        self.startPoint = CGPointMake(FLRectGetRight(layer.superlayer.bounds), layer.frame.origin.y);
-        self.finishPoint = layer.frame.origin;
+    if(self.removeTransforms) {
+        [layer setPosition:_startPoint];
     }
-    else if(self.direction == FL)
-    [super prepareLayer:layer];
-}
-
-@end
-
-@implementation FLSlideOutAnimation 
-
-+ (id) slideOutAnimation {
-    return FLAutorelease([[[self class] alloc] init]);
-}
-
-- (void) prepareLayer:(CALayer*) layer {
-    self.startPoint = layer.frame.origin;
-    self.finishPoint = CGPointMake(FLRectGetRight(layer.superlayer.bounds), layer.frame.origin.y) ;
-    [super prepareLayer:layer];
 }
 
 @end

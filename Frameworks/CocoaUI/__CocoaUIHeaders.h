@@ -1,8 +1,7 @@
 // Generated at Mon Feb 11 16:13:53 PST 2013
 
 // Foundations/Animations/Animations
-#import "FLComeForwardAnimation.h"
-#import "FLDropBackAnimation.h"
+#import "FLDistanceAnimation.h"
 #import "FLFadeAnimation.h"
 #import "FLFlipAnimation.h"
 #import "FLMoveAnimation.h"
@@ -14,7 +13,6 @@
 
 // Foundations/Animations/Transitions
 #import "FLFlipTransition.h"
-#import "FLSlideInAndDropTransition.h"
 #import "FLWizardStyleViewTransition.h"
 
 // Foundations/Arrangeable
