@@ -13,18 +13,16 @@
 @private 
     UIView* _viewToShow;
     UIView* _viewToHide;
-    NSMutableArray* _showAnimations;
-    NSMutableArray* _hideAnimations;
+    NSMutableArray* _animations;
 }
 
-- (void) addShowAnimation:(FLLayerAnimation*) animation;
-- (void) addHideAnimation:(FLLayerAnimation*) animation;
+- (void) addAnimation:(FLLayerAnimation*) animation;
 
 @property (readonly, strong, nonatomic) UIView* viewToShow;
 @property (readonly, strong, nonatomic) UIView* viewToHide; 
 
 - (void) startTransitionWithViewToShow:(SDKView*) view 
                             viewToHide:(SDKView*) toHide
-                            completion:(FLAnimationCompletionBlock) completion;
+                            completion:(FLBlock) completion;
 
 @end

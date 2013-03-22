@@ -17,12 +17,12 @@
 
 - (void) startRotating:(id) target 
        degreesToRotate:(CGFloat) degrees 
-            completion:(FLAnimationCompletionBlock) completion;
+            completion:(FLBlock) completion;
 
 - (void) startRotating:(id) target 
             fromDegree:(CGFloat) from 
               toDegree:(CGFloat) toDegree 
-            completion:(FLAnimationCompletionBlock) completion;
+            completion:(FLBlock) completion;
 
 @end
 

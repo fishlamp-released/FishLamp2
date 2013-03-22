@@ -8,11 +8,11 @@
 
 #import "FLViewController.h"
 
+#if REFACTOR
 @interface FLStatusBarViewController : FLViewController {
 @private
     NSMutableArray* _stack;
 }
-
 - (void) setStatusView:(UIView*) view 
               animated:(BOOL) animated
               completion:(void (^)()) completion;
@@ -26,5 +26,5 @@
 
 - (void) removeAllStatusViewsAnimated:(BOOL) animated 
                            completion:(void (^)()) completion;
-
 @end
+#endif

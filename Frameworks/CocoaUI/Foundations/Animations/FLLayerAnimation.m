@@ -16,23 +16,13 @@
 @end
 
 @interface FLLayerAnimation ()
-@property (readwrite, strong, nonatomic) CALayer* layer;
 @end
 
 @implementation FLLayerAnimation
 
-@synthesize layer = _layer;
-
 + (id) layerAnimation {
     return FLAutorelease([[[self class] alloc] init]);
 }
-
-#if FL_MRC
-- (void) dealloc {
-    [_layer release];
-    [super dealloc];
-}
-#endif
 
 - (void) prepareLayer:(CALayer*) layer {
 }
@@ -43,27 +33,18 @@
 - (void) finishAnimation:(CALayer*) layer {
 }
 
-- (void) begin {
-    [self prepareLayer:self.layer];
-}
-
-- (void) willFinish {
-    [self finishAnimation:self.layer];
-}
-
-- (void) commit {
-    [self commitAnimation:self.layer];
-}
-
 - (void) startAnimating:(id) target
-             completion:(FLAnimationCompletionBlock) completion {
+             completion:(FLBlock) completion {
     
     FLAssertWithComment([NSThread isMainThread], @"not on main thread");
 
-    self.layer = [target layer];
-    FLAssertNotNilWithComment(_layer, @"layer is nil");
+    CALayer* layer = [target layer];
+    FLAssertNotNilWithComment(layer, @"layer is nil");
     
-    [self startAnimating:FLCopyWithAutorelease(completion)];
+    [self startAnimating:^{ [self prepareLayer:layer]; }
+                  commit:^{ [self commitAnimation:layer]; }
+                  finish:^{ [self finishAnimation:layer]; }
+              completion:completion];
 }
 
 @end
@@ -86,21 +67,24 @@
 }
 #endif
 
-- (void) begin {
+- (void) prepareLayer:(CALayer*) layer {
     for(FLLayerAnimation* animation in _animations) {
-        [animation begin];
+        animation.direction = self.direction;
+        [animation prepareLayer:layer];
     }
 }
 
-- (void) willFinish {
+- (void) commitAnimation:(CALayer*) layer {
     for(FLLayerAnimation* animation in _animations) {
-        [animation willFinish];
+        animation.direction = self.direction;
+        [animation commitAnimation:layer];
     }
 }
 
-- (void) commit {
+- (void) finishAnimation:(CALayer*) layer {
     for(FLLayerAnimation* animation in _animations) {
-        [animation commit];
+        animation.direction = self.direction;
+        [animation finishAnimation:layer];
     }
 }
 

@@ -8,12 +8,17 @@
 
 #import "FLLayerAnimation.h"
 
-@interface FLComeForwardAnimation : FLLayerAnimation {
+#define FLDropBackAnimationDefaultScale 0.95f
+
+@interface FLDistanceAnimation : FLLayerAnimation {
 @private
-   CGFloat _scale;
+    CGFloat _scale;
+    
+    CATransform3D _start;
+    CATransform3D _finish;
+    CGRect _startFrame;
 }
 
 @property (readwrite, assign, nonatomic) CGFloat scale;
 
-+ (id) comeForwardAnimation;
 @end

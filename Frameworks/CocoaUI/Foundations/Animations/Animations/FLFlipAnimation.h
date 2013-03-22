@@ -8,18 +8,16 @@
 
 #import "FLLayerAnimation.h"
 
-typedef enum {
-    FLFlipAnimationDirectionUp,
-    FLFlipAnimationDirectionDown,
-    FLFlipAnimationDirectionLeft,
-    FLFlipAnimationDirectionRight
-} FLFlipAnimationDirection;
 
 #define FLFlipAnimationDefaultPerspectiveDistance 1500.0f
 
-@interface FLFlipAnimation : FLLayerAnimation
-
-@property (readwrite, assign, nonatomic) FLFlipAnimationDirection flipDirection;
+@interface FLFlipAnimation : FLLayerAnimation {
+@private
+    BOOL _showBothSidesDuringFlip;
+    CGFloat _perspectiveDistance;
+    CGPoint _position;
+    CGPoint _anchorPoint;
+}
 
 // defaults to yes
 @property (readwrite, assign, nonatomic) BOOL showBothSidesDuringFlip; 
@@ -27,22 +25,9 @@ typedef enum {
 // defaults to FLFlipAnimationDefaultPerspectiveDistance
 @property (readwrite, assign, nonatomic) CGFloat perspectiveDistance;  
 
-- (id) initWithFlipDirection:(FLFlipAnimationDirection) direction;
-+ (id) flipAnimation:(FLFlipAnimationDirection) direction;
+- (id) initWithFlipDirection:(FLAnimationDirection) direction;
++ (id) flipAnimation:(FLAnimationDirection) direction;
 
 @end
 
 
-NS_INLINE
-FLFlipAnimationDirection FLFlipAnimationDirectionOpposite(FLFlipAnimationDirection direction) {
-    switch(direction) {
-        case FLFlipAnimationDirectionUp: 
-            return FLFlipAnimationDirectionDown;
-        case FLFlipAnimationDirectionDown: 
-            return FLFlipAnimationDirectionUp;
-        case FLFlipAnimationDirectionLeft: 
-            return FLFlipAnimationDirectionRight;
-        case FLFlipAnimationDirectionRight: 
-            return FLFlipAnimationDirectionLeft;
-    }
-}

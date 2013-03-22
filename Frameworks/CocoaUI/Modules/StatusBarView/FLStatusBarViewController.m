@@ -13,6 +13,8 @@
 #import "FLPopInAnimation.h"
 #import "FLFadeAnimation.h"
 
+#if REFACTOR
+
 @implementation FLStatusBarViewController
 
 - (id) init {
@@ -148,8 +150,7 @@
     }
 }
 
-
-//- (void) flipToNextNotificationViewWithDirection:(FLFlipAnimationDirection) direction 
+//- (void) flipToNextNotificationViewWithDirection:(FLAnimationDirection) direction 
 //                                        nextView:(UIView*) nextView
 //                                      completion:(void (^)()) completion {
 //
@@ -202,3 +203,4 @@
 
 
 @end
+#endif

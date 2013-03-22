@@ -24,8 +24,7 @@
     if(self) {
         self.duration = 0.5;
         
-        _showAnimations = [[NSMutableArray alloc] init];
-        _hideAnimations = [[NSMutableArray alloc] init];
+        _animations = [[NSMutableArray alloc] init];
     }
 
     return self;
@@ -33,8 +32,7 @@
 
 #if FL_MRC
 - (void) dealloc {
-    [_showAnimations release];
-    [_hideAnimations release];
+    [_animations release];
     [_viewToShow release];
     [_viewToHide release];
     [super dealloc];
@@ -64,10 +62,12 @@
                               relativeTo:viewToHide];
     }
     
-    for(FLLayerAnimation* animation in _showAnimations) {
+    for(FLLayerAnimation* animation in _animations) {
+        animation.direction = self.direction;
         [animation prepareLayer:hideLayer];
     }
-    for(FLLayerAnimation* animation in _hideAnimations) {
+    for(FLLayerAnimation* animation in _animations) {
+        animation.direction = !self.direction;
         [animation prepareLayer:showLayer];
     }
 }
@@ -76,10 +76,12 @@
     CALayer* showLayer = [_viewToShow layer];
     CALayer* hideLayer = [_viewToShow layer];
 
-    for(FLLayerAnimation* animation in _showAnimations) {
+    for(FLLayerAnimation* animation in _animations) {
+        animation.direction = self.direction;
         [animation commitAnimation:hideLayer];
     }
-    for(FLLayerAnimation* animation in _hideAnimations) {
+    for(FLLayerAnimation* animation in _animations) {
+        animation.direction = !self.direction;
         [animation commitAnimation:showLayer];
     }
 }
@@ -88,30 +90,38 @@
     CALayer* showLayer = [_viewToShow layer];
     CALayer* hideLayer = [_viewToShow layer];
 
-    for(FLLayerAnimation* animation in _showAnimations) {
+    for(FLLayerAnimation* animation in _animations) {
+        animation.direction = self.direction;
         [animation finishAnimation:hideLayer];
     }
-    for(FLLayerAnimation* animation in _hideAnimations) {
+    for(FLLayerAnimation* animation in _animations) {
+        animation.direction = !self.direction;
         [animation finishAnimation:showLayer];
     }
 }
 
-- (void) addShowAnimation:(FLLayerAnimation*) animation {
-    [_showAnimations addObject:animation];
-}
-
-- (void) addHideAnimation:(FLLayerAnimation*) animation {
-    [_hideAnimations addObject:animation];
+- (void) addAnimation:(FLLayerAnimation*) animation {
+    [_animations addObject:animation];
 }
 
 - (void) startTransitionWithViewToShow:(SDKView*) viewToShow 
                             viewToHide:(SDKView*) viewToHide
-                            completion:(FLAnimationCompletionBlock) completion {
+                            completion:(FLBlock) completion {
                             
     self.viewToShow = viewToShow;
     self.viewToHide = viewToHide;
     
-    [self startAnimating:completion];
+    [self startAnimating:^{ [self prepare]; }
+                  commit:^{ [self commit]; }
+                  finish:^{ [self finish]; }
+              completion:completion];
 }                            
+
+
+
+
+
+
+
 
 @end
