@@ -9,20 +9,18 @@
 #import "FLCocoaUIRequired.h"
 #import "FLLayerAnimation.h"
 
-@interface FLMoveAnimation : FLLayerAnimation
+@interface FLMoveAnimation : FLLayerAnimation {
+@private
+    CGPoint _startPoint;
+    CGPoint _finishPoint;
+    BOOL _setStartPoint;
+    BOOL _setFinishPoint;
+}
+
 @property (readwrite, assign, nonatomic) CGPoint startPoint;
 @property (readwrite, assign, nonatomic) CGPoint finishPoint;
 + (id) moveAnimation:(CGPoint) destination;
 @end
 
-@interface FLSlideInAnimation : FLMoveAnimation {
-@private
-    FLAnimationDirection _slideDirection;
-}
-+ (id) slideInAnimation:(FLAnimationDirection) slideInDirection;
-@end
 
-@interface FLSlideOutAnimation : FLMoveAnimation
-+ (id) slideOutAnimation;
-@end
 

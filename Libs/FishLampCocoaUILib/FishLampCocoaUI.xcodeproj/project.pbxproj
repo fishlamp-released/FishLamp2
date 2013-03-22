@@ -792,6 +792,15 @@
 		78329DF6167E97C20024E8DC /* FLWizardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329BF8167E97C20024E8DC /* FLWizardViewController.m */; };
 		78329DF7167E97C20024E8DC /* FLWizardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329BF8167E97C20024E8DC /* FLWizardViewController.m */; };
 		78329DF8167E97C20024E8DC /* FLWizardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329BF8167E97C20024E8DC /* FLWizardViewController.m */; };
+		786A2F9016FCCE86005EE378 /* FLSlideInAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 786A2F8E16FCCE86005EE378 /* FLSlideInAnimation.h */; };
+		786A2F9116FCCE86005EE378 /* FLSlideInAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 786A2F8E16FCCE86005EE378 /* FLSlideInAnimation.h */; };
+		786A2F9216FCCE86005EE378 /* FLSlideInAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 786A2F8E16FCCE86005EE378 /* FLSlideInAnimation.h */; };
+		786A2F9316FCCE86005EE378 /* FLSlideInAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 786A2F8E16FCCE86005EE378 /* FLSlideInAnimation.h */; };
+		786A2F9416FCCE86005EE378 /* FLSlideInAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 786A2F8F16FCCE86005EE378 /* FLSlideInAnimation.m */; };
+		786A2F9516FCCE86005EE378 /* FLSlideInAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 786A2F8F16FCCE86005EE378 /* FLSlideInAnimation.m */; };
+		786A2F9616FCCE86005EE378 /* FLSlideInAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 786A2F8F16FCCE86005EE378 /* FLSlideInAnimation.m */; };
+		786A2F9716FCCE86005EE378 /* FLSlideInAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 786A2F8F16FCCE86005EE378 /* FLSlideInAnimation.m */; };
+		786A2F9816FCCE86005EE378 /* FLSlideInAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 786A2F8F16FCCE86005EE378 /* FLSlideInAnimation.m */; };
 		789EF0CB167EBD410019D6B2 /* FLView.h in Headers */ = {isa = PBXBuildFile; fileRef = 789EF0C9167EBD410019D6B2 /* FLView.h */; };
 		789EF0CC167EBD410019D6B2 /* FLView.h in Headers */ = {isa = PBXBuildFile; fileRef = 789EF0C9167EBD410019D6B2 /* FLView.h */; };
 		789EF0CD167EBD410019D6B2 /* FLView.h in Headers */ = {isa = PBXBuildFile; fileRef = 789EF0C9167EBD410019D6B2 /* FLView.h */; };
@@ -1081,6 +1090,8 @@
 		78329BF6167E97C20024E8DC /* FLPanelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLPanelViewController.m; sourceTree = "<group>"; };
 		78329BF7167E97C20024E8DC /* FLWizardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLWizardViewController.h; sourceTree = "<group>"; };
 		78329BF8167E97C20024E8DC /* FLWizardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLWizardViewController.m; sourceTree = "<group>"; };
+		786A2F8E16FCCE86005EE378 /* FLSlideInAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLSlideInAnimation.h; sourceTree = "<group>"; };
+		786A2F8F16FCCE86005EE378 /* FLSlideInAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLSlideInAnimation.m; sourceTree = "<group>"; };
 		789EF0C9167EBD410019D6B2 /* FLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLView.h; sourceTree = "<group>"; };
 		789EF0CA167EBD410019D6B2 /* FLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1164,6 +1175,8 @@
 				2731CCBB1697346800465E6C /* FLPopInAnimation.m */,
 				276F1CD916ED1396007937E9 /* FLRotateAnimation.h */,
 				276F1CDA16ED1396007937E9 /* FLRotateAnimation.m */,
+				786A2F8E16FCCE86005EE378 /* FLSlideInAnimation.h */,
+				786A2F8F16FCCE86005EE378 /* FLSlideInAnimation.m */,
 			);
 			path = Animations;
 			sourceTree = "<group>";
@@ -1685,6 +1698,7 @@
 				271303C416F8C5F300DA94F7 /* FLThemeManager.h in Headers */,
 				271303DA16F8DB6F00DA94F7 /* FLThemeChangedListener.h in Headers */,
 				27F46F5916FBEFBC006271B4 /* FLAnimation.h in Headers */,
+				786A2F9016FCCE86005EE378 /* FLSlideInAnimation.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1783,6 +1797,7 @@
 				271303C616F8C5F300DA94F7 /* FLThemeManager.h in Headers */,
 				271303DC16F8DB6F00DA94F7 /* FLThemeChangedListener.h in Headers */,
 				27F46F5B16FBEFBC006271B4 /* FLAnimation.h in Headers */,
+				786A2F9216FCCE86005EE378 /* FLSlideInAnimation.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1881,6 +1896,7 @@
 				271303C516F8C5F300DA94F7 /* FLThemeManager.h in Headers */,
 				271303DB16F8DB6F00DA94F7 /* FLThemeChangedListener.h in Headers */,
 				27F46F5A16FBEFBC006271B4 /* FLAnimation.h in Headers */,
+				786A2F9116FCCE86005EE378 /* FLSlideInAnimation.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1979,6 +1995,7 @@
 				271303C716F8C5F300DA94F7 /* FLThemeManager.h in Headers */,
 				271303DD16F8DB6F00DA94F7 /* FLThemeChangedListener.h in Headers */,
 				27F46F5C16FBEFBC006271B4 /* FLAnimation.h in Headers */,
+				786A2F9316FCCE86005EE378 /* FLSlideInAnimation.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2241,6 +2258,7 @@
 				271303C916F8C5F300DA94F7 /* FLThemeManager.m in Sources */,
 				271303DF16F8DB6F00DA94F7 /* FLThemeChangedListener.m in Sources */,
 				27F46F5E16FBEFBC006271B4 /* FLAnimation.m in Sources */,
+				786A2F9516FCCE86005EE378 /* FLSlideInAnimation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2334,6 +2352,7 @@
 				271303CB16F8C5F300DA94F7 /* FLThemeManager.m in Sources */,
 				271303E116F8DB6F00DA94F7 /* FLThemeChangedListener.m in Sources */,
 				27F46F6016FBEFBC006271B4 /* FLAnimation.m in Sources */,
+				786A2F9716FCCE86005EE378 /* FLSlideInAnimation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2427,6 +2446,7 @@
 				271303C816F8C5F300DA94F7 /* FLThemeManager.m in Sources */,
 				271303DE16F8DB6F00DA94F7 /* FLThemeChangedListener.m in Sources */,
 				27F46F5D16FBEFBC006271B4 /* FLAnimation.m in Sources */,
+				786A2F9416FCCE86005EE378 /* FLSlideInAnimation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2520,6 +2540,7 @@
 				271303CA16F8C5F300DA94F7 /* FLThemeManager.m in Sources */,
 				271303E016F8DB6F00DA94F7 /* FLThemeChangedListener.m in Sources */,
 				27F46F5F16FBEFBC006271B4 /* FLAnimation.m in Sources */,
+				786A2F9616FCCE86005EE378 /* FLSlideInAnimation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2613,6 +2634,7 @@
 				271303CC16F8C5F300DA94F7 /* FLThemeManager.m in Sources */,
 				271303E216F8DB6F00DA94F7 /* FLThemeChangedListener.m in Sources */,
 				27F46F6116FBEFBC006271B4 /* FLAnimation.m in Sources */,
+				786A2F9816FCCE86005EE378 /* FLSlideInAnimation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

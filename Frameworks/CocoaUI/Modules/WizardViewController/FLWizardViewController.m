@@ -16,7 +16,6 @@
 #import "FLPanelViewController.h"
 #import "FLStatusBarViewController.h"
 
-#import "FLSlideInAndDropTransition.h"
 #import "FLWizardStyleViewTransition.h"
 
 @interface FLWizardViewController ()

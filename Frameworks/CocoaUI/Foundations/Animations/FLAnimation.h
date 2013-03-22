@@ -16,7 +16,7 @@ typedef enum {
 } FLAnimationDirection;
 
 NS_INLINE
-FLAnimationDirection FLAnimationDirectionOpposite(FLAnimationDirection direction) {
+FLAnimationDirection FLAnimationDirectionGetOppositeDirection(FLAnimationDirection direction) {
     switch(direction) {
         case FLAnimationDirectionUp: 
             return FLAnimationDirectionDown;
@@ -51,9 +51,13 @@ typedef enum {
     FLAnimationTiming _animationTiming;
     FLAnimationDirection _animationDirection;
     FLAnimationAxis _animationAxis;
+    BOOL _reverse;
 }
 @property (readwrite, assign, nonatomic) CGFloat duration;
 @property (readwrite, assign, nonatomic) BOOL removeTransforms;
+@property (readwrite, assign, nonatomic, getter=isReversed) BOOL reverse;
+
+@property (readonly, assign, nonatomic) FLAnimationDirection directionWithPossibleReversing;
 
 @property (readwrite, assign, nonatomic) FLAnimationTiming timing;
 @property (readwrite, assign, nonatomic) FLAnimationDirection direction;
