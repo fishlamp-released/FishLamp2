@@ -7,11 +7,11 @@
 //
 
 #import "FLCocoaUIRequired.h"
-#import "FLAnimation.h"
+#import "FLLayerAnimation.h"
 
 #define FLDropBackAnimationDefaultScale 0.95f
 
-@interface FLDropBackAnimation : FLAnimation 
+@interface FLDropBackAnimation : FLLayerAnimation 
 
 + (id) dropBackAnimation;
 

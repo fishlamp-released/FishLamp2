@@ -9,8 +9,8 @@
 #import "FLPopInAnimation.h"
 
 // Foundations/Animations
-#import "FLAnimation.h"
-#import "FLTransition.h"
+#import "FLLayerAnimation.h"
+#import "FLViewTransition.h"
 
 // Foundations/Animations/Transitions
 #import "FLFlipTransition.h"

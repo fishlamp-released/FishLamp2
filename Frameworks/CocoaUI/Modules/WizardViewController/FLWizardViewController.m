@@ -8,7 +8,7 @@
 #if OSX
 
 #import "FLWizardViewController.h"
-#import "FLAnimation.h"
+#import "FLLayerAnimation.h"
 #import "FLFadeAnimation.h"
 #import "FLMoveAnimation.h"
 #import "FLDropBackAnimation.h"

@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
 
-#import "FLAnimation.h"
+#import "FLLayerAnimation.h"
 
-@interface FLPopInAnimation : FLAnimation
+@interface FLPopInAnimation : FLLayerAnimation
 
 + (id) popInAnimation;
 

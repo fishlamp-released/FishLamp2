@@ -6,10 +6,10 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import "FLAnimation.h"
+#import "FLLayerAnimation.h"
 
 
-@interface FLFadeAnimation : FLAnimation
+@interface FLFadeAnimation : FLLayerAnimation
 
 + (id) fadeAnimation;
                

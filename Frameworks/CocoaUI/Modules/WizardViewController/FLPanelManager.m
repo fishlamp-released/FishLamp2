@@ -234,7 +234,7 @@
     _started = YES;
 
     CGFloat animationDuration = 0.0f;
-    FLTransition* transition = nil;
+    FLViewTransition* transition = nil;
     if(animated) {
         Class transitionClass = (idx < _currentPanel) ? _showTransition : _hideTransition;
         if(transitionClass) {

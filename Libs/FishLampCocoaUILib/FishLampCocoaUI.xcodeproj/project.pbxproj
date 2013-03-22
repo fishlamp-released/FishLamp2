@@ -124,15 +124,15 @@
 		271E3E31169373DB00FB62C9 /* FLMoveAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 271E3E18169373DB00FB62C9 /* FLMoveAnimation.m */; };
 		271E3E32169373DB00FB62C9 /* FLMoveAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 271E3E18169373DB00FB62C9 /* FLMoveAnimation.m */; };
 		271E3E33169373DB00FB62C9 /* FLMoveAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 271E3E18169373DB00FB62C9 /* FLMoveAnimation.m */; };
-		271E3E361693743200FB62C9 /* FLTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 271E3E341693743000FB62C9 /* FLTransition.h */; };
-		271E3E371693743200FB62C9 /* FLTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 271E3E341693743000FB62C9 /* FLTransition.h */; };
-		271E3E381693743200FB62C9 /* FLTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 271E3E341693743000FB62C9 /* FLTransition.h */; };
-		271E3E391693743200FB62C9 /* FLTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 271E3E341693743000FB62C9 /* FLTransition.h */; };
-		271E3E3A1693743200FB62C9 /* FLTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 271E3E351693743200FB62C9 /* FLTransition.m */; };
-		271E3E3B1693743200FB62C9 /* FLTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 271E3E351693743200FB62C9 /* FLTransition.m */; };
-		271E3E3C1693743200FB62C9 /* FLTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 271E3E351693743200FB62C9 /* FLTransition.m */; };
-		271E3E3D1693743200FB62C9 /* FLTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 271E3E351693743200FB62C9 /* FLTransition.m */; };
-		271E3E3E1693743200FB62C9 /* FLTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 271E3E351693743200FB62C9 /* FLTransition.m */; };
+		271E3E361693743200FB62C9 /* FLViewTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 271E3E341693743000FB62C9 /* FLViewTransition.h */; };
+		271E3E371693743200FB62C9 /* FLViewTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 271E3E341693743000FB62C9 /* FLViewTransition.h */; };
+		271E3E381693743200FB62C9 /* FLViewTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 271E3E341693743000FB62C9 /* FLViewTransition.h */; };
+		271E3E391693743200FB62C9 /* FLViewTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 271E3E341693743000FB62C9 /* FLViewTransition.h */; };
+		271E3E3A1693743200FB62C9 /* FLViewTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 271E3E351693743200FB62C9 /* FLViewTransition.m */; };
+		271E3E3B1693743200FB62C9 /* FLViewTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 271E3E351693743200FB62C9 /* FLViewTransition.m */; };
+		271E3E3C1693743200FB62C9 /* FLViewTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 271E3E351693743200FB62C9 /* FLViewTransition.m */; };
+		271E3E3D1693743200FB62C9 /* FLViewTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 271E3E351693743200FB62C9 /* FLViewTransition.m */; };
+		271E3E3E1693743200FB62C9 /* FLViewTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 271E3E351693743200FB62C9 /* FLViewTransition.m */; };
 		271E3E4116937B2600FB62C9 /* FLFlipAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 271E3E3F16937B2400FB62C9 /* FLFlipAnimation.h */; };
 		271E3E4216937B2600FB62C9 /* FLFlipAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 271E3E3F16937B2400FB62C9 /* FLFlipAnimation.h */; };
 		271E3E4316937B2600FB62C9 /* FLFlipAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 271E3E3F16937B2400FB62C9 /* FLFlipAnimation.h */; };
@@ -316,6 +316,15 @@
 		27D1E5C2166D355C00DB680E /* FishLampCocoa-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27D1E5C1166D355C00DB680E /* FishLampCocoa-Prefix.pch */; };
 		27D1E5C3166D355C00DB680E /* FishLampCocoa-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27D1E5C1166D355C00DB680E /* FishLampCocoa-Prefix.pch */; };
 		27D1E5C4166D355C00DB680E /* FishLampCocoa-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27D1E5C1166D355C00DB680E /* FishLampCocoa-Prefix.pch */; };
+		27F46F5916FBEFBC006271B4 /* FLAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 27F46F5716FBEFBB006271B4 /* FLAnimation.h */; };
+		27F46F5A16FBEFBC006271B4 /* FLAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 27F46F5716FBEFBB006271B4 /* FLAnimation.h */; };
+		27F46F5B16FBEFBC006271B4 /* FLAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 27F46F5716FBEFBB006271B4 /* FLAnimation.h */; };
+		27F46F5C16FBEFBC006271B4 /* FLAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 27F46F5716FBEFBB006271B4 /* FLAnimation.h */; };
+		27F46F5D16FBEFBC006271B4 /* FLAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F46F5816FBEFBB006271B4 /* FLAnimation.m */; };
+		27F46F5E16FBEFBC006271B4 /* FLAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F46F5816FBEFBB006271B4 /* FLAnimation.m */; };
+		27F46F5F16FBEFBC006271B4 /* FLAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F46F5816FBEFBB006271B4 /* FLAnimation.m */; };
+		27F46F6016FBEFBC006271B4 /* FLAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F46F5816FBEFBB006271B4 /* FLAnimation.m */; };
+		27F46F6116FBEFBC006271B4 /* FLAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F46F5816FBEFBB006271B4 /* FLAnimation.m */; };
 		27FB507516EBEC48004FC64F /* FLBarHighlightBackgoundLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 27FB507316EBEC47004FC64F /* FLBarHighlightBackgoundLayer.h */; };
 		27FB507616EBEC48004FC64F /* FLBarHighlightBackgoundLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 27FB507316EBEC47004FC64F /* FLBarHighlightBackgoundLayer.h */; };
 		27FB507716EBEC48004FC64F /* FLBarHighlightBackgoundLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 27FB507316EBEC47004FC64F /* FLBarHighlightBackgoundLayer.h */; };
@@ -365,15 +374,15 @@
 		78329C03167E97C20024E8DC /* FLCocoaUIRequired.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329B72167E97C10024E8DC /* FLCocoaUIRequired.h */; };
 		78329C04167E97C20024E8DC /* FLCocoaUIRequired.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329B72167E97C10024E8DC /* FLCocoaUIRequired.h */; };
 		78329C05167E97C20024E8DC /* FLCocoaUIRequired.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329B72167E97C10024E8DC /* FLCocoaUIRequired.h */; };
-		78329C06167E97C20024E8DC /* FLAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329B75167E97C10024E8DC /* FLAnimation.h */; };
-		78329C07167E97C20024E8DC /* FLAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329B75167E97C10024E8DC /* FLAnimation.h */; };
-		78329C08167E97C20024E8DC /* FLAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329B75167E97C10024E8DC /* FLAnimation.h */; };
-		78329C09167E97C20024E8DC /* FLAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329B75167E97C10024E8DC /* FLAnimation.h */; };
-		78329C0A167E97C20024E8DC /* FLAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329B76167E97C10024E8DC /* FLAnimation.m */; };
-		78329C0B167E97C20024E8DC /* FLAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329B76167E97C10024E8DC /* FLAnimation.m */; };
-		78329C0C167E97C20024E8DC /* FLAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329B76167E97C10024E8DC /* FLAnimation.m */; };
-		78329C0D167E97C20024E8DC /* FLAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329B76167E97C10024E8DC /* FLAnimation.m */; };
-		78329C0E167E97C20024E8DC /* FLAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329B76167E97C10024E8DC /* FLAnimation.m */; };
+		78329C06167E97C20024E8DC /* FLLayerAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329B75167E97C10024E8DC /* FLLayerAnimation.h */; };
+		78329C07167E97C20024E8DC /* FLLayerAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329B75167E97C10024E8DC /* FLLayerAnimation.h */; };
+		78329C08167E97C20024E8DC /* FLLayerAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329B75167E97C10024E8DC /* FLLayerAnimation.h */; };
+		78329C09167E97C20024E8DC /* FLLayerAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329B75167E97C10024E8DC /* FLLayerAnimation.h */; };
+		78329C0A167E97C20024E8DC /* FLLayerAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329B76167E97C10024E8DC /* FLLayerAnimation.m */; };
+		78329C0B167E97C20024E8DC /* FLLayerAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329B76167E97C10024E8DC /* FLLayerAnimation.m */; };
+		78329C0C167E97C20024E8DC /* FLLayerAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329B76167E97C10024E8DC /* FLLayerAnimation.m */; };
+		78329C0D167E97C20024E8DC /* FLLayerAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329B76167E97C10024E8DC /* FLLayerAnimation.m */; };
+		78329C0E167E97C20024E8DC /* FLLayerAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329B76167E97C10024E8DC /* FLLayerAnimation.m */; };
 		78329C2A167E97C20024E8DC /* FLArrangeable.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329B7E167E97C10024E8DC /* FLArrangeable.h */; };
 		78329C2B167E97C20024E8DC /* FLArrangeable.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329B7E167E97C10024E8DC /* FLArrangeable.h */; };
 		78329C2C167E97C20024E8DC /* FLArrangeable.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329B7E167E97C10024E8DC /* FLArrangeable.h */; };
@@ -917,8 +926,8 @@
 		271E3E16169373DB00FB62C9 /* FLFadeAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLFadeAnimation.m; sourceTree = "<group>"; };
 		271E3E17169373DB00FB62C9 /* FLMoveAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLMoveAnimation.h; sourceTree = "<group>"; };
 		271E3E18169373DB00FB62C9 /* FLMoveAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLMoveAnimation.m; sourceTree = "<group>"; };
-		271E3E341693743000FB62C9 /* FLTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLTransition.h; sourceTree = "<group>"; };
-		271E3E351693743200FB62C9 /* FLTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLTransition.m; sourceTree = "<group>"; };
+		271E3E341693743000FB62C9 /* FLViewTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLViewTransition.h; sourceTree = "<group>"; };
+		271E3E351693743200FB62C9 /* FLViewTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLViewTransition.m; sourceTree = "<group>"; };
 		271E3E3F16937B2400FB62C9 /* FLFlipAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLFlipAnimation.h; sourceTree = "<group>"; };
 		271E3E4016937B2500FB62C9 /* FLFlipAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLFlipAnimation.m; sourceTree = "<group>"; };
 		271E3E7C1693AE2900FB62C9 /* FLSlideInAndDropTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLSlideInAndDropTransition.h; sourceTree = "<group>"; };
@@ -965,6 +974,8 @@
 		27A43AC415CDCCCB001CB13E /* libFishLampCocoaUI-OSX-64-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoaUI-OSX-64-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27CBC1F416768BA600753D0A /* libFishLampCocoaUI-OSX-32-64-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoaUI-OSX-32-64-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27D1E5C1166D355C00DB680E /* FishLampCocoa-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FishLampCocoa-Prefix.pch"; sourceTree = "<group>"; };
+		27F46F5716FBEFBB006271B4 /* FLAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAnimation.h; sourceTree = "<group>"; };
+		27F46F5816FBEFBB006271B4 /* FLAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAnimation.m; sourceTree = "<group>"; };
 		27FB507316EBEC47004FC64F /* FLBarHighlightBackgoundLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLBarHighlightBackgoundLayer.h; sourceTree = "<group>"; };
 		27FB507416EBEC47004FC64F /* FLBarHighlightBackgoundLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLBarHighlightBackgoundLayer.m; sourceTree = "<group>"; };
 		27FD17B616A5E7EC006A9F1D /* FLBreadcrumbBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLBreadcrumbBarViewController.h; sourceTree = "<group>"; };
@@ -985,8 +996,8 @@
 		78329B67167E41260024E8DC /* FishLampTargetSettings-OSX-64-MRC.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "FishLampTargetSettings-OSX-64-MRC.xcconfig"; sourceTree = "<group>"; };
 		78329B68167E426A0024E8DC /* FishLampPaths.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = FishLampPaths.xcconfig; path = FishLampBuildSupport/FishLampPaths.xcconfig; sourceTree = "<group>"; };
 		78329B72167E97C10024E8DC /* FLCocoaUIRequired.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FLCocoaUIRequired.h; path = ../FLCocoaUIRequired.h; sourceTree = "<group>"; };
-		78329B75167E97C10024E8DC /* FLAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAnimation.h; sourceTree = "<group>"; };
-		78329B76167E97C10024E8DC /* FLAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAnimation.m; sourceTree = "<group>"; };
+		78329B75167E97C10024E8DC /* FLLayerAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLLayerAnimation.h; sourceTree = "<group>"; };
+		78329B76167E97C10024E8DC /* FLLayerAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLLayerAnimation.m; sourceTree = "<group>"; };
 		78329B7E167E97C10024E8DC /* FLArrangeable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLArrangeable.h; sourceTree = "<group>"; };
 		78329B7F167E97C10024E8DC /* FLArrangeable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLArrangeable.m; sourceTree = "<group>"; };
 		78329B80167E97C10024E8DC /* FLArrangeableContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLArrangeableContainer.h; sourceTree = "<group>"; };
@@ -1284,11 +1295,13 @@
 		78329B74167E97C10024E8DC /* Animations */ = {
 			isa = PBXGroup;
 			children = (
+				27F46F5716FBEFBB006271B4 /* FLAnimation.h */,
+				27F46F5816FBEFBB006271B4 /* FLAnimation.m */,
 				271E3E12169373DA00FB62C9 /* Animations */,
-				78329B75167E97C10024E8DC /* FLAnimation.h */,
-				78329B76167E97C10024E8DC /* FLAnimation.m */,
-				271E3E341693743000FB62C9 /* FLTransition.h */,
-				271E3E351693743200FB62C9 /* FLTransition.m */,
+				78329B75167E97C10024E8DC /* FLLayerAnimation.h */,
+				78329B76167E97C10024E8DC /* FLLayerAnimation.m */,
+				271E3E341693743000FB62C9 /* FLViewTransition.h */,
+				271E3E351693743200FB62C9 /* FLViewTransition.m */,
 				271E3DFB169373B800FB62C9 /* Transitions */,
 			);
 			path = Animations;
@@ -1596,7 +1609,7 @@
 			files = (
 				27D1E5C3166D355C00DB680E /* FishLampCocoa-Prefix.pch in Headers */,
 				78329C02167E97C20024E8DC /* FLCocoaUIRequired.h in Headers */,
-				78329C06167E97C20024E8DC /* FLAnimation.h in Headers */,
+				78329C06167E97C20024E8DC /* FLLayerAnimation.h in Headers */,
 				78329C2A167E97C20024E8DC /* FLArrangeable.h in Headers */,
 				78329C33167E97C20024E8DC /* FLArrangeableContainer.h in Headers */,
 				78329C3C167E97C20024E8DC /* FLArrangement.h in Headers */,
@@ -1653,7 +1666,7 @@
 				271E3E19169373DB00FB62C9 /* FLDropBackAnimation.h in Headers */,
 				271E3E22169373DB00FB62C9 /* FLFadeAnimation.h in Headers */,
 				271E3E2B169373DB00FB62C9 /* FLMoveAnimation.h in Headers */,
-				271E3E361693743200FB62C9 /* FLTransition.h in Headers */,
+				271E3E361693743200FB62C9 /* FLViewTransition.h in Headers */,
 				271E3E4116937B2600FB62C9 /* FLFlipAnimation.h in Headers */,
 				271E3E7E1693AE2A00FB62C9 /* FLSlideInAndDropTransition.h in Headers */,
 				2753D45A1693DDB5001B8856 /* FLSlideOutAndComeForwardTransition.h in Headers */,
@@ -1685,6 +1698,7 @@
 				271303B916F8C5D200DA94F7 /* FLTheme.h in Headers */,
 				271303C416F8C5F300DA94F7 /* FLThemeManager.h in Headers */,
 				271303DA16F8DB6F00DA94F7 /* FLThemeChangedListener.h in Headers */,
+				27F46F5916FBEFBC006271B4 /* FLAnimation.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1694,7 +1708,7 @@
 			files = (
 				27D1E5C4166D355C00DB680E /* FishLampCocoa-Prefix.pch in Headers */,
 				78329C04167E97C20024E8DC /* FLCocoaUIRequired.h in Headers */,
-				78329C08167E97C20024E8DC /* FLAnimation.h in Headers */,
+				78329C08167E97C20024E8DC /* FLLayerAnimation.h in Headers */,
 				78329C2C167E97C20024E8DC /* FLArrangeable.h in Headers */,
 				78329C35167E97C20024E8DC /* FLArrangeableContainer.h in Headers */,
 				78329C3E167E97C20024E8DC /* FLArrangement.h in Headers */,
@@ -1751,7 +1765,7 @@
 				271E3E1B169373DB00FB62C9 /* FLDropBackAnimation.h in Headers */,
 				271E3E24169373DB00FB62C9 /* FLFadeAnimation.h in Headers */,
 				271E3E2D169373DB00FB62C9 /* FLMoveAnimation.h in Headers */,
-				271E3E381693743200FB62C9 /* FLTransition.h in Headers */,
+				271E3E381693743200FB62C9 /* FLViewTransition.h in Headers */,
 				271E3E4316937B2600FB62C9 /* FLFlipAnimation.h in Headers */,
 				271E3E801693AE2A00FB62C9 /* FLSlideInAndDropTransition.h in Headers */,
 				2753D45C1693DDB5001B8856 /* FLSlideOutAndComeForwardTransition.h in Headers */,
@@ -1783,6 +1797,7 @@
 				271303BB16F8C5D200DA94F7 /* FLTheme.h in Headers */,
 				271303C616F8C5F300DA94F7 /* FLThemeManager.h in Headers */,
 				271303DC16F8DB6F00DA94F7 /* FLThemeChangedListener.h in Headers */,
+				27F46F5B16FBEFBC006271B4 /* FLAnimation.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1792,7 +1807,7 @@
 			files = (
 				27D1E5C2166D355C00DB680E /* FishLampCocoa-Prefix.pch in Headers */,
 				78329C03167E97C20024E8DC /* FLCocoaUIRequired.h in Headers */,
-				78329C07167E97C20024E8DC /* FLAnimation.h in Headers */,
+				78329C07167E97C20024E8DC /* FLLayerAnimation.h in Headers */,
 				78329C2B167E97C20024E8DC /* FLArrangeable.h in Headers */,
 				78329C34167E97C20024E8DC /* FLArrangeableContainer.h in Headers */,
 				78329C3D167E97C20024E8DC /* FLArrangement.h in Headers */,
@@ -1849,7 +1864,7 @@
 				271E3E1A169373DB00FB62C9 /* FLDropBackAnimation.h in Headers */,
 				271E3E23169373DB00FB62C9 /* FLFadeAnimation.h in Headers */,
 				271E3E2C169373DB00FB62C9 /* FLMoveAnimation.h in Headers */,
-				271E3E371693743200FB62C9 /* FLTransition.h in Headers */,
+				271E3E371693743200FB62C9 /* FLViewTransition.h in Headers */,
 				271E3E4216937B2600FB62C9 /* FLFlipAnimation.h in Headers */,
 				271E3E7F1693AE2A00FB62C9 /* FLSlideInAndDropTransition.h in Headers */,
 				2753D45B1693DDB5001B8856 /* FLSlideOutAndComeForwardTransition.h in Headers */,
@@ -1881,6 +1896,7 @@
 				271303BA16F8C5D200DA94F7 /* FLTheme.h in Headers */,
 				271303C516F8C5F300DA94F7 /* FLThemeManager.h in Headers */,
 				271303DB16F8DB6F00DA94F7 /* FLThemeChangedListener.h in Headers */,
+				27F46F5A16FBEFBC006271B4 /* FLAnimation.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1890,7 +1906,7 @@
 			files = (
 				27CBBFEE16768BA600753D0A /* FishLampCocoa-Prefix.pch in Headers */,
 				78329C05167E97C20024E8DC /* FLCocoaUIRequired.h in Headers */,
-				78329C09167E97C20024E8DC /* FLAnimation.h in Headers */,
+				78329C09167E97C20024E8DC /* FLLayerAnimation.h in Headers */,
 				78329C2D167E97C20024E8DC /* FLArrangeable.h in Headers */,
 				78329C36167E97C20024E8DC /* FLArrangeableContainer.h in Headers */,
 				78329C3F167E97C20024E8DC /* FLArrangement.h in Headers */,
@@ -1947,7 +1963,7 @@
 				271E3E1C169373DB00FB62C9 /* FLDropBackAnimation.h in Headers */,
 				271E3E25169373DB00FB62C9 /* FLFadeAnimation.h in Headers */,
 				271E3E2E169373DB00FB62C9 /* FLMoveAnimation.h in Headers */,
-				271E3E391693743200FB62C9 /* FLTransition.h in Headers */,
+				271E3E391693743200FB62C9 /* FLViewTransition.h in Headers */,
 				271E3E4416937B2600FB62C9 /* FLFlipAnimation.h in Headers */,
 				271E3E811693AE2A00FB62C9 /* FLSlideInAndDropTransition.h in Headers */,
 				2753D45D1693DDB5001B8856 /* FLSlideOutAndComeForwardTransition.h in Headers */,
@@ -1979,6 +1995,7 @@
 				271303BC16F8C5D200DA94F7 /* FLTheme.h in Headers */,
 				271303C716F8C5F300DA94F7 /* FLThemeManager.h in Headers */,
 				271303DD16F8DB6F00DA94F7 /* FLThemeChangedListener.h in Headers */,
+				27F46F5C16FBEFBC006271B4 /* FLAnimation.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2155,7 +2172,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				78329C0B167E97C20024E8DC /* FLAnimation.m in Sources */,
+				78329C0B167E97C20024E8DC /* FLLayerAnimation.m in Sources */,
 				78329C2F167E97C20024E8DC /* FLArrangeable.m in Sources */,
 				78329C38167E97C20024E8DC /* FLArrangeableContainer.m in Sources */,
 				78329C41167E97C20024E8DC /* FLArrangement.m in Sources */,
@@ -2211,7 +2228,7 @@
 				271E3E1E169373DB00FB62C9 /* FLDropBackAnimation.m in Sources */,
 				271E3E27169373DB00FB62C9 /* FLFadeAnimation.m in Sources */,
 				271E3E30169373DB00FB62C9 /* FLMoveAnimation.m in Sources */,
-				271E3E3B1693743200FB62C9 /* FLTransition.m in Sources */,
+				271E3E3B1693743200FB62C9 /* FLViewTransition.m in Sources */,
 				271E3E4616937B2600FB62C9 /* FLFlipAnimation.m in Sources */,
 				271E3E831693AE2A00FB62C9 /* FLSlideInAndDropTransition.m in Sources */,
 				2753D45F1693DDB5001B8856 /* FLSlideOutAndComeForwardTransition.m in Sources */,
@@ -2241,6 +2258,7 @@
 				271303BE16F8C5D200DA94F7 /* FLTheme.m in Sources */,
 				271303C916F8C5F300DA94F7 /* FLThemeManager.m in Sources */,
 				271303DF16F8DB6F00DA94F7 /* FLThemeChangedListener.m in Sources */,
+				27F46F5E16FBEFBC006271B4 /* FLAnimation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2248,7 +2266,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				78329C0D167E97C20024E8DC /* FLAnimation.m in Sources */,
+				78329C0D167E97C20024E8DC /* FLLayerAnimation.m in Sources */,
 				78329C31167E97C20024E8DC /* FLArrangeable.m in Sources */,
 				78329C3A167E97C20024E8DC /* FLArrangeableContainer.m in Sources */,
 				78329C43167E97C20024E8DC /* FLArrangement.m in Sources */,
@@ -2304,7 +2322,7 @@
 				271E3E20169373DB00FB62C9 /* FLDropBackAnimation.m in Sources */,
 				271E3E29169373DB00FB62C9 /* FLFadeAnimation.m in Sources */,
 				271E3E32169373DB00FB62C9 /* FLMoveAnimation.m in Sources */,
-				271E3E3D1693743200FB62C9 /* FLTransition.m in Sources */,
+				271E3E3D1693743200FB62C9 /* FLViewTransition.m in Sources */,
 				271E3E4816937B2600FB62C9 /* FLFlipAnimation.m in Sources */,
 				271E3E851693AE2A00FB62C9 /* FLSlideInAndDropTransition.m in Sources */,
 				2753D4611693DDB5001B8856 /* FLSlideOutAndComeForwardTransition.m in Sources */,
@@ -2334,6 +2352,7 @@
 				271303C016F8C5D200DA94F7 /* FLTheme.m in Sources */,
 				271303CB16F8C5F300DA94F7 /* FLThemeManager.m in Sources */,
 				271303E116F8DB6F00DA94F7 /* FLThemeChangedListener.m in Sources */,
+				27F46F6016FBEFBC006271B4 /* FLAnimation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2341,7 +2360,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				78329C0A167E97C20024E8DC /* FLAnimation.m in Sources */,
+				78329C0A167E97C20024E8DC /* FLLayerAnimation.m in Sources */,
 				78329C2E167E97C20024E8DC /* FLArrangeable.m in Sources */,
 				78329C37167E97C20024E8DC /* FLArrangeableContainer.m in Sources */,
 				78329C40167E97C20024E8DC /* FLArrangement.m in Sources */,
@@ -2397,7 +2416,7 @@
 				271E3E1D169373DB00FB62C9 /* FLDropBackAnimation.m in Sources */,
 				271E3E26169373DB00FB62C9 /* FLFadeAnimation.m in Sources */,
 				271E3E2F169373DB00FB62C9 /* FLMoveAnimation.m in Sources */,
-				271E3E3A1693743200FB62C9 /* FLTransition.m in Sources */,
+				271E3E3A1693743200FB62C9 /* FLViewTransition.m in Sources */,
 				271E3E4516937B2600FB62C9 /* FLFlipAnimation.m in Sources */,
 				271E3E821693AE2A00FB62C9 /* FLSlideInAndDropTransition.m in Sources */,
 				2753D45E1693DDB5001B8856 /* FLSlideOutAndComeForwardTransition.m in Sources */,
@@ -2427,6 +2446,7 @@
 				271303BD16F8C5D200DA94F7 /* FLTheme.m in Sources */,
 				271303C816F8C5F300DA94F7 /* FLThemeManager.m in Sources */,
 				271303DE16F8DB6F00DA94F7 /* FLThemeChangedListener.m in Sources */,
+				27F46F5D16FBEFBC006271B4 /* FLAnimation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2434,7 +2454,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				78329C0C167E97C20024E8DC /* FLAnimation.m in Sources */,
+				78329C0C167E97C20024E8DC /* FLLayerAnimation.m in Sources */,
 				78329C30167E97C20024E8DC /* FLArrangeable.m in Sources */,
 				78329C39167E97C20024E8DC /* FLArrangeableContainer.m in Sources */,
 				78329C42167E97C20024E8DC /* FLArrangement.m in Sources */,
@@ -2490,7 +2510,7 @@
 				271E3E1F169373DB00FB62C9 /* FLDropBackAnimation.m in Sources */,
 				271E3E28169373DB00FB62C9 /* FLFadeAnimation.m in Sources */,
 				271E3E31169373DB00FB62C9 /* FLMoveAnimation.m in Sources */,
-				271E3E3C1693743200FB62C9 /* FLTransition.m in Sources */,
+				271E3E3C1693743200FB62C9 /* FLViewTransition.m in Sources */,
 				271E3E4716937B2600FB62C9 /* FLFlipAnimation.m in Sources */,
 				271E3E841693AE2A00FB62C9 /* FLSlideInAndDropTransition.m in Sources */,
 				2753D4601693DDB5001B8856 /* FLSlideOutAndComeForwardTransition.m in Sources */,
@@ -2520,6 +2540,7 @@
 				271303BF16F8C5D200DA94F7 /* FLTheme.m in Sources */,
 				271303CA16F8C5F300DA94F7 /* FLThemeManager.m in Sources */,
 				271303E016F8DB6F00DA94F7 /* FLThemeChangedListener.m in Sources */,
+				27F46F5F16FBEFBC006271B4 /* FLAnimation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2527,7 +2548,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				78329C0E167E97C20024E8DC /* FLAnimation.m in Sources */,
+				78329C0E167E97C20024E8DC /* FLLayerAnimation.m in Sources */,
 				78329C32167E97C20024E8DC /* FLArrangeable.m in Sources */,
 				78329C3B167E97C20024E8DC /* FLArrangeableContainer.m in Sources */,
 				78329C44167E97C20024E8DC /* FLArrangement.m in Sources */,
@@ -2583,7 +2604,7 @@
 				271E3E21169373DB00FB62C9 /* FLDropBackAnimation.m in Sources */,
 				271E3E2A169373DB00FB62C9 /* FLFadeAnimation.m in Sources */,
 				271E3E33169373DB00FB62C9 /* FLMoveAnimation.m in Sources */,
-				271E3E3E1693743200FB62C9 /* FLTransition.m in Sources */,
+				271E3E3E1693743200FB62C9 /* FLViewTransition.m in Sources */,
 				271E3E4916937B2600FB62C9 /* FLFlipAnimation.m in Sources */,
 				271E3E861693AE2A00FB62C9 /* FLSlideInAndDropTransition.m in Sources */,
 				2753D4621693DDB5001B8856 /* FLSlideOutAndComeForwardTransition.m in Sources */,
@@ -2613,6 +2634,7 @@
 				271303C116F8C5D200DA94F7 /* FLTheme.m in Sources */,
 				271303CC16F8C5F300DA94F7 /* FLThemeManager.m in Sources */,
 				271303E216F8DB6F00DA94F7 /* FLThemeChangedListener.m in Sources */,
+				27F46F6116FBEFBC006271B4 /* FLAnimation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

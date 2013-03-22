@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import "FLFramedView.h"
 #import "FLPanelViewController.h"
-#import "FLTransition.h"
+#import "FLViewTransition.h"
 #import "FLCompatibleViewController.h"
 
 @protocol FLPanelManagerDelegate;

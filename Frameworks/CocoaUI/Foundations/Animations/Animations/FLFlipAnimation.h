@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
 
-#import "FLAnimation.h"
+#import "FLLayerAnimation.h"
 
 typedef enum {
     FLFlipAnimationDirectionUp,
@@ -17,7 +17,7 @@ typedef enum {
 
 #define FLFlipAnimationDefaultPerspectiveDistance 1500.0f
 
-@interface FLFlipAnimation : FLAnimation
+@interface FLFlipAnimation : FLLayerAnimation
 
 @property (readwrite, assign, nonatomic) FLFlipAnimationDirection flipDirection;
 

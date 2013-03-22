@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
 
-#import "FLAnimation.h"
+#import "FLLayerAnimation.h"
 
-@interface FLRotateAnimation : FLAnimation {
+@interface FLRotateAnimation : FLLayerAnimation {
 @private
     CGFloat _fromDegree;
     CGFloat _toDegree;
@@ -29,7 +29,7 @@
 
 // TODO add support for kCAValueFunctionRotateY, kCAValueFunctionRotateZ
 
-@interface FLSomersaultAnimation : FLAnimation {
+@interface FLSomersaultAnimation : FLLayerAnimation {
 @private
 }
 
