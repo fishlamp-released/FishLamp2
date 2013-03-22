@@ -12,12 +12,15 @@
 
 @interface FLDistanceAnimation : FLLayerAnimation {
 @private
-    CGFloat _scale;
+    CGFloat _startScale;
+    CGFloat _finishScale;
     
-    CATransform3D _start;
-    CATransform3D _finish;
-    CGRect _startFrame;
+    CATransform3D _startTransform;
+    CATransform3D _finishTransform;
+    CATransform3D _originalTransform;
 }
+
++ (id) distanceAnimation:(CGFloat) scale finishScale:(CGFloat) finishScale;
 
 @property (readwrite, assign, nonatomic) CGFloat scale;
 

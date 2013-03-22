@@ -44,34 +44,29 @@ typedef enum {
     FLAnimationTimingCustom   
 } FLAnimationTiming;
 
-
 @interface FLAnimation : NSObject {
     CGFloat _duration;
     BOOL _removeTransforms;
     FLAnimationTiming _animationTiming;
     FLAnimationDirection _animationDirection;
     FLAnimationAxis _animationAxis;
-    BOOL _reverse;
 }
-@property (readwrite, assign, nonatomic) CGFloat duration;
-@property (readwrite, assign, nonatomic) BOOL removeTransforms;
-@property (readwrite, assign, nonatomic, getter=isReversed) BOOL reverse;
 
-@property (readonly, assign, nonatomic) FLAnimationDirection directionWithPossibleReversing;
+@property (readwrite, assign, nonatomic) CGFloat duration;
 
 @property (readwrite, assign, nonatomic) FLAnimationTiming timing;
 @property (readwrite, assign, nonatomic) FLAnimationDirection direction;
 @property (readwrite, assign, nonatomic) FLAnimationAxis axis;
 
-- (void) startAnimating:(FLBlock) prepare
-                 commit:(FLBlock) commit
-                 finish:(FLBlock) finish
-             completion:(FLBlock) completion;
+- (void) startAnimationWithPrepareBlock:(FLBlock) prepare
+                          commitBlock:(FLBlock) commit
+                          finishBlock:(FLBlock) finish
+                      completionBlock:(FLBlock) completion;
  
 // subclass utils
 - (CAMediaTimingFunction*) timingFunction;
 
-- (void) prepareAnimation:(CAAnimation*) animation;
+- (void) configureAnimation:(CAAnimation*) animation;
 
 @end
 

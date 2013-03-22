@@ -8,6 +8,15 @@
 
 #import "FLViewTransition.h"
 
-@interface FLWizardStyleViewTransition : FLViewTransition
-
+@interface FLWizardStyleTransition : FLViewTransition
 @end
+
+@interface FLWizardStyleForwardTransition : FLWizardStyleTransition
++ (id) wizardStyleForwardTransition;
+@end
+
+@interface FLWizardStyleBackwardTransition : FLWizardStyleTransition 
++ (id) wizardStyleBackwardTransition;
+@end
+
+

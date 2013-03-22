@@ -10,8 +10,6 @@
 
 @interface FLMoveAnimation ()
 
-// for subclasses
-- (CAAnimation*) CAAnimation;
 @end
 
 @implementation FLMoveAnimation 
@@ -41,21 +39,16 @@
 }
 
 - (CAAnimation*) CAAnimation {
+
     CABasicAnimation *moveFrame = [CABasicAnimation animationWithKeyPath:@"position"];
-    if(self.isReversed) {
-        [moveFrame setFromValue:[NSValue valueWithPoint:_startPoint]];
-        [moveFrame setToValue:[NSValue valueWithPoint:_finishPoint]];
-    }
-    else {
-        [moveFrame setFromValue:[NSValue valueWithPoint:_finishPoint]];
-        [moveFrame setToValue:[NSValue valueWithPoint:_startPoint]];
-    }
+    [moveFrame setFromValue:[NSValue valueWithPoint:_startPoint]];
+    [moveFrame setToValue:[NSValue valueWithPoint:_finishPoint]];
     moveFrame.removedOnCompletion = YES;
-    [self prepareAnimation:moveFrame];
+    [self configureAnimation:moveFrame];
     return moveFrame;
 }
 
-- (void) prepareLayer:(CALayer*) layer {
+- (void) prepareAnimation:(CALayer*) layer {
     if(_setStartPoint) {
         [layer setPosition:_startPoint];
     }
@@ -65,17 +58,14 @@
 }
 
 - (void) commitAnimation:(CALayer*) layer {
-    FLAssert(_setFinishPoint);
+//    FLAssert(_setFinishPoint);
     
     [layer addAnimation:[self CAAnimation] forKey:@"position"];
     [layer setPosition:_finishPoint];
 }
 
 - (void) finishAnimation:(CALayer*) layer {
-
-    if(self.removeTransforms) {
-        [layer setPosition:_startPoint];
-    }
+   [layer setPosition:_finishPoint];
 }
 
 @end

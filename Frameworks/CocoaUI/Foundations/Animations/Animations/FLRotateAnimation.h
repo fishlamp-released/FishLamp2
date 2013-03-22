@@ -8,23 +8,23 @@
 
 #import "FLLayerAnimation.h"
 
-@interface FLRotateAnimation : FLLayerAnimation {
-@private
-    CGFloat _fromDegree;
-    CGFloat _toDegree;
-    CGFloat _deltaAmount;
-}
-
-- (void) startRotating:(id) target 
-       degreesToRotate:(CGFloat) degrees 
-            completion:(FLBlock) completion;
-
-- (void) startRotating:(id) target 
-            fromDegree:(CGFloat) from 
-              toDegree:(CGFloat) toDegree 
-            completion:(FLBlock) completion;
-
-@end
+//@interface FLRotateAnimation : FLLayerAnimation {
+//@private
+//    CGFloat _fromDegree;
+//    CGFloat _toDegree;
+//    CGFloat _deltaAmount;
+//}
+//
+//- (void) startRotating:(id) target 
+//       degreesToRotate:(CGFloat) degrees 
+//            completion:(FLBlock) completion;
+//
+//- (void) startRotating:(id) target 
+//            fromDegree:(CGFloat) from 
+//              toDegree:(CGFloat) toDegree 
+//            completion:(FLBlock) completion;
+//
+//@end
 
 
 // TODO add support for kCAValueFunctionRotateY, kCAValueFunctionRotateZ

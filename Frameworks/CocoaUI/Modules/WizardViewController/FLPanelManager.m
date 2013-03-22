@@ -7,6 +7,7 @@
 //
 
 #import "FLPanelManager.h"
+#import "FLWizardStyleViewTransition.h"
 
 @interface FLPanelManager ()
 @property (readonly, strong, nonatomic) NSArray* panels;
@@ -18,12 +19,14 @@
 @synthesize currentPanelIndex = _currentPanel;
 @synthesize panels = _panels;
 @synthesize delegate = _delegate;
-@synthesize viewTransition = _viewTransition;
+@synthesize forwardTransition = _forwardTransition;
+@synthesize backwardTransition = _backwardTransition;
 
 - (void) dealloc {
     [self.view removeObserver:self forKeyPath:@"frame" context:nil];
 #if FL_MRC
-    [_viewTransition release];
+    [_backwardTransition release];
+    [_forwardTransition release];
     [_panelViews release];
     [_panels release];
     [super dealloc];
@@ -35,6 +38,9 @@
     _panels = [[NSMutableArray alloc] init];
     _currentPanel = 0;
     _started = NO;
+    self.forwardTransition = [FLWizardStyleForwardTransition wizardStyleForwardTransition];
+    self.backwardTransition = [FLWizardStyleBackwardTransition wizardStyleBackwardTransition];
+    
     [self.view setWantsLayer:YES];
     [self.view addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:nil];
 }
@@ -196,9 +202,7 @@
     if(toHide) {
         [toHide.view removeFromSuperview];
         [toHide panelDidDisappear];
-        [self.delegate panelManager:self panelStateDidChange:toHide];
     }
-
 
     [toShow panelDidAppear];
 
@@ -207,7 +211,6 @@
     [self.view.window display];
 
     [self.delegate panelManager:self didShowPanel:toShow didHidePanel:toHide ];
-    [self.delegate panelManager:self panelStateDidChange:toShow];
 }                                          
 
 - (void) showPanelAtIndex:(NSUInteger) idx 
@@ -236,7 +239,12 @@
     CGFloat animationDuration = 0.0f;
     FLViewTransition* transition = nil;
     if(animated) {
-        transition = self.viewTransition;;
+        if(idx > _currentPanel) {
+            transition = self.forwardTransition;
+        }
+        else {
+            transition = self.backwardTransition;
+        }
     }
         
     if(transition) {
@@ -248,27 +256,32 @@
     [self setPanelFrame:toShow];
 
     [self.delegate panelManager:self willShowPanel:toShow willHidePanel:toHide animationDuration:animationDuration];
-    
-    [self.view.window makeFirstResponder:self];
     if(toHide) {
         [toHide panelWillDisappear];
     }
+
+    _currentPanel = idx;
+    self.view.autoresizesSubviews = NO;
+    [self.view addSubview:[toShow view]];
+    self.view.autoresizesSubviews = YES;
     [toShow panelWillAppear];
     
-    _currentPanel = idx;
-    [self.view addSubview:[toShow view]];
+    [self.view.window makeFirstResponder:self];
+
+    [self.delegate panelManager:self panelStateDidChange:toHide];
+    [self.delegate panelManager:self panelStateDidChange:toShow];
         
     if(transition) {
-        transition.direction = (idx < _currentPanel) ? FLAnimationDirectionRight : FLAnimationDirectionLeft;
-
         completion = FLCopyWithAutorelease(completion);
         
-        [transition startTransitionWithViewToShow:toShow.view viewToHide:toHide.view completion:^{
-            [self didShowPanel:toShow didHidePanel:toHide];
-                
-            if(completion) {
-                completion(toShow);
-            }
+        [transition startShowingView:toShow.view 
+                          viewToHide:toHide.view 
+                          completion:^{
+              [self didShowPanel:toShow didHidePanel:toHide];
+              
+              if(completion) {
+                  completion(toShow);
+              }
         }];
     }
     else {

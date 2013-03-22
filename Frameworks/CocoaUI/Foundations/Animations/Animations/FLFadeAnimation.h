@@ -9,7 +9,11 @@
 #import "FLLayerAnimation.h"
 
 
-@interface FLFadeAnimation : FLLayerAnimation
+@interface FLFadeAnimation : FLLayerAnimation {
+@private
+    CGFloat _fromOpacity;
+    CGFloat _toOpactity;
+}
 
 + (id) fadeAnimation;
                
@@ -21,6 +25,14 @@
                            
 @end
 
-@interface FLFadeInAnimation : FLFadeAnimation
+@interface FLFadeInAnimation : FLLayerAnimation {
+@private
+}
 + (id) fadeInAnimation;; 
+@end
+
+@interface FLFadeOutAnimation : FLLayerAnimation {
+@private
+}
++ (id) fadeOutAnimation; 
 @end

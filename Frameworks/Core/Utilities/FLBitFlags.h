@@ -35,10 +35,12 @@ BOOL FLTestAllBits(FLBitFlags_t flags, FLBitMask_t mask) {
 }
 
 #define FLTestBits   FLTestAllBits
-#define FLBitTest    FLTestBits
 
 #define FLTestAnyBit(__FLAGS__, __BITS__) \
             (FLGetBits(__FLAGS__, __BITS__) != 0)
+
+#define FLBitCheck      FLTestAnyBit
+#define FLBitTest       FLTestAnyBit
 
 #define FLClearBits(__FLAGS__, __BITS__) \
             ((void)((__FLAGS__) &= ~(__BITS__)))

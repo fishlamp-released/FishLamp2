@@ -24,7 +24,7 @@
     return FLAutorelease([[[self class] alloc] init]);
 }
 
-- (void) prepareLayer:(CALayer*) layer {
+- (void) prepareAnimation:(CALayer*) layer {
 }
 
 - (void) commitAnimation:(CALayer*) layer {
@@ -41,10 +41,10 @@
     CALayer* layer = [target layer];
     FLAssertNotNilWithComment(layer, @"layer is nil");
     
-    [self startAnimating:^{ [self prepareLayer:layer]; }
-                  commit:^{ [self commitAnimation:layer]; }
-                  finish:^{ [self finishAnimation:layer]; }
-              completion:completion];
+    [self startAnimationWithPrepareBlock:^{ [self prepareAnimation:layer]; }
+                           commitBlock:^{ [self commitAnimation:layer]; }
+                           finishBlock:^{ [self finishAnimation:layer]; }
+                       completionBlock:completion];
 }
 
 @end
@@ -67,23 +67,20 @@
 }
 #endif
 
-- (void) prepareLayer:(CALayer*) layer {
+- (void) prepareAnimation:(CALayer*) layer {
     for(FLLayerAnimation* animation in _animations) {
-        animation.direction = self.direction;
-        [animation prepareLayer:layer];
+        [animation prepareAnimation:layer];
     }
 }
 
 - (void) commitAnimation:(CALayer*) layer {
     for(FLLayerAnimation* animation in _animations) {
-        animation.direction = self.direction;
         [animation commitAnimation:layer];
     }
 }
 
 - (void) finishAnimation:(CALayer*) layer {
     for(FLLayerAnimation* animation in _animations) {
-        animation.direction = self.direction;
         [animation finishAnimation:layer];
     }
 }
