@@ -69,7 +69,7 @@
 - (void) startRotating:(id) target 
             fromDegree:(CGFloat) from 
               toDegree:(CGFloat) toDegree 
-            completion:(FLAnimationCompletionBlock) completion {
+            completion:(FLBlock) completion {
     _fromDegree = from;
     _toDegree = toDegree;
     
@@ -80,7 +80,7 @@
 
 - (void) startRotating:(id) target 
        degreesToRotate:(CGFloat) degrees 
-            completion:(FLAnimationCompletionBlock) completion {
+            completion:(FLBlock) completion {
     
     _deltaAmount = degrees;
     
@@ -127,7 +127,7 @@
 - (void) commitAnimation:(CALayer *)layer {
 
     CAKeyframeAnimation* animation = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
-    [animation setValues:self.direction == FLAnimationDirectionForward ? [self forwardKeyFrames] : [self backwardKeyFrames]];
+    [animation setValues:self.direction == FLAnimationDirectionRight ? [self forwardKeyFrames] : [self backwardKeyFrames]];
     
     NSString* axis = nil;
     switch(self.axis) {

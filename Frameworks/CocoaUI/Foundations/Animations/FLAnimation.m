@@ -10,11 +10,10 @@
 
 @implementation FLAnimation
 @synthesize duration = _duration;
-@synthesize animating = _animating;
 @synthesize direction = _direction;
 @synthesize timing = _timing;
-@synthesize repeat = _repeat;
 @synthesize axis = _axis;
+@synthesize removeTransforms = _removeTransforms;
 
 - (id) init {
     self = [super init];
@@ -24,58 +23,54 @@
     return self;
 }
 
-- (void) prepare {
-}
-
-- (void) commit {
-}
-
-- (void) finish {
-}
-
-- (void) startAnimating:(FLAnimationCompletionBlock) completion {
-
-    _animating = YES;
+- (void) startAnimating:(FLBlock) prepare
+                 commit:(FLBlock) commit
+                 finish:(FLBlock) finish
+             completion:(FLBlock) completion {
 
     completion = FLCopyWithAutorelease(completion);
 
     FLAssertWithComment([NSThread isMainThread], @"not on main thread");
     
-    [CATransaction begin];
-    [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
-
-    [self prepare];
-    
-    [CATransaction setValue:(id)kCFBooleanFalse forKey:kCATransactionDisableActions];
-    [CATransaction commit];
-
-    [CATransaction setCompletionBlock:^{
+    if(prepare) {
         [CATransaction begin];
         [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
 
-        [self finish];
-            
+        prepare();
+        
         [CATransaction setValue:(id)kCFBooleanFalse forKey:kCATransactionDisableActions];
         [CATransaction commit];
-        
-        _animating = NO;
+    }
 
-        if(_repeat) {
-            [self startAnimating:completion];
+    finish = FLCopyWithAutorelease(finish);
+
+    [CATransaction setCompletionBlock:^{
+        if(finish) {
+            [CATransaction begin];
+            [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
+
+            finish();
+                
+            [CATransaction setValue:(id)kCFBooleanFalse forKey:kCATransactionDisableActions];
+            [CATransaction commit];
         }
-        else if(completion) {
+    
+        if(completion) {
             completion();
         }
     }];
     
-    [CATransaction begin];
-    [CATransaction setValue:(id)kCFBooleanFalse forKey:kCATransactionDisableActions];
-    [CATransaction setAnimationDuration:self.duration];
-    [CATransaction setAnimationTimingFunction:self.timingFunction];
     
-    [self commit];
-   
-    [CATransaction commit];
+    if(commit) {
+        [CATransaction begin];
+        [CATransaction setValue:(id)kCFBooleanFalse forKey:kCATransactionDisableActions];
+        [CATransaction setAnimationDuration:self.duration];
+        [CATransaction setAnimationTimingFunction:self.timingFunction];
+        
+        commit();
+        
+        [CATransaction commit];
+    }
 }
 
 - (CAMediaTimingFunction*) timingFunction {

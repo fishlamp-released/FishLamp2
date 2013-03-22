@@ -23,7 +23,7 @@
         
         _animation = [[FLSomersaultAnimation alloc] init];
         _animation.duration = 0.1f;
-        _animation.direction = FLAnimationDirectionForward;
+        _animation.direction = FLAnimationDirectionRight;
         _animation.axis = FLAnimationAxisZ;
         _animation.timing = FLAnimationTimingLinear;
         _animation.duration = 1.0f;

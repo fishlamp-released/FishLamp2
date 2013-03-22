@@ -15,8 +15,11 @@
 + (id) moveAnimation:(CGPoint) destination;
 @end
 
-@interface FLSlideInAnimation : FLMoveAnimation
-+ (id) slideInAnimation;
+@interface FLSlideInAnimation : FLMoveAnimation {
+@private
+    FLAnimationDirection _slideDirection;
+}
++ (id) slideInAnimation:(FLAnimationDirection) slideInDirection;
 @end
 
 @interface FLSlideOutAnimation : FLMoveAnimation

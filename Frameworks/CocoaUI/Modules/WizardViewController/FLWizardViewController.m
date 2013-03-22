@@ -17,7 +17,7 @@
 #import "FLStatusBarViewController.h"
 
 #import "FLSlideInAndDropTransition.h"
-#import "FLSlideOutAndComeForwardTransition.h"
+#import "FLWizardStyleViewTransition.h"
 
 @interface FLWizardViewController ()
 @end

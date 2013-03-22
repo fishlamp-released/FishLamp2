@@ -1,5 +1,5 @@
 //
-//  FLSlideAndDropTransition.h
+//  FLWizardStyleViewTransition.h
 //  FishLampCocoaUI
 //
 //  Created by Mike Fullerton on 1/1/13.
@@ -8,6 +8,6 @@
 
 #import "FLViewTransition.h"
 
-@interface FLSlideInAndDropTransition : FLViewTransition
+@interface FLWizardStyleViewTransition : FLViewTransition
 
 @end

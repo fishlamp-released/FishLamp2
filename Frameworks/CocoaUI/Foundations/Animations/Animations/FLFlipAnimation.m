@@ -8,16 +8,8 @@
 
 #import "FLFlipAnimation.h"
 
-@implementation FLFlipAnimation {
-@private
-    FLFlipAnimationDirection _flipDirection;
-    BOOL _showBothSidesDuringFlip;
-    CGFloat _perspectiveDistance;
-    CGPoint _position;
-    CGPoint _anchorPoint;
-}
+@implementation FLFlipAnimation 
 
-@synthesize flipDirection = _flipDirection;
 @synthesize showBothSidesDuringFlip = _showBothSidesDuringFlip;
 @synthesize perspectiveDistance = _perspectiveDistance;
 
@@ -30,15 +22,15 @@
     return self;
 }
 
-- (id) initWithFlipDirection:(FLFlipAnimationDirection) direction {
+- (id) initWithFlipDirection:(FLAnimationDirection) direction {
     self = [self init];
     if(self) {
-        _flipDirection = direction;
+        self.direction = direction;
     }
     return self;
 }
 
-+ (id) flipAnimation:(FLFlipAnimationDirection) direction {
++ (id) flipAnimation:(FLAnimationDirection) direction {
     return FLAutorelease([[[self class] alloc] initWithFlipDirection:direction]);
 }
 
@@ -91,7 +83,6 @@
     flipAnimation.additive = NO;
     flipAnimation.removedOnCompletion = NO;
     return flipAnimation;
-
 }
 
 

@@ -10,40 +10,26 @@
 #import "FLFlipAnimation.h"
 
 @implementation FLFlipTransition
+
 @synthesize flipDirection = _flipDirection;
 @synthesize perspectiveDistance = _perspectiveDistance;
 
-- (id) initWithViewToShow:(UIView*) viewToShow 
-               viewToHide:(UIView*) viewToHide {
+- (id) init {
                
-    self = [super initWithViewToShow:viewToShow viewToHide:viewToHide];
+    self = [super init];
     if(self) {
         _perspectiveDistance = FLFlipAnimationDefaultPerspectiveDistance;
         self.duration = 5.5;
 
-        FLFlipAnimation* show = [FLFlipAnimation animation];
-        show.flipDirection = _flipDirection;
-        show.showBothSidesDuringFlip = NO;
-        show.perspectiveDistance = _perspectiveDistance;
-        [self addAnimation:show];
-
-        FLFlipAnimation* hide = [FLFlipAnimation animation];
-        hide.flipDirection = FLFlipAnimationDirectionOpposite(_flipDirection);;
-        hide.showBothSidesDuringFlip = NO;
-        hide.perspectiveDistance = _perspectiveDistance;
-        [self addAnimation:hide];
+        FLFlipAnimation* flip = [FLFlipAnimation layerAnimation];
+        flip.showBothSidesDuringFlip = NO;
+        flip.perspectiveDistance = _perspectiveDistance;
+        [self addAnimation:flip];
     }
     
     return self;
 }
-
-+ (id) transitionWithViewToShow:(UIView*) viewToShow 
-                     viewToHide:(UIView*) viewToHide
-                  flipDirection:(FLFlipAnimationDirection) flipDirection {
-    FLFlipTransition* transition = [FLFlipTransition transitionWithViewToShow:viewToShow   viewToHide:viewToHide];
-    transition.flipDirection = flipDirection;
-    return transition;
-}                  
+               
 
 @end
 

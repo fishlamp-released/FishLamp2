@@ -9,16 +9,3 @@
 #import "FLCocoaUIRequired.h"
 #import "FLLayerAnimation.h"
 
-#define FLDropBackAnimationDefaultScale 0.95f
-
-@interface FLDropBackAnimation : FLLayerAnimation 
-
-+ (id) dropBackAnimation;
-
-@property (readwrite, assign, nonatomic) CGFloat scale;
-
-+ (CATransform3D) transformForFrame:(CGRect) frame 
-                          withScale:(CGFloat) scaleAmount;
-
-@end
-

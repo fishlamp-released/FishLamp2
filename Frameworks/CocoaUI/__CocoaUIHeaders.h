@@ -15,7 +15,7 @@
 // Foundations/Animations/Transitions
 #import "FLFlipTransition.h"
 #import "FLSlideInAndDropTransition.h"
-#import "FLSlideOutAndComeForwardTransition.h"
+#import "FLWizardStyleViewTransition.h"
 
 // Foundations/Arrangeable
 #import "FLArrangeable.h"

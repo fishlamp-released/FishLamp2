@@ -11,15 +11,11 @@
 
 @interface FLFlipTransition : FLViewTransition {
 @private
-    FLFlipAnimationDirection _flipDirection;
+    FLAnimationDirection _flipDirection;
     CGFloat _perspectiveDistance;
 }
 
-+ (id) transitionWithViewToShow:(UIView*) viewToShow 
-                     viewToHide:(UIView*) viewToHide
-                  flipDirection:(FLFlipAnimationDirection) flipDirection;
-
-@property (readwrite, assign, nonatomic) FLFlipAnimationDirection flipDirection;
+@property (readwrite, assign, nonatomic) FLAnimationDirection flipDirection;
 @property (readwrite, assign, nonatomic) CGFloat perspectiveDistance;  // defaults to FLFlipAnimationDefaultPerspectiveDistance
 
 @end

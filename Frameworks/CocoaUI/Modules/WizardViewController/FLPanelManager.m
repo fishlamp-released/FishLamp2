@@ -18,12 +18,12 @@
 @synthesize currentPanelIndex = _currentPanel;
 @synthesize panels = _panels;
 @synthesize delegate = _delegate;
-@synthesize showTransition = _showTransition;
-@synthesize hideTransition = _hideTransition;
+@synthesize viewTransition = _viewTransition;
 
 - (void) dealloc {
     [self.view removeObserver:self forKeyPath:@"frame" context:nil];
 #if FL_MRC
+    [_viewTransition release];
     [_panelViews release];
     [_panels release];
     [super dealloc];
@@ -236,14 +236,11 @@
     CGFloat animationDuration = 0.0f;
     FLViewTransition* transition = nil;
     if(animated) {
-        Class transitionClass = (idx < _currentPanel) ? _showTransition : _hideTransition;
-        if(transitionClass) {
-            transition = [transitionClass transitionWithViewToShow:[toShow view] viewToHide:[toHide view]];
-            
-            if(transition) {
-                animationDuration = [transition duration];
-            }
-        }
+        transition = self.viewTransition;;
+    }
+        
+    if(transition) {
+        animationDuration = [transition duration];
     }
 
     [self removePanelViews:animated];
@@ -262,8 +259,11 @@
     [self.view addSubview:[toShow view]];
         
     if(transition) {
+        transition.direction = (idx < _currentPanel) ? FLAnimationDirectionRight : FLAnimationDirectionLeft;
+
         completion = FLCopyWithAutorelease(completion);
-        [transition startTransition:^{
+        
+        [transition startTransitionWithViewToShow:toShow.view viewToHide:toHide.view completion:^{
             [self didShowPanel:toShow didHidePanel:toHide];
                 
             if(completion) {
@@ -358,8 +358,8 @@
 //                                                      viewToHide:toHide ? [toHide view] : nil];
 //
 //        
-////        FLSlideOutAndComeForwardTransition* transition = 
-////            [FLSlideOutAndComeForwardTransition transitionWithViewToShow:[toShow view] 
+////        FLWizardStyleViewTransition* transition = 
+////            [FLWizardStyleViewTransition transitionWithViewToShow:[toShow view] 
 ////                                                              viewToHide:toHide != nil ? [toHide view] : nil];
 //
 //        [transition startAnimating:^{

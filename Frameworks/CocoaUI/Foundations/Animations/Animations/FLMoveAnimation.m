@@ -77,15 +77,18 @@
 
 @end
 
-@implementation FLSlideInAnimation 
+@implementation FLSlightInFromRightAnimation 
 
-+ (id) slideInAnimation {
++ (id) slideInFromRightAnimation {
     return FLAutorelease([[[self class] alloc] init]);
 }
 
 - (void) prepareLayer:(CALayer*) layer {
-    self.startPoint = CGPointMake(FLRectGetRight(layer.superlayer.bounds), layer.frame.origin.y);
-    self.finishPoint = layer.frame.origin;
+    if(self.direction == FLAnimationDirectionForward) {
+        self.startPoint = CGPointMake(FLRectGetRight(layer.superlayer.bounds), layer.frame.origin.y);
+        self.finishPoint = layer.frame.origin;
+    }
+    else if(self.direction == FL)
     [super prepareLayer:layer];
 }
 

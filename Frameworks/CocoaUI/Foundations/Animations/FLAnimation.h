@@ -9,10 +9,25 @@
 #import "FLCocoaUIRequired.h"
 
 typedef enum {
-    FLAnimationDirectionForward,
-    FLAnimationDirectionBackward,
+    FLAnimationDirectionRight,
+    FLAnimationDirectionLeft,
+    FLAnimationDirectionUp,
+    FLAnimationDirectionDown,
 } FLAnimationDirection;
 
+NS_INLINE
+FLAnimationDirection FLAnimationDirectionOpposite(FLAnimationDirection direction) {
+    switch(direction) {
+        case FLAnimationDirectionUp: 
+            return FLAnimationDirectionDown;
+        case FLAnimationDirectionDown: 
+            return FLAnimationDirectionUp;
+        case FLAnimationDirectionLeft: 
+            return FLAnimationDirectionRight;
+        case FLAnimationDirectionRight: 
+            return FLAnimationDirectionLeft;
+    }
+}
 
 typedef enum {
     FLAnimationAxisX,
@@ -29,28 +44,25 @@ typedef enum {
     FLAnimationTimingCustom   
 } FLAnimationTiming;
 
-typedef void (^FLAnimationCompletionBlock)();
 
 @interface FLAnimation : NSObject {
     CGFloat _duration;
-    BOOL _animating;
-    BOOL _repeat;
+    BOOL _removeTransforms;
     FLAnimationTiming _animationTiming;
     FLAnimationDirection _animationDirection;
     FLAnimationAxis _animationAxis;
 }
 @property (readwrite, assign, nonatomic) CGFloat duration;
-@property (readonly, assign, nonatomic, getter=isAnimating) BOOL animating;
+@property (readwrite, assign, nonatomic) BOOL removeTransforms;
+
 @property (readwrite, assign, nonatomic) FLAnimationTiming timing;
 @property (readwrite, assign, nonatomic) FLAnimationDirection direction;
-@property (readwrite, assign, nonatomic) BOOL repeat;
 @property (readwrite, assign, nonatomic) FLAnimationAxis axis;
 
-- (void) prepare;
-- (void) commit;
-- (void) finish;
-
-- (void) startAnimating:(FLAnimationCompletionBlock) completion;
+- (void) startAnimating:(FLBlock) prepare
+                 commit:(FLBlock) commit
+                 finish:(FLBlock) finish
+             completion:(FLBlock) completion;
  
 // subclass utils
 - (CAMediaTimingFunction*) timingFunction;

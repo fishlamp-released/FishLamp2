@@ -10,16 +10,12 @@
 #import "FLAnimation.h"
 
 @interface FLLayerAnimation : FLAnimation {
-@private
-    CALayer* _layer;
 }
-
-@property (readonly, strong, nonatomic) CALayer* layer;
 
 + (id) layerAnimation;
 
 - (void) startAnimating:(id) target
-             completion:(FLAnimationCompletionBlock) completion;
+             completion:(FLBlock) completion;
 
 // overrides
 // animations are disabled during prepare and finish,
