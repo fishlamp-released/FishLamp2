@@ -43,30 +43,21 @@
     CABasicAnimation *moveFrame = [CABasicAnimation animationWithKeyPath:@"position"];
     [moveFrame setFromValue:[NSValue valueWithPoint:_startPoint]];
     [moveFrame setToValue:[NSValue valueWithPoint:_finishPoint]];
-    moveFrame.removedOnCompletion = NO;
-    moveFrame.fillMode = kCAFillModeBoth;
     [self configureAnimation:moveFrame];
     return moveFrame;
 }
 
 - (void) prepareAnimation:(CALayer*) layer {
-    if(_setStartPoint) {
-        [layer setPosition:_startPoint];
-    }
-    else {
-        _startPoint = layer.position;
-    }
+    [layer setPosition:_startPoint];
 }
 
 - (void) commitAnimation:(CALayer*) layer {
-//    FLAssert(_setFinishPoint);
-    
     [layer addAnimation:[self CAAnimation] forKey:@"position"];
-    [layer setPosition:_finishPoint];
+//    [layer setPosition:_finishPoint];
 }
 
 - (void) finishAnimation:(CALayer*) layer {
-//   [layer setPosition:_finishPoint];
+    [layer setPosition:_finishPoint];
 }
 
 @end

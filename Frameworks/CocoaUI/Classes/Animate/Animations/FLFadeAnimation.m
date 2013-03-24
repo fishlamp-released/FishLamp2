@@ -8,59 +8,34 @@
 
 #import "FLFadeAnimation.h"
 
-@implementation FLFadeAnimation
+@interface FLOpacityAnimation ()
+@property (readwrite, assign, nonatomic) CGFloat startOpacity;
+@end
+
+@implementation FLOpacityAnimation
+
+@synthesize startOpacity = _startOpacity;
+
 + (id) fadeAnimation {
     return FLAutorelease([[[self class] alloc] init]);
 }
 
-- (id) initWithAnimationDirection:(FLAnimationDirection) direction {
-    self = [super initWithAnimationDirection:direction];
-    if(self) {
-        _fromOpacity = -1;
-        _toOpacity = -1;
-    }
-    return self;
-}
-
-@synthesize fromOpacity = _fromOpacity;
-@synthesize toOpacity = _toOpacity;
-
-- (void) setFadeToOpacity:(CGFloat) toOpacity fromOpacity:(CGFloat) fromOpacity {
-    _fromOpacity = fromOpacity;
-    _toOpacity = toOpacity;
-}
-
-
-- (void) commitAnimation:(CALayer*) layer {
-    FLAssert(_fromOpacity >= 0.0);
-    FLAssert(_toOpacity >= 0.0);
-
-    CABasicAnimation *fade = [CABasicAnimation animationWithKeyPath:@"opacity"];
-    fade.fromValue = [NSNumber numberWithFloat:layer.opacity];
-    fade.toValue = [NSNumber numberWithFloat:_toOpacity];
-    fade.removedOnCompletion = NO;
-    fade.fillMode = kCAFillModeBoth;
-    fade.additive = NO;
-
-    [layer addAnimation:fade forKey:@"opacity"];
-    [layer setOpacity:_toOpacity];
-}
-
 - (void) prepareAnimation:(CALayer*) layer {
-    if(_fromOpacity < 0.0) {
-        _fromOpacity = layer.opacity;
-    }
-    else {
-        layer.opacity = _fromOpacity;
-    }
-    
-    layer.hidden = NO;
+    _startOpacity = layer.opacity;
 }
 
 - (void) finishAnimation:(CALayer*) layer{
     if(self.removeTransform) {
-        [layer setOpacity:_fromOpacity];
+        [layer setOpacity:_startOpacity];
     }
+}
+
+- (void) commitFadeForLayer:(CALayer*) layer from:(CGFloat) fromOpacity toOpacity:(CGFloat) toOpacity {
+    CABasicAnimation *fade = [CABasicAnimation animationWithKeyPath:@"opacity"];
+    fade.fromValue = [NSNumber numberWithFloat:fromOpacity];
+    fade.toValue = [NSNumber numberWithFloat:toOpacity];
+    [self configureAnimation:fade];
+    [layer addAnimation:fade forKey:@"opacity"];
 }
 
 @end
@@ -72,34 +47,20 @@
 }
 
 - (void) prepareAnimation:(CALayer*) layer {
+    [super prepareAnimation:layer];
     layer.opacity = 0;
     layer.hidden = NO;
 }
 
 - (void) commitAnimation:(CALayer*) layer {
-
-    CGFloat to = 1.0;
-    CGFloat from = 0.0;
-
-    CABasicAnimation *fade = [CABasicAnimation animationWithKeyPath:@"opacity"];
-    fade.fromValue = [NSNumber numberWithFloat:from];
-    fade.toValue = [NSNumber numberWithFloat:to];
-    fade.removedOnCompletion = NO;
-    fade.fillMode = kCAFillModeBoth;
-    fade.additive = YES;
-    [self configureAnimation:fade];
-    
-    [layer addAnimation:fade forKey:@"opacity"];
+    [self commitFadeForLayer:layer from:0.0 toOpacity:self.startOpacity];
 }
 
 - (void) finishAnimation:(CALayer*) layer {
-    layer.opacity = 1.0;
-    layer.hidden = NO;
+    layer.opacity = self.startOpacity;
 }
 
 @end
-
-
 
 @implementation FLFadeOutAnimation
 
@@ -107,29 +68,13 @@
     return FLAutorelease([[[self class] alloc] init]);
 }
 
-- (void) prepareAnimation:(CALayer*) layer {
-}
-
 - (void) commitAnimation:(CALayer*) layer {
-
-    CGFloat to = 0.0;
-    CGFloat from = layer.opacity;
-
-    CABasicAnimation *fade = [CABasicAnimation animationWithKeyPath:@"opacity"];
-    fade.fromValue = [NSNumber numberWithFloat:from];
-    fade.toValue = [NSNumber numberWithFloat:to];
-    fade.removedOnCompletion = YES;
-    fade.fillMode = kCAFillModeBoth;
-    fade.additive = NO;
-    [self configureAnimation:fade];
-    
-    [layer addAnimation:fade forKey:@"opacity"];
-//    [layer setOpacity:to];
+    [self commitFadeForLayer:layer from:self.startOpacity toOpacity:0];
 }
 
 - (void) finishAnimation:(CALayer*) layer {
     layer.hidden = YES;
-    layer.opacity = 1.0;
+    layer.opacity = self.startOpacity;
 }
 
 

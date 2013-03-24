@@ -9,29 +9,19 @@
 #import "FLAnimation.h"
 
 
-@interface FLFadeAnimation : FLAnimation {
+@interface FLOpacityAnimation : FLAnimation {
 @private
-    CGFloat _fromOpacity;
-    CGFloat _toOpacity;
+    CGFloat _startOpacity;
 }
-
-+ (id) fadeAnimation;
-               
-@property (readwrite, assign, nonatomic) CGFloat fromOpacity;
-@property (readwrite, assign, nonatomic) CGFloat toOpacity;
-                           
-- (void) setFadeToOpacity:(CGFloat) toOpacity 
-              fromOpacity:(CGFloat) fromOpacity;                           
-                           
 @end
 
-@interface FLFadeInAnimation : FLAnimation {
+@interface FLFadeInAnimation : FLOpacityAnimation {
 @private
 }
 + (id) fadeInAnimation;; 
 @end
 
-@interface FLFadeOutAnimation : FLAnimation {
+@interface FLFadeOutAnimation : FLOpacityAnimation {
 @private
 }
 + (id) fadeOutAnimation; 

@@ -30,6 +30,7 @@
 @synthesize otherButton = _otherButton;
 @synthesize backButton = _backButton;
 @synthesize delegate = _delegate;
+@synthesize contentView = _contentView;
 
 - (void) updateButtons {
     [self.delegate wizardButtonViewControllerUpdateButtonStates:self];

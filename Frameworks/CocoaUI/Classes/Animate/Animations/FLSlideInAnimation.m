@@ -70,9 +70,6 @@
     CABasicAnimation *moveFrame = [CABasicAnimation animationWithKeyPath:@"position"];
     [moveFrame setFromValue:[NSValue valueWithPoint:layer.position]];
     [moveFrame setToValue:[NSValue valueWithPoint:_onScreenOrigin]];
-    moveFrame.removedOnCompletion = NO;
-    moveFrame.fillMode = kCAFillModeBoth;
-    
     [self configureAnimation:moveFrame];
     [layer addAnimation:moveFrame forKey:@"position"];
 }
@@ -100,9 +97,6 @@
     CABasicAnimation *moveFrame = [CABasicAnimation animationWithKeyPath:@"position"];
     [moveFrame setFromValue:[NSValue valueWithPoint:layer.position]];
     [moveFrame setToValue:[NSValue valueWithPoint:[self offscreenOrigin:layer]]];
-    moveFrame.removedOnCompletion = NO;
-    moveFrame.fillMode = kCAFillModeBoth;
-
     [self configureAnimation:moveFrame];
     [layer addAnimation:moveFrame forKey:@"position"];
 }
@@ -115,16 +109,3 @@
 
 @end
 
-//@implementation FLSlideOutAnimation 
-//
-//+ (id) slideOutAnimation {
-//    return FLAutorelease([[[self class] alloc] init]);
-//}
-//
-//- (void) prepareAnimation:(CALayer*) layer {
-//    self.startPoint = layer.frame.origin;
-//    self.finishPoint = CGPointMake(FLRectGetRight(layer.superlayer.bounds), layer.frame.origin.y) ;
-//    [super prepareAnimation:layer];
-//}
-//
-//@end

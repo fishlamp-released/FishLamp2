@@ -11,7 +11,7 @@
 @class FLPanelManager;
 
 @protocol FLPanelArea <NSObject>
-- (SDKView*) view;
+- (SDKView*) contentView;
 @end
 
 @protocol FLPanelButtons <FLPanelArea>

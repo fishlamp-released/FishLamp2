@@ -57,7 +57,6 @@
         FLAssertNotNil(viewToHide.superview);
         self.viewToHide = viewToHide;
     }
-     
     
     CALayer* showLayer = [_viewToShow layer];
     CALayer* hideLayer = [_viewToHide layer];
@@ -71,10 +70,8 @@
             [self commitTransition:showLayer hideLayer:hideLayer]; 
         }
         finishBlock:^{ 
-            [viewToHide removeFromSuperview];
-            
-            [self finishTransition:showLayer hideLayer:hideLayer]; 
             viewToHide.hidden = YES;
+            [self finishTransition:showLayer hideLayer:hideLayer]; 
         }
         completionBlock:completion];
 }                            
@@ -169,7 +166,6 @@
 }
 
 - (void) finishTransition:(CALayer*) showLayer hideLayer:(CALayer*) hideLayer {
-    hideLayer.hidden = YES;
     for(FLAnimation* animation in _hideAnimations) {
         [animation finishAnimation:hideLayer];
     }

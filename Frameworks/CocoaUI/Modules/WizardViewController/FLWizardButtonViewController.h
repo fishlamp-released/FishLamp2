@@ -15,12 +15,15 @@
     IBOutlet NSButton* _nextButton;
     IBOutlet NSButton* _backButton;
     IBOutlet NSButton* _otherButton;
+    IBOutlet SDKView* _contentView;
+    
     __unsafe_unretained id<FLWizardButtonViewControllerDelegate> _delegate;
 }
 @property (readwrite, assign, nonatomic) id<FLWizardButtonViewControllerDelegate> delegate;
 @property (readonly, strong, nonatomic) NSButton* nextButton;
 @property (readonly, strong, nonatomic) NSButton* backButton;
 @property (readonly, strong, nonatomic) NSButton* otherButton;
+@property (readonly, strong, nonatomic) SDKView* contentView;
 
 - (void) updateButtons;
 
