@@ -30,34 +30,29 @@ typedef struct {
 @private
     FLZenfolioDownloadState_t _values;
 }
++ (id) downloadState;
+
 @property (readonly, assign, nonatomic) FLZenfolioDownloadState_t values;
 @end
 
 @interface FLZenfolioDownloadOperation : FLOperation {
 @private
     FLZenfolioGroup* _rootGroup;
-    
     NSString* _destinationPath;
-    NSMutableArray* _photoSets; 
+    NSSet* _photoSetIDs; 
+
     BOOL _downloadVideos;
     BOOL _downloadImages;
-    
     FLZenfolioDownloadState_t _state;
-    
     NSTimeInterval _lastProgress;
 }
 
-+ (id) downloadOperation:(NSArray*) photoSets 
++ (id) downloadOperation:(NSSet*) photoSetIDs 
                rootGroup:(FLZenfolioGroup*) rootGroup
            objectStorage:(id<FLObjectStorage>) storage 
          destinationPath:(NSString*) destinationPath
           downloadVideos:(BOOL) downloadVideos
           downloadImages:(BOOL) downloadImages;
-
-@property (readonly, assign, nonatomic) BOOL downloadVideos;
-@property (readonly, assign, nonatomic) BOOL downloadImages;
-@property (readonly, copy, nonatomic) NSArray* photoSets;
-@property (readonly, copy, nonatomic) NSString* destinationPath;
 @end
 
 #define ZFDownloadedPhotoKey @"photo"

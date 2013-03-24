@@ -78,7 +78,7 @@
 }
 
 - (void) addPanelView:(SDKView*) panelView toPanelArea:(id<FLPanelArea>) panelArea animated:(BOOL) animated {
-    [_panelManager addPanelView:panelView toView:panelArea.view animated:animated];
+    [_panelManager addPanelView:panelView toView:panelArea.contentView animated:animated];
 }
 
 - (void) didMoveToPanelManager:(FLPanelManager*) manager {

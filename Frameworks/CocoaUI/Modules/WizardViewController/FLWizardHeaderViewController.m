@@ -42,4 +42,8 @@
     }
 }
 
+- (SDKView*) contentView {
+    return self.view;
+}
+
 @end

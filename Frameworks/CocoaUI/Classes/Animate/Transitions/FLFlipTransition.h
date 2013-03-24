@@ -9,25 +9,19 @@
 #import "FLViewTransition.h"
 #import "FLFlipAnimation.h"
 
+#define FLFlipTransitionDefaultPerspectiveDistance 1500.0f
+
 @interface FLFlipTransition : FLViewTransition {
 @private
     FLAnimationDirection _flipDirection;
     CGFloat _perspectiveDistance;
-    
-    CGPoint _topPosition;
-    CGPoint _topAnchor;
-    CGPoint _bottomPosition;
-    CGPoint _bottomAnchor;
-    
-    CATransform3D _topTransform;
-    CATransform3D _bottomTransform;
-    
+    CGFloat _scale;
 }
 
 + (id) flipTransition:(FLAnimationDirection) animationDirection;
 
-@property (readwrite, assign, nonatomic) CGFloat perspectiveDistance;  // defaults to FLFlipAnimationDefaultPerspectiveDistance
+@property (readwrite, assign, nonatomic) CGFloat perspectiveDistance;  // defaults to FLFlipTransitionDefaultPerspectiveDistance
+@property (readwrite, assign, nonatomic) CGFloat perspectiveScale;
 
 @end
-
 

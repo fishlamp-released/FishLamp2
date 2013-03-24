@@ -49,8 +49,6 @@
     CABasicAnimation *scale = [CABasicAnimation animationWithKeyPath:@"transform"];
     scale.fromValue =   [NSValue valueWithCATransform3D:layer.transform];
     scale.toValue =     [NSValue valueWithCATransform3D:_finishTransform];
-    scale.removedOnCompletion = NO;
-    scale.fillMode = kCAFillModeBoth;
     
     [self configureAnimation:scale];
     [layer addAnimation:scale forKey:@"transform"];

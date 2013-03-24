@@ -26,7 +26,6 @@ NSString* const FLOperationFinishedEvent;
 @synthesize runBlock = _runBlock;
 @synthesize cancelled = _cancelled;
 @synthesize objectStorage = _objectStorage;
-@synthesize observer = _observer;
 
 - (id) initWithRunBlock:(FLBlockWithOperation) callback {
     if((self = [self init])) {
@@ -120,7 +119,7 @@ NSString* const FLOperationFinishedEvent;
 
     [self sendMessage:@selector(operationDidFinish:withResult:) toListener:self.observer withObject:self withObject:result];
     
-    _observer = nil;
+    self.observer = nil;
     self.cancelled = NO;
 }
 

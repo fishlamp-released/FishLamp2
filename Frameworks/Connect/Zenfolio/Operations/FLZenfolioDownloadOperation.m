@@ -32,15 +32,27 @@
 	return self;
 }
 
+- (id) init {	
+	self = [super init];
+	if(self) {
+		memset(&_values, 0, sizeof(FLZenfolioDownloadState_t));
+	}
+	return self;
+}
+
 + (id) downloadState:(FLZenfolioDownloadState_t) state {
     return FLAutorelease([[[self class] alloc] initWithState:state]);
+}
+
++ (id) downloadState {
+    return FLAutorelease([[[self class] alloc] init]);
 }
 
 @end
 
 @interface FLZenfolioDownloadOperation ()
 @property (readwrite, strong, nonatomic) FLZenfolioGroup* rootGroup;
-@property (readwrite, copy, nonatomic) NSArray* photoSets;
+@property (readwrite, copy, nonatomic) NSSet* photoSets;
 @property (readwrite, copy, nonatomic) NSString* destinationPath;
 @property (readwrite, assign, nonatomic) BOOL downloadVideos;
 @property (readwrite, assign, nonatomic) BOOL downloadImages;
@@ -54,7 +66,8 @@
 @synthesize downloadImages = _downloadImages;
 @synthesize rootGroup = _rootGroup;
 
-+ (id) downloadOperation:(NSArray*) photoSets 
+
++ (id) downloadOperation:(NSSet*) photoSetIDs 
                rootGroup:(FLZenfolioGroup*) rootGroup 
            objectStorage:(id<FLObjectStorage>) objectStorage 
          destinationPath:(NSString*) destinationPath 
@@ -63,12 +76,12 @@
     
     FLAssertNotNil(objectStorage);
     FLAssertNotNil(rootGroup);
-    FLAssertNotNil(photoSets);
+    FLAssertNotNil(photoSetIDs);
     FLAssertNotNil(destinationPath);
     
     FLZenfolioDownloadOperation* operation = FLAutorelease([[[self class] alloc] initWithObjectStorage:objectStorage]);
     operation.rootGroup = rootGroup;
-    operation.photoSets = photoSets;
+    operation.photoSets = photoSetIDs;
     operation.destinationPath = destinationPath;
     operation.downloadImages = downloadImages;
     operation.downloadVideos = downloadVideos;
@@ -121,8 +134,7 @@
         NSTimeInterval now = [NSDate timeIntervalSinceReferenceDate];
         if(!canDefer || ([NSDate timeIntervalSinceReferenceDate] - _lastProgress) > 0.3) {
 
-            [self sendMessage:@selector(downloadOperation:updateDownloadInfo:) 
-                           toListener:self.observer 
+            [self sendObservation:@selector(downloadOperation:updateDownloadInfo:) 
                            withObject:[FLZenfolioDownloadState downloadState:_state]];
 
             _lastProgress = now;
@@ -197,15 +209,12 @@
         
         NSMutableDictionary* info = [[NSMutableDictionary alloc] init];
         @try {
-        
-            
             NSString* pathToContent = [imageFolder pathForFile:[self downloadFileNameForPhoto:photo]];
             
             [info setObject:photo forKey:ZFDownloadedPhotoKey];
             [info setObject:pathToContent forKey:ZFDownloadedDestinationPathKey];
         
-            [self sendMessage:@selector(downloadOperation:willDownloadPhoto:) 
-                           toListener:self.observer 
+            [self sendObservation:@selector(downloadOperation:willDownloadPhoto:) 
                            withObject:info];
 
             if([imageFolder fileExistsInFolder:pathToContent]) {
@@ -222,8 +231,7 @@
                     }
                 }            
                 
-                [self sendMessage:@selector(downloadOperation:didSkipPhoto:) 
-                               toListener:self.observer 
+                [self sendObservation:@selector(downloadOperation:didSkipPhoto:) 
                                withObject:info];
             }
             else {
@@ -259,8 +267,7 @@
 
                 [self abortIfNeeded];
             
-                [self sendMessage:@selector(downloadOperation:didDownloadPhoto:) 
-                               toListener:self.observer 
+                [self sendObservation:@selector(downloadOperation:didDownloadPhoto:) 
                                withObject:info];
             }
             
@@ -277,14 +284,26 @@
     }
 }
 
-- (void) updateNumbers:(NSArray*) photoSets {
+
+- (void) updatePhotoSets {
     _state.photoSetTotal = _photoSets.count;
     _state.videoTotal = 0;
     _state.photoTotal = 0;
     _state.byteTotal = 0;
+
+    for(NSNumber* photoSetID in _photoSetIDs) {
+        
+        FLZenfolioPhotoSet* inputPhotoSet = [FLZenfolioPhotoSet photoSet];
+        inputPhotoSet.Id = photoSetID; 
+        FLZenfolioPhotoSet* photoSet = [self.objectStorage readObject:inputPhotoSet];
+        
+        [self sendObservation:@selector(downloadOperation:willUpdatePhotoSet:)
+               withObject:photoSet];
+
+        photoSet = [self downloadLatestPhotoSet:photoSet];
+        FLAssertNotNil(photoSet);
     
-    for(FLZenfolioPhotoSet* set in photoSets) {
-        for(FLZenfolioPhoto* photo in set.Photos) {
+        for(FLZenfolioPhoto* photo in photoSet.Photos) {
             if(self.downloadVideos && photo.IsVideoValue) {
                 _state.videoTotal++;
                 _state.byteTotal += photo.SizeValue;
@@ -293,7 +312,49 @@
                 _state.photoTotal++;
                 _state.byteTotal += photo.SizeValue;
             }
+            
+            [self abortIfNeeded];
         }
+        
+        [self.objectStorage writeObject:photoSet];
+        
+    // first update the photoset
+        
+        [self updateProgress:YES];
+        [self abortIfNeeded];
+
+        [self sendObservation:@selector(downloadOperation:didUpdatePhotoSet:)
+                       withObject:photoSet];
+    }
+}
+
+- (void) downloadPhotos {
+    _state.startedTime = [NSDate timeIntervalSinceReferenceDate];
+   
+    // now start downloading all the photos and videos 
+
+    for(NSNumber* photoSetID in _photoSetIDs) {
+    
+        FLZenfolioPhotoSet* inputPhotoSet = [FLZenfolioPhotoSet photoSet];
+        inputPhotoSet.Id = photoSetID; 
+        FLZenfolioPhotoSet* photoSet = [self.objectStorage readObject:inputPhotoSet];
+
+        FLImageFolder* imageFolder = [self createFolderForPhotoSet:photoSet];
+    
+        NSMutableDictionary* info = [NSMutableDictionary dictionary];
+        [info setObject:photoSet forKey:ZFDownloadedPhotoSetKey];
+        [info setObject:imageFolder forKey:ZFDownloadFolderKey];
+
+        [self sendObservation:@selector(downloadOperation:willStartDownloadingPhotosInPhotoSet:) withObject:info];
+
+        [self downloadPhotosInPhotoSet:photoSet imageFolder:imageFolder];
+
+        [self sendObservation:@selector(downloadOperation:didDownloadPhotosInPhotoSet:) withObject:info];
+
+        _state.photoSetCount++;
+
+        [self updateProgress:YES];
+        [self abortIfNeeded];
     }
 }
 
@@ -303,63 +364,14 @@
 
     memset(&_state, 0, sizeof(FLZenfolioDownloadState_t));
 
-    NSMutableArray* photoSets = [NSMutableArray array];
-
-    [self sendMessage:@selector(downloadOperationWillBeginDownload:) toListener:self.observer];
-    [self updateNumbers:photoSets];
+    [self sendObservation:@selector(downloadOperationWillBeginDownload:)];
     [self updateProgress:YES];
-    
-    for(NSUInteger i = 0; i < _photoSets.count; i++) {
-        
-        FLZenfolioPhotoSet* photoSet = [_photoSets objectAtIndex:i];
-        
-        [self sendMessage:@selector(downloadOperation:willUpdatePhotoSet:)
-                       toListener:self.observer 
-                       withObject:photoSet];
 
-        photoSet = [self downloadLatestPhotoSet:photoSet];
-        FLAssertNotNil(photoSet);
-    
-        [self.objectStorage writeObject:photoSet];
-        [photoSets addObject:photoSet];
-    
-    // first update the photoset
-        
-        [self updateNumbers:photoSets];
-        [self updateProgress:YES];
-        [self abortIfNeeded];
+    [self updatePhotoSets];
+    [self downloadPhotos];
 
-        [self sendMessage:@selector(downloadOperation:didUpdatePhotoSet:)
-                       toListener:observer 
-                       withObject:photoSet];
-    }
-   
-    _state.startedTime = [NSDate timeIntervalSinceReferenceDate];
-   
-    // now start downloading all the photos and videos 
-
-    for(FLZenfolioPhotoSet* photoSet in photoSets) {
-    
-        FLImageFolder* imageFolder = [self createFolderForPhotoSet:photoSet];
-    
-        NSMutableDictionary* info = [NSMutableDictionary dictionary];
-        [info setObject:photoSet forKey:ZFDownloadedPhotoSetKey];
-        [info setObject:imageFolder forKey:ZFDownloadFolderKey];
-
-        [self sendMessage:@selector(downloadOperation:willStartDownloadingPhotosInPhotoSet:) toListener:observer withObject:info];
-
-        [self downloadPhotosInPhotoSet:photoSet imageFolder:imageFolder];
-
-        [self sendMessage:@selector(downloadOperation:didDownloadPhotosInPhotoSet:) toListener:observer withObject:info];
-
-        _state.photoSetCount++;
-
-        [self updateProgress:YES];
-        [self abortIfNeeded];
-    }
-    
     [self updateProgress:NO];
-    [self sendMessage:@selector(downloadOperation:didFinishWithResult:) toListener:observer withObject:photoSets];
+    [self sendObservation:@selector(downloadOperation:didFinishWithResult:)];
     
     return _photoSets;
 }

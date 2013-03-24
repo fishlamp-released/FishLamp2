@@ -9,6 +9,18 @@
 #import <Foundation/Foundation.h>
 #import "FLMessageSender.h"
 
-@interface FLObservable : FLMessageSender 
+@interface FLObservable : FLMessageSender {
+@private
+    __unsafe_unretained id _observer;
+}
+
+@property (readwrite, assign) id observer;
+
+- (BOOL) sendObservation:(SEL) messageSelector;
+
+- (BOOL) sendObservation:(SEL) messageSelector withObject:(id) object;
+
+- (BOOL) sendObservation:(SEL) messageSelector withObject:(id) object1 withObject:(id) object2;
+
 @end
 

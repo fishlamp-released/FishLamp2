@@ -9,71 +9,27 @@
 #import "FLZenfolioGroupElementSelection.h"
 #import "FLOrderedCollection.h"
 
-//@protocol FLZenfolioGroupElementSelection <NSObject> 
-//- (void) addElementToSelection:(FLZenfolioGroupElement*) element forIndex:(NSUInteger) index;
-//@end
-//
-//
-//@implementation FLZenfolioPhoto (Selection)
-//- (void) addSelectionsToIndexedSet:(NSMutableIndexSet*) set 
-//                     fromSelection:(FLZenfolioGroupElementSelection*) selection 
-//                     currentIndex:(NSUInteger*) currentIndex {
-//}
-//@end
-//
-//
-//@implementation FLZenfolioGroupElement (Selection)
-//
-//- (void) addSelectionsToIndexedSet:(NSMutableIndexSet*) set 
-//                     fromSelection:(FLZenfolioGroupElementSelection*) selection
-//             withCollapsedElements:(NSDictionary*) collapsedGroups 
-//                     currentIndex:(NSUInteger*) currentIndex {
-//    
-//    if([selection isGroupElementSelected:self]) {
-//        [set addIndex:*currentIndex];
-//    }
-//    
-//    ++(*currentIndex);
-//    
-//    for(FLZenfolioGroupElement* element in self.Elements) {
-//        [element addSelectionsToIndexedSet:set fromSelection:selection currentIndex:currentIndex];
-//    }
-//}     
-//
-//@end
-//
-//@implementation FLZenfolioGroup (Selection) 
-//
-//- (NSIndexSet*) indexSetForSelection:(FLZenfolioGroupElementSelection*) selection withCollapsedElements:(NSDictionary*) collapsedGroups{
-//    NSMutableIndexSet* set = [NSMutableIndexSet indexSet];
-//    NSUInteger index = 0;
-//    [self addSelectionsToIndexedSet:set fromSelection:selection currentIndex:&index];
-//    return set;
-//}
-//
-//- (void) addGroup:(FLZenfolioGroup*) group 
-//       toIndexSet:(NSMutableIndexSet*) indexSet 
-//       withIndex:(NSUInteger*) index {
-//    
-//}
-//
-//@end
-
 @interface FLZenfolioGroupElementSelection()
-@property (readwrite, strong, nonatomic) NSArray* selectedPhotoSets;
-@property (readwrite, strong, nonatomic) NSString* filterString;
+@property (readwrite, strong, nonatomic) NSMutableSet* selectedPhotoSets;
 @property (readwrite, strong, nonatomic) NSMutableSet* filtered;
 @property (readwrite, strong, nonatomic) NSArray* displayList;
 @property (readwrite, strong, nonatomic) FLOrderedCollection* elements;
-//@property (readwrite, strong, nonatomic) FLZenfolioGroup* rootGroup;
-
 @property (readwrite, strong, nonatomic) NSMutableSet* expanded;
 @property (readwrite, strong, nonatomic) NSMutableSet* selected;
-@property (readwrite, strong, nonatomic) NSMutableIndexSet* cachedIndexSet;
-
+@property (readwrite, strong, nonatomic) NSMutableIndexSet* cachedIndexSetForOutlineView;
 @property (readwrite, strong, nonatomic) id<FLObjectStorage> objectStorage;
 
 - (BOOL) elementInFilter:(id) element;
+
+
+// these are private for now - might promote them if needed
+- (void) selectGroupElement:(FLZenfolioGroupElement*) groupElement 
+                   selected:(BOOL) selected;
+
+- (BOOL) isGroupElementSelected:(FLZenfolioGroupElement*) element;
+
+- (void) toggleSelectionForGroupElement:(FLZenfolioGroupElement*) element;
+
 @end
 
 @implementation FLZenfolioGroupElementSelection 
@@ -87,7 +43,7 @@
 @synthesize displayList = _displayList;
 @synthesize elements = _elements;
 @synthesize selected = _selected;
-@synthesize cachedIndexSet = _cachedSelectionSet;
+@synthesize cachedIndexSetForOutlineView = _cachedSelectionIndexesForOutlineView;
 @synthesize objectStorage = _objectStorage;
 
 - (id) initWithObjectStorage:(id<FLObjectStorage>) objectStorage {
@@ -103,7 +59,7 @@
 
 #if FL_MRC
 - (void) dealloc {
-    [_cachedSelectionSet release];
+    [_cachedSelectionIndexesForOutlineView release];
     [_elements release];
     [_filtered release];
     [_filterString release];
@@ -119,10 +75,26 @@
     return FLAutorelease([[[self class] alloc] init]);
 }
 
-- (void) clearCachedSearchData {
-    self.selectedPhotoSets = nil;
+- (void) clearSelection {
     self.displayList = nil;
-    self.cachedIndexSet = nil;
+    self.cachedIndexSetForOutlineView = nil;
+    self.selected = nil;
+    self.selectedPhotoSets = nil;
+}
+
+- (void) setRootGroup:(FLZenfolioGroup*) rootGroup {
+
+    if(rootGroup != _rootGroup) {
+        self.displayList = nil;
+
+        if(!rootGroup || (_rootGroup && _rootGroup.IdValue != rootGroup.IdValue)) {
+            [self clearSelection];
+            self.filtered = nil;
+            self.expanded = nil;
+        }
+        
+        FLSetObjectWithRetain(_rootGroup, rootGroup);
+    }
 }
 
 #pragma mark - Element list
@@ -160,11 +132,6 @@
 - (void) replaceGroupElement:(id) element { 
     [self.objectStorage writeObject:element];
     [self.elements replaceObjectAtIndex:[self.elements indexForKey:[element Id]] withObject:element forKey:[element Id]];
-
-//    if(row < _displayList.count) {
-//        FLAssert([[_displayList objectAtIndex:row] IdValue] == [element IdValue]);
-//        [_displayList replaceObjectAtIndex:row withObject:element];
-//    }
 }
 
 - (id) childElementForGroup:(FLZenfolioGroup*) parent atIndex:(NSUInteger) index {
@@ -202,10 +169,6 @@
 }
 
 #pragma mark - Display List
-//
-//- (BOOL) showInDisplayList:(id) element {
-//    return [self isGroupElementSelected:element] && ; 
-//}
 
 - (void) updateDisplayList:(NSMutableArray*) list 
                  withGroup:(FLZenfolioGroup*) group {
@@ -237,6 +200,21 @@
 
 #pragma mark - selection
 
+- (NSMutableSet*) selectedPhotoSetIDs {
+    return _selectedPhotoSets;
+}
+
+- (NSMutableSet*) selectedPhotoSets {
+    if(!_selectedPhotoSets) {
+        _selectedPhotoSets = [[NSMutableSet alloc] init];
+    }
+    return _selectedPhotoSets;
+}
+
+- (NSUInteger) selectedPhotoSetCount {
+    return _selectedPhotoSets ? _selectedPhotoSets.count : 0;
+}
+
 - (NSMutableSet*) selected {
     if(!_selected) {
         _selected = [[NSMutableSet alloc] init];
@@ -247,17 +225,28 @@
 - (NSUInteger) selectionCount {
     return _selected ? _selected.count : 0;
 }
+
 - (void) selectGroupElement:(FLZenfolioGroupElement*) groupElement 
                    selected:(BOOL) selected {
 
+    NSNumber* theId = groupElement.Id;
+
+    BOOL isGroup = [groupElement isGroupElement];
+
     if(selected) {
-        [self.selected addObject:[groupElement Id]];
+        [self.selected addObject:theId];
+        if(!isGroup) {
+            [self.selectedPhotoSets addObject:theId];
+        }
     }
     else {
-        [self.selected removeObject:[groupElement Id]];
+        [self.selected removeObject:theId];
+        if(!isGroup) {
+            [self.selectedPhotoSets removeObject:theId];
+        }
     }
 
-    if([groupElement isGroupElement]) {
+    if(isGroup) {
         for(id element in [groupElement Elements]) {
             [self selectGroupElement:element selected:selected];
         }
@@ -265,24 +254,22 @@
 }                   
 
 - (NSIndexSet*) selectedIndexSet {
-    if(!_cachedSelectionSet) {
-        _cachedSelectionSet = [[NSMutableIndexSet alloc] init];
+    if(!_cachedSelectionIndexesForOutlineView) {
+        _cachedSelectionIndexesForOutlineView = [[NSMutableIndexSet alloc] init];
         NSUInteger idx = 0;
         for(NSNumber* elementID in self.displayList) {
             if([self.selected containsObject:elementID]) {
-                [_cachedSelectionSet addIndex:idx];
+                [_cachedSelectionIndexesForOutlineView addIndex:idx];
             }
             idx++;
         }
     }
     
-    return _cachedSelectionSet;
+    return _cachedSelectionIndexesForOutlineView;
 }
 
 - (void) setSelectedIndexSet:(NSIndexSet *)selectedIndexSet {
-    [self clearCachedSearchData];
-    self.selected = nil;
-
+    [self clearSelection];
     [selectedIndexSet enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop) {
         id element = [self elementForID:[self.displayList objectAtIndex:idx]];
         [self selectGroupElement:element selected:YES];
@@ -296,34 +283,6 @@
 - (void) toggleSelectionForGroupElement:(FLZenfolioGroupElement*) element {
     [self selectGroupElement:element selected:![self isGroupElementSelected:element]];
 }
-
-//- (long long) selectedPhotoBytes {
-//	return [[[self selectedPhotoSets] valueForKeyPath:@"@sum.photoBytes"] longLongValue];
-//}
-//
-//- (int) selectedPhotoCount {
-//	return [[[self selectedPhotoSets] valueForKeyPath:@"@sum.photoCount"] intValue];
-//}
-
-- (NSArray *) selectedPhotoSets {
-    NSMutableArray* selectedSets = [[NSMutableArray alloc] init];
-//    FLOrderedCollection* elements = self.elements;
-//    for(id element in [elements forwardObjectEnumerator]) {
-//        if([element isGalleryElement] && [self.selected containsObject:[element Id]]) {
-//            [_selectedPhotoSets addObject:element];
-//        }
-//    }
-
-    for(NSNumber* anId in self.selected) {
-        id element = [self elementForID:anId];
-        if(![element isGroupElement]) {
-            [selectedSets addObject:element];
-        }
-    }
-    
-    return selectedSets;
-}
-
 
 #pragma mark - expansion
 
@@ -356,7 +315,7 @@
             [self.expanded removeObject:[element Id]];
         }
         
-        [self clearCachedSearchData];
+        [self clearSelection];
     
         [self.delegate groupElementSelection:self setElementExpanded:element isExpanded:expanded];
         
@@ -379,7 +338,7 @@
 }
 
 - (void) setAllExpanded:(BOOL) expanded {
-    [self clearCachedSearchData];
+    [self clearSelection];
     
     for(id element in [self.elements forwardObjectEnumerator]) {
         [self expandElement:element expanded:expanded];
@@ -442,31 +401,44 @@
     return (!self.filtered || [self.filtered containsObject:[element Id]]);
 }
 
-- (void) updateFilterWithString:(NSString *)string {
-    [self clearCachedSearchData];
-    self.filterString = string;
-    
-    if(FLStringIsNotEmpty(string)) {
-        NSMutableSet* result = [NSMutableSet set];
+- (void) handleFilterChange {
+    self.filtered = nil;
+    self.displayList = nil;
+    self.cachedIndexSetForOutlineView = nil;
+
+    if(FLStringIsNotEmpty(_filterString)) {
+        _filtered = [NSMutableSet set];
         
-        if(FLStringIsNotEmpty(string)) {
-            [self findMatchesForFilterWithGroup:self.rootGroup filter:self.filterString results:result];
-        }
+        NSSet* previousSelection = FLRetainWithAutorelease(_selected);
+        NSSet* previousPhotoSetSelection = FLRetainWithAutorelease(_selectedPhotoSets);
+        [self clearSelection];
         
-        NSMutableSet* newSelection = [NSMutableSet set];
-        for(NSNumber* elementID in self.selected) {
-            if([result containsObject:elementID]) {
-                [newSelection addObject:elementID];
+        [self findMatchesForFilterWithGroup:_rootGroup filter:_filterString results:_filtered];
+        
+        _selected = [NSMutableSet set];
+        _selectedPhotoSets = [NSMutableSet set];
+        
+        // We're REMOVING stuff not in the filter.
+        
+        for(NSNumber* elementID in previousSelection) {
+            if([_filtered containsObject:elementID]) {
+                [_selected addObject:elementID];
+                
+                if([previousPhotoSetSelection containsObject:elementID]) {
+                    [_selectedPhotoSets addObject:elementID];
+                }
             }
         }
-        self.selected = newSelection;
-        
-        self.filtered = result;
-    }
-    else {
-        self.filtered = nil;
     }
 }
+
+- (void) setFilterString:(NSString*) filter {
+    if(FLStringsAreNotEqual(filter, _filterString)) {
+        FLSetObjectWithRetain(_filterString, filter);
+        [self handleFilterChange];
+    }
+}
+
 
 #pragma mark - misc
 
@@ -477,7 +449,7 @@
 #pragma mark - sorting
 
 - (void) sortWithDescriptor:(NSSortDescriptor*) descriptor {
-    [self clearCachedSearchData];
+    [self clearSelection];
     [self.rootGroup sort:descriptor];
 }
 

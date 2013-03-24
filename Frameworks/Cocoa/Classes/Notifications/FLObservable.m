@@ -10,10 +10,24 @@
 
 @implementation FLObservable 
 
+@synthesize observer = _observer;
+
 - (void) sendObjectMessage:(FLObjectMessage*) message toListener:(id) listener {
     dispatch_async(dispatch_get_main_queue(), ^{
         [listener receiveObjectMessage:message];
     });
+}
+
+- (BOOL) sendObservation:(SEL) messageSelector {
+    return [self sendMessage:messageSelector toListener:self.observer];
+}
+
+- (BOOL) sendObservation:(SEL) messageSelector withObject:(id) object  {
+    return [self sendMessage:messageSelector toListener:self.observer withObject:object];
+}
+
+- (BOOL) sendObservation:(SEL) messageSelector withObject:(id) object1 withObject:(id) object2  {
+    return [self sendMessage:messageSelector toListener:self.observer withObject:object1 withObject:object2];
 }
 
 @end

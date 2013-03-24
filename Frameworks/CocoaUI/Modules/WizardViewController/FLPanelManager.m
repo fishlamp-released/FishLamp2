@@ -316,6 +316,7 @@
           
 - (void) addPanelView:(SDKView*) panelView toView:(SDKView*) superview animated:(BOOL) animated {
 
+// TODO: animate
     panelView.wantsLayer = YES;
     if(!_panelViews) {
         _panelViews = [[NSMutableArray alloc] init];
@@ -325,6 +326,9 @@
 }
 
 - (void) removePanelViews:(BOOL) animated {
+
+// TODO: animate
+
     for(SDKView* view in _panelViews) {
         [view removeFromSuperview];
     }

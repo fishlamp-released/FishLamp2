@@ -83,6 +83,8 @@
 }
 
 - (void) configureAnimation:(CAAnimation*) animation {
+    animation.removedOnCompletion = NO;
+    animation.fillMode = kCAFillModeForwards;
     [animation setDuration:self.duration];
     [animation setTimingFunction:self.timingFunction];
 }

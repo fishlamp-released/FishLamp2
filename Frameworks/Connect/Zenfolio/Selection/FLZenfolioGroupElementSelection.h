@@ -17,32 +17,32 @@
 @private
     id<FLObjectStorage> _objectStorage;
 
+// the group holds the layout of galleries - it should not hold
+// the latest photoSets - that's what the objectStorage is for 
+// (and the _elements collection)
     FLZenfolioGroup* _rootGroup;
 
 // these only hold object ids
     NSMutableSet* _filtered;
     NSMutableSet* _expanded;
     NSMutableSet* _selected;
+    NSMutableSet* _selectedPhotoSets;
 
     NSString* _filterString;
 
-// cached
-    NSMutableArray* _selectedPhotoSets;
-
-// all elements, flattened.
+// all elements, flattened. Also essentially a cache of the group elements in memory
+// this might need to be smarter. 
     FLOrderedCollection* _elements;
 
 // indexable list for outline view
     NSMutableArray* _displayList;
 
 // cached selection
-    NSMutableIndexSet* _cachedSelectionSet;
+    NSMutableIndexSet* _cachedSelectionIndexesForOutlineView;
 
     __unsafe_unretained id<ZFZenfolioGroupElementSelectionDelegate> _delegate;
 }
 
-- (id) initWithObjectStorage:(id<FLObjectStorage>) objectStorage;
-+ (id) groupElementSelection:(id<FLObjectStorage>) objectStorage;
 
 @property (readonly, strong, nonatomic) id<FLObjectStorage> objectStorage;
 
@@ -50,22 +50,18 @@
 @property (readwrite, assign, nonatomic) id<ZFZenfolioGroupElementSelectionDelegate> delegate;
 
 /// selection
-//@property (readonly, strong, nonatomic) NSSet* selected;
 @property (readonly, assign, nonatomic) NSUInteger selectionCount;
-@property (readonly, strong, nonatomic) NSArray* selectedPhotoSets;
-//- (int) selectedPhotoCount;
+@property (readonly, strong, nonatomic) NSSet* selectedPhotoSetIDs; 
+@property (readonly, assign, nonatomic) NSUInteger selectedPhotoSetCount;
 
-/// select/unselect a groupElement
-- (void) selectGroupElement:(FLZenfolioGroupElement*) groupElement 
-                   selected:(BOOL) selected;
+- (id) initWithObjectStorage:(id<FLObjectStorage>) objectStorage;
++ (id) groupElementSelection:(id<FLObjectStorage>) objectStorage;
 
-- (BOOL) isGroupElementSelected:(FLZenfolioGroupElement*) element;
-
-- (void) toggleSelectionForGroupElement:(FLZenfolioGroupElement*) element;
-
+- (id) elementForID:(NSNumber*) idObject;
 
 /// filtering
-- (void) updateFilterWithString:(NSString*) string;
+// this changes displayList and selectionContainers.
+@property (readwrite, strong, nonatomic) NSString* filterString;
 
 /// expansion
 - (void) setAllExpanded:(BOOL) expanded;
@@ -86,12 +82,9 @@
 
 /// selection by indexes
 
-    // get/set selection with dictionary of indexes.
-    // this is weird, since we're essentially a tree, but we need it to work
-    // with the NSOutlineView
+/// gets/sets selection by index for outline view
 @property (readwrite, strong, nonatomic) NSIndexSet* selectedIndexSet;
 
-- (id) elementForID:(NSNumber*) idObject;
 
 @end
 
@@ -102,3 +95,7 @@
                    
                    
 @end
+
+//@interface FLZenfolioGroupElementSelectionForOutlineView : FLZenfolioGroupElementSelection 
+//@end
+
