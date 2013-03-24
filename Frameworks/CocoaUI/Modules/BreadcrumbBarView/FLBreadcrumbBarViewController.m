@@ -21,12 +21,12 @@
     
     if(!_titleStyle) {
         _titleStyle = [[FLStringDisplayStyle alloc] init];
-        _titleStyle.emphasizedStyle.textColor = [UIColor colorWithRGBRed:203 green:102 blue:10 alpha:1.0];
-        _titleStyle.enabledStyle.textColor = [UIColor darkGrayColor];
-        _titleStyle.disabledStyle.textColor = [UIColor lightGrayColor];
-        _titleStyle.highlightedStyle.textColor = [UIColor whiteColor];
-        _titleStyle.hoveringStyle.textColor = [UIColor whiteColor];
-        [_titleStyle setTextFont:[UIFont boldSystemFontOfSize:[UIFont systemFontSize]]];
+        _titleStyle.emphasizedStyle.textColor = [SDKColor colorWithRGBRed:203 green:102 blue:10 alpha:1.0];
+        _titleStyle.enabledStyle.textColor = [SDKColor darkGrayColor];
+        _titleStyle.disabledStyle.textColor = [SDKColor lightGrayColor];
+        _titleStyle.highlightedStyle.textColor = [SDKColor whiteColor];
+        _titleStyle.hoveringStyle.textColor = [SDKColor whiteColor];
+        [_titleStyle setTextFont:[SDKFont boldSystemFontOfSize:[SDKFont systemFontSize]]];
     }
 }
 
@@ -36,6 +36,7 @@
 
 #if FL_MRC
 - (void) dealloc {
+    [_contentView release];
     [_textFont release];
     [_titleStyle release];
     [super dealloc];

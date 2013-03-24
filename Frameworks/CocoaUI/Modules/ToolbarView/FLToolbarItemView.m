@@ -11,7 +11,7 @@
 
 @implementation FLToolbarItemView
 
-+ (id) toolbarItemView:(UIView*) view 
++ (id) toolbarItemView:(SDKView*) view 
          onChosenBlock:(FLToolbarViewBlock) onChosenBlock {
     return FLAutorelease([[[self class] alloc] initWithView:view onChosenBlock:onChosenBlock]);
 }

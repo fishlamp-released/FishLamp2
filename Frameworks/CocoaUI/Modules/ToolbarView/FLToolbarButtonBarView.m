@@ -19,7 +19,7 @@
 	return self;
 }
 
-- (void) willMoveToSuperview:(UIView *)newSuperview
+- (void) willMoveToSuperview:(SDKView *)newSuperview
 {
 	[super willMoveToSuperview:newSuperview];
 	if(newSuperview)

@@ -8,7 +8,6 @@
 
 #import "FLCocoaUIRequired.h"
 #import "FLToolbarItemGroup.h"
-#import "FLCompatibleView.h"
 
 #define kDefaultHorizontalPadding 30.0f
 
@@ -19,13 +18,13 @@
     FLToolbarItemGroup* _leftItems;
     FLToolbarItemGroup* _rightItems;
     FLToolbarItemGroup* _centerItems;
-    UIView* _backgroundView;
+    SDKView* _backgroundView;
 }
 
 - (id) init; // makes a 320x44 bar by default.
 + (FLToolbarView*) toolbarView;
 
-@property (readwrite, retain, nonatomic) UIView* backgroundView;
+@property (readwrite, retain, nonatomic) SDKView* backgroundView;
 
 - (void) addBackgroundGradientView;
 - (void) addFramedBlackBackground;
@@ -36,7 +35,7 @@
 
 - (void) visitAllToolbarItems:(FLToolbarViewBlock) visitor;
 
-- (void) viewControllerTitleDidChange:(UIViewController*) viewController;
+- (void) viewControllerTitleDidChange:(SDKViewController*) viewController;
 
 @end
 

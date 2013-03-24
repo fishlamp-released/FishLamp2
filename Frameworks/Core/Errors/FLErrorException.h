@@ -12,7 +12,7 @@ extern NSString* const FLErrorExceptionName;
 
 @interface NSException (NSError)
 
-@property (readonly, copy, nonatomic) NSError* error;
+@property (readwrite, copy, nonatomic) NSError* error;
 
 + (NSException *)exceptionWithName:(NSString *)name 
                             reason:(NSString *)reason 

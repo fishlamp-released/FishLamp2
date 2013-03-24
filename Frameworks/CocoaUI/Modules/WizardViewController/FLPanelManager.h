@@ -6,11 +6,10 @@
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+#import "FLCocoaUIRequired.h"
 #import "FLFramedView.h"
 #import "FLPanelViewController.h"
 #import "FLViewTransition.h"
-#import "FLCompatibleViewController.h"
 
 @protocol FLPanelManagerDelegate;
 
@@ -22,7 +21,7 @@ typedef void (^FLPanelViewControllerBlock)(FLPanelViewController* panel);
     NSMutableArray* _panelViews;
     NSUInteger _currentPanel;
     BOOL _started;
-    id<FLPanelManagerDelegate> _delegate;
+    __unsafe_unretained id<FLPanelManagerDelegate> _delegate;
 
     FLViewTransition* _forwardTransition;
     FLViewTransition* _backwardTransition;

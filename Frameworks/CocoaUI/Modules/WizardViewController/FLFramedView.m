@@ -7,7 +7,7 @@
 //
 
 #import "FLFramedView.h"
-#import "UIColor+FLMoreColors.h"
+#import "SDKColor+FLMoreColors.h"
 
 @implementation FLFramedView
 
@@ -18,8 +18,8 @@
 - (id) initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        self.frameColor = [UIColor gray85Color];
-        self.backgroundColor = [UIColor whiteColor];
+        self.frameColor = [SDKColor gray85Color];
+        self.backgroundColor = [SDKColor whiteColor];
     }
     return self;
 }
@@ -28,8 +28,8 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.frameColor = [UIColor gray85Color];
-        self.backgroundColor = [UIColor whiteColor];
+        self.frameColor = [SDKColor gray85Color];
+        self.backgroundColor = [SDKColor whiteColor];
     }
     
     return self;

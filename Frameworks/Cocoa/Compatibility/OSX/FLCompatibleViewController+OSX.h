@@ -10,23 +10,8 @@
 #import <Cocoa/Cocoa.h>
 #import <AppKit/AppKit.h>
 
-#define UIViewController    NSViewController
-#define SDKViewController   NSViewController
-
-@interface NSViewController (FLCompatibleViewController)
-
-@property (readwrite, strong, nonatomic) NSArray *childViewControllers;
-@property (readwrite, assign, nonatomic) NSViewController* parentViewController;
-
-// this pretty much returns YES on OSX
-@property (readwrite, assign, nonatomic, getter=isViewLoaded) BOOL viewLoaded;
-
-- (void) addChildViewController:(NSViewController*) viewController;
-- (void) removeFromParentViewController;
-- (void) willMoveToParentViewController:(NSViewController *)parent;
-- (void) didMoveToParentViewController:(NSViewController *)parent;
-
-@end
+#import "FLCompatibleView+OSX.h"
+#import "NSViewController+FLCompatibility.h"
 
 @interface FLCompatibleViewController : NSViewController {
 @private

@@ -9,16 +9,12 @@
 #import "FLImagePlaceholderView.h"
 
 @interface FLImagePlaceholderView ()
-@property (readwrite, strong, nonatomic) NSString* loadingPath;
 @property (readwrite, assign, nonatomic) CGFloat borderWidth;
 @end
 
 @implementation FLImagePlaceholderView
-
 @synthesize imageView = _imageView;
 @synthesize borderWidth = _borderWidth;
-@synthesize loadingPath = _loadingPath;
-
 @synthesize alwaysProportionallyResize = _alwaysProportionallyResize;
 
 - (id)initWithFrame:(NSRect)frame

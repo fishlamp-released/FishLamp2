@@ -12,7 +12,7 @@
 // SBJson
 #import "FLJson.h"
 
-// UIImage+TrevorHarmon
-#import "UIImage+Alpha.h"
-#import "UIImage+Resize.h"
-#import "UIImage+RoundedCorner.h"
+// SDKImage+TrevorHarmon
+#import "SDKImage+Alpha.h"
+#import "SDKImage+Resize.h"
+#import "SDKImage+RoundedCorner.h"

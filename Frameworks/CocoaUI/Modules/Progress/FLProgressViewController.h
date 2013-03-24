@@ -8,7 +8,7 @@
 
 #import "FLCocoaUIRequired.h"
 #import "FLAutoPositionedViewController.h"
-#import "UIViewController+FLPresentationBehavior.h"
+#import "SDKViewController+FLPresentationBehavior.h"
 #import "FLProgressView.h"
 
 /// @brief A block with a abstract progressViewController as a parameter.
@@ -47,7 +47,7 @@ typedef void (^FLProgressViewControllerBlock)(id progress);
 // TODO: maybe this should be a NSProxy?
 @interface FLProgressViewOwner : NSObject<FLProgressViewController> {
 @private
-    UIView* _progressView;
+    SDKView* _progressView;
     FLProgressViewControllerBlock _onShowProgress;
     FLProgressViewControllerBlock _onHideProgress;
 }
@@ -57,7 +57,7 @@ typedef void (^FLProgressViewControllerBlock)(id progress);
 @property (readwrite, copy, nonatomic) FLProgressViewControllerBlock onShowProgress;
 
 + (FLProgressViewOwner*) progressViewOwner;
-+ (FLProgressViewOwner*) progressViewOwner:(UIView*) view;
++ (FLProgressViewOwner*) progressViewOwner:(SDKView*) view;
 
 /// SEE FLProgressViewController. This View Controller supports all the methods defined there.
 

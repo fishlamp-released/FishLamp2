@@ -7,8 +7,8 @@
 //
 
 #import "FLToolbarTitleView.h"
-#import "UIColor+FLMoreColors.h"
-#import "UILabel+FLExtras.h"
+#import "SDKColor+FLMoreColors.h"
+#import "SDKLabel+FLExtras.h"
 
 @implementation FLToolbarTitleView
 
@@ -16,10 +16,10 @@
 
 - (id) init {
     if((self = [super init])) {
-        _textLabel = [[UILabel alloc] initWithFrame:CGRectZero]; 
-        _textLabel.font = [UIFont boldSystemFontOfSize:[UIFont systemFontSize]];
-        _textLabel.backgroundColor = [UIColor clearColor];
-        _textLabel.textColor = [UIColor whiteColor];
+        _textLabel = [[SDKLabel alloc] initWithFrame:CGRectZero]; 
+        _textLabel.font = [SDKFont boldSystemFontOfSize:[SDKFont systemFontSize]];
+        _textLabel.backgroundColor = [SDKColor clearColor];
+        _textLabel.textColor = [SDKColor whiteColor];
         self.view = _textLabel;
     }
     
@@ -32,9 +32,9 @@
 }
 
 - (void) setGrayText {
-    self.textLabel.textColor = [UIColor gray10Color];
+    self.textLabel.textColor = [SDKColor gray10Color];
 #if IOS
-    self.textLabel.shadowColor = [UIColor whiteColor];
+    self.textLabel.shadowColor = [SDKColor whiteColor];
     self.textLabel.shadowOffset = CGSizeMake(0,1);
 #endif
 }

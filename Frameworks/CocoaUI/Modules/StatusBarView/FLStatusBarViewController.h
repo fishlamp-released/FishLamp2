@@ -13,11 +13,11 @@
 @private
     NSMutableArray* _stack;
 }
-- (void) setStatusView:(UIView*) view 
+- (void) setStatusView:(SDKView*) view 
               animated:(BOOL) animated
               completion:(void (^)()) completion;
 
-- (void) pushStatusView:(UIView*) view 
+- (void) pushStatusView:(SDKView*) view 
                animated:(BOOL) animated
                completion:(void (^)()) completion;
                

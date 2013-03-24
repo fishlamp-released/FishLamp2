@@ -8,7 +8,7 @@
 
 #import "FLToolbarView.h"
 #import "FLArrangement.h"
-#import "UIImage+FLColorize.h"
+#import "SDKImage+FLColorize.h"
 #import "FLGradientView.h"
 #import "FLViewController.h"
 
@@ -16,7 +16,7 @@
 #import "FLSingleRowColumnArrangement.h"
 
 #if IOS
-#import "UILabel+FLExtras.h"
+#import "SDKLabel+FLExtras.h"
 #endif
 
 
@@ -31,7 +31,7 @@
 {
 	if((self = [super initWithFrame:frame])) {
 #if IOS
-		self.backgroundColor = [UIColor clearColor];
+		self.backgroundColor = [SDKColor clearColor];
 		self.autoresizingMask = UIViewAutoresizingFlexibleWidth |
                                 UIViewAutoresizingFlexibleRightMargin;
 		self.exclusiveTouch = YES;
@@ -59,7 +59,7 @@
 
 - (void) addFramedBlackBackground
 {
-    FLGradientView* gradient = [FLGradientView viewWithFrame:self.bounds];
+    FLGradientView* gradient = FLAutorelease([[FLGradientView alloc] initWithFrame:self.bounds]);
 #if IOS
     gradient.autoresizingMask = UIViewAutoresizingFlexibleEverything;
 #endif
@@ -134,7 +134,7 @@
     }
 }
 
-- (void) setBackgroundView:(UIView*) backgroundView
+- (void) setBackgroundView:(SDKView*) backgroundView
 {
     if(_backgroundView) {
         [_backgroundView removeFromSuperview];
@@ -163,7 +163,7 @@
     }];
 }
 
-- (void) viewControllerTitleDidChange:(UIViewController*) viewController
+- (void) viewControllerTitleDidChange:(SDKViewController*) viewController
 {
     [self visitAllToolbarItems:^(id toolbarItem) {
         [toolbarItem toolbarTitleDidChange:viewController.title];
@@ -179,13 +179,13 @@
     [self setNeedsLayout];
 }
 
-- (void) viewControllerViewWillAppear:(UIViewController*) viewController
+- (void) viewControllerViewWillAppear:(SDKViewController*) viewController
 {
     [self viewControllerTitleDidChange:viewController];
 }
 
 #if IOS
-- (void) viewController:(UIViewController*) viewController
+- (void) viewController:(SDKViewController*) viewController
 willBePushedOnNavigationController:(UINavigationController *)controller
 {
 

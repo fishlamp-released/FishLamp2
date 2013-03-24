@@ -11,23 +11,23 @@
 #import "FLOrderedCollection.h"
 #import "FLBatchDictionary.h"
 
-//@interface FLBreadcrumbBarViewOld : UIView {
+//@interface FLBreadcrumbBarViewOld : SDKView {
 //@private
 //    FLOrderedCollection* _strings;
 //    FLVerticalTextAlignment _verticalTextAlignment;
 //
-//    UIColor* _enabledTextColor;
-//    UIColor* _disabledTextColor;
-//    UIColor* _highlightedTextColor;
-//    UIFont* _textFont;
+//    SDKColor* _enabledTextColor;
+//    SDKColor* _disabledTextColor;
+//    SDKColor* _highlightedTextColor;
+//    SDKFont* _textFont;
 //
 //    FLMutableBatchDictionary* _runFrames;
 //}
 //
-//@property (readwrite, retain, nonatomic) UIColor* enabledTextColor;
-//@property (readwrite, retain, nonatomic) UIColor* disabledTextColor;
-//@property (readwrite, retain, nonatomic) UIColor* highlightedTextColor;
-//@property (readwrite, retain, nonatomic) UIFont* textFont;
+//@property (readwrite, retain, nonatomic) SDKColor* enabledTextColor;
+//@property (readwrite, retain, nonatomic) SDKColor* disabledTextColor;
+//@property (readwrite, retain, nonatomic) SDKColor* highlightedTextColor;
+//@property (readwrite, retain, nonatomic) SDKFont* textFont;
 //
 //@property (readwrite, assign, nonatomic) FLVerticalTextAlignment verticalTextAlignment;
 //

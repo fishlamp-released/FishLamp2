@@ -28,7 +28,7 @@
     NSString* __uploadDestinationName;
     NSString* __uploadDestinationURL;
     NSString* __assetName;
-    UIImage* __thumbnail;
+    SDKImage* __thumbnail;
     NSDate* __uploadedDate;
 } 
 
@@ -43,7 +43,7 @@
 
 @property (readwrite, strong, nonatomic) NSString* queueUID;
 
-@property (readwrite, strong, nonatomic) UIImage* thumbnail;
+@property (readwrite, strong, nonatomic) SDKImage* thumbnail;
 
 @property (readwrite, strong, nonatomic) NSNumber* uploadDestinationId;
 

@@ -9,8 +9,8 @@
 #import "FLToolbarItemGroup.h"
 #import "FLSingleRowColumnArrangement.h"
 #import "FLToolbarItemView.h"
-#import "UIImage+FLColorize.h"
-#import "UIImage+Resize.h"
+#import "SDKImage+FLColorize.h"
+#import "SDKImage+Resize.h"
 #import "FLImageButtonToolbarItem.h"
 
 @interface FLToolbarItemGroup ()
@@ -98,7 +98,7 @@
     }
 }
 
-- (void) addImageButton:(UIImage*) image buttonPress:(FLButtonPress) buttonPress
+- (void) addImageButton:(SDKImage*) image buttonPress:(FLButtonPress) buttonPress
 {
     FLAssertIsNotNil(image);
     FLAssertIsNotNil(buttonPress);
@@ -110,20 +110,20 @@
 - (void) addImageButtonByName:(NSString*) imageName 
                    imageColor:(FLImageColor) colorOfImageInFile
                   buttonPress:(FLButtonPress) buttonPress {
-    UIImage* image = nil;
+    SDKImage* image = nil;
     switch(colorOfImageInFile)
     {
         case FLImageColorBlack:
         case FLImageColorGray:
-            image = [UIImage whiteImageNamed:imageName];
+            image = [SDKImage whiteImageNamed:imageName];
         break;
 
         case FLImageColorLightGray:
-            image = [[UIImage imageNamed:imageName] colorizeImage:[UIColor lightGrayColor] blendMode:kCGBlendModeOverlay];
+            image = [[SDKImage imageNamed:imageName] colorizeImage:[SDKColor lightGrayColor] blendMode:kCGBlendModeOverlay];
         break;
 
         case FLImageColorWhite:
-            image = [UIImage imageNamed:imageName];
+            image = [SDKImage imageNamed:imageName];
         break;
     }
     

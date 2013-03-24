@@ -8,10 +8,10 @@
 
 #import "FLCocoaUIRequired.h"
 
-@interface FLTilingImageView : UIView {
+@interface FLTilingImageView : SDKView {
 @private
-    UIImage* _image;
+    SDKImage* _image;
 }
-@property (readwrite, strong, nonatomic) UIImage* image;
+@property (readwrite, strong, nonatomic) SDKImage* image;
 
 @end

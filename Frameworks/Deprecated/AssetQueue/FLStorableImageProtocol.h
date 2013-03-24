@@ -14,12 +14,12 @@
 
 @protocol FLStorableImageProtocol <NSCopying>
 
-@property (readonly, strong, nonatomic) UIImage* image;
+@property (readonly, strong, nonatomic) SDKImage* image;
 @property (readonly, strong, nonatomic) NSDictionary* properties;
 @property (readonly, assign, nonatomic) CGSize imageDimensions;
 @property (readonly, assign, nonatomic) BOOL hasImage;
 
-- (void) setImage:(UIImage*) image exifDictionary:(NSDictionary*) exif;
+- (void) setImage:(SDKImage*) image exifDictionary:(NSDictionary*) exif;
 - (void) releaseImage;
 
 - (FLJpegFile*) createTempFileForStreamingInFolder:(FLFolder*) inFolder 

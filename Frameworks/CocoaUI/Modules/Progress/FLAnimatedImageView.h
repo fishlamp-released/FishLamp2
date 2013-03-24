@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+#import "FLCocoaUIRequired.h"
 #import "FLRotateAnimation.h"
 
 @interface FLAnimatedImageView : NSView {
@@ -14,18 +14,19 @@
     CALayer* _rotationLayer;
     BOOL _animate;
     BOOL _animationIsAnimating;
-    FLLayerAnimation* _animation;
+    FLAnimation* _animation;
     BOOL _displayedWhenStopped;
+    SDKImage* _image;
 } 
 
-@property (readwrite, assign, nonatomic) FLLayerAnimation* animation; // FLSomersaultAnimation by default
+@property (readwrite, strong, nonatomic) FLAnimation* animation; // FLSomersaultAnimation by default
 @property (readwrite, assign, nonatomic, getter=isDisplayedWhenStopped) BOOL displayedWhenStopped;
 @property (readonly, assign, nonatomic, getter=isAnimating) BOOL animate;
 
 - (void) startAnimating;
 - (void) stopAnimating;
 
-@property (readwrite, strong, nonatomic) NSImage* image;
+@property (readwrite, strong, nonatomic) SDKImage* image;
 - (void) setImageWithNameInBundle:(NSString*) name;
 
 // random!

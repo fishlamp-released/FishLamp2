@@ -9,9 +9,8 @@
 #import <Cocoa/Cocoa.h>
 #import <AppKit/AppKit.h>
 
-#import "UIColor+OSX.h"
-#define UIView NSView
-#define SDKView NSView
+#import "NSColor+FLCompatibility.h"
+#import "NSView+FLCompatibility.h"
 
 #if REFACTOR
 // temp
@@ -40,7 +39,6 @@ typedef NSUInteger UIViewAnimationOptions;
     BOOL _needsLayout;
 }
 
-
 // note this sets the color in the layer (if there is one)
 @property (readwrite, strong, nonatomic) NSColor* backgroundColor;
 @property (readwrite, assign, nonatomic) BOOL userInteractionEnabled;
@@ -50,20 +48,12 @@ typedef NSUInteger UIViewAnimationOptions;
 - (void) layoutIfNeeded;
 @end
 
-@interface NSView (FLCompatibleView)
-- (void) setNeedsDisplay; // setNeedsDisplay:YES
 
-// note that view layer doesn't work for POOPY in OSX because
-// when a view becomes the responder it moves forward (I think)
-- (void) bringSubviewToFront:(NSView*) view;
-- (void) bringToFront;
-- (void) sendToBack;
-- (void) insertSubview:(NSView*) view belowSubview:(NSView*) subview;
-- (void) insertSubview:(NSView*) view aboveSubview:(NSView*) subview;
-- (void) insertSubview:(NSView*) view atIndex:(NSUInteger) atIndex;
 
-- (void) layoutSubviews;
-@end
+//@interface UIView ()
+//@property (readwrite, assign, nonatomic) UIViewController* viewController;
+//@end
+
 
 #endif
 

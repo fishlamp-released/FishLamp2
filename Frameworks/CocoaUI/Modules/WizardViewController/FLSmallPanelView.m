@@ -11,7 +11,9 @@
 @implementation FLSmallPanelView
 
 - (void) setup {
+#if OSX
     self.autoresizingMask = NSViewMaxXMargin | NSViewMaxYMargin | NSViewMinXMargin | NSViewMinYMargin; 
+#endif    
     self.backgroundColor = [NSColor gray95Color];
 }
 

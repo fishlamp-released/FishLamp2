@@ -1409,24 +1409,24 @@
 		2753DF9616C9A82B00A3880F /* FLZenfolioWebApiTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D9BC16C9A82300A3880F /* FLZenfolioWebApiTests.m */; };
 		2753DF9716C9A82B00A3880F /* FLZenfolioWebApiTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D9BC16C9A82300A3880F /* FLZenfolioWebApiTests.m */; };
 		2753DF9816C9A82B00A3880F /* FLZenfolioWebApiTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D9BC16C9A82300A3880F /* FLZenfolioWebApiTests.m */; };
-		2753DF9916C9A82B00A3880F /* UIColor+ZenfolioAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D9BE16C9A82300A3880F /* UIColor+ZenfolioAdditions.h */; };
-		2753DF9A16C9A82B00A3880F /* UIColor+ZenfolioAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D9BE16C9A82300A3880F /* UIColor+ZenfolioAdditions.h */; };
-		2753DF9B16C9A82B00A3880F /* UIColor+ZenfolioAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D9BE16C9A82300A3880F /* UIColor+ZenfolioAdditions.h */; };
-		2753DF9C16C9A82B00A3880F /* UIColor+ZenfolioAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D9BE16C9A82300A3880F /* UIColor+ZenfolioAdditions.h */; };
-		2753DF9D16C9A82B00A3880F /* UIColor+ZenfolioAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D9BF16C9A82300A3880F /* UIColor+ZenfolioAdditions.m */; };
-		2753DF9E16C9A82B00A3880F /* UIColor+ZenfolioAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D9BF16C9A82300A3880F /* UIColor+ZenfolioAdditions.m */; };
-		2753DF9F16C9A82B00A3880F /* UIColor+ZenfolioAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D9BF16C9A82300A3880F /* UIColor+ZenfolioAdditions.m */; };
-		2753DFA016C9A82B00A3880F /* UIColor+ZenfolioAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D9BF16C9A82300A3880F /* UIColor+ZenfolioAdditions.m */; };
-		2753DFA116C9A82B00A3880F /* UIColor+ZenfolioAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D9BF16C9A82300A3880F /* UIColor+ZenfolioAdditions.m */; };
-		2753DFA216C9A82B00A3880F /* UIFont+ZenfolioAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D9C016C9A82300A3880F /* UIFont+ZenfolioAdditions.h */; };
-		2753DFA316C9A82B00A3880F /* UIFont+ZenfolioAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D9C016C9A82300A3880F /* UIFont+ZenfolioAdditions.h */; };
-		2753DFA416C9A82B00A3880F /* UIFont+ZenfolioAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D9C016C9A82300A3880F /* UIFont+ZenfolioAdditions.h */; };
-		2753DFA516C9A82B00A3880F /* UIFont+ZenfolioAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D9C016C9A82300A3880F /* UIFont+ZenfolioAdditions.h */; };
-		2753DFA616C9A82B00A3880F /* UIFont+ZenfolioAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D9C116C9A82300A3880F /* UIFont+ZenfolioAdditions.m */; };
-		2753DFA716C9A82B00A3880F /* UIFont+ZenfolioAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D9C116C9A82300A3880F /* UIFont+ZenfolioAdditions.m */; };
-		2753DFA816C9A82B00A3880F /* UIFont+ZenfolioAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D9C116C9A82300A3880F /* UIFont+ZenfolioAdditions.m */; };
-		2753DFA916C9A82B00A3880F /* UIFont+ZenfolioAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D9C116C9A82300A3880F /* UIFont+ZenfolioAdditions.m */; };
-		2753DFAA16C9A82B00A3880F /* UIFont+ZenfolioAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D9C116C9A82300A3880F /* UIFont+ZenfolioAdditions.m */; };
+		2753DF9916C9A82B00A3880F /* SDKColor+ZenfolioAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D9BE16C9A82300A3880F /* SDKColor+ZenfolioAdditions.h */; };
+		2753DF9A16C9A82B00A3880F /* SDKColor+ZenfolioAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D9BE16C9A82300A3880F /* SDKColor+ZenfolioAdditions.h */; };
+		2753DF9B16C9A82B00A3880F /* SDKColor+ZenfolioAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D9BE16C9A82300A3880F /* SDKColor+ZenfolioAdditions.h */; };
+		2753DF9C16C9A82B00A3880F /* SDKColor+ZenfolioAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D9BE16C9A82300A3880F /* SDKColor+ZenfolioAdditions.h */; };
+		2753DF9D16C9A82B00A3880F /* SDKColor+ZenfolioAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D9BF16C9A82300A3880F /* SDKColor+ZenfolioAdditions.m */; };
+		2753DF9E16C9A82B00A3880F /* SDKColor+ZenfolioAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D9BF16C9A82300A3880F /* SDKColor+ZenfolioAdditions.m */; };
+		2753DF9F16C9A82B00A3880F /* SDKColor+ZenfolioAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D9BF16C9A82300A3880F /* SDKColor+ZenfolioAdditions.m */; };
+		2753DFA016C9A82B00A3880F /* SDKColor+ZenfolioAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D9BF16C9A82300A3880F /* SDKColor+ZenfolioAdditions.m */; };
+		2753DFA116C9A82B00A3880F /* SDKColor+ZenfolioAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D9BF16C9A82300A3880F /* SDKColor+ZenfolioAdditions.m */; };
+		2753DFA216C9A82B00A3880F /* SDKFont+ZenfolioAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D9C016C9A82300A3880F /* SDKFont+ZenfolioAdditions.h */; };
+		2753DFA316C9A82B00A3880F /* SDKFont+ZenfolioAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D9C016C9A82300A3880F /* SDKFont+ZenfolioAdditions.h */; };
+		2753DFA416C9A82B00A3880F /* SDKFont+ZenfolioAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D9C016C9A82300A3880F /* SDKFont+ZenfolioAdditions.h */; };
+		2753DFA516C9A82B00A3880F /* SDKFont+ZenfolioAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D9C016C9A82300A3880F /* SDKFont+ZenfolioAdditions.h */; };
+		2753DFA616C9A82B00A3880F /* SDKFont+ZenfolioAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D9C116C9A82300A3880F /* SDKFont+ZenfolioAdditions.m */; };
+		2753DFA716C9A82B00A3880F /* SDKFont+ZenfolioAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D9C116C9A82300A3880F /* SDKFont+ZenfolioAdditions.m */; };
+		2753DFA816C9A82B00A3880F /* SDKFont+ZenfolioAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D9C116C9A82300A3880F /* SDKFont+ZenfolioAdditions.m */; };
+		2753DFA916C9A82B00A3880F /* SDKFont+ZenfolioAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D9C116C9A82300A3880F /* SDKFont+ZenfolioAdditions.m */; };
+		2753DFAA16C9A82B00A3880F /* SDKFont+ZenfolioAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753D9C116C9A82300A3880F /* SDKFont+ZenfolioAdditions.m */; };
 		2753DFAB16C9A82B00A3880F /* FLZenfolioWebApi.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D9C316C9A82300A3880F /* FLZenfolioWebApi.h */; };
 		2753DFAC16C9A82B00A3880F /* FLZenfolioWebApi.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D9C316C9A82300A3880F /* FLZenfolioWebApi.h */; };
 		2753DFAD16C9A82B00A3880F /* FLZenfolioWebApi.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753D9C316C9A82300A3880F /* FLZenfolioWebApi.h */; };
@@ -6118,10 +6118,10 @@
 		2753D9BA16C9A82300A3880F /* FLZenfolioSoapWebServiceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLZenfolioSoapWebServiceTests.m; sourceTree = "<group>"; };
 		2753D9BB16C9A82300A3880F /* FLZenfolioWebApiTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLZenfolioWebApiTests.h; sourceTree = "<group>"; };
 		2753D9BC16C9A82300A3880F /* FLZenfolioWebApiTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLZenfolioWebApiTests.m; sourceTree = "<group>"; };
-		2753D9BE16C9A82300A3880F /* UIColor+ZenfolioAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+ZenfolioAdditions.h"; sourceTree = "<group>"; };
-		2753D9BF16C9A82300A3880F /* UIColor+ZenfolioAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+ZenfolioAdditions.m"; sourceTree = "<group>"; };
-		2753D9C016C9A82300A3880F /* UIFont+ZenfolioAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+ZenfolioAdditions.h"; sourceTree = "<group>"; };
-		2753D9C116C9A82300A3880F /* UIFont+ZenfolioAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+ZenfolioAdditions.m"; sourceTree = "<group>"; };
+		2753D9BE16C9A82300A3880F /* SDKColor+ZenfolioAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SDKColor+ZenfolioAdditions.h"; sourceTree = "<group>"; };
+		2753D9BF16C9A82300A3880F /* SDKColor+ZenfolioAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SDKColor+ZenfolioAdditions.m"; sourceTree = "<group>"; };
+		2753D9C016C9A82300A3880F /* SDKFont+ZenfolioAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SDKFont+ZenfolioAdditions.h"; sourceTree = "<group>"; };
+		2753D9C116C9A82300A3880F /* SDKFont+ZenfolioAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SDKFont+ZenfolioAdditions.m"; sourceTree = "<group>"; };
 		2753D9C316C9A82300A3880F /* FLZenfolioWebApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLZenfolioWebApi.h; sourceTree = "<group>"; };
 		2753D9C416C9A82300A3880F /* FLZenfolioWebApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLZenfolioWebApi.m; sourceTree = "<group>"; };
 		2753D9C616C9A82300A3880F /* FLUserLogin+ZenfolioAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FLUserLogin+ZenfolioAdditions.h"; sourceTree = "<group>"; };
@@ -7679,10 +7679,10 @@
 		2753D9BD16C9A82300A3880F /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				2753D9BE16C9A82300A3880F /* UIColor+ZenfolioAdditions.h */,
-				2753D9BF16C9A82300A3880F /* UIColor+ZenfolioAdditions.m */,
-				2753D9C016C9A82300A3880F /* UIFont+ZenfolioAdditions.h */,
-				2753D9C116C9A82300A3880F /* UIFont+ZenfolioAdditions.m */,
+				2753D9BE16C9A82300A3880F /* SDKColor+ZenfolioAdditions.h */,
+				2753D9BF16C9A82300A3880F /* SDKColor+ZenfolioAdditions.m */,
+				2753D9C016C9A82300A3880F /* SDKFont+ZenfolioAdditions.h */,
+				2753D9C116C9A82300A3880F /* SDKFont+ZenfolioAdditions.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -8925,8 +8925,8 @@
 				2753DF7516C9A82B00A3880F /* FLZenfolioSoapHttpRequestFactory.h in Headers */,
 				2753DF8716C9A82B00A3880F /* FLZenfolioSoapWebServiceTests.h in Headers */,
 				2753DF9016C9A82B00A3880F /* FLZenfolioWebApiTests.h in Headers */,
-				2753DF9916C9A82B00A3880F /* UIColor+ZenfolioAdditions.h in Headers */,
-				2753DFA216C9A82B00A3880F /* UIFont+ZenfolioAdditions.h in Headers */,
+				2753DF9916C9A82B00A3880F /* SDKColor+ZenfolioAdditions.h in Headers */,
+				2753DFA216C9A82B00A3880F /* SDKFont+ZenfolioAdditions.h in Headers */,
 				2753DFAB16C9A82B00A3880F /* FLZenfolioWebApi.h in Headers */,
 				2753DFB416C9A82B00A3880F /* FLUserLogin+ZenfolioAdditions.h in Headers */,
 				2753DFBD16C9A82B00A3880F /* FLZenfolioAccessDescriptor+More.h in Headers */,
@@ -9569,8 +9569,8 @@
 				2753DF7716C9A82B00A3880F /* FLZenfolioSoapHttpRequestFactory.h in Headers */,
 				2753DF8916C9A82B00A3880F /* FLZenfolioSoapWebServiceTests.h in Headers */,
 				2753DF9216C9A82B00A3880F /* FLZenfolioWebApiTests.h in Headers */,
-				2753DF9B16C9A82B00A3880F /* UIColor+ZenfolioAdditions.h in Headers */,
-				2753DFA416C9A82B00A3880F /* UIFont+ZenfolioAdditions.h in Headers */,
+				2753DF9B16C9A82B00A3880F /* SDKColor+ZenfolioAdditions.h in Headers */,
+				2753DFA416C9A82B00A3880F /* SDKFont+ZenfolioAdditions.h in Headers */,
 				2753DFAD16C9A82B00A3880F /* FLZenfolioWebApi.h in Headers */,
 				2753DFB616C9A82B00A3880F /* FLUserLogin+ZenfolioAdditions.h in Headers */,
 				2753DFBF16C9A82B00A3880F /* FLZenfolioAccessDescriptor+More.h in Headers */,
@@ -10213,8 +10213,8 @@
 				2753DF7616C9A82B00A3880F /* FLZenfolioSoapHttpRequestFactory.h in Headers */,
 				2753DF8816C9A82B00A3880F /* FLZenfolioSoapWebServiceTests.h in Headers */,
 				2753DF9116C9A82B00A3880F /* FLZenfolioWebApiTests.h in Headers */,
-				2753DF9A16C9A82B00A3880F /* UIColor+ZenfolioAdditions.h in Headers */,
-				2753DFA316C9A82B00A3880F /* UIFont+ZenfolioAdditions.h in Headers */,
+				2753DF9A16C9A82B00A3880F /* SDKColor+ZenfolioAdditions.h in Headers */,
+				2753DFA316C9A82B00A3880F /* SDKFont+ZenfolioAdditions.h in Headers */,
 				2753DFAC16C9A82B00A3880F /* FLZenfolioWebApi.h in Headers */,
 				2753DFB516C9A82B00A3880F /* FLUserLogin+ZenfolioAdditions.h in Headers */,
 				2753DFBE16C9A82B00A3880F /* FLZenfolioAccessDescriptor+More.h in Headers */,
@@ -10857,8 +10857,8 @@
 				2753DF7816C9A82B00A3880F /* FLZenfolioSoapHttpRequestFactory.h in Headers */,
 				2753DF8A16C9A82B00A3880F /* FLZenfolioSoapWebServiceTests.h in Headers */,
 				2753DF9316C9A82B00A3880F /* FLZenfolioWebApiTests.h in Headers */,
-				2753DF9C16C9A82B00A3880F /* UIColor+ZenfolioAdditions.h in Headers */,
-				2753DFA516C9A82B00A3880F /* UIFont+ZenfolioAdditions.h in Headers */,
+				2753DF9C16C9A82B00A3880F /* SDKColor+ZenfolioAdditions.h in Headers */,
+				2753DFA516C9A82B00A3880F /* SDKFont+ZenfolioAdditions.h in Headers */,
 				2753DFAE16C9A82B00A3880F /* FLZenfolioWebApi.h in Headers */,
 				2753DFB716C9A82B00A3880F /* FLUserLogin+ZenfolioAdditions.h in Headers */,
 				2753DFC016C9A82B00A3880F /* FLZenfolioAccessDescriptor+More.h in Headers */,
@@ -11665,8 +11665,8 @@
 				2753DF7A16C9A82B00A3880F /* FLZenfolioSoapHttpRequestFactory.m in Sources */,
 				2753DF8C16C9A82B00A3880F /* FLZenfolioSoapWebServiceTests.m in Sources */,
 				2753DF9516C9A82B00A3880F /* FLZenfolioWebApiTests.m in Sources */,
-				2753DF9E16C9A82B00A3880F /* UIColor+ZenfolioAdditions.m in Sources */,
-				2753DFA716C9A82B00A3880F /* UIFont+ZenfolioAdditions.m in Sources */,
+				2753DF9E16C9A82B00A3880F /* SDKColor+ZenfolioAdditions.m in Sources */,
+				2753DFA716C9A82B00A3880F /* SDKFont+ZenfolioAdditions.m in Sources */,
 				2753DFB016C9A82B00A3880F /* FLZenfolioWebApi.m in Sources */,
 				2753DFB916C9A82B00A3880F /* FLUserLogin+ZenfolioAdditions.m in Sources */,
 				2753DFC216C9A82B00A3880F /* FLZenfolioAccessDescriptor+More.m in Sources */,
@@ -12303,8 +12303,8 @@
 				2753DF7C16C9A82B00A3880F /* FLZenfolioSoapHttpRequestFactory.m in Sources */,
 				2753DF8E16C9A82B00A3880F /* FLZenfolioSoapWebServiceTests.m in Sources */,
 				2753DF9716C9A82B00A3880F /* FLZenfolioWebApiTests.m in Sources */,
-				2753DFA016C9A82B00A3880F /* UIColor+ZenfolioAdditions.m in Sources */,
-				2753DFA916C9A82B00A3880F /* UIFont+ZenfolioAdditions.m in Sources */,
+				2753DFA016C9A82B00A3880F /* SDKColor+ZenfolioAdditions.m in Sources */,
+				2753DFA916C9A82B00A3880F /* SDKFont+ZenfolioAdditions.m in Sources */,
 				2753DFB216C9A82B00A3880F /* FLZenfolioWebApi.m in Sources */,
 				2753DFBB16C9A82B00A3880F /* FLUserLogin+ZenfolioAdditions.m in Sources */,
 				2753DFC416C9A82B00A3880F /* FLZenfolioAccessDescriptor+More.m in Sources */,
@@ -12941,8 +12941,8 @@
 				2753DF7916C9A82B00A3880F /* FLZenfolioSoapHttpRequestFactory.m in Sources */,
 				2753DF8B16C9A82B00A3880F /* FLZenfolioSoapWebServiceTests.m in Sources */,
 				2753DF9416C9A82B00A3880F /* FLZenfolioWebApiTests.m in Sources */,
-				2753DF9D16C9A82B00A3880F /* UIColor+ZenfolioAdditions.m in Sources */,
-				2753DFA616C9A82B00A3880F /* UIFont+ZenfolioAdditions.m in Sources */,
+				2753DF9D16C9A82B00A3880F /* SDKColor+ZenfolioAdditions.m in Sources */,
+				2753DFA616C9A82B00A3880F /* SDKFont+ZenfolioAdditions.m in Sources */,
 				2753DFAF16C9A82B00A3880F /* FLZenfolioWebApi.m in Sources */,
 				2753DFB816C9A82B00A3880F /* FLUserLogin+ZenfolioAdditions.m in Sources */,
 				2753DFC116C9A82B00A3880F /* FLZenfolioAccessDescriptor+More.m in Sources */,
@@ -13579,8 +13579,8 @@
 				2753DF7B16C9A82B00A3880F /* FLZenfolioSoapHttpRequestFactory.m in Sources */,
 				2753DF8D16C9A82B00A3880F /* FLZenfolioSoapWebServiceTests.m in Sources */,
 				2753DF9616C9A82B00A3880F /* FLZenfolioWebApiTests.m in Sources */,
-				2753DF9F16C9A82B00A3880F /* UIColor+ZenfolioAdditions.m in Sources */,
-				2753DFA816C9A82B00A3880F /* UIFont+ZenfolioAdditions.m in Sources */,
+				2753DF9F16C9A82B00A3880F /* SDKColor+ZenfolioAdditions.m in Sources */,
+				2753DFA816C9A82B00A3880F /* SDKFont+ZenfolioAdditions.m in Sources */,
 				2753DFB116C9A82B00A3880F /* FLZenfolioWebApi.m in Sources */,
 				2753DFBA16C9A82B00A3880F /* FLUserLogin+ZenfolioAdditions.m in Sources */,
 				2753DFC316C9A82B00A3880F /* FLZenfolioAccessDescriptor+More.m in Sources */,
@@ -14217,8 +14217,8 @@
 				2753DF7D16C9A82B00A3880F /* FLZenfolioSoapHttpRequestFactory.m in Sources */,
 				2753DF8F16C9A82B00A3880F /* FLZenfolioSoapWebServiceTests.m in Sources */,
 				2753DF9816C9A82B00A3880F /* FLZenfolioWebApiTests.m in Sources */,
-				2753DFA116C9A82B00A3880F /* UIColor+ZenfolioAdditions.m in Sources */,
-				2753DFAA16C9A82B00A3880F /* UIFont+ZenfolioAdditions.m in Sources */,
+				2753DFA116C9A82B00A3880F /* SDKColor+ZenfolioAdditions.m in Sources */,
+				2753DFAA16C9A82B00A3880F /* SDKFont+ZenfolioAdditions.m in Sources */,
 				2753DFB316C9A82B00A3880F /* FLZenfolioWebApi.m in Sources */,
 				2753DFBC16C9A82B00A3880F /* FLUserLogin+ZenfolioAdditions.m in Sources */,
 				2753DFC516C9A82B00A3880F /* FLZenfolioAccessDescriptor+More.m in Sources */,

@@ -7,7 +7,6 @@
 //
 
 #import "FLCocoaUIRequired.h"
-#import "FLCompatibleViewController.h"
 #import "FLPanelViewController.h"
 
 @protocol FLWizardButtonViewControllerDelegate;

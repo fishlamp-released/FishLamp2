@@ -15,7 +15,6 @@
 @interface FLTwitterService ()
 @property (readwrite, strong) FLOAuthSession* oauthSession;
 @property (readwrite, strong) FLOAuthApp* oauthInfo;
-@property (readwrite, strong) id<FLObjectStorage> dataStore;
 
 - (void) didAuthenticateForUserGuid:(NSString*) userGuid 
                        oauthSession:(FLOAuthSession*) oauthSession;

@@ -8,7 +8,7 @@
 #if 0
 #import "FLJpegFileImageAsset.h"
 #import "FLCocoaRequired.h"
-#import "UIImage+Resize.h"
+#import "SDKImage+Resize.h"
 #import "FLQueuedAsset.h"
 
 #import "FLFileAssetStorage.h"
@@ -161,9 +161,9 @@ static float s_thumbnailSize = 0.0;
 
 - (void) createThumbnailVersion
 {
-//	UIImage* thumb = nil;
+//	SDKImage* thumb = nil;
 	
-	UIImage* startImage = self.original.image;
+	SDKImage* startImage = self.original.image;
 	if(!startImage)
 	{
 		startImage = self.fullScreen.image;
@@ -288,7 +288,7 @@ static float s_thumbnailSize = 0.0;
 	FLReleaseWithNil(_fullScreenImageFile);
 }
 
-- (UIImage*) thumbnailImage {
+- (SDKImage*) thumbnailImage {
 
 // FIXME: asset stuff is a mess
 

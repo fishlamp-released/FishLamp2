@@ -56,8 +56,8 @@
 #import "FLColorUtilities.h"
 #import "FLColorValues.h"
 #import "FLMutableColorRange.h"
-#import "UIColor+FLMoreColors.h"
-#import "UIColor+FLUtils.h"
+#import "SDKColor+FLMoreColors.h"
+#import "SDKColor+FLUtils.h"
 
 // Foundations/Containers
 #import "FLBatchDictionary.h"
@@ -119,8 +119,8 @@
 
 // Foundations/Image
 #import "FLImageUtilities.h"
-#import "UIImage+FLColorize.h"
-#import "UIImage+FLUtils.h"
+#import "SDKImage+FLColorize.h"
+#import "SDKImage+FLUtils.h"
 
 // Foundations/Keychain
 #import "FLKeychain.h"
