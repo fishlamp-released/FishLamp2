@@ -8,7 +8,7 @@
 #import "FLPopInAnimation.h"
 
 // Foundations/Animations
-#import "FLLayerAnimation.h"
+#import "FLAnimation.h"
 #import "FLViewTransition.h"
 
 // Foundations/Animations/Transitions
@@ -24,7 +24,7 @@
 
 // Foundations/ArrangeableView
 #import "FLArrangeableView.h"
-#import "UIView+FLArrangeable.h"
+#import "SDKView+FLArrangeable.h"
 
 // Foundations/Arrangements
 #import "FLCenterJustifiedColumnArrangement.h"
@@ -53,18 +53,17 @@
 
 // Foundations/PresentationBehaviors
 #import "FLPresentationBehavior.h"
-#import "UIViewController+FLPresentationBehavior.h"
+#import "SDKViewController+FLPresentationBehavior.h"
 
 // Foundations/TransitionAnimations
 #import "FLViewControllerTransitionAnimation.h"
 
 // Foundations/View
 #import "FLView.h"
-#import "UIImageView+FLViewGeometry.h"
-#import "UILabel+FLExtras.h"
-#import "UIView+FLEnabled.h"
-#import "UIView+FLViewGeometry.h"
-#import "UIView+ViewAnimation.h"
+#import "SDKImageView+FLViewGeometry.h"
+#import "SDKLabel+FLExtras.h"
+#import "SDKView+FLEnabled.h"
+#import "SDKView+FLViewGeometry.h"
 
 // Foundations/ViewController
 #import "FLAutoPositionedViewController.h"

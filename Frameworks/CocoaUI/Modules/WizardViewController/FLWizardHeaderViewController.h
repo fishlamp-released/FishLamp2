@@ -6,9 +6,7 @@
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
-
-#import "FLCompatibleViewController.h"
+#import "FLCocoaUIRequired.h"
 #import "FLPanelViewController.h"
 
 @interface FLWizardHeaderViewController : FLCompatibleViewController<FLPanelHeader> {

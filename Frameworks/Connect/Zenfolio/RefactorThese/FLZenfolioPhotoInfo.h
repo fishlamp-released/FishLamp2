@@ -14,13 +14,13 @@
 @interface FLZenfolioPhotoInfo : NSObject {
 	unsigned long long _fileSize;
 	unsigned long long _sizeInDatabase;
-	UIImage* _cachedImage;
+	SDKImage* _cachedImage;
     FLZenfolioImageSize* _imageSize;
 }
 
 @property (readwrite, assign, nonatomic) unsigned long long sizeInDatabase;
 @property (readwrite, assign, nonatomic) unsigned long long fileSize;
 @property (readwrite, strong, nonatomic) FLZenfolioImageSize* imageSize;
-@property (readwrite, retain, nonatomic) UIImage* cachedImage;
+@property (readwrite, retain, nonatomic) SDKImage* cachedImage;
 
 @end

@@ -15,7 +15,7 @@
 
 @interface FLJpegFile ()
 @property (readwrite, strong, nonatomic) NSDictionary* properties;
-@property (readwrite, strong) UIImage* imageData;
+@property (readwrite, strong) SDKImage* imageData;
 @end
 
 @implementation FLJpegFile
@@ -33,7 +33,7 @@ static NSDictionary* s_destinationProperties = nil;
     }
 }
 
-- (id) initWithImage:(UIImage*) image 
+- (id) initWithImage:(SDKImage*) image 
 	exifDictionary:(NSDictionary*) exifDictionary
 	folder:(FLFolder*) folder 
 	fileName:(NSString*) fileName {
@@ -79,7 +79,7 @@ static NSDictionary* s_destinationProperties = nil;
 	return self;
 }
 
-- (void) setImage:(UIImage*) image {
+- (void) setImage:(SDKImage*) image {
     self.imageData = image;
 	_dimensions = _image ? _image.size : CGSizeZero;
 }
@@ -97,9 +97,9 @@ static NSDictionary* s_destinationProperties = nil;
     self.imageData = nil;
 }
 
-- (UIImage*) image {
+- (SDKImage*) image {
 	if(!_image && _jpegData) {
-		_image = [[UIImage alloc] initWithData:_jpegData];
+		_image = [[SDKImage alloc] initWithData:_jpegData];
 		_dimensions = _image.size;
 	}
 	
@@ -215,13 +215,13 @@ static NSDictionary* s_destinationProperties = nil;
     
     CGImageDestinationRef imageSourceRef = nil;
     @try {
-        UIImage* image = self.image;
+        SDKImage* image = self.image;
         FLAssertIsNotNilWithComment(image, nil);
 
 #if IOS        
         CGImageRef imageRef = image.CGImage;
 #else
-// TODO: (how to get CGImage from UIImage?)
+// TODO: (how to get CGImage from SDKImage?)
         
         CGImageRef imageRef = nil;
         
@@ -320,7 +320,7 @@ static NSDictionary* s_destinationProperties = nil;
 	return imageFile;
 }
 
-- (void) setImage:(UIImage*) image exifDictionary:(NSDictionary*) exif
+- (void) setImage:(SDKImage*) image exifDictionary:(NSDictionary*) exif
 {
 	FLReleaseWithNil(_jpegData);
 	[self setImage:image];

@@ -31,7 +31,7 @@
 }
 #endif
 
-- (id) initSelf {
+- (id) setupBreadcrumbBarView {
     if(!_titles) {
         _titles = [[NSMutableArray alloc] init];
     }
@@ -42,16 +42,16 @@
 }
 
 - (id) initWithFrame:(NSRect) rect {
-    return [[super initWithFrame:rect] initSelf];
+    return [[super initWithFrame:rect] setupBreadcrumbBarView];
 }
 
 - (id) initWithCoder:(NSCoder *)aDecoder {
-    return [[super initWithCoder:aDecoder] initSelf];
+    return [[super initWithCoder:aDecoder] setupBreadcrumbBarView];
 }
 
 - (void) awakeFromNib {
     [super awakeFromNib];
-    [self initSelf];
+    [self setupBreadcrumbBarView];
     
     _contentEnclosure.autoresizesSubviews = NO;
     _contentView.autoresizesSubviews = NO;
@@ -86,7 +86,7 @@
         _highlightLayer = [[FLBarHighlightBackgoundLayer alloc] init];
         _highlightLayer.hidden = YES;
         
-        _highlightLayer.lineColor = [UIColor gray85Color];
+        _highlightLayer.lineColor = [SDKColor gray85Color];
         
         [self.layer addSublayer:_highlightLayer];
     }

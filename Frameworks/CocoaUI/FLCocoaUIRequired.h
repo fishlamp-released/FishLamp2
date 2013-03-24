@@ -8,7 +8,7 @@
 
 #import "FishLampCore.h"
 #import "FishLampCocoa.h"
-
+#import "FLCompatibility.h"
 
 #if OSX
 #import <Quartz/Quartz.h>
@@ -17,7 +17,5 @@
 #import <CoreText/CoreText.h>
 #endif
 
-#import "UIView+FLViewGeometry.h"
 
-#define FLWidgetView UIView
 

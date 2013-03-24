@@ -123,9 +123,9 @@
 		[shadow setShadowBlurRadius:1.5];
 		
 		[attrs setObject:shadow forKey:NSShadowAttributeName];
-		[attrs setObject:[NSFont boldSystemFontOfSize:12] forKey:NSFontAttributeName];
+		[attrs setObject:[SDKFont boldSystemFontOfSize:12] forKey:SDKFontAttributeName];
 	} else {
-		[attrs setObject:[NSFont systemFontOfSize:12] forKey:NSFontAttributeName];
+		[attrs setObject:[SDKFont systemFontOfSize:12] forKey:SDKFontAttributeName];
 	}
 	return attrs;
 }

@@ -16,7 +16,7 @@
 @synthesize displayedWhenStopped = _displayedWhenStopped;
 @synthesize animation = _animation;
 
-- (id) initAnimatedImageView {
+- (id) setupAnimatedImageView {
     if(!_animation) {
         self.wantsLayer = YES;
         self.layer = [CALayer layer];
@@ -59,16 +59,16 @@
 }
 
 - (id) initWithCoder:(NSCoder *)aDecoder {
-    return [[super initWithCoder:aDecoder] initAnimatedImageView];
+    return [[super initWithCoder:aDecoder] setupAnimatedImageView];
 }
 
 - (id)initWithFrame:(NSRect)frame {
-    return [[super initWithFrame:frame] initAnimatedImageView];
+    return [[super initWithFrame:frame] setupAnimatedImageView];
 }
 
 - (void) awakeFromNib {
     [super awakeFromNib];
-    [self initAnimatedImageView];
+    [self setupAnimatedImageView];
 }
 
 - (NSImage*) image {
@@ -82,9 +82,19 @@
 - (void) viewDidMoveToSuperview {
     [super viewDidMoveToSuperview];
     
-    if(_animate) {
-        [self performSelector:@selector(startAnimating) withObject:nil afterDelay:1.0];
+    if(self.superview) {
+        if(_animate) {
+            [self performSelector:@selector(startAnimating) withObject:nil afterDelay:1.0];
+        }
+        if(_displayedWhenStopped) {
+            self.hidden = NO;
+        }
     }
+    else {
+        _animate = NO;
+        _animationIsAnimating = NO;
+    }
+    
 }
 
 - (void) startAnimating {

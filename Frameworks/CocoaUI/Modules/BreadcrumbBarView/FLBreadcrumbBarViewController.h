@@ -8,18 +8,18 @@
 
 #import "FLCocoaUIRequired.h"
 #import "FLBreadcrumbBarView.h"
-#import "FLCompatibleViewController.h"
 
 @protocol FLBreadcrumbBarViewControllerDelegate;
 
 @interface FLBreadcrumbBarViewController : FLCompatibleViewController<FLBreadcrumbBarViewDelegate> {
 @private
     __unsafe_unretained id<FLBreadcrumbBarViewControllerDelegate> _delegate;
-    UIFont* _textFont;
+    SDKFont* _textFont;
     FLStringDisplayStyle* _titleStyle;
+    SDKView* _contentView;
 }
 
-@property (readwrite, strong, nonatomic) UIFont* textFont;
+@property (readwrite, strong, nonatomic) SDKFont* textFont;
 @property (readwrite,assign,nonatomic) id<FLBreadcrumbBarViewControllerDelegate> delegate;
 
 @property (readwrite, strong, nonatomic) NSView* contentView;

@@ -10,6 +10,7 @@
 #import "FLPrintfLogSink.h"
 #import "FLLogPacket_Internal.h"
 #import "FLObjcRuntime.h"
+#import "FLCancelError.h"
 
 //NSException* FLLoggerExceptionHook(NSException* exception) {
 //    
@@ -31,7 +32,6 @@
     [[FLLogger instance] sendStringToSinks:[[self error] localizedDescription]
                                    logType:FLLogTypeException
                                 stackTrace:self.error.stackTrace];
-
 // call original method.
     [self raiseAndLog];
 }

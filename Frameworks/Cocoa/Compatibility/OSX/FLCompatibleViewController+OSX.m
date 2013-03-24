@@ -12,68 +12,14 @@
 //@interface NSView (FLCompatibleInternal)
 ////@property (readwrite, assign, nonatomic, getter=isViewLoaded) BOOL viewLoaded;
 ////@property (readwrite, strong, nonatomic) NSArray *childViewControllers;
-////@property (readwrite, assign, nonatomic) UIViewController* parentViewController;
+////@property (readwrite, assign, nonatomic) NSViewController* parentViewController;
 //@end
 
-@implementation NSViewController (FLCompatibleViewController)
-
-#pragma mark -- child view controllers
-
-FLSynthesizeAssociatedProperty(assign_nonatomic, parentViewController, setParentViewController, NSViewController*);
-
-FLSynthesizeAssociatedProperty(retain_nonatomic, childViewControllers, setChildViewControllers, NSArray*);
-@dynamic viewLoaded;
-
-- (void) addChildViewController:(NSViewController*) viewController {
-    
-    NSMutableArray* children = (NSMutableArray*) self.childViewControllers;
-    if(!children) {
-        children = [NSMutableArray array];
-        self.childViewControllers = children;
-    }
-    
-    [viewController removeFromParentViewController];
-    
-    [viewController willMoveToParentViewController:self];
-    [children addObject:viewController];
-    viewController.parentViewController = self;
-   [self didMoveToParentViewController:viewController];
-}
-
-- (void) removeViewController:(UIViewController*) viewController {
-    if(viewController.parentViewController == self) {
-        [viewController willMoveToParentViewController:nil];
-        
-        NSMutableArray* children = (NSMutableArray*) self.childViewControllers;
-        [children removeObject:viewController];
-
-        viewController.parentViewController = nil;
-        [self didMoveToParentViewController:nil];
-    }
-}
-
-- (void) removeFromParentViewController {
-    if(self.parentViewController) {
-        [self.parentViewController removeViewController:self];
-    }
-}
-
-- (void)willMoveToParentViewController:(UIViewController *)parent {
-}
-
-- (void)didMoveToParentViewController:(UIViewController *)parent {
-}
-
-- (BOOL) isViewLoaded {
-    return [self view] != nil; // of course this always loads the view. whatever osx, whatever.
-}
-
-@end
 
 @interface FLCompatibleViewController ()
 @property (readwrite, assign, nonatomic, getter=isViewLoaded) BOOL viewLoaded;
 @property (readwrite, strong, nonatomic) NSArray *childViewControllers;
-@property (readwrite, assign, nonatomic) UIViewController* parentViewController;
+@property (readwrite, assign, nonatomic) NSViewController* parentViewController;
 @end
 
 @implementation FLCompatibleViewController
@@ -155,11 +101,11 @@ FLSynthesizeAssociatedProperty(retain_nonatomic, childViewControllers, setChildV
 
 #pragma mark -- transitions
 
-- (UIViewController*) presentedViewController {
+- (NSViewController*) presentedViewController {
     return nil;
 }
 
-- (UIViewController*) presentingViewController {
+- (NSViewController*) presentingViewController {
     return nil;
 }
 
@@ -180,8 +126,8 @@ FLSynthesizeAssociatedProperty(retain_nonatomic, childViewControllers, setChildV
 }
 
 #if REFACTOR
-- (void)transitionFromViewController:(UIViewController *)fromViewController
-                    toViewController:(UIViewController *)toViewController
+- (void)transitionFromViewController:(NSViewController *)fromViewController
+                    toViewController:(NSViewController *)toViewController
                             duration:(NSTimeInterval)duration
                              options:(UIViewAnimationOptions)options
                           animations:(void (^)(void))animations
@@ -197,7 +143,7 @@ FLSynthesizeAssociatedProperty(retain_nonatomic, childViewControllers, setChildV
 - (void)endAppearanceTransition {
 }
 
-- (void)presentViewController:(UIViewController *)viewControllerToPresent
+- (void)presentViewController:(NSViewController *)viewControllerToPresent
                      animated:(BOOL)flag
                    completion:(void (^)(void))completion {
     
@@ -241,7 +187,7 @@ FLSynthesizeAssociatedProperty(retain_nonatomic, childViewControllers, setChildV
 //}
 
 //+ (void) initUIKitCompatibility {
-////    FLSelectorSwizzle([UIViewController class], @selector(compatibleLoadView), @selector(loadView));
+////    FLSelectorSwizzle([NSViewController class], @selector(compatibleLoadView), @selector(loadView));
 //    FLSelectorSwizzle([UIViewController class], @selector(compatibleSetView:), @selector(setView:));
 //}
 

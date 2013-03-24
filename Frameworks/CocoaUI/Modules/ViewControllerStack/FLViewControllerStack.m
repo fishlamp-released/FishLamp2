@@ -73,11 +73,11 @@
     [super viewDidLoad];
     
 #if IOS
-    self.view.backgroundColor = [UIColor clearColor];
+    self.view.backgroundColor = [SDKColor clearColor];
 #else 
     self.view.wantsLayer = YES;
 #endif    
-   	self.view.layer.shadowColor = [UIColor blackColor].CGColor;
+   	self.view.layer.shadowColor = [SDKColor blackColor].CGColor;
 	self.view.layer.shadowOpacity = .8;
 	self.view.layer.shadowRadius = 20.0;
 	self.view.layer.shadowOffset = CGSizeMake(0,3);

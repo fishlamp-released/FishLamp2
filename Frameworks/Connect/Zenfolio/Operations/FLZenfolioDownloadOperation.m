@@ -39,7 +39,6 @@
 @end
 
 @interface FLZenfolioDownloadOperation ()
-@property (readwrite, strong, nonatomic) id<FLObjectStorage> objectStorage;
 @property (readwrite, strong, nonatomic) FLZenfolioGroup* rootGroup;
 @property (readwrite, copy, nonatomic) NSArray* photoSets;
 @property (readwrite, copy, nonatomic) NSString* destinationPath;

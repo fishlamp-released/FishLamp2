@@ -67,7 +67,7 @@ FIXME("needs to be abstracted for mac, etc..")
 				fileName:CreateNewUploadFileName()] );
 			[[FLTempFileMgr instance] addFile:uploadFile];
             
-			UIImage* newImage = nil;
+			SDKImage* newImage = nil;
 			
 			[imageFile.image shrinkImage:&newImage 
 							   maxLongSide:resizeImageLongSide

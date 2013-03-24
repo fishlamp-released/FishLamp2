@@ -48,7 +48,7 @@ typedef void (^FLButtonPress)(id button);
 
 - (void) visitToolbarItems:(FLToolbarViewBlock) visitor;
 
-- (void) addImageButton:(UIImage*) image 
+- (void) addImageButton:(SDKImage*) image 
             buttonPress:(FLButtonPress) buttonPress;
 
 - (void) addImageButtonByName:(NSString*) imageName 

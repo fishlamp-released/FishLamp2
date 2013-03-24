@@ -6,7 +6,7 @@
     </generatorOptions>
     <typeDefinitions>
         <typeDefinition typeName="FLAsset" dataType="Object" import="FLAsset.h"/>
-        <typeDefinition typeName="UIImage" dataType="Object" import=""/>
+        <typeDefinition typeName="SDKImage" dataType="Object" import=""/>
         <typeDefinition typeName="FLDatabaseObject" dataType="object" import="FLDatabaseObject.h"/>
     </typeDefinitions>
     <objects>
@@ -31,7 +31,7 @@
                 <property type="string" name="uploadDestinationName"/>
                 <property type="string" name="uploadDestinationURL"/>
                 <property type="string" name="assetName"/>
-                <property type="UIImage" name="thumbnail"/>
+                <property type="SDKImage" name="thumbnail"/>
                 <property type="NSDate" name="uploadedDate"/>
             </properties>
         </object>

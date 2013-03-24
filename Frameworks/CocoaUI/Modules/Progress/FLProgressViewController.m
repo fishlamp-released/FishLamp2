@@ -8,7 +8,7 @@
 #import "FLCocoaUIRequired.h"
 #import "FLProgressViewController.h"
 #import "FLViewController.h"
-#import "UIViewController+FLPresentationBehavior.h"
+#import "SDKViewController+FLPresentationBehavior.h"
 
 @interface FLProgressViewController ()
 @end
@@ -106,7 +106,7 @@
     return (FLProgressView*) self.view;
 }
 
-- (UIView*) createView {
+- (SDKView*) createView {
     if(_viewClass) {
         return FLAutorelease([[_viewClass alloc] initWithFrame:CGRectZero]);
     }
@@ -267,7 +267,7 @@
     return self;
 }
 
-- (id) initWithView:(UIView*) view {
+- (id) initWithView:(SDKView*) view {
     self = [self init];
     if(self) {
         FLSetObjectWithRetain(_progressView, view);
@@ -276,7 +276,7 @@
     return self;
 }
 
-+ (FLProgressViewOwner*) progressViewOwner:(UIView*) view {
++ (FLProgressViewOwner*) progressViewOwner:(SDKView*) view {
     return FLAutorelease([[FLProgressViewOwner alloc] initWithView:view]);
 }
 
@@ -428,7 +428,7 @@
 }
 + (FLProgressViewController*) simpleProgress
 {
-    return [FLProgressViewController progressViewController:[FLSimpleProgressView class] presentationBehavior:[UIViewController defaultPresentationBehavior]];
+    return [FLProgressViewController progressViewController:[FLSimpleProgressView class] presentationBehavior:[SDKViewController defaultPresentationBehavior]];
 }
 @end
 #endif

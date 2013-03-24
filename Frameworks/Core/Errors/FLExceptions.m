@@ -28,12 +28,15 @@
 //#undef __INLINES__
 //#endif
 
+#import "FLErrorException.h"
 
 @implementation NSError (FLExceptionCreation)
 
 - (NSException*) createExceptionWithStackTrace:(FLStackTrace_t) stackTrace userInfo:(NSDictionary*) userInfo {
     self.stackTrace = [FLStackTrace stackTrace:stackTrace];
-    return [self createException:userInfo];
+    NSException* exception = [self createException:userInfo];
+    exception.error = self;
+    return exception;
 }
 
 - (NSException*) createException:(NSDictionary*) userInfo {

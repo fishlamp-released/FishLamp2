@@ -11,61 +11,7 @@
 #import "FLCompatibleViewController+OSX.h"
 
 
-@implementation NSView (FLCompatibility)
 
-FLSynthesizeAssociatedBOOLProperty(needsLayout, setNeedsLayout);
-
-- (void) setNeedsDisplay {
-    [self setNeedsDisplay:YES];
-}
-
-- (void) insertSubview:(UIView*) view 
-          belowSubview:(UIView*) subview {
-    [self addSubview:view positioned:NSWindowBelow relativeTo:subview];
-}
-
-- (void) insertSubview:(UIView*) view 
-          aboveSubview:(UIView*) subview {
-    [self addSubview:view positioned:NSWindowAbove relativeTo:subview];
-}
-
-- (void) insertSubview:(UIView*) view 
-               atIndex:(NSUInteger) atIndex {
-
-    [self addSubview:view positioned:NSWindowAbove relativeTo:[self.subviews objectAtIndex:atIndex]];
-}
-
-- (void) bringSubviewToFront:(UIView*) view {
-    id superView = [self superview]; 
-    if (superView) {
-        FLAutoreleaseObject(FLRetain(self));
-        [self removeFromSuperview];
-        [superView addSubview:self];
-    }
-}
-
-- (void) bringToFront {
-    [self.superview bringSubviewToFront:self];
-}
-
-- (void)sendToBack {
-    id superView = [self superview]; 
-    if (superView) {
-        FLAutoreleaseObject(FLRetain(self));
-        [self removeFromSuperview];
-        [superView addSubview:self positioned:NSWindowBelow relativeTo:nil];
-    }
-}
-
-- (void) layoutSubviews {
-    for(NSView* view in self.subviews) {
-        if([view respondsToSelector:@selector(layoutSubviews)]) {
-            [view layoutSubviews];
-        }
-    }
-}
-
-@end
 
 @implementation FLCompatibleView 
 
@@ -73,7 +19,7 @@ FLSynthesizeAssociatedBOOLProperty(needsLayout, setNeedsLayout);
 
 //- (void)drawRect:(NSRect)dirtyRect {
 //    // set any NSColor for filling, say white:
-//    UIColor* bgColor = self.backgroundColor;
+//    SDKColor* bgColor = self.backgroundColor;
 //    if(bgColor) {
 //        [bgColor setFill];
 //        NSRectFill(dirtyRect);

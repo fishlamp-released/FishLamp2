@@ -206,7 +206,7 @@
         [s_describer addProperty:@"uploadDestinationName" withClass:[NSString class]];
         [s_describer addProperty:@"uploadDestinationURL" withClass:[NSString class]];
         [s_describer addProperty:@"assetName" withClass:[NSString class]];
-        [s_describer addProperty:@"thumbnail" withClass:[UIImage class]];
+        [s_describer addProperty:@"thumbnail" withClass:[SDKImage class]];
         [s_describer addProperty:@"uploadedDate" withClass:[NSDate class]];
     });
     return s_describer;

@@ -16,7 +16,7 @@
 
 @class FLPanelViewController;
 
-@interface FLWizardViewController : UIViewController<FLBreadcrumbBarViewControllerDelegate, FLPanelManagerDelegate, FLWizardButtonViewControllerDelegate> {
+@interface FLWizardViewController : SDKViewController<FLBreadcrumbBarViewControllerDelegate, FLPanelManagerDelegate, FLWizardButtonViewControllerDelegate> {
 @private
     IBOutlet FLWizardHeaderViewController* _headerViewController;
     IBOutlet FLWizardButtonViewController* _buttonViewController;

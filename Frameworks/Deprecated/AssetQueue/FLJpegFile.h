@@ -17,7 +17,7 @@
 
 @interface FLJpegFile : FLFolderFile<FLStorableImageProtocol, FLStorableObject> {
 @private
-	UIImage* _image;
+	SDKImage* _image;
 	NSData* _jpegData;
 	NSDictionary* _properties;
 	CGSize _dimensions;
@@ -37,7 +37,7 @@
 	folder:(FLFolder*) folder 
 	fileName:(NSString*) fileName;
 
-- (id) initWithImage:(UIImage*) image 
+- (id) initWithImage:(SDKImage*) image 
 	exifDictionary:(NSDictionary*)exifDictionary
 	folder:(FLFolder*) folder 
 	fileName:(NSString*) fileName;

@@ -11,12 +11,12 @@
 @implementation FLCickableImageView
 
 - (void)mouseUp:(NSEvent *) event {
-    NSPoint location = [self convertPoint:[event locationInWindow] fromView:nil];
-    BOOL mouseIn = CGRectContainsPoint(self.bounds, location);
+ //   NSPoint location = [self convertPoint:[event locationInWindow] fromView:nil];
+ //   BOOL mouseIn = CGRectContainsPoint(self.bounds, location);
 
-    if(mouseIn) {
-        [self.target performSelector:self.action withObject:self];
-    }
+//    if(mouseIn) {
+//        [self.target performSelector:self.action withObject:self];
+//    }
   
     [self resignFirstResponder];
         

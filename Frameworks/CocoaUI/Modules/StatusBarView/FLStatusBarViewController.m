@@ -44,12 +44,12 @@
 }
 
 
-- (void) addStatusView:(UIView*) view 
+- (void) addStatusView:(SDKView*) view 
                animated:(BOOL) animated
                completion:(void (^)()) completion {
 
 
-    UIView* rootView = self.view;
+    SDKView* rootView = self.view;
     view.autoresizingMask = NSViewHeightSizable | NSViewWidthSizable;
     view.frame = rootView.bounds;
     [rootView addSubview:view];
@@ -57,7 +57,7 @@
     if(animated) {
        completion = FLCopyWithAutorelease(completion);
 
-//        UIView* lastView = [_stack lastObject];
+//        SDKView* lastView = [_stack lastObject];
 //        if(lastView) {
 //            FLFlipTransition* fuckyoupieceofshit = [FLFlipTransition transitionWithViewToShow:view viewToHide:lastView flipDirection:FLAnimationDirectionUp];
 //            [fuckyoupieceofshit startAnimating:completion];
@@ -74,7 +74,7 @@
     }
 }               
 
-- (void) setStatusView:(UIView*) view 
+- (void) setStatusView:(SDKView*) view 
               animated:(BOOL) animated 
               completion:(void (^)()) completion {
 
@@ -92,7 +92,7 @@
     }];
 }              
 
-- (void) pushStatusView:(UIView*) view 
+- (void) pushStatusView:(SDKView*) view 
                animated:(BOOL) animated 
                completion:(void (^)()) completion{
 
@@ -110,11 +110,11 @@
                
 - (void) popStatusViewAnimated:(BOOL) animated completion:(void (^)()) completion {
 
-    UIView* toHide = [_stack dequeueLastObject];
+    SDKView* toHide = [_stack dequeueLastObject];
             
     if(animated) {
         if(_stack.count >= 2) {
-            UIView* toShow = [_stack lastObject];
+            SDKView* toShow = [_stack lastObject];
             [[FLFlipTransition transitionWithViewToShow:toShow viewToHide:toHide flipDirection:FLAnimationDirectionDown] startTransition:completion];
         }
         else {
@@ -140,7 +140,7 @@
 }
 
 - (void) removeAllStatusViewsAnimated:(BOOL) animated completion:(void (^)()) completion{
-    for(UIView* view in _stack) {
+    for(SDKView* view in _stack) {
         [view removeFromSuperview];
     }
     [_stack removeAllObjects];
@@ -151,7 +151,7 @@
 }
 
 //- (void) flipToNextNotificationViewWithDirection:(FLAnimationDirection) direction 
-//                                        nextView:(UIView*) nextView
+//                                        nextView:(SDKView*) nextView
 //                                      completion:(void (^)()) completion {
 //
 //    completion = FLCopyWithAutorelease(completion);
@@ -168,7 +168,7 @@
 //    }];
 //}
 //
-//- (void) setNotificationView:(UIView*) notificationView 
+//- (void) setNotificationView:(SDKView*) notificationView 
 //                    animated:(BOOL) animated 
 //                  completion:(void (^)()) completion {
 //    

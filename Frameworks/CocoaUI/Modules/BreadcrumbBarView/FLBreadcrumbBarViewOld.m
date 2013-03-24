@@ -23,13 +23,13 @@
 //        self.userInteractionEnabled = YES; 
 //
 //#if IOS
-//        self.backgroundColor = [UIColor clearColor];
+//        self.backgroundColor = [SDKColor clearColor];
 //#endif
 //        
-//        self.enabledTextColor = [UIColor blackColor];
-//        self.disabledTextColor = [UIColor grayColor];
-//        self.highlightedTextColor = [UIColor blueColor];
-//        self.textFont = [UIFont boldSystemFontOfSize:[UIFont systemFontSize]];
+//        self.enabledTextColor = [SDKColor blackColor];
+//        self.disabledTextColor = [SDKColor grayColor];
+//        self.highlightedTextColor = [SDKColor blueColor];
+//        self.textFont = [SDKFont boldSystemFontOfSize:[SDKFont systemFontSize]];
 //
 //        _strings = [[FLOrderedCollection alloc] init];
 //    }

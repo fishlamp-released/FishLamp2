@@ -6,8 +6,7 @@
 //	Copyright 2009 Mike Fullerton. All rights reserved.
 //
 
-#import "FishLampCocoa.h"
-#import "FLCompatibleView.h"
+#import "FLCocoaUIRequired.h"
 #if IOS
 //#import "FLWidgetView.h"
 //#import "FLGradientWidget.h"

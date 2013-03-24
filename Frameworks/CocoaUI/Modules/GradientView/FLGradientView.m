@@ -38,7 +38,7 @@
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
-	self.backgroundColor = [UIColor clearColor];
+	self.backgroundColor = [SDKColor clearColor];
 
 	if ((self = [super initWithCoder:aDecoder])) {
 #if IOS
@@ -86,7 +86,7 @@
 {
 	if((self = [super initWithFrame:frame]))
 	{
-		self.backgroundColor = [UIColor darkDarkBlueTintedGrayColor];
+		self.backgroundColor = [SDKColor darkDarkBlueTintedGrayColor];
 	}
 	
 	return self;
@@ -96,7 +96,7 @@
 {
 	if((self = [super initWithCoder:aDecoder]))
 	{
-		self.backgroundColor = [UIColor darkDarkBlueTintedGrayColor];
+		self.backgroundColor = [SDKColor darkDarkBlueTintedGrayColor];
 	}
 	
 	return self;

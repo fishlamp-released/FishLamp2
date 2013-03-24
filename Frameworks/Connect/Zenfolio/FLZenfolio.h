@@ -11,8 +11,8 @@
 
 #import "FLZenfolioWebApi.h"
 
-#import "UIFont+ZenfolioAdditions.h"
-#import "UIColor+ZenfolioAdditions.h"
+#import "SDKFont+ZenfolioAdditions.h"
+#import "SDKColor+ZenfolioAdditions.h"
 
 #import "FLUserLogin.h"
 #import "FLUserLogin+ZenfolioAdditions.h"

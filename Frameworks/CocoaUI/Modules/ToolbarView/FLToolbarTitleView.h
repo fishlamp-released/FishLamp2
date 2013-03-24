@@ -12,11 +12,11 @@
 
 @interface FLToolbarTitleView : FLToolbarItemView {
 @private
-    UILabel* _textLabel;
+    SDKLabel* _textLabel;
 }
 
 + (FLToolbarTitleView*) toolbarTitleView;
-@property (readwrite, retain, nonatomic) UILabel* textLabel;
+@property (readwrite, retain, nonatomic) SDKLabel* textLabel;
 - (void) setGrayText;
 @end
 

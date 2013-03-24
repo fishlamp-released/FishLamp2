@@ -8,7 +8,7 @@
 
 #import "FLCocoaUIRequired.h"
 
-@interface FLStatusBarView : UIView {
+@interface FLStatusBarView : SDKView {
 @private
 }
 
