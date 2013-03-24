@@ -1,8 +1,8 @@
 
 #ifdef __OBJC__
-#import "FishLampCocoaUI.h"
+#import "FishLampCocoa.h"
 
 #import "FLObjectInflator.h"
 
-#import "FLZenfolioWebApi.h"
+#import "ZFWebApi.h"
 #endif
