@@ -14,10 +14,10 @@
 
 @interface FLDataStoreService (Zenfolio)
 
-- (FLZenfolioUploadGallery*) defaultUploadGallery;
-- (void) saveDefaultUploadGallery:(FLZenfolioUploadGallery*) uploadGallery;
+- (ZFUploadGallery*) defaultUploadGallery;
+- (void) saveDefaultUploadGallery:(ZFUploadGallery*) uploadGallery;
 
-- (FLZenfolioAccessDescriptor*) defaultAccessDescriptor;
-- (void) saveDefaultAccessDescriptor:(FLZenfolioAccessDescriptor*) accessDescriptor;
+- (ZFAccessDescriptor*) defaultAccessDescriptor;
+- (void) saveDefaultAccessDescriptor:(ZFAccessDescriptor*) accessDescriptor;
 
 @end

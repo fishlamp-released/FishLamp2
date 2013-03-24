@@ -7,42 +7,42 @@
 //
 
 #import "FLUserDataStorageService+Zenfolio.h"
-#import "FLZenfolioPhotoInfo.h"
+#import "ZFPhotoInfo.h"
 #import "NSString+GUID.h"
 #import "NSFileManager+FLExtras.h"
 #import "FLUserDataStorageService.h"
 
 @implementation FLDataStoreService (Zenfolio)
 
-- (FLZenfolioUploadGallery*) defaultUploadGallery {
-	FLZenfolioUploadGallery* input = [FLZenfolioUploadGallery uploadGallery];
+- (ZFUploadGallery*) defaultUploadGallery {
+	ZFUploadGallery* input = [ZFUploadGallery uploadGallery];
 	input.uid = [NSString zeroGuidString];
-	FLZenfolioUploadGallery* output = [self readObject:input];
+	ZFUploadGallery* output = [self readObject:input];
 	return output ? output : input; 
 }
 
-- (void) saveDefaultUploadGallery:(FLZenfolioUploadGallery*) uploadGallery {
+- (void) saveDefaultUploadGallery:(ZFUploadGallery*) uploadGallery {
 	uploadGallery.uid = [NSString zeroGuidString];
 	[self writeObject:uploadGallery];
 }
 
-- (FLZenfolioAccessDescriptor*) defaultAccessDescriptor {
+- (ZFAccessDescriptor*) defaultAccessDescriptor {
 	
-    FLZenfolioAccessDescriptor* input = [FLZenfolioAccessDescriptor accessDescriptor];
+    ZFAccessDescriptor* input = [ZFAccessDescriptor accessDescriptor];
 	input.uid = [NSString zeroGuidString];
-	FLZenfolioAccessDescriptor* output = [self readObject:input];
+	ZFAccessDescriptor* output = [self readObject:input];
 	
     if(!output) {
 		output = input;
 		output.IsDerivedValue = YES;
-		output.AccessTypeValue = FLZenfolioAccessTypePrivate; // StringFromZfAccessType(ZFAccessTypePrivate);
-		output.AccessMaskValue = FLZenfolioApiAccessMaskNone; // StringFromZfApiAccessMask(FLZenfolioApiAccessMaskNone);
+		output.AccessTypeValue = ZFAccessTypePrivate; // StringFromZfAccessType(ZFAccessTypePrivate);
+		output.AccessMaskValue = ZFApiAccessMaskNone; // StringFromZfApiAccessMask(ZFApiAccessMaskNone);
 	}
 	
 	return output;
 }
 
-- (void) saveDefaultAccessDescriptor:(FLZenfolioAccessDescriptor*) accessDescriptor {
+- (void) saveDefaultAccessDescriptor:(ZFAccessDescriptor*) accessDescriptor {
 	accessDescriptor.uid = [NSString zeroGuidString];
 	[self writeObject:self];
 }

@@ -1,5 +1,5 @@
 //
-//  FLZenfolioLibraryMgr.h
+//  ZFLibraryMgr.h
 //  FishLamp-iOS
 //
 //  Created by Fullerton Mike on 12/28/11.
@@ -7,9 +7,9 @@
 //
 #import "FishLampCocoa.h"
 
-#import "FLZenfolioErrors.h"
+#import "ZFErrors.h"
 
-#import "FLZenfolioWebApi.h"
+#import "ZFWebApi.h"
 
 #import "SDKFont+ZenfolioAdditions.h"
 #import "SDKColor+ZenfolioAdditions.h"

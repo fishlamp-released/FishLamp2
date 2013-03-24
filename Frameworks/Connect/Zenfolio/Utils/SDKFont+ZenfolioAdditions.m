@@ -1,5 +1,5 @@
 //
-//  SDKFont+FLZenfolioFont.m
+//  SDKFont+ZFFont.m
 //  Zenfolio Downloader
 //
 //  Created by Mike Fullerton on 12/3/12.

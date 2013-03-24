@@ -1,5 +1,5 @@
 //
-//  SDKImage+FLZenfolioCacheService.h
+//  SDKImage+ZFCacheService.h
 //  Downloader
 //
 //  Created by Mike Fullerton on 11/27/12.

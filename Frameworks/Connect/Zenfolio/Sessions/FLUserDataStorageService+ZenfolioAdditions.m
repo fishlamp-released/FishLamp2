@@ -1,5 +1,5 @@
 //
-//  FLZenfolioUserDataStoragetService.m
+//  ZFUserDataStoragetService.m
 //  ZenLib
 //
 //  Created by Mike Fullerton on 11/3/12.
@@ -10,41 +10,41 @@
 #import "NSString+GUID.h"
 #import "NSFileManager+FLExtras.h"
 
-#import "FLZenfolioPhotoInfo.h"
+#import "ZFPhotoInfo.h"
 #import "FLUserDataStorageService.h"
-#import "FLZenfolioWebApi.h"
+#import "ZFWebApi.h"
 
 @implementation FLUserDataStorageService (Zenfolio)
 
-- (FLZenfolioUploadGallery*) defaultUploadGallery {
-	FLZenfolioUploadGallery* input = [FLZenfolioUploadGallery uploadGallery];
+- (ZFUploadGallery*) defaultUploadGallery {
+	ZFUploadGallery* input = [ZFUploadGallery uploadGallery];
 	input.uid = [NSString zeroGuidString];
-	FLZenfolioUploadGallery* output = [self.documentsDatabase readObject:input];
+	ZFUploadGallery* output = [self.documentsDatabase readObject:input];
 	return output ? output : input; 
 }
 
-- (void) saveDefaultUploadGallery:(FLZenfolioUploadGallery*) uploadGallery {
+- (void) saveDefaultUploadGallery:(ZFUploadGallery*) uploadGallery {
 	uploadGallery.uid = [NSString zeroGuidString];
 	[self.documentsDatabase writeObject:uploadGallery];
 }
 
-- (FLZenfolioAccessDescriptor*) defaultAccessDescriptor {
+- (ZFAccessDescriptor*) defaultAccessDescriptor {
 	
-    FLZenfolioAccessDescriptor* input = [FLZenfolioAccessDescriptor accessDescriptor];
+    ZFAccessDescriptor* input = [ZFAccessDescriptor accessDescriptor];
 	input.uid = [NSString zeroGuidString];
-	FLZenfolioAccessDescriptor* output = [self.documentsDatabase readObject:input];
+	ZFAccessDescriptor* output = [self.documentsDatabase readObject:input];
 	
     if(!output) {
 		output = input;
 		output.IsDerivedValue = YES;
-		output.AccessTypeValue = FLZenfolioAccessTypePrivate; // StringFromZfAccessType(FLZenfolioAccessTypePrivate);
-		output.AccessMaskValue = FLZenfolioApiAccessMaskNone; // StringFromZfApiAccessMask(FLZenfolioApiAccessMaskNone);
+		output.AccessTypeValue = ZFAccessTypePrivate; // StringFromZfAccessType(ZFAccessTypePrivate);
+		output.AccessMaskValue = ZFApiAccessMaskNone; // StringFromZfApiAccessMask(ZFApiAccessMaskNone);
 	}
 	
 	return output;
 }
 
-- (void) saveDefaultAccessDescriptor:(FLZenfolioAccessDescriptor*) accessDescriptor {
+- (void) saveDefaultAccessDescriptor:(ZFAccessDescriptor*) accessDescriptor {
 	accessDescriptor.uid = [NSString zeroGuidString];
 	[self.documentsDatabase writeObject:self];
 }

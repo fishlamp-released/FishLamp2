@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<schema projectName="FishLamp Connect" companyName="GreenTongue Software, LLC">
+    <generatorOptions>
+        <typePrefix>FLZenfolio</typePrefix>
+    </generatorOptions>
+    <objects>
+        <object typeName="FLZenfolioBitsUploadProtocolResponse" protocols="NSCopying, NSCoding">
+            <properties>
+                <property type="string" name="packetType"/>
+                <property type="string" name="protocol"/>
+                <property type="string" name="sessionId"/>
+                <property type="string" name="hostId"/>
+                <property type="string" name="hostIdFallbackTimeout"/>
+                <property type="string" name="errorCode"/>
+                <property type="string" name="errorContext"/>
+                <property type="string" name="replyURL"/>
+                <property type="string" name="received"/>
+                <property type="string" name="acceptEncoding"/>
+                <property type="string" name="receivedContentRange"/>
+            </properties>
+        </object>
+    </objects>
+</schema>

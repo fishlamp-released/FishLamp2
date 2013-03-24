@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<schema projectName="myZenfolio" companyName="GreenTongue Software, LLC">
+    <generatorOptions>
+        <typePrefix>ZF</typePrefix>
+        <!--objectsFolderName>Generated</objectsFolderName-->
+    </generatorOptions>
+
+    <objects>
+        <object typeName="ZFSyncState" protocols="NSCopying, NSCoding">
+            <properties>
+                <property type="NSDate" name="lastSyncDate"/>
+                <property type="BOOL" name="isSynced"/>
+                <property type="NSInteger" name="syncObjectId">
+                    <storageOptions isPrimaryKey="YES"/>
+                </property>
+            </properties>
+        </object>
+        <object typeName="ZFGroupElementSyncInfo" protocols="NSCopying, NSCoding">
+            <properties>
+                <property type="BOOL" name="isGroup"/>
+                <property type="NSInteger" name="syncObjectId">
+                    <storageOptions isPrimaryKey="YES"/>
+                </property>
+                <property type="NSString" name="name"/>
+            </properties>
+        </object>
+    </objects>
+</schema>

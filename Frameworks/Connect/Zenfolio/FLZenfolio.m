@@ -1,5 +1,5 @@
 //
-//  FLZenfoliofLibraryMgr.m
+//  ZFfLibraryMgr.m
 //  FishLamp-iOS
 //
 //  Created by Fullerton Mike on 12/28/11.
