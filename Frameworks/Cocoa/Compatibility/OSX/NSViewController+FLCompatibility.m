@@ -14,8 +14,8 @@
 
 #pragma mark -- child view controllers
 
-FLSynthesizeAssociatedProperty(assign_nonatomic, parentViewController, setParentViewController, NSViewController*);
-FLSynthesizeAssociatedProperty(retain_nonatomic, childViewControllers, setChildViewControllers, NSArray*);
+FLSynthesizeAssociatedProperty(FLAssociationPolicyAssignNonatomic, parentViewController, setParentViewController, NSViewController*);
+FLSynthesizeAssociatedProperty(FLAssociationPolicyRetainNonatomic, childViewControllers, setChildViewControllers, NSArray*);
 @dynamic viewLoaded;
 
 - (void) addChildViewController:(NSViewController*) viewController {

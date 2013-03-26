@@ -49,81 +49,95 @@
 
 // specific decoders for types.
 
-- (NSString*) encodeStringWithNSString:(NSString*) string {
+- (NSString*) encodeStringWithString:(NSString*) string {
     return string;
 }
 
-- (NSString*) decodeNSStringFromString:(NSString*) string {
+- (NSString*) decodeStringFromString:(NSString*) string {
     return string;
 }
 
-- (NSString*) encodeStringWithNSDate:(NSDate*) date {
+- (NSString*) encodeStringWithDate:(NSDate*) date {
     return [[FLDateMgr instance] ISO8601DateToString:date];
 }
 
-- (NSDate*) decodeNSDateFromString:(NSString*) string {
+- (NSDate*) decodeDateFromString:(NSString*) string {
     return [[FLDateMgr instance] ISO8601StringToDate:string];
 }
 
-- (NSString*) encodeStringWithNSURL:(NSURL*) URL {
-    return [self encodeStringWithNSString:[URL absoluteString]];
+- (NSString*) encodeStringWithURL:(NSURL*) URL {
+    return [self encodeStringWithString:[URL absoluteString]];
 }
 
-- (NSURL*) decodeNSURLFromString:(NSString*) string {
-    return [NSURL URLWithString:[self decodeNSStringFromString:string]];
+- (NSURL*) decodeURLFromString:(NSString*) string {
+    return [NSURL URLWithString:[self decodeStringFromString:string]];
 }
 
-- (NSString*) encodeStringWithCGRect:(NSValue*) value {
+- (NSString*) encodeStringWithRect:(NSValue*) value {
     return NSStringFromCGRect([value CGRectValue]);
 }
 
-- (NSString*) encodeStringWithCGPoint:(NSValue*) value {
+- (NSString*) encodeStringWithPoint:(NSValue*) value {
     return NSStringFromCGPoint([value CGPointValue]);
 }
 
-- (NSString*) encodeStringWithCGSize:(NSValue*) value {
+- (NSString*) encodeStringWithSize:(NSValue*) value {
     return NSStringFromCGSize([value CGSizeValue]);
 }
 
-- (NSValue*) decodeCGPointFromString:(NSString*) string {
+- (NSValue*) decodePointFromString:(NSString*) string {
     return [NSValue valueWithCGPoint:CGPointFromString(string)];
 }
 
-- (NSValue*) decodeCGRectFromString:(NSString*) string {
+- (NSValue*) decodeRectFromString:(NSString*) string {
     return [NSValue valueWithCGRect:CGRectFromString(string)];
 }
 
-- (NSValue*) decodeCGSizeFromString:(NSString*) string {
+- (NSValue*) decodeSizeFromString:(NSString*) string {
     return [NSValue valueWithCGSize:CGSizeFromString(string)];;
 }
 
-- (NSString*) encodeStringWithNSNumber:(NSNumber*) number {
+- (NSString*) encodeStringWithNumber:(NSNumber*) number {
     return [_numberFormatter stringFromNumber:number];
 }
 
-- (NSNumber*) decodeNSNumberFromString:(NSString*) string {
+- (NSNumber*) decodeNumberFromString:(NSString*) string {
     return [_numberFormatter numberFromString:string];
 }
 
-- (NSData*) decodeNSDataFromString:(NSString*) string {
+- (NSData*) decodeDataFromString:(NSString*) string {
     return [string dataUsingEncoding:NSUTF8StringEncoding];
 }
 
-- (NSString*) encodeStringWithNSData:(NSData*) data {
+- (NSString*) encodeStringWithData:(NSData*) data {
     return FLAutorelease([[NSString alloc] initWithBytes:[data bytes] 
                                     length:[data length] 
                                     encoding:NSUTF8StringEncoding]);
 }
 
-- (SDKColor*) decodeUIColorFromString:(NSString*) string {
-    return FLColorFromRGBString(string);
+- (SDKColor*) decodeColorFromString:(NSString*) string {
+    return FLColorFromString(string);
 }
 
-- (SDKColor*) decodeNSColorFromString:(NSString*) string {
-    return FLColorFromRGBString(string);
+- (NSString*) encodeStringWithFont:(SDKFont*) font {
+    return [NSString stringWithFormat:@"%@:%f", [font fontName], [font pointSize]];
 }
 
-- (NSString*) encodeStringWithUIColor:(SDKColor*) color {
+- (SDKFont*) decodeFontFromString:(NSString*) string {
+    
+    NSRange semiColon = [string rangeOfString:@":"];
+    FLConfirmWithComment(semiColon.location >= 0, @"unable to parse font, format should be \"fontname-style:size\"");
+    
+    NSString* name = [string substringToIndex:semiColon.location];
+    FLConfirmWithComment(FLStringIsNotEmpty(name), @"empty font name");
+    
+    float size = [[string substringFromIndex:semiColon.location+1] floatValue];
+    FLConfirmWithComment(size > 0, @"font size is zero");
+    
+    return [SDKFont fontWithName:name size:size];
+}
+
+- (NSString*) encodeStringWithColor:(SDKColor*) color {
     return FLRgbStringFromColor(color);
 }
 

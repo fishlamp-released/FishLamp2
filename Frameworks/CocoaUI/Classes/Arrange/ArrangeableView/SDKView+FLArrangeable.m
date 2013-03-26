@@ -12,7 +12,7 @@
 #import "FLRectGeometry.h"
 
 @implementation SDKView (FLArrangeableContainer)
-FLSynthesizeAssociatedProperty(retain_nonatomic, arrangement, setArrangement, FLArrangement*);
+FLSynthesizeAssociatedProperty(FLAssociationPolicyRetainNonatomic, arrangement, setArrangement, FLArrangement*);
 @end
 
 @implementation SDKView (FLArrangeable)

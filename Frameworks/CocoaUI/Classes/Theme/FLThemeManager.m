@@ -12,6 +12,7 @@
 #import "FLObjectDescriber.h"
 #import "FLXmlObjectBuilder.h"
 #import "FLObjcRuntime.h"
+#import "NSObject+FLTheme.h"
 
 NSString* FLThemeChangedNotificationKey = @"FLThemeChangedNotificationKey";
 NSString* FLCurrentThemeKey = @"FLCurrentThemeKey";
@@ -20,27 +21,14 @@ NSString* FLCurrentThemeKey = @"FLCurrentThemeKey";
 @property (readwrite, strong, nonatomic) NSArray* themes;
 @end    
     
-@implementation NSTextField (FLThemeManager)
-
-- (void) newViewWillMoveToSuperview:(NSView*) newSuperview {
-
-    if(newSuperview) {
-        self.textColor = [NSColor redColor];
+@implementation NSObject (FLThemeManager)
+- (void) newAwakeFromNib {
+    [self newAwakeFromNib]; // call original awakeFromNib
+    if([self isThemable]) {
+        [self themeDidChange:[FLTheme currentTheme]];
     }
-    
-    [self newViewWillMoveToSuperview:newSuperview];
 }
-
-@end    
-
-@implementation FLTestTextField
-- (void) viewWillMoveToSuperview:(NSView *)newSuperview {
-    
-   
-    
-    [super viewWillMoveToSuperview:newSuperview];
-}
-@end
+@end        
     
 @implementation FLThemeManager 
 
@@ -53,8 +41,7 @@ FLSynthesizeSingleton(FLThemeManager)
     self = [super init];
     if(self) {
         _themes = [[NSMutableArray alloc] init];
-        
-        FLSwizzleInstanceMethod([NSTextField class],@selector(viewWillMoveToSuperview:), @selector(newViewWillMoveToSuperview:));
+        FLSwizzleInstanceMethod([NSObject class],@selector(awakeFromNib), @selector(newAwakeFromNib));
 	}
 	return self;
 }
@@ -68,7 +55,7 @@ FLSynthesizeSingleton(FLThemeManager)
 }
 #endif
 
-- (void) setCurrentTheme:(id) theme {
+- (void) setCurrentTheme:(FLTheme*) theme {
 
     if(theme != _currentTheme) {
         FLSetObjectWithRetain(_currentTheme, theme);
@@ -102,43 +89,50 @@ FLSynthesizeSingleton(FLThemeManager)
     return nil;
 }
 
-
-@end
-
-@implementation FLThemeHandler
-
-- (NSString*) fontFamilyName {
-    return @"Verdana";
-}
-
-- (NSFont*) applicationFont:(CGFloat) fontSize {
-    SDKFont* font = [SDKFont fontWithName:@"Verdana-Regular" size:fontSize];
-    FLAssertNotNil(font);
-    return font;
-}
-
-- (SDKFont *)boldApplicationFont:(CGFloat)fontSize {
-    SDKFont* font = [SDKFont fontWithName:@"Verdand-Bold" size:fontSize];
-    FLAssertNotNil(font);
-    return font;
-}
-
-- (NSNumber*) smallFontSize {
-    return [NSNumber numberWithInt:10];
-}
-- (NSNumber*) applicationFontSize {
-    return [NSNumber numberWithInt:12];
-}
-
-- (NSNumber*) header1FontSize{
-    return [NSNumber numberWithInt:14];
-}
-- (NSNumber*) header2FontSize {
-    return [NSNumber numberWithInt:16];
+- (void) applyThemeToObject:(id) object {
+    SEL selector = [object themeSelector];
+    if(selector) {
+        [self performSelector:selector withObject:object];
+    }
 }
 
 
 @end
+
+//@implementation FLThemeHandler
+//
+//- (NSString*) fontFamilyName {
+//    return @"Verdana";
+//}
+//
+//- (NSFont*) applicationFont:(CGFloat) fontSize {
+//    SDKFont* font = [SDKFont fontWithName:@"Verdana-Regular" size:fontSize];
+//    FLAssertNotNil(font);
+//    return font;
+//}
+//
+//- (SDKFont *)boldApplicationFont:(CGFloat)fontSize {
+//    SDKFont* font = [SDKFont fontWithName:@"Verdand-Bold" size:fontSize];
+//    FLAssertNotNil(font);
+//    return font;
+//}
+//
+//- (NSNumber*) smallFontSize {
+//    return [NSNumber numberWithInt:10];
+//}
+//- (NSNumber*) applicationFontSize {
+//    return [NSNumber numberWithInt:12];
+//}
+//
+//- (NSNumber*) header1FontSize{
+//    return [NSNumber numberWithInt:14];
+//}
+//- (NSNumber*) header2FontSize {
+//    return [NSNumber numberWithInt:16];
+//}
+//
+//
+//@end
 
 
 

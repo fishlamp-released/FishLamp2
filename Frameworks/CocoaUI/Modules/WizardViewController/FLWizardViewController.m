@@ -237,7 +237,7 @@
 @end
 
 @implementation NSWindow (FLModalAdditions)
-FLSynthesizeAssociatedProperty(retain_nonatomic, modalWindowController, setModalWindowController, NSWindowController*);
+FLSynthesizeAssociatedProperty(FLAssociationPolicyRetainNonatomic, modalWindowController, setModalWindowController, NSWindowController*);
 
 - (void) closeModalWindowController {
     [self.modalWindowController closeIfModalInWindow:self];
@@ -247,9 +247,9 @@ FLSynthesizeAssociatedProperty(retain_nonatomic, modalWindowController, setModal
 
 @implementation NSWindowController (FLModalAdditions)
 
-FLSynthesizeAssociatedProperty(assign_nonatomic, modalInWindow, setModalInWindow, NSWindow*);
-FLSynthesizeAssociatedProperty(retain_nonatomic, modalSession, setModalSession, NSValue*);
-FLSynthesizeAssociatedProperty(assign_nonatomic, previousFirstResponderForModal, setPreviousFirstResponderForModal, id);
+FLSynthesizeAssociatedProperty(FLAssociationPolicyAssignNonatomic, modalInWindow, setModalInWindow, NSWindow*);
+FLSynthesizeAssociatedProperty(FLAssociationPolicyRetainNonatomic, modalSession, setModalSession, NSValue*);
+FLSynthesizeAssociatedProperty(FLAssociationPolicyAssignNonatomic, previousFirstResponderForModal, setPreviousFirstResponderForModal, id);
 
 - (IBAction) closeIfModalInWindow:(id) sender {
     if(self.modalInWindow) {

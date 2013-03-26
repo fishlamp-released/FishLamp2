@@ -15,7 +15,7 @@ NSString* const FLErrorExceptionName = @"com.fishlamp.exception.error";
 
 @implementation NSException (NSError)
 
-FLSynthesizeAssociatedProperty(retain_nonatomic, _error, setError, NSError*);
+FLSynthesizeAssociatedProperty(FLAssociationPolicyRetainNonatomic, _error, setError, NSError*);
 
 - (NSError*) error {
     NSError* error = [self _error];

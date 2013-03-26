@@ -31,6 +31,15 @@
 }
 #endif
 
+- (void) applyThemeToBreadcrumbBarView:(id) theme {
+
+}
+
+- (SEL) themeSelector {
+    return @selector(applyThemeToBreadcrumbBarView:);
+}
+
+
 - (id) setupBreadcrumbBarView {
     if(!_titles) {
         _titles = [[NSMutableArray alloc] init];

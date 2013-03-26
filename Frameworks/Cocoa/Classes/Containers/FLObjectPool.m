@@ -11,7 +11,7 @@
 #import "FLDispatch.h"
 
 @implementation NSObject (FLObjectPool)
-FLSynthesizeAssociatedProperty(retain_nonatomic, objectPool, setObjectPool, FLObjectPool*);
+FLSynthesizeAssociatedProperty(FLAssociationPolicyRetainNonatomic, objectPool, setObjectPool, FLObjectPool*);
 @end
 
 @implementation FLObjectPool

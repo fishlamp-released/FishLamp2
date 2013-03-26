@@ -26,7 +26,7 @@
 
 
 @implementation NSObject (FLDeallocNotifier)
-FLSynthesizeAssociatedProperty(retain_nonatomic, _deallocNotifier, _setDeallocNotifier, FLDeallocNotifier*);
+FLSynthesizeAssociatedProperty(FLAssociationPolicyRetainNonatomic, _deallocNotifier, _setDeallocNotifier, FLDeallocNotifier*);
 
 - (FLDeallocNotifier*) deallocNotifier {
     @synchronized(self) {
