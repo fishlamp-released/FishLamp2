@@ -25,7 +25,7 @@ FLSynthesizeDictionaryGetterProperty(stringEncoding, NSArray*, NSStringEncodingE
 FLSynthesizeDictionaryGetterProperty(URL, NSURL*, NSURLErrorKey, self.userInfo)
 FLSynthesizeDictionaryGetterProperty(filePath, NSString*, NSFilePathErrorKey, self.userInfo)
 FLSynthesizeDictionaryGetterProperty(comment, NSString*, FLErrorCommentKey, self.userInfo)
-FLSynthesizeAssociatedProperty(retain_nonatomic, stackTrace, setStackTrace, FLStackTrace*);
+FLSynthesizeAssociatedProperty(FLAssociationPolicyRetainNonatomic, stackTrace, setStackTrace, FLStackTrace*);
 
 + (NSError*) errorWithDomain:(id) domain
                         code:(NSInteger) code

@@ -2798,6 +2798,15 @@
 		2776CC741672643C00F2E70A /* FLJson.m in Sources */ = {isa = PBXBuildFile; fileRef = 2776CC6F1672643C00F2E70A /* FLJson.m */; };
 		2776CC751672643C00F2E70A /* FLJson.m in Sources */ = {isa = PBXBuildFile; fileRef = 2776CC6F1672643C00F2E70A /* FLJson.m */; };
 		2776CC761672643C00F2E70A /* FLJson.m in Sources */ = {isa = PBXBuildFile; fileRef = 2776CC6F1672643C00F2E70A /* FLJson.m */; };
+		278E85D51702421A008AFB98 /* SDKColor+NSString.h in Headers */ = {isa = PBXBuildFile; fileRef = 278E85D31702421A008AFB98 /* SDKColor+NSString.h */; };
+		278E85D61702421A008AFB98 /* SDKColor+NSString.h in Headers */ = {isa = PBXBuildFile; fileRef = 278E85D31702421A008AFB98 /* SDKColor+NSString.h */; };
+		278E85D71702421A008AFB98 /* SDKColor+NSString.h in Headers */ = {isa = PBXBuildFile; fileRef = 278E85D31702421A008AFB98 /* SDKColor+NSString.h */; };
+		278E85D81702421A008AFB98 /* SDKColor+NSString.h in Headers */ = {isa = PBXBuildFile; fileRef = 278E85D31702421A008AFB98 /* SDKColor+NSString.h */; };
+		278E85D91702421A008AFB98 /* SDKColor+NSString.m in Sources */ = {isa = PBXBuildFile; fileRef = 278E85D41702421A008AFB98 /* SDKColor+NSString.m */; };
+		278E85DA1702421A008AFB98 /* SDKColor+NSString.m in Sources */ = {isa = PBXBuildFile; fileRef = 278E85D41702421A008AFB98 /* SDKColor+NSString.m */; };
+		278E85DB1702421A008AFB98 /* SDKColor+NSString.m in Sources */ = {isa = PBXBuildFile; fileRef = 278E85D41702421A008AFB98 /* SDKColor+NSString.m */; };
+		278E85DC1702421A008AFB98 /* SDKColor+NSString.m in Sources */ = {isa = PBXBuildFile; fileRef = 278E85D41702421A008AFB98 /* SDKColor+NSString.m */; };
+		278E85DD1702421A008AFB98 /* SDKColor+NSString.m in Sources */ = {isa = PBXBuildFile; fileRef = 278E85D41702421A008AFB98 /* SDKColor+NSString.m */; };
 		2798DA40166D886500A0863D /* __FLAssetQueueState.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE1C166D886500A0863D /* __FLAssetQueueState.h */; };
 		2798DA41166D886500A0863D /* __FLAssetQueueState.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE1C166D886500A0863D /* __FLAssetQueueState.h */; };
 		2798DA42166D886500A0863D /* __FLAssetQueueState.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE1C166D886500A0863D /* __FLAssetQueueState.h */; };
@@ -3786,6 +3795,9 @@
 		278CA8FD16FDFA7200E58D93 /* FLCompatibleGeometry+iOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FLCompatibleGeometry+iOS.h"; sourceTree = "<group>"; };
 		278CA8FE16FDFC4300E58D93 /* FLCompatibleViewController+iOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FLCompatibleViewController+iOS.h"; sourceTree = "<group>"; };
 		278CA90516FDFD2D00E58D93 /* FLCompatibility+iOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FLCompatibility+iOS.h"; sourceTree = "<group>"; };
+		278E85D31702421A008AFB98 /* SDKColor+NSString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SDKColor+NSString.h"; sourceTree = "<group>"; };
+		278E85D41702421A008AFB98 /* SDKColor+NSString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SDKColor+NSString.m"; sourceTree = "<group>"; };
+		278E85DE170248B1008AFB98 /* FLHexColorDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLHexColorDefines.h; sourceTree = "<group>"; };
 		2798CE1C166D886500A0863D /* __FLAssetQueueState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __FLAssetQueueState.h; sourceTree = "<group>"; };
 		2798CE1D166D886500A0863D /* __FLAssetQueueState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = __FLAssetQueueState.m; sourceTree = "<group>"; };
 		2798CE1E166D886500A0863D /* __FLExportedAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __FLExportedAsset.h; sourceTree = "<group>"; };
@@ -4086,6 +4098,9 @@
 				271D314016FE0774009CD00F /* SDKColor+FLMoreColors.m */,
 				271D314116FE0774009CD00F /* SDKColor+FLUtils.h */,
 				271D314216FE0774009CD00F /* SDKColor+FLUtils.m */,
+				278E85D31702421A008AFB98 /* SDKColor+NSString.h */,
+				278E85D41702421A008AFB98 /* SDKColor+NSString.m */,
+				278E85DE170248B1008AFB98 /* FLHexColorDefines.h */,
 			);
 			path = Color;
 			sourceTree = "<group>";
@@ -5765,6 +5780,7 @@
 				2747939B16FE0B6300DC11BE /* NSValue+FLCompatibility.h in Headers */,
 				274793A916FE0D8600DC11BE /* NSView+FLCompatibility.h in Headers */,
 				274793B316FE0E9500DC11BE /* NSViewController+FLCompatibility.h in Headers */,
+				278E85D51702421A008AFB98 /* SDKColor+NSString.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6131,6 +6147,7 @@
 				2747939D16FE0B6300DC11BE /* NSValue+FLCompatibility.h in Headers */,
 				274793AB16FE0D8600DC11BE /* NSView+FLCompatibility.h in Headers */,
 				274793B516FE0E9500DC11BE /* NSViewController+FLCompatibility.h in Headers */,
+				278E85D71702421A008AFB98 /* SDKColor+NSString.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6497,6 +6514,7 @@
 				2747939C16FE0B6300DC11BE /* NSValue+FLCompatibility.h in Headers */,
 				274793AA16FE0D8600DC11BE /* NSView+FLCompatibility.h in Headers */,
 				274793B416FE0E9500DC11BE /* NSViewController+FLCompatibility.h in Headers */,
+				278E85D61702421A008AFB98 /* SDKColor+NSString.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6863,6 +6881,7 @@
 				2747939E16FE0B6300DC11BE /* NSValue+FLCompatibility.h in Headers */,
 				274793AC16FE0D8600DC11BE /* NSView+FLCompatibility.h in Headers */,
 				274793B616FE0E9500DC11BE /* NSViewController+FLCompatibility.h in Headers */,
+				278E85D81702421A008AFB98 /* SDKColor+NSString.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7363,6 +7382,7 @@
 				2747939F16FE0B6300DC11BE /* NSValue+FLCompatibility.m in Sources */,
 				274793AD16FE0D8600DC11BE /* NSView+FLCompatibility.m in Sources */,
 				274793B716FE0E9500DC11BE /* NSViewController+FLCompatibility.m in Sources */,
+				278E85DA1702421A008AFB98 /* SDKColor+NSString.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7694,6 +7714,7 @@
 				274793A116FE0B6300DC11BE /* NSValue+FLCompatibility.m in Sources */,
 				274793AF16FE0D8600DC11BE /* NSView+FLCompatibility.m in Sources */,
 				274793B916FE0E9500DC11BE /* NSViewController+FLCompatibility.m in Sources */,
+				278E85DC1702421A008AFB98 /* SDKColor+NSString.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8016,6 +8037,7 @@
 				271D3C8C16FE079A009CD00F /* FLTimer.m in Sources */,
 				271D3C9516FE079A009CD00F /* FLTimeUtilities.m in Sources */,
 				271D3C9E16FE079A009CD00F /* NSError+FLTimeout.m in Sources */,
+				278E85D91702421A008AFB98 /* SDKColor+NSString.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8347,6 +8369,7 @@
 				274793A016FE0B6300DC11BE /* NSValue+FLCompatibility.m in Sources */,
 				274793AE16FE0D8600DC11BE /* NSView+FLCompatibility.m in Sources */,
 				274793B816FE0E9500DC11BE /* NSViewController+FLCompatibility.m in Sources */,
+				278E85DB1702421A008AFB98 /* SDKColor+NSString.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8678,6 +8701,7 @@
 				274793A216FE0B6300DC11BE /* NSValue+FLCompatibility.m in Sources */,
 				274793B016FE0D8600DC11BE /* NSView+FLCompatibility.m in Sources */,
 				274793BA16FE0E9500DC11BE /* NSViewController+FLCompatibility.m in Sources */,
+				278E85DD1702421A008AFB98 /* SDKColor+NSString.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -21,7 +21,7 @@
 
 @implementation UIViewController (FLAuxiliaryViewController)
 
-FLSynthesizeAssociatedProperty(assign_nonatomic, _auxiliaryViewController, setAuxiliaryViewController, FLAuxiliaryViewController*)
+FLSynthesizeAssociatedProperty(FLAssociationPolicyAssignNonatomic, _auxiliaryViewController, setAuxiliaryViewController, FLAuxiliaryViewController*)
 
 - (FLAuxiliaryViewController*) auxiliaryViewController {
     FLAuxiliaryViewController* controller = self._auxiliaryViewController;

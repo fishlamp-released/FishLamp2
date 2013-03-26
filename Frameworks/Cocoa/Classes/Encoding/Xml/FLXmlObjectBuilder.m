@@ -109,6 +109,10 @@ withPropertyDescription:(FLObjectDescriber*) objectDescription {
         FLObjectEncoder* encoder = objectDescription.objectEncoder;
         if(encoder) {
             object = [self.decoder decodeDataFromString:[element value] forType:encoder];
+            
+            if(!object) {
+                FLLog(@"object not expanded for %@:%@", [element elementName], [element value]);
+            }
         }
     }
     

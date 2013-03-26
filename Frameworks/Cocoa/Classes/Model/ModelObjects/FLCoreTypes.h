@@ -11,32 +11,36 @@
 
 
 @protocol FLTypeCoreTypesEncoding <NSObject>
-- (NSString*) encodeStringWithCGRect:(NSValue*) value;
-- (NSString*) encodeStringWithCGPoint:(NSValue*) value;
-- (NSString*) encodeStringWithCGSize:(NSValue*) value;
+- (NSString*) encodeStringWithRect:(NSValue*) value;
+- (NSString*) encodeStringWithPoint:(NSValue*) value;
+- (NSString*) encodeStringWithSize:(NSValue*) value;
 
-- (NSString*) encodeStringWithNSNumber:(NSNumber*) number;
-- (NSString*) encodeStringWithNSString:(NSString*) string;
-- (NSString*) encodeStringWithNSDate:(NSDate*) date;
-- (NSString*) encodeStringWithNSData:(NSData*) data;
-- (NSString*) encodeStringWithNSURL:(NSURL*) URL;
-
+- (NSString*) encodeStringWithNumber:(NSNumber*) number;
+- (NSString*) encodeStringWithString:(NSString*) string;
 - (NSString*) encodeStringWithBOOL:(NSNumber*) number;
+
+- (NSString*) encodeStringWithData:(NSData*) data;
+- (NSString*) encodeStringWithURL:(NSURL*) URL;
+- (NSString*) encodeStringWithDate:(NSDate*) date;
+- (NSString*) encodeStringWithFont:(SDKFont*) font;
+
 @end
 
 // decoding
 
 @protocol FLTypeCoreTypesDecoding <NSObject>
-- (NSValue*) decodeCGPointFromString:(NSString*) string;
-- (NSValue*) decodeCGRectFromString:(NSString*) string;
-- (NSValue*) decodeCGSizeFromString:(NSString*) string;
+- (NSValue*) decodePointFromString:(NSString*) string;
+- (NSValue*) decodeRectFromString:(NSString*) string;
+- (NSValue*) decodeSizeFromString:(NSString*) string;
 
 - (NSNumber*) decodeBOOLFromString:(NSString*) string;
-- (NSNumber*) decodeNSNumberFromString:(NSString*) string;
-- (NSString*) decodeNSStringFromString:(NSString*) string;
-- (NSDate*) decodeNSDateFromString:(NSString*) string;
-- (NSData*) decodeNSDataFromString:(NSString*) string;
-- (NSURL*) decodeNSURLFromString:(NSString*) string;
+- (NSNumber*) decodeNumberFromString:(NSString*) string;
+- (NSString*) decodeStringFromString:(NSString*) string;
+
+- (NSData*) decodeDataFromString:(NSString*) string;
+- (NSURL*) decodeURLFromString:(NSString*) string;
+- (NSDate*) decodeDateFromString:(NSString*) string;
+- (SDKFont*) decodeFontFromString:(NSString*) string;
 @end
 
 // numbers
@@ -163,4 +167,8 @@ typedef enum {
 @end
 
 @interface NSDate (FLCoreTypes)
+@end
+
+@interface SDKFont (FLCoreTypes)
+
 @end

@@ -179,7 +179,7 @@ FLSynthesizeStructProperty(bottomItem, setBottomItem, FLViewContentItem, _flags)
 
 @implementation SDKViewController (FLViewContentsDescriptor)
 
-FLSynthesizeAssociatedProperty(retain_nonatomic, _viewContentsDescriptor, setViewContentsDescriptor, FLViewContentsDescriptor*);
+FLSynthesizeAssociatedProperty(FLAssociationPolicyRetainNonatomic, _viewContentsDescriptor, setViewContentsDescriptor, FLViewContentsDescriptor*);
 
 - (BOOL) viewEnclosesStatusBar {
 #if IOS

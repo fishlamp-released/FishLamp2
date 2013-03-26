@@ -30,7 +30,7 @@ enum {
 @implementation FLNumberEncoder 
 
 - (id) init {
-    return [self initWithEncodingKey:@"NSNumber"];
+    return [self initWithEncodingKey:@"Number"];
 }
 
 - (FLTypeNumberType) numberType {
@@ -268,7 +268,7 @@ enum {
 }
 
 - (id) init {
-    return [self initWithEncodingKey:@"CGSize"];
+    return [self initWithEncodingKey:@"Size"];
 }
 
 @end
@@ -280,7 +280,7 @@ enum {
 }
 
 - (id) init {
-    return [self initWithEncodingKey:@"CGRect"];
+    return [self initWithEncodingKey:@"Rect"];
 }
 
 + (FLObjectEncoder*) objectEncoder {
@@ -296,7 +296,7 @@ enum {
 }
 
 - (id) init {
-    return [self initWithEncodingKey:@"CGPoint"];
+    return [self initWithEncodingKey:@"Point"];
 }
 
 + (FLObjectEncoder*) objectEncoder {
@@ -310,52 +310,56 @@ enum {
 
 @implementation NSString (FLCoreTypes)
 + (FLObjectEncoder*) objectEncoder {
-    FLReturnStaticObject([[FLObjectEncoder alloc] initWithClass:[NSString class] ]);
+    FLReturnStaticObject([[FLObjectEncoder alloc] initWithEncodingKey:@"String"]);
 }
-- (NSString*) encodingKey {
-    return @"NSString";
-}
+
 @end
 
 //@implementation NSMutableString (FLCoreTypes)
 //+ (FLObjectEncoder*) objectEncoder {
-//    FLReturnStaticObject([[FLObjectEncoder alloc] initWithClass:[NSMutableString class] ]);
+//    FLReturnStaticObject([[FLObjectEncoder alloc] initWithEncodingKey:[NSMutableString class] ]);
 //}
 //@end
 
 @implementation NSArray (FLCoreTypes)
 + (FLObjectEncoder*) objectEncoder {
-    FLReturnStaticObject([[FLObjectEncoder alloc] initWithClass:[NSArray class] ]);
+    FLReturnStaticObject([[FLObjectEncoder alloc] initWithEncodingKey:@"Array"]);
 }
 @end
 
 @implementation NSMutableArray (FLCoreTypes)
 + (FLObjectEncoder*) objectEncoder {
-    FLReturnStaticObject([[FLMutableArrayType alloc] initWithClass:[NSMutableArray class] ]);
+    FLReturnStaticObject([[FLMutableArrayType alloc] initWithEncodingKey:@"MutableArray"]);
 }
 @end
 
 @implementation NSURL (FLCoreTypes)
 + (FLObjectEncoder*) objectEncoder {
-    FLReturnStaticObject([[FLObjectEncoder alloc] initWithClass:[NSURL class] ]);
+    FLReturnStaticObject([[FLObjectEncoder alloc] initWithEncodingKey:@"URL" ]);
 }
 @end
 
 @implementation NSData (FLCoreTypes)
 + (FLObjectEncoder*) objectEncoder {
-    FLReturnStaticObject([[FLObjectEncoder alloc] initWithClass:[NSData class] ]);
+    FLReturnStaticObject([[FLObjectEncoder alloc] initWithEncodingKey:@"Data" ]);
 }
 @end
 
 //@implementation NSMutableData (FLCoreTypes)
 //+ (FLObjectEncoder*) objectEncoder {
-//    FLReturnStaticObject([[FLObjectEncoder alloc] initWithClass:[NSMutableData class] ]);
+//    FLReturnStaticObject([[FLObjectEncoder alloc] initWithEncodingKey:[NSMutableData class] ]);
 //}
 //@end
 
 @implementation NSDate (FLCoreTypes)
 + (FLObjectEncoder*) objectEncoder {
-    FLReturnStaticObject([[FLObjectEncoder alloc] initWithClass:[NSDate class] ]);
+    FLReturnStaticObject([[FLObjectEncoder alloc] initWithEncodingKey:@"Date" ]);
+}
+@end
+
+@implementation SDKFont (FLCoreTypes)
++ (FLObjectEncoder*) objectEncoder {
+    FLReturnStaticObject([[FLObjectEncoder alloc] initWithEncodingKey:@"Font"]);
 }
 @end
 

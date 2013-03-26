@@ -77,10 +77,10 @@
 - (void) receiveEvent:(NSNotification*) note {
     if(self.parameterKey) {
         id parameter = [[note userInfo] objectForKey:self.parameterKey];
-        FLPerformSelector1(_sender, _action, parameter);
+        FLPerformSelector1(_target, _action, parameter);
     }
     else {
-        FLPerformSelector1(_sender, _action, [note userInfo]);
+        FLPerformSelector1(_target, _action, [note userInfo]);
     }
 }
 

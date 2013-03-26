@@ -45,7 +45,7 @@ static void * const kArrangeableObjectKey = (void*)&kArrangeableObjectKey;
 
 @implementation NSObject (FLArrangeable)
 
-FLSynthesizeAssociatedProperty(retain_nonatomic, arrangeableStateObject, setArrangeableStateObject, FLArrangeableObjectState*);
+FLSynthesizeAssociatedProperty(FLAssociationPolicyRetainNonatomic, arrangeableStateObject, setArrangeableStateObject, FLArrangeableObjectState*);
 
 - (FLArrangeableObjectState*) arrangeableStateObjectCreatedIfNeeded {
     FLArrangeableObjectState* object = [self arrangeableStateObject];

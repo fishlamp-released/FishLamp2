@@ -31,17 +31,15 @@ FLSingletonProperty(FLThemeManager);
 
 @end
 
-@interface FLThemeHandler : NSObject
-- (NSNumber*) smallFontSize;
-- (NSNumber*) applicationFontSize;
-- (NSNumber*) header1FontSize;
-- (NSNumber*) header2FontSize;
+//@interface FLThemeHandler : NSObject
+//- (NSNumber*) smallFontSize;
+//- (NSNumber*) applicationFontSize;
+//- (NSNumber*) header1FontSize;
+//- (NSNumber*) header2FontSize;
+//
+//
+//- (NSString*) fontFamilyName;
+//- (NSFont*) applicationFont:(CGFloat) fontSize;
+//- (NSFont*) boldApplicationFont:(CGFloat) fontSize;
+//@end
 
-
-- (NSString*) fontFamilyName;
-- (NSFont*) applicationFont:(CGFloat) fontSize;
-- (NSFont*) boldApplicationFont:(CGFloat) fontSize;
-@end
-
-@interface FLTestTextField : NSTextField
-@end

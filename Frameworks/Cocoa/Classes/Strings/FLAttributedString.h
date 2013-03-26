@@ -8,10 +8,11 @@
 
 #import "FLCocoaRequired.h"
 #import "FishLampCocoa.h"
+#import "FLObjectDescriber.h"
 
 @class FLAttributedString;
 
-@interface FLTextStyle : NSObject<NSCopying> {
+@interface FLTextStyle : FLSelfDescribingObject<NSCopying> {
 @private
     SDKColor* _textColor;
     SDKColor* _shadowColor;
@@ -30,7 +31,7 @@
 
 @end
 
-@interface FLStringDisplayStyle : NSObject<NSCopying> {
+@interface FLStringDisplayStyle : FLSelfDescribingObject<NSCopying> {
 @private
     FLTextStyle* _selectedStyle;
     FLTextStyle* _enabledStyle;
@@ -38,8 +39,9 @@
     FLTextStyle* _highlightedStyle;
     FLTextStyle* _emphasizedStyle;
     FLTextStyle* _hoveringStyle;
+    SDKFont* _textFont;
 }
-- (void) setTextFont:(SDKFont*) font;
+@property (readwrite, strong, nonatomic) SDKFont* textFont;
 
 @property (readwrite, copy, nonatomic) FLTextStyle* selectedStyle;
 @property (readwrite, copy, nonatomic) FLTextStyle* enabledStyle;

@@ -20,10 +20,7 @@
 @property (readwrite, assign, nonatomic) SEL decodeSelector;
 
 - (id) initWithEncodingKey:(NSString*) encodingKey;
-- (id) initWithClass:(Class) aClass;
-
-+ (id) objectEncoder:(NSString*) encodingKey;
-+ (id) objectEncoderForClass:(Class) aClass;
++ (id) objectEncoderWithEncodingKey:(NSString*) encodingKey;
 
 - (NSString*) encodeObjectToString:(id) object withEncoder:(id) encoder;
 - (id) decodeStringToObject:(NSString*) object withDecoder:(id) decoder;
@@ -32,5 +29,4 @@
 @interface NSObject (FLObjectEncoder) 
 + (FLObjectEncoder*) objectEncoder;
 - (FLObjectEncoder*) objectEncoder;
-+ (NSString*) encodingKey;
 @end

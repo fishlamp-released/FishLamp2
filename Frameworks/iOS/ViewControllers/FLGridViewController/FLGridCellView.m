@@ -14,7 +14,7 @@
 
 @implementation UIView (FLGridCell)
 
-FLSynthesizeAssociatedProperty(assign_nonatomic, gridCell, setGridCell, id);
+FLSynthesizeAssociatedProperty(FLAssociationPolicyAssignNonatomic, gridCell, setGridCell, id);
 
 - (void) didMoveToGridCell:(FLGridCell*) cell {
     self.gridCell = cell;

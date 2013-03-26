@@ -36,6 +36,8 @@
 - (void) setTarget:(id) target action:(SEL) action;
 - (void) removeTarget;
 
+- (void) receiveEvent:(NSNotification*) note;
+
 @end
 
 //

@@ -71,6 +71,7 @@
 @synthesize emphasizedStyle = _emphasizedStyle;
 @synthesize hoveringStyle = _hoveringStyle;
 @synthesize selectedStyle = _selectedStyle;
+@synthesize textFont = _textFont;
 
 + (id) stringDisplayStyle {
     return FLAutorelease([[[self class] alloc] init]);
@@ -109,6 +110,7 @@
 
 #if FL_MRC
 - (void) dealloc {
+    [_textFont release];
     [_selectedStyle release];
     [_enabledStyle release];
     [_disabledStyle release];
@@ -121,6 +123,7 @@
 
 - (id) copyWithZone:(NSZone*) zone {
     FLStringDisplayStyle* colors = [[FLStringDisplayStyle alloc] init];
+    colors.textFont = self.textFont;
     colors.enabledStyle = self.enabledStyle;
     colors.disabledStyle = self.disabledStyle;
     colors.highlightedStyle = self.highlightedStyle;
@@ -140,8 +143,12 @@
 }
 
 - (void) setTextFont:(SDKFont*) font {
+    FLSetObjectWithRetain(_textFont, font);
+    
     [self visitStyles:^(FLTextStyle* style){
-        style.textFont = font;
+        if(style.textFont == nil) {
+            style.textFont = font;
+        }
     }];
 }
 

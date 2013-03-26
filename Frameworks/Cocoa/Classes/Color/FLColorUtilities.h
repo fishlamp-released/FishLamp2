@@ -9,6 +9,7 @@
 #import "FLCocoaRequired.h"
 #import "SDKColor+FLUtils.h"
 #import "SDKColor+FLMoreColors.h"
+#import "SDKColor+NSString.h"
 
 @class SDKColor;
 
@@ -55,16 +56,7 @@ BOOL FLColorValueIsRGB(CGFloat value) {
 #define FLReturnColorWithDecimalRed(__RED__,__GREEN__,__BLUE__,__ALPHA__) \
             FLReturnStaticObject(FLRetain(FLColorCreateWithDecimalColorValues(__RED__, __GREEN__,__BLUE__, __ALPHA__)))
 
-// #112233
-// rgb(10,11,12)
-// rgb(10,11,12, 0.5);
-extern SDKColor*  FLColorFromRGBString(NSString* string);
-extern NSString* FLRgbStringFromColor(SDKColor* color); //rgb(11,11,11,0.5)
 
-extern NSString* FLCssColorStringFromColor(SDKColor* color); // #AABBCC
-extern SDKColor* FLColorFromCssColorString(NSString* string);
-
-extern NSString* FLHexColorStringFromColor(SDKColor* color); // AABBCC
 
 #if OSX
 @interface CIColor (FLColorConversions)

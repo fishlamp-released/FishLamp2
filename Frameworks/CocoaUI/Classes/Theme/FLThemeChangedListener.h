@@ -10,15 +10,12 @@
 #import "FLNotificationListener.h"
 
 @interface FLThemeChangedListener : FLNotificationListener {
+@private
+    SEL _themeSelector;
 }
+@property (readwrite, assign, nonatomic) SEL targetThemeSelector;
 
-- (id) init;
-- (id) initWithTarget:(id) target;
-+ (id) themeChangedListener:(id) target;
-+ (id) themeChangedListener;
-@end
-
-@interface NSObject (FLTheme)
-- (void) themeDidChange_fl:(id) theme;
+- (id) initWithTarget:(id) target withSelector:(SEL) selector;
++ (id) themeChangedListener:(id) target withSelector:(SEL) selector;
 @end
 

@@ -14,7 +14,7 @@
 
 @implementation SDKViewController (FLPresentationBehavior)
 
-FLSynthesizeAssociatedProperty(retain_nonatomic, _presentationBehavior, setPresentationBehavior, id<FLPresentationBehavior>);
+FLSynthesizeAssociatedProperty(FLAssociationPolicyRetainNonatomic, _presentationBehavior, setPresentationBehavior, id<FLPresentationBehavior>);
 
 - (id<FLPresentationBehavior>) presentationBehavior {
     id<FLPresentationBehavior> behavior = [self _presentationBehavior];

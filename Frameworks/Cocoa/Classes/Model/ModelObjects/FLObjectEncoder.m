@@ -9,6 +9,8 @@
 #import "FLObjectEncoder.h"
 
 @interface FLObjectEncoder ()
+//- (id) initWithClass:(Class) aClass;
+//+ (id) objectEncoderForClass:(Class) aClass;
 @end
 
 @implementation FLObjectEncoder
@@ -29,17 +31,17 @@
     return self;
 }    
 
-- (id) initWithClass:(Class) aClass {
-    return [self initWithEncodingKey:[aClass encodingKey]];
-}
+//- (id) initWithClass:(Class) aClass {
+//    return [self initWithEncodingKey:[aClass encodingKey]];
+//}
 
-+ (id) objectEncoder:(NSString*) encodingKey {
++ (id) objectEncoderWithEncodingKey:(NSString*) encodingKey {
 	return FLAutorelease([[[self class] alloc] initWithEncodingKey:encodingKey]);
 }
 
-+ (id) objectEncoderForClass:(Class) aClass   {
-    return FLAutorelease([[[self class] alloc] initWithClass:aClass]);
-}
+//+ (id) objectEncoderForClass:(Class) aClass   {
+//    return FLAutorelease([[[self class] alloc] initWithClass:aClass]);
+//}
 
 //+ (SEL) decodeSelectorForClass:(Class) aClass {
 //    return NSSelectorFromString([NSString stringWithFormat:@"decode%@FromString:", NSStringFromClass(aClass)]);
@@ -83,14 +85,14 @@
 
 @implementation NSObject (FLType)
 + (FLObjectEncoder*) objectEncoder {
-    return [FLObjectEncoder objectEncoderForClass:[self class]];
+    return nil; // [FLObjectEncoder objectEncoderForClass:[self class]];
 }
 
 - (FLObjectEncoder*) objectEncoder {
     return [[self class] objectEncoder];
 }
 
-+ (NSString*) encodingKey {
-    return NSStringFromClass([self class]); 
-}
+//+ (NSString*) encodingKey {
+//    return NSStringFromClass([self class]); 
+//}
 @end

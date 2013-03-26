@@ -655,7 +655,7 @@ FLSynthesizeStructProperty(contentViewIsModal, setContentViewIsModal, BOOL, _sta
 
 @implementation UIViewController (FLFloatingViewController)
 
-FLSynthesizeAssociatedProperty(retain_nonatomic, contentSizeForViewInFloatingViewValue, setContentSizeForViewInFloatingViewValue, NSValue*)
+FLSynthesizeAssociatedProperty(FLAssociationPolicyRetainNonatomic, contentSizeForViewInFloatingViewValue, setContentSizeForViewInFloatingViewValue, NSValue*)
 
 - (FLFloatingViewController*) floatingViewController {
     return [[self parentViewController] floatingViewController];

@@ -23,8 +23,8 @@
 
 
 FLSynthesizeAssociatedProperty(copy_nonatomic, dismissHandler, setDismissHandler, FLViewControllerDismissHandler);
-FLSynthesizeAssociatedProperty(retain_nonatomic, _backButtonTitle, setBackButtonTitle, NSString*);
-FLSynthesizeAssociatedProperty(retain_nonatomic, transitionAnimation, setTransitionAnimation, id<FLViewControllerTransitionAnimation>);
+FLSynthesizeAssociatedProperty(FLAssociationPolicyRetainNonatomic, _backButtonTitle, setBackButtonTitle, NSString*);
+FLSynthesizeAssociatedProperty(FLAssociationPolicyRetainNonatomic, transitionAnimation, setTransitionAnimation, id<FLViewControllerTransitionAnimation>);
 
 - (NSString*) backButtonTitle {
     NSString* title = self._backButtonTitle;

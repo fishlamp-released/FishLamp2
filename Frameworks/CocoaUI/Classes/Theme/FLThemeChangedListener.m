@@ -8,39 +8,27 @@
 
 #import "FLThemeChangedListener.h"
 #import "FLThemeManager.h"
+#import "NSObject+FLTheme.h"
 
 @implementation FLThemeChangedListener
 
-- (id) initWithTarget:(id) target {
+@synthesize targetThemeSelector = _targetThemeSelector;
+
+- (id) initWithTarget:(id) target 
+         withSelector:(SEL) selector {
 
 	self = [super initWithEventName:FLThemeChangedNotificationKey sender:[FLThemeManager instance] parameterKey:FLCurrentThemeKey];
 
 	if(self) {
-        if(target) {
-            [self setTarget:target action:@selector(themeDidChange_fl:)];
-        }
+        [self setTarget:target action:@selector(themeDidChange:)];
+        self.targetThemeSelector = selector;
 	}
 	return self;
 }
 
-- (id) init {
-    return [self initWithTarget:nil];
-}
-
-
-+ (id) themeChangedListener:(id) target {
-    return FLAutorelease([[[self class] alloc] initWithTarget:target]);
-}
-
-+ (id) themeChangedListener {
-    return FLAutorelease([[[self class] alloc] init]);
-}
-@end
-
-@implementation NSObject (FLTheme)
-
-- (void) themeDidChange_fl:(id) theme {
-
++ (id) themeChangedListener:(id) target withSelector:(SEL) selector {
+    return FLAutorelease([[[self class] alloc] initWithTarget:target withSelector:selector]);
 }
 
 @end
+
