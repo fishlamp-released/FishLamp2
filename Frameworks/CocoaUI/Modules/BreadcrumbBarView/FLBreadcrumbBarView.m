@@ -58,24 +58,26 @@
 }
 
 - (void) updateLayout {
-
-
     [CATransaction begin];
     [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
 
     CGRect frame = CGRectMake(0, FLRectGetBottom(self.bounds) - (kTallHeight*2), _contentEnclosure.frame.origin.x, kTallHeight);
-    for(FLBarTitleLayer* layer in _titles) {
-        layer.frame = frame;
+    for(FLBarTitleLayer* title in _titles) {
+        title.frame = frame;
         frame.origin.y -= frame.size.height;
+    
+        if(title.emphasized) {
+            _highlightLayer.hidden = NO;
+            _highlightLayer.frame = FLRectSetWidth(title.frame, title.frame.size.width + 11);
+        }
+    
     }
 
     [CATransaction commit];
-
-    [self updateHighlightedTitle:NO];
-    [self setNeedsDisplay];
 }
 
 - (void) setNeedsDisplay {
+    [_highlightLayer setNeedsDisplay];
     [super setNeedsDisplay];
 }
 
@@ -93,6 +95,7 @@
     
     [self.layer addSublayer:title];
     [self updateLayout];
+    [self updateHighlightedTitle:NO];
     [self setNeedsDisplay];
 }
 
@@ -121,8 +124,7 @@
 
 - (void) setFrame:(CGRect) frame {
     [super setFrame:frame];
-    _contentView.frame = CGRectInset(self.bounds, 1, 1);
-
+//    _contentView.frame = CGRectInset(self.bounds, 1, 1);
     [self updateLayout];
 }
 
@@ -149,18 +151,18 @@
     }
 }
 
-- (void) drawRect:(NSRect)dirtyRect {
-    [super drawRect:dirtyRect];
-
-    if(_highlightLayer.hidden == NO) {
-        [_highlightLayer setNeedsDisplay]; 
-    }
-
-    for(FLBarTitleLayer* title in _titles) {
-        [title setNeedsDisplay]; 
-    }
-    
-}
+//- (void) drawRect:(NSRect)dirtyRect {
+//    [super drawRect:dirtyRect];
+//
+////    if(_highlightLayer.hidden == NO) {
+////        [_highlightLayer setNeedsDisplay]; 
+////    }
+////
+////    for(FLBarTitleLayer* title in _titles) {
+////        [title setNeedsDisplay]; 
+////    }
+//    
+//}
 
 
 @end

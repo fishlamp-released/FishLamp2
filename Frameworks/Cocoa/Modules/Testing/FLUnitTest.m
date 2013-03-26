@@ -199,7 +199,7 @@
                     FLLog(@"passed: %@", testCase.testCaseName);
                 }
                 else {
-                    [[FLLogger instance] sendEntriesToSinks:result.logEntries];
+                    [[FLLogger instance] logEntries:result.logEntries];
                 }
             }
         }

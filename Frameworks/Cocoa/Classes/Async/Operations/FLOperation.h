@@ -14,7 +14,7 @@
 
 @class FLOperation;
 
-typedef FLResult (^FLBlockWithOperation)(FLOperation* operation, id context, id observer);
+typedef FLResult (^FLBlockWithOperation)(FLOperation* operation);
 
 @class FLOperationObserver;
 
@@ -37,7 +37,12 @@ typedef FLResult (^FLBlockWithOperation)(FLOperation* operation, id context, id 
 
 /// @brief Required override point (or use runBlock).
 /// Either override run or set the operation's run block.
+- (FLResult) runOperation;
+
+// deprecated
 - (FLResult) runOperationInContext:(id) context withObserver:(id) observer;
+
+
 @end
 
 @interface FLOperation (SubclassUtils)

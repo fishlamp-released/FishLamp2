@@ -39,6 +39,7 @@
 @property (readwrite, strong, nonatomic) id<FLPanelHeader> header;
 @property (readwrite, strong, nonatomic) NSString* prompt;
 @property (readwrite, assign, nonatomic) BOOL canOpenNextPanel;
+@property (readwrite, assign, nonatomic) BOOL panelFillsView;
 
 - (void) panelWillAppear;
 - (void) panelDidAppear;

@@ -16,9 +16,10 @@
     IBOutlet NSImageView* _imageView;
     CGFloat _borderWidth;
     BOOL _alwaysProportionallyResize;
+    BOOL _animating;
 }
 
-@property (readwrite, strong, nonatomic) NSImageView* imageView;
+//@property (readwrite, strong, nonatomic) NSImageView* imageView;
 @property (readwrite, assign, nonatomic) BOOL alwaysProportionallyResize;
 
 - (void) startAnimating;

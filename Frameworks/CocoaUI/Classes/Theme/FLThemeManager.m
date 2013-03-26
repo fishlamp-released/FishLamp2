@@ -11,6 +11,7 @@
 #import "FLParsedItem.h"
 #import "FLObjectDescriber.h"
 #import "FLXmlObjectBuilder.h"
+#import "FLObjcRuntime.h"
 
 NSString* FLThemeChangedNotificationKey = @"FLThemeChangedNotificationKey";
 NSString* FLCurrentThemeKey = @"FLCurrentThemeKey";
@@ -18,6 +19,28 @@ NSString* FLCurrentThemeKey = @"FLCurrentThemeKey";
 @interface FLThemeManager ()
 @property (readwrite, strong, nonatomic) NSArray* themes;
 @end    
+    
+@implementation NSTextField (FLThemeManager)
+
+- (void) newViewWillMoveToSuperview:(NSView*) newSuperview {
+
+    if(newSuperview) {
+        self.textColor = [NSColor redColor];
+    }
+    
+    [self newViewWillMoveToSuperview:newSuperview];
+}
+
+@end    
+
+@implementation FLTestTextField
+- (void) viewWillMoveToSuperview:(NSView *)newSuperview {
+    
+   
+    
+    [super viewWillMoveToSuperview:newSuperview];
+}
+@end
     
 @implementation FLThemeManager 
 
@@ -30,6 +53,8 @@ FLSynthesizeSingleton(FLThemeManager)
     self = [super init];
     if(self) {
         _themes = [[NSMutableArray alloc] init];
+        
+        FLSwizzleInstanceMethod([NSTextField class],@selector(viewWillMoveToSuperview:), @selector(newViewWillMoveToSuperview:));
 	}
 	return self;
 }
@@ -80,7 +105,40 @@ FLSynthesizeSingleton(FLThemeManager)
 
 @end
 
+@implementation FLThemeHandler
 
+- (NSString*) fontFamilyName {
+    return @"Verdana";
+}
+
+- (NSFont*) applicationFont:(CGFloat) fontSize {
+    SDKFont* font = [SDKFont fontWithName:@"Verdana-Regular" size:fontSize];
+    FLAssertNotNil(font);
+    return font;
+}
+
+- (SDKFont *)boldApplicationFont:(CGFloat)fontSize {
+    SDKFont* font = [SDKFont fontWithName:@"Verdand-Bold" size:fontSize];
+    FLAssertNotNil(font);
+    return font;
+}
+
+- (NSNumber*) smallFontSize {
+    return [NSNumber numberWithInt:10];
+}
+- (NSNumber*) applicationFontSize {
+    return [NSNumber numberWithInt:12];
+}
+
+- (NSNumber*) header1FontSize{
+    return [NSNumber numberWithInt:14];
+}
+- (NSNumber*) header2FontSize {
+    return [NSNumber numberWithInt:16];
+}
+
+
+@end
 
 
 

@@ -89,6 +89,18 @@ NSString* const FLOperationFinishedEvent;
     return [FLAsyncQueue defaultQueue];
 }
 
+- (FLResult) runOperation {
+    id result = nil;
+    if(self.runBlock) {
+        result = self.runBlock(self);
+    }
+    else {
+        result = [self runOperationInContext:self.workerContext withObserver:self.observer];
+    }
+    
+    return result;
+}
+
 - (void) startWorking:(FLFinisher*) finisher {
 
     id result = nil;
@@ -98,14 +110,9 @@ NSString* const FLOperationFinishedEvent;
         
         [self abortIfNeeded];
         
-        [self sendMessage:@selector(operationWillRun:) toListener:finisher];
+        [self sendObservation:@selector(operationWillRun:)];
        
-        if(self.runBlock) {
-            result = self.runBlock(self, self.workerContext, self.observer);
-        }
-        else {
-            result = [self runOperationInContext:self.workerContext withObserver:self.observer];
-        }
+        result = [self runOperation];
     }
     @catch(NSException* ex) {
         result = ex.error;
@@ -117,7 +124,7 @@ NSString* const FLOperationFinishedEvent;
     
     [finisher setFinishedWithResult:result];
 
-    [self sendMessage:@selector(operationDidFinish:withResult:) toListener:self.observer withObject:self withObject:result];
+    [self sendObservation:@selector(operationDidFinish:withResult:) withObject:self withObject:result];
     
     self.observer = nil;
     self.cancelled = NO;

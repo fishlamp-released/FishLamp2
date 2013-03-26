@@ -187,8 +187,8 @@
 //}
 
 //+ (void) initUIKitCompatibility {
-////    FLSelectorSwizzle([NSViewController class], @selector(compatibleLoadView), @selector(loadView));
-//    FLSelectorSwizzle([UIViewController class], @selector(compatibleSetView:), @selector(setView:));
+////    FLSwizzleInstanceMethod([NSViewController class], @selector(compatibleLoadView), @selector(loadView));
+//    FLSwizzleInstanceMethod([UIViewController class], @selector(compatibleSetView:), @selector(setView:));
 //}
 
 

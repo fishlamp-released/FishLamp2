@@ -43,7 +43,6 @@
 }
 #endif
 
-
 - (void)drawRect:(NSRect)dirtyRect {
 
     CGContextRef context = UIGraphicsGetCurrentContext();

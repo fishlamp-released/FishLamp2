@@ -25,9 +25,8 @@
 }
 
 - (void) finishAnimation:(CALayer*) layer{
-    if(self.removeTransform) {
-        [layer setOpacity:_startOpacity];
-    }
+    [layer setOpacity:_startOpacity];
+    [layer removeAnimationForKey:@"opacity"];
 }
 
 - (void) commitFadeForLayer:(CALayer*) layer from:(CGFloat) fromOpacity toOpacity:(CGFloat) toOpacity {
@@ -56,10 +55,6 @@
     [self commitFadeForLayer:layer from:0.0 toOpacity:self.startOpacity];
 }
 
-- (void) finishAnimation:(CALayer*) layer {
-    layer.opacity = self.startOpacity;
-}
-
 @end
 
 @implementation FLFadeOutAnimation
@@ -74,7 +69,7 @@
 
 - (void) finishAnimation:(CALayer*) layer {
     layer.hidden = YES;
-    layer.opacity = self.startOpacity;
+    [super finishAnimation:layer];
 }
 
 

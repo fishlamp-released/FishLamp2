@@ -34,11 +34,12 @@
         self.title = NSLocalizedString(@"Login", nil);
         self.prompt =  NSLocalizedString(@"Login to your account", nil);
     
-    [[NSNotificationCenter defaultCenter] 
-    addObserver: self
-       selector: @selector(applicationWillTerminate:)
-           name: NSApplicationWillTerminateNotification
-         object: [NSApplication sharedApplication]];
+        [[NSNotificationCenter defaultCenter] addObserver: self
+                                                 selector: @selector(applicationWillTerminate:)
+                                                     name: NSApplicationWillTerminateNotification
+                                                   object: [NSApplication sharedApplication]];
+    
+        self.panelFillsView = NO;
     }
     
     return self;

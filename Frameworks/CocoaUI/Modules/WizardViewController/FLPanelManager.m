@@ -41,6 +41,7 @@
     self.forwardTransition = [FLWizardStyleForwardTransition wizardStyleForwardTransition];
     self.backwardTransition = [FLWizardStyleBackwardTransition wizardStyleBackwardTransition];
     
+    self.view.autoresizesSubviews = NO;
     [self.view setWantsLayer:YES];
     [self.view addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:nil];
 }
@@ -51,34 +52,42 @@
 
 - (void) setPanelFrame:(FLPanelViewController*) panel {
 
-    CGRect myFrame = CGRectInset(self.view.superview.bounds, 1, 1);
-    
-    if(!CGRectEqualToRect(self.view.frame, myFrame)) {
-        self.view.frame = myFrame;
-    }
-    
-    CGRect frame = panel.view.frame;
+//    CGRect myFrame = CGRectInset(self.view.superview.bounds, 1, 1);
+//    
+//    if(!CGRectEqualToRect(self.view.frame, myFrame)) {
+//        self.view.frame = myFrame;
+//    }
+
     CGRect bounds = self.view.bounds;
-    
-    NSUInteger originalMask = panel.view.autoresizingMask;
-    
-    if(FLBitTest(originalMask, (NSViewWidthSizable))) {
-        frame.size.width = bounds.size.width;
-        frame.origin.x = bounds.origin.x;
+    if(panel.panelFillsView) {
+        panel.view.frame = self.view.bounds;
     }
     else {
-        frame = FLRectCenterRectInRectHorizontally(bounds, frame);
-    }
-
-    if(FLBitTest(originalMask, (NSViewHeightSizable))) {
-        frame.size.height = bounds.size.height;
-        frame.origin.y = bounds.origin.y;
-    }
-    else {
+        CGRect frame = FLRectCenterRectInRectHorizontally(self.view.bounds, panel.view.frame);
         frame.origin.y = FLRectGetBottom(bounds) - frame.size.height - 100.0f; // = FLRectCenterRectInRectVertically(bounds, frame);
+        panel.view.frame = FLRectOptimizedForViewLocation(frame);
     }
-
-    panel.view.frame = FLRectOptimizedForViewLocation(frame);
+    
+    
+//    NSUInteger originalMask = panel.view.autoresizingMask;
+//    
+//    if(FLBitTest(originalMask, (NSViewWidthSizable))) {
+//        frame.size.width = bounds.size.width;
+//        frame.origin.x = bounds.origin.x;
+//    }
+//    else {
+//        frame = FLRectCenterRectInRectHorizontally(bounds, frame);
+//    }
+//
+//    if(FLBitTest(originalMask, (NSViewHeightSizable))) {
+//        frame.size.height = bounds.size.height;
+//        frame.origin.y = bounds.origin.y;
+//    }
+//    else {
+//        frame.origin.y = FLRectGetBottom(bounds) - frame.size.height - 100.0f; // = FLRectCenterRectInRectVertically(bounds, frame);
+//    }
+//
+//    panel.view.frame = FLRectOptimizedForViewLocation(frame);
 }
 
 - (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
@@ -261,16 +270,14 @@
     }
 
     _currentPanel = idx;
-    self.view.autoresizesSubviews = NO;
     [self.view addSubview:[toShow view]];
-    self.view.autoresizesSubviews = YES;
     [toShow panelWillAppear];
     
     [self.view.window makeFirstResponder:self];
 
     [self.delegate panelManager:self panelStateDidChange:toHide];
     [self.delegate panelManager:self panelStateDidChange:toShow];
-        
+
     if(transition) {
         completion = FLCopyWithAutorelease(completion);
         

@@ -25,3 +25,18 @@ NSTimeInterval FLTimeBlock(dispatch_block_t block)  {
     uint64_t nanos = elapsed * info.numer / info.denom;
     return (NSTimeInterval)nanos / (NSTimeInterval) NSEC_PER_SEC;
 } 
+
+uint64_t FLTimeGetHighResolutionTimeStamp() {
+    return mach_absolute_time ();
+}
+
+NSTimeInterval FLTimeGetInterval(uint64_t start, uint64_t end) {
+    mach_timebase_info_data_t info;
+    if (mach_timebase_info(&info) != KERN_SUCCESS)  {
+        return 0.0;
+    }
+    uint64_t elapsed = end - start;
+
+    uint64_t nanos = elapsed * info.numer / info.denom;
+    return (NSTimeInterval)nanos / (NSTimeInterval) NSEC_PER_SEC;
+}

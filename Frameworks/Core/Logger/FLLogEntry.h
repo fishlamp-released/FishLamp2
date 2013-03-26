@@ -17,15 +17,21 @@
     uint32_t _logCount;
     NSTimeInterval _timestamp;
     FLStackTrace* _stackTrace;
+    NSError* _error;
+    NSException* _exception;
 } 
 
 + (id) logEntry;
 
-@property (readonly, strong) NSString* logString;
-@property (readonly, strong) NSString* logType;
-@property (readonly, strong) NSString* logName;
-@property (readonly, strong) FLStackTrace* stackTrace;
-@property (readonly, assign) uint32_t logCount;
-@property (readonly, assign) NSTimeInterval timestamp;
+@property (readwrite, strong, nonatomic) NSError* error;
+@property (readwrite, strong, nonatomic) NSException* exception;
+@property (readwrite, strong, nonatomic) NSString* logString;
+@property (readwrite, strong, nonatomic) NSString* logType;
+@property (readonly, strong, nonatomic) NSString* logName;
+@property (readwrite, strong, nonatomic) FLStackTrace* stackTrace;
+@property (readonly, assign, nonatomic) uint32_t logCount;
+@property (readonly, assign, nonatomic) NSTimeInterval timestamp;
+
+- (void) releaseToCache;
 
 @end

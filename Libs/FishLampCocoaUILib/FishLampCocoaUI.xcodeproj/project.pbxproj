@@ -1023,6 +1023,7 @@
 		2798DB81166D8A7F00A0863D /* SharedTargetSettings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = SharedTargetSettings.xcconfig; sourceTree = "<group>"; };
 		27A43AB415CDCC89001CB13E /* libFishLampCocoaUI-iOS-ARC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoaUI-iOS-ARC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27A43AC415CDCCCB001CB13E /* libFishLampCocoaUI-OSX-64-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoaUI-OSX-64-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		27B7626216FFBFFD00644FA4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/FLLoginPanel.xib; sourceTree = "<group>"; };
 		27CBC1F416768BA600753D0A /* libFishLampCocoaUI-OSX-32-64-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoaUI-OSX-32-64-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27D1E5C1166D355C00DB680E /* FishLampCocoa-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FishLampCocoa-Prefix.pch"; sourceTree = "<group>"; };
 		27FB507316EBEC47004FC64F /* FLBarHighlightBackgoundLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLBarHighlightBackgoundLayer.h; sourceTree = "<group>"; };
@@ -1033,7 +1034,6 @@
 		27FD17C316A5EB14006A9F1D /* FLBreadcrumbBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLBreadcrumbBarView.m; sourceTree = "<group>"; };
 		27FE76CD16A5B91500C8F0FB /* FLLoginPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLLoginPanel.h; sourceTree = "<group>"; };
 		27FE76CE16A5B91500C8F0FB /* FLLoginPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLLoginPanel.m; sourceTree = "<group>"; };
-		27FE76DA16A5B96900C8F0FB /* FLLoginPanel.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FLLoginPanel.xib; sourceTree = "<group>"; };
 		78329B61167E41260024E8DC /* FishLampProjectSettingsDebug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FishLampProjectSettingsDebug.xcconfig; sourceTree = "<group>"; };
 		78329B62167E41260024E8DC /* FishLampProjectSettingsRelease.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FishLampProjectSettingsRelease.xcconfig; sourceTree = "<group>"; };
 		78329B63167E41260024E8DC /* FishLampTargetSettings-iOS-ARC.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "FishLampTargetSettings-iOS-ARC.xcconfig"; sourceTree = "<group>"; };
@@ -1423,7 +1423,7 @@
 		27FE76CC16A5B91400C8F0FB /* WizardPanels */ = {
 			isa = PBXGroup;
 			children = (
-				27FE76DA16A5B96900C8F0FB /* FLLoginPanel.xib */,
+				27B7626116FFBFFD00644FA4 /* FLLoginPanel.xib */,
 				27FE76CD16A5B91500C8F0FB /* FLLoginPanel.h */,
 				27FE76CE16A5B91500C8F0FB /* FLLoginPanel.m */,
 			);
@@ -2635,6 +2635,17 @@
 			targetProxy = 2709A0E516EBACBB00C59905 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		27B7626116FFBFFD00644FA4 /* FLLoginPanel.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				27B7626216FFBFFD00644FA4 /* en */,
+			);
+			name = FLLoginPanel.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		27048EEC161CB58600C38ADA /* Debug */ = {

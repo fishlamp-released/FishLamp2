@@ -1148,15 +1148,15 @@
 		275A65D316FFB23C00B5EE4C /* ZFHttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 275A60CE16FFB23300B5EE4C /* ZFHttpRequest.m */; };
 		275A65D416FFB23C00B5EE4C /* ZFHttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 275A60CE16FFB23300B5EE4C /* ZFHttpRequest.m */; };
 		275A65D516FFB23C00B5EE4C /* ZFHttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 275A60CE16FFB23300B5EE4C /* ZFHttpRequest.m */; };
-		275A65D616FFB23C00B5EE4C /* ZFDownloadOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 275A60D016FFB23300B5EE4C /* ZFDownloadOperation.h */; };
-		275A65D716FFB23C00B5EE4C /* ZFDownloadOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 275A60D016FFB23300B5EE4C /* ZFDownloadOperation.h */; };
-		275A65D816FFB23C00B5EE4C /* ZFDownloadOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 275A60D016FFB23300B5EE4C /* ZFDownloadOperation.h */; };
-		275A65D916FFB23C00B5EE4C /* ZFDownloadOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 275A60D016FFB23300B5EE4C /* ZFDownloadOperation.h */; };
-		275A65DA16FFB23C00B5EE4C /* ZFDownloadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 275A60D116FFB23300B5EE4C /* ZFDownloadOperation.m */; };
-		275A65DB16FFB23C00B5EE4C /* ZFDownloadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 275A60D116FFB23300B5EE4C /* ZFDownloadOperation.m */; };
-		275A65DC16FFB23C00B5EE4C /* ZFDownloadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 275A60D116FFB23300B5EE4C /* ZFDownloadOperation.m */; };
-		275A65DD16FFB23C00B5EE4C /* ZFDownloadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 275A60D116FFB23300B5EE4C /* ZFDownloadOperation.m */; };
-		275A65DE16FFB23C00B5EE4C /* ZFDownloadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 275A60D116FFB23300B5EE4C /* ZFDownloadOperation.m */; };
+		275A65D616FFB23C00B5EE4C /* ZFBatchDownloadOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 275A60D016FFB23300B5EE4C /* ZFBatchDownloadOperation.h */; };
+		275A65D716FFB23C00B5EE4C /* ZFBatchDownloadOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 275A60D016FFB23300B5EE4C /* ZFBatchDownloadOperation.h */; };
+		275A65D816FFB23C00B5EE4C /* ZFBatchDownloadOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 275A60D016FFB23300B5EE4C /* ZFBatchDownloadOperation.h */; };
+		275A65D916FFB23C00B5EE4C /* ZFBatchDownloadOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 275A60D016FFB23300B5EE4C /* ZFBatchDownloadOperation.h */; };
+		275A65DA16FFB23C00B5EE4C /* ZFBatchDownloadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 275A60D116FFB23300B5EE4C /* ZFBatchDownloadOperation.m */; };
+		275A65DB16FFB23C00B5EE4C /* ZFBatchDownloadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 275A60D116FFB23300B5EE4C /* ZFBatchDownloadOperation.m */; };
+		275A65DC16FFB23C00B5EE4C /* ZFBatchDownloadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 275A60D116FFB23300B5EE4C /* ZFBatchDownloadOperation.m */; };
+		275A65DD16FFB23C00B5EE4C /* ZFBatchDownloadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 275A60D116FFB23300B5EE4C /* ZFBatchDownloadOperation.m */; };
+		275A65DE16FFB23C00B5EE4C /* ZFBatchDownloadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 275A60D116FFB23300B5EE4C /* ZFBatchDownloadOperation.m */; };
 		275A65DF16FFB23C00B5EE4C /* ZFDownloadPhotoSetsOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 275A60D216FFB23300B5EE4C /* ZFDownloadPhotoSetsOperation.h */; };
 		275A65E016FFB23C00B5EE4C /* ZFDownloadPhotoSetsOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 275A60D216FFB23300B5EE4C /* ZFDownloadPhotoSetsOperation.h */; };
 		275A65E116FFB23C00B5EE4C /* ZFDownloadPhotoSetsOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 275A60D216FFB23300B5EE4C /* ZFDownloadPhotoSetsOperation.h */; };
@@ -1346,15 +1346,15 @@
 		275A669916FFB23C00B5EE4C /* ZFImageDisplaySize.m in Sources */ = {isa = PBXBuildFile; fileRef = 275A610516FFB23300B5EE4C /* ZFImageDisplaySize.m */; };
 		275A669A16FFB23C00B5EE4C /* ZFImageDisplaySize.m in Sources */ = {isa = PBXBuildFile; fileRef = 275A610516FFB23300B5EE4C /* ZFImageDisplaySize.m */; };
 		275A669B16FFB23C00B5EE4C /* ZFImageDisplaySize.m in Sources */ = {isa = PBXBuildFile; fileRef = 275A610516FFB23300B5EE4C /* ZFImageDisplaySize.m */; };
-		275A669C16FFB23C00B5EE4C /* ZFImageSize.h in Headers */ = {isa = PBXBuildFile; fileRef = 275A610616FFB23300B5EE4C /* ZFImageSize.h */; };
-		275A669D16FFB23C00B5EE4C /* ZFImageSize.h in Headers */ = {isa = PBXBuildFile; fileRef = 275A610616FFB23300B5EE4C /* ZFImageSize.h */; };
-		275A669E16FFB23C00B5EE4C /* ZFImageSize.h in Headers */ = {isa = PBXBuildFile; fileRef = 275A610616FFB23300B5EE4C /* ZFImageSize.h */; };
-		275A669F16FFB23C00B5EE4C /* ZFImageSize.h in Headers */ = {isa = PBXBuildFile; fileRef = 275A610616FFB23300B5EE4C /* ZFImageSize.h */; };
-		275A66A016FFB23C00B5EE4C /* ZFImageSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 275A610716FFB23300B5EE4C /* ZFImageSize.m */; };
-		275A66A116FFB23C00B5EE4C /* ZFImageSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 275A610716FFB23300B5EE4C /* ZFImageSize.m */; };
-		275A66A216FFB23C00B5EE4C /* ZFImageSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 275A610716FFB23300B5EE4C /* ZFImageSize.m */; };
-		275A66A316FFB23C00B5EE4C /* ZFImageSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 275A610716FFB23300B5EE4C /* ZFImageSize.m */; };
-		275A66A416FFB23C00B5EE4C /* ZFImageSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 275A610716FFB23300B5EE4C /* ZFImageSize.m */; };
+		275A669C16FFB23C00B5EE4C /* ZFMediaType.h in Headers */ = {isa = PBXBuildFile; fileRef = 275A610616FFB23300B5EE4C /* ZFMediaType.h */; };
+		275A669D16FFB23C00B5EE4C /* ZFMediaType.h in Headers */ = {isa = PBXBuildFile; fileRef = 275A610616FFB23300B5EE4C /* ZFMediaType.h */; };
+		275A669E16FFB23C00B5EE4C /* ZFMediaType.h in Headers */ = {isa = PBXBuildFile; fileRef = 275A610616FFB23300B5EE4C /* ZFMediaType.h */; };
+		275A669F16FFB23C00B5EE4C /* ZFMediaType.h in Headers */ = {isa = PBXBuildFile; fileRef = 275A610616FFB23300B5EE4C /* ZFMediaType.h */; };
+		275A66A016FFB23C00B5EE4C /* ZFMediaType.m in Sources */ = {isa = PBXBuildFile; fileRef = 275A610716FFB23300B5EE4C /* ZFMediaType.m */; };
+		275A66A116FFB23C00B5EE4C /* ZFMediaType.m in Sources */ = {isa = PBXBuildFile; fileRef = 275A610716FFB23300B5EE4C /* ZFMediaType.m */; };
+		275A66A216FFB23C00B5EE4C /* ZFMediaType.m in Sources */ = {isa = PBXBuildFile; fileRef = 275A610716FFB23300B5EE4C /* ZFMediaType.m */; };
+		275A66A316FFB23C00B5EE4C /* ZFMediaType.m in Sources */ = {isa = PBXBuildFile; fileRef = 275A610716FFB23300B5EE4C /* ZFMediaType.m */; };
+		275A66A416FFB23C00B5EE4C /* ZFMediaType.m in Sources */ = {isa = PBXBuildFile; fileRef = 275A610716FFB23300B5EE4C /* ZFMediaType.m */; };
 		275A66A516FFB23C00B5EE4C /* ZFPhotoInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 275A610816FFB23300B5EE4C /* ZFPhotoInfo.h */; };
 		275A66A616FFB23C00B5EE4C /* ZFPhotoInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 275A610816FFB23300B5EE4C /* ZFPhotoInfo.h */; };
 		275A66A716FFB23C00B5EE4C /* ZFPhotoInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 275A610816FFB23300B5EE4C /* ZFPhotoInfo.h */; };
@@ -6193,8 +6193,8 @@
 		275A60CB16FFB23300B5EE4C /* FLZenfolio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLZenfolio.m; sourceTree = "<group>"; };
 		275A60CD16FFB23300B5EE4C /* ZFHttpRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFHttpRequest.h; sourceTree = "<group>"; };
 		275A60CE16FFB23300B5EE4C /* ZFHttpRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFHttpRequest.m; sourceTree = "<group>"; };
-		275A60D016FFB23300B5EE4C /* ZFDownloadOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFDownloadOperation.h; sourceTree = "<group>"; };
-		275A60D116FFB23300B5EE4C /* ZFDownloadOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFDownloadOperation.m; sourceTree = "<group>"; };
+		275A60D016FFB23300B5EE4C /* ZFBatchDownloadOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFBatchDownloadOperation.h; sourceTree = "<group>"; };
+		275A60D116FFB23300B5EE4C /* ZFBatchDownloadOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFBatchDownloadOperation.m; sourceTree = "<group>"; };
 		275A60D216FFB23300B5EE4C /* ZFDownloadPhotoSetsOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFDownloadPhotoSetsOperation.h; sourceTree = "<group>"; };
 		275A60D316FFB23300B5EE4C /* ZFDownloadPhotoSetsOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFDownloadPhotoSetsOperation.m; sourceTree = "<group>"; };
 		275A60D416FFB23300B5EE4C /* ZFLoadAllUserInfoForAuthenticatedUserOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFLoadAllUserInfoForAuthenticatedUserOperation.h; sourceTree = "<group>"; };
@@ -6238,8 +6238,8 @@
 		275A610316FFB23300B5EE4C /* ZFExifTags.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFExifTags.m; sourceTree = "<group>"; };
 		275A610416FFB23300B5EE4C /* ZFImageDisplaySize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFImageDisplaySize.h; sourceTree = "<group>"; };
 		275A610516FFB23300B5EE4C /* ZFImageDisplaySize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFImageDisplaySize.m; sourceTree = "<group>"; };
-		275A610616FFB23300B5EE4C /* ZFImageSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFImageSize.h; sourceTree = "<group>"; };
-		275A610716FFB23300B5EE4C /* ZFImageSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFImageSize.m; sourceTree = "<group>"; };
+		275A610616FFB23300B5EE4C /* ZFMediaType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFMediaType.h; sourceTree = "<group>"; };
+		275A610716FFB23300B5EE4C /* ZFMediaType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFMediaType.m; sourceTree = "<group>"; };
 		275A610816FFB23300B5EE4C /* ZFPhotoInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFPhotoInfo.h; sourceTree = "<group>"; };
 		275A610916FFB23300B5EE4C /* ZFPhotoInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFPhotoInfo.m; sourceTree = "<group>"; };
 		275A610A16FFB23300B5EE4C /* ZFPhotoSizeFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFPhotoSizeFormatter.h; sourceTree = "<group>"; };
@@ -7671,8 +7671,8 @@
 		275A60CF16FFB23300B5EE4C /* Operations */ = {
 			isa = PBXGroup;
 			children = (
-				275A60D016FFB23300B5EE4C /* ZFDownloadOperation.h */,
-				275A60D116FFB23300B5EE4C /* ZFDownloadOperation.m */,
+				275A60D016FFB23300B5EE4C /* ZFBatchDownloadOperation.h */,
+				275A60D116FFB23300B5EE4C /* ZFBatchDownloadOperation.m */,
 				275A60D216FFB23300B5EE4C /* ZFDownloadPhotoSetsOperation.h */,
 				275A60D316FFB23300B5EE4C /* ZFDownloadPhotoSetsOperation.m */,
 				275A60D416FFB23300B5EE4C /* ZFLoadAllUserInfoForAuthenticatedUserOperation.h */,
@@ -7777,8 +7777,8 @@
 				275A610316FFB23300B5EE4C /* ZFExifTags.m */,
 				275A610416FFB23300B5EE4C /* ZFImageDisplaySize.h */,
 				275A610516FFB23300B5EE4C /* ZFImageDisplaySize.m */,
-				275A610616FFB23300B5EE4C /* ZFImageSize.h */,
-				275A610716FFB23300B5EE4C /* ZFImageSize.m */,
+				275A610616FFB23300B5EE4C /* ZFMediaType.h */,
+				275A610716FFB23300B5EE4C /* ZFMediaType.m */,
 				275A610816FFB23300B5EE4C /* ZFPhotoInfo.h */,
 				275A610916FFB23300B5EE4C /* ZFPhotoInfo.m */,
 				275A610A16FFB23300B5EE4C /* ZFPhotoSizeFormatter.h */,
@@ -9104,7 +9104,7 @@
 				275A65BB16FFB23C00B5EE4C /* ZFSoapFaultUserNotificationErrorFormatter.h in Headers */,
 				275A65C416FFB23C00B5EE4C /* FLZenfolio.h in Headers */,
 				275A65CD16FFB23C00B5EE4C /* ZFHttpRequest.h in Headers */,
-				275A65D616FFB23C00B5EE4C /* ZFDownloadOperation.h in Headers */,
+				275A65D616FFB23C00B5EE4C /* ZFBatchDownloadOperation.h in Headers */,
 				275A65DF16FFB23C00B5EE4C /* ZFDownloadPhotoSetsOperation.h in Headers */,
 				275A65E816FFB23C00B5EE4C /* ZFLoadAllUserInfoForAuthenticatedUserOperation.h in Headers */,
 				275A65F116FFB23C00B5EE4C /* ZFLoadGroupHierarchyOperation.h in Headers */,
@@ -9126,7 +9126,7 @@
 				275A668116FFB23C00B5EE4C /* ZFBreadCrumbsBar.h in Headers */,
 				275A668A16FFB23C00B5EE4C /* ZFExifTags.h in Headers */,
 				275A669316FFB23C00B5EE4C /* ZFImageDisplaySize.h in Headers */,
-				275A669C16FFB23C00B5EE4C /* ZFImageSize.h in Headers */,
+				275A669C16FFB23C00B5EE4C /* ZFMediaType.h in Headers */,
 				275A66A516FFB23C00B5EE4C /* ZFPhotoInfo.h in Headers */,
 				275A66AE16FFB23C00B5EE4C /* ZFPhotoSizeFormatter.h in Headers */,
 				275A66B716FFB23C00B5EE4C /* ZFGroupElementSelection.h in Headers */,
@@ -9763,7 +9763,7 @@
 				275A65BD16FFB23C00B5EE4C /* ZFSoapFaultUserNotificationErrorFormatter.h in Headers */,
 				275A65C616FFB23C00B5EE4C /* FLZenfolio.h in Headers */,
 				275A65CF16FFB23C00B5EE4C /* ZFHttpRequest.h in Headers */,
-				275A65D816FFB23C00B5EE4C /* ZFDownloadOperation.h in Headers */,
+				275A65D816FFB23C00B5EE4C /* ZFBatchDownloadOperation.h in Headers */,
 				275A65E116FFB23C00B5EE4C /* ZFDownloadPhotoSetsOperation.h in Headers */,
 				275A65EA16FFB23C00B5EE4C /* ZFLoadAllUserInfoForAuthenticatedUserOperation.h in Headers */,
 				275A65F316FFB23C00B5EE4C /* ZFLoadGroupHierarchyOperation.h in Headers */,
@@ -9785,7 +9785,7 @@
 				275A668316FFB23C00B5EE4C /* ZFBreadCrumbsBar.h in Headers */,
 				275A668C16FFB23C00B5EE4C /* ZFExifTags.h in Headers */,
 				275A669516FFB23C00B5EE4C /* ZFImageDisplaySize.h in Headers */,
-				275A669E16FFB23C00B5EE4C /* ZFImageSize.h in Headers */,
+				275A669E16FFB23C00B5EE4C /* ZFMediaType.h in Headers */,
 				275A66A716FFB23C00B5EE4C /* ZFPhotoInfo.h in Headers */,
 				275A66B016FFB23C00B5EE4C /* ZFPhotoSizeFormatter.h in Headers */,
 				275A66B916FFB23C00B5EE4C /* ZFGroupElementSelection.h in Headers */,
@@ -10422,7 +10422,7 @@
 				275A65BC16FFB23C00B5EE4C /* ZFSoapFaultUserNotificationErrorFormatter.h in Headers */,
 				275A65C516FFB23C00B5EE4C /* FLZenfolio.h in Headers */,
 				275A65CE16FFB23C00B5EE4C /* ZFHttpRequest.h in Headers */,
-				275A65D716FFB23C00B5EE4C /* ZFDownloadOperation.h in Headers */,
+				275A65D716FFB23C00B5EE4C /* ZFBatchDownloadOperation.h in Headers */,
 				275A65E016FFB23C00B5EE4C /* ZFDownloadPhotoSetsOperation.h in Headers */,
 				275A65E916FFB23C00B5EE4C /* ZFLoadAllUserInfoForAuthenticatedUserOperation.h in Headers */,
 				275A65F216FFB23C00B5EE4C /* ZFLoadGroupHierarchyOperation.h in Headers */,
@@ -10444,7 +10444,7 @@
 				275A668216FFB23C00B5EE4C /* ZFBreadCrumbsBar.h in Headers */,
 				275A668B16FFB23C00B5EE4C /* ZFExifTags.h in Headers */,
 				275A669416FFB23C00B5EE4C /* ZFImageDisplaySize.h in Headers */,
-				275A669D16FFB23C00B5EE4C /* ZFImageSize.h in Headers */,
+				275A669D16FFB23C00B5EE4C /* ZFMediaType.h in Headers */,
 				275A66A616FFB23C00B5EE4C /* ZFPhotoInfo.h in Headers */,
 				275A66AF16FFB23C00B5EE4C /* ZFPhotoSizeFormatter.h in Headers */,
 				275A66B816FFB23C00B5EE4C /* ZFGroupElementSelection.h in Headers */,
@@ -11081,7 +11081,7 @@
 				275A65BE16FFB23C00B5EE4C /* ZFSoapFaultUserNotificationErrorFormatter.h in Headers */,
 				275A65C716FFB23C00B5EE4C /* FLZenfolio.h in Headers */,
 				275A65D016FFB23C00B5EE4C /* ZFHttpRequest.h in Headers */,
-				275A65D916FFB23C00B5EE4C /* ZFDownloadOperation.h in Headers */,
+				275A65D916FFB23C00B5EE4C /* ZFBatchDownloadOperation.h in Headers */,
 				275A65E216FFB23C00B5EE4C /* ZFDownloadPhotoSetsOperation.h in Headers */,
 				275A65EB16FFB23C00B5EE4C /* ZFLoadAllUserInfoForAuthenticatedUserOperation.h in Headers */,
 				275A65F416FFB23C00B5EE4C /* ZFLoadGroupHierarchyOperation.h in Headers */,
@@ -11103,7 +11103,7 @@
 				275A668416FFB23C00B5EE4C /* ZFBreadCrumbsBar.h in Headers */,
 				275A668D16FFB23C00B5EE4C /* ZFExifTags.h in Headers */,
 				275A669616FFB23C00B5EE4C /* ZFImageDisplaySize.h in Headers */,
-				275A669F16FFB23C00B5EE4C /* ZFImageSize.h in Headers */,
+				275A669F16FFB23C00B5EE4C /* ZFMediaType.h in Headers */,
 				275A66A816FFB23C00B5EE4C /* ZFPhotoInfo.h in Headers */,
 				275A66B116FFB23C00B5EE4C /* ZFPhotoSizeFormatter.h in Headers */,
 				275A66BA16FFB23C00B5EE4C /* ZFGroupElementSelection.h in Headers */,
@@ -11904,7 +11904,7 @@
 				275A65C016FFB23C00B5EE4C /* ZFSoapFaultUserNotificationErrorFormatter.m in Sources */,
 				275A65C916FFB23C00B5EE4C /* FLZenfolio.m in Sources */,
 				275A65D216FFB23C00B5EE4C /* ZFHttpRequest.m in Sources */,
-				275A65DB16FFB23C00B5EE4C /* ZFDownloadOperation.m in Sources */,
+				275A65DB16FFB23C00B5EE4C /* ZFBatchDownloadOperation.m in Sources */,
 				275A65E416FFB23C00B5EE4C /* ZFDownloadPhotoSetsOperation.m in Sources */,
 				275A65ED16FFB23C00B5EE4C /* ZFLoadAllUserInfoForAuthenticatedUserOperation.m in Sources */,
 				275A65F616FFB23C00B5EE4C /* ZFLoadGroupHierarchyOperation.m in Sources */,
@@ -11926,7 +11926,7 @@
 				275A668616FFB23C00B5EE4C /* ZFBreadCrumbsBar.m in Sources */,
 				275A668F16FFB23C00B5EE4C /* ZFExifTags.m in Sources */,
 				275A669816FFB23C00B5EE4C /* ZFImageDisplaySize.m in Sources */,
-				275A66A116FFB23C00B5EE4C /* ZFImageSize.m in Sources */,
+				275A66A116FFB23C00B5EE4C /* ZFMediaType.m in Sources */,
 				275A66AA16FFB23C00B5EE4C /* ZFPhotoInfo.m in Sources */,
 				275A66B316FFB23C00B5EE4C /* ZFPhotoSizeFormatter.m in Sources */,
 				275A66BC16FFB23C00B5EE4C /* ZFGroupElementSelection.m in Sources */,
@@ -12557,7 +12557,7 @@
 				275A65C216FFB23C00B5EE4C /* ZFSoapFaultUserNotificationErrorFormatter.m in Sources */,
 				275A65CB16FFB23C00B5EE4C /* FLZenfolio.m in Sources */,
 				275A65D416FFB23C00B5EE4C /* ZFHttpRequest.m in Sources */,
-				275A65DD16FFB23C00B5EE4C /* ZFDownloadOperation.m in Sources */,
+				275A65DD16FFB23C00B5EE4C /* ZFBatchDownloadOperation.m in Sources */,
 				275A65E616FFB23C00B5EE4C /* ZFDownloadPhotoSetsOperation.m in Sources */,
 				275A65EF16FFB23C00B5EE4C /* ZFLoadAllUserInfoForAuthenticatedUserOperation.m in Sources */,
 				275A65F816FFB23C00B5EE4C /* ZFLoadGroupHierarchyOperation.m in Sources */,
@@ -12579,7 +12579,7 @@
 				275A668816FFB23C00B5EE4C /* ZFBreadCrumbsBar.m in Sources */,
 				275A669116FFB23C00B5EE4C /* ZFExifTags.m in Sources */,
 				275A669A16FFB23C00B5EE4C /* ZFImageDisplaySize.m in Sources */,
-				275A66A316FFB23C00B5EE4C /* ZFImageSize.m in Sources */,
+				275A66A316FFB23C00B5EE4C /* ZFMediaType.m in Sources */,
 				275A66AC16FFB23C00B5EE4C /* ZFPhotoInfo.m in Sources */,
 				275A66B516FFB23C00B5EE4C /* ZFPhotoSizeFormatter.m in Sources */,
 				275A66BE16FFB23C00B5EE4C /* ZFGroupElementSelection.m in Sources */,
@@ -13210,7 +13210,7 @@
 				275A65BF16FFB23C00B5EE4C /* ZFSoapFaultUserNotificationErrorFormatter.m in Sources */,
 				275A65C816FFB23C00B5EE4C /* FLZenfolio.m in Sources */,
 				275A65D116FFB23C00B5EE4C /* ZFHttpRequest.m in Sources */,
-				275A65DA16FFB23C00B5EE4C /* ZFDownloadOperation.m in Sources */,
+				275A65DA16FFB23C00B5EE4C /* ZFBatchDownloadOperation.m in Sources */,
 				275A65E316FFB23C00B5EE4C /* ZFDownloadPhotoSetsOperation.m in Sources */,
 				275A65EC16FFB23C00B5EE4C /* ZFLoadAllUserInfoForAuthenticatedUserOperation.m in Sources */,
 				275A65F516FFB23C00B5EE4C /* ZFLoadGroupHierarchyOperation.m in Sources */,
@@ -13232,7 +13232,7 @@
 				275A668516FFB23C00B5EE4C /* ZFBreadCrumbsBar.m in Sources */,
 				275A668E16FFB23C00B5EE4C /* ZFExifTags.m in Sources */,
 				275A669716FFB23C00B5EE4C /* ZFImageDisplaySize.m in Sources */,
-				275A66A016FFB23C00B5EE4C /* ZFImageSize.m in Sources */,
+				275A66A016FFB23C00B5EE4C /* ZFMediaType.m in Sources */,
 				275A66A916FFB23C00B5EE4C /* ZFPhotoInfo.m in Sources */,
 				275A66B216FFB23C00B5EE4C /* ZFPhotoSizeFormatter.m in Sources */,
 				275A66BB16FFB23C00B5EE4C /* ZFGroupElementSelection.m in Sources */,
@@ -13863,7 +13863,7 @@
 				275A65C116FFB23C00B5EE4C /* ZFSoapFaultUserNotificationErrorFormatter.m in Sources */,
 				275A65CA16FFB23C00B5EE4C /* FLZenfolio.m in Sources */,
 				275A65D316FFB23C00B5EE4C /* ZFHttpRequest.m in Sources */,
-				275A65DC16FFB23C00B5EE4C /* ZFDownloadOperation.m in Sources */,
+				275A65DC16FFB23C00B5EE4C /* ZFBatchDownloadOperation.m in Sources */,
 				275A65E516FFB23C00B5EE4C /* ZFDownloadPhotoSetsOperation.m in Sources */,
 				275A65EE16FFB23C00B5EE4C /* ZFLoadAllUserInfoForAuthenticatedUserOperation.m in Sources */,
 				275A65F716FFB23C00B5EE4C /* ZFLoadGroupHierarchyOperation.m in Sources */,
@@ -13885,7 +13885,7 @@
 				275A668716FFB23C00B5EE4C /* ZFBreadCrumbsBar.m in Sources */,
 				275A669016FFB23C00B5EE4C /* ZFExifTags.m in Sources */,
 				275A669916FFB23C00B5EE4C /* ZFImageDisplaySize.m in Sources */,
-				275A66A216FFB23C00B5EE4C /* ZFImageSize.m in Sources */,
+				275A66A216FFB23C00B5EE4C /* ZFMediaType.m in Sources */,
 				275A66AB16FFB23C00B5EE4C /* ZFPhotoInfo.m in Sources */,
 				275A66B416FFB23C00B5EE4C /* ZFPhotoSizeFormatter.m in Sources */,
 				275A66BD16FFB23C00B5EE4C /* ZFGroupElementSelection.m in Sources */,
@@ -14516,7 +14516,7 @@
 				275A65C316FFB23C00B5EE4C /* ZFSoapFaultUserNotificationErrorFormatter.m in Sources */,
 				275A65CC16FFB23C00B5EE4C /* FLZenfolio.m in Sources */,
 				275A65D516FFB23C00B5EE4C /* ZFHttpRequest.m in Sources */,
-				275A65DE16FFB23C00B5EE4C /* ZFDownloadOperation.m in Sources */,
+				275A65DE16FFB23C00B5EE4C /* ZFBatchDownloadOperation.m in Sources */,
 				275A65E716FFB23C00B5EE4C /* ZFDownloadPhotoSetsOperation.m in Sources */,
 				275A65F016FFB23C00B5EE4C /* ZFLoadAllUserInfoForAuthenticatedUserOperation.m in Sources */,
 				275A65F916FFB23C00B5EE4C /* ZFLoadGroupHierarchyOperation.m in Sources */,
@@ -14538,7 +14538,7 @@
 				275A668916FFB23C00B5EE4C /* ZFBreadCrumbsBar.m in Sources */,
 				275A669216FFB23C00B5EE4C /* ZFExifTags.m in Sources */,
 				275A669B16FFB23C00B5EE4C /* ZFImageDisplaySize.m in Sources */,
-				275A66A416FFB23C00B5EE4C /* ZFImageSize.m in Sources */,
+				275A66A416FFB23C00B5EE4C /* ZFMediaType.m in Sources */,
 				275A66AD16FFB23C00B5EE4C /* ZFPhotoInfo.m in Sources */,
 				275A66B616FFB23C00B5EE4C /* ZFPhotoSizeFormatter.m in Sources */,
 				275A66BF16FFB23C00B5EE4C /* ZFGroupElementSelection.m in Sources */,

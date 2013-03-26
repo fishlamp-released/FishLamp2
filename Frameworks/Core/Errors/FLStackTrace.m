@@ -103,6 +103,11 @@ FLStackTrace_t FLStackTraceMake(FLLocationInSourceFile_t loc, BOOL withCallStack
     return self;
 }
 
++ (FLStackTrace*) stackTraceWithException:(NSException*) ex {
+
+    return nil;
+}
+
 + (FLStackTrace*) stackTrace:(FLStackTrace_t) stackTrace {
     return FLAutorelease([[FLStackTrace alloc] initWithStackTrace:stackTrace]);
 }

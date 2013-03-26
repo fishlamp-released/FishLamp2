@@ -10,13 +10,14 @@
 #import "FLLogSink.h"
 #import "FLLogger.h"
 
+
 // WARNING: don't import anything here. This file is imported by FishLamp.  This is imported by everything.
 
 #define FLLogWithType(__TYPE__, __FORMAT__, ...) \
-            [[FLLogger instance] sendStringToSinks:FLStringWithFormatOrNil(__FORMAT__, ##__VA_ARGS__) logType:__TYPE__ stackTrace:FLCreateStackTrace(NO)];
+            [[FLLogger instance] logString:FLStringWithFormatOrNil(__FORMAT__, ##__VA_ARGS__) logType:__TYPE__ stackTrace:FLCreateStackTrace(NO)];
 
 #define FLLog(__FORMAT__, ...)   \
-            [[FLLogger instance] sendStringToSinks:FLStringWithFormatOrNil(__FORMAT__, ##__VA_ARGS__) logType:FLLogTypeLog stackTrace:FLCreateStackTrace(NO)];
+            [[FLLogger instance] logString:FLStringWithFormatOrNil(__FORMAT__, ##__VA_ARGS__) logType:FLLogTypeLog stackTrace:FLCreateStackTrace(NO)];
 
 #define FLLogError(__FORMAT__, ...) \
            FLLogWithType(FLLogTypeError, __FORMAT__, ##__VA_ARGS__)
@@ -40,12 +41,25 @@
 
 #define FLLogFileLocation() FLLog(@"%s, file: %s:%d", __PRETTY_FUNCTION__, __FILE__, __LINE__)
 
+//#if DEBUG
+//#define FLTrace(__FORMAT__, ...) DO_PRAGMA(message("FLTrace not defined. #include \"FLTraceOn.h\" or \"FLTraceOff.h\" to enable or disable it."))
+//#define FLTraceIf(__BOOL__, __FORMAT__, ...) DO_PRAGMA(message("FLTrace not defined. #include \"FLTraceOn.h\" or \"FLTraceOff.h\" to enable or disable it."))
+//#else 
+//#define FLTrace(__FORMAT__, ...)
+//#define FLTraceIf(__BOOL__, __FORMAT__, ...) 
+//#endif
+
 #if DEBUG
-#define FLTrace(__FORMAT__, ...) DO_PRAGMA(message("FLTrace not defined. #include \"FLTraceOn.h\" or \"FLTraceOff.h\" to enable or disable it."))
-#define FLTraceIf(__BOOL__, __FORMAT__, ...) DO_PRAGMA(message("FLTrace not defined. #include \"FLTraceOn.h\" or \"FLTraceOff.h\" to enable or disable it."))
-#else 
+#define FLTrace(__FORMAT__, ...) \
+        FLLogWithType(FLLogTypeTrace, __FORMAT__, ##__VA_ARGS__)
+
+#define FLTraceIf(__CONDITION__, __FORMAT__, ...) \
+        if(__CONDITION__) FLLogWithType(FLLogTypeTrace, __FORMAT__, ##__VA_ARGS__)
+#else
+
 #define FLTrace(__FORMAT__, ...)
-#define FLTraceIf(__BOOL__, __FORMAT__, ...) 
+#define FLTraceIf(__CONDITION__, __FORMAT__, ...)
+
 #endif
 
 //#define debugRect(rect) debug(@"%s x:%.4f, y:%.4f, w:%.4f, h%.4f", #rect, rect.origin.x, rect.origin.y, rect.size.width, rect.size.height)

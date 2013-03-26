@@ -81,6 +81,7 @@ const char* FLStackEntryAtIndex(FLCallStack_t stack, NSUInteger index) {
 
 // use FLCreateStackTrace instead of this method
 + (FLStackTrace*) stackTrace:(FLStackTrace_t) willTakeOwnershipOfTrace;
++ (FLStackTrace*) stackTraceWithException:(NSException*) ex;
 
 // where the stack trace was made
 @property (readonly, assign, nonatomic) const char* fileName;
