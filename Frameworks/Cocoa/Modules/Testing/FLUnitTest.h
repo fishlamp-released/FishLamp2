@@ -14,6 +14,8 @@
 #import "FLOperation.h"
 #import "FLUnitTestGroup.h"
 
+#define FLLogTypeTest       @"com.fishlamp.unit-test"
+
 @class FLOperationQueue;
 
 #define FLTestLog(__FORMAT__, ...)   \

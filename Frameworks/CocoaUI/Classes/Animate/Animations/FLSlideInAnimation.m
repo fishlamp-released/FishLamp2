@@ -50,6 +50,8 @@
     
     return CGPointZero;
 }
+
+
 @end
 
 
@@ -76,6 +78,7 @@
 
 - (void) finishAnimation:(CALayer*) layer {
     [layer setPosition:_onScreenOrigin];
+    [layer removeAnimationForKey:@"position"];
 }
 
 
@@ -104,6 +107,7 @@
 - (void) finishAnimation:(CALayer*) layer {
     layer.hidden = YES;
     [layer setPosition:_onScreenOrigin];
+    [layer removeAnimationForKey:@"position"];
 }
 
 

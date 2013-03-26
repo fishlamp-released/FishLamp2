@@ -9,7 +9,7 @@
 #import "FLService.h"
 #import "FLObjectStorage.h"
 #import "FLImageStoreService.h"
-#import "ZFImageSize.h"
+#import "ZFMediaType.h"
 
 //#import "ZFGroup+More.h"
 //#import "ZFPhotoSet+More.h"
@@ -38,7 +38,7 @@
 
 // photo utils
 - (FLStorableImage*) loadCachedImageForPhoto:(ZFPhoto*) photo 
-                                   imageSize:(ZFImageSize*) imageSize;
+                                   imageSize:(ZFMediaType*) imageSize;
 
 - (void) deleteCachedImagesForPhoto:(ZFPhoto*) photo;
 

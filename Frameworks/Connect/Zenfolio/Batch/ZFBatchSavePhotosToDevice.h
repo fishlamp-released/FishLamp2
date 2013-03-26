@@ -16,7 +16,7 @@
 
 @interface ZFBatchSavePhotosToDevice : FLBatchActionManager<UIAlertViewDelegate> {
 @private
-    ZFPhotoSizeEnum _downloadSize;
+    ZFMediaTypeID _downloadSize;
 }
 
 @end

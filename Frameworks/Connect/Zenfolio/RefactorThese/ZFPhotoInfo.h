@@ -9,18 +9,18 @@
 #import <Foundation/Foundation.h>
 
 #import "FishLampCocoa.h"
-#import "ZFImageSize.h"
+#import "ZFMediaType.h"
 
 @interface ZFPhotoInfo : NSObject {
 	unsigned long long _fileSize;
 	unsigned long long _sizeInDatabase;
 	SDKImage* _cachedImage;
-    ZFImageSize* _imageSize;
+    ZFMediaType* _imageSize;
 }
 
 @property (readwrite, assign, nonatomic) unsigned long long sizeInDatabase;
 @property (readwrite, assign, nonatomic) unsigned long long fileSize;
-@property (readwrite, strong, nonatomic) ZFImageSize* imageSize;
+@property (readwrite, strong, nonatomic) ZFMediaType* imageSize;
 @property (readwrite, retain, nonatomic) SDKImage* cachedImage;
 
 @end

@@ -105,20 +105,20 @@
 }
 
 - (FLStorableImage*) loadCachedImageForPhoto:(ZFPhoto*) photo 
-                           imageSize:(ZFImageSize*) imageSize {
+                           imageSize:(ZFMediaType*) imageSize {
                            
     return [self readImageWithURLKey:[photo urlForImageWithSize:imageSize]];
 }
 
 - (void) writeCachedImage:(FLStorableImage*) image 
                  forPhoto:(ZFPhoto*) photo 
-                imageSize:(ZFImageSize*) size {
+                imageSize:(ZFMediaType*) size {
                 
 }                
 
 - (void) deleteCachedImagesForPhoto:(ZFPhoto*) photo {
  	if(photo.IdValue != 0) {
-        for(ZFImageSize* size in [ZFImageSize allImageSizes]) {
+        for(ZFMediaType* size in [ZFMediaType allMediaTypes]) {
             FLStorableImage* image = [self loadCachedImageForPhoto:photo imageSize:size];
             if(image) {
                 [self deleteObject:image];

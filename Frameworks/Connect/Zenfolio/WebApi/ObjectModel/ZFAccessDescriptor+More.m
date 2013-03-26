@@ -168,7 +168,7 @@
 	return	[self testAccessMask:ZFApiAccessMaskProtectComments];
 }
 
-- (ZFImageSize*) largestAllowedImageSize
+- (ZFMediaType*) largestAllowedImageSize
 {
 //    if(self.protectAll) 
 //    {
@@ -177,29 +177,29 @@
 //    
     if(self.protectMedium)
     {
-        return [ZFImageSize smallImageSize];
+        return [ZFMediaType smallImage];
     }
     
     if(self.protectLarge)
     {
-        return [ZFImageSize mediumImageSize];
+        return [ZFMediaType mediumImage];
     }
     
     if(self.protectExtraLarge)
     {
-        return [ZFImageSize largeImageSize];
+        return [ZFMediaType largeImage];
     }
     
     if(self.protectExtraExtraLarge)
     {
-        return [ZFImageSize xLargeImageSize];
+        return [ZFMediaType xLargeImage];
     }
     
     if(self.protectOriginals) {
-        return [ZFImageSize xxLargeImageSize];
+        return [ZFMediaType xxLargeImage];
     }
     
-    return [ZFImageSize originalImageSize];
+    return [ZFMediaType originalImage];
     
 }
 

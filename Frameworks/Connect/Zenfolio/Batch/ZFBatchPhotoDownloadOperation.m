@@ -159,7 +159,7 @@
 //            //	create the url request
 //            NSTimeInterval startTimestamp = [NSDate timeIntervalSinceReferenceDate];
 //
-//            ZFDownloadImageHttpRequest* downloader = [ZFDownloadImageHttpRequest downloadImageHttpRequest:photo imageSize:[ZFImageSize originalImageSize] cache:nil];
+//            ZFDownloadImageHttpRequest* downloader = [ZFDownloadImageHttpRequest downloadImageHttpRequest:photo imageSize:[ZFMediaType originalImageSize] cache:nil];
 //  
 //            image = [context runWorker:downloader withObserver:nil];
 //                                

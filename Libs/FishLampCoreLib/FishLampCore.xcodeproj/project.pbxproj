@@ -100,13 +100,13 @@
 		2798D9AF166D886500A0863D /* FLPrintf.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CDE9166D886500A0863D /* FLPrintf.m */; };
 		2798D9B0166D886500A0863D /* FLPrintf.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CDE9166D886500A0863D /* FLPrintf.m */; };
 		2798D9B1166D886500A0863D /* FLPrintf.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CDE9166D886500A0863D /* FLPrintf.m */; };
-		2798D9B2166D886500A0863D /* FLPrintfLogSink.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDEA166D886500A0863D /* FLPrintfLogSink.h */; };
-		2798D9B3166D886500A0863D /* FLPrintfLogSink.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDEA166D886500A0863D /* FLPrintfLogSink.h */; };
-		2798D9B4166D886500A0863D /* FLPrintfLogSink.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDEA166D886500A0863D /* FLPrintfLogSink.h */; };
-		2798D9B5166D886500A0863D /* FLPrintfLogSink.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CDEB166D886500A0863D /* FLPrintfLogSink.m */; };
-		2798D9B6166D886500A0863D /* FLPrintfLogSink.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CDEB166D886500A0863D /* FLPrintfLogSink.m */; };
-		2798D9B7166D886500A0863D /* FLPrintfLogSink.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CDEB166D886500A0863D /* FLPrintfLogSink.m */; };
-		2798D9B8166D886500A0863D /* FLPrintfLogSink.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CDEB166D886500A0863D /* FLPrintfLogSink.m */; };
+		2798D9B2166D886500A0863D /* FLConsoleLogSink.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDEA166D886500A0863D /* FLConsoleLogSink.h */; };
+		2798D9B3166D886500A0863D /* FLConsoleLogSink.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDEA166D886500A0863D /* FLConsoleLogSink.h */; };
+		2798D9B4166D886500A0863D /* FLConsoleLogSink.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDEA166D886500A0863D /* FLConsoleLogSink.h */; };
+		2798D9B5166D886500A0863D /* FLConsoleLogSink.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CDEB166D886500A0863D /* FLConsoleLogSink.m */; };
+		2798D9B6166D886500A0863D /* FLConsoleLogSink.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CDEB166D886500A0863D /* FLConsoleLogSink.m */; };
+		2798D9B7166D886500A0863D /* FLConsoleLogSink.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CDEB166D886500A0863D /* FLConsoleLogSink.m */; };
+		2798D9B8166D886500A0863D /* FLConsoleLogSink.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CDEB166D886500A0863D /* FLConsoleLogSink.m */; };
 		2798D9B9166D886500A0863D /* FLTraceOff.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDEC166D886500A0863D /* FLTraceOff.h */; };
 		2798D9BA166D886500A0863D /* FLTraceOff.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDEC166D886500A0863D /* FLTraceOff.h */; };
 		2798D9BB166D886500A0863D /* FLTraceOff.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDEC166D886500A0863D /* FLTraceOff.h */; };
@@ -237,7 +237,7 @@
 		27CBBF9516768BA600753D0A /* FLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CDE4166D886500A0863D /* FLLogger.m */; };
 		27CBBF9616768BA600753D0A /* FLLogSink.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CDE7166D886500A0863D /* FLLogSink.m */; };
 		27CBBF9716768BA600753D0A /* FLPrintf.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CDE9166D886500A0863D /* FLPrintf.m */; };
-		27CBBF9816768BA600753D0A /* FLPrintfLogSink.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CDEB166D886500A0863D /* FLPrintfLogSink.m */; };
+		27CBBF9816768BA600753D0A /* FLConsoleLogSink.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CDEB166D886500A0863D /* FLConsoleLogSink.m */; };
 		27CBBF9916768BA600753D0A /* FLAtomicProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CDF1166D886500A0863D /* FLAtomicProperties.m */; };
 		27CBBF9A16768BA600753D0A /* FLObjcRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE02166D886500A0863D /* FLObjcRuntime.m */; };
 		27CBBF9B16768BA600753D0A /* FLRuntimeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE04166D886500A0863D /* FLRuntimeInfo.m */; };
@@ -256,7 +256,7 @@
 		27CBC17716768BA600753D0A /* FLLogPacket_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDE5166D886500A0863D /* FLLogPacket_Internal.h */; };
 		27CBC17816768BA600753D0A /* FLLogSink.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDE6166D886500A0863D /* FLLogSink.h */; };
 		27CBC17916768BA600753D0A /* FLPrintf.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDE8166D886500A0863D /* FLPrintf.h */; };
-		27CBC17A16768BA600753D0A /* FLPrintfLogSink.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDEA166D886500A0863D /* FLPrintfLogSink.h */; };
+		27CBC17A16768BA600753D0A /* FLConsoleLogSink.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDEA166D886500A0863D /* FLConsoleLogSink.h */; };
 		27CBC17B16768BA600753D0A /* FLTraceOff.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDEC166D886500A0863D /* FLTraceOff.h */; };
 		27CBC17C16768BA600753D0A /* FLTraceOn.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDED166D886500A0863D /* FLTraceOn.h */; };
 		27CBC17D16768BA600753D0A /* FLAssociatedProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDEF166D886500A0863D /* FLAssociatedProperty.h */; };
@@ -488,8 +488,8 @@
 		2798CDE7166D886500A0863D /* FLLogSink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLLogSink.m; sourceTree = "<group>"; };
 		2798CDE8166D886500A0863D /* FLPrintf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLPrintf.h; sourceTree = "<group>"; };
 		2798CDE9166D886500A0863D /* FLPrintf.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLPrintf.m; sourceTree = "<group>"; };
-		2798CDEA166D886500A0863D /* FLPrintfLogSink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLPrintfLogSink.h; sourceTree = "<group>"; };
-		2798CDEB166D886500A0863D /* FLPrintfLogSink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLPrintfLogSink.m; sourceTree = "<group>"; };
+		2798CDEA166D886500A0863D /* FLConsoleLogSink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLConsoleLogSink.h; sourceTree = "<group>"; };
+		2798CDEB166D886500A0863D /* FLConsoleLogSink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLConsoleLogSink.m; sourceTree = "<group>"; };
 		2798CDEC166D886500A0863D /* FLTraceOff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLTraceOff.h; sourceTree = "<group>"; };
 		2798CDED166D886500A0863D /* FLTraceOn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLTraceOn.h; sourceTree = "<group>"; };
 		2798CDEF166D886500A0863D /* FLAssociatedProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAssociatedProperty.h; sourceTree = "<group>"; };
@@ -689,8 +689,8 @@
 				2798CDE7166D886500A0863D /* FLLogSink.m */,
 				2798CDE8166D886500A0863D /* FLPrintf.h */,
 				2798CDE9166D886500A0863D /* FLPrintf.m */,
-				2798CDEA166D886500A0863D /* FLPrintfLogSink.h */,
-				2798CDEB166D886500A0863D /* FLPrintfLogSink.m */,
+				2798CDEA166D886500A0863D /* FLConsoleLogSink.h */,
+				2798CDEB166D886500A0863D /* FLConsoleLogSink.m */,
 				2798CDEC166D886500A0863D /* FLTraceOff.h */,
 				2798CDED166D886500A0863D /* FLTraceOn.h */,
 			);
@@ -893,7 +893,7 @@
 				2798D9A2166D886500A0863D /* FLLogPacket_Internal.h in Headers */,
 				2798D9A5166D886500A0863D /* FLLogSink.h in Headers */,
 				2798D9AC166D886500A0863D /* FLPrintf.h in Headers */,
-				2798D9B3166D886500A0863D /* FLPrintfLogSink.h in Headers */,
+				2798D9B3166D886500A0863D /* FLConsoleLogSink.h in Headers */,
 				2798D9BA166D886500A0863D /* FLTraceOff.h in Headers */,
 				2798D9BD166D886500A0863D /* FLTraceOn.h in Headers */,
 				2798D9C0166D886500A0863D /* FLAssociatedProperty.h in Headers */,
@@ -961,7 +961,7 @@
 				2798D9A3166D886500A0863D /* FLLogPacket_Internal.h in Headers */,
 				2798D9A6166D886500A0863D /* FLLogSink.h in Headers */,
 				2798D9AD166D886500A0863D /* FLPrintf.h in Headers */,
-				2798D9B4166D886500A0863D /* FLPrintfLogSink.h in Headers */,
+				2798D9B4166D886500A0863D /* FLConsoleLogSink.h in Headers */,
 				2798D9BB166D886500A0863D /* FLTraceOff.h in Headers */,
 				2798D9BE166D886500A0863D /* FLTraceOn.h in Headers */,
 				2798D9C1166D886500A0863D /* FLAssociatedProperty.h in Headers */,
@@ -1029,7 +1029,7 @@
 				2798D9A1166D886500A0863D /* FLLogPacket_Internal.h in Headers */,
 				2798D9A4166D886500A0863D /* FLLogSink.h in Headers */,
 				2798D9AB166D886500A0863D /* FLPrintf.h in Headers */,
-				2798D9B2166D886500A0863D /* FLPrintfLogSink.h in Headers */,
+				2798D9B2166D886500A0863D /* FLConsoleLogSink.h in Headers */,
 				2798D9B9166D886500A0863D /* FLTraceOff.h in Headers */,
 				2798D9BC166D886500A0863D /* FLTraceOn.h in Headers */,
 				2798D9BF166D886500A0863D /* FLAssociatedProperty.h in Headers */,
@@ -1097,7 +1097,7 @@
 				27CBC17716768BA600753D0A /* FLLogPacket_Internal.h in Headers */,
 				27CBC17816768BA600753D0A /* FLLogSink.h in Headers */,
 				27CBC17916768BA600753D0A /* FLPrintf.h in Headers */,
-				27CBC17A16768BA600753D0A /* FLPrintfLogSink.h in Headers */,
+				27CBC17A16768BA600753D0A /* FLConsoleLogSink.h in Headers */,
 				27CBC17B16768BA600753D0A /* FLTraceOff.h in Headers */,
 				27CBC17C16768BA600753D0A /* FLTraceOn.h in Headers */,
 				27CBC17D16768BA600753D0A /* FLAssociatedProperty.h in Headers */,
@@ -1283,7 +1283,7 @@
 				2798D99F166D886500A0863D /* FLLogger.m in Sources */,
 				2798D9A9166D886500A0863D /* FLLogSink.m in Sources */,
 				2798D9B0166D886500A0863D /* FLPrintf.m in Sources */,
-				2798D9B7166D886500A0863D /* FLPrintfLogSink.m in Sources */,
+				2798D9B7166D886500A0863D /* FLConsoleLogSink.m in Sources */,
 				2798D9C7166D886500A0863D /* FLAtomicProperties.m in Sources */,
 				2798D9F6166D886500A0863D /* FLObjcRuntime.m in Sources */,
 				2798D9FD166D886500A0863D /* FLRuntimeInfo.m in Sources */,
@@ -1329,7 +1329,7 @@
 				2798D9A0166D886500A0863D /* FLLogger.m in Sources */,
 				2798D9AA166D886500A0863D /* FLLogSink.m in Sources */,
 				2798D9B1166D886500A0863D /* FLPrintf.m in Sources */,
-				2798D9B8166D886500A0863D /* FLPrintfLogSink.m in Sources */,
+				2798D9B8166D886500A0863D /* FLConsoleLogSink.m in Sources */,
 				2798D9C8166D886500A0863D /* FLAtomicProperties.m in Sources */,
 				2798D9F7166D886500A0863D /* FLObjcRuntime.m in Sources */,
 				2798D9FE166D886500A0863D /* FLRuntimeInfo.m in Sources */,
@@ -1375,7 +1375,7 @@
 				2798D99D166D886500A0863D /* FLLogger.m in Sources */,
 				2798D9A7166D886500A0863D /* FLLogSink.m in Sources */,
 				2798D9AE166D886500A0863D /* FLPrintf.m in Sources */,
-				2798D9B5166D886500A0863D /* FLPrintfLogSink.m in Sources */,
+				2798D9B5166D886500A0863D /* FLConsoleLogSink.m in Sources */,
 				2798D9C5166D886500A0863D /* FLAtomicProperties.m in Sources */,
 				2798D9F4166D886500A0863D /* FLObjcRuntime.m in Sources */,
 				2798D9FB166D886500A0863D /* FLRuntimeInfo.m in Sources */,
@@ -1421,7 +1421,7 @@
 				2798D99E166D886500A0863D /* FLLogger.m in Sources */,
 				2798D9A8166D886500A0863D /* FLLogSink.m in Sources */,
 				2798D9AF166D886500A0863D /* FLPrintf.m in Sources */,
-				2798D9B6166D886500A0863D /* FLPrintfLogSink.m in Sources */,
+				2798D9B6166D886500A0863D /* FLConsoleLogSink.m in Sources */,
 				2798D9C6166D886500A0863D /* FLAtomicProperties.m in Sources */,
 				2798D9F5166D886500A0863D /* FLObjcRuntime.m in Sources */,
 				2798D9FC166D886500A0863D /* FLRuntimeInfo.m in Sources */,
@@ -1467,7 +1467,7 @@
 				27CBBF9516768BA600753D0A /* FLLogger.m in Sources */,
 				27CBBF9616768BA600753D0A /* FLLogSink.m in Sources */,
 				27CBBF9716768BA600753D0A /* FLPrintf.m in Sources */,
-				27CBBF9816768BA600753D0A /* FLPrintfLogSink.m in Sources */,
+				27CBBF9816768BA600753D0A /* FLConsoleLogSink.m in Sources */,
 				27CBBF9916768BA600753D0A /* FLAtomicProperties.m in Sources */,
 				27CBBF9A16768BA600753D0A /* FLObjcRuntime.m in Sources */,
 				27CBBF9B16768BA600753D0A /* FLRuntimeInfo.m in Sources */,

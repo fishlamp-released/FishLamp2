@@ -56,9 +56,8 @@
 }
 
 - (void) finishAnimation:(CALayer*) layer {
-    if(self.removeTransform) {
-        layer.transform = _originalTransform;
-    }
+    layer.transform = _originalTransform;
+    [layer removeAnimationForKey:@"transform"];
 }
 
 @end

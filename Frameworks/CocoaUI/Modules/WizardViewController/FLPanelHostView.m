@@ -14,15 +14,31 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code here.
+        self.autoresizesSubviews = NO;
     }
     
     return self;
 }
 
-- (void)drawRect:(NSRect)dirtyRect
-{
-    // Drawing code here.
+- (CGRect) subviewFrame {
+    CGRect bounds = self.bounds;
+    bounds.origin = CGPointMake(1,1);
+    bounds.size.width -= 2;
+    bounds.size.height -= 2;
+    return bounds;
+} 
+
+- (void) didAddSubview:(NSView *)subview {
+    subview.frame = self.subviewFrame;
+    [super didAddSubview:subview];
 }
+
+- (void) setFrame:(CGRect) frame {
+    [super setFrame:frame];
+    for(NSView* view in self.subviews) {
+        view.frame = self.subviewFrame;
+    }
+}
+
 
 @end

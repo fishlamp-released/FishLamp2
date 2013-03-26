@@ -1,5 +1,5 @@
 //
-//  ZFDownloadOperation.h
+//  ZFBatchDownloadOperation.h
 //  Zenfolio Downloader
 //
 //  Created by Mike Fullerton on 2/27/13.
@@ -26,6 +26,7 @@ typedef struct {
     
 } ZFDownloadState_t;
 
+
 @interface ZFDownloadState : NSObject<NSCopying> {
 @private
     ZFDownloadState_t _values;
@@ -35,24 +36,24 @@ typedef struct {
 @property (readonly, assign, nonatomic) ZFDownloadState_t values;
 @end
 
-@interface ZFDownloadOperation : FLOperation {
+@interface ZFBatchDownloadOperation : FLOperation {
 @private
     ZFGroup* _rootGroup;
     NSString* _destinationPath;
     NSSet* _photoSetIDs; 
-
-    BOOL _downloadVideos;
-    BOOL _downloadImages;
+    NSArray* _mediaTypes;
     ZFDownloadState_t _state;
     NSTimeInterval _lastProgress;
+    
+    BOOL _downloadImages;
+    BOOL _downloadVideos;
 }
 
 + (id) downloadOperation:(NSSet*) photoSetIDs 
                rootGroup:(ZFGroup*) rootGroup
            objectStorage:(id<FLObjectStorage>) storage 
          destinationPath:(NSString*) destinationPath
-          downloadVideos:(BOOL) downloadVideos
-          downloadImages:(BOOL) downloadImages;
+              mediaTypes:(NSArray*) mediaTypes;
 @end
 
 #define ZFDownloadedPhotoKey @"photo"
@@ -62,22 +63,22 @@ typedef struct {
 #define ZFDownloadFolderKey @"folder"
 #define ZFDownloadPhotoErrorKey @"error"
 
-@protocol ZFDownloadOperationObserver <NSObject>
-- (void) downloadOperation:(ZFDownloadOperation*) operation updateDownloadInfo:(ZFDownloadState*) downloadInfo;
+@protocol ZFBatchDownloadOperationObserver <NSObject>
+- (void) downloadOperation:(ZFBatchDownloadOperation*) operation updateDownloadInfo:(ZFDownloadState*) downloadInfo;
 
 @optional
 
-- (void) downloadOperationWillBeginDownload:(ZFDownloadOperation*) operation;
-- (void) downloadOperation:(ZFDownloadOperation*) operation didFinishWithResult:(FLResult) result;
+- (void) downloadOperationWillBeginDownload:(ZFBatchDownloadOperation*) operation;
+- (void) downloadOperation:(ZFBatchDownloadOperation*) operation didFinishWithResult:(FLResult) result;
 
-- (void) downloadOperation:(ZFDownloadOperation*) operation willUpdatePhotoSet:(ZFPhotoSet*) photoSet;
-- (void) downloadOperation:(ZFDownloadOperation*) operation didUpdatePhotoSet:(ZFPhotoSet*) photoSet;
+- (void) downloadOperation:(ZFBatchDownloadOperation*) operation willUpdatePhotoSet:(ZFPhotoSet*) photoSet;
+- (void) downloadOperation:(ZFBatchDownloadOperation*) operation didUpdatePhotoSet:(ZFPhotoSet*) photoSet;
 
 // these are called per photo set
-- (void) downloadOperation:(ZFDownloadOperation*) operation willStartDownloadingPhotosInPhotoSet:(NSDictionary*) downloadInfo;
-- (void) downloadOperation:(ZFDownloadOperation*) operation willDownloadPhoto:(NSDictionary*) downloadInfo;
-- (void) downloadOperation:(ZFDownloadOperation*) operation didSkipPhoto:(NSDictionary*) downloadInfo;
-- (void) downloadOperation:(ZFDownloadOperation*) operation didDownloadPhoto:(NSDictionary*) downloadInfo;
-- (void) downloadOperation:(ZFDownloadOperation*) operation didDownloadPhotosInPhotoSet:(NSDictionary*) downloadInfo;
+- (void) downloadOperation:(ZFBatchDownloadOperation*) operation willStartDownloadingPhotosInPhotoSet:(NSDictionary*) downloadInfo;
+- (void) downloadOperation:(ZFBatchDownloadOperation*) operation willDownloadPhoto:(NSDictionary*) downloadInfo;
+- (void) downloadOperation:(ZFBatchDownloadOperation*) operation didSkipPhoto:(NSDictionary*) downloadInfo;
+- (void) downloadOperation:(ZFBatchDownloadOperation*) operation didDownloadPhoto:(NSDictionary*) downloadInfo;
+- (void) downloadOperation:(ZFBatchDownloadOperation*) operation didDownloadPhotosInPhotoSet:(NSDictionary*) downloadInfo;
 
 @end

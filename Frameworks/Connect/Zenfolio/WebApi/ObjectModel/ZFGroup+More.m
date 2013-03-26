@@ -104,13 +104,13 @@ FLSynthesizeCachedObjectHandlerProperty(ZFGroup);
     return nil;
 }
 
-- (ZFGroupElement*) findById:(NSUInteger) groupId {
+- (id) subElementForID:(NSUInteger) groupId {
 	return [self findByIdInternal:groupId path:nil];
 }
 
-- (ZFGroupElement*) findByIdNumber:(NSNumber*) groupId {
-	return [self findById:[groupId unsignedIntegerValue]];
-}
+//- (ZFGroupElement*) findByIdNumber:(NSNumber*) groupId {
+//	return [self subElementForID:[groupId unsignedIntegerValue]];
+//}
 
 - (ZFGroup*) findParentForElement:(ZFGroupElement*) inElement 
                                     group:(ZFGroup*) inGroup {
@@ -175,7 +175,7 @@ FLSynthesizeCachedObjectHandlerProperty(ZFGroup);
 }
 
 - (BOOL) replaceElement:(ZFGroupElement*) newElement parentId:(unsigned long) parentId {
-	ZFGroup* parent = (ZFGroup*) [self findById:parentId];
+	ZFGroup* parent = (ZFGroup*) [self subElementForID:parentId];
 	if(parent) {
 		return [parent replaceGroupElement:newElement];
 	}
@@ -265,7 +265,7 @@ FLSynthesizeCachedObjectHandlerProperty(ZFGroup);
 }
 
 - (void) addGroupElement:(ZFGroupElement*) element parentId:(unsigned long) parentId {
-	ZFGroup* parent = (ZFGroup*) [self findById:parentId];
+	ZFGroup* parent = (ZFGroup*) [self subElementForID:parentId];
 
 	FLAssertIsNotNil(parent);
 	[parent addGroupElement:element];
@@ -309,7 +309,7 @@ FLSynthesizeCachedObjectHandlerProperty(ZFGroup);
 }
 
 - (void) removeGroupElement:(ZFGroupElement*) removeThisElement parentId:(unsigned long) parentId {
-	ZFGroup* parent = (ZFGroup*) [self findById:parentId];
+	ZFGroup* parent = (ZFGroup*) [self subElementForID:parentId];
     FLAssertIsNotNil(parent);
     [parent removeGroupElement:removeThisElement];
 }

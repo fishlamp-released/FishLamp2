@@ -10,11 +10,11 @@
 
 #if DEBUG
 
-#undef TRACE
-#undef FLTrace
-#undef FLTraceIf
-
-#define TRACE 1
+//#undef TRACE
+//#undef FLTrace
+//#undef FLTraceIf
+//
+//#define TRACE 1
 
 #define FLTrace(__FORMAT__, ...) \
         FLLogWithType(FLLogTypeTrace, __FORMAT__, ##__VA_ARGS__)

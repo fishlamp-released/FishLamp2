@@ -407,7 +407,7 @@
     self.cachedIndexSetForOutlineView = nil;
 
     if(FLStringIsNotEmpty(_filterString)) {
-        _filtered = [NSMutableSet set];
+        self.filtered = [NSMutableSet set];
         
         NSSet* previousSelection = FLRetainWithAutorelease(_selected);
         NSSet* previousPhotoSetSelection = FLRetainWithAutorelease(_selectedPhotoSets);
@@ -415,8 +415,8 @@
         
         [self findMatchesForFilterWithGroup:_rootGroup filter:_filterString results:_filtered];
         
-        _selected = [NSMutableSet set];
-        _selectedPhotoSets = [NSMutableSet set];
+        self.selected = [NSMutableSet set];
+        self.selectedPhotoSets = [NSMutableSet set];
         
         // We're REMOVING stuff not in the filter.
         

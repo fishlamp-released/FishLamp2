@@ -23,7 +23,7 @@
 #import "FLLogger.h"
 #import "FLLogSink.h"
 #import "FLPrintf.h"
-#import "FLPrintfLogSink.h"
+#import "FLConsoleLogSink.h"
 #import "FLTraceOff.h"
 #import "FLTraceOn.h"
 

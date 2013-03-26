@@ -21,11 +21,14 @@
 @synthesize buttons = _buttons;
 @synthesize header = _header;
 
+@synthesize panelFillsView = _panelFillsView;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.canOpenNextPanel = NO;
+        self.panelFillsView = YES;
     }
     
     return self;

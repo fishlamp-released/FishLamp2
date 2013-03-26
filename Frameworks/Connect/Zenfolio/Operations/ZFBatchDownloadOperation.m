@@ -1,12 +1,12 @@
 //
-//  ZFDownloadOperation.m
+//  ZFBatchDownloadOperation.m
 //  Zenfolio Downloader
 //
 //  Created by Mike Fullerton on 2/27/13.
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
 
-#import "ZFDownloadOperation.h"
+#import "ZFBatchDownloadOperation.h"
 #import "ZFWebApi.h"
 #import "FLImageFolder.h"
 #import "ZFDownloadImageHttpRequest.h"
@@ -50,49 +50,46 @@
 
 @end
 
-@interface ZFDownloadOperation ()
+@interface ZFBatchDownloadOperation ()
 @property (readwrite, strong, nonatomic) ZFGroup* rootGroup;
 @property (readwrite, copy, nonatomic) NSSet* photoSets;
 @property (readwrite, copy, nonatomic) NSString* destinationPath;
-@property (readwrite, assign, nonatomic) BOOL downloadVideos;
-@property (readwrite, assign, nonatomic) BOOL downloadImages;
+@property (readwrite, strong, nonatomic) NSArray* mediaTypes;
 @end
 
-@implementation ZFDownloadOperation  
+@implementation ZFBatchDownloadOperation  
 
-@synthesize photoSets = _photoSets;
+@synthesize photoSets = _photoSetIDs;
 @synthesize destinationPath = _destinationPath;
-@synthesize downloadVideos = _downloadVideos;
-@synthesize downloadImages = _downloadImages;
+@synthesize mediaTypes = _mediaTypes;
 @synthesize rootGroup = _rootGroup;
 
 + (id) downloadOperation:(NSSet*) photoSetIDs 
                rootGroup:(ZFGroup*) rootGroup 
            objectStorage:(id<FLObjectStorage>) objectStorage 
          destinationPath:(NSString*) destinationPath 
-        downloadVideos:(BOOL) downloadVideos
-         downloadImages:(BOOL) downloadImages {
+              mediaTypes:(NSArray*) mediaTypes {
     
     FLAssertNotNil(objectStorage);
     FLAssertNotNil(rootGroup);
     FLAssertNotNil(photoSetIDs);
     FLAssertNotNil(destinationPath);
     
-    ZFDownloadOperation* operation = FLAutorelease([[[self class] alloc] initWithObjectStorage:objectStorage]);
+    ZFBatchDownloadOperation* operation = FLAutorelease([[[self class] alloc] initWithObjectStorage:objectStorage]);
     operation.rootGroup = rootGroup;
     operation.photoSets = photoSetIDs;
     operation.destinationPath = destinationPath;
-    operation.downloadImages = downloadImages;
-    operation.downloadVideos = downloadVideos;
+    operation.mediaTypes = mediaTypes;
     return operation;
 }
 
 
 #if FL_MRC
 - (void) dealloc {
+    [_mediaTypes release];
     [_rootGroup release];
     [_destinationPath release];
-    [_photoSets release];
+    [_photoSetIDs release];
     [super dealloc];
 }
 #endif
@@ -142,16 +139,16 @@
 
 }
 
-- (NSString*) downloadFileNameForPhoto:(ZFPhoto*) photo {
-    NSMutableString* name = [NSMutableString stringWithFormat:@"%@-%@", [photo.FileName stringByDeletingPathExtension], [photo Id]]; //, [photo.Sequence];
-            
-    if(FLStringIsNotEmpty(photo.Sequence)) {
-        [name appendFormat:@"-%@", photo.Sequence];
-    }
-    
-    [name appendFormat:@".%@", [photo.FileName pathExtension]];
-    return name;        
-}
+//- (NSString*) downloadFileNameForPhoto:(ZFPhoto*) photo {
+//    NSMutableString* name = [NSMutableString stringWithFormat:@"%@-%@", [photo.FileName stringByDeletingPathExtension], [photo Id]]; //, [photo.Sequence];
+//            
+//    if(FLStringIsNotEmpty(photo.Sequence)) {
+//        [name appendFormat:@"-%@", photo.Sequence];
+//    }
+//    
+//    [name appendFormat:@".%@", [photo.FileName pathExtension]];
+//    return name;        
+//}
 
 - (ZFPhotoSet*) downloadLatestPhotoSet:(ZFPhotoSet*) photoSet {
 
@@ -164,11 +161,12 @@
 }
 
 - (FLResult) downloadPhoto:(ZFPhoto*) photo
-           imageFolder:(FLImageFolder*) imageFolder {
+             withImageSize:(ZFMediaType*) imageSize
+               imageFolder:(FLImageFolder*) imageFolder {
            
     ZFDownloadImageHttpRequest* request = 
         [ZFDownloadImageHttpRequest downloadImageHttpRequest:photo 
-                                                           imageSize:[ZFImageSize originalImageSize] 
+                                                           imageSize:imageSize 
                                                                cache:nil];
 
     request.networkStreamSink = [FLFileStreamSink fileStreamSink:[NSURL fileURLWithPath:[imageFolder pathForFile:photo.FileName]]];
@@ -182,110 +180,120 @@
     [self updateProgress:YES];
 }
 
-- (FLResult) downloadPhotoToFile:(ZFPhoto*) photo
-           imageFolder:(FLImageFolder*) imageFolder {
-    FLHttpRequest* request = 
-        [FLHttpRequest httpRequest:[photo urlForImageWithSize:[ZFImageSize originalImageSize]]];
+- (FLResult) downloadPhotoToFile:(ZFPhoto*) photo 
+                        filePath:(NSString*) filePath {
 
-    request.networkStreamSink = [FLFileStreamSink fileStreamSink:[NSURL fileURLWithPath:[imageFolder pathForFile:[self downloadFileNameForPhoto:photo]]]];
+    FLHttpRequest* request = 
+        [FLHttpRequest httpRequest:[photo urlForImageWithSize:[ZFMediaType originalImage]]];
+
+    request.networkStreamSink = [FLFileStreamSink fileStreamSink:[NSURL fileURLWithPath:filePath]];
                                                                
     return FLThrowIfError([self.workerContext runWorker:request withObserver:self]);
 
 }
 
 - (BOOL) willDownloadPhoto:(ZFPhoto*) photo {
-    return ( (photo.IsVideoValue && self.downloadVideos) || (!photo.IsVideoValue && self.downloadImages));
+    return ( (photo.IsVideoValue && _downloadVideos) || (!photo.IsVideoValue && _downloadImages));
+}
+
+- (void) updateCountsForMediaType:(ZFMediaType*) mediaType {
+    if(mediaType.mediaTypeID == ZFMediaTypeVideo) {
+        _state.videoCount++;
+    }
+    else {
+        _state.photoCount++;
+    }
+            
+}
+
+- (void) mediaExists:(ZFMediaType*) mediaType forPhoto:(ZFPhoto*) photo filePath:(NSString*) filePath {
+    NSMutableDictionary* info = [NSMutableDictionary dictionary];
+    [info setObject:photo forKey:ZFDownloadedPhotoKey];
+    [info setObject:filePath forKey:ZFDownloadedDestinationPathKey];
+        
+    [self sendObservation:@selector(downloadOperation:willDownloadPhoto:) withObject:info];
+    [self updateCountsForMediaType:mediaType];
+    [self sendObservation:@selector(downloadOperation:didSkipPhoto:) withObject:info];
+    
+}
+
+- (void) downloadMedia:(ZFMediaType*) mediaType 
+              forPhoto:(ZFPhoto*) photo 
+              filePath:(NSString*) filePath
+              fileName:(NSString*) fileName {
+
+    NSMutableDictionary* info = [NSMutableDictionary dictionary];
+    [info setObject:photo forKey:ZFDownloadedPhotoKey];
+    [info setObject:filePath forKey:ZFDownloadedDestinationPathKey];
+
+    
+    _state.currentPhotoBytes = 0;
+
+    NSTimeInterval downloadStart = [NSDate timeIntervalSinceReferenceDate];
+    
+    FLResult result = [self downloadPhotoToFile:photo filePath:filePath];
+    
+    NSTimeInterval elapsedTime = ([NSDate timeIntervalSinceReferenceDate] - downloadStart);
+
+    [self abortIfNeeded];
+
+    // for accurute download speed caculations
+    _state.downloadingTime += elapsedTime;
+    _state.downloadedBytes += _state.currentPhotoBytes;
+//    _state.downloadedBytes += photo.SizeValue;
+    FLLog(@"downloaded %ld, expected: %ld, elapsed time: %f", _state.currentPhotoBytes, photo.SizeValue, elapsedTime);
+    
+    // fix the total byte count so we don't mess up progress.
+    _state.byteCount -= _state.currentPhotoBytes;
+    _state.currentPhotoBytes = 0;
+    _state.byteCount += photo.SizeValue; 
+
+    [self abortIfNeeded];
+
+    [self updateCountsForMediaType:mediaType];
+
+    if([result error]) {
+        [info setObject:[result error] forKey:ZFDownloadPhotoErrorKey];
+    }
+    
+    [self sendObservation:@selector(downloadOperation:didDownloadPhoto:) withObject:info];
+    
+
 }
 
 - (void) downloadPhotosInPhotoSet:(ZFPhotoSet*) photoSet imageFolder:(FLImageFolder*) imageFolder {
     [self abortIfNeeded];
     
     for(ZFPhoto* photo in photoSet.Photos) {
-        [self abortIfNeeded];
-        if(![self willDownloadPhoto:photo]) {
-            continue;
-        }
-        
-        NSMutableDictionary* info = [[NSMutableDictionary alloc] init];
-        @try {
-            NSString* pathToContent = [imageFolder pathForFile:[self downloadFileNameForPhoto:photo]];
+        for(ZFMediaType* media in _mediaTypes) {
+            [self abortIfNeeded];
             
-            [info setObject:photo forKey:ZFDownloadedPhotoKey];
-            [info setObject:pathToContent forKey:ZFDownloadedDestinationPathKey];
-        
-            [self sendObservation:@selector(downloadOperation:willDownloadPhoto:) 
-                           withObject:info];
+            if( ((media.mediaTypeID == ZFMediaTypeVideo) && photo.IsVideoValue) ||
+                ((media.mediaTypeID != ZFMediaTypeVideo) && !photo.IsVideoValue)) {
 
-            if([imageFolder fileExistsInFolder:pathToContent]) {
-            
-                if(photo.IsVideoValue) {
-                    if(self.downloadVideos) {
-                        _state.videoCount++;
-                    
-                    }
+                NSString* fileName = [media humanReadableFileNameForPhoto:photo];
+                
+                if([imageFolder fileExistsInFolder:fileName]) {
+                    [self mediaExists:media 
+                             forPhoto:photo 
+                             filePath:[imageFolder pathForFile:fileName]];
                 }
                 else {
-                    if(self.downloadImages) {
-                        _state.photoCount++;
-                    }
-                }            
+                    [self downloadMedia:media 
+                               forPhoto:photo 
+                               filePath:[imageFolder pathForFile:fileName]
+                               fileName:fileName];
+                }
                 
-                [self sendObservation:@selector(downloadOperation:didSkipPhoto:) 
-                               withObject:info];
+                [self updateProgress:YES];
             }
-            else {
-                [self abortIfNeeded];
-
-
-                NSTimeInterval downloadStart = [NSDate timeIntervalSinceReferenceDate];
-
-                _state.currentPhotoBytes = 0;
-
-                FLResult result = nil;
-                if(photo.IsVideoValue) {
-                    if(self.downloadVideos) {
-                        result  = [self downloadPhotoToFile:photo imageFolder:imageFolder];
-                        _state.videoCount++;
-                    }
-                }
-                else {
-                    if(self.downloadImages) {
-                        result  = [self downloadPhotoToFile:photo imageFolder:imageFolder];
-                        _state.photoCount++;
-                    }
-                }
-
-                _state.downloadingTime += ([NSDate timeIntervalSinceReferenceDate] - downloadStart);
-                _state.downloadedBytes += _state.currentPhotoBytes;
-                _state.byteCount -= _state.currentPhotoBytes;
-                _state.currentPhotoBytes = 0;
-                
-                if([result error]) {
-                    [info setObject:[result error] forKey:ZFDownloadPhotoErrorKey];
-                }
-
-                [self abortIfNeeded];
-            
-                [self sendObservation:@selector(downloadOperation:didDownloadPhoto:) 
-                               withObject:info];
-            }
-            
-            _state.byteCount += photo.SizeValue;
-
-            [self updateProgress:YES];
-        }
-        @catch(NSException* ex) {
-            @throw;
-        }
-        @finally {
-            FLRelease(info);
         }
     }
 }
 
 
 - (void) updatePhotoSets {
-    _state.photoSetTotal = _photoSets.count;
+    _state.photoSetTotal = _photoSetIDs.count;
     _state.videoTotal = 0;
     _state.photoTotal = 0;
     _state.byteTotal = 0;
@@ -295,6 +303,12 @@
         ZFPhotoSet* inputPhotoSet = [ZFPhotoSet photoSet];
         inputPhotoSet.Id = photoSetID; 
         ZFPhotoSet* photoSet = [self.objectStorage readObject:inputPhotoSet];
+        if(!photoSet) {
+            photoSet = [self.rootGroup subElementForID:photoSetID.intValue];
+        }
+        if(!photoSet) {
+            continue;
+        }
         
         [self sendObservation:@selector(downloadOperation:willUpdatePhotoSet:)
                withObject:photoSet];
@@ -303,11 +317,13 @@
         FLAssertNotNil(photoSet);
     
         for(ZFPhoto* photo in photoSet.Photos) {
-            if(self.downloadVideos && photo.IsVideoValue) {
+        
+            if(_downloadVideos && photo.IsVideoValue) {
                 _state.videoTotal++;
                 _state.byteTotal += photo.SizeValue;
             }
-            if(self.downloadImages && !photo.IsVideoValue) {
+
+            if(_downloadImages && !photo.IsVideoValue) {
                 _state.photoTotal++;
                 _state.byteTotal += photo.SizeValue;
             }
@@ -337,6 +353,9 @@
         ZFPhotoSet* inputPhotoSet = [ZFPhotoSet photoSet];
         inputPhotoSet.Id = photoSetID; 
         ZFPhotoSet* photoSet = [self.objectStorage readObject:inputPhotoSet];
+        if(!photoSet) {
+            continue;
+        }
 
         FLImageFolder* imageFolder = [self createFolderForPhotoSet:photoSet];
     
@@ -357,11 +376,24 @@
     }
 }
 
-- (FLResult) runOperationInContext:(id) context withObserver:(id) observer {
+- (FLResult) runOperation {
 
     FLAssertNotNil(self.rootGroup);
 
     memset(&_state, 0, sizeof(ZFDownloadState_t));
+
+    _downloadVideos = NO;
+    _downloadImages = NO;
+    
+    for(ZFMediaType* type in _mediaTypes) {
+        if(type.mediaTypeID == ZFMediaTypeVideo) {
+            _downloadVideos = YES;
+        }
+        if(type.mediaTypeID == ZFMediaTypeOriginalImage) {
+            _downloadImages = YES;
+        }
+    }
+
 
     [self sendObservation:@selector(downloadOperationWillBeginDownload:)];
     [self updateProgress:YES];
@@ -372,7 +404,7 @@
     [self updateProgress:NO];
     [self sendObservation:@selector(downloadOperation:didFinishWithResult:)];
     
-    return _photoSets;
+    return _photoSetIDs;
 }
 
 @end

@@ -16,7 +16,7 @@
 
 @interface ZFDownloadImageHttpRequest ()
 @property (readwrite, strong, nonatomic) ZFPhoto* photo;
-@property (readwrite, strong, nonatomic) ZFImageSize* imageSize;
+@property (readwrite, strong, nonatomic) ZFMediaType* imageSize;
 @property (readwrite, strong, nonatomic) ZFCacheService* cache;
 @end
 
@@ -27,7 +27,7 @@
 @synthesize cache = _cache;
 
 - (id) initWithPhoto:(ZFPhoto*) photo 
-           imageSize:(ZFImageSize*) imageSize 
+           imageSize:(ZFMediaType*) imageSize 
                cache:(ZFCacheService*) cache {
     
     FLAssertNotNil(photo);
@@ -44,7 +44,7 @@
 }
 
 + (ZFDownloadImageHttpRequest*) downloadImageHttpRequest:(ZFPhoto*) photo 
-                                                     imageSize:(ZFImageSize*) imageSize
+                                                     imageSize:(ZFMediaType*) imageSize
                                                          cache:(ZFCacheService*) cache {
     return FLAutorelease([[ZFDownloadImageHttpRequest alloc] initWithPhoto:photo  imageSize:imageSize cache:cache]);
 }

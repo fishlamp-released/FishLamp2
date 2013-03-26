@@ -7,7 +7,7 @@
 //
 
 #import "ZFAccessDescriptor.h"
-#import "ZFImageSize.h"
+#import "ZFMediaType.h"
 
 @interface ZFAccessDescriptor (Utils)
 
@@ -57,6 +57,6 @@
 @property (readonly, assign, nonatomic) BOOL protectComments;
 
 // figures out what the largest size available by access control is
-@property (readonly, assign, nonatomic) ZFImageSize* largestAllowedImageSize; 
+@property (readonly, assign, nonatomic) ZFMediaType* largestAllowedImageSize; 
 
 @end

@@ -56,16 +56,13 @@ FLSynthesizeAssociatedProperty(retain_nonatomic, stackTrace, setStackTrace, FLSt
 
     NSString* commentAddOn = nil;
     if(errorCodeString) {
-        commentAddOn = [NSString stringWithFormat:@"[%@: %@ (%ld)]", domain, errorCodeString, (long) code];
+        commentAddOn = [NSString stringWithFormat:@"[domain:\"%@\"m error code:%ld (%@)]", domain, (long) code, errorCodeString];
     }
     else {
-        commentAddOn = [NSString stringWithFormat:@"[%@: %ld]", domain, (long)code];
+        commentAddOn = [NSString stringWithFormat:@"[domain:\'%@\", error code:%ld]", domain, (long)code];
     }
 
     if(comment) {
-#if DEBUG
-        localizedDescription = [NSString stringWithFormat:@"%@ DEBUG(%@)", localizedDescription, comment];
-#endif        
         comment = [NSString stringWithFormat:@"%@ %@", comment, commentAddOn];
     }
     else {

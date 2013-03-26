@@ -8,28 +8,28 @@
 
 #import <Foundation/Foundation.h>
 
-#import "ZFImageSize.h"
+#import "ZFMediaType.h"
 #import "ZFAccessDescriptor.h"
 
 @interface ZFImageDisplaySize : NSObject {
 @private
-    ZFImageSize* _highResolutionImageDownloadSize;
-    ZFImageSize* _imageDownloadSize;
-    ZFImageSize* _galleryThumbnailDownloadSize;
-    ZFImageSize* _photoThumbnailSize;
+    ZFMediaType* _highResolutionImageDownloadSize;
+    ZFMediaType* _imageDownloadSize;
+    ZFMediaType* _galleryThumbnailDownloadSize;
+    ZFMediaType* _photoThumbnail;
 }
 
 @property (readonly, assign) BOOL isRetinaDevice;
 
-@property (readwrite,strong) ZFImageSize* highResolutionImageDownloadSize;
-@property (readwrite,strong) ZFImageSize* imageDownloadSize;
-@property (readwrite,strong) ZFImageSize* galleryThumbnailDownloadSize;
-@property (readwrite,strong) ZFImageSize* photoThumbnailSize;
+@property (readwrite,strong) ZFMediaType* highResolutionImageDownloadSize;
+@property (readwrite,strong) ZFMediaType* imageDownloadSize;
+@property (readwrite,strong) ZFMediaType* galleryThumbnailDownloadSize;
+@property (readwrite,strong) ZFMediaType* photoThumbnail;
 
-+ (ZFImageSize*) imageDisplaySizeEnclosingSize:(CGSize) size;
++ (ZFMediaType*) imageDisplaySizeEnclosingSize:(CGSize) size;
 
 
-+ (ZFImageSize*) imageDisplaySizeEnclosingSize:(CGSize) size 
++ (ZFMediaType*) imageDisplaySizeEnclosingSize:(CGSize) size 
                              limitAccessToSize:(ZFAccessDescriptor*) accessDescriptorOrNil;
 
 @end 

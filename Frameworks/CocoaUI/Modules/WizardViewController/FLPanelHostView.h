@@ -7,7 +7,8 @@
 //
 
 #import "FLCocoaUIRequired.h"
+#import "FLFramedView.h"
 
-@interface FLPanelHostView : NSView
+@interface FLPanelHostView : FLFramedView
 
 @end

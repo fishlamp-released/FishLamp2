@@ -13,7 +13,7 @@
 @end
 
 @implementation FLImagePlaceholderView
-@synthesize imageView = _imageView;
+//@synthesize imageView = _imageView;
 @synthesize borderWidth = _borderWidth;
 @synthesize alwaysProportionallyResize = _alwaysProportionallyResize;
 
@@ -30,8 +30,6 @@
 //        self.backgroundColor = [NSColor gray95Color];
         _progress = [[FLSpinningProgressView alloc] initWithFrame:CGRectMake(0,0,20,20)];
         _progress.frame = FLRectCenterRectInRect(self.bounds, _progress.frame);
-        
-        [self addSubview:_progress];
     }
     
     return self;
@@ -42,11 +40,13 @@
     _imageView.imageAlignment = NSImageAlignCenter;
     _imageView.imageScaling = NSImageScaleProportionallyDown;
     _imageView.imageFrameStyle = NSImageFrameNone;
-    _imageView.hidden = YES;
+    _imageView.hidden = NO;
+    FLRetainObject(_imageView);
 }
 
 #if FL_MRC
 - (void) dealloc {
+    [_imageView release];
     [_progress release];
     [super dealloc];
 }
@@ -61,11 +61,16 @@
 
 - (void) resizeToProportionalImageSize {
     if(_imageView.image) {
-        CGRect frame = CGRectInset(self.superview.bounds, _borderWidth, _borderWidth);
+        
+        CGRect bounds = self.superview.bounds;
+    
+        CGRect frame = CGRectInset(bounds, _borderWidth, _borderWidth);
         frame = FLRectFitInRectInRectProportionally(frame,CGRectMake(0,0,_imageView.image.size.width, _imageView.image.size.height));
         frame.size.width += (_borderWidth*2);
         frame.size.height += (_borderWidth*2);
-        frame = FLRectOptimizedForViewLocation(FLRectCenterRectInRect(self.superview.bounds, frame));
+        frame.origin.x = bounds.size.width - frame.size.width;
+        
+        frame = FLRectOptimizedForViewLocation(FLRectCenterRectInRectVertically(self.superview.bounds, frame));
 
     // image view frame is set in self setFrame
         self.frame = frame;
@@ -73,16 +78,23 @@
 }
 
 - (void) startAnimating {
+    _animating = YES;
+    [_imageView removeFromSuperview];
+    _imageView.image = nil;
+    [self addSubview:_progress];
     [_progress startAnimating];
-    _imageView.hidden = YES;
+    self.frame = self.superview.bounds;
 }
 
 - (void) stopAnimating {
+    _animating = NO;
     [_progress stopAnimating];
-    _imageView.hidden = NO;
+    [_progress removeFromSuperview];
+    [self addSubview:_imageView];
 }
 
-- (void) didMoveToSuperview {
+- (void) viewDidMoveToSuperview {
+    [super viewDidMoveToSuperview];
     if(self.superview) {
         self.frame = self.superview.bounds;
     }
@@ -93,21 +105,18 @@
     _imageView.image = image;
     if(image) {
         [self stopAnimating];
-        _imageView.hidden = NO;    
         
         if(_alwaysProportionallyResize) {
             [self resizeToProportionalImageSize];
         }
     }
     else {
-        _imageView.hidden = YES;
         [self startAnimating];
     }
 }
 
 - (void) removeImage {
     _imageView.image = nil;
-    _imageView.hidden = YES;
 }
 
 @end

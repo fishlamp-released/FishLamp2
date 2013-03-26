@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #import "ZFPhoto.h"
-#import "ZFImageSize.h"
+#import "ZFMediaType.h"
 
 @interface ZFPhoto (More)
 - (NSString*) displayName;
@@ -21,6 +21,7 @@
 
 - (BOOL) isStaleComparedToPhoto:(ZFPhoto*) photo;
 
-- (NSURL*) urlForImageWithSize:(ZFImageSize*) size;
+- (NSURL*) urlForImageWithSize:(ZFMediaType*) size;
+- (NSString*) humanReadableFileNameWithMediaType:(ZFMediaType*) mediaType;
 
 @end

@@ -39,8 +39,12 @@
     return [self isStaleComparedTo:photo.TextCnValue sequence:photo.Sequence];
 }
 
-- (NSURL*) urlForImageWithSize:(ZFImageSize*) size {
+- (NSURL*) urlForImageWithSize:(ZFMediaType*) size {
     return [size URLWithPhoto:self];
+}
+
+- (NSString*) humanReadableFileNameWithMediaType:(ZFMediaType*) mediaType {
+    return [mediaType humanReadableFileNameForPhoto:self];
 }
 
 @end

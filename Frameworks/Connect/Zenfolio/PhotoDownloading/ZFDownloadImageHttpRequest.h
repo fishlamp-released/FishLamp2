@@ -8,7 +8,7 @@
 
 
 #import "FLCachedObjectOperation.h"
-#import "ZFImageSize.h"
+#import "ZFMediaType.h"
 #import "FLDownloadImageHttpRequest.h"
 #import "FLStorableImage.h"
 #import "ZFCacheService.h"
@@ -16,16 +16,16 @@
 @interface ZFDownloadImageHttpRequest : FLDownloadImageHttpRequest {
 @private
 	ZFPhoto* _photo;
-	ZFImageSize* _imageSize;
+	ZFMediaType* _imageSize;
     ZFCacheService* _cache;
 }
 
 - (id) initWithPhoto:(ZFPhoto*) photo 
-           imageSize:(ZFImageSize*) imageSize 
+           imageSize:(ZFMediaType*) imageSize 
                cache:(ZFCacheService*) cache;
 
 + (ZFDownloadImageHttpRequest*) downloadImageHttpRequest:(ZFPhoto*) photo 
-                                                     imageSize:(ZFImageSize*) imageSize
+                                                     imageSize:(ZFMediaType*) imageSize
                                                          cache:(ZFCacheService*) cache;
 
 // NOTE: successful result returns a FLStorableImage.

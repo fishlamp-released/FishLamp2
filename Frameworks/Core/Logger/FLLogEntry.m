@@ -9,12 +9,15 @@
 #import "FLLogEntry.h"
 
 @interface FLLogEntry () 
-@property (readwrite, strong) NSString* logString;
-@property (readwrite, strong) NSString* logType;
-@property (readwrite, strong) NSString* logName;
-@property (readwrite, strong) FLStackTrace* stackTrace;
-@property (readwrite, assign) uint32_t logCount;
-@property (readwrite, assign) NSTimeInterval timestamp;
+//@property (readwrite, strong, nonatomic) NSString* logString;
+//@property (readwrite, strong, nonatomic) NSString* logType;
+@property (readwrite, strong, nonatomic) NSString* logName;
+//@property (readwrite, strong, nonatomic) FLStackTrace* stackTrace;
+@property (readwrite, assign, nonatomic) uint32_t logCount;
+@property (readwrite, assign, nonatomic) NSTimeInterval timestamp;
+//@property (readwrite, strong, nonatomic) NSError* error;
+//@property (readwrite, strong, nonatomic) NSException* exception;
+
 @end
 
 @implementation FLLogEntry
@@ -25,6 +28,15 @@
 @synthesize stackTrace = _stackTrace;
 @synthesize logCount = _logCount;
 @synthesize timestamp = _timestamp;
+@synthesize error = _error;
+@synthesize exception = _exception;
+static NSMutableArray* s_cache = nil;
+
++ (void) initialize {
+    if(!s_cache) {
+        s_cache = [[NSMutableArray alloc] init];
+    }
+}
 
 #if FL_MRC
 - (void) dealloc {
@@ -32,30 +44,47 @@
     [_logType release];
     [_logName release];
     [_stackTrace release];
+    [_error release];
+    [_exception release];
     [super dealloc];
 }
 #endif
 
-- (void) preparePacketForDelivery:(NSString*) log 
-                       forLogType:(NSString*) logType 
-                       forLogName:(NSString*) logName 
-                       stackTrace:(FLStackTrace*) stackTrace
-                         logCount:(int32_t) logCount {
-
-    self.logString = log;
-    self.logType = logType;
-    self.logName = logName;
-    self.stackTrace = stackTrace;
-    _timestamp = [NSDate timeIntervalSinceReferenceDate];
-    _logCount = logCount;
+- (id) init {
+    self = [super init];
+    if(self) {
+        [self updateTimestamp];
+    }
+    return self;
 }
 
-- (void) setPacketWasDelivered {
++ (id) logEntry {
+
+    id entry = [s_cache lastObject];
+    if(entry) {
+        [entry updateTimestamp];
+        return entry;
+    }
+
+    return FLAutorelease([[[self class] alloc] init]);
+}
+
+- (void) updateTimestamp {
+    static uint32_t s_counter = 0;
+    _logCount = ++s_counter;
+    _timestamp = [NSDate timeIntervalSinceReferenceDate];
+}
+
+- (void) releaseToCache {
     self.logString = nil;
     self.logType = nil;
     self.logName = nil;
     self.stackTrace = nil;
+    self.error = nil;
+    self.exception = nil;
     _timestamp = 0;
+
+    [s_cache addObject:self];
 }
 
 - (id)copyWithZone:(NSZone *)zone {
@@ -66,11 +95,25 @@
     entry.stackTrace = self.stackTrace;
     entry.logCount = self.logCount;
     entry.timestamp = self.timestamp;
+    entry.error = self.error;
+    entry.exception = self.exception;
     return entry;
 }
 
-+ (id) logEntry {
-    return FLAutorelease([[[self class] alloc] init]);
+- (NSString*) logString {
+    return _logString ? _logString : @"";
+}
+
+- (NSError*) error {
+    if(_error) {
+        return _error;
+    }
+    
+    if(_exception.error) {
+        return _exception.error;
+    }
+    
+    return nil;
 }
 
 @end
