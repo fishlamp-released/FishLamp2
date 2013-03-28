@@ -14,7 +14,8 @@
                                     
     FLTrace(@"Authenticating %@:", userLogin.userName );
     
-    NSString* token = FLThrowIfError([context runWorker:[ZFHttpRequest authenticateVisitorHttpRequest] withObserver:nil]);
+    NSString* token = FLThrowIfError([[ZFHttpRequest authenticateVisitorHttpRequest] runInContext:context]);
+    
     userLogin.authTokenLastUpdateTimeValue = [NSDate timeIntervalSinceReferenceDate];
     userLogin.authToken = token;
     return userLogin;

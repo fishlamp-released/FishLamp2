@@ -51,6 +51,26 @@
 		278DB4B216EE93EB0087374D /* FLImagePlaceholderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 278DB4AC16EE93EB0087374D /* FLImagePlaceholderView.m */; };
 		278DB4B316EE93EB0087374D /* FLImagePlaceholderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 278DB4AC16EE93EB0087374D /* FLImagePlaceholderView.m */; };
 		278DB4B416EE93EB0087374D /* FLImagePlaceholderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 278DB4AC16EE93EB0087374D /* FLImagePlaceholderView.m */; };
+		27E80324170346AC0012BFDD /* FishLampCommandLineTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E8031F170346AC0012BFDD /* FishLampCommandLineTool.h */; };
+		27E80325170346AC0012BFDD /* FishLampCommandLineTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E8031F170346AC0012BFDD /* FishLampCommandLineTool.h */; };
+		27E80326170346AC0012BFDD /* FishLampCommandLineTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E8031F170346AC0012BFDD /* FishLampCommandLineTool.h */; };
+		27E80327170346AC0012BFDD /* FishLampCommandLineTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E8031F170346AC0012BFDD /* FishLampCommandLineTool.h */; };
+		27E80328170346AC0012BFDD /* FLCommandLineTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E80320170346AC0012BFDD /* FLCommandLineTool.h */; };
+		27E80329170346AC0012BFDD /* FLCommandLineTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E80320170346AC0012BFDD /* FLCommandLineTool.h */; };
+		27E8032A170346AC0012BFDD /* FLCommandLineTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E80320170346AC0012BFDD /* FLCommandLineTool.h */; };
+		27E8032B170346AC0012BFDD /* FLCommandLineTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E80320170346AC0012BFDD /* FLCommandLineTool.h */; };
+		27E8032C170346AC0012BFDD /* FLCommandLineTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E80321170346AC0012BFDD /* FLCommandLineTool.m */; };
+		27E8032D170346AC0012BFDD /* FLCommandLineTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E80321170346AC0012BFDD /* FLCommandLineTool.m */; };
+		27E8032E170346AC0012BFDD /* FLCommandLineTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E80321170346AC0012BFDD /* FLCommandLineTool.m */; };
+		27E8032F170346AC0012BFDD /* FLCommandLineTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E80321170346AC0012BFDD /* FLCommandLineTool.m */; };
+		27E80330170346AC0012BFDD /* FLShellCommandOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E80322170346AC0012BFDD /* FLShellCommandOperation.h */; };
+		27E80331170346AC0012BFDD /* FLShellCommandOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E80322170346AC0012BFDD /* FLShellCommandOperation.h */; };
+		27E80332170346AC0012BFDD /* FLShellCommandOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E80322170346AC0012BFDD /* FLShellCommandOperation.h */; };
+		27E80333170346AC0012BFDD /* FLShellCommandOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E80322170346AC0012BFDD /* FLShellCommandOperation.h */; };
+		27E80334170346AC0012BFDD /* FLShellCommandOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E80323170346AC0012BFDD /* FLShellCommandOperation.m */; };
+		27E80335170346AC0012BFDD /* FLShellCommandOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E80323170346AC0012BFDD /* FLShellCommandOperation.m */; };
+		27E80336170346AC0012BFDD /* FLShellCommandOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E80323170346AC0012BFDD /* FLShellCommandOperation.m */; };
+		27E80337170346AC0012BFDD /* FLShellCommandOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E80323170346AC0012BFDD /* FLShellCommandOperation.m */; };
 		27FC38191699F5E1001F4228 /* FLGlobalMenuController.h in Headers */ = {isa = PBXBuildFile; fileRef = 27FC38141699F5E1001F4228 /* FLGlobalMenuController.h */; };
 		27FC381A1699F5E1001F4228 /* FLGlobalMenuController.h in Headers */ = {isa = PBXBuildFile; fileRef = 27FC38141699F5E1001F4228 /* FLGlobalMenuController.h */; };
 		27FC381B1699F5E1001F4228 /* FLGlobalMenuController.h in Headers */ = {isa = PBXBuildFile; fileRef = 27FC38141699F5E1001F4228 /* FLGlobalMenuController.h */; };
@@ -125,6 +145,11 @@
 		2798DB81166D8A7F00A0863D /* SharedTargetSettings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = SharedTargetSettings.xcconfig; sourceTree = "<group>"; };
 		27A43AC415CDCCCB001CB13E /* libFishLampOSX-64-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampOSX-64-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27CBC1F416768BA600753D0A /* libFishLampOSX-3264-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampOSX-3264-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		27E8031F170346AC0012BFDD /* FishLampCommandLineTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishLampCommandLineTool.h; sourceTree = "<group>"; };
+		27E80320170346AC0012BFDD /* FLCommandLineTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCommandLineTool.h; sourceTree = "<group>"; };
+		27E80321170346AC0012BFDD /* FLCommandLineTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLCommandLineTool.m; sourceTree = "<group>"; };
+		27E80322170346AC0012BFDD /* FLShellCommandOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLShellCommandOperation.h; sourceTree = "<group>"; };
+		27E80323170346AC0012BFDD /* FLShellCommandOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLShellCommandOperation.m; sourceTree = "<group>"; };
 		27FC38141699F5E1001F4228 /* FLGlobalMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLGlobalMenuController.h; sourceTree = "<group>"; };
 		27FC38151699F5E1001F4228 /* FLGlobalMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLGlobalMenuController.m; sourceTree = "<group>"; };
 		27FC38171699F5E1001F4228 /* NSView+FLAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSView+FLAdditions.h"; sourceTree = "<group>"; };
@@ -223,9 +248,22 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		27E8031E170346AC0012BFDD /* CommandLineTool */ = {
+			isa = PBXGroup;
+			children = (
+				27E8031F170346AC0012BFDD /* FishLampCommandLineTool.h */,
+				27E80320170346AC0012BFDD /* FLCommandLineTool.h */,
+				27E80321170346AC0012BFDD /* FLCommandLineTool.m */,
+				27E80322170346AC0012BFDD /* FLShellCommandOperation.h */,
+				27E80323170346AC0012BFDD /* FLShellCommandOperation.m */,
+			);
+			path = CommandLineTool;
+			sourceTree = "<group>";
+		};
 		27FC38121699F5E1001F4228 /* OSX */ = {
 			isa = PBXGroup;
 			children = (
+				27E8031E170346AC0012BFDD /* CommandLineTool */,
 				2749340B169A0D74008E8EC5 /* __OSXHeaders.h */,
 				27FC38131699F5E1001F4228 /* Menus */,
 				27FC38161699F5E1001F4228 /* Views */,
@@ -292,6 +330,9 @@
 				277AF47216E3B54400C284BF /* FLButtonCell.h in Headers */,
 				278DB49E16EE887A0087374D /* FLCickableImageView.h in Headers */,
 				278DB4AD16EE93EB0087374D /* FLImagePlaceholderView.h in Headers */,
+				27E80324170346AC0012BFDD /* FishLampCommandLineTool.h in Headers */,
+				27E80328170346AC0012BFDD /* FLCommandLineTool.h in Headers */,
+				27E80330170346AC0012BFDD /* FLShellCommandOperation.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,6 +349,9 @@
 				277AF47416E3B54400C284BF /* FLButtonCell.h in Headers */,
 				278DB4A016EE887A0087374D /* FLCickableImageView.h in Headers */,
 				278DB4AF16EE93EB0087374D /* FLImagePlaceholderView.h in Headers */,
+				27E80326170346AC0012BFDD /* FishLampCommandLineTool.h in Headers */,
+				27E8032A170346AC0012BFDD /* FLCommandLineTool.h in Headers */,
+				27E80332170346AC0012BFDD /* FLShellCommandOperation.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -324,6 +368,9 @@
 				277AF47316E3B54400C284BF /* FLButtonCell.h in Headers */,
 				278DB49F16EE887A0087374D /* FLCickableImageView.h in Headers */,
 				278DB4AE16EE93EB0087374D /* FLImagePlaceholderView.h in Headers */,
+				27E80325170346AC0012BFDD /* FishLampCommandLineTool.h in Headers */,
+				27E80329170346AC0012BFDD /* FLCommandLineTool.h in Headers */,
+				27E80331170346AC0012BFDD /* FLShellCommandOperation.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,6 +387,9 @@
 				277AF47516E3B54400C284BF /* FLButtonCell.h in Headers */,
 				278DB4A116EE887A0087374D /* FLCickableImageView.h in Headers */,
 				278DB4B016EE93EB0087374D /* FLImagePlaceholderView.h in Headers */,
+				27E80327170346AC0012BFDD /* FishLampCommandLineTool.h in Headers */,
+				27E8032B170346AC0012BFDD /* FLCommandLineTool.h in Headers */,
+				27E80333170346AC0012BFDD /* FLShellCommandOperation.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -499,6 +549,8 @@
 				277AF47616E3B54400C284BF /* FLButtonCell.m in Sources */,
 				278DB4A216EE887A0087374D /* FLCickableImageView.m in Sources */,
 				278DB4B116EE93EB0087374D /* FLImagePlaceholderView.m in Sources */,
+				27E8032C170346AC0012BFDD /* FLCommandLineTool.m in Sources */,
+				27E80334170346AC0012BFDD /* FLShellCommandOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -512,6 +564,8 @@
 				277AF47816E3B54400C284BF /* FLButtonCell.m in Sources */,
 				278DB4A416EE887A0087374D /* FLCickableImageView.m in Sources */,
 				278DB4B316EE93EB0087374D /* FLImagePlaceholderView.m in Sources */,
+				27E8032E170346AC0012BFDD /* FLCommandLineTool.m in Sources */,
+				27E80336170346AC0012BFDD /* FLShellCommandOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -525,6 +579,8 @@
 				277AF47716E3B54400C284BF /* FLButtonCell.m in Sources */,
 				278DB4A316EE887A0087374D /* FLCickableImageView.m in Sources */,
 				278DB4B216EE93EB0087374D /* FLImagePlaceholderView.m in Sources */,
+				27E8032D170346AC0012BFDD /* FLCommandLineTool.m in Sources */,
+				27E80335170346AC0012BFDD /* FLShellCommandOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -538,6 +594,8 @@
 				277AF47916E3B54400C284BF /* FLButtonCell.m in Sources */,
 				278DB4A516EE887A0087374D /* FLCickableImageView.m in Sources */,
 				278DB4B416EE93EB0087374D /* FLImagePlaceholderView.m in Sources */,
+				27E8032F170346AC0012BFDD /* FLCommandLineTool.m in Sources */,
+				27E80337170346AC0012BFDD /* FLShellCommandOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

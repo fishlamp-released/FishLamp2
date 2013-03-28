@@ -9,7 +9,7 @@
 #import "FishLampCocoa.h"
 #import "FLPanelViewController.h"
 #import "FLWizardViewController.h"
-#import "FLStorableUserLogin.h"
+#import "FLUserService.h"
 
 #if OSX
 
@@ -19,7 +19,7 @@
     IBOutlet NSSecureTextField* _passwordEntryField;
     IBOutlet NSButton* _savePasswordCheckBox;
     IBOutlet NSButton* _forgotPasswordButton;
-    FLStorableUserLogin* _userLogin;
+    FLUserService* _userService;
 }
 
 @property (readonly, strong, nonatomic) NSTextField* userNameTextField;
@@ -31,7 +31,7 @@
 @property (readwrite, strong, nonatomic) NSString* password;
 @property (readwrite, assign, nonatomic) BOOL savePasswordInKeychain; 
 
-@property (readwrite, strong, nonatomic) FLStorableUserLogin* userLogin;
+@property (readwrite, strong, nonatomic) FLUserService* userService;
 
 + (id) loginPanel;
 

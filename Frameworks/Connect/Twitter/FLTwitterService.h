@@ -16,7 +16,7 @@
 
 #define FLTwitterDefaultUserID [NSString zeroGuidString]
 
-@interface FLTwitterService : FLDataStoreService {
+@interface FLTwitterService : FLObjectStorageService {
 @private
     FLOAuthApp* _oauthInfo;
 	FLOAuthSession* _oauthSession;

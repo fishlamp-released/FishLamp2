@@ -45,7 +45,7 @@ static NSNumberFormatter* s_formatter = nil;
 //    FLHttpRequest* httpRequest = [FLHttpRequest httpPostRequestWithURL:[_photo buildUploadURL:YES]];
 //    [httpRequest setJpegContentWithFilePath:_imageFile.filePath];
 //
-//    FLHttpResponse* httpResponse = [self sendHttpRequest:httpRequest];
+//    FLHttpResponse* httpResponse = [self runWorker:httpRequest];
 //    
 //    NSString* textId = FLAutorelease([[NSString alloc] initWithData:httpResponse.responseData encoding:NSASCIIStringEncoding]);
 //    if(FLStringIsNotEmpty(textId)) {

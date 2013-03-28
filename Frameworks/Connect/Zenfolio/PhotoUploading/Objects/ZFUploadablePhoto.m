@@ -12,7 +12,7 @@
 //#import "FLSavePhotoToUsersPhotoAlbumOperation.h"
 //#import "ZFUploadPhotoOperation.h"
 //
-//#import "FLUserLoginService.h"
+//#import "FLUserService.h"
 //#import "NSFileManager+FLExtras.h"
 //#import "FLHtmlStringBuilder.h"
 //
@@ -114,7 +114,7 @@
 //- (void) setOptionsToDefault:(ZFPreferences*) prefs
 //{
 //	[self setNewFileName:prefs];
-//	self.loginName = [FLUserLoginService instance].userLogin.userName;
+//	self.loginName = [FLUserService instance].userLogin.userName;
 //	self.uploadSize = prefs.defaultUploadSize;
 //
 //	if(prefs.defaultUploadGallery)

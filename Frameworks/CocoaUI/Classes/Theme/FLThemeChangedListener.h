@@ -11,7 +11,7 @@
 
 @interface FLThemeChangedListener : FLNotificationListener {
 @private
-    SEL _themeSelector;
+    SEL _targetThemeSelector;
 }
 @property (readwrite, assign, nonatomic) SEL targetThemeSelector;
 

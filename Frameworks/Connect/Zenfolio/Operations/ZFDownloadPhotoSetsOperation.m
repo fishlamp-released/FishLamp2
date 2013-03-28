@@ -39,29 +39,30 @@
     return FLAutorelease([[[self class] alloc] initWithGroup:group objectStorage:objectStorage]);
 }
 
-- (void) runForGroup:(ZFGroup*) group inContext:(id) context withObserver:(id) observer {
+- (void) runForGroup:(ZFGroup*) group {
     NSArray* elements = FLAutorelease([group.Elements copy]);
     
     for(ZFGroupElement* element in elements) {
         if(element.isGroupElement) {
-            [self runForGroup:(ZFGroup*) element inContext:context withObserver:observer];
+            [self runForGroup:(ZFGroup*) element];
         }
         else {
             FLHttpRequest* request = [ZFHttpRequest loadPhotoSetHttpRequest:element.Id level:kZenfolioInformatonLevelFull includePhotos:NO];
             
-            ZFPhotoSet* set = FLThrowIfError([context runWorker:request withObserver:observer]);
+            ZFPhotoSet* set = FLThrowIfError([self runWorker:request]);
             FLAssertNotNil(set);
+            
             [self.objectStorage writeObject:set];
             
-            [self sendMessage:@selector(photoSetDownloader:didDownloadPhotoSet:) toListener:observer withObject:set];
+            [self sendObservation:@selector(photoSetDownloader:didDownloadPhotoSet:) withObject:set];
         }
         
         [self abortIfNeeded];
     }
 }
 
-- (FLResult) runOperationInContext:(id) context withObserver:(id) observer {
-    [self runForGroup:_group inContext:context withObserver:observer];
+- (FLResult) runOperation {
+    [self runForGroup:_group];
     return _group;
 }
 

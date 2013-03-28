@@ -25,19 +25,19 @@
 }
 #endif
 
-- (void) openService:(id) opener {
+- (void) openService {
 //    [self serviceWillOpen:opener];
     for(FLService* service in _subServices) {
-        [service openService:opener];
+        [service openService];
     }
     self.serviceOpen = YES;
 //    [self serviceDidOpen:openner];
 }
 
-- (void) closeService:(id) closer {
+- (void) closeService {
 //    [self serviceWillClose:closer];
     for(FLService* service in _subServices) {
-        [service closeService:closer];
+        [service closeService];
     }
     self.serviceOpen = NO;
 //    [self serviceDidClose:closer];

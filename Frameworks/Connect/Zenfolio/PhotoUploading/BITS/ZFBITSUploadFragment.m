@@ -72,7 +72,7 @@
     
     [httpRequest setContentWithData:data typeContentHeader:@"image/jpeg"];
 
-    return [self sendHttpRequest:httpRequest withAuthenticator:self.requestAuthenticator];
+    return [self runWorker:httpRequest withAuthenticator:self.requestAuthenticator];
 #endif
 
     return nil;

@@ -76,7 +76,7 @@
 //                             consumerKey:_app.consumerKey
 //                                  secret:[_app.consumerSecret stringByAppendingString:@"&"]];
 //    
-//    NSData* data = [[self sendHttpRequest:request] responseData];
+//    NSData* data = [[self runWorker:request] responseData];
 //    
 //#if DEBUG
 //    NSString* responseStr = FLAutorelease([[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);

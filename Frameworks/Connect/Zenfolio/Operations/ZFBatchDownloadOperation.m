@@ -154,7 +154,7 @@
 
 
     FLHttpRequest* request = [ZFHttpRequest loadPhotoSetHttpRequest:photoSet.Id level:kZenfolioInformatonLevelFull includePhotos:YES];
-    ZFPhotoSet* latestPhotoSet = FLThrowIfError([self.workerContext runWorker:request withObserver:nil]);
+    ZFPhotoSet* latestPhotoSet = FLThrowIfError([self runWorker:request]);
     FLAssertNotNil(latestPhotoSet);
     
     return latestPhotoSet;
@@ -171,7 +171,7 @@
 
     request.networkStreamSink = [FLFileStreamSink fileStreamSink:[NSURL fileURLWithPath:[imageFolder pathForFile:photo.FileName]]];
                                                                
-    return FLThrowIfError([self.workerContext runWorker:request withObserver:self]);
+    return FLThrowIfError([self runWorker:request]);
 }
 
 - (void) httpRequest:(FLHttpRequest*) httpRequest didReadBytes:(NSNumber*) amount {
@@ -188,7 +188,7 @@
 
     request.networkStreamSink = [FLFileStreamSink fileStreamSink:[NSURL fileURLWithPath:filePath]];
                                                                
-    return FLThrowIfError([self.workerContext runWorker:request withObserver:self]);
+    return FLThrowIfError([self runWorker:request]);
 
 }
 

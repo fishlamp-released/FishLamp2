@@ -16,9 +16,14 @@
 @private
     NSString* _themeName;
     FLStringDisplayStyle* _applicationTextStyle;
+    FLStringDisplayStyle* _headlineTextStyle;
+    FLStringDisplayStyle* _bigTextStyle;
+    
 }
 @property (readwrite, strong, nonatomic) NSString* themeName;
 @property (readwrite, strong, nonatomic) FLStringDisplayStyle* applicationTextStyle;
+@property (readwrite, strong, nonatomic) FLStringDisplayStyle* headlineTextStyle;
+@property (readwrite, strong, nonatomic) FLStringDisplayStyle* bigTextStyle;
 
 - (void) applyThemeToObject:(id) object;
 

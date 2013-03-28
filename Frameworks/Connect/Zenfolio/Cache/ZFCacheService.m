@@ -141,13 +141,13 @@
 // TODO: abstract this functionality into Database?
 
 - (void) deleteObjectFromCache:(id) object {
-    [self.dataStore deleteObject:object];
+    [self.objectStorage deleteObject:object];
 }
 
 - (void) deletePhotoFromCache:(ZFPhoto*) photo {
 	if(photo.IdValue != 0) {
         [self deleteCachedImagesForPhoto:photo];
-        [self.dataStore deleteObject:photo];
+        [self.objectStorage deleteObject:photo];
 	}
 }
 
@@ -157,7 +157,7 @@
 		[self deletePhotosInPhotoSet:cached];
 	}
 	[self deletePhotosInPhotoSet:photoSet];
-    [self.dataStore deleteObject:photoSet];
+    [self.objectStorage deleteObject:photoSet];
 }
 
 - (void) deleteGroupFromCache:(ZFGroup*) element {
@@ -167,12 +167,12 @@
 	}
 
     [self deleteGroupChildren:element];
-	[self.dataStore deleteObject:element];
+	[self.objectStorage deleteObject:element];
 }
 
 - (void) deleteObject:(id) object {
     FLAssert(self.isServiceOpen);
-    FLAssertNotNil(self.dataStore);
+    FLAssertNotNil(self.objectStorage);
     FLPerformSelector1(self, [object deleteSelectorForCache], object);
 }
 
@@ -257,7 +257,7 @@
     return masterExif;
 }
 
-- (void) openService:(id) opener {
+- (void) openService {
     FLPerformSelector1(opener, @selector(openZenfolioCache:), self);
     [super openService];
 }

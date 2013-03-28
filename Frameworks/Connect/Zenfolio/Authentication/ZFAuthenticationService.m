@@ -7,9 +7,7 @@
 //
 
 #import "ZFAuthenticationService.h"
-#import "FLTraceOn.h"
 #import "ZFWebApi.h"
-//#import "FLUserLogin+ZenfolioAdditions.h"
 #import "ZFErrors.h"
 #import "FLHttpRequest+ZenfolioAuthentication.h"
 #import "FLReachableNetwork.h"

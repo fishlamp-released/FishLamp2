@@ -315,12 +315,6 @@ enum {
 
 @end
 
-//@implementation NSMutableString (FLCoreTypes)
-//+ (FLObjectEncoder*) objectEncoder {
-//    FLReturnStaticObject([[FLObjectEncoder alloc] initWithEncodingKey:[NSMutableString class] ]);
-//}
-//@end
-
 @implementation NSArray (FLCoreTypes)
 + (FLObjectEncoder*) objectEncoder {
     FLReturnStaticObject([[FLObjectEncoder alloc] initWithEncodingKey:@"Array"]);
@@ -345,12 +339,6 @@ enum {
 }
 @end
 
-//@implementation NSMutableData (FLCoreTypes)
-//+ (FLObjectEncoder*) objectEncoder {
-//    FLReturnStaticObject([[FLObjectEncoder alloc] initWithEncodingKey:[NSMutableData class] ]);
-//}
-//@end
-
 @implementation NSDate (FLCoreTypes)
 + (FLObjectEncoder*) objectEncoder {
     FLReturnStaticObject([[FLObjectEncoder alloc] initWithEncodingKey:@"Date" ]);
@@ -362,5 +350,12 @@ enum {
     FLReturnStaticObject([[FLObjectEncoder alloc] initWithEncodingKey:@"Font"]);
 }
 @end
+
+@implementation SDKColor (FLCoreTypes)
++ (FLObjectEncoder*) objectEncoder {
+    FLReturnStaticObject([[FLObjectEncoder alloc] initWithEncodingKey:@"Color"]);
+}
+@end
+
 
 

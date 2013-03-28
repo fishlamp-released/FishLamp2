@@ -21,15 +21,12 @@
     BOOL _finished;
     BOOL _finishOnMainThread;
     FLBlockWithResult _didFinish;
-    id _observer;
 
 #if DEBUG
     FLStackTrace* _createdStackTrace;
     FLStackTrace* _finishedStackTrace;
 #endif    
 }
-@property (readwrite, strong) id observer;
-
 @property (readonly, strong) FLResult result;
 @property (readonly, assign, getter=isFinished) BOOL finished;
 

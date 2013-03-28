@@ -77,7 +77,7 @@
 	FLOAuthSession* input = [FLOAuthSession oAuthSession];
 	input.userGuid = userGuid;
 	input.appName = @"twitter.com";
-	[self.dataStore deleteObject:input];
+	[self.objectStorage deleteObject:input];
     [FLTwitterService clearTwitterCookies];
 	self.oauthSession = nil;
 }
@@ -86,25 +86,25 @@
 	FLOAuthSession* input = [FLOAuthSession oAuthSession];
 	input.userGuid = userGuid;
 	input.appName = @"twitter.com";
-	self.oauthSession = [self.dataStore readObject:input];
+	self.oauthSession = [self.objectStorage readObject:input];
 }
 
 - (void) didAuthenticateForUserGuid:(NSString*) userGuid oauthSession:(FLOAuthSession*) oauthSession {
 	oauthSession.userGuid = userGuid;
 	oauthSession.appName = @"twitter.com";
 	
-	[self.dataStore writeObject:oauthSession];
+	[self.objectStorage writeObject:oauthSession];
 	self.oauthSession = oauthSession;
 }
 
-- (void) openService:(id) opener {
+- (void) openService {
     FLPerformSelector1(opener, @selector(openTwitterService:), self);
-    [super openService:opener];
+    [super openService];
 }
 
-- (void) closeService:(id) closer {
+- (void) closeService {
     FLPerformSelector1(closer, @selector(closeTwitterService:), self);
-    [super closeService:closer];
+    [super closeService];
     self.oauthSession = nil;
     self.oauthInfo = nil;
 }

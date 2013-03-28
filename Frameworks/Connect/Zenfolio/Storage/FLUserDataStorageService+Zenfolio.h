@@ -10,9 +10,9 @@
 #import "FLDatabase.h"
 #import "FLFolder.h"
 
-#import "FLDataStoreService.h"
+#import "FLObjectStorageService.h"
 
-@interface FLDataStoreService (Zenfolio)
+@interface FLObjectStorageService (Zenfolio)
 
 - (ZFUploadGallery*) defaultUploadGallery;
 - (void) saveDefaultUploadGallery:(ZFUploadGallery*) uploadGallery;

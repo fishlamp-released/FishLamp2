@@ -56,9 +56,10 @@
     NSData* responseData = [httpResponse responseData];
 
 // look for error
-    FLJsonParser* parser = [FLJsonParser jsonParser];
-    NSDictionary* response = [parser parseJsonData:responseData rootObject:nil withDecoder:self.dataDecoder];
-    FLThrowIfError(parser.error);
+    NSDictionary* response = [[FLJsonParser jsonParser] parseData:responseData];
+    
+//    rootObject:nil withDecoder:self.dataDecoder];
+//    FLThrowIfError(parser.error);
 
     if([response objectForKey:@"error"]) {
         FLDebugLog(@"Got facebookService error: %@", [response description]);

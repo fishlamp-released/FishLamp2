@@ -163,7 +163,7 @@
 //  
 //            image = [context runWorker:downloader withObserver:nil];
 //                                
-////            image = FLThrowIfError([self sendHttpRequest:downloader]);
+////            image = FLThrowIfError([self runWorker:downloader]);
 ////            [downloader sendSynchronouslyInContext:self.userContext]);
 //            
 //            //	photo was loaded; save the photo to file

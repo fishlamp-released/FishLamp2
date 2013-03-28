@@ -13,7 +13,6 @@
 // Foundations/Async/Blocks
 #import "FLActionQueue.h"
 #import "FLBlockQueue.h"
-#import "FLBlocks.h"
 
 // Foundations/Async
 #import "FLArgumentList.h"
@@ -155,7 +154,7 @@
 #import "FLObjectEncoder.h"
 #import "NSObject+Comparison.h"
 #import "NSObject+Copying.h"
-#import "NSObject+FLParseable.h"
+#import "FLParseInfo.h"
 
 // Foundations/Network/NetworkConnection
 #import "FLNetworkConnectionProgressObserver.h"
@@ -174,7 +173,6 @@
 #import "FLHttpRequestHeaders.h"
 #import "FLHttpRequestResponder.h"
 #import "FLHttpResponse.h"
-#import "FLHttpUserService.h"
 #import "FLNetworkServerContext.h"
 #import "FLUrlParameterParser.h"
 #import "NSURLRequest+HTTP.h"
@@ -313,7 +311,7 @@
 #import "FLServiceRequest.h"
 #import "FLUserAuthenticatorOperation.h"
 #import "FLUserDataStorageService.h"
-#import "FLUserLoginService.h"
+#import "FLUserService.h"
 #import "NSError+FLServiceRequest.h"
 
 // Foundations/Services/SessionObjects
@@ -376,9 +374,8 @@
 #import "FLCommandLineParser.h"
 #import "FLCommandLineTool.h"
 #import "FLHelpToolTask.h"
-#import "FLParseable.h"
-#import "FLParseableInput.h"
-#import "FLShellCommand.h"
+#import "FLStringParser.h"
+#import "FLShellCommandOperation.h"
 #import "FLToolCommand.h"
 #import "FLToolCommandOption.h"
 #import "FLToolMain.h"

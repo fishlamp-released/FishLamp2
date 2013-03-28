@@ -12,7 +12,7 @@
 #import "NSFileManager+FLExtras.h"
 #import "FLUserDataStorageService.h"
 
-@implementation FLDataStoreService (Zenfolio)
+@implementation FLObjectStorageService (Zenfolio)
 
 - (ZFUploadGallery*) defaultUploadGallery {
 	ZFUploadGallery* input = [ZFUploadGallery uploadGallery];

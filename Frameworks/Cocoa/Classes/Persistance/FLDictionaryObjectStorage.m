@@ -8,12 +8,16 @@
 
 #import "FLDictionaryObjectStorage.h"
 
+@interface FLDictionaryObjectStorage ()
+@property (readwrite, strong) NSMutableDictionary* storage;
+@end
+
 @implementation FLDictionaryObjectStorage
+@synthesize storage = _storage;
 
 - (id) init {	
 	self = [super init];
 	if(self) {
-		_storage = [[NSMutableDictionary alloc] init];
 	}
 	return self;
 }
@@ -30,19 +34,27 @@
 }
 
 - (void) writeObject:(id) object {
-    [_storage setObject:object forKey:[object objectStorageKey_fl]];
+    [self.storage setObject:object forKey:[object objectStorageKey_fl]];
 }
 
 - (id) readObject:(id) inputObject {
-    return [_storage objectForKey:[inputObject objectStorageKey_fl]];
+    return [self.storage objectForKey:[inputObject objectStorageKey_fl]];
 }
 
 - (void) deleteObject:(id) inputObject {
-    [_storage removeObjectForKey:[inputObject objectStorageKey_fl]];
+    [self.storage removeObjectForKey:[inputObject objectStorageKey_fl]];
 }
 
 - (BOOL) containsObject:(id) inputObject {
-    return [_storage objectForKey:[inputObject objectStorageKey_fl]] != nil;
+    return [self.storage objectForKey:[inputObject objectStorageKey_fl]] != nil;
+}
+
+- (void) openStorage {
+	self.storage = [NSMutableDictionary dictionary];
+}
+
+- (void) closeStorage { 
+    self.storage = nil;
 }
 
 

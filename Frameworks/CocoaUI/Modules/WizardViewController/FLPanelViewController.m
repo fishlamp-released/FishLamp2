@@ -20,7 +20,6 @@
 @synthesize canOpenNextPanel = _canOpenNextPanel;
 @synthesize buttons = _buttons;
 @synthesize header = _header;
-
 @synthesize panelFillsView = _panelFillsView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

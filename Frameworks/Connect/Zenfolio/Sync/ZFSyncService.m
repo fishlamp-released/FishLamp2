@@ -354,8 +354,8 @@ FIXME(@"this is removed from fishlamp");
     return [self.syncedObjectsDataStore containsObject:object];
 }
 
-- (void) openService:(id) opener {
-    [super openService:opener];
+- (void) openService {
+    [super openService];
     self.rootGroupID = [self.delegate syncServiceGetRootGroupID:self];
     self.syncStateDataStore = [self.delegate syncServiceSyncStateDataStore:self];
     self.syncedObjectsDataStore = [self.delegate syncServiceGroupElementDataStore:self];
@@ -365,13 +365,16 @@ FIXME(@"this is removed from fishlamp");
     FLAssert(self.rootGroupID != 0);
 }
 
-- (void) closeService:(id) closer {
-    [super closeService:closer];
+- (void) closeService {
+    [super closeService];
     self.rootGroupID = 0;
     self.syncStateDataStore = nil;
     self.syncedObjectsDataStore = nil;
     self.groups = nil;
 }
+
+
+
 
 @end
 

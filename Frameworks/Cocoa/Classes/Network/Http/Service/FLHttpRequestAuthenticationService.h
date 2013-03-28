@@ -19,8 +19,11 @@
     NSTimeInterval _lastAuthenticationTimestamp;
     NSTimeInterval _timeoutInterval;
     FLFifoAsyncQueue* _asyncQueue;
+    FLUserLogin* _userLogin;
+    
     __unsafe_unretained id<FLHttpRequestAuthenticationServiceDelegate> _delegate;
 }
+@property (readwrite, strong) FLUserLogin* userLogin;
 
 @property (readwrite, assign, nonatomic) id<FLHttpRequestAuthenticationServiceDelegate> delegate;
 @property (readwrite, strong, nonatomic) FLFifoAsyncQueue* asyncQueue; 
@@ -49,18 +52,14 @@
 
 @protocol FLHttpRequestAuthenticationServiceDelegate <NSObject>
 
-- (FLUserLogin*) httpRequestAuthenticationServiceGetUserLogin:(FLHttpRequestAuthenticationService*) service;
-
 - (void) httpRequestAuthenticationService:(FLHttpRequestAuthenticationService*) service 
                       didAuthenticateUser:(FLUserLogin*) userLogin;
 
 - (void) httpRequestAuthenticationService:(FLHttpRequestAuthenticationService*) service 
                             didLogoutUser:(FLUserLogin*) userLogin;
+
+- (void) httpRequestAuthenticationServiceDidOpen:(FLHttpRequestAuthenticationService*) service;
+- (void) httpRequestAuthenticationServiceDidClose:(FLHttpRequestAuthenticationService*) service;
+
 @end
 
-
-@protocol FLHttpRequestAuthenticatorServiceOpener <NSObject>
-@optional
-- (void) httpRequestAuthenticatorServiceOpen:(id) service;
-- (void) httpRequestAuthenticatorServiceClose:(id) service;
-@end

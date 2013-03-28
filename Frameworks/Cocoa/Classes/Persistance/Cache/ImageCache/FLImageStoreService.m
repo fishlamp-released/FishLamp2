@@ -14,7 +14,7 @@
 
 
 @interface FLImageStoreService ()
-//@property (readwrite, strong) id<FLObjectStorage> dataStore;
+//@property (readwrite, strong) id<FLObjectStorage> objectStorage;
 //@property (readwrite, strong) FLImageFolder* imageFolder;
 //
 //- (void) deleteImage:(FLServiceRequest*) serviceRequest 
@@ -30,6 +30,7 @@
 @implementation FLImageStoreService
 
 @synthesize imageFolder = _imageFolder;
+@synthesize delegate = _delegate;
 
 #if FL_MRC
 - (void) dealloc {
@@ -41,20 +42,20 @@
 - (void) updateImage:(FLStorableImage*) image {
     FLAssert(self.isServiceOpen);
     
-    [self.dataStore writeObject:image.imageProperties];
+    [self.objectStorage writeObject:image.imageProperties];
     [self.imageFolder writeImage:image];
 }
 
 - (void) deleteImage:(FLStorableImage*) image {
     FLAssert(self.isServiceOpen);
     [self.imageFolder deleteImage:image];
-    [self.dataStore deleteObject:image];
+    [self.objectStorage deleteObject:image];
 }
 
 - (FLStorableImage*) readImageWithURLKey:(NSURL*) url {
     FLAssert(self.isServiceOpen);
 
-    FLImageProperties* props = [self.dataStore readObject:[FLImageProperties imagePropertiesWithImageURL:url]];
+    FLImageProperties* props = [self.objectStorage readObject:[FLImageProperties imagePropertiesWithImageURL:url]];
     FLStorableImage* image = nil; 
     
     if(props) {
@@ -64,17 +65,19 @@
     return image;
 }
 
-- (void) openService:(id) opener {
-    FLPerformSelector(opener, @selector(imageStoreServiceOpen:));
-    [super openService:opener];
-    FLAssertNotNil(self.dataStore);
+- (void) openService {
+    [super openService];
+    FLAssertNotNil(self.objectStorage);
     FLAssertNotNil(self.imageFolder);
+    
+    [self.delegate imageStoreServiceDidOpen:self];
 }
 
-- (void) closeService:(id) closer {
-    FLPerformSelector(closer, @selector(imageStoreServiceClose:));
-    [super closeService:closer];
+- (void) closeService {
+
+    [super closeService];
     self.imageFolder = nil;
+    [self.delegate imageStoreServiceDidClose:self];
 }
 
 @end

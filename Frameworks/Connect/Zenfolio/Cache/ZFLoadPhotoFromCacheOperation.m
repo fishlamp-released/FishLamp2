@@ -38,7 +38,7 @@
 //
 //- (FLResult) runSubOperations {
 //    FLHttpRequest* request = [ZFHttpRequest loadPhotoHttpRequest:[NSNumber numberWithInt:_photoID] level:_level];
-//    return [self sendHttpRequest:request];
+//    return [self runWorker:request];
 //}
 //
 //- (id) loadObjectFromDatabase {

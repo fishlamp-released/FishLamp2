@@ -41,26 +41,26 @@
     return FLAutorelease([[[self class] alloc] initWithUserLogin:userLogin objectStorage:objectStorage]);
 }
 
-- (FLResult) runOperationInContext:(id) context withObserver:(id) observer {
+- (FLResult) runOperation {
 
-    [self sendMessage:@selector(loadGroupHierarchyOperation:willDownloadGroupListForUser:) toListener:observer withObject:_userLogin];
+    [self sendObservation:@selector(loadGroupHierarchyOperation:willDownloadGroupListForUser:) withObject:_userLogin];
 
     FLHttpRequest* request = [ZFHttpRequest loadGroupHierarchyHttpRequest:_userLogin.userName];
     FLAssertNotNil(request);
 
     [self abortIfNeeded];
 
-    ZFGroup* group = FLThrowIfError([context runWorker:request withObserver:nil]);
+    ZFGroup* group = FLThrowIfError([self runWorker:request]);
     FLAssertNotNil(group);
     
     [self.objectStorage writeObject:group];
 
-    [self sendMessage:@selector(loadGroupHierarchyOperation:didDownloadGroupList:) toListener:observer withObject:group];
+    [self sendObservation:@selector(loadGroupHierarchyOperation:didDownloadGroupList:)  withObject:group];
 
     ZFDownloadPhotoSetsOperation* downloadPhotosets = [ZFDownloadPhotoSetsOperation downloadPhotoSetsWithGroup:group objectStorage:self.objectStorage];
     
 /*    FLResult result =  */
-    FLThrowIfError([context runWorker:downloadPhotosets withObserver:observer]);
+    FLThrowIfError([self runWorker: downloadPhotosets]);
     
     return group;
 }

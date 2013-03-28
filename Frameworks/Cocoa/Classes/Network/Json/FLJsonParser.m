@@ -7,62 +7,66 @@
 //
 
 #import "FLJsonParser.h"
-#import "FLObjectBuilder.h"
-
-#if FL_ARC
-#import "SBJsonParser.h"
-#endif
 
 @implementation FLJsonParser
-
-@synthesize error = _error;
 
 + (FLJsonParser*) jsonParser {
     return FLAutorelease([[FLJsonParser alloc] init]);
 }
 
-- (void) dealloc {
-    FLRelease(_error);
-    FLSuperDealloc();
+- (id) parseData:(NSData*) data {
+    NSError* error = nil;
+    id object = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+    FLThrowIfError(object);
+    
+    return object;
 }
 
-- (NSError* )parseJsonData:(NSData *)data 
-                rootObject:(id) rootObject 
-               withDecoder:(id<FLDataDecoding>) decoder {
-#if REFACTOR
-#if FL_ARC
-    SBJsonParser* parser = [[SBJsonParser alloc] init];
-    
-    id outObject = [parser objectWithData:data];			
-    
-    if(FLStringIsNotEmpty(parser.error))
-    {	
-        FLDebugLog(@"JSON parse failed: %@", parser.error);
+- (id) parseFileAtPath:(NSString*) path {
+    return [self parseFileAtURL:[NSURL fileURLWithPath:path]];
+}
 
-        self.error = [NSError errorWithDomain:FLJsonParserErrorDomain code:FLJsonParserParseFailedErrorCode localizedDescription:parser.error]; 
-
+- (id) parseFileAtURL:(NSURL*) url {
+    NSError* err = nil;
+    NSData* data = [NSData dataWithContentsOfURL:url options:0  error:&err];
+    FLThrowIfError(FLAutorelease(err));
         
-        outObject = nil;
-    }
-    else
-    {
-        if(rootObject) {
-            FLObjectBuilder* builder = [[FLObjectBuilder alloc] init];  
-            [builder buildObjectsFromDictionary:outObject withRootObject:rootObject withDecoder:decoder];
-            FLRelease(builder);
-            
-            outObject = rootObject;
-        }
-    }    
-    
-    FLRelease(parser);
-    return outObject;
-#endif
-#endif
-    
-    FLAssertIsImplementedWithComment(@"SBJson requires ARC");
-    
-    return nil;
+    return [self parseData:data];
 }
+//#if REFACTOR
+//#if FL_ARC
+//    SBJsonParser* parser = [[SBJsonParser alloc] init];
+//    
+//    id outObject = [parser objectWithData:data];			
+//    
+//    if(FLStringIsNotEmpty(parser.error))
+//    {	
+//        FLDebugLog(@"JSON parse failed: %@", parser.error);
+//
+//        self.error = [NSError errorWithDomain:FLJsonParserErrorDomain code:FLJsonParserParseFailedErrorCode localizedDescription:parser.error]; 
+//
+//        
+//        outObject = nil;
+//    }
+//    else
+//    {
+//        if(rootObject) {
+//            FLObjectBuilder* builder = [[FLObjectBuilder alloc] init];  
+//            [builder buildObjectsFromDictionary:outObject withRootObject:rootObject withDecoder:decoder];
+//            FLRelease(builder);
+//            
+//            outObject = rootObject;
+//        }
+//    }    
+//    
+//    FLRelease(parser);
+//    return outObject;
+//#endif
+//#endif
+//    
+//    FLAssertIsImplementedWithComment(@"SBJson requires ARC");
+//    
+//    return nil;
+//}
 
 @end

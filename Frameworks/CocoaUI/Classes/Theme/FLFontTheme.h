@@ -20,6 +20,7 @@
     SDKColor* _selectedColor;
     SDKColor* _disabledColor;
     SDKColor* _enabledColor;
+    SDKColor* _hoverColor;
 }
 
 @property (readwrite, strong, nonatomic) NSString* familyName;

@@ -13,44 +13,34 @@
 @implementation ZFAuthenticationOperation
 
 - (FLResult) sendAuthenticatedRequest:(FLHttpRequest*) request 
-                            userLogin:(FLUserLogin*) userLogin
-                            inContext:(id) context 
-                         withObserver:(id) observer  {
+                            userLogin:(FLUserLogin*) userLogin {
 
     request.disableAuthenticator = YES;
     [request setAuthenticationToken:userLogin.authToken];
     
-    return FLThrowIfError([context runWorker:request withObserver:observer]);
+    return FLThrowIfError([self runWorker:request]);
 }
 
-- (FLResult) runOperationInContext:(id) context withObserver:(id) observer {
+- (FLResult) runOperation {
 
     FLUserLogin* authenticatedUser = self.userLogin;
 
     ZFUser* privateProfile = [self sendAuthenticatedRequest:[ZFHttpRequest loadPrivateProfileHttpRequest] 
-                                                          userLogin:authenticatedUser
-                                                          inContext:context
-                                                       withObserver:observer];
+                                                  userLogin:authenticatedUser ];
     
     ZFUser* publicProfile =  [self sendAuthenticatedRequest:[ZFHttpRequest loadPublicProfileHttpRequest:authenticatedUser.userName] 
-                                                          userLogin:authenticatedUser
-                                                          inContext:context
-                                                       withObserver:observer];
+                                                  userLogin:authenticatedUser ];
     
     
     NSNumber* videoBool =  [self sendAuthenticatedRequest:[ZFHttpRequest checkPrivilegeHttpRequest:authenticatedUser.userName
-                                                                                             privilegeName:ZFVideoPrivilege] 
-                                                userLogin:authenticatedUser
-                                                inContext:context
-                                             withObserver:observer];
+                                                                                     privilegeName:ZFVideoPrivilege] 
+                                                userLogin:authenticatedUser ];
     
     
     
     NSNumber* scrapbookBool =  [self sendAuthenticatedRequest:[ZFHttpRequest checkPrivilegeHttpRequest:authenticatedUser.userName
-                                                                                                 privilegeName:ZFScrapbookPrivilege] 
-                                                    userLogin:authenticatedUser
-                                                    inContext:context
-                                                 withObserver:observer];
+                                                                                         privilegeName:ZFScrapbookPrivilege] 
+                                                    userLogin:authenticatedUser ];
 
 
 

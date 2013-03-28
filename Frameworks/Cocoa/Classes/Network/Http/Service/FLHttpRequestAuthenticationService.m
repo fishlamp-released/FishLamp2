@@ -20,6 +20,8 @@
 @synthesize timeoutInterval = _timeoutInterval;
 @synthesize asyncQueue = _asyncQueue;
 @synthesize delegate = _delegate;
+@synthesize userLogin = _userLogin;
+
 
 - (id) init {
     self = [super init];
@@ -34,6 +36,8 @@
     [_asyncQueue releaseToPool];
     
 #if FL_MRC
+    [_userLogin release];
+    
     [super dealloc];
 #endif
 }
@@ -62,11 +66,6 @@
 	return ![self userLoginIsAuthenticated:userLogin];
 }
 
-- (FLUserLogin*) userLogin {
-    FLAssertNotNil(self.delegate); 
-    return [self.delegate httpRequestAuthenticationServiceGetUserLogin:self];
-}
-
 - (BOOL) isAuthenticated {
     FLUserLogin* userLogin = self.userLogin;
 
@@ -86,16 +85,20 @@
 	_lastAuthenticationTimestamp = 0;
 }
 
-- (void) openService:(id) opener {
+- (void) openService {
     [self resetAuthenticationTimestamp];
-    FLPerformSelector(opener, @selector(httpRequestAuthenticatorServiceOpen:));
-    [super openService:opener];
+    [super openService];
+    
+    [self.delegate httpRequestAuthenticationServiceDidOpen:self];
 }
 
-- (void) closeService:(id) closer {
-    FLPerformSelector(closer, @selector(httpRequestAuthenticatorServiceClose:));
-    [super closeService:closer];
+- (void) closeService {
+
+    [super closeService];
+    [self.delegate httpRequestAuthenticationServiceDidClose:self];
+
     [self resetAuthenticationTimestamp];
+    self.userLogin = nil;
 }
 
 - (FLResult) authenticateHttpRequest:(FLHttpRequest*) request {

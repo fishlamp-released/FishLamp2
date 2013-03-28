@@ -18,13 +18,13 @@
 }
 #endif
 
-- (void) openService:(id) opener {
+- (void) openService {
     FLAssertNotNil(self.cache);
-    [super openService:opener];
+    [super openService];
 }
 
-- (void) closeService:(id) closer {
-    [super closeService:closer];
+- (void) closeService {
+    [super closeService];
     self.cache = nil;
 }
 @end

@@ -43,12 +43,12 @@
     return workers;
 }
 
-- (FLResult) runOperationInContext:(id) context withObserver:(id) observer {
+- (FLResult) runOperation {
 
     NSMutableArray* array = [NSMutableArray array];
     NSArray* workers = [self findTestWorkers];
     for(id worker in workers) {
-        [array addObject:[context runWorker:worker withObserver:observer]];
+        [array addObject:[self runWorker:worker]];
     }
 
     return array;

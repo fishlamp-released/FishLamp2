@@ -43,19 +43,23 @@
 
 - (id) resultFromHttpResponse:(FLHttpResponse*) httpResponse {
 
-    FLJsonParser* parser = [FLJsonParser jsonParser];
     
     if(!_outputObject) {
         _outputObject = [NSMutableDictionary dictionary];
     }
     
-    id result = [parser parseJsonData:[httpResponse responseData] rootObject:_outputObject withDecoder:self.dataDecoder];
-
-    FLThrowIfError(parser.error);
+    id jsonObject = [[FLJsonParser jsonParser] parseData:[httpResponse responseData]];
     
-    [httpResponse throwHttpErrorIfNeeded];
     
-    return result;
+    
+    
+//    id result = [parser parseJsonData:[httpResponse responseData] rootObject:_outputObject withDecoder:self.dataDecoder];
+//
+//    FLThrowIfError(parser.error);
+    
+//    [httpResponse throwHttpErrorIfNeeded];
+    
+    return jsonObject;
 }
 
 @end

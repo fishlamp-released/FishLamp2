@@ -36,7 +36,7 @@
 //    [httpRequest setValue:kBITS1_5UploadProtocolGuid     forHTTPHeaderField:@"BITS-Supported-Protocols"];
 //  	[httpRequest setUtf8Content:@""]; 
 //    
-//    FLHttpResponse* httpResponse = [self sendHttpRequest:httpRequest];
+//    FLHttpResponse* httpResponse = [self runWorker:httpRequest];
 //
 //    ZFBitsUploadProtocolResponse* response = [ZFBitsUploadProtocolResponse bitsUploadProtocolResponse];
 //

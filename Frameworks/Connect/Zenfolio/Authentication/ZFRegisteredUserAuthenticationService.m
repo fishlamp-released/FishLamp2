@@ -52,7 +52,7 @@
                                      inContext:(id) context {
 
     FLOperation* authenticator = [ZFChallengeResponseAuthenticationOperation userAuthenticationOperation:userLogin];
-    return FLThrowIfError([context runWorker:authenticator withObserver:nil]);
+    return FLThrowIfError([authenticator runInContext:context]);
 }
 
 @end

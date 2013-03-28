@@ -12,6 +12,7 @@
 #import "FLMessageBroadcaster.h"
 #import "FLAsyncWorker.h"
 #import "FLService.h"
+#import "FLObservable.h"
 
 typedef void (^FLDispatchableObjectVisitor)(id object, BOOL* stop);
 
@@ -19,6 +20,8 @@ extern NSString* const FLWorkerContextStarting;
 extern NSString* const FLWorkerContextFinished;
 extern NSString* const FLWorkerContextClosed;
 extern NSString* const FLWorkerContextOpened;
+
+@protocol FLContextWorker;
 
 @protocol FLWorkerContext <NSObject>
 
@@ -28,15 +31,13 @@ extern NSString* const FLWorkerContextOpened;
 - (void) openContext;
 - (void) closeContext;
 
-- (FLResult) runWorker:(id<FLContextWorker>) worker 
-          withObserver:(id) observer;
+- (FLResult) runWorker:(id<FLContextWorker>) worker;
                  
-- (void) startWorker:(id<FLContextWorker>) worker 
+- (void) queueWorker:(id<FLContextWorker>) worker 
         withFinisher:(FLFinisher*) finisher;
 
-- (void) startWorker:(id<FLContextWorker>) worker 
-        withObserver:(id) observer 
-          completion:(FLBlockWithResult) completion;
+- (FLFinisher*) queueWorker:(id<FLContextWorker>) worker 
+                 completion:(FLBlockWithResult) completion;
           
 - (void) requestCancel;          
           
@@ -67,3 +68,26 @@ extern NSString* const FLWorkerContextOpened;
 - (void) didRemoveWorker:(id) object;
 @end
 
+@protocol FLContextWorker <FLAsyncWorker>
+@property (readonly, assign) id<FLWorkerContext> workerContext;
+@property (readonly, assign) NSUInteger contextID;
+- (void) requestCancel;
+- (id<FLAsyncQueue>) asyncQueue;
+- (void) didMoveToContext:(id<FLWorkerContext>) context;
+- (void) contextDidChange:(id<FLWorkerContext>) context;
+
+- (FLFinisher*) startInContext:(id<FLWorkerContext>) context 
+                    completion:(FLBlockWithResult) completion;
+
+- (FLResult) runInContext:(id<FLWorkerContext>) context;
+
+@end
+
+@interface FLContextWorker : FLObservable<FLContextWorker> {
+@private
+    __unsafe_unretained id<FLWorkerContext> _workerContext;
+    NSUInteger _contextID;
+}
+- (FLResult) runWorker:(FLContextWorker*) worker;
+
+@end

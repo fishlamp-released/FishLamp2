@@ -8,10 +8,17 @@
 
 #import "FLBlockQueue.h"
 
+@interface FLBlockQueue ()
+@property (readwrite, strong, nonatomic) NSArray* blockQueue;
+@end
+
 @implementation FLBlockQueue
+
+@synthesize blockQueue = _blockQueue;
 
 - (id) init {
     if((self = [super init])) {
+        _blockQueue = [[NSMutableArray alloc] init];
     }
     
     return self;
@@ -19,27 +26,27 @@
 
 #if FL_MRC
 - (void) dealloc {
-    FLRelease(_queue);
-	FLSuperDealloc();
+    [_blockQueue release];
+    [super dealloc];
 }
 #endif
 
-- (void) addBlock:(FLQueuedBlock) block {
-    if(!_queue) {
-        _queue = [[NSMutableArray alloc] init];
-    }
+- (NSUInteger) count {
+    return _blockQueue.count;
+}
 
-    [_queue addObject:FLAutorelease([block copy])];
+- (void) addBlock:(FLQueuedBlock) block {
+    [_blockQueue addObject:FLCopyWithAutorelease(block)];
 }
 
 - (void) executeBlocks:(id) sender {
-    for(FLQueuedBlock block in _queue) {
+    for(FLQueuedBlock block in _blockQueue) {
         block(sender);
     }
 }
 
 - (void) removeAllBlocks {
-    _queue = nil;
+    [_blockQueue removeAllObjects];
 }
 
 + (FLBlockQueue*) blockQueue {

@@ -158,7 +158,7 @@
     return YES;
 }
 
-- (FLResult) runOperationInContext:(id) context withObserver:(id) observer {
+- (FLResult) runOperation {
     FLTestResultCollection* results = [FLTestResultCollection testResultCollection];
         
     if([self willRunTests]) {
@@ -178,11 +178,13 @@
 
                 @try {
                     
-                    [[FLLogger instance] pushLoggerSink:result];
+                    [[FLLogLogger instance] pushLoggerSink:result];
                     
 
                     FLLog(@"STARTING %@", testCase.testCaseName);
-                    [context runWorker:testCase withObserver:observer];
+                    
+                    [self runWorker:testCase];
+
                     [result setPassed];
                     FLLog(@"PASS!")
                 }
@@ -192,14 +194,14 @@
                 }
                 @finally {
                     [self teardownTests];
-                    [[FLLogger instance] removeLoggerSink:result];
+                    [[FLLogLogger instance] removeLoggerSink:result];
                 }
                 
                 if(result.passed) {
                     FLLog(@"passed: %@", testCase.testCaseName);
                 }
                 else {
-                    [[FLLogger instance] logEntries:result.logEntries];
+                    [[FLLogLogger instance] logEntries:result.logEntries];
                 }
             }
         }

@@ -10,66 +10,54 @@
 #import "FLLogSink.h"
 #import "FLLogger.h"
 
+#define FLLogTypeTrace      @"com.fishlamp.trace"
+#define FLLogTypeDebug      @"com.fishlamp.debug"
+#define FLLogTypeError      @"com.fishlamp.error"
+#define FLLogTypeException  @"com.fishlamp.exception"
 
 // WARNING: don't import anything here. This file is imported by FishLamp.  This is imported by everything.
-
-#define FLLogWithType(__TYPE__, __FORMAT__, ...) \
-            [[FLLogger instance] logString:FLStringWithFormatOrNil(__FORMAT__, ##__VA_ARGS__) logType:__TYPE__ stackTrace:FLCreateStackTrace(NO)];
-
 #define FLLog(__FORMAT__, ...)   \
-            [[FLLogger instance] logString:FLStringWithFormatOrNil(__FORMAT__, ##__VA_ARGS__) logType:FLLogTypeLog stackTrace:FLCreateStackTrace(NO)];
+            FLLogToLogger([FLLogLogger instance], FLLogTypeLog, __FORMAT__, ##__VA_ARGS__)
 
 #define FLLogError(__FORMAT__, ...) \
-           FLLogWithType(FLLogTypeError, __FORMAT__, ##__VA_ARGS__)
-
-//#define FLLogStackTrace() \
-//            FLLog(@"Stack:\n%@", FLStackTrace_tString(@"  "))
+            FLLogToLogger([FLLogLogger instance], FLLogTypeError, __FORMAT__, ##__VA_ARGS__)
 
 #if DEBUG
-    #define FLDebugLog(__FORMAT__, ...) \
-               FLLogWithType(FLLogTypeDebug, __FORMAT__, ##__VA_ARGS__)
+#define FLDebugLog(__FORMAT__, ...) \
+            FLLogToLogger([FLLogLogger instance], FLLogTypeDebug, __FORMAT__, ##__VA_ARGS__)
 
-    #define FLDebugLogIf(__CONDITION__, __FORMAT__, ...) \
-                if(__CONDITION__)FLLogWithType(FLLogTypeDebug, __FORMAT__, ##__VA_ARGS__)
-#else
+#define FLDebugLogIf(__CONDITION__, __FORMAT__, ...) \
+            if(__CONDITION__) FLDebugLog(__FORMAT__, ##__VA_ARGS__)
 
-    #define FLDebugLog(__FORMAT__, ...) 
-    #define FLDebugLogIf(__CONDITION__, __FORMAT__, ...)
-    #define FLDebugFromFile(file, line, __FORMAT__, ...)
-
-#endif
-
-#define FLLogFileLocation() FLLog(@"%s, file: %s:%d", __PRETTY_FUNCTION__, __FILE__, __LINE__)
-
-//#if DEBUG
-//#define FLTrace(__FORMAT__, ...) DO_PRAGMA(message("FLTrace not defined. #include \"FLTraceOn.h\" or \"FLTraceOff.h\" to enable or disable it."))
-//#define FLTraceIf(__BOOL__, __FORMAT__, ...) DO_PRAGMA(message("FLTrace not defined. #include \"FLTraceOn.h\" or \"FLTraceOff.h\" to enable or disable it."))
-//#else 
-//#define FLTrace(__FORMAT__, ...)
-//#define FLTraceIf(__BOOL__, __FORMAT__, ...) 
-//#endif
-
-#if DEBUG
 #define FLTrace(__FORMAT__, ...) \
-        FLLogWithType(FLLogTypeTrace, __FORMAT__, ##__VA_ARGS__)
+            FLLogToLogger([FLLogLogger instance], FLLogTypeTrace, __FORMAT__, ##__VA_ARGS__)
 
 #define FLTraceIf(__CONDITION__, __FORMAT__, ...) \
-        if(__CONDITION__) FLLogWithType(FLLogTypeTrace, __FORMAT__, ##__VA_ARGS__)
+            if(__CONDITION__) FLTrace(__FORMAT__, ##__VA_ARGS__)
+
+
 #else
 
+#define FLDebugLog(__FORMAT__, ...) 
+#define FLDebugLogIf(__CONDITION__, __FORMAT__, ...)
+#define FLDebugFromFile(file, line, __FORMAT__, ...)
 #define FLTrace(__FORMAT__, ...)
 #define FLTraceIf(__CONDITION__, __FORMAT__, ...)
-
 #endif
 
-//#define debugRect(rect) debug(@"%s x:%.4f, y:%.4f, w:%.4f, h%.4f", #rect, rect.origin.x, rect.origin.y, rect.size.width, rect.size.height)
-//#define debugSize(size) debug(@"%s w:%.4f, h:%.4f", #size, size.width, size.height)
-//#define debugPoint(point) debug(@"%s x:%.4f, y:%.4f", #point, point.x, point.y)
+#define FLLogFileLocation() \
+            FLLog(@"%s, file: %s:%d", __PRETTY_FUNCTION__, __FILE__, __LINE__)
 
 #ifndef FL_DIVERT_NSLOG
-#define FL_DIVERT_NSLOG 1
+#define FL_DIVERT_NSLOG 0
 #endif
 
 #if FL_DIVERT_NSLOG
 #define NSLog FLLog
 #endif
+
+@interface FLLogLogger : FLLogger
+FLSingletonProperty(FLLogLogger);
+@end
+
+

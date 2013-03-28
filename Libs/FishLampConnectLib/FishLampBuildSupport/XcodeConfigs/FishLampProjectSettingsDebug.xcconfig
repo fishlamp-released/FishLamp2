@@ -6,5 +6,5 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#include "FishLampBuildSupport/XcodeConfigIncludes/FishLamp-Settings.xcconfig"
-#include "FishLampBuildSupport/XcodeConfigIncludes/FishLamp-Settings-Debug.xcconfig"
+#include "FishLampBuildSupport/XcodeConfigIncludes/_FL-Settings.xcconfig"
+#include "FishLampBuildSupport/XcodeConfigIncludes/_FL-Settings-Debug.xcconfig"
