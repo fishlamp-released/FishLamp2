@@ -272,11 +272,11 @@
 //    [self sendMessage:@"operationQueue:operationWasCancelled:" withObject:operation];
 }
 
-- (id) runOperation:(FLOperation*) operation inContext:(id) context withObserver:(id) observer {
+- (FLResult) runOperation:(FLOperation*) operation {
 
     @try {
         self.currentOperation = operation;
-        return [context runWorker:self.currentOperation withObserver:observer];
+        return [self runWorker:operation];
     }
     @catch(NSException* ex) {
         return ex.error;
@@ -287,12 +287,12 @@
     
 }
 
-- (FLResult) runOperationInContext:(id) context withObserver:(id) observer {
+- (FLResult) runOperation {
 
     id outResult = [NSMutableDictionary dictionary];
     
     for(FLOperation* operation in self.operations.forwardIterator) {
-        id operationResult = [self runOperation:operation inContext:context withObserver:observer];
+        id operationResult = [self runOperation:operation];
 
         if(self.abortNeeded) {
             operationResult = [NSError cancelError];

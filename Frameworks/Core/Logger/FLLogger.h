@@ -7,41 +7,54 @@
 //
 
 #import "FLRequired.h"
-
 #import "FLLogEntry.h"
 #import "FLLogSink.h"
+#import "FLStringFormatter.h"
+#import "FLWhitespace.h"
 
-#define FLLogTypeInvalid    nil
+#define FLLogTypeNone       nil
 #define FLLogTypeLog        @"com.fishlamp.log"
-#define FLLogTypeTrace      @"com.fishlamp.trace"
-#define FLLogTypeDebug      @"com.fishlamp.debug"
-#define FLLogTypeError      @"com.fishlamp.error"
-#define FLLogTypeException  @"com.fishlamp.exception"
 
-@interface FLLogger : NSObject {
+@class FLLogger;
+
+@interface FLLogger : FLStringFormatter {
 @private
     NSMutableArray* _sinks;
     dispatch_queue_t _fifoQueue;
+    FLWhitespace* _whitespace;
+    NSInteger _indentLevel;
+    NSString* _eolString;
 }
 
-FLSingletonProperty(FLLogger);
+- (id) initWithWhitespace:(FLWhitespace*) whitespace;
++ (id) loggerWithWhitespace:(FLWhitespace*) whitespace;
++ (id) logger;
 
 - (void) pushLoggerSink:(id<FLLogSink>) sink;
 - (void) addLoggerSink:(id<FLLogSink>) sink;
 - (void) removeLoggerSink:(id<FLLogSink>) sink;
 
+@end
+
+@interface FLLogger (GrossImplementationMethods)
+// for subclasses.
+- (void) dispatchBlock:(dispatch_block_t) block;
 - (void) logString:(NSString*) string
            logType:(NSString*) logType
         stackTrace:(FLStackTrace*) stackTrace;
-
+- (void) logEntry:(FLLogEntry*) entry;
+- (void) logEntries:(NSArray*) entryArray;
 - (void) logError:(NSError*) error;
 - (void) logException:(NSException*) exception;
 - (void) logException:(NSException*) exception withComment:(NSString*) comment;
-- (void) logEntry:(FLLogEntry*) entry;
-- (void) logEntries:(NSArray*) entryArray;
-
 @end
+
 
 @interface NSException (FLLogger) 
 - (void) logExceptionToLogger:(FLLogger*) logger;
 @end
+
+
+#define FLLogToLogger(__LOGGER_, __TYPE__, __FORMAT__, ...) \
+            [__LOGGER_ logString:FLStringWithFormatOrNil(__FORMAT__, ##__VA_ARGS__) logType:__TYPE__ stackTrace:FLCreateStackTrace(NO)];
+

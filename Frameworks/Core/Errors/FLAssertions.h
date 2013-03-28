@@ -138,3 +138,6 @@
 #define FLAssertNotNilWithComment        FLAssertIsNotNilWithComment
 #define FLAssertNil            FLAssertIsNil
 #define FLAssertNilWithComment           FLAssertIsNilWithComment
+
+#define FLAssertionFailedWithComment FLAssertFailedWithComment
+#define FLAssertionFailed FLAssertFailed

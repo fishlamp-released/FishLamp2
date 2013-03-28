@@ -101,7 +101,7 @@
 //
 //    FLHttpRequest* request = [FLHttpRequest httpPostRequestWithURL:_url];
 //
-//    FLHttpResponse* response = [self sendHttpRequest:request];
+//    FLHttpResponse* response = [self runWorker:request];
 //
 //    FLOAuthSession* session = [FLOAuthSession oAuthSession];
 //    [FLUrlParameterParser parseData:response.responseData 

@@ -48,21 +48,21 @@ FLSynthesizeSingleton(FLLogFileManager);
 // TODO: decouple this 
    
 - (void) _setUserName {
-//    self.userName = [FLUserLoginService instance].userLogin.userName;
+//    self.userName = [FLUserService instance].userLogin.userName;
 }
 
 - (FLFolder*) _userLogFolder {
-// return [FLUserLoginService instance].logFolder;
+// return [FLUserService instance].logFolder;
 
     return nil;
 }
    
-- (void) openService:(id) opener {
+- (void) openService {
     [self _close];
     [self _setUserName];
 }
 
-- (void) closeService:(id) closer {
+- (void) closeService {
     [self _close];
 }
 

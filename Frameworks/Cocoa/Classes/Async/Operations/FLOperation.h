@@ -42,7 +42,6 @@ typedef FLResult (^FLBlockWithOperation)(FLOperation* operation);
 // deprecated
 - (FLResult) runOperationInContext:(id) context withObserver:(id) observer;
 
-
 @end
 
 @interface FLOperation (SubclassUtils)

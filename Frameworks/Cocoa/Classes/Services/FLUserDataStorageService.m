@@ -294,7 +294,7 @@ FLAssertFailedWithComment(@"refactor this");
 //    }];
 }
 
-- (BOOL) runUpgradeTasksIfNeededInContext:(id) context withObserver:(id) observer {
+- (BOOL) runUpgradeTasksIfNeededInContext:(id) context {
     
     FLApplicationDataVersion* input = [FLApplicationDataVersion applicationDataVersion];
 		input.userGuid = [self userLogin].userGuid;
@@ -326,7 +326,8 @@ FLAssertFailedWithComment(@"refactor this");
 
 //        [self.context addObject:_upgradeTaskList];
 
-        id result = [context runWorker:_upgradeTaskList withObserver:observer];
+    
+        id result = [_upgradeTaskList runInContext:context];
                 
         if([result error]) {
             // TODO: Ok, now what?
@@ -343,15 +344,14 @@ FLAssertFailedWithComment(@"refactor this");
 
 }
 
-- (BOOL) beginOpeningServiceInContext:(id) context withObserver:(id) observer
-{
+- (BOOL) beginOpeningServiceInContext:(id) context {
 	if([self userLogin] && _open == NO && !_isOpening && _willOpen)
 	{
 		_isOpening = YES;
 
 		[self initServiceObjectsIfNeeded];
 		
-        if(![self runUpgradeTasksIfNeededInContext:context withObserver:observer]) {
+        if(![self runUpgradeTasksIfNeededInContext:context ]) {
             [self finishOpeningService];
 		}
 	}
@@ -364,9 +364,9 @@ FLAssertFailedWithComment(@"TODO refactor this");
     return nil;
 }
 
-- (void) openService:(id) opener {
+- (void) openService {
 
-    [super openService:opener];
+    [super openService];
     FLAssertWithComment(FLStringIsNotEmpty([self userLogin].userName), @"invalid userLogin");
     _willOpen = YES;
     _isOpening = NO;

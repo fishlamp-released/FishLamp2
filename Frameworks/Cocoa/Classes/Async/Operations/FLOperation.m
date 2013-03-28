@@ -7,7 +7,6 @@
 //
 
 #import "FLOperation.h"
-#import "FLTraceOff.h"
 #import "FLFinisher.h"
 #import "FLAsyncQueue.h"
 #import "FLObjectStorage.h"
@@ -17,7 +16,6 @@ NSString* const FLOperationFinishedEvent;
 @interface FLOperation ()
 @property (readwrite, copy, nonatomic) FLBlockWithOperation runBlock;
 @property (readwrite, assign, getter=wasCancelled) BOOL cancelled;
-@property (readwrite, assign, nonatomic) id observer;
 @end
 
 @implementation FLOperation
@@ -101,10 +99,14 @@ NSString* const FLOperationFinishedEvent;
     return result;
 }
 
+//- (FLResult) runInContext:(id<FLWorkerContext>) context {
+//    return [[self startInContext:context completion:nil] waitUntilFinished];
+//}
+
+
 - (void) startWorking:(FLFinisher*) finisher {
 
     id result = nil;
-    self.observer = finisher.observer;
 
     @try {
         
@@ -126,13 +128,13 @@ NSString* const FLOperationFinishedEvent;
 
     [self sendObservation:@selector(operationDidFinish:withResult:) withObject:self withObject:result];
     
-    self.observer = nil;
     self.cancelled = NO;
 }
 
 - (void) operationWasCancelled:(FLOperation*) operation {
     [self requestCancel];
 }
+
 
 @end
 

@@ -7,147 +7,71 @@
 //
 
 #import "FLLogger.h"
-#import "FLConsoleLogSink.h"
-#import "FLLogPacket_Internal.h"
-#import "FLObjcRuntime.h"
-#import "FLCancelError.h"
-
-@implementation FLErrorException (FLLogger)
-
-- (void) logExceptionToLogger:(FLLogger*) logger {
-    
-    NSError* error = self.error;
-    if(error) {
-        [logger logError:error];
-    }
-    else {
-        [super logExceptionToLogger:logger]; // really [super raiseAndLog]
-    }
-}
-
-@end
-
-@implementation NSException (FLLogger) 
-
-// this is really "raise"
-+ (void)raiseAndLog:(NSString *)name format:(NSString *)format, ... {
-
-    va_list argList;
-    va_start(argList, format);
-    NSString* comment = FLAutorelease([[NSMutableString alloc] initWithFormat:format arguments:argList]);
-    va_end(argList);
-
-    [[FLLogger instance] logString:[NSString stringWithFormat:@"%@: %@", name, comment]
-                           logType:FLLogTypeException 
-                        stackTrace:FLCreateStackTrace(YES)];
-
-    [self raiseAndLog:name format:format arguments:argList];
-}
-
-// this is really "raise"
-+ (void)raiseAndLog:(NSString *)name format:(NSString *)format arguments:(va_list)argList {
-    NSString* comment = FLAutorelease([[NSMutableString alloc] initWithFormat:format arguments:argList]);
-
-    [[FLLogger instance] logString:[NSString stringWithFormat:@"%@: %@", name, comment]
-                           logType:FLLogTypeException 
-                        stackTrace:FLCreateStackTrace(YES)];
-    
-    [self raiseAndLog:name format:format arguments:argList];
-}
-
-- (void) logExceptionToLogger:(FLLogger*) logger {
-    [logger logException:self];
-}
-
-// this is really the new "raise"
-- (void) raiseAndLog { 
-    [self logExceptionToLogger:[FLLogger instance]];
-    [self raiseAndLog]; // call swizzled raise
-}
-
-+ (void) swizzleRaiseMethods {
-    FLSwizzleInstanceMethod([NSException class], @selector(raise), @selector(raiseAndLog));
-    FLSwizzleClassMethod([NSException class], @selector(raise:format:), @selector(raiseAndLog:format:));
-    FLSwizzleClassMethod([NSException class], @selector(raise:format:arguments:), @selector(raiseAndLog:format:arguments:));       
-}
-
-//+ (void) unswizzleRaiseMethods {
-//    FLSwizzleInstanceMethod([NSException class], @selector(raiseAndLog), @selector(raise));
-//    FLSwizzleInstanceMethod([NSException class], @selector(raise:format:), @selector(raiseAndLog:format:));
-//    FLSwizzleInstanceMethod([NSException class], @selector(raise:format:arguments:),        
-//}
-
-
-@end
-
-void FLLoggerUncaughtExceptionHandler(NSException* ex);
-NSUncaughtExceptionHandler* s_previousUncaughtExceptionHandler = nil;
-
-
+#import <objc/runtime.h>
 @implementation FLLogger
 
-FLSynthesizeSingleton(FLLogger);
-
-+ (void) initialize {
-
-    static BOOL s_initialized = NO;
-    if(!s_initialized) {
-        s_initialized = YES;
-        s_previousUncaughtExceptionHandler = NSGetUncaughtExceptionHandler();
-        NSSetUncaughtExceptionHandler(FLLoggerUncaughtExceptionHandler);
-        [NSException swizzleRaiseMethods];
-    }
-}
-
-- (id) init {
+- (id) initWithWhitespace:(FLWhitespace*) whitespace {
     self = [super init];
     if(self) {
-        _fifoQueue = dispatch_queue_create("com.fishlamp.logger", DISPATCH_QUEUE_SERIAL);
+        static int count = 0;
+        char buffer[128];
+        snprintf(buffer, 128, "com.fishlamp.logger%d", count++);
+        _fifoQueue = dispatch_queue_create(buffer, DISPATCH_QUEUE_SERIAL);
         _sinks = [[NSMutableArray alloc] init];
-#if DEBUG
-        [self addLoggerSink:[FLConsoleLogSink consoleLogSink:FLLogOutputSimple|FLLogOutputWithLocation]];
-#endif
+        _whitespace = FLRetain(whitespace);
+        _eolString = FLRetain(_whitespace ? _whitespace.eolString : @"");
     }
     
     return self;
 }
 
++ (id) loggerWithWhitespace:(FLWhitespace*) whitespace {
+    return FLAutorelease([[[self class] alloc] initWithWhitespace:whitespace]);
+}
+
++ (id) logger {
+    return FLAutorelease([[[self class] alloc] init]);
+}
+
+- (id) init {
+    return [self initWithWhitespace:[FLWhitespace tabbedWithSpacesWhitespace]];
+}   
+
 - (void) dealloc {
     dispatch_release(_fifoQueue);
 #if FL_MRC
+    [_eolString release];
+    [_whitespace release];
     [_sinks release];
     [super dealloc];
 #endif
 }
 
+- (void) logger:(FLLogger*) logger dispatchBlock:(dispatch_block_t) block {
+    dispatch_async(_fifoQueue, block); 
+}
+
+- (void) dispatchBlock:(dispatch_block_t) block {
+    dispatch_sync(_fifoQueue, block); 
+}
+
 - (void) pushLoggerSink:(id<FLLogSink>) sink {
-    dispatch_async(_fifoQueue, ^{
+    [self dispatchBlock: ^{
         [_sinks insertObject:sink atIndex:0];
-    });
+    }];
 }
 
 - (void) addLoggerSink:(id<FLLogSink>) sink {
-    dispatch_async(_fifoQueue, ^{
+    [self dispatchBlock: ^{
         [_sinks addObject:sink];
-    });
+    }];
 }
 
 - (void) removeLoggerSink:(id<FLLogSink>) sink {
-    dispatch_async(_fifoQueue, ^{
+    [self dispatchBlock: ^{
         [_sinks removeObject:sink];
-    });
+    }];
 }
-
-//NS_INLINE
-//const char* lastPathComponent(const char* str) {
-//    const char* ptr = str;
-//    while(*str++) {
-//        if(*(str-1) == '.') {
-//            ptr = str;
-//        }
-//    }
-//    return ptr;
-//}
 
 - (void) sendEntryToSinks:(FLLogEntry*) entry {
     BOOL stop = NO;
@@ -161,27 +85,51 @@ FLSynthesizeSingleton(FLLogger);
 }
 
 - (void) logEntry:(FLLogEntry*) entry {
-    dispatch_async(_fifoQueue, ^{
+    [self dispatchBlock: ^{
         [self sendEntryToSinks:entry];
-    });
+    }];
 }
 
 - (void) logEntries:(NSArray*) entryArray {
-    dispatch_async(_fifoQueue, ^{
+    [self dispatchBlock: ^{
         for(FLLogEntry* entry in entryArray) {
             [self sendEntryToSinks:entry];
         }
-    });
+    }];
+}
+
+
+- (void) logString:(NSString*) string
+           logType:(NSString*) logType
+        stackTrace:(FLStackTrace*) stackTrace {
+ 
+
+    if(FLStringIsEmpty(string)) {
+        return;
+    }
+
+#if DEBUG
+    NSCAssert(![string isEqualToString:@"(null)"], @"got null string in logger");
+    NSCAssert(string != nil, @"logger line is nil");
+#endif
+
+    [self dispatchBlock: ^{
+        FLLogEntry* entry = [FLLogEntry logEntry];
+        entry.logString = string;
+        entry.logType = logType;
+        entry.stackTrace = stackTrace;
+        [self sendEntryToSinks:entry];
+    }];
 }
 
 - (void) logError:(NSError*) error {
-    dispatch_async(_fifoQueue, ^{
+    [self dispatchBlock: ^{
         FLLogEntry* entry = [FLLogEntry logEntry];
         entry.error = error;
         entry.logString = [error localizedDescription];
         entry.stackTrace = error.stackTrace;
         [self sendEntryToSinks:entry];
-    });
+    }];
 }
 
 - (void) logException:(NSException*) exception withComment:(NSString*) comment {
@@ -204,47 +152,96 @@ FLSynthesizeSingleton(FLLogger);
 }
 
 - (void) logException:(NSException*) exception {
-    dispatch_async(_fifoQueue, ^{
+    [self dispatchBlock: ^{
         [self logException:exception withComment:nil];
-    });
+    }];
 }
 
 
-- (void) logString:(NSString*) string
-           logType:(NSString*) logType
-        stackTrace:(FLStackTrace*) stackTrace {
- 
+//- (void) logString:(NSString*) string;
+//- (void) logFormat:(NSString*) format, ...;
+//- (void) logFormat:(NSString*) format arguments:(va_list) list;
 
-    if(FLStringIsEmpty(string)) {
-        return;
+- (void) logString:(NSString*) string {
+    [self logString:string logType:FLLogTypeLog stackTrace:nil];
+}
+
+//
+//- (void) logFormat:(NSString*) format, ... {
+//    FLAssertNotNil(format);
+//	va_list va;
+//	va_start(va, format);
+//	NSString *string = FLAutorelease([[NSString alloc] initWithFormat:format arguments:va]);
+//	va_end(va);
+//    [self logString:string logType:FLLogTypeLog stackTrace:nil];
+//}
+//
+//- (void) logFormat:(NSString*) format arguments:(va_list) va_list {
+//	NSString *string = FLAutorelease([[NSString alloc] initWithFormat:format arguments:va_list]);
+//    [self logString:string logType:FLLogTypeLog stackTrace:nil];
+//}
+
+
+- (void) stringFormatter:(FLStringFormatter*) stringFormatter 
+            appendString:(NSString*) string
+  appendAttributedString:(NSAttributedString*) attributedString
+              lineUpdate:(FLStringFormatterLineUpdate) lineUpdate {
+
+
+    if(lineUpdate.closePreviousLine) {
+        [self logString:@"\n"];
     }
 
-#if DEBUG
-    NSCAssert(![string isEqualToString:@"(null)"], @"got null string in logger");
-    NSCAssert(string != nil, @"logger line is nil");
-    NSCAssert(logType != FLLogTypeInvalid, @"sending in invalid log type");
-#endif
+    if(lineUpdate.prependBlankLine) {
+        [self logString:@"\n"];
+    }
 
-    dispatch_async(_fifoQueue, ^{
-        FLLogEntry* entry = [FLLogEntry logEntry];
-        entry.logString = string;
-        entry.logType = logType;
-        entry.stackTrace = stackTrace;
-        [self sendEntryToSinks:entry];
-    });
+    if(lineUpdate.openLine) {
+//        if(_whitespace) { 
+//            [self appendStringToStorage:[_whitespace tabStringForScope:self.indentLevel]];
+//        } 
+    }
+    
+    if(string) {
+        [self logString:string];
+    }
+    
+    if(attributedString) {
+        [self logString:[attributedString string]];
+    }
+    
+    if(lineUpdate.closeLine) {
+        [self logString:@"\n"];
+    }
+}            
+
+- (void) indent {
 }
+
+- (void) outdent {
+}
+
 
 @end
 
-void FLLoggerUncaughtExceptionHandler(NSException *exception) {
-    @try {
-        [[FLLogger instance] logException:exception withComment:@"Uncaught Exception (app will crash)"];
-    }
-    @catch(NSException* ex) {
-        NSLog(@"logger threw exception in uncaught exception handler (app will now crash).\nException name: %@, reason: %@", ex.name, ex.reason);
-    }
+@implementation NSException (FLLogger)
+- (void) logExceptionToLogger:(FLLogger*) logger {
+    [logger logException:self];
+}
+@end
+
+
+@implementation FLErrorException (FLLogger)
+
+- (void) logExceptionToLogger:(FLLogger*) logger {
     
-    if(s_previousUncaughtExceptionHandler) {
-        s_previousUncaughtExceptionHandler(exception);
+    NSError* error = self.error;
+    if(error) {
+        [logger logError:error];
+    }
+    else {
+        [super logExceptionToLogger:logger]; // really [super raiseAndLog]
     }
 }
+
+@end

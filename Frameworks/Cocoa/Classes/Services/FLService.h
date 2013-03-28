@@ -26,8 +26,8 @@
 - (void) visitSubServices:(void (^)(id service, BOOL* stop)) visitor;
 
 // optional overrides
-- (void) openService:(id) opener;
-- (void) closeService:(id) closer;
+- (void) openService;
+- (void) closeService;
 - (void) didMoveToSuperService:(id) superService;
 
 @end

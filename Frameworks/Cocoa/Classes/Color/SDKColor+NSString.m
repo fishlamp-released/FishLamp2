@@ -156,6 +156,7 @@ static FLHexColor_t s_named_css_colors[] = {
     { @"WhiteSmoke", @"#F5F5F5" },	 	
     { @"Yellow", @"#FFFF00" },	 	
     { @"YellowGreen", @"#9ACD32" },	 	
+    { nil, nil }
 };
 
 //
@@ -181,12 +182,13 @@ SDKColor* FLColorFromHexColorName(NSString* string) {
     if(!s_colorLookup) {
         s_colorLookup = [[NSMutableDictionary alloc] init];
         
-        for(int i = 0; i < FLArrayLength(s_named_css_colors, sizeof(FLHexColor_t)); i++) {
-            [s_colorLookup setObject:[s_named_css_colors[i].color lowercaseString] forKey:s_named_css_colors[i].name];
+        for(int i = 0; s_named_css_colors[i].name != nil; i++) {
+            [s_colorLookup setObject:s_named_css_colors[i].color forKey:[s_named_css_colors[i].name lowercaseString]];
         }
     }
 
-    return [s_colorLookup objectForKey:[string lowercaseString]];
+    NSString* colorHex = [s_colorLookup objectForKey:[string lowercaseString]];
+    return colorHex ? FLColorFromHexColorString(colorHex) : nil;
 }
 
 NSString* FLRgbStringFromColor(SDKColor* color) { //rgb(11,11,11,0.5)

@@ -12,8 +12,9 @@ typedef void (^FLQueuedBlock)(id sender);
 
 @interface FLBlockQueue : NSObject {
 @private
-    NSMutableArray* _queue;
+    NSMutableArray* _blockQueue;
 }
+@property (readonly, assign, nonatomic) NSUInteger count;
 
 + (FLBlockQueue*) blockQueue;
 

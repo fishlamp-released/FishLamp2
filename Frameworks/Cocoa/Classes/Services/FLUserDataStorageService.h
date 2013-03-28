@@ -13,9 +13,9 @@
 #import "FLLengthyTaskList.h"
 #import "FLVersionUpgradeLengthyTaskList.h"
 #import "FLImageFolder.h"
-#import "FLDataStoreService.h"
+#import "FLObjectStorageService.h"
 
-@interface FLUserDataStorageService : FLDataStoreService {
+@interface FLUserDataStorageService : FLObjectStorageService {
 @private
 
 // cache

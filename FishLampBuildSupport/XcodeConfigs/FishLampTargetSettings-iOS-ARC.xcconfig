@@ -6,9 +6,9 @@
 //
 //
 
-#include "FishLampBuildSupport/XcodeConfigIncludes/FishLamp-iOS.xcconfig"
-#include "FishLampBuildSupport/XcodeConfigIncludes/FishLamp-ARC.xcconfig"
-#include "FishLampBuildSupport/XCodeConfigIncludes/FishLamp-Preprocessor.xcconfig"
+#include "FishLampBuildSupport/XcodeConfigIncludes/_FL-iOS.xcconfig"
+#include "FishLampBuildSupport/XcodeConfigIncludes/_FL-ARC.xcconfig"
+#include "FishLampBuildSupport/XCodeConfigIncludes/_FL-Preprocessor.xcconfig"
 #include "FishLampBuildSupport/FishLampPaths.xcconfig"
 #include "SharedTargetSettings.xcconfig"
 

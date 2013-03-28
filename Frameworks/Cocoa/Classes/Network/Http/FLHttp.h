@@ -10,7 +10,6 @@
 
 #import "FLHttpRequest.h"
 #import "FLHttpRequestObserver.h"
-#import "FLHttpUserService.h"
 #import "FLHttpRequestAuthenticationService.h"
 
 // specific request type

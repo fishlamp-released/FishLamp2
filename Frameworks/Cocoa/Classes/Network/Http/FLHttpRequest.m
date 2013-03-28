@@ -151,7 +151,7 @@
 
 - (void) openStreamWithURL:(NSURL*) url {
     
-    [self sendMessage:@selector(httpRequestWillOpen:) toListener:[self.finisher observer]];
+    [self sendMessage:@selector(httpRequestWillOpen:) toListener:[self observer]];
     
     [self willSendHttpRequest]; // this may set requestURL so needs to be before createStreamOpenerWithURL
 
@@ -175,13 +175,13 @@
 - (void) openAuthenticatedStreamWithURL:(NSURL*) url {
 
     if(self.authenticator && !self.disableAuthenticator) {
-        [self sendMessage:@selector(httpRequestWillAuthenticate:) toListener:[self.finisher observer]];
+        [self sendMessage:@selector(httpRequestWillAuthenticate:) toListener:[self observer]];
         [self willAuthenticate];
             
         FLThrowIfError([self.authenticator authenticateHttpRequest:self]);
         
         [self didAuthenticate];
-        [self sendMessage:@selector(httpRequestDidAuthenticate:) toListener:[self.finisher observer]];
+        [self sendMessage:@selector(httpRequestDidAuthenticate:) toListener:[self observer]];
     }
 
     [self openStreamWithURL:url];
@@ -193,11 +193,11 @@
 }
 
 - (void) networkStreamDidOpen:(FLHttpStream*) networkStream {
-    [self sendMessage:@selector(httpRequestDidOpen:) toListener:[self.finisher observer]];
+    [self sendMessage:@selector(httpRequestDidOpen:) toListener:[self observer]];
 }
 
 - (void) networkStream:(FLHttpStream*) stream didReadBytes:(NSNumber*) amountRead {
-    [self sendMessage:@selector(httpRequest:didReadBytes:) toListener:[self.finisher observer] withObject:amountRead];
+    [self sendMessage:@selector(httpRequest:didReadBytes:) toListener:[self observer] withObject:amountRead];
 }
 
 - (FLResult) finalizeResult:(FLHttpResponse*) response {
@@ -226,14 +226,14 @@
         self.previousResponse = nil;
         [self closeStreamWithError:nil];
 
-        [self sendMessage:@selector(httpRequest:didCloseWithResult:) toListener:[self.finisher observer] withObject:result];
+        [self sendMessage:@selector(httpRequest:didCloseWithResult:) toListener:[self observer] withObject:result];
         
         [finisher setFinishedWithResult:result];
     }
 }
 
 - (void) networkStream:(FLHttpStream*) readStream encounteredError:(NSError*) error {
-    [self sendMessage:@selector(httpRequest:encounteredError:) toListener:[self.finisher observer] withObject:error];
+    [self sendMessage:@selector(httpRequest:encounteredError:) toListener:[self observer] withObject:error];
     [self requestDidFinishWithResult:error];
 }
 

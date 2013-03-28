@@ -6,9 +6,9 @@
 //
 //
 
-#include "FishLampBuildSupport/XcodeConfigIncludes/FishLamp-OSX-32-64.xcconfig"
-#include "FishLampBuildSupport/XcodeConfigIncludes/FishLamp-MRC.xcconfig"
-#include "FishLampBuildSupport/XCodeConfigIncludes/FishLamp-Preprocessor.xcconfig"
+#include "FishLampBuildSupport/XcodeConfigIncludes/_FL-OSX-32-64.xcconfig"
+#include "FishLampBuildSupport/XcodeConfigIncludes/_FL-MRC.xcconfig"
+#include "FishLampBuildSupport/XCodeConfigIncludes/_FL-Preprocessor.xcconfig"
 #include "FishLampBuildSupport/FishLampPaths.xcconfig"
 #include "SharedTargetSettings.xcconfig"
 

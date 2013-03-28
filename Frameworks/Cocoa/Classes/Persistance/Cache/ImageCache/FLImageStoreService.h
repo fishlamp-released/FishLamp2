@@ -10,14 +10,19 @@
 #import "FLStorableImage.h"
 #import "FLObjectStorage.h"
 #import "FLImageFolder.h"
-#import "FLDataStoreService.h"
+#import "FLObjectStorageService.h"
 
 @class FLImageFolder;
 
-@interface FLImageStoreService : FLDataStoreService {
+@protocol FLImageStoreDelegate;
+
+@interface FLImageStoreService : FLObjectStorageService {
 @private
     FLImageFolder* _imageFolder;
+    
+    __unsafe_unretained id<FLImageStoreDelegate> _delegate;
 }
+@property (readwrite, assign, nonatomic) id<FLImageStoreDelegate> delegate;
 @property (readwrite, strong) FLImageFolder* imageFolder;
 
 - (void) deleteImage:(FLStorableImage*) image;
@@ -26,8 +31,7 @@
 - (FLStorableImage*) readImageWithURLKey:(NSURL*) url;
 @end
 
-@protocol FLImageCacheOpener <NSObject>
-@optional
-- (void) imageStoreServiceOpen:(FLImageStoreService*) imageCache;
-- (void) imageStoreServiceClose:(FLImageStoreService*) imageCache;
+@protocol FLImageStoreDelegate <NSObject>
+- (void) imageStoreServiceDidOpen:(FLImageStoreService*) imageCache;
+- (void) imageStoreServiceDidClose:(FLImageStoreService*) imageCache;
 @end

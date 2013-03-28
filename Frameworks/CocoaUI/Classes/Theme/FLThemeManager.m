@@ -13,6 +13,8 @@
 #import "FLXmlObjectBuilder.h"
 #import "FLObjcRuntime.h"
 #import "NSObject+FLTheme.h"
+#import "FLJsonParser.h"
+#import "FLJsonObjectBuilder.h"
 
 NSString* FLThemeChangedNotificationKey = @"FLThemeChangedNotificationKey";
 NSString* FLCurrentThemeKey = @"FLCurrentThemeKey";
@@ -76,18 +78,40 @@ FLSynthesizeSingleton(FLThemeManager)
 
 - (NSArray*) loadThemesFromBundleXmlFile:(NSString*) fileName  themeClass:(Class) themeClass {
 
-    NSURL* fileURL = [[NSBundle mainBundle] URLForResource:fileName withExtension:@"xml"];
-
-    FLParsedItem* xml = [[FLXmlParser xmlParser] parseFileAtURL:fileURL];
-    if(xml) {
-        
-        FLObjectDescriber* themeType = [FLObjectDescriber objectDescriber:@"theme" objectClass:themeClass];
-        
-        return [[FLXmlObjectBuilder xmlObjectBuilder] objectsFromXML:xml withObjectType:themeType];
-    }   
+    NSURL* fileURL = [[NSBundle mainBundle] URLForResource:fileName withExtension:@"json"];
     
+    id object = [[FLJsonParser jsonParser] parseFileAtURL:fileURL];
+    if(object) {
+    
+        FLJsonObjectBuilder* builder = [FLJsonObjectBuilder jsonObjectBuilder];
+    
+        NSArray* outThemes = [builder arrayOfObjectsFromJSON:[object objectForKey:@"themes"] expectedRootObjectClass:themeClass];
+    
+//        NSArray* themes = [object objectForKey:@"themes"];
+//        NSMutableArray* outThemes = [NSMutableArray array];
+//        FLObjectDescriber* themeType = [FLObjectDescriber objectDescriber:@"theme" objectClass:themeClass];
+//        
+//        for(NSDictionary* themeDictionary in themes) {
+//            [outThemes addObject:[builder objectFromJSON:themeDictionary withObjectType:themeType]];
+//        }
+        
+        
+        return outThemes;
+    }   
+
+
+//    FLParsedItem* xml = [[FLXmlParser xmlParser] parseFileAtURL:fileURL];
+//    if(xml) {
+//        
+//        FLObjectDescriber* themeType = [FLObjectDescriber objectDescriber:@"theme" objectClass:themeClass];
+//        
+//        return [[FLXmlObjectBuilder xmlObjectBuilder] objectsFromXML:xml withObjectType:themeType];
+//    }   
+//    
     return nil;
 }
+
+#pragma GCC diagnostic ignored "-Warc-performSelector-leaks"
 
 - (void) applyThemeToObject:(id) object {
     SEL selector = [object themeSelector];

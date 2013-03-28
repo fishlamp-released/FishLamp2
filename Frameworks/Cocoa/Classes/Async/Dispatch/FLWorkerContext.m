@@ -95,13 +95,13 @@ NSString* const FLWorkerContextOpened = @"FLWorkerContextOpened";
 }
 
 - (void) openService:(id)opener {
-    [super openService:opener];
+    [super openService];
     
     [self openContext];
 }
 
 - (void) closeService:(id)closer {
-    [super closeService:closer];
+    [super closeService];
     
     [self closeContext];;
 }
@@ -154,11 +154,9 @@ NSString* const FLWorkerContextOpened = @"FLWorkerContextOpened";
     [self didRemoveWorker:worker];
 }
 
-- (FLResult) runWorker:(id<FLContextWorker>) worker 
-          withObserver:(id) observer {
+- (FLResult) runWorker:(id<FLContextWorker>) worker {
 
     FLFinisher* finisher = [FLFinisher finisher];
-    finisher.observer = observer;
     
     @try {
         [self addObject:worker];
@@ -215,13 +213,15 @@ NSString* const FLWorkerContextOpened = @"FLWorkerContextOpened";
 //    return finisher;
 //}
 
-- (void) startWorker:(id<FLContextWorker>) worker withObserver:(id) observer completion:(FLBlockWithResult) completion {
-    FLFinisher* finisher = [FLFinisher finisher:completion];
-    finisher.observer = observer;
-    [self startWorker:worker withFinisher:finisher];
-}
+//- (FLFinisher*) startWorker:(id<FLContextWorker>) worker 
+//               withObserver:(id) observer 
+//                 completion:(FLBlockWithResult) completion {
+//    FLFinisher* finisher = [FLFinisher finisher:completion];
+//    [self queueWorker:worker withFinisher:finisher];
+//    return finisher;
+//}
 
-- (void) startWorker:(id<FLContextWorker>) worker withFinisher:(FLFinisher*) finisher {
+- (void) queueWorker:(id<FLContextWorker>) worker withFinisher:(FLFinisher*) finisher {
 
     FLAssertNotNil(worker);
 
@@ -247,21 +247,70 @@ NSString* const FLWorkerContextOpened = @"FLWorkerContextOpened";
     withFinisher:finisher];
 }
 
-//- (FLFinisher*) startWorker:(id<FLContextWorker>) worker withObserver:(id) observer {
-//    return [self startWorker:worker inDispatcher:[FLAsyncQueue defaultQueue] withObserver:observer completion:nil];
-//}
-//
-//- (void) startWorker:(id<FLContextWorker>) worker withObserver:(id) observer withFinisher:(FLFinisher*) finisher {
-//    [self startWorker:worker inDispatcher:worker.asyncQueue withObserver:observer completion:^(FLResult result) {
-//        [finisher setFinishedWithResult:result];
-//    }];
-//}   
-//
-//- (void) startWorker:(id<FLContextWorker>) worker withObserver:(id) observer completion:(FLBlockWithResult) completion {
-//    [self startWorker:worker inDispatcher:worker.asyncQueue withObserver:observer completion:completion];
-//}
+- (FLFinisher*) queueWorker:(id<FLContextWorker>) worker 
+                 completion:(FLBlockWithResult) completion {
+   FLFinisher* finisher = [FLFinisher finisher:completion];
+   [self queueWorker:worker withFinisher:finisher];
+   return finisher;                 
+}                 
 
    
+@end
+
+@implementation FLContextWorker
+
+@synthesize workerContext = _workerContext;
+@synthesize contextID = _contextID;
+
+- (void) startWorking:(FLFinisher*) finisher {
+    FLLog(@"Context worker did nothing.");
+    [finisher setFinished];
+}                      
+
+- (void) requestCancel {
+
+}
+
+- (id<FLAsyncQueue>) asyncQueue {
+    return nil;
+}
+
+- (void) didMoveToContext:(id<FLWorkerContext>) context {
+    _workerContext = context;
+    _contextID = [context contextID];
+}
+
+- (void) contextDidChange:(id<FLWorkerContext>) context {
+    
+}
+
+- (FLFinisher*) startInContext:(id<FLWorkerContext>) context 
+                    completion:(FLBlockWithResult) completion {
+                    
+    return [context queueWorker:self completion:completion];
+}
+
+- (FLResult) runInContext:(id<FLWorkerContext>) context {
+    return [[self startInContext:context completion:nil] waitUntilFinished];
+}
+
+- (FLResult) runWorker:(FLContextWorker*) worker {
+
+    @try {
+        if(!worker.observer) {
+            worker.observer = self.observer;
+        }
+
+        return [worker runInContext:self.workerContext];
+    }
+    @finally {
+        if(worker.observer == self) {
+            worker.observer = nil;
+        }
+    }
+}
+
+
 @end
 
 //@implementation FLExecutable

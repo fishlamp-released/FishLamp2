@@ -34,14 +34,14 @@
     return FLAutorelease([[[self class] alloc] init]);
 }
 
-- (FLResult) runOperationInContext:(id) context withObserver:(id) observer {
+- (FLResult) runOperation {
     
     NSMutableArray* tests = FLAutorelease([[_sanityTests allObjects] mutableCopy]);
     
     [tests sortedArrayUsingSelector:@selector(compare:)];
     
     for(FLTestCase* test in tests) {
-        [context runWorker:test withObserver:observer];
+        [self runWorker:test];
     }
     
     return FLSuccessfullResult;

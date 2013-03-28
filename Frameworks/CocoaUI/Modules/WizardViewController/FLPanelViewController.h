@@ -32,6 +32,7 @@
     __unsafe_unretained FLPanelManager* _wizardViewController;
     id<FLPanelButtons> _buttons;
     id<FLPanelHeader> _header;
+    BOOL _panelFillsView;
 }
 
 @property (readwrite, assign, nonatomic) id wizardViewController;

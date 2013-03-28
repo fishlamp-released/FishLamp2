@@ -45,6 +45,7 @@
 - (void) appendAttributedStringToStorage:(NSAttributedString*) string;
 
 @end
+
 @protocol FLPrettyStringDelegate <NSObject>
 @optional
 - (void) prettyString:(FLPrettyString*) prettyString didAppendString:(NSString*) string;

@@ -26,7 +26,7 @@
 - (FLFolder*) _imageCacheFolder {
 
 // TODO: Finish decoupling this
-// [FLUserLoginService instance].imageCacheFolder
+// [FLUserService instance].imageCacheFolder
 
     return nil;
 }
@@ -218,7 +218,7 @@ FIXME("attach to user sessions....");
 //+ (void) clearImageCache:(id<FLCancellable>) operation
 //{
 //	[_memoryCache removeAllObjects];
-//    [[FLUserLoginService instance].imageCacheFolder deleteAllFiles:operation];
+//    [[FLUserService instance].imageCacheFolder deleteAllFiles:operation];
 //}
 
 - (void) clearMemoryCache

@@ -35,14 +35,14 @@
     return FLAutorelease([[[self class] alloc] init]);
 }
 
-- (void) openService:(id) opener {
+- (void) openService {
     FLPerformSelector1(opener, @selector(openFacebookService:), self);
-    [super openService:opener];
+    [super openService];
 }
 
-- (void) closeService:(id) closer {
+- (void) closeService {
     FLPerformSelector1(closer, @selector(closeFacebookService:), self);
-    [super closeService:closer];
+    [super closeService];
     self.appId = nil;
     self.encodedToken = nil;
     self.permissions = nil;
@@ -53,7 +53,7 @@
 	FLFacebookNetworkSession* input = [FLFacebookNetworkSession facebookNetworkSession];
 	input.appId = self.appId;
 
-	[self.dataStore deleteObject:input];
+	[self.objectStorage deleteObject:input];
 	FLReleaseWithNil(_facebookNetworkSession);
     FLReleaseWithNil(_encodedToken);
     
@@ -84,11 +84,11 @@
 		FLFacebookNetworkSession* input = [FLFacebookNetworkSession facebookNetworkSession];
 		input.appId = self.appId;
 		
-		FLSetObjectWithRetain(_facebookNetworkSession, [self.dataStore readObject:input]);
+		FLSetObjectWithRetain(_facebookNetworkSession, [self.objectStorage readObject:input]);
 		
 		if(_facebookNetworkSession && FLStringIsEmpty(_facebookNetworkSession.userId))
 		{
-			[self.dataStore deleteObject:_facebookNetworkSession];
+			[self.objectStorage deleteObject:_facebookNetworkSession];
 			FLReleaseWithNil(_facebookNetworkSession);
 		}
 	}
@@ -152,7 +152,7 @@
 		}
 
 		self.encodedToken = [_facebookNetworkSession.access_token urlEncodeString:NSUTF8StringEncoding];
-		[self.dataStore writeObject:_facebookNetworkSession];
+		[self.objectStorage writeObject:_facebookNetworkSession];
 	}
 }
 

@@ -21,7 +21,7 @@
 @synthesize passwordEntryField = _passwordEntryField;
 @synthesize savePasswordCheckBox = _savePasswordCheckBox;
 @synthesize forgotPasswordButton = _forgotPasswordButton;
-@synthesize userLogin = _userLogin;
+@synthesize userService = _userService;
 
 - (id) init {
     return [self initWithNibName:@"FLLoginPanel" bundle:nil];
@@ -53,7 +53,7 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
 #if FL_MRC
-    [_userLogin release];
+    [_userService release];
     [_userNameTextField release];
     [_passwordEntryField release];
     [_savePasswordCheckBox release];
@@ -142,21 +142,21 @@
 }
 
 - (void) updateVisibleCredentials {
-    if(!self.userLogin) {
-        [self.userLogin loadFromStorage];
-    }
-    [self setSavePasswordInKeychain:self.userLogin.rememberPassword];
-    [self setUserName:self.userLogin.userName];
-    [self setPassword:self.userLogin.password];
+//    if(!self.userService.userLogin) {
+//        [self.userService loadFromUserDefaults];
+//    }
+//    [self setSavePasswordInKeychain:self.userService.rememberPassword];
+//    [self setUserName:self.userLogin.userName];
+//    [self setPassword:self.userLogin.password];
 }
 
 - (void) saveCredentials {  
 
-    self.userLogin.userName = self.userName;
-    self.userLogin.password = self.password;
-    self.userLogin.rememberPassword = self.savePasswordInKeychain;
-
-    [self.userLogin saveToStorage];
+//    self.userLogin.userName = self.userName;
+//    self.userLogin.password = self.password;
+//    self.userLogin.rememberPassword = self.savePasswordInKeychain;
+//
+//    [self.userLogin saveToStorage];
 }
 
 - (IBAction) passwordCheckboxToggled:(id) sender {

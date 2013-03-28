@@ -9,14 +9,9 @@
 #import "FLLogEntry.h"
 
 @interface FLLogEntry () 
-//@property (readwrite, strong, nonatomic) NSString* logString;
-//@property (readwrite, strong, nonatomic) NSString* logType;
 @property (readwrite, strong, nonatomic) NSString* logName;
-//@property (readwrite, strong, nonatomic) FLStackTrace* stackTrace;
 @property (readwrite, assign, nonatomic) uint32_t logCount;
 @property (readwrite, assign, nonatomic) NSTimeInterval timestamp;
-//@property (readwrite, strong, nonatomic) NSError* error;
-//@property (readwrite, strong, nonatomic) NSException* exception;
 
 @end
 

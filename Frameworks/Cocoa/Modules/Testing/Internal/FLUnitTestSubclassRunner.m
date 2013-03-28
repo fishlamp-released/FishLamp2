@@ -57,7 +57,7 @@
     }
 }
 
-- (FLResult) runOperationInContext:(id) context withObserver:(id) observer {
+- (FLResult) runOperation {
     
     NSMutableDictionary* groups = [NSMutableDictionary dictionary];
     
@@ -93,8 +93,8 @@
         
         for(Class aClass in classList) {
             FLUnitTest* test = FLAutorelease([[[aClass class] alloc] init]);
-            FLUnitTestResult* result = [context runWorker:test withObserver:observer];
-            [resultArray addObject:result];
+
+            [resultArray addObject:[self runWorker:test]];
         }
     }
     

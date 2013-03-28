@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
 
-#import "FLDataStoreService.h"
+#import "FLObjectStorageService.h"
 
-@interface FLDataStoreWithCacheService : FLDataStoreService {
+@interface FLDataStoreWithCacheService : FLObjectStorageService {
 @private
     id<FLObjectStorage> _cache;
 }

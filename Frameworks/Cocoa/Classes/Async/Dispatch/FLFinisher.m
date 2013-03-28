@@ -27,7 +27,6 @@
 @synthesize result = _result;
 @synthesize finished = _finished;
 @synthesize finishOnMainThread = _finishOnMainThread;
-@synthesize observer = _observer;
 
 #if DEBUG
 @synthesize createdStackTrace = _createdStackTrace;
@@ -64,8 +63,6 @@
     }
     
 #if FL_MRC
-    [_observer release];
-    
 #if DEBUG
     [_createdStackTrace release];
     [_finishedStackTrace release];
@@ -238,9 +235,6 @@
 }
 #endif              
 
-- (void) receiveObjectMessage:(FLObjectMessage *)message {
-    [self.observer receiveObjectMessage:message];
-}
 
 @end
 //
