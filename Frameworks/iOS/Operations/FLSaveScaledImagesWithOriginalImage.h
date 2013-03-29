@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "FLOperation.h"
+#import "FLSynchronousOperation.h"
 #import "FLJpegFileImageAsset.h"
 
 // NOTE this will always create full screen version if it doesn't exist
@@ -19,7 +19,7 @@ typedef enum {
 	FLLoadOriginal			= (1 << 3)
 } FLSaveScaledImagesWithOriginalImageOption;
 
-@interface FLSaveScaledImagesWithOriginalImage : FLOperation {
+@interface FLSaveScaledImagesWithOriginalImage : FLSynchronousOperation {
 @private
 	FLFolder* _folder;
 	FLSaveScaledImagesWithOriginalImageOption _options;

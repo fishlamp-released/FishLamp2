@@ -42,7 +42,7 @@
 	FLSuperDealloc();
 }
 
-- (void) runOperation
+- (void) performSynchronously
 {
 	id<FLImageAsset> input = (FLJpegFileImageAsset*) self.input;
 	FLAssertIsNotNil(input);

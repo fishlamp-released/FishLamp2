@@ -5,6 +5,7 @@
 //  Created by Mike Fullerton on 10/6/12.
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
+#if REFACTOR
 
 #import "FLOperationContext.h"
 
@@ -78,8 +79,9 @@
     return self.count > 0;
 }
 
-- (void) operationDidFinish:(FLOperation*) operation {
+- (void) operationDidFinish:(FLSynchronousOperation*) operation {
     [self removeOperation:operation];
 }
 
 @end
+#endif

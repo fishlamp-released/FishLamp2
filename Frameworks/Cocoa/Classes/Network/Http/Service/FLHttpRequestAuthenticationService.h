@@ -18,9 +18,9 @@
 @interface FLHttpRequestAuthenticationService : FLService<FLHttpRequestAuthenticator> {
 @private
     FLFifoAsyncQueue* _asyncQueue;
-    __unsafe_unretained id<FLWorkerContext> _workerContext;
+    __unsafe_unretained FLOperationContext* _operationContext;
 }
-@property (readonly, assign) id<FLWorkerContext> workerContext;
+@property (readonly, assign) FLOperationContext* operationContext;
 
 // required overrides
 - (void) authenticateUser:(FLHttpUser*) user;
@@ -35,7 +35,7 @@
 
 @protocol FLHttpRequestAuthenticationServiceDelegate <NSObject>
 
-- (id<FLWorkerContext>) httpRequestAuthenticationServiceGetWorkerContext:(FLHttpRequestAuthenticationService*) service;
+- (FLOperationContext*) httpRequestAuthenticationServiceGetWorkerContext:(FLHttpRequestAuthenticationService*) service;
 
 - (FLHttpUser*) httpRequestAuthenticationServiceGetUser:(FLHttpRequestAuthenticationService*) service;
 

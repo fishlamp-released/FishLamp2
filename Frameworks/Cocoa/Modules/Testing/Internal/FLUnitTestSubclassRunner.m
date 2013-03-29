@@ -57,7 +57,7 @@
     }
 }
 
-- (FLResult) runOperation {
+- (FLResult) performSynchronously {
     
     NSMutableDictionary* groups = [NSMutableDictionary dictionary];
     
@@ -94,7 +94,7 @@
         for(Class aClass in classList) {
             FLUnitTest* test = FLAutorelease([[[aClass class] alloc] init]);
 
-            [resultArray addObject:[self runWorker:test]];
+            [resultArray addObject:[self runChildSynchronously:test]];
         }
     }
     

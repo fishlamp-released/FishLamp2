@@ -27,7 +27,7 @@
 	return self;
 }
 
-- (FLResult) runOperationInContext:(id) context withObserver:(id) observer {
+- (FLResult) performSynchronously {
     FLResult result = FLSuccessfullResult;
 	
     switch(_operationType)

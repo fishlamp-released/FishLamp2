@@ -57,7 +57,7 @@ FLSynthesizeSingleton(FLApplicationDataModel);
     return database != nil && database.isOpen;
 }
 
-- (void) openDatabaseWithOperation:(FLOperation*) operation {
+- (void) openDatabaseWithOperation:(FLSynchronousOperation*) operation {
 
     if(self.isOpen) {
         [self closeDatabase];
@@ -87,7 +87,7 @@ FLSynthesizeSingleton(FLApplicationDataModel);
     self.database = database;
 }
 
-- (FLOperation*) createOpenOperation {
+- (FLSynchronousOperation*) createOpenOperation {
     return [FLPerformSelectorOperation performSelectorOperation:self action:@selector(openDatabaseWithOperation:)];
 }
 

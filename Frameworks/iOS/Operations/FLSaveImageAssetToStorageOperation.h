@@ -8,11 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-#import "FLOperation.h"
+#import "FLSynchronousOperation.h"
 #import "FLImageAsset.h"
 #import "FLFolder.h"
 
-@interface FLSaveImageAssetToStorageOperation : FLOperation {
+@interface FLSaveImageAssetToStorageOperation : FLSynchronousOperation {
 @private
 	id<FLImageAsset> _asset;
 	BOOL _wantsThumbnail;

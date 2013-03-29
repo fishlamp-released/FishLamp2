@@ -22,6 +22,7 @@
 #import "FLAsyncQueue.h"
 #import "FLFinisher.h"
 #import "FLObjectStorage.h"
+#import "FLDispatchQueue.h"
 
 @interface FLDatabase : NSObject {
 @private
@@ -29,9 +30,11 @@
 	NSString* _filePath;
 	NSMutableDictionary* _tables;
 	FLDatabaseColumnDecoder _columnDecoder;
-    FLAsyncQueue* _dispatchQueue;
+    FLFifoAsyncQueue* _dispatchQueue;
     BOOL _isOpen;
 }
+
+@property (readonly, strong) FLFifoAsyncQueue* dispatchQueue;
 
 @property (readwrite, assign, nonatomic) FLDatabaseColumnDecoder columnDecoder;
 
@@ -88,9 +91,6 @@
 + (FLDatabaseColumnDecoder) defaultColumnDecoder;
 + (void) setDefaultColumnDecoder:(FLDatabaseColumnDecoder) decoder;
 
-- (FLResult) queueBlock:(dispatch_block_t) block;
-- (FLResult) dispatchFifoBlock:(dispatch_block_t) block;
-@property (readonly, strong) FLAsyncQueue* dispatchQueue;
 
 @end
 

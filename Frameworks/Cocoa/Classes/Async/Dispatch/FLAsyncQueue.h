@@ -12,50 +12,69 @@
 #import "FLFinisher.h"
 #import "FLDispatchTypes.h"
 
+@protocol FLOperation;
+
 @protocol FLAsyncQueue <NSObject>
-// 
-// block dispatching
-//
+
 - (FLFinisher*) queueBlockWithDelay:(NSTimeInterval) delay 
-                              block:(FLBlock) block;
+                              block:(fl_block_t) block
+                         completion:(fl_completion_block_t) completionOrNil;
 
-- (void) queueBlockWithDelay:(NSTimeInterval) delay
-                          block:(FLBlock) block 
-                   withFinisher:(FLFinisher*) finisher;
+- (FLFinisher*) queueBlock:(fl_block_t) block
+                completion:(fl_completion_block_t) completionOrNil;
 
-- (FLFinisher*) queueBlock:(FLBlock) block;
+- (FLFinisher*) queueFinishableBlock:(fl_finisher_block_t) block
+                          completion:(fl_completion_block_t) completionOrNil;
 
-- (FLFinisher*) queueBlock:(FLBlock) block
-                   completion:(FLBlockWithResult) completion;
+- (FLFinisher*) queueOperation:(id<FLOperation>) operation
+                    completion:(fl_completion_block_t) completionOrNil;
 
-- (void) queueBlock:(FLBlock) block 
-          withFinisher:(FLFinisher*) finisher;
+- (void) dispatchSync:(fl_block_t) block;
 
-// blocks with Finisher parameter
+- (FLResult) finishSync:(fl_finisher_block_t) block;
 
-- (FLFinisher*) queueFinishableBlock:(FLBlockWithFinisher) block;
-
-- (FLFinisher*) queueFinishableBlock:(FLBlockWithFinisher) block
-                             completion:(FLBlockWithResult) completion;
-
-- (void) queueFinishableBlock:(FLBlockWithFinisher) block 
-                    withFinisher:(FLFinisher*) finisher;
+- (FLResult) runSynchronously:(id<FLOperation>) operation;
 
 @end                    
 
-@interface FLAsyncQueue : NSObject<FLAsyncQueue> {
+NS_INLINE
+void FLDispatchSync(id<FLAsyncQueue> queue, dispatch_block_t block) {
+    FLAssertNotNil(queue);
+    FLAssertNotNil(block);
+    [queue dispatchSync:block];
 }
 
-// required overrides. these are the bottlenecks
-- (void) queueBlock:(FLBlock) block 
-          withFinisher:(FLFinisher*) finisher;
+NS_INLINE
+FLFinisher* FLDispatchAsync(id<FLAsyncQueue> queue, dispatch_block_t block, fl_completion_block_t completionOrNil) {
+    FLAssertNotNil(queue);
+    FLAssertNotNil(block);
+    return [queue queueBlock:block completion:completionOrNil];
+}
 
-- (void) queueFinishableBlock:(FLBlockWithFinisher) block 
-                    withFinisher:(FLFinisher*) finisher;
+NS_INLINE
+FLFinisher* FLFinishAsync(id<FLAsyncQueue> queue, fl_finisher_block_t block, fl_completion_block_t completionOrNil) {
+    FLAssertNotNil(queue);
+    FLAssertNotNil(block);
+    return [queue queueFinishableBlock:block completion:completionOrNil];
+}
 
-- (void) queueBlockWithDelay:(NSTimeInterval) delay
-                          block:(FLBlock) block 
-                   withFinisher:(FLFinisher*) finisher;
+NS_INLINE
+FLResult FLFinishSync(id<FLAsyncQueue> queue, fl_finisher_block_t block) {
+    FLAssertNotNil(queue);
+    FLAssertNotNil(block);
+    return [queue finishSync:block];
+}
 
-@end
+NS_INLINE
+FLResult FLRunOperation(id<FLAsyncQueue> queue, id<FLOperation> operation) {
+    FLAssertNotNil(queue);
+    FLAssertNotNil(operation);
+    return [queue runSynchronously:operation];
+}
 
+NS_INLINE
+FLResult FLStartOperation(id<FLAsyncQueue> queue, id<FLOperation> operation, fl_completion_block_t completionOrNil) {
+    FLAssertNotNil(queue);
+    FLAssertNotNil(operation);
+    return [queue queueOperation:operation completion:completionOrNil];
+}

@@ -57,10 +57,6 @@ static id<FLActionErrorDelegate> s_errorDisplayDelegate = nil;
     return [self initWithActionType:nil];
 }
 
-- (id<FLAsyncQueue>) asyncQueue {
-    return [FLAsyncQueue defaultQueue];
-}
-
 - (id) initWithActionType:(NSString*) actionType {
     return [self initWithActionType:nil actionItemName:nil];
 }
@@ -295,7 +291,7 @@ TODO("MF: fix activity updater");
 //	}
 }
 
-- (void) addOperations:(FLOperation*) operation {
+- (void) addOperations:(FLSynchronousOperation*) operation {
     [self.operations addOperation:operation];
 }
 
@@ -334,7 +330,7 @@ TODO("MF: fix activity updater");
 }
 
 - (id) failedOperationInResults:(NSDictionary*) results {
-    for(FLOperation* operation in self.operations.reverseIterator) {
+    for(FLSynchronousOperation* operation in self.operations.reverseIterator) {
         if([[results objectForKey:operation.operationID] error]) {
             return operation;
         }
@@ -346,25 +342,25 @@ TODO("MF: fix activity updater");
     return [self.operations requestCancel];
 }
 
-- (void) startWorking:(FLFinisher*) finisher {
-    
-    
-//    [[FLAsyncQueue sharedForegroundQueue] queueBlock:^{
-//        [self actionStarted];
-//        
-//        [[FLAsyncQueue sharedHighPriorityQueue] dispatchObject:self.operations
-//                                 completion:^(FLResult result) {
-//                
-//                [[FLAsyncQueue sharedForegroundQueue] queueBlock:^{
-//                    [finisher setFinishedWithResult:[self actionFinished:result]];
-//                }];
-//            }];
-//    }];
-}
+//- (void) runAsynchronously:(FLFinisher*) finisher {
+//    
+//    
+////    [[FLAsyncQueue sharedForegroundQueue] queueBlock:^{
+////        [self actionStarted];
+////        
+////        [[FLAsyncQueue sharedHighPriorityQueue] dispatchObject:self.operations
+////                                 completion:^(FLResult result) {
+////                
+////                [[FLAsyncQueue sharedForegroundQueue] queueBlock:^{
+////                    [finisher setFinishedWithResult:[self actionFinished:result]];
+////                }];
+////            }];
+////    }];
+//}
 
-//- (FLResult) runWorker {
+//- (FLResult) runChildSynchronously {
 //    FLFinisher* finisher = [FLFinisher finisher:nil];
-//    [self startWorking:finisher];
+//    [self runAsynchronously:finisher];
 //    return [finisher waitUntilFinished];
 //}
 
@@ -380,7 +376,7 @@ TODO("MF: fix activity updater");
 //    return self.operations.lastOperationOutput;
 //}
 
-- (void) addOperation:(FLOperation*) operation {
+- (void) addOperation:(FLSynchronousOperation*) operation {
     [self.operations addOperation:operation];
 }
 @end

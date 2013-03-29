@@ -6,10 +6,10 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import "FLOperation.h"
+#import "FLSynchronousOperation.h"
 #import "FLTestResultCollection.h"
 
-@interface FLUnitTestRunner : FLOperation {
+@interface FLUnitTestRunner : FLSynchronousOperation {
 }
 
 + (id) unitTestRunner;

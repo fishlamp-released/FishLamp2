@@ -1,12 +1,12 @@
 //
-//  FLOperation.h
+//  FLSynchronousOperation.h
 //  FishLamp
 //
 //	Created by Mike Fullerton on 8/28/09.
 //	Copyright 2009 Greentongue Software. All rights reserved.
 //
 
-#import "FLWorkerContext.h"
+#import "FLOperation.h"
 #import "FLObjectStorage.h"
 
 typedef struct {
@@ -14,7 +14,7 @@ typedef struct {
     SEL selector;
 } FLDelegateEvent;
 
-@interface FLOperation : FLContextWorker {
+@interface FLSynchronousOperation : FLOperation {
 @private
 	id _operationID;
     BOOL _cancelled;
@@ -34,14 +34,11 @@ typedef struct {
 + (id) operation;
 
 /// @brief Required override point
-- (FLResult) runOperation;
-
-// deprecated
-- (FLResult) runOperationInContext:(id) context withObserver:(id) observer;
+- (FLResult) performSynchronously;
 
 @end
 
-@interface FLOperation (SubclassUtils)
+@interface FLSynchronousOperation (SubclassUtils)
 
 // this will raise an abort exception if runState has been signaled as finished.
 // only for subclasses to call while executing operation.
@@ -52,12 +49,12 @@ typedef struct {
 
 @protocol FLOperationObserver <NSObject>
 @optional
-- (void) operationDidFinish:(FLOperation*) operation withResult:(FLResult) result;
+- (void) operationDidFinish:(FLSynchronousOperation*) operation withResult:(FLResult) result;
 @end
 
 @protocol FLOperationDelegate <NSObject>
 @optional
-- (id<FLObjectStorage>) operationGetObjectStorage:(FLOperation*) operation;
-- (void) operationDidFinish:(FLOperation*) operation withResult:(FLResult) result;
+- (id<FLObjectStorage>) operationGetObjectStorage:(FLSynchronousOperation*) operation;
+- (void) operationDidFinish:(FLSynchronousOperation*) operation withResult:(FLResult) result;
 @end
 

@@ -459,7 +459,7 @@ static FLViewController* s_presentingModalViewController = nil;
     return [action startActionInContext:self.operationContext completion:completion];
 }
 
-- (id<FLPromisedResult>) startOperation:(FLOperation*) operation
+- (id<FLPromisedResult>) startOperation:(FLSynchronousOperation*) operation
              finisher:(FLFinisher*) finisher {
     
     [self.operationContext addOperation:operation];

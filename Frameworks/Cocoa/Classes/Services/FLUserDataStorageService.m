@@ -328,7 +328,7 @@ FLAssertFailedWithComment(@"refactor this");
 //        [self.context addObject:_upgradeTaskList];
 
     
-        id result = [_upgradeTaskList runInContext:context];
+        id result = [_upgradeTaskList runChildSynchronously:context];
                 
         if([result error]) {
             // TODO: Ok, now what?
@@ -360,7 +360,7 @@ FLAssertFailedWithComment(@"refactor this");
 	return NO;
 }
 
-- (id) workerContext {
+- (id) operationContext {
 FLAssertFailedWithComment(@"TODO refactor this");
     return nil;
 }
@@ -373,7 +373,7 @@ FLAssertFailedWithComment(@"TODO refactor this");
     _isOpening = NO;
     _open = NO;
     _upgrading = NO;
-    [self beginOpeningServiceInContext:[self workerContext] withObserver:nil];
+    [self beginOpeningServiceInContext:[self operationContext] withObserver:nil];
 }
 
 - (void) finishUpgradeTasks {	

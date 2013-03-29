@@ -8,10 +8,10 @@
 
 #import "FLCocoaRequired.h"
 #import "FishLampCore.h"
-#import "FLOperation.h"
+#import "FLSynchronousOperation.h"
 #import "FLCommandLineArgument.h"
 
-@interface FLShellCommandOperation : FLOperation {
+@interface FLShellCommandOperation : FLSynchronousOperation {
 @private
     NSString* _launchPath;
     NSMutableArray* _args;

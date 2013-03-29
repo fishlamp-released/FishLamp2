@@ -130,7 +130,7 @@
 #pragma GCC diagnostic pop
 
 - (void) queueBlock:(dispatch_block_t) block {
-    [self.asyncQueue queueBlock:block];
+    [self.asyncQueue queueBlock:block completion:nil];
 }
 
 

@@ -463,11 +463,11 @@ NSString* FLLegacyDecodeString(NSString* string) {
     progress = FLCopyWithAutorelease(progress);
     tableUpgraded = FLCopyWithAutorelease(tableUpgraded);
 
-    [[[FLAsyncQueue defaultQueue] queueBlock:^{
+    FLDispatchSync([FLDispatchQueue defaultQueue],^{
             [self upgradeDatabaseToVersion:[[self class] currentRuntimeVersion]
                                   progress:progress
                              tableUpgraded:tableUpgraded];
-        }] waitUntilFinished];
+        });
 }
 
 @end

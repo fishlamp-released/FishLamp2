@@ -9,7 +9,7 @@
 #import "FLUserSessionDataModel.h"
 
 @implementation FLUserSessionDataModel
-//- (FLOperation*) createOpenOperationForUser:(FLUserLogin*) login {
+//- (FLSynchronousOperation*) createOpenOperationForUser:(FLUserLogin*) login {
 //    return nil;
 //}
 @end

@@ -7,10 +7,10 @@
 //
 #import "FishLampCore.h"
 
-#import "FLOperation.h"
+#import "FLSynchronousOperation.h"
 #import "FLDatabase.h"
 
-@interface FLSaveObjectToDatabaseOperation : FLOperation {
+@interface FLSaveObjectToDatabaseOperation : FLSynchronousOperation {
 @private
 	FLDatabase* _database;
     id _input;

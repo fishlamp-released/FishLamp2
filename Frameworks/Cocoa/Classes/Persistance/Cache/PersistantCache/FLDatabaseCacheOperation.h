@@ -7,7 +7,7 @@
 //
 #import "FishLampCore.h"
 
-#import "FLOperation.h"
+#import "FLSynchronousOperation.h"
 #import "FLDatabase.h"
 
 typedef enum 
@@ -22,7 +22,7 @@ typedef enum
 	gtDeleteFromDatabase
 } FLCacheOperationType;
 
-@interface FLDatabaseCacheOperation : FLOperation {
+@interface FLDatabaseCacheOperation : FLSynchronousOperation {
 @private
 	FLCacheOperationType _operationType;
 	FLDatabase* _database;

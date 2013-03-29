@@ -106,17 +106,9 @@
     return [httpResponse simpleHttpResponseErrorCheck];
 }
 
-- (void) didMoveToContext:(id<FLWorkerContext>) context {
-    [super didMoveToContext:context];
-    
-    if(context && !self.authenticator && [context respondsToSelector:@selector(httpRequestAuthenticator)]) {
-        self.authenticator = [((id)context) httpRequestAuthenticator];
-    }
-}
-
-//- (void) startWorking:(FLFinisher*) finisher {
+//- (void) runAsynchronously:(FLFinisher*) finisher {
 //    FLHttpStreamWorker* worker = [FLHttpStreamWorker httpRequestWorker:self asyncQueue:[FLFifoAsyncQueue fifoAsyncQueue]];
-//    [self.workerContext startWorker:worker withFinisher:finisher];
+//    [self.operationContext startWorker:worker withFinisher:finisher];
 //}
 
 - (NSString*) description {
@@ -174,6 +166,11 @@
 
 - (void) openAuthenticatedStreamWithURL:(NSURL*) url {
 
+    id context = self.context;
+    if(!self.authenticator && (context && [context respondsToSelector:@selector(httpRequestAuthenticator)])) {
+        self.authenticator = [context httpRequestAuthenticator];
+    }
+
     if(self.authenticator && !self.disableAuthenticator) {
         [self sendMessage:@selector(httpRequestWillAuthenticate:) toListener:[self observer]];
         [self willAuthenticate];
@@ -187,7 +184,7 @@
     [self openStreamWithURL:url];
 }
 
-- (void) startWorking:(FLFinisher*) finisher {
+- (void) performUntilFinished:(FLFinisher*) finisher {
     self.finisher = finisher;
     [self openAuthenticatedStreamWithURL:self.headers.requestURL];
 }

@@ -11,7 +11,7 @@
 
 @implementation FLEmptyCacheOperation
 
-- (FLResult) runOperationInContext:(id) context withObserver:(id) observer {
+- (FLResult) performSynchronously {
 	[[FLCacheManager instance] broadcastEmptyCacheMessage:self];
     return FLSuccessfullResult;
 }

@@ -12,7 +12,7 @@
 //#import "FLLengthyTask.h"
 //#import "FLOperationQueue.h"
 //
-//@interface FLLengthyTaskList : FLOperation<FLLengthyTaskDelegate> {
+//@interface FLLengthyTaskList : FLSynchronousOperation<FLLengthyTaskDelegate> {
 //@private
 //    FLOperationQueue* _tasks;
 //	FLLengthyTask* _currentTask;

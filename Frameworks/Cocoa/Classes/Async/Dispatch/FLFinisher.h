@@ -14,48 +14,43 @@
 #import "FLStackTrace.h"
 #endif
 
+@protocol FLOperation;
+
 @interface FLFinisher : NSObject {
 @private
     dispatch_semaphore_t _semaphore;
     id _result;
     BOOL _finished;
-    BOOL _finishOnMainThread;
-    FLBlockWithResult _didFinish;
+    fl_completion_block_t _didFinish;
+
+    __unsafe_unretained id<FLOperation> _operation;
 
 #if DEBUG
     FLStackTrace* _createdStackTrace;
     FLStackTrace* _finishedStackTrace;
 #endif    
 }
+
 @property (readonly, strong) FLResult result;
 @property (readonly, assign, getter=isFinished) BOOL finished;
 
-@property (readwrite, assign) BOOL finishOnMainThread;
-
 // designated initializer
-- (id) initWithResultBlock:(FLBlockWithResult) resultBlock;
+- (id) initWithCompletion:(fl_completion_block_t) completion;
 
 // class instantiators
 + (id) finisher;
 
-+ (id) finisher:(FLBlockWithResult) resultBlock;
++ (id) finisher:(fl_completion_block_t) completion;
 
-+ (id) finisherWithResultBlock:(FLBlockWithResult) resultBlock;
++ (id) finisherForOperation:(id<FLOperation>) operation 
+                 completion:(fl_completion_block_t) completion;
 
 // notify finish with one of these
 - (void) setFinished;
 
 - (void) setFinishedWithResult:(id) result;
 
-- (void) setFinishedWithResult:(id) result 
-                    completion:(FLBlock) notificationCompletionBlock;
-
 // blocks in current thread. Will @throw error if [self.result error] 
 - (id) waitUntilFinished;
-@end
-
-@interface FLFinisher (FLAsyncQueue)
-- (void) setWillStartInDispatcher:(id<FLAsyncQueue>) asyncQueue;
-- (void) setWillBeDispatchedByDispatcher:(id<FLAsyncQueue>) asyncQueue;
 @end
 

@@ -13,13 +13,13 @@
 
 @interface FLHttpRequestAuthenticationService ()
 @property (readwrite, strong, nonatomic) FLFifoAsyncQueue* asyncQueue; 
-@property (readwrite, assign) id<FLWorkerContext> workerContext;
+@property (readwrite, assign) FLOperationContext* operationContext;
 @end
 
 @implementation FLHttpRequestAuthenticationService
 
 @synthesize asyncQueue = _asyncQueue;
-@synthesize workerContext = _workerContext;
+@synthesize operationContext = _operationContext;
 
 - (id) init {
     self = [super initWithRootNameForDelegateMethods:@"httpRequestAuthenticationService"];
@@ -77,13 +77,13 @@
 - (void) openService {
     [super openService];
     self.asyncQueue = [FLFifoAsyncQueue fifoAsyncQueue];
-    self.workerContext = [self.delegate httpRequestAuthenticationServiceGetWorkerContext:self];
+    self.operationContext = [self.delegate httpRequestAuthenticationServiceGetWorkerContext:self];
 }
 
 - (void) closeService {
     [super closeService];
     
-    self.workerContext = nil;
+    self.operationContext = nil;
     FLFifoAsyncQueue* queue = FLRetainWithAutorelease(self.asyncQueue);
     self.asyncQueue = nil;
     [queue releaseToPool];

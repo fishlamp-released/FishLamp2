@@ -93,7 +93,7 @@ typedef void (^FLAssetQueueLoadAssetBlock)(id loadedAsset, NSError* error);
 @end
 typedef void (^FLAssetQueueLoaderBlock)(FLAssetQueueLoadLock* loadLock);
 
-@interface FLAssetQueueLoader : FLOperation {
+@interface FLAssetQueueLoader : FLSynchronousOperation {
 @private
     FLAssetQueue* _assetQueue;
 }

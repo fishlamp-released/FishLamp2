@@ -58,7 +58,7 @@
 //    [self setFinished];
 //}
 //
-//- (void) startWorking:(FLFinisher*) finisher {
+//- (void) runAsynchronously:(FLFinisher*) finisher {
 //    self.finisher = finisher;
 //}  
 //
@@ -71,8 +71,8 @@
 //    return FLAutorelease([[[self class] alloc] initWithNetworkStream:networkStream]);
 //}
 //
-//- (void) startWorking:(FLFinisher*) finisher {
-//    [super startWorking:finisher];
+//- (void) runAsynchronously:(FLFinisher*) finisher {
+//    [super runAsynchronously:finisher];
 //    [self.networkStream openStreamWithDelegate:self asyncQueue:self.asyncQueue];
 //}
 //

@@ -8,12 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-//#import "FLAsyncWorker.h"
 //#import "FLNetworkStream.h"
 //#import "FLFinisher.h"
 //#import "FLDispatch.h"
 //
-//@interface FLStreamWorker : FLContextWorker<FLNetworkStreamDelegate> {
+//@interface FLStreamWorker : FLOperation<FLNetworkStreamDelegate> {
 //@private
 //    FLNetworkStream* _networkStream;
 //    FLFinisher* _finisher;

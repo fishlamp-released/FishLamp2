@@ -22,7 +22,7 @@
 	return self;
 } 
 
-- (FLResult) runOperationInContext:(id) context withObserver:(id) observer {
+- (FLResult) performSynchronously {
 	FLAssertIsNotNil(_input);
     FLAssertIsNotNil(_database);
 	return [_database readObject:_input];

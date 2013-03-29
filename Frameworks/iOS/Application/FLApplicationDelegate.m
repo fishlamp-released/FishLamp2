@@ -50,7 +50,7 @@
 }
 
 - (void) _willStartApp {
-//	FLOperation* operation = [FLApplicationDataModel instance];
+//	FLSynchronousOperation* operation = [FLApplicationDataModel instance];
     [self willStartApp];
 }
 
