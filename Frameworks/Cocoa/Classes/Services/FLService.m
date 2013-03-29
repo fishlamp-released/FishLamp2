@@ -17,6 +17,21 @@
 @synthesize serviceOpen = _serviceOpen;
 @synthesize superService = _superService;
 @synthesize subServices = _subServices;
+@synthesize delegate = _delegate;
+
+- (id) init {
+    return [self initWithRootNameForDelegateMethods:nil];
+}
+
+- (id) initWithRootNameForDelegateMethods:(NSString*) rootName {
+    if(self) {
+        if(rootName) {
+            _didOpenDelegateMethod = NSSelectorFromString([NSString stringWithFormat:@"%@DidOpen:", rootName]);
+            _didCloseDelegateMethod = NSSelectorFromString([NSString stringWithFormat:@"%@DidClose:", rootName]);
+        }
+    }
+    return self;
+}
 
 #if FL_MRC
 - (void) dealloc {
@@ -25,22 +40,57 @@
 }
 #endif
 
+
 - (void) openService {
-//    [self serviceWillOpen:opener];
-    for(FLService* service in _subServices) {
-        [service openService];
-    }
-    self.serviceOpen = YES;
-//    [self serviceDidOpen:openner];
 }
 
 - (void) closeService {
-//    [self serviceWillClose:closer];
+}
+
+- (void) willOpenService {
+}
+
+- (void) didOpenService {
+}
+
+- (void) willCloseService {
+}
+
+- (void) didCloseService {
+}
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Warc-performSelector-leaks"
+
+- (void) performSelectorOnAllServices:(SEL) selector {
+    [self performSelector:selector];
     for(FLService* service in _subServices) {
-        [service closeService];
+        [service performSelector:selector];
+        [service performSelectorOnAllServices:selector];
     }
-    self.serviceOpen = NO;
-//    [self serviceDidClose:closer];
+}
+
+#pragma GCC diagnostic pop
+
+- (void) openService:(id) opener {
+    if(!self.isServiceOpen) {
+        [self performSelectorOnAllServices:@selector(willOpenService)];
+        [self performSelectorOnAllServices:@selector(openService)];
+        self.serviceOpen = YES;
+        [self performSelectorOnAllServices:@selector(didOpenService)];
+        FLPerformSelector1(self.delegate, _didOpenDelegateMethod, self);
+        FLLog(@"opened %@", NSStringFromClass([self class]));    
+    }
+}
+
+- (void) closeService:(id) opener {
+    if(self.isServiceOpen) {
+        [self performSelectorOnAllServices:@selector(willCloseService)];
+        [self performSelectorOnAllServices:@selector(closeService)];
+        self.serviceOpen = NO;
+        [self performSelectorOnAllServices:@selector(didCloseService)];
+        FLPerformSelector1(self.delegate, _didCloseDelegateMethod, self);
+        FLLog(@"close %@", NSStringFromClass([self class]));    
+    }
 }
 
 - (void) addSubService:(id) service {

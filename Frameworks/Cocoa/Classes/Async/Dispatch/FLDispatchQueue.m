@@ -211,5 +211,22 @@ static void * const s_queue_key = (void*)&s_queue_key;
 
 @end
 
+void FLDispatchSync(FLDispatchQueue* queue, dispatch_block_t block) {
+
+    __block NSError* error = nil;
+    
+    block = FLCopyWithAutorelease(block);
+    
+    dispatch_sync(queue.dispatch_queue_t, ^{
+        @try {
+            block();
+        }
+        @catch(NSException* ex) {
+            error = ex.error;
+        }
+    });
+    
+    FLThrowIfError(error);
+}
 
 

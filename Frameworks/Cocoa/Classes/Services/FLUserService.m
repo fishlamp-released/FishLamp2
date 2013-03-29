@@ -26,14 +26,13 @@ NSString* const FLDefaultsKeyWizardSavePasswordKey = @"com.fishlamp.savepassword
 @synthesize password = _password;
 @synthesize authenticationDomain = _authenticationDomain;
 @synthesize rememberPassword = _rememberPassword;
-@synthesize delegate = _delegate;
 
 + (id) userService {
     return FLAutorelease([[[self class] alloc] init]);
 }
 
 - (id) init {
-    self = [super init];
+    self = [super initWithRootNameForDelegateMethods:@"userService"];
     if(self) {
     }
     return self;
@@ -47,20 +46,30 @@ NSString* const FLDefaultsKeyWizardSavePasswordKey = @"com.fishlamp.savepassword
 }
 #endif
 
-- (void) openService {
-    [super openService];
-    [self loadFromUserDefaults];
-}
+//- (void) openService {
+//    [super openService];
+//    [self loadFromUserDefaults];
+//}
 
 - (void) closeService {
-    [super closeService];
-    [self saveToUserDefaults];
+    self.userName = nil;
+    self.password = nil;
+    _rememberPassword = NO;
     
 //    self.userLogin.isAuthenticated = NO;
 //    self.userLogin.authTokenLastUpdateTime = nil;
 //    self.userLogin.authToken = nil;
 
 }
+
++ (SEL) serviceOpenedSelector {
+    return @selector(userServiceDidOpen:);
+}
+
++ (SEL) serviceClosedSelector {
+    return @selector(userServiceDidClose:);
+}
+
 
 //- (void) setUserName:(NSString*) userName {
 //    [_userLogin setUserName:userName];
@@ -171,6 +180,21 @@ NSString* const FLDefaultsKeyWizardSavePasswordKey = @"com.fishlamp.savepassword
         [self removeFromUserDefaults];
     }
     
+}
+
+- (void) loadCredentials {
+}
+
+- (void) saveCredentials {
+
+}
+
+- (BOOL) canAuthenticate {
+    
+    return FLStringIsNotEmpty(self.userName) && FLStringIsNotEmpty(self.password);
+
+
+//    return [self.delegate userServiceCanAuthenticate:self];
 }
 
 

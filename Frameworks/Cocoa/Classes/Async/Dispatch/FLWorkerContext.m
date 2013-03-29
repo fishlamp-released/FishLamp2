@@ -94,13 +94,13 @@ NSString* const FLWorkerContextOpened = @"FLWorkerContextOpened";
     [[NSNotificationCenter defaultCenter] postNotificationName:FLWorkerContextClosed object:self];
 }
 
-- (void) openService:(id)opener {
+- (void) openService {
     [super openService];
     
     [self openContext];
 }
 
-- (void) closeService:(id)closer {
+- (void) closeService {
     [super closeService];
     
     [self closeContext];;
@@ -172,6 +172,7 @@ NSString* const FLWorkerContextOpened = @"FLWorkerContextOpened";
 
     id result = [finisher waitUntilFinished];
     FLAssertNotNilWithComment(result, @"result should not be nil!!");
+    FLThrowIfError(result);
 
     return result;
 }
@@ -301,7 +302,7 @@ NSString* const FLWorkerContextOpened = @"FLWorkerContextOpened";
             worker.observer = self.observer;
         }
 
-        return [worker runInContext:self.workerContext];
+        return FLThrowIfError([worker runInContext:self.workerContext]);
     }
     @finally {
         if(worker.observer == self) {

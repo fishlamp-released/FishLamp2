@@ -67,3 +67,4 @@
 // TODO: make the pool a dispatcher. queue the block get the dispatcher back.
 
 
+extern void FLDispatchSync(FLDispatchQueue* queue, dispatch_block_t block);

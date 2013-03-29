@@ -259,9 +259,9 @@
 
 - (void) setWillBeDispatchedByDispatcher:(id<FLAsyncQueue>) asyncQueue {
 
-    if([NSThread isMainThread]) {
-        self.finishOnMainThread = YES;
-    }
+//    if([NSThread isMainThread]) {
+//        self.finishOnMainThread = YES;
+//    }
 
 //    [self sendMessage:@"finisher:wasDispatchedInDispatcher:" withObject:self withObject:asyncQueue];
 }

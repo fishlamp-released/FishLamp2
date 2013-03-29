@@ -12,22 +12,18 @@
 #import "FLDispatch.h"
 
 @interface FLHttpRequestAuthenticationService ()
+@property (readwrite, strong, nonatomic) FLFifoAsyncQueue* asyncQueue; 
+@property (readwrite, assign) id<FLWorkerContext> workerContext;
 @end
 
 @implementation FLHttpRequestAuthenticationService
 
-@synthesize lastAuthenticationTimestamp = _lastAuthenticationTimestamp;
-@synthesize timeoutInterval = _timeoutInterval;
 @synthesize asyncQueue = _asyncQueue;
-@synthesize delegate = _delegate;
-@synthesize userLogin = _userLogin;
-
+@synthesize workerContext = _workerContext;
 
 - (id) init {
-    self = [super init];
+    self = [super initWithRootNameForDelegateMethods:@"httpRequestAuthenticationService"];
     if(self) {
-        _timeoutInterval = 60 * 60;
-        _asyncQueue = [[FLFifoAsyncQueue alloc] init];
     }
     return self;
 }
@@ -36,90 +32,103 @@
     [_asyncQueue releaseToPool];
     
 #if FL_MRC
-    [_userLogin release];
-    
     [super dealloc];
 #endif
 }
 
-- (void) updateHttpRequest:(FLHttpRequest*) request 
-           withAuthenticatedUser:(FLUserLogin*) userLogin {
+- (FLHttpUser*) user {
+    return [self.delegate httpRequestAuthenticationServiceGetUser:self];
+}
+
+- (void) authenticateHttpRequest:(FLHttpRequest*) request 
+           withAuthenticatedUser:(FLHttpUser*) user {
 }    
        
-- (FLUserLogin*) synchronouslyAuthenticateUser:(FLUserLogin*) userLogin 
-                                     inContext:(id) context {
-    return nil;
+- (void) authenticateUser:(FLHttpUser*) user {
 }
 
-- (BOOL) userLoginIsAuthenticated:(FLUserLogin*) userLogin {
-    return userLogin.isAuthenticatedValue;
-}
+- (BOOL) credentialsNeedAuthentication:(FLHttpUser*) user {
 
-- (BOOL) shouldAuthenticateUser:(FLUserLogin*) userLogin {
+	FLAssertIsNotNil(user);
 	
-    if( _lastAuthenticationTimestamp != 0.0f && 
-        _lastAuthenticationTimestamp > [NSDate timeIntervalSinceReferenceDate]) {
-		return NO;
-	}
+    if(!user.isAuthenticated) {
+        return YES;
+    }
 
-	FLAssertIsNotNil(userLogin);
-	return ![self userLoginIsAuthenticated:userLogin];
-}
+#if TEST_CACHE_EXPIRE
+	userLogin.authTokenLastUpdateTimeValue = userLogin.authTokenLastUpdateTimeValue - (_timeoutInterval*2);
+#endif
+    
+    if(user.authenticationHasExpired) {
+    
+        if([FLReachableNetwork instance].isReachable) {
+            FLTrace(@"Login expired, will reauthenticate %@", user.credentials.userName);
+            [user setUnathenticated];
+            return YES;
+        }
+    
+        // don't want to reauthenticate if we're offline.
+    }
 
-- (BOOL) isAuthenticated {
-    FLUserLogin* userLogin = self.userLogin;
 
-    return userLogin && ![self shouldAuthenticateUser:userLogin];
-}
-
-- (void) logoutUser {
-    [self resetAuthenticationTimestamp];
-    [self.delegate httpRequestAuthenticationService:self didLogoutUser:self.userLogin];
-}
-
-- (void) touchAuthenticationTimestamp {
-    _lastAuthenticationTimestamp = [NSDate timeIntervalSinceReferenceDate];
-}
-
-- (void) resetAuthenticationTimestamp {
-	_lastAuthenticationTimestamp = 0;
+	return NO;
 }
 
 - (void) openService {
-    [self resetAuthenticationTimestamp];
     [super openService];
-    
-    [self.delegate httpRequestAuthenticationServiceDidOpen:self];
+    self.asyncQueue = [FLFifoAsyncQueue fifoAsyncQueue];
+    self.workerContext = [self.delegate httpRequestAuthenticationServiceGetWorkerContext:self];
 }
 
 - (void) closeService {
-
     [super closeService];
-    [self.delegate httpRequestAuthenticationServiceDidClose:self];
-
-    [self resetAuthenticationTimestamp];
-    self.userLogin = nil;
+    
+    self.workerContext = nil;
+    FLFifoAsyncQueue* queue = FLRetainWithAutorelease(self.asyncQueue);
+    self.asyncQueue = nil;
+    [queue releaseToPool];
 }
 
-- (FLResult) authenticateHttpRequest:(FLHttpRequest*) request {
+- (void) authenticateHttpRequest:(FLHttpRequest*) request {
 
-    return [[_asyncQueue queueBlock:^{
-        FLUserLogin* userLogin = self.userLogin;
-        FLAssertNotNil(userLogin); 
+    FLHttpUser* user = self.user;
+    FLAssertNotNil(user); 
         
-        if([self shouldAuthenticateUser:userLogin]) {
-            [self resetAuthenticationTimestamp];
+    FLDispatchSync(_asyncQueue, ^{
+        
+        if([self credentialsNeedAuthentication:user]) {
+            
+            [user resetAuthenticationTimestamp];
 
-            userLogin = [self synchronouslyAuthenticateUser:userLogin 
-                                                  inContext:request.workerContext  ];
+            [self authenticateUser:user];
                                                
-            [self touchAuthenticationTimestamp];
-            [self.delegate httpRequestAuthenticationService:self didAuthenticateUser:userLogin];
+            [user touchAuthenticationTimestamp];
+            [self authenticateHttpRequest:request withAuthenticatedUser:user];
+            [self.delegate httpRequestAuthenticationService:self didAuthenticateUser:user];
         }
-        
-        [self updateHttpRequest:request withAuthenticatedUser:userLogin];
+        else {
+            [self authenticateHttpRequest:request withAuthenticatedUser:user];
+        }
+    });
     
-    }] waitUntilFinished];
+    
+
+//    return [[_asyncQueue queueBlock:^{
+//        FLHttpUser* user = self.user;
+//        FLAssertNotNil(user); 
+//        
+//        if([self shouldAuthenticateUser:user]) {
+//            [self resetAuthenticationTimestamp];
+//
+//            user = [self authenticateUser:user];
+//                                               
+//            [self touchAuthenticationTimestamp];
+//            FLPerformSelector2(self.delegate, @selector(httpRequestAuthenticationService:didAuthenticateUser:), self, user);
+//        }
+//        
+//        [self authenticateHttpRequest:request withUser:user];
+//    
+//    }] waitUntilFinished];
 
 }
 

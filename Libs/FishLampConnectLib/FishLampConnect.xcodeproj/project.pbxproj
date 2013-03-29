@@ -4808,6 +4808,15 @@
 		277D8A821703AC8B002D4265 /* ZFHttpController.m in Sources */ = {isa = PBXBuildFile; fileRef = 277D8A7B1703AC8B002D4265 /* ZFHttpController.m */; };
 		277D8A831703AC8B002D4265 /* ZFHttpController.m in Sources */ = {isa = PBXBuildFile; fileRef = 277D8A7B1703AC8B002D4265 /* ZFHttpController.m */; };
 		277D8A841703AC8B002D4265 /* ZFHttpController.m in Sources */ = {isa = PBXBuildFile; fileRef = 277D8A7B1703AC8B002D4265 /* ZFHttpController.m */; };
+		277D8A921704AC90002D4265 /* ZFHttpUser.h in Headers */ = {isa = PBXBuildFile; fileRef = 277D8A901704AC8C002D4265 /* ZFHttpUser.h */; };
+		277D8A931704AC90002D4265 /* ZFHttpUser.h in Headers */ = {isa = PBXBuildFile; fileRef = 277D8A901704AC8C002D4265 /* ZFHttpUser.h */; };
+		277D8A941704AC90002D4265 /* ZFHttpUser.h in Headers */ = {isa = PBXBuildFile; fileRef = 277D8A901704AC8C002D4265 /* ZFHttpUser.h */; };
+		277D8A951704AC90002D4265 /* ZFHttpUser.h in Headers */ = {isa = PBXBuildFile; fileRef = 277D8A901704AC8C002D4265 /* ZFHttpUser.h */; };
+		277D8A961704AC90002D4265 /* ZFHttpUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 277D8A911704AC8D002D4265 /* ZFHttpUser.m */; };
+		277D8A971704AC90002D4265 /* ZFHttpUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 277D8A911704AC8D002D4265 /* ZFHttpUser.m */; };
+		277D8A981704AC90002D4265 /* ZFHttpUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 277D8A911704AC8D002D4265 /* ZFHttpUser.m */; };
+		277D8A991704AC90002D4265 /* ZFHttpUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 277D8A911704AC8D002D4265 /* ZFHttpUser.m */; };
+		277D8A9A1704AC90002D4265 /* ZFHttpUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 277D8A911704AC8D002D4265 /* ZFHttpUser.m */; };
 		278AF7D616FFB3AE009D38F8 /* __ZFBitsUploadProtocolResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 278AF7C716FFB3AE009D38F8 /* __ZFBitsUploadProtocolResponse.h */; };
 		278AF7D716FFB3AE009D38F8 /* __ZFBitsUploadProtocolResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 278AF7C716FFB3AE009D38F8 /* __ZFBitsUploadProtocolResponse.h */; };
 		278AF7D816FFB3AE009D38F8 /* __ZFBitsUploadProtocolResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 278AF7C716FFB3AE009D38F8 /* __ZFBitsUploadProtocolResponse.h */; };
@@ -6119,6 +6128,8 @@
 		275A64D916FFB23C00B5EE4C /* ZFWebApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFWebApi.m; sourceTree = "<group>"; };
 		277D8A7A1703AC8B002D4265 /* ZFHttpController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFHttpController.h; sourceTree = "<group>"; };
 		277D8A7B1703AC8B002D4265 /* ZFHttpController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFHttpController.m; sourceTree = "<group>"; };
+		277D8A901704AC8C002D4265 /* ZFHttpUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFHttpUser.h; sourceTree = "<group>"; };
+		277D8A911704AC8D002D4265 /* ZFHttpUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFHttpUser.m; sourceTree = "<group>"; };
 		278AF7C716FFB3AE009D38F8 /* __ZFBitsUploadProtocolResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __ZFBitsUploadProtocolResponse.h; sourceTree = "<group>"; };
 		278AF7C816FFB3AE009D38F8 /* __ZFBitsUploadProtocolResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = __ZFBitsUploadProtocolResponse.m; sourceTree = "<group>"; };
 		278AF7C916FFB3AE009D38F8 /* ZFBITSCloseSessionHttpRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFBITSCloseSessionHttpRequest.h; sourceTree = "<group>"; };
@@ -6263,6 +6274,8 @@
 				275A609A16FFB23300B5EE4C /* ZFGuestAuthenticationService.m */,
 				275A609B16FFB23300B5EE4C /* ZFRegisteredUserAuthenticationService.h */,
 				275A609C16FFB23300B5EE4C /* ZFRegisteredUserAuthenticationService.m */,
+				277D8A901704AC8C002D4265 /* ZFHttpUser.h */,
+				277D8A911704AC8D002D4265 /* ZFHttpUser.m */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -8187,6 +8200,7 @@
 				278AF86816FFB3BB009D38F8 /* ZfSyncUpdateGroupSyncStatus.h in Headers */,
 				278AF87116FFB3BB009D38F8 /* ZfUpdatePhotoSetOperation.h in Headers */,
 				277D8A7C1703AC8B002D4265 /* ZFHttpController.h in Headers */,
+				277D8A921704AC90002D4265 /* ZFHttpUser.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8745,6 +8759,7 @@
 				278AF86A16FFB3BB009D38F8 /* ZfSyncUpdateGroupSyncStatus.h in Headers */,
 				278AF87316FFB3BB009D38F8 /* ZfUpdatePhotoSetOperation.h in Headers */,
 				277D8A7E1703AC8B002D4265 /* ZFHttpController.h in Headers */,
+				277D8A941704AC90002D4265 /* ZFHttpUser.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9303,6 +9318,7 @@
 				278AF86916FFB3BB009D38F8 /* ZfSyncUpdateGroupSyncStatus.h in Headers */,
 				278AF87216FFB3BB009D38F8 /* ZfUpdatePhotoSetOperation.h in Headers */,
 				277D8A7D1703AC8B002D4265 /* ZFHttpController.h in Headers */,
+				277D8A931704AC90002D4265 /* ZFHttpUser.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9861,6 +9877,7 @@
 				278AF86B16FFB3BB009D38F8 /* ZfSyncUpdateGroupSyncStatus.h in Headers */,
 				278AF87416FFB3BB009D38F8 /* ZfUpdatePhotoSetOperation.h in Headers */,
 				277D8A7F1703AC8B002D4265 /* ZFHttpController.h in Headers */,
+				277D8A951704AC90002D4265 /* ZFHttpUser.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -10586,6 +10603,7 @@
 				278AF86D16FFB3BB009D38F8 /* ZfSyncUpdateGroupSyncStatus.m in Sources */,
 				278AF87616FFB3BB009D38F8 /* ZfUpdatePhotoSetOperation.m in Sources */,
 				277D8A811703AC8B002D4265 /* ZFHttpController.m in Sources */,
+				277D8A971704AC90002D4265 /* ZFHttpUser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -11142,6 +11160,7 @@
 				278AF86F16FFB3BB009D38F8 /* ZfSyncUpdateGroupSyncStatus.m in Sources */,
 				278AF87816FFB3BB009D38F8 /* ZfUpdatePhotoSetOperation.m in Sources */,
 				277D8A831703AC8B002D4265 /* ZFHttpController.m in Sources */,
+				277D8A991704AC90002D4265 /* ZFHttpUser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -11698,6 +11717,7 @@
 				278AF86C16FFB3BB009D38F8 /* ZfSyncUpdateGroupSyncStatus.m in Sources */,
 				278AF87516FFB3BB009D38F8 /* ZfUpdatePhotoSetOperation.m in Sources */,
 				277D8A801703AC8B002D4265 /* ZFHttpController.m in Sources */,
+				277D8A961704AC90002D4265 /* ZFHttpUser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -12254,6 +12274,7 @@
 				278AF86E16FFB3BB009D38F8 /* ZfSyncUpdateGroupSyncStatus.m in Sources */,
 				278AF87716FFB3BB009D38F8 /* ZfUpdatePhotoSetOperation.m in Sources */,
 				277D8A821703AC8B002D4265 /* ZFHttpController.m in Sources */,
+				277D8A981704AC90002D4265 /* ZFHttpUser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -12810,6 +12831,7 @@
 				278AF87016FFB3BB009D38F8 /* ZfSyncUpdateGroupSyncStatus.m in Sources */,
 				278AF87916FFB3BB009D38F8 /* ZfUpdatePhotoSetOperation.m in Sources */,
 				277D8A841703AC8B002D4265 /* ZFHttpController.m in Sources */,
+				277D8A9A1704AC90002D4265 /* ZFHttpUser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

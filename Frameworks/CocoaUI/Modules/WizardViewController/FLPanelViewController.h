@@ -35,7 +35,6 @@
     BOOL _panelFillsView;
 }
 
-@property (readwrite, assign, nonatomic) id wizardViewController;
 @property (readwrite, strong, nonatomic) id<FLPanelButtons> buttons;
 @property (readwrite, strong, nonatomic) id<FLPanelHeader> header;
 @property (readwrite, strong, nonatomic) NSString* prompt;

@@ -13,6 +13,8 @@
 
 #if OSX
 
+@protocol FLLoginPanelDelegate;
+
 @interface FLLoginPanel : FLPanelViewController<NSControlTextEditingDelegate>  {
 @private
     IBOutlet NSTextField* _userNameTextField;
@@ -20,34 +22,17 @@
     IBOutlet NSButton* _savePasswordCheckBox;
     IBOutlet NSButton* _forgotPasswordButton;
     FLUserService* _userService;
+    
+    __unsafe_unretained id<FLLoginPanelDelegate> _delegate;
 }
-
-@property (readonly, strong, nonatomic) NSTextField* userNameTextField;
-@property (readonly, strong, nonatomic) NSSecureTextField* passwordEntryField;
-@property (readonly, strong, nonatomic) NSButton* savePasswordCheckBox;
-@property (readonly, strong, nonatomic) NSButton* forgotPasswordButton;
-
-@property (readwrite, strong, nonatomic) NSString* userName;
-@property (readwrite, strong, nonatomic) NSString* password;
-@property (readwrite, assign, nonatomic) BOOL savePasswordInKeychain; 
-
-@property (readwrite, strong, nonatomic) FLUserService* userService;
-
-+ (id) loginPanel;
-
-// required overides
-- (void) startAuthenticating;
-- (void) requestCancel;
-- (BOOL) isAuthenticated;
-
-- (void) logoutUser;
-
-- (void) updateNextButton;
-
-- (IBAction) resetLogin:(id) sender;
-
+@property (readwrite, assign, nonatomic) id<FLLoginPanelDelegate> delegate;
++ (id) loginPanelWithDelegate:(id<FLLoginPanelDelegate>) delegate;
 @end
 
+@protocol FLLoginPanelDelegate <NSObject>
+- (FLUserService*) loginPanelGetUserService:(FLLoginPanel*) panel;
+- (void) loginPanelForgotPasswordButtonWasClicked:(FLLoginPanel*) panel;
+@end
 
 
 #endif

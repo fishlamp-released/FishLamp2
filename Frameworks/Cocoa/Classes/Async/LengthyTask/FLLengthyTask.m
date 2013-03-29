@@ -19,7 +19,6 @@
 @synthesize taskName = _name;
 @synthesize stepCount = _currentStep;
 @synthesize totalStepCount = _totalStepCount;
-@synthesize delegate = _delegate;
 
 #if FL_MRC
 - (void) dealloc {
@@ -40,7 +39,7 @@
 
 - (void) setTaskName:(NSString*) name {
 	FLSetObjectWithRetain(_name, name);
-	[_delegate lengthyTaskDidChangeName:self];
+	[self.delegate lengthyTaskDidChangeName:self];
 }
 
 - (void) executeSelf {
@@ -52,12 +51,12 @@
 
 - (FLResult) runOperationInContext:(id) context withObserver:(id) observer {
 
-    if([self shouldExecuteTask] && (!_delegate || [_delegate lengthyTaskShouldBegin:self])) {
+    if([self shouldExecuteTask] && (!self.delegate || [self.delegate lengthyTaskShouldBegin:self])) {
         [self prepareTask];
         
         _currentStep = 0;
         _started = YES;
-        [_delegate lengthyTaskWillBegin:self];
+        [self.delegate lengthyTaskWillBegin:self];
         [self executeSelf];
 
 #if DEBUG
@@ -70,7 +69,7 @@
         [NSThread sleepForTimeInterval:SLOW];
 #endif
         _currentStep = self.totalStepCount;
-        [_delegate lengthyTaskDidFinish:self];
+        [self.delegate lengthyTaskDidFinish:self];
     }
     
     return FLSuccessfullResult;
@@ -94,7 +93,7 @@
         [self abortIfNeeded];
         
         FLAssertWithComment(_currentStep <= _totalStepCount - 1, @"current step exceeded total");
-        [_delegate lengthyTaskDidIncrementStep:self];
+        [self.delegate lengthyTaskDidIncrementStep:self];
 
     #if SLOW
         [NSThread sleepForTimeInterval:SLOW];
