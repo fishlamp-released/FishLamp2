@@ -17,7 +17,7 @@
     NSMutableDictionary* _subcommands;
     NSMutableDictionary* _options;
     NSString* _help;
-    __unsafe_unretained id parent; 
+    __unsafe_unretained id _parent; 
 }
 @property (readonly, assign, nonatomic) id parent;
 @property (readonly, strong, nonatomic) FLLogger* output;

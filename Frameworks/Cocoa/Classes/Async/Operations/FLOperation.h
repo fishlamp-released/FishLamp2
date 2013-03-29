@@ -6,37 +6,34 @@
 //	Copyright 2009 Greentongue Software. All rights reserved.
 //
 
-#import "FLDispatch.h"
 #import "FLWorkerContext.h"
-#import "FLAsyncWorker.h"
-#import "FLMessageBroadcaster.h"
 #import "FLObjectStorage.h"
 
-@class FLOperation;
-
-typedef FLResult (^FLBlockWithOperation)(FLOperation* operation);
-
-@class FLOperationObserver;
+typedef struct {
+    __unsafe_unretained id delegate;
+    SEL selector;
+} FLDelegateEvent;
 
 @interface FLOperation : FLContextWorker {
 @private
 	id _operationID;
-	FLBlockWithOperation _runBlock;
     BOOL _cancelled;
-    id<FLObjectStorage> _objectStorage;
+    SEL _finishSelectorForDelegate;
+    SEL _finishSelectorForObserver;
+    __unsafe_unretained id _delegate;
 }
-@property (readwrite, strong, nonatomic) id<FLObjectStorage> objectStorage;
+
+@property (readwrite, assign, nonatomic) id delegate;
+@property (readwrite, assign, nonatomic) SEL finishSelectorForDelegate;
+@property (readwrite, assign, nonatomic) SEL finishSelectorForObserver;
+
+@property (readonly, strong, nonatomic) id<FLObjectStorage> objectStorage;
 @property (readwrite, strong, nonatomic) id operationID;
 
 - (id) init;
-- (id) initWithObjectStorage:(id<FLObjectStorage>) objectStorage;
-- (id) initWithRunBlock:(FLBlockWithOperation) block;
-
 + (id) operation;
-+ (id) operation:(FLBlockWithOperation) block;
 
-/// @brief Required override point (or use runBlock).
-/// Either override run or set the operation's run block.
+/// @brief Required override point
 - (FLResult) runOperation;
 
 // deprecated
@@ -55,24 +52,12 @@ typedef FLResult (^FLBlockWithOperation)(FLOperation* operation);
 
 @protocol FLOperationObserver <NSObject>
 @optional
-
-// these always happen in the thread the operation is running on
-- (void) operationWillRun:(FLOperation*) operation;
-
-- (void) operationDidFinish:(FLOperation*) operation 
-                 withResult:(FLResult) withResult;
-
+- (void) operationDidFinish:(FLOperation*) operation withResult:(FLResult) result;
 @end
 
-typedef void (^FLOperationResultBlock)(FLResult result);
-
-@interface FLOperationObserver : FLFinisher<FLOperationObserver> {
-@private
-    dispatch_block_t _willRunBlock;
-    FLOperationResultBlock _didFinishBlock;
-}
-+ (FLOperationObserver*) operationObserver;
-@property (readwrite, copy, nonatomic) dispatch_block_t willRunBlock;
-@property (readwrite, copy, nonatomic) FLOperationResultBlock didFinishBlock;
-
+@protocol FLOperationDelegate <NSObject>
+@optional
+- (id<FLObjectStorage>) operationGetObjectStorage:(FLOperation*) operation;
+- (void) operationDidFinish:(FLOperation*) operation withResult:(FLResult) result;
 @end
+

@@ -10,6 +10,7 @@
 #import "FLWizardViewController.h"
 
 @interface FLPanelViewController ()
+@property (readwrite, assign, nonatomic) id wizardViewController;
 
 @end
 

@@ -1939,15 +1939,6 @@
 		271D3AFA16FE0793009CD00F /* FLServiceRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32EA16FE0776009CD00F /* FLServiceRequest.m */; };
 		271D3AFB16FE0793009CD00F /* FLServiceRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32EA16FE0776009CD00F /* FLServiceRequest.m */; };
 		271D3AFC16FE0793009CD00F /* FLServiceRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32EA16FE0776009CD00F /* FLServiceRequest.m */; };
-		271D3AFD16FE0793009CD00F /* FLUserAuthenticatorOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D32EC16FE0776009CD00F /* FLUserAuthenticatorOperation.h */; };
-		271D3AFE16FE0793009CD00F /* FLUserAuthenticatorOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D32EC16FE0776009CD00F /* FLUserAuthenticatorOperation.h */; };
-		271D3AFF16FE0793009CD00F /* FLUserAuthenticatorOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D32EC16FE0776009CD00F /* FLUserAuthenticatorOperation.h */; };
-		271D3B0016FE0793009CD00F /* FLUserAuthenticatorOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D32EC16FE0776009CD00F /* FLUserAuthenticatorOperation.h */; };
-		271D3B0116FE0793009CD00F /* FLUserAuthenticatorOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32ED16FE0776009CD00F /* FLUserAuthenticatorOperation.m */; };
-		271D3B0216FE0793009CD00F /* FLUserAuthenticatorOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32ED16FE0776009CD00F /* FLUserAuthenticatorOperation.m */; };
-		271D3B0316FE0793009CD00F /* FLUserAuthenticatorOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32ED16FE0776009CD00F /* FLUserAuthenticatorOperation.m */; };
-		271D3B0416FE0793009CD00F /* FLUserAuthenticatorOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32ED16FE0776009CD00F /* FLUserAuthenticatorOperation.m */; };
-		271D3B0516FE0793009CD00F /* FLUserAuthenticatorOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32ED16FE0776009CD00F /* FLUserAuthenticatorOperation.m */; };
 		271D3B0616FE0793009CD00F /* FLUserDataStorageService.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D32EE16FE0776009CD00F /* FLUserDataStorageService.h */; };
 		271D3B0716FE0793009CD00F /* FLUserDataStorageService.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D32EE16FE0776009CD00F /* FLUserDataStorageService.h */; };
 		271D3B0816FE0793009CD00F /* FLUserDataStorageService.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D32EE16FE0776009CD00F /* FLUserDataStorageService.h */; };
@@ -2669,6 +2660,15 @@
 		277D8A5917036863002D4265 /* FLStringTokenizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 277D8A5217036863002D4265 /* FLStringTokenizer.m */; };
 		277D8A5A17036863002D4265 /* FLStringTokenizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 277D8A5217036863002D4265 /* FLStringTokenizer.m */; };
 		277D8A5B17036863002D4265 /* FLStringTokenizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 277D8A5217036863002D4265 /* FLStringTokenizer.m */; };
+		277D8A871704A654002D4265 /* FLHttpUser.h in Headers */ = {isa = PBXBuildFile; fileRef = 277D8A851704A652002D4265 /* FLHttpUser.h */; };
+		277D8A881704A654002D4265 /* FLHttpUser.h in Headers */ = {isa = PBXBuildFile; fileRef = 277D8A851704A652002D4265 /* FLHttpUser.h */; };
+		277D8A891704A654002D4265 /* FLHttpUser.h in Headers */ = {isa = PBXBuildFile; fileRef = 277D8A851704A652002D4265 /* FLHttpUser.h */; };
+		277D8A8A1704A654002D4265 /* FLHttpUser.h in Headers */ = {isa = PBXBuildFile; fileRef = 277D8A851704A652002D4265 /* FLHttpUser.h */; };
+		277D8A8B1704A654002D4265 /* FLHttpUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 277D8A861704A653002D4265 /* FLHttpUser.m */; };
+		277D8A8C1704A654002D4265 /* FLHttpUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 277D8A861704A653002D4265 /* FLHttpUser.m */; };
+		277D8A8D1704A654002D4265 /* FLHttpUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 277D8A861704A653002D4265 /* FLHttpUser.m */; };
+		277D8A8E1704A654002D4265 /* FLHttpUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 277D8A861704A653002D4265 /* FLHttpUser.m */; };
+		277D8A8F1704A654002D4265 /* FLHttpUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 277D8A861704A653002D4265 /* FLHttpUser.m */; };
 		278E85D51702421A008AFB98 /* SDKColor+NSString.h in Headers */ = {isa = PBXBuildFile; fileRef = 278E85D31702421A008AFB98 /* SDKColor+NSString.h */; };
 		278E85D61702421A008AFB98 /* SDKColor+NSString.h in Headers */ = {isa = PBXBuildFile; fileRef = 278E85D31702421A008AFB98 /* SDKColor+NSString.h */; };
 		278E85D71702421A008AFB98 /* SDKColor+NSString.h in Headers */ = {isa = PBXBuildFile; fileRef = 278E85D31702421A008AFB98 /* SDKColor+NSString.h */; };
@@ -3553,8 +3553,6 @@
 		271D32E916FE0776009CD00F /* FLServiceRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLServiceRequest.h; sourceTree = "<group>"; };
 		271D32EA16FE0776009CD00F /* FLServiceRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLServiceRequest.m; sourceTree = "<group>"; };
 		271D32EB16FE0776009CD00F /* FLSessionObjects.flproj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = FLSessionObjects.flproj; sourceTree = "<group>"; };
-		271D32EC16FE0776009CD00F /* FLUserAuthenticatorOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLUserAuthenticatorOperation.h; sourceTree = "<group>"; };
-		271D32ED16FE0776009CD00F /* FLUserAuthenticatorOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLUserAuthenticatorOperation.m; sourceTree = "<group>"; };
 		271D32EE16FE0776009CD00F /* FLUserDataStorageService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLUserDataStorageService.h; sourceTree = "<group>"; };
 		271D32EF16FE0776009CD00F /* FLUserDataStorageService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLUserDataStorageService.m; sourceTree = "<group>"; };
 		271D32F016FE0776009CD00F /* FLUserService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLUserService.h; sourceTree = "<group>"; };
@@ -3724,6 +3722,8 @@
 		2776CC6F1672643C00F2E70A /* FLJson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FLJson.m; path = SBJson/FLJson.m; sourceTree = "<group>"; };
 		277D8A5117036863002D4265 /* FLStringTokenizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLStringTokenizer.h; sourceTree = "<group>"; };
 		277D8A5217036863002D4265 /* FLStringTokenizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLStringTokenizer.m; sourceTree = "<group>"; };
+		277D8A851704A652002D4265 /* FLHttpUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLHttpUser.h; sourceTree = "<group>"; };
+		277D8A861704A653002D4265 /* FLHttpUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLHttpUser.m; sourceTree = "<group>"; };
 		278CA8FD16FDFA7200E58D93 /* FLCompatibleGeometry+iOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FLCompatibleGeometry+iOS.h"; sourceTree = "<group>"; };
 		278CA8FE16FDFC4300E58D93 /* FLCompatibleViewController+iOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FLCompatibleViewController+iOS.h"; sourceTree = "<group>"; };
 		278CA90516FDFD2D00E58D93 /* FLCompatibility+iOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FLCompatibility+iOS.h"; sourceTree = "<group>"; };
@@ -4406,6 +4406,8 @@
 				271D31EF16FE0775009CD00F /* FLHttpRequestAuthenticationService.m */,
 				271D31F216FE0775009CD00F /* FLNetworkServerContext.h */,
 				271D31F316FE0775009CD00F /* FLNetworkServerContext.m */,
+				277D8A851704A652002D4265 /* FLHttpUser.h */,
+				277D8A861704A653002D4265 /* FLHttpUser.m */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -4838,8 +4840,6 @@
 				271D32E916FE0776009CD00F /* FLServiceRequest.h */,
 				271D32EA16FE0776009CD00F /* FLServiceRequest.m */,
 				271D32EB16FE0776009CD00F /* FLSessionObjects.flproj */,
-				271D32EC16FE0776009CD00F /* FLUserAuthenticatorOperation.h */,
-				271D32ED16FE0776009CD00F /* FLUserAuthenticatorOperation.m */,
 				271D32EE16FE0776009CD00F /* FLUserDataStorageService.h */,
 				271D32EF16FE0776009CD00F /* FLUserDataStorageService.m */,
 				271D32F016FE0776009CD00F /* FLUserService.h */,
@@ -5663,7 +5663,6 @@
 				271D3AE216FE0792009CD00F /* FLServiceKeys.h in Headers */,
 				271D3AEB16FE0792009CD00F /* FLServiceManager.h in Headers */,
 				271D3AF416FE0792009CD00F /* FLServiceRequest.h in Headers */,
-				271D3AFD16FE0793009CD00F /* FLUserAuthenticatorOperation.h in Headers */,
 				271D3B0616FE0793009CD00F /* FLUserDataStorageService.h in Headers */,
 				271D3B0F16FE0793009CD00F /* FLUserService.h in Headers */,
 				271D3B1816FE0793009CD00F /* NSError+FLServiceRequest.h in Headers */,
@@ -5735,6 +5734,7 @@
 				27E80303170344AE0012BFDD /* FLUsageToolTask.h in Headers */,
 				27E80314170345D80012BFDD /* FLStringParser.h in Headers */,
 				277D8A5317036863002D4265 /* FLStringTokenizer.h in Headers */,
+				277D8A871704A654002D4265 /* FLHttpUser.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6025,7 +6025,6 @@
 				271D3AE416FE0792009CD00F /* FLServiceKeys.h in Headers */,
 				271D3AED16FE0792009CD00F /* FLServiceManager.h in Headers */,
 				271D3AF616FE0792009CD00F /* FLServiceRequest.h in Headers */,
-				271D3AFF16FE0793009CD00F /* FLUserAuthenticatorOperation.h in Headers */,
 				271D3B0816FE0793009CD00F /* FLUserDataStorageService.h in Headers */,
 				271D3B1116FE0793009CD00F /* FLUserService.h in Headers */,
 				271D3B1A16FE0793009CD00F /* NSError+FLServiceRequest.h in Headers */,
@@ -6097,6 +6096,7 @@
 				27E80305170344AE0012BFDD /* FLUsageToolTask.h in Headers */,
 				27E80316170345D80012BFDD /* FLStringParser.h in Headers */,
 				277D8A5517036863002D4265 /* FLStringTokenizer.h in Headers */,
+				277D8A891704A654002D4265 /* FLHttpUser.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6387,7 +6387,6 @@
 				271D3AE316FE0792009CD00F /* FLServiceKeys.h in Headers */,
 				271D3AEC16FE0792009CD00F /* FLServiceManager.h in Headers */,
 				271D3AF516FE0792009CD00F /* FLServiceRequest.h in Headers */,
-				271D3AFE16FE0793009CD00F /* FLUserAuthenticatorOperation.h in Headers */,
 				271D3B0716FE0793009CD00F /* FLUserDataStorageService.h in Headers */,
 				271D3B1016FE0793009CD00F /* FLUserService.h in Headers */,
 				271D3B1916FE0793009CD00F /* NSError+FLServiceRequest.h in Headers */,
@@ -6459,6 +6458,7 @@
 				27E80304170344AE0012BFDD /* FLUsageToolTask.h in Headers */,
 				27E80315170345D80012BFDD /* FLStringParser.h in Headers */,
 				277D8A5417036863002D4265 /* FLStringTokenizer.h in Headers */,
+				277D8A881704A654002D4265 /* FLHttpUser.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6749,7 +6749,6 @@
 				271D3AE516FE0792009CD00F /* FLServiceKeys.h in Headers */,
 				271D3AEE16FE0792009CD00F /* FLServiceManager.h in Headers */,
 				271D3AF716FE0792009CD00F /* FLServiceRequest.h in Headers */,
-				271D3B0016FE0793009CD00F /* FLUserAuthenticatorOperation.h in Headers */,
 				271D3B0916FE0793009CD00F /* FLUserDataStorageService.h in Headers */,
 				271D3B1216FE0793009CD00F /* FLUserService.h in Headers */,
 				271D3B1B16FE0793009CD00F /* NSError+FLServiceRequest.h in Headers */,
@@ -6821,6 +6820,7 @@
 				27E80306170344AE0012BFDD /* FLUsageToolTask.h in Headers */,
 				27E80317170345D80012BFDD /* FLStringParser.h in Headers */,
 				277D8A5617036863002D4265 /* FLStringTokenizer.h in Headers */,
+				277D8A8A1704A654002D4265 /* FLHttpUser.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7250,7 +7250,6 @@
 				271D3AE716FE0792009CD00F /* FLServiceKeys.m in Sources */,
 				271D3AF016FE0792009CD00F /* FLServiceManager.m in Sources */,
 				271D3AF916FE0792009CD00F /* FLServiceRequest.m in Sources */,
-				271D3B0216FE0793009CD00F /* FLUserAuthenticatorOperation.m in Sources */,
 				271D3B0B16FE0793009CD00F /* FLUserDataStorageService.m in Sources */,
 				271D3B1416FE0793009CD00F /* FLUserService.m in Sources */,
 				271D3B1D16FE0793009CD00F /* NSError+FLServiceRequest.m in Sources */,
@@ -7318,6 +7317,7 @@
 				27E80308170344AE0012BFDD /* FLUsageToolTask.m in Sources */,
 				27E80319170345D80012BFDD /* FLStringParser.m in Sources */,
 				277D8A5817036863002D4265 /* FLStringTokenizer.m in Sources */,
+				277D8A8C1704A654002D4265 /* FLHttpUser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7578,7 +7578,6 @@
 				271D3AE916FE0792009CD00F /* FLServiceKeys.m in Sources */,
 				271D3AF216FE0792009CD00F /* FLServiceManager.m in Sources */,
 				271D3AFB16FE0793009CD00F /* FLServiceRequest.m in Sources */,
-				271D3B0416FE0793009CD00F /* FLUserAuthenticatorOperation.m in Sources */,
 				271D3B0D16FE0793009CD00F /* FLUserDataStorageService.m in Sources */,
 				271D3B1616FE0793009CD00F /* FLUserService.m in Sources */,
 				271D3B1F16FE0793009CD00F /* NSError+FLServiceRequest.m in Sources */,
@@ -7646,6 +7645,7 @@
 				27E8030A170344AE0012BFDD /* FLUsageToolTask.m in Sources */,
 				27E8031B170345D80012BFDD /* FLStringParser.m in Sources */,
 				277D8A5A17036863002D4265 /* FLStringTokenizer.m in Sources */,
+				277D8A8E1704A654002D4265 /* FLHttpUser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7908,7 +7908,6 @@
 				271D3AE616FE0792009CD00F /* FLServiceKeys.m in Sources */,
 				271D3AEF16FE0792009CD00F /* FLServiceManager.m in Sources */,
 				271D3AF816FE0792009CD00F /* FLServiceRequest.m in Sources */,
-				271D3B0116FE0793009CD00F /* FLUserAuthenticatorOperation.m in Sources */,
 				271D3B0A16FE0793009CD00F /* FLUserDataStorageService.m in Sources */,
 				271D3B1316FE0793009CD00F /* FLUserService.m in Sources */,
 				271D3B1C16FE0793009CD00F /* NSError+FLServiceRequest.m in Sources */,
@@ -7966,6 +7965,7 @@
 				27E80307170344AE0012BFDD /* FLUsageToolTask.m in Sources */,
 				27E80318170345D80012BFDD /* FLStringParser.m in Sources */,
 				277D8A5717036863002D4265 /* FLStringTokenizer.m in Sources */,
+				277D8A8B1704A654002D4265 /* FLHttpUser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8226,7 +8226,6 @@
 				271D3AE816FE0792009CD00F /* FLServiceKeys.m in Sources */,
 				271D3AF116FE0792009CD00F /* FLServiceManager.m in Sources */,
 				271D3AFA16FE0793009CD00F /* FLServiceRequest.m in Sources */,
-				271D3B0316FE0793009CD00F /* FLUserAuthenticatorOperation.m in Sources */,
 				271D3B0C16FE0793009CD00F /* FLUserDataStorageService.m in Sources */,
 				271D3B1516FE0793009CD00F /* FLUserService.m in Sources */,
 				271D3B1E16FE0793009CD00F /* NSError+FLServiceRequest.m in Sources */,
@@ -8294,6 +8293,7 @@
 				27E80309170344AE0012BFDD /* FLUsageToolTask.m in Sources */,
 				27E8031A170345D80012BFDD /* FLStringParser.m in Sources */,
 				277D8A5917036863002D4265 /* FLStringTokenizer.m in Sources */,
+				277D8A8D1704A654002D4265 /* FLHttpUser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8554,7 +8554,6 @@
 				271D3AEA16FE0792009CD00F /* FLServiceKeys.m in Sources */,
 				271D3AF316FE0792009CD00F /* FLServiceManager.m in Sources */,
 				271D3AFC16FE0793009CD00F /* FLServiceRequest.m in Sources */,
-				271D3B0516FE0793009CD00F /* FLUserAuthenticatorOperation.m in Sources */,
 				271D3B0E16FE0793009CD00F /* FLUserDataStorageService.m in Sources */,
 				271D3B1716FE0793009CD00F /* FLUserService.m in Sources */,
 				271D3B2016FE0793009CD00F /* NSError+FLServiceRequest.m in Sources */,
@@ -8622,6 +8621,7 @@
 				27E8030B170344AE0012BFDD /* FLUsageToolTask.m in Sources */,
 				27E8031C170345D80012BFDD /* FLStringParser.m in Sources */,
 				277D8A5B17036863002D4265 /* FLStringTokenizer.m in Sources */,
+				277D8A8F1704A654002D4265 /* FLHttpUser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

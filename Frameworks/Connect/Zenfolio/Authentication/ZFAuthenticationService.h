@@ -7,8 +7,7 @@
 //
 
 #import "FLHttpRequestAuthenticationService.h"
-
-#define ZFHttpAuthenticationTimeout ((60 * 60) * 12.0f)
+#import "ZFAuthenticationOperation.h"
 
 @interface ZFAuthenticationService : FLHttpRequestAuthenticationService {
 @private
@@ -17,7 +16,4 @@
 + (id) authenticationService;
 
 @end
-
-
-
 

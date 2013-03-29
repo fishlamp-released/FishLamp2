@@ -7,57 +7,42 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "FLUserLogin.h"
 #import "FLHttpRequest.h"
 #import "FLService.h"
 #import "FLDispatchQueue.h"
+#import "FLHttpUser.h"
 
 @protocol FLHttpRequestAuthenticationServiceDelegate;
 
+
 @interface FLHttpRequestAuthenticationService : FLService<FLHttpRequestAuthenticator> {
 @private
-    NSTimeInterval _lastAuthenticationTimestamp;
-    NSTimeInterval _timeoutInterval;
     FLFifoAsyncQueue* _asyncQueue;
-    FLUserLogin* _userLogin;
-    
-    __unsafe_unretained id<FLHttpRequestAuthenticationServiceDelegate> _delegate;
+    __unsafe_unretained id<FLWorkerContext> _workerContext;
 }
-@property (readwrite, strong) FLUserLogin* userLogin;
-
-@property (readwrite, assign, nonatomic) id<FLHttpRequestAuthenticationServiceDelegate> delegate;
-@property (readwrite, strong, nonatomic) FLFifoAsyncQueue* asyncQueue; 
-
-@property (readwrite, assign, nonatomic) NSTimeInterval timeoutInterval;
-
-@property (readonly, assign, nonatomic, getter=isAuthenticated) BOOL authenticated;
-
-@property (readonly, assign, nonatomic) NSTimeInterval lastAuthenticationTimestamp;
-- (void) resetAuthenticationTimestamp;
-- (void) touchAuthenticationTimestamp;
-
-- (void) logoutUser;
+@property (readonly, assign) id<FLWorkerContext> workerContext;
 
 // required overrides
-- (FLUserLogin*) synchronouslyAuthenticateUser:(FLUserLogin*) userLogin 
-                                     inContext:(id) context;
+- (void) authenticateUser:(FLHttpUser*) user;
 
-- (void) updateHttpRequest:(FLHttpRequest*) request 
-     withAuthenticatedUser:(FLUserLogin*) userLogin;
+- (void) authenticateHttpRequest:(FLHttpRequest*) request 
+    withAuthenticatedUser:(FLHttpUser*) user;
 
-// optional
-- (BOOL) userLoginIsAuthenticated:(FLUserLogin*) userLogin;
+// optional override
+- (BOOL) credentialsNeedAuthentication:(FLHttpUser*) user;
 
 @end
 
 @protocol FLHttpRequestAuthenticationServiceDelegate <NSObject>
 
-- (void) httpRequestAuthenticationService:(FLHttpRequestAuthenticationService*) service 
-                      didAuthenticateUser:(FLUserLogin*) userLogin;
+- (id<FLWorkerContext>) httpRequestAuthenticationServiceGetWorkerContext:(FLHttpRequestAuthenticationService*) service;
+
+- (FLHttpUser*) httpRequestAuthenticationServiceGetUser:(FLHttpRequestAuthenticationService*) service;
 
 - (void) httpRequestAuthenticationService:(FLHttpRequestAuthenticationService*) service 
-                            didLogoutUser:(FLUserLogin*) userLogin;
+               didAuthenticateUser:(FLHttpUser*) user;
 
+@optional 
 - (void) httpRequestAuthenticationServiceDidOpen:(FLHttpRequestAuthenticationService*) service;
 - (void) httpRequestAuthenticationServiceDidClose:(FLHttpRequestAuthenticationService*) service;
 

@@ -15,14 +15,22 @@
 @interface ZFDownloadPhotoSetsOperation : FLOperation {
 @private
     ZFGroup* _group;
+    
+    SEL _downloadedPhotoSetSelector;
 }
 
-- (id) initWithGroup:(ZFGroup*) group objectStorage:(id<FLObjectStorage>) objectStorage;
-+ (id) downloadPhotoSetsWithGroup:(ZFGroup*) group objectStorage:(id<FLObjectStorage>) objectStorage;
+@property (readwrite, assign, nonatomic) SEL downloadedPhotoSetSelector;
+
+- (id) initWithGroup:(ZFGroup*) group;
++ (id) downloadPhotoSetsWithGroup:(ZFGroup*) group;
 
 @end
 
 @protocol  ZFDownloadPhotoSetsOperationObserver <NSObject>
 @optional
-- (void) photoSetDownloader:(ZFDownloadPhotoSetsOperation*) operation didDownloadPhotoSet:(ZFPhotoSet*) photoSet; 
+
+// selector defaults
+
+- (void) photoSetDownloader:(ZFDownloadPhotoSetsOperation*) operation 
+        didDownloadPhotoSet:(ZFPhotoSet*) photoSet; 
 @end

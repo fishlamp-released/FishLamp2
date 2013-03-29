@@ -41,8 +41,6 @@ typedef id (^FLCreateOperationBlock)();
 
 - (void) addOperation:(FLOperation*) operation;
 
-- (void) addOperationWithBlock:(FLBlockWithOperation) operationBlock;
-
 - (void) addOperationWithTarget:(id) target action:(SEL) action; // @selector(callback:) parameter is the operation
 
 - (void) addOperationsWithArray:(NSArray*) operations;

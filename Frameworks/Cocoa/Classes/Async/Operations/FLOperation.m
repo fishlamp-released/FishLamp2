@@ -11,54 +11,40 @@
 #import "FLAsyncQueue.h"
 #import "FLObjectStorage.h"
 
-NSString* const FLOperationFinishedEvent;
-
 @interface FLOperation ()
-@property (readwrite, copy, nonatomic) FLBlockWithOperation runBlock;
 @property (readwrite, assign, getter=wasCancelled) BOOL cancelled;
 @end
 
 @implementation FLOperation
 
 @synthesize operationID = _operationID;
-@synthesize runBlock = _runBlock;
 @synthesize cancelled = _cancelled;
-@synthesize objectStorage = _objectStorage;
+@synthesize delegate = _delegate;
+@synthesize finishSelectorForDelegate = _finishSelectorForDelegate;
+@synthesize finishSelectorForObserver = _finishSelectorForObserver;
 
-- (id) initWithRunBlock:(FLBlockWithOperation) callback {
-    if((self = [self init])) {
-        self.runBlock = callback;
+- (id) init {
+    self = [super init];
+    if(self) {
+  		static int32_t s_counter = 0;
+        self.operationID = [NSNumber numberWithInt:FLAtomicIncrement32(s_counter)];
+        self.finishSelectorForDelegate = @selector(operationDidFinish:withResult:);
+        self.finishSelectorForObserver = @selector(operationDidFinish:withResult:);
     }
     return self;
-}
-
-- (id) initWithObjectStorage:(id<FLObjectStorage>) objectStorage {
-    if((self = [self init])) {
-        self.objectStorage = objectStorage;
-    }
-    return self;
-}
-
-+ (id) operation:(FLBlockWithOperation) callback {
-    return FLAutorelease([[[self class] alloc] initWithRunBlock:callback]);
 }
 
 #if FL_MRC
 - (void) dealloc {
-    [_objectStorage release];
-    [_runBlock release];
     [_operationID release];
     [super dealloc];
 }
 #endif
 
-- (id) init {
-	if((self = [super init])) {
-  		static int32_t s_counter = 0;
-        self.operationID = [NSNumber numberWithInt:FLAtomicIncrement32(s_counter)];
-    }
-	
-	return self;
+- (id<FLObjectStorage>) objectStorage {
+    return [self.delegate operationGetObjectStorage:self];
+
+//    FLPerformSelector2(self.delegate, _finishSelectorForDelegate, self, result);
 }
 
 + (id) operation {
@@ -83,37 +69,16 @@ NSString* const FLOperationFinishedEvent;
     return self.wasCancelled;
 }
 
-- (id<FLAsyncQueue>) asyncQueue {
-    return [FLAsyncQueue defaultQueue];
-}
-
 - (FLResult) runOperation {
-    id result = nil;
-    if(self.runBlock) {
-        result = self.runBlock(self);
-    }
-    else {
-        result = [self runOperationInContext:self.workerContext withObserver:self.observer];
-    }
-    
-    return result;
+    return [self runOperationInContext:self.workerContext withObserver:self.observer];
 }
-
-//- (FLResult) runInContext:(id<FLWorkerContext>) context {
-//    return [[self startInContext:context completion:nil] waitUntilFinished];
-//}
-
 
 - (void) startWorking:(FLFinisher*) finisher {
 
     id result = nil;
 
     @try {
-        
         [self abortIfNeeded];
-        
-        [self sendObservation:@selector(operationWillRun:)];
-       
         result = [self runOperation];
     }
     @catch(NSException* ex) {
@@ -125,50 +90,47 @@ NSString* const FLOperationFinishedEvent;
     }
     
     [finisher setFinishedWithResult:result];
-
-    [self sendObservation:@selector(operationDidFinish:withResult:) withObject:self withObject:result];
     
+    FLPerformSelector2(self.delegate, _finishSelectorForDelegate, self, result);
     self.cancelled = NO;
-}
 
-- (void) operationWasCancelled:(FLOperation*) operation {
-    [self requestCancel];
+    // this happens in another thread, probably.
+    [self sendObservation:_finishSelectorForObserver withObject:result];
 }
-
 
 @end
 
-@implementation FLOperationObserver
-
-@synthesize willRunBlock = _willRunBlock;
-@synthesize didFinishBlock = _didFinishBlock;
-
-+ (id) operationObserver {
-    return FLAutorelease([[[self class] alloc] init]);
-}
-
-#if FL_MRC
-- (void) dealloc {
-    [_willRunBlock release];
-    [_didFinishBlock release];
-    [super dealloc];
-}
-#endif
-
-- (void) operationWillRun:(FLOperation*) operation {
-    if(_willRunBlock) {
-        _willRunBlock();
-    }
-}
-
-- (void) operationDidFinish:(FLOperation*) operation 
-                 withResult:(FLResult) withResult {
-    if(_didFinishBlock) {
-        _didFinishBlock(withResult);
-    }
-}                 
-
-@end
+//@implementation FLOperationObserver
+//
+//@synthesize willRunBlock = _willRunBlock;
+//@synthesize didFinishBlock = _didFinishBlock;
+//
+//+ (id) operationObserver {
+//    return FLAutorelease([[[self class] alloc] init]);
+//}
+//
+//#if FL_MRC
+//- (void) dealloc {
+//    [_willRunBlock release];
+//    [_didFinishBlock release];
+//    [super dealloc];
+//}
+//#endif
+//
+//- (void) operationWillRun:(FLOperation*) operation {
+//    if(_willRunBlock) {
+//        _willRunBlock();
+//    }
+//}
+//
+//- (void) operationDidFinish:(FLOperation*) operation 
+//                 withResult:(FLResult) withResult {
+//    if(_didFinishBlock) {
+//        _didFinishBlock(withResult);
+//    }
+//}                 
+//
+//@end
 //
 //@implementation FLOperationWillStartObserver
 //- (void) operationWillRun:(FLOperation*) operation {

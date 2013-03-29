@@ -13,15 +13,15 @@
 
 @interface FLLoginPanel ()
 - (void) applicationWillTerminate:(id)sender;
+@property (readwrite, strong, nonatomic) FLUserService* userService;
+- (void) updateNextButton;
+- (IBAction) resetLogin:(id) sender;
 @end
 
 @implementation FLLoginPanel
 
-@synthesize userNameTextField = _userNameTextField;
-@synthesize passwordEntryField = _passwordEntryField;
-@synthesize savePasswordCheckBox = _savePasswordCheckBox;
-@synthesize forgotPasswordButton = _forgotPasswordButton;
 @synthesize userService = _userService;
+@synthesize delegate = _delegate;
 
 - (id) init {
     return [self initWithNibName:@"FLLoginPanel" bundle:nil];
@@ -45,8 +45,10 @@
     return self;
 }
 
-+ (id) loginPanel {
-    return FLAutorelease([[[self class] alloc] init]);
++ (id) loginPanelWithDelegate:(id<FLLoginPanelDelegate>) delegate {
+    FLLoginPanel* panel = FLAutorelease([[[self class] alloc] init]);
+    panel.delegate = delegate;
+    return panel;
 }
 
 - (void) dealloc {
@@ -54,28 +56,24 @@
     
 #if FL_MRC
     [_userService release];
-    [_userNameTextField release];
-    [_passwordEntryField release];
-    [_savePasswordCheckBox release];
-    [_forgotPasswordButton release];
     [super dealloc];
 #endif
 }
 
 - (void) setUserName:(NSString*) userName {
-    [self.userNameTextField setStringValue:FLEmptyStringOrString(userName)];
+    [_userNameTextField setStringValue:FLEmptyStringOrString(userName)];
 }
 
 - (NSString *)userName {
-	return [self.userNameTextField stringValue];
+	return [_userNameTextField stringValue];
 }
 
 - (void) setPassword:(NSString*) password {
-    [self.passwordEntryField setStringValue:FLEmptyStringOrString(password)];
+    [_passwordEntryField setStringValue:FLEmptyStringOrString(password)];
 }
 
 - (NSString *)password {
-	return [self.passwordEntryField stringValue];
+	return [_passwordEntryField stringValue];
 }
 
 - (BOOL) savePasswordInKeychain {
@@ -87,7 +85,7 @@
 }
 
 - (BOOL) canLogin {
-	return	FLStringIsNotEmpty(self.userName) && FLStringIsNotEmpty(self.password);
+	return	self.userService.canAuthenticate;
 }
 
 - (void) updateNextButton {
@@ -96,7 +94,7 @@
 
 #if OSX
 - (void)controlTextDidEndEditing:(NSNotification *)note {
-	if ( [note object] == self.userNameTextField || [note object] == self.passwordEntryField ) {
+	if ( [note object] == _userNameTextField || [note object] == _passwordEntryField ) {
 		if ( ![self canLogin] ) {
 			return;
 		}
@@ -111,52 +109,32 @@
 
 
 - (void)controlTextDidChange:(NSNotification *)note {
-	if ( [note object] == self.userNameTextField || [note object] == self.passwordEntryField ) {
-        if([self isAuthenticated]) {
-            [self logoutUser];
-        }
-        [self updateNextButton];
+	if ( [note object] == _userNameTextField ) {
+        [self.userService setUserName:_userNameTextField.stringValue];
     }
+	if ( [note object] == _passwordEntryField ) {
+        [self.userService setPassword:_passwordEntryField.stringValue];
+    }
+    
+    [self updateNextButton];
 }
 
 #endif
 
-
 - (IBAction) resetLogin:(id) sender {
-}
-
-- (BOOL) isAuthenticated {
-    return NO;
-}
-
-- (void) startAuthenticating {
-}
-
-- (void) requestCancel {
-}
-
-- (void) resetPassword {
-}
-
-- (void) logoutUser {
+    // this is from the "forgot login" button
+    
+    [self.delegate loginPanelForgotPasswordButtonWasClicked:self];
 }
 
 - (void) updateVisibleCredentials {
-//    if(!self.userService.userLogin) {
-//        [self.userService loadFromUserDefaults];
-//    }
-//    [self setSavePasswordInKeychain:self.userService.rememberPassword];
-//    [self setUserName:self.userLogin.userName];
-//    [self setPassword:self.userLogin.password];
+    [self setSavePasswordInKeychain:self.userService.rememberPassword];
+    [self setUserName:self.userService.userName];
+    [self setPassword:self.userService.password];
 }
 
 - (void) saveCredentials {  
-
-//    self.userLogin.userName = self.userName;
-//    self.userLogin.password = self.password;
-//    self.userLogin.rememberPassword = self.savePasswordInKeychain;
-//
-//    [self.userLogin saveToStorage];
+    [self.userService saveCredentials];
 }
 
 - (IBAction) passwordCheckboxToggled:(id) sender {
@@ -168,7 +146,13 @@
 }
    
 - (void) respondToNextButton:(BOOL*) handledIt {
-    [self saveCredentials];
+    if(self.userService.canAuthenticate) {
+        [self saveCredentials];
+        [self.userService openService:self];
+    }
+    else {
+        *handledIt = YES; 
+    }
 //    if(self.isAuthenticated) {
 //        *handledIt = NO;
 //    }
@@ -185,11 +169,12 @@
 
     [self performBlockOnMainThread:^{
         if(FLStringIsEmpty(self.userName)) {
-            [self.userNameTextField becomeFirstResponder];
+            [self.view.window makeFirstResponder:_userNameTextField];
         }
         else {
-            [self.passwordEntryField becomeFirstResponder];
+            [self.view.window makeFirstResponder:_passwordEntryField];
         }
+        [self updateNextButton];
     }];
 }
 
@@ -200,24 +185,20 @@
 
 - (void) panelWillAppear {
     [super panelWillAppear];
-    
+    self.userService = [self.delegate loginPanelGetUserService:self];
+    [self.userService closeService:self];
+    [self.userService loadCredentials];
     [self updateVisibleCredentials];
     [self updateNextButton];
-    
-    if(!self.savePasswordInKeychain && [self isAuthenticated]) {
-        [self logoutUser];
-    }
 }
 
 - (void) panelWillDisappear {
+    [self.view.window makeFirstResponder:self.view.window];
     [super panelWillDisappear];
     [self saveCredentials];
-    [self.userNameTextField resignFirstResponder];
-    [self.passwordEntryField resignFirstResponder];
-    
-    if(!self.savePasswordInKeychain) {
-        self.passwordEntryField.stringValue = @"";
-    }
+    _userNameTextField.stringValue = @"";
+    _passwordEntryField.stringValue = @"";
+    self.userService = nil;
 }
 
 @end

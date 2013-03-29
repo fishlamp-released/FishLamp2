@@ -30,4 +30,18 @@
     return [self sendMessage:messageSelector toListener:self.observer withObject:object1 withObject:object2];
 }
 
+- (BOOL) sendObservation:(SEL) messageSelector toObserver:(id) observer {
+    return [self sendMessage:messageSelector toListener:observer];
+}
+
+- (BOOL) sendObservation:(SEL) messageSelector toObserver:(id) observer withObject:(id) object  {
+    return [self sendMessage:messageSelector toListener:observer withObject:object];
+}
+
+- (BOOL) sendObservation:(SEL) messageSelector toObserver:(id) observer withObject:(id) object1 withObject:(id) object2  {
+    return [self sendMessage:messageSelector toListener:observer withObject:object1 withObject:object2];
+}
+
+
+
 @end

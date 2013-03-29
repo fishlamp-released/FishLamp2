@@ -120,9 +120,9 @@
     [self addOperation:[FLPerformSelectorOperation performSelectorOperation:target action:action ]];
 }
 
-- (void) addOperationWithBlock:(FLBlockWithOperation) operationBlock {
-    [self addOperation:[FLOperation operation:operationBlock]];
-}
+//- (void) addOperationWithBlock:(FLBlockWithOperation) operationBlock {
+//    [self addOperation:[FLOperation operation:operationBlock]];
+//}
 
 //- (void) insertOperation:(FLOperation*) newOperation
 //          afterOperation:(FLOperation*) afterOperation {

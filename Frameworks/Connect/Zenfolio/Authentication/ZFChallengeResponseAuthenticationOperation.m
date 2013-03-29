@@ -29,7 +29,7 @@
 	// 1. combine salt + pw
 	// 2. encode 
 	
-	const char* pw = [self.userLogin.password UTF8String]; // autoreleased
+	const char* pw = [self.user.credentials.password UTF8String]; // autoreleased
 	
 	NSData* pwData = FLAutorelease([[NSData alloc] initWithBytes:pw length:strlen(pw)]);
 
@@ -51,9 +51,9 @@
 
 - (FLResult) runOperation {
     
-    FLTrace(@"Authenticating %@:", self.userLogin.userName );
+    FLTrace(@"Authenticating %@:", self.user.credentials.userName );
 
-    if(FLStringIsEmpty(self.userLogin.password)) {
+    if(FLStringIsEmpty(self.user.credentials.password)) {
     // can't authenticate because we don't have a pw. So put an error in the httpRequestFactory so ui can prompt for password.
 
         FLTrace(@"auth failed because password is empty");
@@ -64,19 +64,19 @@
     }
     
     
-    FLHttpRequest* challengeRequest = [ZFHttpRequest challengeHttpRequest:self.userLogin.userName];
+    FLHttpRequest* challengeRequest = [ZFHttpRequest challengeHttpRequest:self.user.credentials.userName];
     challengeRequest.disableAuthenticator = YES;
     
-    ZFAuthChallenge* response = FLThrowIfError([self runWorker:challengeRequest]);
+    ZFAuthChallenge* response = [self runWorker:challengeRequest];
    
     FLHttpRequest* authenticateRequest = FLThrowIfError([self authenticateRequestWithAuthChallenge:response]);
     authenticateRequest.disableAuthenticator = YES;
     
-    NSString* token = FLThrowIfError([self runWorker:authenticateRequest]);
+    NSString* token = [self runWorker:authenticateRequest];
     
     if(FLStringIsNotEmpty(token)) {
-        self.userLogin.authToken = token;
-        self.userLogin.authTokenLastUpdateTimeValue = [NSDate timeIntervalSinceReferenceDate];
+        self.user.credentials.authToken = token;
+        self.user.credentials.authTokenLastUpdateTimeValue = [NSDate timeIntervalSinceReferenceDate];
     }
     else {
         FLThrowErrorCodeWithComment(NSURLErrorDomain, NSURLErrorBadServerResponse, @"empty token from server");

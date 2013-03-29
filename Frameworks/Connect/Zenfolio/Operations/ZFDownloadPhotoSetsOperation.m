@@ -10,12 +10,13 @@
 #import "ZFWebApi.h"
 
 @interface ZFDownloadPhotoSetsOperation ()
-@property (readwrite, strong) ZFGroup* group;
+@property (readwrite, strong, nonatomic) ZFGroup* group;
 @end
 
 @implementation ZFDownloadPhotoSetsOperation
 
 @synthesize group = _group;
+@synthesize downloadedPhotoSetSelector = _downloadedPhotoSetSelector;
 
 #if FL_MRC
 - (void) dealloc {
@@ -24,37 +25,35 @@
 }
 #endif
 
-- (id) initWithGroup:(ZFGroup*) group  objectStorage:(id<FLObjectStorage>) objectStorage{
-    self = [super initWithObjectStorage:objectStorage];
+- (id) initWithGroup:(ZFGroup*) group {
+    self = [super init];
     if(self) {
-        FLAssertNotNil(objectStorage);
-
-        _group = [group copy];
+        self.group = FLCopyWithAutorelease(group);
+        self.downloadedPhotoSetSelector = @selector(photoSetDownloader:didDownloadPhotoSet:);
     }   
 
     return self;
 }
 
-+ (id) downloadPhotoSetsWithGroup:(ZFGroup*) group objectStorage:(id<FLObjectStorage>) objectStorage {
-    return FLAutorelease([[[self class] alloc] initWithGroup:group objectStorage:objectStorage]);
++ (id) downloadPhotoSetsWithGroup:(ZFGroup*) group  {
+    return FLAutorelease([[[self class] alloc] initWithGroup:group]);
 }
 
 - (void) runForGroup:(ZFGroup*) group {
-    NSArray* elements = FLAutorelease([group.Elements copy]);
-    
-    for(ZFGroupElement* element in elements) {
+
+    for(ZFGroupElement* element in group.Elements) {
         if(element.isGroupElement) {
             [self runForGroup:(ZFGroup*) element];
         }
         else {
             FLHttpRequest* request = [ZFHttpRequest loadPhotoSetHttpRequest:element.Id level:kZenfolioInformatonLevelFull includePhotos:NO];
             
-            ZFPhotoSet* set = FLThrowIfError([self runWorker:request]);
+            ZFPhotoSet* set = [self runWorker:request];
             FLAssertNotNil(set);
             
             [self.objectStorage writeObject:set];
             
-            [self sendObservation:@selector(photoSetDownloader:didDownloadPhotoSet:) withObject:set];
+            [self sendObservation:self.downloadedPhotoSetSelector withObject:set];
         }
         
         [self abortIfNeeded];
@@ -62,8 +61,9 @@
 }
 
 - (FLResult) runOperation {
-    [self runForGroup:_group];
-    return _group;
+    FLAssertNotNil(self.objectStorage);
+    [self runForGroup:self.group];
+    return self.group;
 }
 
 

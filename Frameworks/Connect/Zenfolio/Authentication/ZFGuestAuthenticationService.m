@@ -10,15 +10,18 @@
 
 @implementation ZFGuestAuthenticationService
 
-- (FLUserLogin*) synchronouslyAuthenticateUser:(FLUserLogin*) userLogin inContext:(id) context {
+- (void) authenticateUser:(FLHttpUser*) user {
+                                    
+    FLUserLogin* userLogin = user.credentials;                                
                                     
     FLTrace(@"Authenticating %@:", userLogin.userName );
     
-    NSString* token = FLThrowIfError([[ZFHttpRequest authenticateVisitorHttpRequest] runInContext:context]);
+    NSString* token = [[ZFHttpRequest authenticateVisitorHttpRequest] runInContext:self.workerContext];
     
     userLogin.authTokenLastUpdateTimeValue = [NSDate timeIntervalSinceReferenceDate];
     userLogin.authToken = token;
-    return userLogin;
+    
+    [user setCredentials:userLogin];
 }
 
 @end

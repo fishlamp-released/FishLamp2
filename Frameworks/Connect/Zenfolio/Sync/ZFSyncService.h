@@ -28,10 +28,7 @@ typedef enum {
     id<FLObjectStorageExtended> _syncStateDatabase;
     id<FLObjectStorageExtended> _syncedObjectDatabase;
     int _rootGroupID;
-    __unsafe_unretained id<ZFSyncServiceDelegate> _delegate;
 }
-
-@property (readwrite, assign, nonatomic) id<ZFSyncServiceDelegate> delegate;
 
 @property (readonly, assign) NSUInteger toGoElementCount;
 

@@ -52,7 +52,6 @@ FIXME(@"this is removed from fishlamp");
 @synthesize syncStateDataStore = _syncStateDatabase;
 @synthesize rootGroupID = _rootGroupID;
 @synthesize groups = _groups;
-@synthesize delegate = _delegate;
 
 - (void) dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver: self];

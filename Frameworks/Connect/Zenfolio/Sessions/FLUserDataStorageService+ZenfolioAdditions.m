@@ -6,6 +6,8 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
+#if REFACTOR
+
 #import "FLUserDataStorageService+ZenfolioAdditions.h"
 #import "NSString+GUID.h"
 #import "NSFileManager+FLExtras.h"
@@ -53,3 +55,4 @@
 
 
 
+#endif

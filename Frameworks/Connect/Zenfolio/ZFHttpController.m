@@ -13,6 +13,9 @@
 
 #import "FLGlobalNetworkActivityIndicator.h"
 
+#import "ZFLoadGroupHierarchyOperation.h"
+#import "ZFDownloadPhotoSetsOperation.h"
+
 @interface ZFHttpController ()
 @property (readwrite, strong) FLUserService* userService;
 @property (readwrite, strong) id<FLObjectStorage> objectCache;
@@ -21,22 +24,20 @@
 
 @implementation ZFHttpController
 @synthesize userService = _userLoginService;
-@synthesize rootGroup = _rootGroup;
-@synthesize delegate = _delegate;
-@synthesize objectCache = _objectCache;
+@synthesize objectCache = _objectCacheService;
 @synthesize httpRequestAuthenticator = _httpRequestAuthenticator;
-
+@synthesize user = _user;
 
 + (id) httpController {
     return FLAutorelease([[[self class] alloc] init]);
 }
 
 - (id) init {
-    self = [super init];
+    self = [super initWithRootNameForDelegateMethods:@"httpController"];
     if(self) {
         _objectCacheService = [[FLObjectStorageService alloc] init];
-        [_objectCache setObjectStorage:[FLDictionaryObjectStorage dictionaryObjectStorage]];
-        [self addSubService:_objectCache];
+        [_objectCacheService setObjectStorage:[FLDictionaryObjectStorage dictionaryObjectStorage]];
+        [self addSubService:_objectCacheService];
         
         self.httpRequestAuthenticator = [ZFRegisteredUserAuthenticationService registeredUserAuthenticationService];
         self.httpRequestAuthenticator.delegate = self;
@@ -52,22 +53,20 @@
     return self;
 }
 
-- (void) openService {
-    [super openService];
-    [self.delegate httpControllerDidOpenService:self];
-}
-
-- (void) closeService {
-    [super closeService];
-    self.rootGroup = nil;
-
-    [self.delegate httpControllerDidCloseService:self];
-}
+//- (void) openService {
+//    [super openService];
+//    [self.delegate httpControllerDidOpenService:self];
+//}
+//
+//- (void) closeService {
+//    [super closeService];
+//    [self.delegate httpControllerDidCloseService:self];
+//}
 
 #if FL_MRC
 - (void) dealloc {
+    [_user release];
     [_httpRequestAuthenticator release];
-    [_rootGroup release];
     [_objectCacheService release];
     [_userLoginService release];
     [super dealloc];
@@ -85,47 +84,116 @@
 }
 
 - (void) userServiceDidOpen:(FLUserService*) service {
-    [self openService];
+    [self openService:self];
 }
 
 - (void) userServiceDidClose:(FLUserService*) service {
-    [self closeService];
+    [self closeService:self];
 }
 
-- (void) httpRequestAuthenticationService:(FLHttpRequestAuthenticationService*) service
-                      didAuthenticateUser:(FLUserLogin*) userLogin {
+- (void) httpRequestAuthenticationService:(FLHttpRequestAuthenticationService*) service 
+                      didAuthenticateUser:(ZFHttpUser*) userLogin {
     
     [self.delegate httpController:self didAuthenticateUser:userLogin];
 }
 
-- (void) httpRequestAuthenticationServiceDidOpen:(FLHttpRequestAuthenticationService*) service {
-}
-
-- (void) httpRequestAuthenticationServiceDidClose:(FLHttpRequestAuthenticationService*) service {
-}
-
-
-- (BOOL) isContextAuthenticated {
-    return self.httpRequestAuthenticator.isAuthenticated;
-}
+//
+//- (BOOL) isContextAuthenticated {
+//    return self.httpRequestAuthenticator.isAuthenticated;
+//}
 
 - (void) logoutUser {
-    [self.httpRequestAuthenticator logoutUser];
+    [self.user setUnathenticated];
+    [self.userService closeService:self];
+    [self.delegate httpController:self didLogoutUser:self.user];
 }
 
-- (void) httpRequestAuthenticationService:(FLHttpRequestAuthenticationService*) service 
-                            didLogoutUser:(FLUserLogin*) userLogin {
-
-    [self.userService closeService];
-    [self.delegate httpController:self didLogoutUser:userLogin];
-} 
-
-
-- (FLUserLogin*) httpRequestAuthenticationServiceGetUserLogin:(FLHttpRequestAuthenticationService*) service {
-    return self.userService.userLogin;
+- (id<FLWorkerContext>) httpRequestAuthenticationServiceGetWorkerContext:(FLHttpRequestAuthenticationService*) service {
+    return self;
 }
 
-- (void) requestCancel {
-    [[self userContextService] requestCancel];
+- (FLHttpUser*) httpRequestAuthenticationServiceGetUser:(FLHttpRequestAuthenticationService*) service {
+    return self.user;
 }
+
+//- (void) didAddWorker:(id) object {
+//    [super didAddWorker:object];
+//    if([object respondsToSelector:@selector(delegate)]) {
+//        if(![object delegate]) {
+//            [object setDelegate:self];
+//        }
+//    }
+//}
+//
+//- (void) didRemoveWorker:(id) object {
+//    [super didRemoveWorker:object];
+//    if([object respondsToSelector:@selector(delegate)]) {
+//        if([object delegate] == self) {
+//            [object setDelegate:nil];
+//        }
+//    }
+//}
+
+- (FLFinisher*) beginDownloadingPhotoSetsForRootGroup:(id) observer 
+                           downloadedPhotoSetSelector:(SEL) photoSetSelector
+                                     finishedSelector:(SEL) finishedSelector {
+
+    ZFDownloadPhotoSetsOperation* operation = 
+        [ZFDownloadPhotoSetsOperation downloadPhotoSetsWithGroup:self.user.rootGroup];
+    
+    operation.delegate = self;
+    operation.observer = observer;
+    operation.downloadedPhotoSetSelector = photoSetSelector;
+    operation.finishSelectorForObserver = finishedSelector;
+
+    return [operation startInContext:self completion:^(FLResult result) {
+
+    }];
+}        
+
+- (FLFinisher*) beginDownloadingRootGroup:(id) observer finishedSelector:(SEL) finishedSelector {
+    
+    ZFLoadGroupHierarchyOperation* operation = 
+        [ZFLoadGroupHierarchyOperation loadGroupHierarchyOperation:self.user.credentials]; 
+
+    operation.delegate = self;
+    operation.observer = observer;
+    operation.finishSelectorForObserver = finishedSelector;
+
+    return [operation startInContext:self completion:^(FLResult result) {
+        if(![result error]) {
+            self.user.rootGroup = result;
+        }
+    }];
+}
+
+- (id<FLObjectStorage>) operationGetObjectStorage:(FLOperation*) operation {
+    return [self.objectCache objectStorage];
+}
+
+
+//- (id) operationDownloadPhotoSetsInRootGroup {
+//    ZFDownloadPhotoSetsOperation* downloadPhotosets = [ZFDownloadPhotoSetsOperation downloadPhotoSetsWithGroup:self.user.rootGroup];
+//    downloadPhotosets.delegate = self;
+//    
+///*    FLResult result =  */
+//    [self runWorker: downloadPhotosets];
+//
+//}
+
+
+//- (FLFinisher*) beginDownloadingGroupList:(id) observer 
+//                               completion:(FLBlockWithResult) completion {
+//
+//
+//    FLUserLogin* userLogin = self.user.credentials;
+//    
+//    ZFLoadGroupHierarchyOperation* operation =
+//        [ZFLoadGroupHierarchyOperation loadGroupHierarchyOperation:userLogin]; 
+//
+//    operation.observer = observer;
+//
+//    return [operation startInContext:self completion:completion];
+//}
+
 @end

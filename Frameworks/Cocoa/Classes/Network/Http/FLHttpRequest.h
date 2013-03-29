@@ -25,7 +25,7 @@
 
 @protocol FLHttpRequestAuthenticator <NSObject>
 //// this needs to be synchronous for scheduling reasons amoung concurrent requests.
-- (FLResult) authenticateHttpRequest:(FLHttpRequest*) request;
+- (void) authenticateHttpRequest:(FLHttpRequest*) request;
 @end
 
 @protocol FLHttpRequestContext <NSObject>

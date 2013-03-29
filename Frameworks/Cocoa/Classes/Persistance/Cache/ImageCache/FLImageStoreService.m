@@ -30,7 +30,13 @@
 @implementation FLImageStoreService
 
 @synthesize imageFolder = _imageFolder;
-@synthesize delegate = _delegate;
+
+- (id) init {
+    self = [super initWithRootNameForDelegateMethods:@"imageStoreService"];
+    if(self) {
+    }
+    return self;
+}
 
 #if FL_MRC
 - (void) dealloc {
@@ -79,5 +85,8 @@
     self.imageFolder = nil;
     [self.delegate imageStoreServiceDidClose:self];
 }
+
+
+
 
 @end

@@ -18,13 +18,11 @@
 	NSString* _name;
 	NSUInteger _totalStepCount;
 	NSUInteger _currentStep;
-    __unsafe_unretained id<FLLengthyTaskDelegate> _delegate;
 }
 
 + (id) lengthyTask;
 
 @property (readwrite, strong, nonatomic) NSString* taskName;
-@property (readwrite, assign) id<FLLengthyTaskDelegate> delegate;
 @property (readonly, assign, nonatomic) NSUInteger totalStepCount;
 @property (readwrite, assign, nonatomic) NSUInteger stepCount;
 

@@ -12,35 +12,61 @@
 
 @implementation ZFAuthenticationOperation
 
+@synthesize user = _credentials;
+
+- (id) initWithHttpUser:(ZFHttpUser*) user {
+    self = [super init];
+    if(self) {
+        _credentials = FLRetain(user);
+    }
+    
+    return self;
+}
+
++ (id) authenticationOperation:(ZFHttpUser*) user {
+    return FLAutorelease([[[self class] alloc] initWithHttpUser:user]);
+}
+
 - (FLResult) sendAuthenticatedRequest:(FLHttpRequest*) request 
                             userLogin:(FLUserLogin*) userLogin {
 
     request.disableAuthenticator = YES;
     [request setAuthenticationToken:userLogin.authToken];
     
-    return FLThrowIfError([self runWorker:request]);
+    return [self runWorker:request];
 }
+
+#if FL_MRC
+- (void) dealloc {
+    [_credentials release];
+    [super dealloc];
+}
+#endif
 
 - (FLResult) runOperation {
 
-    FLUserLogin* authenticatedUser = self.userLogin;
+    FLUserLogin* authenticatedUser = self.user.credentials;
 
-    ZFUser* privateProfile = [self sendAuthenticatedRequest:[ZFHttpRequest loadPrivateProfileHttpRequest] 
-                                                  userLogin:authenticatedUser ];
+    ZFUser* privateProfile = 
+        [self sendAuthenticatedRequest:[ZFHttpRequest loadPrivateProfileHttpRequest] 
+                             userLogin:authenticatedUser ];
     
-    ZFUser* publicProfile =  [self sendAuthenticatedRequest:[ZFHttpRequest loadPublicProfileHttpRequest:authenticatedUser.userName] 
-                                                  userLogin:authenticatedUser ];
-    
-    
-    NSNumber* videoBool =  [self sendAuthenticatedRequest:[ZFHttpRequest checkPrivilegeHttpRequest:authenticatedUser.userName
-                                                                                     privilegeName:ZFVideoPrivilege] 
-                                                userLogin:authenticatedUser ];
+    ZFUser* publicProfile =  
+        [self sendAuthenticatedRequest:[ZFHttpRequest loadPublicProfileHttpRequest:authenticatedUser.userName] 
+                             userLogin:authenticatedUser ];
     
     
+    NSNumber* videoBool =  
+        [self sendAuthenticatedRequest:[ZFHttpRequest checkPrivilegeHttpRequest:authenticatedUser.userName
+                                                                  privilegeName:ZFVideoPrivilege] 
+                             userLogin:authenticatedUser ];
     
-    NSNumber* scrapbookBool =  [self sendAuthenticatedRequest:[ZFHttpRequest checkPrivilegeHttpRequest:authenticatedUser.userName
-                                                                                         privilegeName:ZFScrapbookPrivilege] 
-                                                    userLogin:authenticatedUser ];
+    
+    
+    NSNumber* scrapbookBool =  
+        [self sendAuthenticatedRequest:[ZFHttpRequest checkPrivilegeHttpRequest:authenticatedUser.userName
+                                                                  privilegeName:ZFScrapbookPrivilege] 
+                             userLogin:authenticatedUser ];
 
 
 
@@ -57,6 +83,8 @@
     }
     
     authenticatedUser.isAuthenticatedValue = YES;
+    self.user.privateProfile = privateProfile;
+    self.user.publicProfile = publicProfile;
     
     FLLog(@"Authentication completed");
     

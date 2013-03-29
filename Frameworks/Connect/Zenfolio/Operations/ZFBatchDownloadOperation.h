@@ -51,7 +51,6 @@ typedef struct {
 
 + (id) downloadOperation:(NSSet*) photoSetIDs 
                rootGroup:(ZFGroup*) rootGroup
-           objectStorage:(id<FLObjectStorage>) storage 
          destinationPath:(NSString*) destinationPath
               mediaTypes:(NSArray*) mediaTypes;
 @end

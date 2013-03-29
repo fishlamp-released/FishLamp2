@@ -54,7 +54,7 @@
 
 - (FLHttpResponse*) sendRequest {
 
-#if FIXME
+#if REFACTOR
     NSFileHandle* file = [NSFileHandle fileHandleForReadingAtPath:_imageFile.filePath];
     [file seekToFileOffset:_fileOffset];
     NSData* data = [file readDataOfLength: (unsigned long) _chunkSize];

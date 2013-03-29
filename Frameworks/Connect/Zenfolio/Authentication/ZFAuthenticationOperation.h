@@ -6,10 +6,24 @@
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
 
-#import "FLUserAuthenticatorOperation.h"
+#import "ZFHttpUser.h"
+#import "FLOperation.h"
 
-// use this as base class.
+@protocol ZFAuthenticationOperationDelegate;
 
-@interface ZFAuthenticationOperation : FLUserAuthenticatorOperation
+@interface ZFAuthenticationOperation : FLOperation {
+@private
+    ZFHttpUser* _credentials;
+}
 
+@property (readonly, strong, nonatomic) ZFHttpUser* user;
+
+- (id) initWithHttpUser:(ZFHttpUser*) user;
++ (id) authenticationOperation:(ZFHttpUser*) user;
+
+@end
+
+@protocol ZFAuthenticationOperationDelegate <NSObject>
+- (void) authenticationOperation:(ZFAuthenticationOperation*) operation 
+             didAuthenticateUser:(ZFHttpUser*) user;
 @end

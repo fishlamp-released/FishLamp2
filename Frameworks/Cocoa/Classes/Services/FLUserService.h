@@ -16,10 +16,7 @@
     NSString* _password;
     NSString* _authenticationDomain;
     BOOL _rememberPassword;
-    __unsafe_unretained id<FLUserLoginServiceDelegate> _delegate;
 }
-@property (readwrite, assign, nonatomic) id delegate;
-
 @property (readwrite, strong, nonatomic) NSString* userName;
 @property (readwrite, strong, nonatomic) NSString* password;
 @property (readwrite, assign, nonatomic) BOOL rememberPassword;
@@ -31,9 +28,14 @@
 - (void) loadFromUserDefaults;
 - (void) saveToUserDefaults;
 
+- (void) loadCredentials;
+- (void) saveCredentials;
+
+- (BOOL) canAuthenticate;
+
 @end
 
-@protocol FLUserLoginServiceDelegate <NSObject>
+@protocol FLUserLoginServiceDelegate <FLServiceDelegate>
 - (void) userServiceDidOpen:(FLUserService*) service;
 - (void) userServiceDidClose:(FLUserService*) service;
 @end

@@ -22,5 +22,12 @@
 
 - (BOOL) sendObservation:(SEL) messageSelector withObject:(id) object1 withObject:(id) object2;
 
+- (BOOL) sendObservation:(SEL) messageSelector toObserver:(id) observer;
+
+- (BOOL) sendObservation:(SEL) messageSelector toObserver:(id) observer withObject:(id) object;
+
+- (BOOL) sendObservation:(SEL) messageSelector toObserver:(id) observer withObject:(id) object1 withObject:(id) object2;
+
+
 @end
 

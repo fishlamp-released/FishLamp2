@@ -178,7 +178,7 @@
         [self sendMessage:@selector(httpRequestWillAuthenticate:) toListener:[self observer]];
         [self willAuthenticate];
             
-        FLThrowIfError([self.authenticator authenticateHttpRequest:self]);
+        [self.authenticator authenticateHttpRequest:self];
         
         [self didAuthenticate];
         [self sendMessage:@selector(httpRequestDidAuthenticate:) toListener:[self observer]];

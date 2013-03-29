@@ -22,16 +22,12 @@
     FLObjectStorageService* _objectCacheService;
     FLHttpRequestAuthenticationService* _httpRequestAuthenticator;
 
-    ZFGroup* _rootGroup;
-    
-    __unsafe_unretained id<ZFHttpControllerDelegate> _delegate;
+    ZFHttpUser* _user;
 }
 
 + (id) httpController;
 
-@property (readwrite, assign, nonatomic) id<ZFHttpControllerDelegate> delegate;
-
-@property (readwrite, strong) ZFGroup* rootGroup;
+@property (readwrite, strong) ZFHttpUser* user;
 
 @property (readonly, strong) FLUserService* userService;
 @property (readonly, strong) FLObjectStorageService* objectCache;
@@ -39,20 +35,37 @@
 
 - (void) logoutUser;
 
-- (void) requestCancel;
+
+- (FLFinisher*) beginDownloadingPhotoSetsForRootGroup:(id) observer 
+                           downloadedPhotoSetSelector:(SEL) photoSetSelector
+                                     finishedSelector:(SEL) finishedSelector;
+
+- (FLFinisher*) beginDownloadingRootGroup:(id) observer 
+                         finishedSelector:(SEL) selector; // @selector(something:result:)
 
 @end
 
 @protocol ZFHttpControllerDelegate <NSObject>
+@optional
 
 - (void) httpController:(ZFHttpController*) controller
-    didAuthenticateUser:(FLUserLogin*) userLogin;
+    didAuthenticateUser:(ZFHttpUser*) userLogin;
 
 - (void) httpController:(ZFHttpController*) controller 
-          didLogoutUser:(FLUserLogin*) userLogin;
+          didLogoutUser:(ZFHttpUser*) userLogin;
 
-- (void) httpControllerDidOpenService:(ZFHttpController*) controller;
 
-- (void) httpControllerDidCloseService:(ZFHttpController*) controller;
-          
+- (void) httpControllerDidClose:(ZFHttpController*) controller;
+- (void) httpControllerDidOpen:(ZFHttpController*) controller;
+         
+         
+         
+@end
+
+@protocol ZFHttpControllerObserver <NSObject>
+
+//- (void) httpController:(ZFHttpController*) controller didDownloadGroupWithResult:(FLResult) result;
+//- (void) httpController:(ZFHttpController*) controller didDownloadPhotoSetWithResult:(FLResult) result;
+//- (void) httpController:(ZFHttpController*) controller didDownloadPhotoSetsWithResult:(FLResult) groupOrError;
+
 @end

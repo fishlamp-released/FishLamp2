@@ -11,19 +11,13 @@
 #import "ZFWebApi.h"
 
 @interface ZFLoadGroupHierarchyOperation ()
-@property (readwrite, assign) int downloadedPhotoSetCount;
-@property (readwrite, assign) int totalPhotoSetCount;
 @end
 
 @implementation ZFLoadGroupHierarchyOperation
 
-@synthesize downloadedPhotoSetCount = _downloadedPhotoSetCount;
-@synthesize totalPhotoSetCount = _totalPhotoSetCount;
-
-- (id) initWithUserLogin:(FLUserLogin*) userLogin objectStorage:(id<FLObjectStorage>) objectStorage {
-    self = [super initWithObjectStorage:objectStorage];
+- (id) initWithCredentials:(FLUserLogin*) userLogin {
+    self = [super init];
     if(self) {
-        FLAssertNotNil(objectStorage);
         _userLogin = FLRetain(userLogin);
     }
     return self;
@@ -36,37 +30,25 @@
 }
 #endif
 
-
-+ (id) loadGroupHierarchyOperation:(FLUserLogin*) userLogin objectStorage:(id<FLObjectStorage>) objectStorage {
-    return FLAutorelease([[[self class] alloc] initWithUserLogin:userLogin objectStorage:objectStorage]);
++ (id) loadGroupHierarchyOperation:(FLUserLogin*) userLogin {
+    return FLAutorelease([[[self class] alloc] initWithCredentials:userLogin]);
 }
 
 - (FLResult) runOperation {
 
-    [self sendObservation:@selector(loadGroupHierarchyOperation:willDownloadGroupListForUser:) withObject:_userLogin];
+    FLAssertNotNil(self.objectStorage);
 
     FLHttpRequest* request = [ZFHttpRequest loadGroupHierarchyHttpRequest:_userLogin.userName];
     FLAssertNotNil(request);
 
     [self abortIfNeeded];
 
-    ZFGroup* group = FLThrowIfError([self runWorker:request]);
+    ZFGroup* group = [self runWorker:request];
     FLAssertNotNil(group);
     
     [self.objectStorage writeObject:group];
 
-    [self sendObservation:@selector(loadGroupHierarchyOperation:didDownloadGroupList:)  withObject:group];
-
-    ZFDownloadPhotoSetsOperation* downloadPhotosets = [ZFDownloadPhotoSetsOperation downloadPhotoSetsWithGroup:group objectStorage:self.objectStorage];
-    
-/*    FLResult result =  */
-    FLThrowIfError([self runWorker: downloadPhotosets]);
-    
     return group;
 }
-
-//- (void) photoSetDownloader:(ZFDownloadPhotoSetsOperation*) operation didDownloadPhotoSet:(ZFPhotoSet*) photoSet {
-//    [self sendMessage:@"syncGroupHierarchy:didDownloadPhotoSet:" withObject:photoSet];
-//}
 
 @end

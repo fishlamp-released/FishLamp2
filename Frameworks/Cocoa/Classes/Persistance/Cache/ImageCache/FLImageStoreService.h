@@ -19,10 +19,7 @@
 @interface FLImageStoreService : FLObjectStorageService {
 @private
     FLImageFolder* _imageFolder;
-    
-    __unsafe_unretained id<FLImageStoreDelegate> _delegate;
 }
-@property (readwrite, assign, nonatomic) id<FLImageStoreDelegate> delegate;
 @property (readwrite, strong) FLImageFolder* imageFolder;
 
 - (void) deleteImage:(FLStorableImage*) image;

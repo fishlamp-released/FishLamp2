@@ -7,15 +7,20 @@
 //
 
 #import "FLCocoaRequired.h"
+#import "FLObservable.h"
 
-@interface FLService : NSObject {
+@interface FLService : FLObservable {
 @private
     NSMutableArray* _subServices;
     BOOL _serviceOpen;
     __unsafe_unretained id _superService;
+    __unsafe_unretained id _delegate;
+    
+    SEL _didOpenDelegateMethod;
+    SEL _didCloseDelegateMethod;
 }
 
-@property (readonly, assign, getter=isServiceOpen) BOOL serviceOpen;
+- (id) initWithRootNameForDelegateMethods:(NSString*) rootName;
 
 @property (readonly, assign) id superService;
 @property (readonly, assign) id rootService;
@@ -25,15 +30,31 @@
 - (void) removeSubService:(FLService*) service;
 - (void) visitSubServices:(void (^)(id service, BOOL* stop)) visitor;
 
+@property (readonly, assign, getter=isServiceOpen) BOOL serviceOpen;
+- (void) openService:(id) opener;
+- (void) closeService:(id) opener;
+
+
+// for delegates
+@property (readwrite, assign, nonatomic) id delegate;
+
 // optional overrides
-- (void) openService;
-- (void) closeService;
 - (void) didMoveToSuperService:(id) superService;
+
+- (void) willOpenService;
+- (void) openService;
+- (void) didOpenService;
+
+- (void) willCloseService;
+- (void) closeService;
+- (void) didCloseService;
 
 @end
 
-#define FLSynthesizeServiceProperty(__GETTER__, __SETTER__, __SERVICE_TYPE__, __IVAR_NAME__) \
-    - (__SERVICE_TYPE__) __GETTER__ { return FLAtomicPropertyGet(&__IVAR_NAME__); } \
-    - (void) __SETTER__:(__SERVICE_TYPE__) newValue { FLAtomicAddServiceToService(&__IVAR_NAME__, newValue, self); } 
+@protocol FLServiceDelegate <NSObject>
 
-extern void FLAtomicAddServiceToService(__strong id* ivar, FLService* newService, FLService* parentService);
+@end
+
+
+
+
