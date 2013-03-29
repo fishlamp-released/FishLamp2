@@ -30,7 +30,7 @@
 #endif
 
 
-- (FLResult) runOperationInContext:(id) context withObserver:(id) observer {
+- (FLResult) performSynchronously {
 	FLAssertIsNotNil(_database);
 	FLAssertIsNotNil(_input);
 	[_database writeObject:_input];

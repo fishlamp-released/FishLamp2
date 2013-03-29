@@ -42,7 +42,7 @@ FLSynthesizeCachedObjectHandlerProperty(ZFCachedCategories);
 	return self;
 }
 
-+ (FLOperation*) subOperation {
++ (FLSynchronousOperation*) subOperation {
     return _subOperation;
 }
 
@@ -61,7 +61,7 @@ FLSynthesizeCachedObjectHandlerProperty(ZFCachedCategories);
 	[self.cache writeObject:_inputArray];
 }
 
-- (FLResult) runOperationInContext:(id) context withObserver:(id) observer {
+- (FLResult) performSynchronously {
     [super runOperationWithInput];
 	if(!self.error) {
 		[_manager setCategoryArray:self.output];

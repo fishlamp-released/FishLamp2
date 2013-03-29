@@ -21,7 +21,7 @@
 
 @interface FLOperationQueue ()
 @property (readwrite, strong, nonatomic) NSArray* operations;
-@property (readwrite, strong) FLOperation* currentOperation;
+@property (readwrite, strong) FLSynchronousOperation* currentOperation;
 @end
 
 @implementation FLOperationQueue
@@ -88,7 +88,7 @@
     }
 }
 
-- (void) operationWasAdded:(FLOperation*) operation {
+- (void) operationWasAdded:(FLSynchronousOperation*) operation {
     
 //    [operation addObserver:self];
 //    
@@ -96,7 +96,7 @@
 //    [self sendMessage:@"operationQueue:operationWasAdded:" withObject:operation];
 }
 
-- (void) addOperation:(FLOperation*) operation {
+- (void) addOperation:(FLSynchronousOperation*) operation {
     FLAssertIsNotNil(operation);
     @synchronized(self) {
         [_operations addObject:operation];
@@ -106,12 +106,12 @@
 
 - (void) addOperationsWithArray:(NSArray*) operations {
     @synchronized(self) {
-        for(FLOperation* operation in operations) {
+        for(FLSynchronousOperation* operation in operations) {
             [_operations addObject:operation];
         }
     }
     
-    for(FLOperation* operation in operations) {
+    for(FLSynchronousOperation* operation in operations) {
         [self operationWasAdded:operation];
     }
 }
@@ -121,11 +121,11 @@
 }
 
 //- (void) addOperationWithBlock:(FLBlockWithOperation) operationBlock {
-//    [self addOperation:[FLOperation operation:operationBlock]];
+//    [self addOperation:[FLSynchronousOperation operation:operationBlock]];
 //}
 
-//- (void) insertOperation:(FLOperation*) newOperation
-//          afterOperation:(FLOperation*) afterOperation {
+//- (void) insertOperation:(FLSynchronousOperation*) newOperation
+//          afterOperation:(FLSynchronousOperation*) afterOperation {
 //
 //    FLAssertIsNotNilWithComment(newOperation, nil);
 //    FLAssertIsNotNilWithComment(afterOperation, nil);
@@ -142,7 +142,7 @@
 //    FLAssertWithComment(tag != 0, @"tag must be nonzero");
 //
 //    @synchronized(self) {
-//        for(FLOperation* operation in _operations){
+//        for(FLSynchronousOperation* operation in _operations){
 //            if(operation.tag == tag) {   
 //                return operation;
 //            }
@@ -156,7 +156,7 @@
     FLAssertIsNotNilWithComment(operationID, nil);
     @synchronized(self) {
         if(operationID) {
-            for(FLOperation* operation in _operations) {
+            for(FLSynchronousOperation* operation in _operations) {
                 if(operation.operationID && [operationID isEqual:operation.operationID]) {   
                     return operation;
                 }
@@ -169,7 +169,7 @@
 
 - (id) operationByClass:(Class) class {
     @synchronized(self) {
-        for(FLOperation* operation in _operations) {
+        for(FLSynchronousOperation* operation in _operations) {
             if([operation isKindOfClass:class]) {
                 return operation;
             }
@@ -217,12 +217,12 @@
     return [inResult objectForKey:[[self operationByClass:aClass] operationID]];
 }
 
-- (void) operationWasRemoved:(FLOperation*) operation {
+- (void) operationWasRemoved:(FLSynchronousOperation*) operation {
 //    [operation removeObserver:self];
 //    [self sendMessage:@"operationQueue:operationWasRemoved:" withObject:operation];
 }
 
-- (void) removeOperation:(FLOperation*) operation {
+- (void) removeOperation:(FLSynchronousOperation*) operation {
     @synchronized(self) {
         [_operations removeObject:operation];
     }
@@ -238,7 +238,7 @@
             [_operations removeAllObjects];
         }
         
-        for(FLOperation* operation in notifyList) {
+        for(FLSynchronousOperation* operation in notifyList) {
             [self operationWasRemoved:operation];
         }
     }
@@ -260,23 +260,23 @@
     [self.currentOperation requestCancel];
 }
 
-- (void) operationWillRun:(FLOperation*) operation {
+- (void) operationWillRun:(FLSynchronousOperation*) operation {
 //    [self sendMessage:@"operationQueue:operationWillRun:" withObject:operation];
 }
 
-- (void) operationDidFinish:(FLOperation*) operation {
+- (void) operationDidFinish:(FLSynchronousOperation*) operation {
 //    [self sendMessage:@"operationQueue:operationDidFinish:" withObject:operation];
 }
 
-- (void) operationWasCancelled:(FLOperation*) operation {
+- (void) operationWasCancelled:(FLSynchronousOperation*) operation {
 //    [self sendMessage:@"operationQueue:operationWasCancelled:" withObject:operation];
 }
 
-- (FLResult) runOperation:(FLOperation*) operation {
+- (FLResult) performSynchronously:(FLSynchronousOperation*) operation {
 
     @try {
         self.currentOperation = operation;
-        return [self runWorker:operation];
+        return [self runChildSynchronously:operation];
     }
     @catch(NSException* ex) {
         return ex.error;
@@ -287,12 +287,12 @@
     
 }
 
-- (FLResult) runOperation {
+- (FLResult) performSynchronously {
 
     id outResult = [NSMutableDictionary dictionary];
     
-    for(FLOperation* operation in self.operations.forwardIterator) {
-        id operationResult = [self runOperation:operation];
+    for(FLSynchronousOperation* operation in self.operations.forwardIterator) {
+        id operationResult = [self performSynchronously:operation];
 
         if(self.abortNeeded) {
             operationResult = [NSError cancelError];

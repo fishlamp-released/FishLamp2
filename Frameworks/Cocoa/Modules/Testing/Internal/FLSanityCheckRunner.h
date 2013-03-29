@@ -7,9 +7,9 @@
 //
 
 #import "FLTestFinder.h"
-#import "FLOperation.h"
+#import "FLSynchronousOperation.h"
 
-@interface FLSanityCheckRunner : FLOperation<FLTestFinder> {
+@interface FLSanityCheckRunner : FLSynchronousOperation<FLTestFinder> {
 @private
     NSMutableSet* _sanityTests;
 }

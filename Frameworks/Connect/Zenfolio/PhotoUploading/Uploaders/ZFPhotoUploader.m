@@ -365,7 +365,7 @@ FLAssertDefaultInitNotCalled();
         [self.progressController.progressView setTitle:[NSString stringWithFormat:(NSLocalizedString(@"Saving %@ to %@", nil)), self.photo.displayName, [UIDevice currentDevice].deviceDisplayName]];
         
         FLSavePhotoToUsersPhotoAlbumOperation* saver = FLAutorelease([[FLSavePhotoToUsersPhotoAlbumOperation alloc] initWithPhotoInput:self.photo.imageAsset]);
-        saver.willFinishBlock = ^(FLOperation* operation) {
+        saver.willFinishBlock = ^(FLSynchronousOperation* operation) {
             
             if(operation.didSucceed) {
                 self.photo.wasSavedToDeviceBeforeUploadValue = YES;

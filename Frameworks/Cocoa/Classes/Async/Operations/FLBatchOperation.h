@@ -6,11 +6,11 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import "FLOperation.h"
+#import "FLSynchronousOperation.h"
 
 #import "FLOperationQueue.h"
 
-@interface FLBatchOperation : FLOperation {
+@interface FLBatchOperation : FLSynchronousOperation {
 @private
 	NSUInteger _completedCount;
 	NSUInteger _batchCount;
@@ -22,7 +22,7 @@
 
 - (void) addBatchObjects:(NSArray*) batchObjects;
 
-- (void) processBatchObject:(id) object inContext:(id) context withObserver:(id) observer;
+- (void) processBatchObject:(id) object;
 
 @end
 

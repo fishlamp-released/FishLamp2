@@ -41,7 +41,7 @@
 //
 //    FLHttpRequest* request = [ZFHttpRequest loadPhotoSetHttpRequest:[NSNumber numberWithInt:_photoSetID]];
 //
-//    return FLConfirmResultType([self runWorker:request], ZFPhotoSet);
+//    return FLConfirmResultType([self runChildSynchronously:request], ZFPhotoSet);
 //}
 //
 //- (void) saveObjectToDatabase:(id) object {

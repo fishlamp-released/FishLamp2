@@ -44,7 +44,7 @@
 - (void) testAuthentication {
     
 //    ZFAuthenticater* operation = [ZFAuthenticater loginOperation];
-//    FLThrowIfError([operation runWorker]);
+//    FLThrowIfError([operation runChildSynchronously]);
     
 //    FLConfirm([self.context userService].isAuthenticated);
 //    FLConfirm([self.context userService].userLogin.isAuthenticatedValue);
@@ -58,7 +58,7 @@
 }
 
 - (void) testLoadAllGroupsWithOneCall {
-//    FLOperation* operation = [ZFWebService]
+//    FLSynchronousOperation* operation = [ZFWebService]
 }
 
 

@@ -33,7 +33,7 @@
 //}
 //#endif
 //
-//- (FLResult) runOperationInContext:(id) context withObserver:(id) observer {
+//- (FLResult) performSynchronously {
 //    
 //    NSMutableArray* outputList = [NSMutableArray array];
 //    for(NSNumber* idObject in _groupList) {

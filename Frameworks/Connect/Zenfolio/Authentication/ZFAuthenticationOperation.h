@@ -7,11 +7,11 @@
 //
 
 #import "ZFHttpUser.h"
-#import "FLOperation.h"
+#import "FLSynchronousOperation.h"
 
 @protocol ZFAuthenticationOperationDelegate;
 
-@interface ZFAuthenticationOperation : FLOperation {
+@interface ZFAuthenticationOperation : FLSynchronousOperation {
 @private
     ZFHttpUser* _credentials;
 }

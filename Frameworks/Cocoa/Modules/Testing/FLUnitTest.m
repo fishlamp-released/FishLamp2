@@ -158,7 +158,7 @@
     return YES;
 }
 
-- (FLResult) runOperation {
+- (FLResult) performSynchronously {
     FLTestResultCollection* results = [FLTestResultCollection testResultCollection];
         
     if([self willRunTests]) {
@@ -183,7 +183,7 @@
 
                     FLLog(@"STARTING %@", testCase.testCaseName);
                     
-                    [self runWorker:testCase];
+                    [self runChildSynchronously:testCase];
 
                     [result setPassed];
                     FLLog(@"PASS!")

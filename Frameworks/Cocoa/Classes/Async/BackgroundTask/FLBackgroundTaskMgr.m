@@ -331,23 +331,23 @@ FIXME("attach to user sessions....");
     }
 }
 
-- (void) operationQueue:(FLOperationQueue*) queue operationWillRun:(FLOperation*) operation {
+- (void) operationQueue:(FLOperationQueue*) queue operationWillRun:(FLSynchronousOperation*) operation {
     [self _cancel];
 }
 
-- (void) operationQueue:(FLOperationQueue*) queue operationDidFinish:(FLOperation*) operation {
+- (void) operationQueue:(FLOperationQueue*) queue operationDidFinish:(FLSynchronousOperation*) operation {
     [self scheduleNextBackgroundTask];
 }
 
-- (void) operationContextManager:(FLOperationContextManager*) manager
-             contextWasActivated:(FLOperationContext*) queue {
-//    [queue addObserver:self];
-}
-
-- (void) operationContextManager:(FLOperationContextManager*) manager
-           contextWasDeactivated:(FLOperationContext*) queue {
-//    [queue removeObserver:self];
-}
+//- (void) operationContextManager:(FLOperationContextManager*) manager
+//             contextWasActivated:(FLOperationContext*) queue {
+////    [queue addObserver:self];
+//}
+//
+//- (void) operationContextManager:(FLOperationContextManager*) manager
+//           contextWasDeactivated:(FLOperationContext*) queue {
+////    [queue removeObserver:self];
+//}
 @end
 
 

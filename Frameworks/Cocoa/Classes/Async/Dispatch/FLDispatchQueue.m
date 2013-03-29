@@ -10,6 +10,7 @@
 
 #import "NSObject+FLSelectorPerforming.h"
 #import "FLFinisher.h"
+#import "FLOperation.h"
 
 static void * const s_queue_key = (void*)&s_queue_key;
 
@@ -86,11 +87,9 @@ static void * const s_queue_key = (void*)&s_queue_key;
                           block:(FLBlock) block 
                    withFinisher:(FLFinisher*) finisher {
 
-    [finisher setWillBeDispatchedByDispatcher:self];
- 
+    
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (delay * NSEC_PER_SEC)), _dispatch_queue, ^{
         @try {
-            [finisher setWillStartInDispatcher:self];
             
             if(block) {
                 block();
@@ -107,12 +106,9 @@ static void * const s_queue_key = (void*)&s_queue_key;
 - (void) queueBlock:(FLBlock) block 
           withFinisher:(FLFinisher*) finisher {
 
-    [finisher setWillBeDispatchedByDispatcher:self];
     
     dispatch_async(_dispatch_queue, ^{
         @try {
-            [finisher setWillStartInDispatcher:self];
-            
             if(block) {
                 block();
             }
@@ -124,15 +120,11 @@ static void * const s_queue_key = (void*)&s_queue_key;
     });
 }
 
-- (void) queueFinishableBlock:(FLBlockWithFinisher) block 
+- (void) queueFinishableBlock:(fl_finisher_block_t) block 
                     withFinisher:(FLFinisher*) finisher {
     
-    [finisher setWillBeDispatchedByDispatcher:self];
-
     dispatch_async(_dispatch_queue, ^{
         @try {
-            [finisher setWillStartInDispatcher:self];
-            
             if(block) {
                 block(finisher);
             }
@@ -159,9 +151,102 @@ static void * const s_queue_key = (void*)&s_queue_key;
     } 
 }    
 
-@end
+- (void) dispatchSync:(dispatch_block_t) block {
 
-@implementation FLAsyncQueue (SharedDispatchQueues)
+    __block NSError* error = nil;
+    
+    block = FLCopyWithAutorelease(block);
+    
+    dispatch_sync(self.dispatch_queue_t, ^{
+        @try {
+            block();
+        }
+        @catch(NSException* ex) {
+            error = ex.error;
+        }
+    });
+    
+    FLThrowIfError(error);
+}
+
+- (FLResult) finishSync:(fl_finisher_block_t) block {
+    
+    FLFinisher* finisher = [FLFinisher finisher];
+    
+    block = FLCopyWithAutorelease(block);
+    
+    dispatch_sync(self.dispatch_queue_t, ^{
+        @try {
+            block(finisher);
+        }
+        @catch(NSException* ex) {
+            [finisher setFinishedWithResult:ex.error];
+       }
+    });
+    
+    FLThrowIfError(finisher.result);
+    return finisher.result;
+}
+
+- (FLFinisher*) queueBlock:(fl_block_t) block 
+                completion:(fl_completion_block_t) completion {
+
+    FLFinisher* finisher = [FLFinisher finisher:completion];
+
+    FLAssertNotNil(block);
+    FLAssertNotNil(finisher);
+
+    [self queueBlock:block withFinisher:finisher];
+
+    return finisher;    
+}
+
+//- (FLFinisher*) queueFinishableBlock:(fl_finisher_block_t) block {
+//    return [self queueFinishableBlock:block completion:nil];
+//}
+
+- (FLFinisher*) queueFinishableBlock:(fl_finisher_block_t) block 
+                          completion:(fl_completion_block_t) completion {
+
+    FLFinisher* finisher = [FLFinisher finisher:completion];
+    FLAssertNotNil(block);
+    FLAssertNotNil(finisher);
+    [self queueFinishableBlock:block withFinisher:finisher];
+    return finisher;
+}
+
+- (FLFinisher*) queueBlockWithDelay:(NSTimeInterval) delay
+                              block:(fl_block_t) block
+                         completion:(fl_completion_block_t) completion {
+
+    FLFinisher* finisher = [FLFinisher finisher];
+    [self queueBlockWithDelay:delay block:block withFinisher:finisher];
+    return finisher;
+}                          
+
+- (FLFinisher*) queueOperation:(id<FLOperation>) operation 
+                    completion:(fl_result_block_t) completion {
+
+    FLAssertNotNil(operation);
+    FLFinisher* finisher = [FLFinisher finisherForOperation:operation completion:completion];
+
+    dispatch_async(_dispatch_queue, ^{
+        @try {
+            [operation performUntilFinished:finisher];
+        }
+        @catch(NSException* ex) {
+            [finisher setFinishedWithResult:ex.error];
+        }
+    });
+    
+    return finisher;
+}                  
+
+- (FLResult) runSynchronously:(id<FLOperation>) operation {
+    return [self finishSync:^(FLFinisher* finisher) {
+        [operation performUntilFinished:finisher];
+    }];
+}
 
 + (FLDispatchQueue*) lowPriorityQueue {
     FLReturnStaticObject( [[FLDispatchQueue alloc] initWithDispatchQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)]);
@@ -196,37 +281,22 @@ static void * const s_queue_key = (void*)&s_queue_key;
     return [super initWithLabel:[NSString stringWithFormat:@"com.fishlamp.queue.fifo%d", s_count++] attr:DISPATCH_QUEUE_SERIAL];
 }
 
-+ (FLObjectPool*) pool {
-    static FLObjectPoolFactory s_factory = ^{
-        return [FLFifoAsyncQueue fifoAsyncQueue];
-    };
-
-    FLReturnStaticObject([[FLObjectPool alloc] initWithObjectFactory:s_factory]); 
-}
+//+ (FLObjectPool*) pool {
+//    static FLObjectPoolFactory s_factory = ^{
+//        return [FLFifoAsyncQueue fifoAsyncQueue];
+//    };
+//
+//    FLReturnStaticObject([[FLObjectPool alloc] initWithObjectFactory:s_factory]); 
+//}
 
 - (void) releaseToPool {
 
 }
 
-
 @end
 
-void FLDispatchSync(FLDispatchQueue* queue, dispatch_block_t block) {
 
-    __block NSError* error = nil;
-    
-    block = FLCopyWithAutorelease(block);
-    
-    dispatch_sync(queue.dispatch_queue_t, ^{
-        @try {
-            block();
-        }
-        @catch(NSException* ex) {
-            error = ex.error;
-        }
-    });
-    
-    FLThrowIfError(error);
-}
+
+
 
 

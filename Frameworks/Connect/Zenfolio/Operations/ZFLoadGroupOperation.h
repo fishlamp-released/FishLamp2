@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import "FLOperation.h"
+#import "FLSynchronousOperation.h"
 
-@interface ZFLoadGroupOperation : FLOperation {
+@interface ZFLoadGroupOperation : FLSynchronousOperation {
 @private
 //    NSNumber* _groupID;
 }

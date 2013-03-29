@@ -44,9 +44,9 @@ typedef void (^FLBlockWithHttpByteCount)(unsigned long count);
     FLBlock _willOpenBlock;
     FLBlock _didOpenBlock;
    
-    FLBlockWithResult _willCloseBlock;
-    FLBlockWithResult _didCloseBlock;
-    FLBlockWithResult _observerDidFinishBlock;
+    fl_result_block_t _willCloseBlock;
+    fl_result_block_t _didCloseBlock;
+    fl_result_block_t _observerDidFinishBlock;
     
     FLBlockWithError _encounteredErrorBlock;
     
@@ -58,9 +58,9 @@ typedef void (^FLBlockWithHttpByteCount)(unsigned long count);
 @property (readwrite, copy, nonatomic) FLBlock didAuthenticateBlock;
 @property (readwrite, copy, nonatomic) FLBlock willOpenBlock;
 @property (readwrite, copy, nonatomic) FLBlock didOpenBlock;
-@property (readwrite, copy, nonatomic) FLBlockWithResult willCloseBlock;
-@property (readwrite, copy, nonatomic) FLBlockWithResult didCloseBlock;
-@property (readwrite, copy, nonatomic) FLBlockWithResult didFinishBlock;
+@property (readwrite, copy, nonatomic) fl_result_block_t willCloseBlock;
+@property (readwrite, copy, nonatomic) fl_result_block_t didCloseBlock;
+@property (readwrite, copy, nonatomic) fl_result_block_t didFinishBlock;
 @property (readwrite, copy, nonatomic) FLBlockWithError encounteredErrorBlock;
 @property (readwrite, copy, nonatomic) FLBlockWithHttpByteCount didWriteBytesBlock;
 @property (readwrite, copy, nonatomic) FLBlockWithHttpByteCount didReadBytesBlock;

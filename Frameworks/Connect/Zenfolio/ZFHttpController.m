@@ -27,27 +27,28 @@
 @synthesize objectCache = _objectCacheService;
 @synthesize httpRequestAuthenticator = _httpRequestAuthenticator;
 @synthesize user = _user;
+@synthesize delegate = _delegate;
 
 + (id) httpController {
     return FLAutorelease([[[self class] alloc] init]);
 }
 
 - (id) init {
-    self = [super initWithRootNameForDelegateMethods:@"httpController"];
+    self = [super init]; // [super initWithRootNameForDelegateMethods:@"httpController"];
     if(self) {
-        _objectCacheService = [[FLObjectStorageService alloc] init];
-        [_objectCacheService setObjectStorage:[FLDictionaryObjectStorage dictionaryObjectStorage]];
-        [self addSubService:_objectCacheService];
-        
-        self.httpRequestAuthenticator = [ZFRegisteredUserAuthenticationService registeredUserAuthenticationService];
-        self.httpRequestAuthenticator.delegate = self;
-        [self addSubService:self.httpRequestAuthenticator];    
                 
         self.userService = [FLUserService userService];
         self.userService.authenticationDomain = @"www.zenfolio.com";
         self.userService.delegate = self;
 //        [self addSubService:self.userContext];   
 
+        _objectCacheService = [[FLObjectStorageService alloc] init];
+        [_objectCacheService setObjectStorage:[FLDictionaryObjectStorage dictionaryObjectStorage]];
+        [self.userService addSubService:_objectCacheService];
+        
+        self.httpRequestAuthenticator = [ZFRegisteredUserAuthenticationService registeredUserAuthenticationService];
+        self.httpRequestAuthenticator.delegate = self;
+        [self.userService addSubService:self.httpRequestAuthenticator];    
         
     }
     return self;
@@ -84,11 +85,9 @@
 }
 
 - (void) userServiceDidOpen:(FLUserService*) service {
-    [self openService:self];
 }
 
 - (void) userServiceDidClose:(FLUserService*) service {
-    [self closeService:self];
 }
 
 - (void) httpRequestAuthenticationService:(FLHttpRequestAuthenticationService*) service 
@@ -108,7 +107,7 @@
     [self.delegate httpController:self didLogoutUser:self.user];
 }
 
-- (id<FLWorkerContext>) httpRequestAuthenticationServiceGetWorkerContext:(FLHttpRequestAuthenticationService*) service {
+- (FLOperationContext*) httpRequestAuthenticationServiceGetWorkerContext:(FLHttpRequestAuthenticationService*) service {
     return self;
 }
 
@@ -116,8 +115,8 @@
     return self.user;
 }
 
-//- (void) didAddWorker:(id) object {
-//    [super didAddWorker:object];
+//- (void) didAddOperation:(id) object {
+//    [super didAddOperation:object];
 //    if([object respondsToSelector:@selector(delegate)]) {
 //        if(![object delegate]) {
 //            [object setDelegate:self];
@@ -125,8 +124,8 @@
 //    }
 //}
 //
-//- (void) didRemoveWorker:(id) object {
-//    [super didRemoveWorker:object];
+//- (void) didRemoveOperation:(id) object {
+//    [super didRemoveOperation:object];
 //    if([object respondsToSelector:@selector(delegate)]) {
 //        if([object delegate] == self) {
 //            [object setDelegate:nil];
@@ -146,7 +145,7 @@
     operation.downloadedPhotoSetSelector = photoSetSelector;
     operation.finishSelectorForObserver = finishedSelector;
 
-    return [operation startInContext:self completion:^(FLResult result) {
+    return [operation runAsynchronouslyInContext:self completion:^(FLResult result) {
 
     }];
 }        
@@ -160,14 +159,14 @@
     operation.observer = observer;
     operation.finishSelectorForObserver = finishedSelector;
 
-    return [operation startInContext:self completion:^(FLResult result) {
+    return [operation runAsynchronouslyInContext:self completion:^(FLResult result) {
         if(![result error]) {
             self.user.rootGroup = result;
         }
     }];
 }
 
-- (id<FLObjectStorage>) operationGetObjectStorage:(FLOperation*) operation {
+- (id<FLObjectStorage>) operationGetObjectStorage:(FLSynchronousOperation*) operation {
     return [self.objectCache objectStorage];
 }
 
@@ -177,13 +176,13 @@
 //    downloadPhotosets.delegate = self;
 //    
 ///*    FLResult result =  */
-//    [self runWorker: downloadPhotosets];
+//    [self runChildSynchronously: downloadPhotosets];
 //
 //}
 
 
 //- (FLFinisher*) beginDownloadingGroupList:(id) observer 
-//                               completion:(FLBlockWithResult) completion {
+//                               completion:(fl_result_block_t) completion {
 //
 //
 //    FLUserLogin* userLogin = self.user.credentials;

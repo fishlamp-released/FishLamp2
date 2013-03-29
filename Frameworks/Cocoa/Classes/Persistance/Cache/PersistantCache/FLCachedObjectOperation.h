@@ -10,7 +10,7 @@
 #import "FishLampCore.h"
 #import "FLResult.h"
 #import "FLDatabase.h"
-#import "FLOperation.h"
+#import "FLSynchronousOperation.h"
 
 @protocol FLCacheObjectOperationSubclass <NSObject>
 - (id) loadObjectFromDatabase;
@@ -18,7 +18,7 @@
 - (FLResult) runSubOperations;
 @end
 
-@interface FLCachedObjectOperation : FLOperation {
+@interface FLCachedObjectOperation : FLSynchronousOperation {
 @private
 	BOOL _canLoadFromCache;
 	BOOL _canSaveToCache;

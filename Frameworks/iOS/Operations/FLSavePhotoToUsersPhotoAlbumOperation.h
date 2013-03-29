@@ -8,12 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-#import "FLOperation.h"
+#import "FLSynchronousOperation.h"
 #import "FLImageAsset.h"
 
 /** output is ALAsset URL */ 
 
-@interface FLSaveImageToUsersPhotoAlbumOperation : FLOperation {
+@interface FLSaveImageToUsersPhotoAlbumOperation : FLSynchronousOperation {
 @private
 	NSConditionLock* _lock;
 	BOOL _done;

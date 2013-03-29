@@ -44,7 +44,7 @@ FLSynthesizeSingleton(FLTracker);
            eventType:(FLTrackerSinkEventMask) eventType
                block:(void (^)(FLTracker* tracker, id<FLTrackerSink> sink)) block {
 
-    [[FLAsyncQueue fifoQueue] queueBlock:^{
+    FLDispatchAsync([FLDispatchQueue fifoQueue], ^{
         if( !_disabled && 
             FLTestBits(_subscribedEvents, eventType) &&
             FLTestBits(_trackLevel, trackLevel)) {
@@ -56,7 +56,8 @@ FLSynthesizeSingleton(FLTracker);
                 }
             }
         }
-    }];
+    },
+    nil);
 }
 
 - (void) logEvent:(NSString*) name

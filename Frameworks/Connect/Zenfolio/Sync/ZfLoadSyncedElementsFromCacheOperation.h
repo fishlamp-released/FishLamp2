@@ -6,10 +6,10 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import "FLOperation.h"
+#import "FLSynchronousOperation.h"
 #import "FLOrderedCollection.h"
 
-@interface ZFLoadSyncedElementsFromCacheOperation : FLOperation {
+@interface ZFLoadSyncedElementsFromCacheOperation : FLSynchronousOperation {
 }
 // result is an OrderedCollection.
 @end

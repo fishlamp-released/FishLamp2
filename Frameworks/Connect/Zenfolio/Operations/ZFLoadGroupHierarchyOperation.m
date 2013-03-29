@@ -34,7 +34,7 @@
     return FLAutorelease([[[self class] alloc] initWithCredentials:userLogin]);
 }
 
-- (FLResult) runOperation {
+- (FLResult) performSynchronously {
 
     FLAssertNotNil(self.objectStorage);
 
@@ -43,7 +43,7 @@
 
     [self abortIfNeeded];
 
-    ZFGroup* group = [self runWorker:request];
+    ZFGroup* group = [self runChildSynchronously:request];
     FLAssertNotNil(group);
     
     [self.objectStorage writeObject:group];

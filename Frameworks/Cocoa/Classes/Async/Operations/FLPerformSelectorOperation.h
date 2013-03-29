@@ -7,9 +7,9 @@
 //
 
 #import "FishLampCore.h"
-#import "FLOperation.h"
+#import "FLSynchronousOperation.h"
 
-@interface FLPerformSelectorOperation : FLOperation {
+@interface FLPerformSelectorOperation : FLSynchronousOperation {
 @private
 	__unsafe_unretained id _target;
     SEL _action;

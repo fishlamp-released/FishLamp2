@@ -1,21 +1,21 @@
 //
-//  FLOperation.m
+//  FLSynchronousOperation.m
 //  FishLamp
 //
 //	Created by Mike Fullerton on 8/28/09.
 //	Copyright 2009 Greentongue Software. All rights reserved.
 //
 
-#import "FLOperation.h"
+#import "FLSynchronousOperation.h"
 #import "FLFinisher.h"
 #import "FLAsyncQueue.h"
 #import "FLObjectStorage.h"
 
-@interface FLOperation ()
+@interface FLSynchronousOperation ()
 @property (readwrite, assign, getter=wasCancelled) BOOL cancelled;
 @end
 
-@implementation FLOperation
+@implementation FLSynchronousOperation
 
 @synthesize operationID = _operationID;
 @synthesize cancelled = _cancelled;
@@ -55,7 +55,7 @@
     self.cancelled = YES;
 }
 
-- (FLResult) runOperationInContext:(id) context withObserver:(id) observer {
+- (FLResult) performSynchronously {
     return FLSuccessfullResult;
 }
 
@@ -69,17 +69,13 @@
     return self.wasCancelled;
 }
 
-- (FLResult) runOperation {
-    return [self runOperationInContext:self.workerContext withObserver:self.observer];
-}
-
-- (void) startWorking:(FLFinisher*) finisher {
+- (void) performUntilFinished:(FLFinisher*) finisher {
 
     id result = nil;
 
     @try {
         [self abortIfNeeded];
-        result = [self runOperation];
+        result = [self performSynchronously];
     }
     @catch(NSException* ex) {
         result = ex.error;
@@ -96,6 +92,12 @@
 
     // this happens in another thread, probably.
     [self sendObservation:_finishSelectorForObserver withObject:result];
+}
+
+- (FLResult) runSynchronously {
+    FLFinisher* finisher = [FLFinisher finisher];
+    [self performUntilFinished:finisher];
+    return finisher.result;
 }
 
 @end
@@ -117,13 +119,13 @@
 //}
 //#endif
 //
-//- (void) operationWillRun:(FLOperation*) operation {
+//- (void) operationWillRun:(FLSynchronousOperation*) operation {
 //    if(_willRunBlock) {
 //        _willRunBlock();
 //    }
 //}
 //
-//- (void) operationDidFinish:(FLOperation*) operation 
+//- (void) operationDidFinish:(FLSynchronousOperation*) operation 
 //                 withResult:(FLResult) withResult {
 //    if(_didFinishBlock) {
 //        _didFinishBlock(withResult);
@@ -133,19 +135,19 @@
 //@end
 //
 //@implementation FLOperationWillStartObserver
-//- (void) operationWillRun:(FLOperation*) operation {
+//- (void) operationWillRun:(FLSynchronousOperation*) operation {
 //    [self invokeBlockWithOperation:operation];
 //}
 //@end
 //
 //@implementation FLOperationDidFinishObserver
-//- (void) operationDidFinish:(FLOperation*) operation {
+//- (void) operationDidFinish:(FLSynchronousOperation*) operation {
 //    [self invokeBlockWithOperation:operation];
 //}
 //@end
 
 //
-//@implementation FLOperation (Deprecated)
+//@implementation FLSynchronousOperation (Deprecated)
 //
 //
 //@end

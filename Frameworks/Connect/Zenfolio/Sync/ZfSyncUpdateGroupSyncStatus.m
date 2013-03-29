@@ -52,7 +52,7 @@
 	FLSuperDealloc();
 }
 
-- (BOOL) _walkTreeAndCheckStatusForGroup:(ZFGroup*) group operation:(FLOperation*) operation
+- (BOOL) _walkTreeAndCheckStatusForGroup:(ZFGroup*) group operation:(FLSynchronousOperation*) operation
 {
 	
 #if LOG
@@ -167,7 +167,7 @@
 	}
 }
 
-- (void) _updateToGoStatus:(FLOperation*) operation
+- (void) _updateToGoStatus:(FLSynchronousOperation*) operation
 {
 #if FL_MRC
 	FLPerformBlockInAutoreleasePool(^{

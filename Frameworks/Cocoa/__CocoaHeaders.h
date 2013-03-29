@@ -26,7 +26,7 @@
 
 // Foundations/Async/Operations
 #import "FLBatchOperation.h"
-#import "FLOperation.h"
+#import "FLSynchronousOperation.h"
 #import "FLOperationContext.h"
 #import "FLOperationQueue.h"
 #import "FLPerformSelectorOperation.h"

@@ -12,9 +12,13 @@
 
 @implementation ZFPhotoSetStatusSyncOperation
 
-- (FLResult) runOperationInContext:(id) context withObserver:(id) observer {
+- (FLResult) performSynchronously {
+
+#if REFACTOR
     [self addBatchObjects:[[context syncService] loadAllSyncInfoObjectsFromDatabase]];
-    return [super runOperationInContext:context withObserver:observer];
+#endif
+    
+    return [super performSynchronously];
 }
 
 #if REFACTOR
@@ -30,7 +34,7 @@
 }
 #endif
 
-- (void) processBatchObject:(ZFGroupElementSyncInfo*) element inContext:(id) context withObserver:(id) observer {
+- (void) processBatchObject:(ZFGroupElementSyncInfo*) element {
     
 #if REFACTOR
     

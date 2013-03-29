@@ -6,7 +6,7 @@
 //  Copyright 2011 GreenTongue Software. All rights reserved.
 //
 #import "FishLampCore.h"
-#import "FLOperation.h"
+#import "FLSynchronousOperation.h"
 #import "FLDatabase.h"
 #import "FLUserLogin.h"
 
@@ -28,7 +28,7 @@ FLSingletonProperty(FLApplicationDataModel);
 
 @property (readonly, assign) BOOL isOpen;
 
-- (FLOperation*) createOpenOperation;
+- (FLSynchronousOperation*) createOpenOperation;
 
 - (FLUserLogin*) loadLastUserLogin;// doesn't load password
 

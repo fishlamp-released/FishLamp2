@@ -7,12 +7,12 @@
 //
 
 #import "FLCocoaRequired.h"
-#import "FLOperation.h"
+#import "FLSynchronousOperation.h"
 
 @protocol FLLengthyTaskDelegate;
 
 
-@interface FLLengthyTask : FLOperation {
+@interface FLLengthyTask : FLSynchronousOperation {
 @private
     BOOL _started;
 	NSString* _name;

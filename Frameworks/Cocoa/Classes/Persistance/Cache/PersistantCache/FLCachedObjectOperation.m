@@ -42,7 +42,7 @@
 - (void) saveObjectToDatabase:(id) object {
 }
 
-- (FLResult) runOperationInContext:(id) context withObserver:(id) observer {
+- (FLResult) performSynchronously {
     FLResult object = nil;
     
 	if(self.canLoadFromCache) {

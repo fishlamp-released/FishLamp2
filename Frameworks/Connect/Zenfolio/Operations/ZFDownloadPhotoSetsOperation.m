@@ -48,7 +48,7 @@
         else {
             FLHttpRequest* request = [ZFHttpRequest loadPhotoSetHttpRequest:element.Id level:kZenfolioInformatonLevelFull includePhotos:NO];
             
-            ZFPhotoSet* set = [self runWorker:request];
+            ZFPhotoSet* set = [self runChildSynchronously:request];
             FLAssertNotNil(set);
             
             [self.objectStorage writeObject:set];
@@ -60,7 +60,7 @@
     }
 }
 
-- (FLResult) runOperation {
+- (FLResult) performSynchronously {
     FLAssertNotNil(self.objectStorage);
     [self runForGroup:self.group];
     return self.group;

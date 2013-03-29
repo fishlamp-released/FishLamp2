@@ -68,7 +68,7 @@
 //	return nil;
 //}
 //
-//- (FLResult) runOperationInContext:(id) context withObserver:(id) observer {
+//- (FLResult) performSynchronously {
 //
 //    for(FLLengthyTask* task in _taskList)
 //	{

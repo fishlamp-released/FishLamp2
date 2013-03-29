@@ -12,20 +12,24 @@
 #import "FLObjectStorageService.h"
 #import "FLUserService.h"
 #import "FLHttpRequest.h"
-#import "FLWorkerContext.h"
+#import "FLOperationContext.h"
 
 @protocol ZFHttpControllerDelegate;
 
-@interface ZFHttpController : FLWorkerContext<FLHttpRequestAuthenticationServiceDelegate, FLUserLoginServiceDelegate, FLHttpRequestContext> {
+@interface ZFHttpController : FLOperationContext<FLHttpRequestAuthenticationServiceDelegate, FLUserLoginServiceDelegate, FLHttpRequestContext> {
 @private
     FLUserService* _userLoginService;
     FLObjectStorageService* _objectCacheService;
     FLHttpRequestAuthenticationService* _httpRequestAuthenticator;
 
     ZFHttpUser* _user;
+    
+    id _delegate;
 }
 
 + (id) httpController;
+
+@property (readwrite, assign, nonatomic) id delegate;
 
 @property (readwrite, strong) ZFHttpUser* user;
 

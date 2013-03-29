@@ -8,7 +8,7 @@
 
 #import "FishLampCore.h"
 #import "FLOperationQueue.h"
-#import "FLOperation.h"
+#import "FLSynchronousOperation.h"
 #import "FLOperationContext.h"
 #import "FLActionDescription.h"
 #import "FLWeaklyReferenced.h"
@@ -31,7 +31,7 @@ typedef void (^FLActionErrorBlock)(FLAction* action, NSError* error);
 @protocol FLActionErrorDelegate;
 @protocol FLActionDelegate;
 
-@interface FLAction : FLContextWorker<FLActionDescription, FLWeaklyReferenced> {
+@interface FLAction : FLOperation<FLActionDescription, FLWeaklyReferenced> {
 @private
     FLOperationQueue* _operations;
 

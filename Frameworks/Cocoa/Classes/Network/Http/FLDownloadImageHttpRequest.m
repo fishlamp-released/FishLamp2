@@ -31,10 +31,10 @@
 }
 
 
-//- (FLResult) runOperationInContext:(id) context withObserver:(id) observer {
+//- (FLResult) performSynchronously {
 //    
 //    
-//    id result = [super runOperation];
+//    id result = [super performSynchronously];
 //    if([result succeeded]) {
 ////        NSData* imageBytes = result;
 //        
@@ -47,7 +47,7 @@
 //    }
 //    
 //        
-//    [super runOperation];
+//    [super performSynchronously];
 ////
 ////    FLThrowIfError([self.httpResponse simpleHttpResponseErrorCheck]);
 ////    if(!self.error) {

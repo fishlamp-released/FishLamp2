@@ -6,13 +6,13 @@
 ////  Copyright 2007 GreenTongue Software, LLC.. All rights reserved.
 ////
 //
-//#import "FLOperation.h"
+//#import "FLSynchronousOperation.h"
 //#import "ZFGroupElementSelection.h"
 //@class ZFPhotoSet;
 //@class ZFPhoto;
 //@class ZFGroup;
 //
-//@interface ZFBatchPhotoDownloadOperation : FLOperation {
+//@interface ZFBatchPhotoDownloadOperation : FLSynchronousOperation {
 //@private
 //    ZFGroup* _rootGroup;
 //    NSString* _destination;		//	folder where the account is downloaded

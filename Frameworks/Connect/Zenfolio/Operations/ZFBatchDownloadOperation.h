@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
 
-#import "FLOperation.h"
+#import "FLSynchronousOperation.h"
 #import "FLObjectStorage.h"
 
 typedef struct {
@@ -36,7 +36,7 @@ typedef struct {
 @property (readonly, assign, nonatomic) ZFDownloadState_t values;
 @end
 
-@interface ZFBatchDownloadOperation : FLOperation {
+@interface ZFBatchDownloadOperation : FLSynchronousOperation {
 @private
     ZFGroup* _rootGroup;
     NSString* _destinationPath;

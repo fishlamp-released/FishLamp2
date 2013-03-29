@@ -152,7 +152,7 @@
 
 
     FLHttpRequest* request = [ZFHttpRequest loadPhotoSetHttpRequest:photoSet.Id level:kZenfolioInformatonLevelFull includePhotos:YES];
-    ZFPhotoSet* latestPhotoSet = [self runWorker:request];
+    ZFPhotoSet* latestPhotoSet = [self runChildSynchronously:request];
     FLAssertNotNil(latestPhotoSet);
     
     return latestPhotoSet;
@@ -169,7 +169,7 @@
 
     request.networkStreamSink = [FLFileStreamSink fileStreamSink:[NSURL fileURLWithPath:[imageFolder pathForFile:photo.FileName]]];
                                                                
-    return [self runWorker:request];
+    return [self runChildSynchronously:request];
 }
 
 - (void) httpRequest:(FLHttpRequest*) httpRequest didReadBytes:(NSNumber*) amount {
@@ -186,7 +186,7 @@
 
     request.networkStreamSink = [FLFileStreamSink fileStreamSink:[NSURL fileURLWithPath:filePath]];
                                                                
-    return [self runWorker:request];
+    return [self runChildSynchronously:request];
 
 }
 
@@ -374,7 +374,7 @@
     }
 }
 
-- (FLResult) runOperation {
+- (FLResult) performSynchronously {
 
     FLAssertNotNil(self.rootGroup);
 

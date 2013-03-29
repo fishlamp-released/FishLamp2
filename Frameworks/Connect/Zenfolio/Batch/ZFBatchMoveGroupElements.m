@@ -28,7 +28,7 @@
 	FLSuperDealloc();
 }
 
-- (void) updateCacheAfterMoving:(FLOperation*) operation
+- (void) updateCacheAfterMoving:(FLSynchronousOperation*) operation
 {
 	if(operation.didSucceed)
 	{

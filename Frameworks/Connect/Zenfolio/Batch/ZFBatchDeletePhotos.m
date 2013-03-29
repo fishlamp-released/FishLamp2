@@ -73,7 +73,7 @@
 #endif
 }
 
-- (void) onUpdateCacheAfterDeletedPhoto:(FLOperation*) operation
+- (void) onUpdateCacheAfterDeletedPhoto:(FLSynchronousOperation*) operation
 {
 	if(operation.didSucceed)
 	{

@@ -70,7 +70,7 @@ static NSDateFormatter* s_rfc1123dateFormatter = nil;
 //    [httpRequest setValue:[NSString stringWithFormat:@"%qu", _fileSize] forHTTPHeaderField:@"X-Zenfolio-FileSize"];
 //    [httpRequest setUtf8Content:@""]; 
 //    
-//    FLHttpResponse* httpResponse = [self.requestSender runWorker:httpRequest];
+//    FLHttpResponse* httpResponse = [self.requestSender runChildSynchronously:httpRequest];
 //
 //    FLAssertIsNotNil(httpResponse);
 //    FLAssertIsKindOfClass(httpResponse, FLHttpResponse);

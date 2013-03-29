@@ -18,6 +18,7 @@
 #import "FLTimedObject.h"
 #import "FLHttpStream.h"
 #import "FLNetworkStreamSink.h"
+#import "FLOperation.h"
 
 #define FLWriteStreamDefaultTimeout 120.0f
 
@@ -32,7 +33,7 @@
 - (id<FLHttpRequestAuthenticator>) httpRequestAuthenticator;
 @end
 
-@interface FLHttpRequest : FLContextWorker<FLNetworkStreamDelegate> {
+@interface FLHttpRequest : FLOperation<FLNetworkStreamDelegate> {
 @private
     FLHttpRequestHeaders* _headers;
     FLHttpRequestBody* _body;

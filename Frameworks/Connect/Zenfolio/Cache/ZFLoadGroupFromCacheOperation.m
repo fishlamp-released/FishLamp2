@@ -34,7 +34,7 @@
 //                                                           level:kZenfolioInformatonLevelFull 
 //                                                 includeChildren:YES];
 //
-//    return [self runWorker:request];
+//    return [self runChildSynchronously:request];
 //}
 //
 //

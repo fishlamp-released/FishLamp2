@@ -49,7 +49,7 @@
     return YES;
 }
 
-- (FLResult) runOperationInContext:(id) context withObserver:(id) observer {
+- (FLResult) performSynchronously {
 
     if([self shouldExecuteTask] && (!self.delegate || [self.delegate lengthyTaskShouldBegin:self])) {
         [self prepareTask];

@@ -43,11 +43,11 @@
     }
 }
 
-- (void) processBatchObject:(id) object inContext:(id) context withObserver:(id) observer {
+- (void) processBatchObject:(id) object {
 
 }
 
-- (FLResult) runOperationInContext:(id) context withObserver:(id) observer {
+- (FLResult) performSynchronously {
 
     while(YES) {
     
@@ -65,7 +65,7 @@
         
         [self abortIfNeeded];
         
-        [self processBatchObject:object inContext:context withObserver:observer];
+        [self processBatchObject:object ];
 
         self.completedCount++;
 

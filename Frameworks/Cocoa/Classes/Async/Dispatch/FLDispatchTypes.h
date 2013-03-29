@@ -9,10 +9,11 @@
 #import <Foundation/Foundation.h>
 
 #import "FLResult.h"
-#import "FLAsyncWorker.h"
 
 @class FLFinisher;
-@protocol FLAsyncQueue;
 
-typedef void (^FLBlockWithResult)(FLResult result);
-typedef void (^FLBlockWithFinisher)(FLFinisher* result);
+typedef dispatch_block_t fl_block_t;
+typedef void (^fl_result_block_t)(FLResult result);
+typedef void (^fl_finisher_block_t)(FLFinisher* result);
+typedef fl_result_block_t fl_completion_block_t;
+

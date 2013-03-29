@@ -33,7 +33,7 @@
 	FLSuperDealloc();
 }
 
-- (void) runOperation
+- (void) performSynchronously
 {
 	[_asset.original writeToStorage];
 	if(_wantsThumbnail)

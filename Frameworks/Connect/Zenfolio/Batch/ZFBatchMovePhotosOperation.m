@@ -48,10 +48,10 @@
 	FLSuperDealloc();
 }
 
-- (void) processBatchObject:(id) object inContext:(id) context withObserver:(id) observer {
+- (void) processBatchObject:(id) object {
 
 #if REFACTOR
-    FLOperation* operation = nil;
+    FLSynchronousOperation* operation = nil;
 
 	if(_destPhotoSet.TypeValue == ZFPhotoSetTypeGallery) {
         operation = [[self httpRequestFactory] movePhotoOperation:photo fromPhotoSet:_parentPhotoSet toPhotoSet:_destPhotoSet];
@@ -60,7 +60,7 @@
         operation = [ZFHttpRequest addPhotoToCollectionOperation:photo collection:_destPhotoSet];
     }
     
-    FLThrowIfError([operation runInContext:self.userContext]);
+    FLThrowIfError([operation runChildSynchronously:self.userContext]);
 
     _destPhotoSet.PhotoCountValue = _destPhotoSet.PhotoCountValue + 1;
     [_destPhotoSet addPhoto:photo];

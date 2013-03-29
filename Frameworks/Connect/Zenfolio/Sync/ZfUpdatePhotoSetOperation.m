@@ -76,7 +76,7 @@
 // TODO: fix this
 //		loadPhotoHttpRequest.activityTimerExplanation = kLongDownloadExplanation;
 //		loadPhotoHttpRequest.timeoutInterval = kLongDownloadTimeout;
-    FLConfirmResultType([operation runInContext:self.context], FLStorableImage);
+    FLConfirmResultType([operation runChildSynchronously:self.context], FLStorableImage);
 }
 
 - (void) _syncPhoto:(ZFPhoto*) photo
@@ -86,8 +86,8 @@
 // latest - this is important in setting the ZFDownloadImageHttpRequest below and deciding whether to load
 // the image in _decideToLoadPhoto
 
-    FLConfirmResultType([[ZFDownloadImageHttpRequest downloadImageHttpRequest:photo imageSize:[_displaySize photoThumbnail] cache:[self.userContext cache]] runInContext:self.context], FLStorableImage);
-    FLConfirmResultType([[ZFDownloadImageHttpRequest downloadImageHttpRequest:photo imageSize:[_displaySize imageDownloadSize] cache:[self.userContext cache]]  runInContext:self.context], FLStorableImage);
+    FLConfirmResultType([[ZFDownloadImageHttpRequest downloadImageHttpRequest:photo imageSize:[_displaySize photoThumbnail] cache:[self.userContext cache]] runChildSynchronously:self.context], FLStorableImage);
+    FLConfirmResultType([[ZFDownloadImageHttpRequest downloadImageHttpRequest:photo imageSize:[_displaySize imageDownloadSize] cache:[self.userContext cache]]  runChildSynchronously:self.context], FLStorableImage);
 
     if(_syncLargeImages) {
         [self _syncLargeImageForPhoto:photo];
@@ -144,7 +144,7 @@
     return nil;
 }
 
-- (FLResult) runOperationInContext:(id) context withObserver:(id) observer {
+- (FLResult) performSynchronously {
 
     ZFPhotoSet* photoSet = [self _loadLatestPhotoSet];
 #if REFACTOR    

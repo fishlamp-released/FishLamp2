@@ -696,7 +696,7 @@ FIXME("compatability")
 }
 #endif
  
-- (FLResult) runOperationInContext:(id) context withObserver:(id) observer {
+- (FLResult) performSynchronously {
     
     // TODO: Load with sort. eg USE TSQL: ORDER BY
     NSArray* queue = nil;

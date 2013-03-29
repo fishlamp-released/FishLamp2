@@ -100,7 +100,7 @@
 
 @property (readonly, strong, nonatomic) FLOperationContext* operationContext;
 
-- (FLFinisher*) startOperation:(FLOperation*) operation
+- (FLFinisher*) startOperation:(FLSynchronousOperation*) operation
              finisher:(FLFinisher*) finisher;
 
 - (FLFinisher*) startAction:(FLAction*) action

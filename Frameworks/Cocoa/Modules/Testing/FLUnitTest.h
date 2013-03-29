@@ -11,7 +11,7 @@
 #import "FLUnitTestResult.h"
 #import "FLFinisher.h"
 #import "FLTestResultCollection.h"
-#import "FLOperation.h"
+#import "FLSynchronousOperation.h"
 #import "FLUnitTestGroup.h"
 
 #define FLLogTypeTest       @"com.fishlamp.unit-test"
@@ -27,7 +27,7 @@
     note that subclass with a method in int with the word "test" in it will be run.
     no need to add the test cases yourself, unless you want to add one.
 */
-@interface FLUnitTest : FLOperation {
+@interface FLUnitTest : FLSynchronousOperation {
 @private
     NSMutableArray* _testCases;
 }

@@ -24,7 +24,7 @@
 
 @implementation ZFBatchDeleteGroupElements
 
-- (void) _didDeleteGroupElement:(FLOperation*) operation
+- (void) _didDeleteGroupElement:(FLSynchronousOperation*) operation
 {
 	if(operation.didSucceed)
 	{

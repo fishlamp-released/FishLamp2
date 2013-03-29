@@ -49,7 +49,7 @@
     return [ZFHttpRequest authenticateRequest:encodedChallenge proof:encodedProof];
 }
 
-- (FLResult) runOperation {
+- (FLResult) performSynchronously {
     
     FLTrace(@"Authenticating %@:", self.user.credentials.userName );
 
@@ -67,12 +67,12 @@
     FLHttpRequest* challengeRequest = [ZFHttpRequest challengeHttpRequest:self.user.credentials.userName];
     challengeRequest.disableAuthenticator = YES;
     
-    ZFAuthChallenge* response = [self runWorker:challengeRequest];
+    ZFAuthChallenge* response = [self runChildSynchronously:challengeRequest];
    
     FLHttpRequest* authenticateRequest = FLThrowIfError([self authenticateRequestWithAuthChallenge:response]);
     authenticateRequest.disableAuthenticator = YES;
     
-    NSString* token = [self runWorker:authenticateRequest];
+    NSString* token = [self runChildSynchronously:authenticateRequest];
     
     if(FLStringIsNotEmpty(token)) {
         self.user.credentials.authToken = token;
@@ -82,7 +82,7 @@
         FLThrowErrorCodeWithComment(NSURLErrorDomain, NSURLErrorBadServerResponse, @"empty token from server");
     }
 
-    return [super runOperation];
+    return [super performSynchronously];
 }
 
 @end

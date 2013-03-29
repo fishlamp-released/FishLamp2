@@ -33,7 +33,7 @@
     request.disableAuthenticator = YES;
     [request setAuthenticationToken:userLogin.authToken];
     
-    return [self runWorker:request];
+    return [self runChildSynchronously:request];
 }
 
 #if FL_MRC
@@ -43,7 +43,7 @@
 }
 #endif
 
-- (FLResult) runOperation {
+- (FLResult) performSynchronously {
 
     FLUserLogin* authenticatedUser = self.user.credentials;
 

@@ -41,7 +41,7 @@
 	[super didPrepareBatch];
 }
 
-- (void) _updateCacheAfterMove:(FLOperation*) operation
+- (void) _updateCacheAfterMove:(FLSynchronousOperation*) operation
 {
 	if(operation.didSucceed)
 	{

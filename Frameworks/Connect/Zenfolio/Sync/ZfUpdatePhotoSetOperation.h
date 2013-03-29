@@ -6,10 +6,10 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import "FLOperation.h"
+#import "FLSynchronousOperation.h"
 #import "ZFImageDisplaySize.h"
 
-@interface ZFUpdatePhotoSetOperation : FLOperation {
+@interface ZFUpdatePhotoSetOperation : FLSynchronousOperation {
 @private
     NSNumber* _photoSetID;
     ZFImageDisplaySize* _displaySize;

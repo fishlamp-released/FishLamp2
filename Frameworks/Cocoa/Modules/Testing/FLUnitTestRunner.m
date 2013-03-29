@@ -43,12 +43,12 @@
     return workers;
 }
 
-- (FLResult) runOperation {
+- (FLResult) performSynchronously {
 
     NSMutableArray* array = [NSMutableArray array];
     NSArray* workers = [self findTestWorkers];
     for(id worker in workers) {
-        [array addObject:[self runWorker:worker]];
+        [array addObject:[self runChildSynchronously:worker]];
     }
 
     return array;

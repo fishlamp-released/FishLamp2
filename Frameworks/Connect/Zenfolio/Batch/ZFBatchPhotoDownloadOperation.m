@@ -161,9 +161,9 @@
 //
 //            ZFDownloadImageHttpRequest* downloader = [ZFDownloadImageHttpRequest downloadImageHttpRequest:photo imageSize:[ZFMediaType originalImageSize] cache:nil];
 //  
-//            image = [context runWorker:downloader withObserver:nil];
+//            image = [context runChildSynchronously:downloader withObserver:nil];
 //                                
-////            image = FLThrowIfError([self runWorker:downloader]);
+////            image = FLThrowIfError([self runChildSynchronously:downloader]);
 ////            [downloader sendSynchronouslyInContext:self.userContext]);
 //            
 //            //	photo was loaded; save the photo to file
@@ -235,7 +235,7 @@
 ////	}
 //}
 //
-//- (FLResult) runOperationInContext:(id) context withObserver:(id) observer {
+//- (FLResult) performSynchronously {
 //    self.paused = NO;
 //
 ////    _totalBytes = [self.rootGroup selectedPhotoBytesInSelection:self.selection];

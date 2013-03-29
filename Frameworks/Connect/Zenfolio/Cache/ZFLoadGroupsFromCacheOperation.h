@@ -6,11 +6,11 @@
 ////  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 ////
 //
-//#import "FLOperation.h"
+//#import "FLSynchronousOperation.h"
 //
 //// returns array of groups
 //
-//@interface ZFLoadGroupsFromCacheOperation : FLOperation {
+//@interface ZFLoadGroupsFromCacheOperation : FLSynchronousOperation {
 //@private
 //    NSArray* _groupList;
 //}

@@ -70,19 +70,19 @@
     return image;
 }
 
-- (void) startWorking:(FLFinisher*) finisher {
+- (void) performUntilFinished:(FLFinisher*) finisher {
     
     if(self.cache) {
         FLStorableImage* image = [self.cache loadCachedImageForPhoto:self.photo imageSize:self.imageSize];
         if(image || [image isStaleComparedToPhotoSequenceNumber:self.photo.Sequence]) {
-            [super startWorking:finisher];
+            [super performUntilFinished:finisher];
         }
         else {
             [finisher setFinishedWithResult:image];
         }
     }
     else {
-        [super startWorking:finisher];
+        [super performUntilFinished:finisher];
     }
 }
 

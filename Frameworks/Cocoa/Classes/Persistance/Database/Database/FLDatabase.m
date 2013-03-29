@@ -34,7 +34,7 @@
 @synthesize isOpen = _isOpen;
 
 static FLDatabaseColumnDecoder s_decoder = nil;
-static int s_count = 0;
+//static int s_count = 0;
 
 + (FLDatabaseColumnDecoder) defaultColumnDecoder {
     return s_decoder;
@@ -57,12 +57,8 @@ static int s_count = 0;
     }
 }
 
-- (FLResult) queueBlock:(dispatch_block_t) block {
-    return [[[FLAsyncQueue defaultQueue] queueBlock:block] waitUntilFinished];
-}
-
-- (FLResult) dispatchFifoBlock:(dispatch_block_t) block {
-    return [[_dispatchQueue queueBlock:block] waitUntilFinished];
+- (void) dispatchFifoBlock:(dispatch_block_t) block {
+    FLDispatchSync(_dispatchQueue, block);
 }
 
 - (void) handleLowMemory:(id)sender {
@@ -75,8 +71,7 @@ static int s_count = 0;
 		_sqlite = nil;
         self.columnDecoder = s_decoder;
 
-        _dispatchQueue = [[FLDispatchQueue alloc] initWithLabel:[NSString stringWithFormat:@"com.fishlamp.queue.database-%d", ++s_count] 
-            attr:DISPATCH_QUEUE_SERIAL];
+        _dispatchQueue = FLRetain([FLFifoAsyncQueue fifoAsyncQueue]);
 
 #if IOS
 	[[NSNotificationCenter defaultCenter] addObserver:self
@@ -104,6 +99,8 @@ static int s_count = 0;
 #endif
 
 	FLAssertIsNilWithComment(_sqlite, nil);
+    
+    [_dispatchQueue releaseToPool];
     
 #if FL_MRC    
     [_dispatchQueue release];

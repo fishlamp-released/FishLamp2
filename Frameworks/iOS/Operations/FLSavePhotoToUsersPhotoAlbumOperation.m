@@ -84,7 +84,7 @@
 	}
 }
 
-- (void) runOperation {
+- (void) performSynchronously {
 	[self saveImage:self.input properties:_properties];
 
 }
@@ -110,7 +110,7 @@
 	return self;
 }
 
-- (void) runOperation {
+- (void) performSynchronously {
 	id<FLImageAsset> photo = self.input;
 	@try {
 		FLAssertIsNotNil(photo.original);

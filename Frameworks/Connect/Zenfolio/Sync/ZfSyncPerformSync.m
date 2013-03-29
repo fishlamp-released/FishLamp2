@@ -152,7 +152,7 @@
 	}
 }
 
-- (void) _onUpdatePhotoInfoInCache:(FLOperation*) photoOperation photo:(ZFPhoto*) photo
+- (void) _onUpdatePhotoInfoInCache:(FLSynchronousOperation*) photoOperation photo:(ZFPhoto*) photo
 {
 	[[[self.context userStorageService].cacheDatabase writeObject:photo];
 	
@@ -278,7 +278,7 @@
 	[self _syncDidFinish:nil];
 }
 
-- (void) _onUpdatePhotoSetInCacheForSync:(FLOperation*) operation
+- (void) _onUpdatePhotoSetInCacheForSync:(FLSynchronousOperation*) operation
 {
 	if(operation.didSucceed)
 	{
@@ -302,16 +302,16 @@
 	}
 }
 
-- (FLOperation*) _createLoadFullPhotoSet:(NSNumber*) photoSetID
+- (FLSynchronousOperation*) _createLoadFullPhotoSet:(NSNumber*) photoSetID
 {
-    FLOperation* loadFullPhotoSet = [ZFWebService loadPhotoSetHttpRequest:photoSetID];
+    FLSynchronousOperation* loadFullPhotoSet = [ZFWebService loadPhotoSetHttpRequest:photoSetID];
     [loadFullPhotoSet.observeFinish:^(id theOperation) {
         [self _onUpdatePhotoSetInCacheForSync:theOperation];
     }];
     return loadFullPhotoSet;
 }
 
-- (void) _onLoadedSmallestPhotoSet:(FLOperation*) operation
+- (void) _onLoadedSmallestPhotoSet:(FLSynchronousOperation*) operation
 {
 	if(operation.didSucceed) {
 		ZFPhotoSet* newPhotoSet = [operation loadPhotoSetResult];
@@ -349,7 +349,7 @@
     }
     else
     {
-  		FLOperation* newOperation = [ZFWebService loadPhotoSetHttpRequest:photoSet.syncObjectId level:ZFInformatonLevelLevel1 loadPhotos:NO];
+  		FLSynchronousOperation* newOperation = [ZFWebService loadPhotoSetHttpRequest:photoSet.syncObjectId level:ZFInformatonLevelLevel1 loadPhotos:NO];
         [newOperation observeFinish:^(id theOperation) {
             [self _onLoadedSmallestPhotoSet:theOperation]; 
         }];

@@ -67,7 +67,7 @@
 
 }
 
-//- (FLResult) runOperationInContext:(id) context withObserver:(id) observer {
+//- (FLResult) performSynchronously {
 //	
 //    
 //    FLHttpRequest* request = [FLHttpRequest httpPostRequestWithURL:_url];
@@ -76,7 +76,7 @@
 //                             consumerKey:_app.consumerKey
 //                                  secret:[_app.consumerSecret stringByAppendingString:@"&"]];
 //    
-//    NSData* data = [[self runWorker:request] responseData];
+//    NSData* data = [[self runChildSynchronously:request] responseData];
 //    
 //#if DEBUG
 //    NSString* responseStr = FLAutorelease([[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);

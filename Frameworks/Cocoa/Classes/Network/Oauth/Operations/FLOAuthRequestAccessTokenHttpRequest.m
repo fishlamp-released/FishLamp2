@@ -96,12 +96,12 @@
     return session;
 }
 
-//- (FLResult) runOperationInContext:(id) context withObserver:(id) observer {
+//- (FLResult) performSynchronously {
 //
 //
 //    FLHttpRequest* request = [FLHttpRequest httpPostRequestWithURL:_url];
 //
-//    FLHttpResponse* response = [self runWorker:request];
+//    FLHttpResponse* response = [self runChildSynchronously:request];
 //
 //    FLOAuthSession* session = [FLOAuthSession oAuthSession];
 //    [FLUrlParameterParser parseData:response.responseData 

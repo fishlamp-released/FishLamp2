@@ -8,9 +8,9 @@
 
 #import "FLCocoaRequired.h"
 
-#import "FLOperation.h"
+#import "FLSynchronousOperation.h"
 
-@interface FLEmptyCacheOperation : FLOperation {
+@interface FLEmptyCacheOperation : FLSynchronousOperation {
 }
 
 + (FLEmptyCacheOperation*) emptyCacheOperation;

@@ -289,7 +289,7 @@
     [action actionDescription].actionType = FLActionTypeDownload;
     [action actionDescription].actionItemName = FLActionDescriptionItemNameGallery;
 
-    FLOperation* loadPhotoSet = [ZFWebService loadPhotoSetHttpRequest:[NSNumber numberWithInt:photoSetId]
+    FLSynchronousOperation* loadPhotoSet = [ZFWebService loadPhotoSetHttpRequest:[NSNumber numberWithInt:photoSetId]
                                                        level:kZenfolioInformatonLevelFull
                                                includePhotos:YES]];
 

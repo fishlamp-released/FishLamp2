@@ -16,8 +16,9 @@
 
 @implementation ZFLoadSyncedElementsFromCacheOperation
 
-- (FLResult) runOperationInContext:(id) context withObserver:(id) observer {
-    
+- (FLResult) performSynchronously {
+
+#if REFACTOR    
     NSArray* list = [[context syncService] loadAllSyncInfoObjectsFromDatabase];
     
     FLOrderedCollection* result = [FLOrderedCollection orderedCollection];
@@ -50,6 +51,9 @@
 	}
     
     return result;
+#endif
+        
+    return nil;
 }
 
 @end

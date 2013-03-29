@@ -10,12 +10,13 @@
 #import "FLUnitTestRunner.h"
 
 #import "FLAsyncQueue.h"
+#import "FLOperation.h"
 
 int FLTestToolMain(int argc, const char *argv[]) {
     @autoreleasepool {
-        FLWorkerContext* context = FLAutorelease([[FLWorkerContext alloc] init]);
         @try {
-            [[FLUnitTestRunner unitTestRunner] runInContext:context];
+            FLUnitTestRunner* runner = [FLUnitTestRunner unitTestRunner];
+            [runner runSynchronously];
             return 0;
         }
         @catch(NSException* ex) {

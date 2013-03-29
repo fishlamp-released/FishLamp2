@@ -21,7 +21,7 @@
 ////- (FLFinisher*) sendServiceRequest:(FLServiceRequest*) request;
 ////
 ////- (FLFinisher*) sendServiceRequest:(FLServiceRequest*) request 
-////                        completion:(FLBlockWithResult) completion;
+////                        completion:(fl_result_block_t) completion;
 //
 //#pragma GCC diagnostic push
 //#pragma GCC diagnostic ignored "-Warc-performSelector-leaks"

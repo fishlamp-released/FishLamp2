@@ -34,7 +34,7 @@ static NSNumberFormatter* s_formatter = nil;
 	FLSuperDealloc();
 }
 
-//- (FLResult) runOperationInContext:(id) context withObserver:(id) observer {
+//- (FLResult) performSynchronously {
 //    if(FLStringIsEmpty(_photo.uploadGallery.uploadUrl)) {
 //        FLThrowErrorCodeWithComment(ZFErrorDomain, ZFErrorCodeUploadPhotoSetNotFound, @"PhotoSet not found: %@", _photo.uploadGallery.name);
 //    }
@@ -45,7 +45,7 @@ static NSNumberFormatter* s_formatter = nil;
 //    FLHttpRequest* httpRequest = [FLHttpRequest httpPostRequestWithURL:[_photo buildUploadURL:YES]];
 //    [httpRequest setJpegContentWithFilePath:_imageFile.filePath];
 //
-//    FLHttpResponse* httpResponse = [self runWorker:httpRequest];
+//    FLHttpResponse* httpResponse = [self runChildSynchronously:httpRequest];
 //    
 //    NSString* textId = FLAutorelease([[NSString alloc] initWithData:httpResponse.responseData encoding:NSASCIIStringEncoding]);
 //    if(FLStringIsNotEmpty(textId)) {

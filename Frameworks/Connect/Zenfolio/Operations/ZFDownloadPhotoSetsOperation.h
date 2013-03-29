@@ -6,13 +6,13 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import "FLOperation.h"
+#import "FLSynchronousOperation.h"
 
 #import "ZFGroup.h"
 
 // returns group
 
-@interface ZFDownloadPhotoSetsOperation : FLOperation {
+@interface ZFDownloadPhotoSetsOperation : FLSynchronousOperation {
 @private
     ZFGroup* _group;
     

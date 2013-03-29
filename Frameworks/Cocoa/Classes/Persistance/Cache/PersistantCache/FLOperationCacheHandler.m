@@ -39,7 +39,7 @@ FLSynthesizeStructProperty(wasLoadedFromCache, setWasLoadedFromCache, BOOL, _net
     return FLAutorelease([[FLOperationCacheHandler alloc] initWithDatabase:database behavior:behavior]);
 }
 
-- (void) saveOperationOutputToCache:(FLOperation*) operation
+- (void) saveOperationOutputToCache:(FLSynchronousOperation*) operation
 {
 	if(_database && operation.operationOutput)
 	{
@@ -47,7 +47,7 @@ FLSynthesizeStructProperty(wasLoadedFromCache, setWasLoadedFromCache, BOOL, _net
 	}
 }
 
-- (id) loadObjectFromCacheWithOperation:(FLOperation*) operation
+- (id) loadObjectFromCacheWithOperation:(FLSynchronousOperation*) operation
 {
 	id object = nil;
 	if(_database && operation.operationInput)
@@ -66,7 +66,7 @@ FLSynthesizeStructProperty(wasLoadedFromCache, setWasLoadedFromCache, BOOL, _net
     }
 }
 
-- (void) setOutputFromCacheForOperation:(FLOperation*) operation
+- (void) setOutputFromCacheForOperation:(FLSynchronousOperation*) operation
     output:(id) output
 {
 	if(output)
@@ -85,7 +85,7 @@ FLSynthesizeStructProperty(wasLoadedFromCache, setWasLoadedFromCache, BOOL, _net
 	}
 }
 
-- (void) willStartSelf:(FLOperation*) operation {
+- (void) willStartSelf:(FLSynchronousOperation*) operation {
     if(FLTestBits(self.cacheBehavior, FLHttpOperationCacheBehaviorLoad)) {
 		id object = nil;
 		if(_loadFromCacheCallback) {
@@ -117,7 +117,7 @@ FLSynthesizeStructProperty(wasLoadedFromCache, setWasLoadedFromCache, BOOL, _net
 	FLSuperDealloc();
 }
 
-- (void) willFinishSelf:(FLOperation*) operation {
+- (void) willFinishSelf:(FLSynchronousOperation*) operation {
     if(!operation.error && 
         FLTestBits(self.cacheBehavior, FLHttpOperationCacheBehaviorSave) && 
         !self.wasLoadedFromCache)

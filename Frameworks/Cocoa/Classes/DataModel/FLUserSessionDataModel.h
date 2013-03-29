@@ -7,12 +7,12 @@
 //
 
 #import "FLCocoaRequired.h"
-#import "FLOperation.h"
+#import "FLSynchronousOperation.h"
 #import "FLUserLogin.h"
 
 @protocol FLUserSessionDataModel <NSObject>
 
-//- (FLOperation*) createOpenOperationForUser:(FLUserLogin*) login;
+//- (FLSynchronousOperation*) createOpenOperationForUser:(FLUserLogin*) login;
 //
 @end
 

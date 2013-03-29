@@ -1,38 +1,38 @@
+////
+////  FLObjectPool.h
+////  FishLampCocoa
+////
+////  Created by Mike Fullerton on 12/20/12.
+////  Copyright (c) 2012 Mike Fullerton. All rights reserved.
+////
 //
-//  FLObjectPool.h
-//  FishLampCocoa
+//#import <Foundation/Foundation.h>
 //
-//  Created by Mike Fullerton on 12/20/12.
-//  Copyright (c) 2012 Mike Fullerton. All rights reserved.
+//@class FLObjectPool;
+//@class FLFifoAsyncQueue;
 //
-
-#import <Foundation/Foundation.h>
-
-typedef void (^FLObjectPoolBlock)(id object);
-typedef id (^FLObjectPoolFactory)();
-
-@class FLObjectPool;
-
-@interface NSObject (FLObjectPool)
-@property (readonly, strong) FLObjectPool* objectPool;
-@end
-
-@interface FLObjectPool : NSObject {
-@private
-    NSMutableArray* _objects;
-    NSMutableArray* _requests;
-    FLObjectPoolFactory _factory;
-}
-
-- (id) initWithObjectFactory:(FLObjectPoolFactory) factory;
-
-+ (id) objectPool;
-+ (id) objectPoolWithFactory:(FLObjectPoolFactory) factory;
-
-- (void) requestPooledObject:(FLObjectPoolBlock) block;
-
-- (void) stockPool:(NSArray*) withObjects;
-
-@end
-
-extern void FLReleasePooledObject(id __strong * object);
+//@protocol FLPoolable <NSObject>
+//@property (readonly, strong) FLObjectPool* objectPool;
+//- (void) releaseToPool;
+//@end
+//
+//@interface FLObjectPool : NSObject {
+//@private
+//    NSMutableArray* _objects;
+//    Class _objectClass;
+//    FLFifoAsyncQueue* _fifoQueue;
+//}
+//
+//- (id) initWithClass:(Class) aClass;
+//
+//+ (id) objectPoolForClass:(Class) aClass;
+//
+//- (id) pooledObject;
+//
+//- (void) addObjectToPool:(id) object;
+//
+//- (void) stockPool:(NSArray*) withObjects;
+//
+//@end
+//
+//extern void FLReleasePooledObject(id __strong * object);

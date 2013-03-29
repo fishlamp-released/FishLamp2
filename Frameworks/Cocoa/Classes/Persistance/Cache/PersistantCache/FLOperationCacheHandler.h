@@ -8,7 +8,7 @@
 #if 0
 #import "FishLampCore.h"
 #import "FLDatabase.h"
-#import "FLOperation.h"
+#import "FLSynchronousOperation.h"
 
 @class FLOperationCacheHandler;
 
@@ -55,8 +55,8 @@ typedef enum {
 @property (readwrite, copy, nonatomic) FLOperationCacheHandlerBlock onLoadedFromCache;
 @property (readwrite, copy, nonatomic) FLOperationCacheHandlerBlock onLoadedFromCacheInMainThread;
 
-- (void) saveOperationOutputToCache:(FLOperation*) operation;
-- (id) loadObjectFromCacheWithOperation:(FLOperation*) operation;
+- (void) saveOperationOutputToCache:(FLSynchronousOperation*) operation;
+- (id) loadObjectFromCacheWithOperation:(FLSynchronousOperation*) operation;
 
 @end
 

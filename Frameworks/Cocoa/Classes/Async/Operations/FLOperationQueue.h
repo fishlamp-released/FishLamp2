@@ -8,7 +8,7 @@
 
 #import "FLCocoaRequired.h"
 #import "FishLampCore.h"
-#import "FLOperation.h"
+#import "FLSynchronousOperation.h"
 #import "FLCollectionIterator.h"
 
 @class FLOperationQueue;
@@ -17,10 +17,10 @@ typedef void (^FLOperationQueueVisitor)(id operation, BOOL* stop);
 typedef id (^FLCreateOperationBlock)();
 
 
-@interface FLOperationQueue : FLOperation<NSFastEnumeration> {
+@interface FLOperationQueue : FLSynchronousOperation<NSFastEnumeration> {
 @private
 	NSMutableArray* _operations;
-    FLOperation* _currentOperation;
+    FLSynchronousOperation* _currentOperation;
 }
 
 + (FLOperationQueue*) operationQueue;
@@ -39,14 +39,14 @@ typedef id (^FLCreateOperationBlock)();
 
 - (void) addOperationWithFactoryBlock:(FLCreateOperationBlock) factoryBlock;
 
-- (void) addOperation:(FLOperation*) operation;
+- (void) addOperation:(FLSynchronousOperation*) operation;
 
 - (void) addOperationWithTarget:(id) target action:(SEL) action; // @selector(callback:) parameter is the operation
 
 - (void) addOperationsWithArray:(NSArray*) operations;
 
-//- (void) insertOperation:(FLOperation*) newOperation
-//          afterOperation:(FLOperation*) afterOperation;
+//- (void) insertOperation:(FLSynchronousOperation*) newOperation
+//          afterOperation:(FLSynchronousOperation*) afterOperation;
 
 - (id) operationByID:(id) operationID;
 
@@ -59,21 +59,21 @@ typedef id (^FLCreateOperationBlock)();
 
 - (id) outputByOperationClass:(Class) aClass  inResult:(NSDictionary*) inResult;
 
-- (void) removeOperation:(FLOperation*) operation;
+- (void) removeOperation:(FLSynchronousOperation*) operation;
 
 - (void) removeAllOperations;
 
 // optional overrides
-- (void) operationWasAdded:(FLOperation*) operation;
-- (void) operationWasRemoved:(FLOperation*) operation;
+- (void) operationWasAdded:(FLSynchronousOperation*) operation;
+- (void) operationWasRemoved:(FLSynchronousOperation*) operation;
 @end
 
 @protocol FLOperationQueueObserver <NSObject>
-- (void) operationQueue:(FLOperationQueue*) queue operationWasAdded:(FLOperation*) operation;
-- (void) operationQueue:(FLOperationQueue*) queue operationWasRemoved:(FLOperation*) operation;
+- (void) operationQueue:(FLOperationQueue*) queue operationWasAdded:(FLSynchronousOperation*) operation;
+- (void) operationQueue:(FLOperationQueue*) queue operationWasRemoved:(FLSynchronousOperation*) operation;
 
-- (void) operationQueue:(FLOperationQueue*) queue operationWillRun:(FLOperation*) operation;
-- (void) operationQueue:(FLOperationQueue*) queue operationDidFinish:(FLOperation*) operation;
-- (void) operationQueue:(FLOperationQueue*) queue operationWasCancelled:(FLOperation*) operation;
+- (void) operationQueue:(FLOperationQueue*) queue operationWillRun:(FLSynchronousOperation*) operation;
+- (void) operationQueue:(FLOperationQueue*) queue operationDidFinish:(FLSynchronousOperation*) operation;
+- (void) operationQueue:(FLOperationQueue*) queue operationWasCancelled:(FLSynchronousOperation*) operation;
 @end
 

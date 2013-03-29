@@ -6,11 +6,11 @@
 //  Copyright (c) 2011 Greentongue Software. All rights reserved.
 //
 
-#import "FLOperation.h"
+#import "FLSynchronousOperation.h"
 #import "ZFQueuedPhoto.h"
 #import "FLJpegFile.h"
 
-@interface ZFPrepareImageForUploadOperation : FLOperation {
+@interface ZFPrepareImageForUploadOperation : FLSynchronousOperation {
 @private
 	ZFQueuedPhoto* _photo;
     unsigned long long _startSize;

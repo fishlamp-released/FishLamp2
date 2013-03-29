@@ -50,8 +50,8 @@
 
 - (void) authenticateUser:(ZFHttpUser*) user {
 
-    FLOperation* authenticator = [ZFChallengeResponseAuthenticationOperation authenticationOperation:user];
-    [authenticator runInContext:self.workerContext];
+    FLSynchronousOperation* authenticator = [ZFChallengeResponseAuthenticationOperation authenticationOperation:user];
+    [authenticator runSynchronouslyInContext:self.operationContext];
 }
 
 @end

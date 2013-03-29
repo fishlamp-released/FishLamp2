@@ -8,7 +8,7 @@
 
 #import "FLCocoaRequired.h"
 
-#import "FLOperation.h"
+#import "FLSynchronousOperation.h"
 
 #define FLTestCaseFlagOffString                 @"_off"
 
@@ -21,7 +21,7 @@ typedef void (^FLTestBlock)();
 #define FLTestCasePriorityNormal    (NSIntegerMax / 2)
 #define FLTestCasePriorityHigh      (NSIntegerMax - 1)
 
-@interface FLTestCase : FLOperation {
+@interface FLTestCase : FLSynchronousOperation {
 @private
     NSInteger _priority;
     NSString* _testCaseName;
