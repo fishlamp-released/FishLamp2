@@ -10,14 +10,15 @@
 #import "FLTheme.h"
 
 extern NSString* FLThemeChangedNotificationKey;
-extern NSString* FLCurrentThemeKey;
+extern NSString* FLThemeManagerKey;
 
 @interface FLThemeManager : NSObject{
 @private
     id _currentTheme;
     NSMutableArray* _themes;
+    BOOL _enabled;
 }
-
+@property (readwrite, assign, nonatomic, getter=isEnabled) BOOL enable;
 @property (readwrite, strong, nonatomic) id currentTheme;
 @property (readonly, strong, nonatomic) NSArray* themes;
 
@@ -27,7 +28,9 @@ FLSingletonProperty(FLThemeManager);
 - (void) addThemesWithArray:(NSArray*) themes;
 
 - (NSArray*) loadThemesFromBundleXmlFile:(NSString*) fileName  themeClass:(Class) themeClass;
+- (NSArray*) loadThemesFromBundleJsonFile:(NSString*) fileName  themeClass:(Class) themeClass;
 
+- (NSError*) loadThemesFromBundle;
 
 @end
 

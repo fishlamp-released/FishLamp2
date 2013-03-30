@@ -183,10 +183,11 @@ NSString* const FLDefaultsKeyWizardSavePasswordKey = @"com.fishlamp.savepassword
 }
 
 - (void) loadCredentials {
+    [self loadFromUserDefaults];
 }
 
 - (void) saveCredentials {
-
+    [self saveToUserDefaults];
 }
 
 - (BOOL) canAuthenticate {

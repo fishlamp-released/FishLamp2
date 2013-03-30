@@ -234,6 +234,10 @@
 }
 
 
+- (BOOL)validateMenuItem:(NSMenuItem *)item {
+    return YES;
+}
+
 @end
 
 @implementation NSWindow (FLModalAdditions)

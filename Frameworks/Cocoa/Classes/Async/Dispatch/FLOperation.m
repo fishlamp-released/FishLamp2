@@ -70,7 +70,7 @@
 }
 
 - (FLResult) runSynchronously {
-    return FLRunOperation(self.asyncQueue, self);
+    return [FLStartOperation(self.asyncQueue, self, nil) waitUntilFinished];
 }
 
 - (FLResult) runSynchronouslyInContext:(FLOperationContext*) context {

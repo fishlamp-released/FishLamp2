@@ -16,7 +16,6 @@
 
 @synthesize uploadQueue = _uploadQueue;
 
-- (void) openService {
-}
+
 
 @end

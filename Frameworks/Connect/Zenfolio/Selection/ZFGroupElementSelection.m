@@ -9,6 +9,8 @@
 #import "ZFGroupElementSelection.h"
 #import "FLOrderedCollection.h"
 
+
+
 @interface ZFGroupElementSelection()
 @property (readwrite, strong, nonatomic) NSMutableSet* selectedPhotoSets;
 @property (readwrite, strong, nonatomic) NSMutableSet* filtered;
@@ -17,7 +19,6 @@
 @property (readwrite, strong, nonatomic) NSMutableSet* expanded;
 @property (readwrite, strong, nonatomic) NSMutableSet* selected;
 @property (readwrite, strong, nonatomic) NSMutableIndexSet* cachedIndexSetForOutlineView;
-@property (readwrite, strong, nonatomic) id<FLObjectStorage> objectStorage;
 
 - (BOOL) elementInFilter:(id) element;
 
@@ -29,6 +30,8 @@
 - (BOOL) isGroupElementSelected:(ZFGroupElement*) element;
 
 - (void) toggleSelectionForGroupElement:(ZFGroupElement*) element;
+
+@property (readonly, strong, nonatomic) ZFGroup* rootGroup;
 
 @end
 
@@ -44,17 +47,28 @@
 @synthesize elements = _elements;
 @synthesize selected = _selected;
 @synthesize cachedIndexSetForOutlineView = _cachedSelectionIndexesForOutlineView;
-@synthesize objectStorage = _objectStorage;
+@synthesize dataSource = _dataSource;
 
-- (id) initWithObjectStorage:(id<FLObjectStorage>) objectStorage {
+
+- (id) init {
     self = [super init];
     if(self) {
-        self.objectStorage = objectStorage;
     }
     return self;
 }
-+ (id) groupElementSelection:(id<FLObjectStorage>) objectStorage {
-    return FLAutorelease([[[self class] alloc] initWithObjectStorage:objectStorage]);
++ (id) groupElementSelection {
+    return FLAutorelease([[[self class] alloc] init]);
+}
+
+// the group holds the layout of galleries - it should not hold
+// the latest photoSets - that's what the objectStorage is for 
+// (and the _elements collection)
+- (ZFGroup*) rootGroup {
+    return [_dataSource groupElementSelectionGetRootGroup:self];
+}
+
+- (id<FLObjectStorage>) objectStorage {
+    return [_dataSource groupElementSelectionGetObjectStorage:self];
 }
 
 #if FL_MRC
@@ -70,10 +84,6 @@
     [super dealloc];
 }
 #endif
-
-+ (id) groupElementSelection {
-    return FLAutorelease([[[self class] alloc] init]);
-}
 
 - (void) clearSelection {
     self.displayList = nil;

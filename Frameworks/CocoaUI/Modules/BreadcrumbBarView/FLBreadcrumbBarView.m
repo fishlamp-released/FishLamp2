@@ -22,6 +22,8 @@
 
 @synthesize delegate = _delegate;
 @synthesize titles = _titles;
+@synthesize highlightLayer = _highlightLayer;
+@synthesize titleTop = _titleTop;
 
 #if FL_MRC
 - (void) dealloc {
@@ -31,14 +33,13 @@
 }
 #endif
 
-- (void) applyThemeToBreadcrumbBarView:(id) theme {
-
-}
-
-- (SEL) themeSelector {
-    return @selector(applyThemeToBreadcrumbBarView:);
-}
-
+//- (void) applyThemeToBreadcrumbBarView:(id) theme {
+//
+//}
+//
+//- (SEL) themeSelector {
+//    return @selector(applyThemeToBreadcrumbBarView:);
+//}
 
 - (id) setupBreadcrumbBarView {
     if(!_titles) {
@@ -46,6 +47,14 @@
     }
     self.wantsLayer = YES;
     self.layer = [CALayer layer];
+    
+    _highlightLayer = [[FLBarHighlightBackgoundLayer alloc] init];
+    _highlightLayer.hidden = YES;
+    _highlightLayer.lineColor = [SDKColor gray85Color];
+    
+    [self.layer addSublayer:_highlightLayer];
+    
+    _titleTop = (kTallHeight*4);
     
     return self;
 }
@@ -70,7 +79,7 @@
     [CATransaction begin];
     [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
 
-    CGRect frame = CGRectMake(0, FLRectGetBottom(self.bounds) - (kTallHeight*2), _contentEnclosure.frame.origin.x, kTallHeight);
+    CGRect frame = CGRectMake(0, FLRectGetBottom(self.bounds) - _titleTop, _contentEnclosure.frame.origin.x, kTallHeight);
     for(FLBarTitleLayer* title in _titles) {
         title.frame = frame;
         frame.origin.y -= frame.size.height;
@@ -91,17 +100,8 @@
 }
 
 - (void) addTitle:(FLBarTitleLayer*) title {
+
     [_titles addObject:title];
-    
-    if(!_highlightLayer) {
-        _highlightLayer = [[FLBarHighlightBackgoundLayer alloc] init];
-        _highlightLayer.hidden = YES;
-        
-        _highlightLayer.lineColor = [SDKColor gray85Color];
-        
-        [self.layer addSublayer:_highlightLayer];
-    }
-    
     [self.layer addSublayer:title];
     [self updateLayout];
     [self updateHighlightedTitle:NO];
@@ -118,7 +118,6 @@
         else {
             [title handleMouseMoved:location mouseIn:NO mouseDown:NO];
         }
-    
     }
 }
 
@@ -160,79 +159,10 @@
     }
 }
 
-//- (void) drawRect:(NSRect)dirtyRect {
-//    [super drawRect:dirtyRect];
-//
-////    if(_highlightLayer.hidden == NO) {
-////        [_highlightLayer setNeedsDisplay]; 
-////    }
-////
-////    for(FLBarTitleLayer* title in _titles) {
-////        [title setNeedsDisplay]; 
-////    }
-//    
-//}
+
 
 
 @end
-
-//@implementation FLHorizontalBreadcrumbBarView
-//
-//- (id)initWithFrame:(NSRect)frame
-//{
-//    self = [super initWithFrame:frame];
-//    if (self) {
-//        _shape = FLAutorelease([[FLDrawableForwardButtonShape alloc] init]);
-//        _shape.edgeInset = 1.0;
-//        _shape.edgeInsetColor = [NSColor grayColor];
-//        _shape.cornerRadius = 1.0;
-//        _shape.shapeSize = 10.0;
-//    }
-//    
-//    return self;
-//}
-//
-//#if FL_MRC
-//- (void) dealloc {
-//    [_shape release];
-//    [super dealloc];
-//}
-//#endif
-//
-//- (void)drawRect:(NSRect)dirtyRect {
-//    
-//    if(self.isEmphasized) {
-//        _shape.backgroundColor = [NSColor gray85Color];
-//    }
-//    else if(self.isHighlighted) {
-//        _shape.backgroundColor = [NSColor grayColor];
-//    }
-//    else {
-//        _shape.backgroundColor = [NSColor gray95Color];
-//    }
-//    
-//    [_shape drawRect:dirtyRect withFrame:self.bounds inParent:self drawEnclosedBlock:^{
-//        [self drawTitle:dirtyRect];
-//    }];
-//
-//
-//    
-////    CGContextSaveGState(context);
-////    CGContextSetLineCap(context, kCGLineCapSquare);
-////    CGContextSetStrokeColorWithColor(context, color);
-////    CGContextSetLineWidth(context, 1.0);
-////    CGContextMoveToPoint(context, startPoint.x + 0.5, startPoint.y + 0.5);
-////    CGContextAddLineToPoint(context, endPoint.x + 0.5, endPoint.y + 0.5);
-////    CGContextStrokePath(context);
-////    CGContextRestoreGState(context);        
-// 
-//    
-//}
-//
-//
-//
-//@end
-
 
 
 

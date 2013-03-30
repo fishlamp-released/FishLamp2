@@ -27,6 +27,6 @@
 @end
 
 
-@protocol FLBatchOperationObserver <FLOperationObserver>
+@protocol FLBatchOperationObserver <NSObject>
 - (void) batchOperation:(FLBatchOperation*) operation didProccessObject:(id) object;
 @end

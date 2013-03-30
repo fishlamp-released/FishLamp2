@@ -21,33 +21,24 @@
     FLUserService* _userLoginService;
     FLObjectStorageService* _objectCacheService;
     FLHttpRequestAuthenticationService* _httpRequestAuthenticator;
-
-    ZFHttpUser* _user;
-    
     id _delegate;
 }
 
 + (id) httpController;
 
-@property (readwrite, assign, nonatomic) id delegate;
+@property (readonly, assign, nonatomic) BOOL isAuthenticated;
 
-@property (readwrite, strong) ZFHttpUser* user;
+@property (readwrite, assign, nonatomic) id delegate;
 
 @property (readonly, strong) FLUserService* userService;
 @property (readonly, strong) FLObjectStorageService* objectCache;
 @property (readonly, strong) FLHttpRequestAuthenticationService* httpRequestAuthenticator;
 
 - (void) logoutUser;
-
-
-- (FLFinisher*) beginDownloadingPhotoSetsForRootGroup:(id) observer 
-                           downloadedPhotoSetSelector:(SEL) photoSetSelector
-                                     finishedSelector:(SEL) finishedSelector;
-
-- (FLFinisher*) beginDownloadingRootGroup:(id) observer 
-                         finishedSelector:(SEL) selector; // @selector(something:result:)
+- (ZFHttpUser*) user;
 
 @end
+
 
 @protocol ZFHttpControllerDelegate <NSObject>
 @optional
@@ -61,15 +52,22 @@
 
 - (void) httpControllerDidClose:(ZFHttpController*) controller;
 - (void) httpControllerDidOpen:(ZFHttpController*) controller;
-         
-         
-         
 @end
 
-@protocol ZFHttpControllerObserver <NSObject>
-
-//- (void) httpController:(ZFHttpController*) controller didDownloadGroupWithResult:(FLResult) result;
-//- (void) httpController:(ZFHttpController*) controller didDownloadPhotoSetWithResult:(FLResult) result;
-//- (void) httpController:(ZFHttpController*) controller didDownloadPhotoSetsWithResult:(FLResult) groupOrError;
-
+@interface ZFHttpController (FLOperationFactory)
+- (id) createRootGroupDownloader;
+- (id) createAllPhotoSetsDownloader;
 @end
+
+
+//@protocol ZFHttpControllerObserver <NSObject>
+//@optional
+//
+//- (void) httpController:(id) sender didDownloadRootGroup:(ZFGroup*) rootGroup;
+//- (void) httpController:(id) sender didDownloadPhotoSet:(ZFPhotoSet*) rootGroup;
+//
+////- (void) httpController:(ZFHttpController*) controller didDownloadGroupWithResult:(FLResult) result;
+////- (void) httpController:(ZFHttpController*) controller didDownloadPhotoSetWithResult:(FLResult) result;
+////- (void) httpController:(ZFHttpController*) controller didDownloadPhotoSetsWithResult:(FLResult) groupOrError;
+//
+//@end

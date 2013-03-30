@@ -59,6 +59,8 @@ FLSynthesizeSingleton(FLLogFileManager);
 }
    
 - (void) openService {
+    [super openService];
+
     [self _close];
     [self _setUserName];
 }

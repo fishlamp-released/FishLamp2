@@ -73,7 +73,7 @@ FLResult FLRunOperation(id<FLAsyncQueue> queue, id<FLOperation> operation) {
 }
 
 NS_INLINE
-FLResult FLStartOperation(id<FLAsyncQueue> queue, id<FLOperation> operation, fl_completion_block_t completionOrNil) {
+FLFinisher* FLStartOperation(id<FLAsyncQueue> queue, id<FLOperation> operation, fl_completion_block_t completionOrNil) {
     FLAssertNotNil(queue);
     FLAssertNotNil(operation);
     return [queue queueOperation:operation completion:completionOrNil];

@@ -145,22 +145,24 @@
 //        [self finishFinishing:completion];
 //    } 
 
+    dispatch_async(dispatch_get_main_queue(), ^{
+    
+        if(_didFinish) {
+            _didFinish(self.result);
+        }
 
-    if(_didFinish) {
-        _didFinish(self.result);
-    }
+        if(_operation) {
+            [_operation operationDidFinish];
+            _operation = nil;
+        }
 
-    if(_operation) {
-        [_operation operationDidFinish];
-        _operation = nil;
-    }
+        self.finished = YES;
 
-    self.finished = YES;
-
-    if(_semaphore) {
- //       FLLog(@"releasing semaphor for %X, ont thread %@", (void*) _semaphore, [NSThread currentThread]);
-        dispatch_semaphore_signal(_semaphore);
-    }
+        if(_semaphore) {
+     //       FLLog(@"releasing semaphor for %X, ont thread %@", (void*) _semaphore, [NSThread currentThread]);
+            dispatch_semaphore_signal(_semaphore);
+        }
+    });
 
 }                    
 

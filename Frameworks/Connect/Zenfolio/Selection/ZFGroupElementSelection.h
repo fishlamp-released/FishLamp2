@@ -12,16 +12,10 @@
 #import "FLObjectStorage.h"
 
 @protocol ZFZenfolioGroupElementSelectionDelegate;
+@protocol ZFGroupElementSelectionDataSource;
 
 @interface ZFGroupElementSelection : NSObject {
 @private
-    id<FLObjectStorage> _objectStorage;
-
-// the group holds the layout of galleries - it should not hold
-// the latest photoSets - that's what the objectStorage is for 
-// (and the _elements collection)
-    ZFGroup* _rootGroup;
-
 // these only hold object ids
     NSMutableSet* _filtered;
     NSMutableSet* _expanded;
@@ -41,21 +35,18 @@
     NSMutableIndexSet* _cachedSelectionIndexesForOutlineView;
 
     __unsafe_unretained id<ZFZenfolioGroupElementSelectionDelegate> _delegate;
+    __unsafe_unretained id<ZFGroupElementSelectionDataSource> _dataSource;
 }
 
-
-@property (readonly, strong, nonatomic) id<FLObjectStorage> objectStorage;
-
-@property (readwrite, strong, nonatomic) ZFGroup* rootGroup;
 @property (readwrite, assign, nonatomic) id<ZFZenfolioGroupElementSelectionDelegate> delegate;
+@property (readwrite, assign, nonatomic) id<ZFGroupElementSelectionDataSource> dataSource;
 
 /// selection
 @property (readonly, assign, nonatomic) NSUInteger selectionCount;
 @property (readonly, strong, nonatomic) NSSet* selectedPhotoSetIDs; 
 @property (readonly, assign, nonatomic) NSUInteger selectedPhotoSetCount;
 
-- (id) initWithObjectStorage:(id<FLObjectStorage>) objectStorage;
-+ (id) groupElementSelection:(id<FLObjectStorage>) objectStorage;
++ (id) groupElementSelection;
 
 - (id) elementForID:(NSNumber*) idObject;
 
@@ -86,6 +77,11 @@
 @property (readwrite, strong, nonatomic) NSIndexSet* selectedIndexSet;
 
 
+@end
+
+@protocol ZFGroupElementSelectionDataSource <NSObject>
+- (ZFGroup*) groupElementSelectionGetRootGroup:(ZFGroupElementSelection*) selection;
+- (id<FLObjectStorage>) groupElementSelectionGetObjectStorage:(ZFGroupElementSelection*) selection;
 @end
 
 @protocol ZFZenfolioGroupElementSelectionDelegate <NSObject>

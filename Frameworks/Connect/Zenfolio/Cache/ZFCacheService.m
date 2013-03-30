@@ -264,7 +264,7 @@
 
 - (void) closeService:(id) opener {
     FLPerformSelector1(opener, @selector(closeZenfolioCache:), self);
-    [super openService];
+    [super closeService];
 }
 
 

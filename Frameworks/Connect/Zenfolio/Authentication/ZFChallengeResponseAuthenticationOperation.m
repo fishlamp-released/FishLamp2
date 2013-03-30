@@ -69,7 +69,7 @@
     
     ZFAuthChallenge* response = [self runChildSynchronously:challengeRequest];
    
-    FLHttpRequest* authenticateRequest = FLThrowIfError([self authenticateRequestWithAuthChallenge:response]);
+    FLHttpRequest* authenticateRequest = [self authenticateRequestWithAuthChallenge:response];
     authenticateRequest.disableAuthenticator = YES;
     
     NSString* token = [self runChildSynchronously:authenticateRequest];

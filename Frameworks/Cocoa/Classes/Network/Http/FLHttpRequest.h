@@ -48,7 +48,11 @@
     id<FLDataDecoding> _dataDecoder;
     id<FLHttpRequestAuthenticator> _authenticator;
     BOOL _disableAuthenticator;
+    
+    __unsafe_unretained id _asyncObserver;
 }
+
+@property (readwrite, assign,nonatomic) id asyncObserver;
 
 // by default this is a FLDataResponseReciever.
 @property (readwrite, strong, nonatomic) FLNetworkStreamSink* networkStreamSink;

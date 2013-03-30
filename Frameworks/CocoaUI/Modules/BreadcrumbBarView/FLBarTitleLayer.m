@@ -16,12 +16,14 @@
 
 @implementation FLBarTitleLayer
 
+
+
 + (id) layer {
     return FLAutorelease([[[self class] alloc] init]);
 }
 
+@synthesize styleProvider = _titleDelegate;
 @synthesize title = _title;
-@synthesize titleStyle = _titleStyle;
 @synthesize highlighted = _highlighted;
 @synthesize enabled = _enabled;
 @synthesize emphasized = _emphasized;
@@ -30,38 +32,41 @@
 #if FL_MRC
 - (void) dealloc {
     [_attributedString release];
-    [_titleStyle release];
     [_title release];
     [super dealloc];
 }
 #endif
 
+- (FLStringDisplayStyle*) titleStyle {
+    return [self.styleProvider barTitleLayerGetStringDisplayStyle:self];
+}
+
 - (void) updateState {
     NSColor* bgColor = [NSColor clearColor];
-    FLTextStyle* textStyle = _titleStyle.enabledStyle;
+    FLTextStyle* textStyle = self.titleStyle.enabledStyle;
         
     if(_enabled) {
         if(self.isEmphasized) {
             bgColor = [NSColor clearColor];
-            textStyle = _titleStyle.emphasizedStyle;
+            textStyle = self.titleStyle.emphasizedStyle;
         }
         else if(_mouseDown) {
             if(_mouseIn) {
                 bgColor = [NSColor grayColor];
-                textStyle = _titleStyle.highlightedStyle;
+                textStyle = self.titleStyle.highlightedStyle;
             }
             else {
                 bgColor = [NSColor lightGrayColor];
-                textStyle = _titleStyle.hoveringStyle;
+                textStyle = self.titleStyle.hoveringStyle;
             }
         }
         else if(_mouseIn) {
             bgColor = [NSColor lightGrayColor];
-            textStyle = _titleStyle.hoveringStyle;
+            textStyle = self.titleStyle.hoveringStyle;
         }
     } 
     else {
-        textStyle = _titleStyle.disabledStyle;
+        textStyle = self.titleStyle.disabledStyle;
     }
     
     if(bgColor) {
@@ -133,7 +138,7 @@ CGFloat GetLineHeightForFont(CTFontRef iFont)
 //    CGContextSetFillColorWithColor(ctx, colorRef);
 //    CGContextFillRect(ctx, frame);
       
-    frame.origin.y -= 2.0f;
+//    frame.origin.y -= 2.0f;
     frame = FLRectOptimizedForViewLocation(frame);
       
     CGContextDrawAttributedString(ctx, self.attributedString, frame);  

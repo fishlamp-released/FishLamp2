@@ -19,26 +19,26 @@
 
 - (void) initSelf {
     
-    if(!_titleStyle) {
-        _titleStyle = [[FLStringDisplayStyle alloc] init];
-        _titleStyle.emphasizedStyle.textColor = [SDKColor colorWithRGBRed:203 green:102 blue:10 alpha:1.0];
-        _titleStyle.enabledStyle.textColor = [SDKColor darkGrayColor];
-        _titleStyle.disabledStyle.textColor = [SDKColor lightGrayColor];
-        _titleStyle.highlightedStyle.textColor = [SDKColor whiteColor];
-        _titleStyle.hoveringStyle.textColor = [SDKColor whiteColor];
-        [_titleStyle setTextFont:[SDKFont boldSystemFontOfSize:[SDKFont systemFontSize]]];
+    if(!_titleStringStyle) {
+        _titleStringStyle = [[FLStringDisplayStyle alloc] init];
+        _titleStringStyle.emphasizedStyle.textColor = [SDKColor colorWithRGBRed:203 green:102 blue:10 alpha:1.0];
+        _titleStringStyle.enabledStyle.textColor = [SDKColor darkGrayColor];
+        _titleStringStyle.disabledStyle.textColor = [SDKColor lightGrayColor];
+        _titleStringStyle.highlightedStyle.textColor = [SDKColor whiteColor];
+        _titleStringStyle.hoveringStyle.textColor = [SDKColor whiteColor];
+        [_titleStringStyle setTextFont:[SDKFont boldSystemFontOfSize:[SDKFont systemFontSize]]];
     }
 }
 
 @synthesize delegate = _delegate;
-@synthesize textFont = _textFont;
+@synthesize titleStringStyle = _titleStringStyle;
 @synthesize contentView = _contentView;
 
 #if FL_MRC
 - (void) dealloc {
     [_contentView release];
-    [_textFont release];
-    [_titleStyle release];
+    [_titleStringStyle release];
+    [_titleStringStyle release];
     [super dealloc];
 }
 #endif
@@ -51,11 +51,6 @@
     [super awakeFromNib];
     [self initSelf];
     self.breadcrumbView.delegate = self;
-}
-
-- (void) setTextFont:(NSFont*) font {
-    FLSetObjectWithRetain(_textFont, font);
-    [_titleStyle setTextFont:font];
 }
 
 - (BOOL)acceptsFirstResponder {
@@ -78,7 +73,7 @@
 
     FLBarTitleLayer* titleLayer = [FLBarTitleLayer layer];
     titleLayer.title = title;
-    titleLayer.titleStyle = _titleStyle;
+    titleLayer.styleProvider = self;
     [self.breadcrumbView addTitle:titleLayer];
     [self updateViewsAnimated:NO];
 }
@@ -92,6 +87,9 @@
     [self updateViewsAnimated:YES];
 }
 
+- (FLStringDisplayStyle*) barTitleLayerGetStringDisplayStyle:(FLBarTitleLayer*) title {
+    return _titleStringStyle;
+}
 @end
 
 

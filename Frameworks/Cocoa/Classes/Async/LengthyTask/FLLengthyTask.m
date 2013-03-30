@@ -27,6 +27,10 @@
 }
 #endif
 
+- (id)delegate {
+    return nil;
+}
+
 - (NSUInteger) calculateTotalStepCount {
 	return 1;
 }

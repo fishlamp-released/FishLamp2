@@ -9,25 +9,29 @@
 #import <Foundation/Foundation.h>
 #import "FLMessageSender.h"
 
-@interface FLObservable : FLMessageSender {
+@interface FLObservable : NSObject {
 @private
-    __unsafe_unretained id _observer;
+    __unsafe_unretained id _asyncObserver;
 }
 
-@property (readwrite, assign) id observer;
+@property (readwrite, assign) id asyncObserver;
+@end
+
+@interface NSObject (FLObservationSending)
+
+- (id) asyncObserver;
+
+- (BOOL) sendObservation:(SEL) messageSelector toObserver:(id) asyncObserver;
+
+- (BOOL) sendObservation:(SEL) messageSelector toObserver:(id) asyncObserver withObject:(id) object;
+
+- (BOOL) sendObservation:(SEL) messageSelector toObserver:(id) asyncObserver withObject:(id) object1 withObject:(id) object2;
 
 - (BOOL) sendObservation:(SEL) messageSelector;
 
 - (BOOL) sendObservation:(SEL) messageSelector withObject:(id) object;
 
 - (BOOL) sendObservation:(SEL) messageSelector withObject:(id) object1 withObject:(id) object2;
-
-- (BOOL) sendObservation:(SEL) messageSelector toObserver:(id) observer;
-
-- (BOOL) sendObservation:(SEL) messageSelector toObserver:(id) observer withObject:(id) object;
-
-- (BOOL) sendObservation:(SEL) messageSelector toObserver:(id) observer withObject:(id) object1 withObject:(id) object2;
-
 
 @end
 

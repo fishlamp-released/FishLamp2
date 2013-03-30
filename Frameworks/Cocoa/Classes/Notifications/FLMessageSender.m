@@ -8,7 +8,7 @@
 
 #import "FLMessageSender.h"
 
-@implementation FLMessageSender 
+@implementation NSObject (FLMessageSending) 
 
 - (BOOL) sendMessage:(SEL) observationSelector 
               toListener:(id) listener {

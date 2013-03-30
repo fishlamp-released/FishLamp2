@@ -16,7 +16,7 @@
 - (void) operationDidFinish;
 @end
 
-@interface FLOperation : FLObservable<FLOperation> {
+@interface FLOperation : NSObject<FLOperation> {
 @private
     __unsafe_unretained FLOperationContext* _context;
     NSUInteger _contextID;

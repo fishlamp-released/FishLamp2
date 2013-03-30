@@ -12,7 +12,7 @@
 
 // returns group
 
-@interface ZFDownloadPhotoSetsOperation : FLSynchronousOperation {
+@interface ZFDownloadPhotoSetsOperation : FLBatchSynchronousOperation {
 @private
     ZFGroup* _group;
     

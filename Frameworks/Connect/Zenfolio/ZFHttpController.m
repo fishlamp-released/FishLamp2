@@ -26,7 +26,6 @@
 @synthesize userService = _userLoginService;
 @synthesize objectCache = _objectCacheService;
 @synthesize httpRequestAuthenticator = _httpRequestAuthenticator;
-@synthesize user = _user;
 @synthesize delegate = _delegate;
 
 + (id) httpController {
@@ -54,6 +53,14 @@
     return self;
 }
 
+- (ZFHttpUser*) user {
+    return nil;
+}
+
+- (BOOL) isAuthenticated {
+    return self.user && [self.user isAuthenticated];
+}
+
 //- (void) openService {
 //    [super openService];
 //    [self.delegate httpControllerDidOpenService:self];
@@ -66,7 +73,6 @@
 
 #if FL_MRC
 - (void) dealloc {
-    [_user release];
     [_httpRequestAuthenticator release];
     [_objectCacheService release];
     [_userLoginService release];
@@ -133,43 +139,66 @@
 //    }
 //}
 
-- (FLFinisher*) beginDownloadingPhotoSetsForRootGroup:(id) observer 
-                           downloadedPhotoSetSelector:(SEL) photoSetSelector
-                                     finishedSelector:(SEL) finishedSelector {
+//- (FLFinisher*) beginDownloadingPhotoSetsForRootGroup:(id) observer 
+//                           downloadedPhotoSetSelector:(SEL) photoSetSelector
+//                                     finishedSelector:(SEL) finishedSelector {
+//
+//    ZFDownloadPhotoSetsOperation* operation = 
+//        [ZFDownloadPhotoSetsOperation downloadPhotoSetsWithGroup:self.user.rootGroup];
+//    
+//    operation.delegate = self;
+//    operation.observer = observer;
+//    operation.downloadedPhotoSetSelector = photoSetSelector;
+//    operation.finishSelectorForObserver = finishedSelector;
+//
+//    return [operation runAsynchronouslyInContext:self completion:^(FLResult result) {
+//
+//    }];
+//}        
 
-    ZFDownloadPhotoSetsOperation* operation = 
-        [ZFDownloadPhotoSetsOperation downloadPhotoSetsWithGroup:self.user.rootGroup];
-    
-    operation.delegate = self;
-    operation.observer = observer;
-    operation.downloadedPhotoSetSelector = photoSetSelector;
-    operation.finishSelectorForObserver = finishedSelector;
+//- (void) didDownloadRootGroup:(ZFGroup*) rootGroup {
+//    self.user.rootGroup = result;
+//}
 
-    return [operation runAsynchronouslyInContext:self completion:^(FLResult result) {
+//- (FLFinisher*) beginDownloadingRootGroup:(id) observer finishedSelector:(SEL) finishedSelector {
+//    
+//    ZFLoadGroupHierarchyOperation* operation = 
+//        [ZFLoadGroupHierarchyOperation loadGroupHierarchyOperation:self.user.credentials]; 
+//
+//    operation.delegate = self;
+//    operation.observer = observer;
+//    operation.finishSelectorForObserver = finishedSelector;
+//
+//    return [operation runAsynchronouslyInContext:self completion:^(FLResult result) {
+//        if(![result error]) {
+//            self.user.rootGroup = result;
+//        }
+//    }];
+//}
 
-    }];
-}        
+- (void) operation:(ZFLoadGroupHierarchyOperation*) operation downloadedRootGroup:(FLResult) result {
+    if(![result error]) {
+        [self.user setRootGroup:result];
+    }
+}
 
-- (FLFinisher*) beginDownloadingRootGroup:(id) observer finishedSelector:(SEL) finishedSelector {
-    
+- (id) createRootGroupDownloader {
     ZFLoadGroupHierarchyOperation* operation = 
         [ZFLoadGroupHierarchyOperation loadGroupHierarchyOperation:self.user.credentials]; 
-
-    operation.delegate = self;
-    operation.observer = observer;
-    operation.finishSelectorForObserver = finishedSelector;
-
-    return [operation runAsynchronouslyInContext:self completion:^(FLResult result) {
-        if(![result error]) {
-            self.user.rootGroup = result;
-        }
-    }];
+    operation.context = self;
+    operation.objectStorage = [self objectCache];
+    [operation setFinishedDelegate:self action:@selector(operation:downloadedRootGroup:)];
+    return operation;
 }
 
-- (id<FLObjectStorage>) operationGetObjectStorage:(FLSynchronousOperation*) operation {
-    return [self.objectCache objectStorage];
-}
+- (id) createAllPhotoSetsDownloader {
 
+    ZFDownloadPhotoSetsOperation* operation = 
+            [ZFDownloadPhotoSetsOperation downloadPhotoSetsWithGroup:self.user.rootGroup];
+    operation.context = self;
+    operation.objectStorage = [self objectCache];
+    return operation;
+}
 
 //- (id) operationDownloadPhotoSetsInRootGroup {
 //    ZFDownloadPhotoSetsOperation* downloadPhotosets = [ZFDownloadPhotoSetsOperation downloadPhotoSetsWithGroup:self.user.rootGroup];

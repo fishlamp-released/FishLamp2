@@ -19,33 +19,24 @@
 
 @synthesize operationID = _operationID;
 @synthesize cancelled = _cancelled;
-@synthesize delegate = _delegate;
-@synthesize finishSelectorForDelegate = _finishSelectorForDelegate;
-@synthesize finishSelectorForObserver = _finishSelectorForObserver;
+@synthesize objectStorage = _objectStorage;
 
 - (id) init {
     self = [super init];
     if(self) {
   		static int32_t s_counter = 0;
         self.operationID = [NSNumber numberWithInt:FLAtomicIncrement32(s_counter)];
-        self.finishSelectorForDelegate = @selector(operationDidFinish:withResult:);
-        self.finishSelectorForObserver = @selector(operationDidFinish:withResult:);
     }
     return self;
 }
 
 #if FL_MRC
 - (void) dealloc {
+    [_objectStorage release];
     [_operationID release];
     [super dealloc];
 }
 #endif
-
-- (id<FLObjectStorage>) objectStorage {
-    return [self.delegate operationGetObjectStorage:self];
-
-//    FLPerformSelector2(self.delegate, _finishSelectorForDelegate, self, result);
-}
 
 + (id) operation {
 	return FLAutorelease([[[self class] alloc] init]);
@@ -85,19 +76,38 @@
         result = [NSError cancelError];
     }
     
-    [finisher setFinishedWithResult:result];
-    
-    FLPerformSelector2(self.delegate, _finishSelectorForDelegate, self, result);
+    FLPerformSelector2(_finishedDelegate, _finishedAction, self, result);
     self.cancelled = NO;
 
-    // this happens in another thread, probably.
-    [self sendObservation:_finishSelectorForObserver withObject:result];
+    [finisher setFinishedWithResult:result];
 }
 
 - (FLResult) runSynchronously {
     FLFinisher* finisher = [FLFinisher finisher];
     [self performUntilFinished:finisher];
     return finisher.result;
+}
+
+- (void) setFinishedDelegate:(id) target action:(SEL) action {
+    _finishedDelegate = target;
+    _finishedAction = action;
+}
+
+
+
+
+@end
+
+@implementation FLBatchSynchronousOperation
+- (void) sendIterationObservation:(FLResult) result {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        FLPerformSelector1(_batchObserver, _batchAction, result);
+    });
+}
+
+- (void) setBatchObserver:(id) observer action:(SEL) action {
+    _batchObserver = observer;
+    _batchAction = action;
 }
 
 @end

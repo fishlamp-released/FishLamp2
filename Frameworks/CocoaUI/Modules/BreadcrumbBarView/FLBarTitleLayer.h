@@ -13,23 +13,33 @@
 
 @class FLBarTitleLayer;
 
+@protocol FLBarTitleStyleProvider;
+
 @interface FLBarTitleLayer : CALayer<FLMouseHandler> {
 @private
     NSString* _title;
-    FLStringDisplayStyle* _titleStyle;
     BOOL _mouseIn;
     BOOL _mouseDown;
     BOOL _enabled;
     BOOL _emphasized;
     BOOL _highlighted;
     NSAttributedString* _attributedString;
+    
+    __unsafe_unretained id<FLBarTitleStyleProvider> _titleDelegate;
 }
+@property (readwrite, assign, nonatomic) id<FLBarTitleStyleProvider> styleProvider;
+
 
 @property (readwrite, assign, nonatomic, getter=isHighlighted) BOOL highlighted;
 @property (readwrite, assign, nonatomic, getter=isEnabled) BOOL enabled;
 @property (readwrite, assign, nonatomic, getter=isEmphasized) BOOL emphasized;
 
 @property (readwrite, strong, nonatomic) NSString* title;
-@property (readwrite, strong, nonatomic) FLStringDisplayStyle* titleStyle;
+
+@end
+
+@protocol FLBarTitleStyleProvider <NSObject>
+
+- (FLStringDisplayStyle*) barTitleLayerGetStringDisplayStyle:(FLBarTitleLayer*) title;
 
 @end

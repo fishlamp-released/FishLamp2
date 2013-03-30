@@ -47,7 +47,11 @@ typedef struct {
     
     BOOL _downloadImages;
     BOOL _downloadVideos;
+    
+    __unsafe_unretained id _asyncObserver;
 }
+
+@property (readwrite, assign ,nonatomic) id asyncObserver;
 
 + (id) downloadOperation:(NSSet*) photoSetIDs 
                rootGroup:(ZFGroup*) rootGroup

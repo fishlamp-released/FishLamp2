@@ -16,29 +16,24 @@ typedef struct {
 
 @interface FLSynchronousOperation : FLOperation {
 @private
+    id<FLObjectStorage> _objectStorage;
 	id _operationID;
     BOOL _cancelled;
-    SEL _finishSelectorForDelegate;
-    SEL _finishSelectorForObserver;
-    __unsafe_unretained id _delegate;
+
+    SEL _finishedAction;
+    __unsafe_unretained id _finishedDelegate;
 }
 
-@property (readwrite, assign, nonatomic) id delegate;
-@property (readwrite, assign, nonatomic) SEL finishSelectorForDelegate;
-@property (readwrite, assign, nonatomic) SEL finishSelectorForObserver;
-
-@property (readonly, strong, nonatomic) id<FLObjectStorage> objectStorage;
+@property (readwrite, strong, nonatomic) id<FLObjectStorage> objectStorage;
 @property (readwrite, strong, nonatomic) id operationID;
+
+- (void) setFinishedDelegate:(id) target action:(SEL) action;
 
 - (id) init;
 + (id) operation;
 
 /// @brief Required override point
 - (FLResult) performSynchronously;
-
-@end
-
-@interface FLSynchronousOperation (SubclassUtils)
 
 // this will raise an abort exception if runState has been signaled as finished.
 // only for subclasses to call while executing operation.
@@ -47,14 +42,16 @@ typedef struct {
 
 @end
 
-@protocol FLOperationObserver <NSObject>
-@optional
-- (void) operationDidFinish:(FLSynchronousOperation*) operation withResult:(FLResult) result;
-@end
 
-@protocol FLOperationDelegate <NSObject>
-@optional
-- (id<FLObjectStorage>) operationGetObjectStorage:(FLSynchronousOperation*) operation;
-- (void) operationDidFinish:(FLSynchronousOperation*) operation withResult:(FLResult) result;
-@end
+@interface FLBatchSynchronousOperation : FLSynchronousOperation {
+@private
+    SEL _batchAction;
+    __unsafe_unretained id _batchObserver;
+}
+- (void) setBatchObserver:(id) observer action:(SEL) action;
 
+
+// for subclassses
+- (void) sendIterationObservation:(FLResult) result;
+
+@end
