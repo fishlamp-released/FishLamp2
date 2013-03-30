@@ -10,14 +10,24 @@
 #import "FLThemeManager.h"
 #import "NSObject+FLTheme.h"
 
+@interface FLTheme ()
++ (void) setCurrentTheme:(FLTheme*) theme;
+@end
+
 @implementation FLTheme
 @synthesize themeName = _themeName;
 @synthesize applicationTextStyle = _applicationTextStyle;
 @synthesize bigTextStyle = _bigTextStyle;
 @synthesize headlineTextStyle = _headlineTextStyle;
 
+static FLTheme* s_currentTheme = nil;
+
 + (FLTheme*) currentTheme {
-    return [[FLThemeManager instance] currentTheme];
+    return s_currentTheme;
+}
+
++ (void) setCurrentTheme:(FLTheme*) theme {
+    FLSetObjectWithRetain(s_currentTheme, theme);
 }
 
 #if FL_MRC

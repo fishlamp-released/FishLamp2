@@ -2,10 +2,10 @@
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1060</int>
-		<string key="IBDocument.SystemVersion">12C60</string>
+		<string key="IBDocument.SystemVersion">12D78</string>
 		<string key="IBDocument.InterfaceBuilderVersion">3084</string>
-		<string key="IBDocument.AppKitVersion">1187.34</string>
-		<string key="IBDocument.HIToolboxVersion">625.00</string>
+		<string key="IBDocument.AppKitVersion">1187.37</string>
+		<string key="IBDocument.HIToolboxVersion">626.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin</string>
 			<string key="NS.object.0">3084</string>
@@ -36,7 +36,7 @@
 				<string key="NSClassName">NSApplication</string>
 			</object>
 			<object class="NSCustomView" id="442673046">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">301</int>
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="NSButton" id="231246812">
@@ -51,16 +51,20 @@
 							<int key="NSCellFlags">-2079326144</int>
 							<int key="NSCellFlags2">134251520</int>
 							<string key="NSContents">Forgot your login?</string>
-							<object class="NSFont" key="NSSupport" id="525540165">
-								<string key="NSName">MyriadPro-Regular</string>
-								<double key="NSSize">12</double>
-								<int key="NSfFlags">16</int>
+							<object class="NSFont" key="NSSupport">
+								<string key="NSName">LucidaGrande</string>
+								<double key="NSSize">11</double>
+								<int key="NSfFlags">3100</int>
 							</object>
 							<string key="NSCellIdentifier">_NS:22</string>
 							<reference key="NSControlView" ref="231246812"/>
 							<int key="NSButtonFlags">-2038022144</int>
 							<int key="NSButtonFlags2">134</int>
-							<reference key="NSAlternateImage" ref="525540165"/>
+							<object class="NSFont" key="NSAlternateImage">
+								<string key="NSName">MyriadPro-Regular</string>
+								<double key="NSSize">11</double>
+								<int key="NSfFlags">16</int>
+							</object>
 							<string key="NSAlternateContents"/>
 							<string key="NSKeyEquivalent"/>
 							<int key="NSPeriodicDelay">400</int>
@@ -82,9 +86,9 @@
 							<int key="NSCellFlags2">0</int>
 							<string key="NSContents">Save Password</string>
 							<object class="NSFont" key="NSSupport">
-								<string key="NSName">MyriadPro-Bold</string>
-								<double key="NSSize">12</double>
-								<int key="NSfFlags">16</int>
+								<string key="NSName">LucidaGrande-Bold</string>
+								<double key="NSSize">11</double>
+								<int key="NSfFlags">3357</int>
 							</object>
 							<string key="NSCellIdentifier">_NS:9</string>
 							<reference key="NSControlView" ref="465360970"/>
@@ -115,10 +119,10 @@
 							<int key="NSCellFlags">-1804599231</int>
 							<int key="NSCellFlags2">272630784</int>
 							<string key="NSContents"/>
-							<object class="NSFont" key="NSSupport" id="181095169">
-								<string key="NSName">MyriadPro-Regular</string>
-								<double key="NSSize">14</double>
-								<int key="NSfFlags">16</int>
+							<object class="NSFont" key="NSSupport" id="437098362">
+								<string key="NSName">LucidaGrande</string>
+								<double key="NSSize">13</double>
+								<int key="NSfFlags">1044</int>
 							</object>
 							<string key="NSPlaceholderString">Username or E-mail address</string>
 							<reference key="NSControlView" ref="984608172"/>
@@ -153,7 +157,7 @@
 							<int key="NSCellFlags">-1805647807</int>
 							<int key="NSCellFlags2">272631872</int>
 							<string key="NSContents"/>
-							<reference key="NSSupport" ref="181095169"/>
+							<reference key="NSSupport" ref="437098362"/>
 							<string key="NSPlaceholderString">Password</string>
 							<reference key="NSControlView" ref="938653363"/>
 							<bool key="NSDrawsBackground">YES</bool>
@@ -173,10 +177,10 @@
 							<int key="NSCellFlags">67108928</int>
 							<int key="NSCellFlags2">71305216</int>
 							<string key="NSContents">Account:</string>
-							<object class="NSFont" key="NSSupport" id="453628554">
-								<string key="NSName">MyriadPro-Bold</string>
-								<double key="NSSize">14</double>
-								<int key="NSfFlags">16</int>
+							<object class="NSFont" key="NSSupport" id="199638629">
+								<string key="NSName">LucidaGrande-Bold</string>
+								<double key="NSSize">13</double>
+								<int key="NSfFlags">2072</int>
 							</object>
 							<string key="NSPlaceholderString"/>
 							<reference key="NSControlView" ref="214007241"/>
@@ -208,7 +212,7 @@
 							<int key="NSCellFlags">67108928</int>
 							<int key="NSCellFlags2">71305216</int>
 							<string key="NSContents">Password:</string>
-							<reference key="NSSupport" ref="453628554"/>
+							<reference key="NSSupport" ref="199638629"/>
 							<string key="NSPlaceholderString"/>
 							<reference key="NSControlView" ref="1024145685"/>
 							<reference key="NSBackgroundColor" ref="761168538"/>
@@ -218,6 +222,7 @@
 					</object>
 				</array>
 				<string key="NSFrameSize">{409, 173}</string>
+				<reference key="NSSuperview"/>
 				<reference key="NSNextKeyView" ref="214007241"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<string key="NSClassName">FLSmallPanelView</string>

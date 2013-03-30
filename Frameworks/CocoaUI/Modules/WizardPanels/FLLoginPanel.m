@@ -138,6 +138,7 @@
 }
 
 - (IBAction) passwordCheckboxToggled:(id) sender {
+    self.userService.rememberPassword = [self savePasswordInKeychain];
     [self saveCredentials];
 }
 

@@ -17,7 +17,7 @@
 - (id) initWithTarget:(id) target 
          withSelector:(SEL) selector {
 
-	self = [super initWithEventName:FLThemeChangedNotificationKey sender:[FLThemeManager instance] parameterKey:FLCurrentThemeKey];
+	self = [super initWithEventName:FLThemeChangedNotificationKey sender:[FLThemeManager instance] parameterKey:FLThemeManagerKey];
 
 	if(self) {
         [self setTarget:target action:@selector(themeDidChange:)];

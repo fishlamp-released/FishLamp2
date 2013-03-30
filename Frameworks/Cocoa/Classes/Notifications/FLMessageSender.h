@@ -10,7 +10,7 @@
 
 #import "FLObjectMessage.h"
 
-@interface FLMessageSender : NSObject
+@interface NSObject (FLMessageSending)
 
 - (BOOL) sendMessage:(SEL) messageSelector  
           toListener:(id) listener;

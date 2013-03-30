@@ -139,6 +139,8 @@
 }
 @end
 
+#import "FLOrderedCollection.h"
+
 @implementation FLOrderedCollection (FLObjectMessage)
 - (void) sendObjectMessage:(FLObjectMessage*) message toListener:(id) listener {
     for(id object in [self forwardObjectEnumerator]) {

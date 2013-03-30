@@ -11,15 +11,14 @@
 
 @protocol FLBreadcrumbBarViewControllerDelegate;
 
-@interface FLBreadcrumbBarViewController : FLCompatibleViewController<FLBreadcrumbBarViewDelegate> {
+@interface FLBreadcrumbBarViewController : FLCompatibleViewController<FLBreadcrumbBarViewDelegate, FLBarTitleStyleProvider> {
 @private
     __unsafe_unretained id<FLBreadcrumbBarViewControllerDelegate> _delegate;
-    SDKFont* _textFont;
-    FLStringDisplayStyle* _titleStyle;
-    SDKView* _contentView;
+    FLStringDisplayStyle* _titleStringStyle;
+    IBOutlet SDKView* _contentView;
 }
 
-@property (readwrite, strong, nonatomic) SDKFont* textFont;
+@property (readwrite, strong, nonatomic) FLStringDisplayStyle* titleStringStyle;
 @property (readwrite,assign,nonatomic) id<FLBreadcrumbBarViewControllerDelegate> delegate;
 
 @property (readwrite, strong, nonatomic) NSView* contentView;

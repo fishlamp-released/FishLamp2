@@ -21,6 +21,7 @@
 @private
     NSMutableArray* _titles;
     FLBarHighlightBackgoundLayer* _highlightLayer;
+    CGFloat _titleTop;
    
     IBOutlet NSView* _contentEnclosure;
     IBOutlet NSView* _contentView;
@@ -28,6 +29,8 @@
     __unsafe_unretained id<FLBreadcrumbBarViewDelegate> _delegate;
 }
 @property (readonly, strong, nonatomic) NSArray* titles;
+@property (readonly, strong, nonatomic) FLBarHighlightBackgoundLayer* highlightLayer;
+@property (readwrite, assign, nonatomic) CGFloat titleTop;
 
 @property (readwrite, assign, nonatomic) id<FLBreadcrumbBarViewDelegate> delegate;
 
@@ -35,14 +38,6 @@
 - (void) updateHighlightedTitle:(BOOL) animated;
 
 @end
-
-@interface FLVerticalEmphasizedTitleBackground : CALayer {
-
-}
-@property (readwrite, strong, nonatomic) NSColor* lineColor;
-
-@end
-
 
 @protocol FLBreadcrumbBarViewDelegate <NSObject>
 - (void) breadcrumbBar:(FLBreadcrumbBarView*) view handleMousedownInTitle:(FLBarTitleLayer*) title;

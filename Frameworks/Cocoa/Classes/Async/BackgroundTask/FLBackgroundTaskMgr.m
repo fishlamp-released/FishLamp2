@@ -267,10 +267,12 @@ FIXME("attach to user sessions....");
 
 
 - (void) openService {
+    [super openService];
     [self scheduleNextBackgroundTask];
 }
 
 - (void) closeService {
+    [super closeService];
     [self _cancel];
     [self resetAllTasks];
 }

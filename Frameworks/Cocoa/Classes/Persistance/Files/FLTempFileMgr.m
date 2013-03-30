@@ -22,6 +22,8 @@
 
 
 - (void) openService {
+    [super openService];
+
 //    self.folder = [self.context storageService].tempFolder;
     [self beginPurgeInBackgroundThread:nil];
 }

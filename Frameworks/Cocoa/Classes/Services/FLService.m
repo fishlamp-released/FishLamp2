@@ -41,9 +41,17 @@
 #endif
 
 
+- (void) setOpen { 
+    [self openService];
+    self.serviceOpen = YES;
+}
 - (void) openService {
 }
 
+- (void) setClosed {
+    [self closeService];
+    self.serviceOpen = NO;
+}
 - (void) closeService {
 }
 
@@ -74,8 +82,7 @@
 - (void) openService:(id) opener {
     if(!self.isServiceOpen) {
         [self performSelectorOnAllServices:@selector(willOpenService)];
-        [self performSelectorOnAllServices:@selector(openService)];
-        self.serviceOpen = YES;
+        [self performSelectorOnAllServices:@selector(setOpen)];
         [self performSelectorOnAllServices:@selector(didOpenService)];
         FLPerformSelector1(self.delegate, _didOpenDelegateMethod, self);
         FLLog(@"opened %@", NSStringFromClass([self class]));    
@@ -85,8 +92,7 @@
 - (void) closeService:(id) opener {
     if(self.isServiceOpen) {
         [self performSelectorOnAllServices:@selector(willCloseService)];
-        [self performSelectorOnAllServices:@selector(closeService)];
-        self.serviceOpen = NO;
+        [self performSelectorOnAllServices:@selector(setClosed)];
         [self performSelectorOnAllServices:@selector(didCloseService)];
         FLPerformSelector1(self.delegate, _didCloseDelegateMethod, self);
         FLLog(@"close %@", NSStringFromClass([self class]));    

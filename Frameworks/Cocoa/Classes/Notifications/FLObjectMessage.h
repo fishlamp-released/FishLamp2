@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-#import "FLOrderedCollection.h"
 
 @interface FLObjectMessage : NSObject {
 @private
@@ -57,6 +56,8 @@
 - (void) sendObjectMessage:(FLObjectMessage*) message toListener:(id) listener;
 @end
 
-@interface FLOrderedCollection (FLObjectMessage)
-- (void) sendObjectMessage:(FLObjectMessage*) message toListener:(id) listener;
-@end
+//#import "FLOrderedCollection.h"
+//
+//@interface FLOrderedCollection (FLObjectMessage)
+//- (void) sendObjectMessage:(FLObjectMessage*) message toListener:(id) listener;
+//@end

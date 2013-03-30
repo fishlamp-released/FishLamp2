@@ -25,6 +25,8 @@
 #define SDKButton            NSButton
 #define SDKTextView          NSTextView
 
+#define SDKApplication       NSApplication
+
 #import "FLCompatibility+OSX.h"
 
 
@@ -46,6 +48,8 @@
 #define SDKLabel            UITextField
 #define SDKTextField        UITextField
 #define SDKTextView         UITextView
+
+#define SDKApplication      UIApplication
 
 #import "FLCompatibility+iOS.h"
 
