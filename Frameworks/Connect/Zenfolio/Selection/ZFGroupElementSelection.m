@@ -31,7 +31,7 @@
 
 - (void) toggleSelectionForGroupElement:(ZFGroupElement*) element;
 
-@property (readonly, strong, nonatomic) ZFGroup* rootGroup;
+@property (readwrite, strong, nonatomic) ZFGroup* rootGroup;
 
 @end
 
@@ -60,11 +60,27 @@
     return FLAutorelease([[[self class] alloc] init]);
 }
 
+- (void) setRootGroup:(ZFGroup*) group {
+    if(_rootGroup != group) {
+        self.displayList = nil;
+        FLSetObjectWithRetain(_rootGroup, group);
+    }
+}
+
 // the group holds the layout of galleries - it should not hold
 // the latest photoSets - that's what the objectStorage is for 
 // (and the _elements collection)
 - (ZFGroup*) rootGroup {
-    return [_dataSource groupElementSelectionGetRootGroup:self];
+
+    if(!_rootGroup) {
+        [self updateRootGroupFromDataSource];
+    }
+
+    return _rootGroup;
+}
+
+- (void) updateRootGroupFromDataSource {
+    [self setRootGroup: [_dataSource groupElementSelectionGetRootGroup:self]];
 }
 
 - (id<FLObjectStorage>) objectStorage {
@@ -92,20 +108,6 @@
     self.selectedPhotoSets = nil;
 }
 
-- (void) setRootGroup:(ZFGroup*) rootGroup {
-
-    if(rootGroup != _rootGroup) {
-        self.displayList = nil;
-
-        if(!rootGroup || (_rootGroup && _rootGroup.IdValue != rootGroup.IdValue)) {
-            [self clearSelection];
-            self.filtered = nil;
-            self.expanded = nil;
-        }
-        
-        FLSetObjectWithRetain(_rootGroup, rootGroup);
-    }
-}
 
 #pragma mark - Element list
 

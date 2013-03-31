@@ -75,6 +75,26 @@
     return nil;
 }
 
+- (NSNumber*) calculateGalleryCount {
+    NSNumber* number = [self GalleryCount];
+    return number ? number : [NSNumber numberWithInt:0];
+}
+
+- (NSNumber*) calculatePhotoCount {
+    NSNumber* number = [self PhotoCount];
+    return number ? number : [NSNumber numberWithInt:0];
+}
+
+- (NSNumber*) calculateVideoCount {
+    NSNumber* number = [self VideoCount];
+    return number ? number : [NSNumber numberWithInt:0];
+}
+
+- (NSNumber*) calculatePhotoBytes {
+    NSNumber* number = [self PhotoBytes];
+    return number ? number : [NSNumber numberWithInt:0];
+}
+
 - (void) setParentGroups:(NSMutableArray*) array {
 }
 

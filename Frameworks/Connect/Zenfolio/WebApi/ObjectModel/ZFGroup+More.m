@@ -328,6 +328,69 @@ FLSynthesizeCachedObjectHandlerProperty(ZFGroup);
 	return NO;
 }
 
+- (NSNumber*) calculateGalleryCount {
+    if(self.GalleryCount != nil) {
+        return [self GalleryCount];
+    }
+    
+    __block NSUInteger count = 0;
+    [self visitAllElements:^(ZFGroupElement* element, BOOL* stop) {
+        if(!element.isGroupElement) {
+            ++count;
+        }
+    }];
+    
+    return [NSNumber numberWithUnsignedInteger:count];
+}
+
+- (NSNumber*) calculatePhotoCount {
+    if(self.PhotoCount != nil) {
+        return [self PhotoCount];
+    }
+    
+    __block NSUInteger count = 0;
+    [self visitAllElements:^(ZFGroupElement* element, BOOL* stop) {
+        if(!element.isGroupElement) {
+            count += element.PhotoCount.intValue;
+        }
+    }];
+    
+    return [NSNumber numberWithUnsignedInteger:count];
+}
+
+
+- (NSNumber*) calculateVideoCount {
+    if(self.VideoCount != nil) {
+        return [self VideoCount];
+    }
+    
+    __block NSUInteger count = 0;
+    [self visitAllElements:^(ZFGroupElement* element, BOOL* stop) {
+        if(!element.isGroupElement) {
+            count += element.VideoCount.intValue;
+        }
+    }];
+    
+    return [NSNumber numberWithUnsignedInteger:count];
+}
+
+
+- (NSNumber*) calculatePhotoBytes {
+
+    if([self PhotoBytes] != nil) {
+        return [self PhotoBytes];
+    }
+    
+    __block unsigned long long count = 0;
+    [self visitAllElements:^(ZFGroupElement* element, BOOL* stop) {
+        if(!element.isGroupElement) {
+            count += element.PhotoBytesValue;
+        }
+    }];
+    
+    return [NSNumber numberWithUnsignedLongLong:count];
+}
+
 //
 //- (ZFGroupElement*) recursiveElementAtIndex:(NSInteger) index {
 //    NSInteger counter = 0;

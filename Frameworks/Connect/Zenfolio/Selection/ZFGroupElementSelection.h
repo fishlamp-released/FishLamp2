@@ -16,6 +16,8 @@
 
 @interface ZFGroupElementSelection : NSObject {
 @private
+    ZFGroup* _rootGroup;
+
 // these only hold object ids
     NSMutableSet* _filtered;
     NSMutableSet* _expanded;
@@ -40,6 +42,9 @@
 
 @property (readwrite, assign, nonatomic) id<ZFZenfolioGroupElementSelectionDelegate> delegate;
 @property (readwrite, assign, nonatomic) id<ZFGroupElementSelectionDataSource> dataSource;
+
+- (void) updateRootGroupFromDataSource;
+@property (readonly, strong, nonatomic) ZFGroup* rootGroup;
 
 /// selection
 @property (readonly, assign, nonatomic) NSUInteger selectionCount;
