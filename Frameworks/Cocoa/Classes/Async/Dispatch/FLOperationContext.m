@@ -101,10 +101,10 @@ NSString* const FLWorkerContextOpened = @"FLWorkerContextOpened";
     });
 }
 
-- (void) didAddOperation:(id) object {
+- (void) didAddOperation:(FLOperation*) object {
 }
 
-- (void) didRemoveOperation:(id) object {
+- (void) didRemoveOperation:(FLOperation*) object {
 }
 
 - (void) didStartWorking {

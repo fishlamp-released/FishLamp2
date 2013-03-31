@@ -53,7 +53,7 @@
             
             [self.objectStorage writeObject:set];
             
-            [self sendIterationObservation:set];
+            [self sendObservation:@selector(photoSetDownloader:didDownloadPhotoSet:) withObject:set];
         }
         
         [self abortIfNeeded];

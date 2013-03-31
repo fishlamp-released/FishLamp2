@@ -8,7 +8,7 @@
 
 #import "FLObjectStorage.h"
 
-@interface FLDictionaryObjectStorage : NSObject<FLObjectStorage> {
+@interface FLDictionaryObjectStorage : NSObject<FLServiceableObjectStorage> {
 @private
     NSMutableDictionary* _storage;
 }

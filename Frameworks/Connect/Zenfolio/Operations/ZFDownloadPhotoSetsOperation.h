@@ -12,7 +12,7 @@
 
 // returns group
 
-@interface ZFDownloadPhotoSetsOperation : FLBatchSynchronousOperation {
+@interface ZFDownloadPhotoSetsOperation : FLSynchronousOperation {
 @private
     ZFGroup* _group;
     
@@ -28,8 +28,6 @@
 
 @protocol  ZFDownloadPhotoSetsOperationObserver <NSObject>
 @optional
-
-// selector defaults
 
 - (void) photoSetDownloader:(ZFDownloadPhotoSetsOperation*) operation 
         didDownloadPhotoSet:(ZFPhotoSet*) photoSet; 

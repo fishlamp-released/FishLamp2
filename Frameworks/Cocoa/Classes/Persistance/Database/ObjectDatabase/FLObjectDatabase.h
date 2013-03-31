@@ -17,7 +17,7 @@ typedef enum {
 } FLObjectDatabaseEventHint;
 
 
-@interface FLObjectDatabase : FLDatabase<FLObjectStorageExtended> {
+@interface FLObjectDatabase : FLDatabase<FLObjectStorageExtended, FLServiceableObjectStorage> {
 }
 
 - (id) initWithDefaultName:(NSString*) directory; // eg appname.sqlite

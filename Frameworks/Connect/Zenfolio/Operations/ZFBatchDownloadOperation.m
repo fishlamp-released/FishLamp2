@@ -63,7 +63,6 @@
 @synthesize destinationPath = _destinationPath;
 @synthesize mediaTypes = _mediaTypes;
 @synthesize rootGroup = _rootGroup;
-@synthesize asyncObserver = _asyncObserver;
 
 + (id) downloadOperation:(NSSet*) photoSetIDs 
                rootGroup:(ZFGroup*) rootGroup 

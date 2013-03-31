@@ -8,173 +8,31 @@
 
 #import "ZFHttpController.h"
 #import "ZFRegisteredUserAuthenticationService.h"
-
-#import "FLDictionaryObjectStorage.h"
-
-#import "FLGlobalNetworkActivityIndicator.h"
-
 #import "ZFLoadGroupHierarchyOperation.h"
 #import "ZFDownloadPhotoSetsOperation.h"
 
+#import "FLDictionaryObjectStorage.h"
+
 @interface ZFHttpController ()
-@property (readwrite, strong) FLUserService* userService;
-@property (readwrite, strong) id<FLObjectStorage> objectCache;
-@property (readwrite, strong) FLHttpRequestAuthenticationService* httpRequestAuthenticator;
 @end
 
 @implementation ZFHttpController
-@synthesize userService = _userLoginService;
-@synthesize objectCache = _objectCacheService;
-@synthesize httpRequestAuthenticator = _httpRequestAuthenticator;
-@synthesize delegate = _delegate;
 
-+ (id) httpController {
-    return FLAutorelease([[[self class] alloc] init]);
+- (FLUserService*) createUserService {
+    return [FLUserService userServiceWithAuthenticationDomain:@"www.zenfolio.com"];
 }
 
-- (id) init {
-    self = [super init]; // [super initWithRootNameForDelegateMethods:@"httpController"];
-    if(self) {
-                
-        self.userService = [FLUserService userService];
-        self.userService.authenticationDomain = @"www.zenfolio.com";
-        self.userService.delegate = self;
-//        [self addSubService:self.userContext];   
+- (FLObjectStorageService*) createObjectStorageService {
+    return [FLObjectStorageService objectStorageService:[FLDictionaryObjectStorage dictionaryObjectStorage]];
+}
 
-        _objectCacheService = [[FLObjectStorageService alloc] init];
-        [_objectCacheService setObjectStorage:[FLDictionaryObjectStorage dictionaryObjectStorage]];
-        [self.userService addSubService:_objectCacheService];
-        
-        self.httpRequestAuthenticator = [ZFRegisteredUserAuthenticationService registeredUserAuthenticationService];
-        self.httpRequestAuthenticator.delegate = self;
-        [self.userService addSubService:self.httpRequestAuthenticator];    
-        
-    }
-    return self;
+- (FLHttpRequestAuthenticationService*) createHttpRequestAuthenticationService {
+    return [ZFRegisteredUserAuthenticationService registeredUserAuthenticationService];
 }
 
 - (ZFHttpUser*) user {
     return nil;
 }
-
-- (BOOL) isAuthenticated {
-    return self.user && [self.user isAuthenticated];
-}
-
-//- (void) openService {
-//    [super openService];
-//    [self.delegate httpControllerDidOpenService:self];
-//}
-//
-//- (void) closeService {
-//    [super closeService];
-//    [self.delegate httpControllerDidCloseService:self];
-//}
-
-#if FL_MRC
-- (void) dealloc {
-    [_httpRequestAuthenticator release];
-    [_objectCacheService release];
-    [_userLoginService release];
-    [super dealloc];
-}
-#endif
-
-- (void) didStartWorking {
-    [super didStartWorking];
-    [FLGlobalNetworkActivityIndicator instance].networkBusy = YES;
-}
-
-- (void) didStopWorking {
-    [super didStopWorking];
-    [FLGlobalNetworkActivityIndicator instance].networkBusy = NO;
-}
-
-- (void) userServiceDidOpen:(FLUserService*) service {
-}
-
-- (void) userServiceDidClose:(FLUserService*) service {
-}
-
-- (void) httpRequestAuthenticationService:(FLHttpRequestAuthenticationService*) service 
-                      didAuthenticateUser:(ZFHttpUser*) userLogin {
-    
-    [self.delegate httpController:self didAuthenticateUser:userLogin];
-}
-
-//
-//- (BOOL) isContextAuthenticated {
-//    return self.httpRequestAuthenticator.isAuthenticated;
-//}
-
-- (void) logoutUser {
-    [self.user setUnathenticated];
-    [self.userService closeService:self];
-    [self.delegate httpController:self didLogoutUser:self.user];
-}
-
-- (FLOperationContext*) httpRequestAuthenticationServiceGetWorkerContext:(FLHttpRequestAuthenticationService*) service {
-    return self;
-}
-
-- (FLHttpUser*) httpRequestAuthenticationServiceGetUser:(FLHttpRequestAuthenticationService*) service {
-    return self.user;
-}
-
-//- (void) didAddOperation:(id) object {
-//    [super didAddOperation:object];
-//    if([object respondsToSelector:@selector(delegate)]) {
-//        if(![object delegate]) {
-//            [object setDelegate:self];
-//        }
-//    }
-//}
-//
-//- (void) didRemoveOperation:(id) object {
-//    [super didRemoveOperation:object];
-//    if([object respondsToSelector:@selector(delegate)]) {
-//        if([object delegate] == self) {
-//            [object setDelegate:nil];
-//        }
-//    }
-//}
-
-//- (FLFinisher*) beginDownloadingPhotoSetsForRootGroup:(id) observer 
-//                           downloadedPhotoSetSelector:(SEL) photoSetSelector
-//                                     finishedSelector:(SEL) finishedSelector {
-//
-//    ZFDownloadPhotoSetsOperation* operation = 
-//        [ZFDownloadPhotoSetsOperation downloadPhotoSetsWithGroup:self.user.rootGroup];
-//    
-//    operation.delegate = self;
-//    operation.observer = observer;
-//    operation.downloadedPhotoSetSelector = photoSetSelector;
-//    operation.finishSelectorForObserver = finishedSelector;
-//
-//    return [operation runAsynchronouslyInContext:self completion:^(FLResult result) {
-//
-//    }];
-//}        
-
-//- (void) didDownloadRootGroup:(ZFGroup*) rootGroup {
-//    self.user.rootGroup = result;
-//}
-
-//- (FLFinisher*) beginDownloadingRootGroup:(id) observer finishedSelector:(SEL) finishedSelector {
-//    
-//    ZFLoadGroupHierarchyOperation* operation = 
-//        [ZFLoadGroupHierarchyOperation loadGroupHierarchyOperation:self.user.credentials]; 
-//
-//    operation.delegate = self;
-//    operation.observer = observer;
-//    operation.finishSelectorForObserver = finishedSelector;
-//
-//    return [operation runAsynchronouslyInContext:self completion:^(FLResult result) {
-//        if(![result error]) {
-//            self.user.rootGroup = result;
-//        }
-//    }];
-//}
 
 - (void) operation:(ZFLoadGroupHierarchyOperation*) operation downloadedRootGroup:(FLResult) result {
     if(![result error]) {
@@ -186,7 +44,6 @@
     ZFLoadGroupHierarchyOperation* operation = 
         [ZFLoadGroupHierarchyOperation loadGroupHierarchyOperation:self.user.credentials]; 
     operation.context = self;
-    operation.objectStorage = [self objectCache];
     [operation setFinishedDelegate:self action:@selector(operation:downloadedRootGroup:)];
     return operation;
 }
@@ -196,32 +53,21 @@
     ZFDownloadPhotoSetsOperation* operation = 
             [ZFDownloadPhotoSetsOperation downloadPhotoSetsWithGroup:self.user.rootGroup];
     operation.context = self;
-    operation.objectStorage = [self objectCache];
     return operation;
 }
 
-//- (id) operationDownloadPhotoSetsInRootGroup {
-//    ZFDownloadPhotoSetsOperation* downloadPhotosets = [ZFDownloadPhotoSetsOperation downloadPhotoSetsWithGroup:self.user.rootGroup];
-//    downloadPhotosets.delegate = self;
-//    
-///*    FLResult result =  */
-//    [self runChildSynchronously: downloadPhotosets];
-//
-//}
+- (ZFBatchDownloadOperation*) createBatchDownloader:(NSSet*) photoSets
+                              destinationFolderPath:(NSString*) destinationPath
+                                         mediaTypes:(NSArray*) mediaTypes {
 
-
-//- (FLFinisher*) beginDownloadingGroupList:(id) observer 
-//                               completion:(fl_result_block_t) completion {
-//
-//
-//    FLUserLogin* userLogin = self.user.credentials;
-//    
-//    ZFLoadGroupHierarchyOperation* operation =
-//        [ZFLoadGroupHierarchyOperation loadGroupHierarchyOperation:userLogin]; 
-//
-//    operation.observer = observer;
-//
-//    return [operation startInContext:self completion:completion];
-//}
+    ZFBatchDownloadOperation* operation = 
+        [ZFBatchDownloadOperation downloadOperation:photoSets 
+                                          rootGroup:[self.user rootGroup]
+                                    destinationPath:destinationPath
+                                         mediaTypes:mediaTypes];
+                                         
+    operation.context = self;
+    return operation;
+}
 
 @end

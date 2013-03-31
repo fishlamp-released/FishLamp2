@@ -2343,6 +2343,24 @@
 		271D3CA016FE079A009CD00F /* NSError+FLTimeout.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D335216FE0776009CD00F /* NSError+FLTimeout.m */; };
 		271D3CA116FE079A009CD00F /* NSError+FLTimeout.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D335216FE0776009CD00F /* NSError+FLTimeout.m */; };
 		271D3CA216FE079A009CD00F /* NSError+FLTimeout.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D335216FE0776009CD00F /* NSError+FLTimeout.m */; };
+		272662A91707DA6500109AC2 /* FLNetworkOperationContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 272662A71707DA6500109AC2 /* FLNetworkOperationContext.h */; };
+		272662AA1707DA6500109AC2 /* FLNetworkOperationContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 272662A71707DA6500109AC2 /* FLNetworkOperationContext.h */; };
+		272662AB1707DA6500109AC2 /* FLNetworkOperationContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 272662A71707DA6500109AC2 /* FLNetworkOperationContext.h */; };
+		272662AC1707DA6500109AC2 /* FLNetworkOperationContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 272662A71707DA6500109AC2 /* FLNetworkOperationContext.h */; };
+		272662AD1707DA6500109AC2 /* FLNetworkOperationContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 272662A81707DA6500109AC2 /* FLNetworkOperationContext.m */; };
+		272662AE1707DA6500109AC2 /* FLNetworkOperationContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 272662A81707DA6500109AC2 /* FLNetworkOperationContext.m */; };
+		272662AF1707DA6500109AC2 /* FLNetworkOperationContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 272662A81707DA6500109AC2 /* FLNetworkOperationContext.m */; };
+		272662B01707DA6500109AC2 /* FLNetworkOperationContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 272662A81707DA6500109AC2 /* FLNetworkOperationContext.m */; };
+		272662B11707DA6500109AC2 /* FLNetworkOperationContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 272662A81707DA6500109AC2 /* FLNetworkOperationContext.m */; };
+		272662B41707DBA000109AC2 /* FLHttpController.h in Headers */ = {isa = PBXBuildFile; fileRef = 272662B21707DBA000109AC2 /* FLHttpController.h */; };
+		272662B51707DBA000109AC2 /* FLHttpController.h in Headers */ = {isa = PBXBuildFile; fileRef = 272662B21707DBA000109AC2 /* FLHttpController.h */; };
+		272662B61707DBA000109AC2 /* FLHttpController.h in Headers */ = {isa = PBXBuildFile; fileRef = 272662B21707DBA000109AC2 /* FLHttpController.h */; };
+		272662B71707DBA000109AC2 /* FLHttpController.h in Headers */ = {isa = PBXBuildFile; fileRef = 272662B21707DBA000109AC2 /* FLHttpController.h */; };
+		272662B81707DBA000109AC2 /* FLHttpController.m in Sources */ = {isa = PBXBuildFile; fileRef = 272662B31707DBA000109AC2 /* FLHttpController.m */; };
+		272662B91707DBA000109AC2 /* FLHttpController.m in Sources */ = {isa = PBXBuildFile; fileRef = 272662B31707DBA000109AC2 /* FLHttpController.m */; };
+		272662BA1707DBA000109AC2 /* FLHttpController.m in Sources */ = {isa = PBXBuildFile; fileRef = 272662B31707DBA000109AC2 /* FLHttpController.m */; };
+		272662BB1707DBA000109AC2 /* FLHttpController.m in Sources */ = {isa = PBXBuildFile; fileRef = 272662B31707DBA000109AC2 /* FLHttpController.m */; };
+		272662BC1707DBA000109AC2 /* FLHttpController.m in Sources */ = {isa = PBXBuildFile; fileRef = 272662B31707DBA000109AC2 /* FLHttpController.m */; };
 		2741E20A16793DB600CA87A9 /* FishLampCocoa.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DEAF16793DB500CA87A9 /* FishLampCocoa.h */; };
 		2741E20B16793DB600CA87A9 /* FishLampCocoa.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DEAF16793DB500CA87A9 /* FishLampCocoa.h */; };
 		2741E20C16793DB600CA87A9 /* FishLampCocoa.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DEAF16793DB500CA87A9 /* FishLampCocoa.h */; };
@@ -3644,6 +3662,10 @@
 		271D335016FE0776009CD00F /* FLTimeUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLTimeUtilities.m; sourceTree = "<group>"; };
 		271D335116FE0776009CD00F /* NSError+FLTimeout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+FLTimeout.h"; sourceTree = "<group>"; };
 		271D335216FE0776009CD00F /* NSError+FLTimeout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+FLTimeout.m"; sourceTree = "<group>"; };
+		272662A71707DA6500109AC2 /* FLNetworkOperationContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLNetworkOperationContext.h; sourceTree = "<group>"; };
+		272662A81707DA6500109AC2 /* FLNetworkOperationContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLNetworkOperationContext.m; sourceTree = "<group>"; };
+		272662B21707DBA000109AC2 /* FLHttpController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLHttpController.h; sourceTree = "<group>"; };
+		272662B31707DBA000109AC2 /* FLHttpController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLHttpController.m; sourceTree = "<group>"; };
 		272D807816C84313006052E5 /* AssetQueueObjects.flproj */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = AssetQueueObjects.flproj; sourceTree = "<group>"; };
 		27314C79165328400027850D /* libFishLampCocoa-OSX-64-ARC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoa-OSX-64-ARC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2739006F16D45D1F00FC6453 /* FishLampCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FishLampCore.xcodeproj; path = ../FishLampCoreLib/FishLampCore.xcodeproj; sourceTree = "<group>"; };
@@ -4367,6 +4389,8 @@
 				271D324016FE0775009CD00F /* Streams */,
 				271D324D16FE0775009CD00F /* Tcp */,
 				271D325416FE0775009CD00F /* Utilities */,
+				272662A71707DA6500109AC2 /* FLNetworkOperationContext.h */,
+				272662A81707DA6500109AC2 /* FLNetworkOperationContext.m */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -4395,6 +4419,8 @@
 				271D31ED16FE0775009CD00F /* Service */,
 				271D31F416FE0775009CD00F /* Stream */,
 				271D31F716FE0775009CD00F /* Utils */,
+				272662B21707DBA000109AC2 /* FLHttpController.h */,
+				272662B31707DBA000109AC2 /* FLHttpController.m */,
 			);
 			path = Http;
 			sourceTree = "<group>";
@@ -5735,6 +5761,8 @@
 				27BE09B217061F6000C375E0 /* FLOperation.h in Headers */,
 				27069FB017075E1B001D4AC9 /* NSBundle+FLAdditions.h in Headers */,
 				27069FBB170761AC001D4AC9 /* SDKApplication+FLAdditions.h in Headers */,
+				272662A91707DA6500109AC2 /* FLNetworkOperationContext.h in Headers */,
+				272662B41707DBA000109AC2 /* FLHttpController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6097,6 +6125,8 @@
 				27BE09B417061F6000C375E0 /* FLOperation.h in Headers */,
 				27069FB217075E1B001D4AC9 /* NSBundle+FLAdditions.h in Headers */,
 				27069FBD170761AC001D4AC9 /* SDKApplication+FLAdditions.h in Headers */,
+				272662AB1707DA6500109AC2 /* FLNetworkOperationContext.h in Headers */,
+				272662B61707DBA000109AC2 /* FLHttpController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6459,6 +6489,8 @@
 				27BE09B317061F6000C375E0 /* FLOperation.h in Headers */,
 				27069FB117075E1B001D4AC9 /* NSBundle+FLAdditions.h in Headers */,
 				27069FBC170761AC001D4AC9 /* SDKApplication+FLAdditions.h in Headers */,
+				272662AA1707DA6500109AC2 /* FLNetworkOperationContext.h in Headers */,
+				272662B51707DBA000109AC2 /* FLHttpController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6821,6 +6853,8 @@
 				27BE09B517061F6000C375E0 /* FLOperation.h in Headers */,
 				27069FB317075E1B001D4AC9 /* NSBundle+FLAdditions.h in Headers */,
 				27069FBE170761AC001D4AC9 /* SDKApplication+FLAdditions.h in Headers */,
+				272662AC1707DA6500109AC2 /* FLNetworkOperationContext.h in Headers */,
+				272662B71707DBA000109AC2 /* FLHttpController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7318,6 +7352,8 @@
 				27BE09B817061FAB00C375E0 /* FLOperation.m in Sources */,
 				27069FB517075E1B001D4AC9 /* NSBundle+FLAdditions.m in Sources */,
 				27069FC0170761AC001D4AC9 /* SDKApplication+FLAdditions.m in Sources */,
+				272662AE1707DA6500109AC2 /* FLNetworkOperationContext.m in Sources */,
+				272662B91707DBA000109AC2 /* FLHttpController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7646,6 +7682,8 @@
 				27BE09BA17061FAB00C375E0 /* FLOperation.m in Sources */,
 				27069FB717075E1B001D4AC9 /* NSBundle+FLAdditions.m in Sources */,
 				27069FC2170761AC001D4AC9 /* SDKApplication+FLAdditions.m in Sources */,
+				272662B01707DA6500109AC2 /* FLNetworkOperationContext.m in Sources */,
+				272662BB1707DBA000109AC2 /* FLHttpController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7966,6 +8004,8 @@
 				27BE09B717061FAB00C375E0 /* FLOperation.m in Sources */,
 				27069FB417075E1B001D4AC9 /* NSBundle+FLAdditions.m in Sources */,
 				27069FBF170761AC001D4AC9 /* SDKApplication+FLAdditions.m in Sources */,
+				272662AD1707DA6500109AC2 /* FLNetworkOperationContext.m in Sources */,
+				272662B81707DBA000109AC2 /* FLHttpController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8294,6 +8334,8 @@
 				27BE09B917061FAB00C375E0 /* FLOperation.m in Sources */,
 				27069FB617075E1B001D4AC9 /* NSBundle+FLAdditions.m in Sources */,
 				27069FC1170761AC001D4AC9 /* SDKApplication+FLAdditions.m in Sources */,
+				272662AF1707DA6500109AC2 /* FLNetworkOperationContext.m in Sources */,
+				272662BA1707DBA000109AC2 /* FLHttpController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8622,6 +8664,8 @@
 				27BE09BB17061FAB00C375E0 /* FLOperation.m in Sources */,
 				27069FB817075E1B001D4AC9 /* NSBundle+FLAdditions.m in Sources */,
 				27069FC3170761AC001D4AC9 /* SDKApplication+FLAdditions.m in Sources */,
+				272662B11707DA6500109AC2 /* FLNetworkOperationContext.m in Sources */,
+				272662BC1707DBA000109AC2 /* FLHttpController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

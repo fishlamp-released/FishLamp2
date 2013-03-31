@@ -25,6 +25,7 @@ extern NSString* const FLWorkerContextOpened;
     FLFifoAsyncQueue* _asyncQueue;
     NSUInteger _contextID;
     BOOL _contextOpen;
+    BOOL _attachedToGlobalNetworkActivityIndicator;
 }
 @property (readonly, assign, getter=isContextOpen) BOOL contextOpen; 
 
@@ -45,8 +46,8 @@ extern NSString* const FLWorkerContextOpened;
 // optional overrides
 - (void) didStartWorking;
 - (void) didStopWorking;
-- (void) didAddOperation:(id) object;
-- (void) didRemoveOperation:(id) object;
+- (void) didAddOperation:(FLOperation*) object;
+- (void) didRemoveOperation:(FLOperation*) object;
 
 @end
 

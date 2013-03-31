@@ -23,9 +23,7 @@ typedef struct {
     NSTimeInterval downloadingTime;
     unsigned long long downloadedBytes;
     unsigned long long currentPhotoBytes;
-    
 } ZFDownloadState_t;
-
 
 @interface ZFDownloadState : NSObject<NSCopying> {
 @private
@@ -47,11 +45,7 @@ typedef struct {
     
     BOOL _downloadImages;
     BOOL _downloadVideos;
-    
-    __unsafe_unretained id _asyncObserver;
 }
-
-@property (readwrite, assign ,nonatomic) id asyncObserver;
 
 + (id) downloadOperation:(NSSet*) photoSetIDs 
                rootGroup:(ZFGroup*) rootGroup
@@ -67,9 +61,8 @@ typedef struct {
 #define ZFDownloadPhotoErrorKey @"error"
 
 @protocol ZFBatchDownloadOperationObserver <NSObject>
-- (void) downloadOperation:(ZFBatchDownloadOperation*) operation updateDownloadInfo:(ZFDownloadState*) downloadInfo;
-
 @optional
+- (void) downloadOperation:(ZFBatchDownloadOperation*) operation updateDownloadInfo:(ZFDownloadState*) downloadInfo;
 
 - (void) downloadOperationWillBeginDownload:(ZFBatchDownloadOperation*) operation;
 - (void) downloadOperation:(ZFBatchDownloadOperation*) operation didFinishWithResult:(FLResult) result;
