@@ -33,7 +33,6 @@
 @synthesize asyncQueue = _asyncQueue;
 @synthesize httpStream = _httpStream;
 @synthesize previousResponse = _previousResponse;
-@synthesize asyncObserver = _asyncObserver;
 
 - (id) init {
     return [self initWithRequestURL:nil httpMethod:nil];

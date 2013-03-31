@@ -27,8 +27,10 @@ NSString* const FLDefaultsKeyWizardSavePasswordKey = @"com.fishlamp.savepassword
 @synthesize authenticationDomain = _authenticationDomain;
 @synthesize rememberPassword = _rememberPassword;
 
-+ (id) userService {
-    return FLAutorelease([[[self class] alloc] init]);
++ (id) userServiceWithAuthenticationDomain:(NSString*) authenticationDomain {
+    FLUserService* service = FLAutorelease([[[self class] alloc] init]);
+    service.authenticationDomain = authenticationDomain;
+    return service;
 }
 
 - (id) init {

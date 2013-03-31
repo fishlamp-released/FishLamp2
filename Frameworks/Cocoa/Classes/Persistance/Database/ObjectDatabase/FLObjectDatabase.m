@@ -43,6 +43,11 @@
     }
 }
 
+- (void) openStorage {
+}
+
+- (void) closeStorage {
+}
 
 - (void) deleteObject:(id) inputObject
 {

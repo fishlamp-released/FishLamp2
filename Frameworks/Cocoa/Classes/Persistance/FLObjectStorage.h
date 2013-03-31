@@ -21,6 +21,12 @@
 - (NSArray*) readObjectsForClass:(Class) aClass;
 @end
 
+@protocol FLServiceableObjectStorage <FLObjectStorage>
+- (void) openStorage;
+- (void) closeStorage;
+@end
+
+
 @interface NSObject (FLObjectStorage)
 
 - (id) objectStorageKey_fl;

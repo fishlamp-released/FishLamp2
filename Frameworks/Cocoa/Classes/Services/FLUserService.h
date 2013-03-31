@@ -22,7 +22,7 @@
 @property (readwrite, assign, nonatomic) BOOL rememberPassword;
 @property (readwrite, strong, nonatomic) NSString* authenticationDomain;
 
-+ (id) userService;
++ (id) userServiceWithAuthenticationDomain:(NSString*) authenticationDomain;
 
 - (void) removeFromUserDefaults;
 - (void) loadFromUserDefaults;

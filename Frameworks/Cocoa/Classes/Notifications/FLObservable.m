@@ -65,10 +65,5 @@
 @end
 
 @implementation FLObservable 
-
 @synthesize asyncObserver = _asyncObserver;
-
-
-
-
 @end

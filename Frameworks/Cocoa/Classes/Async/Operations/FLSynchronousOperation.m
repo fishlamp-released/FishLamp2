@@ -93,9 +93,6 @@
     _finishedAction = action;
 }
 
-
-
-
 @end
 
 @implementation FLBatchSynchronousOperation
