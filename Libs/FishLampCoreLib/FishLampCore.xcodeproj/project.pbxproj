@@ -215,13 +215,13 @@
 		2798DA36166D886500A0863D /* NSObject+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE16166D886500A0863D /* NSObject+Blocks.m */; };
 		2798DA37166D886500A0863D /* NSObject+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE16166D886500A0863D /* NSObject+Blocks.m */; };
 		2798DA38166D886500A0863D /* NSObject+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE16166D886500A0863D /* NSObject+Blocks.m */; };
-		2798DA39166D886500A0863D /* NSObject+FLSelectorPerforming.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE17166D886500A0863D /* NSObject+FLSelectorPerforming.h */; };
-		2798DA3A166D886500A0863D /* NSObject+FLSelectorPerforming.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE17166D886500A0863D /* NSObject+FLSelectorPerforming.h */; };
-		2798DA3B166D886500A0863D /* NSObject+FLSelectorPerforming.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE17166D886500A0863D /* NSObject+FLSelectorPerforming.h */; };
-		2798DA3C166D886500A0863D /* NSObject+FLSelectorPerforming.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE18166D886500A0863D /* NSObject+FLSelectorPerforming.m */; };
-		2798DA3D166D886500A0863D /* NSObject+FLSelectorPerforming.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE18166D886500A0863D /* NSObject+FLSelectorPerforming.m */; };
-		2798DA3E166D886500A0863D /* NSObject+FLSelectorPerforming.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE18166D886500A0863D /* NSObject+FLSelectorPerforming.m */; };
-		2798DA3F166D886500A0863D /* NSObject+FLSelectorPerforming.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE18166D886500A0863D /* NSObject+FLSelectorPerforming.m */; };
+		2798DA39166D886500A0863D /* FLSelectorPerforming.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE17166D886500A0863D /* FLSelectorPerforming.h */; };
+		2798DA3A166D886500A0863D /* FLSelectorPerforming.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE17166D886500A0863D /* FLSelectorPerforming.h */; };
+		2798DA3B166D886500A0863D /* FLSelectorPerforming.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE17166D886500A0863D /* FLSelectorPerforming.h */; };
+		2798DA3C166D886500A0863D /* FLSelectorPerforming.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE18166D886500A0863D /* FLSelectorPerforming.m */; };
+		2798DA3D166D886500A0863D /* FLSelectorPerforming.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE18166D886500A0863D /* FLSelectorPerforming.m */; };
+		2798DA3E166D886500A0863D /* FLSelectorPerforming.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE18166D886500A0863D /* FLSelectorPerforming.m */; };
+		2798DA3F166D886500A0863D /* FLSelectorPerforming.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE18166D886500A0863D /* FLSelectorPerforming.m */; };
 		27CBBF8816768BA600753D0A /* FLDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CDC4166D886500A0863D /* FLDebug.m */; };
 		27CBBF9316768BA600753D0A /* FLLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CDE0166D886500A0863D /* FLLog.m */; };
 		27CBBF9416768BA600753D0A /* FLLogEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CDE2166D886500A0863D /* FLLogEntry.m */; };
@@ -238,7 +238,7 @@
 		27CBBFA016768BA600753D0A /* NSArray+FLExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE12166D886500A0863D /* NSArray+FLExtras.m */; };
 		27CBBFA116768BA600753D0A /* NSDictionary+FLAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE14166D886500A0863D /* NSDictionary+FLAdditions.m */; };
 		27CBBFA216768BA600753D0A /* NSObject+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE16166D886500A0863D /* NSObject+Blocks.m */; };
-		27CBBFA316768BA600753D0A /* NSObject+FLSelectorPerforming.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE18166D886500A0863D /* NSObject+FLSelectorPerforming.m */; };
+		27CBBFA316768BA600753D0A /* FLSelectorPerforming.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE18166D886500A0863D /* FLSelectorPerforming.m */; };
 		27CBC16616768BA600753D0A /* FLDebug.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDC3166D886500A0863D /* FLDebug.h */; };
 		27CBC17316768BA600753D0A /* FishLampCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDDD166D886500A0863D /* FishLampCore.h */; };
 		27CBC17416768BA600753D0A /* FLLog.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDDF166D886500A0863D /* FLLog.h */; };
@@ -272,7 +272,7 @@
 		27CBC19416768BA600753D0A /* NSArray+FLExtras.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE11166D886500A0863D /* NSArray+FLExtras.h */; };
 		27CBC19516768BA600753D0A /* NSDictionary+FLAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE13166D886500A0863D /* NSDictionary+FLAdditions.h */; };
 		27CBC19616768BA600753D0A /* NSObject+Blocks.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE15166D886500A0863D /* NSObject+Blocks.h */; };
-		27CBC19716768BA600753D0A /* NSObject+FLSelectorPerforming.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE17166D886500A0863D /* NSObject+FLSelectorPerforming.h */; };
+		27CBC19716768BA600753D0A /* FLSelectorPerforming.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE17166D886500A0863D /* FLSelectorPerforming.h */; };
 		27D4791716F7765C0066140D /* FLPropertyAttributes.h in Headers */ = {isa = PBXBuildFile; fileRef = 27D4791516F7765C0066140D /* FLPropertyAttributes.h */; };
 		27D4791816F7765C0066140D /* FLPropertyAttributes.h in Headers */ = {isa = PBXBuildFile; fileRef = 27D4791516F7765C0066140D /* FLPropertyAttributes.h */; };
 		27D4791916F7765C0066140D /* FLPropertyAttributes.h in Headers */ = {isa = PBXBuildFile; fileRef = 27D4791516F7765C0066140D /* FLPropertyAttributes.h */; };
@@ -309,10 +309,6 @@
 		27EC4ED216F0F87300E38A05 /* FLSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EC4ECB16F0F87300E38A05 /* FLSelector.m */; };
 		27EC4ED316F0F87300E38A05 /* FLSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EC4ECB16F0F87300E38A05 /* FLSelector.m */; };
 		27EC4ED416F0F87300E38A05 /* FLSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EC4ECB16F0F87300E38A05 /* FLSelector.m */; };
-		27F1F53E16A0A73E00B10213 /* NSObject+FLSelectorPerforming_Inlines.h in Headers */ = {isa = PBXBuildFile; fileRef = 27F1F53D16A0A73E00B10213 /* NSObject+FLSelectorPerforming_Inlines.h */; };
-		27F1F53F16A0A73E00B10213 /* NSObject+FLSelectorPerforming_Inlines.h in Headers */ = {isa = PBXBuildFile; fileRef = 27F1F53D16A0A73E00B10213 /* NSObject+FLSelectorPerforming_Inlines.h */; };
-		27F1F54016A0A73E00B10213 /* NSObject+FLSelectorPerforming_Inlines.h in Headers */ = {isa = PBXBuildFile; fileRef = 27F1F53D16A0A73E00B10213 /* NSObject+FLSelectorPerforming_Inlines.h */; };
-		27F1F54116A0A73E00B10213 /* NSObject+FLSelectorPerforming_Inlines.h in Headers */ = {isa = PBXBuildFile; fileRef = 27F1F53D16A0A73E00B10213 /* NSObject+FLSelectorPerforming_Inlines.h */; };
 		27F46EB716FA45FD006271B4 /* FLAssertionFailureErrorDomain.h in Headers */ = {isa = PBXBuildFile; fileRef = 27F46E9E16FA45FD006271B4 /* FLAssertionFailureErrorDomain.h */; };
 		27F46EB816FA45FD006271B4 /* FLAssertionFailureErrorDomain.h in Headers */ = {isa = PBXBuildFile; fileRef = 27F46E9E16FA45FD006271B4 /* FLAssertionFailureErrorDomain.h */; };
 		27F46EB916FA45FD006271B4 /* FLAssertionFailureErrorDomain.h in Headers */ = {isa = PBXBuildFile; fileRef = 27F46E9E16FA45FD006271B4 /* FLAssertionFailureErrorDomain.h */; };
@@ -511,8 +507,8 @@
 		2798CE14166D886500A0863D /* NSDictionary+FLAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+FLAdditions.m"; sourceTree = "<group>"; };
 		2798CE15166D886500A0863D /* NSObject+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Blocks.h"; sourceTree = "<group>"; };
 		2798CE16166D886500A0863D /* NSObject+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Blocks.m"; sourceTree = "<group>"; };
-		2798CE17166D886500A0863D /* NSObject+FLSelectorPerforming.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+FLSelectorPerforming.h"; sourceTree = "<group>"; };
-		2798CE18166D886500A0863D /* NSObject+FLSelectorPerforming.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+FLSelectorPerforming.m"; sourceTree = "<group>"; };
+		2798CE17166D886500A0863D /* FLSelectorPerforming.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLSelectorPerforming.h; sourceTree = "<group>"; };
+		2798CE18166D886500A0863D /* FLSelectorPerforming.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLSelectorPerforming.m; sourceTree = "<group>"; };
 		2798DB81166D8A7F00A0863D /* SharedTargetSettings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = SharedTargetSettings.xcconfig; sourceTree = "<group>"; };
 		27A43AB415CDCC89001CB13E /* libFishLampCore-iOS-ARC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCore-iOS-ARC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27A43AC415CDCCCB001CB13E /* libFishLampCore-OSX-64-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCore-OSX-64-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -525,7 +521,6 @@
 		27D4792C16F7883E0066140D /* FLCharString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLCharString.m; sourceTree = "<group>"; };
 		27EC4ECA16F0F87300E38A05 /* FLSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLSelector.h; sourceTree = "<group>"; };
 		27EC4ECB16F0F87300E38A05 /* FLSelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLSelector.m; sourceTree = "<group>"; };
-		27F1F53D16A0A73E00B10213 /* NSObject+FLSelectorPerforming_Inlines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+FLSelectorPerforming_Inlines.h"; sourceTree = "<group>"; };
 		27F46E9E16FA45FD006271B4 /* FLAssertionFailureErrorDomain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAssertionFailureErrorDomain.h; sourceTree = "<group>"; };
 		27F46E9F16FA45FD006271B4 /* FLAssertionFailureErrorDomain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAssertionFailureErrorDomain.m; sourceTree = "<group>"; };
 		27F46EA016FA45FD006271B4 /* FLAssertions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAssertions.h; sourceTree = "<group>"; };
@@ -743,9 +738,8 @@
 				2798CE14166D886500A0863D /* NSDictionary+FLAdditions.m */,
 				2798CE15166D886500A0863D /* NSObject+Blocks.h */,
 				2798CE16166D886500A0863D /* NSObject+Blocks.m */,
-				27F1F53D16A0A73E00B10213 /* NSObject+FLSelectorPerforming_Inlines.h */,
-				2798CE17166D886500A0863D /* NSObject+FLSelectorPerforming.h */,
-				2798CE18166D886500A0863D /* NSObject+FLSelectorPerforming.m */,
+				2798CE17166D886500A0863D /* FLSelectorPerforming.h */,
+				2798CE18166D886500A0863D /* FLSelectorPerforming.m */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -900,13 +894,12 @@
 				2798DA25166D886500A0863D /* NSArray+FLExtras.h in Headers */,
 				2798DA2C166D886500A0863D /* NSDictionary+FLAdditions.h in Headers */,
 				2798DA33166D886500A0863D /* NSObject+Blocks.h in Headers */,
-				2798DA3A166D886500A0863D /* NSObject+FLSelectorPerforming.h in Headers */,
+				2798DA3A166D886500A0863D /* FLSelectorPerforming.h in Headers */,
 				271E3D0A16920FC800FB62C9 /* FLPrettyString.h in Headers */,
 				271E3D1316920FC800FB62C9 /* FLStringFormatter.h in Headers */,
 				271E3D1C16920FC800FB62C9 /* FLStringUtils.h in Headers */,
 				271E3D2516920FC800FB62C9 /* FLWhitespace.h in Headers */,
 				274933F1169A051E008E8EC5 /* __CoreHeaders.h in Headers */,
-				27F1F53E16A0A73E00B10213 /* NSObject+FLSelectorPerforming_Inlines.h in Headers */,
 				27EC4ECC16F0F87300E38A05 /* FLSelector.h in Headers */,
 				27D4791716F7765C0066140D /* FLPropertyAttributes.h in Headers */,
 				27D4792216F7881C0066140D /* NSString+FLCharString.h in Headers */,
@@ -965,13 +958,12 @@
 				2798DA26166D886500A0863D /* NSArray+FLExtras.h in Headers */,
 				2798DA2D166D886500A0863D /* NSDictionary+FLAdditions.h in Headers */,
 				2798DA34166D886500A0863D /* NSObject+Blocks.h in Headers */,
-				2798DA3B166D886500A0863D /* NSObject+FLSelectorPerforming.h in Headers */,
+				2798DA3B166D886500A0863D /* FLSelectorPerforming.h in Headers */,
 				271E3D0C16920FC800FB62C9 /* FLPrettyString.h in Headers */,
 				271E3D1516920FC800FB62C9 /* FLStringFormatter.h in Headers */,
 				271E3D1E16920FC800FB62C9 /* FLStringUtils.h in Headers */,
 				271E3D2716920FC800FB62C9 /* FLWhitespace.h in Headers */,
 				274933F3169A051E008E8EC5 /* __CoreHeaders.h in Headers */,
-				27F1F54016A0A73E00B10213 /* NSObject+FLSelectorPerforming_Inlines.h in Headers */,
 				27EC4ECE16F0F87300E38A05 /* FLSelector.h in Headers */,
 				27D4791916F7765C0066140D /* FLPropertyAttributes.h in Headers */,
 				27D4792416F7881C0066140D /* NSString+FLCharString.h in Headers */,
@@ -1030,13 +1022,12 @@
 				2798DA24166D886500A0863D /* NSArray+FLExtras.h in Headers */,
 				2798DA2B166D886500A0863D /* NSDictionary+FLAdditions.h in Headers */,
 				2798DA32166D886500A0863D /* NSObject+Blocks.h in Headers */,
-				2798DA39166D886500A0863D /* NSObject+FLSelectorPerforming.h in Headers */,
+				2798DA39166D886500A0863D /* FLSelectorPerforming.h in Headers */,
 				271E3D0B16920FC800FB62C9 /* FLPrettyString.h in Headers */,
 				271E3D1416920FC800FB62C9 /* FLStringFormatter.h in Headers */,
 				271E3D1D16920FC800FB62C9 /* FLStringUtils.h in Headers */,
 				271E3D2616920FC800FB62C9 /* FLWhitespace.h in Headers */,
 				274933F2169A051E008E8EC5 /* __CoreHeaders.h in Headers */,
-				27F1F53F16A0A73E00B10213 /* NSObject+FLSelectorPerforming_Inlines.h in Headers */,
 				27EC4ECD16F0F87300E38A05 /* FLSelector.h in Headers */,
 				27D4791816F7765C0066140D /* FLPropertyAttributes.h in Headers */,
 				27D4792316F7881C0066140D /* NSString+FLCharString.h in Headers */,
@@ -1095,13 +1086,12 @@
 				27CBC19416768BA600753D0A /* NSArray+FLExtras.h in Headers */,
 				27CBC19516768BA600753D0A /* NSDictionary+FLAdditions.h in Headers */,
 				27CBC19616768BA600753D0A /* NSObject+Blocks.h in Headers */,
-				27CBC19716768BA600753D0A /* NSObject+FLSelectorPerforming.h in Headers */,
+				27CBC19716768BA600753D0A /* FLSelectorPerforming.h in Headers */,
 				271E3D0D16920FC800FB62C9 /* FLPrettyString.h in Headers */,
 				271E3D1616920FC800FB62C9 /* FLStringFormatter.h in Headers */,
 				271E3D1F16920FC800FB62C9 /* FLStringUtils.h in Headers */,
 				271E3D2816920FC800FB62C9 /* FLWhitespace.h in Headers */,
 				274933F4169A051E008E8EC5 /* __CoreHeaders.h in Headers */,
-				27F1F54116A0A73E00B10213 /* NSObject+FLSelectorPerforming_Inlines.h in Headers */,
 				27EC4ECF16F0F87300E38A05 /* FLSelector.h in Headers */,
 				27D4791A16F7765C0066140D /* FLPropertyAttributes.h in Headers */,
 				27D4792516F7881C0066140D /* NSString+FLCharString.h in Headers */,
@@ -1263,7 +1253,7 @@
 				2798DA29166D886500A0863D /* NSArray+FLExtras.m in Sources */,
 				2798DA30166D886500A0863D /* NSDictionary+FLAdditions.m in Sources */,
 				2798DA37166D886500A0863D /* NSObject+Blocks.m in Sources */,
-				2798DA3E166D886500A0863D /* NSObject+FLSelectorPerforming.m in Sources */,
+				2798DA3E166D886500A0863D /* FLSelectorPerforming.m in Sources */,
 				271E3D0F16920FC800FB62C9 /* FLPrettyString.m in Sources */,
 				271E3D1816920FC800FB62C9 /* FLStringFormatter.m in Sources */,
 				271E3D2116920FC800FB62C9 /* FLStringUtils.m in Sources */,
@@ -1309,7 +1299,7 @@
 				2798DA2A166D886500A0863D /* NSArray+FLExtras.m in Sources */,
 				2798DA31166D886500A0863D /* NSDictionary+FLAdditions.m in Sources */,
 				2798DA38166D886500A0863D /* NSObject+Blocks.m in Sources */,
-				2798DA3F166D886500A0863D /* NSObject+FLSelectorPerforming.m in Sources */,
+				2798DA3F166D886500A0863D /* FLSelectorPerforming.m in Sources */,
 				271E3D1116920FC800FB62C9 /* FLPrettyString.m in Sources */,
 				271E3D1A16920FC800FB62C9 /* FLStringFormatter.m in Sources */,
 				271E3D2316920FC800FB62C9 /* FLStringUtils.m in Sources */,
@@ -1355,7 +1345,7 @@
 				2798DA27166D886500A0863D /* NSArray+FLExtras.m in Sources */,
 				2798DA2E166D886500A0863D /* NSDictionary+FLAdditions.m in Sources */,
 				2798DA35166D886500A0863D /* NSObject+Blocks.m in Sources */,
-				2798DA3C166D886500A0863D /* NSObject+FLSelectorPerforming.m in Sources */,
+				2798DA3C166D886500A0863D /* FLSelectorPerforming.m in Sources */,
 				271E3D0E16920FC800FB62C9 /* FLPrettyString.m in Sources */,
 				271E3D1716920FC800FB62C9 /* FLStringFormatter.m in Sources */,
 				271E3D2016920FC800FB62C9 /* FLStringUtils.m in Sources */,
@@ -1401,7 +1391,7 @@
 				2798DA28166D886500A0863D /* NSArray+FLExtras.m in Sources */,
 				2798DA2F166D886500A0863D /* NSDictionary+FLAdditions.m in Sources */,
 				2798DA36166D886500A0863D /* NSObject+Blocks.m in Sources */,
-				2798DA3D166D886500A0863D /* NSObject+FLSelectorPerforming.m in Sources */,
+				2798DA3D166D886500A0863D /* FLSelectorPerforming.m in Sources */,
 				271E3D1016920FC800FB62C9 /* FLPrettyString.m in Sources */,
 				271E3D1916920FC800FB62C9 /* FLStringFormatter.m in Sources */,
 				271E3D2216920FC800FB62C9 /* FLStringUtils.m in Sources */,
@@ -1447,7 +1437,7 @@
 				27CBBFA016768BA600753D0A /* NSArray+FLExtras.m in Sources */,
 				27CBBFA116768BA600753D0A /* NSDictionary+FLAdditions.m in Sources */,
 				27CBBFA216768BA600753D0A /* NSObject+Blocks.m in Sources */,
-				27CBBFA316768BA600753D0A /* NSObject+FLSelectorPerforming.m in Sources */,
+				27CBBFA316768BA600753D0A /* FLSelectorPerforming.m in Sources */,
 				271E3D1216920FC800FB62C9 /* FLPrettyString.m in Sources */,
 				271E3D1B16920FC800FB62C9 /* FLStringFormatter.m in Sources */,
 				271E3D2416920FC800FB62C9 /* FLStringUtils.m in Sources */,

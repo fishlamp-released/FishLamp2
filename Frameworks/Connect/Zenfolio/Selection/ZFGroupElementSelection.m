@@ -347,6 +347,16 @@
     }
 }
 
+//- (void) expandAll:(ZFGroup*) group expand:(BOOL) expand {
+//
+//    for(id element in [self.elements forwardObjectEnumerator]) {
+//        if([element isGroupElement]) {
+//            [self expandAll:element expanded:expand];
+//        }
+//    }
+//    [self expandElement:group expanded:expanded];
+//}
+
 - (void) setAllExpanded:(BOOL) expanded {
     [self clearSelection];
     
@@ -419,26 +429,34 @@
     if(FLStringIsNotEmpty(_filterString)) {
         self.filtered = [NSMutableSet set];
         
-        NSSet* previousSelection = FLRetainWithAutorelease(_selected);
-        NSSet* previousPhotoSetSelection = FLRetainWithAutorelease(_selectedPhotoSets);
+//        NSSet* previousSelection = FLRetainWithAutorelease(_selected);
+//        NSSet* previousPhotoSetSelection = FLRetainWithAutorelease(_selectedPhotoSets);
         [self clearSelection];
         
-        [self findMatchesForFilterWithGroup:_rootGroup filter:_filterString results:_filtered];
+        [self findMatchesForFilterWithGroup:[self rootGroup] filter:_filterString results:_filtered];
         
-        self.selected = [NSMutableSet set];
-        self.selectedPhotoSets = [NSMutableSet set];
+//        self.selected = [NSMutableSet set];
+//        self.selectedPhotoSets = [NSMutableSet set];
+//        
+        for(NSNumber* elementID in _filtered) {
         
-        // We're REMOVING stuff not in the filter.
-        
-        for(NSNumber* elementID in previousSelection) {
-            if([_filtered containsObject:elementID]) {
-                [_selected addObject:elementID];
-                
-                if([previousPhotoSetSelection containsObject:elementID]) {
-                    [_selectedPhotoSets addObject:elementID];
-                }
+            id element = [self elementForID:elementID];
+            if(TestElement(element, _filterString)) {
+                [self selectGroupElement:element selected:YES];
             }
         }
+
+
+        
+//        for(NSNumber* elementID in previousSelection) {
+//            if([_filtered containsObject:elementID]) {
+//                [_selected addObject:elementID];
+//                
+//                if([previousPhotoSetSelection containsObject:elementID]) {
+//                    [_selectedPhotoSets addObject:elementID];
+//                }
+//            }
+//        }
     }
 }
 

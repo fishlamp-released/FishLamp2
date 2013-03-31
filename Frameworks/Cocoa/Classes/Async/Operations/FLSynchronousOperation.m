@@ -61,6 +61,10 @@
 }
 
 - (void) performUntilFinished:(FLFinisher*) finisher {
+    [finisher setFinishedWithResult:[self runSynchronously]];
+}
+
+- (FLResult) runSynchronously {
 
     id result = nil;
 
@@ -79,13 +83,7 @@
     FLPerformSelector2(_finishedDelegate, _finishedAction, self, result);
     self.cancelled = NO;
 
-    [finisher setFinishedWithResult:result];
-}
-
-- (FLResult) runSynchronously {
-    FLFinisher* finisher = [FLFinisher finisher];
-    [self performUntilFinished:finisher];
-    return finisher.result;
+    return result;
 }
 
 - (void) setFinishedDelegate:(id) target action:(SEL) action {

@@ -12,10 +12,15 @@
 extern NSString* const FLGlobalNetworkActivityShow;
 extern NSString* const FLGlobalNetworkActivityHide;
 
+extern NSString* const FLNetworkActivityStartedNotification;
+extern NSString* const FLNetworkActivityStoppedNotification;
+extern NSString* const FLNetworkActivitySenderKey;
+
 @interface FLGlobalNetworkActivityIndicator : NSObject {
 @private
     NSInteger _busyCount;
-    BOOL _showing;
+    BOOL _busy;
+    NSTimeInterval _lastChange;
 }
 FLSingletonProperty(FLGlobalNetworkActivityIndicator);
 

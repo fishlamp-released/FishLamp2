@@ -120,6 +120,24 @@
     return self.result;
 }
 
+- (void) notifyFinished {
+    if(_didFinish) {
+        _didFinish(self.result);
+    }
+
+    if(_operation) {
+        [_operation operationDidFinish];
+        _operation = nil;
+    }
+
+    self.finished = YES;
+
+    if(_semaphore) {
+    //       FLLog(@"releasing semaphor for %X, ont thread %@", (void*) _semaphore, [NSThread currentThread]);
+        dispatch_semaphore_signal(_semaphore);
+    }
+}
+
 - (void) setFinishedWithResult:(id) result {
     
     FLAssertIsNilWithComment(self.result, @"already finished");
@@ -134,36 +152,15 @@
 #if DEBUG
     self.finishedStackTrace = FLCreateStackTrace(YES);
 #endif
-    
-//    if(self.finishOnMainThread && ![NSThread isMainThread]) {
-//       completion = FLCopyWithAutorelease(completion);
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            [self finishFinishing:completion];
-//        });
-//    }
-//    else {
-//        [self finishFinishing:completion];
-//    } 
 
-    dispatch_async(dispatch_get_main_queue(), ^{
-    
-        if(_didFinish) {
-            _didFinish(self.result);
-        }
-
-        if(_operation) {
-            [_operation operationDidFinish];
-            _operation = nil;
-        }
-
-        self.finished = YES;
-
-        if(_semaphore) {
-     //       FLLog(@"releasing semaphor for %X, ont thread %@", (void*) _semaphore, [NSThread currentThread]);
-            dispatch_semaphore_signal(_semaphore);
-        }
-    });
-
+    if([NSThread currentThread] == [NSThread mainThread] ) {
+        [self notifyFinished];
+    }
+    else {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self notifyFinished];
+        });
+    }
 }                    
 
 - (void) setFinished {

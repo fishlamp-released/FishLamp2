@@ -8,7 +8,7 @@
 
 #import "FLRuntimeInfo.h"
 #import "FLObjcRuntime.h"
-#import "NSObject+FLSelectorPerforming.h"
+#import "FLSelectorPerforming.h"
 
 @implementation FLSelectorInfo
 

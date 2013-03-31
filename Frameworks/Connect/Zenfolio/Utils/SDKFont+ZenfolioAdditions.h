@@ -8,6 +8,8 @@
 
 #import "FLCompatibility.h"
 
+#if UNAVAILABLE
+
 @interface SDKFont (ZenfolioAdditions)
 
 + (SDKFont*) zenfolioFontOfSize:(CGFloat)fontSize;
@@ -23,3 +25,5 @@
 + (SDKFont*) zenfolioLabelFont;
 
 @end
+
+#endif

@@ -60,6 +60,14 @@
 #endif
 }
 
+- (void) loadView {
+    [super loadView];
+    
+    [self view];
+    _userNameTextField.nextKeyView = _passwordEntryField;
+    _passwordEntryField.nextKeyView = _userNameTextField;
+}
+
 - (void) setUserName:(NSString*) userName {
     [_userNameTextField setStringValue:FLEmptyStringOrString(userName)];
 }
@@ -197,9 +205,14 @@
     [self.view.window makeFirstResponder:self.view.window];
     [super panelWillDisappear];
     [self saveCredentials];
+    self.userService = nil;
+}
+
+- (void) panelDidDisappear {
+    [super panelDidDisappear];
+    
     _userNameTextField.stringValue = @"";
     _passwordEntryField.stringValue = @"";
-    self.userService = nil;
 }
 
 @end

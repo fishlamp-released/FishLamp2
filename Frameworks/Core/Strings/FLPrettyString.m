@@ -7,7 +7,7 @@
 //
 
 #import "FLPrettyString.h"
-#import "NSObject+FLSelectorPerforming.h"
+#import "FLSelectorPerforming.h"
 
 @interface FLPrettyString ()
 @property (readwrite, strong, nonatomic) id storage;

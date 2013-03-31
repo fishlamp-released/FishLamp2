@@ -168,6 +168,7 @@
                                                                cache:nil];
 
     request.networkStreamSink = [FLFileStreamSink fileStreamSink:[NSURL fileURLWithPath:[imageFolder pathForFile:photo.FileName]]];
+    request.asyncObserver = self;
                                                                
     return [self runChildSynchronously:request];
 }
@@ -185,6 +186,7 @@
         [FLHttpRequest httpRequest:[photo urlForImageWithSize:[ZFMediaType originalImage]]];
 
     request.networkStreamSink = [FLFileStreamSink fileStreamSink:[NSURL fileURLWithPath:filePath]];
+    request.asyncObserver = self;
                                                                
     return [self runChildSynchronously:request];
 
