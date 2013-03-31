@@ -112,6 +112,13 @@
     [self.delegate httpController:self didLogoutUser:self.user];
 }
 
+- (void) httpRequestAuthenticationService:(FLHttpRequestAuthenticationService*) service 
+                         operationContext:(FLOperationContext**) outOperationContext {
+    *outOperationContext = FLRetain(self);
+}                         
+
+
+
 - (FLOperationContext*) httpRequestAuthenticationServiceGetWorkerContext:(FLHttpRequestAuthenticationService*) service {
     return self;
 }

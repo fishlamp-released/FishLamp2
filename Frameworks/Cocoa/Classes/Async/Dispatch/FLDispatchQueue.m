@@ -8,7 +8,7 @@
 
 #import "FLDispatchQueue.h"
 
-#import "NSObject+FLSelectorPerforming.h"
+#import "FLSelectorPerforming.h"
 #import "FLFinisher.h"
 #import "FLOperation.h"
 

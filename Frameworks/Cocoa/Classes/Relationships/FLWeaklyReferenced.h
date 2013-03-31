@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import "NSObject+FLSelectorPerforming.h"
+#import "FLSelectorPerforming.h"
 #import "FLDeallocNotifier.h"
 
 /**

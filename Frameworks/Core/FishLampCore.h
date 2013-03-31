@@ -43,7 +43,7 @@
 
 #import "NSDictionary+FLAdditions.h"
 #import "NSObject+Blocks.h"
-#import "NSObject+FLSelectorPerforming.h"
+#import "FLSelectorPerforming.h"
 
 
 #import "FLLog.h"

@@ -11,54 +11,83 @@
 NSString* const FLGlobalNetworkActivityShow = @"FLGlobalNetworkActivityShow";
 NSString* const FLGlobalNetworkActivityHide = @"FLGlobalNetworkActivityHide";
 
+NSString* const FLNetworkActivityStartedNotification = @"FLNetworkActivityStartedNotification";
+NSString* const FLNetworkActivityStoppedNotification = @"FLNetworkActivityStoppedNotification";
+NSString* const FLNetworkActivitySenderKey = @"FLNetworkActivitySenderKey";
+
 @interface FLGlobalNetworkActivityIndicator()
 @property (readwrite, assign) NSInteger busyCount;
+@property (readwrite, assign) NSTimeInterval lastChange;
+@property (readwrite, assign) BOOL busy;
 @end
 
 #define kPostDelay 1.0f
 
 @implementation FLGlobalNetworkActivityIndicator
-
 @synthesize busyCount = _busyCount;
+@synthesize busy = _busy;
+@synthesize lastChange = _lastChange;
 
 FLSynthesizeSingleton(FLGlobalNetworkActivityIndicator);
 
+- (void) networkActivityDidStart:(id) sender {
+    [self setNetworkBusy:YES];
+}
+
+- (void) networkActivityDidFinish:(id) sender {
+    [self setNetworkBusy:NO];
+}
+
+- (id) init {	
+	self = [super init];
+	if(self) {
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkActivityDidStart:) name:FLNetworkActivityStartedNotification object:nil];
+
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkActivityDidFinish:) name:FLNetworkActivityStoppedNotification object:nil];
+	}
+	return self;
+}
+
+- (void) dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+#if FL_MRC
+	[super dealloc];
+#endif
+}
+
 - (BOOL) isNetworkBusy {
-    return self.busyCount > 0;
+    return self.busy;
 }
 
-- (void) postShowMessage {
-    [NSObject cancelPreviousPerformRequestsWithTarget:self];
-    if(!_showing) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:FLGlobalNetworkActivityShow object:self];
-        _showing = YES;
+- (void) updateListeners {
+    if(self.busy && self.busyCount == 0) {
+
+        if(([NSDate timeIntervalSinceReferenceDate] - self.lastChange) > 0.3) {
+            self.busy = NO;
+//            FLLog(@"hiding global network indicator");
+            [[NSNotificationCenter defaultCenter] postNotificationName:FLGlobalNetworkActivityHide object:self];
+        }
+        else {  
+            [NSObject cancelPreviousPerformRequestsWithTarget:self];            
+            [self performSelector:@selector(updateListeners) withObject:nil afterDelay:0.5 ];
+        }
     }
-}
-
-- (void) delayedHidePost {
-    [[NSNotificationCenter defaultCenter] postNotificationName:FLGlobalNetworkActivityHide object:self];
-}
-
-- (void) postHideMessage {
-    
-    if(_showing) {
-        [self performSelector:@selector(delayedHidePost) withObject:nil afterDelay:kPostDelay];
-        _showing = NO;
+    else if(!self.busy && self.busyCount > 0) {
+        self.busy = YES;
+//        FLLog(@"showing global network indicator");
+        [[NSNotificationCenter defaultCenter] postNotificationName:FLGlobalNetworkActivityShow object:self];
     }
 }
 
 - (void) setNetworkBusy:(BOOL) busy {
+
+    self.busyCount += (busy ? 1 : -1);
+    self.lastChange = [NSDate timeIntervalSinceReferenceDate];
+    
+//    FLLog(@"busy count: %d", self.busyCount);
+
     dispatch_async(dispatch_get_main_queue(), ^{
-        if(busy) {
-            if(_busyCount++ == 0) {
-                [self postShowMessage];
-            }
-        }
-        else {
-            if(--_busyCount == 0) {
-                [self postHideMessage];
-            }
-        }
+        [self updateListeners];
     });
 }
 

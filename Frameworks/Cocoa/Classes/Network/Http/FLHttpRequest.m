@@ -11,6 +11,7 @@
 #import "FLCoreFoundation.h"
 #import "FLReadStream.h"
 #import "FLHttpMessage.h"
+#import "FLGlobalNetworkActivityIndicator.h"
 
 //#define kStreamReadChunkSize 1024
 
@@ -143,8 +144,12 @@
 
 - (void) openStreamWithURL:(NSURL*) url {
     
-    [self sendObservation:@selector(httpRequestWillOpen:) toObserver:[self asyncObserver]];
-    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:FLNetworkActivityStartedNotification object:nil userInfo:[NSDictionary dictionaryWithObject:self forKey:FLNetworkActivitySenderKey]];
+        
+        [self sendObservation:@selector(httpRequestWillOpen:)];
+    });
+        
     [self willSendHttpRequest]; // this may set requestURL so needs to be before createStreamOpenerWithURL
 
     if(!self.networkStreamSink) {
@@ -172,13 +177,13 @@
     }
 
     if(self.authenticator && !self.disableAuthenticator) {
-        [self sendObservation:@selector(httpRequestWillAuthenticate:) toObserver:[self asyncObserver]];
+        [self sendObservation:@selector(httpRequestWillAuthenticate:)];
         [self willAuthenticate];
             
         [self.authenticator authenticateHttpRequest:self];
         
         [self didAuthenticate];
-        [self sendObservation:@selector(httpRequestDidAuthenticate:) toObserver:[self asyncObserver]];
+        [self sendObservation:@selector(httpRequestDidAuthenticate:)];
     }
 
     [self openStreamWithURL:url];
@@ -190,11 +195,11 @@
 }
 
 - (void) networkStreamDidOpen:(FLHttpStream*) networkStream {
-    [self sendObservation:@selector(httpRequestDidOpen:) toObserver:[self asyncObserver]];
+    [self sendObservation:@selector(httpRequestDidOpen:)];
 }
 
 - (void) networkStream:(FLHttpStream*) stream didReadBytes:(NSNumber*) amountRead {
-    [self sendObservation:@selector(httpRequest:didReadBytes:) toObserver:[self asyncObserver] withObject:amountRead];
+    [self sendObservation:@selector(httpRequest:didReadBytes:) withObject:amountRead];
 }
 
 - (FLResult) finalizeResult:(FLHttpResponse*) response {
@@ -223,14 +228,18 @@
         self.previousResponse = nil;
         [self closeStreamWithError:nil];
 
-        [self sendObservation:@selector(httpRequest:didCloseWithResult:) toObserver:[self asyncObserver] withObject:result];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self sendObservation:@selector(httpRequest:didCloseWithResult:) withObject:result];
+            [finisher setFinishedWithResult:result];
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:FLNetworkActivityStoppedNotification object:nil userInfo:[NSDictionary dictionaryWithObject:self forKey:FLNetworkActivitySenderKey]];
+        });
         
-        [finisher setFinishedWithResult:result];
     }
 }
 
 - (void) networkStream:(FLHttpStream*) readStream encounteredError:(NSError*) error {
-    [self sendObservation:@selector(httpRequest:encounteredError:) toObserver:[self asyncObserver] withObject:error];
+    [self sendObservation:@selector(httpRequest:encounteredError:) withObject:error];
     [self requestDidFinishWithResult:error];
 }
 

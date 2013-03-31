@@ -54,8 +54,9 @@
 								<reference key="NSNextResponder" ref="1018746906"/>
 								<int key="NSvFlags">289</int>
 								<array class="NSMutableArray" key="NSSubviews"/>
-								<string key="NSFrame">{{366, 8}, {100, 32}}</string>
+								<string key="NSFrame">{{366, 6}, {100, 32}}</string>
 								<reference key="NSSuperview" ref="1018746906"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="NSEnabled">YES</bool>
 								<object class="NSButtonCell" key="NSCell" id="311563633">
@@ -83,7 +84,7 @@
 								<reference key="NSNextResponder" ref="1018746906"/>
 								<int key="NSvFlags">292</int>
 								<array class="NSMutableArray" key="NSSubviews"/>
-								<string key="NSFrame">{{14, 8}, {100, 32}}</string>
+								<string key="NSFrame">{{14, 6}, {100, 32}}</string>
 								<reference key="NSSuperview" ref="1018746906"/>
 								<reference key="NSNextKeyView" ref="35950672"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -109,7 +110,7 @@
 								<reference key="NSNextResponder" ref="1018746906"/>
 								<int key="NSvFlags">289</int>
 								<array class="NSMutableArray" key="NSSubviews"/>
-								<string key="NSFrame">{{266, 8}, {100, 32}}</string>
+								<string key="NSFrame">{{266, 6}, {100, 32}}</string>
 								<reference key="NSSuperview" ref="1018746906"/>
 								<reference key="NSNextKeyView" ref="671622157"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -190,7 +191,7 @@
 									<object class="NSTextField" id="396995919">
 										<reference key="NSNextResponder" ref="2603366"/>
 										<int key="NSvFlags">266</int>
-										<string key="NSFrame">{{2, 0}, {152, 22}}</string>
+										<string key="NSFrame">{{2, 4}, {152, 22}}</string>
 										<reference key="NSSuperview" ref="2603366"/>
 										<reference key="NSNextKeyView" ref="536510236"/>
 										<string key="NSReuseIdentifierKey">_NS:1535</string>

@@ -45,6 +45,7 @@
 						<array class="NSMutableArray" key="NSSubviews"/>
 						<string key="NSFrame">{{120, 20}, {129, 25}}</string>
 						<reference key="NSSuperview" ref="442673046"/>
+						<reference key="NSWindow"/>
 						<string key="NSReuseIdentifierKey">_NS:22</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="957219648">
@@ -78,6 +79,7 @@
 						<array class="NSMutableArray" key="NSSubviews"/>
 						<string key="NSFrame">{{118, 71}, {190, 18}}</string>
 						<reference key="NSSuperview" ref="442673046"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="231246812"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="NSEnabled">YES</bool>
@@ -113,6 +115,7 @@
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{120, 125}, {263, 22}}</string>
 						<reference key="NSSuperview" ref="442673046"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="1024145685"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="568549520">
@@ -151,11 +154,12 @@
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{120, 98}, {263, 21}}</string>
 						<reference key="NSSuperview" ref="442673046"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="465360970"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="861193114">
 							<int key="NSCellFlags">-1805647807</int>
-							<int key="NSCellFlags2">272631872</int>
+							<int key="NSCellFlags2">4196416</int>
 							<string key="NSContents"/>
 							<reference key="NSSupport" ref="437098362"/>
 							<string key="NSPlaceholderString">Password</string>
@@ -171,6 +175,7 @@
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{17, 128}, {98, 17}}</string>
 						<reference key="NSSuperview" ref="442673046"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="984608172"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="54548622">
@@ -206,6 +211,7 @@
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{17, 100}, {98, 17}}</string>
 						<reference key="NSSuperview" ref="442673046"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="938653363"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="308904108">
@@ -223,6 +229,7 @@
 				</array>
 				<string key="NSFrameSize">{409, 173}</string>
 				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="214007241"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<string key="NSClassName">FLSmallPanelView</string>
@@ -433,9 +440,7 @@
 				<string key="244.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="245.CustomClassName">NSSecureTextField</string>
 				<string key="245.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
-				<string key="250.CustomClassName">FLTextFieldCell</string>
 				<string key="250.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
-				<string key="251.CustomClassName">FLTextFieldCell</string>
 				<string key="251.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="252.CustomClassName">FLSwitchButtonCell</string>
 				<string key="252.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -452,7 +457,109 @@
 			<nil key="sourceID"/>
 			<int key="maxID">317</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes"/>
+		<object class="IBClassDescriber" key="IBDocument.Classes">
+			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
+				<object class="IBPartialClassDescription">
+					<string key="className">FLButtonCell</string>
+					<string key="superclassName">NSButtonCell</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/FLButtonCell.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">FLCompatibleViewController</string>
+					<string key="superclassName">UIViewController</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/FLCompatibleViewController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">FLFramedView</string>
+					<string key="superclassName">NSView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/FLFramedView.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">FLLoginPanel</string>
+					<string key="superclassName">FLPanelViewController</string>
+					<object class="NSMutableDictionary" key="actions">
+						<string key="NS.key.0">resetLogin:</string>
+						<string key="NS.object.0">id</string>
+					</object>
+					<object class="NSMutableDictionary" key="actionInfosByName">
+						<string key="NS.key.0">resetLogin:</string>
+						<object class="IBActionInfo" key="NS.object.0">
+							<string key="name">resetLogin:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</object>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="_forgotPasswordButton">NSButton</string>
+						<string key="_passwordEntryField">NSSecureTextField</string>
+						<string key="_savePasswordCheckBox">NSButton</string>
+						<string key="_userNameTextField">NSTextField</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="_forgotPasswordButton">
+							<string key="name">_forgotPasswordButton</string>
+							<string key="candidateClassName">NSButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="_passwordEntryField">
+							<string key="name">_passwordEntryField</string>
+							<string key="candidateClassName">NSSecureTextField</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="_savePasswordCheckBox">
+							<string key="name">_savePasswordCheckBox</string>
+							<string key="candidateClassName">NSButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="_userNameTextField">
+							<string key="name">_userNameTextField</string>
+							<string key="candidateClassName">NSTextField</string>
+						</object>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/FLLoginPanel.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">FLPanelViewController</string>
+					<string key="superclassName">FLCompatibleViewController</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/FLPanelViewController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">FLSmallPanelView</string>
+					<string key="superclassName">FLFramedView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/FLSmallPanelView.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">FLSwitchButtonCell</string>
+					<string key="superclassName">FLButtonCell</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/FLSwitchButtonCell.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">FLTextFieldCell</string>
+					<string key="superclassName">NSTextFieldCell</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/FLTextFieldCell.h</string>
+					</object>
+				</object>
+			</array>
+		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaFramework</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDependencies">

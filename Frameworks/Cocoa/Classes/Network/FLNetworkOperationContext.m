@@ -11,16 +11,14 @@
 
 @implementation FLNetworkOperationContext
 
-- (void) didStartWorking {
-    [super didStartWorking];
-    [[FLGlobalNetworkActivityIndicator instance] setNetworkBusy:YES];
-}
-
-- (void) didStopWorking {
-    [super didStopWorking];
-    [[FLGlobalNetworkActivityIndicator instance] setNetworkBusy:NO];
-
-}
-
+//- (void) didStartWorking {
+//    [super didStartWorking];
+//    [[FLGlobalNetworkActivityIndicator instance] setNetworkBusy:YES];
+//}
+//
+//- (void) didStopWorking {
+//    [super didStopWorking];
+//    [[FLGlobalNetworkActivityIndicator instance] setNetworkBusy:NO];
+//}
 
 @end

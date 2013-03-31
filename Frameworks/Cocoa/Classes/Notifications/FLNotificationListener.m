@@ -7,7 +7,7 @@
 //
 
 #import "FLNotificationListener.h"
-#import "NSObject+FLSelectorPerforming.h"
+#import "FLSelectorPerforming.h"
 
 @interface FLNotificationListener ()
 @property (readwrite, assign, nonatomic) id sender;
