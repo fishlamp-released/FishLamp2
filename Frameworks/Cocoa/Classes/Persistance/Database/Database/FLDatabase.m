@@ -66,8 +66,13 @@ static FLDatabaseColumnDecoder s_decoder = nil;
 }
 
 - (id) init {
+    return [self initWithFilePath:nil];
+}
+
+- (id) initWithFilePath:(NSString*) filePath {
     self = [super init];
-    if(self)  {
+	if(self) {
+		_filePath = [filePath copy];
 		_sqlite = nil;
         self.columnDecoder = s_decoder;
 
@@ -80,14 +85,6 @@ static FLDatabaseColumnDecoder s_decoder = nil;
 		object: [UIApplication sharedApplication]];
 #endif
 
-    }
-    
-    return self;
-}
-
-- (id) initWithFilePath:(NSString*) filePath {
-	if((self = [self init])) {
-		_filePath = [filePath copy];
 	}
 	
 	return self;
@@ -202,17 +199,28 @@ static FLDatabaseColumnDecoder s_decoder = nil;
         @"Database is already open");
     }
     
+        NSString* folderPath = [self.filePath stringByDeletingLastPathComponent];
+        
+        NSError* error = nil;
+        [[NSFileManager defaultManager] createDirectoryAtPath:folderPath withIntermediateDirectories:YES attributes:nil error:&error];
+        if(error) {
+            FLLog(@"database open error %@", [error description]);
+            // die if it's not "already exists error" 
+        }
+    
 	[self dispatchFifoBlock:^{ 
         [self sqliteOpen:flags]; 
+        self.isOpen = YES;
     }];
+    
     [self initializeVersioning];
-    [self dispatchFifoBlock:^{
-        needsUpgrade = [self databaseNeedsUpgrade];
-    }];
-
-    self.isOpen = YES;
-           
+    needsUpgrade = [self databaseNeedsUpgrade];
+    
     return needsUpgrade;
+}
+
+- (BOOL) openDatabase {
+    return [self openDatabase:FLDatabaseOpenFlagsDefault];
 }
 
 - (void) closeDatabase  {
@@ -233,6 +241,7 @@ static FLDatabaseColumnDecoder s_decoder = nil;
         }
         
         self.tables = nil;
+        self.isOpen = NO;
     }];
 }
 
@@ -274,15 +283,17 @@ static FLDatabaseColumnDecoder s_decoder = nil;
 
 - (void) executeTransaction:(dispatch_block_t) block {
 
-    @try {
-        [self execute:@"BEGIN TRANSACTION;"];
-        [self dispatchFifoBlock:block];
-        [self execute:@"COMMIT;"];
-    }
-    @catch(NSException* ex) {
-        [self execute:@"ROLLBACK;"];
-        @throw;
-    } 
+    [self dispatchFifoBlock:^{
+        @try {
+            [self execute:@"BEGIN TRANSACTION;"];
+            if(block) block();
+            [self execute:@"COMMIT;"];
+        }
+        @catch(NSException* ex) {
+            [self execute:@"ROLLBACK;"];
+            @throw;
+        } 
+    }];
 }
 
 //- (void) beginAsyncBlock:(void(^)(FLDatabase*)) asyncBlock
@@ -351,16 +362,16 @@ static FLDatabaseColumnDecoder s_decoder = nil;
 
 - (void) executeStatement:(FLDatabaseStatement*) statement {
     
+    FLAssertNotNil(statement);
+
+    FLDecodeColumnObjectBlock decoder = nil;
+    if(statement.table && self.columnDecoder) {
+        decoder = ^ id (NSString* column, id object) {
+            return self.columnDecoder(self, statement.table, [statement.table columnByName:column], object);
+        };
+    }
+
     [self dispatchFifoBlock:^{
-        FLAssertNotNil(statement);
-
-        FLDecodeColumnObjectBlock decoder = nil;
-        if(statement.table && self.columnDecoder) {
-            decoder = ^ id (NSString* column, id object) {
-                return self.columnDecoder(self, statement.table, [statement.table columnByName:column], object);
-            };
-        }
-
         FLSqlStatement* sqlStatement = [FLSqlStatement sqlStatement:self columnDecoder:decoder];
         @try {
         
@@ -392,7 +403,6 @@ static FLDatabaseColumnDecoder s_decoder = nil;
                 }
             }
 
-            // must be outside of @synchronized lock.
             if(statement.finished) {
                 statement.finished(nil);
             }
@@ -408,6 +418,8 @@ static FLDatabaseColumnDecoder s_decoder = nil;
             [sqlStatement finalizeStatement];
         }
     }];
+
+    
 }
 
 

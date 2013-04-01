@@ -29,12 +29,12 @@
     NSString* _prompt;
     BOOL _canOpenNextPanel;
     __unsafe_unretained FLPanelManager* _panelManager;
-    __unsafe_unretained FLPanelManager* _wizardViewController;
+    __unsafe_unretained id _wizardViewController;
     id<FLPanelButtons> _buttons;
     id<FLPanelHeader> _header;
     BOOL _panelFillsView;
 }
-
+@property (readwrite, assign, nonatomic) id wizardViewController;
 @property (readwrite, strong, nonatomic) id<FLPanelButtons> buttons;
 @property (readwrite, strong, nonatomic) id<FLPanelHeader> header;
 @property (readwrite, strong, nonatomic) NSString* prompt;

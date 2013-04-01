@@ -14,6 +14,9 @@
 @private    
     NSString* _userName;
     NSString* _password;
+    NSString* _savedUserName;
+    NSString* _savedPassword;
+
     NSString* _authenticationDomain;
     BOOL _rememberPassword;
 }
@@ -23,6 +26,7 @@
 @property (readwrite, strong, nonatomic) NSString* authenticationDomain;
 
 + (id) userServiceWithAuthenticationDomain:(NSString*) authenticationDomain;
++ (id) userService; // uses bundleIndentifier
 
 - (void) removeFromUserDefaults;
 - (void) loadFromUserDefaults;

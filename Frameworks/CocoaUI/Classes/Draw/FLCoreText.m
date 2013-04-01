@@ -162,7 +162,7 @@ void CGContextDrawAttributedString(CGContextRef context, NSAttributedString* str
     return CTAttributedStringGetSize(self, bounds);
 }                   
 
-- (void) drawInRect:(CGRect) rect {
+- (void) drawInRectWithCoreText:(CGRect) rect {
     CGContextDrawAttributedString(UIGraphicsGetCurrentContext(), self, rect);
 }
 

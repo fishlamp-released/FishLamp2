@@ -24,6 +24,6 @@ extern void CGContextDrawAttributedString(CGContextRef context, NSAttributedStri
 
 @interface NSAttributedString (FLCoreText)
 - (CGSize) sizeForDrawingInBounds:(CGRect) bounds;
-- (void) drawInRect:(CGRect) rect;
+- (void) drawInRectWithCoreText:(CGRect) rect;
 @end
 

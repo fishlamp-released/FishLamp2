@@ -13,6 +13,9 @@
 #import "FLHttpMessage.h"
 #import "FLGlobalNetworkActivityIndicator.h"
 #import "FLDataSink.h"
+#import "FLHttpRequestBody.h"
+#import "FLDispatch.h"
+#import "FLTimer.h"
 
 //#define kStreamReadChunkSize 1024
 
@@ -26,8 +29,8 @@
 @implementation FLHttpRequest
 @synthesize body = _body;
 @synthesize headers = _headers;
-@synthesize dataEncoder = _dataEncoder;
-@synthesize dataDecoder = _dataDecoder;
+//@synthesize dataEncoder = _dataEncoder;
+//@synthesize dataDecoder = _dataDecoder;
 @synthesize authenticator = _authenticator;
 @synthesize disableAuthenticator = _disableAuthenticator;
 @synthesize inputSink = _inputSink;
@@ -35,6 +38,8 @@
 @synthesize asyncQueue = _asyncQueue;
 @synthesize httpStream = _httpStream;
 @synthesize previousResponse = _previousResponse;
+@synthesize timeoutInterval = _timeoutInterval;
+
 
 - (id) init {
     return [self initWithRequestURL:nil httpMethod:nil];
@@ -45,6 +50,8 @@
     FLAssertNotNil(url);
 
     if((self = [super init])) {
+        self.timeoutInterval = FLHttpRequestDefaultTimeoutInterval;
+    
         _headers = [[FLHttpRequestHeaders alloc] init];
         _body = [[FLHttpRequestBody alloc] initWithHeaders:_headers];
         
@@ -76,8 +83,8 @@
     [_finisher release];
     [_inputSink release];
     [_authenticator release];
-    [_dataDecoder release];
-    [_dataEncoder release];
+//    [_dataDecoder release];
+//    [_dataEncoder release];
     [_headers release];
     [_body release];
     [super dealloc];
@@ -167,6 +174,7 @@
     self.httpStream  = [FLHttpStream httpStream:cfRequest withBodyStream:self.body.bodyStream];
     self.httpStream.inputSink = self.inputSink;
         
+    
     [self.httpStream openStreamWithDelegate:self asyncQueue:self.asyncQueue];
 }
 
@@ -277,6 +285,11 @@
         }
     }
 }
+
+- (NSTimeInterval) networkStreamGetTimeoutInterval:(FLNetworkStream*) stream {
+    return self.timeoutInterval;
+}
+
 
 
 

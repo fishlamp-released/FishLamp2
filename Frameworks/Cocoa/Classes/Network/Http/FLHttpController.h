@@ -20,6 +20,7 @@
                     FLHttpRequestContext> {
 @private
     FLUserService* _userLoginService;
+    FLUserService* _authenticatedServices;
     FLObjectStorageService* _objectStorageService;
     FLHttpRequestAuthenticationService* _httpRequestAuthenticator;
     id _delegate;
@@ -27,6 +28,7 @@
 
 @property (readwrite, assign, nonatomic) id delegate;
 @property (readonly, assign, nonatomic) BOOL isAuthenticated;
+@property (readonly, strong) FLService* authenticatedServices;
 @property (readonly, strong) FLUserService* userService;
 @property (readonly, strong) FLObjectStorageService* objectStorageService;
 @property (readonly, strong) FLHttpRequestAuthenticationService* httpRequestAuthenticator;

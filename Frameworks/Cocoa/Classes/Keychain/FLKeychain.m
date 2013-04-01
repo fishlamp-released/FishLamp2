@@ -10,12 +10,19 @@
 #import "FLCoreFoundation.h"
 NSString *FLKeychainErrorDomain = @"FLKeychainErrorDomain";
 
+// SecBase.h
+
 OSStatus FLKeychainDeleteHttpPassword(NSString* userName, NSString* domain) {
     FLAssertStringIsNotEmpty(userName);
     FLAssertStringIsNotEmpty(domain);
 
     SecKeychainItemRef itemRef = nil;
 	OSStatus err = FLKeychainFindHttpPassword(userName, domain, nil, &itemRef);
+    if(err == errSecItemNotFound) {
+        return noErr;
+    }
+    
+    
     if ( err == 0 ) {
 #if OSX
 		SecKeychainItemDelete(itemRef);
@@ -43,7 +50,7 @@ OSStatus FLKeychainSetHttpPassword(     NSString* inUserName,
     const char* password = [inPassword UTF8String];
     
 	//  add new password to default keychain
-	return SecKeychainAddInternetPassword (
+	OSStatus status = SecKeychainAddInternetPassword (
 		NULL,								//  search default keychain
 		strlen(domain),
 		domain,								//  domain
@@ -60,9 +67,13 @@ OSStatus FLKeychainSetHttpPassword(     NSString* inUserName,
 		password,							//  password data (stores password)
 		NULL								//  ref to the actual item (not needed now)
 	);
-#else 
-    return 1;
 #endif
+
+    if(status != noErr) {
+        FLLog(@"addInternetPassword returned %d", status);
+    }
+
+    return status;
 }
 
 OSStatus FLKeychainFindHttpPassword(    NSString* inUserName,
@@ -130,6 +141,9 @@ OSStatus FLKeychainFindHttpPassword(    NSString* inUserName,
     OSStatus err = 1;
 #endif
 
+    if(err != noErr) {
+        FLLog(@"Find internet password returned: %d", err);
+    }
     
     return err;
 }
@@ -437,13 +451,16 @@ OSStatus FLKeychainFindHttpPassword(    NSString* inUserName,
 	return FLAutorelease(password);
 }
 
-+ (BOOL) setHttpPassword:(NSString*) password 
++ (OSStatus) setHttpPassword:(NSString*) password 
          forUserName:(NSString*) userName 
           withDomain:(NSString*) domain {
 
+    OSStatus status = 0;
 	@synchronized(self) {
-        return FLKeychainSetHttpPassword(userName, domain, password) == 0;
+        status = FLKeychainSetHttpPassword(userName, domain, password);
     }
+    return status;
+    
 }
 
 

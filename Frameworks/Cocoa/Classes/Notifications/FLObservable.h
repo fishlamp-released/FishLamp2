@@ -7,7 +7,37 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "FLMessageSender.h"
+#import <dispatch/dispatch.h>
+#import "FishLampCore.h"
+
+@interface NSObject (FLObservationSending)
+
+
+- (BOOL) sendObservation:(SEL) messageSelector toObserver:(id) asyncObserver;
+
+- (BOOL) sendObservation:(SEL) messageSelector toObserver:(id) asyncObserver withObject:(id) object;
+
+- (BOOL) sendObservation:(SEL) messageSelector toObserver:(id) asyncObserver withObject:(id) object1 withObject:(id) object2;
+
+
+- (id) asyncObserver;
+
+// these use [self asyncObserver] as toObserver parameter
+
+- (BOOL) sendObservation:(SEL) messageSelector;
+
+- (BOOL) sendObservation:(SEL) messageSelector withObject:(id) object;
+
+- (BOOL) sendObservation:(SEL) messageSelector withObject:(id) object1 withObject:(id) object2;
+
+// sending bottleneck
+- (BOOL) sendObservation:(SEL) selector toObserver:(id) observer argCount:(int) argCount withObject:(id) object1 withObject:(id) object2;
+
+- (BOOL) receiveObservation:(SEL) selector argCount:(int) argCount fromSender:(id) fromSender  withObject:(id) object1 withObject:(id) object2;
+
+
+
+@end
 
 @interface FLObservable : NSObject {
 @private
@@ -17,21 +47,5 @@
 @property (readwrite, assign) id asyncObserver;
 @end
 
-@interface NSObject (FLObservationSending)
 
-- (id) asyncObserver;
-
-- (BOOL) sendObservation:(SEL) messageSelector toObserver:(id) asyncObserver;
-
-- (BOOL) sendObservation:(SEL) messageSelector toObserver:(id) asyncObserver withObject:(id) object;
-
-- (BOOL) sendObservation:(SEL) messageSelector toObserver:(id) asyncObserver withObject:(id) object1 withObject:(id) object2;
-
-- (BOOL) sendObservation:(SEL) messageSelector;
-
-- (BOOL) sendObservation:(SEL) messageSelector withObject:(id) object;
-
-- (BOOL) sendObservation:(SEL) messageSelector withObject:(id) object1 withObject:(id) object2;
-
-@end
 

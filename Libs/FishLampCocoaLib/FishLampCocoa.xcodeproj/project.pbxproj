@@ -1423,15 +1423,15 @@
 		271D38F616FE0789009CD00F /* FLMessageBroadcaster.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D326916FE0776009CD00F /* FLMessageBroadcaster.m */; };
 		271D38F716FE0789009CD00F /* FLMessageBroadcaster.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D326916FE0776009CD00F /* FLMessageBroadcaster.m */; };
 		271D38F816FE0789009CD00F /* FLMessageBroadcaster.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D326916FE0776009CD00F /* FLMessageBroadcaster.m */; };
-		271D38F916FE0789009CD00F /* FLMessageSender.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D326A16FE0776009CD00F /* FLMessageSender.h */; };
-		271D38FA16FE0789009CD00F /* FLMessageSender.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D326A16FE0776009CD00F /* FLMessageSender.h */; };
-		271D38FB16FE0789009CD00F /* FLMessageSender.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D326A16FE0776009CD00F /* FLMessageSender.h */; };
-		271D38FC16FE0789009CD00F /* FLMessageSender.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D326A16FE0776009CD00F /* FLMessageSender.h */; };
-		271D38FD16FE0789009CD00F /* FLMessageSender.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D326B16FE0776009CD00F /* FLMessageSender.m */; };
-		271D38FE16FE0789009CD00F /* FLMessageSender.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D326B16FE0776009CD00F /* FLMessageSender.m */; };
-		271D38FF16FE0789009CD00F /* FLMessageSender.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D326B16FE0776009CD00F /* FLMessageSender.m */; };
-		271D390016FE0789009CD00F /* FLMessageSender.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D326B16FE0776009CD00F /* FLMessageSender.m */; };
-		271D390116FE078A009CD00F /* FLMessageSender.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D326B16FE0776009CD00F /* FLMessageSender.m */; };
+		271D38F916FE0789009CD00F /* FLNotificationSending.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D326A16FE0776009CD00F /* FLNotificationSending.h */; };
+		271D38FA16FE0789009CD00F /* FLNotificationSending.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D326A16FE0776009CD00F /* FLNotificationSending.h */; };
+		271D38FB16FE0789009CD00F /* FLNotificationSending.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D326A16FE0776009CD00F /* FLNotificationSending.h */; };
+		271D38FC16FE0789009CD00F /* FLNotificationSending.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D326A16FE0776009CD00F /* FLNotificationSending.h */; };
+		271D38FD16FE0789009CD00F /* FLNotificationSending.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D326B16FE0776009CD00F /* FLNotificationSending.m */; };
+		271D38FE16FE0789009CD00F /* FLNotificationSending.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D326B16FE0776009CD00F /* FLNotificationSending.m */; };
+		271D38FF16FE0789009CD00F /* FLNotificationSending.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D326B16FE0776009CD00F /* FLNotificationSending.m */; };
+		271D390016FE0789009CD00F /* FLNotificationSending.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D326B16FE0776009CD00F /* FLNotificationSending.m */; };
+		271D390116FE078A009CD00F /* FLNotificationSending.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D326B16FE0776009CD00F /* FLNotificationSending.m */; };
 		271D390216FE078A009CD00F /* FLMutableNotification.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D326C16FE0776009CD00F /* FLMutableNotification.h */; };
 		271D390316FE078A009CD00F /* FLMutableNotification.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D326C16FE0776009CD00F /* FLMutableNotification.h */; };
 		271D390416FE078A009CD00F /* FLMutableNotification.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D326C16FE0776009CD00F /* FLMutableNotification.h */; };
@@ -1836,24 +1836,15 @@
 		271D3A9C16FE0791009CD00F /* FLTempFolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32D316FE0776009CD00F /* FLTempFolder.m */; };
 		271D3A9D16FE0791009CD00F /* FLTempFolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32D316FE0776009CD00F /* FLTempFolder.m */; };
 		271D3A9E16FE0791009CD00F /* FLTempFolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32D316FE0776009CD00F /* FLTempFolder.m */; };
-		271D3A9F16FE0791009CD00F /* FLObjectStorageService.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D32D416FE0776009CD00F /* FLObjectStorageService.h */; };
-		271D3AA016FE0791009CD00F /* FLObjectStorageService.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D32D416FE0776009CD00F /* FLObjectStorageService.h */; };
-		271D3AA116FE0791009CD00F /* FLObjectStorageService.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D32D416FE0776009CD00F /* FLObjectStorageService.h */; };
-		271D3AA216FE0791009CD00F /* FLObjectStorageService.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D32D416FE0776009CD00F /* FLObjectStorageService.h */; };
-		271D3AA316FE0791009CD00F /* FLObjectStorageService.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32D516FE0776009CD00F /* FLObjectStorageService.m */; };
-		271D3AA416FE0791009CD00F /* FLObjectStorageService.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32D516FE0776009CD00F /* FLObjectStorageService.m */; };
-		271D3AA516FE0791009CD00F /* FLObjectStorageService.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32D516FE0776009CD00F /* FLObjectStorageService.m */; };
-		271D3AA616FE0791009CD00F /* FLObjectStorageService.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32D516FE0776009CD00F /* FLObjectStorageService.m */; };
-		271D3AA716FE0791009CD00F /* FLObjectStorageService.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32D516FE0776009CD00F /* FLObjectStorageService.m */; };
-		271D3AA816FE0791009CD00F /* FLDictionaryObjectStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D32D616FE0776009CD00F /* FLDictionaryObjectStorage.h */; };
-		271D3AA916FE0791009CD00F /* FLDictionaryObjectStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D32D616FE0776009CD00F /* FLDictionaryObjectStorage.h */; };
-		271D3AAA16FE0791009CD00F /* FLDictionaryObjectStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D32D616FE0776009CD00F /* FLDictionaryObjectStorage.h */; };
-		271D3AAB16FE0791009CD00F /* FLDictionaryObjectStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D32D616FE0776009CD00F /* FLDictionaryObjectStorage.h */; };
-		271D3AAC16FE0791009CD00F /* FLDictionaryObjectStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32D716FE0776009CD00F /* FLDictionaryObjectStorage.m */; };
-		271D3AAD16FE0791009CD00F /* FLDictionaryObjectStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32D716FE0776009CD00F /* FLDictionaryObjectStorage.m */; };
-		271D3AAE16FE0791009CD00F /* FLDictionaryObjectStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32D716FE0776009CD00F /* FLDictionaryObjectStorage.m */; };
-		271D3AAF16FE0791009CD00F /* FLDictionaryObjectStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32D716FE0776009CD00F /* FLDictionaryObjectStorage.m */; };
-		271D3AB016FE0791009CD00F /* FLDictionaryObjectStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32D716FE0776009CD00F /* FLDictionaryObjectStorage.m */; };
+		271D3AA816FE0791009CD00F /* FLDictionaryObjectStorageService.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D32D616FE0776009CD00F /* FLDictionaryObjectStorageService.h */; };
+		271D3AA916FE0791009CD00F /* FLDictionaryObjectStorageService.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D32D616FE0776009CD00F /* FLDictionaryObjectStorageService.h */; };
+		271D3AAA16FE0791009CD00F /* FLDictionaryObjectStorageService.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D32D616FE0776009CD00F /* FLDictionaryObjectStorageService.h */; };
+		271D3AAB16FE0791009CD00F /* FLDictionaryObjectStorageService.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D32D616FE0776009CD00F /* FLDictionaryObjectStorageService.h */; };
+		271D3AAC16FE0791009CD00F /* FLDictionaryObjectStorageService.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32D716FE0776009CD00F /* FLDictionaryObjectStorageService.m */; };
+		271D3AAD16FE0791009CD00F /* FLDictionaryObjectStorageService.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32D716FE0776009CD00F /* FLDictionaryObjectStorageService.m */; };
+		271D3AAE16FE0791009CD00F /* FLDictionaryObjectStorageService.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32D716FE0776009CD00F /* FLDictionaryObjectStorageService.m */; };
+		271D3AAF16FE0791009CD00F /* FLDictionaryObjectStorageService.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32D716FE0776009CD00F /* FLDictionaryObjectStorageService.m */; };
+		271D3AB016FE0791009CD00F /* FLDictionaryObjectStorageService.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32D716FE0776009CD00F /* FLDictionaryObjectStorageService.m */; };
 		271D3AB116FE0791009CD00F /* FLObjectStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D32D816FE0776009CD00F /* FLObjectStorage.h */; };
 		271D3AB216FE0791009CD00F /* FLObjectStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D32D816FE0776009CD00F /* FLObjectStorage.h */; };
 		271D3AB316FE0791009CD00F /* FLObjectStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D32D816FE0776009CD00F /* FLObjectStorage.h */; };
@@ -2388,6 +2379,24 @@
 		272662FD1709050900109AC2 /* FLHiddenFolderFileSink.m in Sources */ = {isa = PBXBuildFile; fileRef = 272662F61709050800109AC2 /* FLHiddenFolderFileSink.m */; };
 		272662FE1709050900109AC2 /* FLHiddenFolderFileSink.m in Sources */ = {isa = PBXBuildFile; fileRef = 272662F61709050800109AC2 /* FLHiddenFolderFileSink.m */; };
 		272662FF1709050900109AC2 /* FLHiddenFolderFileSink.m in Sources */ = {isa = PBXBuildFile; fileRef = 272662F61709050800109AC2 /* FLHiddenFolderFileSink.m */; };
+		273FF973170A06FE0097E0D5 /* FLDatabaseObjectStorageService.h in Headers */ = {isa = PBXBuildFile; fileRef = 273FF971170A06FE0097E0D5 /* FLDatabaseObjectStorageService.h */; };
+		273FF974170A06FE0097E0D5 /* FLDatabaseObjectStorageService.h in Headers */ = {isa = PBXBuildFile; fileRef = 273FF971170A06FE0097E0D5 /* FLDatabaseObjectStorageService.h */; };
+		273FF975170A06FE0097E0D5 /* FLDatabaseObjectStorageService.h in Headers */ = {isa = PBXBuildFile; fileRef = 273FF971170A06FE0097E0D5 /* FLDatabaseObjectStorageService.h */; };
+		273FF976170A06FE0097E0D5 /* FLDatabaseObjectStorageService.h in Headers */ = {isa = PBXBuildFile; fileRef = 273FF971170A06FE0097E0D5 /* FLDatabaseObjectStorageService.h */; };
+		273FF977170A06FE0097E0D5 /* FLDatabaseObjectStorageService.m in Sources */ = {isa = PBXBuildFile; fileRef = 273FF972170A06FE0097E0D5 /* FLDatabaseObjectStorageService.m */; };
+		273FF978170A06FE0097E0D5 /* FLDatabaseObjectStorageService.m in Sources */ = {isa = PBXBuildFile; fileRef = 273FF972170A06FE0097E0D5 /* FLDatabaseObjectStorageService.m */; };
+		273FF979170A06FE0097E0D5 /* FLDatabaseObjectStorageService.m in Sources */ = {isa = PBXBuildFile; fileRef = 273FF972170A06FE0097E0D5 /* FLDatabaseObjectStorageService.m */; };
+		273FF97A170A06FE0097E0D5 /* FLDatabaseObjectStorageService.m in Sources */ = {isa = PBXBuildFile; fileRef = 273FF972170A06FE0097E0D5 /* FLDatabaseObjectStorageService.m */; };
+		273FF97B170A06FE0097E0D5 /* FLDatabaseObjectStorageService.m in Sources */ = {isa = PBXBuildFile; fileRef = 273FF972170A06FE0097E0D5 /* FLDatabaseObjectStorageService.m */; };
+		273FF97E170A0C430097E0D5 /* FLObjectStorageService.h in Headers */ = {isa = PBXBuildFile; fileRef = 273FF97C170A0C430097E0D5 /* FLObjectStorageService.h */; };
+		273FF97F170A0C430097E0D5 /* FLObjectStorageService.h in Headers */ = {isa = PBXBuildFile; fileRef = 273FF97C170A0C430097E0D5 /* FLObjectStorageService.h */; };
+		273FF980170A0C430097E0D5 /* FLObjectStorageService.h in Headers */ = {isa = PBXBuildFile; fileRef = 273FF97C170A0C430097E0D5 /* FLObjectStorageService.h */; };
+		273FF981170A0C430097E0D5 /* FLObjectStorageService.h in Headers */ = {isa = PBXBuildFile; fileRef = 273FF97C170A0C430097E0D5 /* FLObjectStorageService.h */; };
+		273FF982170A0C430097E0D5 /* FLObjectStorageService.m in Sources */ = {isa = PBXBuildFile; fileRef = 273FF97D170A0C430097E0D5 /* FLObjectStorageService.m */; };
+		273FF983170A0C430097E0D5 /* FLObjectStorageService.m in Sources */ = {isa = PBXBuildFile; fileRef = 273FF97D170A0C430097E0D5 /* FLObjectStorageService.m */; };
+		273FF984170A0C430097E0D5 /* FLObjectStorageService.m in Sources */ = {isa = PBXBuildFile; fileRef = 273FF97D170A0C430097E0D5 /* FLObjectStorageService.m */; };
+		273FF985170A0C430097E0D5 /* FLObjectStorageService.m in Sources */ = {isa = PBXBuildFile; fileRef = 273FF97D170A0C430097E0D5 /* FLObjectStorageService.m */; };
+		273FF986170A0C430097E0D5 /* FLObjectStorageService.m in Sources */ = {isa = PBXBuildFile; fileRef = 273FF97D170A0C430097E0D5 /* FLObjectStorageService.m */; };
 		2741E20A16793DB600CA87A9 /* FishLampCocoa.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DEAF16793DB500CA87A9 /* FishLampCocoa.h */; };
 		2741E20B16793DB600CA87A9 /* FishLampCocoa.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DEAF16793DB500CA87A9 /* FishLampCocoa.h */; };
 		2741E20C16793DB600CA87A9 /* FishLampCocoa.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DEAF16793DB500CA87A9 /* FishLampCocoa.h */; };
@@ -3481,8 +3490,8 @@
 		271D326716FE0776009CD00F /* FLLocalNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLLocalNotification.m; sourceTree = "<group>"; };
 		271D326816FE0776009CD00F /* FLMessageBroadcaster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLMessageBroadcaster.h; sourceTree = "<group>"; };
 		271D326916FE0776009CD00F /* FLMessageBroadcaster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLMessageBroadcaster.m; sourceTree = "<group>"; };
-		271D326A16FE0776009CD00F /* FLMessageSender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLMessageSender.h; sourceTree = "<group>"; };
-		271D326B16FE0776009CD00F /* FLMessageSender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLMessageSender.m; sourceTree = "<group>"; };
+		271D326A16FE0776009CD00F /* FLNotificationSending.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLNotificationSending.h; sourceTree = "<group>"; };
+		271D326B16FE0776009CD00F /* FLNotificationSending.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLNotificationSending.m; sourceTree = "<group>"; };
 		271D326C16FE0776009CD00F /* FLMutableNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLMutableNotification.h; sourceTree = "<group>"; };
 		271D326D16FE0776009CD00F /* FLMutableNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLMutableNotification.m; sourceTree = "<group>"; };
 		271D326E16FE0776009CD00F /* FLNotificationListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLNotificationListener.h; sourceTree = "<group>"; };
@@ -3574,10 +3583,8 @@
 		271D32D116FE0776009CD00F /* FLTempFileMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLTempFileMgr.m; sourceTree = "<group>"; };
 		271D32D216FE0776009CD00F /* FLTempFolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLTempFolder.h; sourceTree = "<group>"; };
 		271D32D316FE0776009CD00F /* FLTempFolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLTempFolder.m; sourceTree = "<group>"; };
-		271D32D416FE0776009CD00F /* FLObjectStorageService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLObjectStorageService.h; sourceTree = "<group>"; };
-		271D32D516FE0776009CD00F /* FLObjectStorageService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLObjectStorageService.m; sourceTree = "<group>"; };
-		271D32D616FE0776009CD00F /* FLDictionaryObjectStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLDictionaryObjectStorage.h; sourceTree = "<group>"; };
-		271D32D716FE0776009CD00F /* FLDictionaryObjectStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLDictionaryObjectStorage.m; sourceTree = "<group>"; };
+		271D32D616FE0776009CD00F /* FLDictionaryObjectStorageService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLDictionaryObjectStorageService.h; sourceTree = "<group>"; };
+		271D32D716FE0776009CD00F /* FLDictionaryObjectStorageService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLDictionaryObjectStorageService.m; sourceTree = "<group>"; };
 		271D32D816FE0776009CD00F /* FLObjectStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLObjectStorage.h; sourceTree = "<group>"; };
 		271D32D916FE0776009CD00F /* FLObjectStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLObjectStorage.m; sourceTree = "<group>"; };
 		271D32DB16FE0776009CD00F /* FLDeallocNotifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLDeallocNotifier.h; sourceTree = "<group>"; };
@@ -3702,6 +3709,10 @@
 		272D807816C84313006052E5 /* AssetQueueObjects.flproj */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = AssetQueueObjects.flproj; sourceTree = "<group>"; };
 		27314C79165328400027850D /* libFishLampCocoa-OSX-64-ARC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoa-OSX-64-ARC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2739006F16D45D1F00FC6453 /* FishLampCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FishLampCore.xcodeproj; path = ../FishLampCoreLib/FishLampCore.xcodeproj; sourceTree = "<group>"; };
+		273FF971170A06FE0097E0D5 /* FLDatabaseObjectStorageService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLDatabaseObjectStorageService.h; sourceTree = "<group>"; };
+		273FF972170A06FE0097E0D5 /* FLDatabaseObjectStorageService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLDatabaseObjectStorageService.m; sourceTree = "<group>"; };
+		273FF97C170A0C430097E0D5 /* FLObjectStorageService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLObjectStorageService.h; sourceTree = "<group>"; };
+		273FF97D170A0C430097E0D5 /* FLObjectStorageService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLObjectStorageService.m; sourceTree = "<group>"; };
 		2741DEAF16793DB500CA87A9 /* FishLampCocoa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishLampCocoa.h; sourceTree = "<group>"; };
 		2741E0F816793DB600CA87A9 /* FLBracketedStringBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLBracketedStringBuilder.h; sourceTree = "<group>"; };
 		2741E0F916793DB600CA87A9 /* FLBracketedStringBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLBracketedStringBuilder.m; sourceTree = "<group>"; };
@@ -4679,8 +4690,8 @@
 				271D326716FE0776009CD00F /* FLLocalNotification.m */,
 				271D326816FE0776009CD00F /* FLMessageBroadcaster.h */,
 				271D326916FE0776009CD00F /* FLMessageBroadcaster.m */,
-				271D326A16FE0776009CD00F /* FLMessageSender.h */,
-				271D326B16FE0776009CD00F /* FLMessageSender.m */,
+				271D326A16FE0776009CD00F /* FLNotificationSending.h */,
+				271D326B16FE0776009CD00F /* FLNotificationSending.m */,
 				271D326C16FE0776009CD00F /* FLMutableNotification.h */,
 				271D326D16FE0776009CD00F /* FLMutableNotification.m */,
 				271D326E16FE0776009CD00F /* FLNotificationListener.h */,
@@ -4714,12 +4725,12 @@
 				271D327C16FE0776009CD00F /* Cache */,
 				271D329A16FE0776009CD00F /* Database */,
 				271D32C916FE0776009CD00F /* Files */,
-				271D32D416FE0776009CD00F /* FLObjectStorageService.h */,
-				271D32D516FE0776009CD00F /* FLObjectStorageService.m */,
-				271D32D616FE0776009CD00F /* FLDictionaryObjectStorage.h */,
-				271D32D716FE0776009CD00F /* FLDictionaryObjectStorage.m */,
+				271D32D616FE0776009CD00F /* FLDictionaryObjectStorageService.h */,
+				271D32D716FE0776009CD00F /* FLDictionaryObjectStorageService.m */,
 				271D32D816FE0776009CD00F /* FLObjectStorage.h */,
 				271D32D916FE0776009CD00F /* FLObjectStorage.m */,
+				273FF97C170A0C430097E0D5 /* FLObjectStorageService.h */,
+				273FF97D170A0C430097E0D5 /* FLObjectStorageService.m */,
 			);
 			path = Persistance;
 			sourceTree = "<group>";
@@ -4851,6 +4862,8 @@
 			children = (
 				271D32C716FE0776009CD00F /* FLObjectDatabase.h */,
 				271D32C816FE0776009CD00F /* FLObjectDatabase.m */,
+				273FF971170A06FE0097E0D5 /* FLDatabaseObjectStorageService.h */,
+				273FF972170A06FE0097E0D5 /* FLDatabaseObjectStorageService.m */,
 			);
 			path = ObjectDatabase;
 			sourceTree = "<group>";
@@ -5675,7 +5688,7 @@
 				271D38DE16FE0789009CD00F /* NSURLResponse+Extras.h in Headers */,
 				271D38E716FE0789009CD00F /* FLLocalNotification.h in Headers */,
 				271D38F016FE0789009CD00F /* FLMessageBroadcaster.h in Headers */,
-				271D38F916FE0789009CD00F /* FLMessageSender.h in Headers */,
+				271D38F916FE0789009CD00F /* FLNotificationSending.h in Headers */,
 				271D390216FE078A009CD00F /* FLMutableNotification.h in Headers */,
 				271D390B16FE078A009CD00F /* FLNotificationListener.h in Headers */,
 				271D391416FE078A009CD00F /* FLObjectMessage.h in Headers */,
@@ -5722,8 +5735,7 @@
 				271D3A8416FE0790009CD00F /* FLFolderFile.h in Headers */,
 				271D3A8D16FE0791009CD00F /* FLTempFileMgr.h in Headers */,
 				271D3A9616FE0791009CD00F /* FLTempFolder.h in Headers */,
-				271D3A9F16FE0791009CD00F /* FLObjectStorageService.h in Headers */,
-				271D3AA816FE0791009CD00F /* FLDictionaryObjectStorage.h in Headers */,
+				271D3AA816FE0791009CD00F /* FLDictionaryObjectStorageService.h in Headers */,
 				271D3AB116FE0791009CD00F /* FLObjectStorage.h in Headers */,
 				271D3ABA16FE0792009CD00F /* FLDeallocNotifier.h in Headers */,
 				271D3AC316FE0792009CD00F /* FLDeletedObjectReference.h in Headers */,
@@ -5813,6 +5825,8 @@
 				272662E11708F64000109AC2 /* FLInputSink.h in Headers */,
 				272662EC1708F7E300109AC2 /* FLFileSink.h in Headers */,
 				272662F71709050900109AC2 /* FLHiddenFolderFileSink.h in Headers */,
+				273FF973170A06FE0097E0D5 /* FLDatabaseObjectStorageService.h in Headers */,
+				273FF97E170A0C430097E0D5 /* FLObjectStorageService.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6042,7 +6056,7 @@
 				271D38E016FE0789009CD00F /* NSURLResponse+Extras.h in Headers */,
 				271D38E916FE0789009CD00F /* FLLocalNotification.h in Headers */,
 				271D38F216FE0789009CD00F /* FLMessageBroadcaster.h in Headers */,
-				271D38FB16FE0789009CD00F /* FLMessageSender.h in Headers */,
+				271D38FB16FE0789009CD00F /* FLNotificationSending.h in Headers */,
 				271D390416FE078A009CD00F /* FLMutableNotification.h in Headers */,
 				271D390D16FE078A009CD00F /* FLNotificationListener.h in Headers */,
 				271D391616FE078A009CD00F /* FLObjectMessage.h in Headers */,
@@ -6089,8 +6103,7 @@
 				271D3A8616FE0790009CD00F /* FLFolderFile.h in Headers */,
 				271D3A8F16FE0791009CD00F /* FLTempFileMgr.h in Headers */,
 				271D3A9816FE0791009CD00F /* FLTempFolder.h in Headers */,
-				271D3AA116FE0791009CD00F /* FLObjectStorageService.h in Headers */,
-				271D3AAA16FE0791009CD00F /* FLDictionaryObjectStorage.h in Headers */,
+				271D3AAA16FE0791009CD00F /* FLDictionaryObjectStorageService.h in Headers */,
 				271D3AB316FE0791009CD00F /* FLObjectStorage.h in Headers */,
 				271D3ABC16FE0792009CD00F /* FLDeallocNotifier.h in Headers */,
 				271D3AC516FE0792009CD00F /* FLDeletedObjectReference.h in Headers */,
@@ -6180,6 +6193,8 @@
 				272662E31708F64000109AC2 /* FLInputSink.h in Headers */,
 				272662EE1708F7E300109AC2 /* FLFileSink.h in Headers */,
 				272662F91709050900109AC2 /* FLHiddenFolderFileSink.h in Headers */,
+				273FF975170A06FE0097E0D5 /* FLDatabaseObjectStorageService.h in Headers */,
+				273FF980170A0C430097E0D5 /* FLObjectStorageService.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6409,7 +6424,7 @@
 				271D38DF16FE0789009CD00F /* NSURLResponse+Extras.h in Headers */,
 				271D38E816FE0789009CD00F /* FLLocalNotification.h in Headers */,
 				271D38F116FE0789009CD00F /* FLMessageBroadcaster.h in Headers */,
-				271D38FA16FE0789009CD00F /* FLMessageSender.h in Headers */,
+				271D38FA16FE0789009CD00F /* FLNotificationSending.h in Headers */,
 				271D390316FE078A009CD00F /* FLMutableNotification.h in Headers */,
 				271D390C16FE078A009CD00F /* FLNotificationListener.h in Headers */,
 				271D391516FE078A009CD00F /* FLObjectMessage.h in Headers */,
@@ -6456,8 +6471,7 @@
 				271D3A8516FE0790009CD00F /* FLFolderFile.h in Headers */,
 				271D3A8E16FE0791009CD00F /* FLTempFileMgr.h in Headers */,
 				271D3A9716FE0791009CD00F /* FLTempFolder.h in Headers */,
-				271D3AA016FE0791009CD00F /* FLObjectStorageService.h in Headers */,
-				271D3AA916FE0791009CD00F /* FLDictionaryObjectStorage.h in Headers */,
+				271D3AA916FE0791009CD00F /* FLDictionaryObjectStorageService.h in Headers */,
 				271D3AB216FE0791009CD00F /* FLObjectStorage.h in Headers */,
 				271D3ABB16FE0792009CD00F /* FLDeallocNotifier.h in Headers */,
 				271D3AC416FE0792009CD00F /* FLDeletedObjectReference.h in Headers */,
@@ -6547,6 +6561,8 @@
 				272662E21708F64000109AC2 /* FLInputSink.h in Headers */,
 				272662ED1708F7E300109AC2 /* FLFileSink.h in Headers */,
 				272662F81709050900109AC2 /* FLHiddenFolderFileSink.h in Headers */,
+				273FF974170A06FE0097E0D5 /* FLDatabaseObjectStorageService.h in Headers */,
+				273FF97F170A0C430097E0D5 /* FLObjectStorageService.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6776,7 +6792,7 @@
 				271D38E116FE0789009CD00F /* NSURLResponse+Extras.h in Headers */,
 				271D38EA16FE0789009CD00F /* FLLocalNotification.h in Headers */,
 				271D38F316FE0789009CD00F /* FLMessageBroadcaster.h in Headers */,
-				271D38FC16FE0789009CD00F /* FLMessageSender.h in Headers */,
+				271D38FC16FE0789009CD00F /* FLNotificationSending.h in Headers */,
 				271D390516FE078A009CD00F /* FLMutableNotification.h in Headers */,
 				271D390E16FE078A009CD00F /* FLNotificationListener.h in Headers */,
 				271D391716FE078A009CD00F /* FLObjectMessage.h in Headers */,
@@ -6823,8 +6839,7 @@
 				271D3A8716FE0790009CD00F /* FLFolderFile.h in Headers */,
 				271D3A9016FE0791009CD00F /* FLTempFileMgr.h in Headers */,
 				271D3A9916FE0791009CD00F /* FLTempFolder.h in Headers */,
-				271D3AA216FE0791009CD00F /* FLObjectStorageService.h in Headers */,
-				271D3AAB16FE0791009CD00F /* FLDictionaryObjectStorage.h in Headers */,
+				271D3AAB16FE0791009CD00F /* FLDictionaryObjectStorageService.h in Headers */,
 				271D3AB416FE0791009CD00F /* FLObjectStorage.h in Headers */,
 				271D3ABD16FE0792009CD00F /* FLDeallocNotifier.h in Headers */,
 				271D3AC616FE0792009CD00F /* FLDeletedObjectReference.h in Headers */,
@@ -6914,6 +6929,8 @@
 				272662E41708F64000109AC2 /* FLInputSink.h in Headers */,
 				272662EF1708F7E300109AC2 /* FLFileSink.h in Headers */,
 				272662FA1709050900109AC2 /* FLHiddenFolderFileSink.h in Headers */,
+				273FF976170A06FE0097E0D5 /* FLDatabaseObjectStorageService.h in Headers */,
+				273FF981170A0C430097E0D5 /* FLObjectStorageService.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7285,7 +7302,7 @@
 				271D38E316FE0789009CD00F /* NSURLResponse+Extras.m in Sources */,
 				271D38EC16FE0789009CD00F /* FLLocalNotification.m in Sources */,
 				271D38F516FE0789009CD00F /* FLMessageBroadcaster.m in Sources */,
-				271D38FE16FE0789009CD00F /* FLMessageSender.m in Sources */,
+				271D38FE16FE0789009CD00F /* FLNotificationSending.m in Sources */,
 				271D390716FE078A009CD00F /* FLMutableNotification.m in Sources */,
 				271D391016FE078A009CD00F /* FLNotificationListener.m in Sources */,
 				271D391916FE078A009CD00F /* FLObjectMessage.m in Sources */,
@@ -7330,8 +7347,7 @@
 				271D3A8916FE0790009CD00F /* FLFolderFile.m in Sources */,
 				271D3A9216FE0791009CD00F /* FLTempFileMgr.m in Sources */,
 				271D3A9B16FE0791009CD00F /* FLTempFolder.m in Sources */,
-				271D3AA416FE0791009CD00F /* FLObjectStorageService.m in Sources */,
-				271D3AAD16FE0791009CD00F /* FLDictionaryObjectStorage.m in Sources */,
+				271D3AAD16FE0791009CD00F /* FLDictionaryObjectStorageService.m in Sources */,
 				271D3AB616FE0791009CD00F /* FLObjectStorage.m in Sources */,
 				271D3ABF16FE0792009CD00F /* FLDeallocNotifier.m in Sources */,
 				271D3AC816FE0792009CD00F /* FLDeletedObjectReference.m in Sources */,
@@ -7416,6 +7432,8 @@
 				272662E61708F64000109AC2 /* FLInputSink.m in Sources */,
 				272662F11708F7E300109AC2 /* FLFileSink.m in Sources */,
 				272662FC1709050900109AC2 /* FLHiddenFolderFileSink.m in Sources */,
+				273FF978170A06FE0097E0D5 /* FLDatabaseObjectStorageService.m in Sources */,
+				273FF983170A0C430097E0D5 /* FLObjectStorageService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7618,7 +7636,7 @@
 				271D38E516FE0789009CD00F /* NSURLResponse+Extras.m in Sources */,
 				271D38EE16FE0789009CD00F /* FLLocalNotification.m in Sources */,
 				271D38F716FE0789009CD00F /* FLMessageBroadcaster.m in Sources */,
-				271D390016FE0789009CD00F /* FLMessageSender.m in Sources */,
+				271D390016FE0789009CD00F /* FLNotificationSending.m in Sources */,
 				271D390916FE078A009CD00F /* FLMutableNotification.m in Sources */,
 				271D391216FE078A009CD00F /* FLNotificationListener.m in Sources */,
 				271D391B16FE078A009CD00F /* FLObjectMessage.m in Sources */,
@@ -7663,8 +7681,7 @@
 				271D3A8B16FE0791009CD00F /* FLFolderFile.m in Sources */,
 				271D3A9416FE0791009CD00F /* FLTempFileMgr.m in Sources */,
 				271D3A9D16FE0791009CD00F /* FLTempFolder.m in Sources */,
-				271D3AA616FE0791009CD00F /* FLObjectStorageService.m in Sources */,
-				271D3AAF16FE0791009CD00F /* FLDictionaryObjectStorage.m in Sources */,
+				271D3AAF16FE0791009CD00F /* FLDictionaryObjectStorageService.m in Sources */,
 				271D3AB816FE0791009CD00F /* FLObjectStorage.m in Sources */,
 				271D3AC116FE0792009CD00F /* FLDeallocNotifier.m in Sources */,
 				271D3ACA16FE0792009CD00F /* FLDeletedObjectReference.m in Sources */,
@@ -7749,6 +7766,8 @@
 				272662E81708F64000109AC2 /* FLInputSink.m in Sources */,
 				272662F31708F7E300109AC2 /* FLFileSink.m in Sources */,
 				272662FE1709050900109AC2 /* FLHiddenFolderFileSink.m in Sources */,
+				273FF97A170A06FE0097E0D5 /* FLDatabaseObjectStorageService.m in Sources */,
+				273FF985170A0C430097E0D5 /* FLObjectStorageService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7953,7 +7972,7 @@
 				271D38E216FE0789009CD00F /* NSURLResponse+Extras.m in Sources */,
 				271D38EB16FE0789009CD00F /* FLLocalNotification.m in Sources */,
 				271D38F416FE0789009CD00F /* FLMessageBroadcaster.m in Sources */,
-				271D38FD16FE0789009CD00F /* FLMessageSender.m in Sources */,
+				271D38FD16FE0789009CD00F /* FLNotificationSending.m in Sources */,
 				271D390616FE078A009CD00F /* FLMutableNotification.m in Sources */,
 				271D390F16FE078A009CD00F /* FLNotificationListener.m in Sources */,
 				271D391816FE078A009CD00F /* FLObjectMessage.m in Sources */,
@@ -7998,8 +8017,7 @@
 				271D3A8816FE0790009CD00F /* FLFolderFile.m in Sources */,
 				271D3A9116FE0791009CD00F /* FLTempFileMgr.m in Sources */,
 				271D3A9A16FE0791009CD00F /* FLTempFolder.m in Sources */,
-				271D3AA316FE0791009CD00F /* FLObjectStorageService.m in Sources */,
-				271D3AAC16FE0791009CD00F /* FLDictionaryObjectStorage.m in Sources */,
+				271D3AAC16FE0791009CD00F /* FLDictionaryObjectStorageService.m in Sources */,
 				271D3AB516FE0791009CD00F /* FLObjectStorage.m in Sources */,
 				271D3ABE16FE0792009CD00F /* FLDeallocNotifier.m in Sources */,
 				271D3AC716FE0792009CD00F /* FLDeletedObjectReference.m in Sources */,
@@ -8074,6 +8092,8 @@
 				272662E51708F64000109AC2 /* FLInputSink.m in Sources */,
 				272662F01708F7E300109AC2 /* FLFileSink.m in Sources */,
 				272662FB1709050900109AC2 /* FLHiddenFolderFileSink.m in Sources */,
+				273FF977170A06FE0097E0D5 /* FLDatabaseObjectStorageService.m in Sources */,
+				273FF982170A0C430097E0D5 /* FLObjectStorageService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8276,7 +8296,7 @@
 				271D38E416FE0789009CD00F /* NSURLResponse+Extras.m in Sources */,
 				271D38ED16FE0789009CD00F /* FLLocalNotification.m in Sources */,
 				271D38F616FE0789009CD00F /* FLMessageBroadcaster.m in Sources */,
-				271D38FF16FE0789009CD00F /* FLMessageSender.m in Sources */,
+				271D38FF16FE0789009CD00F /* FLNotificationSending.m in Sources */,
 				271D390816FE078A009CD00F /* FLMutableNotification.m in Sources */,
 				271D391116FE078A009CD00F /* FLNotificationListener.m in Sources */,
 				271D391A16FE078A009CD00F /* FLObjectMessage.m in Sources */,
@@ -8321,8 +8341,7 @@
 				271D3A8A16FE0791009CD00F /* FLFolderFile.m in Sources */,
 				271D3A9316FE0791009CD00F /* FLTempFileMgr.m in Sources */,
 				271D3A9C16FE0791009CD00F /* FLTempFolder.m in Sources */,
-				271D3AA516FE0791009CD00F /* FLObjectStorageService.m in Sources */,
-				271D3AAE16FE0791009CD00F /* FLDictionaryObjectStorage.m in Sources */,
+				271D3AAE16FE0791009CD00F /* FLDictionaryObjectStorageService.m in Sources */,
 				271D3AB716FE0791009CD00F /* FLObjectStorage.m in Sources */,
 				271D3AC016FE0792009CD00F /* FLDeallocNotifier.m in Sources */,
 				271D3AC916FE0792009CD00F /* FLDeletedObjectReference.m in Sources */,
@@ -8407,6 +8426,8 @@
 				272662E71708F64000109AC2 /* FLInputSink.m in Sources */,
 				272662F21708F7E300109AC2 /* FLFileSink.m in Sources */,
 				272662FD1709050900109AC2 /* FLHiddenFolderFileSink.m in Sources */,
+				273FF979170A06FE0097E0D5 /* FLDatabaseObjectStorageService.m in Sources */,
+				273FF984170A0C430097E0D5 /* FLObjectStorageService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8609,7 +8630,7 @@
 				271D38E616FE0789009CD00F /* NSURLResponse+Extras.m in Sources */,
 				271D38EF16FE0789009CD00F /* FLLocalNotification.m in Sources */,
 				271D38F816FE0789009CD00F /* FLMessageBroadcaster.m in Sources */,
-				271D390116FE078A009CD00F /* FLMessageSender.m in Sources */,
+				271D390116FE078A009CD00F /* FLNotificationSending.m in Sources */,
 				271D390A16FE078A009CD00F /* FLMutableNotification.m in Sources */,
 				271D391316FE078A009CD00F /* FLNotificationListener.m in Sources */,
 				271D391C16FE078A009CD00F /* FLObjectMessage.m in Sources */,
@@ -8654,8 +8675,7 @@
 				271D3A8C16FE0791009CD00F /* FLFolderFile.m in Sources */,
 				271D3A9516FE0791009CD00F /* FLTempFileMgr.m in Sources */,
 				271D3A9E16FE0791009CD00F /* FLTempFolder.m in Sources */,
-				271D3AA716FE0791009CD00F /* FLObjectStorageService.m in Sources */,
-				271D3AB016FE0791009CD00F /* FLDictionaryObjectStorage.m in Sources */,
+				271D3AB016FE0791009CD00F /* FLDictionaryObjectStorageService.m in Sources */,
 				271D3AB916FE0791009CD00F /* FLObjectStorage.m in Sources */,
 				271D3AC216FE0792009CD00F /* FLDeallocNotifier.m in Sources */,
 				271D3ACB16FE0792009CD00F /* FLDeletedObjectReference.m in Sources */,
@@ -8740,6 +8760,8 @@
 				272662E91708F64000109AC2 /* FLInputSink.m in Sources */,
 				272662F41708F7E300109AC2 /* FLFileSink.m in Sources */,
 				272662FF1709050900109AC2 /* FLHiddenFolderFileSink.m in Sources */,
+				273FF97B170A06FE0097E0D5 /* FLDatabaseObjectStorageService.m in Sources */,
+				273FF986170A0C430097E0D5 /* FLObjectStorageService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

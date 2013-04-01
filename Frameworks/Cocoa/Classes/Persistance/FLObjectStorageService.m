@@ -10,36 +10,12 @@
 
 
 @interface FLObjectStorageService ()
-@property (readwrite, strong) id<FLObjectStorage> objectStorage;
 @end
 
 @implementation FLObjectStorageService 
 
-@synthesize objectStorage = _objectStorage;
-
-+ (FLObjectStorageService*) objectStorageService:(id<FLServiceableObjectStorage>) objectStorage {
-    FLObjectStorageService* service = FLAutorelease([[[self class] alloc] init]);
-    service.objectStorage = objectStorage;
-    return service;
-}
-
-#if FL_MRC
-- (void) dealloc {
-    [_objectStorage release];
-    [super dealloc];
-}
-#endif
-
-- (void) openService {
-    [super openService];
-    
-    [((id)self.objectStorage) openStorage];
-}
-
-- (void) closeService {
-    [super closeService];
-
-    [((id)self.objectStorage) closeStorage];
+- (id<FLObjectStorage>) objectStorage {
+    return nil;
 }
 
 - (void) writeObject:(id) object {

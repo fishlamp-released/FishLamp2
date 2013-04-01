@@ -20,7 +20,9 @@
     SEL _didCloseDelegateMethod;
 }
 
+- (id) initWithDelegate:(id) delegate;
 - (id) initWithRootNameForDelegateMethods:(NSString*) rootName;
++ (id) service;
 
 @property (readonly, assign) id superService;
 @property (readonly, assign) id rootService;

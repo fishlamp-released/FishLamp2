@@ -60,8 +60,8 @@ extern NSString* const FLTimedOutNotification;
 
 // construction
 - (id) initWithTimeoutInterval:(NSTimeInterval) interval;
-+ (FLTimer*) timeoutTimer;
-+ (FLTimer*) timeoutTimer:(NSTimeInterval) timeoutInterval;
++ (FLTimer*) timer;
++ (FLTimer*) timer:(NSTimeInterval) timeoutInterval;
 @end
 
 @protocol FLTimerDelegate <NSObject>

@@ -542,36 +542,6 @@ void FLSwizzleClassMethod(Class c, SEL originalSelector, SEL newSelector) {
 }
 
 
-+ (int) parameterCountForClassSelector:(Class) aClass selector: (SEL) selector {
-
-    Method method = class_getInstanceMethod(aClass, selector);
-    if(!method) {
-        method = class_getInstanceMethod(object_getClass(aClass), selector);
-    }
-    
-    if(method) {
-        return method_getNumberOfArguments(method);
-    }
-    
-    FLAssertFailedWithComment(@"couldn't get argument count");
-    
-    return -1;
-}
-
-+ (int) argumentCountForSelector:(SEL) sel {
-
-    if(!sel) return 0;
-
-    const char* name = sel_getName(sel);
-    int count = 0;
-    while(*name) {
-        if(*name++ == ':') {
-            ++count;
-        }
-    }
-    
-    return count;
-}
 
 #if DEBUG
 + (void) logMethodsForClass:(Class) aClass {
@@ -641,4 +611,35 @@ void FLSwizzleClassMethod(Class c, SEL originalSelector, SEL newSelector) {
 }
 @end
 
+
+int FLArgumentCountForSelector(SEL sel) {
+
+    if(!sel) return 0;
+
+    const char* name = sel_getName(sel);
+    int count = 0;
+    while(*name) {
+        if(*name++ == ':') {
+            ++count;
+        }
+    }
+    
+    return count;
+}
+
+int FLArgumentCountForClassSelector(Class aClass, SEL selector) {
+
+    Method method = class_getInstanceMethod(aClass, selector);
+    if(!method) {
+        method = class_getInstanceMethod(object_getClass(aClass), selector);
+    }
+    
+    if(method) {
+        return method_getNumberOfArguments(method) - 2;
+    }
+    
+    FLAssertFailedWithComment(@"couldn't get argument count");
+    
+    return -1;
+}
 

@@ -41,7 +41,7 @@ enum
 + (NSString*) httpPasswordForUserName:(NSString*) userName
                            withDomain:(NSString*) domain;
 
-+ (BOOL) setHttpPassword:(NSString*) password 
++ (OSStatus) setHttpPassword:(NSString*) password 
              forUserName:(NSString*) userName 
               withDomain:(NSString*) domain;
 

@@ -127,23 +127,30 @@ CGFloat GetLineHeightForFont(CTFontRef iFont)
 }
 
 
-- (void)drawInContext:(CGContextRef) ctx {
+- (void)drawInContext:(CGContextRef) context {
 //    CGContextClearRect(ctx, self.bounds);
-    
-    CGRect frame = CGRectZero;
-    frame.size = [self.attributedString sizeForDrawingInBounds:self.bounds];
-    frame = FLRectCenterRectInRect(self.bounds, frame);
 
-//    CGColorRef colorRef = [NSColor redColor].copyCGColorRef;
-//    CGContextSetFillColorWithColor(ctx, colorRef);
-//    CGContextFillRect(ctx, frame);
-      
-//    frame.origin.y -= 2.0f;
-    frame = FLRectOptimizedForViewLocation(frame);
-      
-    CGContextDrawAttributedString(ctx, self.attributedString, frame);  
-      
+//    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSaveGState(context);
+    CGContextSetTextMatrix(context, CGAffineTransformIdentity );
+    CGRect frame = CGRectZero;
+    frame.size = [self.attributedString size];
+    frame = FLRectOptimizedForViewLocation(FLRectCenterRectInRect(self.bounds, frame));
     
+//    [self.attributedString drawWithRect:frame  
+//                                options: NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin];
+
+//    CGColorRef colorRef = [NSColor whiteColor].CGColor;
+
+//    CGContextSetFillColorWithColor(context, colorRef);
+//    CGContextFillRect(context, frame);
+    CGContextSetShouldSmoothFonts(context, NO);
+    CGContextDrawAttributedString(context, self.attributedString,  frame);
+
+          
+    CGContextRestoreGState(context);
+
+  //  [self.attributedString drawWithRect:frame options:NSStringDrawingTruncatesLastVisibleLine]
 //    
 ////    [super drawInContext:ctx];
 //

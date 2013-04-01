@@ -124,6 +124,8 @@
         [self.userService setPassword:_passwordEntryField.stringValue];
     }
     
+    [self.userService closeService:self];
+    
     [self updateNextButton];
 }
 
@@ -195,8 +197,6 @@
 - (void) panelWillAppear {
     [super panelWillAppear];
     self.userService = [self.delegate loginPanelGetUserService:self];
-    [self.userService closeService:self];
-    [self.userService loadCredentials];
     [self updateVisibleCredentials];
     [self updateNextButton];
 }

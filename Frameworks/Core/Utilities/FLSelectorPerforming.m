@@ -7,7 +7,7 @@
 //
 
 #import "FLSelectorPerforming.h"
-//#import "FLObjcRuntime.h"
+#import "FLObjcRuntime.h"
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Warc-performSelector-leaks"
@@ -71,69 +71,118 @@ void FLConfirmNoReturnObject(id obj) {
     [invocation retainArguments];
     [invocation invoke];
 }
-@end
 
+- (void) performSelector:(SEL) selector
+                argCount:(int) argCount
+              withObject:(id) object1
+              withObject:(id) object2
+              withObject:(id) object3 {
 
-BOOL FLPerformSelectorWithArgCount(id target, SEL selector, int argCount, id object1, id object2, id object3) {
+    FLAssertWithComment(FLArgumentCountForClassSelector([self class], selector) == argCount, @"arg count is %d, should be: %d", argCount, FLArgumentCountForClassSelector([self class], selector));
 
     switch(argCount) {
         case 0: 
-            return FLPerformSelector(target, selector);
+            [self performSelector:selector];
         break;
 
         case 1: 
-            return FLPerformSelector1(target, selector, object1);
+            [self performSelector:selector withObject:object1];
         break;
         
         case 2: 
-            return FLPerformSelector2(target, selector, object1, object2);
+            [self performSelector:selector withObject:object1 withObject:object2];
         break;
 
         case 3: 
-            return FLPerformSelector3(target, selector, object1, object2, object3);
+            [self performSelector:selector withObject:object1 withObject:object2 withObject:object3];
         break;
         
         default:
             FLAssertFailedWithComment(@"Unsupported arg count: %d", argCount);
             break;
     }
-    
-    return NO;
 }
 
-BOOL FLPerformSelector0(id target, SEL selector) {
-    if(target && selector && [target respondsToSelector:selector]) {
-        [target performSelector:selector];
+@end
+
+//NS_INLINE
+//BOOL FLPerformSelectorWithArgCount(id target, SEL selector, int argCount, id object1, id object2, id object3) {
+//    if([target respondsToSelector:selector]) {
+//        [target performSelector:selector argCount:argCount withObject:object1 withObject:object2 withObject:object3];
+//        return YES;
+//    }
+//    return NO;
+//}
+
+BOOL FLPerformSelectorOnMainThreadWithArgCount(id target, 
+                                          SEL selector, 
+                                          int argCount, // 0-3 only
+                                          id object1, 
+                                          id object2, 
+                                          id object3) {
+                                          
+    if([target respondsToSelector:selector]) {
+        if([NSThread currentThread] == [NSThread mainThread]) {
+            [target performSelector:selector argCount:argCount withObject:object1 withObject:object2 withObject:object3];
+        }
+        else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [target performSelector:selector argCount:argCount withObject:object1 withObject:object2 withObject:object3];
+            });
+        }
+        
         return YES;
     }
     return NO;
-} 
+                                          
+}                                          
 
-BOOL FLPerformSelector1(id target, SEL selector, id object) {
-    if(target && selector && [target respondsToSelector:selector]) {
-        [target performSelector:selector withObject:object];
-        return YES;
-    }
-    return NO;
-} 
+//extern BOOL FLPerformSelector0(id target, SEL selector);
+//extern BOOL FLPerformSelector1(id target, SEL selector, id object);
+//extern BOOL FLPerformSelector2(id target, SEL selector, id object1, id object2);
+//extern BOOL FLPerformSelector3(id target, SEL selector, id object1, id object2, id object3);
+//extern id FLPerformSelectorForPropertyGetter(id object, SEL property);
 
-BOOL FLPerformSelector2(id target, SEL selector, id object1, id object2) {
-    if(target && selector && [target respondsToSelector:selector]) {
-        [target performSelector:selector withObject:object1 withObject:object2];
-        return YES;
-    }
+//extern BOOL FLPerformSelectorWithArgCount(id target, 
+//                                          SEL selector, 
+//                                          int argCount, // 0-3 only
+//                                          id object1, 
+//                                          id object2, 
+//                                          id object3);
 
-    return NO;
-} 
-
-BOOL FLPerformSelector3(id target, SEL selector, id object1, id object2, id object3) {
-    if(target && selector && [target respondsToSelector:selector]) {
-        [target performSelector:selector withObject:object1 withObject:object2 withObject:object3];
-        return YES;
-    }
-
-    return NO;
-} 
+//BOOL FLPerformSelector0(id target, SEL selector) {
+//    if(target && selector && [target respondsToSelector:selector]) {
+//        [target performSelector:selector];
+//        return YES;
+//    }
+//    return NO;
+//} 
+//
+//BOOL FLPerformSelector1(id target, SEL selector, id object) {
+//    if(target && selector && [target respondsToSelector:selector]) {
+//        [target performSelector:selector withObject:object];
+//        return YES;
+//    }
+//    return NO;
+//} 
+//
+//BOOL FLPerformSelector2(id target, SEL selector, id object1, id object2) {
+//    if(target && selector && [target respondsToSelector:selector]) {
+//        [target performSelector:selector withObject:object1 withObject:object2];
+//        return YES;
+//    }
+//
+//    return NO;
+//} 
+//
+//BOOL FLPerformSelector3(id target, SEL selector, id object1, id object2, id object3) {
+//    if(target && selector && [target respondsToSelector:selector]) {
+//        [target performSelector:selector withObject:object1 withObject:object2 withObject:object3];
+//        return YES;
+//    }
+//
+//    return NO;
+//} 
 
 FL_SHIP_ONLY_INLINE
 id FLPerformSelectorForPropertyGetter(id object, SEL property) {

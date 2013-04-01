@@ -119,7 +119,7 @@ static void WriteStreamClientCallBack(CFWriteStreamRef writeStream,
         buffer += amt;
     }
     
-    [self sendMessageToListeners:@selector(networkStream:didWriteBytes:) withObject:[NSNumber numberWithUnsignedLong:length]];
+    [self sendNotification:@selector(networkStream:didWriteBytes:) withObject:self withObject:[NSNumber numberWithUnsignedLong:length]];
 }
 
 - (void) writeData:(NSData*) data {

@@ -153,7 +153,7 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
     }
 
     if(readTotal > 0) {
-        [self sendMessageToListeners:@selector(networkStream:didReadBytes:) withObject:[NSNumber numberWithUnsignedInteger:readTotal]];
+        [self sendNotification:@selector(networkStream:didReadBytes:) withObject:self withObject:[NSNumber numberWithUnsignedInteger:readTotal]];
     }
 
     return readTotal;

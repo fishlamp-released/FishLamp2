@@ -50,11 +50,11 @@ NSString* const FLTimedOutNotification = @"FLTimedOutNotification";
     return [NSDate timeIntervalSinceReferenceDate] - self.timestamp;
 }
 
-+ (FLTimer*) timeoutTimer:(NSTimeInterval) timeoutInterval {
++ (FLTimer*) timer:(NSTimeInterval) timeoutInterval {
     return FLAutorelease([[[self class] alloc] initWithTimeoutInterval:timeoutInterval]);
 }
 
-+ (id) timeoutTimer {
++ (id) timer {
     return FLAutorelease([[[self class] alloc] init]);
 }
 
@@ -143,6 +143,8 @@ NSString* const FLTimedOutNotification = @"FLTimedOutNotification";
 
     // now that our timer is all set to go, start it
     dispatch_resume(_timer);
+    
+    [self touchTimestamp];
 }
 
 - (void) dealloc  {

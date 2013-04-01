@@ -7,6 +7,7 @@
 //
 
 #import "FLHttpUser.h"
+#import "FLAppInfo.h"
 
 @implementation FLHttpUser
 
@@ -69,5 +70,20 @@
 - (BOOL) authenticationHasExpired {
     return ([NSDate timeIntervalSinceReferenceDate] - _lastAuthenticationTimestamp) > _timeoutInterval;
 }
+
+- (NSString*) userFolderPath {
+    return [NSString stringWithFormat:@"%@/%@", [FLAppInfo bundleIdentifier], self.userName];
+}
+
+- (NSString*) cacheFolderPath {
+    NSString *cachePath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
+    return [cachePath stringByAppendingPathComponent:[self userFolderPath]];
+}
+ 
+- (NSString*) userDataFolderPath {
+    NSString *path = [NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES) lastObject];
+    return [path stringByAppendingPathComponent:[self userFolderPath]];
+} 
+ 
 
 @end

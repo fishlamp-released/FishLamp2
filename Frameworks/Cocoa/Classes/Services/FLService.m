@@ -20,10 +20,19 @@
 @synthesize delegate = _delegate;
 
 - (id) init {
-    return [self initWithRootNameForDelegateMethods:nil];
+    return [self initWithDelegate:nil];
+}
+
+- (id) initWithDelegate:(id) delegate {
+	self = [super init];
+	if(self) {
+        self.delegate = delegate;
+	}
+	return self;
 }
 
 - (id) initWithRootNameForDelegateMethods:(NSString*) rootName {
+    self = [self initWithDelegate:nil];
     if(self) {
         if(rootName) {
             _didOpenDelegateMethod = NSSelectorFromString([NSString stringWithFormat:@"%@DidOpen:", rootName]);
@@ -31,6 +40,10 @@
         }
     }
     return self;
+}
+
++ (id) service {
+    return FLAutorelease([[[self class] alloc] init]);
 }
 
 #if FL_MRC
