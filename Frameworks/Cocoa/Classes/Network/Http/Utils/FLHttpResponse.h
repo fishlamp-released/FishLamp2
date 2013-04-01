@@ -8,6 +8,7 @@
 
 #import "FLCocoaRequired.h"
 #import "FishLampCore.h"
+#import "FLInputSink.h"
 
 @class FLHttpMessage;
 
@@ -18,22 +19,21 @@
     NSString* _responseStatusLine;
     NSDictionary* _responseHeaders;
     FLHttpResponse* _redirectedFrom;
-    NSData* _responseData;
-    NSURL* _responseDataFileURL;
+    id<FLInputSink> _inputSink;
 }
 @property (readonly, strong, nonatomic) NSURL* requestURL;
 @property (readonly, strong, nonatomic) NSDictionary* responseHeaders;
 @property (readonly, strong, nonatomic) NSString* responseStatusLine;
 @property (readonly, strong, nonatomic) FLHttpResponse* redirectedFrom;
 @property (readonly, assign, nonatomic) NSInteger responseStatusCode;
-@property (readonly, strong, nonatomic) NSData* responseData;
-@property (readonly, strong, nonatomic) NSURL* responseDataFileURL;
 
 + (id) httpResponse:(NSURL*) requestURL 
-                   headers:(FLHttpMessage*) headers 
-            redirectedFrom:(FLHttpResponse*) redirectedFrom
-              responseData:(NSData*) data
-responseDataFileURL:(NSURL*) fileURL;
+            headers:(FLHttpMessage*) headers 
+     redirectedFrom:(FLHttpResponse*) redirectedFrom
+          inputSink:(id<FLInputSink>) inputSink;
+
+- (NSData*) responseData;
+- (NSURL*) responseFileURL;
 
 - (NSString*) valueForHeader:(NSString*) header;
 

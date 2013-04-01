@@ -10,6 +10,8 @@
 #import "ZFWebApi.h"
 #import "FLImageFolder.h"
 #import "ZFDownloadImageHttpRequest.h"
+#import "FLFileSink.h"
+#import "FLHiddenFolderFileSink.h"
 
 @interface ZFDownloadState ()
 @property (readwrite, assign, nonatomic) ZFDownloadState_t values;
@@ -158,20 +160,20 @@
     return latestPhotoSet;
 }
 
-- (FLResult) downloadPhoto:(ZFPhoto*) photo
-             withImageSize:(ZFMediaType*) imageSize
-               imageFolder:(FLImageFolder*) imageFolder {
-           
-    ZFDownloadImageHttpRequest* request = 
-        [ZFDownloadImageHttpRequest downloadImageHttpRequest:photo 
-                                                           imageSize:imageSize 
-                                                               cache:nil];
-
-    request.networkStreamSink = [FLFileStreamSink fileStreamSink:[NSURL fileURLWithPath:[imageFolder pathForFile:photo.FileName]]];
-    request.asyncObserver = self;
-                                                               
-    return [self runChildSynchronously:request];
-}
+//- (FLResult) downloadPhoto:(ZFPhoto*) photo
+//             withImageSize:(ZFMediaType*) imageSize
+//               imageFolder:(FLImageFolder*) imageFolder {
+//           
+//    ZFDownloadImageHttpRequest* request = 
+//        [ZFDownloadImageHttpRequest downloadImageHttpRequest:photo 
+//                                                           imageSize:imageSize 
+//                                                               cache:nil];
+//
+//    request.inputSink = [FLFileSink fileSink:[NSURL fileURLWithPath:[imageFolder pathForFile:photo.FileName]]];
+//    request.asyncObserver = self;
+//                                                               
+//    return [self runChildSynchronously:request];
+//}
 
 - (void) httpRequest:(FLHttpRequest*) httpRequest didReadBytes:(NSNumber*) amount {
     _state.currentPhotoBytes += [amount longLongValue];
@@ -185,7 +187,8 @@
     FLHttpRequest* request = 
         [FLHttpRequest httpRequest:[photo urlForImageWithSize:[ZFMediaType originalImage]]];
 
-    request.networkStreamSink = [FLFileStreamSink fileStreamSink:[NSURL fileURLWithPath:filePath]];
+    request.inputSink = [FLHiddenFolderFileSink hiddenFolderFileSink:[NSURL fileURLWithPath:filePath] folderURL:[NSURL fileURLWithPath:[self.destinationPath stringByAppendingPathComponent:@".downloader"] isDirectory:YES]];
+
     request.asyncObserver = self;
                                                                
     return [self runChildSynchronously:request];

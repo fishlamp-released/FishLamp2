@@ -1279,15 +1279,6 @@
 		271D385D16FE0787009CD00F /* FLNetworkStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D324216FE0775009CD00F /* FLNetworkStream.m */; };
 		271D385E16FE0787009CD00F /* FLNetworkStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D324216FE0775009CD00F /* FLNetworkStream.m */; };
 		271D385F16FE0787009CD00F /* FLNetworkStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D324216FE0775009CD00F /* FLNetworkStream.m */; };
-		271D386016FE0787009CD00F /* FLNetworkStreamSink.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D324316FE0775009CD00F /* FLNetworkStreamSink.h */; };
-		271D386116FE0787009CD00F /* FLNetworkStreamSink.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D324316FE0775009CD00F /* FLNetworkStreamSink.h */; };
-		271D386216FE0787009CD00F /* FLNetworkStreamSink.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D324316FE0775009CD00F /* FLNetworkStreamSink.h */; };
-		271D386316FE0787009CD00F /* FLNetworkStreamSink.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D324316FE0775009CD00F /* FLNetworkStreamSink.h */; };
-		271D386416FE0787009CD00F /* FLNetworkStreamSink.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D324416FE0775009CD00F /* FLNetworkStreamSink.m */; };
-		271D386516FE0787009CD00F /* FLNetworkStreamSink.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D324416FE0775009CD00F /* FLNetworkStreamSink.m */; };
-		271D386616FE0787009CD00F /* FLNetworkStreamSink.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D324416FE0775009CD00F /* FLNetworkStreamSink.m */; };
-		271D386716FE0787009CD00F /* FLNetworkStreamSink.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D324416FE0775009CD00F /* FLNetworkStreamSink.m */; };
-		271D386816FE0787009CD00F /* FLNetworkStreamSink.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D324416FE0775009CD00F /* FLNetworkStreamSink.m */; };
 		271D386916FE0787009CD00F /* FLReadStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D324516FE0775009CD00F /* FLReadStream.h */; };
 		271D386A16FE0787009CD00F /* FLReadStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D324516FE0775009CD00F /* FLReadStream.h */; };
 		271D386B16FE0787009CD00F /* FLReadStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D324516FE0775009CD00F /* FLReadStream.h */; };
@@ -2361,6 +2352,42 @@
 		272662BA1707DBA000109AC2 /* FLHttpController.m in Sources */ = {isa = PBXBuildFile; fileRef = 272662B31707DBA000109AC2 /* FLHttpController.m */; };
 		272662BB1707DBA000109AC2 /* FLHttpController.m in Sources */ = {isa = PBXBuildFile; fileRef = 272662B31707DBA000109AC2 /* FLHttpController.m */; };
 		272662BC1707DBA000109AC2 /* FLHttpController.m in Sources */ = {isa = PBXBuildFile; fileRef = 272662B31707DBA000109AC2 /* FLHttpController.m */; };
+		272662CB1708F5E100109AC2 /* FLDataSink.h in Headers */ = {isa = PBXBuildFile; fileRef = 272662C91708F5E100109AC2 /* FLDataSink.h */; };
+		272662CC1708F5E100109AC2 /* FLDataSink.h in Headers */ = {isa = PBXBuildFile; fileRef = 272662C91708F5E100109AC2 /* FLDataSink.h */; };
+		272662CD1708F5E100109AC2 /* FLDataSink.h in Headers */ = {isa = PBXBuildFile; fileRef = 272662C91708F5E100109AC2 /* FLDataSink.h */; };
+		272662CE1708F5E100109AC2 /* FLDataSink.h in Headers */ = {isa = PBXBuildFile; fileRef = 272662C91708F5E100109AC2 /* FLDataSink.h */; };
+		272662CF1708F5E100109AC2 /* FLDataSink.m in Sources */ = {isa = PBXBuildFile; fileRef = 272662CA1708F5E100109AC2 /* FLDataSink.m */; };
+		272662D01708F5E100109AC2 /* FLDataSink.m in Sources */ = {isa = PBXBuildFile; fileRef = 272662CA1708F5E100109AC2 /* FLDataSink.m */; };
+		272662D11708F5E100109AC2 /* FLDataSink.m in Sources */ = {isa = PBXBuildFile; fileRef = 272662CA1708F5E100109AC2 /* FLDataSink.m */; };
+		272662D21708F5E100109AC2 /* FLDataSink.m in Sources */ = {isa = PBXBuildFile; fileRef = 272662CA1708F5E100109AC2 /* FLDataSink.m */; };
+		272662D31708F5E100109AC2 /* FLDataSink.m in Sources */ = {isa = PBXBuildFile; fileRef = 272662CA1708F5E100109AC2 /* FLDataSink.m */; };
+		272662E11708F64000109AC2 /* FLInputSink.h in Headers */ = {isa = PBXBuildFile; fileRef = 272662DF1708F64000109AC2 /* FLInputSink.h */; };
+		272662E21708F64000109AC2 /* FLInputSink.h in Headers */ = {isa = PBXBuildFile; fileRef = 272662DF1708F64000109AC2 /* FLInputSink.h */; };
+		272662E31708F64000109AC2 /* FLInputSink.h in Headers */ = {isa = PBXBuildFile; fileRef = 272662DF1708F64000109AC2 /* FLInputSink.h */; };
+		272662E41708F64000109AC2 /* FLInputSink.h in Headers */ = {isa = PBXBuildFile; fileRef = 272662DF1708F64000109AC2 /* FLInputSink.h */; };
+		272662E51708F64000109AC2 /* FLInputSink.m in Sources */ = {isa = PBXBuildFile; fileRef = 272662E01708F64000109AC2 /* FLInputSink.m */; };
+		272662E61708F64000109AC2 /* FLInputSink.m in Sources */ = {isa = PBXBuildFile; fileRef = 272662E01708F64000109AC2 /* FLInputSink.m */; };
+		272662E71708F64000109AC2 /* FLInputSink.m in Sources */ = {isa = PBXBuildFile; fileRef = 272662E01708F64000109AC2 /* FLInputSink.m */; };
+		272662E81708F64000109AC2 /* FLInputSink.m in Sources */ = {isa = PBXBuildFile; fileRef = 272662E01708F64000109AC2 /* FLInputSink.m */; };
+		272662E91708F64000109AC2 /* FLInputSink.m in Sources */ = {isa = PBXBuildFile; fileRef = 272662E01708F64000109AC2 /* FLInputSink.m */; };
+		272662EC1708F7E300109AC2 /* FLFileSink.h in Headers */ = {isa = PBXBuildFile; fileRef = 272662EA1708F7DC00109AC2 /* FLFileSink.h */; };
+		272662ED1708F7E300109AC2 /* FLFileSink.h in Headers */ = {isa = PBXBuildFile; fileRef = 272662EA1708F7DC00109AC2 /* FLFileSink.h */; };
+		272662EE1708F7E300109AC2 /* FLFileSink.h in Headers */ = {isa = PBXBuildFile; fileRef = 272662EA1708F7DC00109AC2 /* FLFileSink.h */; };
+		272662EF1708F7E300109AC2 /* FLFileSink.h in Headers */ = {isa = PBXBuildFile; fileRef = 272662EA1708F7DC00109AC2 /* FLFileSink.h */; };
+		272662F01708F7E300109AC2 /* FLFileSink.m in Sources */ = {isa = PBXBuildFile; fileRef = 272662EB1708F7DE00109AC2 /* FLFileSink.m */; };
+		272662F11708F7E300109AC2 /* FLFileSink.m in Sources */ = {isa = PBXBuildFile; fileRef = 272662EB1708F7DE00109AC2 /* FLFileSink.m */; };
+		272662F21708F7E300109AC2 /* FLFileSink.m in Sources */ = {isa = PBXBuildFile; fileRef = 272662EB1708F7DE00109AC2 /* FLFileSink.m */; };
+		272662F31708F7E300109AC2 /* FLFileSink.m in Sources */ = {isa = PBXBuildFile; fileRef = 272662EB1708F7DE00109AC2 /* FLFileSink.m */; };
+		272662F41708F7E300109AC2 /* FLFileSink.m in Sources */ = {isa = PBXBuildFile; fileRef = 272662EB1708F7DE00109AC2 /* FLFileSink.m */; };
+		272662F71709050900109AC2 /* FLHiddenFolderFileSink.h in Headers */ = {isa = PBXBuildFile; fileRef = 272662F51709050800109AC2 /* FLHiddenFolderFileSink.h */; };
+		272662F81709050900109AC2 /* FLHiddenFolderFileSink.h in Headers */ = {isa = PBXBuildFile; fileRef = 272662F51709050800109AC2 /* FLHiddenFolderFileSink.h */; };
+		272662F91709050900109AC2 /* FLHiddenFolderFileSink.h in Headers */ = {isa = PBXBuildFile; fileRef = 272662F51709050800109AC2 /* FLHiddenFolderFileSink.h */; };
+		272662FA1709050900109AC2 /* FLHiddenFolderFileSink.h in Headers */ = {isa = PBXBuildFile; fileRef = 272662F51709050800109AC2 /* FLHiddenFolderFileSink.h */; };
+		272662FB1709050900109AC2 /* FLHiddenFolderFileSink.m in Sources */ = {isa = PBXBuildFile; fileRef = 272662F61709050800109AC2 /* FLHiddenFolderFileSink.m */; };
+		272662FC1709050900109AC2 /* FLHiddenFolderFileSink.m in Sources */ = {isa = PBXBuildFile; fileRef = 272662F61709050800109AC2 /* FLHiddenFolderFileSink.m */; };
+		272662FD1709050900109AC2 /* FLHiddenFolderFileSink.m in Sources */ = {isa = PBXBuildFile; fileRef = 272662F61709050800109AC2 /* FLHiddenFolderFileSink.m */; };
+		272662FE1709050900109AC2 /* FLHiddenFolderFileSink.m in Sources */ = {isa = PBXBuildFile; fileRef = 272662F61709050800109AC2 /* FLHiddenFolderFileSink.m */; };
+		272662FF1709050900109AC2 /* FLHiddenFolderFileSink.m in Sources */ = {isa = PBXBuildFile; fileRef = 272662F61709050800109AC2 /* FLHiddenFolderFileSink.m */; };
 		2741E20A16793DB600CA87A9 /* FishLampCocoa.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DEAF16793DB500CA87A9 /* FishLampCocoa.h */; };
 		2741E20B16793DB600CA87A9 /* FishLampCocoa.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DEAF16793DB500CA87A9 /* FishLampCocoa.h */; };
 		2741E20C16793DB600CA87A9 /* FishLampCocoa.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741DEAF16793DB500CA87A9 /* FishLampCocoa.h */; };
@@ -3422,8 +3449,6 @@
 		271D323F16FE0775009CD00F /* FLSoapHttpRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLSoapHttpRequest.m; sourceTree = "<group>"; };
 		271D324116FE0775009CD00F /* FLNetworkStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLNetworkStream.h; sourceTree = "<group>"; };
 		271D324216FE0775009CD00F /* FLNetworkStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLNetworkStream.m; sourceTree = "<group>"; };
-		271D324316FE0775009CD00F /* FLNetworkStreamSink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLNetworkStreamSink.h; sourceTree = "<group>"; };
-		271D324416FE0775009CD00F /* FLNetworkStreamSink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLNetworkStreamSink.m; sourceTree = "<group>"; };
 		271D324516FE0775009CD00F /* FLReadStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLReadStream.h; sourceTree = "<group>"; };
 		271D324616FE0775009CD00F /* FLReadStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLReadStream.m; sourceTree = "<group>"; };
 		271D324716FE0775009CD00F /* FLStreamWorker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLStreamWorker.h; sourceTree = "<group>"; };
@@ -3666,6 +3691,14 @@
 		272662A81707DA6500109AC2 /* FLNetworkOperationContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLNetworkOperationContext.m; sourceTree = "<group>"; };
 		272662B21707DBA000109AC2 /* FLHttpController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLHttpController.h; sourceTree = "<group>"; };
 		272662B31707DBA000109AC2 /* FLHttpController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLHttpController.m; sourceTree = "<group>"; };
+		272662C91708F5E100109AC2 /* FLDataSink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLDataSink.h; sourceTree = "<group>"; };
+		272662CA1708F5E100109AC2 /* FLDataSink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLDataSink.m; sourceTree = "<group>"; };
+		272662DF1708F64000109AC2 /* FLInputSink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLInputSink.h; sourceTree = "<group>"; };
+		272662E01708F64000109AC2 /* FLInputSink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLInputSink.m; sourceTree = "<group>"; };
+		272662EA1708F7DC00109AC2 /* FLFileSink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLFileSink.h; sourceTree = "<group>"; };
+		272662EB1708F7DE00109AC2 /* FLFileSink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLFileSink.m; sourceTree = "<group>"; };
+		272662F51709050800109AC2 /* FLHiddenFolderFileSink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLHiddenFolderFileSink.h; sourceTree = "<group>"; };
+		272662F61709050800109AC2 /* FLHiddenFolderFileSink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLHiddenFolderFileSink.m; sourceTree = "<group>"; };
 		272D807816C84313006052E5 /* AssetQueueObjects.flproj */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = AssetQueueObjects.flproj; sourceTree = "<group>"; };
 		27314C79165328400027850D /* libFishLampCocoa-OSX-64-ARC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoa-OSX-64-ARC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2739006F16D45D1F00FC6453 /* FishLampCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FishLampCore.xcodeproj; path = ../FishLampCoreLib/FishLampCore.xcodeproj; sourceTree = "<group>"; };
@@ -4386,6 +4419,7 @@
 				271D322E16FE0775009CD00F /* Progress */,
 				271D323116FE0775009CD00F /* Reachability */,
 				271D323616FE0775009CD00F /* Soap */,
+				272662C81708F5E000109AC2 /* Sinks */,
 				271D324016FE0775009CD00F /* Streams */,
 				271D324D16FE0775009CD00F /* Tcp */,
 				271D325416FE0775009CD00F /* Utilities */,
@@ -4577,8 +4611,6 @@
 			children = (
 				271D324116FE0775009CD00F /* FLNetworkStream.h */,
 				271D324216FE0775009CD00F /* FLNetworkStream.m */,
-				271D324316FE0775009CD00F /* FLNetworkStreamSink.h */,
-				271D324416FE0775009CD00F /* FLNetworkStreamSink.m */,
 				271D324516FE0775009CD00F /* FLReadStream.h */,
 				271D324616FE0775009CD00F /* FLReadStream.m */,
 				271D324716FE0775009CD00F /* FLStreamWorker.h */,
@@ -5022,6 +5054,21 @@
 				271D335216FE0776009CD00F /* NSError+FLTimeout.m */,
 			);
 			path = Timer;
+			sourceTree = "<group>";
+		};
+		272662C81708F5E000109AC2 /* Sinks */ = {
+			isa = PBXGroup;
+			children = (
+				272662C91708F5E100109AC2 /* FLDataSink.h */,
+				272662CA1708F5E100109AC2 /* FLDataSink.m */,
+				272662DF1708F64000109AC2 /* FLInputSink.h */,
+				272662E01708F64000109AC2 /* FLInputSink.m */,
+				272662EA1708F7DC00109AC2 /* FLFileSink.h */,
+				272662EB1708F7DE00109AC2 /* FLFileSink.m */,
+				272662F51709050800109AC2 /* FLHiddenFolderFileSink.h */,
+				272662F61709050800109AC2 /* FLHiddenFolderFileSink.m */,
+			);
+			path = Sinks;
 			sourceTree = "<group>";
 		};
 		2731477B1652D2D30027850D /* Supporting Files */ = {
@@ -5612,7 +5659,6 @@
 				271D384516FE0787009CD00F /* FLSoapFault11.h in Headers */,
 				271D384E16FE0787009CD00F /* FLSoapHttpRequest.h in Headers */,
 				271D385716FE0787009CD00F /* FLNetworkStream.h in Headers */,
-				271D386016FE0787009CD00F /* FLNetworkStreamSink.h in Headers */,
 				271D386916FE0787009CD00F /* FLReadStream.h in Headers */,
 				271D387216FE0787009CD00F /* FLStreamWorker.h in Headers */,
 				271D387B16FE0787009CD00F /* FLWriteStream.h in Headers */,
@@ -5763,6 +5809,10 @@
 				27069FBB170761AC001D4AC9 /* SDKApplication+FLAdditions.h in Headers */,
 				272662A91707DA6500109AC2 /* FLNetworkOperationContext.h in Headers */,
 				272662B41707DBA000109AC2 /* FLHttpController.h in Headers */,
+				272662CB1708F5E100109AC2 /* FLDataSink.h in Headers */,
+				272662E11708F64000109AC2 /* FLInputSink.h in Headers */,
+				272662EC1708F7E300109AC2 /* FLFileSink.h in Headers */,
+				272662F71709050900109AC2 /* FLHiddenFolderFileSink.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5976,7 +6026,6 @@
 				271D384716FE0787009CD00F /* FLSoapFault11.h in Headers */,
 				271D385016FE0787009CD00F /* FLSoapHttpRequest.h in Headers */,
 				271D385916FE0787009CD00F /* FLNetworkStream.h in Headers */,
-				271D386216FE0787009CD00F /* FLNetworkStreamSink.h in Headers */,
 				271D386B16FE0787009CD00F /* FLReadStream.h in Headers */,
 				271D387416FE0787009CD00F /* FLStreamWorker.h in Headers */,
 				271D387D16FE0787009CD00F /* FLWriteStream.h in Headers */,
@@ -6127,6 +6176,10 @@
 				27069FBD170761AC001D4AC9 /* SDKApplication+FLAdditions.h in Headers */,
 				272662AB1707DA6500109AC2 /* FLNetworkOperationContext.h in Headers */,
 				272662B61707DBA000109AC2 /* FLHttpController.h in Headers */,
+				272662CD1708F5E100109AC2 /* FLDataSink.h in Headers */,
+				272662E31708F64000109AC2 /* FLInputSink.h in Headers */,
+				272662EE1708F7E300109AC2 /* FLFileSink.h in Headers */,
+				272662F91709050900109AC2 /* FLHiddenFolderFileSink.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6340,7 +6393,6 @@
 				271D384616FE0787009CD00F /* FLSoapFault11.h in Headers */,
 				271D384F16FE0787009CD00F /* FLSoapHttpRequest.h in Headers */,
 				271D385816FE0787009CD00F /* FLNetworkStream.h in Headers */,
-				271D386116FE0787009CD00F /* FLNetworkStreamSink.h in Headers */,
 				271D386A16FE0787009CD00F /* FLReadStream.h in Headers */,
 				271D387316FE0787009CD00F /* FLStreamWorker.h in Headers */,
 				271D387C16FE0787009CD00F /* FLWriteStream.h in Headers */,
@@ -6491,6 +6543,10 @@
 				27069FBC170761AC001D4AC9 /* SDKApplication+FLAdditions.h in Headers */,
 				272662AA1707DA6500109AC2 /* FLNetworkOperationContext.h in Headers */,
 				272662B51707DBA000109AC2 /* FLHttpController.h in Headers */,
+				272662CC1708F5E100109AC2 /* FLDataSink.h in Headers */,
+				272662E21708F64000109AC2 /* FLInputSink.h in Headers */,
+				272662ED1708F7E300109AC2 /* FLFileSink.h in Headers */,
+				272662F81709050900109AC2 /* FLHiddenFolderFileSink.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6704,7 +6760,6 @@
 				271D384816FE0787009CD00F /* FLSoapFault11.h in Headers */,
 				271D385116FE0787009CD00F /* FLSoapHttpRequest.h in Headers */,
 				271D385A16FE0787009CD00F /* FLNetworkStream.h in Headers */,
-				271D386316FE0787009CD00F /* FLNetworkStreamSink.h in Headers */,
 				271D386C16FE0787009CD00F /* FLReadStream.h in Headers */,
 				271D387516FE0787009CD00F /* FLStreamWorker.h in Headers */,
 				271D387E16FE0787009CD00F /* FLWriteStream.h in Headers */,
@@ -6855,6 +6910,10 @@
 				27069FBE170761AC001D4AC9 /* SDKApplication+FLAdditions.h in Headers */,
 				272662AC1707DA6500109AC2 /* FLNetworkOperationContext.h in Headers */,
 				272662B71707DBA000109AC2 /* FLHttpController.h in Headers */,
+				272662CE1708F5E100109AC2 /* FLDataSink.h in Headers */,
+				272662E41708F64000109AC2 /* FLInputSink.h in Headers */,
+				272662EF1708F7E300109AC2 /* FLFileSink.h in Headers */,
+				272662FA1709050900109AC2 /* FLHiddenFolderFileSink.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7210,7 +7269,6 @@
 				271D384A16FE0787009CD00F /* FLSoapFault11.m in Sources */,
 				271D385316FE0787009CD00F /* FLSoapHttpRequest.m in Sources */,
 				271D385C16FE0787009CD00F /* FLNetworkStream.m in Sources */,
-				271D386516FE0787009CD00F /* FLNetworkStreamSink.m in Sources */,
 				271D386E16FE0787009CD00F /* FLReadStream.m in Sources */,
 				271D387716FE0787009CD00F /* FLStreamWorker.m in Sources */,
 				271D388016FE0787009CD00F /* FLWriteStream.m in Sources */,
@@ -7354,6 +7412,10 @@
 				27069FC0170761AC001D4AC9 /* SDKApplication+FLAdditions.m in Sources */,
 				272662AE1707DA6500109AC2 /* FLNetworkOperationContext.m in Sources */,
 				272662B91707DBA000109AC2 /* FLHttpController.m in Sources */,
+				272662D01708F5E100109AC2 /* FLDataSink.m in Sources */,
+				272662E61708F64000109AC2 /* FLInputSink.m in Sources */,
+				272662F11708F7E300109AC2 /* FLFileSink.m in Sources */,
+				272662FC1709050900109AC2 /* FLHiddenFolderFileSink.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7540,7 +7602,6 @@
 				271D384C16FE0787009CD00F /* FLSoapFault11.m in Sources */,
 				271D385516FE0787009CD00F /* FLSoapHttpRequest.m in Sources */,
 				271D385E16FE0787009CD00F /* FLNetworkStream.m in Sources */,
-				271D386716FE0787009CD00F /* FLNetworkStreamSink.m in Sources */,
 				271D387016FE0787009CD00F /* FLReadStream.m in Sources */,
 				271D387916FE0787009CD00F /* FLStreamWorker.m in Sources */,
 				271D388216FE0787009CD00F /* FLWriteStream.m in Sources */,
@@ -7684,6 +7745,10 @@
 				27069FC2170761AC001D4AC9 /* SDKApplication+FLAdditions.m in Sources */,
 				272662B01707DA6500109AC2 /* FLNetworkOperationContext.m in Sources */,
 				272662BB1707DBA000109AC2 /* FLHttpController.m in Sources */,
+				272662D21708F5E100109AC2 /* FLDataSink.m in Sources */,
+				272662E81708F64000109AC2 /* FLInputSink.m in Sources */,
+				272662F31708F7E300109AC2 /* FLFileSink.m in Sources */,
+				272662FE1709050900109AC2 /* FLHiddenFolderFileSink.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7872,7 +7937,6 @@
 				271D384916FE0787009CD00F /* FLSoapFault11.m in Sources */,
 				271D385216FE0787009CD00F /* FLSoapHttpRequest.m in Sources */,
 				271D385B16FE0787009CD00F /* FLNetworkStream.m in Sources */,
-				271D386416FE0787009CD00F /* FLNetworkStreamSink.m in Sources */,
 				271D386D16FE0787009CD00F /* FLReadStream.m in Sources */,
 				271D387616FE0787009CD00F /* FLStreamWorker.m in Sources */,
 				271D387F16FE0787009CD00F /* FLWriteStream.m in Sources */,
@@ -8006,6 +8070,10 @@
 				27069FBF170761AC001D4AC9 /* SDKApplication+FLAdditions.m in Sources */,
 				272662AD1707DA6500109AC2 /* FLNetworkOperationContext.m in Sources */,
 				272662B81707DBA000109AC2 /* FLHttpController.m in Sources */,
+				272662CF1708F5E100109AC2 /* FLDataSink.m in Sources */,
+				272662E51708F64000109AC2 /* FLInputSink.m in Sources */,
+				272662F01708F7E300109AC2 /* FLFileSink.m in Sources */,
+				272662FB1709050900109AC2 /* FLHiddenFolderFileSink.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8192,7 +8260,6 @@
 				271D384B16FE0787009CD00F /* FLSoapFault11.m in Sources */,
 				271D385416FE0787009CD00F /* FLSoapHttpRequest.m in Sources */,
 				271D385D16FE0787009CD00F /* FLNetworkStream.m in Sources */,
-				271D386616FE0787009CD00F /* FLNetworkStreamSink.m in Sources */,
 				271D386F16FE0787009CD00F /* FLReadStream.m in Sources */,
 				271D387816FE0787009CD00F /* FLStreamWorker.m in Sources */,
 				271D388116FE0787009CD00F /* FLWriteStream.m in Sources */,
@@ -8336,6 +8403,10 @@
 				27069FC1170761AC001D4AC9 /* SDKApplication+FLAdditions.m in Sources */,
 				272662AF1707DA6500109AC2 /* FLNetworkOperationContext.m in Sources */,
 				272662BA1707DBA000109AC2 /* FLHttpController.m in Sources */,
+				272662D11708F5E100109AC2 /* FLDataSink.m in Sources */,
+				272662E71708F64000109AC2 /* FLInputSink.m in Sources */,
+				272662F21708F7E300109AC2 /* FLFileSink.m in Sources */,
+				272662FD1709050900109AC2 /* FLHiddenFolderFileSink.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8522,7 +8593,6 @@
 				271D384D16FE0787009CD00F /* FLSoapFault11.m in Sources */,
 				271D385616FE0787009CD00F /* FLSoapHttpRequest.m in Sources */,
 				271D385F16FE0787009CD00F /* FLNetworkStream.m in Sources */,
-				271D386816FE0787009CD00F /* FLNetworkStreamSink.m in Sources */,
 				271D387116FE0787009CD00F /* FLReadStream.m in Sources */,
 				271D387A16FE0787009CD00F /* FLStreamWorker.m in Sources */,
 				271D388316FE0788009CD00F /* FLWriteStream.m in Sources */,
@@ -8666,6 +8736,10 @@
 				27069FC3170761AC001D4AC9 /* SDKApplication+FLAdditions.m in Sources */,
 				272662B11707DA6500109AC2 /* FLNetworkOperationContext.m in Sources */,
 				272662BC1707DBA000109AC2 /* FLHttpController.m in Sources */,
+				272662D31708F5E100109AC2 /* FLDataSink.m in Sources */,
+				272662E91708F64000109AC2 /* FLInputSink.m in Sources */,
+				272662F41708F7E300109AC2 /* FLFileSink.m in Sources */,
+				272662FF1709050900109AC2 /* FLHiddenFolderFileSink.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

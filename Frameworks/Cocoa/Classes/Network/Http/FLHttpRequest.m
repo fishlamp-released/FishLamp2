@@ -12,6 +12,7 @@
 #import "FLReadStream.h"
 #import "FLHttpMessage.h"
 #import "FLGlobalNetworkActivityIndicator.h"
+#import "FLDataSink.h"
 
 //#define kStreamReadChunkSize 1024
 
@@ -29,7 +30,7 @@
 @synthesize dataDecoder = _dataDecoder;
 @synthesize authenticator = _authenticator;
 @synthesize disableAuthenticator = _disableAuthenticator;
-@synthesize networkStreamSink = _networkStreamSink;
+@synthesize inputSink = _inputSink;
 @synthesize finisher = _finisher;
 @synthesize asyncQueue = _asyncQueue;
 @synthesize httpStream = _httpStream;
@@ -73,7 +74,7 @@
     [_previousResponse release];
     [_httpStream release];
     [_finisher release];
-    [_networkStreamSink release];
+    [_inputSink release];
     [_authenticator release];
     [_dataDecoder release];
     [_dataEncoder release];
@@ -152,8 +153,8 @@
         
     [self willSendHttpRequest]; // this may set requestURL so needs to be before createStreamOpenerWithURL
 
-    if(!self.networkStreamSink) {
-        self.networkStreamSink = [FLDataStreamSink networkStreamSink];
+    if(!self.inputSink) {
+        self.inputSink = [FLDataSink dataSink];
     }
     
     FLHttpMessage* cfRequest = [FLHttpMessage httpMessageWithURL:self.headers.requestURL httpMethod:self.headers.httpMethod];
@@ -164,7 +165,7 @@
     }
     
     self.httpStream  = [FLHttpStream httpStream:cfRequest withBodyStream:self.body.bodyStream];
-    self.httpStream.sink = self.networkStreamSink;
+    self.httpStream.inputSink = self.inputSink;
         
     [self.httpStream openStreamWithDelegate:self asyncQueue:self.asyncQueue];
 }
@@ -254,10 +255,7 @@
         FLHttpResponse* response = [FLHttpResponse httpResponse:[[stream requestHeaders] requestURL]
                                                         headers:[stream responseHeaders] 
                                                  redirectedFrom:self.previousResponse
-                                                   responseData:_networkStreamSink.data
-                                            responseDataFileURL:_networkStreamSink.fileURL];
-
-        FLAssert(response.responseData != nil || response.responseDataFileURL != nil);
+                                                      inputSink:self.inputSink];
 
         [self closeStreamWithError:nil];
     

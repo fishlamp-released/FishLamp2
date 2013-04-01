@@ -29,13 +29,13 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
 @implementation FLReadStream
 
 @synthesize streamRef = _streamRef;
-@synthesize sink = _sink;
+@synthesize inputSink = _inputSink;
 
 - (void) dealloc {
     FLAssert(_streamRef == nil);
     
 #if FL_MRC  
-    [_sink release];
+    [_inputSink release];
     [super dealloc];
 #endif
 }
@@ -55,6 +55,8 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
     _streamRef = [self createReadStreamRef];         
          
     FLAssertIsNotNil(_streamRef);
+
+    [self.inputSink openSink];
 
     CFOptionFlags flags =
             kCFStreamEventOpenCompleted | 
@@ -76,6 +78,12 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
     if(_streamRef) {
         [super willClose];
 
+        [self.inputSink closeSinkWithError:self.error];
+
+        if(!self.error) {
+            [self.inputSink commit];
+        }
+
         FLAssertNotNil(_streamRef);
         CFReadStreamClose(_streamRef);
         CFReadStreamUnscheduleFromRunLoop(_streamRef, CFRunLoopGetMain(), bridge_(void*,NSDefaultRunLoopMode));
@@ -88,6 +96,15 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
 
 - (BOOL) hasBytesAvailable {
     return CFReadStreamHasBytesAvailable(_streamRef) && !self.error;
+}
+
+- (void) encounteredBytesAvailable {
+    while(self.hasBytesAvailable && !self.error) {
+        NSUInteger bytesRead = [self readBytes:_buffer maxLength:FLReadStreamBufferSize];
+        if(bytesRead) {
+            [self.inputSink appendBytes:_buffer length:bytesRead];
+        }
+    }
 }
 
 - (BOOL) readResultIsError:(NSInteger) bytesRead {
@@ -148,15 +165,6 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
 
     return [number unsignedLongValue];
 }
-
-- (void) sendObjectMessageToListeners:(FLObjectMessage *)message {
-    if(_sink) {
-        [_sink receiveObjectMessage:message];
-    }
-    
-    [super sendObjectMessageToListeners:message];
-}
-
 
 @end
 

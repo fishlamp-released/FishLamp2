@@ -15,8 +15,7 @@
 @property (readwrite, strong, nonatomic) NSString* responseStatusLine;
 @property (readwrite, strong, nonatomic) FLHttpResponse* redirectedFrom;
 @property (readwrite, strong, nonatomic) NSURL* requestURL;
-@property (readwrite, strong, nonatomic) NSData* responseData;
-@property (readwrite, strong, nonatomic) NSURL* responseDataFileURL;
+@property (readwrite, strong, nonatomic) id<FLInputSink> inputSink;
 @end
 
 @implementation FLHttpResponse
@@ -26,14 +25,12 @@
 @synthesize responseStatusLine = _responseStatusLine;
 @synthesize requestURL = _requestURL;
 @synthesize redirectedFrom = _redirectedFrom;
-@synthesize responseData = _responseData;
-@synthesize responseDataFileURL = _responseDataFileURL;
+@synthesize inputSink = _inputSink;
 
 - (id) initWithRequestURL:(NSURL*) url 
                   headers:(FLHttpMessage*) headers 
            redirectedFrom:(FLHttpResponse*) redirectedFrom 
-             responseData:(NSData*) responseData 
-      responseDataFileURL:(NSURL*) responseDataFileURL{
+                inputSink:(id<FLInputSink>) inputSink {
 
     if((self = [super init])) {
         self.requestURL = url;
@@ -41,30 +38,34 @@
         self.responseHeaders = headers.allHeaders;
         self.responseStatusLine = headers.responseStatusLine;
         self.responseStatusCode = headers.responseStatusCode;
-        self.responseData = responseData;
-        self.responseDataFileURL = responseDataFileURL;
+        self.inputSink = inputSink;
     }
     
     return self;
 }
 
-
 + (id) httpResponse:(NSURL*) requestURL 
             headers:(FLHttpMessage*) headers 
      redirectedFrom:(FLHttpResponse*) redirectedFrom 
-       responseData:(NSData*) responseData 
-responseDataFileURL:responseDataFileURL {
+                inputSink:(id<FLInputSink>) inputSink {
+
     return FLAutorelease([[[self class] alloc] initWithRequestURL:requestURL 
                                                           headers:(FLHttpMessage*) headers 
                                                    redirectedFrom:redirectedFrom 
-                                                     responseData:responseData 
-                                              responseDataFileURL:responseDataFileURL]);
+                                                    inputSink:inputSink]);
+}
+
+- (NSData*) responseData {
+    return [self.inputSink data];
+}
+
+- (NSURL*) responseFileURL {
+    return [self.inputSink fileURL];
 }
 
 #if FL_MRC
 - (void) dealloc {
-    [_responseData release];
-    [_responseDataFileURL release];
+    [_inputSink release];
     [_redirectedFrom release];
     [_requestURL release];
     [_responseStatusLine release];

@@ -17,7 +17,7 @@
 #import "FLTimer.h"
 #import "FLTimedObject.h"
 #import "FLHttpStream.h"
-#import "FLNetworkStreamSink.h"
+#import "FLInputSink.h"
 #import "FLOperation.h"
 
 #define FLWriteStreamDefaultTimeout 120.0f
@@ -43,7 +43,7 @@
     FLHttpStream* _httpStream;
     
     // helpers
-    FLNetworkStreamSink*_networkStreamSink;
+    id<FLInputSink> _inputSink;
     id<FLDataEncoding> _dataEncoder;
     id<FLDataDecoding> _dataDecoder;
     id<FLHttpRequestAuthenticator> _authenticator;
@@ -51,7 +51,7 @@
 }
 
 // by default this is a FLDataResponseReciever.
-@property (readwrite, strong, nonatomic) FLNetworkStreamSink* networkStreamSink;
+@property (readwrite, strong, nonatomic) id<FLInputSink> inputSink;
 @property (readwrite, strong, nonatomic) id<FLDataEncoding> dataEncoder;
 @property (readwrite, strong, nonatomic) id<FLDataDecoding> dataDecoder;
 @property (readwrite, strong, nonatomic) id<FLHttpRequestAuthenticator> authenticator;
