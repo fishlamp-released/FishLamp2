@@ -238,6 +238,7 @@
 
 - (void) setColor:(NSColor*) color forRange:(NSRange) range{
 
+
 #if OSX
     CGColorRef colorRef = [color copyCGColorRef];
 #else
@@ -260,6 +261,7 @@
 }
 
 - (void) setShadowColor:(NSColor*) color forRange:(NSRange) range {
+
 
 #if OSX
     CGColorRef colorRef = [color copyCGColorRef];

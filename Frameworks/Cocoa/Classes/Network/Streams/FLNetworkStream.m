@@ -8,21 +8,28 @@
 
 #import "FLNetworkStream.h"
 #import "FLDispatch.h"
+#import "FLNotificationSending.h"
 
 @interface FLNetworkStream ()
 @property (readwrite, assign, getter=isOpen) BOOL open;
 @property (readwrite, strong) FLFifoAsyncQueue* asyncQueue;
 @property (readwrite, strong) NSError* error;
+@property (readwrite, strong) FLTimer* timer;
 @end
 
 @implementation FLNetworkStream
 @synthesize asyncQueue = _asyncQueue;
 @synthesize open = _open;
 @synthesize error = _error;
+@synthesize delegate = _delegate;
+@synthesize timer = _timer;
 
 - (id) init {
     self = [super init];
     if(self) {
+        _timer = [[FLTimer alloc] init];
+        _timer.delegate = self;
+        _timer.postNotifications = NO;
     }
     return self;
 }
@@ -30,9 +37,22 @@
 - (void) dealloc {
     [_asyncQueue releaseToPool];
 #if FL_MRC
+    [_timer release];
     [_error release];
     [super dealloc];
 #endif
+}
+
+- (void) startTimeoutTimer {
+    NSTimeInterval timeoutInterval = [self.delegate networkStreamGetTimeoutInterval:self]; 
+    if(timeoutInterval) {
+        self.timer.timeoutInterval = timeoutInterval;
+        [self.timer startTimer];
+    }
+}
+
+- (id) notificationListener {
+    return self.delegate;
 }
 
 - (void) willOpen {
@@ -40,37 +60,38 @@
 
     self.open = NO;
     self.error = nil;
-    [self sendMessageToListeners:@selector(networkStreamWillOpen:)];
+    [self sendNotification:@selector(networkStreamWillOpen:) withObject:self];
 }
 
 - (void) didOpen {
     FLAssert([NSThread currentThread] != [NSThread mainThread]);
 
     self.open = YES;
-    [self sendMessageToListeners:@selector(networkStreamDidOpen:)];
+    [self sendNotification:@selector(networkStreamDidOpen:) withObject:self];
 }
 
 - (void) willClose {
     FLAssert([NSThread currentThread] != [NSThread mainThread]);
 
-    [self sendMessageToListeners:@selector(networkStreamWillClose:)];
+    [self sendNotification:@selector(networkStreamWillClose:) withObject:self];
 }
 
 - (void) didClose {
     FLAssert([NSThread currentThread] != [NSThread mainThread]);
 
     self.open = NO;
-    [self sendMessageToListeners:@selector(networkStreamDidClose:)];
+    [self sendNotification:@selector(networkStreamDidClose:) withObject:self];
+    [self.timer stopTimer];
 }
 
 - (void) encounteredBytesAvailable {
     FLAssert([NSThread currentThread] != [NSThread mainThread]);
-    [self sendMessageToListeners:@selector(networkStreamHasBytesAvailable:)];
+    [self sendNotification:@selector(networkStreamHasBytesAvailable:) withObject:self];
 }
 
 - (void) encounteredCanAcceptBytes {
     FLAssert([NSThread currentThread] != [NSThread mainThread]);
-    [self sendMessageToListeners:@selector(networkStreamCanAcceptBytes:)];
+    [self sendNotification:@selector(networkStreamCanAcceptBytes:) withObject:self];
 }
 
 - (void) encounteredOpen {
@@ -86,7 +107,7 @@
 - (void) encounteredError:(NSError*) error {
     FLAssert([NSThread currentThread] != [NSThread mainThread]);
     self.error = error;
-    [self sendMessageToListeners:@selector(networkStream:encounteredError:) withObject:error];
+    [self sendNotification:@selector(networkStream:encounteredError:) withObject:self withObject:error];
 }
 
 - (NSError*) streamError {
@@ -95,10 +116,10 @@
 
 - (void) openStreamWithDelegate:(id<FLNetworkStreamDelegate>) delegate 
                      asyncQueue:(FLFifoAsyncQueue*) asyncQueue {
-    [self addListener:delegate];
-    
+    self.delegate = delegate;
     self.asyncQueue = asyncQueue;
     [self queueSelector:@selector(willOpen)];
+    [self queueSelector:@selector(startTimeoutTimer)];
 }
 
 - (void) closeStream {
@@ -133,6 +154,13 @@
     [self.asyncQueue queueBlock:block completion:nil];
 }
 
+- (void) timerDidTimeout:(FLTimer*) timer {
+    [self queueSelector:@selector(encounteredError:) withObject:[NSError timeoutError]];
+}
+
+- (void) touchTimeoutTimestamp {
+    [self.timer  touchTimestamp];
+}
 
 + (void) handleStreamEvent:(CFStreamEventType) eventType withStream:(FLNetworkStream*) stream {
 
@@ -144,6 +172,7 @@
 //#if TRACE
 //    FLDebugLog(@"Read Stream got event %d", eventType);
 //#endif
+    [stream touchTimeoutTimestamp];
 
     switch (eventType)  {
 

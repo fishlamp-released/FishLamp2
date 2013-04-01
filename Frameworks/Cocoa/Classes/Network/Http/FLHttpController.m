@@ -14,6 +14,7 @@
 @property (readwrite, strong) FLUserService* userService;
 @property (readwrite, strong) id<FLObjectStorage> objectStorageService;
 @property (readwrite, strong) FLHttpRequestAuthenticationService* httpRequestAuthenticator;
+@property (readwrite, strong) FLService* authenticatedServices;
 @end
 
 @implementation FLHttpController
@@ -21,28 +22,27 @@
 @synthesize objectStorageService = _objectStorageService;
 @synthesize httpRequestAuthenticator = _httpRequestAuthenticator;
 @synthesize delegate = _delegate;
+@synthesize authenticatedServices = _authenticatedServices;
 
 - (id) init {
     self = [super init]; // [super initWithRootNameForDelegateMethods:@"httpController"];
     if(self) {
-                
+        self.authenticatedServices = [FLService service];
+                         
         self.userService = [self createUserService];
         FLAssertNotNil(self.userService);
         FLAssertStringIsNotEmptyWithComment(self.userService.authenticationDomain, @"needs a domain, like http:www.fishlamp.com");
-        
-//        self.userService.authenticationDomain = @"www.zenfolio.com";
         self.userService.delegate = self;
+
+        self.httpRequestAuthenticator = [self createHttpRequestAuthenticationService];
+        FLAssertNotNil(self.httpRequestAuthenticator);
+        self.httpRequestAuthenticator.delegate = self;
+        [self.userService addSubService:self.httpRequestAuthenticator];    
     
         self.objectStorageService = [self createObjectStorageService];
         FLAssertNotNil(self.objectStorageService);
+        [self.authenticatedServices addSubService:self.objectStorageService];
         
-        [self.userService addSubService:self.objectStorageService];
-        
-        self.httpRequestAuthenticator = [self createHttpRequestAuthenticationService];
-        FLAssertNotNil(self.httpRequestAuthenticator);
-
-        self.httpRequestAuthenticator.delegate = self;
-        [self.userService addSubService:self.httpRequestAuthenticator];    
     }
     return self;
 }
@@ -103,12 +103,14 @@
 - (void) httpRequestAuthenticationService:(FLHttpRequestAuthenticationService*) service 
                       didAuthenticateUser:(FLHttpUser*) userLogin {
     
+    [self.authenticatedServices openService:self];
     [self.delegate httpController:self didAuthenticateUser:userLogin];
 }
 
 - (void) logoutUser {
     [self.user setUnathenticated];
     [self.userService closeService:self];
+    [self.authenticatedServices closeService:self];
     [self.delegate httpController:self didLogoutUser:self.user];
 }
 

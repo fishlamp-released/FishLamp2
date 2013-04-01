@@ -56,6 +56,7 @@
 @property (readwrite, strong, nonatomic) ZFGroup* rootGroup;
 @property (readwrite, copy, nonatomic) NSSet* photoSets;
 @property (readwrite, copy, nonatomic) NSString* destinationPath;
+@property (readwrite, copy, nonatomic) NSURL* downloadFolderURL;
 @property (readwrite, strong, nonatomic) NSArray* mediaTypes;
 @end
 
@@ -65,10 +66,12 @@
 @synthesize destinationPath = _destinationPath;
 @synthesize mediaTypes = _mediaTypes;
 @synthesize rootGroup = _rootGroup;
+@synthesize downloadFolderURL = _downloadFolderURL;
 
 + (id) downloadOperation:(NSSet*) photoSetIDs 
                rootGroup:(ZFGroup*) rootGroup 
          destinationPath:(NSString*) destinationPath 
+      downloadFolderName:(NSString*) downloadFolderName
               mediaTypes:(NSArray*) mediaTypes {
     
     FLAssertNotNil(rootGroup);
@@ -80,12 +83,14 @@
     operation.photoSets = photoSetIDs;
     operation.destinationPath = destinationPath;
     operation.mediaTypes = mediaTypes;
+    operation.downloadFolderURL = [NSURL fileURLWithPath:[destinationPath stringByAppendingPathComponent:downloadFolderName] isDirectory:YES];
     return operation;
 }
 
 
 #if FL_MRC
 - (void) dealloc {
+    [_downloadFolderURL release];
     [_mediaTypes release];
     [_rootGroup release];
     [_destinationPath release];
@@ -187,7 +192,8 @@
     FLHttpRequest* request = 
         [FLHttpRequest httpRequest:[photo urlForImageWithSize:[ZFMediaType originalImage]]];
 
-    request.inputSink = [FLHiddenFolderFileSink hiddenFolderFileSink:[NSURL fileURLWithPath:filePath] folderURL:[NSURL fileURLWithPath:[self.destinationPath stringByAppendingPathComponent:@".downloader"] isDirectory:YES]];
+    request.inputSink = [FLHiddenFolderFileSink hiddenFolderFileSink:[NSURL fileURLWithPath:filePath] 
+                                                           folderURL:self.downloadFolderURL];
 
     request.asyncObserver = self;
                                                                

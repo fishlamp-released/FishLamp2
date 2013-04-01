@@ -34,4 +34,10 @@
 - (void) resetAuthenticationTimestamp;
 - (void) touchAuthenticationTimestamp;
 
+
+// TODO: abstract this better.
+- (NSString*) cacheFolderPath;
+- (NSString*) userFolderPath;
+- (NSString*) userDataFolderPath;
+
 @end

@@ -21,9 +21,12 @@
 - (id) initWithString:(NSString*) string {
     self = [super init];
     if(self) {
-        _sqlString = [[NSMutableString alloc] init];
-    
-        self.sqlString = string;
+        if(!string) {
+            _sqlString = [[NSMutableString alloc] init];
+        }
+        else {
+            _sqlString = [string mutableCopy];
+        }
     }
     
     return self;
@@ -59,9 +62,9 @@
 
 - (void) bindToSqlStatement:(FLSqlStatement*) statement {
 
-    FLAssertWithComment([_sqlString subStringCount:@"@?"] == self.objects.count,   
+    FLAssertWithComment([_sqlString subStringCount:@"?"] == self.objects.count,   
         @"binding failure. placeholder count:%d, object count: %d", 
-        [_sqlString subStringCount:@"@?"], 
+        [_sqlString subStringCount:@"?"], 
         self.objects.count);
 
     if(self.objects) {

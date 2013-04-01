@@ -42,6 +42,7 @@ typedef struct {
     NSArray* _mediaTypes;
     ZFDownloadState_t _state;
     NSTimeInterval _lastProgress;
+    NSURL* _downloadFolderURL;
     
     BOOL _downloadImages;
     BOOL _downloadVideos;
@@ -50,6 +51,7 @@ typedef struct {
 + (id) downloadOperation:(NSSet*) photoSetIDs 
                rootGroup:(ZFGroup*) rootGroup
          destinationPath:(NSString*) destinationPath
+      downloadFolderName:(NSString*) downloadFolderName
               mediaTypes:(NSArray*) mediaTypes;
 @end
 

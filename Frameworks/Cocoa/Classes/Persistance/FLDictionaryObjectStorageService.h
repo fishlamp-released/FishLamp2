@@ -1,5 +1,5 @@
 //
-//  FLDictionaryObjectStorage.h
+//  FLDictionaryObjectStorageService.h
 //  FishLampCocoa
 //
 //  Created by Mike Fullerton on 3/19/13.
@@ -7,11 +7,12 @@
 //
 
 #import "FLObjectStorage.h"
+#import "FLObjectStorageService.h"
 
-@interface FLDictionaryObjectStorage : NSObject<FLServiceableObjectStorage> {
+@interface FLDictionaryObjectStorageService : FLObjectStorageService {
 @private
     NSMutableDictionary* _storage;
 }
 
-+ (id) dictionaryObjectStorage;
++ (id) dictionaryObjectStorageService;
 @end

@@ -11,11 +11,10 @@
 
 @interface FLObjectStorageService : FLService<FLObjectStorage> {
 @private
-    id<FLServiceableObjectStorage> _objectStorage;
 }
 
-+ (FLObjectStorageService*) objectStorageService:(id<FLServiceableObjectStorage>) objectStorage;
+// required override.
+- (id<FLObjectStorage>) objectStorage;
 
-@property (readonly, strong) id<FLObjectStorage> objectStorage;
 @end
 

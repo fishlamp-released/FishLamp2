@@ -11,10 +11,11 @@
 #import "ZFLoadGroupHierarchyOperation.h"
 #import "ZFDownloadPhotoSetsOperation.h"
 #import "ZFBatchDownloadOperation.h"
+#import "FLDatabaseObjectStorageService.h"
 
 @protocol ZFHttpControllerDelegate;
 
-@interface ZFHttpController : FLHttpController {
+@interface ZFHttpController : FLHttpController<FLDatabaseObjectStorageServiceDelegate> {
 @private
 }
 

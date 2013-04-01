@@ -152,7 +152,7 @@
 - (void) panelManager:(FLPanelManager*) controller didAddPanel:(FLPanelViewController*) panel {
     panel.buttons = self.buttonViewController;
     panel.header = self.headerViewController;
-//    panel.wizardViewController = self;
+    panel.wizardViewController = self;
     [self.navigationViewController addBreadcrumb:panel.title];
 }
 

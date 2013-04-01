@@ -7,45 +7,59 @@
 //
 
 #import "FLObservable.h"
+#import "FLSelectorPerforming.h"
 
 @implementation NSObject (FLObservationSending)
+
+- (BOOL) receiveObservation:(SEL) selector argCount:(int) argCount fromSender:(id) fromSender  withObject:(id) object1 withObject:(id) object2 {
+    return FLPerformSelectorOnMainThreadWithArgCount(self, selector, argCount, fromSender, object1, object2);
+}
+
+- (BOOL) sendObservation:(SEL) selector toObserver:(id) observer argCount:(int) argCount withObject:(id) object1 withObject:(id) object2 {
+
+    return [observer receiveObservation:selector argCount:argCount + 1 fromSender:self withObject:object1 withObject:object2];
+}
+
+
+- (BOOL) sendObservation:(SEL) selector 
+              toObserver:(id) observer {
+    return [self sendObservation:selector toObserver:observer argCount:0 withObject:nil withObject:nil];
+}
+
+- (BOOL) sendObservation:(SEL) selector 
+              toObserver:(id) observer 
+              withObject:(id) object  {
+    return [self sendObservation:selector toObserver:observer argCount:1 withObject:object withObject:nil];
+}
+
+- (BOOL) sendObservation:(SEL) selector 
+              toObserver:(id) observer 
+              withObject:(id) object1 
+              withObject:(id) object2  {
+    return [self sendObservation:selector toObserver:observer argCount:2 withObject:object1 withObject:object2];
+}
+
+- (BOOL) sendObservation:(SEL) selector {
+    return [self sendObservation:selector toObserver:self.asyncObserver argCount:0 withObject:nil withObject:nil];
+}
+
+- (BOOL) sendObservation:(SEL) selector withObject:(id) object  {
+    return [self sendObservation:selector toObserver:self.asyncObserver argCount:1 withObject:object withObject:nil];
+}
+
+- (BOOL) sendObservation:(SEL) selector withObject:(id) object1 withObject:(id) object2  {
+    return [self sendObservation:selector toObserver:self.asyncObserver withObject:object1 withObject:object2];
+}
 
 - (id) asyncObserver {
     return nil;
 }
 
-- (BOOL) sendObservation:(SEL) selector 
-              toObserver:(id) asyncObserver {
-    return FLPerformSelectorOnMainThread1(asyncObserver, selector, self);
-}
-
-- (BOOL) sendObservation:(SEL) selector 
-              toObserver:(id) asyncObserver 
-              withObject:(id) object  {
-    return FLPerformSelectorOnMainThread2(asyncObserver, selector, self, object);
-}
-
-- (BOOL) sendObservation:(SEL) selector 
-              toObserver:(id) asyncObserver 
-              withObject:(id) object1 
-              withObject:(id) object2  {
-    return FLPerformSelectorOnMainThread3(asyncObserver, selector, self, object1, object2);
-}
-
-- (BOOL) sendObservation:(SEL) selector {
-    return FLPerformSelectorOnMainThread1(self.asyncObserver, selector, self);
-}
-
-- (BOOL) sendObservation:(SEL) selector withObject:(id) object  {
-    return FLPerformSelectorOnMainThread2(self.asyncObserver, selector, self, object);
-}
-
-- (BOOL) sendObservation:(SEL) selector withObject:(id) object1 withObject:(id) object2  {
-    return FLPerformSelectorOnMainThread3(self.asyncObserver, selector, self, object1, object2);
-}
-
 @end
 
 @implementation FLObservable 
+
 @synthesize asyncObserver = _asyncObserver;
+
+
 @end

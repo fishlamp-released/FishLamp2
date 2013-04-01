@@ -21,6 +21,11 @@ typedef void (^FLRuntimeFilterBlock)(FLRuntimeInfo info, BOOL* passed, BOOL* sto
 extern void FLSwizzleInstanceMethod(Class c, SEL originalSelector, SEL newSelector);
 extern void FLSwizzleClassMethod(Class c, SEL originalSelector, SEL newSelector);
 
+extern int FLArgumentCountForSelector(SEL selector);
+
+// doesn't count the first two hidden arguments so a selector like this @selector(foo:) will return 1
+extern int FLArgumentCountForClassSelector(Class aClass, SEL selector);
+
 @interface NSObject (FLObjcRuntime)
 
 + (BOOL) visitEveryClass:(FLRuntimeClassVisitor) visitor;
@@ -40,9 +45,6 @@ extern void FLSwizzleClassMethod(Class c, SEL originalSelector, SEL newSelector)
 
 + (NSArray*) subclassesForClass:(Class) aClass;
 
-+ (int) parameterCountForClassSelector:(Class) aClass selector: (SEL) selector;
-
-+ (int) argumentCountForSelector:(SEL) sel;
 
 #if DEBUG
 + (void) logMethodsForClass:(Class) aClass;

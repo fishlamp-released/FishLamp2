@@ -62,6 +62,7 @@
 
 /// Open the database. Use the flags to specify the behavior, for example: @see FLDatabaseOpenFlagsDefault
 - (BOOL) openDatabase:(FLDatabaseOpenFlags) flags;
+- (BOOL) openDatabase;
 
 /// Close the database
 - (void) closeDatabase;

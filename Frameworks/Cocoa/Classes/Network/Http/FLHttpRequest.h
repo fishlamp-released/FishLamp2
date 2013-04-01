@@ -7,22 +7,20 @@
 //
 
 #import "FLCocoaRequired.h"
-#import "FLDispatch.h"
-#import "FLReadStream.h"
-#import "FLHttpResponse.h"
-#import "FLHttpRequestBody.h"
-#import "FLDataEncoding.h"
-#import "FLDataDecoding.h"
-#import "FLHttpRequestObserver.h"
-#import "FLTimer.h"
-#import "FLTimedObject.h"
-#import "FLHttpStream.h"
-#import "FLInputSink.h"
 #import "FLOperation.h"
+#import "FLHttpResponse.h"
+#import "FLInputSink.h"
+#import "FLHttpStream.h"
+#import "FLHttpRequestBody.h"
+#import "FLHttpRequestHeaders.h"
 
-#define FLWriteStreamDefaultTimeout 120.0f
+#define FLHttpRequestDefaultTimeoutInterval 120.0f
 
 @class FLHttpRequest;
+@class FLHttpStream;
+@class FLHttpRequestBody;
+@class FLFifoAsyncQueue;
+@class FLTimer;
 
 @protocol FLHttpRequestAuthenticator <NSObject>
 //// this needs to be synchronous for scheduling reasons amoung concurrent requests.
@@ -41,19 +39,22 @@
     FLFinisher* _finisher;
     FLHttpResponse* _previousResponse; // if redirected
     FLHttpStream* _httpStream;
+    NSTimeInterval _timeoutInterval;
     
     // helpers
     id<FLInputSink> _inputSink;
-    id<FLDataEncoding> _dataEncoder;
-    id<FLDataDecoding> _dataDecoder;
+    
+//    id<FLDataEncoding> _dataEncoder;
+//    id<FLDataDecoding> _dataDecoder;
     id<FLHttpRequestAuthenticator> _authenticator;
     BOOL _disableAuthenticator;
 }
+@property (readwrite, assign, nonatomic) NSTimeInterval timeoutInterval;
 
 // by default this is a FLDataResponseReciever.
 @property (readwrite, strong, nonatomic) id<FLInputSink> inputSink;
-@property (readwrite, strong, nonatomic) id<FLDataEncoding> dataEncoder;
-@property (readwrite, strong, nonatomic) id<FLDataDecoding> dataDecoder;
+//@property (readwrite, strong, nonatomic) id<FLDataEncoding> dataEncoder;
+//@property (readwrite, strong, nonatomic) id<FLDataDecoding> dataDecoder;
 @property (readwrite, strong, nonatomic) id<FLHttpRequestAuthenticator> authenticator;
 
 @property (readwrite, assign, nonatomic) BOOL disableAuthenticator;
@@ -91,8 +92,27 @@
 - (BOOL) shouldRedirectToURL:(NSURL*) url;
 @end
 
+@protocol FLHttpRequestObserver <NSObject>
+@optional
 
+- (void) httpRequestWillAuthenticate:(FLHttpRequest*) httpRequest;
 
+- (void) httpRequestDidAuthenticate:(FLHttpRequest*) httpRequest;
 
+- (void) httpRequestWillOpen:(FLHttpRequest*) httpRequest;
 
+- (void) httpRequestDidOpen:(FLHttpRequest*) httpRequest;
 
+- (void) httpRequest:(FLHttpRequest*) httpRequest 
+    didCloseWithResult:(FLResult) result;
+
+- (void) httpRequest:(FLHttpRequest*) httpRequest
+      encounteredError:(NSError*) error;
+
+// TODO: these need a little love
+
+- (void) httpRequest:(FLHttpRequest*) httpRequest didReadBytes:(NSNumber*) amount;
+
+- (void) httpRequest:(FLHttpRequest*) httpRequest didWriteBytes:(NSNumber*) amount;
+
+@end

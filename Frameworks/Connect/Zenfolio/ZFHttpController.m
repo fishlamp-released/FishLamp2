@@ -11,7 +11,10 @@
 #import "ZFLoadGroupHierarchyOperation.h"
 #import "ZFDownloadPhotoSetsOperation.h"
 
-#import "FLDictionaryObjectStorage.h"
+#import "FLDictionaryObjectStorageService.h"
+#import "FLDatabaseObjectStorageService.h"
+
+#define ZFHttpControllerHiddenFolderName @".downloader"
 
 @interface ZFHttpController ()
 @end
@@ -19,12 +22,21 @@
 @implementation ZFHttpController
 
 - (FLUserService*) createUserService {
-    return [FLUserService userServiceWithAuthenticationDomain:@"www.zenfolio.com"];
+    return [FLUserService userService];
 }
 
 - (FLObjectStorageService*) createObjectStorageService {
-    return [FLObjectStorageService objectStorageService:[FLDictionaryObjectStorage dictionaryObjectStorage]];
+    return [FLDictionaryObjectStorageService dictionaryObjectStorageService];
 }
+
+- (NSString*) databaseObjectStorageServiceGetDatabasePath:(FLDatabaseObjectStorageService*) service {
+    return [[self.user userDataFolderPath] stringByAppendingPathComponent:@"downloader.sqlite"];
+}
+
+//- (NSString*) databaseObjectStorageServiceGetDatabasePath:(FLDatabaseObjectStorageService*) service {
+//    return [FLDictionaryObjectStorageService dictionaryObjectStorageService];
+//}
+
 
 - (FLHttpRequestAuthenticationService*) createHttpRequestAuthenticationService {
     return [ZFRegisteredUserAuthenticationService registeredUserAuthenticationService];
@@ -64,6 +76,7 @@
         [ZFBatchDownloadOperation downloadOperation:photoSets 
                                           rootGroup:[self.user rootGroup]
                                     destinationPath:destinationPath
+                                 downloadFolderName:ZFHttpControllerHiddenFolderName 
                                          mediaTypes:mediaTypes];
                                          
     operation.context = self;

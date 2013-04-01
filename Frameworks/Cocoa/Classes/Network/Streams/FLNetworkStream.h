@@ -6,21 +6,30 @@
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
 
-#import "FLCocoaRequired.h"
-#import "FLDispatch.h"
-#import "FLMessageBroadcaster.h"
+#import "FishLampCore.h"
+#import "FLCompatibility.h"
+#import "NSObject+Copying.h"
+#import "FLTimer.h"
 
 @protocol FLNetworkStreamDelegate;
-@interface FLNetworkStream : FLMessageBroadcaster {
+@class FLFifoAsyncQueue;
+
+@interface FLNetworkStream : NSObject<FLTimerDelegate> {
 @private
     BOOL _open;
     NSError* _error;
     FLFifoAsyncQueue* _asyncQueue;
+    id<FLNetworkStreamDelegate> _delegate;
+    FLTimer* _timer;
 }
+
+@property (readwrite, assign) id<FLNetworkStreamDelegate> delegate;
 @property (readonly, strong) FLFifoAsyncQueue* asyncQueue;
 
 @property (readonly, assign, getter=isOpen) BOOL open;
 @property (readonly, strong) NSError* error;
+
+@property (readonly, strong) FLTimer* timer;
 
 - (void) openStreamWithDelegate:(id<FLNetworkStreamDelegate>) delegate 
                      asyncQueue:(FLFifoAsyncQueue*) asyncQueue;
@@ -46,6 +55,8 @@
 - (void) encounteredError:(NSError*) error;
 - (void) encounteredEnd;
 
+- (void) touchTimeoutTimestamp;
+
 @end
 
 @interface FLNetworkStream (SubclassUtils)
@@ -56,6 +67,9 @@
 @end
 
 @protocol FLNetworkStreamDelegate <NSObject>
+
+- (NSTimeInterval) networkStreamGetTimeoutInterval:(FLNetworkStream*) stream;
+
 @optional
 
 - (void) networkStreamWillOpen:(FLNetworkStream*) networkStream;
