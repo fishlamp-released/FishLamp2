@@ -7,16 +7,19 @@
 //
 #import "FLCocoaRequired.h"
 #import "FLNetworkStream.h"
-#import "FLNetworkStreamSink.h"
+#import "FLInputSink.h"
 
 @protocol FLReadStreamDelegate;
+
+#define FLReadStreamBufferSize 32768
 
 @interface FLReadStream : FLNetworkStream  {
 @private
     CFReadStreamRef _streamRef;
-    FLNetworkStreamSink* _sink;
+    id<FLInputSink> _inputSink;
+    uint8_t _buffer[FLReadStreamBufferSize];
 }
-@property (readwrite, strong, nonatomic) FLNetworkStreamSink* sink;
+@property (readwrite, strong, nonatomic) id<FLInputSink> inputSink;
 @property (readonly, assign, nonatomic) CFReadStreamRef streamRef;
 
 // info
