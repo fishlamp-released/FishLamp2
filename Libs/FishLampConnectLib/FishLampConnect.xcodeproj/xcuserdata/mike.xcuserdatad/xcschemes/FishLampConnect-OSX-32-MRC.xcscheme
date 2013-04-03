@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "275747AD170CA9CF00065588"
-               BuildableName = "FishLampConnect-OSX-32-MRC.framework"
+               BuildableName = "FishLampConnectFramework-OSX-32-MRC.framework"
                BlueprintName = "FishLampConnectFramework-OSX-32-MRC"
                ReferencedContainer = "container:FishLampConnect.xcodeproj">
             </BuildableReference>
