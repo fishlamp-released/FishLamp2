@@ -12,9 +12,16 @@
 #import "FLAsyncQueue.h"
 #import "FLOperation.h"
 
+#import "FLUnitTest.h"
+
 int FLTestToolMain(int argc, const char *argv[]) {
     @autoreleasepool {
         @try {
+        
+            FLLogger* logger = [FLLogger logger];
+            [logger addLoggerSink:[FLConsoleLogSink consoleLogSink:FLLogOutputSimple]];
+            [FLUnitTest setOutputLog:logger];
+        
             FLUnitTestRunner* runner = [FLUnitTestRunner unitTestRunner];
             [runner runSynchronously];
             return 0;

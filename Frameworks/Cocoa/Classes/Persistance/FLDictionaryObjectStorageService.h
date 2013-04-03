@@ -11,7 +11,7 @@
 
 @interface FLDictionaryObjectStorageService : FLObjectStorageService {
 @private
-    NSMutableDictionary* _storage;
+    NSMutableDictionary* _objectStorage;
 }
 
 + (id) dictionaryObjectStorageService;

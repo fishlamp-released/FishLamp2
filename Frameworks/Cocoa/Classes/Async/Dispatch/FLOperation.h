@@ -20,6 +20,7 @@
 @private
     __unsafe_unretained FLOperationContext* _context;
     NSUInteger _contextID;
+    id<FLAsyncQueue> _asyncQueue;
 }
 
 // id of context. 
@@ -29,7 +30,7 @@
 @property (readwrite, assign, nonatomic) FLOperationContext* context;
 
 // note that if you start an operation directly in a queue (e.g. you don't call start or run) the asyncQueue is ignored 
-@property (readwrite, assign, nonatomic) id<FLAsyncQueue> asyncQueue;
+@property (readwrite, strong, nonatomic) id<FLAsyncQueue> asyncQueue;
 
 // cancel yourself, and be quick about it.
 - (void) requestCancel;

@@ -26,10 +26,4 @@
 + (id) unitTestGroup:(NSString*) name priority:(int32_t) priority;
 - (id) initWithGroupName:(NSString*) name priority:(int32_t) priority;
 
-+ (FLUnitTestGroup*) sanityTestGroup;
-+ (FLUnitTestGroup*) frameworkTestGroup;
-+ (FLUnitTestGroup*) importantTestGroup;
-+ (FLUnitTestGroup*) defaultTestGroup;
-+ (FLUnitTestGroup*) lastTestGroup;
-
 @end

@@ -16,7 +16,6 @@
     FLHttpMessage* _requestHeaders;
     FLHttpMessage* _responseHeaders;
     NSInputStream* _bodyStream;
-    BOOL _didOpen;
 }
 @property (readonly, strong, nonatomic) FLHttpMessage* responseHeaders;
 @property (readonly, assign, nonatomic) unsigned long bytesWritten;

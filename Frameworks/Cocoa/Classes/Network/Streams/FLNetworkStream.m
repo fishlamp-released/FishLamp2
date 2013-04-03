@@ -29,7 +29,6 @@
     if(self) {
         _timer = [[FLTimer alloc] init];
         _timer.delegate = self;
-        _timer.postNotifications = NO;
     }
     return self;
 }

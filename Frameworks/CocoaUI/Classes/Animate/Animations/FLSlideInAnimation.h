@@ -18,7 +18,6 @@
 @interface FLSlideInAnimation : FLSlideAnimation {
 @private
     CGPoint _onScreenOrigin;
-    CGPoint _offScreenOrigin;
 }
 + (id) slideInAnimation:(FLAnimationDirection) slideInDirection;
 @end
@@ -26,7 +25,6 @@
 @interface FLSlideOutAnimation : FLSlideAnimation {
 @private
     CGPoint _onScreenOrigin;
-    CGPoint _offScreenOrigin;
 }
 + (id) slideOutAnimation:(FLAnimationDirection) slideInDirection;
 @end

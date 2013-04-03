@@ -445,7 +445,7 @@
     
     if(FLStringIsNotEmpty(photo.UrlToken)) {
         [url appendFormat:@"%ctk=%@", nextDelim, photo.UrlToken];
-        nextDelim = '&';
+//        nextDelim = '&';
     }
                 
     

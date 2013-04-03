@@ -1,0 +1,56 @@
+//
+//  FLDnsConnectionTests.m
+//  FishLamp
+//
+//  Created by Mike Fullerton on 9/4/12.
+//  Copyright (c) 2012 Mike Fullerton. All rights reserved.
+//
+
+#import "FLDnsConnectionTests.h"
+#import "FLNetworkHost.h"
+#import "FLNetworkHostResolver.h"
+#import "FLDispatchQueue.h"
+
+@implementation FLDnsConnectionTests
+
++ (FLUnitTestGroup*) unitTestGroup {
+    return [self frameworkTestGroup];
+}
+
+- (void) testCreateHostByName {
+
+    FLNetworkHost* host = [FLNetworkHost networkHostWithName:@"google.com"];
+    
+    FLAssertIsFalse(host.isResolved);
+    FLAssertObjectsAreEqual(host.hostName, @"google.com");
+    
+    FLLog(host.hostName);
+}
+
+
+- (void) testFailureOnBadInput {
+
+//    [self runTestWithExpectedFailure:^{
+//        FLNetworkHost* host = [FLNetworkHost networkHostWithName:nil];
+//        FLAssertIsNil(host);
+//        }];
+}
+
+- (void) testResolve {
+
+//    FLNetworkHost* host = [FLNetworkHost networkHostWithName:@"google.com"];
+//    
+//    FLNetworkHostResolver* resolver = [FLNetworkHostResolver networkHostResolver:host];
+//    FLFinisher* finisher = [resolver openConnection:FLFifoQueue];
+//    [finisher waitUntilFinished];
+//    
+//    FLThrowError(finisher.result);
+//    
+//    FLAssertIsTrue(host.isResolved);
+//    
+//    NSArray* resolvedAddressStrings = [host resolvedAddressStrings];
+//    for(NSString* string in resolvedAddressStrings) {
+//        FLLog(string);
+//    }
+}
+@end

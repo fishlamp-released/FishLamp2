@@ -30,6 +30,9 @@
 
 @end
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Warc-performSelector-leaks"
+
 // the functions are here to accept target and selectors that are nil. also
 // if the target doesn't respond to the selector, the functions return NO 
 // and do nothing. 
@@ -81,6 +84,8 @@ BOOL FLPerformSelector3(id target, SEL selector, id object1, id object2, id obje
 
     return NO;
 } 
+
+#pragma GCC diagnostic pop
 
 
 #define FLPerformSelector FLPerformSelector0

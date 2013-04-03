@@ -7,8 +7,27 @@
 //
 
 #import "FLPrintf.h"
+#import "FLWhitespace.h"
 
-void FLPrintf(NSString* format, ...) {
+static NSUInteger s_indent = 0;
+
+void FLPrintStringWithIndent(NSUInteger indent, NSString* string) {
+    if(indent) {
+        FLPrintString([NSString stringWithFormat:@"%@%@", [[FLWhitespace tabbedWithSpacesWhitespace] tabStringForScope:indent], string]);
+    }
+    else {
+        FLPrintString(string);
+    }
+}
+
+void FLPrintString(NSString* string) {
+    const char* c_str = [string cStringUsingEncoding:NSUTF8StringEncoding];
+    if(c_str) {
+        printf("%s", c_str);
+    }
+}
+
+void FLPrintFormat(NSString* format, ...) {
 
     if(FLStringIsEmpty(format)) {
         return;
@@ -16,14 +35,28 @@ void FLPrintf(NSString* format, ...) {
      
     va_list va;
     va_start(va, format);
-    NSString* string = [[NSMutableString alloc] initWithFormat:format arguments:va];
+    NSString* string = FLAutorelease([[NSString alloc] initWithFormat:format arguments:va]);
     va_end(va);
     
-    const char* c_str = [string cStringUsingEncoding:NSUTF8StringEncoding];
-    if(c_str) {
-        printf("%s", c_str);
+    FLPrintStringWithIndent(s_indent, string);
+}
+
+void FLPrintFormatWithIndent(NSUInteger indent, NSString* format, ...) {
+
+    if(FLStringIsEmpty(format)) {
+        return;
     }
+     
+    va_list va;
+    va_start(va, format);
+    NSString* string = FLAutorelease([[NSMutableString alloc] initWithFormat:format arguments:va]);
+    va_end(va);
     
-    FLRelease(string);
-    
+    FLPrintStringWithIndent(indent, string);
+}
+
+extern void FLIndentString(void (^block)()) {
+    ++s_indent;
+    if(block) block();
+    --s_indent;
 }

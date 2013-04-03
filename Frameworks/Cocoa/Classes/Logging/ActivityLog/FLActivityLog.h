@@ -29,7 +29,7 @@ extern NSString* const FLActivityLogStringKey;
 
 @end
 
-@interface FLActivityLog : FLStringFormatter<FLActivityLog, FLPrettyStringDelegate> {
+@interface FLActivityLog : FLStringFormatter<FLActivityLog, FLPrettyStringDelegate, FLStringFormatterOutput> {
 @private 
     FLPrettyAttributedString* _log;
     SDKFont* _textFont;

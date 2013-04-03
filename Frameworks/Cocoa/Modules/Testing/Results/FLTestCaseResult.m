@@ -7,13 +7,13 @@
 //
 
 #import "FLTestCaseResult.h"
-#import "FLTestCaseResult_Internal.h"
 
 @interface FLTestCaseResult ()
 @property (readwrite, strong) FLTestCase* testCase;
 @end
 
 @implementation FLTestCaseResult
+
 @synthesize testCase = _testCase;
 @synthesize logEntries = _logEntries;
 
@@ -21,6 +21,7 @@
     self = [super init];
     if(self) {
         self.testCase = testCase;
+        _logEntries = [[NSMutableArray alloc] init];
     }
 
     return self;
@@ -39,27 +40,17 @@
 }
 #endif
 
-- (NSString*) runSummary {
-    return nil;
-}
-
-- (NSString*) failureDescription {
-
-    return nil;
-}
-
 - (NSString*) testName {
     return self.testCase.testCaseName;
 }
 
-- (void) logEntry:(FLLogEntry*) entry
-             stop:(BOOL*) stop {
+- (FLLogSinkOutputFlags) sinkOutputFlags {
+    return FLLogOutputWithLocation | FLLogOutputWithStackTrace;
+}
 
-    if(!_logEntries) {
-        _logEntries = [[NSMutableArray alloc] init];
-    }
-    
-    [_logEntries addObject:entry];
+- (void) logEntry:(FLLogEntry*) entry stopPropagating:(BOOL*) stop {
+
+    [_logEntries addObject:FLCopyWithAutorelease(entry)];
     
     *stop = YES;
 }

@@ -30,6 +30,6 @@
 - (NSUInteger) readBytes:(uint8_t*) bytes 
                maxLength:(NSUInteger) maxLength;
 
-- (CFReadStreamRef) createReadStreamRef;
+- (CFReadStreamRef) allocReadStreamRef;
 
 @end

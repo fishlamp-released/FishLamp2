@@ -9,7 +9,6 @@
 #import "FLCocoaRequired.h"
 #import "NSError+FLTimeout.h"
 
-extern NSString* const FLTimedOutNotification;
 
 #define FLTimerDefaultCheckTimestampInterval 1.0f
 
@@ -23,7 +22,6 @@ extern NSString* const FLTimedOutNotification;
     
     BOOL _timedOut;
     BOOL _timing;
-    BOOL _postNotifications;
     dispatch_source_t _timer;
     
     __unsafe_unretained id _delegate;
@@ -35,13 +33,10 @@ extern NSString* const FLTimedOutNotification;
 @property (readwrite, assign) NSTimeInterval timeoutInterval;
 @property (readwrite, assign) NSTimeInterval checkTimestampInterval;
 
-/// this will post to the NSNotificationCenter when timed out.
-@property (readwrite, assign, nonatomic) BOOL postNotifications;
-
 // info
 @property (readonly, assign) NSTimeInterval startTime;
 @property (readonly, assign) NSTimeInterval elapsedTime;
-@property (readonly, assign, getter=hasTimedOut) BOOL timedOut;
+@property (readonly, assign) BOOL timedOut;
 
 // delegate
 @property (readwrite, assign, nonatomic) id delegate;
@@ -62,10 +57,22 @@ extern NSString* const FLTimedOutNotification;
 - (id) initWithTimeoutInterval:(NSTimeInterval) interval;
 + (FLTimer*) timer;
 + (FLTimer*) timer:(NSTimeInterval) timeoutInterval;
+
+
+// optional override
+- (void) didTimeout;
 @end
 
 @protocol FLTimerDelegate <NSObject>
-@optional
 - (void) timerDidTimeout:(FLTimer*) timer;
+
+@optional
 - (void) timerWasUpdated:(FLTimer*) timer;
+@end
+
+extern NSString* const FLTimedOutNotification;
+
+@interface FLBroadcastingTimer : FLTimer {
+}
+
 @end

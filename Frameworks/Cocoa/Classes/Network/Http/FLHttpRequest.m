@@ -20,7 +20,7 @@
 //#define kStreamReadChunkSize 1024
 
 @interface FLHttpRequest ()
-@property (readwrite, strong, nonatomic) FLFifoAsyncQueue* asyncQueue;
+@property (readwrite, strong, nonatomic) FLFifoAsyncQueue* asyncQueueForStream;
 @property (readwrite, strong, nonatomic) FLFinisher* finisher;
 @property (readwrite, strong, nonatomic) FLHttpResponse* previousResponse;
 @property (readwrite, strong, nonatomic) FLHttpStream* httpStream;
@@ -29,13 +29,11 @@
 @implementation FLHttpRequest
 @synthesize body = _body;
 @synthesize headers = _headers;
-//@synthesize dataEncoder = _dataEncoder;
-//@synthesize dataDecoder = _dataDecoder;
 @synthesize authenticator = _authenticator;
 @synthesize disableAuthenticator = _disableAuthenticator;
 @synthesize inputSink = _inputSink;
 @synthesize finisher = _finisher;
-@synthesize asyncQueue = _asyncQueue;
+@synthesize asyncQueueForStream = _asyncQueueForStream;
 @synthesize httpStream = _httpStream;
 @synthesize previousResponse = _previousResponse;
 @synthesize timeoutInterval = _timeoutInterval;
@@ -65,7 +63,7 @@
             self.headers.httpMethod = httpMethod;
         }
         
-        self.asyncQueue = [FLFifoAsyncQueue fifoAsyncQueue];
+        self.asyncQueueForStream = [FLFifoAsyncQueue fifoAsyncQueue];
     }
     
     return self;
@@ -76,15 +74,13 @@
 }
 
 - (void) dealloc {
-    [_asyncQueue releaseToPool];
+    [_asyncQueueForStream releaseToPool];
 #if FL_MRC
     [_previousResponse release];
     [_httpStream release];
     [_finisher release];
     [_inputSink release];
     [_authenticator release];
-//    [_dataDecoder release];
-//    [_dataEncoder release];
     [_headers release];
     [_body release];
     [super dealloc];
@@ -175,7 +171,7 @@
     self.httpStream.inputSink = self.inputSink;
         
     
-    [self.httpStream openStreamWithDelegate:self asyncQueue:self.asyncQueue];
+    [self.httpStream openStreamWithDelegate:self asyncQueue:self.asyncQueueForStream];
 }
 
 - (void) openAuthenticatedStreamWithURL:(NSURL*) url {

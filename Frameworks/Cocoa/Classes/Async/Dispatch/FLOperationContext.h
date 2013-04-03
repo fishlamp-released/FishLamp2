@@ -25,7 +25,6 @@ extern NSString* const FLWorkerContextOpened;
     FLFifoAsyncQueue* _asyncQueue;
     NSUInteger _contextID;
     BOOL _contextOpen;
-    BOOL _attachedToGlobalNetworkActivityIndicator;
 }
 @property (readonly, assign, getter=isContextOpen) BOOL contextOpen; 
 

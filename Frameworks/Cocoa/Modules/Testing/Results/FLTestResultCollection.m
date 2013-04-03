@@ -7,6 +7,7 @@
 //
 
 #import "FLTestResultCollection.h"
+#import "FLUnitTest.h"
 
 @implementation FLTestResultCollection
 
@@ -81,26 +82,24 @@
 }
 
 - (id) testResultForKey:(id) key {
-    FLResult result = nil;
-    @synchronized(self) {
-        result = [_results objectForKey:key];
-    }
+    FLResult result = [_results objectForKey:key];
     FLConfirmIsNotNilWithComment(result, @"can't find result for %@", [key description]);
     return result;
 }
 
-- (BOOL) allTestsPassed {
-    BOOL passed = YES;
-    @synchronized(self) {
-        for(FLResult result in _results.objectEnumerator) {
-            if(![result passed]) {
-                FLLog(@"FAIL: %@", [result description]);
-                passed = NO;
+- (NSArray*) failedResults {
+    NSMutableArray* failedCases = nil;
+
+    for(FLResult result in _results.objectEnumerator) {
+        if(![result passed]) {
+            if(!failedCases) {
+                failedCases = [NSMutableArray array];
             }
+            [failedCases addObject:result];
         }
     }
-    
-    return passed;
+
+    return failedCases;
 }
 
 - (NSString*) description {

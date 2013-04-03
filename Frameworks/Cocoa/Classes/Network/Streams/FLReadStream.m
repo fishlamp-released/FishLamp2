@@ -44,7 +44,7 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
     return FLAutorelease(bridge_transfer_(NSError*, CFReadStreamCopyError(self.streamRef)));
 }
 
-- (CFReadStreamRef) createReadStreamRef {
+- (CFReadStreamRef) allocReadStreamRef {
     return nil;
 }
 
@@ -52,7 +52,7 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
     [super willOpen];
     FLAssert([NSThread currentThread] != [NSThread mainThread]);
      
-    _streamRef = [self createReadStreamRef];         
+    _streamRef = [self allocReadStreamRef];         
          
     FLAssertIsNotNil(_streamRef);
 

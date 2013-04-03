@@ -43,7 +43,7 @@
     [super willOpen];
 }
 
-- (CFReadStreamRef) createReadStreamRef {
+- (CFReadStreamRef) allocReadStreamRef {
     if(_bodyStream) {
         return CFReadStreamCreateForStreamedHTTPRequest(kCFAllocatorDefault, _requestHeaders.messageRef, bridge_(CFReadStreamRef, _bodyStream));
     }
@@ -68,7 +68,7 @@
     if(!_responseHeaders) {
         CFHTTPMessageRef ref = (CFHTTPMessageRef)CFReadStreamCopyProperty(self.streamRef, kCFStreamPropertyHTTPResponseHeader);
         @try {
-            if(CFHTTPMessageIsHeaderComplete(ref)) {
+            if(ref && CFHTTPMessageIsHeaderComplete(ref)) {
                 _responseHeaders = [[FLHttpMessage alloc] initWithHttpMessageRef:ref];
                 [self didOpen];
             }

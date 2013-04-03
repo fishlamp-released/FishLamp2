@@ -31,7 +31,7 @@ const char* __copy_str(const char* str, int* len) {
     if(str != nil) {
         *len = strlen(str);
         char* outStr = malloc(*len + 1);
-        strcpy(outStr, str);
+        strncpy(outStr, str, *len);
         return outStr;
     }
     

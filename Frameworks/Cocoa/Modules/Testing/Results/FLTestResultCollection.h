@@ -15,8 +15,8 @@
 }
 + (id) testResultCollection;
 
-@property (readonly, strong) NSDictionary* testResults;
-@property (readonly, assign) BOOL allTestsPassed;
+@property (readonly, strong, nonatomic) NSDictionary* testResults;
+@property (readonly, assign, nonatomic) NSArray* failedResults;
 
 - (id) setTestResultForSelector:(SEL) selector;
 - (id) setTestResultForNumber:(int) number;

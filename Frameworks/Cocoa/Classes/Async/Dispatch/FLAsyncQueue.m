@@ -10,6 +10,9 @@
 #import "FLFinisher.h"
 #import "FLSelectorPerforming.h"
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Warc-performSelector-leaks"
+
 FLFinisher* FLDispatchSelectorAsync0(id<FLAsyncQueue> queue, 
                                     id target, 
                                     SEL selector, 
@@ -137,3 +140,4 @@ BOOL FLDispatchSelectorSync3(id<FLAsyncQueue> queue,
     
     return NO;
 }
+#pragma GCC diagnostic pop

@@ -12,7 +12,7 @@
 
 @protocol FLPrettyStringDelegate;
 
-@interface FLPrettyString : FLStringFormatter {
+@interface FLPrettyString : FLStringFormatter<FLStringFormatterOutput> {
 @private
     id _storage;
     id _eolString;

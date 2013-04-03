@@ -19,7 +19,7 @@
 - (id) init {
     self = [super init];
     if(self) {
-        self.timeoutTimer = [[FLTimer alloc] init];
+        self.timeoutTimer = [FLTimer timer];
         self.timeoutTimer.delegate = self;
         self.timeoutTimer.timerDidTimeout = @selector(timeoutTimerDidTimeout:);
     }

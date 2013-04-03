@@ -7,6 +7,7 @@
 //
 
 #import "FLRequired.h"
+#import "FLStringFormatter.h"
 #import "FLLogEntry.h"
 
 typedef enum {
@@ -15,11 +16,11 @@ typedef enum {
     FLLogOutputWithStackTrace   = (1 << 2)
 } FLLogSinkOutputFlags;
 
-@protocol FLLogSink <NSObject>
-- (void) logEntry:(FLLogEntry*) entry
-             stop:(BOOL*) stop;
-@end
+@class FLLogger;
 
+@protocol FLLogSink <NSObject>
+- (void) logEntry:(FLLogEntry*) entry stopPropagating:(BOOL*) stop;
+@end
 
 @interface FLLogSink : NSObject<FLLogSink> {
 @private

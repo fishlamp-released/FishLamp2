@@ -48,34 +48,69 @@
     return [_lines lastObject];
 }
 
-- (void) stringFormatter:(FLStringFormatter*) stringFormatter 
-            appendString:(NSString*) string
-  appendAttributedString:(NSAttributedString*) attributedString
-              lineUpdate:(FLStringFormatterLineUpdate) lineUpdate {
+- (void) stringFormatterAppendBlankLine:(FLStringFormatter*) stringFormatter {
+    [_lines addObject:@""];
+}
 
-// NOTE: we're ignoring lineUpdate.openLine and closeLine since our lines are
-// in an array. 
-    
-    if(lineUpdate.prependBlankLine) {
-        [_lines addObject:@""];
-    }
-    
-    if(attributedString) {
-        string = attributedString.string;
-    }
-    
-    FLAssertNotNil(string);
-    
-    if(lineUpdate.openLine || _needsLine) {
+- (void) stringFormatterOpenLine:(FLStringFormatter*) stringFormatter {
+    _needsLine = YES;    
+}
+
+- (void) stringFormatterCloseLine:(FLStringFormatter*) stringFormatter {
+    _needsLine = YES;    
+}
+
+- (void) stringFormatter:(FLStringFormatter*) stringFormatter appendString:(NSString*) string {
+    if(_needsLine) {
         [_lines addObject:FLAutorelease([string mutableCopy])];
         _needsLine = NO;
     }
-    else if(string) {
+    else {
         FLAssert([self.lastLine isKindOfClass:[NSMutableString class]]);
         [self.lastLine appendString:string];
     }
-    
-}            
+
+}
+
+- (void) stringFormatter:(FLStringFormatter*) stringFormatter appendAttributedString:(NSAttributedString*) attributedString {
+    [self stringFormatter:stringFormatter appendString:attributedString.string];
+}
+
+- (void) stringFormatterIndent:(FLStringFormatter*) stringFormatter {
+}
+
+- (void) stringFormatterOutdent:(FLStringFormatter*) stringFormatter {
+}
+
+
+//- (void) stringFormatter:(FLStringFormatter*) stringFormatter 
+//            appendString:(NSString*) string
+//  appendAttributedString:(NSAttributedString*) attributedString
+//              lineUpdate:(FLStringFormatterLineUpdate) lineUpdate {
+//
+//// NOTE: we're ignoring lineUpdate.openLine and closeLine since our lines are
+//// in an array. 
+//    
+//    if(lineUpdate.prependBlankLine) {
+//        [_lines addObject:@""];
+//    }
+//    
+//    if(attributedString) {
+//        string = attributedString.string;
+//    }
+//    
+//    FLAssertNotNil(string);
+//    
+//    if(lineUpdate.openLine || _needsLine) {
+//        [_lines addObject:FLAutorelease([string mutableCopy])];
+//        _needsLine = NO;
+//    }
+//    else if(string) {
+//        FLAssert([self.lastLine isKindOfClass:[NSMutableString class]]);
+//        [self.lastLine appendString:string];
+//    }
+//    
+//}            
 
 - (NSString*) description {
     FLPrettyString* str = [FLPrettyString prettyString];

@@ -82,11 +82,13 @@
         return obj1.groupPriority  > obj2.groupPriority ? NSOrderedAscending : NSOrderedDescending;
     }]; 
     
+    [[FLUnitTest outputLog] appendLineWithFormat:@"Found %d unit test classes in %d groups", _classList.count, groupList.count];
+    
     NSMutableArray* resultArray = [NSMutableArray array];
     
     for(FLUnitTestGroup* group in groupList) {
     
-        FLLog(@"\n- GROUP: %@ (priority: %d)", group.groupName, group.groupPriority);
+        [[FLUnitTest outputLog] appendLineWithFormat:@"UnitTest Group: %@ (priority: %d)", group.groupName, group.groupPriority];
         
         NSMutableArray* classList = [groups objectForKey:group];
         [self sortClassList:classList];
@@ -94,13 +96,50 @@
         for(Class aClass in classList) {
             FLUnitTest* test = FLAutorelease([[[aClass class] alloc] init]);
 
-            [resultArray addObject:[self runChildSynchronously:test]];
+            [[FLUnitTest outputLog] indent:^{
+                FLTestResultCollection* results = [self runChildSynchronously:test];
+                [resultArray addObject:results];
+            }];
+                
+//            if(results.testResults.count) {
+//                NSArray* failedResults = [results failedResults];
+//                if(failedResults && failedResults.count) {
+//                    FLTestLog(@"%@: %d test cases failed", test.unitTestName, failedResults.count);
+//                }
+//                else {
+//                    FLTestLog(@"%@: %d test cases passed", test.unitTestName, results.testResults.count);
+//                }
+//            }
         }
     }
     
     return resultArray;
     
-    
+// - (FLResult) performSynchronously {
+//
+//    NSMutableArray* array = [NSMutableArray array];
+//    NSArray* allResults = [self findUnitTests];
+//    
+//    for(FLUnitTest* test in tests) {
+//
+//        FLTestLog(@"%Running @ Test Cases:", test.unitTestName);
+//
+//        [[FLUnitTest logger] indent:^{
+//            FLTestResultCollection* results = [self runChildSynchronously:test];
+//            NSArray* failedResults = [results failedResults];
+//            if(result && results.count) {
+//                FLTestLog(@"%@ test cases failed", failedResults.count);
+//            }
+//            else {
+//                FLTestLog(@"%@ test cases passed", results.count);
+//            }
+//            
+//            [allResults addObject:results];
+//        }];
+//    }
+//
+//    return allResults;
+//}   
 }
 
 #if FL_MRC
