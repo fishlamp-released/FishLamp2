@@ -81,9 +81,18 @@
 - (void) removeBreadcrumb:(NSString*) title {
 
 }
+- (void) breadcrumbBar:(FLBreadcrumbBarView*) view handleMouseMovedInTitle:(FLBarTitleLayer*) title  mouseIn:(BOOL) mouseIn {
+    title.enabled = [self.delegate breadcrumbBar:self breadcrumbIsEnabled:title.title];
+    title.emphasized = [self.delegate breadcrumbBar:self breadcrumbIsVisible:title.title];
+}
 
-- (void) breadcrumbBar:(FLBreadcrumbBarView*) view handleMousedownInTitle:(FLBarTitleLayer*) title {
-    [self.delegate breadcrumbBar:self breadcrumbWasClicked:title.title];
+- (void) breadcrumbBar:(FLBreadcrumbBarView*) view handleMouseDownInTitle:(FLBarTitleLayer*) title {
+    title.enabled = [self.delegate breadcrumbBar:self breadcrumbIsEnabled:title.title];
+    title.emphasized = [self.delegate breadcrumbBar:self breadcrumbIsVisible:title.title];
+    if(title.enabled && !title.emphasized) {
+        [self.delegate breadcrumbBar:self breadcrumbWasClicked:title.title];
+    }
+    
     [self updateViewsAnimated:YES];
 }
 

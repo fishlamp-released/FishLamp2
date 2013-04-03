@@ -40,5 +40,6 @@
 @end
 
 @protocol FLBreadcrumbBarViewDelegate <NSObject>
-- (void) breadcrumbBar:(FLBreadcrumbBarView*) view handleMousedownInTitle:(FLBarTitleLayer*) title;
+- (void) breadcrumbBar:(FLBreadcrumbBarView*) view handleMouseDownInTitle:(FLBarTitleLayer*) title;
+- (void) breadcrumbBar:(FLBreadcrumbBarView*) view handleMouseMovedInTitle:(FLBarTitleLayer*) title mouseIn:(BOOL) mouseIn;
 @end

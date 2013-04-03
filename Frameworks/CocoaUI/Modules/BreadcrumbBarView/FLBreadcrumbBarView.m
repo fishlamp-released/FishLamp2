@@ -111,6 +111,7 @@
 - (void) handleMouseMoved:(CGPoint) location mouseIn:(BOOL) mouseIn mouseDown:(BOOL) mouseDown {
     for(FLBarTitleLayer* title in _titles) {
         BOOL mouseInTitle = CGRectContainsPoint(title.frame, location);
+        [self.delegate breadcrumbBar:self handleMouseMovedInTitle:title mouseIn:mouseInTitle];
         
         if(mouseInTitle) {
             [title handleMouseMoved:location mouseIn:YES mouseDown:mouseDown];
@@ -124,7 +125,7 @@
 - (void) handleMouseUpInside:(CGPoint) location {
     for(FLBarTitleLayer* title in _titles) {
         if(CGRectContainsPoint(title.frame, location)) {
-            [self.delegate breadcrumbBar:self handleMousedownInTitle:title];
+            [self.delegate breadcrumbBar:self handleMouseDownInTitle:title];
             break;
         }
     }
