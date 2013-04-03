@@ -7,9 +7,5 @@
 //
 
 GCC_PRECOMPILE_PREFIX_HEADER = YES
-GCC_PREFIX_HEADER = FishLampCocoa-Prefix.pch
+GCC_PREFIX_HEADER = FishLampCocoaTests/FishLampCocoaTests-Prefix.pch
 HEADER_SEARCH_PATHS= $(inherited) $(FISHLAMP_COCOA)
-
-MACH_O_TYPE = staticlib
-EXECUTABLE_PREFIX = lib
-EXECUTABLE_EXTENSION = a

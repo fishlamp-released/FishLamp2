@@ -1,0 +1,24 @@
+//
+//  FishLampIncludedConfig-Framework.xcconfig
+//  
+//
+//  Created by Mike Fullerton on 4/3/13.
+//
+//
+
+WRAPPER_EXTENSION = framework
+FRAMEWORK_VERSION = A
+MACH_O_TYPE = mh_dylib
+DYLIB_COMPATIBILITY_VERSION = 1
+DYLIB_CURRENT_VERSION = 1
+EXECUTABLE_EXTENSION = 
+EXECUTABLE_PREFIX = 
+
+PRIVATE_HEADERS_FOLDER_PATH = $(CONTENTS_FOLDER_PATH)/PrivateHeaders
+PUBLIC_HEADERS_FOLDER_PATH = $(CONTENTS_FOLDER_PATH)/Headers
+
+INSTALL_PATH = @executable_path/../Frameworks
+
+// https://developer.apple.com/library/mac/#documentation/MacOSX/Conceptual/BPFrameworks/Tasks/CreatingFrameworks.html
+// see http://developer.apple.com/library/mac/#documentation/Darwin/Reference/Manpages/man1/dyld.1.html
+

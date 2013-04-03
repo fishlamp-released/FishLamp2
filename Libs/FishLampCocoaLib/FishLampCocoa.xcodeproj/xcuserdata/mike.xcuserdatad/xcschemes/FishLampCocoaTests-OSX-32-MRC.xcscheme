@@ -14,8 +14,8 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "27C62B7A170B442A0093F260"
-               BuildableName = "libFishLampCocoaTests-OSX-32-MRC.a"
+               BlueprintIdentifier = "27EC4D62170C7F9A008BF04E"
+               BuildableName = "FishLampCocoaTests-OSX-32-MRC.framework"
                BlueprintName = "FishLampCocoaTests-OSX-32-MRC"
                ReferencedContainer = "container:FishLampCocoa.xcodeproj">
             </BuildableReference>

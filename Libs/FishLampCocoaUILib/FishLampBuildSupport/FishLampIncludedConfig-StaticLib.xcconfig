@@ -1,0 +1,10 @@
+//
+//  FishLampIncludedConfig-StaticLib.xcconfig
+//  
+//
+//  Created by Mike Fullerton on 4/3/13.
+//
+//
+MACH_O_TYPE = staticlib
+EXECUTABLE_PREFIX = lib
+EXECUTABLE_EXTENSION = a

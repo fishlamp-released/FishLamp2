@@ -1,0 +1,9 @@
+//
+// Prefix header for all source files of the 'FishLampConnectTests' target in the 'FishLampConnectTests' project
+//
+
+#ifdef __OBJC__
+#import "FishLampCocoa.h"
+#import "FLObjectInflator.h"
+#import "ZFWebApi.h"
+#endif
