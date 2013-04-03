@@ -504,9 +504,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		27F1FD6F170CB58900A21B6B /* FishLampOSXApp-MRC */ = {
+		27F1FD6F170CB58900A21B6B /* FishLampOSXAppFramework-MRC */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 27F1FDA1170CB58900A21B6B /* Build configuration list for PBXNativeTarget "FishLampOSXApp-MRC" */;
+			buildConfigurationList = 27F1FDA1170CB58900A21B6B /* Build configuration list for PBXNativeTarget "FishLampOSXAppFramework-MRC" */;
 			buildPhases = (
 				27F1FD6B170CB58900A21B6B /* Sources */,
 				27F1FD6C170CB58900A21B6B /* Frameworks */,
@@ -522,7 +522,7 @@
 				276D2B33170CB73800D48605 /* PBXTargetDependency */,
 				276D2B35170CB73800D48605 /* PBXTargetDependency */,
 			);
-			name = "FishLampOSXApp-MRC";
+			name = "FishLampOSXAppFramework-MRC";
 			productName = FishLampOSXApp;
 			productReference = 27F1FD70170CB58900A21B6B /* FishLampOSXApp-MRC.framework */;
 			productType = "com.apple.product-type.framework";
@@ -570,7 +570,7 @@
 			);
 			projectRoot = "";
 			targets = (
-				27F1FD6F170CB58900A21B6B /* FishLampOSXApp-MRC */,
+				27F1FD6F170CB58900A21B6B /* FishLampOSXAppFramework-MRC */,
 			);
 		};
 /* End PBXProject section */
@@ -960,7 +960,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		27F1FDA1170CB58900A21B6B /* Build configuration list for PBXNativeTarget "FishLampOSXApp-MRC" */ = {
+		27F1FDA1170CB58900A21B6B /* Build configuration list for PBXNativeTarget "FishLampOSXAppFramework-MRC" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				27F1FD81170CB58900A21B6B /* Debug */,

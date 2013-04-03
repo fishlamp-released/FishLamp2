@@ -16,7 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "27C3CCAB170C92AC004BF7DA"
                BuildableName = "FishLampCore-OSX-64-ARC.framework"
-               BlueprintName = "FishLampCore-OSX-64-ARC"
+               BlueprintName = "FishLampCoreFramework-OSX-64-ARC"
                ReferencedContainer = "container:FishLampCore.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
