@@ -7,27 +7,57 @@
 		<key>FishLampOSX-32-MRC.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>30</integer>
+			<integer>24</integer>
 		</dict>
 		<key>FishLampOSX-3264-MRC.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>33</integer>
+			<integer>27</integer>
 		</dict>
 		<key>FishLampOSX-64-ARC.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>32</integer>
+			<integer>26</integer>
 		</dict>
 		<key>FishLampOSX-64-MRC.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>31</integer>
+			<integer>25</integer>
+		</dict>
+		<key>FishLampOSX-ALL.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>28</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>27048B70161CB58600C38ADA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>270BA1AC170CB02A008CE78A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>270BA1DF170CB0D6008CE78A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>270BA1FD170CB12C008CE78A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>270BA209170CB131008CE78A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>270BA215170CB138008CE78A</key>
 		<dict>
 			<key>primary</key>
 			<true/>

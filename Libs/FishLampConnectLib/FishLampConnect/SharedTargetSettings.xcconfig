@@ -4,9 +4,6 @@
 //
 
 GCC_PRECOMPILE_PREFIX_HEADER = YES
-GCC_PREFIX_HEADER = FishLampConnect-Prefix.pch
+GCC_PREFIX_HEADER = FishLampConnect/FishLampConnect-Prefix.pch
 HEADER_SEARCH_PATHS= $(inherited) $(FISHLAMP_COCOA)
 
-MACH_O_TYPE = staticlib
-EXECUTABLE_PREFIX = lib
-EXECUTABLE_EXTENSION = a

@@ -5,10 +5,8 @@
 //  Created by Mike Fullerton on 4/2/13.
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
-
 GCC_PRECOMPILE_PREFIX_HEADER = YES
-GCC_PREFIX_HEADER = FishLampCocoa-Prefix.pch
-MACH_O_TYPE = staticlib
-EXECUTABLE_PREFIX = lib
-EXECUTABLE_EXTENSION = a
+GCC_PREFIX_HEADER = FishLampCocoa/FishLampCocoa-Prefix.pch
 HEADER_SEARCH_PATHS= $(inherited) $(FISHLAMP_COCOA)
+
+INFOPLIST_FILE = FishLampCocoa/FishLampCocoa-Info.plist

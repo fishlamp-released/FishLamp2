@@ -4,4 +4,7 @@
 //
 
 #include "FishLampBuildSupport/FishLampTargetSettings-OSX-32-MRC.xcconfig"
+#include "FishLampBuildSupport/FishLampIncludedConfig-Framework.xcconfig"
+
+
 #include "FishLampConnect/SharedTargetSettings.xcconfig"

@@ -14,8 +14,8 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "273148B9165328400027850D"
-               BuildableName = "libFishLampCocoaUI-OSX-64-ARC.a"
+               BlueprintIdentifier = "27581BE4170CA40200107C61"
+               BuildableName = "FishLampCocoaUI-OSX-64-ARC.framework"
                BlueprintName = "FishLampCocoaUI-OSX-64-ARC"
                ReferencedContainer = "container:FishLampCocoaUI.xcodeproj">
             </BuildableReference>
@@ -28,8 +28,8 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "27048B70161CB58600C38ADA"
-               BuildableName = "libFishLampCocoaUI-OSX-32-MRC.a"
+               BlueprintIdentifier = "27581BF1170CA41000107C61"
+               BuildableName = "FishLampCocoaUI-OSX-32-MRC.framework"
                BlueprintName = "FishLampCocoaUI-OSX-32-MRC"
                ReferencedContainer = "container:FishLampCocoaUI.xcodeproj">
             </BuildableReference>
@@ -42,8 +42,8 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "27CBBE2916768BA600753D0A"
-               BuildableName = "libFishLampCocoaUI-OSX-32-64-MRC.a"
+               BlueprintIdentifier = "27581BFE170CA42000107C61"
+               BuildableName = "FishLampCocoaUI-OSX-3264-MRC.framework"
                BlueprintName = "FishLampCocoaUI-OSX-3264-MRC"
                ReferencedContainer = "container:FishLampCocoaUI.xcodeproj">
             </BuildableReference>
@@ -56,8 +56,8 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "27A43AC315CDCCCB001CB13E"
-               BuildableName = "libFishLampCocoaUI-OSX-64-MRC.a"
+               BlueprintIdentifier = "27581BCF170CA3E600107C61"
+               BuildableName = "FishLampCocoaUI-OSX-64-MRC.framework"
                BlueprintName = "FishLampCocoaUI-OSX-64-MRC"
                ReferencedContainer = "container:FishLampCocoaUI.xcodeproj">
             </BuildableReference>
