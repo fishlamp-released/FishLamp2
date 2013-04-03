@@ -16,7 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "270BA1DF170CB0D6008CE78A"
                BuildableName = "FishLampOSX-64-MRC.framework"
-               BlueprintName = "FishLampOSX-64-MRC"
+               BlueprintName = "FishLampOSXFramework-64-MRC"
                ReferencedContainer = "container:FishLampOSX.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -30,7 +30,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "270BA209170CB131008CE78A"
                BuildableName = "FishLampOSX-32-MRC.framework"
-               BlueprintName = "FishLampOSX-32-MRC"
+               BlueprintName = "FishLampOSXFramework-32-MRC"
                ReferencedContainer = "container:FishLampOSX.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -44,7 +44,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "270BA215170CB138008CE78A"
                BuildableName = "FishLampOSX-3264-MRC.framework"
-               BlueprintName = "FishLampOSX-3264-MRC"
+               BlueprintName = "FishLampOSXFramework-3264-MRC"
                ReferencedContainer = "container:FishLampOSX.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -58,7 +58,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "270BA1FD170CB12C008CE78A"
                BuildableName = "FishLampOSX-64-ARC.framework"
-               BlueprintName = "FishLampOSX-64-ARC"
+               BlueprintName = "FishLampOSXFramework-64-ARC"
                ReferencedContainer = "container:FishLampOSX.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

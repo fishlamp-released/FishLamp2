@@ -9,7 +9,7 @@
 #include "FishLampBuildSupport/FishLampIncludedConfig-Tool.xcconfig"
 
 GCC_PRECOMPILE_PREFIX_HEADER = YES
-GCC_PREFIX_HEADER = FishLampCocoa-Prefix.pch
+GCC_PREFIX_HEADER = CocoaTestTool/CocoaTestTool-Prefix.pch
 HEADER_SEARCH_PATHS= $(inherited) $(FISHLAMP_COCOA)
 
 

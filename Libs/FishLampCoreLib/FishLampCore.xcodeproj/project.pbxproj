@@ -1157,9 +1157,9 @@
 			productReference = 27A43AB415CDCC89001CB13E /* FishLampCore-iOS-ARC */;
 			productType = "com.apple.product-type.library.static";
 		};
-		27C3C8B1170C89AB004BF7DA /* FishLampCore-OSX-64-MRC */ = {
+		27C3C8B1170C89AB004BF7DA /* FishLampCoreFramework-OSX-64-MRC */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 27C3C8BE170C89AB004BF7DA /* Build configuration list for PBXNativeTarget "FishLampCore-OSX-64-MRC" */;
+			buildConfigurationList = 27C3C8BE170C89AB004BF7DA /* Build configuration list for PBXNativeTarget "FishLampCoreFramework-OSX-64-MRC" */;
 			buildPhases = (
 				27C3C8AD170C89AB004BF7DA /* Sources */,
 				27C3C8AE170C89AB004BF7DA /* Frameworks */,
@@ -1170,14 +1170,14 @@
 			);
 			dependencies = (
 			);
-			name = "FishLampCore-OSX-64-MRC";
+			name = "FishLampCoreFramework-OSX-64-MRC";
 			productName = "FishLampCore-OSX-64-MRC-D";
 			productReference = 27C3C8B2170C89AB004BF7DA /* FishLampCore-OSX-64-MRC.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		27C3CCAB170C92AC004BF7DA /* FishLampCore-OSX-64-ARC */ = {
+		27C3CCAB170C92AC004BF7DA /* FishLampCoreFramework-OSX-64-ARC */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 27C3CD14170C92AC004BF7DA /* Build configuration list for PBXNativeTarget "FishLampCore-OSX-64-ARC" */;
+			buildConfigurationList = 27C3CD14170C92AC004BF7DA /* Build configuration list for PBXNativeTarget "FishLampCoreFramework-OSX-64-ARC" */;
 			buildPhases = (
 				27C3CCAC170C92AC004BF7DA /* Sources */,
 				27C3CCD5170C92AC004BF7DA /* Frameworks */,
@@ -1188,14 +1188,14 @@
 			);
 			dependencies = (
 			);
-			name = "FishLampCore-OSX-64-ARC";
+			name = "FishLampCoreFramework-OSX-64-ARC";
 			productName = "FishLampCore-OSX-64-MRC-D";
 			productReference = 27C3CD17170C92AC004BF7DA /* FishLampCore-OSX-64-ARC.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		27C3CD19170C92AD004BF7DA /* FishLampCore-OSX-3264-MRC */ = {
+		27C3CD19170C92AD004BF7DA /* FishLampCoreFramework-OSX-3264-MRC */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 27C3CD82170C92AD004BF7DA /* Build configuration list for PBXNativeTarget "FishLampCore-OSX-3264-MRC" */;
+			buildConfigurationList = 27C3CD82170C92AD004BF7DA /* Build configuration list for PBXNativeTarget "FishLampCoreFramework-OSX-3264-MRC" */;
 			buildPhases = (
 				27C3CD1A170C92AD004BF7DA /* Sources */,
 				27C3CD43170C92AD004BF7DA /* Frameworks */,
@@ -1206,14 +1206,14 @@
 			);
 			dependencies = (
 			);
-			name = "FishLampCore-OSX-3264-MRC";
+			name = "FishLampCoreFramework-OSX-3264-MRC";
 			productName = "FishLampCore-OSX-64-MRC-D";
 			productReference = 27C3CD85170C92AD004BF7DA /* FishLampCore-OSX-3264-MRC.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		27C3CD87170C92AF004BF7DA /* FishLampCore-OSX-32-MRC */ = {
+		27C3CD87170C92AF004BF7DA /* FishLampCoreFramework-OSX-32-MRC */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 27C3CDF0170C92AF004BF7DA /* Build configuration list for PBXNativeTarget "FishLampCore-OSX-32-MRC" */;
+			buildConfigurationList = 27C3CDF0170C92AF004BF7DA /* Build configuration list for PBXNativeTarget "FishLampCoreFramework-OSX-32-MRC" */;
 			buildPhases = (
 				27C3CD88170C92AF004BF7DA /* Sources */,
 				27C3CDB1170C92AF004BF7DA /* Frameworks */,
@@ -1224,7 +1224,7 @@
 			);
 			dependencies = (
 			);
-			name = "FishLampCore-OSX-32-MRC";
+			name = "FishLampCoreFramework-OSX-32-MRC";
 			productName = "FishLampCore-OSX-64-MRC-D";
 			productReference = 27C3CDF3170C92AF004BF7DA /* FishLampCore-OSX-32-MRC.framework */;
 			productType = "com.apple.product-type.framework";
@@ -1252,10 +1252,10 @@
 			projectRoot = "";
 			targets = (
 				27A43AB315CDCC89001CB13E /* FishLampCore-iOS-ARC */,
-				27C3C8B1170C89AB004BF7DA /* FishLampCore-OSX-64-MRC */,
-				27C3CCAB170C92AC004BF7DA /* FishLampCore-OSX-64-ARC */,
-				27C3CD19170C92AD004BF7DA /* FishLampCore-OSX-3264-MRC */,
-				27C3CD87170C92AF004BF7DA /* FishLampCore-OSX-32-MRC */,
+				27C3C8B1170C89AB004BF7DA /* FishLampCoreFramework-OSX-64-MRC */,
+				27C3CCAB170C92AC004BF7DA /* FishLampCoreFramework-OSX-64-ARC */,
+				27C3CD19170C92AD004BF7DA /* FishLampCoreFramework-OSX-3264-MRC */,
+				27C3CD87170C92AF004BF7DA /* FishLampCoreFramework-OSX-32-MRC */,
 			);
 		};
 /* End PBXProject section */
@@ -1656,7 +1656,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		27C3C8BE170C89AB004BF7DA /* Build configuration list for PBXNativeTarget "FishLampCore-OSX-64-MRC" */ = {
+		27C3C8BE170C89AB004BF7DA /* Build configuration list for PBXNativeTarget "FishLampCoreFramework-OSX-64-MRC" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				27C3C8BF170C89AB004BF7DA /* Debug */,
@@ -1665,7 +1665,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		27C3CD14170C92AC004BF7DA /* Build configuration list for PBXNativeTarget "FishLampCore-OSX-64-ARC" */ = {
+		27C3CD14170C92AC004BF7DA /* Build configuration list for PBXNativeTarget "FishLampCoreFramework-OSX-64-ARC" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				27C3CD15170C92AC004BF7DA /* Debug */,
@@ -1674,7 +1674,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		27C3CD82170C92AD004BF7DA /* Build configuration list for PBXNativeTarget "FishLampCore-OSX-3264-MRC" */ = {
+		27C3CD82170C92AD004BF7DA /* Build configuration list for PBXNativeTarget "FishLampCoreFramework-OSX-3264-MRC" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				27C3CD83170C92AD004BF7DA /* Debug */,
@@ -1683,7 +1683,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		27C3CDF0170C92AF004BF7DA /* Build configuration list for PBXNativeTarget "FishLampCore-OSX-32-MRC" */ = {
+		27C3CDF0170C92AF004BF7DA /* Build configuration list for PBXNativeTarget "FishLampCoreFramework-OSX-32-MRC" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				27C3CDF1170C92AF004BF7DA /* Debug */,
