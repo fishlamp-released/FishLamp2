@@ -42,7 +42,7 @@ FLSynthesizeSingleton(FLThemeManager)
 
 @synthesize currentTheme = _currentTheme;
 @synthesize themes = _themes;
-@synthesize enable = _enable;
+@synthesize enable = _enabled;
 
 - (id) init {
     self = [super init];
@@ -63,7 +63,7 @@ FLSynthesizeSingleton(FLThemeManager)
 #endif
 
 - (void) setEnable:(BOOL) enable {
-    if(enable != _enable) {
+    if(enable != _enabled) {
         _enabled = enable;
         if(_enabled) {
             [FLTheme setCurrentTheme:_currentTheme];

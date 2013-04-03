@@ -13,15 +13,13 @@
 #import "FLTestResultCollection.h"
 #import "FLSynchronousOperation.h"
 #import "FLUnitTestGroup.h"
+#import "FLDispatchQueue.h"
 
 #define FLLogTypeTest       @"com.fishlamp.unit-test"
 
-@class FLOperationQueue;
-
 #define FLTestLog(__FORMAT__, ...)   \
-        FLLogWithType(FLLogTypeTest, __FORMAT__, ##__VA_ARGS__)
+        FLLogToLogger([FLUnitTest logger], FLLogTypeTest, __FORMAT__, ##__VA_ARGS__)
 
-#define UTLog FLTestLog
 
 /**
     note that subclass with a method in int with the word "test" in it will be run.
@@ -45,23 +43,23 @@
 - (void) teardownTests;
 - (BOOL) willRunTests;
 
-+ (FLUnitTestGroup*) unitTestGroup;
++ (FLUnitTestGroup*) unitTestGroup; // defaultTestGroup by default.
 
 + (NSArray*) unitTestDependencies;
 
 + (BOOL) unitTestClassDependsOnUnitTestClass:(Class) unitTestClass;
 
-@end
++ (FLLogger*) logger;
++ (void) setLogger:(FLLogger*) logger;
 
-@interface FLSanityCheck : FLUnitTest
-@end
++ (FLLogger*) outputLog;
++ (void) setOutputLog:(FLLogger*) logger;
 
-@interface FLFrameworkUnitTest : FLUnitTest
-@end
++ (FLUnitTestGroup*) sanityCheckTestGroup;
++ (FLUnitTestGroup*) frameworkTestGroup;
++ (FLUnitTestGroup*) importantTestGroup;
++ (FLUnitTestGroup*) defaultTestGroup;
++ (FLUnitTestGroup*) lastTestGroup;
 
-@interface FLImportantUnitTest : FLUnitTest
-@end
-
-@interface FLLastUnitTest : FLUnitTest 
 @end
 

@@ -7,7 +7,7 @@
 //
 
 #import "FLAssertionFailureErrorDomain.h"
-NSString* const FLAssertionFailureErrorDomain = @"com.fishlamp.assertion-failure";
+NSString* const FLAssertionFailureErrorDomain = @"FishLampAssertionFailure";
 
 @implementation FLAssertionFailureErrorDomainInfo
 
@@ -20,49 +20,49 @@ NSString* const FLAssertionFailureErrorDomain = @"com.fishlamp.assertion-failure
         case FLAssertionFailureNone:
         break;
         case FLAssertionFailureCondition:
-            return @"com.fishlamp.assertion-failure.condition";
+            return @"failed";
         break;
         case FLAssertionFailureAreEqual:
-            return @"com.fishlamp.assertion-failure.equal";
+            return @"equal";
         break;
         case FLAssertionFailureAreNotEqual:
-            return @"com.fishlamp.assertion-failure.not-equal";
+            return @"not-equal";
         break;
         case FLAssertionFailureIsNil:
-            return @"com.fishlamp.assertion-failure.nil";
+            return @"nil";
         break;
         case FLAssertionFailureIsNotNil:
-            return @"com.fishlamp.assertion-failure.not-nil";
+            return @"not-nil";
         break;
         case FLAssertionFailureIsEmpty:
-            return @"com.fishlamp.assertion-failure.is-empty";
+            return @"is-empty";
         break;
         case FLAssertionFailureIsNotEmpty:
-            return @"com.fishlamp.assertion-failure.not-empty";
+            return @"not-empty";
         break;
         case FLAssertionFailureIsTrue:
-            return @"com.fishlamp.assertion-failure.is-true";
+            return @"is-true";
         break;
         case FLAssertionFailureIsFalse:
-            return @"com.fishlamp.assertion-failure.is-false";
+            return @"is-false";
         break;
         case FLAssertionFailureIsWrongType:
-            return @"com.fishlamp.assertion-failure.wrong-type";
+            return @"wrong-type";
         break;
         case FLAssertionFailureUnsupportedInit:
-            return @"com.fishlamp.assertion-failure.unsupported-init";
+            return @"unsupported-init";
         break;
         case FLAssertionFailureNotImplemented:
-            return @"com.fishlamp.assertion-failure.unimplemented";
+            return @"unimplemented";
         break;
         case FLAssertionFailureFixMe:
-            return @"com.fishlamp.assertion-failure.fixme";
+            return @"fixme";
         break;
         case FLAssertionFailureBug:
-            return @"com.fishlamp.assertion-failure.bug";
+            return @"bug";
         break;
         case FLAssertionFailureRequiredOverride:
-            return @"com.fishlamp.assertion-failure.required-override";
+            return @"required-override";
         break;
     }
     

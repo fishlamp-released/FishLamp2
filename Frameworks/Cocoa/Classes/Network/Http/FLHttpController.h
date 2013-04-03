@@ -23,7 +23,7 @@
     FLUserService* _authenticatedServices;
     FLObjectStorageService* _objectStorageService;
     FLHttpRequestAuthenticationService* _httpRequestAuthenticator;
-    id _delegate;
+    __unsafe_unretained id _delegate;
 }
 
 @property (readwrite, assign, nonatomic) id delegate;

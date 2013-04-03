@@ -9,7 +9,6 @@
 #import "FLStringUtils.h"
 #import "FLUnitTest.h"
 #import "FLObjcRuntime.h"
-#import "FLTestCaseResult_Internal.h"
 
 //#define FLTestCaseFlagBrokenString              @"_broken"
 //#define FLTestCaseFlagVerboseString             @"_debug"

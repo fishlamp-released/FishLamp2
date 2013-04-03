@@ -50,7 +50,7 @@
 				FLAssertIsNotNil_(prop.classForType);
 
 				object = FLAutorelease([[prop.classForType alloc] init]);
-                FLAssertNotNil_(object);
+                FLAssertNotNil(object);
                 
 				[inflator setValue:object forKey:propertyInflator.propertyName forObject:self];
 			}

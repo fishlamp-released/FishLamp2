@@ -227,7 +227,7 @@ void FLParsePropertyAttributes(FLPropertyAttributes_t* attributes) {
 
             case FLPropertyAttributeIVar: 
                 attributes->ivar = FLCharStringFromCString(str, 0);
-                str += attributes->ivar.length;
+//                str += attributes->ivar.length;
                 goto done;
             break;
             

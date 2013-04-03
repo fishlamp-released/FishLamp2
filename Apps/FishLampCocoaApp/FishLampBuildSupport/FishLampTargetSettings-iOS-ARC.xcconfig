@@ -1,0 +1,13 @@
+//
+//  FishLampTargetiOS.xcconfig
+//  
+//
+//  Created by Mike Fullerton on 11/13/12.
+//
+//
+
+#include "FishLampBuildSupport/FishLampIncludedConfig-iOS.xcconfig"
+#include "FishLampBuildSupport/FishLampIncludedConfig-ARC.xcconfig"
+#include "FishLampBuildSupport/FishLampIncludedConfig-Preprocessor.xcconfig"
+#include "FishLampBuildSupport/FishLampPaths.xcconfig"
+

@@ -8,6 +8,7 @@
 
 #import "FLConsoleLogSink.h"
 #import "FLPrintf.h"
+#import "FLWhitespace.h"
 
 @implementation FLConsoleLogSink
 
@@ -19,33 +20,16 @@
     return FLAutorelease([[[self class] alloc] initWithOutputFlags:outputFlags]);
 }
 
-
-- (id) init {
-    self = [super init];
-    if(self) {
-    }
-    return self;
-}
-
-
-- (void) logEntry:(FLLogEntry*) entry
-             stop:(BOOL*) stop {
-
-// TODO: make a lookup table, this sucks.    
-//    char spaces[128];
-//    char* sptr = spaces;
-//    for(int i = 0; i < entry.logName.length + 3; i++) {
-//        *sptr++ = ' ';
-//    }
-//    *sptr = 0;
+- (void) logEntry:(FLLogEntry*) entry stopPropagating:(BOOL*) stop {
 
     NSString* logString = nil;
+    NSString* whitespace = [[FLWhitespace tabbedWithSpacesWhitespace] tabStringForScope:entry.indentLevel];
     
     if(entry.error) {
-        logString = [NSString stringWithFormat:@"error: %@ %@", entry.error.localizedDescription, entry.error.comment];
+        logString = [NSString stringWithFormat:@"%@: %@", entry.error.localizedDescription, entry.error.comment];
     }
     else if(entry.exception) {
-        logString = [NSString stringWithFormat:@"exception: %@ name: reason: %@", 
+        logString = [NSString stringWithFormat:@"%@: %@", 
             entry.exception.name, 
             entry.exception.reason];
     }
@@ -53,9 +37,9 @@
         logString = entry.logString;
     }
 
-    
     if(FLTestAnyBit(self.outputFlags, FLLogOutputWithLocation | FLLogOutputWithStackTrace)) {
-        FLPrintf(@"%@ (%s:%d)\n", 
+        FLPrintFormat(@"%@%@ (%s:%d)\n", 
+                      whitespace,
                       logString,
                       entry.stackTrace.fileName, 
                       entry.stackTrace.lineNumber
@@ -63,17 +47,18 @@
                       );
     }
     else {
-        FLPrintf(entry.logString);
+        FLPrintFormat(@"%@%@\n", whitespace, entry.logString);
     }
 
     if(FLTestBits(self.outputFlags, FLLogOutputWithStackTrace)) {
+        whitespace = [[FLWhitespace tabbedWithSpacesWhitespace] tabStringForScope:entry.indentLevel + 1];
+    
         if(entry.stackTrace.callStack.depth) {
             for(int i = 0; i < entry.stackTrace.callStack.depth; i++) {
-                FLPrintf(@"%s%s\n", "   ", [entry.stackTrace stackEntryAtIndex:i]);
+                FLPrintFormat(@"%@%s\n", whitespace, [entry.stackTrace stackEntryAtIndex:i]);
             }
         }
     }
-    
 }    
 
 @end

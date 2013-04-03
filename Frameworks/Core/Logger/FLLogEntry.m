@@ -25,6 +25,8 @@
 @synthesize timestamp = _timestamp;
 @synthesize error = _error;
 @synthesize exception = _exception;
+@synthesize indentLevel = _indentLevel;
+
 static NSMutableArray* s_cache = nil;
 
 + (void) initialize {
@@ -92,6 +94,7 @@ static NSMutableArray* s_cache = nil;
     entry.timestamp = self.timestamp;
     entry.error = self.error;
     entry.exception = self.exception;
+    entry.indentLevel = self.indentLevel;
     return entry;
 }
 

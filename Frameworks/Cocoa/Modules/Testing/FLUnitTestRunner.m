@@ -12,6 +12,7 @@
 #import "FLUnitTestSubclassRunner.h"
 #import "FLStaticTestMethodRunner.h"
 #import "FLObjcRuntime.h"
+#import "FLUnitTest.h"
 
 @implementation FLUnitTestRunner 
 
@@ -50,6 +51,22 @@
     for(id worker in workers) {
         [array addObject:[self runChildSynchronously:worker]];
     }
+
+    int errorCount = 0;
+    for(NSArray* resultArray in array) {
+        for(FLTestResultCollection* result in resultArray) {
+            errorCount += [[result failedResults] count];
+        }
+    }
+    
+    if(errorCount) {
+        
+        [[FLUnitTest outputLog] appendLine:@"Unit Tests Failed"];
+    
+        return [NSError errorWithDomain:FLFrameworkErrorDomain code:FLErrorResultFailed localizedDescription:@"Unit Tests Failed"];
+    }
+
+    [[FLUnitTest outputLog] appendLine:@"Unit Tests Passed"];
 
     return array;
 }

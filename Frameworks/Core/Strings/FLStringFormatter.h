@@ -8,6 +8,8 @@
 
 #import "FLRequired.h"
 
+
+
 @protocol FLStringFormatter <NSObject>
 
 /// ends currently open line, opens a new one.
@@ -53,37 +55,30 @@
 
 @end
 
-/// concrete base class.
-
-/// this describes state of open openLine. Uses one method (stringFormatter:appendString:lineInfo) to allow
-/// for optimizations.
-typedef struct {
-    BOOL closePreviousLine; 
-    BOOL prependBlankLine; // closePreviousLine may be YES or NO
-    BOOL openLine; // Note: openLine will always have non-empty string if YES.
-    BOOL closeLine; // Any of other options may be set
-} FLStringFormatterLineUpdate;
+@protocol FLStringFormatterOutput;
 
 @interface FLStringFormatter : NSObject<FLStringFormatter> {
 @private
     BOOL _editingLine;
+    __unsafe_unretained id<FLStringFormatterOutput> _output;
 }
+@property (readwrite, nonatomic, assign) __unsafe_unretained id<FLStringFormatterOutput> stringFormatterOutput;
+@end
 
-// required override
-- (void) stringFormatter:(FLStringFormatter*) stringFormatter 
-            appendString:(NSString*) string
-  appendAttributedString:(NSAttributedString*) string
-              lineUpdate:(FLStringFormatterLineUpdate) lineUpdate;
-
-// optional overrides
-- (void) indent;
-- (void) outdent;
-
-
+@protocol FLStringFormatterOutput <NSObject>
+- (void) stringFormatterAppendBlankLine:(FLStringFormatter*) stringFormatter;
+- (void) stringFormatterOpenLine:(FLStringFormatter*) stringFormatter;
+- (void) stringFormatterCloseLine:(FLStringFormatter*) stringFormatter;
+- (void) stringFormatter:(FLStringFormatter*) stringFormatter appendString:(NSString*) string;
+- (void) stringFormatter:(FLStringFormatter*) stringFormatter appendAttributedString:(NSAttributedString*) attributedString;
+- (void) stringFormatterIndent:(FLStringFormatter*) stringFormatter;
+- (void) stringFormatterOutdent:(FLStringFormatter*) stringFormatter;
 @end
 
 @protocol FLBuildableString <NSObject>
 - (void) appendLinesToStringFormatter:(id<FLStringFormatter>) stringFormatter;
 @end
+
+
 
 

@@ -19,7 +19,7 @@
     BOOL _open;
     NSError* _error;
     FLFifoAsyncQueue* _asyncQueue;
-    id<FLNetworkStreamDelegate> _delegate;
+    __unsafe_unretained id<FLNetworkStreamDelegate> _delegate;
     FLTimer* _timer;
 }
 

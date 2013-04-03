@@ -32,13 +32,13 @@
 }
 #endif
 
-- (void) stringFormatter:(FLStringFormatter*) stringFormatter 
-            appendString:(NSString*) string
-  appendAttributedString:(NSAttributedString*) attributedString
-              lineUpdate:(FLStringFormatterLineUpdate) lineUpdate {
-
-    [[self openedSection] stringFormatter:stringFormatter appendString:string appendAttributedString:attributedString lineUpdate:lineUpdate];
-}                                                 
+//- (void) stringFormatter:(FLStringFormatter*) stringFormatter 
+//            appendString:(NSString*) string
+//  appendAttributedString:(NSAttributedString*) attributedString
+//              lineUpdate:(FLStringFormatterLineUpdate) lineUpdate {
+//
+//    [[self openedSection] stringFormatter:stringFormatter appendString:string appendAttributedString:attributedString lineUpdate:lineUpdate];
+//}                                                 
 
 - (FLDocumentSection*) openedSection {
     return [_document openedStringBuilder];
@@ -64,8 +64,31 @@
     [self.document closeAllStringBuilders];
 }
 
-- (void) stringFormatter:(FLStringFormatter*) stringFormatter setIndentLevel:(NSInteger) indentLevel {
-
+- (void) stringFormatterAppendBlankLine:(FLStringFormatter*) stringFormatter {
+    [[self openedSection] stringFormatterAppendBlankLine:stringFormatter];
 }
+
+- (void) stringFormatterOpenLine:(FLStringFormatter*) stringFormatter {
+    [[self openedSection] stringFormatterOpenLine:stringFormatter];
+}
+
+- (void) stringFormatterCloseLine:(FLStringFormatter*) stringFormatter {
+    [[self openedSection] stringFormatterCloseLine:stringFormatter];
+}
+
+- (void) stringFormatter:(FLStringFormatter*) stringFormatter appendString:(NSString*) string {
+    [[self openedSection] stringFormatter:stringFormatter appendString:string];
+}
+
+- (void) stringFormatter:(FLStringFormatter*) stringFormatter appendAttributedString:(NSAttributedString*) attributedString {
+    [[self openedSection] stringFormatter:stringFormatter appendAttributedString:attributedString];
+}
+
+- (void) stringFormatterIndent:(FLStringFormatter*) stringFormatter {
+}
+
+- (void) stringFormatterOutdent:(FLStringFormatter*) stringFormatter {
+}
+
 
 @end

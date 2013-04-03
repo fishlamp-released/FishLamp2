@@ -34,6 +34,7 @@
 - (id) initWithWhitespace:(FLWhitespace*) whitespace withStorage:(id) storage {
     self = [super init];
     if(self) {
+        self.stringFormatterOutput = self;
         self.whitespace = whitespace;
         self.eolString = _whitespace ? _whitespace.eolString : @"";
         self.storage = storage;
@@ -85,44 +86,73 @@
     [self appendStringToStorage:[string string]];
 }
 
-- (void) appendEOL {
+- (void) stringFormatterAppendBlankLine:(FLStringFormatter*) stringFormatter {
+    if(_eolString) { 
+        [self appendStringToStorage:_eolString];
+    }
+}
+
+- (void) stringFormatterOpenLine:(FLStringFormatter*) stringFormatter {
+    if(_whitespace) { 
+        [self appendStringToStorage:[_whitespace tabStringForScope:self.indentLevel]];
+    } 
+}
+
+- (void) stringFormatterCloseLine:(FLStringFormatter*) stringFormatter {
     if(_eolString) { 
         [self appendStringToStorage:_eolString];
     } 
 }
 
-- (void) stringFormatter:(FLStringFormatter*) stringFormatter 
-            appendString:(NSString*) string
-  appendAttributedString:(NSAttributedString*) attributedString
-              lineUpdate:(FLStringFormatterLineUpdate) lineUpdate {
+- (void) stringFormatter:(FLStringFormatter*) stringFormatter appendString:(NSString*) string {
+    [self appendStringToStorage:string];
+}
+
+- (void) stringFormatter:(FLStringFormatter*) stringFormatter appendAttributedString:(NSAttributedString*) attributedString {
+    [self appendAttributedStringToStorage:attributedString];
+}
+
+- (void) stringFormatterIndent:(FLStringFormatter*) stringFormatter {
+    ++_indentLevel;
+}
+
+- (void) stringFormatterOutdent:(FLStringFormatter*) stringFormatter {
+    --_indentLevel;
+}
 
 
-    if(lineUpdate.closePreviousLine) {
-        [self appendEOL];
-    }
-
-    if(lineUpdate.prependBlankLine) {
-        [self appendEOL];
-    }
-
-    if(lineUpdate.openLine) {
-        if(_whitespace) { 
-            [self appendStringToStorage:[_whitespace tabStringForScope:self.indentLevel]];
-        } 
-    }
-    
-    if(string) {
-        [self appendStringToStorage:string];
-    }
-    
-    if(attributedString) {
-        [self appendAttributedStringToStorage:attributedString];
-    }
-    
-    if(lineUpdate.closeLine) {
-        [self appendEOL];
-    }
-}            
+//- (void) stringFormatter:(FLStringFormatter*) stringFormatter 
+//            appendString:(NSString*) string
+//  appendAttributedString:(NSAttributedString*) attributedString
+//              lineUpdate:(FLStringFormatterLineUpdate) lineUpdate {
+//
+//
+//    if(lineUpdate.closePreviousLine) {
+//        [self appendEOL];
+//    }
+//
+//    if(lineUpdate.prependBlankLine) {
+//        [self appendEOL];
+//    }
+//
+//    if(lineUpdate.openLine) {
+//        if(_whitespace) { 
+//            [self appendStringToStorage:[_whitespace tabStringForScope:self.indentLevel]];
+//        } 
+//    }
+//    
+//    if(string) {
+//        [self appendStringToStorage:string];
+//    }
+//    
+//    if(attributedString) {
+//        [self appendAttributedStringToStorage:attributedString];
+//    }
+//    
+//    if(lineUpdate.closeLine) {
+//        [self appendEOL];
+//    }
+//}            
 
 - (void) appendPrettyString:(FLPrettyString*) string {
     [self appendStringContainingMultipleLines:string.string];
@@ -139,16 +169,6 @@
 - (NSString*) description {
     return [self string];
 }
-
-- (void) indent {
-    ++_indentLevel;
-}
-
-- (void) outdent {
-    --_indentLevel;
-}
-
-
 
 @end
 

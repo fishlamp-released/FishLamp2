@@ -23,7 +23,6 @@ NSString* const FLTimedOutNotification = @"FLTimedOutNotification";
 @synthesize timestamp = _timestamp;
 @synthesize timedOut = _timedOut;
 @synthesize checkTimestampInterval = _checkTimestampInterval;
-@synthesize postNotifications = _postNotifications;
 @synthesize startTime = _startTime;
 @synthesize endTime = _endTime;
 @synthesize timing = _timing;
@@ -59,51 +58,22 @@ NSString* const FLTimedOutNotification = @"FLTimedOutNotification";
 }
 
 - (BOOL) isLate {
-
-#if TEST_TIMEOUT
-    return YES;
-#endif
-
     return ((_timeoutInterval > 0.0f) && (self.idleDuration > _timeoutInterval));
 }
 
-//- (void) _handleTimerEvent:(NSTimer*) timer {
-//
-//#if TEST_TIMEOUT
-//    [NSThread sleepForTimeInterval:1.0f];
-//#endif
-//    
-//    
-////    if(FLTestAnyBit(_connectionState, FLNetworkConnectionStateConnecting | FLNetworkConnectionStateConnected)) {
-////
-////        NSTimeInterval idleDuration = [NSDate timeIntervalSinceReferenceDate] - _timestamp;
-////        
-////        if(CheckTimeout(idleDuration)) {
-////            [self setConnectionDidFail:[NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorTimedOut userInfo:nil]];
-////        }
-////        else  {
-////            [self _checkForIdleEvent:idleDuration];
-////        }
-////
-////        [self connectionGotTimerEvent];
-////    }
-//}
+- (void) didTimeout {
+    self.timedOut = YES;
+    [self stopTimer];
+            
+    [self.delegate timerDidTimeout:self];
+}
 
 - (void) checkForTimeout {
     
     FLPerformSelector1(_delegate, _timerWasUpdated, self);
 
     if(self.isLate) {
-        if(!FLPerformSelector1(_delegate, _timerDidTimeout, self)) {
-            self.timedOut = YES;
-            [self stopTimer];
-        }
-        
-        if(_postNotifications) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [[NSNotificationCenter defaultCenter] postNotificationName:FLTimedOutNotification object:self];
-            });
-        }
+        [self didTimeout];
     }
 }
 
@@ -201,6 +171,16 @@ NSString* const FLTimedOutNotification = @"FLTimedOutNotification";
 
 @end
 
+@implementation FLBroadcastingTimer
+
+- (void) didTimeout {
+    [super didTimeout];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:FLTimedOutNotification object:self];
+    });
+}
+
+@end
 
 //#if 0
 //

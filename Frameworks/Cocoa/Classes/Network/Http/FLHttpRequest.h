@@ -35,7 +35,7 @@
 @private
     FLHttpRequestHeaders* _headers;
     FLHttpRequestBody* _body;
-    FLFifoAsyncQueue* _asyncQueue;
+    FLFifoAsyncQueue* _asyncQueueForStream;
     FLFinisher* _finisher;
     FLHttpResponse* _previousResponse; // if redirected
     FLHttpStream* _httpStream;
@@ -43,9 +43,6 @@
     
     // helpers
     id<FLInputSink> _inputSink;
-    
-//    id<FLDataEncoding> _dataEncoder;
-//    id<FLDataDecoding> _dataDecoder;
     id<FLHttpRequestAuthenticator> _authenticator;
     BOOL _disableAuthenticator;
 }
@@ -53,8 +50,6 @@
 
 // by default this is a FLDataResponseReciever.
 @property (readwrite, strong, nonatomic) id<FLInputSink> inputSink;
-//@property (readwrite, strong, nonatomic) id<FLDataEncoding> dataEncoder;
-//@property (readwrite, strong, nonatomic) id<FLDataDecoding> dataDecoder;
 @property (readwrite, strong, nonatomic) id<FLHttpRequestAuthenticator> authenticator;
 
 @property (readwrite, assign, nonatomic) BOOL disableAuthenticator;

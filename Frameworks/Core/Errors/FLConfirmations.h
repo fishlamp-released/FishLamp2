@@ -13,12 +13,12 @@
 /// @brief: Assert that any condition is true
 #define FLConfirm(__CONDITION__) \
     if((__CONDITION__) == NO) \
-        FLThrowConfirmationFailure(FLAssertionFailureCondition, FLStringWithFormatOrNil(@"%s", #__CONDITION__), nil)
+        FLThrowConfirmationFailure(FLAssertionFailureCondition, FLStringWithFormatOrNil(@"(%s) != YES", #__CONDITION__), nil)
 
 /// @brief: Assert that any condition is true
 #define FLConfirmWithComment(__CONDITION__, __COMMENT__, ...) \
     if((__CONDITION__) == NO) \
-        FLThrowConfirmationFailure(FLAssertionFailureCondition, FLStringWithFormatOrNil(@"%s", #__CONDITION__), FLStringWithFormatOrNil(__COMMENT__, ##__VA_ARGS__))
+        FLThrowConfirmationFailure(FLAssertionFailureCondition, FLStringWithFormatOrNil(@"(%s) != YES", #__CONDITION__), FLStringWithFormatOrNil(__COMMENT__, ##__VA_ARGS__))
 
 
 NS_INLINE BOOL __FLConfirmationDidFail() { return NO; }

@@ -31,11 +31,11 @@ FLSynthesizeAssociatedProperty(FLAssociationPolicyRetainNonatomic, stackTrace, s
                         code:(NSInteger) code
         localizedDescription:(NSString*) localizedDescription {
 
-    return [[[self class] alloc] initWithDomain:domain 
+    return FLAutorelease([[[self class] alloc] initWithDomain:domain 
                                            code:code
                                          localizedDescription:localizedDescription
                                        userInfo:nil
-                                        comment:nil];
+                                        comment:nil]);
 }
 
 - (BOOL) isErrorCode:(NSInteger) code domain:(NSString*) domain {
@@ -56,7 +56,7 @@ FLSynthesizeAssociatedProperty(FLAssociationPolicyRetainNonatomic, stackTrace, s
 
     NSString* commentAddOn = nil;
     if(errorCodeString) {
-        commentAddOn = [NSString stringWithFormat:@"[domain:\"%@\"m error code:%ld (%@)]", domain, (long) code, errorCodeString];
+        commentAddOn = [NSString stringWithFormat:@"[domain:\"%@\" error code:%ld (%@)]", domain, (long) code, errorCodeString];
     }
     else {
         commentAddOn = [NSString stringWithFormat:@"[domain:\'%@\", error code:%ld]", domain, (long)code];

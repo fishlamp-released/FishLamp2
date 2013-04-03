@@ -12,8 +12,6 @@
 
 #define FLLogTypeTrace      @"com.fishlamp.trace"
 #define FLLogTypeDebug      @"com.fishlamp.debug"
-#define FLLogTypeError      @"com.fishlamp.error"
-#define FLLogTypeException  @"com.fishlamp.exception"
 
 // WARNING: don't import anything here. This file is imported by FishLamp.  This is imported by everything.
 #define FLLog(__FORMAT__, ...)   \

@@ -13,7 +13,6 @@
 
 @interface FLFlipTransition : FLViewTransition {
 @private
-    FLAnimationDirection _flipDirection;
     CGFloat _perspectiveDistance;
     CGFloat _scale;
 }

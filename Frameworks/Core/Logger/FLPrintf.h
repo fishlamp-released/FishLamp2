@@ -8,4 +8,10 @@
 
 #import "FLRequired.h"
 
-extern void FLPrintf(NSString* format, ...);
+extern void FLPrintFormatWithIndent(NSUInteger indent, NSString* format, ...);
+extern void FLPrintFormat(NSString* format, ...);
+extern void FLPrintString(NSString* format);
+extern void FLPrintStringWithIndent(NSUInteger indent, NSString* string);
+
+
+extern void FLIndentString(void (^block)());

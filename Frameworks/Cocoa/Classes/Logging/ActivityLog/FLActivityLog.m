@@ -20,6 +20,8 @@ NSString* const FLActivityLogStringKey = @"FLActivityLogStringKey";
 - (id) init {
     self = [super init];
     if(self) {
+        self.stringFormatterOutput = self;
+    
         _log = [[FLPrettyAttributedString alloc] init];
         _log.delegate = self;
     }
@@ -40,34 +42,74 @@ NSString* const FLActivityLogStringKey = @"FLActivityLogStringKey";
     return FLAutorelease([[[self class] alloc] init]);
 }
 
-- (void) stringFormatter:(FLStringFormatter*) stringFormatter 
-            appendString:(NSString*) string
-  appendAttributedString:(NSAttributedString*) attributedString
-              lineUpdate:(FLStringFormatterLineUpdate) lineUpdate {
-                
-    if(lineUpdate.openLine && _log.indentLevel == 0) {
-        NSString* timeStamp = [NSString stringWithFormat:@"[%@]: ", [NSDateFormatter localizedStringFromDate:[NSDate date] dateStyle:NSDateFormatterShortStyle timeStyle:kCFDateFormatterLongStyle]];
+- (void) stringFormatterAppendBlankLine:(FLStringFormatter*) stringFormatter {
+    [_log stringFormatterAppendBlankLine:stringFormatter];
+}
 
-        if(string) {
-            string = [NSString stringWithFormat:@"%@%@", timeStamp, string];
-        }
-        else if(attributedString) {
-            NSMutableAttributedString* newAttrString = [NSMutableAttributedString mutableAttributedString:timeStamp];
-            [newAttrString appendAttributedString:attributedString];
-            attributedString = newAttrString;
-        }
+- (void) stringFormatterOpenLine:(FLStringFormatter*) stringFormatter {
+
+    [_log stringFormatterOpenLine:stringFormatter];
+    if(_log.indentLevel == 0) {
+
+        NSString* timeStamp = [NSString stringWithFormat:@"[%@]: ", 
+            [NSDateFormatter localizedStringFromDate:[NSDate date] 
+                                           dateStyle:NSDateFormatterShortStyle 
+                                           timeStyle:kCFDateFormatterLongStyle]];
+
+        [_log stringFormatter:stringFormatter appendString:timeStamp];
+
     }
-
-    [_log stringFormatter:stringFormatter appendString:string appendAttributedString:attributedString lineUpdate:lineUpdate];
-}   
-
-- (void) indent {
-    [_log indent];
 }
 
-- (void) outdent {
-    [_log outdent];
+- (void) stringFormatterCloseLine:(FLStringFormatter*) stringFormatter {
+    [_log stringFormatterCloseLine:stringFormatter];
 }
+
+- (void) stringFormatter:(FLStringFormatter*) stringFormatter appendString:(NSString*) string {
+    [_log stringFormatter:stringFormatter appendString:string];
+}
+
+- (void) stringFormatter:(FLStringFormatter*) stringFormatter appendAttributedString:(NSAttributedString*) attributedString {
+    [_log stringFormatter:stringFormatter appendAttributedString:attributedString];
+}
+
+- (void) stringFormatterIndent:(FLStringFormatter*) stringFormatter {
+    [_log stringFormatterIndent:stringFormatter];
+}
+
+- (void) stringFormatterOutdent:(FLStringFormatter*) stringFormatter {
+    [_log stringFormatterOutdent:stringFormatter];
+}
+
+
+//- (void) stringFormatter:(FLStringFormatter*) stringFormatter 
+//            appendString:(NSString*) string
+//  appendAttributedString:(NSAttributedString*) attributedString
+//              lineUpdate:(FLStringFormatterLineUpdate) lineUpdate {
+//                
+//    if(lineUpdate.openLine && _log.indentLevel == 0) {
+//        NSString* timeStamp = [NSString stringWithFormat:@"[%@]: ", [NSDateFormatter localizedStringFromDate:[NSDate date] dateStyle:NSDateFormatterShortStyle timeStyle:kCFDateFormatterLongStyle]];
+//
+//        if(string) {
+//            string = [NSString stringWithFormat:@"%@%@", timeStamp, string];
+//        }
+//        else if(attributedString) {
+//            NSMutableAttributedString* newAttrString = [NSMutableAttributedString mutableAttributedString:timeStamp];
+//            [newAttrString appendAttributedString:attributedString];
+//            attributedString = newAttrString;
+//        }
+//    }
+//
+//    [_log stringFormatter:stringFormatter appendString:string appendAttributedString:attributedString lineUpdate:lineUpdate];
+//}   
+
+//- (void) indent {
+//    [_log indent];
+//}
+//
+//- (void) outdent {
+//    [_log outdent];
+//}
 
 - (NSString*) string {
     return [_log string];

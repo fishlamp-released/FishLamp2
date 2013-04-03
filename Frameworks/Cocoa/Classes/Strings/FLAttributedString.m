@@ -247,7 +247,9 @@
     [self setAttribute:FLBridge(id, colorRef) forName:(NSString*) kCTForegroundColorAttributeName forRange:range];
 
 #if OSX
-    CFRelease(colorRef);
+    if(colorRef) {
+        CFRelease(colorRef);
+    }
 #endif    
 
 //    if(color) {
@@ -271,7 +273,9 @@
 
     [self setAttribute:FLBridge(id, colorRef) forName:(NSString*) NSShadowAttributeName forRange:range];
 #if OSX
-    CFRelease(colorRef);
+    if(colorRef) {
+        CFRelease(colorRef);
+    }
 #endif    
 //    if(color) {
 //        [self addAttribute:(NSString*) NSShadowAttributeName 

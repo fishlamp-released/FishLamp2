@@ -9,36 +9,59 @@
 #import "FLStringFormatter.h"
 #import "NSArray+FLExtras.h"
 
-NS_INLINE
-FLStringFormatterLineUpdate MakeInfo(BOOL closePreviousLine, 
-                                   BOOL prependBlankLine, 
-                                   BOOL openLine, 
-                                   BOOL closeLine) {
-                                   
-    FLStringFormatterLineUpdate info = { 
-        closePreviousLine, 
-        prependBlankLine, 
-        openLine, 
-        closeLine }; 
+/*
+/// concrete base class.
 
-    return info; 
-}
+/// this describes state of open openLine. Uses one method (stringFormatter:appendString:lineInfo) to allow
+/// for optimizations.
+typedef struct {
+    BOOL closePreviousLine; 
+    BOOL prependBlankLine; // closePreviousLine may be YES or NO
+    BOOL openLine; // Note: openLine will always have non-empty string if YES.
+    BOOL closeLine; // Any of other options may be set
+} FLStringFormatterLineUpdate;
+// required override
+- (void) stringFormatter:(FLStringFormatter*) stringFormatter 
+            appendString:(NSString*) string
+  appendAttributedString:(NSAttributedString*) string
+              lineUpdate:(FLStringFormatterLineUpdate) lineUpdate;
+*/
 
-#define str_or_nil(str) (str == nil || str.length == 0) ? nil : str
-#define closeLineInfo() MakeInfo(_editingLine, NO, NO, NO)
-#define openLineInfo() MakeInfo(_editingLine, NO, YES, NO)
-#define appendLineInfo() MakeInfo(NO, NO, !_editingLine, YES)
-#define appendStringInfo() MakeInfo(NO, NO, !_editingLine, NO)
+//NS_INLINE
+//FLStringFormatterLineUpdate MakeInfo(BOOL closePreviousLine, 
+//                                   BOOL prependBlankLine, 
+//                                   BOOL openLine, 
+//                                   BOOL closeLine) {
+//                                   
+//    FLStringFormatterLineUpdate info = { 
+//        closePreviousLine, 
+//        prependBlankLine, 
+//        openLine, 
+//        closeLine }; 
+//
+//    return info; 
+//}
+//
+//#define str_or_nil(str) (str == nil || str.length == 0) ? nil : str
+//#define closeLineInfo() MakeInfo(_editingLine, NO, NO, NO)
+//#define appendStringInfo() MakeInfo(NO, NO, !_editingLine, NO)
 
 @implementation FLStringFormatter
+
+@synthesize stringFormatterOutput = _output;
 
 - (void) appendString:(NSString*) string {
     FLAssertNotNil(string);
     
-    [self stringFormatter:self 
-                      appendString:string
-            appendAttributedString:nil
-                        lineUpdate:appendStringInfo()];
+    if(!_editingLine) {
+        [_output stringFormatterOpenLine:self];
+    }
+    [_output stringFormatter:self appendString:string];
+    
+//    [self stringFormatter:self 
+//                      appendString:string
+//            appendAttributedString:nil
+//                        lineUpdate:appendStringInfo()];
         
     _editingLine = YES;
 }
@@ -46,11 +69,16 @@ FLStringFormatterLineUpdate MakeInfo(BOOL closePreviousLine,
 
 - (void) appendAttributedString:(NSAttributedString*) string {
     FLAssertNotNil(string);
+
+    if(!_editingLine) {
+        [_output stringFormatterOpenLine:self];
+    }
+    [_output stringFormatter:self appendAttributedString:string];
     
-    [self stringFormatter:self 
-                      appendString:nil
-            appendAttributedString:str_or_nil(string)
-                        lineUpdate:appendStringInfo()];
+//    [self stringFormatter:self 
+//                      appendString:nil
+//            appendAttributedString:str_or_nil(string)
+//                        lineUpdate:appendStringInfo()];
         
     _editingLine = YES;
 }
@@ -58,40 +86,71 @@ FLStringFormatterLineUpdate MakeInfo(BOOL closePreviousLine,
 
 - (void) closeLine {
     if(_editingLine) {
-        [self stringFormatter:self 
-                          appendString:nil
-                appendAttributedString:nil
-                            lineUpdate:closeLineInfo()];
+        [_output stringFormatterCloseLine:self];
+    
+//        [self stringFormatter:self 
+//                          appendString:nil
+//                appendAttributedString:nil
+//                            lineUpdate:closeLineInfo()];
     }
     _editingLine = NO;
 }
 
 - (void) closeLineWithString:(NSString*) string {
     if(_editingLine) {
-        [self stringFormatter:self 
-                          appendString:str_or_nil(string)
-                appendAttributedString:nil
-                            lineUpdate:closeLineInfo()];
+    
+        if(string) {
+            [_output stringFormatter:self appendString:string];
+        }
+
+        if(_editingLine) {
+            [_output stringFormatterCloseLine:self];
+        }
+    
+//        [self stringFormatter:self 
+//                          appendString:str_or_nil(string)
+//                appendAttributedString:nil
+//                            lineUpdate:closeLineInfo()];
     }
     _editingLine = NO;
 }
 
 - (void) closeLineWithAttributedString:(NSAttributedString*) string {
     if(_editingLine) {
-        [self stringFormatter:self 
-                          appendString:nil
-                appendAttributedString:str_or_nil(string)
-                            lineUpdate:closeLineInfo()];
+
+        if(string) {
+            [_output stringFormatter:self appendAttributedString:string];
+        }
+
+        if(_editingLine) {
+            [_output  stringFormatterCloseLine:self];
+        }
+        
+
+//        [self stringFormatter:self 
+//                          appendString:nil
+//                appendAttributedString:str_or_nil(string)
+//                            lineUpdate:closeLineInfo()];
     }
     _editingLine = NO;
 }
 
+#define openLineInfo() MakeInfo(_editingLine, NO, YES, NO)
+
 - (void) openLineWithString:(NSString*) string {
     FLAssertNotNil(string);
-    [self stringFormatter:self 
-                      appendString:str_or_nil(string)
-            appendAttributedString:nil
-                        lineUpdate:openLineInfo()];
+    
+    if(_editingLine) {
+        [_output  stringFormatterCloseLine:self];
+    }
+    
+    [_output stringFormatterOpenLine:self];
+    [_output stringFormatter:self appendString:string];
+    
+//    [self stringFormatter:self 
+//                      appendString:str_or_nil(string)
+//            appendAttributedString:nil
+//                        lineUpdate:openLineInfo()];
                       
 
     _editingLine = YES;
@@ -100,22 +159,38 @@ FLStringFormatterLineUpdate MakeInfo(BOOL closePreviousLine,
 
 - (void) openLineWithAttributedString:(NSAttributedString*) string {
     FLAssertNotNil(string);
-    [self stringFormatter:self 
-                      appendString:nil
-            appendAttributedString:str_or_nil(string)
-                        lineUpdate:openLineInfo()];
+    
+    if(_editingLine) {
+        [_output  stringFormatterCloseLine:self];
+    }
+    
+    [_output stringFormatterOpenLine:self];
+    [_output stringFormatter:self appendAttributedString:string];
+    
+//    [self stringFormatter:self 
+//                      appendString:nil
+//            appendAttributedString:str_or_nil(string)
+//                        lineUpdate:openLineInfo()];
                       
 
     _editingLine = YES;
 }
 
+#define appendLineInfo() MakeInfo(NO, NO, !_editingLine, YES)
 
 - (void) appendLineWithAttributedString:(NSAttributedString*) string {
     FLAssertNotNil(string);
-    [self stringFormatter:self 
-                      appendString:nil
-            appendAttributedString:str_or_nil(string)
-                        lineUpdate:appendLineInfo()];
+    
+    if(!_editingLine) {
+        [_output stringFormatterOpenLine:self];
+    }
+    [_output stringFormatter:self appendAttributedString:string];
+    [_output  stringFormatterCloseLine:self];
+    
+//    [self stringFormatter:self 
+//                      appendString:nil
+//            appendAttributedString:str_or_nil(string)
+//                        lineUpdate:appendLineInfo()];
                       
 
     _editingLine = NO;
@@ -124,21 +199,35 @@ FLStringFormatterLineUpdate MakeInfo(BOOL closePreviousLine,
 
 - (void) appendLine:(NSString*) string {
     FLAssertNotNil(string);
+
+    if(!_editingLine) {
+        [_output stringFormatterOpenLine:self];
+    }
+    [_output stringFormatter:self appendString:string];
+    [_output  stringFormatterCloseLine:self];
+
     
-    [self stringFormatter:self 
-                      appendString:str_or_nil(string)
-            appendAttributedString:nil
-                        lineUpdate:appendLineInfo()];
+//    [self stringFormatter:self 
+//                      appendString:str_or_nil(string)
+//            appendAttributedString:nil
+//                        lineUpdate:appendLineInfo()];
 
     _editingLine = NO;
 }
 
 - (void) appendBlankLine {
-    [self stringFormatter:self 
-                      appendString:nil
-            appendAttributedString:nil
-                        lineUpdate:MakeInfo(_editingLine, YES, NO, NO)];
-    _editingLine = NO;
+//    [self stringFormatter:self 
+//                      appendString:nil
+//            appendAttributedString:nil
+//                        lineUpdate:MakeInfo(_editingLine, YES, NO, NO)];
+                        
+    if(_editingLine) {
+        [_output  stringFormatterCloseLine:self];
+        _editingLine = NO;
+    }
+    
+    [_output stringFormatterAppendBlankLine:self];
+                        
 }
 
 - (void) appendLines:(NSString**) lines count:(NSInteger) count{
@@ -247,28 +336,30 @@ FLStringFormatterLineUpdate MakeInfo(BOOL closePreviousLine,
 
 }
 
-- (void) stringFormatter:(FLStringFormatter*) stringFormatter 
-            appendString:(NSString*) string
-  appendAttributedString:(NSAttributedString*) attributedString
-              lineUpdate:(FLStringFormatterLineUpdate) lineUpdate {
-              
-}              
+//- (void) stringFormatter:(FLStringFormatter*) stringFormatter 
+//            appendString:(NSString*) string
+//  appendAttributedString:(NSAttributedString*) attributedString
+//              lineUpdate:(FLStringFormatterLineUpdate) lineUpdate {
+//              
+//}              
 
 - (void) indent {
+    [_output stringFormatterIndent:self];
 }
 
 - (void) outdent {
+    [_output stringFormatterOutdent:self];
 }
 
 - (void) indent:(void (^)()) block {
     if(_editingLine) {
-        [self closeLine];
+        [_output  stringFormatterCloseLine:self];
     }
-    [self indent];
+    [_output stringFormatterIndent:self];
     block();
     if(_editingLine) {
-        [self closeLine];
+        [_output  stringFormatterCloseLine:self];
     }
-    [self outdent];
+    [_output stringFormatterOutdent:self];
 }
 @end

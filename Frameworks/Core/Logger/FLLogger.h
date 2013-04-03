@@ -14,20 +14,19 @@
 
 #define FLLogTypeNone       nil
 #define FLLogTypeLog        @"com.fishlamp.log"
+#define FLLogTypeError      @"com.fishlamp.error"
+#define FLLogTypeException  @"com.fishlamp.exception"
 
 @class FLLogger;
 
-@interface FLLogger : FLStringFormatter {
+@interface FLLogger : FLStringFormatter<FLStringFormatterOutput> {
 @private
     NSMutableArray* _sinks;
     dispatch_queue_t _fifoQueue;
-    FLWhitespace* _whitespace;
     NSInteger _indentLevel;
-    NSString* _eolString;
+    NSMutableString* _line;
 }
 
-- (id) initWithWhitespace:(FLWhitespace*) whitespace;
-+ (id) loggerWithWhitespace:(FLWhitespace*) whitespace;
 + (id) logger;
 
 - (void) pushLoggerSink:(id<FLLogSink>) sink;

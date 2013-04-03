@@ -20,6 +20,20 @@
                ReferencedContainer = "container:FishLampCocoa.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "27C62B7A170B442A0093F260"
+               BuildableName = "libFishLampCocoaTests-OSX-32-MRC.a"
+               BlueprintName = "FishLampCocoaTests-OSX-32-MRC"
+               ReferencedContainer = "container:FishLampCocoa.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction

@@ -55,27 +55,4 @@
     return [NSString stringWithFormat:@"%@ { name=%@, priority=%d }", [super description], self.groupName, [self groupPriority]];
 }
 
-+ (FLUnitTestGroup*) sanityTestGroup {
- 
-    FLReturnStaticObject([[FLUnitTestGroup alloc] initWithGroupName:@"Sanity Checks" priority:FLUnitTestPrioritySanityCheck]);
-}
-
-+ (FLUnitTestGroup*) frameworkTestGroup {
-    FLReturnStaticObject( [[FLUnitTestGroup alloc] initWithGroupName:@"Framework Tests" priority:FLUnitTestPriorityFramework]);
-}
-
-+ (FLUnitTestGroup*) defaultTestGroup {
-    FLReturnStaticObject( [[FLUnitTestGroup alloc] initWithGroupName:@"Normal Tests" priority:FLUnitTestPriorityNormal]);
-}
-
-+ (FLUnitTestGroup*) importantTestGroup {
-    FLReturnStaticObject( [[FLUnitTestGroup alloc] initWithGroupName:@"Important Tests" priority:FLUnitTestPriorityHigh]);
-}
-
-+ (FLUnitTestGroup*) lastTestGroup {
-    FLReturnStaticObject( [[FLUnitTestGroup alloc] initWithGroupName:@"Last Tests" priority:FLUnitTestPriorityLow]);
-}
-
-
-
 @end

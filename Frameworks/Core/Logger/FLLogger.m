@@ -8,9 +8,17 @@
 
 #import "FLLogger.h"
 #import <objc/runtime.h>
+
+@interface FLLogger()
+@property (readwrite, strong, nonatomic) NSMutableString* line;
+@end
+
 @implementation FLLogger
 
-- (id) initWithWhitespace:(FLWhitespace*) whitespace {
+@synthesize line = _line;
+
+
+- (id) init {
     self = [super init];
     if(self) {
         static int count = 0;
@@ -18,30 +26,23 @@
         snprintf(buffer, 128, "com.fishlamp.logger%d", count++);
         _fifoQueue = dispatch_queue_create(buffer, DISPATCH_QUEUE_SERIAL);
         _sinks = [[NSMutableArray alloc] init];
-        _whitespace = FLRetain(whitespace);
-        _eolString = FLRetain(_whitespace ? _whitespace.eolString : @"");
+        self.stringFormatterOutput = self;
     }
     
     return self;
 }
 
-+ (id) loggerWithWhitespace:(FLWhitespace*) whitespace {
-    return FLAutorelease([[[self class] alloc] initWithWhitespace:whitespace]);
-}
 
 + (id) logger {
     return FLAutorelease([[[self class] alloc] init]);
 }
 
-- (id) init {
-    return [self initWithWhitespace:[FLWhitespace tabbedWithSpacesWhitespace]];
-}   
+  
 
 - (void) dealloc {
     dispatch_release(_fifoQueue);
 #if FL_MRC
-    [_eolString release];
-    [_whitespace release];
+    [_line release];
     [_sinks release];
     [super dealloc];
 #endif
@@ -75,8 +76,9 @@
 
 - (void) sendEntryToSinks:(FLLogEntry*) entry {
     BOOL stop = NO;
+    entry.indentLevel = _indentLevel;
     for(id<FLLogSink> sink in _sinks) {
-        [sink logEntry:entry stop:&stop];
+        [sink logEntry:entry stopPropagating:&stop];
         if(stop) {
             break;
         }
@@ -98,6 +100,16 @@
     }];
 }
 
+- (void) closeCurrentLine {
+    if(self.line) {
+        FLLogEntry* entry = [FLLogEntry logEntry];
+        entry.logString = self.line;
+        entry.logType = FLLogTypeLog;
+        entry.indentLevel = _indentLevel;
+        [self sendEntryToSinks:entry];
+        self.line = nil;
+    }
+}
 
 - (void) logString:(NSString*) string
            logType:(NSString*) logType
@@ -114,7 +126,11 @@
 #endif
 
     [self dispatchBlock: ^{
+    
+        [self closeCurrentLine];
+    
         FLLogEntry* entry = [FLLogEntry logEntry];
+        entry.indentLevel = _indentLevel;
         entry.logString = string;
         entry.logType = logType;
         entry.stackTrace = stackTrace;
@@ -122,105 +138,114 @@
     }];
 }
 
-- (void) logError:(NSError*) error {
+- (void) stringFormatterAppendBlankLine:(FLStringFormatter*) stringFormatter {
     [self dispatchBlock: ^{
         FLLogEntry* entry = [FLLogEntry logEntry];
-        entry.error = error;
-        entry.logString = [error localizedDescription];
-        entry.stackTrace = error.stackTrace;
+        entry.logString = @"";
+        entry.logType = FLLogTypeLog;
+        entry.indentLevel = _indentLevel;
         [self sendEntryToSinks:entry];
     }];
 }
 
-- (void) logException:(NSException*) exception withComment:(NSString*) comment {
-    FLLogEntry* entry = [FLLogEntry logEntry];
-    entry.exception = exception;
-    
-    NSString* info = [NSString stringWithFormat:@"name: %@, reason: %@", exception.name, exception.reason];
-    
-    if(comment) {
-        comment = [NSString stringWithFormat:@"%@ (%@)", comment, info];
-    }
-    else {
-        comment = info;
-    }
-    
-    entry.logString = comment;
-    entry.stackTrace = [FLStackTrace stackTraceWithException:exception];
-
-    [self sendEntryToSinks:entry];
+- (void) stringFormatterOpenLine:(FLStringFormatter*) stringFormatter {
 }
 
-- (void) logException:(NSException*) exception {
+- (void) stringFormatterCloseLine:(FLStringFormatter*) stringFormatter {
     [self dispatchBlock: ^{
-        [self logException:exception withComment:nil];
+        [self closeCurrentLine];
+    }];
+}
+
+- (void) stringFormatter:(FLStringFormatter*) stringFormatter appendString:(NSString*) string {
+    [self dispatchBlock: ^{
+        if(self.line) {
+            [self.line appendString:string];
+        }
+        else {
+            self.line = FLMutableCopyWithAutorelease(string);
+        }
+    }];
+}
+
+- (void) stringFormatter:(FLStringFormatter*) stringFormatter appendAttributedString:(NSAttributedString*) attributedString {
+    [self stringFormatter:stringFormatter appendString:attributedString.string];
+}
+
+- (void) stringFormatterIndent:(FLStringFormatter*) stringFormatter {
+    [self dispatchBlock: ^{
+        ++_indentLevel; 
+    }];
+}
+
+- (void) stringFormatterOutdent:(FLStringFormatter*) stringFormatter {
+    [self dispatchBlock: ^{
+        --_indentLevel; 
+    }];
+}
+
+- (void) logError:(NSError*) error {
+    [self dispatchBlock: ^{
+        for(id<FLLogSink> sink in _sinks) {
+            FLLogEntry* entry = [FLLogEntry logEntry];
+            entry.logType = FLLogTypeError;
+            entry.indentLevel = _indentLevel;
+            entry.error = error;
+            entry.stackTrace = error.stackTrace;
+            [self sendEntryToSinks:entry];
+        }
+    }];
+}
+
+- (void) logException:(NSException*) exception withComment:(NSString*) comment {
+    [self dispatchBlock: ^{
+        for(id<FLLogSink> sink in _sinks) {
+            FLLogEntry* entry = [FLLogEntry logEntry];
+            entry.logString = comment;
+            entry.logType = FLLogTypeException;
+            entry.indentLevel = _indentLevel;
+            entry.exception = exception;
+            [self sendEntryToSinks:entry];
+        }
     }];
 }
 
 
-//- (void) logString:(NSString*) string;
-//- (void) logFormat:(NSString*) format, ...;
-//- (void) logFormat:(NSString*) format arguments:(va_list) list;
-
-- (void) logString:(NSString*) string {
-    [self logString:string logType:FLLogTypeLog stackTrace:nil];
-}
-
+//- (void) logException:(NSException*) exception withComment:(NSString*) comment {
 //
-//- (void) logFormat:(NSString*) format, ... {
-//    FLAssertNotNil(format);
-//	va_list va;
-//	va_start(va, format);
-//	NSString *string = FLAutorelease([[NSString alloc] initWithFormat:format arguments:va]);
-//	va_end(va);
-//    [self logString:string logType:FLLogTypeLog stackTrace:nil];
-//}
+//    [self dispatchBlock: ^{
+//        for(id<FLLogSink> sink in _sinks) {
+//            [sink logger:self openEntryWithLogType:FLLogTypeException];
+//            [sink stringFormatterOpenLine:self];
+//            [sink logger:self appendException:exception];
+//            if(FLStringIsNotEmpty(comment)) {
+//                [sink stringFormatter:self appendString:comment];
+//            }
+//            [sink loggerCloseEntry:self];
+//        }
+//    }];
 //
-//- (void) logFormat:(NSString*) format arguments:(va_list) va_list {
-//	NSString *string = FLAutorelease([[NSString alloc] initWithFormat:format arguments:va_list]);
-//    [self logString:string logType:FLLogTypeLog stackTrace:nil];
+////    FLLogEntry* entry = [FLLogEntry logEntry];
+////    entry.exception = exception;
+////    
+////    NSString* info = [NSString stringWithFormat:@"name: %@, reason: %@", exception.name, exception.reason];
+////    
+////    if(comment) {
+////        comment = [NSString stringWithFormat:@"%@ (%@)", comment, info];
+////    }
+////    else {
+////        comment = info;
+////    }
+////    
+////    entry.logString = comment;
+////    entry.stackTrace = [FLStackTrace stackTraceWithException:exception];
+////
+////    [self sendEntryToSinks:entry];
 //}
 
-
-- (void) stringFormatter:(FLStringFormatter*) stringFormatter 
-            appendString:(NSString*) string
-  appendAttributedString:(NSAttributedString*) attributedString
-              lineUpdate:(FLStringFormatterLineUpdate) lineUpdate {
-
-
-    if(lineUpdate.closePreviousLine) {
-        [self logString:@"\n"];
-    }
-
-    if(lineUpdate.prependBlankLine) {
-        [self logString:@"\n"];
-    }
-
-    if(lineUpdate.openLine) {
-//        if(_whitespace) { 
-//            [self appendStringToStorage:[_whitespace tabStringForScope:self.indentLevel]];
-//        } 
-    }
-    
-    if(string) {
-        [self logString:string];
-    }
-    
-    if(attributedString) {
-        [self logString:[attributedString string]];
-    }
-    
-    if(lineUpdate.closeLine) {
-        [self logString:@"\n"];
-    }
-}            
-
-- (void) indent {
+- (void) logException:(NSException*) exception {
+    [self logException:exception withComment:nil];
 }
-
-- (void) outdent {
-}
-
 
 @end
 

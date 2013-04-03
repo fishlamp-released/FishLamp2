@@ -46,5 +46,8 @@ id _run_block_to_create_object(FLStaticCreateObjectBlock block) {
 #define FLReturnStaticObject(...) \
         static dispatch_once_t pred = 0; \
         static id s_static_object = nil; \
-        dispatch_once(&pred, ^{ s_static_object = __VA_ARGS__; }); \
+        dispatch_once(&pred, ^{ \
+            s_static_object = __VA_ARGS__;  \
+            FLRetainObject(s_static_object);  \
+            }); \
         return s_static_object        

@@ -8,7 +8,8 @@
 
 #import "FLLogSink.h"
 
-@interface FLConsoleLogSink : FLLogSink {
+@interface FLConsoleLogSink : FLLogSink<FLLogSink> {
+@private
 }
 + (id) consoleLogSink;
 + (FLLogSink*) consoleLogSink:(FLLogSinkOutputFlags) outputFlags;

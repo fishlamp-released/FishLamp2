@@ -10,6 +10,7 @@
 #import "FLPrettyString.h"
 
 @implementation FLLogSink
+
 @synthesize outputFlags = _outputFlags;
 
 - (id) initWithOutputFlags:(FLLogSinkOutputFlags) outputFlags  {
@@ -26,8 +27,7 @@
     return [self initWithOutputFlags:0];
 }
 
-- (void) logEntry:(FLLogEntry*) entry 
-             stop:(BOOL*) stop {
+- (void) logEntry:(FLLogEntry*) entry stopPropagating:(BOOL*) stop {
 }
 
 @end

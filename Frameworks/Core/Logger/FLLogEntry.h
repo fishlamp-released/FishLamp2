@@ -7,6 +7,8 @@
 //
 
 #import "FLRequired.h"
+#import "FLStringFormatter.h"
+
 @class FLStackTrace;
 
 @interface FLLogEntry : NSObject<NSCopying> {
@@ -19,10 +21,12 @@
     FLStackTrace* _stackTrace;
     NSError* _error;
     NSException* _exception;
+    NSUInteger _indentLevel;
 } 
 
 + (id) logEntry;
 
+@property (readwrite, assign, nonatomic) NSUInteger indentLevel;
 @property (readwrite, strong, nonatomic) NSError* error;
 @property (readwrite, strong, nonatomic) NSException* exception;
 @property (readwrite, strong, nonatomic) NSString* logString;

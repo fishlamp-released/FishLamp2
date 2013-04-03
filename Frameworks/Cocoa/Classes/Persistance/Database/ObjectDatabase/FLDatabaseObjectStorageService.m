@@ -13,7 +13,7 @@
 @end
 
 @implementation FLDatabaseObjectStorageService
-@synthesize objectStorage = _objectStorage;
+@synthesize objectStorage = _database;
 
 + (id) databaseObjectStorageService:(id<FLDatabaseObjectStorageServiceDelegate>) delegate {
     return FLAutorelease([[[self class] alloc] initWithDelegate:delegate]);
@@ -21,14 +21,14 @@
 
 #if FL_MRC
 - (void) dealloc {
-    [_objectStorage release];
+    [_database release];
     [super dealloc];
 }
 #endif
 
 - (void) openService {
     NSString* databasePath = [self.delegate databaseObjectStorageServiceGetDatabasePath:self];
-    FLObjectDatabase* database = [[FLObjectDatabase alloc] initWithFilePath:databasePath];
+    FLObjectDatabase* database = FLAutorelease([[FLObjectDatabase alloc] initWithFilePath:databasePath]);
     BOOL needsUpgrade = [database openDatabase];
     if(needsUpgrade) {
         // doh.

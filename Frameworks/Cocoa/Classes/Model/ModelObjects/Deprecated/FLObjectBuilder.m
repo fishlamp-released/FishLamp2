@@ -119,7 +119,7 @@
 			{
 				if([value isKindOfClass:[NSDictionary class]])
 				{
-//					FLAssert_v(property.generalType == FLGeneralTypeObject, @"not an object?");
+//					FLAssertWithComment(property.generalType == FLGeneralTypeObject, @"not an object?");
 				
 					id newObject = FLAutorelease([[property.classForType alloc] init]);
 					[object setValue:newObject forKey:key];
@@ -242,7 +242,7 @@
             targetObject = [self.lastInflator containingObject];
         }
         
-        FLAssertNotNil_(targetObject);
+        FLAssertNotNil(targetObject);
         
         FLPropertyInflator* newState = [FLPropertyInflator propertyInflator:targetObject propertyName:propertyName state:state];
         [_stack addObject:newState];
@@ -271,7 +271,7 @@
         FLPropertyInflator* propertyToFinish = FLRetainWithAutorelease(self.stack.lastObject);
         [self.stack removeLastObject];
     
-        FLAssertNotNil_(propertyToFinish);
+        FLAssertNotNil(propertyToFinish);
 	    FLAssertIsNotNil_(propertyToFinish.containingObject);
         
         [propertyToFinish inflatePropertyWithDataDecoder:self.dataDecoder];

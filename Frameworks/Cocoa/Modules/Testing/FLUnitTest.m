@@ -10,7 +10,6 @@
 #import "FLTestCase.h"
 #import "FLObjcRuntime.h"
 #import "FLTestCaseResult.h"
-#import "FLTestCaseResult_Internal.h"
 #import "FLObjcRuntime.h"
 #import "FLUnitTestResult.h"
 #import "FLUnitTestResult_Internal.h"
@@ -25,6 +24,32 @@
 @implementation FLUnitTest
 
 @synthesize testCases = _testCases;
+
+static FLLogger* s_logger = nil;
+static FLLogger* s_outputLogger = nil;
+
++ (FLLogger*) logger {
+    return s_logger;
+}
+
++ (void) setLogger:(FLLogger*) logger {
+    FLSetObjectWithRetain(s_logger, logger);
+}
+
++ (FLLogger*) outputLog {
+    return s_outputLogger;
+}
+
++ (void) setOutputLog:(FLLogger*) logger {
+    FLSetObjectWithRetain(s_outputLogger, logger);
+}
+
+
++ (void) initialize {
+    if(s_logger == nil) {
+        [FLUnitTest setLogger:[FLLogLogger instance]];
+    }
+}
 
 + (FLUnitTest*) unitTest {
     return FLAutorelease([[[self class] alloc] init]);
@@ -92,8 +117,8 @@
         FLTestCase* testCase = [FLTestCase testCase:testName target:self selector:selector.selector];
         [_testCases addObject:testCase];
 
-        if([selector argumentCount] != 2) {
-            [testCase setDisabledWithReason:[NSString stringWithFormat:@"expecting zero arguments but found %d.", [selector argumentCount] - 2]];
+        if([selector argumentCount] != 0) {
+            [testCase setDisabledWithReason:[NSString stringWithFormat:@"expecting zero arguments but found %d.", [selector argumentCount]]];
         }
     }
     
@@ -119,7 +144,7 @@
 }
 
 + (FLUnitTestGroup*) unitTestGroup {
-    return [FLUnitTestGroup defaultTestGroup];
+    return [self defaultTestGroup];
 }
 
 - (FLTestCase*) findTestCaseForName:(NSString*) name {
@@ -143,7 +168,7 @@
 
 
 //- (void) logString:(NSString*) string
-//           logInfo:(FLLogInfo) logInfo
+//           logInfo:(FLTestLogInfo) logInfo
 //           stackTrace:(FLStackTrace*) stackTrace {
 //
 //    if(_logRedirect) {
@@ -167,46 +192,41 @@
     
         [_testCases sortUsingSelector:@selector(compare:)];
         
+        
         for(FLTestCase* testCase in _testCases) {
+        
             if(testCase.isDisabled) {
-                FLLog(@"DISABLED: %@ (%@)", testCase.testCaseName, testCase.disabledReason);
+                [[FLUnitTest outputLog] appendLineWithFormat:@"Disabled: %@ (%@)", testCase.testCaseName, testCase.disabledReason];
             }
             else {
                 FLTestCaseResult* result = [FLTestCaseResult testCaseResult:testCase];
 
                 [results setTestResult:result forKey:testCase.testCaseName];
-
+                [[FLUnitTest logger] pushLoggerSink:result];
+                    
                 @try {
-                    
-                    [[FLLogLogger instance] pushLoggerSink:result];
-                    
-
-                    FLLog(@"STARTING %@", testCase.testCaseName);
-                    
                     [self runChildSynchronously:testCase];
-
                     [result setPassed];
-                    FLLog(@"PASS!")
                 }
                 @catch(NSException* ex) {
                     [[results testResultForKey:testCase.testCaseName] setError:ex.error];
-                    FLLog(@"FAIL: %@", [ex.error description]);
                 }
-                @finally {
-                    [self teardownTests];
-                    [[FLLogLogger instance] removeLoggerSink:result];
-                }
+
+                [[FLUnitTest logger] removeLoggerSink:result];
                 
                 if(result.passed) {
-                    FLLog(@"passed: %@", testCase.testCaseName);
+                    [[FLUnitTest outputLog] appendLineWithFormat:@"Passed: %@", testCase.testCaseName];
                 }
                 else {
-                    [[FLLogLogger instance] logEntries:result.logEntries];
+                    [[FLUnitTest outputLog] appendLineWithFormat:@"FAILED: %@", testCase.testCaseName ];
+                    [[FLUnitTest outputLog] indent:^{
+                        [[FLUnitTest logger] logEntries:result.logEntries];
+                    }];
                 }
             }
         }
         
-        FLConfirmIsYesWithComment([results allTestsPassed], @"tests failed");
+        [self teardownTests];
      }
     
     return results;
@@ -251,31 +271,51 @@
 }
 
 
++ (FLUnitTestGroup*) sanityCheckTestGroup {
+    FLReturnStaticObject([[FLUnitTestGroup alloc] initWithGroupName:@"Sanity Checks" priority:FLUnitTestPrioritySanityCheck]);
+}
+
++ (FLUnitTestGroup*) frameworkTestGroup {
+    FLReturnStaticObject( [[FLUnitTestGroup alloc] initWithGroupName:@"Framework Tests" priority:FLUnitTestPriorityFramework]);
+}
+
++ (FLUnitTestGroup*) defaultTestGroup {
+    FLReturnStaticObject( [[FLUnitTestGroup alloc] initWithGroupName:@"Normal Tests" priority:FLUnitTestPriorityNormal]);
+}
+
++ (FLUnitTestGroup*) importantTestGroup {
+    FLReturnStaticObject( [[FLUnitTestGroup alloc] initWithGroupName:@"Important Tests" priority:FLUnitTestPriorityHigh]);
+}
+
++ (FLUnitTestGroup*) lastTestGroup {
+    FLReturnStaticObject( [[FLUnitTestGroup alloc] initWithGroupName:@"Last Tests" priority:FLUnitTestPriorityLow]);
+}
+
 @end
 
-@implementation FLSanityCheck
-+ (FLUnitTestGroup*) unitTestGroup {
-    return [FLUnitTestGroup sanityTestGroup];
-}
-@end
-
-@implementation FLFrameworkUnitTest
-+ (FLUnitTestGroup*) unitTestGroup {
-    return [FLUnitTestGroup frameworkTestGroup];
-}
-@end
-
-@implementation FLImportantUnitTest
-+ (FLUnitTestGroup*) unitTestGroup {
-    return [FLUnitTestGroup importantTestGroup];
-}
-@end
-
-@implementation FLLastUnitTest 
-+ (FLUnitTestGroup*) unitTestGroup {
-    return [FLUnitTestGroup lastTestGroup];
-}
-@end
+//@implementation FLSanityCheck
+//+ (FLUnitTestGroup*) unitTestGroup {
+//    return [FLUnitTestGroup sanityCheckTestGroup];
+//}
+//@end
+//
+//@implementation FLFrameworkUnitTest
+//+ (FLUnitTestGroup*) unitTestGroup {
+//    return [FLUnitTestGroup frameworkTestGroup];
+//}
+//@end
+//
+//@implementation FLImportantUnitTest
+//+ (FLUnitTestGroup*) unitTestGroup {
+//    return [FLUnitTestGroup importantTestGroup];
+//}
+//@end
+//
+//@implementation FLLastUnitTest 
+//+ (FLUnitTestGroup*) unitTestGroup {
+//    return [FLUnitTestGroup lastTestGroup];
+//}
+//@end
 
 
 
