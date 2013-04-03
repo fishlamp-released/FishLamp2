@@ -7,62 +7,77 @@
 		<key>CocoaTestTool-64-MRC.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>16</integer>
-		</dict>
-		<key>FishLampCocoa-ALL.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>17</integer>
+			<integer>10</integer>
 		</dict>
 		<key>FishLampCocoa-OSX-32-MRC.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>9</integer>
+			<integer>14</integer>
 		</dict>
 		<key>FishLampCocoa-OSX-3264-MRC.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>8</integer>
+			<integer>13</integer>
 		</dict>
 		<key>FishLampCocoa-OSX-64-ARC.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>6</integer>
+			<integer>12</integer>
 		</dict>
 		<key>FishLampCocoa-OSX-64-MRC.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>5</integer>
+			<integer>11</integer>
 		</dict>
 		<key>FishLampCocoa-iOS-ARC.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>10</integer>
+			<integer>4</integer>
 		</dict>
-		<key>FishLampCocoaTests-OSX-32-MRC.xcscheme</key>
+		<key>FishLampCocoaFramework-OSX-32-MRC.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>15</integer>
+			<integer>3</integer>
 		</dict>
-		<key>FishLampCocoaTests-OSX-3264-MRC.xcscheme</key>
+		<key>FishLampCocoaFramework-OSX-3264-MRC.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>14</integer>
+			<integer>2</integer>
 		</dict>
-		<key>FishLampCocoaTests-OSX-64-ARC.xcscheme</key>
+		<key>FishLampCocoaFramework-OSX-64-ARC.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>13</integer>
+			<integer>1</integer>
 		</dict>
-		<key>FishLampCocoaTests-OSX-64-MRC.xcscheme</key>
+		<key>FishLampCocoaFramework-OSX-64-MRC.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>12</integer>
+			<integer>0</integer>
 		</dict>
 		<key>FishLampCocoaTests-iOS-ARC.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>11</integer>
+			<integer>5</integer>
+		</dict>
+		<key>FishLampCocoaTestsFramework-OSX-32-MRC.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>9</integer>
+		</dict>
+		<key>FishLampCocoaTestsFramework-OSX-3264-MRC.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>8</integer>
+		</dict>
+		<key>FishLampCocoaTestsFramework-OSX-64-ARC.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>7</integer>
+		</dict>
+		<key>FishLampCocoaTestsFramework-OSX-64-MRC.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>6</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
@@ -203,6 +218,26 @@
 			<true/>
 		</dict>
 		<key>27DF867D15CF2D67009DDC8A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>27E71934170CEC4200DDFBF5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>27E7194C170CEC4800DDFBF5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>27E71956170CEC4C00DDFBF5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>27E71960170CEC4D00DDFBF5</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -29,7 +29,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "275747AD170CA9CF00065588"
-               BuildableName = "FishLampConnect-OSX-32-MRC.framework"
+               BuildableName = "FishLampConnectFramework-OSX-32-MRC.framework"
                BlueprintName = "FishLampConnectFramework-OSX-32-MRC"
                ReferencedContainer = "container:FishLampConnect.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "275747A0170CA9CE00065588"
-               BuildableName = "FishLampConnect-OSX-3264-MRC.framework"
+               BuildableName = "FishLampConnectFramework-OSX-3264-MRC.framework"
                BlueprintName = "FishLampConnectFramework-OSX-3264-MRC"
                ReferencedContainer = "container:FishLampConnect.xcodeproj">
             </BuildableReference>
@@ -57,7 +57,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "27574793170CA9CE00065588"
-               BuildableName = "FishLampConnect-OSX-64-ARC.framework"
+               BuildableName = "FishLampConnectFramework-OSX-64-ARC.framework"
                BlueprintName = "FishLampConnectFramework-OSX-64-ARC"
                ReferencedContainer = "container:FishLampConnect.xcodeproj">
             </BuildableReference>
@@ -71,7 +71,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "27574783170CA9C900065588"
-               BuildableName = "FishLampConnect-OSX-64-MRC.framework"
+               BuildableName = "FishLampConnectFramework-OSX-64-MRC.framework"
                BlueprintName = "FishLampConnectFramework-OSX-64-MRC"
                ReferencedContainer = "container:FishLampConnect.xcodeproj">
             </BuildableReference>

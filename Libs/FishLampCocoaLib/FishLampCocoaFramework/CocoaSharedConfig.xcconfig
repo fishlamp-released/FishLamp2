@@ -1,0 +1,12 @@
+//
+//  CocoaSharedConfig.xcconfig
+//  FishLampCocoa
+//
+//  Created by Mike Fullerton on 4/2/13.
+//  Copyright (c) 2013 Mike Fullerton. All rights reserved.
+//
+GCC_PRECOMPILE_PREFIX_HEADER = YES
+GCC_PREFIX_HEADER = FishLampCocoa/FishLampCocoa-Prefix.pch
+HEADER_SEARCH_PATHS= $(inherited) $(FISHLAMP_COCOA)
+
+INFOPLIST_FILE = FishLampCocoa/FishLampCocoa-Info.plist
