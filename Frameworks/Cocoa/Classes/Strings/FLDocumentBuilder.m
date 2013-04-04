@@ -17,6 +17,8 @@
     if(self) {
         _document = [[FLStringDocument alloc] init];
         _document.rootStringBuilder.parent = self;
+        self.stringFormatterOutput = self;
+
     }
     return self;
 }
@@ -88,6 +90,12 @@
 }
 
 - (void) stringFormatterOutdent:(FLStringFormatter*) stringFormatter {
+}
+
+- (NSString*) description {
+    FLPrettyString* string = [FLPrettyString prettyString];
+    [self appendLinesToStringFormatter:string];
+    return string.string;
 }
 
 

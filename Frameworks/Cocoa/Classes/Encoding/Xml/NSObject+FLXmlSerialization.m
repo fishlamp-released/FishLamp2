@@ -16,7 +16,7 @@
       
 	FLObjectDescriber* objectDescriber = [[self class] objectDescriber];
 	if(objectDescriber) {
-        for(FLObjectDescriber* property in [objectDescriber.properties objectEnumerator]) {
+        for(FLObjectDescriber* property in [objectDescriber.childDescribers objectEnumerator]) {
             if(property.objectEncoder) {
                 id object = [self valueForKey:property.objectName];
                 if(object) {
@@ -43,7 +43,7 @@
      objectDescriber:(FLObjectDescriber*) description {
     
 	if(description && self.count) {
-		NSDictionary* arrayTypes = description.properties;
+		NSDictionary* arrayTypes = description.childDescribers;
 		      
 		if(arrayTypes.count == 1) {
 			FLObjectDescriber* elementDesc = [[arrayTypes allValues] lastObject];

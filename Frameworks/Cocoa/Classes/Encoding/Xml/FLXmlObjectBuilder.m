@@ -67,7 +67,7 @@ withPropertyDescription:(FLObjectDescriber*) objectDescription {
 
     FLAssertNotNil(newArray);
     FLAssertNotNil(objectDescription);
-    FLConfirmNotNilWithComment(objectDescription.properties, @"expecting an array objectDescription");
+    FLConfirmNotNilWithComment(objectDescription.childDescribers, @"expecting an array objectDescription");
 
     for(id elementName in element.elements) {
         id elementOrArray = [element.elements objectForKey:elementName];
@@ -82,7 +82,14 @@ withPropertyDescription:(FLObjectDescriber*) objectDescription {
         }
         else {
             FLAssert([elementOrArray isKindOfClass:[FLParsedItem class]]);
-            [newArray addObject:[self inflateObjectWithPropertyDescription:arrayType withElement:elementOrArray]];
+            
+            id value = [self inflateObjectWithPropertyDescription:arrayType withElement:elementOrArray];
+            if(value) {
+                [newArray addObject:value];
+            }
+            else {
+                FLLog(@"Unable to inflate xml element %@:%@", elementName, [elementOrArray description]);
+            }
         }
     }
 }
@@ -129,7 +136,7 @@ withPropertyDescription:(FLObjectDescriber*) objectDescription {
     for(id elementName in element.elements) {
         id elementOrArray = [element.elements objectForKey:elementName];
 
-        FLObjectDescriber* objectDescription = [describer.properties objectForKey:elementName];
+        FLObjectDescriber* objectDescription = [describer.childDescribers objectForKey:elementName];
         if(!objectDescription) {
             FLLog(@"object builder skipped missing objectDescription named: %@", elementName);
             continue;
@@ -137,7 +144,7 @@ withPropertyDescription:(FLObjectDescriber*) objectDescription {
         
         id propertyValue = nil;
         
-        if(objectDescription.hasProperties) {
+        if([objectDescription objectTypeIsArray]) {
             propertyValue = [NSMutableArray array];
 
             if([elementOrArray isKindOfClass:[FLParsedItem class]]) {

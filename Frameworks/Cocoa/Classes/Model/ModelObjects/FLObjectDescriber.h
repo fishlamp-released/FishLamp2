@@ -17,15 +17,16 @@
 @private 
     NSString* _objectName;
     Class _objectClass;
-	NSMutableDictionary* _properties;
+	NSMutableDictionary* _childDescribers;
     
     FLObjectEncoder* _objectEncoder;
     FLPropertyAttributes_t _attributes;
 }
+
 @property (readonly, strong, nonatomic) NSString* objectName;
 @property (readonly, assign, nonatomic) Class objectClass;
-@property (readonly, copy, nonatomic) NSDictionary* properties;
-@property (readonly, assign, nonatomic) BOOL hasProperties;
+@property (readonly, copy, nonatomic) NSDictionary* childDescribers;
+@property (readonly, assign, nonatomic) BOOL objectTypeIsArray;
 @property (readonly, assign, nonatomic) FLPropertyAttributes_t propertyAttributes;
 
 @property (readwrite, strong, nonatomic) FLObjectEncoder* objectEncoder;
@@ -37,6 +38,8 @@
 
 + (id) objectDescriberForClass:(Class) aClass
                 withObjectName:(NSString*) name;
+
++ (id) objectDescriberForClass:(Class) aClass;
 
 - (FLObjectDescriber*) childDescriberForObjectName:(NSString*) propertyName;
 

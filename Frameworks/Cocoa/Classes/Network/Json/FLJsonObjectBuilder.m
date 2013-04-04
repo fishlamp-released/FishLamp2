@@ -75,7 +75,7 @@
     for(id key in self) {
         id value = [self objectForKey:key];
 
-        FLObjectDescriber* childDescription = [describer.properties objectForKey:key];
+        FLObjectDescriber* childDescription = [describer.childDescribers objectForKey:key];
         if(!childDescription) {
             FLLog(@"object builder skipped missing objectDescription named: %@", key);
             continue;

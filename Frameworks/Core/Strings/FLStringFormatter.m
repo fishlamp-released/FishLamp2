@@ -52,6 +52,7 @@ typedef struct {
 
 - (void) appendString:(NSString*) string {
     FLAssertNotNil(string);
+    FLAssertNotNil(_output);
     
     if(!_editingLine) {
         [_output stringFormatterOpenLine:self];
@@ -69,6 +70,7 @@ typedef struct {
 
 - (void) appendAttributedString:(NSAttributedString*) string {
     FLAssertNotNil(string);
+    FLAssertNotNil(_output);
 
     if(!_editingLine) {
         [_output stringFormatterOpenLine:self];
@@ -85,6 +87,9 @@ typedef struct {
 
 
 - (void) closeLine {
+
+    FLAssertNotNil(_output);
+
     if(_editingLine) {
         [_output stringFormatterCloseLine:self];
     
@@ -97,6 +102,8 @@ typedef struct {
 }
 
 - (void) closeLineWithString:(NSString*) string {
+    FLAssertNotNil(_output);
+
     if(_editingLine) {
     
         if(string) {
@@ -116,6 +123,8 @@ typedef struct {
 }
 
 - (void) closeLineWithAttributedString:(NSAttributedString*) string {
+    FLAssertNotNil(_output);
+
     if(_editingLine) {
 
         if(string) {
@@ -139,6 +148,7 @@ typedef struct {
 
 - (void) openLineWithString:(NSString*) string {
     FLAssertNotNil(string);
+    FLAssertNotNil(_output);
     
     if(_editingLine) {
         [_output  stringFormatterCloseLine:self];
@@ -159,6 +169,7 @@ typedef struct {
 
 - (void) openLineWithAttributedString:(NSAttributedString*) string {
     FLAssertNotNil(string);
+    FLAssertNotNil(_output);
     
     if(_editingLine) {
         [_output  stringFormatterCloseLine:self];
@@ -180,6 +191,7 @@ typedef struct {
 
 - (void) appendLineWithAttributedString:(NSAttributedString*) string {
     FLAssertNotNil(string);
+    FLAssertNotNil(_output);
     
     if(!_editingLine) {
         [_output stringFormatterOpenLine:self];
@@ -199,6 +211,7 @@ typedef struct {
 
 - (void) appendLine:(NSString*) string {
     FLAssertNotNil(string);
+    FLAssertNotNil(_output);
 
     if(!_editingLine) {
         [_output stringFormatterOpenLine:self];
@@ -220,6 +233,7 @@ typedef struct {
 //                      appendString:nil
 //            appendAttributedString:nil
 //                        lineUpdate:MakeInfo(_editingLine, YES, NO, NO)];
+    FLAssertNotNil(_output);
                         
     if(_editingLine) {
         [_output  stringFormatterCloseLine:self];

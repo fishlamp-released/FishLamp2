@@ -28,6 +28,7 @@
     self = [super init];
     if(self) {
         _lines = [[NSMutableArray alloc] init];
+        self.stringFormatterOutput = self;
     }    
     return self;
 }
