@@ -47,6 +47,7 @@
 //
 // optional overrides
 //
+- (void) showFirstPanel;
 
 - (void) willShowPanel:(FLPanelViewController*) toShow 
          willHidePanel:(FLPanelViewController*) toHide;

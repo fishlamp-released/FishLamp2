@@ -19,16 +19,11 @@ NSString* const FLDefaultsKeyWizardLastUserNameKey = @"com.fishlamp.username";
 NSString* const FLDefaultsKeyWizardSavePasswordKey = @"com.fishlamp.savepassword";
 
 @interface FLUserService ()
-@property (readwrite, strong, nonatomic) NSString* savedUserName;
-@property (readwrite, strong, nonatomic) NSString* savedPassword;
-
 @end
 
 @implementation FLUserService
 @synthesize userName = _userName;
 @synthesize password = _password;
-@synthesize savedUserName = _savedUserName;
-@synthesize savedPassword = _savedPassword;
 
 @synthesize authenticationDomain = _authenticationDomain;
 @synthesize rememberPassword = _rememberPassword;
@@ -55,182 +50,107 @@ NSString* const FLDefaultsKeyWizardSavePasswordKey = @"com.fishlamp.savepassword
 - (void) dealloc {
     [_userName release];
     [_password release];
-    [_savedUserName release];
-    [_savedPassword release];
     [super dealloc];
 }
 #endif
 
-//- (void) openService {
-//    [super openService];
-//    [self loadFromUserDefaults];
-//}
+- (void) setUserName:(NSString*) userName {
+    if(FLStringsAreNotEqual(userName, _userName)) {
+        FLSetObjectWithRetain(_userName, userName);
+        _userDefaultsDirty = YES;
+    }
+}
 
-- (void) closeService {
+- (void) setRememberPassword:(BOOL)rememberPassword {
+    if(_rememberPassword != rememberPassword) {
+        _rememberPassword = rememberPassword;
+        _userDefaultsDirty = YES;
+        _passwordDirty = YES;
+    }
+}
+
+- (void) setPassword:(NSString *)password {
+    if(FLStringsAreNotEqual(_password, password)) {
+        FLSetObjectWithRetain(_password, password);
+        _passwordDirty = YES;
+    }
+}
+
+- (void) loadLastUser {
+    self.rememberPassword = NO;
     self.userName = nil;
-    self.password = nil;
-    self.savedPassword = nil;
-    self.savedUserName = nil;
-    _rememberPassword = NO;
     
-//    self.userLogin.isAuthenticated = NO;
-//    self.userLogin.authTokenLastUpdateTime = nil;
-//    self.userLogin.authToken = nil;
-
-}
-
-+ (SEL) serviceOpenedSelector {
-    return @selector(userServiceDidOpen:);
-}
-
-+ (SEL) serviceClosedSelector {
-    return @selector(userServiceDidClose:);
-}
-
-
-//- (void) setUserName:(NSString*) userName {
-//    [_userLogin setUserName:userName];
-//}
-//
-//- (NSString*) userName {
-//    return [_userLogin userName];
-//}
-//
-//- (void) setPassword:(NSString*) password {
-//    [_userLogin setPassword:password];
-//}
-//
-//- (NSString*) password {
-//    return [_userLogin password];
-//}
-
-//- (void) saveUserLogin {
-////    [[FLApplicationDataModel instance] saveUserLogin:[self.context userLogin]];
-//}
-
-//- (BOOL) isAuthenticated {
-//	return [self userLogin].isAuthenticatedValue;
-//}
-//
-//- (void) setAuthenticated:(BOOL) authenticated {
-//    [self userLogin].isAuthenticatedValue = authenticated;
-////    [[FLApplicationDataModel instance] saveUserLogin:[self.context userLogin]];
-//}
-
-//+ (FLUserLogin*) loadLastUserLogin;
-//+ (FLUserLogin*) loadDefaultUser;
-//
-//+ (FLUserLogin*) loadLastUserLogin {
-//
-////     [self.userLogin loadFromStorage];
-//
-//
-//return nil;
-////	return [[FLApplicationDataModel instance] loadLastUserLogin];
-//}
-//
-//+ (FLUserLogin*) loadDefaultUser {
-////	FLUserLogin* login = [[FLApplicationDataModel instance] loadUserLoginWithGuid:[NSString zeroGuidString]];
-////    if(!login) {
-////        login = [FLUserLogin userLogin];
-////        login.userName = NSLocalizedString(@"Guest", nil);
-////        login.isAuthenticatedValue = YES;
-////        login.userGuid = [NSString zeroGuidString];
-////        [[FLApplicationDataModel instance] saveUserLogin:login];
-////        [[FLApplicationDataModel instance] setCurrentUser:login];
-////    }
-////	return login;
-//
-//    return nil;
-//}
-
-- (void) removeFromUserDefaults {
-
+    FLAssertStringIsNotEmptyWithComment(self.authenticationDomain, @"domain for password in keychain not set");
+    
+    self.userName = [[NSUserDefaults standardUserDefaults] objectForKey:FLDefaultsKeyWizardLastUserNameKey];
+    
     if(FLStringIsNotEmpty(self.userName)) {
-        [FLKeychain removeHttpPasswordForUserName:self.userName withDomain:self.authenticationDomain];
-        self.password = nil;
-        self.savedPassword = nil;
+        NSNumber* rememberPW = [[NSUserDefaults standardUserDefaults] objectForKey:FLDefaultsKeyWizardSavePasswordKey];
+        _rememberPassword = rememberPW && [rememberPW boolValue];
     }
     
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:FLDefaultsKeyWizardLastUserNameKey];
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:FLDefaultsKeyWizardSavePasswordKey];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    
-    self.savedUserName = nil;
-    self.userName = nil;
+    _userDefaultsDirty = NO;
 }
 
-- (void) loadFromUserDefaults {
-   
-    if(FLStringIsEmpty(self.userName) || FLStringIsEmpty(self.password)) {
-        self.rememberPassword = NO;
-        self.userName = nil;
-        self.password = nil;
-        
-        FLAssertStringIsNotEmptyWithComment(self.authenticationDomain, @"domain for password in keychain not set");
-        
-        self.userName = [[NSUserDefaults standardUserDefaults] objectForKey:FLDefaultsKeyWizardLastUserNameKey];
-        self.savedUserName = self.userName;
+- (void) saveLastUser {
+    if(_userDefaultsDirty) {
+        [[NSUserDefaults standardUserDefaults] setObject:self.userName forKey:FLDefaultsKeyWizardLastUserNameKey];
+        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:_rememberPassword] forKey:FLDefaultsKeyWizardSavePasswordKey];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+    _userDefaultsDirty = NO;
+    
+}
+
+- (void) savePassword {
+    if(_passwordDirty) {
         if(FLStringIsNotEmpty(self.userName)) {
-         
-            NSNumber* rememberPW = [[NSUserDefaults standardUserDefaults] objectForKey:FLDefaultsKeyWizardSavePasswordKey];
-            self.rememberPassword = rememberPW && [rememberPW boolValue];
-            
-            if(self.rememberPassword) {
-                NSString* pw = [FLKeychain httpPasswordForUserName:self.userName withDomain:self.authenticationDomain];
-                if(FLStringIsNotEmpty(pw)) {
-                    self.password = pw;
-                    self.savedPassword = pw;
-                }
-            }
-        }
-    }
-}
-
-- (void) saveToUserDefaults {
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        FLAssertStringIsNotEmptyWithComment(self.authenticationDomain, @"domain for password in keychain not set");
-        
-        if(FLStringIsNotEmpty(self.userName) && self.rememberPassword) {
-            [[NSUserDefaults standardUserDefaults] setObject:self.userName forKey:FLDefaultsKeyWizardLastUserNameKey];
-            [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:YES] forKey:FLDefaultsKeyWizardSavePasswordKey];
-            [[NSUserDefaults standardUserDefaults] synchronize];
-
-            if(FLStringIsNotEmpty(self.password)) {
-            
-                if(FLStringsAreNotEqual(self.password, self.savedPassword)) {
-                    [FLKeychain setHttpPassword:self.password forUserName:self.userName withDomain:self.authenticationDomain];
-                }
-                self.savedPassword = self.password;
+            if(_rememberPassword) {
+                [FLKeychain setHttpPassword:self.password forUserName:self.userName withDomain:self.authenticationDomain];
             }
             else {
                 [FLKeychain removeHttpPasswordForUserName:self.userName withDomain:self.authenticationDomain];
             }
         }
-        else {
-            [self removeFromUserDefaults];
-        }
-    });
-    
+    }
+    _passwordDirty = NO;
 }
 
+- (void) loadPassword {
+    if(FLStringIsNotEmpty(self.userName)) {
+        if(_rememberPassword) {
+            self.password = [FLKeychain httpPasswordForUserName:self.userName withDomain:self.authenticationDomain];
+        }
+        else {
+            [FLKeychain removeHttpPasswordForUserName:self.userName withDomain:self.authenticationDomain];
+        }
+    }
+    
+    _passwordDirty = NO;
+}
+
+
 - (void) loadCredentials {
-    [self loadFromUserDefaults];
+    [self loadLastUser];
+    [self loadPassword];
+
 }
 
 - (void) saveCredentials {
-    [self saveToUserDefaults];
+    [self saveLastUser];
+    [self savePassword];
 }
 
 - (BOOL) canAuthenticate {
-    
     return FLStringIsNotEmpty(self.userName) && FLStringIsNotEmpty(self.password);
-
-
-//    return [self.delegate userServiceCanAuthenticate:self];
 }
 
+- (void) closeService {
+    
+    self.userName = nil;
+    self.password = nil;
+    _rememberPassword = NO;
+}
 
 @end
 

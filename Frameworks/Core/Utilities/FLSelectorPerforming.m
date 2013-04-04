@@ -78,7 +78,7 @@ void FLConfirmNoReturnObject(id obj) {
               withObject:(id) object2
               withObject:(id) object3 {
 
-    FLAssertWithComment(FLArgumentCountForClassSelector([self class], selector) == argCount, @"arg count is %d, should be: %d", argCount, FLArgumentCountForClassSelector([self class], selector));
+    FLAssertWithComment(FLArgumentCountForClassSelector([self class], selector) == argCount, @"@selector(%@) arg count is %d, should be: %d", NSStringFromSelector(selector), argCount, FLArgumentCountForClassSelector([self class], selector));
 
     switch(argCount) {
         case 0: 
@@ -122,6 +122,9 @@ BOOL FLPerformSelectorOnMainThreadWithArgCount(id target,
                                           id object3) {
                                           
     if([target respondsToSelector:selector]) {
+    
+        FLAssertWithComment(FLArgumentCountForClassSelector([target class], selector) == argCount, @"@selector(%@) arg count is %d, should be: %d", NSStringFromSelector(selector), argCount, FLArgumentCountForClassSelector([target class], selector));
+    
         if([NSThread currentThread] == [NSThread mainThread]) {
             [target performSelector:selector argCount:argCount withObject:object1 withObject:object2 withObject:object3];
         }

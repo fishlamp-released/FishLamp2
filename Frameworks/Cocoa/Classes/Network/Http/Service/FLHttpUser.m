@@ -52,6 +52,7 @@
     _userLogin.isAuthenticated = NO;
     _userLogin.authToken = NO;
     _userLogin.authTokenLastUpdateTime = nil;
+    _userLogin.password = @"";
     [self resetAuthenticationTimestamp];
 }
 

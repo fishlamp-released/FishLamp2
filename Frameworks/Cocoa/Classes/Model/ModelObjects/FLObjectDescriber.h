@@ -26,7 +26,6 @@
 @property (readonly, strong, nonatomic) NSString* objectName;
 @property (readonly, assign, nonatomic) Class objectClass;
 @property (readonly, copy, nonatomic) NSDictionary* childDescribers;
-@property (readonly, assign, nonatomic) BOOL objectTypeIsArray;
 @property (readonly, assign, nonatomic) FLPropertyAttributes_t propertyAttributes;
 
 @property (readwrite, strong, nonatomic) FLObjectEncoder* objectEncoder;

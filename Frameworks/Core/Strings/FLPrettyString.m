@@ -86,11 +86,6 @@
     [self appendStringToStorage:[string string]];
 }
 
-- (void) stringFormatterAppendBlankLine:(FLStringFormatter*) stringFormatter {
-    if(_eolString) { 
-        [self appendStringToStorage:_eolString];
-    }
-}
 
 - (void) stringFormatterOpenLine:(FLStringFormatter*) stringFormatter {
     if(_whitespace) { 
@@ -98,10 +93,18 @@
     } 
 }
 
-- (void) stringFormatterCloseLine:(FLStringFormatter*) stringFormatter {
+- (void) appendEOL {
     if(_eolString) { 
         [self appendStringToStorage:_eolString];
     } 
+}
+
+- (void) stringFormatterAppendBlankLine:(FLStringFormatter*) stringFormatter {
+    [self appendEOL];
+}
+
+- (void) stringFormatterCloseLine:(FLStringFormatter*) stringFormatter {
+    [self appendEOL];
 }
 
 - (void) stringFormatter:(FLStringFormatter*) stringFormatter appendString:(NSString*) string {
@@ -226,13 +229,15 @@
 
 - (void) appendAttributedStringToStorage:(NSAttributedString*) string {
 
+    NSAttributedString* stringToAppend = string;
+
     if([self.delegate respondsToSelector:@selector(prettyString:willAppendAttributedString:)]) {
-        string = [((id)self.delegate) prettyString:self willAppendAttributedString:string];
+        stringToAppend = [((id)self.delegate) prettyString:self willAppendAttributedString:string];
     }
 
-    [[self storage] appendAttributedString:string];
+    [[self storage] appendAttributedString:stringToAppend];
     
-    FLPerformSelector2(self.delegate, @selector(prettyString:didAppendAttributedString:), self, string); 
+    FLPerformSelector2(self.delegate, @selector(prettyString:didAppendAttributedString:), self, stringToAppend); 
 }
            
 - (void) appendPrettyString:(FLPrettyString*) string {

@@ -93,7 +93,7 @@
 }
 
 - (BOOL) canLogin {
-	return	self.userService.canAuthenticate;
+	return FLStringIsNotEmpty(self.userName) && FLStringIsNotEmpty(self.password);
 }
 
 - (void) updateNextButton {
@@ -109,6 +109,7 @@
 		
 		NSNumber *reason = [[note userInfo] objectForKey:@"NSTextMovement"];
 		if ([reason intValue] == NSReturnTextMovement) {
+            
 			//	leave time for text field to clean up repainting
 			[[self.buttons nextButton] performSelector:@selector(performClick:) withObject:nil afterDelay:0.1];
 		}
@@ -117,14 +118,16 @@
 
 
 - (void)controlTextDidChange:(NSNotification *)note {
-	if ( [note object] == _userNameTextField ) {
-        [self.userService setUserName:_userNameTextField.stringValue];
-    }
-	if ( [note object] == _passwordEntryField ) {
-        [self.userService setPassword:_passwordEntryField.stringValue];
-    }
+//	if ( [note object] == _userNameTextField ) {
+//        [self.userService setUserName:_userNameTextField.stringValue];
+//    }
+//	if ( [note object] == _passwordEntryField ) {
+//        [self.userService setPassword:_passwordEntryField.stringValue];
+//    }
     
-    [self.userService closeService:self];
+    if(self.userService.isServiceOpen) {
+        [self.userService closeService:self];
+    }
     
     [self updateNextButton];
 }
@@ -137,19 +140,21 @@
     [self.delegate loginPanelForgotPasswordButtonWasClicked:self];
 }
 
-- (void) updateVisibleCredentials {
+- (void) loadCredentials {
+    [self.userService loadCredentials];
     [self setSavePasswordInKeychain:self.userService.rememberPassword];
     [self setUserName:self.userService.userName];
     [self setPassword:self.userService.password];
 }
 
 - (void) saveCredentials {  
+    self.userService.rememberPassword = [self savePasswordInKeychain];
+    self.userService.userName = self.userName;
+    self.userService.password = self.password;
     [self.userService saveCredentials];
 }
 
 - (IBAction) passwordCheckboxToggled:(id) sender {
-    self.userService.rememberPassword = [self savePasswordInKeychain];
-    [self saveCredentials];
 }
 
 - (void) applicationWillTerminate:(id)sender {
@@ -157,7 +162,7 @@
 }
    
 - (void) respondToNextButton:(BOOL*) handledIt {
-    if(self.userService.canAuthenticate) {
+    if(self.canLogin) {
         [self saveCredentials];
         [self.userService openService:self];
     }
@@ -196,8 +201,11 @@
 
 - (void) panelWillAppear {
     [super panelWillAppear];
+    _userNameTextField.stringValue = @"";
+    _passwordEntryField.stringValue = @"";
+
     self.userService = [self.delegate loginPanelGetUserService:self];
-    [self updateVisibleCredentials];
+    [self loadCredentials];
     [self updateNextButton];
 }
 

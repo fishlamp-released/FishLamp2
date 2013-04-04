@@ -66,10 +66,14 @@
 - (void) didShowPanel:(FLPanelViewController*) toShow didHidePanel:(FLPanelViewController*) toHide {
 }
 
+- (void) showFirstPanel {
+    [self.panelManager showFirstPanel];  
+}
+
 - (void) startWizardInWindow:(NSWindow*) window {
     [window setContentView:self.view];
     [window setDefaultButtonCell:[self.buttonViewController.nextButton cell]];
-    [self.panelManager showFirstPanel];  
+    [self showFirstPanel];  
 }
 
 - (void)loadView {

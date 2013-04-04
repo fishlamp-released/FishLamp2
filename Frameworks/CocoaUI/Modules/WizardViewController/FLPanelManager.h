@@ -56,6 +56,10 @@ typedef void (^FLPanelViewControllerBlock)(FLPanelViewController* panel);
                 animated:(BOOL) animated
               completion:(FLPanelViewControllerBlock) completion;
 
+- (void) showPanelAtIndex:(NSUInteger) idx 
+                 animated:(BOOL) animated
+               completion:(FLPanelViewControllerBlock) completion;
+
 - (void) showFirstPanel;
 - (BOOL) isShowingFirstPanel;
 - (BOOL) isShowingLastPanel;
