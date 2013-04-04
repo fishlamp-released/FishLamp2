@@ -16,6 +16,7 @@
 #import "FLStatusBarViewController.h"
 
 #import "FLWizardStyleViewTransition.h"
+#import "FLLocalNotification.h"
 
 @interface FLWizardViewController ()
 @end
@@ -225,12 +226,14 @@
     void* context = FLBridgeRetain(void*, error);
     
     [self presentError:error modalForWindow:self.view.window delegate:self didPresentSelector:@selector(didPresentErrorWithRecovery:contextInfo:) contextInfo:context];
-    
-//    FLLocalNotification* notification = [FLLocalNotification localNotificationWithName:@"Authentication Failed"];
-//    notification.subtitle = @"Please try again";
-//    [notification deliverNotification];
-
-    [NSApp requestUserAttention:NSCriticalRequest];
+        
+    if(![[NSApplication sharedApplication] isActive]) {
+        FLLocalNotification* notification = [FLLocalNotification localNotificationWithName:title];
+//        notification.subtitle = @"Please try again";
+        [notification deliverNotification];
+        
+        [NSApp requestUserAttention:NSCriticalRequest];
+    }
 }
 
 
