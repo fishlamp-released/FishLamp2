@@ -232,22 +232,22 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addProperty:@"Caption" withClass:[NSString class]];
-		[s_describer addProperty:@"CreatedOn" withClass:[NSDate class]];
-		[s_describer addProperty:@"ModifiedOn" withClass:[NSDate class]];
-		[s_describer addProperty:@"CollectionCount" withClass:[FLIntegerNumber class] ];
-		[s_describer addProperty:@"SubGroupCount" withClass:[FLIntegerNumber class] ];
-		[s_describer addProperty:@"GalleryCount" withClass:[FLIntegerNumber class] ];
-		[s_describer addProperty:@"PhotoCount" withClass:[FLIntegerNumber class] ];
-		[s_describer addProperty:@"ImageCount" withClass:[FLIntegerNumber class] ];
-		[s_describer addProperty:@"VideoCount" withClass:[FLIntegerNumber class] ];
-		[s_describer addProperty:@"ParentGroups" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"Id" objectClass:[FLIntegerNumber class]], nil]];
-		[s_describer addProperty:@"Elements" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"Group" objectClass:[ZFGroup class]], [FLObjectDescriber objectDescriber:@"PhotoSet" objectClass:[ZFPhotoSet class]], nil]];
-		[s_describer addProperty:@"PageUrl" withClass:[NSString class]];
-		[s_describer addProperty:@"TitlePhoto" withClass:[ZFPhoto class]];
-		[s_describer addProperty:@"MailboxId" withClass:[NSString class]];
-		[s_describer addProperty:@"TextCn" withClass:[FLIntegerNumber class] ];
-		[s_describer addProperty:@"ImmediateChildrenCount" withClass:[FLIntegerNumber class] ];
+		[s_describer addChildDescriberWithName:@"Caption" withClass:[NSString class]];
+		[s_describer addChildDescriberWithName:@"CreatedOn" withClass:[NSDate class]];
+		[s_describer addChildDescriberWithName:@"ModifiedOn" withClass:[NSDate class]];
+		[s_describer addChildDescriberWithName:@"CollectionCount" withClass:[FLIntegerNumber class] ];
+		[s_describer addChildDescriberWithName:@"SubGroupCount" withClass:[FLIntegerNumber class] ];
+		[s_describer addChildDescriberWithName:@"GalleryCount" withClass:[FLIntegerNumber class] ];
+		[s_describer addChildDescriberWithName:@"PhotoCount" withClass:[FLIntegerNumber class] ];
+		[s_describer addChildDescriberWithName:@"ImageCount" withClass:[FLIntegerNumber class] ];
+		[s_describer addChildDescriberWithName:@"VideoCount" withClass:[FLIntegerNumber class] ];
+		[s_describer addChildDescriberWithName:@"ParentGroups" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"Id" objectClass:[FLIntegerNumber class]], nil]];
+		[s_describer addChildDescriberWithName:@"Elements" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"Group" objectClass:[ZFGroup class]], [FLObjectDescriber objectDescriber:@"PhotoSet" objectClass:[ZFPhotoSet class]], nil]];
+		[s_describer addChildDescriberWithName:@"PageUrl" withClass:[NSString class]];
+		[s_describer addChildDescriberWithName:@"TitlePhoto" withClass:[ZFPhoto class]];
+		[s_describer addChildDescriberWithName:@"MailboxId" withClass:[NSString class]];
+		[s_describer addChildDescriberWithName:@"TextCn" withClass:[FLIntegerNumber class] ];
+		[s_describer addChildDescriberWithName:@"ImmediateChildrenCount" withClass:[FLIntegerNumber class] ];
 	});
 	return s_describer;
 }

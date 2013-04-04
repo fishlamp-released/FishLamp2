@@ -98,9 +98,9 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addProperty:@"name" withClass:[NSString class]];
-		[s_describer addProperty:@"photographerLogin" withClass:[NSString class]];
-		[s_describer addProperty:@"photoIds" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"int" objectClass:[FLIntegerNumber class]], nil]];
+		[s_describer addChildDescriberWithName:@"name" withClass:[NSString class]];
+		[s_describer addChildDescriberWithName:@"photographerLogin" withClass:[NSString class]];
+		[s_describer addChildDescriberWithName:@"photoIds" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"int" objectClass:[FLIntegerNumber class]], nil]];
 	});
 	return s_describer;
 }

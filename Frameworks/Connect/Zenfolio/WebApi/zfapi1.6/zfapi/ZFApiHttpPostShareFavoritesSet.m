@@ -85,8 +85,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addProperty:@"input" withClass:[ZFShareFavoritesSetHttpPostIn class]];
-		[s_describer addProperty:@"output" withClass:[ZFShareFavoritesSetHttpPostOut class]];
+		[s_describer addChildDescriberWithName:@"input" withClass:[ZFShareFavoritesSetHttpPostIn class]];
+		[s_describer addChildDescriberWithName:@"output" withClass:[ZFShareFavoritesSetHttpPostOut class]];
 	});
 	return s_describer;
 }

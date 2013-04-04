@@ -118,11 +118,11 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addProperty:@"PosterName" withClass:[NSString class]];
-		[s_describer addProperty:@"PosterUrl" withClass:[NSString class]];
-		[s_describer addProperty:@"PosterEmail" withClass:[NSString class]];
-		[s_describer addProperty:@"Body" withClass:[NSString class]];
-		[s_describer addProperty:@"IsPrivate" withClass:[FLBoolNumber class] ];
+		[s_describer addChildDescriberWithName:@"PosterName" withClass:[NSString class]];
+		[s_describer addChildDescriberWithName:@"PosterUrl" withClass:[NSString class]];
+		[s_describer addChildDescriberWithName:@"PosterEmail" withClass:[NSString class]];
+		[s_describer addChildDescriberWithName:@"Body" withClass:[NSString class]];
+		[s_describer addChildDescriberWithName:@"IsPrivate" withClass:[FLBoolNumber class] ];
 	});
 	return s_describer;
 }

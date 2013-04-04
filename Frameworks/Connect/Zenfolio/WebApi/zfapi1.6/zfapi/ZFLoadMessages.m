@@ -98,9 +98,9 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addProperty:@"mailboxId" withClass:[NSString class]];
-		[s_describer addProperty:@"postedSince" withClass:[NSDate class]];
-		[s_describer addProperty:@"includeDeleted" withClass:[FLBoolNumber class] ];
+		[s_describer addChildDescriberWithName:@"mailboxId" withClass:[NSString class]];
+		[s_describer addChildDescriberWithName:@"postedSince" withClass:[NSDate class]];
+		[s_describer addChildDescriberWithName:@"includeDeleted" withClass:[FLBoolNumber class] ];
 	});
 	return s_describer;
 }

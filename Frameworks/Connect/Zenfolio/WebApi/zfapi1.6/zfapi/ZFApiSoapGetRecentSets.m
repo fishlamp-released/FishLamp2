@@ -85,8 +85,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addProperty:@"input" withClass:[ZFGetRecentSets class]];
-		[s_describer addProperty:@"output" withClass:[ZFGetRecentSetsResponse class]];
+		[s_describer addChildDescriberWithName:@"input" withClass:[ZFGetRecentSets class]];
+		[s_describer addChildDescriberWithName:@"output" withClass:[ZFGetRecentSetsResponse class]];
 	});
 	return s_describer;
 }

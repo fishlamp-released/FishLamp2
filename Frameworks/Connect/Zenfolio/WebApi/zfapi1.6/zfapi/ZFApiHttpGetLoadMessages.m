@@ -85,8 +85,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addProperty:@"input" withClass:[ZFLoadMessagesHttpGetIn class]];
-		[s_describer addProperty:@"output" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"Message" objectClass:[ZFMessage class]], nil]];
+		[s_describer addChildDescriberWithName:@"input" withClass:[ZFLoadMessagesHttpGetIn class]];
+		[s_describer addChildDescriberWithName:@"output" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"Message" objectClass:[ZFMessage class]], nil]];
 	});
 	return s_describer;
 }

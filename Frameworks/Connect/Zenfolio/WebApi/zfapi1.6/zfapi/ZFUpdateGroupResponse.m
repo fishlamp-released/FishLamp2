@@ -74,7 +74,7 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addProperty:@"UpdateGroupResult" withClass:[ZFGroup class]];
+		[s_describer addChildDescriberWithName:@"UpdateGroupResult" withClass:[ZFGroup class]];
 	});
 	return s_describer;
 }

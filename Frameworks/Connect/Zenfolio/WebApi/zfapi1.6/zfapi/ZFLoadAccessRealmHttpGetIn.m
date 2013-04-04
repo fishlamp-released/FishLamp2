@@ -78,7 +78,7 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addProperty:@"realmId" withClass:[NSString class]];
+		[s_describer addChildDescriberWithName:@"realmId" withClass:[NSString class]];
 	});
 	return s_describer;
 }

@@ -89,8 +89,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addProperty:@"parentId" withClass:[FLIntegerNumber class] ];
-		[s_describer addProperty:@"updater" withClass:[ZFGroupUpdater class]];
+		[s_describer addChildDescriberWithName:@"parentId" withClass:[FLIntegerNumber class] ];
+		[s_describer addChildDescriberWithName:@"updater" withClass:[ZFGroupUpdater class]];
 	});
 	return s_describer;
 }

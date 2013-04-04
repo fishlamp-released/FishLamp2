@@ -85,8 +85,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addProperty:@"input" withClass:[ZFCreateVideoFromUrl class]];
-		[s_describer addProperty:@"output" withClass:[ZFCreateVideoFromUrlResponse class]];
+		[s_describer addChildDescriberWithName:@"input" withClass:[ZFCreateVideoFromUrl class]];
+		[s_describer addChildDescriberWithName:@"output" withClass:[ZFCreateVideoFromUrlResponse class]];
 	});
 	return s_describer;
 }

@@ -79,7 +79,7 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addProperty:@"ResolveReferenceResult" withClass:[ZFResolveResult class]];
+		[s_describer addChildDescriberWithName:@"ResolveReferenceResult" withClass:[ZFResolveResult class]];
 	});
 	return s_describer;
 }

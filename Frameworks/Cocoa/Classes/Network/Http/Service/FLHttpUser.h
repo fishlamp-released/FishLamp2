@@ -20,7 +20,7 @@
 @property (readonly, strong) NSString* userName;
 
 - (id) initWithCredentials:(FLUserLogin*) userLogin;
-+ (id) httpUser:(FLUserLogin*) userLogin;
++ (id) httpUserWithCredentials:(FLUserLogin*) userLogin;
 
 @property (readwrite, copy, nonatomic) FLUserLogin* credentials;
 

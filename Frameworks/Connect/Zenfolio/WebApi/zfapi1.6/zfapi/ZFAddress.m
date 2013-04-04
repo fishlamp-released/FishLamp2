@@ -218,21 +218,21 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addProperty:@"FirstName" withClass:[NSString class]];
-		[s_describer addProperty:@"LastName" withClass:[NSString class]];
-		[s_describer addProperty:@"CompanyName" withClass:[NSString class]];
-		[s_describer addProperty:@"Street" withClass:[NSString class]];
-		[s_describer addProperty:@"Street2" withClass:[NSString class]];
-		[s_describer addProperty:@"City" withClass:[NSString class]];
-		[s_describer addProperty:@"Zip" withClass:[NSString class]];
-		[s_describer addProperty:@"State" withClass:[NSString class]];
-		[s_describer addProperty:@"Country" withClass:[NSString class]];
-		[s_describer addProperty:@"Phone" withClass:[NSString class]];
-		[s_describer addProperty:@"Phone2" withClass:[NSString class]];
-		[s_describer addProperty:@"Fax" withClass:[NSString class]];
-		[s_describer addProperty:@"Url" withClass:[NSString class]];
-		[s_describer addProperty:@"Email" withClass:[NSString class]];
-		[s_describer addProperty:@"Other" withClass:[NSString class]];
+		[s_describer addChildDescriberWithName:@"FirstName" withClass:[NSString class]];
+		[s_describer addChildDescriberWithName:@"LastName" withClass:[NSString class]];
+		[s_describer addChildDescriberWithName:@"CompanyName" withClass:[NSString class]];
+		[s_describer addChildDescriberWithName:@"Street" withClass:[NSString class]];
+		[s_describer addChildDescriberWithName:@"Street2" withClass:[NSString class]];
+		[s_describer addChildDescriberWithName:@"City" withClass:[NSString class]];
+		[s_describer addChildDescriberWithName:@"Zip" withClass:[NSString class]];
+		[s_describer addChildDescriberWithName:@"State" withClass:[NSString class]];
+		[s_describer addChildDescriberWithName:@"Country" withClass:[NSString class]];
+		[s_describer addChildDescriberWithName:@"Phone" withClass:[NSString class]];
+		[s_describer addChildDescriberWithName:@"Phone2" withClass:[NSString class]];
+		[s_describer addChildDescriberWithName:@"Fax" withClass:[NSString class]];
+		[s_describer addChildDescriberWithName:@"Url" withClass:[NSString class]];
+		[s_describer addChildDescriberWithName:@"Email" withClass:[NSString class]];
+		[s_describer addChildDescriberWithName:@"Other" withClass:[NSString class]];
 	});
 	return s_describer;
 }

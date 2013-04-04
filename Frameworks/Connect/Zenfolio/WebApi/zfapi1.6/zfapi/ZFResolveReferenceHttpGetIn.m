@@ -88,8 +88,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addProperty:@"loginName" withClass:[NSString class]];
-		[s_describer addProperty:@"reference" withClass:[NSString class]];
+		[s_describer addChildDescriberWithName:@"loginName" withClass:[NSString class]];
+		[s_describer addChildDescriberWithName:@"reference" withClass:[NSString class]];
 	});
 	return s_describer;
 }

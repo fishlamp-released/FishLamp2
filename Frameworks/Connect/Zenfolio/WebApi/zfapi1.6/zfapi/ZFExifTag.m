@@ -98,9 +98,9 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addProperty:@"Id" withClass:[FLIntegerNumber class] ];
-		[s_describer addProperty:@"Value" withClass:[NSString class]];
-		[s_describer addProperty:@"DisplayValue" withClass:[NSString class]];
+		[s_describer addChildDescriberWithName:@"Id" withClass:[FLIntegerNumber class] ];
+		[s_describer addChildDescriberWithName:@"Value" withClass:[NSString class]];
+		[s_describer addChildDescriberWithName:@"DisplayValue" withClass:[NSString class]];
 	});
 	return s_describer;
 }

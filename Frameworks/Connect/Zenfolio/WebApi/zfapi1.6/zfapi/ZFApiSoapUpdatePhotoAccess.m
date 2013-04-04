@@ -85,8 +85,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addProperty:@"input" withClass:[ZFUpdatePhotoAccess class]];
-		[s_describer addProperty:@"output" withClass:[ZFUpdatePhotoAccessResponse class]];
+		[s_describer addChildDescriberWithName:@"input" withClass:[ZFUpdatePhotoAccess class]];
+		[s_describer addChildDescriberWithName:@"output" withClass:[ZFUpdatePhotoAccessResponse class]];
 	});
 	return s_describer;
 }

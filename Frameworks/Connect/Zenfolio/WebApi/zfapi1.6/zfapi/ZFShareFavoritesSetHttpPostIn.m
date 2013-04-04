@@ -118,11 +118,11 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addProperty:@"favoritesSetId" withClass:[NSString class]];
-		[s_describer addProperty:@"favoritesSetName" withClass:[NSString class]];
-		[s_describer addProperty:@"sharerName" withClass:[NSString class]];
-		[s_describer addProperty:@"sharerEmail" withClass:[NSString class]];
-		[s_describer addProperty:@"sharerMessage" withClass:[NSString class]];
+		[s_describer addChildDescriberWithName:@"favoritesSetId" withClass:[NSString class]];
+		[s_describer addChildDescriberWithName:@"favoritesSetName" withClass:[NSString class]];
+		[s_describer addChildDescriberWithName:@"sharerName" withClass:[NSString class]];
+		[s_describer addChildDescriberWithName:@"sharerEmail" withClass:[NSString class]];
+		[s_describer addChildDescriberWithName:@"sharerMessage" withClass:[NSString class]];
 	});
 	return s_describer;
 }

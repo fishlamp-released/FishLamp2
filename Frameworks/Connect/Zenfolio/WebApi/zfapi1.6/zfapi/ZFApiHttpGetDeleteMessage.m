@@ -85,8 +85,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addProperty:@"input" withClass:[ZFDeleteMessageHttpGetIn class]];
-		[s_describer addProperty:@"output" withClass:[ZFDeleteMessageHttpGetOut class]];
+		[s_describer addChildDescriberWithName:@"input" withClass:[ZFDeleteMessageHttpGetIn class]];
+		[s_describer addChildDescriberWithName:@"output" withClass:[ZFDeleteMessageHttpGetOut class]];
 	});
 	return s_describer;
 }

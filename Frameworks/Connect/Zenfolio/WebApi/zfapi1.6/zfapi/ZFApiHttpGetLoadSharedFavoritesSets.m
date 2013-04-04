@@ -85,8 +85,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addProperty:@"input" withClass:[ZFLoadSharedFavoritesSetsHttpGetIn class]];
-		[s_describer addProperty:@"output" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"FavoritesSet" objectClass:[ZFFavoritesSet class]], nil]];
+		[s_describer addChildDescriberWithName:@"input" withClass:[ZFLoadSharedFavoritesSetsHttpGetIn class]];
+		[s_describer addChildDescriberWithName:@"output" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"FavoritesSet" objectClass:[ZFFavoritesSet class]], nil]];
 	});
 	return s_describer;
 }

@@ -85,8 +85,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addProperty:@"input" withClass:[ZFCheckPrivilege class]];
-		[s_describer addProperty:@"output" withClass:[ZFCheckPrivilegeResponse class]];
+		[s_describer addChildDescriberWithName:@"input" withClass:[ZFCheckPrivilege class]];
+		[s_describer addChildDescriberWithName:@"output" withClass:[ZFCheckPrivilegeResponse class]];
 	});
 	return s_describer;
 }

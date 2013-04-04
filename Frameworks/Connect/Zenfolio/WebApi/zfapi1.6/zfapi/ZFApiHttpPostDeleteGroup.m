@@ -85,8 +85,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addProperty:@"input" withClass:[ZFDeleteGroupHttpPostIn class]];
-		[s_describer addProperty:@"output" withClass:[ZFDeleteGroupHttpPostOut class]];
+		[s_describer addChildDescriberWithName:@"input" withClass:[ZFDeleteGroupHttpPostIn class]];
+		[s_describer addChildDescriberWithName:@"output" withClass:[ZFDeleteGroupHttpPostOut class]];
 	});
 	return s_describer;
 }

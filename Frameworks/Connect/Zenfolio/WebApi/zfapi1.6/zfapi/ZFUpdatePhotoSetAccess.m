@@ -84,8 +84,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addProperty:@"photoSetId" withClass:[FLIntegerNumber class] ];
-		[s_describer addProperty:@"updater" withClass:[ZFAccessUpdater class]];
+		[s_describer addChildDescriberWithName:@"photoSetId" withClass:[FLIntegerNumber class] ];
+		[s_describer addChildDescriberWithName:@"updater" withClass:[ZFAccessUpdater class]];
 	});
 	return s_describer;
 }

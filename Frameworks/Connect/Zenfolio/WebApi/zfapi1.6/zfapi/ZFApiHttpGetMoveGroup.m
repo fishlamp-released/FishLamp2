@@ -85,8 +85,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addProperty:@"input" withClass:[ZFMoveGroupHttpGetIn class]];
-		[s_describer addProperty:@"output" withClass:[ZFMoveGroupHttpGetOut class]];
+		[s_describer addChildDescriberWithName:@"input" withClass:[ZFMoveGroupHttpGetIn class]];
+		[s_describer addChildDescriberWithName:@"output" withClass:[ZFMoveGroupHttpGetOut class]];
 	});
 	return s_describer;
 }

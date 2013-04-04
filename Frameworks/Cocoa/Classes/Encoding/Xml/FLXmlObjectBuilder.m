@@ -50,7 +50,7 @@
 - (FLObjectDescriber*) arrayTypeForName:(NSString*) name
                     withPropertyDescription:(FLObjectDescriber*) objectDescription {
 
-    return [objectDescription propertyForName:name];
+    return [objectDescription childDescriberForObjectName:name];
 
 //   for(FLObjectDescriber* arrayType in [objectDescription.properties) {
 //        if(FLStringsAreEqual(name, arrayType.objectName)) {
@@ -451,7 +451,7 @@ withPropertyDescription:(FLObjectDescriber*) objectDescription {
 //    
 //    if(attributes && attributes.count > 0) {
 //        for(NSString* key in attributes) {
-//            [self.objectBuilder addProperty:key withEncodedString:[attributes valueForKey:key] withState:FLXmlPropertyInflationIsAttribute];
+//            [self.objectBuilder addChildDescriberWithName:key withEncodedString:[attributes valueForKey:key] withState:FLXmlPropertyInflationIsAttribute];
 //        }
 //    }
 //}

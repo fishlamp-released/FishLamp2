@@ -85,8 +85,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addProperty:@"input" withClass:[ZFGetCategoriesHttpPostIn class]];
-		[s_describer addProperty:@"output" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"Category" objectClass:[ZFCategory class]], nil]];
+		[s_describer addChildDescriberWithName:@"input" withClass:[ZFGetCategoriesHttpPostIn class]];
+		[s_describer addChildDescriberWithName:@"output" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"Category" objectClass:[ZFCategory class]], nil]];
 	});
 	return s_describer;
 }

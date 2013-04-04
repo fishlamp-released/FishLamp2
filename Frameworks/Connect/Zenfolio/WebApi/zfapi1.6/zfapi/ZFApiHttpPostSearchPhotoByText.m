@@ -85,8 +85,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addProperty:@"input" withClass:[ZFSearchPhotoByTextHttpPostIn class]];
-		[s_describer addProperty:@"output" withClass:[ZFPhotoResult class]];
+		[s_describer addChildDescriberWithName:@"input" withClass:[ZFSearchPhotoByTextHttpPostIn class]];
+		[s_describer addChildDescriberWithName:@"output" withClass:[ZFPhotoResult class]];
 	});
 	return s_describer;
 }

@@ -85,8 +85,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addProperty:@"input" withClass:[ZFGetVisitorKey class]];
-		[s_describer addProperty:@"output" withClass:[ZFGetVisitorKeyResponse class]];
+		[s_describer addChildDescriberWithName:@"input" withClass:[ZFGetVisitorKey class]];
+		[s_describer addChildDescriberWithName:@"output" withClass:[ZFGetVisitorKeyResponse class]];
 	});
 	return s_describer;
 }

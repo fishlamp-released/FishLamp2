@@ -14,8 +14,8 @@
 @synthesize publicProfile = _publicProfile;
 @synthesize rootGroup = _rootGroup;
 
-- (id) init {
-    self = [super init];
+- (id) initWithCredentials:(FLUserLogin*) userLogin {
+    self = [super initWithCredentials:userLogin];
     if(self) {
         self.timeoutInterval = ZFHttpAuthenticationTimeout;
     }

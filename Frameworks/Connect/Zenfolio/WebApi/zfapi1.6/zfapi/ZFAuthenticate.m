@@ -88,8 +88,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addProperty:@"challenge" withClass:[NSData class]];
-		[s_describer addProperty:@"proof" withClass:[NSData class]];
+		[s_describer addChildDescriberWithName:@"challenge" withClass:[NSData class]];
+		[s_describer addChildDescriberWithName:@"proof" withClass:[NSData class]];
 	});
 	return s_describer;
 }

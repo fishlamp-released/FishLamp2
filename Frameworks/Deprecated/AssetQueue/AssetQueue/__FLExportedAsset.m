@@ -100,9 +100,9 @@
         {
             s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
         }
-        [s_describer addProperty:@"originalID" withClass:[NSString class]];
-        [s_describer addProperty:@"assetURL" withClass:[NSString class]];
-        [s_describer addProperty:@"exportedDate" withClass:[NSDate class]];
+        [s_describer addChildDescriberWithName:@"originalID" withClass:[NSString class]];
+        [s_describer addChildDescriberWithName:@"assetURL" withClass:[NSString class]];
+        [s_describer addChildDescriberWithName:@"exportedDate" withClass:[NSDate class]];
     });
     return s_describer;
 }

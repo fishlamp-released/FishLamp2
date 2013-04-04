@@ -98,9 +98,9 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addProperty:@"photoSetId" withClass:[FLIntegerNumber class] ];
-		[s_describer addProperty:@"startingIndex" withClass:[FLIntegerNumber class] ];
-		[s_describer addProperty:@"numberOfPhotos" withClass:[FLIntegerNumber class] ];
+		[s_describer addChildDescriberWithName:@"photoSetId" withClass:[FLIntegerNumber class] ];
+		[s_describer addChildDescriberWithName:@"startingIndex" withClass:[FLIntegerNumber class] ];
+		[s_describer addChildDescriberWithName:@"numberOfPhotos" withClass:[FLIntegerNumber class] ];
 	});
 	return s_describer;
 }

@@ -85,8 +85,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addProperty:@"input" withClass:[ZFCreatePhotoFromUrl class]];
-		[s_describer addProperty:@"output" withClass:[ZFCreatePhotoFromUrlResponse class]];
+		[s_describer addChildDescriberWithName:@"input" withClass:[ZFCreatePhotoFromUrl class]];
+		[s_describer addChildDescriberWithName:@"output" withClass:[ZFCreatePhotoFromUrlResponse class]];
 	});
 	return s_describer;
 }

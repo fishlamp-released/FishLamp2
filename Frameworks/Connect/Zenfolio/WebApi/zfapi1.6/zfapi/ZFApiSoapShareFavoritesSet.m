@@ -85,8 +85,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addProperty:@"input" withClass:[ZFShareFavoritesSet class]];
-		[s_describer addProperty:@"output" withClass:[ZFShareFavoritesSetResponse class]];
+		[s_describer addChildDescriberWithName:@"input" withClass:[ZFShareFavoritesSet class]];
+		[s_describer addChildDescriberWithName:@"output" withClass:[ZFShareFavoritesSetResponse class]];
 	});
 	return s_describer;
 }

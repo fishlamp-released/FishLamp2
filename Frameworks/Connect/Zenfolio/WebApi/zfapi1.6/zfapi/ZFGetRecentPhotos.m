@@ -88,8 +88,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addProperty:@"offset" withClass:[FLIntegerNumber class] ];
-		[s_describer addProperty:@"limit" withClass:[FLIntegerNumber class] ];
+		[s_describer addChildDescriberWithName:@"offset" withClass:[FLIntegerNumber class] ];
+		[s_describer addChildDescriberWithName:@"limit" withClass:[FLIntegerNumber class] ];
 	});
 	return s_describer;
 }

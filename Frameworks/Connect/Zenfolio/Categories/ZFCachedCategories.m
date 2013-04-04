@@ -89,8 +89,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addProperty:@"arrayId" withClass:[FLIntegerNumber class] ];
-		[s_describer addProperty:@"categoryArray" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"category" objectClass:[ZFCategory class]], nil]];
+		[s_describer addChildDescriberWithName:@"arrayId" withClass:[FLIntegerNumber class] ];
+		[s_describer addChildDescriberWithName:@"categoryArray" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"category" objectClass:[ZFCategory class]], nil]];
 	});
 	return s_describer;
 }

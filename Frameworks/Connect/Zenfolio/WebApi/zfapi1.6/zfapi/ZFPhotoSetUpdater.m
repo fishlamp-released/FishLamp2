@@ -118,11 +118,11 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addProperty:@"Title" withClass:[NSString class]];
-		[s_describer addProperty:@"Caption" withClass:[NSString class]];
-		[s_describer addProperty:@"Keywords" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"Keyword" objectClass:[NSString class] ], nil]];
-		[s_describer addProperty:@"Categories" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"Category" objectClass:[FLIntegerNumber class]], nil]];
-		[s_describer addProperty:@"CustomReference" withClass:[NSString class]];
+		[s_describer addChildDescriberWithName:@"Title" withClass:[NSString class]];
+		[s_describer addChildDescriberWithName:@"Caption" withClass:[NSString class]];
+		[s_describer addChildDescriberWithName:@"Keywords" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"Keyword" objectClass:[NSString class] ], nil]];
+		[s_describer addChildDescriberWithName:@"Categories" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"Category" objectClass:[FLIntegerNumber class]], nil]];
+		[s_describer addChildDescriberWithName:@"CustomReference" withClass:[NSString class]];
 	});
 	return s_describer;
 }

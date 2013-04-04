@@ -79,7 +79,7 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addProperty:@"CreateGroupResult" withClass:[ZFGroup class]];
+		[s_describer addChildDescriberWithName:@"CreateGroupResult" withClass:[ZFGroup class]];
 	});
 	return s_describer;
 }

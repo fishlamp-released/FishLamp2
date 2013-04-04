@@ -79,7 +79,7 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addProperty:@"LoadSharedFavoritesSetsResult" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"FavoritesSet" objectClass:[ZFFavoritesSet class]], nil]];
+		[s_describer addChildDescriberWithName:@"LoadSharedFavoritesSetsResult" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"FavoritesSet" objectClass:[ZFFavoritesSet class]], nil]];
 	});
 	return s_describer;
 }

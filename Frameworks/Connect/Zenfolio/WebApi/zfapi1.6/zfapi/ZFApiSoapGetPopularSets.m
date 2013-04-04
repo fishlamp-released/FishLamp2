@@ -85,8 +85,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addProperty:@"input" withClass:[ZFGetPopularSets class]];
-		[s_describer addProperty:@"output" withClass:[ZFGetPopularSetsResponse class]];
+		[s_describer addChildDescriberWithName:@"input" withClass:[ZFGetPopularSets class]];
+		[s_describer addChildDescriberWithName:@"output" withClass:[ZFGetPopularSetsResponse class]];
 	});
 	return s_describer;
 }

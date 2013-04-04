@@ -74,8 +74,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addProperty:@"input" withClass:[ZFGetVisitorKeyHttpPostIn class]];
-		[s_describer addProperty:@"output" withClass:[NSString class]];
+		[s_describer addChildDescriberWithName:@"input" withClass:[ZFGetVisitorKeyHttpPostIn class]];
+		[s_describer addChildDescriberWithName:@"output" withClass:[NSString class]];
 	});
 	return s_describer;
 }

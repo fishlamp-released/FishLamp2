@@ -73,7 +73,7 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addProperty:@"UpdateGroupAccessResult" withClass:[FLIntegerNumber class] ];
+		[s_describer addChildDescriberWithName:@"UpdateGroupAccessResult" withClass:[FLIntegerNumber class] ];
 	});
 	return s_describer;
 }

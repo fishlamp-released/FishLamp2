@@ -98,9 +98,9 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addProperty:@"galleryId" withClass:[NSString class]];
-		[s_describer addProperty:@"url" withClass:[NSString class]];
-		[s_describer addProperty:@"cookies" withClass:[NSString class]];
+		[s_describer addChildDescriberWithName:@"galleryId" withClass:[NSString class]];
+		[s_describer addChildDescriberWithName:@"url" withClass:[NSString class]];
+		[s_describer addChildDescriberWithName:@"cookies" withClass:[NSString class]];
 	});
 	return s_describer;
 }

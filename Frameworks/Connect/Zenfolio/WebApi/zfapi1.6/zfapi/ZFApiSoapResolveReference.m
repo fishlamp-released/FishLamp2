@@ -85,8 +85,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addProperty:@"input" withClass:[ZFResolveReference class]];
-		[s_describer addProperty:@"output" withClass:[ZFResolveReferenceResponse class]];
+		[s_describer addChildDescriberWithName:@"input" withClass:[ZFResolveReference class]];
+		[s_describer addChildDescriberWithName:@"output" withClass:[ZFResolveReferenceResponse class]];
 	});
 	return s_describer;
 }

@@ -85,8 +85,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addProperty:@"input" withClass:[ZFGetVideoPlaybackUrl class]];
-		[s_describer addProperty:@"output" withClass:[ZFGetVideoPlaybackUrlResponse class]];
+		[s_describer addChildDescriberWithName:@"input" withClass:[ZFGetVideoPlaybackUrl class]];
+		[s_describer addChildDescriberWithName:@"output" withClass:[ZFGetVideoPlaybackUrlResponse class]];
 	});
 	return s_describer;
 }

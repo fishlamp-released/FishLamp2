@@ -78,7 +78,7 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addProperty:@"AuthenticateResult" withClass:[NSString class]];
+		[s_describer addChildDescriberWithName:@"AuthenticateResult" withClass:[NSString class]];
 	});
 	return s_describer;
 }

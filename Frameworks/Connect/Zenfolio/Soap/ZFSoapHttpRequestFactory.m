@@ -14,8 +14,7 @@
 
 #define ZFSoapHttpRequestFrom(__REQUEST_OBJECT_NAME__, __RESULT_OBJECT_NAME__, __RETURNED_OBJECT_NAME__) \
     [ZFSoapHttpRequestFactory soapHttpRequest:FLAutorelease([[__REQUEST_OBJECT_NAME__ alloc] init]) \
-                                              element:[FLObjectDescriber objectDescriber:__RESULT_OBJECT_NAME__ \
-                                                                               objectClass:[__RETURNED_OBJECT_NAME__ class]]]
+                                              element:[FLObjectDescriber objectDescriberForClass:[__RETURNED_OBJECT_NAME__ class] withObjectName:__RESULT_OBJECT_NAME__]]
 
 @implementation ZFLoadPhotoSet (NSObject)
 - (void) setRequestedResponseLevel:(NSString*) level {

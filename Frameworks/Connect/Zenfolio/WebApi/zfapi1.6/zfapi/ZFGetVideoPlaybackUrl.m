@@ -109,10 +109,10 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addProperty:@"photoId" withClass:[FLIntegerNumber class] ];
-		[s_describer addProperty:@"mode" withClass:[NSString class]];
-		[s_describer addProperty:@"width" withClass:[FLIntegerNumber class] ];
-		[s_describer addProperty:@"height" withClass:[FLIntegerNumber class] ];
+		[s_describer addChildDescriberWithName:@"photoId" withClass:[FLIntegerNumber class] ];
+		[s_describer addChildDescriberWithName:@"mode" withClass:[NSString class]];
+		[s_describer addChildDescriberWithName:@"width" withClass:[FLIntegerNumber class] ];
+		[s_describer addChildDescriberWithName:@"height" withClass:[FLIntegerNumber class] ];
 	});
 	return s_describer;
 }

@@ -79,7 +79,7 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addProperty:@"LoadPhotoResult" withClass:[ZFPhoto class]];
+		[s_describer addChildDescriberWithName:@"LoadPhotoResult" withClass:[ZFPhoto class]];
 	});
 	return s_describer;
 }

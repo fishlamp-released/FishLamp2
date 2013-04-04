@@ -85,8 +85,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addProperty:@"input" withClass:[ZFGetDownloadOriginalKey class]];
-		[s_describer addProperty:@"output" withClass:[ZFGetDownloadOriginalKeyResponse class]];
+		[s_describer addChildDescriberWithName:@"input" withClass:[ZFGetDownloadOriginalKey class]];
+		[s_describer addChildDescriberWithName:@"output" withClass:[ZFGetDownloadOriginalKeyResponse class]];
 	});
 	return s_describer;
 }

@@ -281,27 +281,27 @@
         {
             s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
         }
-        [s_describer addProperty:@"queueUID" withClass:[NSString class]];
-        [s_describer addProperty:@"assetUID" withClass:[NSString class]];
-        [s_describer addProperty:@"assetURL" withClass:[NSString class]];
-        [s_describer addProperty:@"assetType" withClass:[FLIntegerNumber class] ];
-        [s_describer addProperty:@"positionInQueue" withClass:[FLIntegerNumber class] ];
-        [s_describer addProperty:@"assetState" withClass:[FLIntegerNumber class] ];
-        [s_describer addProperty:@"queuedDate" withClass:[NSDate class]];
-        [s_describer addProperty:@"createdDate" withClass:[NSDate class]];
-        [s_describer addProperty:@"modifiedDate" withClass:[NSDate class]];
-        [s_describer addProperty:@"uploadedAssetURL" withClass:[NSString class]];
-        [s_describer addProperty:@"uploadedAssetId" withClass:[FLLongNumber class] ];
-        [s_describer addProperty:@"uploadDestinationId" withClass:[FLLongNumber class] ];
-        [s_describer addProperty:@"uploadDestinationName" withClass:[NSString class]];
-        [s_describer addProperty:@"uploadDestinationURL" withClass:[NSString class]];
-        [s_describer addProperty:@"assetSize" withClass:[FLLongNumber class] ];
-        [s_describer addProperty:@"assetName" withClass:[NSString class]];
-        [s_describer addProperty:@"assetDescription" withClass:[NSString class]];
-        [s_describer addProperty:@"assetFileName" withClass:[NSString class]];
-        [s_describer addProperty:@"copyright" withClass:[NSString class]];
-        [s_describer addProperty:@"keywords" withClass:[NSMutableArray class]];
-        [s_describer addProperty:@"assetObject" withClass:[FLAsset class]];
+        [s_describer addChildDescriberWithName:@"queueUID" withClass:[NSString class]];
+        [s_describer addChildDescriberWithName:@"assetUID" withClass:[NSString class]];
+        [s_describer addChildDescriberWithName:@"assetURL" withClass:[NSString class]];
+        [s_describer addChildDescriberWithName:@"assetType" withClass:[FLIntegerNumber class] ];
+        [s_describer addChildDescriberWithName:@"positionInQueue" withClass:[FLIntegerNumber class] ];
+        [s_describer addChildDescriberWithName:@"assetState" withClass:[FLIntegerNumber class] ];
+        [s_describer addChildDescriberWithName:@"queuedDate" withClass:[NSDate class]];
+        [s_describer addChildDescriberWithName:@"createdDate" withClass:[NSDate class]];
+        [s_describer addChildDescriberWithName:@"modifiedDate" withClass:[NSDate class]];
+        [s_describer addChildDescriberWithName:@"uploadedAssetURL" withClass:[NSString class]];
+        [s_describer addChildDescriberWithName:@"uploadedAssetId" withClass:[FLLongNumber class] ];
+        [s_describer addChildDescriberWithName:@"uploadDestinationId" withClass:[FLLongNumber class] ];
+        [s_describer addChildDescriberWithName:@"uploadDestinationName" withClass:[NSString class]];
+        [s_describer addChildDescriberWithName:@"uploadDestinationURL" withClass:[NSString class]];
+        [s_describer addChildDescriberWithName:@"assetSize" withClass:[FLLongNumber class] ];
+        [s_describer addChildDescriberWithName:@"assetName" withClass:[NSString class]];
+        [s_describer addChildDescriberWithName:@"assetDescription" withClass:[NSString class]];
+        [s_describer addChildDescriberWithName:@"assetFileName" withClass:[NSString class]];
+        [s_describer addChildDescriberWithName:@"copyright" withClass:[NSString class]];
+        [s_describer addChildDescriberWithName:@"keywords" withClass:[NSMutableArray class]];
+        [s_describer addChildDescriberWithName:@"assetObject" withClass:[FLAsset class]];
     });
     return s_describer;
 }

@@ -85,8 +85,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addProperty:@"input" withClass:[ZFDeleteMessage class]];
-		[s_describer addProperty:@"output" withClass:[ZFDeleteMessageResponse class]];
+		[s_describer addChildDescriberWithName:@"input" withClass:[ZFDeleteMessage class]];
+		[s_describer addChildDescriberWithName:@"output" withClass:[ZFDeleteMessageResponse class]];
 	});
 	return s_describer;
 }

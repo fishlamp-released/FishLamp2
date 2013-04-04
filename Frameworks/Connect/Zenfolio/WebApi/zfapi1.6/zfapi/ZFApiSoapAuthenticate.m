@@ -85,8 +85,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addProperty:@"input" withClass:[ZFAuthenticate class]];
-		[s_describer addProperty:@"output" withClass:[ZFAuthenticateResponse class]];
+		[s_describer addChildDescriberWithName:@"input" withClass:[ZFAuthenticate class]];
+		[s_describer addChildDescriberWithName:@"output" withClass:[ZFAuthenticateResponse class]];
 	});
 	return s_describer;
 }

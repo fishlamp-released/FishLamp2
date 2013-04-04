@@ -85,8 +85,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addProperty:@"input" withClass:[ZFLoadPrivateProfile class]];
-		[s_describer addProperty:@"output" withClass:[ZFLoadPrivateProfileResponse class]];
+		[s_describer addChildDescriberWithName:@"input" withClass:[ZFLoadPrivateProfile class]];
+		[s_describer addChildDescriberWithName:@"output" withClass:[ZFLoadPrivateProfileResponse class]];
 	});
 	return s_describer;
 }

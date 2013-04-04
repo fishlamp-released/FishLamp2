@@ -79,7 +79,7 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addProperty:@"GetPopularSetsResult" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"PhotoSet" objectClass:[ZFPhotoSet class]], nil]];
+		[s_describer addChildDescriberWithName:@"GetPopularSetsResult" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"PhotoSet" objectClass:[ZFPhotoSet class]], nil]];
 	});
 	return s_describer;
 }

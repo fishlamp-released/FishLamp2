@@ -178,17 +178,17 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addProperty:@"packetType" withClass:[NSString class]];
-		[s_describer addProperty:@"protocol" withClass:[NSString class]];
-		[s_describer addProperty:@"sessionId" withClass:[NSString class]];
-		[s_describer addProperty:@"hostId" withClass:[NSString class]];
-		[s_describer addProperty:@"hostIdFallbackTimeout" withClass:[NSString class]];
-		[s_describer addProperty:@"errorCode" withClass:[NSString class]];
-		[s_describer addProperty:@"errorContext" withClass:[NSString class]];
-		[s_describer addProperty:@"replyURL" withClass:[NSString class]];
-		[s_describer addProperty:@"received" withClass:[NSString class]];
-		[s_describer addProperty:@"acceptEncoding" withClass:[NSString class]];
-		[s_describer addProperty:@"receivedContentRange" withClass:[NSString class]];
+		[s_describer addChildDescriberWithName:@"packetType" withClass:[NSString class]];
+		[s_describer addChildDescriberWithName:@"protocol" withClass:[NSString class]];
+		[s_describer addChildDescriberWithName:@"sessionId" withClass:[NSString class]];
+		[s_describer addChildDescriberWithName:@"hostId" withClass:[NSString class]];
+		[s_describer addChildDescriberWithName:@"hostIdFallbackTimeout" withClass:[NSString class]];
+		[s_describer addChildDescriberWithName:@"errorCode" withClass:[NSString class]];
+		[s_describer addChildDescriberWithName:@"errorContext" withClass:[NSString class]];
+		[s_describer addChildDescriberWithName:@"replyURL" withClass:[NSString class]];
+		[s_describer addChildDescriberWithName:@"received" withClass:[NSString class]];
+		[s_describer addChildDescriberWithName:@"acceptEncoding" withClass:[NSString class]];
+		[s_describer addChildDescriberWithName:@"receivedContentRange" withClass:[NSString class]];
 	});
 	return s_describer;
 }

@@ -138,13 +138,13 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addProperty:@"Id" withClass:[FLIntegerNumber class] ];
-		[s_describer addProperty:@"Width" withClass:[FLUnsignedIntegerNumber class] ];
-		[s_describer addProperty:@"Height" withClass:[FLUnsignedIntegerNumber class] ];
-		[s_describer addProperty:@"Sequence" withClass:[NSString class]];
-		[s_describer addProperty:@"MimeType" withClass:[NSString class]];
-		[s_describer addProperty:@"UrlCore" withClass:[NSString class]];
-		[s_describer addProperty:@"UrlHost" withClass:[NSString class]];
+		[s_describer addChildDescriberWithName:@"Id" withClass:[FLIntegerNumber class] ];
+		[s_describer addChildDescriberWithName:@"Width" withClass:[FLUnsignedIntegerNumber class] ];
+		[s_describer addChildDescriberWithName:@"Height" withClass:[FLUnsignedIntegerNumber class] ];
+		[s_describer addChildDescriberWithName:@"Sequence" withClass:[NSString class]];
+		[s_describer addChildDescriberWithName:@"MimeType" withClass:[NSString class]];
+		[s_describer addChildDescriberWithName:@"UrlCore" withClass:[NSString class]];
+		[s_describer addChildDescriberWithName:@"UrlHost" withClass:[NSString class]];
 	});
 	return s_describer;
 }

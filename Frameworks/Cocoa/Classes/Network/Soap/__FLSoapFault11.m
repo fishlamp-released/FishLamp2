@@ -105,10 +105,10 @@
         {
             s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
         }
-        [s_describer addProperty:@"faultcode" withClass:[NSString class]];
-        [s_describer addProperty:@"faultstring" withClass:[NSString class]];
-        [s_describer addProperty:@"faultactor" withClass:[NSString class]];
-        [s_describer addProperty:@"detail" withClass:[NSString class]];
+        [s_describer addChildDescriberWithName:@"faultcode" withClass:[NSString class]];
+        [s_describer addChildDescriberWithName:@"faultstring" withClass:[NSString class]];
+        [s_describer addChildDescriberWithName:@"faultactor" withClass:[NSString class]];
+        [s_describer addChildDescriberWithName:@"detail" withClass:[NSString class]];
     });
     return s_describer;
 }

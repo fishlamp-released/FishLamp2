@@ -78,7 +78,7 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addProperty:@"CreatePhotoFromUrlResult" withClass:[FLIntegerNumber class] ];
+		[s_describer addChildDescriberWithName:@"CreatePhotoFromUrlResult" withClass:[FLIntegerNumber class] ];
 	});
 	return s_describer;
 }

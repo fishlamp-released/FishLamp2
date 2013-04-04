@@ -85,8 +85,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addProperty:@"input" withClass:[ZFMovePhotoSetHttpGetIn class]];
-		[s_describer addProperty:@"output" withClass:[ZFMovePhotoSetHttpGetOut class]];
+		[s_describer addChildDescriberWithName:@"input" withClass:[ZFMovePhotoSetHttpGetIn class]];
+		[s_describer addChildDescriberWithName:@"output" withClass:[ZFMovePhotoSetHttpGetOut class]];
 	});
 	return s_describer;
 }

@@ -88,8 +88,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addProperty:@"originalId" withClass:[FLIntegerNumber class] ];
-		[s_describer addProperty:@"replacedId" withClass:[FLIntegerNumber class] ];
+		[s_describer addChildDescriberWithName:@"originalId" withClass:[FLIntegerNumber class] ];
+		[s_describer addChildDescriberWithName:@"replacedId" withClass:[FLIntegerNumber class] ];
 	});
 	return s_describer;
 }

@@ -148,14 +148,14 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addProperty:@"Id" withClass:[FLIntegerNumber class] ];
-		[s_describer addProperty:@"ChangeNumber" withClass:[FLIntegerNumber class] ];
-		[s_describer addProperty:@"Name" withClass:[NSString class]];
-		[s_describer addProperty:@"IsShared" withClass:[FLBoolNumber class] ];
-		[s_describer addProperty:@"SharedOn" withClass:[NSDate class]];
-		[s_describer addProperty:@"SharerName" withClass:[NSString class]];
-		[s_describer addProperty:@"SharerEmail" withClass:[NSString class]];
-		[s_describer addProperty:@"SharerMessage" withClass:[NSString class]];
+		[s_describer addChildDescriberWithName:@"Id" withClass:[FLIntegerNumber class] ];
+		[s_describer addChildDescriberWithName:@"ChangeNumber" withClass:[FLIntegerNumber class] ];
+		[s_describer addChildDescriberWithName:@"Name" withClass:[NSString class]];
+		[s_describer addChildDescriberWithName:@"IsShared" withClass:[FLBoolNumber class] ];
+		[s_describer addChildDescriberWithName:@"SharedOn" withClass:[NSDate class]];
+		[s_describer addChildDescriberWithName:@"SharerName" withClass:[NSString class]];
+		[s_describer addChildDescriberWithName:@"SharerEmail" withClass:[NSString class]];
+		[s_describer addChildDescriberWithName:@"SharerMessage" withClass:[NSString class]];
 	});
 	return s_describer;
 }

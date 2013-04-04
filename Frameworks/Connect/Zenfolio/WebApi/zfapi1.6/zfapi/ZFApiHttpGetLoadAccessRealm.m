@@ -85,8 +85,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addProperty:@"input" withClass:[ZFLoadAccessRealmHttpGetIn class]];
-		[s_describer addProperty:@"output" withClass:[ZFAccessDescriptor class]];
+		[s_describer addChildDescriberWithName:@"input" withClass:[ZFLoadAccessRealmHttpGetIn class]];
+		[s_describer addChildDescriberWithName:@"output" withClass:[ZFAccessDescriptor class]];
 	});
 	return s_describer;
 }

@@ -85,8 +85,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addProperty:@"input" withClass:[ZFSearchSetByCategory class]];
-		[s_describer addProperty:@"output" withClass:[ZFSearchSetByCategoryResponse class]];
+		[s_describer addChildDescriberWithName:@"input" withClass:[ZFSearchSetByCategory class]];
+		[s_describer addChildDescriberWithName:@"output" withClass:[ZFSearchSetByCategoryResponse class]];
 	});
 	return s_describer;
 }

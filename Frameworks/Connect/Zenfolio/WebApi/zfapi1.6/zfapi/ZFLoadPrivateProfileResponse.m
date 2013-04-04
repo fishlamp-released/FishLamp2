@@ -79,7 +79,7 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addProperty:@"LoadPrivateProfileResult" withClass:[ZFUser class]];
+		[s_describer addChildDescriberWithName:@"LoadPrivateProfileResult" withClass:[ZFUser class]];
 	});
 	return s_describer;
 }

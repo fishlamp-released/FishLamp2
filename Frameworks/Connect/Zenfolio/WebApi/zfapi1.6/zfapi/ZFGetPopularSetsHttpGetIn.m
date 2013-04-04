@@ -98,9 +98,9 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addProperty:@"type" withClass:[NSString class]];
-		[s_describer addProperty:@"offset" withClass:[NSString class]];
-		[s_describer addProperty:@"limit" withClass:[NSString class]];
+		[s_describer addChildDescriberWithName:@"type" withClass:[NSString class]];
+		[s_describer addChildDescriberWithName:@"offset" withClass:[NSString class]];
+		[s_describer addChildDescriberWithName:@"limit" withClass:[NSString class]];
 	});
 	return s_describer;
 }

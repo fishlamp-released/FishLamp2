@@ -85,8 +85,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addProperty:@"input" withClass:[ZFReorderPhotoSetHttpGetIn class]];
-		[s_describer addProperty:@"output" withClass:[ZFReorderPhotoSetHttpGetOut class]];
+		[s_describer addChildDescriberWithName:@"input" withClass:[ZFReorderPhotoSetHttpGetIn class]];
+		[s_describer addChildDescriberWithName:@"output" withClass:[ZFReorderPhotoSetHttpGetOut class]];
 	});
 	return s_describer;
 }

@@ -88,8 +88,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addProperty:@"mailboxId" withClass:[NSString class]];
-		[s_describer addProperty:@"messageIndex" withClass:[NSString class]];
+		[s_describer addChildDescriberWithName:@"mailboxId" withClass:[NSString class]];
+		[s_describer addChildDescriberWithName:@"messageIndex" withClass:[NSString class]];
 	});
 	return s_describer;
 }

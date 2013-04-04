@@ -25,7 +25,7 @@
 //	FLObjectDescriber* describer = [[self class] objectDescriber];
 //	FLAssertIsNotNil(describer);
 //
-//	FLObjectDescriber* desc = [describer propertyForName:key];
+//	FLObjectDescriber* desc = [describer childDescriberForObjectName:key];
 ////	FLAssertIsNotNil(desc);
 //
 //	if(desc)
@@ -65,7 +65,7 @@
 //	FLObjectDescriber* describer = [[self class] objectDescriber];
 //	FLAssertIsNotNil(describer);
 //
-//	FLObjectDescriber* desc = [describer propertyForName:key];
+//	FLObjectDescriber* desc = [describer childDescriberForObjectName:key];
 ////	FLAssertIsNotNil(desc);
 //
 //	if(desc) {
@@ -103,7 +103,7 @@
 	FLObjectDescriber* describer = [[parentObject class] objectDescriber];
 	FLAssertIsNotNil(describer);
 
-	FLObjectDescriber* desc = [describer propertyForName:arrayItemKey];
+	FLObjectDescriber* desc = [describer childDescriberForObjectName:arrayItemKey];
 	FLAssertIsNotNil(desc);
 	
 	if(desc)

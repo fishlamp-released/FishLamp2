@@ -79,7 +79,7 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addProperty:@"GetChallengeResult" withClass:[ZFAuthChallenge class]];
+		[s_describer addChildDescriberWithName:@"GetChallengeResult" withClass:[ZFAuthChallenge class]];
 	});
 	return s_describer;
 }
