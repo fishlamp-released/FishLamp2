@@ -12,7 +12,7 @@
 @interface FLObjectXmlElement : FLXmlElement {
 @private
     id _object;
-    FLObjectDescriber* _objectDescriber;
+    FLObjectDescriber* _xmlObjectDescriber;
 }
 
 - (id) initWithObject:(id) object 

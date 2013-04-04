@@ -29,7 +29,7 @@
     return self;
 }
 
-+ (id) httpUser:(FLUserLogin*) userLogin {
++ (id) httpUserWithCredentials:(FLUserLogin*) userLogin {
     return FLAutorelease([[[self class] alloc] initWithCredentials:userLogin]);
 }
 

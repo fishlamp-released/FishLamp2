@@ -16,9 +16,14 @@ typedef void (^FLObjectDescriberPropertyVisitor)(id object, FLObjectDescriber* o
 @property (readwrite, copy, nonatomic) NSDictionary* properties;
 @property (readwrite, assign, nonatomic) Class objectClass;
 @property (readwrite, strong, nonatomic) NSString* objectName;
+@property (readwrite, assign, nonatomic) FLPropertyAttributes_t propertyAttributes;
 
 - (void) addSuperclassProperties;
 - (void) discoverProperties;
+
+//- (id) initWithRuntimeProperty:(objc_property_t) runtimeProperty;
+//+ (id) objectDescriberWithRuntimeProperty:(objc_property_t) property;
+
 @end
 
 @implementation FLObjectDescriber
@@ -27,8 +32,7 @@ typedef void (^FLObjectDescriberPropertyVisitor)(id object, FLObjectDescriber* o
 @synthesize objectClass = _objectClass;
 @synthesize objectName = _objectName;
 @synthesize objectEncoder = _objectEncoder;
-
-FLAssertDefaultInitNotCalled();
+@synthesize propertyAttributes = _propertyAttributes;
 
 //+ (void) addPropertiesForClass:(Class) class dictionary:(NSMutableDictionary*) dictionary {
 //	if(class) {
@@ -52,9 +56,12 @@ FLAssertDefaultInitNotCalled();
 //}
 
 
+- (id) init {
+    return [self initWithClass:nil withObjectName:nil];
+}
 
 - (id) initWithClass:(Class) aClass 
-            withName:(NSString*) name {
+      withObjectName:(NSString*) name {
     FLAssertNotNil(aClass);
 	if((self = [super init])) {
         self.objectName = name; 
@@ -68,31 +75,43 @@ FLAssertDefaultInitNotCalled();
 }
 
 - (id) initWithClass:(Class) aClass {
-    return [self initWithClass:aClass withName:nil];
+    return [self initWithClass:aClass withObjectName:NSStringFromClass([self class])];
+}
+
++ (id) objectDescriberForClass:(Class) aClass
+                withObjectName:(NSString*) name {
+	return FLAutorelease([[[self class] alloc] initWithClass:aClass withObjectName:name]);
 }
 
 + (id) objectDescriber:(NSString*) name objectClass:(Class) aClass {
-	return FLAutorelease([[[self class] alloc] initWithClass:aClass withName:name]);
+    return [FLObjectDescriber objectDescriberForClass:aClass withObjectName:name];
 }
 
-+ (id) objectDescriberWithRuntimeProperty:(objc_property_t) property {
-	return FLAutorelease([[[self class] alloc] initWithRuntimeProperty:property]);
-}
 
-- (id) initWithRuntimeProperty:(objc_property_t) runtimeProperty {
-    self = [super init];
-    if(self) {
-        _properties = [[NSMutableDictionary alloc] init];
+//+ (id) objectDescriberWithRuntimeProperty:(objc_property_t) property {
+//	return FLAutorelease([[[self class] alloc] initWithRuntimeProperty:property]);
+//}
+//
++ (id) objectDescriberWithRuntimeProperty:(objc_property_t) runtimeProperty {
 
-        FLPropertyAttributesDecodeWithCopy(runtimeProperty, &_attributes);
-        self.objectName = [NSString stringWithCString:_attributes.propertyName encoding:NSASCIIStringEncoding];
-        
-        if(_attributes.className.string) {
-            self.objectClass = NSClassFromString([NSString stringWithCharString:_attributes.className]);
-            self.objectEncoder = [self.objectClass objectEncoder];
-        }
+    FLPropertyAttributes_t attributes;
+    FLPropertyAttributesDecodeWithCopy(runtimeProperty, &attributes);
+    
+    if(attributes.className.string) {
+        NSString* objectName = [NSString stringWithCString:attributes.propertyName encoding:NSASCIIStringEncoding];
+        Class objectClass = NSClassFromString([NSString stringWithCharString:attributes.className]);
+    
+        FLObjectDescriber* describer = [FLObjectDescriber objectDescriberForClass:objectClass withObjectName:objectName];
+        describer.propertyAttributes = attributes;
+        describer.objectEncoder = [objectClass objectEncoder]; 
+        return describer;
     }
-    return self;
+    
+    FLLog(@"unable to make object describer for %s", attributes.encodedAttributes);
+    FLPropertyAttributesFree(&attributes);
+    
+    
+    return nil;
 }
 
 - (void) dealloc {
@@ -113,7 +132,7 @@ FLAssertDefaultInitNotCalled();
 //	return [[FLObjectDescriber alloc] initWithClass:self.class withProperties:self.properties];
 //}
 
-- (FLObjectDescriber*) propertyForName:(NSString*) propertyName {
+- (FLObjectDescriber*) childDescriberForObjectName:(NSString*) propertyName {
 	return [_properties objectForKey:propertyName];
 }
 
@@ -124,7 +143,7 @@ FLAssertDefaultInitNotCalled();
     }
 }
 
-- (void) addProperty:(FLObjectDescriber*) property {
+- (void) addChildDescriberWithName:(FLObjectDescriber*) property {
     FLAssertNotNil(property);
     if(property.objectClass) {
         [_properties setObject:property forKey:property.objectName];
@@ -136,49 +155,51 @@ FLAssertDefaultInitNotCalled();
 
 - (void) discoverProperties {
     
-//    NSLog(@"discovering properties for %@", NSStringFromClass(_objectClass));
-    
     unsigned int propertyCount = 0;
 	objc_property_t* properties = class_copyPropertyList(_objectClass, &propertyCount);
 
 	for(unsigned int i = 0; i < propertyCount; i++) {
-        [self addProperty:[FLObjectDescriber objectDescriberWithRuntimeProperty:properties[i]]];
+    
+        FLObjectDescriber* describer = [FLObjectDescriber objectDescriberWithRuntimeProperty:properties[i]];
+        if(describer) {
+            [self addChildDescriberWithName:describer];
+        }
 	}
 
     free(properties);
 }
 
-+ (id) objectDescriber:(Class) aClass {
-    return FLAutorelease([[[self class] alloc] initWithClass:aClass]);
-}
+//+ (id) objectDescriber:(Class) aClass {
+//    return FLAutorelease([[[self class] alloc] initWithClass:aClass]);
+//}
 
 - (NSString*) description {
 	return [NSString stringWithFormat:@"%@: { name=%@, class=%@, encoder=%@, properties:%@", [super description], self.objectName, NSStringFromClass(self.objectClass), [self.objectEncoder description], [_properties description]];
 }
 
-- (void) addProperty:(NSString*) name withClass:(Class) objectClass {
+- (void) addChildDescriberWithName:(NSString*) name withClass:(Class) objectClass {
     FLObjectDescriber* describer = [_properties objectForKey:name];
     if(!describer) {
-        [self addProperty:[FLObjectDescriber objectDescriber:name objectClass:objectClass]];
+        [self addChildDescriberWithName:[FLObjectDescriber objectDescriberForClass:objectClass withObjectName:name]];
     }
     else {
         describer.objectEncoder = [objectClass objectEncoder];
     }
 }
 
-- (void) addProperty:(NSString*) name withArrayType:(FLObjectDescriber*) arrayType {
-    [self addProperty:name withArrayTypes:[NSArray arrayWithObject:arrayType]];
+- (void) addChildDescriberWithName:(NSString*) name withArrayType:(FLObjectDescriber*) arrayType {
+    [self addChildDescriberWithName:name withArrayTypes:[NSArray arrayWithObject:arrayType]];
 }
 
-- (void) addProperty:(NSString*) name withArrayTypes:(NSArray*) types {
+- (void) addChildDescriberWithName:(NSString*) name withArrayTypes:(NSArray*) types {
     FLObjectDescriber* describer = [_properties objectForKey:name];
     if(!describer) {
-        describer = [FLObjectDescriber objectDescriber:name objectClass:[NSMutableArray class]];
-        [self addProperty:describer];
+        describer = [FLObjectDescriber objectDescriberForClass:[NSMutableArray class] withObjectName:name];
+        [self addChildDescriberWithName:describer];
     }
 
     for(FLObjectDescriber* obj in types) {
-        [describer addProperty:obj];
+        [describer addChildDescriberWithName:obj];
     }
 }
 
@@ -232,7 +253,7 @@ FLAssertDefaultInitNotCalled();
 
 + (FLObjectDescriber*) objectDescriber {
     @synchronized(self) {
-        return [FLObjectDescriber objectDescriber:[self class]];
+        return [FLObjectDescriber objectDescriberForClass:[self class] withObjectName:NSStringFromClass([self class])];
     }
 	return nil;
 }
@@ -425,7 +446,7 @@ void FLMergeObjects(id dest, id src, FLMergeMode mergeMode) {
 					[dest setValue:srcObject forKey:srcPropName];
 				}
 				else {
-					FLObjectDescriber* srcProp = [srcDescriber propertyForName:srcPropName];
+					FLObjectDescriber* srcProp = [srcDescriber childDescriberForObjectName:srcPropName];
 					FLObjectDescriber* propDescriber = [srcProp.objectClass objectDescriber];
                     
                     if(!propDescriber) {

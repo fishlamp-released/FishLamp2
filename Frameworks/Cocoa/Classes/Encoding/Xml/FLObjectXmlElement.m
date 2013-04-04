@@ -11,13 +11,13 @@
 
 @interface FLObjectXmlElement ()
 @property (readwrite, strong, nonatomic) id object;
-@property (readwrite, strong, nonatomic) FLObjectDescriber* objectDescriber;
+@property (readwrite, strong, nonatomic) FLObjectDescriber* xmlObjectDescriber;
 @end
 
 @implementation FLObjectXmlElement
 
 @synthesize object = _object;
-@synthesize objectDescriber = _objectDescriber;
+@synthesize xmlObjectDescriber = _xmlObjectDescriber;
 
 - (id) initWithObject:(id) object xmlElementTag:(NSString*) xmlElementTag xmlElementCloseTag:(NSString*) xmlElementCloseTag {
     self = [super initWithXmlElementTag:xmlElementTag xmlElementCloseTag:xmlElementCloseTag];
@@ -45,7 +45,7 @@
     
     self = [self initWithObject:object xmlElementTag:xmlElementTag];
     if(self) {
-        self.objectDescriber = description;
+        self.xmlObjectDescriber = description;
     }
             
     return self;
@@ -61,7 +61,7 @@
 #if FL_MRC
 - (void) dealloc {
     [_object release];
-    [_objectDescriber release];
+    [_xmlObjectDescriber release];
     [super dealloc];
 }
 #endif
@@ -104,7 +104,7 @@
     
         FLAssertNotNil([self dataEncoder]);
         
-        [_object addToXmlElement:self objectDescriber:_objectDescriber];
+        [_object addToXmlElement:self objectDescriber:_xmlObjectDescriber];
     }
 }
 

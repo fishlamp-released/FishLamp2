@@ -90,8 +90,8 @@
         {
             s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
         }
-        [s_describer addProperty:@"lastUpdateId" withClass:[NSString class]];
-        [s_describer addProperty:@"lastUpdate" withClass:[NSDate class]];
+        [s_describer addChildDescriberWithName:@"lastUpdateId" withClass:[NSString class]];
+        [s_describer addChildDescriberWithName:@"lastUpdate" withClass:[NSDate class]];
     });
     return s_describer;
 }

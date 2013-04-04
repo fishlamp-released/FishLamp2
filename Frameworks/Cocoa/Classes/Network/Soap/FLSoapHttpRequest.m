@@ -41,18 +41,9 @@
 		char* first = strnstr((const char*) [data bytes], "Fault", MIN([data length], (unsigned int) MAX_ERR_LEN));
         if(first) {
             FLParsedItem* soap = [[FLSoapParser soapParser] parseData:data];
-    
-//            FLObjectDescriber* type = [FLObjectDescriber ]
-        
             FLObjectDescriber* type = [FLObjectDescriber objectDescriber:@"Fault" objectClass:[FLSoapFault11 class]];
-    
             FLSoapFault11* soapFault = [[FLSoapObjectBuilder instance] objectFromXML:soap withObjectType:type];
-            
             FLAssertNotNil(soapFault);
-    
-//			FLSoapObjectBuilder* soapParser = [FLSoapObjectBuilder soapObjectBuilder];
-//			FLSoapFault11* soapFault = [soapParser buildObjectWithClass:[FLSoapFault11 class] withData:data withDataDecoder:[FLSoapDataEncoder instance]];
-            
 			FLDebugLog(@"Soap Fault:%@/%@", [soapFault faultcode], [soapFault faultstring]);
             return soapFault;
 		}
@@ -116,7 +107,9 @@
     NSData* data = httpResponse.responseData;
     FLAssertNotNil(data);
 
-    //FLLog(@"%@", FLAutorelease([[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]));
+#if TRACE
+    FLTrace(@"%@", FLAutorelease([[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]));
+#endif    
 
     FLParsedItem* parsedSoap = [[FLSoapParser soapParser] parseData:data];
     

@@ -4698,22 +4698,8 @@
 		271D317916FE0775009CD00F /* Xml */ = {
 			isa = PBXGroup;
 			children = (
-				271D317A16FE0775009CD00F /* FLObjectXmlElement.h */,
-				271D317B16FE0775009CD00F /* FLObjectXmlElement.m */,
-				271D317C16FE0775009CD00F /* FLParsedItem.h */,
-				271D317D16FE0775009CD00F /* FLParsedItem.m */,
-				271D317E16FE0775009CD00F /* FLXmlComment.h */,
-				271D317F16FE0775009CD00F /* FLXmlComment.m */,
-				271D318016FE0775009CD00F /* FLXmlDocumentBuilder.h */,
-				271D318116FE0775009CD00F /* FLXmlDocumentBuilder.m */,
-				271D318216FE0775009CD00F /* FLXmlElement.h */,
-				271D318316FE0775009CD00F /* FLXmlElement.m */,
-				271D318416FE0775009CD00F /* FLXmlObjectBuilder.h */,
-				271D318516FE0775009CD00F /* FLXmlObjectBuilder.m */,
-				271D318616FE0775009CD00F /* FLXmlParser.h */,
-				271D318716FE0775009CD00F /* FLXmlParser.m */,
-				271D318816FE0775009CD00F /* NSObject+FLXmlSerialization.h */,
-				271D318916FE0775009CD00F /* NSObject+FLXmlSerialization.m */,
+				272DF311170DDD28001C228A /* Building */,
+				272DF310170DDD09001C228A /* Parsing */,
 				271D318A16FE0775009CD00F /* NSString+XML.h */,
 				271D318B16FE0775009CD00F /* NSString+XML.m */,
 			);
@@ -5549,6 +5535,36 @@
 				272662F61709050800109AC2 /* FLHiddenFolderFileSink.m */,
 			);
 			path = Sinks;
+			sourceTree = "<group>";
+		};
+		272DF310170DDD09001C228A /* Parsing */ = {
+			isa = PBXGroup;
+			children = (
+				271D318416FE0775009CD00F /* FLXmlObjectBuilder.h */,
+				271D318516FE0775009CD00F /* FLXmlObjectBuilder.m */,
+				271D318616FE0775009CD00F /* FLXmlParser.h */,
+				271D318716FE0775009CD00F /* FLXmlParser.m */,
+				271D317C16FE0775009CD00F /* FLParsedItem.h */,
+				271D317D16FE0775009CD00F /* FLParsedItem.m */,
+			);
+			name = Parsing;
+			sourceTree = "<group>";
+		};
+		272DF311170DDD28001C228A /* Building */ = {
+			isa = PBXGroup;
+			children = (
+				271D318816FE0775009CD00F /* NSObject+FLXmlSerialization.h */,
+				271D318916FE0775009CD00F /* NSObject+FLXmlSerialization.m */,
+				271D317A16FE0775009CD00F /* FLObjectXmlElement.h */,
+				271D317B16FE0775009CD00F /* FLObjectXmlElement.m */,
+				271D317E16FE0775009CD00F /* FLXmlComment.h */,
+				271D317F16FE0775009CD00F /* FLXmlComment.m */,
+				271D318016FE0775009CD00F /* FLXmlDocumentBuilder.h */,
+				271D318116FE0775009CD00F /* FLXmlDocumentBuilder.m */,
+				271D318216FE0775009CD00F /* FLXmlElement.h */,
+				271D318316FE0775009CD00F /* FLXmlElement.m */,
+			);
+			name = Building;
 			sourceTree = "<group>";
 		};
 		2731477B1652D2D30027850D /* Supporting Files */ = {

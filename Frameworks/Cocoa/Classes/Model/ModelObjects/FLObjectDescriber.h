@@ -24,23 +24,27 @@
 }
 @property (readonly, strong, nonatomic) NSString* objectName;
 @property (readonly, assign, nonatomic) Class objectClass;
-@property (readwrite, strong, nonatomic) FLObjectEncoder* objectEncoder;
 @property (readonly, copy, nonatomic) NSDictionary* properties;
 @property (readonly, assign, nonatomic) BOOL hasProperties;
+@property (readonly, assign, nonatomic) FLPropertyAttributes_t propertyAttributes;
+
+@property (readwrite, strong, nonatomic) FLObjectEncoder* objectEncoder;
 
 - (id) initWithClass:(Class) aClass;
-+ (id) objectDescriber:(Class) aClass;
+
+- (id) initWithClass:(Class) aClass 
+      withObjectName:(NSString*) name;
+
++ (id) objectDescriberForClass:(Class) aClass
+                withObjectName:(NSString*) name;
+
+- (FLObjectDescriber*) childDescriberForObjectName:(NSString*) propertyName;
+
+- (void) addChildDescriberWithName:(NSString*) name withClass:(Class) objectClass;
+- (void) addChildDescriberWithName:(NSString*) name withArrayTypes:(NSArray*) types;
+
+// deprecated
 + (id) objectDescriber:(NSString*) name objectClass:(Class) aClass;
-
-- (id) initWithRuntimeProperty:(objc_property_t) runtimeProperty;
-+ (id) objectDescriberWithRuntimeProperty:(objc_property_t) property;
-
-- (FLObjectDescriber*) propertyForName:(NSString*) propertyName;
-
-//- (void) addProperty:(FLObjectDescriber*) property;
-- (void) addProperty:(NSString*) name withClass:(Class) objectClass;
-//- (void) addProperty:(NSString*) name withArrayType:(FLObjectDescriber*) namedType;
-- (void) addProperty:(NSString*) name withArrayTypes:(NSArray*) types;
 
 @end
 

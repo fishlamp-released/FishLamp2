@@ -145,14 +145,14 @@
         {
             s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
         }
-        [s_describer addProperty:@"userGuid" withClass:[NSString class]];
-        [s_describer addProperty:@"userName" withClass:[NSString class]];
-        [s_describer addProperty:@"password" withClass:[NSString class]];
-        [s_describer addProperty:@"isAuthenticated" withClass:[FLBoolNumber class] ];
-        [s_describer addProperty:@"authToken" withClass:[NSString class]];
-        [s_describer addProperty:@"email" withClass:[NSString class]];
-        [s_describer addProperty:@"authTokenLastUpdateTime" withClass:[FLDoubleNumber class] ];
-        [s_describer addProperty:@"userValue" withClass:[FLLongNumber class] ];
+        [s_describer addChildDescriberWithName:@"userGuid" withClass:[NSString class]];
+        [s_describer addChildDescriberWithName:@"userName" withClass:[NSString class]];
+        [s_describer addChildDescriberWithName:@"password" withClass:[NSString class]];
+        [s_describer addChildDescriberWithName:@"isAuthenticated" withClass:[FLBoolNumber class] ];
+        [s_describer addChildDescriberWithName:@"authToken" withClass:[NSString class]];
+        [s_describer addChildDescriberWithName:@"email" withClass:[NSString class]];
+        [s_describer addChildDescriberWithName:@"authTokenLastUpdateTime" withClass:[FLDoubleNumber class] ];
+        [s_describer addChildDescriberWithName:@"userValue" withClass:[FLLongNumber class] ];
     });
     return s_describer;
 }
