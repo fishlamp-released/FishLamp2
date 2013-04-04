@@ -143,7 +143,18 @@
 
 - (void) queueSelector:(SEL) selector {
     [self queueBlock:^{ 
-        [self performSelector:selector];
+    
+        @try { 
+            [self performSelector:selector];
+        }
+        @catch(NSException* ex) {
+            if(self.error == nil) {
+                self.error = ex.error;
+            }
+            else {
+                FLLog(@"stream encountered secondary error: %@", [ex.error localizedDescription]);
+            }
+        }
     }];
 }
 

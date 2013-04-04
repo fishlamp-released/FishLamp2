@@ -76,21 +76,24 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
     FLAssert([NSThread currentThread] != [NSThread mainThread]);
 
     if(_streamRef) {
-        [super willClose];
+        @try {
+            [super willClose];
 
-        [self.inputSink closeSinkWithError:self.error];
+            [self.inputSink closeSinkWithError:self.error];
 
-        if(!self.error) {
-            [self.inputSink commit];
+            if(!self.error) {
+                [self.inputSink commit];
+            }
         }
-
-        FLAssertNotNil(_streamRef);
-        CFReadStreamClose(_streamRef);
-        CFReadStreamUnscheduleFromRunLoop(_streamRef, CFRunLoopGetMain(), bridge_(void*,NSDefaultRunLoopMode));
-        CFRelease(_streamRef);
-        _streamRef = nil;
-        
-        [self didClose];
+        @finally {
+            FLAssertNotNil(_streamRef);
+            CFReadStreamClose(_streamRef);
+            CFReadStreamUnscheduleFromRunLoop(_streamRef, CFRunLoopGetMain(), bridge_(void*,NSDefaultRunLoopMode));
+            CFRelease(_streamRef);
+            _streamRef = nil;
+            
+            [self didClose];
+        }
     }
 }
 

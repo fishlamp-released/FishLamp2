@@ -106,9 +106,7 @@ typedef void (^FLObjectDescriberPropertyVisitor)(id object, FLObjectDescriber* o
 #endif
 }
 
-- (BOOL) objectTypeIsArray {
-	return [_objectClass isKindOfClass:[NSArray array]];
-}	
+	
 
 //- (id) copyWithZone:(NSZone *)zone {
 //	return [[FLObjectDescriber alloc] initWithClass:self.class withchildDescribers:self.childDescribers];

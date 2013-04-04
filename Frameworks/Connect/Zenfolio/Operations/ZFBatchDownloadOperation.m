@@ -277,6 +277,10 @@
         for(ZFMediaType* media in _mediaTypes) {
             [self abortIfNeeded];
             
+            NSError* error = nil;
+            [[NSFileManager defaultManager] createDirectoryAtPath:imageFolder.folderPath withIntermediateDirectories:YES attributes:nil error:&error];
+            FLThrowIfError(error);
+            
             if( ((media.mediaTypeID == ZFMediaTypeVideo) && photo.IsVideoValue) ||
                 ((media.mediaTypeID != ZFMediaTypeVideo) && !photo.IsVideoValue)) {
 
@@ -411,7 +415,7 @@
     [self downloadPhotos];
 
     [self updateProgress:NO];
-    [self sendObservation:@selector(downloadOperation:didFinishWithResult:)];
+    [self sendObservation:@selector(downloadOperation:didFinishWithResult:) withObject:_photoSetIDs];
     
     return _photoSetIDs;
 }

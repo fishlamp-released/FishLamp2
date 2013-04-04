@@ -43,6 +43,7 @@
 // for subclasses
 - (void) appendStringToStorage:(NSString*) string;
 - (void) appendAttributedStringToStorage:(NSAttributedString*) string;
+- (void) appendEOL;
 
 @end
 
