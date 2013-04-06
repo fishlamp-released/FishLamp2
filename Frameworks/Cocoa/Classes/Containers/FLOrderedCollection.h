@@ -46,7 +46,7 @@
 
 - (void) removeAllObjects;
 
-- (void) replaceObjectAtIndex:(NSUInteger) atIndex withObject:(id) object forKey:(id) forKey;
+- (id) replaceObjectAtIndex:(NSUInteger) atIndex withObject:(id) object forKey:(id) forKey;
 
 - (NSUInteger) indexForKey:(id) key;
 

@@ -17,15 +17,15 @@
 
 @interface ZFHttpController : FLHttpController<FLDatabaseObjectStorageServiceDelegate> {
 @private
+    ZFHttpUser* _user;
 }
 
-- (ZFHttpUser*) user;
+@property (readwrite, strong) ZFHttpUser* user;
 
 - (ZFLoadGroupHierarchyOperation*) createRootGroupDownloader;
 - (ZFDownloadPhotoSetsOperation*) createAllPhotoSetsDownloader;
-- (ZFBatchDownloadOperation*) createBatchDownloader:(NSSet*) photoSets
-                              destinationFolderPath:(NSString*) destinationPath
-                                         mediaTypes:(NSArray*) mediaTypes;
+- (ZFBatchDownloadOperation*) createBatchDownloader:(ZFBatchDownloadSpec*) spec;
+
 @end
 
 

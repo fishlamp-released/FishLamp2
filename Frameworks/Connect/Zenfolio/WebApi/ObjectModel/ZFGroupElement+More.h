@@ -50,6 +50,10 @@ typedef enum {
 - (NSNumber*) calculateVideoCount;
 - (NSNumber*) calculatePhotoBytes;
 
+- (unsigned long long) calculatePhotoBytesValue;
+
+- (id) initWithID:(NSNumber*) idNumber;
++ (id) groupElementWithID:(NSNumber*) groupID;
 
 @end
 

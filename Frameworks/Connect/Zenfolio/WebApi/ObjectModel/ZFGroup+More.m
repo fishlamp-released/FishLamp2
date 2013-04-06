@@ -46,6 +46,9 @@
 
 FLSynthesizeCachedObjectHandlerProperty(ZFGroup);
 
++ (id) group:(NSNumber*) groupID {
+    return [ZFGroupElement groupElementWithID:groupID];
+}
 
 - (ZFGroupElementType) groupElementType {
     return ZFGroupElementTypeGroup; 
@@ -153,15 +156,32 @@ FLSynthesizeCachedObjectHandlerProperty(ZFGroup);
 	return *value;
 }
 
-- (BOOL) replaceGroupElement:(ZFGroupElement*) replacingElement {
-	FLAssertIsNotNil(self.Elements);
+//- (BOOL) replaceGroupElementDeep:(ZFGroupElement*) replacingElement {
+//	FLAssertIsNotNil(self.Elements);
+//
+//    ZFGroup* parent = [self findParentForElement:replacingElement];
+//
+//	NSMutableArray* array = parent.Elements;
+//    if(array) {
+//        for(NSUInteger i = 0; i < array.count; i++) {
+//            ZFGroupElement* element = [array objectAtIndex:i];
+//        
+//            if(element.IdValue == replacingElement.IdValue)
+//            {
+//                [array replaceObjectAtIndex:i withObject:replacingElement];
+//                return YES;
+//            }
+//        }
+//	}
+//	
+//	return NO;
+//}
 
-    ZFGroup* parent = [self findParentForElement:replacingElement];
-
-	NSMutableArray* array = parent.Elements;
+- (BOOL) replaceElement:(ZFGroupElement*) replacingElement {
+	NSMutableArray* array = self.Elements;
     if(array) {
         for(NSUInteger i = 0; i < array.count; i++) {
-            ZFGroupElement* element = [array objectAtIndex:i];
+            ZFGroupElement* element = FLRetainWithAutorelease([array objectAtIndex:i]);
         
             if(element.IdValue == replacingElement.IdValue)
             {
@@ -174,14 +194,14 @@ FLSynthesizeCachedObjectHandlerProperty(ZFGroup);
 	return NO;
 }
 
-- (BOOL) replaceElement:(ZFGroupElement*) newElement parentId:(unsigned long) parentId {
-	ZFGroup* parent = (ZFGroup*) [self subElementForID:parentId];
-	if(parent) {
-		return [parent replaceGroupElement:newElement];
-	}
-	
-	return NO;
-}
+//- (BOOL) replaceElement:(ZFGroupElement*) newElement parentId:(unsigned long) parentId {
+//	ZFGroup* parent = (ZFGroup*) [self subElementForID:parentId];
+//	if(parent) {
+//		return [parent replaceGroupElement:newElement];
+//	}
+//	
+//	return NO;
+//}
 
 - (void) addParentToElement:(ZFGroupElement*) element newParent:(ZFGroup*) newParent
 {
@@ -264,12 +284,12 @@ FLSynthesizeCachedObjectHandlerProperty(ZFGroup);
 	[self addParentToElement:element newParent:self];
 }
 
-- (void) addGroupElement:(ZFGroupElement*) element parentId:(unsigned long) parentId {
-	ZFGroup* parent = (ZFGroup*) [self subElementForID:parentId];
-
-	FLAssertIsNotNil(parent);
-	[parent addGroupElement:element];
-}
+//- (void) addGroupElement:(ZFGroupElement*) element parentId:(unsigned long) parentId {
+//	ZFGroup* parent = (ZFGroup*) [self subElementForID:parentId];
+//
+//	FLAssertIsNotNil(parent);
+//	[parent addGroupElement:element];
+//}
 
 - (void) removeGroupElement:(ZFGroupElement*) inElement
 {
@@ -308,11 +328,11 @@ FLSynthesizeCachedObjectHandlerProperty(ZFGroup);
 	}
 }
 
-- (void) removeGroupElement:(ZFGroupElement*) removeThisElement parentId:(unsigned long) parentId {
-	ZFGroup* parent = (ZFGroup*) [self subElementForID:parentId];
-    FLAssertIsNotNil(parent);
-    [parent removeGroupElement:removeThisElement];
-}
+//- (void) removeGroupElement:(ZFGroupElement*) removeThisElement parentId:(unsigned long) parentId {
+//	ZFGroup* parent = (ZFGroup*) [self subElementForID:parentId];
+//    FLAssertIsNotNil(parent);
+//    [parent removeGroupElement:removeThisElement];
+//}
 
 - (BOOL) isRootGroup {
 	return	!self.ParentGroups || self.ParentGroups.count == 0;
@@ -374,21 +394,13 @@ FLSynthesizeCachedObjectHandlerProperty(ZFGroup);
     return [NSNumber numberWithUnsignedInteger:count];
 }
 
+- (unsigned long long)calculatePhotoBytesValue {
+    unsigned long long count = 0;
+    for(id element in self.Elements) {
+        count += [element calculatePhotoBytesValue];
+    };
 
-- (NSNumber*) calculatePhotoBytes {
-
-    if([self PhotoBytes] != nil) {
-        return [self PhotoBytes];
-    }
-    
-    __block unsigned long long count = 0;
-    [self visitAllElements:^(ZFGroupElement* element, BOOL* stop) {
-        if(!element.isGroupElement) {
-            count += element.PhotoBytesValue;
-        }
-    }];
-    
-    return [NSNumber numberWithUnsignedLongLong:count];
+    return count;
 }
 
 //

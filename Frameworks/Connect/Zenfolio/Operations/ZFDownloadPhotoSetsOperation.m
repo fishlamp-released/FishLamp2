@@ -41,7 +41,8 @@
 
 - (void) runForGroup:(ZFGroup*) group {
 
-    for(ZFGroupElement* element in group.Elements) {
+    NSArray* elements = FLCopyWithAutorelease(group.Elements);
+    for(ZFGroupElement* element in elements) {
         if(element.isGroupElement) {
             [self runForGroup:(ZFGroup*) element];
         }
@@ -52,6 +53,7 @@
             FLAssertNotNil(set);
             
             [self.objectStorage writeObject:set];
+            [group replaceElement:set];
             
             [self sendObservation:@selector(photoSetDownloader:didDownloadPhotoSet:) withObject:set];
         }

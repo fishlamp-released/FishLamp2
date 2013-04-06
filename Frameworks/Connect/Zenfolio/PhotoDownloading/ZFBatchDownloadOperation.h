@@ -8,6 +8,7 @@
 
 #import "FLSynchronousOperation.h"
 #import "FLObjectStorage.h"
+#import "ZFBatchDownloadSpec.h"
 
 typedef struct {
     NSUInteger videoCount;
@@ -36,23 +37,19 @@ typedef struct {
 
 @interface ZFBatchDownloadOperation : FLSynchronousOperation {
 @private
-    ZFGroup* _rootGroup;
-    NSString* _destinationPath;
-    NSSet* _photoSetIDs; 
-    NSArray* _mediaTypes;
+    ZFBatchDownloadSpec* _downloadSpec;
+
     ZFDownloadState_t _state;
     NSTimeInterval _lastProgress;
     NSURL* _downloadFolderURL;
     
     BOOL _downloadImages;
     BOOL _downloadVideos;
+    
+    ZFGroup* _rootGroup;
 }
 
-+ (id) downloadOperation:(NSSet*) photoSetIDs 
-               rootGroup:(ZFGroup*) rootGroup
-         destinationPath:(NSString*) destinationPath
-      downloadFolderName:(NSString*) downloadFolderName
-              mediaTypes:(NSArray*) mediaTypes;
++ (id) downloadOperation:(ZFBatchDownloadSpec*) downloadSpec;
 @end
 
 #define ZFDownloadedPhotoKey @"photo"

@@ -28,7 +28,7 @@
         self.autoresizesSubviews = NO;
         
 //        self.backgroundColor = [NSColor gray95Color];
-        _progress = [[FLSpinningProgressView alloc] initWithFrame:CGRectMake(0,0,20,20)];
+        _progress = [[FLSpinningProgressView alloc] initWithFrame:CGRectMake(0,0,19,19)];
         _progress.frame = FLRectCenterRectInRect(self.bounds, _progress.frame);
     }
     

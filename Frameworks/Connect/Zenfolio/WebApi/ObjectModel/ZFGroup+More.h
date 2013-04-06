@@ -13,6 +13,8 @@ typedef void (^FLGroupElementVisitor)(ZFGroupElement* element, BOOL* stop);
 
 @interface ZFGroup (More)
 
++ (id) group:(NSNumber*) groupID;
+
 - (id) subElementForID:(NSUInteger) groupId;
 //- (ZFGroupElement*) findByIdNumber:(NSNumber*) groupId;
 - (ZFGroup*) findParentForElement:(ZFGroupElement*) element;
@@ -23,13 +25,13 @@ typedef void (^FLGroupElementVisitor)(ZFGroupElement* element, BOOL* stop);
 
 - (void) removeGroupElement:(ZFGroupElement*) element;
 - (void) addGroupElement:(ZFGroupElement*) element;
-//- (BOOL) replaceGroupElement:(ZFGroupElement*) replacingElement;
+- (BOOL) replaceElement:(ZFGroupElement*) replacingElement;
 
-// not needed anymore?
-- (void) addGroupElement:(ZFGroupElement*) element parentId:(unsigned long) parentId;
-- (void) removeGroupElement:(ZFGroupElement*) removeThisElement parentId:(unsigned long) parentId;;
-- (BOOL) replaceElement:(ZFGroupElement*) replacingElement parentId:(unsigned long) parentId;;
-
+//// not needed anymore?
+//- (void) addGroupElement:(ZFGroupElement*) element parentId:(unsigned long) parentId;
+//- (void) removeGroupElement:(ZFGroupElement*) removeThisElement parentId:(unsigned long) parentId;;
+//- (BOOL) replaceElement:(ZFGroupElement*) replacingElement parentId:(unsigned long) parentId;;
+//
 
 - (NSArray*) pathComponentsToGroupElement:(ZFGroupElement*) element;
 - (NSString*) pathToGroupElement:(ZFGroupElement*) element withDelimiter:(NSString*) delimiter;

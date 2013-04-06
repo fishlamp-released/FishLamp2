@@ -20,6 +20,7 @@
 @end
 
 @implementation ZFHttpController
+@synthesize user = _user;
 
 - (FLUserService*) createUserService {
     return [FLUserService userService];
@@ -42,8 +43,24 @@
     return [ZFRegisteredUserAuthenticationService registeredUserAuthenticationService];
 }
 
-- (ZFHttpUser*) user {
-    return nil;
+
+#if FL_MRC
+- (void) dealloc {
+    [_user release];
+    [super dealloc];
+}
+#endif
+
+- (void) userServiceDidOpen:(FLUserService*) service {
+    self.user = [ZFHttpUser httpUserWithCredentials:[FLUserLogin userLogin:service.userName password:service.password]];
+
+    [super userServiceDidOpen:service];
+}
+
+- (void) userServiceDidClose:(FLUserService*) service {
+    [super userServiceDidClose:service];
+
+    self.user = nil;
 }
 
 - (void) operation:(ZFLoadGroupHierarchyOperation*) operation downloadedRootGroup:(FLResult) result {
@@ -68,17 +85,8 @@
     return operation;
 }
 
-- (ZFBatchDownloadOperation*) createBatchDownloader:(NSSet*) photoSets
-                              destinationFolderPath:(NSString*) destinationPath
-                                         mediaTypes:(NSArray*) mediaTypes {
-
-    ZFBatchDownloadOperation* operation = 
-        [ZFBatchDownloadOperation downloadOperation:photoSets 
-                                          rootGroup:[self.user rootGroup]
-                                    destinationPath:destinationPath
-                                 downloadFolderName:ZFHttpControllerHiddenFolderName 
-                                         mediaTypes:mediaTypes];
-                                         
+- (ZFBatchDownloadOperation*) createBatchDownloader:(ZFBatchDownloadSpec*) spec {
+    ZFBatchDownloadOperation* operation = [ZFBatchDownloadOperation downloadOperation:spec];
     operation.context = self;
     return operation;
 }

@@ -11,12 +11,10 @@
 #import "FLOrderedCollection.h"
 #import "FLObjectStorage.h"
 
-@protocol ZFZenfolioGroupElementSelectionDelegate;
-@protocol ZFGroupElementSelectionDataSource;
-
 @interface ZFGroupElementSelection : NSObject {
 @private
     ZFGroup* _rootGroup;
+    id<FLObjectStorage> _objectStorage;
 
 // these only hold object ids
     NSMutableSet* _filtered;
@@ -35,34 +33,30 @@
 
 // cached selection
     NSMutableIndexSet* _cachedSelectionIndexesForOutlineView;
-
-    __unsafe_unretained id<ZFZenfolioGroupElementSelectionDelegate> _delegate;
-    __unsafe_unretained id<ZFGroupElementSelectionDataSource> _dataSource;
 }
 
-@property (readwrite, assign, nonatomic) id<ZFZenfolioGroupElementSelectionDelegate> delegate;
-@property (readwrite, assign, nonatomic) id<ZFGroupElementSelectionDataSource> dataSource;
-
-- (void) updateRootGroupFromDataSource;
-@property (readonly, strong, nonatomic) ZFGroup* rootGroup;
-
-/// selection
-@property (readonly, assign, nonatomic) NSUInteger selectionCount;
-@property (readonly, strong, nonatomic) NSSet* selectedPhotoSetIDs; 
-@property (readonly, assign, nonatomic) NSUInteger selectedPhotoSetCount;
-
-+ (id) groupElementSelection;
-
-- (id) elementForID:(NSNumber*) idObject;
+@property (readwrite, strong, nonatomic) id<FLObjectStorage> objectStorage;
+@property (readwrite, strong, nonatomic) ZFGroup* rootGroup;
 
 /// filtering
 // this changes displayList and selectionContainers.
 @property (readwrite, strong, nonatomic) NSString* filterString;
 
+/// selection
+@property (readonly, assign, nonatomic) NSUInteger selectionCount;
+@property (readonly, copy, nonatomic) NSSet* selectedPhotoSetIDs; 
+@property (readonly, assign, nonatomic) NSUInteger selectedPhotoSetCount;
+
++ (id) groupElementSelection:(NSSet*) selectedPhotoSets;
+
+- (id) elementForID:(NSNumber*) idObject;
+
 /// expansion
 - (void) setAllExpanded:(BOOL) expanded;
 - (BOOL) elementIsExpanded:(id) item;
-- (BOOL) expandElement:(id) element expanded:(BOOL) expanded ;
+
+- (BOOL) expandElementWithID:(NSNumber*) elementID expanded:(BOOL) expanded;
+- (BOOL) expandElement:(id) element expanded:(BOOL) expanded;
 - (void) updateExpansions;
 - (void) setElementWasExpanded:(id) element wasExpanded:(BOOL) wasExpanded;
 
@@ -81,22 +75,14 @@
 /// gets/sets selection by index for outline view
 @property (readwrite, strong, nonatomic) NSIndexSet* selectedIndexSet;
 
+- (void) resetAllButSelection;
+
+// optional overrides
+
+- (void) didExpandGroup:(ZFGroup*) group 
+             isExpanded:(BOOL) isExpanded;
+
+- (void) didReplaceElementAtIndex:(NSUInteger) index withElement:(id) element;
 
 @end
-
-@protocol ZFGroupElementSelectionDataSource <NSObject>
-- (ZFGroup*) groupElementSelectionGetRootGroup:(ZFGroupElementSelection*) selection;
-- (id<FLObjectStorage>) groupElementSelectionGetObjectStorage:(ZFGroupElementSelection*) selection;
-@end
-
-@protocol ZFZenfolioGroupElementSelectionDelegate <NSObject>
-- (void) groupElementSelection:(ZFGroupElementSelection*) selection 
-            setElementExpanded:(ZFGroup*) group 
-                    isExpanded:(BOOL) isExpanded;
-                   
-                   
-@end
-
-//@interface ZFGroupElementSelectionForOutlineView : ZFGroupElementSelection 
-//@end
 

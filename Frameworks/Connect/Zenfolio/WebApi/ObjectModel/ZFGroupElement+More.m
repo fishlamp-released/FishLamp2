@@ -12,6 +12,26 @@
 
 @implementation ZFGroupElement (More)
 
+- (BOOL) isEqual:(id)object {
+    return [[object Id] isEqual:[self Id]];
+}
+
+- (NSUInteger)hash {
+    return [[self Id] hash];
+}
+
+- (id) initWithID:(NSNumber*) idNumber {
+	self = [self init];
+	if(self) {
+        self.Id = idNumber;
+	}
+	return self;
+}
+
++ (id) groupElementWithID:(NSNumber*) groupID {
+    return FLAutorelease([[[self class] alloc] initWithID:groupID]);
+}
+
 - (NSNumber*) parentGroupId {
 	return [self.ParentGroups lastObject];
 }
@@ -90,9 +110,13 @@
     return number ? number : [NSNumber numberWithInt:0];
 }
 
-- (NSNumber*) calculatePhotoBytes {
+- (unsigned long long) calculatePhotoBytesValue {
     NSNumber* number = [self PhotoBytes];
-    return number ? number : [NSNumber numberWithInt:0];
+    return number ? [number unsignedLongLongValue] : 0;
+}
+
+- (NSNumber*) calculatePhotoBytes {
+    return [NSNumber numberWithUnsignedLongLong:[self calculatePhotoBytesValue]];
 }
 
 - (void) setParentGroups:(NSMutableArray*) array {
@@ -111,7 +135,7 @@
 }   
 
 - (NSString *)sizeText {
-	return [NSString localizedStringForByteSize:self.PhotoBytesValue];
+	return [NSString localizedStringForByteSize:self.calculatePhotoBytesValue];
 }
 
 - (id) objectStorageKey_fl {
