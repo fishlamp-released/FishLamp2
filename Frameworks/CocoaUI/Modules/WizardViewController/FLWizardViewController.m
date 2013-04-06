@@ -125,12 +125,16 @@
 }
 
 - (void) wizardButtonViewControllerUpdateButtonStates:(FLWizardButtonViewController*) controller {
-    self.buttonViewController.backButton.enabled = 
-        !self.panelManager.isShowingFirstPanel;
-        
-    self.buttonViewController.nextButton.enabled = 
-        [self.panelManager visiblePanel].canOpenNextPanel &&
-        ![self.panelManager isShowingLastPanel];
+    BOOL backEnabled = !self.panelManager.isShowingFirstPanel;
+    
+    if(backEnabled != self.buttonViewController.backButton.isEnabled) {
+        self.buttonViewController.backButton.enabled = backEnabled;
+    }
+    
+    BOOL nextEnabled = ![self.panelManager isShowingLastPanel];
+    if(nextEnabled != self.buttonViewController.nextButton.isEnabled) {
+        self.buttonViewController.nextButton.enabled = nextEnabled;
+    }
 }
 
 #pragma mark breadcrumb bar delegate

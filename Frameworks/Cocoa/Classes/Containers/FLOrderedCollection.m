@@ -150,16 +150,18 @@
 //	}
 }
 
-- (void) replaceObjectAtIndex:(NSUInteger) atIndex withObject:(id) object forKey:(id) key  {
+- (id) replaceObjectAtIndex:(NSUInteger) atIndex withObject:(id) object forKey:(id) key  {
     ++_mutatationCount;
     id previousKey = [_keys objectAtIndex:atIndex];
     [_objectDictionary removeObjectForKey:previousKey];
     [_indexes removeObjectForKey:previousKey];
     
     [_keys replaceObjectAtIndex:atIndex withObject:key];
+    id oldObject = FLRetainWithAutorelease([_objectArray objectAtIndex:atIndex]);
     [_objectArray replaceObjectAtIndex:atIndex withObject:object];
     [_objectDictionary setObject:object forKey:key];
     [_indexes setObject:[NSNumber numberWithUnsignedInteger:atIndex] forKey:key];
+    return oldObject;
 }
 
 - (void) removeObjectAtIndex:(NSUInteger) idx {
