@@ -22,9 +22,6 @@
     id _result;
     BOOL _finished;
     fl_completion_block_t _didFinish;
-
-    __unsafe_unretained id<FLOperation> _operation;
-
 #if DEBUG
     FLStackTrace* _createdStackTrace;
     FLStackTrace* _finishedStackTrace;
@@ -41,9 +38,6 @@
 + (id) finisher;
 
 + (id) finisher:(fl_completion_block_t) completion;
-
-+ (id) finisherForOperation:(id<FLOperation>) operation 
-                 completion:(fl_completion_block_t) completion;
 
 // notify finish with one of these
 - (void) setFinished;

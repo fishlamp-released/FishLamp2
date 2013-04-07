@@ -8,6 +8,8 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface FLTextFieldCell : NSTextFieldCell
+@interface FLTextFieldCell : NSTextFieldCell {
+@private
+}
 
 @end

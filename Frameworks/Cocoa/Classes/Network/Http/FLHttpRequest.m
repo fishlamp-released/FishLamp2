@@ -26,9 +26,11 @@
 @property (readwrite, strong, nonatomic) FLHttpStream* httpStream;
 @end
 
+#define TRACE 0
+
 @implementation FLHttpRequest
-@synthesize body = _body;
-@synthesize headers = _headers;
+@synthesize requestBody = _requestBody;
+@synthesize requestHeaders = _requestHeaders;
 @synthesize authenticator = _authenticator;
 @synthesize disableAuthenticator = _disableAuthenticator;
 @synthesize inputSink = _inputSink;
@@ -38,6 +40,9 @@
 @synthesize previousResponse = _previousResponse;
 @synthesize timeoutInterval = _timeoutInterval;
 
+#if TRACE
+static int s_counter = 0;
+#endif
 
 - (id) init {
     return [self initWithRequestURL:nil httpMethod:nil];
@@ -50,22 +55,25 @@
     if((self = [super init])) {
         self.timeoutInterval = FLHttpRequestDefaultTimeoutInterval;
     
-        _headers = [[FLHttpRequestHeaders alloc] init];
-        _body = [[FLHttpRequestBody alloc] initWithHeaders:_headers];
+        _requestHeaders = [[FLHttpRequestHeaders alloc] init];
+        _requestBody = [[FLHttpRequestBody alloc] initWithHeaders:_requestHeaders];
         
-        self.headers.requestURL = url;
-        self.headers.httpMethod = httpMethod;
+        self.requestHeaders.requestURL = url;
+        self.requestHeaders.httpMethod = httpMethod;
         
         if(FLStringIsEmpty(httpMethod)) {
-            self.headers.httpMethod= @"GET";
+            self.requestHeaders.httpMethod= @"GET";
         }
         else {
-            self.headers.httpMethod = httpMethod;
+            self.requestHeaders.httpMethod = httpMethod;
         }
         
         self.asyncQueueForStream = [FLFifoAsyncQueue fifoAsyncQueue];
     }
-    
+
+#if TRACE
+    FLLog(@"%d created %@ http request: %@", ++s_counter, self.requestHeaders.httpMethod, [url absoluteString]);
+#endif    
     return self;
 }
 
@@ -73,16 +81,26 @@
     return [self initWithRequestURL:url httpMethod:nil];
 }
 
+- (void) releaseResponseData {
+    self.previousResponse = nil;
+    self.httpStream = nil;
+    self.finisher = nil;
+}
+
 - (void) dealloc {
+#if TRACE
+    FLLog(@"%d dealloc http request: %@", --s_counter, self.requestHeaders.requestURL);
+#endif    
     [_asyncQueueForStream releaseToPool];
 #if FL_MRC
+    [_asyncQueueForStream release];
     [_previousResponse release];
     [_httpStream release];
     [_finisher release];
     [_inputSink release];
     [_authenticator release];
-    [_headers release];
-    [_body release];
+    [_requestHeaders release];
+    [_requestBody release];
     [super dealloc];
 #endif
 }
@@ -111,16 +129,11 @@
     return [httpResponse simpleHttpResponseErrorCheck];
 }
 
-//- (void) runAsynchronously:(FLFinisher*) finisher {
-//    FLHttpStreamWorker* worker = [FLHttpStreamWorker httpRequestWorker:self asyncQueue:[FLFifoAsyncQueue fifoAsyncQueue]];
-//    [self.operationContext startWorker:worker withFinisher:finisher];
-//}
-
 - (NSString*) description {
-    NSMutableString* desc = [NSMutableString stringWithFormat:@"%@\r\n", [super description]];
-    [desc appendString:[self.headers description]];
-    [desc appendString:[self.body description]];
-    return desc;
+    return [NSString stringWithFormat:@"%@ { %@ }", [super description], self.requestHeaders.requestURL];
+//    [desc appendString:[self.requestHeaders description]];
+//    [desc appendString:[self.requestBody description]];
+//    return desc;
 }
 
 - (BOOL) shouldRedirectToURL:(NSURL*) url {
@@ -160,14 +173,14 @@
         self.inputSink = [FLDataSink dataSink];
     }
     
-    FLHttpMessage* cfRequest = [FLHttpMessage httpMessageWithURL:self.headers.requestURL httpMethod:self.headers.httpMethod];
-    cfRequest.headers = self.headers.allHeaders;
+    FLHttpMessage* cfRequest = [FLHttpMessage httpMessageWithURL:self.requestHeaders.requestURL httpMethod:self.requestHeaders.httpMethod];
+    cfRequest.headers = self.requestHeaders.allHeaders;
     
-    if(self.body.bodyData) {
-        cfRequest.bodyData = self.body.bodyData;
+    if(self.requestBody.bodyData) {
+        cfRequest.bodyData = self.requestBody.bodyData;
     }
     
-    self.httpStream  = [FLHttpStream httpStream:cfRequest withBodyStream:self.body.bodyStream];
+    self.httpStream  = [FLHttpStream httpStream:cfRequest withBodyStream:self.requestBody.bodyStream];
     self.httpStream.inputSink = self.inputSink;
         
     
@@ -196,7 +209,7 @@
 
 - (void) performUntilFinished:(FLFinisher*) finisher {
     self.finisher = finisher;
-    [self openAuthenticatedStreamWithURL:self.headers.requestURL];
+    [self openAuthenticatedStreamWithURL:self.requestHeaders.requestURL];
 }
 
 - (void) networkStreamDidOpen:(FLHttpStream*) networkStream {
@@ -229,9 +242,12 @@
     @finally {
 
         FLFinisher* finisher = FLRetainWithAutorelease(self.finisher);
+        [self releaseResponseData];
+        
         self.finisher = nil;
         self.previousResponse = nil;
         [self closeStreamWithError:nil];
+        [self operationDidFinish];
 
         dispatch_async(dispatch_get_main_queue(), ^{
             [self sendObservation:@selector(httpRequest:didCloseWithResult:) withObject:result];
@@ -257,7 +273,7 @@
     else {
     
         FLHttpResponse* response = [FLHttpResponse httpResponse:[[stream requestHeaders] requestURL]
-                                                        headers:[stream responseHeaders] 
+                                                        headers:[stream requestHeaders] 
                                                  redirectedFrom:self.previousResponse
                                                       inputSink:self.inputSink];
 

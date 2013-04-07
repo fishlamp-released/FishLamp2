@@ -23,6 +23,21 @@
     return self;
 }
 
+- (void) dealloc {
+    if(_context) {
+        FLOperationContext* context = _context;
+        _context = nil;
+        [context removeOperation:self];
+        
+        FLLog(@"Operation last ditch removal from context: %@", [self description]);
+
+    }
+    
+#if FL_MRC
+	[super dealloc];
+#endif
+}
+
 - (void) performUntilFinished:(FLFinisher*) finisher {
     FLLog(@"operation did nothing.");
     [finisher setFinished];
@@ -70,7 +85,9 @@
 }
 
 - (FLResult) runSynchronously {
-    return [FLStartOperation(self.asyncQueue, self, nil) waitUntilFinished];
+    FLResult result = [FLStartOperation(self.asyncQueue, self, nil) waitUntilFinished];
+    [self operationDidFinish];
+    return result;
 }
 
 - (FLResult) runSynchronouslyInContext:(FLOperationContext*) context {
@@ -92,10 +109,6 @@
     return [self runAsynchronously:completionOrNil];
 }
 
-//- (FLFinisher*) startAsync {
-//    return [self start:nil];
-//}
-
 - (void) wasStartedByParent:(FLOperation*) parent {
     if(self.context == nil) {
         self.context = parent.context;
@@ -107,10 +120,17 @@
 
 - (FLResult) runChildSynchronously:(FLOperation*) operation {
     
-    [operation wasStartedByParent:self];
     
-    FLResult result = [operation runSynchronously];
-    FLThrowIfError(result);
+    [FLRetainWithAutorelease(operation) wasStartedByParent:self];
+    
+    FLResult result = nil;
+    @try {
+        result = [operation runSynchronously];
+        FLThrowIfError(result);
+    }
+    @finally {
+        [operation operationDidFinish];
+    }
     
     return result;
 }
@@ -126,5 +146,7 @@
 - (void) operationDidFinish {
     self.context = nil;
 }
+
+
 
 @end

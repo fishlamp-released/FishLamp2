@@ -37,7 +37,7 @@
         [jsonString appendBuildableString:self.json];
         NSData* content = [jsonString.string dataUsingEncoding:NSUTF8StringEncoding];
         
-        [self.body setContentWithData:content typeContentHeader:@"application/json; charset=utf-8"];
+        [self.requestBody setContentWithData:content typeContentHeader:@"application/json; charset=utf-8"];
 //    }
 }
 

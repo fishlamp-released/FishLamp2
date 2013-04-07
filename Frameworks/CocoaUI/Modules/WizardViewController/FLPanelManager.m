@@ -144,12 +144,13 @@
         return NO;
     }
     
-    if([self.visiblePanel.title isEqual:title]) {
-        return YES;
-    }
+//    if([self.visiblePanel.title isEqual:title]) {
+//        return YES;
+//    }
 
     NSUInteger idx = NSNotFound;
     for(NSUInteger i = 0; i < _panels.count; i++) {
+    
         if([title isEqual:[[_panels objectAtIndex:i] title]]) {
             idx = i;
             break;
@@ -158,8 +159,11 @@
     if(idx == NSNotFound) {
         return NO;
     }
-    
-    for(NSUInteger i = 0; i < idx; i++) {
+    if(idx <= _currentPanel) {
+        return YES;
+    }
+        
+    for(NSUInteger i = _currentPanel; i < idx; i++) {
         FLPanelViewController* panel = [_panels objectAtIndex:i];
         if(panel.canOpenNextPanel == NO) {
             return NO;

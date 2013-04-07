@@ -35,7 +35,9 @@
 
 - (void) dealloc {
     [_asyncQueue releaseToPool];
+    _timer.delegate = nil;
 #if FL_MRC
+    [_asyncQueue release];
     [_timer release];
     [_error release];
     [super dealloc];

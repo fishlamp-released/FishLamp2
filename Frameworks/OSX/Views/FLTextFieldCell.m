@@ -28,6 +28,7 @@
 //                     options: NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin];
 //}
 
+#if 1
 
 - (NSRect)titleRectForBounds:(NSRect)theRect {
     NSRect titleFrame = [super titleRectForBounds:theRect];
@@ -55,7 +56,7 @@
                      options: NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin];
 
 }
-
+#endif
 
 //- (NSRect)titleRectForBounds:(NSRect)theRect {
 //    /* get the standard text content rectangle */

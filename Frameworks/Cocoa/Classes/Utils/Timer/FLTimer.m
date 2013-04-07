@@ -8,6 +8,8 @@
 
 #import "FLTimer.h"
 
+#define TRACE 0
+
 NSString* const FLTimedOutNotification = @"FLTimedOutNotification";
 
 @interface FLTimer ()
@@ -32,15 +34,18 @@ NSString* const FLTimedOutNotification = @"FLTimedOutNotification";
 @synthesize timerWasUpdated = _timerWasUpdated;
 
 - (id) init {
-    return [self initWithTimeoutInterval:FLTimerDefaultCheckTimestampInterval];
+    return [self initWithTimeout:0];
 }
 
-- (id) initWithTimeoutInterval:(NSTimeInterval) interval {
+- (id) initWithTimeout:(NSTimeInterval) interval {
     self = [super init];
     if(self) {
+        self.checkTimestampInterval = FLTimerDefaultCheckTimestampInterval;
         self.timeoutInterval = interval;
         self.timerDidTimeout = @selector(timerDidTimeout:);
         self.timerWasUpdated = @selector(timerWasUpdated:);
+        
+        _intermediary = [[FLCallbackWithUnretainedTarget alloc] initWithTarget:self action:@selector(checkForTimeout)];
     }
     return self;
 }
@@ -50,7 +55,7 @@ NSString* const FLTimedOutNotification = @"FLTimedOutNotification";
 }
 
 + (FLTimer*) timer:(NSTimeInterval) timeoutInterval {
-    return FLAutorelease([[[self class] alloc] initWithTimeoutInterval:timeoutInterval]);
+    return FLAutorelease([[[self class] alloc] initWithTimeout:timeoutInterval]);
 }
 
 + (id) timer {
@@ -69,6 +74,10 @@ NSString* const FLTimedOutNotification = @"FLTimedOutNotification";
 }
 
 - (void) checkForTimeout {
+    
+#if TRACE
+    FLLog(@"checked for timeout");
+#endif
     
     FLPerformSelector1(_delegate, _timerWasUpdated, self);
 
@@ -90,6 +99,7 @@ NSString* const FLTimedOutNotification = @"FLTimedOutNotification";
     self.endTime = 0;
     
     [self stopTimer];
+    [self touchTimestamp];
 
     dispatch_queue_t queue = dispatch_get_global_queue(
                                     DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
@@ -106,31 +116,38 @@ NSString* const FLTimedOutNotification = @"FLTimedOutNotification";
            DISPATCH_TIME_FOREVER, 
            0);
 
+    FLCallback* callback = FLRetainWithAutorelease(_intermediary);
+
     // Hey, let's actually do something when the timer fires!
     dispatch_source_set_event_handler(_timer, ^{
-        [self checkForTimeout];
+        [callback perform];
     });
 
     // now that our timer is all set to go, start it
     dispatch_resume(_timer);
     
-    [self touchTimestamp];
 }
 
-- (void) dealloc  {
-    [self stopTimer];
-
-#if FL_MRC
-    [super dealloc];
-#endif
-}
-
-- (void) stopTimer {
+- (void) killTimer {
     if(_timer) {
         dispatch_source_cancel(_timer);
         dispatch_release(_timer);
     }
     _timer = nil;
+}
+
+- (void) dealloc  {
+    _intermediary.target = nil;
+    [self killTimer];
+    
+#if FL_MRC
+    [_intermediary release];
+    [super dealloc];
+#endif
+}
+
+- (void) stopTimer {
+    [self killTimer];
     self.timing = NO;
     self.endTime = [NSDate timeIntervalSinceReferenceDate];
 }

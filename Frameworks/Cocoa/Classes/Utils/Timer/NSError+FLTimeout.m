@@ -10,9 +10,9 @@
 
 @implementation NSError (FLTimeout)
 + (NSError*) timeoutError {
-    return [NSError errorWithDomain:FLFrameworkErrorDomain
-                                   code:FLCancelErrorCode
-                   localizedDescription:NSLocalizedString(@"Cancelled", @"used in cancel error localized description")];
+    return [NSError errorWithDomain:NSURLErrorDomain
+                                   code:NSURLErrorTimedOut
+                   localizedDescription:NSLocalizedString(@"TimeOut Error", @"used in cancel error localized description")];
 }
 
 - (BOOL) isTimeoutError {

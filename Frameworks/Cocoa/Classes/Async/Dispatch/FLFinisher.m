@@ -14,7 +14,6 @@
 @property (readwrite, strong) FLResult result;
 @property (readwrite, assign, getter=isFinished) BOOL finished;
 @property (readwrite, copy) fl_completion_block_t didFinish;
-@property (readwrite, assign, nonatomic) id<FLOperation> operation;
 
 #if DEBUG
 @property (readwrite, strong) FLStackTrace* createdStackTrace;
@@ -27,7 +26,6 @@
 @synthesize didFinish = _didFinish;
 @synthesize result = _result;
 @synthesize finished = _finished;
-@synthesize operation = _operation;
 
 #if DEBUG
 @synthesize createdStackTrace = _createdStackTrace;
@@ -48,14 +46,6 @@
 #if DEBUG
         self.createdStackTrace = FLCreateStackTrace(YES);
 #endif
-    }
-    return self;
-}
-
-- (id) initWithOperation:(FLOperation*) operation completion:(fl_completion_block_t) completion {
-    self = [self initWithCompletion:completion];
-    if(self) {
-        self.operation = operation;
     }
     return self;
 }
@@ -82,11 +72,6 @@
 
 + (id) finisher {
     return FLAutorelease([[[self class] alloc] init]);
-}
-
-+ (id) finisherForOperation:(FLOperation*) operation 
-                 completion:(fl_completion_block_t) completion {
-    return FLAutorelease([[[self class] alloc] initWithOperation:operation completion:completion]);
 }
 
 + (id) finisher:(fl_completion_block_t) completion {
@@ -123,11 +108,6 @@
 - (void) notifyFinished {
     if(_didFinish) {
         _didFinish(self.result);
-    }
-
-    if(_operation) {
-        [_operation operationDidFinish];
-        _operation = nil;
     }
 
     self.finished = YES;

@@ -33,8 +33,8 @@
 
 @interface FLHttpRequest : FLOperation<FLNetworkStreamDelegate> {
 @private
-    FLHttpRequestHeaders* _headers;
-    FLHttpRequestBody* _body;
+    FLHttpRequestHeaders* _requestHeaders;
+    FLHttpRequestBody* _requestBody;
     FLFifoAsyncQueue* _asyncQueueForStream;
     FLFinisher* _finisher;
     FLHttpResponse* _previousResponse; // if redirected
@@ -55,8 +55,8 @@
 @property (readwrite, assign, nonatomic) BOOL disableAuthenticator;
 
 // http
-@property (readonly, strong, nonatomic) FLHttpRequestHeaders* headers;
-@property (readonly, strong, nonatomic) FLHttpRequestBody* body;
+@property (readonly, strong, nonatomic) FLHttpRequestHeaders* requestHeaders;
+@property (readonly, strong, nonatomic) FLHttpRequestBody* requestBody;
 
 - (id) initWithRequestURL:(NSURL*) requestURL;
 

@@ -57,7 +57,7 @@
 }
 
 - (void) willSendHttpRequest {
-    FLAssertStringIsNotEmpty(self.headers.requestURL.absoluteString);
+    FLAssertStringIsNotEmpty(self.requestHeaders.requestURL.absoluteString);
     FLAssertStringIsNotEmpty(self.soapNamespace);
     FLAssertStringIsNotEmpty(self.operationName);
 
@@ -69,18 +69,18 @@
             
 	[soapStringBuilder addElement:element];
 
-    [self.headers setValue:self.soapActionHeader forHTTPHeaderField:@"SOAPAction"]; 
+    [self.requestHeaders setValue:self.soapActionHeader forHTTPHeaderField:@"SOAPAction"]; 
     
     FLPrettyString* soapString = [FLPrettyString prettyString:nil];
     [soapString appendBuildableString:soapStringBuilder];
 
-    [self.body setUtf8Content:soapString.string];
+    [self.requestBody setUtf8Content:soapString.string];
     
 #if DEBUG
     FLPrettyString* debugString = [FLPrettyString prettyString];
     [debugString appendBuildableString:soapStringBuilder];
 
-    self.body.debugBody = debugString.string;
+    self.requestBody.debugBody = debugString.string;
 //    FLLog([self description]);
 #endif    
 }

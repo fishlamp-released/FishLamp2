@@ -241,15 +241,15 @@
 		275A65CA16FFB23C00B5EE4C /* FLZenfolio.m in Sources */ = {isa = PBXBuildFile; fileRef = 275A60CB16FFB23300B5EE4C /* FLZenfolio.m */; };
 		275A65CB16FFB23C00B5EE4C /* FLZenfolio.m in Sources */ = {isa = PBXBuildFile; fileRef = 275A60CB16FFB23300B5EE4C /* FLZenfolio.m */; };
 		275A65CC16FFB23C00B5EE4C /* FLZenfolio.m in Sources */ = {isa = PBXBuildFile; fileRef = 275A60CB16FFB23300B5EE4C /* FLZenfolio.m */; };
-		275A65CD16FFB23C00B5EE4C /* ZFHttpRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 275A60CD16FFB23300B5EE4C /* ZFHttpRequest.h */; };
-		275A65CE16FFB23C00B5EE4C /* ZFHttpRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 275A60CD16FFB23300B5EE4C /* ZFHttpRequest.h */; };
-		275A65CF16FFB23C00B5EE4C /* ZFHttpRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 275A60CD16FFB23300B5EE4C /* ZFHttpRequest.h */; };
-		275A65D016FFB23C00B5EE4C /* ZFHttpRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 275A60CD16FFB23300B5EE4C /* ZFHttpRequest.h */; };
-		275A65D116FFB23C00B5EE4C /* ZFHttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 275A60CE16FFB23300B5EE4C /* ZFHttpRequest.m */; };
-		275A65D216FFB23C00B5EE4C /* ZFHttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 275A60CE16FFB23300B5EE4C /* ZFHttpRequest.m */; };
-		275A65D316FFB23C00B5EE4C /* ZFHttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 275A60CE16FFB23300B5EE4C /* ZFHttpRequest.m */; };
-		275A65D416FFB23C00B5EE4C /* ZFHttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 275A60CE16FFB23300B5EE4C /* ZFHttpRequest.m */; };
-		275A65D516FFB23C00B5EE4C /* ZFHttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 275A60CE16FFB23300B5EE4C /* ZFHttpRequest.m */; };
+		275A65CD16FFB23C00B5EE4C /* ZFHttpRequestFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 275A60CD16FFB23300B5EE4C /* ZFHttpRequestFactory.h */; };
+		275A65CE16FFB23C00B5EE4C /* ZFHttpRequestFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 275A60CD16FFB23300B5EE4C /* ZFHttpRequestFactory.h */; };
+		275A65CF16FFB23C00B5EE4C /* ZFHttpRequestFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 275A60CD16FFB23300B5EE4C /* ZFHttpRequestFactory.h */; };
+		275A65D016FFB23C00B5EE4C /* ZFHttpRequestFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 275A60CD16FFB23300B5EE4C /* ZFHttpRequestFactory.h */; };
+		275A65D116FFB23C00B5EE4C /* ZFHttpRequestFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 275A60CE16FFB23300B5EE4C /* ZFHttpRequestFactory.m */; };
+		275A65D216FFB23C00B5EE4C /* ZFHttpRequestFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 275A60CE16FFB23300B5EE4C /* ZFHttpRequestFactory.m */; };
+		275A65D316FFB23C00B5EE4C /* ZFHttpRequestFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 275A60CE16FFB23300B5EE4C /* ZFHttpRequestFactory.m */; };
+		275A65D416FFB23C00B5EE4C /* ZFHttpRequestFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 275A60CE16FFB23300B5EE4C /* ZFHttpRequestFactory.m */; };
+		275A65D516FFB23C00B5EE4C /* ZFHttpRequestFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 275A60CE16FFB23300B5EE4C /* ZFHttpRequestFactory.m */; };
 		275A65DF16FFB23C00B5EE4C /* ZFDownloadPhotoSetsOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 275A60D216FFB23300B5EE4C /* ZFDownloadPhotoSetsOperation.h */; };
 		275A65E016FFB23C00B5EE4C /* ZFDownloadPhotoSetsOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 275A60D216FFB23300B5EE4C /* ZFDownloadPhotoSetsOperation.h */; };
 		275A65E116FFB23C00B5EE4C /* ZFDownloadPhotoSetsOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 275A60D216FFB23300B5EE4C /* ZFDownloadPhotoSetsOperation.h */; };
@@ -5109,8 +5109,8 @@
 		275A60C916FFB23300B5EE4C /* ZFSoapFaultUserNotificationErrorFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFSoapFaultUserNotificationErrorFormatter.m; sourceTree = "<group>"; };
 		275A60CA16FFB23300B5EE4C /* FLZenfolio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLZenfolio.h; sourceTree = "<group>"; };
 		275A60CB16FFB23300B5EE4C /* FLZenfolio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLZenfolio.m; sourceTree = "<group>"; };
-		275A60CD16FFB23300B5EE4C /* ZFHttpRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFHttpRequest.h; sourceTree = "<group>"; };
-		275A60CE16FFB23300B5EE4C /* ZFHttpRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFHttpRequest.m; sourceTree = "<group>"; };
+		275A60CD16FFB23300B5EE4C /* ZFHttpRequestFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFHttpRequestFactory.h; sourceTree = "<group>"; };
+		275A60CE16FFB23300B5EE4C /* ZFHttpRequestFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFHttpRequestFactory.m; sourceTree = "<group>"; };
 		275A60D216FFB23300B5EE4C /* ZFDownloadPhotoSetsOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFDownloadPhotoSetsOperation.h; sourceTree = "<group>"; };
 		275A60D316FFB23300B5EE4C /* ZFDownloadPhotoSetsOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFDownloadPhotoSetsOperation.m; sourceTree = "<group>"; };
 		275A60D416FFB23300B5EE4C /* ZFLoadAllUserInfoForAuthenticatedUserOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFLoadAllUserInfoForAuthenticatedUserOperation.h; sourceTree = "<group>"; };
@@ -6350,8 +6350,8 @@
 		275A60CC16FFB23300B5EE4C /* Http */ = {
 			isa = PBXGroup;
 			children = (
-				275A60CD16FFB23300B5EE4C /* ZFHttpRequest.h */,
-				275A60CE16FFB23300B5EE4C /* ZFHttpRequest.m */,
+				275A60CD16FFB23300B5EE4C /* ZFHttpRequestFactory.h */,
+				275A60CE16FFB23300B5EE4C /* ZFHttpRequestFactory.m */,
 			);
 			path = Http;
 			sourceTree = "<group>";
@@ -7684,7 +7684,7 @@
 				275A65B216FFB23C00B5EE4C /* ZFSoapError.h in Headers */,
 				275A65BB16FFB23C00B5EE4C /* ZFSoapFaultUserNotificationErrorFormatter.h in Headers */,
 				275A65C416FFB23C00B5EE4C /* FLZenfolio.h in Headers */,
-				275A65CD16FFB23C00B5EE4C /* ZFHttpRequest.h in Headers */,
+				275A65CD16FFB23C00B5EE4C /* ZFHttpRequestFactory.h in Headers */,
 				275A65DF16FFB23C00B5EE4C /* ZFDownloadPhotoSetsOperation.h in Headers */,
 				275A65E816FFB23C00B5EE4C /* ZFLoadAllUserInfoForAuthenticatedUserOperation.h in Headers */,
 				275A65F116FFB23C00B5EE4C /* ZFLoadGroupHierarchyOperation.h in Headers */,
@@ -8243,7 +8243,7 @@
 				275A65B416FFB23C00B5EE4C /* ZFSoapError.h in Headers */,
 				275A65BD16FFB23C00B5EE4C /* ZFSoapFaultUserNotificationErrorFormatter.h in Headers */,
 				275A65C616FFB23C00B5EE4C /* FLZenfolio.h in Headers */,
-				275A65CF16FFB23C00B5EE4C /* ZFHttpRequest.h in Headers */,
+				275A65CF16FFB23C00B5EE4C /* ZFHttpRequestFactory.h in Headers */,
 				275A65E116FFB23C00B5EE4C /* ZFDownloadPhotoSetsOperation.h in Headers */,
 				275A65EA16FFB23C00B5EE4C /* ZFLoadAllUserInfoForAuthenticatedUserOperation.h in Headers */,
 				275A65F316FFB23C00B5EE4C /* ZFLoadGroupHierarchyOperation.h in Headers */,
@@ -8802,7 +8802,7 @@
 				275A65B316FFB23C00B5EE4C /* ZFSoapError.h in Headers */,
 				275A65BC16FFB23C00B5EE4C /* ZFSoapFaultUserNotificationErrorFormatter.h in Headers */,
 				275A65C516FFB23C00B5EE4C /* FLZenfolio.h in Headers */,
-				275A65CE16FFB23C00B5EE4C /* ZFHttpRequest.h in Headers */,
+				275A65CE16FFB23C00B5EE4C /* ZFHttpRequestFactory.h in Headers */,
 				275A65E016FFB23C00B5EE4C /* ZFDownloadPhotoSetsOperation.h in Headers */,
 				275A65E916FFB23C00B5EE4C /* ZFLoadAllUserInfoForAuthenticatedUserOperation.h in Headers */,
 				275A65F216FFB23C00B5EE4C /* ZFLoadGroupHierarchyOperation.h in Headers */,
@@ -9361,7 +9361,7 @@
 				275A65B516FFB23C00B5EE4C /* ZFSoapError.h in Headers */,
 				275A65BE16FFB23C00B5EE4C /* ZFSoapFaultUserNotificationErrorFormatter.h in Headers */,
 				275A65C716FFB23C00B5EE4C /* FLZenfolio.h in Headers */,
-				275A65D016FFB23C00B5EE4C /* ZFHttpRequest.h in Headers */,
+				275A65D016FFB23C00B5EE4C /* ZFHttpRequestFactory.h in Headers */,
 				275A65E216FFB23C00B5EE4C /* ZFDownloadPhotoSetsOperation.h in Headers */,
 				275A65EB16FFB23C00B5EE4C /* ZFLoadAllUserInfoForAuthenticatedUserOperation.h in Headers */,
 				275A65F416FFB23C00B5EE4C /* ZFLoadGroupHierarchyOperation.h in Headers */,
@@ -10088,7 +10088,7 @@
 				275A65B716FFB23C00B5EE4C /* ZFSoapError.m in Sources */,
 				275A65C016FFB23C00B5EE4C /* ZFSoapFaultUserNotificationErrorFormatter.m in Sources */,
 				275A65C916FFB23C00B5EE4C /* FLZenfolio.m in Sources */,
-				275A65D216FFB23C00B5EE4C /* ZFHttpRequest.m in Sources */,
+				275A65D216FFB23C00B5EE4C /* ZFHttpRequestFactory.m in Sources */,
 				275A65E416FFB23C00B5EE4C /* ZFDownloadPhotoSetsOperation.m in Sources */,
 				275A65ED16FFB23C00B5EE4C /* ZFLoadAllUserInfoForAuthenticatedUserOperation.m in Sources */,
 				275A65F616FFB23C00B5EE4C /* ZFLoadGroupHierarchyOperation.m in Sources */,
@@ -10645,7 +10645,7 @@
 				275A65B916FFB23C00B5EE4C /* ZFSoapError.m in Sources */,
 				275A65C216FFB23C00B5EE4C /* ZFSoapFaultUserNotificationErrorFormatter.m in Sources */,
 				275A65CB16FFB23C00B5EE4C /* FLZenfolio.m in Sources */,
-				275A65D416FFB23C00B5EE4C /* ZFHttpRequest.m in Sources */,
+				275A65D416FFB23C00B5EE4C /* ZFHttpRequestFactory.m in Sources */,
 				275A65E616FFB23C00B5EE4C /* ZFDownloadPhotoSetsOperation.m in Sources */,
 				275A65EF16FFB23C00B5EE4C /* ZFLoadAllUserInfoForAuthenticatedUserOperation.m in Sources */,
 				275A65F816FFB23C00B5EE4C /* ZFLoadGroupHierarchyOperation.m in Sources */,
@@ -11202,7 +11202,7 @@
 				275A65B616FFB23C00B5EE4C /* ZFSoapError.m in Sources */,
 				275A65BF16FFB23C00B5EE4C /* ZFSoapFaultUserNotificationErrorFormatter.m in Sources */,
 				275A65C816FFB23C00B5EE4C /* FLZenfolio.m in Sources */,
-				275A65D116FFB23C00B5EE4C /* ZFHttpRequest.m in Sources */,
+				275A65D116FFB23C00B5EE4C /* ZFHttpRequestFactory.m in Sources */,
 				275A65E316FFB23C00B5EE4C /* ZFDownloadPhotoSetsOperation.m in Sources */,
 				275A65EC16FFB23C00B5EE4C /* ZFLoadAllUserInfoForAuthenticatedUserOperation.m in Sources */,
 				275A65F516FFB23C00B5EE4C /* ZFLoadGroupHierarchyOperation.m in Sources */,
@@ -11759,7 +11759,7 @@
 				275A65B816FFB23C00B5EE4C /* ZFSoapError.m in Sources */,
 				275A65C116FFB23C00B5EE4C /* ZFSoapFaultUserNotificationErrorFormatter.m in Sources */,
 				275A65CA16FFB23C00B5EE4C /* FLZenfolio.m in Sources */,
-				275A65D316FFB23C00B5EE4C /* ZFHttpRequest.m in Sources */,
+				275A65D316FFB23C00B5EE4C /* ZFHttpRequestFactory.m in Sources */,
 				275A65E516FFB23C00B5EE4C /* ZFDownloadPhotoSetsOperation.m in Sources */,
 				275A65EE16FFB23C00B5EE4C /* ZFLoadAllUserInfoForAuthenticatedUserOperation.m in Sources */,
 				275A65F716FFB23C00B5EE4C /* ZFLoadGroupHierarchyOperation.m in Sources */,
@@ -12316,7 +12316,7 @@
 				275A65BA16FFB23C00B5EE4C /* ZFSoapError.m in Sources */,
 				275A65C316FFB23C00B5EE4C /* ZFSoapFaultUserNotificationErrorFormatter.m in Sources */,
 				275A65CC16FFB23C00B5EE4C /* FLZenfolio.m in Sources */,
-				275A65D516FFB23C00B5EE4C /* ZFHttpRequest.m in Sources */,
+				275A65D516FFB23C00B5EE4C /* ZFHttpRequestFactory.m in Sources */,
 				275A65E716FFB23C00B5EE4C /* ZFDownloadPhotoSetsOperation.m in Sources */,
 				275A65F016FFB23C00B5EE4C /* ZFLoadAllUserInfoForAuthenticatedUserOperation.m in Sources */,
 				275A65F916FFB23C00B5EE4C /* ZFLoadGroupHierarchyOperation.m in Sources */,

@@ -83,6 +83,7 @@
     FLPerformSelector2(_finishedDelegate, _finishedAction, self, result);
     self.cancelled = NO;
 
+    [self operationDidFinish];
     return result;
 }
 
