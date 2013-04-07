@@ -47,7 +47,7 @@
             [self runForGroup:(ZFGroup*) element];
         }
         else {
-            FLHttpRequest* request = [ZFHttpRequest loadPhotoSetHttpRequest:element.Id level:kZenfolioInformatonLevelFull includePhotos:NO];
+            FLHttpRequest* request = [ZFHttpRequestFactory loadPhotoSetHttpRequest:element.Id level:kZenfolioInformatonLevelFull includePhotos:NO];
             
             ZFPhotoSet* set = [self runChildSynchronously:request];
             FLAssertNotNil(set);

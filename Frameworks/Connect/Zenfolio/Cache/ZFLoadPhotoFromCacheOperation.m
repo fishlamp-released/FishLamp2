@@ -37,7 +37,7 @@
 //#endif
 //
 //- (FLResult) runSubOperations {
-//    FLHttpRequest* request = [ZFHttpRequest loadPhotoHttpRequest:[NSNumber numberWithInt:_photoID] level:_level];
+//    FLHttpRequest* request = [ZFHttpRequestFactory loadPhotoHttpRequest:[NSNumber numberWithInt:_photoID] level:_level];
 //    return [self runChildSynchronously:request];
 //}
 //

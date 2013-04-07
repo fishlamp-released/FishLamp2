@@ -46,7 +46,7 @@
 
 	NSData* encodedChallenge = [decodedChallenge base64Encode];
     
-    return [ZFHttpRequest authenticateRequest:encodedChallenge proof:encodedProof];
+    return [ZFHttpRequestFactory authenticateRequest:encodedChallenge proof:encodedProof];
 }
 
 - (FLResult) performSynchronously {
@@ -58,13 +58,13 @@
 
         FLTrace(@"auth failed because password is empty");
         
-        FLThrowIfError( [NSError errorWithDomain:ZFErrorDomain
+        FLThrowError( [NSError errorWithDomain:ZFErrorDomain
                                            code:ZFErrorCodeInvalidCredentials
                            localizedDescription:NSLocalizedString(@"Password is incorrect", nil)]);
     }
     
     
-    FLHttpRequest* challengeRequest = [ZFHttpRequest challengeHttpRequest:self.user.credentials.userName];
+    FLHttpRequest* challengeRequest = [ZFHttpRequestFactory challengeHttpRequest:self.user.credentials.userName];
     challengeRequest.disableAuthenticator = YES;
     
     ZFAuthChallenge* response = [self runChildSynchronously:challengeRequest];

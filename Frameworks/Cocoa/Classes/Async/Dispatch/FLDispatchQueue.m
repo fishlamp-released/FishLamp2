@@ -228,7 +228,7 @@ static void * const s_queue_key = (void*)&s_queue_key;
                     completion:(fl_result_block_t) completion {
 
     FLAssertNotNil(operation);
-    FLFinisher* finisher = [FLFinisher finisherForOperation:operation completion:completion];
+    FLFinisher* finisher = [FLFinisher finisher:completion];
 
     dispatch_async(_dispatch_queue, ^{
         @try {

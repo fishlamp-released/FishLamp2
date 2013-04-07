@@ -16,14 +16,8 @@ typedef void (^FLObjectDescriberPropertyVisitor)(id object, FLObjectDescriber* o
 @property (readwrite, copy, nonatomic) NSDictionary* childDescribers;
 @property (readwrite, assign, nonatomic) Class objectClass;
 @property (readwrite, strong, nonatomic) NSString* objectName;
-@property (readwrite, assign, nonatomic) FLPropertyAttributes_t propertyAttributes;
-
 - (void) addSuperclasschildDescribers;
 - (void) discoverchildDescribers;
-
-//- (id) initWithRuntimeProperty:(objc_property_t) runtimeProperty;
-//+ (id) objectDescriberWithRuntimeProperty:(objc_property_t) property;
-
 @end
 
 @implementation FLObjectDescriber
@@ -32,7 +26,6 @@ typedef void (^FLObjectDescriberPropertyVisitor)(id object, FLObjectDescriber* o
 @synthesize objectClass = _objectClass;
 @synthesize objectName = _objectName;
 @synthesize objectEncoder = _objectEncoder;
-@synthesize propertyAttributes = _propertyAttributes;
 
 - (id) init {
     return [self initWithClass:nil withObjectName:nil];
@@ -69,48 +62,32 @@ typedef void (^FLObjectDescriberPropertyVisitor)(id object, FLObjectDescriber* o
     return [FLObjectDescriber objectDescriberForClass:aClass withObjectName:name];
 }
 
-
-//+ (id) objectDescriberWithRuntimeProperty:(objc_property_t) property {
-//	return FLAutorelease([[[self class] alloc] initWithRuntimeProperty:property]);
-//}
-//
 + (id) objectDescriberWithRuntimeProperty:(objc_property_t) runtimeProperty {
 
     FLPropertyAttributes_t attributes;
-    FLPropertyAttributesDecodeWithCopy(runtimeProperty, &attributes);
+    FLPropertyAttributesDecodeWithNoCopy(runtimeProperty, &attributes);
     
     if(attributes.className.string) {
         NSString* objectName = [NSString stringWithCString:attributes.propertyName encoding:NSASCIIStringEncoding];
         Class objectClass = NSClassFromString([NSString stringWithCharString:attributes.className]);
     
         FLObjectDescriber* describer = [FLObjectDescriber objectDescriberForClass:objectClass withObjectName:objectName];
-        describer.propertyAttributes = attributes;
         describer.objectEncoder = [objectClass objectEncoder]; 
         return describer;
     }
-    
-//    FLLog(@"unable to make object describer for %s", attributes.encodedAttributes);
-    FLPropertyAttributesFree(&attributes);
-    
-    
+#if TRACE    
+    FLLog(@"unable to make object describer for %s", attributes.encodedAttributes);
+#endif    
     return nil;
 }
 
-- (void) dealloc {
-    FLPropertyAttributesFree(&_attributes);
-
 #if FL_MRC
+- (void) dealloc {
     [_objectName release];
     [_childDescribers release];
 	[super dealloc];
-#endif
 }
-
-	
-
-//- (id) copyWithZone:(NSZone *)zone {
-//	return [[FLObjectDescriber alloc] initWithClass:self.class withchildDescribers:self.childDescribers];
-//}
+#endif
 
 - (FLObjectDescriber*) childDescriberForObjectName:(NSString*) propertyName {
 	return [_childDescribers objectForKey:propertyName];
@@ -128,9 +105,11 @@ typedef void (^FLObjectDescriberPropertyVisitor)(id object, FLObjectDescriber* o
     if(property.objectClass) {
         [_childDescribers setObject:property forKey:property.objectName];
     }
-//    else {
-//        FLLog(@"skipping property %@", property.objectName);
-//    }
+#if TRACE    
+    else {
+        FLLog(@"skipping property %@", property.objectName);
+    }
+#endif    
 }
 
 - (void) discoverchildDescribers {
@@ -148,10 +127,6 @@ typedef void (^FLObjectDescriberPropertyVisitor)(id object, FLObjectDescriber* o
 
     free(childDescribers);
 }
-
-//+ (id) objectDescriber:(Class) aClass {
-//    return FLAutorelease([[[self class] alloc] initWithClass:aClass]);
-//}
 
 - (NSString*) description {
 	return [NSString stringWithFormat:@"%@: { name=%@, class=%@, encoder=%@, childDescribers:%@", [super description], self.objectName, NSStringFromClass(self.objectClass), [self.objectEncoder description], [_childDescribers description]];

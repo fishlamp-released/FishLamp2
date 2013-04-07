@@ -94,7 +94,9 @@ static void HostResolutionCallback(CFHostRef theHost, CFHostInfoType typeInfo, c
 }
 
 - (FLResult) resolveHostSynchronously:(FLNetworkHost*) host {
-    return FLThrowIfError([[self startResolvingHost:host] waitUntilFinished]);
+    FLResult result = [[self startResolvingHost:host] waitUntilFinished];
+    FLThrowIfError(result);
+    return result;
 }
 
 - (FLFinisher*) startResolvingHost:(FLNetworkHost*) host {

@@ -30,7 +30,7 @@
 //
 //- (FLResult) runSubOperations {
 //    
-//    FLHttpRequest* request = [ZFHttpRequest loadGroupHttpRequest:[NSNumber numberWithInt:_groupID] 
+//    FLHttpRequest* request = [ZFHttpRequestFactory loadGroupHttpRequest:[NSNumber numberWithInt:_groupID] 
 //                                                           level:kZenfolioInformatonLevelFull 
 //                                                 includeChildren:YES];
 //

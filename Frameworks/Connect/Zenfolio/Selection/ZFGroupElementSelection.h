@@ -33,6 +33,8 @@
 
 // cached selection
     NSMutableIndexSet* _cachedSelectionIndexesForOutlineView;
+    
+    NSSortDescriptor* _sortDescriptor;
 }
 
 @property (readwrite, strong, nonatomic) id<FLObjectStorage> objectStorage;
@@ -75,14 +77,14 @@
 /// gets/sets selection by index for outline view
 @property (readwrite, strong, nonatomic) NSIndexSet* selectedIndexSet;
 
-- (void) resetAllButSelection;
-
 // optional overrides
 
 - (void) didExpandGroup:(ZFGroup*) group 
              isExpanded:(BOOL) isExpanded;
 
-- (void) didReplaceElementAtIndex:(NSUInteger) index withElement:(id) element;
+- (void) didReplaceElement:(id) object atIndex:(NSUInteger) index withElement:(id) element;
+
+- (void) didChangeFilter;
 
 @end
 

@@ -31,8 +31,23 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
 @synthesize streamRef = _streamRef;
 @synthesize inputSink = _inputSink;
 
+- (void) killStream {
+    if(_streamRef) {
+        CFReadStreamClose(_streamRef);
+        CFReadStreamUnscheduleFromRunLoop(_streamRef, CFRunLoopGetMain(), bridge_(void*,NSDefaultRunLoopMode));
+        CFRelease(_streamRef);
+        _streamRef = nil;
+    }
+}
+
 - (void) dealloc {
-    FLAssert(_streamRef == nil);
+#if DEBUG
+    if(_streamRef) {
+        FLLog(@"WARNING: stream not closed in dealloc");
+    }
+#endif     
+    
+    [self killStream];
     
 #if FL_MRC  
     [_inputSink release];
@@ -51,6 +66,8 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
 - (void) willOpen {
     [super willOpen];
     FLAssert([NSThread currentThread] != [NSThread mainThread]);
+    
+    [self killStream];
      
     _streamRef = [self allocReadStreamRef];         
          
@@ -86,12 +103,7 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
             }
         }
         @finally {
-            FLAssertNotNil(_streamRef);
-            CFReadStreamClose(_streamRef);
-            CFReadStreamUnscheduleFromRunLoop(_streamRef, CFRunLoopGetMain(), bridge_(void*,NSDefaultRunLoopMode));
-            CFRelease(_streamRef);
-            _streamRef = nil;
-            
+            [self killStream];
             [self didClose];
         }
     }

@@ -130,7 +130,8 @@
 			withIntermediateDirectories:YES 
 			attributes:nil 
 			error:&err];
-		        if(err) {
+        
+        if(err) {
            FLThrowIfError(err);
         }
 

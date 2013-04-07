@@ -1,5 +1,5 @@
 //
-//  ZFHttpRequest.h
+//  ZFHttpRequestFactory.h
 //  FishLamp
 //
 //  Created by Mike Fullerton on 10/13/12.
@@ -12,47 +12,48 @@
 @class ZFPhotoSet;
 @class ZFGroup;
 @class ZFPhoto;
+@class ZFHttpRequestFactory;
 
 @protocol ZFHttpRequestFactory <NSObject>
 
-+ (FLHttpRequest*) loadPhotoSetHttpRequest:(NSNumber*) photoSetID
++ (id) loadPhotoSetHttpRequest:(NSNumber*) photoSetID
                                      level:(NSString*) level
                              includePhotos:(BOOL) includePhotos;
 
-+ (FLHttpRequest*) loadPhotoSetHttpRequest:(NSNumber*) photoSetID;
++ (id) loadPhotoSetHttpRequest:(NSNumber*) photoSetID;
 
-+ (FLHttpRequest*) challengeHttpRequest:(NSString*) loginName;
++ (id) challengeHttpRequest:(NSString*) loginName;
 
-+ (FLHttpRequest*) authenticateRequest:(NSData*) challenge proof:(NSData*) proof;
++ (id) authenticateRequest:(NSData*) challenge proof:(NSData*) proof;
 
-+ (FLHttpRequest*) loadPrivateProfileHttpRequest;
++ (id) loadPrivateProfileHttpRequest;
 
-+ (FLHttpRequest*) loadPublicProfileHttpRequest:(NSString*) userName;
++ (id) loadPublicProfileHttpRequest:(NSString*) userName;
 
-+ (FLHttpRequest*) checkPrivilegeHttpRequest:(NSString*) loginName 
++ (id) checkPrivilegeHttpRequest:(NSString*) loginName 
                                privilegeName:(NSString*) privilegeName;
 
-+ (FLHttpRequest*) authenticateVisitorHttpRequest;
++ (id) authenticateVisitorHttpRequest;
 
-+ (FLHttpRequest*) loadPhotoHttpRequest:(NSNumber*) photoID
++ (id) loadPhotoHttpRequest:(NSNumber*) photoID
                                   level:(NSString*) level;
 
-+ (FLHttpRequest*) movePhotoHttpRequest:(ZFPhoto*) photo
++ (id) movePhotoHttpRequest:(ZFPhoto*) photo
                            fromPhotoSet:(ZFPhotoSet*) fromPhotoSet
                              toPhotoSet:(ZFPhotoSet*) toPhotoSet;
 
-+ (FLHttpRequest*) addPhotoToCollectionHttpRequest:(ZFPhoto*) photo
++ (id) addPhotoToCollectionHttpRequest:(ZFPhoto*) photo
                                         collection:(ZFPhotoSet*) toCollection;
 
-+ (FLHttpRequest*) loadGroupHierarchyHttpRequest:(NSString*) loginName;
++ (id) loadGroupHierarchyHttpRequest:(NSString*) loginName;
 
-+ (FLHttpRequest*) loadGroupHttpRequest:(NSNumber*) groupID
++ (id) loadGroupHttpRequest:(NSNumber*) groupID
                                   level:(NSString*) level
                         includeChildren:(BOOL) includeChildren;
           
 @end
 
-@interface ZFHttpRequest : NSObject<ZFHttpRequestFactory>
+@interface ZFHttpRequestFactory : NSObject<ZFHttpRequestFactory>
 
 + (void) setHttpRequestFactoryClass:(Class) factoryClass;
 + (Class) factoryClass;

@@ -36,19 +36,29 @@
 - (void) writeObject:(id) object {
     FLAssert(self.isServiceOpen);
     FLAssertNotNil(self.objectStorage);
-    [self.objectStorage setObject:object forKey:[object objectStorageKey_fl]];
+    
+    id key = [object objectStorageKey_fl];
+    
+    id previous = FLRetainWithAutorelease([self.objectStorage objectForKey:key]);
+    if(previous != object) {
+        [self.objectStorage setObject:object forKey:key];
+    }
 }
 
 - (id) readObject:(id) inputObject {
     FLAssert(self.isServiceOpen);
     FLAssertNotNil(self.objectStorage);
-    return [self.objectStorage objectForKey:[inputObject objectStorageKey_fl]];
+    return FLRetainWithAutorelease([self.objectStorage objectForKey:[inputObject objectStorageKey_fl]]);
 }
 
 - (void) deleteObject:(id) inputObject {
     FLAssert(self.isServiceOpen);
     FLAssertNotNil(self.objectStorage);
-    [self.objectStorage removeObjectForKey:[inputObject objectStorageKey_fl]];
+    id key = [inputObject objectStorageKey_fl];
+    id previous = FLRetainWithAutorelease([self.objectStorage objectForKey:key]);
+    if(previous) {
+        [self.objectStorage removeObjectForKey:key];
+    }
 }
 
 - (BOOL) containsObject:(id) inputObject {

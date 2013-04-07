@@ -23,6 +23,7 @@
 - (NSIndexSet*) selectionIndexesForProposedSelection:(NSIndexSet*) selection;
 
 - (void) updateSelections;
+- (void) updateExpansions;
 
 @end
 

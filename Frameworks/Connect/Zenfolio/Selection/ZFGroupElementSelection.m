@@ -44,7 +44,7 @@
 @synthesize selected = _selected;
 @synthesize cachedIndexSetForOutlineView = _cachedSelectionIndexesForOutlineView;
 @synthesize objectStorage = _objectStorage;
-
+ 
 - (id) init {
     return [self initWithPhotoSets:nil];
 }
@@ -65,6 +65,10 @@
     if(_rootGroup != group) {
         self.displayList = nil;
         FLSetObjectWithRetain(_rootGroup, group);
+        
+        if(_sortDescriptor) {
+            [_rootGroup sort:_sortDescriptor];
+        }
     }
 }
 
@@ -80,6 +84,7 @@
     [_selectedPhotoSets release];
     [_objectStorage release];
     [_displayList release];
+    [_sortDescriptor release];
     [super dealloc];
 }
 #endif
@@ -107,12 +112,6 @@
     self.selected = nil;
     self.selectedPhotoSets = nil;
 }
-
-- (void) resetAllButSelection {
-    
-
-}
-
 
 #pragma mark - Element list
 
@@ -146,22 +145,21 @@
     return idObject != nil ? [self.elements objectForKey:idObject] : nil;
 }
 
-- (void) didReplaceElementAtIndex:(NSUInteger) index withElement:(id) element {
+- (void) didReplaceElement:(id) object atIndex:(NSUInteger) index withElement:(id) element {
 
 }
 
 - (void) replaceGroupElement:(id) element { 
+
     [self.objectStorage writeObject:element];
     
     NSUInteger idx = [self.elements indexForKey:[element Id]];
     FLAssert(idx != NSNotFound);
     
     if(idx != NSNotFound) {
-        FLRetainWithAutorelease([self.elements objectAtIndex:idx]);
-    
+        id previousObject = FLRetainWithAutorelease([self.elements objectAtIndex:idx]);
         [self.elements replaceObjectAtIndex:idx withObject:element forKey:[element Id]];
-        
-        [self didReplaceElementAtIndex:idx withElement:element];
+        [self didReplaceElement:previousObject atIndex:idx withElement:element];
     }
     
 }
@@ -462,16 +460,16 @@
     return (!self.filtered || [self.filtered containsObject:[element Id]]);
 }
 
-- (void) handleFilterChange {
+- (void) didChangeFilter {
     self.filtered = nil;
     self.displayList = nil;
     self.cachedIndexSetForOutlineView = nil;
 
     if(FLStringIsNotEmpty(_filterString)) {
         self.filtered = [NSMutableSet set];
+        [self clearSelection];
         
         [self resetDisplayList];
-        [self clearSelection];
         
         [self findMatchesForFilterWithGroup:[self rootGroup] filter:_filterString results:_filtered];
         
@@ -484,13 +482,13 @@
         }
     }
     
-//    [self updateExpansions];
+    [self updateExpansions];
 }
 
 - (void) setFilterString:(NSString*) filter {
     if(FLStringsAreNotEqual(filter, _filterString)) {
         FLSetObjectWithRetain(_filterString, filter);
-        [self handleFilterChange];
+        [self didChangeFilter];
     }
 }
 
@@ -506,8 +504,8 @@
 
 - (void) sortWithDescriptor:(NSSortDescriptor*) descriptor {
     [self resetDisplayList];
-    [self clearSelection];
     [self.rootGroup sort:descriptor];
+    FLSetObjectWithRetain(_sortDescriptor, descriptor);
 }
 
 @end

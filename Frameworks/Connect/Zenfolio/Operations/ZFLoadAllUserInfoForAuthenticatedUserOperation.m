@@ -15,10 +15,10 @@
 
 - (FLResult) runSubOperations {
 
-    FLHttpRequest* loadPrivate = [ZFHttpRequest loadPrivateProfileHttpRequest];
+    FLHttpRequest* loadPrivate = [ZFHttpRequestFactory loadPrivateProfileHttpRequest];
     ZFUser* privateUser = [self runChildSynchronously:loadPrivate];
     
-    FLHttpRequest* loadPublic = [ZFHttpRequest loadPublicProfileHttpRequest:privateUser.LoginName];
+    FLHttpRequest* loadPublic = [ZFHttpRequestFactory loadPublicProfileHttpRequest:privateUser.LoginName];
     ZFUser* publicUser = [self runChildSynchronously:loadPublic];
     
     FLMergeObjects(privateUser, publicUser, FLMergeModePreserveDestination);

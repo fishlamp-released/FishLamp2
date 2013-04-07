@@ -12,8 +12,30 @@
 #import "FLCoreTypes.h"
 #import "FLSoapObjectBuilder.h"
 
-#define ZFSoapHttpRequestFrom(__REQUEST_OBJECT_NAME__, __RESULT_OBJECT_NAME__, __RETURNED_OBJECT_NAME__) \
-    [ZFSoapHttpRequestFactory soapHttpRequest:FLAutorelease([[__REQUEST_OBJECT_NAME__ alloc] init]) \
+
+#define ConcreteSubclass(NAME) \
+@interface NAME : ZFSoapHttpRequest \
+@end \
+@implementation NAME \
+@end
+
+
+ConcreteSubclass(ZFLoadPhotoSetSoapRequest)
+ConcreteSubclass(ZFGetChallengeSoapRequest)
+ConcreteSubclass(ZFAuthenticateSoapRequest)
+ConcreteSubclass(ZFLoadPrivateProfileSoapRequest)
+ConcreteSubclass(ZFLoadPublicProfileSoapRequest)
+ConcreteSubclass(ZFCheckPriviligeSoapRequest)
+ConcreteSubclass(ZFAuthenticateVisitorSoapRequest)
+ConcreteSubclass(ZFLoadPhotoSoapRequest)
+ConcreteSubclass(ZFMovePhotoSoapRequest)
+ConcreteSubclass(ZFAddPhotoToCollectionSoapRequest)
+ConcreteSubclass(ZFLoadHierarchySoapRequest)
+ConcreteSubclass(ZFLoadGroupSoapRequest)
+
+
+#define ZFSoapHttpRequestFrom(__SUBCLASS__, __REQUEST_OBJECT_NAME__, __RESULT_OBJECT_NAME__, __RETURNED_OBJECT_NAME__) \
+    [ZFSoapHttpRequestFactory soapHttpRequest:[__SUBCLASS__ class] operationDescriptor:FLAutorelease([[__REQUEST_OBJECT_NAME__ alloc] init]) \
                                               element:[FLObjectDescriber objectDescriberForClass:[__RETURNED_OBJECT_NAME__ class] withObjectName:__RESULT_OBJECT_NAME__]]
 
 @implementation ZFLoadPhotoSet (NSObject)
@@ -80,7 +102,8 @@
 }
 
 
-+ (FLSoapHttpRequest*) soapHttpRequest:(id) operationDescriptor 
++ (FLSoapHttpRequest*) soapHttpRequest:(Class) subclass
+                                       operationDescriptor: (id) operationDescriptor 
                                element:(FLObjectDescriber*) element {
 
     static ZFApiSoap* s_soapServer = nil;
@@ -89,7 +112,7 @@
         s_soapServer = [[ZFApiSoap alloc] init];
     });
 
-    ZFSoapHttpRequest* soapHttpRequest = [ZFSoapHttpRequest soapHttpRequestWithGeneratedObject:operationDescriptor 
+    ZFSoapHttpRequest* soapHttpRequest = [subclass soapHttpRequestWithGeneratedObject:operationDescriptor 
                                                                                     serverInfo:s_soapServer];
     
     soapHttpRequest.handleSoapResponseBlock = (FLResult) ^(FLParsedItem* item) {
@@ -105,7 +128,7 @@
                                  level:(NSString*) level
                          includePhotos:(BOOL) includePhotos {
 
-    FLSoapHttpRequest* httpRequest = ZFSoapHttpRequestFrom(ZFApiSoapLoadPhotoSet, @"LoadPhotoSetResult",  ZFPhotoSet);
+    FLSoapHttpRequest* httpRequest = ZFSoapHttpRequestFrom(ZFLoadPhotoSetSoapRequest, ZFApiSoapLoadPhotoSet, @"LoadPhotoSetResult",  ZFPhotoSet);
     [httpRequest.soapInput setPhotoSetId:photoSetID];
     [httpRequest.soapInput setRequestedResponseLevel:level];
     [httpRequest.soapInput setIncludePhotosValue:includePhotos];
@@ -117,44 +140,44 @@
 }
 
 + (FLHttpRequest*) challengeHttpRequest:(NSString*) loginName {
-    FLSoapHttpRequest* httpRequest = ZFSoapHttpRequestFrom(ZFApiSoapGetChallenge, @"GetChallengeResult", ZFAuthChallenge);
+    FLSoapHttpRequest* httpRequest = ZFSoapHttpRequestFrom(ZFGetChallengeSoapRequest, ZFApiSoapGetChallenge, @"GetChallengeResult", ZFAuthChallenge);
     [httpRequest.soapInput setLoginName:loginName];
     return httpRequest;
 }
 
 + (FLHttpRequest*) authenticateRequest:(NSData*) challenge proof:(NSData*) proof  {
-    FLSoapHttpRequest* authenticate = ZFSoapHttpRequestFrom(ZFApiSoapAuthenticate, @"AuthenticateResult", NSString);
+    FLSoapHttpRequest* authenticate = ZFSoapHttpRequestFrom(ZFAuthenticateSoapRequest, ZFApiSoapAuthenticate, @"AuthenticateResult", NSString);
     [authenticate.soapInput setChallenge:challenge];
     [authenticate.soapInput setProof:proof];
     return authenticate;
 }
 
 + (FLHttpRequest*) loadPrivateProfileHttpRequest {
-    return ZFSoapHttpRequestFrom(ZFApiSoapLoadPrivateProfile, @"LoadPrivateProfileResult", ZFUser);
+    return ZFSoapHttpRequestFrom(ZFLoadPrivateProfileSoapRequest, ZFApiSoapLoadPrivateProfile, @"LoadPrivateProfileResult", ZFUser);
 }
 
 + (FLHttpRequest*) loadPublicProfileHttpRequest:(NSString*) userName {
-    FLSoapHttpRequest* httpRequest = ZFSoapHttpRequestFrom(ZFApiSoapLoadPublicProfile,  @"LoadPublicProfileResult", ZFUser);
+    FLSoapHttpRequest* httpRequest = ZFSoapHttpRequestFrom(ZFLoadPublicProfileSoapRequest, ZFApiSoapLoadPublicProfile,  @"LoadPublicProfileResult", ZFUser);
     [httpRequest.soapInput setLoginName:userName];
     return httpRequest;
 }
 
 + (FLHttpRequest*) checkPrivilegeHttpRequest:(NSString*) loginName 
                             privilegeName:(NSString*) privilegeName {
-    FLSoapHttpRequest* httpRequest = ZFSoapHttpRequestFrom(ZFApiSoapCheckPrivilege,  @"CheckPrivilegeResult", FLBoolNumber);
+    FLSoapHttpRequest* httpRequest = ZFSoapHttpRequestFrom(ZFCheckPriviligeSoapRequest, ZFApiSoapCheckPrivilege,  @"CheckPrivilegeResult", FLBoolNumber);
     [httpRequest.soapInput setLoginName:loginName];
     [httpRequest.soapInput setPrivilegeName:privilegeName];
     return httpRequest;
 }
 
 + (FLHttpRequest*) authenticateVisitorHttpRequest {
-    FLSoapHttpRequest* authHttpRequest = ZFSoapHttpRequestFrom(ZFApiSoapAuthenticateVisitor,  @"AuthenticateVisitorResult", NSString);
+    FLSoapHttpRequest* authHttpRequest = ZFSoapHttpRequestFrom(ZFAuthenticateVisitorSoapRequest, ZFApiSoapAuthenticateVisitor,  @"AuthenticateVisitorResult", NSString);
     return authHttpRequest;
 }
 
 + (FLHttpRequest*) loadPhotoHttpRequest:(NSNumber*) photoID
                    level:(NSString*) level {
-    FLSoapHttpRequest* httpRequest = ZFSoapHttpRequestFrom(ZFApiSoapLoadPhoto, @"LoadPhotoResult", ZFPhoto);
+    FLSoapHttpRequest* httpRequest = ZFSoapHttpRequestFrom(ZFLoadPhotoSoapRequest, ZFApiSoapLoadPhoto, @"LoadPhotoResult", ZFPhoto);
     [httpRequest.soapInput setPhotoId:photoID];
     [httpRequest.soapInput setRequestedResponseLevel:level];
     return httpRequest;
@@ -163,7 +186,7 @@
 + (FLHttpRequest*) movePhotoHttpRequest:(ZFPhoto*) photo
              fromPhotoSet:(ZFPhotoSet*) fromPhotoSet
                toPhotoSet:(ZFPhotoSet*) toPhotoSet {
-    FLSoapHttpRequest* httpRequest = ZFSoapHttpRequestFrom(ZFApiSoapMovePhoto, @"MovePhotoResult", NSString);
+    FLSoapHttpRequest* httpRequest = ZFSoapHttpRequestFrom(ZFMovePhotoSoapRequest, ZFApiSoapMovePhoto, @"MovePhotoResult", NSString);
     [httpRequest.soapInput setSrcSetId:fromPhotoSet.Id];
     [httpRequest.soapInput setPhotoId:photo.Id];
     [httpRequest.soapInput setDestSetId:toPhotoSet.Id];
@@ -173,14 +196,14 @@
 
 + (FLHttpRequest*) addPhotoToCollectionHttpRequest:(ZFPhoto*) photo
                           collection:(ZFPhotoSet*) toCollection {
-    FLSoapHttpRequest* httpRequest = ZFSoapHttpRequestFrom(ZFApiSoapCollectionAddPhoto, @"CollectionAddPhotoResult", NSString);
+    FLSoapHttpRequest* httpRequest = ZFSoapHttpRequestFrom(ZFAddPhotoToCollectionSoapRequest, ZFApiSoapCollectionAddPhoto, @"CollectionAddPhotoResult", NSString);
     [httpRequest.soapInput setCollectionId:toCollection.Id];
     [httpRequest.soapInput setPhotoId:photo.Id];
     return httpRequest;
 }
 
 + (FLHttpRequest*) loadGroupHierarchyHttpRequest:(NSString*) loginName {
-    FLSoapHttpRequest* httpRequest = ZFSoapHttpRequestFrom(ZFApiSoapLoadGroupHierarchy, @"LoadGroupHierarchyResult", ZFGroup);
+    FLSoapHttpRequest* httpRequest = ZFSoapHttpRequestFrom(ZFLoadHierarchySoapRequest, ZFApiSoapLoadGroupHierarchy, @"LoadGroupHierarchyResult", ZFGroup);
     [httpRequest.soapInput setLoginName:loginName];
     return httpRequest;
 }
@@ -189,7 +212,7 @@
                     level:(NSString*) level
           includeChildren:(BOOL) includeChildren {
 
-    FLSoapHttpRequest* httpRequest = ZFSoapHttpRequestFrom(ZFApiSoapLoadGroup, @"LoadGroupResult", ZFGroup);
+    FLSoapHttpRequest* httpRequest = ZFSoapHttpRequestFrom(ZFLoadGroupSoapRequest, ZFApiSoapLoadGroup, @"LoadGroupResult", ZFGroup);
     [httpRequest.soapInput setGroupId:groupID];
     [httpRequest.soapInput setRequestedResponseLevel:level];
 

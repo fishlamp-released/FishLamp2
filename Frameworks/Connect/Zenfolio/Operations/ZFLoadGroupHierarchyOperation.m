@@ -38,7 +38,7 @@
 
     FLAssertNotNil(self.objectStorage);
 
-    FLHttpRequest* request = [ZFHttpRequest loadGroupHierarchyHttpRequest:_userLogin.userName];
+    FLHttpRequest* request = [ZFHttpRequestFactory loadGroupHierarchyHttpRequest:_userLogin.userName];
     FLAssertNotNil(request);
 
     [self abortIfNeeded];

@@ -30,6 +30,21 @@
 
 #import "FLErrorException.h"
 
+NSException* FLDefaultWillThrowExceptionHandler(NSException *exception) {
+    return exception;
+}
+
+static FLWillThrowExceptionHandler* s_will_throw_exception_handler = nil;
+
+void FLSetWillThrowExceptionHandler(FLWillThrowExceptionHandler handler) {
+    s_will_throw_exception_handler = handler;
+}
+
+FLWillThrowExceptionHandler* FLGetWillThrowExceptionHandler() {
+    return s_will_throw_exception_handler == nil ? FLDefaultWillThrowExceptionHandler : s_will_throw_exception_handler;
+}
+
+
 @implementation NSError (FLExceptionCreation)
 
 - (NSException*) createExceptionWithStackTrace:(FLStackTrace_t) stackTrace userInfo:(NSDictionary*) userInfo {
@@ -44,3 +59,4 @@
 }
 
 @end
+

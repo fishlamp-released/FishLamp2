@@ -7,7 +7,7 @@
 //
 
 #import "FishLampCocoa.h"
-#import "ZFHttpRequest.h"
+#import "ZFHttpRequestFactory.h"
 
 @interface ZFSoapHttpRequestFactory : NSObject<ZFHttpRequestFactory> {
 @private

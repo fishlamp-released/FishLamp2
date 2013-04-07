@@ -172,25 +172,35 @@ sortDescriptorsDidChange:(NSArray *)oldDescriptors {
     }
 }
 
-- (void) didReplaceElementAtIndex:(NSUInteger) index withElement:(id) element {
+- (void) didReplaceElement:(id) oldItem atIndex:(NSUInteger) index withElement:(id) element {
 
-    if(!self.updates) {
-        self.updates = [NSMutableSet set];
-        [self performSelector:@selector(updateQueuedUpdates) withObject:nil afterDelay:kUpdateDelay];
-    }   
-
-    id oldItem = FLRetainWithAutorelease([_outlineView itemAtRow:index]);
-    [self.updates addObject:oldItem];
+//    id oldItem = FLRetainWithAutorelease([_outlineView itemAtRow:index]);
     
-    ZFGroup* parent = [_outlineView parentForItem:oldItem];
-#if TRACE
-    FLLog(@"Updated Element: %@ at row %d", [element Title], index);
-#endif
+    // this can be nil if we get a new photoSet and there is a filter in place.
+    if(oldItem) {
+        if(!self.updates) {
+            self.updates = [NSMutableSet set];
+            [self performSelector:@selector(updateQueuedUpdates) withObject:nil afterDelay:kUpdateDelay];
+        }
         
-    while(parent) {
-        [self.updates addObject:parent];
-        parent = [_outlineView parentForItem:parent];
+        [self.updates addObject:oldItem];
+        
+        ZFGroup* parent = [_outlineView parentForItem:oldItem];
+    #if TRACE
+        FLLog(@"Updated Element: %@ at row %d", [element Title], index);
+    #endif
+            
+        while(parent) {
+            [self.updates addObject:parent];
+            parent = [_outlineView parentForItem:parent];
+        }
     }
+}
+
+- (void) didChangeFilter {
+    [super didChangeFilter];
+    [self updateSelections];
+    [_outlineView reloadData];
 }
 
 

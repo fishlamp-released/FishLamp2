@@ -52,7 +52,7 @@
 
 - (void) setupTests {
 //   FLConfirmNotNil(self.userContext);
-//   FLConfirmNotNil(ZFHttpRequest);
+//   FLConfirmNotNil(ZFHttpRequestFactory);
 //   
    [self findTestCaseForSelector:@selector(testAuthentication)].priority = FLTestCasePriorityHigh;
 }

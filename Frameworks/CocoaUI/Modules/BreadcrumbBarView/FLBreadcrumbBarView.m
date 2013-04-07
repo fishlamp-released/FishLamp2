@@ -41,7 +41,21 @@
 //    return @selector(applyThemeToBreadcrumbBarView:);
 //}
 
-- (id) setupBreadcrumbBarView {
+//- (id) setupBreadcrumbBarView {
+//    
+//    return self;
+//}
+//
+//- (id) initWithFrame:(NSRect) rect {
+//    return [[super initWithFrame:rect] setupBreadcrumbBarView];
+//}
+//
+//- (id) initWithCoder:(NSCoder *)aDecoder {
+//    return [[super initWithCoder:aDecoder] setupBreadcrumbBarView];
+//}
+
+- (void) awakeFromNib {
+    [super awakeFromNib];
     if(!_titles) {
         _titles = [[NSMutableArray alloc] init];
     }
@@ -55,21 +69,6 @@
     [self.layer addSublayer:_highlightLayer];
     
     _titleTop = (kTallHeight*4);
-    
-    return self;
-}
-
-- (id) initWithFrame:(NSRect) rect {
-    return [[super initWithFrame:rect] setupBreadcrumbBarView];
-}
-
-- (id) initWithCoder:(NSCoder *)aDecoder {
-    return [[super initWithCoder:aDecoder] setupBreadcrumbBarView];
-}
-
-- (void) awakeFromNib {
-    [super awakeFromNib];
-    [self setupBreadcrumbBarView];
     
     _contentEnclosure.autoresizesSubviews = NO;
     _contentView.autoresizesSubviews = NO;

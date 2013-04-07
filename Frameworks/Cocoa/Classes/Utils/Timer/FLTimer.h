@@ -8,7 +8,7 @@
 
 #import "FLCocoaRequired.h"
 #import "NSError+FLTimeout.h"
-
+#import "FLCallback.h"
 
 #define FLTimerDefaultCheckTimestampInterval 1.0f
 
@@ -27,6 +27,8 @@
     __unsafe_unretained id _delegate;
     SEL _timerDidTimeout;
     SEL _timerWasUpdated;
+    
+    FLCallback* _intermediary;
 }
 
 // config
@@ -54,9 +56,9 @@
 - (void) touchTimestamp;
 
 // construction
-- (id) initWithTimeoutInterval:(NSTimeInterval) interval;
+- (id) initWithTimeout:(NSTimeInterval) timeout;
 + (FLTimer*) timer;
-+ (FLTimer*) timer:(NSTimeInterval) timeoutInterval;
++ (FLTimer*) timer:(NSTimeInterval) timeout;
 
 
 // optional override

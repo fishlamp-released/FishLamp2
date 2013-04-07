@@ -48,23 +48,23 @@
     FLUserLogin* authenticatedUser = self.user.credentials;
 
     ZFUser* privateProfile = 
-        [self sendAuthenticatedRequest:[ZFHttpRequest loadPrivateProfileHttpRequest] 
+        [self sendAuthenticatedRequest:[ZFHttpRequestFactory loadPrivateProfileHttpRequest] 
                              userLogin:authenticatedUser ];
     
     ZFUser* publicProfile =  
-        [self sendAuthenticatedRequest:[ZFHttpRequest loadPublicProfileHttpRequest:authenticatedUser.userName] 
+        [self sendAuthenticatedRequest:[ZFHttpRequestFactory loadPublicProfileHttpRequest:authenticatedUser.userName] 
                              userLogin:authenticatedUser ];
     
     
     NSNumber* videoBool =  
-        [self sendAuthenticatedRequest:[ZFHttpRequest checkPrivilegeHttpRequest:authenticatedUser.userName
+        [self sendAuthenticatedRequest:[ZFHttpRequestFactory checkPrivilegeHttpRequest:authenticatedUser.userName
                                                                   privilegeName:ZFVideoPrivilege] 
                              userLogin:authenticatedUser ];
     
     
     
     NSNumber* scrapbookBool =  
-        [self sendAuthenticatedRequest:[ZFHttpRequest checkPrivilegeHttpRequest:authenticatedUser.userName
+        [self sendAuthenticatedRequest:[ZFHttpRequestFactory checkPrivilegeHttpRequest:authenticatedUser.userName
                                                                   privilegeName:ZFScrapbookPrivilege] 
                              userLogin:authenticatedUser ];
 

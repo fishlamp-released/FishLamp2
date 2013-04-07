@@ -16,7 +16,7 @@
                                     
     FLTrace(@"Authenticating %@:", userLogin.userName );
     
-    FLHttpRequest* request = [ZFHttpRequest authenticateVisitorHttpRequest];
+    FLHttpRequest* request = [ZFHttpRequestFactory authenticateVisitorHttpRequest];
     request.context = self.operationContext;
     
     NSString* token = [request runSynchronously];

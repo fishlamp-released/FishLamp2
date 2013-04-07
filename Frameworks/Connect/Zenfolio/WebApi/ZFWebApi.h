@@ -21,7 +21,7 @@
 #import "ZFPhotoSet+More.h"
 #import "ZFUploadGallery+More.h"
 
-#import "ZFHttpRequest.h"
+#import "ZFHttpRequestFactory.h"
 #import "ZFAuthenticationService.h"
 
 // these are misspelled in WSDL declaration so are misspelled in generated code

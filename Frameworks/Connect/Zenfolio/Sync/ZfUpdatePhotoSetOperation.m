@@ -56,7 +56,7 @@
     }
     
     ZFPhotoSet* minSet = FLConfirmResultType(
-        [[ZFHttpRequest loadPhotoSetHttpRequest:_photoSetID
+        [[ZFHttpRequestFactory loadPhotoSetHttpRequest:_photoSetID
                                                     level:kZenfolioInformationLevelLevel1
                                             includePhotos:NO] sendSynchronouslyInContext:self.context],
                                             ZFPhotoSet);
@@ -120,7 +120,7 @@
 		tgElement.lastSyncDate = [NSDate date];
 		[[self.context syncService] saveSyncState:tgElement];
     
-        FLHttpRequest* request = [ZFHttpRequest loadPhotoSetHttpRequest:_photoSetID];
+        FLHttpRequest* request = [ZFHttpRequestFactory loadPhotoSetHttpRequest:_photoSetID];
     
         photoSet = FLConfirmResultType([request sendSynchronouslyInContext:self.context], ZFPhotoSet);
     }
@@ -138,7 +138,7 @@
         return inCache;
     }
     
-    return FLConfirmResultType([[ZFHttpRequest loadPhotoHttpRequest:photo.Id
+    return FLConfirmResultType([[ZFHttpRequestFactory loadPhotoHttpRequest:photo.Id
 #endif
 
     return nil;

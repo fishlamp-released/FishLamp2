@@ -154,7 +154,7 @@
 - (ZFPhotoSet*) downloadLatestPhotoSet:(ZFPhotoSet*) photoSet {
 
 
-    FLHttpRequest* request = [ZFHttpRequest loadPhotoSetHttpRequest:photoSet.Id level:kZenfolioInformatonLevelFull includePhotos:YES];
+    FLHttpRequest* request = [ZFHttpRequestFactory loadPhotoSetHttpRequest:photoSet.Id level:kZenfolioInformatonLevelFull includePhotos:YES];
     ZFPhotoSet* latestPhotoSet = [self runChildSynchronously:request];
     FLAssertNotNil(latestPhotoSet);
     

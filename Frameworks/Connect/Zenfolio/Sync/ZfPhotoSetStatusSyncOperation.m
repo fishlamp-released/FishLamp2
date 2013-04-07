@@ -42,7 +42,7 @@
 
     if(!element.isGroupValue) {
 
-        FLHttpRequest* request = [ZFHttpRequest loadPhotoSetHttpRequest:element.syncObjectId];
+        FLHttpRequest* request = [ZFHttpRequestFactory loadPhotoSetHttpRequest:element.syncObjectId];
         
         @try {
         

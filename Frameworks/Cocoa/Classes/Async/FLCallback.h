@@ -9,31 +9,37 @@
 #import "FLCocoaRequired.h"
 #import "FLArgumentList.h"
 
-typedef void (^FLCallbackBlock)(FLArgumentList* args);
-
 @interface FLCallback : NSObject {
 @private
-    FLCallbackBlock _block;
-    id _target;
+}
+
+- (id) initWithTarget:(id) target action:(SEL) action;
+
++ (id) callbackWithTarget:(id) target action:(SEL) action;
+
+- (id) target;
+- (void) setTarget:(id) target;
+
+- (SEL) action;
+- (void) setAction:(SEL) action;
+
+- (BOOL) perform;
+- (BOOL) performWithObject:(id) object;
+- (BOOL) performWithObject:(id) object1 withObject:(id) object2;
+- (BOOL) performWithObject:(id) object1 withObject:(id) object2 withObject:(id) object3;
+@end
+
+
+@interface FLCallbackWithUnretainedTarget : FLCallback {
+@private
+    __unsafe_unretained id _target;
     SEL _action;
 }
 
-@property (readonly, strong, nonatomic) id target;
-@property (readonly, assign, nonatomic) SEL action;
-@property (readonly, copy, nonatomic) FLCallbackBlock callbackBlock;
+@property (readwrite, assign) id target;
+@property (readwrite, assign) SEL action;
 
-- (id) initWithTarget:(id) target action:(SEL) action;
-- (id) initWithBlock:(FLCallbackBlock) block;
-
-+ (id) callbackWithTarget:(id) target action:(SEL) action;
-+ (id) callbackWithBlock:(FLCallbackBlock) block;
-
-- (void) perform;
-- (void) performWithObject:(id) object;
-- (void) performWithObject:(id) object1 withObject:(id) object2;
-- (void) performWithObject:(id) object1 withObject:(id) object2 withObject:(id) object3;
 @end
-
 
 //@interface FLStashedCallback : FLCallback<FLAsyncWorker> {
 //@private

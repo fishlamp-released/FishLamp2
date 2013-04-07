@@ -10,7 +10,7 @@
 
 @implementation FLHttpRequest (ZenfolioAuthentication)
 - (void) setAuthenticationToken:(NSString*) token {
-    [self.headers setValue:token forHTTPHeaderField:@"X-Zenfolio-Token"];
-    [self.headers setValue:self.headers.userAgentHeader forHTTPHeaderField:@"X-Zenfolio-User-Agent"];
+    [self.requestHeaders setValue:token forHTTPHeaderField:@"X-Zenfolio-Token"];
+    [self.requestHeaders setValue:self.requestHeaders.userAgentHeader forHTTPHeaderField:@"X-Zenfolio-User-Agent"];
 }
 @end

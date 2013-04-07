@@ -19,6 +19,12 @@ NSString* const FLCancelExceptionName = @"com.fishlamp.exception.cancel";
     return [FLCancelException exceptionWithName:FLCancelExceptionName reason:self.localizedDescription userInfo:userInfo];
 }
 
+#if DEBUG
+- (id)initWithDomain:(NSString *)domain code:(NSInteger)code userInfo:(NSDictionary *)dict {
+    return [super initWithDomain:domain code:code userInfo:dict];
+}
+#endif
+
 @end
 
 @implementation NSError (FLCancelling)

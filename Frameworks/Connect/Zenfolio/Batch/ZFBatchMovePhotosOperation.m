@@ -57,7 +57,7 @@
         operation = [[self httpRequestFactory] movePhotoOperation:photo fromPhotoSet:_parentPhotoSet toPhotoSet:_destPhotoSet];
     }
 	else {
-        operation = [ZFHttpRequest addPhotoToCollectionOperation:photo collection:_destPhotoSet];
+        operation = [ZFHttpRequestFactory addPhotoToCollectionOperation:photo collection:_destPhotoSet];
     }
     
     FLThrowIfError([operation runChildSynchronously:self.userContext]);

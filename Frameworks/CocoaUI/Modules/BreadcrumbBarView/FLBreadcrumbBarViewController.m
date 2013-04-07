@@ -55,7 +55,7 @@
 
 - (BOOL)acceptsFirstResponder {
     return YES;
-}                          
+}   
 
 - (void) updateViewsAnimated:(BOOL) animated {
     for(FLBarTitleLayer* title in self.breadcrumbView.titles) {

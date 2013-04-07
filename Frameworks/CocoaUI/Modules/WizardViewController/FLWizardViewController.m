@@ -126,12 +126,12 @@
 
 - (void) wizardButtonViewControllerUpdateButtonStates:(FLWizardButtonViewController*) controller {
     BOOL backEnabled = !self.panelManager.isShowingFirstPanel;
+    BOOL nextEnabled = [self.panelManager visiblePanel].canOpenNextPanel && ![self.panelManager isShowingLastPanel];
     
     if(backEnabled != self.buttonViewController.backButton.isEnabled) {
         self.buttonViewController.backButton.enabled = backEnabled;
     }
     
-    BOOL nextEnabled = ![self.panelManager isShowingLastPanel];
     if(nextEnabled != self.buttonViewController.nextButton.isEnabled) {
         self.buttonViewController.nextButton.enabled = nextEnabled;
     }

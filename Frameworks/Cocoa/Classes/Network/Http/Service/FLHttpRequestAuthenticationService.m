@@ -32,6 +32,7 @@
     [_asyncQueue releaseToPool];
     
 #if FL_MRC
+    [_asyncQueue release];
     [super dealloc];
 #endif
 }

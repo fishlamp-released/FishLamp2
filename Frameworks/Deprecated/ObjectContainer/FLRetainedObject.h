@@ -18,6 +18,6 @@
 
 + (FLRetainedObject*) retainedObject:(id) object;
 
-@property (readwrite, retain, nonatomic) id object;
+@property (readwrite, strong, nonatomic) id object;
 
 @end

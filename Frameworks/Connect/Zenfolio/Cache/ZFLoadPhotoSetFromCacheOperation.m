@@ -39,7 +39,7 @@
 //
 //- (FLResult) runSubOperations {
 //
-//    FLHttpRequest* request = [ZFHttpRequest loadPhotoSetHttpRequest:[NSNumber numberWithInt:_photoSetID]];
+//    FLHttpRequest* request = [ZFHttpRequestFactory loadPhotoSetHttpRequest:[NSNumber numberWithInt:_photoSetID]];
 //
 //    return FLConfirmResultType([self runChildSynchronously:request], ZFPhotoSet);
 //}
