@@ -306,6 +306,7 @@ FIXME("asset q")
 
 - (void) deleteAssetAtIndex:(NSUInteger) idx
 {
+#if REFACTOR
     FLAssertWithComment(self.isLoaded, @"queue not loaded");
     FLAssertWithComment(idx >= 0 && idx < _assets.count, @"bad idx");
 
@@ -321,6 +322,7 @@ FIXME("asset q")
 //    [asset.assetObject deleteFromAssetStorage];
 //	[self.database deleteObject:asset];
     [self didChangeAssetQueue];
+#endif    
 }
 
 - (void) removeAllAssets
