@@ -28,7 +28,9 @@ static void * const s_queue_key = (void*)&s_queue_key;
     if(self) {
         _dispatch_queue = queue;
         dispatch_retain(_dispatch_queue);
-        dispatch_queue_set_specific(_dispatch_queue, s_queue_key, bridge_(void*, self), nil);
+        if(OSXVersionIsAtLeast10_7()) {        
+            dispatch_queue_set_specific(_dispatch_queue, s_queue_key, bridge_(void*, self), nil);
+        }
         _label = [[NSString alloc] initWithCString:dispatch_queue_get_label(_dispatch_queue) encoding:NSASCIIStringEncoding];
     }
     return self;
@@ -69,7 +71,9 @@ static void * const s_queue_key = (void*)&s_queue_key;
 
 - (void) dealloc {
     if(_dispatch_queue) {
-        dispatch_queue_set_specific(_dispatch_queue, s_queue_key, nil, nil);
+        if(OSXVersionIsAtLeast10_7()) {        
+            dispatch_queue_set_specific(_dispatch_queue, s_queue_key, nil, nil);
+        }
         dispatch_release(_dispatch_queue);
     }
     
@@ -80,7 +84,11 @@ static void * const s_queue_key = (void*)&s_queue_key;
 }
 
 + (FLDispatchQueue*) currentQueue {
-    return bridge_(FLDispatchQueue*, dispatch_queue_get_specific(dispatch_get_current_queue(), s_queue_key));
+
+    if(OSXVersionIsAtLeast10_7()) {        
+        return bridge_(FLDispatchQueue*, dispatch_queue_get_specific(dispatch_get_current_queue(), s_queue_key));
+    }
+    return nil;
 }
 
 - (void) queueBlockWithDelay:(NSTimeInterval) delay
