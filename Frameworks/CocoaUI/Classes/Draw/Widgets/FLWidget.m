@@ -353,6 +353,7 @@
 
 TODO("MF: optimize this.")
 
+#if IOS
     if(self.backgroundColor && ![self.backgroundColor isEqual:[SDKColor clearColor]]) {
         CGContextRef context = UIGraphicsGetCurrentContext();
         CGContextSaveGState(context);
@@ -362,6 +363,7 @@ TODO("MF: optimize this.")
         CGContextRestoreGState(context);
         CGColorRelease(fillColor);
     }
+#endif    
 }
 
 - (void) drawSubWidgets:(CGRect) drawRect {

@@ -7,7 +7,9 @@
 //
 
 #import "FLCocoaRequired.h"
+#if __MAC_10_8
 #import <CFNetwork/CFNetwork.h>
+#endif
 
 @interface FLNetworkHost : NSObject {
 @private

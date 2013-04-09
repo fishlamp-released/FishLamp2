@@ -38,7 +38,7 @@
 #endif
 
 - (FLLogger*) output {
-    return [self.parent output];
+    return (id) [self.parent output];
 }
 
 - (FLToolCommandOption*) optionForKey:(NSString*) key {

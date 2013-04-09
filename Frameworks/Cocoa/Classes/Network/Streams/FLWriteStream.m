@@ -9,7 +9,7 @@
 #import "FLWriteStream.h"
 
 @interface FLWriteStream ()
-@property (readwrite, assign) CFWriteStreamRef streamRef;
+@property (readwrite, assign, nonatomic) CFWriteStreamRef streamRef;
 @end
 
 static void WriteStreamClientCallBack(CFWriteStreamRef writeStream, 

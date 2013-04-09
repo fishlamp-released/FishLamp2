@@ -5,7 +5,7 @@
 //  Created by Mike Fullerton on 12/22/12.
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
-
+#if __MAC_10_8
 #import "FLLocalNotification.h"
 
 @interface FLLocalNotification ()
@@ -54,3 +54,4 @@
 }
 
 @end
+#endif

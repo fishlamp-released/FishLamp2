@@ -272,10 +272,14 @@ FLSynthesizeAssociatedProperty(FLAssociationPolicyRetainNonatomic, _viewContents
 }
 
 - (UIEdgeInsets) contentViewInsets {
+#if IOS
 	return UIEdgeInsetsMake([self contentViewInsetTop], 
                             [self contentViewInsetLeft], 
                             [self contentViewInsetBottom], 
                             [self contentViewInsetRight]);
+#endif
+    
+    return UIEdgeInsetsZero;
 }
 
 - (CGRect) contentViewFrameInBounds:(CGRect) bounds {

@@ -301,7 +301,7 @@ FIXME(@"this is removed from fishlamp");
 
 - (void) photoSetWasUpdated:(ZFPhotoSet*) newPhotoSet {
     ZFPhotoSet* inputObject = FLAutorelease([[ZFPhotoSet alloc] init]);
-    inputObject.IdValue = [newPhotoSet Id];
+    inputObject.Id = [newPhotoSet Id];
 
     ZFPhotoSet* elementInCache = [self readObject:inputObject];
     if( !elementInCache ||   

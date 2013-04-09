@@ -87,15 +87,7 @@
 // this warning causes use of MIN/MAX to not compile. Tried all the different GNU types. No luck.
 #pragma GCC diagnostic ignored "-Wgnu"
 
-// this basically makes default: in case cause an error. I don't understand this one at all.
-#pragma GCC diagnostic ignored "-Wcovered-switch-default"
-
 #pragma GCC diagnostic ignored "-Wswitch-enum"
-
-
-// on the fence about this one, we use this to essentially do a down cast in someplaces. Maybe that isn't a best practice
-// TODO: revisit this
-#pragma GCC diagnostic ignored "-Woverriding-method-mismatch"
 
 // This dissallows not const strings as params. This might be a good this.
 // TODO: revisit this
@@ -110,3 +102,19 @@
 #pragma GCC diagnostic ignored "-Wsign-compare"
 
 #pragma GCC diagnostic ignored "-Wconversion"
+
+
+#if __MAC_10_8
+    // this basically makes default: in case cause an error. I don't understand this one at all.
+    #pragma GCC diagnostic ignored "-Wcovered-switch-default"
+
+    // on the fence about this one, we use this to essentially do a down cast in someplaces. Maybe that isn't a best practice
+    // TODO: revisit this
+    #pragma GCC diagnostic ignored "-Woverriding-method-mismatch"
+#else 
+    
+    #pragma GCC diagnostic ignored "-Wfloat-equal"
+
+#endif
+
+

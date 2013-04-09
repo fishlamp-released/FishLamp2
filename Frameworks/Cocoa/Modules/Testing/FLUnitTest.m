@@ -19,6 +19,7 @@
 
 @interface FLUnitTest ()
 @property (readonly, strong) NSArray* testCases;
+- (void) discoverTestCases;
 @end
 
 @implementation FLUnitTest

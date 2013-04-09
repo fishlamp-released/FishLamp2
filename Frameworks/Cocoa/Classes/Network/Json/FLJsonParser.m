@@ -15,11 +15,14 @@
 }
 
 - (id) parseData:(NSData*) data {
+#if __MAC_10_8
     NSError* error = nil;
     id object = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
     FLThrowIfError(object);
-    
     return object;
+#else
+    return nil;
+#endif
 }
 
 - (id) parseFileAtPath:(NSString*) path {

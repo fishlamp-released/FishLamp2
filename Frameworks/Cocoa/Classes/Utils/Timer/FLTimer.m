@@ -18,6 +18,7 @@ NSString* const FLTimedOutNotification = @"FLTimedOutNotification";
 @property (readwrite, assign) BOOL timedOut;
 @property (readwrite, assign) NSTimeInterval timestamp;
 @property (readwrite, assign, getter=isTiming) BOOL timing;
+- (void) checkForTimeout;
 @end
 
 @implementation FLTimer

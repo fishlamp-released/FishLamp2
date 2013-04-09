@@ -86,11 +86,11 @@
 }
 
 - (void) addGlow {
+#if IOS
     self.layer.shadowColor = [self.textColor CGColor];
     self.layer.shadowOffset = CGSizeMake(0.0, 0.0);
     self.layer.shadowRadius = 10.0;
     self.layer.shadowOpacity = 0.5;
-#if IOS
     self.clipsToBounds = NO;
 #endif
 }

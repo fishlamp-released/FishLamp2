@@ -27,6 +27,9 @@
 }
 
 - (void) willInitAnimationLayer {
+    self.autoresizesSubviews = NO;
+    self.autoresizingMask = 0;
+
     self.wantsLayer = YES;
     self.layer = [CALayer layer];
     
@@ -167,10 +170,13 @@
 }
 
 - (void) setImageWithNameInBundle:(NSString*) name {
+#if __MAC_10_8
     if(OSXVersionIsAtLeast10_7()) {
         self.image = [[NSBundle mainBundle] imageForResource:[name stringByDeletingPathExtension]];
     }
-    else {
+    else
+#endif         
+        {
         NSString* defaultImagePath = [[NSBundle mainBundle] pathForImageResource:name];
         self.image = FLAutorelease([[NSImage alloc] initWithContentsOfFile:defaultImagePath]);
     }

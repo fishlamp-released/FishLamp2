@@ -12,7 +12,7 @@
 @property (readwrite, strong, nonatomic) NSString* logName;
 @property (readwrite, assign, nonatomic) uint32_t logCount;
 @property (readwrite, assign, nonatomic) NSTimeInterval timestamp;
-
+- (void) updateTimestamp;
 @end
 
 @implementation FLLogEntry

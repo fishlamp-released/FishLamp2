@@ -24,7 +24,12 @@
         static int count = 0;
         char buffer[128];
         snprintf(buffer, 128, "com.fishlamp.logger%d", count++);
+#if __MAC_10_8
         _fifoQueue = dispatch_queue_create(buffer, DISPATCH_QUEUE_SERIAL);
+#else 
+        _fifoQueue = dispatch_queue_create(buffer, nil);
+
+#endif        
         _sinks = [[NSMutableArray alloc] init];
         self.stringFormatterOutput = self;
     }

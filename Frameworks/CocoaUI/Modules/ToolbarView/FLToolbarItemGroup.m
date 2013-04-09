@@ -32,7 +32,7 @@
         _items = [[NSMutableArray alloc] init];
         self.viewAlignment = alignment;
         self.itemArrangement = [FLSingleRowColumnArrangement arrangement];
-        self.itemArrangement.outerInsets = UIEdgeInsetsMake(0, 10, 0, 10);
+        self.itemArrangement.outerInsets = (UIEdgeInsets){ 0, 10, 0, 10 };
     }
     
     return self;

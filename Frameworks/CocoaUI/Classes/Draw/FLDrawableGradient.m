@@ -67,8 +67,10 @@ return;
 //    NSColor* startColor = [_colorRange startColor];
 //    NSColor* endColor = [_colorRange endColor];
 
+#if __MAC_10_8
+
     CGContextRef context = UIGraphicsGetCurrentContext();
-CGContextSaveGState(context);
+    CGContextSaveGState(context);
 
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
     CGFloat locations[2] = {0.0, 1.0};
@@ -77,7 +79,7 @@ CGContextSaveGState(context);
         (id)[[SDKColor darkGrayColor] CGColor],
         (id)[[SDKColor lightGrayColor] CGColor],
         nil];
-
+    
 //    NSMutableArray *colors = [NSMutableArray arrayWithObjects:
 //        (id)[[_colorRange endColor] CGColor],
 //        (id)[[_colorRange startColor] CGColor],
@@ -111,7 +113,9 @@ CGContextSaveGState(context);
 //#endif        
 
     CGGradientRelease(gradient);  // Release owned Core Foundation object.
-CGContextRestoreGState(context);
+
+    CGContextRestoreGState(context);
+#endif
 
 #endif
 }
