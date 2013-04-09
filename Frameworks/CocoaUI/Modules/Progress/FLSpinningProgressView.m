@@ -44,9 +44,24 @@
 - (void) setFrame:(CGRect) frame {
     [super setFrame:frame];
     if(_spinner) {
-    
+        _spinner.frame = FLRectOptimizedForViewLocation(FLRectCenterRectInRect(self.bounds, _spinner.frame));
     }
 }
+
+- (void) didStartAnimating {
+    if(_spinner) {
+        [_spinner startAnimation:nil];
+    }
+    [super didStartAnimating];
+}
+- (void) didStopAnimating {
+    if(_spinner) {
+        [_spinner stopAnimation:nil];
+    }
+    [super didStopAnimating];
+
+}
+
 
 
 @end

@@ -64,7 +64,7 @@
     }
     else {
         CGRect frame = FLRectCenterRectInRectHorizontally(self.view.bounds, panel.view.frame);
-        frame.origin.y = FLRectGetBottom(bounds) - frame.size.height - 100.0f; // = FLRectCenterRectInRectVertically(bounds, frame);
+        frame.origin.y = FLRectGetBottom(bounds) - frame.size.height - 60.0f; // = FLRectCenterRectInRectVertically(bounds, frame);
         panel.view.frame = FLRectOptimizedForViewLocation(frame);
     }
     

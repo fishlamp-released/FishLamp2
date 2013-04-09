@@ -1,4 +1,4 @@
-((//
+//
 //  FLAnimatedImageView.m
 //  FishLampCocoaUI
 //
@@ -144,8 +144,6 @@
         if(!self.isHidden) {
             self.hidden = YES;
         }
-        [self didStopAnimating];
-//        [self setNeedsDisplay:YES];
     }
 }
 
