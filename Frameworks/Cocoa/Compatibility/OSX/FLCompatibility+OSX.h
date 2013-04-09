@@ -12,7 +12,11 @@
 #if OSX
 #import <Foundation/Foundation.h>
 #import <Cocoa/Cocoa.h>
+
+#if __MAC_10_8
 #import <CoreGraphics/CoreGraphics.h>
+#endif
+
 #import <AppKit/AppKit.h>
 
 #import "FishLampCore.h"

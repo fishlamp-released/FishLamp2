@@ -66,6 +66,9 @@ static NSString* s_defaultUserAgent = nil;
 	[self setValue:contentType forHTTPHeaderField:@"Content-Type"];
 }
 
+- (NSString*) HTTPVersion {
+    return FLHttpRequestDefaultHTTPVersion;
+}
 
 - (void) setHttpMethod:(NSString *)httpMethod {
     FLSetObjectWithRetain(_httpMethod, httpMethod);
@@ -135,9 +138,7 @@ static NSString* s_defaultUserAgent = nil;
 	[self setValue:userAgent forHTTPHeaderField:@"User-Agent"];
 }
 
-- (NSString*) HTTPVersion {
-    return FLHttpRequestDefaultHTTPVersion;
-}
+
 
 #if OSX
 // TODO: move this to an OSX lib

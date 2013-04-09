@@ -51,8 +51,9 @@
 
     BOOL isDirectory = NO;
     NSError* error = nil;
-    if(![[NSFileManager defaultManager] fileExistsAtPath:[self.folderURL absoluteString] isDirectory:&isDirectory]) {
-        [[NSFileManager defaultManager] createDirectoryAtURL:self.folderURL withIntermediateDirectories:YES attributes:nil error:&error];
+    NSString* path = [self.folderURL absoluteString];
+    if(![[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDirectory]) {
+        [[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:&error];
         FLThrowIfError(error);
     }
 

@@ -26,9 +26,11 @@
     FLTimer* timer = [FLTimer timer:1];
     timer.delegate = self;
     [timer startTimer];
-    
-    [FLDispatchQueue sleepForTimeInterval:2];
 
+#if __MAC_10_8
+    [FLDispatchQueue sleepForTimeInterval:2];
+#endif
+    
     FLAssert(timer.timedOut == YES);
     FLAssert(_didTimeout == YES);
 }

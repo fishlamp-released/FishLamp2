@@ -37,7 +37,9 @@
 
 + (FLDispatchQueue*) fifoDispatchQueue:(NSString*) label;
 
+#if __MAC_10_8
 + (FLDispatchQueue*) concurrentDispatchQueue:(NSString*) label;
+#endif
 
 + (FLDispatchQueue*) dispatchQueue:(dispatch_queue_t) queue;
 
@@ -66,8 +68,9 @@
 
 + (FLDispatchQueue*) currentQueue;
 
+#if __MAC_10_8
 + (void) sleepForTimeInterval:(NSTimeInterval) milliseconds;
-
+#endif
 @end
 
 @interface FLFifoAsyncQueue : FLDispatchQueue

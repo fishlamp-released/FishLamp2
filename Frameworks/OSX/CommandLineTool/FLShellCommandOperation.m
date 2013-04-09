@@ -51,6 +51,7 @@
 //
 - (FLResult) performSynchronously {
 
+#if __MAC_10_8
     NSTask* task = [[NSTask alloc] init];
     @try {
         NSMutableArray* args = [NSMutableArray array];
@@ -112,7 +113,7 @@
         task.terminationHandler = nil;
         FLRelease(task);
     }
-    
+#endif    
     return FLFailedResult;
 }
 @end

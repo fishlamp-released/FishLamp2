@@ -28,9 +28,11 @@ static void * const s_queue_key = (void*)&s_queue_key;
     if(self) {
         _dispatch_queue = queue;
         dispatch_retain(_dispatch_queue);
+#if __MAC_10_8
         if(OSXVersionIsAtLeast10_7()) {        
             dispatch_queue_set_specific(_dispatch_queue, s_queue_key, bridge_(void*, self), nil);
         }
+#endif
         _label = [[NSString alloc] initWithCString:dispatch_queue_get_label(_dispatch_queue) encoding:NSASCIIStringEncoding];
     }
     return self;
@@ -61,6 +63,7 @@ static void * const s_queue_key = (void*)&s_queue_key;
     return FLAutorelease([[[self class] alloc] initWithLabel:label attr:attr]);
 }
 
+#if __MAC_10_8
 + (FLDispatchQueue*) fifoDispatchQueue:(NSString*) label {
     return FLAutorelease([[[self class] alloc] initWithLabel:label attr:DISPATCH_QUEUE_SERIAL]);
 }
@@ -68,12 +71,22 @@ static void * const s_queue_key = (void*)&s_queue_key;
 + (FLDispatchQueue*) concurrentDispatchQueue:(NSString*) label {
     return FLAutorelease([[[self class] alloc] initWithLabel:label attr:DISPATCH_QUEUE_CONCURRENT]);
 }
+#else
+
+// 10.6
++ (FLDispatchQueue*) fifoDispatchQueue:(NSString*) label {
+    return FLAutorelease([[[self class] alloc] initWithLabel:label attr:nil]);
+}
+
+#endif
 
 - (void) dealloc {
     if(_dispatch_queue) {
+#if __MAC_10_8
         if(OSXVersionIsAtLeast10_7()) {        
             dispatch_queue_set_specific(_dispatch_queue, s_queue_key, nil, nil);
         }
+#endif        
         dispatch_release(_dispatch_queue);
     }
     
@@ -85,9 +98,11 @@ static void * const s_queue_key = (void*)&s_queue_key;
 
 + (FLDispatchQueue*) currentQueue {
 
+#if __MAC_10_8
     if(OSXVersionIsAtLeast10_7()) {        
         return bridge_(FLDispatchQueue*, dispatch_queue_get_specific(dispatch_get_current_queue(), s_queue_key));
     }
+#endif    
     return nil;
 }
 
@@ -143,6 +158,8 @@ static void * const s_queue_key = (void*)&s_queue_key;
     });
 }
 
+#if __MAC_10_8
+
 + (void) sleepForTimeInterval:(NSTimeInterval)milliseconds {
     
     if([NSThread isMainThread]) {
@@ -158,6 +175,8 @@ static void * const s_queue_key = (void*)&s_queue_key;
         dispatch_release(semaphore);
     } 
 }    
+
+#endif
 
 - (void) dispatchSync:(dispatch_block_t) block {
 
@@ -286,7 +305,11 @@ static void * const s_queue_key = (void*)&s_queue_key;
 
 - (id) init {
     static int s_count = 0;
+#if __MAC_10_8
     return [super initWithLabel:[NSString stringWithFormat:@"com.fishlamp.queue.fifo%d", s_count++] attr:DISPATCH_QUEUE_SERIAL];
+#else 
+    return [super initWithLabel:[NSString stringWithFormat:@"com.fishlamp.queue.fifo%d", s_count++] attr:nil];
+#endif
 }
 
 //+ (FLObjectPool*) pool {

@@ -102,7 +102,8 @@
 // The size must include the entire mask (opaque part + transparent border)
 // The caller is responsible for releasing the returned reference by calling CGImageRelease
 - (CGImageRef)newBorderMask:(NSUInteger)borderSize size:(CGSize)size {
-	CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceGray();
+#if IOS	
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceGray();
 	
 	// Build a context that's the same dimensions as the new size
 	CGContextRef maskContext = CGBitmapContextCreate(NULL,
@@ -129,6 +130,9 @@
 	CGColorSpaceRelease(colorSpace);
 	
 	return maskImageRef;
+#else
+    return nil;
+#endif
 }
 
 @end

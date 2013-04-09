@@ -23,7 +23,12 @@
 @synthesize backwardTransition = _backwardTransition;
 
 - (void) dealloc {
+#if __MAC_10_8
     [self.view removeObserver:self forKeyPath:@"frame" context:nil];
+#else 
+    [self.view removeObserver:self forKeyPath:@"frame"];
+#endif
+
 #if FL_MRC
     [_backwardTransition release];
     [_forwardTransition release];
@@ -114,7 +119,13 @@
 - (void) removePanelForTitle:(id) title {
     FLPanelViewController* panel = [self panelForTitle:title];
     [_panels removeObject:panel];
+#if __MAC_10_8
     [panel removeObserver:self forKeyPath:@"canOpenNextPanel" context:nil];
+#else
+    [panel removeObserver:self forKeyPath:@"canOpenNextPanel"];
+    
+    
+#endif
     [panel didMoveToPanelManager:nil];
     [self.delegate panelManager:self didRemovePanel:panel];
     [self.delegate panelManager:self panelStateDidChange:panel];

@@ -8,7 +8,19 @@
 
 #if OSX
 #import <Cocoa/Cocoa.h>
+#if __MAC_10_8
 #import <CoreGraphics/CoreGraphics.h>
+#endif
+
+#ifndef __MAC_10_8
+typedef struct {
+    float left;
+    float top;
+    float bottom;
+    float right;
+} NSEdgeInsets;
+#endif
+
 
 #define UIEdgeInsets                        NSEdgeInsets
 #define UIEdgeInsetsMake                    NSEdgeInsetsMake
@@ -16,6 +28,8 @@
 #define UIEdgeInsetsInsetRect               NSEdgeInsetsInsetRect
 extern  const NSEdgeInsets                  UIEdgeInsetsZero;
 // these don't exist in AppKit ?? 
+
+
 
 NS_INLINE
 BOOL UIEdgeInsetsEqualToEdgeInsets(NSEdgeInsets lhs, NSEdgeInsets rhs) {

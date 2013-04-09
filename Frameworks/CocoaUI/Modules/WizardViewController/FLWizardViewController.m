@@ -236,9 +236,11 @@
     [self presentError:error modalForWindow:self.view.window delegate:self didPresentSelector:@selector(didPresentErrorWithRecovery:contextInfo:) contextInfo:context];
         
     if(![[NSApplication sharedApplication] isActive]) {
+#if __MAC_10_8
         FLLocalNotification* notification = [FLLocalNotification localNotificationWithName:title];
 //        notification.subtitle = @"Please try again";
         [notification deliverNotification];
+#endif
         
         [NSApp requestUserAttention:NSCriticalRequest];
     }
@@ -250,6 +252,11 @@
 }
 
 @end
+
+@interface NSWindow (FLModalAdditionsMore)
+@property (readwrite, strong, nonatomic) NSWindowController* modalWindowController;
+@end
+
 
 @implementation NSWindow (FLModalAdditions)
 FLSynthesizeAssociatedProperty(FLAssociationPolicyRetainNonatomic, modalWindowController, setModalWindowController, NSWindowController*);
@@ -273,6 +280,21 @@ FLSynthesizeAssociatedProperty(FLAssociationPolicyAssignNonatomic, previousFirst
     
     [self.window makeFirstResponder:self.previousFirstResponderForModal];
 }
+
+
+- (void)sheetDidEnd:(NSAlert*)alert 
+         returnCode:(NSInteger)returnCode 
+        contextInfo:(void*)contextInfo {
+
+    [NSApp endModalSession:[[self modalSession] pointerValue]];
+    [self.window orderOut:self.window];
+    
+    self.modalInWindow.modalWindowController = nil;
+    self.modalInWindow = nil;
+    self.modalSession = nil;
+}
+
+
 
 - (void) showModallyInWindow:(NSWindow*) window 
            withDefaultButton:(NSButton*) button {
@@ -298,18 +320,5 @@ FLSynthesizeAssociatedProperty(FLAssociationPolicyAssignNonatomic, previousFirst
         [self.window setDefaultButtonCell:[button cell]];
     }
 }
-
-- (void)sheetDidEnd:(NSAlert*)alert 
-         returnCode:(NSInteger)returnCode 
-        contextInfo:(void*)contextInfo {
-
-    [NSApp endModalSession:[[self modalSession] pointerValue]];
-    [self.window orderOut:self.window];
-    
-    self.modalInWindow.modalWindowController = nil;
-    self.modalInWindow = nil;
-    self.modalSession = nil;
-}
-
 @end
 #endif

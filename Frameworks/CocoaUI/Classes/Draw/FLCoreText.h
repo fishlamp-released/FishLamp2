@@ -8,7 +8,9 @@
 
 #import "FLCocoaUIRequired.h"
 
+#if __MAC_10_8
 #import <CoreText/CoreText.h>
+#endif
 #import "FLCompatibility.h"
 
 extern CGSize CTLineGetSize(CTLineRef line);
