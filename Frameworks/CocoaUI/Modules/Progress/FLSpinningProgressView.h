@@ -10,6 +10,7 @@
 
 @interface FLSpinningProgressView : FLAnimatedImageView {
 @private
+    NSProgressIndicator* _spinner;
 } 
 
 @end

@@ -1,4 +1,4 @@
-//
+((//
 //  FLAnimatedImageView.m
 //  FishLampCocoaUI
 //
@@ -15,68 +15,76 @@
 @synthesize animate = _animate;
 @synthesize displayedWhenStopped = _displayedWhenStopped;
 @synthesize animation = _animation;
-
-- (id) setupAnimatedImageView {
-    if(!_animation) {
-        self.wantsLayer = YES;
-        self.layer = [CALayer layer];
-        
-        _animation = [[FLSomersaultAnimation alloc] init];
-        _animation.duration = 0.1f;
-        _animation.direction = FLAnimationDirectionRight;
-        _animation.axis = FLAnimationAxisZ;
-        _animation.timing = FLAnimationTimingLinear;
-        _animation.duration = 1.0f;
-        
-        _rotationLayer = [[CALayer alloc] init];
-        _rotationLayer.position = CGPointMake(self.bounds.size.width/2.0,self.bounds.size.height/2.0);
-        _rotationLayer.bounds = CGRectMake(0,0,self.bounds.size.width, self.bounds.size.height);
-        [self.layer addSublayer:_rotationLayer];
-           
-        self.hidden = YES;   
-    }
-       
-    return self;
-}
+@synthesize animationLayer = _animationLayer;
 
 - (void) dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 #if FL_MRC
     [_animation release];
-    [_rotationLayer release];
+    [_animationLayer release];
     [super dealloc];
 #endif
+}
+
+- (void) willInitAnimationLayer {
+    self.wantsLayer = YES;
+    self.layer = [CALayer layer];
+    
+    _animation = [[FLSomersaultAnimation alloc] init];
+    _animation.duration = 0.1f;
+    _animation.direction = FLAnimationDirectionRight;
+    _animation.axis = FLAnimationAxisZ;
+    _animation.timing = FLAnimationTimingLinear;
+    _animation.duration = 1.0f;
+    
+    _animationLayer = [[CALayer alloc] init];
+    _animationLayer.position = CGPointMake(self.bounds.size.width/2.0,self.bounds.size.height/2.0);
+    _animationLayer.bounds = CGRectMake(0,0,self.bounds.size.width, self.bounds.size.height);
+    [self.layer addSublayer:_animationLayer];
 }
 
 - (void) setDisplayedWhenStopped:(BOOL) visible {
     _displayedWhenStopped = visible;
     if(_displayedWhenStopped) {
-        self.hidden = NO;
+        
+        if(self.isHidden) {
+            self.hidden = NO;
+        }
     }
     else {
-        self.hidden = !_animate;
+        BOOL hide = !_animate;
+        if(self.isHidden != hide) {
+            self.hidden = hide;
+        }
     }
 }
 
-- (id) initWithCoder:(NSCoder *)aDecoder {
-    return [[super initWithCoder:aDecoder] setupAnimatedImageView];
-}
+//- (id) initWithCoder:(NSCoder *)aDecoder {
+//    return [[super initWithCoder:aDecoder] setupAnimatedImageView];
+//}
 
 - (id)initWithFrame:(NSRect)frame {
-    return [[super initWithFrame:frame] setupAnimatedImageView];
-}
+    
+    self = [super initWithFrame:frame];
+    if(self) {
+        if(!_animation) {
+            [self willInitAnimationLayer];
+        }
 
-- (void) awakeFromNib {
-    [super awakeFromNib];
-    [self setupAnimatedImageView];
-}
-
-- (NSImage*) image {
-    return _rotationLayer.contents;
+        if(!self.isHidden) {
+            self.hidden = YES;   
+        }
+    }
+    
+    return self;
 }
 
 - (void) setImage:(NSImage*) image {
-    _rotationLayer.contents = image;
+    FLSetObjectWithRetain(_image, image);
+
+    if(_animationLayer) {
+        _animationLayer.contents = image;
+    }
 }
 
 - (void) viewDidMoveToSuperview {
@@ -87,24 +95,23 @@
             [self performSelector:@selector(startAnimating) withObject:nil afterDelay:1.0];
         }
         if(_displayedWhenStopped) {
-            self.hidden = NO;
+            if(self.isHidden) {
+                self.hidden = NO;
+            }
         }
     }
     else {
         _animate = NO;
         _animationIsAnimating = NO;
     }
-    
 }
 
-- (void) startAnimating {
-    _animate = YES;
-    self.hidden = NO;
-          
-    if(!_animationIsAnimating) {
-        _animationIsAnimating = YES;
-        [_animation startAnimating:_rotationLayer completion:^{
-            _animationIsAnimating = NO;
+- (void) didStartAnimating {
+
+    if(_animation) {
+        [_animation startAnimating:_animationLayer completion:^{
+            [self didStopAnimating];
+            
             if(_animate) {
                 [self startAnimating];
             }
@@ -112,18 +119,39 @@
                 [self stopAnimating];
             }
         }];
+        [self setNeedsDisplay:YES];
     }
     
-    [self setNeedsDisplay:YES];
+}
+- (void) startAnimating {
+    _animate = YES;
+    
+    if(self.isHidden) {
+        self.hidden = NO;
+    }
+          
+    if(!_animationIsAnimating) {
+        _animationIsAnimating = YES;
+        [self didStartAnimating];
+    }
+    
+}
+
+- (void) didStopAnimating {
+    _animationIsAnimating = NO;
+    
+   if(!_displayedWhenStopped) {
+        if(!self.isHidden) {
+            self.hidden = YES;
+        }
+        [self didStopAnimating];
+//        [self setNeedsDisplay:YES];
+    }
 }
 
 - (void) stopAnimating {
     _animate = NO;
-    if(!_displayedWhenStopped) {
-        self.hidden = YES;
-    }
-    
-    [self setNeedsDisplay:YES];
+    [self didStopAnimating];
 }
 
 - (void) showNetworkProgress:(id) sender {
