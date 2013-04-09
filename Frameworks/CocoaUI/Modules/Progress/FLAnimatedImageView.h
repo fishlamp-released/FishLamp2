@@ -11,7 +11,7 @@
 
 @interface FLAnimatedImageView : NSView {
 @private
-    CALayer* _rotationLayer;
+    CALayer* _animationLayer;
     BOOL _animate;
     BOOL _animationIsAnimating;
     FLAnimation* _animation;
@@ -19,6 +19,7 @@
     SDKImage* _image;
 } 
 
+@property (readwrite, strong, nonatomic) CALayer* animationLayer;
 @property (readwrite, strong, nonatomic) FLAnimation* animation; // FLSomersaultAnimation by default
 @property (readwrite, assign, nonatomic, getter=isDisplayedWhenStopped) BOOL displayedWhenStopped;
 @property (readonly, assign, nonatomic, getter=isAnimating) BOOL animate;
@@ -31,5 +32,9 @@
 
 // random!
 - (void) setRespondsToGlobalNetworkActivity:(BOOL) responds;
+
+- (void) didStartAnimating;
+- (void) didStopAnimating;
+- (void) willInitAnimationLayer;
 
 @end
