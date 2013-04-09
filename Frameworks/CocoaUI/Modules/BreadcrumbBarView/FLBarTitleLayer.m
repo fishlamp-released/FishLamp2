@@ -42,70 +42,95 @@
 }
 
 - (void) updateState {
-    NSColor* bgColor = [NSColor clearColor];
-    FLTextStyle* textStyle = self.titleStyle.enabledStyle;
-        
-    if(_enabled) {
-        if(self.isEmphasized) {
-            bgColor = [NSColor clearColor];
-            textStyle = self.titleStyle.emphasizedStyle;
-        }
-        else if(_mouseDown) {
-            if(_mouseIn) {
-                bgColor = [NSColor grayColor];
-                textStyle = self.titleStyle.highlightedStyle;
+    if(_willUpdate) {
+        NSColor* bgColor = [NSColor clearColor];
+        FLTextStyle* textStyle = self.titleStyle.enabledStyle;
+            
+        if(_enabled) {
+            if(self.isEmphasized) {
+                bgColor = [NSColor clearColor];
+                textStyle = self.titleStyle.emphasizedStyle;
             }
-            else {
+            else if(_mouseDown) {
+                if(_mouseIn) {
+                    bgColor = [NSColor grayColor];
+                    textStyle = self.titleStyle.highlightedStyle;
+                }
+                else {
+                    bgColor = [NSColor lightGrayColor];
+                    textStyle = self.titleStyle.hoveringStyle;
+                }
+            }
+            else if(_mouseIn) {
                 bgColor = [NSColor lightGrayColor];
                 textStyle = self.titleStyle.hoveringStyle;
             }
+        } 
+        else {
+            textStyle = self.titleStyle.disabledStyle;
         }
-        else if(_mouseIn) {
-            bgColor = [NSColor lightGrayColor];
-            textStyle = self.titleStyle.hoveringStyle;
+        
+        if(bgColor) {
+            CGColorRef colorRef = [bgColor copyCGColorRef];
+            [self setBackgroundColor:colorRef];
+            CFRelease(colorRef);
         }
-    } 
-    else {
-        textStyle = self.titleStyle.disabledStyle;
+        
+        self.attributedString = [NSAttributedString attributedStringWithString:self.title withTextStyle:textStyle];
+        
+        [self setNeedsDisplay];
+        _willUpdate = NO;
+        
+        FLLog(@"updated title: %@", _attributedString.string);
     }
-    
-    if(bgColor) {
-        CGColorRef colorRef = [bgColor copyCGColorRef];
-        [self setBackgroundColor:colorRef];
-        CFRelease(colorRef);
-    }
-    
-    self.attributedString = [NSAttributedString attributedStringWithString:self.title withTextStyle:textStyle];
-    
-    [self setNeedsDisplay];
 }
 
+- (void) setNeedsUpdate {
+    if(!_willUpdate) {
+        _willUpdate = YES;
+        [self performSelector:@selector(updateState) withObject:nil afterDelay:0.05];
+    }
+}
 
 - (void) handleMouseMoved:(CGPoint) location mouseIn:(BOOL) mouseIn mouseDown:(BOOL) mouseDown {
-    if(_mouseIn != mouseIn || _mouseDown != mouseDown) {
+    
+    if(!_enabled) {
+        return;
+    }
+    
+    if(_mouseIn != mouseIn) {
         _mouseIn = mouseIn;
+        [self setNeedsUpdate];
+    } 
+
+    if(_mouseDown != mouseDown) {
         _mouseDown = mouseDown;
-        [self updateState];
+        [self setNeedsUpdate];
     }
 }
 
 - (void) handleMouseUpInside:(CGPoint) location {
-    [self updateState];
+    [self setNeedsUpdate];
 }
 
 - (void) setEnabled:(BOOL) enabled {
-    _enabled = enabled;
-     [self updateState];
+    if(_enabled != enabled) {
+        _enabled = enabled;
+        [self setNeedsUpdate];
+    }
 }
 
 - (void) setEmphasized:(BOOL)emphasized {
-    _emphasized = emphasized;
-    [self updateState];
+    if(_emphasized != emphasized) {
+        _emphasized = emphasized;
+        [self setNeedsUpdate];
+    }
 }
 
 - (void) setHighlighted:(BOOL)highlighted {
-    _highlighted = highlighted;
-    [self updateState];
+    if(_highlighted != highlighted) {
+        [self setNeedsUpdate];
+    }
 }
 
 CGFloat GetLineHeightForFont(CTFontRef iFont)
@@ -163,6 +188,15 @@ CGFloat GetLineHeightForFont(CTFontRef iFont)
 //                                    rect:self.bounds 
 //                    withTextAlignment:FLTextAlignmentMake(FLVerticalTextAlignmentCenter,  FLHorizontalTextAlignmentCenter)];
 //
+
+    FLLog(@"draw title: %@", _title);
+}
+
+- (void) setTitle:(NSString*) title {
+    if(FLStringsAreNotEqual(title, _title)) {
+        FLSetObjectWithRetain(_title, title);
+        [self setNeedsUpdate];
+    }
 }
 
 @end

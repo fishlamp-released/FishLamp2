@@ -24,6 +24,7 @@
     BOOL _emphasized;
     BOOL _highlighted;
     NSAttributedString* _attributedString;
+    BOOL _willUpdate;
     
     __unsafe_unretained id<FLBarTitleStyleProvider> _titleDelegate;
 }
