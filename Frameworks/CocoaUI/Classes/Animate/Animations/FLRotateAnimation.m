@@ -126,7 +126,7 @@
 }
 
 - (void) commitAnimation:(CALayer *)layer {
-
+return;
     CAKeyframeAnimation* animation = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
     [animation setValues:self.direction == FLAnimationDirectionRight ? [self forwardKeyFrames]  : [self backwardKeyFrames]];
     
@@ -145,7 +145,7 @@
     
     [animation setValueFunction:[CAValueFunction functionWithName: axis]];
     [self configureAnimation:animation];
-    [layer addAnimation:animation forKey:nil];
+    [layer addAnimation:animation forKey:@"transform"];
 }
 
 @end
