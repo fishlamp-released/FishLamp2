@@ -67,6 +67,8 @@ typedef void (^FLPanelViewControllerBlock)(FLPanelViewController* panel);
 - (void) addPanelView:(SDKView*) panelView toView:(SDKView*) superview animated:(BOOL) animated;
 - (void) removePanelViews:(BOOL) animated;
 
+- (void) panelDidChangeCanOpenValue:(FLPanelViewController*) panel;
+
 @end
 
 @protocol FLPanelManagerDelegate <NSObject>
