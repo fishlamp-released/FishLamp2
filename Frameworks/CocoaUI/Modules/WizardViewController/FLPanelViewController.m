@@ -121,7 +121,12 @@
 - (void) didHideAlertWithError:(NSError*) error {
 }
 
-
+- (void) setCanOpenNextPanel:(BOOL)canOpenNextPanel {
+    if(canOpenNextPanel != _canOpenNextPanel) {
+        _canOpenNextPanel = canOpenNextPanel;
+        [_panelManager panelDidChangeCanOpenValue:self];
+    }
+}
 
 @end
 #endif

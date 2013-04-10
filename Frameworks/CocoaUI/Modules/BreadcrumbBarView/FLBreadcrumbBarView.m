@@ -138,25 +138,31 @@
 
 - (void) updateHighlightedTitle:(BOOL) animated {
 
-    if(!animated) {
-        [CATransaction begin];
-        [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
-    }
-
     for(FLBarTitleLayer* title in self.titles) {
+
         if(title.emphasized) {
-            _highlightLayer.hidden = NO;
-            _highlightLayer.frame = FLRectSetWidth(title.frame, title.frame.size.width + 11);
-            [_highlightLayer setNeedsDisplay];
+            if(!animated) {
+                [CATransaction begin];
+                [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
+            }
+            if(_highlightLayer.isHidden) {
+                _highlightLayer.hidden = NO;
+            }
+            CGRect frame = FLRectSetWidth(title.frame, title.frame.size.width + 11);
+            if(!CGRectEqualToRect(_highlightLayer.frame, frame)) {
+                _highlightLayer.frame = frame; 
+//                [_highlightLayer setNeedsDisplay];
+            }
+            
+            if(!animated) {
+                [CATransaction commit];
+            }
+
             return;
         }
     }
     
     _highlightLayer.hidden = YES;
-
-    if(!animated) {
-        [CATransaction commit];
-    }
 }
 
 

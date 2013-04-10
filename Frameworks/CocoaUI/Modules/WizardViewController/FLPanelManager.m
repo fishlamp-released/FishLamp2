@@ -95,11 +95,12 @@
 //    panel.view.frame = FLRectOptimizedForViewLocation(frame);
 }
 
+- (void) panelDidChangeCanOpenValue:(FLPanelViewController*) panel {
+    [self.delegate panelManager:self panelStateDidChange:panel];
+}
+
 - (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-    if(FLStringsAreEqual(keyPath, @"canOpenNextPanel")) {
-        [self.delegate panelManager:self panelStateDidChange:object];
-    }
-    else if(FLStringsAreEqual(keyPath, @"frame")) {
+    if(FLStringsAreEqual(keyPath, @"frame")) {
         [self setPanelFrame:self.visiblePanel];
     }
     else {
@@ -108,7 +109,6 @@
 }
 
 - (void) addPanel:(FLPanelViewController*) panel {
-    [panel addObserver:self forKeyPath:@"canOpenNextPanel" options:NSKeyValueObservingOptionNew context:nil];
     panel.view.wantsLayer = YES;
     [panel didMoveToPanelManager:self];
     [_panels addObject:panel];
@@ -119,13 +119,6 @@
 - (void) removePanelForTitle:(id) title {
     FLPanelViewController* panel = [self panelForTitle:title];
     [_panels removeObject:panel];
-#if __MAC_10_8
-    [panel removeObserver:self forKeyPath:@"canOpenNextPanel" context:nil];
-#else
-    [panel removeObserver:self forKeyPath:@"canOpenNextPanel"];
-    
-    
-#endif
     [panel didMoveToPanelManager:nil];
     [self.delegate panelManager:self didRemovePanel:panel];
     [self.delegate panelManager:self panelStateDidChange:panel];

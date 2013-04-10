@@ -81,12 +81,13 @@
 - (void) awakeFromNib {
     [super awakeFromNib];
     [self setIndeterminate:YES];
-    [self setDisplayedWhenStopped:YES];
+    [self setDisplayedWhenStopped:NO];
     [self setStyle:NSProgressIndicatorSpinningStyle];
     [self setBezeled: NO];
     [self setControlSize:NSSmallControlSize];
     [self setControlTint:NSDefaultControlTint];
     [self sizeToFit];
+    self.wantsLayer = YES;
 }
 
 - (void) startAnimation:(id) sender {

@@ -156,6 +156,16 @@
 						<reference key="NSNextResponder" ref="1005"/>
 						<int key="NSvFlags">4114</int>
 						<array class="NSMutableArray" key="NSSubviews">
+							<object class="NSCustomView" id="536510236">
+								<reference key="NSNextResponder" ref="999520791"/>
+								<int key="NSvFlags">4364</int>
+								<string key="NSFrame">{{48, 221}, {19, 19}}</string>
+								<reference key="NSSuperview" ref="999520791"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="113129894"/>
+								<string key="NSReuseIdentifierKey">_NS:9</string>
+								<string key="NSClassName">FLSpinningProgressView</string>
+							</object>
 							<object class="NSCustomView" id="113129894">
 								<reference key="NSNextResponder" ref="999520791"/>
 								<int key="NSvFlags">18</int>
@@ -185,16 +195,6 @@
 								<reference key="NSNextResponder" ref="999520791"/>
 								<int key="NSvFlags">266</int>
 								<array class="NSMutableArray" key="NSSubviews">
-									<object class="NSCustomView" id="536510236">
-										<reference key="NSNextResponder" ref="2603366"/>
-										<int key="NSvFlags">4364</int>
-										<string key="NSFrame">{{5, 34}, {19, 19}}</string>
-										<reference key="NSSuperview" ref="2603366"/>
-										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="113129894"/>
-										<string key="NSReuseIdentifierKey">_NS:9</string>
-										<string key="NSClassName">FLSpinningProgressView</string>
-									</object>
 									<object class="NSTextField" id="396995919">
 										<reference key="NSNextResponder" ref="2603366"/>
 										<int key="NSvFlags">266</int>
@@ -540,6 +540,7 @@
 						<array class="NSMutableArray" key="children">
 							<reference ref="113129894"/>
 							<reference ref="2603366"/>
+							<reference ref="536510236"/>
 						</array>
 						<reference key="parent" ref="1005"/>
 						<string key="objectName">Navigation View</string>
@@ -653,7 +654,6 @@
 						<reference key="object" ref="2603366"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="396995919"/>
-							<reference ref="536510236"/>
 						</array>
 						<reference key="parent" ref="999520791"/>
 						<string key="objectName">Header View</string>
@@ -674,7 +674,7 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">192</int>
 						<reference key="object" ref="536510236"/>
-						<reference key="parent" ref="2603366"/>
+						<reference key="parent" ref="999520791"/>
 					</object>
 				</array>
 			</object>
