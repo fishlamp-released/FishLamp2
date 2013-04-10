@@ -63,9 +63,6 @@
     CGRect frame = self.bounds;
     frame.size.height = kTallHeight;
     frame.origin.y = FLRectGetBottom(self.bounds) - kTallHeight;
-    
-//    CGRectMake(  0, 
-//                                FLRectGetBottom(self.bounds), _contentEnclosure.frame.origin.x, kTallHeight);
 
     for(FLBarTitleLayer* title in _titles) {
         if(!CGRectEqualToRect(title.frame, frame)) {

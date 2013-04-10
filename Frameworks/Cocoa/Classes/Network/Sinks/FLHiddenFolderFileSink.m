@@ -49,10 +49,8 @@
 
 - (void) openSink {
 
- //   BOOL isDirectory = NO;
     NSError* error = nil;
     NSString* path = [self.folderURL path];
-//    if(![[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDirectory]) {
     [[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:&error];
     FLThrowIfError(error);
 
