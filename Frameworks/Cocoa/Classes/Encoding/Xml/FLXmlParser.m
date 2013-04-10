@@ -51,7 +51,8 @@
         self.rootElement = newElement;
     }
     else {
-        [[self.stack lastObject] addElement:newElement];
+        FLParsedItem* item = [self.stack lastObject];
+        [item addElement:newElement];
     }
     
     [self.stack addObject:newElement];

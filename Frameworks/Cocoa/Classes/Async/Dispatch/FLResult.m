@@ -115,7 +115,7 @@
 }
 
 - (BOOL) failed {
-    return [self.result failed];
+    return [((NSObject*) self.result) failed];
 }
 
 @end

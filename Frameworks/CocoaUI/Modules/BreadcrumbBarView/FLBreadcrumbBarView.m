@@ -56,9 +56,19 @@
 
 - (void) awakeFromNib {
     [super awakeFromNib];
+    _titleTop = (kTallHeight*4);
+    _contentEnclosure.autoresizesSubviews = NO;
+    _contentView.autoresizesSubviews = NO;
+
+    return ;
+
     if(!_titles) {
         _titles = [[NSMutableArray alloc] init];
     }
+
+
+
+
     self.wantsLayer = YES;
     self.layer = [CALayer layer];
     
@@ -68,43 +78,98 @@
     
     [self.layer addSublayer:_highlightLayer];
     
-    _titleTop = (kTallHeight*4);
     
-    _contentEnclosure.autoresizesSubviews = NO;
-    _contentView.autoresizesSubviews = NO;
 }
 
-- (void) updateLayout {
+//- (void) updateHighlightedTitle:(BOOL) animated {
+//
+//    for(FLBarTitleLayer* title in self.titles) {
+//
+//        if(title.emphasized) {
+//            if(!animated) {
+//                [CATransaction begin];
+//                [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
+//            }
+//            if(_highlightLayer.isHidden) {
+//                _highlightLayer.hidden = NO;
+//            }
+//            CGRect frame = FLRectSetWidth(title.frame, title.frame.size.width + 11);
+//            if(!CGRectEqualToRect(_highlightLayer.frame, frame)) {
+//                _highlightLayer.frame = frame; 
+////                [_highlightLayer setNeedsDisplay];
+//            }
+//            
+//            if(!animated) {
+//                [CATransaction commit];
+//            }
+//
+//            return;
+//        }
+//    }
+//    
+//    _highlightLayer.hidden = YES;
+//}
+
+
+- (void) updateLayout:(BOOL) animated {
     [CATransaction begin];
     [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
 
+    FLBarTitleLayer* highlightedTitle = nil;
+
     CGRect frame = CGRectMake(0, FLRectGetBottom(self.bounds) - _titleTop, _contentEnclosure.frame.origin.x, kTallHeight);
     for(FLBarTitleLayer* title in _titles) {
-        title.frame = frame;
-        frame.origin.y -= frame.size.height;
-    
-        if(title.emphasized) {
-            _highlightLayer.hidden = NO;
-            _highlightLayer.frame = FLRectSetWidth(title.frame, title.frame.size.width + 11);
+        if(!CGRectEqualToRect(title.frame, frame)) {
+            title.frame = frame;
+            [_highlightLayer setNeedsDisplay];
         }
-    
+        if(title.emphasized) {
+            highlightedTitle = title;
+        }
+        frame.origin.y -= frame.size.height;
     }
 
     [CATransaction commit];
+    
+    if(highlightedTitle) {
+        if(!animated) {
+            [CATransaction begin];
+            [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
+        }
+                
+        if(_highlightLayer.isHidden) {
+            _highlightLayer.hidden = NO;
+        }
+        
+        CGRect highlightFrame = FLRectSetWidth(highlightedTitle.frame, highlightedTitle.frame.size.width + 11);
+        if(!CGRectEqualToRect(_highlightLayer.frame, highlightFrame)) {
+            _highlightLayer.frame = highlightFrame;
+            [_highlightLayer setNeedsDisplay];
+        }
+        
+        if(!animated) {
+            [CATransaction commit];
+        }
+    }
+    else {
+        if(!_highlightLayer.isHidden) {
+            _highlightLayer.hidden = YES;
+        }
+    }
+    
 }
 
-- (void) setNeedsDisplay {
-    [_highlightLayer setNeedsDisplay];
-    [super setNeedsDisplay];
-}
+//- (void) setNeedsDisplay {
+//    [_highlightLayer setNeedsDisplay];
+//    [super setNeedsDisplay];
+//}
 
 - (void) addTitle:(FLBarTitleLayer*) title {
-
+return;
     [_titles addObject:title];
     [self.layer addSublayer:title];
-    [self updateLayout];
-    [self updateHighlightedTitle:NO];
-    [self setNeedsDisplay];
+    [title setNeedsDisplay];
+    [self updateLayout:NO];
 }
 
 - (void) handleMouseMoved:(CGPoint) location mouseIn:(BOOL) mouseIn mouseDown:(BOOL) mouseDown {
@@ -132,37 +197,15 @@
 
 - (void) setFrame:(CGRect) frame {
     [super setFrame:frame];
-//    _contentView.frame = CGRectInset(self.bounds, 1, 1);
-    [self updateLayout];
+    [self updateLayout:NO];
 }
 
-- (void) updateHighlightedTitle:(BOOL) animated {
-
-    for(FLBarTitleLayer* title in self.titles) {
-
-        if(title.emphasized) {
-            if(!animated) {
-                [CATransaction begin];
-                [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
-            }
-            if(_highlightLayer.isHidden) {
-                _highlightLayer.hidden = NO;
-            }
-            CGRect frame = FLRectSetWidth(title.frame, title.frame.size.width + 11);
-            if(!CGRectEqualToRect(_highlightLayer.frame, frame)) {
-                _highlightLayer.frame = frame; 
-//                [_highlightLayer setNeedsDisplay];
-            }
-            
-            if(!animated) {
-                [CATransaction commit];
-            }
-
-            return;
-        }
-    }
+- (void) drawRect:(NSRect)dirtyRect {
+    [super drawRect:dirtyRect];
     
-    _highlightLayer.hidden = YES;
+    if(!_highlightLayer.isHidden && CGRectIntersectsRect(dirtyRect, _highlightLayer.frame)) {
+        [_highlightLayer setNeedsDisplay];
+    }
 }
 
 

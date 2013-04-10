@@ -5,6 +5,7 @@
 //  Created by Mike Fullerton on 9/1/11.
 //  Copyright (c) 2011 Greentongue Software. All rights reserved.
 //
+#if REFACTOR
 
 #import <Foundation/Foundation.h>
 
@@ -33,3 +34,4 @@
                    sessionInfo:(ZFBitsUploadProtocolResponse*) sessionInfo;
 
 @end
+#endif

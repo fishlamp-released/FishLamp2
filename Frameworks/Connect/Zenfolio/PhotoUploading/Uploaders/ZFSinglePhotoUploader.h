@@ -5,6 +5,7 @@
 //  Created by Mike Fullerton on 8/31/11.
 //  Copyright (c) 2011 Greentongue Software. All rights reserved.
 //
+#if REFACTOR
 
 #import <Foundation/Foundation.h>
 
@@ -16,3 +17,4 @@
          uploadQueue:(ZFUploadQueue*) uploadQueue;
 
 @end
+#endif

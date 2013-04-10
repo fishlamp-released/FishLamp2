@@ -6,7 +6,7 @@
 //
 //	Copywrite 2011 GreenTongue Software, LLC. All rights reserved.
 //
-
+#if REFACTOR
 
 
 // --------------------------------------------------------------------
@@ -79,3 +79,4 @@
 @interface ZFBitsUploadProtocolResponse (ValueProperties) 
 @end
 
+#endif

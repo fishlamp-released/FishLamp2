@@ -5,6 +5,7 @@
 //  Created by Mike Fullerton on 11/29/12.
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
+#if REFACTOR
 
 #import "ZFBITSImageUploadHttpRequest.h"
 
@@ -28,3 +29,4 @@
 }
 
 @end
+#endif

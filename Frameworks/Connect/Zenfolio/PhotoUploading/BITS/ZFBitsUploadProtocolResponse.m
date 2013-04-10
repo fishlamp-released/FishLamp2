@@ -5,6 +5,7 @@
 //  Created by Mike Fullerton on 9/1/11.
 //  Copyright (c) 2011 Greentongue Software. All rights reserved.
 //
+#if REFACTOR
 
 #import "ZFBitsUploadProtocolResponse.h"
 
@@ -34,3 +35,4 @@
     return nil;
 }
 @end
+#endif

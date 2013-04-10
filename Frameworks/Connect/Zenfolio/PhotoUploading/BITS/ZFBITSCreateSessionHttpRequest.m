@@ -5,6 +5,7 @@
 //  Created by Mike Fullerton on 9/1/11.
 //  Copyright (c) 2011 Greentongue Software. All rights reserved.
 //
+#if REFACTOR
 
 #import "ZFBITSCreateSessionHttpRequest.h"
 #import "ZFQueuedPhoto.h"
@@ -53,3 +54,4 @@
 //    return response;
 //}
 @end
+#endif

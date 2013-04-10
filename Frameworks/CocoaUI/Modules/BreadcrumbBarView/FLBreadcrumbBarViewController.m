@@ -63,7 +63,7 @@
         title.emphasized = [self.delegate breadcrumbBar:self breadcrumbIsVisible:title.title];
     }
     
-    [self.breadcrumbView updateHighlightedTitle:animated];
+    [self.breadcrumbView updateLayout:animated];
 }
 
 

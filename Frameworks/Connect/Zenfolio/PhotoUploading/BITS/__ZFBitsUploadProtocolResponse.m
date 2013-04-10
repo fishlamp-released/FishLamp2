@@ -6,6 +6,7 @@
 //
 //	Copywrite 2011 GreenTongue Software, LLC. All rights reserved.
 //
+#if REFACTOR
 
 #import "ZFBitsUploadProtocolResponse.h"
 #import "FLObjectDescriber.h"
@@ -229,3 +230,4 @@
 @implementation ZFBitsUploadProtocolResponse (ValueProperties) 
 @end
 
+#endif

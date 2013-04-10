@@ -87,7 +87,7 @@
     [self setControlSize:NSSmallControlSize];
     [self setControlTint:NSDefaultControlTint];
     [self sizeToFit];
-    self.wantsLayer = YES;
+//    self.wantsLayer = YES;
 }
 
 - (void) startAnimation:(id) sender {
@@ -100,8 +100,8 @@
 
 
 - (void) setRespondsToGlobalNetworkActivity {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startAnimation:) name:FLGlobalNetworkActivityShow object:[FLGlobalNetworkActivityIndicator instance]];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stopAnimation:) name:FLGlobalNetworkActivityHide object:[FLGlobalNetworkActivityIndicator instance]];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startAnimation:) name:FLGlobalNetworkActivityShow object:[FLGlobalNetworkActivityIndicator instance]];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stopAnimation:) name:FLGlobalNetworkActivityHide object:[FLGlobalNetworkActivityIndicator instance]];
 
 }
 
