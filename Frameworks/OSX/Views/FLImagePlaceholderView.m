@@ -82,13 +82,13 @@
     [_imageView removeFromSuperview];
     _imageView.image = nil;
     [self addSubview:_progress];
-    [_progress startAnimating];
+    [_progress startAnimation:self];
     self.frame = self.superview.bounds;
 }
 
 - (void) stopAnimating {
     _animating = NO;
-    [_progress stopAnimating];
+    [_progress stopAnimation:self];
     [_progress removeFromSuperview];
     [self addSubview:_imageView];
 }
