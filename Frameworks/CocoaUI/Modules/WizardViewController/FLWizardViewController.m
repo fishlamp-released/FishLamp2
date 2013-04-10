@@ -34,14 +34,6 @@
     return [self initWithNibName:@"FLWizardViewController" bundle:nil];
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-    }
-    
-    return self;
-}
 
 + (id) wizardViewController {
     return FLAutorelease([[[self class] alloc] init]);

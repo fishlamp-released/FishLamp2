@@ -47,6 +47,10 @@
     self.backwardTransition = [FLWizardStyleBackwardTransition wizardStyleBackwardTransition];
     
     self.view.autoresizesSubviews = NO;
+    
+    _contentEnclosure.autoresizesSubviews = NO;
+    _contentView.autoresizesSubviews = NO;
+    
 //    [self.view setWantsLayer:YES];
     [self.view addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:nil];
 }
@@ -256,20 +260,21 @@
     CGFloat animationDuration = 0.0f;
     FLViewTransition* transition = nil;
 
-    if(OSXVersionIsAtLeast10_8()) {
-        if(animated) {
-            if(idx > _currentPanel) {
-                transition = self.forwardTransition;
-            }
-            else {
-                transition = self.backwardTransition;
-            }
+
+#if BROKEN
+    if(animated) {
+        if(idx > _currentPanel) {
+            transition = self.forwardTransition;
+        }
+        else {
+            transition = self.backwardTransition;
         }
     }
         
     if(transition) {
         animationDuration = [transition duration];
     }
+#endif
 
     [self removePanelViews:animated];
 

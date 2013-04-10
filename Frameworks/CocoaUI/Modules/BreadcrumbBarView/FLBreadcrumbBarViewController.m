@@ -17,27 +17,11 @@
 
 @implementation FLBreadcrumbBarViewController
 
-- (void) initSelf {
-    
-    if(!_titleStringStyle) {
-        _titleStringStyle = [[FLStringDisplayStyle alloc] init];
-        _titleStringStyle.emphasizedStyle.textColor = [SDKColor colorWithRGBRed:203 green:102 blue:10 alpha:1.0];
-        _titleStringStyle.enabledStyle.textColor = [SDKColor darkGrayColor];
-        _titleStringStyle.disabledStyle.textColor = [SDKColor lightGrayColor];
-        _titleStringStyle.highlightedStyle.textColor = [SDKColor whiteColor];
-        _titleStringStyle.hoveringStyle.textColor = [SDKColor whiteColor];
-        [_titleStringStyle setTextFont:[SDKFont boldSystemFontOfSize:[SDKFont systemFontSize]]];
-    }
-}
-
 @synthesize delegate = _delegate;
 @synthesize titleStringStyle = _titleStringStyle;
-@synthesize contentView = _contentView;
 
 #if FL_MRC
 - (void) dealloc {
-    [_contentView release];
-    [_titleStringStyle release];
     [_titleStringStyle release];
     [super dealloc];
 }
@@ -49,12 +33,20 @@
 
 - (void) awakeFromNib {
     [super awakeFromNib];
-    [self initSelf];
+
+    _titleStringStyle = [[FLStringDisplayStyle alloc] init];
+    _titleStringStyle.emphasizedStyle.textColor = [SDKColor colorWithRGBRed:203 green:102 blue:10 alpha:1.0];
+    _titleStringStyle.enabledStyle.textColor = [SDKColor darkGrayColor];
+    _titleStringStyle.disabledStyle.textColor = [SDKColor lightGrayColor];
+    _titleStringStyle.highlightedStyle.textColor = [SDKColor whiteColor];
+    _titleStringStyle.hoveringStyle.textColor = [SDKColor whiteColor];
+    [_titleStringStyle setTextFont:[SDKFont boldSystemFontOfSize:[SDKFont systemFontSize]]];
+
     self.breadcrumbView.delegate = self;
 }
 
 - (BOOL)acceptsFirstResponder {
-    return YES;
+    return NO;
 }   
 
 - (void) updateViewsAnimated:(BOOL) animated {
@@ -76,6 +68,8 @@
     titleLayer.styleProvider = self;
     [self.breadcrumbView addTitle:titleLayer];
     [self updateViewsAnimated:NO];
+    
+    [self.view setNeedsDisplay:YES];
 }
 
 - (void) removeBreadcrumb:(NSString*) title {
