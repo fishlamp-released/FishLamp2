@@ -83,7 +83,7 @@
     self.buttonViewController.delegate = self;
     self.panelManager.delegate = self;
     
-    [_progressView setRespondsToGlobalNetworkActivity:YES];
+    [_progressView setRespondsToGlobalNetworkActivity];
 }
 
 - (BOOL)acceptsFirstResponder {
