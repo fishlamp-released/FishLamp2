@@ -22,10 +22,6 @@
     NSMutableArray* _titles;
     FLBarHighlightBackgoundLayer* _highlightLayer;
     CGFloat _titleTop;
-   
-    IBOutlet NSView* _contentEnclosure;
-    IBOutlet NSView* _contentView;
-    
     __unsafe_unretained id<FLBreadcrumbBarViewDelegate> _delegate;
 }
 @property (readonly, strong, nonatomic) NSArray* titles;

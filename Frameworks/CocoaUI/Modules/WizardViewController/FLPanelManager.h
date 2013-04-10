@@ -25,7 +25,11 @@ typedef void (^FLPanelViewControllerBlock)(FLPanelViewController* panel);
 
     FLViewTransition* _forwardTransition;
     FLViewTransition* _backwardTransition;
+    
+    IBOutlet NSView* _contentEnclosure;
+    IBOutlet NSView* _contentView;
 }
+
 @property (readwrite, assign, nonatomic) id<FLPanelManagerDelegate> delegate;
 @property (readonly, assign, nonatomic) NSUInteger panelCount;
 @property (readonly, strong, nonatomic) FLPanelViewController* visiblePanel;

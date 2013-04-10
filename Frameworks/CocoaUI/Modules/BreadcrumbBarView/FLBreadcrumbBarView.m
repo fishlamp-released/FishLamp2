@@ -33,41 +33,14 @@
 }
 #endif
 
-//- (void) applyThemeToBreadcrumbBarView:(id) theme {
-//
-//}
-//
-//- (SEL) themeSelector {
-//    return @selector(applyThemeToBreadcrumbBarView:);
-//}
-
-//- (id) setupBreadcrumbBarView {
-//    
-//    return self;
-//}
-//
-//- (id) initWithFrame:(NSRect) rect {
-//    return [[super initWithFrame:rect] setupBreadcrumbBarView];
-//}
-//
-//- (id) initWithCoder:(NSCoder *)aDecoder {
-//    return [[super initWithCoder:aDecoder] setupBreadcrumbBarView];
-//}
-
 - (void) awakeFromNib {
     [super awakeFromNib];
     _titleTop = (kTallHeight*4);
-    _contentEnclosure.autoresizesSubviews = NO;
-    _contentView.autoresizesSubviews = NO;
 
-    return ;
-
+    
     if(!_titles) {
         _titles = [[NSMutableArray alloc] init];
     }
-
-
-
 
     self.wantsLayer = YES;
     self.layer = [CALayer layer];
@@ -78,38 +51,8 @@
     
     [self.layer addSublayer:_highlightLayer];
     
-    
+    [self setNeedsDisplay:YES];
 }
-
-//- (void) updateHighlightedTitle:(BOOL) animated {
-//
-//    for(FLBarTitleLayer* title in self.titles) {
-//
-//        if(title.emphasized) {
-//            if(!animated) {
-//                [CATransaction begin];
-//                [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
-//            }
-//            if(_highlightLayer.isHidden) {
-//                _highlightLayer.hidden = NO;
-//            }
-//            CGRect frame = FLRectSetWidth(title.frame, title.frame.size.width + 11);
-//            if(!CGRectEqualToRect(_highlightLayer.frame, frame)) {
-//                _highlightLayer.frame = frame; 
-////                [_highlightLayer setNeedsDisplay];
-//            }
-//            
-//            if(!animated) {
-//                [CATransaction commit];
-//            }
-//
-//            return;
-//        }
-//    }
-//    
-//    _highlightLayer.hidden = YES;
-//}
-
 
 - (void) updateLayout:(BOOL) animated {
     [CATransaction begin];
@@ -117,11 +60,18 @@
 
     FLBarTitleLayer* highlightedTitle = nil;
 
-    CGRect frame = CGRectMake(0, FLRectGetBottom(self.bounds) - _titleTop, _contentEnclosure.frame.origin.x, kTallHeight);
+    CGRect frame = self.bounds;
+    frame.size.height = kTallHeight;
+    frame.origin.y = FLRectGetBottom(self.bounds) - kTallHeight;
+    
+//    CGRectMake(  0, 
+//                                FLRectGetBottom(self.bounds), _contentEnclosure.frame.origin.x, kTallHeight);
+
     for(FLBarTitleLayer* title in _titles) {
         if(!CGRectEqualToRect(title.frame, frame)) {
             title.frame = frame;
-            [_highlightLayer setNeedsDisplay];
+            [self setNeedsDisplay:YES];
+            [title setNeedsDisplay];
         }
         if(title.emphasized) {
             highlightedTitle = title;
@@ -145,6 +95,7 @@
         if(!CGRectEqualToRect(_highlightLayer.frame, highlightFrame)) {
             _highlightLayer.frame = highlightFrame;
             [_highlightLayer setNeedsDisplay];
+            [self setNeedsDisplay:YES];
         }
         
         if(!animated) {
@@ -156,20 +107,15 @@
             _highlightLayer.hidden = YES;
         }
     }
-    
 }
 
-//- (void) setNeedsDisplay {
-//    [_highlightLayer setNeedsDisplay];
-//    [super setNeedsDisplay];
-//}
-
 - (void) addTitle:(FLBarTitleLayer*) title {
-return;
     [_titles addObject:title];
     [self.layer addSublayer:title];
     [title setNeedsDisplay];
     [self updateLayout:NO];
+    
+    self.needsDisplay = YES;
 }
 
 - (void) handleMouseMoved:(CGPoint) location mouseIn:(BOOL) mouseIn mouseDown:(BOOL) mouseDown {
@@ -200,15 +146,13 @@ return;
     [self updateLayout:NO];
 }
 
-- (void) drawRect:(NSRect)dirtyRect {
-    [super drawRect:dirtyRect];
-    
-    if(!_highlightLayer.isHidden && CGRectIntersectsRect(dirtyRect, _highlightLayer.frame)) {
-        [_highlightLayer setNeedsDisplay];
-    }
-}
-
-
+//- (void) drawRect:(NSRect)dirtyRect {
+//    [super drawRect:dirtyRect];
+//    
+//    if(!_highlightLayer.isHidden && CGRectIntersectsRect(dirtyRect, _highlightLayer.frame)) {
+//        [_highlightLayer setNeedsDisplay];
+//    }
+//}
 
 
 @end

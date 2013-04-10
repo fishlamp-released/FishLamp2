@@ -15,13 +15,10 @@
 @private
     __unsafe_unretained id<FLBreadcrumbBarViewControllerDelegate> _delegate;
     FLStringDisplayStyle* _titleStringStyle;
-    IBOutlet SDKView* _contentView;
 }
 
 @property (readwrite, strong, nonatomic) FLStringDisplayStyle* titleStringStyle;
 @property (readwrite,assign,nonatomic) id<FLBreadcrumbBarViewControllerDelegate> delegate;
-
-@property (readwrite, strong, nonatomic) NSView* contentView;
 
 - (void) addBreadcrumb:(NSString*) title;
 - (void) removeBreadcrumb:(NSString*) title;
