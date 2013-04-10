@@ -30,30 +30,30 @@
 //    [self setNeedsDisplay:YES];
 //}
 
-- (void) setNeedsDisplay {
-    [self setNeedsDisplay:YES];
-}
+//- (void) setNeedsDisplay {
+//    [self setNeedsDisplay:YES];
+//}
 
 - (void) layoutIfNeeded {
-    if(_needsLayout) {
-        _needsLayout = NO;
-        
-//        UIViewController* controller = self.viewController;
-//        if(controller) {
-//            [controller viewWillLayoutSubviews];
-//        }
-        [self layoutSubviews];
-//        if(controller) {
-//            [controller viewDidLayoutSubviews];
-//        }
-    }
+//    if(_needsLayout) {
+//        _needsLayout = NO;
+//        
+////        UIViewController* controller = self.viewController;
+////        if(controller) {
+////            [controller viewWillLayoutSubviews];
+////        }
+//        [self layoutSubviews];
+////        if(controller) {
+////            [controller viewDidLayoutSubviews];
+////        }
+//    }
 }
 
 - (void) setNeedsLayout {
-    _needsLayout = YES;
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self layoutIfNeeded];
-    });
+//    _needsLayout = YES;
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        [self layoutIfNeeded];
+//    });
 
 }
 

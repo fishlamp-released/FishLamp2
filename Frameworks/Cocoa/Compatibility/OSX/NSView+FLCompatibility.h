@@ -10,7 +10,7 @@
 #import <Cocoa/Cocoa.h>
 
 @interface NSView (FLCompatility)
-- (void) setNeedsDisplay; // setNeedsDisplay:YES
+//- (void) setNeedsDisplay; // setNeedsDisplay:YES
 
 // note that view layer doesn't work for POOPY in OSX because
 // when a view becomes the responder it moves forward (I think)

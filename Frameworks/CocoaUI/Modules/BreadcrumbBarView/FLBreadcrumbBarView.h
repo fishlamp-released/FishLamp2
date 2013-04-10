@@ -35,7 +35,7 @@
 @property (readwrite, assign, nonatomic) id<FLBreadcrumbBarViewDelegate> delegate;
 
 - (void) addTitle:(FLBarTitleLayer*) title;
-- (void) updateHighlightedTitle:(BOOL) animated;
+- (void) updateLayout:(BOOL) animated;
 
 @end
 

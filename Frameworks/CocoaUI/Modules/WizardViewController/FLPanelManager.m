@@ -47,7 +47,7 @@
     self.backwardTransition = [FLWizardStyleBackwardTransition wizardStyleBackwardTransition];
     
     self.view.autoresizesSubviews = NO;
-    [self.view setWantsLayer:YES];
+//    [self.view setWantsLayer:YES];
     [self.view addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:nil];
 }
 
@@ -109,7 +109,7 @@
 }
 
 - (void) addPanel:(FLPanelViewController*) panel {
-    panel.view.wantsLayer = YES;
+//    panel.view.wantsLayer = YES;
     [panel didMoveToPanelManager:self];
     [_panels addObject:panel];
     [self.delegate panelManager:self didAddPanel:panel];
@@ -255,12 +255,15 @@
 
     CGFloat animationDuration = 0.0f;
     FLViewTransition* transition = nil;
-    if(animated) {
-        if(idx > _currentPanel) {
-            transition = self.forwardTransition;
-        }
-        else {
-            transition = self.backwardTransition;
+
+    if(OSXVersionIsAtLeast10_8()) {
+        if(animated) {
+            if(idx > _currentPanel) {
+                transition = self.forwardTransition;
+            }
+            else {
+                transition = self.backwardTransition;
+            }
         }
     }
         
@@ -332,7 +335,7 @@
 - (void) addPanelView:(SDKView*) panelView toView:(SDKView*) superview animated:(BOOL) animated {
 
 // TODO: animate
-    panelView.wantsLayer = YES;
+//    panelView.wantsLayer = YES;
     if(!_panelViews) {
         _panelViews = [[NSMutableArray alloc] init];
     }

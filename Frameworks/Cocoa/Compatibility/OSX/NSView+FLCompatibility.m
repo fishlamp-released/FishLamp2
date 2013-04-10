@@ -14,9 +14,9 @@
 
 FLSynthesizeAssociatedBOOLProperty(needsLayout, setNeedsLayout);
 
-- (void) setNeedsDisplay {
-    [self setNeedsDisplay:YES];
-}
+//- (void) setNeedsDisplay {
+//    [self setNeedsDisplay:YES];
+//}
 
 - (void) insertSubview:(NSView*) view 
           belowSubview:(NSView*) subview {

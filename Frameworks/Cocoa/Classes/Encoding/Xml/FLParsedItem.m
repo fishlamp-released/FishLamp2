@@ -61,7 +61,7 @@
         [_elements setObject:element forKey:element.elementName];
     }
     else if([existing isKindOfClass:[NSMutableArray class]]) {
-        [existing addObject:element];
+        [((NSMutableArray*)existing) addObject:element];
     }
     else {
         NSMutableArray* array = [NSMutableArray arrayWithObjects:existing, element, nil];

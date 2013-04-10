@@ -1,4 +1,4 @@
-// Generated at Mon Feb 11 16:13:54 PST 2013
+// Generated at Wed Apr 10 11:34:50 PDT 2013
 
 // Base64Transcoder-JonathanWight
 #import "Base64Transcoder.h"
@@ -12,7 +12,7 @@
 // SBJson
 #import "FLJson.h"
 
-// SDKImage+TrevorHarmon
+// UIImage+TrevorHarmon
 #import "SDKImage+Alpha.h"
 #import "SDKImage+Resize.h"
 #import "SDKImage+RoundedCorner.h"
