@@ -10,6 +10,8 @@
 
 #import "FLSynchronousOperation.h"
 
+NSString* const FLHttpControllerDidLogoutUserNotification = @"FLHttpControllerDidLogoutUserNotification";
+
 @interface FLHttpController ()
 @property (readwrite, strong) FLUserService* userService;
 @property (readwrite, strong) id<FLObjectStorage> objectStorageService;
@@ -98,6 +100,7 @@
 }
 
 - (void) userServiceDidClose:(FLUserService*) service {
+    [[NSNotificationCenter defaultCenter] postNotificationName:FLHttpControllerDidLogoutUserNotification object:self];
 }
 
 - (void) httpRequestAuthenticationService:(FLHttpRequestAuthenticationService*) service 
@@ -115,6 +118,8 @@
     [self.userService closeService:self];
     [self.authenticatedServices closeService:self];
     [self.delegate httpController:self didLogoutUser:self.user];
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:FLHttpControllerDidLogoutUserNotification object:self];
 }
 
 - (void) httpRequestAuthenticationService:(FLHttpRequestAuthenticationService*) service 
