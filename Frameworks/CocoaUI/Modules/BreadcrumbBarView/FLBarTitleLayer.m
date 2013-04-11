@@ -80,8 +80,10 @@
         
         [self setNeedsDisplay];
         _willUpdate = NO;
-        
+
+#if TRACE        
         FLLog(@"updated title: %@", _attributedString.string);
+#endif        
     }
 }
 
@@ -189,7 +191,9 @@ CGFloat GetLineHeightForFont(CTFontRef iFont)
 //                    withTextAlignment:FLTextAlignmentMake(FLVerticalTextAlignmentCenter,  FLHorizontalTextAlignmentCenter)];
 //
 
+#if TRACE
     FLLog(@"draw title: %@", _title);
+#endif    
 }
 
 - (void) setTitle:(NSString*) title {

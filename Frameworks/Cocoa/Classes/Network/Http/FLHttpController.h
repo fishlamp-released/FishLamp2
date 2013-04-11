@@ -14,6 +14,8 @@
 #import "FLHttpUser.h"
 #import "FLHttpRequestAuthenticationService.h"
 
+extern NSString* const FLHttpControllerDidLogoutUserNotification;
+
 @interface FLHttpController : FLNetworkOperationContext<
                     FLHttpRequestAuthenticationServiceDelegate, 
                     FLUserLoginServiceDelegate, 

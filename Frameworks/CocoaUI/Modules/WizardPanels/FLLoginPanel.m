@@ -101,29 +101,8 @@
 }
 
 #if OSX
-- (void)controlTextDidEndEditing:(NSNotification *)note {
-	if ( [note object] == _userNameTextField || [note object] == _passwordEntryField ) {
-		if ( ![self canLogin] ) {
-			return;
-		}
-		
-		NSNumber *reason = [[note userInfo] objectForKey:@"NSTextMovement"];
-		if ([reason intValue] == NSReturnTextMovement) {
-            
-			//	leave time for text field to clean up repainting
-			[[self.buttons nextButton] performSelector:@selector(performClick:) withObject:nil afterDelay:0.1];
-		}
-	}
-}
-
 
 - (void)controlTextDidChange:(NSNotification *)note {
-//	if ( [note object] == _userNameTextField ) {
-//        [self.userService setUserName:_userNameTextField.stringValue];
-//    }
-//	if ( [note object] == _passwordEntryField ) {
-//        [self.userService setPassword:_passwordEntryField.stringValue];
-//    }
     
     if(self.userService.isServiceOpen) {
         [self.userService closeService:self];
