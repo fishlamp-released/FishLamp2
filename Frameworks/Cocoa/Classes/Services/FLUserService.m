@@ -84,10 +84,8 @@ NSString* const FLDefaultsKeyWizardSavePasswordKey = @"com.fishlamp.savepassword
     
     self.userName = [[NSUserDefaults standardUserDefaults] objectForKey:FLDefaultsKeyWizardLastUserNameKey];
     
-    if(FLStringIsNotEmpty(self.userName)) {
-        NSNumber* rememberPW = [[NSUserDefaults standardUserDefaults] objectForKey:FLDefaultsKeyWizardSavePasswordKey];
-        _rememberPassword = rememberPW && [rememberPW boolValue];
-    }
+    NSNumber* rememberPW = [[NSUserDefaults standardUserDefaults] objectForKey:FLDefaultsKeyWizardSavePasswordKey];
+    _rememberPassword = rememberPW && [rememberPW boolValue];
     
     _userDefaultsDirty = NO;
 }
@@ -146,10 +144,8 @@ NSString* const FLDefaultsKeyWizardSavePasswordKey = @"com.fishlamp.savepassword
 }
 
 - (void) closeService {
-    
     self.userName = nil;
     self.password = nil;
-    _rememberPassword = NO;
 }
 
 @end

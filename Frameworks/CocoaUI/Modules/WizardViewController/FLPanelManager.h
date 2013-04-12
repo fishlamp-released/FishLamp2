@@ -28,6 +28,8 @@ typedef void (^FLPanelViewControllerBlock)(FLPanelViewController* panel);
     
     IBOutlet NSView* _contentEnclosure;
     IBOutlet NSView* _contentView;
+    
+    NSMutableArray* _panelAreas;
 }
 
 @property (readwrite, assign, nonatomic) id<FLPanelManagerDelegate> delegate;
@@ -72,6 +74,8 @@ typedef void (^FLPanelViewControllerBlock)(FLPanelViewController* panel);
 - (void) removePanelViews:(BOOL) animated;
 
 - (void) panelDidChangeCanOpenValue:(FLPanelViewController*) panel;
+
+- (void) addPanelArea:(id<FLPanelArea>) area;
 
 @end
 

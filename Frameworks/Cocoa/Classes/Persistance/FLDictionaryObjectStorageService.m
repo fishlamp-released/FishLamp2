@@ -48,7 +48,10 @@
 - (id) readObject:(id) inputObject {
     FLAssert(self.isServiceOpen);
     FLAssertNotNil(self.objectStorage);
-    return FLRetainWithAutorelease([self.objectStorage objectForKey:[inputObject objectStorageKey_fl]]);
+    
+    id key = [inputObject objectStorageKey_fl];
+    
+    return FLRetainWithAutorelease([self.objectStorage objectForKey:key]);
 }
 
 - (void) deleteObject:(id) inputObject {
