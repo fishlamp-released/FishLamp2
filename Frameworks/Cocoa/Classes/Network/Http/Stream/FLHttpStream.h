@@ -17,19 +17,25 @@
     FLHttpMessage* _responseHeaders;
     NSInputStream* _bodyStream;
 }
+
 @property (readonly, strong, nonatomic) FLHttpMessage* responseHeaders;
 @property (readonly, assign, nonatomic) unsigned long bytesWritten;
 @property (readonly, strong, nonatomic) FLHttpMessage* requestHeaders;
 
 // if bodyStream == nil, it will use bodyData in request.
 - (id) initWithHttpMessage:(FLHttpMessage*) request 
-            withBodyStream:(NSInputStream*) bodyStream;
+            withBodyStream:(NSInputStream*) bodyStream
+            streamSecurity:(FLNetworkStreamSecurity) security
+            inputSink:(id<FLInputSink>) inputSink;
 
 + (id) httpStream:(FLHttpMessage*) request 
-            withBodyStream:(NSInputStream*) bodyStream;
+   withBodyStream:(NSInputStream*) bodyStream
+   streamSecurity:(FLNetworkStreamSecurity) security
+        inputSink:(id<FLInputSink>) inputSink;
 
 
 @end
+
 
 
 

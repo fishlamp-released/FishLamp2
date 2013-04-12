@@ -359,19 +359,13 @@
     return self;
 }
 
-//+ (ZFMediaType*) mediaType:(ZFMediaTypeID) mediaTypeID {
-//    for(ZFMediaType* size in [self allMediaTypes]) {
-//        if(mediaTypeID == size.mediaTypeID) {
-//            return size;
-//        }
-//    }
-//    
-//    return nil;
-//}
+- (BOOL) isImage {
+    return _mediaTypeID != ZFMediaTypeVideo;
+}
 
-//+ (ZFMediaType*) imageTypeFittingInSize:(CGSize) size {
-//    return [self mediaType:[self smallImageTypeFittingInSize:size]];
-//}
+- (BOOL) isVideo {
+    return _mediaTypeID == ZFMediaTypeVideo;
+}
 
 
 // see http://www.zenfolio.com/zf/help/api/guide/download

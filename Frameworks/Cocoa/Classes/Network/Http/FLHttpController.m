@@ -25,6 +25,7 @@ NSString* const FLHttpControllerDidLogoutUserNotification = @"FLHttpControllerDi
 @synthesize httpRequestAuthenticator = _httpRequestAuthenticator;
 @synthesize delegate = _delegate;
 @synthesize authenticatedServices = _authenticatedServices;
+@synthesize streamSecurity = _streamSecurity;
 
 - (id) init {
     self = [super init]; // [super initWithRootNameForDelegateMethods:@"httpController"];
@@ -93,7 +94,14 @@ NSString* const FLHttpControllerDidLogoutUserNotification = @"FLHttpControllerDi
             [object setObjectStorage:[self objectStorageService]];
         }
     }
-    
+
+    if(_streamSecurity != FLNetworkStreamSecurityNone) {
+        if([object respondsToSelector:@selector(setStreamSecurity:)]) {
+            if([object streamSecurity] == FLNetworkStreamSecurityNone) {
+                [object setStreamSecurity:_streamSecurity]; 
+            }
+        }
+    }
 }
 
 - (void) userServiceDidOpen:(FLUserService*) service {
@@ -120,6 +128,13 @@ NSString* const FLHttpControllerDidLogoutUserNotification = @"FLHttpControllerDi
 
     [[NSNotificationCenter defaultCenter] postNotificationName:FLHttpControllerDidLogoutUserNotification object:self];
 }
+
+- (void) openUserService {
+    if(!self.userService.isServiceOpen) {
+        [self.userService openService:self];
+    }
+}
+
 
 - (void) httpRequestAuthenticationService:(FLHttpRequestAuthenticationService*) service 
                          operationContext:(FLOperationContext**) outOperationContext {

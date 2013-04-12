@@ -21,3 +21,11 @@
 
 #import "FLAssertions.h"
 
+/*
+// sdk files with error codes:
+
+CFNetworkErrors.h
+NSErrors.h
+FoundationErrors.h
+SecureTransport.h
+*/

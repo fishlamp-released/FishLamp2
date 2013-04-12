@@ -2919,6 +2919,10 @@
 		2798DB0A166D886500A0863D /* SDKImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE5E166D886500A0863D /* SDKImage+RoundedCorner.m */; };
 		2798DB0B166D886500A0863D /* SDKImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE5E166D886500A0863D /* SDKImage+RoundedCorner.m */; };
 		2798DB0C166D886500A0863D /* SDKImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE5E166D886500A0863D /* SDKImage+RoundedCorner.m */; };
+		279E747517186F6400A4147D /* FLNetworkStream_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 279E747417186F6400A4147D /* FLNetworkStream_Internal.h */; };
+		279E747617186F6400A4147D /* FLNetworkStream_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 279E747417186F6400A4147D /* FLNetworkStream_Internal.h */; };
+		279E747717186F6400A4147D /* FLNetworkStream_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 279E747417186F6400A4147D /* FLNetworkStream_Internal.h */; };
+		279E747817186F6400A4147D /* FLNetworkStream_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 279E747417186F6400A4147D /* FLNetworkStream_Internal.h */; };
 		27BE09B217061F6000C375E0 /* FLOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 27BE09B117061F6000C375E0 /* FLOperation.h */; };
 		27BE09B317061F6000C375E0 /* FLOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 27BE09B117061F6000C375E0 /* FLOperation.h */; };
 		27BE09B417061F6000C375E0 /* FLOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 27BE09B117061F6000C375E0 /* FLOperation.h */; };
@@ -4184,6 +4188,7 @@
 		2798CE5C166D886500A0863D /* SDKImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SDKImage+Resize.m"; sourceTree = "<group>"; };
 		2798CE5D166D886500A0863D /* SDKImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SDKImage+RoundedCorner.h"; sourceTree = "<group>"; };
 		2798CE5E166D886500A0863D /* SDKImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SDKImage+RoundedCorner.m"; sourceTree = "<group>"; };
+		279E747417186F6400A4147D /* FLNetworkStream_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLNetworkStream_Internal.h; sourceTree = "<group>"; };
 		27A43AB415CDCC89001CB13E /* libFishLampCocoa-iOS-ARC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoa-iOS-ARC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27A43AC415CDCCCB001CB13E /* libFishLampCocoa-OSX-64-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoa-OSX-64-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27BE09B117061F6000C375E0 /* FLOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLOperation.h; sourceTree = "<group>"; };
@@ -5083,6 +5088,7 @@
 				271D324A16FE0775009CD00F /* FLWriteStream.m */,
 				271D324B16FE0775009CD00F /* NSError+FLNetworkStream.h */,
 				271D324C16FE0775009CD00F /* NSError+FLNetworkStream.m */,
+				279E747417186F6400A4147D /* FLNetworkStream_Internal.h */,
 			);
 			path = Streams;
 			sourceTree = "<group>";
@@ -6481,6 +6487,7 @@
 				272662F71709050900109AC2 /* FLHiddenFolderFileSink.h in Headers */,
 				273FF973170A06FE0097E0D5 /* FLDatabaseObjectStorageService.h in Headers */,
 				273FF97E170A0C430097E0D5 /* FLObjectStorageService.h in Headers */,
+				279E747517186F6400A4147D /* FLNetworkStream_Internal.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6848,6 +6855,7 @@
 				272662F91709050900109AC2 /* FLHiddenFolderFileSink.h in Headers */,
 				273FF975170A06FE0097E0D5 /* FLDatabaseObjectStorageService.h in Headers */,
 				273FF980170A0C430097E0D5 /* FLObjectStorageService.h in Headers */,
+				279E747717186F6400A4147D /* FLNetworkStream_Internal.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7215,6 +7223,7 @@
 				272662F81709050900109AC2 /* FLHiddenFolderFileSink.h in Headers */,
 				273FF974170A06FE0097E0D5 /* FLDatabaseObjectStorageService.h in Headers */,
 				273FF97F170A0C430097E0D5 /* FLObjectStorageService.h in Headers */,
+				279E747617186F6400A4147D /* FLNetworkStream_Internal.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7727,6 +7736,7 @@
 				272662FA1709050900109AC2 /* FLHiddenFolderFileSink.h in Headers */,
 				273FF976170A06FE0097E0D5 /* FLDatabaseObjectStorageService.h in Headers */,
 				273FF981170A0C430097E0D5 /* FLObjectStorageService.h in Headers */,
+				279E747817186F6400A4147D /* FLNetworkStream_Internal.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

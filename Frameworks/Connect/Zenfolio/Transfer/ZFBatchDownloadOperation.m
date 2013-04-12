@@ -110,6 +110,7 @@
 
 
     FLHttpRequest* request = [ZFHttpRequestFactory loadPhotoSetHttpRequest:photoSet.Id level:kZenfolioInformatonLevelFull includePhotos:YES];
+
     ZFPhotoSet* latestPhotoSet = [self runChildSynchronously:request];
     FLAssertNotNil(latestPhotoSet);
     
@@ -148,7 +149,6 @@
     else {
         _state.photoCount++;
     }
-            
 }
 
 - (void) mediaExists:(ZFMediaType*) mediaType forPhoto:(ZFPhoto*) photo filePath:(NSString*) filePath {

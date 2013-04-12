@@ -30,6 +30,7 @@
 - (FLResult) sendAuthenticatedRequest:(FLHttpRequest*) request 
                             userLogin:(FLUserLogin*) userLogin {
 
+    request.streamSecurity = FLNetworkStreamSecuritySSL;
     request.disableAuthenticator = YES;
     [request setAuthenticationToken:userLogin.authToken];
     

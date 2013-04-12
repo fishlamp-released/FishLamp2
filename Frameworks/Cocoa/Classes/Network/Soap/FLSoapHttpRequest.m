@@ -15,6 +15,8 @@
 #import "FLSoapParser.h"
 #import "FLObjectDescriber.h"
 
+#define TRACE 0
+
 @implementation FLSoapHttpRequest 
 
 @synthesize soapInput = _soapInput;
@@ -81,6 +83,11 @@
     [debugString appendBuildableString:soapStringBuilder];
 
     self.requestBody.debugBody = debugString.string;
+    
+#if TRACE
+    FLTrace(@"Soap Request:\n%@", debugString.string);
+#endif    
+    
 //    FLLog([self description]);
 #endif    
 }
@@ -95,6 +102,9 @@
         if(!error) {
             error = [NSError errorWithSoapFault:fault];
         }
+#if DEBUG
+        FLLog(@"Soap Fault: %@", [fault description]);
+#endif
         
         return error;
     }
@@ -108,7 +118,7 @@
     FLAssertNotNil(data);
 
 #if TRACE
-    FLTrace(@"%@", FLAutorelease([[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]));
+    FLTrace(@"Soap Response:\n%@", FLAutorelease([[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]));
 #endif    
 
     FLParsedItem* parsedSoap = [[FLSoapParser soapParser] parseData:data];

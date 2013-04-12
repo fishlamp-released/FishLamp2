@@ -95,13 +95,17 @@
     return nil;
 }
 
+- (NSNumber*) ImageCount {
+    return nil;
+}
+
 - (NSNumber*) calculateGalleryCount {
     NSNumber* number = [self GalleryCount];
     return number ? number : [NSNumber numberWithInt:0];
 }
 
-- (NSNumber*) calculatePhotoCount {
-    NSNumber* number = [self PhotoCount];
+- (NSNumber*) calculateImageCount {
+    NSNumber* number = [self ImageCount];
     return number ? number : [NSNumber numberWithInt:0];
 }
 

@@ -54,32 +54,8 @@ ConcreteSubclass(ZFLoadGroupSoapRequest)
 }
 @end
 
-//@interface ZFSoapHttpRequestFactory ()
-//@property (readwrite, strong) ZFApiSoap* soapServer;
-//@end
 
 @implementation ZFSoapHttpRequestFactory
-
-//@synthesize soapServer = _soapServer;
-//
-//- (id) init {
-//    self = [super init];
-//    if(self) {
-//        self.soapServer = [ZFApiSoap apiSoap];
-//    }
-//    return self;
-//}
-//
-//+ (id) soapWebService {
-//    return FLAutorelease([[[self class] alloc] init]);
-//}
-//
-//#if FL_MRC
-//- (void) dealloc {
-//    [_soapServer release];
-//    [super dealloc];
-//}
-//#endif
 
 + (FLResult) zenfolioResultFromSoapResponse:(FLParsedItem*) parsedSoap 
                                     element:(FLObjectDescriber*) element {

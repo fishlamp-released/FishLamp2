@@ -18,6 +18,7 @@
 @interface FLHttpRequestAuthenticationService : FLService<FLHttpRequestAuthenticator> {
 @private
     FLFifoAsyncQueue* _asyncQueue;
+    
     __unsafe_unretained FLOperationContext* _operationContext;
 }
 @property (readonly, assign) FLOperationContext* operationContext;

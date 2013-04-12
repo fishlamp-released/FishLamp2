@@ -363,9 +363,9 @@ FLSynthesizeCachedObjectHandlerProperty(ZFGroup);
     return [NSNumber numberWithUnsignedInteger:count];
 }
 
-- (NSNumber*) calculatePhotoCount {
+- (NSNumber*) calculateImageCount {
     if(self.PhotoCount != nil) {
-        return [self PhotoCount];
+        return [self ImageCount];
     }
     
     __block NSUInteger count = 0;

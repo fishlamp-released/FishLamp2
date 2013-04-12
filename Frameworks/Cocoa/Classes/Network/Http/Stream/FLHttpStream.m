@@ -7,21 +7,29 @@
 //
 
 #import "FLHttpStream.h"
+#import "FLNetworkStream_Internal.h"
 
 @implementation FLHttpStream
 @synthesize responseHeaders = _responseHeaders;
 @synthesize requestHeaders = _requestHeaders;
 
-- (id) initWithHttpMessage:(FLHttpMessage*) request {
-    self = [super init];
-    if(self ) {
-        _requestHeaders = FLRetain(request);
-    }
-    return self;
+- (id) init {
+    return [self initWithHttpMessage:nil withBodyStream:nil streamSecurity:FLNetworkStreamSecurityNone inputSink:nil];
 }
 
-- (id) initWithHttpMessage:(FLHttpMessage*) request withBodyStream:(NSInputStream*) bodyStream {
-    self = [super init];
+//- (id) initWithHttpMessage:(FLHttpMessage*) request {
+//    return [self initWithHttpMessage:request withBodyStream:nil streamSecurity:FLNetworkStreamSecurityNone];
+//}
+
+- (id) initWithHttpMessage:(FLHttpMessage*) request 
+            withBodyStream:(NSInputStream*) bodyStream             
+            streamSecurity:(FLNetworkStreamSecurity) security
+                 inputSink:(id<FLInputSink>) inputSink {
+
+    FLAssertNotNil(request);
+    FLAssertNotNil(inputSink);
+
+    self = [super initWithStreamSecurity:security inputSink:inputSink];
     if(self ) {
         _requestHeaders = FLRetain(request);
         _bodyStream = FLRetain(bodyStream);
@@ -51,13 +59,15 @@
     return CFReadStreamCreateForHTTPRequest(kCFAllocatorDefault, _requestHeaders.messageRef);
 }
 
-+ (id) httpStream:(FLHttpMessage*) request {
-    return FLAutorelease([[[self class] alloc] initWithHttpMessage:request]);
-}
+//+ (id) httpStream:(FLHttpMessage*) request {
+//    return FLAutorelease([[[self class] alloc] initWithHttpMessage:request]);
+//}
 
 + (id) httpStream:(FLHttpMessage*) request 
-            withBodyStream:(NSInputStream*) bodyStream {
-    return FLAutorelease([[[self class] alloc] initWithHttpMessage:request withBodyStream:bodyStream]);
+   withBodyStream:(NSInputStream*) bodyStream
+   streamSecurity:(FLNetworkStreamSecurity) security
+   inputSink:(id<FLInputSink>) inputSink {
+    return FLAutorelease([[[self class] alloc] initWithHttpMessage:request withBodyStream:bodyStream streamSecurity:security inputSink:inputSink]);
 }            
 
 - (BOOL) hasResponseHeaders {
@@ -65,7 +75,7 @@
 }
 
 - (void) openIfNeeded {
-    if(!_responseHeaders) {
+    if(!_responseHeaders && self.streamRef) {
         CFHTTPMessageRef ref = (CFHTTPMessageRef)CFReadStreamCopyProperty(self.streamRef, kCFStreamPropertyHTTPResponseHeader);
         @try {
             if(ref && CFHTTPMessageIsHeaderComplete(ref)) {

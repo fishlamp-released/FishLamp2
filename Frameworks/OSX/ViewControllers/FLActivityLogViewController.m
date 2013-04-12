@@ -75,6 +75,8 @@
 - (void) awakeFromNib {
     [super awakeFromNib];
     [self initActivityLogView];
+    
+    [_textView setEnabledTextCheckingTypes:NSTextCheckingTypeLink];
 }
 
 - (void) appendAttributedString:(NSAttributedString*) string {

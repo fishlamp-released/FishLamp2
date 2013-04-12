@@ -10,6 +10,7 @@
 
 #define kDestinationFolderPath @"DestFolderPath"
 #define kDownloadMediaTypes @"DownloadMediaTypes"
+#define kUseSSL @"DownloadUsesSSL"
 
 @implementation ZFBatchDownloadSpec
 
@@ -30,49 +31,6 @@
 + (id) batchDownloadSpec {
     return FLAutorelease([[[self class] alloc] init]);
 }
-
-//- (NSString*) destinationPath {
-//
-//    NSString* path =  [[NSUserDefaults standardUserDefaults] objectForKey:kDestinationFolderPath];
-//
-//    if( FLStringIsEmpty(path)) {
-//        NSArray* cachePaths = NSSearchPathForDirectoriesInDomains(NSPicturesDirectory, NSUserDomainMask, YES);
-//        path = [cachePaths objectAtIndex: 0];
-//        self.destinationPath = path;
-//    }
-//
-//    return path;
-//}
-//
-//- (void) setDestinationPath:(NSString*) destinationPath {
-//    [[NSUserDefaults standardUserDefaults] setObject:destinationPath forKey:kDestinationFolderPath];
-//    [[NSUserDefaults standardUserDefaults] synchronize];
-//}
-//
-//- (NSArray*) mediaTypes {
-//    NSMutableArray* mediaTypes = [NSMutableArray array];
-//    id object = [[NSUserDefaults standardUserDefaults] objectForKey:kDownloadMediaTypes];
-//    if(object) {
-//        for(NSNumber* number in object) {
-//            [mediaTypes addObject:[ZFMediaType mediaType:[number intValue]]];
-//        } 
-//    }
-//    else {
-//        [mediaTypes addObject:[ZFMediaType originalImage]];
-//        [mediaTypes addObject:[ZFMediaType video]];
-//    }
-//    return mediaTypes;
-//}
-//
-//- (void) setMediaTypes:(NSArray*) types {
-//    NSMutableArray* mediaTypes = [NSMutableArray array];
-//    for(ZFMediaType* type in types) {
-//        [mediaTypes addObject:[NSNumber numberWithInt:type.mediaTypeID]];
-//    }
-//
-//    [[NSUserDefaults standardUserDefaults] setObject:mediaTypes forKey:kDownloadMediaTypes];
-//    [[NSUserDefaults standardUserDefaults] synchronize];
-//}
 
 - (id) copyWithZone:(NSZone *)zone {
     ZFBatchDownloadSpec* spec = [[ZFBatchDownloadSpec alloc] init];
@@ -118,7 +76,9 @@
     }
     [[NSUserDefaults standardUserDefaults] setObject:self.destinationPath forKey:kDestinationFolderPath];
     [[NSUserDefaults standardUserDefaults] setObject:mediaTypes forKey:kDownloadMediaTypes];
+
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
+
 
 @end

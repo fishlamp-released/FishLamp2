@@ -46,7 +46,7 @@ typedef enum {
 - (NSString*) sizeText;
 
 - (NSNumber*) calculateGalleryCount;
-- (NSNumber*) calculatePhotoCount;
+- (NSNumber*) calculateImageCount;
 - (NSNumber*) calculateVideoCount;
 - (NSNumber*) calculatePhotoBytes;
 

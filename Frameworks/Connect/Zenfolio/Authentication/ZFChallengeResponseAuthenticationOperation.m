@@ -65,12 +65,21 @@
     
     
     FLHttpRequest* challengeRequest = [ZFHttpRequestFactory challengeHttpRequest:self.user.credentials.userName];
+
+#if OSX
+    challengeRequest.streamSecurity = FLNetworkStreamSecuritySSL;
+#endif
+
     challengeRequest.disableAuthenticator = YES;
     
     ZFAuthChallenge* response = [self runChildSynchronously:challengeRequest];
    
     FLHttpRequest* authenticateRequest = [self authenticateRequestWithAuthChallenge:response];
     authenticateRequest.disableAuthenticator = YES;
+
+#if OSX
+    authenticateRequest.streamSecurity = FLNetworkStreamSecuritySSL;
+#endif
     
     NSString* token = [self runChildSynchronously:authenticateRequest];
     

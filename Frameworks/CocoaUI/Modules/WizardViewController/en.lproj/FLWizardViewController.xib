@@ -189,16 +189,16 @@
 								<reference key="NSNextResponder" ref="999520791"/>
 								<int key="NSvFlags">266</int>
 								<array class="NSMutableArray" key="NSSubviews">
-									<object class="NSTextField" id="963270366">
+									<object class="NSTextField" id="156718966">
 										<reference key="NSNextResponder" ref="2603366"/>
 										<int key="NSvFlags">266</int>
 										<string key="NSFrame">{{10, 43}, {263, 17}}</string>
 										<reference key="NSSuperview" ref="2603366"/>
 										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="886191451"/>
+										<reference key="NSNextKeyView" ref="277740100"/>
 										<string key="NSReuseIdentifierKey">_NS:1535</string>
 										<bool key="NSEnabled">YES</bool>
-										<object class="NSTextFieldCell" key="NSCell" id="760773038">
+										<object class="NSTextFieldCell" key="NSCell" id="308458192">
 											<int key="NSCellFlags">68157504</int>
 											<int key="NSCellFlags2">71304192</int>
 											<string key="NSContents">Welcome Munny</string>
@@ -208,8 +208,8 @@
 												<int key="NSfFlags">3357</int>
 											</object>
 											<string key="NSCellIdentifier">_NS:1535</string>
-											<reference key="NSControlView" ref="963270366"/>
-											<object class="NSColor" key="NSBackgroundColor" id="237328291">
+											<reference key="NSControlView" ref="156718966"/>
+											<object class="NSColor" key="NSBackgroundColor" id="799441458">
 												<int key="NSColorSpace">6</int>
 												<string key="NSCatalogName">System</string>
 												<string key="NSColorName">controlColor</string>
@@ -228,16 +228,16 @@
 										</object>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 									</object>
-									<object class="NSButton" id="886191451">
+									<object class="NSButton" id="277740100">
 										<reference key="NSNextResponder" ref="2603366"/>
 										<int key="NSvFlags">265</int>
-										<string key="NSFrame">{{275, 44}, {77, 18}}</string>
+										<string key="NSFrame">{{275, 42}, {77, 20}}</string>
 										<reference key="NSSuperview" ref="2603366"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="396995919"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="NSEnabled">YES</bool>
-										<object class="NSButtonCell" key="NSCell" id="797844854">
+										<object class="NSButtonCell" key="NSCell" id="103870611">
 											<int key="NSCellFlags">67108864</int>
 											<int key="NSCellFlags2">134348800</int>
 											<string key="NSContents">Logout</string>
@@ -247,7 +247,7 @@
 												<int key="NSfFlags">3100</int>
 											</object>
 											<string key="NSCellIdentifier">_NS:9</string>
-											<reference key="NSControlView" ref="886191451"/>
+											<reference key="NSControlView" ref="277740100"/>
 											<int key="NSButtonFlags">-2038153216</int>
 											<int key="NSButtonFlags2">134</int>
 											<string key="NSAlternateContents"/>
@@ -275,7 +275,7 @@
 												<int key="NSfFlags">2072</int>
 											</object>
 											<reference key="NSControlView" ref="396995919"/>
-											<reference key="NSBackgroundColor" ref="237328291"/>
+											<reference key="NSBackgroundColor" ref="799441458"/>
 											<object class="NSColor" key="NSTextColor">
 												<int key="NSColorSpace">6</int>
 												<string key="NSCatalogName">System</string>
@@ -292,7 +292,7 @@
 								<string key="NSFrame">{{115, 319}, {363, 67}}</string>
 								<reference key="NSSuperview" ref="999520791"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="963270366"/>
+								<reference key="NSNextKeyView" ref="156718966"/>
 								<string key="NSClassName">NSView</string>
 							</object>
 						</array>
@@ -403,7 +403,7 @@
 					<object class="IBActionConnection" key="connection">
 						<string key="label">logoutUser:</string>
 						<reference key="source" ref="1003"/>
-						<reference key="destination" ref="886191451"/>
+						<reference key="destination" ref="277740100"/>
 					</object>
 					<int key="connectionID">250</int>
 				</object>
@@ -475,7 +475,7 @@
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">_welcomeText</string>
 						<reference key="source" ref="652440259"/>
-						<reference key="destination" ref="963270366"/>
+						<reference key="destination" ref="156718966"/>
 					</object>
 					<int key="connectionID">253</int>
 				</object>
@@ -483,7 +483,7 @@
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">_logoutButton</string>
 						<reference key="source" ref="652440259"/>
-						<reference key="destination" ref="886191451"/>
+						<reference key="destination" ref="277740100"/>
 					</object>
 					<int key="connectionID">254</int>
 				</object>
@@ -725,8 +725,8 @@
 						<reference key="object" ref="2603366"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="396995919"/>
-							<reference ref="886191451"/>
-							<reference ref="963270366"/>
+							<reference ref="277740100"/>
+							<reference ref="156718966"/>
 						</array>
 						<reference key="parent" ref="999520791"/>
 						<string key="objectName">Header View</string>
@@ -756,29 +756,29 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">248</int>
-						<reference key="object" ref="886191451"/>
+						<reference key="object" ref="277740100"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="797844854"/>
+							<reference ref="103870611"/>
 						</array>
 						<reference key="parent" ref="2603366"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">249</int>
-						<reference key="object" ref="797844854"/>
-						<reference key="parent" ref="886191451"/>
+						<reference key="object" ref="103870611"/>
+						<reference key="parent" ref="277740100"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">251</int>
-						<reference key="object" ref="963270366"/>
+						<reference key="object" ref="156718966"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="760773038"/>
+							<reference ref="308458192"/>
 						</array>
 						<reference key="parent" ref="2603366"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">252</int>
-						<reference key="object" ref="760773038"/>
-						<reference key="parent" ref="963270366"/>
+						<reference key="object" ref="308458192"/>
+						<reference key="parent" ref="156718966"/>
 					</object>
 				</array>
 			</object>

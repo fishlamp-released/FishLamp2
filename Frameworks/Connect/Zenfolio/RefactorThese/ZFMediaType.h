@@ -34,6 +34,8 @@ typedef enum PhotoMediaTypeID
     NSString* _localizedDisplayName;
     NSString* _abbreviation;
 }
+@property (readonly, assign, nonatomic) BOOL isImage;
+@property (readonly, assign, nonatomic) BOOL isVideo;
 
 @property (readonly, strong, nonatomic) NSString* localizedDisplayName;
 @property (readonly, strong, nonatomic) NSString* abbreviation;
