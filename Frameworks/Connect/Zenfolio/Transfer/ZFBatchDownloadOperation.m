@@ -13,44 +13,6 @@
 #import "FLFileSink.h"
 #import "FLHiddenFolderFileSink.h"
 
-@interface ZFDownloadState ()
-@property (readwrite, assign, nonatomic) ZFDownloadState_t values;
-@end
-
-@implementation ZFDownloadState  
-@synthesize values = _values;
-
-- (id) copyWithZone:(NSZone*) zone {
-    ZFDownloadState* copy = [[ZFDownloadState alloc] init];
-    copy.values = self.values;
-    return copy;
-}
-
-- (id) initWithState:(ZFDownloadState_t) state {	
-	self = [super init];
-	if(self) {
-		_values = state;
-	}
-	return self;
-}
-
-- (id) init {	
-	self = [super init];
-	if(self) {
-		memset(&_values, 0, sizeof(ZFDownloadState_t));
-	}
-	return self;
-}
-
-+ (id) downloadState:(ZFDownloadState_t) state {
-    return FLAutorelease([[[self class] alloc] initWithState:state]);
-}
-
-+ (id) downloadState {
-    return FLAutorelease([[[self class] alloc] init]);
-}
-
-@end
 
 @interface ZFBatchDownloadOperation ()
 @property (readwrite, copy, nonatomic) NSURL* downloadFolderURL;
@@ -120,19 +82,12 @@
 - (FLImageFolder*) createFolderForPhotoSet:(ZFPhotoSet*) photoSet {
     NSString* folderPath = [_downloadSpec.destinationPath stringByAppendingPathComponent:[self relativePathForPhotoSet:photoSet]];
     
-//        BOOL isDir = NO;
-//        if(![[NSFileManager defaultManager] fileExistsAtPath:folderPath isDirectory:&isDir]) {
-//        
     NSError* err = nil;
     if(![[NSFileManager defaultManager] createDirectoryAtPath:folderPath withIntermediateDirectories:YES attributes:nil error:&err]) {
         // TODO: can't create dir
     } 
     
-    if(err) {
-        // TODO: continue if "already exists"
-        
-        FLThrowIfError(err);
-    }
+    FLThrowIfError(err);
     
     return [FLImageFolder folderWithPath:folderPath];
 }
@@ -143,7 +98,7 @@
         if(!canDefer || ([NSDate timeIntervalSinceReferenceDate] - _lastProgress) > 0.3) {
 
             [self sendObservation:@selector(downloadOperation:updateDownloadInfo:) 
-                           withObject:[ZFDownloadState downloadState:_state]];
+                           withObject:[ZFTransferState transferState:_state]];
 
             _lastProgress = now;
         }
@@ -228,10 +183,12 @@
     [self abortIfNeeded];
 
     // for accurute download speed caculations
-    _state.downloadingTime += elapsedTime;
-    _state.downloadedBytes += _state.currentPhotoBytes;
-//    _state.downloadedBytes += photo.SizeValue;
+    _state.transferTime += elapsedTime;
+    _state.transferredBytes += _state.currentPhotoBytes;
+
+#if TRACE
     FLLog(@"downloaded %ld, expected: %ld, elapsed time: %f", _state.currentPhotoBytes, photo.SizeValue, elapsedTime);
+#endif
     
     // fix the total byte count so we don't mess up progress.
     _state.byteCount -= _state.currentPhotoBytes;
@@ -375,7 +332,7 @@
     FLSetObjectWithRetain(_rootGroup, [self.objectStorage readObject:[ZFGroup group:[NSNumber numberWithInt:_downloadSpec.rootGroupID]]]);
     FLAssertNotNil(_rootGroup);
 
-    memset(&_state, 0, sizeof(ZFDownloadState_t));
+    memset(&_state, 0, sizeof(ZFTransferState_t));
 
     _downloadVideos = NO;
     _downloadImages = NO;

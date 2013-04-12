@@ -76,6 +76,9 @@
     self.panelManager.delegate = self;
     
     [_progressView setRespondsToGlobalNetworkActivity];
+    
+    [_panelManager addPanelArea:_headerViewController];
+    [_panelManager addPanelArea:_buttonViewController];
 }
 
 - (BOOL)acceptsFirstResponder {

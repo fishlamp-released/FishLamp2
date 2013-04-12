@@ -12,14 +12,14 @@
 @interface FLWizardHeaderViewController : FLCompatibleViewController<FLPanelHeader> {
 @private
     IBOutlet NSTextField* _titleView;
-//    IBOutlet NSProgressIndicator* _spinner;
     IBOutlet NSView* _logoView;
+    IBOutlet NSButton* _logoutButton;
+    IBOutlet NSTextField* _welcomeText;
 }
 
 @property (readonly, strong, nonatomic) NSTextField* promptTextField;
-//@property (readonly, strong, nonatomic) NSProgressIndicator* spinner;
 
 - (void) setPrompt:(NSString*) title animationDuration:(CGFloat) animationDuration;
+- (void) setWelcomeText:(NSString*) welcomeText;
 
-//- (void) showSpinner:(BOOL) show;
 @end

@@ -9,9 +9,17 @@
 #import "FLCocoaUIRequired.h"
 
 @class FLPanelManager;
+@class FLPanelViewController;
 
 @protocol FLPanelArea <NSObject>
 - (SDKView*) contentView;
+
+@optional
+- (void) panelDidAppear:(FLPanelViewController*) panel;
+- (void) panelWillAppear:(FLPanelViewController*) panel;
+- (void) panelWillDisappear:(FLPanelViewController*) panel;
+- (void) panelDidDisappear:(FLPanelViewController*) panel;
+
 @end
 
 @protocol FLPanelButtons <FLPanelArea>
@@ -22,6 +30,7 @@
 
 @protocol FLPanelHeader <FLPanelArea>
 @property (readonly, strong, nonatomic) NSTextField* promptTextField;
+
 @end
 
 @interface FLPanelViewController : FLCompatibleViewController  {
@@ -33,6 +42,7 @@
     id<FLPanelButtons> _buttons;
     id<FLPanelHeader> _header;
     BOOL _panelFillsView;
+    BOOL _isAuthenticated;
 }
 @property (readwrite, assign, nonatomic) id wizardViewController;
 @property (readwrite, strong, nonatomic) id<FLPanelButtons> buttons;
@@ -40,6 +50,7 @@
 @property (readwrite, strong, nonatomic) NSString* prompt;
 @property (readwrite, assign, nonatomic) BOOL canOpenNextPanel;
 @property (readwrite, assign, nonatomic) BOOL panelFillsView;
+@property (readwrite, assign, nonatomic) BOOL isAuthenticated;
 
 - (void) panelWillAppear;
 - (void) panelDidAppear;

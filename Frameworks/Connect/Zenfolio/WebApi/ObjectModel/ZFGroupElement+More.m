@@ -138,11 +138,6 @@
 	return [NSString localizedStringForByteSize:self.calculatePhotoBytesValue];
 }
 
-- (id) objectStorageKey_fl {
-    return [NSString stringWithFormat:@"%d:%@", [self groupElementType], [self Id]];
-}
-
-
 //- (BOOL) visitAllElements:(FLGroupElementVisitor) visitor elementIndex:(NSUInteger*) elementIndex {
 //
 //    BOOL stop = NO;

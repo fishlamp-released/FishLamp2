@@ -45,6 +45,8 @@
 						<array class="NSMutableArray" key="NSSubviews"/>
 						<string key="NSFrame">{{120, 20}, {129, 25}}</string>
 						<reference key="NSSuperview" ref="442673046"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:22</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="957219648">
@@ -76,8 +78,9 @@
 						<reference key="NSNextResponder" ref="442673046"/>
 						<int key="NSvFlags">268</int>
 						<array class="NSMutableArray" key="NSSubviews"/>
-						<string key="NSFrame">{{118, 71}, {190, 18}}</string>
+						<string key="NSFrame">{{118, 56}, {190, 18}}</string>
 						<reference key="NSSuperview" ref="442673046"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="231246812"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="NSEnabled">YES</bool>
@@ -111,18 +114,19 @@
 					<object class="NSTextField" id="984608172">
 						<reference key="NSNextResponder" ref="442673046"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{120, 125}, {263, 22}}</string>
+						<string key="NSFrame">{{120, 121}, {263, 26}}</string>
 						<reference key="NSSuperview" ref="442673046"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="1024145685"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="568549520">
 							<int key="NSCellFlags">-1804599231</int>
 							<int key="NSCellFlags2">272630784</int>
 							<string key="NSContents"/>
-							<object class="NSFont" key="NSSupport" id="437098362">
+							<object class="NSFont" key="NSSupport" id="253608313">
 								<string key="NSName">LucidaGrande</string>
-								<double key="NSSize">13</double>
-								<int key="NSfFlags">1044</int>
+								<double key="NSSize">14</double>
+								<int key="NSfFlags">16</int>
 							</object>
 							<string key="NSPlaceholderString">Username or E-mail address</string>
 							<reference key="NSControlView" ref="984608172"/>
@@ -149,15 +153,16 @@
 					<object class="NSTextField" id="938653363">
 						<reference key="NSNextResponder" ref="442673046"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{120, 98}, {263, 21}}</string>
+						<string key="NSFrame">{{120, 87}, {263, 26}}</string>
 						<reference key="NSSuperview" ref="442673046"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="465360970"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="861193114">
 							<int key="NSCellFlags">-1805647807</int>
 							<int key="NSCellFlags2">4196416</int>
 							<string key="NSContents"/>
-							<reference key="NSSupport" ref="437098362"/>
+							<reference key="NSSupport" ref="253608313"/>
 							<string key="NSPlaceholderString">Password</string>
 							<reference key="NSControlView" ref="938653363"/>
 							<bool key="NSDrawsBackground">YES</bool>
@@ -169,18 +174,19 @@
 					<object class="NSTextField" id="214007241">
 						<reference key="NSNextResponder" ref="442673046"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{17, 128}, {98, 17}}</string>
+						<string key="NSFrame">{{17, 125}, {98, 22}}</string>
 						<reference key="NSSuperview" ref="442673046"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="984608172"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="54548622">
 							<int key="NSCellFlags">67108928</int>
 							<int key="NSCellFlags2">71305216</int>
 							<string key="NSContents">Account:</string>
-							<object class="NSFont" key="NSSupport" id="199638629">
+							<object class="NSFont" key="NSSupport" id="381613615">
 								<string key="NSName">LucidaGrande-Bold</string>
-								<double key="NSSize">13</double>
-								<int key="NSfFlags">2072</int>
+								<double key="NSSize">14</double>
+								<int key="NSfFlags">16</int>
 							</object>
 							<string key="NSPlaceholderString"/>
 							<reference key="NSControlView" ref="214007241"/>
@@ -204,15 +210,16 @@
 					<object class="NSTextField" id="1024145685">
 						<reference key="NSNextResponder" ref="442673046"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{17, 100}, {98, 17}}</string>
+						<string key="NSFrame">{{17, 89}, {98, 24}}</string>
 						<reference key="NSSuperview" ref="442673046"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="938653363"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="308904108">
 							<int key="NSCellFlags">67108928</int>
 							<int key="NSCellFlags2">71305216</int>
 							<string key="NSContents">Password:</string>
-							<reference key="NSSupport" ref="199638629"/>
+							<reference key="NSSupport" ref="381613615"/>
 							<string key="NSPlaceholderString"/>
 							<reference key="NSControlView" ref="1024145685"/>
 							<reference key="NSBackgroundColor" ref="761168538"/>
@@ -223,9 +230,44 @@
 				</array>
 				<string key="NSFrameSize">{409, 173}</string>
 				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="214007241"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<string key="NSClassName">FLSmallPanelView</string>
+			</object>
+			<object class="NSTextField" id="246603144">
+				<reference key="NSNextResponder"/>
+				<int key="NSvFlags">268</int>
+				<string key="NSFrameSize">{96, 22}</string>
+				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
+				<reference key="NSNextKeyView"/>
+				<string key="NSReuseIdentifierKey">_NS:9</string>
+				<bool key="NSEnabled">YES</bool>
+				<object class="NSTextFieldCell" key="NSCell" id="1014457358">
+					<int key="NSCellFlags">-1804599231</int>
+					<int key="NSCellFlags2">272630784</int>
+					<string key="NSContents"/>
+					<object class="NSFont" key="NSSupport">
+						<string key="NSName">LucidaGrande</string>
+						<double key="NSSize">13</double>
+						<int key="NSfFlags">1044</int>
+					</object>
+					<string key="NSCellIdentifier">_NS:9</string>
+					<reference key="NSControlView" ref="246603144"/>
+					<bool key="NSDrawsBackground">YES</bool>
+					<reference key="NSBackgroundColor" ref="606515007"/>
+					<object class="NSColor" key="NSTextColor">
+						<int key="NSColorSpace">6</int>
+						<string key="NSCatalogName">System</string>
+						<string key="NSColorName">textColor</string>
+						<object class="NSColor" key="NSColor">
+							<int key="NSColorSpace">3</int>
+							<bytes key="NSWhite">MAA</bytes>
+						</object>
+					</object>
+				</object>
+				<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 			</object>
 		</array>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
@@ -333,12 +375,12 @@
 						<int key="objectID">294</int>
 						<reference key="object" ref="442673046"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="231246812"/>
 							<reference ref="465360970"/>
 							<reference ref="984608172"/>
-							<reference ref="938653363"/>
-							<reference ref="214007241"/>
 							<reference ref="1024145685"/>
+							<reference ref="214007241"/>
+							<reference ref="938653363"/>
+							<reference ref="231246812"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -420,6 +462,19 @@
 						<reference key="object" ref="957219648"/>
 						<reference key="parent" ref="231246812"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">318</int>
+						<reference key="object" ref="246603144"/>
+						<array class="NSMutableArray" key="children">
+							<reference ref="1014457358"/>
+						</array>
+						<reference key="parent" ref="0"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">319</int>
+						<reference key="object" ref="1014457358"/>
+						<reference key="parent" ref="246603144"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -443,14 +498,158 @@
 				<string key="256.CustomClassName">FLTextFieldCell</string>
 				<string key="256.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="294.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="318.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="319.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">317</int>
+			<int key="maxID">319</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes"/>
+		<object class="IBClassDescriber" key="IBDocument.Classes">
+			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
+				<object class="IBPartialClassDescription">
+					<string key="className">FLButtonCell</string>
+					<string key="superclassName">FLEditObjectTableViewCell</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/FLButtonCell.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">FLCompatibleViewController</string>
+					<string key="superclassName">NSViewController</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/FLCompatibleViewController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">FLEditObjectTableViewCell</string>
+					<string key="superclassName">FLTableViewCell</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/FLEditObjectTableViewCell.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">FLFramedView</string>
+					<string key="superclassName">NSView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/FLFramedView.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">FLLoginPanel</string>
+					<string key="superclassName">FLPanelViewController</string>
+					<object class="NSMutableDictionary" key="actions">
+						<string key="NS.key.0">resetLogin:</string>
+						<string key="NS.object.0">id</string>
+					</object>
+					<object class="NSMutableDictionary" key="actionInfosByName">
+						<string key="NS.key.0">resetLogin:</string>
+						<object class="IBActionInfo" key="NS.object.0">
+							<string key="name">resetLogin:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</object>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="_forgotPasswordButton">NSButton</string>
+						<string key="_passwordEntryField">NSSecureTextField</string>
+						<string key="_savePasswordCheckBox">NSButton</string>
+						<string key="_userNameTextField">NSTextField</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="_forgotPasswordButton">
+							<string key="name">_forgotPasswordButton</string>
+							<string key="candidateClassName">NSButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="_passwordEntryField">
+							<string key="name">_passwordEntryField</string>
+							<string key="candidateClassName">NSSecureTextField</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="_savePasswordCheckBox">
+							<string key="name">_savePasswordCheckBox</string>
+							<string key="candidateClassName">NSButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="_userNameTextField">
+							<string key="name">_userNameTextField</string>
+							<string key="candidateClassName">NSTextField</string>
+						</object>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/FLLoginPanel.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">FLPanelViewController</string>
+					<string key="superclassName">FLCompatibleViewController</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/FLPanelViewController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">FLSmallPanelView</string>
+					<string key="superclassName">FLFramedView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/FLSmallPanelView.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">FLSwitchButtonCell</string>
+					<string key="superclassName">FLButtonCell</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/FLSwitchButtonCell.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">FLTableViewCell</string>
+					<string key="superclassName">UITableViewCell</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/FLTableViewCell.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">FLTextFieldCell</string>
+					<string key="superclassName">NSTextFieldCell</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/FLTextFieldCell.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">UIResponder</string>
+					<string key="superclassName">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/UIResponder.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">UITableViewCell</string>
+					<string key="superclassName">UIView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/UITableViewCell.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">UIView</string>
+					<string key="superclassName">UIResponder</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/UIView.h</string>
+					</object>
+				</object>
+			</array>
+		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaFramework</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDependencies">

@@ -113,7 +113,6 @@ NSString* const FLHttpControllerDidLogoutUserNotification = @"FLHttpControllerDi
 - (void) logoutUser {
     [self.user setUnathenticated];
     [self.userService setPassword:nil];
-    [self.userService setRememberPassword:NO];
     [self.userService saveCredentials];
     [self.userService closeService:self];
     [self.authenticatedServices closeService:self];

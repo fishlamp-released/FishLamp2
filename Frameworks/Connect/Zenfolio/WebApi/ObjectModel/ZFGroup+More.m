@@ -47,7 +47,7 @@
 FLSynthesizeCachedObjectHandlerProperty(ZFGroup);
 
 + (id) group:(NSNumber*) groupID {
-    return [ZFGroupElement groupElementWithID:groupID];
+    return [[self class] groupElementWithID:groupID];
 }
 
 - (ZFGroupElementType) groupElementType {
@@ -579,6 +579,10 @@ FLSynthesizeCachedObjectHandlerProperty(ZFGroup);
     }
     
     return NO;
+}
+
+- (id) objectStorageKey_fl {
+    return [NSString stringWithFormat:@"g%@", [self Id]];
 }
 
 

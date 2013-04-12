@@ -30,6 +30,7 @@
 #endif
 
 #if FL_MRC
+    [_panelAreas release];
     [_backwardTransition release];
     [_forwardTransition release];
     [_panelViews release];
@@ -40,6 +41,8 @@
 
 - (void) awakeFromNib {
     [super awakeFromNib];
+     
+    _panelAreas = [[NSMutableArray alloc] init];
     _panels = [[NSMutableArray alloc] init];
     _currentPanel = 0;
     _started = NO;
@@ -51,7 +54,6 @@
     _contentEnclosure.autoresizesSubviews = NO;
     _contentView.autoresizesSubviews = NO;
     
-//    [self.view setWantsLayer:YES];
     [self.view addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:nil];
 }
 
@@ -60,12 +62,6 @@
 }
 
 - (void) setPanelFrame:(FLPanelViewController*) panel {
-
-//    CGRect myFrame = CGRectInset(self.view.superview.bounds, 1, 1);
-//    
-//    if(!CGRectEqualToRect(self.view.frame, myFrame)) {
-//        self.view.frame = myFrame;
-//    }
 
     CGRect bounds = self.view.bounds;
     if(panel.panelFillsView) {
@@ -76,27 +72,6 @@
         frame.origin.y = FLRectGetBottom(bounds) - frame.size.height - 60.0f; // = FLRectCenterRectInRectVertically(bounds, frame);
         panel.view.frame = FLRectOptimizedForViewLocation(frame);
     }
-    
-    
-//    NSUInteger originalMask = panel.view.autoresizingMask;
-//    
-//    if(FLBitTest(originalMask, (NSViewWidthSizable))) {
-//        frame.size.width = bounds.size.width;
-//        frame.origin.x = bounds.origin.x;
-//    }
-//    else {
-//        frame = FLRectCenterRectInRectHorizontally(bounds, frame);
-//    }
-//
-//    if(FLBitTest(originalMask, (NSViewHeightSizable))) {
-//        frame.size.height = bounds.size.height;
-//        frame.origin.y = bounds.origin.y;
-//    }
-//    else {
-//        frame.origin.y = FLRectGetBottom(bounds) - frame.size.height - 100.0f; // = FLRectCenterRectInRectVertically(bounds, frame);
-//    }
-//
-//    panel.view.frame = FLRectOptimizedForViewLocation(frame);
 }
 
 - (void) panelDidChangeCanOpenValue:(FLPanelViewController*) panel {
@@ -283,11 +258,17 @@
     [self.delegate panelManager:self willShowPanel:toShow willHidePanel:toHide animationDuration:animationDuration];
     if(toHide) {
         [toHide panelWillDisappear];
+        for(id panelArea in _panelAreas) {
+            FLPerformSelector1(panelArea, @selector(panelWillDisappear:), toHide);
+        }
     }
 
     _currentPanel = idx;
     [self.view addSubview:[toShow view]];
     [toShow panelWillAppear];
+    for(id panelArea in _panelAreas) {
+        FLPerformSelector1(panelArea, @selector(panelWillAppear:), toShow);
+    }
     
     [self.view.window makeFirstResponder:self];
 
@@ -300,11 +281,19 @@
         [transition startShowingView:toShow.view 
                           viewToHide:toHide.view 
                           completion:^{
-              [self didShowPanel:toShow didHidePanel:toHide];
+
+            [self didShowPanel:toShow didHidePanel:toHide];
+            
+            for(id panelArea in _panelAreas) {
+                if(toHide) { 
+                    FLPerformSelector1(panelArea, @selector(panelDidDisappear:), toHide);
+                }
+                FLPerformSelector1(panelArea, @selector(panelDidAppear:), toShow);
+            }
               
-              if(completion) {
-                  completion(toShow);
-              }
+            if(completion) {
+              completion(toShow);
+            }
         }];
     }
     else {
@@ -359,6 +348,9 @@
     [_panelViews removeAllObjects];
 }
 
+- (void) addPanelArea:(id<FLPanelArea>) area {
+    [_panelAreas addObject:area];
+}
 
 @end
 

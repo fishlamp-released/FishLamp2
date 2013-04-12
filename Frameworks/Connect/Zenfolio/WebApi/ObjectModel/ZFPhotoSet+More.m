@@ -104,4 +104,9 @@ FLSynthesizeCachedObjectHandlerProperty(ZFPhotoSet);
 - (ZFGroupElementType) groupElementType {
     return self.TypeValue == ZFPhotoSetTypeCollection ? ZFGroupElementTypeCollection : ZFGroupElementTypeGallery;
 }
+
+- (id) objectStorageKey_fl {
+    return [NSString stringWithFormat:@"p%@", [self Id]];
+}
+
 @end

@@ -15,35 +15,29 @@
 @implementation FLWizardHeaderViewController
 
 @synthesize promptTextField = _titleView;
-//@synthesize spinner = _spinner;
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-
- //   _spinner.hidden = YES;
-//    [_logoView sendToBack];
     [_titleView removeFromSuperview];
     [self.view addSubview:_titleView positioned:NSWindowAbove relativeTo:_logoView];
 }
 
 - (void) setPrompt:(NSString*) title animationDuration:(CGFloat) animationDuration {
-//    [_logoView sendToBack];
     _titleView.stringValue = title;
-//    [_titleView bringToFront];
 }
-
-//- (void) showSpinner:(BOOL) show {
-//    [_spinner setHidden:!show];
-//    if(show) {
-//        [_spinner startAnimation:self];
-//    }
-//    else {
-//        [_spinner stopAnimation:self];
-//    }
-//}
 
 - (SDKView*) contentView {
     return self.view;
 }
+
+- (void) panelWillAppear:(FLPanelViewController*) panel {
+    _logoutButton.hidden = !panel.isAuthenticated;
+    _welcomeText.hidden = !panel.isAuthenticated;
+}
+
+- (void) setWelcomeText:(NSString*) welcomeText {
+    _welcomeText.stringValue = welcomeText;
+}
+
 
 @end

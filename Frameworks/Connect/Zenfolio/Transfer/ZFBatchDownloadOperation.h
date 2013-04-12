@@ -9,37 +9,13 @@
 #import "FLSynchronousOperation.h"
 #import "FLObjectStorage.h"
 #import "ZFBatchDownloadSpec.h"
-
-typedef struct {
-    NSUInteger videoCount;
-    NSUInteger videoTotal;
-    NSUInteger photoCount;
-    NSUInteger photoTotal;
-    NSUInteger photoSetCount;
-    NSUInteger photoSetTotal;
-    unsigned long long byteTotal;
-    unsigned long long byteCount;
-    NSTimeInterval startedTime;
-    
-    NSTimeInterval downloadingTime;
-    unsigned long long downloadedBytes;
-    unsigned long long currentPhotoBytes;
-} ZFDownloadState_t;
-
-@interface ZFDownloadState : NSObject<NSCopying> {
-@private
-    ZFDownloadState_t _values;
-}
-+ (id) downloadState;
-
-@property (readonly, assign, nonatomic) ZFDownloadState_t values;
-@end
+#import "ZFTransferState.h"
 
 @interface ZFBatchDownloadOperation : FLSynchronousOperation {
 @private
     ZFBatchDownloadSpec* _downloadSpec;
 
-    ZFDownloadState_t _state;
+    ZFTransferState_t _state;
     NSTimeInterval _lastProgress;
     NSURL* _downloadFolderURL;
     
@@ -61,7 +37,7 @@ typedef struct {
 
 @protocol ZFBatchDownloadOperationObserver <NSObject>
 @optional
-- (void) downloadOperation:(ZFBatchDownloadOperation*) operation updateDownloadInfo:(ZFDownloadState*) downloadInfo;
+- (void) downloadOperation:(ZFBatchDownloadOperation*) operation updateDownloadInfo:(ZFTransferState*) downloadInfo;
 
 - (void) downloadOperationWillBeginDownload:(ZFBatchDownloadOperation*) operation;
 - (void) downloadOperation:(ZFBatchDownloadOperation*) operation didFinishWithResult:(FLResult) result;
