@@ -110,7 +110,10 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
 }
 
 - (BOOL) hasBytesAvailable {
-    return CFReadStreamHasBytesAvailable(_streamRef) && !self.error;
+    if(_streamRef) {
+        return CFReadStreamHasBytesAvailable(_streamRef) && !self.error;
+    }
+    return NO;
 }
 
 - (void) encounteredBytesAvailable {
@@ -144,7 +147,9 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
     FLAssert([NSThread currentThread] != [NSThread mainThread]);
       
     FLAssertNotNil(_streamRef);
-    
+    if(!_streamRef) {
+        return 0;
+    }
 
 #if DEBUG   
     uint8_t* lastBytePtr = bytes + maxLength;
@@ -175,10 +180,13 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
 }
 
 - (unsigned long) bytesRead {
-    NSNumber* number = FLAutorelease(bridge_transfer_(NSNumber*,
-        CFReadStreamCopyProperty(self.streamRef, kCFStreamPropertyDataWritten)));
+    if(_streamRef) {
+        NSNumber* number = FLAutorelease(bridge_transfer_(NSNumber*,
+            CFReadStreamCopyProperty(self.streamRef, kCFStreamPropertyDataWritten)));
 
-    return [number unsignedLongValue];
+        return [number unsignedLongValue];
+    }
+    return 0;
 }
 
 @end
