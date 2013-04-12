@@ -8,10 +8,10 @@
 
 #import "FLReadStream.h"
 #import "FLCoreFoundation.h"
+#import "FLNetworkStream_Internal.h"
 
 @interface FLReadStream ()
-// CFStream
-//@property (readwrite, assign, nonatomic) CFReadStreamRef streamRef;
+@property (readwrite, strong, nonatomic) id<FLInputSink> inputSink;
 @end
 
 #if DEBUG
@@ -30,6 +30,14 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
 
 @synthesize streamRef = _streamRef;
 @synthesize inputSink = _inputSink;
+
+- (id) initWithStreamSecurity:(FLNetworkStreamSecurity) security inputSink:(id<FLInputSink>) inputSink {
+	self = [super initWithStreamSecurity:security];
+	if(self) {
+        self.inputSink = inputSink;
+	}
+	return self;
+}
 
 - (void) killStream {
     if(_streamRef) {
@@ -83,6 +91,16 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
 
     CFStreamClientContext ctxt = {0, bridge_(void*, self), NULL, NULL, NULL};
     CFReadStreamSetClient(_streamRef, flags, ReadStreamClientCallBack, &ctxt);
+
+    if(self.streamSecurity == FLNetworkStreamSecuritySSL) {
+        CFReadStreamSetProperty(_streamRef, kCFStreamSSLLevel, kCFStreamSocketSecurityLevelNegotiatedSSL);
+        
+        NSDictionary *sslSettings = [NSDictionary dictionaryWithObjectsAndKeys:
+         (id)kCFBooleanFalse, (id)kCFStreamSSLValidatesCertificateChain, 
+         nil];
+
+        CFReadStreamSetProperty(_streamRef,kCFStreamPropertySSLSettings, sslSettings);
+    }
 
     CFReadStreamOpen(_streamRef);
     CFReadStreamScheduleWithRunLoop(_streamRef, CFRunLoopGetMain(), bridge_(void*,NSDefaultRunLoopMode));

@@ -19,7 +19,11 @@
     id<FLInputSink> _inputSink;
     uint8_t _buffer[FLReadStreamBufferSize];
 }
-@property (readwrite, strong, nonatomic) id<FLInputSink> inputSink;
+
+- (id) initWithStreamSecurity:(FLNetworkStreamSecurity) security 
+                    inputSink:(id<FLInputSink>) inputSink;
+
+@property (readonly, strong, nonatomic) id<FLInputSink> inputSink;
 @property (readonly, assign, nonatomic) CFReadStreamRef streamRef;
 
 // info

@@ -7,6 +7,7 @@
 //
 
 #import "FLWriteStream.h"
+#import "FLNetworkStream_Internal.h"
 
 @interface FLWriteStream ()
 @property (readwrite, assign, nonatomic) CFWriteStreamRef streamRef;
@@ -29,7 +30,7 @@ static void WriteStreamClientCallBack(CFWriteStreamRef writeStream,
         return nil;
     }
     
-    self = [super init];
+    self = [super initWithStreamSecurity:FLNetworkStreamSecurityNone];
     if(self) {
         CFRetain(streamRef);
         _streamRef = streamRef;

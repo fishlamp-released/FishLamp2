@@ -101,7 +101,6 @@
 }
 
 #if OSX
-
 - (void)controlTextDidChange:(NSNotification *)note {
     
     if(self.userService.isServiceOpen) {
@@ -143,19 +142,10 @@
 - (void) respondToNextButton:(BOOL*) handledIt {
     if(self.canLogin) {
         [self saveCredentials];
-        [self.userService openService:self];
     }
     else {
         *handledIt = YES; 
     }
-//    if(self.isAuthenticated) {
-//        *handledIt = NO;
-//    }
-//    else {
-//        self.buttons.nextButton.enabled = NO;
-//        [self startAuthenticating];
-//        *handledIt = YES;
-//    }
 }
 
 - (void) panelDidAppear {

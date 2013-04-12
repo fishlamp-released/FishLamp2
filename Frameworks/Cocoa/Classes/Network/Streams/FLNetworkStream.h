@@ -14,6 +14,11 @@
 @protocol FLNetworkStreamDelegate;
 @class FLFifoAsyncQueue;
 
+typedef enum {
+    FLNetworkStreamSecurityNone,
+    FLNetworkStreamSecuritySSL
+} FLNetworkStreamSecurity;
+
 @interface FLNetworkStream : NSObject<FLTimerDelegate> {
 @private
     BOOL _open;
@@ -21,7 +26,10 @@
     FLFifoAsyncQueue* _asyncQueue;
     __unsafe_unretained id<FLNetworkStreamDelegate> _delegate;
     FLTimer* _timer;
+    FLNetworkStreamSecurity _streamSecurity;
 }
+
+@property (readonly, assign, nonatomic) FLNetworkStreamSecurity streamSecurity;
 
 @property (readwrite, assign) id<FLNetworkStreamDelegate> delegate;
 @property (readonly, strong) FLFifoAsyncQueue* asyncQueue;
@@ -31,39 +39,12 @@
 
 @property (readonly, strong) FLTimer* timer;
 
+- (id) initWithStreamSecurity:(FLNetworkStreamSecurity) security;
+
 - (void) openStreamWithDelegate:(id<FLNetworkStreamDelegate>) delegate 
                      asyncQueue:(FLFifoAsyncQueue*) asyncQueue;
-- (void) closeStream;
+
 - (void) closeStreamWithError:(NSError*) error;
-
-// all of these are called on the async queue.
-
-// required overrides
-- (void) willOpen;
-- (void) willClose;
-- (NSError*) streamError;
-
-// optional overrides
-- (void) didOpen;
-- (void) didClose;
-
-// stream events. All of these do nothing by default. They are called on the 
-// async queue.
-- (void) encounteredOpen;
-- (void) encounteredCanAcceptBytes;
-- (void) encounteredBytesAvailable;
-- (void) encounteredError:(NSError*) error;
-- (void) encounteredEnd;
-
-- (void) touchTimeoutTimestamp;
-
-@end
-
-@interface FLNetworkStream (SubclassUtils)
-+ (void) handleStreamEvent:(CFStreamEventType) eventType withStream:(FLNetworkStream*) stream;
-- (void) queueBlock:(dispatch_block_t) block;
-- (void) queueSelector:(SEL) selector;
-- (void) queueSelector:(SEL) selector withObject:(id) object;
 @end
 
 @protocol FLNetworkStreamDelegate <NSObject>

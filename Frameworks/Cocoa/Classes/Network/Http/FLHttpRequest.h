@@ -45,14 +45,17 @@
     id<FLInputSink> _inputSink;
     id<FLHttpRequestAuthenticator> _authenticator;
     BOOL _disableAuthenticator;
+    
+    FLNetworkStreamSecurity _streamSecurity;
 }
+
 @property (readwrite, assign, nonatomic) NSTimeInterval timeoutInterval;
 
-// by default this is a FLDataResponseReciever.
 @property (readwrite, strong, nonatomic) id<FLInputSink> inputSink;
 @property (readwrite, strong, nonatomic) id<FLHttpRequestAuthenticator> authenticator;
 
 @property (readwrite, assign, nonatomic) BOOL disableAuthenticator;
+@property (readwrite, assign, nonatomic) FLNetworkStreamSecurity streamSecurity;
 
 // http
 @property (readonly, strong, nonatomic) FLHttpRequestHeaders* requestHeaders;

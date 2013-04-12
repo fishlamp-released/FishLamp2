@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
 
-#import "FLNetworkStream.h"
+#import "FLNetworkStream_Internal.h"
 #import "FLDispatch.h"
 #import "FLNotificationSending.h"
 
@@ -23,12 +23,18 @@
 @synthesize error = _error;
 @synthesize delegate = _delegate;
 @synthesize timer = _timer;
+@synthesize streamSecurity = _streamSecurity;
 
 - (id) init {
+    return [self initWithStreamSecurity:FLNetworkStreamSecurityNone];
+}
+
+- (id) initWithStreamSecurity:(FLNetworkStreamSecurity) security {
     self = [super init];
     if(self) {
         _timer = [[FLTimer alloc] init];
         _timer.delegate = self;
+        _streamSecurity = security;
     }
     return self;
 }
@@ -115,11 +121,16 @@
     return nil;
 }
 
+- (void) openStream {
+
+}
+
 - (void) openStreamWithDelegate:(id<FLNetworkStreamDelegate>) delegate 
                      asyncQueue:(FLFifoAsyncQueue*) asyncQueue {
     self.delegate = delegate;
     self.asyncQueue = asyncQueue;
     [self queueSelector:@selector(willOpen)];
+    [self queueSelector:@selector(openStream)];
     [self queueSelector:@selector(startTimeoutTimer)];
 }
 

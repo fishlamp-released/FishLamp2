@@ -39,6 +39,7 @@
 @synthesize httpStream = _httpStream;
 @synthesize previousResponse = _previousResponse;
 @synthesize timeoutInterval = _timeoutInterval;
+@synthesize streamSecurity = _streamSecurity;
 
 #if TRACE
 static int s_counter = 0;
@@ -173,16 +174,32 @@ static int s_counter = 0;
         self.inputSink = [FLDataSink dataSink];
     }
     
-    FLHttpMessage* cfRequest = [FLHttpMessage httpMessageWithURL:self.requestHeaders.requestURL httpMethod:self.requestHeaders.httpMethod];
+    NSURL* finalURL = url;
+    
+    if(_streamSecurity == FLNetworkStreamSecuritySSL) {
+        
+        if(FLStringsAreNotEqual(url.scheme, @"https")) {
+            NSString* secureURL = [[url absoluteString] stringByReplacingOccurrencesOfString:@"http:" withString:@"https:"];
+            finalURL = [NSURL URLWithString:secureURL];
+        }
+    }
+    else if(FLStringsAreEqual(url.scheme, @"https")) {
+        _streamSecurity = FLNetworkStreamSecuritySSL;
+    }
+    
+    FLHttpMessage* cfRequest = [FLHttpMessage httpMessageWithURL:finalURL 
+                                                      httpMethod:self.requestHeaders.httpMethod];
+
     cfRequest.headers = self.requestHeaders.allHeaders;
     
     if(self.requestBody.bodyData) {
         cfRequest.bodyData = self.requestBody.bodyData;
     }
     
-    self.httpStream  = [FLHttpStream httpStream:cfRequest withBodyStream:self.requestBody.bodyStream];
-    self.httpStream.inputSink = self.inputSink;
-        
+    self.httpStream  = [FLHttpStream httpStream:cfRequest 
+                                 withBodyStream:self.requestBody.bodyStream 
+                                 streamSecurity:_streamSecurity
+                                      inputSink:self.inputSink];
     
     [self.httpStream openStreamWithDelegate:self asyncQueue:self.asyncQueueForStream];
 }

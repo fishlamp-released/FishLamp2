@@ -100,7 +100,7 @@ NSString* const FLWorkerContextOpened = @"FLWorkerContextOpened";
 
 - (void) closeContext {
     [self visitOperations:^(id operation, BOOL *stop) {
-        [operation contextDidOpen];
+        [operation contextDidClose];
     }];
 
     dispatch_async(dispatch_get_main_queue(), ^{

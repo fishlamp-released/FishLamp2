@@ -17,17 +17,17 @@
 extern NSString* const FLHttpControllerDidLogoutUserNotification;
 
 @interface FLHttpController : FLNetworkOperationContext<
-                    FLHttpRequestAuthenticationServiceDelegate, 
-                    FLUserLoginServiceDelegate, 
-                    FLHttpRequestContext> {
+    FLHttpRequestAuthenticationServiceDelegate, FLUserLoginServiceDelegate,  FLHttpRequestContext> {
 @private
     FLUserService* _userLoginService;
-    FLUserService* _authenticatedServices;
+    FLService* _authenticatedServices;
     FLObjectStorageService* _objectStorageService;
     FLHttpRequestAuthenticationService* _httpRequestAuthenticator;
     __unsafe_unretained id _delegate;
+    FLNetworkStreamSecurity _streamSecurity;
 }
 
+@property (readwrite, nonatomic) FLNetworkStreamSecurity streamSecurity;
 @property (readwrite, assign, nonatomic) id delegate;
 @property (readonly, assign, nonatomic) BOOL isAuthenticated;
 @property (readonly, strong) FLService* authenticatedServices;
@@ -36,9 +36,13 @@ extern NSString* const FLHttpControllerDidLogoutUserNotification;
 @property (readonly, strong) FLHttpRequestAuthenticationService* httpRequestAuthenticator;
 
 + (id) httpController;
-- (void) logoutUser;
-- (FLHttpUser*) user;
 
+- (void) logoutUser;
+
+- (void) openUserService;
+
+// required overrides
+- (FLHttpUser*) user;
 - (FLUserService*) createUserService;
 - (FLObjectStorageService*) createObjectStorageService;
 - (FLHttpRequestAuthenticationService*) createHttpRequestAuthenticationService;
