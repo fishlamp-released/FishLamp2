@@ -79,6 +79,8 @@
     
     [_panelManager addPanelArea:_headerViewController];
     [_panelManager addPanelArea:_buttonViewController];
+    
+    _panelManager.nextResponder = self;
 }
 
 - (BOOL)acceptsFirstResponder {

@@ -204,8 +204,6 @@
     }
     
     [self sendObservation:@selector(downloadOperation:didDownloadPhoto:) withObject:info];
-    
-
 }
 
 - (void) downloadPhotosInPhotoSet:(ZFPhotoSet*) photoSet imageFolder:(FLImageFolder*) imageFolder {
@@ -345,7 +343,6 @@
             _downloadImages = YES;
         }
     }
-
 
     [self sendObservation:@selector(downloadOperationWillBeginDownload:)];
     [self updateProgress:YES];

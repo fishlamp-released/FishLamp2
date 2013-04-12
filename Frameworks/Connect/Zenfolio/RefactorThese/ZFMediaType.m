@@ -488,6 +488,10 @@
 }
 
 - (NSString*) humanReadableFileNameForPhoto:(ZFPhoto*) photo {
+    if(photo.IsVideoValue) {
+        return [NSString stringWithFormat:@"%@-Master.mp4", [photo.FileName stringByDeletingPathExtension]];
+    }
+
     NSMutableString* name = [NSMutableString stringWithFormat:@"%@-%@", [photo.FileName stringByDeletingPathExtension], [photo Id]]; 
             
     if(FLStringIsNotEmpty(photo.Sequence)) {
@@ -497,7 +501,7 @@
         [name appendFormat:@"-%@", self.abbreviation];
     }
     [name appendFormat:@".%@", [photo.FileName pathExtension]];
-    
+
     return name;
 }
 

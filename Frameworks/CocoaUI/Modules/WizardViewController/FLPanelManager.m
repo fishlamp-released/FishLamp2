@@ -201,10 +201,10 @@
     }
 
     [toShow panelDidAppear];
-
-    [self.view.window makeFirstResponder:toShow];
     [toShow setNextResponder:self];
-    [self.view.window display];
+    
+    [self.view.window makeFirstResponder:toShow];
+//    [self.view.window display];
 
     [self.delegate panelManager:self didShowPanel:toShow didHidePanel:toHide ];
 }                                          
