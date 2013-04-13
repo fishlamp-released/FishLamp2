@@ -208,11 +208,13 @@
 
 - (void) showErrorAlert:(NSString*) title caption:(NSString*) caption error:(NSError*) error {
 
+    FLAssertNotNil(error);
+
     if(error.isCancelError) {
         return;
     }
 
-    FLMutableError* theError = [FLMutableError mutableErrorWithError:error];
+    NSError* theError = error;
 
     NSMutableString* errorString = [NSMutableString string];
     if(title) {
@@ -222,7 +224,7 @@
             [errorString appendFormat:@"\n\n%@", caption];
         }
         
-        theError.localizedDescription = errorString;
+        theError = [NSError errorWithDomain:error.domain code:error.code localizedDescription:errorString];
     }
     
 
@@ -230,7 +232,7 @@
     
     void* context = FLBridgeRetain(void*, error);
     
-    [self presentError:error modalForWindow:self.view.window delegate:self didPresentSelector:@selector(didPresentErrorWithRecovery:contextInfo:) contextInfo:context];
+    [self presentError:theError modalForWindow:self.view.window delegate:self didPresentSelector:@selector(didPresentErrorWithRecovery:contextInfo:) contextInfo:context];
         
     if(![[NSApplication sharedApplication] isActive]) {
 #if __MAC_10_8

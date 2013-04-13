@@ -46,9 +46,9 @@
 }
 #endif
 
-- (void) willOpen {
+- (void) openStream {
     FLReleaseWithNil(_responseHeaders);
-    [super willOpen];
+    [super openStream];
 }
 
 - (CFReadStreamRef) allocReadStreamRef {
@@ -59,22 +59,22 @@
     return CFReadStreamCreateForHTTPRequest(kCFAllocatorDefault, _requestHeaders.messageRef);
 }
 
-//+ (id) httpStream:(FLHttpMessage*) request {
-//    return FLAutorelease([[[self class] alloc] initWithHttpMessage:request]);
-//}
-
 + (id) httpStream:(FLHttpMessage*) request 
    withBodyStream:(NSInputStream*) bodyStream
    streamSecurity:(FLNetworkStreamSecurity) security
    inputSink:(id<FLInputSink>) inputSink {
-    return FLAutorelease([[[self class] alloc] initWithHttpMessage:request withBodyStream:bodyStream streamSecurity:security inputSink:inputSink]);
+    
+    return FLAutorelease([[[self class] alloc] initWithHttpMessage:request 
+                                                    withBodyStream:bodyStream 
+                                                    streamSecurity:security 
+                                                         inputSink:inputSink]);
 }            
 
 - (BOOL) hasResponseHeaders {
     return _responseHeaders != nil;
 }
 
-- (void) openIfNeeded {
+- (void) readResponseHeaders {
     if(!_responseHeaders && self.streamRef) {
         CFHTTPMessageRef ref = (CFHTTPMessageRef)CFReadStreamCopyProperty(self.streamRef, kCFStreamPropertyHTTPResponseHeader);
         @try {
@@ -92,25 +92,28 @@
 }
 
 - (void) encounteredError:(NSError*) error {
-    [self openIfNeeded];
+    [self readResponseHeaders];
     [super encounteredError:error];
 }
 
 - (void) encounteredEnd {
-    [self openIfNeeded];
+    [self readResponseHeaders];
     [super encounteredEnd];
 }
 
 - (void) encounteredBytesAvailable {
-    [self openIfNeeded];
+    [self readResponseHeaders];
     [super encounteredBytesAvailable];
 }
 
 - (unsigned long) bytesWritten {
-    NSNumber* number = FLAutorelease(bridge_transfer_(NSNumber*,
-        CFReadStreamCopyProperty(self.streamRef, kCFStreamPropertyHTTPRequestBytesWrittenCount)));
-    
-    return number.unsignedLongValue;
+    if(self.streamRef) {
+        NSNumber* number = FLAutorelease(bridge_transfer_(NSNumber*,
+            CFReadStreamCopyProperty(self.streamRef, kCFStreamPropertyHTTPRequestBytesWrittenCount)));
+        
+        return number.unsignedLongValue;
+    }
+    return 0;
 }
 
 @end

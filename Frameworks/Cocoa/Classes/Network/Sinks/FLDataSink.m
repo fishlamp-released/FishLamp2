@@ -33,16 +33,19 @@
     self.data = nil;
 }
 
-- (void) closeSinkWithError:(NSError*) error {
-    if(error) {
+- (void) closeSinkWithCommit:(BOOL) commit {
+
+    if(commit) {
+        self.data = self.responseData;
+        self.responseData = nil;
+    }
+    else  {
         self.data = nil;
         self.responseData = nil;
     }
 }
 
 - (void) commit {
-    self.data = self.responseData;
-    self.responseData = nil;
 }
 
 #if FL_MRC

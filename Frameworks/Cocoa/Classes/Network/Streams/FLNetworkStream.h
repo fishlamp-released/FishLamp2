@@ -22,7 +22,7 @@ typedef enum {
 @interface FLNetworkStream : NSObject<FLTimerDelegate> {
 @private
     BOOL _open;
-    NSError* _error;
+    BOOL _encounteredError;
     FLFifoAsyncQueue* _asyncQueue;
     __unsafe_unretained id<FLNetworkStreamDelegate> _delegate;
     FLTimer* _timer;
@@ -35,7 +35,6 @@ typedef enum {
 @property (readonly, strong) FLFifoAsyncQueue* asyncQueue;
 
 @property (readonly, assign, getter=isOpen) BOOL open;
-@property (readonly, strong) NSError* error;
 
 @property (readonly, strong) FLTimer* timer;
 
@@ -44,7 +43,8 @@ typedef enum {
 - (void) openStreamWithDelegate:(id<FLNetworkStreamDelegate>) delegate 
                      asyncQueue:(FLFifoAsyncQueue*) asyncQueue;
 
-- (void) closeStreamWithError:(NSError*) error;
+- (void) terminateStream;
+
 @end
 
 @protocol FLNetworkStreamDelegate <NSObject>
@@ -56,8 +56,6 @@ typedef enum {
 - (void) networkStreamWillOpen:(FLNetworkStream*) networkStream;
 
 - (void) networkStreamDidOpen:(FLNetworkStream*) networkStream;
-
-- (void) networkStreamWillClose:(FLNetworkStream*) stream;
 
 - (void) networkStreamDidClose:(FLNetworkStream*) networkStream;
 

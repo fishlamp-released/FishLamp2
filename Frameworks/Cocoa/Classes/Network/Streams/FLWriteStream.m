@@ -85,17 +85,13 @@ static void WriteStreamClientCallBack(CFWriteStreamRef writeStream,
     return FLAutorelease(bridge_transfer_(NSError*,CFWriteStreamCopyError(self.streamRef)));
 }
 
-- (void) willOpen {
-    [super willOpen];
-    
+- (void) openStream {
     FLAssertIsNotNil(_streamRef);
     CFWriteStreamScheduleWithRunLoop(_streamRef, CFRunLoopGetMain(), bridge_(void*,NSDefaultRunLoopMode));
     CFWriteStreamOpen(_streamRef);
 }
 
-- (void) willClose {
-    [super willClose];
-
+- (void) closeStream {
     FLAssertIsNotNil(_streamRef);
     CFWriteStreamUnscheduleFromRunLoop(_streamRef, CFRunLoopGetMain(), bridge_(void*,NSDefaultRunLoopMode));
     CFWriteStreamClose(_streamRef);

@@ -33,6 +33,7 @@
 #define FLTraceIf(__CONDITION__, __FORMAT__, ...) \
             if(__CONDITION__) FLTrace(__FORMAT__, ##__VA_ARGS__)
 
+#define FLLogIndent(__BLOCK__) [[FLLogLogger instance] indent:__BLOCK__]
 
 #else
 

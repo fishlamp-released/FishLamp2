@@ -49,6 +49,9 @@ FLSynthesizeDictionaryProperty(filePath, setFilePath, NSString*, NSFilePathError
 }
 
 - (id)initWithDomain:(NSString *)domain code:(NSInteger)code userInfo:(NSDictionary *) userInfo {
+
+    FLAssertStringIsNotEmpty(domain);
+
     self = [super initWithDomain:domain code:code userInfo:nil];
     if(self) {
         self.userInfo = userInfo;
