@@ -121,6 +121,7 @@ NSString* const FLDefaultsKeyWizardSavePasswordKey = @"com.fishlamp.savepassword
         }
         else {
             [FLKeychain removeHttpPasswordForUserName:self.userName withDomain:self.authenticationDomain];
+            self.password = @"";
         }
     }
     
