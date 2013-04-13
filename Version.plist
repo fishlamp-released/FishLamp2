@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleGetInfoString</key>
+	<string>FishLamp Framework</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.fishlamp.framework</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>FishLamp Framework</string>
+	<key>CFBundleShortVersionString</key>
+	<string>3.0.0.7</string>
+	<key>CFBundleSignature</key>
+	<string>GTSW</string>
+	<key>CFBundleVersion</key>
+	<string>3.0.0.7</string>
+	<key>NSHumanReadableCopyright</key>
+	<string>Copyright © 2013 GreenTongue Software, LLC. All rights reserverd.</string>
+	<key>URL</key>
+	<string>http://www.fishlamp.com</string>
+</dict>
+</plist>
