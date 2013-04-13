@@ -34,7 +34,7 @@ NSString* const FLWorkerContextOpened = @"FLWorkerContextOpened";
     self = [super init];
     if(self) {
         _operations = [[NSMutableSet alloc] init];
-        _asyncQueue = [[FLFifoAsyncQueue alloc] init];
+///        _asyncQueue = [[FLFifoAsyncQueue alloc] init];
         _contextOpen = YES;
     }
     
@@ -42,9 +42,9 @@ NSString* const FLWorkerContextOpened = @"FLWorkerContextOpened";
 }
 
 - (void) dealloc {
-    [_asyncQueue releaseToPool];
+//    [_asyncQueue releaseToPool];
 #if FL_MRC
-    [_asyncQueue release];
+//    [_asyncQueue release];
     [_operations release];
     [super dealloc];
 #endif
@@ -56,9 +56,7 @@ NSString* const FLWorkerContextOpened = @"FLWorkerContextOpened";
 
 - (void) visitOperations:(FLOperationVisitor) visitor {
 
-    visitor = FLCopyWithAutorelease(visitor);
-    
-    FLDispatchSync(_asyncQueue, ^{
+    @synchronized(self) {
         BOOL stop = NO;
         for(id operation in _operations) {
             visitor([operation nonretainedObjectValue], &stop);
@@ -67,21 +65,23 @@ NSString* const FLWorkerContextOpened = @"FLWorkerContextOpened";
                 break;
             }
         }
-    });
+    }
     
 }
 
 - (void) requestCancel {
 
-    FLDispatchSync(_asyncQueue, ^{
-        for(id operation in _operations) {
+    @synchronized(self) {
+    
+        NSSet* copy = FLCopyWithAutorelease(_operations);
+        for(id operation in copy) {
 #if TRACE
             FLLog(@"cancelled %@", [operation description]);
 #endif
         
             FLPerformSelector([operation nonretainedObjectValue], @selector(requestCancel));
         }
-    });
+    }
 }
 
 - (void) openContext {
@@ -138,14 +138,16 @@ NSString* const FLWorkerContextOpened = @"FLWorkerContextOpened";
 
 - (void) addOperation:(FLOperation*) operation  {
     
-    FLDispatchSync(_asyncQueue, ^{
-
+    BOOL wasIdle = YES;
+    
+    @synchronized(self) {
+    
 #if TRACE
         FLLog(@"Operation added to context: %@", [operation description]);
 #endif
 
        
-        BOOL wasIdle = _operations.count == 0;
+        wasIdle = _operations.count == 0;
        
         [_operations addObject:[NSValue valueWithNonretainedObject:operation]];
          
@@ -155,22 +157,25 @@ NSString* const FLWorkerContextOpened = @"FLWorkerContextOpened";
         }
         [operation wasAddedToContext:self];
         
-        [self didAddOperation:operation];
+    }
 
-        if(wasIdle) {
-            [self didStartWorking];
-        }
+    [self didAddOperation:operation];
 
-        if(!self.isContextOpen) {
-            [operation requestCancel];
-        }
-    });
+    if(wasIdle) {
+        [self didStartWorking];
+    }
+
+    if(!self.isContextOpen) {
+        [operation requestCancel];
+    }
 }
 
 - (void) removeOperation:(FLOperation*) operation {
 
-    FLDispatchSync(_asyncQueue, ^{
-
+    BOOL didStop = NO;
+    
+    @synchronized(self) {
+    
 #if TRACE
         FLLog(@"Operation removed from context: %@", [operation description]);
 #endif
@@ -180,11 +185,14 @@ NSString* const FLWorkerContextOpened = @"FLWorkerContextOpened";
             [operation wasRemovedFromContext:self];
         }
 
-        if(_operations.count == 0) {
-            [self didStopWorking];
-        }
-        [self didRemoveOperation:operation];
-    });
+        didStop = _operations.count == 0;
+    }
+    
+    [self didRemoveOperation:operation];
+    
+    if(didStop) {
+        [self didStopWorking];
+    }
 }
    
 @end

@@ -71,8 +71,8 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
     return nil;
 }
 
-- (void) willOpen {
-    [super willOpen];
+- (void) openStream {
+
     FLAssert([NSThread currentThread] != [NSThread mainThread]);
     
     [self killStream];
@@ -106,19 +106,13 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
     CFReadStreamScheduleWithRunLoop(_streamRef, CFRunLoopGetMain(), bridge_(void*,NSDefaultRunLoopMode));
 }
 
-- (void) willClose {
+- (void) closeStream {
 
     FLAssert([NSThread currentThread] != [NSThread mainThread]);
 
     if(_streamRef) {
         @try {
-            [super willClose];
-
-            [self.inputSink closeSinkWithError:self.error];
-
-            if(!self.error) {
-                [self.inputSink commit];
-            }
+            [self.inputSink closeSinkWithCommit:!self.wasTerminated];
         }
         @finally {
             [self killStream];
@@ -129,13 +123,13 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
 
 - (BOOL) hasBytesAvailable {
     if(_streamRef) {
-        return CFReadStreamHasBytesAvailable(_streamRef) && !self.error;
+        return CFReadStreamHasBytesAvailable(_streamRef) && !self.wasTerminated;
     }
     return NO;
 }
 
 - (void) encounteredBytesAvailable {
-    while(self.hasBytesAvailable && !self.error) {
+    while(self.hasBytesAvailable && !self.wasTerminated) {
         NSUInteger bytesRead = [self readBytes:_buffer maxLength:FLReadStreamBufferSize];
         if(bytesRead) {
             [self.inputSink appendBytes:_buffer length:bytesRead];
@@ -191,7 +185,7 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
     }
 
     if(readTotal > 0) {
-        [self sendNotification:@selector(networkStream:didReadBytes:) withObject:self withObject:[NSNumber numberWithUnsignedInteger:readTotal]];
+        FLPerformSelector2(self.delegate, @selector(networkStream:didReadBytes:), self, [NSNumber numberWithUnsignedInteger:readTotal]);
     }
 
     return readTotal;

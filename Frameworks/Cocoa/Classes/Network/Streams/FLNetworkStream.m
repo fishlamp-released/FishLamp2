@@ -13,17 +13,16 @@
 @interface FLNetworkStream ()
 @property (readwrite, assign, getter=isOpen) BOOL open;
 @property (readwrite, strong) FLFifoAsyncQueue* asyncQueue;
-@property (readwrite, strong) NSError* error;
 @property (readwrite, strong) FLTimer* timer;
 @end
 
 @implementation FLNetworkStream
 @synthesize asyncQueue = _asyncQueue;
 @synthesize open = _open;
-@synthesize error = _error;
 @synthesize delegate = _delegate;
 @synthesize timer = _timer;
 @synthesize streamSecurity = _streamSecurity;
+@synthesize wasTerminated = _shouldClose;
 
 - (id) init {
     return [self initWithStreamSecurity:FLNetworkStreamSecurityNone];
@@ -45,7 +44,6 @@
 #if FL_MRC
     [_asyncQueue release];
     [_timer release];
-    [_error release];
     [super dealloc];
 #endif
 }
@@ -58,47 +56,39 @@
     }
 }
 
-- (id) notificationListener {
-    return self.delegate;
-}
-
 - (void) willOpen {
     FLAssert([NSThread currentThread] != [NSThread mainThread]);
 
     self.open = NO;
-    self.error = nil;
-    [self sendNotification:@selector(networkStreamWillOpen:) withObject:self];
+    self.wasTerminated = NO;
+    FLPerformSelector1(self.delegate, @selector(networkStreamWillOpen:), self);
 }
 
 - (void) didOpen {
     FLAssert([NSThread currentThread] != [NSThread mainThread]);
 
     self.open = YES;
-    [self sendNotification:@selector(networkStreamDidOpen:) withObject:self];
-}
-
-- (void) willClose {
-    FLAssert([NSThread currentThread] != [NSThread mainThread]);
-
-    [self sendNotification:@selector(networkStreamWillClose:) withObject:self];
+    FLPerformSelector1(self.delegate, @selector(networkStreamDidOpen:), self);
 }
 
 - (void) didClose {
     FLAssert([NSThread currentThread] != [NSThread mainThread]);
 
     self.open = NO;
-    [self sendNotification:@selector(networkStreamDidClose:) withObject:self];
+    FLPerformSelector1(self.delegate, @selector(networkStreamDidClose:), self);
     [self.timer stopTimer];
+    
+    self.delegate = nil;
 }
 
 - (void) encounteredBytesAvailable {
     FLAssert([NSThread currentThread] != [NSThread mainThread]);
-    [self sendNotification:@selector(networkStreamHasBytesAvailable:) withObject:self];
+    FLPerformSelector1(self.delegate, @selector(networkStreamHasBytesAvailable:), self);
 }
 
 - (void) encounteredCanAcceptBytes {
     FLAssert([NSThread currentThread] != [NSThread mainThread]);
-    [self sendNotification:@selector(networkStreamCanAcceptBytes:) withObject:self];
+    FLPerformSelector1(self.delegate, @selector(networkStreamCanAcceptBytes:), self);
 }
 
 - (void) encounteredOpen {
@@ -108,13 +98,18 @@
 
 - (void) encounteredEnd {
     FLAssert([NSThread currentThread] != [NSThread mainThread]);
-    [self willClose];
+    [self closeStream];
+}
+
+- (void) propagateError:(NSError*) error {
 }
 
 - (void) encounteredError:(NSError*) error {
     FLAssert([NSThread currentThread] != [NSThread mainThread]);
-    self.error = error;
-    [self sendNotification:@selector(networkStream:encounteredError:) withObject:self withObject:error];
+    self.wasTerminated = YES;
+    
+// may already be set. all that matters is that the last error 
+    FLPerformSelector2(self.delegate, @selector(networkStream:encounteredError:), self, error);
 }
 
 - (NSError*) streamError {
@@ -122,11 +117,14 @@
 }
 
 - (void) openStream {
+}
 
+- (void) closeStream {
 }
 
 - (void) openStreamWithDelegate:(id<FLNetworkStreamDelegate>) delegate 
                      asyncQueue:(FLFifoAsyncQueue*) asyncQueue {
+    
     self.delegate = delegate;
     self.asyncQueue = asyncQueue;
     [self queueSelector:@selector(willOpen)];
@@ -134,15 +132,11 @@
     [self queueSelector:@selector(startTimeoutTimer)];
 }
 
-- (void) closeStream {
-    [self closeStreamWithError:nil];
-}
 
-- (void) closeStreamWithError:(NSError*) error {
-    if(error) {
-        self.error = error;
-    }
-    [self queueSelector:@selector(willClose)];
+- (void) terminateStream {
+    self.wasTerminated = YES;
+    self.delegate = nil;
+    [self queueSelector:@selector(closeStream)];
 }
 
 #pragma GCC diagnostic push
@@ -161,12 +155,8 @@
             [self performSelector:selector];
         }
         @catch(NSException* ex) {
-            if(self.error == nil) {
-                self.error = ex.error;
-            }
-            else {
-                FLLog(@"stream encountered secondary error: %@", [ex.error localizedDescription]);
-            }
+            self.wasTerminated = YES;
+            FLLog(@"stream encountered secondary error: %@", [ex.error localizedDescription]);
         }
     }];
 }
@@ -178,6 +168,7 @@
 }
 
 - (void) timerDidTimeout:(FLTimer*) timer {
+    self.wasTerminated = YES;
     [self queueSelector:@selector(encounteredError:) withObject:[NSError timeoutError]];
 }
 
@@ -188,9 +179,6 @@
 + (void) handleStreamEvent:(CFStreamEventType) eventType withStream:(FLNetworkStream*) stream {
 
     FLConfirmIsNotNil(stream);
-
-
-//    FLAssertWithComment([NSThread currentThread] == self.thread, @"tcp operation on wrong thread");
 
 //#if TRACE
 //    FLDebugLog(@"Read Stream got event %d", eventType);
@@ -204,7 +192,8 @@
             [stream queueSelector:@selector(encounteredOpen)];
         break;
 
-        case kCFStreamEventErrorOccurred: 
+        case kCFStreamEventErrorOccurred:  
+            stream.wasTerminated = YES;
             [stream queueSelector:@selector(encounteredError:) withObject:[stream streamError]];
         break;
         

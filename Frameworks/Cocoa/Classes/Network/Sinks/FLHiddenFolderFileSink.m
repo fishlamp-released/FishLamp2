@@ -58,13 +58,17 @@
 }
 
 
-- (void) commit {
-    [super commit];
+
+- (void) closeSinkWithCommit:(BOOL) commit {
     
-    NSError* error = nil;
-    [[NSFileManager defaultManager] moveItemAtURL:self.tempFileURL toURL:self.destinationFileURL error:&error];
+    [super closeSinkWithCommit:commit];
     
-    FLThrowIfError(error);
+    if(commit) {
+        NSError* error = nil;
+        [[NSFileManager defaultManager] moveItemAtURL:self.tempFileURL toURL:self.destinationFileURL error:&error];
+        
+        FLThrowIfError(error);
+    }
 }
 
 @end

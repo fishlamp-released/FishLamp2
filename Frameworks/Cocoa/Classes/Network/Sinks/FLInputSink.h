@@ -15,9 +15,7 @@
 @property (readonly, strong, nonatomic) NSURL* fileURL;
 
 - (void) openSink;
-- (void) closeSinkWithError:(NSError*) error;
-
-- (void) commit;
+- (void) closeSinkWithCommit:(BOOL) commit;
 
 - (void) appendBytes:(const void *)bytes 
               length:(NSUInteger)length;

@@ -29,6 +29,7 @@
 #define TRACE 0
 
 @implementation FLHttpRequest
+
 @synthesize requestBody = _requestBody;
 @synthesize requestHeaders = _requestHeaders;
 @synthesize authenticator = _authenticator;
@@ -150,16 +151,6 @@ static int s_counter = 0;
 - (void) didAuthenticate {
 }
 
-- (void) closeStreamWithError:(NSError*) error {
-    [_httpStream closeStreamWithError:error];
-    self.httpStream = nil;
-}
-
-- (void) requestCancel {
-    NSError* error = [NSError cancelError];
-    [self closeStreamWithError:error];
-}
-
 - (void) openStreamWithURL:(NSURL*) url {
     
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -175,7 +166,15 @@ static int s_counter = 0;
     }
     
     NSURL* finalURL = url;
-    
+
+#if FORCE_NO_SSL
+    if(FLStringsAreEqual(url.scheme, @"https")) {
+        NSString* secureURL = [[url absoluteString] stringByReplacingOccurrencesOfString:@"https:" withString:@"http:"];
+        finalURL = [NSURL URLWithString:secureURL];
+    }
+    _streamSecurity = FLNetworkStreamSecurityNone;
+
+#else
     if(_streamSecurity == FLNetworkStreamSecuritySSL) {
         
         if(FLStringsAreNotEqual(url.scheme, @"https")) {
@@ -186,6 +185,7 @@ static int s_counter = 0;
     else if(FLStringsAreEqual(url.scheme, @"https")) {
         _streamSecurity = FLNetworkStreamSecuritySSL;
     }
+#endif
     
     FLHttpMessage* cfRequest = [FLHttpMessage httpMessageWithURL:finalURL 
                                                       httpMethod:self.requestHeaders.httpMethod];
@@ -251,7 +251,6 @@ static int s_counter = 0;
         if(![result error]) {
             result = [self finalizeResult:result];
         }
-        
     }
     @catch(NSException* ex) {
         result = FLRetainWithAutorelease(ex.error);
@@ -263,7 +262,9 @@ static int s_counter = 0;
         
         self.finisher = nil;
         self.previousResponse = nil;
-        [self closeStreamWithError:nil];
+        self.httpStream.delegate = nil;
+        self.httpStream = nil;
+        
         [self operationDidFinish];
 
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -276,42 +277,39 @@ static int s_counter = 0;
     }
 }
 
-- (void) networkStream:(FLHttpStream*) readStream encounteredError:(NSError*) error {
-    [self sendObservation:@selector(httpRequest:encounteredError:) withObject:error];
+- (void) requestCancel {
+    [self.httpStream terminateStream];
+    [self requestDidFinishWithResult:[NSError cancelError]];
+}
+
+- (void) networkStream:(FLHttpStream*) readStream 
+      encounteredError:(NSError*) error {
+    [self.httpStream terminateStream];
     [self requestDidFinishWithResult:error];
 }
 
 - (void) networkStreamDidClose:(FLHttpStream*) stream {
 
-    NSError* streamError = stream.error;
-    if(streamError) {
-        [self requestDidFinishWithResult:streamError];
-    }
-    else {
-    
-        FLHttpResponse* response = [FLHttpResponse httpResponse:[[stream requestHeaders] requestURL]
-                                                        headers:[stream requestHeaders] 
-                                                 redirectedFrom:self.previousResponse
-                                                      inputSink:self.inputSink];
+    FLHttpResponse* response = [FLHttpResponse httpResponse:[[stream requestHeaders] requestURL]
+                                                    headers:[stream requestHeaders] 
+                                             redirectedFrom:self.previousResponse
+                                                  inputSink:self.inputSink];
 
-        [self closeStreamWithError:nil];
-    
-        // FIXME: there was an issue here with progress getting fouled up on redirects.
-        //    [self connectionGotTimerEvent];
+    // FIXME: there was an issue here with progress getting fouled up on redirects.
+    //    [self connectionGotTimerEvent];
 
-        BOOL redirect = response.wantsRedirect;
+    BOOL redirect = response.wantsRedirect;
+    if(redirect) {
+        NSURL* redirectURL = response.redirectURL;
+        redirect = [self shouldRedirectToURL:redirectURL];
         if(redirect) {
-            NSURL* redirectURL = response.redirectURL;
-            redirect = [self shouldRedirectToURL:redirectURL];
-            if(redirect) {
-                self.previousResponse = response;
-                [self openAuthenticatedStreamWithURL:redirectURL];
-            }
+            self.previousResponse = response;
+            [self openAuthenticatedStreamWithURL:redirectURL];
         }
+    }
 
-        if(!redirect) {
-            [self requestDidFinishWithResult:response];
-        }
+    if(!redirect) {
+        [self requestDidFinishWithResult:response];
     }
 }
 

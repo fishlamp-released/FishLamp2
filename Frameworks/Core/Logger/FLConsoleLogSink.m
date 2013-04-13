@@ -38,18 +38,37 @@
     }
 
     if(FLTestAnyBit(self.outputFlags, FLLogOutputWithLocation | FLLogOutputWithStackTrace)) {
-        FLPrintFormat(@"%@%@ (%s:%d)\n", 
+        FLPrintFormat(@"%@[%s:%d] { \n", 
                       whitespace,
-                      logString,
                       entry.stackTrace.fileName, 
                       entry.stackTrace.lineNumber
-//                          entry.stackTrace.function,
                       );
+        whitespace = [[FLWhitespace tabbedWithSpacesWhitespace] tabStringForScope:entry.indentLevel + 1];                      
     }
-    else {
-        FLPrintFormat(@"%@%@\n", whitespace, entry.logString);
+    
+    NSUInteger lastIndex = 0;
+    for(NSUInteger i = 0; i < logString.length; i++) {
+        
+        unichar c = [logString characterAtIndex:i];
+        if(c == '\n') {
+        
+            if(i > lastIndex) {
+                NSRange  range = NSMakeRange(lastIndex, i - lastIndex); 
+                FLPrintFormat(@"%@%@\n", whitespace, [logString substringWithRange:range]);
+            }
+            else {
+                FLPrintFormat(@"\n");
+            }
+        
+            lastIndex = i + 1;
+        }
     }
-
+    
+    if(lastIndex < (logString.length - 1)) {
+        NSRange  range = NSMakeRange(lastIndex, logString.length - lastIndex); 
+        FLPrintFormat(@"%@%@\n", whitespace, [logString substringWithRange:range]);
+    }
+    
     if(FLTestBits(self.outputFlags, FLLogOutputWithStackTrace)) {
         whitespace = [[FLWhitespace tabbedWithSpacesWhitespace] tabStringForScope:entry.indentLevel + 1];
     
@@ -58,6 +77,11 @@
                 FLPrintFormat(@"%@%s\n", whitespace, [entry.stackTrace stackEntryAtIndex:i]);
             }
         }
+    }
+    
+    if(FLTestAnyBit(self.outputFlags, FLLogOutputWithLocation | FLLogOutputWithStackTrace)) {
+        whitespace = [[FLWhitespace tabbedWithSpacesWhitespace] tabStringForScope:entry.indentLevel];                      
+        FLPrintFormat(@"%@}\n", whitespace);
     }
 }    
 

@@ -40,7 +40,6 @@
 - (void) downloadOperation:(ZFBatchDownloadOperation*) operation updateDownloadInfo:(ZFTransferState*) downloadInfo;
 
 - (void) downloadOperationWillBeginDownload:(ZFBatchDownloadOperation*) operation;
-- (void) downloadOperation:(ZFBatchDownloadOperation*) operation didFinishWithResult:(FLResult) result;
 
 - (void) downloadOperation:(ZFBatchDownloadOperation*) operation willUpdatePhotoSet:(ZFPhotoSet*) photoSet;
 - (void) downloadOperation:(ZFBatchDownloadOperation*) operation didUpdatePhotoSet:(ZFPhotoSet*) photoSet;

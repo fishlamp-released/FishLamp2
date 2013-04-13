@@ -22,7 +22,6 @@ extern NSString* const FLWorkerContextOpened;
 @interface FLOperationContext : NSObject {
 @private
     NSMutableSet* _operations;
-    FLFifoAsyncQueue* _asyncQueue;
     NSUInteger _contextID;
     BOOL _contextOpen;
 }

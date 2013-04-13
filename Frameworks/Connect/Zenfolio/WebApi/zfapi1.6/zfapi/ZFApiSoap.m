@@ -26,6 +26,10 @@ FLSynthesizeSingleton(ZFApiSoap);
 {
 	if((self = [super init]))
 	{
+		[self.properties setObject:@"http://api.zenfolio.com/api/1.6/zfapi.asmx" forKey:@"url"];
+		
+        [self.properties setObject:@"http://www.zenfolio.com/api/1.6" forKey:@"namespace"];
+
 		[self.properties setObject:@"http://www.zenfolio.com/api/1.6/GetCategories" forKey:@"GetCategories"];
 		[self.properties setObject:@"http://www.zenfolio.com/api/1.6/UpdatePhotoSet" forKey:@"UpdatePhotoSet"];
 		[self.properties setObject:@"http://www.zenfolio.com/api/1.6/GetPopularPhotos" forKey:@"GetPopularPhotos"];
@@ -46,11 +50,9 @@ FLSynthesizeSingleton(ZFApiSoap);
 		[self.properties setObject:@"http://www.zenfolio.com/api/1.6/GetDownloadOriginalKey" forKey:@"GetDownloadOriginalKey"];
 		[self.properties setObject:@"http://www.zenfolio.com/api/1.6/GetPopularSets" forKey:@"GetPopularSets"];
 		[self.properties setObject:@"http://www.zenfolio.com/api/1.6/AuthenticateVisitor" forKey:@"AuthenticateVisitor"];
-		[self.properties setObject:@"http://www.zenfolio.com/api/1.6/zfapi.asmx" forKey:@"url"];
 		[self.properties setObject:@"http://www.zenfolio.com/api/1.6/LoadPhotoSet" forKey:@"LoadPhotoSet"];
 		[self.properties setObject:@"http://www.zenfolio.com/api/1.6/LoadMessages" forKey:@"LoadMessages"];
 		[self.properties setObject:@"http://www.zenfolio.com/api/1.6/AuthenticatePlain" forKey:@"AuthenticatePlain"];
-		[self.properties setObject:@"http://www.zenfolio.com/api/1.6" forKey:@"namespace"];
 		[self.properties setObject:@"http://www.zenfolio.com/api/1.6/SearchSetByText" forKey:@"SearchSetByText"];
 		[self.properties setObject:@"http://www.zenfolio.com/api/1.6/UpdatePhotoSetAccess" forKey:@"UpdatePhotoSetAccess"];
 		[self.properties setObject:@"http://www.zenfolio.com/api/1.6/SetPhotoSetTitlePhoto" forKey:@"SetPhotoSetTitlePhoto"];

@@ -351,7 +351,6 @@
     [self downloadPhotos];
 
     [self updateProgress:NO];
-    [self sendObservation:@selector(downloadOperation:didFinishWithResult:) withObject:_downloadSpec.photoSets];
     
     return _downloadSpec.photoSets;
 }

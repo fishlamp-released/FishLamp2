@@ -49,12 +49,15 @@
     FLAssert(amountWritten == length);
 }
 
-- (void) closeSinkWithError:(NSError*) error {
+- (void) closeSinkWithCommit:(BOOL) commit {
 
     [self.outputStream close];
     self.outputStream = nil;
     
-    if(error) {
+    if(commit) {
+        self.fileURL = self.outputURL;
+    }
+    else {
         self.fileURL = nil;
     
         NSError* fileError = nil;
@@ -67,7 +70,6 @@
 }
 
 - (void) commit {
-    self.fileURL = self.outputURL;
 }
 
 #if FL_MRC

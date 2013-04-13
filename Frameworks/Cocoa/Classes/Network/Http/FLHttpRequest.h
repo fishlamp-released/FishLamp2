@@ -104,9 +104,6 @@
 - (void) httpRequest:(FLHttpRequest*) httpRequest 
     didCloseWithResult:(FLResult) result;
 
-- (void) httpRequest:(FLHttpRequest*) httpRequest
-      encounteredError:(NSError*) error;
-
 // TODO: these need a little love
 
 - (void) httpRequest:(FLHttpRequest*) httpRequest didReadBytes:(NSNumber*) amount;

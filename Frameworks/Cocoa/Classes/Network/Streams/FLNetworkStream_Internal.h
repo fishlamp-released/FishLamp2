@@ -9,6 +9,7 @@
 #import "FLNetworkStream.h"
 
 @interface FLNetworkStream ()
+@property (readwrite, assign) BOOL wasTerminated;
 
 - (void) touchTimeoutTimestamp;
 
@@ -17,13 +18,12 @@
 - (void) closeStream;
 
 // all of these are called on the async queue.
-- (void) willOpen;
-- (void) willClose;
-- (NSError*) streamError;
 
 // optional overrides
+- (void) willOpen;
 - (void) didOpen;
 - (void) didClose;
+- (NSError*) streamError;
 
 // stream events. All of these do nothing by default. They are called on the 
 // async queue.

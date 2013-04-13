@@ -85,7 +85,16 @@
     self.requestBody.debugBody = debugString.string;
     
 #if TRACE
-    FLTrace(@"Soap Request:\n%@", debugString.string);
+//    FLTrace(@"Soap Request:"); 
+    
+    FLLogIndent(^{
+        FLLog([self.requestHeaders description]);
+        FLLog([self.requestBody description]);
+    });
+    
+    
+//    , [self requestHeaders]);
+//    FLTrace(@"%@", debugString.string);
 #endif    
     
 //    FLLog([self description]);
@@ -118,7 +127,9 @@
     FLAssertNotNil(data);
 
 #if TRACE
-    FLTrace(@"Soap Response:\n%@", FLAutorelease([[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]));
+    FLLog(@"Soap Response:");
+    FLLog([[httpResponse responseHeaders] description]);
+    FLLog(FLAutorelease([[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]));
 #endif    
 
     FLParsedItem* parsedSoap = [[FLSoapParser soapParser] parseData:data];
