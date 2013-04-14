@@ -37,6 +37,8 @@
 - (void) startWizardInWindow:(NSWindow*) window;
 
 - (void) addPanel:(FLPanelViewController*) panel;
+- (void) addPanel:(FLPanelViewController*) panel withDelegate:(id) delegate;
+
 - (void) removePanelForTitle:(NSString*) title;
 
 

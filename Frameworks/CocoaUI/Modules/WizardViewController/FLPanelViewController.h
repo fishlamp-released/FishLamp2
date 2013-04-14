@@ -43,7 +43,10 @@
     id<FLPanelHeader> _header;
     BOOL _panelFillsView;
     BOOL _isAuthenticated;
+    __unsafe_unretained id _delegate;
 }
+
+@property (readwrite, assign, nonatomic) id delegate;
 @property (readwrite, assign, nonatomic) id wizardViewController;
 @property (readwrite, strong, nonatomic) id<FLPanelButtons> buttons;
 @property (readwrite, strong, nonatomic) id<FLPanelHeader> header;
