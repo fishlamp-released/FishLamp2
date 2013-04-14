@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0450"
+   LastUpgradeVersion = "0460"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "27CBBE2916768BA600753D0A"
-               BuildableName = "libFishLampCore-OSX-3264-MRC.a"
-               BlueprintName = "FishLampCore-OSX-3264-MRC"
-               ReferencedContainer = "container:FishLampCore.xcodeproj">
+               BuildableName = "libFishLampCocoaUI-OSX-3264-MRC.a"
+               BlueprintName = "FishLampCocoaUI-OSX-3264-MRC"
+               ReferencedContainer = "container:FishLampCocoaUI.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
