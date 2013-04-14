@@ -22,11 +22,8 @@
     IBOutlet NSButton* _savePasswordCheckBox;
     IBOutlet NSButton* _forgotPasswordButton;
     FLUserService* _userService;
-    
-    __unsafe_unretained id<FLLoginPanelDelegate> _delegate;
 }
-@property (readwrite, assign, nonatomic) id<FLLoginPanelDelegate> delegate;
-+ (id) loginPanelWithDelegate:(id<FLLoginPanelDelegate>) delegate;
++ (id) loginPanel;
 @end
 
 @protocol FLLoginPanelDelegate <NSObject>

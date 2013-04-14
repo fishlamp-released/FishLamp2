@@ -21,7 +21,6 @@
 @implementation FLLoginPanel
 
 @synthesize userService = _userService;
-@synthesize delegate = _delegate;
 
 - (id) init {
     return [self initWithNibName:@"FLLoginPanel" bundle:nil];
@@ -45,10 +44,8 @@
     return self;
 }
 
-+ (id) loginPanelWithDelegate:(id<FLLoginPanelDelegate>) delegate {
-    FLLoginPanel* panel = FLAutorelease([[[self class] alloc] init]);
-    panel.delegate = delegate;
-    return panel;
++ (id) loginPanel {
+    return FLAutorelease([[[self class] alloc] init]);
 }
 
 - (void) dealloc {

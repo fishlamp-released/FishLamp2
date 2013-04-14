@@ -23,6 +23,7 @@
 @synthesize header = _header;
 @synthesize panelFillsView = _panelFillsView;
 @synthesize isAuthenticated = _isAuthenticated;
+@synthesize delegate = _delegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

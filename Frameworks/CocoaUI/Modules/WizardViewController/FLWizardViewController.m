@@ -48,8 +48,14 @@
     [self.panelManager addPanel:panel];
 }
 
+- (void) addPanel:(FLPanelViewController*) panel withDelegate:(id) delegate {
+    [self.panelManager addPanel:panel];
+    panel.delegate = self;
+}
+ 
 - (void) removePanelForTitle:(id) title {
     [self.panelManager removePanelForTitle:title];
+    
 }
 
 - (void) willShowPanel:(FLPanelViewController*) toShow willHidePanel:(FLPanelViewController*) toHide {
