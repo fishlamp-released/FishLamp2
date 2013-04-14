@@ -48,7 +48,7 @@
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="NSCustomView" id="403898977">
 						<reference key="NSNextResponder" ref="1005"/>
-						<int key="NSvFlags">268</int>
+						<int key="NSvFlags">276</int>
 						<string key="NSFrame">{{0, 51}, {116, 257}}</string>
 						<reference key="NSSuperview" ref="1005"/>
 						<reference key="NSWindow"/>
