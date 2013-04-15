@@ -17,10 +17,11 @@
 #import "FLDispatch.h"
 #import "FLTimer.h"
 
+#define FORCE_NO_SSL 1
+
 //#define kStreamReadChunkSize 1024
 
 @interface FLHttpRequest ()
-@property (readwrite, strong, nonatomic) FLFifoAsyncQueue* asyncQueueForStream;
 @property (readwrite, strong, nonatomic) FLFinisher* finisher;
 @property (readwrite, strong, nonatomic) FLHttpResponse* previousResponse;
 @property (readwrite, strong, nonatomic) FLHttpStream* httpStream;
@@ -36,7 +37,6 @@
 @synthesize disableAuthenticator = _disableAuthenticator;
 @synthesize inputSink = _inputSink;
 @synthesize finisher = _finisher;
-@synthesize asyncQueueForStream = _asyncQueueForStream;
 @synthesize httpStream = _httpStream;
 @synthesize previousResponse = _previousResponse;
 @synthesize timeoutInterval = _timeoutInterval;
@@ -69,8 +69,6 @@ static int s_counter = 0;
         else {
             self.requestHeaders.httpMethod = httpMethod;
         }
-        
-        self.asyncQueueForStream = [FLFifoAsyncQueue fifoAsyncQueue];
     }
 
 #if TRACE
@@ -201,7 +199,7 @@ static int s_counter = 0;
                                  streamSecurity:_streamSecurity
                                       inputSink:self.inputSink];
     
-    [self.httpStream openStreamWithDelegate:self asyncQueue:self.asyncQueueForStream];
+    [self.httpStream openStreamWithDelegate:self];
 }
 
 - (void) openAuthenticatedStreamWithURL:(NSURL*) url {

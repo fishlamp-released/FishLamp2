@@ -85,8 +85,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addChildDescriberWithName:@"input" withClass:[ZFSearchSetByText class]];
-		[s_describer addChildDescriberWithName:@"output" withClass:[ZFSearchSetByTextResponse class]];
+		[s_describer setChildForIdentifier:@"input" withClass:[ZFSearchSetByText class]];
+		[s_describer setChildForIdentifier:@"output" withClass:[ZFSearchSetByTextResponse class]];
 	});
 	return s_describer;
 }

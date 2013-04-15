@@ -236,23 +236,23 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addChildDescriberWithName:@"photoDataFileName" withClass:[NSString class]];
-		[s_describer addChildDescriberWithName:@"uploadFileId" withClass:[FLIntegerNumber class] ];
-		[s_describer addChildDescriberWithName:@"sortId" withClass:[FLIntegerNumber class] ];
-		[s_describer addChildDescriberWithName:@"uploadGallery" withClass:[ZFUploadGallery class]];
-		[s_describer addChildDescriberWithName:@"uploadSize" withClass:[FLUnsignedLongNumber class] ];
-		[s_describer addChildDescriberWithName:@"accessDescriptor" withClass:[ZFAccessDescriptor class]];
-		[s_describer addChildDescriberWithName:@"saveToPhoneGalleryOnUpload" withClass:[FLBoolNumber class] ];
-		[s_describer addChildDescriberWithName:@"wasSavedToPhotoGallery" withClass:[FLBoolNumber class] ];
-		[s_describer addChildDescriberWithName:@"isCameraImage" withClass:[FLBoolNumber class] ];
-		[s_describer addChildDescriberWithName:@"loginName" withClass:[NSString class]];
-		[s_describer addChildDescriberWithName:@"originalFileName" withClass:[NSString class]];
-		[s_describer addChildDescriberWithName:@"categoryArray" withClass:[NSMutableArray class]];
-		[s_describer addChildDescriberWithName:@"uploadedPhotoId" withClass:[FLUnsignedLongNumber class] ];
-		[s_describer addChildDescriberWithName:@"dimensions" withClass:[FLGeometrySize class] ];
-		[s_describer addChildDescriberWithName:@"uploaded" withClass:[FLBoolNumber class] ];
-		[s_describer addChildDescriberWithName:@"takenDate" withClass:[NSDate class]];
-		[s_describer addChildDescriberWithName:@"modifiedDate" withClass:[NSDate class]];
+		[s_describer setChildForIdentifier:@"photoDataFileName" withClass:[NSString class]];
+		[s_describer setChildForIdentifier:@"uploadFileId" withClass:[FLIntegerNumber class] ];
+		[s_describer setChildForIdentifier:@"sortId" withClass:[FLIntegerNumber class] ];
+		[s_describer setChildForIdentifier:@"uploadGallery" withClass:[ZFUploadGallery class]];
+		[s_describer setChildForIdentifier:@"uploadSize" withClass:[FLUnsignedLongNumber class] ];
+		[s_describer setChildForIdentifier:@"accessDescriptor" withClass:[ZFAccessDescriptor class]];
+		[s_describer setChildForIdentifier:@"saveToPhoneGalleryOnUpload" withClass:[FLBoolNumber class] ];
+		[s_describer setChildForIdentifier:@"wasSavedToPhotoGallery" withClass:[FLBoolNumber class] ];
+		[s_describer setChildForIdentifier:@"isCameraImage" withClass:[FLBoolNumber class] ];
+		[s_describer setChildForIdentifier:@"loginName" withClass:[NSString class]];
+		[s_describer setChildForIdentifier:@"originalFileName" withClass:[NSString class]];
+		[s_describer setChildForIdentifier:@"categoryArray" withClass:[NSMutableArray class]];
+		[s_describer setChildForIdentifier:@"uploadedPhotoId" withClass:[FLUnsignedLongNumber class] ];
+		[s_describer setChildForIdentifier:@"dimensions" withClass:[FLGeometrySize class] ];
+		[s_describer setChildForIdentifier:@"uploaded" withClass:[FLBoolNumber class] ];
+		[s_describer setChildForIdentifier:@"takenDate" withClass:[NSDate class]];
+		[s_describer setChildForIdentifier:@"modifiedDate" withClass:[NSDate class]];
 	});
 	return s_describer;
 }

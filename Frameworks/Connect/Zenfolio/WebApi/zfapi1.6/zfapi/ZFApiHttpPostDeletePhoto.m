@@ -85,8 +85,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addChildDescriberWithName:@"input" withClass:[ZFDeletePhotoHttpPostIn class]];
-		[s_describer addChildDescriberWithName:@"output" withClass:[ZFDeletePhotoHttpPostOut class]];
+		[s_describer setChildForIdentifier:@"input" withClass:[ZFDeletePhotoHttpPostIn class]];
+		[s_describer setChildForIdentifier:@"output" withClass:[ZFDeletePhotoHttpPostOut class]];
 	});
 	return s_describer;
 }

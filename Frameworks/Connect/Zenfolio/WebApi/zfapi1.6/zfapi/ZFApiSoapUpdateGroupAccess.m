@@ -85,8 +85,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addChildDescriberWithName:@"input" withClass:[ZFUpdateGroupAccess class]];
-		[s_describer addChildDescriberWithName:@"output" withClass:[ZFUpdateGroupAccessResponse class]];
+		[s_describer setChildForIdentifier:@"input" withClass:[ZFUpdateGroupAccess class]];
+		[s_describer setChildForIdentifier:@"output" withClass:[ZFUpdateGroupAccessResponse class]];
 	});
 	return s_describer;
 }

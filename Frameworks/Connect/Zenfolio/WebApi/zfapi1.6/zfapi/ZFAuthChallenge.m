@@ -88,8 +88,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addChildDescriberWithName:@"PasswordSalt" withClass:[NSData class]];
-		[s_describer addChildDescriberWithName:@"Challenge" withClass:[NSData class]];
+		[s_describer setChildForIdentifier:@"PasswordSalt" withClass:[NSData class]];
+		[s_describer setChildForIdentifier:@"Challenge" withClass:[NSData class]];
 	});
 	return s_describer;
 }

@@ -130,12 +130,12 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addChildDescriberWithName:@"accessDescriptor" withClass:[ZFAccessDescriptor class]];
-		[s_describer addChildDescriberWithName:@"categoryArray" withClass:[NSMutableArray class]];
-		[s_describer addChildDescriberWithName:@"zenfolioCategories" withClass:[NSMutableArray class]];
-		[s_describer addChildDescriberWithName:@"scaledUploadSize" withClass:[FLIntegerNumber class] ];
-		[s_describer addChildDescriberWithName:@"saveToDeviceBeforeUpload" withClass:[FLBoolNumber class] ];
-		[s_describer addChildDescriberWithName:@"wasSavedToDeviceBeforeUpload" withClass:[FLBoolNumber class] ];
+		[s_describer setChildForIdentifier:@"accessDescriptor" withClass:[ZFAccessDescriptor class]];
+		[s_describer setChildForIdentifier:@"categoryArray" withClass:[NSMutableArray class]];
+		[s_describer setChildForIdentifier:@"zenfolioCategories" withClass:[NSMutableArray class]];
+		[s_describer setChildForIdentifier:@"scaledUploadSize" withClass:[FLIntegerNumber class] ];
+		[s_describer setChildForIdentifier:@"saveToDeviceBeforeUpload" withClass:[FLBoolNumber class] ];
+		[s_describer setChildForIdentifier:@"wasSavedToDeviceBeforeUpload" withClass:[FLBoolNumber class] ];
 	});
 	return s_describer;
 }

@@ -74,8 +74,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addChildDescriberWithName:@"input" withClass:[ZFAuthenticatePlainHttpGetIn class]];
-		[s_describer addChildDescriberWithName:@"output" withClass:[NSString class]];
+		[s_describer setChildForIdentifier:@"input" withClass:[ZFAuthenticatePlainHttpGetIn class]];
+		[s_describer setChildForIdentifier:@"output" withClass:[NSString class]];
 	});
 	return s_describer;
 }

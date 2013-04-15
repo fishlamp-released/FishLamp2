@@ -78,7 +78,7 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addChildDescriberWithName:@"CheckPrivilegeResult" withClass:[FLBoolNumber class] ];
+		[s_describer setChildForIdentifier:@"CheckPrivilegeResult" withClass:[FLBoolNumber class] ];
 	});
 	return s_describer;
 }

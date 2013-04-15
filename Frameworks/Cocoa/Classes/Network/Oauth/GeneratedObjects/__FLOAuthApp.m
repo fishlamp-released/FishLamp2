@@ -102,14 +102,14 @@
         {
             s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
         }
-        [s_describer addChildDescriberWithName:@"appId" withClass:[NSString class]];
-        [s_describer addChildDescriberWithName:@"apiKey" withClass:[NSString class]];
-        [s_describer addChildDescriberWithName:@"consumerKey" withClass:[NSString class]];
-        [s_describer addChildDescriberWithName:@"consumerSecret" withClass:[NSString class]];
-        [s_describer addChildDescriberWithName:@"requestTokenUrl" withClass:[NSString class]];
-        [s_describer addChildDescriberWithName:@"accessTokenUrl" withClass:[NSString class]];
-        [s_describer addChildDescriberWithName:@"authorizeUrl" withClass:[NSString class]];
-        [s_describer addChildDescriberWithName:@"callback" withClass:[NSString class]];
+        [s_describer setChildForIdentifier:@"appId" withClass:[NSString class]];
+        [s_describer setChildForIdentifier:@"apiKey" withClass:[NSString class]];
+        [s_describer setChildForIdentifier:@"consumerKey" withClass:[NSString class]];
+        [s_describer setChildForIdentifier:@"consumerSecret" withClass:[NSString class]];
+        [s_describer setChildForIdentifier:@"requestTokenUrl" withClass:[NSString class]];
+        [s_describer setChildForIdentifier:@"accessTokenUrl" withClass:[NSString class]];
+        [s_describer setChildForIdentifier:@"authorizeUrl" withClass:[NSString class]];
+        [s_describer setChildForIdentifier:@"callback" withClass:[NSString class]];
     });
     return s_describer;
 }

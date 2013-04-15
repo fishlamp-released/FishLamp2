@@ -284,7 +284,7 @@
 }
       
 
-- (void) addChildDescriberWithName:(NSString*) propertyName withEncodedString:(NSString*) data withState:(int) state {
+- (void) setChildForIdentifier:(NSString*) propertyName withEncodedString:(NSString*) data withState:(int) state {
     FLPropertyInflator* property = [self startInflatingPropertyWithName:propertyName withState:state];
     [property appendEncodedString:data];
     [self finishInflatingProperty];

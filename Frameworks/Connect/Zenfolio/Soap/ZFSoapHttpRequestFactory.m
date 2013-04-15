@@ -36,7 +36,7 @@ ConcreteSubclass(ZFLoadGroupSoapRequest)
 
 #define ZFSoapHttpRequestFrom(__SUBCLASS__, __REQUEST_OBJECT_NAME__, __RESULT_OBJECT_NAME__, __RETURNED_OBJECT_NAME__) \
     [ZFSoapHttpRequestFactory soapHttpRequest:[__SUBCLASS__ class] operationDescriptor:FLAutorelease([[__REQUEST_OBJECT_NAME__ alloc] init]) \
-                                              element:[FLObjectDescriber objectDescriberForClass:[__RETURNED_OBJECT_NAME__ class] withObjectName:__RESULT_OBJECT_NAME__]]
+                                              element:[FLTypeDesc typeDesc:__RESULT_OBJECT_NAME__ class:[__RETURNED_OBJECT_NAME__ class]]]
 
 @implementation ZFLoadPhotoSet (NSObject)
 - (void) setRequestedResponseLevel:(NSString*) level {
@@ -58,18 +58,18 @@ ConcreteSubclass(ZFLoadGroupSoapRequest)
 @implementation ZFSoapHttpRequestFactory
 
 + (FLResult) zenfolioResultFromSoapResponse:(FLParsedItem*) parsedSoap 
-                                    element:(FLObjectDescriber*) element {
+                                    element:(FLTypeDesc*) element {
     FLAssertNotNil(parsedSoap);
     FLAssertNotNil(element);
     
-    FLParsedItem* objectXML = [parsedSoap findElementWithName:element.objectName maxDepth:2];
+    FLParsedItem* objectXML = [parsedSoap findElementWithName:element.identifier maxDepth:2];
     FLConfirmNotNil(objectXML);
 
 #if 0    
     FLLog(@"element: %@", [element description]);
 #endif
      
-    id zenfolioObject = [[FLSoapObjectBuilder instance] objectFromXML:objectXML withObjectType:element];
+    id zenfolioObject = [[FLSoapObjectBuilder instance] objectFromXML:objectXML withTypeDesc:element];
 
     FLConfirmNotNilWithComment(zenfolioObject, @"object not inflated for type: %@", [element description]);
 //    FLAssertIsClass(zenfolioObject, element.objectClass);
@@ -79,8 +79,8 @@ ConcreteSubclass(ZFLoadGroupSoapRequest)
 
 
 + (FLSoapHttpRequest*) soapHttpRequest:(Class) subclass
-                                       operationDescriptor: (id) operationDescriptor 
-                               element:(FLObjectDescriber*) element {
+                   operationDescriptor: (id) operationDescriptor 
+                               element:(FLTypeDesc*) element {
 
     static ZFApiSoap* s_soapServer = nil;
     static dispatch_once_t onceToken;

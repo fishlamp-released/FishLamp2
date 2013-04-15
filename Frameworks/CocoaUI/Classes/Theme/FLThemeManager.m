@@ -117,10 +117,10 @@ FLSynthesizeSingleton(FLThemeManager)
     
 //        NSArray* themes = [object objectForKey:@"themes"];
 //        NSMutableArray* outThemes = [NSMutableArray array];
-//        FLObjectDescriber* themeType = [FLObjectDescriber objectDescriber:@"theme" objectClass:themeClass];
+//        FLObjectDescriber* themeType = [FLTypeDesc typeDesc:@"theme" objectClass:themeClass];
 //        
 //        for(NSDictionary* themeDictionary in themes) {
-//            [outThemes addObject:[builder objectFromJSON:themeDictionary withObjectType:themeType]];
+//            [outThemes addObject:[builder objectFromJSON:themeDictionary withTypeDesc:themeType]];
 //        }
         
         
@@ -131,9 +131,9 @@ FLSynthesizeSingleton(FLThemeManager)
 //    FLParsedItem* xml = [[FLXmlParser xmlParser] parseFileAtURL:fileURL];
 //    if(xml) {
 //        
-//        FLObjectDescriber* themeType = [FLObjectDescriber objectDescriber:@"theme" objectClass:themeClass];
+//        FLObjectDescriber* themeType = [FLTypeDesc typeDesc:@"theme" objectClass:themeClass];
 //        
-//        return [[FLXmlObjectBuilder xmlObjectBuilder] objectsFromXML:xml withObjectType:themeType];
+//        return [[FLXmlObjectBuilder xmlObjectBuilder] objectsFromXML:xml withTypeDesc:themeType];
 //    }   
 //    
     return nil;
@@ -152,10 +152,10 @@ FLSynthesizeSingleton(FLThemeManager)
     
 //        NSArray* themes = [object objectForKey:@"themes"];
 //        NSMutableArray* outThemes = [NSMutableArray array];
-//        FLObjectDescriber* themeType = [FLObjectDescriber objectDescriber:@"theme" objectClass:themeClass];
+//        FLObjectDescriber* themeType = [FLTypeDesc typeDesc:@"theme" objectClass:themeClass];
 //        
 //        for(NSDictionary* themeDictionary in themes) {
-//            [outThemes addObject:[builder objectFromJSON:themeDictionary withObjectType:themeType]];
+//            [outThemes addObject:[builder objectFromJSON:themeDictionary withTypeDesc:themeType]];
 //        }
         
         
@@ -166,9 +166,9 @@ FLSynthesizeSingleton(FLThemeManager)
 //    FLParsedItem* xml = [[FLXmlParser xmlParser] parseFileAtURL:fileURL];
 //    if(xml) {
 //        
-//        FLObjectDescriber* themeType = [FLObjectDescriber objectDescriber:@"theme" objectClass:themeClass];
+//        FLObjectDescriber* themeType = [FLTypeDesc typeDesc:@"theme" objectClass:themeClass];
 //        
-//        return [[FLXmlObjectBuilder xmlObjectBuilder] objectsFromXML:xml withObjectType:themeType];
+//        return [[FLXmlObjectBuilder xmlObjectBuilder] objectsFromXML:xml withTypeDesc:themeType];
 //    }   
 //    
     return nil;

@@ -79,7 +79,7 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addChildDescriberWithName:@"LoadPhotoSetPhotosResult" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"Photo" objectClass:[ZFPhoto class]], nil]];
+		[s_describer setChildForIdentifier:@"LoadPhotoSetPhotosResult" withArrayTypes:[NSArray arrayWithObjects:[FLTypeDesc typeDesc:@"Photo" class:[ZFPhoto class]], nil]];
 	});
 	return s_describer;
 }

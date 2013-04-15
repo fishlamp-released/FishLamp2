@@ -88,8 +88,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addChildDescriberWithName:@"photoIds" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"int" objectClass:[FLIntegerNumber class]], nil]];
-		[s_describer addChildDescriberWithName:@"password" withClass:[NSString class]];
+		[s_describer setChildForIdentifier:@"photoIds" withArrayTypes:[NSArray arrayWithObjects:[FLTypeDesc typeDesc:@"int" class:[FLIntegerNumber class]], nil]];
+		[s_describer setChildForIdentifier:@"password" withClass:[NSString class]];
 	});
 	return s_describer;
 }

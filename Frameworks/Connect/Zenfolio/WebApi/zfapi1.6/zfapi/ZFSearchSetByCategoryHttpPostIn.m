@@ -128,12 +128,12 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addChildDescriberWithName:@"searchId" withClass:[NSString class]];
-		[s_describer addChildDescriberWithName:@"type" withClass:[NSString class]];
-		[s_describer addChildDescriberWithName:@"sortOrder" withClass:[NSString class]];
-		[s_describer addChildDescriberWithName:@"categoryCode" withClass:[NSString class]];
-		[s_describer addChildDescriberWithName:@"offset" withClass:[NSString class]];
-		[s_describer addChildDescriberWithName:@"limit" withClass:[NSString class]];
+		[s_describer setChildForIdentifier:@"searchId" withClass:[NSString class]];
+		[s_describer setChildForIdentifier:@"type" withClass:[NSString class]];
+		[s_describer setChildForIdentifier:@"sortOrder" withClass:[NSString class]];
+		[s_describer setChildForIdentifier:@"categoryCode" withClass:[NSString class]];
+		[s_describer setChildForIdentifier:@"offset" withClass:[NSString class]];
+		[s_describer setChildForIdentifier:@"limit" withClass:[NSString class]];
 	});
 	return s_describer;
 }

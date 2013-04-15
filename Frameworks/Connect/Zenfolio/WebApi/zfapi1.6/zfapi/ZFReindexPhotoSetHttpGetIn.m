@@ -98,9 +98,9 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addChildDescriberWithName:@"photoSetId" withClass:[NSString class]];
-		[s_describer addChildDescriberWithName:@"startIndex" withClass:[NSString class]];
-		[s_describer addChildDescriberWithName:@"mapping" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"String" objectClass:[NSString class] ], nil]];
+		[s_describer setChildForIdentifier:@"photoSetId" withClass:[NSString class]];
+		[s_describer setChildForIdentifier:@"startIndex" withClass:[NSString class]];
+		[s_describer setChildForIdentifier:@"mapping" withArrayTypes:[NSArray arrayWithObjects:[FLTypeDesc typeDesc:@"String" class:[NSString class] ], nil]];
 	});
 	return s_describer;
 }

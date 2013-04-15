@@ -74,8 +74,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addChildDescriberWithName:@"input" withClass:[ZFCheckPrivilegeHttpGetIn class]];
-		[s_describer addChildDescriberWithName:@"output" withClass:[FLBoolNumber class] ];
+		[s_describer setChildForIdentifier:@"input" withClass:[ZFCheckPrivilegeHttpGetIn class]];
+		[s_describer setChildForIdentifier:@"output" withClass:[FLBoolNumber class] ];
 	});
 	return s_describer;
 }

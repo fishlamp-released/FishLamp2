@@ -79,7 +79,7 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addChildDescriberWithName:@"LoadMessagesResult" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"Message" objectClass:[ZFMessage class]], nil]];
+		[s_describer setChildForIdentifier:@"LoadMessagesResult" withArrayTypes:[NSArray arrayWithObjects:[FLTypeDesc typeDesc:@"Message" class:[ZFMessage class]], nil]];
 	});
 	return s_describer;
 }

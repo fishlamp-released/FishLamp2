@@ -74,8 +74,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addChildDescriberWithName:@"input" withClass:[ZFCreatePhotoFromUrlHttpGetIn class]];
-		[s_describer addChildDescriberWithName:@"output" withClass:[FLIntegerNumber class] ];
+		[s_describer setChildForIdentifier:@"input" withClass:[ZFCreatePhotoFromUrlHttpGetIn class]];
+		[s_describer setChildForIdentifier:@"output" withClass:[FLIntegerNumber class] ];
 	});
 	return s_describer;
 }

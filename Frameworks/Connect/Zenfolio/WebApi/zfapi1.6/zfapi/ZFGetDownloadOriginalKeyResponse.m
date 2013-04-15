@@ -78,7 +78,7 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addChildDescriberWithName:@"GetDownloadOriginalKeyResult" withClass:[NSString class]];
+		[s_describer setChildForIdentifier:@"GetDownloadOriginalKeyResult" withClass:[NSString class]];
 	});
 	return s_describer;
 }

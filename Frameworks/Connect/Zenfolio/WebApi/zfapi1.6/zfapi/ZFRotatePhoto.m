@@ -89,8 +89,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addChildDescriberWithName:@"photoId" withClass:[FLIntegerNumber class] ];
-		[s_describer addChildDescriberWithName:@"rotation" withClass:[NSString class]];
+		[s_describer setChildForIdentifier:@"photoId" withClass:[FLIntegerNumber class] ];
+		[s_describer setChildForIdentifier:@"rotation" withClass:[NSString class]];
 	});
 	return s_describer;
 }

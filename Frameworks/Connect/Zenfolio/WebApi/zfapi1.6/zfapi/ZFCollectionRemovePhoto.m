@@ -88,8 +88,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addChildDescriberWithName:@"collectionId" withClass:[FLIntegerNumber class] ];
-		[s_describer addChildDescriberWithName:@"photoId" withClass:[FLIntegerNumber class] ];
+		[s_describer setChildForIdentifier:@"collectionId" withClass:[FLIntegerNumber class] ];
+		[s_describer setChildForIdentifier:@"photoId" withClass:[FLIntegerNumber class] ];
 	});
 	return s_describer;
 }

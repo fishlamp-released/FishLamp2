@@ -9,6 +9,7 @@
 #import "FLNetworkHostResolver.h"
 #import "FLNetworkHost.h"
 #import "NSError+FLNetworkStream.h"
+#import "FLNetworkStream_Internal.h"
 
 @interface FLNetworkHostResolver ()
 @property (readwrite, strong) FLNetworkHost* networkHost;
@@ -50,7 +51,7 @@
                    typeInfo:(CFHostInfoType) typeInfo
                       error:(const CFStreamError*) error {
     
-    [self touchTimestamp];
+    [self touchTimeoutTimestamp];
     
     FLAssertAreEqualWithComment(self.networkHost.hostRef, theHost, nil);
     FLAssertAreEqualWithComment(self.networkHost.hostInfoType, typeInfo, nil);
@@ -79,7 +80,7 @@ static void HostResolutionCallback(CFHostRef theHost, CFHostInfoType typeInfo, c
         CFHostRef host = self.networkHost.hostRef;
         if(host) {
             /*BOOL success = */ CFHostSetClient(host, NULL, NULL);
-            CFHostUnscheduleFromRunLoop(host, CFRunLoopGetMain(), bridge_(void*,NSDefaultRunLoopMode));
+            CFHostUnscheduleFromRunLoop(host, [[self.eventHandler runLoop] getCFRunLoop], bridge_(void*,self.eventHandler.runLoopMode));
             CFHostCancelInfoResolution(host, self.networkHost.hostInfoType);
         }
         self.open = NO;
@@ -115,7 +116,7 @@ static void HostResolutionCallback(CFHostRef theHost, CFHostInfoType typeInfo, c
         
     }
     else {
-        CFHostScheduleWithRunLoop(cfhost, CFRunLoopGetMain(), bridge_(void*,NSDefaultRunLoopMode));
+        CFHostScheduleWithRunLoop(cfhost, [[self.eventHandler runLoop] getCFRunLoop], bridge_(void*,self.eventHandler.runLoopMode));
         CFStreamError streamError = { 0, 0 };
         if (!CFHostStartInfoResolution(cfhost, self.networkHost.hostInfoType, &streamError) ) {
             [self closeWithResult:FLCreateErrorFromStreamError(&streamError)];

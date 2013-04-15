@@ -85,8 +85,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addChildDescriberWithName:@"input" withClass:[ZFKeyringGetUnlockedRealms class]];
-		[s_describer addChildDescriberWithName:@"output" withClass:[ZFKeyringGetUnlockedRealmsResponse class]];
+		[s_describer setChildForIdentifier:@"input" withClass:[ZFKeyringGetUnlockedRealms class]];
+		[s_describer setChildForIdentifier:@"output" withClass:[ZFKeyringGetUnlockedRealmsResponse class]];
 	});
 	return s_describer;
 }

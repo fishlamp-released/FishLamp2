@@ -85,8 +85,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addChildDescriberWithName:@"input" withClass:[ZFGetChallengeHttpGetIn class]];
-		[s_describer addChildDescriberWithName:@"output" withClass:[ZFAuthChallenge class]];
+		[s_describer setChildForIdentifier:@"input" withClass:[ZFGetChallengeHttpGetIn class]];
+		[s_describer setChildForIdentifier:@"output" withClass:[ZFAuthChallenge class]];
 	});
 	return s_describer;
 }

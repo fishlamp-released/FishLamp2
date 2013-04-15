@@ -79,7 +79,7 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addChildDescriberWithName:@"AddMessageResult" withClass:[ZFMessage class]];
+		[s_describer setChildForIdentifier:@"AddMessageResult" withClass:[ZFMessage class]];
 	});
 	return s_describer;
 }

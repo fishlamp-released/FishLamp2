@@ -98,9 +98,9 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addChildDescriberWithName:@"isGroup" withClass:[FLBoolNumber class]];
-		[s_describer addChildDescriberWithName:@"syncObjectId" withClass:[FLIntegerNumber class]];
-		[s_describer addChildDescriberWithName:@"name" withClass:[NSString class]];
+		[s_describer setChildForIdentifier:@"isGroup" withClass:[FLBoolNumber class]];
+		[s_describer setChildForIdentifier:@"syncObjectId" withClass:[FLIntegerNumber class]];
+		[s_describer setChildForIdentifier:@"name" withClass:[NSString class]];
 	});
 	return s_describer;
 }

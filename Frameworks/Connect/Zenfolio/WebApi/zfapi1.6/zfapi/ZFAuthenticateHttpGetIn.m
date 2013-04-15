@@ -88,8 +88,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addChildDescriberWithName:@"challenge" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"String" objectClass:[NSString class] ], nil]];
-		[s_describer addChildDescriberWithName:@"proof" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"String" objectClass:[NSString class] ], nil]];
+		[s_describer setChildForIdentifier:@"challenge" withArrayTypes:[NSArray arrayWithObjects:[FLTypeDesc typeDesc:@"String" class:[NSString class] ], nil]];
+		[s_describer setChildForIdentifier:@"proof" withArrayTypes:[NSArray arrayWithObjects:[FLTypeDesc typeDesc:@"String" class:[NSString class] ], nil]];
 	});
 	return s_describer;
 }

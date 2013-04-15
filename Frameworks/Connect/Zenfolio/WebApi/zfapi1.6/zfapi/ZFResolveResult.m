@@ -90,8 +90,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addChildDescriberWithName:@"Group" withClass:[ZFGroup class]];
-		[s_describer addChildDescriberWithName:@"PhotoSet" withClass:[ZFPhotoSet class]];
+		[s_describer setChildForIdentifier:@"Group" withClass:[ZFGroup class]];
+		[s_describer setChildForIdentifier:@"PhotoSet" withClass:[ZFPhotoSet class]];
 	});
 	return s_describer;
 }

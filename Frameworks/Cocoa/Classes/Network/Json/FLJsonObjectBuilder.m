@@ -9,27 +9,27 @@
 #import "FLJsonObjectBuilder.h"
 #import "FLBase64Encoding.h"
 #import "FLDataEncoder.h"
-#import "FLObjectDescriber.h"
+#import "FLTypeDesc.h"
 #import "FLObjectDescriber.h"
 
 @interface FLJsonObjectBuilder ()
-- (id) objectFromJSON:(id) jsonObject withObjectType:(FLObjectDescriber*) type;
+- (id) objectFromJSON:(id) jsonObject withTypeDesc:(FLTypeDesc*) type;
 @end
 
 @implementation NSString (FLJsonObjectBuilder)
 
-- (id) objectWithJsonObjectBuilder:(FLJsonObjectBuilder*) builder withDescription:(FLObjectDescriber*) objectDescription {
+- (id) objectWithJsonObjectBuilder:(FLJsonObjectBuilder*) builder typeDesc:(FLTypeDesc*) typeDesc {
     FLAssertNotNil(builder);
-    FLAssertNotNil(objectDescription);
+    FLAssertNotNil(typeDesc);
     
-    FLObjectEncoder* decoder = objectDescription.objectEncoder;
+    FLObjectEncoder* decoder = typeDesc.objectEncoder;
     if(decoder) {
         FLAssertNotNil(builder.decoder);
 
         return [decoder decodeStringToObject:self withDecoder:builder.decoder];
     }
     else {
-        FLLog(@"Json property %@ has no encoder", objectDescription.objectName);
+        FLLog(@"Json property %@ has no encoder", typeDesc.identifier);
     }
 
     return nil;
@@ -38,36 +38,36 @@
 @end
 
 @implementation NSNumber (FLJsonObjectBuilder)
-- (id) objectWithJsonObjectBuilder:(FLJsonObjectBuilder*) builder withDescription:(FLObjectDescriber*) objectDescription {
+- (id) objectWithJsonObjectBuilder:(FLJsonObjectBuilder*) builder typeDesc:(FLTypeDesc*) typeDesc {
     return self;
 }
 @end
 
 @implementation NSDictionary (FLJsonObjectBuilder)
 
-- (id) objectWithJsonObjectBuilder:(FLJsonObjectBuilder*) builder withDescription:(FLObjectDescriber*) describer {
+- (id) objectWithJsonObjectBuilder:(FLJsonObjectBuilder*) builder typeDesc:(FLTypeDesc*) typeDesc {
     FLAssertNotNil(builder);
-    FLAssertNotNil(describer);
+    FLAssertNotNil(typeDesc);
 
-//    if(!FLStringsAreEqual(jsonDictionary.jsonObjectName, objectDescription.objectName)) {
-//        id subElement = [jsonDictionary jsonObjectForElementName:objectDescription.objectName];
+//    if(!FLStringsAreEqual(jsonDictionary.jsonObjectName, typeDesc.objectName)) {
+//        id subElement = [jsonDictionary jsonObjectForElementName:typeDesc.objectName];
 //
 //        if(!subElement) {
-//            FLThrowErrorCodeWithComment(NSCocoaErrorDomain, NSFileNoSuchFileError, @"XmlObjectBuilder: \"%@\" not found in \"%@\"", objectDescription.objectName, jsonDictionary.jsonObjectName);
+//            FLThrowErrorCodeWithComment(NSCocoaErrorDomain, NSFileNoSuchFileError, @"XmlObjectBuilder: \"%@\" not found in \"%@\"", typeDesc.identifier, jsonDictionary.jsonObjectName);
 //        }
 //        
 //        jsonDictionary = subElement;
 //    }
 //
-//    FLAssertWithComment(FLStringsAreEqual(jsonDictionary.key, objectDescription.objectName), @"trying to build wrong object jsonDictionary name: \"%@\", object describer name: \"%@\"", jsonDictionary.key, objectDescription.objectName);
+//    FLAssertWithComment(FLStringsAreEqual(jsonDictionary.key, typeDesc.identifier), @"trying to build wrong object jsonDictionary name: \"%@\", object typeDesc name: \"%@\"", jsonDictionary.key, typeDesc.identifier);
 
-    Class objectClass = describer.objectClass;
+    Class objectClass = typeDesc.objectClass;
     if(!objectClass) {
-        FLLog(@"Object description has nil object class: %@", [describer description]);
+        FLLog(@"Object description has nil object class: %@", [typeDesc description]);
         return nil;
     }
     
-    describer = [objectClass objectDescriber];
+    typeDesc = [objectClass objectDescriber];
 
     id rootObject = FLAutorelease([[objectClass alloc] init]);
     FLAssertNotNilWithComment(rootObject, @"unable to create object of type: %@", NSStringFromClass(objectClass));
@@ -75,13 +75,13 @@
     for(id key in self) {
         id value = [self objectForKey:key];
 
-        FLObjectDescriber* childDescription = [describer.childDescribers objectForKey:key];
-        if(!childDescription) {
-            FLLog(@"object builder skipped missing objectDescription named: %@", key);
+        FLTypeDesc* subType = [typeDesc subTypeForIdentifier:key];
+        if(!subType) {
+            FLLog(@"object builder skipped missing typeDesc named: %@", key);
             continue;
         }
         
-        id object = [value objectWithJsonObjectBuilder:builder withDescription:childDescription];
+        id object = [value objectWithJsonObjectBuilder:builder typeDesc:subType];
         FLAssertNotNil(object);
         [rootObject setValue:object forKey:key];
     }
@@ -89,7 +89,7 @@
 }
 
 // I'm not sure this makes any sense at all... ????
-- (NSArray*) objectArrayWithJsonObjectBuilder:(FLJsonObjectBuilder*) builder withObjectTypes:(NSArray*) arrayOfObjectDescribers {
+- (NSArray*) objectArrayWithJsonObjectBuilder:(FLJsonObjectBuilder*) builder withTypeDescs:(NSArray*) arrayOfObjectDescribers {
 
     FLAssertionFailedWithComment(@"array from dictinary for JSON object makes no sense");
     
@@ -100,27 +100,27 @@
 
 @implementation NSArray (FLJsonObjectBuilder)
 
-- (NSArray*) objectArrayWithJsonObjectBuilder:(FLJsonObjectBuilder*) builder withObjectTypes:(NSArray*) arrayOfObjectDescribers {
+- (NSArray*) objectArrayWithJsonObjectBuilder:(FLJsonObjectBuilder*) builder withTypeDescs:(NSArray*) arrayOfObjectDescribers {
 
 // TODO: handle hetrogenous arrays
-    FLObjectDescriber* objectDescription = [arrayOfObjectDescribers firstObject];
+    FLTypeDesc* typeDesc = [arrayOfObjectDescribers firstObject];
 
     NSMutableArray* newArray = [NSMutableArray arrayWithCapacity:self.count];
     for(id child in self) {	
     
 // TODO: we need a way of choosing the type. We'll have to add a way to associate a property like "type" with the type??            
                     		
-        [newArray addObject:[builder objectFromJSON:child withObjectType:objectDescription]];
+        [newArray addObject:[builder objectFromJSON:child withTypeDesc:typeDesc]];
     }
 
     return newArray;
 }
 
-- (id) objectWithJsonObjectBuilder:(FLJsonObjectBuilder*) builder withDescription:(FLObjectDescriber*) objectDescription {
+- (id) objectWithJsonObjectBuilder:(FLJsonObjectBuilder*) builder typeDesc:(FLTypeDesc*) typeDesc {
 
     NSMutableArray* newArray = [NSMutableArray arrayWithCapacity:self.count];
     for(id child in self) {			
-        [newArray addObject:[builder objectFromJSON:child withObjectType:objectDescription]];
+        [newArray addObject:[builder objectFromJSON:child withTypeDesc:typeDesc]];
     }
 
     return newArray;
@@ -162,24 +162,24 @@
     return FLAutorelease([[[self class] alloc] init]);
 }
 
-- (NSArray*) arrayOfObjectsFromJSON:(id) jsonObject withObjectTypes:(NSArray*) arrayOfObjectDescriber {
-    return [jsonObject objectArrayWithJsonObjectBuilder:self withObjectTypes: arrayOfObjectDescriber];
+- (NSArray*) arrayOfObjectsFromJSON:(id) jsonObject withTypeDescs:(NSArray*) arrayOfObjectDescriber {
+    return [jsonObject objectArrayWithJsonObjectBuilder:self withTypeDescs: arrayOfObjectDescriber];
 }
 
-- (NSArray*) arrayOfObjectsFromJSON:(id) json withObjectType:(FLObjectDescriber*) type {
-    return [self arrayOfObjectsFromJSON:json withObjectTypes:[NSArray arrayWithObject:type]];
+- (NSArray*) arrayOfObjectsFromJSON:(id) json withTypeDesc:(FLTypeDesc*) type {
+    return [self arrayOfObjectsFromJSON:json withTypeDescs:[NSArray arrayWithObject:type]];
 }
 
-- (id) objectFromJSON:(id) jsonObject withObjectType:(FLObjectDescriber*) type {
-    return [jsonObject objectWithJsonObjectBuilder:self withDescription:type];
+- (id) objectFromJSON:(id) jsonObject withTypeDesc:(FLTypeDesc*) type {
+    return [jsonObject objectWithJsonObjectBuilder:self typeDesc:type];
 }
 
 - (NSArray*) arrayOfObjectsFromJSON:(id) json expectedRootObjectClass:(Class) aClass {
-    return [self arrayOfObjectsFromJSON:json withObjectTypes:[NSArray arrayWithObject:[aClass objectDescriber]]];
+    return [self arrayOfObjectsFromJSON:json withTypeDescs:[NSArray arrayWithObject:[aClass objectDescriber]]];
 }
 
 - (id) objectFromJSON:(id) parsedJson expectedRootObjectClass:(Class) type {
-    return [parsedJson objectWithJsonObjectBuilder:self withDescription:[type objectDescriber]];
+    return [parsedJson objectWithJsonObjectBuilder:self typeDesc:[type objectDescriber]];
 }
 
 @end

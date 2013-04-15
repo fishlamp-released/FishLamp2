@@ -78,7 +78,7 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addChildDescriberWithName:@"AuthenticatePlainResult" withClass:[NSString class]];
+		[s_describer setChildForIdentifier:@"AuthenticatePlainResult" withClass:[NSString class]];
 	});
 	return s_describer;
 }

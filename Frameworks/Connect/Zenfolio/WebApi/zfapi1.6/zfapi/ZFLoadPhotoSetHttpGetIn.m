@@ -98,9 +98,9 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addChildDescriberWithName:@"photoSetId" withClass:[NSString class]];
-		[s_describer addChildDescriberWithName:@"level" withClass:[NSString class]];
-		[s_describer addChildDescriberWithName:@"includePhotos" withClass:[NSString class]];
+		[s_describer setChildForIdentifier:@"photoSetId" withClass:[NSString class]];
+		[s_describer setChildForIdentifier:@"level" withClass:[NSString class]];
+		[s_describer setChildForIdentifier:@"includePhotos" withClass:[NSString class]];
 	});
 	return s_describer;
 }

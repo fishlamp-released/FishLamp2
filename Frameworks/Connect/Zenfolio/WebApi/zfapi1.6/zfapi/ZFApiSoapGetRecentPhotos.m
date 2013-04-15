@@ -85,8 +85,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addChildDescriberWithName:@"input" withClass:[ZFGetRecentPhotos class]];
-		[s_describer addChildDescriberWithName:@"output" withClass:[ZFGetRecentPhotosResponse class]];
+		[s_describer setChildForIdentifier:@"input" withClass:[ZFGetRecentPhotos class]];
+		[s_describer setChildForIdentifier:@"output" withClass:[ZFGetRecentPhotosResponse class]];
 	});
 	return s_describer;
 }

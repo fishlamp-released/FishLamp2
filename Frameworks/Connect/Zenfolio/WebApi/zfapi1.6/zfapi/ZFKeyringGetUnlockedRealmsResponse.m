@@ -78,7 +78,7 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addChildDescriberWithName:@"KeyringGetUnlockedRealmsResult" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"int" objectClass:[FLIntegerNumber class]], nil]];
+		[s_describer setChildForIdentifier:@"KeyringGetUnlockedRealmsResult" withArrayTypes:[NSArray arrayWithObjects:[FLTypeDesc typeDesc:@"int" class:[FLIntegerNumber class]], nil]];
 	});
 	return s_describer;
 }

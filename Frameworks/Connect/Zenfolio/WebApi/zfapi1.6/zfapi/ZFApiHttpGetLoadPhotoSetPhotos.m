@@ -85,8 +85,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addChildDescriberWithName:@"input" withClass:[ZFLoadPhotoSetPhotosHttpGetIn class]];
-		[s_describer addChildDescriberWithName:@"output" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"Photo" objectClass:[ZFPhoto class]], nil]];
+		[s_describer setChildForIdentifier:@"input" withClass:[ZFLoadPhotoSetPhotosHttpGetIn class]];
+		[s_describer setChildForIdentifier:@"output" withArrayTypes:[NSArray arrayWithObjects:[FLTypeDesc typeDesc:@"Photo" class:[ZFPhoto class]], nil]];
 	});
 	return s_describer;
 }

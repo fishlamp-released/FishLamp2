@@ -161,15 +161,15 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addChildDescriberWithName:@"RealmId" withClass:[FLIntegerNumber class] ];
-		[s_describer addChildDescriberWithName:@"AccessType" withClass:[NSString class]];
-		[s_describer addChildDescriberWithName:@"IsDerived" withClass:[FLBoolNumber class] ];
-		[s_describer addChildDescriberWithName:@"AccessMask" withClass:[NSString class]];
-		[s_describer addChildDescriberWithName:@"Viewers" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"Viewer" objectClass:[NSString class] ], nil]];
-		[s_describer addChildDescriberWithName:@"PasswordHint" withClass:[NSString class]];
-		[s_describer addChildDescriberWithName:@"SrcPasswordHint" withClass:[NSString class]];
-		[s_describer addChildDescriberWithName:@"protectedObjectClassName" withClass:[NSString class]];
-		[s_describer addChildDescriberWithName:@"password" withClass:[NSString class]];
+		[s_describer setChildForIdentifier:@"RealmId" withClass:[FLIntegerNumber class] ];
+		[s_describer setChildForIdentifier:@"AccessType" withClass:[NSString class]];
+		[s_describer setChildForIdentifier:@"IsDerived" withClass:[FLBoolNumber class] ];
+		[s_describer setChildForIdentifier:@"AccessMask" withClass:[NSString class]];
+		[s_describer setChildForIdentifier:@"Viewers" withArrayTypes:[NSArray arrayWithObjects:[FLTypeDesc typeDesc:@"Viewer" class:[NSString class] ], nil]];
+		[s_describer setChildForIdentifier:@"PasswordHint" withClass:[NSString class]];
+		[s_describer setChildForIdentifier:@"SrcPasswordHint" withClass:[NSString class]];
+		[s_describer setChildForIdentifier:@"protectedObjectClassName" withClass:[NSString class]];
+		[s_describer setChildForIdentifier:@"password" withClass:[NSString class]];
 	});
 	return s_describer;
 }

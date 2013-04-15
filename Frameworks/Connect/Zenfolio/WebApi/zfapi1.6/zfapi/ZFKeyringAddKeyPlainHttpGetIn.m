@@ -98,9 +98,9 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addChildDescriberWithName:@"keyring" withClass:[NSString class]];
-		[s_describer addChildDescriberWithName:@"realmId" withClass:[NSString class]];
-		[s_describer addChildDescriberWithName:@"password" withClass:[NSString class]];
+		[s_describer setChildForIdentifier:@"keyring" withClass:[NSString class]];
+		[s_describer setChildForIdentifier:@"realmId" withClass:[NSString class]];
+		[s_describer setChildForIdentifier:@"password" withClass:[NSString class]];
 	});
 	return s_describer;
 }

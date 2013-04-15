@@ -79,7 +79,7 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addChildDescriberWithName:@"SearchSetByTextResult" withClass:[ZFPhotoSetResult class]];
+		[s_describer setChildForIdentifier:@"SearchSetByTextResult" withClass:[ZFPhotoSetResult class]];
 	});
 	return s_describer;
 }

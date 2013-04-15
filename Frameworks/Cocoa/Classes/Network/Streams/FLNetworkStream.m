@@ -9,40 +9,68 @@
 #import "FLNetworkStream_Internal.h"
 #import "FLDispatch.h"
 #import "FLNotificationSending.h"
+#import "FLFifoQueueNetworkStreamEventHandler.h"
 
 @interface FLNetworkStream ()
 @property (readwrite, assign, getter=isOpen) BOOL open;
-@property (readwrite, strong) FLFifoAsyncQueue* asyncQueue;
+@property (readwrite, strong) id<FLNetworkStreamEventHandler> eventHandler;
 @property (readwrite, strong) FLTimer* timer;
 @end
 
 @implementation FLNetworkStream
-@synthesize asyncQueue = _asyncQueue;
+@synthesize eventHandler = _eventHandler;
 @synthesize open = _open;
 @synthesize delegate = _delegate;
 @synthesize timer = _timer;
 @synthesize streamSecurity = _streamSecurity;
 @synthesize wasTerminated = _wasTerminated;
 
+static Class s_eventHandlerClass = nil;
+
++ (Class) defaultEventHandlerClass {
+    return s_eventHandlerClass;
+}
+
++ (void) setDefaultEventHandlerClass:(Class) aClass {
+    s_eventHandlerClass  = aClass;
+}
+
++ (void) initialize {
+    if(!s_eventHandlerClass) {
+        s_eventHandlerClass = [FLFifoQueueNetworkStreamEventHandler class];
+    }
+}
+
 - (id) init {
     return [self initWithStreamSecurity:FLNetworkStreamSecurityNone];
 }
 
-- (id) initWithStreamSecurity:(FLNetworkStreamSecurity) security {
+- (id) initWithStreamSecurity:(FLNetworkStreamSecurity) security
+                 eventHandler:(id<FLNetworkStreamEventHandler>) eventHandler {
+                 
     self = [super init];
     if(self) {
         _timer = [[FLTimer alloc] init];
         _timer.delegate = self;
         _streamSecurity = security;
+        
+        if(!eventHandler) {
+            eventHandler = [s_eventHandlerClass networkStreamEventHandler];
+        }
+        
+        self.eventHandler = eventHandler;
     }
     return self;
 }
 
+- (id) initWithStreamSecurity:(FLNetworkStreamSecurity) security {
+    return [self initWithStreamSecurity:security eventHandler:nil];
+}
+
 - (void) dealloc {
-    [_asyncQueue releaseToPool];
     _timer.delegate = nil;
 #if FL_MRC
-    [_asyncQueue release];
+    [_eventHandler release];
     [_timer release];
     [super dealloc];
 #endif
@@ -79,6 +107,7 @@
     [self.timer stopTimer];
     
     self.delegate = nil;
+    [self.eventHandler streamDidClose:self];
 }
 
 - (void) encounteredBytesAvailable {
@@ -107,8 +136,6 @@
 - (void) encounteredError:(NSError*) error {
     FLAssert([NSThread currentThread] != [NSThread mainThread]);
     self.wasTerminated = YES;
-    
-// may already be set. all that matters is that the last error 
     FLPerformSelector2(self.delegate, @selector(networkStream:encounteredError:), self, error);
 }
 
@@ -122,97 +149,31 @@
 - (void) closeStream {
 }
 
-- (void) openStreamWithDelegate:(id<FLNetworkStreamDelegate>) delegate 
-                     asyncQueue:(FLFifoAsyncQueue*) asyncQueue {
-    
-    self.delegate = delegate;
-    self.asyncQueue = asyncQueue;
-    [self queueSelector:@selector(willOpen)];
-    [self queueSelector:@selector(openStream)];
-    [self queueSelector:@selector(startTimeoutTimer)];
-}
+- (void) openStreamWithDelegate:(id<FLNetworkStreamDelegate>) delegate {
+    FLAssertNotNil(delegate);
+    FLAssertNotNil(self.eventHandler);
 
+    self.delegate = delegate;
+    [self.eventHandler streamWillOpen:self completion:^{
+        [self.eventHandler queueSelector:@selector(willOpen)];
+        [self.eventHandler queueSelector:@selector(openStream)];
+        [self.eventHandler queueSelector:@selector(startTimeoutTimer)];
+    }];
+}
 
 - (void) terminateStream {
     self.wasTerminated = YES;
     self.delegate = nil;
-    [self queueSelector:@selector(closeStream)];
-}
-
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Warc-performSelector-leaks"
-
-- (void) queueSelector:(SEL) selector withObject:(id) object {
-    [self queueBlock:^{ 
-        [self performSelector:selector withObject:object];
-    }];
-}
-
-- (void) queueSelector:(SEL) selector {
-    [self queueBlock:^{ 
-    
-        @try { 
-            [self performSelector:selector];
-        }
-        @catch(NSException* ex) {
-            self.wasTerminated = YES;
-            FLLog(@"stream encountered secondary error: %@", [ex.error localizedDescription]);
-        }
-    }];
-}
-
-#pragma GCC diagnostic pop
-
-- (void) queueBlock:(dispatch_block_t) block {
-    [self.asyncQueue queueBlock:block completion:nil];
+    [self.eventHandler queueSelector:@selector(closeStream)];
 }
 
 - (void) timerDidTimeout:(FLTimer*) timer {
     self.wasTerminated = YES;
-    [self queueSelector:@selector(encounteredError:) withObject:[NSError timeoutError]];
+    [self.eventHandler queueSelector:@selector(encounteredError:) withObject:[NSError timeoutError]];
 }
 
 - (void) touchTimeoutTimestamp {
     [self.timer  touchTimestamp];
-}
-
-+ (void) handleStreamEvent:(CFStreamEventType) eventType withStream:(FLNetworkStream*) stream {
-
-    FLConfirmIsNotNil(stream);
-
-//#if TRACE
-//    FLDebugLog(@"Read Stream got event %d", eventType);
-//#endif
-    [stream touchTimeoutTimestamp];
-
-    switch (eventType)  {
-
-        // NOTE: HttpStream doesn't get this event.
-        case kCFStreamEventOpenCompleted:
-            [stream queueSelector:@selector(encounteredOpen)];
-        break;
-
-        case kCFStreamEventErrorOccurred:  
-            stream.wasTerminated = YES;
-            [stream queueSelector:@selector(encounteredError:) withObject:[stream streamError]];
-        break;
-        
-        case kCFStreamEventEndEncountered:
-            [stream queueSelector:@selector(encounteredEnd)];
-        break;
-        
-        case kCFStreamEventNone:
-            // wtf? why would we get this?
-            break;
-        
-        case kCFStreamEventHasBytesAvailable:
-            [stream queueSelector:@selector(encounteredBytesAvailable)];
-        break;
-            
-        case kCFStreamEventCanAcceptBytes: 
-            [stream queueSelector:@selector(encounteredCanAcceptBytes)];
-            break;
-    }
 }
 
 @end

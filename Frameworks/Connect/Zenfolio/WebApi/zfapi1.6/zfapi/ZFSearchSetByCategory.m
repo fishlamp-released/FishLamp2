@@ -130,12 +130,12 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addChildDescriberWithName:@"searchId" withClass:[NSString class]];
-		[s_describer addChildDescriberWithName:@"type" withClass:[NSString class]];
-		[s_describer addChildDescriberWithName:@"sortOrder" withClass:[NSString class]];
-		[s_describer addChildDescriberWithName:@"categoryCode" withClass:[FLIntegerNumber class] ];
-		[s_describer addChildDescriberWithName:@"offset" withClass:[FLIntegerNumber class] ];
-		[s_describer addChildDescriberWithName:@"limit" withClass:[FLIntegerNumber class] ];
+		[s_describer setChildForIdentifier:@"searchId" withClass:[NSString class]];
+		[s_describer setChildForIdentifier:@"type" withClass:[NSString class]];
+		[s_describer setChildForIdentifier:@"sortOrder" withClass:[NSString class]];
+		[s_describer setChildForIdentifier:@"categoryCode" withClass:[FLIntegerNumber class] ];
+		[s_describer setChildForIdentifier:@"offset" withClass:[FLIntegerNumber class] ];
+		[s_describer setChildForIdentifier:@"limit" withClass:[FLIntegerNumber class] ];
 	});
 	return s_describer;
 }

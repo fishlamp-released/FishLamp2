@@ -85,8 +85,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addChildDescriberWithName:@"input" withClass:[ZFKeyringAddKeyPlain class]];
-		[s_describer addChildDescriberWithName:@"output" withClass:[ZFKeyringAddKeyPlainResponse class]];
+		[s_describer setChildForIdentifier:@"input" withClass:[ZFKeyringAddKeyPlain class]];
+		[s_describer setChildForIdentifier:@"output" withClass:[ZFKeyringAddKeyPlainResponse class]];
 	});
 	return s_describer;
 }

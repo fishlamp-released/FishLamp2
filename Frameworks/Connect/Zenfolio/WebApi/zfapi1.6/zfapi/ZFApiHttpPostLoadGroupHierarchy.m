@@ -85,8 +85,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addChildDescriberWithName:@"input" withClass:[ZFLoadGroupHierarchyHttpPostIn class]];
-		[s_describer addChildDescriberWithName:@"output" withClass:[ZFGroup class]];
+		[s_describer setChildForIdentifier:@"input" withClass:[ZFLoadGroupHierarchyHttpPostIn class]];
+		[s_describer setChildForIdentifier:@"output" withClass:[ZFGroup class]];
 	});
 	return s_describer;
 }

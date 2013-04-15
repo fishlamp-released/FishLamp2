@@ -89,8 +89,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addChildDescriberWithName:@"Photos" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"Photo" objectClass:[ZFPhoto class]], nil]];
-		[s_describer addChildDescriberWithName:@"TotalCount" withClass:[FLIntegerNumber class] ];
+		[s_describer setChildForIdentifier:@"Photos" withArrayTypes:[NSArray arrayWithObjects:[FLTypeDesc typeDesc:@"Photo" class:[ZFPhoto class]], nil]];
+		[s_describer setChildForIdentifier:@"TotalCount" withClass:[FLIntegerNumber class] ];
 	});
 	return s_describer;
 }

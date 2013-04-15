@@ -94,9 +94,9 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addChildDescriberWithName:@"name" withClass:[NSString class]];
-		[s_describer addChildDescriberWithName:@"photoSetId" withClass:[FLIntegerNumber class] ];
-		[s_describer addChildDescriberWithName:@"uploadUrl" withClass:[NSString class]];
+		[s_describer setChildForIdentifier:@"name" withClass:[NSString class]];
+		[s_describer setChildForIdentifier:@"photoSetId" withClass:[FLIntegerNumber class] ];
+		[s_describer setChildForIdentifier:@"uploadUrl" withClass:[NSString class]];
 	});
 	return s_describer;
 }

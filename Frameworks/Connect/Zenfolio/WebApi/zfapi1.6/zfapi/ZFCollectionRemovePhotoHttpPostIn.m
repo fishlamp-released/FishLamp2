@@ -88,8 +88,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addChildDescriberWithName:@"collectionId" withClass:[NSString class]];
-		[s_describer addChildDescriberWithName:@"photoId" withClass:[NSString class]];
+		[s_describer setChildForIdentifier:@"collectionId" withClass:[NSString class]];
+		[s_describer setChildForIdentifier:@"photoId" withClass:[NSString class]];
 	});
 	return s_describer;
 }

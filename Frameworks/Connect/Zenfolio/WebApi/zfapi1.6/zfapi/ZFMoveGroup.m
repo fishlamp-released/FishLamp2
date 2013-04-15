@@ -98,9 +98,9 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addChildDescriberWithName:@"groupId" withClass:[FLIntegerNumber class] ];
-		[s_describer addChildDescriberWithName:@"destGroupId" withClass:[FLIntegerNumber class] ];
-		[s_describer addChildDescriberWithName:@"index" withClass:[FLIntegerNumber class] ];
+		[s_describer setChildForIdentifier:@"groupId" withClass:[FLIntegerNumber class] ];
+		[s_describer setChildForIdentifier:@"destGroupId" withClass:[FLIntegerNumber class] ];
+		[s_describer setChildForIdentifier:@"index" withClass:[FLIntegerNumber class] ];
 	});
 	return s_describer;
 }

@@ -84,8 +84,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addChildDescriberWithName:@"groupId" withClass:[FLIntegerNumber class] ];
-		[s_describer addChildDescriberWithName:@"updater" withClass:[ZFAccessUpdater class]];
+		[s_describer setChildForIdentifier:@"groupId" withClass:[FLIntegerNumber class] ];
+		[s_describer setChildForIdentifier:@"updater" withClass:[ZFAccessUpdater class]];
 	});
 	return s_describer;
 }

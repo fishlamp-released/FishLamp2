@@ -7,43 +7,17 @@
 //
 
 #import "FLCocoaRequired.h"
-#import "FishLampCore.h"
-#import "FLObjectDescriber.h"
+#import "FLTypeDesc.h"
+#import "FLObjcRuntime.h"
 #import "FLPropertyAttributes.h"
-#import "FLObjectEncoder.h"
-#import "FLCoreTypes.h"
 
-@interface FLObjectDescriber : NSObject {
-@private 
-    NSString* _objectName;
-    Class _objectClass;
-	NSMutableDictionary* _childDescribers;
-    FLObjectEncoder* _objectEncoder;
-}
+@interface FLObjectDescriber : FLTypeDesc 
 
-@property (readonly, strong, nonatomic) NSString* objectName;
-@property (readonly, assign, nonatomic) Class objectClass;
-@property (readonly, copy, nonatomic) NSDictionary* childDescribers;
-
-@property (readwrite, strong, nonatomic) FLObjectEncoder* objectEncoder;
-
-- (id) initWithClass:(Class) aClass;
-
-- (id) initWithClass:(Class) aClass 
-      withObjectName:(NSString*) name;
-
-+ (id) objectDescriberForClass:(Class) aClass
-                withObjectName:(NSString*) name;
-
-+ (id) objectDescriberForClass:(Class) aClass;
-
-- (FLObjectDescriber*) childDescriberForObjectName:(NSString*) propertyName;
-
-- (void) addChildDescriberWithName:(NSString*) name withClass:(Class) objectClass;
-- (void) addChildDescriberWithName:(NSString*) name withArrayTypes:(NSArray*) types;
++ (id) objectDescriber:(Class) aClass;
 
 // deprecated
-+ (id) objectDescriber:(NSString*) name objectClass:(Class) aClass;
+- (void) setChildForIdentifier:(NSString*) name withClass:(Class) objectClass;
+- (void) setChildForIdentifier:(NSString*) name withArrayTypes:(NSArray*) types;
 
 @end
 

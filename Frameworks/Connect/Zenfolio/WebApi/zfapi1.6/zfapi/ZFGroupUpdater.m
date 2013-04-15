@@ -98,9 +98,9 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addChildDescriberWithName:@"Title" withClass:[NSString class]];
-		[s_describer addChildDescriberWithName:@"Caption" withClass:[NSString class]];
-		[s_describer addChildDescriberWithName:@"CustomReference" withClass:[NSString class]];
+		[s_describer setChildForIdentifier:@"Title" withClass:[NSString class]];
+		[s_describer setChildForIdentifier:@"Caption" withClass:[NSString class]];
+		[s_describer setChildForIdentifier:@"CustomReference" withClass:[NSString class]];
 	});
 	return s_describer;
 }

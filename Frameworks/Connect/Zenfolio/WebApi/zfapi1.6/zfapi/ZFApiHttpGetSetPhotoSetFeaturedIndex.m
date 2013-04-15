@@ -85,8 +85,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addChildDescriberWithName:@"input" withClass:[ZFSetPhotoSetFeaturedIndexHttpGetIn class]];
-		[s_describer addChildDescriberWithName:@"output" withClass:[ZFSetPhotoSetFeaturedIndexHttpGetOut class]];
+		[s_describer setChildForIdentifier:@"input" withClass:[ZFSetPhotoSetFeaturedIndexHttpGetIn class]];
+		[s_describer setChildForIdentifier:@"output" withClass:[ZFSetPhotoSetFeaturedIndexHttpGetOut class]];
 	});
 	return s_describer;
 }

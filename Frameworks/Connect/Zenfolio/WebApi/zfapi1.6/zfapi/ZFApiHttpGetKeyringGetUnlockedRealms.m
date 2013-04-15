@@ -84,8 +84,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addChildDescriberWithName:@"input" withClass:[ZFKeyringGetUnlockedRealmsHttpGetIn class]];
-		[s_describer addChildDescriberWithName:@"output" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"int" objectClass:[FLIntegerNumber class]], nil]];
+		[s_describer setChildForIdentifier:@"input" withClass:[ZFKeyringGetUnlockedRealmsHttpGetIn class]];
+		[s_describer setChildForIdentifier:@"output" withArrayTypes:[NSArray arrayWithObjects:[FLTypeDesc typeDesc:@"int" class:[FLIntegerNumber class]], nil]];
 	});
 	return s_describer;
 }

@@ -79,7 +79,7 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addChildDescriberWithName:@"LoadAccessRealmResult" withClass:[ZFAccessDescriptor class]];
+		[s_describer setChildForIdentifier:@"LoadAccessRealmResult" withClass:[ZFAccessDescriptor class]];
 	});
 	return s_describer;
 }

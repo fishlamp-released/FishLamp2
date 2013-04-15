@@ -12,7 +12,7 @@
 
 @interface FLObjectEncoder (FLXmlSerialization)
 - (void) addToXmlElement:(FLXmlElement*) xmlElement
-     objectDescriber:(FLObjectDescriber*) description
+                typeDesc:(FLTypeDesc*) description
                    value:(id) value;
 @end
 

@@ -218,21 +218,21 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addChildDescriberWithName:@"FirstName" withClass:[NSString class]];
-		[s_describer addChildDescriberWithName:@"LastName" withClass:[NSString class]];
-		[s_describer addChildDescriberWithName:@"CompanyName" withClass:[NSString class]];
-		[s_describer addChildDescriberWithName:@"Street" withClass:[NSString class]];
-		[s_describer addChildDescriberWithName:@"Street2" withClass:[NSString class]];
-		[s_describer addChildDescriberWithName:@"City" withClass:[NSString class]];
-		[s_describer addChildDescriberWithName:@"Zip" withClass:[NSString class]];
-		[s_describer addChildDescriberWithName:@"State" withClass:[NSString class]];
-		[s_describer addChildDescriberWithName:@"Country" withClass:[NSString class]];
-		[s_describer addChildDescriberWithName:@"Phone" withClass:[NSString class]];
-		[s_describer addChildDescriberWithName:@"Phone2" withClass:[NSString class]];
-		[s_describer addChildDescriberWithName:@"Fax" withClass:[NSString class]];
-		[s_describer addChildDescriberWithName:@"Url" withClass:[NSString class]];
-		[s_describer addChildDescriberWithName:@"Email" withClass:[NSString class]];
-		[s_describer addChildDescriberWithName:@"Other" withClass:[NSString class]];
+		[s_describer setChildForIdentifier:@"FirstName" withClass:[NSString class]];
+		[s_describer setChildForIdentifier:@"LastName" withClass:[NSString class]];
+		[s_describer setChildForIdentifier:@"CompanyName" withClass:[NSString class]];
+		[s_describer setChildForIdentifier:@"Street" withClass:[NSString class]];
+		[s_describer setChildForIdentifier:@"Street2" withClass:[NSString class]];
+		[s_describer setChildForIdentifier:@"City" withClass:[NSString class]];
+		[s_describer setChildForIdentifier:@"Zip" withClass:[NSString class]];
+		[s_describer setChildForIdentifier:@"State" withClass:[NSString class]];
+		[s_describer setChildForIdentifier:@"Country" withClass:[NSString class]];
+		[s_describer setChildForIdentifier:@"Phone" withClass:[NSString class]];
+		[s_describer setChildForIdentifier:@"Phone2" withClass:[NSString class]];
+		[s_describer setChildForIdentifier:@"Fax" withClass:[NSString class]];
+		[s_describer setChildForIdentifier:@"Url" withClass:[NSString class]];
+		[s_describer setChildForIdentifier:@"Email" withClass:[NSString class]];
+		[s_describer setChildForIdentifier:@"Other" withClass:[NSString class]];
 	});
 	return s_describer;
 }

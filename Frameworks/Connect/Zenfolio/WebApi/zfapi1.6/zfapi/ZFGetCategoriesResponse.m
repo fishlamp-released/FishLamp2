@@ -79,7 +79,7 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addChildDescriberWithName:@"GetCategoriesResult" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"Category" objectClass:[ZFCategory class]], nil]];
+		[s_describer setChildForIdentifier:@"GetCategoriesResult" withArrayTypes:[NSArray arrayWithObjects:[FLTypeDesc typeDesc:@"Category" class:[ZFCategory class]], nil]];
 	});
 	return s_describer;
 }

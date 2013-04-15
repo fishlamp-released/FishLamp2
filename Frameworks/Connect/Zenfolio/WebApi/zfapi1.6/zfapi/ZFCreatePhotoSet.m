@@ -100,9 +100,9 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addChildDescriberWithName:@"groupId" withClass:[FLIntegerNumber class] ];
-		[s_describer addChildDescriberWithName:@"type" withClass:[NSString class]];
-		[s_describer addChildDescriberWithName:@"updater" withClass:[ZFPhotoSetUpdater class]];
+		[s_describer setChildForIdentifier:@"groupId" withClass:[FLIntegerNumber class] ];
+		[s_describer setChildForIdentifier:@"type" withClass:[NSString class]];
+		[s_describer setChildForIdentifier:@"updater" withClass:[ZFPhotoSetUpdater class]];
 	});
 	return s_describer;
 }

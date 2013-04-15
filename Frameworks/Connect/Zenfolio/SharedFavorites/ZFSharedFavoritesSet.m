@@ -138,13 +138,13 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addChildDescriberWithName:@"sharedFavoritesSetId" withClass:[NSString class]];
-		[s_describer addChildDescriberWithName:@"sharerName" withClass:[NSString class]];
-		[s_describer addChildDescriberWithName:@"sharerMessage" withClass:[NSString class]];
-		[s_describer addChildDescriberWithName:@"sharerEmail" withClass:[NSString class]];
-		[s_describer addChildDescriberWithName:@"photographerLogin" withClass:[NSString class]];
-		[s_describer addChildDescriberWithName:@"favoritesSetName" withClass:[NSString class]];
-		[s_describer addChildDescriberWithName:@"photoIds" withClass:[NSMutableSet class]];
+		[s_describer setChildForIdentifier:@"sharedFavoritesSetId" withClass:[NSString class]];
+		[s_describer setChildForIdentifier:@"sharerName" withClass:[NSString class]];
+		[s_describer setChildForIdentifier:@"sharerMessage" withClass:[NSString class]];
+		[s_describer setChildForIdentifier:@"sharerEmail" withClass:[NSString class]];
+		[s_describer setChildForIdentifier:@"photographerLogin" withClass:[NSString class]];
+		[s_describer setChildForIdentifier:@"favoritesSetName" withClass:[NSString class]];
+		[s_describer setChildForIdentifier:@"photoIds" withClass:[NSMutableSet class]];
 	});
 	return s_describer;
 }

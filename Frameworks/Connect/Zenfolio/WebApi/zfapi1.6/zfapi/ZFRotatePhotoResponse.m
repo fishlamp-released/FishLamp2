@@ -79,7 +79,7 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addChildDescriberWithName:@"RotatePhotoResult" withClass:[ZFPhoto class]];
+		[s_describer setChildForIdentifier:@"RotatePhotoResult" withClass:[ZFPhoto class]];
 	});
 	return s_describer;
 }

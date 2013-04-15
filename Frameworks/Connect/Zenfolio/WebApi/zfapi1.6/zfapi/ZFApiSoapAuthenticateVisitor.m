@@ -85,8 +85,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addChildDescriberWithName:@"input" withClass:[ZFAuthenticateVisitor class]];
-		[s_describer addChildDescriberWithName:@"output" withClass:[ZFAuthenticateVisitorResponse class]];
+		[s_describer setChildForIdentifier:@"input" withClass:[ZFAuthenticateVisitor class]];
+		[s_describer setChildForIdentifier:@"output" withClass:[ZFAuthenticateVisitorResponse class]];
 	});
 	return s_describer;
 }

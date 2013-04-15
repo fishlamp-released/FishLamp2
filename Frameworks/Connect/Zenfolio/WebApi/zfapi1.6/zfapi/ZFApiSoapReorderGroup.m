@@ -85,8 +85,8 @@
 		{
 			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
 		}
-		[s_describer addChildDescriberWithName:@"input" withClass:[ZFReorderGroup class]];
-		[s_describer addChildDescriberWithName:@"output" withClass:[ZFReorderGroupResponse class]];
+		[s_describer setChildForIdentifier:@"input" withClass:[ZFReorderGroup class]];
+		[s_describer setChildForIdentifier:@"output" withClass:[ZFReorderGroupResponse class]];
 	});
 	return s_describer;
 }
