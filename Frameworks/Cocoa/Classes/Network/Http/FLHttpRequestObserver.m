@@ -20,7 +20,7 @@
 //@synthesize didOpenBlock = _didOpenBlock;
 //@synthesize willCloseBlock = _willCloseBlock;
 //@synthesize didCloseBlock = _didCloseBlock;
-//@synthesize encounteredErrorBlock = _encounteredErrorBlock;
+//@synthesize encounteredErrorBlock = _wasTerminatedBlock;
 //@synthesize didWriteBytesBlock = _didWriteBytesBlock;
 //@synthesize didReadBytesBlock = _didReadBytesBlock;
 //@synthesize didFinishBlock = _observerDidFinishBlock;
@@ -33,7 +33,7 @@
 //    [_didOpenBlock release];
 //    [_willCloseBlock release];
 //    [_didCloseBlock release];
-//    [_encounteredErrorBlock release];
+//    [_wasTerminatedBlock release];
 //    [_didWriteBytesBlock release];
 //    [_didReadBytesBlock release];
 //    [_observerDidFinishBlock release];

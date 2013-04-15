@@ -25,7 +25,7 @@
 ////    fl_result_block_t _didCloseBlock;
 ////    fl_result_block_t _observerDidFinishBlock;
 ////    
-////    FLBlockWithError _encounteredErrorBlock;
+////    FLBlockWithError _wasTerminatedBlock;
 ////    
 ////    FLBlockWithHttpByteCount _didWriteBytesBlock;
 ////    FLBlockWithHttpByteCount _didReadBytesBlock;

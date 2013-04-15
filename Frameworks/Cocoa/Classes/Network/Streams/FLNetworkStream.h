@@ -22,7 +22,7 @@ typedef enum {
 @interface FLNetworkStream : NSObject<FLTimerDelegate> {
 @private
     BOOL _open;
-    BOOL _encounteredError;
+    BOOL _wasTerminated;
     FLFifoAsyncQueue* _asyncQueue;
     __unsafe_unretained id<FLNetworkStreamDelegate> _delegate;
     FLTimer* _timer;
