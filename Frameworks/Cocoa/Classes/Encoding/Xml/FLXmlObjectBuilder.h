@@ -9,8 +9,7 @@
 #import "FLCocoaRequired.h"
 #import "FLDataEncoder.h"
 #import "FLParsedItem.h"
-#import "FLObjectDescriber.h"
-#import "FLObjectDescriber.h"
+#import "FLTypeDesc.h"
 
 @interface FLXmlObjectBuilder : NSObject {
 @private
@@ -22,12 +21,12 @@
 + (id) xmlObjectBuilder:(id<FLDataDecoding>) decoder;
 + (id) xmlObjectBuilder;
 
-- (NSArray*) objectsFromXML:(FLParsedItem*) xmlElement withObjectTypes:(NSArray*) arrayOfobjectDescribers;
+- (NSArray*) objectsFromXML:(FLParsedItem*) xmlElement withTypeDescs:(NSArray*) arrayOfobjectDescribers;
 
-- (NSArray*) objectsFromXML:(FLParsedItem*) xmlElement withObjectType:(FLObjectDescriber*) type; // for homogeneous arrays
+- (NSArray*) objectsFromXML:(FLParsedItem*) xmlElement withTypeDesc:(FLTypeDesc*) type; // for homogeneous arrays
 
 // this will fail if number of return objects != 1
-- (id) objectFromXML:(FLParsedItem*) element withObjectType:(FLObjectDescriber*) type;
+- (id) objectFromXML:(FLParsedItem*) element withTypeDesc:(FLTypeDesc*) type;
 
 // optional overrides
 - (FLParsedItem*) willBuildObjectsWithXML:(FLParsedItem*) element;

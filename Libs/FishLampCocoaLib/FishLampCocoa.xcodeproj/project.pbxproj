@@ -2685,6 +2685,15 @@
 		27493693169A10CF008E8EC5 /* __ExternalHeaders.h in Headers */ = {isa = PBXBuildFile; fileRef = 27493691169A10CF008E8EC5 /* __ExternalHeaders.h */; };
 		27493694169A10CF008E8EC5 /* __ExternalHeaders.h in Headers */ = {isa = PBXBuildFile; fileRef = 27493691169A10CF008E8EC5 /* __ExternalHeaders.h */; };
 		27493695169A10CF008E8EC5 /* __ExternalHeaders.h in Headers */ = {isa = PBXBuildFile; fileRef = 27493691169A10CF008E8EC5 /* __ExternalHeaders.h */; };
+		276365DC171C51F600F44096 /* FLFifoQueueNetworkStreamEventHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 276365DA171C51F500F44096 /* FLFifoQueueNetworkStreamEventHandler.h */; };
+		276365DD171C51F600F44096 /* FLFifoQueueNetworkStreamEventHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 276365DA171C51F500F44096 /* FLFifoQueueNetworkStreamEventHandler.h */; };
+		276365DE171C51F600F44096 /* FLFifoQueueNetworkStreamEventHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 276365DA171C51F500F44096 /* FLFifoQueueNetworkStreamEventHandler.h */; };
+		276365DF171C51F600F44096 /* FLFifoQueueNetworkStreamEventHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 276365DA171C51F500F44096 /* FLFifoQueueNetworkStreamEventHandler.h */; };
+		276365E0171C51F600F44096 /* FLFifoQueueNetworkStreamEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 276365DB171C51F500F44096 /* FLFifoQueueNetworkStreamEventHandler.m */; };
+		276365E1171C51F600F44096 /* FLFifoQueueNetworkStreamEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 276365DB171C51F500F44096 /* FLFifoQueueNetworkStreamEventHandler.m */; };
+		276365E2171C51F600F44096 /* FLFifoQueueNetworkStreamEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 276365DB171C51F500F44096 /* FLFifoQueueNetworkStreamEventHandler.m */; };
+		276365E3171C51F600F44096 /* FLFifoQueueNetworkStreamEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 276365DB171C51F500F44096 /* FLFifoQueueNetworkStreamEventHandler.m */; };
+		276365E4171C51F600F44096 /* FLFifoQueueNetworkStreamEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 276365DB171C51F500F44096 /* FLFifoQueueNetworkStreamEventHandler.m */; };
 		2776CC701672643C00F2E70A /* FLJson.h in Headers */ = {isa = PBXBuildFile; fileRef = 2776CC6E1672643C00F2E70A /* FLJson.h */; };
 		2776CC711672643C00F2E70A /* FLJson.h in Headers */ = {isa = PBXBuildFile; fileRef = 2776CC6E1672643C00F2E70A /* FLJson.h */; };
 		2776CC721672643C00F2E70A /* FLJson.h in Headers */ = {isa = PBXBuildFile; fileRef = 2776CC6E1672643C00F2E70A /* FLJson.h */; };
@@ -2923,6 +2932,24 @@
 		279E747617186F6400A4147D /* FLNetworkStream_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 279E747417186F6400A4147D /* FLNetworkStream_Internal.h */; };
 		279E747717186F6400A4147D /* FLNetworkStream_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 279E747417186F6400A4147D /* FLNetworkStream_Internal.h */; };
 		279E747817186F6400A4147D /* FLNetworkStream_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 279E747417186F6400A4147D /* FLNetworkStream_Internal.h */; };
+		27B2D71F171C609B000DF355 /* FLRunLoopNetworkStreamEventHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B2D71D171C609A000DF355 /* FLRunLoopNetworkStreamEventHandler.h */; };
+		27B2D720171C609B000DF355 /* FLRunLoopNetworkStreamEventHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B2D71D171C609A000DF355 /* FLRunLoopNetworkStreamEventHandler.h */; };
+		27B2D721171C609B000DF355 /* FLRunLoopNetworkStreamEventHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B2D71D171C609A000DF355 /* FLRunLoopNetworkStreamEventHandler.h */; };
+		27B2D722171C609B000DF355 /* FLRunLoopNetworkStreamEventHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B2D71D171C609A000DF355 /* FLRunLoopNetworkStreamEventHandler.h */; };
+		27B2D723171C609B000DF355 /* FLRunLoopNetworkStreamEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B2D71E171C609B000DF355 /* FLRunLoopNetworkStreamEventHandler.m */; };
+		27B2D724171C609B000DF355 /* FLRunLoopNetworkStreamEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B2D71E171C609B000DF355 /* FLRunLoopNetworkStreamEventHandler.m */; };
+		27B2D725171C609B000DF355 /* FLRunLoopNetworkStreamEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B2D71E171C609B000DF355 /* FLRunLoopNetworkStreamEventHandler.m */; };
+		27B2D726171C609B000DF355 /* FLRunLoopNetworkStreamEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B2D71E171C609B000DF355 /* FLRunLoopNetworkStreamEventHandler.m */; };
+		27B2D727171C609B000DF355 /* FLRunLoopNetworkStreamEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B2D71E171C609B000DF355 /* FLRunLoopNetworkStreamEventHandler.m */; };
+		27B2D72A171C75F4000DF355 /* FLTypeDesc.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B2D728171C75F4000DF355 /* FLTypeDesc.h */; };
+		27B2D72B171C75F4000DF355 /* FLTypeDesc.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B2D728171C75F4000DF355 /* FLTypeDesc.h */; };
+		27B2D72C171C75F4000DF355 /* FLTypeDesc.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B2D728171C75F4000DF355 /* FLTypeDesc.h */; };
+		27B2D72D171C75F4000DF355 /* FLTypeDesc.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B2D728171C75F4000DF355 /* FLTypeDesc.h */; };
+		27B2D72E171C75F4000DF355 /* FLTypeDesc.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B2D729171C75F4000DF355 /* FLTypeDesc.m */; };
+		27B2D72F171C75F4000DF355 /* FLTypeDesc.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B2D729171C75F4000DF355 /* FLTypeDesc.m */; };
+		27B2D730171C75F4000DF355 /* FLTypeDesc.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B2D729171C75F4000DF355 /* FLTypeDesc.m */; };
+		27B2D731171C75F4000DF355 /* FLTypeDesc.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B2D729171C75F4000DF355 /* FLTypeDesc.m */; };
+		27B2D732171C75F4000DF355 /* FLTypeDesc.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B2D729171C75F4000DF355 /* FLTypeDesc.m */; };
 		27BE09B217061F6000C375E0 /* FLOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 27BE09B117061F6000C375E0 /* FLOperation.h */; };
 		27BE09B317061F6000C375E0 /* FLOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 27BE09B117061F6000C375E0 /* FLOperation.h */; };
 		27BE09B417061F6000C375E0 /* FLOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 27BE09B117061F6000C375E0 /* FLOperation.h */; };
@@ -4119,6 +4146,8 @@
 		274933EB169A04EE008E8EC5 /* __CocoaHeaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __CocoaHeaders.h; sourceTree = "<group>"; };
 		2749368C169A1098008E8EC5 /* __DeprecatedHeaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __DeprecatedHeaders.h; sourceTree = "<group>"; };
 		27493691169A10CF008E8EC5 /* __ExternalHeaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __ExternalHeaders.h; sourceTree = "<group>"; };
+		276365DA171C51F500F44096 /* FLFifoQueueNetworkStreamEventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLFifoQueueNetworkStreamEventHandler.h; sourceTree = "<group>"; };
+		276365DB171C51F500F44096 /* FLFifoQueueNetworkStreamEventHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLFifoQueueNetworkStreamEventHandler.m; sourceTree = "<group>"; };
 		2776CC6E1672643C00F2E70A /* FLJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FLJson.h; path = SBJson/FLJson.h; sourceTree = "<group>"; };
 		2776CC6F1672643C00F2E70A /* FLJson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FLJson.m; path = SBJson/FLJson.m; sourceTree = "<group>"; };
 		277D8A5117036863002D4265 /* FLStringTokenizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLStringTokenizer.h; sourceTree = "<group>"; };
@@ -4191,6 +4220,10 @@
 		279E747417186F6400A4147D /* FLNetworkStream_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLNetworkStream_Internal.h; sourceTree = "<group>"; };
 		27A43AB415CDCC89001CB13E /* libFishLampCocoa-iOS-ARC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoa-iOS-ARC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27A43AC415CDCCCB001CB13E /* libFishLampCocoa-OSX-64-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoa-OSX-64-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		27B2D71D171C609A000DF355 /* FLRunLoopNetworkStreamEventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLRunLoopNetworkStreamEventHandler.h; sourceTree = "<group>"; };
+		27B2D71E171C609B000DF355 /* FLRunLoopNetworkStreamEventHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLRunLoopNetworkStreamEventHandler.m; sourceTree = "<group>"; };
+		27B2D728171C75F4000DF355 /* FLTypeDesc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLTypeDesc.h; sourceTree = "<group>"; };
+		27B2D729171C75F4000DF355 /* FLTypeDesc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLTypeDesc.m; sourceTree = "<group>"; };
 		27BE09B117061F6000C375E0 /* FLOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLOperation.h; sourceTree = "<group>"; };
 		27BE09B617061FA900C375E0 /* FLOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLOperation.m; sourceTree = "<group>"; };
 		27C62AD2170B37EC0093F260 /* libFishLampCocoaTests-OSX-64-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoaTests-OSX-64-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -4850,6 +4883,8 @@
 				271D31DC16FE0775009CD00F /* NSObject+Copying.m */,
 				271D31DD16FE0775009CD00F /* FLParseInfo.h */,
 				271D31DE16FE0775009CD00F /* FLParseInfo.m */,
+				27B2D728171C75F4000DF355 /* FLTypeDesc.h */,
+				27B2D729171C75F4000DF355 /* FLTypeDesc.m */,
 			);
 			path = ModelObjects;
 			sourceTree = "<group>";
@@ -5089,6 +5124,10 @@
 				271D324B16FE0775009CD00F /* NSError+FLNetworkStream.h */,
 				271D324C16FE0775009CD00F /* NSError+FLNetworkStream.m */,
 				279E747417186F6400A4147D /* FLNetworkStream_Internal.h */,
+				276365DA171C51F500F44096 /* FLFifoQueueNetworkStreamEventHandler.h */,
+				276365DB171C51F500F44096 /* FLFifoQueueNetworkStreamEventHandler.m */,
+				27B2D71D171C609A000DF355 /* FLRunLoopNetworkStreamEventHandler.h */,
+				27B2D71E171C609B000DF355 /* FLRunLoopNetworkStreamEventHandler.m */,
 			);
 			path = Streams;
 			sourceTree = "<group>";
@@ -6488,6 +6527,9 @@
 				273FF973170A06FE0097E0D5 /* FLDatabaseObjectStorageService.h in Headers */,
 				273FF97E170A0C430097E0D5 /* FLObjectStorageService.h in Headers */,
 				279E747517186F6400A4147D /* FLNetworkStream_Internal.h in Headers */,
+				276365DC171C51F600F44096 /* FLFifoQueueNetworkStreamEventHandler.h in Headers */,
+				27B2D71F171C609B000DF355 /* FLRunLoopNetworkStreamEventHandler.h in Headers */,
+				27B2D72A171C75F4000DF355 /* FLTypeDesc.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6856,6 +6898,9 @@
 				273FF975170A06FE0097E0D5 /* FLDatabaseObjectStorageService.h in Headers */,
 				273FF980170A0C430097E0D5 /* FLObjectStorageService.h in Headers */,
 				279E747717186F6400A4147D /* FLNetworkStream_Internal.h in Headers */,
+				276365DE171C51F600F44096 /* FLFifoQueueNetworkStreamEventHandler.h in Headers */,
+				27B2D721171C609B000DF355 /* FLRunLoopNetworkStreamEventHandler.h in Headers */,
+				27B2D72C171C75F4000DF355 /* FLTypeDesc.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7224,6 +7269,9 @@
 				273FF974170A06FE0097E0D5 /* FLDatabaseObjectStorageService.h in Headers */,
 				273FF97F170A0C430097E0D5 /* FLObjectStorageService.h in Headers */,
 				279E747617186F6400A4147D /* FLNetworkStream_Internal.h in Headers */,
+				276365DD171C51F600F44096 /* FLFifoQueueNetworkStreamEventHandler.h in Headers */,
+				27B2D720171C609B000DF355 /* FLRunLoopNetworkStreamEventHandler.h in Headers */,
+				27B2D72B171C75F4000DF355 /* FLTypeDesc.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7737,6 +7785,9 @@
 				273FF976170A06FE0097E0D5 /* FLDatabaseObjectStorageService.h in Headers */,
 				273FF981170A0C430097E0D5 /* FLObjectStorageService.h in Headers */,
 				279E747817186F6400A4147D /* FLNetworkStream_Internal.h in Headers */,
+				276365DF171C51F600F44096 /* FLFifoQueueNetworkStreamEventHandler.h in Headers */,
+				27B2D722171C609B000DF355 /* FLRunLoopNetworkStreamEventHandler.h in Headers */,
+				27B2D72D171C75F4000DF355 /* FLTypeDesc.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8361,6 +8412,9 @@
 				272662FC1709050900109AC2 /* FLHiddenFolderFileSink.m in Sources */,
 				273FF978170A06FE0097E0D5 /* FLDatabaseObjectStorageService.m in Sources */,
 				273FF983170A0C430097E0D5 /* FLObjectStorageService.m in Sources */,
+				276365E1171C51F600F44096 /* FLFifoQueueNetworkStreamEventHandler.m in Sources */,
+				27B2D724171C609B000DF355 /* FLRunLoopNetworkStreamEventHandler.m in Sources */,
+				27B2D72F171C75F4000DF355 /* FLTypeDesc.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8695,6 +8749,9 @@
 				272662FE1709050900109AC2 /* FLHiddenFolderFileSink.m in Sources */,
 				273FF97A170A06FE0097E0D5 /* FLDatabaseObjectStorageService.m in Sources */,
 				273FF985170A0C430097E0D5 /* FLObjectStorageService.m in Sources */,
+				276365E3171C51F600F44096 /* FLFifoQueueNetworkStreamEventHandler.m in Sources */,
+				27B2D726171C609B000DF355 /* FLRunLoopNetworkStreamEventHandler.m in Sources */,
+				27B2D731171C75F4000DF355 /* FLTypeDesc.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9021,6 +9078,9 @@
 				272662FB1709050900109AC2 /* FLHiddenFolderFileSink.m in Sources */,
 				273FF977170A06FE0097E0D5 /* FLDatabaseObjectStorageService.m in Sources */,
 				273FF982170A0C430097E0D5 /* FLObjectStorageService.m in Sources */,
+				276365E0171C51F600F44096 /* FLFifoQueueNetworkStreamEventHandler.m in Sources */,
+				27B2D723171C609B000DF355 /* FLRunLoopNetworkStreamEventHandler.m in Sources */,
+				27B2D72E171C75F4000DF355 /* FLTypeDesc.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9355,6 +9415,9 @@
 				272662FD1709050900109AC2 /* FLHiddenFolderFileSink.m in Sources */,
 				273FF979170A06FE0097E0D5 /* FLDatabaseObjectStorageService.m in Sources */,
 				273FF984170A0C430097E0D5 /* FLObjectStorageService.m in Sources */,
+				276365E2171C51F600F44096 /* FLFifoQueueNetworkStreamEventHandler.m in Sources */,
+				27B2D725171C609B000DF355 /* FLRunLoopNetworkStreamEventHandler.m in Sources */,
+				27B2D730171C75F4000DF355 /* FLTypeDesc.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9842,6 +9905,9 @@
 				272662FF1709050900109AC2 /* FLHiddenFolderFileSink.m in Sources */,
 				273FF97B170A06FE0097E0D5 /* FLDatabaseObjectStorageService.m in Sources */,
 				273FF986170A0C430097E0D5 /* FLObjectStorageService.m in Sources */,
+				276365E4171C51F600F44096 /* FLFifoQueueNetworkStreamEventHandler.m in Sources */,
+				27B2D727171C609B000DF355 /* FLRunLoopNetworkStreamEventHandler.m in Sources */,
+				27B2D732171C75F4000DF355 /* FLTypeDesc.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

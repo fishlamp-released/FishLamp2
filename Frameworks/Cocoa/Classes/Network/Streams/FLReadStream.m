@@ -23,7 +23,9 @@ CFIndex _FLReadStreamRead(CFReadStreamRef stream, UInt8 *buffer, CFIndex bufferL
 #endif
 
 static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventType eventType, void *clientCallBackInfo) {
-    [FLNetworkStream handleStreamEvent:eventType withStream:bridge_(FLReadStream*, clientCallBackInfo)];
+
+    FLNetworkStream* stream = bridge_(FLReadStream*, clientCallBackInfo);
+    [stream.eventHandler handleStreamEvent:eventType];
 }
 
 @implementation FLReadStream
@@ -31,7 +33,9 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
 @synthesize streamRef = _streamRef;
 @synthesize inputSink = _inputSink;
 
-- (id) initWithStreamSecurity:(FLNetworkStreamSecurity) security inputSink:(id<FLInputSink>) inputSink {
+- (id) initWithStreamSecurity:(FLNetworkStreamSecurity) security 
+                    inputSink:(id<FLInputSink>) inputSink {
+                    
 	self = [super initWithStreamSecurity:security];
 	if(self) {
         self.inputSink = inputSink;
@@ -42,7 +46,7 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
 - (void) killStream {
     if(_streamRef) {
         CFReadStreamClose(_streamRef);
-        CFReadStreamUnscheduleFromRunLoop(_streamRef, CFRunLoopGetMain(), bridge_(void*,NSDefaultRunLoopMode));
+        CFReadStreamUnscheduleFromRunLoop(_streamRef, [[self.eventHandler runLoop] getCFRunLoop], bridge_(void*,self.eventHandler.runLoopMode));
         CFRelease(_streamRef);
         _streamRef = nil;
     }
@@ -103,7 +107,7 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
     }
 
     CFReadStreamOpen(_streamRef);
-    CFReadStreamScheduleWithRunLoop(_streamRef, CFRunLoopGetMain(), bridge_(void*,NSDefaultRunLoopMode));
+    CFReadStreamScheduleWithRunLoop(_streamRef, [[self.eventHandler runLoop] getCFRunLoop], bridge_(CFStringRef,self.eventHandler.runLoopMode));
 }
 
 - (void) closeStream {

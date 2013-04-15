@@ -7,7 +7,7 @@
 //
 
 #import "FLDataDecoding.h"
-#import "FLObjectDescriber.h"
+#import "FLTypeDesc.h"
 
 @interface FLJsonObjectBuilder : NSObject {
 @private
@@ -19,7 +19,7 @@
 + (id) jsonObjectBuilder:(id<FLDataDecoding>) decoder;
 + (id) jsonObjectBuilder;
 
-- (NSArray*) arrayOfObjectsFromJSON:(id) jsonObject withObjectTypes:(NSArray*) arrayOfObjectDescriber;
+- (NSArray*) arrayOfObjectsFromJSON:(id) jsonObject withTypeDescs:(NSArray*) arrayOfObjectDescriber;
 - (NSArray*) arrayOfObjectsFromJSON:(id) json expectedRootObjectClass:(Class) type;
 - (id) objectFromJSON:(id) parsedJson expectedRootObjectClass:(Class) type;
 

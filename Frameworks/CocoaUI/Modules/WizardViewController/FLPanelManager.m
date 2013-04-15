@@ -88,6 +88,8 @@
 }
 
 - (void) addPanel:(FLPanelViewController*) panel {
+
+
 //    panel.view.wantsLayer = YES;
     [panel didMoveToPanelManager:self];
     [_panels addObject:panel];
@@ -217,6 +219,9 @@
     FLAssertNotNil(toShow);
     
     FLPanelViewController* toHide = [self visiblePanel];
+    [toShow view];
+    [toHide view];
+
     if(toShow == toHide) {
         if(toShow.view.superview != nil) {
             // already showing. just return.

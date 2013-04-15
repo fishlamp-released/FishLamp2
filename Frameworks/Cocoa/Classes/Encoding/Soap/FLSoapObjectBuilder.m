@@ -76,16 +76,16 @@ FLSynthesizeSingleton(FLSoapObjectBuilder);
     return item ? item : element;
 }
 
-//- (NSArray*) objectsFromXML:(FLParsedItem*) xmlElement withObjectTypes:(NSArray*) properties {
+//- (NSArray*) objectsFromXML:(FLParsedItem*) xmlElement withTypeDescs:(NSArray*) properties {
 //    FLAssertNotNil(xmlElement);
 //    FLAssertNotNil(properties);
 //    
 //    FLParsedItem* body = [xmlElement elementAtPath:@"Body/"];
 //    if(body) {
-//        return [super objectsFromXML:body withObjectTypes:properties];
+//        return [super objectsFromXML:body withTypeDescs:properties];
 //    }
 //
-//    return [super objectsFromXML:xmlElement withObjectTypes:properties];
+//    return [super objectsFromXML:xmlElement withTypeDescs:properties];
 //}
 //
 

@@ -12,7 +12,7 @@
 @interface FLObjectXmlElement : FLXmlElement {
 @private
     id _object;
-    FLObjectDescriber* _xmlObjectDescriber;
+    FLTypeDesc* _objectTypeDesc;
 }
 
 - (id) initWithObject:(id) object 
@@ -23,12 +23,12 @@
 
 + (id) objectXmlElement:(id) object 
           xmlElementTag:(NSString*) xmlElementTag
-          objectDescriber:(FLObjectDescriber*) description;
+               typeDesc:(FLTypeDesc*) description;
 
 @end
 
 @protocol FLXMLSeriliazable <NSObject>
 - (void) addToXmlElement:(FLXmlElement*) xmlElement
-     objectDescriber:(FLObjectDescriber*) description;
+                typeDesc:(FLTypeDesc*) typeDesc;
 @end
 

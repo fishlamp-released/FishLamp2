@@ -10,205 +10,140 @@
 
 #import "FLObjcRuntime.h"
 #import "FLPropertyAttributes.h"
-typedef void (^FLObjectDescriberPropertyVisitor)(id object, FLObjectDescriber* objectDescriber, BOOL* stop);
 
-@interface FLObjectDescriber ()
-@property (readwrite, copy, nonatomic) NSDictionary* childDescribers;
-@property (readwrite, assign, nonatomic) Class objectClass;
-@property (readwrite, strong, nonatomic) NSString* objectName;
-- (void) addSuperclasschildDescribers;
-- (void) discoverchildDescribers;
+@interface FLTypeDesc (FLObjectDescriber)
++ (id) typeDescWithRuntimeProperty:(objc_property_t) runtimeProperty;
 @end
 
-@implementation FLObjectDescriber
 
-@synthesize childDescribers = _childDescribers;
-@synthesize objectClass = _objectClass;
-@synthesize objectName = _objectName;
-@synthesize objectEncoder = _objectEncoder;
+@implementation FLTypeDesc (FLObjectDescriber)
 
-- (id) init {
-    return [self initWithClass:nil withObjectName:nil];
-}
-
-- (id) initWithClass:(Class) aClass 
-      withObjectName:(NSString*) name {
-    FLAssertNotNil(aClass);
-	if((self = [super init])) {
-        self.objectName = name; 
-        _objectClass = aClass;
-        _childDescribers = [[NSMutableDictionary alloc] init];
-        [self addSuperclasschildDescribers];
-        [self discoverchildDescribers];
-        self.objectEncoder = [self.objectClass objectEncoder];
-    }
-    return self;
-}
-
-- (id) initWithClass:(Class) aClass {
-    return [self initWithClass:aClass withObjectName:NSStringFromClass([self class])];
-}
-
-+ (id) objectDescriberForClass:(Class) aClass
-                withObjectName:(NSString*) name {
-	return FLAutorelease([[[self class] alloc] initWithClass:aClass withObjectName:name]);
-}
-
-+ (id) objectDescriberForClass:(Class) aClass {
-	return FLAutorelease([[[self class] alloc] initWithClass:aClass]);
-}
-
-+ (id) objectDescriber:(NSString*) name objectClass:(Class) aClass {
-    return [FLObjectDescriber objectDescriberForClass:aClass withObjectName:name];
-}
-
-+ (id) objectDescriberWithRuntimeProperty:(objc_property_t) runtimeProperty {
++ (id) typeDescWithRuntimeProperty:(objc_property_t) runtimeProperty {
 
     FLPropertyAttributes_t attributes;
     FLPropertyAttributesDecodeWithNoCopy(runtimeProperty, &attributes);
     
     if(attributes.className.string) {
-        NSString* objectName = [NSString stringWithCString:attributes.propertyName encoding:NSASCIIStringEncoding];
+        NSString* identifier = [NSString stringWithCString:attributes.propertyName encoding:NSASCIIStringEncoding];
         Class objectClass = NSClassFromString([NSString stringWithCharString:attributes.className]);
-    
-        FLObjectDescriber* describer = [FLObjectDescriber objectDescriberForClass:objectClass withObjectName:objectName];
-        describer.objectEncoder = [objectClass objectEncoder]; 
-        return describer;
+        return [FLTypeDesc typeDesc:identifier class:objectClass];
     }
+    
 #if TRACE    
-    FLLog(@"unable to make object describer for %s", attributes.encodedAttributes);
+    FLLog(@"unable to make object typeDesc for %s", attributes.encodedAttributes);
 #endif    
     return nil;
 }
+@end
 
-#if FL_MRC
-- (void) dealloc {
-    [_objectName release];
-    [_childDescribers release];
-	[super dealloc];
+@interface FLObjectDescriber ()
+- (void) addSuperclassChildren;
+- (void) discoverChildren;
+@end
+
+@implementation FLObjectDescriber
+
+- (id) initWithClass:(Class) aClass {
+	if((self = [super initWithClass:aClass])) {
+        [self addSuperclassChildren];
+        [self discoverChildren];
+    }
+    return self;
 }
-#endif
 
-- (FLObjectDescriber*) childDescriberForObjectName:(NSString*) propertyName {
-	return [_childDescribers objectForKey:propertyName];
++ (id) objectDescriber:(Class) aClass {
+	return FLAutorelease([[[self class] alloc] initWithClass:aClass]);
 }
 
-- (void) addSuperclasschildDescribers {
-    FLObjectDescriber* describer = [[_objectClass superclass] objectDescriber];
-    if(describer) {
-        [_childDescribers addEntriesFromDictionary:describer.childDescribers];
+- (void) addSuperclassChildren {
+    FLObjectDescriber* typeDesc = [[self.objectClass superclass] objectDescriber];
+    if(typeDesc) {
+        for(FLTypeDesc* desc in typeDesc.subtypes.objectEnumerator) {
+            [self addSubtype:desc];
+        }
     }
 }
 
-- (void) addChildDescriberWithName:(FLObjectDescriber*) property {
-    FLAssertNotNil(property);
-    if(property.objectClass) {
-        [_childDescribers setObject:property forKey:property.objectName];
-    }
-#if TRACE    
-    else {
-        FLLog(@"skipping property %@", property.objectName);
-    }
-#endif    
-}
-
-- (void) discoverchildDescribers {
-    
+- (void) discoverChildren {
     unsigned int propertyCount = 0;
-	objc_property_t* childDescribers = class_copyPropertyList(_objectClass, &propertyCount);
+	objc_property_t* subtypes = class_copyPropertyList(self.objectClass, &propertyCount);
 
 	for(unsigned int i = 0; i < propertyCount; i++) {
     
-        FLObjectDescriber* describer = [FLObjectDescriber objectDescriberWithRuntimeProperty:childDescribers[i]];
-        if(describer) {
-            [self addChildDescriberWithName:describer];
+        FLTypeDesc* typeDesc = [FLTypeDesc typeDescWithRuntimeProperty:subtypes[i]];
+        if(typeDesc) {
+            [self addSubtype:typeDesc];
         }
 	}
 
-    free(childDescribers);
+    free(subtypes);
 }
 
-- (NSString*) description {
-	return [NSString stringWithFormat:@"%@: { name=%@, class=%@, encoder=%@, childDescribers:%@", [super description], self.objectName, NSStringFromClass(self.objectClass), [self.objectEncoder description], [_childDescribers description]];
+- (void) setChildForIdentifier:(NSString*) name withClass:(Class) objectClass {
+    [self setSubtypeClass:objectClass forIdentifier:name];
 }
 
-- (void) addChildDescriberWithName:(NSString*) name withClass:(Class) objectClass {
-    FLObjectDescriber* describer = [_childDescribers objectForKey:name];
-    if(!describer) {
-        [self addChildDescriberWithName:[FLObjectDescriber objectDescriberForClass:objectClass withObjectName:name]];
-    }
-    else {
-        describer.objectEncoder = [objectClass objectEncoder];
-    }
-}
+//- (void) setChildForIdentifier:(NSString*) name withArrayType:(FLObjectDescriber*) arrayType {
+//    [self setChildForIdentifier:name withArrayTypes:[NSArray arrayWithObject:arrayType]];
+//}
 
-- (void) addChildDescriberWithName:(NSString*) name withArrayType:(FLObjectDescriber*) arrayType {
-    [self addChildDescriberWithName:name withArrayTypes:[NSArray arrayWithObject:arrayType]];
-}
-
-- (void) addChildDescriberWithName:(NSString*) name withArrayTypes:(NSArray*) types {
-    FLObjectDescriber* describer = [_childDescribers objectForKey:name];
-    if(!describer) {
-        describer = [FLObjectDescriber objectDescriberForClass:[NSMutableArray class] withObjectName:name];
-        [self addChildDescriberWithName:describer];
-    }
-
-    for(FLObjectDescriber* obj in types) {
-        [describer addChildDescriberWithName:obj];
-    }
+- (void) setChildForIdentifier:(NSString*) name withArrayTypes:(NSArray*) types {
+    [self setSubtypeArrayTypes:types forIdentifier:name];
 }
 
 @end
 
-@implementation NSArray (FLObjectDescriber)
-- (void) visitSelf:(FLObjectDescriberPropertyVisitor) visitor
-              stop:(BOOL*) stop {
-
-    for(id object in self) {
-        [object visitSelf:visitor stop:stop];
-
-        if(*stop) {
-            return;
-        }
-    }
-}
-@end
-
-@implementation NSDictionary (FLObjectDescriber)
-- (void) visitSelf:(FLObjectDescriberPropertyVisitor) visitor
-              stop:(BOOL*) stop {
-
-    for(id object in [self objectEnumerator]) {
-
-        [object visitSelf:visitor stop:stop];
-
-        if(*stop) {
-            return;
-        }
-    }
-}
-@end
-
-@implementation NSSet (FLObjectDescriber)
-- (void) visitSelf:(FLObjectDescriberPropertyVisitor) visitor
-              stop:(BOOL*) stop {
-
-    for(id object in [self objectEnumerator]) {
-
-        [object visitSelf:visitor stop:stop];
-
-        if(*stop) {
-            return;
-        }
-    }
-}
-@end
+//typedef void (^FLObjectDescriberPropertyVisitor)(id object, FLObjectDescriber* objectDescriber, BOOL* stop);
+//
+//@implementation NSArray (FLObjectDescriber)
+//- (void) visitSelf:(FLObjectDescriberPropertyVisitor) visitor
+//              stop:(BOOL*) stop {
+//
+//    for(id object in self) {
+//        [object visitSelf:visitor stop:stop];
+//
+//        if(*stop) {
+//            return;
+//        }
+//    }
+//}
+//@end
+//
+//@implementation NSDictionary (FLObjectDescriber)
+//- (void) visitSelf:(FLObjectDescriberPropertyVisitor) visitor
+//              stop:(BOOL*) stop {
+//
+//    for(id object in [self objectEnumerator]) {
+//
+//        [object visitSelf:visitor stop:stop];
+//
+//        if(*stop) {
+//            return;
+//        }
+//    }
+//}
+//@end
+//
+//@implementation NSSet (FLObjectDescriber)
+//- (void) visitSelf:(FLObjectDescriberPropertyVisitor) visitor
+//              stop:(BOOL*) stop {
+//
+//    for(id object in [self objectEnumerator]) {
+//
+//        [object visitSelf:visitor stop:stop];
+//
+//        if(*stop) {
+//            return;
+//        }
+//    }
+//}
+//@end
 
 @implementation FLSelfDescribingObject
 
 + (FLObjectDescriber*) objectDescriber {
     @synchronized(self) {
-        return [FLObjectDescriber objectDescriberForClass:[self class]];
+        return [FLObjectDescriber objectDescriber:[self class]];
     }
 	return nil;
 }
@@ -225,67 +160,67 @@ typedef void (^FLObjectDescriberPropertyVisitor)(id object, FLObjectDescriber* o
     return [[self class] objectDescriber];
 }
 
-- (void) visitSelf:(FLObjectDescriberPropertyVisitor) visitor
-              stop:(BOOL*) stop {
-
-    visitor(self, nil, stop);
-
-    if(*stop) {
-        return;
-    }
-
-    FLObjectDescriber* describer = [[self class] objectDescriber];
-
-    for(FLObjectDescriber* property in describer.childDescribers.objectEnumerator) {
-
-        id value = [self valueForKey:property.objectName]; //[property propertyValueForObject:self];
-
-        if(value) {
-            [value visitSelf:visitor stop:stop];
-
-            if(*stop) {
-                return;
-            }
-        }
-    }
-}
-
-- (void) visitDescribedObjectAndchildDescribers:(FLObjectDescriberPropertyVisitor) visitor {
-    BOOL stop = NO;
-    [self visitSelf:visitor stop:&stop];
-}
-
-
-- (void) performSelectorOnDescribedObjectAndchildDescribers:(SEL) sel {
-    [self visitDescribedObjectAndchildDescribers:^(id object, FLObjectDescriber* prop, BOOL* stop) {
-        FLPerformSelector(object, sel);
-    }];
-
-}
-- (void) performSelectorOnDescribedObjectAndchildDescribers:(SEL) sel
-                                            withObject:(id) object1 {
-    [self visitDescribedObjectAndchildDescribers:^(id object, FLObjectDescriber* prop, BOOL* stop) {
-        FLPerformSelector1(object, sel, object1);
-    }];
-
-}
-- (void) performSelectorOnDescribedObjectAndchildDescribers:(SEL) sel
-                                            withObject:(id) object1
-                                            withObject:(id) object2{
-    [self visitDescribedObjectAndchildDescribers:^(id object, FLObjectDescriber* prop, BOOL* stop) {
-        FLPerformSelector2(object, sel, object1, object2);
-    }];
-
-}
-- (void) performSelectorOnDescribedObjectAndchildDescribers:(SEL) sel
-                                            withObject:(id) object1
-                                            withObject:(id) object2
-                                            withObject:(id) object3 {
-    [self visitDescribedObjectAndchildDescribers:^(id object, FLObjectDescriber* prop, BOOL* stop) {
-        FLPerformSelector3(object, sel, object1, object2, object3);
-    }];
-
-}
+//- (void) visitSelf:(FLObjectDescriberPropertyVisitor) visitor
+//              stop:(BOOL*) stop {
+//
+//    visitor(self, nil, stop);
+//
+//    if(*stop) {
+//        return;
+//    }
+//
+//    FLObjectDescriber* typeDesc = [[self class] objectDescriber];
+//
+//    for(FLTypeDesc* property in typeDesc.subtypes.objectEnumerator) {
+//
+//        id value = [self valueForKey:property.identifier]; //[property propertyValueForObject:self];
+//
+//        if(value) {
+//            [value visitSelf:visitor stop:stop];
+//
+//            if(*stop) {
+//                return;
+//            }
+//        }
+//    }
+//}
+//
+//- (void) visitDescribedObjectAndsubtypes:(FLObjectDescriberPropertyVisitor) visitor {
+//    BOOL stop = NO;
+//    [self visitSelf:visitor stop:&stop];
+//}
+//
+//
+//- (void) performSelectorOnDescribedObjectAndsubtypes:(SEL) sel {
+//    [self visitDescribedObjectAndsubtypes:^(id object, FLObjectDescriber* prop, BOOL* stop) {
+//        FLPerformSelector(object, sel);
+//    }];
+//
+//}
+//- (void) performSelectorOnDescribedObjectAndsubtypes:(SEL) sel
+//                                            withObject:(id) object1 {
+//    [self visitDescribedObjectAndsubtypes:^(id object, FLObjectDescriber* prop, BOOL* stop) {
+//        FLPerformSelector1(object, sel, object1);
+//    }];
+//
+//}
+//- (void) performSelectorOnDescribedObjectAndsubtypes:(SEL) sel
+//                                            withObject:(id) object1
+//                                            withObject:(id) object2{
+//    [self visitDescribedObjectAndsubtypes:^(id object, FLObjectDescriber* prop, BOOL* stop) {
+//        FLPerformSelector2(object, sel, object1, object2);
+//    }];
+//
+//}
+//- (void) performSelectorOnDescribedObjectAndsubtypes:(SEL) sel
+//                                            withObject:(id) object1
+//                                            withObject:(id) object2
+//                                            withObject:(id) object3 {
+//    [self visitDescribedObjectAndsubtypes:^(id object, FLObjectDescriber* prop, BOOL* stop) {
+//        FLPerformSelector3(object, sel, object1, object2, object3);
+//    }];
+//
+//}
 
 
 @end
@@ -371,7 +306,7 @@ void FLMergeObjectArrays(NSMutableArray* dest,
 
 
 //	if(arrayItemTypes.count) {
-//		if([[arrayItemTypes firstObject] objectDescriber].isObjectWithObjectchildDescribers) {
+//		if([[arrayItemTypes firstObject] objectDescriber].isObjectWithObjectsubtypes) {
 //			_FLMergeListsOfObjects(dest, src, mergeMode, arrayItemTypes, FLEqualObjectHandler);
 //		}
 //		else {
@@ -392,7 +327,7 @@ void FLMergeObjects(id dest, id src, FLMergeMode mergeMode) {
             return;
         }   
         
-		for(NSString* srcPropName in srcDescriber.childDescribers) {
+		for(NSString* srcPropName in srcDescriber.subtypes) {
 			id srcObject = [src valueForKey:srcPropName];
 			
             if(srcObject) {
@@ -401,16 +336,16 @@ void FLMergeObjects(id dest, id src, FLMergeMode mergeMode) {
 					[dest setValue:srcObject forKey:srcPropName];
 				}
 				else {
-					FLObjectDescriber* srcProp = [srcDescriber childDescriberForObjectName:srcPropName];
-					FLObjectDescriber* propDescriber = [srcProp.objectClass objectDescriber];
+					FLTypeDesc* srcProp = [srcDescriber subTypeForIdentifier:srcPropName];
+					FLTypeDesc* propDescriber = [srcProp.objectClass objectDescriber];
                     
                     if(!propDescriber) {
 					   if(mergeMode == FLMergeModeSourceWins) {
 							[dest setValue:srcObject forKey:srcPropName];
 					   }
 					}
-					else if(srcProp.childDescribers.count > 0) {
-						FLMergeObjectArrays(destObject, srcObject, mergeMode, [srcProp.childDescribers allValues]);
+					else if(srcProp.subtypes.count > 0) {
+						FLMergeObjectArrays(destObject, srcObject, mergeMode, [srcProp.subtypes allValues]);
 					}
 					else {
 						FLMergeObjects(destObject, srcObject, mergeMode);

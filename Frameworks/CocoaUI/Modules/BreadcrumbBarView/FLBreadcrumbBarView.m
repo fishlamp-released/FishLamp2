@@ -92,7 +92,6 @@
         if(!CGRectEqualToRect(_highlightLayer.frame, highlightFrame)) {
             _highlightLayer.frame = highlightFrame;
             [_highlightLayer setNeedsDisplay];
-            [self setNeedsDisplay:YES];
         }
         
         if(!animated) {
@@ -104,6 +103,9 @@
             _highlightLayer.hidden = YES;
         }
     }
+
+    [self setNeedsDisplay:YES];
+        
 }
 
 - (void) addTitle:(FLBarTitleLayer*) title {
@@ -139,8 +141,11 @@
 }
 
 - (void) setFrame:(CGRect) frame {
+    CGRect oldFrame = self.frame;
     [super setFrame:frame];
-    [self updateLayout:NO];
+    if(!CGRectEqualToRect(frame, oldFrame)) {
+        [self updateLayout:NO];
+    }
 }
 
 //- (void) drawRect:(NSRect)dirtyRect {

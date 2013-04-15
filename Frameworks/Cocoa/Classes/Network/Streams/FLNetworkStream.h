@@ -7,12 +7,12 @@
 //
 
 #import "FishLampCore.h"
-#import "FLCompatibility.h"
-#import "NSObject+Copying.h"
 #import "FLTimer.h"
 
 @protocol FLNetworkStreamDelegate;
-@class FLFifoAsyncQueue;
+@protocol FLNetworkStreamEventHandler;
+
+#define FLNetworkingIndividualThreads 1
 
 typedef enum {
     FLNetworkStreamSecurityNone,
@@ -21,29 +21,33 @@ typedef enum {
 
 @interface FLNetworkStream : NSObject<FLTimerDelegate> {
 @private
-    BOOL _open;
-    BOOL _wasTerminated;
-    FLFifoAsyncQueue* _asyncQueue;
-    __unsafe_unretained id<FLNetworkStreamDelegate> _delegate;
     FLTimer* _timer;
     FLNetworkStreamSecurity _streamSecurity;
+    id<FLNetworkStreamEventHandler> _eventHandler;
+    BOOL _open;
+    BOOL _wasTerminated;
+    __unsafe_unretained id<FLNetworkStreamDelegate> _delegate;
 }
 
 @property (readonly, assign, nonatomic) FLNetworkStreamSecurity streamSecurity;
 
 @property (readwrite, assign) id<FLNetworkStreamDelegate> delegate;
-@property (readonly, strong) FLFifoAsyncQueue* asyncQueue;
+@property (readonly, strong) id<FLNetworkStreamEventHandler> eventHandler;
 
 @property (readonly, assign, getter=isOpen) BOOL open;
 
 @property (readonly, strong) FLTimer* timer;
 
 - (id) initWithStreamSecurity:(FLNetworkStreamSecurity) security;
+- (id) initWithStreamSecurity:(FLNetworkStreamSecurity) security
+                 eventHandler:(id<FLNetworkStreamEventHandler>) eventHandler;
 
-- (void) openStreamWithDelegate:(id<FLNetworkStreamDelegate>) delegate 
-                     asyncQueue:(FLFifoAsyncQueue*) asyncQueue;
+- (void) openStreamWithDelegate:(id<FLNetworkStreamDelegate>) delegate;
 
 - (void) terminateStream;
+
++ (Class) defaultEventHandlerClass;
++ (void) setDefaultEventHandlerClass:(Class) aClass;
 
 @end
 
@@ -70,3 +74,20 @@ typedef enum {
 - (void) networkStream:(FLNetworkStream*) networkStream didWriteBytes:(NSNumber*) amountRead;
 
 @end
+
+@protocol FLNetworkStreamEventHandler <NSObject>
+
++ (id) networkStreamEventHandler;
+
+- (void) handleStreamEvent:(CFStreamEventType) eventType;
+- (void) queueSelector:(SEL) selector;
+- (void) queueSelector:(SEL) selector withObject:(id) object;
+
+- (void) streamWillOpen:(FLNetworkStream*) stream completion:(void (^)()) completion;
+- (void) streamDidClose:(FLNetworkStream*) stream;
+
+- (NSRunLoop*) runLoop;
+- (NSString*) runLoopMode;
+
+@end
+

@@ -43,8 +43,8 @@
 		char* first = strnstr((const char*) [data bytes], "Fault", MIN([data length], (unsigned int) MAX_ERR_LEN));
         if(first) {
             FLParsedItem* soap = [[FLSoapParser soapParser] parseData:data];
-            FLObjectDescriber* type = [FLObjectDescriber objectDescriber:@"Fault" objectClass:[FLSoapFault11 class]];
-            FLSoapFault11* soapFault = [[FLSoapObjectBuilder instance] objectFromXML:soap withObjectType:type];
+            FLTypeDesc* type = [FLTypeDesc typeDesc:@"Fault" class:[FLSoapFault11 class]];
+            FLSoapFault11* soapFault = [[FLSoapObjectBuilder instance] objectFromXML:soap withTypeDesc:type];
             FLAssertNotNil(soapFault);
 			FLDebugLog(@"Soap Fault:%@/%@", [soapFault faultcode], [soapFault faultstring]);
             return soapFault;

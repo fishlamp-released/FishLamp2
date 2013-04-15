@@ -18,6 +18,23 @@
 #import "FLWizardStyleViewTransition.h"
 #import "FLLocalNotification.h"
 
+@interface FLWizardView : NSView
+@end
+
+@implementation FLWizardView 
+
+#if DEBUG
+- (void) setFrame:(CGRect) frame {
+//    [super setFrame:frame];
+
+    if(frame.size.height > 0 && frame.size.width > 0) {
+        [super setFrame:frame];
+    }
+}
+#endif
+
+@end
+
 @interface FLWizardViewController ()
 @end
 
@@ -49,6 +66,9 @@
 }
 
 - (void) addPanel:(FLPanelViewController*) panel withDelegate:(id) delegate {
+    
+    [panel view]; // make sure it's loaded from nib
+
     [self.panelManager addPanel:panel];
     panel.delegate = self;
 }
@@ -74,9 +94,9 @@
     [self showFirstPanel];  
 }
 
-- (void)loadView {
-    [super loadView];
-    [self view];
+- (void) awakeFromNib {
+    [super awakeFromNib];
+
     self.navigationViewController.delegate = self;
     self.buttonViewController.delegate = self;
     self.panelManager.delegate = self;

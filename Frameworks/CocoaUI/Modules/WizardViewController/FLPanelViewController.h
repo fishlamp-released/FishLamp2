@@ -33,7 +33,7 @@
 
 @end
 
-@interface FLPanelViewController : FLCompatibleViewController  {
+@interface FLPanelViewController : NSViewController  {
 @private
     NSString* _prompt;
     BOOL _canOpenNextPanel;

@@ -12,15 +12,15 @@
 @implementation NSObject (FLXmlSerialization)
 
 - (void) addToXmlElement:(FLXmlElement*) xmlElement
-            objectDescriber:(FLObjectDescriber*) parentObject {
+                typeDesc:(FLTypeDesc*) parentObject {
       
-	FLObjectDescriber* objectDescriber = [[self class] objectDescriber];
-	if(objectDescriber) {
-        for(FLObjectDescriber* property in [objectDescriber.childDescribers objectEnumerator]) {
+	FLTypeDesc* typeDesc = [[self class] objectDescriber];
+	if(typeDesc) {
+        for(FLTypeDesc* property in [typeDesc.subtypes objectEnumerator]) {
             if(property.objectEncoder) {
-                id object = [self valueForKey:property.objectName];
+                id object = [self valueForKey:property.identifier];
                 if(object) {
-                    [xmlElement addElement:[FLObjectXmlElement objectXmlElement:object xmlElementTag:property.objectName objectDescriber:property]];
+                    [xmlElement addElement:[FLObjectXmlElement objectXmlElement:object xmlElementTag:property.identifier typeDesc:property]];
                 }
             }
         }
@@ -40,25 +40,25 @@
 @implementation NSArray (FLXmlSerialization)
 
 - (void) addToXmlElement:(FLXmlElement*) xmlElement
-     objectDescriber:(FLObjectDescriber*) description {
+                typeDesc:(FLTypeDesc*) typeDesc {
     
-	if(description && self.count) {
-		NSDictionary* arrayTypes = description.childDescribers;
+	if(typeDesc && self.count) {
+		NSDictionary* arrayTypes = typeDesc.subtypes;
 		      
 		if(arrayTypes.count == 1) {
-			FLObjectDescriber* elementDesc = [[arrayTypes allValues] lastObject];
+			FLTypeDesc* elementDesc = [[arrayTypes allValues] lastObject];
 
 			for(id obj in self){
-                [xmlElement addElement:[FLObjectXmlElement objectXmlElement:obj xmlElementTag:elementDesc.objectName objectDescriber:elementDesc]];
+                [xmlElement addElement:[FLObjectXmlElement objectXmlElement:obj xmlElementTag:elementDesc.identifier typeDesc:elementDesc]];
 			}
 		}
 		else {
 			for(id obj in self) {
 				// hmm. expensive. need to decide for each item.
 				
-				for(FLObjectDescriber* subType in [arrayTypes objectEnumerator]) {
+				for(FLTypeDesc* subType in [arrayTypes objectEnumerator]) {
 					if([obj isKindOfClass:subType.objectClass]) {
-                        [xmlElement addElement:[FLObjectXmlElement objectXmlElement:obj xmlElementTag:subType.objectName objectDescriber:subType]];
+                        [xmlElement addElement:[FLObjectXmlElement objectXmlElement:obj xmlElementTag:subType.identifier typeDesc:subType]];
 						break;
 					}
 				}
@@ -66,7 +66,7 @@
 		}
 	}
 #if DEBUG
-	else if(!description) {
+	else if(!typeDesc) {
 		FLDebugLog(@"Warning not streaming object of type: %@", NSStringFromClass([self class]));
 	}
 #endif	

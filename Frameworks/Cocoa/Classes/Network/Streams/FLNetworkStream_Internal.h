@@ -32,11 +32,4 @@
 - (void) encounteredBytesAvailable;
 - (void) encounteredError:(NSError*) error;
 - (void) encounteredEnd;
-
-
-+ (void) handleStreamEvent:(CFStreamEventType) eventType withStream:(FLNetworkStream*) stream;
-- (void) queueBlock:(dispatch_block_t) block;
-- (void) queueSelector:(SEL) selector;
-- (void) queueSelector:(SEL) selector withObject:(id) object;
-
 @end

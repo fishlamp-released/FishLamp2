@@ -74,10 +74,10 @@
         {
             s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
         }
-        [s_describer addChildDescriberWithName:@"oauth_token_secret" withClass:[NSString class]];
-        [s_describer addChildDescriberWithName:@"oauth_callback_confirmed" withClass:[NSString class]];
-        [s_describer addChildDescriberWithName:@"oauth_token" withClass:[NSString class]];
-        [s_describer addChildDescriberWithName:@"oauth_verifier" withClass:[NSString class]];
+        [s_describer setChildForIdentifier:@"oauth_token_secret" withClass:[NSString class]];
+        [s_describer setChildForIdentifier:@"oauth_callback_confirmed" withClass:[NSString class]];
+        [s_describer setChildForIdentifier:@"oauth_token" withClass:[NSString class]];
+        [s_describer setChildForIdentifier:@"oauth_verifier" withClass:[NSString class]];
     });
     return s_describer;
 }

@@ -17,7 +17,8 @@ static void WriteStreamClientCallBack(CFWriteStreamRef writeStream,
                                       CFStreamEventType eventType, 
                                       void *clientCallBackInfo) {
     
-    [FLNetworkStream handleStreamEvent:eventType withStream:FLBridge(FLWriteStream*, clientCallBackInfo)];
+    FLNetworkStream* stream = bridge_(FLWriteStream*, clientCallBackInfo);
+    [stream.eventHandler handleStreamEvent:eventType];
 }
 
 @implementation FLWriteStream
@@ -87,13 +88,13 @@ static void WriteStreamClientCallBack(CFWriteStreamRef writeStream,
 
 - (void) openStream {
     FLAssertIsNotNil(_streamRef);
-    CFWriteStreamScheduleWithRunLoop(_streamRef, CFRunLoopGetMain(), bridge_(void*,NSDefaultRunLoopMode));
+    CFWriteStreamScheduleWithRunLoop(_streamRef, [[self.eventHandler runLoop] getCFRunLoop], bridge_(void*,self.eventHandler.runLoopMode));
     CFWriteStreamOpen(_streamRef);
 }
 
 - (void) closeStream {
     FLAssertIsNotNil(_streamRef);
-    CFWriteStreamUnscheduleFromRunLoop(_streamRef, CFRunLoopGetMain(), bridge_(void*,NSDefaultRunLoopMode));
+    CFWriteStreamUnscheduleFromRunLoop(_streamRef, [[self.eventHandler runLoop] getCFRunLoop], bridge_(void*,self.eventHandler.runLoopMode));
     CFWriteStreamClose(_streamRef);
     [self didClose];
 }

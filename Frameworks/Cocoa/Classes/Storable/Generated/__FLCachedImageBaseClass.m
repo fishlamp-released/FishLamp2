@@ -140,13 +140,13 @@
         {
             s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
         }
-        [s_describer addChildDescriberWithName:@"fileName" withClass:[NSString class]];
-        [s_describer addChildDescriberWithName:@"url" withClass:[NSString class]];
-        [s_describer addChildDescriberWithName:@"imageId" withClass:[NSString class]];
-        [s_describer addChildDescriberWithName:@"photoUrl" withClass:[NSString class]];
-        [s_describer addChildDescriberWithName:@"host" withClass:[NSString class]];
-        [s_describer addChildDescriberWithName:@"imageVersion" withClass:[NSString class]];
-        [s_describer addChildDescriberWithName:@"canCacheInMemory" withClass:[FLBoolNumber class] ];
+        [s_describer setChildForIdentifier:@"fileName" withClass:[NSString class]];
+        [s_describer setChildForIdentifier:@"url" withClass:[NSString class]];
+        [s_describer setChildForIdentifier:@"imageId" withClass:[NSString class]];
+        [s_describer setChildForIdentifier:@"photoUrl" withClass:[NSString class]];
+        [s_describer setChildForIdentifier:@"host" withClass:[NSString class]];
+        [s_describer setChildForIdentifier:@"imageVersion" withClass:[NSString class]];
+        [s_describer setChildForIdentifier:@"canCacheInMemory" withClass:[FLBoolNumber class] ];
     });
     return s_describer;
 }

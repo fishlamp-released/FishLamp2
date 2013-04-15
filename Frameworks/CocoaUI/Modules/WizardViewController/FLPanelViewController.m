@@ -25,17 +25,6 @@
 @synthesize isAuthenticated = _isAuthenticated;
 @synthesize delegate = _delegate;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        self.canOpenNextPanel = NO;
-        self.panelFillsView = YES;
-    }
-    
-    return self;
-}
-
 #if FL_MRC
 - (void) dealloc {
     [_header release];
@@ -45,8 +34,18 @@
 }
 #endif
 
-- (void) loadView {
-    [super loadView];
+- (id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if(self) {
+        [self view]; // force it to load
+    }
+
+    return self;
+}
+- (void) awakeFromNib {
+    [super awakeFromNib];
+    self.canOpenNextPanel = NO;
+    self.panelFillsView = YES;
 }
 
 - (BOOL)acceptsFirstResponder {

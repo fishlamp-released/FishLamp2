@@ -254,7 +254,7 @@ void FLTcpServerAcceptCallBack(
     @try {
         while(!_stop)
         {
-            [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
+            [[NSRunLoop currentRunLoop] runMode:self.eventHandler.runLoopMode beforeDate:[NSDate distantFuture]];
         }
     }
     @finally {

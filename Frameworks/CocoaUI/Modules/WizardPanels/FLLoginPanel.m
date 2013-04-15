@@ -26,22 +26,18 @@
     return [self initWithNibName:@"FLLoginPanel" bundle:nil];
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        self.title = NSLocalizedString(@"Login", nil);
-        self.prompt =  NSLocalizedString(@"Login to your account", nil);
-    
-        [[NSNotificationCenter defaultCenter] addObserver: self
-                                                 selector: @selector(applicationWillTerminate:)
-                                                     name: NSApplicationWillTerminateNotification
-                                                   object: [NSApplication sharedApplication]];
-    
-        self.panelFillsView = NO;
-    }
-    
-    return self;
+- (void) awakeFromNib {
+    [super awakeFromNib];
+
+    self.title = NSLocalizedString(@"Login", nil);
+    self.prompt =  NSLocalizedString(@"Login to your account", nil);
+
+    [[NSNotificationCenter defaultCenter] addObserver: self
+                                             selector: @selector(applicationWillTerminate:)
+                                                 name: NSApplicationWillTerminateNotification
+                                               object: [NSApplication sharedApplication]];
+
+    self.panelFillsView = NO;
 }
 
 + (id) loginPanel {
