@@ -22,7 +22,7 @@
 @synthesize delegate = _delegate;
 @synthesize timer = _timer;
 @synthesize streamSecurity = _streamSecurity;
-@synthesize wasTerminated = _shouldClose;
+@synthesize wasTerminated = _wasTerminated;
 
 - (id) init {
     return [self initWithStreamSecurity:FLNetworkStreamSecurityNone];
