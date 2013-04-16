@@ -481,22 +481,31 @@
     return [NSURL URLWithString:url];
 }
 
-- (NSString*) humanReadableFileNameForPhoto:(ZFPhoto*) photo {
+- (NSString*) humanReadableFileNameForPhoto:(ZFPhoto*) photo inPhotoSet:(ZFPhotoSet*) photoSet {
     if(photo.IsVideoValue) {
         return [NSString stringWithFormat:@"%@-Master.mp4", [photo.FileName stringByDeletingPathExtension]];
     }
-
-    NSMutableString* name = [NSMutableString stringWithFormat:@"%@-%@", [photo.FileName stringByDeletingPathExtension], [photo Id]]; 
-            
-    if(FLStringIsNotEmpty(photo.Sequence)) {
-        [name appendFormat:@"-%@", photo.Sequence];
+    
+    for(ZFPhoto* otherPhoto in photoSet.Photos) {
+        if(photo.IdValue != otherPhoto.IdValue && FLStringsAreEqual(photo.FileName, otherPhoto.FileName)) {
+            return [NSString stringWithFormat:@"%@(%@).%@", [photo.FileName stringByDeletingPathExtension], [photo Id], [photo.FileName pathExtension]];
+        }
+        
     }
-    if(FLStringIsNotEmpty(photo.Sequence)) {
-        [name appendFormat:@"-%@", self.abbreviation];
-    }
-    [name appendFormat:@".%@", [photo.FileName pathExtension]];
+    
+    return photo.FileName;
 
-    return name;
+//    NSMutableString* name = [NSMutableString stringWithFormat:@"%@-%@", [photo.FileName stringByDeletingPathExtension], [photo Id]]; 
+//            
+//    if(FLStringIsNotEmpty(photo.Sequence)) {
+//        [name appendFormat:@"-%@", photo.Sequence];
+//    }
+//    if(FLStringIsNotEmpty(photo.Sequence)) {
+//        [name appendFormat:@"-%@", self.abbreviation];
+//    }
+//    [name appendFormat:@".%@", [photo.FileName pathExtension]];
+//
+//    return name;
 }
 
 @end

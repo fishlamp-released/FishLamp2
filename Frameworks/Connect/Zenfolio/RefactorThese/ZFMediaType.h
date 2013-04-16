@@ -67,7 +67,7 @@ typedef enum PhotoMediaTypeID
 
 @interface ZFMediaType (PhotoUtils)
 - (NSURL*) URLWithPhoto:(ZFPhoto*) photo;
-- (NSString*) humanReadableFileNameForPhoto:(ZFPhoto*) photo;
+- (NSString*) humanReadableFileNameForPhoto:(ZFPhoto*) photo inPhotoSet:(ZFPhotoSet*) photoSet;
 @end
 
 typedef enum

@@ -23,7 +23,6 @@
 
 @synthesize networkHost = _networkHost;
 @synthesize finisher = _finisher;
-@synthesize open = _open;
 
 - (id) init {
     self = [super init];

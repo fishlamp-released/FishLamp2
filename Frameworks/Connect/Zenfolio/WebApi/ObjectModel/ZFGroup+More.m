@@ -115,7 +115,7 @@ FLSynthesizeCachedObjectHandlerProperty(ZFGroup);
 //	return [self subElementForID:[groupId unsignedIntegerValue]];
 //}
 
-- (ZFGroup*) findParentForElement:(ZFGroupElement*) inElement 
+- (ZFGroup*) parentGroupForElement:(ZFGroupElement*) inElement 
                                     group:(ZFGroup*) inGroup {
 
 	if(inGroup.Elements) {
@@ -125,7 +125,7 @@ FLSynthesizeCachedObjectHandlerProperty(ZFGroup);
 			}
 			
 			if([element isGroupElement]) {
-				ZFGroup* parentGroup = [self findParentForElement:inElement group:(ZFGroup*)element];
+				ZFGroup* parentGroup = [self parentGroupForElement:inElement group:(ZFGroup*)element];
 				if(parentGroup) {
 					return parentGroup;
 				}
@@ -136,8 +136,8 @@ FLSynthesizeCachedObjectHandlerProperty(ZFGroup);
 	return nil;
 }
 
-- (ZFGroup*) findParentForElement:(ZFGroupElement*) element {
-	return [self findParentForElement:element group:self];
+- (ZFGroup*) parentGroupForElement:(ZFGroupElement*) element {
+	return [self parentGroupForElement:element group:self];
 }
 
 + (int) countPhotosRecursively:(ZFGroupElement*) groupElement value:(int*) value {
@@ -159,7 +159,7 @@ FLSynthesizeCachedObjectHandlerProperty(ZFGroup);
 //- (BOOL) replaceGroupElementDeep:(ZFGroupElement*) replacingElement {
 //	FLAssertIsNotNil(self.Elements);
 //
-//    ZFGroup* parent = [self findParentForElement:replacingElement];
+//    ZFGroup* parent = [self parentGroupForElement:replacingElement];
 //
 //	NSMutableArray* array = parent.Elements;
 //    if(array) {

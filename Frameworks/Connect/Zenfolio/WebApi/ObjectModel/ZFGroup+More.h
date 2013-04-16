@@ -17,7 +17,7 @@ typedef void (^FLGroupElementVisitor)(ZFGroupElement* element, BOOL* stop);
 
 - (id) subElementForID:(NSUInteger) groupId;
 //- (ZFGroupElement*) findByIdNumber:(NSNumber*) groupId;
-- (ZFGroup*) findParentForElement:(ZFGroupElement*) element;
+- (ZFGroup*) parentGroupForElement:(ZFGroupElement*) element;
 
 - (BOOL) isRootGroup;
 
