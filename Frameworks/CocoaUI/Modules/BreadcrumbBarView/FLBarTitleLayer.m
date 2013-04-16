@@ -90,7 +90,10 @@
 - (void) setNeedsUpdate {
     if(!_willUpdate) {
         _willUpdate = YES;
-        [self performSelector:@selector(updateState) withObject:nil afterDelay:0.05];
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (0.05f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self updateState];
+        });
     }
 }
 
