@@ -67,9 +67,8 @@
     for(FLBarTitleLayer* title in _titles) {
         if(!CGRectEqualToRect(title.frame, frame)) {
             title.frame = frame;
-            [self setNeedsDisplay:YES];
-            [title setNeedsDisplay];
         }
+        [title setNeedsDisplay];
         if(title.emphasized) {
             highlightedTitle = title;
         }
@@ -91,12 +90,13 @@
         CGRect highlightFrame = FLRectSetWidth(highlightedTitle.frame, highlightedTitle.frame.size.width + 11);
         if(!CGRectEqualToRect(_highlightLayer.frame, highlightFrame)) {
             _highlightLayer.frame = highlightFrame;
-            [_highlightLayer setNeedsDisplay];
         }
         
         if(!animated) {
             [CATransaction commit];
         }
+
+        [_highlightLayer setNeedsDisplay];
     }
     else {
         if(!_highlightLayer.isHidden) {
@@ -141,11 +141,8 @@
 }
 
 - (void) setFrame:(CGRect) frame {
-    CGRect oldFrame = self.frame;
     [super setFrame:frame];
-    if(!CGRectEqualToRect(frame, oldFrame)) {
-        [self updateLayout:NO];
-    }
+    [self updateLayout:NO];
 }
 
 //- (void) drawRect:(NSRect)dirtyRect {

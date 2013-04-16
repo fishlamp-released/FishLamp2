@@ -92,10 +92,14 @@
 
 - (void) startAnimation:(id) sender {
     [super startAnimation:sender];
+    
+    FLLog(@"show animation");
 }
 
 - (void) stopAnimation:(id) sender {
     [super stopAnimation:sender];
+    
+    FLLog(@"stop animation");
 }
 
 
