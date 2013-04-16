@@ -43,8 +43,8 @@
     return [size URLWithPhoto:self];
 }
 
-- (NSString*) humanReadableFileNameWithMediaType:(ZFMediaType*) mediaType {
-    return [mediaType humanReadableFileNameForPhoto:self];
+- (NSString*) humanReadableFileNameWithMediaType:(ZFMediaType*) mediaType inPhotoSet:(ZFPhotoSet*) photoSet{
+    return [mediaType humanReadableFileNameForPhoto:self inPhotoSet:photoSet];
 }
 
 @end

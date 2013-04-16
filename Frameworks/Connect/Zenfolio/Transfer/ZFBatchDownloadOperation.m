@@ -220,7 +220,7 @@
             if( ((media.mediaTypeID == ZFMediaTypeVideo) && photo.IsVideoValue) ||
                 ((media.mediaTypeID != ZFMediaTypeVideo) && !photo.IsVideoValue)) {
 
-                NSString* fileName = [media humanReadableFileNameForPhoto:photo];
+                NSString* fileName = [media humanReadableFileNameForPhoto:photo inPhotoSet:photoSet];
                 
                 if([imageFolder fileExistsInFolder:fileName]) {
                     [self mediaExists:media 

@@ -22,6 +22,6 @@
 - (BOOL) isStaleComparedToPhoto:(ZFPhoto*) photo;
 
 - (NSURL*) urlForImageWithSize:(ZFMediaType*) size;
-- (NSString*) humanReadableFileNameWithMediaType:(ZFMediaType*) mediaType;
+- (NSString*) humanReadableFileNameWithMediaType:(ZFMediaType*) mediaType inPhotoSet:(ZFPhotoSet*) photoSet;
 
 @end
