@@ -42,7 +42,7 @@
 
 - (void) queueSelector:(SEL) selector withObject:(id) object {
     [self queueBlock:^{ 
-        [self performSelector:selector withObject:object];
+        [_stream performSelector:selector withObject:object];
     }];
 }
 
@@ -50,7 +50,7 @@
     [self queueBlock:^{ 
     
         @try { 
-            [self performSelector:selector];
+            [_stream performSelector:selector];
         }
         @catch(NSException* ex) {
             _stream.wasTerminated = YES;
