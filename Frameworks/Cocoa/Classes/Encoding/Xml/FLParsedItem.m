@@ -41,7 +41,6 @@
 }
 
 - (void) appendStringToValue:(NSString*) string {
-    string = [string trimmedString];
     if(FLStringIsNotEmpty(string)) {
         if(_value) {
             [_value appendString:string];

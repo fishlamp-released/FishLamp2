@@ -13,6 +13,7 @@
 // results, once the stream is closed.
 @property (readonly, strong, nonatomic) NSData* data;
 @property (readonly, strong, nonatomic) NSURL* fileURL;
+@property (readonly, assign, nonatomic, getter=isOpen) BOOL open;
 
 - (void) openSink;
 - (void) closeSinkWithCommit:(BOOL) commit;

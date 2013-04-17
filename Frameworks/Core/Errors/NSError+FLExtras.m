@@ -42,7 +42,7 @@ FLSynthesizeAssociatedProperty(FLAssociationPolicyRetainNonatomic, stackTrace, s
 	return code == self.code && FLStringsAreEqual(domain, self.domain);
 }
 
-- (BOOL) errorDomainEqualsDomain:(NSString*) domain {
+- (BOOL) isErrorDomain:(NSString*) domain {
 	return FLStringsAreEqual(domain, self.domain);
 }
 

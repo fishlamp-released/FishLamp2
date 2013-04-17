@@ -76,9 +76,11 @@ NSString* const FLTimedOutNotification = @"FLTimedOutNotification";
 
 - (void) checkForTimeout {
     
+    
 #if TRACE
-    FLLog(@"checked for timeout");
+    FLLog(@"checked for timeout: %d, elapsed time: %f", _updateCount, self.idleDuration);
 #endif
+    ++_updateCount;
     
     FLPerformSelector1(_delegate, _timerWasUpdated, self);
 
@@ -92,6 +94,7 @@ NSString* const FLTimedOutNotification = @"FLTimedOutNotification";
         [NSDate timeIntervalSinceReferenceDate] - self.startTime :
         self.endTime - self.startTime;
 }
+
    
 - (void) startTimer {
     self.timedOut = NO;
@@ -114,7 +117,7 @@ NSString* const FLTimedOutNotification = @"FLTimedOutNotification";
     // so just fill in the initial time).
     dispatch_source_set_timer(_timer,
            dispatch_time(DISPATCH_TIME_NOW, _checkTimestampInterval * NSEC_PER_SEC),
-           DISPATCH_TIME_FOREVER, 
+           _checkTimestampInterval * NSEC_PER_SEC, 
            0);
 
     FLCallback* callback = FLRetainWithAutorelease(_intermediary);

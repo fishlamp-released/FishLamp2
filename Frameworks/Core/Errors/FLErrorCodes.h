@@ -9,11 +9,13 @@
 #import "FLRequired.h"
 #import "FLErrorDomainInfo.h"
 
-extern NSString* const FLFrameworkErrorDomain;
+extern NSString* const FLErrorDomain;
 
 typedef enum {
-    FLErrorCodeNone,
-    FLCancelErrorCode,
+    FLErrorCodeCancel = kCFURLErrorCancelled,
+    FLErrorCodeTimedOut = kCFURLErrorTimedOut,
+    
+    FLErrorCodeNone = noErr,
     FLAbortErrorCode,
     FLErrorEmptyStringErrorCode,
     FLErrorUnexpectedNilObject,
@@ -26,14 +28,9 @@ typedef enum {
     FLErrorTooManyEnumsErrorCode,
 	FLActionErrorCodeConfigScope,
 	FLActionErrorCodeInvalidContext,
-	FLAuthenticationErrorPasswordIncorrect,
-	FLAuthenticationErrorPasswordIncorrectOffline,
     FLErrorResultFailed,
     FLUnhandledServiceRequestErrorCode,
-    
-    FLSoapFaultError,
-    FLFrameworkTcpStreamErrorCode
-} FLFrameworkErrorCode;
+} FLErrorCode;
 
 @interface FLFrameworkErrorDomainInfo : NSObject<FLErrorDomainInfo>
 + (id) frameworkErrorDomainInfo;

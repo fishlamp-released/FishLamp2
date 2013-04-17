@@ -13,7 +13,7 @@
 #import "FLErrorException.h"
 #import "FLErrors.h"
 #import "FLExceptions.h"
-#import "FLFrameworkErrorDomain.h"
+#import "FLErrorCodes.h"
 #import "FLMutableError.h"
 #import "FLStackTrace.h"
 #import "NSError+FLExtras.h"

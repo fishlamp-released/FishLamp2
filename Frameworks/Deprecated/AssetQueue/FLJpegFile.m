@@ -162,12 +162,12 @@ static NSDictionary* s_destinationProperties = nil;
 {
 	if(!self.folder)
 	{
-		FLThrowIfError([NSError errorWithDomain:FLFrameworkErrorDomain code:FLErrorInvalidFolder
+		FLThrowIfError([NSError errorWithDomain:FLErrorDomain code:FLErrorInvalidFolder
 			userInfo:[NSDictionary dictionaryWithObject:@"No Folder Set in FLJpegFile" forKey:NSLocalizedDescriptionKey]]);
 	}
 	if(FLStringIsEmpty(self.fileName))
 	{
-		FLThrowIfError([NSError errorWithDomain:FLFrameworkErrorDomain code:FLErrorInvalidName
+		FLThrowIfError([NSError errorWithDomain:FLErrorDomain code:FLErrorInvalidName
 			userInfo:[NSDictionary dictionaryWithObject:@"No FileName Set in FLJpegFile" forKey:NSLocalizedDescriptionKey]]);
 	}
 }
@@ -256,7 +256,7 @@ static NSDictionary* s_destinationProperties = nil;
 	[self _throwIfNotConfigured];
 	
 	if(!_image && !_jpegData) {
-		FLThrowIfError([NSError errorWithDomain:FLFrameworkErrorDomain code:FLErrorNoDataToSave
+		FLThrowIfError([NSError errorWithDomain:FLErrorDomain code:FLErrorNoDataToSave
 			userInfo:[NSDictionary dictionaryWithObject:@"No image data to save" forKey:NSLocalizedDescriptionKey]]);
  
 	}

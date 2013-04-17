@@ -91,6 +91,7 @@
 - (void) startWizardInWindow:(NSWindow*) window {
     [window setContentView:self.view];
     [window setDefaultButtonCell:[self.buttonViewController.nextButton cell]];
+    [self setNextResponder:window];
     [self showFirstPanel];  
 }
 
@@ -208,10 +209,8 @@
          didShowPanel:(FLPanelViewController*) toHide
          didHidePanel:(FLPanelViewController*) toShow {
     [self didShowPanel:toShow didHidePanel:toHide];
-
-    [self.panelManager setNextResponder:self];
-    [self setNextResponder:self.navigationViewController];
-    [self.navigationViewController setNextResponder:self.view.window];
+    
+//    [self.navigationViewController setNextResponder:self.view.window];
     
 //    id responder = self.view.window.firstResponder;
 //    while(responder) {
@@ -242,17 +241,20 @@
 
     NSError* theError = error;
 
-    NSMutableString* errorString = [NSMutableString string];
-    if(title) {
-        [errorString appendString:title];
-    
-        if(caption) {
-            [errorString appendFormat:@"\n\n%@", caption];
-        }
-        
-        theError = [NSError errorWithDomain:error.domain code:error.code localizedDescription:errorString];
+    if(!title) {
+        title = NSLocalizedString(@"An error occurred.", nil); 
     }
     
+    NSMutableString* errorString = [NSMutableString stringWithString:title];
+    
+    if(caption) {
+        [errorString appendFormat:@"\n\n%@\n", caption];
+    } 
+    else {
+        [errorString appendFormat:@"\n\n%@\n", [error localizedDescription]];
+    }
+    
+    theError = [NSError errorWithDomain:error.domain code:error.code localizedDescription:errorString];
 
     NSBeep();
     

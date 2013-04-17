@@ -29,6 +29,8 @@
     SEL _timerWasUpdated;
     
     FLCallback* _intermediary;
+    
+    NSInteger _updateCount;
 }
 
 // config
@@ -38,6 +40,7 @@
 // info
 @property (readonly, assign) NSTimeInterval startTime;
 @property (readonly, assign) NSTimeInterval elapsedTime;
+@property (readonly, assign) NSTimeInterval idleDuration;
 @property (readonly, assign) BOOL timedOut;
 
 // delegate

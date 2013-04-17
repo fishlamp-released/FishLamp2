@@ -60,9 +60,10 @@ FLSynthesizeSingleton(FLGlobalNetworkActivityIndicator);
 }
 
 - (void) updateListeners {
-    if(self.busy && self.busyCount == 0) {
+    if(self.busy && self.busyCount <= 0) {
 
         if(([NSDate timeIntervalSinceReferenceDate] - self.lastChange) > 0.3) {
+            self.busyCount = 0; // i've seen it go to -1
             self.busy = NO;
             FLLog(@"hiding global network indicator");
             

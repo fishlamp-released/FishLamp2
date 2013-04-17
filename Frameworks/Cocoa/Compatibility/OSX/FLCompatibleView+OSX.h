@@ -35,8 +35,8 @@ typedef NSUInteger UIViewAnimationOptions;
 
 @interface FLCompatibleView : NSView {
 @private
-    NSColor* _backgroundColor;
-    BOOL _needsLayout;
+//    NSColor* _backgroundColor;
+//    BOOL _needsLayout;
 }
 
 // note this sets the color in the layer (if there is one)

@@ -6,10 +6,11 @@
 //	Copyright 2009 GreenTongue Software. All rights reserved.
 //
 #import "FishLampCore.h"
-#import "FLFrameworkErrorDomain.h"
+#import "FLErrorCodes.h"
 #import "FLSoapFault11.h"
 #import "FLErrorDomainInfo.h"
 #import "NSError+FLExtras.h"
+#import "FLNetworkErrors.h"
 
 #define FLUnderlyingSoapFaultKey @"FLUnderlyingSoapFaultKey"
 

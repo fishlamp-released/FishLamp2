@@ -7,7 +7,7 @@
 //
 
 #import "FLSoapError.h"
-#import "FLFrameworkErrorDomain.h"
+#import "FLErrorCodes.h"
 
 @implementation NSError (FLSoapExtras) 
 
@@ -17,8 +17,8 @@
 		fault, FLUnderlyingSoapFaultKey, 
         [NSString stringWithFormat:@"%@:%@", fault.faultcode, fault.faultstring], NSLocalizedDescriptionKey, nil];
 
-	if((self = [self initWithDomain:FLFrameworkErrorDomain
-							   code:FLSoapFaultError
+	if((self = [self initWithDomain:FLNetworkErrorDomain
+							   code:FLNetworkErrorCodeSoapFault
 						   userInfo:userInfo]))
 	{
 	}

@@ -19,7 +19,7 @@
 @synthesize outputStream = _outputStream;
 @synthesize fileURL = _fileURL;
 @synthesize outputURL = _outputURL;
-
+@synthesize open = _open;
 
 - (id) initWithFileURL:(NSURL*) fileURL {
     self = [super init];
@@ -35,24 +35,38 @@
 
 - (void) openSink {
     FLAssert(self.outputStream == nil);
-
+    _open = YES;
     self.fileURL = nil;
-    self.outputStream = [NSOutputStream outputStreamWithURL:self.outputURL append:NO];
-    [self.outputStream open];
 }
 
 - (void) appendBytes:(const void *)bytes length:(NSUInteger)length {
     
     FLAssertNotNil(self.outputURL);
+    FLAssert(_open);
+
+    // don't create the file until we actually get bytes. This prevents
+    // an empty file on error or redirect or whatever.
+    if(!self.outputStream) {
+        self.outputStream = [NSOutputStream outputStreamWithURL:self.outputURL append:NO];
+        [self.outputStream open];
+        
+        FLThrowIfError(self.outputStream.streamError);
+    }
 
     NSInteger amountWritten = [self.outputStream write:bytes maxLength:length];
     FLAssert(amountWritten == length);
+}
+
+- (void) deleteFile {
+    NSError* fileError = nil;
+    [[NSFileManager defaultManager] removeItemAtURL:self.outputURL error:&fileError];
 }
 
 - (void) closeSinkWithCommit:(BOOL) commit {
 
     [self.outputStream close];
     self.outputStream = nil;
+    _open = NO;
     
     if(commit) {
         self.fileURL = self.outputURL;
@@ -60,26 +74,27 @@
     else {
         self.fileURL = nil;
     
-        NSError* fileError = nil;
-        [[NSFileManager defaultManager] removeItemAtURL:self.outputURL error:&fileError];
-
+        [self deleteFile];
 // todo: do what with error?
 
 //        return FLAutorelease(fileError);
     }
 }
 
-- (void) commit {
-}
+- (void) dealloc {
+
+    if(_outputStream) {
+        [_outputStream close];
+        [self deleteFile];
+    }
 
 #if FL_MRC
-- (void) dealloc {
     [_fileURL release];
     [_outputURL release];
     [_outputStream release];
     [super dealloc];
-}
 #endif
+}
 
 
 - (NSData*) data {
