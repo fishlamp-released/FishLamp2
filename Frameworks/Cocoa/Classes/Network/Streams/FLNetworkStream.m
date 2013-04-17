@@ -15,6 +15,7 @@
 @property (readwrite, assign, getter=isOpen) BOOL open;
 @property (readwrite, strong) id<FLNetworkStreamEventHandler> eventHandler;
 @property (readwrite, strong) FLTimer* timer;
+@property (readwrite, assign) NSTimeInterval idleDuration;
 @end
 
 @implementation FLNetworkStream
@@ -24,6 +25,7 @@
 @synthesize timer = _timer;
 @synthesize streamSecurity = _streamSecurity;
 @synthesize wasTerminated = _wasTerminated;
+@synthesize idleDuration = _idleDuration;
 
 static Class s_eventHandlerClass = nil;
 
@@ -174,6 +176,17 @@ static Class s_eventHandlerClass = nil;
 
 - (void) touchTimeoutTimestamp {
     [self.timer  touchTimestamp];
+}
+
+- (void) timerWasUpdated:(FLTimer*) timer {
+
+#if DEBUG
+    if(timer.idleDuration - self.idleDuration > 5.0f) {
+        FLLog(@"Server hasn't responded for %f seconds", timer.idleDuration);
+        self.idleDuration = timer.idleDuration;
+    }
+#endif
+
 }
 
 @end

@@ -111,8 +111,9 @@
 
     FLHttpRequest* request = [ZFHttpRequestFactory loadPhotoSetHttpRequest:photoSet.Id level:kZenfolioInformatonLevelFull includePhotos:YES];
 
-    ZFPhotoSet* latestPhotoSet = [self runChildSynchronously:request];
-    FLAssertNotNil(latestPhotoSet);
+    FLResult latestPhotoSet = [self runChildSynchronously:request];
+    
+    FLThrowIfError(latestPhotoSet);
     
     return latestPhotoSet;
 }
@@ -133,9 +134,8 @@
                                                            folderURL:self.downloadFolderURL];
 
     request.asyncObserver = self;
-                                                               
+                     
     return [self runChildSynchronously:request];
-
 }
 
 - (BOOL) willDownloadPhoto:(ZFPhoto*) photo {
@@ -199,11 +199,26 @@
 
     [self updateCountsForMediaType:mediaType];
 
+    NSError* error = nil;
     if([result error]) {
-        [info setObject:[result error] forKey:ZFDownloadPhotoErrorKey];
+        error = [result error];
+        [info setObject:error forKey:ZFDownloadPhotoErrorKey];
     }
     
     [self sendObservation:@selector(downloadOperation:didDownloadPhoto:) withObject:info];
+    
+    if(error) {
+        if([photo IsVideoValue] && 
+            [error isHttpServerError] && 
+            error.code == FLHttpServerResponseCodeServiceUnavailable) {
+            
+            // this error is okay for continueing with download
+            FLLog(@"got error for unready video");    
+        }
+        else {
+            FLThrowError(error);
+        }
+    }
 }
 
 - (void) downloadPhotosInPhotoSet:(ZFPhotoSet*) photoSet imageFolder:(FLImageFolder*) imageFolder {

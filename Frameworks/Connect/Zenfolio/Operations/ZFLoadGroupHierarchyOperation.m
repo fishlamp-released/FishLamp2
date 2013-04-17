@@ -43,8 +43,8 @@
 
     [self abortIfNeeded];
 
-    ZFGroup* group = [self runChildSynchronously:request];
-    FLAssertNotNil(group);
+    id group = [self runChildSynchronously:request];
+    FLThrowIfError(group);
     
     [self.objectStorage writeObject:group];
 

@@ -51,7 +51,7 @@
 
 - (FLResult) resultFromHttpResponse:(FLHttpResponse*) httpResponse {
 
-    NSData* data = [httpResponse responseData];
+    NSData* data = [[httpResponse responseData] data];
     
 #if DEBUG
     NSString* responseStr = FLAutorelease([[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);

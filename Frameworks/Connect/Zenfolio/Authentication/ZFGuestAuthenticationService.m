@@ -20,6 +20,7 @@
     request.context = self.operationContext;
     
     NSString* token = [request runSynchronously];
+    FLThrowIfError(token);
     
     userLogin.authTokenLastUpdateTimeValue = [NSDate timeIntervalSinceReferenceDate];
     userLogin.authToken = token;

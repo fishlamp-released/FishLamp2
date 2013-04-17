@@ -33,6 +33,10 @@
     self.data = nil;
 }
 
+- (BOOL) isOpen {
+    return self.responseData != nil;
+}
+
 - (void) closeSinkWithCommit:(BOOL) commit {
 
     if(commit) {

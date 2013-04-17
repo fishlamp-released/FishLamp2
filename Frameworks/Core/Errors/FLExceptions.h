@@ -12,7 +12,7 @@
 #import "FLMutableError.h"
 #import "FLStackTrace.h"
 #import "FLErrorDomainInfo.h"
-#import "FLFrameworkErrorDomain.h"
+#import "FLErrorCodes.h"
 
 @interface NSError (FLExceptionCreation)
 - (NSException*) createException:(NSDictionary*) userInfo;

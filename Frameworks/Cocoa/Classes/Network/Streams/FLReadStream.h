@@ -23,7 +23,6 @@
 - (id) initWithStreamSecurity:(FLNetworkStreamSecurity) security 
                     inputSink:(id<FLInputSink>) inputSink;
 
-@property (readonly, strong, nonatomic) id<FLInputSink> inputSink;
 @property (readonly, assign, nonatomic) CFReadStreamRef streamRef;
 
 // info
@@ -36,4 +35,9 @@
 
 - (CFReadStreamRef) allocReadStreamRef;
 
+@end
+
+@protocol FLReadStreamDelegate <FLNetworkStreamDelegate>
+@optional
+- (void) readStream:(FLReadStream*) stream willCloseWithResponseData:(id<FLInputSink>) sink;
 @end

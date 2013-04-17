@@ -13,6 +13,7 @@
     NSURL* _fileURL;
     NSURL* _outputURL;
     NSOutputStream* _outputStream;
+    BOOL _open;
 }
 
 - (id) initWithFileURL:(NSURL*) fileURL;

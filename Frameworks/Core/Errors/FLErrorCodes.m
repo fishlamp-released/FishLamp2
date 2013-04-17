@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import "FLFrameworkErrorDomain.h"
+#import "FLErrorCodes.h"
 
-NSString* const FLFrameworkErrorDomain = @"com.fishlamp.error";
+NSString* const FLErrorDomain = @"com.fishlamp.error";
 
 @implementation FLFrameworkErrorDomainInfo
 
@@ -18,13 +18,13 @@ NSString* const FLFrameworkErrorDomain = @"com.fishlamp.error";
 
 - (NSString*) stringFromErrorCode:(int) errorCode {
 
-    switch((FLFrameworkErrorCode) errorCode) {
+    switch((FLErrorCode) errorCode) {
     
         case FLErrorCodeNone:
             return @"com.fishlamp.error.no-error";
         break;
         
-        case FLCancelErrorCode:
+        case FLErrorCodeCancel:
             return @"com.fishlamp.error.cancel";
         break;
         case FLAbortErrorCode:
@@ -63,25 +63,28 @@ NSString* const FLFrameworkErrorDomain = @"com.fishlamp.error";
         case FLActionErrorCodeInvalidContext:
             return @"com.fishlamp.error.invalid-context";
         break;
-        case FLAuthenticationErrorPasswordIncorrect:
-            return @"com.fishlamp.error.authentication-failed";
-        break;
-        case FLAuthenticationErrorPasswordIncorrectOffline:
-            return @"com.fishlamp.error.authentication-failed.offline";
-        break;
-        case FLSoapFaultError:
-            return @"com.fishlamp.error.http.soap";
-        break;
-        case FLFrameworkTcpStreamErrorCode:
-            return @"com.fishlamp.error.tcp";
-        break;
-        
+//        case FLAuthenticationErrorPasswordIncorrect:
+//            return @"com.fishlamp.error.authentication-failed";
+//        break;
+//        case FLAuthenticationErrorPasswordIncorrectOffline:
+//            return @"com.fishlamp.error.authentication-failed.offline";
+//        break;
+//        case FLNetworkErrorCodeSoapFault:
+//            return @"com.fishlamp.error.http.soap";
+//        break;
+//        case FLFrameworkTcpStreamErrorCode:
+//            return @"com.fishlamp.error.tcp";
+//        break;
+//        
         case FLErrorResultFailed:
             return @"com.fishlamp.error.results-failed";
         break;
         
         case FLUnhandledServiceRequestErrorCode:
             return @"com.fishlamp.error.unhandled-service-request";
+        break;
+        
+        default:
         break;
     }
     return @"";

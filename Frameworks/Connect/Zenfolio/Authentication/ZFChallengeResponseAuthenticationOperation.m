@@ -10,7 +10,7 @@
 
 #import "FLBase64Encoding.h"
 #import "ZFErrors.h"
-#import "FLFrameworkErrorDomain.h"
+#import "FLErrorCodes.h"
 #import "FLObjectDescriber.h" // for merge objects
 #import "ZFWebApi.h"
 
@@ -72,16 +72,18 @@
 
     challengeRequest.disableAuthenticator = YES;
     
-    ZFAuthChallenge* response = [self runChildSynchronously:challengeRequest];
+    FLResult challengeResponse = [self runChildSynchronously:challengeRequest];
+    FLThrowIfError(challengeResponse);
    
-    FLHttpRequest* authenticateRequest = [self authenticateRequestWithAuthChallenge:response];
+    FLHttpRequest* authenticateRequest = [self authenticateRequestWithAuthChallenge:challengeResponse];
     authenticateRequest.disableAuthenticator = YES;
 
 #if OSX
     authenticateRequest.streamSecurity = FLNetworkStreamSecuritySSL;
 #endif
     
-    NSString* token = [self runChildSynchronously:authenticateRequest];
+    FLResult token = [self runChildSynchronously:authenticateRequest];
+    FLThrowIfError(token);
     
     if(FLStringIsNotEmpty(token)) {
         self.user.credentials.authToken = token;

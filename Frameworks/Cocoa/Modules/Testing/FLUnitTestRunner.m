@@ -49,7 +49,10 @@
     NSMutableArray* array = [NSMutableArray array];
     NSArray* workers = [self findTestWorkers];
     for(id worker in workers) {
-        [array addObject:[self runChildSynchronously:worker]];
+        FLResult result = [self runChildSynchronously:worker];
+        FLThrowIfError(result);
+    
+        [array addObject:result];
     }
 
     int errorCount = 0;
@@ -63,7 +66,7 @@
         
         [[FLUnitTest outputLog] appendLine:@"Unit Tests Failed"];
     
-        return [NSError errorWithDomain:FLFrameworkErrorDomain code:FLErrorResultFailed localizedDescription:@"Unit Tests Failed"];
+        return [NSError errorWithDomain:FLErrorDomain code:FLErrorResultFailed localizedDescription:@"Unit Tests Failed"];
     }
 
     [[FLUnitTest outputLog] appendLine:@"Unit Tests Passed"];

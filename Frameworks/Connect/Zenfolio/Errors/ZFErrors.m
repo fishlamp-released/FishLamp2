@@ -102,7 +102,7 @@ ZFErrorCode ZFErrorCodeFromString(NSString* errorString) {
 @implementation NSError (ZenfolioError)
 
 - (ZFErrorCode) zenfolioErrorCode {
-    return [self errorDomainEqualsDomain:ZFErrorDomain] ? self.code : ZFErrorCodeErrorIsNotZenfolioError;
+    return [self isErrorDomain:ZFErrorDomain] ? self.code : ZFErrorCodeErrorIsNotZenfolioError;
 }
 
 @end

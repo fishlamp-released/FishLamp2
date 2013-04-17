@@ -22,7 +22,7 @@
 
 - (FLResult) resultFromHttpResponse:(FLHttpResponse*) response {
 
-    FLStorableImage* image = [FLStorableImage imageWithData:response.responseData];
+    FLStorableImage* image = [FLStorableImage imageWithData:response.responseData.data];
 
 // TODO: could be a redirected URL for image???   
     

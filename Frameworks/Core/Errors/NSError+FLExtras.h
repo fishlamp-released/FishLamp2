@@ -47,7 +47,7 @@ extern NSString* const FLErrorCommentKey;
 
 - (BOOL) isErrorCode:(NSInteger) code domain:(NSString*) domain;
 
-- (BOOL) errorDomainEqualsDomain:(NSString*) domain;
+- (BOOL) isErrorDomain:(NSString*) domain;
 
 
 @end

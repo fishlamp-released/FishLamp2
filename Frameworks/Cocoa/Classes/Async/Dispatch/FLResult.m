@@ -7,7 +7,7 @@
 //
 
 #import "FLResult.h"
-#import "FLFrameworkErrorDomain.h"
+#import "FLErrorCodes.h"
 
 @implementation FLResultObject 
 
@@ -122,7 +122,7 @@
 
 @implementation NSError (FLResult)
 + (id) failedResultError {
-    return [NSError errorWithDomain:FLFrameworkErrorDomain
+    return [NSError errorWithDomain:FLErrorDomain
                                code:FLErrorResultFailed
                localizedDescription:NSLocalizedString(@"An operation failed.", nil)
                            userInfo:nil
