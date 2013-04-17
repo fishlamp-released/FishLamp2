@@ -21,6 +21,8 @@
 
     
     FLHttpResponse* response = [request runSynchronously];
+    FLThrowIfError(response);
+    
     FLAssertNotNil(response);
     FLAssert([response isKindOfClass:[FLHttpResponse class]]);
     FLAssert(response.responseStatusCode == 200);

@@ -9,6 +9,8 @@
 #import "FLCocoaRequired.h"
 #import "FishLampCore.h"
 #import "FLInputSink.h"
+#import "FLHttpErrors.h"
+
 
 @class FLHttpMessage;
 
@@ -20,37 +22,33 @@
     NSDictionary* _responseHeaders;
     FLHttpResponse* _redirectedFrom;
     id<FLInputSink> _inputSink;
+    NSError* _error;
 }
 @property (readonly, strong, nonatomic) NSURL* requestURL;
 @property (readonly, strong, nonatomic) NSDictionary* responseHeaders;
 @property (readonly, strong, nonatomic) NSString* responseStatusLine;
-@property (readonly, strong, nonatomic) FLHttpResponse* redirectedFrom;
 @property (readonly, assign, nonatomic) NSInteger responseStatusCode;
+
+@property (readonly, strong, nonatomic) NSError* error;
+
+@property (readonly, assign, nonatomic) BOOL isSuccess;
+@property (readonly, assign, nonatomic) BOOL isError;
+@property (readonly, assign, nonatomic) BOOL isServerError;
+@property (readonly, assign, nonatomic) BOOL isClientError;
+
+// has redirect status code and a "location" header
+@property (readonly, assign, nonatomic) BOOL wantsRedirect; 
+@property (readonly, assign, nonatomic) BOOL isRedirect;
+@property (readonly, strong, nonatomic) FLHttpResponse* redirectedFrom;
+@property (readonly, strong, nonatomic) NSURL* redirectURL;
 
 + (id) httpResponse:(NSURL*) requestURL 
             headers:(FLHttpMessage*) headers 
      redirectedFrom:(FLHttpResponse*) redirectedFrom
           inputSink:(id<FLInputSink>) inputSink;
 
-- (NSData*) responseData;
-- (NSURL*) responseFileURL;
+- (id<FLInputSink>) responseData;
 
 - (NSString*) valueForHeader:(NSString*) header;
-
-/** returns an error for responses >= 400 */
-- (NSError*) simpleHttpResponseErrorCheck;
-- (void) throwHttpErrorIfNeeded;
 @end
 
-@interface FLHttpResponse (Utils)
-// http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html
-@property (readonly, assign, nonatomic) BOOL wantsRedirect;
-@property (readonly, assign, nonatomic) BOOL responseCodeIsRedirect;
-- (NSURL*) redirectURL;
-@end
-
-
-//    NSData* _responseData;
-//    NSURL* _responseDataFile;
-//@property (readonly, strong, nonatomic) NSData* responseData;
-//@property (readonly, strong, nonatomic) NSURL* responseURL;

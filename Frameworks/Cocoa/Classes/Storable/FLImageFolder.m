@@ -292,7 +292,7 @@ FLAssertFailedWithComment(@"confirm this");
 //	[self _throwIfNotConfigured];
 //	
 //	if(!_image && !_jpegData) {
-//		FLThrowIfError([NSError errorWithDomain:FLFrameworkErrorDomain code:FLErrorNoDataToSave
+//		FLThrowIfError([NSError errorWithDomain:FLErrorDomain code:FLErrorNoDataToSave
 //			userInfo:[NSDictionary dictionaryWithObject:@"No image data to save" forKey:NSLocalizedDescriptionKey]]);
 // 
 //	}

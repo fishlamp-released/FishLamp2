@@ -206,7 +206,7 @@ static FLLogger* s_outputLogger = nil;
                 [[FLUnitTest logger] pushLoggerSink:result];
                     
                 @try {
-                    [self runChildSynchronously:testCase];
+                    FLThrowIfError([self runChildSynchronously:testCase]);
                     [result setPassed];
                 }
                 @catch(NSException* ex) {

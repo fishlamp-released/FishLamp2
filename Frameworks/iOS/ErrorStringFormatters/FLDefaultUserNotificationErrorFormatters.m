@@ -20,7 +20,7 @@ void InstallDefaultUserNotificationErrorFormatters()
 {
 	[[FLErrorDescriberManager instance] addErrorDescriber:FLAutorelease([[NSUrlErrorDomainErrorFormatter alloc] init]) ];
 //	  [[FLErrorDescriberManager instance] addErrorDescriber:FLAutorelease([[NSPOSIXErrorDomainErrorFormatter alloc] init]) ]; 
-	[[FLErrorDescriberManager instance] addErrorDescriber:FLAutorelease([[FLSoapFaultErrorDomainErrorFormatter alloc] init])]; 
+	[[FLErrorDescriberManager instance] addErrorDescriber:FLAutorelease([[FLNetworkErrorCodeSoapFaultDomainErrorFormatter alloc] init])]; 
 }
 
 @implementation NSUrlErrorDomainErrorFormatter
@@ -90,7 +90,7 @@ void InstallDefaultUserNotificationErrorFormatters()
 
 @end
 
-@implementation FLSoapFaultErrorDomainErrorFormatter
+@implementation FLNetworkErrorCodeSoapFaultDomainErrorFormatter
 
 - (BOOL) willDescribeError:(NSError*) error
 {

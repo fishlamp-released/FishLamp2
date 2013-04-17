@@ -49,7 +49,6 @@
 //}
 
 - (void) authenticateUser:(ZFHttpUser*) user {
-
     FLSynchronousOperation* authenticator = [ZFChallengeResponseAuthenticationOperation authenticationOperation:user];
     FLThrowIfError([authenticator runSynchronouslyInContext:self.operationContext]);
 }

@@ -24,5 +24,5 @@ extern void InstallDefaultUserNotificationErrorFormatters();
 @interface CFNetworkDomainErrorFormatter : NSObject<FLErrorDescriber>
 @end
 */
-@interface FLSoapFaultErrorDomainErrorFormatter : NSObject<FLErrorDescriber>
+@interface FLNetworkErrorCodeSoapFaultDomainErrorFormatter : NSObject<FLErrorDescriber>
 @end

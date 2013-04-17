@@ -48,7 +48,7 @@
         _outputObject = [NSMutableDictionary dictionary];
     }
     
-    id jsonObject = [[FLJsonParser jsonParser] parseData:[httpResponse responseData]];
+    id jsonObject = [[FLJsonParser jsonParser] parseData:[[httpResponse responseData] data]];
     
     
     

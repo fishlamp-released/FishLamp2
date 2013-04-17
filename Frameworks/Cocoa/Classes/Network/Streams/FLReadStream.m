@@ -71,6 +71,8 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
     return nil;
 }
 
+#define kCFStreamPropertyReadTimeout CFSTR("_kCFStreamPropertyReadTimeout")
+
 - (void) openStream {
 
     FLAssert([NSThread currentThread] != [NSThread mainThread]);
@@ -102,8 +104,22 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
         CFReadStreamSetProperty(_streamRef,kCFStreamPropertySSLSettings, sslSettings);
     }
 
+
+// this doesn't see to work on 10.8
+#if 0
+    CFReadStreamSetProperty(_streamRef, 
+                            kCFStreamPropertyReadTimeout, 
+                            [NSNumber numberWithDouble:[self.delegate networkStreamGetTimeoutInterval:self]*2]);
+#endif                            
+
     CFReadStreamOpen(_streamRef);
+
+
     CFReadStreamScheduleWithRunLoop(_streamRef, CFRunLoopGetMain(), bridge_(void*,NSDefaultRunLoopMode));
+}
+
+- (void) willCloseWithResponseData:(id<FLInputSink>) responseData {
+    FLPerformSelector2(self.delegate, @selector(readStream:willCloseWithResponseData:), self, responseData);
 }
 
 - (void) closeStream {
@@ -112,9 +128,19 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
 
     if(_streamRef) {
         @try {
-            [self.inputSink closeSinkWithCommit:!self.wasTerminated];
+        
+            if(self.wasTerminated) {
+                [self.inputSink closeSinkWithCommit:NO];
+            }
+            else {
+                [self willCloseWithResponseData:self.inputSink];
+            }
         }
         @finally {
+            if(self.inputSink.isOpen) {
+                [self.inputSink closeSinkWithCommit:NO];
+            }
+
             [self killStream];
             [self didClose];
         }

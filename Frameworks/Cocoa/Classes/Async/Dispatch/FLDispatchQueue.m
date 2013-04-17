@@ -262,7 +262,9 @@ static void * const s_queue_key = (void*)&s_queue_key;
             [operation performUntilFinished:finisher];
         }
         @catch(NSException* ex) {
-            [finisher setFinishedWithResult:ex.error];
+            if(!finisher.isFinished) {
+                [finisher setFinishedWithResult:ex.error];
+            }
         }
     });
     

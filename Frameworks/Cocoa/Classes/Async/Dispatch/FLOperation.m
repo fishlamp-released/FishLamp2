@@ -119,18 +119,17 @@
 }
 
 - (FLResult) runChildSynchronously:(FLOperation*) operation {
-    
-    
     [FLRetainWithAutorelease(operation) wasStartedByParent:self];
     
     FLResult result = nil;
     @try {
         result = [operation runSynchronously];
-        FLThrowIfError(result);
     }
     @finally {
         [operation operationDidFinish];
     }
+    
+    FLAssertNotNilWithComment(result, @"result should not be nil");
     
     return result;
 }

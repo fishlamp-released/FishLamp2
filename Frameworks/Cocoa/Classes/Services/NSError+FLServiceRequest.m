@@ -18,7 +18,7 @@
 //
 //    NSString* errorString = [NSString stringWithFormat:@"%@: %@", notHandled, serviceID];
 //
-//    return [NSError errorWithDomain:FLFrameworkErrorDomain
+//    return [NSError errorWithDomain:FLErrorDomain
 //                                   code:FLUnhandledServiceRequestErrorCode
 //                                   userInfo:[NSDictionary dictionaryWithObject:serviceID forKey:FLServiceRequestErrorKey]
 //                                   reason:errorString

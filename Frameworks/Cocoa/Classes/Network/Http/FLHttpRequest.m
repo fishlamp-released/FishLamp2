@@ -16,6 +16,7 @@
 #import "FLHttpRequestBody.h"
 #import "FLDispatch.h"
 #import "FLTimer.h"
+#import "FLReachableNetwork.h"
 
 //#define kStreamReadChunkSize 1024
 
@@ -24,8 +25,10 @@
 @property (readwrite, strong, nonatomic) FLFinisher* finisher;
 @property (readwrite, strong, nonatomic) FLHttpResponse* previousResponse;
 @property (readwrite, strong, nonatomic) FLHttpStream* httpStream;
+- (void) requestDidFinishWithResult:(id) result;
 @end
 
+#define FORCE_NO_SSL 1
 #define TRACE 0
 
 @implementation FLHttpRequest
@@ -128,7 +131,7 @@ static int s_counter = 0;
 }
 
 - (NSError*) checkHttpResponseForError:(FLHttpResponse*) httpResponse {
-    return [httpResponse simpleHttpResponseErrorCheck];
+    return httpResponse.error;
 }
 
 - (NSString*) description {
@@ -163,6 +166,11 @@ static int s_counter = 0;
 
     if(!self.inputSink) {
         self.inputSink = [FLDataSink dataSink];
+    }
+    
+    if(![FLReachableNetwork instance].isReachable) {
+        [self requestDidFinishWithResult:[NSError errorWithDomain:FLNetworkErrorDomain code:FLNetworkErrorCodeNoRouteToHost localizedDescription:NSLocalizedString(@"Network appears to be offline", nil) ]];
+        return;
     }
     
     NSURL* finalURL = url;
@@ -237,19 +245,11 @@ static int s_counter = 0;
     [self sendObservation:@selector(httpRequest:didReadBytes:) withObject:amountRead];
 }
 
-- (FLResult) finalizeResult:(FLHttpResponse*) response {
-    NSError* responseError = [self checkHttpResponseForError:response];
-    if(responseError) {
-        return responseError;
-    }
-    return [self resultFromHttpResponse:response];
-}
-
 - (void) requestDidFinishWithResult:(id) result {
         
     @try {
         if(![result error]) {
-            result = [self finalizeResult:result];
+            result = [self resultFromHttpResponse:result];
         }
     }
     @catch(NSException* ex) {
@@ -290,39 +290,54 @@ static int s_counter = 0;
 
 - (void) networkStreamDidClose:(FLHttpStream*) stream {
 
-    FLHttpResponse* response = [FLHttpResponse httpResponse:[[stream requestHeaders] requestURL]
-                                                    headers:[stream requestHeaders] 
-                                             redirectedFrom:self.previousResponse
-                                                  inputSink:self.inputSink];
-
-    // FIXME: there was an issue here with progress getting fouled up on redirects.
-    //    [self connectionGotTimerEvent];
-
-    BOOL redirect = response.wantsRedirect;
-    if(redirect) {
-        NSURL* redirectURL = response.redirectURL;
-        redirect = [self shouldRedirectToURL:redirectURL];
-        if(redirect) {
-            self.previousResponse = response;
-            [self openAuthenticatedStreamWithURL:redirectURL];
-        }
-    }
-
-    if(!redirect) {
-        [self requestDidFinishWithResult:response];
-    }
 }
 
 - (NSTimeInterval) networkStreamGetTimeoutInterval:(FLNetworkStream*) stream {
     return self.timeoutInterval;
 }
 
+- (void) httpStream:(FLHttpStream*) stream 
+willCloseWithResponseHeaders:(FLHttpMessage*) responseHeaders 
+       responseData:(id<FLInputSink>) responseData {
+       
+    FLHttpResponse* response = [FLHttpResponse httpResponse:[[self requestHeaders] requestURL]
+                                                    headers:responseHeaders 
+                                             redirectedFrom:self.previousResponse
+                                                  inputSink:responseData];
+    
+    NSError* responseError = [self checkHttpResponseForError:response];
+    
+    if(responseData.isOpen) {
+        [responseData closeSinkWithCommit:responseError == nil];
+    }
+    
+    if(responseError) {
+        [self requestDidFinishWithResult:responseError];
+    }
+    else {
 
+        // FIXME: there was an issue here with progress getting fouled up on redirects.
+        //    [self connectionGotTimerEvent];
 
+        BOOL redirect = response.wantsRedirect;
+        if(redirect) {
+            NSURL* redirectURL = response.redirectURL;
+            redirect = [self shouldRedirectToURL:redirectURL];
+            if(redirect) {
+                self.previousResponse = response;
+                [self openAuthenticatedStreamWithURL:redirectURL];
+            }
+        }
 
+        if(!redirect) {
+            [self requestDidFinishWithResult:response];
+        }
+    }
+}
 @end
 
-
+    
+    
 
 
 

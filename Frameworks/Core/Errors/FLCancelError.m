@@ -30,14 +30,14 @@ NSString* const FLCancelExceptionName = @"com.fishlamp.exception.cancel";
 @implementation NSError (FLCancelling)
 
 + (NSError*) cancelError {
-    return [FLCancelError errorWithDomain:FLFrameworkErrorDomain
-                               code:FLCancelErrorCode
+    return [FLCancelError errorWithDomain:FLErrorDomain
+                               code:FLErrorCodeCancel
                localizedDescription:NSLocalizedString(@"Cancelled", @"used in cancel error localized description")];
 
 }
 
 - (BOOL) isCancelError {
-	return	FLStringsAreEqual(FLFrameworkErrorDomain, self.domain) && self.code == FLCancelErrorCode; 
+	return	FLStringsAreEqual(FLErrorDomain, self.domain) && self.code == FLErrorCodeCancel; 
 }
 
 @end

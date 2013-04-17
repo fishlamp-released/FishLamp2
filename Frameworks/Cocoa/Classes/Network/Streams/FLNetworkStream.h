@@ -27,6 +27,7 @@ typedef enum {
     __unsafe_unretained id<FLNetworkStreamDelegate> _delegate;
     FLTimer* _timer;
     FLNetworkStreamSecurity _streamSecurity;
+    NSTimeInterval _idleDuration;
 }
 
 @property (readonly, assign, nonatomic) FLNetworkStreamSecurity streamSecurity;

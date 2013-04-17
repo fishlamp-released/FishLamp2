@@ -34,7 +34,10 @@
     request.disableAuthenticator = YES;
     [request setAuthenticationToken:userLogin.authToken];
     
-    return [self runChildSynchronously:request];
+    FLResult result = [self runChildSynchronously:request];
+    FLThrowIfError(result);
+    
+    return result;
 }
 
 #if FL_MRC
