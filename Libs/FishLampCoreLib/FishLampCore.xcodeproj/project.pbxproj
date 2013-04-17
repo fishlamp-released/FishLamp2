@@ -376,15 +376,15 @@
 		27F46EF716FA45FE006271B4 /* FLExceptions_Inlines.h in Headers */ = {isa = PBXBuildFile; fileRef = 27F46EAC16FA45FD006271B4 /* FLExceptions_Inlines.h */; };
 		27F46EF816FA45FE006271B4 /* FLExceptions_Inlines.h in Headers */ = {isa = PBXBuildFile; fileRef = 27F46EAC16FA45FD006271B4 /* FLExceptions_Inlines.h */; };
 		27F46EF916FA45FE006271B4 /* FLExceptions_Inlines.h in Headers */ = {isa = PBXBuildFile; fileRef = 27F46EAC16FA45FD006271B4 /* FLExceptions_Inlines.h */; };
-		27F46EFA16FA45FE006271B4 /* FLFrameworkErrorDomain.h in Headers */ = {isa = PBXBuildFile; fileRef = 27F46EAD16FA45FD006271B4 /* FLFrameworkErrorDomain.h */; };
-		27F46EFB16FA45FE006271B4 /* FLFrameworkErrorDomain.h in Headers */ = {isa = PBXBuildFile; fileRef = 27F46EAD16FA45FD006271B4 /* FLFrameworkErrorDomain.h */; };
-		27F46EFC16FA45FE006271B4 /* FLFrameworkErrorDomain.h in Headers */ = {isa = PBXBuildFile; fileRef = 27F46EAD16FA45FD006271B4 /* FLFrameworkErrorDomain.h */; };
-		27F46EFD16FA45FE006271B4 /* FLFrameworkErrorDomain.h in Headers */ = {isa = PBXBuildFile; fileRef = 27F46EAD16FA45FD006271B4 /* FLFrameworkErrorDomain.h */; };
-		27F46EFE16FA45FE006271B4 /* FLFrameworkErrorDomain.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F46EAE16FA45FD006271B4 /* FLFrameworkErrorDomain.m */; };
-		27F46EFF16FA45FE006271B4 /* FLFrameworkErrorDomain.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F46EAE16FA45FD006271B4 /* FLFrameworkErrorDomain.m */; };
-		27F46F0016FA45FE006271B4 /* FLFrameworkErrorDomain.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F46EAE16FA45FD006271B4 /* FLFrameworkErrorDomain.m */; };
-		27F46F0116FA45FE006271B4 /* FLFrameworkErrorDomain.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F46EAE16FA45FD006271B4 /* FLFrameworkErrorDomain.m */; };
-		27F46F0216FA45FE006271B4 /* FLFrameworkErrorDomain.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F46EAE16FA45FD006271B4 /* FLFrameworkErrorDomain.m */; };
+		27F46EFA16FA45FE006271B4 /* FLErrorCodes.h in Headers */ = {isa = PBXBuildFile; fileRef = 27F46EAD16FA45FD006271B4 /* FLErrorCodes.h */; };
+		27F46EFB16FA45FE006271B4 /* FLErrorCodes.h in Headers */ = {isa = PBXBuildFile; fileRef = 27F46EAD16FA45FD006271B4 /* FLErrorCodes.h */; };
+		27F46EFC16FA45FE006271B4 /* FLErrorCodes.h in Headers */ = {isa = PBXBuildFile; fileRef = 27F46EAD16FA45FD006271B4 /* FLErrorCodes.h */; };
+		27F46EFD16FA45FE006271B4 /* FLErrorCodes.h in Headers */ = {isa = PBXBuildFile; fileRef = 27F46EAD16FA45FD006271B4 /* FLErrorCodes.h */; };
+		27F46EFE16FA45FE006271B4 /* FLErrorCodes.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F46EAE16FA45FD006271B4 /* FLErrorCodes.m */; };
+		27F46EFF16FA45FE006271B4 /* FLErrorCodes.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F46EAE16FA45FD006271B4 /* FLErrorCodes.m */; };
+		27F46F0016FA45FE006271B4 /* FLErrorCodes.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F46EAE16FA45FD006271B4 /* FLErrorCodes.m */; };
+		27F46F0116FA45FE006271B4 /* FLErrorCodes.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F46EAE16FA45FD006271B4 /* FLErrorCodes.m */; };
+		27F46F0216FA45FE006271B4 /* FLErrorCodes.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F46EAE16FA45FD006271B4 /* FLErrorCodes.m */; };
 		27F46F0316FA45FE006271B4 /* FLMutableError.h in Headers */ = {isa = PBXBuildFile; fileRef = 27F46EAF16FA45FD006271B4 /* FLMutableError.h */; };
 		27F46F0416FA45FE006271B4 /* FLMutableError.h in Headers */ = {isa = PBXBuildFile; fileRef = 27F46EAF16FA45FD006271B4 /* FLMutableError.h */; };
 		27F46F0516FA45FE006271B4 /* FLMutableError.h in Headers */ = {isa = PBXBuildFile; fileRef = 27F46EAF16FA45FD006271B4 /* FLMutableError.h */; };
@@ -543,8 +543,8 @@
 		27F46EAA16FA45FD006271B4 /* FLExceptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLExceptions.h; sourceTree = "<group>"; };
 		27F46EAB16FA45FD006271B4 /* FLExceptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLExceptions.m; sourceTree = "<group>"; };
 		27F46EAC16FA45FD006271B4 /* FLExceptions_Inlines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLExceptions_Inlines.h; sourceTree = "<group>"; };
-		27F46EAD16FA45FD006271B4 /* FLFrameworkErrorDomain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLFrameworkErrorDomain.h; sourceTree = "<group>"; };
-		27F46EAE16FA45FD006271B4 /* FLFrameworkErrorDomain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLFrameworkErrorDomain.m; sourceTree = "<group>"; };
+		27F46EAD16FA45FD006271B4 /* FLErrorCodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLErrorCodes.h; sourceTree = "<group>"; };
+		27F46EAE16FA45FD006271B4 /* FLErrorCodes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLErrorCodes.m; sourceTree = "<group>"; };
 		27F46EAF16FA45FD006271B4 /* FLMutableError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLMutableError.h; sourceTree = "<group>"; };
 		27F46EB016FA45FD006271B4 /* FLMutableError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLMutableError.m; sourceTree = "<group>"; };
 		27F46EB116FA45FD006271B4 /* FLStackTrace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLStackTrace.h; sourceTree = "<group>"; };
@@ -819,8 +819,8 @@
 		27F46F2716FA4622006271B4 /* ErrorDomains */ = {
 			isa = PBXGroup;
 			children = (
-				27F46EAD16FA45FD006271B4 /* FLFrameworkErrorDomain.h */,
-				27F46EAE16FA45FD006271B4 /* FLFrameworkErrorDomain.m */,
+				27F46EAD16FA45FD006271B4 /* FLErrorCodes.h */,
+				27F46EAE16FA45FD006271B4 /* FLErrorCodes.m */,
 				27F46EA416FA45FD006271B4 /* FLErrorDomainInfo.h */,
 				27F46EA516FA45FD006271B4 /* FLErrorDomainInfo.m */,
 			);
@@ -918,7 +918,7 @@
 				27F46EE416FA45FD006271B4 /* FLErrors.h in Headers */,
 				27F46EED16FA45FE006271B4 /* FLExceptions.h in Headers */,
 				27F46EF616FA45FE006271B4 /* FLExceptions_Inlines.h in Headers */,
-				27F46EFA16FA45FE006271B4 /* FLFrameworkErrorDomain.h in Headers */,
+				27F46EFA16FA45FE006271B4 /* FLErrorCodes.h in Headers */,
 				27F46F0316FA45FE006271B4 /* FLMutableError.h in Headers */,
 				27F46F0C16FA45FE006271B4 /* FLStackTrace.h in Headers */,
 				27F46F1E16FA45FE006271B4 /* NSError+FLExtras.h in Headers */,
@@ -982,7 +982,7 @@
 				27F46EE616FA45FD006271B4 /* FLErrors.h in Headers */,
 				27F46EEF16FA45FE006271B4 /* FLExceptions.h in Headers */,
 				27F46EF816FA45FE006271B4 /* FLExceptions_Inlines.h in Headers */,
-				27F46EFC16FA45FE006271B4 /* FLFrameworkErrorDomain.h in Headers */,
+				27F46EFC16FA45FE006271B4 /* FLErrorCodes.h in Headers */,
 				27F46F0516FA45FE006271B4 /* FLMutableError.h in Headers */,
 				27F46F0E16FA45FE006271B4 /* FLStackTrace.h in Headers */,
 				27F46F2016FA45FE006271B4 /* NSError+FLExtras.h in Headers */,
@@ -1046,7 +1046,7 @@
 				27F46EE516FA45FD006271B4 /* FLErrors.h in Headers */,
 				27F46EEE16FA45FE006271B4 /* FLExceptions.h in Headers */,
 				27F46EF716FA45FE006271B4 /* FLExceptions_Inlines.h in Headers */,
-				27F46EFB16FA45FE006271B4 /* FLFrameworkErrorDomain.h in Headers */,
+				27F46EFB16FA45FE006271B4 /* FLErrorCodes.h in Headers */,
 				27F46F0416FA45FE006271B4 /* FLMutableError.h in Headers */,
 				27F46F0D16FA45FE006271B4 /* FLStackTrace.h in Headers */,
 				27F46F1F16FA45FE006271B4 /* NSError+FLExtras.h in Headers */,
@@ -1110,7 +1110,7 @@
 				27F46EE716FA45FD006271B4 /* FLErrors.h in Headers */,
 				27F46EF016FA45FE006271B4 /* FLExceptions.h in Headers */,
 				27F46EF916FA45FE006271B4 /* FLExceptions_Inlines.h in Headers */,
-				27F46EFD16FA45FE006271B4 /* FLFrameworkErrorDomain.h in Headers */,
+				27F46EFD16FA45FE006271B4 /* FLErrorCodes.h in Headers */,
 				27F46F0616FA45FE006271B4 /* FLMutableError.h in Headers */,
 				27F46F0F16FA45FE006271B4 /* FLStackTrace.h in Headers */,
 				27F46F2116FA45FE006271B4 /* NSError+FLExtras.h in Headers */,
@@ -1276,7 +1276,7 @@
 				27F46EE016FA45FD006271B4 /* FLErrorException.m in Sources */,
 				27F46EE916FA45FD006271B4 /* FLErrors.m in Sources */,
 				27F46EF216FA45FE006271B4 /* FLExceptions.m in Sources */,
-				27F46EFF16FA45FE006271B4 /* FLFrameworkErrorDomain.m in Sources */,
+				27F46EFF16FA45FE006271B4 /* FLErrorCodes.m in Sources */,
 				27F46F0816FA45FE006271B4 /* FLMutableError.m in Sources */,
 				27F46F1116FA45FE006271B4 /* FLStackTrace.m in Sources */,
 				27F46F2316FA45FE006271B4 /* NSError+FLExtras.m in Sources */,
@@ -1322,7 +1322,7 @@
 				27F46EE216FA45FD006271B4 /* FLErrorException.m in Sources */,
 				27F46EEB16FA45FE006271B4 /* FLErrors.m in Sources */,
 				27F46EF416FA45FE006271B4 /* FLExceptions.m in Sources */,
-				27F46F0116FA45FE006271B4 /* FLFrameworkErrorDomain.m in Sources */,
+				27F46F0116FA45FE006271B4 /* FLErrorCodes.m in Sources */,
 				27F46F0A16FA45FE006271B4 /* FLMutableError.m in Sources */,
 				27F46F1316FA45FE006271B4 /* FLStackTrace.m in Sources */,
 				27F46F2516FA45FE006271B4 /* NSError+FLExtras.m in Sources */,
@@ -1368,7 +1368,7 @@
 				27F46EDF16FA45FD006271B4 /* FLErrorException.m in Sources */,
 				27F46EE816FA45FD006271B4 /* FLErrors.m in Sources */,
 				27F46EF116FA45FE006271B4 /* FLExceptions.m in Sources */,
-				27F46EFE16FA45FE006271B4 /* FLFrameworkErrorDomain.m in Sources */,
+				27F46EFE16FA45FE006271B4 /* FLErrorCodes.m in Sources */,
 				27F46F0716FA45FE006271B4 /* FLMutableError.m in Sources */,
 				27F46F1016FA45FE006271B4 /* FLStackTrace.m in Sources */,
 				27F46F2216FA45FE006271B4 /* NSError+FLExtras.m in Sources */,
@@ -1414,7 +1414,7 @@
 				27F46EE116FA45FD006271B4 /* FLErrorException.m in Sources */,
 				27F46EEA16FA45FD006271B4 /* FLErrors.m in Sources */,
 				27F46EF316FA45FE006271B4 /* FLExceptions.m in Sources */,
-				27F46F0016FA45FE006271B4 /* FLFrameworkErrorDomain.m in Sources */,
+				27F46F0016FA45FE006271B4 /* FLErrorCodes.m in Sources */,
 				27F46F0916FA45FE006271B4 /* FLMutableError.m in Sources */,
 				27F46F1216FA45FE006271B4 /* FLStackTrace.m in Sources */,
 				27F46F2416FA45FE006271B4 /* NSError+FLExtras.m in Sources */,
@@ -1460,7 +1460,7 @@
 				27F46EE316FA45FD006271B4 /* FLErrorException.m in Sources */,
 				27F46EEC16FA45FE006271B4 /* FLErrors.m in Sources */,
 				27F46EF516FA45FE006271B4 /* FLExceptions.m in Sources */,
-				27F46F0216FA45FE006271B4 /* FLFrameworkErrorDomain.m in Sources */,
+				27F46F0216FA45FE006271B4 /* FLErrorCodes.m in Sources */,
 				27F46F0B16FA45FE006271B4 /* FLMutableError.m in Sources */,
 				27F46F1416FA45FE006271B4 /* FLStackTrace.m in Sources */,
 				27F46F2616FA45FE006271B4 /* NSError+FLExtras.m in Sources */,

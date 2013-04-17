@@ -88,7 +88,7 @@
 - (FLResult) resultFromHttpResponse:(FLHttpResponse*) httpResponse {
 
     FLOAuthSession* session = [FLOAuthSession oAuthSession];
-    [FLUrlParameterParser parseData:httpResponse.responseData 
+    [FLUrlParameterParser parseData:httpResponse.responseData.data 
         intoObject:session 
         strict:YES 
         requiredKeys:[NSArray arrayWithObjects:@"oauth_token", @"oauth_token_secret", @"user_id", @"screen_name", nil]];

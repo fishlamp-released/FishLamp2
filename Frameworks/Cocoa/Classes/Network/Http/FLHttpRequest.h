@@ -13,6 +13,8 @@
 #import "FLHttpStream.h"
 #import "FLHttpRequestBody.h"
 #import "FLHttpRequestHeaders.h"
+#import "FLHttpErrors.h"
+#import "FLNetworkErrors.h"
 
 #define FLHttpRequestDefaultTimeoutInterval 120.0f
 
@@ -31,7 +33,7 @@
 - (id<FLHttpRequestAuthenticator>) httpRequestAuthenticator;
 @end
 
-@interface FLHttpRequest : FLOperation<FLNetworkStreamDelegate> {
+@interface FLHttpRequest : FLOperation<FLHttpStreamDelegate> {
 @private
     FLHttpRequestHeaders* _requestHeaders;
     FLHttpRequestBody* _requestBody;
@@ -85,9 +87,9 @@
 
 - (NSError*) checkHttpResponseForError:(FLHttpResponse*) httpResponse;
 
-
 /// this returns YES by default.
 - (BOOL) shouldRedirectToURL:(NSURL*) url;
+
 @end
 
 @protocol FLHttpRequestObserver <NSObject>

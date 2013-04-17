@@ -11,12 +11,12 @@
 @implementation NSError (FLTimeout)
 + (NSError*) timeoutError {
     return [NSError errorWithDomain:NSURLErrorDomain
-                                   code:NSURLErrorTimedOut
+                                   code:FLErrorCodeTimedOut
                    localizedDescription:NSLocalizedString(@"TimeOut Error", @"used in cancel error localized description")];
 }
 
 - (BOOL) isTimeoutError {
 	return	FLStringsAreEqual(NSURLErrorDomain, self.domain) && 
-			self.code == NSURLErrorTimedOut; 
+			self.code == FLErrorCodeTimedOut; 
 }
 @end

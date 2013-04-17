@@ -15,7 +15,7 @@
 
 @implementation FLCompatibleView 
 
-@synthesize backgroundColor = _backgroundColor;
+//@synthesize backgroundColor = _backgroundColor;
 
 //- (void)drawRect:(NSRect)dirtyRect {
 //    // set any NSColor for filling, say white:

@@ -603,7 +603,7 @@ withPropertyDescription:(FLObjectDescriber*) objectDescription {
 //
 //    if(error /*&& !self.objectBuilder.error*/) {
 //
-////        if([error errorDomainEqualsDomain:NSXMLParserErrorDomain]) {
+////        if([error isErrorDomain:NSXMLParserErrorDomain]) {
 ////            
 ////            NSString* name = [FLXmlObjectBuilder errorStringForCode:error.code];
 ////            

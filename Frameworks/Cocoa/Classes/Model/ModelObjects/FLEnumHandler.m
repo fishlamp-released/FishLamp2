@@ -34,7 +34,7 @@
 - (NSInteger) enumFromString:(NSString*) inString {
     NSNumber* num = [_enums objectForKey:inString];
     if(!num) { 
-        FLThrowErrorCodeWithComment(FLFrameworkErrorDomain, FLErrorUnknownEnumValue, 
+        FLThrowErrorCodeWithComment(FLErrorDomain, FLErrorUnknownEnumValue, 
             [NSString stringWithFormat:(NSLocalizedString(@"Unknown enum value (case sensitive): %@", nil)), inString]); 
     } 
     return [num intValue];
@@ -44,7 +44,7 @@
 {
     NSString* str = [_enums objectForKey:[NSNumber numberWithInteger:enumValue]];
     if(!str) {
-        FLThrowErrorCodeWithComment(FLFrameworkErrorDomain, FLErrorUnknownEnumValue, 
+        FLThrowErrorCodeWithComment(FLErrorDomain, FLErrorUnknownEnumValue, 
             [NSString stringWithFormat:(NSLocalizedString(@"Unknown enum value: %d", nil)), enumValue]); 
     }
     
@@ -67,7 +67,7 @@
                 if(FLStringIsNotEmpty(key)) {
                     NSNumber* num = [_enums objectForKey:key];
                     if(!num) {
-                        FLThrowErrorCodeWithComment(FLFrameworkErrorDomain, FLErrorUnknownEnumValue, 
+                        FLThrowErrorCodeWithComment(FLErrorDomain, FLErrorUnknownEnumValue, 
                             [NSString stringWithFormat:(NSLocalizedString(@"Unknown enum value (case sensitive): %@", nil)), key]); 
                     }
                     [set addObject:num];
@@ -134,11 +134,11 @@
                 if(FLStringIsNotEmpty(key)) {
                     NSNumber* num = [_enums objectForKey:key];
                     if(!num) {
-                        FLThrowErrorCodeWithComment(FLFrameworkErrorDomain, FLErrorUnknownEnumValue, (NSLocalizedString(@"Unknown enum value (case sensitive): %@", nil)), key); 
+                        FLThrowErrorCodeWithComment(FLErrorDomain, FLErrorUnknownEnumValue, (NSLocalizedString(@"Unknown enum value (case sensitive): %@", nil)), key); 
                     }
                     
                     if(count + 1 >= *maxCount) {
-                        FLThrowErrorCodeWithComment(FLFrameworkErrorDomain, FLErrorTooManyEnumsErrorCode, (NSLocalizedString(@"TooMany enums for buffer", nil)));
+                        FLThrowErrorCodeWithComment(FLErrorDomain, FLErrorTooManyEnumsErrorCode, (NSLocalizedString(@"TooMany enums for buffer", nil)));
                     }
                     
                     enums[count++] = [num intValue];

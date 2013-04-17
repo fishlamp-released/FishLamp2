@@ -7,7 +7,7 @@
 //
 
 #import "FLErrorDomainInfo.h"
-#import "FLFrameworkErrorDomain.h"
+#import "FLErrorCodes.h"
 
 extern NSString* const FLAssertionFailureErrorDomain;
 

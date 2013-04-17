@@ -286,7 +286,7 @@
 @end
 
 
-
+#define FLFrameworkTcpStreamErrorCode 1000
 
 NSString* const FLTcpStreamWriteErrorKey = @"FLTcpStreamWriteErrorKey";
 NSString* const FLTcpStreamReadErrorKey = @"FLTcpStreamReadErrorKey";
@@ -313,7 +313,7 @@ NSString* const FLTcpStreamReadErrorKey = @"FLTcpStreamReadErrorKey";
                                      [NSString stringWithFormat:@"readError: %@, writeError %@", [readError localizedDescription], [writeError localizedDescription]], NSLocalizedDescriptionKey, 
                                      nil];
     
-        return [FLTcpStreamError errorWithDomain:FLFrameworkErrorDomain code:FLFrameworkTcpStreamErrorCode userInfo:dict];
+        return [FLTcpStreamError errorWithDomain:FLErrorDomain code:FLFrameworkTcpStreamErrorCode userInfo:dict];
     }
     if(readError) {
         return readError;

@@ -9,6 +9,11 @@
 #import "FLHttpStream.h"
 #import "FLNetworkStream_Internal.h"
 
+@interface FLHttpStream ()
+@property (readonly, strong, nonatomic) FLHttpMessage* responseHeaders;
+@property (readonly, strong, nonatomic) FLHttpMessage* requestHeaders;
+@end
+
 @implementation FLHttpStream
 @synthesize responseHeaders = _responseHeaders;
 @synthesize requestHeaders = _requestHeaders;
@@ -74,7 +79,7 @@
     return _responseHeaders != nil;
 }
 
-- (void) readResponseHeaders {
+- (FLHttpMessage*) readResponseHeaders {
     if(!_responseHeaders && self.streamRef) {
         CFHTTPMessageRef ref = (CFHTTPMessageRef)CFReadStreamCopyProperty(self.streamRef, kCFStreamPropertyHTTPResponseHeader);
         @try {
@@ -89,6 +94,7 @@
             }
         }
     }
+    return _responseHeaders;
 }
 
 - (void) encounteredError:(NSError*) error {
@@ -114,6 +120,10 @@
         return number.unsignedLongValue;
     }
     return 0;
+}
+
+- (void) willCloseWithResponseData:(id<FLInputSink>) responseData {
+    FLPerformSelector3(self.delegate, @selector(httpStream:willCloseWithResponseHeaders:responseData:), self, [self readResponseHeaders], responseData);
 }
 
 @end

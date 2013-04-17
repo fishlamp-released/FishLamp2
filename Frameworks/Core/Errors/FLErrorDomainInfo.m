@@ -8,7 +8,7 @@
 
 #import "FLErrorDomainInfo.h"
 
-#import "FLFrameworkErrorDomain.h"
+#import "FLErrorCodes.h"
 #import "FLAssertionFailureErrorDomain.h"
 
 @implementation FLErrorDomainInfo
@@ -39,7 +39,7 @@ FLSynthesizeSingleton(FLErrorDomainInfo);
 }
 
 + (void) initialize {
-    [[FLErrorDomainInfo instance] setInfo:[FLFrameworkErrorDomainInfo frameworkErrorDomainInfo] forDomain:FLFrameworkErrorDomain];
+    [[FLErrorDomainInfo instance] setInfo:[FLFrameworkErrorDomainInfo frameworkErrorDomainInfo] forDomain:FLErrorDomain];
     [[FLErrorDomainInfo instance] setInfo:[FLAssertionFailureErrorDomainInfo assertionFailureErrorDomainInfo] forDomain:FLAssertionFailureErrorDomain];
 }
 

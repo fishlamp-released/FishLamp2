@@ -14,6 +14,7 @@
 @property (readwrite, assign, getter=isOpen) BOOL open;
 @property (readwrite, strong) FLFifoAsyncQueue* asyncQueue;
 @property (readwrite, strong) FLTimer* timer;
+@property (readwrite, assign) NSTimeInterval idleDuration;
 @end
 
 @implementation FLNetworkStream
@@ -23,6 +24,7 @@
 @synthesize timer = _timer;
 @synthesize streamSecurity = _streamSecurity;
 @synthesize wasTerminated = _wasTerminated;
+@synthesize idleDuration = _idleDuration;
 
 - (id) init {
     return [self initWithStreamSecurity:FLNetworkStreamSecurityNone];
@@ -174,6 +176,17 @@
 
 - (void) touchTimeoutTimestamp {
     [self.timer  touchTimestamp];
+}
+
+- (void) timerWasUpdated:(FLTimer*) timer {
+
+#if DEBUG
+    if(timer.idleDuration - self.idleDuration > 5.0f) {
+        FLLog(@"Server hasn't responded for %f seconds", timer.idleDuration);
+        self.idleDuration = timer.idleDuration;
+    }
+#endif
+
 }
 
 + (void) handleStreamEvent:(CFStreamEventType) eventType withStream:(FLNetworkStream*) stream {

@@ -15,7 +15,8 @@
 @property (readwrite, strong, nonatomic) NSString* responseStatusLine;
 @property (readwrite, strong, nonatomic) FLHttpResponse* redirectedFrom;
 @property (readwrite, strong, nonatomic) NSURL* requestURL;
-@property (readwrite, strong, nonatomic) id<FLInputSink> inputSink;
+@property (readwrite, strong, nonatomic) id<FLInputSink> responseData;
+@property (readwrite, strong, nonatomic) NSError* error;
 @end
 
 @implementation FLHttpResponse
@@ -25,7 +26,9 @@
 @synthesize responseStatusLine = _responseStatusLine;
 @synthesize requestURL = _requestURL;
 @synthesize redirectedFrom = _redirectedFrom;
-@synthesize inputSink = _inputSink;
+@synthesize responseData = _inputSink;
+@synthesize error = _error;
+
 
 - (id) initWithRequestURL:(NSURL*) url 
                   headers:(FLHttpMessage*) headers 
@@ -38,7 +41,12 @@
         self.responseHeaders = headers.allHeaders;
         self.responseStatusLine = headers.responseStatusLine;
         self.responseStatusCode = headers.responseStatusCode;
-        self.inputSink = inputSink;
+        self.responseData = inputSink;
+        
+        NSInteger statusCode = self.responseStatusCode;
+        if(FLHttpServerResponseCodeIsError(statusCode)) {
+            self.error = [NSError httpServerError:statusCode statusLine:self.responseStatusLine];
+        }
     }
     
     return self;
@@ -52,15 +60,7 @@
     return FLAutorelease([[[self class] alloc] initWithRequestURL:requestURL 
                                                           headers:(FLHttpMessage*) headers 
                                                    redirectedFrom:redirectedFrom 
-                                                    inputSink:inputSink]);
-}
-
-- (NSData*) responseData {
-    return [self.inputSink data];
-}
-
-- (NSURL*) responseFileURL {
-    return [self.inputSink fileURL];
+                                                        inputSink:inputSink]);
 }
 
 #if FL_MRC
@@ -70,45 +70,14 @@
     [_requestURL release];
     [_responseStatusLine release];
     [_responseHeaders release];
+    [_error release];
     [super dealloc];
 }
 #endif
 
-- (NSError*) simpleHttpResponseErrorCheck {
-	NSInteger statusCode = self.responseStatusCode;
-	if(statusCode >= 400) {
-	
-        NSString* errorString = [NSString stringWithFormat:
-			  (NSLocalizedString(@"Server returned error code:%d (%@). Status line: %@",nil)),
-				statusCode,
-				[NSHTTPURLResponse localizedStringForStatusCode:statusCode],
-                _responseStatusLine == nil ? @"" : _responseStatusLine];
-
-    
-	   return [NSError errorWithDomain:FLFrameworkErrorDomain
-                                  code:statusCode
-                  localizedDescription:errorString];
-	}
-
-	return nil;
-}
-- (void) throwHttpErrorIfNeeded {
-    FLThrowIfError([self simpleHttpResponseErrorCheck]);
-}
-
 - (NSString*) valueForHeader:(NSString*) header {
     return [_responseHeaders objectForKey:header];
 }
-
-//- (id)copyWithZone:(NSZone *)zone {
-//    FLHttpResponse* response = [[FLHttpResponse alloc] initWithRequestURL:self.requestURL];
-//    response.responseHeaders = self.responseHeaders;
-//    response.responseStatusCode = self.responseStatusCode;
-//    response.redirectedFrom = self.redirectedFrom;
-//    response.networkStreamSink = FLAutorelease([self.networkStreamSink copyWithNoData]);
-//    response.responseStatusLine = self.responseStatusLine;
-//    return response;
-//}
 
 - (NSString*) description {
 //    NSMutableString* string = [self headers]
@@ -125,30 +94,28 @@
     return desc;
 }
 
-- (void) setResponseHeadersWithHttpMessage:(FLHttpMessage*) message {
-}
-
-@end
-
-
-@implementation  FLHttpResponse (Utils)
-- (BOOL) responseCodeIsRedirect
-{
-    switch(self.responseStatusCode)
-    {
-        case 301: // Moved Permanently.
-        case 302: // Found.
-        case 304: // Not Modified.
-        case 307: // Temporary Redirect.
-            return YES;
-            break;
-    }
-    
-    return NO;
+- (BOOL) isRedirect {
+    return FLHttpServerResponseCodeIsRedirect(self.responseStatusCode);
 }        
 
+- (BOOL) isSuccess {
+    return FLHttpServerResponseCodeIsSuccess(self.responseStatusCode);
+}
+
+- (BOOL) isError {
+    return FLHttpServerResponseCodeIsError(self.responseStatusCode);
+}
+
+- (BOOL) isServerError {
+    return FLHttpServerResponseCodeIsServerError(self.responseStatusCode);
+}
+
+- (BOOL) isClientError {
+    return FLHttpServerResponseCodeIsClientError(self.responseStatusCode);
+}
+
 - (BOOL) wantsRedirect {
-    return self.responseCodeIsRedirect && FLStringIsNotEmpty([self valueForHeader:@"Location"]); 
+    return self.isRedirect && FLStringIsNotEmpty([self valueForHeader:@"Location"]); 
 }
 
 - (NSURL*) redirectURL {

@@ -102,7 +102,10 @@
 }
 
 - (NSError*) checkHttpResponseForError:(FLHttpResponse*) httpResponse {
-    NSData* data = httpResponse.responseData;
+
+    [httpResponse.responseData closeSinkWithCommit:YES];
+    
+    NSData* data = httpResponse.responseData.data;
     FLAssertNotNil(data);
     
     FLSoapFault11* fault = [FLSoapHttpRequest checkForSoapFaultInData:data];
@@ -123,7 +126,7 @@
 
 
 - (FLResult) resultFromHttpResponse:(FLHttpResponse*) httpResponse {
-    NSData* data = httpResponse.responseData;
+    NSData* data = [httpResponse.responseData data];
     FLAssertNotNil(data);
 
 #if TRACE

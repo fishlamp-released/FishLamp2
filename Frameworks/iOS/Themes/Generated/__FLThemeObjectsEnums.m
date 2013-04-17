@@ -42,7 +42,7 @@ FLSynthesizeSingleton(FLThemeObjectsEnumLookup);
 
 - (NSInteger) lookupString:(NSString*) inString {
     NSNumber* num = [_strings objectForKey:inString];
-    if(!num) { FLThrowErrorCodeWithComment(FLFrameworkErrorDomainName, FLErrorUnknownEnumValue, [NSString stringWithFormat:(NSLocalizedString(@"Unknown enum value (case sensitive): %@", nil)), inString]); } 
+    if(!num) { FLThrowErrorCodeWithComment(FLErrorDomainName, FLErrorUnknownEnumValue, [NSString stringWithFormat:(NSLocalizedString(@"Unknown enum value (case sensitive): %@", nil)), inString]); } 
     return [num intValue];
 }
 

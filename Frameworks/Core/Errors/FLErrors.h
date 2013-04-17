@@ -20,12 +20,15 @@
 #import "FLErrorException.h"
 
 #import "FLAssertions.h"
-
 /*
 // sdk files with error codes:
+https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/ErrorHandlingCocoa/ErrorObjectsDomains/ErrorObjectsDomains.html
 
+errno.h
+MacErrors.h
 CFNetworkErrors.h
 NSErrors.h
 FoundationErrors.h
 SecureTransport.h
+kern_return.h
 */
