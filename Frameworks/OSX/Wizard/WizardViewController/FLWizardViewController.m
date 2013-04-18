@@ -16,9 +16,6 @@
 #import "FLStatusBarViewController.h"
 
 #import "FLWizardStyleViewTransition.h"
-#import "FLLocalNotification.h"
-
-
 
 @interface FLWizardViewController ()
 @end
@@ -41,23 +38,23 @@
     [self.navigationViewController updateViewsAnimated:animated];
 }
 
-- (void) startWizardInWindow:(NSWindow*) window {
+- (void) showPanelsInWindow:(NSWindow*) window {
     [window setDefaultButtonCell:[self.buttonViewController.nextButton cell]];
-    [super startWizardInWindow:window];
+    [super showPanelsInWindow:window];
 }
 
 - (void) awakeFromNib {
     [super awakeFromNib];
 
     self.buttonViewController.delegate = self;
-    self.panelManager.delegate = self;
+
     [_progressView setRespondsToGlobalNetworkActivity];
-    [_panelManager addPanelArea:_headerViewController];
-    [_panelManager addPanelArea:_buttonViewController];
+    [self addPanelArea:_headerViewController];
+    [self addPanelArea:_buttonViewController];
 }
 
 - (void) removePanel:(FLPanelViewController*) panel {
-    [super removePanel:panel];
+    [self removePanel:panel];
     [self updateButtonEnabledStates:NO];
 }
 
@@ -65,31 +62,31 @@
 
 - (void) wizardButtonViewControllerRespondToNextButton:(FLWizardButtonViewController*) controller {
     BOOL handled = NO;
-    [self.panelManager.visiblePanel respondToNextButton:&handled];
+    [self.visiblePanel respondToNextButton:&handled];
 
     if(!handled) {
-        [self.panelManager showNextPanelAnimated:YES completion:nil];
+        [self showNextPanelAnimated:YES completion:nil];
     }
 }
 
 - (void) wizardButtonViewControllerRespondToBackButton:(FLWizardButtonViewController*) controller {
     BOOL handled = NO;
-    [self.panelManager.visiblePanel respondToBackButton:&handled];
+    [self.visiblePanel respondToBackButton:&handled];
 
     if(!handled) {
-        [self.panelManager showPreviousPanelAnimated:YES completion:nil];
+        [self showPreviousPanelAnimated:YES completion:nil];
     }
 }
 
 - (void) wizardButtonViewControllerRespondToOtherButton:(FLWizardButtonViewController*) controller {
     BOOL handled = NO;
-    [self.panelManager.visiblePanel respondToOtherButton:&handled];
+    [self.visiblePanel respondToOtherButton:&handled];
 }
 
 - (void) wizardButtonViewControllerUpdateButtonStates:(FLWizardButtonViewController*) controller {
     
-    BOOL backEnabled = !self.panelManager.isShowingFirstPanel;
-    BOOL nextEnabled = [self.panelManager visiblePanel].canOpenNextPanel && ![self.panelManager isShowingLastPanel];
+    BOOL backEnabled = !self.isShowingFirstPanel;
+    BOOL nextEnabled = [self visiblePanel].canOpenNextPanel && ![self isShowingLastPanel];
     
     if(backEnabled != self.buttonViewController.backButton.isEnabled) {
         self.buttonViewController.backButton.enabled = backEnabled;
@@ -100,30 +97,25 @@
     }
 }
 
-#pragma mark panel manager delegate
+#pragma mark panel manager 
 
-- (void) panelManager:(FLPanelManager*) controller panelStateDidChange:(FLPanelViewController*) panel {
-    [super panelManager:controller panelStateDidChange:panel];
+- (void) panelStateDidChange:(FLPanelViewController*) panel {
+    [super panelStateDidChange:panel];
     [self updateButtonEnabledStates:YES];
 }
 
-- (void) panelManager:(FLPanelManager*) controller didAddPanel:(FLPanelViewController*) panel {
+- (void) didAddPanel:(FLPanelViewController*) panel {
     panel.buttons = self.buttonViewController;
     panel.header = self.headerViewController;
-    [super panelManager:controller didAddPanel:panel];
+    [super didAddPanel:panel];
 }
        
-- (void) panelManager:(FLWizardViewController*) wizard 
-        willShowPanel:(FLPanelViewController*) toShow
-        willHidePanel:(FLPanelViewController*) toHide
-    animationDuration:(CGFloat) animationDuration {
-
+- (void)  willShowPanel:(FLPanelViewController*) toShow {
     self.buttonViewController.nextButton.enabled = NO;
     self.buttonViewController.backButton.enabled = NO;
     self.buttonViewController.otherButton.hidden = YES;
-    [super panelManager:wizard willShowPanel:toShow willHidePanel:toHide animationDuration:animationDuration];
-}     
-
+    [super willShowPanel:toShow];
+}
 
 @end
 
