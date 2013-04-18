@@ -20,6 +20,9 @@
     return FLAutorelease([[[self class] alloc] initWithOutputFlags:outputFlags]);
 }
 
+#define print_line FLPrintFormat(@"%@%@    (%s:%d)\n", whitespace, [[logString substringWithRange:range] stringWithPadding:80], entry.stackTrace.fileName, entry.stackTrace.lineNumber)
+            
+
 - (void) logEntry:(FLLogEntry*) entry stopPropagating:(BOOL*) stop {
 
     NSString* logString = nil;
@@ -37,15 +40,15 @@
         logString = entry.logString;
     }
 
-    if(FLTestAnyBit(self.outputFlags, FLLogOutputWithLocation | FLLogOutputWithStackTrace)) {
-        FLPrintFormat(@"%@[%s:%d] { \n", 
-                      whitespace,
-                      entry.stackTrace.fileName, 
-                      entry.stackTrace.lineNumber
-                      );
-        whitespace = [[FLWhitespace tabbedWithSpacesWhitespace] tabStringForScope:entry.indentLevel + 1];                      
-    }
-    
+//    if(FLTestAnyBit(self.outputFlags, FLLogOutputWithLocation | FLLogOutputWithStackTrace)) {
+//        FLPrintFormat(@"%@%s:%d:\n", 
+//                      whitespace,
+//                      entry.stackTrace.fileName, 
+//                      entry.stackTrace.lineNumber
+//                      );
+//        whitespace = [[FLWhitespace tabbedWithSpacesWhitespace] tabStringForScope:entry.indentLevel + 1];                      
+//    }
+//    
     NSUInteger lastIndex = 0;
     for(NSUInteger i = 0; i < logString.length; i++) {
         
@@ -54,7 +57,7 @@
         
             if(i > lastIndex) {
                 NSRange  range = NSMakeRange(lastIndex, i - lastIndex); 
-                FLPrintFormat(@"%@%@\n", whitespace, [logString substringWithRange:range]);
+                print_line;
             }
             else {
                 FLPrintFormat(@"\n");
@@ -66,7 +69,7 @@
     
     if(lastIndex < (logString.length - 1)) {
         NSRange  range = NSMakeRange(lastIndex, logString.length - lastIndex); 
-        FLPrintFormat(@"%@%@\n", whitespace, [logString substringWithRange:range]);
+        print_line;
     }
     
     if(FLTestBits(self.outputFlags, FLLogOutputWithStackTrace)) {
@@ -79,10 +82,10 @@
         }
     }
     
-    if(FLTestAnyBit(self.outputFlags, FLLogOutputWithLocation | FLLogOutputWithStackTrace)) {
-        whitespace = [[FLWhitespace tabbedWithSpacesWhitespace] tabStringForScope:entry.indentLevel];                      
-        FLPrintFormat(@"%@}\n", whitespace);
-    }
+//    if(FLTestAnyBit(self.outputFlags, FLLogOutputWithLocation | FLLogOutputWithStackTrace)) {
+//        whitespace = [[FLWhitespace tabbedWithSpacesWhitespace] tabStringForScope:entry.indentLevel];                      
+//        FLPrintFormat(@"%@}\n", whitespace);
+//    }
 }    
 
 @end
