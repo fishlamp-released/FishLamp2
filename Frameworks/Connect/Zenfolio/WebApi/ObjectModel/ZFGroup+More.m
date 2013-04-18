@@ -50,7 +50,7 @@ FLSynthesizeCachedObjectHandlerProperty(ZFGroup);
     return [[self class] groupElementWithID:groupID];
 }
 
-- (ZFGroupElementType) groupElementType {
+- (ZFGroupElementType) elementType {
     return ZFGroupElementTypeGroup; 
 }
 

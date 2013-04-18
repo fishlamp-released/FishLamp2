@@ -1,6 +1,6 @@
 //
 //  ZFPhotoSizeFormatter.h
-//  ZenfolioComposer
+//  FishLamp
 //
 //  Created by patrickm on 19-11-07.
 //  Copyright 2007 GreenTongue Software, LLC.. All rights reserved.

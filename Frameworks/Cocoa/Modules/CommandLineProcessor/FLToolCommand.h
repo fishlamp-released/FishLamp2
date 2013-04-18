@@ -10,8 +10,9 @@
 #import "FLStringFormatter.h"
 #import "FLToolCommandOption.h"
 #import "FLBlockQueue.h"
+#import "FLCommandLineTask.h"
 
-@interface FLToolCommand : NSObject {
+@interface FLToolCommand : FLSynchronousOperation {
 @private
     NSString* _commandName;
     NSMutableDictionary* _subcommands;
@@ -27,6 +28,8 @@
 
 @property (readwrite, strong, nonatomic) NSString* help;
 
++ (id) toolCommand;
+
 - (id) initWithCommandName:(NSString*) command;
 
 // subcommands
@@ -36,14 +39,13 @@
 - (void) addOption:(FLToolCommandOption*) option;
 - (FLToolCommandOption*) optionForKey:(NSString*) key;
 
-- (void) parseInput:(FLStringParser*) input commitQueue:(FLBlockQueue*) commitQueue;
-
-// override point
-- (void) runCommandWithOptions:(NSDictionary*) options;
+// optional overrides
+- (void) parseInput:(FLStringParser*) input commandLineTask:(FLCommandLineTask*) commandLineTask;
+- (void) addOperationToTask:(FLCommandLineTask*) task withOptions:(NSDictionary*) options;
 
 // optional overrides
-- (NSString*) buildUsageString;
 - (void) printHelpToStringFormatter:(FLStringFormatter*) output;
 
+- (void) printUsage:(FLStringFormatter*) output;
 
 @end

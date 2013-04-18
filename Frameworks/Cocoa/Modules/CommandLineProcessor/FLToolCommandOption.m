@@ -59,8 +59,8 @@
     return nil;
 }
 
-- (NSString*) buildUsageString {
-    return [NSString concatStringArray:self.optionKeys.allObjects];
+- (void) printUsage:(FLStringFormatter*) output {
+    [output appendString:[NSString concatStringArray:self.optionKeys.allObjects]];
 }
 
 - (void) printHelpToStringFormatter:(FLStringFormatter*) output {

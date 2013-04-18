@@ -1,5 +1,5 @@
 //
-//	ZFRandomPhotoComposer.m
+//	ZFRandomPhotoDownloader.m
 //	FishLamp
 //
 //	Created by Mike Fullerton on 9/1/10.
@@ -7,7 +7,7 @@
 //
 #if REFACTOR
 
-#import "ZFRandomPhotoComposer.h"
+#import "ZFRandomPhotoDownloader.h"
 #import "ZFWebApi.h"
 
 #import "ZFSyncService.h"
@@ -21,7 +21,7 @@
 #import "FLSimpleProgressView.h"
 #endif
 
-@interface ZFRandomPhotoComposer (Private)
+@interface ZFRandomPhotoDownloader (Private)
 - (void) beginLoadingPhotoSet:(NSInteger) photoSetId;
 - (void) beginLoadGroup:(NSInteger) groupId;
 - (void) _begin;
@@ -30,7 +30,7 @@
 
 @end
 
-@implementation ZFRandomPhotoComposer
+@implementation ZFRandomPhotoDownloader
 
 - (FLAction*) action
 {
@@ -69,7 +69,7 @@
 {
     if(_completionBlock)
     {
-        ZFRandomComposerCompletionBlock oldBlock = FLRetain(_completionBlock);
+        ZFRandomDownloaderCompletionBlock oldBlock = FLRetain(_completionBlock);
         FLReleaseBlockWithNil(_completionBlock);
         oldBlock(imageFile, nil);
         FLRelease(oldBlock);
@@ -341,7 +341,7 @@
 }
 
 - (void) beginDownloadingRandomImage:(NSString*) progressString 
-                     completionBlock:(ZFRandomComposerCompletionBlock) completionBlock
+                     completionBlock:(ZFRandomDownloaderCompletionBlock) completionBlock
 {
 	_completionBlock = [completionBlock copy];
     
@@ -356,7 +356,7 @@
 
 - (void) beginLoadingSelectedPhoto:(ZFPhoto*) photo 
                     progressString:(NSString*) progressString
-                   completionBlock:(ZFRandomComposerCompletionBlock) completionBlock
+                   completionBlock:(ZFRandomDownloaderCompletionBlock) completionBlock
 {
 	_completionBlock = [completionBlock copy];
     

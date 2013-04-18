@@ -11,40 +11,8 @@
 
 /*
 /// concrete base class.
-
-/// this describes state of open openLine. Uses one method (stringFormatter:appendString:lineInfo) to allow
-/// for optimizations.
-typedef struct {
-    BOOL closePreviousLine; 
-    BOOL prependBlankLine; // closePreviousLine may be YES or NO
-    BOOL openLine; // Note: openLine will always have non-empty string if YES.
-    BOOL closeLine; // Any of other options may be set
-} FLStringFormatterLineUpdate;
-// required override
-- (void) stringFormatter:(FLStringFormatter*) stringFormatter 
-            appendString:(NSString*) string
-  appendAttributedString:(NSAttributedString*) string
-              lineUpdate:(FLStringFormatterLineUpdate) lineUpdate;
 */
 
-//NS_INLINE
-//FLStringFormatterLineUpdate MakeInfo(BOOL closePreviousLine, 
-//                                   BOOL prependBlankLine, 
-//                                   BOOL openLine, 
-//                                   BOOL closeLine) {
-//                                   
-//    FLStringFormatterLineUpdate info = { 
-//        closePreviousLine, 
-//        prependBlankLine, 
-//        openLine, 
-//        closeLine }; 
-//
-//    return info; 
-//}
-//
-//#define str_or_nil(str) (str == nil || str.length == 0) ? nil : str
-//#define closeLineInfo() MakeInfo(_editingLine, NO, NO, NO)
-//#define appendStringInfo() MakeInfo(NO, NO, !_editingLine, NO)
 
 @implementation FLStringFormatter
 
@@ -59,11 +27,6 @@ typedef struct {
     }
     [_output stringFormatter:self appendString:string];
     
-//    [self stringFormatter:self 
-//                      appendString:string
-//            appendAttributedString:nil
-//                        lineUpdate:appendStringInfo()];
-        
     _editingLine = YES;
 }
 
@@ -76,11 +39,6 @@ typedef struct {
         [_output stringFormatterOpenLine:self];
     }
     [_output stringFormatter:self appendAttributedString:string];
-    
-//    [self stringFormatter:self 
-//                      appendString:nil
-//            appendAttributedString:str_or_nil(string)
-//                        lineUpdate:appendStringInfo()];
         
     _editingLine = YES;
 }
@@ -92,11 +50,6 @@ typedef struct {
 
     if(_editingLine) {
         [_output stringFormatterCloseLine:self];
-    
-//        [self stringFormatter:self 
-//                          appendString:nil
-//                appendAttributedString:nil
-//                            lineUpdate:closeLineInfo()];
     }
     _editingLine = NO;
 }
@@ -113,11 +66,6 @@ typedef struct {
         if(_editingLine) {
             [_output stringFormatterCloseLine:self];
         }
-    
-//        [self stringFormatter:self 
-//                          appendString:str_or_nil(string)
-//                appendAttributedString:nil
-//                            lineUpdate:closeLineInfo()];
     }
     _editingLine = NO;
 }
@@ -134,12 +82,6 @@ typedef struct {
         if(_editingLine) {
             [_output  stringFormatterCloseLine:self];
         }
-        
-
-//        [self stringFormatter:self 
-//                          appendString:nil
-//                appendAttributedString:str_or_nil(string)
-//                            lineUpdate:closeLineInfo()];
     }
     _editingLine = NO;
 }
@@ -156,13 +98,6 @@ typedef struct {
     
     [_output stringFormatterOpenLine:self];
     [_output stringFormatter:self appendString:string];
-    
-//    [self stringFormatter:self 
-//                      appendString:str_or_nil(string)
-//            appendAttributedString:nil
-//                        lineUpdate:openLineInfo()];
-                      
-
     _editingLine = YES;
 }
 
@@ -177,13 +112,6 @@ typedef struct {
     
     [_output stringFormatterOpenLine:self];
     [_output stringFormatter:self appendAttributedString:string];
-    
-//    [self stringFormatter:self 
-//                      appendString:nil
-//            appendAttributedString:str_or_nil(string)
-//                        lineUpdate:openLineInfo()];
-                      
-
     _editingLine = YES;
 }
 
@@ -198,13 +126,6 @@ typedef struct {
     }
     [_output stringFormatter:self appendAttributedString:string];
     [_output  stringFormatterCloseLine:self];
-    
-//    [self stringFormatter:self 
-//                      appendString:nil
-//            appendAttributedString:str_or_nil(string)
-//                        lineUpdate:appendLineInfo()];
-                      
-
     _editingLine = NO;
 }
 
@@ -218,21 +139,10 @@ typedef struct {
     }
     [_output stringFormatter:self appendString:string];
     [_output  stringFormatterCloseLine:self];
-
-    
-//    [self stringFormatter:self 
-//                      appendString:str_or_nil(string)
-//            appendAttributedString:nil
-//                        lineUpdate:appendLineInfo()];
-
     _editingLine = NO;
 }
 
 - (void) appendBlankLine {
-//    [self stringFormatter:self 
-//                      appendString:nil
-//            appendAttributedString:nil
-//                        lineUpdate:MakeInfo(_editingLine, YES, NO, NO)];
     FLAssertNotNil(_output);
                         
     if(_editingLine) {
@@ -273,6 +183,11 @@ typedef struct {
     [self appendString:string];
 }
 
+- (void) appendFormat:(NSString*) format arguments:(va_list)argList {
+	[self appendString:FLAutorelease([[NSString alloc] initWithFormat:format arguments:argList])];
+}
+
+
 - (void) appendLineWithFormat:(NSString*) format, ... {
     FLAssertNotNil(format);
 	va_list va;
@@ -280,6 +195,10 @@ typedef struct {
 	NSString *string = FLAutorelease([[NSString alloc] initWithFormat:format arguments:va]);
 	va_end(va);
 	[self appendLine:string];
+}
+
+- (void) appendLineWithFormat:(NSString*) format arguments:(va_list)argList {
+	[self appendLine:FLAutorelease([[NSString alloc] initWithFormat:format arguments:argList])];
 }
 
 - (void) openLineWithFormat:(NSString*) format, ... {
@@ -323,39 +242,8 @@ typedef struct {
 }
 
 - (void) appendStringContainingMultipleLines:(NSString*) inLines {
-
-//    BOOL inLine = NO;
-//    NSRange lineRange = { 0, 0 };
-//    for(NSUInteger i = 0; i < inLines.count; i++) {
-//        unichar c = [inLines characterAtIndex:i];
-//        BOOL isWhitespace = [[NSCharacterSet whitespaceAndNewlineCharacterSet] characterIsMember:c];
-//        
-//        if(inLine) {
-//            if(isWhiteSpace) {
-//                [self appendLine:[inLines substringWithRange:lineRange]];
-//                inLine = NO;
-//            }
-//            else {
-//                lineRange.length++;
-//            }
-//        }
-//        else if(!isWhitespace) {
-//            lineRange.location = i
-//            lineRange.length = 1;
-//            inLine = YES;
-//        }
-//    }
-
     [self appendStringContainingMultipleLines:inLines trimWhitespace:YES];
-
 }
-
-//- (void) stringFormatter:(FLStringFormatter*) stringFormatter 
-//            appendString:(NSString*) string
-//  appendAttributedString:(NSAttributedString*) attributedString
-//              lineUpdate:(FLStringFormatterLineUpdate) lineUpdate {
-//              
-//}              
 
 - (void) indent {
     [_output stringFormatterIndent:self];

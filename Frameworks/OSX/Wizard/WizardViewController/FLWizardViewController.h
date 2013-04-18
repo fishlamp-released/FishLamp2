@@ -1,6 +1,6 @@
 //
 //  FLWizardViewController.h
-//  Zenfolio Composer
+//  FishLamp
 //
 //  Created by Mike Fullerton on 12/4/12.
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
@@ -20,6 +20,8 @@
     IBOutlet FLWizardButtonViewController* _buttonViewController;
     
     IBOutlet FLSpinningProgressView* _progressView;
+    
+    IBOutlet NSImageView* _logoImageView;
 }
 
 // views
@@ -27,6 +29,8 @@
 @property (readonly, strong, nonatomic) FLWizardButtonViewController* buttonViewController;
 
 + (id) wizardViewController;
+
+- (void) setLogoImage:(NSImage*) image;
 
 @end
 

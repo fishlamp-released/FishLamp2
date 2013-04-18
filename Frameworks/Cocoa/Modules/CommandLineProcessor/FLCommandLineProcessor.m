@@ -50,30 +50,58 @@
     [_commands setObject:command forKey:[command.commandName lowercaseString]];
 }
 
-- (void) handleEmptyInput {
-
+- (void) willParseInput {
 }
 
-- (void) runToolCommandsWithInput:(NSString*) input {
+- (void) didParseInput {
+}
 
-    FLStringParser* parser = [FLStringParser stringParser:input];
-    FLBlockQueue* commitQueue = [FLBlockQueue blockQueue];
+- (FLCommandLineTask*) taskFromInput:(NSString*) input {
+
+    input = [input trimmedString];
+
+    @try {
+        [self willParseInput];
     
-    while(parser.hasMore) {
-        NSString* key = [parser parseNextToken];
-        if(key) {
-            FLToolCommand* command = [_commands objectForKey:[key lowercaseString]];
-            FLConfirmNotNilWithComment(command, @"Unknown command: %@", key);
-            [command parseInput:parser commitQueue:commitQueue];
+        FLCommandLineTask* task = [FLCommandLineTask commandLineTask];
+        
+        if(FLStringIsEmpty(input)) {
+            FLToolCommand* command = [self toolCommandForNoInput];
+            if(command) {
+                [command addOperationToTask:task withOptions:nil];
+            }
+        }
+        else {
+            FLStringParser* parser = [FLStringParser stringParser:input];
+            while(parser.hasMore) {
+                NSString* key = [parser parseNextToken];
+                if(key) {
+                    FLToolCommand* command = [_commands objectForKey:[key lowercaseString]];
+                    FLConfirmNotNilWithComment(command, @"Unknown command: %@", key);
+                    [command parseInput:parser commandLineTask:task];
+                }
+            }
+        }
+
+        if(task.operations.count > 0) {
+            return task;
         }
     }
+    @finally {
+        [self didParseInput];
+    }
+    
+    return nil;
+}
 
-    if(commitQueue.count) {
-        [commitQueue executeBlocks:self];
+- (void) printUsage {
+    for(FLToolCommand* command in [_commands objectEnumerator]) {
+        [command printUsage:self.output];
     }
-    else {
-        [self handleEmptyInput];
-    }
+}
+
+- (FLToolCommand*) toolCommandForNoInput {
+    return nil;
 }
 
 @end

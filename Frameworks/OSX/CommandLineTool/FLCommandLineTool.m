@@ -14,13 +14,23 @@
 @property (readwrite, strong, nonatomic) NSURL* toolPath;
 @property (readwrite, strong, nonatomic) NSString* startDirectory;
 @property (readwrite, strong, nonatomic) NSString* toolName;
+@property (readwrite, strong, nonatomic) NSError* error;
+@property (readwrite, assign) BOOL running;
 @end
 
 @implementation FLCommandLineTool
 
+static id s_instance;
+
 @synthesize toolPath = _toolPath;
 @synthesize startDirectory = _startDirectory;
 @synthesize toolName = _toolName;
+@synthesize running = _running;
+@synthesize error = _error;
+
++ (id) sharedTool {
+    return s_instance;
+}
 
 //+ (id) commandLineTool {
 //    return FLAutorelease([[[self class] alloc] initWithToolName:nil]);
@@ -47,6 +57,7 @@
 
 #if FL_MRC
 - (void) dealloc {
+    [_error release];
     [_toolName release];
     [_startDirectory release];
     [_toolPath release];
@@ -82,16 +93,18 @@
 
 - (NSString*) getInputString:(NSString*) prompt maxLength:(NSUInteger) maxLength {
     
-    [self.output appendString:prompt];
+    [self.output appendLine:prompt];
+
+    fflush(stdout);
 
     char* buffer = malloc(maxLength + 1);
     
     NSInteger idx = 0;
     
-    char c = getchar();
+    char c = getc(stdin);
     while(c != '\n' && idx < maxLength) {
         buffer[idx++] = c;
-        c = getchar();
+        c = getc(stdin);
     }
     buffer[idx] = 0;
     
@@ -102,6 +115,18 @@
     return outString;
 }
 
+- (void) willRunTool:(FLCommandLineTask*) task {
+    if(!task) {
+        [self printUsage];
+    }
+}
+
+- (void) didRunTool {
+}
+
+- (void) runTool:(FLCommandLineTask*) task {
+    FLThrowIfError([task runSynchronously]);
+}
 
 - (int) runWithArguments:(NSArray*) arguments {
 
@@ -109,7 +134,7 @@
     @autoreleasepool {
 #endif    
         @try {
-        
+            s_instance = self;
             NSArray* args = [[NSProcessInfo processInfo] arguments];
 
             self.toolPath = [NSURL fileURLWithPath:[args objectAtIndex:0]];
@@ -119,12 +144,22 @@
 
             NSString* string = [NSString concatStringArray:argsWithoutPath delimiter:@" "];
 
-            [self runToolCommandsWithInput:string];
+            FLCommandLineTask* task = [self taskFromInput:string];
+            [self willRunTool:task];
+            if(task) {
+                [self runTool:task];
+            }
         }
         @catch(NSException* ex) {
+            self.error = ex.error;
+        
             [[self output] appendLineWithFormat:@"uncaught exception: %@", [ex reason]];
 
             return 1;
+        }
+        @finally {
+            [self didRunTool];
+            s_instance = nil;
         }
         
         return 0;
@@ -132,6 +167,18 @@
     }
 #endif
 }
+
+- (void) startRunLoop {
+    self.running = YES;
+    while(self.running) {
+        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate date]];
+    }
+}
+
+- (void) stopRunLoop {
+    self.running = NO;
+}
+
 
 @end
 

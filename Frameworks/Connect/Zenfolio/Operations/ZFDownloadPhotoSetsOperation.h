@@ -29,6 +29,6 @@
 @protocol  ZFDownloadPhotoSetsOperationObserver <NSObject>
 @optional
 
-- (void) photoSetComposer:(ZFDownloadPhotoSetsOperation*) operation 
+- (void) photoSetDownloader:(ZFDownloadPhotoSetsOperation*) operation 
         didDownloadPhotoSet:(ZFPhotoSet*) photoSet; 
 @end

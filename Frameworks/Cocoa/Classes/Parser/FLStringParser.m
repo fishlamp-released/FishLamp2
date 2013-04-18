@@ -51,7 +51,7 @@
 - (NSString*) unparsedString {
     if(!_unparsedString) {
         if(_remainingRange.length > 0) {
-            _unparsedString = [_originalString substringWithRange:_remainingRange];
+            _unparsedString = FLRetain([_originalString substringWithRange:_remainingRange]);
         }
     }
     

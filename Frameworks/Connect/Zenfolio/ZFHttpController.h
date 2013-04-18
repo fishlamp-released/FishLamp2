@@ -22,9 +22,9 @@
 
 @property (readwrite, strong) ZFHttpUser* user;
 
-- (ZFLoadGroupHierarchyOperation*) createRootGroupComposer;
-- (ZFDownloadPhotoSetsOperation*) createAllPhotoSetsComposer;
-- (ZFBatchDownloadOperation*) createBatchComposer:(ZFBatchDownloadSpec*) spec;
+- (ZFLoadGroupHierarchyOperation*) createRootGroupDownloader;
+- (ZFDownloadPhotoSetsOperation*) createAllPhotoSetsDownloader;
+- (ZFBatchDownloadOperation*) createBatchDownloader:(ZFBatchDownloadSpec*) spec;
 
 @end
 

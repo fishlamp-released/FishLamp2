@@ -1,5 +1,5 @@
 //
-//	ZFRandomPhotoComposer.h
+//	ZFRandomPhotoDownloader.h
 //	FishLamp
 //
 //	Created by Mike Fullerton on 9/1/10.
@@ -13,11 +13,11 @@
 #import "FLProgressViewController.h"
 #import "FLAction.h"
 
-typedef void (^ZFRandomComposerCompletionBlock)(FLJpegFile* file, NSError* error);
+typedef void (^ZFRandomDownloaderCompletionBlock)(FLJpegFile* file, NSError* error);
 
-@protocol ZFRandomPhotoComposerDelegate;
+@protocol ZFRandomPhotoDownloaderDelegate;
 
-@interface ZFRandomPhotoComposer : NSObject {
+@interface ZFRandomPhotoDownloader : NSObject {
 @private
 	NSMutableSet* _downloadedPhotos;
 	id<FLProgressViewController> _mainProgress;
@@ -26,7 +26,7 @@ typedef void (^ZFRandomComposerCompletionBlock)(FLJpegFile* file, NSError* error
 
 	NSInteger _retryCount;
 	BOOL _hasPhotosToChooseFrom;
-    ZFRandomComposerCompletionBlock _completionBlock;
+    ZFRandomDownloaderCompletionBlock _completionBlock;
 }
 
 @property (readwrite, retain, nonatomic) FLOperationContext* actionContext;
@@ -34,11 +34,11 @@ typedef void (^ZFRandomComposerCompletionBlock)(FLJpegFile* file, NSError* error
 - (void) requestCancel;
 
 - (void) beginDownloadingRandomImage:(NSString*) progressString 
-                     completionBlock:(ZFRandomComposerCompletionBlock) completionBlock;
+                     completionBlock:(ZFRandomDownloaderCompletionBlock) completionBlock;
 
 - (void) beginLoadingSelectedPhoto:(ZFPhoto*) photo 
                     progressString:(NSString*) progressString
-                   completionBlock:(ZFRandomComposerCompletionBlock) completionBlock;
+                   completionBlock:(ZFRandomDownloaderCompletionBlock) completionBlock;
 
 @end
 #endif

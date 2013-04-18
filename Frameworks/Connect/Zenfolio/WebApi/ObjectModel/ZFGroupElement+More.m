@@ -130,7 +130,7 @@
 	return nil;
 }
 
-- (ZFGroupElementType) groupElementType {
+- (ZFGroupElementType) elementType {
     return 0;
 }
 

@@ -35,6 +35,8 @@ extern NSString* const FLHttpControllerDidLogoutUserNotification;
 @property (readonly, strong) FLObjectStorageService* objectStorageService;
 @property (readonly, strong) FLHttpRequestAuthenticationService* httpRequestAuthenticator;
 
+- (id) initWithAuthenticationDomain:(NSString*) authenticationDomain;
+
 + (id) httpController;
 
 - (void) logoutUser;

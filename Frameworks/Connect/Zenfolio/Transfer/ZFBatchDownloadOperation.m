@@ -1,6 +1,6 @@
 //
 //  ZFBatchDownloadOperation.m
-//  Zenfolio Composer
+//  Zenfolio FishLamp
 //
 //  Created by Mike Fullerton on 2/27/13.
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.

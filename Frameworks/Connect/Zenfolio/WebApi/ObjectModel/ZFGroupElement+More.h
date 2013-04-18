@@ -20,7 +20,7 @@ typedef enum {
 @property (readonly, assign, nonatomic) BOOL isGalleryElement;
 @property (readonly, assign, nonatomic) BOOL isGroupElement;
 @property (readonly, assign, nonatomic) BOOL isCollectionElement;
-@property (readonly, assign, nonatomic) ZFGroupElementType groupElementType;
+@property (readonly, assign, nonatomic) ZFGroupElementType elementType;
 
 // here for polymorphic use, overridden in ZFPhotoSet and ZFGroup
 @property (readwrite, strong, nonatomic) NSString* PageUrl;

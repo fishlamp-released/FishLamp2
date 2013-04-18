@@ -101,7 +101,7 @@ FLSynthesizeCachedObjectHandlerProperty(ZFPhotoSet);
 	return self.TypeValue == ZFPhotoSetTypeCollection;
 }
 
-- (ZFGroupElementType) groupElementType {
+- (ZFGroupElementType) elementType {
     return self.TypeValue == ZFPhotoSetTypeCollection ? ZFGroupElementTypeCollection : ZFGroupElementTypeGallery;
 }
 

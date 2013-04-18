@@ -14,8 +14,6 @@
 @interface FLNetworkHostResolver ()
 @property (readwrite, strong) FLNetworkHost* networkHost;
 @property (readwrite, strong) FLFinisher* finisher;
-@property (readwrite, assign, nonatomic, getter=isOpen) BOOL open;
-
 - (void) cancelRunLoop;
 @end
 
@@ -82,7 +80,6 @@ static void HostResolutionCallback(CFHostRef theHost, CFHostInfoType typeInfo, c
             CFHostUnscheduleFromRunLoop(host, [[self.eventHandler runLoop] getCFRunLoop], bridge_(void*,self.eventHandler.runLoopMode));
             CFHostCancelInfoResolution(host, self.networkHost.hostInfoType);
         }
-        self.open = NO;
     }
 }
 
@@ -102,7 +99,7 @@ static void HostResolutionCallback(CFHostRef theHost, CFHostInfoType typeInfo, c
 - (FLFinisher*) startResolvingHost:(FLNetworkHost*) host {
     self.finisher = [FLFinisher finisher];
     FLAssertWithComment(!self.isOpen, @"already running");
-    self.open = YES;
+    
     self.networkHost = host;
     
     CFHostClientContext context = { 0, bridge_(void*, self), NULL, NULL, NULL };

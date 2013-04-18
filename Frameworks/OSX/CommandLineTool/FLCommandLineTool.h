@@ -17,7 +17,11 @@
     NSURL* _toolPath;
     NSString* _startDirectory;
     NSString* _toolName;
+    BOOL _running;
+    NSError* _error;
 }
+
++ (id) sharedTool;
 
 @property (readonly, strong, nonatomic) NSURL* toolPath;
 @property (readonly, strong, nonatomic) NSString* startDirectory;
@@ -34,6 +38,18 @@
 
 - (NSString*) getInputString:(NSString*) prompt maxLength:(NSUInteger) maxLength;
 - (NSString*) getPassword:(NSString*) prompt;
+
+- (void) startRunLoop;
+- (void) stopRunLoop;
+
+// optional override points
+- (void) willRunTool:(FLCommandLineTask*) task;
+- (void) runTool:(FLCommandLineTask*) task;
+- (void) didRunTool;
+
 @end
 
 
+
+#define FLToolLog(__FORMAT__, ...) \
+            [[[FLCommandLineTool sharedTool] output] appendLineWithFormat:__FORMAT__, ##__VA_ARGS__]
