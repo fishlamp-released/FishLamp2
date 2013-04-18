@@ -23,10 +23,12 @@
 
 - (void) addKeys:(NSString*) keys; // space and/or comma delimited.
 
-- (NSString*) buildUsageString;
 - (void) printHelpToStringFormatter:(FLStringFormatter*) output;
 
 // override point
 - (id) parseOptionData:(FLStringParser*) input siblings:(NSDictionary*) siblings;
+
+- (void) printUsage:(FLStringFormatter*) output;
+
 
 @end

@@ -26,6 +26,7 @@ typedef enum {
     id<FLNetworkStreamEventHandler> _eventHandler;
     BOOL _open;
     BOOL _wasTerminated;
+    NSTimeInterval _idleDuration;
     __unsafe_unretained id<FLNetworkStreamDelegate> _delegate;
 }
 

@@ -1,0 +1,23 @@
+//
+//  FLCommandLineTask.h
+//  FishLampCocoa
+//
+//  Created by Mike Fullerton on 4/18/13.
+//  Copyright (c) 2013 Mike Fullerton. All rights reserved.
+//
+
+#import "FLOperation.h"
+#import "FLSynchronousOperation.h"
+
+@interface FLCommandLineTask : FLSynchronousOperation {
+@private
+    NSMutableArray* _operations;
+}
+
+@property (readonly, strong, nonatomic) NSArray* operations;
+
++ (id) commandLineTask;
+
+- (void) addOperation:(id<FLOperation>) operation;
+
+@end

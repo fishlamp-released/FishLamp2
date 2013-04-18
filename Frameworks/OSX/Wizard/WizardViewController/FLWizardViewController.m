@@ -1,6 +1,6 @@
 //
 //  FLWizardViewController.m
-//  Zenfolio Composer
+//  FishLamp
 //
 //  Created by Mike Fullerton on 12/4/12.
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
@@ -95,6 +95,10 @@
     if(nextEnabled != self.buttonViewController.nextButton.isEnabled) {
         self.buttonViewController.nextButton.enabled = nextEnabled;
     }
+}
+
+- (void) setLogoImage:(NSImage*) image {
+
 }
 
 #pragma mark panel manager 

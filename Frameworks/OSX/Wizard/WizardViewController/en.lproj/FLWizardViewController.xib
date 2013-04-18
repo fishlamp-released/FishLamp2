@@ -66,7 +66,7 @@
 								<string key="NSFrame">{{267, 15}, {19, 19}}</string>
 								<reference key="NSSuperview" ref="1018746906"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="396995919"/>
+								<reference key="NSNextKeyView" ref="726091005"/>
 								<string key="NSClassName">FLSpinningProgressView</string>
 							</object>
 							<object class="NSButton" id="671622157">
@@ -75,6 +75,7 @@
 								<string key="NSFrame">{{386, 6}, {100, 32}}</string>
 								<reference key="NSSuperview" ref="1018746906"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<bool key="NSEnabled">YES</bool>
 								<object class="NSButtonCell" key="NSCell" id="311563633">
 									<int key="NSCellFlags">67108864</int>
@@ -150,7 +151,7 @@
 								<string key="NSFrame">{{115, 0}, {154, 50}}</string>
 								<reference key="NSSuperview" ref="1018746906"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="726091005"/>
+								<reference key="NSNextKeyView" ref="536510236"/>
 								<string key="NSClassName">NSView</string>
 							</object>
 						</array>
@@ -233,7 +234,7 @@
 										<string key="NSFrame">{{298, 42}, {77, 20}}</string>
 										<reference key="NSSuperview" ref="2603366"/>
 										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="536510236"/>
+										<reference key="NSNextKeyView" ref="396995919"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="NSEnabled">YES</bool>
 										<object class="NSButtonCell" key="NSCell" id="103870611">
@@ -320,10 +321,6 @@
 						<object class="NSImageCell" key="NSCell" id="200282125">
 							<int key="NSCellFlags">134217728</int>
 							<int key="NSCellFlags2">33587200</int>
-							<object class="NSCustomResource" key="NSContents">
-								<string key="NSClassName">NSImage</string>
-								<string key="NSResourceName">icon256</string>
-							</object>
 							<int key="NSAlign">4</int>
 							<int key="NSScale">0</int>
 							<int key="NSStyle">0</int>
@@ -397,6 +394,14 @@
 						<reference key="destination" ref="536510236"/>
 					</object>
 					<int key="connectionID">193</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">_logoImageView</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="752423629"/>
+					</object>
+					<int key="connectionID">255</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
@@ -823,7 +828,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">254</int>
+			<int key="maxID">255</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -877,7 +882,7 @@
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">FLPanelManager</string>
-					<string key="superclassName">FLCompatibleViewController</string>
+					<string key="superclassName">NSViewController</string>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="_contentEnclosure">NSView</string>
 						<string key="_contentView">NSView</string>
@@ -895,6 +900,25 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/FLPanelManager.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">FLPanelWizard</string>
+					<string key="superclassName">FLPanelManager</string>
+					<object class="NSMutableDictionary" key="outlets">
+						<string key="NS.key.0">_navigationViewController</string>
+						<string key="NS.object.0">FLWizardNavigationViewController</string>
+					</object>
+					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<string key="NS.key.0">_navigationViewController</string>
+						<object class="IBToOneOutletInfo" key="NS.object.0">
+							<string key="name">_navigationViewController</string>
+							<string key="candidateClassName">FLWizardNavigationViewController</string>
+						</object>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/FLPanelWizard.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -1014,12 +1038,11 @@
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">FLWizardViewController</string>
-					<string key="superclassName">SDKViewController</string>
+					<string key="superclassName">FLPanelWizard</string>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="_buttonViewController">FLWizardButtonViewController</string>
 						<string key="_headerViewController">FLWizardHeaderViewController</string>
-						<string key="_navigationViewController">FLWizardNavigationViewController</string>
-						<string key="_panelManager">FLPanelManager</string>
+						<string key="_logoImageView">NSImageView</string>
 						<string key="_progressView">FLSpinningProgressView</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
@@ -1031,13 +1054,9 @@
 							<string key="name">_headerViewController</string>
 							<string key="candidateClassName">FLWizardHeaderViewController</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="_navigationViewController">
-							<string key="name">_navigationViewController</string>
-							<string key="candidateClassName">FLWizardNavigationViewController</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="_panelManager">
-							<string key="name">_panelManager</string>
-							<string key="candidateClassName">FLPanelManager</string>
+						<object class="IBToOneOutletInfo" key="_logoImageView">
+							<string key="name">_logoImageView</string>
+							<string key="candidateClassName">NSImageView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="_progressView">
 							<string key="name">_progressView</string>
@@ -1090,9 +1109,5 @@
 		</object>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
-		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="NS.key.0">icon256</string>
-			<string key="NS.object.0">{256, 256}</string>
-		</object>
 	</data>
 </archive>

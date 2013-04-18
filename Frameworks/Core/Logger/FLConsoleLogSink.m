@@ -20,8 +20,19 @@
     return FLAutorelease([[[self class] alloc] initWithOutputFlags:outputFlags]);
 }
 
-#define print_line FLPrintFormat(@"%@%@    (%s:%d)\n", whitespace, [[logString substringWithRange:range] stringWithPadding:80], entry.stackTrace.fileName, entry.stackTrace.lineNumber)
-            
+
+- (void) printLine:(FLLogEntry*) entry 
+         logString:(NSString*) logString 
+             range:(NSRange) range
+        whitespace:(NSString*) whitespace {
+         
+    if(FLTestAnyBit(self.outputFlags, FLLogOutputWithLocation | FLLogOutputWithStackTrace)) { 
+        FLPrintFormat(@"%@%@    (%s:%d)\n", whitespace, [[logString substringWithRange:range] stringWithPadding:80], entry.stackTrace.fileName, entry.stackTrace.lineNumber); 
+    } 
+    else { 
+        FLPrintFormat(@"%@%@\n", whitespace, [[logString substringWithRange:range] stringWithPadding:80]); 
+    }
+}            
 
 - (void) logEntry:(FLLogEntry*) entry stopPropagating:(BOOL*) stop {
 
@@ -57,7 +68,7 @@
         
             if(i > lastIndex) {
                 NSRange  range = NSMakeRange(lastIndex, i - lastIndex); 
-                print_line;
+                [self printLine:entry logString:logString range:range whitespace:whitespace];
             }
             else {
                 FLPrintFormat(@"\n");
@@ -69,7 +80,7 @@
     
     if(lastIndex < (logString.length - 1)) {
         NSRange  range = NSMakeRange(lastIndex, logString.length - lastIndex); 
-        print_line;
+        [self printLine:entry logString:logString range:range whitespace:whitespace];
     }
     
     if(FLTestBits(self.outputFlags, FLLogOutputWithStackTrace)) {

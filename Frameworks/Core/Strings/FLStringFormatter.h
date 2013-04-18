@@ -21,6 +21,7 @@
 - (void) appendString:(NSString*) string; 
 - (void) appendFormat:(NSString*) format, ...;
 - (void) appendAttributedString:(NSAttributedString*) string; 
+- (void) appendFormat:(NSString*) format arguments:(va_list)argList;
 
 // end current line with EOF (only if it hasn't already been ended)
 - (void) closeLine; 
@@ -35,6 +36,7 @@
 - (void) appendLine:(NSString*) line;  
 - (void) appendLineWithFormat:(NSString*) format, ...;
 - (void) appendLineWithAttributedString:(NSAttributedString*) line;  
+- (void) appendLineWithFormat:(NSString*) format arguments:(va_list)argList;
 
 /// AppendLine is called for each line
 - (void) appendLines:(NSString**) lines count:(NSInteger) count;

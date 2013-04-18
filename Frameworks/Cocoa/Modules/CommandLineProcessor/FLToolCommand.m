@@ -27,6 +27,10 @@
     return self;
 }
 
++ (id) toolCommand {
+    return FLAutorelease([[[self class] alloc] init]);
+}
+
 #if FL_MRC
 - (void) dealloc {
     [_subcommands release];
@@ -77,9 +81,9 @@
     return options;
 }
 
-- (void) runCommandWithOptions:(NSDictionary*) options {
+- (void) addOperationToTask:(FLCommandLineTask*) task withOptions:(NSDictionary*) options {
+    [task addOperation:self];
 }
-
 
 - (void) addSubcommand:(FLToolCommand *)command {
     if(!_subcommands) {
@@ -89,7 +93,8 @@
     [_subcommands setObject:command forKey:[command.commandName lowercaseString]];
 }
 
-- (void) parseInput:(FLStringParser*) input commitQueue:(FLBlockQueue*) commitQueue {
+- (void) parseInput:(FLStringParser*) input 
+    commandLineTask:(FLCommandLineTask*) commandLineTask {
 
     NSString* key = [input parseNextToken];
     NSDictionary* options = nil;
@@ -98,7 +103,7 @@
         FLToolCommand* command = [_subcommands objectForKey:[key lowercaseString]];
         if(command) {
             // if we have subcommand - we don't get executed - only the leaf most command does.
-            [command parseInput:input commitQueue:commitQueue];
+            [command parseInput:input commandLineTask:commandLineTask];
             return;
         }
 
@@ -107,13 +112,23 @@
 
 //    FLConfirmWithComment(input.last == nil, @"input still remains: %@", input.unparsed);
 
-    [commitQueue addBlock:^(id sender) { 
-        [self runCommandWithOptions:options]; 
-    }];
+    [self addOperationToTask:commandLineTask withOptions:options];
 }
 
-- (NSString*) buildUsageString {
-    return nil; // [NSString concatStringArray:self.optionKeys.allObjects];
+
+- (void) printUsage:(FLStringFormatter*) output {
+    [output openLineWithString:_commandName];
+    for(FLToolCommandOption* option in _options) {
+        [output appendString:@" "];
+        [option printUsage:output];
+    }
+    [output closeLine];
+    
+    [output indent:^{
+        for(FLToolCommand* subcommand in _subcommands) {
+            [subcommand printUsage:output];
+        }
+    }];
 }
 
 - (void) printHelpToStringFormatter:(FLStringFormatter*) output {

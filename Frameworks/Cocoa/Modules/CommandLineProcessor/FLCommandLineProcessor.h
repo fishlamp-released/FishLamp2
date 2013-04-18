@@ -12,6 +12,7 @@
 #import "FLStringFormatter.h"
 #import "FLStringParser.h"
 #import "FLToolCommand.h"
+#import "FLCommandLineTask.h"
 
 @interface FLCommandLineProcessor : NSObject {
 @private
@@ -24,10 +25,14 @@
 
 - (void) addToolCommand:(FLToolCommand*) command;
 
-- (void) runToolCommandsWithInput:(NSString*) input;
+- (FLCommandLineTask*) taskFromInput:(NSString*) input;
 
-// override point
-- (void) handleEmptyInput;
+- (void) willParseInput;
+- (void) didParseInput;
+
+- (void) printUsage;
+
+- (FLToolCommand*) toolCommandForNoInput;
 
 @end
 
@@ -35,5 +40,4 @@
 - (void) openURL:(NSString *)url inBackground:(BOOL)background;
 - (void) openFileInDefaultEditor:(NSString*) path;
 @end
-
 

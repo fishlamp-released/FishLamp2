@@ -2604,6 +2604,15 @@
 		2744B329171F6F380090B70D /* FLNetworkErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B318171F6F380090B70D /* FLNetworkErrors.m */; };
 		2744B32A171F6F380090B70D /* FLNetworkErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B318171F6F380090B70D /* FLNetworkErrors.m */; };
 		2744B32B171F6F380090B70D /* FLNetworkErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B318171F6F380090B70D /* FLNetworkErrors.m */; };
+		2744B53E172063670090B70D /* FLCommandLineTask.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B53C172063660090B70D /* FLCommandLineTask.h */; };
+		2744B53F172063670090B70D /* FLCommandLineTask.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B53C172063660090B70D /* FLCommandLineTask.h */; };
+		2744B540172063670090B70D /* FLCommandLineTask.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B53C172063660090B70D /* FLCommandLineTask.h */; };
+		2744B541172063670090B70D /* FLCommandLineTask.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B53C172063660090B70D /* FLCommandLineTask.h */; };
+		2744B542172063670090B70D /* FLCommandLineTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B53D172063670090B70D /* FLCommandLineTask.m */; };
+		2744B543172063670090B70D /* FLCommandLineTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B53D172063670090B70D /* FLCommandLineTask.m */; };
+		2744B544172063670090B70D /* FLCommandLineTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B53D172063670090B70D /* FLCommandLineTask.m */; };
+		2744B545172063670090B70D /* FLCommandLineTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B53D172063670090B70D /* FLCommandLineTask.m */; };
+		2744B546172063670090B70D /* FLCommandLineTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B53D172063670090B70D /* FLCommandLineTask.m */; };
 		2747933B16FE0B6300DC11BE /* FLCompatibility+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 2747931816FE0B6300DC11BE /* FLCompatibility+OSX.h */; };
 		2747933C16FE0B6300DC11BE /* FLCompatibility+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 2747931816FE0B6300DC11BE /* FLCompatibility+OSX.h */; };
 		2747933D16FE0B6300DC11BE /* FLCompatibility+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 2747931816FE0B6300DC11BE /* FLCompatibility+OSX.h */; };
@@ -4141,6 +4150,8 @@
 		2741E13616793DB600CA87A9 /* FLUnitTestResult_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLUnitTestResult_Internal.h; sourceTree = "<group>"; };
 		2744B317171F6F380090B70D /* FLNetworkErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLNetworkErrors.h; sourceTree = "<group>"; };
 		2744B318171F6F380090B70D /* FLNetworkErrors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLNetworkErrors.m; sourceTree = "<group>"; };
+		2744B53C172063660090B70D /* FLCommandLineTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCommandLineTask.h; sourceTree = "<group>"; };
+		2744B53D172063670090B70D /* FLCommandLineTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLCommandLineTask.m; sourceTree = "<group>"; };
 		2747931716FE0B6300DC11BE /* fishlamp-module.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "fishlamp-module.json"; sourceTree = "<group>"; };
 		2747931816FE0B6300DC11BE /* FLCompatibility+OSX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FLCompatibility+OSX.h"; sourceTree = "<group>"; };
 		2747931916FE0B6300DC11BE /* FLCompatibleGeometry+OSX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FLCompatibleGeometry+OSX.h"; sourceTree = "<group>"; };
@@ -6128,6 +6139,8 @@
 				27E802B0170344AE0012BFDD /* FLToolCommand.m */,
 				27E802B1170344AE0012BFDD /* FLToolCommandOption.h */,
 				27E802B2170344AE0012BFDD /* FLToolCommandOption.m */,
+				2744B53C172063660090B70D /* FLCommandLineTask.h */,
+				2744B53D172063670090B70D /* FLCommandLineTask.m */,
 			);
 			path = CommandLineProcessor;
 			sourceTree = "<group>";
@@ -6554,6 +6567,7 @@
 				27B2D71F171C609B000DF355 /* FLRunLoopNetworkStreamEventHandler.h in Headers */,
 				27B2D72A171C75F4000DF355 /* FLTypeDesc.h in Headers */,
 				2744B319171F6F380090B70D /* FLNetworkErrors.h in Headers */,
+				2744B53E172063670090B70D /* FLCommandLineTask.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6926,6 +6940,7 @@
 				27B2D721171C609B000DF355 /* FLRunLoopNetworkStreamEventHandler.h in Headers */,
 				27B2D72C171C75F4000DF355 /* FLTypeDesc.h in Headers */,
 				2744B31B171F6F380090B70D /* FLNetworkErrors.h in Headers */,
+				2744B540172063670090B70D /* FLCommandLineTask.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7298,6 +7313,7 @@
 				27B2D720171C609B000DF355 /* FLRunLoopNetworkStreamEventHandler.h in Headers */,
 				27B2D72B171C75F4000DF355 /* FLTypeDesc.h in Headers */,
 				2744B31A171F6F380090B70D /* FLNetworkErrors.h in Headers */,
+				2744B53F172063670090B70D /* FLCommandLineTask.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7820,6 +7836,7 @@
 				27B2D722171C609B000DF355 /* FLRunLoopNetworkStreamEventHandler.h in Headers */,
 				27B2D72D171C75F4000DF355 /* FLTypeDesc.h in Headers */,
 				2744B31C171F6F380090B70D /* FLNetworkErrors.h in Headers */,
+				2744B541172063670090B70D /* FLCommandLineTask.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8448,6 +8465,7 @@
 				27B2D724171C609B000DF355 /* FLRunLoopNetworkStreamEventHandler.m in Sources */,
 				27B2D72F171C75F4000DF355 /* FLTypeDesc.m in Sources */,
 				2744B323171F6F380090B70D /* FLNetworkErrors.m in Sources */,
+				2744B543172063670090B70D /* FLCommandLineTask.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8786,6 +8804,7 @@
 				27B2D726171C609B000DF355 /* FLRunLoopNetworkStreamEventHandler.m in Sources */,
 				27B2D731171C75F4000DF355 /* FLTypeDesc.m in Sources */,
 				2744B325171F6F380090B70D /* FLNetworkErrors.m in Sources */,
+				2744B545172063670090B70D /* FLCommandLineTask.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9116,6 +9135,7 @@
 				27B2D723171C609B000DF355 /* FLRunLoopNetworkStreamEventHandler.m in Sources */,
 				27B2D72E171C75F4000DF355 /* FLTypeDesc.m in Sources */,
 				2744B322171F6F380090B70D /* FLNetworkErrors.m in Sources */,
+				2744B542172063670090B70D /* FLCommandLineTask.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9454,6 +9474,7 @@
 				27B2D725171C609B000DF355 /* FLRunLoopNetworkStreamEventHandler.m in Sources */,
 				27B2D730171C75F4000DF355 /* FLTypeDesc.m in Sources */,
 				2744B324171F6F380090B70D /* FLNetworkErrors.m in Sources */,
+				2744B544172063670090B70D /* FLCommandLineTask.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9950,6 +9971,7 @@
 				27B2D727171C609B000DF355 /* FLRunLoopNetworkStreamEventHandler.m in Sources */,
 				27B2D732171C75F4000DF355 /* FLTypeDesc.m in Sources */,
 				2744B326171F6F380090B70D /* FLNetworkErrors.m in Sources */,
+				2744B546172063670090B70D /* FLCommandLineTask.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
