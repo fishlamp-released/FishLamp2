@@ -2585,6 +2585,25 @@
 		2741EBD816793DB700CA87A9 /* FLUnitTestResult_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741E13616793DB600CA87A9 /* FLUnitTestResult_Internal.h */; };
 		2741EBD916793DB700CA87A9 /* FLUnitTestResult_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741E13616793DB600CA87A9 /* FLUnitTestResult_Internal.h */; };
 		2741EBDA16793DB700CA87A9 /* FLUnitTestResult_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 2741E13616793DB600CA87A9 /* FLUnitTestResult_Internal.h */; };
+		2744B319171F6F380090B70D /* FLNetworkErrors.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B317171F6F380090B70D /* FLNetworkErrors.h */; };
+		2744B31A171F6F380090B70D /* FLNetworkErrors.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B317171F6F380090B70D /* FLNetworkErrors.h */; };
+		2744B31B171F6F380090B70D /* FLNetworkErrors.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B317171F6F380090B70D /* FLNetworkErrors.h */; };
+		2744B31C171F6F380090B70D /* FLNetworkErrors.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B317171F6F380090B70D /* FLNetworkErrors.h */; };
+		2744B31D171F6F380090B70D /* FLNetworkErrors.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B317171F6F380090B70D /* FLNetworkErrors.h */; };
+		2744B31E171F6F380090B70D /* FLNetworkErrors.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B317171F6F380090B70D /* FLNetworkErrors.h */; };
+		2744B31F171F6F380090B70D /* FLNetworkErrors.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B317171F6F380090B70D /* FLNetworkErrors.h */; };
+		2744B320171F6F380090B70D /* FLNetworkErrors.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B317171F6F380090B70D /* FLNetworkErrors.h */; };
+		2744B321171F6F380090B70D /* FLNetworkErrors.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B317171F6F380090B70D /* FLNetworkErrors.h */; };
+		2744B322171F6F380090B70D /* FLNetworkErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B318171F6F380090B70D /* FLNetworkErrors.m */; };
+		2744B323171F6F380090B70D /* FLNetworkErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B318171F6F380090B70D /* FLNetworkErrors.m */; };
+		2744B324171F6F380090B70D /* FLNetworkErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B318171F6F380090B70D /* FLNetworkErrors.m */; };
+		2744B325171F6F380090B70D /* FLNetworkErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B318171F6F380090B70D /* FLNetworkErrors.m */; };
+		2744B326171F6F380090B70D /* FLNetworkErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B318171F6F380090B70D /* FLNetworkErrors.m */; };
+		2744B327171F6F380090B70D /* FLNetworkErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B318171F6F380090B70D /* FLNetworkErrors.m */; };
+		2744B328171F6F380090B70D /* FLNetworkErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B318171F6F380090B70D /* FLNetworkErrors.m */; };
+		2744B329171F6F380090B70D /* FLNetworkErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B318171F6F380090B70D /* FLNetworkErrors.m */; };
+		2744B32A171F6F380090B70D /* FLNetworkErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B318171F6F380090B70D /* FLNetworkErrors.m */; };
+		2744B32B171F6F380090B70D /* FLNetworkErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B318171F6F380090B70D /* FLNetworkErrors.m */; };
 		2747933B16FE0B6300DC11BE /* FLCompatibility+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 2747931816FE0B6300DC11BE /* FLCompatibility+OSX.h */; };
 		2747933C16FE0B6300DC11BE /* FLCompatibility+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 2747931816FE0B6300DC11BE /* FLCompatibility+OSX.h */; };
 		2747933D16FE0B6300DC11BE /* FLCompatibility+OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 2747931816FE0B6300DC11BE /* FLCompatibility+OSX.h */; };
@@ -4120,6 +4139,8 @@
 		2741E13416793DB600CA87A9 /* FLUnitTestResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLUnitTestResult.h; sourceTree = "<group>"; };
 		2741E13516793DB600CA87A9 /* FLUnitTestResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLUnitTestResult.m; sourceTree = "<group>"; };
 		2741E13616793DB600CA87A9 /* FLUnitTestResult_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLUnitTestResult_Internal.h; sourceTree = "<group>"; };
+		2744B317171F6F380090B70D /* FLNetworkErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLNetworkErrors.h; sourceTree = "<group>"; };
+		2744B318171F6F380090B70D /* FLNetworkErrors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLNetworkErrors.m; sourceTree = "<group>"; };
 		2747931716FE0B6300DC11BE /* fishlamp-module.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "fishlamp-module.json"; sourceTree = "<group>"; };
 		2747931816FE0B6300DC11BE /* FLCompatibility+OSX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FLCompatibility+OSX.h"; sourceTree = "<group>"; };
 		2747931916FE0B6300DC11BE /* FLCompatibleGeometry+OSX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FLCompatibleGeometry+OSX.h"; sourceTree = "<group>"; };
@@ -4916,6 +4937,8 @@
 		271D31DF16FE0775009CD00F /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				2744B317171F6F380090B70D /* FLNetworkErrors.h */,
+				2744B318171F6F380090B70D /* FLNetworkErrors.m */,
 				271D31E016FE0775009CD00F /* Dns */,
 				271D31E516FE0775009CD00F /* Http */,
 				271D320216FE0775009CD00F /* Json */,
@@ -6530,6 +6553,7 @@
 				276365DC171C51F600F44096 /* FLFifoQueueNetworkStreamEventHandler.h in Headers */,
 				27B2D71F171C609B000DF355 /* FLRunLoopNetworkStreamEventHandler.h in Headers */,
 				27B2D72A171C75F4000DF355 /* FLTypeDesc.h in Headers */,
+				2744B319171F6F380090B70D /* FLNetworkErrors.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6901,6 +6925,7 @@
 				276365DE171C51F600F44096 /* FLFifoQueueNetworkStreamEventHandler.h in Headers */,
 				27B2D721171C609B000DF355 /* FLRunLoopNetworkStreamEventHandler.h in Headers */,
 				27B2D72C171C75F4000DF355 /* FLTypeDesc.h in Headers */,
+				2744B31B171F6F380090B70D /* FLNetworkErrors.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7272,6 +7297,7 @@
 				276365DD171C51F600F44096 /* FLFifoQueueNetworkStreamEventHandler.h in Headers */,
 				27B2D720171C609B000DF355 /* FLRunLoopNetworkStreamEventHandler.h in Headers */,
 				27B2D72B171C75F4000DF355 /* FLTypeDesc.h in Headers */,
+				2744B31A171F6F380090B70D /* FLNetworkErrors.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7301,6 +7327,7 @@
 				27C62D17170B44CB0093F260 /* FLUnitTestSelfTests.h in Headers */,
 				27C62D21170B44CB0093F260 /* FLUnretainedUnitTests.h in Headers */,
 				27C62D2B170B44CB0093F260 /* FLWeakRefTests.h in Headers */,
+				2744B31D171F6F380090B70D /* FLNetworkErrors.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7330,6 +7357,7 @@
 				27C62D18170B44CB0093F260 /* FLUnitTestSelfTests.h in Headers */,
 				27C62D22170B44CB0093F260 /* FLUnretainedUnitTests.h in Headers */,
 				27C62D2C170B44CB0093F260 /* FLWeakRefTests.h in Headers */,
+				2744B31E171F6F380090B70D /* FLNetworkErrors.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7359,6 +7387,7 @@
 				27C62D19170B44CB0093F260 /* FLUnitTestSelfTests.h in Headers */,
 				27C62D23170B44CB0093F260 /* FLUnretainedUnitTests.h in Headers */,
 				27C62D2D170B44CB0093F260 /* FLWeakRefTests.h in Headers */,
+				2744B31F171F6F380090B70D /* FLNetworkErrors.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7388,6 +7417,7 @@
 				27C62D1A170B44CB0093F260 /* FLUnitTestSelfTests.h in Headers */,
 				27C62D24170B44CB0093F260 /* FLUnretainedUnitTests.h in Headers */,
 				27C62D2E170B44CB0093F260 /* FLWeakRefTests.h in Headers */,
+				2744B320171F6F380090B70D /* FLNetworkErrors.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7417,6 +7447,7 @@
 				27C62D1B170B44CB0093F260 /* FLUnitTestSelfTests.h in Headers */,
 				27C62D25170B44CB0093F260 /* FLUnretainedUnitTests.h in Headers */,
 				27C62D2F170B44CB0093F260 /* FLWeakRefTests.h in Headers */,
+				2744B321171F6F380090B70D /* FLNetworkErrors.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7788,6 +7819,7 @@
 				276365DF171C51F600F44096 /* FLFifoQueueNetworkStreamEventHandler.h in Headers */,
 				27B2D722171C609B000DF355 /* FLRunLoopNetworkStreamEventHandler.h in Headers */,
 				27B2D72D171C75F4000DF355 /* FLTypeDesc.h in Headers */,
+				2744B31C171F6F380090B70D /* FLNetworkErrors.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8415,6 +8447,7 @@
 				276365E1171C51F600F44096 /* FLFifoQueueNetworkStreamEventHandler.m in Sources */,
 				27B2D724171C609B000DF355 /* FLRunLoopNetworkStreamEventHandler.m in Sources */,
 				27B2D72F171C75F4000DF355 /* FLTypeDesc.m in Sources */,
+				2744B323171F6F380090B70D /* FLNetworkErrors.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8752,6 +8785,7 @@
 				276365E3171C51F600F44096 /* FLFifoQueueNetworkStreamEventHandler.m in Sources */,
 				27B2D726171C609B000DF355 /* FLRunLoopNetworkStreamEventHandler.m in Sources */,
 				27B2D731171C75F4000DF355 /* FLTypeDesc.m in Sources */,
+				2744B325171F6F380090B70D /* FLNetworkErrors.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9081,6 +9115,7 @@
 				276365E0171C51F600F44096 /* FLFifoQueueNetworkStreamEventHandler.m in Sources */,
 				27B2D723171C609B000DF355 /* FLRunLoopNetworkStreamEventHandler.m in Sources */,
 				27B2D72E171C75F4000DF355 /* FLTypeDesc.m in Sources */,
+				2744B322171F6F380090B70D /* FLNetworkErrors.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9418,6 +9453,7 @@
 				276365E2171C51F600F44096 /* FLFifoQueueNetworkStreamEventHandler.m in Sources */,
 				27B2D725171C609B000DF355 /* FLRunLoopNetworkStreamEventHandler.m in Sources */,
 				27B2D730171C75F4000DF355 /* FLTypeDesc.m in Sources */,
+				2744B324171F6F380090B70D /* FLNetworkErrors.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9447,6 +9483,7 @@
 				27C62D1C170B44CB0093F260 /* FLUnitTestSelfTests.m in Sources */,
 				27C62D26170B44CB0093F260 /* FLUnretainedUnitTests.m in Sources */,
 				27C62D30170B44CB0093F260 /* FLWeakRefTests.m in Sources */,
+				2744B327171F6F380090B70D /* FLNetworkErrors.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9476,6 +9513,7 @@
 				27C62D1D170B44CB0093F260 /* FLUnitTestSelfTests.m in Sources */,
 				27C62D27170B44CB0093F260 /* FLUnretainedUnitTests.m in Sources */,
 				27C62D31170B44CB0093F260 /* FLWeakRefTests.m in Sources */,
+				2744B328171F6F380090B70D /* FLNetworkErrors.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9505,6 +9543,7 @@
 				27C62D1E170B44CB0093F260 /* FLUnitTestSelfTests.m in Sources */,
 				27C62D28170B44CB0093F260 /* FLUnretainedUnitTests.m in Sources */,
 				27C62D32170B44CB0093F260 /* FLWeakRefTests.m in Sources */,
+				2744B329171F6F380090B70D /* FLNetworkErrors.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9534,6 +9573,7 @@
 				27C62D1F170B44CB0093F260 /* FLUnitTestSelfTests.m in Sources */,
 				27C62D29170B44CB0093F260 /* FLUnretainedUnitTests.m in Sources */,
 				27C62D33170B44CB0093F260 /* FLWeakRefTests.m in Sources */,
+				2744B32A171F6F380090B70D /* FLNetworkErrors.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9563,6 +9603,7 @@
 				27C62D20170B44CB0093F260 /* FLUnitTestSelfTests.m in Sources */,
 				27C62D2A170B44CB0093F260 /* FLUnretainedUnitTests.m in Sources */,
 				27C62D34170B44CB0093F260 /* FLWeakRefTests.m in Sources */,
+				2744B32B171F6F380090B70D /* FLNetworkErrors.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9908,6 +9949,7 @@
 				276365E4171C51F600F44096 /* FLFifoQueueNetworkStreamEventHandler.m in Sources */,
 				27B2D727171C609B000DF355 /* FLRunLoopNetworkStreamEventHandler.m in Sources */,
 				27B2D732171C75F4000DF355 /* FLTypeDesc.m in Sources */,
+				2744B326171F6F380090B70D /* FLNetworkErrors.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
