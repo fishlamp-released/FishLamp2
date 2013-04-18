@@ -105,7 +105,7 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
          (id)kCFBooleanFalse, (id)kCFStreamSSLValidatesCertificateChain, 
          nil];
 
-        CFReadStreamSetProperty(_streamRef,kCFStreamPropertySSLSettings, sslSettings);
+        CFReadStreamSetProperty(_streamRef,kCFStreamPropertySSLSettings, FLBridge(CFTypeRef, sslSettings));
     }
 
 

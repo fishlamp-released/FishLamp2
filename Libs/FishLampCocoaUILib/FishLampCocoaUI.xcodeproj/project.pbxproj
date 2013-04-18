@@ -61,6 +61,15 @@
 		2731E9BB16F4138600BB1E83 /* FLPanelHostView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2731E9B416F4138600BB1E83 /* FLPanelHostView.m */; };
 		2731E9BC16F4138600BB1E83 /* FLPanelHostView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2731E9B416F4138600BB1E83 /* FLPanelHostView.m */; };
 		2731E9BD16F4138600BB1E83 /* FLPanelHostView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2731E9B416F4138600BB1E83 /* FLPanelHostView.m */; };
+		2744B405171F95300090B70D /* FLPanelWizard.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B403171F95300090B70D /* FLPanelWizard.h */; };
+		2744B406171F95300090B70D /* FLPanelWizard.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B403171F95300090B70D /* FLPanelWizard.h */; };
+		2744B407171F95300090B70D /* FLPanelWizard.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B403171F95300090B70D /* FLPanelWizard.h */; };
+		2744B408171F95300090B70D /* FLPanelWizard.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B403171F95300090B70D /* FLPanelWizard.h */; };
+		2744B409171F95300090B70D /* FLPanelWizard.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B404171F95300090B70D /* FLPanelWizard.m */; };
+		2744B40A171F95300090B70D /* FLPanelWizard.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B404171F95300090B70D /* FLPanelWizard.m */; };
+		2744B40B171F95300090B70D /* FLPanelWizard.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B404171F95300090B70D /* FLPanelWizard.m */; };
+		2744B40C171F95300090B70D /* FLPanelWizard.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B404171F95300090B70D /* FLPanelWizard.m */; };
+		2744B40D171F95300090B70D /* FLPanelWizard.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B404171F95300090B70D /* FLPanelWizard.m */; };
 		274793EF16FE265C00DC11BE /* FLMouseTrackingView.h in Headers */ = {isa = PBXBuildFile; fileRef = 274793D516FE265C00DC11BE /* FLMouseTrackingView.h */; };
 		274793F016FE265C00DC11BE /* FLMouseTrackingView.h in Headers */ = {isa = PBXBuildFile; fileRef = 274793D516FE265C00DC11BE /* FLMouseTrackingView.h */; };
 		274793F116FE265C00DC11BE /* FLMouseTrackingView.h in Headers */ = {isa = PBXBuildFile; fileRef = 274793D516FE265C00DC11BE /* FLMouseTrackingView.h */; };
@@ -973,6 +982,8 @@
 		27314C79165328400027850D /* libFishLampCocoaUI-OSX-64-ARC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoaUI-OSX-64-ARC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2731E9B316F4138600BB1E83 /* FLPanelHostView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLPanelHostView.h; sourceTree = "<group>"; };
 		2731E9B416F4138600BB1E83 /* FLPanelHostView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLPanelHostView.m; sourceTree = "<group>"; };
+		2744B403171F95300090B70D /* FLPanelWizard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLPanelWizard.h; sourceTree = "<group>"; };
+		2744B404171F95300090B70D /* FLPanelWizard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLPanelWizard.m; sourceTree = "<group>"; };
 		274793D516FE265C00DC11BE /* FLMouseTrackingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLMouseTrackingView.h; sourceTree = "<group>"; };
 		274793D616FE265C00DC11BE /* FLMouseTrackingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLMouseTrackingView.m; sourceTree = "<group>"; };
 		274793D716FE265C00DC11BE /* FLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLView.h; sourceTree = "<group>"; };
@@ -1678,6 +1689,8 @@
 				78329BF8167E97C20024E8DC /* FLWizardViewController.m */,
 				2731E9B316F4138600BB1E83 /* FLPanelHostView.h */,
 				2731E9B416F4138600BB1E83 /* FLPanelHostView.m */,
+				2744B403171F95300090B70D /* FLPanelWizard.h */,
+				2744B404171F95300090B70D /* FLPanelWizard.m */,
 			);
 			path = WizardViewController;
 			sourceTree = "<group>";
@@ -1783,6 +1796,7 @@
 				278E85AF17020AF7008AFB98 /* SDKTextField+Theme.h in Headers */,
 				278E85BA170217DA008AFB98 /* NSObject+FLTheme.h in Headers */,
 				278E85C4170222FB008AFB98 /* FishLampTheming.h in Headers */,
+				2744B405171F95300090B70D /* FLPanelWizard.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1884,6 +1898,7 @@
 				278E85B117020AF7008AFB98 /* SDKTextField+Theme.h in Headers */,
 				278E85BC170217DA008AFB98 /* NSObject+FLTheme.h in Headers */,
 				278E85C6170222FB008AFB98 /* FishLampTheming.h in Headers */,
+				2744B407171F95300090B70D /* FLPanelWizard.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1985,6 +2000,7 @@
 				278E85B017020AF7008AFB98 /* SDKTextField+Theme.h in Headers */,
 				278E85BB170217DA008AFB98 /* NSObject+FLTheme.h in Headers */,
 				278E85C5170222FB008AFB98 /* FishLampTheming.h in Headers */,
+				2744B406171F95300090B70D /* FLPanelWizard.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2086,6 +2102,7 @@
 				278E85B217020AF7008AFB98 /* SDKTextField+Theme.h in Headers */,
 				278E85BD170217DA008AFB98 /* NSObject+FLTheme.h in Headers */,
 				278E85C7170222FB008AFB98 /* FishLampTheming.h in Headers */,
+				2744B408171F95300090B70D /* FLPanelWizard.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2393,6 +2410,7 @@
 				278E85A91701FC99008AFB98 /* FLFontTheme.m in Sources */,
 				278E85B417020AF7008AFB98 /* SDKTextField+Theme.m in Sources */,
 				278E85BF170217DA008AFB98 /* NSObject+FLTheme.m in Sources */,
+				2744B40A171F95300090B70D /* FLPanelWizard.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2489,6 +2507,7 @@
 				278E85AB1701FC99008AFB98 /* FLFontTheme.m in Sources */,
 				278E85B617020AF7008AFB98 /* SDKTextField+Theme.m in Sources */,
 				278E85C1170217DA008AFB98 /* NSObject+FLTheme.m in Sources */,
+				2744B40C171F95300090B70D /* FLPanelWizard.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2585,6 +2604,7 @@
 				278E85A81701FC99008AFB98 /* FLFontTheme.m in Sources */,
 				278E85B317020AF7008AFB98 /* SDKTextField+Theme.m in Sources */,
 				278E85BE170217DA008AFB98 /* NSObject+FLTheme.m in Sources */,
+				2744B409171F95300090B70D /* FLPanelWizard.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2681,6 +2701,7 @@
 				278E85AA1701FC99008AFB98 /* FLFontTheme.m in Sources */,
 				278E85B517020AF7008AFB98 /* SDKTextField+Theme.m in Sources */,
 				278E85C0170217DA008AFB98 /* NSObject+FLTheme.m in Sources */,
+				2744B40B171F95300090B70D /* FLPanelWizard.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2777,6 +2798,7 @@
 				278E85AC1701FC99008AFB98 /* FLFontTheme.m in Sources */,
 				278E85B717020AF7008AFB98 /* SDKTextField+Theme.m in Sources */,
 				278E85C2170217DA008AFB98 /* NSObject+FLTheme.m in Sources */,
+				2744B40D171F95300090B70D /* FLPanelWizard.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,7 +14,7 @@
 #import "FLDictionaryObjectStorageService.h"
 #import "FLDatabaseObjectStorageService.h"
 
-#define ZFHttpControllerHiddenFolderName @".downloader"
+#define ZFHttpControllerHiddenFolderName @".Composer"
 
 @interface ZFHttpController ()
 @end
@@ -31,7 +31,7 @@
 }
 
 - (NSString*) databaseObjectStorageServiceGetDatabasePath:(FLDatabaseObjectStorageService*) service {
-    return [[self.user userDataFolderPath] stringByAppendingPathComponent:@"downloader.sqlite"];
+    return [[self.user userDataFolderPath] stringByAppendingPathComponent:@"Composer.sqlite"];
 }
 
 //- (NSString*) databaseObjectStorageServiceGetDatabasePath:(FLDatabaseObjectStorageService*) service {
@@ -69,7 +69,7 @@
     }
 }
 
-- (id) createRootGroupDownloader {
+- (id) createRootGroupComposer {
     ZFLoadGroupHierarchyOperation* operation = 
         [ZFLoadGroupHierarchyOperation loadGroupHierarchyOperation:self.user.credentials]; 
     operation.context = self;
@@ -77,7 +77,7 @@
     return operation;
 }
 
-- (id) createAllPhotoSetsDownloader {
+- (id) createAllPhotoSetsComposer {
 
     ZFDownloadPhotoSetsOperation* operation = 
             [ZFDownloadPhotoSetsOperation downloadPhotoSetsWithGroup:self.user.rootGroup];
@@ -85,7 +85,7 @@
     return operation;
 }
 
-- (ZFBatchDownloadOperation*) createBatchDownloader:(ZFBatchDownloadSpec*) spec {
+- (ZFBatchDownloadOperation*) createBatchComposer:(ZFBatchDownloadSpec*) spec {
     ZFBatchDownloadOperation* operation = [ZFBatchDownloadOperation downloadOperation:spec];
     operation.context = self;
     return operation;

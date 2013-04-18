@@ -81,8 +81,8 @@
 
 - (void) _willSaveToDevice:(FLSaveImageToUsersPhotoAlbumOperation*) saver
 {
-	ZFDownloadImageHttpRequest* downloader = (ZFDownloadImageHttpRequest*) saver.previousOperation;
-	FLCachedImage* image = downloader.output;
+	ZFDownloadImageHttpRequest* Composer = (ZFDownloadImageHttpRequest*) saver.previousOperation;
+	FLCachedImage* image = Composer.output;
 	
 	[saver setImageInput:image.imageFile.image properties:image.imageFile.properties];
 	
@@ -109,12 +109,12 @@
 	action.actionDescription.actionItemName = FLActionDescriptionItemNamePhoto;
 	action.actionDescription.actionType = FLActionTypeCopy;
 	
-	ZFDownloadImageHttpRequest* downloader = 
+	ZFDownloadImageHttpRequest* Composer = 
         FLAutorelease([[ZFDownloadImageHttpRequest alloc] initWithSubOperation: FLAutorelease([[ZFDownloadImageHttpRequest alloc] initWithPhoto:photo photoSize:_downloadSize])]);
-	downloader.canLoadFromCache = YES;
-	downloader.canSaveToCache = YES;
-	downloader.cache = [[self.userContext userStorageService].cacheDatabase;
-	[action addOperation:downloader];
+	Composer.canLoadFromCache = YES;
+	Composer.canSaveToCache = YES;
+	Composer.cache = [[self.userContext userStorageService].cacheDatabase;
+	[action addOperation:Composer];
 	
     
     FLSaveImageToUsersPhotoAlbumOperation* saver =

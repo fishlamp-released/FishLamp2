@@ -29,7 +29,7 @@
     self = [super init];
     if(self) {
         self.group = FLCopyWithAutorelease(group);
-        self.downloadedPhotoSetSelector = @selector(photoSetDownloader:didDownloadPhotoSet:);
+        self.downloadedPhotoSetSelector = @selector(photoSetComposer:didDownloadPhotoSet:);
     }   
 
     return self;
@@ -57,7 +57,7 @@
             [self.objectStorage writeObject:set];
             [group replaceElement:set];
             
-            [self sendObservation:@selector(photoSetDownloader:didDownloadPhotoSet:) withObject:set];
+            [self sendObservation:@selector(photoSetComposer:didDownloadPhotoSet:) withObject:set];
         }
         
         [self abortIfNeeded];

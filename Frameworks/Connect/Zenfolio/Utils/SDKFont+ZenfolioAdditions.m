@@ -1,6 +1,6 @@
 //
 //  SDKFont+ZFFont.m
-//  Zenfolio Downloader
+//  Zenfolio Composer
 //
 //  Created by Mike Fullerton on 12/3/12.
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
