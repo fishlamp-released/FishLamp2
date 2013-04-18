@@ -19,7 +19,9 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     [_titleView removeFromSuperview];
-    [self.view addSubview:_titleView positioned:NSWindowAbove relativeTo:_logoView];
+    if(_logoView && _titleView) {
+        [self.view addSubview:_titleView positioned:NSWindowAbove relativeTo:_logoView];
+    }
 }
 
 - (void) setPrompt:(NSString*) title animationDuration:(CGFloat) animationDuration {

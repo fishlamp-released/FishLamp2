@@ -126,16 +126,4 @@
 // Modules/ViewControllerStack
 #import "FLViewControllerStack.h"
 
-// Modules/WizardPanels
-#import "FLLoginPanel.h"
 
-// Modules/WizardViewController
-#import "FLFramedView.h"
-#import "FLPanelHostView.h"
-#import "FLPanelManager.h"
-#import "FLPanelViewController.h"
-#import "FLSmallPanelView.h"
-#import "FLWizardButtonViewController.h"
-#import "FLWizardHeaderViewController.h"
-#import "FLWizardNavigationViewController.h"
-#import "FLWizardViewController.h"

@@ -18,7 +18,6 @@
 
 @synthesize currentPanelIndex = _currentPanel;
 @synthesize panels = _panels;
-@synthesize delegate = _delegate;
 @synthesize forwardTransition = _forwardTransition;
 @synthesize backwardTransition = _backwardTransition;
 
@@ -75,7 +74,7 @@
 }
 
 - (void) panelDidChangeCanOpenValue:(FLPanelViewController*) panel {
-    [self.delegate panelManager:self panelStateDidChange:panel];
+    [self panelStateDidChange:panel];
 }
 
 - (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
@@ -87,22 +86,31 @@
     }
 }
 
-- (void) addPanel:(FLPanelViewController*) panel {
+- (void) addPanel:(FLPanelViewController*) panel withDelegate:(id) delegate {
+    [panel view]; // make sure it's loaded from nib
 
 
 //    panel.view.wantsLayer = YES;
     [panel didMoveToPanelManager:self];
     [_panels addObject:panel];
-    [self.delegate panelManager:self didAddPanel:panel];
-    [self.delegate panelManager:self panelStateDidChange:panel];
+    [self didAddPanel:panel];
+    [self panelStateDidChange:panel];
+    
+    if(delegate) {
+        [panel setDelegate:delegate];
+    }
+}
+
+- (void) addPanel:(FLPanelViewController*) panel {
+    [self addPanel:panel withDelegate:nil];
 }
 
 - (void) removePanelForTitle:(id) title {
     FLPanelViewController* panel = [self panelForTitle:title];
     [_panels removeObject:panel];
     [panel didMoveToPanelManager:nil];
-    [self.delegate panelManager:self didRemovePanel:panel];
-    [self.delegate panelManager:self panelStateDidChange:panel];
+    [self didRemovePanel:panel];
+    [self panelStateDidChange:panel];
 }
 
 - (FLPanelViewController*) visiblePanel {
@@ -199,16 +207,14 @@
 
     if(toHide) {
         [toHide.view removeFromSuperview];
+        [self didHidePanel:toHide];
         [toHide panelDidDisappear];
     }
+    [toShow setNextResponder:self];
+    [self.view.window makeFirstResponder:toShow];
 
     [toShow panelDidAppear];
-    [toShow setNextResponder:self];
-    
-    [self.view.window makeFirstResponder:toShow];
-//    [self.view.window display];
-
-    [self.delegate panelManager:self didShowPanel:toShow didHidePanel:toHide ];
+    [self didShowPanel:toShow];
 }                                          
 
 - (void) showPanelAtIndex:(NSUInteger) idx 
@@ -237,11 +243,10 @@
     
     _started = YES;
 
-    CGFloat animationDuration = 0.0f;
     FLViewTransition* transition = nil;
 
-
 #if BROKEN
+    CGFloat animationDuration = 0.0f;
     if(animated) {
         if(idx > _currentPanel) {
             transition = self.forwardTransition;
@@ -260,13 +265,16 @@
 
     [self setPanelFrame:toShow];
 
-    [self.delegate panelManager:self willShowPanel:toShow willHidePanel:toHide animationDuration:animationDuration];
     if(toHide) {
         [toHide panelWillDisappear];
+        [self willHidePanel:toHide];
+
         for(id panelArea in _panelAreas) {
             FLPerformSelector1(panelArea, @selector(panelWillDisappear:), toHide);
         }
     }
+
+    [self willShowPanel:toShow];
 
     _currentPanel = idx;
     [self.view addSubview:[toShow view]];
@@ -277,8 +285,8 @@
     
     [self.view.window makeFirstResponder:self];
 
-    [self.delegate panelManager:self panelStateDidChange:toHide];
-    [self.delegate panelManager:self panelStateDidChange:toShow];
+    [self panelStateDidChange:toHide];
+    [self panelStateDidChange:toShow];
 
     if(transition) {
         completion = FLCopyWithAutorelease(completion);
@@ -357,6 +365,38 @@
     [_panelAreas addObject:area];
 }
 
+- (void) willShowPanel:(FLPanelViewController*) panel {
+}
+
+- (void) willHidePanel:(FLPanelViewController*) panel {
+}
+
+- (void) didShowPanel:(FLPanelViewController*) panel {
+}
+
+- (void) didHidePanel:(FLPanelViewController*) panel {
+}
+
+- (void) panelStateDidChange:(FLPanelViewController*) panel {
+}
+
+- (void) didAddPanel:(FLPanelViewController*) panel {
+}
+
+- (void) didRemovePanel:(FLPanelViewController*) panel {
+}
+
+- (void) showPanelsInWindow:(NSWindow*) window {
+    [window setContentView:self.view];
+    [self setNextResponder:window];
+    [self showFirstPanel];  
+}
+
+- (void) showPanelsInView:(NSView*) view {
+    
+}
+
+
 @end
 
 
@@ -374,13 +414,13 @@
 //
 //    [self setFirstResponder];
 //    [self setPanelFrame:toShow];
-//    [self.delegate panelManager:self willHidePanel:toHide willShowPanel:toShow];
+//    [self willHidePanel:toHide willShowPanel:toShow];
 //            
 //    completion = FLCopyWithAutorelease(completion);
 //    [self.view addSubview:[toShow view]];
 //        
 //    dispatch_block_t finished = ^{
-//        [self.delegate panelManager:self didHidePanel:toHide didShowPanel:toShow];
+//        [self didHidePanel:toHide didShowPanel:toShow];
 //         
 //        if(completion) {
 //            completion(toShow);
