@@ -1,6 +1,6 @@
 //
 //  FLLoginPanel.h
-//  Zenfolio Downloader
+//  Zenfolio Composer
 //
 //  Created by Mike Fullerton on 12/2/12.
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.

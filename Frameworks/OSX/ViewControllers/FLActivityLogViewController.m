@@ -1,6 +1,6 @@
 //
 //  ZFActivityLogView.m
-//  ZenfolioDownloader
+//  ZenfolioComposer
 //
 //  Created by Mike Fullerton on 3/11/13.
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.
@@ -12,17 +12,6 @@
 @implementation FLActivityLogViewController
 
 @synthesize activityLog = _activityLog;
-
-- (id) initActivityLogView {
-    _textView.drawsBackground = NO;
-    [_textView setAlignment:NSLeftTextAlignment];
-    [_textView setRichText:YES];
-    [[_textView textContainer] setContainerSize:NSMakeSize(FLT_MAX, FLT_MAX)];
-    [[_textView textContainer] setWidthTracksTextView:NO];
-    [_textView setHorizontallyResizable:YES];
-    [_textView setTextContainerInset:NSMakeSize(10, 10)];
-    return self;
-}
 
 - (void) dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -74,7 +63,13 @@
 
 - (void) awakeFromNib {
     [super awakeFromNib];
-    [self initActivityLogView];
+    _textView.drawsBackground = NO;
+    [_textView setAlignment:NSLeftTextAlignment];
+    [_textView setRichText:YES];
+    [[_textView textContainer] setContainerSize:NSMakeSize(FLT_MAX, FLT_MAX)];
+    [[_textView textContainer] setWidthTracksTextView:NO];
+    [_textView setHorizontallyResizable:YES];
+    [_textView setTextContainerInset:NSMakeSize(10, 10)];
     
     [_textView setEnabledTextCheckingTypes:NSTextCheckingTypeLink];
 }

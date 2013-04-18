@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2744B3F0171F94C20090B70D /* NSWindowController+FLModalAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B3EE171F94C20090B70D /* NSWindowController+FLModalAdditions.h */; };
+		2744B3F1171F94C20090B70D /* NSWindowController+FLModalAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B3EE171F94C20090B70D /* NSWindowController+FLModalAdditions.h */; };
+		2744B3F2171F94C20090B70D /* NSWindowController+FLModalAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B3EE171F94C20090B70D /* NSWindowController+FLModalAdditions.h */; };
+		2744B3F3171F94C20090B70D /* NSWindowController+FLModalAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B3EE171F94C20090B70D /* NSWindowController+FLModalAdditions.h */; };
+		2744B3F4171F94C20090B70D /* NSWindowController+FLModalAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B3EF171F94C20090B70D /* NSWindowController+FLModalAdditions.m */; };
+		2744B3F5171F94C20090B70D /* NSWindowController+FLModalAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B3EF171F94C20090B70D /* NSWindowController+FLModalAdditions.m */; };
+		2744B3F6171F94C20090B70D /* NSWindowController+FLModalAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B3EF171F94C20090B70D /* NSWindowController+FLModalAdditions.m */; };
+		2744B3F7171F94C20090B70D /* NSWindowController+FLModalAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B3EF171F94C20090B70D /* NSWindowController+FLModalAdditions.m */; };
 		274932B81699F667008E8EC5 /* FishLampOSX-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 274932B71699F667008E8EC5 /* FishLampOSX-Prefix.pch */; };
 		274932B91699F667008E8EC5 /* FishLampOSX-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 274932B71699F667008E8EC5 /* FishLampOSX-Prefix.pch */; };
 		274932BA1699F667008E8EC5 /* FishLampOSX-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 274932B71699F667008E8EC5 /* FishLampOSX-Prefix.pch */; };
@@ -181,6 +189,8 @@
 		27048EF0161CB58600C38ADA /* libFishLampOSX-32-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampOSX-32-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		270BC95616EBAB4300416D62 /* FishLampCocoa.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FishLampCocoa.xcodeproj; path = ../FishLampCocoaLib/FishLampCocoa.xcodeproj; sourceTree = "<group>"; };
 		27314C79165328400027850D /* libFishLampOSX-64-ARC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampOSX-64-ARC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2744B3EE171F94C20090B70D /* NSWindowController+FLModalAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSWindowController+FLModalAdditions.h"; sourceTree = "<group>"; };
+		2744B3EF171F94C20090B70D /* NSWindowController+FLModalAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSWindowController+FLModalAdditions.m"; sourceTree = "<group>"; };
 		274932B71699F667008E8EC5 /* FishLampOSX-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FishLampOSX-Prefix.pch"; sourceTree = "<group>"; };
 		274933891699FADD008E8EC5 /* FishLampOSX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishLampOSX.h; sourceTree = "<group>"; };
 		2749340B169A0D74008E8EC5 /* __OSXHeaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __OSXHeaders.h; sourceTree = "<group>"; };
@@ -311,6 +321,8 @@
 			children = (
 				27BC8A4E17171CDE00ECCEA4 /* FLActivityLogViewController.h */,
 				27BC8A4F17171CDE00ECCEA4 /* FLActivityLogViewController.m */,
+				2744B3EE171F94C20090B70D /* NSWindowController+FLModalAdditions.h */,
+				2744B3EF171F94C20090B70D /* NSWindowController+FLModalAdditions.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -410,6 +422,7 @@
 				27E80328170346AC0012BFDD /* FLCommandLineTool.h in Headers */,
 				27E80330170346AC0012BFDD /* FLShellCommandOperation.h in Headers */,
 				27BC8A5017171CDE00ECCEA4 /* FLActivityLogViewController.h in Headers */,
+				2744B3F0171F94C20090B70D /* NSWindowController+FLModalAdditions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -430,6 +443,7 @@
 				27E8032A170346AC0012BFDD /* FLCommandLineTool.h in Headers */,
 				27E80332170346AC0012BFDD /* FLShellCommandOperation.h in Headers */,
 				27BC8A5217171CDE00ECCEA4 /* FLActivityLogViewController.h in Headers */,
+				2744B3F2171F94C20090B70D /* NSWindowController+FLModalAdditions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -450,6 +464,7 @@
 				27E80329170346AC0012BFDD /* FLCommandLineTool.h in Headers */,
 				27E80331170346AC0012BFDD /* FLShellCommandOperation.h in Headers */,
 				27BC8A5117171CDE00ECCEA4 /* FLActivityLogViewController.h in Headers */,
+				2744B3F1171F94C20090B70D /* NSWindowController+FLModalAdditions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -470,6 +485,7 @@
 				27E8032B170346AC0012BFDD /* FLCommandLineTool.h in Headers */,
 				27E80333170346AC0012BFDD /* FLShellCommandOperation.h in Headers */,
 				27BC8A5317171CDE00ECCEA4 /* FLActivityLogViewController.h in Headers */,
+				2744B3F3171F94C20090B70D /* NSWindowController+FLModalAdditions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -674,6 +690,7 @@
 				27E8032C170346AC0012BFDD /* FLCommandLineTool.m in Sources */,
 				27E80334170346AC0012BFDD /* FLShellCommandOperation.m in Sources */,
 				27BC8A5417171CDE00ECCEA4 /* FLActivityLogViewController.m in Sources */,
+				2744B3F4171F94C20090B70D /* NSWindowController+FLModalAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -690,6 +707,7 @@
 				27E8032E170346AC0012BFDD /* FLCommandLineTool.m in Sources */,
 				27E80336170346AC0012BFDD /* FLShellCommandOperation.m in Sources */,
 				27BC8A5617171CDE00ECCEA4 /* FLActivityLogViewController.m in Sources */,
+				2744B3F6171F94C20090B70D /* NSWindowController+FLModalAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -706,6 +724,7 @@
 				27E8032D170346AC0012BFDD /* FLCommandLineTool.m in Sources */,
 				27E80335170346AC0012BFDD /* FLShellCommandOperation.m in Sources */,
 				27BC8A5517171CDE00ECCEA4 /* FLActivityLogViewController.m in Sources */,
+				2744B3F5171F94C20090B70D /* NSWindowController+FLModalAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -722,6 +741,7 @@
 				27E8032F170346AC0012BFDD /* FLCommandLineTool.m in Sources */,
 				27E80337170346AC0012BFDD /* FLShellCommandOperation.m in Sources */,
 				27BC8A5717171CDE00ECCEA4 /* FLActivityLogViewController.m in Sources */,
+				2744B3F7171F94C20090B70D /* NSWindowController+FLModalAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

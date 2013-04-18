@@ -1,6 +1,6 @@
 //
 //  FLWizardViewController.m
-//  Zenfolio Downloader
+//  Zenfolio Composer
 //
 //  Created by Mike Fullerton on 12/4/12.
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
@@ -18,39 +18,19 @@
 #import "FLWizardStyleViewTransition.h"
 #import "FLLocalNotification.h"
 
-@interface FLWizardView : NSView
-@end
 
-@implementation FLWizardView 
-
-#if DEBUG
-- (void) setFrame:(CGRect) frame {
-//    [super setFrame:frame];
-
-    if(frame.size.height > 0 && frame.size.width > 0) {
-        [super setFrame:frame];
-    }
-}
-#endif
-
-@end
 
 @interface FLWizardViewController ()
 @end
 
 @implementation FLWizardViewController
 
-//@synthesize delegate = _delegate;
-
 @synthesize buttonViewController = _buttonViewController;
 @synthesize headerViewController = _headerViewController;
-@synthesize navigationViewController = _navigationViewController;
-@synthesize panelManager = _panelManager;
 
 - (id) init {
     return [self initWithNibName:@"FLWizardViewController" bundle:nil];
 }
-
 
 + (id) wizardViewController {
     return FLAutorelease([[[self class] alloc] init]);
@@ -61,65 +41,23 @@
     [self.navigationViewController updateViewsAnimated:animated];
 }
 
-- (void) addPanel:(FLPanelViewController*) panel {
-    [self.panelManager addPanel:panel];
-}
-
-- (void) addPanel:(FLPanelViewController*) panel withDelegate:(id) delegate {
-    
-    [panel view]; // make sure it's loaded from nib
-
-    [self.panelManager addPanel:panel];
-    panel.delegate = self;
-}
- 
-- (void) removePanelForTitle:(id) title {
-    [self.panelManager removePanelForTitle:title];
-    
-}
-
-- (void) willShowPanel:(FLPanelViewController*) toShow willHidePanel:(FLPanelViewController*) toHide {
-}
-
-- (void) didShowPanel:(FLPanelViewController*) toShow didHidePanel:(FLPanelViewController*) toHide {
-}
-
-- (void) showFirstPanel {
-    [self.panelManager showFirstPanel];  
-}
-
 - (void) startWizardInWindow:(NSWindow*) window {
-    [window setContentView:self.view];
     [window setDefaultButtonCell:[self.buttonViewController.nextButton cell]];
-    [self setNextResponder:window];
-    [self showFirstPanel];  
+    [super startWizardInWindow:window];
 }
 
 - (void) awakeFromNib {
     [super awakeFromNib];
 
-    self.navigationViewController.delegate = self;
     self.buttonViewController.delegate = self;
     self.panelManager.delegate = self;
-    
     [_progressView setRespondsToGlobalNetworkActivity];
-    
     [_panelManager addPanelArea:_headerViewController];
     [_panelManager addPanelArea:_buttonViewController];
-    
-    _panelManager.nextResponder = self;
-}
-
-- (BOOL)acceptsFirstResponder {
-    return YES;
-}
-
-- (BOOL)becomeFirstResponder {
-    return YES;
 }
 
 - (void) removePanel:(FLPanelViewController*) panel {
-    [self.panelManager removePanelForTitle:panel.title];
+    [super removePanel:panel];
     [self updateButtonEnabledStates:NO];
 }
 
@@ -149,6 +87,7 @@
 }
 
 - (void) wizardButtonViewControllerUpdateButtonStates:(FLWizardButtonViewController*) controller {
+    
     BOOL backEnabled = !self.panelManager.isShowingFirstPanel;
     BOOL nextEnabled = [self.panelManager visiblePanel].canOpenNextPanel && ![self.panelManager isShowingLastPanel];
     
@@ -161,36 +100,17 @@
     }
 }
 
-#pragma mark breadcrumb bar delegate
-
-- (BOOL) breadcrumbBar:(FLBreadcrumbBarViewController*) breadcrumbBar breadcrumbIsVisible:(id) title {
-    return [title isEqual:[self.panelManager.visiblePanel title]];
-}
-
-- (BOOL) breadcrumbBar:(FLBreadcrumbBarViewController*) breadcrumbBar breadcrumbIsEnabled:(id) title {
-    return [self.panelManager canOpenPanelForTitle:title];
-}
-                
-- (void) breadcrumbBar:(FLBreadcrumbBarViewController*) breadcrumbBar 
-    breadcrumbWasClicked:(NSString*) title {
-    [self.panelManager showPanelForTitle:title animated:YES completion:nil];
-}
-
 #pragma mark panel manager delegate
 
 - (void) panelManager:(FLPanelManager*) controller panelStateDidChange:(FLPanelViewController*) panel {
+    [super panelManager:controller panelStateDidChange:panel];
     [self updateButtonEnabledStates:YES];
 }
 
 - (void) panelManager:(FLPanelManager*) controller didAddPanel:(FLPanelViewController*) panel {
     panel.buttons = self.buttonViewController;
     panel.header = self.headerViewController;
-    panel.wizardViewController = self;
-    [self.navigationViewController addBreadcrumb:panel.title];
-}
-
-- (void) panelManager:(FLPanelManager*) controller didRemovePanel:(FLPanelViewController*) panel {
-    [self.navigationViewController removeBreadcrumb:panel.title];
+    [super panelManager:controller didAddPanel:panel];
 }
        
 - (void) panelManager:(FLWizardViewController*) wizard 
@@ -198,154 +118,14 @@
         willHidePanel:(FLPanelViewController*) toHide
     animationDuration:(CGFloat) animationDuration {
 
-    [self.headerViewController setPrompt:toShow.prompt animationDuration:animationDuration];
     self.buttonViewController.nextButton.enabled = NO;
     self.buttonViewController.backButton.enabled = NO;
     self.buttonViewController.otherButton.hidden = YES;
-    [self willShowPanel:toShow willHidePanel:toHide];
+    [super panelManager:wizard willShowPanel:toShow willHidePanel:toHide animationDuration:animationDuration];
 }     
 
-- (void) panelManager:(FLWizardViewController*) wizard 
-         didShowPanel:(FLPanelViewController*) toHide
-         didHidePanel:(FLPanelViewController*) toShow {
-    [self didShowPanel:toShow didHidePanel:toHide];
-    
-//    [self.navigationViewController setNextResponder:self.view.window];
-    
-//    id responder = self.view.window.firstResponder;
-//    while(responder) {
-//        FLLog(@"first responder: %@", [responder description]);
-//        responder = [responder nextResponder];
-//    }
-    
-}                              
-- (void) didHideErrorAlertForError:(NSError*) error {
-    [self.view.window makeFirstResponder:self];
-    [[self.panelManager visiblePanel] didHideAlertWithError:error];
-}
-
-- (void)didPresentErrorWithRecovery:(BOOL)didRecover contextInfo:(void *)contextInfo {
-    
-    NSError* error = FLAutorelease(FLBridgeTransfer(NSError*, contextInfo));
-
-    [self didHideErrorAlertForError:error];
-}
-
-- (void) showErrorAlert:(NSString*) title caption:(NSString*) caption error:(NSError*) error {
-
-    FLAssertNotNil(error);
-
-    if(error.isCancelError) {
-        return;
-    }
-
-    NSError* theError = error;
-
-    if(!title) {
-        title = NSLocalizedString(@"An error occurred.", nil); 
-    }
-    
-    NSMutableString* errorString = [NSMutableString stringWithString:title];
-    
-    if(caption) {
-        [errorString appendFormat:@"\n\n%@\n", caption];
-    } 
-    else {
-        [errorString appendFormat:@"\n\n%@\n", [error localizedDescription]];
-    }
-    
-    theError = [NSError errorWithDomain:error.domain code:error.code localizedDescription:errorString];
-
-    NSBeep();
-    
-    void* context = FLBridgeRetain(void*, error);
-    
-    [self presentError:theError modalForWindow:self.view.window delegate:self didPresentSelector:@selector(didPresentErrorWithRecovery:contextInfo:) contextInfo:context];
-        
-    if(![[NSApplication sharedApplication] isActive]) {
-#if __MAC_10_8
-        FLLocalNotification* notification = [FLLocalNotification localNotificationWithName:title];
-//        notification.subtitle = @"Please try again";
-        [notification deliverNotification];
-#endif
-        
-        [NSApp requestUserAttention:NSCriticalRequest];
-    }
-}
-
-
-- (BOOL)validateMenuItem:(NSMenuItem *)item {
-    return YES;
-}
 
 @end
 
-@interface NSWindow (FLModalAdditionsMore)
-@property (readwrite, strong, nonatomic) NSWindowController* modalWindowController;
-@end
 
-
-@implementation NSWindow (FLModalAdditions)
-FLSynthesizeAssociatedProperty(FLAssociationPolicyRetainNonatomic, modalWindowController, setModalWindowController, NSWindowController*);
-
-- (void) closeModalWindowController {
-    [self.modalWindowController closeIfModalInWindow:self];
-}
-
-@end
-
-@implementation NSWindowController (FLModalAdditions)
-
-FLSynthesizeAssociatedProperty(FLAssociationPolicyAssignNonatomic, modalInWindow, setModalInWindow, NSWindow*);
-FLSynthesizeAssociatedProperty(FLAssociationPolicyRetainNonatomic, modalSession, setModalSession, NSValue*);
-FLSynthesizeAssociatedProperty(FLAssociationPolicyAssignNonatomic, previousFirstResponderForModal, setPreviousFirstResponderForModal, id);
-
-- (IBAction) closeIfModalInWindow:(id) sender {
-    if(self.modalInWindow) {
-        [[NSApplication sharedApplication] endSheet:self.window];
-    }
-    
-    [self.window makeFirstResponder:self.previousFirstResponderForModal];
-}
-
-
-- (void)sheetDidEnd:(NSAlert*)alert 
-         returnCode:(NSInteger)returnCode 
-        contextInfo:(void*)contextInfo {
-
-    [NSApp endModalSession:[[self modalSession] pointerValue]];
-    [self.window orderOut:self.window];
-    
-    self.modalInWindow.modalWindowController = nil;
-    self.modalInWindow = nil;
-    self.modalSession = nil;
-}
-
-
-
-- (void) showModallyInWindow:(NSWindow*) window 
-           withDefaultButton:(NSButton*) button {
-    
-    self.modalInWindow = window;
-    self.previousFirstResponderForModal = self.window.firstResponder;
-    
-    window.modalWindowController = self;
-
-    [[NSApplication sharedApplication] beginSheet:self.window  
-                                   modalForWindow:window
-                                   modalDelegate:self 
-                                   didEndSelector:@selector(sheetDidEnd:returnCode:contextInfo:) 
-                                      contextInfo:nil];
-                                      
-    NSModalSession modalSession = [NSApp beginModalSessionForWindow:self.window];
-    self.modalSession = [NSValue valueWithPointer:modalSession];
-    
-    [NSApp runModalSession:modalSession];
-    [window makeFirstResponder:window];
-    
-    if(button) {
-        [self.window setDefaultButtonCell:[button cell]];
-    }
-}
-@end
 #endif
