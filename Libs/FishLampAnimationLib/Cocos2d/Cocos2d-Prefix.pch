@@ -1,0 +1,11 @@
+//
+// Prefix header for all source files of the 'FLCocoas2d' target in the 'FLCocoas2d' project
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+    #import "cocos2d.h"
+    #import "kazmath.h"
+    #import "png.h"
+#endif
+
